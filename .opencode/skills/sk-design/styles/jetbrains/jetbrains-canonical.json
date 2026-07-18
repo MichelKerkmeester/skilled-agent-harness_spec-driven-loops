@@ -1,0 +1,1786 @@
+{
+  "source": "https://styles.refero.design/style/bc4fb98b-37ec-480a-b7a9-acd197cbebb9",
+  "uuid": "bc4fb98b-37ec-480a-b7a9-acd197cbebb9",
+  "name": "JetBrains",
+  "northStar": "Neon nebula on obsidian — a black-ground page where violet-blue gradients bloom upward like deep-space imagery, punctuated by hot-pink neon and per-product chromatic icon light.",
+  "capturedAt": "2026-07-18T10:12:32.305Z",
+  "meta": {
+    "url": "https://jetbrains.com",
+    "siteName": "JetBrains",
+    "extractedAt": "2026-04-11T19:10:37.048Z",
+    "durationMs": 147660,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 866,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #000000 as the absolute page background — never a near-black like #0a0a0a or #111; the true black is what makes the gradient glows feel luminous",
+      "Apply the radial blue glow (rgba(0,71,253,0.8) → transparent) behind hero content at ~87% width spread, centered on the content, so text appears spotlit from behind",
+      "Use Neon Pink (#f31199) only for category labels and brand punctuation — 1-3 instances per page maximum; it reads as a signal color, not a fill color",
+      "Set all card and feature panel border-radius to 24px; use 4px only for badges, never mix these on the same component",
+      "Use translucent fills for card backgrounds: rgba(90,31,208,0.3) for violet-tinted cards, rgba(243,17,180,0.2) for pink-tinted cards — never opaque colored fills",
+      "Apply JetBrains Sans with fontFeatureSettings '\"calt\", \"kern\", \"liga\"' active at all sizes, and apply negative letter-spacing (-0.005em) at display sizes 43px and above",
+      "Give each JetBrains product its own distinct multicolor icon — the chromatic icon grid is the primary visual diversity mechanism; do not apply a single brand color to all icons"
+    ],
+    "tags": [
+      "dark-ui",
+      "neon-accents",
+      "gradient-glow",
+      "developer-tools",
+      "violet-palette",
+      "chromatic-icons",
+      "black-ground",
+      "space-aesthetic",
+      "pill-buttons",
+      "translucent-cards"
+    ],
+    "donts": [
+      "Do not use #18a3fa (Electric Blue) as a fill color for buttons or large surfaces — it is a text/border/link color only; as a fill it would overpower the dark palette",
+      "Do not add box-shadows to cards — elevation is expressed through gradient fills and translucent backgrounds, never drop shadows",
+      "Do not use border-radius below 16px on interactive elements (buttons, cards); sharp-cornered shapes are reserved exclusively for badges (4-6px)",
+      "Do not place white text directly on the pure black background without a gradient zone or translucent card beneath for longer body text — use #bababb for body on raw black",
+      "Do not use Neon Pink (#f31199) as a background fill for large areas — its opacity 0.2 translucent form (rgba(243,17,180,0.2)) is the maximum surface application",
+      "Do not add a visible border-bottom to the navigation bar — the #19191c header transitions into the hero gradient without a line",
+      "Do not apply uniform icon color — product icons must retain their individual per-product chromatic gradient identity; monochromatic treatment breaks the identity system"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian Ground",
+        "role": "Page background — the absolute black base all gradients and glows emerge from",
+        "group": "neutral"
+      },
+      {
+        "hex": "#19191c",
+        "name": "Deep Charcoal",
+        "role": "Nav bar background, footer, elevated surface one step above absolute black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#343434",
+        "name": "Graphite",
+        "role": "Most-used color on site; borders, dividers, muted icon strokes, body text secondary contexts",
+        "group": "neutral"
+      },
+      {
+        "hex": "#474749",
+        "name": "Iron",
+        "role": "Subtle borders, inactive state outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#757577",
+        "name": "Ash",
+        "role": "Card borders, inactive dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8c8c8",
+        "name": "Slate",
+        "role": "Secondary body text, muted icon fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a3a3a4",
+        "name": "Silver",
+        "role": "Tertiary icons, ghost button labels, disabled states",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bababb",
+        "name": "Fog",
+        "role": "Body text on dark backgrounds, list items, secondary link labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Primary headings, button labels on dark, high-emphasis body text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#18a3fa",
+        "name": "Electric Blue",
+        "role": "Primary link color, info badges, active state highlights — the most-used chromatic color site-wide, giving the dark UI its cool electric temperature",
+        "group": "brand"
+      },
+      {
+        "hex": "#7b61ff",
+        "name": "Violet Pulse",
+        "role": "Button borders, badge backgrounds, primary CTA outlines — the core violet brand hue from the JetBrains logo",
+        "group": "brand"
+      },
+      {
+        "hex": "#6b57ff",
+        "name": "Iris",
+        "role": "Badge fills, body accent — slightly darker violet variant for surfaces needing more saturation",
+        "group": "brand"
+      },
+      {
+        "hex": "#8473ff",
+        "name": "Amethyst",
+        "role": "Heading accent color, primary dark-theme color token (--rs-color-primary-dark-theme)",
+        "group": "brand"
+      },
+      {
+        "hex": "#2e106a",
+        "name": "Deep Violet",
+        "role": "CTA button background — deep space purple that pairs with Electric Blue (#18a3fa) text for a neon-on-void feel",
+        "group": "brand"
+      },
+      {
+        "hex": "#f31199",
+        "name": "Neon Pink",
+        "role": "Category labels ('For businesses', 'For developers'), brand highlight moments — the signature hot-pink neon that fires sparingly against black like a neon sign (--main-page-pink)",
+        "group": "accent"
+      },
+      {
+        "hex": "#5a1fd0",
+        "name": "Magenta Glow",
+        "role": "Gradient start color for violet nebula gradient, card border accents",
+        "group": "accent"
+      },
+      {
+        "hex": "#5a1fd0",
+        "name": "Nebula Violet",
+        "role": "Hero gradient bloom origin",
+        "group": "accent",
+        "gradient": "linear-gradient(130deg, rgb(90, 31, 208) 10%, rgba(46, 16, 106, 0) 70%)"
+      },
+      {
+        "hex": "#08deaa",
+        "name": "Aurora Teal",
+        "role": "Section accent headings, icon fills, gradient stop — teal-to-blue gradient used on feature callouts",
+        "group": "accent",
+        "gradient": "linear-gradient(90deg, rgb(8, 222, 170) -12.99%, rgb(0, 170, 250) 176.77%)"
+      },
+      {
+        "hex": "#0047fd",
+        "name": "Hero Blue Glow",
+        "role": "Radial glow behind hero content — the deep blue spotlight effect that dominates the first viewport",
+        "group": "accent",
+        "gradient": "radial-gradient(87.36% 97.44% at 54.14% 23.32%, rgba(0, 71, 253, 0.8) 0px, rgba(0, 71, 253, 0.8) 15%, rgba(0, 0, 0, 0) 75%)"
+      },
+      {
+        "hex": "#f45c4a",
+        "name": "Danger Red",
+        "role": "Error states, destructive actions (--rs-color-danger)",
+        "group": "semantic"
+      },
+      {
+        "hex": "#4dbb5f",
+        "name": "Success Green",
+        "role": "Success states (--rs-color-success)",
+        "group": "semantic"
+      },
+      {
+        "hex": "#f3c033",
+        "name": "Warning Amber",
+        "role": "Warning states (--rs-color-warning)",
+        "group": "semantic"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with a max-width content container of ~1280px centered. Hero is full-viewport with centered headline text over a radial blue glow, with an IDE screenshot mockup below the fold. Section rhythm moves from the blue-glow hero → card carousel section (full-bleed black) → audience segmentation tabs with gradient feature panels → product grid sections. No alternating light/dark bands — the entire page stays on the dark black ground, with section separation achieved via gradient card backgrounds and spacing (80-120px between sections) rather than background color changes. The 'For businesses' section temporarily shifts to a near-black #19191c ground for contrast. Card grids use 2-column layouts for feature panels and 4-5 column grids for the IDE product icon array. Navigation is a fixed top bar at 72px with logo-left, nav-center, utilities-right structure.",
+    "imagery": "Heavy use of abstract 3D rendered data-mesh visuals — luminous wireframe surfaces in pink/purple/blue forming curved grid planes, as seen in the 'JetBrains IDEs 2026.1' announcement card. These renders have no photographic elements; they're pure light-on-dark mathematical geometry suggesting data structures or network topology. Product screenshots are treated as dark-themed UI mockups (the IDE itself shown with dark editor theme) with rounded 8-16px corners, embedded within dark card contexts rather than on white backgrounds. No lifestyle photography or people imagery visible. Icons are 32px product logos with individual per-product multicolor gradient fills — each is a distinct chromatic identity mark, not a unified icon set. The overall image language is code-and-compute: abstract renders + UI screenshots + chromatic product icons, with zero real-world photography.",
+    "similar": [
+      {
+        "why": "Same black-ground dark theme with blue radial hero glow and product screenshot embedded in the hero",
+        "business": "GitHub"
+      },
+      {
+        "why": "Absolute black (#000) page background with white type and gradient accent cards — no shadows, gradient-as-elevation approach",
+        "business": "Vercel"
+      },
+      {
+        "why": "Dark developer tool site with violet as primary brand accent color and pill-shaped navigation segmentation tabs",
+        "business": "Linear"
+      },
+      {
+        "why": "Dark UI with translucent gradient card panels, chromatic icon ecosystem per product/extension, and black-void backgrounds",
+        "business": "Raycast"
+      },
+      {
+        "why": "Abstract 3D mesh/grid visuals on dark backgrounds as primary hero imagery, with vivid accent gradients bleeding into pure black",
+        "business": "Framer"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "24px",
+        "badges": "4-6px",
+        "images": "16px",
+        "modals": "24px",
+        "buttons": "20-26px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1280px"
+    },
+    "category": "dev-tools",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Absolute page background — the black base from which all gradients emerge"
+      },
+      {
+        "hex": "#19191c",
+        "name": "Deep Charcoal",
+        "level": 1,
+        "purpose": "Navigation bar, footer — surfaces that need to sit above the background but below content cards"
+      },
+      {
+        "hex": "#2e106a",
+        "name": "Violet Glass",
+        "level": 2,
+        "purpose": "Translucent violet card fills (rgba(90,31,208,0.3)) — feature announcement cards, business section panels"
+      },
+      {
+        "hex": "#45173a",
+        "name": "Pink Glass",
+        "level": 3,
+        "purpose": "Translucent pink card fills (rgba(243,17,180,0.2)) — highlight feature cards for specific products"
+      }
+    ],
+    "northStar": "Neon nebula on obsidian — a black-ground page where violet-blue gradients bloom upward like deep-space imagery, punctuated by hot-pink neon and per-product chromatic icon light.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.065
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.032
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "subheading",
+        "size": 29,
+        "lineHeight": 1.34,
+        "letterSpacing": -0.029
+      },
+      {
+        "role": "heading-sm",
+        "size": 35,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.035
+      },
+      {
+        "role": "heading",
+        "size": 43,
+        "lineHeight": 1.14,
+        "letterSpacing": -0.043
+      },
+      {
+        "role": "heading-lg",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "display",
+        "size": 79,
+        "lineHeight": 0.9,
+        "letterSpacing": -0.395
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Audience Segmentation Tab Row + Business Feature Card",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Feature Announcement Card with IDE Grid",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Button Group — Primary, Violet Deep, and Ghost",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Hero CTA Button — Primary Dark",
+        "role": "Main call-to-action on hero sections",
+        "description": "White fill (#ffffff), #19191c text, 26px border-radius (pill), 12px top/bottom padding, 32px left/right padding. JetBrains Sans 16px weight 500. Used for 'Choose Your IDE' — solid white stands out starkly against the dark gradient hero."
+      },
+      {
+        "name": "CTA Button — Violet Deep",
+        "role": "Secondary prominent CTA on feature cards",
+        "description": "Background #2e106a (Deep Violet), text #18a3fa (Electric Blue), border #7b61ff (Violet Pulse) 1px, 16px border-radius, 24px padding all sides. The neon-blue text on deep-violet background creates an illuminated button that reads like an active screen element inside the IDE itself."
+      },
+      {
+        "name": "Ghost Button — White Outlined",
+        "role": "Navigation links, secondary actions with text context",
+        "description": "Background transparent, #ffffff text, 1px #ffffff border, 20px border-radius, 8px padding all sides. Used in nav contexts and as paired secondary to primary CTAs."
+      },
+      {
+        "name": "Ghost Link Button — Borderless",
+        "role": "Nav bar top-level items, inline text actions",
+        "description": "Background transparent, #ffffff text, no border (0px radius, 0px top/bottom padding, 10px left/right padding). Pure text with horizontal padding only — becomes a tab-style navigation element."
+      },
+      {
+        "name": "Feature Announcement Card",
+        "role": "Hero carousel cards for product announcements like 'JetBrains IDEs 2026.1'",
+        "description": "Background transparent with 1px border #5a1fd0 (Magenta Glow / vivid violet), 24px radius, internal padding 24-64px. Contains product name at 29-35px weight 600, body at 16px #bababb, IDE icon grid at 32px, and a 3D/abstract gradient visual asset on the right half. The violet border glows against black."
+      },
+      {
+        "name": "Business Feature Card",
+        "role": "Gradient content card for audience-segmented sections",
+        "description": "Background linear-gradient(130deg, rgb(90,31,208) 10%, rgba(46,16,106,0) 70%) overlaid with organic blob shapes in deep red/purple, 24px radius, 64px padding. White headlines at 35-43px weight 600, #bababb body at 16px, white ghost pill button (26px radius, 32px horizontal padding). The gradient gives the impression of colored light bleeding from within."
+      },
+      {
+        "name": "Pink Tinted Feature Card",
+        "role": "Highlight cards for specific product moments",
+        "description": "Background rgba(243,17,180,0.2) (20% opacity Neon Pink), 24px radius, 23px padding. The translucent magenta tint reads as a glowing selection highlight against the dark ground."
+      },
+      {
+        "name": "Violet Badge — Filled",
+        "role": "Status labels like 'Now Live', 'Featured', 'Free for non-commercial use'",
+        "description": "Background #6b57ff (Iris), #ffffff text, 4px radius, 1px top/bottom padding, 7px left/right padding, JetBrains Sans 13px weight 500. Sharp-cornered relative to other components — badges are the most rectangular element in the system."
+      },
+      {
+        "name": "Violet Badge — Tab Style",
+        "role": "Contextual tab labels attached to card tops",
+        "description": "Background rgba(107,87,255,0.5) (50% opacity Violet Pulse), #ffffff text, border-radius 6px 6px 0px 0px (top-rounded only), 5px top/bottom padding, 11px left/right padding. The flat bottom connects visually to the card it labels."
+      },
+      {
+        "name": "IDE Product Icon Badge",
+        "role": "Per-product identity marks in product grids and navigation",
+        "description": "32px square icons with each IDE's distinct multicolor gradient fill (no single token — each product has unique chromatic identity: IntelliJ IDEA uses orange/red/purple, PyCharm uses green/yellow, DataGrip uses teal/dark). Displayed on 16px radius containers. These are the primary chromatic diversity element of the system — the only place vivid orange (#ff8100), vivid green (#00d886), vivid yellow (#f0eb18) appear."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation, always visible",
+        "description": "Full-width, 72px height, background #19191c (Deep Charcoal). JetBrains logo mark (multicolor cube icon) + 'JETBRAINS' wordmark in #ffffff weight 500 at 16px, left-aligned. Nav items (#ffffff, no border, 10px horizontal padding) centered. Utility icons (search, account, cart, language) right-aligned in #a3a3a4 at 20px. No border-bottom — the header floats above the hero gradient."
+      },
+      {
+        "name": "Carousel Pagination Control",
+        "role": "Slide navigation for announcement cards",
+        "description": "Left/right arrow buttons with transparent background, 1px #474749 border, 20px radius, 8px padding. Counter text '1 / 2' in #bababb at 16px between arrows. Sits below card carousels, horizontally centered."
+      },
+      {
+        "name": "Audience Segmentation Tab Row",
+        "role": "Segment switcher for 'For developers / For teams / For businesses'",
+        "description": "Horizontal pill-group container with transparent background, each segment as a ghost button (20px radius). Active segment uses 1px #7b61ff border, #ffffff text. Inactive segments have no border, #bababb text. The group appears as a floating pill selector centered in the content area."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The single typeface for the entire site at all sizes and weights. 600 at 72-79px for hero headlines — unusual that even at this weight the custom letterSpacing tightening (-0.005em to -0.001em) keeps the large type dense and technical rather than editorial. Weight 300 appears at mid-sizes giving subheadings a lighter counterpoint to bold display text. JetBrains Sans is custom-designed — it carries optical metrics tuned for code-adjacent contexts, slightly wider than Inter at body sizes, with liga/calt features active that echo the IDE typographic environment.",
+        "sizes": "13px, 16px, 20px, 29px, 35px, 43px, 72px, 79px",
+        "family": "JetBrains Sans",
+        "weight": "300, 400, 500, 600",
+        "lineHeight": "0.90–1.54 (tighter at larger sizes: 0.90 at display, 1.50–1.54 at body)",
+        "substitute": "Inter, Plus Jakarta Sans",
+        "letterSpacing": "-0.40px at large sizes (72-79px, -0.005em), -0.08px at mid sizes (29-43px, -0.001em), +0.032px at small sizes (16px, +0.002em), +0.065px at 13px (+0.005em)",
+        "fontFeatureSettings": "\"calt\", \"kern\", \"liga\""
+      }
+    ],
+    "description": "JetBrains' site feels like the interior of a deep-space control room — pure black (#000000) ground plane with electric violet-to-blue gradients erupting from the darkness like bioluminescent nebulae. The defining moves are the chromatic product icon ecosystem (each IDE gets a vivid multicolor badge) floating against near-black surfaces, and the blue radial glow (rgba(0,71,253,0.8) at 75% opacity) diffused behind hero content like a spotlight on a dark stage. Headlines at 72-79px use JetBrains Sans weight 600 with tight letter-spacing, while the hot-pink accent (#f31199, CSS var --main-page-pink) fires only on category labels and brand moments — a neon sign in a dark corridor. Cards use 24px radius with translucent violet or pink fills (rgba(90,31,208,0.3), rgba(243,17,180,0.2)) that glow rather than separate.",
+    "customSections": [
+      {
+        "title": "Gradient System",
+        "content": "Five gradient roles operate on the site: (1) HERO GLOW — radial-gradient(87.36% 97.44% at 54.14% 23.32%, rgba(0,71,253,0.8) 0px, rgba(0,71,253,0.8) 15%, rgba(0,0,0,0) 75%) — the defining visual of the homepage, a blue spotlight over absolute black. (2) VIOLET NEBULA — linear-gradient(130deg, rgb(90,31,208) 10%, rgba(46,16,106,0) 70%) — used on announcement card backgrounds, creates directional light bloom. (3) AURORA SWEEP — linear-gradient(90deg, rgb(8,222,170) -12.99%, rgb(0,170,250) 176.77%) — teal-to-blue, used on feature callout headings and icon fills. (4) EMERALD FADE — linear-gradient(130deg, rgba(33,215,137,0.6) -10%, rgba(106,16,70,0) 80%) — green-to-void, used as secondary section accent. (5) PRODUCT ILLUSTRATION — complex teal-to-navy multi-stop gradient (linear-gradient(0deg, rgb(78,197,185) 2.53%, ... rgb(22,24,27) 99.4%)) used in specific product feature visuals. All gradients fade to transparent or near-black — none have hard stops on both ends."
+      },
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      }
+    ],
+    "elevationPhilosophy": "Zero box-shadows anywhere on the site. Elevation and depth are created exclusively through gradient fills, translucent backgrounds with color tint (rgba violet/pink), and radial glow effects — not shadow casting. A card 'rises' because its colored translucent fill catches the light of the background gradient behind it, not because it casts a shadow below it. This approach keeps the dark theme feeling like illumination from within rather than objects floating above a surface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#343434",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3250368614874385
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "hero",
+            "image",
+            "list",
+            "card",
+            "badge",
+            "icon",
+            "footer"
+          ],
+          "frequency": 1450,
+          "confidence": 1,
+          "prominence": 176236687.94852746,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 91052293.90898558,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#19191c",
+          "oklch": {
+            "c": 0.005829497811834515,
+            "h": 285.89855041534815,
+            "l": 0.21470908533613878
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon",
+            "footer"
+          ],
+          "frequency": 72,
+          "confidence": 1,
+          "prominence": 7400399.496982977,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#18a3fa",
+          "oklch": {
+            "c": 0.16633417602683684,
+            "h": 244.5192545614348,
+            "l": 0.6902040697209293
+          },
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "card",
+            "badge",
+            "icon",
+            "image",
+            "body"
+          ],
+          "frequency": 353,
+          "confidence": 1,
+          "prominence": 5020773.567260662,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#474749",
+          "oklch": {
+            "c": 0.003980149950491077,
+            "h": 286.217793226503,
+            "l": 0.3987818830614628
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 2345068.631592405,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "link",
+            "heading",
+            "body",
+            "list",
+            "icon",
+            "badge",
+            "other"
+          ],
+          "frequency": 1029,
+          "confidence": 1,
+          "prominence": 1775575.3049842976,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#5a1fd0",
+          "oklch": {
+            "c": 0.23879364276196222,
+            "h": 287.41882809186905,
+            "l": 0.45518866995426
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1557605.0923247198,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#5b4bd2",
+          "oklch": {
+            "c": 0.19890889596666383,
+            "h": 282.0670274282837,
+            "l": 0.5090641292876124
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1319969.6833815677,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#317998",
+          "oklch": {
+            "c": 0.08558453969347801,
+            "h": 229.701100979629,
+            "l": 0.5443677118844036
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1319969.6833815677,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#2d1b52",
+          "oklch": {
+            "c": 0.09614231414858278,
+            "h": 294.01737841322944,
+            "l": 0.2782316840881979
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 805109,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#143238",
+          "oklch": {
+            "c": 0.037147535306402614,
+            "h": 214.24654228559842,
+            "l": 0.29596401093684604
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 712619,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#2c0b30",
+          "oklch": {
+            "c": 0.07923743165438142,
+            "h": 323.09139674478115,
+            "l": 0.22466886633585764
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 571200,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#45173a",
+          "oklch": {
+            "c": 0.08482951052296205,
+            "h": 337.2653502408231,
+            "l": 0.2907784985942032
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 522286.50334570813,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#bababb",
+          "oklch": {
+            "c": 0.00125570459859821,
+            "h": 286.37080638901193,
+            "l": 0.7891868805218517
+          },
+          "contexts": [
+            "body",
+            "list",
+            "link",
+            "other"
+          ],
+          "frequency": 557,
+          "confidence": 1,
+          "prominence": 444527.190312318,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#757577",
+          "oklch": {
+            "c": 0.002735035681881945,
+            "h": 286.31145211347723,
+            "l": 0.5629879550060805
+          },
+          "contexts": [
+            "link",
+            "card"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 357089.28263509466,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#f31199",
+          "oklch": {
+            "c": 0.25757303967127126,
+            "h": 352.672634936642,
+            "l": 0.6357361328424842
+          },
+          "contexts": [
+            "heading",
+            "icon"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 312904.88185487135,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#7b61ff",
+          "oklch": {
+            "c": 0.2240286889994172,
+            "h": 285.0623672002192,
+            "l": 0.6056793603128767
+          },
+          "contexts": [
+            "button",
+            "body",
+            "badge"
+          ],
+          "frequency": 28,
+          "confidence": 1,
+          "prominence": 275666.13156851404,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#10a694",
+          "oklch": {
+            "c": 0.11439989581611232,
+            "h": 181.83007967651756,
+            "l": 0.6508328474271466
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 266514.8396380459,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#2e106a",
+          "oklch": {
+            "c": 0.14110118861635892,
+            "h": 289.3785172989754,
+            "l": 0.28804469713178593
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 159303.35505215876,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#8473ff",
+          "oklch": {
+            "c": 0.2003241392851542,
+            "h": 284.7644587749212,
+            "l": 0.6417285643771395
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 153888,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#08deaa",
+          "oklch": {
+            "c": 0.16103080601850203,
+            "h": 168.10934763924513,
+            "l": 0.8002672431902575
+          },
+          "contexts": [
+            "heading",
+            "icon"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 120759.10818368953,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#8c8c8e",
+          "oklch": {
+            "c": 0.0022060063892817413,
+            "h": 286.3371809156006,
+            "l": 0.6405558927107642
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 21843.05153249573,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#6b57ff",
+          "oklch": {
+            "c": 0.23768160584475623,
+            "h": 281.3554455303042,
+            "l": 0.5781861722559588
+          },
+          "contexts": [
+            "body",
+            "badge"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 20544.283934347626,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#5e5e60",
+          "oklch": {
+            "c": 0.003317815691673178,
+            "h": 286.27467531648693,
+            "l": 0.4826408188821969
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 17892,
+          "properties": [
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#00d886",
+          "oklch": {
+            "c": 0.18373217173612444,
+            "h": 157.3572346780119,
+            "l": 0.7766115093014291
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 8853.511825805512,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#ff8100",
+          "oklch": {
+            "c": 0.1851891817098918,
+            "h": 53.405513433306204,
+            "l": 0.7334049002543616
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 7626,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#a3a3a4",
+          "oklch": {
+            "c": 0.0017159776158304618,
+            "h": 286.35618947177807,
+            "l": 0.7158378347763762
+          },
+          "contexts": [
+            "icon",
+            "button",
+            "other"
+          ],
+          "frequency": 166,
+          "confidence": 1,
+          "prominence": 7560.913195493429,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ff43f2",
+          "oklch": {
+            "c": 0.28110687897746794,
+            "h": 331.1424121015312,
+            "l": 0.7190024569688824
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 6049.8018652526525,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#f0eb18",
+          "oklch": {
+            "c": 0.19400919354686572,
+            "h": 108.0992228836008,
+            "l": 0.9144299012090753
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 6043.462015249768,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#42388e",
+          "oklch": {
+            "c": 0.1363289392433359,
+            "h": 283.7103796257494,
+            "l": 0.40169648890886905
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3327,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#127e72",
+          "oklch": {
+            "c": 0.09058887480362955,
+            "h": 183.4199571438833,
+            "l": 0.5332267300245601
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3327,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#fdb60d",
+          "oklch": {
+            "c": 0.16841672919461897,
+            "h": 79.9239295542112,
+            "l": 0.8214334155108836
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 754,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#ff2d90",
+          "oklch": {
+            "c": 0.24746188063181554,
+            "h": 358.9735722763738,
+            "l": 0.6638549784788165
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 754,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#d249fc",
+          "oklch": {
+            "c": 0.26381161901199685,
+            "h": 316.9970995565633,
+            "l": 0.6680867479657101
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 753,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#007dfe",
+          "oklch": {
+            "c": 0.21302489274448969,
+            "h": 256.66535369638177,
+            "l": 0.6081930099375978
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 753,
+          "properties": [
+            "fill"
+          ]
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.06129494881023565,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.54,
+          "background": "#ffffff",
+          "foreground": "#19191c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.53,
+          "background": "#2c0b30",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.6,
+          "background": "#f0eb18",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.11,
+          "background": "#2d1b52",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.02,
+          "background": "#2e106a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.62,
+          "background": "#45173a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.87,
+          "background": "#f0eb18",
+          "foreground": "#19191c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.86,
+          "background": "#f0eb18",
+          "foreground": "#2c0b30"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.61,
+          "background": "#143238",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.45,
+          "background": "#ffffff",
+          "foreground": "#343434"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.04,
+          "background": "#08deaa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.94,
+          "background": "#f0eb18",
+          "foreground": "#2d1b52"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.87,
+          "background": "#fdb60d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.87,
+          "background": "#f0eb18",
+          "foreground": "#2e106a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.56,
+          "background": "#f0eb18",
+          "foreground": "#45173a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.17,
+          "background": "#00d886",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.83,
+          "background": "#000000",
+          "foreground": "#bababb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.76,
+          "background": "#f0eb18",
+          "foreground": "#143238"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.06,
+          "background": "#08deaa",
+          "foreground": "#19191c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "badge",
+            "body"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "link",
+            "image",
+            "other"
+          ],
+          "frequency": 27
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "card",
+            "button",
+            "link"
+          ],
+          "frequency": 25
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "frequency": 96,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 5,
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 74,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 7,
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 161,
+          "properties": [
+            "columnGap",
+            "marginTop",
+            "rowGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 11,
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 59,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 143,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "columnGap",
+            "rowGap",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 22,
+          "frequency": 30,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 23,
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 105,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 56,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 42,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 25,
+          "properties": [
+            "marginTop",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 39,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 75,
+          "frequency": 24,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 85,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 96,
+          "frequency": 77,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 144,
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ]
+        },
+        {
+          "value": 200,
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(130deg, rgb(90, 31, 208) 10%, rgba(46, 16, 106, 0) 70%)",
+        "colors": [
+          "rgb(90, 31, 208)",
+          "rgba(46, 16, 106, 0)"
+        ],
+        "frequency": 6
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(130deg, rgba(33, 215, 137, 0.6) -10%, rgba(106, 16, 70, 0) 80%)",
+        "colors": [
+          "rgba(33, 215, 137, 0.6)",
+          "rgba(106, 16, 70, 0)"
+        ],
+        "frequency": 4
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(8, 222, 170) -12.99%, rgb(0, 170, 250) 176.77%)",
+        "colors": [
+          "rgb(8, 222, 170)",
+          "rgb(0, 170, 250)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(87.36% 97.44% at 54.14% 23.32%, rgba(0, 71, 253, 0.8) 0px, rgba(0, 71, 253, 0.8) 15%, rgba(0, 0, 0, 0) 75%)",
+        "colors": [
+          "rgba(0, 71, 253, 0.8)",
+          "rgba(0, 71, 253, 0.8)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(76.44% 85.26% at 49.51% 14.16%, rgba(0, 71, 253, 0.2) 0px, rgba(0, 71, 253, 0.2) 10%, rgba(0, 0, 0, 0) 55%)",
+        "colors": [
+          "rgba(0, 71, 253, 0.2)",
+          "rgba(0, 71, 253, 0.2)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(0deg, rgb(78, 197, 185) 2.53%, rgb(47, 117, 150) 32.56%, rgb(44, 106, 137) 42.24%, rgb(36, 78, 103) 58.71%, rgb(33, 67, 90) 65.49%, rgb(22, 24, 27) 99.4%)",
+        "colors": [
+          "rgb(78, 197, 185)",
+          "rgb(47, 117, 150)",
+          "rgb(44, 106, 137)",
+          "rgb(36, 78, 103)",
+          "rgb(33, 67, 90)",
+          "rgb(22, 24, 27)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(0deg, rgb(92, 0, 242) -12.47%, rgb(0, 0, 0) 99.96%)",
+        "colors": [
+          "rgb(92, 0, 242)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(131deg, rgb(90, 31, 208) -54.15%, rgba(46, 16, 106, 0) 91.88%)",
+        "colors": [
+          "rgb(90, 31, 208)",
+          "rgba(46, 16, 106, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(104deg, rgba(57, 1, 62, 0.6) 5.01%, rgba(122, 4, 82, 0.5) 60.21%)",
+        "colors": [
+          "rgba(57, 1, 62, 0.6)",
+          "rgba(122, 4, 82, 0.5)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "JetBrains Sans",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            600
+          ],
+          "frequency": 746,
+          "fontFeatureSettings": [
+            "\"calt\", \"kern\", \"liga\""
+          ]
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 21,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "JetBrains Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "badge",
+            "list",
+            "link",
+            "other"
+          ],
+          "frequency": 127,
+          "lineHeight": 1.54,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "JetBrains Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "JetBrains Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "icon",
+            "body",
+            "hero",
+            "image",
+            "button",
+            "list",
+            "card",
+            "footer"
+          ],
+          "frequency": 408,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "JetBrains Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "button",
+            "badge",
+            "link",
+            "icon"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "JetBrains Sans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "JetBrains Sans",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "JetBrains Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 84,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "JetBrains Sans",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "JetBrains Sans",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "JetBrains Sans",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "icon"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "JetBrains Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.001,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "JetBrains Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 79,
+          "family": "JetBrains Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.001,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/9b733b34-4c25-4884-a39b-866d8cd73ecd.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7020a635-7330-4150-8b5b-1324071858d4.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bc4fb98b-37ec-480a-b7a9-acd197cbebb9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"JetBrains design system\",\"item\":\"https://styles.refero.design/style/bc4fb98b-37ec-480a-b7a9-acd197cbebb9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bc4fb98b-37ec-480a-b7a9-acd197cbebb9#style-reference\",\"name\":\"JetBrains design system reference\",\"headline\":\"JetBrains design system | Refero Styles\",\"description\":\"Explore JetBrains's dark Dev Tools design system: Obsidian Ground #000000, Deep Charcoal #19191c colors, JetBrains Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/bc4fb98b-37ec-480a-b7a9-acd197cbebb9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bc4fb98b-37ec-480a-b7a9-acd197cbebb9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"JetBrains\",\"url\":\"https://jetbrains.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bc4fb98b-37ec-480a-b7a9-acd197cbebb9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7020a635-7330-4150-8b5b-1324071858d4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7020a635-7330-4150-8b5b-1324071858d4.jpg\",\"caption\":\"Screenshot of JetBrains\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7020a635-7330-4150-8b5b-1324071858d4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"JetBrains design system\",\"JetBrains website design\",\"JetBrains colors\",\"JetBrains typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Obsidian Ground\",\"Deep Charcoal\",\"Graphite\",\"Iron\",\"JetBrains Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"JetBrains design system\"},{\"@type\":\"Thing\",\"name\":\"JetBrains website design\"},{\"@type\":\"Thing\",\"name\":\"JetBrains colors\"},{\"@type\":\"Thing\",\"name\":\"JetBrains typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-04-13T20:34:15.000Z\",\"dateModified\":\"2026-04-13T20:34:15.000Z\"}]}19:Te0d,<div style=\"--color-obsidian-ground:#000000;--color-deep-charcoal:#19191c;--color-graphite:#343434;--color-iron:#474749;--color-ash:#757577;--color-silver:#a3a3a4;--color-fog:#bababb;--color-pure-white:#ffffff;--color-electric-blue:#18a3fa;--color-violet-pulse:#7b61ff;--color-iris:#6b57ff;--color-neon-pink:#f31199;--color-magenta-glow:#5a1fd0;--color-deep-violet:#2e106a;--font-jetbrains-sans:'Inter',sans-serif; background:var(--color-obsidian-ground); padding:40px 24px; font-family:var(--font-jetbrains-sans); font-feature-settings:'calt','kern','liga'; box-sizing:border-box; width:600px;\">\n\n  <!-- Tab Row -->\n  <div style=\"display:flex;justify-content:center;gap:4px;margin-bottom:40px;\">\n    <button style=\"background:transparent;color:var(--color-fog);border:none;border-radius:20px;padding:8px 20px;font-family:var(--font-jetbrains-sans);font-size:16px;font-weight:400;letter-spacing:0.032px;cursor:pointer;\">For developers</button>\n    <button style=\"background:transparent;color:var(--color-fog);border:none;border-radius:20px;padding:8px 20px;font-family:var(--font-jetbrains-sans);font-size:16px;font-weight:400;letter-spacing:0.032px;cursor:pointer;\">For teams</button>\n    <button style=\"background:transparent;color:var(--color-pure-white);border:1px solid var(--color-violet-pulse);border-radius:20px;padding:8px 20px;font-family:var(--font-jetbrains-sans);font-size:16px;font-weight:400;letter-spacing:0.032px;cursor:pointer;\">For businesses</button>\n  </div>\n\n  <!-- Category Label -->\n  <div style=\"margin-bottom:16px;display:flex;align-items:center;gap:8px;\">\n    <span style=\"color:var(--color-neon-pink);font-size:20px;font-weight:500;\">For</span>\n    <span style=\"display:inline-block;width:28px;height:28px;background:var(--color-neon-pink);border-radius:6px;\"></span>\n    <span style=\"color:var(--color-neon-pink);font-size:20px;font-weight:500;\">businesses</span>\n  </div>\n\n  <!-- Headline -->\n  <h2 style=\"color:var(--color-pure-white);font-size:43px;font-weight:600;line-height:1.14;letter-spacing:-0.043px;margin:0 0 32px 0;\">Empower your team<br>and succeed as a business</h2>\n\n  <!-- Business Feature Card -->\n  <div style=\"position:relative;background:linear-gradient(130deg,rgba(90,31,208,0.85) 10%,rgba(46,16,106,0.4) 55%,rgba(20,5,50,0.6) 100%);border-radius:24px;padding:40px 40px 40px 40px;overflow:hidden;\">\n    <!-- Abstract blob shapes -->\n    <div style=\"position:absolute;right:-40px;top:-30px;width:260px;height:260px;background:radial-gradient(circle at 40% 40%,#d43a6a 0%,#a0205a 40%,rgba(80,10,80,0) 75%);border-radius:50%;opacity:0.85;\"></div>\n    <div style=\"position:absolute;right:20px;bottom:-40px;width:200px;height:200px;background:radial-gradient(circle at 50% 50%,#8b1a8a 0%,rgba(60,10,100,0) 70%);border-radius:50%;opacity:0.7;\"></div>\n\n    <!-- Card content -->\n    <div style=\"position:relative;z-index:1;max-width:340px;\">\n      <h3 style=\"color:var(--color-pure-white);font-size:29px;font-weight:600;line-height:1.34;letter-spacing:-0.029px;margin:0 0 16px 0;\">Professional AI Coding.<br>Better Results.</h3>\n      <p style=\"color:var(--color-fog);font-size:16px;font-weight:400;line-height:1.5;letter-spacing:0.032px;margin:0 0 32px 0;\">Improve your developer team's productivity, satisfaction, and ROI with established AI-powered IDEs.</p>\n      <button style=\"background:var(--color-pure-white);color:#19191c;border:none;border-radius:26px;padding:12px 32px;font-family:var(--font-jetbrains-sans);font-size:16px;font-weight:500;letter-spacing:0.032px;cursor:pointer;\">Explore Business Solutions</button>\n    </div>\n  </div>\n\n</div>1a:T1bef,<div style=\"--color-obsidian-ground:#000000;--color-deep-charcoal:#19191c;--color-fog:#bababb;--color-pure-white:#ffffff;--color-violet-pulse:#7b61ff;--color-magenta-glow:#5a1fd0;--color-iron:#474749;--color-iris:#6b57ff;--font-jetbrains-sans:'Inter',sans-serif; background:var(--color-obsidian-ground); padding:40px 24px; font-family:var(--font-jetbrains-sans); font-feature-settings:'calt','kern','liga'; box-sizing:border-box; width:600px;\">\n\n  <div style=\"position:relative;border:1px solid var(--color-magenta-glow);border-radius:24px;padding:40px 36px;overflow:hidden;background:rgba(10,5,25,0.6);\">\n\n    <!-- Abstract mesh background -->\n    <div style=\"position:absolute;right:-20px;top:0;bottom:0;width:55%;background:linear-gradient(135deg,rgba(90,31,208,0.15) 0%,rgba(180,30,200,0.25) 40%,rgba(240,50,100,0.2) 70%,rgba(100,20,180,0.1) 100%);z-index:0;\"></div>\n    <div style=\"position:absolute;right:30px;top:20px;width:220px;height:220px;background:conic-gradient(from 180deg at 50% 50%,rgba(120,30,220,0.4),rgba(220,30,150,0.5),rgba(30,100,240,0.3),rgba(120,30,220,0.4));border-radius:50%;filter:blur(2px);opacity:0.6;z-index:0;\"></div>\n    <!-- Grid lines suggestion -->\n    <div style=\"position:absolute;right:0;top:0;bottom:0;width:55%;background:repeating-linear-gradient(0deg,transparent,transparent 18px,rgba(180,80,240,0.12) 18px,rgba(180,80,240,0.12) 19px),repeating-linear-gradient(90deg,transparent,transparent 18px,rgba(180,80,240,0.12) 18px,rgba(180,80,240,0.12) 19px);z-index:1;\"></div>\n\n    <!-- Card content -->\n    <div style=\"position:relative;z-index:2;max-width:320px;\">\n\n      <!-- Title + Badge -->\n      <div style=\"display:flex;align-items:center;gap:12px;margin-bottom:20px;\">\n        <h2 style=\"color:var(--color-pure-white);font-size:29px;font-weight:600;line-height:1.34;letter-spacing:-0.029px;margin:0;\">JetBrains IDEs 2026.1</h2>\n        <span style=\"background:var(--color-iris);color:var(--color-pure-white);font-size:13px;font-weight:500;letter-spacing:0.065px;padding:2px 8px;border-radius:4px;white-space:nowrap;\">Now Live</span>\n      </div>\n\n      <!-- Description -->\n      <p style=\"color:var(--color-fog);font-size:16px;font-weight:400;line-height:1.5;letter-spacing:0.032px;margin:0 0 32px 0;\">An open agentic platform (Junie, Claude, and Codex built in; Cursor, GitHub Copilot, and more via the ACP Registry). Deeper code insight and analysis across IDEs.</p>\n\n      <!-- IDE Icon Grid Row 1 -->\n      <div style=\"display:flex;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap;\">\n\n        <!-- IntelliJ IDEA -->\n        <div style=\"display:flex;align-items:center;gap:6px;\">\n          <div style=\"width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#ff8100,#e84393,#7c3aed);flex-shrink:0;\"></div>\n          <span style=\"color:var(--color-pure-white);font-size:13px;font-weight:400;\">IntelliJ IDEA</span>\n        </div>\n\n        <!-- PhpStorm -->\n        <div style=\"display:flex;align-items:center;gap:6px;\">\n          <div style=\"width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#b74af7,#7c3aed,#2563eb);flex-shrink:0;\"></div>\n          <span style=\"color:var(--color-pure-white);font-size:13px;font-weight:400;\">PhpStorm</span>\n        </div>\n\n        <!-- RustRover -->\n        <div style=\"display:flex;align-items:center;gap:6px;\">\n          <div style=\"width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#f97316,#ef4444,#7c3aed);flex-shrink:0;\"></div>\n          <span style=\"color:var(--color-pure-white);font-size:13px;font-weight:400;\">RustRover</span>\n        </div>\n\n      </div>\n\n      <!-- IDE Icon Grid Row 2 -->\n      <div style=\"display:flex;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap;\">\n\n        <!-- DataGrip -->\n        <div style=\"display:flex;align-items:center;gap:6px;\">\n          <div style=\"width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#06b6d4,#0ea5e9,#1e3a5f);flex-shrink:0;\"></div>\n          <span style=\"color:var(--color-pure-white);font-size:13px;font-weight:400;\">DataGrip</span>\n        </div>\n\n        <!-- PyCharm -->\n        <div style=\"display:flex;align-items:center;gap:6px;\">\n          <div style=\"width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#22c55e,#eab308,#16a34a);flex-shrink:0;\"></div>\n          <span style=\"color:var(--color-pure-white);font-size:13px;font-weight:400;\">PyCharm</span>\n        </div>\n\n        <!-- WebStorm -->\n        <div style=\"display:flex;align-items:center;gap:6px;\">\n          <div style=\"width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#06b6d4,#3b82f6,#1d4ed8);flex-shrink:0;\"></div>\n          <span style=\"color:var(--color-pure-white);font-size:13px;font-weight:400;\">WebStorm</span>\n        </div>\n\n      </div>\n\n      <!-- IDE Icon Grid Row 3 -->\n      <div style=\"display:flex;align-items:center;gap:16px;flex-wrap:wrap;\">\n\n        <!-- GoLand -->\n        <div style=\"display:flex;align-items:center;gap:6px;\">\n          <div style=\"width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#06b6d4,#8b5cf6,#1e40af);flex-shrink:0;\"></div>\n          <span style=\"color:var(--color-pure-white);font-size:13px;font-weight:400;\">GoLand</span>\n        </div>\n\n        <!-- Rider -->\n        <div style=\"display:flex;align-items:center;gap:6px;\">\n          <div style=\"width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#ef4444,#ec4899,#8b5cf6);flex-shrink:0;\"></div>\n          <span style=\"color:var(--color-pure-white);font-size:13px;font-weight:400;\">Rider</span>\n        </div>\n\n        <!-- CLion -->\n        <div style=\"display:flex;align-items:center;gap:6px;\">\n          <div style=\"width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#06b6d4,#0891b2,#1c3a4a);flex-shrink:0;\"></div>\n          <span style=\"color:var(--color-pure-white);font-size:13px;font-weight:400;\">CLion</span>\n        </div>\n\n      </div>\n    </div>\n  </div>\n\n  <!-- Carousel Pagination -->\n  <div style=\"display:flex;align-items:center;justify-content:center;gap:16px;margin-top:24px;\">\n    <button style=\"background:transparent;border:1px solid var(--color-iron);border-radius:20px;padding:8px 12px;cursor:pointer;color:var(--color-fog);display:flex;align-items:center;justify-content:center;\">\n      <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M10 12L6 8L10 4\" stroke=\"#bababb\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    </button>\n    <span style=\"color:var(--color-fog);font-size:16px;font-weight:400;letter-spacing:0.032px;\">1 / 2</span>\n    <button style=\"background:transparent;border:1px solid var(--color-iron);border-radius:20px;padding:8px 12px;cursor:pointer;color:var(--color-fog);display:flex;align-items:center;justify-content:center;\">\n      <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 4L10 8L6 12\" stroke=\"#bababb\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    </button>\n  </div>\n\n</div>1b:T12c6,<div style=\"--color-obsidian-ground:#000000;--color-deep-charcoal:#19191c;--color-pure-white:#ffffff;--color-electric-blue:#18a3fa;--color-violet-pulse:#7b61ff;--color-deep-violet:#2e106a;--color-fog:#bababb;--color-silver:#a3a3a4;--font-jetbrains-sans:'Inter',sans-serif; background:var(--color-obsidian-ground); padding:48px 32px; font-family:var(--font-jetbrains-sans); font-feature-settings:'calt','kern','liga'; box-sizing:border-box; width:600px;\">\n\n  <p style=\"color:var(--color-silver);font-size:13px;font-weight:500;letter-spacing:0.065px;text-transform:uppercase;margin:0 0 32px 0;\">Button Styles</p>\n\n  <!-- Primary White CTA -->\n  <div style=\"margin-bottom:32px;\">\n    <p style=\"color:var(--color-fog);font-size:13px;margin:0 0 10px 0;letter-spacing:0.065px;\">Primary — Hero CTA</p>\n    <div style=\"display:flex;gap:12px;align-items:center;\">\n      <button style=\"background:var(--color-pure-white);color:var(--color-deep-charcoal);border:none;border-radius:26px;padding:12px 32px;font-family:var(--font-jetbrains-sans);font-size:16px;font-weight:500;letter-spacing:0.032px;cursor:pointer;\">Choose Your IDE</button>\n      <button style=\"background:transparent;color:var(--color-pure-white);border:1px solid var(--color-pure-white);border-radius:26px;padding:12px 32px;font-family:var(--font-jetbrains-sans);font-size:16px;font-weight:500;letter-spacing:0.032px;cursor:pointer;\">For Business</button>\n    </div>\n    <p style=\"color:var(--color-silver);font-size:13px;margin:8px 0 0 0;letter-spacing:0.065px;\">Licenses for your organization</p>\n  </div>\n\n  <div style=\"height:1px;background:rgba(255,255,255,0.08);margin-bottom:32px;\"></div>\n\n  <!-- Violet Deep CTA -->\n  <div style=\"margin-bottom:32px;\">\n    <p style=\"color:var(--color-fog);font-size:13px;margin:0 0 10px 0;letter-spacing:0.065px;\">Violet Deep — Feature Card CTA</p>\n    <button style=\"background:var(--color-deep-violet);color:var(--color-electric-blue);border:1px solid var(--color-violet-pulse);border-radius:16px;padding:14px 24px;font-family:var(--font-jetbrains-sans);font-size:16px;font-weight:500;letter-spacing:0.032px;cursor:pointer;\">Explore All IDEs</button>\n  </div>\n\n  <div style=\"height:1px;background:rgba(255,255,255,0.08);margin-bottom:32px;\"></div>\n\n  <!-- Violet Badge set -->\n  <div style=\"margin-bottom:32px;\">\n    <p style=\"color:var(--color-fog);font-size:13px;margin:0 0 12px 0;letter-spacing:0.065px;\">Status Badges</p>\n    <div style=\"display:flex;gap:8px;flex-wrap:wrap;align-items:center;\">\n      <span style=\"background:#6b57ff;color:#ffffff;font-size:13px;font-weight:500;letter-spacing:0.065px;padding:2px 8px;border-radius:4px;\">Now Live</span>\n      <span style=\"background:#6b57ff;color:#ffffff;font-size:13px;font-weight:500;letter-spacing:0.065px;padding:2px 8px;border-radius:4px;\">Featured</span>\n      <span style=\"background:rgba(107,87,255,0.5);color:#ffffff;font-size:13px;font-weight:500;letter-spacing:0.065px;padding:5px 11px;border-radius:6px 6px 0 0;\">2026.1</span>\n      <span style=\"background:rgba(243,17,180,0.2);color:#f31199;font-size:13px;font-weight:500;letter-spacing:0.065px;padding:2px 8px;border-radius:4px;\">Free for non-commercial use</span>\n    </div>\n  </div>\n\n  <div style=\"height:1px;background:rgba(255,255,255,0.08);margin-bottom:32px;\"></div>\n\n  <!-- Ghost borderless nav links -->\n  <div>\n    <p style=\"color:var(--color-fog);font-size:13px;margin:0 0 12px 0;letter-spacing:0.065px;\">Ghost Nav — Borderless</p>\n    <div style=\"display:flex;gap:4px;flex-wrap:wrap;\">\n      <a href=\"#\" style=\"color:var(--color-pure-white);background:transparent;border:none;border-radius:0;padding:4px 10px;font-family:var(--font-jetbrains-sans);font-size:16px;font-weight:400;letter-spacing:0.032px;text-decoration:none;\">Products</a>\n      <a href=\"#\" style=\"color:var(--color-pure-white);background:transparent;border:none;border-radius:0;padding:4px 10px;font-family:var(--font-jetbrains-sans);font-size:16px;font-weight:400;letter-spacing:0.032px;text-decoration:none;\">Education</a>\n      <a href=\"#\" style=\"color:var(--color-pure-white);background:transparent;border:none;border-radius:0;padding:4px 10px;font-family:var(--font-jetbrains-sans);font-size:16px;font-weight:400;letter-spacing:0.032px;text-decoration:none;\">Solutions</a>\n      <a href=\"#\" style=\"color:var(--color-pure-white);background:transparent;border:none;border-radius:0;padding:4px 10px;font-family:var(--font-jetbrains-sans);font-size:16px;font-weight:400;letter-spacing:0.032px;text-decoration:none;\">Support</a>\n      <a href=\"#\" style=\"color:var(--color-pure-white);background:transparent;border:none;border-radius:0;padding:4px 10px;font-family:var(--font-jetbrains-sans);font-size:16px;font-weight:400;letter-spacing:0.032px;text-decoration:none;\">Store</a>\n    </div>\n  </div>\n\n</div>1c:T7ec,QUICK COLOR REFERENCE:\n• Text (primary): #ffffff\n• Text (secondary): #bababb\n• Page background: #000000\n• Nav/footer surface: #19191c\n• CTA border/badge fill: #7b61ff\n• CTA button text: #18a3fa\n• CTA button background: #2e106a\n• Accent/category label: #f31199\n• Border (subtle): #474749\n\nEXAMPLE COMPONENT PROMPTS:\n\n1. HERO SECTION: Black background (#000000) with centered radial glow (rgba(0,71,253,0.8) spreading to transparent over ~87% width). Headline 'Purpose-Built IDEs for Every Language and Stack' at 72px JetBrains Sans weight 600, #ffffff, letter-spacing -0.36px, line-height 1.0, centered. Subtext at 20px weight 400, #bababb, centered below. Two CTA buttons side by side: (a) White pill button — #ffffff bg, #19191c text, 26px radius, 12px/32px padding, 16px weight 500; (b) Ghost outline — transparent bg, #ffffff text, 1px #ffffff border, 20px radius, 8px padding.\n\n2. ANNOUNCEMENT CARD: Full-width card, 24px radius, 1px solid #5a1fd0 border, background linear-gradient(130deg, rgb(90,31,208) 10%, rgba(46,16,106,0) 70%). Left half: headline at 35px weight 600 #ffffff, badge 'Now Live' at 13px weight 500 #ffffff on #6b57ff bg 4px radius 7px padding. Product icon grid at 32px, labels at 13px #bababb. Right half: abstract 3D mesh illustration. Overall padding 24-64px.\n\n3. AUDIENCE TAB ROW: Horizontally centered pill selector, three tabs ('For developers' / 'For teams' / 'For businesses'). Each tab: JetBrains Sans 16px weight 400, 20px radius, 8px padding. Active state: 1px solid #7b61ff border, #ffffff text, transparent background. Inactive: no border, #bababb text.\n\n4. FEATURE CARD — PINK TINTED: 24px radius, background rgba(243,17,180,0.2), 23px padding all sides. Category label in #f31199 at 16px weight 500 above headline. Headline 29-35px weight 600 #ffffff. Body 16px #bababb. No border, no shadow.\n\n5. BADGE: Background #6b57ff, #ffffff text, 4px radius, 1px vertical padding, 7px horizontal padding, JetBrains Sans 13px weight 500, font-features calt/kern/liga active."
+}

@@ -1,0 +1,1019 @@
+{
+  "source": "https://styles.refero.design/style/626ae2de-c402-4805-b859-2c6adca41022",
+  "uuid": "626ae2de-c402-4805-b859-2c6adca41022",
+  "name": "Limitless",
+  "northStar": "monochrome editorial on plaster white. A single weight-contrast typeface, no accent color, and one violet spark — the system achieves identity through restraint, not decoration.",
+  "capturedAt": "2026-07-18T07:39:40.713Z",
+  "meta": {
+    "url": "https://limitless.ai",
+    "siteName": "Limitless",
+    "extractedAt": "2026-06-03T20:03:56.439Z",
+    "durationMs": 24350,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 148,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Greycliff weight 300 for any text 30px and above — the light weight is the brand's voice, not a fallback",
+      "Maintain letter-spacing of -0.025em on display and heading sizes; let it relax to normal at body sizes",
+      "Keep the palette monochromatic on the page surface — introduce the violet spark (#6d4aff) only in the wordmark icon, never as a button fill, border, or background",
+      "Use 16px border-radius for all cards and image wells; use 9999px (full pill) for all buttons, tags, and avatars",
+      "Apply the single shadow (rgba(30, 41, 59, 0.15) 0px 25px 50px -12px) only to the hero media well — do not propagate it to cards or modals",
+      "Set body text to #334155 and nav/UI text to #475569 — reserve #0f172a for headings and the wordmark",
+      "Use 8px and 16px for inline element gaps; jump to 48px or 64px between sections; never use 24px as a section gap"
+    ],
+    "donts": [
+      "Do not introduce a second typeface — the system is single-family by design",
+      "Do not use weight 700 on headings; weight 300 is the display treatment and weight 500–600 is the UI treatment",
+      "Do not use a chromatic color as a button background, link color, or badge fill — the interface is intentionally colorless",
+      "Do not add borders to cards that sit on #f2f3f5; let the white-on-plaster contrast do the work",
+      "Do not center display headings — they are always left-aligned with the content column",
+      "Do not use sharp corners (0–4px radius) on any surface — the system reads rounded or pill, never squared",
+      "Do not stack multiple shadow layers or add glow effects — one shadow, used once, is the rule"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f2f3f5",
+        "name": "Plaster",
+        "role": "Page background, full-bleed canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Mist",
+        "role": "Card surfaces, placeholder image wells, subtle inset zones",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Chalk",
+        "role": "Elevated card surfaces when differentiation from Plaster is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d1d5db",
+        "name": "Hairline",
+        "role": "Stronger dividers, disabled icon strokes, secondary borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0f172a",
+        "name": "Inkstone",
+        "role": "Primary heading text, high-emphasis body copy, nav logo wordmark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#334155",
+        "name": "Slate",
+        "role": "Secondary headings, medium-emphasis text, icon strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#475569",
+        "name": "Graphite",
+        "role": "Body text, nav links, button labels — the everyday workhorse neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#64748b",
+        "name": "Pewter",
+        "role": "Muted helper text, secondary links, metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#939eae",
+        "name": "Fog",
+        "role": "Disabled state text, tertiary captions, low-emphasis labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Maximum-contrast text where #0f172a still feels too soft (rare)",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6d4aff",
+        "name": "Spark Violet",
+        "role": "Wordmark icon and the sole chromatic accent in the entire system — used at the smallest possible size to mark the brand without coloring the interface",
+        "group": "brand"
+      }
+    ],
+    "layout": "Max-width 1200px centered content column on a #f2f3f5 full-bleed canvas. The hero is a left-aligned 60px headline above a single full-width image well. Subsequent sections stack vertically with 48–64px gaps, flowing as flat content blocks with no alternating bands. Navigation is a single horizontal bar at the top with logo left, links center, sign-in right. The layout never goes multi-column at the section level — cards and feature blocks are stacked, not gridded, keeping the editorial reading rhythm intact.",
+    "imagery": "The site is text-dominant with a single large media placeholder per page (the hero well). Photography or video would sit inside the #e5e7eb image well at 16px radius with the slate-tinted shadow. Icons are line-style, single-weight, drawn in #939eae or #475569. No illustrations, no decorative graphics, no background patterns — the visual rest between text blocks is the design.",
+    "similar": [
+      {
+        "why": "Same single-typeface confidence, same near-monochrome surface treatment, same editorial left-aligned hierarchy with whisper-weight display sizes",
+        "business": "Things 3 (Cultured Code)"
+      },
+      {
+        "why": "White-paper canvas, one neutral sans carrying all hierarchy, content blocks that flow without card chrome or borders",
+        "business": "Notion (early marketing site)"
+      },
+      {
+        "why": "Slate-tinted neutrals (#0f172a, #334155, #475569) as the entire typographic palette with virtually no chromatic accent",
+        "business": "Linear (docs / changelog)"
+      },
+      {
+        "why": "Restrained black-and-white system where identity comes from typeface weight contrast and generous spacing rather than color",
+        "business": "Vercel (product pages)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "16px",
+        "inputs": "8px",
+        "avatars": "9999px",
+        "buttons": "9999px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "48px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#f2f3f5",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background; the dominant neutral that everything else sits on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Standard card or content block raised above the page"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Inset / Placeholder",
+        "level": 2,
+        "purpose": "Image wells, empty-state panels, subtle inset zones that need to feel present without competing with content"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(30, 41, 59, 0.15) 0px 25px 50px -12px",
+        "element": "Hero / Feature Panel"
+      }
+    ],
+    "northStar": "monochrome editorial on plaster white. A single weight-contrast typeface, no accent color, and one violet spark — the system achieves identity through restraint, not decoration.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.56,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 30,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.75
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.11,
+        "letterSpacing": -0.9
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1,
+        "letterSpacing": -1.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Heading",
+        "role": "Hero and page-level titles",
+        "description": "60px Greycliff weight 300, color #0f172a, line-height 1.0, letter-spacing -1.5px. Left-aligned, never centered. The light weight is the signature — it reads as editorial, not marketing."
+      },
+      {
+        "name": "Section Heading",
+        "role": "H2-level headings",
+        "description": "36px Greycliff weight 300, color #0f172a, line-height 1.11, letter-spacing -0.9px. Same whisper-weight treatment as display."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Long-form content",
+        "description": "16px Greycliff weight 400, color #334155, line-height 1.63. Generous line height for reading comfort; link color #475569."
+      },
+      {
+        "name": "Pill Button",
+        "role": "Primary and secondary actions",
+        "description": "16px Greycliff weight 500, padding 8px 16px, border-radius 9999px. Filled variant uses #0f172a background with #ffffff text. Ghost variant has transparent background with #475569 text and 1px #e5e7eb border. No drop shadow."
+      },
+      {
+        "name": "Nav Link",
+        "role": "Top navigation items",
+        "description": "16px Greycliff weight 400, color #475569. Hover transitions to #0f172a. Active state uses #0f172a. No underline, no background — weight shift carries the state."
+      },
+      {
+        "name": "Brand Mark / Wordmark",
+        "role": "Logo in nav",
+        "description": "Violet spark icon (#6d4aff) to the left of the wordmark 'Limitless' in 16px Greycliff weight 600, color #0f172a. The spark is the only chromatic element allowed at any size."
+      },
+      {
+        "name": "Hero Image Well",
+        "role": "Large media placeholder on the landing surface",
+        "description": "16px border-radius, background #e5e7eb, centered icon glyph indicating media slot. Single permitted use of the slate-tinted shadow: rgba(30, 41, 59, 0.15) 0px 25px 50px -12px. Minimum height 360px."
+      },
+      {
+        "name": "Content Card",
+        "role": "General-purpose surface for grouped content",
+        "description": "Background #ffffff, 16px border-radius, padding 24px, no border, no shadow. Sits on the #f2f3f5 canvas with a tone-on-tone contrast."
+      },
+      {
+        "name": "Article / Message Block",
+        "role": "Long-form communication (CEO message, legal text)",
+        "description": "No card chrome. Flows directly on the #f2f3f5 page background. Heading at 18px Greycliff weight 600, body at 16px weight 400, line-height 1.63. Inline links underlined in #475569."
+      },
+      {
+        "name": "Inset Placeholder",
+        "role": "Empty-state or media slot inside a content area",
+        "description": "Background #e5e7eb, 16px border-radius, no border, no padding chrome. Holds a centered line-icon at #939eae."
+      },
+      {
+        "name": "Footer",
+        "role": "Page-bottom utility links",
+        "description": "16px Greycliff weight 400, color #64748b, separated from content by 48–64px vertical space. No background change from the page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family system. Weight 300 carries display (60px) and large headings (36px) for a quiet, editorial whisper. Weight 400–500 handles body (16–18px) and UI labels. Weight 600–700 reserved for emphasis and the wordmark. Because there is no secondary face, the system creates rhythm purely through weight and size contrast inside one typeface.",
+        "sizes": "14, 16, 18, 30, 36, 60",
+        "family": "Greycliff",
+        "weight": "300, 400, 500, 600, 700",
+        "lineHeight": "1.00, 1.11, 1.20, 1.43, 1.50, 1.56, 1.63",
+        "substitute": "Inter (for body), Söhne or GT America (for display)",
+        "letterSpacing": "-0.025em applied at display and heading sizes; relaxes to near-normal at body sizes"
+      }
+    ],
+    "description": "Limitless reads as a restrained editorial spread — white paper, a single neutral typeface doing all the talking, and almost no color anywhere. The interface depends on weight contrast inside one font family (Greycliff at 300 for display, 500–600 for body and UI) rather than color or ornament to create hierarchy. Surfaces are nearly invisible: the page is #f2f3f5, cards barely register above it at #ffffff or #e5e7eb tints, and the only true color in the system is a single small violet spark in the wordmark. The personality is funeral-formal-meets-product-page — wide left-aligned headlines at 60px, generous 48–80px vertical breathing room, and one subtle 16px corner radius to keep things from feeling boxy.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/626ae2de-c402-4805-b859-2c6adca41022#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Limitless design system\",\"item\":\"https://styles.refero.design/style/626ae2de-c402-4805-b859-2c6adca41022\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/626ae2de-c402-4805-b859-2c6adca41022#style-reference\",\"name\":\"Limitless design system reference\",\"headline\":\"Limitless design system | Refero Styles\",\"description\":\"Explore Limitless's light AI design system: Plaster #f2f3f5, Mist #e5e7eb colors, Greycliff typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/626ae2de-c402-4805-b859-2c6adca41022\",\"mainEntityOfPage\":\"https://styles.refero.design/style/626ae2de-c402-4805-b859-2c6adca41022\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Limitless\",\"url\":\"https://limitless.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/626ae2de-c402-4805-b859-2c6adca41022#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c01ad2eb-8f46-4117-8fac-df8ce141287e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c01ad2eb-8f46-4117-8fac-df8ce141287e.jpg\",\"caption\":\"Screenshot of Limitless\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c01ad2eb-8f46-4117-8fac-df8ce141287e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Limitless design system\",\"Limitless website design\",\"Limitless colors\",\"Limitless typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Plaster\",\"Mist\",\"Chalk\",\"Hairline\",\"Greycliff\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Limitless design system\"},{\"@type\":\"Thing\",\"name\":\"Limitless website design\"},{\"@type\":\"Thing\",\"name\":\"Limitless colors\"},{\"@type\":\"Thing\",\"name\":\"Limitless typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-01-14T13:08:23.000Z\",\"dateModified\":\"2026-01-14T13:08:23.000Z\"}]}19:T48a,**Quick Color Reference**\n- text (heading): #0f172a\n- text (body): #334155\n- text (muted): #64748b\n- background (page): #f2f3f5\n- background (card): #ffffff\n- border / divider: #e5e7eb\n- accent: #6d4aff (wordmark icon only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Hero section: #f2f3f5 page background. Headline at 60px Greycliff weight 300, #0f172a, letter-spacing -1.5px, line-height 1.0, left-aligned. Below it, a #e5e7eb image well at 16px radius, minimum 360px tall, with the shadow rgba(30, 41, 59, 0.15) 0px 25px 50px -12px and a centered #939eae line-icon.\n2. Section heading block: 36px Greycliff weight 300, #0f172a, letter-spacing -0.9px, line-height 1.11. 48px of space above.\n3. Body paragraph: 16px Greycliff weight 400, #334155, line-height 1.63, max-width 680px. Inline links in #475569 with underline.\n4. Ghost nav button: transparent background, 1px #e5e7eb border, 9999px radius, 8px 16px padding, 16px Greycliff weight 500, #475569 text. Hover shifts text to #0f172a.\n5. Content card: #ffffff background, 16px radius, 24px padding, no border, no shadow. Sits on the #f2f3f5 canvas with tone-on-tone contrast."
+      },
+      {
+        "title": "Voice & Restraint Principle",
+        "content": "Limitless is a maximalist product housed in a minimalist site. Every visual decision defers to the writing. When in doubt: remove the color, remove the border, remove the shadow, lower the weight. The system gets quieter before it gets louder."
+      }
+    ],
+    "elevationPhilosophy": "Shadow is used once and only once — on the hero image well — and is a slate-tinted long throw (25px blur, 50px spread, -12px y-offset) that anchors the only visual mass on the page. Everything else sits flat. This is a no-elevation system by default."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "heading",
+            "button",
+            "image"
+          ],
+          "frequency": 516,
+          "confidence": 1,
+          "prominence": 36919679.12643873,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#334155",
+          "oklch": {
+            "c": 0.03915645554363593,
+            "h": 257.2869551976597,
+            "l": 0.3716963511697036
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "image"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 19020334.045216456,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 2409735.1460719975,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f2f3f5",
+          "oklch": {
+            "c": 0.002876287441393468,
+            "h": 264.5419652534427,
+            "l": 0.963955709613964
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1273867.801057579,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#475569",
+          "oklch": {
+            "c": 0.0374466757720253,
+            "h": 257.2808421473178,
+            "l": 0.44553310481935804
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "body",
+            "link"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 849879.5212295122,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0f172a",
+          "oklch": {
+            "c": 0.039824326599745954,
+            "h": 265.7548754713905,
+            "l": 0.20768191557381332
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "icon"
+          ],
+          "frequency": 39,
+          "confidence": 1,
+          "prominence": 572213.7087622893,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#64748b",
+          "oklch": {
+            "c": 0.04071704298085947,
+            "h": 257.4166191213696,
+            "l": 0.554391007661963
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 21199.35220601674,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d1d5db",
+          "oklch": {
+            "c": 0.00933868254914443,
+            "h": 258.3382673756329,
+            "l": 0.8716813342237643
+          },
+          "contexts": [
+            "icon",
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 18619.406971843666,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#939eae",
+          "oklch": {
+            "c": 0.026887240754884384,
+            "h": 257.3893515963896,
+            "l": 0.6946145558277568
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 12904.764680871653,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1e293b",
+          "oklch": {
+            "c": 0.03684812567674085,
+            "h": 260.03098739285946,
+            "l": 0.2794952377116752
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2911.5761138247635,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8a53e1",
+          "oklch": {
+            "c": 0.2056101609059611,
+            "h": 297.4856817746967,
+            "l": 0.5767145804950305
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2647.001600738464,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#858d99",
+          "oklch": {
+            "c": 0.020465554770211055,
+            "h": 257.2325065753388,
+            "l": 0.6404808864370296
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1797,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.034409202572047215,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.91,
+          "background": "#f2f3f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.08,
+          "background": "#f2f3f5",
+          "foreground": "#0f172a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.42,
+          "background": "#e5e7eb",
+          "foreground": "#0f172a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.25,
+          "background": "#d1d5db",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.18,
+          "background": "#f2f3f5",
+          "foreground": "#1e293b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.12,
+          "background": "#d1d5db",
+          "foreground": "#0f172a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.82,
+          "background": "#e5e7eb",
+          "foreground": "#1e293b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.93,
+          "background": "#d1d5db",
+          "foreground": "#1e293b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.33,
+          "background": "#f2f3f5",
+          "foreground": "#334155"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.36,
+          "background": "#e5e7eb",
+          "foreground": "#334155"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.03,
+          "background": "#d1d5db",
+          "foreground": "#334155"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.83,
+          "background": "#f2f3f5",
+          "foreground": "#475569"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.12,
+          "background": "#e5e7eb",
+          "foreground": "#475569"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.14,
+          "background": "#d1d5db",
+          "foreground": "#475569"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "image"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(30, 41, 59, 0.15) 0px 25px 50px -12px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 36,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 92,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 201,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Greycliff",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 131,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Greycliff",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Greycliff",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Greycliff",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "icon",
+            "body",
+            "link"
+          ],
+          "frequency": 76,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Greycliff",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Greycliff",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Greycliff",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link",
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Greycliff",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Greycliff",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Greycliff",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Greycliff",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Greycliff",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Greycliff",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Greycliff",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d75cb272-2fd4-40c3-99d5-1961ed49caf6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c01ad2eb-8f46-4117-8fac-df8ce141287e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/626ae2de-c402-4805-b859-2c6adca41022#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Limitless design system\",\"item\":\"https://styles.refero.design/style/626ae2de-c402-4805-b859-2c6adca41022\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/626ae2de-c402-4805-b859-2c6adca41022#style-reference\",\"name\":\"Limitless design system reference\",\"headline\":\"Limitless design system | Refero Styles\",\"description\":\"Explore Limitless's light AI design system: Plaster #f2f3f5, Mist #e5e7eb colors, Greycliff typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/626ae2de-c402-4805-b859-2c6adca41022\",\"mainEntityOfPage\":\"https://styles.refero.design/style/626ae2de-c402-4805-b859-2c6adca41022\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Limitless\",\"url\":\"https://limitless.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/626ae2de-c402-4805-b859-2c6adca41022#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c01ad2eb-8f46-4117-8fac-df8ce141287e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c01ad2eb-8f46-4117-8fac-df8ce141287e.jpg\",\"caption\":\"Screenshot of Limitless\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c01ad2eb-8f46-4117-8fac-df8ce141287e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Limitless design system\",\"Limitless website design\",\"Limitless colors\",\"Limitless typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Plaster\",\"Mist\",\"Chalk\",\"Hairline\",\"Greycliff\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Limitless design system\"},{\"@type\":\"Thing\",\"name\":\"Limitless website design\"},{\"@type\":\"Thing\",\"name\":\"Limitless colors\"},{\"@type\":\"Thing\",\"name\":\"Limitless typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-01-14T13:08:23.000Z\",\"dateModified\":\"2026-01-14T13:08:23.000Z\"}]}19:T48a,**Quick Color Reference**\n- text (heading): #0f172a\n- text (body): #334155\n- text (muted): #64748b\n- background (page): #f2f3f5\n- background (card): #ffffff\n- border / divider: #e5e7eb\n- accent: #6d4aff (wordmark icon only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Hero section: #f2f3f5 page background. Headline at 60px Greycliff weight 300, #0f172a, letter-spacing -1.5px, line-height 1.0, left-aligned. Below it, a #e5e7eb image well at 16px radius, minimum 360px tall, with the shadow rgba(30, 41, 59, 0.15) 0px 25px 50px -12px and a centered #939eae line-icon.\n2. Section heading block: 36px Greycliff weight 300, #0f172a, letter-spacing -0.9px, line-height 1.11. 48px of space above.\n3. Body paragraph: 16px Greycliff weight 400, #334155, line-height 1.63, max-width 680px. Inline links in #475569 with underline.\n4. Ghost nav button: transparent background, 1px #e5e7eb border, 9999px radius, 8px 16px padding, 16px Greycliff weight 500, #475569 text. Hover shifts text to #0f172a.\n5. Content card: #ffffff background, 16px radius, 24px padding, no border, no shadow. Sits on the #f2f3f5 canvas with tone-on-tone contrast."
+}

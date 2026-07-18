@@ -1,0 +1,327 @@
+{
+  "color": {
+    "cosmic-violet": {
+      "$value": "#1b2978",
+      "$type": "color",
+      "$description": "Cosmic Violet — Primary brand ink — outlined button borders, heading text on light surfaces, the only chromatic voice in the UI"
+    },
+    "twilight-indigo": {
+      "$value": "#19366c",
+      "$type": "color",
+      "$description": "Twilight Indigo — Deeper violet for secondary borders and gradient origins — bridges Cosmic Violet into the atmospheric range"
+    },
+    "aurora-teal": {
+      "$value": "#75cdd6",
+      "$type": "color",
+      "$description": "Aurora Teal — Atmospheric teal pulled from the hero photography — background washes and the emotional color of the brand"
+    },
+    "cyan-glow": {
+      "$value": "#84cdee",
+      "$type": "color",
+      "$description": "Cyan Glow — Terminal stop of the radial atmospheric gradients — recreates the directional key light of the hero at smaller scales; Decorative radial gradient that recreates the hero's directional teal light in section panels"
+    },
+    "cosmic-violet-wash": {
+      "$value": "#3a3cb5",
+      "$type": "color",
+      "$description": "Cosmic Violet Wash — Decorative violet gradient for atmospheric panels"
+    },
+    "polar-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Polar White — Primary text on the dark hero, light section surfaces, card backgrounds, button text on violet"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Text on light surfaces and deepest contrast points"
+    },
+    "silver-slate": {
+      "$value": "#7488a5",
+      "$type": "color",
+      "$description": "Silver Slate — Near-gray stroke color for subtle decorative lines and secondary UI elements"
+    },
+    "cerulean-mist": {
+      "$value": "#579dc0",
+      "$type": "color",
+      "$description": "Cerulean Mist — Decorative SVG stroke for iconography and illustration accents"
+    },
+    "storm-shadow": {
+      "$value": "#466187",
+      "$type": "color",
+      "$description": "Storm Shadow — Muted blue used for link focus-ring shadows and hover glows"
+    }
+  },
+  "font": {
+    "twklausanne-250": {
+      "$value": "TWKLausanne-250",
+      "$type": "fontFamily",
+      "$description": "Body, UI, and mid-tier headings — the workhorse family. 400 for paragraphs and descriptions, 700 for sub-headings and emphasized labels. The tight 1.13 line-height at 40px gives mid-headings a compressed, architectural feel"
+    },
+    "twklausanne-200": {
+      "$value": "TWKLausanne-200",
+      "$type": "fontFamily",
+      "$description": "Display and hero headlines — the lightest cut of TWKLausanne acts as an anti-convention choice: most brands shout at 80px with bold weights, this one whispers at 400 and achieves presence through restraint and aggressive negative tracking"
+    },
+    "neosanspro-medium": {
+      "$value": "NeoSansPro-Medium",
+      "$type": "fontFamily",
+      "$description": "Architectural all-caps labels — nav links, scroll cues, section markers, brand wordmark. The 2.0–3.0 line-height at 10px creates dramatic vertical breathing room, and the extreme +0.32em tracking turns tiny text into spatial markers rather than readable labels"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "NeoSansPro-Medium",
+        "fontSize": "5px",
+        "fontWeight": 400,
+        "lineHeight": 3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 5px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "NeoSansPro-Medium",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "NeoSansPro-Medium",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "TWKLausanne-250",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "TWKLausanne-250",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "TWKLausanne-250",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "NeoSansPro-Medium",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "TWKLausanne-250",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "TWKLausanne-250",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "TWKLausanne-250",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "TWKLausanne-250",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "TWKLausanne-200",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "TWKLausanne-200",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "TWKLausanne-200",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "150": {
+      "$value": "150px",
+      "$type": "dimension",
+      "$description": "Spacing 150px"
+    },
+    "210": {
+      "$value": "210px",
+      "$type": "dimension",
+      "$description": "Spacing 210px"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "hero-atmosphere": {
+      "$value": "#0a1a2",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed dark photographic canvas — the emotional base, paired with teal key lighting and white floating text"
+    },
+    "aurora-teal-panel": {
+      "$value": "#75cdd6",
+      "$type": "color",
+      "$description": "Surface level 1: Tinted atmospheric section background created via radial white-to-teal gradient washes"
+    },
+    "polar-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Content section base — lets violet typography and clean components speak without atmospheric interference"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://amaterasu.ai",
+      "siteName": "Amaterasu",
+      "extractedAt": "2026-06-03T17:32:41.071Z",
+      "variant": "extended"
+    }
+  }
+}

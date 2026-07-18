@@ -1,0 +1,584 @@
+{
+  "color": {
+    "forest-ink": {
+      "$value": "#0b392f",
+      "$type": "color",
+      "$description": "Forest Ink — Primary brand color — carries borders, navigation strokes, heading underlines, card edges, and structural outlines. This teal defines the design more than any fill color; surfaces stay warm and neutral while the Forest Ink draws the architecture"
+    },
+    "iris": {
+      "$value": "#6f52d3",
+      "$type": "color",
+      "$description": "Iris — Vivid violet accent — link underlines, secondary call-out card backgrounds (asset calculator), heading emphasis, and selective section highlights. Acts as a counterpoint to Forest Ink, used when a block needs energy without the sustainability context of lime"
+    },
+    "deep-iris": {
+      "$value": "#6043ba",
+      "$type": "color",
+      "$description": "Deep Iris — Pressed iris for button backgrounds or filled actions where a chromatic state is needed without warmth — denser than Iris, used as the active/filled counterpart of the violet family"
+    },
+    "soft-iris": {
+      "$value": "#7f6de1",
+      "$type": "color",
+      "$description": "Soft Iris — Tinted violet for softer card washes or large surface blocks that need chromatic presence without the saturation of Iris"
+    },
+    "lime-spark": {
+      "$value": "#abf625",
+      "$type": "color",
+      "$description": "Lime Spark — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "mint-pulse": {
+      "$value": "#0cea9e",
+      "$type": "color",
+      "$description": "Mint Pulse — Vivid mint for the rare filled chromatic button or interactive state — used when a CTA needs to feel switched on without being violet"
+    },
+    "deep-moss": {
+      "$value": "#0b704e",
+      "$type": "color",
+      "$description": "Deep Moss — Mid-green for body text emphasis and border details that need botanical warmth without the full weight of Forest Ink"
+    },
+    "warm-stone": {
+      "$value": "#e7e5e4",
+      "$type": "color",
+      "$description": "Warm Stone — Page canvas, primary section backgrounds, and the dominant neutral surface — this warm limestone tone gives the site its grounded, tactile character and sets off both the teal structure and lime accents"
+    },
+    "mist": {
+      "$value": "#f6f7f7",
+      "$type": "color",
+      "$description": "Mist — Card surfaces and button fills that need to lift off the stone canvas without becoming bright white — a cool, slightly desaturated light gray for quieter elevated layers"
+    },
+    "pure": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure — Highest surface — chat widget, product cards, nav bar background, button borders. Reserved for surfaces that need to read as paper or screen-white against the stone canvas"
+    },
+    "charcoal": {
+      "$value": "#171c1b",
+      "$type": "color",
+      "$description": "Charcoal — Primary text and strongest heading color — near-black with a barely-perceptible green undertone that aligns it with the Forest Ink palette rather than reading as neutral gray"
+    },
+    "sage-gray": {
+      "$value": "#9caca6",
+      "$type": "color",
+      "$description": "Sage Gray — Muted helper text, secondary body copy, and low-priority labels — a desaturated sage that keeps the neutral family botanically tinted"
+    },
+    "lichen": {
+      "$value": "#778a83",
+      "$type": "color",
+      "$description": "Lichen — Body text and nav links at reduced hierarchy, plus nav borders — a middle gray-green for content that needs to be readable but not assertive"
+    },
+    "slate-dark": {
+      "$value": "#333c39",
+      "$type": "color",
+      "$description": "Slate Dark — High-contrast neutral action fill for primary buttons on light surfaces."
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Icon fills and absolute-contrast accents — the cart icon, logo mark, and any element that must read as a sharp silhouette against the warm canvas"
+    }
+  },
+  "font": {
+    "planar": {
+      "$value": "Planar",
+      "$type": "fontFamily",
+      "$description": "Sole typeface — a custom neo-grotesque used across all surfaces. The signature choice is the whisper-thin 200/300 weights: headlines at weight 200 feel drawn rather than typeset, giving a refined editorial voice unusual for a B2B marketplace. Weight 400 handles body and nav; 200–300 carries all display and heading sizes. Letter-spacing is consistently tight (-0.025em) at display sizes and slightly positive (+0.018em) at small body labels for optical balance."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "10px",
+        "fontWeight": 300,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "10px",
+        "fontWeight": 300,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "12px",
+        "fontWeight": 200,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "14px",
+        "fontWeight": 200,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "14px",
+        "fontWeight": 200,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "14px",
+        "fontWeight": 200,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "16px",
+        "fontWeight": 200,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "17px",
+        "fontWeight": 300,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "17px",
+        "fontWeight": 200,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 17px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "17px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 17px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "17px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "26px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Planar",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "61": {
+      "$value": "61px",
+      "$type": "dimension",
+      "$description": "Spacing 61px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "134": {
+      "$value": "134px",
+      "$type": "dimension",
+      "$description": "Spacing 134px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.25) 0px 0px 15px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "warm-stone-canvas": {
+      "$value": "#e7e5e4",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — dominant tone"
+    },
+    "mist": {
+      "$value": "#f6f7f7",
+      "$type": "color",
+      "$description": "Surface level 1: Card and button surfaces that lift from the stone"
+    },
+    "pure": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Nav bar, product cards, chat widget — paper-white surface"
+    },
+    "slate-dark": {
+      "$value": "#333c39",
+      "$type": "color",
+      "$description": "Surface level 3: Filled dark buttons and the highest functional surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://relievefurniture.com",
+      "siteName": "Relieve Furniture",
+      "extractedAt": "2026-06-03T21:17:31.002Z",
+      "variant": "extended"
+    }
+  }
+}

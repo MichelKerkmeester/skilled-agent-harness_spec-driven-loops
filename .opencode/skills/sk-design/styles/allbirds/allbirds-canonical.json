@@ -1,0 +1,1475 @@
+{
+  "source": "https://styles.refero.design/style/79d83fce-84bf-4e12-8039-5d283c98917c",
+  "uuid": "79d83fce-84bf-4e12-8039-5d283c98917c",
+  "name": "Allbirds",
+  "northStar": "Natural materials on white linen",
+  "capturedAt": "2026-07-18T09:27:20.071Z",
+  "meta": {
+    "url": "https://allbirds.com",
+    "siteName": "Allbirds",
+    "extractedAt": "2026-06-03T19:37:16.265Z",
+    "durationMs": 31076,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 626,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 9999px pill radius for every button, tag, and icon button — pill is the brand's signature control shape",
+      "Pull hero and section backgrounds from the warm sand family (#e0dacf, #ece9e2) rather than neutral gray to keep the palette earth-toned",
+      "Apply 0.10em letter-spacing on all uppercase labels (nav, badges, category pills) — tracking is the brand's typographic signature",
+      "Reserve Self Modern for the one or two largest headlines per screen; let Geograph do everything else",
+      "Use solid color swatches as full-bleed card backgrounds for category navigation — each category card IS its color story",
+      "Maintain a 4px spacing base; prefer 8/16/32 increments for element gaps, 40-56px for section gaps",
+      "Keep shadows to zero or near-zero — separation comes from color blocks and 1px borders, not elevation"
+    ],
+    "donts": [
+      "Don't introduce saturated or chromatic brand colors — the system is intentionally near-achromatic, with color coming from product photography",
+      "Don't use drop shadows on cards or buttons — Allbirds separates surfaces with flat color and hairline borders",
+      "Don't mix multiple display fonts — Self Modern appears once or twice per page maximum, always at 40px+",
+      "Don't use low-contrast grays for body text — body copy stays at #212121 or #525252 on white, never lighter",
+      "Don't break the pill rule with square or rounded-rect buttons — every interactive control is fully rounded",
+      "Don't use gradients on UI surfaces — the brand is flat color blocks, no gradient fills anywhere",
+      "Don't add decorative icon colors or multicolor icon sets — icons stay mono in #212121 or #000000"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "role": "Page backgrounds, card surfaces, product card backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#212121",
+        "name": "Charcoal",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "True Black",
+        "role": "Headlines, icons, high-contrast borders, nav text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e0dacf",
+        "name": "Warm Sand",
+        "role": "Hero section background, secondary surface tone, large editorial panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222519",
+        "name": "Olive Char",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#525252",
+        "name": "Iron Gray",
+        "role": "Secondary text, helper copy, subtle borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#737373",
+        "name": "Stone",
+        "role": "Muted borders, disabled dividers, footer separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6a6767",
+        "name": "Slate Border",
+        "role": "Outlined button border color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ece9e2",
+        "name": "Oat Milk",
+        "role": "Tertiary surface, subtle nav tint, warm off-white alt background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bdbab5",
+        "name": "Mist",
+        "role": "Soft shadow tone for elevated elements",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width ~1200px centered with generous side padding. The hero is a full-bleed editorial band on warm sand with a large product carousel fanning outward from center. Category navigation is a 4-column equal grid of solid color cards, each containing a single centered shoe. Below the fold, the layout alternates between full-bleed split panels (lifestyle photo left + product swatch right) and centered product carousels under a small underlined section title. The overall rhythm is: full-bleed editorial → 4-column grid → centered product carousel → 2-column split → centered product carousel. Spacing between sections is 40-56px, creating airy but not cavernous transitions. Navigation is a minimal sticky top bar with centered primary links.",
+    "imagery": "Photography is the entire visual system. All product shots are tightly cropped on the shoe at a slight angle, isolated on a solid color background that matches or complements the shoe's accent color — effectively turning each photo into a color study. Lifestyle photography is warm, sunlit, outdoor-natural (agave fields, wooden boardwalks, earthy terrain), slightly desaturated to match the muted palette. No illustrations, no 3D renders, no abstract graphics. The Pantone collaboration introduces a literal color swatch card as a graphic device. Iconography is minimal and monochrome (outlined stroke icons in nav and utility positions).",
+    "similar": [
+      {
+        "why": "Same near-achromatic UI with warm off-white backgrounds, editorial serif display headlines paired with clean sans-serif body, and pill-shaped minimal buttons that let the product photography carry all the color",
+        "business": "Everlane"
+      },
+      {
+        "why": "Same restraint — warm sand and oat-milk neutrals, wide-tracked uppercase labels, serif display type used sparingly, zero shadows, and the product itself as the only source of color",
+        "business": "Aesop"
+      },
+      {
+        "why": "Similar editorial confidence — white canvas, thin uppercase nav, serif display accents on otherwise sans-serif pages, and the product photography doing all chromatic heavy lifting",
+        "business": "Glossier"
+      },
+      {
+        "why": "Same product-card-as-color-swatch approach — category cards use solid muted color blocks that extend the palette pulled from the shoes themselves",
+        "business": "M.Gemi"
+      },
+      {
+        "why": "Same warm-sand hero backgrounds, pill buttons, wide-tracked uppercase category labels, and the philosophy that the UI should disappear so the materials speak",
+        "business": "Cuyana"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "12px",
+        "cards": "16px",
+        "inputs": "4px",
+        "buttons": "9999px (pill)",
+        "large-surfaces": "20-24px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "40-56px",
+      "cardPadding": "32-40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page background, footer, card surfaces, product card background"
+      },
+      {
+        "hex": "#e0dacf",
+        "name": "Warm Sand",
+        "level": 2,
+        "purpose": "Hero section background, editorial full-bleed bands, product swatch panels"
+      },
+      {
+        "hex": "#ece9e2",
+        "name": "Oat Milk",
+        "level": 3,
+        "purpose": "Tertiary surface, subtle nav tint, warm off-white alt background"
+      },
+      {
+        "hex": "#212121",
+        "name": "Charcoal Surface",
+        "level": 4,
+        "purpose": "Dark mode-adjacent surface for announcement bar, dark CTA buttons, footer dark areas"
+      },
+      {
+        "hex": "#d1b0a4",
+        "name": "Category Swatch",
+        "level": 5,
+        "purpose": "Category card background (warm rose tone for Women's etc.)"
+      }
+    ],
+    "northStar": "Natural materials on white linen",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.25,
+        "letterSpacing": 0.3
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0.35
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.8
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": 1
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button (Primary)",
+        "role": "Primary action trigger — Shop Men, Shop Women, Shop Now",
+        "description": "Fully rounded pill (9999px radius), 14px Geograph 500, uppercase, letter-spacing 0.10em, 12px vertical / 24px horizontal padding, background #ffffff on hero or #212121 on dark contexts, text in opposite tone. No shadow, no border."
+      },
+      {
+        "name": "Pill Button (Dark Surface)",
+        "role": "CTA on light or sand backgrounds",
+        "description": "Same pill geometry, fill #212121 or #222519, text #ffffff. Used on warm sand hero where the dark pill creates the only strong contrast point on the page."
+      },
+      {
+        "name": "Category Color Card",
+        "role": "Navigation entry for a product collection",
+        "description": "4-column grid, each card is a full-bleed image of one shoe centered on a solid muted color swatch (dusty blue, warm brown, dusty rose, sage). Category label sits in a small white pill with black text and 0.10em tracking at the upper-left of the shoe. No card shadow — the swatch IS the card."
+      },
+      {
+        "name": "Product Detail Card",
+        "role": "PDP or collection grid entry",
+        "description": "White (#ffffff) surface, shoe image centered, no visible border. Product name in Geograph 700 at 16px, price below in Geograph 400 at 14px in #525252. 16px radius on the image container or card edge."
+      },
+      {
+        "name": "Editorial Hero Panel",
+        "role": "Top-of-page story section",
+        "description": "Full-width band on #e0dacf warm sand. Headline in Self Modern 400 at 40px, white. Eyebrow text in Geograph 500 uppercase at 12px with 0.10em tracking above headline. No gradient, no shadow — flat editorial block."
+      },
+      {
+        "name": "Split Lifestyle + Product Block",
+        "role": "Brand storytelling section below hero",
+        "description": "Two-column: left = full-bleed lifestyle photo with overlaid Self Modern headline and a Shop Now pill; right = large square product swatch panel showing the shoe on a matching muted color background with a small PANTONE swatch card overlay. The color-on-color pairing is the signature move."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "White #ffffff, 12px bottom padding, logo left (Geograph 700 20px), nav center (MEN / WOMEN / SALE in Geograph 500 uppercase 12px, 0.10em tracking, 32px horizontal padding between items), utility icons + account/return links right in Geograph 400 14px. Hairline #e0dacf or transparent border at bottom."
+      },
+      {
+        "name": "Free Shipping Announcement Bar",
+        "role": "Top-most utility strip",
+        "description": "Full-bleed #212121 black bar, white text Geograph 400 12px, centered, 8px vertical padding. Always-on, never styled — functional, not decorative."
+      },
+      {
+        "name": "Badge / Tag (NEW COLOR, PANTONE COLOR)",
+        "role": "Product annotation chip",
+        "description": "Inline label, Geograph 500 12px uppercase with 0.10em tracking, no fill, no border, just text on the product card. Sits in the upper-left of the card in #212121. Zero chrome."
+      },
+      {
+        "name": "Inset-Border Input",
+        "role": "Newsletter or search field",
+        "description": "4px radius, white fill, 1px inset border via box-shadow stack: inset rgb(87,87,87) 0 0 0 1px + rgb(0,0,0) 0 0 0 1px. Placeholder in #525252, 14px Geograph 400. Flat, tactile, no floating label."
+      },
+      {
+        "name": "Carousel Arrow Button",
+        "role": "Navigation for product carousels",
+        "description": "Circular outline button (~32px), 1px border in #212121, chevron icon centered, white fill. Used for the New Arrivals carousel arrows."
+      },
+      {
+        "name": "Section Title with Underline",
+        "role": "Centered Geograph 700 16px uppercase, 0.10em tracking, with a short 1px black underline beneath the text (24-40px wide). Minimal period punctuation or dot separator.",
+        "description": "Centered Geograph 700 16px uppercase, 0.10em tracking, with a short 1px black underline beneath the text (24-40px wide). Minimal period punctuation or dot separator."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer",
+        "description": "White or off-white #ece9e2 surface, multi-column link grid in Geograph 400 14px #525252, headings in Geograph 500 14px #212121, country/region selector and legal copy at the bottom in 12px. No social icons colored — all monochrome."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines and editorial copy — used sparingly for hero statements and collection titles. The serif italic-leaning forms break the sans-serif monotony and signal 'this is the story'.",
+        "sizes": "18px, 40px",
+        "family": "Self Modern",
+        "weight": "400",
+        "lineHeight": "1.00, 1.20, 1.50, 1.78",
+        "substitute": "Playfair Display, DM Serif Display, Cormorant Garamond",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "The workhorse UI typeface — body copy, nav labels, buttons, product titles, footers, inputs, badges. 500 for emphasized labels, 700 for product names. Wide letter-spacing (0.025em–0.10em) on uppercase nav and category labels gives the brand its editorial cadence.",
+        "sizes": "12px, 14px, 16px, 20px, 24px",
+        "family": "Geograph",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.00, 1.25, 1.33, 1.40, 1.43, 1.50, 1.67",
+        "substitute": "Inter, Söhne, GT America, Neue Haas Grotesk",
+        "letterSpacing": "0.025em at 12–14px, 0.05em at 16px, 0.10em on uppercase nav labels"
+      },
+      {
+        "role": "Rarely used — a fallback or specialized button label variant. Geograph carries the system day-to-day.",
+        "sizes": "14px",
+        "family": "HurmeGeometricSans3",
+        "weight": "400",
+        "lineHeight": "1.14",
+        "substitute": "Inter, Söhne"
+      }
+    ],
+    "description": "Allbirds runs on quiet, natural confidence — a near-totally achromatic canvas punctuated by warm sand (#e0dacf) and muted earth tones lifted directly from the product photography. The UI stays out of the product's way: white surfaces, hairline borders, uppercase tracking-heavy nav, and pill-shaped controls that feel like physical buttons rather than web elements. Self Modern (a custom serif) is reserved for the few moments of editorial weight — hero headlines and collection names — while Geograph carries every label, body line, and button at three disciplined weights. Category cards become the color system: each one takes its background swatch from the product it features, turning the navigation into a living Pantone deck.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/79d83fce-84bf-4e12-8039-5d283c98917c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Allbirds design system\",\"item\":\"https://styles.refero.design/style/79d83fce-84bf-4e12-8039-5d283c98917c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/79d83fce-84bf-4e12-8039-5d283c98917c#style-reference\",\"name\":\"Allbirds design system reference\",\"headline\":\"Allbirds design system | Refero Styles\",\"description\":\"Explore Allbirds's light E-commerce design system: Canvas White #ffffff, Charcoal #212121 colors, Self Modern, Geograph typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/79d83fce-84bf-4e12-8039-5d283c98917c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/79d83fce-84bf-4e12-8039-5d283c98917c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Allbirds\",\"url\":\"https://allbirds.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/79d83fce-84bf-4e12-8039-5d283c98917c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/85afbbda-3767-43cf-8846-f93e9fca0a0e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/85afbbda-3767-43cf-8846-f93e9fca0a0e.jpg\",\"caption\":\"Screenshot of Allbirds\"},\"image\":\"https://images.refero.design/styles/refero.design/image/85afbbda-3767-43cf-8846-f93e9fca0a0e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Allbirds design system\",\"Allbirds website design\",\"Allbirds colors\",\"Allbirds typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Canvas White\",\"Charcoal\",\"True Black\",\"Warm Sand\",\"Self Modern\",\"Geograph\",\"HurmeGeometricSans3\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Allbirds design system\"},{\"@type\":\"Thing\",\"name\":\"Allbirds website design\"},{\"@type\":\"Thing\",\"name\":\"Allbirds colors\"},{\"@type\":\"Thing\",\"name\":\"Allbirds typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-01-30T11:09:43.000Z\",\"dateModified\":\"2026-01-30T11:09:43.000Z\"}]}19:T8e0,**Quick Color Reference**\n- text: #212121 (primary), #525252 (secondary)\n- background: #ffffff (page), #e0dacf (hero/section bands)\n- border: #737373 (subtle), #212121 (strong)\n- accent: no chromatic accent — color comes from product imagery\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero editorial band**: Full-bleed #e0dacf background, no max-width. Eyebrow text in Geograph 500, 12px, uppercase, letter-spacing 0.10em, #212121. Headline in Self Modern 400, 40px, #212121, line-height 1.20. Two pill buttons below: #ffffff fill with #212121 text, and #212121 fill with #ffffff text. Both 9999px radius, 12px vertical / 24px horizontal padding, Geograph 500 14px uppercase 0.10em tracking.\n\n2. **Category color card**: 4-column grid, each cell is a solid muted color block (#8b9aa4 dusty blue, #8a7466 warm brown, #c4a4a4 dusty rose, #8a9a8c sage). A single shoe photo centered inside. Category label in a white pill, Geograph 500 12px uppercase 0.10em tracking, positioned upper-left. 16px radius on the card corners.\n\n3. **Product carousel card**: White #ffffff surface, no border, no shadow. Shoe photo centered in the upper 70%. Product name in Geograph 700, 16px, #212121. Price in Geograph 400, 14px, #525252. Optional 'NEW COLOR' or 'PANTONE COLOR' label in Geograph 500, 12px, uppercase, 0.10em tracking, #212121, positioned upper-left of the card with no background or border.\n\n4. **Top navigation**: White #ffffff, 12px bottom padding. Logo 'allbirds' in Geograph 700, 20px, lowercase, #212121, left-aligned. Center nav: MEN / WOMEN / SALE in Geograph 500, 12px, uppercase, 0.10em tracking, #212121, 32px gap between items. Right side: account links in Geograph 400, 14px, #525252, plus outlined monochrome icons for search, account, cart.\n\n5. **Split lifestyle + product block**: Two equal columns. Left: full-bleed lifestyle photo (outdoor, warm sunlight, natural setting). Overlaid in the lower-left: Self Modern 400 40px headline #ffffff with a 0.10em-tracked Geograph 500 12px eyebrow above and a white pill 'Shop Now' button below. Right: solid color swatch panel (#4a4a6a deep indigo) with the product shoe centered and a small white Pantone swatch card (white rectangle with border + label) in the lower-left corner."
+      },
+      {
+        "title": "Color Philosophy",
+        "content": "The Allbirds color system is deliberately void — chromatic identity comes from the product itself, not from UI chrome. The interface is a white-and-sand frame for the shoes. The only deviations are the muted earth tones used as full-bleed backgrounds behind product photos in category cards and editorial sections. These tones are pulled directly from the product palette (dusty blue, warm taupe, dusty rose, sage, deep indigo) rather than declared as brand tokens. The result: the UI is interchangeable with any collection, and the product always carries the color story."
+      },
+      {
+        "title": "Typography Voice",
+        "content": "Geograph is the voice — it speaks in a calm, slightly tracked monotone that feels like museum wall text. Self Modern is the exclamation — reserved for the two or three moments per page where a headline needs to feel like a magazine pull quote rather than a UI label. The 0.10em letter-spacing on every uppercase element is what gives the brand its editorial cadence: not the font choice, but the breathing room between letters. A page without that tracking would look like a different brand entirely."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is essentially absent. Surfaces are separated by flat color blocks, hairline 1px borders, or solid background swatch changes. The only shadow detected is an inset border stack on input fields — a tactile, not elevated, effect. Cards, buttons, and panels rest on the canvas with no shadow lift, reinforcing the brand's material-natural aesthetic where things sit flat like paper on a table."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "icon",
+            "body",
+            "list",
+            "hero",
+            "link",
+            "image"
+          ],
+          "frequency": 1718,
+          "confidence": 1,
+          "prominence": 62522440.724435225,
+          "properties": [
+            "color",
+            "borderColor",
+            "boxShadow",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "nav",
+            "button",
+            "list",
+            "heading",
+            "image",
+            "footer",
+            "input",
+            "link",
+            "icon"
+          ],
+          "frequency": 1091,
+          "confidence": 1,
+          "prominence": 12181705.55016174,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#212121",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24775871011467596
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "icon",
+            "heading",
+            "body",
+            "footer",
+            "input"
+          ],
+          "frequency": 235,
+          "confidence": 1,
+          "prominence": 9514153.094503509,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e0dacf",
+          "oklch": {
+            "c": 0.01624724804578267,
+            "h": 82.7913626198532,
+            "l": 0.8900797684006532
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 1782271.2771585241,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#525252",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.439
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 663495.6950648726,
+          "properties": [
+            "color",
+            "borderColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#737373",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.556
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 128042.72479256359,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6a6767",
+          "oklch": {
+            "c": 0.0037723510624268425,
+            "h": 17.278729384946832,
+            "l": 0.5165086008291568
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 9900.701396599712,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#222519",
+          "oklch": {
+            "c": 0.021948359705506133,
+            "h": 119.36428499524878,
+            "l": 0.2573484760099016
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4264,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#bdbab5",
+          "oklch": {
+            "c": 0.008263838601380026,
+            "h": 87.47231847283008,
+            "l": 0.7905056175267595
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4264,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a57e75",
+          "oklch": {
+            "c": 0.050642871420484833,
+            "h": 33.28822263123141,
+            "l": 0.6284271794645845
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 912.9384004153859,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#879aab",
+          "oklch": {
+            "c": 0.03319917638349597,
+            "h": 245.3134181590611,
+            "l": 0.6770481699799467
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 576,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d1b0a4",
+          "oklch": {
+            "c": 0.04209326819625974,
+            "h": 40.99146704254023,
+            "l": 0.7828944716608457
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 576,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8e9d9e",
+          "oklch": {
+            "c": 0.017154487479027994,
+            "h": 201.61607868336117,
+            "l": 0.6844213590637946
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 576,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9e8949",
+          "oklch": {
+            "c": 0.08746955680290067,
+            "h": 91.62676653995457,
+            "l": 0.6351898089602412
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 576,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a8a2a7",
+          "oklch": {
+            "c": 0.009877511477146474,
+            "h": 331.0061639926759,
+            "l": 0.718782148947557
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 576,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ece9e2",
+          "oklch": {
+            "c": 0.009906269887944201,
+            "h": 87.47299569306742,
+            "l": 0.934413420550097
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00045727965449995873,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.32,
+          "background": "#ece9e2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.1,
+          "background": "#212121",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.59,
+          "background": "#222519",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.1,
+          "background": "#e0dacf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.28,
+          "background": "#ece9e2",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.86,
+          "background": "#ece9e2",
+          "foreground": "#222519"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.58,
+          "background": "#e0dacf",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.21,
+          "background": "#e0dacf",
+          "foreground": "#222519"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.85,
+          "background": "#bdbab5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.46,
+          "background": "#d1b0a4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.39,
+          "background": "#a8a2a7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.32,
+          "background": "#bdbab5",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.06,
+          "background": "#bdbab5",
+          "foreground": "#222519"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.02,
+          "background": "#d1b0a4",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.81,
+          "background": "#ffffff",
+          "foreground": "#525252"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.77,
+          "background": "#d1b0a4",
+          "foreground": "#222519"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.47,
+          "background": "#8e9d9e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.24,
+          "background": "#879aab",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.44,
+          "background": "#ece9e2",
+          "foreground": "#525252"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 39
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(87, 87, 87) 0px 0px 0px 1px inset, rgb(0, 0, 0) 0px 0px 0px 1px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 52,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 167,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 74,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 137,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 107,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 108,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 111,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 122,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 166,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 186,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 214,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Geograph",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 574,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Akkurat Mono",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Self Modern",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HurmeGeometricSans3-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Geograph",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Geograph",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Geograph",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 39,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Geograph",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Geograph",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "heading",
+            "icon"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Akkurat Mono",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Geograph",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Geograph",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Geograph",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Akkurat Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Geograph",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Akkurat Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Geograph",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Geograph",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Geograph",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "HurmeGeometricSans3-Regular",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Geograph",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "icon",
+            "list",
+            "hero",
+            "body",
+            "image",
+            "link",
+            "footer",
+            "input"
+          ],
+          "frequency": 441,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Geograph",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Akkurat Mono",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Self Modern",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Geograph",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Geograph",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Self Modern",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Self Modern",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Self Modern",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/56a99f6a-b2cb-4530-855d-bd7de4c134d4.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/85afbbda-3767-43cf-8846-f93e9fca0a0e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/79d83fce-84bf-4e12-8039-5d283c98917c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Allbirds design system\",\"item\":\"https://styles.refero.design/style/79d83fce-84bf-4e12-8039-5d283c98917c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/79d83fce-84bf-4e12-8039-5d283c98917c#style-reference\",\"name\":\"Allbirds design system reference\",\"headline\":\"Allbirds design system | Refero Styles\",\"description\":\"Explore Allbirds's light E-commerce design system: Canvas White #ffffff, Charcoal #212121 colors, Self Modern, Geograph typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/79d83fce-84bf-4e12-8039-5d283c98917c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/79d83fce-84bf-4e12-8039-5d283c98917c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Allbirds\",\"url\":\"https://allbirds.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/79d83fce-84bf-4e12-8039-5d283c98917c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/85afbbda-3767-43cf-8846-f93e9fca0a0e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/85afbbda-3767-43cf-8846-f93e9fca0a0e.jpg\",\"caption\":\"Screenshot of Allbirds\"},\"image\":\"https://images.refero.design/styles/refero.design/image/85afbbda-3767-43cf-8846-f93e9fca0a0e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Allbirds design system\",\"Allbirds website design\",\"Allbirds colors\",\"Allbirds typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Canvas White\",\"Charcoal\",\"True Black\",\"Warm Sand\",\"Self Modern\",\"Geograph\",\"HurmeGeometricSans3\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Allbirds design system\"},{\"@type\":\"Thing\",\"name\":\"Allbirds website design\"},{\"@type\":\"Thing\",\"name\":\"Allbirds colors\"},{\"@type\":\"Thing\",\"name\":\"Allbirds typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-01-30T11:09:43.000Z\",\"dateModified\":\"2026-01-30T11:09:43.000Z\"}]}19:T8e0,**Quick Color Reference**\n- text: #212121 (primary), #525252 (secondary)\n- background: #ffffff (page), #e0dacf (hero/section bands)\n- border: #737373 (subtle), #212121 (strong)\n- accent: no chromatic accent — color comes from product imagery\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero editorial band**: Full-bleed #e0dacf background, no max-width. Eyebrow text in Geograph 500, 12px, uppercase, letter-spacing 0.10em, #212121. Headline in Self Modern 400, 40px, #212121, line-height 1.20. Two pill buttons below: #ffffff fill with #212121 text, and #212121 fill with #ffffff text. Both 9999px radius, 12px vertical / 24px horizontal padding, Geograph 500 14px uppercase 0.10em tracking.\n\n2. **Category color card**: 4-column grid, each cell is a solid muted color block (#8b9aa4 dusty blue, #8a7466 warm brown, #c4a4a4 dusty rose, #8a9a8c sage). A single shoe photo centered inside. Category label in a white pill, Geograph 500 12px uppercase 0.10em tracking, positioned upper-left. 16px radius on the card corners.\n\n3. **Product carousel card**: White #ffffff surface, no border, no shadow. Shoe photo centered in the upper 70%. Product name in Geograph 700, 16px, #212121. Price in Geograph 400, 14px, #525252. Optional 'NEW COLOR' or 'PANTONE COLOR' label in Geograph 500, 12px, uppercase, 0.10em tracking, #212121, positioned upper-left of the card with no background or border.\n\n4. **Top navigation**: White #ffffff, 12px bottom padding. Logo 'allbirds' in Geograph 700, 20px, lowercase, #212121, left-aligned. Center nav: MEN / WOMEN / SALE in Geograph 500, 12px, uppercase, 0.10em tracking, #212121, 32px gap between items. Right side: account links in Geograph 400, 14px, #525252, plus outlined monochrome icons for search, account, cart.\n\n5. **Split lifestyle + product block**: Two equal columns. Left: full-bleed lifestyle photo (outdoor, warm sunlight, natural setting). Overlaid in the lower-left: Self Modern 400 40px headline #ffffff with a 0.10em-tracked Geograph 500 12px eyebrow above and a white pill 'Shop Now' button below. Right: solid color swatch panel (#4a4a6a deep indigo) with the product shoe centered and a small white Pantone swatch card (white rectangle with border + label) in the lower-left corner."
+}

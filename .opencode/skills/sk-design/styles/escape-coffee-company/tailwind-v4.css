@@ -1,0 +1,65 @@
+@theme {
+  /* Colors */
+  --color-bone: #f5f4f2;
+  --color-ink: #151515;
+  --color-ash: #ebe9e6;
+  --color-paper: #ffffff;
+  --color-pure-black: #000000;
+  --color-smoke: #8a8a8a;
+  --color-fog: #929292;
+
+  /* Typography */
+  --font-twk-lausanne: 'TWK Lausanne', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-molitor: 'Molitor', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-garaje: 'Garaje', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gtstandard-m: 'GTStandard-M', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.81;
+  --tracking-caption: 0.83px;
+  --text-body: 16px;
+  --leading-body: 1.35;
+  --tracking-body: -0.16px;
+  --text-subheading: 19px;
+  --leading-subheading: 1.2;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: 0.5px;
+  --text-heading: 28px;
+  --leading-heading: 1.2;
+  --tracking-heading: 0.5px;
+  --text-heading-lg: 50px;
+  --leading-heading-lg: 1.06;
+  --tracking-heading-lg: 0.4px;
+  --text-display: 75px;
+  --leading-display: 0.85;
+  --tracking-display: -0.9px;
+  --text-display-xl: 250px;
+  --leading-display-xl: 0.85;
+  --tracking-display-xl: -0.5px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-52: 52px;
+  --spacing-60: 60px;
+  --spacing-100: 100px;
+  --spacing-180: 180px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius-md: 7px;
+  --radius-lg: 10px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+
+  /* Shadows */
+  --shadow-subtle: rgb(245, 244, 242) 0px 0px 0px 1.5px;
+}

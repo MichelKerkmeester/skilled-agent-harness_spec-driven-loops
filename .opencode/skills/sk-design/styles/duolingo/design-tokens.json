@@ -1,0 +1,297 @@
+{
+  "color": {
+    "eager-green": {
+      "$value": "#58cc02",
+      "$type": "color",
+      "$description": "Eager Green — Green text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "storybook-green": {
+      "$value": "#d7ffb8",
+      "$type": "color",
+      "$description": "Storybook Green — Soft highlight wash on light surfaces, subtle background tints behind footer navigation labels"
+    },
+    "spark-blue": {
+      "$value": "#1cb0f6",
+      "$type": "color",
+      "$description": "Spark Blue — Blue text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "fresh-leaf": {
+      "$value": "#a5ed6e",
+      "$type": "color",
+      "$description": "Fresh Leaf — Green text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "night-ink": {
+      "$value": "#000437",
+      "$type": "color",
+      "$description": "Night Ink — Violet text accent for links, tags, and emphasized short phrases."
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, button text on green/dark fills"
+    },
+    "charcoal": {
+      "$value": "#4b4b4b",
+      "$type": "color",
+      "$description": "Charcoal — Hero headings and primary body copy — the workhorse dark text that lets colored headings stand out"
+    },
+    "pencil-gray": {
+      "$value": "#777777",
+      "$type": "color",
+      "$description": "Pencil Gray — Muted body paragraphs, secondary descriptive text — recedes so colored elements lead"
+    },
+    "faded-gray": {
+      "$value": "#afafaf",
+      "$type": "color",
+      "$description": "Faded Gray — Disabled or low-emphasis nav labels and button borders"
+    }
+  },
+  "font": {
+    "feather": {
+      "$value": "feather",
+      "$type": "fontFamily",
+      "$description": "Display headlines for section titles like 'free. fun. effective.' and 'duolingo english test' — a custom rounded display face that gives the brand its toy-like, mascot-friendly voice. Substitute with 'Feather Bold' or 'Nunito Black' at matching weight. letter-spacing: -0.0200em"
+    },
+    "duolingo-sans": {
+      "$value": "duolingo-sans",
+      "$type": "fontFamily",
+      "$description": "All weight-700 uses: uppercase nav labels at 15px (ls 0.0530em), subheadings at 19px and 32px, link emphasis at 13px. Same family as body — the visual distinction is weight, not face change. letter-spacing: 0.0530em on uppercase nav"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "duolingo-sans",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "duolingo-sans",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "duolingo-sans",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "duolingo-sans",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "duolingo-sans",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "duolingo-sans",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "duolingo-sans",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "duolingo-sans",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "duolingo-sans",
+        "fontSize": "17px",
+        "fontWeight": 700,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "duolingo-sans",
+        "fontSize": "17px",
+        "fontWeight": 700,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 17px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "duolingo-sans",
+        "fontSize": "19px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 19px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "duolingo-sans",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "feather",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "feather",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — every section sits on pure white"
+    },
+    "storybook-green": {
+      "$value": "#d7ffb8",
+      "$type": "color",
+      "$description": "Surface level 1: Soft tint wash behind highlighted footer labels"
+    },
+    "eager-green": {
+      "$value": "#58cc02",
+      "$type": "color",
+      "$description": "Surface level 2: Footer band and primary CTA fills — bold colored surface"
+    },
+    "night-ink": {
+      "$value": "#000437",
+      "$type": "color",
+      "$description": "Surface level 3: Deep accent surface for emphasis text and dark CTAs"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://duolingo.com",
+      "siteName": "Duolingo",
+      "extractedAt": "2026-07-03T02:54:54.809Z",
+      "variant": "extended"
+    }
+  }
+}

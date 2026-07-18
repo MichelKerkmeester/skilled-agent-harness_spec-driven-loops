@@ -1,0 +1,1109 @@
+{
+  "source": "https://styles.refero.design/style/bd9fdad0-ebe6-4546-a5c0-ed132ed0a471",
+  "uuid": "bd9fdad0-ebe6-4546-a5c0-ed132ed0a471",
+  "name": "DNA",
+  "northStar": "Midnight observatory through a particle lens",
+  "capturedAt": "2026-07-18T10:00:35.802Z",
+  "meta": {
+    "url": "https://dnacapital.com",
+    "siteName": "DNA",
+    "extractedAt": "2026-06-03T16:51:51.506Z",
+    "durationMs": 46626,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 229,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Darius 300 exclusively for headlines at 45–72px — never set the serif below 32px or above 80px",
+      "Reserve #1954ec for circle indicators, gradient terminations, and at most one accent word per hero — blue should never fill a button background",
+      "Set all micro-labels (nav, captions, scroll prompts) in Graphik 10px with 0.4000em letter-spacing in uppercase",
+      "Maintain 59px minimum vertical space between major sections; 23–32px between elements within a section",
+      "Use the 135° cyan-to-cobalt gradient only for the particle/cosmic backdrop and decorative line work — never for text backgrounds or UI fills",
+      "Set numeric data in Graphik with 'tnum' feature enabled so figures in the circle indicators and stat blocks align vertically",
+      "Keep all corners square (0px) for cards, buttons, and badges; reserve 4px radius only for inline links"
+    ],
+    "donts": [
+      "Do not introduce a second serif weight — Darius ships at 300 only, adding bold or regular would dilute the whisper-weight signature",
+      "Do not add drop shadows, glows, or box-shadows — depth comes from the particle field and generous negative space, not elevation",
+      "Do not use #ffffff borders at full opacity across large areas — borders should be 1px hairlines at reduced contrast to read as structural, not loud",
+      "Do not place accent blue on body text — blue is a graphic accent, not a reading color",
+      "Do not break the two-column rhythm — left column text, right column visual/description is the consistent section pattern",
+      "Do not use sans-serif for any headline — the Darius/Graphik tension is the brand; letting Graphik creep to 40px+ flattens the identity",
+      "Do not add more than one chromatic color to any single component — the palette is monochromatic with a single blue accent"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#070708",
+        "name": "Abyss Black",
+        "role": "Page canvas, footer ground — near-black rather than #000 gives the cosmic field a slight warmth and lets white type feel luminous rather than harsh",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Primary text, hairline dividers, section borders, icon strokes — the sole foreground color across the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8f8f93",
+        "name": "Steel Gray",
+        "role": "Muted body copy, secondary descriptions — sits between the white headlines and the dark canvas to create a three-tier reading hierarchy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "SVG fill on iconography and button borders — true black for graphic elements that need maximum weight against the warm #070708 ground",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1954ec",
+        "name": "Electric Cobalt",
+        "role": "Accent stroke on circle indicators, gradient terminus, decorative line art — the only chromatic voice in the UI, reserved for the data-circle motifs and the particle field's deepest point; 135° gradient sweeping from cyan through electric blue to deep cobalt — wraps the right-side particle visualization and ties the cosmic backdrop to the accent color",
+        "group": "brand",
+        "gradient": "linear-gradient(135deg, rgb(0, 204, 255), rgb(12, 146, 246) 43%, rgb(25, 84, 236) 75%, rgb(25, 84, 236))"
+      }
+    ],
+    "layout": "Full-bleed dark sections with no max-width container — content sits on the canvas with generous left margin (~80–120px) and runs edge-to-edge. Every section uses a two-column structure: left column holds the serif headline or stat indicator, right column holds the particle field plus optional supporting text. No card grids, no pricing tables, no feature matrices. Vertical rhythm is 59px between sections, 23–32px between elements. Navigation is two corner elements (logo top-left, menu top-right) with no bar or background. The hero is a full-viewport dark screen with a single serif headline and the particle field anchored to the right edge. Section transitions are seamless — the particle field continues across section boundaries rather than being clipped.",
+    "imagery": "No photography or illustration in the traditional sense. The sole visual element is a procedural particle/dot-field on the right side of every section — thousands of small luminous dots arranged in a sweeping wave pattern that transitions from cyan at the top to electric cobalt at the bottom. The field is abstract, not representational; it evokes a cosmic stream or DNA helix data visualization. The dots are dense and form a curved volume, not a flat texture. There are no product screenshots, no lifestyle photography, no human figures. The left two-thirds of the canvas is always empty space for text.",
+    "similar": [
+      {
+        "why": "Same dark-canvas editorial approach with serif display headlines and a single restrained accent — both treat the homepage as a brand statement rather than a product catalog",
+        "business": "KKR"
+      },
+      {
+        "why": "Climate-finance firm that uses Darius-weight serif headlines on near-black backgrounds with particle/atmospheric visual backdrops — the whisper-weight serif + dark canvas pairing is nearly identical",
+        "business": "Generation Investment Management"
+      },
+      {
+        "why": "Dark-mode VC site with generous whitespace, two-column text+visual sections, and a single vivid accent (their red) used sparingly for emphasis rather than buttons",
+        "business": "Index Ventures"
+      },
+      {
+        "why": "Dark editorial VC layout with serif display type, micro-tracked uppercase labels, and a right-side visual element that bleeds across sections",
+        "business": "Northzone"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "links": "4px",
+        "badges": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "23px",
+      "sectionGap": "59px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#070708",
+        "name": "Abyss Canvas",
+        "level": 1,
+        "purpose": "Primary page background across all sections — the warm near-black that makes the particle field and white type read correctly"
+      },
+      {
+        "hex": "#1954ec",
+        "name": "Particle Field",
+        "level": 2,
+        "purpose": "Right-side decorative layer that bleeds across sections; not a true surface but a visual depth marker using the cobalt gradient"
+      }
+    ],
+    "northStar": "Midnight observatory through a particle lens",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 4
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "heading",
+        "size": 45,
+        "lineHeight": 1.13,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-lg",
+        "size": 52,
+        "lineHeight": 1.13,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1.13,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Corner Navigation",
+        "role": "Minimal top-corner site nav",
+        "description": "Logo 'DNA CAPITAL' in Graphik 10px weight 400 with 0.4000em letter-spacing, white, top-left, paired with a small geometric mark. 'MENU' label in same micro-tracking style top-right, followed by a diamond/rhombus stroke icon. No background, no border — floats directly on the dark canvas."
+      },
+      {
+        "name": "Hero Headline (Serif Display)",
+        "role": "Opening editorial statement",
+        "description": "Darius 300 at 52–72px, white, left-aligned, line-height 1.13. The single instance of the serif on the page. Key words can carry the Electric Cobalt accent — 'healthtech' is colored in the hero. Generous left margin; right side is reserved for the particle visual."
+      },
+      {
+        "name": "Body Description Block",
+        "role": "Supporting paragraph copy",
+        "description": "Graphik 300–400 at 14–15px, Steel Gray (#8f8f93), line-height 1.5, max-width ~480px. Sits below headlines as a quiet secondary voice. No bullet styling, no border."
+      },
+      {
+        "name": "Circle Stat Indicator",
+        "role": "Quantitative data visualization",
+        "description": "A partially-drawn circle (SVG stroke) in Electric Cobalt (#1954ec), stroke-width 1px, ~180px diameter. Center holds a Graphik 300 numeral at ~52px white. Below the circle, a Graphik 10px caption in Steel Gray with 0.2000em tracking, max-width ~140px. The arc length encodes progress/percentage."
+      },
+      {
+        "name": "Scroll Prompt",
+        "role": "Vertical scroll affordance",
+        "description": "Graphik 10px 'SCROLL TO EXPLORE' in white with 0.4000em letter-spacing, uppercase, followed by a thin vertical line (1px white, ~60px tall) extending downward. Positioned bottom-left, signals continuation."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Horizontal section separator",
+        "description": "A single 1px white hairline at low opacity, spanning the content width. No visual ornamentation — the spacing itself does the work."
+      },
+      {
+        "name": "Stage Label",
+        "role": "Investment-stage category heading",
+        "description": "Darius 300 at 45px, white, line-height 1.13. Two-line stack: 'Early / Stage' or 'Late / Stage' — line break after the first word is intentional. Right column carries the matching Graphik body description."
+      },
+      {
+        "name": "Footer",
+        "role": "Page closure",
+        "description": "Abyss Black (#070708) ground, white text, 54px bottom padding. Minimal: small Graphik labels, no card surface, no border above — the canvas extends seamlessly."
+      },
+      {
+        "name": "Ghost Link",
+        "role": "Inline text link",
+        "description": "Graphik 400 at 13px, white, no underline by default, 4px border-radius on the clickable area. Padding 20px vertical, 25px horizontal. No background fill."
+      },
+      {
+        "name": "Outline Button",
+        "role": "Secondary action control",
+        "description": "Graphik 400 at 13px white text, 1px white border, no fill, 8px vertical margin. Square corners (0px radius). Used for non-primary actions where the filled alternative is absent — restraint is the brand."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body text, UI labels, navigation, badges, small captions, the 59px display variant. Light weights (200–300) are the default; 400–500 reserved for emphasis and numeric data. Tabular figures enabled via 'tnum' — critical for stat readouts like '17' and '30M+'.",
+        "sizes": "9px, 10px, 13px, 14px, 15px, 18px, 59px",
+        "family": "Graphik",
+        "weight": "200, 300, 400, 500",
+        "lineHeight": "0.9, 1.0, 1.2, 1.4, 1.5, 1.55, 1.8",
+        "substitute": "Inter, Untitled Sans, Söhne",
+        "letterSpacing": "0.4000em for micro-labels (9–10px tracking labels), 0.2000em for small uppercase UI (13px), 0.1800em for captions, 0.0100em for body, -0.0200em for the 59px display variant",
+        "fontFeatureSettings": "\"tnum\""
+      },
+      {
+        "role": "Hero and section headlines only — a high-contrast didone-influenced serif used at whisper weight to create editorial gravity. The pairing against Graphik's geometric neutrality is the site's defining typographic move: the serif carries brand voice, the sans carries information. Single weight (300) forces restraint — no bold, no italic.",
+        "sizes": "45px, 52px, 54px, 72px",
+        "family": "Darius",
+        "weight": "300",
+        "lineHeight": "1.13, 1.34",
+        "substitute": "Playfair Display, Bodoni Moda, Cormorant Garamond"
+      },
+      {
+        "role": "Button text fallback only — appears where Graphik is not loaded",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400, 500",
+        "lineHeight": "1.2",
+        "substitute": "system-ui"
+      }
+    ],
+    "description": "DNA Capital is a midnight observatory for healthcare capital: a near-black canvas hosts a serif display voice that whispers at weight 300, a geometric sans for everything utilitarian, and a single electric blue that draws arcs and traces particle constellations. The page is overwhelmingly achromatic — white type and hairline borders float on #070708 — with blue appearing as small functional punctuation, never as decoration. Vertical rhythm is generous (59px section gaps, 23–32px element breathing room), and the layout pairs a left-aligned editorial column with a persistent right-side particle field that bleeds between sections. The signature typographic tension: a high-contrast serif (Darius) at 45–72px against a narrow geometric sans (Graphik) at 13–18px creates a Vogue-meets-quantum-lab feel that most financial sites cannot reach.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bd9fdad0-ebe6-4546-a5c0-ed132ed0a471#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"DNA design system\",\"item\":\"https://styles.refero.design/style/bd9fdad0-ebe6-4546-a5c0-ed132ed0a471\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bd9fdad0-ebe6-4546-a5c0-ed132ed0a471#style-reference\",\"name\":\"DNA design system reference\",\"headline\":\"DNA design system | Refero Styles\",\"description\":\"Explore DNA's dark Fintech design system: Abyss Black #070708, Pure White #ffffff colors, Graphik, Darius typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/bd9fdad0-ebe6-4546-a5c0-ed132ed0a471\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bd9fdad0-ebe6-4546-a5c0-ed132ed0a471\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"DNA\",\"url\":\"https://dnacapital.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bd9fdad0-ebe6-4546-a5c0-ed132ed0a471#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c7f2614c-98f3-46fe-84df-ea53583ed87f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c7f2614c-98f3-46fe-84df-ea53583ed87f.jpg\",\"caption\":\"Screenshot of DNA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c7f2614c-98f3-46fe-84df-ea53583ed87f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"DNA design system\",\"DNA website design\",\"DNA colors\",\"DNA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Abyss Black\",\"Pure White\",\"Steel Gray\",\"Carbon\",\"Graphik\",\"Darius\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"DNA design system\"},{\"@type\":\"Thing\",\"name\":\"DNA website design\"},{\"@type\":\"Thing\",\"name\":\"DNA colors\"},{\"@type\":\"Thing\",\"name\":\"DNA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T03:12:00.983Z\",\"dateModified\":\"2026-04-30T03:12:00.983Z\"}]}19:T4ba,**Quick Color Reference**\n- text: #ffffff\n- background: #070708\n- border: #ffffff (1px hairline)\n- muted text: #8f8f93\n- accent: #1954ec\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero Headline**: Dark canvas (#070708). Darius weight 300, 72px, #ffffff, line-height 1.13, left-aligned at 80px left margin. The word 'healthtech' set in #1954ec as the single accent. Right side reserved for the particle field gradient.\n\n2. **Circle Stat Indicator**: 180px diameter SVG circle, stroke #1954ec, stroke-width 1px, 270° arc starting at top. Center: Graphik 300, 52px, #ffffff numeral '17'. Below circle: Graphik 10px, #8f8f93, letter-spacing 2px, uppercase caption.\n\n3. **Section Divider**: Single 1px hairline, #ffffff at 20% opacity, spanning content width with 59px vertical margin above and below.\n\n4. **Stage Label Block**: Left column — Darius 300, 45px, #ffffff, stacked 'Early' / 'Stage' with line break, line-height 1.13. Right column — Graphik 400, 14px, #8f8f93, line-height 1.5, max-width 480px.\n\n5. **Scroll Prompt**: Graphik 10px, #ffffff, letter-spacing 4px, uppercase 'SCROLL TO EXPLORE'. Below text: 1px white vertical line, 60px tall, 2px left margin offset."
+      }
+    ],
+    "elevationPhilosophy": "The design has no box-shadows or elevation. Depth is achieved through the cosmic particle field on the right side of every section and through generous vertical spacing. Components sit flat on the canvas — they do not lift. If a layered effect is needed, it comes from a 1px white hairline border, not from a shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "body",
+            "list",
+            "heading",
+            "link",
+            "image",
+            "footer",
+            "icon",
+            "badge"
+          ],
+          "frequency": 842,
+          "confidence": 1,
+          "prominence": 87588216.23768377,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "hero/color": 2,
+            "icon/color": 1,
+            "link/color": 11,
+            "list/color": 19,
+            "other/fill": 40,
+            "badge/color": 1,
+            "image/color": 1,
+            "other/color": 103,
+            "footer/color": 1,
+            "other/stroke": 6,
+            "heading/color": 14,
+            "body/borderColor": 8,
+            "hero/borderColor": 8,
+            "icon/borderColor": 4,
+            "link/borderColor": 44,
+            "list/borderColor": 76,
+            "badge/borderColor": 4,
+            "image/borderColor": 4,
+            "other/borderColor": 420,
+            "footer/borderColor": 4,
+            "heading/borderColor": 56,
+            "other/backgroundColor": 11,
+            "heading/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#1954ec",
+          "oklch": {
+            "c": 0.23567314102479586,
+            "h": 263.7300049711233,
+            "l": 0.5165800846138056
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2032726.6218420926,
+          "properties": [
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#070708",
+          "oklch": {
+            "c": 0.0026109255478352724,
+            "h": 286.0284151295965,
+            "l": 0.12912779698255297
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 720772,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c0c9df",
+          "oklch": {
+            "c": 0.03229184695481782,
+            "h": 267.92664285633157,
+            "l": 0.8358389865090406
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 424703.43290422525,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "body/borderColor": 24
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 75106.27072431326,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 6,
+            "other/color": 3,
+            "button/color": 2,
+            "other/borderColor": 4,
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#8f8f93",
+          "oklch": {
+            "c": 0.00513213343218055,
+            "h": 286.2562568539133,
+            "l": 0.6511402126726529
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 37260.02869743223,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "body/borderColor": 16
+          }
+        },
+        {
+          "hex": "#46cdff",
+          "oklch": {
+            "c": 0.1335701863542899,
+            "h": 227.21444260187837,
+            "l": 0.7964420746080378
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 12660.680455760596,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 2
+          }
+        },
+        {
+          "hex": "#b51244",
+          "oklch": {
+            "c": 0.19072097388871972,
+            "h": 12.486995057704204,
+            "l": 0.4988644119724178
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 194,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.007927448387028373,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.14,
+          "background": "#070708",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.66,
+          "background": "#c0c9df",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.14,
+          "background": "#070708",
+          "foreground": "#c0c9df"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.44,
+          "background": "#46cdff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.97,
+          "background": "#46cdff",
+          "foreground": "#070708"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.7,
+          "background": "#b51244",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.25,
+          "background": "#070708",
+          "foreground": "#8f8f93"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.96,
+          "background": "#1954ec",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.04,
+          "background": "#b51244",
+          "foreground": "#c0c9df"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.65,
+          "background": "#46cdff",
+          "foreground": "#b51244"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.6,
+          "background": "#1954ec",
+          "foreground": "#c0c9df"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.52,
+          "background": "#1954ec",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.22,
+          "background": "#ffffff",
+          "foreground": "#8f8f93"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.13,
+          "background": "#b51244",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.08,
+          "background": "#b51244",
+          "foreground": "#8f8f93"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.85,
+          "background": "#1954ec",
+          "foreground": "#8f8f93"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.66,
+          "background": "#ffffff",
+          "foreground": "#c0c9df"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.04,
+          "background": "#070708",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|badge",
+            "marginBottom|badge"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "paddingTop|link"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "body",
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 39,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 54,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 59,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 63,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 99,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 119,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 171,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 238,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 264,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 297,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(135deg, rgb(0, 204, 255), rgb(12, 146, 246) 43%, rgb(25, 84, 236) 75%, rgb(25, 84, 236))",
+        "colors": [
+          "rgb(0, 204, 255)",
+          "rgb(12, 146, 246)",
+          "rgb(25, 84, 236)",
+          "rgb(25, 84, 236)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(143deg, rgb(66, 54, 118), rgba(38, 177, 245, 0) 88%)",
+        "colors": [
+          "rgb(66, 54, 118)",
+          "rgba(38, 177, 245, 0)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Graphik",
+          "source": "custom",
+          "weights": [
+            200,
+            300,
+            400,
+            500
+          ],
+          "frequency": 144,
+          "fontFeatureSettings": [
+            "\"tnum\""
+          ]
+        },
+        {
+          "family": "Darius",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 26,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "Graphik",
+          "weight": 300,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.18,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Graphik",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.55,
+          "letterSpacing": 0.4,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Graphik",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0.2,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Graphik",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Graphik",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "list",
+            "image",
+            "footer",
+            "link"
+          ],
+          "frequency": 103,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Graphik",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.18,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Graphik",
+          "weight": 200,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Graphik",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Darius",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Darius",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "Darius",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 59,
+          "family": "Graphik",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Darius",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7bb3f785-8b55-4575-9e06-c648b3c651e4.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c7f2614c-98f3-46fe-84df-ea53583ed87f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bd9fdad0-ebe6-4546-a5c0-ed132ed0a471#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"DNA design system\",\"item\":\"https://styles.refero.design/style/bd9fdad0-ebe6-4546-a5c0-ed132ed0a471\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bd9fdad0-ebe6-4546-a5c0-ed132ed0a471#style-reference\",\"name\":\"DNA design system reference\",\"headline\":\"DNA design system | Refero Styles\",\"description\":\"Explore DNA's dark Fintech design system: Abyss Black #070708, Pure White #ffffff colors, Graphik, Darius typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/bd9fdad0-ebe6-4546-a5c0-ed132ed0a471\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bd9fdad0-ebe6-4546-a5c0-ed132ed0a471\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"DNA\",\"url\":\"https://dnacapital.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bd9fdad0-ebe6-4546-a5c0-ed132ed0a471#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c7f2614c-98f3-46fe-84df-ea53583ed87f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c7f2614c-98f3-46fe-84df-ea53583ed87f.jpg\",\"caption\":\"Screenshot of DNA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c7f2614c-98f3-46fe-84df-ea53583ed87f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"DNA design system\",\"DNA website design\",\"DNA colors\",\"DNA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Abyss Black\",\"Pure White\",\"Steel Gray\",\"Carbon\",\"Graphik\",\"Darius\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"DNA design system\"},{\"@type\":\"Thing\",\"name\":\"DNA website design\"},{\"@type\":\"Thing\",\"name\":\"DNA colors\"},{\"@type\":\"Thing\",\"name\":\"DNA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T03:12:00.983Z\",\"dateModified\":\"2026-04-30T03:12:00.983Z\"}]}19:T4ba,**Quick Color Reference**\n- text: #ffffff\n- background: #070708\n- border: #ffffff (1px hairline)\n- muted text: #8f8f93\n- accent: #1954ec\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero Headline**: Dark canvas (#070708). Darius weight 300, 72px, #ffffff, line-height 1.13, left-aligned at 80px left margin. The word 'healthtech' set in #1954ec as the single accent. Right side reserved for the particle field gradient.\n\n2. **Circle Stat Indicator**: 180px diameter SVG circle, stroke #1954ec, stroke-width 1px, 270° arc starting at top. Center: Graphik 300, 52px, #ffffff numeral '17'. Below circle: Graphik 10px, #8f8f93, letter-spacing 2px, uppercase caption.\n\n3. **Section Divider**: Single 1px hairline, #ffffff at 20% opacity, spanning content width with 59px vertical margin above and below.\n\n4. **Stage Label Block**: Left column — Darius 300, 45px, #ffffff, stacked 'Early' / 'Stage' with line break, line-height 1.13. Right column — Graphik 400, 14px, #8f8f93, line-height 1.5, max-width 480px.\n\n5. **Scroll Prompt**: Graphik 10px, #ffffff, letter-spacing 4px, uppercase 'SCROLL TO EXPLORE'. Below text: 1px white vertical line, 60px tall, 2px left margin offset."
+}

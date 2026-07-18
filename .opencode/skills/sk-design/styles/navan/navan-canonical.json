@@ -1,0 +1,2142 @@
+{
+  "source": "https://styles.refero.design/style/a5089389-4220-4fc2-82d9-973203d2e2f5",
+  "uuid": "a5089389-4220-4fc2-82d9-973203d2e2f5",
+  "name": "Navan",
+  "northStar": "Business-class cabin at violet twilight — a quiet, premium travel interior lit by a single signature violet glow.",
+  "capturedAt": "2026-07-18T09:51:27.113Z",
+  "meta": {
+    "url": "https://navan.com",
+    "siteName": "Navan",
+    "extractedAt": "2026-06-03T17:52:13.655Z",
+    "durationMs": 30973,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 841,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Vivid Iris (#6307f8) as the only saturated fill in the interface — reserve it for one CTA per viewport so it stays loud",
+      "Set card and button radius to 14px consistently; use 9999px only for nav-level pill buttons",
+      "Use Sanomat serif for section headlines at 30–45px with tight 1.0–1.2 leading to create editorial weight",
+      "Keep body text weight 400 in Neue Hass Grotesk Text at 14–16px — never bold body copy",
+      "Pair every product photo with a floating white UI card overlay to ground abstract photography in concrete product",
+      "Bookend pages with full-bleed brand surfaces: gradient or white at the top, deep iris footer at the bottom",
+      "Use Canvas Tint (#f1f1f9) for page backgrounds and Pure White (#ffffff) for cards — never invert this hierarchy"
+    ],
+    "donts": [
+      "Do not use Vivid Iris (#6307f8) for body text, borders, or large background fills — it is a CTA color only",
+      "Do not introduce new accent hues — the system is monochromatic violet; any non-violet chromatic will break the palette",
+      "Do not use drop shadows on standard cards; rely on surface tone and 14px radius for elevation",
+      "Do not set body text in Sanomat — the serif is reserved for editorial headlines",
+      "Do not use heavy weight 600+ in body or nav — the system speaks in 300–500 weights only",
+      "Do not use 0px or 8px radii on cards and buttons — the 14px radius is signature and must stay consistent",
+      "Do not stack multiple gradient washes on a single section — one atmospheric gradient per page region"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#15002c",
+        "name": "Deep Iris",
+        "role": "Footer background, primary text on light surfaces, heading color, dark card surfaces — the near-black violet that carries Navan's brand weight across all dark regions and high-emphasis text",
+        "group": "brand"
+      },
+      {
+        "hex": "#6307f8",
+        "name": "Vivid Iris",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#e1e2fe",
+        "name": "Iris Mist",
+        "role": "Soft highlight wash, light accent surface, decorative tag fill — the barely-there violet tint that signals brand presence on neutral cards",
+        "group": "accent"
+      },
+      {
+        "hex": "#7c51fa",
+        "name": "Iris Glow",
+        "role": "Mid-stop in atmospheric brand gradients — bridges deep iris and rose highlights in hero washes; Horizontal brand gradient wash — violet to rose light streak used as a decorative band",
+        "group": "accent",
+        "gradient": "linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(124, 81, 250, 0.3) 35%, rgba(255, 181, 206, 0.3) 50%, rgba(124, 81, 250, 0.3) 65%, rgba(0, 0, 0, 0) 100%)"
+      },
+      {
+        "hex": "#060000",
+        "name": "Cinder",
+        "role": "Primary text, icon strokes, dark UI text — the body and heading ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5a5a72",
+        "name": "Graphite",
+        "role": "Muted body text, secondary borders, supporting icon strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8d8da5",
+        "name": "Fog",
+        "role": "Tertiary text, caption labels, inactive placeholders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#70708f",
+        "name": "Smoke",
+        "role": "Secondary text, metadata, low-emphasis labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c6c6d2",
+        "name": "Mist Border",
+        "role": "Hairline dividers, card borders, input borders — the universal separator",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1f1f9",
+        "name": "Canvas Tint",
+        "role": "Page background, nav background, surface wash — the cool off-white that sets the overall canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8f8fd",
+        "name": "Surface White",
+        "role": "Elevated card surface, subtle panel background — sits one step above canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces, button text, inverted text on dark fills, badge text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Jet",
+        "role": "High-contrast text, icon fills, logo wordmark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#410566",
+        "name": "Violet Twilight",
+        "role": "Deep gradient origin for atmospheric hero washes — the darkest stop in radial brand gradients",
+        "group": "accent",
+        "gradient": "radial-gradient(197.36% 161.87% at 4.08% 0%, rgba(65, 5, 102, 0.75) 6.19%, rgba(124, 81, 250, 0.75) 52.28%, rgba(255, 181, 206, 0.75) 91.18%)"
+      }
+    ],
+    "layout": "Max-width 1200px contained layout with full-bleed bands. Hero is a full-bleed gradient strip with an inline announcement and a phone mockup, followed by a white content section that holds a serif headline (Sanomat 40–45px), a 2×3 grid of feature highlight cards, and a centered violet CTA. Sections alternate: white content → grayscale logo strip → centered text block → 3-column product+image cards → white reviews → full-bleed dark footer. Section gaps run 80px. Navigation is a single sticky top bar on Canvas Tint; no sidebar. Grid usage is conservative: 2-column feature grids, 3-column product showcases, 5–6-column footer. The page reads top-to-bottom as a confident vertical scroll with brand-color bookends (gradient top, deep iris bottom).",
+    "imagery": "Hero opens with an abstract radial gradient wash (deep iris → violet → rose) that reads as atmospheric, not photographic. Below the fold, photography appears as full-bleed lifestyle shots: professionals in transit (two women walking through a sunlit terminal, a woman in a car, a man in a hotel corridor) — warm, candid, editorial. Product is shown as floating UI cards overlaid on these photos, never as full screenshots. Icons are minimal outlined line-style at 1.5px stroke, mono in Cinder. The visual rhythm alternates: gradient → white → photography+UI cards → white → dark footer. Imagery is content-bearing, not decorative — every photo carries a product overlay.",
+    "similar": [
+      {
+        "why": "Same dark-violet footer band, same single-vivid-accent discipline, same wide white-canvas layout with floating product cards",
+        "business": "Brex"
+      },
+      {
+        "why": "Same clean grotesque body type paired with a signature accent color, same nav-pill + ghost-button CTA pairing",
+        "business": "Ramp"
+      },
+      {
+        "why": "Same dual brand identity split between corporate finance UI and consumer-travel visual language",
+        "business": "TripActions (legacy Navan rebrand)"
+      },
+      {
+        "why": "Same restraint in color usage — one chromatic accent against neutral surfaces, same generous spacing rhythm",
+        "business": "Linear"
+      },
+      {
+        "why": "Same editorial-serif-headline + modern-grotesk-body pairing, same full-bleed gradient hero opening",
+        "business": "Squarespace"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "14px",
+        "pills": "9999px",
+        "badges": "14px",
+        "inputs": "14px",
+        "buttons": "14px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#f1f1f9",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Base page background — the cool off-white that everything else sits on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card White",
+        "level": 2,
+        "purpose": "Card surfaces, product mockups, elevated panels"
+      },
+      {
+        "hex": "#f8f8fd",
+        "name": "Surface Lift",
+        "level": 3,
+        "purpose": "Subtle secondary surface, hover wash, input fill"
+      },
+      {
+        "hex": "#e1e2fe",
+        "name": "Iris Mist",
+        "level": 4,
+        "purpose": "Light brand-tinted highlight surface for feature cards and tags"
+      },
+      {
+        "hex": "#15002c",
+        "name": "Footer Iris",
+        "level": 5,
+        "purpose": "Full-bleed dark footer band — the brand's destination surface"
+      }
+    ],
+    "northStar": "Business-class cabin at violet twilight — a quiet, premium travel interior lit by a single signature violet glow.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.36
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.31
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 42,
+        "lineHeight": 1.12
+      },
+      {
+        "role": "display",
+        "size": 45,
+        "lineHeight": 1,
+        "letterSpacing": 0.04
+      },
+      {
+        "role": "hero",
+        "size": 135,
+        "lineHeight": 0.87,
+        "letterSpacing": 5.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "Filled brand action",
+        "description": "Vivid Iris (#6307f8) fill, white text, 14px radius, ~12px 20px padding, Neue Hass Grotesk Text 14px weight 500. The single high-saturation button in the system — every other interactive surface defers to it."
+      },
+      {
+        "name": "Pill CTA Button",
+        "role": "Rounded brand action in nav",
+        "description": "Vivid Iris fill, white text, 9999px radius, 10px 20px padding, weight 500. Used for the nav 'Get started' — the pill form softens the same violet into a friendlier entry point."
+      },
+      {
+        "name": "Ghost Request Demo Button",
+        "role": "Outlined secondary action",
+        "description": "Transparent fill, #15002c border 1.5px, #15002c text, 14px radius, ~10px 20px padding. Pairs with the pill CTA in nav; identical silhouette, different fill logic."
+      },
+      {
+        "name": "Feature Highlight Card",
+        "role": "Light-tinted action tile",
+        "description": "Iris Mist (#e1e2fe) background, 14px radius, ~20px padding, centered icon + label, white text optional. Used in the hero's 'What would you like to do' grid — the violet tint signals interactivity without being a button."
+      },
+      {
+        "name": "Floating Product Card",
+        "role": "UI screenshot overlay",
+        "description": "White background, 14px radius, soft shadow, contains a stylized product panel (e.g., flight card LAX→SYD). Floats over lifestyle photography to ground the abstract gradient in concrete product."
+      },
+      {
+        "name": "Top Announcement Bar",
+        "role": "Product news strip",
+        "description": "Full-bleed gradient band, Vivid Iris 'New' pill badge (14px radius, 10px 12px padding, white text, weight 500), white headline text, inline arrow CTA. Sets the premium tone before the nav even appears."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Canvas Tint (#f1f1f9) background, wordmark left, horizontal nav links (Platform, Solutions, Pricing, Resources, Customers, Company) in Cinder text weight 400, pill CTA + ghost button + 'Log in' + locale flag on the right. Sits at ~72px height."
+      },
+      {
+        "name": "Star Rating Block",
+        "role": "Social proof micro-component",
+        "description": "Five violet iris stars, '4.7 out of 5 | 9K+ reviews' in Cinder 14px. Placed in card with light border to feel like an earned badge, not a marketing plug."
+      },
+      {
+        "name": "Award Badge Strip",
+        "role": "Footer recognition row",
+        "description": "Row of G2 badge images (Best Usability, Leader, Best Results, etc.) in a contained card with light background. Each badge is a separate image asset, but the strip as a whole signals enterprise credibility."
+      },
+      {
+        "name": "Footer Column Block",
+        "role": "Multi-column site map",
+        "description": "Deep Iris (#15002c) background, white column titles weight 500, Fog/Smoke link text 14px weight 400, grouped into 5–6 columns with 40px column gap. The full-bleed dark band is the strongest brand moment on the page."
+      },
+      {
+        "name": "App Store Download Pair",
+        "role": "Footer CTA",
+        "description": "Apple App Store and Google Play badges side by side, white background dark-icon style, 14px radius. The only mobile-download surface in the system."
+      },
+      {
+        "name": "Success Toast Card",
+        "role": "Inline confirmation",
+        "role_": "Floating confirmation",
+        "description": "White background, 14px radius, Vivid Iris icon circle, Cinder text 'Success! Expense submitted. You're done.' Anchored to bottom of a product card as a micro-interaction artifact."
+      },
+      {
+        "name": "Region Selector",
+        "role": "Footer locale switcher",
+        "description": "US flag icon + 'Region' text in light neutral, pill or ghost style, sits in the footer's meta row."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body, nav, buttons, badges, cards — the workhorse grotesque that carries 90% of the interface. Weights stay light-to-medium (300–500), never bold, keeping the voice conversational rather than corporate",
+        "sizes": "10, 12, 14, 15, 16, 18, 20, 22, 23",
+        "family": "Neue Hass Grotesk Text",
+        "weight": "300, 400, 500",
+        "lineHeight": "1.20–1.78",
+        "substitute": "Inter, IBM Plex Sans"
+      },
+      {
+        "role": "Display, nav emphasis, large UI — the 135px weight-300 headline size is the signature: an anti-convention whisper-weight display that signals premium restraint. 0.04em positive tracking on display sizes gives airy breathing room",
+        "sizes": "12, 14, 15, 16, 18, 20, 22, 135",
+        "family": "Neue Haas Grotesk Display Pro",
+        "weight": "300, 400, 500, 700",
+        "lineHeight": "0.87–1.71",
+        "substitute": "Neue Haas Grotesk, Helvetica Neue",
+        "letterSpacing": "0.04em at 14px+ display sizes",
+        "fontFeatureSettings": "\"ss01\" on"
+      },
+      {
+        "role": "Editorial headlines and section titles — a serif/display face that introduces warmth and a magazine-cover quality. Used at 30–45px with tight 1.0–1.2 leading, it contrasts the grotesque body and signals premium content",
+        "sizes": "30, 40, 42, 45",
+        "family": "Sanomat",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.00–2.13",
+        "substitute": "Tiempos Headline, Source Serif Pro, Playfair Display"
+      },
+      {
+        "role": "Neue Hass Grotesk Display — detected in extracted data but not described by AI",
+        "sizes": "14px",
+        "family": "Neue Hass Grotesk Display",
+        "weight": "500",
+        "lineHeight": ""
+      },
+      {
+        "role": "Karla — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Karla",
+        "weight": "400",
+        "lineHeight": "1.5"
+      }
+    ],
+    "description": "Navan operates a premium travel-portal visual language: a near-black violet (#15002c) anchors dark surfaces and text, while a single vivid violet (#6307f8) punctuates primary actions and brand moments. White and off-white surfaces dominate, giving the interface the airy feel of a business-class lounge, with editorial Sanomat serifs for headlines and neutral Neue Hass Grotesk for everything else. Components are light-touch: 14px radii on cards and buttons, pill-shaped CTAs, soft violet-tinted highlight cards, and atmospheric gradient washes that introduce the brand violet without flooding the page. The footer flips to a full-bleed deep-violet band, creating a bookend effect that reinforces the brand color as a destination rather than a decoration.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a5089389-4220-4fc2-82d9-973203d2e2f5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Navan design system\",\"item\":\"https://styles.refero.design/style/a5089389-4220-4fc2-82d9-973203d2e2f5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a5089389-4220-4fc2-82d9-973203d2e2f5#style-reference\",\"name\":\"Navan design system reference\",\"headline\":\"Navan design system | Refero Styles\",\"description\":\"Explore Navan's light SaaS design system: Deep Iris #15002c, Vivid Iris #6307f8 colors, Neue Hass Grotesk Text, Neue Haas Grotesk Display Pro typography,...\",\"url\":\"https://styles.refero.design/style/a5089389-4220-4fc2-82d9-973203d2e2f5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a5089389-4220-4fc2-82d9-973203d2e2f5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Navan\",\"url\":\"https://navan.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a5089389-4220-4fc2-82d9-973203d2e2f5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c5ba22d4-8b78-446e-ac0e-9506f5b3309c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c5ba22d4-8b78-446e-ac0e-9506f5b3309c.jpg\",\"caption\":\"Screenshot of Navan\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c5ba22d4-8b78-446e-ac0e-9506f5b3309c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Navan design system\",\"Navan website design\",\"Navan colors\",\"Navan typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Deep Iris\",\"Vivid Iris\",\"Iris Mist\",\"Iris Glow\",\"Neue Hass Grotesk Text\",\"Neue Haas Grotesk Display Pro\",\"Sanomat\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Navan design system\"},{\"@type\":\"Thing\",\"name\":\"Navan website design\"},{\"@type\":\"Thing\",\"name\":\"Navan colors\"},{\"@type\":\"Thing\",\"name\":\"Navan typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-03-14T09:05:15.000Z\",\"dateModified\":\"2026-03-14T09:05:15.000Z\"}]}19:T535,Quick Color Reference\n• primary text: #060000 (Cinder)\n• background: #f1f1f9 (Canvas Tint)\n• card surface: #ffffff\n• border: #c6c6d2 (Mist Border)\n• accent surface: #e1e2fe (Iris Mist)\n• primary action: no distinct CTA color\n\nExample Component Prompts\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Feature Highlight Card**: Iris Mist (#e1e2fe) background, 14px radius, 20px padding all sides, centered outlined icon in Cinder (#060000), label text 14px weight 500 in Cinder. Used in 2–3 column grids.\n\n3. **Editorial Section Headline**: Sanomat 42px weight 400, Cinder (#060000) text, line-height 1.12, centered. Pair with body subtext at Neue Hass Grotesk Text 18px weight 400 in Smoke (#70708f).\n\n4. **Floating Product Card over Photography**: Pure White (#ffffff) background, 14px radius, single soft shadow (e.g. 0 8px 32px rgba(21,0,44,0.12)), 20px padding, contains a stylized flight/expense UI panel with Vivid Iris accent for selected rows.\n\n5. **Dark Footer Band**: Deep Iris (#15002c) full-bleed background, 80px vertical padding, 5–6 columns of links with white column titles (weight 500, 14px) and Fog (#8d8da5) link text (weight 400, 14px), Mist Border (#c6c6d2) 1px top divider separating columns from meta row."
+      },
+      {
+        "title": "Gradient System",
+        "content": "Navan uses gradients as atmospheric brand signals, not functional fills. The palette is fixed: deep iris (#410566) → iris (#7c51fa) → rose pink (#ffb5ce), always at 0.25–0.75 opacity. Apply as full-bleed radial washes on hero bands or as horizontal beams across feature sections. Never use gradients on buttons, cards, or text. The rose pink stop is the surprise — it prevents the violet from feeling monolithic and gives the system warmth."
+      },
+      {
+        "title": "Type Pairing Logic",
+        "content": "Sanomat and Neue Haas Grotesk are deliberately paired: Sanomat carries the editorial voice (headlines, section openers, pull quotes) while Neue Haas carries the utility voice (body, nav, buttons, labels). The contrast between the two is the system's most distinctive typographic choice — it reads as 'premium travel magazine meets modern SaaS dashboard.' Never use both in the same line; Sanomat headlines sit above Neue Hass subheads, not inline."
+      }
+    ],
+    "elevationPhilosophy": "Navan avoids heavy drop shadows. Elevation is implied by surface tone (white card on f1f1f9 canvas) and 14px radius rather than shadow stacks. The only shadowed elements are floating product mockups and toasts, which use a single soft long-blur shadow at most."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#c6c6d2",
+          "oklch": {
+            "c": 0.016605098506544465,
+            "h": 286.0324785456266,
+            "l": 0.8301860332326455
+          },
+          "contexts": [
+            "other",
+            "button",
+            "image",
+            "badge",
+            "heading",
+            "body",
+            "icon",
+            "link",
+            "nav",
+            "hero",
+            "list",
+            "card",
+            "footer"
+          ],
+          "frequency": 3036,
+          "confidence": 1,
+          "prominence": 188351979.32468444,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "image",
+            "body",
+            "icon",
+            "nav",
+            "hero",
+            "list",
+            "card",
+            "footer"
+          ],
+          "frequency": 456,
+          "confidence": 1,
+          "prominence": 143864586.82234538,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#15002c",
+          "oklch": {
+            "c": 0.08646673413290766,
+            "h": 300.469748029271,
+            "l": 0.16240812696825743
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "heading",
+            "other",
+            "body",
+            "card",
+            "footer"
+          ],
+          "frequency": 200,
+          "confidence": 1,
+          "prominence": 11659720.761100143,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "badge",
+            "heading",
+            "body",
+            "other",
+            "button",
+            "nav",
+            "card",
+            "link",
+            "icon"
+          ],
+          "frequency": 126,
+          "confidence": 1,
+          "prominence": 9824434.3513309,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f1f1f9",
+          "oklch": {
+            "c": 0.010652713998581377,
+            "h": 286.1973902269427,
+            "l": 0.9604394389128379
+          },
+          "contexts": [
+            "button",
+            "other",
+            "nav"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 4714812.545073633,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f8f8fd",
+          "oklch": {
+            "c": 0.006616501062719155,
+            "h": 286.2769861407048,
+            "l": 0.9805436365751811
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2272159.8881015466,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5a5a72",
+          "oklch": {
+            "c": 0.03844619952664171,
+            "h": 284.849267928289,
+            "l": 0.47683855300225103
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 1561621.4362164387,
+          "properties": [
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8d8da5",
+          "oklch": {
+            "c": 0.0354799496855999,
+            "h": 285.3735456391379,
+            "l": 0.6515849166393356
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 1155607.4944782958,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#060000",
+          "oklch": {
+            "c": 0.03146799932013584,
+            "h": 29.233880279627854,
+            "l": 0.07668521271320397
+          },
+          "contexts": [
+            "link",
+            "body",
+            "other",
+            "heading",
+            "icon",
+            "image"
+          ],
+          "frequency": 47,
+          "confidence": 1,
+          "prominence": 1026655.7316950666,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d1d1d1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8610026233955426
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 980100,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f7eee8",
+          "oklch": {
+            "c": 0.012641130383327618,
+            "h": 56.25062054239901,
+            "l": 0.9544961308113478
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 624150,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#70708f",
+          "oklch": {
+            "c": 0.04778566593264614,
+            "h": 284.74252857279663,
+            "l": 0.5567460551327962
+          },
+          "contexts": [
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 128232.07542362416,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6307f8",
+          "oklch": {
+            "c": 0.28600070830270774,
+            "h": 285.2571670022114,
+            "l": 0.49520867387224166
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 60050.28496665685,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e1e2fe",
+          "oklch": {
+            "c": 0.037950075818194116,
+            "h": 284.0001698969437,
+            "l": 0.9205801053688635
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 26134,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ba977b",
+          "oklch": {
+            "c": 0.057422908564378976,
+            "h": 60.32319639484877,
+            "l": 0.7013759742444484
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 12024,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#da9eff",
+          "oklch": {
+            "c": 0.14683951469045398,
+            "h": 311.75109974330314,
+            "l": 0.7910044102849926
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 9612.383253125237,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#07072c",
+          "oklch": {
+            "c": 0.07269534180055978,
+            "h": 274.68716287747634,
+            "l": 0.16232906465391578
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3292,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7651658759683705
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1838,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a9a9bc",
+          "oklch": {
+            "c": 0.0271336633392923,
+            "h": 285.71884959934374,
+            "l": 0.740887071735548
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 266.2737001211542,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d80027",
+          "oklch": {
+            "c": 0.22503162473474633,
+            "h": 24.180786847304304,
+            "l": 0.5561438344468259
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 158.4962500721156,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0052b4",
+          "oklch": {
+            "c": 0.17018876678768285,
+            "h": 258.0070884116986,
+            "l": 0.4595709867173894
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 158.4962500721156,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.055690592795425715,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.84,
+          "background": "#ffffff",
+          "foreground": "#060000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.84,
+          "background": "#f8f8fd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.68,
+          "background": "#f8f8fd",
+          "foreground": "#060000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.66,
+          "background": "#ffffff",
+          "foreground": "#15002c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.52,
+          "background": "#ffffff",
+          "foreground": "#07072c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.69,
+          "background": "#f1f1f9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.57,
+          "background": "#f8f8fd",
+          "foreground": "#15002c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.55,
+          "background": "#f1f1f9",
+          "foreground": "#060000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.44,
+          "background": "#f8f8fd",
+          "foreground": "#07072c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.35,
+          "background": "#f7eee8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.21,
+          "background": "#f7eee8",
+          "foreground": "#060000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.5,
+          "background": "#f1f1f9",
+          "foreground": "#15002c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.37,
+          "background": "#f1f1f9",
+          "foreground": "#07072c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.18,
+          "background": "#f7eee8",
+          "foreground": "#15002c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.06,
+          "background": "#f7eee8",
+          "foreground": "#07072c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.51,
+          "background": "#e1e2fe",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.38,
+          "background": "#e1e2fe",
+          "foreground": "#060000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.46,
+          "background": "#e1e2fe",
+          "foreground": "#15002c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.35,
+          "background": "#e1e2fe",
+          "foreground": "#07072c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 14,
+          "contexts": [
+            "badge",
+            "button",
+            "image",
+            "other",
+            "card"
+          ],
+          "frequency": 41
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "columnGap",
+            "marginRight",
+            "marginTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 47,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 21,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 72,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 46,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "paddingTop",
+            "marginRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 21,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 22,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 23,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 25,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 27,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 31,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 37,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 348,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "rowGap",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 44,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 47,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 53,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 54,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 65,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 86,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 89,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 109,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 110,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 125,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 128,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 140,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 143,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 144,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 156,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 163,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 190,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "radial",
+        "value": "radial-gradient(197.36% 161.87% at 4.08% 0%, rgba(65, 5, 102, 0.75) 6.19%, rgba(124, 81, 250, 0.75) 52.28%, rgba(255, 181, 206, 0.75) 91.18%)",
+        "colors": [
+          "rgba(65, 5, 102, 0.75)",
+          "rgba(124, 81, 250, 0.75)",
+          "rgba(255, 181, 206, 0.75)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(120deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 20%, rgba(124, 81, 250, 0.25) 38%, rgba(255, 181, 206, 0.25) 50%, rgba(124, 81, 250, 0.25) 62%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 0) 100%)",
+        "colors": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(124, 81, 250, 0.25)",
+          "rgba(255, 181, 206, 0.25)",
+          "rgba(124, 81, 250, 0.25)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(124, 81, 250, 0.3) 35%, rgba(255, 181, 206, 0.3) 50%, rgba(124, 81, 250, 0.3) 65%, rgba(0, 0, 0, 0) 100%)",
+        "colors": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(124, 81, 250, 0.3)",
+          "rgba(255, 181, 206, 0.3)",
+          "rgba(124, 81, 250, 0.3)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgba(222, 168, 255, 0.6), rgba(151, 153, 252, 0.8))",
+        "colors": [
+          "rgba(222, 168, 255, 0.6)",
+          "rgba(151, 153, 252, 0.8)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Neue Hass Grotesk Text",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 614,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Neue Haas Grotesk Display Pro",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            700
+          ],
+          "frequency": 107,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Sanomat",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 38,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Neue Hass Grotesk Display",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Karla",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.93
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Neue Hass Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Neue Hass Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.58,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.58,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.58,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Hass Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "badge",
+            "nav",
+            "button",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 66,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Hass Grotesk Text",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.71,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.21,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Hass Grotesk Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 3.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Neue Hass Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Hass Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "icon",
+            "image",
+            "body",
+            "list",
+            "card",
+            "footer"
+          ],
+          "frequency": 428,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Hass Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Karla",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "button"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Hass Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.31,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.31,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Hass Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "image",
+            "other",
+            "body",
+            "icon",
+            "link",
+            "nav"
+          ],
+          "frequency": 91,
+          "lineHeight": 1.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Hass Grotesk Text",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Neue Hass Grotesk Text",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Neue Hass Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Neue Hass Grotesk Text",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Sanomat",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Sanomat",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Sanomat",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Sanomat",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Sanomat",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.12,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Sanomat",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Sanomat",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 135,
+          "family": "Neue Haas Grotesk Display Pro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.87,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f233878e-4ce5-4ad6-9c33-30525bbdb09d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c5ba22d4-8b78-446e-ac0e-9506f5b3309c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a5089389-4220-4fc2-82d9-973203d2e2f5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Navan design system\",\"item\":\"https://styles.refero.design/style/a5089389-4220-4fc2-82d9-973203d2e2f5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a5089389-4220-4fc2-82d9-973203d2e2f5#style-reference\",\"name\":\"Navan design system reference\",\"headline\":\"Navan design system | Refero Styles\",\"description\":\"Explore Navan's light SaaS design system: Deep Iris #15002c, Vivid Iris #6307f8 colors, Neue Hass Grotesk Text, Neue Haas Grotesk Display Pro typography,...\",\"url\":\"https://styles.refero.design/style/a5089389-4220-4fc2-82d9-973203d2e2f5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a5089389-4220-4fc2-82d9-973203d2e2f5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Navan\",\"url\":\"https://navan.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a5089389-4220-4fc2-82d9-973203d2e2f5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c5ba22d4-8b78-446e-ac0e-9506f5b3309c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c5ba22d4-8b78-446e-ac0e-9506f5b3309c.jpg\",\"caption\":\"Screenshot of Navan\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c5ba22d4-8b78-446e-ac0e-9506f5b3309c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Navan design system\",\"Navan website design\",\"Navan colors\",\"Navan typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Deep Iris\",\"Vivid Iris\",\"Iris Mist\",\"Iris Glow\",\"Neue Hass Grotesk Text\",\"Neue Haas Grotesk Display Pro\",\"Sanomat\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Navan design system\"},{\"@type\":\"Thing\",\"name\":\"Navan website design\"},{\"@type\":\"Thing\",\"name\":\"Navan colors\"},{\"@type\":\"Thing\",\"name\":\"Navan typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-03-14T09:05:15.000Z\",\"dateModified\":\"2026-03-14T09:05:15.000Z\"}]}19:T535,Quick Color Reference\n• primary text: #060000 (Cinder)\n• background: #f1f1f9 (Canvas Tint)\n• card surface: #ffffff\n• border: #c6c6d2 (Mist Border)\n• accent surface: #e1e2fe (Iris Mist)\n• primary action: no distinct CTA color\n\nExample Component Prompts\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Feature Highlight Card**: Iris Mist (#e1e2fe) background, 14px radius, 20px padding all sides, centered outlined icon in Cinder (#060000), label text 14px weight 500 in Cinder. Used in 2–3 column grids.\n\n3. **Editorial Section Headline**: Sanomat 42px weight 400, Cinder (#060000) text, line-height 1.12, centered. Pair with body subtext at Neue Hass Grotesk Text 18px weight 400 in Smoke (#70708f).\n\n4. **Floating Product Card over Photography**: Pure White (#ffffff) background, 14px radius, single soft shadow (e.g. 0 8px 32px rgba(21,0,44,0.12)), 20px padding, contains a stylized flight/expense UI panel with Vivid Iris accent for selected rows.\n\n5. **Dark Footer Band**: Deep Iris (#15002c) full-bleed background, 80px vertical padding, 5–6 columns of links with white column titles (weight 500, 14px) and Fog (#8d8da5) link text (weight 400, 14px), Mist Border (#c6c6d2) 1px top divider separating columns from meta row."
+}

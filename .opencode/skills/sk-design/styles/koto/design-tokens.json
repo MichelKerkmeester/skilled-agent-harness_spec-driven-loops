@@ -1,0 +1,217 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#060606",
+      "$type": "color",
+      "$description": "Void Black — Primary page canvas — the dominant background where all content floats; not pure black, but a warmthless near-black that keeps contrast at AAA"
+    },
+    "graphite-surface": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Graphite Surface — Elevated card and icon backgrounds — one step lighter than canvas, used to subtly separate surfaces without breaking the dark mood"
+    },
+    "smoke-border": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Smoke Border — Hairline borders and dividers — barely visible structural lines that define regions without adding visual weight"
+    },
+    "iron-mute": {
+      "$value": "#595959",
+      "$type": "color",
+      "$description": "Iron Mute — Muted text and secondary borders — body text at reduced emphasis, footer meta, tertiary labels"
+    },
+    "ash-gray": {
+      "$value": "#989898",
+      "$type": "color",
+      "$description": "Ash Gray — Secondary body text and medium-emphasis borders — the most-used neutral after white, for body copy and structural outlines"
+    },
+    "silver-whisper": {
+      "$value": "#b4b4b4",
+      "$type": "color",
+      "$description": "Silver Whisper — Light body text — softer than white for inline body content where pure white would feel too sharp"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary text, heading strokes, and all key borders — the brightest mark in the system, reserved for content that must read first"
+    },
+    "signal-yellow": {
+      "$value": "#ffe800",
+      "$type": "color",
+      "$description": "Signal Yellow — Yellow decorative accent for icons, marks, and small graphic details."
+    }
+  },
+  "font": {
+    "gtkotoheim": {
+      "$value": "gtKotoheim",
+      "$type": "fontFamily",
+      "$description": "All UI, body, navigation, button, and small-display text. Custom monospace-feeling sans with 'salt' alternate glyphs — weight 350 is the default body, 400 for slightly stronger emphasis. The only typeface for everything below display size."
+    },
+    "gtkotoheimcondensed": {
+      "$value": "gtKotoheimCondensed",
+      "$type": "fontFamily",
+      "$description": "Display headings only. Condensed cut at weight 300 with tight 1.0–1.1 leading and -0.01em tracking — these headlines whisper rather than shout, letting the vast negative space amplify their presence. Reserved for hero statements and section titles."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "gtKotoheimMono",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "gtKotoheimMono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "gtKotoheim",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "gtKotoheimMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "gtKotoheim",
+        "fontSize": "14px",
+        "fontWeight": 350,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "gtKotoheim",
+        "fontSize": "16px",
+        "fontWeight": 350,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "gtKotoheimCondensed",
+        "fontSize": "38px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "gtKotoheimCondensed",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#060606",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background"
+    },
+    "raised-surface": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Surface level 2: Cards, icon containers, elevated content blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://koto.com",
+      "siteName": "Koto",
+      "extractedAt": "2026-06-03T21:44:05.858Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,90 @@
+@theme {
+  /* Colors */
+  --color-ink-black: #1d1d1c;
+  --color-parchment-cream: #f8f7f2;
+  --color-sand-gray: #d8d6ce;
+  --color-linen-beige: #edeae4;
+  --color-paper-white: #ffffff;
+  --color-charcoal-stone: #43423e;
+  --color-ash-gray: #99978f;
+  --color-slate-warm: #7a7974;
+  --color-electric-violet: #b26bf5;
+  --color-twilight-indigo: #190922;
+  --color-bubblegum-pink: #f788d2;
+  --color-tangerine: #ff9147;
+  --color-aqua-teal: #4ad5e8;
+  --color-sky-blue: #51b1fb;
+  --color-sunshine-yellow: #ffe747;
+  --color-lavender-glow: #b977f8;
+  --color-pale-violet: #dab2ff;
+  --color-lilac-mist: #f3e8ff;
+  --color-deep-violet: #8200db;
+  --color-coral-red: #ee5968;
+  --color-mint-green: #58df8c;
+  --color-forest-green: #00a63e;
+  --color-burnt-orange: #eb6928;
+  --color-deep-teal: #2c91af;
+  --color-magenta-bloom: #b036a4;
+  --color-mint-wash: #dcfce7;
+
+  /* Typography */
+  --font-new-kansas: 'new-kansas', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-nunito-sans: 'Nunito Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --tracking-caption: -0.01px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --tracking-body-sm: -0.011px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: -0.011px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.012px;
+  --text-heading-sm: 28px;
+  --leading-heading-sm: 1.35;
+  --tracking-heading-sm: -0.01px;
+  --text-heading: 48px;
+  --leading-heading: 1.2;
+  --tracking-heading: -0.013px;
+  --text-display: 64px;
+  --leading-display: 1.2;
+  --tracking-display: -0.023px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-5: 5px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-73: 73px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+
+  /* Border Radius */
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-subtle: rgb(237, 234, 228) 0px 0px 0px 1px, oklch(0.23 0.002 98 / 0.04) 0px 1px 1px -0.5px, oklch(0.23 0.002 98 / 0.04) 0px 3px 3px -1.5px, oklch(0.23 0.002 98 / 0.04) 0px 6px 6px -3px, oklch(0.23 0.002 98 / 0.02) 0px 12px 12px -6px;
+  --shadow-subtle-2: oklch(0.958 0.007 98) 0px 0px 0px 1px, oklch(0.23 0.002 98 / 0.02) 0px 1px 1px -0.5px, oklch(0.23 0.002 98 / 0.02) 0px 3px 3px -1.5px, oklch(0.23 0.002 98 / 0.02) 0px 6px 6px -3px, oklch(0.23 0.002 98 / 0.00999999) 0px 12px 12px -6px;
+  --shadow-subtle-3: oklch(0.876 0.011 98) 0px 0px 0px 1px, oklch(0.23 0.002 98 / 0.04) 0px 1px 1px -0.5px, oklch(0.23 0.002 98 / 0.04) 0px 3px 3px -1.5px, oklch(0.23 0.002 98 / 0.04) 0px 6px 6px -3px, oklch(0.23 0.002 98 / 0.02) 0px 12px 12px -6px, oklch(0.23 0.002 98 / 0.02) 0px 24px 24px -12px;
+  --shadow-subtle-4: oklch(0.23 0.002 98 / 0.02) 0px 1px 1px -0.5px, oklch(0.23 0.002 98 / 0.02) 0px 3px 3px -1.5px, oklch(0.23 0.002 98 / 0.02) 0px 6px 6px -3px, oklch(0.23 0.002 98 / 0.00999999) 0px 12px 12px -6px;
+  --shadow-subtle-5: rgba(255, 255, 255, 0.2) 0px 0px 0px 3px, rgba(255, 255, 255, 0.3) 0px 0px 0px 1px;
+  --shadow-subtle-6: rgba(255, 255, 255, 0.2) 0px 0px 0px 3px;
+  --shadow-subtle-7: oklab(0.999994 0.0000455678 0.0000200868 / 0.07) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.04) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.1) 0px 2px 8px 0px;
+  --shadow-subtle-8: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px, rgba(255, 255, 255, 0.06) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.12) 0px 2px 6px 0px;
+}

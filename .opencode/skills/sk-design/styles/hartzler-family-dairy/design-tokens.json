@@ -1,0 +1,197 @@
+{
+  "color": {
+    "forest-heritage": {
+      "$value": "#035542",
+      "$type": "color",
+      "$description": "Forest Heritage — Teal accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    },
+    "billboard-blue": {
+      "$value": "#2b7bb9",
+      "$type": "color",
+      "$description": "Billboard Blue — Outlined link and button borders, secondary decorative strokes on product imagery. Never a filled background — always a 1–2px stroke that reads as an old-school printed link underline"
+    },
+    "cream-teal": {
+      "$value": "#56dddb",
+      "$type": "color",
+      "$description": "Cream Teal — Teal outline accent for tags, dividers, and focused UI edges."
+    },
+    "butter-yellow": {
+      "$value": "#f9e9a9",
+      "$type": "color",
+      "$description": "Butter Yellow — Yellow outline accent for tags, dividers, and focused UI edges."
+    },
+    "charcoal-press": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal Press — Primary text, all UI borders, image outlines. This is the workhorse neutral — the 644 border usages show that almost every edge in the system is charcoal, giving the site a hand-printed, ink-stamped quality"
+    },
+    "cream-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Cream White — Page canvas, card surfaces, button fills when a neutral surface button is needed. The interface is unapologetically blank — white lets the product photography and oversized colored type do all the work"
+    }
+  },
+  "font": {
+    "work-sans": {
+      "$value": "Work Sans",
+      "$type": "fontFamily",
+      "$description": "The entire visual identity runs on a single Work Sans family. Weight 400 carries body, captions, and category tags. Weight 500 is used for slightly emphasized labels and the nav 'MENU' word. Weight 900 at 290–333px with 0.70 line-height is the signature move — this is not a 'big headline' UI, it's a typographic billboard where letters stack into color blocks that frame product photography. The slight -0.0100em tracking (-2.9px at 290px, -3.3px at 333px) tightens the massive type so it feels inked, not airy."
+    },
+    "font-awesome-5-brands": {
+      "$value": "Font Awesome 5 Brands",
+      "$type": "fontFamily",
+      "$description": "Font Awesome 5 Brands — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Work Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Work Sans",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Work Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Work Sans",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Font Awesome 5 Brands",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Work Sans",
+        "fontSize": "290px",
+        "fontWeight": 900,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 290px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Work Sans",
+        "fontSize": "333px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 333px"
+    }
+  },
+  "spacing": {
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "cream-white-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — pure white, untextured, lets the oversized colored type and product photos carry the visual weight."
+    },
+    "forest-heritage-surface": {
+      "$value": "#035542",
+      "$type": "color",
+      "$description": "Surface level 1: Occasional inverted surface for the circular seal stamps and any dark moment — appears in small concentrated areas, never as a full section background."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.hartzlerdairy.com",
+      "siteName": "Hartzler Family Dairy",
+      "extractedAt": "2026-06-03T18:39:48.187Z",
+      "variant": "extended"
+    }
+  }
+}

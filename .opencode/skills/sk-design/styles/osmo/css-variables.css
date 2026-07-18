@@ -1,0 +1,110 @@
+:root {
+  /* Colors */
+  --color-concrete: #f4f4f4;
+  --color-ash-gray: #eaeaea;
+  --color-bone: #e1e1e1;
+  --color-smoke: #b8b8b8;
+  --color-graphite: #4f4c4c;
+  --color-steel: #7a7a7a;
+  --color-charcoal: #312e2e;
+  --color-ink: #201d1d;
+  --color-obsidian: #151313;
+  --color-volt: #a1ff62;
+  --color-ultraviolet: #6840ff;
+  --color-vermillion: #f84131;
+
+  /* Typography — Font Families */
+  --font-haffer-vf: 'Haffer VF', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-haffer-xh: 'Haffer XH', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-haffer-mono: 'Haffer Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-brisa-pro: 'Brisa Pro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-apple-system: '-apple-system', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-mono-label: 11px;
+  --leading-mono-label: 1;
+  --text-caption: 13px;
+  --leading-caption: 1.54;
+  --tracking-caption: -0.09px;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.3;
+  --tracking-body-sm: -0.16px;
+  --text-body: 19px;
+  --leading-body: 1.25;
+  --tracking-body: -0.38px;
+  --text-annotation: 25px;
+  --leading-annotation: 0.8;
+  --text-subheading: 48px;
+  --leading-subheading: 1.05;
+  --tracking-subheading: -1.44px;
+  --text-heading-sm: 64px;
+  --leading-heading-sm: 1;
+  --tracking-heading-sm: -1.92px;
+  --text-heading: 80px;
+  --leading-heading: 0.95;
+  --tracking-heading: -4px;
+  --text-heading-lg: 112px;
+  --leading-heading-lg: 0.9;
+  --tracking-heading-lg: -5.6px;
+  --text-display: 150px;
+  --leading-display: 0.85;
+  --tracking-display: -9px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-5: 5px;
+  --spacing-6: 6px;
+  --spacing-7: 7px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-60: 60px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 64px;
+  --card-padding: 16px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-md: 5px;
+  --radius-lg: 8px;
+  --radius-2xl: 16px;
+  --radius-full: 48px;
+  --radius-full-2: 160px;
+  --radius-full-3: 220px;
+  --radius-full-4: 800px;
+  --radius-full-5: 1300px;
+  --radius-full-6: 1600px;
+  --radius-full-7: 8000px;
+
+  /* Named Radii */
+  --radius-cards: 5px;
+  --radius-icons: 160px;
+  --radius-badges: 1600px;
+  --radius-inputs: 5px;
+  --radius-buttons: 1600px;
+  --radius-links-pill: 48px;
+  --radius-sharp-tiles: 2px;
+
+  /* Surfaces */
+  --surface-canvas: #f4f4f4;
+  --surface-card-surface: #eaeaea;
+  --surface-brand-surface: #a1ff62;
+  --surface-feature-surface: #6840ff;
+  --surface-inverse-surface: #151313;
+}

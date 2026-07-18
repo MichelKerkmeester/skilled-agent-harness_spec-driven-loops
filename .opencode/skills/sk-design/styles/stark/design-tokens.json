@@ -1,0 +1,337 @@
+{
+  "color": {
+    "midnight-navy": {
+      "$value": "#10284b",
+      "$type": "color",
+      "$description": "Midnight Navy — Hero background, primary headings, footer surface — the dominant brand color establishes authority and anchors the dark-to-light page split. Used as a background field for the above-the-fold section and as body-text color on the cream secondary surface"
+    },
+    "stark-violet": {
+      "$value": "#381fd1",
+      "$type": "color",
+      "$description": "Stark Violet — Primary action fills (Get started, Sign up, Request demo), card border accents, active nav state, decorative icon strokes, and inline emphasis text. The vivid violet against midnight navy creates a switched-on, electric feel without aggression"
+    },
+    "highlighter-yellow": {
+      "$value": "#fedb63",
+      "$type": "color",
+      "$description": "Highlighter Yellow — Diagonal text-highlight gradient fill, one specific secondary CTA, and illustration accent. Yellow never decorates broadly — it marks, underlines, and punctuates specific words within dark-on-light headlines"
+    },
+    "lilac-tint": {
+      "$value": "#e5e0ff",
+      "$type": "color",
+      "$description": "Lilac Tint — Soft button surface variant, gentle tinted card backgrounds. A desaturated wash of the violet brand that softens interactive elements without competing with the primary action"
+    },
+    "mint-splash": {
+      "$value": "#99d6cc",
+      "$type": "color",
+      "$description": "Mint Splash — Decorative illustration accent in feature cards and dashboard widgets. Used sparingly in flat geometric shapes within artwork, not in core UI controls"
+    },
+    "page-canvas": {
+      "$value": "#faf5ff",
+      "$type": "color",
+      "$description": "Page Canvas — Lightly purple-tinted near-white page background. The faint violet cast unifies the cream and white surfaces under one chromatic family"
+    },
+    "cream-field": {
+      "$value": "#f6f6eb",
+      "$type": "color",
+      "$description": "Cream Field — Secondary section surface and body-text color on the dark hero. The warm greenish-cream provides a relaxed counterpoint to the midnight navy and is the dominant body-text/link color on the dark section"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Body text on light surfaces, icon strokes, and high-contrast elements. Not used as a background — the system prefers the midnight navy for darkness"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Text on dark hero, card surfaces, nav backgrounds, product screenshot frames. The bright surface that holds product imagery and dashboard content"
+    },
+    "hairline-gray": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Hairline Gray — Universal border color for cards, inputs, dividers, link underlines, and structural separators. The single achromatic border workhorse"
+    }
+  },
+  "font": {
+    "armingrotesk": {
+      "$value": "ArminGrotesk",
+      "$type": "fontFamily",
+      "$description": "The single custom typeface carries the entire brand voice. Weight 900 is the hero display weapon (110px headline) — used at maximum volume for the opening statement. Weight 600 handles section headings and subheadings (24-48px). Weight 500 is the button and label workhorse. Weight 400 is body text. The geometric grotesque construction gives a contemporary, slightly technical authority."
+    },
+    "robotomono": {
+      "$value": "RobotoMono",
+      "$type": "fontFamily",
+      "$description": "All-caps eyebrow labels and section markers (e.g., 'EXPLORE THE STARK PLATFORM', 'SPEED UP DESIGN & DEV'). The monospaced mono with wide tracking creates a distinct utilitarian signal that sits above the display heading and below the nav — a consistent navigational breadcrumb layer."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "RobotoMono",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ArminGrotesk",
+        "fontSize": "14px",
+        "fontWeight": 900,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ArminGrotesk",
+        "fontSize": "14px",
+        "fontWeight": 900,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ArminGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ArminGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "RobotoMono",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ArminGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ArminGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "ArminGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "ArminGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ArminGrotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ArminGrotesk",
+        "fontSize": "24px",
+        "fontWeight": 900,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "ArminGrotesk",
+        "fontSize": "28px",
+        "fontWeight": 900,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ArminGrotesk",
+        "fontSize": "48px",
+        "fontWeight": 900,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ArminGrotesk",
+        "fontSize": "56px",
+        "fontWeight": 900,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "ArminGrotesk",
+        "fontSize": "110px",
+        "fontWeight": 900,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 110px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "hero-field": {
+      "$value": "#10284b",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed dark navy above the fold, with decorative dot/bar chart pattern in lighter purple"
+    },
+    "page-canvas": {
+      "$value": "#faf5ff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary light background for the body of the page, faintly violet-tinted"
+    },
+    "cream-section": {
+      "$value": "#f6f6eb",
+      "$type": "color",
+      "$description": "Surface level 2: Alternating warm-cream band that provides visual contrast and houses feature sections"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Elevated white cards for product screenshots, stat displays, and content blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.getstark.co",
+      "siteName": "Stark",
+      "extractedAt": "2026-06-03T22:08:43.948Z",
+      "variant": "extended"
+    }
+  }
+}

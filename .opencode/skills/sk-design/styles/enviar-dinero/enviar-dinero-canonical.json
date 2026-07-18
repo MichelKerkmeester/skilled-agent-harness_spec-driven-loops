@@ -1,0 +1,1257 @@
+{
+  "source": "https://styles.refero.design/style/46c16139-b0bb-49e6-95dc-74bef576e5ce",
+  "uuid": "46c16139-b0bb-49e6-95dc-74bef576e5ce",
+  "name": "Enviar Dinero",
+  "northStar": "Electric Sky Wallet — a sky that you can spend from.",
+  "capturedAt": "2026-07-18T10:14:54.602Z",
+  "meta": {
+    "url": "https://paypal.com",
+    "siteName": "Enviar Dinero",
+    "extractedAt": "2026-04-11T19:14:39.744Z",
+    "durationMs": 119088,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 336,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use PayPal Pro weight 900 at 67px+ with -0.03em letter-spacing for all display headlines; allow letterforms to crop at container edges intentionally",
+      "Apply 1000px border-radius to all primary and secondary pill buttons; never use a partial radius (e.g. 4px or 8px) on CTAs",
+      "Switch button color (white or black border/text) based on background: #FFFFFF border on #60CDFF or #002991 surfaces, #000000 border on #FFFFFF surfaces",
+      "Use the exact three-color section sequence — sky-blue, navy, white — for page-level section backgrounds; never use gradient backgrounds except the Cobalt Fade band accent",
+      "Keep photography full-bleed (0px radius, 100vw) when used as section backgrounds; place white PayPal Pro type directly over photos without a scrim",
+      "Apply -0.02em letter-spacing universally to all Plain text and -0.03em to all PayPal Pro display text",
+      "Use rgba(0,0,0,0.08) 0px 24px 48px shadow only on the one premium navy card — preserve its singularity by keeping all other surfaces shadow-free"
+    ],
+    "tags": [
+      "pill-buttons",
+      "electric-blue",
+      "navy-cobalt",
+      "full-bleed-photo",
+      "heavy-display-type",
+      "outline-buttons",
+      "alternating-bands",
+      "app-showcase",
+      "consumer-fintech",
+      "bold-contrast"
+    ],
+    "donts": [
+      "Do not use solid-fill buttons on colored backgrounds — the outline-only pill language is non-negotiable on sky-blue and navy fields",
+      "Do not set display headlines below 45px when using PayPal Pro weight 900 — the extreme tracking only reads correctly at large scales",
+      "Do not add border-radius to photography containers — full-bleed raw edges are the visual contract for imagery in this system",
+      "Do not use Fog (#CCCCCC) or Ash (#B3B3B3) as background colors — they exist only as dividers and disabled UI states",
+      "Do not use box-shadow on more than one surface type per page — elevation is a singular emphasis tool, not a layering system",
+      "Do not introduce additional accent hues beyond Cerulean Surge (#60CDFF), Cobalt Vault (#002991), and Ice Mist (#B8E9FF) — the palette is intentionally a monochromatic blue family with black/white",
+      "Do not use letter-spacing of 0 or positive values on PayPal Pro — all display use requires negative tracking"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#60CDFF",
+        "name": "Cerulean Surge",
+        "role": "Hero backgrounds, section backgrounds, badge borders — the dominant attention color that establishes PayPal's sky-blue identity across the first viewport and accent panels",
+        "group": "brand"
+      },
+      {
+        "hex": "#002991",
+        "name": "Cobalt Vault",
+        "role": "Deep-section backgrounds, card fills, navy sections — counterpoint to Cerulean Surge, appearing in feature sections to create the hot/cold alternating rhythm",
+        "group": "brand"
+      },
+      {
+        "hex": "#B8E9FF",
+        "name": "Ice Mist",
+        "role": "Subtle background tints in transitional or secondary panels within the blue range",
+        "group": "accent"
+      },
+      {
+        "hex": "#002991",
+        "name": "Cobalt Fade",
+        "role": "Gradient overlay used to bleed navy into transparent sections — see linear-gradient underline/band effect on interactive elements",
+        "group": "accent",
+        "gradient": "linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0) 16px, rgb(0,41,145) 16px, rgb(0,41,145) calc(100% - 32px), rgba(0,0,0,0) calc(100% - 32px), rgba(0,0,0,0) 100%)"
+      },
+      {
+        "hex": "#000000",
+        "name": "Midnight",
+        "role": "Page text, button borders (black variant), nav items, headings on light/sky backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "Snow",
+        "role": "Page backgrounds, card surfaces, button borders (white variant on dark/colored fields), body text on dark sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#F1EFEA",
+        "name": "Parchment",
+        "role": "Warm off-white panel backgrounds — appears in transitional content sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#B3B3B3",
+        "name": "Ash",
+        "role": "Inactive/ghost card backgrounds, dimmed UI state fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#CCCCCC",
+        "name": "Fog",
+        "role": "Dividers, subdued body text on light backgrounds",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width approximately 1280px centered on wide viewports, with full-bleed color fields breaking out behind content columns. Hero: full-viewport sky-blue (#60CDFF) with centered display headline (PayPal Pro 900, 67px+) and a centered toggle pill above it. Below hero, sections alternate: white → navy (#002991) → white → sky-blue → white, with no visual dividers — color-field changes are the only section separators. The full-bleed photo band sits mid-page with type bleeding off-edges. Feature sections use a 2-column split: text left, app preview card or photo right. Navigation is top-fixed, white, minimal — logo + 3 nav items + 2 button CTAs. Footer is white with small Plain text in a multi-column link grid.",
+    "imagery": "Two modes of photography, used with intention. Mode 1: lifestyle full-bleed — high-key, vibrant, candid-feeling shots of people mid-action (shopping, smiling, outdoors). These fill 100vw with no containment, no rounded corners, no overlay scrim. White PayPal Pro letterforms at 99–181px are placed over them, cropping at the image edge so the type becomes a graphic element. Mode 2: app screen overlays — frosted dark cards (rgba 30% black, 30px radius) float over the photography to simulate a phone UI mid-transaction. Icons are filled mono-white inside these cards. The photography itself is warm and sun-lit — Mediterranean light, retail contexts, aspirational but not luxury. Color treatment is natural and vibrant, never duotone or desaturated.",
+    "similar": [
+      {
+        "why": "Two-temperature palette (vivid accent + deep navy) with full-bleed color sections and pill-button language throughout",
+        "business": "Stripe"
+      },
+      {
+        "why": "Single dominant brand color floods entire hero viewport; lifestyle photography with type-as-graphic-overlay",
+        "business": "Cash App"
+      },
+      {
+        "why": "Consumer fintech with pink/pastel hero fields, extreme display-weight type, and outline-only button CTAs on colored backgrounds",
+        "business": "Klarna"
+      },
+      {
+        "why": "Navy + electric accent color rhythm, alternating section backgrounds, no elevation except one featured card",
+        "business": "Revolut"
+      },
+      {
+        "why": "Full-bleed monochromatic sections with lifestyle photography and app UI cards floating over real-world scenes",
+        "business": "N26"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "8px",
+        "cards": "30px",
+        "pills": "104px",
+        "avatars": "12px",
+        "buttons": "1000px",
+        "roundedPanels": "25-32px"
+      },
+      "elementGap": "16-24px",
+      "sectionGap": "80-120px",
+      "cardPadding": "27px",
+      "pageMaxWidth": "1280px"
+    },
+    "category": "fintech",
+    "surfaces": [
+      {
+        "hex": "#FFFFFF",
+        "name": "Page Base",
+        "level": 1,
+        "purpose": "Primary content sections, navigation bar, footer"
+      },
+      {
+        "hex": "#60CDFF",
+        "name": "Sky Section",
+        "level": 2,
+        "purpose": "Hero and accent band backgrounds"
+      },
+      {
+        "hex": "#002991",
+        "name": "Navy Section",
+        "level": 3,
+        "purpose": "Deep feature sections, high-contrast content panels"
+      },
+      {
+        "hex": "#000000",
+        "name": "Frosted Overlay",
+        "level": 4,
+        "purpose": "rgba(0,0,0,0.30) glass card over photography — app preview overlays"
+      }
+    ],
+    "northStar": "Electric Sky Wallet — a sky that you can spend from.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.57,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.44
+      },
+      {
+        "role": "heading",
+        "size": 38,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.76
+      },
+      {
+        "role": "heading-lg",
+        "size": 67,
+        "lineHeight": 1.1,
+        "letterSpacing": -2.01
+      },
+      {
+        "role": "display",
+        "size": 121,
+        "lineHeight": 1,
+        "letterSpacing": -3.63
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Personal / Negocios Toggle Pill",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Animated Headline Stack — Enviar / Recibir / Bote",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Button Group — Ghost Pills",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Ghost Pill Button — White",
+        "role": "Primary CTA on dark or colored (blue/navy) backgrounds",
+        "description": "Transparent fill, #FFFFFF 1px border, #FFFFFF text, 1000px border-radius, 14px vertical padding, 33px horizontal padding. PayPal Pro or Plain weight 500. Used on sky-blue and navy sections where a solid fill would compete with the background energy."
+      },
+      {
+        "name": "Ghost Pill Button — Black",
+        "role": "Secondary CTA on white or light backgrounds",
+        "description": "Transparent fill, #000000 1px border, #000000 text, 1000px border-radius, 14px vertical padding, 33px horizontal padding. Same geometry as White variant — color is the only difference."
+      },
+      {
+        "name": "Inline Text Button",
+        "role": "Tertiary action, inline link-style button within body copy",
+        "description": "Transparent fill, #000000 1px border, #000000 text, 0px border-radius (square corners), 1px vertical padding, 6px horizontal padding. Functions as an underline-style call-to-action without pill shape."
+      },
+      {
+        "name": "Rounded CTA Button",
+        "role": "App download / secondary marketing CTA",
+        "description": "Transparent fill, #000000 1px border, #000000 text, 25px border-radius (not full pill), 8px vertical padding, 32px right / 12px left padding (asymmetric — accommodates icon on left). Used for the 'Descargar la app' block."
+      },
+      {
+        "name": "Frosted App Card",
+        "role": "In-page mobile app screen preview overlay",
+        "description": "Background rgba(0,0,0,0.30), border-radius 30px, 27px padding all sides, no box-shadow. Appears floating over lifestyle photography, simulating a frosted-glass phone UI with white text inside."
+      },
+      {
+        "name": "Navy Feature Card",
+        "role": "Highlighted product feature block with strong depth",
+        "description": "Background #002991, border-radius 0px (sharp), box-shadow rgba(0,0,0,0.08) 0px 24px 48px 0px. The only component using elevation — the 48px blur shadow grounds the navy card against white sections without making it feel heavy."
+      },
+      {
+        "name": "Full-Bleed Photo Section",
+        "role": "Lifestyle hero band with oversized type overlay",
+        "description": "Photography fills 100vw with no border-radius or container. PayPal Pro weight 900 at 99–181px in #FFFFFF bleeds off crop edges — letters are cropped intentionally at both sides. No overlay scrim; high-key photography provides natural contrast for white text."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Sticky global navigation",
+        "description": "#FFFFFF background, 88px height, PayPal logo left-aligned, nav links in Plain 16px weight 400 #000000, 'Iniciar sesión' as Ghost Pill (black) and 'Crear cuenta' as solid black pill (#000000 fill, #FFFFFF text, 1000px radius, 14px/33px padding) on the right."
+      },
+      {
+        "name": "QR Download Block",
+        "role": "App download prompt with QR code",
+        "description": "#000000 background, 8-12px border-radius, #FFFFFF text in Plain weight 500 at 14px, QR code image right-aligned. Appears fixed or sticky at bottom-right corner of hero sections."
+      },
+      {
+        "name": "Animated Headline Stack",
+        "role": "Feature section cycling headline (Enviar / Recibir / Bote)",
+        "description": "#FFFFFF text, PayPal Pro weight 900 at 45–67px on #002991 background. Active word is full opacity white; inactive words appear in lower opacity (approximately 40%) in the same position, indicating the cycling state."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI text: nav labels, body copy, footer, links, button labels, captions. At 16-18px with weight 400 it handles running text; at 22-26px weight 500 it becomes section subheadings. The -0.02em tracking is applied universally, tightening all sizes slightly against system defaults.",
+        "sizes": "10px, 14px, 16px, 18px, 22px, 26px, 38px",
+        "family": "Plain",
+        "weight": "400, 500",
+        "lineHeight": "1.15–2.08 (varies by size; body text 1.40–1.57, large text 1.15–1.20)",
+        "substitute": "DM Sans, Inter",
+        "letterSpacing": "-0.02em across all sizes"
+      },
+      {
+        "role": "Display headlines and hero text. Weight 900 at 67–181px is the signature move — at these sizes with -0.03em tracking, individual letters fill nearly the full viewport width, functioning as graphic architecture not just type. Weight 400 handles nav and smaller headings. The extreme scale range (16px to 181px) within one family indicates it carries ALL heading duties across the page.",
+        "sizes": "16px, 18px, 22px, 45px, 55px, 67px, 99px, 121px, 181px",
+        "family": "PayPal Pro",
+        "weight": "400, 900",
+        "lineHeight": "1.00–1.25 at display sizes; 1.50 at body sizes",
+        "substitute": "Sohne, Aktiv Grotesk ExtraBold, Neue Haas Grotesk Display 900",
+        "letterSpacing": "-0.03em at display sizes (45px+); -0.02em at heading sizes (16–22px)"
+      }
+    ],
+    "description": "PayPal ES radiates electric confidence — a sky-blue hero floods the first viewport with near-neon energy (#60CDFF), while the rest of the page alternates between cobalt navy (#002991) and pure white, creating a two-temperature rhythm of cool sky and deep sea. The defining typographic move is PayPal Pro at weight 900 running from 67px to 181px, with letter-spacing at -0.03em: headlines feel like they were stamped onto the surface, not set in type. The plain body font carries a consistent -0.02em tracking that keeps even 14px text feeling intentional. Buttons are universally pill-shaped (1000px radius) against chromatic backgrounds, using transparent fills with 1px borders — never solid fills — creating an outline-only button language that feels airy against intense color fields. Photography is used full-bleed behind type overlays, with white super-size letterforms bleeding off crop edges as a graphic device.",
+    "customSections": [
+      {
+        "title": "Gradient System",
+        "content": "One gradient in use: the Cobalt Fade band — linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0) 16px, rgb(0,41,145) 16px, rgb(0,41,145) calc(100% - 32px), rgba(0,0,0,0) calc(100% - 32px), rgba(0,0,0,0) 100%). This creates a hard-edged navy band that fades to transparent at both top and bottom (16px fade zones). It functions as an underline or band accent on interactive text elements — the transparent edges make it appear as if a navy stripe was painted across text without a box. Apply only to nav or heading accent states, never as section backgrounds."
+      },
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      }
+    ],
+    "elevationPhilosophy": "Elevation is used exactly once — on the Navy Feature Card (rgba(0,0,0,0.08) 0px 24px 48px). All other surfaces are flat with no shadow. This creates extreme contrast: the single shadowed element reads as the most premium, most 'lifted' card on the page by virtue of being the only one that casts a shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "heading",
+            "image",
+            "body",
+            "card",
+            "link"
+          ],
+          "frequency": 997,
+          "confidence": 1,
+          "prominence": 159881944.81489894,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "hero",
+            "body",
+            "card",
+            "footer",
+            "list",
+            "link"
+          ],
+          "frequency": 582,
+          "confidence": 1,
+          "prominence": 136640758.74114525,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "boxShadow",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#f1efea",
+          "oklch": {
+            "c": 0.0070001176329907,
+            "h": 88.64343418895703,
+            "l": 0.9522837576118266
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 16047738,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#002991",
+          "oklch": {
+            "c": 0.1745697479260606,
+            "h": 263.07651080046486,
+            "l": 0.3437227839736312
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 4573607.416143486,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#60cdff",
+          "oklch": {
+            "c": 0.12198537698165297,
+            "h": 230.82234157872162,
+            "l": 0.8040283591071561
+          },
+          "contexts": [
+            "hero",
+            "card",
+            "body"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 3847500,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7651658759683705
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 384220,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#b8e9ff",
+          "oklch": {
+            "c": 0.05866713375016489,
+            "h": 227.10651825603443,
+            "l": 0.9070723755708384
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 157106,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "list",
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 6666.3247291140715,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.002139070975210075,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.27,
+          "background": "#f1efea",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.14,
+          "background": "#b8e9ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#000000",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.17,
+          "background": "#002991",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.67,
+          "background": "#60cdff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.59,
+          "background": "#f1efea",
+          "foreground": "#002991"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#b3b3b3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.35,
+          "background": "#b8e9ff",
+          "foreground": "#002991"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.58,
+          "background": "#002991",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.76,
+          "background": "#002991",
+          "foreground": "#60cdff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.8,
+          "background": "#b3b3b3",
+          "foreground": "#002991"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.1,
+          "background": "#b3b3b3",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.8,
+          "background": "#60cdff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.73,
+          "background": "#002991",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.61,
+          "background": "#ffffff",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.57,
+          "background": "#f1efea",
+          "foreground": "#60cdff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.4,
+          "background": "#f1efea",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.38,
+          "background": "#b8e9ff",
+          "foreground": "#60cdff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.31,
+          "background": "#b3b3b3",
+          "foreground": "#cccccc"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 29.9952,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 68.5714,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 104,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 1000,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.08) 0px 24px 48px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 5,
+          "properties": [
+            "marginRight",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 9,
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 13,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 13,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 18,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 41,
+          "properties": [
+            "marginLeft",
+            "columnGap",
+            "rowGap",
+            "marginTop",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 27,
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 29,
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 31,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 33,
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 37,
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 47,
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 53,
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 55,
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 58,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 70,
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 79,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 83,
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 106,
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 16px, rgb(0, 41, 145) 16px, rgb(0, 41, 145) calc(100% - 32px), rgba(0, 0, 0, 0) calc(100% - 32px), rgba(0, 0, 0, 0) 100%)",
+        "colors": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)",
+          "rgb(0, 41, 145)",
+          "rgb(0, 41, 145)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 2
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Plain",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 280,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PayPal Pro",
+          "source": "custom",
+          "weights": [
+            400,
+            900
+          ],
+          "frequency": 46,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.85
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Plain",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 2.08,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Plain",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "footer",
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 73,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "card",
+            "button"
+          ],
+          "frequency": 173,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PayPal Pro",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PayPal Pro",
+          "weight": 900,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "PayPal Pro",
+          "weight": 900,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "PayPal Pro",
+          "weight": 900,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "PayPal Pro",
+          "weight": 900,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "PayPal Pro",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 55,
+          "family": "PayPal Pro",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 67,
+          "family": "PayPal Pro",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 99,
+          "family": "PayPal Pro",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 121,
+          "family": "PayPal Pro",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 181,
+          "family": "PayPal Pro",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/b9ae4aad-eb30-46a1-9ee6-374aa419ea4d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/79cd90f3-390a-4fad-91d8-3febb4453722.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/46c16139-b0bb-49e6-95dc-74bef576e5ce#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Enviar Dinero design system\",\"item\":\"https://styles.refero.design/style/46c16139-b0bb-49e6-95dc-74bef576e5ce\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/46c16139-b0bb-49e6-95dc-74bef576e5ce#style-reference\",\"name\":\"Enviar Dinero design system reference\",\"headline\":\"Enviar Dinero design system | Refero Styles\",\"description\":\"Explore Enviar Dinero's mixed Fintech design system: Cerulean Surge #60CDFF, Cobalt Vault #002991 colors, Plain, PayPal Pro typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/46c16139-b0bb-49e6-95dc-74bef576e5ce\",\"mainEntityOfPage\":\"https://styles.refero.design/style/46c16139-b0bb-49e6-95dc-74bef576e5ce\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Enviar Dinero\",\"url\":\"https://paypal.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/46c16139-b0bb-49e6-95dc-74bef576e5ce#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/79cd90f3-390a-4fad-91d8-3febb4453722.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/79cd90f3-390a-4fad-91d8-3febb4453722.jpg\",\"caption\":\"Screenshot of Enviar Dinero\"},\"image\":\"https://images.refero.design/styles/refero.design/image/79cd90f3-390a-4fad-91d8-3febb4453722.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Enviar Dinero design system\",\"Enviar Dinero website design\",\"Enviar Dinero colors\",\"Enviar Dinero typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Cerulean Surge\",\"Cobalt Vault\",\"Ice Mist\",\"Cobalt Fade\",\"Plain\",\"PayPal Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Enviar Dinero design system\"},{\"@type\":\"Thing\",\"name\":\"Enviar Dinero website design\"},{\"@type\":\"Thing\",\"name\":\"Enviar Dinero colors\"},{\"@type\":\"Thing\",\"name\":\"Enviar Dinero typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-03-30T16:11:08.000Z\",\"dateModified\":\"2026-03-30T16:11:08.000Z\"}]}19:T59b,<style>\n  :root {\n    --color-cerulean-surge: #60CDFF;\n    --color-cobalt-vault: #002991;\n    --color-midnight: #000000;\n    --color-snow: #FFFFFF;\n    --font-plain: 'DM Sans', Inter, sans-serif;\n    --font-paypal-pro: 'Sohne', 'Aktiv Grotesk', 'Neue Haas Grotesk Display', sans-serif;\n  }\n\n  .toggle-wrapper {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background: var(--color-cerulean-surge);\n    padding: 64px 24px;\n    font-family: var(--font-plain);\n    box-sizing: border-box;\n    width: 100%;\n  }\n\n  .toggle-pill {\n    display: inline-flex;\n    align-items: center;\n    background: var(--color-midnight);\n    border-radius: 1000px;\n    padding: 6px;\n    gap: 2px;\n  }\n\n  .toggle-option {\n    font-family: var(--font-plain);\n    font-size: 16px;\n    font-weight: 500;\n    letter-spacing: -0.02em;\n    line-height: 1.5;\n    padding: 10px 28px;\n    border-radius: 1000px;\n    cursor: pointer;\n    transition: background 0.18s, color 0.18s;\n    user-select: none;\n    border: none;\n    outline: none;\n  }\n\n  .toggle-option.active {\n    background: var(--color-snow);\n    color: var(--color-midnight);\n  }\n\n  .toggle-option.inactive {\n    background: transparent;\n    color: var(--color-snow);\n  }\n</style>\n<div class=\"toggle-wrapper\">\n  <div class=\"toggle-pill\">\n    <button class=\"toggle-option active\">Personal</button>\n    <button class=\"toggle-option inactive\">Negocios</button>\n  </div>\n</div>1a:Te4c,<style>\n  :root {\n    --color-cobalt-vault: #002991;\n    --color-snow: #FFFFFF;\n    --color-cerulean-surge: #60CDFF;\n    --font-paypal-pro: 'Sohne', 'Aktiv Grotesk', 'Neue Haas Grotesk Display', sans-serif;\n    --font-plain: 'DM Sans', Inter, sans-serif;\n    --shadow-xl: rgba(0,0,0,0.08) 0px 24px 48px 0px;\n  }\n\n  .headline-section {\n    background: var(--color-cobalt-vault);\n    padding: 56px 48px 64px 48px;\n    box-sizing: border-box;\n    width: 100%;\n    font-family: var(--font-paypal-pro);\n    display: flex;\n    flex-direction: column;\n    gap: 0;\n  }\n\n  .headline-stack {\n    display: flex;\n    flex-direction: column;\n    gap: 0px;\n    margin-bottom: 40px;\n  }\n\n  .headline-word {\n    font-family: var(--font-paypal-pro);\n    font-size: 67px;\n    font-weight: 900;\n    line-height: 1.08;\n    letter-spacing: -0.03em;\n    display: block;\n  }\n\n  .headline-word.active {\n    color: var(--color-snow);\n    opacity: 1;\n  }\n\n  .headline-word.inactive {\n    color: var(--color-snow);\n    opacity: 0.32;\n  }\n\n  .headline-body {\n    font-family: var(--font-plain);\n    font-size: 16px;\n    font-weight: 400;\n    color: var(--color-snow);\n    letter-spacing: -0.02em;\n    line-height: 1.5;\n    margin-bottom: 24px;\n    max-width: 320px;\n  }\n\n  .headline-btn {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    background: transparent;\n    border: 1.5px solid var(--color-snow);\n    color: var(--color-snow);\n    font-family: var(--font-plain);\n    font-size: 16px;\n    font-weight: 500;\n    letter-spacing: -0.02em;\n    padding: 14px 33px;\n    border-radius: 1000px;\n    cursor: pointer;\n    width: fit-content;\n    text-decoration: none;\n  }\n\n  .headline-btn:hover {\n    background: rgba(255,255,255,0.1);\n  }\n\n  .app-card {\n    background: rgba(0,0,0,0.30);\n    border-radius: 30px;\n    padding: 27px;\n    max-width: 280px;\n    margin-top: 40px;\n    align-self: flex-end;\n    box-sizing: border-box;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    gap: 20px;\n  }\n\n  .app-card-header {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    width: 100%;\n  }\n\n  .back-arrow {\n    color: var(--color-snow);\n    font-size: 18px;\n  }\n\n  .app-card-title {\n    font-family: var(--font-paypal-pro);\n    font-size: 18px;\n    font-weight: 900;\n    color: var(--color-snow);\n    letter-spacing: -0.02em;\n  }\n\n  .avatar-placeholder {\n    width: 72px;\n    height: 72px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, #b87850 0%, #d4956a 100%);\n    flex-shrink: 0;\n  }\n\n  .app-amount {\n    font-family: var(--font-paypal-pro);\n    font-size: 55px;\n    font-weight: 900;\n    color: var(--color-snow);\n    letter-spacing: -0.03em;\n    line-height: 1;\n  }\n\n  .currency-pill {\n    border: 1.5px solid var(--color-snow);\n    border-radius: 1000px;\n    padding: 6px 18px;\n    font-family: var(--font-plain);\n    font-size: 14px;\n    font-weight: 500;\n    color: var(--color-snow);\n    letter-spacing: -0.02em;\n  }\n</style>\n<div class=\"headline-section\">\n  <div class=\"headline-stack\">\n    <span class=\"headline-word active\">Enviar</span>\n    <span class=\"headline-word inactive\">Recibir</span>\n    <span class=\"headline-word inactive\">Bote</span>\n  </div>\n  <p class=\"headline-body\">Envía dinero de forma rápida.</p>\n  <a href=\"#\" class=\"headline-btn\">Enviar dinero</a>\n\n  <div class=\"app-card\">\n    <div class=\"app-card-header\">\n      <span class=\"back-arrow\">&#8592;</span>\n      <span class=\"app-card-title\">Enviar dinero</span>\n    </div>\n    <div class=\"avatar-placeholder\"></div>\n    <div class=\"app-amount\">35 €</div>\n    <div class=\"currency-pill\">EURO ↓</div>\n  </div>\n</div>1b:T161f,<style>\n  :root {\n    --color-cerulean-surge: #60CDFF;\n    --color-cobalt-vault: #002991;\n    --color-midnight: #000000;\n    --color-snow: #FFFFFF;\n    --color-parchment: #F1EFEA;\n    --font-plain: 'DM Sans', Inter, sans-serif;\n    --font-paypal-pro: 'Sohne', 'Aktiv Grotesk', 'Neue Haas Grotesk Display', sans-serif;\n  }\n\n  .button-showcase {\n    background: var(--color-snow);\n    padding: 48px 40px;\n    box-sizing: border-box;\n    width: 100%;\n    display: flex;\n    flex-direction: column;\n    gap: 32px;\n    font-family: var(--font-plain);\n  }\n\n  .btn-row-label {\n    font-family: var(--font-plain);\n    font-size: 10px;\n    font-weight: 500;\n    letter-spacing: 0.08em;\n    text-transform: uppercase;\n    color: #888;\n    margin-bottom: 12px;\n  }\n\n  .btn-row {\n    display: flex;\n    gap: 12px;\n    flex-wrap: wrap;\n    align-items: center;\n  }\n\n  /* Ghost Black — on white */\n  .btn-ghost-black {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    background: transparent;\n    border: 1.5px solid var(--color-midnight);\n    color: var(--color-midnight);\n    font-family: var(--font-plain);\n    font-size: 16px;\n    font-weight: 500;\n    letter-spacing: -0.02em;\n    padding: 14px 33px;\n    border-radius: 1000px;\n    cursor: pointer;\n    text-decoration: none;\n    line-height: 1.2;\n  }\n\n  /* Solid Black — on white */\n  .btn-solid-black {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    background: var(--color-midnight);\n    border: 1.5px solid var(--color-midnight);\n    color: var(--color-snow);\n    font-family: var(--font-plain);\n    font-size: 16px;\n    font-weight: 500;\n    letter-spacing: -0.02em;\n    padding: 14px 33px;\n    border-radius: 1000px;\n    cursor: pointer;\n    text-decoration: none;\n    line-height: 1.2;\n  }\n\n  /* Ghost White surface — on blue */\n  .blue-surface {\n    background: var(--color-cerulean-surge);\n    border-radius: 24px;\n    padding: 28px 24px;\n  }\n\n  .btn-ghost-white {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    background: transparent;\n    border: 1.5px solid var(--color-snow);\n    color: var(--color-snow);\n    font-family: var(--font-plain);\n    font-size: 16px;\n    font-weight: 500;\n    letter-spacing: -0.02em;\n    padding: 14px 33px;\n    border-radius: 1000px;\n    cursor: pointer;\n    text-decoration: none;\n    line-height: 1.2;\n  }\n\n  /* Navy surface */\n  .navy-surface {\n    background: var(--color-cobalt-vault);\n    border-radius: 24px;\n    padding: 28px 24px;\n  }\n\n  /* QR App Block */\n  .qr-block {\n    background: var(--color-midnight);\n    border-radius: 12px;\n    padding: 14px 16px;\n    display: inline-flex;\n    align-items: center;\n    gap: 16px;\n    max-width: 280px;\n  }\n\n  .qr-text {\n    font-family: var(--font-plain);\n    font-size: 14px;\n    font-weight: 500;\n    color: var(--color-cerulean-surge);\n    letter-spacing: -0.02em;\n    line-height: 1.4;\n  }\n\n  .qr-placeholder {\n    width: 52px;\n    height: 52px;\n    background: var(--color-snow);\n    border-radius: 6px;\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n\n  .qr-grid {\n    display: grid;\n    grid-template-columns: repeat(5,8px);\n    grid-template-rows: repeat(5,8px);\n    gap: 1px;\n  }\n\n  .qr-cell {\n    background: var(--color-midnight);\n    border-radius: 1px;\n  }\n\n  .qr-cell.w {\n    background: var(--color-snow);\n  }\n\n  .section-divider {\n    width: 100%;\n    height: 1px;\n    background: #eee;\n  }\n</style>\n<div class=\"button-showcase\">\n  <!-- On white: ghost black + solid black -->\n  <div>\n    <div class=\"btn-row-label\">CTAs — Surface: White</div>\n    <div class=\"btn-row\">\n      <a href=\"#\" class=\"btn-ghost-black\">Iniciar sesión</a>\n      <a href=\"#\" class=\"btn-solid-black\">Crear cuenta</a>\n    </div>\n  </div>\n\n  <div class=\"section-divider\"></div>\n\n  <!-- On sky blue: ghost white -->\n  <div>\n    <div class=\"btn-row-label\">CTAs — Surface: Sky Blue (#60CDFF)</div>\n    <div class=\"blue-surface\">\n      <div class=\"btn-row\">\n        <a href=\"#\" class=\"btn-ghost-white\">Crear cuenta gratis</a>\n        <a href=\"#\" class=\"btn-ghost-white\">Más información</a>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"section-divider\"></div>\n\n  <!-- On navy: ghost white -->\n  <div>\n    <div class=\"btn-row-label\">CTAs — Surface: Navy (#002991)</div>\n    <div class=\"navy-surface\">\n      <div class=\"btn-row\">\n        <a href=\"#\" class=\"btn-ghost-white\">Enviar dinero</a>\n        <a href=\"#\" class=\"btn-ghost-white\">Ver más</a>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"section-divider\"></div>\n\n  <!-- QR App Download Block -->\n  <div>\n    <div class=\"btn-row-label\">App Download Block</div>\n    <div class=\"qr-block\">\n      <div class=\"qr-text\">Descargar<br>la app<br>PayPal</div>\n      <div class=\"qr-placeholder\">\n        <div class=\"qr-grid\">\n          <div class=\"qr-cell\"></div><div class=\"qr-cell\"></div><div class=\"qr-cell\"></div><div class=\"qr-cell w\"></div><div class=\"qr-cell\"></div>\n          <div class=\"qr-cell\"></div><div class=\"qr-cell w\"></div><div class=\"qr-cell\"></div><div class=\"qr-cell\"></div><div class=\"qr-cell\"></div>\n          <div class=\"qr-cell\"></div><div class=\"qr-cell\"></div><div class=\"qr-cell w\"></div><div class=\"qr-cell\"></div><div class=\"qr-cell\"></div>\n          <div class=\"qr-cell w\"></div><div class=\"qr-cell\"></div><div class=\"qr-cell\"></div><div class=\"qr-cell w\"></div><div class=\"qr-cell\"></div>\n          <div class=\"qr-cell\"></div><div class=\"qr-cell\"></div><div class=\"qr-cell\"></div><div class=\"qr-cell\"></div><div class=\"qr-cell\"></div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>1c:T79d,**Quick Color Reference**\n- Body text: #000000 on white, #FFFFFF on navy or sky-blue\n- Page background: #FFFFFF\n- Hero/accent background: #60CDFF\n- Navy section background: #002991\n- CTA border (on light): #000000 | CTA border (on dark/colored): #FFFFFF\n- Dividers: #CCCCCC\n\n**Example Component Prompts**\n\n1. Hero section: Full-width #60CDFF background. Centered toggle pill (black fill, white 'Personal' label, transparent 'Negocios', 104px radius). Below, PayPal Pro weight 900 headline at 67px #000000, letter-spacing -0.03em, line-height 1.10, centered. Two Ghost Pill buttons below headline: 1000px radius, transparent fill, 1px #000000 border, #000000 text, 14px/33px padding, Plain weight 500.\n\n2. Navy feature section: #002991 full-width background. Left column: PayPal Pro weight 900 45px #FFFFFF headline, cycling opacity for inactive words (40% opacity). Plain weight 400 18px #FFFFFF body text below. Outline pill button: 1px #FFFFFF border, transparent fill, #FFFFFF text, 1000px radius, 14px/33px padding. Right column: frosted card rgba(0,0,0,0.30) with 30px radius, 27px padding, white text content inside simulating app UI.\n\n3. Full-bleed photo band: 100vw photography, no border-radius, no overlay scrim. PayPal Pro weight 900 at 121–181px #FFFFFF, letter-spacing -0.03em. Letterforms positioned to crop at both left and right image edges. No buttons or body text in this section — type IS the content.\n\n4. Top navigation: #FFFFFF bar, 88px height. PayPal blue logo left. Center: Plain 16px weight 400 #000000 nav links with 24px gaps. Right: 'Iniciar sesión' as Ghost Pill (#000000 border, transparent, 14px/33px padding, 1000px radius) + 'Crear cuenta' as solid black pill (#000000 fill, #FFFFFF text, same size/radius).\n\n5. App download QR block: #000000 background, 8px radius, 16px padding. Plain weight 500 14px #FFFFFF label on left. QR code image right-aligned. Position fixed bottom-right with 24px margin from edges."
+}

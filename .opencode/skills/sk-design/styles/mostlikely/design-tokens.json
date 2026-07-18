@@ -1,0 +1,95 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Page text, all border rules, signature arch fills — the entire graphical language. The 21:1 contrast against white is the system's only expressive tool"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Canvas, card surfaces, and all negative space — the field against which ink shapes register as architecture"
+    }
+  },
+  "font": {
+    "rondelle": {
+      "$value": "Rondelle",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for navigation links, body copy, and headings. Used at exactly one weight (400) across the entire site — the flat weight is deliberate; hierarchy is created by jumping from 14px to 30px (a 2.14× ratio) rather than by weight contrast. The custom face has architectural proportions: tall x-height, geometric construction, even stroke — it reads as drawn rather than typed. Substitute with a geometric humanist sans like 'Söhne' or 'Inter' if Rondelle is unavailable."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Rondelle",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Rondelle",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "55": {
+      "$value": "55px",
+      "$type": "dimension",
+      "$description": "Spacing 55px"
+    },
+    "70": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Spacing 70px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "bone-white-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page background; the field that receives all ink."
+    },
+    "ink-black-surface": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Arch pillars, solid graphic elements — the only non-white surface in the system."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://mostlikely.at",
+      "siteName": "mostlikely",
+      "extractedAt": "2026-06-03T16:26:05.354Z",
+      "variant": "extended"
+    }
+  }
+}

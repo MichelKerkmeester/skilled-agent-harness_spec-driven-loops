@@ -1,0 +1,747 @@
+{
+  "source": "https://styles.refero.design/style/905beb8c-9788-4ff4-888b-13370cacd4b0",
+  "uuid": "905beb8c-9788-4ff4-888b-13370cacd4b0",
+  "name": "CHELSEA",
+  "northStar": "Black-box cinema with a single blue spotlight — the roster plays, the chrome disappears.",
+  "capturedAt": "2026-07-18T07:29:06.107Z",
+  "meta": {
+    "url": "https://www.chelsea.com",
+    "siteName": "CHELSEA",
+    "extractedAt": "2026-06-03T20:53:54.607Z",
+    "durationMs": 28691,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 178,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #4490ff as the only chromatic color in the system — every link, every accent, every focal dot uses it",
+      "Set all interactive elements to 9999px border-radius for the pill shape that defines the brand",
+      "Keep the canvas pure #000000; never introduce a card surface, a gray panel, or a light section mid-page",
+      "Let media bleed edge-to-edge with zero margin, zero radius, and zero frame",
+      "Use Neue Haas Unica Pro weight 400 for body and weight 700 only for the wordmark and button labels",
+      "Set headlines and body at tight line-heights (1.0–1.15) to maintain the credit-roll density",
+      "Use 8px for element gaps and 16px for component padding; jump to 96px between major sections"
+    ],
+    "donts": [
+      "Do not introduce drop shadows, elevation layers, or card containers — the system is flat by design",
+      "Do not add a second accent color or any warm tone; the palette is black + white + one blue",
+      "Do not round images or media frames — they must be sharp rectangles bleeding to the viewport edge",
+      "Do not use #0000ee or browser-default link blue; links must be #4490ff",
+      "Do not add a visible logo block, nav background, or header bar — the nav is text floating on black",
+      "Do not set body type above 1.5 line-height; the credit-roll feel depends on tight leading",
+      "Do not introduce semantic colors (green/yellow/red) for status — the system has no UI states to encode"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void Black",
+        "role": "Page canvas, all section backgrounds, negative space — the floor everything sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4490ff",
+        "name": "Spotlight Blue",
+        "role": "Primary action, interactive links, roster name listings, focal dot indicator, highlighted borders — the only chromatic voice in an otherwise monochrome system",
+        "group": "brand"
+      },
+      {
+        "hex": "#1f2937",
+        "name": "Carbon Slate",
+        "role": "Headings, heavy borders, structural borders on dark surfaces — near-black with a slight cool cast for separation from the pure black canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f4efe9",
+        "name": "Bone White",
+        "role": "Warm off-white for text and subtle borders — softer than pure white, evoking film stock and gallery walls against the black canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Maximum-contrast text and dividers when absolute clarity is needed over photography or dark media",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Ash Gray",
+        "role": "Light-mode surfaces, neutral borders on cards or panels, secondary dividers — provides a paper-like counterpoint when a section lifts off the black canvas",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed, edge-to-edge layout with no max-width container. The page reads as a vertical sequence of full-viewport-height screens: (1) a full-bleed photographic or video hero with a minimal top nav overlaid and a small wordmark bottom-left, (2) subsequent full-bleed media sections stacking vertically with generous 96px breathing gaps, (3) a terminal section that is pure black with a two-column text layout — tiny region labels (US, UK) left-aligned and a flowing block of talent names right-aligned. Navigation is a single thin horizontal row of four evenly-spaced text links with no background and no logo block. Content alignment is asymmetric: nav is spread across the full width, wordmark anchors bottom-left, text blocks pull left with a slight indent. The grid is implicit — there is no visible column structure, only full-width media and text that reads as a credit roll. Density is sparse between sections but tight within text blocks.",
+    "imagery": "Photography and video are the entire visual system. Imagery is full-bleed, edge-to-edge, unmasked, with zero rounding and no frame. Treatment is cinematic and high-production: warm tungsten key lights, deep shadows, saturated color pockets against darker backgrounds — the aesthetic is music-video or indie film still, not corporate lifestyle. No illustration, no abstract graphics, no product shots. The people in the imagery are the roster — the work is self-portraiture of the talent. Imagery occupies 100% of the viewport in hero and section positions; there is no image-on-canvas composition, only image-as-canvas. A small blue focal dot is sometimes the only UI element overlaid on the photography.",
+    "similar": [
+      {
+        "why": "Same black-canvas cinema aesthetic with full-bleed directorial photography and minimal text UI",
+        "business": "Anonymous Content"
+      },
+      {
+        "why": "Talent roster presented as a viewing room — dark mode, pill links, single accent color, no card containers",
+        "business": "RSA Films"
+      },
+      {
+        "why": "Agency portfolio treated as art exhibition: black canvas, edge-to-edge imagery, skeletal nav",
+        "business": "Wieden+Kennedy"
+      },
+      {
+        "why": "Director roster with the same credit-roll name presentation and monochrome dark UI",
+        "business": "Somesuch"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "links": "9999px",
+        "images": "0px",
+        "buttons": "9999px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "96px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void Canvas",
+        "level": 0,
+        "purpose": "Base page background — every section, every gap, every margin is this color"
+      },
+      {
+        "hex": "#000000",
+        "name": "Media Surface",
+        "level": 1,
+        "purpose": "Photographic and video content replaces the void — no surface transition, the canvas IS the background behind media"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Black-box cinema with a single blue spotlight — the roster plays, the chrome disappears.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.12
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1.1
+      }
+    ],
+    "components": [
+      {
+        "name": "Cinema-Full-Bleed Media Frame",
+        "role": "Hero and section media containers",
+        "description": "Photographic or video content scaled edge-to-edge with zero margin, zero radius, zero border. The image bleeds off all four sides of the viewport, sitting directly on the #000000 canvas with no wrapper or frame."
+      },
+      {
+        "name": "Thin Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Single horizontal row of text links (Roster, Latest, Team, Collaborators) in 14px Neue Haas Unica Pro weight 400, #ffffff, spaced across the full viewport width with generous gaps. A 1px #1f2937 or hairline white rule separates it from the canvas. No logo block, no background fill — text floats on black."
+      },
+      {
+        "name": "Focal Dot Indicator",
+        "role": "Brand punctuation and active-state marker",
+        "description": "A small solid #4490ff circle (~12px diameter) placed inline with content — used as a near-logo near the nav, and as a visual anchor on key media frames. No border, no shadow, no label. Its job is to plant the brand color in a monochrome field."
+      },
+      {
+        "name": "Pill Button / Pill Link",
+        "role": "All interactive controls",
+        "description": "Fully rounded (9999px radius) controls. Default: 8px vertical / 16px horizontal padding, 12–14px Neue Haas Unica Pro weight 700. Two variants: (1) Outlined — 1px #4490ff border, transparent fill, #4490ff text; (2) Solid — #4490ff fill, #ffffff text. No shadow, no hover transform, no state gradient."
+      },
+      {
+        "name": "Roster Name Listing",
+        "role": "Talent directory display",
+        "description": "Names rendered in #4490ff, Neue Haas Unica Pro weight 400 at 32px with 1.12–1.15 line-height, flowing as a continuous text block. Regional labels (US, UK) sit to the left as small #4490ff caps. No bullets, no dividers between names — periods separate them like a credit roll."
+      },
+      {
+        "name": "Wordmark Lockup",
+        "role": "Brand identity stamp",
+        "description": "The 'CHELSEA' wordmark set in three stacked lines (CH / EL / SEA.) at large size in Neue Haas Unica Pro weight 700, white, bottom-left anchored over imagery. The period after SEA. is deliberate — it functions as a redacted/censored signal and is part of the mark."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separation",
+        "description": "1px line in #1f2937 or #ffffff at low opacity, used to separate the nav from the canvas and to section transitions where background color does not change. The only structural line in the system."
+      },
+      {
+        "name": "Credit Caption",
+        "role": "Metadata under media",
+        "description": "Small 12–14px Neue Haas Unica Pro weight 400, #f4efe9 or #4490ff, used for project titles, collaborator credits, or category labels. Often appears in the corners of media frames at 8–16px inset."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI and content type — nav labels at 14px, body at 16px, section headings at 32px, display at 48px",
+        "sizes": "12px, 14px, 16px, 32px, 48px",
+        "family": "Neue Haas Unica Pro",
+        "weight": "400, 700",
+        "lineHeight": "1.00–1.50",
+        "substitute": "Neue Haas Grotesk, Inter, Helvetica Neue",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Chelsea is a talent roster presented as a black-box cinema: full-bleed cinematic photography sits directly on pure black, with a single vivid blue (#4490ff) as the only chromatic voice. The interface is deliberately skeletal — a thin top bar, a tiny floating blue dot, and a name list rendered in the accent color — letting the roster's work carry all visual weight. Typography is one family (Neue Haas Unica Pro) in two weights, set with tight 1.0–1.15 line-heights so the type reads like a film credit rather than a website. Everything that can be invisible is invisible: no borders on the canvas, no shadows, no card containers, no section backgrounds — the only surface transition is the sudden black-to-photography cut. Buttons and links are pill-shaped (9999px radius) and extremely compact, reinforcing the sense that this is a viewing room, not a product dashboard.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/905beb8c-9788-4ff4-888b-13370cacd4b0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"CHELSEA design system\",\"item\":\"https://styles.refero.design/style/905beb8c-9788-4ff4-888b-13370cacd4b0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/905beb8c-9788-4ff4-888b-13370cacd4b0#style-reference\",\"name\":\"CHELSEA design system reference\",\"headline\":\"CHELSEA design system | Refero Styles\",\"description\":\"Explore CHELSEA's dark Agency design system: Void Black #000000, Spotlight Blue #4490ff colors, Neue Haas Unica Pro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/905beb8c-9788-4ff4-888b-13370cacd4b0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/905beb8c-9788-4ff4-888b-13370cacd4b0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"CHELSEA\",\"url\":\"https://www.chelsea.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/905beb8c-9788-4ff4-888b-13370cacd4b0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/279bd1f3-5159-475b-b82c-0b83fba074cd.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/279bd1f3-5159-475b-b82c-0b83fba074cd.jpg\",\"caption\":\"Screenshot of CHELSEA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/279bd1f3-5159-475b-b82c-0b83fba074cd.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"CHELSEA design system\",\"CHELSEA website design\",\"CHELSEA colors\",\"CHELSEA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void Black\",\"Spotlight Blue\",\"Carbon Slate\",\"Bone White\",\"Neue Haas Unica Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"CHELSEA design system\"},{\"@type\":\"Thing\",\"name\":\"CHELSEA website design\"},{\"@type\":\"Thing\",\"name\":\"CHELSEA colors\"},{\"@type\":\"Thing\",\"name\":\"CHELSEA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:55:48.319Z\",\"dateModified\":\"2026-04-30T01:55:48.319Z\"}]}19:T74e,primary action: #4490ff (filled action)\nCreate a Primary Action Button: #4490ff background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\nQUICK COLOR REFERENCE\n- Canvas/background: #000000\n- Primary action / accent: #4490ff (pill buttons, links, focal dot, roster names)\n- Body text on canvas: #ffffff\n- Warm text/border: #f4efe9\n- Heavy border / structural: #1f2937\n- Light surface (rare): #e5e7eb\n\nEXAMPLE COMPONENT PROMPTS\n\n1. Full-bleed hero section: pure #000000 canvas, top nav in 14px Neue Haas Unica Pro weight 400 #ffffff evenly spaced across the viewport (Roster, Latest, Team, Collaborators) with a 1px #1f2937 hairline beneath. A 12px #4490ff solid circle sits inline at the far left of the nav. Main visual is a full-viewport photograph bleeding to all four edges with zero radius. Wordmark 'CHELSEA' stacked in three lines (CH / EL / SEA.) in 48px Neue Haas Unica Pro weight 700 #ffffff, bottom-left, 32px inset.\n\n2. Pill link button: 1px #4490ff border, transparent fill, 16px horizontal / 8px vertical padding, 9999px border-radius, 14px Neue Haas Unica Pro weight 700 #4490ff text. No shadow, no hover state change beyond opacity.\n\n3. Roster name listing: two-column layout on #000000. Left column: small 12px Neue Haas Unica Pro weight 700 #4490ff region labels (US, UK), 16px left padding. Right column: continuous block of names in 32px Neue Haas Unica Pro weight 400 #4490ff, line-height 1.12, separated by periods and spaces, no bullets or dividers.\n\n4. Caption over media: 12px Neue Haas Unica Pro weight 400 #f4efe9, positioned 16px from the bottom-left corner of a full-bleed media frame, no background plate.\n\n5. Section transition: from one full-bleed media screen to the next, separated by 96px of pure #000000 void with no divider, no label, no indicator — the gap itself is the transition."
+      }
+    ],
+    "elevationPhilosophy": "Zero elevation. The system treats depth as a sin: no shadows, no z-axis layering, no floating panels, no card lift. Media bleeds directly on the black canvas and type floats on the same plane. The single visual hierarchy device is the jump from #000000 to full-color photography, which is an absolute contrast rather than a soft elevation."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1f2937",
+          "oklch": {
+            "c": 0.029595646074233123,
+            "h": 256.84795621004855,
+            "l": 0.27807804428637667
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "button"
+          ],
+          "frequency": 115,
+          "confidence": 1,
+          "prominence": 26180397.312747467,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 2,
+            "other/color": 16,
+            "button/color": 1,
+            "heading/color": 8,
+            "link/borderColor": 8,
+            "other/borderColor": 48,
+            "heading/borderColor": 32
+          }
+        },
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 13742120.891845385,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 20,
+            "button/borderColor": 20
+          }
+        },
+        {
+          "hex": "#4490ff",
+          "oklch": {
+            "c": 0.18130490289359352,
+            "h": 258.1355272769205,
+            "l": 0.6611534726256608
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "footer",
+            "heading",
+            "image",
+            "body"
+          ],
+          "frequency": 614,
+          "confidence": 1,
+          "prominence": 12006717.609893676,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 44,
+            "link/color": 37,
+            "other/fill": 4,
+            "image/color": 14,
+            "other/color": 25,
+            "button/color": 4,
+            "footer/color": 1,
+            "heading/color": 1,
+            "body/borderColor": 176,
+            "link/borderColor": 144,
+            "image/borderColor": 56,
+            "other/borderColor": 96,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4,
+            "link/backgroundColor": 3,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "footer",
+            "link",
+            "body"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 5942111.400934618,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 3,
+            "other/fill": 2,
+            "body/borderColor": 12,
+            "other/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 31,
+          "confidence": 1,
+          "prominence": 456000,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 7,
+            "other/borderColor": 24
+          }
+        },
+        {
+          "hex": "#f4efe9",
+          "oklch": {
+            "c": 0.009657509799743452,
+            "h": 72.66074767380108,
+            "l": 0.9543475351253922
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 433645.7401973083,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "other/fill": 2,
+            "link/borderColor": 16,
+            "other/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.36675372178677484,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.37,
+          "background": "#000000",
+          "foreground": "#f4efe9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.68,
+          "background": "#ffffff",
+          "foreground": "#1f2937"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.84,
+          "background": "#f4efe9",
+          "foreground": "#1f2937"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.86,
+          "background": "#e5e7eb",
+          "foreground": "#1f2937"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.68,
+          "background": "#000000",
+          "foreground": "#4490ff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.67,
+          "background": "#4490ff",
+          "foreground": "#1f2937"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.14,
+          "background": "#4490ff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.75,
+          "background": "#4490ff",
+          "foreground": "#f4efe9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.43,
+          "background": "#000000",
+          "foreground": "#1f2937"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 49,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "marginBottom",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "marginRight|link",
+            "marginLeft|link",
+            "paddingTop|body",
+            "marginBottom|link",
+            "paddingBottom|other",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "body"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|button",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "marginBottom|other",
+            "marginRight|link",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|heading",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Neue Haas Unica Pro",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 170,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Neue Haas Unica Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Neue Haas Unica Pro",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Neue Haas Unica Pro",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "image",
+            "body"
+          ],
+          "frequency": 64,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Haas Unica Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "footer",
+            "body"
+          ],
+          "frequency": 59,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Haas Unica Pro",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Haas Unica Pro",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Neue Haas Unica Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.12,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Neue Haas Unica Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d1e82e3c-090e-4c7a-a03d-c1dd42aa57d4.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/279bd1f3-5159-475b-b82c-0b83fba074cd.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/905beb8c-9788-4ff4-888b-13370cacd4b0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"CHELSEA design system\",\"item\":\"https://styles.refero.design/style/905beb8c-9788-4ff4-888b-13370cacd4b0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/905beb8c-9788-4ff4-888b-13370cacd4b0#style-reference\",\"name\":\"CHELSEA design system reference\",\"headline\":\"CHELSEA design system | Refero Styles\",\"description\":\"Explore CHELSEA's dark Agency design system: Void Black #000000, Spotlight Blue #4490ff colors, Neue Haas Unica Pro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/905beb8c-9788-4ff4-888b-13370cacd4b0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/905beb8c-9788-4ff4-888b-13370cacd4b0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"CHELSEA\",\"url\":\"https://www.chelsea.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/905beb8c-9788-4ff4-888b-13370cacd4b0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/279bd1f3-5159-475b-b82c-0b83fba074cd.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/279bd1f3-5159-475b-b82c-0b83fba074cd.jpg\",\"caption\":\"Screenshot of CHELSEA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/279bd1f3-5159-475b-b82c-0b83fba074cd.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"CHELSEA design system\",\"CHELSEA website design\",\"CHELSEA colors\",\"CHELSEA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void Black\",\"Spotlight Blue\",\"Carbon Slate\",\"Bone White\",\"Neue Haas Unica Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"CHELSEA design system\"},{\"@type\":\"Thing\",\"name\":\"CHELSEA website design\"},{\"@type\":\"Thing\",\"name\":\"CHELSEA colors\"},{\"@type\":\"Thing\",\"name\":\"CHELSEA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:55:48.319Z\",\"dateModified\":\"2026-04-30T01:55:48.319Z\"}]}19:T74e,primary action: #4490ff (filled action)\nCreate a Primary Action Button: #4490ff background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\nQUICK COLOR REFERENCE\n- Canvas/background: #000000\n- Primary action / accent: #4490ff (pill buttons, links, focal dot, roster names)\n- Body text on canvas: #ffffff\n- Warm text/border: #f4efe9\n- Heavy border / structural: #1f2937\n- Light surface (rare): #e5e7eb\n\nEXAMPLE COMPONENT PROMPTS\n\n1. Full-bleed hero section: pure #000000 canvas, top nav in 14px Neue Haas Unica Pro weight 400 #ffffff evenly spaced across the viewport (Roster, Latest, Team, Collaborators) with a 1px #1f2937 hairline beneath. A 12px #4490ff solid circle sits inline at the far left of the nav. Main visual is a full-viewport photograph bleeding to all four edges with zero radius. Wordmark 'CHELSEA' stacked in three lines (CH / EL / SEA.) in 48px Neue Haas Unica Pro weight 700 #ffffff, bottom-left, 32px inset.\n\n2. Pill link button: 1px #4490ff border, transparent fill, 16px horizontal / 8px vertical padding, 9999px border-radius, 14px Neue Haas Unica Pro weight 700 #4490ff text. No shadow, no hover state change beyond opacity.\n\n3. Roster name listing: two-column layout on #000000. Left column: small 12px Neue Haas Unica Pro weight 700 #4490ff region labels (US, UK), 16px left padding. Right column: continuous block of names in 32px Neue Haas Unica Pro weight 400 #4490ff, line-height 1.12, separated by periods and spaces, no bullets or dividers.\n\n4. Caption over media: 12px Neue Haas Unica Pro weight 400 #f4efe9, positioned 16px from the bottom-left corner of a full-bleed media frame, no background plate.\n\n5. Section transition: from one full-bleed media screen to the next, separated by 96px of pure #000000 void with no divider, no label, no indicator — the gap itself is the transition."
+}

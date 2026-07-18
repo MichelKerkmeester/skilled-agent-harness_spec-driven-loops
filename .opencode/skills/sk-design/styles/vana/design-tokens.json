@@ -1,0 +1,322 @@
+{
+  "color": {
+    "electric-indigo": {
+      "$value": "#0000ff",
+      "$type": "color",
+      "$description": "Electric Indigo — Primary CTA fill, brand text, decorative ASCII pattern — the signal color that makes actions switched on against the dark canvas"
+    },
+    "cobalt-pulse": {
+      "$value": "#4141fc",
+      "$type": "color",
+      "$description": "Cobalt Pulse — Button borders, secondary accent — slightly lighter than Electric Indigo for outlined controls and hover states"
+    },
+    "periwinkle-veil": {
+      "$value": "#8b8bfe",
+      "$type": "color",
+      "$description": "Periwinkle Veil — Outlined action border, light violet accent — ghost button outlines and muted decorative strokes"
+    },
+    "lime-beacon": {
+      "$value": "#7fd579",
+      "$type": "color",
+      "$description": "Lime Beacon — Rare chromatic punctuation — cursor marker, outlined button variant, location indicator on the data map"
+    },
+    "orchid-whisper": {
+      "$value": "#d896ff",
+      "$type": "color",
+      "$description": "Orchid Whisper — Rare chromatic punctuation — outlined button variant, decorative icon accent"
+    },
+    "midnight-void": {
+      "$value": "#0d0d0d",
+      "$type": "color",
+      "$description": "Midnight Void — Page background — the base canvas everything floats on"
+    },
+    "carbon-panel": {
+      "$value": "#161616",
+      "$type": "color",
+      "$description": "Carbon Panel — Card and panel surfaces — one step above the canvas for contained content blocks"
+    },
+    "graphite-lift": {
+      "$value": "#252525",
+      "$type": "color",
+      "$description": "Graphite Lift — Dark elevated surface for cards, headers, and contained panels. Do not promote it to the primary CTA color"
+    },
+    "steel-hover": {
+      "$value": "#3b3b3b",
+      "$type": "color",
+      "$description": "Steel Hover — Highest surface elevation, filled neutral button background — the brightest the neutrals get"
+    },
+    "pure-signal": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure Signal — Primary headings, button text, high-contrast text — the loudest text voice"
+    },
+    "soft-mist": {
+      "$value": "#eaeaea",
+      "$type": "color",
+      "$description": "Soft Mist — Body text, secondary copy, subtle fill — quieter than Pure Signal for paragraphs and descriptions"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal — Borders in light sections, link underlines — visible only against the white band"
+    },
+    "warm-filament": {
+      "$value": "#b8ad97",
+      "$type": "color",
+      "$description": "Warm Filament — Decorative SVG stroke and fill — warm-toned accent for abstract graphics and illustration details"
+    }
+  },
+  "font": {
+    "cofo-sans": {
+      "$value": "Cofo Sans",
+      "$type": "fontFamily",
+      "$description": "Primary typeface across all UI — headings at 64px weight 700, body at 14–16px weight 400, nav links at 13–14px. The tight -0.02em tracking at 64px creates a compressed, technical headline feel; most crypto/data brands use looser tracking at this size."
+    },
+    "cofo-sans-pixel": {
+      "$value": "Cofo Sans Pixel",
+      "$type": "fontFamily",
+      "$description": "Technical metadata labels — nav dot-prefixed links (BUILD, ABOUT, COMMUNITY, TOOLS), small uppercase tags, and machine-precise annotations. The pixel variant creates a monospace-adjacent rhythm that signals 'system metadata' vs 'human prose'."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Cofo Sans Pixel",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Cofo Sans Pixel",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Cofo Sans Pixel",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Cofo Sans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Cofo Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Cofo Sans Pixel",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Cofo Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Cofo Sans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Cofo Sans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Cofo Sans",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Cofo Sans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Cofo Sans",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Cofo Sans",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Cofo Sans",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "midnight-void": {
+      "$value": "#0d0d0d",
+      "$type": "color",
+      "$description": "Surface level 1: Page base background — the canvas everything sits on"
+    },
+    "carbon-panel": {
+      "$value": "#161616",
+      "$type": "color",
+      "$description": "Surface level 2: Cards, feature panels, content containers — one step up from the canvas"
+    },
+    "graphite-lift": {
+      "$value": "#252525",
+      "$type": "color",
+      "$description": "Surface level 3: Elevated cards, hover states, interactive panels — second elevation step"
+    },
+    "steel-hover": {
+      "$value": "#3b3b3b",
+      "$type": "color",
+      "$description": "Surface level 4: Highest neutral surface — filled neutral buttons, active states"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.vana.com",
+      "siteName": "Vana",
+      "extractedAt": "2026-06-03T20:22:15.273Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,1563 @@
+{
+  "source": "https://styles.refero.design/style/206c6c51-df38-425f-8d07-b0cc9dd065cf",
+  "uuid": "206c6c51-df38-425f-8d07-b0cc9dd065cf",
+  "name": "Videoconferencia",
+  "northStar": "Collaborative daylight workspace — every surface a white panel under fluorescent clarity, single violet pulse marking where to act.",
+  "capturedAt": "2026-07-18T10:13:47.390Z",
+  "meta": {
+    "url": "https://microsoft.com/teams",
+    "siteName": "Videoconferencia",
+    "extractedAt": "2026-04-11T19:21:51.014Z",
+    "durationMs": 134780,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 828,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #5d5bd4 exclusively for primary CTA buttons and active navigation indicators — never for decorative color fills or backgrounds.",
+      "Apply 24px border-radius to all card containers; apply 8px border-radius to all buttons, badges, and inputs. Never mix these two radii between container and control.",
+      "Use Segoe UI Variable Display at weight 600 for headings above 32px; always pair with negative letter-spacing: −0.025em at 20-24px, −0.015em at 32px, −0.01em at 48px+.",
+      "Set all section category labels (e.g. NOTICIAS DESTACADAS) in Segoe UI Variable Text 600 12px with letterSpacing=+0.08em and color=#17253d — uppercase tracking only at caption scale, never on headings.",
+      "Elevate white cards off the white page using the two-layer shadow: rgba(0,0,0,0.12) 0px 0px 2px 0px, rgba(0,0,0,0.14) 0px 2px 4px 0px — no other shadow values.",
+      "Reserve Microsoft Blue (#0067b8) for hyperlinks and informational icon fills only — it must never appear on CTA buttons, which belong exclusively to Teams Violet (#5d5bd4).",
+      "Maintain the near-white card surface (#fefefe) distinct from the pure white page (#ffffff) to ensure shadow-based elevation reads correctly."
+    ],
+    "tags": [
+      "light",
+      "corporate",
+      "microsoft",
+      "productivity",
+      "violet-accent",
+      "variable-font",
+      "card-heavy",
+      "photography-forward",
+      "accessible",
+      "enterprise"
+    ],
+    "donts": [
+      "Do not use border-radius values between 8px and 24px on any element — the design system jumps directly from control-scale (8px) to container-scale (24px) with nothing in between except the 200px pill.",
+      "Do not apply the Teams Violet (#5d5bd4) to text, borders, or decorative elements — it appears only as button backgroundColor and active state indicator.",
+      "Do not use pure black (#000000) for body or heading text — all text uses #17253d (Ink Navy) or #0e1726 (Abyss Navy), preserving the blue-cast warmth of the palette.",
+      "Do not stack more than two colors from the violet family (e.g. #5d5bd4 + #333275 + #424197) in a single component — only the primary fill and one hover/focus state.",
+      "Do not use shadows with vertical offset above 4px or opacity above 0.15 — the elevation system is intentionally near-invisible.",
+      "Do not set headline letterSpacing to 0 or positive values at any display size — negative tracking is mandatory at all sizes above 14px.",
+      "Do not use Segoe UI (system fallback) for any designed UI element — it is reserved for browser-native and OS-rendered contexts only; all explicit text must use Segoe UI Variable Text or Display."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#5d5bd4",
+        "name": "Teams Violet",
+        "role": "Primary CTA buttons, active nav underlines, badge backgrounds — the single saturated signal on an otherwise achromatic page. Vivid violet-purple stands apart from Microsoft blue (#0067b8) to brand Teams distinctly within the Microsoft ecosystem.",
+        "group": "brand"
+      },
+      {
+        "hex": "#333275",
+        "name": "Teams Midnight",
+        "role": "Hover and pressed states for Teams Violet buttons, nav link active text — darker violet that deepens without shifting hue.",
+        "group": "brand"
+      },
+      {
+        "hex": "#424197",
+        "name": "Teams Deep",
+        "role": "Button pressed/focus states — intermediate violet between Teams Violet and Teams Midnight.",
+        "group": "brand"
+      },
+      {
+        "hex": "#0067b8",
+        "name": "Microsoft Blue",
+        "role": "Link text, icon fills, navigation affordances — the legacy Microsoft hyperlink blue used on informational elements, never on CTA buttons.",
+        "group": "accent"
+      },
+      {
+        "hex": "#17253d",
+        "name": "Ink Navy",
+        "role": "Primary text, headings, body copy, icons — near-black with a distinct blue cast that avoids pure black harshness.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0e1726",
+        "name": "Abyss Navy",
+        "role": "Darkest heading weight, button text on transparent dark-background variants.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#616161",
+        "name": "Steel",
+        "role": "Secondary body text, captions, placeholder text, icon color for inactive states.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#262626",
+        "name": "Graphite",
+        "role": "Nav link text, body text at medium emphasis.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Cloud",
+        "role": "Page backgrounds, card surfaces, button text on dark.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Frost",
+        "role": "Footer background, alternate section background.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fbf5fb",
+        "name": "Lace",
+        "role": "Subtle lilac-tinted surface for decorative hero background areas.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e6f2fb",
+        "name": "Ice Border",
+        "role": "Badge borders, light blue-tinted separator lines.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bdc5d2",
+        "name": "Mist",
+        "role": "Subtle borders, dividers, input outlines in resting state.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fefefe",
+        "name": "Near White",
+        "role": "Card surface background — one step off pure white to reduce glare on elevated surfaces.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width content is approximately 1600px centered, but hero and nav bands run visually full-bleed. The hero is a 2-column split: left third for headline + CTA text, right two-thirds for the floating product visual — asymmetric, image-heavy. Below the hero a sticky horizontal tab navigation bar with CTA button spans full width. Section rhythm alternates #ffffff bands: featured news in 2-column card grid, then a full-width text section for solutions, continuing downward. Cards in the news grid are equal-height 2-up at the viewport shown. Navigation is a fixed top bar (54px) with logo left, nav center, actions right — mega-menu dropdowns on hover. A fixed right-edge floating icon bar for contact actions provides persistent access without breaking the main layout. Vertical section gaps are 64-96px, giving the page a spacious corporate breathing room between each content band.",
+    "imagery": "The hero features a 3D-rendered product screenshot composite — the Teams app UI rendered as a floating tablet/screen with illustrated lavender and teal decorative elements beneath it, plus emoji reaction graphics floating around it. The treatment is product-showcase-first: the interface itself is the hero visual, not people or lifestyle. Below the fold, editorial photography takes over: tightly cropped portraits and workspace candids at 16:9 ratio filling the top half of article cards — warm ambient light, realistic color grading, no duotone or filters. Photography is lifestyle-adjacent but workspace-focused (people at desks, on video calls) rather than abstract or staged against solid colors. Icon style throughout is Microsoft Fluent: filled with rounded corners, monochromatic #17253d at nav size, multicolor Microsoft flag logo as the single exception. Image density is moderate — alternating text-dominant and image-plus-text sections, cards always lead with the image.",
+    "similar": [
+      {
+        "why": "Horizontal tab navigation bar with active-underline indicator, card-grid news section, and a single brand-accent color on all primary CTAs with white/light page.",
+        "business": "Slack"
+      },
+      {
+        "why": "Product-screenshot-as-hero-visual on white background, editorial photography in 2-column card grid, corporate-light palette with single vivid accent.",
+        "business": "Google Workspace"
+      },
+      {
+        "why": "Light enterprise SaaS page with sticky secondary nav, floating 3D product visual in hero, and photography cards below fold.",
+        "business": "Zoom"
+      },
+      {
+        "why": "Deep navy text on white with a vivid single-hue accent, 24px rounded cards, and mixed photography/illustration visual language.",
+        "business": "Atlassian Confluence"
+      },
+      {
+        "why": "Enterprise collaboration product with near-identical hero pattern: product UI screenshot composite right-aligned against white left-side headline.",
+        "business": "Cisco Webex"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "24px",
+        "chips": "3px",
+        "badges": "8px",
+        "inputs": "8px",
+        "buttons": "8px",
+        "buttonsPill": "200px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "64-96px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1600px"
+    },
+    "category": "SaaS",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Background",
+        "level": 0,
+        "purpose": "Default page canvas"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Alt Background",
+        "level": 1,
+        "purpose": "Footer and alternate section bands"
+      },
+      {
+        "hex": "#fefefe",
+        "name": "Card Surface",
+        "level": 2,
+        "purpose": "Elevated content cards floating above page background"
+      },
+      {
+        "hex": "#fbf5fb",
+        "name": "Lilac Tint",
+        "level": 3,
+        "purpose": "Hero decorative background wash behind product imagery"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.12) 0px 0px 2px 0px, rgba(0, 0, 0, 0.14) 0px 2px 4px 0px",
+        "element": "Elevated Content Card"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.12) 0px 0px 2px 0px, rgba(0, 0, 0, 0.14) 0px 2px 4px 0px",
+        "element": "Floating Icon Bar"
+      }
+    ],
+    "northStar": "Collaborative daylight workspace — every surface a white panel under fluorescent clarity, single violet pulse marking where to act.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.42
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.17,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "display",
+        "size": 62,
+        "lineHeight": 1.16,
+        "letterSpacing": -0.62
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Primary CTA Button Group",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Article Preview Card Pair",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Horizontal Section Tab Nav",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary CTA Button",
+        "role": "Main conversion action (Download, View Plans)",
+        "description": "backgroundColor=#5d5bd4, color=#ffffff, borderRadius=8px, padding=8px 16px, font: Segoe UI Variable Text 500 15px. Hover darkens to #424197. The 8px radius is a hard corner relative to the 24px card radius — buttons feel precise, not soft."
+      },
+      {
+        "name": "Ghost Navigation Button",
+        "role": "Outline-style secondary actions in the top nav (Descargar Teams, Iniciar sesión)",
+        "description": "backgroundColor=transparent, color=#262626, border=1px solid transparent (visual separation via spacing only), borderRadius=0px, padding=16px 30px 16px 12px. Zero border radius — purely typographic with no frame."
+      },
+      {
+        "name": "Underline Navigation Button",
+        "role": "Active tab/section indicator in horizontal content nav",
+        "description": "backgroundColor=transparent, color=#0e1726, borderBottom=2px solid #0e1726, borderRadius=0px, padding=0 0 32px 0. Bottom border only — tab indicator with generous 32px bottom padding to position the underline at baseline distance."
+      },
+      {
+        "name": "Pill Secondary Button",
+        "role": "Decorative or secondary CTA overlaid on hero visual areas",
+        "description": "backgroundColor=transparent, color=#ffffff, borderRadius=200px, padding=16px. Full pill shape reserved for white-text variants appearing over imagery — the only element with >24px radius, creating maximum contrast with sharp-cornered primary buttons."
+      },
+      {
+        "name": "Transparent Content Card",
+        "role": "Layout grouping without visual separation",
+        "description": "backgroundColor=transparent, borderRadius=0px, boxShadow=none, padding=0. Used for grid cells that rely on surrounding whitespace rather than a surface for grouping."
+      },
+      {
+        "name": "Labeled Badge",
+        "role": "Section category labels (NOTICIAS DESTACADAS, SOLUCIONES)",
+        "description": "backgroundColor=transparent, color=#17253d, borderRadius=0px, padding=0. Uppercase tracking at +0.08em (letterSpacing=0.08em via Segoe UI Variable Text), weight 600, 12px. Zero-padding text label — no visual container, relying on tracking and weight for distinction."
+      },
+      {
+        "name": "Surface Badge",
+        "role": "Tag chips on cards and content metadata",
+        "description": "backgroundColor=#fefefe, color=#17253d, borderRadius=8px, padding=4px 8px. White card-colored surface with same 8px radius as buttons — system-consistent without hierarchical confusion."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global site header with Microsoft logo, product name, and nav links",
+        "description": "backgroundColor=#ffffff, height=54px, borderBottom=1px solid #bdc5d2. Product name 'Teams' in Segoe UI Variable Text 600 at 15px. Nav items at 14px weight 400 #262626 with dropdown chevrons. Right-side CTAs use Ghost and Primary Button styles."
+      },
+      {
+        "name": "Horizontal Section Tab Nav",
+        "role": "In-page content navigation (Noticias destacadas, Soluciones, Productos y servicios)",
+        "description": "backgroundColor=#ffffff, borderBottom=1px solid #bdc5d2, height=56px. Active item uses Underline Navigation Button style. Right-aligned CTA button uses Primary CTA Button style at #5d5bd4."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Full-width page opener with headline, body, CTA, and product visual",
+        "description": "backgroundColor=#ffffff (with #fbf5fb lilac tint at far right). Headline: Segoe UI Variable Display 600 48px tracking −0.01em, color=#0e1726. Body: 16px 400 #616161. CTA: Primary CTA Button. Right half: 3D product screenshot floating on illustrated background — image is contained, not full-bleed."
+      },
+      {
+        "name": "Article Preview Card",
+        "role": "News and blog post previews in card grid",
+        "description": "Uses Elevated Content Card as container. Image fills top of card with no padding, borderRadius=24px 24px 0 0 clipping. Title: Segoe UI Variable Text 600 20px #17253d. Body: 14px 400 #616161. Footer: 'Más información' link in Microsoft Blue (#0067b8) with right-arrow icon, 16px padding all sides."
+      },
+      {
+        "name": "Floating Icon Bar",
+        "role": "Fixed right-side quick-action icons (contact, mail, phone)",
+        "description": "backgroundColor=#ffffff, borderRadius=24px 0 0 24px (left-side pill), boxShadow=rgba(0,0,0,0.12) 0px 0px 2px 0px, rgba(0,0,0,0.14) 0px 2px 4px 0px. Icon color #17253d. Positioned fixed right:0, vertically centered."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The primary workhorse: all headings, body text, nav labels, buttons, badges. Microsoft's own variable font whose optical sizing axis auto-adjusts letterform construction at different sizes — tighter tracking at display scale (48px at −0.01em to −0.025em) is baked into the font's design intent, not added post hoc.",
+        "sizes": "12px, 14px, 15px, 16px, 20px, 24px, 32px, 48px, 100px",
+        "family": "Segoe UI Variable Text",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.00–1.50 (1.43 at body sizes, 1.20–1.25 at subheading, 1.06–1.17 at large display)",
+        "substitute": "Inter Variable",
+        "letterSpacing": "-0.03em at 12-14px, -0.025em at 16-20px, -0.02em at 24px, -0.015em at 32px, -0.01em at 48px; +0.08em for all-caps labels",
+        "fontFeatureSettings": "normal (variable axes active)"
+      },
+      {
+        "role": "Hero and section headings at large scale — the Display optical axis activates wider, more open letterforms than the Text axis at the same point size, making headlines feel more authoritative at 48px and above.",
+        "sizes": "20px, 24px, 32px, 48px, 62px",
+        "family": "Segoe UI Variable Display",
+        "weight": "500, 600",
+        "lineHeight": "1.16–1.40",
+        "substitute": "Inter Variable (display instance)",
+        "letterSpacing": "-0.025em at 20-24px, -0.015em at 32px, -0.01em at 48-62px"
+      },
+      {
+        "role": "Tight-tracked small labels and fine-print contexts.",
+        "sizes": "14px",
+        "family": "Segoe UI Variable Small",
+        "weight": "400",
+        "lineHeight": "1.43",
+        "substitute": "Inter Variable (caption instance)",
+        "letterSpacing": "-0.03em"
+      },
+      {
+        "role": "System fallback used in footer, some nav utility links, and browser-rendered UI chrome. No tracking adjustments — falls back to OS default rendering.",
+        "sizes": "11px, 13px, 15px",
+        "family": "Segoe UI",
+        "weight": "400, 600",
+        "lineHeight": "1.20–2.27",
+        "substitute": "system-ui, sans-serif",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Microsoft Teams' page feels like a sunlit open-plan office — bright white expanses punctuated by the distinctive Teams violet-purple (#5d5bd4) and dense navy text (#17253d). The light is almost clinical, with near-zero ambient color tinting, pulling all chromatic attention to the vivid Teams purple accent and photography. Segoe UI Variable's tight negative tracking at display sizes (−0.025em at 48px) is the typographic signature — Microsoft's own variable font doing what no system font substitute can replicate, with headlines that compress horizontally as they scale up. Cards sit as floating white rectangles with a 24px corner radius and a paired micro-shadow system, never harsh — rgba(0,0,0,0.12) 0px 0px 2px plus rgba(0,0,0,0.14) 0px 2px 4px creates a faint lift without drama. The only pill-shaped element (200px radius) reserved for one secondary UI button variant signals interactivity hierarchy without color alone.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      }
+    ],
+    "elevationPhilosophy": "Shadow is used exclusively to lift white surfaces off the white page — not for drama or depth hierarchy. Both shadow layers operate below 15% opacity, making the elevation invisible on colored backgrounds and only readable white-on-white. The 0px 0px 2px ambient layer defines the card edge; the 0px 2px 4px directional layer suggests physical thickness. No element uses shadows above 4px vertical offset — depth is minimal by design."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#17253d",
+          "oklch": {
+            "c": 0.04918175243213927,
+            "h": 260.6715460397867,
+            "l": 0.2648533973045761
+          },
+          "contexts": [
+            "other",
+            "image",
+            "nav",
+            "card",
+            "list",
+            "body",
+            "link",
+            "badge",
+            "icon",
+            "heading"
+          ],
+          "frequency": 2178,
+          "confidence": 1,
+          "prominence": 93235785.84898539,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "nav",
+            "link",
+            "list",
+            "card",
+            "badge"
+          ],
+          "frequency": 212,
+          "confidence": 1,
+          "prominence": 10052028.6224455,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "footer",
+            "icon"
+          ],
+          "frequency": 465,
+          "confidence": 1,
+          "prominence": 5595739.108466631,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#0e1726",
+          "oklch": {
+            "c": 0.03303728538432613,
+            "h": 260.26588804131984,
+            "l": 0.20413450218356446
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "button"
+          ],
+          "frequency": 290,
+          "confidence": 1,
+          "prominence": 1763513.2413830187,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "footer",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1000547.2026427478,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#fbf5fb",
+          "oklch": {
+            "c": 0.010129914109171323,
+            "h": 325.6540056550674,
+            "l": 0.9764677011470752
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 856464,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#616161",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4926091942525259
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 400,
+          "confidence": 1,
+          "prominence": 309440.65233226283,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#bdc5d2",
+          "oklch": {
+            "c": 0.020249768755460234,
+            "h": 260.1678011203834,
+            "l": 0.8211980944246573
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 183608.78603131307,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#0067b8",
+          "oklch": {
+            "c": 0.1502730192528321,
+            "h": 251.48266616641158,
+            "l": 0.5097725022735411
+          },
+          "contexts": [
+            "link",
+            "nav",
+            "icon",
+            "list"
+          ],
+          "frequency": 171,
+          "confidence": 1,
+          "prominence": 67965.1750350336,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#333275",
+          "oklch": {
+            "c": 0.11186450425085913,
+            "h": 279.7975061228275,
+            "l": 0.35796845742670086
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "body",
+            "button"
+          ],
+          "frequency": 215,
+          "confidence": 1,
+          "prominence": 62566.432367454865,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#5d5bd4",
+          "oklch": {
+            "c": 0.18107505945583566,
+            "h": 279.18342937819625,
+            "l": 0.5402446299031773
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "link"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 61035.20974006208,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#262626",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.26861827698438745
+          },
+          "contexts": [
+            "link",
+            "image",
+            "body",
+            "button",
+            "nav"
+          ],
+          "frequency": 33,
+          "confidence": 1,
+          "prominence": 37637.050099570006,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#e6f2fb",
+          "oklch": {
+            "c": 0.017624204796546774,
+            "h": 239.99402123731466,
+            "l": 0.954812745279415
+          },
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 88,
+          "confidence": 1,
+          "prominence": 14920.08982494658,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#888888",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6262521715832806
+          },
+          "contexts": [
+            "list"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 9152,
+          "properties": [
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#adadad",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.747308289012013
+          },
+          "contexts": [
+            "list"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 9152,
+          "properties": [
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#424197",
+          "oklch": {
+            "c": 0.13716834518052023,
+            "h": 279.366708100953,
+            "l": 0.42596672550322207
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4147,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#243a5e",
+          "oklch": {
+            "c": 0.06919327858527545,
+            "h": 259.8222523770497,
+            "l": 0.348889357962546
+          },
+          "contexts": [
+            "list"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2288,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#0066ff",
+          "oklch": {
+            "c": 0.2408052392865458,
+            "h": 260.8177576265576,
+            "l": 0.5634552426832016
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 846.3699753850973,
+          "properties": [
+            "fill"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.11452001048356891,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.56,
+          "background": "#fbf5fb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.46,
+          "background": "#e6f2fb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.96,
+          "background": "#ffffff",
+          "foreground": "#0e1726"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.73,
+          "background": "#fbf5fb",
+          "foreground": "#0e1726"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.04,
+          "background": "#f2f2f2",
+          "foreground": "#0e1726"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.79,
+          "background": "#e6f2fb",
+          "foreground": "#0e1726"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.35,
+          "background": "#ffffff",
+          "foreground": "#17253d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#ffffff",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.29,
+          "background": "#fbf5fb",
+          "foreground": "#17253d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.09,
+          "background": "#fbf5fb",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.71,
+          "background": "#f2f2f2",
+          "foreground": "#17253d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.52,
+          "background": "#f2f2f2",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.49,
+          "background": "#e6f2fb",
+          "foreground": "#17253d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.3,
+          "background": "#e6f2fb",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.08,
+          "background": "#bdc5d2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.4,
+          "background": "#243a5e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.33,
+          "background": "#ffffff",
+          "foreground": "#333275"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.62,
+          "background": "#fbf5fb",
+          "foreground": "#243a5e"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "nav",
+            "list",
+            "body"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "badge",
+            "link"
+          ],
+          "frequency": 32
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card",
+            "other",
+            "image"
+          ],
+          "frequency": 29
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.12) 0px 0px 2px 0px, rgba(0, 0, 0, 0.14) 0px 2px 4px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 13
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 0,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 1,
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 2,
+          "frequency": 25,
+          "properties": [
+            "marginBottom",
+            "paddingLeft",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 86,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "marginTop",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 291,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 6,
+          "properties": [
+            "paddingLeft",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 11,
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 31,
+          "properties": [
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 174,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 84,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 30,
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 26,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 36,
+          "frequency": 6,
+          "properties": [
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 35,
+          "properties": [
+            "paddingRight",
+            "columnGap",
+            "marginTop",
+            "rowGap",
+            "marginLeft",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 71,
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 72,
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 96,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Segoe UI Variable Text",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 613,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Segoe UI",
+          "source": "system",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 173,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Segoe UI Variable Display",
+          "source": "custom",
+          "weights": [
+            500,
+            600
+          ],
+          "frequency": 35,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Segoe UI Variable Small",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Segoe Sans",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Segoe UI",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 102,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Segoe UI",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 18,
+          "lineHeight": 2.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Segoe UI Variable Text",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Segoe UI Variable Text",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.08,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Segoe UI",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "body",
+            "nav",
+            "button"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Segoe UI Variable Text",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "link",
+            "body"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Segoe UI Variable Small",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Segoe UI",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "footer",
+            "nav"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Segoe UI Variable Text",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body",
+            "nav",
+            "link"
+          ],
+          "frequency": 41,
+          "lineHeight": 1.47,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Segoe UI",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Segoe Sans",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Segoe UI Variable Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "nav",
+            "card",
+            "list",
+            "body",
+            "badge",
+            "heading",
+            "link",
+            "icon"
+          ],
+          "frequency": 450,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Segoe UI Variable Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Segoe UI Variable Text",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Segoe UI Variable Text",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Segoe UI Variable Text",
+          "weight": 600,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Segoe UI Variable Text",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Segoe UI Variable Display",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Segoe UI Variable Text",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Segoe UI Variable Text",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 30,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Segoe UI Variable Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Segoe UI Variable Text",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Segoe UI Variable Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Segoe UI Variable Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Segoe UI Variable Text",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "Segoe UI Variable Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.16,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 100,
+          "family": "Segoe UI Variable Text",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.06,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/b0808fcc-aa05-4907-a5a4-709df9dc5974.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a4bc0ad9-6946-4382-bbe1-51bbb74011f0.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/206c6c51-df38-425f-8d07-b0cc9dd065cf#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Videoconferencia design system\",\"item\":\"https://styles.refero.design/style/206c6c51-df38-425f-8d07-b0cc9dd065cf\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/206c6c51-df38-425f-8d07-b0cc9dd065cf#style-reference\",\"name\":\"Videoconferencia design system reference\",\"headline\":\"Videoconferencia design system | Refero Styles\",\"description\":\"Explore Videoconferencia's light Productivity design system: Teams Violet #5d5bd4, Teams Midnight #333275 colors, Segoe UI Variable Text, Segoe UI Variable...\",\"url\":\"https://styles.refero.design/style/206c6c51-df38-425f-8d07-b0cc9dd065cf\",\"mainEntityOfPage\":\"https://styles.refero.design/style/206c6c51-df38-425f-8d07-b0cc9dd065cf\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Videoconferencia\",\"url\":\"https://microsoft.com/teams\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/206c6c51-df38-425f-8d07-b0cc9dd065cf#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a4bc0ad9-6946-4382-bbe1-51bbb74011f0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a4bc0ad9-6946-4382-bbe1-51bbb74011f0.jpg\",\"caption\":\"Screenshot of Videoconferencia\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a4bc0ad9-6946-4382-bbe1-51bbb74011f0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Videoconferencia design system\",\"Videoconferencia website design\",\"Videoconferencia colors\",\"Videoconferencia typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Teams Violet\",\"Teams Midnight\",\"Teams Deep\",\"Microsoft Blue\",\"Segoe UI Variable Text\",\"Segoe UI Variable Display\",\"Segoe UI Variable Small\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Videoconferencia design system\"},{\"@type\":\"Thing\",\"name\":\"Videoconferencia website design\"},{\"@type\":\"Thing\",\"name\":\"Videoconferencia colors\"},{\"@type\":\"Thing\",\"name\":\"Videoconferencia typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-04-12T14:26:13.000Z\",\"dateModified\":\"2026-04-12T14:26:13.000Z\"}]}19:T1638,<style>\n  :root {\n    --color-teams-violet: #5d5bd4;\n    --color-teams-midnight: #333275;\n    --color-teams-deep: #424197;\n    --color-microsoft-blue: #0067b8;\n    --color-ink-navy: #17253d;\n    --color-abyss-navy: #0e1726;\n    --color-steel: #616161;\n    --color-graphite: #262626;\n    --color-cloud: #ffffff;\n    --color-frost: #f2f2f2;\n    --color-mist: #bdc5d2;\n    --color-near-white: #fefefe;\n    --font-segoe-ui-variable-text: 'Inter Variable', 'Inter', system-ui, sans-serif;\n    --font-segoe-ui-variable-display: 'Inter Variable', 'Inter', system-ui, sans-serif;\n    --shadow-subtle: rgba(0,0,0,0.12) 0px 0px 2px 0px, rgba(0,0,0,0.14) 0px 2px 4px 0px;\n  }\n  .btn-group-wrapper {\n    background: var(--color-cloud);\n    padding: 48px 40px;\n    font-family: var(--font-segoe-ui-variable-text);\n    display: flex;\n    flex-direction: column;\n    gap: 32px;\n    max-width: 600px;\n    box-sizing: border-box;\n  }\n  .btn-group-label {\n    font-size: 12px;\n    font-weight: 600;\n    color: var(--color-ink-navy);\n    letter-spacing: 0.08em;\n    text-transform: uppercase;\n    margin: 0 0 4px 0;\n    font-family: var(--font-segoe-ui-variable-text);\n  }\n  .btn-group-row {\n    display: flex;\n    align-items: center;\n    gap: 16px;\n    flex-wrap: wrap;\n  }\n  .btn-primary {\n    background-color: var(--color-teams-violet);\n    color: var(--color-cloud);\n    border: none;\n    border-radius: 8px;\n    padding: 10px 20px;\n    font-family: var(--font-segoe-ui-variable-text);\n    font-size: 15px;\n    font-weight: 500;\n    letter-spacing: -0.025em;\n    cursor: pointer;\n    text-decoration: none;\n    display: inline-block;\n    line-height: 1.4;\n    transition: background 0.15s;\n  }\n  .btn-primary:hover {\n    background-color: var(--color-teams-deep);\n  }\n  .btn-outline {\n    background-color: transparent;\n    color: var(--color-graphite);\n    border: 1.5px solid var(--color-mist);\n    border-radius: 8px;\n    padding: 10px 20px;\n    font-family: var(--font-segoe-ui-variable-text);\n    font-size: 15px;\n    font-weight: 500;\n    letter-spacing: -0.025em;\n    cursor: pointer;\n    text-decoration: none;\n    display: inline-block;\n    line-height: 1.4;\n    transition: border-color 0.15s, color 0.15s;\n  }\n  .btn-outline:hover {\n    border-color: var(--color-ink-navy);\n    color: var(--color-ink-navy);\n  }\n  .btn-pill {\n    background-color: var(--color-teams-violet);\n    color: var(--color-cloud);\n    border: none;\n    border-radius: 200px;\n    padding: 10px 24px;\n    font-family: var(--font-segoe-ui-variable-text);\n    font-size: 15px;\n    font-weight: 500;\n    letter-spacing: -0.025em;\n    cursor: pointer;\n    text-decoration: none;\n    display: inline-block;\n    line-height: 1.4;\n    transition: background 0.15s;\n  }\n  .btn-pill:hover {\n    background-color: var(--color-teams-deep);\n  }\n  .btn-link {\n    background-color: transparent;\n    color: var(--color-microsoft-blue);\n    border: none;\n    border-radius: 0;\n    padding: 10px 0;\n    font-family: var(--font-segoe-ui-variable-text);\n    font-size: 15px;\n    font-weight: 400;\n    letter-spacing: -0.025em;\n    cursor: pointer;\n    text-decoration: none;\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    line-height: 1.4;\n  }\n  .btn-link svg {\n    flex-shrink: 0;\n  }\n  .btn-icon-circle {\n    background-color: var(--color-teams-violet);\n    color: var(--color-cloud);\n    border: none;\n    border-radius: 8px;\n    width: 36px;\n    height: 36px;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    cursor: pointer;\n    flex-shrink: 0;\n  }\n  .btn-more-info {\n    display: inline-flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    font-family: var(--font-segoe-ui-variable-text);\n  }\n  .btn-more-info-text {\n    color: var(--color-microsoft-blue);\n    font-size: 15px;\n    font-weight: 400;\n    letter-spacing: -0.025em;\n  }\n  .section-divider {\n    height: 1px;\n    background: var(--color-mist);\n    border: none;\n    margin: 0;\n  }\n  .variant-title {\n    font-size: 11px;\n    color: var(--color-steel);\n    font-family: var(--font-segoe-ui-variable-text);\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    margin-bottom: 12px;\n    font-weight: 400;\n  }\n</style>\n<div class=\"btn-group-wrapper\">\n  <div>\n    <p class=\"btn-group-label\">Componentes de botón</p>\n  </div>\n  <div>\n    <div class=\"variant-title\">Primario · Descarga y conversión</div>\n    <div class=\"btn-group-row\">\n      <a class=\"btn-primary\" href=\"#\">Descargar ahora</a>\n      <a class=\"btn-primary\" href=\"#\">Consultar planes y precios</a>\n    </div>\n  </div>\n  <hr class=\"section-divider\">\n  <div>\n    <div class=\"variant-title\">Secundario · Acciones de apoyo</div>\n    <div class=\"btn-group-row\">\n      <a class=\"btn-outline\" href=\"#\">Descargar Teams</a>\n      <a class=\"btn-outline\" href=\"#\">Iniciar sesión</a>\n    </div>\n  </div>\n  <hr class=\"section-divider\">\n  <div>\n    <div class=\"variant-title\">Pill · Variante para fondos de imagen</div>\n    <div class=\"btn-group-row\">\n      <a class=\"btn-pill\" href=\"#\">Probar gratis</a>\n    </div>\n  </div>\n  <hr class=\"section-divider\">\n  <div>\n    <div class=\"variant-title\">Enlace con icono · Navegación de contenido</div>\n    <div class=\"btn-group-row\">\n      <a class=\"btn-more-info\" href=\"#\">\n        <span class=\"btn-icon-circle\">\n          <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path d=\"M5 2.5L9.5 7L5 11.5\" stroke=\"#ffffff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          </svg>\n        </span>\n        <span class=\"btn-more-info-text\">Más información</span>\n      </a>\n    </div>\n  </div>\n</div>1a:T19d6,<style>\n  :root {\n    --color-teams-violet: #5d5bd4;\n    --color-microsoft-blue: #0067b8;\n    --color-ink-navy: #17253d;\n    --color-abyss-navy: #0e1726;\n    --color-steel: #616161;\n    --color-graphite: #262626;\n    --color-cloud: #ffffff;\n    --color-frost: #f2f2f2;\n    --color-mist: #bdc5d2;\n    --color-near-white: #fefefe;\n    --color-lace: #fbf5fb;\n    --font-segoe-ui-variable-text: 'Inter Variable', 'Inter', system-ui, sans-serif;\n    --shadow-subtle: rgba(0,0,0,0.12) 0px 0px 2px 0px, rgba(0,0,0,0.14) 0px 2px 4px 0px;\n  }\n  .cards-section {\n    background: var(--color-lace);\n    padding: 48px 24px;\n    font-family: var(--font-segoe-ui-variable-text);\n    box-sizing: border-box;\n    max-width: 600px;\n  }\n  .section-eyebrow {\n    font-size: 12px;\n    font-weight: 600;\n    color: var(--color-ink-navy);\n    letter-spacing: 0.08em;\n    text-transform: uppercase;\n    margin: 0 0 12px 0;\n    display: block;\n    font-family: var(--font-segoe-ui-variable-text);\n  }\n  .section-heading {\n    font-size: 32px;\n    font-weight: 600;\n    color: var(--color-abyss-navy);\n    letter-spacing: -0.015em;\n    line-height: 1.25;\n    margin: 0 0 32px 0;\n    font-family: var(--font-segoe-ui-variable-text);\n  }\n  .cards-grid {\n    display: flex;\n    flex-direction: column;\n    gap: 20px;\n  }\n  .article-card {\n    background: var(--color-near-white);\n    border-radius: 24px;\n    box-shadow: var(--shadow-subtle);\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n  }\n  .card-img-placeholder {\n    width: 100%;\n    height: 180px;\n    background: linear-gradient(135deg, #c8c6e8 0%, #a5a3d4 40%, #8683c4 100%);\n    flex-shrink: 0;\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    overflow: hidden;\n  }\n  .card-img-placeholder-2 {\n    background: linear-gradient(135deg, #b8d4e8 0%, #8fb8d4 40%, #6696b8 100%);\n  }\n  .card-img-inner {\n    width: 80%;\n    height: 70%;\n    background: rgba(255,255,255,0.15);\n    border-radius: 12px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n  .card-img-icon {\n    opacity: 0.5;\n  }\n  .card-body {\n    padding: 24px;\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n    flex: 1;\n  }\n  .card-title {\n    font-size: 20px;\n    font-weight: 600;\n    color: var(--color-ink-navy);\n    letter-spacing: -0.025em;\n    line-height: 1.3;\n    margin: 0;\n    font-family: var(--font-segoe-ui-variable-text);\n  }\n  .card-body-text {\n    font-size: 14px;\n    font-weight: 400;\n    color: var(--color-steel);\n    letter-spacing: -0.03em;\n    line-height: 1.5;\n    margin: 0;\n    font-family: var(--font-segoe-ui-variable-text);\n  }\n  .card-footer {\n    padding: 0 24px 24px 24px;\n    margin-top: auto;\n  }\n  .card-link {\n    display: inline-flex;\n    align-items: center;\n    gap: 10px;\n    text-decoration: none;\n    font-family: var(--font-segoe-ui-variable-text);\n  }\n  .card-link-icon {\n    background-color: var(--color-teams-violet);\n    border-radius: 8px;\n    width: 32px;\n    height: 32px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n  }\n  .card-link-text {\n    font-size: 15px;\n    font-weight: 400;\n    color: var(--color-microsoft-blue);\n    letter-spacing: -0.025em;\n  }\n</style>\n<div class=\"cards-section\">\n  <span class=\"section-eyebrow\">Noticias destacadas</span>\n  <h2 class=\"section-heading\">Descubre qué pasa con Teams</h2>\n  <div class=\"cards-grid\">\n    <div class=\"article-card\">\n      <div class=\"card-img-placeholder\">\n        <div class=\"card-img-inner\">\n          <svg class=\"card-img-icon\" width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n            <rect x=\"6\" y=\"10\" width=\"36\" height=\"28\" rx=\"4\" stroke=\"white\" stroke-width=\"2\" fill=\"none\"/>\n            <rect x=\"10\" y=\"14\" width=\"12\" height=\"8\" rx=\"2\" fill=\"white\" fill-opacity=\"0.6\"/>\n            <rect x=\"26\" y=\"14\" width=\"12\" height=\"8\" rx=\"2\" fill=\"white\" fill-opacity=\"0.6\"/>\n            <rect x=\"10\" y=\"26\" width=\"28\" height=\"2\" rx=\"1\" fill=\"white\" fill-opacity=\"0.4\"/>\n            <rect x=\"10\" y=\"30\" width=\"20\" height=\"2\" rx=\"1\" fill=\"white\" fill-opacity=\"0.4\"/>\n          </svg>\n        </div>\n      </div>\n      <div class=\"card-body\">\n        <h3 class=\"card-title\">De Hilos a Flujos de trabajo: características de Microsoft Teams que aumentan la productividad de todos</h3>\n        <p class=\"card-body-text\">Las organizaciones buscan trabajar con mayor rapidez e inteligencia. Guiado por los comentarios de los clientes, Microsoft Teams está añadiendo nuevas características como hilos, múltiples reacciones con emojis y flujos de trabajo activados por emojis.</p>\n      </div>\n      <div class=\"card-footer\">\n        <a class=\"card-link\" href=\"#\">\n          <span class=\"card-link-icon\">\n            <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n              <path d=\"M5 2.5L9.5 7L5 11.5\" stroke=\"#ffffff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n            </svg>\n          </span>\n          <span class=\"card-link-text\">Más información</span>\n        </a>\n      </div>\n    </div>\n    <div class=\"article-card\">\n      <div class=\"card-img-placeholder card-img-placeholder-2\">\n        <div class=\"card-img-inner\">\n          <svg class=\"card-img-icon\" width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n            <circle cx=\"24\" cy=\"18\" r=\"8\" stroke=\"white\" stroke-width=\"2\" fill=\"none\"/>\n            <path d=\"M10 38c0-7.732 6.268-14 14-14s14 6.268 14 14\" stroke=\"white\" stroke-width=\"2\" stroke-linecap=\"round\" fill=\"none\"/>\n          </svg>\n        </div>\n      </div>\n      <div class=\"card-body\">\n        <h3 class=\"card-title\">Crear indicaciones como un profesional con Microsoft 365 Copilot en Teams</h3>\n        <p class=\"card-body-text\">Descubre todo el potencial de toma de decisiones de tu equipo con indicaciones para Copilot en Teams. Simplifica y transforma tus reuniones para que todas las ideas se visualicen, evalúen y hagan realidad.</p>\n      </div>\n      <div class=\"card-footer\">\n        <a class=\"card-link\" href=\"#\">\n          <span class=\"card-link-icon\">\n            <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n              <path d=\"M5 2.5L9.5 7L5 11.5\" stroke=\"#ffffff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n            </svg>\n          </span>\n          <span class=\"card-link-text\">Más información</span>\n        </a>\n      </div>\n    </div>\n  </div>\n</div>1b:Tfaa,<style>\n  :root {\n    --color-teams-violet: #5d5bd4;\n    --color-teams-deep: #424197;\n    --color-microsoft-blue: #0067b8;\n    --color-ink-navy: #17253d;\n    --color-abyss-navy: #0e1726;\n    --color-steel: #616161;\n    --color-graphite: #262626;\n    --color-cloud: #ffffff;\n    --color-mist: #bdc5d2;\n    --color-near-white: #fefefe;\n    --font-segoe-ui-variable-text: 'Inter Variable', 'Inter', system-ui, sans-serif;\n    --shadow-subtle: rgba(0,0,0,0.12) 0px 0px 2px 0px, rgba(0,0,0,0.14) 0px 2px 4px 0px;\n  }\n  .tab-nav-wrapper {\n    background: var(--color-cloud);\n    border-bottom: 1px solid var(--color-mist);\n    font-family: var(--font-segoe-ui-variable-text);\n    max-width: 600px;\n    box-sizing: border-box;\n  }\n  .tab-nav-inner {\n    display: flex;\n    align-items: stretch;\n    justify-content: space-between;\n    height: 56px;\n    padding: 0 0 0 0;\n  }\n  .tab-nav-links {\n    display: flex;\n    align-items: stretch;\n    gap: 0;\n    overflow-x: auto;\n    scrollbar-width: none;\n    flex: 1;\n  }\n  .tab-nav-links::-webkit-scrollbar {\n    display: none;\n  }\n  .tab-link {\n    position: relative;\n    display: inline-flex;\n    align-items: center;\n    padding: 0 16px;\n    font-family: var(--font-segoe-ui-variable-text);\n    font-size: 14px;\n    font-weight: 400;\n    color: var(--color-graphite);\n    letter-spacing: -0.03em;\n    text-decoration: none;\n    white-space: nowrap;\n    border-bottom: 2px solid transparent;\n    cursor: pointer;\n    transition: color 0.15s, border-color 0.15s;\n    box-sizing: border-box;\n    line-height: 1;\n    background: transparent;\n    border-top: none;\n    border-left: none;\n    border-right: none;\n    outline: none;\n  }\n  .tab-link:hover {\n    color: var(--color-ink-navy);\n  }\n  .tab-link.active {\n    color: var(--color-abyss-navy);\n    font-weight: 600;\n    border-bottom: 2px solid var(--color-abyss-navy);\n  }\n  .tab-nav-cta {\n    display: flex;\n    align-items: center;\n    padding: 0 0 0 16px;\n    flex-shrink: 0;\n  }\n  .tab-cta-btn {\n    background-color: var(--color-teams-violet);\n    color: var(--color-cloud);\n    border: none;\n    border-radius: 8px;\n    padding: 9px 16px;\n    font-family: var(--font-segoe-ui-variable-text);\n    font-size: 14px;\n    font-weight: 500;\n    letter-spacing: -0.03em;\n    cursor: pointer;\n    text-decoration: none;\n    display: inline-block;\n    line-height: 1.4;\n    transition: background 0.15s;\n    white-space: nowrap;\n  }\n  .tab-cta-btn:hover {\n    background-color: var(--color-teams-deep);\n  }\n  .tab-content-preview {\n    background: var(--color-near-white);\n    padding: 32px 24px;\n    border-bottom: 1px solid var(--color-mist);\n  }\n  .tab-content-eyebrow {\n    font-size: 12px;\n    font-weight: 600;\n    color: var(--color-ink-navy);\n    letter-spacing: 0.08em;\n    text-transform: uppercase;\n    display: block;\n    margin-bottom: 10px;\n    font-family: var(--font-segoe-ui-variable-text);\n  }\n  .tab-content-title {\n    font-size: 32px;\n    font-weight: 600;\n    color: var(--color-abyss-navy);\n    letter-spacing: -0.015em;\n    line-height: 1.25;\n    margin: 0;\n    font-family: var(--font-segoe-ui-variable-text);\n  }\n</style>\n<div style=\"background: var(--color-cloud); max-width:600px; font-family: var(--font-segoe-ui-variable-text);\">\n  <nav class=\"tab-nav-wrapper\">\n    <div class=\"tab-nav-inner\">\n      <div class=\"tab-nav-links\">\n        <a class=\"tab-link active\" href=\"#\">Noticias destacadas</a>\n        <a class=\"tab-link\" href=\"#\">Soluciones</a>\n        <a class=\"tab-link\" href=\"#\">Productos y servicios</a>\n        <a class=\"tab-link\" href=\"#\">Casos de clientes</a>\n        <a class=\"tab-link\" href=\"#\">Comenzar</a>\n      </div>\n      <div class=\"tab-nav-cta\">\n        <a class=\"tab-cta-btn\" href=\"#\">Consultar planes y precios</a>\n      </div>\n    </div>\n  </nav>\n  <div class=\"tab-content-preview\">\n    <span class=\"tab-content-eyebrow\">Noticias destacadas</span>\n    <h2 class=\"tab-content-title\">Reuniones y mensajería más inteligentes con tecnología de IA</h2>\n  </div>\n</div>1c:T7f9,QUICK COLOR REFERENCE:\n• Body text: #17253d\n• Page background: #ffffff\n• Card surface: #fefefe\n• Primary CTA (Teams Violet): #5d5bd4\n• Link / icon accent: #0067b8\n• Secondary text: #616161\n• Border / divider: #bdc5d2\n\nEXAMPLE COMPONENT PROMPTS:\n\n1. HERO SECTION: White (#ffffff) background, left column 40% width. Headline at 48px Segoe UI Variable Display weight 600, color #0e1726, letterSpacing −0.01em, lineHeight 1.17. Subtext at 16px Segoe UI Variable Text weight 400, color #616161, lineHeight 1.50. CTA button: backgroundColor #5d5bd4, color #ffffff, borderRadius 8px, padding 8px 16px, font 500 15px. Right column: floating product screenshot with lilac (#fbf5fb) background wash.\n\n2. ARTICLE PREVIEW CARD: backgroundColor #fefefe, borderRadius 24px, boxShadow rgba(0,0,0,0.12) 0px 0px 2px 0px and rgba(0,0,0,0.14) 0px 2px 4px 0px. Top: 16:9 image fills card width, clipped to 24px 24px 0 0 radius. Content padding 24px. Category label: 12px weight 600 #17253d letterSpacing +0.08em uppercase. Title: 20px weight 600 #17253d lineHeight 1.40. Body: 14px weight 400 #616161. Footer link: 'Más información' in #0067b8 with right-arrow icon.\n\n3. PRIMARY CTA BUTTON: backgroundColor #5d5bd4, color #ffffff, borderRadius 8px, padding 8px 16px, fontFamily Segoe UI Variable Text, fontSize 15px, fontWeight 500. Hover: backgroundColor #424197. Focus: outline 2px solid #5d5bd4, outlineOffset 2px.\n\n4. HORIZONTAL TAB NAV: backgroundColor #ffffff, borderBottom 1px solid #bdc5d2, height 56px, display flex, alignItems center, gap 0. Tab items: 14px weight 400 #262626, padding 0 16px 32px 12px. Active tab: color #0e1726, borderBottom 2px solid #0e1726. Right-aligned CTA: backgroundColor #5d5bd4, color #ffffff, borderRadius 8px, padding 8px 16px.\n\n5. SECTION CATEGORY LABEL: fontFamily Segoe UI Variable Text, fontSize 12px, fontWeight 600, color #17253d, letterSpacing +0.08em (0.96px), textTransform uppercase, lineHeight 1.43. No background, no border, no padding — standalone typographic label above section heading."
+}

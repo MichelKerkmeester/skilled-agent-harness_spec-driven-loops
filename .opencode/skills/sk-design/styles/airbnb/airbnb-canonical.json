@@ -1,0 +1,1504 @@
+{
+  "source": "https://styles.refero.design/style/c2325884-4391-4688-85cd-e143f5107517",
+  "uuid": "c2325884-4391-4688-85cd-e143f5107517",
+  "name": "Airbnb",
+  "northStar": "Quiet white gallery wall with one coral-red bookmark",
+  "capturedAt": "2026-07-18T07:04:49.382Z",
+  "meta": {
+    "url": "https://www.airbnb.com",
+    "siteName": "Airbnb",
+    "extractedAt": "2026-07-03T03:15:59.260Z",
+    "durationMs": 74162,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 2298,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set body text at 14px/400 in Hof (#222222) with 1.43 line-height — this is the content backbone.",
+      "Use Rausch (#ff385c) exclusively for the brand logo, search submit, active wishlist hearts, and one primary action per surface. No other reds.",
+      "Give all listing card images a 12px border-radius and let them overflow into the card edge — no padding between image and text below.",
+      "Use border-radius: 9999px for the search bar, pill buttons, wishlist hearts, and circular icon buttons. Use 12px for listing cards and 8px for ghost buttons.",
+      "Set section headings at 22px/500 with -0.0200em letter-spacing — the tight tracking is a geometric-sans signature at that size.",
+      "Place the page canvas at #f7f7f7 and cards at #ffffff so elevation reads through value contrast, not just shadow.",
+      "Keep property imagery full-bleed within its card frame — no margins, no decorative borders around photographs."
+    ],
+    "donts": [
+      "Don't introduce additional accent colors beyond Rausch — the 0% colorfulness of the interface is deliberate; every additional hue dilutes the brand.",
+      "Don't use shadows on listing cards. The visual system uses flat surfaces with whitespace, not elevation, to separate content.",
+      "Don't set body text below 12px — the scale bottoms out at 11px for badges only.",
+      "Don't round corners at inconsistent radii — the system has exactly two sizes for cards (12px and 14px) and full-pill (9999px) for interactive controls.",
+      "Don't use borders on listing cards. Separation comes from the off-white canvas vs white card surface, not from lines.",
+      "Don't apply Rausch to text or decorative elements — it is an action color, not a brand paint color for backgrounds or headings.",
+      "Don't use bold (700) for body or metadata text — 700 is reserved for the 28px page titles and 21px card-titles emphasis; everything else is 400–600."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ff385c",
+        "name": "Rausch",
+        "role": "Red decorative accent for icons, marks, and small graphic details. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#e00b41",
+        "name": "Rausch 600",
+        "role": "Pressed and dark-state variant of Rausch for hover/active surfaces of the brand accent",
+        "group": "brand"
+      },
+      {
+        "hex": "#222222",
+        "name": "Hof",
+        "role": "Primary text, body copy, headings, icon strokes, and inverse backgrounds — a near-black neutral that anchors the entire achromatic system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6a6a6a",
+        "name": "Foggy",
+        "role": "Secondary text, muted labels, helper copy, disabled icon fills, and subdued metadata beneath card titles",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c1c1c1",
+        "name": "Grey 500",
+        "role": "Disabled text, placeholder text in inputs, and muted icon strokes where state de-emphasis is required",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebebeb",
+        "name": "Bebe",
+        "role": "Hairline borders, input underlines, dividers between list rows, and subtle separator lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dddddd",
+        "name": "Deco",
+        "role": "Card surface backgrounds for muted containers, skeleton placeholders, and disabled card states",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f7f7",
+        "name": "Faint",
+        "role": "Page canvas background, footer surface, and hover state for interactive surfaces — the soft off-white that sets the page apart from pure white cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White",
+        "role": "Elevated card surfaces, input fields, modals, and the primary surface against the off-white canvas",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed layout with no fixed max-width constraint — content stretches edge to edge within the viewport, with internal horizontal padding of approximately 40px on each side at desktop. The hero is the floating search capsule centered on a quiet white canvas with no hero image or headline — the search bar IS the hero. Below the search, the page flows into vertically stacked horizontal-scroll sections (4 rows visible: Popular homes, Great hotels, another city, Available next month), each at roughly 320px tall, separated by 48px vertical gaps. Each section uses a 7-up card grid with horizontal overflow and arrow navigation. The footer is a 3-column link grid on #f7f7f7 background, followed by a bottom bar with copyright, language/currency, and social icons. Navigation is a fixed top bar with centered tab navigation and right-aligned utility controls.",
+    "imagery": "Photography dominates the visual system — full-bleed property images are the primary content type. All photographs are warm, well-lit interior and exterior shots of real homes and hotels, treated with natural color grading (no heavy filters or duotones). Images are tightly cropped at 1:1 aspect ratio for listing cards, filling the card edge with no margin. Icons throughout the interface are outlined, monochrome (#222222 stroke, ~16–20px), used sparingly for navigation categories and UI controls. The logo is the only multicolor graphic element (Rausch). No illustrations, no 3D renders, no abstract graphics — the visual language is pure photography + minimal monochrome iconography on a soft white canvas.",
+    "similar": [
+      {
+        "why": "Same white-canvas approach with property-image-led cards, but Booking uses blue accents instead of coral",
+        "business": "Booking.com"
+      },
+      {
+        "why": "Same full-bleed photography card pattern in horizontal scroll rows, similar card radii and metadata hierarchy",
+        "business": "Vrbo"
+      },
+      {
+        "why": "Same image-first listing grid layout with title + metadata + price beneath, similar typographic scale",
+        "business": "Tripadvisor"
+      },
+      {
+        "why": "Same near-monochrome UI philosophy with one saturated accent color and geometric sans typography, though Linear is darker",
+        "business": "Linear"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "12px",
+        "badges": "9999px",
+        "inputs": "8px",
+        "avatars": "9999px",
+        "buttons": "9999px",
+        "search-bar": "9999px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "48px",
+      "cardPadding": "12px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f7f7f7",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — soft off-white that recedes behind all content"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Property listing cards, search inputs, navigation pills — the primary interactive surface"
+      },
+      {
+        "hex": "#dddddd",
+        "name": "Muted Surface",
+        "level": 2,
+        "purpose": "Skeleton/placeholder card backgrounds and disabled card states"
+      },
+      {
+        "hex": "#222222",
+        "name": "Inverse",
+        "level": 3,
+        "purpose": "Dark mode surfaces, inverse buttons, high-contrast overlays"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0px 0px 0px 1px rgba(0,0,0,0.02), 0px 2px 6px 0px rgba(0,0,0,0.04), 0px 4px 8px 0px rgba(0,0,0,0.10)",
+        "element": "Search bar"
+      },
+      {
+        "style": "0 8px 28px rgba(0,0,0,0.28)",
+        "element": "Elevated overlay (modal, popover)"
+      },
+      {
+        "style": "0 6px 20px rgba(0,0,0,0.2)",
+        "element": "Dropdown / menu"
+      },
+      {
+        "style": "0 2px 4px rgba(0,0,0,0.18)",
+        "element": "Tooltip"
+      }
+    ],
+    "northStar": "Quiet white gallery wall with one coral-red bookmark",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.18,
+        "letterSpacing": 0
+      },
+      {
+        "role": "ui",
+        "size": 16,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.18,
+        "letterSpacing": -0.44
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Search Bar (Floating Capsule)",
+        "role": "Primary global search input — the signature element of the homepage",
+        "description": "Full-width rounded capsule (border-radius: 9999px), white surface (#ffffff), three segmented fields (Where, When, Who) separated by vertical dividers, 16px/500 labels with 14px/400 placeholder text in #6a6a6a. Surrounded by a layered shadow stack at 0/2/4/8px with decreasing opacity. Right-aligned circular submit button in Rausch (#ff385c), 48px diameter, white search icon, white-on-coral hover state. Container max-width approximately 880px, centered."
+      },
+      {
+        "name": "Property Listing Card",
+        "role": "Repeating content card in horizontal scroll rows",
+        "description": "Rounded container at 12–14px radius, no border, white or transparent background. Image area is the full card width at roughly 1:1 aspect with 12px radius, overflowing slightly with the heart wishlist icon in the top-right corner. Title below in 14px/500 #222222, truncated to one line. Metadata line (host type, dates) in 14px/400 #6a6a6a. Price line in 14px/400 #222222 with the price in 14px/600 #222222. No padding between image and text — they share a 12px gutter."
+      },
+      {
+        "name": "Guest Favorite Badge",
+        "role": "Trust badge overlay on listing images",
+        "description": "Small white pill (border-radius: 9999px), white #ffffff background, 12px/600 text in #222222, positioned in the top-left of listing card images. Padding approximately 6px 12px. Subtle shadow to separate from the photograph."
+      },
+      {
+        "name": "Wishlist Heart Button",
+        "role": "Save/favorite toggle on listing cards",
+        "description": "Circular transparent button (border-radius: 9999px), no background fill, positioned absolute top-right of card image. Heart icon stroke in white when inactive, fill in Rausch (#ff385c) when active. 48px touch target, icon centered at approximately 20px."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Fixed top bar on white background, 80px height. Left: Airbnb logo in Rausch (#ff385c). Center: tab navigation (All, Homes, Experiences, Services) with icon + label pairs in 16px/500, active tab underlined with a 2px black (#222222) bar, inactive tabs in #6a6a6a. Right: 'Become a host' link in 14px/500 #222222, language globe icon, and hamburger menu button (circular, 40px, #f7f7f7 background)."
+      },
+      {
+        "name": "Circular Nav Button",
+        "role": "Icon-only navigation control for category tabs",
+        "description": "Perfectly round button (border-radius: 9999px), 40px diameter, #f7f7f7 background. Icon stroke in #222222 at 16px. Hover lifts to #ebebeb. Used for the hamburger menu and language selector in the top-right."
+      },
+      {
+        "name": "Pill Navigation Tab",
+        "role": "Category selection tab in top nav",
+        "description": "Pill-shaped tab with icon + label, active state shows a 2px black underline beneath the icon. Inactive text in #6a6a6a, active in #222222. 16px/500. No background fill — sits directly on white."
+      },
+      {
+        "name": "Section Title with Arrow",
+        "role": "Row heading for horizontal scroll sections",
+        "description": "Title in 22px/500 #222222 with tight -0.02em tracking, followed by a right-pointing arrow icon in #222222 at the same baseline. No underline, no decoration — the arrow implies navigability. Right-aligned carousel arrows in circular 40px buttons with #f7f7f7 background and #222222 chevron."
+      },
+      {
+        "name": "Carousel Arrow Button",
+        "role": "Horizontal scroll navigation for listing rows",
+        "description": "Circular 32px button, white #ffffff background with subtle shadow, positioned vertically centered on the row. Chevron icon stroke in #222222. Disabled state: #c1c1c1 chevron, reduced opacity."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action button",
+        "description": "Transparent background, 1px solid #222222 border, #222222 text, border-radius: 8px, padding 0px 16px. 14px/500. No shadow. Hover: #f7f7f7 background fill."
+      },
+      {
+        "name": "Filled Inverse Button",
+        "role": "Primary non-brand action button",
+        "description": "Solid #222222 background, white #ffffff text, border-radius: 8px, padding 0px 16px. 14px/500. Used where Rausch would be too loud for the action hierarchy."
+      },
+      {
+        "name": "Category Icon Button",
+        "role": "Grid icon for browse-by-category navigation",
+        "description": "Square or rectangular button (border-radius: 8px) with icon centered above label. Icon in #222222 at 24px, label in 12px/400 #6a6a6a. Transparent background. No border."
+      },
+      {
+        "name": "Footer Column Link",
+        "role": "Secondary site links in footer",
+        "description": "14px/400 text in #6a6a6a, no underline, no padding. Hover: text color shifts to #222222. Arranged in multi-column grid with 12px row gap. Column headers in 14px/600 #222222."
+      },
+      {
+        "name": "Social Icon Link",
+        "role": "Brand social links in footer",
+        "description": "Circular icon-only button (border-radius: 9999px), 32px, transparent background, icon stroke or fill in #222222. Inline horizontal row in footer."
+      },
+      {
+        "name": "Language/Currency Selector",
+        "role": "Locale controls in footer",
+        "description": "Inline text + icon pair, 14px/500 #222222, globe icon to the left. No background, no border. Sits between the copyright text and social icons at the very bottom of the page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Custom geometric sans designed for Airbnb. Body at 14px/400 carries most content; UI labels at 16px/500; section headings step up through 20px/600, 22px/500 with tight -0.02em tracking, and 28px/700 for page-level titles. Negative tracking tightens as size increases, a hallmark of geometric sans at display sizes. Activates the 'salt' alternate glyph feature.",
+        "sizes": "11px, 12px, 13px, 14px, 16px, 20px, 21px, 22px, 28px",
+        "family": "Airbnb Cereal VF",
+        "weight": "400, 500, 600, 700",
+        "lineHeight": "1.18–1.43",
+        "substitute": "Circular, Inter, or DM Sans",
+        "letterSpacing": "Display 22px: -0.0200em; body 20px: -0.0090em; all other sizes: normal",
+        "fontFeatureSettings": "\"salt\" on"
+      }
+    ],
+    "description": "Airbnb operates on a white-canvas, photograph-first vocabulary: nearly every screen is a quiet monochrome frame that lets full-bleem property imagery carry the experience, with a single saturated coral-red accent (Rausch) as the only chromatic punctuation for action. Typography is set in a custom geometric sans (Airbnb Cereal VF) at mostly small, confident sizes — 14px body, 16px UI, 22–28px section titles — with tight negative tracking and generous line-height that keeps dense listing cards readable. The interface is flat, borderless, and rounded: 12–14px radii on cards and controls, pill-shaped circular buttons, and soft layered shadows only for elevated overlays like the search bar. Everything else — cards, list items, links — relies on whitespace and hairlines rather than chrome.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c2325884-4391-4688-85cd-e143f5107517#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Airbnb design system\",\"item\":\"https://styles.refero.design/style/c2325884-4391-4688-85cd-e143f5107517\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c2325884-4391-4688-85cd-e143f5107517#style-reference\",\"name\":\"Airbnb design system reference\",\"headline\":\"Airbnb design system | Refero Styles\",\"description\":\"Explore Airbnb's light E-commerce design system: Rausch #ff385c, Rausch 600 #e00b41 colors, Airbnb Cereal VF typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c2325884-4391-4688-85cd-e143f5107517\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c2325884-4391-4688-85cd-e143f5107517\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Airbnb\",\"url\":\"https://www.airbnb.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c2325884-4391-4688-85cd-e143f5107517#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/df01ca5e-0282-49eb-a3cc-e1dfbea6a942.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/df01ca5e-0282-49eb-a3cc-e1dfbea6a942.jpg\",\"caption\":\"Screenshot of Airbnb\"},\"image\":\"https://images.refero.design/styles/refero.design/image/df01ca5e-0282-49eb-a3cc-e1dfbea6a942.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Airbnb design system\",\"Airbnb website design\",\"Airbnb colors\",\"Airbnb typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Rausch\",\"Rausch 600\",\"Hof\",\"Foggy\",\"Airbnb Cereal VF\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Airbnb design system\"},{\"@type\":\"Thing\",\"name\":\"Airbnb website design\"},{\"@type\":\"Thing\",\"name\":\"Airbnb colors\"},{\"@type\":\"Thing\",\"name\":\"Airbnb typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-28T21:58:43.023Z\",\"dateModified\":\"2026-04-28T21:58:43.023Z\"}]}19:Ta67,**Quick Color Reference:**\ntext: #222222 (Hof) · background: #ffffff (Card) / #f7f7f7 (Canvas) · border: #ebebeb (Bebe) · muted text: #6a6a6a (Foggy) · accent: #ff385c (Rausch) · primary action: no distinct CTA color\n\n**3–5 Example Component Prompts:**\n\n1. **Create the search bar capsule:** Full-width white capsule, border-radius: 9999px, max-width 880px, centered on #f7f7f7 canvas. Three fields side by side: 'Where' label at 16px/500 #222222 with placeholder 'Search destinations' at 14px/400 #6a6a6a, 'When' label at 16px/500 #222222 with 'Add dates' at 14px/400 #6a6a6a, 'Who' label at 16px/500 #222222 with 'Add guests' at 14px/400 #6a6a6a. Right end: circular submit button 48px diameter, #ff385c (Rausch) background, white search icon. Shadow: 0px 0px 0px 1px rgba(0,0,0,0.02), 0px 2px 6px rgba(0,0,0,0.04), 0px 4px 8px rgba(0,0,0,0.10).\n\n2. **Create a property listing card:** Card with no border, no shadow, white background. Image at top, 1:1 aspect, 12px border-radius, filling the card width. White 'Guest favorite' pill badge in top-left (border-radius: 9999px, 12px/600 #222222, padding 6px 12px). Transparent circular wishlist button in top-right (48px, heart icon stroke white, fill #ff385c when active). Below image: property name at 14px/500 #222222 truncated to one line, then metadata at 14px/400 #6a6a6a (e.g. 'Jul 31 – Aug 5 · Business host'), then price at 14px/400 #222222 with amount in 14px/600 #222222 and a star icon + rating at 14px/400 #222222.\n\n3. **Create the top navigation bar:** Fixed header, 80px tall, white background. Left: Airbnb logo in #ff385c (Rausch). Center: four pill tabs — All, Homes, Experiences, Services — each with a 24px outlined icon above 12px/400 label. Active tab: #222222 text with 2px #222222 underline beneath icon. Inactive: #6a6a6a text. Right: 'Become a host' text link at 14px/500 #222222, then a circular globe icon button (40px, #f7f7f7 background, #222222 icon), then a circular hamburger menu button (40px, #f7f7f7 background, #222222 icon).\n\n4. **Create a section title with carousel arrows:** Section title at left in 22px/500 #222222 with -0.0200em tracking, followed by a right-pointing arrow icon in #222222 at the same baseline. Right side: two circular arrow buttons (32px, white #ffffff background, subtle shadow), left chevron and right chevron in #222222, vertically centered on the row height.\n\n5. **Create a footer link column:** Three-column grid of links on #f7f7f7 background. Each column starts with a header at 14px/600 #222222, followed by 6–8 links at 14px/400 #6a6a6a with 12px row spacing. Hover state: links transition to #222222. No underlines anywhere."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f7f7f7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.976138790665567
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "footer"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 3856651.989530615,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 4,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 10,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 212,
+          "confidence": 1,
+          "prominence": 433917.2096946695,
+          "properties": [
+            "backgroundColor",
+            "stroke",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "icon/stroke": 66,
+            "other/stroke": 35,
+            "other/borderColor": 84,
+            "link/backgroundColor": 4,
+            "other/backgroundColor": 22
+          }
+        },
+        {
+          "hex": "#dddddd",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8975468705785317
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 39,
+          "confidence": 1,
+          "prominence": 298560.16612318106,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4,
+            "card/backgroundColor": 32,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "link",
+            "icon",
+            "heading",
+            "body",
+            "other",
+            "input",
+            "button",
+            "nav"
+          ],
+          "frequency": 265,
+          "confidence": 1,
+          "prominence": 275200.6691264626,
+          "properties": [
+            "color",
+            "stroke",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "icon/fill": 8,
+            "nav/color": 1,
+            "body/color": 85,
+            "link/color": 28,
+            "nav/stroke": 4,
+            "other/fill": 4,
+            "icon/stroke": 20,
+            "input/color": 1,
+            "other/color": 40,
+            "button/color": 46,
+            "other/stroke": 15,
+            "heading/color": 6,
+            "body/backgroundColor": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ebebeb",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9400701157803539
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 103806,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1
+          }
+        },
+        {
+          "hex": "#6a6a6a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5243041069985445
+          },
+          "contexts": [
+            "body",
+            "other",
+            "icon",
+            "button"
+          ],
+          "frequency": 335,
+          "confidence": 1,
+          "prominence": 54969.679119200875,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 64,
+            "body/color": 228,
+            "other/fill": 32,
+            "other/color": 3,
+            "button/color": 8
+          }
+        },
+        {
+          "hex": "#c1c1c1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8109314104129781
+          },
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 132,
+          "confidence": 1,
+          "prominence": 5531.341429432933,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 116,
+            "icon/stroke": 8,
+            "button/color": 4,
+            "other/stroke": 4
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 96,
+          "confidence": 1,
+          "prominence": 3801.549797099786,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 64,
+            "other/fill": 32
+          }
+        },
+        {
+          "hex": "#ff385c",
+          "oklch": {
+            "c": 0.23091995338139745,
+            "h": 17.074452004508597,
+            "l": 0.6578575179173871
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3213,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#e00b41",
+          "oklch": {
+            "c": 0.22773598619393867,
+            "h": 18.497415598599073,
+            "l": 0.5768975618673369
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2304,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0066ff",
+          "oklch": {
+            "c": 0.2408052392865458,
+            "h": 260.8177576265576,
+            "l": 0.5634552426832016
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 550,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/stroke": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00289926027305637,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#ffffff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.85,
+          "background": "#f7f7f7",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.35,
+          "background": "#ebebeb",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.71,
+          "background": "#dddddd",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.84,
+          "background": "#222222",
+          "foreground": "#c1c1c1"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.41,
+          "background": "#ffffff",
+          "foreground": "#6a6a6a"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.05,
+          "background": "#f7f7f7",
+          "foreground": "#6a6a6a"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.98,
+          "background": "#dddddd",
+          "foreground": "#6a6a6a"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.25,
+          "background": "#e00b41",
+          "foreground": "#222222"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.94,
+          "background": "#222222",
+          "foreground": "#6a6a6a"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.72,
+          "background": "#e00b41",
+          "foreground": "#c1c1c1"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.8,
+          "background": "#ffffff",
+          "foreground": "#c1c1c1"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.68,
+          "background": "#f7f7f7",
+          "foreground": "#c1c1c1"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.33,
+          "background": "#dddddd",
+          "foreground": "#c1c1c1"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#e00b41",
+          "foreground": "#6a6a6a"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "other",
+            "link",
+            "card"
+          ],
+          "frequency": 101
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 45
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 28
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 25
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 1.5,
+          "corners": [
+            3,
+            3,
+            0,
+            0
+          ],
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 3,
+          "asymmetric": true
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.02) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 2px 6px 0px, rgba(0, 0, 0, 0.1) 0px 4px 8px 0px",
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 25
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 107,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|link",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|button",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 32,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "list"
+          ],
+          "frequency": 154,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginTop|body",
+            "marginBottom|body",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingBottom|other",
+            "marginRight|body",
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "marginRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "marginRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 50,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body",
+            "heading",
+            "list",
+            "button"
+          ],
+          "frequency": 154,
+          "properties": [
+            "marginTop",
+            "marginLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginLeft|body",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading",
+            "columnGap|list",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|body",
+            "columnGap|body",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|button",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link",
+            "body",
+            "other",
+            "nav",
+            "button"
+          ],
+          "frequency": 184,
+          "properties": [
+            "marginBottom",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|link",
+            "marginLeft|body",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "body",
+            "button",
+            "other",
+            "heading",
+            "list"
+          ],
+          "frequency": 29,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "columnGap|other",
+            "marginBottom|heading",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|list",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Airbnb Cereal VF",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 2114,
+          "fontFeatureSettings": [
+            "\"salt\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Airbnb Cereal VF",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Airbnb Cereal VF",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Airbnb Cereal VF",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 544,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Airbnb Cereal VF",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 168,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Airbnb Cereal VF",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Airbnb Cereal VF",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Airbnb Cereal VF",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Airbnb Cereal VF",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body",
+            "image",
+            "button",
+            "nav",
+            "heading",
+            "card",
+            "list",
+            "footer"
+          ],
+          "frequency": 964,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Airbnb Cereal VF",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "input",
+            "button",
+            "nav",
+            "icon",
+            "heading",
+            "other"
+          ],
+          "frequency": 48,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Airbnb Cereal VF",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "list",
+            "icon"
+          ],
+          "frequency": 81,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Airbnb Cereal VF",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "icon"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Airbnb Cereal VF",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Airbnb Cereal VF",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 96,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Airbnb Cereal VF",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Airbnb Cereal VF",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Airbnb Cereal VF",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.18,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Airbnb Cereal VF",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/55458139-76bc-4966-87ab-067c1194e905.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/df01ca5e-0282-49eb-a3cc-e1dfbea6a942.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c2325884-4391-4688-85cd-e143f5107517#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Airbnb design system\",\"item\":\"https://styles.refero.design/style/c2325884-4391-4688-85cd-e143f5107517\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c2325884-4391-4688-85cd-e143f5107517#style-reference\",\"name\":\"Airbnb design system reference\",\"headline\":\"Airbnb design system | Refero Styles\",\"description\":\"Explore Airbnb's light E-commerce design system: Rausch #ff385c, Rausch 600 #e00b41 colors, Airbnb Cereal VF typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c2325884-4391-4688-85cd-e143f5107517\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c2325884-4391-4688-85cd-e143f5107517\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Airbnb\",\"url\":\"https://www.airbnb.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c2325884-4391-4688-85cd-e143f5107517#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/df01ca5e-0282-49eb-a3cc-e1dfbea6a942.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/df01ca5e-0282-49eb-a3cc-e1dfbea6a942.jpg\",\"caption\":\"Screenshot of Airbnb\"},\"image\":\"https://images.refero.design/styles/refero.design/image/df01ca5e-0282-49eb-a3cc-e1dfbea6a942.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Airbnb design system\",\"Airbnb website design\",\"Airbnb colors\",\"Airbnb typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Rausch\",\"Rausch 600\",\"Hof\",\"Foggy\",\"Airbnb Cereal VF\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Airbnb design system\"},{\"@type\":\"Thing\",\"name\":\"Airbnb website design\"},{\"@type\":\"Thing\",\"name\":\"Airbnb colors\"},{\"@type\":\"Thing\",\"name\":\"Airbnb typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-28T21:58:43.023Z\",\"dateModified\":\"2026-04-28T21:58:43.023Z\"}]}19:Ta67,**Quick Color Reference:**\ntext: #222222 (Hof) · background: #ffffff (Card) / #f7f7f7 (Canvas) · border: #ebebeb (Bebe) · muted text: #6a6a6a (Foggy) · accent: #ff385c (Rausch) · primary action: no distinct CTA color\n\n**3–5 Example Component Prompts:**\n\n1. **Create the search bar capsule:** Full-width white capsule, border-radius: 9999px, max-width 880px, centered on #f7f7f7 canvas. Three fields side by side: 'Where' label at 16px/500 #222222 with placeholder 'Search destinations' at 14px/400 #6a6a6a, 'When' label at 16px/500 #222222 with 'Add dates' at 14px/400 #6a6a6a, 'Who' label at 16px/500 #222222 with 'Add guests' at 14px/400 #6a6a6a. Right end: circular submit button 48px diameter, #ff385c (Rausch) background, white search icon. Shadow: 0px 0px 0px 1px rgba(0,0,0,0.02), 0px 2px 6px rgba(0,0,0,0.04), 0px 4px 8px rgba(0,0,0,0.10).\n\n2. **Create a property listing card:** Card with no border, no shadow, white background. Image at top, 1:1 aspect, 12px border-radius, filling the card width. White 'Guest favorite' pill badge in top-left (border-radius: 9999px, 12px/600 #222222, padding 6px 12px). Transparent circular wishlist button in top-right (48px, heart icon stroke white, fill #ff385c when active). Below image: property name at 14px/500 #222222 truncated to one line, then metadata at 14px/400 #6a6a6a (e.g. 'Jul 31 – Aug 5 · Business host'), then price at 14px/400 #222222 with amount in 14px/600 #222222 and a star icon + rating at 14px/400 #222222.\n\n3. **Create the top navigation bar:** Fixed header, 80px tall, white background. Left: Airbnb logo in #ff385c (Rausch). Center: four pill tabs — All, Homes, Experiences, Services — each with a 24px outlined icon above 12px/400 label. Active tab: #222222 text with 2px #222222 underline beneath icon. Inactive: #6a6a6a text. Right: 'Become a host' text link at 14px/500 #222222, then a circular globe icon button (40px, #f7f7f7 background, #222222 icon), then a circular hamburger menu button (40px, #f7f7f7 background, #222222 icon).\n\n4. **Create a section title with carousel arrows:** Section title at left in 22px/500 #222222 with -0.0200em tracking, followed by a right-pointing arrow icon in #222222 at the same baseline. Right side: two circular arrow buttons (32px, white #ffffff background, subtle shadow), left chevron and right chevron in #222222, vertically centered on the row height.\n\n5. **Create a footer link column:** Three-column grid of links on #f7f7f7 background. Each column starts with a header at 14px/600 #222222, followed by 6–8 links at 14px/400 #6a6a6a with 12px row spacing. Hover state: links transition to #222222. No underlines anywhere."
+}

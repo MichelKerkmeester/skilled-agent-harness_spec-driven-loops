@@ -1,0 +1,958 @@
+{
+  "source": "https://styles.refero.design/style/017ce823-c338-417d-849d-497c97701c4c",
+  "uuid": "017ce823-c338-417d-849d-497c97701c4c",
+  "name": "Simone Sniekers",
+  "northStar": "A single editorial photograph breathes behind whisper-thin black captions — the image does all the work, the UI almost disappears.",
+  "capturedAt": "2026-07-18T09:18:22.133Z",
+  "meta": {
+    "url": "https://www.simonesniekers.com",
+    "siteName": "Simone Sniekers",
+    "extractedAt": "2026-06-03T20:09:15.893Z",
+    "durationMs": 23632,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 248,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use exactly one type size (16px) and one weight (400) for all UI chrome — do not introduce hierarchy through type",
+      "Let the photograph provide all color, warmth, and visual richness — the UI layer stays black on whatever the image presents",
+      "Anchor UI elements to viewport edges (top, bottom, corners) rather than centering them in content areas",
+      "Use Neue Haas Grotesk or Helvetica Neue as the system typeface — no serif, no display, no decorative fonts",
+      "Treat every interactive element as a text link — no buttons, no backgrounds, no borders, no fill states",
+      "Let images bleed to the full viewport with zero padding, zero radius, zero border"
+    ],
+    "donts": [
+      "Do not introduce a type scale — do not use multiple font sizes to create visual hierarchy",
+      "Do not use card components, containers, boxes, or any surface that frames the image",
+      "Do not add shadows, gradients, or background colors to UI elements",
+      "Do not use chromatic colors for UI chrome — all color comes from the photography",
+      "Do not add borders or dividers between UI elements or sections",
+      "Do not use rounded corners on any element — the system is entirely sharp-edged",
+      "Do not add navigation menus, hamburger icons, or visible chrome beyond the three text elements"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Inset text on dark photographic zones and button border accents",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bcbcbc",
+        "name": "Warm Fog",
+        "role": "Dominant canvas wash — the neutral mid-tone the warm gradient settles into at its lower band",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccbbb",
+        "name": "Bone",
+        "role": "Cool-warm neutral surface, secondary canvas tone between photography passages",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c0c4ca",
+        "name": "Slate Drift",
+        "role": "Cooler neutral surface variant for section breaks and contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cdbcb9",
+        "name": "Rose Clay",
+        "role": "Warm-tinted neutral surface — desaturated pink-beige for soft section transitions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cfbca6",
+        "name": "Linen",
+        "role": "Warm cream neutral for lighter photographic sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4f4c4c",
+        "name": "Graphite",
+        "role": "Mid-neutral for subdued text and secondary borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2e2321",
+        "name": "Espresso",
+        "role": "Deep warm neutral for dark photographic zones and shadow anchors",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e01365",
+        "name": "Vermillion",
+        "role": "Photographic accent — vivid magenta-red pulled from editorial imagery, not a UI token",
+        "group": "accent"
+      },
+      {
+        "hex": "#d0a43e",
+        "name": "Saffron",
+        "role": "Photographic accent — warm gold from editorial imagery, bleeds into the canvas wash",
+        "group": "accent"
+      },
+      {
+        "hex": "#cc4132",
+        "name": "Cinnabar",
+        "role": "Photographic accent — vivid red-orange from editorial imagery",
+        "group": "accent"
+      },
+      {
+        "hex": "#a48b0b",
+        "name": "Ochre",
+        "role": "Photographic accent — deep saturated gold from editorial imagery",
+        "group": "accent"
+      }
+    ],
+    "imagery": "Full-bleed editorial fashion photography. Single hero image occupies the entire viewport. The model wears avant-garde sculptural clothing in vivid vermillion, saffron, and black against warm amber and ochre tones. Lighting is studio-controlled with rich directional warmth. The image bleeds to all edges with no padding or framing. The photograph is not cropped or masked — it IS the page. The warm gradient quality (red-orange at top transitioning to golden yellow at bottom) is baked into the photograph itself, not an overlay.",
+    "similar": [
+      {
+        "why": "Same full-bleed editorial photograph with minimal black text overlay and no visible UI chrome",
+        "business": "Mert Alas (mertalas.com)"
+      },
+      {
+        "why": "Same single-image-per-viewport approach with the photograph as the entire page and whisper-thin caption text",
+        "business": "Tim Walker (timwalkerphotography.com)"
+      },
+      {
+        "why": "Same photographer-portfolio pattern where one image fills the screen and UI text is reduced to near-invisibility",
+        "business": "Annie Leibovitz (annieleibovitz.com)"
+      },
+      {
+        "why": "Same approach of letting editorial fashion photography occupy the full viewport with no card frames, borders, or type hierarchy",
+        "business": "Paolo Roversi (paoloroversi.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "northStar": "A single editorial photograph breathes behind whisper-thin black captions — the image does all the work, the UI almost disappears.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Full-Bleed Editorial Image",
+        "role": "The primary content surface — occupies the entire viewport as the page background",
+        "description": "Single photographic image fills 100% viewport width and height. No padding, no border, no radius, no shadow. The image carries all visual weight; UI elements float over it. Color and warmth are provided entirely by the photograph."
+      },
+      {
+        "name": "Progress Counter (bottom-left)",
+        "role": "Scroll/section position indicator",
+        "description": "Left-aligned text at bottom edge, 16px Neue Haas Grotesk weight 400, #000000, positioned with 12-16px from viewport edge. No background, no border. Displays percentage like '0%'."
+      },
+      {
+        "name": "Name Credit (bottom-center)",
+        "role": "Persistent photographer attribution",
+        "description": "Center-aligned text at bottom edge, 16px Neue Haas Grotesk weight 400, #000000. No decoration. Functions as both watermark and navigation anchor to home."
+      },
+      {
+        "name": "Info Trigger (bottom-right)",
+        "role": "Secondary navigation to metadata or contact",
+        "description": "Right-aligned text at bottom edge, 16px Neue Haas Grotesk weight 400, #000000. Functions as a text-only link — no button chrome, no background, no border. Identical typographic treatment to the progress counter and name credit."
+      },
+      {
+        "name": "Three-Element Bottom Bar",
+        "role": "Minimal persistent UI layer",
+        "description": "Three text nodes anchored to bottom of viewport: progress (left), name (center), info (right). All 16px, weight 400, #000000. No container, no background, no divider lines. Spacing between elements is governed by viewport edges and flex distribution."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The only typeface and the only size — applied to every UI element (progress counter, name credit, info button, nav). Using a single weight and size for all chrome treats every UI element as equal-weight editorial caption text, not as hierarchical interface",
+        "sizes": "16px",
+        "family": "Neue Haas Grotesk",
+        "weight": "400",
+        "lineHeight": "1.00, 1.20",
+        "substitute": "Helvetica Neue, Inter, Neue Haas Unica",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Simone Sniekers is a photography portfolio stripped to its essence: the photograph is the interface. The site uses a single full-bleed editorial image as the entire canvas, with a barely-there UI layer of three text elements — a progress counter bottom-left, a name credit bottom-center, and an 'Info' trigger bottom-right. Typography is unified to one size and one weight across every UI element, treating all chrome as equal-weight caption text. The color palette is almost entirely photographic: warm amber, vermillion, and ochre washes bleed from the imagery itself, while the UI overlay sticks to black on whatever the photo presents. No cards, no borders, no shadows, no gradients in the traditional sense — the image provides all visual richness.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/017ce823-c338-417d-849d-497c97701c4c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Simone Sniekers design system\",\"item\":\"https://styles.refero.design/style/017ce823-c338-417d-849d-497c97701c4c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/017ce823-c338-417d-849d-497c97701c4c#style-reference\",\"name\":\"Simone Sniekers design system reference\",\"headline\":\"Simone Sniekers design system | Refero Styles\",\"description\":\"Explore Simone Sniekers's light Agency design system: Obsidian #000000, Paper White #ffffff colors, Neue Haas Grotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/017ce823-c338-417d-849d-497c97701c4c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/017ce823-c338-417d-849d-497c97701c4c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Simone Sniekers\",\"url\":\"https://www.simonesniekers.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/017ce823-c338-417d-849d-497c97701c4c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/daa86653-1329-4f72-9b59-a474e84f35b1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/daa86653-1329-4f72-9b59-a474e84f35b1.jpg\",\"caption\":\"Screenshot of Simone Sniekers\"},\"image\":\"https://images.refero.design/styles/refero.design/image/daa86653-1329-4f72-9b59-a474e84f35b1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Simone Sniekers design system\",\"Simone Sniekers website design\",\"Simone Sniekers colors\",\"Simone Sniekers typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Paper White\",\"Warm Fog\",\"Bone\",\"Neue Haas Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Simone Sniekers design system\"},{\"@type\":\"Thing\",\"name\":\"Simone Sniekers website design\"},{\"@type\":\"Thing\",\"name\":\"Simone Sniekers colors\"},{\"@type\":\"Thing\",\"name\":\"Simone Sniekers typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:47:40.913Z\",\"dateModified\":\"2026-04-30T01:47:40.913Z\"}]}19:T646,Quick Color Reference:\n- text: #000000\n- background: photographic (no solid UI background — the image is the canvas)\n- border: none (UI uses no borders)\n- accent: no distinct UI accent color (chromatic warmth comes from photography only)\n- surface: #bcbcbc (neutral wash when photography is absent)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Create a full-bleed editorial photograph page: image fills 100vw × 100vh with no padding, no border, no radius. A single 16px Neue Haas Grotesk weight 400 text element at bottom-left reading '0%' in #000000. A 16px weight 400 text at bottom-center reading 'Simone Sniekers' in #000000. A 16px weight 400 text at bottom-right reading 'Info' in #000000. No containers, no backgrounds, no borders anywhere.\n2. Create a progress counter: 16px Neue Haas Grotesk weight 400, #000000, positioned 12px from the bottom-left viewport edge. No background, no border, no padding. Text only.\n3. Create a name credit watermark: 16px Neue Haas Grotesk weight 400, #000000, centered horizontally, positioned 12px from the bottom viewport edge. No decoration, no background, no link styling.\n4. Create an info text link: 16px Neue Haas Grotesk weight 400, #000000, positioned 12px from the bottom-right viewport edge. Behaves as a text link with no button styling, no background, no border, no fill state on hover.\n5. Create the bottom UI bar: three 16px Neue Haas Grotesk weight 400 #000000 text elements distributed left/center/right along the bottom edge of the viewport, separated only by flex space-between distribution with no visible dividers."
+      }
+    ],
+    "elevationPhilosophy": "The design intentionally has no elevation. The photograph IS the surface — it occupies the full viewport at z-index zero, and all UI text floats directly on it without containers, shadows, or backgrounds to create separation. This eliminates the distinction between foreground and background, making the photograph and the UI coexist in the same visual plane."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "image",
+            "link",
+            "list",
+            "card"
+          ],
+          "frequency": 1220,
+          "confidence": 1,
+          "prominence": 17946058.283580285,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 89,
+            "card/color": 27,
+            "link/color": 4,
+            "list/color": 3,
+            "image/color": 29,
+            "other/color": 92,
+            "body/borderColor": 356,
+            "card/borderColor": 108,
+            "link/borderColor": 16,
+            "list/borderColor": 12,
+            "image/borderColor": 116,
+            "other/borderColor": 368
+          }
+        },
+        {
+          "hex": "#bcbcbc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7952249185121931
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2589320.747497372,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#eae800",
+          "oklch": {
+            "c": 0.19600104383022154,
+            "h": 109.12686133525051,
+            "l": 0.902835365732642
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054111.4009346182,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#cccbbb",
+          "oklch": {
+            "c": 0.021821056816414143,
+            "h": 103.94874542828533,
+            "l": 0.8384915685982463
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1599344.4504526998,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#4f4c4c",
+          "oklch": {
+            "c": 0.003980606016249829,
+            "h": 17.31511789484705,
+            "l": 0.4194109531543358
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1050107,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#926560",
+          "oklch": {
+            "c": 0.059250731134388473,
+            "h": 26.217554601109576,
+            "l": 0.552481389953741
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1046487,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cfbca6",
+          "oklch": {
+            "c": 0.037097888173984926,
+            "h": 71.33317452546109,
+            "l": 0.8053098043325594
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1012607,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e01365",
+          "oklch": {
+            "c": 0.22826665541826657,
+            "h": 6.872830909219653,
+            "l": 0.5864598773810494
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1012607,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d0a43e",
+          "oklch": {
+            "c": 0.12776229563245184,
+            "h": 84.9221169206917,
+            "l": 0.7408911624964987
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1012607,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2e2321",
+          "oklch": {
+            "c": 0.01732234944716043,
+            "h": 30.173602685918695,
+            "l": 0.2683364439334389
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1009221,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b18759",
+          "oklch": {
+            "c": 0.08062582065681485,
+            "h": 68.17741776298301,
+            "l": 0.6533261325623557
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1009074,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#584e42",
+          "oklch": {
+            "c": 0.02331824873468427,
+            "h": 72.19945407910788,
+            "l": 0.4301460095094865
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1009074,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#7f7f7f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.596489460818441
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1001365,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a48b0b",
+          "oklch": {
+            "c": 0.12945428702622838,
+            "h": 95.97678291020608,
+            "l": 0.6407409736477201
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1001365,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c0c4ca",
+          "oklch": {
+            "c": 0.009487048388138707,
+            "h": 258.34000539558633,
+            "l": 0.818963371785168
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1001365,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#958426",
+          "oklch": {
+            "c": 0.11213070894480875,
+            "h": 98.632137031371,
+            "l": 0.6115632059958808
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1001365,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3f3f3f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3676810553309044
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1001365,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3f3630",
+          "oklch": {
+            "c": 0.016445230264323214,
+            "h": 55.76757355565517,
+            "l": 0.3404373879534998
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1001272,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#7d7265",
+          "oklch": {
+            "c": 0.02387477906133105,
+            "h": 71.92961336125617,
+            "l": 0.558332880946666
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1001272,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cc4132",
+          "oklch": {
+            "c": 0.17801334407354572,
+            "h": 29.69574492953705,
+            "l": 0.5730387542786447
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 992501,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#9d6d53",
+          "oklch": {
+            "c": 0.07230659416157027,
+            "h": 49.28104814268393,
+            "l": 0.5781088156889054
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 992228,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cdbcb9",
+          "oklch": {
+            "c": 0.019850847593486702,
+            "h": 29.569581981866126,
+            "l": 0.8085392659518041
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 940533,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#624133",
+          "oklch": {
+            "c": 0.05159140640075052,
+            "h": 43.81876395845581,
+            "l": 0.4091455203687483
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 519653,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading",
+            "button"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 354196.47697287926,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 1,
+            "button/color": 1,
+            "heading/color": 1,
+            "body/borderColor": 4,
+            "other/borderColor": 4,
+            "button/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.003466670309535032,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.04,
+          "background": "#eae800",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.23,
+          "background": "#2e2321",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.83,
+          "background": "#cccbbb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.99,
+          "background": "#c0c4ca",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.79,
+          "background": "#3f3630",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.64,
+          "background": "#eae800",
+          "foreground": "#2e2321"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.49,
+          "background": "#cdbcb9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.4,
+          "background": "#cfbca6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.06,
+          "background": "#bcbcbc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.53,
+          "background": "#3f3f3f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.31,
+          "background": "#cccbbb",
+          "foreground": "#2e2321"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.06,
+          "background": "#d0a43e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.04,
+          "background": "#624133",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9,
+          "background": "#eae800",
+          "foreground": "#3f3630"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.7,
+          "background": "#c0c4ca",
+          "foreground": "#2e2321"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.5,
+          "background": "#4f4c4c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.33,
+          "background": "#cdbcb9",
+          "foreground": "#2e2321"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.27,
+          "background": "#cfbca6",
+          "foreground": "#2e2321"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.13,
+          "background": "#584e42",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 310,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Neue Haas Grotesk",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 248,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 16,
+          "family": "Neue Haas Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "heading",
+            "button",
+            "image",
+            "card"
+          ],
+          "frequency": 203,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Haas Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "list"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e107b577-da27-465b-989d-1a017c954281.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/daa86653-1329-4f72-9b59-a474e84f35b1.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/017ce823-c338-417d-849d-497c97701c4c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Simone Sniekers design system\",\"item\":\"https://styles.refero.design/style/017ce823-c338-417d-849d-497c97701c4c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/017ce823-c338-417d-849d-497c97701c4c#style-reference\",\"name\":\"Simone Sniekers design system reference\",\"headline\":\"Simone Sniekers design system | Refero Styles\",\"description\":\"Explore Simone Sniekers's light Agency design system: Obsidian #000000, Paper White #ffffff colors, Neue Haas Grotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/017ce823-c338-417d-849d-497c97701c4c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/017ce823-c338-417d-849d-497c97701c4c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Simone Sniekers\",\"url\":\"https://www.simonesniekers.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/017ce823-c338-417d-849d-497c97701c4c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/daa86653-1329-4f72-9b59-a474e84f35b1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/daa86653-1329-4f72-9b59-a474e84f35b1.jpg\",\"caption\":\"Screenshot of Simone Sniekers\"},\"image\":\"https://images.refero.design/styles/refero.design/image/daa86653-1329-4f72-9b59-a474e84f35b1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Simone Sniekers design system\",\"Simone Sniekers website design\",\"Simone Sniekers colors\",\"Simone Sniekers typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Paper White\",\"Warm Fog\",\"Bone\",\"Neue Haas Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Simone Sniekers design system\"},{\"@type\":\"Thing\",\"name\":\"Simone Sniekers website design\"},{\"@type\":\"Thing\",\"name\":\"Simone Sniekers colors\"},{\"@type\":\"Thing\",\"name\":\"Simone Sniekers typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:47:40.913Z\",\"dateModified\":\"2026-04-30T01:47:40.913Z\"}]}19:T646,Quick Color Reference:\n- text: #000000\n- background: photographic (no solid UI background — the image is the canvas)\n- border: none (UI uses no borders)\n- accent: no distinct UI accent color (chromatic warmth comes from photography only)\n- surface: #bcbcbc (neutral wash when photography is absent)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Create a full-bleed editorial photograph page: image fills 100vw × 100vh with no padding, no border, no radius. A single 16px Neue Haas Grotesk weight 400 text element at bottom-left reading '0%' in #000000. A 16px weight 400 text at bottom-center reading 'Simone Sniekers' in #000000. A 16px weight 400 text at bottom-right reading 'Info' in #000000. No containers, no backgrounds, no borders anywhere.\n2. Create a progress counter: 16px Neue Haas Grotesk weight 400, #000000, positioned 12px from the bottom-left viewport edge. No background, no border, no padding. Text only.\n3. Create a name credit watermark: 16px Neue Haas Grotesk weight 400, #000000, centered horizontally, positioned 12px from the bottom viewport edge. No decoration, no background, no link styling.\n4. Create an info text link: 16px Neue Haas Grotesk weight 400, #000000, positioned 12px from the bottom-right viewport edge. Behaves as a text link with no button styling, no background, no border, no fill state on hover.\n5. Create the bottom UI bar: three 16px Neue Haas Grotesk weight 400 #000000 text elements distributed left/center/right along the bottom edge of the viewport, separated only by flex space-between distribution with no visible dividers."
+}

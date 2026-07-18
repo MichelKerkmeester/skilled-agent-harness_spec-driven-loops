@@ -1,0 +1,167 @@
+{
+  "color": {
+    "pure-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure Canvas — Page and surface background — the entire interface lives on this single white plane"
+    },
+    "ink-black": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, product titles, icon strokes, outlined button borders — the only chromatic dark in the system"
+    },
+    "graphite": {
+      "$value": "#232323",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, meta labels, footer copy — a near-identical companion to Ink Black for subtle hierarchy steps"
+    },
+    "slate-mute": {
+      "$value": "#5f6368",
+      "$type": "color",
+      "$description": "Slate Mute — Muted helper text, tertiary metadata, disabled states"
+    },
+    "hairline-gray": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Hairline Gray — Hairline dividers, card separators, input borders, table rules — the sole structural line color, used at 1px"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Maximum-contrast text and icon fills where the deepest dark is needed"
+    }
+  },
+  "font": {
+    "helvetica": {
+      "$value": "Helvetica",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for every UI text element — navigation, section headings, product titles, prices, buttons, and body copy. Weight 700 for section headers and product names creates the only typographic distinction in the system; weight 400 handles everything else. The 15px body / 20px header pairing is unusually small, reinforcing a catalog-card density rather than a marketing-page density."
+    },
+    "gtstandard-m": {
+      "$value": "GTStandard-M",
+      "$type": "fontFamily",
+      "$description": "GTStandard-M — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "GTStandard-M",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: The single global background — no nested surface layers, no card containers, no elevated panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.counter-print.co.uk",
+      "siteName": "Counterprint",
+      "extractedAt": "2026-06-03T21:19:01.888Z",
+      "variant": "extended"
+    }
+  }
+}

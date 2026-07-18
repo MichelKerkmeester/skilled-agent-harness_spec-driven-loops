@@ -1,0 +1,357 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#0c0c0d",
+      "$type": "color",
+      "$description": "Ink Black — High-contrast neutral action fill for primary buttons on light surfaces."
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, text on dark fills, input backgrounds"
+    },
+    "ash": {
+      "$value": "#e9e9ec",
+      "$type": "color",
+      "$description": "Ash — Hairline borders, subtle dividers, hover surfaces, secondary button outlines"
+    },
+    "smoke": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Smoke — Muted body text, metadata (mint counts, prices), inactive icons, placeholder content"
+    },
+    "graphite": {
+      "$value": "#242629",
+      "$type": "color",
+      "$description": "Graphite — Icon strokes, secondary button borders, slightly elevated neutral surfaces"
+    },
+    "charcoal": {
+      "$value": "#1d1d1e",
+      "$type": "color",
+      "$description": "Charcoal — Rare dark surface (e.g. featured card panels) — used sparingly to create a single dark anchor in an otherwise all-white page"
+    },
+    "blush-to-violet": {
+      "$value": "#e09bb5",
+      "$type": "color",
+      "$description": "Blush to Violet — Hero wash gradient — soft pink-to-magenta transition used only as a backdrop to large featured artworks, never as a UI fill"
+    }
+  },
+  "font": {
+    "gamma-sans-display": {
+      "$value": "Gamma Sans Display",
+      "$type": "fontFamily",
+      "$description": "Single-family system used for everything from micro-labels to the 72px hero display. Weight 300 for oversized hero titles ('LIGHT') creates a near-tracery effect that lets the artwork underneath read through; weight 600 reserved for short labels and the Connect button; weight 400 carries body and metadata. The custom neo-grotesque has a slightly condensed character width and flat apertures that feel more architectural than friendly."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "40px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Gamma Sans Display",
+        "fontSize": "72px",
+        "fontWeight": 600,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the gallery wall"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Collection cards, list items, product panels — same color as canvas, separated only by hairline borders"
+    },
+    "hover-subtle": {
+      "$value": "#e9e9ec",
+      "$type": "color",
+      "$description": "Surface level 2: Hover wash, progress bar fill, secondary surface tint"
+    },
+    "dark-anchor": {
+      "$value": "#1d1d1",
+      "$type": "color",
+      "$description": "Surface level 3: Rare inverted card surface for featured/highlighted content"
+    },
+    "inverse-cta": {
+      "$value": "#0c0c0d",
+      "$type": "color",
+      "$description": "Surface level 4: Primary action button (Connect) — only filled dark element in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.gamma.io",
+      "siteName": "Gamma",
+      "extractedAt": "2026-06-03T19:45:15.850Z",
+      "variant": "extended"
+    }
+  }
+}

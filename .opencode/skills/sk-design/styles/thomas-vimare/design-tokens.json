@@ -1,0 +1,160 @@
+{
+  "color": {
+    "obsidian-canvas": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Obsidian Canvas — Page background, all surface layers — the flat dark base every element sits on"
+    },
+    "chalk": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Chalk — Headlines, primary body text, active nav text, active nav underline border, project titles"
+    },
+    "ash": {
+      "$value": "#9a9a9a",
+      "$type": "color",
+      "$description": "Ash — Muted secondary text — project descriptions, section labels, inactive supporting copy"
+    }
+  },
+  "font": {
+    "helveticanowdisplay-light": {
+      "$value": "HelveticaNowDisplay-Light",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for the entire site — headlines, body, navigation, descriptions. The single weight (400, marketed as 'Light') at tight negative tracking gives the site its quiet, editorial voice. Display sizes pull in to -0.010em while body sits at -0.003em, creating a compression gradient that intensifies at scale."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay-Light",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay-Light",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay-Light",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay-Light",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay-Light",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay-Light",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay-Light",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay-Light",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Surface level 0: Single flat surface — the entire page is one plane, no card elevations"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://thms.works",
+      "siteName": "Thomas Vimare",
+      "extractedAt": "2026-06-03T17:44:25.253Z",
+      "variant": "extended"
+    }
+  }
+}

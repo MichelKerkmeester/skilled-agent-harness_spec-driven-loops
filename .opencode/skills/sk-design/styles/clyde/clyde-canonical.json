@@ -1,0 +1,1314 @@
+{
+  "source": "https://styles.refero.design/style/39098e34-b911-4ad3-bcb5-ee80a392cd95",
+  "uuid": "39098e34-b911-4ad3-bcb5-ee80a392cd95",
+  "name": "Clyde",
+  "northStar": "Vault showroom with a single spotlight — a near-black gallery where one warm gradient orb is the only color in the room.",
+  "capturedAt": "2026-07-18T08:18:51.334Z",
+  "meta": {
+    "url": "https://joinclyde.com",
+    "siteName": "Clyde",
+    "extractedAt": "2026-06-03T17:39:47.209Z",
+    "durationMs": 33342,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 599,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Recoleta serif (weight 400) for all text 36px and above — never substitute a sans-serif for display sizes",
+      "Apply increasingly negative letter-spacing as type scales: -0.36px at 36px up to -3.75px at 125px",
+      "Use 100px border-radius for every interactive element — buttons, tags, filter pills, and tab controls",
+      "Keep the palette 99% achromatic; the Solstice Gradient is the only chromatic element and belongs exclusively in 3D decorative shapes",
+      "Define surface separation with 1px #f6f6f4 or #1a1a1a hairline borders — never use box-shadows for elevation",
+      "Set display headlines at line-height 1.00 to create the tight, editorial vertical rhythm that defines the brand",
+      "Use Oldschool Grotesk weight 300 for descriptive body copy and weight 400 for primary body and interactive text"
+    ],
+    "donts": [
+      "Do not introduce any new chromatic color to the UI — the gradient is the only color permitted",
+      "Do not use Recoleta for body text below 36px — Oldschool Grotesk handles everything at UI scale",
+      "Do not use box-shadows for card elevation; the system is intentionally flat with border-based separation",
+      "Do not apply the Solstice Gradient as a button fill, text color, border, or UI surface — it is decorative only",
+      "Do not use letter-spacing of 0 or positive values on display sizes — large type must always be tightened",
+      "Do not use border-radius values outside {4px, 12px, 16px, 38px, 100px} — these five values are the complete radius scale",
+      "Do not mix chromatic button styles — actions are either #000000 filled pills or #f6f6f4 ghost outlines, never both"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f6f6f4",
+        "name": "Bone",
+        "role": "Primary text on dark surfaces, hairline borders, light section backgrounds, ghost-button outlines, nav links — the warm cream that defines the entire light/dark polarity",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7d7d7d",
+        "name": "Slate",
+        "role": "Mid-gray surface accent, secondary UI fill, muted element backgrounds — sits between bone and obsidian for tonal layering",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Inner product-image containers, pure-white card panels, maximum-contrast text — the brightest surface in the stack",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Char",
+        "role": "Near-black hairline borders, subtle dark surface differentiation from the true-black canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ff8400",
+        "name": "Solstice Gradient",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "accent",
+        "gradient": "linear-gradient(90deg, #feed7a 0%, #ff8400 48.96%, #df91f7 100%)"
+      }
+    ],
+    "layout": "Max-width 1200px centered content within a full-bleed dark canvas. The hero is a full-viewport dark band with a centered massive serif headline and a floating gradient 3D shape as atmosphere. Sections alternate between dark (#000000) and light (#f6f6f4) bands in a deliberate rhythm — dark hero → light product feature section → dark stats bar → dark case study. Content within sections is typically 2-column (text-left, visual-right) or single-column centered. A 3-column card grid appears for product protection features. The page model is contained-max-width on a full-bleed dark canvas, with generous vertical breathing room (80px section gaps). Navigation is a minimal transparent header — no sticky behavior, no sidebar, no mega-menu.",
+    "imagery": "Imagery is split between two distinct registers: (1) a signature 3D abstract shape — a fluid, organic blob with the Solstice Gradient (yellow→orange→purple) applied as a soft, luminous surface treatment — that floats in hero and transition zones as the sole chromatic atmosphere; (2) clean product photography (Marshall amplifier, headphones) contained within rounded white or bone cards, treated as tight product crops on pure white with no lifestyle context — the object is the hero. No illustrations, no stock photography, no icons beyond small circular check marks. The visual density is very low: imagery occupies less than 20% of any viewport, with the majority given to massive serif type and breathing room.",
+    "similar": [
+      {
+        "why": "Same editorial restraint — warm cream and near-black palette, serif display type, zero chromatic UI elements, product treated as object on white",
+        "business": "Aesop"
+      },
+      {
+        "why": "Shared dark-canvas dominance, hairline border definition, pill-shaped CTAs, and the conviction that a single accent moment is stronger than a full palette",
+        "business": "Vercel"
+      },
+      {
+        "why": "Identical luxury-monograph atmosphere — massive serif at tight line-height, nearly monochromatic surfaces, and 3D organic forms as the only expressive element",
+        "business": "The Row"
+      },
+      {
+        "why": "Same ultra-restrained dark UI with 1px hairline borders, pill controls, and a refusal to use color for anything that isn't structurally meaningful",
+        "business": "Linear"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "100px",
+        "cards": "16px",
+        "links": "12px",
+        "inputs": "4px",
+        "buttons": "100px",
+        "large-panels": "38px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian Canvas",
+        "level": 0,
+        "purpose": "Default page and section background"
+      },
+      {
+        "hex": "#f6f6f4",
+        "name": "Bone Section",
+        "level": 1,
+        "purpose": "Light-alternating section background, announcement bar, oversized surface contrast"
+      },
+      {
+        "hex": "#7d7d7d",
+        "name": "Slate Surface",
+        "level": 2,
+        "purpose": "Mid-tone UI panels and secondary backgrounds"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper Card",
+        "level": 3,
+        "purpose": "Product image containers and highest-contrast card panels"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Char Edge",
+        "level": 4,
+        "purpose": "Subtle dark surface separation above the canvas"
+      }
+    ],
+    "northStar": "Vault showroom with a single spotlight — a near-black gallery where one warm gradient orb is the only color in the room.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.6,
+        "letterSpacing": 0.15
+      },
+      {
+        "role": "body-lg",
+        "size": 21,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.42
+      },
+      {
+        "role": "subheading",
+        "size": 36,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "heading-sm",
+        "size": 47,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.94
+      },
+      {
+        "role": "heading",
+        "size": 61,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.22
+      },
+      {
+        "role": "heading-lg",
+        "size": 80,
+        "lineHeight": 1,
+        "letterSpacing": -2.4
+      },
+      {
+        "role": "display",
+        "size": 125,
+        "lineHeight": 1,
+        "letterSpacing": -3.75
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page promotional strip",
+        "description": "Full-width #f6f6f4 bar with centered text. 12px vertical padding. Text in Oldschool Grotesk 15px weight 400, #000000. No border, no shadow — just a tonal band break at the top edge."
+      },
+      {
+        "name": "Dark Navigation Header",
+        "role": "Primary site navigation",
+        "description": "Transparent over dark canvas, logo centered (Clyde wordmark + 'by Cover Genius' lockup), nav links left-aligned (Product, Resources), Login + Demo pill right-aligned. No background fill, no bottom border — nav floats on the dark canvas. Text in Oldschool Grotesk 15px weight 400, #f6f6f4."
+      },
+      {
+        "name": "Hero Display Section",
+        "role": "Above-the-fold brand statement",
+        "description": "Full-bleed #000000 canvas with centered Recoleta serif headline at 80–125px, line-height 1.00, #f6f6f4. Floating 3D abstract shape (the Solstice Gradient blob) positioned below as the only chromatic element. Left-aligned supporting body copy in Oldschool Grotesk 16px weight 400, #f6f6f4 at ~50% width."
+      },
+      {
+        "name": "Filled Pill Button",
+        "role": "Primary action (Request a Demo)",
+        "description": "100px border-radius, solid #000000 fill, 20px 28px padding. Text in Oldschool Grotesk 15px weight 400, #f6f6f4. Used on light/bone surfaces. No shadow, no hover gradient — just tonal inversion."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Secondary action on dark surfaces",
+        "description": "100px border-radius, 1px #f6f6f4 border, transparent fill, 20px 28px padding. Text in Oldschool Grotesk 15px weight 400, #f6f6f4. The default action style on dark hero and section backgrounds."
+      },
+      {
+        "name": "Product Protection Card",
+        "role": "Feature illustration with product image",
+        "description": "16px border-radius, #f6f6f4 background, 24px internal padding. Product image contained in an inner #ffffff container. Headline in Oldschool Grotesk 21px weight 400, #000000, uppercase or sentence case. Bulleted feature list in Oldschool Grotesk 15px weight 300 below."
+      },
+      {
+        "name": "Program Performance Card",
+        "role": "Data visualization panel",
+        "description": "16px border-radius, #f6f6f4 background, 44px horizontal padding. Tab/filter pills (Running Total, Month over month, Day over day) at top — 100px radius, small, with the active tab filled #7d7d7d or bordered. Chart area below uses a muted green/mint accent for data lines. Heading in Oldschool Grotesk 21px weight 400, uppercase, #000000."
+      },
+      {
+        "name": "Stats Feature Bar",
+        "role": "Horizontal credibility row",
+        "description": "Full-width horizontal strip with 4–5 items separated by hairline #f6f6f4 borders (1px). Each item: small circular check icon (#f6f6f4) + Oldschool Grotesk 15px weight 400 #f6f6f4 text. No card background, no elevation — items sit directly on the dark canvas."
+      },
+      {
+        "name": "Case Study Card",
+        "role": "Client testimonial or proof point",
+        "description": "16px border-radius, #1a1a1a or #000000 background, 24px padding. Client logo (square outlined box, 40–48px) top-left, body text in Oldschool Grotesk 16px weight 300, #f6f6f4, ghost pill CTA button at bottom. An inner product illustration fills the lower half with the Solstice Gradient on select elements."
+      },
+      {
+        "name": "Filter Tab Pill",
+        "role": "Toggle/filter control within cards",
+        "description": "100px border-radius, 10px 16px padding. Inactive: transparent with #000000 1px border. Active: #7d7d7d fill with #000000 text. Text in Oldschool Grotesk 14–15px weight 400."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Major content section title",
+        "description": "Left-aligned Recoleta serif, 47–80px, #f6f6f4 on dark sections or #000000 on bone sections. Line-height 1.00–1.10. No eyebrow tag, no subtitle — the type IS the heading."
+      },
+      {
+        "name": "Body Description Block",
+        "role": "Supporting paragraph copy",
+        "description": "Max-width ~520px, Oldschool Grotesk 16px weight 300–400, #f6f6f4 at ~70% opacity on dark surfaces, #000000 on light surfaces. Line-height 1.40–1.60. No bullet styling, no special formatting — clean editorial paragraph."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All display and heading text from 36px to 125px. The single weight (400) and dramatic size range create an editorial magazine-cover scale. Line-height tightens to 1.00 at 80px+ for a luxurious, sculpted feel. Negative letter-spacing increases with size: -0.36px at 36px up to -3.75px at 125px.",
+        "sizes": "36px, 47px, 61px, 80px, 125px",
+        "family": "Recoleta",
+        "weight": "400",
+        "lineHeight": "1.00–1.10",
+        "substitute": "GT Super, Canela, or Tiempos Headline",
+        "letterSpacing": "-0.36px at 36px, -0.94px at 47px, -1.22px at 61px, -2.4px at 80px, -3.75px at 125px",
+        "fontFeatureSettings": "\"clig\" on, \"liga\" on"
+      },
+      {
+        "role": "All UI, body copy, sub-labels, button text, nav, and supporting content. Weight 300 for secondary descriptions adds quietness; weight 400 for primary body and interactive elements. The slightly negative tracking at body size tightens the grotesque to feel engineered rather than casual.",
+        "sizes": "15px, 16px, 21px, 80px, 138px",
+        "family": "Oldschool Grotesk",
+        "weight": "300, 400",
+        "lineHeight": "1.30–1.60",
+        "substitute": "Söhne, Inter, or Neue Haas Grotesk",
+        "letterSpacing": "0.15px at 15px, -0.16px at 16px, -0.42px at 21px",
+        "fontFeatureSettings": "\"clig\" on, \"liga\" on"
+      },
+      {
+        "role": "System-fallback serif for secondary annotations; rarely surfaces as the primary typeface when Recoleta is unavailable.",
+        "sizes": "16px",
+        "family": "Times (system fallback)",
+        "weight": "400",
+        "lineHeight": "1.20–1.25",
+        "substitute": "Times New Roman, Georgia",
+        "fontFeatureSettings": "\"clig\" on, \"liga\" on"
+      }
+    ],
+    "description": "Clyde treats product protection as luxury editorial: a near-black canvas dominates every section, warm cream (#f6f6f4) carries all text and hairline borders, and a single yellow-to-orange-to-purple gradient appears only inside 3D abstract shapes and product accents. Display headlines at 80–125px in Recoleta serif create magazine-cover scale, while Oldschool Grotesk at 300/400 handles all UI and body copy at a measured, compact rhythm. The palette is 99% achromatic — buttons are dark fills or cream-outlined pills, never chromatic, and surfaces separate through tonal contrast and hairline borders rather than shadows.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/39098e34-b911-4ad3-bcb5-ee80a392cd95#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Clyde design system\",\"item\":\"https://styles.refero.design/style/39098e34-b911-4ad3-bcb5-ee80a392cd95\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/39098e34-b911-4ad3-bcb5-ee80a392cd95#style-reference\",\"name\":\"Clyde design system reference\",\"headline\":\"Clyde design system | Refero Styles\",\"description\":\"Explore Clyde's dark SaaS design system: Obsidian #000000, Bone #f6f6f4 colors, Recoleta, Oldschool Grotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/39098e34-b911-4ad3-bcb5-ee80a392cd95\",\"mainEntityOfPage\":\"https://styles.refero.design/style/39098e34-b911-4ad3-bcb5-ee80a392cd95\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Clyde\",\"url\":\"https://joinclyde.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/39098e34-b911-4ad3-bcb5-ee80a392cd95#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0274254e-53c3-42a2-a8c1-105047355636.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0274254e-53c3-42a2-a8c1-105047355636.jpg\",\"caption\":\"Screenshot of Clyde\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0274254e-53c3-42a2-a8c1-105047355636.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Clyde design system\",\"Clyde website design\",\"Clyde colors\",\"Clyde typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Obsidian\",\"Bone\",\"Slate\",\"Paper\",\"Recoleta\",\"Oldschool Grotesk\",\"Times (system fallback)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Clyde design system\"},{\"@type\":\"Thing\",\"name\":\"Clyde website design\"},{\"@type\":\"Thing\",\"name\":\"Clyde colors\"},{\"@type\":\"Thing\",\"name\":\"Clyde typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T01:54:33.478Z\",\"dateModified\":\"2026-04-30T01:54:33.478Z\"}]}19:T69d,## Quick Color Reference\n- Page background: #000000\n- Light text on dark: #f6f6f4\n- Light surface / card: #f6f6f4\n- Inner product container: #ffffff\n- Mid-gray surface: #7d7d7d\n- Accent gradient: linear-gradient(90deg, #feed7a 0%, #ff8400 48.96%, #df91f7 100%)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Dark hero section**: #000000 full-bleed background. Centered display headline in Recoleta weight 400 at 125px, color #f6f6f4, letter-spacing -3.75px, line-height 1.00. Floating 3D decorative shape below headline with Solstice Gradient surface. Ghost pill button: 100px radius, 1px #f6f6f4 border, transparent fill, 20px 28px padding, text in Oldschool Grotesk 15px weight 400, #f6f6f4.\n\n2. **Light product feature card**: #f6f6f4 background, 16px border-radius, 24px padding. Product image in an inner #ffffff container (16px radius, centered). Headline in Oldschool Grotesk 21px weight 400, #000000. Bulleted features below in Oldschool Grotesk 15px weight 300, #000000 at 70% opacity.\n\n3. **Stats credibility bar**: Full-width strip on #000000 background. Row of 4 items separated by 1px #f6f6f4 vertical dividers. Each item: 20px circular outlined check icon (#f6f6f4, 1.5px stroke) + Oldschool Grotesk 15px weight 400, #f6f6f4. 24px vertical padding, 25px horizontal gap between items.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n5. **Section heading + body block**: Left-aligned Recoleta weight 400 at 61px, #f6f6f4, letter-spacing -1.22px, line-height 1.10. Body paragraph below in Oldschool Grotesk 16px weight 400, #f6f6f4, max-width 520px, line-height 1.40."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is achieved entirely through surface tonal contrast and 1px hairline borders, never through drop shadows. Dark sections use #f6f6f4-on-#000000 for definition; light sections use #1a1a1a-on-#f6f6f4. Cards separate from their parent surface through a 16px radius and a 1px #f6f6f4 border rather than shadow depth. The absence of shadows is a deliberate choice — it keeps the design flat, editorial, and gallery-like."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f6f6f4",
+          "oklch": {
+            "c": 0.002645254258274973,
+            "h": 106.44868425670425,
+            "l": 0.9725888065445822
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "body",
+            "button",
+            "hero",
+            "heading",
+            "image",
+            "badge",
+            "card",
+            "icon",
+            "footer"
+          ],
+          "frequency": 2185,
+          "confidence": 1,
+          "prominence": 232785589.84835446,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 53,
+            "card/color": 17,
+            "hero/color": 2,
+            "icon/color": 4,
+            "link/color": 17,
+            "list/color": 9,
+            "other/fill": 21,
+            "badge/color": 1,
+            "image/color": 39,
+            "other/color": 204,
+            "button/color": 12,
+            "other/stroke": 6,
+            "heading/color": 69,
+            "body/borderColor": 212,
+            "card/borderColor": 68,
+            "hero/borderColor": 8,
+            "icon/borderColor": 16,
+            "link/borderColor": 68,
+            "list/borderColor": 36,
+            "badge/borderColor": 4,
+            "image/borderColor": 156,
+            "other/borderColor": 808,
+            "button/borderColor": 48,
+            "heading/borderColor": 276,
+            "icon/backgroundColor": 27,
+            "link/backgroundColor": 2,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "hero",
+            "icon",
+            "footer",
+            "heading",
+            "list",
+            "body"
+          ],
+          "frequency": 536,
+          "confidence": 1,
+          "prominence": 190288995.66579178,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "icon/color": 27,
+            "link/color": 21,
+            "list/color": 23,
+            "other/fill": 22,
+            "other/color": 17,
+            "footer/color": 1,
+            "other/stroke": 27,
+            "heading/color": 5,
+            "body/borderColor": 8,
+            "icon/borderColor": 108,
+            "link/borderColor": 84,
+            "list/borderColor": 92,
+            "other/borderColor": 72,
+            "footer/borderColor": 4,
+            "heading/borderColor": 20,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#7d7d7d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5890335523767338
+          },
+          "contexts": [
+            "link",
+            "card",
+            "other",
+            "button"
+          ],
+          "frequency": 44,
+          "confidence": 1,
+          "prominence": 5693953.290274607,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 5,
+            "link/backgroundColor": 5,
+            "other/backgroundColor": 27,
+            "button/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "card",
+            "other",
+            "button"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 5625951.297675136,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "card/boxShadow": 5,
+            "link/boxShadow": 6,
+            "other/boxShadow": 27,
+            "button/boxShadow": 4
+          }
+        },
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 364210.675179747,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.005557203413549873,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.41,
+          "background": "#000000",
+          "foreground": "#f6f6f4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#ffffff",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.08,
+          "background": "#f6f6f4",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.1,
+          "background": "#7d7d7d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.8,
+          "background": "#7d7d7d",
+          "foreground": "#f6f6f4"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 42
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 108,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|icon",
+            "paddingRight|icon",
+            "paddingBottom|icon",
+            "paddingLeft|icon"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "list",
+            "other",
+            "card",
+            "heading"
+          ],
+          "frequency": 43,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginRight|button"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link",
+            "other",
+            "body",
+            "heading",
+            "icon",
+            "button"
+          ],
+          "frequency": 173,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|link",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|body",
+            "marginBottom|heading",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|icon",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "card"
+          ],
+          "frequency": 79,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "marginBottom|body",
+            "marginRight|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "list",
+            "heading",
+            "card"
+          ],
+          "frequency": 36,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|list",
+            "marginRight|heading",
+            "marginLeft|heading",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginRight|card",
+            "marginLeft|card",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 51,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 92,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 114,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|hero"
+          ]
+        },
+        {
+          "value": 250,
+          "contexts": [
+            "hero",
+            "badge",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|hero",
+            "marginBottom|badge",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 261,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 278,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 320,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(254, 237, 122) 0%, rgb(255, 132, 0) 48.96%, rgb(223, 145, 247) 100%)",
+        "colors": [
+          "rgb(254, 237, 122)",
+          "rgb(255, 132, 0)",
+          "rgb(223, 145, 247)"
+        ],
+        "frequency": 3
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(0deg, rgb(254, 237, 122) 0%, rgb(255, 132, 0) 48.96%, rgb(223, 145, 247) 100%)",
+        "colors": [
+          "rgb(254, 237, 122)",
+          "rgb(255, 132, 0)",
+          "rgb(223, 145, 247)"
+        ],
+        "frequency": 2
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 257,
+          "fontFeatureSettings": [
+            "\"clig\", \"liga\""
+          ]
+        },
+        {
+          "family": "Oldschool Grotesk",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 173,
+          "fontFeatureSettings": [
+            "\"clig\", \"liga\""
+          ]
+        },
+        {
+          "family": "Recoleta",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 84,
+          "fontFeatureSettings": [
+            "\"clig\", \"liga\""
+          ]
+        },
+        {
+          "family": "Oldschool Grotesk Compact",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 9,
+          "fontFeatureSettings": [
+            "\"tnum\"",
+            "\"clig\", \"liga\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Oldschool Grotesk Compact",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "heading",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.8,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Oldschool Grotesk",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Oldschool Grotesk",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link",
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 68,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Oldschool Grotesk",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "other",
+            "icon",
+            "button"
+          ],
+          "frequency": 73,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "hero",
+            "body",
+            "image",
+            "button",
+            "card",
+            "footer"
+          ],
+          "frequency": 254,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Oldschool Grotesk",
+          "weight": 300,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Oldschool Grotesk",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "body",
+            "button",
+            "icon"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Recoleta",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 47,
+          "family": "Recoleta",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 61,
+          "family": "Recoleta",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Recoleta",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 30,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Oldschool Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 125,
+          "family": "Recoleta",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 138,
+          "family": "Oldschool Grotesk",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/66e4bcd7-7623-4935-b2a7-450893872d50.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/0274254e-53c3-42a2-a8c1-105047355636.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/39098e34-b911-4ad3-bcb5-ee80a392cd95#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Clyde design system\",\"item\":\"https://styles.refero.design/style/39098e34-b911-4ad3-bcb5-ee80a392cd95\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/39098e34-b911-4ad3-bcb5-ee80a392cd95#style-reference\",\"name\":\"Clyde design system reference\",\"headline\":\"Clyde design system | Refero Styles\",\"description\":\"Explore Clyde's dark SaaS design system: Obsidian #000000, Bone #f6f6f4 colors, Recoleta, Oldschool Grotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/39098e34-b911-4ad3-bcb5-ee80a392cd95\",\"mainEntityOfPage\":\"https://styles.refero.design/style/39098e34-b911-4ad3-bcb5-ee80a392cd95\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Clyde\",\"url\":\"https://joinclyde.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/39098e34-b911-4ad3-bcb5-ee80a392cd95#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0274254e-53c3-42a2-a8c1-105047355636.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0274254e-53c3-42a2-a8c1-105047355636.jpg\",\"caption\":\"Screenshot of Clyde\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0274254e-53c3-42a2-a8c1-105047355636.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Clyde design system\",\"Clyde website design\",\"Clyde colors\",\"Clyde typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Obsidian\",\"Bone\",\"Slate\",\"Paper\",\"Recoleta\",\"Oldschool Grotesk\",\"Times (system fallback)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Clyde design system\"},{\"@type\":\"Thing\",\"name\":\"Clyde website design\"},{\"@type\":\"Thing\",\"name\":\"Clyde colors\"},{\"@type\":\"Thing\",\"name\":\"Clyde typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T01:54:33.478Z\",\"dateModified\":\"2026-04-30T01:54:33.478Z\"}]}19:T69d,## Quick Color Reference\n- Page background: #000000\n- Light text on dark: #f6f6f4\n- Light surface / card: #f6f6f4\n- Inner product container: #ffffff\n- Mid-gray surface: #7d7d7d\n- Accent gradient: linear-gradient(90deg, #feed7a 0%, #ff8400 48.96%, #df91f7 100%)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Dark hero section**: #000000 full-bleed background. Centered display headline in Recoleta weight 400 at 125px, color #f6f6f4, letter-spacing -3.75px, line-height 1.00. Floating 3D decorative shape below headline with Solstice Gradient surface. Ghost pill button: 100px radius, 1px #f6f6f4 border, transparent fill, 20px 28px padding, text in Oldschool Grotesk 15px weight 400, #f6f6f4.\n\n2. **Light product feature card**: #f6f6f4 background, 16px border-radius, 24px padding. Product image in an inner #ffffff container (16px radius, centered). Headline in Oldschool Grotesk 21px weight 400, #000000. Bulleted features below in Oldschool Grotesk 15px weight 300, #000000 at 70% opacity.\n\n3. **Stats credibility bar**: Full-width strip on #000000 background. Row of 4 items separated by 1px #f6f6f4 vertical dividers. Each item: 20px circular outlined check icon (#f6f6f4, 1.5px stroke) + Oldschool Grotesk 15px weight 400, #f6f6f4. 24px vertical padding, 25px horizontal gap between items.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n5. **Section heading + body block**: Left-aligned Recoleta weight 400 at 61px, #f6f6f4, letter-spacing -1.22px, line-height 1.10. Body paragraph below in Oldschool Grotesk 16px weight 400, #f6f6f4, max-width 520px, line-height 1.40."
+}

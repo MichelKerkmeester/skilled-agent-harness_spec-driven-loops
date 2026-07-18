@@ -1,0 +1,314 @@
+{
+  "color": {
+    "forest-depths": {
+      "$value": "#072724",
+      "$type": "color",
+      "$description": "Forest Depths — Page canvas, hero background, deep surface layer — the dominant dark field that everything else floats on"
+    },
+    "midnight-tide": {
+      "$value": "#0f3933",
+      "$type": "color",
+      "$description": "Midnight Tide — Primary text on canvas, strong borders, secondary surface tint — readable white-space-equivalent for dark mode"
+    },
+    "shadow-teal": {
+      "$value": "#23524c",
+      "$type": "color",
+      "$description": "Shadow Teal — Elevated surface, card fills, subtle borders — one step lighter than the canvas for layer separation"
+    },
+    "charcoal-hairline": {
+      "$value": "#2c2e33",
+      "$type": "color",
+      "$description": "Charcoal Hairline — Subtle dividers and default 1px borders across cards, images, and icons — almost invisible on the dark canvas, used for structural quietness"
+    },
+    "abyss-green": {
+      "$value": "#122d28",
+      "$type": "color",
+      "$description": "Abyss Green — Decorative background blob — deepest atmospheric tint behind organic hero shapes"
+    },
+    "deep-lagoon": {
+      "$value": "#1c3f38",
+      "$type": "color",
+      "$description": "Deep Lagoon — Decorative mid-tone blob in the hero atmosphere, sits between canvas and surface"
+    },
+    "mist-gray": {
+      "$value": "#b0c5c1",
+      "$type": "color",
+      "$description": "Mist Gray — Muted body text, secondary descriptions, captions — desaturated enough to recede behind the mint accent"
+    },
+    "pure-light": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure Light — Headline text on dark canvas, high-contrast text inside mint-filled buttons"
+    },
+    "mint-glow": {
+      "$value": "#97fcd7",
+      "$type": "color",
+      "$description": "Mint Glow — Green text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "teal-pulse": {
+      "$value": "#33998c",
+      "$type": "color",
+      "$description": "Teal Pulse — Mid-saturation teal for SVG strokes, secondary decorative accents, hover/transition states between dark surface and mint highlight"
+    }
+  },
+  "font": {
+    "teodor": {
+      "$value": "Teodor",
+      "$type": "fontFamily",
+      "$description": "Display and editorial headlines, brand statements, section titles. Custom serif with sharp contrast between thick and thin strokes; at 90px with 0.75 leading it creates a magazine-cover authority that is the signature typographic gesture of the site. Subheading scale at 24px carries the same character into smaller contexts."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Body copy, UI labels, navigation, buttons, captions. The weight 300 default across most sizes keeps the interface quiet against the display serif — the contrast between Teodor's editorial presence and Inter's whisper-light functional text is a defining rhythm of the system."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Teodor",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "28px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "35px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 35px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Teodor",
+        "fontSize": "55px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 55px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Teodor",
+        "fontSize": "55px",
+        "fontWeight": 400,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 55px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Teodor",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 60px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Teodor",
+        "fontSize": "90px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 90px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "37": {
+      "$value": "37px",
+      "$type": "dimension",
+      "$description": "Spacing 37px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "90": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Spacing 90px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "113": {
+      "$value": "113px",
+      "$type": "dimension",
+      "$description": "Spacing 113px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "37px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "lg": {
+      "$value": "rgb(151, 252, 215) 0px 0px 20px 5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    }
+  },
+  "surface": {
+    "forest-depths": {
+      "$value": "#072724",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas and hero background"
+    },
+    "abyss-deep-lagoon": {
+      "$value": "#122d28",
+      "$type": "color",
+      "$description": "Surface level 1: Deepest atmospheric layer within hero organic shapes"
+    },
+    "shadow-teal": {
+      "$value": "#23524c",
+      "$type": "color",
+      "$description": "Surface level 2: Card surface, elevated panel"
+    },
+    "mint-glow": {
+      "$value": "#97fcd7",
+      "$type": "color",
+      "$description": "Surface level 3: Highlight surface for featured cards, glow rims, primary CTAs"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://hyperliquid.xyz",
+      "siteName": "Hyper Foundation",
+      "extractedAt": "2026-06-03T19:20:38.025Z",
+      "variant": "extended"
+    }
+  }
+}

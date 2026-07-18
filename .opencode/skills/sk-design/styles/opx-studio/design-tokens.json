@@ -1,0 +1,262 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#020202",
+      "$type": "color",
+      "$description": "Void Black — Page canvas — the base background across all sections"
+    },
+    "surface-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface Black — Section surfaces and image containment backgrounds, barely distinguishable from canvas to keep elevation flat"
+    },
+    "charcoal-hairline": {
+      "$value": "#292a2c",
+      "$type": "color",
+      "$description": "Charcoal Hairline — Structural dividers and borders — the only mid-tone in the system, carrying 900 occurrences as the skeleton between sections and elements"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Primary text, nav labels, project titles, and 1px pill-button borders — the sole signal of interactivity"
+    },
+    "ash-gray": {
+      "$value": "#9b9b9b",
+      "$type": "color",
+      "$description": "Ash Gray — Muted helper text and secondary metadata in footer and supporting copy — recedes against the void"
+    }
+  },
+  "font": {
+    "opx-medium": {
+      "$value": "OPX-Medium",
+      "$type": "fontFamily",
+      "$description": "Primary brand display and text face — a single weight (400) scaling across body, nav, subheadings, and monumental display. Custom face with a humanist-geometric tension; the anti-convention of using weight 400 (not bold) at 111px display size lets the headline dominate through scale alone rather than visual weight"
+    },
+    "open-sans": {
+      "$value": "Open Sans",
+      "$type": "fontFamily",
+      "$description": "Secondary supporting copy — used in hero subtext and longer descriptive passages where a more relaxed, open-licensed humanist is desired"
+    },
+    "untitled": {
+      "$value": "Untitled",
+      "$type": "fontFamily",
+      "$description": "Small label text for pill buttons and tag-like links (e.g. \"View case study\") — the only weight-500 usage in the system, giving micro-UI slightly more presence"
+    },
+    "helvetica": {
+      "$value": "Helvetica",
+      "$type": "fontFamily",
+      "$description": "System fallback for incidental body text and metadata"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Untitled",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "OPX-Medium",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "OPX-Medium",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "OPX-Medium",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "OPX-Medium",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "OPX-Medium",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "OPX-Medium",
+        "fontSize": "35px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 35px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "OPX-Medium",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "OPX-Medium",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "OPX-Medium",
+        "fontSize": "111px",
+        "fontWeight": 400,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 111px"
+    }
+  },
+  "spacing": {
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "99": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Spacing 99px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "150": {
+      "$value": "150px",
+      "$type": "dimension",
+      "$description": "Spacing 150px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#020202",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background — the entire site sits on this near-black"
+    },
+    "surface-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Section bands and image containers — nearly identical to canvas; elevation is implied by content rather than tonal shift"
+    },
+    "hairline": {
+      "$value": "#292a2c",
+      "$type": "color",
+      "$description": "Surface level 3: 1px structural dividers between sections and around interactive elements — the only visual layering device"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://opx.studio",
+      "siteName": "OPX Studio",
+      "extractedAt": "2026-06-03T21:59:16.226Z",
+      "variant": "extended"
+    }
+  }
+}

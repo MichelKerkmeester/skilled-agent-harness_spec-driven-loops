@@ -1,0 +1,259 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, hairline borders, avatar stroke, ghost button outlines — the only ink on the page; borders are the structural device, not shadows"
+    },
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Page background, card surface, nav fill — the gallery wall itself"
+    },
+    "plaster-gray": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Plaster Gray — Pill navigation background, subtle surface for tag chips, soft section washes"
+    },
+    "ash-gray": {
+      "$value": "#9b9b9b",
+      "$type": "color",
+      "$description": "Ash Gray — Muted secondary text, caption labels under illustrations, hairline borders on less prominent elements"
+    }
+  },
+  "font": {
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Body, captions, labels, links, footer — a deliberate serif choice for UI body copy, the kind of editorial-museum-label voice most portfolios replace with sans-serif"
+    },
+    "universalsans-425": {
+      "$value": "UniversalSans 425",
+      "$type": "fontFamily",
+      "$description": "Headings, emphasized body, link text — a neutral grotesque that steps in when the Times serif is too quiet"
+    },
+    "universalsans-625": {
+      "$value": "UniversalSans 625",
+      "$type": "fontFamily",
+      "$description": "Button text, nav labels, small caps — the only medium weight in the system, used exclusively for clickable elements to give them a slightly firmer voice"
+    },
+    "rza": {
+      "$value": "Rza",
+      "$type": "fontFamily",
+      "$description": "Brand wordmark / logo only — a custom display face that gives the header a distinct editorial signature, never used elsewhere"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "UniversalSans-625",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "UniversalSans-425",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "UniversalSans-625",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "UniversalSans-425",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Rza",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "46": {
+      "$value": "46px",
+      "$type": "dimension",
+      "$description": "Spacing 46px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 4px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page background, card base, floating pill fill"
+    },
+    "plaster": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 1: Tag chips, pill nav resting state, soft highlight wash"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.danieltriendl.com",
+      "siteName": "Daniel Triendl",
+      "extractedAt": "2026-06-03T18:51:06.348Z",
+      "variant": "extended"
+    }
+  }
+}

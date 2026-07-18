@@ -1,0 +1,207 @@
+{
+  "color": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — Primary text, heading strokes, nav links, icon strokes, badge fills, logo type — the only high-contrast value in the system"
+    },
+    "soot": {
+      "$value": "#050505",
+      "$type": "color",
+      "$description": "Soot — Subtle tonal break from pure black for nested surfaces and hairline borders that need to feel present without breaking the dark mode"
+    },
+    "ember-coral": {
+      "$value": "#e1695e",
+      "$type": "color",
+      "$description": "Ember Coral — Accent warmth for marquee display moments, logo gradient highlight, and select project card color treatments — borrowed from the work, never applied to UI chrome"
+    },
+    "burnt-sienna": {
+      "$value": "#573332",
+      "$type": "color",
+      "$description": "Burnt Sienna — Deep warm surface for warm-toned project cards and content imagery containers — the shadow side of the coral accent"
+    }
+  },
+  "font": {
+    "helvetica": {
+      "$value": "Helvetica",
+      "$type": "fontFamily",
+      "$description": "Primary workhorse — body copy at 16px/400, secondary headings at 23px/400, nav and links at 16px/400, and the massive 52px/300 hero logo treatment. Weight 300 is the default for large display: whisper-thin against the heavy black canvas creates a neon-on-velvet tension."
+    },
+    "times-new-roman": {
+      "$value": "Times New Roman",
+      "$type": "fontFamily",
+      "$description": "Display serif for editorial pull-quotes and manifesto text — the 60px size with -0.05em tracking creates a fashion-magazine weight that contrasts Helvetica's geometric neutrality. Used sparingly for sentences that need gravitas."
+    },
+    "courier-new": {
+      "$value": "Courier New",
+      "$type": "fontFamily",
+      "$description": "Monospace for tags, badges, index numbers, and micro-labels — the 0.10em positive tracking turns utility text into graphic texture, like film slate markings"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Courier New",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "19px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "23px",
+        "fontWeight": 700,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 23px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "23px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 23px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "23px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 23px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "23px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 23px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "52px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Times New Roman",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Universal page canvas — every section sits on absolute black"
+    },
+    "soot": {
+      "$value": "#050505",
+      "$type": "color",
+      "$description": "Surface level 1: Nested containers and form fields needing barely-visible separation from canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.stinkstudios.com",
+      "siteName": "Stink Studios",
+      "extractedAt": "2026-06-03T21:42:02.371Z",
+      "variant": "extended"
+    }
+  }
+}

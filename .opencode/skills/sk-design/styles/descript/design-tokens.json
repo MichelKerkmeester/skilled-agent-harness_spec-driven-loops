@@ -1,0 +1,539 @@
+{
+  "color": {
+    "broadcast-burgundy": {
+      "$value": "#390a1a",
+      "$type": "color",
+      "$description": "Broadcast Burgundy — Hero backgrounds, primary dark surface — creates the theater-dark immersion that makes coral CTAs read as on-air signals"
+    },
+    "on-air-coral": {
+      "$value": "#f73b3b",
+      "$type": "color",
+      "$description": "On-Air Coral — Primary CTA buttons, active section labels — the single vivid signal against deep burgundy dark"
+    },
+    "hot-take-red": {
+      "$value": "#ff5340",
+      "$type": "color",
+      "$description": "Hot Take Red — Inline text highlights, secondary accent emphasis in body copy"
+    },
+    "plum-mid": {
+      "$value": "#651a39",
+      "$type": "color",
+      "$description": "Plum Mid — Nav hover states, secondary button backgrounds — one step lighter than Broadcast Burgundy for interactive depth"
+    },
+    "deep-violet": {
+      "$value": "#0c0b5f",
+      "$type": "color",
+      "$description": "Deep Violet — Inline links and callout text in light sections — a cool contrast to the otherwise warm palette"
+    },
+    "soft-violet": {
+      "$value": "#8787e0",
+      "$type": "color",
+      "$description": "Soft Violet — Underlord AI feature accent — used on AI chat interface send button"
+    },
+    "pale-peach": {
+      "$value": "#ffe8db",
+      "$type": "color",
+      "$description": "Pale Peach — Card backgrounds for feature cards in warm sections"
+    },
+    "blush-mist": {
+      "$value": "#f1eaed",
+      "$type": "color",
+      "$description": "Blush Mist — Card backgrounds for testimonial and feature content cards in light sections"
+    },
+    "studio-black": {
+      "$value": "#190308",
+      "$type": "color",
+      "$description": "Studio Black — Deepest background layer, nav overlay backgrounds"
+    },
+    "ink-dark": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Ink Dark — Body text, nav text — used across all surfaces"
+    },
+    "warm-parchment": {
+      "$value": "#faf8f7",
+      "$type": "color",
+      "$description": "Warm Parchment — Light section page backgrounds, button text on dark — deliberately off-white to maintain warmth against burgundy"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Button text on coral CTAs, card surfaces in chat UI"
+    },
+    "dusty-rose": {
+      "$value": "#a28993",
+      "$type": "color",
+      "$description": "Dusty Rose — Secondary body text, de-emphasized labels on dark surfaces"
+    },
+    "border-mauve": {
+      "$value": "#907580",
+      "$type": "color",
+      "$description": "Border Mauve — Card borders, dividers, input borders on dark surfaces"
+    },
+    "fog-gray": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Fog Gray — Borders and dividers on light surfaces, button borders"
+    },
+    "muted-plum": {
+      "$value": "#583f4a",
+      "$type": "color",
+      "$description": "Muted Plum — Mid-dark card backgrounds in dark sections"
+    },
+    "steel-mauve": {
+      "$value": "#d1c7cb",
+      "$type": "color",
+      "$description": "Steel Mauve — Shadows, secondary text on light surfaces"
+    }
+  },
+  "font": {
+    "booton": {
+      "$value": "Booton",
+      "$type": "fontFamily",
+      "$description": "Primary workhorse across UI — nav, body copy, buttons, captions, and feature labels. Weight 600 for subheadings and card titles; weight 400 for body and nav. The custom design gives it a warmth that distinguishes it from commodity grotesques like Inter."
+    },
+    "gamuth-display": {
+      "$value": "Gamuth Display",
+      "$type": "fontFamily",
+      "$description": "Hero and section headings only. A custom editorial serif — the signature choice that marks Descript as a content creation tool, not enterprise SaaS. Weight 400 at 88px is confident restraint; most SaaS hero fonts lean heavy."
+    },
+    "brett": {
+      "$value": "Brett",
+      "$type": "fontFamily",
+      "$description": "Section eyebrow labels only (e.g. 'AI VIDEO EDITOR', 'AI VIDEO AGENT'). Wide 0.04em tracking mimics broadcast chyron or print section slugs — the only place positive letter-spacing appears in the system."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Brett",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Brett",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "lg-8": {
+      "$value": {
+        "fontFamily": "Brett",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-8 at 18px"
+    },
+    "lg-9": {
+      "$value": {
+        "fontFamily": "Brett",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-9 at 18px"
+    },
+    "lg-10": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-10 at 18px"
+    },
+    "lg-11": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-11 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Gamuth Display",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Gamuth Display",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Booton",
+        "fontSize": "56px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Gamuth Display",
+        "fontSize": "88px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 88px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "152": {
+      "$value": "152px",
+      "$type": "dimension",
+      "$description": "Spacing 152px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.16) 0px 2px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "studio-dark": {
+      "$value": "#190308",
+      "$type": "color",
+      "$description": "Surface level 0: Deepest background — used behind logo strip and page footer"
+    },
+    "broadcast-burgundy": {
+      "$value": "#390a1a",
+      "$type": "color",
+      "$description": "Surface level 1: Hero and primary dark sections — dominant dark surface"
+    },
+    "muted-plum": {
+      "$value": "#583f4a",
+      "$type": "color",
+      "$description": "Surface level 2: Cards and elevated containers on dark backgrounds"
+    },
+    "warm-parchment": {
+      "$value": "#faf8f7",
+      "$type": "color",
+      "$description": "Surface level 3: Light section backgrounds, nav bar — the opposing pole to the dark surfaces"
+    },
+    "blush-mist": {
+      "$value": "#f1eaed",
+      "$type": "color",
+      "$description": "Surface level 4: Cards and containers on light section backgrounds"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 5: UI components like chat cards that need maximum contrast on any surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://descript.com",
+      "siteName": "Descript",
+      "extractedAt": "2026-04-11T19:27:40.467Z",
+      "variant": "extended"
+    }
+  }
+}

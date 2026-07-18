@@ -1,0 +1,1581 @@
+{
+  "source": "https://styles.refero.design/style/2175034b-96d7-417e-886f-ff5a4d8551ae",
+  "uuid": "2175034b-96d7-417e-886f-ff5a4d8551ae",
+  "name": "Playdate",
+  "northStar": "A yellow Game Boy under museum lights. Playdate's whole identity is that single bright product held against neutral gray, with one violet spark doing all the interactive work.",
+  "capturedAt": "2026-07-18T09:58:50.962Z",
+  "meta": {
+    "url": "https://play.date",
+    "siteName": "Playdate",
+    "extractedAt": "2026-06-03T17:10:18.598Z",
+    "durationMs": 36213,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 523,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Electric Violet #7700ff exclusively for interactive elements — buttons, links, and the nav pill. Never apply it to body text or decorative shapes.",
+      "Apply 28-34px pill radii to all primary CTAs; use 2.85px for game cards and content tiles. These two radius values define the system's contrast between bold action and quiet content.",
+      "Render the brand wordmark 'playdate' in lowercase Roobert at display sizes (51-68px), weight 800, in Sunbeam Yellow on neutral backgrounds.",
+      "Set body copy at 22px Roobert weight 400 in Carbon #312f27 with line-height ~1.3. Apply the global -0.007em tracking to all Roobert usage.",
+      "Alternate section backgrounds vertically: Slate Gray hero → yellow band → white band → yellow band. Each section is full-bleed with no borders between them.",
+      "Use Sunbeam Yellow #ffc500 as a full-bleed section background, never as a small accent fill on a card or button.",
+      "Keep game cards flat and borderless — the 1-bit game art is the content; adding shadows or borders would compete with it."
+    ],
+    "donts": [
+      "Don't use Electric Violet for body text, headings, or background fills larger than a button — its role is interactive punctuation, not chrome.",
+      "Don't apply heavy drop shadows to cards, images, or text. The single 0 2px 8px rgba(0,0,0,0.15) belongs only on CTA pills.",
+      "Don't mix in additional accent hues. The system is intentionally bichromatic (yellow + violet) on a warm-neutral base.",
+      "Don't use pure #000000 for text — Carbon #312f27 is warmer and sits correctly on both yellow and white without edge vibration.",
+      "Don't render the brand wordmark in uppercase, serif, or non-Roobert faces. The lowercase geometric is the signature.",
+      "Don't add borders or backgrounds to game cards. The 2.85px radius alone is the only frame the art needs.",
+      "Don't apply letter-spacing wider than the global -0.007em — the type is designed tight, and opening it up breaks the geometric rhythm."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#ffc500",
+        "name": "Sunbeam Yellow",
+        "role": "Section backgrounds, the product itself, display wordmarks — the page's primary brand canvas and the loudest single color in the system",
+        "group": "brand"
+      },
+      {
+        "hex": "#7700ff",
+        "name": "Electric Violet",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand",
+        "gradient": "linear-gradient(180deg, rgb(148, 0, 255), rgb(92, 0, 255))"
+      },
+      {
+        "hex": "#312f27",
+        "name": "Carbon",
+        "role": "Body text, heading text, icon strokes, form labels — a warm near-black chosen over pure #000 to sit comfortably against yellow and white without vibrating",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Card surfaces, text on violet buttons, text on dark bands — the default light surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#788086",
+        "name": "Slate Gray",
+        "role": "Hero section background — a desaturated mid-gray that lets the yellow product pop without competing with it",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Fog",
+        "role": "Light alternate surface, input fill on white sections, subtle dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e9e4d9",
+        "name": "Sand",
+        "role": "Input backgrounds, callout bubbles, warm light surface — bridges between the cool neutrals and the yellow brand",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b1afa7",
+        "name": "Ash",
+        "role": "Muted helper text, secondary borders, subdued metadata — the quietest visible neutral",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed vertical sections, each one swapping background color (Slate Gray → Sunbeam Yellow → Paper White → Sunbeam Yellow). The hero is a centered stack: product image at the visual center, white subhead beneath, then the page scrolls into the giant yellow 'playdate' wordmark with a violet order pill directly below it. Content max-width sits around 1200px, centered. The game showcase uses a strict 3-column card grid (3×3 visible) with no gutters between cards — they tile edge-to-edge as a single image wall. Body paragraphs are centered or left-aligned to a ~640px measure within the wider container. Navigation is a thin transparent top bar, not a heavy header. No sticky elements, no sidebars, no mega-menus — the layout is brochure-flat from top to bottom.",
+    "imagery": "Product photography dominates: the yellow handheld is shot on a neutral gray background, framed large and centered, with no lifestyle context — the object itself is the hero. Game showcase cards use high-contrast 1-bit black-and-white pixel art at native resolution, giving a deliberately retro/Game Boy feel. The device appears as both a photograph and a 3D render (you can see the smooth shading and crisp edges on the hero shot), with the crank handle and button details rendered in vector-clean precision. No lifestyle photography, no human subjects, no environmental scenes — the visual language is 'product on a stage' across the board. Icon style is minimal mono-stroke line icons in nav (search, games, dev, education, help, sign-in) at 1.5-2px stroke weight.",
+    "similar": [
+      {
+        "why": "Same playful colored product-as-hero approach, with bold lowercase wordmarks, generous whitespace, and bichromatic product photography on neutral backgrounds",
+        "business": "Teenage Engineering"
+      },
+      {
+        "why": "Retro gaming hardware presentation — the device floats on a neutral stage, with sparse UI and 1-bit-era visual references in supporting artwork",
+        "business": "Analogue"
+      },
+      {
+        "why": "Bichromatic brand identity built on a single vivid accent color against monochrome surfaces, with confident display type and minimal chrome",
+        "business": "Nothing (nothing.tech)"
+      },
+      {
+        "why": "Yellow-and-purple playful tech branding, oversized lowercase display type, and an overall toy-aisle energy applied to a digital product",
+        "business": "Bored Ape / Yuga Labs"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "28.5px",
+        "cards": "2.85px",
+        "inputs": "6px",
+        "buttons": "28.5px",
+        "navButtons": "22px",
+        "heroButtons": "34.2px"
+      },
+      "elementGap": "11-19px",
+      "sectionGap": "60px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#788086",
+        "name": "Slate Gray Hero Canvas",
+        "level": 1,
+        "purpose": "Full-bleed hero section background, lets the yellow product and white text read with maximum contrast"
+      },
+      {
+        "hex": "#ffc500",
+        "name": "Sunbeam Yellow Band",
+        "level": 2,
+        "purpose": "Primary brand section background, alternates with white bands to create a catalog-style rhythm"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White Card",
+        "level": 3,
+        "purpose": "Card surfaces on yellow and gray backgrounds — the lightest surface, used for game tiles and content blocks"
+      },
+      {
+        "hex": "#e9e4d9",
+        "name": "Sand Callout",
+        "level": 4,
+        "purpose": "Warm neutral fill for speech-bubble annotations and softer content surfaces"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Fog Alternate",
+        "level": 5,
+        "purpose": "Coolest neutral, used for input fills and the most recessed surface treatment"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 2px 8px rgba(0, 0, 0, 0.15)",
+        "element": "Primary CTA Pill"
+      },
+      {
+        "style": "0 1px 4px rgba(0, 0, 0, 0.2)",
+        "element": "Nav Buy Pill"
+      }
+    ],
+    "northStar": "A yellow Game Boy under museum lights. Playdate's whole identity is that single bright product held against neutral gray, with one violet spark doing all the interactive work.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 19,
+        "lineHeight": 25,
+        "letterSpacing": -0.13
+      },
+      {
+        "role": "body-sm",
+        "size": 21,
+        "lineHeight": 27,
+        "letterSpacing": -0.15
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 29,
+        "letterSpacing": -0.17
+      },
+      {
+        "role": "heading-sm",
+        "size": 29,
+        "lineHeight": 35,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading",
+        "size": 34,
+        "lineHeight": 41,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 44,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "display",
+        "size": 51,
+        "lineHeight": 56,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "display-lg",
+        "size": 57,
+        "lineHeight": 63,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "hero",
+        "size": 68,
+        "lineHeight": 68,
+        "letterSpacing": -0.48
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Pill (Order Now)",
+        "role": "Main purchase action on hero and landing sections",
+        "description": "Violet #7700ff background, white text, 28-34px border-radius (fully pill-shaped), 14px 28px padding, 21-22px Roobert weight 700, subtle 0 2px 8px rgba(0,0,0,0.15) drop shadow. The shadow lifts the pill off whatever section color it sits on — yellow, white, or gray — without darkening the page."
+      },
+      {
+        "name": "Nav Buy Pill (Buy Now)",
+        "role": "Persistent purchase action in the top navigation",
+        "description": "Compact version of the primary CTA: violet #7700ff fill, white text, 22px radius, 8px 16px padding, 19-21px Roobert weight 700. Sits in the rightmost nav slot on a light background."
+      },
+      {
+        "name": "Game Card",
+        "role": "Individual game tile in the seasonal showcase grid",
+        "description": "White #ffffff surface, 2.85px border-radius (almost square — the 1-bit game art fills edge-to-edge), no border, no shadow. Aspect ratio follows the source art; 3 columns on desktop, stacking to 1 column on mobile."
+      },
+      {
+        "name": "Yellow Section Band",
+        "role": "Full-bleed content section with the brand yellow as canvas",
+        "description": "#ffc500 fills the full viewport width with no internal border. Body text inside reverts to Carbon #312f27. Used for the 'We made Playdate just for fun' wordmark band and the game showcase section."
+      },
+      {
+        "name": "Hero Display Wordmark",
+        "role": "Headline-scale brand statement on the landing hero",
+        "description": "Renders 'playdate' in lowercase Roobert at 68px, weight 800, line-height 1.0, color Sunbeam Yellow #ffc500 on the gray hero. Fills nearly the full content width; the lowercase + extra-bold combo is the brand's most recognizable typographic moment."
+      },
+      {
+        "name": "Hero Subhead",
+        "role": "White-text tagline under the hero product image",
+        "description": "34-40px Roobert weight 700, color #ffffff, sits on the Slate Gray #788086 hero band. One line, sentence-case, no punctuation — the band itself carries the weight."
+      },
+      {
+        "name": "Inline Body Copy",
+        "role": "Standard running paragraph text on yellow and white sections",
+        "description": "22px Roobert weight 400, line-height ~1.3, color Carbon #312f27. Paragraphs are short (2-3 sentences), centered or left-aligned to a ~640px measure."
+      },
+      {
+        "name": "Inline Link",
+        "role": "In-prose hyperlinks and emphasized phrases",
+        "description": "Electric Violet #7700ff at body weight 400, no underline at rest, underline appears on hover. Used sparingly — most emphasis is achieved through weight changes instead."
+      },
+      {
+        "name": "Speech-Bubble Callout",
+        "role": "Conversational annotation boxes (e.g. 'Wait! No spoilers, please!')",
+        "description": "Light Sand #e9e4d9 fill, Carbon #312f27 text, 6-10px border-radius, small triangular tail. 19-21px Roobert weight 400, bold spans inside for emphasis. Acts as a playful UI voice — the only place where the warm neutral appears as a fill."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form input on light and yellow sections",
+        "description": "Fog #efefef or Sand #e9e4d9 background, 6px border-radius, 1px subtle border, Carbon text. Padding ~12px 16px, 21px Roobert. No visible focus ring color — focus state uses a 2px violet outline."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent site navigation",
+        "description": "Sits at top of every page. Left: white 'playdate' wordmark in Roobert weight 700. Center/right: icon-prefixed text links in Carbon, evenly spaced. Far right: the violet Buy Now pill. No background fill — the nav is transparent over whatever section color is behind it."
+      },
+      {
+        "name": "Footer",
+        "role": "Bottom-of-page utility links and brand mark",
+        "description": "Full-width band, typically Carbon or violet background depending on the previous section. White or violet text, small 19px Roobert, grouped links separated by thin dividers."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across the system — a humanist geometric that handles the 68px 'playdate' wordmark and 22px body copy in the same family. Weight 400 carries UI and running text; weight 700/800 anchors display words, prices, and CTAs. The custom -0.007em tracking is applied globally so even body text sits a touch tighter than system defaults.",
+        "sizes": "19, 21, 22, 24, 29, 33, 34, 40, 51, 57, 68",
+        "family": "Roobert",
+        "weight": "400, 700, 800",
+        "lineHeight": "1.0–2.0 (display 1.0, body 1.3, generous blocks 2.0)",
+        "substitute": "Manrope, Inter, or DM Sans at matching weights",
+        "letterSpacing": "-0.0070em"
+      }
+    ],
+    "description": "Playdate reads like a sunlit toy-store catalog: saturated yellow bands alternate with cool gray and white sections, each one a stage for the bright handheld itself. A single violet accent does all the talking — buttons, links, the nav buy-pill — while the rest of the UI stays quiet on warm charcoal text and bone-white cards. Roobert carries the tone: an oversized lowercase wordmark in sunflower yellow is the brand's signature, body copy sits at a confident 22px in a humanist geometric, and line-height is generous enough to feel handmade. Components are intentionally weightless: 2.85px corners on game cards, no decorative borders, and CTAs that float as purple pills with soft drop-shadows. The rhythm is full-bleed sections stacked vertically, each one swapping palette so the page reads like a printed product brochure rather than a typical SaaS landing.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2175034b-96d7-417e-886f-ff5a4d8551ae#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Playdate design system\",\"item\":\"https://styles.refero.design/style/2175034b-96d7-417e-886f-ff5a4d8551ae\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2175034b-96d7-417e-886f-ff5a4d8551ae#style-reference\",\"name\":\"Playdate design system reference\",\"headline\":\"Playdate design system | Refero Styles\",\"description\":\"Explore Playdate's mixed Other design system: Sunbeam Yellow #ffc500, Electric Violet #7700ff colors, Roobert typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2175034b-96d7-417e-886f-ff5a4d8551ae\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2175034b-96d7-417e-886f-ff5a4d8551ae\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Playdate\",\"url\":\"https://play.date\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2175034b-96d7-417e-886f-ff5a4d8551ae#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c1ba0649-bbde-490f-a575-ed651a3be073.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c1ba0649-bbde-490f-a575-ed651a3be073.jpg\",\"caption\":\"Screenshot of Playdate\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c1ba0649-bbde-490f-a575-ed651a3be073.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Playdate design system\",\"Playdate website design\",\"Playdate colors\",\"Playdate typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Sunbeam Yellow\",\"Electric Violet\",\"Carbon\",\"Paper White\",\"Roobert\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Playdate design system\"},{\"@type\":\"Thing\",\"name\":\"Playdate website design\"},{\"@type\":\"Thing\",\"name\":\"Playdate colors\"},{\"@type\":\"Thing\",\"name\":\"Playdate typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-02-01T09:33:00.000Z\",\"dateModified\":\"2026-02-01T09:33:00.000Z\"}]}19:T4c2,**Quick Color Reference**\n- text: #312f27 (Carbon)\n- background: #ffc500 (yellow bands) / #ffffff (cards) / #788086 (hero gray)\n- border: #b1afa7 (Ash, muted dividers only)\n- accent: #7700ff (Electric Violet)\n- primary action: no distinct CTA color\n- font: Roobert (substitute: Manrope or Inter), weights 400/700/800, global -0.007em tracking\n\n**Example Component Prompts**\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n2. **Game showcase card** — White #ffffff surface, 2.85px border-radius, no border, no shadow. The 1-bit black-and-white game art fills edge-to-edge. Tile 3 across with no gutter.\n3. **Hero display wordmark** — 'playdate' in lowercase Roobert at 68px, weight 800, line-height 1.0, color #ffc500. Sits on a #788086 gray background.\n4. **Speech-bubble callout** — #e9e4d9 fill, #312f27 text, 6-10px border-radius, small triangular tail pointing to the subject. 19-21px Roobert weight 400 with bold spans for emphasized words.\n5. **Section background band** — Full-bleed #ffc500 yellow with no internal borders. 60px vertical padding. Body text inside is #312f27 at 22px, centered or left-aligned to ~640px."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#312f27",
+          "oklch": {
+            "c": 0.013701666344021235,
+            "h": 91.47222721549794,
+            "l": 0.30462000379417115
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "icon",
+            "hero",
+            "link",
+            "list",
+            "card",
+            "input",
+            "button"
+          ],
+          "frequency": 1443,
+          "confidence": 1,
+          "prominence": 203287099.82606938,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 7.216449660063518e-16,
+            "h": 180,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "button",
+            "link",
+            "icon",
+            "list",
+            "image",
+            "footer"
+          ],
+          "frequency": 991,
+          "confidence": 1,
+          "prominence": 42085316.718095735,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffc500",
+          "oklch": {
+            "c": 0.1881015571400097,
+            "h": 85.03167571956638,
+            "l": 0.8616315321570088
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 18119426.652788732,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "other",
+            "link",
+            "heading"
+          ],
+          "frequency": 74,
+          "confidence": 1,
+          "prominence": 8870728.536338875,
+          "properties": [
+            "boxShadow",
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#788086",
+          "oklch": {
+            "c": 0.012464968780496013,
+            "h": 238.04158348574936,
+            "l": 0.5960161003980603
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 8776584.509416062,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7700ff",
+          "oklch": {
+            "c": 0.30623104745616875,
+            "h": 289.6419638374236,
+            "l": 0.526537013590475
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "body",
+            "footer"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 6867981.917027677,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#efefef",
+          "oklch": {
+            "c": 3.885780586188048e-16,
+            "h": 180,
+            "l": 0.9519351646204783
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 4316448,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#212223",
+          "oklch": {
+            "c": 0.0028273614332529943,
+            "h": 243.26012819305066,
+            "l": 0.25085881592786385
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4227897,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#21c6a9",
+          "oklch": {
+            "c": 0.13243149453879882,
+            "h": 176.61663285798613,
+            "l": 0.7413649568554578
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1259544,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e9e4d9",
+          "oklch": {
+            "c": 0.01559949731720996,
+            "h": 85.6068176013369,
+            "l": 0.9193061587644032
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 52,
+          "confidence": 1,
+          "prominence": 310739.6846600535,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b1afa7",
+          "oklch": {
+            "c": 0.011011483943624814,
+            "h": 91.13884261806535,
+            "l": 0.7534474887024761
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 56,
+          "confidence": 1,
+          "prominence": 135323.048328622,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 42108,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4d4d4d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.41838944017064783
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 42108,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#127866",
+          "oklch": {
+            "c": 0.09075334046829,
+            "h": 176.99971586072857,
+            "l": 0.5138723478789801
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 16962,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.02621889565183298,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#efefef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.56,
+          "background": "#e9e4d9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.94,
+          "background": "#212223",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.86,
+          "background": "#212223",
+          "foreground": "#efefef"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.41,
+          "background": "#ffffff",
+          "foreground": "#312f27"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.24,
+          "background": "#ffc500",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.57,
+          "background": "#e9e4d9",
+          "foreground": "#212223"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.66,
+          "background": "#efefef",
+          "foreground": "#312f27"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.57,
+          "background": "#e9e4d9",
+          "foreground": "#312f27"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.05,
+          "background": "#ffc500",
+          "foreground": "#212223"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.72,
+          "background": "#21c6a9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.56,
+          "background": "#b1afa7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.45,
+          "background": "#ffc500",
+          "foreground": "#312f27"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.45,
+          "background": "#ffffff",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.37,
+          "background": "#21c6a9",
+          "foreground": "#212223"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.35,
+          "background": "#efefef",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.25,
+          "background": "#212223",
+          "foreground": "#b1afa7"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.67,
+          "background": "#e9e4d9",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.5,
+          "background": "#7700ff",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2.85,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 72
+        },
+        {
+          "value": 21.945,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 34.2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 28.5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 37.3065,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 39.9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 152.19,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 40,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 29,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 36,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 19,
+          "contexts": [],
+          "frequency": 48,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 36,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 25,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 29,
+          "contexts": [],
+          "frequency": 42,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 19,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 33,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 57,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 58,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 63,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 100,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 135,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 163,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 167,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 178,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 195,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 207,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 213,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 232,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(148, 0, 255), rgb(92, 0, 255))",
+        "colors": [
+          "rgb(148, 0, 255)",
+          "rgb(92, 0, 255)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Roobert",
+          "source": "custom",
+          "weights": [
+            400,
+            700,
+            800
+          ],
+          "frequency": 521,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 29,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 19,
+          "family": "Roobert",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 48,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Roobert",
+          "weight": 800,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 3.75,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 21,
+          "family": "Roobert",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "nav"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Roobert",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Roobert",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Roobert",
+          "weight": 800,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Roobert",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "Roobert",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "icon",
+            "hero",
+            "button",
+            "list",
+            "card",
+            "link",
+            "image",
+            "footer"
+          ],
+          "frequency": 242,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "Roobert",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "Roobert",
+          "weight": 800,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "link",
+            "input",
+            "button"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Roobert",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Roobert",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Roobert",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 51,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 51,
+          "family": "Roobert",
+          "weight": 800,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 57,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 68,
+          "family": "Roobert",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/97be8693-cbf8-4654-a05f-f42d47b4667e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c1ba0649-bbde-490f-a575-ed651a3be073.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2175034b-96d7-417e-886f-ff5a4d8551ae#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Playdate design system\",\"item\":\"https://styles.refero.design/style/2175034b-96d7-417e-886f-ff5a4d8551ae\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2175034b-96d7-417e-886f-ff5a4d8551ae#style-reference\",\"name\":\"Playdate design system reference\",\"headline\":\"Playdate design system | Refero Styles\",\"description\":\"Explore Playdate's mixed Other design system: Sunbeam Yellow #ffc500, Electric Violet #7700ff colors, Roobert typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2175034b-96d7-417e-886f-ff5a4d8551ae\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2175034b-96d7-417e-886f-ff5a4d8551ae\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Playdate\",\"url\":\"https://play.date\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2175034b-96d7-417e-886f-ff5a4d8551ae#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c1ba0649-bbde-490f-a575-ed651a3be073.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c1ba0649-bbde-490f-a575-ed651a3be073.jpg\",\"caption\":\"Screenshot of Playdate\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c1ba0649-bbde-490f-a575-ed651a3be073.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Playdate design system\",\"Playdate website design\",\"Playdate colors\",\"Playdate typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Sunbeam Yellow\",\"Electric Violet\",\"Carbon\",\"Paper White\",\"Roobert\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Playdate design system\"},{\"@type\":\"Thing\",\"name\":\"Playdate website design\"},{\"@type\":\"Thing\",\"name\":\"Playdate colors\"},{\"@type\":\"Thing\",\"name\":\"Playdate typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-02-01T09:33:00.000Z\",\"dateModified\":\"2026-02-01T09:33:00.000Z\"}]}19:T4c2,**Quick Color Reference**\n- text: #312f27 (Carbon)\n- background: #ffc500 (yellow bands) / #ffffff (cards) / #788086 (hero gray)\n- border: #b1afa7 (Ash, muted dividers only)\n- accent: #7700ff (Electric Violet)\n- primary action: no distinct CTA color\n- font: Roobert (substitute: Manrope or Inter), weights 400/700/800, global -0.007em tracking\n\n**Example Component Prompts**\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n2. **Game showcase card** — White #ffffff surface, 2.85px border-radius, no border, no shadow. The 1-bit black-and-white game art fills edge-to-edge. Tile 3 across with no gutter.\n3. **Hero display wordmark** — 'playdate' in lowercase Roobert at 68px, weight 800, line-height 1.0, color #ffc500. Sits on a #788086 gray background.\n4. **Speech-bubble callout** — #e9e4d9 fill, #312f27 text, 6-10px border-radius, small triangular tail pointing to the subject. 19-21px Roobert weight 400 with bold spans for emphasized words.\n5. **Section background band** — Full-bleed #ffc500 yellow with no internal borders. 60px vertical padding. Body text inside is #312f27 at 22px, centered or left-aligned to ~640px."
+}

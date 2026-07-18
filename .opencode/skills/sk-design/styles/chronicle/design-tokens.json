@@ -1,0 +1,304 @@
+{
+  "color": {
+    "pitch-black": {
+      "$value": "#050505",
+      "$type": "color",
+      "$description": "Pitch Black — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "midnight": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Midnight — Filled action button backgrounds (Try Chronicle, Talk to sales, Try for free); icon fills; strongest contrast anchor"
+    },
+    "charcoal": {
+      "$value": "#151515",
+      "$type": "color",
+      "$description": "Charcoal — Navigation link text and active nav states"
+    },
+    "obsidian": {
+      "$value": "#292929",
+      "$type": "color",
+      "$description": "Obsidian — Footer fine print and copyright text"
+    },
+    "graphite": {
+      "$value": "#6b6b6b",
+      "$type": "color",
+      "$description": "Graphite — Body text, UI borders, ghost button borders and text — the workhorse mid-tone"
+    },
+    "pewter": {
+      "$value": "#7e7e7e",
+      "$type": "color",
+      "$description": "Pewter — Secondary body copy and captions"
+    },
+    "ash": {
+      "$value": "#929292",
+      "$type": "color",
+      "$description": "Ash — Disabled or inactive button text and borders"
+    },
+    "silver": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Silver — Subtle background dividers and muted separators"
+    },
+    "fog": {
+      "$value": "#e2e2e2",
+      "$type": "color",
+      "$description": "Fog — Card borders, image borders, input borders — the hairline rule color"
+    },
+    "limestone": {
+      "$value": "#f3f3f3",
+      "$type": "color",
+      "$description": "Limestone — Alternating section backgrounds, testimonial section canvas, muted surface fills"
+    },
+    "cloud": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Cloud — Primary page canvas, card surfaces, link text on filled black buttons"
+    }
+  },
+  "font": {
+    "diatype": {
+      "$value": "Diatype",
+      "$type": "fontFamily",
+      "$description": "Single typeface for the entire system — headings, body, nav, buttons. Weight 400 for body and secondary text; weight 500 for prominent headings and CTAs. Negative tracking of -0.03em at display sizes creates mechanical compression uncommon in SaaS type — the letterforms feel pressed into the page rather than set on it. No serif, no decorative fallback: if Diatype is absent, the design loses its primary identity marker."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 54px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "shadow": {
+    "lg": {
+      "$value": "rgba(5, 5, 5, 0.08) 0px 2px 24px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background for hero and main content sections"
+    },
+    "tinted-surface": {
+      "$value": "#f3f3f3",
+      "$type": "color",
+      "$description": "Surface level 2: Alternating section backgrounds — testimonials, feature band, footer area"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: White cards elevated above gray sections with 8px radius and soft shadow"
+    },
+    "border-plane": {
+      "$value": "#e2e2e2",
+      "$type": "color",
+      "$description": "Surface level 4: Image frames, card outlines, input borders — structural hairlines"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://chroniclehq.com",
+      "siteName": "Chronicle",
+      "extractedAt": "2026-05-01T15:51:33.254Z",
+      "variant": "extended"
+    }
+  }
+}

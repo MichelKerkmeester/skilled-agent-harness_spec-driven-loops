@@ -1,0 +1,1288 @@
+{
+  "source": "https://styles.refero.design/style/4782832c-1c23-4fe3-997c-2a08d7b6c5d1",
+  "uuid": "4782832c-1c23-4fe3-997c-2a08d7b6c5d1",
+  "name": "Gamma",
+  "northStar": "white-walled art gallery. The UI is a silent frame; the artwork is the only thing that should be loud.",
+  "capturedAt": "2026-07-18T07:43:59.103Z",
+  "meta": {
+    "url": "https://www.gamma.io",
+    "siteName": "Gamma",
+    "extractedAt": "2026-06-03T19:45:15.850Z",
+    "durationMs": 79023,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 729,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #0c0c0d filled pills with 999px radius for the single primary action per screen; the rest must be ghost or text",
+      "Keep all UI surfaces achromatic — only the artwork or the Blush-to-Violet gradient carries color",
+      "Use 4px radius on artwork images and thumbnails at every size, 8px on text cards, 999px on any interactive element",
+      "Set headlines in Gamma Sans Display weight 300 at 48-72px so the type reads as a watermark, not a wall",
+      "Separate cards with 1px #e9e9ec hairlines or whitespace alone; never use box-shadow for elevation",
+      "Use 14px #808080 weight 400 for all metadata (mint counts, prices, dates) and inline numerics in #0c0c0d weight 600 to lift them",
+      "Maintain ~88px vertical gap between major sections and 40px between sub-blocks to let the artworks breathe"
+    ],
+    "donts": [
+      "Do not introduce a chromatic accent color, brand fill, or saturated button — the UI must stay colorless so the artwork remains the only loud element",
+      "Do not round artwork thumbnails beyond 4px; the sharp corner is what makes the image feel like a print pinned to a wall",
+      "Do not use box-shadow, glow, or blur on any component — depth is communicated only by hairline borders and a single dark surface",
+      "Do not place UI text inside a scrim or colored box over artwork; the display type must sit directly on the image",
+      "Do not use the Blush-to-Violet gradient on buttons, navs, or borders — it is reserved for the Prints section backdrop only",
+      "Do not mix more than two type weights on a single screen; the 300/400/600 scale is for hierarchy, not decoration",
+      "Do not center-align body text or metadata; keep descriptions and counts left-aligned with consistent left margin to the thumbnail edge"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0c0c0d",
+        "name": "Ink Black",
+        "role": "High-contrast neutral action fill for primary buttons on light surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page canvas, card surfaces, text on dark fills, input backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e9e9ec",
+        "name": "Ash",
+        "role": "Hairline borders, subtle dividers, hover surfaces, secondary button outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Smoke",
+        "role": "Muted body text, metadata (mint counts, prices), inactive icons, placeholder content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#242629",
+        "name": "Graphite",
+        "role": "Icon strokes, secondary button borders, slightly elevated neutral surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1d1d1e",
+        "name": "Charcoal",
+        "role": "Rare dark surface (e.g. featured card panels) — used sparingly to create a single dark anchor in an otherwise all-white page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e09bb5",
+        "name": "Blush to Violet",
+        "role": "Hero wash gradient — soft pink-to-magenta transition used only as a backdrop to large featured artworks, never as a UI fill",
+        "group": "accent",
+        "gradient": "linear-gradient(168.57deg, #ffffff 14.81%, #fbf0ed 22.79%, #e0a6b5 81.04%, #dc94d5 91.42%)"
+      }
+    ],
+    "layout": "Max-width ~1200px centered, generous outer gutters. Hero is a single full-bleed featured drop, not a split layout — the image spans the full content width and text overlays it. Below: 2-column grid of large collection cards, one row of two, with comfortable ~24-32px gap. Then a compact numbered list (single column, 3-5 items) with no card containers — just typographic rhythm. Section headers sit on the left margin with right-aligned ghost links. Vertical rhythm: ~88px between major sections, ~40px between sub-blocks. No sidebar, no sticky elements beyond the top nav. The page is essentially: hero → grid → list → product spotlight, stacking downward with no visual break devices.",
+    "imagery": "Imagery is the entire product. The UI hosts third-party digital artworks at full scale; Gamma itself contributes no illustration or photography. Artwork thumbnails are sharp-cornered (4px) at every size — no rounded softening. The one in-house visual asset is the Blush-to-Violet hero wash gradient, which acts as a 'scaffold' that disappears behind the work. Iconography is monochrome line art in #0c0c0d or #242629, stroke-weight around 1.5px, no fill. No 3D, no product mockups, no lifestyle photography — the work speaks for itself.",
+    "similar": [
+      {
+        "why": "Same gallery-frame approach: achromatic UI with oversized whitespace, sharp-cornered artwork thumbnails, and ultra-thin type that disappears so the lot speaks",
+        "business": "Sotheby's digital"
+      },
+      {
+        "why": "Same monochrome art-marketplace treatment with near-zero UI color, oversized hero drops, and weight-300 display type overlaid directly on artwork",
+        "business": "Foundation (foundation.app)"
+      },
+      {
+        "why": "Comparable white-canvas auction layout: clean grid of featured lots, numbered lists, hairline dividers, and a single dark filled CTA",
+        "business": "Christie's online"
+      },
+      {
+        "why": "Same numbered-list + 2-column-grid rhythm for artist drops, and same restraint on UI color so digital art carries the palette",
+        "business": "Objkt (Tezos marketplace)"
+      },
+      {
+        "why": "Same flat gallery approach: no shadows, 4px image corners, pill buttons, and an almost all-white surface that recedes behind the work",
+        "business": "SuperRare"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "999px",
+        "cards": "8px",
+        "images": "4px",
+        "inputs": "999px",
+        "buttons": "999px"
+      },
+      "elementGap": "4-8px",
+      "sectionGap": "40-88px",
+      "cardPadding": "20-24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — the gallery wall"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Collection cards, list items, product panels — same color as canvas, separated only by hairline borders"
+      },
+      {
+        "hex": "#e9e9ec",
+        "name": "Hover / Subtle",
+        "level": 2,
+        "purpose": "Hover wash, progress bar fill, secondary surface tint"
+      },
+      {
+        "hex": "#1d1d1",
+        "name": "Dark Anchor",
+        "level": 3,
+        "purpose": "Rare inverted card surface for featured/highlighted content"
+      },
+      {
+        "hex": "#0c0c0d",
+        "name": "Inverse CTA",
+        "level": 4,
+        "purpose": "Primary action button (Connect) — only filled dark element in the system"
+      }
+    ],
+    "northStar": "white-walled art gallery. The UI is a silent frame; the artwork is the only thing that should be loud.",
+    "typeScale": [
+      {
+        "role": "micro",
+        "size": 12,
+        "lineHeight": 1.43,
+        "letterSpacing": 0.02
+      },
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0.01
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.33,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.005
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.17,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "hero",
+        "size": 72,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.05
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Full-width white bar, 64-72px tall, sticky. Left: Gamma monogram logo + pill-shaped search input (999px radius, #e9e9ec border). Center: text nav links (Explore, Charts, Create, Learn) with dropdown carets, 14px weight 400 #0c0c0d. Right: 'Connect' filled black pill button (999px radius, #0c0c0d bg, #ffffff text, 16-20px horizontal padding, 8-10px vertical). Bottom border: 1px #e9e9ec."
+      },
+      {
+        "name": "Search Input (Pill)",
+        "role": "Global collection/artist search",
+        "description": "Rounded pill at 999px, 1px #e9e9ec border, #ffffff background, 36-40px tall. Placeholder text in #808080, search icon left in #808080. Focus state: border darkens to #0c0c0d."
+      },
+      {
+        "name": "Connect Button (Filled Pill)",
+        "role": "Primary action — wallet connection",
+        "description": "999px radius, #0c0c0d background, #ffffff text, 14-15px weight 600 Gamma Sans Display, 18-20px horizontal padding, 8-10px vertical padding. No border, no shadow. This is the only filled dark element in the system — it earns its weight by being the only call to action."
+      },
+      {
+        "name": "Nav Link (Ghost)",
+        "role": "Section navigation",
+        "description": "Transparent background, #0c0c0d text, 14px weight 400, no underline, small dropdown caret. Hover: text remains #0c0c0d (no color shift — restraint)."
+      },
+      {
+        "name": "Hero Feature Banner",
+        "role": "Showcase for the top curated drop",
+        "description": "Full-bleed image container, 4px corner radius, with the featured artwork bleeding edge-to-edge. Overlaid massive display text ('LIGHT' at 72px weight 300) sits directly on the artwork in #0c0c0d, with no text background or scrim — the type is allowed to compete with the art. Below the image, a meta row: collection title (20-24px weight 400), creator description (16px #808080), mints claimed count with progress bar, BTC mint price in mono-weight, and a 'View Drop' outlined pill button."
+      },
+      {
+        "name": "Collection Card (Grid)",
+        "role": "Featured drop in 2-column grid",
+        "description": "Large rectangular card, 4px image radius on top (artwork is the visual), white surface below image, no padding between image and meta. Meta block: title (18-20px weight 400), description (14px #808080, 2 lines clamp), mints-claimed progress bar (#0c0c0d fill on #e9e9ec track), price label, 'View Drop' button. No card border, no shadow — the image edge defines the card."
+      },
+      {
+        "name": "Numbered Collection List Item",
+        "role": "Compact ranked list of drops",
+        "description": "Horizontal row: large ordinal number (1, 2, 3…) in 24px weight 300 #808080 on the far left, 64-80px square thumbnail (4px radius), then title (18px weight 400 #0c0c0d) and meta line (14px #808080: minted count · mint price). No card background, just whitespace separation; subtle bottom border in #e9e9ec or no border at all."
+      },
+      {
+        "name": "View Drop Button (Outlined Pill)",
+        "role": "Secondary action on collection cards",
+        "description": "999px radius, transparent background, 1px #0c0c0d border, #0c0c0d text, 13-14px weight 400, 16px horizontal padding, 8px vertical. Ghost/inverse of the Connect button — same shape, opposite fill, signals 'explore further' rather than 'commit'."
+      },
+      {
+        "name": "Print Product Card",
+        "role": "Section product showcase (Prints / Editions)",
+        "description": "Full-bleed image with a 12-20px radius depending on artwork, pink/violet gradient wash background (the Blush-to-Violet gradient), title and artist meta stacked on the left, sale status and edition count on the right with a dot indicator. A subtle white download/original chip sits at the bottom right."
+      },
+      {
+        "name": "Mints Claimed Progress Bar",
+        "role": "Scarcity / progress indicator",
+        "description": "Thin 2-3px tall bar, #e9e9ec track, #0c0c0d fill. Sits directly under the mints-claimed label (e.g. '44% · 432 / 1,410'). No border, no radius (or 2px max)."
+      },
+      {
+        "name": "Metadata Label",
+        "role": "Caption-level info (price, counts, dates)",
+        "description": "14px weight 400 in #808080, often inline with a '·' separator. Numeric values may be slightly heavier (weight 600) in #0c0c0d to lift them from the label."
+      },
+      {
+        "name": "Section Header with Inline Link",
+        "role": "Section title bar",
+        "description": "Large section title (24-32px weight 600) with a small inline icon to its left, short descriptive subhead in 14px #808080 on the same line, and a ghost/text action link ('Explore prints') right-aligned. No divider, no background — just spacing."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family system used for everything from micro-labels to the 72px hero display. Weight 300 for oversized hero titles ('LIGHT') creates a near-tracery effect that lets the artwork underneath read through; weight 600 reserved for short labels and the Connect button; weight 400 carries body and metadata. The custom neo-grotesque has a slightly condensed character width and flat apertures that feel more architectural than friendly.",
+        "sizes": "12px, 14px, 16px, 18px, 20px, 24px, 32px, 40px, 48px, 72px",
+        "family": "Gamma Sans Display",
+        "weight": "300, 400, 600",
+        "lineHeight": "1.15–1.50",
+        "substitute": "Inter",
+        "letterSpacing": "-0.005em to +0.023em (slight positive tracking on small caps labels, near-zero on large display)"
+      }
+    ],
+    "description": "Gamma uses a gallery-frame design language: the interface is nearly invisible (near-black text on white with cool gray hairlines) so the digital artworks become the only source of color. The custom Gamma Sans Display is a neo-grotesque with weights at 300/400/600 that whisper rather than shout, and the 999px pill radius on interactive elements contrasts deliberately with the sharp 4px corners on artwork thumbnails. Cards are flat with no elevation or shadow — everything sits on one plane, like prints hung flush against a museum wall. The grid is a 2-column row of oversized featured drops, then a compact numbered list for the rest, letting the hierarchy be carried entirely by image size rather than color or depth.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4782832c-1c23-4fe3-997c-2a08d7b6c5d1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Gamma design system\",\"item\":\"https://styles.refero.design/style/4782832c-1c23-4fe3-997c-2a08d7b6c5d1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4782832c-1c23-4fe3-997c-2a08d7b6c5d1#style-reference\",\"name\":\"Gamma design system reference\",\"headline\":\"Gamma design system | Refero Styles\",\"description\":\"Explore Gamma's light Crypto design system: Ink Black #0c0c0d, Pure White #ffffff colors, Gamma Sans Display typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/4782832c-1c23-4fe3-997c-2a08d7b6c5d1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4782832c-1c23-4fe3-997c-2a08d7b6c5d1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Gamma\",\"url\":\"https://www.gamma.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4782832c-1c23-4fe3-997c-2a08d7b6c5d1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ebac255b-2f77-4426-ab1e-1a6893045109.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ebac255b-2f77-4426-ab1e-1a6893045109.jpg\",\"caption\":\"Screenshot of Gamma\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ebac255b-2f77-4426-ab1e-1a6893045109.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Gamma design system\",\"Gamma website design\",\"Gamma colors\",\"Gamma typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Ink Black\",\"Pure White\",\"Ash\",\"Smoke\",\"Gamma Sans Display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Gamma design system\"},{\"@type\":\"Thing\",\"name\":\"Gamma website design\"},{\"@type\":\"Thing\",\"name\":\"Gamma colors\"},{\"@type\":\"Thing\",\"name\":\"Gamma typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T00:58:01.165Z\",\"dateModified\":\"2026-04-30T00:58:01.165Z\"}]}19:T75e,**Quick Color Reference**\n- text: #0c0c0d\n- background: #ffffff\n- border: #e9e9ec\n- muted text: #808080\n- accent: no distinct accent — UI is intentionally achromatic\n- primary action: #0c0c0d (filled action)\n\n**Example Component Prompts**\n1. Build the top nav: white bar, 1px #e9e9ec bottom border, 64px tall. Left: Gamma logo + pill search (999px radius, 1px #e9e9ec border, #ffffff bg, 14px placeholder in #808080). Center: ghost links 'Explore', 'Charts', 'Create', 'Learn' in 14px #0c0c0d. Right: 'Connect' filled pill — #0c0c0d bg, #ffffff text, 999px radius, 14px weight 600, 20px 8px padding.\n\n2. Build a hero feature: full-bleed artwork image (4px radius), overlaid display text 'LIGHT' at 72px Gamma Sans weight 300 in #0c0c0d, sitting directly on the image with no scrim. Below image: title in 20px weight 400, creator description in 16px #808080, mints-claimed progress bar (2px tall, #e9e9ec track, #0c0c0d fill), and a 'View Drop' outlined pill (999px, 1px #0c0c0d border, transparent bg, #0c0c0d text).\n\n3. Build a 2-column collection grid: each card is 4px-radius artwork on top, 20-24px padding below for the meta block (no card background, no border, no shadow). Meta: title 18px weight 400 #0c0c0d, description 14px #808080 truncated to 2 lines, progress bar, and a 'View Drop' ghost pill.\n\n4. Build a numbered list item: horizontal row, ordinal number in 24px weight 300 #808080 on the far left, 72px square thumbnail (4px radius), then title in 18px weight 400 #0c0c0d and a meta line in 14px #808080 ('X minted · 0.00021 BTC'). No card background, no border, just whitespace.\n\n5. Build a section header row: left-aligned title in 24-32px weight 600 with a small leading icon, followed by a 14px #808080 subhead inline, and a right-aligned ghost link ('Explore prints') in 14px weight 400 #0c0c0d. No background, no divider — spacing alone separates sections."
+      },
+      {
+        "title": "Gradient System",
+        "content": "One gradient only: the Blush-to-Violet wash (168.57deg, #ffffff → #fbf0ed → #e0a6b5 → #dc94d5). It is used exclusively as a soft backdrop for the 'Prints' / product spotlight section, never as a button fill, never as a border, never on a primary CTA. Its job is to act as a neutral 'frame color' that complements the artwork without competing with it. Do not introduce additional gradients — the system is otherwise achromatic by design."
+      }
+    ],
+    "elevationPhilosophy": "No shadows anywhere. Depth is communicated exclusively through hairline 1px borders in #e9e9ec and the single dark surface (#1d1d1e) as an inversion. This is a deliberate flat-gallery choice — shadows would make UI elements feel like they are floating in front of the artwork instead of being part of the same wall."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0c0c0d",
+          "oklch": {
+            "c": 0.002102821692372415,
+            "h": 286.1514697430407,
+            "l": 0.15479430896782362
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "icon",
+            "input",
+            "card",
+            "image",
+            "body",
+            "heading"
+          ],
+          "frequency": 2938,
+          "confidence": 1,
+          "prominence": 145896500.5091818,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 65,
+            "card/color": 16,
+            "icon/color": 15,
+            "link/color": 49,
+            "other/fill": 15,
+            "image/color": 51,
+            "input/color": 1,
+            "other/color": 381,
+            "button/color": 5,
+            "other/stroke": 5,
+            "heading/color": 3,
+            "body/borderColor": 260,
+            "card/borderColor": 64,
+            "icon/borderColor": 60,
+            "link/borderColor": 184,
+            "image/borderColor": 204,
+            "other/borderColor": 1515,
+            "button/borderColor": 20,
+            "heading/borderColor": 12,
+            "link/backgroundColor": 4,
+            "other/backgroundColor": 7,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#e9e9ec",
+          "oklch": {
+            "c": 0.004014985190023151,
+            "h": 286.3217092155578,
+            "l": 0.9348801650420058
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 6475429.167632753,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 4,
+            "other/borderColor": 1,
+            "button/borderColor": 16
+          }
+        },
+        {
+          "hex": "#1d1d1e",
+          "oklch": {
+            "c": 0.0018997997884650684,
+            "h": 286.2500919114832,
+            "l": 0.2311574867877686
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3330518,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "button",
+            "heading",
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 195,
+          "confidence": 1,
+          "prominence": 1382686.6282042835,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "icon/color": 2,
+            "other/fill": 2,
+            "other/color": 20,
+            "button/color": 2,
+            "heading/color": 4,
+            "body/borderColor": 40,
+            "icon/borderColor": 8,
+            "other/borderColor": 80,
+            "button/borderColor": 8,
+            "heading/borderColor": 16,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "card",
+            "icon"
+          ],
+          "frequency": 296,
+          "confidence": 1,
+          "prominence": 872984.9788822222,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "card/color": 3,
+            "icon/color": 1,
+            "link/color": 7,
+            "other/fill": 2,
+            "other/color": 44,
+            "button/color": 2,
+            "card/borderColor": 12,
+            "icon/borderColor": 4,
+            "link/borderColor": 28,
+            "other/borderColor": 176,
+            "button/borderColor": 8,
+            "card/backgroundColor": 1,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 6,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#242629",
+          "oklch": {
+            "c": 0.006285817577482486,
+            "h": 258.3586716688027,
+            "l": 0.2677721455229364
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 59,
+          "confidence": 1,
+          "prominence": 26362.45272820082,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 4,
+            "other/fill": 4,
+            "button/color": 7,
+            "icon/borderColor": 16,
+            "button/borderColor": 28
+          }
+        },
+        {
+          "hex": "#069347",
+          "oklch": {
+            "c": 0.15477406895371312,
+            "h": 150.98840049626114,
+            "l": 0.5808707440043446
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 310.6526501413466,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.005344391427036261,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.55,
+          "background": "#ffffff",
+          "foreground": "#0c0c0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.84,
+          "background": "#1d1d1e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.14,
+          "background": "#0c0c0d",
+          "foreground": "#e9e9ec"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.17,
+          "background": "#ffffff",
+          "foreground": "#242629"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.9,
+          "background": "#1d1d1e",
+          "foreground": "#e9e9ec"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.52,
+          "background": "#e9e9ec",
+          "foreground": "#242629"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.95,
+          "background": "#808080",
+          "foreground": "#0c0c0d"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.26,
+          "background": "#1d1d1e",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#ffffff",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.84,
+          "background": "#808080",
+          "foreground": "#242629"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.26,
+          "background": "#808080",
+          "foreground": "#e9e9ec"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.29,
+          "background": "#0c0c0d",
+          "foreground": "#242629"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.21,
+          "background": "#ffffff",
+          "foreground": "#e9e9ec"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.16,
+          "background": "#1d1d1e",
+          "foreground": "#0c0c0d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#1d1d1e",
+          "foreground": "#242629"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 37
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "card"
+          ],
+          "frequency": 34
+        },
+        {
+          "value": 999,
+          "contexts": [
+            "input",
+            "button",
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 32
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 260,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link",
+            "input",
+            "button",
+            "card"
+          ],
+          "frequency": 117,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|input",
+            "columnGap|input",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingLeft|button",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 37,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "input",
+            "card"
+          ],
+          "frequency": 95,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|input",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "card"
+          ],
+          "frequency": 64,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|card",
+            "columnGap|card",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 23,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 42,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 72,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 88,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 104,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 130,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 140,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 230,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(168.57deg, rgb(255, 255, 255) 14.81%, rgb(251, 240, 237) 22.79%, rgb(224, 166, 181) 81.04%, rgb(220, 148, 213) 91.42%)",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(251, 240, 237)",
+          "rgb(224, 166, 181)",
+          "rgb(220, 148, 213)"
+        ],
+        "frequency": 3
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Gamma Sans Display",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            600
+          ],
+          "frequency": 699,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Gamma Sans Display",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Gamma Sans Display",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Gamma Sans Display",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "button",
+            "body"
+          ],
+          "frequency": 209,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Gamma Sans Display",
+          "weight": 300,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Gamma Sans Display",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.023,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Gamma Sans Display",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "icon",
+            "card",
+            "image",
+            "body"
+          ],
+          "frequency": 308,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Gamma Sans Display",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Gamma Sans Display",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Gamma Sans Display",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Gamma Sans Display",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Gamma Sans Display",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "image",
+            "link",
+            "icon"
+          ],
+          "frequency": 84,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Gamma Sans Display",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Gamma Sans Display",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Gamma Sans Display",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Gamma Sans Display",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Gamma Sans Display",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "icon"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Gamma Sans Display",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Gamma Sans Display",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3d2626ba-f626-4f01-8bae-ec1cb542622d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ebac255b-2f77-4426-ab1e-1a6893045109.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4782832c-1c23-4fe3-997c-2a08d7b6c5d1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Gamma design system\",\"item\":\"https://styles.refero.design/style/4782832c-1c23-4fe3-997c-2a08d7b6c5d1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4782832c-1c23-4fe3-997c-2a08d7b6c5d1#style-reference\",\"name\":\"Gamma design system reference\",\"headline\":\"Gamma design system | Refero Styles\",\"description\":\"Explore Gamma's light Crypto design system: Ink Black #0c0c0d, Pure White #ffffff colors, Gamma Sans Display typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/4782832c-1c23-4fe3-997c-2a08d7b6c5d1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4782832c-1c23-4fe3-997c-2a08d7b6c5d1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Gamma\",\"url\":\"https://www.gamma.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4782832c-1c23-4fe3-997c-2a08d7b6c5d1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ebac255b-2f77-4426-ab1e-1a6893045109.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ebac255b-2f77-4426-ab1e-1a6893045109.jpg\",\"caption\":\"Screenshot of Gamma\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ebac255b-2f77-4426-ab1e-1a6893045109.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Gamma design system\",\"Gamma website design\",\"Gamma colors\",\"Gamma typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Ink Black\",\"Pure White\",\"Ash\",\"Smoke\",\"Gamma Sans Display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Gamma design system\"},{\"@type\":\"Thing\",\"name\":\"Gamma website design\"},{\"@type\":\"Thing\",\"name\":\"Gamma colors\"},{\"@type\":\"Thing\",\"name\":\"Gamma typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T00:58:01.165Z\",\"dateModified\":\"2026-04-30T00:58:01.165Z\"}]}19:T75e,**Quick Color Reference**\n- text: #0c0c0d\n- background: #ffffff\n- border: #e9e9ec\n- muted text: #808080\n- accent: no distinct accent — UI is intentionally achromatic\n- primary action: #0c0c0d (filled action)\n\n**Example Component Prompts**\n1. Build the top nav: white bar, 1px #e9e9ec bottom border, 64px tall. Left: Gamma logo + pill search (999px radius, 1px #e9e9ec border, #ffffff bg, 14px placeholder in #808080). Center: ghost links 'Explore', 'Charts', 'Create', 'Learn' in 14px #0c0c0d. Right: 'Connect' filled pill — #0c0c0d bg, #ffffff text, 999px radius, 14px weight 600, 20px 8px padding.\n\n2. Build a hero feature: full-bleed artwork image (4px radius), overlaid display text 'LIGHT' at 72px Gamma Sans weight 300 in #0c0c0d, sitting directly on the image with no scrim. Below image: title in 20px weight 400, creator description in 16px #808080, mints-claimed progress bar (2px tall, #e9e9ec track, #0c0c0d fill), and a 'View Drop' outlined pill (999px, 1px #0c0c0d border, transparent bg, #0c0c0d text).\n\n3. Build a 2-column collection grid: each card is 4px-radius artwork on top, 20-24px padding below for the meta block (no card background, no border, no shadow). Meta: title 18px weight 400 #0c0c0d, description 14px #808080 truncated to 2 lines, progress bar, and a 'View Drop' ghost pill.\n\n4. Build a numbered list item: horizontal row, ordinal number in 24px weight 300 #808080 on the far left, 72px square thumbnail (4px radius), then title in 18px weight 400 #0c0c0d and a meta line in 14px #808080 ('X minted · 0.00021 BTC'). No card background, no border, just whitespace.\n\n5. Build a section header row: left-aligned title in 24-32px weight 600 with a small leading icon, followed by a 14px #808080 subhead inline, and a right-aligned ghost link ('Explore prints') in 14px weight 400 #0c0c0d. No background, no divider — spacing alone separates sections."
+}

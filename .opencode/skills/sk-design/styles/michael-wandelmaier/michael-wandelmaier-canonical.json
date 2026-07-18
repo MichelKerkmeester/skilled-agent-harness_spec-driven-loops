@@ -1,0 +1,995 @@
+{
+  "source": "https://styles.refero.design/style/5b405eec-67ba-4dd0-8dab-ace000151a78",
+  "uuid": "5b405eec-67ba-4dd0-8dab-ace000151a78",
+  "name": "Michael Wandelmaier",
+  "northStar": "museum placard on black velvet — three candy pills, one whisper-weight serif, and almost nothing else.",
+  "capturedAt": "2026-07-18T07:51:56.611Z",
+  "meta": {
+    "url": "https://wandelmaier.com",
+    "siteName": "Michael Wandelmaier",
+    "extractedAt": "2026-06-03T19:19:52.610Z",
+    "durationMs": 37995,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 153,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set the page background to #000000 and let every section sit directly on it — no nested canvas colours, no card fills.",
+      "Use Canela Web (or Fraunces 100) at weight 100 for all headlines, including hero type up to 187px; never substitute a bold weight.",
+      "Use the three pill colours exclusively as a triad: green for the one CTA, coral and apricot for category labels.",
+      "Set all UI text — tag labels, nav items, pill copy — in PolySans weight 100 with letter-spacing 0.2em; the wide tracking is the signature.",
+      "Use 10000px radius for any pill or oval container (flow steps, photo crops, diagram nodes) and 72px for action buttons; 48px is for small text labels only.",
+      "Separate client list rows with a 1px Ember (#302f2d) hairline, never with extra vertical space or background bands.",
+      "Hold a 96px section gap and let dark space do the visual work — resist adding dividers, shadows, or background tints between sections."
+    ],
+    "donts": [
+      "Do not introduce shadows, gradients, or glows — the design system is flat and depends on the void for contrast.",
+      "Do not use a bold or semibold weight for headlines; the entire typographic identity collapses if weight 100 is replaced by 400+.",
+      "Do not add more than three accent colours; the triad of green/coral/apricot is the palette.",
+      "Do not turn category label pills (coral, apricot) into interactive buttons; only the green pill is a CTA.",
+      "Do not set body copy in Canela Web or PolySans — the 16px system sans at weight 400 is the only body face, and it lets the serifs carry identity.",
+      "Do not use square or slightly-rounded corners on any container; every shape is either a stadium (10000px / 72px / 48px) or a sharp rectangle.",
+      "Do not place content on a coloured card; all surfaces are #000000 and hierarchy is built with type scale, not surface colour."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Inkwell",
+        "role": "Page background, card surface, image masking — the entire site lives on this near-black canvas. True black, not charcoal; the void is the design",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a9a9a9",
+        "name": "Ash",
+        "role": "Medium-contrast borders, control outlines, and structural separators.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#302f2d",
+        "name": "Ember",
+        "role": "List separators with a barely-perceptible warm cast — gives the hairline rules a paper-like tone against the cold black background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#34a847",
+        "name": "Meadow",
+        "role": "Green action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "brand"
+      },
+      {
+        "hex": "#fbcbcb",
+        "name": "Coral Blush",
+        "role": "Red wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#f27851",
+        "name": "Apricot",
+        "role": "Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content.",
+        "group": "accent"
+      }
+    ],
+    "layout": "$19",
+    "imagery": "Photography only — no illustration, no product renders, no abstract graphics. The imagery is documentary-style: mid-action shots of people working (a man writing on a window, a team reviewing sketches at a table, a woman presenting to a whiteboard covered in sticky notes, a circular black-and-white group shot). Treatment is naturalistic colour with a slight cool cast, cropped aggressively into oval/full-pill shapes that bleed to the section edges. The crops feel editorial — they reference Magnum-style documentary frames rather than corporate stock. The photos are the only textured content on the page; the rest is type and void. Density: four to five photo ovals per section row, each occupying roughly 15–20% of the page width, with the remaining space left empty.",
+    "similar": [
+      {
+        "why": "Same flat black canvas with one candy-coloured accent pill as the only interactive element, and a typographic system that treats the viewport as editorial space rather than app chrome.",
+        "business": "Active Theory"
+      },
+      {
+        "why": "Shares the dark-void canvas, oversized hairline serif headlines, and the practice of using coloured pill shapes as section labels rather than traditional CTAs.",
+        "business": "Resn (portfolio site)"
+      },
+      {
+        "why": "Same quiet-black layout with serif display type at extreme sizes, but where Locomotive uses a single accent hue, this system uses a three-colour pill triad.",
+        "business": "Locomotive (agency site)"
+      },
+      {
+        "why": "Same editorial-portfolio density — white type on black, hairline dividers, and the conviction that colour should appear only as small functional punctuation.",
+        "business": "Manual (design studio site)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "10000px",
+        "badges": "48px",
+        "buttons": "72px"
+      },
+      "elementGap": "22px",
+      "sectionGap": "96px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Base page background — every section sits directly on black, no nested canvas colour."
+      },
+      {
+        "hex": "#000000",
+        "name": "Inset",
+        "level": 1,
+        "purpose": "Card and image containers are the same black as the page, delineated only by white hairline borders or by the colourful pill labels themselves."
+      }
+    ],
+    "northStar": "museum placard on black velvet — three candy pills, one whisper-weight serif, and almost nothing else.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.33,
+        "letterSpacing": 2.4
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1,
+        "letterSpacing": 6.4
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-lg",
+        "size": 50,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Category Label Pill",
+        "role": "Filled, non-interactive tag that sits next to a headline to label the section.",
+        "description": "Fully rounded stadium shape, 48px radius, 29px vertical padding, 61px horizontal padding. Three colour variants: Coral Blush (#fbcbcb), Apricot (#f27851), Meadow (#34a847). Label text is PolySans weight 100, 12px, letter-spacing 0.2em, dark text on the light fills, white text on the green. No border, no shadow, no hover state — these are visual labels, not controls."
+      },
+      {
+        "name": "Green CTA Pill",
+        "role": "The single interactive download/contact button on the page.",
+        "description": "Filled Meadow (#34a847) stadium shape, 72px radius, 29px vertical padding, 48px horizontal padding. Contains a white down-arrow glyph (PolySans or system icon at 12px). The 72px radius — larger than the 48px label pills — visually elevates this from label to action. No hover state observed; the stillness is part of the editorial mood."
+      },
+      {
+        "name": "Outlined Flow Step",
+        "role": "White-outline pill used in the 'People & Purpose → Brand → Service' diagram.",
+        "description": "Transparent fill, 1px white border, 10000px radius (full pill). Text is PolySans weight 100, white, letter-spacing 0.2em. Steps are connected by short vertical white lines and small down-arrows. Functions as a process diagram, not a navigation element."
+      },
+      {
+        "name": "Oval Photo Card",
+        "role": "Portrait/workspace photo cropped into a full pill shape as editorial imagery.",
+        "description": "10000px border-radius on a 4:5 or 3:4 photo container. 1px white border (#ffffff). No padding, no shadow. Sits in a horizontal row of three or four across a section, each with a slightly different aspect ratio to feel hand-arranged rather than gridded."
+      },
+      {
+        "name": "Client List Row",
+        "role": "Single row in the 'Helping leaders transform & innovate' client list.",
+        "description": "Full-width row, no background, bottom border 1px in Ember (#302f2d) — the warm-tinted hairline is the only divider in the system. Left: company name in Bone white, PolySans weight 100, 24px. Right: small all-caps metadata tag (e.g. 'METALAB · 2021') in Ash (#a9a9a9), PolySans weight 100, 12px, letter-spacing 0.2em. 58px horizontal padding, 32px vertical padding."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Oversized editorial headline that fills the viewport width.",
+        "description": "Canela Web weight 100, 80–187px. Line-height 1.2. Pure white (#ffffff) on Inkwell (#000000). The headline is broken across multiple lines that wrap asymmetrically, with the category label pills set inline as visual punctuation. Letter-spacing is normal; the weight-100 serif is thin enough that no extra tracking is needed."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Mid-size serif heading for non-hero sections.",
+        "description": "Canela Web weight 100, 40–50px, line-height 1.2–1.3, white on black. Two or three lines, left-aligned, set at the start of a content block with 64px top margin."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Long-form descriptive text — work history, philosophy statements.",
+        "description": "System sans-serif weight 400, 16px, line-height 1.2, white on black. Max-width around 560px (roughly half the content column) so lines stay short and readable. No first-line indent, generous space between paragraphs (32–48px)."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal identity header.",
+        "description": "Three text items left/center/right across the top of the page: name (left), role (center), location (right). PolySans weight 100, 12px, letter-spacing 0.2em, white. No background, no border, no hamburger — the header is just floating type."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Hero and section headlines. A high-contrast didone-influenced display serif used at hairline weight 100 — the choice of a thin serif rather than a bold sans is the single most distinctive typographic decision: it makes 'everyday' and 'ideas' feel like printed editorial cover type, not a product headline. Free substitute: Playfair Display weight 400 italic does not match; use DM Serif Display at weight 100 or Fraunces at optical-size 144 weight 100 for the closest available stand-in.",
+        "sizes": "40, 50, 80px",
+        "family": "Canela Web",
+        "weight": "100",
+        "lineHeight": "1.2–2.4",
+        "substitute": "Fraunces (weight 100, optical 144)",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "All UI text, tag labels, pill copy, and the ultra-large display variant. The geometric sans at weight 100 is anti-conventional for UI (most systems use 400–600 here) — it makes tags and buttons feel like printed specimen labels rather than app controls. The wide 0.2em tracking is the signature: it turns every label into a wide-set, posterised caption. Free substitute: Inter weight 100 or Space Grotesk weight 100, with letter-spacing manually opened to 0.2em to match.",
+        "sizes": "12, 24, 32, 187px",
+        "family": "PolySans",
+        "weight": "100",
+        "lineHeight": "0.9–2.67",
+        "substitute": "Inter (weight 100) with letter-spacing 0.2em",
+        "letterSpacing": "0.2em"
+      },
+      {
+        "role": "Body copy fallback — a plain system sans at 16px, used for the long-form paragraph text describing work history. Its neutrality lets the serif headings carry the visual identity.",
+        "sizes": "16px",
+        "family": "sans-serif (system)",
+        "weight": "400",
+        "lineHeight": "1.2",
+        "substitute": "Inter (weight 400)",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "A designer's portfolio reads as an after-hours editorial gallery: an almost-black canvas hosts oversized hairline serif headlines (Canela Web at weight 100) that fill the viewport like poster type, while three candy-coloured pill shapes — coral, apricot, grass green — sit alongside the words like adhesive labels on a curator's wall. The sans counterpart (PolySans, also weight 100) is reserved for small all-caps tags and UI chrome, set with an unusually wide 0.2em tracking that makes even 12px labels feel like printed specimen text. The page is deliberately monochrome and quiet everywhere except for those three filled pills, which function as the only bursts of colour on the entire site — used as category labels, not as actions. The only true interactive surface is a green pill with a down-arrow. There are no shadows, no gradients, no decorative borders; hierarchy is built entirely through type scale, white space, and the contrast between vast dark areas and tight white text blocks.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1a"
+      },
+      {
+        "title": "Typographic Philosophy",
+        "content": "The system relies on a two-family pairing where both faces share weight 100, which is the design's single most distinctive choice. Headlines (Canela Web, a high-contrast didone serif) carry editorial gravitas; UI labels (PolySans, a geometric sans) carry precision. Because both are set at hairline weight, they read as a single voice — both feel like printed specimen text rather than digital UI. The 0.2em letter-spacing on every PolySans label is non-negotiable: without it, the system loses its posterised, gallery-label quality. Do not introduce a third typeface for body copy; the 16px system sans is intentionally anonymous so the two display faces can do all the visual work."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids shadow-based elevation. Depth and hierarchy are communicated exclusively through type scale, white space, and the contrast between filled pill shapes and the flat black canvas. No component uses box-shadow; containers that need definition (photo ovals, list rows) use 1px white or warm-grey hairline borders instead."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "card",
+            "image",
+            "badge",
+            "icon",
+            "other",
+            "list",
+            "button"
+          ],
+          "frequency": 355,
+          "confidence": 1,
+          "prominence": 13240273.746116418,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 6,
+            "body/color": 28,
+            "card/color": 6,
+            "list/color": 17,
+            "other/fill": 3,
+            "badge/color": 2,
+            "image/color": 6,
+            "button/color": 2,
+            "heading/color": 11,
+            "body/borderColor": 112,
+            "card/borderColor": 24,
+            "list/borderColor": 51,
+            "badge/borderColor": 8,
+            "image/borderColor": 24,
+            "other/borderColor": 3,
+            "button/borderColor": 8,
+            "heading/borderColor": 44
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "card",
+            "heading",
+            "hero",
+            "list",
+            "icon",
+            "badge",
+            "image",
+            "footer",
+            "button"
+          ],
+          "frequency": 242,
+          "confidence": 1,
+          "prominence": 12379658.679570232,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 12,
+            "hero/color": 1,
+            "icon/color": 3,
+            "list/color": 3,
+            "badge/color": 1,
+            "image/color": 9,
+            "other/color": 16,
+            "button/color": 1,
+            "footer/color": 1,
+            "heading/color": 2,
+            "card/borderColor": 48,
+            "hero/borderColor": 4,
+            "icon/borderColor": 12,
+            "list/borderColor": 12,
+            "badge/borderColor": 4,
+            "image/borderColor": 36,
+            "other/borderColor": 61,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#a9a9a9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7348085828066984
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 130,
+          "confidence": 1,
+          "prominence": 291556.4836827319,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 26,
+            "body/borderColor": 104
+          }
+        },
+        {
+          "hex": "#302f2d",
+          "oklch": {
+            "c": 0.002675660867322884,
+            "h": 84.57251392159,
+            "l": 0.304594003170527
+          },
+          "contexts": [
+            "list"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 253252.05511259593,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "list/borderColor": 17
+          }
+        },
+        {
+          "hex": "#34a847",
+          "oklch": {
+            "c": 0.17088577341346464,
+            "h": 145.93785714743638,
+            "l": 0.645837716895478
+          },
+          "contexts": [
+            "card",
+            "badge",
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 95270,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1,
+            "badge/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fbcbcb",
+          "oklch": {
+            "c": 0.054577208095239964,
+            "h": 18.235884569633,
+            "l": 0.8837994032710689
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 87537,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f27851",
+          "oklch": {
+            "c": 0.1597637971677048,
+            "h": 38.292097401638706,
+            "l": 0.7069801255311553
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 84348,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.002787444738021245,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.51,
+          "background": "#fbcbcb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.37,
+          "background": "#ffffff",
+          "foreground": "#302f2d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.24,
+          "background": "#fbcbcb",
+          "foreground": "#302f2d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.94,
+          "background": "#a9a9a9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.58,
+          "background": "#f27851",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.84,
+          "background": "#34a847",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.69,
+          "background": "#a9a9a9",
+          "foreground": "#302f2d"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.83,
+          "background": "#f27851",
+          "foreground": "#302f2d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.07,
+          "background": "#34a847",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.77,
+          "background": "#f27851",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.62,
+          "background": "#fbcbcb",
+          "foreground": "#a9a9a9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.45,
+          "background": "#fbcbcb",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.31,
+          "background": "#34a847",
+          "foreground": "#a9a9a9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.18,
+          "background": "#f27851",
+          "foreground": "#a9a9a9"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 48,
+          "contexts": [
+            "badge",
+            "body"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 10000,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 16,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other",
+            "card",
+            "heading",
+            "list"
+          ],
+          "frequency": 27,
+          "properties": [
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingRight|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "badge",
+            "body",
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "card",
+            "badge",
+            "list",
+            "footer",
+            "button"
+          ],
+          "frequency": 49,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "paddingTop",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginRight|badge",
+            "paddingTop|list",
+            "paddingBottom|list",
+            "columnGap|footer",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "list",
+            "card"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|list",
+            "paddingLeft|list",
+            "marginRight|card"
+          ]
+        },
+        {
+          "value": 61,
+          "contexts": [
+            "badge",
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "heading",
+            "badge",
+            "icon"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other",
+            "marginBottom|heading",
+            "paddingLeft|other",
+            "marginRight|badge",
+            "marginRight|icon"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginRight|footer",
+            "marginLeft|footer"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other",
+            "hero",
+            "icon"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|hero",
+            "marginRight|icon",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 192,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|footer"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "PolySans",
+          "source": "custom",
+          "weights": [
+            100
+          ],
+          "frequency": 95,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 45,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Canela Web",
+          "source": "custom",
+          "weights": [
+            100
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "PolySans",
+          "weight": 100,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 26,
+          "lineHeight": 2.67,
+          "letterSpacing": 0.2,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "hero",
+            "list",
+            "icon",
+            "image",
+            "footer"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "PolySans",
+          "weight": 100,
+          "contexts": [
+            "heading",
+            "body",
+            "card",
+            "image",
+            "badge",
+            "list"
+          ],
+          "frequency": 62,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "PolySans",
+          "weight": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 2.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "PolySans",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Canela Web",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Canela Web",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Canela Web",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 187,
+          "family": "PolySans",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/bf17f7cf-e08e-4d82-a616-bd280060363e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c37ba854-1a79-45e0-9540-0da721ab19b9.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5b405eec-67ba-4dd0-8dab-ace000151a78#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Michael Wandelmaier design system\",\"item\":\"https://styles.refero.design/style/5b405eec-67ba-4dd0-8dab-ace000151a78\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5b405eec-67ba-4dd0-8dab-ace000151a78#style-reference\",\"name\":\"Michael Wandelmaier design system reference\",\"headline\":\"Michael Wandelmaier design system | Refero Styles\",\"description\":\"Explore Michael Wandelmaier's dark Design design system: Inkwell #000000, Bone #ffffff colors, Canela Web, PolySans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5b405eec-67ba-4dd0-8dab-ace000151a78\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5b405eec-67ba-4dd0-8dab-ace000151a78\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Michael Wandelmaier\",\"url\":\"https://wandelmaier.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5b405eec-67ba-4dd0-8dab-ace000151a78#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c37ba854-1a79-45e0-9540-0da721ab19b9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c37ba854-1a79-45e0-9540-0da721ab19b9.jpg\",\"caption\":\"Screenshot of Michael Wandelmaier\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c37ba854-1a79-45e0-9540-0da721ab19b9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Michael Wandelmaier design system\",\"Michael Wandelmaier website design\",\"Michael Wandelmaier colors\",\"Michael Wandelmaier typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Inkwell\",\"Bone\",\"Ash\",\"Ember\",\"Canela Web\",\"PolySans\",\"sans-serif (system)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Michael Wandelmaier design system\"},{\"@type\":\"Thing\",\"name\":\"Michael Wandelmaier website design\"},{\"@type\":\"Thing\",\"name\":\"Michael Wandelmaier colors\"},{\"@type\":\"Thing\",\"name\":\"Michael Wandelmaier typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:34:43.010Z\",\"dateModified\":\"2026-04-30T02:34:43.010Z\"}]}19:T43a,Full-bleed dark canvas with content contained to a max width of roughly 1280px and centred. The hero is a single viewport-filling block: a top bar of three floating text items, then a two-line editorial headline ('everyday' / 'ideas') with three filled pill labels set inline beside the words, and a row of three oval photo crops starting at the fold. The second section continues full-width: a row of oval photos above a two-column body — left column is a long paragraph of body copy, right column is a vertical flow diagram of outlined pills connected by arrows. The third section drops into a two-column structure: a 40–50px serif heading on the left occupying one-third, and a stacked list of client names with right-aligned metadata tags on the right occupying two-thirds. There are no background bands, no alternating light/dark sections, and no sidebar. Section rhythm is built entirely on 96px vertical gaps and the contrast between dense photo rows and quiet text blocks. Navigation is a single line of three small text items at the very top — no sticky bar, no menu.1a:T722,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- border: #302f2d (hairline) / #a9a9a9 (subtle metadata)\n- accent: #fbcbcb (coral), #f27851 (apricot)\n- primary action: #34a847 (filled action)\n\n**Example Component Prompts**\n\n1. *Hero headline*: 1280px max-width centred on #000000. Headline 'everyday ideas' in Canela Web weight 100, 160px, line-height 1.2, color #ffffff, wrapping across two lines. A coral pill (#fbcbcb, 48px radius, 29px/61px padding, 12px PolySans weight 100 letter-spacing 0.2em, color #000000, text 'work — 2023') sits inline to the right of line one. An apricot pill (#f27851, same shape, text 'product design') sits to the left of line two. A green CTA pill (#34a847, 72px radius, 29px/48px padding, 12px PolySans weight 100, letter-spacing 0.2em, color #ffffff, down-arrow glyph) sits to the right of line two.\n\n2. *Client list row*: full-width row on #000000, 1px bottom border #302f2d, 58px left/right padding, 32px top/bottom padding. Left: company name in PolySans weight 100, 24px, color #ffffff. Right: metadata tag in PolySans weight 100, 12px, letter-spacing 0.2em, color #a9a9a9 (e.g. 'METALAB · 2021').\n\n3. *Oval photo card*: 280px wide, 360px tall, border-radius 10000px, 1px border #ffffff, object-fit cover, no padding, no shadow. Arrange three across a section with 22px gap.\n\n4. *Flow diagram step*: transparent pill, border-radius 10000px, 1px border #ffffff, 22px/32px padding, 12px PolySans weight 100 letter-spacing 0.2em, color #ffffff. Steps connected by a 1px white vertical line and a small down-arrow at 8px PolySans weight 100.\n\n5. *Top nav bar*: three text items spread across the full 1280px width on #000000, no border, no background. Each item: 12px PolySans weight 100, letter-spacing 0.2em, color #ffffff. Left = name, centre = role, right = location."
+}

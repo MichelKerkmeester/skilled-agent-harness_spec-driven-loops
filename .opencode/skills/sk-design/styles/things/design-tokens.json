@@ -1,0 +1,419 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#303336",
+      "$type": "color",
+      "$description": "Ink — Primary text, body copy, heading text — near-black with a faint cool cast, never pure #000, keeping the page from feeling harsh"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card surfaces, elevated product mockups, input fields — pure white against the cooler canvas reads as lifted, not flat"
+    },
+    "mist": {
+      "$value": "#f2f5f7",
+      "$type": "color",
+      "$description": "Mist — Page canvas, full-width background bands — a cool-tinted off-white that feels softer than pure white but still reads as light"
+    },
+    "fog": {
+      "$value": "#838b96",
+      "$type": "color",
+      "$description": "Fog — Secondary body text, helper copy, muted descriptions — the most-used neutral after Ink, creates the dominant mid-tone of the page"
+    },
+    "ash": {
+      "$value": "#55606e",
+      "$type": "color",
+      "$description": "Ash — Tertiary text, icon strokes, decorative dividers — a cool gray that still carries enough chroma to read as designed, not default"
+    },
+    "smoke": {
+      "$value": "#44474b",
+      "$type": "color",
+      "$description": "Smoke — Deep body text alternative, emphasized inline text — sits between Ink and Fog for mid-emphasis passages"
+    },
+    "silver": {
+      "$value": "#9299a4",
+      "$type": "color",
+      "$description": "Silver — Disabled or de-emphasized text, tertiary metadata"
+    },
+    "pebble": {
+      "$value": "#8e9196",
+      "$type": "color",
+      "$description": "Pebble — Muted link text, breadcrumb-style secondary navigation"
+    },
+    "hairline": {
+      "$value": "#dfe3e8",
+      "$type": "color",
+      "$description": "Hairline — Input borders, subtle dividers, card edges — cool and barely-there, defines boundaries without darkening the surface"
+    },
+    "signal-blue": {
+      "$value": "#2576eb",
+      "$type": "color",
+      "$description": "Signal Blue — Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "sky-blue": {
+      "$value": "#5c9cf5",
+      "$type": "color",
+      "$description": "Sky Blue — Secondary blue for heading accents, lighter link states, decorative icon highlights — a softer companion to Signal Blue used when the primary blue would feel too loud"
+    }
+  },
+  "font": {
+    "ui-sans-serif-system-stack-apple-system-blinkmacsystemfont-sf-pro-text-sf-pro-display": {
+      "$value": "ui-sans-serif (system stack: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display')",
+      "$type": "fontFamily",
+      "$description": "All UI and editorial text. The system stack is deliberate — on Apple devices this resolves to SF Pro, matching the Things app itself. Weight 600-800 carries headings; weight 400 carries body. No custom or web-loaded font; the restraint IS the brand."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "14px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 0.07
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 15px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "17px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12.8px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 2px 8px 0px, rgba(0, 0, 0, 0.1) 0px 0px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f2f5f7",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed page background, section bands"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Product mockup surfaces, elevated content cards, input fields"
+    },
+    "accent-surface": {
+      "$value": "#4f91fb",
+      "$type": "color",
+      "$description": "Surface level 3: Saturated blue fill for the circular play control — only place a chromatic color fills a surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://culturedcode.com/things",
+      "siteName": "Things",
+      "extractedAt": "2026-06-03T15:34:27.509Z",
+      "variant": "extended"
+    }
+  }
+}

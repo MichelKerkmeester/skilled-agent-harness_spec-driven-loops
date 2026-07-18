@@ -1,0 +1,1284 @@
+{
+  "source": "https://styles.refero.design/style/f61cf515-ccd5-4494-bdd1-be9fe4d7258c",
+  "uuid": "f61cf515-ccd5-4494-bdd1-be9fe4d7258c",
+  "name": "Hyer Aviation",
+  "northStar": "Cockpit twilight over parchment. A pale dawn-sky meets a slab-serif logo the size of a fuselage, with one warm clay accent breaking the monochrome restraint.",
+  "capturedAt": "2026-07-18T07:05:26.789Z",
+  "meta": {
+    "url": "https://www.flyhyer.com",
+    "siteName": "Hyer Aviation",
+    "extractedAt": "2026-07-03T03:14:39.142Z",
+    "durationMs": 98214,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 281,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set display headlines at 60-187px weight 700 with letter-spacing between -1.26px and -3.74px — the tightness is what makes the type read as architectural, not decorative.",
+      "Use #000d10 for all primary text, filled buttons, icon strokes, and footer — treat it as the single structural color of the system.",
+      "Reserve #bc7155 clay for one featured card per page — the restraint is the point, not the warmth.",
+      "Use 1000px border-radius on every button and nav pill — no square buttons, no partial rounding, the pill is the action shape.",
+      "Set body copy at 18px with line-height 29 (1.61 ratio) — the generous leading is what makes the dense editorial layout breathe.",
+      "Alternate between white canvas sections and #0f0f1c/#151623 dark bands to create vertical contrast — the page should oscillate, not stay flat.",
+      "End every hero headline with a period — 'Beyond Travel.' is the signature punctuation pattern."
+    ],
+    "donts": [
+      "Don't apply shadows to cards or buttons — the system defines elevation through surface color shifts (white → clay → dark slate), not drop shadows.",
+      "Don't introduce additional accent hues — the system is monochrome with one warm note; adding green, blue, or any secondary accent breaks the austere editorial voice.",
+      "Don't use #000d10 in the page background role on white sections — it is the text and button color, not a surface color, on the light canvas.",
+      "Don't round the featured clay card — it must remain 0px radius to contrast with every pill-shaped element around it.",
+      "Don't set body type below 18px — the spaciousness of 18/29 is a signature; smaller sizes break the breathing rhythm.",
+      "Don't use light or thin weights for headlines — weight 700 is non-negotiable from 23px upward; the weight IS the brand voice.",
+      "Don't place two #bc7155 elements on the same page — the accent is single-use per viewport."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#000d10",
+        "name": "Deep Ink",
+        "role": "Primary text, footer background, filled action buttons, icon strokes — the structural near-black carries the entire brand voice in type and CTAs",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page canvas, card surfaces, button text on dark, nav backdrop — the quiet field against which everything else reads",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8e8e95",
+        "name": "Cool Ash",
+        "role": "Secondary body text, nav items, muted helper labels — the only neutral that recedes deliberately behind primary copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d5d3d4",
+        "name": "Pebble",
+        "role": "Hairline borders, dividers, subtle surface alternation between dark sections — visible only at edges",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0f0f1c",
+        "name": "Midnight Hull",
+        "role": "Dark section backgrounds (Travel Support area) — slightly bluer than Deep Ink to differentiate stacked dark bands",
+        "group": "neutral"
+      },
+      {
+        "hex": "#151623",
+        "name": "Charcoal Deck",
+        "role": "Elevated dark panels and deep section backgrounds — the top of the dark surface stack with a faint indigo cast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bc7155",
+        "name": "Clay Ember",
+        "role": "Featured solution card background, decorative fills — the single warm note in an otherwise cold system, used sparingly to make one offering feel chosen",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed sections that alternate between pale sky-tinged hero, white content bands, and dark midnight sections. The hero is the only asymmetric composition: wordmark flush-left at extreme scale, a right-side two-line headline, and the 3D jet floating in the lower-center negative space. Content sections are right-aligned single-column (heading + 2×2 feature grid) on white, creating strong rightward gravity. Navigation is a single transparent row at the top with three text links and a circular menu button. Footer is a full-bleed dark terminal with large wordmark. Vertical rhythm is set by 80px section gaps with no visible dividers between most bands — the color shift itself separates them.",
+    "imagery": "Photography and 3D renders dominate the visual language, specifically a single hero 3D render of a white private jet with dark accent striping, photographed/rendered against a soft gradient sky transitioning from pale blue at top to warm cream at the horizon. The jet is shown in a three-quarter banking pose, positioned left-of-center to leave room for the wordmark and headline. The render is hyper-clean, product-showcase style — no lifestyle context, no passengers, no airports. The aircraft IS the hero. Additional imagery (when used in content sections) follows the same product-crop logic: tight, isolated, on pure white. Iconography is minimal and always stroke-based in #000d10.",
+    "similar": [
+      {
+        "why": "Same private aviation editorial language: full-bleed dark sections, enormous serif-adjacent display type, and a near-monochrome palette with a single warm accent for featured offerings",
+        "business": "VistaJet"
+      },
+      {
+        "why": "Luxury aviation brand using 3D aircraft renders on gradient sky backgrounds with ultra-tight letter-spacing on display headlines and pill-shaped CTAs",
+        "business": "NetJets"
+      },
+      {
+        "why": "Urban aviation startup sharing the same editorial-meets-product tension: stark white canvas, massive bold display headlines, and a single accent color for featured service cards",
+        "business": "Blade"
+      },
+      {
+        "why": "Premium travel brand with the same typographic confidence — oversized bold headlines, monochrome body sections, and the discipline to use accent color only once per page",
+        "business": "Rimowa"
+      },
+      {
+        "why": "Product-hero photography on pale atmospheric backgrounds, 100% pill buttons, and the same editorial restraint of letting one object carry the visual weight of a page",
+        "business": "Sonos"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "1000px",
+        "buttons": "1000px",
+        "decorative": "45px",
+        "heroPanels": "0px",
+        "iconButtons": "100%"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "22px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "level": 0,
+        "purpose": "Primary page background across all content sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card White",
+        "level": 1,
+        "purpose": "Feature cards and content blocks sitting on canvas"
+      },
+      {
+        "hex": "#bc7155",
+        "name": "Featured Clay",
+        "level": 2,
+        "purpose": "Highlighted solution card that breaks the monochrome rhythm"
+      },
+      {
+        "hex": "#151623",
+        "name": "Dark Slate",
+        "level": 3,
+        "purpose": "Full-bleed dark content sections (Travel Support)"
+      },
+      {
+        "hex": "#000d10",
+        "name": "Footer Ink",
+        "level": 4,
+        "purpose": "Terminal dark band at the base of every page"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "Cards and buttons rely on surface color contrast and hairline borders, not box-shadow",
+        "element": "No elevation system detected"
+      }
+    ],
+    "northStar": "Cockpit twilight over parchment. A pale dawn-sky meets a slab-serif logo the size of a fuselage, with one warm clay accent breaking the monochrome restraint.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 17,
+        "lineHeight": 17,
+        "letterSpacing": 0
+      },
+      {
+        "role": "nav",
+        "size": 20,
+        "lineHeight": 20,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 23,
+        "lineHeight": 23,
+        "letterSpacing": -0.23
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 30,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 37,
+        "lineHeight": 37,
+        "letterSpacing": -0.37
+      },
+      {
+        "role": "heading-lg",
+        "size": 52,
+        "lineHeight": 52,
+        "letterSpacing": -0.52
+      },
+      {
+        "role": "display",
+        "size": 63,
+        "lineHeight": 63,
+        "letterSpacing": -1.26
+      },
+      {
+        "role": "display-xl",
+        "size": 131,
+        "lineHeight": 131,
+        "letterSpacing": -2.62
+      },
+      {
+        "role": "hero",
+        "size": 187,
+        "lineHeight": 150,
+        "letterSpacing": -3.74
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Dark Pill Button",
+        "role": "Primary action trigger on light backgrounds",
+        "description": "Background #000d10, text #ffffff, 1000px border-radius, padding 15px 22px 16px 22px, font 17px weight 700. Used for CTAs like 'Hyer® Stays' and 'Hyer® Travel' that need to feel confident and terminal."
+      },
+      {
+        "name": "Ghost White Pill Button",
+        "role": "Secondary action on dark surfaces",
+        "description": "Transparent background, text #ffffff, 1px white border, 1000px border-radius, same 15px 22px padding. Inverts the dark button for use on dark hero or footer contexts."
+      },
+      {
+        "name": "Circular Icon Button",
+        "role": "Menu toggle and compact icon affordance",
+        "description": "100% border-radius, background #000d10, white icon, square hit area. Used for the hamburger nav toggle in the hero."
+      },
+      {
+        "name": "Featured Clay Card",
+        "role": "Highlighted solution offering",
+        "description": "Hard-edged 0px radius rectangle, background #bc7155, white text, generous padding 53px 59px. The only warm block in the system — reserved for one product card per page to create focal asymmetry."
+      },
+      {
+        "name": "Standard White Card",
+        "role": "Default content container",
+        "description": "White background on canvas, 0px radius, no border, no shadow. Relies on surrounding negative space and hairline #d5d3d4 dividers above titles to define its boundary."
+      },
+      {
+        "name": "Hero Wordmark",
+        "role": "Brand mark at extreme scale",
+        "description": "Hyer® set at 131px weight 700, letter-spacing -2.62px, #000d10, paired with a small ® superscript at ~30% scale. Sits flush-left of the hero viewport."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Primary hero statement",
+        "description": "60-63px weight 700, letter-spacing -1.26px, #000d10, line-height 1.0. Two-line blocks like 'Beyond / Travel.' with the period as a deliberate typographic stop."
+      },
+      {
+        "name": "Section Headline",
+        "role": "Content section title",
+        "description": "37-52px weight 700, letter-spacing -0.37 to -0.52px, #000d10, four-line blocks max with line-height 1.0. Anchors every white content band."
+      },
+      {
+        "name": "Feature Block",
+        "role": "Sub-section with title and description",
+        "description": "Title 23px weight 700 in #000d10, body 18px weight 400 in #8e8e95 with 1.61 line-height, separated from the next block by a 1px #d5d3d4 hairline rule. Arranged in 2-column grids."
+      },
+      {
+        "name": "Dark Content Section",
+        "role": "Full-bleed dark band for contrast content",
+        "description": "Background #0f0f1c or #151623, white heading at 30-37px, white body at 18px, content right-aligned in a single column. Language list with flag emoji is the only chromatic content within."
+      },
+      {
+        "name": "Footer Terminal",
+        "role": "Page-end navigation and identity",
+        "description": "Full-bleed #000d10 background, large white wordmark, nav links in #8e8e95 at 20px, multi-column layout with social and legal rows."
+      },
+      {
+        "name": "Top Navigation",
+        "role": "Primary site navigation",
+        "description": "Transparent over hero, sticky or absolute positioned. Items at 20px weight 400, #000d10 on light, with 13px vertical gap between stacked items in mobile."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across the system. The weight 700 at 187px with -0.02em tracking is the signature: it sets the wordmark and hero at near-architectural scale, turning headlines into physical objects. Weight 400 at 18px with 1.61 line-height handles all body copy, creating the most spacious text block in the type system.",
+        "sizes": "17px, 18px, 20px, 23px, 30px, 37px, 52px, 60px, 63px, 131px, 187px",
+        "family": "HelveticaNowDisplay",
+        "weight": "400, 700",
+        "lineHeight": "0.80 (display) → 1.00 (headings) → 1.61 (body)",
+        "substitute": "Neue Haas Grotesk Display, Inter, Helvetica Neue",
+        "letterSpacing": "-3.74px at 187px, -2.62px at 131px, -1.26px at 63px, -0.52px at 52px, -0.37px at 37px, -0.23px at 23px, 0 at 18-20px",
+        "fontFeatureSettings": "normal"
+      },
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "17px",
+        "family": "sans-serif",
+        "weight": "700",
+        "lineHeight": "1"
+      }
+    ],
+    "description": "Hyer Aviation reads as a luxury travel editorial: a pale sky-bluish hero with a sculptural jet floats over a bright white canvas, anchored by near-black typography so heavy it feels cast in metal. The palette is deliberately austere — one warm terracotta accent punctuates an otherwise monochromatic system, appearing only in featured solution cards while the rest of the interface stays in deep ink and parchment. Typography is the brand's loudest voice: a single display face at 187px and 131px with extreme tight tracking dominates hero sections, while body text settles at 18px with generous 1.61 line-height for a calm, breathable rhythm. Every interactive element is a full pill (1000px+ radius) or a hard-edged panel, creating a tension between soft, inviting buttons and the architectural boldness of the headlines.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f61cf515-ccd5-4494-bdd1-be9fe4d7258c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Hyer Aviation design system\",\"item\":\"https://styles.refero.design/style/f61cf515-ccd5-4494-bdd1-be9fe4d7258c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f61cf515-ccd5-4494-bdd1-be9fe4d7258c#style-reference\",\"name\":\"Hyer Aviation design system reference\",\"headline\":\"Hyer Aviation design system | Refero Styles\",\"description\":\"Explore Hyer Aviation's mixed Other design system: Deep Ink #000d10, Pure White #ffffff colors, HelveticaNowDisplay, sans-serif typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/f61cf515-ccd5-4494-bdd1-be9fe4d7258c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f61cf515-ccd5-4494-bdd1-be9fe4d7258c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Hyer Aviation\",\"url\":\"https://www.flyhyer.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f61cf515-ccd5-4494-bdd1-be9fe4d7258c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f7784b64-9ef8-4135-9ee2-2e3465fe9cb1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f7784b64-9ef8-4135-9ee2-2e3465fe9cb1.jpg\",\"caption\":\"Screenshot of Hyer Aviation\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f7784b64-9ef8-4135-9ee2-2e3465fe9cb1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Hyer Aviation design system\",\"Hyer Aviation website design\",\"Hyer Aviation colors\",\"Hyer Aviation typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Deep Ink\",\"Pure White\",\"Cool Ash\",\"Pebble\",\"HelveticaNowDisplay\",\"sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Hyer Aviation design system\"},{\"@type\":\"Thing\",\"name\":\"Hyer Aviation website design\"},{\"@type\":\"Thing\",\"name\":\"Hyer Aviation colors\"},{\"@type\":\"Thing\",\"name\":\"Hyer Aviation typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T03:06:15.161Z\",\"dateModified\":\"2026-04-30T03:06:15.161Z\"}]}19:T611,**Quick Color Reference**\n- text: #000d10\n- background: #ffffff\n- border: #d5d3d4\n- accent: #bc7155 (featured card only)\n- primary action: #bc7155 (filled action)\n- dark surface: #0f0f1c / #151623\n- muted text: #8e8e95\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #bc7155 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Create a featured solution card: background #bc7155, text #ffffff, border-radius 0px, padding 53px 59px, title at 37px weight 700, description at 18px weight 400 line-height 29. This is the only warm block in the system — use it once per page for one highlighted offering.\n\n3. Create a hero section: pale blue-to-cream gradient sky background, wordmark 'Hyer®' at 131px weight 700 letter-spacing -2.62px in #000d10 flush-left, headline 'Beyond Travel.' at 60px weight 700 in #000d10 right-aligned, 3D white jet render floating center-low, ghost pill button bottom-right with white border on transparent background.\n\n4. Create a feature block grid: 2-column layout on white canvas, each block has a 1px solid #d5d3d4 hairline above the title, title at 23px weight 700 in #000d10, body at 18px weight 400 in #8e8e95 with line-height 29. Gap between columns 80px.\n\n5. Create a dark content section: full-bleed background #0f0f1c, right-aligned content column at ~50% width, heading at 37px weight 700 in #ffffff, body at 18px weight 400 in #ffffff with line-height 29. Use this for support, contact, or contrast content that needs to feel terminal."
+      }
+    ],
+    "elevationPhilosophy": "This system deliberately rejects drop shadows in favor of pure surface color differentiation. Elevation is communicated by jumping from #ffffff canvas to #bc7155 featured block to #0f0f1c dark band — the eye reads hierarchy through value contrast, not blur. When borders appear, they are 1px solid #d5d3d4 hairlines, never thick or decorative."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000d10",
+          "oklch": {
+            "c": 0.025185159249057537,
+            "h": 209.8093791596726,
+            "l": 0.145715657245909
+          },
+          "contexts": [
+            "link",
+            "button",
+            "heading",
+            "other",
+            "body",
+            "icon",
+            "footer"
+          ],
+          "frequency": 88,
+          "confidence": 1,
+          "prominence": 5844012.683308763,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 14,
+            "body/color": 9,
+            "link/color": 3,
+            "other/fill": 10,
+            "other/stroke": 21,
+            "heading/color": 21,
+            "other/borderColor": 4,
+            "button/backgroundColor": 5,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "other",
+            "heading",
+            "body",
+            "link",
+            "nav"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 4617356.171694284,
+          "properties": [
+            "color",
+            "fill",
+            "backgroundColor",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "nav/color": 2,
+            "body/color": 6,
+            "other/fill": 9,
+            "button/color": 7,
+            "other/stroke": 5,
+            "heading/color": 6,
+            "button/borderColor": 4,
+            "link/backgroundColor": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#151623",
+          "oklch": {
+            "c": 0.025851557769793653,
+            "h": 280.46136766397126,
+            "l": 0.20576147179591522
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 910654.4694518467,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#bc7155",
+          "oklch": {
+            "c": 0.10368365407006763,
+            "h": 41.09881308531095,
+            "l": 0.6241582866034198
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 607032.7129636991,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0f0f1c",
+          "oklch": {
+            "c": 0.02671167278558464,
+            "h": 283.3052918522818,
+            "l": 0.1756245372250249
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 574559,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8e8e95",
+          "oklch": {
+            "c": 0.010292209617977771,
+            "h": 286.1094169532696,
+            "l": 0.6489589473830756
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "nav"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 280765.22027211235,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 10,
+            "body/color": 6,
+            "heading/color": 1
+          }
+        },
+        {
+          "hex": "#d5d3d4",
+          "oklch": {
+            "c": 0.002570477615540258,
+            "h": 345.2212537729851,
+            "l": 0.868726706396859
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 118705,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.04470494079919142,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.72,
+          "background": "#ffffff",
+          "foreground": "#000d10"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19,
+          "background": "#0f0f1c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.93,
+          "background": "#151623",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.24,
+          "background": "#d5d3d4",
+          "foreground": "#000d10"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.75,
+          "background": "#d5d3d4",
+          "foreground": "#0f0f1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.04,
+          "background": "#d5d3d4",
+          "foreground": "#151623"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.06,
+          "background": "#000d10",
+          "foreground": "#8e8e95"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.84,
+          "background": "#0f0f1c",
+          "foreground": "#8e8e95"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.51,
+          "background": "#151623",
+          "foreground": "#8e8e95"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.29,
+          "background": "#bc7155",
+          "foreground": "#000d10"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.73,
+          "background": "#bc7155",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.25,
+          "background": "#ffffff",
+          "foreground": "#8e8e95"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.15,
+          "background": "#bc7155",
+          "foreground": "#8e8e95"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#151623",
+          "foreground": "#000d10"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.04,
+          "background": "#0f0f1c",
+          "foreground": "#000d10"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 1000,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 45,
+          "corners": [
+            0,
+            0,
+            45,
+            0
+          ],
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 11,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "link",
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "marginRight|icon"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "heading",
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 31,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 51,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 53,
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|link",
+            "paddingTop|button",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingBottom|link",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 59,
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 68,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 119,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 135,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 141,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 148,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "HelveticaNowDisplay",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 219,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            700
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.91
+      },
+      "steps": [
+        {
+          "size": 17,
+          "family": "sans-serif",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "HelveticaNowDisplay",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "link",
+            "icon"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "HelveticaNowDisplay",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "HelveticaNowDisplay",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "body",
+            "image",
+            "button",
+            "hero",
+            "icon",
+            "footer",
+            "nav"
+          ],
+          "frequency": 126,
+          "lineHeight": 1.61,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "HelveticaNowDisplay",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "HelveticaNowDisplay",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.09,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "HelveticaNowDisplay",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "HelveticaNowDisplay",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "HelveticaNowDisplay",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "HelveticaNowDisplay",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 17,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "HelveticaNowDisplay",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other",
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "HelveticaNowDisplay",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "HelveticaNowDisplay",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "HelveticaNowDisplay",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "HelveticaNowDisplay",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.61,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 37,
+          "family": "HelveticaNowDisplay",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "HelveticaNowDisplay",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "HelveticaNowDisplay",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.91,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 63,
+          "family": "HelveticaNowDisplay",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 131,
+          "family": "HelveticaNowDisplay",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 187,
+          "family": "HelveticaNowDisplay",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/5d380ab2-c080-4163-a600-4eebfd39cc75.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f7784b64-9ef8-4135-9ee2-2e3465fe9cb1.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f61cf515-ccd5-4494-bdd1-be9fe4d7258c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Hyer Aviation design system\",\"item\":\"https://styles.refero.design/style/f61cf515-ccd5-4494-bdd1-be9fe4d7258c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f61cf515-ccd5-4494-bdd1-be9fe4d7258c#style-reference\",\"name\":\"Hyer Aviation design system reference\",\"headline\":\"Hyer Aviation design system | Refero Styles\",\"description\":\"Explore Hyer Aviation's mixed Other design system: Deep Ink #000d10, Pure White #ffffff colors, HelveticaNowDisplay, sans-serif typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/f61cf515-ccd5-4494-bdd1-be9fe4d7258c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f61cf515-ccd5-4494-bdd1-be9fe4d7258c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Hyer Aviation\",\"url\":\"https://www.flyhyer.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f61cf515-ccd5-4494-bdd1-be9fe4d7258c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f7784b64-9ef8-4135-9ee2-2e3465fe9cb1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f7784b64-9ef8-4135-9ee2-2e3465fe9cb1.jpg\",\"caption\":\"Screenshot of Hyer Aviation\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f7784b64-9ef8-4135-9ee2-2e3465fe9cb1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Hyer Aviation design system\",\"Hyer Aviation website design\",\"Hyer Aviation colors\",\"Hyer Aviation typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Deep Ink\",\"Pure White\",\"Cool Ash\",\"Pebble\",\"HelveticaNowDisplay\",\"sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Hyer Aviation design system\"},{\"@type\":\"Thing\",\"name\":\"Hyer Aviation website design\"},{\"@type\":\"Thing\",\"name\":\"Hyer Aviation colors\"},{\"@type\":\"Thing\",\"name\":\"Hyer Aviation typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T03:06:15.161Z\",\"dateModified\":\"2026-04-30T03:06:15.161Z\"}]}19:T611,**Quick Color Reference**\n- text: #000d10\n- background: #ffffff\n- border: #d5d3d4\n- accent: #bc7155 (featured card only)\n- primary action: #bc7155 (filled action)\n- dark surface: #0f0f1c / #151623\n- muted text: #8e8e95\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #bc7155 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Create a featured solution card: background #bc7155, text #ffffff, border-radius 0px, padding 53px 59px, title at 37px weight 700, description at 18px weight 400 line-height 29. This is the only warm block in the system — use it once per page for one highlighted offering.\n\n3. Create a hero section: pale blue-to-cream gradient sky background, wordmark 'Hyer®' at 131px weight 700 letter-spacing -2.62px in #000d10 flush-left, headline 'Beyond Travel.' at 60px weight 700 in #000d10 right-aligned, 3D white jet render floating center-low, ghost pill button bottom-right with white border on transparent background.\n\n4. Create a feature block grid: 2-column layout on white canvas, each block has a 1px solid #d5d3d4 hairline above the title, title at 23px weight 700 in #000d10, body at 18px weight 400 in #8e8e95 with line-height 29. Gap between columns 80px.\n\n5. Create a dark content section: full-bleed background #0f0f1c, right-aligned content column at ~50% width, heading at 37px weight 700 in #ffffff, body at 18px weight 400 in #ffffff with line-height 29. Use this for support, contact, or contrast content that needs to feel terminal."
+}

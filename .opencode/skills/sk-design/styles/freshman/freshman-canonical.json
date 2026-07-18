@@ -1,0 +1,710 @@
+{
+  "source": "https://styles.refero.design/style/a6284fcd-fa69-4469-ac40-4239e5b84a39",
+  "uuid": "a6284fcd-fa69-4469-ac40-4239e5b84a39",
+  "name": "Freshman",
+  "northStar": "cinema title card on black velvet",
+  "capturedAt": "2026-07-18T07:44:08.109Z",
+  "meta": {
+    "url": "https://freshman.tv",
+    "siteName": "Freshman",
+    "extractedAt": "2026-06-03T19:41:29.048Z",
+    "durationMs": 35401,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 203,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set the wordmark at 200 weight italic in Editorial New — never bold, never regular; the ultralight is the signature",
+      "Use only #ffffff text on #000000 canvas; treat the 1px white hairline as the only structural divider allowed",
+      "Anchor the project reel to the viewport bottom on every page — it functions as the site's navigation spine",
+      "Pair the body description (TT Firs Neue 16px) with a bracket-wrapped Wasted Year tagline directly beneath it; the handwriting-font punctuation is non-optional",
+      "Use #ff2936 for at most one element per viewport — it is punctuation, not paint",
+      "Set compact UI labels (reel items, counters) in Altform with 0.86-0.88 line-height and -0.03em tracking for the festival-credit-roll rhythm",
+      "Keep the MENU trigger as a bare typographic label — no border, no background, no icon button chrome"
+    ],
+    "donts": [
+      "Do not introduce shadows, gradients, or elevation of any kind — flatness is the system",
+      "Do not add card backgrounds or rounded corners; all surfaces are 0px radius on the black canvas",
+      "Do not use bold or semibold weights for headlines — the weight 200 Editorial New is the anti-convention that defines the brand",
+      "Do not use #ff2936 as a button fill or large background block — it loses all impact if used at scale",
+      "Do not add a secondary navigation, breadcrumbs, or page tabs — the MENU trigger and the reel are the entire IA",
+      "Do not set body copy above 16px or below 14px — the type scale is deliberately tight",
+      "Do not alternate between light and dark sections; the page is uniformly dark, depth comes from type scale not surface color"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Primary text, logotype fill, border strokes, and the dominant foreground on the dark canvas — carries 92% of all color instances",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon Black",
+        "role": "Base canvas and primary background — the default surface for every page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#101010",
+        "name": "Charcoal Shale",
+        "role": "Secondary surface for icon wells, sub-panels, and slight tonal lift above the pure-black canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ff2936",
+        "name": "Signal Red",
+        "role": "Sparingly-applied accent for active states, marquee highlights, and high-emphasis punctuation — used as a single saturated note against the monochrome system",
+        "group": "accent"
+      }
+    ],
+    "imagery": "Imagery is almost absent from the main canvas. Photography appears only as small horizontal thumbnails inside the project reel ticker — tight, cinematic crops around 80px tall with no rounded corners and no overlay treatments. The visual identity is driven entirely by the oversized italic wordmark, ultra-light editorial type, and the vertical rhythm of bracketed handwritten flourishes. No illustration, no 3D, no decorative gradients — the wordmark IS the imagery.",
+    "similar": [
+      {
+        "why": "Same editorial-meets-streetwear sensibility with oversized italic wordmarks on a near-black canvas and a ticker-like feed of content at the bottom",
+        "business": "Hypebeast"
+      },
+      {
+        "why": "Cinema-title-card aesthetic — white type on pure black, ultralight editorial headlines, minimal chrome, and the feeling that the brand IS the logotype",
+        "business": "A24 Films"
+      },
+      {
+        "why": "Indie creative agencies that use editorial type, custom serifs at weight 200, and near-zero decoration; both treat the homepage as a statement rather than a product page",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Production/creative studios with full-bleed dark canvases, restrained type, and project reels that double as the primary navigation rhythm",
+        "business": "Buck (studio)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "48-80px",
+      "cardPadding": "12-20px",
+      "pageMaxWidth": null
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Carbon Black",
+        "level": 1,
+        "purpose": "Primary page canvas — the dominant surface covering the viewport"
+      },
+      {
+        "hex": "#101010",
+        "name": "Charcoal Shale",
+        "level": 2,
+        "purpose": "Subtle elevation for utility elements like the cookie consent bar; barely perceptible shift above the canvas"
+      }
+    ],
+    "northStar": "cinema title card on black velvet",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1
+      },
+      {
+        "role": "body",
+        "size": 17,
+        "lineHeight": 1
+      },
+      {
+        "role": "body-lg",
+        "size": 20,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Wordmark",
+        "role": "Brand identity anchor — the primary visual element on the dark canvas",
+        "description": "Full-bleed 'freshman' logotype, set ultra-large in italic Editorial New weight 200, white (#ffffff) fill on Carbon Black (#000000). Letter-spacing -0.01em. A small registered-trademark ® sits at the upper-right of the mark. No background, no border, no shadow — the wordmark is the only object on screen."
+      },
+      {
+        "name": "Project Reel Ticker",
+        "role": "Persistent bottom band showcasing latest work like a film festival credit roll",
+        "description": "Full-bleed horizontal bar anchored to the viewport bottom. Pure Black (#000000) background with a 1px top hairline in White (#ffffff). Items arranged in a single row with 12px column gaps; each item pairs a small thumbnail (Altform, condensed, weight 700) with a project title (TT Firs Neue, 14-16px, weight 400) and a secondary label (TT Firs Neue, 12px, 0.86 line-height, uppercase). 20px vertical padding, zero radius."
+      },
+      {
+        "name": "Menu Trigger",
+        "role": "Primary navigation entry point",
+        "description": "Top-right 'MENU' label prefixed by a + glyph, set in TT Firs Neue 16px weight 400 in White (#ffffff). No background, no border — a bare typographic control. Inherits the 'all type, no chrome' philosophy of the system."
+      },
+      {
+        "name": "Brand Glyph",
+        "role": "Persistent mark in the upper-left corner",
+        "description": "A small hash/cross-like symbol in White (#ffffff) on the Black canvas. Sits at the same cap height as the MENU trigger, anchoring the top bar in quiet symmetry. Likely set in TT Firs Neue or a custom icon font, ~16px."
+      },
+      {
+        "name": "Year Counter",
+        "role": "Cinematic page-position indicator",
+        "description": "Centered '2025' string set in Altform weight 400 at 14px with 0.88 line-height and -0.03em tracking in White (#ffffff). Reads as a chapter marker; updates per scroll position to mimic a film leader countdown."
+      },
+      {
+        "name": "Editorial Tagline Block",
+        "role": "Voice/mission statement with typographic personality",
+        "description": "Two stacked lines of body text in TT Firs Neue 16px weight 400, White (#ffffff), centered, max-width ~600px. Followed by a bracket-wrapped Wasted Year phrase at 14–17px — the handwritten font transforms the tagline into a signed autograph."
+      },
+      {
+        "name": "Cookie Consent Strip",
+        "role": "Bottom-right regulatory notice",
+        "description": "Minimal pill-less bar in Charcoal Shale (#101010) with 1px White (#ffffff) hairline border, ~12px text in TT Firs Neue, uppercase tracking. Rounded zero. Sits flush to the viewport edge, never centered — treated as utility, not design."
+      },
+      {
+        "name": "Project Item Cell",
+        "role": "Individual entry inside the project reel",
+        "description": "Three-line vertical stack: uppercase project name (TT Firs Neue 16px, weight 400, White), short sub-label (TT Firs Neue 12px, Altform 0.88 line-height, White at ~70% perceived opacity), and optional thumbnail to the left at ~80px tall. No border, no background tile — text sits directly on the Black bar."
+      },
+      {
+        "name": "Thin Hairline Divider",
+        "role": "Section separator — the only structural chrome in the system",
+        "description": "1px horizontal line in White (#ffffff) at 70-100% opacity. Used between the hero and ticker, and between any stacked zones. Zero radius, zero shadow."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Hero and headline display — the ultralight weight 200 is anti-convention; combined with the 20px breakpoint it reads as editorial print rather than web UI",
+        "sizes": "16px, 20px",
+        "family": "Editorial New",
+        "weight": "200",
+        "lineHeight": "1.00, 1.25",
+        "substitute": "Cormorant Garamond, Playfair Display",
+        "letterSpacing": "-0.01em"
+      },
+      {
+        "role": "Workhorse UI and body sans — the only geometric grotesque in the system, anchors the project ticker labels, menu trigger, and utility text",
+        "sizes": "16px",
+        "family": "TT Firs Neue",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Inter, Neue Haas Grotesk, Söhne"
+      },
+      {
+        "role": "Compact meta and condensed labels — tight 0.86–0.88 line-height and -0.03em tracking make it read like a festival credit roll",
+        "sizes": "14px, 16px",
+        "family": "Altform",
+        "weight": "400, 700",
+        "lineHeight": "0.86, 0.88",
+        "substitute": "Druk, Tungsten, Bebas Neue",
+        "letterSpacing": "-0.03em"
+      },
+      {
+        "role": "Signature editorial flourishes — bracket-wrapped taglines and small accent phrases; its hand-set quality is used for personality, not information density",
+        "sizes": "12px, 14px, 17px, 20px",
+        "family": "Wasted Year",
+        "weight": "400",
+        "lineHeight": "0.86, 0.94, 1.00, 1.25",
+        "substitute": "Caveat, Reenie Beanie",
+        "letterSpacing": "-0.0100em"
+      }
+    ],
+    "description": "Freshman runs a near-black canvas with almost no color noise — the white type and the lone red accent do all the heavy lifting. The visual language borrows from high-end print and cinema: a massive italicized wordmark anchors every screen, type is set ultra-light (weight 200) in Editorial New and tight in Altform, and a thin horizontal project ticker acts as the page's spine. Surfaces are flat with no shadows or gradients; hierarchy comes from scale and weight contrast, not elevation. Interaction is restrained — a single + MENU trigger, bracket-wrapped editorial labels, and a project reel that feels like a film festival credit roll rather than a SaaS nav.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a6284fcd-fa69-4469-ac40-4239e5b84a39#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Freshman design system\",\"item\":\"https://styles.refero.design/style/a6284fcd-fa69-4469-ac40-4239e5b84a39\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a6284fcd-fa69-4469-ac40-4239e5b84a39#style-reference\",\"name\":\"Freshman design system reference\",\"headline\":\"Freshman design system | Refero Styles\",\"description\":\"Explore Freshman's dark Media design system: Pure White #ffffff, Carbon Black #000000 colors, Editorial New, TT Firs Neue typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/a6284fcd-fa69-4469-ac40-4239e5b84a39\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a6284fcd-fa69-4469-ac40-4239e5b84a39\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Freshman\",\"url\":\"https://freshman.tv\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a6284fcd-fa69-4469-ac40-4239e5b84a39#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e2802984-cb77-4d00-b2ff-bf7025bf4939.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e2802984-cb77-4d00-b2ff-bf7025bf4939.jpg\",\"caption\":\"Screenshot of Freshman\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e2802984-cb77-4d00-b2ff-bf7025bf4939.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Freshman design system\",\"Freshman website design\",\"Freshman colors\",\"Freshman typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Pure White\",\"Carbon Black\",\"Charcoal Shale\",\"Signal Red\",\"Editorial New\",\"TT Firs Neue\",\"Altform\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Freshman design system\"},{\"@type\":\"Thing\",\"name\":\"Freshman website design\"},{\"@type\":\"Thing\",\"name\":\"Freshman colors\"},{\"@type\":\"Thing\",\"name\":\"Freshman typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T00:20:59.021Z\",\"dateModified\":\"2026-04-30T00:20:59.021Z\"}]}19:T6ce,**Quick Color Reference**\n- canvas/background: #000000\n- primary text: #ffffff\n- secondary surface: #101010\n- hairline border: #ffffff (1px)\n- accent / active state: #ff2936\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Hero wordmark screen*: full-viewport Carbon Black (#000000) background. Center a single italic 'freshman' logotype in Editorial New weight 200, white (#ffffff), sized to fill ~60% of the viewport width, letter-spacing -0.01em. Below it, a two-line description in TT Firs Neue 16px weight 400 white, centered, max-width 600px. Beneath that, a bracket-wrapped tagline in Wasted Year 14px white.\n\n2. *Project reel ticker*: pinned bar at the viewport bottom, Carbon Black (#000000) background, 1px white (#ffffff) top border. Single row of project items, 12px column gaps, 20px vertical padding. Each item = uppercase project name (TT Firs Neue 16px weight 400 white) stacked over a sub-label (TT Firs Neue 12px, line-height 0.88, white at 70% perceived opacity). Zero radius on all elements.\n\n3. *Year counter*: centered horizontally, positioned in the lower third of the viewport. Set '2025' in Altform 14px weight 400 white, line-height 0.88, letter-spacing -0.03em. No background, no border.\n\n4. *Top navigation bar*: full-width, Carbon Black background, 20px vertical padding. Left: a small 16px white hash/cross glyph. Right: '+ MENU' in TT Firs Neue 16px weight 400 white. No borders, no background fills, no separators between left and right.\n\n5. *Cookie consent strip*: bottom-right corner, Charcoal Shale (#101010) background, 1px white (#ffffff) border, 12px text in TT Firs Neue weight 400, uppercase, white. ~12px padding. Zero radius. Flush to the viewport edge, never centered."
+      }
+    ],
+    "elevationPhilosophy": "The system intentionally avoids shadows and gradients. Depth is communicated exclusively through type scale, weight contrast, and the two-step surface stack (#000000 → #101010). This is a deliberate editorial-print decision — shadows would make the screen feel like software; flatness makes it feel like cinema."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "button",
+            "body",
+            "heading"
+          ],
+          "frequency": 922,
+          "confidence": 1,
+          "prominence": 12765842.141588923,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 7,
+            "icon/color": 1,
+            "link/color": 23,
+            "other/fill": 10,
+            "other/color": 148,
+            "button/color": 1,
+            "heading/color": 2,
+            "body/borderColor": 28,
+            "icon/borderColor": 4,
+            "link/borderColor": 92,
+            "other/borderColor": 592,
+            "button/borderColor": 4,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 6751451.56185512,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 6,
+            "body/borderColor": 4,
+            "other/borderColor": 24,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#101010",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17304230872217735
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 4483423.377753938,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "icon/color": 1,
+            "other/fill": 1,
+            "icon/borderColor": 4,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ff2936",
+          "oklch": {
+            "c": 0.2423094392668527,
+            "h": 25.2462763549747,
+            "l": 0.6432774836426952
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0006758414617099063,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.03,
+          "background": "#101010",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.62,
+          "background": "#ff2936",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.09,
+          "background": "#ff2936",
+          "foreground": "#101010"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.74,
+          "background": "#ff2936",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#101010",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 66,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 47,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 67,
+          "properties": [
+            "columnGap",
+            "paddingRight",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingRight|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "paddingLeft",
+            "paddingRight",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|other",
+            "marginBottom|other",
+            "marginTop|body"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "TT Firs Neue",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 130,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Editorial New",
+          "source": "custom",
+          "weights": [
+            200
+          ],
+          "frequency": 29,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Altform",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 26,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Wasted Year",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 0.83
+      },
+      "steps": [
+        {
+          "size": 1,
+          "family": "TT Firs Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 107,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 1,
+          "family": "TT Firs Neue",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Wasted Year",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 14,
+          "family": "Altform",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.86,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Wasted Year",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.86,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TT Firs Neue",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Editorial New",
+          "weight": 200,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "button",
+            "body"
+          ],
+          "frequency": 28,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Altform",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "lineHeight": 0.88,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 17,
+          "family": "Wasted Year",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.94,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Wasted Year",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Editorial New",
+          "weight": 200,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/a10fea92-69df-43c6-b1ff-2487c0009b63.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e2802984-cb77-4d00-b2ff-bf7025bf4939.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a6284fcd-fa69-4469-ac40-4239e5b84a39#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Freshman design system\",\"item\":\"https://styles.refero.design/style/a6284fcd-fa69-4469-ac40-4239e5b84a39\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a6284fcd-fa69-4469-ac40-4239e5b84a39#style-reference\",\"name\":\"Freshman design system reference\",\"headline\":\"Freshman design system | Refero Styles\",\"description\":\"Explore Freshman's dark Media design system: Pure White #ffffff, Carbon Black #000000 colors, Editorial New, TT Firs Neue typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/a6284fcd-fa69-4469-ac40-4239e5b84a39\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a6284fcd-fa69-4469-ac40-4239e5b84a39\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Freshman\",\"url\":\"https://freshman.tv\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a6284fcd-fa69-4469-ac40-4239e5b84a39#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e2802984-cb77-4d00-b2ff-bf7025bf4939.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e2802984-cb77-4d00-b2ff-bf7025bf4939.jpg\",\"caption\":\"Screenshot of Freshman\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e2802984-cb77-4d00-b2ff-bf7025bf4939.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Freshman design system\",\"Freshman website design\",\"Freshman colors\",\"Freshman typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Pure White\",\"Carbon Black\",\"Charcoal Shale\",\"Signal Red\",\"Editorial New\",\"TT Firs Neue\",\"Altform\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Freshman design system\"},{\"@type\":\"Thing\",\"name\":\"Freshman website design\"},{\"@type\":\"Thing\",\"name\":\"Freshman colors\"},{\"@type\":\"Thing\",\"name\":\"Freshman typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T00:20:59.021Z\",\"dateModified\":\"2026-04-30T00:20:59.021Z\"}]}19:T6ce,**Quick Color Reference**\n- canvas/background: #000000\n- primary text: #ffffff\n- secondary surface: #101010\n- hairline border: #ffffff (1px)\n- accent / active state: #ff2936\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Hero wordmark screen*: full-viewport Carbon Black (#000000) background. Center a single italic 'freshman' logotype in Editorial New weight 200, white (#ffffff), sized to fill ~60% of the viewport width, letter-spacing -0.01em. Below it, a two-line description in TT Firs Neue 16px weight 400 white, centered, max-width 600px. Beneath that, a bracket-wrapped tagline in Wasted Year 14px white.\n\n2. *Project reel ticker*: pinned bar at the viewport bottom, Carbon Black (#000000) background, 1px white (#ffffff) top border. Single row of project items, 12px column gaps, 20px vertical padding. Each item = uppercase project name (TT Firs Neue 16px weight 400 white) stacked over a sub-label (TT Firs Neue 12px, line-height 0.88, white at 70% perceived opacity). Zero radius on all elements.\n\n3. *Year counter*: centered horizontally, positioned in the lower third of the viewport. Set '2025' in Altform 14px weight 400 white, line-height 0.88, letter-spacing -0.03em. No background, no border.\n\n4. *Top navigation bar*: full-width, Carbon Black background, 20px vertical padding. Left: a small 16px white hash/cross glyph. Right: '+ MENU' in TT Firs Neue 16px weight 400 white. No borders, no background fills, no separators between left and right.\n\n5. *Cookie consent strip*: bottom-right corner, Charcoal Shale (#101010) background, 1px white (#ffffff) border, 12px text in TT Firs Neue weight 400, uppercase, white. ~12px padding. Zero radius. Flush to the viewport edge, never centered."
+}

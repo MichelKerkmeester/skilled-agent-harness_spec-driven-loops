@@ -1,0 +1,977 @@
+{
+  "source": "https://styles.refero.design/style/f65c3888-2eb3-41a1-87b3-f410b667097e",
+  "uuid": "f65c3888-2eb3-41a1-87b3-f410b667097e",
+  "name": "Valo",
+  "northStar": "noir observatory at midnight — weight-300 typography floats on pure black while a single teal-violet gradient passes through like a laser line across the room.",
+  "capturedAt": "2026-07-18T07:32:03.397Z",
+  "meta": {
+    "url": "https://www.valohealth.com",
+    "siteName": "Valo",
+    "extractedAt": "2026-06-03T20:45:04.791Z",
+    "durationMs": 35201,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 201,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all display and body text in Valo weight 300 — the whisper-weight is the brand voice, not a fallback",
+      "Apply the Spectrum Wash gradient to exactly one word per headline maximum — chromatic type is punctuation, not paint",
+      "Use 9999px radius for every interactive element (buttons, link icons, tags) — circles are the only geometric interaction shape in the system",
+      "Set display headlines at -2.7px letter-spacing (100px) and -0.78px (60px) — the negative tracking tightens large type to feel carved rather than typed",
+      "Use 0.1em letter-spacing on all small-caps labels, nav items, and numbered prefixes — the wide tracking signals scientific precision",
+      "Anchor every section with the uppercase Section Label Tag at 10px — the typographic flag gives pages a magazine-like structure",
+      "Use the 01, 02 numbered pattern for sequential content blocks — sequencing reads as methodical, fitting the discovery narrative"
+    ],
+    "donts": [
+      "Don't use weight 700 for body copy or long-form paragraphs — the voice is light; 700 belongs to subheadings and micro-labels only",
+      "Don't apply the Spectrum Wash gradient to button backgrounds, panel fills, or large-area surfaces — it belongs on text accents, ring strokes, and the footer band only",
+      "Don't introduce card surfaces, drop shadows, or elevated panels — the canvas stays flat; depth comes from type scale, not from z-axis",
+      "Don't use borders thicker than 1px — the entire system runs on hairlines (Bone at 1px); anything heavier breaks the editorial register",
+      "Don't add a chromatic brand color outside the violet→blue→teal→lavender ramp — the system is intentionally near-monochrome with one gradient family",
+      "Don't center body text or multi-line content — the layout is left-aligned and the measure should align with the headline edge",
+      "Don't use stock photography, emoji, or decorative illustration — visuals are limited to the gradient torus and the footer wash; everything else is type and whitespace"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Page canvas, hero background, all primary surface area. Sets the dark-stage tone for every screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Bone",
+        "role": "Hairline borders, dividers, and muted secondary text. The workhorse neutral that defines edges without adding visual weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Primary headings, body text, nav links, and icon strokes. Maximum contrast against Void for clear information hierarchy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4d4d4d",
+        "name": "Graphite",
+        "role": "Subtle nav borders and disabled/inactive state lines. Sits between Void and Bone for low-emphasis structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1b66f8",
+        "name": "Spectrum Wash",
+        "role": "Hero accent gradient — applied to a single headline word and the floating torus visual. Cool blue midpoint of the signature violet→blue→teal→lavender ramp",
+        "group": "brand",
+        "gradient": "linear-gradient(270deg, rgb(158, 61, 178), rgb(27, 102, 248), rgb(36, 218, 217), rgb(179, 198, 232))"
+      },
+      {
+        "hex": "#1e233c",
+        "name": "Deep Field",
+        "role": "Footer band gradient origin — near-black indigo transitioning into brand blue. Defines the bottom-of-page atmospheric shift",
+        "group": "accent",
+        "gradient": "linear-gradient(90deg, rgb(30, 35, 60), rgb(10, 64, 153))"
+      },
+      {
+        "hex": "#1951a2",
+        "name": "Atmospheric Fade",
+        "role": "Secondary gradient — blue-to-mint wash used in supporting visuals and transitional bands. Cooler, more subdued than the hero spectrum",
+        "group": "accent",
+        "gradient": "linear-gradient(90deg, rgb(25, 81, 162), rgb(112, 218, 180))"
+      }
+    ],
+    "layout": "Max-width 1200px centered content column on a full-bleed #000000 canvas. Hero is left-aligned: large display headline (100px) over a 15px subhead paragraph, all flush to the content column's left edge with generous left padding. Below the hero, sections alternate between text-only blocks and paired text+visual layouts — the gradient torus sits to the left of a two-column content block containing subheading, numbered items, and a circle-arrow link. Section rhythm is set by 45px+ vertical gaps and the occasional hairline divider; no banding colors, no card grids. Navigation is a single top bar with logo left and links right. The page closes with a full-bleed gradient footer band containing footer links — the only moment the canvas shifts from pure black to color.",
+    "imagery": "Imagery is minimal and geometric: a single large gradient-stroke torus/ring floats on the hero of feature sections, and a full-bleed gradient band closes the page. No photography, no illustration beyond the ring, no product screenshots. The gradient itself is the visual content — a teal-to-blue-to-violet-to-lavender sweep used as both text fill (on one headline word) and as a thin stroke (on the ring). Iconography is restricted to a single white right-arrow glyph inside circular buttons. Every other visual element is type, hairline, or empty canvas.",
+    "similar": [
+      {
+        "why": "Same dark-canvas + weight-light typography + single-hue accent restraint — Linear's dark mode uses one purple accent against near-black surfaces with whisper-weight display type",
+        "business": "Linear"
+      },
+      {
+        "why": "Identical minimalist dark aesthetic with a single chromatic gradient moment, ultra-thin display headlines, and the same flat-no-elevation philosophy",
+        "business": "Vercel"
+      },
+      {
+        "why": "Editorial dark-mode sensibility with oversized display type set tight, generous negative space, and circular interaction primitives",
+        "business": "Arc Browser"
+      },
+      {
+        "why": "Fellow AI-bio company with a comparable scientific-monograph-on-black visual register — large light-weight type, restrained color, and torus/loop motifs in hero illustrations",
+        "business": "Recursion"
+      },
+      {
+        "why": "Shares the deep-black canvas, sparse whitespace, and weight-300-400 display typography that reads as engineering-precise rather than marketing-loud",
+        "business": "SpaceX"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "icons": "9999px",
+        "links": "9999px",
+        "buttons": "9999px"
+      },
+      "elementGap": "18-20px",
+      "sectionGap": "45px",
+      "cardPadding": "",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void Canvas",
+        "level": 1,
+        "purpose": "Full-bleed page background — the dominant surface for hero, content, and mid-page sections."
+      },
+      {
+        "hex": "#1b66f8",
+        "name": "Gradient Footer Band",
+        "level": 2,
+        "purpose": "Atmospheric full-width wash at the page foot, blending teal, blue, and violet to close the visual story."
+      }
+    ],
+    "northStar": "noir observatory at midnight — weight-300 typography floats on pure black while a single teal-violet gradient passes through like a laser line across the room.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.4,
+        "letterSpacing": 1
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.63
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.31
+      },
+      {
+        "role": "heading",
+        "size": 38,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.49
+      },
+      {
+        "role": "heading-lg",
+        "size": 60,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.78
+      },
+      {
+        "role": "display",
+        "size": 100,
+        "lineHeight": 1,
+        "letterSpacing": -2.7
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global site navigation anchored to top of every page",
+        "description": "Horizontal bar on Void (#000000) background. Wordmark \"Valo\" at 24px weight 400 Paper (#ffffff) flush left. Nav items (Approach, Company, Partnership, News & Insights, Contact) right-aligned at 13px weight 400 Paper with 27px horizontal spacing. 7px top/bottom padding. No background fill, no border below — the negative space defines the bar."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Opening page-level statement, left-aligned on dark canvas",
+        "description": "100px Valo weight 300 Paper (#ffffff), line-height 1.0, letter-spacing -2.7px. The word \"aha\" is the only chromatic moment — rendered in the Spectrum Wash gradient (linear 270deg violet→blue→teal→lavender) as inline text. No background, no border. Sets the editorial tone."
+      },
+      {
+        "name": "Hero Subhead Paragraph",
+        "role": "Supporting description under the display headline",
+        "description": "15px Valo weight 400 Bone (#e5e7eb), line-height 1.63. Max-width constrained to align with headline measure. No label, no link, no decoration — the paragraph is the quiet second beat."
+      },
+      {
+        "name": "Section Label Tag",
+        "role": "Micro-category label introducing each major content section",
+        "description": "10px Valo weight 400 Paper (#ffffff), letter-spacing 1.0px (0.1em), uppercase. Sits above section content with 18px top padding. Functions as a typographic flag, not a button — no background, no border."
+      },
+      {
+        "name": "Gradient Torus Visual",
+        "role": "Decorative conceptual illustration representing the feedback loop of drug discovery",
+        "description": "Large thin-stroke ring (approximately 400px diameter) rendered with the Spectrum Wash gradient applied as a stroke. Floats on Void canvas to the left of paired content. The only saturated-color shape on the page — its presence is the page's focal anchor."
+      },
+      {
+        "name": "Numbered Content Block",
+        "role": "Sequential feature/item layout with index number and description",
+        "description": "Two-column structure. Left column: 13px Valo weight 400 Bone (#e5e7eb) numeral (\"01\", \"02\") at 0.1em tracking. Right column: 18px Valo weight 700 Paper subheading, followed by 15px weight 400 Bone body at line-height 1.63. 14px gap between subheading and body. 23px vertical gap between numbered items."
+      },
+      {
+        "name": "Circle Arrow Link Button",
+        "role": "Inline call-to-action for secondary navigation (\"Explore our approach\", \"Join our team\")",
+        "description": "48px circular button (9999px radius) with 1px Bone (#e5e7eb) border on Void background. White right-arrow icon (→) centered inside. Paired with a 18px Valo weight 400 Paper text link to its right with 20px gap. The circle is the system's only geometric interaction primitive — used wherever a click is invited."
+      },
+      {
+        "name": "Content Section Heading",
+        "role": "Mid-page section title introducing a new content block",
+        "description": "38px Valo weight 300 Paper (#ffffff), line-height 1.2, letter-spacing -0.49px. Left-aligned, sits 36-45px below the preceding section. No underline, no background — weight 300 is the only emphasis needed."
+      },
+      {
+        "name": "Gradient Footer Band",
+        "role": "Atmospheric closing zone with site links and copyright",
+        "description": "Full-bleed band with the Atmospheric Fade gradient (linear 90deg #1951a2 → #70dab4) transitioning into the Spectrum Wash tones. Contains the Valo wordmark (24px Paper, left) and a row of footer links (13px Paper, right) at 20px gaps: Privacy Policy, Terms & Conditions, Cookie Consent, Preferences, Twitter, LinkedIn, © line. No top or bottom border — the gradient itself defines the zone."
+      },
+      {
+        "name": "Hairline Section Divider",
+        "role": "Vertical separation between content sections",
+        "description": "1px solid Bone (#e5e7eb) line, full content-width. No other styling. Used sparingly — most sections breathe on whitespace alone."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Exclusive typeface across all UI: nav links, body copy, section labels, and display headlines. Weight 300 carries headlines and body — the anti-convention whisper-weight creates scientific authority through restraint. Weight 700 is reserved for micro-labels and the few moments that need to anchor a page. The custom cut of this single family is the brand voice.",
+        "sizes": "10, 13, 15, 18, 24, 30, 38, 60, 100",
+        "family": "Valo",
+        "weight": "300, 400, 700",
+        "lineHeight": "1.0–1.63 by role",
+        "substitute": "Inter (for 400/700) paired with a thin display weight like Söhne Breit Halbfett or National 2 Thin for 300",
+        "letterSpacing": "-0.0270em, -0.0130em, 0.1000em",
+        "fontFeatureSettings": "\"clig\" on, \"liga\" on, \"ss03\" on"
+      }
+    ],
+    "description": "Valo runs on a noir observatory aesthetic: deep-black canvas, a single custom serif-less voice at whisper weight (300), and one luminous blue-teal-violet gradient used as deliberate punctuation rather than decoration. Typography does the heavy lifting — 100px display headlines with tight negative tracking feel like illuminated ink on obsidian, while the rest of the interface stays nearly invisible. The gradient appears in exactly three roles: a single accent word inside a headline, a thin floating ring/torus visual, and a wash at the page foot — never as a button fill or panel background. Components are flat, hairline-bordered, and borderless where possible; interaction is signaled by circular arrow buttons and numbered sequencing, not by color or shadow. Every screen should feel like a page torn from a dark scientific monograph: quiet, confident, with one moment of light.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f65c3888-2eb3-41a1-87b3-f410b667097e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Valo design system\",\"item\":\"https://styles.refero.design/style/f65c3888-2eb3-41a1-87b3-f410b667097e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f65c3888-2eb3-41a1-87b3-f410b667097e#style-reference\",\"name\":\"Valo design system reference\",\"headline\":\"Valo design system | Refero Styles\",\"description\":\"Explore Valo's dark AI design system: Void #000000, Bone #e5e7eb colors, Valo typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f65c3888-2eb3-41a1-87b3-f410b667097e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f65c3888-2eb3-41a1-87b3-f410b667097e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Valo\",\"url\":\"https://www.valohealth.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f65c3888-2eb3-41a1-87b3-f410b667097e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7d36b533-fc60-49e8-901d-6dcb7da73a23.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7d36b533-fc60-49e8-901d-6dcb7da73a23.jpg\",\"caption\":\"Screenshot of Valo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7d36b533-fc60-49e8-901d-6dcb7da73a23.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Valo design system\",\"Valo website design\",\"Valo colors\",\"Valo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Void\",\"Bone\",\"Paper\",\"Graphite\",\"Valo\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Valo design system\"},{\"@type\":\"Thing\",\"name\":\"Valo website design\"},{\"@type\":\"Thing\",\"name\":\"Valo colors\"},{\"@type\":\"Thing\",\"name\":\"Valo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-30T03:34:01.128Z\",\"dateModified\":\"2026-04-30T03:34:01.128Z\"}]}19:T834,**Quick Color Reference**\n- text: #ffffff (Paper)\n- background: #000000 (Void)\n- border: #e5e7eb (Bone), 1px\n- accent gradient: linear-gradient(270deg, rgb(158,61,178), rgb(27,102,248), rgb(36,218,217), rgb(179,198,232))\n- footer gradient: linear-gradient(90deg, rgb(30,35,60), rgb(10,64,153)) transitioning to the teal-mint wash\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Build a hero section on #000000. Headline at 100px Valo weight 300, #ffffff, line-height 1.0, letter-spacing -2.7px. Render the single word \"aha\" inline using the Spectrum Wash gradient as the text color. Below: 15px Valo weight 400, #e5e7eb, line-height 1.63, max-width matching the headline measure. No buttons, no images.\n\n2. Build a paired text-and-visual section. Left: a 400px-diameter thin ring (2px stroke) filled with the Spectrum Wash gradient as stroke color, centered vertically. Right: a 38px Valo weight 300 #ffffff section heading at line-height 1.2, followed by a 15px #e5e7eb intro paragraph, then a numbered list (01, 02) at 13px #e5e7eb numerals (0.1em tracking) paired with 18px weight 700 #ffffff subheadings and 15px weight 400 #e5e7eb bodies. Close with a 48px circular ghost button (1px #e5e7eb border, white → arrow icon) paired with an 18px #ffffff text link.\n\n3. Build a full-bleed footer band. Background: linear-gradient(90deg, #1e233c, #0a4099) blending into a teal-violet wash. Left: 24px Valo weight 400 #ffffff wordmark. Right: a row of 13px Valo weight 400 #ffffff links at 20px gaps (Privacy Policy, Terms, Cookie Consent, Preferences, Twitter, LinkedIn, © 2026 Valo Health). No top border — the gradient defines the zone.\n\n4. Build a section label. 10px Valo weight 400 #ffffff, uppercase, letter-spacing 1.0px. Place 36px above its parent content block. No background, no border.\n\n5. Build a top navigation bar. Background: #000000 (transparent over canvas). Left: 24px Valo weight 400 #ffffff \"Valo\" wordmark. Right: 5 nav items at 13px Valo weight 400 #ffffff with 27px horizontal gaps and 7px top/bottom padding. No background fill, no border-bottom."
+      },
+      {
+        "title": "Gradient System",
+        "content": "Three gradients form the system's chromatic vocabulary, and they share a single hue family (violet → blue → teal → mint → lavender). Usage is strictly rationed: the Spectrum Wash (#9e3db2 → #1b66f8 → #24dad9 → #b3c6e8) lives on exactly one word per page, on the torus stroke, and as the climax of the footer band. The Deep Field (#1e233c → #0a4099) is the footer's opening — near-black indigo easing into brand blue. The Atmospheric Fade (#1951a2 → #70dab4) is a secondary wash for transitional moments. Never stack gradients. Never apply gradients to button fills or panel backgrounds. Treat each gradient use as a budgeted moment — too many, and the system loses its editorial restraint."
+      }
+    ],
+    "elevationPhilosophy": "This system intentionally avoids shadows and elevation. Depth is communicated through type scale and whitespace, not z-axis layering. The only layered surface is the gradient footer band, which acts as a horizon line rather than an elevated card. No box-shadows, no blur, no glow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "nav",
+            "heading",
+            "hero",
+            "image",
+            "list",
+            "icon",
+            "footer"
+          ],
+          "frequency": 716,
+          "confidence": 1,
+          "prominence": 76839486.02367434,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 76,
+            "body/borderColor": 104,
+            "hero/borderColor": 8,
+            "icon/borderColor": 16,
+            "link/borderColor": 48,
+            "list/borderColor": 12,
+            "image/borderColor": 4,
+            "other/borderColor": 408,
+            "footer/borderColor": 4,
+            "heading/borderColor": 36
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "nav",
+            "heading",
+            "hero",
+            "image",
+            "list",
+            "footer"
+          ],
+          "frequency": 176,
+          "confidence": 1,
+          "prominence": 60490965.37816982,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 25,
+            "body/color": 15,
+            "hero/color": 2,
+            "link/color": 5,
+            "list/color": 3,
+            "other/fill": 3,
+            "image/color": 1,
+            "other/color": 93,
+            "heading/color": 12,
+            "heading/borderColor": 12,
+            "body/backgroundColor": 4,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "body",
+            "icon",
+            "footer",
+            "link"
+          ],
+          "frequency": 56,
+          "confidence": 1,
+          "prominence": 13177746.780461181,
+          "properties": [
+            "fill",
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "body/color": 11,
+            "icon/color": 4,
+            "link/color": 7,
+            "other/fill": 9,
+            "other/color": 9,
+            "footer/color": 1,
+            "hero/backgroundColor": 2,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#4d4d4d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.41838944017064783
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 33352.17515496207,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 24
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.011574063892798882,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.45,
+          "background": "#ffffff",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.83,
+          "background": "#e5e7eb",
+          "foreground": "#4d4d4d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 8
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingLeft|body",
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "paddingRight",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "paddingRight|body",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 41,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginTop",
+            "paddingLeft",
+            "paddingRight",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingLeft|other",
+            "paddingRight|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 49,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 54,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 135,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 198,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 216,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(270deg, rgb(158, 61, 178), rgb(27, 102, 248), rgb(36, 218, 217), rgb(179, 198, 232))",
+        "colors": [
+          "rgb(158, 61, 178)",
+          "rgb(27, 102, 248)",
+          "rgb(36, 218, 217)",
+          "rgb(179, 198, 232)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(30, 35, 60), rgb(10, 64, 153))",
+        "colors": [
+          "rgb(30, 35, 60)",
+          "rgb(10, 64, 153)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(25, 81, 162), rgb(112, 218, 180))",
+        "colors": [
+          "rgb(25, 81, 162)",
+          "rgb(112, 218, 180)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Valo",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            700
+          ],
+          "frequency": 188,
+          "fontFeatureSettings": [
+            "\"clig\", \"liga\", \"ss03\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Valo",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Valo",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Valo",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "list",
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Valo",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "nav",
+            "heading",
+            "hero",
+            "image",
+            "list",
+            "icon",
+            "footer"
+          ],
+          "frequency": 109,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Valo",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Valo",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Valo",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Valo",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Valo",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "Valo",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Valo",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 100,
+          "family": "Valo",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.027,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/714c6a2a-8365-433f-a866-18bf528afb77.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7d36b533-fc60-49e8-901d-6dcb7da73a23.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f65c3888-2eb3-41a1-87b3-f410b667097e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Valo design system\",\"item\":\"https://styles.refero.design/style/f65c3888-2eb3-41a1-87b3-f410b667097e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f65c3888-2eb3-41a1-87b3-f410b667097e#style-reference\",\"name\":\"Valo design system reference\",\"headline\":\"Valo design system | Refero Styles\",\"description\":\"Explore Valo's dark AI design system: Void #000000, Bone #e5e7eb colors, Valo typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f65c3888-2eb3-41a1-87b3-f410b667097e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f65c3888-2eb3-41a1-87b3-f410b667097e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Valo\",\"url\":\"https://www.valohealth.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f65c3888-2eb3-41a1-87b3-f410b667097e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7d36b533-fc60-49e8-901d-6dcb7da73a23.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7d36b533-fc60-49e8-901d-6dcb7da73a23.jpg\",\"caption\":\"Screenshot of Valo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7d36b533-fc60-49e8-901d-6dcb7da73a23.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Valo design system\",\"Valo website design\",\"Valo colors\",\"Valo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Void\",\"Bone\",\"Paper\",\"Graphite\",\"Valo\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Valo design system\"},{\"@type\":\"Thing\",\"name\":\"Valo website design\"},{\"@type\":\"Thing\",\"name\":\"Valo colors\"},{\"@type\":\"Thing\",\"name\":\"Valo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-30T03:34:01.128Z\",\"dateModified\":\"2026-04-30T03:34:01.128Z\"}]}19:T834,**Quick Color Reference**\n- text: #ffffff (Paper)\n- background: #000000 (Void)\n- border: #e5e7eb (Bone), 1px\n- accent gradient: linear-gradient(270deg, rgb(158,61,178), rgb(27,102,248), rgb(36,218,217), rgb(179,198,232))\n- footer gradient: linear-gradient(90deg, rgb(30,35,60), rgb(10,64,153)) transitioning to the teal-mint wash\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Build a hero section on #000000. Headline at 100px Valo weight 300, #ffffff, line-height 1.0, letter-spacing -2.7px. Render the single word \"aha\" inline using the Spectrum Wash gradient as the text color. Below: 15px Valo weight 400, #e5e7eb, line-height 1.63, max-width matching the headline measure. No buttons, no images.\n\n2. Build a paired text-and-visual section. Left: a 400px-diameter thin ring (2px stroke) filled with the Spectrum Wash gradient as stroke color, centered vertically. Right: a 38px Valo weight 300 #ffffff section heading at line-height 1.2, followed by a 15px #e5e7eb intro paragraph, then a numbered list (01, 02) at 13px #e5e7eb numerals (0.1em tracking) paired with 18px weight 700 #ffffff subheadings and 15px weight 400 #e5e7eb bodies. Close with a 48px circular ghost button (1px #e5e7eb border, white → arrow icon) paired with an 18px #ffffff text link.\n\n3. Build a full-bleed footer band. Background: linear-gradient(90deg, #1e233c, #0a4099) blending into a teal-violet wash. Left: 24px Valo weight 400 #ffffff wordmark. Right: a row of 13px Valo weight 400 #ffffff links at 20px gaps (Privacy Policy, Terms, Cookie Consent, Preferences, Twitter, LinkedIn, © 2026 Valo Health). No top border — the gradient defines the zone.\n\n4. Build a section label. 10px Valo weight 400 #ffffff, uppercase, letter-spacing 1.0px. Place 36px above its parent content block. No background, no border.\n\n5. Build a top navigation bar. Background: #000000 (transparent over canvas). Left: 24px Valo weight 400 #ffffff \"Valo\" wordmark. Right: 5 nav items at 13px Valo weight 400 #ffffff with 27px horizontal gaps and 7px top/bottom padding. No background fill, no border-bottom."
+}

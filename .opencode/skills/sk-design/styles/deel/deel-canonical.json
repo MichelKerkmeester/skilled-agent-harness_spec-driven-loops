@@ -1,0 +1,2154 @@
+{
+  "source": "https://styles.refero.design/style/5ec4eb4f-a37c-4787-b4c1-de49e01770e7",
+  "uuid": "5ec4eb4f-a37c-4787-b4c1-de49e01770e7",
+  "name": "Deel",
+  "northStar": "Global command split-screen — a war-room purple panel beside a neon product showcase, then warm cream scrolls below.",
+  "capturedAt": "2026-07-18T10:17:08.135Z",
+  "meta": {
+    "url": "https://deel.com",
+    "siteName": "Deel",
+    "extractedAt": "2026-04-11T19:19:36.969Z",
+    "durationMs": 149131,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 3216,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use BagossCondensedFont at 44-60px weight 500 with -0.005em letter-spacing for all primary hero headlines inside dark (#201547) sections.",
+      "Apply 200px border-radius to all pill buttons, search inputs, and currency chips — this is the system's defining shape token.",
+      "Use #fffbf4 (Warm Cream) as the page body background, never pure white (#ffffff), for all light-theme content sections below the hero.",
+      "Accent the single most emotionally charged word in each hero headline with #a98df6 (Lavender Pulse) — one word only, never a phrase.",
+      "Pair dark (#141414 or #201547) section backgrounds with Inter body text in #d9d0ca (Linen) — not pure white — for softer contrast on extended reading.",
+      "Use rgba(27,27,27,0.16) as the standard border color for inputs and card outlines in light sections — never a solid opaque gray.",
+      "Reserve #ffcf25 (Electric Lime) strictly for product screenshots and graphic accents — never apply it as a button or text color."
+    ],
+    "tags": [
+      "split-hero",
+      "dark-light-mixed",
+      "pill-buttons",
+      "custom-typeface",
+      "warm-cream-background",
+      "violet-accent",
+      "global-HR",
+      "product-screenshot-UI",
+      "enterprise-SaaS",
+      "fluorescent-contrast"
+    ],
+    "donts": [
+      "Don't use BagossCondensedFont below 16px — at small sizes switch to BagossStandardFont or Inter for legibility.",
+      "Don't use 8px or 16px border-radius on primary CTA buttons — those radii belong only to secondary badges and icon containers.",
+      "Don't use #5938b7 (Violet Mid) or any saturated violet in light (cream) body sections — violet is hero-zone-only.",
+      "Don't apply box shadows to feature product cards — the system uses border (1px #dbdbdb) as the only card boundary in light sections; shadows appear only on floating overlays.",
+      "Don't mix BagossExtendedFont and BagossCondensedFont in the same heading — choose one cut per section based on available width.",
+      "Don't use pure white (#ffffff) as the page background — the system's warm cream (#fffbf4) distinguishes Deel's light theme from generic white-page SaaS.",
+      "Don't apply letter-spacing to BagossCondensedFont display headlines — the -0.005em is already set; adding positive tracking breaks the compressed silhouette."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#201547",
+        "name": "Deep Cosmos",
+        "role": "Hero section background — the darkest brand surface, houses white headlines and violet accent text",
+        "group": "brand"
+      },
+      {
+        "hex": "#5938b7",
+        "name": "Violet Mid",
+        "role": "CTA buttons in hero context, pill backgrounds — saturated mid-violet bridges cosmos and accent",
+        "group": "brand"
+      },
+      {
+        "hex": "#a98df6",
+        "name": "Lavender Pulse",
+        "role": "Headline accent text ('anywhere.') in dark hero — vivid violet pops against #201547",
+        "group": "brand"
+      },
+      {
+        "hex": "#c4b1f9",
+        "name": "Pale Amethyst",
+        "role": "Soft violet surface tint, used as background on secondary dark panels",
+        "group": "brand"
+      },
+      {
+        "hex": "#381f89",
+        "name": "Indigo Shadow",
+        "role": "Deep violet body text or decorative elements within dark sections",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffcf25",
+        "name": "Electric Lime",
+        "role": "Product screenshot accent, border highlights — the neon counterpoint to deep purple creating visual tension",
+        "group": "accent"
+      },
+      {
+        "hex": "#faaf00",
+        "name": "Amber Core",
+        "role": "Icon fills and body-level accent color in light sections — warm, confident",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffe27c",
+        "name": "Butter Glow",
+        "role": "Light amber for icon strokes, decorative fills — softer version of Amber Core",
+        "group": "accent"
+      },
+      {
+        "hex": "#d8ebff",
+        "name": "Sky Mist",
+        "role": "Button and panel backgrounds in light sections — very pale blue-gray tint",
+        "group": "accent"
+      },
+      {
+        "hex": "#53a945",
+        "name": "Celadon Check",
+        "role": "Success state chip background (e.g. green checkmark on Crypto selection chip)",
+        "group": "semantic"
+      },
+      {
+        "hex": "#b1d8fc",
+        "name": "Powder Blue",
+        "role": "UI illustration fill in product screenshots",
+        "group": "accent"
+      },
+      {
+        "hex": "#000000",
+        "name": "Midnight Ink",
+        "role": "Primary text, icon fills, borders — near-universal dark token",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1b1b1b",
+        "name": "Graphite",
+        "role": "Body text, nav labels, CTA button background (dark pill), footer text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#141414",
+        "name": "Obsidian",
+        "role": "Dark section backgrounds, deepest surface in light-theme stacks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#404040",
+        "name": "Charcoal",
+        "role": "Mid-dark surface, secondary panel backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5f5f5f",
+        "name": "Slate",
+        "role": "Secondary body text, metadata, captions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#767676",
+        "name": "Fog",
+        "role": "Tertiary text, muted labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a4a4a4",
+        "name": "Ash",
+        "role": "Disabled states, light icon tones",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dbdbdb",
+        "name": "Bone",
+        "role": "Border separators, input outlines, card dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d9d0ca",
+        "name": "Linen",
+        "role": "Warm-toned rule lines and subtle separators in cream body sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fffbf4",
+        "name": "Warm Cream",
+        "role": "Page body background — warm off-white gives light sections a tactile, paper-like quality vs pure white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces, nav background, input backgrounds, button text on dark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#101828",
+        "name": "Near Black",
+        "role": "High-contrast body text alternative to pure black",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width approximately 1280px centered, but the hero breaks this rule — it runs full viewport width as a 50/50 split: left panel (#201547) contains text + CTA, right panel is full-bleed product imagery with no padding. Below the hero, content resets to max-width contained with 80-120px vertical section gaps. Sections alternate: white/cream light bands with card grids (3-column feature cards), then full-width dark (#141414) bands with 3-column stat rows, then a full-bleed photo section with floating UI chips overlaid. Navigation is a fixed top bar — pure white background, logo left, dropdown nav center, language + log in + CTA pill right. Hero is not full-viewport-height but a defined panel (~480px). The brand logo section (trust strip) uses a horizontal scrolling row of gray logos on white, 2 rows, separated by a light rule. Feature product cards use a 3-column equal grid with 16px gaps.",
+    "imagery": "Deel mixes two distinct image registers: dark-panel graphic design (geometric yellow-green forms as abstract background shapes on the right hero panel, pure graphic, no photography) and real-world lifestyle photography (hands holding a purple iPhone over a table with an orange mug — warm, candid, slightly editorial). Product screenshots are rendered as phone mockups or flat UI crops embedded in cards, contained with 24px radius. The hero right panel uses a dramatic high-contrast shot — black angular shapes over electric yellow-green (#ffcf25), iPhone floating in front — this is purely product showcase, not human context. Below the hero, photography shifts to warm, natural-light scenes that feel ambient rather than staged. Icons are outlined, monochrome (#1b1b1b or white depending on surface), consistent 16-20px stroke-weight SVGs. Customer logos are rendered as flat gray silhouettes at reduced opacity to avoid visual competition. The overall ratio is approximately 40% imagery, 60% text+UI.",
+    "similar": [
+      {
+        "why": "Same deep-purple dark hero panel with white condensed headline typography, cream body sections below, and dual-tone split hero",
+        "business": "Rippling"
+      },
+      {
+        "why": "Custom typeface with multiple optical cuts (Stripe's StripeS has Condensed/Display variants like Bagoss), paired with Inter for body",
+        "business": "Stripe"
+      },
+      {
+        "why": "Global HR/payroll SaaS with identical pill-button system (200px radius), violet brand accent against white/cream backgrounds",
+        "business": "Remote.com"
+      },
+      {
+        "why": "Enterprise HR platform using alternating dark/light section banding with full-width dark stat panels",
+        "business": "Workday"
+      },
+      {
+        "why": "Warm off-white body background (not pure white) with rounded pill forms as the primary shape language across buttons and chips",
+        "business": "Gusto"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "200px",
+        "cards": "24px",
+        "chips": "100px",
+        "icons": "5px",
+        "inputs": "200px",
+        "panels": "12px",
+        "buttons": "200px",
+        "buttonsMedium": "16px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1280px"
+    },
+    "category": "SaaS",
+    "surfaces": [
+      {
+        "hex": "#fffbf4",
+        "name": "Warm Cream Page",
+        "level": 1,
+        "purpose": "Base page background for all light-theme content sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White Card",
+        "level": 2,
+        "purpose": "Card surfaces, nav bar, input backgrounds elevated above cream"
+      },
+      {
+        "hex": "#201547",
+        "name": "Deep Cosmos Hero",
+        "level": 3,
+        "purpose": "Hero left panel — deepest dark surface, maximum brand presence"
+      },
+      {
+        "hex": "#141414",
+        "name": "Dark Feature Band",
+        "level": 4,
+        "purpose": "Near-black bands for stat/feature sections on dark alternating zones"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Frosted Glass",
+        "level": 5,
+        "purpose": "rgba(255,255,255,0.05) overlay tint on dark surfaces for card differentiation without opacity loss"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(27, 27, 27, 0.16) 0px 16px 32px 0px, rgba(27, 27, 27, 0.05) 0px 2px 32px 0px",
+        "element": "Floating Overlay Card (testimonial badge, currency chip group)"
+      }
+    ],
+    "northStar": "Global command split-screen — a war-room purple panel beside a neon product showcase, then warm cream scrolls below.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.6,
+        "letterSpacing": 0.375
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 44,
+        "lineHeight": 1.05,
+        "letterSpacing": -0.22
+      },
+      {
+        "role": "heading-lg",
+        "size": 60,
+        "lineHeight": 1,
+        "letterSpacing": -0.3
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1,
+        "letterSpacing": 0.32
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Hero CTA Button Group",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Feature Product Cards",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Dark Stat Callout Row",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Dark Hero CTA Button",
+        "role": "Primary call-to-action within the dark hero panel",
+        "description": "Pill-shaped button (200px radius), background #5938b7, white text, Inter or BagossStandardVF 15px weight 500, padding 8px 16px. Small right-facing arrow icon. On #201547 backgrounds only."
+      },
+      {
+        "name": "Ghost Pill Navigation Button",
+        "role": "Nav items with dropdown indicators",
+        "description": "Transparent background, #1b1b1b text, 200px border-radius, padding 8px 12px, BagossStandardVF 15px weight 500, letter-spacing 0.025em. Includes chevron icon at 12px. No border in default state."
+      },
+      {
+        "name": "Dark Filled Pill Button",
+        "role": "'Book a demo' CTA in the top nav",
+        "description": "Background #1b1b1b, white text, 200px border-radius, padding 8px 16px, BagossStandardVF 15px weight 500. The highest-contrast nav element — only solid-fill nav button."
+      },
+      {
+        "name": "Ghost Underline Button",
+        "role": "Text-level inline CTAs like 'Learn more →'",
+        "description": "Transparent background, #1b1b1b text, no border-radius (0px), padding 8px 0px, no horizontal padding. Arrow character appended. Signals navigation without visual weight."
+      },
+      {
+        "name": "Pill Input with Search",
+        "role": "Search and email capture fields",
+        "description": "Background #ffffff, border rgba(27,27,27,0.16) 1px, border-radius 200px, padding 1px 54px 1px 24px. Right-side icon or button inset at 54px. Inter 14px weight 400 placeholder text in #767676."
+      },
+      {
+        "name": "Feature Product Card",
+        "role": "Product feature cards (Deel Payroll, Deel HR, Deel IT)",
+        "description": "Background #fffbf4 (warm cream), border-radius 24px, no shadow, padding 24px. Contains a bold label in BagossCondensedFont 24px weight 500, descriptor in Inter 16px weight 400 #5f5f5f, and a product screenshot cropped at bottom. Border: 1px solid #dbdbdb."
+      },
+      {
+        "name": "Dark Stats Panel",
+        "role": "Stat callout panels on dark background sections",
+        "description": "Background rgba(255,255,255,0.05) — frosted white tint at 5% on dark surfaces. Border-radius 24px. No shadow. Contains bold stat in BagossCondensedFont 44px weight 500, descriptor in Inter 15px #d9d0ca."
+      },
+      {
+        "name": "Currency Selection Chip",
+        "role": "Illustrative UI chips showing selectable options (ARS, CAD, USD, etc.)",
+        "description": "Background #ffffff or rgba(255,255,255,0.9), border 1px solid #dbdbdb, border-radius 200px, padding 8px 16px. Flag emoji + currency code in Inter 16px weight 500 #1b1b1b. Active state adds green checkmark badge (#53a945)."
+      },
+      {
+        "name": "Customer Logo Badge",
+        "role": "Testimonial attribution chip (e.g. Robinhood badge on carousel)",
+        "description": "Background #ffffff, border-radius 16px, padding 6px 12px, contains company logo image at 16px height + company name in Inter 13px weight 500 #1b1b1b. Subtle box-shadow: rgba(27,27,27,0.16) 0px 16px 32px."
+      },
+      {
+        "name": "Trust Logo Strip",
+        "role": "Social proof logo row below hero",
+        "description": "Flat company wordmarks rendered in #a4a4a4 or #dbdbdb on #ffffff background. 16px vertical spacing between label ('TRUSTED BY 40,000+...') and logos. Labels use Inter 10px weight 600 letter-spacing 0.06em in Slate. Logos at approximately 80px wide, 24px tall."
+      },
+      {
+        "name": "Section Eyebrow Label",
+        "role": "Pre-heading category label (e.g. 'WHAT DEEL DOES')",
+        "description": "Inter 12px weight 600, letter-spacing 0.06em, all-caps, color #5f5f5f. No background. Left-aligned above the section heading. Creates category context without visual mass."
+      },
+      {
+        "name": "Stat Callout Row",
+        "role": "Three-column feature stat blocks in dark sections",
+        "description": "Dark background (#141414 or #1b1b1b), three equal columns each with bold lead text in BagossCondensedFont 24px weight 500 #ffffff, body in Inter 15px weight 400 #d9d0ca. 'Learn more →' or 'Book a demo →' ghost links at bottom of each column."
+      },
+      {
+        "name": "Hero Split Panel",
+        "role": "Primary homepage hero container",
+        "description": "Left panel: background #201547, padding 64px 48px. Right panel: background vivid product image with #ffcf25 accent border elements, no padding. Two-column 50/50 split at viewport width. Left contains BagossCondensedFont 60px headline in #ffffff with 'anywhere.' in #a98df6."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary display and hero headlines — the condensed cut lets oversized text fill wide containers without breaking; the -0.005em tracking tightens the text mass. This is Deel's most distinctive typographic voice: large, dense, confident headlines that compress horizontal space.",
+        "sizes": "16px, 24px, 28px, 44px, 60px",
+        "family": "BagossCondensedFont",
+        "weight": "500",
+        "lineHeight": "1.00–1.15",
+        "letterSpacing": "-0.005em",
+        "fontFeatureSettings": "\"ss01\" on, \"ss02\" on"
+      },
+      {
+        "role": "Section headers where width is the feature — extended cut fills horizontal space at large sizes, used for spread-out banner headlines like 'The Global People Platform'",
+        "sizes": "30px, 64px",
+        "family": "BagossExtendedFont",
+        "weight": "600",
+        "lineHeight": "1.00–1.20",
+        "letterSpacing": "0.005em",
+        "fontFeatureSettings": "\"ss02\" on"
+      },
+      {
+        "role": "UI labels, badge text, small captions — the workhorse standard cut at utility sizes",
+        "sizes": "12px, 14px, 16px",
+        "family": "BagossStandardFont",
+        "weight": "500, 600",
+        "lineHeight": "1.50–1.70",
+        "letterSpacing": "0.015em",
+        "fontFeatureSettings": "\"ss02\" on, \"ss01\" on"
+      },
+      {
+        "role": "Navigation items and button labels — variable-font version allows optical tuning at this critical interactive size",
+        "sizes": "15px",
+        "family": "BagossStandardVF",
+        "weight": "500",
+        "lineHeight": "1.60",
+        "letterSpacing": "0.025em",
+        "fontFeatureSettings": "\"ss02\" on, \"ss01\" on"
+      },
+      {
+        "role": "All body copy, subheadings, stats, footer text, input values — Inter handles everything below headline level. The wide weight range (400–700) creates internal hierarchy without switching families. ss01/ss02 features keep it feeling designed rather than default.",
+        "sizes": "10px, 12px, 13px, 14px, 15px, 16px, 17px, 18px, 20px, 24px, 60px",
+        "family": "Inter",
+        "weight": "400, 460, 500, 560, 600, 700",
+        "lineHeight": "1.40–1.60",
+        "substitute": "Inter (Google Fonts)",
+        "letterSpacing": "varies: -0.01em at large sizes, +0.006em to +0.025em at small sizes, +0.06em for all-caps labels",
+        "fontFeatureSettings": "\"ss01\" on, \"ss02\" on"
+      }
+    ],
+    "description": "Deel operates in contrasting registers — a deep purple-black (#201547) hero punched through with electric yellow-green product shots, then a cream-warm (#fffbf4) body that stretches through the rest of the page. The dual-zone layout is the signature move: dark/vivid left panel with serif-weight condensed Bagoss headlines, fluorescent product imagery on the right, then warmth and space below. Accent violet (#a98df6 to #5938b7) appears only within the dark hero for the word 'anywhere.' and CTAs — never in the light body sections. Pill-shaped buttons (200px radius) coexist with 24px-radius cards, creating a soft geometry throughout. The custom Bagoss family — in Condensed, Extended, Standard, and VF cuts — gives the brand typographic range unavailable through any system font.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      },
+      {
+        "title": "Bagoss Typeface System",
+        "content": "Deel uses a proprietary 4-cut type family (BagossCondensedFont, BagossExtendedFont, BagossStandardFont, BagossStandardVF) as its typographic identity. Each cut has a defined role: Condensed at 44-60px for compressed hero headlines; Extended at 64px for wide-spread section banners; Standard at 12-16px for UI labels and badges; StandardVF for interactive elements (nav, buttons) where variable-font optical sizing matters. All cuts share ss01/ss02 OpenType features that enable stylistic alternate glyphs — these must remain active for authentic brand rendering. Do NOT substitute Bagoss with a condensed system font at headline sizes — the proportions are distinct enough to visually break the design. If Bagoss is unavailable, use Barlow Condensed (Google Fonts, weight 500) as a structural proxy while noting it lacks the custom OpenType personality."
+      }
+    ],
+    "elevationPhilosophy": "Deel uses borders, not shadows, as the primary card boundary language in light sections — 1px solid #dbdbdb or rgba(27,27,27,0.16) defines card edges. The single shadow value (16px/32px spread with dual-layer rgba(27,27,27)) is reserved exclusively for floating UI elements like testimonial badges and product chips that need to appear physically lifted above a photo background."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "icon",
+            "image",
+            "heading",
+            "body",
+            "card",
+            "footer",
+            "input"
+          ],
+          "frequency": 2359,
+          "confidence": 1,
+          "prominence": 107096517.91322343,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#fffbf4",
+          "oklch": {
+            "c": 0.010178894195010255,
+            "h": 81.79530174605209,
+            "l": 0.9892378443470732
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 382,
+          "confidence": 1,
+          "prominence": 82021586.54780634,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#1b1b1b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2221287433751307
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "heading",
+            "body",
+            "other",
+            "link",
+            "icon",
+            "footer"
+          ],
+          "frequency": 722,
+          "confidence": 1,
+          "prominence": 18312333.234233603,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "hero",
+            "link",
+            "body",
+            "heading",
+            "other",
+            "icon",
+            "input"
+          ],
+          "frequency": 252,
+          "confidence": 1,
+          "prominence": 14678026.93203459,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color",
+            "fill",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#141414",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1912512996316179
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 1599089.0672641937,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#404040",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3714949460297332
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1295626.5892347686,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#dbdbdb",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8899620604076641
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "input"
+          ],
+          "frequency": 49,
+          "confidence": 1,
+          "prominence": 705702.1341132418,
+          "properties": [
+            "borderColor",
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#201547",
+          "oklch": {
+            "c": 0.08899790114250317,
+            "h": 288.064029339538,
+            "l": 0.24376035493638
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 548046,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#5f5f5f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.48692170287574027
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 90,
+          "confidence": 1,
+          "prominence": 516849.05032458046,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ffcf25",
+          "oklch": {
+            "c": 0.1712724107324776,
+            "h": 90.90990455561324,
+            "l": 0.8718019646906681
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 106509.48004846169,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#d8ebff",
+          "oklch": {
+            "c": 0.03393000249356954,
+            "h": 249.564912510777,
+            "l": 0.9321050513311949
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 61366.2376197781,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#d9d0ca",
+          "oklch": {
+            "c": 0.01296783921355121,
+            "h": 56.22606164292894,
+            "l": 0.8631426570620147
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 56108.342349627135,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#a98df6",
+          "oklch": {
+            "c": 0.15104146630961085,
+            "h": 294.5303503647524,
+            "l": 0.712082569157663
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 55773.150915559665,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#5938b7",
+          "oklch": {
+            "c": 0.18842696658158145,
+            "h": 288.5687988789207,
+            "l": 0.45744753380846837
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 42354.56370908307,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#faaf00",
+          "oklch": {
+            "c": 0.16795503030388967,
+            "h": 77.73027159141414,
+            "l": 0.8049649012273034
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2520,
+          "confidence": 1,
+          "prominence": 32543.367560232593,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#767676",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.566521959328904
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 9012,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ffe27c",
+          "oklch": {
+            "c": 0.12606877986370663,
+            "h": 93.87250466191219,
+            "l": 0.916193081557081
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 5850,
+          "confidence": 1,
+          "prominence": 7208.333281623899,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 6102,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#c4b1f9",
+          "oklch": {
+            "c": 0.10207202698163802,
+            "h": 296.13636109463806,
+            "l": 0.8020004852048911
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 5070,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#101828",
+          "oklch": {
+            "c": 0.034,
+            "h": 264.665,
+            "l": 0.21
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 4546.048532576017,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#381f89",
+          "oklch": {
+            "c": 0.1629418882422069,
+            "h": 285.0401223838334,
+            "l": 0.34897662695262177
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2672.8512257456755,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#b1d8fc",
+          "oklch": {
+            "c": 0.06494788375015985,
+            "h": 246.48011878383528,
+            "l": 0.8663728674276464
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1024,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#a4a4a4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7180590196995562
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 192,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#53a945",
+          "oklch": {
+            "c": 0.16058006519402027,
+            "h": 140.95722360354603,
+            "l": 0.6588300118298739
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 64,
+          "properties": [
+            "backgroundColor"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.2558112912435194,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.36,
+          "background": "#fffbf4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#141414",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.86,
+          "background": "#141414",
+          "foreground": "#fffbf4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.75,
+          "background": "#ffffff",
+          "foreground": "#101828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.25,
+          "background": "#d8ebff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.22,
+          "background": "#ffffff",
+          "foreground": "#1b1b1b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.2,
+          "background": "#fffbf4",
+          "foreground": "#101828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.7,
+          "background": "#1b1b1b",
+          "foreground": "#fffbf4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#201547",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.42,
+          "background": "#ffe27c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.16,
+          "background": "#201547",
+          "foreground": "#fffbf4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.17,
+          "background": "#dbdbdb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#d8ebff",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.58,
+          "background": "#d8ebff",
+          "foreground": "#101828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.41,
+          "background": "#141414",
+          "foreground": "#ffe27c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.2,
+          "background": "#ffcf25",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.15,
+          "background": "#d8ebff",
+          "foreground": "#1b1b1b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.1,
+          "background": "#b1d8fc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.88,
+          "background": "#ffe27c",
+          "foreground": "#101828"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 18
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "button",
+            "body",
+            "input"
+          ],
+          "frequency": 13
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(27, 27, 27, 0.16) 0px 16px 32px 0px, rgba(27, 27, 27, 0.05) 0px 2px 32px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 2,
+          "frequency": 50,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 181,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 5,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 7,
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 112,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "paddingLeft",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 11,
+          "frequency": 3,
+          "properties": [
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 177,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 108,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 49,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 167,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 25,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 28,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 35,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 29,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 29,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 57,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 60,
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 96,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 128,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            460,
+            500,
+            560,
+            600,
+            700
+          ],
+          "frequency": 2196,
+          "fontFeatureSettings": [
+            "\"ss01\"",
+            "\"ss02\""
+          ]
+        },
+        {
+          "family": "BagossStandardFont",
+          "source": "custom",
+          "weights": [
+            500,
+            600
+          ],
+          "frequency": 25,
+          "fontFeatureSettings": [
+            "\"ss02\"",
+            "\"ss01\""
+          ]
+        },
+        {
+          "family": "BagossCondensedFont",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 25,
+          "fontFeatureSettings": [
+            "\"ss01\"",
+            "\"ss02\""
+          ]
+        },
+        {
+          "family": "BagossExtendedFont",
+          "source": "custom",
+          "weights": [
+            600
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": [
+            "\"ss02\""
+          ]
+        },
+        {
+          "family": "BagossStandardVF",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": [
+            "\"ss02\"",
+            "\"ss01\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 24,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.7,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "BagossStandardFont",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.7,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.7,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "other"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.7,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.7,
+          "letterSpacing": 0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BagossStandardFont",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.7,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BagossStandardFont",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.7,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.7,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.7,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 560,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "BagossStandardVF",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "link",
+            "icon",
+            "button",
+            "body",
+            "image",
+            "card",
+            "footer"
+          ],
+          "frequency": 539,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BagossStandardFont",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.7,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BagossStandardFont",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.7,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.7,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.7,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BagossCondensedFont",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 460,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.7,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.7,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.6,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.6,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.6,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "BagossCondensedFont",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.85,
+          "letterSpacing": 0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.99,
+          "letterSpacing": 0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.13,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 1406,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "BagossCondensedFont",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "BagossCondensedFont",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "BagossExtendedFont",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "BagossCondensedFont",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "BagossCondensedFont",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "BagossExtendedFont",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/650ec721-0cb5-4123-bd5c-64e98f4d6847.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/bc361a48-9147-41a8-bd80-ace7c07ddc35.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5ec4eb4f-a37c-4787-b4c1-de49e01770e7#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Deel design system\",\"item\":\"https://styles.refero.design/style/5ec4eb4f-a37c-4787-b4c1-de49e01770e7\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5ec4eb4f-a37c-4787-b4c1-de49e01770e7#style-reference\",\"name\":\"Deel design system reference\",\"headline\":\"Deel design system | Refero Styles\",\"description\":\"Explore Deel's mixed SaaS design system: Deep Cosmos #201547, Violet Mid #5938b7 colors, BagossCondensedFont, BagossExtendedFont typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/5ec4eb4f-a37c-4787-b4c1-de49e01770e7\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5ec4eb4f-a37c-4787-b4c1-de49e01770e7\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Deel\",\"url\":\"https://deel.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5ec4eb4f-a37c-4787-b4c1-de49e01770e7#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bc361a48-9147-41a8-bd80-ace7c07ddc35.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bc361a48-9147-41a8-bd80-ace7c07ddc35.jpg\",\"caption\":\"Screenshot of Deel\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bc361a48-9147-41a8-bd80-ace7c07ddc35.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Deel design system\",\"Deel website design\",\"Deel colors\",\"Deel typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Deep Cosmos\",\"Violet Mid\",\"Lavender Pulse\",\"Pale Amethyst\",\"BagossCondensedFont\",\"BagossExtendedFont\",\"BagossStandardFont\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Deel design system\"},{\"@type\":\"Thing\",\"name\":\"Deel website design\"},{\"@type\":\"Thing\",\"name\":\"Deel colors\"},{\"@type\":\"Thing\",\"name\":\"Deel typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-03-20T15:15:02.000Z\",\"dateModified\":\"2026-03-20T15:15:02.000Z\"}]}19:T1130,<style>\n  :root {\n    --color-deep-cosmos: #201547;\n    --color-violet-mid: #5938b7;\n    --color-lavender-pulse: #a98df6;\n    --color-graphite: #1b1b1b;\n    --color-pure-white: #ffffff;\n    --color-warm-cream: #fffbf4;\n    --color-slate: #5f5f5f;\n    --color-bone: #dbdbdb;\n    --font-bagosscondensedfont: 'Inter', sans-serif;\n    --font-bagossstandardvf: 'Inter', sans-serif;\n    --font-inter: 'Inter', sans-serif;\n  }\n\n  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');\n\n  .hero-panel {\n    background: var(--color-deep-cosmos);\n    border-radius: 24px;\n    padding: 48px;\n    width: 100%;\n    box-sizing: border-box;\n    font-family: var(--font-inter);\n  }\n\n  .hero-eyebrow {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    background: rgba(255,255,255,0.08);\n    border: 1px solid rgba(255,255,255,0.12);\n    border-radius: 200px;\n    padding: 6px 14px 6px 10px;\n    margin-bottom: 28px;\n  }\n\n  .hero-eyebrow-dot {\n    width: 20px;\n    height: 20px;\n    background: var(--color-violet-mid);\n    border-radius: 50%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n  }\n\n  .hero-eyebrow-dot svg {\n    width: 10px;\n    height: 10px;\n  }\n\n  .hero-eyebrow-text {\n    font-family: var(--font-inter);\n    font-size: 13px;\n    font-weight: 500;\n    color: rgba(255,255,255,0.85);\n    letter-spacing: 0.01em;\n  }\n\n  .hero-eyebrow-arrow {\n    margin-left: 4px;\n    color: rgba(255,255,255,0.5);\n    font-size: 13px;\n  }\n\n  .hero-headline {\n    font-family: var(--font-bagosscondensedfont);\n    font-size: 56px;\n    font-weight: 700;\n    line-height: 1.05;\n    letter-spacing: -0.005em;\n    color: var(--color-pure-white);\n    margin: 0 0 12px 0;\n  }\n\n  .hero-headline-accent {\n    color: var(--color-lavender-pulse);\n  }\n\n  .hero-subtext {\n    font-family: var(--font-inter);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 1.6;\n    color: rgba(255,255,255,0.65);\n    margin: 0 0 36px 0;\n    max-width: 360px;\n  }\n\n  .hero-cta-row {\n    display: flex;\n    align-items: center;\n    gap: 16px;\n    flex-wrap: wrap;\n  }\n\n  .btn-primary {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    background: var(--color-violet-mid);\n    color: var(--color-pure-white);\n    font-family: var(--font-inter);\n    font-size: 15px;\n    font-weight: 500;\n    letter-spacing: 0.025em;\n    padding: 12px 22px;\n    border-radius: 200px;\n    border: none;\n    cursor: pointer;\n    text-decoration: none;\n    transition: background 0.18s;\n  }\n\n  .btn-primary:hover {\n    background: #6a44cc;\n  }\n\n  .btn-primary svg {\n    width: 14px;\n    height: 14px;\n    flex-shrink: 0;\n  }\n\n  .btn-ghost-dark {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    background: transparent;\n    color: rgba(255,255,255,0.75);\n    font-family: var(--font-inter);\n    font-size: 15px;\n    font-weight: 500;\n    letter-spacing: 0.025em;\n    padding: 12px 4px;\n    border-radius: 0;\n    border: none;\n    cursor: pointer;\n    text-decoration: none;\n    transition: color 0.18s;\n  }\n\n  .btn-ghost-dark:hover {\n    color: var(--color-pure-white);\n  }\n</style>\n<div class=\"hero-panel\">\n  <div class=\"hero-eyebrow\">\n    <div class=\"hero-eyebrow-dot\">\n      <svg viewBox=\"0 0 10 10\" fill=\"none\">\n        <circle cx=\"5\" cy=\"5\" r=\"3\" fill=\"white\"/>\n      </svg>\n    </div>\n    <span class=\"hero-eyebrow-text\">Skip the sales call. Hire your first employee now.</span>\n    <span class=\"hero-eyebrow-arrow\">›</span>\n  </div>\n  <h1 class=\"hero-headline\">Hire, manage, pay,<br>&amp; equip anyone,<br><span class=\"hero-headline-accent\">anywhere.</span></h1>\n  <p class=\"hero-subtext\">Payroll, HR, IT, and immigration for every worker type. All in one platform from one trusted partner.</p>\n  <div class=\"hero-cta-row\">\n    <a href=\"#\" class=\"btn-primary\">\n      Speak to sales\n      <svg viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M2 7h10M8 3l4 4-4 4\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>\n    </a>\n    <a href=\"#\" class=\"btn-ghost-dark\">\n      Book a demo\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\">\n        <path d=\"M2 7h10M8 3l4 4-4 4\" stroke=\"rgba(255,255,255,0.75)\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>\n    </a>\n  </div>\n</div>1a:T1f90,<style>\n  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');\n\n  :root {\n    --color-warm-cream: #fffbf4;\n    --color-pure-white: #ffffff;\n    --color-graphite: #1b1b1b;\n    --color-slate: #5f5f5f;\n    --color-bone: #dbdbdb;\n    --color-near-black: #101828;\n    --color-ash: #a4a4a4;\n    --font-inter: 'Inter', sans-serif;\n  }\n\n  .section-wrap {\n    background: var(--color-warm-cream);\n    padding: 40px 24px;\n    box-sizing: border-box;\n    font-family: var(--font-inter);\n    width: 100%;\n  }\n\n  .section-eyebrow {\n    font-family: var(--font-inter);\n    font-size: 12px;\n    font-weight: 600;\n    letter-spacing: 0.06em;\n    color: var(--color-slate);\n    text-transform: uppercase;\n    margin: 0 0 12px 0;\n  }\n\n  .section-heading {\n    font-family: var(--font-inter);\n    font-size: 32px;\n    font-weight: 700;\n    color: var(--color-near-black);\n    margin: 0 0 28px 0;\n    line-height: 1.15;\n    letter-spacing: -0.01em;\n  }\n\n  .cards-grid {\n    display: flex;\n    flex-direction: column;\n    gap: 16px;\n  }\n\n  .product-card {\n    background: var(--color-warm-cream);\n    border: 1px solid var(--color-bone);\n    border-radius: 24px;\n    padding: 24px;\n    box-sizing: border-box;\n    overflow: hidden;\n  }\n\n  .card-label {\n    font-family: var(--font-inter);\n    font-size: 20px;\n    font-weight: 700;\n    color: var(--color-near-black);\n    margin: 0 0 6px 0;\n    letter-spacing: -0.005em;\n  }\n\n  .card-desc {\n    font-family: var(--font-inter);\n    font-size: 15px;\n    font-weight: 400;\n    color: var(--color-slate);\n    line-height: 1.5;\n    margin: 0 0 20px 0;\n  }\n\n  .card-ui-mock {\n    background: var(--color-pure-white);\n    border-radius: 12px;\n    padding: 16px;\n    border: 1px solid var(--color-bone);\n  }\n\n  .mock-row {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 6px 0;\n    border-bottom: 1px solid #f0ece6;\n  }\n\n  .mock-row:last-child {\n    border-bottom: none;\n  }\n\n  .mock-label {\n    font-size: 13px;\n    font-weight: 400;\n    color: var(--color-slate);\n    font-family: var(--font-inter);\n  }\n\n  .mock-value {\n    font-size: 13px;\n    font-weight: 600;\n    color: var(--color-near-black);\n    font-family: var(--font-inter);\n  }\n\n  .mock-btn {\n    display: block;\n    width: 100%;\n    background: var(--color-near-black);\n    color: white;\n    font-family: var(--font-inter);\n    font-size: 14px;\n    font-weight: 600;\n    text-align: center;\n    padding: 10px 0;\n    border-radius: 200px;\n    margin-top: 14px;\n    border: none;\n    cursor: pointer;\n    box-sizing: border-box;\n  }\n\n  .mock-avatars {\n    display: flex;\n  }\n\n  .mock-avatar {\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    border: 2px solid white;\n    margin-left: -6px;\n    display: inline-block;\n  }\n\n  .mock-avatar:first-child { margin-left: 0; }\n\n  .mock-stat-row {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    margin-bottom: 10px;\n  }\n\n  .mock-stat-label {\n    font-size: 12px;\n    color: var(--color-slate);\n    font-family: var(--font-inter);\n  }\n\n  .mock-stat-value {\n    font-size: 20px;\n    font-weight: 700;\n    color: var(--color-near-black);\n    font-family: var(--font-inter);\n  }\n\n  .mock-progress {\n    height: 6px;\n    background: #e8e4de;\n    border-radius: 100px;\n    overflow: hidden;\n    margin-bottom: 14px;\n  }\n\n  .mock-progress-fill {\n    height: 100%;\n    background: #5938b7;\n    border-radius: 100px;\n    width: 72%;\n  }\n\n  .it-step {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    padding: 5px 0;\n  }\n\n  .it-step-dot {\n    width: 16px;\n    height: 16px;\n    border-radius: 50%;\n    border: 2px solid var(--color-bone);\n    background: white;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n  }\n\n  .it-step-dot.done {\n    background: var(--color-near-black);\n    border-color: var(--color-near-black);\n  }\n\n  .it-step-info {\n    flex: 1;\n  }\n\n  .it-step-title {\n    font-size: 13px;\n    font-weight: 600;\n    color: var(--color-near-black);\n    font-family: var(--font-inter);\n  }\n\n  .it-step-date {\n    font-size: 11px;\n    color: var(--color-ash);\n    font-family: var(--font-inter);\n  }\n</style>\n<div class=\"section-wrap\">\n  <p class=\"section-eyebrow\">What Deel Does</p>\n  <h2 class=\"section-heading\">The Global People Platform</h2>\n  <div class=\"cards-grid\">\n\n    <div class=\"product-card\">\n      <div class=\"card-label\">Deel Payroll</div>\n      <div class=\"card-desc\">Local and global payroll, your way.</div>\n      <div class=\"card-ui-mock\">\n        <div class=\"mock-row\">\n          <span class=\"mock-label\">Payroll funding</span>\n          <span class=\"mock-value\">$800,450.30</span>\n        </div>\n        <div class=\"mock-row\">\n          <span class=\"mock-label\">Payroll schedule</span>\n          <span class=\"mock-value\">Bi-weekly</span>\n        </div>\n        <div class=\"mock-row\">\n          <span class=\"mock-label\">Approvers</span>\n          <span class=\"mock-value\">\n            <div class=\"mock-avatars\">\n              <div class=\"mock-avatar\" style=\"background:#c4b1f9;\"></div>\n              <div class=\"mock-avatar\" style=\"background:#ffcf25;\"></div>\n              <div class=\"mock-avatar\" style=\"background:#53a945;\"></div>\n              <div class=\"mock-avatar\" style=\"background:#a98df6;\"></div>\n            </div>\n          </span>\n        </div>\n        <button class=\"mock-btn\">Submit</button>\n      </div>\n    </div>\n\n    <div class=\"product-card\">\n      <div class=\"card-label\">Deel HR</div>\n      <div class=\"card-desc\">One HR system for every worker.</div>\n      <div class=\"card-ui-mock\">\n        <div class=\"mock-stat-row\">\n          <span class=\"mock-stat-label\">Increase user retention rate</span>\n        </div>\n        <div class=\"mock-progress\"><div class=\"mock-progress-fill\"></div></div>\n        <div class=\"mock-stat-row\">\n          <div>\n            <div class=\"mock-stat-label\" style=\"margin-bottom:2px;\">Average feedback</div>\n            <div class=\"mock-stat-value\">72%</div>\n          </div>\n        </div>\n        <div style=\"display:flex;gap:8px;margin-top:8px;\">\n          <div style=\"flex:1;height:40px;background:#e8e4de;border-radius:8px;\"></div>\n          <div style=\"flex:1;height:52px;background:#c4b1f9;border-radius:8px;align-self:flex-end;\"></div>\n          <div style=\"flex:1;height:36px;background:#e8e4de;border-radius:8px;\"></div>\n          <div style=\"flex:1;height:44px;background:#ffcf25;border-radius:8px;\"></div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"product-card\">\n      <div class=\"card-label\">Deel IT</div>\n      <div class=\"card-desc\">Devices and support, anywhere.</div>\n      <div class=\"card-ui-mock\">\n        <div class=\"it-step\">\n          <div class=\"it-step-dot done\">\n            <svg width=\"8\" height=\"8\" viewBox=\"0 0 8 8\" fill=\"none\"><path d=\"M1.5 4l2 2 3-3\" stroke=\"white\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n          </div>\n          <div class=\"it-step-info\">\n            <div class=\"it-step-title\">Ordered</div>\n            <div class=\"it-step-date\">Jun 16th</div>\n          </div>\n        </div>\n        <div class=\"it-step\">\n          <div class=\"it-step-dot done\">\n            <svg width=\"8\" height=\"8\" viewBox=\"0 0 8 8\" fill=\"none\"><path d=\"M1.5 4l2 2 3-3\" stroke=\"white\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n          </div>\n          <div class=\"it-step-info\">\n            <div class=\"it-step-title\">Shipped</div>\n            <div class=\"it-step-date\">Jun 17th</div>\n          </div>\n        </div>\n        <div class=\"it-step\">\n          <div class=\"it-step-dot done\">\n            <svg width=\"8\" height=\"8\" viewBox=\"0 0 8 8\" fill=\"none\"><path d=\"M1.5 4l2 2 3-3\" stroke=\"white\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n          </div>\n          <div class=\"it-step-info\">\n            <div class=\"it-step-title\">Delivered</div>\n            <div class=\"it-step-date\">Jun 19th</div>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n</div>1b:T177e,<style>\n  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');\n\n  :root {\n    --color-obsidian: #141414;\n    --color-graphite: #1b1b1b;\n    --color-pure-white: #ffffff;\n    --color-linen: #d9d0ca;\n    --color-bone: #dbdbdb;\n    --color-slate: #5f5f5f;\n    --font-inter: 'Inter', sans-serif;\n  }\n\n  .dark-section {\n    background: var(--color-obsidian);\n    padding: 48px 32px;\n    box-sizing: border-box;\n    width: 100%;\n    border-radius: 24px;\n    font-family: var(--font-inter);\n  }\n\n  .dark-section-headline {\n    font-family: var(--font-inter);\n    font-size: 32px;\n    font-weight: 700;\n    color: var(--color-pure-white);\n    margin: 0 0 36px 0;\n    line-height: 1.1;\n    letter-spacing: -0.01em;\n  }\n\n  .stat-cols {\n    display: flex;\n    flex-direction: column;\n    gap: 0;\n    border-top: 1px solid rgba(255,255,255,0.08);\n  }\n\n  .stat-col {\n    padding: 28px 0;\n    border-bottom: 1px solid rgba(255,255,255,0.08);\n  }\n\n  .stat-lead {\n    font-family: var(--font-inter);\n    font-size: 15px;\n    font-weight: 400;\n    color: var(--color-linen);\n    line-height: 1.6;\n    margin: 0 0 16px 0;\n  }\n\n  .stat-lead strong {\n    font-weight: 700;\n    color: var(--color-pure-white);\n  }\n\n  .stat-link {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    font-family: var(--font-inter);\n    font-size: 14px;\n    font-weight: 500;\n    color: var(--color-pure-white);\n    text-decoration: none;\n    letter-spacing: 0.01em;\n    opacity: 0.75;\n    transition: opacity 0.15s;\n  }\n\n  .stat-link:hover {\n    opacity: 1;\n  }\n\n  .stat-link svg {\n    width: 14px;\n    height: 14px;\n  }\n\n  .currency-chips {\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n    margin-top: 28px;\n  }\n\n  .currency-chip {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    background: rgba(255,255,255,0.06);\n    border: 1px solid rgba(255,255,255,0.1);\n    border-radius: 200px;\n    padding: 10px 16px;\n    width: fit-content;\n    min-width: 160px;\n  }\n\n  .currency-chip.active {\n    background: var(--color-pure-white);\n    border-color: var(--color-pure-white);\n  }\n\n  .currency-flag {\n    width: 24px;\n    height: 24px;\n    border-radius: 50%;\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 16px;\n  }\n\n  .currency-code {\n    font-family: var(--font-inter);\n    font-size: 15px;\n    font-weight: 500;\n    color: rgba(255,255,255,0.85);\n    letter-spacing: 0.01em;\n  }\n\n  .currency-chip.active .currency-code {\n    color: var(--color-graphite);\n  }\n\n  .currency-check {\n    margin-left: auto;\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    background: #53a945;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n  }\n\n  .currency-check-inactive {\n    margin-left: auto;\n    width: 22px;\n    height: 22px;\n    border-radius: 50%;\n    border: 1.5px solid rgba(255,255,255,0.2);\n    flex-shrink: 0;\n  }\n\n  .currency-check-inactive.dark {\n    border-color: rgba(0,0,0,0.15);\n  }\n</style>\n<div class=\"dark-section\">\n  <h2 class=\"dark-section-headline\">One modern experience for today's workforce</h2>\n  <div class=\"stat-cols\">\n\n    <div class=\"stat-col\">\n      <p class=\"stat-lead\"><strong>150+ currencies supported,</strong> including crypto, for centralized compliant payroll.</p>\n      <a href=\"#\" class=\"stat-link\">\n        Learn more\n        <svg viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M2 7h10M8 3l4 4-4 4\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n      </a>\n      <div class=\"currency-chips\">\n        <div class=\"currency-chip\" style=\"opacity:0.5;\">\n          <div class=\"currency-flag\">🇦🇷</div>\n          <span class=\"currency-code\">ARS</span>\n          <div class=\"currency-check-inactive\"></div>\n        </div>\n        <div class=\"currency-chip\" style=\"opacity:0.75;\">\n          <div class=\"currency-flag\">🇨🇦</div>\n          <span class=\"currency-code\">CAD</span>\n          <div class=\"currency-check-inactive\"></div>\n        </div>\n        <div class=\"currency-chip active\">\n          <div class=\"currency-flag\" style=\"background:#1b1b1b;color:white;font-size:13px;font-weight:700;\">¢</div>\n          <span class=\"currency-code\">Crypto</span>\n          <div class=\"currency-check\">\n            <svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" fill=\"none\"><path d=\"M2 6l3 3 5-5\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n          </div>\n        </div>\n        <div class=\"currency-chip\" style=\"opacity:0.75;\">\n          <div class=\"currency-flag\">🇺🇸</div>\n          <span class=\"currency-code\">USD</span>\n          <div class=\"currency-check-inactive\"></div>\n        </div>\n        <div class=\"currency-chip\" style=\"opacity:0.4;\">\n          <div class=\"currency-flag\">🇬🇧</div>\n          <span class=\"currency-code\">GBP</span>\n          <div class=\"currency-check-inactive\"></div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"stat-col\">\n      <p class=\"stat-lead\"><strong>Actionable AI</strong> for approving hiring, payroll, IT flows on Deel. More scaling, not headcount.</p>\n      <a href=\"#\" class=\"stat-link\">\n        Learn more\n        <svg viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M2 7h10M8 3l4 4-4 4\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n      </a>\n    </div>\n\n    <div class=\"stat-col\">\n      <p class=\"stat-lead\"><strong>2,000+ local experts</strong> combined with in-house compliance logic and real-time AI.</p>\n      <a href=\"#\" class=\"stat-link\">\n        Book a demo\n        <svg viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M2 7h10M8 3l4 4-4 4\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n      </a>\n    </div>\n\n  </div>\n</div>1c:T76c,**Quick Color Reference**\n- Text (primary): #1b1b1b\n- Page background (light): #fffbf4\n- Hero background: #201547\n- CTA button (dark): #1b1b1b\n- CTA button (violet, hero): #5938b7\n- Accent headline: #a98df6\n- Border / divider: rgba(27,27,27,0.16)\n- Secondary text: #5f5f5f\n\n**Example Component Prompts**\n\n1. **Hero Section (dark left panel):** Full-viewport-width, 50/50 split. Left: #201547 background, padding 64px 48px. Headline in BagossCondensedFont 60px weight 500, #ffffff, line-height 1.00, letter-spacing -0.005em — final word 'anywhere.' in #a98df6. Subtext Inter 17px weight 400 #d9d0ca. Pill CTA: background #5938b7, white text, 200px radius, padding 8px 16px, BagossStandardVF 15px. Right: full-bleed product photo, no padding.\n\n2. **Feature Product Card (3-column grid):** Background #fffbf4, border 1px solid #dbdbdb, border-radius 24px, padding 24px. Title: BagossCondensedFont 24px weight 500 #1b1b1b. Description: Inter 16px weight 400 #5f5f5f. Product screenshot image cropped at card bottom.\n\n3. **Dark Stat Row Section:** Background #141414, full width. Three equal columns, 48px vertical padding, 80px horizontal. Each column: stat headline BagossCondensedFont 44px weight 500 #ffffff, descriptor Inter 15px weight 400 #d9d0ca, ghost CTA 'Learn more →' Inter 14px #a98df6 below.\n\n4. **Top Navigation Bar:** Background #ffffff, height 64px, 1280px max-width centered. Logo left (Deel wordmark, #1b1b1b). Center: Ghost pill nav items (200px radius, 8px 12px padding, BagossStandardVF 15px #1b1b1b) with chevron. Right: 'Log in' ghost button + 'Book a demo' filled dark pill (#1b1b1b bg, #ffffff text, 200px radius, 8px 16px padding).\n\n5. **Currency Selector Chip:** Background #ffffff, border 1px solid #dbdbdb, border-radius 200px, padding 8px 16px. Flag icon 20px + currency code Inter 16px weight 500 #1b1b1b. Active state: green badge (#53a945) checkmark at trailing edge."
+}

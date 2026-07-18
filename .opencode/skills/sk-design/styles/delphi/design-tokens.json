@@ -1,0 +1,462 @@
+{
+  "color": {
+    "parchment": {
+      "$value": "#fdf6ee",
+      "$type": "color",
+      "$description": "Parchment — Page canvas, hero background, card surfaces on light sections — sets the warm literary tone that distinguishes this from the cool-white default of most SaaS"
+    },
+    "soft-cream": {
+      "$value": "#f0e6dc",
+      "$type": "color",
+      "$description": "Soft Cream — Navigation background, secondary surface layer, subtle hover/elevated zones"
+    },
+    "pure-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure Card — Foreground card surface for content blocks, feature panels, and the floating chat testimonials in the hero"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, icon strokes, and border lines — used at the highest prominence to anchor every paragraph and heading"
+    },
+    "charcoal-bark": {
+      "$value": "#21201c",
+      "$type": "color",
+      "$description": "Charcoal Bark — Body text on light surfaces where pure black reads too cold against the cream"
+    },
+    "sepia": {
+      "$value": "#2b180a",
+      "$type": "color",
+      "$description": "Sepia — Headings, button text, emphasized inline elements — dark brown instead of black gives headlines a printed-ink quality"
+    },
+    "bronze": {
+      "$value": "#7f6e60",
+      "$type": "color",
+      "$description": "Bronze — Muted secondary body text, descriptive captions beneath headings"
+    },
+    "driftwood": {
+      "$value": "#94877c",
+      "$type": "color",
+      "$description": "Driftwood — Tertiary text, nav links, low-emphasis labels, and warm-toned dividers"
+    },
+    "stone": {
+      "$value": "#a99d93",
+      "$type": "color",
+      "$description": "Stone — Disabled or lowest-emphasis text, ghost iconography"
+    },
+    "pebble": {
+      "$value": "#d9cfc3",
+      "$type": "color",
+      "$description": "Pebble — Hairline borders, card edges, and subtle dividers on cream surfaces"
+    },
+    "chestnut": {
+      "$value": "#3e2407",
+      "$type": "color",
+      "$description": "Chestnut — Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "ember-orange": {
+      "$value": "#f65726",
+      "$type": "color",
+      "$description": "Ember Orange — Accent text, in-card highlights, conversational emphasis — warm vivid orange that ignites against the parchment"
+    },
+    "saffron-pulse": {
+      "$value": "#ff5c00",
+      "$type": "color",
+      "$description": "Saffron Pulse — Orange supporting accent for decorative details and low-frequency emphasis."
+    },
+    "peach-glow": {
+      "$value": "#fed0b3",
+      "$type": "color",
+      "$description": "Peach Glow — Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "martina-plantijn-light": {
+      "$value": "Martina Plantijn Light",
+      "$type": "fontFamily",
+      "$description": "Display and heading face — a humanist serif that carries the editorial, literary voice of the brand. Light weight (300) is used for the largest display headlines, where the negative letter-spacing tightens the characters into a single confident mark. This font is the most distinctive choice in the system: a serif on a product interface signals thoughtfulness and preservation rather than speed and automation."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Body, navigation, and UI text — the workhorse sans that handles everything below the headlines. Weight 400 is default body, weight 500 for emphasized labels and nav. Tight -0.0100em tracking keeps the small sizes legible without feeling clinical."
+    },
+    "roboto-mono": {
+      "$value": "Roboto Mono",
+      "$type": "fontFamily",
+      "$description": "Used sparingly for inline code-like references (e.g. the '> 50 chats' trigger syntax in feature cards) — a monospace accent that signals system or automation language within editorial copy"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "5px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 5px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "5px",
+        "fontWeight": 300,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 5px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "8px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 8px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 10px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "10px",
+        "fontWeight": 300,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 10px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "15px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Martina Plantijn Light",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8.21px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "full": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "582px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#fdf6ee",
+      "$type": "color",
+      "$description": "Surface level 0: Page-wide background, hero, and section backgrounds"
+    },
+    "soft-cream": {
+      "$value": "#f0e6dc",
+      "$type": "color",
+      "$description": "Surface level 1: Navigation bar, subtle elevated zones, hover backgrounds"
+    },
+    "pure-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Content cards, feature panels, floating testimonial cards"
+    },
+    "chestnut-block": {
+      "$value": "#3e2407",
+      "$type": "color",
+      "$description": "Surface level 3: Primary CTA button, dark accent surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://delphi.ai",
+      "siteName": "Delphi",
+      "extractedAt": "2026-06-03T15:38:48.639Z",
+      "variant": "extended"
+    }
+  }
+}

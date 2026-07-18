@@ -1,0 +1,152 @@
+{
+  "color": {
+    "signal-yellow": {
+      "$value": "#ffe600",
+      "$type": "color",
+      "$description": "Signal Yellow — Full-bleed page and section background — the unbroken sunny sky that fills every viewport and frames all illustration. The yellow IS the canvas, not a surface sitting on a white page"
+    },
+    "globe-azure": {
+      "$value": "#007fff",
+      "$type": "color",
+      "$description": "Globe Azure — Hero focal surface — the spherical focal element rising from the bottom of the viewport, and any large circular/oval composition element. White text sits directly on this blue"
+    },
+    "roof-coral": {
+      "$value": "#ef3b2c",
+      "$type": "color",
+      "$description": "Roof Coral — Illustrated house roofs and accent fills within the hand-drawn scenes — decorative, never used on UI chrome"
+    },
+    "charcoal-ink": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal Ink — All body text, nav link text, nav link borders, and the thin linework inside the illustrations. The single dark value the entire UI runs on"
+    },
+    "cloud-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Cloud White — Display text overlaid on the blue globe, scattered cloud illustrations across the yellow sky, and window fills inside the house artwork. The only light value used structurally"
+    }
+  },
+  "font": {
+    "changa-one": {
+      "$value": "Changa One",
+      "$type": "fontFamily",
+      "$description": "Sole display and headline face. Carries every word that needs personality — the curving hero line, the self-intro statement, section openers. Single weight (400) but the chunky rounded letterforms do all the heavy lifting; no bold/light variants exist in the system."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Nav links only — the five top-of-page items (HOME, ABOUT, WORK, PLAY, CONTACT). The system-font choice deliberately plays utilitarian against the custom display face; the nav reads as a neutral signpost, not as part of the illustration."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Changa One",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Changa One",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Changa One",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Changa One",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 0.72
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Changa One",
+        "fontSize": "75px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 75px"
+    }
+  },
+  "spacing": {
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "sunny-sky": {
+      "$value": "#ffe600",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page canvas — every section starts here."
+    },
+    "globe-sphere": {
+      "$value": "#007fff",
+      "$type": "color",
+      "$description": "Surface level 1: Circular focal surface (1440px radius) rising from the bottom of the hero, holding the display headline."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://karlgonsalves.com",
+      "siteName": "Karl",
+      "extractedAt": "2026-06-03T18:47:28.120Z",
+      "variant": "extended"
+    }
+  }
+}

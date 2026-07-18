@@ -1,0 +1,662 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#101010",
+      "$type": "color",
+      "$description": "Obsidian — Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, text on dark fills — the default surface that 60%+ of the page lives on"
+    },
+    "carbon": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Carbon — Dark card surfaces for product mockups and the dark editorial band, barely distinguishable from Obsidian to create depth without color"
+    },
+    "mint-cream": {
+      "$value": "#e5ede4",
+      "$type": "color",
+      "$description": "Mint Cream — Light pastel surface tint, used sparingly for soft card backgrounds that need warmth without chromatic commitment"
+    },
+    "sage-mist": {
+      "$value": "#c7d8c5",
+      "$type": "color",
+      "$description": "Sage Mist — Near-gray green surface wash, appears as a muted canvas tint on light sections and soft card backgrounds"
+    },
+    "ash-gray": {
+      "$value": "#9b9b9b",
+      "$type": "color",
+      "$description": "Ash Gray — Muted helper text, secondary borders, inactive UI elements — handles every de-emphasized text or border role"
+    },
+    "lavender-mist": {
+      "$value": "#b8afda",
+      "$type": "color",
+      "$description": "Lavender Mist — Dominant chromatic accent, large section backgrounds, circle diagram fills, decorative borders — carries the brand's pastel identity and appears more than any other chromatic color"
+    },
+    "ember-orange": {
+      "$value": "#eb652b",
+      "$type": "color",
+      "$description": "Ember Orange — Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content."
+    },
+    "electric-yellow": {
+      "$value": "#f6f361",
+      "$type": "color",
+      "$description": "Electric Yellow — Secondary accent for borders, highlights, and decorative geometric elements — neon-charged against black to create energy"
+    }
+  },
+  "font": {
+    "abc-normal": {
+      "$value": "ABC Normal",
+      "$type": "fontFamily",
+      "$description": "Workhorse sans for body, nav, buttons, badges, and even large display sizes. The 300 weight is the signature — lightweight and editorial rather than the 600+ bold most SaaS sites use for headlines, giving Drop a quiet authority. Letter-spacing tightens aggressively at larger sizes (from -0.005em at 16px to -0.041em at 177px)."
+    },
+    "ivar-display": {
+      "$value": "Ivar Display",
+      "$type": "fontFamily",
+      "$description": "Reserved exclusively for the largest display headings — the 'OLD WORLD' / 'NEW WORLD' editorial moments. A serif with 0.78 line-height and -0.043em tracking at 169px creates slab-like density that reads as printed editorial rather than web type. Weight stays at 400 even at poster scale, trusting the size and serif personality to carry authority."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "15px",
+        "fontWeight": 300,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "15px",
+        "fontWeight": 300,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "15px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 15px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "21px",
+        "fontWeight": 300,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "22px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "29px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "30px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "43px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 43px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "43px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Ivar Display",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 60px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "66px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 66px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Ivar Display",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 72px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "75px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 75px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Ivar Display",
+        "fontSize": "93px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 93px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "95px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 95px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "Ivar Display",
+        "fontSize": "156px",
+        "fontWeight": 400,
+        "lineHeight": 0.78
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 156px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "160px",
+        "fontWeight": 300,
+        "lineHeight": 0.86
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 160px"
+    },
+    "5xl-11": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "160px",
+        "fontWeight": 400,
+        "lineHeight": 0.86
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-11 at 160px"
+    },
+    "5xl-12": {
+      "$value": {
+        "fontFamily": "Ivar Display",
+        "fontSize": "169px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-12 at 169px"
+    },
+    "5xl-13": {
+      "$value": {
+        "fontFamily": "ABC Normal",
+        "fontSize": "177px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-13 at 177px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4.32px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "7.92px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16.02px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24.48px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "31.68px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "3xl-4": {
+      "$value": "40.32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-4"
+    },
+    "full": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background, dominant surface across all light sections"
+    },
+    "sage-mist": {
+      "$value": "#c7d8c5",
+      "$type": "color",
+      "$description": "Surface level 1: Near-gray green surface tint for soft card backgrounds and section washes"
+    },
+    "mint-cream": {
+      "$value": "#e5ede4",
+      "$type": "color",
+      "$description": "Surface level 2: Warmer light tint for accent cards that need separation from pure white"
+    },
+    "lavender-mist": {
+      "$value": "#b8afda",
+      "$type": "color",
+      "$description": "Surface level 3: Chromatic surface for hero cards, diagram fills, and large decorative blocks"
+    },
+    "carbon": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 4: Dark surface for product mockup cards and the editorial dark band"
+    },
+    "obsidian": {
+      "$value": "#101010",
+      "$type": "color",
+      "$description": "Surface level 5: Deepest dark surface for full-bleed editorial sections and primary CTA fills"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.usedrop.io",
+      "siteName": "Drop",
+      "extractedAt": "2026-06-03T20:22:36.477Z",
+      "variant": "extended"
+    }
+  }
+}

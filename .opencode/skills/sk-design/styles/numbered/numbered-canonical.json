@@ -1,0 +1,741 @@
+{
+  "source": "https://styles.refero.design/style/50f0b6d5-9e96-42a1-9564-a6e99c289f98",
+  "uuid": "50f0b6d5-9e96-42a1-9564-a6e99c289f98",
+  "name": "Numbered",
+  "northStar": "fashion editorial on black velvet. A near-black runway where a single face fills the frame and the only marks are white ink and a whispered bronze thread.",
+  "capturedAt": "2026-07-18T08:50:11.659Z",
+  "meta": {
+    "url": "https://numbered.studio",
+    "siteName": "Numbered",
+    "extractedAt": "2026-06-03T21:37:08.390Z",
+    "durationMs": 29041,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 154,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #111111 as the default canvas for every section that isn't full-bleed photography",
+      "Set body type at 15px aktiv-web weight 400, line-height 1.5",
+      "Set display/headline type at 54–74px aktiv-web weight 400 — never bold, never uppercase",
+      "Anchor content with 119–238px left/right page gutters",
+      "Render navigation links as underlined 12–13px white text — no buttons, no pills",
+      "Use #bc9873 only as a full-bleed accent surface, never for text or interactive elements",
+      "Let photography bleed to all four viewport edges with 0px radius"
+    ],
+    "donts": [
+      "Don't add cards, rounded corners, or shadows — this system is flat and edge-to-edge",
+      "Don't use color for interactive states — white-on-black underline text is the only affordance",
+      "Don't bold the display sizes — weight 400 at 74px is the signature, weight 700 would break it",
+      "Don't place text on #bc9873 — the bronze surface is decorative only, not a text background",
+      "Don't center body content — everything left-aligns to a wide left gutter",
+      "Don't add a second typeface beyond the serif wordmark and aktiv-web — the system is deliberately bilingual: one display serif used once, one sans used everywhere else",
+      "Don't use more than one white opacity level — text and borders are #ffffff at 100%, no grays for type"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#111111",
+        "name": "Ink Black",
+        "role": "Primary canvas — full-page background, hero panels, footer. The dominant surface everything else floats over",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "All text, hairline borders, nav links, section labels. The only ink on the page; used at 100% opacity on dark surfaces and as a border-only accent on imagery",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4f4f4f",
+        "name": "Smoke",
+        "role": "Subtle hairline borders on navigation elements — recedes against the ink black, visible only on close inspection",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bc9873",
+        "name": "Bronze Veil",
+        "role": "Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed page model with no max-width container. Each section occupies the full viewport: a photograph fills the screen with the serif wordmark overlaid, then cuts to a flat #111111 panel with a left-anchored editorial headline and small underlined link below it, then another full-bleed photograph. Navigation is a single absolute-positioned 'CONTACT' link top-center — no bar, no logo. Content is left-aligned to a ~238px gutter, never centered. Section rhythm: photograph → black panel → black panel with stacked heading → photograph → bronze band. Vertical spacing between sections is generous (80–120px). The grid is effectively a single column — no multi-column card grids, no feature matrices, no pricing tables. Density is extremely low: 3–4 elements per viewport at most.",
+    "imagery": "The site is image-dominant in a single specific way: full-bleed editorial portrait photography occupies the entire viewport on hero and case study panels. Treatment is tight close-ups of faces — cropped at forehead and chin, no lifestyle context, no product staging. Color treatment is warm golden-hour naturalism with rich skin tones, soft shadows, and organic textures (knit fabrics, hair, jewelry). Photography is never contained or rounded — it bleeds to all four viewport edges with raw unframed edges. No illustrations, no icons, no product screenshots, no abstract graphics. Icons, if present, would be invisible against the editorial minimalism.",
+    "similar": [
+      {
+        "why": "Same editorial-agency language — full-bleed photography, single oversized display type, near-zero UI chrome, black canvas as default",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Same fashion-editorial restraint — dark backgrounds, large quiet type at regular weight, underlined text links as the only affordance, photography bleeding to viewport edges",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Same typographic bravery — weight 400 at 70+px, generous negative space, warm accent tones borrowed from photography, no cards or grids",
+        "business": "Hugues Cluzet portfolio sites (e.g., Breed)"
+      },
+      {
+        "why": "Same creative-agency-as-art-object positioning — full-viewport imagery, minimal nav (often a single word), type that breathes rather than fills",
+        "business": "Resn"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px (no cards)",
+        "images": "0px (photography is edge-to-edge, never rounded)",
+        "buttons": "0px (no buttons)"
+      },
+      "elementGap": "20-35px",
+      "sectionGap": "99px",
+      "cardPadding": "",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#111111",
+        "name": "Ink Black Canvas",
+        "level": 0,
+        "purpose": "Primary page background, all text panels, hero sections over flat color"
+      },
+      {
+        "hex": "#bc9873",
+        "name": "Bronze Accent Band",
+        "level": 1,
+        "purpose": "Full-bleed warm surface for tonal break between black sections"
+      },
+      {
+        "hex": "#000000",
+        "name": "Photographic Surface",
+        "level": 2,
+        "purpose": "Full-bleed editorial photography replaces the black canvas on hero and case study panels"
+      }
+    ],
+    "northStar": "fashion editorial on black velvet. A near-black runway where a single face fills the frame and the only marks are white ink and a whispered bronze thread.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 25,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 54,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 74,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Wordmark",
+        "role": "Brand anchor overlaid on full-bleed editorial photography",
+        "description": "The serif 'Numbered' wordmark rendered at viewport-bleed scale (est. 200–300px), white #ffffff, 0px radius, no background — sits directly on the photograph. Anchors the page; appears once."
+      },
+      {
+        "name": "Centered Nav Link",
+        "role": "Minimal top-center navigation",
+        "description": "Single 'CONTACT' label at 12–13px aktiv-web weight 400, white #ffffff, tracked uppercase, positioned absolute top-center of the viewport. No logo in nav, no menu items, no hamburger. This is the entire navigation."
+      },
+      {
+        "name": "Editorial Headline Block",
+        "role": "Primary page statement on dark panels",
+        "description": "54–74px aktiv-web weight 400, white #ffffff, line-height 1.0–1.2, left-aligned with ~238px left gutter. No bold weight, no color accent — just large quiet type. The 'CASES / STUDIES' heading stacks on two lines as a signature device."
+      },
+      {
+        "name": "Underlined Text Link",
+        "role": "All interactive navigation within content",
+        "description": "12–13px aktiv-web weight 400, white #ffffff, 1px white underline, 3px padding-bottom for the underline offset. Examples: 'ABOUT US', 'VIEW ALL', 'CONTACT'. No buttons, no pills, no filled rectangles — the underline IS the affordance."
+      },
+      {
+        "name": "Full-Bleed Case Study Image",
+        "role": "Project showcase panel",
+        "description": "Edge-to-edge photography, 0px radius, no border, no overlay. Project metadata ('COTERIE / REDEFINING DIAPERS FOR MODERN PARENTS') sits as small white text top-left in two lines, 12–13px uppercase tracked."
+      },
+      {
+        "name": "Description Caption",
+        "role": "Subtitle under hero wordmark",
+        "description": "15px aktiv-web weight 400, white #ffffff, line-height 1.5, centered. Example: 'Design, Content Production & Technology — Amsterdam, Paris & New York'. Quiet functional text beneath the display mark."
+      },
+      {
+        "name": "Bronze Accent Panel",
+        "role": "Warm secondary surface for tonal break",
+        "description": "#bc9873 background, no border, 0px radius, used as a full-width band. No text sits on this surface — it functions as a color-only breath between black sections, echoing the photography's palette."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary workhorse — nav labels at 12–13px (weight 400, tracked), body and section headings at 25px (weight 400, line-height 1.2), mid-page editorial statements at 54px (weight 400, line-height 1.2), and the 'CASES / STUDIES' two-line heading at ~74px. The signature choice: weight 400 for 54–74px display sizes — no bold display, no uppercase shouting. Headlines read as confident paragraphs, not banners.",
+        "sizes": "12, 13, 15, 25, 54, 74",
+        "family": "aktiv-web (custom) / substitute: Inter Tight or Söhne",
+        "weight": "400, 700",
+        "lineHeight": "1.0, 1.2, 1.5, 2.0",
+        "substitute": "Inter Tight or Söhne"
+      },
+      {
+        "role": "The 'Numbered' wordmark uses a high-contrast transitional/old-style serif with sharp terminals — the only non-sans element in the system. This single serif mark is the brand's typographic signature; it appears once per page as a hero anchor and nowhere else. Suggested substitutes: PP Editorial New, GT Sectra, or Canela.",
+        "sizes": "viewport-scale, est. 200–300px",
+        "family": "Editorial display serif (not captured in data — visible in hero wordmark)",
+        "weight": "400",
+        "lineHeight": "1.0",
+        "substitute": "PP Editorial New or GT Sectra"
+      }
+    ],
+    "description": "Numbered operates as a fashion-editorial canvas: a deep ink-black void that lets full-bleed portrait photography and oversized typography do all the work. The interface is almost invisible — no buttons, no cards, no grids — just hairline white type floating over imagery and near-black panels. A single warm bronze tone (#bc9873) surfaces occasionally as a material accent against the monochrome severity, echoing the golden-hour skin tones in the photography. Whitespace is treated as a luxury material: sections are separated by 80–120px vertical gaps, content is anchored to wide left/right gutters of ~119–238px, and links are underlined plain text rather than interactive widgets. The system reads as a magazine spread, not a product UI.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/50f0b6d5-9e96-42a1-9564-a6e99c289f98#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Numbered design system\",\"item\":\"https://styles.refero.design/style/50f0b6d5-9e96-42a1-9564-a6e99c289f98\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/50f0b6d5-9e96-42a1-9564-a6e99c289f98#style-reference\",\"name\":\"Numbered design system reference\",\"headline\":\"Numbered design system | Refero Styles\",\"description\":\"Explore Numbered's dark Agency design system: Ink Black #111111, Paper White #ffffff colors, aktiv-web (custom) / substitute: Inter Tight or Söhne,...\",\"url\":\"https://styles.refero.design/style/50f0b6d5-9e96-42a1-9564-a6e99c289f98\",\"mainEntityOfPage\":\"https://styles.refero.design/style/50f0b6d5-9e96-42a1-9564-a6e99c289f98\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Numbered\",\"url\":\"https://numbered.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/50f0b6d5-9e96-42a1-9564-a6e99c289f98#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f3e32cda-e69c-488a-a41c-19f999b007e5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f3e32cda-e69c-488a-a41c-19f999b007e5.jpg\",\"caption\":\"Screenshot of Numbered\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f3e32cda-e69c-488a-a41c-19f999b007e5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Numbered design system\",\"Numbered website design\",\"Numbered colors\",\"Numbered typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Paper White\",\"Smoke\",\"Bronze Veil\",\"aktiv-web (custom) / substitute: Inter Tight or Söhne\",\"Editorial display serif (not captured in data — visible in hero wordmark)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Numbered design system\"},{\"@type\":\"Thing\",\"name\":\"Numbered website design\"},{\"@type\":\"Thing\",\"name\":\"Numbered colors\"},{\"@type\":\"Thing\",\"name\":\"Numbered typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:47:51.832Z\",\"dateModified\":\"2026-04-30T02:47:51.832Z\"}]}19:T682,Quick Color Reference:\n- text: #ffffff\n- background: #111111\n- border: #ffffff (hairline, 1px)\n- accent: #bc9873 (surface only, never text)\n- muted border: #4f4f4f\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. **Hero Panel**: Full-bleed photograph filling the viewport. Overlay a serif wordmark in #ffffff at ~240px, centered, on top of the image. Position a 'CONTACT' label at 12px aktiv-web weight 400, #ffffff, uppercase, letter-spacing tracked, absolute top-center of the viewport with 20px top padding. Below the wordmark, add a 15px #ffffff caption in aktiv-web weight 400, centered, reading as quiet subtitle text.\n\n2. **Editorial Statement Section**: Background #111111, full-width. Left-aligned headline at 74px aktiv-web weight 400, #ffffff, line-height 1.0, with 238px left margin. Below it, a 12px 'ABOUT US' link in #ffffff with 1px white underline, same 238px left margin. Section padding-top 99px, padding-bottom 99px.\n\n3. **Full-Bleed Case Study**: Full-viewport photograph, 0px radius, edge-to-edge. Top-left corner: 12px uppercase tracked text in #ffffff reading as project name on line one and tagline on line two. No other overlay elements.\n\n4. **Bronze Accent Band**: Full-width #bc9873 background, 0px radius, height ~60vh. No text, no images, no interactive elements — decorative warm surface that breaks the black sequence.\n\n5. **Two-Line Stacked Heading**: 74px aktiv-web weight 400, #ffffff, line-height 1.0, left-aligned with 238px left gutter. Two short words stacked vertically, each on its own line (e.g., 'CASES' / 'STUDIES'). A 'VIEW ALL' underlined link at 12px positioned to the right of the second line."
+      }
+    ],
+    "elevationPhilosophy": "The system is deliberately shadowless. All surfaces are flat and edge-to-edge. Depth is created only by the contrast between full-bleed photography and flat ink-black panels — not by box-shadows. The absence of elevation is a signature: this is a magazine spread, not a software interface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "heading",
+            "body",
+            "button",
+            "hero",
+            "link",
+            "card",
+            "footer"
+          ],
+          "frequency": 753,
+          "confidence": 1,
+          "prominence": 151529777.3853381,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 29,
+            "body/color": 4,
+            "card/color": 9,
+            "hero/color": 2,
+            "link/color": 14,
+            "other/fill": 4,
+            "image/color": 1,
+            "other/color": 72,
+            "button/color": 1,
+            "footer/color": 1,
+            "heading/color": 17,
+            "nav/borderColor": 115,
+            "body/borderColor": 16,
+            "card/borderColor": 36,
+            "hero/borderColor": 8,
+            "link/borderColor": 56,
+            "image/borderColor": 4,
+            "other/borderColor": 288,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 68
+          }
+        },
+        {
+          "hex": "#bc9873",
+          "oklch": {
+            "c": 0.06654246684328378,
+            "h": 67.16814474462295,
+            "l": 0.7037094760643097
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1624500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#4f4f4f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4276078121301855
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 260920,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.00023788955685429637,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#111111",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.19,
+          "background": "#ffffff",
+          "foreground": "#4f4f4f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.08,
+          "background": "#bc9873",
+          "foreground": "#111111"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.07,
+          "background": "#bc9873",
+          "foreground": "#4f4f4f"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.67,
+          "background": "#bc9873",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "nav",
+            "link"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 59,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 79,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 99,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero"
+          ]
+        },
+        {
+          "value": 119,
+          "contexts": [
+            "body",
+            "hero",
+            "nav",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "marginLeft|nav",
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 178,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 238,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 297,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "aktiv-web",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 149,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.86
+      },
+      "steps": [
+        {
+          "size": 1,
+          "family": "aktiv-web",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "heading",
+            "body",
+            "hero",
+            "card",
+            "link",
+            "footer",
+            "nav"
+          ],
+          "frequency": 79,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 1,
+          "family": "aktiv-web",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "aktiv-web",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "aktiv-web",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 23,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "aktiv-web",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "aktiv-web",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "aktiv-web",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 25,
+          "family": "aktiv-web",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 54,
+          "family": "aktiv-web",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 54,
+          "family": "aktiv-web",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 74,
+          "family": "aktiv-web",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ab03cbf4-5b9a-49d6-8af7-c8066f72cddc.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f3e32cda-e69c-488a-a41c-19f999b007e5.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/50f0b6d5-9e96-42a1-9564-a6e99c289f98#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Numbered design system\",\"item\":\"https://styles.refero.design/style/50f0b6d5-9e96-42a1-9564-a6e99c289f98\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/50f0b6d5-9e96-42a1-9564-a6e99c289f98#style-reference\",\"name\":\"Numbered design system reference\",\"headline\":\"Numbered design system | Refero Styles\",\"description\":\"Explore Numbered's dark Agency design system: Ink Black #111111, Paper White #ffffff colors, aktiv-web (custom) / substitute: Inter Tight or Söhne,...\",\"url\":\"https://styles.refero.design/style/50f0b6d5-9e96-42a1-9564-a6e99c289f98\",\"mainEntityOfPage\":\"https://styles.refero.design/style/50f0b6d5-9e96-42a1-9564-a6e99c289f98\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Numbered\",\"url\":\"https://numbered.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/50f0b6d5-9e96-42a1-9564-a6e99c289f98#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f3e32cda-e69c-488a-a41c-19f999b007e5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f3e32cda-e69c-488a-a41c-19f999b007e5.jpg\",\"caption\":\"Screenshot of Numbered\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f3e32cda-e69c-488a-a41c-19f999b007e5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Numbered design system\",\"Numbered website design\",\"Numbered colors\",\"Numbered typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Paper White\",\"Smoke\",\"Bronze Veil\",\"aktiv-web (custom) / substitute: Inter Tight or Söhne\",\"Editorial display serif (not captured in data — visible in hero wordmark)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Numbered design system\"},{\"@type\":\"Thing\",\"name\":\"Numbered website design\"},{\"@type\":\"Thing\",\"name\":\"Numbered colors\"},{\"@type\":\"Thing\",\"name\":\"Numbered typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:47:51.832Z\",\"dateModified\":\"2026-04-30T02:47:51.832Z\"}]}19:T682,Quick Color Reference:\n- text: #ffffff\n- background: #111111\n- border: #ffffff (hairline, 1px)\n- accent: #bc9873 (surface only, never text)\n- muted border: #4f4f4f\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. **Hero Panel**: Full-bleed photograph filling the viewport. Overlay a serif wordmark in #ffffff at ~240px, centered, on top of the image. Position a 'CONTACT' label at 12px aktiv-web weight 400, #ffffff, uppercase, letter-spacing tracked, absolute top-center of the viewport with 20px top padding. Below the wordmark, add a 15px #ffffff caption in aktiv-web weight 400, centered, reading as quiet subtitle text.\n\n2. **Editorial Statement Section**: Background #111111, full-width. Left-aligned headline at 74px aktiv-web weight 400, #ffffff, line-height 1.0, with 238px left margin. Below it, a 12px 'ABOUT US' link in #ffffff with 1px white underline, same 238px left margin. Section padding-top 99px, padding-bottom 99px.\n\n3. **Full-Bleed Case Study**: Full-viewport photograph, 0px radius, edge-to-edge. Top-left corner: 12px uppercase tracked text in #ffffff reading as project name on line one and tagline on line two. No other overlay elements.\n\n4. **Bronze Accent Band**: Full-width #bc9873 background, 0px radius, height ~60vh. No text, no images, no interactive elements — decorative warm surface that breaks the black sequence.\n\n5. **Two-Line Stacked Heading**: 74px aktiv-web weight 400, #ffffff, line-height 1.0, left-aligned with 238px left gutter. Two short words stacked vertically, each on its own line (e.g., 'CASES' / 'STUDIES'). A 'VIEW ALL' underlined link at 12px positioned to the right of the second line."
+}

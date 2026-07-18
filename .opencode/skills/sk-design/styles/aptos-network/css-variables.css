@@ -1,0 +1,87 @@
+:root {
+  /* Colors */
+  --color-ink: #0f0e0b;
+  --color-bone: #f9f9f0;
+  --color-ash: #6d6c67;
+  --color-charcoal: #21201c;
+  --color-graphite: #555450;
+  --color-mist: #84837d;
+  --color-deep-earth: #3d3b34;
+  --color-soft-sand: #ccc5a3;
+  --color-warm-stone: #9d937c;
+  --color-sage: #d5fad3;
+  --color-powder-blue: #badbee;
+
+  /* Typography — Font Families */
+  --font-season-serif: 'Season Serif', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  /* Typography — Scale */
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.5;
+  --text-body: 18px;
+  --leading-body: 1.4;
+  --text-subheading: 20px;
+  --leading-subheading: 1.3;
+  --tracking-subheading: -0.2px;
+  --text-heading: 24px;
+  --leading-heading: 1.25;
+  --tracking-heading: -0.24px;
+  --text-heading-lg: 55px;
+  --leading-heading-lg: 1.1;
+  --tracking-heading-lg: -1.1px;
+  --text-display-sm: 90px;
+  --leading-display-sm: 1;
+  --tracking-display-sm: -2.7px;
+  --text-display: 120px;
+  --leading-display: 1;
+  --tracking-display: -3.6px;
+
+  /* Typography — Weights */
+  --font-weight-w335: 335;
+  --font-weight-w340: 340;
+  --font-weight-w358: 358;
+  --font-weight-w363: 363;
+  --font-weight-regular: 400;
+  --font-weight-w420: 420;
+  --font-weight-w444: 444;
+
+  /* Spacing */
+  --spacing-5: 5px;
+  --spacing-10: 10px;
+  --spacing-15: 15px;
+  --spacing-20: 20px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-45: 45px;
+  --spacing-50: 50px;
+  --spacing-60: 60px;
+  --spacing-90: 90px;
+  --spacing-150: 150px;
+  --spacing-180: 180px;
+
+  /* Layout */
+  --page-max-width: 1280px;
+  --section-gap: 90-150px;
+  --card-padding: 30px;
+  --element-gap: 15-30px;
+
+  /* Named Radii */
+  --radius-tags: 9999px;
+  --radius-cards: 0px;
+  --radius-inputs: 0px;
+  --radius-buttons: 9999px;
+  --radius-nav-pill: 9999px;
+
+  /* Shadows */
+  --shadow-subtle: rgb(15, 14, 11) -1px 0px 0px 0px inset;
+  --shadow-subtle-2: rgb(204, 197, 163) -1px 0px 0px 0px inset;
+  --shadow-subtle-3: rgb(186, 219, 238) -1px 0px 0px 0px inset;
+
+  /* Surfaces */
+  --surface-bone-canvas: #f9f9f0;
+  --surface-sage-field: #d5fad3;
+  --surface-warm-stone-field: #9d937c;
+  --surface-soft-sand-field: #ccc5a3;
+  --surface-powder-blue-field: #badbee;
+  --surface-charcoal-stamp: #21201c;
+}

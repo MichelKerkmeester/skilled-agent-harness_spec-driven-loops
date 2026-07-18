@@ -1,0 +1,382 @@
+{
+  "color": {
+    "parchment-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Parchment Canvas — Page backgrounds, card surfaces, inverse text on dark fills"
+    },
+    "onyx": {
+      "$value": "#0c1018",
+      "$type": "color",
+      "$description": "Onyx — Primary body text, headings, input text, icon fills — blue-shifted near-black replaces pure #000 across the interface"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Footer text, heavy display accents, icon strokes — reserved for maximum weight moments"
+    },
+    "charred-umber": {
+      "$value": "#1e1310",
+      "$type": "color",
+      "$description": "Charred Umber — Footer surface, dark contrast bands, gradient origin stop — warm dark anchors the bottom of the spectrum"
+    },
+    "slate-veil": {
+      "$value": "#6d7074",
+      "$type": "color",
+      "$description": "Slate Veil — Secondary headings, subdued labels, inactive nav — desaturated mid-gray for quiet hierarchy"
+    },
+    "ash-mist": {
+      "$value": "#9e9fa3",
+      "$type": "color",
+      "$description": "Ash Mist — Supporting neutral for secondary UI, dividers, and muted labels."
+    },
+    "dawn-arc": {
+      "$value": "#5a769f",
+      "$type": "color",
+      "$description": "Dawn Arc — Brand signature — represents the iconic hero gradient (charred umber → steel twilight → warm parchment); used in gradient washes, atmospheric overlays, and the gradient-text reveal effect on display headlines"
+    },
+    "ember-radiance": {
+      "$value": "#ed9454",
+      "$type": "color",
+      "$description": "Ember Radiance — Accent warmth for radial gradient highlights and hover-state glows — the golden-hour counterpoint to the cool steel-blue arc"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "serrif-condensed": {
+      "$value": "Serrif Condensed",
+      "$type": "fontFamily",
+      "$description": "Display headlines — only used at 64-72px for hero and section-opening statements. Condensed letterforms with negative tracking create editorial masthead weight without boldness; the 1.05 line-height lets lines stack tightly into monumental blocks. This font carries the brand's voice at maximum volume."
+    },
+    "saans-variable": {
+      "$value": "Saans Variable",
+      "$type": "fontFamily",
+      "$description": "Body, navigation, buttons, inputs, subheadings — the workhorse. Weight 300 whispers, 400 speaks, 500-570 emphasi zes. Variable axis allows fluid weight shifts. Tight -0.01em tracking across all sizes; line-height tightens to 1.0 for UI labels and opens to 1.4 for paragraph body."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Inter — detected in extracted data but not described by AI"
+    },
+    "saans-medium": {
+      "$value": "Saans Medium",
+      "$type": "fontFamily",
+      "$description": "Saans Medium — detected in extracted data but not described by AI"
+    },
+    "saans-regular": {
+      "$value": "Saans Regular",
+      "$type": "fontFamily",
+      "$description": "Saans Regular — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Saans Variable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Saans Variable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Saans Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Saans Variable",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Saans Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Saans Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Saans Medium",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Saans Regular",
+        "fontSize": "16px",
+        "fontWeight": 380,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Saans Medium",
+        "fontSize": "16px",
+        "fontWeight": 570,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Saans Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Saans Variable",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Saans Variable",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Saans Variable",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Saans Variable",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Serrif Condensed Regular",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Serrif Condensed Regular",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background for content sections"
+    },
+    "gradient-atmosphere": {
+      "$value": "#7ba1c4",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed hero and transition sections — the dawn arc gradient creates spatial drama without separate surface treatments"
+    },
+    "card-surface": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Surface level 2: Process and content cards — whisper-light off-white that recedes against the canvas"
+    },
+    "dark-ground": {
+      "$value": "#1e1310",
+      "$type": "color",
+      "$description": "Surface level 3: Footer and dark contrast bands — the gradient's terminal stop becomes a solid surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://newgenre.studio",
+      "siteName": "New Genre",
+      "extractedAt": "2026-06-03T16:09:05.659Z",
+      "variant": "extended"
+    }
+  }
+}

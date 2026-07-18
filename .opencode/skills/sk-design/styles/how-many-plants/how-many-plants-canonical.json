@@ -1,0 +1,868 @@
+{
+  "source": "https://styles.refero.design/style/4e616d96-14ea-43d6-9662-0ad3fa19ef7c",
+  "uuid": "4e616d96-14ea-43d6-9662-0ad3fa19ef7c",
+  "name": "How Many Plants",
+  "northStar": "Golden botanical broadside on cream paper — a illustrated shelf system where the page title sits inside bands of potted plants and brass instruments.",
+  "capturedAt": "2026-07-18T09:09:55.827Z",
+  "meta": {
+    "url": "https://howmanyplants.com",
+    "siteName": "How Many Plants",
+    "extractedAt": "2026-06-03T20:33:29.895Z",
+    "durationMs": 36470,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 240,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Golden Olive (#bfb33b) as the sole saturated brand color — never introduce a second vivid hue into illustrations, borders, or shadows",
+      "Apply the hard 6px 6px 0px Golden Olive offset shadow to every mustard-bordered element; do not substitute a blurred drop shadow",
+      "Set display type at 36px with 0.89 line-height in Chromatica so letters stack into compact shelf-height bands, not airy headlines",
+      "Underline links with a Dusty Lavender (#e8d1eb) wavy SVG stroke, never with text-decoration: underline",
+      "Keep all radii at 0px — the system is sharp-edged paper, not rounded digital surfaces",
+      "Maintain 64px section padding and 32px inter-section gaps to preserve the spacious editorial rhythm",
+      "Pair Chromatica (geometric display) with Hellenictypewriter (mechanical secondary) for heading-to-body contrast"
+    ],
+    "donts": [
+      "Do not add soft drop shadows, blur effects, or gradient overlays to any element",
+      "Do not use rounded corners on cards, buttons, tabs, or images — 0px radius is non-negotiable",
+      "Do not introduce a second saturated chromatic color; the palette is cream, black, gold, lavender, teal — nothing more",
+      "Do not set display type with generous line-height (1.2+); the 0.89 leading is what makes letters interlock with the illustration",
+      "Do not use straight underlines on links — always the wavy lavender treatment",
+      "Do not fill the canvas with pure white (#ffffff); the warm cream (#f9f5f1) is the background and must be visible",
+      "Do not place illustrations on white or neutral gray panels — illustrations always sit directly on the cream canvas"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f9f5f1",
+        "name": "Cream Paper",
+        "role": "Page background, card surfaces, section bands — the warm off-white that reads as uncoated stock rather than digital white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Ink Black",
+        "role": "Primary text, illustration outlines, large display letters, image borders — near-black that feels like a drafting pen rather than pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bfb33b",
+        "name": "Golden Olive",
+        "role": "Signature illustration color, hero shelf bands, decorative borders, hard offset shadows, icon fills — the only saturated hue in the system and the brand's defining mark",
+        "group": "brand"
+      },
+      {
+        "hex": "#e8d1eb",
+        "name": "Dusty Lavender",
+        "role": "Tab backgrounds, tag pills, soft surface accents — desaturated lilac that cools the warm cream without competing with the gold",
+        "group": "accent"
+      },
+      {
+        "hex": "#025050",
+        "name": "Deep Teal",
+        "role": "Secondary text and accent on lavender surfaces, occasional icon detail — the only dark chromatic in the palette, used sparingly for contrast against light washes",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed hero composed of stacked horizontal illustrated shelf bands (4-5 bands, each 100-150px tall) that span edge to edge and contain the full brand wordmark. Below the hero, content shifts to a centered max-width ~1200px layout with two-column text+illustration sections at 64px vertical padding. Vertical side tabs float along the left edge of the hero as decorative category indices. Navigation is a single top bar with centered logo and ghost-outline utility buttons. No sidebar, no grid of feature cards — the site reads as a vertical scroll through editorial spreads rather than a product dashboard. Generous whitespace between sections (64px) creates a slow, magazine-like rhythm.",
+    "imagery": "Illustration is the dominant visual language — flat, 2D, hand-drawn botanical still lifes composed of potted plants, vases, books, frames, brass instruments, and household objects. All illustrations use a two-color treatment: Golden Olive (#bfb33b) fills with Ink Black (#222222) line work, or pure black line art on cream. No photography, no gradients, no 3D, no shadows within illustrations. Icons are line-art matching the illustration style. Illustrations always sit directly on the cream canvas with no containers or frames — the object IS the frame. The hero illustration integrates oversized display type as compositional elements, with letters overlapping and interlocking with the illustrated objects rather than sitting in separate text blocks.",
+    "similar": [
+      {
+        "why": "Same editorial-broadside energy where illustration and display typography are the primary content, not decoration",
+        "business": "The New Yorker"
+      },
+      {
+        "why": "Shared botanical illustration language with two-color flat fills and hand-drawn still lifes",
+        "business": "Beverly (editorial plant brand)"
+      },
+      {
+        "why": "Restrained two-or-three-color palette, generous whitespace, and editorial typography that treats the page like printed matter",
+        "business": "Aesop (brand site)"
+      },
+      {
+        "why": "Custom display typefaces with extremely tight leading used as compositional elements rather than just headings",
+        "business": "Pithitude"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tabs": "0px",
+        "tags": "0px",
+        "images": "0px",
+        "buttons": "0px",
+        "shelves": "0px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "48px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#f9f5f1",
+        "name": "Cream Canvas",
+        "level": 0,
+        "purpose": "Full-page background, the base paper stock"
+      },
+      {
+        "hex": "#e8d1eb",
+        "name": "Lavender Wash",
+        "level": 1,
+        "purpose": "Tab and tag backgrounds that sit on the cream canvas"
+      },
+      {
+        "hex": "#bfb33b",
+        "name": "Golden Shelf",
+        "level": 2,
+        "purpose": "Illustrated hero bands and decorative banners — the only mid-saturation surface in the system"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgb(191, 179, 59) 6px 6px 0px 0px",
+        "element": "Golden shelf bands and mustard-bordered cards"
+      }
+    ],
+    "northStar": "Golden botanical broadside on cream paper — a illustrated shelf system where the page title sits inside bands of potted plants and brass instruments.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading-lg",
+        "size": 36,
+        "lineHeight": 1.14
+      }
+    ],
+    "components": [
+      {
+        "name": "Illustrated Hero Shelf",
+        "role": "Full-width horizontal band that spells out brand letters inside botanical still-life illustrations",
+        "description": "Golden Olive (#bfb33b) rectangle spanning full page width, 100-150px tall, filled with flat plant/vase/book illustrations in black line art. Oversized Ink Black display letters (Chromatica 36px, 0.89 leading) overlap the band. Hard 6px 6px 0px Golden Olive offset shadow below. 0px radius. Stacks vertically to form the full brand wordmark."
+      },
+      {
+        "name": "Top Announcement Banner",
+        "role": "Slim marquee strip above the navigation",
+        "description": "Cream (#f9f5f1) background, centered Hellenictypewriter 14-16px italic text in Ink Black, flanked by small leaf icons. No border, no padding beyond 8px vertical. The text itself is a handwritten-style announcement."
+      },
+      {
+        "name": "Primary Navigation Bar",
+        "role": "Top-level site navigation with centered logo",
+        "description": "Cream canvas, 64px vertical padding. Logo 'HOW MANY PLANTS' centered in Hellenictypewriter 16-20px weight 500. Left-aligned nav links (Guides, Care, About) in Chromatica 16px, with wavy Dusty Lavender (#e8d1eb) underlines on hover/active. Right-aligned utility buttons."
+      },
+      {
+        "name": "Nav Utility Button (Ghost)",
+        "role": "Right-side navigation actions like Plant Club and Search",
+        "description": "No background fill. 1px Ink Black (#222222) border, 0px radius, 12px vertical and 48px horizontal padding. Chromatica 16px uppercase text. The Plant Club variant adds a heart icon; Search adds a magnifier icon."
+      },
+      {
+        "name": "Wavy Underline Link",
+        "role": "Inline navigation and body links",
+        "description": "Chromatica or Hellenictypewriter text in Ink Black with a Dusty Lavender (#e8d1eb) wavy SVG underline beneath. The wavy line — not straight — is the signature link treatment and replaces standard text-decoration: underline."
+      },
+      {
+        "name": "Vertical Side Tab",
+        "role": "Rotated category labels floating along the left edge of the hero",
+        "description": "Lavender (#e8d1eb) background, Ink Black Chromatica 14px uppercase text, 0px radius, ~44px wide, rotated 90° counter-clockwise. Acts as a decorative category index, not an active navigation pattern."
+      },
+      {
+        "name": "Category Label Card",
+        "role": "Small stacked text blocks embedded in the illustration (e.g. 'PLANT CARE 101', 'HOUSEPLANTS A-Z')",
+        "description": "No background. Stacked lines of Chromatica 16px Ink Black text, left-aligned, with a thin 1px Ink Black top border on the first line. Appears as a printed index inside the illustrated shelves."
+      },
+      {
+        "name": "Editorial Content Section",
+        "role": "Text-led content blocks below the hero (e.g. 'Get to know your plants')",
+        "description": "Cream canvas, max-width ~1200px centered. Two-column layout: illustration on left, heading + body on right. Heading uses Hellenictypewriter 28-36px weight 500, body uses Chromatica 16-20px. 64px section padding, 32px gap between heading and body."
+      },
+      {
+        "name": "Illustrated Plant with Speech Bubble",
+        "role": "Botanical illustration paired with a handwritten caption",
+        "description": "Flat Chromatica-style plant illustration in green and black line art on cream. Adjacent hand-drawn arrow points to a speech-bubble-shaped text annotation in Chromatica 14-16px italic. No borders, no background — the illustration IS the visual."
+      },
+      {
+        "name": "Footer Category Link List",
+        "role": "Stacked text links in the footer (e.g. 'BEST LAID PLANTS', 'MY PLANT BABIES')",
+        "description": "Chromatica 16px Ink Black, left-aligned, stacked vertically with 12px row gap. Each link has a wavy Dusty Lavender underline. Functions as a printed table-of-contents style index."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary display and body face — the chunky geometric letterforms spell out the brand in the hero and carry all body copy. The extremely tight 0.89 leading at 36px is what makes display letters stack into compact shelf-height bands rather than airy headlines.",
+        "sizes": "14, 16, 20, 24, 36px",
+        "family": "Chromatica",
+        "weight": "400, 500",
+        "lineHeight": "0.89, 1.33, 1.43, 1.6, 2.0",
+        "substitute": "Druk Wide, Recoleta, or GT Super"
+      },
+      {
+        "role": "Secondary typewriter face for section headings, navigation labels, and editorial accents — its mechanical rhythm contrasts with Chromatica's geometry to create a handmade-meets-typeset feel",
+        "sizes": "16, 20, 28, 36px",
+        "family": "Hellenictypewriter",
+        "weight": "400, 500",
+        "lineHeight": "1.14, 1.25, 1.33, 1.6",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Special Elite"
+      }
+    ],
+    "description": "How Many Plants is a warm botanical editorial — a cream-paper broadside where a single golden-olive hue carries every illustration, banner, and accent. The hero is built from horizontal illustrated shelves in mustard that interlock with oversized display type, turning the page title into a shelf of plant pots, books, and vases. Surfaces are flat and paper-like; shadows are hard 6px offsets in the mustard itself, not soft drops, giving every decorated element the look of a cut-and-paste collage. The palette is ruthlessly small — cream canvas, black ink, one saturated gold, one dusty lavender, one dark teal — and that constraint IS the identity. Typography mixes a chunky geometric display face with a typewriter secondary, so headings feel poster-like while body copy stays intimate and typewritten.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4e616d96-14ea-43d6-9662-0ad3fa19ef7c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"How Many Plants design system\",\"item\":\"https://styles.refero.design/style/4e616d96-14ea-43d6-9662-0ad3fa19ef7c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4e616d96-14ea-43d6-9662-0ad3fa19ef7c#style-reference\",\"name\":\"How Many Plants design system reference\",\"headline\":\"How Many Plants design system | Refero Styles\",\"description\":\"Explore How Many Plants's light Media design system: Cream Paper #f9f5f1, Ink Black #222222 colors, Chromatica, Hellenictypewriter typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/4e616d96-14ea-43d6-9662-0ad3fa19ef7c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4e616d96-14ea-43d6-9662-0ad3fa19ef7c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"How Many Plants\",\"url\":\"https://howmanyplants.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4e616d96-14ea-43d6-9662-0ad3fa19ef7c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/58240996-1b27-4dbb-abef-9b2938a418bc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/58240996-1b27-4dbb-abef-9b2938a418bc.jpg\",\"caption\":\"Screenshot of How Many Plants\"},\"image\":\"https://images.refero.design/styles/refero.design/image/58240996-1b27-4dbb-abef-9b2938a418bc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"How Many Plants design system\",\"How Many Plants website design\",\"How Many Plants colors\",\"How Many Plants typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Cream Paper\",\"Ink Black\",\"Golden Olive\",\"Dusty Lavender\",\"Chromatica\",\"Hellenictypewriter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"How Many Plants design system\"},{\"@type\":\"Thing\",\"name\":\"How Many Plants website design\"},{\"@type\":\"Thing\",\"name\":\"How Many Plants colors\"},{\"@type\":\"Thing\",\"name\":\"How Many Plants typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T03:56:12.149Z\",\"dateModified\":\"2026-04-30T03:56:12.149Z\"}]}19:T74a,**Quick Color Reference**\n- text: #222222 (Ink Black)\n- background: #f9f5f1 (Cream Paper)\n- border / illustration outline: #222222 (Ink Black) for structural, #bfb33b (Golden Olive) for decorative\n- accent (illustration + decorative shadows): #bfb33b (Golden Olive)\n- soft surface (tabs, tags): #e8d1eb (Dusty Lavender)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Illustrated Hero Shelf Band*: Full-bleed Golden Olive (#bfb33b) rectangle, 120px tall. Fill with flat botanical illustration in Ink Black (#222222) line art — potted plants, vases, books. Overlay a single Chromatica 36px weight 500 Ink Black display letter at 0.89 line-height, centered vertically. Hard 6px 6px 0px Golden Olive offset shadow below the band. 0px radius.\n\n2. *Ghost Navigation Button*: No background. 1px Ink Black (#222222) border, 0px radius, 12px vertical padding, 48px horizontal padding. Chromatica 16px uppercase Ink Black text. Optional heart or magnifier icon in Ink Black to the left of the label.\n\n3. *Wavy Underline Link*: Chromatica 16px weight 400 Ink Black (#222222) text. Beneath the text, a 2px tall Dusty Lavender (#e8d1eb) wavy SVG stroke spanning the full text width with 4 wave cycles. No background, no border.\n\n4. *Vertical Side Tab*: Dusty Lavender (#e8d1eb) background, 44px wide × 160px tall, 0px radius. Chromatica 14px uppercase Ink Black text, rotated 90° counter-clockwise, centered. Floats at the left edge of the hero section, vertically centered within its band.\n\n5. *Editorial Content Block*: Cream (#f9f5f1) canvas, max-width 1200px centered, 64px vertical padding. Two columns at 32px gap: left column is a flat botanical illustration in Golden Olive and Ink Black on cream; right column has a Hellenictypewriter 28px weight 500 Ink Black heading, 32px gap, then Chromatica 16px line-height 1.6 Ink Black body copy."
+      },
+      {
+        "title": "Shadow System",
+        "content": "There is exactly one shadow in the entire system: rgb(191, 179, 59) 6px 6px 0px 0px — a hard offset in Golden Olive with zero blur. It is applied to Golden Olive-bordered elements (hero shelf bands, mustard-bordered cards) to create a cut-paper collage depth. No element ever uses a soft, blurred, or colored drop shadow. Ink Black-bordered elements rely on the border alone with no shadow. The hard-offset shadow IS the elevation language."
+      },
+      {
+        "title": "Typography Pairing Logic",
+        "content": "Chromatica carries the brand's geometric confidence — display letters, body copy, and inline links. Hellenictypewriter enters only for section headings, navigation labels, and editorial annotations where its mechanical rhythm creates contrast with Chromatica's solidity. The pair works because Chromatica is dense and sculptural while Hellenictypewriter is thin and rhythmic — together they read as poster + caption, not two competing display faces."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is never soft or blurred. The only shadow in the system is a hard 6px x 6px offset in Golden Olive (#bfb33b), giving mustard elements a cut-paper collage depth. Everything else relies on flat color contrast and 1px ink borders, not drop shadows."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "image",
+            "icon",
+            "body",
+            "button"
+          ],
+          "frequency": 993,
+          "confidence": 1,
+          "prominence": 21277928.778736945,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "icon/color": 2,
+            "link/color": 7,
+            "image/color": 97,
+            "other/color": 85,
+            "button/color": 3,
+            "heading/color": 10,
+            "body/borderColor": 16,
+            "icon/borderColor": 8,
+            "link/borderColor": 28,
+            "image/borderColor": 388,
+            "other/borderColor": 292,
+            "button/borderColor": 12,
+            "heading/borderColor": 40,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f9f5f1",
+          "oklch": {
+            "c": 0.006843813594601985,
+            "h": 67.744357468647,
+            "l": 0.9721210525279241
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "input",
+            "link",
+            "button"
+          ],
+          "frequency": 166,
+          "confidence": 1,
+          "prominence": 6549641.055596183,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "link/color": 9,
+            "input/color": 1,
+            "other/color": 13,
+            "heading/color": 4,
+            "body/borderColor": 16,
+            "link/borderColor": 36,
+            "other/borderColor": 52,
+            "heading/borderColor": 16,
+            "other/backgroundColor": 12,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#bfb33b",
+          "oklch": {
+            "c": 0.1375702756845856,
+            "h": 103.5519791202605,
+            "l": 0.7551798746192995
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 58,
+          "confidence": 1,
+          "prominence": 1296628.6503681396,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1,
+            "button/boxShadow": 3,
+            "other/borderColor": 48,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#025050",
+          "oklch": {
+            "c": 0.06598683399416483,
+            "h": 194.79134798800416,
+            "l": 0.39082983211302036
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 887040,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e8d1eb",
+          "oklch": {
+            "c": 0.04296532950799857,
+            "h": 322.31689123447416,
+            "l": 0.8873699734235401
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 734,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.020451192182143224,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 14.67,
+          "background": "#f9f5f1",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.18,
+          "background": "#e8d1eb",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.54,
+          "background": "#025050",
+          "foreground": "#f9f5f1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.37,
+          "background": "#bfb33b",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.51,
+          "background": "#e8d1eb",
+          "foreground": "#025050"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.29,
+          "background": "#bfb33b",
+          "foreground": "#025050"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.99,
+          "background": "#bfb33b",
+          "foreground": "#f9f5f1"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.72,
+          "background": "#025050",
+          "foreground": "#222222"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.31,
+          "background": "#e8d1eb",
+          "foreground": "#f9f5f1"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": [
+        {
+          "value": "rgb(191, 179, 59) 6px 6px 0px 0px",
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "icon",
+            "button",
+            "input"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|icon",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|input"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 35,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "columnGap",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "marginRight|other",
+            "marginLeft|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "marginBottom|body",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 97,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 152,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 213,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Chromatica",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 211,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Hellenictypewriter",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 29,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Chromatica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 185,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Chromatica",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "image",
+            "icon"
+          ],
+          "frequency": 11,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Chromatica",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "image",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Hellenictypewriter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Hellenictypewriter",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Chromatica",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Hellenictypewriter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "input",
+            "button",
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Chromatica",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Hellenictypewriter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Hellenictypewriter",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Hellenictypewriter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 36,
+          "family": "Hellenictypewriter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Chromatica",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.89,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1ff99d3f-6938-4808-bb08-c736c251f5c6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/58240996-1b27-4dbb-abef-9b2938a418bc.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4e616d96-14ea-43d6-9662-0ad3fa19ef7c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"How Many Plants design system\",\"item\":\"https://styles.refero.design/style/4e616d96-14ea-43d6-9662-0ad3fa19ef7c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4e616d96-14ea-43d6-9662-0ad3fa19ef7c#style-reference\",\"name\":\"How Many Plants design system reference\",\"headline\":\"How Many Plants design system | Refero Styles\",\"description\":\"Explore How Many Plants's light Media design system: Cream Paper #f9f5f1, Ink Black #222222 colors, Chromatica, Hellenictypewriter typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/4e616d96-14ea-43d6-9662-0ad3fa19ef7c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4e616d96-14ea-43d6-9662-0ad3fa19ef7c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"How Many Plants\",\"url\":\"https://howmanyplants.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4e616d96-14ea-43d6-9662-0ad3fa19ef7c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/58240996-1b27-4dbb-abef-9b2938a418bc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/58240996-1b27-4dbb-abef-9b2938a418bc.jpg\",\"caption\":\"Screenshot of How Many Plants\"},\"image\":\"https://images.refero.design/styles/refero.design/image/58240996-1b27-4dbb-abef-9b2938a418bc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"How Many Plants design system\",\"How Many Plants website design\",\"How Many Plants colors\",\"How Many Plants typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Cream Paper\",\"Ink Black\",\"Golden Olive\",\"Dusty Lavender\",\"Chromatica\",\"Hellenictypewriter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"How Many Plants design system\"},{\"@type\":\"Thing\",\"name\":\"How Many Plants website design\"},{\"@type\":\"Thing\",\"name\":\"How Many Plants colors\"},{\"@type\":\"Thing\",\"name\":\"How Many Plants typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T03:56:12.149Z\",\"dateModified\":\"2026-04-30T03:56:12.149Z\"}]}19:T74a,**Quick Color Reference**\n- text: #222222 (Ink Black)\n- background: #f9f5f1 (Cream Paper)\n- border / illustration outline: #222222 (Ink Black) for structural, #bfb33b (Golden Olive) for decorative\n- accent (illustration + decorative shadows): #bfb33b (Golden Olive)\n- soft surface (tabs, tags): #e8d1eb (Dusty Lavender)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Illustrated Hero Shelf Band*: Full-bleed Golden Olive (#bfb33b) rectangle, 120px tall. Fill with flat botanical illustration in Ink Black (#222222) line art — potted plants, vases, books. Overlay a single Chromatica 36px weight 500 Ink Black display letter at 0.89 line-height, centered vertically. Hard 6px 6px 0px Golden Olive offset shadow below the band. 0px radius.\n\n2. *Ghost Navigation Button*: No background. 1px Ink Black (#222222) border, 0px radius, 12px vertical padding, 48px horizontal padding. Chromatica 16px uppercase Ink Black text. Optional heart or magnifier icon in Ink Black to the left of the label.\n\n3. *Wavy Underline Link*: Chromatica 16px weight 400 Ink Black (#222222) text. Beneath the text, a 2px tall Dusty Lavender (#e8d1eb) wavy SVG stroke spanning the full text width with 4 wave cycles. No background, no border.\n\n4. *Vertical Side Tab*: Dusty Lavender (#e8d1eb) background, 44px wide × 160px tall, 0px radius. Chromatica 14px uppercase Ink Black text, rotated 90° counter-clockwise, centered. Floats at the left edge of the hero section, vertically centered within its band.\n\n5. *Editorial Content Block*: Cream (#f9f5f1) canvas, max-width 1200px centered, 64px vertical padding. Two columns at 32px gap: left column is a flat botanical illustration in Golden Olive and Ink Black on cream; right column has a Hellenictypewriter 28px weight 500 Ink Black heading, 32px gap, then Chromatica 16px line-height 1.6 Ink Black body copy."
+}

@@ -1,0 +1,82 @@
+:root {
+  /* Colors */
+  --color-dusk-violet: #8584bd;
+  --color-hi-vis-yellow: #f4ed36;
+  --color-buttery-yellow: #f9cc73;
+  --color-lilac-shadow: #61609a;
+  --color-bubblegum-pink: #f8c1ba;
+  --color-matcha-cream: #b5c995;
+  --color-magenta-punch: #ac4f98;
+  --color-firecracker-red: #c94245;
+  --color-bone-white: #f9f5f2;
+  --color-ink-black: #1a1a1a;
+  --color-pure-black: #000000;
+
+  /* Typography — Font Families */
+  --font-obviouslyvariable: 'ObviouslyVariable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-degularvariable: 'DegularVariable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-bergenmonoregular: 'bergen_monoregular', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-degulardisplay-bold: 'DegularDisplay-Bold', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1;
+  --text-body: 16px;
+  --leading-body: 1;
+  --tracking-body: 0.8px;
+  --text-body-lg: 18px;
+  --leading-body-lg: 0.9;
+  --tracking-body-lg: 0.36px;
+  --text-subheading: 30px;
+  --leading-subheading: 0.9;
+  --tracking-subheading: 0.6px;
+  --text-heading-sm: 100px;
+  --leading-heading-sm: 0.9;
+  --tracking-heading-sm: 2px;
+  --text-heading: 149px;
+  --leading-heading: 0.85;
+  --tracking-heading: 2.98px;
+  --text-heading-lg: 184px;
+  --leading-heading-lg: 0.85;
+  --tracking-heading-lg: 3.68px;
+  --text-display: 341px;
+  --leading-display: 0.8;
+  --tracking-display: 6.82px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-40: 40px;
+  --spacing-60: 60px;
+  --spacing-80: 80px;
+  --spacing-160: 160px;
+
+  /* Layout */
+  --section-gap: 40px;
+  --card-padding: 17px;
+  --element-gap: 17px;
+
+  /* Border Radius */
+  --radius-md: 6px;
+  --radius-full: 100px;
+
+  /* Named Radii */
+  --radius-tags: 100px;
+  --radius-cards: 6px;
+  --radius-buttons: 100px;
+
+  /* Surfaces */
+  --surface-dusk-violet-stage: #8584bd;
+  --surface-bone-white-card: #f9f5f2;
+  --surface-lilac-shadow-block: #61609a;
+  --surface-hi-vis-yellow-surface: #f4ed36;
+  --surface-accent-paint-card: #f8c1ba;
+}

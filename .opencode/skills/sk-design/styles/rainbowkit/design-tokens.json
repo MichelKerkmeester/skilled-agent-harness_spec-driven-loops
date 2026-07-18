@@ -1,0 +1,509 @@
+{
+  "color": {
+    "signal-blue": {
+      "$value": "#0e76fd",
+      "$type": "color",
+      "$description": "Signal Blue — Primary CTA fill, active states, brand wordmark, link emphasis — the only chromatic blue with enough surface area to carry identity"
+    },
+    "aurora-gradient": {
+      "$value": "#3898ff",
+      "$type": "color",
+      "$description": "Aurora Gradient — Hero CTA gradient, brand wordmark highlight, selected-state washes — flows from sky-blue to electric violet"
+    },
+    "electric-violet": {
+      "$value": "#7a70ff",
+      "$type": "color",
+      "$description": "Electric Violet — Gradient terminus, brand-secondary accent — appears only as the cool half of the aurora"
+    },
+    "deep-iris": {
+      "$value": "#38228f",
+      "$type": "color",
+      "$description": "Deep Iris — Violet wash for highlight backgrounds, decorative bands, and soft emphasis behind content."
+    },
+    "hyper-pink": {
+      "$value": "#ff5ca0",
+      "$type": "color",
+      "$description": "Hyper Pink — Accent spectrum — demonstration option in the wallet-customization showcase, not a UI-state color"
+    },
+    "ember-red": {
+      "$value": "#fa423c",
+      "$type": "color",
+      "$description": "Ember Red — Accent spectrum — demonstration option in wallet-customization showcase"
+    },
+    "solar-orange": {
+      "$value": "#ff801f",
+      "$type": "color",
+      "$description": "Solar Orange — Accent spectrum — demonstration option in wallet-customization showcase"
+    },
+    "toxic-green": {
+      "$value": "#1db847",
+      "$type": "color",
+      "$description": "Toxic Green — Accent spectrum — demonstration option in wallet-customization showcase"
+    },
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Page canvas, deepest surfaces, inverted button borders — true black anchors the entire system"
+    },
+    "obsidian": {
+      "$value": "#1b1c1e",
+      "$type": "color",
+      "$description": "Obsidian — Card surfaces, code blocks, modal containers, body text on light — the workhorse elevated surface"
+    },
+    "shadow": {
+      "$value": "#121314",
+      "$type": "color",
+      "$description": "Shadow — Shadow tint color (used in box-shadow rgba), near-black with a hint of warmth"
+    },
+    "graphite": {
+      "$value": "#25292e",
+      "$type": "color",
+      "$description": "Graphite — Hairline borders, dividers, icon stroke, secondary text on dark — the most-used neutral border in the system"
+    },
+    "slate": {
+      "$value": "#2f3334",
+      "$type": "color",
+      "$description": "Slate — Secondary borders, subtle dividers between sections — sits between Graphite and Pewter"
+    },
+    "carbon": {
+      "$value": "#353a3b",
+      "$type": "color",
+      "$description": "Carbon — Tertiary icon fills, disabled-state borders, subtle backgrounds"
+    },
+    "pewter": {
+      "$value": "#646566",
+      "$type": "color",
+      "$description": "Pewter — Disabled button background, low-emphasis surfaces — never for text"
+    },
+    "fog": {
+      "$value": "#95979c",
+      "$type": "color",
+      "$description": "Fog — Muted helper text, icon secondary, placeholder text — the only gray that carries readable information"
+    },
+    "snow": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Snow — Primary text, inverted button fill, light-surface backgrounds, icon glyphs, hairline highlight borders"
+    },
+    "mist": {
+      "$value": "#f0f1f5",
+      "$type": "color",
+      "$description": "Mist — Light-theme surface fallback, very subtle off-white for section backgrounds on the demo"
+    }
+  },
+  "font": {
+    "sfrounded": {
+      "$value": "SFRounded",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all UI — rounded geometric sans, chosen because the soft terminals make technical Web3 copy feel approachable rather than intimidating"
+    },
+    "sfmono": {
+      "$value": "SFMono",
+      "$type": "fontFamily",
+      "$description": "Code snippets, terminal commands, technical strings — the npm install command in the hero"
+    },
+    "system-ui": {
+      "$value": "system-ui",
+      "$type": "fontFamily",
+      "$description": "Fallback body copy when the web font hasn't loaded — barely visible because SFRounded dominates"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "11px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "11px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "SFMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "18px",
+        "fontWeight": 800,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "SFRounded",
+        "fontSize": "52px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "lg": {
+      "$value": "rgba(0, 0, 0, 0.4) 0px 8px 24px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    },
+    "subtle": {
+      "$value": "rgba(255, 255, 255, 0.12) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgb(255, 255, 255) 0px 0px 0px 4px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "xl": {
+      "$value": "rgba(27, 29, 31, 0.1) 0px 10px 30px 0px, rgba(27, 29, 31, 0.04) 0px 5px 15px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 4px 12px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "xl-2": {
+      "$value": "rgba(0, 0, 0, 0.32) 0px 8px 32px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-2"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, full-bleed dark ground"
+    },
+    "obsidian-card": {
+      "$value": "#1b1c1",
+      "$type": "color",
+      "$description": "Surface level 1: Modals, code blocks, elevated containers above the canvas"
+    },
+    "graphite-edge": {
+      "$value": "#25292",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline borders that separate and outline elements on Obsidian"
+    },
+    "deep-iris-feature": {
+      "$value": "#38228f",
+      "$type": "color",
+      "$description": "Surface level 3: Brand-tinted card surface for premium or featured components"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.rainbowkit.com",
+      "siteName": "RainbowKit",
+      "extractedAt": "2026-06-03T21:09:42.622Z",
+      "variant": "extended"
+    }
+  }
+}

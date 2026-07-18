@@ -1,0 +1,197 @@
+{
+  "color": {
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Page canvas, card surfaces, heading text on dark sections, overlaid text on photography"
+    },
+    "lamp-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Lamp Black — Primary text, display wordmarks, full-bleed dark section backgrounds, hairlines, border rules, button borders"
+    },
+    "fog": {
+      "$value": "#ababab",
+      "$type": "color",
+      "$description": "Fog — Muted secondary text, inactive link borders, de-emphasized helper text"
+    }
+  },
+  "font": {
+    "basegrotesk": {
+      "$value": "BaseGrotesk",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for everything — navigation, body copy, buttons, and the 60–65px display wordmark. Weight 300 carries body and large display copy, 500 is reserved for active states and emphasis, 700 appears in button labels and the page title. Custom grotesque with squared geometry; substitute with Inter or Neue Haas Grotesk."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "BaseGrotesk",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "BaseGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "BaseGrotesk",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "BaseGrotesk",
+        "fontSize": "25px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "BaseGrotesk",
+        "fontSize": "30px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "BaseGrotesk",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "BaseGrotesk",
+        "fontSize": "50px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "BaseGrotesk",
+        "fontSize": "60px",
+        "fontWeight": 300,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "BaseGrotesk",
+        "fontSize": "65px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 65px"
+    }
+  },
+  "spacing": {
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "65": {
+      "$value": "65px",
+      "$type": "dimension",
+      "$description": "Spacing 65px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "54px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default page canvas and most content sections"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Alternating full-bleed dark bands for editorial contrast and thought-leadership callouts"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.basedesign.com",
+      "siteName": "Base Design",
+      "extractedAt": "2026-06-03T22:36:15.188Z",
+      "variant": "extended"
+    }
+  }
+}

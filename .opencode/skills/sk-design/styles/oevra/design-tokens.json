@@ -1,0 +1,327 @@
+{
+  "color": {
+    "eucalyptus": {
+      "$value": "#778643",
+      "$type": "color",
+      "$description": "Eucalyptus — Headline accents, body text emphasis, hairline borders, single filled CTA — the only chromatic voice in the entire system. Muted enough to never shout, present enough to carry the brand; Full-bleed background gradient behind hero and section text. The green is a breath, not a wall — it fades to white at the edges so text remains the focus"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, dividers, image borders, icon strokes. Used at 1px hairline weight almost exclusively — never as a fill"
+    },
+    "pure-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure Canvas — Page background, card surfaces, button text on filled green CTAs. The dominant surface color across the entire site"
+    },
+    "graphite": {
+      "$value": "#4e4e4e",
+      "$type": "color",
+      "$description": "Graphite — Secondary body text, muted link borders, helper copy, footer text. Quieter than black but still AA-readable on white"
+    },
+    "mist": {
+      "$value": "#c8c8c8",
+      "$type": "color",
+      "$description": "Mist — Subtle surface wash for elevated panels, image placeholder backgrounds, very faint dividers. Used sparingly to add depth without darkening the page"
+    }
+  },
+  "font": {
+    "space-regular": {
+      "$value": "space-regular",
+      "$type": "fontFamily",
+      "$description": "space-regular — detected in extracted data but not described by AI"
+    },
+    "suisse-intl": {
+      "$value": "Suisse Int'l",
+      "$type": "fontFamily",
+      "$description": "Secondary body and footer text. Regular weight adds density to descriptions and supporting paragraphs beneath light-weight headlines."
+    },
+    "space-grotesk": {
+      "$value": "Space Grotesk",
+      "$type": "fontFamily",
+      "$description": "Primary body, UI labels, buttons, and navigation text. The geometric counter-forms pair with Suisse to give dense text a different texture from the display headlines."
+    },
+    "system-sans": {
+      "$value": "System Sans",
+      "$type": "fontFamily",
+      "$description": "Micro-utility text, scroll indicators, and fine-print captions where a 1–2 word label sits in the margins."
+    },
+    "ui-sans-serif": {
+      "$value": "ui-sans-serif",
+      "$type": "fontFamily",
+      "$description": "ui-sans-serif — detected in extracted data but not described by AI"
+    },
+    "suisse-light": {
+      "$value": "suisse-light",
+      "$type": "fontFamily",
+      "$description": "suisse-light — detected in extracted data but not described by AI"
+    },
+    "suisse-regular": {
+      "$value": "suisse-regular",
+      "$type": "fontFamily",
+      "$description": "suisse-regular — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "space-regular",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 8px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "space-regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "suisse-regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "space-regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "space-regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "suisse-regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "space-regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "suisse-regular",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "space-regular",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "suisse-light",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "suisse-light",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "suisse-light",
+        "fontSize": "75px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 75px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "suisse-light",
+        "fontSize": "90px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 90px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "83": {
+      "$value": "83px",
+      "$type": "dimension",
+      "$description": "Spacing 83px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "135": {
+      "$value": "135px",
+      "$type": "dimension",
+      "$description": "Spacing 135px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "218": {
+      "$value": "218px",
+      "$type": "dimension",
+      "$description": "Spacing 218px"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "22.5px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, full-bleed white"
+    },
+    "sage-mist": {
+      "$value": "#778643",
+      "$type": "color",
+      "$description": "Surface level 1: Soft radial gradient overlay on canvas — atmospheric, not structural"
+    },
+    "mist-panel": {
+      "$value": "#c8c8c8",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle elevated surface for image placeholders and light separators"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://oevra.com",
+      "siteName": "Oevra",
+      "extractedAt": "2026-06-03T18:43:22.345Z",
+      "variant": "extended"
+    }
+  }
+}

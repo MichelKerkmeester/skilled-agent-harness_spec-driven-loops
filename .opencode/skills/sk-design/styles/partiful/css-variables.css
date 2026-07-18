@@ -1,0 +1,112 @@
+:root {
+  /* Colors */
+  --color-midnight-ink: #000000;
+  --color-pure-canvas: #ffffff;
+  --color-graphite: #333333;
+  --color-slate: #666666;
+  --color-ash: #999999;
+  --color-fog: #b3b3b3;
+  --color-silver: #cccccc;
+  --color-warm-sand: #d9c58b;
+  --color-party-pink: #f8c4ff;
+  --gradient-party-pink: linear-gradient(rgb(248, 196, 255) 0%, rgb(240, 182, 224) 100%);
+  --color-sky-periwinkle: #96c4ff;
+  --gradient-sky-periwinkle: linear-gradient(rgba(150, 196, 255, 0.1) 0%, rgb(255, 255, 255) 100%);
+  --color-spearmint: #85dadc;
+  --gradient-spearmint: linear-gradient(130deg, rgb(133, 218, 220) 0%, rgb(192, 226, 226) 100%);
+  --color-midnight-blue: #001666;
+
+  /* Typography — Font Families */
+  --font-sans-serif: 'sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-partiful-display-medium: 'Partiful Display Medium', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-twk-lausanne-pan: 'TWK Lausanne Pan', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sfnsdisplay-sfnstext: '.SFNSDisplay / .SFNSText', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-twk-lausanne-pan-550: 'TWK Lausanne Pan 550', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-twk-lausanne-pan-400: 'TWK Lausanne Pan 400', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-twk-lausanne-pan-700: 'TWK Lausanne Pan 700', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sfnstext: '.SFNSText', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sfnsdisplay-semibold: '.SFNSDisplay-Semibold', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-twk-lausanne-pan-600: 'TWK Lausanne Pan 600', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-twk-lausanne-pan-650: 'TWK Lausanne Pan 650', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-twk-lausanne-pan-500: 'TWK Lausanne Pan 500', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-twk-lausanne-pan-850: 'TWK Lausanne Pan 850', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.2;
+  --tracking-caption: -0.22px;
+  --text-body: 14px;
+  --leading-body: 1.4;
+  --tracking-body: -0.28px;
+  --text-heading-sm: 18px;
+  --leading-heading-sm: 1.4;
+  --tracking-heading-sm: -0.36px;
+  --text-heading: 24px;
+  --leading-heading: 1.2;
+  --tracking-heading: -0.96px;
+  --text-heading-lg: 36px;
+  --leading-heading-lg: 1.2;
+  --tracking-heading-lg: -1.44px;
+  --text-display: 48px;
+  --leading-display: 1;
+  --tracking-display: -0.96px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-w550: 550;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-w825: 825;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-60: 60px;
+  --spacing-80: 80px;
+  --spacing-100: 100px;
+  --spacing-120: 120px;
+  --spacing-160: 160px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --element-gap: 10px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 30px;
+  --radius-3xl-2: 40px;
+  --radius-full: 960px;
+
+  /* Named Radii */
+  --radius-cards: 12px;
+  --radius-badges: 960px;
+  --radius-images: 12px;
+  --radius-inputs: 8px;
+  --radius-modals: 16px;
+  --radius-buttons: 8px;
+  --radius-navpills: 4px;
+
+  /* Shadows */
+  --shadow-sm: rgba(0, 0, 0, 0.1) 0px 0px 6px 0px;
+  --shadow-lg: rgba(0, 0, 0, 0.1) 0px 0px 20px 0px;
+
+  /* Surfaces */
+  --surface-canvas: #ffffff;
+  --surface-card-surface: #ffffff;
+  --surface-gradient-wash: #96c4ff;
+  --surface-overlay-ink: #000000;
+}

@@ -1,0 +1,524 @@
+{
+  "color": {
+    "parchment-cream": {
+      "$value": "#faf5e8",
+      "$type": "color",
+      "$description": "Parchment Cream — Page canvas — the warm off-white that defines the entire site's atmosphere, replacing standard pure-white backgrounds"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "frost-white": {
+      "$value": "#f8fafc",
+      "$type": "color",
+      "$description": "Frost White — Alternate light surface for nested elements, subtle nav backgrounds"
+    },
+    "onyx": {
+      "$value": "#181d26",
+      "$type": "color",
+      "$description": "Onyx — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "charcoal": {
+      "$value": "#333840",
+      "$type": "color",
+      "$description": "Charcoal — Body text, secondary text levels, border accents — the workhorse dark neutral"
+    },
+    "graphite": {
+      "$value": "#525965",
+      "$type": "color",
+      "$description": "Graphite — Muted text, sub-labels, less prominent body copy"
+    },
+    "steel": {
+      "$value": "#9297a0",
+      "$type": "color",
+      "$description": "Steel — Placeholder text, disabled states, low-emphasis labels"
+    },
+    "silver-border": {
+      "$value": "#e0e2e6",
+      "$type": "color",
+      "$description": "Silver Border — Hairline dividers, card borders, subtle structural separators"
+    },
+    "midnight-indigo": {
+      "$value": "#040e20",
+      "$type": "color",
+      "$description": "Midnight Indigo — Deepest heading text, near-black with cool bias for maximum editorial weight"
+    },
+    "cobalt-blue": {
+      "$value": "#1b61c9",
+      "$type": "color",
+      "$description": "Cobalt Blue — Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "sapphire": {
+      "$value": "#254fad",
+      "$type": "color",
+      "$description": "Sapphire — Violet supporting accent for decorative details and low-frequency emphasis."
+    },
+    "terracotta": {
+      "$value": "#aa2d00",
+      "$type": "color",
+      "$description": "Terracotta — Orange supporting accent for decorative details and low-frequency emphasis."
+    },
+    "burnt-sienna": {
+      "$value": "#912e1f",
+      "$type": "color",
+      "$description": "Burnt Sienna — Dark terracotta variant for card backgrounds and text on warm sections"
+    },
+    "peach-glow": {
+      "$value": "#fcab79",
+      "$type": "color",
+      "$description": "Peach Glow — Soft warm wash for highlight panels, accent backgrounds"
+    },
+    "forest-ink": {
+      "$value": "#0a2e0e",
+      "$type": "color",
+      "$description": "Forest Ink — Green supporting accent for decorative details and low-frequency emphasis."
+    },
+    "moss": {
+      "$value": "#214224",
+      "$type": "color",
+      "$description": "Moss — Secondary green text and border accents on green-themed sections"
+    },
+    "petal-pink": {
+      "$value": "#fa91e0",
+      "$type": "color",
+      "$description": "Petal Pink — Playful accent for tags, category chips, illustration color"
+    },
+    "marigold": {
+      "$value": "#fcb42a",
+      "$type": "color",
+      "$description": "Marigold — Warm accent for badges, tag chips, category highlights"
+    },
+    "pale-sky": {
+      "$value": "#c7e5f2",
+      "$type": "color",
+      "$description": "Pale Sky — Light supporting surface for subtle backgrounds and section separation"
+    }
+  },
+  "font": {
+    "haas-groot-disp": {
+      "$value": "Haas Groot Disp",
+      "$type": "fontFamily",
+      "$description": "Display headlines — the custom serif/slab face used for hero statements and large section titles, driven by 900 weight for editorial weight"
+    },
+    "haas": {
+      "$value": "Haas",
+      "$type": "fontFamily",
+      "$description": "Body, nav, buttons, subheadings, UI labels — the workhorse sans-serif at 400 for body, 500 for emphasis, 600 for buttons and labels; slight positive tracking opens up at larger sizes"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Haas Groot Disp",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Haas",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Haas Groot Disp",
+        "fontSize": "48px",
+        "fontWeight": 900,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.32) 0px 0px 1px 0px, rgba(0, 0, 0, 0.08) 0px 0px 2px 0px, rgba(45, 127, 249, 0.28) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 0.5px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "lg": {
+      "$value": "rgba(15, 48, 106, 0.05) 0px 0px 20px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#faf5e8",
+      "$type": "color",
+      "$description": "Surface level 0: Page-wide warm background that sets the editorial tone"
+    },
+    "white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary card surface sitting on parchment"
+    },
+    "frost-white": {
+      "$value": "#f8fafc",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle alternate surface for nested elements"
+    },
+    "pale-sky": {
+      "$value": "#c7e5f2",
+      "$type": "color",
+      "$description": "Surface level 3: Tinted surface for soft section differentiation"
+    },
+    "onyx-frame": {
+      "$value": "#181d26",
+      "$type": "color",
+      "$description": "Surface level 4: Dark product screenshot containers and dark CTA fills"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://airtable.com",
+      "siteName": "Airtable",
+      "extractedAt": "2026-06-03T16:01:17.023Z",
+      "variant": "extended"
+    }
+  }
+}

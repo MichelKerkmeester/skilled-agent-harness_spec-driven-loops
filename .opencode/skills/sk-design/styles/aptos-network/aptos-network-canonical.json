@@ -1,0 +1,1424 @@
+{
+  "source": "https://styles.refero.design/style/9a23d457-a23a-404a-9f75-12007ea7eb0f",
+  "uuid": "9a23d457-a23a-404a-9f75-12007ea7eb0f",
+  "name": "Aptos Network",
+  "northStar": "Earth-toned code atelier — a sage-walled observatory where terracotta, sand, and powder-blue panels hold monospaced code beside serif prose, framed by 1px ink hairlines.",
+  "capturedAt": "2026-07-18T09:10:19.786Z",
+  "meta": {
+    "url": "https://aptosnetwork.com",
+    "siteName": "Aptos Network",
+    "extractedAt": "2026-06-03T20:32:43.159Z",
+    "durationMs": 34203,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 2067,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Season Serif for all text — there is no secondary typeface. Weight 335–340 for display 55px+, weight 400–420 for body and UI, weight 420–444 for emphasis.",
+      "Apply -0.030em letter-spacing to any type 90px or larger. Positive tracking (+0.01em) only at 9px caption size. Body text uses normal tracking.",
+      "Use full-bleed color section backgrounds (Sage, Warm Stone, Soft Sand, Powder Blue) at 90–150px vertical padding. Never constrain sections to a max-width background.",
+      "Draw all dividers as `inset 0 0 0 1px {color}` box-shadows, not as border properties. Rotate colors: Ink, Soft Sand, Powder Blue.",
+      "Use 9999px radius for all buttons, nav container, and tags. Use 0px radius for all other surfaces (cards, code panels, inputs).",
+      "Enable `font-feature-settings: \"calt\"` on all Season Serif text — contextual alternates are part of the brand voice.",
+      "Split every section into left text / right decoration at roughly 55/45. Text left-aligns; decorative striped panel occupies the right."
+    ],
+    "donts": [
+      "Do not use any sans-serif typeface. Season Serif carries everything, including buttons, nav, and code labels.",
+      "Do not use drop shadows. The system is flat by design — all line work is 1px inset.",
+      "Do not use border-radius on cards, panels, code blocks, or images. Only buttons and the nav pill are rounded (9999px).",
+      "Do not use bright or saturated colors. Every chromatic value is muted: sage, khaki, sand, powder blue. Saturation above 40% breaks the system.",
+      "Do not use smooth gradients. The decorative right-side panels are hard-edge striped patterns implemented with sharp linear-gradient color stops.",
+      "Do not use standard font weights (300, 400, 700). Season Serif uses fractional weights (335, 340, 420, 444) — pick from the available scale.",
+      "Do not place text on both halves of a split section. The right side is always decorative (striped pattern or code panel), never text."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0f0e0b",
+        "name": "Ink",
+        "role": "Primary text, hairline borders, icon strokes, nav outlines — the near-black that carries 90% of all foreground weight. Not pure black: a warm brown-black that feels printed, not screened",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f9f9f0",
+        "name": "Bone",
+        "role": "Page canvas, card surfaces, nav-pill fill, button text on dark — a warm off-white with the faintest yellow-green cast that matches the sage and sand sections without competing",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6d6c67",
+        "name": "Ash",
+        "role": "Secondary text, subtle borders, muted metadata — a mid neutral that sits between Ink and the page; used when primary text would be too heavy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#21201c",
+        "name": "Charcoal",
+        "role": "Filled CTA buttons, active markers — slightly warmer than Ink; the button fill that reads as a dense matte stamp rather than a flat black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#555450",
+        "name": "Graphite",
+        "role": "Tertiary text, low-emphasis borders — for labels and helper text that should recede further than Ash",
+        "group": "neutral"
+      },
+      {
+        "hex": "#84837d",
+        "name": "Mist",
+        "role": "Heading borders, de-emphasized dividers — the lightest neutral that still registers as a line on Bone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3d3b34",
+        "name": "Deep Earth",
+        "role": "Alternate surface for code-adjacent panels and inset blocks — a warm dark that bridges Ink and the mid neutrals",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ccc5a3",
+        "name": "Soft Sand",
+        "role": "Secondary section background, 1px sand-colored hairline dividers, striped-pattern accent — the warm neutral that lives between the chromatic sections and true gray",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9d937c",
+        "name": "Warm Stone",
+        "role": "Khaki section background, tonal counterpoint to Sage — the muted olive-khaki that fills body-text sections and grounds the palette's middle register",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d5fad3",
+        "name": "Sage",
+        "role": "Hero section background, signature accent — a desaturated mint that signals freshness without being loud; the only color bold enough to hold a 120px headline",
+        "group": "accent"
+      },
+      {
+        "hex": "#badbee",
+        "name": "Powder Blue",
+        "role": "Code-panel background, striped-pattern accent, 1px blue hairlines — the cool counterweight to all the warm earth tones; appears wherever monospace code or technical data lives",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed page model with no outer container. Each section is a viewport-width color block. Internal layout is split-composition: text occupies the left ~55%, decorative geometry or code occupies the right ~45%. Text is left-aligned within its column; body prose sometimes right-aligns in a narrow sub-column. The nav is a floating centered pill, not a full-width bar — it detaches from the layout grid. Hero section uses a Sage background with a 120px headline left and a curved striped panel right. Subsequent sections alternate Warm Stone, Soft Sand, and Powder Blue backgrounds. Section gaps are generous (90–150px vertical padding). No card grids, no pricing tables, no feature matrices — content is prose-led, not grid-led. The page reads top-to-bottom as a sequence of colored editorial spreads.",
+    "imagery": "No photography. The visual language is entirely abstract: (1) Full-bleed muted color fields that act as atmosphere, not content. (2) Hard-edge striped geometric patterns on the right side of sections, distorted by wave/curve masks to create flowing vertical bands. (3) Monospace code blocks inside Powder Blue panels, showing actual Move/Rust syntax. (4) 1px hairline lines as printed-matter dividers. The aesthetic is editorial-graphic, not product-screenshot. Everything is flat, geometric, and color-blocked. No 3D renders, no illustrations, no product mockups, no lifestyle photography — the palette and typography ARE the imagery.",
+    "similar": [
+      {
+        "why": "Same editorial restraint — single typeface, muted color blocks, generous spacing, 1px hairline dividers instead of cards or shadows. Linear's purple accent is replaced here by sage, but the structural grammar (flat sections, whisper-weight display, zero decoration) is shared.",
+        "business": "Linear"
+      },
+      {
+        "why": "Same full-bleed color sections as content containers (not cards), same split-composition (text left, visual right), same generous vertical padding. Both treat color as atmosphere rather than as a button fill.",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same monochrome-first approach with one or two muted accent colors for section backgrounds. Both use 9999px pill buttons, 1px borders, and flat surfaces with no drop shadows. Vercel's Geist Sans is swapped for Season Serif here, but the component weight is identical.",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same custom-serif-as-sole-typeface approach (Anthropic uses a custom serif, Aptos uses Season Serif), same earth-toned palette, same editorial pacing where color sections act as chapter breaks rather than as UI cards.",
+        "business": "Anthropic"
+      },
+      {
+        "why": "Same split-section layout (prose left, visual right), same warm neutral backgrounds replacing the standard white/gray, same pill-shaped floating nav container. The decorative right panels here are geometric stripes where Loom uses product imagery, but the compositional rhythm is shared.",
+        "business": "Loom"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "9999px",
+        "nav-pill": "9999px"
+      },
+      "elementGap": "15-30px",
+      "sectionGap": "90-150px",
+      "cardPadding": "30px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#f9f9f0",
+        "name": "Bone Canvas",
+        "level": 0,
+        "purpose": "Default page background between colored sections"
+      },
+      {
+        "hex": "#d5fad3",
+        "name": "Sage Field",
+        "level": 1,
+        "purpose": "Hero section background — carries the largest display type"
+      },
+      {
+        "hex": "#9d937c",
+        "name": "Warm Stone Field",
+        "level": 2,
+        "purpose": "Body-copy sections, editorial prose blocks"
+      },
+      {
+        "hex": "#ccc5a3",
+        "name": "Soft Sand Field",
+        "level": 3,
+        "purpose": "Tonal break sections, striped-pattern panels"
+      },
+      {
+        "hex": "#badbee",
+        "name": "Powder Blue Field",
+        "level": 4,
+        "purpose": "Code display panels, technical data surfaces"
+      },
+      {
+        "hex": "#21201c",
+        "name": "Charcoal Stamp",
+        "level": 5,
+        "purpose": "Filled button surface, inverted modal background"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "inset 0 0 0 1px #0f0e0b",
+        "element": "Nav Pill Border"
+      },
+      {
+        "style": "inset 0 0 0 1px #ccc5a3",
+        "element": "Section Hairline (Warm)"
+      },
+      {
+        "style": "inset 0 0 0 1px #badbee",
+        "element": "Section Hairline (Cool)"
+      }
+    ],
+    "northStar": "Earth-toned code atelier — a sage-walled observatory where terracotta, sand, and powder-blue panels hold monospaced code beside serif prose, framed by 1px ink hairlines.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading-lg",
+        "size": 55,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.1
+      },
+      {
+        "role": "display-sm",
+        "size": 90,
+        "lineHeight": 1,
+        "letterSpacing": -2.7
+      },
+      {
+        "role": "display",
+        "size": 120,
+        "lineHeight": 1,
+        "letterSpacing": -3.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Floating Nav Pill",
+        "role": "Primary site navigation container",
+        "description": "A centered, floating white pill containing logo, menu items, and CTA. Fill: Bone (#f9f9f0). Inset border: 1px Ink (#0f0e0b) via box-shadow inset -1px 0 0 0. Radius: 9999px. Horizontal padding: ~20px. Nav items in Season Serif weight 400 at 16px, Ink color, with chevron icons for dropdowns. Right-side CTA is a Charcoal (#21201c) filled pill with Bone text, 10px 20px padding, 9999px radius. The pill floats at the top of the viewport with ~30px top margin and 1px Ink bottom border."
+      },
+      {
+        "name": "Filled Pill CTA",
+        "role": "Primary action button",
+        "description": "Charcoal (#21201c) fill, Bone (#f9f9f0) text, Season Serif weight 420 at 16px, letter-spacing normal. Padding: 10px 20px. Radius: 9999px. No border, no shadow. Text is uppercase, tightly tracked. Used for all primary actions: GET STARTED, CTA triggers."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Secondary inline action or nav item",
+        "description": "No background, no border. Ink (#0f0e0b) text in Season Serif weight 400 at 16px, letter-spacing normal. Underline appears on hover only. 5px vertical padding. Used for nav items, inline links, and secondary actions."
+      },
+      {
+        "name": "Full-Bleed Color Section",
+        "role": "Page section with solid muted-color background",
+        "description": "Spans full viewport width, no max-width constraint. Background: Sage (#d5fad3), Warm Stone (#9d937c), Soft Sand (#ccc5a3), or Powder Blue (#badbee). No border, no shadow, no radius. Internal content is left-aligned text on the left half, decorative geometry on the right half. Vertical padding: 90–150px."
+      },
+      {
+        "name": "Section Hairline Divider",
+        "role": "Horizontal divider between sections or within sections",
+        "description": "1px line implemented as inset box-shadow: `inset 0 -1px 0 0 {color}`. Colors rotate: Ink (#0f0e0b), Soft Sand (#ccc5a3), Powder Blue (#badbee). No actual border property, no margin, full width of parent. Creates the impression of a printed line on paper."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero and section-opening title",
+        "description": "Season Serif weight 335–340 at 90–120px, line-height 1.0, letter-spacing -0.030em (-2.7 to -3.6px). Color: Ink (#0f0e0b). Left-aligned. The whisper-weight display is the system's signature: most brands use 600–700 for 120px headlines; Aptos uses the lightest weight, creating authority through restraint. Two-line max."
+      },
+      {
+        "name": "Body Copy Block",
+        "role": "Editorial prose section content",
+        "description": "Season Serif weight 400 at 18px, line-height 1.4, letter-spacing 0. Color: Ink (#0f0e0b). Narrow column (~400px width), right-aligned within its half of the split layout. Sits below a section hairline divider. 30px row-gap between paragraphs."
+      },
+      {
+        "name": "Code Panel",
+        "role": "Monospace code display",
+        "description": "Background: Powder Blue (#badbee). Monospace text in Season Serif at 9–16px, weight 420. Dark text on light blue. Full-height panel on the right side of split sections. No padding frame — code bleeds to panel edges. 1px Ink inset border at panel edges."
+      },
+      {
+        "name": "Striped Geometric Panel",
+        "role": "Decorative right-side pattern",
+        "description": "Hard-edge striped pattern (not a smooth gradient): alternating 44px-wide vertical bands of two colors, distorted by a wave/curve mask. Color pairs: Ink + Powder Blue, Ink + Soft Sand. Implemented as linear-gradient with sharp color stops. 1px white or 1px color hairlines between bands. Occupies the right 40–50% of split sections."
+      },
+      {
+        "name": "Nav Dropdown Item",
+        "role": "Submenu item within nav pill",
+        "description": "Bone (#f9f9f0) text in Season Serif weight 400 at 16px, Ink on hover background. 5px vertical padding, 15px horizontal padding. No icon, no description text. Appears in a dropdown panel below the nav pill on click."
+      },
+      {
+        "name": "Section Opening Label",
+        "role": "Small caption above headlines or between sections",
+        "description": "Season Serif weight 420 at 9px, letter-spacing +0.010em (+0.09px). Ink color. All caps or sentence case. Used for eyebrow labels, category tags, and metadata. The 9px size with positive tracking creates a printed-caption feel."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface — display, headings, body, nav, buttons, footer, code labels. Custom variable serif with fractional weights (no standard 300/400/700 scale) that allow whisper-light display at 335–340 and confident body at 420–444.",
+        "sizes": "9px, 16px, 18px, 20px, 24px, 55px, 90px, 120px",
+        "family": "Season Serif",
+        "weight": "335, 340, 358, 363, 400, 420, 444",
+        "lineHeight": "0.95, 1.00, 1.10, 1.25, 1.30, 1.40, 1.50, 1.63",
+        "substitute": "Source Serif 4 or Newsreader (both variable serifs with fine weight control)",
+        "letterSpacing": "-0.030em at 120px (-3.6px), -0.030em at 90px (-2.7px), -0.020em at 55px (-1.1px), -0.010em at 24px (-0.24px), -0.010em at 20px (-0.2px), 0 at 18px and 16px, +0.010em at 9px (+0.09px)",
+        "fontFeatureSettings": "\"calt\""
+      }
+    ],
+    "description": "Aptos presents a warm, editorial take on blockchain infrastructure — full-bleed color sections in muted sage, khaki, sand, and powder blue replace the typical dark-and-neon crypto visual language. A single custom serif (Season Serif) with fractional weights from 335–444 carries the entire voice, from 120px display headlines to 9px captions, with negative tracking on display and positive tracking on micro type. Layout is split-composition: left-aligned text, right-side decorative geometry. Components are flat, borderless, and weightless — 1px hairlines drawn as inset shadows do the work of dividers, and pill-shaped buttons (9999px) are the only rounded form. The aesthetic reads like a terracotta-tinted monograph about distributed systems, not a dashboard.",
+    "customSections": [
+      {
+        "title": "Striped Pattern System",
+        "content": "The decorative right-side panels are not smooth gradients — they are hard-edge striped patterns. Each pattern is a linear-gradient with sharp color stops at 44px intervals, then masked by a wave/curve shape to create flowing vertical bands. Color pairs alternate: (Ink + Powder Blue) and (Ink + Soft Sand). The stripes are always 1px-separated by a hairline of the lighter color. Two pattern orientations exist: stripes flowing left-to-right (background) and stripes flowing right-to-left (foreground overlay), creating a layered weaving effect. This pattern system replaces stock photography, illustrations, and product imagery — it is the brand's sole visual decoration."
+      },
+      {
+        "title": "Color Section Rotation",
+        "content": "Sections rotate through four background colors in a deliberate sequence: Sage (#d5fad3) opens the page (hero), Warm Stone (#9d937c) carries body prose, Powder Blue (#badbee) frames code, and Soft Sand (#ccc5a3) provides tonal breaks. The rotation is not random — sage and powder blue are the cool accents, khaki and sand are the warm neutrals. A new screen should always start with either Sage (if it's a hero/opening) or Warm Stone (if it's a body section), then alternate to maintain the earthy-cool balance."
+      },
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9a23d457-a23a-404a-9f75-12007ea7eb0f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Aptos Network design system\",\"item\":\"https://styles.refero.design/style/9a23d457-a23a-404a-9f75-12007ea7eb0f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9a23d457-a23a-404a-9f75-12007ea7eb0f#style-reference\",\"name\":\"Aptos Network design system reference\",\"headline\":\"Aptos Network design system | Refero Styles\",\"description\":\"Explore Aptos Network's light Crypto design system: Ink #0f0e0b, Bone #f9f9f0 colors, Season Serif typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/9a23d457-a23a-404a-9f75-12007ea7eb0f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9a23d457-a23a-404a-9f75-12007ea7eb0f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Aptos Network\",\"url\":\"https://aptosnetwork.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9a23d457-a23a-404a-9f75-12007ea7eb0f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7c6c6d1c-3690-48c0-99eb-79893d0c9ba6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7c6c6d1c-3690-48c0-99eb-79893d0c9ba6.jpg\",\"caption\":\"Screenshot of Aptos Network\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7c6c6d1c-3690-48c0-99eb-79893d0c9ba6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Aptos Network design system\",\"Aptos Network website design\",\"Aptos Network colors\",\"Aptos Network typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Ink\",\"Bone\",\"Ash\",\"Charcoal\",\"Season Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Aptos Network design system\"},{\"@type\":\"Thing\",\"name\":\"Aptos Network website design\"},{\"@type\":\"Thing\",\"name\":\"Aptos Network colors\"},{\"@type\":\"Thing\",\"name\":\"Aptos Network typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-10T23:40:48.500Z\",\"dateModified\":\"2026-05-10T23:40:48.500Z\"}]}19:T6a2,**Quick Color Reference**\n- Text (primary): #0f0e0b\n- Background (canvas): #f9f9f0\n- Border (hairline): #0f0e0b\n- Accent (hero/section): #d5fad3\n- Accent (code panel): #badbee\n- primary action: #21201c (filled action)\n\n**3–5 Example Component Prompts**\n\n1. *Create a hero section:* Sage (#d5fad3) full-bleed background, 150px vertical padding. Headline in Season Serif weight 335, 120px, #0f0e0b, letter-spacing -3.6px, line-height 1.0, left-aligned. A 10px×20px Charcoal (#21201c) filled pill button with Bone (#f9f9f0) text, weight 420, 16px, 9999px radius, positioned below the headline. Right side: a curved striped panel with alternating 44px bands of #0f0e0b and #badbee.\n\n2. *Create a body-copy section:* Warm Stone (#9d937c) full-bleed background, 90px vertical padding. Top headline: Season Serif weight 340, 90px, #0f0e0b, letter-spacing -2.7px. Below a 1px Ink hairline divider (`box-shadow: inset 0 0 0 1px #0f0e0b`), a narrow ~400px right-aligned text column in Season Serif weight 400, 18px, #0f0e0b, line-height 1.4, 30px row-gap between paragraphs.\n\n3. *Create a code-display section:* Soft Sand (#ccc5a3) left half, Powder Blue (#badbee) right half. Left: headline Season Serif weight 340, 55px, #0f0e0b, letter-spacing -1.1px. Right: monospace code in Season Serif weight 420, 14px, #0f0e0b on #badbee, 1px Ink inset border on the panel edges.\n\n4. Create a Primary Action Button: #21201c background, #f9f9f0 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n5. *Create a section divider:* Full-width 1px line using `box-shadow: inset 0 -1px 0 0 #ccc5a3`. No actual border, no margin, no padding. Sits between two full-bleed color sections."
+      }
+    ],
+    "elevationPhilosophy": "This design has no drop shadows. All 'elevation' is achieved through 1px inset box-shadows that function as hairline borders. There is no z-axis — surfaces sit flush against each other, separated only by color blocks and 1px lines. The flatness is deliberate: the system reads as printed matter, not as software UI."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0f0e0b",
+          "oklch": {
+            "c": 0.006336579657976757,
+            "h": 91.69545013947275,
+            "l": 0.16376224145386115
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "hero",
+            "heading",
+            "body",
+            "list",
+            "icon",
+            "image",
+            "footer"
+          ],
+          "frequency": 5013,
+          "confidence": 1,
+          "prominence": 191483662.95622197,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "boxShadow",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 79,
+            "body/color": 686,
+            "hero/color": 2,
+            "icon/color": 14,
+            "link/color": 16,
+            "list/color": 32,
+            "other/fill": 45,
+            "image/color": 3,
+            "other/color": 123,
+            "button/color": 5,
+            "footer/color": 1,
+            "other/stroke": 14,
+            "heading/color": 36,
+            "nav/borderColor": 316,
+            "other/boxShadow": 6,
+            "body/borderColor": 2700,
+            "hero/borderColor": 8,
+            "icon/borderColor": 56,
+            "link/borderColor": 62,
+            "list/borderColor": 128,
+            "image/borderColor": 12,
+            "other/borderColor": 488,
+            "button/borderColor": 17,
+            "footer/borderColor": 4,
+            "heading/borderColor": 144,
+            "body/backgroundColor": 12,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#f9f9f0",
+          "oklch": {
+            "c": 0.011848408679100558,
+            "h": 106.61631099684281,
+            "l": 0.9796583738826689
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "card",
+            "icon",
+            "footer"
+          ],
+          "frequency": 444,
+          "confidence": 1,
+          "prominence": 127707382.56898473,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 25,
+            "card/color": 10,
+            "icon/color": 6,
+            "other/color": 15,
+            "button/color": 10,
+            "other/stroke": 118,
+            "body/borderColor": 80,
+            "card/borderColor": 40,
+            "icon/borderColor": 24,
+            "other/borderColor": 60,
+            "button/borderColor": 40,
+            "body/backgroundColor": 5,
+            "other/backgroundColor": 10,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6d6c67",
+          "oklch": {
+            "c": 0.008317433276742532,
+            "h": 101.5083360467021,
+            "l": 0.5301086493578635
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3705,
+          "confidence": 1,
+          "prominence": 6245946.1634196425,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 730,
+            "other/color": 11,
+            "body/borderColor": 2920,
+            "other/borderColor": 44
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "icon"
+          ],
+          "frequency": 119,
+          "confidence": 1,
+          "prominence": 3580532.084763456,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 27,
+            "icon/fill": 40,
+            "other/fill": 52
+          }
+        },
+        {
+          "hex": "#d5fad3",
+          "oklch": {
+            "c": 0.06449341688840503,
+            "h": 143.6880994029403,
+            "l": 0.9485429078654276
+          },
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 3075115.714574174,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#9d937c",
+          "oklch": {
+            "c": 0.03481542239536731,
+            "h": 87.30278746820747,
+            "l": 0.6655956830441767
+          },
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2129883.7032065946,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ccc5a3",
+          "oklch": {
+            "c": 0.04646828024462848,
+            "h": 97.64772906123727,
+            "l": 0.8202910664961172
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1242562,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 3
+          }
+        },
+        {
+          "hex": "#21201c",
+          "oklch": {
+            "c": 0.007562526260803069,
+            "h": 95.3724351322528,
+            "l": 0.24313967875227874
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1160389.666573727,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#badbee",
+          "oklch": {
+            "c": 0.043742175955996096,
+            "h": 233.23006529762267,
+            "l": 0.8735290233244033
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 634500,
+          "properties": [
+            "boxShadow",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#555450",
+          "oklch": {
+            "c": 0.00773546069660327,
+            "h": 99.9271559862981,
+            "l": 0.4467891916175667
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 72490.18133317192,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "body/borderColor": 20
+          }
+        },
+        {
+          "hex": "#4a4944",
+          "oklch": {
+            "c": 0.007451656363797901,
+            "h": 98.98371631291886,
+            "l": 0.4036677184677367
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 16352,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#84837d",
+          "oklch": {
+            "c": 0.008908276714250084,
+            "h": 102.77984661085023,
+            "l": 0.6102620315249203
+          },
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 14818.001164367142,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "heading/color": 3,
+            "body/borderColor": 12,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#3d3b34",
+          "oklch": {
+            "c": 0.012121381963203651,
+            "h": 93.79126814659801,
+            "l": 0.3519671008744901
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.019893489724998516,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.84,
+          "background": "#f9f9f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.44,
+          "background": "#d5fad3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.23,
+          "background": "#f9f9f0",
+          "foreground": "#0f0e0b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.95,
+          "background": "#d5fad3",
+          "foreground": "#0f0e0b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.4,
+          "background": "#21201c",
+          "foreground": "#f9f9f0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.46,
+          "background": "#badbee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.32,
+          "background": "#d5fad3",
+          "foreground": "#21201c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.29,
+          "background": "#badbee",
+          "foreground": "#0f0e0b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.08,
+          "background": "#ccc5a3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.22,
+          "background": "#badbee",
+          "foreground": "#21201c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.11,
+          "background": "#ccc5a3",
+          "foreground": "#0f0e0b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.59,
+          "background": "#3d3b34",
+          "foreground": "#f9f9f0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.84,
+          "background": "#d5fad3",
+          "foreground": "#3d3b34"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.38,
+          "background": "#ccc5a3",
+          "foreground": "#21201c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.52,
+          "background": "#f9f9f0",
+          "foreground": "#4a4944"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.92,
+          "background": "#d5fad3",
+          "foreground": "#4a4944"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.72,
+          "background": "#badbee",
+          "foreground": "#3d3b34"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.16,
+          "background": "#f9f9f0",
+          "foreground": "#555450"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.66,
+          "background": "#d5fad3",
+          "foreground": "#555450"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.45,
+          "background": "#ccc5a3",
+          "foreground": "#3d3b34"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": [
+        {
+          "value": "rgb(15, 14, 11) -1px 0px 0px 0px inset",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": "rgb(204, 197, 163) -1px 0px 0px 0px inset",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": "rgb(186, 219, 238) -1px 0px 0px 0px inset",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "link",
+            "nav",
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginLeft|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "heading",
+            "card",
+            "link",
+            "nav"
+          ],
+          "frequency": 65,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "rowGap|button",
+            "columnGap|button",
+            "marginBottom|body",
+            "rowGap|heading",
+            "columnGap|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|card",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "button",
+            "list"
+          ],
+          "frequency": 17,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "body",
+            "link",
+            "nav"
+          ],
+          "frequency": 54,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "marginBottom|heading",
+            "marginBottom|body",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "rowGap|nav"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "footer",
+            "nav"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingBottom",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|heading",
+            "paddingBottom|heading",
+            "marginBottom|body",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|footer",
+            "paddingBottom|footer",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right, rgb(186, 219, 238), rgb(186, 219, 238) 44.0625px, rgb(15, 14, 11) 44.0625px, rgb(15, 14, 11) 88.125px)",
+        "colors": [
+          "rgb(186, 219, 238)",
+          "rgb(186, 219, 238)",
+          "rgb(15, 14, 11)",
+          "rgb(15, 14, 11)"
+        ],
+        "frequency": 3
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right, rgb(204, 197, 163), rgb(204, 197, 163) 44.0625px, rgb(15, 14, 11) 44.0625px, rgb(15, 14, 11) 88.125px)",
+        "colors": [
+          "rgb(204, 197, 163)",
+          "rgb(204, 197, 163)",
+          "rgb(15, 14, 11)",
+          "rgb(15, 14, 11)"
+        ],
+        "frequency": 3
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right, rgb(15, 14, 11), rgb(15, 14, 11) 44.0625px, rgb(204, 197, 163) 44.0625px, rgb(204, 197, 163) 88.125px)",
+        "colors": [
+          "rgb(15, 14, 11)",
+          "rgb(15, 14, 11)",
+          "rgb(204, 197, 163)",
+          "rgb(204, 197, 163)"
+        ],
+        "frequency": 3
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right, rgb(15, 14, 11), rgb(15, 14, 11) 44.0625px, rgb(186, 219, 238) 44.0625px, rgb(186, 219, 238) 88.125px)",
+        "colors": [
+          "rgb(15, 14, 11)",
+          "rgb(15, 14, 11)",
+          "rgb(186, 219, 238)",
+          "rgb(186, 219, 238)"
+        ],
+        "frequency": 2
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Akkurat Mono-dea851e1d19028b9",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1468,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Season Serif-4de1940e3ab1f834",
+          "source": "custom",
+          "weights": [
+            335,
+            340,
+            358,
+            363,
+            400,
+            420,
+            444
+          ],
+          "frequency": 347,
+          "fontFeatureSettings": [
+            "\"calt\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "Season Serif-4de1940e3ab1f834",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 9,
+          "family": "Akkurat Mono-dea851e1d19028b9",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 1385,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Akkurat Mono-dea851e1d19028b9",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "link",
+            "icon",
+            "heading"
+          ],
+          "frequency": 83,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Season Serif-4de1940e3ab1f834",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "hero",
+            "body",
+            "icon",
+            "list",
+            "image",
+            "footer"
+          ],
+          "frequency": 228,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Season Serif-4de1940e3ab1f834",
+          "weight": 358,
+          "contexts": [
+            "body",
+            "card",
+            "icon",
+            "nav"
+          ],
+          "frequency": 52,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Season Serif-4de1940e3ab1f834",
+          "weight": 358,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.63,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Season Serif-4de1940e3ab1f834",
+          "weight": 358,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Season Serif-4de1940e3ab1f834",
+          "weight": 444,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Season Serif-4de1940e3ab1f834",
+          "weight": 420,
+          "contexts": [
+            "card",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 55,
+          "family": "Season Serif-4de1940e3ab1f834",
+          "weight": 420,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 55,
+          "family": "Season Serif-4de1940e3ab1f834",
+          "weight": 420,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 90,
+          "family": "Season Serif-4de1940e3ab1f834",
+          "weight": 335,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 90,
+          "family": "Season Serif-4de1940e3ab1f834",
+          "weight": 340,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 90,
+          "family": "Season Serif-4de1940e3ab1f834",
+          "weight": 363,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "Season Serif-4de1940e3ab1f834",
+          "weight": 335,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 20,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/af38c62c-fcc9-4a2b-96df-cc866cff7bde.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7c6c6d1c-3690-48c0-99eb-79893d0c9ba6.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9a23d457-a23a-404a-9f75-12007ea7eb0f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Aptos Network design system\",\"item\":\"https://styles.refero.design/style/9a23d457-a23a-404a-9f75-12007ea7eb0f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9a23d457-a23a-404a-9f75-12007ea7eb0f#style-reference\",\"name\":\"Aptos Network design system reference\",\"headline\":\"Aptos Network design system | Refero Styles\",\"description\":\"Explore Aptos Network's light Crypto design system: Ink #0f0e0b, Bone #f9f9f0 colors, Season Serif typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/9a23d457-a23a-404a-9f75-12007ea7eb0f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9a23d457-a23a-404a-9f75-12007ea7eb0f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Aptos Network\",\"url\":\"https://aptosnetwork.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9a23d457-a23a-404a-9f75-12007ea7eb0f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7c6c6d1c-3690-48c0-99eb-79893d0c9ba6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7c6c6d1c-3690-48c0-99eb-79893d0c9ba6.jpg\",\"caption\":\"Screenshot of Aptos Network\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7c6c6d1c-3690-48c0-99eb-79893d0c9ba6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Aptos Network design system\",\"Aptos Network website design\",\"Aptos Network colors\",\"Aptos Network typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Ink\",\"Bone\",\"Ash\",\"Charcoal\",\"Season Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Aptos Network design system\"},{\"@type\":\"Thing\",\"name\":\"Aptos Network website design\"},{\"@type\":\"Thing\",\"name\":\"Aptos Network colors\"},{\"@type\":\"Thing\",\"name\":\"Aptos Network typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-10T23:40:48.500Z\",\"dateModified\":\"2026-05-10T23:40:48.500Z\"}]}19:T6a2,**Quick Color Reference**\n- Text (primary): #0f0e0b\n- Background (canvas): #f9f9f0\n- Border (hairline): #0f0e0b\n- Accent (hero/section): #d5fad3\n- Accent (code panel): #badbee\n- primary action: #21201c (filled action)\n\n**3–5 Example Component Prompts**\n\n1. *Create a hero section:* Sage (#d5fad3) full-bleed background, 150px vertical padding. Headline in Season Serif weight 335, 120px, #0f0e0b, letter-spacing -3.6px, line-height 1.0, left-aligned. A 10px×20px Charcoal (#21201c) filled pill button with Bone (#f9f9f0) text, weight 420, 16px, 9999px radius, positioned below the headline. Right side: a curved striped panel with alternating 44px bands of #0f0e0b and #badbee.\n\n2. *Create a body-copy section:* Warm Stone (#9d937c) full-bleed background, 90px vertical padding. Top headline: Season Serif weight 340, 90px, #0f0e0b, letter-spacing -2.7px. Below a 1px Ink hairline divider (`box-shadow: inset 0 0 0 1px #0f0e0b`), a narrow ~400px right-aligned text column in Season Serif weight 400, 18px, #0f0e0b, line-height 1.4, 30px row-gap between paragraphs.\n\n3. *Create a code-display section:* Soft Sand (#ccc5a3) left half, Powder Blue (#badbee) right half. Left: headline Season Serif weight 340, 55px, #0f0e0b, letter-spacing -1.1px. Right: monospace code in Season Serif weight 420, 14px, #0f0e0b on #badbee, 1px Ink inset border on the panel edges.\n\n4. Create a Primary Action Button: #21201c background, #f9f9f0 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n5. *Create a section divider:* Full-width 1px line using `box-shadow: inset 0 -1px 0 0 #ccc5a3`. No actual border, no margin, no padding. Sits between two full-bleed color sections."
+}

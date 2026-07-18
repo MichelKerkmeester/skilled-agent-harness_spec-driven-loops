@@ -1,0 +1,180 @@
+{
+  "color": {
+    "electric-cobalt": {
+      "$value": "#0018a8",
+      "$type": "color",
+      "$description": "Electric Cobalt — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, logo wordmark, icon strokes, nav labels, and footer copy. Used at 21:1 contrast on white for absolute legibility"
+    },
+    "graphite": {
+      "$value": "#6b6b6b",
+      "$type": "color",
+      "$description": "Graphite — Supporting neutral for secondary UI, dividers, and muted labels."
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, product card backgrounds, and nav bar surface. The dominant ground that lets editorial photography breathe"
+    },
+    "bone": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Bone — Subtle box-shadow tint and hairline border for elevated overlays. Used minimally — the system prefers whitespace to tinted surfaces"
+    }
+  },
+  "font": {
+    "helvetica-monospaced-pro": {
+      "$value": "Helvetica Monospaced Pro",
+      "$type": "fontFamily",
+      "$description": "Helvetica Monospaced Pro — detected in extracted data but not described by AI"
+    },
+    "acne-studios-custom-wordmark": {
+      "$value": "Acne Studios (custom wordmark)",
+      "$type": "fontFamily",
+      "$description": "Oversized brand wordmark overlaid on hero photography. The custom face has geometric construction with humanist terminals; no system font replicates it, but its character is closest to a wide-aperture geometric sans."
+    },
+    "helvetica-neue-system-sans": {
+      "$value": "Helvetica Neue / system sans",
+      "$type": "fontFamily",
+      "$description": "All functional UI text: nav links, section labels, product captions, footer. Always rendered uppercase with generous tracking — this typographic treatment is the single most recognizable non-photographic element on the site."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Helvetica Monospaced Pro",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Helvetica Monospaced Pro",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 9px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Helvetica Now Text",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Helvetica Now Text",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Helvetica Now Text",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Helvetica Now Text",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas and dominant background across all sections"
+    },
+    "bone": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 2: Imperceptible shadow and border tint for subtle UI lift"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://acnestudios.com",
+      "siteName": "Acne Studios",
+      "extractedAt": "2026-06-03T18:15:17.678Z",
+      "variant": "extended"
+    }
+  }
+}

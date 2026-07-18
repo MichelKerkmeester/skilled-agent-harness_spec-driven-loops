@@ -1,0 +1,714 @@
+{
+  "color": {
+    "studio-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Studio Black — Primary text, dark section backgrounds, nav background on scroll — full-spectrum black with no tint creates maximum contrast against white sections"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page background, card surfaces, text on dark sections, button fills"
+    },
+    "deep-ink": {
+      "$value": "#0b1215",
+      "$type": "color",
+      "$description": "Deep Ink — Body text on white backgrounds, button text on white buttons — near-black with the faintest cool tint"
+    },
+    "graphite-stroke": {
+      "$value": "#394649",
+      "$type": "color",
+      "$description": "Graphite Stroke — Border color on white buttons, secondary text, dividers"
+    },
+    "fog-border": {
+      "$value": "#e0e0e0",
+      "$type": "color",
+      "$description": "Fog Border — Input borders, card dividers, subtle separators"
+    },
+    "ash-mid": {
+      "$value": "#757575",
+      "$type": "color",
+      "$description": "Ash Mid — Placeholder text in inputs, secondary metadata"
+    },
+    "charcoal-surface": {
+      "$value": "#232424",
+      "$type": "color",
+      "$description": "Charcoal Surface — Elevated dark card backgrounds on black sections — one step lighter than pure black to create surface depth without shadows"
+    },
+    "skill-green": {
+      "$value": "#55da9b",
+      "$type": "color",
+      "$description": "Skill Green — Primary CTA button fill, brand accent — a muted-vivid green that reads warm against black and cool against white, avoiding both danger and safety connotations"
+    },
+    "neon-pulse": {
+      "$value": "#00ff84",
+      "$type": "color",
+      "$description": "Neon Pulse — Checkmark icons on feature lists, active fill states — saturated to near-glow, appears only as small marks on black backgrounds where luminosity hits hardest"
+    },
+    "electric-cyan": {
+      "$value": "#24c2f2",
+      "$type": "color",
+      "$description": "Electric Cyan — Secondary accent, stat highlights, animated elements on dark sections"
+    },
+    "creator-violet": {
+      "$value": "#6927ef",
+      "$type": "color",
+      "$description": "Creator Violet — Hover state backgrounds, link accent on specialized flows"
+    },
+    "deep-violet": {
+      "$value": "#5620c1",
+      "$type": "color",
+      "$description": "Deep Violet — Active/pressed state for violet interactive elements"
+    },
+    "facebook-blue": {
+      "$value": "#1877f2",
+      "$type": "color",
+      "$description": "Facebook Blue — Facebook social login icon fill — brand color of the platform, not Skillshare's own"
+    },
+    "google-red": {
+      "$value": "#ea4335",
+      "$type": "color",
+      "$description": "Google Red — Google 'G' logo fill in social login button"
+    },
+    "warning-amber": {
+      "$value": "#f6b60b",
+      "$type": "color",
+      "$description": "Warning Amber — Star ratings, achievement indicators"
+    }
+  },
+  "font": {
+    "gt-walsheim-pro": {
+      "$value": "GT Walsheim Pro",
+      "$type": "fontFamily",
+      "$description": "Every UI element — headlines at 700 weight with 0.90 line-height produce a stacked poster effect at 46–48px. Body at 400/16px with 1.50 line-height. Buttons and labels at 500–600. Weight 100 appears only in decorative or watermark contexts. The custom font brings rounded geometric terminals that soften the stark black/white palette."
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "System fallback only — appears in legal/fine-print contexts where custom font fails to load. Not an intentional typographic choice."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "11px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro Regular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro Regular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.85
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 2.07
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "base-12": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-12 at 16px"
+    },
+    "base-13": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-13 at 16px"
+    },
+    "base-14": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-14 at 16px"
+    },
+    "base-15": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-15 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 2.17
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "22px",
+        "fontWeight": 100,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 22px"
+    },
+    "xl-7": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-7 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "GT Walsheim",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 28px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "34px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "38px",
+        "fontWeight": 700,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 38px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "46px",
+        "fontWeight": 700,
+        "lineHeight": 1.26
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 46px"
+    },
+    "4xl-5": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "46px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-5 at 46px"
+    },
+    "4xl-6": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "46px",
+        "fontWeight": 700,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-6 at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "GT Walsheim Pro",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "168": {
+      "$value": "168px",
+      "$type": "dimension",
+      "$description": "Spacing 168px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 2px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "sm-2": {
+      "$value": "rgba(180, 184, 184, 0.5) 0px 2px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-2"
+    }
+  },
+  "surface": {
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Dark section backgrounds, hero right panel, feature sections"
+    },
+    "charcoal-lift": {
+      "$value": "#232424",
+      "$type": "color",
+      "$description": "Surface level 1: Stat cards and metric tiles floating on pure black sections"
+    },
+    "white-page": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Light section backgrounds, registration panel, card surfaces"
+    },
+    "navigation-bar": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Sticky nav — same white as page background, separated by content not chrome"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://skillshare.com",
+      "siteName": "Skillshare",
+      "extractedAt": "2026-04-11T19:16:57.861Z",
+      "variant": "extended"
+    }
+  }
+}

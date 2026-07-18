@@ -1,0 +1,330 @@
+{
+  "color": {
+    "xbox-green": {
+      "$value": "#107c10",
+      "$type": "color",
+      "$description": "Xbox Green — Dominant brand color — Game Pass wordmark, promotional section headers, decorative dividers, link accents. The single chromatic identity anchor in an otherwise achromatic interface"
+    },
+    "forest-green": {
+      "$value": "#054b16",
+      "$type": "color",
+      "$description": "Forest Green — Deep secondary green for dark-surface accents, button hover states on dark backgrounds, Game Pass subheadings on dark imagery"
+    },
+    "volt-lime": {
+      "$value": "#9bf00b",
+      "$type": "color",
+      "$description": "Volt Lime — Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "caution-yellow": {
+      "$value": "#ffd800",
+      "$type": "color",
+      "$description": "Caution Yellow — Yellow supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text color, dark surface fills, footer background, icon strokes. The structural backbone — appears 1086 times across nav, body, button, and icon contexts"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, button text on dark fills, hero text on dark imagery. The default background layer"
+    },
+    "carbon": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Carbon — Hero and section heading text, secondary dark surfaces. Slightly softer than pure black for long-form readability"
+    },
+    "ash-gray": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Ash Gray — Section dividers, alternating band backgrounds, footer top edge. Creates subtle separation without darkening the page"
+    },
+    "steel": {
+      "$value": "#616161",
+      "$type": "color",
+      "$description": "Steel — Muted body text, nav dropdown items, icon fills, link colors in body copy. The 215-frequency workhorse for secondary information"
+    },
+    "graphite": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Graphite — Alternative body text and link color for slightly higher contrast on light gray backgrounds"
+    },
+    "smoke": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Smoke — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "segoe-ui": {
+      "$value": "Segoe UI",
+      "$type": "fontFamily",
+      "$description": "Primary system typeface — used across nav links, body copy, button labels, and hero headlines. The 46px/1.20 headline is the system's maximum display size, keeping Xbox's typographic scale compressed and catalog-like rather than editorial."
+    },
+    "segoeproblack": {
+      "$value": "SegoeProBlack",
+      "$type": "fontFamily",
+      "$description": "Custom heavier-weight variant for button and link text where extra weight is needed for emphasis. Weight 900 instances push CTA labels past standard bold for maximum legibility at small sizes."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 2.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "SegoeProBlack",
+        "fontSize": "15px",
+        "fontWeight": 900,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "SegoeProBlack",
+        "fontSize": "15px",
+        "fontWeight": 900,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "SegoeProBlack",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "46px",
+        "fontWeight": 700,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "43": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Spacing 43px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "71": {
+      "$value": "71px",
+      "$type": "dimension",
+      "$description": "Spacing 71px"
+    }
+  },
+  "surface": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, card surfaces, light section bands"
+    },
+    "ash-gray": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 1: Footer background, alternating section bands, subtle separation"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Dark section backgrounds (promotional bands, hero overlays, game art containers)"
+    },
+    "xbox-green": {
+      "$value": "#107c10",
+      "$type": "color",
+      "$description": "Surface level 3: Brand-colored promotional section fills (Game Pass bands)"
+    },
+    "caution-yellow": {
+      "$value": "#ffd800",
+      "$type": "color",
+      "$description": "Surface level 4: Badge and tag surface layer — sits above all other surfaces as a label"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://xbox.com",
+      "siteName": "Xbox.com",
+      "extractedAt": "2026-06-03T19:09:29.419Z",
+      "variant": "extended"
+    }
+  }
+}

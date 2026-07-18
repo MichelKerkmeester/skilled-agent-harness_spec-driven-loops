@@ -1,0 +1,357 @@
+{
+  "color": {
+    "forest-command": {
+      "$value": "#2d9b4c",
+      "$type": "color",
+      "$description": "Forest Command — Primary CTA fills, active nav indicators, footer link accents, tag chips — the single chromatic heartbeat of the system; warm green against matte black creates urgency without aggression"
+    },
+    "mint-boarding-pass": {
+      "$value": "#d3ffc3",
+      "$type": "color",
+      "$description": "Mint Boarding Pass — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content."
+    },
+    "champagne-beige": {
+      "$value": "#e7d5ba",
+      "$type": "color",
+      "$description": "Champagne Beige — Hero illustration backdrop and premium accent panel — warm near-neutral that introduces tonal warmth inside predominantly black/green compositions"
+    },
+    "linen-cream": {
+      "$value": "#e4e9dc",
+      "$type": "color",
+      "$description": "Linen Cream — Light-section page background — slightly green-tinted off-white that keeps light pages feeling on-brand rather than clinical"
+    },
+    "parchment": {
+      "$value": "#efefe7",
+      "$type": "color",
+      "$description": "Parchment — Card surfaces in light sections, secondary fills, ghost-button borders — warmer than pure white, pairs with linen cream for a two-tier light surface stack"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Dominant dark canvas, 1px structural borders everywhere, button text on green fills, all text on light surfaces — the structural black that carries the system"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Headline and body text on dark sections, card surfaces elevated above black backgrounds, reverse borders on light sections"
+    },
+    "carbon": {
+      "$value": "#020202",
+      "$type": "color",
+      "$description": "Carbon — Near-black variant for subtle text/background differentiation where pure #000 would be too flat — imperceptible shift that softens edges in dense text blocks"
+    }
+  },
+  "font": {
+    "labour-grotesk": {
+      "$value": "Labour Grotesk",
+      "$type": "fontFamily",
+      "$description": "Primary system font at a single weight — used for navigation, body, buttons, card titles, footer, and the massive 435px hero display. The decision to lock to weight 400 instead of ranging 300–700 is the signature: it forces hierarchy through size and tracking, not weight, producing a uniform, confident, almost monoline voice. The 435px size is a single decorative display moment, not a functional text size."
+    },
+    "reckless-neue": {
+      "$value": "Reckless Neue",
+      "$type": "fontFamily",
+      "$description": "Editorial serif at ultra-light 250 weight — appears only on large blog and content headings. The choice of weight 250 (near-hairline) instead of the conventional 400–500 is anti-SaaS: headlines whisper rather than declare authority, creating a magazine-editorial contrast against Labour Grotesk's steady functional voice."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Labour Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Labour Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Labour Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Labour Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Labour Grotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Reckless Neue",
+        "fontSize": "20px",
+        "fontWeight": 250,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Labour Grotesk",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 23px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Labour Grotesk",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Labour Grotesk",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Labour Grotesk",
+        "fontSize": "31px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 31px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Labour Grotesk",
+        "fontSize": "39px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 39px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Reckless Neue",
+        "fontSize": "39px",
+        "fontWeight": 250,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 39px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Labour Grotesk",
+        "fontSize": "43px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 43px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Reckless Neue",
+        "fontSize": "43px",
+        "fontWeight": 250,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Labour Grotesk",
+        "fontSize": "53px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 53px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Reckless Neue",
+        "fontSize": "53px",
+        "fontWeight": 250,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 53px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Labour Grotesk",
+        "fontSize": "435px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 435px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "37": {
+      "$value": "37px",
+      "$type": "dimension",
+      "$description": "Spacing 37px"
+    },
+    "57": {
+      "$value": "57px",
+      "$type": "dimension",
+      "$description": "Spacing 57px"
+    },
+    "63": {
+      "$value": "63px",
+      "$type": "dimension",
+      "$description": "Spacing 63px"
+    },
+    "83": {
+      "$value": "83px",
+      "$type": "dimension",
+      "$description": "Spacing 83px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "127": {
+      "$value": "127px",
+      "$type": "dimension",
+      "$description": "Spacing 127px"
+    },
+    "187": {
+      "$value": "187px",
+      "$type": "dimension",
+      "$description": "Spacing 187px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10.08px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "15.04px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Base dark canvas for hero, feature, and CTA sections"
+    },
+    "paper-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card surface floating on dark sections"
+    },
+    "linen-page": {
+      "$value": "#e4e9dc",
+      "$type": "color",
+      "$description": "Surface level 2: Light-section page background for blog and editorial content"
+    },
+    "parchment-card": {
+      "$value": "#efefe7",
+      "$type": "color",
+      "$description": "Surface level 3: Card surfaces sitting on linen cream pages"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.trawelt.com",
+      "siteName": "Trawelt",
+      "extractedAt": "2026-06-03T21:25:17.078Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,494 @@
+{
+  "color": {
+    "canvas-cream": {
+      "$value": "#fdfcf5",
+      "$type": "color",
+      "$description": "Canvas Cream — Primary page canvas and white card surfaces."
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, hairline borders, icon strokes, and the single CTA fill — black-on-cream is the system's only action color, no chromatic buttons"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, elevated content layers, input fills — the brighter sheet the cream canvas holds"
+    },
+    "charcoal": {
+      "$value": "#4c4c4a",
+      "$type": "color",
+      "$description": "Charcoal — Secondary borders, muted body text, link underline tones"
+    },
+    "slate-black": {
+      "$value": "#333231",
+      "$type": "color",
+      "$description": "Slate Black — Strong secondary borders and slightly softer heading text — separates structural dividers from Ink Black"
+    },
+    "warm-gray": {
+      "$value": "#7f7e7b",
+      "$type": "color",
+      "$description": "Warm Gray — Captions, helper text, disabled states, tertiary borders"
+    },
+    "mid-stone": {
+      "$value": "#656562",
+      "$type": "color",
+      "$description": "Mid Stone — Muted body copy and secondary dividers"
+    },
+    "soft-sand": {
+      "$value": "#f5f3e9",
+      "$type": "color",
+      "$description": "Soft Sand — Subtle section bands, recessed surfaces, and the lighter shadow base"
+    },
+    "khaki-shadow": {
+      "$value": "#edeadd",
+      "$type": "color",
+      "$description": "Khaki Shadow — The warm shadow tint used across all card elevations — replaces standard cool gray"
+    },
+    "sandstone": {
+      "$value": "#e5e2d0",
+      "$type": "color",
+      "$description": "Sandstone — Faint horizontal rules and gentle background tints"
+    },
+    "lavender-mist": {
+      "$value": "#e2e0e4",
+      "$type": "color",
+      "$description": "Lavender Mist — Cool-leaning hairline borders, subtle separation lines"
+    },
+    "editorial-teal": {
+      "$value": "#10756a",
+      "$type": "color",
+      "$description": "Editorial Teal — Teal wash for highlight backgrounds, decorative bands, and soft emphasis behind content."
+    },
+    "ai-violet": {
+      "$value": "#6938ef",
+      "$type": "color",
+      "$description": "AI Violet — Violet outline accent for tags, dividers, and focused UI edges."
+    },
+    "deep-violet": {
+      "$value": "#6a27d9",
+      "$type": "color",
+      "$description": "Deep Violet — Dark-mode variant of AI Violet for borders and stronger emphasis on processing states"
+    },
+    "stamp-red": {
+      "$value": "#f42c2b",
+      "$type": "color",
+      "$description": "Stamp Red — Red wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "suisse-works": {
+      "$value": "Suisse Works",
+      "$type": "fontFamily",
+      "$description": "Editorial serif for all headlines and display type — Book (450) carries the masthead voice at 28–58px, Medium (500) for sub-headings at 20px. Suisse Works' high contrast and sharp serifs give the interface a printed-broadsheet authority that no sans could replicate."
+    },
+    "open-runde": {
+      "$value": "Open Runde",
+      "$type": "fontFamily",
+      "$description": "Humanist sans for body, navigation, links, and most UI labels. Open Runde's slightly rounded geometric forms soften the editorial serif above — Regular (400) for body, Semibold (600) for nav emphasis, Bold (700) for inline labels. The wide x-height at 16px with 1.63 line-height creates comfortable reading density."
+    },
+    "geist-mono": {
+      "$value": "Geist Mono",
+      "$type": "fontFamily",
+      "$description": "Monospaced labels for product state indicators ('Rewriting...', 'Transcribing...') and technical metadata. Geist Mono at 14px is intentionally small — it's a whisper of machinery inside the editorial voice, not a visual block."
+    },
+    "grenze-gotisch": {
+      "$value": "Grenze Gotisch",
+      "$type": "fontFamily",
+      "$description": "Decorative blackletter for stamp-style elements like 'For Immediate Release'. Used once or twice per screen as accent texture, never for body. The gothic contrast against Suisse Works' modern serif is the system's signature historical flourish."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Minor fallback for non-primary UI labels where Open Runde is unavailable"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Open Runde Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Open Runde Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Open Runde Regular",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Open Runde Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Open Runde Medium",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Open Runde Semibold",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Open Runde Bold",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Open Runde Bold",
+        "fontSize": "16px",
+        "fontWeight": 900,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Suisse Works Medium",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Suisse Works Medium",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Suisse Works Book",
+        "fontSize": "28px",
+        "fontWeight": 450,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Suisse Works Book",
+        "fontSize": "36px",
+        "fontWeight": 450,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Grenze Gotisch",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Grenze Gotisch",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Suisse Works Book",
+        "fontSize": "58px",
+        "fontWeight": 450,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 58px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "116": {
+      "$value": "116px",
+      "$type": "dimension",
+      "$description": "Spacing 116px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "2000px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "10000px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "11429px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(213, 208, 184, 0.4) 0px 2px 6px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "subtle": {
+      "$value": "rgb(246, 246, 240) 0px 0px 0px 2px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(213, 208, 184, 0.6) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "md": {
+      "$value": "rgba(213, 208, 184, 0.2) 0px 4px 12px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "subtle-3": {
+      "$value": "rgba(213, 208, 184, 0.3) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#fdfcf5",
+      "$type": "color",
+      "$description": "Surface level 0: Warm cream page background — the broadsheet stock"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Pure white card and elevated component surface — the 'printed sheet' that sits on the canvas"
+    },
+    "recessed-band": {
+      "$value": "#f5f3e9",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle alternating section tone, slightly warmer than canvas"
+    },
+    "soft-sand": {
+      "$value": "#e5e2d0",
+      "$type": "color",
+      "$description": "Surface level 3: Deepest neutral surface for inset blocks and quiet dividers"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://symbolic.ai",
+      "siteName": "Symbolic.ai",
+      "extractedAt": "2026-06-03T21:27:32.223Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Ink — Primary text, card borders, icon strokes, hairline dividers. A warm near-black chosen over #000 to soften contrast against white without losing authority"
+    },
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "fog": {
+      "$value": "#dbdada",
+      "$type": "color",
+      "$description": "Fog — Ambient shadow tint, muted background washes, subtle surface elevation. Carries the 0.16-alpha shadow that lifts cards off the canvas"
+    },
+    "slate": {
+      "$value": "#8e8e93",
+      "$type": "color",
+      "$description": "Slate — Secondary body text, de-emphasized metadata, inactive nav borders, helper copy"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "signal-coral": {
+      "$value": "#ee585a",
+      "$type": "color",
+      "$description": "Signal Coral — Filled CTA backgrounds (action buttons, filter pills), inline text links, notification dot, hover/focus glow. The sole chromatic accent — one warm red against matte white creates urgency without aggression"
+    }
+  },
+  "font": {
+    "aeonik": {
+      "$value": "Aeonik",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across all UI. 700 for the monumental wordmark and large display headings, 500 for medium-emphasis labels and nav, 400 for body and metadata. Tight -0.011em tracking across all sizes tightens the geometric forms and gives the wordmark its dense, packed look."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "aeonikFont",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "aeonikFont",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "aeonikFont",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "aeonikFont",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "aeonikFont",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "aeonikFont",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "aeonikFont",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "aeonikFont",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "aeonikFont",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "66": {
+      "$value": "66px",
+      "$type": "dimension",
+      "$description": "Spacing 66px"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "69px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(72, 72, 74, 0.16) 0px 2px 32px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background, full-bleed"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Font preview tiles, content panels — same hex as canvas but separated by shadow"
+    },
+    "shadow-tint": {
+      "$value": "#dbdada",
+      "$type": "color",
+      "$description": "Surface level 2: Ambient gray carried in card shadows at 0.16 alpha"
+    },
+    "action-surface": {
+      "$value": "#ee585a",
+      "$type": "color",
+      "$description": "Surface level 3: Filled CTAs, floating filter button, notification dot"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://fonts.ninja",
+      "siteName": "Discover",
+      "extractedAt": "2026-06-03T20:57:16.917Z",
+      "variant": "extended"
+    }
+  }
+}

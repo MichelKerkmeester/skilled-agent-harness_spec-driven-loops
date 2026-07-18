@@ -1,0 +1,195 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, navigation labels, logo, link borders, footer type — the single graphic ink of the system. Every stroke, border, and character mark across the site"
+    },
+    "bone": {
+      "$value": "#e7e7e7",
+      "$type": "color",
+      "$description": "Bone — Page canvas, card surface, elevated surface — the warm near-white that holds all imagery and text"
+    },
+    "charcoal": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Charcoal — Secondary text and deep surface tone where slightly softer black is needed against bone"
+    }
+  },
+  "font": {
+    "adobe-garamond": {
+      "$value": "Adobe Garamond",
+      "$type": "fontFamily",
+      "$description": "Editorial display and body serif. The single weight (400) does all the talking — no bold, no italic reliance. Used at 56px for display headlines (artwork titles, hero captions) with tight tracking -0.018em and 1.10 line-height, at 20px for introductory text and at 16px for body. The restraint of a single weight Garamond at display sizes creates an old-master gravitas: authority through historical type, not weight."
+    },
+    "akzidenz-grotesk": {
+      "$value": "Akzidenz Grotesk",
+      "$type": "fontFamily",
+      "$description": "Functional sans-serif for all UI, navigation, labels, and metadata. Rendered almost exclusively in uppercase at 8-10px with aggressive positive tracking (+0.027 to +0.038em) — the effect is that of gallery wall labels, museum credits, and colophon text. Weight 500 highlights active nav, 700 for emphasis labels, 400 default. The grotesk never competes with Garamond for the reader's attention; it serves."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Akzidenz Grotesk",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Akzidenz Grotesk",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Akzidenz Grotesk",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Akzidenz Grotesk",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 10px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Adobe Garamond",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Akzidenz Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Adobe Garamond",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Adobe Garamond",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#e7e7e7",
+      "$type": "color",
+      "$description": "Surface level 1: Page background — all content sits on this single warm-white surface"
+    },
+    "ink-layer": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: All type, borders, and graphic marks on the bone canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://artandcommerce.com",
+      "siteName": "Artandcommerce",
+      "extractedAt": "2026-06-03T20:30:10.073Z",
+      "variant": "extended"
+    }
+  }
+}

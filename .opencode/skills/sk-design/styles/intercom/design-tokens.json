@@ -1,0 +1,387 @@
+{
+  "color": {
+    "electric-violet": {
+      "$value": "#0007cb",
+      "$type": "color",
+      "$description": "Electric Violet — Brand accent — used sparingly for emphasis moments, selected icon strokes, and tag punctuation; the only saturated color in the system creates instant focus when it appears against the warm neutral canvas"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, product screenshot backgrounds, inverted button text"
+    },
+    "canvas-cream": {
+      "$value": "#faf9f6",
+      "$type": "color",
+      "$description": "Canvas Cream — Primary page canvas — the warm off-white that defines the entire surface temperature; every screen lives on this tone"
+    },
+    "linen": {
+      "$value": "#f1eee9",
+      "$type": "color",
+      "$description": "Linen — Secondary surface for sectioned blocks, elevated cards, and alternating content bands — one step warmer than canvas"
+    },
+    "stone": {
+      "$value": "#d3cec6",
+      "$type": "color",
+      "$description": "Stone — Decorative texture wash, large background fields, subtle warmth blocks"
+    },
+    "hairline": {
+      "$value": "#dedbd6",
+      "$type": "color",
+      "$description": "Hairline — Hairline borders, dividers, input outlines, nav separators — the warm border tone that never feels cold"
+    },
+    "ink": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Ink — Primary text, headings, body copy — slightly softer than pure black for comfortable reading on cream"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "iron": {
+      "$value": "#414141",
+      "$type": "color",
+      "$description": "Iron — Secondary text, supporting copy, muted descriptions"
+    },
+    "graphite": {
+      "$value": "#585858",
+      "$type": "color",
+      "$description": "Graphite — Tertiary text, helper copy, less-prominent body"
+    },
+    "smoke": {
+      "$value": "#888888",
+      "$type": "color",
+      "$description": "Smoke — Disabled state text, placeholder copy, very muted labels"
+    },
+    "ash": {
+      "$value": "#a0a0a0",
+      "$type": "color",
+      "$description": "Ash — Muted headings in secondary contexts, low-emphasis text"
+    },
+    "silver": {
+      "$value": "#b8b8b8",
+      "$type": "color",
+      "$description": "Silver — Icon strokes in resting state, low-emphasis glyphs"
+    }
+  },
+  "font": {
+    "saans": {
+      "$value": "Saans",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for everything — display headlines at weight 300 (80px/54px/40px), headings at 300 (32px/24px), body at 400 (16px/20px). The 300-weight display is the signature: most brands shout at 700–800, Intercom whispers at 300 and achieves authority through restraint. Use weight 400 only for body and supporting text where readability is paramount."
+    },
+    "saansmono": {
+      "$value": "SaansMono",
+      "$type": "fontFamily",
+      "$description": "Monospace labeling system — nav micro-labels, tab labels, tag chips, section metadata. Always paired with wide positive tracking to function as typographic badges. The 100em spacing on 12px is a 'shout' weight for the smallest text, making it readable as a label rather than body copy."
+    },
+    "serrif": {
+      "$value": "Serrif",
+      "$type": "fontFamily",
+      "$description": "Editorial counterpoint — appears in select body paragraphs and pull quotes at 16px/300 to add a humanist, almost literary quality. The contrast of serif at 300 against Saans display at 300 creates the magazine-spread rhythm that defines Intercom's voice."
+    },
+    "mediumll": {
+      "$value": "MediumLL",
+      "$type": "fontFamily",
+      "$description": "Secondary utility face for small UI labels and nav micro-copy where a condensed, tight feel is needed. Used sparingly — only 15 occurrences."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "SaansMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "SaansMono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "MediumLL",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "SaansMono",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "MediumLL",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "MediumLL",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Serrif",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#faf9f6",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background — warm off-white that defines the system's temperature"
+    },
+    "section-warm": {
+      "$value": "#f1eee9",
+      "$type": "color",
+      "$description": "Surface level 1: Alternating section background — one step warmer, creates slow visual rhythm down the page"
+    },
+    "textured-stone": {
+      "$value": "#d3cec6",
+      "$type": "color",
+      "$description": "Surface level 2: Accent block background — used for large warm fields, decorative texture, and feature surrounds"
+    },
+    "card-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted surface for product screenshots, cards on cream backgrounds, and embedded media"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://intercom.com",
+      "siteName": "Intercom",
+      "extractedAt": "2026-06-03T14:57:12.763Z",
+      "variant": "extended"
+    }
+  }
+}

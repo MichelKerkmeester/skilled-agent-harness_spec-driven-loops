@@ -1,0 +1,74 @@
+:root {
+  /* Colors */
+  --color-vellum-sand: #f4e6cd;
+  --color-pressed-linen: #edddc3;
+  --color-aged-ink: #1e211e;
+  --color-charcoal-black: #000000;
+  --color-twilight-bronze: #8f774b;
+  --color-hayfield: #ba9d6a;
+  --color-wheat-sheaf: #d6bd97;
+
+  /* Typography — Font Families */
+  --font-pp-neue-montreal: 'PP Neue Montreal', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 1.5;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.5;
+  --text-body: 18px;
+  --leading-body: 1.5;
+  --text-subheading: 24px;
+  --leading-subheading: 1.4;
+  --text-heading-sm: 26px;
+  --leading-heading-sm: 1.4;
+  --text-heading: 40px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 75px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -2.25px;
+  --text-display: 173px;
+  --leading-display: 0.9;
+  --tracking-display: -7.79px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-11: 11px;
+  --spacing-13: 13px;
+  --spacing-14: 14px;
+  --spacing-17: 17px;
+  --spacing-20: 20px;
+  --spacing-26: 26px;
+  --spacing-30: 30px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-50: 50px;
+  --spacing-60: 60px;
+  --spacing-120: 120px;
+
+  /* Layout */
+  --section-gap: 80-120px;
+  --card-padding: 0px;
+  --element-gap: 4-8px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-full: 50px;
+
+  /* Named Radii */
+  --radius-tags: 0px;
+  --radius-cards: 0px;
+  --radius-images: 4px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-vellum-canvas: #f4e6cd;
+  --surface-pressed-linen: #edddc3;
+}

@@ -1,0 +1,329 @@
+{
+  "color": {
+    "aubergine": {
+      "$value": "#3c315b",
+      "$type": "color",
+      "$description": "Aubergine — Primary brand — navigation borders, nav text, heading text, card surfaces in dark sections, icon strokes. The structural spine of the entire system"
+    },
+    "ghost-lavender": {
+      "$value": "#e2dffe",
+      "$type": "color",
+      "$description": "Ghost Lavender — Primary action — filled CTA button background, violet glow shadow on buttons. The light-on-light button that only reveals its presence through a soft 4px halo"
+    },
+    "periwinkle": {
+      "$value": "#ab9ff2",
+      "$type": "color",
+      "$description": "Periwinkle — Secondary action — brighter lavender for secondary CTAs, decorative fills, icon accents. Adds saturation to the pale-violet world"
+    },
+    "cornflower-pop": {
+      "$value": "#4a87f2",
+      "$type": "color",
+      "$description": "Cornflower Pop — Accent button — occasional vivid blue button for emphasis or differentiation. Use sparingly as a high-energy interruption"
+    },
+    "buttercream": {
+      "$value": "#ffffc4",
+      "$type": "color",
+      "$description": "Buttercream — Accent button — pale yellow button fill for variety in multi-action contexts. Pastel punctuation in the candy palette"
+    },
+    "blush-mist": {
+      "$value": "#ffdadc",
+      "$type": "color",
+      "$description": "Blush Mist — Accent button — near-gray pink button for warmth and tonal range. The softest of the pastel set"
+    },
+    "mint-signal": {
+      "$value": "#2ec08b",
+      "$type": "color",
+      "$description": "Mint Signal — Success badge — vivid green for status indicators, positive confirmations, live signals"
+    },
+    "paper-white": {
+      "$value": "#fdfcfe",
+      "$type": "color",
+      "$description": "Paper White — Canvas — page background, card surfaces, button borders, text on dark backgrounds. Near-white with the faintest cool tint"
+    },
+    "obsidian": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Obsidian — Body text, heading text on light backgrounds, button borders, card borders. The near-black ink for all foreground content"
+    },
+    "fog": {
+      "$value": "#86848d",
+      "$type": "color",
+      "$description": "Fog — Muted text, icon strokes, secondary nav borders. The quiet gray for non-emphasized elements"
+    },
+    "ash": {
+      "$value": "#e9e8ea",
+      "$type": "color",
+      "$description": "Ash — Button background, subtle surface fill. The neutral pale surface beneath lavender hero panels"
+    },
+    "bone": {
+      "$value": "#f4f2f4",
+      "$type": "color",
+      "$description": "Bone — Surface background — light section panels, button fills. The warmest of the near-white neutrals"
+    }
+  },
+  "font": {
+    "phantom": {
+      "$value": "Phantom",
+      "$type": "fontFamily",
+      "$description": "Custom typeface used for everything. Weight 350 is the default body and display weight — unconventional lightness creates an airy, anti-bold personality. Weight 400 reserved for body copy that needs slightly more presence. Sizes scale dramatically from 13px caption to 96px display. Tight -0.025em letter-spacing at all sizes creates compressed, high-density headlines. Line-height collapses to 1.0-1.1 at display sizes for sculptural headline forms."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "20px",
+        "fontWeight": 350,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 96px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgb(226, 223, 254) 0px 0px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#fdfcfe",
+      "$type": "color",
+      "$description": "Surface level 1: Base canvas — the default page background, the lightest possible near-white"
+    },
+    "bone": {
+      "$value": "#f4f2f4",
+      "$type": "color",
+      "$description": "Surface level 2: Light section panels — subtle warm shift for content blocks on white"
+    },
+    "ash": {
+      "$value": "#e9e8ea",
+      "$type": "color",
+      "$description": "Surface level 3: Neutral button surface — used for secondary buttons and quiet containers"
+    },
+    "ghost-lavender": {
+      "$value": "#e2dffe",
+      "$type": "color",
+      "$description": "Surface level 4: Primary CTA surface — lavender fill with violet halo for the system's main action"
+    },
+    "aubergine": {
+      "$value": "#3c315b",
+      "$type": "color",
+      "$description": "Surface level 5: Dark section background — the deep-violet surface for inverted hero panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://phantom.com",
+      "siteName": "Phantom",
+      "extractedAt": "2026-06-03T19:30:18.163Z",
+      "variant": "extended"
+    }
+  }
+}

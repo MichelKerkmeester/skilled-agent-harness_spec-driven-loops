@@ -1,0 +1,377 @@
+{
+  "color": {
+    "ember-orange": {
+      "$value": "#f43e01",
+      "$type": "color",
+      "$description": "Ember Orange — Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "vapor-pink": {
+      "$value": "#e09afe",
+      "$type": "color",
+      "$description": "Vapor Pink — Secondary decorative accent — rare highlights, special-emphasis inline marks, and select graphic flourishes. Used as a cool counterpoint to Ember Orange when a second color is needed"
+    },
+    "parchment": {
+      "$value": "#e8e8de",
+      "$type": "color",
+      "$description": "Parchment — Page canvas — the warm off-white that defines the site's light mode. Warmer than pure white, it gives the whole interface a paper-like quality"
+    },
+    "bone": {
+      "$value": "#f3f3ee",
+      "$type": "color",
+      "$description": "Bone — Elevated surface — cards, content blocks, nav backgrounds. One step lighter than Parchment, used to lift elements off the canvas without harsh contrast"
+    },
+    "graphite": {
+      "$value": "#2d2f33",
+      "$type": "color",
+      "$description": "Graphite — Primary text and dark section background — near-black with a cool cast. The workhorse color for headings, body copy, and full-bleed dark bands"
+    },
+    "obsidian": {
+      "$value": "#2a2a25",
+      "$type": "color",
+      "$description": "Obsidian — Deepest dark — alt dark-panel fill, footer surfaces. Slightly warmer than Graphite for variation in dark sections"
+    },
+    "stone": {
+      "$value": "#69695d",
+      "$type": "color",
+      "$description": "Stone — Secondary text — descriptions, supporting copy, muted labels. Warm olive-gray that harmonizes with Parchment rather than fighting it"
+    },
+    "ash": {
+      "$value": "#9c9c90",
+      "$type": "color",
+      "$description": "Ash — Tertiary text and disabled states — nav dropdown items, fine print, inactive icons"
+    },
+    "khaki": {
+      "$value": "#cecebf",
+      "$type": "color",
+      "$description": "Khaki — Hairline borders and dividers — low-contrast warm gray that defines edges without drawing attention"
+    },
+    "mist": {
+      "$value": "#c2c2be",
+      "$type": "color",
+      "$description": "Mist — List separators and secondary borders — a touch cooler than Khaki for list-item dividers"
+    }
+  },
+  "font": {
+    "space-grotesk": {
+      "$value": "Space Grotesk",
+      "$type": "fontFamily",
+      "$description": "Primary typeface — all headings and body text. Weight 300 for headlines creates a quiet, technical confidence (anti-convention; most sites shout with 700). Weight 400 for body. Tight tracking at -0.02em across all sizes keeps headlines compact even at 46px."
+    },
+    "ibm-plex-mono": {
+      "$value": "IBM Plex Mono",
+      "$type": "fontFamily",
+      "$description": "Eyebrow labels, section tags, code snippets, small data. Tracking +0.1em (wide) gives it a technical-spec or serial-number quality — used sparingly above headings or as status indicators."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "28px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Space Grotesk",
+        "fontSize": "46px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 46px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#e8e8de",
+      "$type": "color",
+      "$description": "Surface level 0: Page background in light sections"
+    },
+    "bone-card": {
+      "$value": "#f3f3ee",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, elevated content blocks"
+    },
+    "white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Inset cards, code blocks, high-contrast surfaces"
+    },
+    "graphite-panel": {
+      "$value": "#2d2f33",
+      "$type": "color",
+      "$description": "Surface level 3: Dark section backgrounds"
+    },
+    "obsidian-panel": {
+      "$value": "#2a2a25",
+      "$type": "color",
+      "$description": "Surface level 4: Deepest dark panels, footer"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://groq.com",
+      "siteName": "Groq",
+      "extractedAt": "2026-06-03T18:45:24.773Z",
+      "variant": "extended"
+    }
+  }
+}

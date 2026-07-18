@@ -1,0 +1,495 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#0d0d0d",
+      "$type": "color",
+      "$description": "Ink Black — Body text, headings, button fill, icon strokes — near-black rather than true black keeps contrast high without harshness"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page background, button text on dark fills, nav surface"
+    },
+    "mist": {
+      "$value": "#f3f3f3",
+      "$type": "color",
+      "$description": "Mist — Secondary button background, alternating section background fill"
+    },
+    "cloud": {
+      "$value": "#e7e7e7",
+      "$type": "color",
+      "$description": "Cloud — Card borders, dividers, section background tint"
+    },
+    "stone": {
+      "$value": "#e0dedc",
+      "$type": "color",
+      "$description": "Stone — Subtle component borders, input strokes"
+    },
+    "graphite": {
+      "$value": "#6e6e6",
+      "$type": "color",
+      "$description": "Graphite — Nav text, secondary UI labels, ghost button labels"
+    },
+    "slate": {
+      "$value": "#646f79",
+      "$type": "color",
+      "$description": "Slate — Body text secondary, border colors in nav and footer contexts"
+    },
+    "charcoal": {
+      "$value": "#3d3d3d",
+      "$type": "color",
+      "$description": "Charcoal — Body copy at normal reading weight"
+    },
+    "iron": {
+      "$value": "#474748",
+      "$type": "color",
+      "$description": "Iron — List items, link text in content areas"
+    },
+    "ash": {
+      "$value": "#9ca6af",
+      "$type": "color",
+      "$description": "Ash — Placeholder text, disabled state indicators"
+    },
+    "asana-violet": {
+      "$value": "#222875",
+      "$type": "color",
+      "$description": "Asana Violet — Hero product UI, informational badges, branded accent blocks — deep indigo-navy grounds AI and premium feature messaging"
+    },
+    "coral-blush": {
+      "$value": "#ffeaec",
+      "$type": "color",
+      "$description": "Coral Blush — Active filter chip background, soft badge backgrounds, warm section fills — coral warmth signals interaction state without aggression"
+    },
+    "deep-coral": {
+      "$value": "#690031",
+      "$type": "color",
+      "$description": "Deep Coral — Coral-family high-contrast text on Coral Blush backgrounds, brand icon accents"
+    },
+    "coral-ember": {
+      "$value": "#ff584a",
+      "$type": "color",
+      "$description": "Coral Ember — Icon fills in use-case cards, logo mark accent — vivid red-coral appears only in small illustration contexts"
+    },
+    "coral-dark": {
+      "$value": "#710c3a",
+      "$type": "color",
+      "$description": "Coral Dark — Hover/pressed state for coral-family brand elements"
+    },
+    "sky-ice": {
+      "$value": "#cbefff",
+      "$type": "color",
+      "$description": "Sky Ice — Blue-tinted soft background for feature callouts and informational chips"
+    },
+    "coral-petal": {
+      "$value": "#e1bbc7",
+      "$type": "color",
+      "$description": "Coral Petal — Icon strokes, subtle link decoration, light illustrative borders in coral family"
+    }
+  },
+  "font": {
+    "ghost": {
+      "$value": "Ghost",
+      "$type": "fontFamily",
+      "$description": "Display headlines only — the hero statement and major section titles. Weight 500 at 60-72px with tight -0.007em tracking compresses letter forms into dense editorial blocks. No other font on the site operates at this scale, making Ghost the unambiguous voice of authority."
+    },
+    "twk-lausanne": {
+      "$value": "TWK Lausanne",
+      "$type": "fontFamily",
+      "$description": "Everything except hero display text: nav labels (weight 400, 14px), body copy (weight 300–400, 16px), subheadings (weight 500, 20-30px), section headings (weight 500, 24-36px). Weight 300 for body imparts an open, non-urgent reading texture. Weight 500 for UI labels and mid-hierarchy headings. Positive letter-spacing at small sizes (+0.025–0.04em) prevents optical crowding in captions and badges."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "13px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 2.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 2.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Ghost",
+        "fontSize": "60px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Ghost",
+        "fontSize": "72px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "76": {
+      "$value": "76px",
+      "$type": "dimension",
+      "$description": "Spacing 76px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "146px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://asana.com",
+      "siteName": "Asana",
+      "extractedAt": "2026-04-11T19:03:30.181Z",
+      "variant": "extended"
+    }
+  }
+}

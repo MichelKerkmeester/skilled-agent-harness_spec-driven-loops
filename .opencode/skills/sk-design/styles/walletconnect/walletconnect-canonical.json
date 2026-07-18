@@ -1,0 +1,1838 @@
+{
+  "source": "https://styles.refero.design/style/29392960-0acf-4891-ad33-28a72f6a9b75",
+  "uuid": "29392960-0acf-4891-ad33-28a72f6a9b75",
+  "name": "WalletConnect",
+  "northStar": "Cobalt obelisks on parchment — saturated blue monoliths floating above a warm white desert, with rounded edges that soften the tech seriousness.",
+  "capturedAt": "2026-07-18T09:10:29.399Z",
+  "meta": {
+    "url": "https://walletconnect.com",
+    "siteName": "WalletConnect",
+    "extractedAt": "2026-06-03T20:32:27.494Z",
+    "durationMs": 36183,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 307,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 40px border-radius on all large cards, hero panels, and image containers — this is the system's signature softness",
+      "Use 16px border-radius on buttons, inputs, and nav elements to create a clear hierarchy: small rounding for interactive, large rounding for content",
+      "Set primary text in Deep Indigo #1b2045, not pure black — the warm navy keeps the design from feeling harsh",
+      "Reserve Electric Cobalt #006cff for large surfaces (hero panels, banner bars) and filled primary buttons — let it dominate a band rather than scatter as small accents",
+      "Use KHTeka at weight 400 for body, 500 for UI controls and links, 700 for display headlines — three-weight hierarchy is enough",
+      "Prefer 1px Mist #e9e9e9 borders over shadows for card definition; the system is border-driven, not shadow-driven",
+      "Center pages at max-width 1200px and use 64px section gaps to maintain the comfortable, spacious rhythm"
+    ],
+    "donts": [
+      "Don't use pure black #000000 for text — Deep Indigo #1b2045 is the system's dark, and mixing in true black breaks the warm tonal palette",
+      "Don't use 8px or 12px border-radius on large cards — the system jumps from 16px (controls) to 40px (content), with nothing in between",
+      "Don't apply shadow stacks for elevation — the design uses surface color and borders instead; one soft 8px blur at 30% black is the maximum",
+      "Don't use Electric Cobalt #006cff on small text, icons, or link underlines — the brand color needs surface area to carry meaning, not pixel-level presence",
+      "Don't mix Roboto into primary UI — reserve it for injected overlay content (modals, cookie banners, third-party widgets) where it appears as a system fallback",
+      "Don't use the Cobalt Radial gradient on flat UI elements — it's a luminous accent for blue panels only, not a fill for buttons or cards",
+      "Don't let the design feel dense — comfortable density means generous vertical rhythm (64px section gaps) and white space around every content block"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#006cff",
+        "name": "Electric Cobalt",
+        "role": "Hero panels, filled buttons, active nav indicators, link accents — the primary brand signal, used as a full-bleed surface rather than a small button color to dominate the page",
+        "group": "brand"
+      },
+      {
+        "hex": "#4672ff",
+        "name": "Indigo Action",
+        "role": "Primary filled action buttons and their borders — a slightly lighter, more violet-shifted blue for interactive surfaces that need to feel pressed and clickable",
+        "group": "brand"
+      },
+      {
+        "hex": "#1b2045",
+        "name": "Deep Indigo",
+        "role": "Primary text, headings, and dark button borders — replaces pure black with a warm navy that reads as authoritative without the harshness of #000",
+        "group": "brand"
+      },
+      {
+        "hex": "#66a7ff",
+        "name": "Sky Tint",
+        "role": "Hover states, subtle outlined button borders, secondary navigation accents — a desaturated companion to Electric Cobalt for non-dominant blue moments",
+        "group": "accent"
+      },
+      {
+        "hex": "#cce2ff",
+        "name": "Glacial Wash",
+        "role": "Pale blue tinted backgrounds, soft highlight washes, tag fills, and light section dividers — bridges the white canvas to the blue brand without harsh contrast",
+        "group": "accent"
+      },
+      {
+        "hex": "#f9f9f9",
+        "name": "Parchment",
+        "role": "Page background canvas — a warm near-white that softens the starkness of pure white and reduces eye strain across long scrolling pages",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces, input fields, button text, elevated panels — the brightest surface layer sitting atop Parchment",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e9e9e9",
+        "name": "Mist",
+        "role": "Hairline borders, input outlines, subtle dividers between sections — the quietest structural line color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bbbbbb",
+        "name": "Silver",
+        "role": "Secondary surface fills, placeholder backgrounds, disabled states",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Pewter",
+        "role": "Shadow base color and muted icon tints",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9a9a9a",
+        "name": "Fog",
+        "role": "Muted body text, secondary metadata, inactive form labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#787878",
+        "name": "Steel",
+        "role": "Input placeholder text, tertiary captions, subtle icon strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6c6c6c",
+        "name": "Slate",
+        "role": "Link text in their resting state, secondary body copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4f4f4f",
+        "name": "Graphite",
+        "role": "Mid-tier body text, descriptions, helper copy that needs to recede behind headings",
+        "group": "neutral"
+      },
+      {
+        "hex": "#303030",
+        "name": "Charcoal",
+        "role": "Dark section borders, footer dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#202020",
+        "name": "Obsidian",
+        "role": "Dark footer background, dark section panels, card borders on light surfaces — the system's dark surface color, used as a deliberate band rather than scattered",
+        "group": "neutral"
+      },
+      {
+        "hex": "#099ff0",
+        "name": "Cobalt Radial",
+        "role": "Radial gradient highlight accent — used sparingly as a luminous spot inside blue panels to create depth",
+        "group": "brand",
+        "gradient": "radial-gradient(78.13% 78.13% at 79.97% 80.72%, rgb(9, 159, 240) 0%, rgb(9, 121, 240) 100%)"
+      }
+    ],
+    "layout": "Max-width 1200px centered on a Parchment #f9f9f9 canvas, with full-bleed blue and dark sections breaking the container at section boundaries. The hero pattern is a 2-column asymmetric split: oversized blue rounded panel (40px radius) on the left containing the headline, with a phone mockup overlapping the right edge — the product image bleeds beyond the panel boundary. Section rhythm alternates between blue hero panels, white product showcase bands with side-by-side phone photography, and terminating dark footer. Content arrangement uses 2-column text+image splits that flip orientation (text-left/image-right, then image-left/text-right). Grids appear as 3-column feature cards. Navigation is a clean top bar with logo left, links center-right, and action buttons at far right, with an optional blue banner strip above it. Density is comfortable and spacious — 64px between sections, generous padding inside every card.",
+    "imagery": "Photography is product-led and tightly cropped: hands holding phones showing the WalletConnect Pay app, QR code screens, and in-context mobile payment moments. Images are treated with full 40px border-radius matching the card containers, creating a soft, consumer-friendly presentation. The blue app UI is the hero within the photography — screens showing payment amounts in white on cobalt reinforce the brand color outside of designed panels. There are no lifestyle backgrounds, no decorative gradients behind images, and no stock photography; every image shows the product in use. Icons are thin-stroke, geometric, and monochromatic, typically white on blue or Deep Indigo on light.",
+    "similar": [
+      {
+        "why": "Same warm off-white canvas, rounded 40px hero panels, and saturated brand color deployed as a full surface rather than a small accent",
+        "business": "Stripe"
+      },
+      {
+        "why": "Shared crypto-payments visual language with cobalt blue hero sections, rounded product photography, and light backgrounds dominating over dark",
+        "business": "Coinbase"
+      },
+      {
+        "why": "Similar fintech-crypto crossover aesthetic: large rounded blue panels, product-led phone mockups, minimal shadows, and a single dominant brand color",
+        "business": "MoonPay"
+      },
+      {
+        "why": "Comparable mobile-first crypto product presentation with oversized card radii and a clean light surface treatment",
+        "business": "Rainbow Wallet"
+      },
+      {
+        "why": "Same brand-confidence approach — one vivid color owns the page, everything else is quiet white and warm gray",
+        "business": "Phantom"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "16px",
+        "tags": "3px",
+        "cards": "40px",
+        "images": "40px",
+        "inputs": "16px",
+        "buttons": "16px",
+        "heroPanels": "40px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#f9f9f9",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, the warm off-white that defines the overall lightness"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Product cards, input fields, elevated content blocks sitting on the canvas"
+      },
+      {
+        "hex": "#e9e9e9",
+        "name": "Recessed",
+        "level": 2,
+        "purpose": "Inset surfaces, subtle grouping backgrounds, disabled state fills"
+      },
+      {
+        "hex": "#006cff",
+        "name": "Brand Panel",
+        "level": 3,
+        "purpose": "Full-bleed hero bands, feature panels, and any surface where the brand color becomes the background"
+      },
+      {
+        "hex": "#202020",
+        "name": "Dark Band",
+        "level": 4,
+        "purpose": "Footer and inverted dark sections, used as a terminating band at page bottom"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.3) 0px 0px 8px 0px",
+        "element": "Card"
+      }
+    ],
+    "northStar": "Cobalt obelisks on parchment — saturated blue monoliths floating above a warm white desert, with rounded edges that soften the tech seriousness.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 30,
+        "lineHeight": 1.11
+      },
+      {
+        "role": "display",
+        "size": 36,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Primary Button",
+        "role": "Main call-to-action",
+        "description": "Background #006cff, text #ffffff in KHTeka 16px weight 500, 16px border-radius, 11px vertical padding with 16-20px horizontal padding. No border or border matching background. Hover transitions to slightly lighter cobalt."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Secondary action that recedes",
+        "description": "Transparent background, no border, text in Deep Indigo #1b2045 at KHTeka 16px weight 500. Used for 'Docs' and low-priority links sitting beside a filled CTA. Underline appears on hover."
+      },
+      {
+        "name": "Outlined Dark Button",
+        "role": "Secondary action on light backgrounds",
+        "description": "Transparent background, 1px border in #202020 or Deep Indigo #1b2045, text matching border color, 16px radius, 11px vertical padding. Used for 'Contact Sales' CTAs — the outline communicates secondary weight without disappearing."
+      },
+      {
+        "name": "Pill Navigation Button",
+        "role": "Top nav action items (Request Demo, Docs)",
+        "description": "Filled blue (#006cff) for primary nav actions, white background with dark text for secondary. 16px radius, 8-12px vertical padding, 16-20px horizontal padding. Compact, rounded, sitting inline in the top bar."
+      },
+      {
+        "name": "Hero Brand Panel",
+        "role": "Large section background that carries the brand color",
+        "description": "Full Electric Cobalt #006cff background, 40px border-radius on all corners, generous 48-64px internal padding. Contains white KHTeka display headline (30-36px weight 700), white body subtext, and a product mockup overlapping the right edge. This is the signature visual unit of the site."
+      },
+      {
+        "name": "Product Showcase Card",
+        "role": "Large rounded container for phone/app mockups",
+        "description": "40px border-radius, white or light background, 16-24px internal padding, often no visible border — the radius alone defines the card edge. May contain a full-bleed product screenshot that follows the same 40px radius."
+      },
+      {
+        "name": "Content Card",
+        "role": "Standard card for feature blocks, text groupings",
+        "description": "16-40px border-radius (40px for large feature cards, 16px for tighter info cards), white #ffffff background, 1px Mist #e9e9e9 border, 24px padding. 1px border preferred over shadow for definition."
+      },
+      {
+        "name": "Top Banner Bar",
+        "role": "Slim promotional strip above the nav",
+        "description": "Electric Cobalt #006cff full-width band, white text at 14-16px KHTeka, optional close button on the right. ~40-48px height. Sticky or static depending on page."
+      },
+      {
+        "name": "Dark Footer",
+        "role": "Page-closing dark band with newsletter and social links",
+        "description": "Obsidian #202020 background, white and light-gray (#bbbbbb, #787878) text, newsletter input with 16px radius, social link list right-aligned. 40-48px top padding, 64px bottom padding."
+      },
+      {
+        "name": "Newsletter Input + Subscribe",
+        "role": "Email capture in dark footer",
+        "description": "Dark input field with 16px radius, white text on transparent or near-black fill, white 'Subscribe' button beside it (filled white on dark). 12px vertical padding, border 1px in Charcoal #303030."
+      },
+      {
+        "name": "Cookie Preference Modal",
+        "role": "GDPR consent dialog overlay",
+        "description": "White #ffffff surface, 16-20px radius, generous internal padding (24-32px), checkbox rows with Deep Indigo labels, Indigo Action #4672ff filled buttons ('Decline All' outlined, 'Allow All' filled) at the bottom right."
+      },
+      {
+        "name": "Navigation Header",
+        "role": "Top-level site navigation",
+        "description": "Transparent or white background, left-aligned WalletConnect Pay logo (blue wordmark with wave icon), center or right nav links (Solutions, About, Blog) in KHTeka 16px weight 400, action buttons (Request Demo filled, Docs ghost) at far right. 64-80px height."
+      },
+      {
+        "name": "Icon Set",
+        "role": "Inline and standalone icons",
+        "description": "Outlined or thin-stroke style icons in KHTeka or matching geometric set, 1.5-2px stroke weight, sized 16-24px. Default color Deep Indigo or white on blue panels. The wave/connection mark in the logo is the brand's own glyph."
+      },
+      {
+        "name": "Tag/Badge",
+        "role": "Small inline labels for categories, status, or metadata",
+        "description": "3px border-radius, 8-12px vertical padding, 12-16px horizontal padding, Glacial Wash #cce2ff or Mist #e9e9e9 background, Deep Indigo #1b2045 text at 12-13px KHTeka weight 500."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary interface and headline typeface — a geometric humanist sans with slightly compressed proportions and a tech-friendly neutrality. Used across all contexts (heading, body, button, nav, card, badge, icon, input) at every measured size. The 36px display weight 700 is the signature headline voice; 16px weight 400 is the comfortable reading body.",
+        "sizes": "13, 14, 16, 18, 20, 24, 30, 36",
+        "family": "KHTeka",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.00–1.71 (responsive by size: tight 1.00 at display, generous 1.71 at body)",
+        "substitute": "Inter or DM Sans",
+        "letterSpacing": "normal across all sizes — no tracking adjustment detected"
+      },
+      {
+        "role": "Secondary system font — appears in modals, cookie banners, and any overlay/dialog content. Its presence suggests system-stack fallbacks for third-party injected UI rather than a deliberate secondary brand choice.",
+        "sizes": "12, 16, 17",
+        "family": "Roboto",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.41–2.00",
+        "substitute": "System UI sans-serif"
+      },
+      {
+        "role": "Monospaced companion for code snippets, wallet addresses, transaction hashes, and any alphanumeric string that must align character-by-character in card contexts",
+        "sizes": "12, 14",
+        "family": "KHTeka Mono",
+        "weight": "400",
+        "lineHeight": "1.33–1.43",
+        "substitute": "JetBrains Mono or IBM Plex Mono"
+      }
+    ],
+    "description": "WalletConnect Pay is an electric-blue crypto payments brand wrapped in a clean, light canvas: warm off-white surfaces, indigo-black typography, and oversized rounded cards that feel more like consumer fintech than infrastructure tooling. The signature move is a vivid cobalt hero panel (40px radius) sitting on a near-white page, anchoring a layout that alternates between full-bleed product photography and generous whitespace. Typography is set in KHTeka, a geometric humanist that carries a technical-but-friendly voice across weights 400-700, with deep navy #1b2045 replacing pure black for a slightly warmer read. Components are confidently minimal — pill-shaped buttons, ghost CTAs, hairline borders, and almost no shadow, letting the saturated blue do all the emotional work.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/29392960-0acf-4891-ad33-28a72f6a9b75#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"WalletConnect design system\",\"item\":\"https://styles.refero.design/style/29392960-0acf-4891-ad33-28a72f6a9b75\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/29392960-0acf-4891-ad33-28a72f6a9b75#style-reference\",\"name\":\"WalletConnect design system reference\",\"headline\":\"WalletConnect design system | Refero Styles\",\"description\":\"Explore WalletConnect's light Crypto design system: Electric Cobalt #006cff, Indigo Action #4672ff colors, KHTeka, Roboto typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/29392960-0acf-4891-ad33-28a72f6a9b75\",\"mainEntityOfPage\":\"https://styles.refero.design/style/29392960-0acf-4891-ad33-28a72f6a9b75\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"WalletConnect\",\"url\":\"https://walletconnect.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/29392960-0acf-4891-ad33-28a72f6a9b75#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a9657bbe-b82a-4486-8bfe-abb0ec009234.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a9657bbe-b82a-4486-8bfe-abb0ec009234.jpg\",\"caption\":\"Screenshot of WalletConnect\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a9657bbe-b82a-4486-8bfe-abb0ec009234.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"WalletConnect design system\",\"WalletConnect website design\",\"WalletConnect colors\",\"WalletConnect typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Electric Cobalt\",\"Indigo Action\",\"Deep Indigo\",\"Sky Tint\",\"KHTeka\",\"Roboto\",\"KHTeka Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"WalletConnect design system\"},{\"@type\":\"Thing\",\"name\":\"WalletConnect website design\"},{\"@type\":\"Thing\",\"name\":\"WalletConnect colors\"},{\"@type\":\"Thing\",\"name\":\"WalletConnect typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T01:27:33.292Z\",\"dateModified\":\"2026-04-30T01:27:33.292Z\"}]}19:T643,**Quick Color Reference**\n- text: #1b2045 (Deep Indigo for headings, #202020 Obsidian for body, #787878 Steel for muted)\n- background: #f9f9f9 (canvas), #ffffff (cards)\n- border: #e9e9e9 (Mist, hairlines), #202020 (dark borders)\n- accent: #006cff (Electric Cobalt, brand surface)\n- primary action: #4672ff (filled action)\n\n**Example Component Prompts**\n1. Build a hero section: Electric Cobalt #006cff background, 40px border-radius, 48px internal padding. Headline 'Scaling crypto payments' in KHTeka 36px weight 700 white. Subtext in KHTeka 18px weight 400 at 60% white. Filled CTA button #4672ff background, white text, 16px radius, 12px 20px padding. Phone mockup overlapping the right edge at 40px border-radius.\n2. Build a content card: white #ffffff background, 1px border #e9e9e9, 40px border-radius, 24px padding. Heading in KHTeka 24px weight 700 in Deep Indigo #1b2045. Body text in KHTeka 16px weight 400 in Obsidian #202020 with 8px gap between lines.\n3. Build a tag badge: Glacial Wash #cce2ff background, Deep Indigo #1b2045 text in KHTeka 12px weight 500, 3px border-radius, 8px 12px padding.\n4. Build the top navigation: white background, WalletConnect Pay blue wordmark logo left, nav links in KHTeka 16px weight 400 in Deep Indigo center-right, 'Request Demo' filled button #006cff with white text and 16px radius at far right.\n5. Build the dark footer: Obsidian #202020 background, 48px top padding, 'Stay updated' heading in KHTeka 24px weight 700 white, email input with 1px #303030 border and 16px radius, white 'Subscribe' button, social link list in Steel #787878 right-aligned."
+      },
+      {
+        "title": "Radius System Philosophy",
+        "content": "The radius scale has exactly three values: 3px for small tags and tight UI chips, 16px for interactive controls (buttons, inputs, nav items, links-as-buttons), and 40px for content surfaces (cards, images, hero panels, large containers). This three-tier jump — not a smooth gradient — is deliberate: the 40px radius on content creates a 'consumer fintech' softness that contrasts with the sharper 16px on controls, signaling that buttons are precise instruments while content is approachable. Never interpolate between these values; the gap between 16 and 40 is the design."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is used almost never — the system relies on generous whitespace, hairline borders (1px in Mist #e9e9e9), and surface color shifts rather than shadow to create layering. The one detected shadow is soft and diffuse (8px blur at 30% black), used as an optional depth cue on select cards rather than a systematic elevation ladder."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#202020",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24353474225450714
+          },
+          "contexts": [
+            "other",
+            "card",
+            "badge",
+            "link",
+            "image",
+            "nav",
+            "button",
+            "list",
+            "heading",
+            "footer"
+          ],
+          "frequency": 663,
+          "confidence": 1,
+          "prominence": 57345925.57154136,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "card/color": 38,
+            "link/color": 4,
+            "list/color": 8,
+            "badge/color": 4,
+            "image/color": 17,
+            "other/color": 41,
+            "button/color": 6,
+            "footer/color": 1,
+            "heading/color": 6,
+            "nav/borderColor": 32,
+            "card/borderColor": 152,
+            "link/borderColor": 28,
+            "list/borderColor": 32,
+            "badge/borderColor": 16,
+            "image/borderColor": 68,
+            "other/borderColor": 158,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 24,
+            "link/backgroundColor": 3,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f9f9f9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9821176395629414
+          },
+          "contexts": [
+            "card",
+            "other",
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1214588.9767951048,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "button/color": 2,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "heading",
+            "link",
+            "body",
+            "icon",
+            "card",
+            "input"
+          ],
+          "frequency": 309,
+          "confidence": 1,
+          "prominence": 1000748.963085761,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "body/color": 1,
+            "card/color": 10,
+            "icon/color": 3,
+            "link/color": 15,
+            "input/color": 1,
+            "other/color": 22,
+            "button/color": 3,
+            "other/stroke": 3,
+            "heading/color": 5,
+            "body/borderColor": 4,
+            "card/borderColor": 40,
+            "icon/borderColor": 12,
+            "link/borderColor": 48,
+            "other/borderColor": 88,
+            "button/borderColor": 20,
+            "heading/borderColor": 20,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 6,
+            "button/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#e9e9e9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9340252444454716
+          },
+          "contexts": [
+            "other",
+            "card",
+            "body"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 660112.141924611,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4,
+            "other/borderColor": 6,
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#006cff",
+          "oklch": {
+            "c": 0.23391742984755506,
+            "h": 259.9541097118559,
+            "l": 0.5748810884094525
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "link",
+            "image"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 643962.3088831808,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 3,
+            "image/color": 3,
+            "link/borderColor": 12,
+            "image/borderColor": 12,
+            "nav/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7651658759683705
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 523095,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "card/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#1b2045",
+          "oklch": {
+            "c": 0.06888103221450088,
+            "h": 274.80486788621835,
+            "l": 0.26092251234834457
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 264,
+          "confidence": 1,
+          "prominence": 504725.5040505502,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "other/fill": 3,
+            "other/color": 42,
+            "button/color": 7,
+            "heading/color": 1,
+            "body/borderColor": 28,
+            "other/borderColor": 144,
+            "button/borderColor": 28,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#bbbbbb",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7920743408035346
+          },
+          "contexts": [
+            "card",
+            "other",
+            "body"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 486043.1219949517,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 1,
+            "body/borderColor": 4,
+            "other/borderColor": 4,
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#303030",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3091856337459671
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 313943.41939133476,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 2,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#cce2ff",
+          "oklch": {
+            "c": 0.04631762628019726,
+            "h": 255.36351512350467,
+            "l": 0.9056886464443578
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 202352.42922414915,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "other/color": 5,
+            "body/borderColor": 20,
+            "other/borderColor": 20
+          }
+        },
+        {
+          "hex": "#4f4f4f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4276078121301855
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 190038.00561394586,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/color": 2,
+            "body/borderColor": 8,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#787878",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5726833287647046
+          },
+          "contexts": [
+            "card",
+            "other",
+            "input"
+          ],
+          "frequency": 54,
+          "confidence": 1,
+          "prominence": 111002.10649967346,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 7,
+            "other/color": 3,
+            "card/borderColor": 28,
+            "input/borderColor": 4,
+            "other/borderColor": 12
+          }
+        },
+        {
+          "hex": "#6c6c6c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.531281802901252
+          },
+          "contexts": [
+            "other",
+            "link",
+            "card"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 34253.313290014856,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 1,
+            "link/color": 4,
+            "other/color": 1,
+            "card/borderColor": 4,
+            "link/borderColor": 16,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#4672ff",
+          "oklch": {
+            "c": 0.21520791562933692,
+            "h": 266.64432012702116,
+            "l": 0.6019790213868885
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 24631.153124697557,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 8,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#66a7ff",
+          "oklch": {
+            "c": 0.14531410431360492,
+            "h": 256.41234422900567,
+            "l": 0.7233193649861861
+          },
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 18918.112408607718,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 4,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#9a9a9a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6862225908810762
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 6298.583184264743,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "body/borderColor": 16
+          }
+        },
+        {
+          "hex": "#e1e3e6",
+          "oklch": {
+            "c": 0.004607607907399863,
+            "h": 258.3255756707026,
+            "l": 0.9151519546505456
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 1504.6094054870107,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 24
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 370.0439718141092,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "icon/color": 1,
+            "button/color": 1,
+            "icon/borderColor": 4,
+            "button/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.05519805671517883,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.95,
+          "background": "#f9f9f9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.3,
+          "background": "#e9e9e9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.33,
+          "background": "#e1e3e6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.29,
+          "background": "#ffffff",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.89,
+          "background": "#cce2ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.68,
+          "background": "#ffffff",
+          "foreground": "#1b2045"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.48,
+          "background": "#f9f9f9",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.89,
+          "background": "#f9f9f9",
+          "foreground": "#1b2045"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.42,
+          "background": "#e9e9e9",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.2,
+          "background": "#ffffff",
+          "foreground": "#303030"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.92,
+          "background": "#e9e9e9",
+          "foreground": "#1b2045"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.67,
+          "background": "#e1e3e6",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.54,
+          "background": "#f9f9f9",
+          "foreground": "#303030"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.33,
+          "background": "#202020",
+          "foreground": "#cce2ff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.2,
+          "background": "#e1e3e6",
+          "foreground": "#1b2045"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.87,
+          "background": "#cce2ff",
+          "foreground": "#1b2045"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.94,
+          "background": "#bbbbbb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.87,
+          "background": "#e9e9e9",
+          "foreground": "#303030"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.26,
+          "background": "#e1e3e6",
+          "foreground": "#303030"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "corners": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "contexts": [
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 21,
+          "asymmetric": true
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "nav",
+            "link",
+            "input"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "card",
+            "image",
+            "other"
+          ],
+          "frequency": 12
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.3) 0px 0px 8px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "nav",
+            "card"
+          ],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "card",
+            "link",
+            "list",
+            "body"
+          ],
+          "frequency": 77,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "columnGap|card",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingLeft|other",
+            "rowGap|card",
+            "columnGap|list",
+            "marginBottom|other",
+            "marginBottom|button",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "input"
+          ],
+          "frequency": 27,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingRight|input"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "paddingRight|badge",
+            "paddingBottom|badge",
+            "paddingLeft|badge",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "body",
+            "card"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|other",
+            "marginBottom|body",
+            "paddingRight|card"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "button",
+            "nav",
+            "card",
+            "input"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|badge"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "heading",
+            "card"
+          ],
+          "frequency": 21,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|card"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "radial",
+        "value": "radial-gradient(78.13% 78.13% at 79.97% 80.72%, rgb(9, 159, 240) 0%, rgb(9, 121, 240) 100%)",
+        "colors": [
+          "rgb(9, 159, 240)",
+          "rgb(9, 121, 240)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "KHTeka-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 219,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Roboto",
+          "source": "system",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 71,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "KHTekaMono-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Roboto",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Roboto",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Roboto",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "KHTekaMono-Regular",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "KHTeka-Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.46,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "KHTekaMono-Regular",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "KHTeka-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "card"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "KHTeka-Regular",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "KHTeka-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "KHTeka-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "badge",
+            "button",
+            "icon",
+            "link",
+            "image",
+            "nav",
+            "list",
+            "body",
+            "footer",
+            "input"
+          ],
+          "frequency": 135,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Roboto",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "KHTeka-Regular",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Roboto",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.41,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "KHTeka-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "KHTeka-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "KHTeka-Regular",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "link",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "KHTeka-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "KHTeka-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "KHTeka-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/829e4017-575c-4479-87d6-7c53b7dc0765.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a9657bbe-b82a-4486-8bfe-abb0ec009234.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/29392960-0acf-4891-ad33-28a72f6a9b75#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"WalletConnect design system\",\"item\":\"https://styles.refero.design/style/29392960-0acf-4891-ad33-28a72f6a9b75\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/29392960-0acf-4891-ad33-28a72f6a9b75#style-reference\",\"name\":\"WalletConnect design system reference\",\"headline\":\"WalletConnect design system | Refero Styles\",\"description\":\"Explore WalletConnect's light Crypto design system: Electric Cobalt #006cff, Indigo Action #4672ff colors, KHTeka, Roboto typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/29392960-0acf-4891-ad33-28a72f6a9b75\",\"mainEntityOfPage\":\"https://styles.refero.design/style/29392960-0acf-4891-ad33-28a72f6a9b75\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"WalletConnect\",\"url\":\"https://walletconnect.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/29392960-0acf-4891-ad33-28a72f6a9b75#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a9657bbe-b82a-4486-8bfe-abb0ec009234.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a9657bbe-b82a-4486-8bfe-abb0ec009234.jpg\",\"caption\":\"Screenshot of WalletConnect\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a9657bbe-b82a-4486-8bfe-abb0ec009234.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"WalletConnect design system\",\"WalletConnect website design\",\"WalletConnect colors\",\"WalletConnect typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Electric Cobalt\",\"Indigo Action\",\"Deep Indigo\",\"Sky Tint\",\"KHTeka\",\"Roboto\",\"KHTeka Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"WalletConnect design system\"},{\"@type\":\"Thing\",\"name\":\"WalletConnect website design\"},{\"@type\":\"Thing\",\"name\":\"WalletConnect colors\"},{\"@type\":\"Thing\",\"name\":\"WalletConnect typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T01:27:33.292Z\",\"dateModified\":\"2026-04-30T01:27:33.292Z\"}]}19:T643,**Quick Color Reference**\n- text: #1b2045 (Deep Indigo for headings, #202020 Obsidian for body, #787878 Steel for muted)\n- background: #f9f9f9 (canvas), #ffffff (cards)\n- border: #e9e9e9 (Mist, hairlines), #202020 (dark borders)\n- accent: #006cff (Electric Cobalt, brand surface)\n- primary action: #4672ff (filled action)\n\n**Example Component Prompts**\n1. Build a hero section: Electric Cobalt #006cff background, 40px border-radius, 48px internal padding. Headline 'Scaling crypto payments' in KHTeka 36px weight 700 white. Subtext in KHTeka 18px weight 400 at 60% white. Filled CTA button #4672ff background, white text, 16px radius, 12px 20px padding. Phone mockup overlapping the right edge at 40px border-radius.\n2. Build a content card: white #ffffff background, 1px border #e9e9e9, 40px border-radius, 24px padding. Heading in KHTeka 24px weight 700 in Deep Indigo #1b2045. Body text in KHTeka 16px weight 400 in Obsidian #202020 with 8px gap between lines.\n3. Build a tag badge: Glacial Wash #cce2ff background, Deep Indigo #1b2045 text in KHTeka 12px weight 500, 3px border-radius, 8px 12px padding.\n4. Build the top navigation: white background, WalletConnect Pay blue wordmark logo left, nav links in KHTeka 16px weight 400 in Deep Indigo center-right, 'Request Demo' filled button #006cff with white text and 16px radius at far right.\n5. Build the dark footer: Obsidian #202020 background, 48px top padding, 'Stay updated' heading in KHTeka 24px weight 700 white, email input with 1px #303030 border and 16px radius, white 'Subscribe' button, social link list in Steel #787878 right-aligned."
+}

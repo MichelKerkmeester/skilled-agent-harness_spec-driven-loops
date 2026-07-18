@@ -1,0 +1,854 @@
+{
+  "color": {
+    "cream-paper": {
+      "$value": "#f4efea",
+      "$type": "color",
+      "$description": "Cream Paper — Page canvas and section backgrounds — the entire site sits on this warm off-white like a notebook page"
+    },
+    "frost-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Frost White — Card surfaces, nav bar, input fields, and overlay panels — clean white layered on the cream canvas"
+    },
+    "chalk-gray": {
+      "$value": "#f8f8f7",
+      "$type": "color",
+      "$description": "Chalk Gray — Secondary surface for body backgrounds and subtle borders — barely-there differentiation from white"
+    },
+    "ice-wash": {
+      "$value": "#ebf9ff",
+      "$type": "color",
+      "$description": "Ice Wash — Tinted blue-white for soft button hovers and highlight washes adjacent to the primary blue"
+    },
+    "notebook-pale": {
+      "$value": "#f9fbe7",
+      "$type": "color",
+      "$description": "Notebook Pale — Faint yellow-green tint used on selected/tagged surfaces for the play accent"
+    },
+    "charcoal-ink": {
+      "$value": "#383838",
+      "$type": "color",
+      "$description": "Charcoal Ink — Primary text, all borders, icon strokes, and the offset shadow color — the universal line color, never pure black"
+    },
+    "pencil-gray": {
+      "$value": "#a1a1a1",
+      "$type": "color",
+      "$description": "Pencil Gray — Muted helper text, secondary borders, and disabled-state outlines"
+    },
+    "graphite": {
+      "$value": "#818181",
+      "$type": "color",
+      "$description": "Graphite — Tertiary borders and dividers, low-emphasis UI rules"
+    },
+    "soft-silver": {
+      "$value": "#c0c0c0",
+      "$type": "color",
+      "$description": "Soft Silver — Icon strokes and low-contrast border accents on illustration-adjacent elements"
+    },
+    "sky-crayon": {
+      "$value": "#6fc2ff",
+      "$type": "color",
+      "$description": "Sky Crayon — Primary action fills, nav accents, and the dominant chromatic surface — the only color loud enough to carry CTAs"
+    },
+    "canary-banner": {
+      "$value": "#ffde00",
+      "$type": "color",
+      "$description": "Canary Banner — Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content."
+    },
+    "duck-bill-orange": {
+      "$value": "#ff9538",
+      "$type": "color",
+      "$description": "Duck Bill Orange — Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "coral-sketch": {
+      "$value": "#f38e84",
+      "$type": "color",
+      "$description": "Coral Sketch — Outlined button border variant — one slot in the rotating rainbow button-border system"
+    },
+    "peach-sketch": {
+      "$value": "#f5b161",
+      "$type": "color",
+      "$description": "Peach Sketch — Outlined button border variant"
+    },
+    "mint-sketch": {
+      "$value": "#38c1b0",
+      "$type": "color",
+      "$description": "Mint Sketch — Outlined button border variant"
+    },
+    "lilac-sketch": {
+      "$value": "#b291de",
+      "$type": "color",
+      "$description": "Lilac Sketch — Outlined button border variant"
+    },
+    "lime-sketch": {
+      "$value": "#b3c419",
+      "$type": "color",
+      "$description": "Lime Sketch — Outlined button border variant"
+    },
+    "periwinkle-sketch": {
+      "$value": "#7597ee",
+      "$type": "color",
+      "$description": "Periwinkle Sketch — Outlined button border variant"
+    },
+    "slate-sketch": {
+      "$value": "#84a6bc",
+      "$type": "color",
+      "$description": "Slate Sketch — Outlined button border variant"
+    },
+    "marigold-sketch": {
+      "$value": "#e1c427",
+      "$type": "color",
+      "$description": "Marigold Sketch — Outlined button border variant"
+    },
+    "wet-cement": {
+      "$value": "#54b4de",
+      "$type": "color",
+      "$description": "Wet Cement — Decorative illustration stroke — water/sky blue outlines in duck and cloud drawings"
+    },
+    "peach-blush": {
+      "$value": "#fdedda",
+      "$type": "color",
+      "$description": "Peach Blush — Soft warm tint for illustrated section backgrounds, never a UI control fill"
+    }
+  },
+  "font": {
+    "aeonik-mono": {
+      "$value": "Aeonik Mono",
+      "$type": "fontFamily",
+      "$description": "Universal brand face — headlines, body, nav, buttons, inputs, cards, footers. Used everywhere as the primary voice. The monospace geometry signals developer-tool credibility while the wide weight range (300–600) allows it to whisper (hero at 300) or command (nav at 600)."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Secondary face for supplementary UI text, third-party embeds, and contexts where proportional letterforms read more naturally than monospace. Letter-spacing 0.0200em–0.0230em."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.48
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "base-12": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-12 at 16px"
+    },
+    "base-13": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-13 at 16px"
+    },
+    "base-14": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-14 at 16px"
+    },
+    "base-15": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-15 at 16px"
+    },
+    "base-16": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-16 at 16px"
+    },
+    "base-17": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-17 at 16px"
+    },
+    "base-18": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-18 at 16px"
+    },
+    "base-19": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-19 at 16px"
+    },
+    "base-20": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-20 at 16px"
+    },
+    "base-21": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-21 at 16px"
+    },
+    "base-22": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-22 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Aeonik Mono",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(56, 56, 56) -6px 6px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "cream-paper": {
+      "$value": "#f4efea",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the base layer everything sits on"
+    },
+    "frost-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card and nav surfaces — clean white raised off the cream"
+    },
+    "chalk-gray": {
+      "$value": "#f8f8f7",
+      "$type": "color",
+      "$description": "Surface level 2: Body backgrounds and section dividers"
+    },
+    "ice-wash": {
+      "$value": "#ebf9ff",
+      "$type": "color",
+      "$description": "Surface level 3: Tinted highlight surfaces adjacent to sky-blue actions"
+    },
+    "canary-banner": {
+      "$value": "#ffde00",
+      "$type": "color",
+      "$description": "Surface level 4: Full-bleed marquee strip and highlight callouts"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://motherduck.com",
+      "siteName": "MotherDuck",
+      "extractedAt": "2026-06-03T16:48:03.858Z",
+      "variant": "extended"
+    }
+  }
+}

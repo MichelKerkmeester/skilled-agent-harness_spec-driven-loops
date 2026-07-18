@@ -1,0 +1,379 @@
+{
+  "color": {
+    "hot-magenta": {
+      "$value": "#ff2e95",
+      "$type": "color",
+      "$description": "Hot Magenta — Primary CTA fill, logo mark, link color, accent strokes — the only chromatic voice in the system, used sparingly to signal action"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary heading text, button text, heavy borders, navigation bar background"
+    },
+    "oat-canvas": {
+      "$value": "#f6f2ee",
+      "$type": "color",
+      "$description": "Oat Canvas — Page background, large surface fills — the warm cream that replaces cold white throughout"
+    },
+    "soft-ink": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Soft Ink — Body text and headings on light surfaces, card surface background for dark elements"
+    },
+    "slate": {
+      "$value": "#0f172a",
+      "$type": "color",
+      "$description": "Slate — Secondary text, subtle body copy — a cool near-black used for non-headline text"
+    },
+    "charcoal": {
+      "$value": "#414040",
+      "$type": "color",
+      "$description": "Charcoal — Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color"
+    },
+    "stone": {
+      "$value": "#848383",
+      "$type": "color",
+      "$description": "Stone — Icon strokes, muted helper text, subtle UI dividers"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, elevated panels, contrast surface against oat canvas"
+    },
+    "warm-mist": {
+      "$value": "#e8e5e0",
+      "$type": "color",
+      "$description": "Warm Mist — Hairline borders, dividers, subtle container outlines — warm-toned to match canvas"
+    },
+    "sand": {
+      "$value": "#e2dcd6",
+      "$type": "color",
+      "$description": "Sand — Secondary borders, decorative outlines on warm surfaces"
+    },
+    "driftwood": {
+      "$value": "#c3c1bf",
+      "$type": "color",
+      "$description": "Driftwood — Card shadow base tone, muted surface fills"
+    },
+    "midnight": {
+      "$value": "#202126",
+      "$type": "color",
+      "$description": "Midnight — Deep heading text variant, near-black with subtle cool cast for high-weight headlines"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for everything. Display headlines use 700/900 italic at 70–79px for editorial poster energy; subheads at 26–30px 600/700; body 16–18px 400; captions 14px 500. The heavy italic display is the signature — most product sites default to upright, Playful leans into the slope for personality."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback used in some button and input contexts. Inter should be preferred; Arial only appears as a degradation layer."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "26px",
+        "fontWeight": 700,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "70px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 70px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "79px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 79px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.22) 0px 32px 80px 0px, rgba(0, 0, 0, 0.08) 0px 2px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "oat-canvas": {
+      "$value": "#f6f2ee",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — the warm cream that sets the entire system apart from cold-white SaaS"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card and elevated panel surface sitting on the oat canvas"
+    },
+    "soft-ink": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Surface level 2: Dark card variant and navigation bar background"
+    },
+    "hot-magenta": {
+      "$value": "#ff2e95",
+      "$type": "color",
+      "$description": "Surface level 3: Accent surface — CTA fills, highlight wash zones"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://playful.software",
+      "siteName": "Playful",
+      "extractedAt": "2026-06-03T16:03:07.634Z",
+      "variant": "extended"
+    }
+  }
+}

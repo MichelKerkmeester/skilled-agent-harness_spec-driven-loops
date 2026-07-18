@@ -1,0 +1,477 @@
+{
+  "color": {
+    "voltage-lime": {
+      "$value": "#d2e823",
+      "$type": "color",
+      "$description": "Voltage Lime — Primary action buttons, highlighted headlines, accent surfaces — the brand's signature chartreuse, used sparingly as functional punctuation across every section"
+    },
+    "cobalt-signal": {
+      "$value": "#2665d6",
+      "$type": "color",
+      "$description": "Cobalt Signal — Full-bleed section backgrounds, link accents — saturated blue used as an alternate hero band"
+    },
+    "bordeaux-maroon": {
+      "$value": "#780016",
+      "$type": "color",
+      "$description": "Bordeaux Maroon — Full-bleed FAQ and deep sections — dark wine red for high-contrast blocks"
+    },
+    "midnight-ink": {
+      "$value": "#1e2330",
+      "$type": "color",
+      "$description": "Midnight Ink — Primary text, icon fills, dark UI outlines — near-black with a faint blue undertone, the default ink color"
+    },
+    "plaster-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Plaster White — Card surfaces, button text, pill nav background — pure white floats above the colored sections"
+    },
+    "bone-canvas": {
+      "$value": "#f3f3f1",
+      "$type": "color",
+      "$description": "Bone Canvas — Page background base, subtle button surfaces — warm off-white with a faint green cast"
+    },
+    "cement-gray": {
+      "$value": "#adadad",
+      "$type": "color",
+      "$description": "Cement Gray — Muted card backgrounds, disabled or secondary surfaces"
+    },
+    "slate-mute": {
+      "$value": "#676b5f",
+      "$type": "color",
+      "$description": "Slate Mute — Muted link text, secondary borders, low-emphasis text — warm desaturated olive-gray"
+    },
+    "carbon": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Carbon — Deep button text and borders for inverted controls"
+    },
+    "lilac-whisper": {
+      "$value": "#e9c0e9",
+      "$type": "color",
+      "$description": "Lilac Whisper — Decorative borders, icon strokes, soft accent washes — pastel pink used for outlines and ornaments"
+    },
+    "indigo-abyss": {
+      "$value": "#061492",
+      "$type": "color",
+      "$description": "Indigo Abyss — Deep card surfaces, tertiary button backgrounds — saturated navy"
+    },
+    "forest-depth": {
+      "$value": "#254f1a",
+      "$type": "color",
+      "$description": "Forest Depth — Headline outlines, bordered cards, body emphasis — dark forest green as an alternate text color"
+    },
+    "saffron": {
+      "$value": "#d6a337",
+      "$type": "color",
+      "$description": "Saffron — Card accent backgrounds — warm gold for variety blocks"
+    }
+  },
+  "font": {
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback for form inputs and legacy text nodes — only appears as a default rendering, not a designed choice"
+    },
+    "linksans": {
+      "$value": "Linksans",
+      "$type": "fontFamily",
+      "$description": "Primary brand typeface — geometric custom sans used everywhere from nav to 80px display headlines. Weight 700–800 at large sizes with negative letter-spacing creates the compressed, poster-like headline voice. Substitute with Inter or Space Grotesk if Linksans is unavailable."
+    },
+    "linksans-linksansvf": {
+      "$value": "Linksans Linksansvf",
+      "$type": "fontFamily",
+      "$description": "Linksans Linksansvf — detected in extracted data but not described by AI"
+    },
+    "yerk": {
+      "$value": "yerk",
+      "$type": "fontFamily",
+      "$description": "yerk — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Linksans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Linksans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "yerk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Linksans",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 2.32
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Linksans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Linksans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Linksans",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Linksans",
+        "fontSize": "25px",
+        "fontWeight": 700,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 25px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Linksans",
+        "fontSize": "51px",
+        "fontWeight": 700,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 51px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 56px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Linksans Linksansvf",
+        "fontSize": "80px",
+        "fontWeight": 800,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "65": {
+      "$value": "65px",
+      "$type": "dimension",
+      "$description": "Spacing 65px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "29.09px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "41.6px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#f3f3f1",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background, off-white warm neutral"
+    },
+    "plaster-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Floating nav, cards, input fields, button text"
+    },
+    "color-section-band": {
+      "$value": "#d2e823",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed hero and content sections"
+    },
+    "color-section-band-alt": {
+      "$value": "#2665d6",
+      "$type": "color",
+      "$description": "Surface level 3: Alternate full-bleed sections"
+    },
+    "deep-section-band": {
+      "$value": "#780016",
+      "$type": "color",
+      "$description": "Surface level 4: FAQ and footer depth sections"
+    },
+    "cement-overlay": {
+      "$value": "#adadad",
+      "$type": "color",
+      "$description": "Surface level 5: Muted overlays and secondary card backgrounds"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://linktr.ee",
+      "siteName": "Linktr",
+      "extractedAt": "2026-06-03T15:26:07.229Z",
+      "variant": "extended"
+    }
+  }
+}

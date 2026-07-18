@@ -1,0 +1,559 @@
+{
+  "source": "https://styles.refero.design/style/3cc1d30c-3b08-48af-bbf0-df195d77835f",
+  "uuid": "3cc1d30c-3b08-48af-bbf0-df195d77835f",
+  "name": "Piet Oudolf",
+  "northStar": "Botanical index on white paper.\nA field guide to gardens, set in light type with the restraint of a museum wall label.",
+  "capturedAt": "2026-07-18T07:16:34.317Z",
+  "meta": {
+    "url": "https://oudolf.com",
+    "siteName": "Piet Oudolf",
+    "extractedAt": "2026-06-03T21:03:23.292Z",
+    "durationMs": 39015,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 262,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all project and section titles at exactly 60px Maison Neue Book weight 300 — never bold, never above 300",
+      "Use 12px UniversLTStd-Light for all metadata, country codes, and side labels at 1.6 line-height",
+      "Use 15px UniversLTStd-Light for body copy and navigation at 1.87 line-height for editorial airiness",
+      "Render every link with a 1px #808080 underline offset 3px from the baseline — no fill, no border box, no background color",
+      "Indent every project link exactly 22px from the country code column so the tag and title align as a herbarium pair",
+      "Let the page breathe: use 60px horizontal padding on hero sections and 40px vertical padding on the nav bar",
+      "Keep the page at 0% colorfulness — grayscale only, no accent hues, no brand color, no filled buttons"
+    ],
+    "donts": [
+      "Never introduce a brand color, accent, or fill of any kind — the monochromatic palette is the identity",
+      "Never set a project title below 48px or above 64px — the 60px headline scale is a fixed point of the system",
+      "Never add shadows, gradients, glows, or any form of z-axis depth to cards, buttons, or containers",
+      "Never round corners — all radii are 0px; the system is deliberately rectilinear like a printed page",
+      "Never bold body or heading type — weight 300 is the ceiling for display, weight 400 for everything else",
+      "Never place more than 6px between an inline link and its sibling, or more than 3px between text and its underline",
+      "Never use a filled button, pill, or chip — interaction is expressed only through typographic underlines"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Field White",
+        "role": "Page canvas, text on dark inverted sections, and link underline anchor for body copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Charcoal Black",
+        "role": "SVG icon fills and absolute typographic black where maximum contrast is needed (headings against light imagery)",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Lead Gray",
+        "role": "Primary type, all link and border lines, and the connective tissue of the system — every hairline rule, navigation separator, and body character sits here",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Ash Gray",
+        "role": "Navigation labels, muted metadata, footer text, and the secondary tonal floor that recedes behind lead-gray working type",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Smoke",
+        "role": "Subtle border accent used sparingly to separate tertiary structural elements",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed, single-column typographic index. The hero is the list itself — a continuous run of project titles with country-code labels, flowing top-to-bottom with no section breaks, no card containers, and no imagery. Navigation is a minimal top bar with 40px vertical padding. Side margin holds rotated section labels. There are no grids, no card layouts, and no two-column splits on the index; the entire page reads as one uninterrupted column of type on white paper. Content is left-aligned with 22px indent from the country tag column.",
+    "imagery": "Photography is conspicuously absent from the index view — the project list relies entirely on typography and the reader's prior knowledge of each named garden. The visual language is that of a printed field guide or museum wall text: type as image, whitespace as frame. Where photography does appear (project detail pages), it is likely high-key, naturalistic, and full-bleed — generous crops of planting compositions without lifestyle staging, consistent with Piet Oudolf's own artistic photography. Iconography is monoline SVG, 1px stroke, black on white.",
+    "similar": [
+      {
+        "why": "Same oversized-light-weight serif/sans display type, pure white canvas, country-or-city micro-labels, and index-style project listings with hairline underlines",
+        "business": "Hauser & Wirth gallery site"
+      },
+      {
+        "why": "Same editorial-art-book restraint — whisper-weight 60px titles, tiny uppercase meta tags, zero color, navigation reduced to a wordmark plus a few text links",
+        "business": "Serpentine Galleries site"
+      },
+      {
+        "why": "Same field-guide typographic system — monumental light-weight project names with abbreviated geographic codes above, pure white background, no decorative chrome",
+        "business": "OMA / Rem Koolhaas"
+      },
+      {
+        "why": "Same museum-colophon mood — Univers-style sans, generous leading, hairline rules instead of borders, and content that behaves like a printed index rather than a software interface",
+        "business": "Lars Müller Publishers"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "6px",
+      "sectionGap": "60px",
+      "cardPadding": "40px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "The single global surface — the entire interface is pressed directly onto pure white with no card or panel system"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Botanical index on white paper.\nA field guide to gardens, set in light type with the restraint of a museum wall label.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.87
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Full-bleed white bar with 40px top/bottom padding. Left: brand wordmark 'Piet Oudolf' in 15px UniversLTStd-Light #808080. Center: nav items 'Projects', 'Information', 'Private Garden' at 15px, #808080. Right: search icon. 6px gap between nav items. No border, no background, no shadow."
+      },
+      {
+        "name": "Country Code Tag",
+        "role": "Geographic metadata for each project entry",
+        "description": "Tiny 12px UniversLTStd-Light at 1.6 line-height, set in lead gray #808080. Appears directly above its associated project name, 3px gap. Two-letter uppercase abbreviation (US, DE, NL, SE, UK, IT, SP, JP, KR). The only typographic ornament in the system — functions as a herbarium label."
+      },
+      {
+        "name": "Project Title Link",
+        "role": "Primary clickable entry — the core content unit",
+        "description": "60px Maison Neue Book weight 300 at 1.25 line-height, #808080. Underlined with a 1px #808080 rule offset 3px from baseline. 22px left indent from the country tag column. Hovered titles shift to #000000. Punctuation is a trailing comma, turning the list into a continuous typographic sentence."
+      },
+      {
+        "name": "Side Margin Label",
+        "role": "Vertical section indicator",
+        "description": "Rotated 90° text reading 'Public gardens' / 'Private gardens' in 12px UniversLTStd-Light #808080, sitting in the left margin. Anchors the reader's orientation to which index they are reading."
+      },
+      {
+        "name": "Inline Link",
+        "role": "Connected text link within body or nav",
+        "description": "UniversLTStd-Light 15px #808080 with a 1px #808080 underline, 3px offset below baseline. No color change, no background — interaction is conveyed through the underline alone."
+      },
+      {
+        "name": "Search Icon",
+        "role": "Utility trigger in the top right of navigation",
+        "description": "SVG glyph at #000000, minimal line weight, approximately 16px. No border, no background, no hover state beyond cursor."
+      },
+      {
+        "name": "Footer",
+        "role": "Site colophon and secondary links",
+        "description": "UniversLTStd-Light 12px #b3b3b3, generous 2.33 line-height for breathing room. Left-aligned, separated from main content by 60px vertical gap. No dividers, no columns — a quiet block of small gray type."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Signature display face for project titles and section headings — 60px at weight 300 is the defining choice, letting each garden name whisper across the page rather than announce",
+        "sizes": "60px",
+        "family": "Maison Neue Book",
+        "weight": "300",
+        "lineHeight": "1.25",
+        "substitute": "Canela, Tiempos Headline Light, or a thin cut of a humanist sans",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Workhorse sans for navigation, country-code labels, body, footer, and all meta information — 12px handles the tiny geo tags above project names, 15px carries paragraph body at generous 1.87 leading for editorial breathing room",
+        "sizes": "12px, 15px",
+        "family": "UniversLTStd-Light",
+        "weight": "400",
+        "lineHeight": "1.60, 1.87, 2.33",
+        "substitute": "Univers Next Pro Light, Aktiv Grotesk Light, or Inter Light"
+      }
+    ],
+    "description": "Piet Oudolf's site is a typographic herbarium pressed flat on white paper: a single column of oversized, whisper-weight place names punctuated by tiny two-letter country codes, all rendered in pure grayscale. The system refuses every conventional interface signal — no fills, no shadows, no accent hues, no rounded corners, no gradients — letting scale contrast and a single hairline rule carry the entire hierarchy. Whitespace is the dominant material; elements sit on an infinite white field with surgical, near-calligraphic gaps between them. The mood is botanical index meets art-book colophon: the design disappears so the named gardens can breathe.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3cc1d30c-3b08-48af-bbf0-df195d77835f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Piet Oudolf design system\",\"item\":\"https://styles.refero.design/style/3cc1d30c-3b08-48af-bbf0-df195d77835f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3cc1d30c-3b08-48af-bbf0-df195d77835f#style-reference\",\"name\":\"Piet Oudolf design system reference\",\"headline\":\"Piet Oudolf design system | Refero Styles\",\"description\":\"Explore Piet Oudolf's light Agency design system: Field White #ffffff, Charcoal Black #000000 colors, Maison Neue Book, UniversLTStd-Light typography, and...\",\"url\":\"https://styles.refero.design/style/3cc1d30c-3b08-48af-bbf0-df195d77835f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3cc1d30c-3b08-48af-bbf0-df195d77835f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Piet Oudolf\",\"url\":\"https://oudolf.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3cc1d30c-3b08-48af-bbf0-df195d77835f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/09eed24b-58a6-4936-a403-2900a088248b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/09eed24b-58a6-4936-a403-2900a088248b.jpg\",\"caption\":\"Screenshot of Piet Oudolf\"},\"image\":\"https://images.refero.design/styles/refero.design/image/09eed24b-58a6-4936-a403-2900a088248b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Piet Oudolf design system\",\"Piet Oudolf website design\",\"Piet Oudolf colors\",\"Piet Oudolf typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Field White\",\"Charcoal Black\",\"Lead Gray\",\"Ash Gray\",\"Maison Neue Book\",\"UniversLTStd-Light\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Piet Oudolf design system\"},{\"@type\":\"Thing\",\"name\":\"Piet Oudolf website design\"},{\"@type\":\"Thing\",\"name\":\"Piet Oudolf colors\"},{\"@type\":\"Thing\",\"name\":\"Piet Oudolf typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:45:27.355Z\",\"dateModified\":\"2026-04-30T02:45:27.355Z\"}]}19:T6f9,**Quick Color Reference**\n- background: #ffffff\n- text: #808080\n- border / underline: #808080\n- muted text: #b3b3b3\n- max contrast / SVG: #000000\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Project Title Entry**: Render a single list item on a white background. Above the title, set a 12px UniversLTStd-Light country code label in #808080 with 1.6 line-height. Below it, set the project name at 60px Maison Neue Book weight 300, #808080, 1.25 line-height, with a 1px #808080 underline offset 3px below the baseline. Left-indent the title 22px from the country code. Gap between the code and title: 3px.\n\n2. **Top Navigation Bar**: Full-bleed white bar with 40px top and bottom padding. Left-aligned wordmark 'Piet Oudolf' in 15px UniversLTStd-Light #808080. Centered group of nav links ('Projects', 'Information', 'Private Garden') at 15px UniversLTStd-Light #808080, each underlined with a 1px #808080 line offset 3px below baseline, separated by 6px margins. Right-aligned search icon as a 16px black SVG glyph. No background, no border, no shadow.\n\n3. **Side Margin Section Label**: Set 'Public gardens' in 12px UniversLTStd-Light #808080, rotated 90° counter-clockwise, positioned in the left page margin (60px from page edge). 1.6 line-height. No background, no border.\n\n4. **Footer Colophon**: Left-aligned block at the bottom of the page, 60px vertical gap above. Text in 12px UniversLTStd-Light #b3b3b3 at 2.33 line-height. No dividers, no columns, no links styled differently from body.\n\n5. **Inline Body Link**: Within a paragraph of 15px UniversLTStd-Light #808080 at 1.87 line-height, set a linked phrase at the same size and color, with a 1px #808080 underline offset 3px below the baseline. No color change, no background, no border."
+      }
+    ],
+    "elevationPhilosophy": "Zero elevation. The design intentionally eschews all shadows, borders on content blocks, and z-axis depth — every element lives on the same white plane. Hierarchy is built purely through typographic scale, whitespace, and a single hairline rule. This flatness is core to the system: it makes the site read as a printed field guide rather than a software interface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "nav",
+            "hero",
+            "body"
+          ],
+          "frequency": 544,
+          "confidence": 1,
+          "prominence": 8901038.08133527,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 12,
+            "body/color": 34,
+            "hero/color": 1,
+            "link/color": 35,
+            "other/color": 17,
+            "heading/color": 11,
+            "nav/borderColor": 44,
+            "body/borderColor": 136,
+            "hero/borderColor": 4,
+            "link/borderColor": 138,
+            "other/borderColor": 68,
+            "heading/borderColor": 44
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.766119576592072
+          },
+          "contexts": [
+            "footer",
+            "other",
+            "nav"
+          ],
+          "frequency": 96,
+          "confidence": 1,
+          "prominence": 2109860.137390381,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 12,
+            "other/color": 7,
+            "footer/color": 1,
+            "nav/borderColor": 44,
+            "other/borderColor": 28,
+            "footer/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 330,
+          "confidence": 1,
+          "prominence": 1611357.3258103894,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 33,
+            "heading/color": 33,
+            "other/borderColor": 132,
+            "heading/borderColor": 132
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 99,
+          "confidence": 1,
+          "prominence": 1278942.3165316344,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 99
+          }
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1681.6452132651466,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#b3b3b3",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "link",
+            "nav"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 33,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 33,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|hero",
+            "paddingLeft|hero"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "UniversLTStd-Light",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 130,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Maison Neue Book",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 66,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "UniversLTStd-Light",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 33,
+          "lineHeight": 2.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "UniversLTStd-Light",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "nav",
+            "hero",
+            "footer",
+            "body"
+          ],
+          "frequency": 96,
+          "lineHeight": 1.87,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "UniversLTStd-Light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Maison Neue Book",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 66,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/0e303380-7c04-41c3-b7af-558ab7e61501.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/09eed24b-58a6-4936-a403-2900a088248b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3cc1d30c-3b08-48af-bbf0-df195d77835f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Piet Oudolf design system\",\"item\":\"https://styles.refero.design/style/3cc1d30c-3b08-48af-bbf0-df195d77835f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3cc1d30c-3b08-48af-bbf0-df195d77835f#style-reference\",\"name\":\"Piet Oudolf design system reference\",\"headline\":\"Piet Oudolf design system | Refero Styles\",\"description\":\"Explore Piet Oudolf's light Agency design system: Field White #ffffff, Charcoal Black #000000 colors, Maison Neue Book, UniversLTStd-Light typography, and...\",\"url\":\"https://styles.refero.design/style/3cc1d30c-3b08-48af-bbf0-df195d77835f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3cc1d30c-3b08-48af-bbf0-df195d77835f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Piet Oudolf\",\"url\":\"https://oudolf.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3cc1d30c-3b08-48af-bbf0-df195d77835f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/09eed24b-58a6-4936-a403-2900a088248b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/09eed24b-58a6-4936-a403-2900a088248b.jpg\",\"caption\":\"Screenshot of Piet Oudolf\"},\"image\":\"https://images.refero.design/styles/refero.design/image/09eed24b-58a6-4936-a403-2900a088248b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Piet Oudolf design system\",\"Piet Oudolf website design\",\"Piet Oudolf colors\",\"Piet Oudolf typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Field White\",\"Charcoal Black\",\"Lead Gray\",\"Ash Gray\",\"Maison Neue Book\",\"UniversLTStd-Light\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Piet Oudolf design system\"},{\"@type\":\"Thing\",\"name\":\"Piet Oudolf website design\"},{\"@type\":\"Thing\",\"name\":\"Piet Oudolf colors\"},{\"@type\":\"Thing\",\"name\":\"Piet Oudolf typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:45:27.355Z\",\"dateModified\":\"2026-04-30T02:45:27.355Z\"}]}19:T6f9,**Quick Color Reference**\n- background: #ffffff\n- text: #808080\n- border / underline: #808080\n- muted text: #b3b3b3\n- max contrast / SVG: #000000\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Project Title Entry**: Render a single list item on a white background. Above the title, set a 12px UniversLTStd-Light country code label in #808080 with 1.6 line-height. Below it, set the project name at 60px Maison Neue Book weight 300, #808080, 1.25 line-height, with a 1px #808080 underline offset 3px below the baseline. Left-indent the title 22px from the country code. Gap between the code and title: 3px.\n\n2. **Top Navigation Bar**: Full-bleed white bar with 40px top and bottom padding. Left-aligned wordmark 'Piet Oudolf' in 15px UniversLTStd-Light #808080. Centered group of nav links ('Projects', 'Information', 'Private Garden') at 15px UniversLTStd-Light #808080, each underlined with a 1px #808080 line offset 3px below baseline, separated by 6px margins. Right-aligned search icon as a 16px black SVG glyph. No background, no border, no shadow.\n\n3. **Side Margin Section Label**: Set 'Public gardens' in 12px UniversLTStd-Light #808080, rotated 90° counter-clockwise, positioned in the left page margin (60px from page edge). 1.6 line-height. No background, no border.\n\n4. **Footer Colophon**: Left-aligned block at the bottom of the page, 60px vertical gap above. Text in 12px UniversLTStd-Light #b3b3b3 at 2.33 line-height. No dividers, no columns, no links styled differently from body.\n\n5. **Inline Body Link**: Within a paragraph of 15px UniversLTStd-Light #808080 at 1.87 line-height, set a linked phrase at the same size and color, with a 1px #808080 underline offset 3px below the baseline. No color change, no background, no border."
+}

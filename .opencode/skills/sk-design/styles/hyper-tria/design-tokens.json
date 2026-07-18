@@ -1,0 +1,265 @@
+{
+  "color": {
+    "ember-red": {
+      "$value": "#ee3a49",
+      "$type": "color",
+      "$description": "Ember Red — Wordmark, navigation text, kicker labels, and the single chromatic accent that makes the otherwise monochrome system read as a brand. The warmth against pure black and white creates editorial urgency without tipping into alarm"
+    },
+    "hyper-green": {
+      "$value": "#0fa64b",
+      "$type": "color",
+      "$description": "Hyper Green — Reserved for the rotating circular brand badge and high-prominence brand moments. A single saturated spot of color in an otherwise achromatic system — used sparingly so it lands as identity, not decoration"
+    },
+    "signal-blue": {
+      "$value": "#007bff",
+      "$type": "color",
+      "$description": "Signal Blue — Outlined/ghost action border, image frame accent, and link underline. Functions as the system's cool counterweight to the warm Ember Red — used for bordered interactive elements rather than filled buttons"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas in the hero, primary text color in light sections, and the dominant border color across all UI elements. Carries the heaviest weight in the system — defines edges, type, and spatial structure"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Hairline borders, dividers, input outlines, and card edges on light surfaces."
+    },
+    "graphite": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Graphite — Secondary navigation text and border color for tertiary UI elements. The middle tone that prevents the black/white binary from feeling stark in repetitive nav and list contexts"
+    }
+  },
+  "font": {
+    "aeonik": {
+      "$value": "Aeonik",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all display, heading, and body text. Weight 300 at 75–90px with line-heights near 0.90–1.00 creates the system's signature sculptural headlines — letterforms lock together through aggressive negative tracking (-0.053em) rather than spacing. Mid-weight 400–500 handles body and UI at 19–20px with 1.45–1.70 line-height for generous readability."
+    },
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "System fallback for nav items, footer micro-copy, and supporting UI text where the custom Aeonik isn't loaded. Carries no distinctive role — purely a graceful degradation layer."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Aeonik Regular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 2.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Aeonik Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Aeonik Regular",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Aeonik Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Aeonik Regular",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.48
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Aeonik Regular",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Aeonik Regular",
+        "fontSize": "35px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 35px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Aeonik Regular",
+        "fontSize": "75px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 75px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Aeonik Regular",
+        "fontSize": "90px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 90px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "110": {
+      "$value": "110px",
+      "$type": "dimension",
+      "$description": "Spacing 110px"
+    },
+    "115": {
+      "$value": "115px",
+      "$type": "dimension",
+      "$description": "Spacing 115px"
+    },
+    "145": {
+      "$value": "145px",
+      "$type": "dimension",
+      "$description": "Spacing 145px"
+    }
+  },
+  "surface": {
+    "hero-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed black stage for the 3D metallic wordmark hero"
+    },
+    "content-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Primary light-mode surface for editorial work showcase sections"
+    },
+    "brand-badge": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Circular floating brand identifier surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://hypertria.com",
+      "siteName": "Hyper Tria",
+      "extractedAt": "2026-06-03T20:42:45.387Z",
+      "variant": "extended"
+    }
+  }
+}

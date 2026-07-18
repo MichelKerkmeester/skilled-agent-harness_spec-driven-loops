@@ -1,0 +1,130 @@
+{
+  "color": {
+    "onyx-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx Black — Page canvas, hero background, card surface base — the only color that ever fills a region. Every section, card, and divider sits on this absolute black"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Primary display type, nav text, card titles, body copy, hairline borders on the few framed elements — used wherever a shape or letter needs to be seen against black"
+    },
+    "ash-gray": {
+      "$value": "#8e8e8e",
+      "$type": "color",
+      "$description": "Ash Gray — Muted metadata and secondary nav strokes — the only mid-tone in the system, reserved for information that must recede behind the headline"
+    }
+  },
+  "font": {
+    "martin": {
+      "$value": "Martin",
+      "$type": "fontFamily",
+      "$description": "Signature display headline. A custom condensed sans rendered at 153px — used only for the hero statement. Its scale is the brand: every other element on the page visually defers to it. Substitute: Anton, Tungsten Bold, Druk Wide Bold."
+    },
+    "america": {
+      "$value": "America",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body voice — nav links, card titles, and tagline copy. A neo-grotesque with quiet character; the contrast against Martin's display weight is what creates the system's editorial rhythm. Substitute: Söhne, Inter, Neue Haas Grotesk."
+    },
+    "helvetica-neue": {
+      "$value": "Helvetica Neue",
+      "$type": "fontFamily",
+      "$description": "Fallback / system layer. Appears where America is absent — likely secondary display moments or browser-default rendering. Keeps a grotesque geometry consistent with America at smaller scale."
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "America",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "America",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "America",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Martin",
+        "fontSize": "153px",
+        "fontWeight": 400,
+        "lineHeight": 0.63
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 153px"
+    }
+  },
+  "spacing": {
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    },
+    "43": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Spacing 43px"
+    },
+    "78": {
+      "$value": "78px",
+      "$type": "dimension",
+      "$description": "Spacing 78px"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Every region of the page — hero, nav, grid, footer — sits directly on this surface. There is no higher elevation."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.breakmaiden.co",
+      "siteName": "Break Maiden",
+      "extractedAt": "2026-06-03T19:16:50.716Z",
+      "variant": "extended"
+    }
+  }
+}

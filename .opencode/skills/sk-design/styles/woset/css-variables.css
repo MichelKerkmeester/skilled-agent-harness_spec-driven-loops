@@ -1,0 +1,61 @@
+:root {
+  /* Colors */
+  --color-soft-pebble: #e5e7eb;
+  --color-carbon-ink: #000000;
+  --color-ash: #bbbab7;
+  --color-stone: #8d8c8a;
+  --color-sunlit-marigold: #ecca53;
+
+  /* Typography — Font Families */
+  --font-ts-unused: 'ts-unused', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-macan: 'Macan', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gtstandard-m: 'GTStandard-M', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-a1-gothic-m: 'A1 Gothic M', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 15px;
+  --leading-body: 20.25;
+  --tracking-body: -0.3px;
+  --text-product-title: 24px;
+  --leading-product-title: 32.4;
+  --tracking-product-title: 1.6px;
+  --text-display: 95px;
+  --leading-display: 95;
+  --tracking-display: -3.8px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-6: 6px;
+  --spacing-9: 9px;
+  --spacing-10: 10px;
+  --spacing-11: 11px;
+  --spacing-14: 14px;
+  --spacing-15: 15px;
+  --spacing-20: 20px;
+  --spacing-22: 22px;
+  --spacing-30: 30px;
+  --spacing-48: 48px;
+  --spacing-60: 60px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 60px;
+  --card-padding: 22px;
+  --element-gap: 22px;
+
+  /* Border Radius */
+  --radius-3xl: 30px;
+
+  /* Named Radii */
+  --radius-cards: 0px;
+  --radius-images: 0px;
+  --radius-inputs: 30px;
+  --radius-buttons: 30px;
+
+  /* Surfaces */
+  --surface-page-canvas: #e5e7eb;
+  --surface-active-filter-surface: #ecca53;
+}

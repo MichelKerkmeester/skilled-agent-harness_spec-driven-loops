@@ -1,0 +1,59 @@
+:root {
+  /* Colors */
+  --color-honk-blue: #008fff;
+  --color-honk-sky: #00a0ff;
+  --color-signal-yellow: #ffe400;
+  --color-honk-white: #ffffff;
+  --color-carbon: #111111;
+  --color-true-black: #000000;
+  --color-slate: #363636;
+  --color-game-green: #3fcc6b;
+
+  /* Typography — Font Families */
+  --font-honk-header: 'Honk Header', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-honk-sans: 'Honk Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 13px;
+  --leading-caption: 1.55;
+  --tracking-caption: -0.026px;
+  --text-body-lg: 19px;
+  --leading-body-lg: 1.55;
+  --tracking-body-lg: -0.006px;
+  --text-display: 52px;
+  --leading-display: 1.23;
+  --tracking-display: -0.012px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 20-24px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-md: 6px;
+  --radius-2xl: 16px;
+
+  /* Named Radii */
+  --radius-cards: 16px;
+  --radius-buttons: 6px;
+  --radius-small-pills: 6px;
+  --radius-notification-panels: 16px;
+
+  /* Surfaces */
+  --surface-honk-blue-canvas: #008fff;
+  --surface-honk-sky: #00a0ff;
+  --surface-honk-white-panel: #ffffff;
+}

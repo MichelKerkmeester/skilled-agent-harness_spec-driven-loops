@@ -1,0 +1,379 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#272421",
+      "$type": "color",
+      "$description": "Ink — Primary text, filled buttons, dark inverse surfaces, hairlines, logo mark. The single darkest token in the system — a warm near-black that reads as ink, not pure black"
+    },
+    "paper-warm": {
+      "$value": "#edebe8",
+      "$type": "color",
+      "$description": "Paper Warm — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "paper-cool": {
+      "$value": "#e3e3e2",
+      "$type": "color",
+      "$description": "Paper Cool — Tertiary surface tint, alternating row backgrounds, inset wells. Slightly cooler than Paper Warm — used sparingly to create layered depth without color"
+    },
+    "mist": {
+      "$value": "#eeeeed",
+      "$type": "color",
+      "$description": "Mist — Subtle dividers, low-contrast borders, badge fill backgrounds, hover wash on neutral surfaces. Sits one step lighter than Paper Warm for hairline detail work"
+    },
+    "stone": {
+      "$value": "#7d7c7a",
+      "$type": "color",
+      "$description": "Stone — Muted body copy, secondary metadata, disabled labels, low-emphasis icon strokes. The mid-warm-gray that keeps supporting text legible without competing with Ink"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal — Link text and link borders for in-content references. A step lighter than Ink, used only when a link needs to feel slightly less assertive than the primary type"
+    },
+    "white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "White — Page canvas, button text on Ink fills, nav background, card image overlay text. The paper the whole system is printed on"
+    }
+  },
+  "font": {
+    "egyptienne-f-lt": {
+      "$value": "Egyptienne F LT",
+      "$type": "fontFamily",
+      "$description": "Display and hero headlines. This serif is the signature voice — its classical bracketed serifs and even stroke contrast give the brand a printed-monograph feel that sans-serif alternatives cannot reproduce. Used only for editorial display text, never for body or UI."
+    },
+    "diatype": {
+      "$value": "Diatype",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body typeface. Geometric humanist sans that carries navigation, body copy, buttons, subheadings, and large sans-serif display text. 500 for emphasized labels, 700 reserved for rare weight contrast, 400 as the workhorse."
+    },
+    "diatype-mono": {
+      "$value": "Diatype Mono",
+      "$type": "fontFamily",
+      "$description": "Micro-labels: step numbers, category tags (USE CASES, ADAPT, EVALUATE, SERVE), uppercase nav items, badge text. The wide tracking and mono face create the 'typographic furniture' that signals system structure without competing with the serif display."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Diatype Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Diatype Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Diatype Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Egyptienne F LT",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "72px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Egyptienne F LT",
+        "fontSize": "77px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 77px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "88px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 88px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Egyptienne F LT",
+        "fontSize": "94px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 94px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "76": {
+      "$value": "76px",
+      "$type": "dimension",
+      "$description": "Spacing 76px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "84": {
+      "$value": "84px",
+      "$type": "dimension",
+      "$description": "Spacing 84px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "136": {
+      "$value": "136px",
+      "$type": "dimension",
+      "$description": "Spacing 136px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8.96px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "1600px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(39, 36, 33, 0.1) 0px 4px 12px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page background, base layer for all content sections"
+    },
+    "soft-surface": {
+      "$value": "#edebe8",
+      "$type": "color",
+      "$description": "Surface level 2: Card backgrounds, feature panels, secondary buttons, soft section bands"
+    },
+    "cool-surface": {
+      "$value": "#e3e3e2",
+      "$type": "color",
+      "$description": "Surface level 3: Inset wells, table headers, slightly recessed containers"
+    },
+    "inverse-surface": {
+      "$value": "#272421",
+      "$type": "color",
+      "$description": "Surface level 4: Filled buttons, dark badges, rare inverted sections — the only dark surface token"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.adaptive-ml.com",
+      "siteName": "Adaptive ML",
+      "extractedAt": "2026-06-03T20:15:57.196Z",
+      "variant": "extended"
+    }
+  }
+}

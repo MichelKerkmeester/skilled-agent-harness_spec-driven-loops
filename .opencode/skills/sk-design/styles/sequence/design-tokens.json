@@ -1,0 +1,369 @@
+{
+  "color": {
+    "electric-iris": {
+      "$value": "#6c00f6",
+      "$type": "color",
+      "$description": "Electric Iris — Violet text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "bright-violet": {
+      "$value": "#7f22fe",
+      "$type": "color",
+      "$description": "Bright Violet — Violet text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "indigo-drift": {
+      "$value": "#4f46e5",
+      "$type": "color",
+      "$description": "Indigo Drift — Gradient terminus — pairs with Electric Iris to create the right-leaning purple-to-indigo gradient on CTAs and hero accents"
+    },
+    "midnight-slate": {
+      "$value": "#0f172b",
+      "$type": "color",
+      "$description": "Midnight Slate — Primary text, dark surface fills, logo mark, and icon strokes — the heaviest neutral in the system"
+    },
+    "graphite": {
+      "$value": "#1d293d",
+      "$type": "color",
+      "$description": "Graphite — Dark UI borders, secondary dark surfaces, and high-contrast dividers where a softer gray reads too faint"
+    },
+    "ash": {
+      "$value": "#020618",
+      "$type": "color",
+      "$description": "Ash — Near-black button text and icon glyphs — used as the foreground on filled purple CTAs to maximize contrast without true black"
+    },
+    "fog": {
+      "$value": "#90a1b9",
+      "$type": "color",
+      "$description": "Fog — Muted helper text, nav icons, and low-emphasis stroke work — the bridge between white canvas and primary text"
+    },
+    "silver": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Silver — Default hairline border, card dividers, and the most common neutral surface tone — carries the structural skeleton of every layout"
+    },
+    "mist": {
+      "$value": "#f1f5f9",
+      "$type": "color",
+      "$description": "Mist — Subtle surface tint for alt-row cards, input backgrounds, and section bands that need a whisper of separation from the white canvas"
+    },
+    "white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "White — Page canvas, card surface, and button text on purple fills — the bright base everything floats on"
+    },
+    "spearmint": {
+      "$value": "#00d492",
+      "$type": "color",
+      "$description": "Spearmint — Decorative product-mockup accent — used in illustrations, code editor UI, and inline highlights inside screenshots, not in chrome"
+    },
+    "sky-pop": {
+      "$value": "#51a2ff",
+      "$type": "color",
+      "$description": "Sky Pop — Decorative product-mockup accent — appears in wallet/payment UI illustrations to signal connected or live data states"
+    },
+    "bubblegum": {
+      "$value": "#fb64b6",
+      "$type": "color",
+      "$description": "Bubblegum — Decorative product-mockup accent — pink wash on feature-card backgrounds and illustration shadows to add warmth to the otherwise cool palette"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Single-family type system. Weight 700 carries hero and section headlines at 32–52px, weight 600 handles subheadings and card titles at 18–20px, weight 500–600 sets buttons and nav links, and weight 400 runs body and helper copy at 14–16px. Inter is chosen for its developer-tools neutrality — humanist but precise — letting the purple brand color do the expressive work instead of the typeface."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "52px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "lg": {
+      "$value": "oklab(0.554391 -0.00887066 -0.039739 / 0.1) 0px 0px 24px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default page background"
+    },
+    "soft-band": {
+      "$value": "#f1f5f9",
+      "$type": "color",
+      "$description": "Surface level 2: Logo bar and low-contrast section bands"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Feature and solution tile surfaces, distinguished from canvas by shadow + border"
+    },
+    "testimonial": {
+      "$value": "#321e48",
+      "$type": "color",
+      "$description": "Surface level 4: Dark purple band for customer quotes"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://light.so/home",
+      "siteName": "Sequence",
+      "extractedAt": "2026-06-03T21:23:02.423Z",
+      "variant": "extended"
+    }
+  }
+}

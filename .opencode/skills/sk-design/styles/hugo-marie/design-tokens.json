@@ -1,0 +1,212 @@
+{
+  "color": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page background, card surfaces, badge fills, nav dividers, input fields — the dominant surface that recedes to let imagery speak"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, dense border structure, dark image overlays — the structural anchor for rules and headings"
+    },
+    "soft-ink": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Soft Ink — Dark borders and separators for elevated surfaces and inverted UI."
+    },
+    "graphite": {
+      "$value": "#767676",
+      "$type": "color",
+      "$description": "Graphite — Input field borders — the only place a mid-gray border appears, marking form-field edges without competing with imagery"
+    },
+    "smoke": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Smoke — Muted icon strokes, separators, and secondary graphic details. Do not promote it to the primary CTA color"
+    },
+    "ash": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Ash — Neutral form states, badge text, and quiet UI feedback where color should stay understated."
+    }
+  },
+  "font": {
+    "saol-display": {
+      "$value": "saol-display",
+      "$type": "fontFamily",
+      "$description": "Ceremonial headlines and editorial titles — ultralight serif at 100px with 0.95 line-height creates near-touching baselines that feel like fashion-magazine coverlines. This is the only place dramatic typography appears; everything else defers to sans-serif."
+    },
+    "soehne": {
+      "$value": "soehne",
+      "$type": "fontFamily",
+      "$description": "All interface text — nav links at 16px weight 300, section headings at 20–22px weight 300, body at 16px weight 400 with comfortable 1.64 leading, supporting copy at 14px. The weight-300 default for nav and headings is a signature choice: it makes the UI feel editorial and unpressured rather than assertive."
+    },
+    "soehne-mono": {
+      "$value": "soehne-mono",
+      "$type": "fontFamily",
+      "$description": "Badge labels and small metadata — monospace at 13px marks categorically different content (tags, IDs, status) from the proportional body text"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "soehne-mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "soehne",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "soehne",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "soehne",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "soehne",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "soehne",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "soehne",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "soehne",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "soehne",
+        "fontSize": "22px",
+        "fontWeight": 300,
+        "lineHeight": 1.64
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "saol-display",
+        "fontSize": "100px",
+        "fontWeight": 100,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 100px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base canvas — the entire site sits on pure white, making all imagery and ink feel mounted"
+    },
+    "ash-fill": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Surface level 1: Soft badge surface — appears only as a 1px border tone, never as a large fill"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.hugoandmarie.com",
+      "siteName": "Hugo & Marie",
+      "extractedAt": "2026-06-03T21:21:13.226Z",
+      "variant": "extended"
+    }
+  }
+}

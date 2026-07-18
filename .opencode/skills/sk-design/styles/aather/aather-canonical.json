@@ -1,0 +1,1232 @@
+{
+  "source": "https://styles.refero.design/style/3b080dc3-1992-43fe-91d6-2a721f934435",
+  "uuid": "3b080dc3-1992-43fe-91d6-2a721f934435",
+  "name": "AATHER",
+  "northStar": "Open palm, single flame — quiet luxury held in stillness.",
+  "capturedAt": "2026-07-18T08:27:06.024Z",
+  "meta": {
+    "url": "https://aather.com",
+    "siteName": "AATHER",
+    "extractedAt": "2026-06-03T17:05:48.371Z",
+    "durationMs": 28621,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 249,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use weight 100 or 200 for all body and heading text — never go above 400 outside of regulatory copy.",
+      "Apply tracking of 0.036–0.056em to all Untitled Sans instances; let the letter-spacing do the luxury work.",
+      "Reach for a 1px black underline before you reach for a button — the underlined text link is the system's primary action.",
+      "Use 2px border-radius on every rounded element; do not introduce larger radii.",
+      "Let photography supply all warmth and color; the UI palette stays pure monochrome.",
+      "Center the wordmark in the header and treat navigation as a three-column editorial spread.",
+      "Separate sections with hairline Ink (#000000) rules at 1px, not background tint shifts."
+    ],
+    "donts": [
+      "Do not introduce filled rectangular buttons with backgrounds — the underlined text link is the only CTA pattern.",
+      "Do not use bold or semibold weights (500–800) anywhere in the system.",
+      "Do not add drop shadows, glows, or elevation effects — surfaces stay flat.",
+      "Do not use border-radius above 2px; the sharp corners are part of the brand's editorial restraint.",
+      "Do not apply a chromatic accent color to UI elements — #dec39d lives only in photography.",
+      "Do not left-align the wordmark in the header; centering is non-negotiable.",
+      "Do not add gradients, textures, or noise to backgrounds; the canvas must read as flat paper."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page background, card surfaces, reversed text on dark — the default canvas. Never tinted, never warmed; warmth arrives only through photography",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f7f7",
+        "name": "Mist",
+        "role": "Alternate canvas band, subtle section wash — used to separate content blocks without introducing a visible border line",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e8e8e8",
+        "name": "Ash",
+        "role": "Footer and secondary dividers — the lightest perceptible rule, reserved for structural seams that must recede",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Graphite",
+        "role": "Muted secondary text, low-emphasis borders, tertiary metadata. Pairs with body and link borders at lower visual weight than Ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dec39d",
+        "name": "Warm Sand",
+        "role": "Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page is max-width contained at ~1200px but hero images break full-bleed to viewport edges. The hero is a full-viewport-height photograph with overlay text positioned in the lower third. Below the fold, sections stack vertically with 30–35px gaps, separated by hairline rules or subtle Mist (#f7f7f7) washes rather than card containers. Navigation is a centered three-column masthead. Content is predominantly single-column and text-driven, with photography interrupting at full-bleed intervals. The rhythm is slow and editorial — sparse text blocks, generous breathing room, and image-led section breaks.",
+    "imagery": "Imagery is the brand's primary expressive medium. Photography is editorial and intimate: tight crops of hands holding candles, fabric in warm earth tones, and single objects isolated on warm taupe or cream backgrounds. Treatments are full-bleed, unmasked, with no rounded corners on images. The color palette of the photography is restricted to warm sand (#dec39d), cream, terracotta, and muted blues — never saturated. Lifestyle context is stripped away; the object and the hand are always the subject. No illustration, no icons beyond a minimal cart glyph, no decorative graphics.",
+    "similar": [
+      {
+        "why": "Same editorial monochrome UI with all warmth and color carried by product photography, centered wordmark navigation, and hairline-rule section dividers.",
+        "business": "Diptyque"
+      },
+      {
+        "why": "Identical restraint in UI chrome — nearly all-black-and-white interface with ultra-light sans typography, letting product imagery and fragrance photography provide the chromatic personality.",
+        "business": "Byredo"
+      },
+      {
+        "why": "Same minimal-monochrome aesthetic with thin sans-serif type, underlined text links in place of filled buttons, and a printed-editorial sensibility over a digital-commerce one.",
+        "business": "Le Labo"
+      },
+      {
+        "why": "Shared ultra-light typographic weights and generous tracking, with a warm-taupe-and-cream photography palette that never bleeds into the UI color system.",
+        "business": "Boy Smells"
+      },
+      {
+        "why": "Same quiet-luxury restraint: monochrome chrome, thin sans type, text-link CTAs, and 2px or zero border-radius — the store reads like a printed monograph.",
+        "business": "Aesop"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "2px"
+      },
+      "elementGap": "10-15px",
+      "sectionGap": "30-35px",
+      "cardPadding": "20-25px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Default page canvas and product backgrounds — the base on which everything else floats."
+      },
+      {
+        "hex": "#f7f7f7",
+        "name": "Mist",
+        "level": 1,
+        "purpose": "Alternate section wash for content blocks that need separation without a visible border."
+      },
+      {
+        "hex": "#dec39d",
+        "name": "Warm Sand",
+        "level": 2,
+        "purpose": "Editorial accent surface — appears within hero and product photography, never as a UI fill."
+      }
+    ],
+    "northStar": "Open palm, single flame — quiet luxury held in stillness.",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.22,
+        "letterSpacing": 0.36
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.38,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.35,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 35,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page promotional strip",
+        "description": "Full-bleed white bar, centered text in Untitled Sans at 9–11px, weight 200, tracking 0.042em. Content is a single line of free-shipping or campaign copy. No background tint, no border — defined only by its position above the header."
+      },
+      {
+        "name": "Centered Logo Header",
+        "role": "Primary site navigation",
+        "description": "Three-column flex: left cluster ('Menu' + 'Shop' with small dropdown carets), centered wordmark ('AATHER' in Untitled Sans, weight 200, ~16px, tracking 0.056em), right cluster (cart icon). No background fill, no shadow, no border. Vertical padding ~15px. The centered wordmark is a deliberate editorial cue — this header reads like a magazine masthead."
+      },
+      {
+        "name": "Full-Bleed Hero Image",
+        "role": "Atmospheric brand introduction",
+        "description": "Edge-to-edge photograph occupying the full viewport width. No overlay gradient, no vignette — the image carries the mood. A single line of display text is positioned bottom-center in white, weight 200, ~35px, with a paired underlined text link beside it."
+      },
+      {
+        "name": "Hero Overlay Text",
+        "role": "Editorial caption on hero photography",
+        "description": "Gestura Text Thin, 35px, weight 200, white (#ffffff) with no text shadow. Positioned in the lower third of the hero. The complete absence of shadow or scrim is a deliberate choice — the photography must be light enough to hold white type natively."
+      },
+      {
+        "name": "Underlined Text Link (replaces buttons)",
+        "role": "Primary call-to-action",
+        "description": "Untitled Sans, 14–16px, weight 200, tracking 0.036em. A 1px black bottom border acts as the underline. No background fill, no border-radius, no padding beyond the text. On hover the underline persists. This component is the system's de facto button — the brand never uses a filled rectangular button."
+      },
+      {
+        "name": "Cookie Consent Bar",
+        "role": "Sticky bottom regulatory notice",
+        "description": "White bar fixed to viewport bottom with a 1px top border in #e8e8e8. Left-aligned copy in Untitled Sans 11px, right-aligned 'OK' affordance. Minimal, functional, no styling beyond the hairline separator."
+      },
+      {
+        "name": "Nav Dropdown Indicator",
+        "role": "Menu state affordance",
+        "description": "A small downward triangle (▼ or ▾) rendered in Ink (#000000) next to 'Menu' and 'Shop' labels. Size ~6px, no border or background. Pure typographic punctuation."
+      },
+      {
+        "name": "Cart Icon",
+        "role": "E-commerce entry point",
+        "description": "Minimal line-icon shopping bag in Ink (#000000), ~16px, stroke weight 1px. Sits flush right in the header with no label or badge."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Gestura Text Extra Light — detected in extracted data but not described by AI",
+        "sizes": "14px, 16px, 20px",
+        "family": "Gestura Text Extra Light",
+        "weight": "100, 200",
+        "lineHeight": "1.22, 1.35, 1.38"
+      },
+      {
+        "role": "Primary editorial face for body copy, links, nav, cards, and the 35px display overlay heading. The use of Extra Light (100) and Thin (200) weights throughout is a signature anti-convention — most luxury e-commerce uses 300–400 minimum. Here the type is intentionally thin enough to feel like it could disappear, forcing the photography to lead.",
+        "sizes": "35px",
+        "family": "Gestura Text",
+        "weight": "100, 200",
+        "lineHeight": "1.20–1.38",
+        "substitute": "Cormorant Garamond Light, Spectral Light, or a light humanist serif like Lora Light",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Workhorse sans for buttons, inputs, list items, and supporting UI chrome. The generous tracking (up to 0.056em) transforms a clean geometric sans into something that reads as typeset and intentional — labels feel engraved rather than typed. The 0.78 line-height at 9px is display micro-copy collapsed to its tightest possible rhythm.",
+        "sizes": "9px, 11px, 12px, 13px, 14px, 16px, 18px, 20px, 24px",
+        "family": "Untitled Sans",
+        "weight": "100, 200, 400",
+        "lineHeight": "0.78–1.39",
+        "substitute": "Inter at weight 200, Söhne Light, or General Sans Light",
+        "letterSpacing": "0.036em–0.056em"
+      },
+      {
+        "role": "Gestura Text Light — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Gestura Text Light",
+        "weight": "200",
+        "lineHeight": "1.38"
+      }
+    ],
+    "description": "AATHER operates as an editorial candle studio rendered in near-total monochrome: white canvas, black ink, hairline rules, and photography doing all the emotional heavy lifting. The interface itself is austere to the point of being almost invisible — every typographic decision is calibrated toward whisper (weights 100–200) and air (tracking 0.036–0.056em), so the UI reads like a fashion magazine layout rather than a storefront. Warmth is never injected into the UI palette; instead, a single sand-toned surface (#dec39d) and full-bleed editorial photography carry the brand's tactile, hand-held mood. Components are reduced to their most elemental forms: text links with thin underlines stand in for buttons, 2px corners refuse decoration, and the centered wordmark navigation borrows directly from print editorial conventions.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3b080dc3-1992-43fe-91d6-2a721f934435#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"AATHER design system\",\"item\":\"https://styles.refero.design/style/3b080dc3-1992-43fe-91d6-2a721f934435\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3b080dc3-1992-43fe-91d6-2a721f934435#style-reference\",\"name\":\"AATHER design system reference\",\"headline\":\"AATHER design system | Refero Styles\",\"description\":\"Explore AATHER's light E-commerce design system: Ink #000000, Paper #ffffff colors, Gestura Text Extra Light, Gestura Text typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/3b080dc3-1992-43fe-91d6-2a721f934435\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3b080dc3-1992-43fe-91d6-2a721f934435\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"AATHER\",\"url\":\"https://aather.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3b080dc3-1992-43fe-91d6-2a721f934435#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/aaeb8b13-37a2-44a3-8462-e6f02ec2ada0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/aaeb8b13-37a2-44a3-8462-e6f02ec2ada0.jpg\",\"caption\":\"Screenshot of AATHER\"},\"image\":\"https://images.refero.design/styles/refero.design/image/aaeb8b13-37a2-44a3-8462-e6f02ec2ada0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"AATHER design system\",\"AATHER website design\",\"AATHER colors\",\"AATHER typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink\",\"Paper\",\"Mist\",\"Ash\",\"Gestura Text Extra Light\",\"Gestura Text\",\"Untitled Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"AATHER design system\"},{\"@type\":\"Thing\",\"name\":\"AATHER website design\"},{\"@type\":\"Thing\",\"name\":\"AATHER colors\"},{\"@type\":\"Thing\",\"name\":\"AATHER typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:55:47.477Z\",\"dateModified\":\"2026-04-30T01:55:47.477Z\"}]}19:T544,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #e8e8e8 (light) or #000000 (structural)\n- accent: #dec39d (photography only — not for UI)\n- muted text: #808080\n- primary action: no distinct CTA color\n\n**3–5 Example Component Prompts**\n\n1. *Editorial hero section*: Full-bleed warm sand (#dec39d) photograph. White overlay text at 35px Gestura Text Thin, weight 200, positioned in the lower third. Adjacent underlined text link in Untitled Sans 16px weight 200, 1px black bottom border, tracking 0.036em.\n\n2. *Centered masthead header*: White background, no border. Three-column flex layout: left ('Menu ▾' and 'Shop ▾' in Untitled Sans 14px weight 200), center ('AATHER' wordmark in Untitled Sans 16px weight 200, tracking 0.056em), right (line-icon cart glyph in #000000). Vertical padding 15px.\n\n3. *Underlined text link*: Untitled Sans, 16px, weight 200, #000000, tracking 0.036em, 1px solid #000000 bottom border, 2px border-radius, 0px padding. No background fill.\n\n4. *Product image section*: Full-bleed photograph with 1px #e8e8e8 hairline rule above and below. No card container, no shadow, no padding around the image itself.\n\n5. *Cookie consent bar*: Fixed bottom, white background, 1px top border in #e8e8e8, body text in Untitled Sans 11px weight 200, 'OK' button as underlined text link aligned right."
+      },
+      {
+        "title": "Signature Choices Explained",
+        "content": "Three choices define this system's identity: (1) the ultra-light typography at weights 100–200 makes the interface recede so photography can lead — most luxury e-commerce defaults to 300–400, which reads as confident but visible; AATHER's choice reads as editorial confidence that doesn't need volume. (2) The 0.036–0.056em tracking on a sans-serif transforms it from a UI font into something typeset, giving labels the rhythm of engraved text rather than screen text. (3) The underlined text link replacing the button eliminates the visual noise of fills, borders, and radii — every CTA is a typographic gesture, not a graphical one, which is why the 1px bottom border has such heavy semantic weight in this system."
+      }
+    ],
+    "elevationPhilosophy": "The system uses zero shadow-based elevation. Hierarchy is achieved through typography weight contrast, whitespace, and hairline 1px rules in Ink or Ash. Components sit on the same plane as the canvas — the design reads as printed editorial rather than digital interface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "button",
+            "icon",
+            "list",
+            "card",
+            "image",
+            "heading",
+            "footer",
+            "input"
+          ],
+          "frequency": 1053,
+          "confidence": 1,
+          "prominence": 65482673.535400584,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 6,
+            "icon/fill": 4,
+            "nav/color": 8,
+            "body/color": 21,
+            "card/color": 8,
+            "icon/color": 2,
+            "link/color": 35,
+            "list/color": 32,
+            "other/fill": 7,
+            "image/color": 10,
+            "input/color": 1,
+            "other/color": 83,
+            "button/color": 3,
+            "footer/color": 1,
+            "heading/color": 7,
+            "nav/borderColor": 32,
+            "body/borderColor": 84,
+            "card/borderColor": 32,
+            "icon/borderColor": 8,
+            "link/borderColor": 124,
+            "list/borderColor": 128,
+            "image/borderColor": 40,
+            "input/borderColor": 4,
+            "other/borderColor": 330,
+            "button/borderColor": 12,
+            "footer/borderColor": 3,
+            "heading/borderColor": 28
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "footer",
+            "list"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 4521797.458471869,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "heading/color": 1,
+            "heading/borderColor": 4,
+            "list/backgroundColor": 1,
+            "other/backgroundColor": 5,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e8e8e8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9309991411193288
+          },
+          "contexts": [
+            "footer",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1131156.0375146747,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1,
+            "footer/borderColor": 1
+          }
+        },
+        {
+          "hex": "#f7f7f7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.976138790665567
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 684703.8003115394,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#dec39d",
+          "oklch": {
+            "c": 0.059164012821028775,
+            "h": 76.18934899183976,
+            "l": 0.8306276012253936
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 429493,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "card",
+            "other",
+            "body",
+            "button",
+            "list",
+            "link"
+          ],
+          "frequency": 115,
+          "confidence": 1,
+          "prominence": 96354.63298154238,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "card/color": 4,
+            "link/color": 6,
+            "list/color": 5,
+            "other/color": 2,
+            "button/color": 1,
+            "body/borderColor": 20,
+            "card/borderColor": 16,
+            "link/borderColor": 24,
+            "list/borderColor": 20,
+            "other/borderColor": 8,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#9b9b9b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6894878914251888
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 292,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00013471165741712874,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.6,
+          "background": "#f7f7f7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.14,
+          "background": "#e8e8e8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.4,
+          "background": "#dec39d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#ffffff",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.69,
+          "background": "#f7f7f7",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.33,
+          "background": "#dec39d",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.69,
+          "background": "#dec39d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.07,
+          "background": "#f7f7f7",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "corners": [
+            0,
+            2,
+            2,
+            0
+          ],
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 2,
+          "asymmetric": true
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 31,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|list",
+            "paddingTop|list"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "list",
+            "heading"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list",
+            "marginLeft|list",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|list",
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "list"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|card",
+            "marginTop|list",
+            "paddingRight|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "heading",
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "list",
+            "body"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "marginTop|list",
+            "paddingRight|body",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingLeft",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingLeft|list",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "heading",
+            "list"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingRight|list"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 55,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|card",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 145,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 199,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 211,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Gestura Text Extra Light",
+          "source": "custom",
+          "weights": [
+            100,
+            200
+          ],
+          "frequency": 145,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Untitled Sans Light",
+          "source": "custom",
+          "weights": [
+            100,
+            200
+          ],
+          "frequency": 65,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Untitled Sans Regular",
+          "source": "custom",
+          "weights": [
+            200,
+            400
+          ],
+          "frequency": 17,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Gestura Text Thin",
+          "source": "custom",
+          "weights": [
+            200
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Gestura Text Light",
+          "source": "custom",
+          "weights": [
+            200
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "Untitled Sans Light",
+          "weight": 100,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.78,
+          "letterSpacing": 0.056,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Untitled Sans Regular",
+          "weight": 200,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Untitled Sans Regular",
+          "weight": 200,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Untitled Sans Regular",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.042,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Untitled Sans Light",
+          "weight": 100,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Gestura Text Extra Light",
+          "weight": 200,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Untitled Sans Light",
+          "weight": 200,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Untitled Sans Regular",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Untitled Sans Light",
+          "weight": 200,
+          "contexts": [
+            "list",
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Untitled Sans Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.22,
+          "letterSpacing": 0.036,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Gestura Text Extra Light",
+          "weight": 100,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Gestura Text Light",
+          "weight": 200,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Untitled Sans Light",
+          "weight": 200,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Untitled Sans Light",
+          "weight": 200,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.39,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Untitled Sans Light",
+          "weight": 200,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Gestura Text Extra Light",
+          "weight": 100,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "body",
+            "icon",
+            "list",
+            "card",
+            "image",
+            "footer"
+          ],
+          "frequency": 133,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Untitled Sans Light",
+          "weight": 200,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Untitled Sans Light",
+          "weight": 200,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Gestura Text Thin",
+          "weight": 200,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3a683030-b3a9-401c-95ae-b1d202694180.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/aaeb8b13-37a2-44a3-8462-e6f02ec2ada0.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3b080dc3-1992-43fe-91d6-2a721f934435#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"AATHER design system\",\"item\":\"https://styles.refero.design/style/3b080dc3-1992-43fe-91d6-2a721f934435\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3b080dc3-1992-43fe-91d6-2a721f934435#style-reference\",\"name\":\"AATHER design system reference\",\"headline\":\"AATHER design system | Refero Styles\",\"description\":\"Explore AATHER's light E-commerce design system: Ink #000000, Paper #ffffff colors, Gestura Text Extra Light, Gestura Text typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/3b080dc3-1992-43fe-91d6-2a721f934435\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3b080dc3-1992-43fe-91d6-2a721f934435\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"AATHER\",\"url\":\"https://aather.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3b080dc3-1992-43fe-91d6-2a721f934435#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/aaeb8b13-37a2-44a3-8462-e6f02ec2ada0.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/aaeb8b13-37a2-44a3-8462-e6f02ec2ada0.jpg\",\"caption\":\"Screenshot of AATHER\"},\"image\":\"https://images.refero.design/styles/refero.design/image/aaeb8b13-37a2-44a3-8462-e6f02ec2ada0.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"AATHER design system\",\"AATHER website design\",\"AATHER colors\",\"AATHER typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink\",\"Paper\",\"Mist\",\"Ash\",\"Gestura Text Extra Light\",\"Gestura Text\",\"Untitled Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"AATHER design system\"},{\"@type\":\"Thing\",\"name\":\"AATHER website design\"},{\"@type\":\"Thing\",\"name\":\"AATHER colors\"},{\"@type\":\"Thing\",\"name\":\"AATHER typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:55:47.477Z\",\"dateModified\":\"2026-04-30T01:55:47.477Z\"}]}19:T544,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #e8e8e8 (light) or #000000 (structural)\n- accent: #dec39d (photography only — not for UI)\n- muted text: #808080\n- primary action: no distinct CTA color\n\n**3–5 Example Component Prompts**\n\n1. *Editorial hero section*: Full-bleed warm sand (#dec39d) photograph. White overlay text at 35px Gestura Text Thin, weight 200, positioned in the lower third. Adjacent underlined text link in Untitled Sans 16px weight 200, 1px black bottom border, tracking 0.036em.\n\n2. *Centered masthead header*: White background, no border. Three-column flex layout: left ('Menu ▾' and 'Shop ▾' in Untitled Sans 14px weight 200), center ('AATHER' wordmark in Untitled Sans 16px weight 200, tracking 0.056em), right (line-icon cart glyph in #000000). Vertical padding 15px.\n\n3. *Underlined text link*: Untitled Sans, 16px, weight 200, #000000, tracking 0.036em, 1px solid #000000 bottom border, 2px border-radius, 0px padding. No background fill.\n\n4. *Product image section*: Full-bleed photograph with 1px #e8e8e8 hairline rule above and below. No card container, no shadow, no padding around the image itself.\n\n5. *Cookie consent bar*: Fixed bottom, white background, 1px top border in #e8e8e8, body text in Untitled Sans 11px weight 200, 'OK' button as underlined text link aligned right."
+}

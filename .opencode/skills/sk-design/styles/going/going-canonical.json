@@ -1,0 +1,1080 @@
+{
+  "source": "https://styles.refero.design/style/3461e90e-35d2-4269-9f11-cbe935f0a3a2",
+  "uuid": "3461e90e-35d2-4269-9f11-cbe935f0a3a2",
+  "name": "Going™",
+  "northStar": "Sun-bleached travel journal with electric ink",
+  "capturedAt": "2026-07-18T08:24:32.815Z",
+  "meta": {
+    "url": "https://www.going.com",
+    "siteName": "Going™",
+    "extractedAt": "2026-06-03T17:21:50.238Z",
+    "durationMs": 58070,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 400,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Deep Lagoon #004449 for all body text and primary icons — never fall back to #000000 for running copy",
+      "Reserve Electric Iris #483cff for one filled CTA per viewport — duplicate CTAs dilute the signal",
+      "Use 900px border-radius on every button, badge, and pill-shaped link — sharp corners break the pill-button language",
+      "Pair mint wash #d7ffc2 section bands with parchment #fffef0 cards inside them — the two-tone stack is the signature content rhythm",
+      "Apply the 475 weight of PP Mori for UI labels (14-16px) — it carries the warm humanist feel that 400 alone cannot reach",
+      "Use 0.10em letter-spacing at display sizes 48px+ — the expanded tracking is what makes headlines feel editorial rather than SaaS",
+      "Set section padding to 80px top/bottom for vertical breathing room — denser spacing collapses the spacious rhythm"
+    ],
+    "donts": [
+      "Don't use pure #ffffff backgrounds — the warmth of #fffef0 is core to the brand and a clinical white breaks the system",
+      "Don't apply shadows heavier than rgba(0,0,0,0.04) 0px 2px 8px 0px — heavy elevation destroys the flat, paper-like quality",
+      "Don't use black #000000 for body text — it reads as harsh digital where Deep Lagoon teal reads as warm print",
+      "Don't introduce card radii other than 24px — the 24px card + 900px button pairing is the rounded-but-not-floaty signature",
+      "Don't use the neon Lime Pulse #0bff80 for body text or buttons — it only works as 2-5 word display emphasis in headlines",
+      "Don't stack multiple saturated backgrounds — the palette relies on parchment→mint→parchment alternation, not rainbow layering",
+      "Don't reduce the 80px section gap — compressing it removes the editorial pacing that distinguishes the page from standard SaaS layouts"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#004449",
+        "name": "Deep Lagoon",
+        "role": "Primary text, body copy, icon strokes, navigation — deep teal replaces black for all running text and primary iconography, lending a warm printed feel rather than digital harshness",
+        "group": "brand"
+      },
+      {
+        "hex": "#483cff",
+        "name": "Electric Iris",
+        "role": "Violet action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "brand"
+      },
+      {
+        "hex": "#fffef0",
+        "name": "Parchment",
+        "role": "Page canvas, card surfaces on mint sections, inverted text on dark elements — warm off-white background replaces clinical #ffffff, reducing glare and adding editorial softness",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Hairline borders, card outlines, structural dividers, footer strokes — used as 1px boundary lines rather than as primary type, creating crispness against the cream base",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d7ffc2",
+        "name": "Mint Wash",
+        "role": "Section backgrounds, testimonial card surfaces, soft highlight bands — pale green wash separates content zones without the heaviness of gray or color blocks",
+        "group": "accent"
+      },
+      {
+        "hex": "#0bff80",
+        "name": "Lime Pulse",
+        "role": "Display headline emphasis, accent strokes on key words, decorative highlight — neon green appears in sparing two-to-five-word bursts to amplify specific display phrases",
+        "group": "accent"
+      }
+    ],
+    "layout": "Max-width 1200px centered content with full-bleed colored bands. Hero is split: headline + CTA left (60% width), phone mockup overlapping a circular masked travel photo right (40%). Feature sections are 3-column equal grids with phone mockup + caption + body text in each cell, set on a mint wash band. Testimonials scroll horizontally as wide portrait cards on a mint band. Navigation is a full-bleed dark teal bar with centered nav links. Section rhythm alternates: parchment hero → mint features → parchment testimonials on mint → dark teal footer. Vertical spacing is generous (80px section gaps, 32px card padding). The overall page reads as a single continuous scroll with color bands doing the section division rather than hard borders or dividers.",
+    "imagery": "Photography is warm-toned travel content: mountain landscapes, coastal towns, city skylines — cropped into circles or organic blob masks behind phone mockups. User testimonial photos are small circular headshots (56px) stacked with overlap. Phone mockups dominate the visual space, always showing iOS app screens with real UI (price alerts, trip lists, booking confirmations). No illustrations, no abstract graphics — the visual hierarchy is phone-mockup-as-hero, photograph-as-context, avatar-as-social-proof. Color treatment on photos is natural, slightly warm, no duotone.",
+    "similar": [
+      {
+        "why": "Same travel-deal app category, same warm-off-white editorial landing page feel with single vivid accent for CTAs",
+        "business": "Hopper"
+      },
+      {
+        "why": "Similar warm humanist typography and generous spacing, though Going pushes the cream canvas and pill-button language further",
+        "business": "Notion"
+      },
+      {
+        "why": "Warm parchment-like background tone, friendly humanist type, and photography of real places used as soft circular accents behind product imagery",
+        "business": "Airbnb"
+      },
+      {
+        "why": "Same approach of using a single vivid color (violet/iris in both cases) for the primary CTA against a neutral canvas, with pill buttons and generous vertical rhythm",
+        "business": "Wise (TransferWise)"
+      },
+      {
+        "why": "Pastel mint accent sections and a warm cream paper-feel canvas — same colored-band approach to section division",
+        "business": "Koodo Mobile"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "24px",
+        "badges": "900px",
+        "inputs": "16px",
+        "buttons": "900px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#fffef0",
+        "name": "Parchment Canvas",
+        "level": 0,
+        "purpose": "Base page background — warm off-white replacing clinical white"
+      },
+      {
+        "hex": "#d7ffc2",
+        "name": "Mint Wash Band",
+        "level": 1,
+        "purpose": "Full-bleed content section background, testimonial zone, feature highlight band"
+      },
+      {
+        "hex": "#fffef0",
+        "name": "Parchment Card",
+        "level": 2,
+        "purpose": "Card surface on mint sections — parchment returns as a lifted layer"
+      },
+      {
+        "hex": "#004449",
+        "name": "Ink Card",
+        "level": 3,
+        "purpose": "Dark teal inverted surface for navigation, footer, or accent blocks — teal carries surface weight, not just text"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.04) 0px 2px 8px 0px",
+        "element": "Feature cards on mint bands"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.04) 0px 2px 8px 0px",
+        "element": "Testimonial cards"
+      }
+    ],
+    "northStar": "Sun-bleached travel journal with electric ink",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.28
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.32
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.33,
+        "letterSpacing": 0.36
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": 0.48
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.17,
+        "letterSpacing": 1.68
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.15,
+        "letterSpacing": 2.4
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.14,
+        "letterSpacing": 4.8
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1.1,
+        "letterSpacing": 8
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button (Electric Iris Pill)",
+        "role": "High-emphasis action — the only filled chromatic button in the system",
+        "description": "Background #483cff, white text, 900px border-radius (full pill), 32px row-gap, padding 16px 28px. PP Mori 475 at 16px, white #fffef0 text. No shadow. Used for the singular 'Join for free' or 'Get App' action that appears once per viewport."
+      },
+      {
+        "name": "Outlined Navigation Button",
+        "role": "Secondary action in the nav bar",
+        "description": "Transparent background, 1.5px border #fffef0 (on dark teal nav) or #004449 (on parchment), 900px radius, 16px 24px padding. PP Mori 475 at 14-16px, text matches border color. Used for 'Sign Up' and 'Login' in the top bar."
+      },
+      {
+        "name": "Mint Section Card",
+        "role": "Content card sitting on a mint wash band",
+        "description": "Background #fffef0, 24px border-radius, 1px border #000 at ~40% opacity or #004449 at low opacity, padding 32px, shadow rgba(0,0,0,0.04) 0px 2px 8px 0px. Holds phone mockup + heading + body text in the 3-column feature grid."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "Social proof card in horizontal scroll",
+        "description": "Mint wash background #d7ffc2, 24px border-radius, no border, padding 32px. Contains user photo (circular, ~56px) at top, name and trip metadata, quote body in PP Mori 400/475 at 16px. Cards extend taller than wide for portrait orientation."
+      },
+      {
+        "name": "Phone Mockup Frame",
+        "role": "Device chrome for app screenshots",
+        "description": "Rounded rectangle, ~24px radius, containing a 9:19.5 aspect iOS screenshot. No device shadow — the screenshot bleeds edge-to-edge. Overlapping or isolated placement, sometimes paired with a circular masked travel photo behind it."
+      },
+      {
+        "name": "Social Proof Pill Badge",
+        "role": "Trust signal in the hero",
+        "description": "Mint wash #d7ffc2 background, 900px radius, padding 8px 16px. Contains small avatar stack (24px circles, 2-3 overlapping) + PP Mori 475 at 14px in #004449. Example: avatar group + 'Loved by 2M+ ★★★★★ rating'."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent site navigation",
+        "description": "In dark teal section: background #004449, full-width, padding 20px 0. Logo 'Going™' left in white PP Mori 600 at 24px. Center: text links in PP Mori 475 at 14px, uppercase, 0.06em letter-spacing, white. Right: outlined 'Sign Up' pill + filled 'Get App' violet pill."
+      },
+      {
+        "name": "Press Logo Strip",
+        "role": "Editorial credibility bar",
+        "description": "Row of 4-5 muted publication logos (Travel+Leisure, Good Morning America, etc.) at ~40% opacity in #004449. No background, no borders, sits below the hero CTA with 40px vertical breathing room."
+      },
+      {
+        "name": "Hero Headline Pair",
+        "role": "Primary marketing headline",
+        "description": "Two-line display headline. First line in Deep Lagoon #004449, second line with a 2-3 word phrase swapped to Electric Iris #483cff. PP Mori 700 at 80px desktop (48px tablet, 40px mobile), 0.10em letter-spacing, 1.1 line-height. Lines broken at the value proposition."
+      },
+      {
+        "name": "Feature Section Heading",
+        "role": "Section opener above a 3-column grid",
+        "description": "Centered PP Mori 600 at 40-48px, Deep Lagoon #004449. Single line when possible. Optional inline violet word for emphasis. 80px padding-top above the heading, 48px below before the grid begins."
+      },
+      {
+        "name": "Press/Media Pill Link",
+        "role": "Standalone editorial link in dark sections",
+        "description": "Deep Lagoon #004449 background, PP Mori 475 at 16px in #fffef0, 900px radius, 16px 32px padding. Centered, often appears in footer or as a 'Read the article' callout."
+      },
+      {
+        "name": "Footer Block",
+        "role": "Site footer with link columns",
+        "description": "Deep Lagoon #004449 background, full-bleed. Multi-column link grid in PP Mori 400 at 14px, white text with 0.02em tracking. Logo top-left in white. Padding 80px top/bottom, 1200px max-width."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All text across the system. The signature 475 weight (a semi-normal sitting between Regular and SemiBold) is used for body and UI labels, giving paragraphs a subtly heavier gravity than 400 without the formality of 600. Display sizes (40-80px) use 600/700 with expanded tracking for editorial poster-style headlines. Smaller UI (14-18px) stays at 475 for friendly readable labels.",
+        "sizes": "14px, 16px, 18px, 24px, 28px, 40px, 48px, 80px",
+        "family": "PP Mori",
+        "weight": "400, 475, 600, 700",
+        "lineHeight": "1.10, 1.14, 1.15, 1.17, 1.33, 1.40, 1.50",
+        "substitute": "Inter, General Sans, or Söhne — pick a geometric humanist with a similar warm 475-500 weight option",
+        "letterSpacing": "0.28px at 14px, 0.32px at 16px, 0.36px at 18px, 0.48px at 24px, 1.68px at 28px, 2.4px at 40px, 4.8px at 48px, 8.0px at 80px",
+        "fontFeatureSettings": "\"ss01\" on"
+      }
+    ],
+    "description": "Going is a warm-paper travel companion: a parchment canvas (#fffef0, never pure white) carries deep lagoon teal body text and pill-shaped electric iris CTAs, with soft mint wash bands organizing content sections. PP Mori's slightly off-axis 475 weight gives paragraphs a friendlier gravity than standard 400, while display sizes push tracking outward (up to 0.10em at 80px) for an editorial-poster feel. Surfaces stack: parchment base → mint wash content bands → ink-bordered cards with a whisper shadow. The design refuses cold SaaS conventions — black is used sparingly as a hairline border accent, not as primary type, and the single violet CTA carries all interactive weight across the page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3461e90e-35d2-4269-9f11-cbe935f0a3a2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Going™ design system\",\"item\":\"https://styles.refero.design/style/3461e90e-35d2-4269-9f11-cbe935f0a3a2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3461e90e-35d2-4269-9f11-cbe935f0a3a2#style-reference\",\"name\":\"Going™ design system reference\",\"headline\":\"Going™ design system | Refero Styles\",\"description\":\"Explore Going™'s light Other design system: Deep Lagoon #004449, Electric Iris #483cff colors, PP Mori typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3461e90e-35d2-4269-9f11-cbe935f0a3a2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3461e90e-35d2-4269-9f11-cbe935f0a3a2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Going™\",\"url\":\"https://www.going.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3461e90e-35d2-4269-9f11-cbe935f0a3a2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/003da573-8974-4462-be26-19f3dd88eaf5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/003da573-8974-4462-be26-19f3dd88eaf5.jpg\",\"caption\":\"Screenshot of Going™\"},\"image\":\"https://images.refero.design/styles/refero.design/image/003da573-8974-4462-be26-19f3dd88eaf5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Going™ design system\",\"Going™ website design\",\"Going™ colors\",\"Going™ typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Deep Lagoon\",\"Electric Iris\",\"Parchment\",\"Ink Black\",\"PP Mori\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Going™ design system\"},{\"@type\":\"Thing\",\"name\":\"Going™ website design\"},{\"@type\":\"Thing\",\"name\":\"Going™ colors\"},{\"@type\":\"Thing\",\"name\":\"Going™ typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:59:02.434Z\",\"dateModified\":\"2026-04-30T00:59:02.434Z\"}]}19:T6c7,Quick Color Reference:\n- text: #004449 (Deep Lagoon)\n- background: #fffef0 (Parchment)\n- border: #000000 (Ink Black) or #004449\n- accent: #0bff80 (Lime Pulse) — display only\n- primary action: #483cff (filled action)\n\nExample Component Prompts:\n\n1. Create a Primary Action Button: #483cff background, #fffef0 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Build a 3-column feature grid on a mint band: full-width #d7ffc2 background, 80px vertical padding. Three equal columns, each with a phone mockup image, a 28px PP Mori 600 subheading in #004449, and 16px body text in #004449 at 475 weight. 32px gap between columns, cards sit on the mint band directly (no card containers), or use #fffef0 card containers with 24px radius and 32px padding.\n\n3. Build a testimonial card: 320px wide, auto height, background #d7ffc2, 24px radius, 32px padding. 56px circular avatar top-left. Name + trip metadata at 14px PP Mori 475 in #004449. Quote body at 16px PP Mori 400 in #004449. No border, no shadow. Cards arranged in a horizontal scroll row.\n\n4. Build the top navigation: full-width #004449 background, 20px vertical padding. Logo 'Going™' left at 24px PP Mori 600 white. Center nav links uppercase at 14px PP Mori 475, white, 0.06em tracking. Right: outlined 'Sign Up' button (1.5px white border, 900px radius, 16px 24px padding) + filled 'Get App' button (background #483cff, white text, 900px radius, 16px 24px padding).\n\n5. Build a social proof pill badge: #d7ffc2 background, 900px radius, 8px 16px padding. Contains 2-3 overlapping 24px circular avatars on the left, then 'Loved by 2M+ ★★★★★' at 14px PP Mori 475 in #004449. Sits above the hero headline with 16px gap below."
+      }
+    ],
+    "elevationPhilosophy": "Shadows are whisper-thin — rgba 0.04 black at 2px/8px. Elevation is carried by the mint-to-parchment surface contrast and ink borders, not by shadow volume. The 4% opacity is just enough to separate cards from the mint band without darkening the cream surface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "card",
+            "body",
+            "image",
+            "footer"
+          ],
+          "frequency": 650,
+          "confidence": 1,
+          "prominence": 57549102.0789461,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 14,
+            "card/color": 13,
+            "image/color": 13,
+            "other/color": 88,
+            "footer/color": 2,
+            "body/borderColor": 56,
+            "card/borderColor": 52,
+            "image/borderColor": 52,
+            "other/borderColor": 352,
+            "footer/borderColor": 8
+          }
+        },
+        {
+          "hex": "#fffef0",
+          "oklch": {
+            "c": 0.018359888069229946,
+            "h": 103.41185317075316,
+            "l": 0.994022617789912
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "heading",
+            "link",
+            "image"
+          ],
+          "frequency": 464,
+          "confidence": 1,
+          "prominence": 12071458.692037527,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 58,
+            "link/color": 28,
+            "image/color": 2,
+            "other/color": 2,
+            "button/color": 4,
+            "heading/color": 4,
+            "body/borderColor": 216,
+            "link/borderColor": 112,
+            "image/borderColor": 8,
+            "other/borderColor": 8,
+            "heading/borderColor": 16,
+            "other/backgroundColor": 5,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#004449",
+          "oklch": {
+            "c": 0.05999933426219282,
+            "h": 203.1351001137864,
+            "l": 0.3522779251587397
+          },
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "other",
+            "badge",
+            "image",
+            "heading",
+            "icon"
+          ],
+          "frequency": 657,
+          "confidence": 1,
+          "prominence": 8431366.562625958,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 55,
+            "icon/color": 6,
+            "link/color": 9,
+            "other/fill": 9,
+            "badge/color": 1,
+            "image/color": 16,
+            "other/color": 38,
+            "button/color": 4,
+            "other/stroke": 6,
+            "heading/color": 7,
+            "body/borderColor": 204,
+            "icon/borderColor": 24,
+            "link/borderColor": 16,
+            "badge/borderColor": 4,
+            "image/borderColor": 64,
+            "other/borderColor": 152,
+            "button/borderColor": 12,
+            "heading/borderColor": 28,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#d7ffc2",
+          "oklch": {
+            "c": 0.09001580547101844,
+            "h": 134.97911201302975,
+            "l": 0.9565888799054205
+          },
+          "contexts": [
+            "other",
+            "card",
+            "button"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 6836036.800701592,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4,
+            "card/backgroundColor": 13,
+            "other/backgroundColor": 14,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#483cff",
+          "oklch": {
+            "c": 0.2708878902861588,
+            "h": 274.1515756240557,
+            "l": 0.5183665359727233
+          },
+          "contexts": [
+            "button",
+            "heading"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 301013.7132839772,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "heading/color": 3,
+            "button/borderColor": 16,
+            "heading/borderColor": 12,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#0bff80",
+          "oklch": {
+            "c": 0.23386931159592841,
+            "h": 151.0773350123649,
+            "l": 0.8754550143612365
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 28005.483732813005,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.09014309684188702,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.69,
+          "background": "#fffef0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.97,
+          "background": "#d7ffc2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.63,
+          "background": "#0bff80",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.76,
+          "background": "#004449",
+          "foreground": "#fffef0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.87,
+          "background": "#d7ffc2",
+          "foreground": "#004449"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.13,
+          "background": "#004449",
+          "foreground": "#0bff80"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.15,
+          "background": "#483cff",
+          "foreground": "#fffef0"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.64,
+          "background": "#d7ffc2",
+          "foreground": "#483cff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.64,
+          "background": "#483cff",
+          "foreground": "#0bff80"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.37,
+          "background": "#483cff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.92,
+          "background": "#004449",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.75,
+          "background": "#483cff",
+          "foreground": "#004449"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.32,
+          "background": "#fffef0",
+          "foreground": "#0bff80"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.21,
+          "background": "#d7ffc2",
+          "foreground": "#0bff80"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#d7ffc2",
+          "foreground": "#fffef0"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 900,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 16,
+          "corners": [
+            0,
+            16,
+            16,
+            0
+          ],
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.04) 0px 2px 8px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 13
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 27,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|body",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "button",
+            "badge",
+            "body"
+          ],
+          "frequency": 98,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginRight",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|badge",
+            "marginRight|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingBottom|body",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|body",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 81,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 89,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 104,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 113,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "PP Mori",
+          "source": "custom",
+          "weights": [
+            400,
+            475,
+            600,
+            700
+          ],
+          "frequency": 385,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "PP Mori",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "image"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.14,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "PP Mori",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "body",
+            "badge",
+            "image",
+            "icon",
+            "card",
+            "footer"
+          ],
+          "frequency": 300,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PP Mori",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PP Mori",
+          "weight": 475,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PP Mori",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PP Mori",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "PP Mori",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "image"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "PP Mori",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "PP Mori",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "PP Mori",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "PP Mori",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "PP Mori",
+          "weight": 475,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "PP Mori",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "PP Mori",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/48ab131e-ea1c-4241-b07e-06846b8c5b23.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/003da573-8974-4462-be26-19f3dd88eaf5.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3461e90e-35d2-4269-9f11-cbe935f0a3a2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Going™ design system\",\"item\":\"https://styles.refero.design/style/3461e90e-35d2-4269-9f11-cbe935f0a3a2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3461e90e-35d2-4269-9f11-cbe935f0a3a2#style-reference\",\"name\":\"Going™ design system reference\",\"headline\":\"Going™ design system | Refero Styles\",\"description\":\"Explore Going™'s light Other design system: Deep Lagoon #004449, Electric Iris #483cff colors, PP Mori typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3461e90e-35d2-4269-9f11-cbe935f0a3a2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3461e90e-35d2-4269-9f11-cbe935f0a3a2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Going™\",\"url\":\"https://www.going.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3461e90e-35d2-4269-9f11-cbe935f0a3a2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/003da573-8974-4462-be26-19f3dd88eaf5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/003da573-8974-4462-be26-19f3dd88eaf5.jpg\",\"caption\":\"Screenshot of Going™\"},\"image\":\"https://images.refero.design/styles/refero.design/image/003da573-8974-4462-be26-19f3dd88eaf5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Going™ design system\",\"Going™ website design\",\"Going™ colors\",\"Going™ typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Deep Lagoon\",\"Electric Iris\",\"Parchment\",\"Ink Black\",\"PP Mori\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Going™ design system\"},{\"@type\":\"Thing\",\"name\":\"Going™ website design\"},{\"@type\":\"Thing\",\"name\":\"Going™ colors\"},{\"@type\":\"Thing\",\"name\":\"Going™ typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:59:02.434Z\",\"dateModified\":\"2026-04-30T00:59:02.434Z\"}]}19:T6c7,Quick Color Reference:\n- text: #004449 (Deep Lagoon)\n- background: #fffef0 (Parchment)\n- border: #000000 (Ink Black) or #004449\n- accent: #0bff80 (Lime Pulse) — display only\n- primary action: #483cff (filled action)\n\nExample Component Prompts:\n\n1. Create a Primary Action Button: #483cff background, #fffef0 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Build a 3-column feature grid on a mint band: full-width #d7ffc2 background, 80px vertical padding. Three equal columns, each with a phone mockup image, a 28px PP Mori 600 subheading in #004449, and 16px body text in #004449 at 475 weight. 32px gap between columns, cards sit on the mint band directly (no card containers), or use #fffef0 card containers with 24px radius and 32px padding.\n\n3. Build a testimonial card: 320px wide, auto height, background #d7ffc2, 24px radius, 32px padding. 56px circular avatar top-left. Name + trip metadata at 14px PP Mori 475 in #004449. Quote body at 16px PP Mori 400 in #004449. No border, no shadow. Cards arranged in a horizontal scroll row.\n\n4. Build the top navigation: full-width #004449 background, 20px vertical padding. Logo 'Going™' left at 24px PP Mori 600 white. Center nav links uppercase at 14px PP Mori 475, white, 0.06em tracking. Right: outlined 'Sign Up' button (1.5px white border, 900px radius, 16px 24px padding) + filled 'Get App' button (background #483cff, white text, 900px radius, 16px 24px padding).\n\n5. Build a social proof pill badge: #d7ffc2 background, 900px radius, 8px 16px padding. Contains 2-3 overlapping 24px circular avatars on the left, then 'Loved by 2M+ ★★★★★' at 14px PP Mori 475 in #004449. Sits above the hero headline with 16px gap below."
+}

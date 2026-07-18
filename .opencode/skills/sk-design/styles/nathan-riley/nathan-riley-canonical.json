@@ -1,0 +1,573 @@
+{
+  "source": "https://styles.refero.design/style/1c516bc6-278b-4cf6-bfe8-c5a39118e730",
+  "uuid": "1c516bc6-278b-4cf6-bfe8-c5a39118e730",
+  "name": "Nathan Riley",
+  "northStar": "Gallery wall in a black void. A monochrome portfolio where the grid of atmospheric renders is the only color, and a single oversized serif name card anchors the center like a magazine cover floating over the work.",
+  "capturedAt": "2026-07-18T07:39:11.976Z",
+  "meta": {
+    "url": "https://www.nrly.co",
+    "siteName": "Nathan Riley",
+    "extractedAt": "2026-06-03T20:06:52.371Z",
+    "durationMs": 26788,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 144,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only the three neutral values plus the single dusty-rose card color — never introduce a new hue, the system is intentionally monochrome",
+      "Set display name text at 238px with line-height 0.80 and -0.04em letter-spacing to reproduce the editorial masthead effect",
+      "Use 9999px radius exclusively for nav pill chips — all other elements stay at 0px radius",
+      "Keep all image tiles edge-to-edge with no padding, no rounded corners, and no shadows — the grid is the layout, not a container",
+      "Anchor the central name card with #e8c4c0 background and 38px padding on all sides as the single non-monochrome surface",
+      "Use custom serif at weight 300-400 for all display text — never substitute a sans-serif headline, the serif is the brand",
+      "Maintain 6px gap between nav chips and 2px between image grid cells to keep spacing tight and structural"
+    ],
+    "donts": [
+      "Do not add any new color — no blues, greens, or warm tones beyond the single blush card background",
+      "Do not use border-radius on cards, images, or content containers — only pill nav chips get radius",
+      "Do not apply shadows or elevation effects to any component — the system is flat, relying on color contrast and grid structure for depth",
+      "Do not add gradients of any kind — the palette is solid only",
+      "Do not use sans-serif for headlines or display text — the custom serif at extreme sizes is the signature element",
+      "Do not constrain the image grid with a max-width container — the grid must be full-bleed edge-to-edge",
+      "Do not add header navigation, footers, or sidebar chrome — the floating name card and bottom pill row are the entire navigation system"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Text, image grid gutter borders, hairline dividers, nav chip outlines — the structural ink that defines the grid structure and typography",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, nav chip backgrounds, card surface — the gallery wall behind everything",
+        "group": "neutral"
+      },
+      {
+        "hex": "#393939",
+        "name": "Warm Charcoal",
+        "role": "Central name card surface, secondary text, soft borders — the mid-tone that makes the pale-rose card read as a distinct layer without breaking the monochrome",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e8c4c0",
+        "name": "Blush Card",
+        "role": "Background of the central name card — the only chromatic accent, a dusty rose that warms the otherwise pure black-and-white system",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed image mosaic covering 100% of the viewport with no page-level container. A fixed/aspected masonry grid of 3D renders tiles the entire screen edge-to-edge with hairline gaps. A single dusty-rose name card is centered in the viewport (not the page) as a floating overlay, positioned dead-center like a magazine cover pasted on a gallery wall. A horizontal row of small pill-shaped nav chips sits near the bottom of the central card. No traditional header, no footer bar, no sidebar — the image grid IS the page structure, and the centered card is the only interruption. Navigation is minimal: a bottom row of contact links inside the card.",
+    "imagery": "The entire site IS imagery — a dense grid of 3D-rendered atmospheric scenes: surreal garden pools, floating furniture, overgrown ruins, lavender fields, golden orbs, mountain landscapes at sunset. All renders share a cohesive mood: soft natural light, painterly atmosphere, dreamlike scale, muted natural palettes (pinks, greens, golds, blues within the art itself). The images are full-bleed, no rounded corners, no overlays, no captions — each render is a self-contained frame in the gallery wall. The photography/3D style is editorial-surreal, reminiscent of Thomas Demand or teamLab installations, where natural and architectural elements exist in impossible gentle arrangements.",
+    "similar": [
+      {
+        "why": "Same art-portfolio-as-mosaic approach with grid-based image presentation and minimal text chrome",
+        "business": "Daniel Arsham"
+      },
+      {
+        "why": "Dense image-grid portfolios with no traditional navigation, where the artwork is the layout",
+        "business": "teamLab"
+      },
+      {
+        "why": "Minimalist artist portfolio with restrained palette where the work itself provides all visual interest",
+        "business": "James Turrell"
+      },
+      {
+        "why": "Full-bleed media-mosaic landing pages with a single centered identity element floating over imagery",
+        "business": "Refik Anadol"
+      },
+      {
+        "why": "Same editorial restraint with custom serif display type at extreme sizes and a strictly achromatic palette",
+        "business": "COS (cosstores.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "9999px"
+      },
+      "elementGap": "6px",
+      "sectionGap": "",
+      "cardPadding": "38px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Full-viewport page background behind the image mosaic"
+      },
+      {
+        "hex": "#000000",
+        "name": "Image Tile",
+        "level": 2,
+        "purpose": "Image cells fill the grid; black serves as the gutter/border color between cells"
+      },
+      {
+        "hex": "#e8c4c0",
+        "name": "Blush Name Card",
+        "level": 3,
+        "purpose": "Central floating card with the artist's name — the single non-grayscale surface"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Nav Pill",
+        "level": 4,
+        "purpose": "Small pill-shaped chips in the bottom nav row"
+      }
+    ],
+    "northStar": "Gallery wall in a black void. A monochrome portfolio where the grid of atmospheric renders is the only color, and a single oversized serif name card anchors the center like a magazine cover floating over the work.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.3
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.35
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "display",
+        "size": 238,
+        "lineHeight": 0.8,
+        "letterSpacing": -9.52
+      }
+    ],
+    "components": [
+      {
+        "name": "Image Grid Tile",
+        "role": "Primary content unit — each cell of the mosaic",
+        "description": "A 3D-rendered image or photograph filling its grid cell edge-to-edge. No padding, no border, no radius, no shadow. Tiles abut directly with 2px black gutter lines or hairline gaps acting as the only separation. The image is the surface — no container chrome."
+      },
+      {
+        "name": "Central Name Card",
+        "role": "The artist's identity card anchored over the grid",
+        "description": "Fixed-position card centered on the viewport with #e8c4c0 dusty-rose background and 38px padding all sides. Contains the display serif name at 238px weight 300-400 italic, line-height 0.80, letter-spacing -0.04em. Below: a bio paragraph at 14-16px weight 400, charcoal text, tight 1.10 line-height. A small 'PROFILE >' link in monospace-style caps at 12px. No border, no shadow, no radius — the color contrast alone separates it from the image grid."
+      },
+      {
+        "name": "Pill Navigation Chip",
+        "role": "Social/contact link in the bottom bar",
+        "description": "White (#ffffff) background, no visible border, 9999px border-radius for a fully rounded pill shape. Text is 12-14px weight 400 in uppercase tracking, black (#000000). Chips sit in a horizontal row with 6px gap between them. No fill state, no hover color shift evident — the pill shape and size do all the work."
+      },
+      {
+        "name": "Profile Link",
+        "role": "Secondary text link inside the name card",
+        "description": "Small uppercase or mono-style text at 12px, likely with a '>' or arrow glyph. Functions as a tertiary navigation affordance, styled as a text label rather than a button. No underline, no color change — spatial relationship to surrounding text is the only hierarchy cue."
+      },
+      {
+        "name": "Masonry Grid Container",
+        "role": "Page-level layout structure",
+        "description": "Full-bleed CSS grid covering the entire viewport. No max-width constraint, no centering, no margins. Image tiles arranged in a masonry-like pattern with varying row heights to accommodate different aspect ratios. Black 2px lines or minimal gaps form the grid lattice. The grid is the page — there is no header, no footer bar, no sidebar."
+      },
+      {
+        "name": "Image Gutter Divider",
+        "role": "Hairline separation between grid cells",
+        "description": "2px black (#000000) lines or minimal gap between adjacent image tiles. Functions as a gallery wall mount system — thin, structural, invisible until you look for it. No decorative role, purely organizational."
+      },
+      {
+        "name": "Bio Description Block",
+        "role": "Text body inside the central name card",
+        "description": "14-16px custom body serif, weight 400, line-height 1.10, color #393939 or #000000. Uppercase or small-caps treatment with -0.025em tracking. Reads as a credit line or exhibition wall text — compressed, label-like, not narrative prose. Max-width constrained within the card to maintain a narrow text column beside or below the oversized name."
+      }
+    ],
+    "typography": [
+      {
+        "role": "font1 — detected in extracted data but not described by AI",
+        "sizes": "12px, 238px",
+        "family": "font1",
+        "weight": "300, 400",
+        "lineHeight": "0.8, 1.1",
+        "letterSpacing": "-0.04"
+      },
+      {
+        "role": "Hero name display and small print. The 238px size with line-height 0.80 and -0.04em tracking creates a tightly cropped masthead that feels printed, not rendered. Weight 300 at display size is the signature — it whispers rather than shouts, giving the name editorial weight through restraint rather than boldness. The italic treatment in the screenshot adds a calligraphic warmth that contrasts the rigid grid around it.",
+        "sizes": "",
+        "family": "Custom Display Serif",
+        "weight": "300, 400",
+        "lineHeight": "0.80, 1.10",
+        "substitute": "GT Sectra Display, Tiempos Headline, or Domaine Display Light"
+      },
+      {
+        "role": "Body copy, bio description, nav chip text, and link labels. Tight line-height 1.10 at small sizes creates a dense, catalog-like feel. The -0.025em tracking tightens the letterforms for compact, refined small text that reads as label or caption rather than prose.",
+        "sizes": "",
+        "family": "Custom Body Serif",
+        "weight": "400",
+        "lineHeight": "1.10",
+        "substitute": "GT Sectra, Söhne Buch, or Publico Text"
+      },
+      {
+        "role": "font2 — detected in extracted data but not described by AI",
+        "sizes": "12px, 14px, 16px",
+        "family": "font2",
+        "weight": "400",
+        "lineHeight": "1.1",
+        "letterSpacing": "-0.025"
+      },
+      {
+        "role": "ui-sans-serif — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "ui-sans-serif",
+        "weight": "400",
+        "lineHeight": "1.1"
+      }
+    ],
+    "description": "Nathan Riley's portfolio is a monochrome art gallery rendered as a full-bleed image mosaic — a tight grid of atmospheric 3D renders that fills every pixel, with the artist's name floating in a single pale-rose card at the center. The palette is ruthlessly reduced to three values: pure black, pure white, and a warm dark gray, so all visual energy comes from the imagery itself rather than color. Typography is custom-serif, ultra-light at display weight, and stretched to a 238px hero that dominates the center card like a magazine masthead. The system has no rounded corners, no shadows, no gradients, and no button fills — navigation is a row of small pill-shaped text chips at the bottom, and the overall feel is that of a curated exhibition catalog printed on white paper with one large editorial title.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1c516bc6-278b-4cf6-bfe8-c5a39118e730#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Nathan Riley design system\",\"item\":\"https://styles.refero.design/style/1c516bc6-278b-4cf6-bfe8-c5a39118e730\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1c516bc6-278b-4cf6-bfe8-c5a39118e730#style-reference\",\"name\":\"Nathan Riley design system reference\",\"headline\":\"Nathan Riley design system | Refero Styles\",\"description\":\"Explore Nathan Riley's light Design design system: Pure Black #000000, Paper White #ffffff colors, font1, Custom Display Serif typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/1c516bc6-278b-4cf6-bfe8-c5a39118e730\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1c516bc6-278b-4cf6-bfe8-c5a39118e730\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Nathan Riley\",\"url\":\"https://www.nrly.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1c516bc6-278b-4cf6-bfe8-c5a39118e730#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7fffcf3b-681e-4381-a3c9-061c626869df.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7fffcf3b-681e-4381-a3c9-061c626869df.jpg\",\"caption\":\"Screenshot of Nathan Riley\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7fffcf3b-681e-4381-a3c9-061c626869df.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Nathan Riley design system\",\"Nathan Riley website design\",\"Nathan Riley colors\",\"Nathan Riley typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Pure Black\",\"Paper White\",\"Warm Charcoal\",\"Blush Card\",\"font1\",\"Custom Display Serif\",\"Custom Body Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Nathan Riley design system\"},{\"@type\":\"Thing\",\"name\":\"Nathan Riley website design\"},{\"@type\":\"Thing\",\"name\":\"Nathan Riley colors\"},{\"@type\":\"Thing\",\"name\":\"Nathan Riley typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:13:38.914Z\",\"dateModified\":\"2026-04-30T02:13:38.914Z\"}]}19:T635,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border/gutter: #000000\n- accent surface (name card): #e8c4c0\n- secondary text: #393939\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Create a full-bleed image mosaic page*: white (#ffffff) canvas. CSS grid filling 100vw × 100vh with 6-8 columns of image tiles, each tile flush edge-to-edge with 2px black (#000000) gaps. No padding, no margins, no border-radius on any tile. Images fill their grid cells completely with object-fit cover.\n\n2. *Create the central floating name card*: 38px padding on all sides, background #e8c4c0 (dusty rose), no border, no shadow, no radius. Name text at 238px custom serif weight 300, italic, #000000, line-height 0.80, letter-spacing -0.04em. Bio paragraph below at 14px custom serif weight 400, #393939, line-height 1.10, -0.025em tracking. Small 'PROFILE >' link at 12px below bio.\n\n3. *Create the bottom nav row*: horizontal flex row with 6px gap between items. Each chip is a pill (9999px border-radius), white (#ffffff) background, no border, 16px horizontal padding, 2px vertical padding. Text inside is 12-14px custom serif weight 400, uppercase, #000000, letter-spacing -0.025em. Chips contain: EMAIL, TW, IG, NFTS.\n\n4. *Create a gallery grid image tile*: one cell of the mosaic, filling its grid area completely. The image is a 3D-rendered atmospheric scene (soft light, surreal natural/architectural composition). No border-radius, no padding, no overlay text, no shadow. The tile's edge is defined only by the 2px black gap to neighboring tiles."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "This design system has zero elevation. No box-shadows, no drop-shadows, no glow effects, no z-axis depth cues. The flatness is deliberate — the image mosaic already creates visual depth through the photographic content, and adding shadows would break the gallery-wall metaphor where prints are mounted flush against the wall. The single non-flat element is the floating name card, which separates from the grid not through shadow but through its unique dusty-rose color against the monochrome surroundings. Depth comes from color contrast and grid positioning, not from simulated light."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 440,
+          "confidence": 1,
+          "prominence": 30113025.47978354,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "list/color": 5,
+            "other/color": 83,
+            "list/borderColor": 20,
+            "other/borderColor": 332
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 54,
+          "confidence": 1,
+          "prominence": 792693.7930407932,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "other/color": 6,
+            "body/borderColor": 16,
+            "other/borderColor": 24,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#393939",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.34458382051778663
+          },
+          "contexts": [
+            "body",
+            "other",
+            "heading"
+          ],
+          "frequency": 174,
+          "confidence": 1,
+          "prominence": 310335.4915967047,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "other/color": 28,
+            "heading/color": 3,
+            "body/borderColor": 12,
+            "other/borderColor": 112,
+            "heading/borderColor": 12,
+            "other/backgroundColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.55,
+          "background": "#393939",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.82,
+          "background": "#393939",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|list",
+            "paddingLeft|list"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "font1",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 100,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "font2",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 42,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ui-sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 0.75
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "ui-sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "font1",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 83,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "font2",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "font2",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "font2",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 238,
+          "family": "font1",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 17,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/17097220-be50-4508-acdb-33e70a48dee4.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7fffcf3b-681e-4381-a3c9-061c626869df.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1c516bc6-278b-4cf6-bfe8-c5a39118e730#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Nathan Riley design system\",\"item\":\"https://styles.refero.design/style/1c516bc6-278b-4cf6-bfe8-c5a39118e730\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1c516bc6-278b-4cf6-bfe8-c5a39118e730#style-reference\",\"name\":\"Nathan Riley design system reference\",\"headline\":\"Nathan Riley design system | Refero Styles\",\"description\":\"Explore Nathan Riley's light Design design system: Pure Black #000000, Paper White #ffffff colors, font1, Custom Display Serif typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/1c516bc6-278b-4cf6-bfe8-c5a39118e730\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1c516bc6-278b-4cf6-bfe8-c5a39118e730\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Nathan Riley\",\"url\":\"https://www.nrly.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1c516bc6-278b-4cf6-bfe8-c5a39118e730#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7fffcf3b-681e-4381-a3c9-061c626869df.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7fffcf3b-681e-4381-a3c9-061c626869df.jpg\",\"caption\":\"Screenshot of Nathan Riley\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7fffcf3b-681e-4381-a3c9-061c626869df.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Nathan Riley design system\",\"Nathan Riley website design\",\"Nathan Riley colors\",\"Nathan Riley typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Pure Black\",\"Paper White\",\"Warm Charcoal\",\"Blush Card\",\"font1\",\"Custom Display Serif\",\"Custom Body Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Nathan Riley design system\"},{\"@type\":\"Thing\",\"name\":\"Nathan Riley website design\"},{\"@type\":\"Thing\",\"name\":\"Nathan Riley colors\"},{\"@type\":\"Thing\",\"name\":\"Nathan Riley typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:13:38.914Z\",\"dateModified\":\"2026-04-30T02:13:38.914Z\"}]}19:T635,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border/gutter: #000000\n- accent surface (name card): #e8c4c0\n- secondary text: #393939\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Create a full-bleed image mosaic page*: white (#ffffff) canvas. CSS grid filling 100vw × 100vh with 6-8 columns of image tiles, each tile flush edge-to-edge with 2px black (#000000) gaps. No padding, no margins, no border-radius on any tile. Images fill their grid cells completely with object-fit cover.\n\n2. *Create the central floating name card*: 38px padding on all sides, background #e8c4c0 (dusty rose), no border, no shadow, no radius. Name text at 238px custom serif weight 300, italic, #000000, line-height 0.80, letter-spacing -0.04em. Bio paragraph below at 14px custom serif weight 400, #393939, line-height 1.10, -0.025em tracking. Small 'PROFILE >' link at 12px below bio.\n\n3. *Create the bottom nav row*: horizontal flex row with 6px gap between items. Each chip is a pill (9999px border-radius), white (#ffffff) background, no border, 16px horizontal padding, 2px vertical padding. Text inside is 12-14px custom serif weight 400, uppercase, #000000, letter-spacing -0.025em. Chips contain: EMAIL, TW, IG, NFTS.\n\n4. *Create a gallery grid image tile*: one cell of the mosaic, filling its grid area completely. The image is a 3D-rendered atmospheric scene (soft light, surreal natural/architectural composition). No border-radius, no padding, no overlay text, no shadow. The tile's edge is defined only by the 2px black gap to neighboring tiles."
+}

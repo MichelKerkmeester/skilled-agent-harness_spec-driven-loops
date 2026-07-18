@@ -1,0 +1,247 @@
+{
+  "color": {
+    "strava-orange": {
+      "$value": "#fc5200",
+      "$type": "color",
+      "$description": "Strava Orange — Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "link-blue": {
+      "$value": "#0060d0",
+      "$type": "color",
+      "$description": "Link Blue — Inline text links and policy references; the only secondary chromatic color and reserved strictly for navigational links"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "warm-linen": {
+      "$value": "#f9f8f5",
+      "$type": "color",
+      "$description": "Warm Linen — Footer background, secondary surface elevation, subtle banding beneath white"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary body and heading text, icon strokes, hairline borders, button outlines"
+    },
+    "graphite": {
+      "$value": "#21211f",
+      "$type": "color",
+      "$description": "Graphite — Button text, filled icon strokes, high-contrast warm near-black"
+    },
+    "charcoal": {
+      "$value": "#43423f",
+      "$type": "color",
+      "$description": "Charcoal — Secondary body text, nav links, metadata — warm dark gray for sub-headings and long-form copy"
+    },
+    "pewter": {
+      "$value": "#64635e",
+      "$type": "color",
+      "$description": "Pewter — Muted helper text, tertiary copy, placeholder labels"
+    },
+    "bone": {
+      "$value": "#e0e0de",
+      "$type": "color",
+      "$description": "Bone — Hairline borders, input outlines, dividers between secondary sections"
+    }
+  },
+  "font": {
+    "boathouse": {
+      "$value": "Boathouse",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across all UI, headings, body, nav, and footer. The weight contrast is deliberately binary — 400 for almost everything, 600 reserved for the wordmark, headings, and CTA labels. Tight line-heights (1.0 on display) give headings a compressed, assertive posture rather than the airy SaaS default."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Boathouse",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Boathouse",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Boathouse",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Boathouse",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Boathouse",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Boathouse",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Boathouse",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Boathouse",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Boathouse",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Boathouse",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Boathouse",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background for hero, signup card, and most sections"
+    },
+    "linen-band": {
+      "$value": "#f9f8f5",
+      "$type": "color",
+      "$description": "Surface level 1: Footer and any secondary surface band beneath the main canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://strava.com",
+      "siteName": "Strava",
+      "extractedAt": "2026-06-03T17:33:21.537Z",
+      "variant": "extended"
+    }
+  }
+}

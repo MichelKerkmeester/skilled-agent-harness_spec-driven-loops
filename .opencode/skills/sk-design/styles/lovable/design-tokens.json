@@ -1,0 +1,339 @@
+{
+  "color": {
+    "parchment": {
+      "$value": "#fcfbf8",
+      "$type": "color",
+      "$description": "Parchment — Page canvas, primary background, card surfaces when on darker parents"
+    },
+    "warm-sand": {
+      "$value": "#f7f4ed",
+      "$type": "color",
+      "$description": "Warm Sand — Card backgrounds, elevated surface panels, secondary containers"
+    },
+    "linen-border": {
+      "$value": "#eceae4",
+      "$type": "color",
+      "$description": "Linen Border — All borders — nav dividers, card outlines, input strokes, section separators. Warm beige rather than cool gray gives the entire UI its distinctive non-tech softness"
+    },
+    "stone": {
+      "$value": "#d4d3d0",
+      "$type": "color",
+      "$description": "Stone — Subtle box-shadow tints, disabled borders, secondary dividers"
+    },
+    "dim-gray": {
+      "$value": "#5f5f5d",
+      "$type": "color",
+      "$description": "Dim Gray — Secondary text, placeholder text, muted nav labels, subheadings"
+    },
+    "charcoal": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Charcoal — Primary text, nav labels, icon fills, inverse button background. Near-black rather than pure black keeps the warm tone consistent"
+    },
+    "ink": {
+      "$value": "#030303",
+      "$type": "color",
+      "$description": "Ink — Highest-emphasis text (hero headline, button labels in chat input), icon fills"
+    },
+    "hero-gradient": {
+      "$value": "#2483ff",
+      "$type": "color",
+      "$description": "Hero Gradient — Full-width hero background gradient — decorative brand moment, never used on individual UI elements"
+    },
+    "indigo-accent": {
+      "$value": "#3451b2",
+      "$type": "color",
+      "$description": "Indigo Accent — Reserved accent from CSS tokens (--bg-accent). Inline text links, focus rings, accent highlights when needed"
+    }
+  },
+  "font": {
+    "camera-plain-variable": {
+      "$value": "Camera Plain Variable",
+      "$type": "fontFamily",
+      "$description": "The only typeface on the entire site. A custom variable-weight sans-serif that carries both body text and display headlines. The 480 weight is unusual — heavier than normal but not semi-bold, giving headlines a confident but non-aggressive stance. Ligatures are explicitly disabled (\"liga\" 0), keeping the letterforms mechanical and preventing decorative swashes."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Camera Plain Variable",
+        "fontSize": "14px",
+        "fontWeight": 480,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Camera Plain Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Camera Plain Variable",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Camera Plain Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Camera Plain Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Camera Plain Variable",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Camera Plain Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Camera Plain Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Camera Plain Variable",
+        "fontSize": "36px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Camera Plain Variable",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Camera Plain Variable",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Camera Plain Variable",
+        "fontSize": "60px",
+        "fontWeight": 480,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 60px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Camera Plain Variable",
+        "fontSize": "60px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 60px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "73": {
+      "$value": "73px",
+      "$type": "dimension",
+      "$description": "Spacing 73px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "oklch(0 0 0 / 0.25) 0px 0px 0px 0.5px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "oklab(0 0 0 / 0.08) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "oklch(0 0 0 / 0.16) 0px 0px 0px 0.5px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#fcfbf8",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, default surface for all content"
+    },
+    "card": {
+      "$value": "#f7f4ed",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated cards, chat input panels, feature containers — slightly warmer than canvas"
+    },
+    "inverse": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Surface level 2: Dark pill buttons, inverse overlays, high-contrast moments"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://lovable.dev",
+      "siteName": "Lovable",
+      "extractedAt": "2026-06-05T12:23:55.484Z",
+      "variant": "extended"
+    }
+  }
+}

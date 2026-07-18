@@ -1,0 +1,1130 @@
+{
+  "source": "https://styles.refero.design/style/e327d332-270d-4779-a55c-cd82b8624d2a",
+  "uuid": "e327d332-270d-4779-a55c-cd82b8624d2a",
+  "name": "bella Kitchen Appliances",
+  "northStar": "Sunlit kitchen counter at golden hour — warm cream surfaces with a single pop of coral.",
+  "capturedAt": "2026-07-18T08:18:41.021Z",
+  "meta": {
+    "url": "https://bellakitchenware.com",
+    "siteName": "bella Kitchen Appliances",
+    "extractedAt": "2026-06-03T17:39:42.820Z",
+    "durationMs": 38072,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 150,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #ebeadf as the page background for all non-card areas — the warm cream is the canvas that makes white cards and coral accents feel intentional",
+      "Use #f04923 exclusively as a functional accent: bestseller badges, promotional card backgrounds, and active price highlights — never as a large background fill for primary content",
+      "Use Supreme LL TT with -0.05em letter-spacing at every size — the tight tracking is non-negotiable for brand consistency",
+      "Use 999px border-radius for all buttons, badges, and tags — pill shapes are the button language",
+      "Use 12px border-radius for all cards and image containers — this is the universal surface radius",
+      "Use 24px internal padding for all card content — keep product cards, feature cards, and promotional cards consistent",
+      "Stack three surface levels for depth: warm canvas (#ebeadf) → sand beige (#d5cec0) → pristine white (#ffffff) — define elevation by hue temperature, never by drop shadow"
+    ],
+    "donts": [
+      "Do not use stark white (#ffffff) as the page background — the warm cream canvas is what gives bella its domestic, sunlit character",
+      "Do not add drop shadows to cards — bella uses color-temperature layering (canvas → beige → white) instead of shadow elevation",
+      "Do not use multiple accent colors — coral (#f04923) is the only chromatic accent; introducing a second brand color dilutes the warm domestic identity",
+      "Do not use blue as a UI color — the sky blue in the hero is photographic content, not a design token",
+      "Do not use serif fonts for UI — Supreme LL TT (or its geometric sans substitute) is the only acceptable typeface for all interface text",
+      "Do not use sharp corners (0px radius) on cards or containers — every surface should have at least 12px radius for softness",
+      "Do not center-justify body text or use long line lengths — keep product descriptions and body copy left-aligned with max 60ch width"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ebeadf",
+        "name": "Warm Canvas",
+        "role": "Page background — the foundational warm off-white that gives the whole interface its sunlit, lived-in feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pristine Surface",
+        "role": "Elevated card surfaces, navigation bar, product card backgrounds, pill button fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d5cec0",
+        "name": "Sand Beige",
+        "role": "Secondary card surfaces and warm-toned background panels for product grouping and featured sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, icon strokes, hairline borders, and the brand wordmark — defines the entire typographic system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f04923",
+        "name": "Coral Pulse",
+        "role": "Bestseller badges, promotional card backgrounds, price callouts, and active accents — the singular warm energy that breaks the cream monochrome",
+        "group": "brand"
+      }
+    ],
+    "layout": "The page is max-width 1200px centered with ~16px outer padding creating a floating-card feel on the warm canvas. Navigation is a full-width white pill bar at the top. The hero is a split layout: ~65% photographic sky background with overlaid headline and floating product, ~35% coral promotional card. Sections alternate between full-bleed photographic blocks and cream-canvas product grids. Product grids are 4-column on desktop with 24px gaps. Content arrangement alternates between centered text stacks (for section headers) and asymmetric hero splits. The overall rhythm is: full-bleed image hero → centered lifestyle section with text overlay → 4-column product grid → split image+card inspiration section. Generous vertical spacing (~80px) between sections creates a comfortable, breathable pace. Navigation is a minimal top bar with centered links.",
+    "imagery": "Photography is the dominant visual language and carries all atmospheric weight. Product shots are clean cut-outs on white or cream backgrounds — the object is the hero, no lifestyle context. The hero image is a surreal, aspirational sky scene (blue sky with clouds, red balloons lifting a toaster) that communicates freedom and lightness. Lifestyle scenes use warm, lived-in kitchen photography with natural wood, tile, plants, and ceramics to evoke a real domestic space. Imagery fills sections full-bleed with text overlaid in white or cream cards. No illustrations, no icons beyond functional UI — the photographic product IS the visual identity. Color treatment is natural and warm, not desaturated or filtered. Image-heavy at the section level but text-dominant within cards and navigation.",
+    "similar": [
+      {
+        "why": "Same warm cream-canvas aesthetic with a single warm accent color (terracotta/coral), pill-shaped buttons, and product-forward photography on neutral backgrounds",
+        "business": "Our Place"
+      },
+      {
+        "why": "Domestic kitchen brand using warm off-white surfaces, minimal sans-serif typography, and lifestyle photography with natural wood and ceramic textures",
+        "business": "Caraway"
+      },
+      {
+        "why": "Restrained warm-neutral palette with a single accent, generous whitespace, and product photography that lets the object be the hero against a cream backdrop",
+        "business": "Muji"
+      },
+      {
+        "why": "Playful kitchen brand with warm beige backgrounds, bold display type, and a single vivid accent color used for promotional moments and badges",
+        "business": "Great Jones"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "999px",
+        "cards": "12px",
+        "badges": "999px",
+        "buttons": "999px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ebeadf",
+        "name": "Warm Canvas",
+        "level": 0,
+        "purpose": "Base page background — the warm off-white foundation"
+      },
+      {
+        "hex": "#d5cec0",
+        "name": "Sand Beige",
+        "level": 1,
+        "purpose": "Secondary product grouping panels and warm-toned card backgrounds"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pristine Surface",
+        "level": 2,
+        "purpose": "Elevated product cards, navigation, and white pill buttons"
+      }
+    ],
+    "northStar": "Sunlit kitchen counter at golden hour — warm cream surfaces with a single pop of coral.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.65
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.9
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.4,
+        "letterSpacing": -1.1
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.4,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "display",
+        "size": 40,
+        "lineHeight": 1.1,
+        "letterSpacing": -2
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site header with brand mark, category links, and search",
+        "description": "White (#ffffff) background, full-width, 12px corner radius on the container, ~64px height. 'bella' wordmark in black Supreme LL TT 700 at ~16px on the left. Centered nav links (Shop, bella, bella PRO, Recipes, News, Made Better) in 16px Supreme LL TT 400 black. Search icon on the far right. Sits inside a rounded white card that floats on the warm canvas with ~16px gap from viewport edges."
+      },
+      {
+        "name": "Product Card",
+        "role": "Grid item for product listings with image, label, and price",
+        "description": "White (#ffffff) background, 12px border radius, 24px internal padding. Product image centered at top (transparent PNG on white, no frame). Product name in 16px Supreme LL TT 700 black below image. 'Bestseller' coral label above name when applicable. Price in 14px Supreme LL TT 400 black below name. Generous vertical rhythm — ~32px between image and text."
+      },
+      {
+        "name": "Bestseller Badge",
+        "role": "Promotional label indicating top-selling products",
+        "description": "Pill-shaped (999px radius), coral (#f04923) background, white text, 12px vertical / 20px horizontal padding. Text in 12–13px Supreme LL TT 700, uppercase or mixed-case tracking. Sits at the top-left of the product image or card."
+      },
+      {
+        "name": "Pill Button",
+        "role": "Primary action button for shop, learn more, and navigation CTAs",
+        "description": "Full pill (999px radius), 12px vertical / 24px horizontal padding. Filled white variant: #ffffff background, 1px black border, 14px Supreme LL TT 700 black text. Outlined ghost variant: transparent background, 1px black border. Text vertically centered. Width auto-sizes to content with ~16px min-height."
+      },
+      {
+        "name": "Featured Product Card",
+        "role": "Promotional sidebar card in the hero highlighting a best-selling product",
+        "description": "Full coral (#f04923) background, 12px border radius, 24px padding. Bestseller badge (white pill) at top-left. Headline in 22–24px Supreme LL TT 700 white, 2 lines max. Product image centered below headline. White pill CTA button at the bottom edge — provides a strong color-to-white contrast as the final action."
+      },
+      {
+        "name": "Hero Banner",
+        "role": "Full-bleed hero introducing the brand campaign",
+        "description": "Full-width split layout: left ~65% is a photographic sky-blue background with cloud imagery (content, not UI color), right ~35% is a Featured Product Card. Headline 'Fits-anywhere™ kitchenware' in ~40px Supreme LL TT 700 white over the sky image. A product (toaster) floats in the hero with red balloons for whimsy. Hero card has 12px border radius and sits inset from viewport edges."
+      },
+      {
+        "name": "Lifestyle Scene Section",
+        "role": "Full-bleed editorial section with text overlay on a warm kitchen photograph",
+        "description": "Full-width photographic image (warm kitchen scene) with a semi-transparent or white centered text card overlaid. Text card: white or warm cream background, 12px radius, 24px padding. Heading in 24px Supreme LL TT 700 black. Subtitle in 16px Supreme LL TT 400 black. Centered horizontally, positioned in the upper-middle of the image."
+      },
+      {
+        "name": "Product Grid Section",
+        "role": "Four-column product showcase for space-saving essentials",
+        "description": "Warm canvas (#ebeadf) background. Section heading at ~24–40px Supreme LL TT 700 black, centered. 4-column grid with 24px gaps, each column containing a Product Card. Grid is centered within ~1200px max-width container."
+      },
+      {
+        "name": "Inspiration Feature Card",
+        "role": "Promotional card with a light blue background and CTA for recipe/inspiration content",
+        "description": "Light periwinkle blue background (soft secondary accent, ~#b8c5e8), 12px border radius, 24px padding. Small eyebrow text in 12px Supreme LL TT 400. Headline 'Get inspired' in 24px Supreme LL TT 700. Product image (air fryer) on the right. White pill 'Learn more' button at bottom with black text."
+      },
+      {
+        "name": "Category Link",
+        "role": "Inline navigation link used in the top nav and footer",
+        "description": "16px Supreme LL TT 400 black text. No underline by default. A small downward chevron (‹) may accompany category links with sub-menus. Active or hover state could shift weight to 700 or add a coral underline."
+      },
+      {
+        "name": "Price Display",
+        "role": "Product price label under each product name",
+        "description": "14px Supreme LL TT 400 black text, prefixed with '$' (e.g. '$59.99'). Centered or left-aligned depending on card layout. Optional strikethrough variant for sale prices in lighter weight with coral accent on the sale price."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary brand typeface used for all UI text, headings, navigation, buttons, and product labels — geometric sans with uniformly tight -0.05em tracking gives the type a compact, modern rhythm; weight 400 handles body and most labels while weight 700 drives headings and product names",
+        "sizes": "13, 14, 16, 18, 22, 24, 40",
+        "family": "Supreme LL TT",
+        "weight": "400, 700",
+        "lineHeight": "1.0–1.83",
+        "substitute": "Inter, DM Sans, or General Sans",
+        "letterSpacing": "-0.05em uniformly across all sizes",
+        "fontFeatureSettings": "\"ss01\" on, \"cv11\" on"
+      },
+      {
+        "role": "Fallback or system-rendered text where Supreme LL TT is unavailable",
+        "sizes": "16, 32",
+        "family": "Times",
+        "weight": "400, 700",
+        "lineHeight": "1.0",
+        "substitute": "Times New Roman, Liberation Serif"
+      }
+    ],
+    "description": "bella is a warm, domestic kitchen-counter aesthetic built on a cream-and-coral palette that feels sunlit rather than clinical. The entire interface rests on a warm off-white canvas (#ebeadf) with slightly warmer beige cards (#d5cec0) and white surfaces floating above — layers are defined by hue temperature, not stark contrast. A single saturated coral accent (#f04923) provides all the energy: bestseller tags, promotional cards, price highlights, and active states. Typography uses a geometric sans (Supreme LL TT) with uniformly tight -0.05em tracking at every size, giving headings a compact, modern posture. The design avoids shadows in favor of color-temperature layering and 12px rounded corners; buttons and badges are full pills (999px). The overall feel is approachable, appetite-driven, and product-forward — photography does the heavy atmospheric lifting while the UI stays minimal and warm.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e327d332-270d-4779-a55c-cd82b8624d2a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"bella Kitchen Appliances design system\",\"item\":\"https://styles.refero.design/style/e327d332-270d-4779-a55c-cd82b8624d2a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e327d332-270d-4779-a55c-cd82b8624d2a#style-reference\",\"name\":\"bella Kitchen Appliances design system reference\",\"headline\":\"bella Kitchen Appliances design system | Refero Styles\",\"description\":\"Explore bella Kitchen Appliances's light E-commerce design system: Warm Canvas #ebeadf, Pristine Surface #ffffff colors, Supreme LL TT, Times typography,...\",\"url\":\"https://styles.refero.design/style/e327d332-270d-4779-a55c-cd82b8624d2a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e327d332-270d-4779-a55c-cd82b8624d2a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"bella Kitchen Appliances\",\"url\":\"https://bellakitchenware.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e327d332-270d-4779-a55c-cd82b8624d2a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7788eed5-3027-4f06-8b05-e56472b11986.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7788eed5-3027-4f06-8b05-e56472b11986.jpg\",\"caption\":\"Screenshot of bella Kitchen Appliances\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7788eed5-3027-4f06-8b05-e56472b11986.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"bella Kitchen Appliances design system\",\"bella Kitchen Appliances website design\",\"bella Kitchen Appliances colors\",\"bella Kitchen Appliances typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Warm Canvas\",\"Pristine Surface\",\"Sand Beige\",\"Ink Black\",\"Supreme LL TT\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"bella Kitchen Appliances design system\"},{\"@type\":\"Thing\",\"name\":\"bella Kitchen Appliances website design\"},{\"@type\":\"Thing\",\"name\":\"bella Kitchen Appliances colors\"},{\"@type\":\"Thing\",\"name\":\"bella Kitchen Appliances typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:28:24.860Z\",\"dateModified\":\"2026-04-30T00:28:24.860Z\"}]}19:T885,**Quick Color Reference**\n- text: #000000\n- background: #ebeadf (warm cream)\n- surface/card: #ffffff\n- secondary surface: #d5cec0 (sand beige)\n- border: #000000 (hairline 1px)\n- accent: #f04923 (coral)\n- primary action: no distinct CTA color\n\n**3–5 Example Component Prompts**\n\n1. *Create a product card for an e-commerce grid:* White (#ffffff) background, 12px border radius, 24px internal padding. Product image centered at top on transparent/white. Product name in 16px Supreme LL TT weight 700, #000000, letter-spacing -0.8px. Price below in 14px Supreme LL TT weight 400, #000000, letter-spacing -0.7px. Optional coral (#f04923) 'Bestseller' pill badge (999px radius, 12px 20px padding, 12px white text) above the product name. ~32px gap between image and text.\n\n2. *Create a featured product card (hero sidebar):* Full coral (#f04923) background, 12px border radius, 24px padding. Bestseller badge (white pill) at top-left. Headline in 24px Supreme LL TT weight 700, #ffffff, letter-spacing -1.2px. Product image centered below. White pill button at the bottom: #ffffff background, 1px #000000 border, 999px radius, 12px 24px padding, 14px Supreme LL TT weight 700 #000000 text.\n\n3. *Create a lifestyle section with text overlay:* Full-bleed warm kitchen photograph. Centered text card overlaid: white background, 12px border radius, 24px padding. Heading in 24px Supreme LL TT weight 700, #000000, letter-spacing -1.2px. Subtitle in 16px Supreme LL TT weight 400, #000000. Centered horizontally, positioned in the upper-middle of the image.\n\n4. *Create a 4-column product grid section:* Warm canvas (#ebeadf) background. Section heading at 40px Supreme LL TT weight 700, #000000, centered. 4-column grid with 24px column gaps, max-width 1200px centered. Each grid cell is a Product Card (see prompt 1).\n\n5. *Create a top navigation bar:* White (#ffffff) background, 12px border radius container, full-width with 16px outer margin from viewport edges, ~64px height. 'bella' wordmark in 16px Supreme LL TT weight 700, #000000, on the left. Nav links centered: 16px Supreme LL TT weight 400, #000000. Search icon on the far right. ~24px horizontal padding inside the nav bar."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "bella avoids drop shadows entirely. Elevation is communicated through a three-tier surface temperature system: warm canvas (#ebeadf) as the base, sand beige (#d5cec0) as the mid-tier panel, and pristine white (#ffffff) as the elevated surface. This approach keeps the interface feeling flat, warm, and domestic — like objects resting on a sunlit counter rather than floating in digital space. When a surface needs to feel 'on top,' make it whiter; when it needs to recede, make it more beige. Never use box-shadow for cards, modals, or popovers."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "button",
+            "body",
+            "hero",
+            "heading",
+            "image",
+            "card",
+            "footer"
+          ],
+          "frequency": 675,
+          "confidence": 1,
+          "prominence": 58997099.0782761,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 16,
+            "card/color": 3,
+            "hero/color": 1,
+            "icon/color": 6,
+            "link/color": 15,
+            "other/fill": 3,
+            "image/color": 1,
+            "other/color": 84,
+            "button/color": 3,
+            "footer/color": 1,
+            "other/stroke": 7,
+            "heading/color": 3,
+            "body/borderColor": 64,
+            "card/borderColor": 12,
+            "hero/borderColor": 4,
+            "icon/borderColor": 24,
+            "link/borderColor": 60,
+            "image/borderColor": 4,
+            "other/borderColor": 336,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#ebeadf",
+          "oklch": {
+            "c": 0.014680410915741335,
+            "h": 102.46562083264085,
+            "l": 0.9348030434943448
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 9476400.250343787,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 5,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "button"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 5650418.171466575,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/fill": 1,
+            "other/color": 3,
+            "heading/color": 1,
+            "body/borderColor": 8,
+            "other/borderColor": 12,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d5cec0",
+          "oklch": {
+            "c": 0.02056741572460386,
+            "h": 84.59226524601348,
+            "l": 0.8531769547803648
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1745994.6907944256,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f04923",
+          "oklch": {
+            "c": 0.2094517669383909,
+            "h": 33.88945865972832,
+            "l": 0.6401007306187697
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 291261,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0015403951944254542,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.37,
+          "background": "#ebeadf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.42,
+          "background": "#d5cec0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.68,
+          "background": "#f04923",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.7,
+          "background": "#f04923",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.56,
+          "background": "#d5cec0",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.21,
+          "background": "#ebeadf",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "link",
+            "card"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 999,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|body",
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 76,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 116,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 134,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 167,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 89,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Supreme LL TT",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 50,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Supreme LL TT",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Supreme LL TT",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Supreme LL TT",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "hero",
+            "card",
+            "button",
+            "footer"
+          ],
+          "frequency": 86,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Supreme LL TT",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "icon",
+            "button",
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Supreme LL TT",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Supreme LL TT",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.89,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Supreme LL TT",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Supreme LL TT",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Supreme LL TT",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.83,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Times",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "image"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Supreme LL TT",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/fdab8a95-5e5c-4ef5-aeb4-94750ced9b36.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7788eed5-3027-4f06-8b05-e56472b11986.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e327d332-270d-4779-a55c-cd82b8624d2a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"bella Kitchen Appliances design system\",\"item\":\"https://styles.refero.design/style/e327d332-270d-4779-a55c-cd82b8624d2a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e327d332-270d-4779-a55c-cd82b8624d2a#style-reference\",\"name\":\"bella Kitchen Appliances design system reference\",\"headline\":\"bella Kitchen Appliances design system | Refero Styles\",\"description\":\"Explore bella Kitchen Appliances's light E-commerce design system: Warm Canvas #ebeadf, Pristine Surface #ffffff colors, Supreme LL TT, Times typography,...\",\"url\":\"https://styles.refero.design/style/e327d332-270d-4779-a55c-cd82b8624d2a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e327d332-270d-4779-a55c-cd82b8624d2a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"bella Kitchen Appliances\",\"url\":\"https://bellakitchenware.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e327d332-270d-4779-a55c-cd82b8624d2a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7788eed5-3027-4f06-8b05-e56472b11986.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7788eed5-3027-4f06-8b05-e56472b11986.jpg\",\"caption\":\"Screenshot of bella Kitchen Appliances\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7788eed5-3027-4f06-8b05-e56472b11986.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"bella Kitchen Appliances design system\",\"bella Kitchen Appliances website design\",\"bella Kitchen Appliances colors\",\"bella Kitchen Appliances typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Warm Canvas\",\"Pristine Surface\",\"Sand Beige\",\"Ink Black\",\"Supreme LL TT\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"bella Kitchen Appliances design system\"},{\"@type\":\"Thing\",\"name\":\"bella Kitchen Appliances website design\"},{\"@type\":\"Thing\",\"name\":\"bella Kitchen Appliances colors\"},{\"@type\":\"Thing\",\"name\":\"bella Kitchen Appliances typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:28:24.860Z\",\"dateModified\":\"2026-04-30T00:28:24.860Z\"}]}19:T885,**Quick Color Reference**\n- text: #000000\n- background: #ebeadf (warm cream)\n- surface/card: #ffffff\n- secondary surface: #d5cec0 (sand beige)\n- border: #000000 (hairline 1px)\n- accent: #f04923 (coral)\n- primary action: no distinct CTA color\n\n**3–5 Example Component Prompts**\n\n1. *Create a product card for an e-commerce grid:* White (#ffffff) background, 12px border radius, 24px internal padding. Product image centered at top on transparent/white. Product name in 16px Supreme LL TT weight 700, #000000, letter-spacing -0.8px. Price below in 14px Supreme LL TT weight 400, #000000, letter-spacing -0.7px. Optional coral (#f04923) 'Bestseller' pill badge (999px radius, 12px 20px padding, 12px white text) above the product name. ~32px gap between image and text.\n\n2. *Create a featured product card (hero sidebar):* Full coral (#f04923) background, 12px border radius, 24px padding. Bestseller badge (white pill) at top-left. Headline in 24px Supreme LL TT weight 700, #ffffff, letter-spacing -1.2px. Product image centered below. White pill button at the bottom: #ffffff background, 1px #000000 border, 999px radius, 12px 24px padding, 14px Supreme LL TT weight 700 #000000 text.\n\n3. *Create a lifestyle section with text overlay:* Full-bleed warm kitchen photograph. Centered text card overlaid: white background, 12px border radius, 24px padding. Heading in 24px Supreme LL TT weight 700, #000000, letter-spacing -1.2px. Subtitle in 16px Supreme LL TT weight 400, #000000. Centered horizontally, positioned in the upper-middle of the image.\n\n4. *Create a 4-column product grid section:* Warm canvas (#ebeadf) background. Section heading at 40px Supreme LL TT weight 700, #000000, centered. 4-column grid with 24px column gaps, max-width 1200px centered. Each grid cell is a Product Card (see prompt 1).\n\n5. *Create a top navigation bar:* White (#ffffff) background, 12px border radius container, full-width with 16px outer margin from viewport edges, ~64px height. 'bella' wordmark in 16px Supreme LL TT weight 700, #000000, on the left. Nav links centered: 16px Supreme LL TT weight 400, #000000. Search icon on the far right. ~24px horizontal padding inside the nav bar."
+}

@@ -1,0 +1,1313 @@
+{
+  "source": "https://styles.refero.design/style/79b4ebc4-30f6-45b6-b2d2-922e28e05ca9",
+  "uuid": "79b4ebc4-30f6-45b6-b2d2-922e28e05ca9",
+  "name": "Lpalo",
+  "northStar": "A children's storybook spread on warm peach paper — one slab-serif headline shouting through scattered crayon doodles.",
+  "capturedAt": "2026-07-18T08:29:45.386Z",
+  "meta": {
+    "url": "https://lpalo.com",
+    "siteName": "Lpalo",
+    "extractedAt": "2026-06-03T16:55:13.807Z",
+    "durationMs": 37598,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1015,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set display headlines in Alfa Slab One at 46px or above with line-height ≤ 1.20 — the tight leading is what makes the slab serif feel like it's shouting.",
+      "Use 47px border-radius on all primary containers (nav, cards, buttons) and 10px only for small nested elements; never use 0px or 4px radii.",
+      "Default to the peach canvas (#f6e0db) for every section; introduce a colored card surface only when breaking visual rhythm is intentional.",
+      "Pair 2px black borders with white fills for cards — this is the signature outlined-card language; never use shadows for elevation.",
+      "Scatter line-art illustrations at varied rotations around text blocks rather than aligning them to a grid; asymmetry is part of the storybook feel.",
+      "Use Manrope 500 for nav and 400 for body; reserve 700-800 for inline emphasis only — the default weight should feel conversational, not heavy.",
+      "Pick one vivid accent color per content block (orange, magenta, yellow, teal, blue, lilac) and let it saturate a whole card or band rather than mixing hues within a single component."
+    ],
+    "donts": [
+      "Don't apply drop shadows, inner shadows, or any elevation effects — the design is intentionally flat with borders doing the structural work.",
+      "Don't use gradients — all color is flat and saturated, like crayon on paper.",
+      "Don't set Alfa Slab One below 16px — at small sizes the slab serifs become illegible noise; switch to Manrope for anything under 16px.",
+      "Don't center-align body paragraphs — body text in Manrope reads left-aligned; centering is reserved for headlines and short labels.",
+      "Don't use neutral grays for borders or text — all structural lines are pure black (#000000); any gray breaks the storybook ink-on-paper metaphor.",
+      "Don't mix more than two accent colors within a single card or button — the palette is crayon-box broad, but each component should pick one crayon.",
+      "Don't add a traditional CTA button with a solid colored fill and white text; primary actions are pill-shaped with black borders on white, or colored-fill cards, not a conventional 'Buy now' button."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f6e0db",
+        "name": "Peach Paper",
+        "role": "Page canvas — the warm pastel ground that makes every black border and colored accent pop",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Charcoal Ink",
+        "role": "Primary text, hairlines, card borders, nav outlines — the structural skeleton at 1400+ border occurrences",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Snow",
+        "role": "Primary page canvas and white card surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ef724f",
+        "name": "Ember Orange",
+        "role": "Decorative accent and warm card surfaces — a crayon-orange that carries the most frequency of any chromatic color across the UI",
+        "group": "brand"
+      },
+      {
+        "hex": "#981082",
+        "name": "Magenta Pop",
+        "role": "Decorative accent, nav highlight, and vivid card fills — a saturated fuchsia used as bold punctuation on the peach canvas",
+        "group": "brand"
+      },
+      {
+        "hex": "#e7db4c",
+        "name": "Sunbeam Yellow",
+        "role": "Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content",
+        "group": "accent"
+      },
+      {
+        "hex": "#ace2df",
+        "name": "Mint Wash",
+        "role": "Decorative accent and soft card surface — a desaturated teal that cools the warm palette without breaking its energy",
+        "group": "accent"
+      },
+      {
+        "hex": "#84bfff",
+        "name": "Powder Blue",
+        "role": "Decorative accent and card surface — a mid-saturation sky blue appearing in the largest non-black count (60 fills), used for illustration washes",
+        "group": "accent"
+      },
+      {
+        "hex": "#e69dff",
+        "name": "Lilac Tint",
+        "role": "Decorative accent and card surface — a soft pastel pink-violet that lightens the magenta without competing",
+        "group": "accent"
+      },
+      {
+        "hex": "#6ed311",
+        "name": "Lime Zest",
+        "role": "Decorative accent — high-chroma green used sparingly as playful punctuation among illustrations",
+        "group": "accent"
+      },
+      {
+        "hex": "#5196ff",
+        "name": "Cobalt Spark",
+        "role": "Decorative accent — a single vivid blue dot in the illustration palette",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page is full-bleed with no fixed max-width container — content breathes from edge to edge on the peach canvas, broken by colored bands. The hero is a centered oversized Alfa Slab One headline (multi-line, tight leading) with illustrations orbiting it on all sides at different distances and rotations. Navigation sits as a horizontal row of pill-shaped buttons in the top-left third, not spanning full width. Content sections alternate between white-outlined card grids (2-3 columns) and full-bleed colored bands that act as visual rest stops. Cards are loosely arranged with slight rotations, not locked to a rigid grid. The rhythm is spacious: 46-64px between sections, generous whitespace inside cards. Footer is minimal — a few link groups on the peach canvas with no background change. The overall density is comfortable and editorial, not information-dense.",
+    "imagery": "The visual language is hand-drawn line illustration over flat color. Illustrations are thin-stroke black outlines (headphones, robots, cassette tapes, cameras, abstract faces, musical notes) scattered at irregular rotations around text — they function as decorative atmosphere, not as explanatory content. Cards occasionally feature full-bleed illustrated posters with a children's-book quality. No photography is present. The peach canvas with floating doodles creates a scrapbook or zine feel where the page itself is the artwork. Icons are mono-line, black-stroke only, matching the illustration style.",
+    "similar": [
+      {
+        "why": "Same children's-publication language: peach/pastel canvas, oversized slab-serif headlines, scattered hand-drawn doodles, and a crayon-box color palette applied as flat washes.",
+        "business": "Brio magazine / Highlights for Kids"
+      },
+      {
+        "why": "Same playful brand voice: flat vivid colors used as illustration fills, pill-shaped containers, and black-outlined white cards with zero shadow depth.",
+        "business": "Mailchimp (illustration system)"
+      },
+      {
+        "why": "Same generous whitespace, oversized display headlines as the primary visual anchor, and warm pastel canvas with scattered decorative line-art elements.",
+        "business": "Headspace (early brand)"
+      },
+      {
+        "why": "Same pill-shaped navigation, black-bordered white containers at large radii, and a refusal to use shadows — relying on border-weight and color for structure.",
+        "business": "The Browser Company / Arc"
+      },
+      {
+        "why": "Same storybook-on-paper feeling: a warm tinted canvas with floating line illustrations and a single bold display face carrying all typographic weight.",
+        "business": "Ridmik Dictionary (or other Bangla/French playful media)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "47px",
+        "cards": "40-47px",
+        "small": "10px",
+        "buttons": "47px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "46-64px",
+      "cardPadding": "24-40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#f6e0db",
+        "name": "Peach Canvas",
+        "level": 0,
+        "purpose": "Full-page background — warm pastel base for all sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Snow Card",
+        "level": 1,
+        "purpose": "Primary card and button fill, outlined by black borders"
+      },
+      {
+        "hex": "#ef724f",
+        "name": "Color Card",
+        "level": 2,
+        "purpose": "Vivid flat card surface in orange — same color as accent, used as a bold panel"
+      },
+      {
+        "hex": "#ace2df",
+        "name": "Mint Card",
+        "level": 3,
+        "purpose": "Soft teal card surface for variety within content sections"
+      },
+      {
+        "hex": "#e69dff",
+        "name": "Lilac Card",
+        "level": 4,
+        "purpose": "Pastel pink-violet card surface for softer content panels"
+      }
+    ],
+    "northStar": "A children's storybook spread on warm peach paper — one slab-serif headline shouting through scattered crayon doodles.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.6,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 25,
+        "lineHeight": 1.24,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 34,
+        "lineHeight": 1.16,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 46,
+        "lineHeight": 1.09,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-lg",
+        "size": 50,
+        "lineHeight": 1.12,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 120,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Navigation Button",
+        "role": "Top-bar nav item",
+        "description": "White fill, 2px black border, 47px border-radius (fully pill-shaped), 10px vertical / 20px horizontal padding, Manrope 500 at 16px, black text. Active state swaps to a colored fill (orange, magenta, or teal). Appears in clusters of 4-5 across the header."
+      },
+      {
+        "name": "Pill Dropdown Trigger",
+        "role": "Nav item with caret",
+        "description": "Identical to Pill Navigation Button but includes a small orange triangle (▾) suffix indicating an expandable menu. Sits as the leftmost primary nav item."
+      },
+      {
+        "name": "Outline Content Card",
+        "role": "General-purpose content card",
+        "description": "White (#ffffff) fill, 2px solid black border, 40-47px border-radius, 24-40px padding, no shadow. Uses Alfa Slab One for the card title and Manrope for body text. The thick black outline on white is the signature card treatment."
+      },
+      {
+        "name": "Flat Color Card",
+        "role": "Bold panel for featured content",
+        "description": "Single vivid fill (Ember Orange, Magenta Pop, or Sunbeam Yellow), no border, 40-47px border-radius, 24-40px padding. Black text on top. Used sparingly as visual punctuation between white card sections."
+      },
+      {
+        "name": "Display Headline Block",
+        "role": "Hero or section title",
+        "description": "Alfa Slab One 400 at 46-120px, line-height 1.09-1.20, black on peach canvas. No gradient, no color treatment — the slab-serif weight alone carries impact. Often multi-line with manual line breaks creating a 'shout' rhythm."
+      },
+      {
+        "name": "Line-Art Illustration",
+        "role": "Decorative floating graphic",
+        "description": "Thin black-stroke line drawings (robots, headphones, cameras, cassette tapes, faces) scattered across the peach canvas at varied rotations. Each is a standalone SVG, outlined only, no fill or minimal flat fill. Functions as visual breathing room around text."
+      },
+      {
+        "name": "Tilted Content Card",
+        "role": "Featured episode or highlight card",
+        "description": "A white card rotated 2-4 degrees with a slight teal or lavender offset behind it, creating a hand-placed scrapbook effect. 40px radius, black border, Manrope body text, Alfa Slab One title."
+      },
+      {
+        "name": "Tag Pill",
+        "role": "Category or filter label",
+        "description": "Small pill (47px radius), 8px vertical / 16px horizontal padding, Manrope 700 at 12-14px. Fill can be any brand accent color with black text, or white with black border."
+      },
+      {
+        "name": "Footer Link Group",
+        "role": "Secondary navigation block",
+        "description": "Manrope 500 at 16px, black text, minimal spacing (8-10px between items). No borders or background — sits directly on the peach canvas."
+      },
+      {
+        "name": "Event Card",
+        "role": "Date-specific listing card",
+        "description": "White fill, black border, 40px radius, 15-16px padding. Features a date marker (Alfa Slab One large numerals), event title (Manrope 700), and location/meta (Manrope 400). 2-3 cards arranged in a horizontal row."
+      },
+      {
+        "name": "Amplified Poster Card",
+        "role": "Featured visual content card",
+        "description": "Large card with image-first layout: full-bleed illustration or poster at top, title in Alfa Slab One 35px, description in Manrope 16px, black border 2px, 47px radius. Acts as a 'magazine cover' within the content flow."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Visual separator between content blocks",
+        "description": "A wide, thin band of solid color (alternating between Ember Orange, Mint Wash, Sunbeam Yellow, or Lilac Tint) stretching edge-to-edge, 60-100px tall. No text — pure color rhythm."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and editorial headlines — a single-weight chunky slab serif that carries the entire brand voice; the 46px size with tight 1.09 leading is the signature 'shouting headline' treatment, while 16px serves emphasized inline text",
+        "sizes": "16px, 35px, 46px",
+        "family": "Alfa Slab One",
+        "weight": "400",
+        "lineHeight": "1.09–1.20",
+        "substitute": "Bowlby One, Roboto Slab 900, or Recoleta Black"
+      },
+      {
+        "role": "UI text, navigation, body copy, and large display alternates — geometric sans used for everything that isn't an Alfa Slab headline; weight 500 for nav labels, 700-800 for emphasized UI text, 400 for body; the 120px extreme is a secondary display tier",
+        "sizes": "12px, 25px, 34px, 50px, 120px",
+        "family": "Manrope",
+        "weight": "400, 500, 700, 800",
+        "lineHeight": "1.00–1.60",
+        "substitute": "Inter, Outfit, or Plus Jakarta Sans"
+      }
+    ],
+    "description": "La puce à l'oreille reads like a children's storybook spread across warm peach paper — a playful podcast platform where chunky black slab-serif headlines anchor the page while vivid color accents and floating line-art illustrations dance around them. The visual rhythm is generous and unhurried: a soft peach canvas (#f6e0db) holds scattered doodles, pill-shaped containers float with thick black borders, and a single oversized headline (Alfa Slab One at near-120px) does the heavy lifting for brand voice. Components feel handmade rather than engineered — black-outlined white cards, 47px pill radii, no shadows, no gradients. Color is treated as a palette of crayons pulled from a single box: every hue is saturated and flat, used as decorative punctuation on surfaces, icons, and section backgrounds rather than as functional UI states. The contrast between the type's serious slab-serif weight and the whimsical illustrations creates the site's identity tension — authoritative voice, childlike delivery.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/79b4ebc4-30f6-45b6-b2d2-922e28e05ca9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Lpalo design system\",\"item\":\"https://styles.refero.design/style/79b4ebc4-30f6-45b6-b2d2-922e28e05ca9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/79b4ebc4-30f6-45b6-b2d2-922e28e05ca9#style-reference\",\"name\":\"Lpalo design system reference\",\"headline\":\"Lpalo design system | Refero Styles\",\"description\":\"Explore Lpalo's light Media design system: Peach Paper #f6e0db, Charcoal Ink #000000 colors, Alfa Slab One, Manrope typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/79b4ebc4-30f6-45b6-b2d2-922e28e05ca9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/79b4ebc4-30f6-45b6-b2d2-922e28e05ca9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Lpalo\",\"url\":\"https://lpalo.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/79b4ebc4-30f6-45b6-b2d2-922e28e05ca9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/86174c3b-574b-4778-87c6-0f914cea5d9f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/86174c3b-574b-4778-87c6-0f914cea5d9f.jpg\",\"caption\":\"Screenshot of Lpalo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/86174c3b-574b-4778-87c6-0f914cea5d9f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Lpalo design system\",\"Lpalo website design\",\"Lpalo colors\",\"Lpalo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Peach Paper\",\"Charcoal Ink\",\"Snow\",\"Ember Orange\",\"Alfa Slab One\",\"Manrope\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Lpalo design system\"},{\"@type\":\"Thing\",\"name\":\"Lpalo website design\"},{\"@type\":\"Thing\",\"name\":\"Lpalo colors\"},{\"@type\":\"Thing\",\"name\":\"Lpalo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T02:20:04.793Z\",\"dateModified\":\"2026-04-30T02:20:04.793Z\"}]}19:T637,## Quick Color Reference\n- text: #000000\n- background (canvas): #f6e0db\n- card surface: #ffffff\n- border: #000000 (2px solid)\n- accent (warm): #ef724f (Ember Orange)\n- accent (cool): #ace2df (Mint Wash)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Hero Headline Block**: Render a 4-line headline in Alfa Slab One 400 at 50px, line-height 1.12, color #000000, centered on a #f6e0db canvas. Surround with 3-5 scattered line-art SVG illustrations (headphones, robot, cassette) at varied rotations between -15° and +15°.\n\n2. **Outlined Content Card**: White (#ffffff) fill, 2px solid #000000 border, 40px border-radius, 32px padding. Title in Alfa Slab One 400 at 25px black, body in Manrope 400 at 16px black with 1.6 line-height. No shadow.\n\n3. **Pill Navigation Button**: White fill, 2px #000000 border, 47px border-radius, 10px vertical / 20px horizontal padding. Label in Manrope 500 at 16px #000000. 8px gap between adjacent pills.\n\n4. **Flat Color Band**: Full-bleed horizontal band, 80px tall, fill #ef724f (Ember Orange). No text, no border — pure color break between content sections.\n\n5. **Tilted Feature Card**: White card rotated 3°, 47px radius, 2px black border, 24px padding. Behind it, a slightly offset #ace2df rectangle (same dimensions) at 0° rotation, creating a scrapbook layered effect. Title in Alfa Slab One 35px, body in Manrope 16px.\n\n6. **Tag Pill**: Fill #e7db4c (Sunbeam Yellow), 47px border-radius, 8px vertical / 16px horizontal padding, Manrope 700 at 14px #000000. One tag per accent color, never mixing fills within a group."
+      }
+    ],
+    "elevationPhilosophy": "The design intentionally avoids all shadows. Elevation is communicated exclusively through 2px black borders on white surfaces and through color contrast (vivid fills against the peach canvas). This is a deliberate flat-illustration aesthetic — depth would break the storybook metaphor. Components sit ON the page, not ABOVE it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "heading",
+            "card",
+            "list",
+            "image",
+            "icon",
+            "body"
+          ],
+          "frequency": 3597,
+          "confidence": 1,
+          "prominence": 97649868.46279556,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 123,
+            "body/color": 1,
+            "card/color": 82,
+            "icon/color": 4,
+            "link/color": 23,
+            "list/color": 27,
+            "nav/stroke": 1,
+            "other/fill": 185,
+            "image/color": 12,
+            "other/color": 351,
+            "other/stroke": 60,
+            "heading/color": 47,
+            "nav/borderColor": 492,
+            "body/borderColor": 4,
+            "card/borderColor": 328,
+            "icon/borderColor": 16,
+            "link/borderColor": 92,
+            "list/borderColor": 108,
+            "image/borderColor": 48,
+            "other/borderColor": 1404,
+            "heading/borderColor": 188,
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ef724f",
+          "oklch": {
+            "c": 0.16253232176350704,
+            "h": 36.53219772700138,
+            "l": 0.6937160135707565
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "card"
+          ],
+          "frequency": 56,
+          "confidence": 1,
+          "prominence": 7559425.458357505,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "other/fill": 16,
+            "nav/backgroundColor": 12,
+            "card/backgroundColor": 4,
+            "other/backgroundColor": 23
+          }
+        },
+        {
+          "hex": "#e7db4c",
+          "oklch": {
+            "c": 0.15887538003881682,
+            "h": 104.5045057306383,
+            "l": 0.8759655716563874
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 5601218.810974022,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 16,
+            "card/backgroundColor": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#981082",
+          "oklch": {
+            "c": 0.19736534629549546,
+            "h": 336.62998004824357,
+            "l": 0.46886814163185037
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 3349119.8204310834,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 10,
+            "nav/backgroundColor": 12,
+            "card/backgroundColor": 4,
+            "other/backgroundColor": 15
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "card",
+            "other"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 3185751.518277366,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5,
+            "nav/backgroundColor": 12,
+            "card/backgroundColor": 10,
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#6ed311",
+          "oklch": {
+            "c": 0.2241659898010407,
+            "h": 135.4059395362218,
+            "l": 0.7745678256292919
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2592000,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ace2df",
+          "oklch": {
+            "c": 0.055413896879901434,
+            "h": 191.9298428821187,
+            "l": 0.8747855151868279
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 2589902.889070807,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 15,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f6e0db",
+          "oklch": {
+            "c": 0.025263725205434285,
+            "h": 32.865037966056505,
+            "l": 0.9231438671753066
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e69dff",
+          "oklch": {
+            "c": 0.15384728095542885,
+            "h": 317.1752356100238,
+            "l": 0.8013515456885075
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 1089582.5826060032,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 8,
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#5196ff",
+          "oklch": {
+            "c": 0.17065647541746926,
+            "h": 258.6325265706564,
+            "l": 0.6785056231736557
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 371965,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#84bfff",
+          "oklch": {
+            "c": 0.11037485201397208,
+            "h": 251.27955755400114,
+            "l": 0.7890293664041108
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 66,
+          "confidence": 1,
+          "prominence": 126575.01704809188,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 60,
+            "card/backgroundColor": 6
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.02168213467618179,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.6,
+          "background": "#f6e0db",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.7,
+          "background": "#ace2df",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.63,
+          "background": "#e7db4c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.99,
+          "background": "#6ed311",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.88,
+          "background": "#84bfff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.63,
+          "background": "#e69dff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.69,
+          "background": "#ffffff",
+          "foreground": "#981082"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.19,
+          "background": "#ef724f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.08,
+          "background": "#f6e0db",
+          "foreground": "#981082"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.38,
+          "background": "#ace2df",
+          "foreground": "#981082"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.36,
+          "background": "#e7db4c",
+          "foreground": "#981082"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.02,
+          "background": "#6ed311",
+          "foreground": "#981082"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.98,
+          "background": "#84bfff",
+          "foreground": "#981082"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.89,
+          "background": "#e69dff",
+          "foreground": "#981082"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.73,
+          "background": "#981082",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 47,
+          "contexts": [
+            "nav",
+            "card",
+            "other"
+          ],
+          "frequency": 69
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "card",
+            "body"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginRight|body",
+            "marginBottom|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "list"
+          ],
+          "frequency": 27,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginBottom|nav",
+            "marginLeft|nav",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other",
+            "list"
+          ],
+          "frequency": 56,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|list",
+            "paddingTop|list",
+            "paddingRight|list"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 35,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "card",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginBottom|nav",
+            "marginBottom|card",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginRight|card"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 39,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingBottom|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "heading",
+            "list"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingTop|list"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 288,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Alfa Slab One",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 437,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Manrope",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            700,
+            800
+          ],
+          "frequency": 233,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Perfect Fourth",
+        "ratio": 1.333,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Manrope",
+          "weight": 700,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 56,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Alfa Slab One",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "card",
+            "list",
+            "image",
+            "icon",
+            "body"
+          ],
+          "frequency": 435,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Manrope",
+          "weight": 800,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "icon"
+          ],
+          "frequency": 108,
+          "lineHeight": 1.12,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Manrope",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Manrope",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.24,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Alfa Slab One",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.09,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "Alfa Slab One",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.09,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Manrope",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.16,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "Manrope",
+          "weight": 800,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 43,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/42528d8a-9586-4bfd-b9b3-2ccb081c4a41.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/86174c3b-574b-4778-87c6-0f914cea5d9f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/79b4ebc4-30f6-45b6-b2d2-922e28e05ca9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Lpalo design system\",\"item\":\"https://styles.refero.design/style/79b4ebc4-30f6-45b6-b2d2-922e28e05ca9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/79b4ebc4-30f6-45b6-b2d2-922e28e05ca9#style-reference\",\"name\":\"Lpalo design system reference\",\"headline\":\"Lpalo design system | Refero Styles\",\"description\":\"Explore Lpalo's light Media design system: Peach Paper #f6e0db, Charcoal Ink #000000 colors, Alfa Slab One, Manrope typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/79b4ebc4-30f6-45b6-b2d2-922e28e05ca9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/79b4ebc4-30f6-45b6-b2d2-922e28e05ca9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Lpalo\",\"url\":\"https://lpalo.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/79b4ebc4-30f6-45b6-b2d2-922e28e05ca9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/86174c3b-574b-4778-87c6-0f914cea5d9f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/86174c3b-574b-4778-87c6-0f914cea5d9f.jpg\",\"caption\":\"Screenshot of Lpalo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/86174c3b-574b-4778-87c6-0f914cea5d9f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Lpalo design system\",\"Lpalo website design\",\"Lpalo colors\",\"Lpalo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Peach Paper\",\"Charcoal Ink\",\"Snow\",\"Ember Orange\",\"Alfa Slab One\",\"Manrope\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Lpalo design system\"},{\"@type\":\"Thing\",\"name\":\"Lpalo website design\"},{\"@type\":\"Thing\",\"name\":\"Lpalo colors\"},{\"@type\":\"Thing\",\"name\":\"Lpalo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T02:20:04.793Z\",\"dateModified\":\"2026-04-30T02:20:04.793Z\"}]}19:T637,## Quick Color Reference\n- text: #000000\n- background (canvas): #f6e0db\n- card surface: #ffffff\n- border: #000000 (2px solid)\n- accent (warm): #ef724f (Ember Orange)\n- accent (cool): #ace2df (Mint Wash)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Hero Headline Block**: Render a 4-line headline in Alfa Slab One 400 at 50px, line-height 1.12, color #000000, centered on a #f6e0db canvas. Surround with 3-5 scattered line-art SVG illustrations (headphones, robot, cassette) at varied rotations between -15° and +15°.\n\n2. **Outlined Content Card**: White (#ffffff) fill, 2px solid #000000 border, 40px border-radius, 32px padding. Title in Alfa Slab One 400 at 25px black, body in Manrope 400 at 16px black with 1.6 line-height. No shadow.\n\n3. **Pill Navigation Button**: White fill, 2px #000000 border, 47px border-radius, 10px vertical / 20px horizontal padding. Label in Manrope 500 at 16px #000000. 8px gap between adjacent pills.\n\n4. **Flat Color Band**: Full-bleed horizontal band, 80px tall, fill #ef724f (Ember Orange). No text, no border — pure color break between content sections.\n\n5. **Tilted Feature Card**: White card rotated 3°, 47px radius, 2px black border, 24px padding. Behind it, a slightly offset #ace2df rectangle (same dimensions) at 0° rotation, creating a scrapbook layered effect. Title in Alfa Slab One 35px, body in Manrope 16px.\n\n6. **Tag Pill**: Fill #e7db4c (Sunbeam Yellow), 47px border-radius, 8px vertical / 16px horizontal padding, Manrope 700 at 14px #000000. One tag per accent color, never mixing fills within a group."
+}

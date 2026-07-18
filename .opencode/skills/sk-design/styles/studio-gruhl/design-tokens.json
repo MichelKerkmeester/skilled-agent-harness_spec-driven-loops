@@ -1,0 +1,237 @@
+{
+  "color": {
+    "bright-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bright White — Primary text, hairline borders, nav dividers, icon strokes — white doubles as the divider system in this monochrome dark UI"
+    },
+    "carbon": {
+      "$value": "#2e2e30",
+      "$type": "color",
+      "$description": "Carbon — Page canvas, card surfaces, neutral filled button background — the dominant surface for the entire dark experience"
+    },
+    "obsidian": {
+      "$value": "#18181b",
+      "$type": "color",
+      "$description": "Obsidian — Nav bar surface, deeper layered cards, footer base — sits one step below Carbon to create a subtle depth read"
+    },
+    "ash": {
+      "$value": "#969696",
+      "$type": "color",
+      "$description": "Ash — Muted body text, caption copy, low-emphasis dividers — never used for headings, always for secondary information"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Deep border accent on certain buttons and nav edges, used sparingly for a near-invisible structural line"
+    },
+    "lime-cream": {
+      "$value": "#eef0b1",
+      "$type": "color",
+      "$description": "Lime Cream — Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content."
+    }
+  },
+  "font": {
+    "greedstandard": {
+      "$value": "GreedStandard",
+      "$type": "fontFamily",
+      "$description": "Sole display and UI typeface. At 80px / weight 700 / line-height 1.00 it becomes the manifesto headline — the entire brand reads off this single oversized moment. At 15-16px / weight 400 it carries navigation, card metadata, and body. The 10px size handles micro labels and index marks."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback for tiny UI labels and icon-adjacent text — appears in only a handful of minor contexts"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GreedStandard",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "GreedStandard",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "GreedStandard",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "GreedStandard",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "GreedStandard",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "GreedStandard",
+        "fontSize": "80px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "59": {
+      "$value": "59px",
+      "$type": "dimension",
+      "$description": "Spacing 59px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "carbon-canvas": {
+      "$value": "#2e2e30",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background — every section sits on this unless explicitly inverted"
+    },
+    "obsidian-layer": {
+      "$value": "#18181b",
+      "$type": "color",
+      "$description": "Surface level 1: Sticky nav, deeper cards, and structural zones that need to feel pressed-in from the canvas"
+    },
+    "lime-cream-inversion": {
+      "$value": "#eef0b1",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed section accent — rare moments where the entire band flips to a pale lime wash for typographic contrast"
+    },
+    "bright-white-pop": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Highest elevation — used for inline chips, floating info cards, or micro-elements that need to cut through the dark surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.studiogruhl.com",
+      "siteName": "Studio Gruhl",
+      "extractedAt": "2026-06-03T20:11:01.058Z",
+      "variant": "extended"
+    }
+  }
+}

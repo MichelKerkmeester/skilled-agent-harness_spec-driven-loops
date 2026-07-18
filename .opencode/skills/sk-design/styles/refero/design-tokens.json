@@ -1,0 +1,339 @@
+{
+  "color": {
+    "pure-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure Canvas — Primary page background, modal/dialog background"
+    },
+    "frost-surface": {
+      "$value": "#f7f8fb",
+      "$type": "color",
+      "$description": "Frost Surface — Secondary surface, subtle background containers, nav pill background"
+    },
+    "midnight-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Midnight Ink — Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color"
+    },
+    "deep-charcoal": {
+      "$value": "#13151b",
+      "$type": "color",
+      "$description": "Deep Charcoal — Near-black text for dense UI labels, active nav tab text"
+    },
+    "graphite": {
+      "$value": "#2d313f",
+      "$type": "color",
+      "$description": "Graphite — Navigation link text, secondary headings, mid-level labels"
+    },
+    "slate": {
+      "$value": "#525769",
+      "$type": "color",
+      "$description": "Slate — Tertiary text, supporting body copy, muted label text"
+    },
+    "ash": {
+      "$value": "#777d90",
+      "$type": "color",
+      "$description": "Ash — Subdued body text, hairline borders, icon strokes, placeholder text — the dominant mid-gray in this system"
+    },
+    "fog": {
+      "$value": "#9fa5ba",
+      "$type": "color",
+      "$description": "Fog — Light borders, icon outlines, de-emphasized link borders, ghost UI outlines"
+    },
+    "modal-veil": {
+      "$value": "#0c2970",
+      "$type": "color",
+      "$description": "Modal Veil — Inset ring shadow on elevated cards/surfaces — blue-tinted at 7% opacity creates structural definition without neutral gray shadows"
+    }
+  },
+  "font": {
+    "title-custom-serif": {
+      "$value": "Title (custom serif)",
+      "$type": "fontFamily",
+      "$description": "All editorial headlines and display text — the expressive backbone of the brand. Weight 400 for a serif at 64px is anti-convention; most product sites use weight 700+, but this regular-weight serif creates authority through ink texture rather than mass. The -0.02em tracking tightens large display lines without condensing smaller ones."
+    },
+    "base-variable-custom-sans": {
+      "$value": "Base-Variable (custom sans)",
+      "$type": "fontFamily",
+      "$description": "All UI text: navigation, buttons, body copy, labels, captions, input text. Variable font exploited for precise weight stepping — 650 for strong UI labels, 600 for subheadings, 500 for body and supporting text. Negative tracking throughout (-0.015em to -0.026em) keeps the sans from spreading loose."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Base-Variable",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Base-Variable",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Base-Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Base-Variable",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Base-Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Base-Variable",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Base-Variable",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Base-Variable",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Base-Variable",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Base-Variable",
+        "fontSize": "25px",
+        "fontWeight": 650,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Title",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Title",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Title",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Title",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(12, 41, 126, 0.07) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background for all content sections"
+    },
+    "frost-surface": {
+      "$value": "#f7f8fb",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary containers: nav segmented control background, subtle section washes"
+    },
+    "card-tint": {
+      "$value": "#f4f5fb",
+      "$type": "color",
+      "$description": "Surface level 3: Feature cards at rgba(55,80,155,0.04) over white — barely-perceptible blue-gray tint distinguishing card from canvas"
+    },
+    "elevated-panel": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 4: Modal dialogs, product demo frames — white surface defined by inset ring shadow rather than color change"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://refero.design/mcp",
+      "siteName": "Refero",
+      "extractedAt": "2026-04-30T15:06:33.442Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+:root {
+  /* Colors */
+  --color-kippo-pink: #ee1f66;
+  --color-void-black: #000000;
+  --color-carbon: #29292a;
+  --color-ash: #333333;
+  --color-ghost-white: #ffffff;
+  --color-sunset-gradient: #ffc400;
+  --gradient-sunset-gradient: linear-gradient(to right, #ffc400, #ff33e0);
+  --color-terminal-cyan: #33beff;
+  --gradient-terminal-cyan: linear-gradient(to right, #33beff, #33ffb8);
+
+  /* Typography — Font Families */
+  --font-source-code-pro: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.2;
+  --tracking-caption: 0.08px;
+  --text-body: 16px;
+  --leading-body: 1.88;
+  --text-display: 42px;
+  --leading-display: 1.19;
+  --tracking-display: 0.5px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-5: 5px;
+  --spacing-10: 10px;
+  --spacing-15: 15px;
+  --spacing-20: 20px;
+  --spacing-25: 25px;
+  --spacing-30: 30px;
+  --spacing-35: 35px;
+  --spacing-50: 50px;
+  --spacing-100: 100px;
+  --spacing-128: 128px;
+  --spacing-150: 150px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 100px;
+  --card-padding: 30px;
+  --element-gap: 15px;
+
+  /* Border Radius */
+  --radius-lg: 10px;
+  --radius-xl: 15px;
+  --radius-3xl: 28px;
+  --radius-full: 50px;
+
+  /* Named Radii */
+  --radius-cards: 15px;
+  --radius-icons: 50px;
+  --radius-images: 15px;
+  --radius-buttons: 10px;
+
+  /* Surfaces */
+  --surface-void-canvas: #000000;
+  --surface-carbon-panel: #29292a;
+  --surface-neon-border: #ffffff;
+}

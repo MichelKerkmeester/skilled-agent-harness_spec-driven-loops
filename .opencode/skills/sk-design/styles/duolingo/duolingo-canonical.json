@@ -1,0 +1,1607 @@
+{
+  "source": "https://styles.refero.design/style/7088d695-362b-4e09-b325-fa8136d4f350",
+  "uuid": "7088d695-362b-4e09-b325-fa8136d4f350",
+  "name": "Duolingo",
+  "northStar": "Playful classroom mascot on white paper",
+  "capturedAt": "2026-07-18T07:09:21.154Z",
+  "meta": {
+    "url": "https://duolingo.com",
+    "siteName": "Duolingo",
+    "extractedAt": "2026-07-03T02:54:54.809Z",
+    "durationMs": 92877,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 607,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #58cc02 for any heading or CTA that needs to read as 'progress' or 'go' — it is the only saturated color allowed on large display text.",
+      "Set display headlines at 48-64px in feather 700 with -0.0200em letter-spacing; this rounded weight is the brand voice.",
+      "Give every button and pill a 12px border-radius and pair it with a 2px solid border in #afafaf or color — outlined buttons are first-class citizens, not a fallback.",
+      "Reserve uppercase at 15px with 0.0530em tracking for nav labels and language pills; never apply it to body copy.",
+      "Keep body text in #777777 at 17px/500 — mid-gray is the default so colored elements can lead.",
+      "Use #1cb0f6 (Spark Blue) exclusively for interactive links and outlined secondary CTAs; it is the 'curious' companion to the green.",
+      "Build sections as white-on-white with illustrations floating beside text; introduce #58cc02 only at the footer band and within display headings."
+    ],
+    "donts": [
+      "Don't put colored text in body paragraphs — body stays in #777777 or #4b4b4b so the green headlines own the page.",
+      "Don't use sharp corners; even small tags and pills use 12px radius.",
+      "Don't introduce gradients, shadows, or glass effects — Duolingo's surfaces are flat sticker-like fills with thick borders.",
+      "Don't use feather at sizes below 48px; it is a display face only. Subheadings 19-32px use duolingo-sans 700.",
+      "Don't place CTA buttons on colored backgrounds without testing contrast — green on green or blue on green will disappear.",
+      "Don't apply the secondary palette (pink, purple, mascot illustration colors) to UI chrome; those colors live only inside character art.",
+      "Don't stretch the green to small UI text; #58cc02 is for headings, CTA fills, and the footer band, not body or link text."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#58cc02",
+        "name": "Eager Green",
+        "role": "Green text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#d7ffb8",
+        "name": "Storybook Green",
+        "role": "Soft highlight wash on light surfaces, subtle background tints behind footer navigation labels",
+        "group": "brand"
+      },
+      {
+        "hex": "#1cb0f6",
+        "name": "Spark Blue",
+        "role": "Blue text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#a5ed6e",
+        "name": "Fresh Leaf",
+        "role": "Green text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#000437",
+        "name": "Night Ink",
+        "role": "Violet text accent for links, tags, and emphasized short phrases.",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, button text on green/dark fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4b4b4b",
+        "name": "Charcoal",
+        "role": "Hero headings and primary body copy — the workhorse dark text that lets colored headings stand out",
+        "group": "neutral"
+      },
+      {
+        "hex": "#777777",
+        "name": "Pencil Gray",
+        "role": "Muted body paragraphs, secondary descriptive text — recedes so colored elements lead",
+        "group": "neutral"
+      },
+      {
+        "hex": "#afafaf",
+        "name": "Faded Gray",
+        "role": "Disabled or low-emphasis nav labels and button borders",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Single-column full-width sections stacked vertically, each ~800-900px tall. Max content width ~1200px centered. Sections alternate text-left/illustration-right with generous vertical breathing room (80-120px between sections). No card grids or multi-column feature layouts — each section is a single text block paired with one illustration. Navigation is a minimal top bar with logo and language selector, reappearing as a sticky bar between sections. Footer is a full-bleed green band spanning the page width. The rhythm is editorial: headline, paragraph, CTA, illustration, repeat.",
+    "imagery": "Illustration-driven storybook language: flat 2D mascot characters (the owl Duo and diverse human figures) with rounded geometric shapes, bold black outlines, and a secondary palette of pink, purple, yellow, orange, and blue that never appears in the UI chrome itself. Illustrations sit beside text in the right half of each section on pure white, no containers or backgrounds. Photography is absent — the characters are the visual content. Iconography uses thick outlined strokes consistent with the mascot style. Image density is moderate: each section gets one large character illustration, leaving the rest of the page to typography and whitespace.",
+    "similar": [
+      {
+        "why": "Same mascot-led illustration system with thick outlines and a single saturated accent color against white canvas",
+        "business": "Headspace"
+      },
+      {
+        "why": "Light-mode language-learning landing pages with rounded display type and green as the primary CTA color",
+        "business": "Babbel"
+      },
+      {
+        "why": "Flat rounded mascots, playful rounded display headings, and bold sticker-style buttons with thick borders",
+        "business": "Khan Academy Kids"
+      },
+      {
+        "why": "Minimal white-canvas marketing pages with one dominant green and casual rounded display typography",
+        "business": "Memrise"
+      },
+      {
+        "why": "Playful rounded mascot illustrations, thick outlined UI components, and bright single-accent CTAs on white backgrounds",
+        "business": "ClassDojo"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "links": "12px",
+        "buttons": "12px",
+        "nav-items": "12px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "80-120px",
+      "cardPadding": "16-24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Page canvas — every section sits on pure white"
+      },
+      {
+        "hex": "#d7ffb8",
+        "name": "Storybook Green",
+        "level": 1,
+        "purpose": "Soft tint wash behind highlighted footer labels"
+      },
+      {
+        "hex": "#58cc02",
+        "name": "Eager Green",
+        "level": 2,
+        "purpose": "Footer band and primary CTA fills — bold colored surface"
+      },
+      {
+        "hex": "#000437",
+        "name": "Night Ink",
+        "level": 3,
+        "purpose": "Deep accent surface for emphasis text and dark CTAs"
+      }
+    ],
+    "northStar": "Playful classroom mascot on white paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.23
+      },
+      {
+        "role": "nav-label",
+        "size": 15,
+        "lineHeight": 1.33,
+        "letterSpacing": 0.795
+      },
+      {
+        "role": "body",
+        "size": 17,
+        "lineHeight": 1.18
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.28
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "Filled green button for 'Get started' and top-of-page conversion",
+        "description": "Fill #58cc02, white text, duolingo-sans 700 at 15px uppercase with 0.0530em tracking, 12px border-radius, 16px horizontal padding. No border — color alone carries the button. Sits directly on white canvas."
+      },
+      {
+        "name": "Outlined Account Button",
+        "role": "Secondary CTA below primary on hero",
+        "description": "Transparent fill, text in #1cb0f6, duolingo-sans 700 at 14px, 12px border-radius, 16px horizontal padding, 2px solid border in #afafaf. Pairs with the green CTA as a calm ghost alternative."
+      },
+      {
+        "name": "Nav Language Pill",
+        "role": "Language selector in top header",
+        "description": "Transparent fill, text in #777777 at 15px uppercase with 0.0530em tracking, 12px border-radius, 10px vertical and 16px horizontal padding, 2px solid border in #afafaf. Behaves like a sticker tag."
+      },
+      {
+        "name": "Section Headline",
+        "role": "Display heading for marketing sections",
+        "description": "feather 700 at 48-64px, line-height 1.2, letter-spacing -0.0200em, color #58cc02. The signature voice of the brand — large, rounded, unmistakably green."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Opening page headline above CTA",
+        "description": "duolingo-sans 700 at 32px, color #4b4b4b (Charcoal). Stays neutral so the green CTA below it carries the color weight."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Marketing body text in sections",
+        "description": "duolingo-sans 500 at 17px, line-height 1.18, color #777777 (Pencil Gray). Mid-gray intentionally recedes so colored headlines dominate."
+      },
+      {
+        "name": "Footer Background",
+        "role": "Full-width green band at bottom",
+        "description": "#58cc02 fill, white and #d7ffb8 text labels, generous 48px vertical padding, contains language grid and site links. The colored surface that anchors the page."
+      },
+      {
+        "name": "Footer Link Item",
+        "role": "Text links in footer nav",
+        "description": "duolingo-sans at small sizes, color #a5ed6 (Fresh Leaf) for links, white for section headers. 8px margin between items, stacked vertically."
+      },
+      {
+        "name": "Language Flag Pill",
+        "role": "Language selector in mid-page band",
+        "description": "Circular flag emoji + language name in duolingo-sans 700 at 15px uppercase, inline arrangement with 10-12px gaps, no background fill."
+      },
+      {
+        "name": "App Store Badge",
+        "role": "Download badge for mobile apps",
+        "description": "Black rectangular badge with white icon and duolingo-sans text, 4b4b4b text color. Functions as a visual anchor on white sections."
+      },
+      {
+        "name": "Section Feature Illustration",
+        "role": "Decorative mascot illustration beside text",
+        "description": "Flat colored mascot characters placed in the right half of each section, no container or background. Illustrations carry the secondary palette (pink, purple, yellow, orange) while UI stays green/blue."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines for section titles like 'free. fun. effective.' and 'duolingo english test' — a custom rounded display face that gives the brand its toy-like, mascot-friendly voice. Substitute with 'Feather Bold' or 'Nunito Black' at matching weight. letter-spacing: -0.0200em",
+        "sizes": "48px, 64px",
+        "family": "feather",
+        "weight": "700",
+        "lineHeight": "1.20",
+        "letterSpacing": "-0.0200em"
+      },
+      {
+        "role": "Body paragraphs and nav links at 17px/500 — a geometric sans that stays readable while letting weight 700 carry emphasis. Substitute with 'DIN Next', 'Inter', or 'Nunito Sans'",
+        "sizes": "13px, 14px, 15px, 17px, 19px, 32px",
+        "family": "duolingo-sans",
+        "weight": "500",
+        "lineHeight": "1.15, 1.18, 1.20, 1.21, 1.23, 1.33, 1.40, 1.41, 1.47",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "All weight-700 uses: uppercase nav labels at 15px (ls 0.0530em), subheadings at 19px and 32px, link emphasis at 13px. Same family as body — the visual distinction is weight, not face change. letter-spacing: 0.0530em on uppercase nav",
+        "sizes": "13px, 14px, 15px, 17px, 19px, 32px",
+        "family": "duolingo-sans",
+        "weight": "700",
+        "lineHeight": "1.23, 1.21, 1.33, 1.40, 1.20",
+        "letterSpacing": "0.0530em"
+      }
+    ],
+    "description": "Duolingo's interface treats the page like a children's storybook: white paper canvas, chubby rounded display type, and a single saturated green that reads as 'correct answer' the moment it appears. Body copy stays calm in mid-gray so the green and its accent blue can do all the emotional work — green for progress and headings, blue for interactive links and secondary actions. Components are pill-shaped or chunky-rounded with thick 2px borders in black or color, giving every button the feel of a sticker pressed onto the page rather than a flat UI control.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "Quick Color Reference:\n- text (heading): #58cc02\n- text (body): #777777\n- text (hero/heading dark): #4b4b4b\n- background (page): #ffffff\n- background (footer band): #58cc02\n- border (outlined button): #afafaf\n- accent (interactive link): #1cb0f6\n- primary action: no distinct CTA color\n\nExample Component Prompts:\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n3. Section Headline: feather 700 at 48px, line-height 1.2, letter-spacing -0.0200em, color #58cc02. Used for 'free. fun. effective.' and similar section titles.\n5. Body Paragraph: duolingo-sans 500 at 17px, line-height 1.18, color #777777, max-width ~480px to keep reading comfortable."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 106,
+          "confidence": 1,
+          "prominence": 15127117.097582657,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 106
+          }
+        },
+        {
+          "hex": "#58cc02",
+          "oklch": {
+            "c": 0.22893792961182075,
+            "h": 137.62855620756275,
+            "l": 0.7478156727544306
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "footer"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 4605216.034448776,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/stroke": 1,
+            "heading/color": 8,
+            "other/backgroundColor": 3,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#100f3e",
+          "oklch": {
+            "c": 0.0868069400344507,
+            "h": 276.63683421916585,
+            "l": 0.2075163719718407
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 325234.3051479812,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/fill": 4,
+            "other/stroke": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#777777",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5692624033839502
+          },
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 49,
+          "confidence": 1,
+          "prominence": 192207.16639896802,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 42,
+            "body/color": 7
+          }
+        },
+        {
+          "hex": "#e5e5e5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9219060167761346
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 180685.72508221178,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 2
+          }
+        },
+        {
+          "hex": "#4b4b4b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.41283401549257187
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 109188.81603046163,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "heading/color": 1
+          }
+        },
+        {
+          "hex": "#042c60",
+          "oklch": {
+            "c": 0.10204032550778694,
+            "h": 257.3787455621179,
+            "l": 0.3018878931002738
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 93280,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "heading/color": 1
+          }
+        },
+        {
+          "hex": "#d7ffb8",
+          "oklch": {
+            "c": 0.10122694226356546,
+            "h": 131.97952633919107,
+            "l": 0.954551149188096
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 65208,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 7
+          }
+        },
+        {
+          "hex": "#1cb0f6",
+          "oklch": {
+            "c": 0.1513400940041688,
+            "h": 237.07004377135775,
+            "l": 0.7181417387335822
+          },
+          "contexts": [
+            "button",
+            "body",
+            "link"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 46321.35621395047,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "link/color": 1,
+            "button/color": 1
+          }
+        },
+        {
+          "hex": "#9deec7",
+          "oklch": {
+            "c": 0.09650508338942153,
+            "h": 162.73243094874937,
+            "l": 0.8862092482948778
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 41646.4746689491,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 2
+          }
+        },
+        {
+          "hex": "#a5ed6e",
+          "oklch": {
+            "c": 0.17538463656135825,
+            "h": 133.3957653041485,
+            "l": 0.8717314461189658
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 66,
+          "confidence": 1,
+          "prominence": 36129.62721836649,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "link/color": 66
+          }
+        },
+        {
+          "hex": "#000437",
+          "oklch": {
+            "c": 0.09830839194684711,
+            "h": 264.13533717724937,
+            "l": 0.1628849058200854
+          },
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 12202.62629305218,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "button/color": 1
+          }
+        },
+        {
+          "hex": "#a570ff",
+          "oklch": {
+            "c": 0.20473792498815827,
+            "h": 297.6730713086731,
+            "l": 0.6659689588142262
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 10455.642211277793,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4
+          }
+        },
+        {
+          "hex": "#e6a000",
+          "oklch": {
+            "c": 0.1576563603796333,
+            "h": 77.34070421490445,
+            "l": 0.7545289340699934
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 8315.824364819959,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5
+          }
+        },
+        {
+          "hex": "#ffc700",
+          "oklch": {
+            "c": 0.1748780934673829,
+            "h": 88.00838414468697,
+            "l": 0.8555470228772301
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 6330.573164266111,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5
+          }
+        },
+        {
+          "hex": "#ffc6b7",
+          "oklch": {
+            "c": 0.06880116662529003,
+            "h": 35.2064284079008,
+            "l": 0.8734419172534251
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 5660.860695335389,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4
+          }
+        },
+        {
+          "hex": "#afafaf",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7540172565886749
+          },
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 5482.385289994479,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "button/color": 1
+          }
+        },
+        {
+          "hex": "#cc348d",
+          "oklch": {
+            "c": 0.20434923459629017,
+            "h": 349.5243437891751,
+            "l": 0.5833919705386037
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 4859.729501355773,
+          "properties": [
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/stroke": 4
+          }
+        },
+        {
+          "hex": "#0084c2",
+          "oklch": {
+            "c": 0.13356730704808187,
+            "h": 239.8471372335015,
+            "l": 0.5846184173299995
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 4681.367088806013,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "other/stroke": 2
+          }
+        },
+        {
+          "hex": "#ffe700",
+          "oklch": {
+            "c": 0.19222884126018167,
+            "h": 101.78337002664709,
+            "l": 0.9187894819007444
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3058.0106383531274,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5
+          }
+        },
+        {
+          "hex": "#c6775c",
+          "oklch": {
+            "c": 0.10705782540347582,
+            "h": 39.575580987257915,
+            "l": 0.6486296852077387
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3024.4061258437528,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 4,
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#593f86",
+          "oklch": {
+            "c": 0.11510506435513215,
+            "h": 298.3463551961308,
+            "l": 0.4312750122777951
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1841.7264258379835,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#00448e",
+          "oklch": {
+            "c": 0.1367813863243562,
+            "h": 256.23695486422946,
+            "l": 0.3970434293313165
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1811,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#ffcc76",
+          "oklch": {
+            "c": 0.11909944493247131,
+            "h": 79.27044152554383,
+            "l": 0.8726556919981322
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1680.0602507644255,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#5ec6ff",
+          "oklch": {
+            "c": 0.12576154061417125,
+            "h": 235.49701651774254,
+            "l": 0.7876886435690706
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 579,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#daaf83",
+          "oklch": {
+            "c": 0.07708365544391427,
+            "h": 66.95147540130124,
+            "l": 0.78230761731608
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 479,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#3d3d3d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3600233686910596
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 334,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/stroke": 2
+          }
+        },
+        {
+          "hex": "#006aad",
+          "oklch": {
+            "c": 0.13319574227466796,
+            "h": 246.7373292841543,
+            "l": 0.509550489074885
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 236,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#ee9583",
+          "oklch": {
+            "c": 0.11137029686827768,
+            "h": 32.13443346440183,
+            "l": 0.7567132187643657
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 124,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.20182762247225308,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.58,
+          "background": "#ffffff",
+          "foreground": "#000437"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.89,
+          "background": "#d7ffb8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#100f3e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.61,
+          "background": "#d7ffb8",
+          "foreground": "#000437"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.68,
+          "background": "#ffe700",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#e5e5e5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.28,
+          "background": "#100f3e",
+          "foreground": "#d7ffb8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.55,
+          "background": "#ffe700",
+          "foreground": "#000437"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.54,
+          "background": "#e5e5e5",
+          "foreground": "#000437"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.49,
+          "background": "#9deec7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.94,
+          "background": "#a5ed6e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.44,
+          "background": "#9deec7",
+          "foreground": "#000437"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.38,
+          "background": "#ffe700",
+          "foreground": "#100f3e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.37,
+          "background": "#e5e5e5",
+          "foreground": "#100f3e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.15,
+          "background": "#ffcc76",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.01,
+          "background": "#ffc6b7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.93,
+          "background": "#a5ed6e",
+          "foreground": "#000437"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.69,
+          "background": "#ffffff",
+          "foreground": "#042c60"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.42,
+          "background": "#ffc700",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 9
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "list"
+          ],
+          "frequency": 61,
+          "properties": [
+            "marginLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "marginTop|list",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "link",
+            "list"
+          ],
+          "frequency": 62,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 68,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "marginRight|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 101,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 185,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 219,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "duolingo-sans",
+          "source": "custom",
+          "weights": [
+            500,
+            700
+          ],
+          "frequency": 450,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "feather",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "duolingo-sans",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "duolingo-sans",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.21,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "duolingo-sans",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.053,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "duolingo-sans",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "icon"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.053,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "duolingo-sans",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.053,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "duolingo-sans",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.47,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "duolingo-sans",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "body",
+            "footer",
+            "list"
+          ],
+          "frequency": 275,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "duolingo-sans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.41,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "duolingo-sans",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.41,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "duolingo-sans",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "duolingo-sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "duolingo-sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "feather",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "feather",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3eef8754-ff17-4c1c-98f8-7f9dc986d01f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7a42b854-faef-4ea5-84f3-1a3d178c485c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7088d695-362b-4e09-b325-fa8136d4f350#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Duolingo design system\",\"item\":\"https://styles.refero.design/style/7088d695-362b-4e09-b325-fa8136d4f350\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7088d695-362b-4e09-b325-fa8136d4f350#style-reference\",\"name\":\"Duolingo design system reference\",\"headline\":\"Duolingo design system | Refero Styles\",\"description\":\"Explore Duolingo's light Other design system: Eager Green #58cc02, Storybook Green #d7ffb8 colors, feather, duolingo-sans typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/7088d695-362b-4e09-b325-fa8136d4f350\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7088d695-362b-4e09-b325-fa8136d4f350\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Duolingo\",\"url\":\"https://duolingo.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7088d695-362b-4e09-b325-fa8136d4f350#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7a42b854-faef-4ea5-84f3-1a3d178c485c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7a42b854-faef-4ea5-84f3-1a3d178c485c.jpg\",\"caption\":\"Screenshot of Duolingo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7a42b854-faef-4ea5-84f3-1a3d178c485c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Duolingo design system\",\"Duolingo website design\",\"Duolingo colors\",\"Duolingo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Eager Green\",\"Storybook Green\",\"Spark Blue\",\"Fresh Leaf\",\"feather\",\"duolingo-sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Duolingo design system\"},{\"@type\":\"Thing\",\"name\":\"Duolingo website design\"},{\"@type\":\"Thing\",\"name\":\"Duolingo colors\"},{\"@type\":\"Thing\",\"name\":\"Duolingo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-02-09T15:21:02.000Z\",\"dateModified\":\"2026-02-09T15:21:02.000Z\"}]}"
+}

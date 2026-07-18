@@ -1,0 +1,1317 @@
+{
+  "source": "https://styles.refero.design/style/f240ed7d-d466-478e-bbce-6c93420dfd1c",
+  "uuid": "f240ed7d-d466-478e-bbce-6c93420dfd1c",
+  "name": "Slab",
+  "northStar": "midnight-wine reading room",
+  "capturedAt": "2026-07-18T09:19:37.390Z",
+  "meta": {
+    "url": "https://slab.com",
+    "siteName": "Slab",
+    "extractedAt": "2026-06-03T20:05:23.933Z",
+    "durationMs": 28559,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 289,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Sentinel 300 weight at 42-53px with -0.8 to -5px letter-spacing for all editorial headlines — never substitute a sans-serif at display size",
+      "Reserve #ff4143 (Coral Ember) for exactly one primary action per surface; let everything else be neutral",
+      "Use 6px border-radius on all inputs, buttons, badges, and cards — never exceed this value",
+      "Pair each feature section with a decorative pastel circle bleeding off the edge of its mockup card",
+      "Set body copy at 18px Whitney 400 with 1.67 line-height — never drop below 16px for running text",
+      "Use the 0.167em tracked small-caps treatment at 12px Whitney 500 for all section eyebrows above headlines",
+      "Keep the wine hero as the only dark band per page — subsequent sections must return to white canvas"
+    ],
+    "donts": [
+      "Don't use Sentinel for body copy, navigation, or UI chrome — it is display-only",
+      "Don't apply drop shadows to cards, inputs, or buttons — the system is intentionally flat",
+      "Don't introduce new chromatic accent colors beyond Coral Ember and Google Signal Blue",
+      "Don't use pure #000000 for text on light surfaces — use Graphite #11110f or Slate Ink #455360",
+      "Don't exceed 1200px page max-width or break the two-column editorial row pattern",
+      "Don't use solid color fills for icons — keep them 1.5-2px monoline strokes in Slate Ink",
+      "Don't add more than one decorative pastel circle per mockup — restraint is the point"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#42022e",
+        "name": "Midnight Wine",
+        "role": "Hero band background, section dividers, deep surface moments — the deepest brand tone, used as atmosphere not as UI fill",
+        "group": "brand",
+        "gradient": "linear-gradient(90deg, #42022, rgba(66, 2, 46, 0))"
+      },
+      {
+        "hex": "#ff4143",
+        "name": "Coral Ember",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#455360",
+        "name": "Slate Ink",
+        "role": "Primary text, icons, heading strokes, input borders, default UI chrome — the dominant near-gray that gives the system its printed-paper authority",
+        "group": "neutral"
+      },
+      {
+        "hex": "#939598",
+        "name": "Fog Gray",
+        "role": "Secondary text, helper copy, muted badges, logo tints — recedes behind Slate Ink to build typographic depth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Canvas background, card surfaces, text on dark bands — the bright neutral that holds the content sections open",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e0e0e0",
+        "name": "Mist",
+        "role": "Hairline dividers, decorative stroke accents, soft borders — the quietest neutral, separates without competing",
+        "group": "neutral"
+      },
+      {
+        "hex": "#11110f",
+        "name": "Graphite",
+        "role": "Highest-emphasis text on light surfaces, deep icon fills — slightly warmer than pure black, reads as ink rather than absence",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4285f4",
+        "name": "Google Signal Blue",
+        "role": "Third-party sign-in button (Google OAuth) — utility color for federated auth, not a brand accent",
+        "group": "accent"
+      }
+    ],
+    "layout": "Hero is full-bleed #42022 with a centered max-width ~1200px two-column layout (text left, product mockup right). Content sections below switch to a white #ffffff canvas with the same 1200px max-width. The pattern is alternating two-column rows: each row pairs a 42px Sentinel headline + eyebrow + body copy on one side with a document mockup card on the other, switching sides between rows. Vertical rhythm between rows is generous (64-80px). Navigation is a single transparent top bar over the dark hero. There are no card grids, no pricing tables, no multi-column feature matrices in the visible viewport — the system prefers long editorial scrolls over dashboard-density layouts.",
+    "imagery": "The visual language is illustration-first, photography-free. Product is shown through flat document mockup cards (white surfaces with gray content bars and selective colored annotation highlights) rather than screenshots. Decorative pastel circles in coral, lavender, and yellow provide warmth behind these mockups. Icons are line-style monoline in Slate Ink, 1.5-2px stroke. The two screenshots together show: a wine hero with one large product card and Google sign-in chrome, followed by alternating editorial feature rows each with a mockup card and an icon+serif headline. Imagery occupies roughly 40% of visual space, always contained, never full-bleed or photographic.",
+    "similar": [
+      {
+        "why": "Same restrained near-grayscale palette, minimal chromatic accent, and editorial whitespace-driven layout on long-form marketing pages",
+        "business": "Notion"
+      },
+      {
+        "why": "Same document-workspace product framing with illustrated product mockup cards floating on white canvas, sans-serif body system",
+        "business": "Coda"
+      },
+      {
+        "why": "Same craft-editorial visual language with playful decorative shapes bleeding behind flat product illustrations",
+        "business": "Dropbox Paper"
+      },
+      {
+        "why": "Same confidence with serif display headlines over a dark brand-colored hero band transitioning to bright white content sections",
+        "business": "Pitch"
+      },
+      {
+        "why": "Same magazine-spread layout rhythm and serif-headline-over-sans-body typographic pairing in a productivity context",
+        "business": "Read.cv"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "6px",
+        "badges": "6px",
+        "inputs": "6px",
+        "buttons": "6px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64-80px",
+      "cardPadding": "24-40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#42022",
+        "name": "Wine Hero Band",
+        "level": 0,
+        "purpose": "Top hero, dark editorial moments — establishes the midnight-wine atmosphere"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 1,
+        "purpose": "Page canvas, content sections — the bright default surface"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Elevated Card",
+        "level": 2,
+        "purpose": "Feature cards, illustration frames — visually identical to canvas, separated by spatial rhythm and thin Mist borders rather than elevation"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — flat white surfaces, depth implied by colored annotation bars",
+        "element": "Document mockup cards"
+      },
+      {
+        "style": "none — 1px Slate Ink border only",
+        "element": "Email input field"
+      },
+      {
+        "style": "none — whitespace and alternating row direction do the separation work",
+        "element": "Feature sections"
+      }
+    ],
+    "northStar": "midnight-wine reading room",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": 2
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.67
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading",
+        "size": 42,
+        "lineHeight": 1.14,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "display",
+        "size": 53,
+        "lineHeight": 1.24,
+        "letterSpacing": -5
+      }
+    ],
+    "components": [
+      {
+        "name": "Wine Hero Band",
+        "role": "Page-opening atmospheric section",
+        "description": "Full-bleed #42022 background. Left column carries a 53px Sentinel 300-weight headline in #ffffff with -5px letter-spacing, a single-sentence Whitney 400 subhead at 18px, then a Google OAuth button stacked above an email input + Coral Ember CTA. Right column holds a large product mockup (document editor card) with soft purple/coral decorative circles bleeding off the edges. The wine-to-transparent horizontal gradient sits behind the mockup area."
+      },
+      {
+        "name": "Coral Ember Primary Button",
+        "role": "Primary action",
+        "description": "6px border-radius, #ff4143 fill, #ffffff text at 16px Whitney 500, horizontal padding 24px, vertical padding 12px. Sits inline beside a neutral input field. The coral is the only chromatic button in the system — reserving it for the single most important action per surface."
+      },
+      {
+        "name": "Ghost Outlined Button",
+        "role": "Secondary navigation action (e.g., Log In)",
+        "description": "No background, #ffffff text at 16px Whitney 400, 1px white border on dark surfaces, arrow glyph (→) in Slate Ink or white depending on surface."
+      },
+      {
+        "name": "Google OAuth Button",
+        "role": "Federated sign-in",
+        "description": "6px border-radius, #4285f4 fill, #ffffff text, full-width within its column, white Google 'G' mark on the left, 16px Whitney 500. Treated as utility chrome, not a brand element."
+      },
+      {
+        "name": "Email Input Field",
+        "role": "Inline email capture beside CTA",
+        "description": "6px border-radius, #ffffff background, 1px Slate Ink border, 16px Whitney 400 placeholder ('Work Email'), 16px 24px padding. Sits directly left of Coral Ember button with zero gap, creating a unified input+button control."
+      },
+      {
+        "name": "Editorial Feature Card",
+        "role": "Alternating two-column feature section (Create / Organize)",
+        "description": "White canvas, no border, no shadow. Each feature is a 2-column row: one side is a 300-weight Sentinel headline at 42px with a small icon+label eyebrow (Whitney 500, 12px tracked small-caps) in Slate Ink, the other side is a product mockup card with its own decorative pastel circle behind it. 80px vertical padding between rows."
+      },
+      {
+        "name": "Document Mockup Card",
+        "role": "Product illustration inside hero and feature sections",
+        "description": "White card surface with subtle window chrome (three colored dots in coral/yellow/green or just gray), body content rendered as horizontal gray bars representing text lines, with selective colored highlight bars (coral, yellow, teal) to suggest annotations or user presence cursors. The card is a flat, borderless rectangle — depth comes from the colored highlight bars, not shadows."
+      },
+      {
+        "name": "Decorative Pastel Circle",
+        "role": "Atmospheric backdrop element",
+        "description": "Large soft circles in muted coral (#f0a0a0 range), pale lavender, and warm yellow sit behind mockup cards. Partially clipped by the page edge or by adjacent content. They are the system's substitute for gradients or drop shadows — adding warmth and craft without competing with text."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Small section identifier above headlines",
+        "description": "12px Whitney 500, 0.167em letter-spacing (tracked small-caps), Slate Ink color, paired with a small 20px icon (person, list, grid) in Slate Ink. Reads as an editorial section marker, not a UI tag."
+      },
+      {
+        "name": "Customer Logo Strip",
+        "role": "Social proof at hero bottom",
+        "description": "Single row of monochrome white logos on the wine hero band, evenly spaced, no dividers. Logos are rendered at a uniform height with generous horizontal padding. Sits at the bottom edge of the hero, separated from the CTA stack by ~64px."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Transparent over the wine hero, no border. Left: Slab wordmark in coral lowercase. Center: nav links (Product, Resources, Library, Pricing) in white Whitney 400 16px. Right: 'Log In' ghost text button with arrow. Sticky behavior keeps the bar over dark surfaces."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and editorial headlines. The 300-weight sentinel at 53px with -5px tracking is a signature anti-convention choice — most SaaS sites push 600-700 weight sans-serifs at this size; Sentinel whispers and the negative tracking tightens the forms so the whisper still commands. Its serif construction gives the brand a print-publication voice, distancing it from generic dashboard UI.",
+        "sizes": "16px, 42px, 53px",
+        "family": "Sentinel",
+        "weight": "300, 400",
+        "lineHeight": "1.14, 1.24",
+        "substitute": "Charter, Source Serif Pro, or Lora as freely available serif substitutes",
+        "letterSpacing": "-0.019em at 42px, -0.094em at 53px"
+      },
+      {
+        "role": "All UI, body copy, buttons, inputs, icons-as-type, navigation, and feature subheadings. Whitney carries a slightly geometric humanist character that softens the serif display — it reads as warm utilitarian rather than tech-bro geometric. The 0.167em tracked small-caps treatment for 12px badges creates a distinct editorial eyebrow style above section heads.",
+        "sizes": "12px, 16px, 18px, 20px, 24px",
+        "family": "Whitney",
+        "weight": "400, 500, 600, 700",
+        "lineHeight": "1.15, 1.20, 1.33, 1.50, 1.60, 1.67, 1.75",
+        "substitute": "Inter, IBM Plex Sans, or Untitled Sans as Whitney substitutes",
+        "letterSpacing": "0.167em for 12px small-caps/badges, tracking 0 otherwise"
+      }
+    ],
+    "description": "Slab reads like a curated library wrapped in a midnight-wine storefront: a deep plum hero cradles white serif headlines, then opens into bright, spacious editorial layouts where serif display type meets a quiet Whitney sans-serif system. Color is rationed — nearly all of the interface is grayscale — but the single coral-red action and the wine hero create a two-temperature palette: warm authority at the edges, cool utility in the middle. The aesthetic borrows from print publishing: Sentinel's 300-weight serif whispers rather than shouts, generous whitespace around each section feels like a magazine spread, and the 6px corner radius on inputs/buttons is restrained enough to feel editorial rather than soft. Decorative circles, organic blobs, and illustrated document cards float alongside flat UI — the visual language is human and craft-forward, not corporate.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f240ed7d-d466-478e-bbce-6c93420dfd1c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Slab design system\",\"item\":\"https://styles.refero.design/style/f240ed7d-d466-478e-bbce-6c93420dfd1c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f240ed7d-d466-478e-bbce-6c93420dfd1c#style-reference\",\"name\":\"Slab design system reference\",\"headline\":\"Slab design system | Refero Styles\",\"description\":\"Explore Slab's mixed Productivity design system: Midnight Wine #42022e, Coral Ember #ff4143 colors, Sentinel, Whitney typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f240ed7d-d466-478e-bbce-6c93420dfd1c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f240ed7d-d466-478e-bbce-6c93420dfd1c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Slab\",\"url\":\"https://slab.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f240ed7d-d466-478e-bbce-6c93420dfd1c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/181772e8-f167-4365-a908-9dd8036ab2e4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/181772e8-f167-4365-a908-9dd8036ab2e4.jpg\",\"caption\":\"Screenshot of Slab\"},\"image\":\"https://images.refero.design/styles/refero.design/image/181772e8-f167-4365-a908-9dd8036ab2e4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Slab design system\",\"Slab website design\",\"Slab colors\",\"Slab typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Midnight Wine\",\"Coral Ember\",\"Slate Ink\",\"Fog Gray\",\"Sentinel\",\"Whitney\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Slab design system\"},{\"@type\":\"Thing\",\"name\":\"Slab website design\"},{\"@type\":\"Thing\",\"name\":\"Slab colors\"},{\"@type\":\"Thing\",\"name\":\"Slab typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-03-06T18:29:22.000Z\",\"dateModified\":\"2026-03-06T18:29:22.000Z\"}]}19:T8e3,## Quick Color Reference\n- text: #455360 (Slate Ink) / #11110f (Graphite for highest emphasis)\n- background: #ffffff (Paper White)\n- border: #e0e0e0 (Mist) / #455360 (Slate Ink for input borders)\n- accent: #ff4143 (Coral Ember)\n- primary action: no distinct CTA color\n- dark surface: #42022e (Midnight Wine)\n\n## Example Component Prompts\n\n1. **Wine Hero Section**: Full-bleed #42022e background. Headline at 53px Sentinel weight 300, #ffffff, letter-spacing -5px. Subtext at 18px Whitney 400, #ffffff at 80% opacity. Google OAuth button: #4285f4 fill, white text, 6px radius, full-width. Email input: #ffffff background, 1px #455360 border, 6px radius, 16px Whitney 400 placeholder 'Work Email'. Coral Ember 'Get Started' button: #ff4143 fill, #ffffff text at 16px Whitney 500, 6px radius, 16px 24px padding. Right column: a white document mockup card with three gray window dots, gray content bars, and two colored annotation highlights (one coral, one teal). Behind the mockup, a large soft lavender circle bleeding off the right edge.\n\n2. **Editorial Feature Row (Create)**: White #ffffff canvas, max-width 1200px centered. Left side: a 20px person-icon in #455360 above a 12px Whitney 500 'Create' eyebrow with 0.167em letter-spacing. Headline at 42px Sentinel weight 300, #455360, letter-spacing -0.8px. Body at 18px Whitney 400, #455360, max-width 480px. Right side: a white document mockup card titled 'Weekly planning notes' with gray content bars and three colored user-cursor highlights (blue, yellow, coral) labeled with names. Behind the card, a soft pastel yellow circle.\n\n3. **Customer Logo Strip**: Single row on the #42022e wine band, 1200px max-width, logos in white at uniform 24px height, evenly distributed with 48px gaps. No dividers, no border, no background.\n\n4. **Outlined Ghost Nav Button (Log In)**: No background, 1px #ffffff border, 6px radius, #ffffff text at 16px Whitney 400, 12px 20px padding, followed by a white → arrow glyph at 14px.\n\n5. **Top Navigation Bar**: Transparent background over wine hero, 1200px max-width centered. Left: 'slab' wordmark in #ff4143 lowercase at 20px Whitney 600. Center: nav links 'Product / Resources / Library / Pricing' in #ffffff at 16px Whitney 400, 24px gap. Right: 'Log In →' ghost button in #ffffff."
+      }
+    ],
+    "elevationPhilosophy": "Slab deliberately avoids drop shadows across the entire system. Elevation is replaced by three spatial techniques: (1) alternating left/right two-column rows create visual rhythm without boxes, (2) thin 1px Mist or Slate Ink borders define inputs and dividers, and (3) decorative pastel circles bleed behind mockup cards to add depth through color overlap. This produces a print-editorial flatness that reads as confident and editorial rather than dashboard-flat."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#455360",
+          "oklch": {
+            "c": 0.027857078223373462,
+            "h": 246.5013685444187,
+            "l": 0.4352415368663435
+          },
+          "contexts": [
+            "other",
+            "image",
+            "icon",
+            "heading",
+            "link",
+            "button"
+          ],
+          "frequency": 733,
+          "confidence": 1,
+          "prominence": 56517404.5389562,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "image",
+            "list",
+            "body",
+            "button",
+            "icon",
+            "input"
+          ],
+          "frequency": 412,
+          "confidence": 1,
+          "prominence": 9343164.288945246,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e0e0e0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9067006916295425
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2384928,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 1981418.9492772385,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#42022e",
+          "oklch": {
+            "c": 0.10476138780626292,
+            "h": 344.9622681094728,
+            "l": 0.2549721217635133
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1704093.0371628604,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#939598",
+          "oklch": {
+            "c": 0.00498529579763815,
+            "h": 258.33126859187655,
+            "l": 0.6691104591913604
+          },
+          "contexts": [
+            "badge",
+            "other",
+            "button",
+            "image",
+            "link"
+          ],
+          "frequency": 70,
+          "confidence": 1,
+          "prominence": 280428.4686494135,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4285f4",
+          "oklch": {
+            "c": 0.18002738094419357,
+            "h": 259.95600432861727,
+            "l": 0.63038615374003
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 51655.33056585992,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff4143",
+          "oklch": {
+            "c": 0.22558998372796443,
+            "h": 25.45957126073202,
+            "l": 0.6609241513484423
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 12099.603730505305,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#00d5a0",
+          "oklch": {
+            "c": 0.15885249522257935,
+            "h": 166.95597028530378,
+            "l": 0.7746926671875514
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 4462.74579837351,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#253858",
+          "oklch": {
+            "c": 0.06176651602738211,
+            "h": 260.3798170402032,
+            "l": 0.3407381486306274
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2220,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#11110f",
+          "oklch": {
+            "c": 0.004024849746172031,
+            "h": 106.80423511411455,
+            "l": 0.17681610099813155
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2036.6768134266856,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3c3d3f",
+          "oklch": {
+            "c": 0.0036872616382803047,
+            "h": 264.51726801052484,
+            "l": 0.35978592046519753
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1826,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#787879",
+          "oklch": {
+            "c": 0.0015118981223254504,
+            "h": 286.351808591342,
+            "l": 0.5730044290916709
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1663,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0061ff",
+          "oklch": {
+            "c": 0.24647138821180803,
+            "h": 261.4448926787681,
+            "l": 0.5542095929408738
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1532,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#50c5dc",
+          "oklch": {
+            "c": 0.10845026425064999,
+            "h": 212.90523444629085,
+            "l": 0.7662823475436118
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1478.5985504125013,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f27557",
+          "oklch": {
+            "c": 0.16062967967377478,
+            "h": 34.71661295717161,
+            "l": 0.7033976602123655
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 481.8286002192315,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c34027",
+          "oklch": {
+            "c": 0.17157374941633574,
+            "h": 32.879953806989995,
+            "l": 0.5556783295015308
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 430,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5290f5",
+          "oklch": {
+            "c": 0.16391323637434616,
+            "h": 259.68284386357266,
+            "l": 0.6603136825742218
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 363,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2684ff",
+          "oklch": {
+            "c": 0.20201295170571046,
+            "h": 257.4012568067898,
+            "l": 0.6279461973602012
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 69,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f1f1f1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9581468870268093
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 58,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a6c5fa",
+          "oklch": {
+            "c": 0.0823893447890377,
+            "h": 261.01609926432315,
+            "l": 0.8194333128877036
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 39,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.05440111947484035,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.9,
+          "background": "#ffffff",
+          "foreground": "#11110f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.59,
+          "background": "#f1f1f1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.74,
+          "background": "#f1f1f1",
+          "foreground": "#11110f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.41,
+          "background": "#42022e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#e0e0e0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.53,
+          "background": "#f1f1f1",
+          "foreground": "#42022e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.32,
+          "background": "#e0e0e0",
+          "foreground": "#11110f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.43,
+          "background": "#e0e0e0",
+          "foreground": "#42022e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.99,
+          "background": "#a6c5fa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.76,
+          "background": "#ffffff",
+          "foreground": "#253858"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.03,
+          "background": "#00d5a0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.87,
+          "background": "#ffffff",
+          "foreground": "#3c3d3f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.79,
+          "background": "#a6c5fa",
+          "foreground": "#11110f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.41,
+          "background": "#f1f1f1",
+          "foreground": "#253858"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.36,
+          "background": "#50c5dc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.92,
+          "background": "#00d5a0",
+          "foreground": "#11110f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.63,
+          "background": "#f1f1f1",
+          "foreground": "#3c3d3f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.37,
+          "background": "#a6c5fa",
+          "foreground": "#42022e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.33,
+          "background": "#50c5dc",
+          "foreground": "#11110f"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 1,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 49,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 19,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 54,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 73,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 100,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 110,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(66, 2, 46), rgba(0, 0, 0, 0))",
+        "colors": [
+          "rgb(66, 2, 46)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgb(66, 2, 46))",
+        "colors": [
+          "rgba(0, 0, 0, 0)",
+          "rgb(66, 2, 46)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "whitney",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 233,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "sentinel",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 9,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "whitney",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.167,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "sentinel",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "link",
+            "image"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.094,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "whitney",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "button",
+            "image",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "whitney",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "whitney",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "whitney",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "whitney",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "body",
+            "link",
+            "image",
+            "icon"
+          ],
+          "frequency": 192,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "whitney",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "whitney",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "whitney",
+          "weight": 600,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "whitney",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "whitney",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "whitney",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "whitney",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "badge"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "whitney",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "sentinel",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.24,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 53,
+          "family": "sentinel",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.019,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3dbe9a06-a143-466f-948d-757415a3c91c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/181772e8-f167-4365-a908-9dd8036ab2e4.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f240ed7d-d466-478e-bbce-6c93420dfd1c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Slab design system\",\"item\":\"https://styles.refero.design/style/f240ed7d-d466-478e-bbce-6c93420dfd1c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f240ed7d-d466-478e-bbce-6c93420dfd1c#style-reference\",\"name\":\"Slab design system reference\",\"headline\":\"Slab design system | Refero Styles\",\"description\":\"Explore Slab's mixed Productivity design system: Midnight Wine #42022e, Coral Ember #ff4143 colors, Sentinel, Whitney typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f240ed7d-d466-478e-bbce-6c93420dfd1c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f240ed7d-d466-478e-bbce-6c93420dfd1c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Slab\",\"url\":\"https://slab.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f240ed7d-d466-478e-bbce-6c93420dfd1c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/181772e8-f167-4365-a908-9dd8036ab2e4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/181772e8-f167-4365-a908-9dd8036ab2e4.jpg\",\"caption\":\"Screenshot of Slab\"},\"image\":\"https://images.refero.design/styles/refero.design/image/181772e8-f167-4365-a908-9dd8036ab2e4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Slab design system\",\"Slab website design\",\"Slab colors\",\"Slab typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Midnight Wine\",\"Coral Ember\",\"Slate Ink\",\"Fog Gray\",\"Sentinel\",\"Whitney\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Slab design system\"},{\"@type\":\"Thing\",\"name\":\"Slab website design\"},{\"@type\":\"Thing\",\"name\":\"Slab colors\"},{\"@type\":\"Thing\",\"name\":\"Slab typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-03-06T18:29:22.000Z\",\"dateModified\":\"2026-03-06T18:29:22.000Z\"}]}19:T8e3,## Quick Color Reference\n- text: #455360 (Slate Ink) / #11110f (Graphite for highest emphasis)\n- background: #ffffff (Paper White)\n- border: #e0e0e0 (Mist) / #455360 (Slate Ink for input borders)\n- accent: #ff4143 (Coral Ember)\n- primary action: no distinct CTA color\n- dark surface: #42022e (Midnight Wine)\n\n## Example Component Prompts\n\n1. **Wine Hero Section**: Full-bleed #42022e background. Headline at 53px Sentinel weight 300, #ffffff, letter-spacing -5px. Subtext at 18px Whitney 400, #ffffff at 80% opacity. Google OAuth button: #4285f4 fill, white text, 6px radius, full-width. Email input: #ffffff background, 1px #455360 border, 6px radius, 16px Whitney 400 placeholder 'Work Email'. Coral Ember 'Get Started' button: #ff4143 fill, #ffffff text at 16px Whitney 500, 6px radius, 16px 24px padding. Right column: a white document mockup card with three gray window dots, gray content bars, and two colored annotation highlights (one coral, one teal). Behind the mockup, a large soft lavender circle bleeding off the right edge.\n\n2. **Editorial Feature Row (Create)**: White #ffffff canvas, max-width 1200px centered. Left side: a 20px person-icon in #455360 above a 12px Whitney 500 'Create' eyebrow with 0.167em letter-spacing. Headline at 42px Sentinel weight 300, #455360, letter-spacing -0.8px. Body at 18px Whitney 400, #455360, max-width 480px. Right side: a white document mockup card titled 'Weekly planning notes' with gray content bars and three colored user-cursor highlights (blue, yellow, coral) labeled with names. Behind the card, a soft pastel yellow circle.\n\n3. **Customer Logo Strip**: Single row on the #42022e wine band, 1200px max-width, logos in white at uniform 24px height, evenly distributed with 48px gaps. No dividers, no border, no background.\n\n4. **Outlined Ghost Nav Button (Log In)**: No background, 1px #ffffff border, 6px radius, #ffffff text at 16px Whitney 400, 12px 20px padding, followed by a white → arrow glyph at 14px.\n\n5. **Top Navigation Bar**: Transparent background over wine hero, 1200px max-width centered. Left: 'slab' wordmark in #ff4143 lowercase at 20px Whitney 600. Center: nav links 'Product / Resources / Library / Pricing' in #ffffff at 16px Whitney 400, 24px gap. Right: 'Log In →' ghost button in #ffffff."
+}

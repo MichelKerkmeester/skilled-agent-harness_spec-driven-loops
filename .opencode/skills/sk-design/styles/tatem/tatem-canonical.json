@@ -1,0 +1,980 @@
+{
+  "source": "https://styles.refero.design/style/cb6e4ab0-b8fe-45b0-bd22-6339b073e26d",
+  "uuid": "cb6e4ab0-b8fe-45b0-bd22-6339b073e26d",
+  "name": "Tatem",
+  "northStar": "calm twilight command center — a hushed dark workspace washed in a single soft blue-to-charcoal gradient, with one warm sunburst as the only color punctuation.",
+  "capturedAt": "2026-07-18T08:30:32.410Z",
+  "meta": {
+    "url": "https://tatem.com",
+    "siteName": "Tatem",
+    "extractedAt": "2026-06-03T16:45:56.334Z",
+    "durationMs": 30618,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 335,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Inter weight 400 for everything — do not introduce bold or semibold weights; hierarchy comes from size alone",
+      "Keep all radii at 6px for interactive elements (buttons, chips, tags) and 10-16px for content cards",
+      "Anchor all content sections on the #3b3b3b dark canvas; reserve the blue-gray gradient exclusively for the hero",
+      "Pair #ffffff headlines with #919191 body text for the signature high-contrast-yet-quiet hierarchy",
+      "Use 1px solid #606060 hairlines for separators and #606060 backgrounds for elevated cards — never use shadows for elevation",
+      "Default section spacing to 96px top/bottom with content centered in a 1200px max-width",
+      "Use the 13px caption / 16px body / 40px display trio as the only typographic jumps needed"
+    ],
+    "donts": [
+      "Do not use a filled chromatic button — the system relies on ghost outlines, never solid brand-colored CTAs",
+      "Do not introduce shadows or drop-effects; elevation is communicated through surface tone shifts only",
+      "Do not use more than one chromatic element on a single screen — the sunburst logo, the hero gradient, that's it",
+      "Do not break the single-weight rule by adding 600 or 700 weights to Inter; if a heading feels too soft, increase its size instead",
+      "Do not use border-radius larger than 16px anywhere; the system is angular-tight, not pillowy",
+      "Do not use color for status or state in the main interface; rely on opacity shifts (ffffff vs 919191) for active/inactive",
+      "Do not place the brand gradient behind content other than the hero; repeating it in sections will dilute its atmospheric impact"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "White",
+        "role": "Primary text, logo mark, ghost button borders on dark — the highest-contrast color, used sparingly for headlines and active labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c2c2c2",
+        "name": "Ash Gray",
+        "role": "Secondary headings, emphasis text on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b5b5b5",
+        "name": "Mist",
+        "role": "Muted body text, sub-labels, metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#919191",
+        "name": "Smoke",
+        "role": "Tertiary text, icon strokes, inactive nav items, secondary button text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#606060",
+        "name": "Graphite",
+        "role": "Mid-tone surface, card backgrounds, chip fills, subtle dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3b3b3b",
+        "name": "Obsidian",
+        "role": "Base canvas, section background, primary surface — the dominant dark that anchors all content sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5a7694",
+        "name": "Dusk Blue",
+        "role": "Hero gradient anchor — the start of the soft blue-to-gray wash that defines the first viewport and makes the brand feel atmospheric rather than corporate",
+        "group": "brand",
+        "gradient": "linear-gradient(180deg, #5a7694 0%, #759da5 50%, #abb7b5 100%)"
+      },
+      {
+        "hex": "#abb7b5",
+        "name": "Dusk Highlight",
+        "role": "Gradient terminus — the pale gray-green endpoint of the hero wash that dissolves the page into the dark sections below",
+        "group": "brand",
+        "gradient": "linear-gradient(180deg, #5a7694 0%, #759da5 50%, #abb7b5 100%)"
+      }
+    ],
+    "layout": "Single-column max-width 1200px layout, centered. The hero is the only full-bleed treatment, stretching edge to edge with the blue-gray gradient. Below the hero, every section is a #3b3b3b band with generous 96px vertical padding. The first viewport always contains the hero gradient; subsequent viewports are deep dark with content concentrated in the left half of the max-width container, leaving the right half empty or holding a product visual. Navigation is a thin top bar with no sticky behavior visible — it floats in the gradient in the hero and sits flush at the top of dark sections. The rhythm is slow: one section per viewport, no card grids, no multi-column feature blocks.",
+    "imagery": "Almost no traditional imagery. The hero features a single angled product screenshot (the inbox app itself) bleeding off the right edge, rendered without border, shadow, or rounding — the screenshot IS the hero art. Other sections use flat-rendered UI mockups (keyboard, inbox rows) at the same dark surface tones as the page, so they blend into the environment rather than floating above it. Icons are minimal line-style strokes in #919191. No photography, no illustration, no abstract graphics — the entire visual language is product-surface-as-art.",
+    "similar": [
+      {
+        "why": "Shares the dark canvas, single-weight typography, ghost outlined buttons, and ultra-minimal navigation pattern",
+        "business": "Linear"
+      },
+      {
+        "why": "Same approach of letting a single hero gradient break an otherwise pure-black monochrome system, with whisper-quiet gray body text",
+        "business": "Vercel"
+      },
+      {
+        "why": "Both are email-productivity brands using dark surfaces, restrained neutrals, and keyboard-centric visual language with flat-rendered UI mockups as section art",
+        "business": "Superhuman"
+      },
+      {
+        "why": "The keyboard-shortcut visual treatment and 'command menu' pill pattern closely mirror Raycast's product-mockup-as-hero approach",
+        "business": "Raycast"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "6px",
+        "chips": "6px",
+        "buttons": "6px",
+        "heroElements": "16px",
+        "largeSurfaces": "10px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "96px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#3b3b3b",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Base page background, section backdrop"
+      },
+      {
+        "hex": "#606060",
+        "name": "Card",
+        "level": 2,
+        "purpose": "Inbox rows, keyboard display container, elevated content blocks"
+      },
+      {
+        "hex": "#919191",
+        "name": "Subtle",
+        "level": 3,
+        "purpose": "Chip fills, muted indicators, secondary surface tone"
+      }
+    ],
+    "northStar": "calm twilight command center — a hushed dark workspace washed in a single soft blue-to-charcoal gradient, with one warm sunburst as the only color punctuation.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.09
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.11
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "display",
+        "size": 40,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.28
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost CTA Button",
+        "role": "Primary action in the hero and nav",
+        "description": "Transparent fill, 1px solid #ffffff border, #ffffff text, 6px radius, Inter 16px weight 400, padding 10px 24px. Hovers by inverting to white fill with dark text. The absence of a filled chromatic button is intentional — the hero is gradient, the rest is dark, and a filled button would break the system."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent site navigation",
+        "description": "Full-width transparent on hero gradient, switches to #3b3b3b on scroll. Left: sunburst logo mark + 'tatem' wordmark in #ffffff. Right: three text links (Pricing, Changelog, Sign in) in #919191 plus a 'Get started' ghost button. Top-center: small #919191 announcement line. Height ~64px, no shadow, no border-bottom."
+      },
+      {
+        "name": "Inbox Row",
+        "role": "Email list item in product preview",
+        "description": "No background fill (sits directly on #606060 card), padding 12px horizontal, 8px vertical. Left: circular avatar placeholder + sender name in #ffffff weight 400 14px. Center: subject in #ffffff, preview in #919191. Right: date in #919191, 13px. Rows separated by 1px #606060 horizontal divider, not card borders."
+      },
+      {
+        "name": "Keyboard Shortcut Display",
+        "role": "Visual showing keyboard-first interaction",
+        "description": "#3b3b3b base card with 16px radius, padding 32px. Contains a flat-rendered keyboard at #606060 fill with individual keys as subtle raised rectangles. Highlighted keys (K, ⌘) rendered in #919191 or #b5b5b5 to stand out. Below: 'Command menu' label in a 6px-radius pill, #606060 background, #ffffff text 14px."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Content section header pattern",
+        "description": "Left-aligned, max-width ~560px. Eyebrow label in #919191 13px uppercase tracking (e.g., 'SPLIT INBOX', 'SHORTCUTS'). Headline in #ffffff Inter 40px weight 400 line-height 1.2. Body paragraph in #919191 Inter 16px line-height 1.5. No dividers, no accent lines."
+      },
+      {
+        "name": "App Preview Card",
+        "role": "Hero product screenshot treatment",
+        "description": "The inbox app is shown as a slightly rotated (8-12°) rectangular capture, no border, no shadow, no radius. Sits on the hero gradient bleeding off the right edge of the viewport. The rotation and edge-bleed make the product feel alive and three-dimensional without decorative chrome."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand identity",
+        "description": "Small sunburst/burst icon (radial lines emanating from a center) in #ffffff, paired with lowercase 'tatem' wordmark in Inter 400 16px #ffffff. The only truly decorative mark in the system; the warm/light treatment of the burst is the one spot where the system allows itself personality."
+      },
+      {
+        "name": "Top Announcement Bar",
+        "role": "Pre-navigation social proof strip",
+        "description": "Centered single line of text: 'Join 10,000+ rethinking their email.' in #919191 13px. Sits above the nav, no background, no border. Ultra-minimal — a whisper of social proof, not a banner."
+      },
+      {
+        "name": "Content Section Container",
+        "role": "Repeating section pattern for features",
+        "description": "Full-width #3b3b3b background, content centered in 1200px max-width with 24px horizontal padding. 96px vertical padding top and bottom. Contains a Section Heading Block followed by an optional visual (card or illustration) at 16px radius on a #3b3b3b nested surface."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole typeface across all roles: captions, body, navigation, and display. The deliberate choice of a single weight (400) forces hierarchy through size and spacing alone, creating a quiet, anti-conventional rhythm where headlines feel like magnified body text rather than bold declarations. Substitute: Inter (Google Fonts).",
+        "sizes": "13px, 14px, 16px, 20px, 40px",
+        "family": "Inter",
+        "weight": "400",
+        "lineHeight": "1.20, 1.43, 1.50",
+        "substitute": "Inter",
+        "letterSpacing": "-0.007em uniform across all sizes (approximately -0.28px at 40px, -0.09px at 13px)"
+      }
+    ],
+    "description": "Tatem operates in a hushed, dark twilight palette where nearly the entire interface is rendered in neutral grays and near-black surfaces, creating a calm, focused environment for an email client. The hero breaks the monochrome with a single soft blue-gray gradient that fades to black, framing a large left-aligned headline and a gently rotated app preview. Typography is exclusively Inter at weight 400, relying on size and letter-spacing to establish hierarchy rather than weight contrast. Components stay flat and minimal: ghost buttons with thin borders, 6px-radius cards, keyboard shortcut chips, and inbox rows that use spacing and subtle gray separators rather than borders or shadows. The visual signature is restraint — one warm sunburst icon is the only chromatic punctuation, and the rest of the system communicates through negative space, neutral gradients, and whisper-quiet text colors.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cb6e4ab0-b8fe-45b0-bd22-6339b073e26d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Tatem design system\",\"item\":\"https://styles.refero.design/style/cb6e4ab0-b8fe-45b0-bd22-6339b073e26d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cb6e4ab0-b8fe-45b0-bd22-6339b073e26d#style-reference\",\"name\":\"Tatem design system reference\",\"headline\":\"Tatem design system | Refero Styles\",\"description\":\"Explore Tatem's dark SaaS design system: White #ffffff, Ash Gray #c2c2c2 colors, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/cb6e4ab0-b8fe-45b0-bd22-6339b073e26d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cb6e4ab0-b8fe-45b0-bd22-6339b073e26d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Tatem\",\"url\":\"https://tatem.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cb6e4ab0-b8fe-45b0-bd22-6339b073e26d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ce780466-e227-47e4-8844-5871f0b0d683.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ce780466-e227-47e4-8844-5871f0b0d683.jpg\",\"caption\":\"Screenshot of Tatem\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ce780466-e227-47e4-8844-5871f0b0d683.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Tatem design system\",\"Tatem website design\",\"Tatem colors\",\"Tatem typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"White\",\"Ash Gray\",\"Mist\",\"Smoke\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Tatem design system\"},{\"@type\":\"Thing\",\"name\":\"Tatem website design\"},{\"@type\":\"Thing\",\"name\":\"Tatem colors\"},{\"@type\":\"Thing\",\"name\":\"Tatem typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-02-05T09:51:27.000Z\",\"dateModified\":\"2026-02-05T09:51:27.000Z\"}]}19:T816,Quick Color Reference:\n- text primary: #ffffff\n- text secondary: #919191\n- text muted: #b5b5b5\n- background canvas: #3b3b3b\n- surface card: #606060\n- border / hairline: #606060\n- accent: #5a7694 (hero gradient start)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a hero section: full-bleed linear-gradient from #5a7694 at top through #759da5 to #abb7b5 at bottom. Left-aligned headline in Inter 40px weight 400, color #ffffff, letter-spacing -0.28px. Body text in Inter 16px weight 400, color #919191. Below: a ghost button with 1px solid #ffffff border, #ffffff text, Inter 16px, 6px radius, padding 10px 24px. Right side: a slightly rotated (10°) rectangular product screenshot bleeding off the right viewport edge, no border or shadow.\n\n2. Create a feature section on a #3b3b3b background: 1200px max-width centered, 96px vertical padding. Eyebrow label 'SPLIT INBOX' in Inter 13px weight 400, #919191, uppercase, tracking 0.5px. Headline 'Prioritize what's important.' in Inter 40px weight 400, #ffffff. Body in Inter 16px weight 400, #919191. Below: an inbox list on a #606060 surface with 6px radius, containing rows with #ffffff sender names, #919191 preview text, and 1px solid #3b3b3b row separators.\n\n3. Create a keyboard shortcut display: 16px-radius card on #3b3b3b surface, 32px padding. Flat keyboard rendered in #606060 fill with individual keys as slightly lighter rectangles. One key (K) highlighted in #b5b5b5. Below the keyboard: a pill chip with #606060 background, #ffffff text 'Command menu', Inter 14px, 6px radius, padding 6px 16px.\n\n4. Create a top navigation: transparent background (sits on hero gradient). Left: small white sunburst icon (8 radial lines from center) + 'tatem' wordmark in Inter 16px #ffffff. Right: three text links in Inter 16px #919191 ('Pricing', 'Changelog', 'Sign in'), followed by a ghost button ('Get started') with 1px solid #ffffff border, #ffffff text, 6px radius, padding 10px 24px. Above the nav, centered: a single line of #919191 13px text reading a short social proof message."
+      },
+      {
+        "title": "Monochrome Discipline",
+        "content": "The Tatem system is defined by what it refuses to add. No bold weights, no chromatic buttons, no shadows, no decorative gradients past the hero, no border-radius above 16px, no photography, no illustration. Every screen should be buildable with: Inter 400 in five sizes, four neutral grays, one dark canvas, one ghost button, and a hero gradient. If a design decision requires introducing a new color, weight, shadow, or radius tier — reconsider the design problem first."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids box-shadows entirely. Elevation is communicated through surface tone: #3b3b3b canvas → #606060 cards/chips → #919191 subtle highlights. The absence of shadow keeps the interface feeling flat, modern, and weightless — closer to a printed interface than a skeuomorphic app. The only depth cue is the hero gradient itself, which creates a sense of atmospheric distance rather than physical elevation."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "hero",
+            "heading",
+            "button",
+            "body",
+            "footer"
+          ],
+          "frequency": 234,
+          "confidence": 1,
+          "prominence": 165302003.68427232,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#919191",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6558304622591796
+          },
+          "contexts": [
+            "other",
+            "body",
+            "nav",
+            "button",
+            "icon",
+            "list",
+            "link"
+          ],
+          "frequency": 78,
+          "confidence": 1,
+          "prominence": 359315.5026460949,
+          "properties": [
+            "color",
+            "stroke",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b5b5b5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7746895962092929
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 75014.31521853115,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#606060",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4881672548451342
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 45471.00325651774,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3b3b3b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3523247402852869
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 4483.4233777539375,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c2c2c2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8132808021918533
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 4305.218810974022,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#007eed",
+          "oklch": {
+            "c": 0.19086935773092287,
+            "h": 254.07694832773956,
+            "l": 0.5980712782176827
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 2871.5412212774877,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0072d3",
+          "oklch": {
+            "c": 0.17201281302208465,
+            "h": 253.2487679759455,
+            "l": 0.5535369492128467
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2425,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#386cf4",
+          "oklch": {
+            "c": 0.21180448720315645,
+            "h": 264.6587977475258,
+            "l": 0.5765866636968328
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 114,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#43d692",
+          "oklch": {
+            "c": 0.15815416517452976,
+            "h": 158.8158835751162,
+            "l": 0.7820453867996877
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 69,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffad47",
+          "oklch": {
+            "c": 0.1488647813175259,
+            "h": 68.37204009927002,
+            "l": 0.8099788921893504
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 68,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.03064573306455719,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 11.2,
+          "background": "#3b3b3b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.29,
+          "background": "#606060",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.29,
+          "background": "#c2c2c2",
+          "foreground": "#3b3b3b"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.04,
+          "background": "#ffad47",
+          "foreground": "#3b3b3b"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.01,
+          "background": "#43d692",
+          "foreground": "#3b3b3b"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.46,
+          "background": "#3b3b3b",
+          "foreground": "#b5b5b5"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.55,
+          "background": "#3b3b3b",
+          "foreground": "#919191"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.53,
+          "background": "#c2c2c2",
+          "foreground": "#606060"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.39,
+          "background": "#ffad47",
+          "foreground": "#606060"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.38,
+          "background": "#43d692",
+          "foreground": "#606060"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.15,
+          "background": "#919191",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.07,
+          "background": "#606060",
+          "foreground": "#b5b5b5"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.05,
+          "background": "#ffffff",
+          "foreground": "#b5b5b5"
+        },
+        {
+          "level": "fail",
+          "ratio": 2,
+          "background": "#606060",
+          "foreground": "#919191"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.78,
+          "background": "#c2c2c2",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.78,
+          "background": "#3b3b3b",
+          "foreground": "#606060"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.77,
+          "background": "#c2c2c2",
+          "foreground": "#919191"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.54,
+          "background": "#919191",
+          "foreground": "#b5b5b5"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.15,
+          "background": "#c2c2c2",
+          "foreground": "#b5b5b5"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 66
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 40,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 27,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 29,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 133,
+          "contexts": [],
+          "frequency": 30,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 140,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 200,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 232,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(90, 118, 148) 0%, rgb(117, 141, 165) 17%, rgb(126, 150, 168) 47%, rgb(156, 173, 179) 75%, rgb(171, 183, 181) 100%)",
+        "colors": [
+          "rgb(90, 118, 148)",
+          "rgb(117, 141, 165)",
+          "rgb(126, 150, 168)",
+          "rgb(156, 173, 179)",
+          "rgb(171, 183, 181)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 230,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "button",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "list",
+            "link",
+            "icon",
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "body",
+            "button",
+            "image",
+            "footer"
+          ],
+          "frequency": 144,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.007,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/41818e86-0182-4394-9286-5d5cd3fda31b.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ce780466-e227-47e4-8844-5871f0b0d683.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cb6e4ab0-b8fe-45b0-bd22-6339b073e26d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Tatem design system\",\"item\":\"https://styles.refero.design/style/cb6e4ab0-b8fe-45b0-bd22-6339b073e26d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cb6e4ab0-b8fe-45b0-bd22-6339b073e26d#style-reference\",\"name\":\"Tatem design system reference\",\"headline\":\"Tatem design system | Refero Styles\",\"description\":\"Explore Tatem's dark SaaS design system: White #ffffff, Ash Gray #c2c2c2 colors, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/cb6e4ab0-b8fe-45b0-bd22-6339b073e26d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cb6e4ab0-b8fe-45b0-bd22-6339b073e26d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Tatem\",\"url\":\"https://tatem.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cb6e4ab0-b8fe-45b0-bd22-6339b073e26d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ce780466-e227-47e4-8844-5871f0b0d683.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ce780466-e227-47e4-8844-5871f0b0d683.jpg\",\"caption\":\"Screenshot of Tatem\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ce780466-e227-47e4-8844-5871f0b0d683.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Tatem design system\",\"Tatem website design\",\"Tatem colors\",\"Tatem typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"White\",\"Ash Gray\",\"Mist\",\"Smoke\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Tatem design system\"},{\"@type\":\"Thing\",\"name\":\"Tatem website design\"},{\"@type\":\"Thing\",\"name\":\"Tatem colors\"},{\"@type\":\"Thing\",\"name\":\"Tatem typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-02-05T09:51:27.000Z\",\"dateModified\":\"2026-02-05T09:51:27.000Z\"}]}19:T816,Quick Color Reference:\n- text primary: #ffffff\n- text secondary: #919191\n- text muted: #b5b5b5\n- background canvas: #3b3b3b\n- surface card: #606060\n- border / hairline: #606060\n- accent: #5a7694 (hero gradient start)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a hero section: full-bleed linear-gradient from #5a7694 at top through #759da5 to #abb7b5 at bottom. Left-aligned headline in Inter 40px weight 400, color #ffffff, letter-spacing -0.28px. Body text in Inter 16px weight 400, color #919191. Below: a ghost button with 1px solid #ffffff border, #ffffff text, Inter 16px, 6px radius, padding 10px 24px. Right side: a slightly rotated (10°) rectangular product screenshot bleeding off the right viewport edge, no border or shadow.\n\n2. Create a feature section on a #3b3b3b background: 1200px max-width centered, 96px vertical padding. Eyebrow label 'SPLIT INBOX' in Inter 13px weight 400, #919191, uppercase, tracking 0.5px. Headline 'Prioritize what's important.' in Inter 40px weight 400, #ffffff. Body in Inter 16px weight 400, #919191. Below: an inbox list on a #606060 surface with 6px radius, containing rows with #ffffff sender names, #919191 preview text, and 1px solid #3b3b3b row separators.\n\n3. Create a keyboard shortcut display: 16px-radius card on #3b3b3b surface, 32px padding. Flat keyboard rendered in #606060 fill with individual keys as slightly lighter rectangles. One key (K) highlighted in #b5b5b5. Below the keyboard: a pill chip with #606060 background, #ffffff text 'Command menu', Inter 14px, 6px radius, padding 6px 16px.\n\n4. Create a top navigation: transparent background (sits on hero gradient). Left: small white sunburst icon (8 radial lines from center) + 'tatem' wordmark in Inter 16px #ffffff. Right: three text links in Inter 16px #919191 ('Pricing', 'Changelog', 'Sign in'), followed by a ghost button ('Get started') with 1px solid #ffffff border, #ffffff text, 6px radius, padding 10px 24px. Above the nav, centered: a single line of #919191 13px text reading a short social proof message."
+}

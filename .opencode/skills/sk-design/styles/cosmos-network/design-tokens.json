@@ -1,0 +1,367 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void Black — Page canvas, section backgrounds, maximum-contrast surface"
+    },
+    "carbon": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Carbon — Navigation bar, elevated surface base, footer surface"
+    },
+    "graphite": {
+      "$value": "#1e1f20",
+      "$type": "color",
+      "$description": "Graphite — Card surfaces, elevated panels, contained content blocks"
+    },
+    "iron": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Iron — Hairline borders, dividers, structural separators"
+    },
+    "slate": {
+      "$value": "#807f7f",
+      "$type": "color",
+      "$description": "Slate — Muted secondary text, inactive nav items, subtle metadata"
+    },
+    "fog": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Fog — Disabled labels, low-emphasis helper text, tertiary metadata"
+    },
+    "ash": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Ash — Deep-recessed borders, very-low-emphasis outlines"
+    },
+    "chalk": {
+      "$value": "#f1f4f4",
+      "$type": "color",
+      "$description": "Chalk — Alternate light surface, inverted card context"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary headings, body text, icon strokes, button borders, link text — the single chromatic force in the system"
+    },
+    "signal-mint": {
+      "$value": "#22e2a8",
+      "$type": "color",
+      "$description": "Signal Mint — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "deep-navy": {
+      "$value": "#0a2142",
+      "$type": "color",
+      "$description": "Deep Navy — Ambient atmospheric tint, decorative background wash behind globe visualization"
+    },
+    "concentric-teal": {
+      "$value": "#085556",
+      "$type": "color",
+      "$description": "Concentric Teal — Diagram and data-visualization stroke, subtle infographic accent"
+    }
+  },
+  "font": {
+    "the-future": {
+      "$value": "The Future",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire system — navigation, body, headings, buttons, and labels. The slight positive tracking (0.02–0.04em) at all sizes creates a measured, architectural quality uncommon in fintech."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 0.67
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "The Future",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page-level canvas, full-bleed section backgrounds"
+    },
+    "carbon": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Surface level 1: Navigation bar, footer, primary surface container"
+    },
+    "graphite": {
+      "$value": "#1e1f20",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated card surfaces, content blocks above canvas"
+    },
+    "chalk": {
+      "$value": "#f1f4f4",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted light surface for contrast sections or modal dialogs"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://cosmos.network",
+      "siteName": "Cosmos Network",
+      "extractedAt": "2026-06-03T19:35:02.413Z",
+      "variant": "extended"
+    }
+  }
+}

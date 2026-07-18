@@ -1,0 +1,584 @@
+{
+  "source": "https://styles.refero.design/style/c8ca6c83-3197-4b19-af1c-b29d6f829c5f",
+  "uuid": "c8ca6c83-3197-4b19-af1c-b29d6f829c5f",
+  "name": "Dul Zorigoo",
+  "northStar": "ink-and-pencil gallery wall — a designer's portfolio rendered as monochrome exhibition panels on white, where structure is drawn not filled",
+  "capturedAt": "2026-07-18T08:23:25.593Z",
+  "meta": {
+    "url": "https://dzrgo.com",
+    "siteName": "Dul Zorigoo",
+    "extractedAt": "2026-06-03T17:22:00.899Z",
+    "durationMs": 28432,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 291,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #ebebeb for every divider, card border, and panel edge — it is the structural line of the system, occurring ~620 times",
+      "Keep the page canvas at #ffffff; never tint the background, let whitespace carry the layout",
+      "Reserve #252525 for body copy and primary labels; let #a8a8a8 carry captions and metadata, #8e8e8 for the quietest helper text",
+      "Let images be edge-to-edge with zero frame — no border, no shadow, no background card wrapping a photograph or screenshot",
+      "Use 8px border-radius on the few buttons and link chips that exist, and 0px on everything else",
+      "Communicate tab and nav state through color weight (Ink Black active, Graphite inactive) not through pills, backgrounds, or underlines",
+      "Maintain a masonry grid where tile sizes vary but gutters stay at a consistent 32px section gap and 8-12px caption offset"
+    ],
+    "donts": [
+      "Do not introduce any color — no accent, no brand hue, no semantic red/green/blue. The system is 0% colorful by design",
+      "Do not add shadows or elevation. Structure is drawn in 1px Pencil Gray hairlines, never lifted with blur or drop-shadow",
+      "Do not round photographs or screenshot tiles. Edge-to-edge raw rectangles are the rule",
+      "Do not use filled or outlined CTA buttons. The system has no action surface — interactions are text links, filter tabs, and the images themselves",
+      "Do not set body text in pure #000. Ink Black #252525 keeps the page in an editorial register rather than a terminal one",
+      "Do not use Pill Gray or chip backgrounds for active nav states. Weight of gray is the only allowed state signal",
+      "Do not exceed ~15px for any UI text. The entire type system operates at small optical sizes — headlines do not exist on this site"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page background, image wells, card surfaces inside embedded UI captures",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebebeb",
+        "name": "Pencil Gray",
+        "role": "Hairline borders, panel dividers, card edges, button borders, the dominant structural line of the entire system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a8a8a8",
+        "name": "Graphite",
+        "role": "Image captions, subdued headings, section labels, timestamp/location metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8e8e8e",
+        "name": "Smoke",
+        "role": "Body helper text, secondary metadata, low-emphasis descriptors",
+        "group": "neutral"
+      },
+      {
+        "hex": "#252525",
+        "name": "Ink Black",
+        "role": "Primary text, nav labels, the sidebar bio copy, button text — near-black rather than pure black keeps the system off the contrast ceiling and into a softer editorial register",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Two-column shell: a ~200px fixed left sidebar (name, bio, social links, live date stamp) and a flexible right work well. The work well opens with a horizontally-flowing filter tab bar (All, Photography, Thoughts, Work, Experiments) separated from the grid below by a 1px #ebebeb hairline. Below the tab bar, the main content is a masonry-style image grid where tile sizes vary (mix of portrait and landscape crops, some full-width spans) but the gap rhythm stays consistent at 8-12px between images and 32px between logical sections. Captions sit directly under each tile in Graphite #a8a8a8, 12-13px. Navigation is minimal — no sticky header, no mega-menu, no sidebar nav beyond the bio rail. The page scrolls as a single continuous gallery; the only structural breaks are the hairline rule under the tab bar and the natural visual gaps between work groupings. Density is generous: large photographs get full breathing room, and the fixed sidebar never competes with the grid for attention.",
+    "imagery": "Image-dominant. Photography and full-bleed product screenshots occupy the majority of viewport real estate, arranged in a varied-size masonry that feels like an exhibition wall rather than a grid. The photography itself is editorial: black-and-white landscape, golden-hour cityscape, chalk-white cliffs, candid park scenes — all shot with a contemplative, non-commercial eye. Embedded UI screenshots (ElevenLabs agent flows, music stem downloader) are presented as raw captures with no frame, border, or background plate, letting the product's own visual system become part of the portfolio's visual language. The site has no illustration, no 3D, no abstract graphics — only photographs and screenshots, both serving as the work itself. Iconography is minimal and monochrome (small X and Cosmos glyphs in the sidebar), and the entire icon set reads as thin-line text-adjacent marks rather than a system.",
+    "similar": [
+      {
+        "why": "Same channel-based masonry grid of varied-size image tiles with muted captions and zero chrome around the content",
+        "business": "Are.na"
+      },
+      {
+        "why": "Identical editorial discipline — monochrome palette, hairline borders only, work tiles that are edge-to-edge with no frames",
+        "business": "Rauno Freiberg's portfolio (raunofreiberg.com)"
+      },
+      {
+        "why": "Same exhibition-wall presentation of design work, where the portfolio's restraint amplifies the chromatic content of the work itself",
+        "business": "Readymag project showcases"
+      },
+      {
+        "why": "Same use of #ebebeb hairline structure with 0% colorful UI and Ink Black text — though Linear adds a single accent, this site holds the line at zero",
+        "business": "Linear's changelog/blog"
+      },
+      {
+        "why": "Same design-as-gallery sensibility: work presented as raw tiles in a masonry, with the portfolio chrome reduced to a thin bio rail and quiet metadata",
+        "business": "Manual design studio (manual.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "links": "8px",
+        "buttons": "8px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "32px",
+      "cardPadding": "12-16px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Page canvas, the only background color in the system. Everything floats on it."
+      },
+      {
+        "hex": "#ebebeb",
+        "name": "Pencil",
+        "level": 1,
+        "purpose": "Hairline border, divider, and panel edge color. Not a fill — a 1px line drawn on the paper."
+      }
+    ],
+    "northStar": "ink-and-pencil gallery wall — a designer's portfolio rendered as monochrome exhibition panels on white, where structure is drawn not filled",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Fixed Bio Sidebar",
+        "role": "Identity rail anchoring every page",
+        "description": "Left column, ~200px wide, no border, sits on the paper-white canvas. Contains name (Dul Zorigoo), 3-line bio ('Based in London. Exploring novel ways of interacting with technology. Currently designing ElevenLabs / Prev Humanae'), and two social links (X / Cosmos) as plain text with a leading icon. Text in Ink Black #252525, links inherit color with no underline. No background fill — the sidebar is defined by its whitespace, not by a panel."
+      },
+      {
+        "name": "Filter Tab Bar",
+        "role": "Category navigation across the top of the work well",
+        "description": "Horizontal row of text-only tabs: All (active), Photography, Thoughts, Work, Experiments. Active tab is Ink Black #252525, inactive tabs are Smoke #8e8e8 or Graphite #a8a8a8. No pills, no backgrounds, no underlines — state is communicated by color weight alone. Tab spacing ~8px between items. The bar is separated from the grid below by a 1px Pencil Gray #ebebeb hairline."
+      },
+      {
+        "name": "Work Tile (Image + Caption)",
+        "role": "The atomic unit of the portfolio grid",
+        "description": "A photograph or UI screenshot at its natural aspect ratio, edge-to-edge with no border, no shadow, no radius. Caption sits 8-12px below: Graphite #a8a8a8 text at ~12-13px, line-height 1.4. Captions are 1-2 lines — a title in Ink Black followed by a descriptor in Graphite, or a single muted line. Some tiles (the music/audio experiments) are wider, some are tall portrait crops, producing a masonry rhythm where tile widths vary but gutters stay consistent."
+      },
+      {
+        "name": "Embedded UI Capture",
+        "role": "Portfolio pieces that are themselves product screenshots",
+        "description": "Several tiles are screenshots of real product UIs (ElevenLabs agent publish flow, merge dialog, music prompt box). These carry their own internal visual systems — borders, radii, colors — and are presented as-is without a frame. The portfolio system adds nothing on top: no border, no caption box, no background panel. The screenshot IS the tile."
+      },
+      {
+        "name": "Internal UI Card (within screenshots)",
+        "role": "Surfaces inside the embedded product captures",
+        "description": "Where product UIs appear as portfolio pieces, their cards typically use white #ffffff fill on a slightly off-white #ebebeb or near-white canvas, with 8px-12px corner radius and 1px hairline borders in #ebebeb. This is the same Pencil Gray / Paper White system the portfolio itself uses — the work and the frame are built from the same ingredients."
+      },
+      {
+        "name": "Text-Only Link / Social Handle",
+        "role": "Inline navigation and attribution",
+        "description": "Plain Ink Black #252525 text, no underline, no hover affordance visible. Social handles (X, Cosmos) are prefixed with a tiny glyph icon. The minimal weight of these links reinforces the editorial tone — the sidebar reads as a colophon, not a nav menu."
+      },
+      {
+        "name": "Date / Location Stamp",
+        "role": "Contextual metadata at the foot of the page",
+        "description": "'LDN 02:20' and 'Crisp blue skies, perfect for a brisk walk.' — appears in the lower-left of the sidebar, 12-13px, Graphite #a8a8a8. Functions as a soft live-data signature, treated as a quiet annotation rather than content."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI text — sidebar bio, nav tabs, image captions, button labels. Inter is the safe system-substitute choice; the original is likely a neo-grotesque like Söhne, GT America, or Untitled Sans at a small optical size, tracking slightly tight.",
+        "sizes": "",
+        "family": "Inter",
+        "weight": "400, 500",
+        "lineHeight": "1.4-1.5",
+        "substitute": "Inter, system-ui, -apple-system"
+      }
+    ],
+    "description": "A monochrome gallery wall for a designer's portfolio — pure white canvas, hairline gray dividers, and a near-black ink for text, with the work itself (photography, UI captures, experiments) supplying every drop of color. Layout follows a two-column shell: a thin fixed bio rail on the left, a filter-tab bar across the top, and a breathable masonry of varied-size work tiles in the main well. The system is deliberately under-designed — no accent color, no shadow, no rounded softness beyond an 8px radius on the few controls that exist. The restraint is the brand: every visual decision is the absence of a decision, letting photographs and product screenshots carry the entire visual load. The single most defining trait is the 620-occurrence hairline border color #ebebeb, which structures every panel, card, and divider — a grid drawn in 1px pencil rather than built in elevation.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c8ca6c83-3197-4b19-af1c-b29d6f829c5f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dul Zorigoo design system\",\"item\":\"https://styles.refero.design/style/c8ca6c83-3197-4b19-af1c-b29d6f829c5f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c8ca6c83-3197-4b19-af1c-b29d6f829c5f#style-reference\",\"name\":\"Dul Zorigoo design system reference\",\"headline\":\"Dul Zorigoo design system | Refero Styles\",\"description\":\"Explore Dul Zorigoo's light Design design system: Paper White #ffffff, Pencil Gray #ebebeb colors, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c8ca6c83-3197-4b19-af1c-b29d6f829c5f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c8ca6c83-3197-4b19-af1c-b29d6f829c5f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dul Zorigoo\",\"url\":\"https://dzrgo.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c8ca6c83-3197-4b19-af1c-b29d6f829c5f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bbf652c2-2ee6-4d7d-b77e-1f19c1bdc465.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bbf652c2-2ee6-4d7d-b77e-1f19c1bdc465.jpg\",\"caption\":\"Screenshot of Dul Zorigoo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bbf652c2-2ee6-4d7d-b77e-1f19c1bdc465.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dul Zorigoo design system\",\"Dul Zorigoo website design\",\"Dul Zorigoo colors\",\"Dul Zorigoo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Paper White\",\"Pencil Gray\",\"Graphite\",\"Smoke\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dul Zorigoo design system\"},{\"@type\":\"Thing\",\"name\":\"Dul Zorigoo website design\"},{\"@type\":\"Thing\",\"name\":\"Dul Zorigoo colors\"},{\"@type\":\"Thing\",\"name\":\"Dul Zorigoo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:20:19.960Z\",\"dateModified\":\"2026-04-30T01:20:19.960Z\"}]}19:T72a,Quick Color Reference:\n- text: #252525\n- background: #ffffff\n- border: #ebebeb\n- caption/metadata: #a8a8a8\n- secondary text: #8e8e8e\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Build a fixed left sidebar: #ffffff canvas, no border, ~200px wide. Top line 'Dul Zorigoo' in Inter 15px weight 500, #252525. Below it a 3-line bio in Inter 13px weight 400, #252525, line-height 1.5. At the bottom, two social links in 12px #252525, each prefixed by a small monochrome glyph icon, separated by 12px vertical space. No background fill, no panel chrome.\n2. Build a top filter tab bar: white #ffffff background, sitting flush against the page canvas, separated from the grid below by a 1px #ebebeb bottom border. Five text-only tabs — 'All' (active, #252525), 'Photography', 'Thoughts', 'Work', 'Experiments' (inactive, #a8a8a8) — in Inter 13px weight 500, 8px gap between tabs, no pills, no backgrounds, no underlines. Active state is communicated solely by color weight.\n3. Build a masonry work tile: an image at its natural aspect ratio, edge-to-edge with zero border, zero radius, zero shadow. 8-12px below the image, a caption in Inter 12px weight 400, #a8a8a8, line-height 1.4. Caption is a single muted line. Tile sits directly on the #ffffff page canvas — no card wrapper, no background plate.\n4. Build a divider: a 1px horizontal line in #ebebeb spanning the full width of the content column. Used between the tab bar and grid, and between major gallery groupings. Never use box-shadow or colored fills to separate sections.\n5. Build an embedded UI screenshot tile: a raw product screenshot (e.g. a chat or settings panel) placed as a work tile with no frame, caption, or border. The screenshot's own white-and-hairline system becomes the visual content. Caption below in #a8a8a8 describes the project."
+      },
+      {
+        "title": "Monochrome Discipline",
+        "content": "The single most important rule of this system: no color exists. Every color in the palette is achromatic. This is not a constraint to be worked around — it IS the brand. Photographs and product screenshots supply the chromatic moments; the chrome around them stays in graphite. If you find yourself reaching for a blue, green, or red, the correct response is to stop. A 'highlighted' state is achieved by going from #a8a8a8 to #252525, not by introducing a hue."
+      }
+    ],
+    "elevationPhilosophy": "The design has no elevation system. There are zero box-shadows. Structure is communicated entirely through 1px hairline borders in #ebebeb and through whitespace — panels are drawn, not lifted. This is a deliberate flatness: the portfolio is a gallery wall, not a stack of cards."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ebebeb",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9400701157803539
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "heading",
+            "icon"
+          ],
+          "frequency": 1000,
+          "confidence": 1,
+          "prominence": 88970232.47527003,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 24,
+            "icon/borderColor": 4,
+            "link/borderColor": 24,
+            "other/borderColor": 620,
+            "button/borderColor": 172,
+            "heading/borderColor": 156
+          }
+        },
+        {
+          "hex": "#252525",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2644796726260613
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button"
+          ],
+          "frequency": 210,
+          "confidence": 1,
+          "prominence": 68920677.82397479,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "link/color": 6,
+            "other/color": 158,
+            "button/color": 42
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 670022.2801869237,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "icon/stroke": 2,
+            "other/stroke": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a8a8a8",
+          "oklch": {
+            "c": 0.0000040773122574102145,
+            "h": 23.803840660706715,
+            "l": 0.7309513230045964
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 39,
+          "confidence": 1,
+          "prominence": 69115.88016830217,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "heading/color": 39
+          }
+        },
+        {
+          "hex": "#8e8e8e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6467273699038915
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 18422,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/color": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 3.4190195024403526e-7,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.33,
+          "background": "#ffffff",
+          "foreground": "#252525"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.86,
+          "background": "#ebebeb",
+          "foreground": "#252525"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.45,
+          "background": "#a8a8a8",
+          "foreground": "#252525"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.28,
+          "background": "#ffffff",
+          "foreground": "#8e8e8e"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.38,
+          "background": "#ffffff",
+          "foreground": "#a8a8a8"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 8
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button"
+          ],
+          "frequency": 62,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            500
+          ],
+          "frequency": 289,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "image",
+            "heading",
+            "icon"
+          ],
+          "frequency": 288,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/fb0bc082-1e92-4d56-b9c5-9914897e8b91.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/bbf652c2-2ee6-4d7d-b77e-1f19c1bdc465.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c8ca6c83-3197-4b19-af1c-b29d6f829c5f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dul Zorigoo design system\",\"item\":\"https://styles.refero.design/style/c8ca6c83-3197-4b19-af1c-b29d6f829c5f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c8ca6c83-3197-4b19-af1c-b29d6f829c5f#style-reference\",\"name\":\"Dul Zorigoo design system reference\",\"headline\":\"Dul Zorigoo design system | Refero Styles\",\"description\":\"Explore Dul Zorigoo's light Design design system: Paper White #ffffff, Pencil Gray #ebebeb colors, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c8ca6c83-3197-4b19-af1c-b29d6f829c5f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c8ca6c83-3197-4b19-af1c-b29d6f829c5f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dul Zorigoo\",\"url\":\"https://dzrgo.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c8ca6c83-3197-4b19-af1c-b29d6f829c5f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bbf652c2-2ee6-4d7d-b77e-1f19c1bdc465.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bbf652c2-2ee6-4d7d-b77e-1f19c1bdc465.jpg\",\"caption\":\"Screenshot of Dul Zorigoo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bbf652c2-2ee6-4d7d-b77e-1f19c1bdc465.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dul Zorigoo design system\",\"Dul Zorigoo website design\",\"Dul Zorigoo colors\",\"Dul Zorigoo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Paper White\",\"Pencil Gray\",\"Graphite\",\"Smoke\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dul Zorigoo design system\"},{\"@type\":\"Thing\",\"name\":\"Dul Zorigoo website design\"},{\"@type\":\"Thing\",\"name\":\"Dul Zorigoo colors\"},{\"@type\":\"Thing\",\"name\":\"Dul Zorigoo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:20:19.960Z\",\"dateModified\":\"2026-04-30T01:20:19.960Z\"}]}19:T72a,Quick Color Reference:\n- text: #252525\n- background: #ffffff\n- border: #ebebeb\n- caption/metadata: #a8a8a8\n- secondary text: #8e8e8e\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Build a fixed left sidebar: #ffffff canvas, no border, ~200px wide. Top line 'Dul Zorigoo' in Inter 15px weight 500, #252525. Below it a 3-line bio in Inter 13px weight 400, #252525, line-height 1.5. At the bottom, two social links in 12px #252525, each prefixed by a small monochrome glyph icon, separated by 12px vertical space. No background fill, no panel chrome.\n2. Build a top filter tab bar: white #ffffff background, sitting flush against the page canvas, separated from the grid below by a 1px #ebebeb bottom border. Five text-only tabs — 'All' (active, #252525), 'Photography', 'Thoughts', 'Work', 'Experiments' (inactive, #a8a8a8) — in Inter 13px weight 500, 8px gap between tabs, no pills, no backgrounds, no underlines. Active state is communicated solely by color weight.\n3. Build a masonry work tile: an image at its natural aspect ratio, edge-to-edge with zero border, zero radius, zero shadow. 8-12px below the image, a caption in Inter 12px weight 400, #a8a8a8, line-height 1.4. Caption is a single muted line. Tile sits directly on the #ffffff page canvas — no card wrapper, no background plate.\n4. Build a divider: a 1px horizontal line in #ebebeb spanning the full width of the content column. Used between the tab bar and grid, and between major gallery groupings. Never use box-shadow or colored fills to separate sections.\n5. Build an embedded UI screenshot tile: a raw product screenshot (e.g. a chat or settings panel) placed as a work tile with no frame, caption, or border. The screenshot's own white-and-hairline system becomes the visual content. Caption below in #a8a8a8 describes the project."
+}

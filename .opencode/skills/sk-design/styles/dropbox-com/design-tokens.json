@@ -1,0 +1,342 @@
+{
+  "color": {
+    "dropbox-blue": {
+      "$value": "#0061fe",
+      "$type": "color",
+      "$description": "Dropbox Blue — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "cream-paper": {
+      "$value": "#f7f5f2",
+      "$type": "color",
+      "$description": "Cream Paper — Page canvas, section backgrounds, nav bar surface — warm off-white replaces sterile SaaS white to soften the system"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Elevated card surfaces, content panels, product mockup backgrounds — the only true white, reserved for surfaces that sit on the cream canvas"
+    },
+    "warm-ink": {
+      "$value": "#1e1919",
+      "$type": "color",
+      "$description": "Warm Ink — Primary text, dark nav button text, heading color — warm near-black reads softer than pure ink on cream backgrounds"
+    },
+    "stone-gray": {
+      "$value": "#716b61",
+      "$type": "color",
+      "$description": "Stone Gray — Secondary text, helper copy, muted icon strokes, footer metadata — warm desaturated gray that sits comfortably on cream"
+    },
+    "sand-card": {
+      "$value": "#eee9e2",
+      "$type": "color",
+      "$description": "Sand Card — Alternate card surface, subtle elevated panel — slightly darker cream for cards that need gentle separation from canvas"
+    },
+    "magenta-accent": {
+      "$value": "#cd2f7b",
+      "$type": "color",
+      "$description": "Magenta Accent — Decorative highlight, occasional link underline, brand illustration accent — provides chromatic variety without competing with primary blue"
+    }
+  },
+  "font": {
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Times — detected in extracted data but not described by AI"
+    },
+    "atlas-grotesk-web": {
+      "$value": "Atlas Grotesk Web",
+      "$type": "fontFamily",
+      "$description": "Body copy, navigation links, UI labels, button text — Dropbox's primary interface typeface; geometric humanist sans with open apertures, optimized for dense UI reading at 14–16px"
+    },
+    "sharp-grotesk": {
+      "$value": "Sharp Grotesk",
+      "$type": "fontFamily",
+      "$description": "Section headings and subheadings — medium weight (500) instead of bold creates editorial restraint; the tight, slightly compressed letterforms distinguish it from generic sans headings"
+    },
+    "sharp-grotesk-23": {
+      "$value": "Sharp Grotesk 23",
+      "$type": "fontFamily",
+      "$description": "Display headings at 32px+ — regular weight (not bold) on large display type is an anti-convention choice that relies on size and letterform precision rather than weight to create impact"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Atlas Grotesk Web",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Atlas Grotesk Web",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Atlas Grotesk Web",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Atlas Grotesk Web",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Atlas Grotesk Web",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Atlas Grotesk Web",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Atlas Grotesk Web",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Atlas Grotesk Web",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Atlas Grotesk Web",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Atlas Grotesk Web",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Atlas Grotesk Web",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Atlas Grotesk Web",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk 23",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "84": {
+      "$value": "84px",
+      "$type": "dimension",
+      "$description": "Spacing 84px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#f7f5f2",
+      "$type": "color",
+      "$description": "Surface level 0: Base background for all pages — warm cream paper"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Content cards, product mockups, elevated panels"
+    },
+    "alt-card": {
+      "$value": "#eee9e2",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle card variant for visual rhythm in grids"
+    },
+    "action-surface": {
+      "$value": "#0061fe",
+      "$type": "color",
+      "$description": "Surface level 3: Primary CTA fills, brand callouts"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://dropbox.com",
+      "siteName": "Dropbox.com",
+      "extractedAt": "2026-06-03T22:38:25.677Z",
+      "variant": "extended"
+    }
+  }
+}

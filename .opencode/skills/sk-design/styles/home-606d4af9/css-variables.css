@@ -1,0 +1,66 @@
+:root {
+  /* Colors */
+  --color-hot-magenta: #ed1672;
+  --color-midnight-ink: #121318;
+  --color-deep-space: #191c26;
+  --color-slate-edge: #212529;
+  --color-pure-white: #ffffff;
+  --color-void-black: #000000;
+
+  /* Typography — Font Families */
+  --font-poppins: 'Poppins', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-muli: 'Muli', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 1.2;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.25;
+  --text-subheading: 18px;
+  --leading-subheading: 1;
+  --text-body: 22px;
+  --leading-body: 1.5;
+  --text-display: 110px;
+  --leading-display: 1;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-10: 10px;
+  --spacing-15: 15px;
+  --spacing-20: 20px;
+  --spacing-32: 32px;
+  --spacing-45: 45px;
+  --spacing-50: 50px;
+  --spacing-56: 56px;
+  --spacing-60: 60px;
+  --spacing-80: 80px;
+  --spacing-113: 113px;
+  --spacing-128: 128px;
+  --spacing-210: 210px;
+
+  /* Layout */
+  --page-max-width: 1280px;
+  --section-gap: 113px;
+  --card-padding: 20-32px;
+  --element-gap: 15px;
+
+  /* Border Radius */
+  --radius-full: 100px;
+
+  /* Named Radii */
+  --radius-tags: 100px;
+  --radius-cards: 0px;
+  --radius-inputs: 0px;
+  --radius-buttons: 100px;
+
+  /* Surfaces */
+  --surface-void-black: #000000;
+  --surface-midnight-ink: #121318;
+  --surface-deep-space: #191c26;
+  --surface-slate-edge: #212529;
+}

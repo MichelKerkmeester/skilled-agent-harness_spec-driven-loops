@@ -1,0 +1,922 @@
+{
+  "source": "https://styles.refero.design/style/f451c085-f048-4c9c-ae3b-03acc88320ab",
+  "uuid": "f451c085-f048-4c9c-ae3b-03acc88320ab",
+  "name": "Resident",
+  "northStar": "Architecture monograph on cream paper",
+  "capturedAt": "2026-07-18T07:57:27.714Z",
+  "meta": {
+    "url": "https://resident.co.nz",
+    "siteName": "Resident",
+    "extractedAt": "2026-06-03T19:07:07.606Z",
+    "durationMs": 32917,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 451,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all borders to 1px solid #000000 — never use thicker rules or colored borders.",
+      "Use MessinaSans at weights 400 or 500 only; never bold (700) — the typeface's geometry carries the hierarchy, not weight.",
+      "Apply letter-spacing -0.0370em to display sizes (23px+) and -0.0300em to body sizes (14–19px).",
+      "Keep all border-radius at 0px — the design is intentionally architectural and sharp-edged.",
+      "Let full-bleed or column-width photography be the sole source of color and visual interest on the page.",
+      "Use ghost/underline links (14px MessinaSans 400, 1px black underline) for all interactions — never filled buttons.",
+      "Maintain 48–64px vertical gaps between editorial sections to preserve the magazine spread rhythm."
+    ],
+    "donts": [
+      "Do not introduce any chromatic color, gradient, or colored fill — the palette is four neutrals and the photographs provide everything else.",
+      "Do not add box-shadow, elevation, or surface tinting — depth comes from photography, not chrome.",
+      "Do not use bold (700) weights on MessinaSans — moderate weight with tight tracking is the signature.",
+      "Do not use border-radius on any element — cards, buttons, images, and inputs are all sharp-edged.",
+      "Do not use filled or colored buttons — all interactive elements are text links with 1px black underlines.",
+      "Do not place icon overlays, badges, or decorative graphics on top of product photography.",
+      "Do not center-align body text in multi-column layouts — the editorial grid uses left-aligned asymmetric columns."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Body text, nav links, icon strokes, and all hairline borders (1px rules under nav, around inputs, and between editorial blocks). The structural workhorse — 724 borderColor occurrences and 336 body borders show it carries the layout's edges",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, nav background, and ghost button fills. Everything floats on this surface; the entire interface is one flat sheet",
+        "group": "neutral"
+      },
+      {
+        "hex": "#979797",
+        "name": "Soft Graphite",
+        "role": "Muted body text and secondary borders. 2.9:1 contrast against white means it is intentionally faint — used for helper copy and less critical dividers, never for primary content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Charcoal",
+        "role": "Icon strokes, fills, and button borders for secondary controls. Sits between ink-black and mid-gray, giving icons a softer presence than body text without losing legibility at 12.6:1",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Editorial two-column magazine grid. Max-width ~1440px with no centered container constraint — the grid runs edge-to-edge with generous outer margins. Hero pattern: oversized section heading (e.g. 'Resident') set at display weight positioned in the right column, with a two-photograph spread beneath filling the full width. Content sections alternate between two-column text blocks and image grids (2-up or 3-up). No full-viewport hero, no video, no animated banners — the page begins immediately as a quiet editorial spread. Section rhythm is consistent: 48–64px vertical gaps between blocks, no background bands, no visual dividers beyond whitespace. Navigation is a minimal top bar with small ghost links. No sidebar, no sticky elements beyond the nav, no mega-menu. The overall feel is of flipping through a design monograph rather than browsing a product catalog.",
+    "imagery": "Photography is the entire visual language — no illustrations, no 3D renders, no iconography beyond minimal UI glyphs. Imagery is editorial-architectural: warm interior shots of rooms with Resident furniture and lighting, shot at natural light with muted earth tones (dusty pinks, warm woods, concrete greys, firelit ambers). Composition is wide and environmental — the furniture is shown in lived-in spaces, not on white seamless. Images are always full-bleed or column-width with 0px corner radius, never masked, never with text overlays. Color treatment is naturalistic with slight warmth — not desaturated, not duotone. Photography occupies 60–70% of the page surface area on most screens; the remaining white paper is intentional negative space.",
+    "similar": [
+      {
+        "why": "Same editorial-monograph approach: custom geometric sans at moderate weights, near-zero chrome, full-bleed furniture photography as the sole color source, and hairline 1px rules replacing all decorative borders.",
+        "business": "Menu (menu.world)"
+      },
+      {
+        "why": "Shared restraint philosophy: white canvas, single custom typeface, no filled buttons (all ghost links), photographic warmth providing the only chromatic content, and generous editorial whitespace between sections.",
+        "business": "Aesop (aesop.com)"
+      },
+      {
+        "why": "Same Scandinavian design-object sensibility with monochrome UI, tight-tracked geometric sans, borderless image-led grids, and ghost-text navigation that disappears to let product photography lead.",
+        "business": "Hem (hem.com)"
+      },
+      {
+        "why": "Identical editorial-design language: catalog-style two-column layouts, oversized section headings, architectural photography of furniture in rooms, and a four-neutral palette with no decorative color.",
+        "business": "Vitra (vitra.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "18-21px",
+      "sectionGap": "48-64px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Page canvas and the only surface in the system. All content — nav, cards, images, text blocks — sits directly on this single plane."
+      }
+    ],
+    "northStar": "Architecture monograph on cream paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.42
+      },
+      {
+        "role": "body-lg",
+        "size": 19,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.57
+      },
+      {
+        "role": "heading-sm",
+        "size": 23,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.69
+      },
+      {
+        "role": "display",
+        "size": 27,
+        "lineHeight": 1,
+        "letterSpacing": -1
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Sticky top bar on white background. Left cluster: primary nav items (Furniture, Lighting, Designers, Journal, Resources, About) in 12–14px MessinaSans 400, black, spaced ~18–21px apart. Right cluster: secondary actions (Login, Search, Cart with count) in system sans 12–14px. 21px vertical padding. No background, no border-bottom — the nav sits naked on white paper."
+      },
+      {
+        "name": "Ghost Nav Link",
+        "role": "Navigation item",
+        "description": "Text-only, no background, no border, no underline at rest. 12–14px MessinaSans 400, #000000. On hover or active state, a 1px black underline appears beneath the text. 5–10px horizontal margin between items."
+      },
+      {
+        "name": "Section Display Heading",
+        "role": "Editorial section title",
+        "description": "Massive 27px MessinaSans 400, #000000, line-height 1.00, letter-spacing -1.00px. Can be set to the right column edge of a two-column layout (as in the 'Resident' wordmark in the hero). Zero margin — it anchors the section rather than centering within it."
+      },
+      {
+        "name": "Editorial Image Spread",
+        "role": "Hero photography and product showcases",
+        "description": "Full-bleed or column-width photographs with 0px border-radius, displayed at 1:1 or 4:3 aspect ratios. Images sit edge-to-edge with no frames, no captions overlays, and 24–48px gaps between paired photographs. The photographs themselves are the entire visual system — no illustrations, no icons overlaid."
+      },
+      {
+        "name": "Two-Column Editorial Block",
+        "role": "Body content layout",
+        "description": "Two equal columns with ~24px gap. Left column: descriptive body text in 18–19px MessinaSans 400, line-height 1.29–1.40, #000000. Right column: complementary paragraph at the same spec. No vertical rule between columns — the gap is the divider."
+      },
+      {
+        "name": "Ghost Link / Text Button",
+        "role": "Inline link and minimal CTA",
+        "description": "14px MessinaSans 400, #000000, 1px black underline, 3–6px horizontal padding. No background, no border, no fill. The only interactive element style on the site — there are no filled buttons anywhere."
+      },
+      {
+        "name": "Bordered Input",
+        "role": "Form fields",
+        "description": "1px solid #000000 border, 0px radius, white background, 14px MessinaSans 400, #000000 text. 10px vertical padding, no focus ring color shift (border remains black). Placeholder text at default body color."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer",
+        "description": "21px vertical padding, system sans-serif 12–14px, #000000. Organized in small text clusters (links, locale switcher EN/DE, legal). No dividers, no background fill — continues the white paper sheet."
+      },
+      {
+        "name": "Product/Collection Card",
+        "role": "Product listing entry",
+        "description": "Zero-padding card — just a photograph followed by product name in 14–18px MessinaSans 400 and price/spec in the same size. No card background, no border, no shadow. The card is a typographic block beneath a photograph, not a container."
+      },
+      {
+        "name": "Locale Switcher",
+        "role": "Language toggle (EN/DE)",
+        "description": "12px system sans, #000000, inline text with a thin space separator. No dropdown, no flags — just adjacent uppercase two-letter codes in a single line."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Brand typeface — used for all headings, body copy, nav, and product descriptions. Custom geometric sans with tightened tracking (-0.0370em at display, -0.0300em at body) and moderate weight (400–500, never bold). The anti-conventional choice: running a custom sans at weight 400 for section headings instead of 600–700 — authority comes from the typeface's precision and the negative letter-spacing, not from weight.",
+        "sizes": "14, 18, 19, 23, 27",
+        "family": "MessinaSansWeb",
+        "weight": "400, 500",
+        "lineHeight": "1.00–1.40 (varies by size: 1.00 at 27px display, 1.20 at 23px heading, 1.29–1.40 at body sizes)",
+        "substitute": "Inter, Suisse Int'l, or Söhne (for closest tracking and geometric character)",
+        "letterSpacing": "-0.0370em at display sizes (27px), -0.0300em at body sizes (14–19px)"
+      },
+      {
+        "role": "Utility text for small chrome — nav secondary items, footer micro-copy, minor UI labels. Deliberately reduced to two sizes and one weight; the system stack disappears so MessinaSans remains the voice of the brand.",
+        "sizes": "12, 14",
+        "family": "system-ui sans-serif",
+        "weight": "400",
+        "lineHeight": "1.20–1.30",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Resident operates as a quiet editorial gallery for design objects: white paper canvas, near-zero chrome, and large-format photography doing all the visual work. The interface is almost entirely monochrome — black ink on white paper with hairline rules and small ghost text — letting the rooms, furniture, and light fixtures themselves provide every chromatic decision. Typography is a single custom sans-serif (MessinaSans) at moderate weights with tightened tracking, giving headlines a precise, catalogue-like authority without ever feeling loud. Components are reduced to their skeletons: a tiny underlined nav, border-only buttons, a section heading that scales to the edge of the column. No shadows, no gradients, no surface elevation — depth comes only from the photographs and generous vertical breathing room between editorial spreads.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f451c085-f048-4c9c-ae3b-03acc88320ab#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Resident design system\",\"item\":\"https://styles.refero.design/style/f451c085-f048-4c9c-ae3b-03acc88320ab\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f451c085-f048-4c9c-ae3b-03acc88320ab#style-reference\",\"name\":\"Resident design system reference\",\"headline\":\"Resident design system | Refero Styles\",\"description\":\"Explore Resident's light Design design system: Ink Black #000000, Paper White #ffffff colors, MessinaSansWeb, system-ui sans-serif typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/f451c085-f048-4c9c-ae3b-03acc88320ab\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f451c085-f048-4c9c-ae3b-03acc88320ab\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Resident\",\"url\":\"https://resident.co.nz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f451c085-f048-4c9c-ae3b-03acc88320ab#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/736009c9-f61e-4d31-a348-479ede1b6bc6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/736009c9-f61e-4d31-a348-479ede1b6bc6.jpg\",\"caption\":\"Screenshot of Resident\"},\"image\":\"https://images.refero.design/styles/refero.design/image/736009c9-f61e-4d31-a348-479ede1b6bc6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Resident design system\",\"Resident website design\",\"Resident colors\",\"Resident typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink Black\",\"Paper White\",\"Soft Graphite\",\"Charcoal\",\"MessinaSansWeb\",\"system-ui sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Resident design system\"},{\"@type\":\"Thing\",\"name\":\"Resident website design\"},{\"@type\":\"Thing\",\"name\":\"Resident colors\"},{\"@type\":\"Thing\",\"name\":\"Resident typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:45:08.981Z\",\"dateModified\":\"2026-04-30T01:45:08.981Z\"}]}19:T555,**Quick Color Reference**\n- Text: #000000 (Ink Black)\n- Background: #ffffff (Paper White)\n- Border: #000000 (1px hairline)\n- Muted text: #979797 (Soft Graphite)\n- Icon/secondary: #333333 (Charcoal)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Editorial section heading*: Render the word 'Resident' at 27px MessinaSans weight 400, #000000, line-height 1.00, letter-spacing -1.00px. Position right-aligned in a two-column grid. No margin.\n\n2. *Two-column body block*: Create a two-column layout with 24px gap. Left column: paragraph in 18px MessinaSans 400, #000000, line-height 1.29, letter-spacing -0.54px. Right column: identical spec, different paragraph. No vertical divider between columns.\n\n3. *Product photograph card*: Place a full-bleed photograph (4:3 ratio, 0px radius) above a text block: product name in 18px MessinaSans 400, #000000. No card background, no border, no shadow. 24px gap between image and text.\n\n4. *Ghost navigation link*: Render a text link in 14px MessinaSans 400, #000000 with 1px solid #000000 underline, 3px horizontal padding. No background, no border-radius. 18px margin-right between adjacent links.\n\n5. *Bordered input field*: Create an input with 1px solid #000000 border, 0px radius, #ffffff background, 10px vertical padding, 14px MessinaSans 400, #000000 text. Placeholder text in #979797."
+      },
+      {
+        "title": "Editorial Spacing System",
+        "content": "The spacing scale is deliberately narrow and content-driven:\n- 3–6px: inline element padding (buttons, links)\n- 10–14px: small component padding (inputs, micro elements)\n- 18–21px: standard element gap (between nav items, between text blocks)\n- 48–64px: editorial section gap (between major spreads)\n\nThere is no card padding because there are no card containers — content flows directly on the white paper surface. The base unit is 4px but most values are odd (5, 13, 19, 21) because the spacing follows typographic rhythm rather than a strict grid."
+      }
+    ],
+    "northStarSentence": "Imagine a slim design monograph: white stock, hairline rules, one refined geometric sans, and full-bleed product photography carrying every drop of warmth and color.",
+    "elevationPhilosophy": "The design deliberately avoids shadows, gradients, and any surface lift. Depth is achieved only through full-bleed photography and generous vertical whitespace. No box-shadow, no colored fills, no modal scrims — the page is a flat editorial sheet where images create their own dimensionality against white."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "icon",
+            "heading",
+            "body",
+            "input",
+            "link",
+            "card",
+            "image",
+            "footer"
+          ],
+          "frequency": 2210,
+          "confidence": 1,
+          "prominence": 162758703.26914528,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 56,
+            "body/color": 84,
+            "card/color": 1,
+            "icon/color": 5,
+            "link/color": 60,
+            "image/color": 34,
+            "input/color": 3,
+            "other/color": 181,
+            "button/color": 6,
+            "footer/color": 1,
+            "heading/color": 11,
+            "nav/borderColor": 224,
+            "body/borderColor": 336,
+            "card/borderColor": 4,
+            "icon/borderColor": 20,
+            "link/borderColor": 240,
+            "image/borderColor": 136,
+            "input/borderColor": 12,
+            "other/borderColor": 724,
+            "button/borderColor": 24,
+            "footer/borderColor": 4,
+            "heading/borderColor": 44
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 1379219.7849478363,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#979797",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6764032429050417
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 55783.33485052642,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "body/borderColor": 8
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "icon",
+            "button",
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 2568.632612335083,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "icon/color": 2,
+            "other/fill": 2,
+            "button/color": 1,
+            "icon/borderColor": 8,
+            "button/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.92,
+          "background": "#ffffff",
+          "foreground": "#979797"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav",
+            "other",
+            "icon"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginRight|nav",
+            "marginBottom|nav",
+            "marginLeft|nav",
+            "marginBottom|other",
+            "marginTop|icon",
+            "marginRight|icon",
+            "marginBottom|icon",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|button",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "input",
+            "link"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|button",
+            "marginBottom|body",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "nav",
+            "other",
+            "footer"
+          ],
+          "frequency": 69,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button",
+            "marginTop|body",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 83,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 93,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|footer"
+          ]
+        },
+        {
+          "value": 280,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|footer"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 295,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "MessinaSansWeb",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 152,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "footer",
+            "other",
+            "link",
+            "image"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 59,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "body",
+            "input",
+            "link",
+            "card",
+            "image",
+            "icon"
+          ],
+          "frequency": 228,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "MessinaSansWeb",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "MessinaSansWeb",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "MessinaSansWeb",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "MessinaSansWeb",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "MessinaSansWeb",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 52,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "MessinaSansWeb",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "MessinaSansWeb",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "MessinaSansWeb",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.29,
+          "letterSpacing": -0.037,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e2a9363f-cdff-481e-9d9f-8150b59eac58.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/736009c9-f61e-4d31-a348-479ede1b6bc6.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f451c085-f048-4c9c-ae3b-03acc88320ab#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Resident design system\",\"item\":\"https://styles.refero.design/style/f451c085-f048-4c9c-ae3b-03acc88320ab\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f451c085-f048-4c9c-ae3b-03acc88320ab#style-reference\",\"name\":\"Resident design system reference\",\"headline\":\"Resident design system | Refero Styles\",\"description\":\"Explore Resident's light Design design system: Ink Black #000000, Paper White #ffffff colors, MessinaSansWeb, system-ui sans-serif typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/f451c085-f048-4c9c-ae3b-03acc88320ab\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f451c085-f048-4c9c-ae3b-03acc88320ab\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Resident\",\"url\":\"https://resident.co.nz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f451c085-f048-4c9c-ae3b-03acc88320ab#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/736009c9-f61e-4d31-a348-479ede1b6bc6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/736009c9-f61e-4d31-a348-479ede1b6bc6.jpg\",\"caption\":\"Screenshot of Resident\"},\"image\":\"https://images.refero.design/styles/refero.design/image/736009c9-f61e-4d31-a348-479ede1b6bc6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Resident design system\",\"Resident website design\",\"Resident colors\",\"Resident typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink Black\",\"Paper White\",\"Soft Graphite\",\"Charcoal\",\"MessinaSansWeb\",\"system-ui sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Resident design system\"},{\"@type\":\"Thing\",\"name\":\"Resident website design\"},{\"@type\":\"Thing\",\"name\":\"Resident colors\"},{\"@type\":\"Thing\",\"name\":\"Resident typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:45:08.981Z\",\"dateModified\":\"2026-04-30T01:45:08.981Z\"}]}19:T555,**Quick Color Reference**\n- Text: #000000 (Ink Black)\n- Background: #ffffff (Paper White)\n- Border: #000000 (1px hairline)\n- Muted text: #979797 (Soft Graphite)\n- Icon/secondary: #333333 (Charcoal)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Editorial section heading*: Render the word 'Resident' at 27px MessinaSans weight 400, #000000, line-height 1.00, letter-spacing -1.00px. Position right-aligned in a two-column grid. No margin.\n\n2. *Two-column body block*: Create a two-column layout with 24px gap. Left column: paragraph in 18px MessinaSans 400, #000000, line-height 1.29, letter-spacing -0.54px. Right column: identical spec, different paragraph. No vertical divider between columns.\n\n3. *Product photograph card*: Place a full-bleed photograph (4:3 ratio, 0px radius) above a text block: product name in 18px MessinaSans 400, #000000. No card background, no border, no shadow. 24px gap between image and text.\n\n4. *Ghost navigation link*: Render a text link in 14px MessinaSans 400, #000000 with 1px solid #000000 underline, 3px horizontal padding. No background, no border-radius. 18px margin-right between adjacent links.\n\n5. *Bordered input field*: Create an input with 1px solid #000000 border, 0px radius, #ffffff background, 10px vertical padding, 14px MessinaSans 400, #000000 text. Placeholder text in #979797."
+}

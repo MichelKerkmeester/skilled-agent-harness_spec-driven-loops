@@ -1,0 +1,1207 @@
+{
+  "source": "https://styles.refero.design/style/df5e2be4-c2bd-42bb-bbc7-409bae6355c3",
+  "uuid": "df5e2be4-c2bd-42bb-bbc7-409bae6355c3",
+  "name": "Coinbase Spain",
+  "northStar": "Digital Trust, Blueprinted. A system built on the clarity of an architectural plan, energized by a single, electric blue neuron.",
+  "capturedAt": "2026-07-18T10:15:23.267Z",
+  "meta": {
+    "url": "https://coinbase.com",
+    "siteName": "Coinbase Spain",
+    "extractedAt": "2026-04-11T17:43:55.835Z",
+    "durationMs": 73540,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1581,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use `Coinbase Blue` (#0052ff) exclusively for primary CTAs and the brand logo.",
+      "Define primary buttons with the signature 56px border-radius.",
+      "Construct all major page headlines using the `CoinbaseDisplay` font.",
+      "Create visual hierarchy by alternating full-width #ffffff and #0a0b0d sections.",
+      "Reserve `Slate` (#5b616e) for all secondary body copy and footer links.",
+      "Set body text at 16px with `CoinbaseSans` or `CoinbaseText` for optimal readability.",
+      "Apply a 24px radius to all larger content cards."
+    ],
+    "tags": [
+      "finance",
+      "crypto",
+      "trustworthy",
+      "high-contrast",
+      "minimal",
+      "corporate-blue",
+      "pill-buttons",
+      "custom-font",
+      "data-dense",
+      "fintech"
+    ],
+    "donts": [
+      "Don't use shadows on any element; rely on color blocking for depth.",
+      "Don't use `Coinbase Blue` (#0052ff) for text or non-interactive elements.",
+      "Don't use multiple saturated colors in one section; stick to the neutral palette with one blue accent.",
+      "Don't use sharp corners for buttons or tags; they must be rounded (56px or 100000px).",
+      "Don't use system fonts; the custom Coinbase font suite is essential to the brand identity.",
+      "Don't create visual dividers with lines; use negative space and background color changes.",
+      "Don't make footer links any color other than `Slate` (#5b616e)."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0052ff",
+        "name": "Coinbase Blue",
+        "role": "Primary CTAs, logos, active states — the core brand identifier.",
+        "group": "brand"
+      },
+      {
+        "hex": "#578bfa",
+        "name": "Interactive Blue",
+        "role": "Secondary links and interactive elements.",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Primary page background, text on dark surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0a0b0d",
+        "name": "Midnight",
+        "role": "Dark section backgrounds, primary text.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5b616",
+        "name": "Slate",
+        "role": "Body text, secondary headings, footer links.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8a919",
+        "name": "Ash",
+        "role": "Helper text, disabled states, subtle UI text.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f8f9",
+        "name": "Frost",
+        "role": "Subtle light backgrounds, like the footer area.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eef0f3",
+        "name": "Cloud",
+        "role": "Light background dividers or button hover states.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dedfe2",
+        "name": "Pewter",
+        "role": "Borders between light sections.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#141519",
+        "name": "Charcoal",
+        "role": "Alternative dark section background surface.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#27ad75",
+        "name": "Positive Green",
+        "role": "Price increases, success messages.",
+        "group": "semantic"
+      },
+      {
+        "hex": "#f0616d",
+        "name": "Negative Red",
+        "role": "Price decreases, error messages.",
+        "group": "semantic"
+      }
+    ],
+    "layout": "The layout is a centered, max-width container (approx. 1200px) providing a stable reading experience. A key pattern is the rhythmic alternation between a white-background hero (split-column text/visual) and a full-bleed dark feature section. This creates dramatic contrast and pacing. Content is organized in simple, clear structures like 2-column feature blocks and multi-column card grids. Generous vertical spacing (64px+) between sections ensures each message has room to breathe.",
+    "imagery": "Visuals are dominated by abstract vector illustrations and clean product UI screenshots. Illustrations use a flat-color, geometric style featuring brand colors, making complex financial concepts feel approachable and modern. They are always contained within layout blocks, reinforcing the structured, grid-based feel of the page. Photography is absent, placing the focus squarely on the product's interface and stylized brand graphics.",
+    "similar": [
+      {
+        "why": "Shared aesthetic of high-contrast typography, a single strong brand color, and a clean, developer-friendly feel.",
+        "business": "Stripe"
+      },
+      {
+        "why": "Similar goal of simplifying finance with a clean, mobile-first design and a dominant, optimistic brand color.",
+        "business": "Robinhood"
+      },
+      {
+        "why": "Uses a similar strategy of a strong blue brand color, custom illustrations, and ample white space.",
+        "business": "Intercom"
+      },
+      {
+        "why": "Also combines a trustworthy-but-not-stodgy feel with clean typography and approachable graphics.",
+        "business": "Wealthsimple"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "100000px",
+        "cards": "24px",
+        "inputs": "8px",
+        "buttons": "56px"
+      },
+      "elementGap": "",
+      "sectionGap": "",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "category": "crypto",
+    "northStar": "Digital Trust, Blueprinted. A system built on the clarity of an architectural plan, energized by a single, electric blue neuron.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.54
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.56
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading",
+        "size": 44,
+        "lineHeight": 1.09
+      },
+      {
+        "role": "heading-lg",
+        "size": 64,
+        "lineHeight": 1
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Primary & Secondary Button Group",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Crypto Price List Card",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Earn APY Feature Banner",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary CTA Button",
+        "role": "The main call-to-action on any page.",
+        "description": "Background: `Coinbase Blue` (#0052ff). Text: `Pure White` (#ffffff). Padding: 16px 32px. Radius: a distinctive elongated pill shape at 56px."
+      },
+      {
+        "name": "Secondary Pill Button",
+        "role": "Secondary action, often on a dark background.",
+        "description": "Background: `Pure White` (#ffffff). Text: `Midnight` (#0a0b0d). Padding: 12px 24px. Radius: a perfect pill shape at 100000px."
+      },
+      {
+        "name": "Ghost Link",
+        "role": "Inline, text-style interactive elements.",
+        "description": "Background: transparent. Text: `Interactive Blue` (#578bfa). No padding or border. Used for tertiary actions like 'Learn more'."
+      },
+      {
+        "name": "Header Nav Link",
+        "role": "Top-level navigation items.",
+        "description": "Background: transparent. Text: `Midnight` (#0a0b0d). No padding. Font: CoinbaseSans 16px."
+      },
+      {
+        "name": "Filter Tag",
+        "role": "Toggleable filter in data views.",
+        "description": "Background: typically transparent with a subtle border, or a light fill on hover/active. Text: `Slate` (#5b616e). Padding: 12px 24px. Radius: 100000px."
+      },
+      {
+        "name": "Footer Link",
+        "role": "Tertiary navigation links in the page footer.",
+        "description": "Background: transparent. Text: `Slate` (#5b616e). Font: CoinbaseText 16px. No underline until hover."
+      },
+      {
+        "name": "Large Headline",
+        "role": "The primary heading for a page or hero section.",
+        "description": "Font: CoinbaseDisplay, 64px. Color: `Midnight` (#0a0b0d)."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Used exclusively for large, impactful headlines (H1/H2). Its clean, slightly wide geometry gives headlines a declarative, confident presence.",
+        "sizes": "44px, 52px, 64px, 80px",
+        "family": "CoinbaseDisplay",
+        "weight": "400",
+        "lineHeight": "1.0-1.09",
+        "substitute": "Manrope"
+      },
+      {
+        "role": "The primary workhorse font for subheadings, buttons, and some body copy. The 600 weight is used for emphasis and smaller headings.",
+        "sizes": "13px, 16px, 18px, 20px, 28px, 36px, 64px",
+        "family": "CoinbaseSans",
+        "weight": "400, 600",
+        "lineHeight": "1.11-1.50",
+        "substitute": "Inter"
+      },
+      {
+        "role": "Optimized for readability in dense UI and long-form text blocks. Its generous line-height makes paragraphs breathable.",
+        "sizes": "13px, 16px, 18px",
+        "family": "CoinbaseText",
+        "weight": "400, 700",
+        "lineHeight": "1.50-1.56",
+        "substitute": "Inter"
+      }
+    ],
+    "description": "The design system establishes a feeling of digital-native trust, grounded in a high-contrast, minimalist palette. A precise foundation of pure white (#ffffff) and near-black (#0a0b0d) creates an environment of clarity and focus. The system's entire personality is injected through a single, electric `Coinbase Blue` (#0052ff), which is reserved exclusively for primary actions and brand marks, acting as a confident guide. A suite of custom fonts (Coinbase Display, Sans, Text) provides a unique and cohesive typographic voice across all scales. Depth is achieved not with shadows but with bold, full-width color blocks, alternating between bright white and deep midnight sections, creating a clean, architectural rhythm.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      }
+    ],
+    "elevationPhilosophy": "The design intentionally avoids shadows. Depth and hierarchy are created through color blocking, contrasting light backgrounds (#ffffff) with distinct dark sections (#0a0b0d)."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "image",
+            "icon",
+            "footer",
+            "body"
+          ],
+          "frequency": 1410,
+          "confidence": 1,
+          "prominence": 100769904.51358873,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "heading"
+          ],
+          "frequency": 3315,
+          "confidence": 1,
+          "prominence": 90310903.72377893,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#eef0f3",
+          "oklch": {
+            "c": 0.004559161527961305,
+            "h": 258.32494091245405,
+            "l": 0.9544668525184056
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 9130869.386606142,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#0a0b0d",
+          "oklch": {
+            "c": 0.004614049938407767,
+            "h": 264.473509657728,
+            "l": 0.14933932968035807
+          },
+          "contexts": [
+            "body",
+            "nav",
+            "other",
+            "heading",
+            "button",
+            "link",
+            "icon"
+          ],
+          "frequency": 477,
+          "confidence": 1,
+          "prominence": 6449229.856124147,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#141519",
+          "oklch": {
+            "c": 0.008166559712914401,
+            "h": 274.4865100089437,
+            "l": 0.19642376708795106
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1984668,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#0052ff",
+          "oklch": {
+            "c": 0.26280401924856284,
+            "h": 262.86991651301605,
+            "l": 0.5281994598530773
+          },
+          "contexts": [
+            "button",
+            "body",
+            "link",
+            "other",
+            "heading"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 1654576.6490037637,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#5b616e",
+          "oklch": {
+            "c": 0.0220969646336868,
+            "h": 265.8169298685467,
+            "l": 0.49205437012063935
+          },
+          "contexts": [
+            "other",
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 617,
+          "confidence": 1,
+          "prominence": 1089433.9916308757,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#dedfe2",
+          "oklch": {
+            "c": 0.0037599369378043617,
+            "h": 266.0632034964313,
+            "l": 0.9046903449823347
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 1040816.7134539235,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#f7f8f9",
+          "oklch": {
+            "c": 0.0017086743172318177,
+            "h": 247.83952426233526,
+            "l": 0.9786503109043428
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 856018.6628338046,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#578bfa",
+          "oklch": {
+            "c": 0.17443451055514056,
+            "h": 263.4619542248116,
+            "l": 0.6552345685026314
+          },
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 252,
+          "confidence": 1,
+          "prominence": 378393.8954405103,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#0667d0",
+          "oklch": {
+            "c": 0.18045202321691217,
+            "h": 256.4991909521551,
+            "l": 0.5277439079674172
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "nav"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 282389.18969205185,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#8a919e",
+          "oklch": {
+            "c": 0.02096097704618336,
+            "h": 262.96741923859855,
+            "l": 0.655186054329811
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 127945.96912780052,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#27ad75",
+          "oklch": {
+            "c": 0.13966688978221484,
+            "h": 159.86433796459963,
+            "l": 0.6644553611817143
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 1320,
+          "confidence": 1,
+          "prominence": 27504.751335057837,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#f0616d",
+          "oklch": {
+            "c": 0.17617848878873626,
+            "h": 18.12655926571691,
+            "l": 0.6772822075020309
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 330,
+          "confidence": 1,
+          "prominence": 22207.43369025955,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#282b31",
+          "oklch": {
+            "c": 0.011766220698053966,
+            "h": 264.3729584239816,
+            "l": 0.2885347670050185
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 13537.448616276695,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.10950595046382594,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.75,
+          "background": "#f7f8f9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.69,
+          "background": "#0a0b0d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.52,
+          "background": "#f7f8f9",
+          "foreground": "#0a0b0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.39,
+          "background": "#eef0f3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.24,
+          "background": "#141519",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.25,
+          "background": "#eef0f3",
+          "foreground": "#0a0b0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.16,
+          "background": "#f7f8f9",
+          "foreground": "#141519"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.98,
+          "background": "#eef0f3",
+          "foreground": "#141519"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.76,
+          "background": "#dedfe2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.78,
+          "background": "#dedfe2",
+          "foreground": "#0a0b0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.19,
+          "background": "#282b31",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.69,
+          "background": "#dedfe2",
+          "foreground": "#141519"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.34,
+          "background": "#f7f8f9",
+          "foreground": "#282b31"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.43,
+          "background": "#eef0f3",
+          "foreground": "#282b31"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.65,
+          "background": "#dedfe2",
+          "foreground": "#282b31"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.86,
+          "background": "#0a0b0d",
+          "foreground": "#27ad75"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.36,
+          "background": "#141519",
+          "foreground": "#27ad75"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.22,
+          "background": "#0a0b0d",
+          "foreground": "#f0616d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.21,
+          "background": "#ffffff",
+          "foreground": "#5b616e"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 31
+        },
+        {
+          "value": 100000,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 10
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 73,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 118,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 131,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 83,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 62,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "CoinbaseSans",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 1082,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "CoinbaseText",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 472,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "CoinbaseDisplay",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 12,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "CoinbaseSans",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "CoinbaseText",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "CoinbaseSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "link",
+            "icon",
+            "nav",
+            "image",
+            "footer"
+          ],
+          "frequency": 367,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "CoinbaseSans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.94,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "CoinbaseSans",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "CoinbaseSans",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "CoinbaseSans",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "CoinbaseText",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 122,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "CoinbaseText",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "CoinbaseText",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "CoinbaseSans",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "CoinbaseText",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 321,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "CoinbaseText",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "CoinbaseSans",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "CoinbaseSans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 594,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "CoinbaseSans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "CoinbaseDisplay",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.09,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "CoinbaseDisplay",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "CoinbaseDisplay",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "CoinbaseSans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "CoinbaseDisplay",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/fea0137f-1b3a-457e-9a6b-fc86d51d1174.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/eaa47d11-9aec-47da-9d47-45a239c6db9e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/df5e2be4-c2bd-42bb-bbc7-409bae6355c3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Coinbase design system\",\"item\":\"https://styles.refero.design/style/df5e2be4-c2bd-42bb-bbc7-409bae6355c3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/df5e2be4-c2bd-42bb-bbc7-409bae6355c3#style-reference\",\"name\":\"Coinbase design system reference\",\"headline\":\"Coinbase design system | Refero Styles\",\"description\":\"Explore Coinbase's light Crypto design system: Coinbase Blue #0052ff, Interactive Blue #578bfa colors, CoinbaseDisplay, CoinbaseSans typography, and...\",\"url\":\"https://styles.refero.design/style/df5e2be4-c2bd-42bb-bbc7-409bae6355c3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/df5e2be4-c2bd-42bb-bbc7-409bae6355c3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Coinbase\",\"url\":\"https://coinbase.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/df5e2be4-c2bd-42bb-bbc7-409bae6355c3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/eaa47d11-9aec-47da-9d47-45a239c6db9e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/eaa47d11-9aec-47da-9d47-45a239c6db9e.jpg\",\"caption\":\"Screenshot of Coinbase\"},\"image\":\"https://images.refero.design/styles/refero.design/image/eaa47d11-9aec-47da-9d47-45a239c6db9e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Coinbase design system\",\"Coinbase website design\",\"Coinbase colors\",\"Coinbase typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Coinbase Blue\",\"Interactive Blue\",\"Pure White\",\"Midnight\",\"CoinbaseDisplay\",\"CoinbaseSans\",\"CoinbaseText\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Coinbase design system\"},{\"@type\":\"Thing\",\"name\":\"Coinbase website design\"},{\"@type\":\"Thing\",\"name\":\"Coinbase colors\"},{\"@type\":\"Thing\",\"name\":\"Coinbase typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-03-28T15:57:16.000Z\",\"dateModified\":\"2026-03-28T15:57:16.000Z\"}]}19:Tb7a,<style>:root{--color-coinbase-blue:#0052ff;--color-interactive-blue:#578bfa;--color-pure-white:#ffffff;--color-midnight:#0a0b0d;--color-slate:#5b616e;--color-ash:#8a919e;--color-frost:#f7f8f9;--color-cloud:#eef0f3;--color-pewter:#dedfe2;--color-charcoal:#141519;--color-positive-green:#27ad75;--color-negative-red:#f0616d;--font-coinbasedisplay:'Manrope',sans-serif;--font-coinbasesans:'Inter',sans-serif;--font-coinbasetext:'Inter',sans-serif;}@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@400;700&display=swap');</style><div style=\"background:var(--color-pure-white);padding:48px 40px;border-radius:24px;font-family:var(--font-coinbasesans),sans-serif;display:flex;flex-direction:column;gap:32px;max-width:600px;box-sizing:border-box;\"><div style=\"display:flex;flex-direction:column;gap:8px;\"><p style=\"font-family:var(--font-coinbasesans),sans-serif;font-size:13px;font-weight:600;color:var(--color-ash);letter-spacing:0.08em;text-transform:uppercase;margin:0;\">Button Components</p><h2 style=\"font-family:var(--font-coinbasedisplay),sans-serif;font-size:28px;font-weight:400;color:var(--color-midnight);margin:0;line-height:1.25;\">Get started with Coinbase</h2><p style=\"font-family:var(--font-coinbasetext),sans-serif;font-size:16px;color:var(--color-slate);margin:0;line-height:1.5;\">The world's safest and most trusted platform to buy, sell and manage crypto.</p></div><div style=\"display:flex;flex-wrap:wrap;gap:16px;align-items:center;\"><a href=\"#\" style=\"display:inline-block;background:var(--color-coinbase-blue);color:var(--color-pure-white);font-family:var(--font-coinbasesans),sans-serif;font-size:16px;font-weight:600;padding:16px 32px;border-radius:56px;text-decoration:none;line-height:1;\">Sign up</a><a href=\"#\" style=\"display:inline-block;background:var(--color-midnight);color:var(--color-pure-white);font-family:var(--font-coinbasesans),sans-serif;font-size:16px;font-weight:600;padding:16px 32px;border-radius:56px;text-decoration:none;line-height:1;\">Sign in</a><a href=\"#\" style=\"display:inline-block;background:transparent;color:var(--color-interactive-blue);font-family:var(--font-coinbasesans),sans-serif;font-size:16px;font-weight:400;text-decoration:none;line-height:1;\">Learn more →</a></div><div style=\"background:var(--color-midnight);border-radius:24px;padding:32px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;\"><a href=\"#\" style=\"display:inline-block;background:var(--color-pure-white);color:var(--color-midnight);font-family:var(--font-coinbasesans),sans-serif;font-size:16px;font-weight:600;padding:16px 32px;border-radius:100000px;text-decoration:none;line-height:1;\">Explore staking options</a><a href=\"#\" style=\"display:inline-block;background:transparent;color:var(--color-interactive-blue);font-family:var(--font-coinbasesans),sans-serif;font-size:16px;font-weight:400;text-decoration:none;line-height:1;\">Learn more</a></div></div>1a:T1be7,<style>:root{--color-coinbase-blue:#0052ff;--color-interactive-blue:#578bfa;--color-pure-white:#ffffff;--color-midnight:#0a0b0d;--color-slate:#5b616e;--color-ash:#8a919e;--color-frost:#f7f8f9;--color-cloud:#eef0f3;--color-pewter:#dedfe2;--color-charcoal:#141519;--color-positive-green:#27ad75;--color-negative-red:#f0616d;--font-coinbasedisplay:'Manrope',sans-serif;--font-coinbasesans:'Inter',sans-serif;--font-coinbasetext:'Inter',sans-serif;}@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@400;700&display=swap');</style><div style=\"background:var(--color-pure-white);padding:32px;border-radius:24px;font-family:var(--font-coinbasesans),sans-serif;max-width:600px;box-sizing:border-box;\"><div style=\"display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;\"><h3 style=\"font-family:var(--font-coinbasesans),sans-serif;font-size:20px;font-weight:600;color:var(--color-midnight);margin:0;\">Prices</h3><div style=\"display:flex;gap:8px;\"><button style=\"background:var(--color-midnight);color:var(--color-pure-white);font-family:var(--font-coinbasesans),sans-serif;font-size:14px;font-weight:600;padding:10px 20px;border-radius:100000px;border:none;cursor:pointer;\">Tradable</button><button style=\"background:transparent;color:var(--color-slate);font-family:var(--font-coinbasesans),sans-serif;font-size:14px;font-weight:400;padding:10px 20px;border-radius:100000px;border:none;cursor:pointer;\">Top gainers</button><button style=\"background:transparent;color:var(--color-slate);font-family:var(--font-coinbasesans),sans-serif;font-size:14px;font-weight:400;padding:10px 20px;border-radius:100000px;border:none;cursor:pointer;\">New</button></div></div><div style=\"display:flex;flex-direction:column;gap:0;\"><div style=\"display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--color-cloud);\"><div style=\"display:flex;align-items:center;gap:12px;\"><div style=\"width:40px;height:40px;border-radius:50%;background:#f7931a;display:flex;align-items:center;justify-content:center;\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"white\"><path d=\"M23.638 14.904c-1.602 6.43-8.113 10.34-14.542 8.736C2.67 22.05-1.244 15.525.362 9.105 1.962 2.67 8.475-1.243 14.9.358c6.43 1.605 10.342 8.115 8.738 14.548v-.002zm-6.35-4.613c.24-1.59-.974-2.45-2.64-3.03l.54-2.153-1.315-.33-.525 2.107c-.345-.087-.705-.167-1.064-.25l.526-2.127-1.32-.33-.54 2.165c-.285-.067-.565-.132-.84-.2l-1.815-.45-.35 1.407s.975.225.955.236c.535.136.63.486.615.766l-1.477 5.92c-.075.166-.24.406-.614.314.015.02-.96-.24-.96-.24l-.66 1.51 1.71.426.93.242-.54 2.19 1.32.327.54-2.165c.36.1.705.19 1.05.273l-.51 2.154 1.32.33.545-2.19c2.24.427 3.93.257 4.64-1.774.57-1.637-.03-2.58-1.217-3.196.854-.193 1.5-.76 1.68-1.93h.01zm-3.01 4.22c-.404 1.64-3.157.75-4.05.53l.72-2.9c.896.23 3.757.67 3.33 2.37zm.41-4.24c-.37 1.49-2.662.735-3.405.55l.654-2.64c.744.18 3.137.524 2.75 2.084v.006z\"/></svg></div><div><p style=\"font-family:var(--font-coinbasesans),sans-serif;font-size:16px;font-weight:600;color:var(--color-midnight);margin:0;line-height:1.3;\">Bitcoin</p><p style=\"font-family:var(--font-coinbasetext),sans-serif;font-size:13px;color:var(--color-ash);margin:0;\">BTC</p></div></div><div style=\"text-align:right;\"><p style=\"font-family:var(--font-coinbasesans),sans-serif;font-size:16px;font-weight:600;color:var(--color-midnight);margin:0;line-height:1.3;\">€25,585.61</p><p style=\"font-family:var(--font-coinbasetext),sans-serif;font-size:13px;color:var(--color-positive-green);margin:0;\">↗ 1.04%</p></div></div><div style=\"display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--color-cloud);\"><div style=\"display:flex;align-items:center;gap:12px;\"><div style=\"width:40px;height:40px;border-radius:50%;background:#627eea;display:flex;align-items:center;justify-content:center;\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"white\"><polygon points=\"12,2 12,9.5 19,13\"/><polygon points=\"12,2 5,13 12,9.5\"/><polygon points=\"12,13.5 19,13 12,22\"/><polygon points=\"12,22 5,13 12,13.5\"/><polygon points=\"12,9.5 19,13 12,13.5\"/><polygon points=\"5,13 12,9.5 12,13.5\"/></svg></div><div><p style=\"font-family:var(--font-coinbasesans),sans-serif;font-size:16px;font-weight:600;color:var(--color-midnight);margin:0;line-height:1.3;\">Ethereum</p><p style=\"font-family:var(--font-coinbasetext),sans-serif;font-size:13px;color:var(--color-ash);margin:0;\">ETH</p></div></div><div style=\"text-align:right;\"><p style=\"font-family:var(--font-coinbasesans),sans-serif;font-size:16px;font-weight:600;color:var(--color-midnight);margin:0;line-height:1.3;\">€1,564.78</p><p style=\"font-family:var(--font-coinbasetext),sans-serif;font-size:13px;color:var(--color-negative-red);margin:0;\">↘ 0.82%</p></div></div><div style=\"display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--color-cloud);\"><div style=\"display:flex;align-items:center;gap:12px;\"><div style=\"width:40px;height:40px;border-radius:50%;background:#9945ff;display:flex;align-items:center;justify-content:center;\"><span style=\"color:white;font-weight:700;font-size:14px;font-family:var(--font-coinbasesans),sans-serif;\">S</span></div><div><p style=\"font-family:var(--font-coinbasesans),sans-serif;font-size:16px;font-weight:600;color:var(--color-midnight);margin:0;line-height:1.3;\">Solana</p><p style=\"font-family:var(--font-coinbasetext),sans-serif;font-size:13px;color:var(--color-ash);margin:0;\">SOL</p></div></div><div style=\"text-align:right;\"><p style=\"font-family:var(--font-coinbasesans),sans-serif;font-size:16px;font-weight:600;color:var(--color-midnight);margin:0;line-height:1.3;\">€142.36</p><p style=\"font-family:var(--font-coinbasetext),sans-serif;font-size:13px;color:var(--color-positive-green);margin:0;\">↗ 3.21%</p></div></div><div style=\"display:flex;justify-content:space-between;align-items:center;padding:16px 0;\"><div style=\"display:flex;align-items:center;gap:12px;\"><div style=\"width:40px;height:40px;border-radius:50%;background:#346aa9;display:flex;align-items:center;justify-content:center;\"><span style=\"color:white;font-weight:700;font-size:13px;font-family:var(--font-coinbasesans),sans-serif;\">XRP</span></div><div><p style=\"font-family:var(--font-coinbasesans),sans-serif;font-size:16px;font-weight:600;color:var(--color-midnight);margin:0;line-height:1.3;\">XRP</p><p style=\"font-family:var(--font-coinbasetext),sans-serif;font-size:13px;color:var(--color-ash);margin:0;\">XRP</p></div></div><div style=\"text-align:right;\"><p style=\"font-family:var(--font-coinbasesans),sans-serif;font-size:16px;font-weight:600;color:var(--color-midnight);margin:0;line-height:1.3;\">€0.5812</p><p style=\"font-family:var(--font-coinbasetext),sans-serif;font-size:13px;color:var(--color-positive-green);margin:0;\">↗ 0.47%</p></div></div></div><div style=\"margin-top:16px;text-align:center;\"><a href=\"#\" style=\"font-family:var(--font-coinbasesans),sans-serif;font-size:16px;font-weight:600;color:var(--color-coinbase-blue);text-decoration:none;\">See more assets →</a></div></div>1b:Td2f,<style>:root{--color-coinbase-blue:#0052ff;--color-interactive-blue:#578bfa;--color-pure-white:#ffffff;--color-midnight:#0a0b0d;--color-slate:#5b616e;--color-ash:#8a919e;--color-frost:#f7f8f9;--color-cloud:#eef0f3;--color-pewter:#dedfe2;--color-charcoal:#141519;--color-positive-green:#27ad75;--color-negative-red:#f0616d;--font-coinbasedisplay:'Manrope',sans-serif;--font-coinbasesans:'Inter',sans-serif;--font-coinbasetext:'Inter',sans-serif;}@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@400;700&display=swap');</style><div style=\"background:var(--color-midnight);border-radius:24px;padding:0;overflow:hidden;max-width:600px;box-sizing:border-box;font-family:var(--font-coinbasesans),sans-serif;\"><div style=\"display:flex;flex-direction:column;padding:48px 40px;gap:24px;\"><div style=\"display:flex;align-items:center;justify-content:center;background:var(--color-charcoal);border-radius:20px;padding:32px;margin-bottom:8px;position:relative;overflow:hidden;\"><div style=\"position:absolute;bottom:0;left:0;width:120px;height:90px;background:linear-gradient(135deg,#27ad75 60%,transparent 100%);border-radius:0 20px 0 0;opacity:0.18;\"></div><div style=\"display:flex;flex-direction:column;align-items:flex-start;gap:4px;flex:1;\"><span style=\"font-family:var(--font-coinbasetext),sans-serif;font-size:13px;color:var(--color-ash);letter-spacing:0.05em;text-transform:uppercase;\">Annual yield</span><span style=\"font-family:var(--font-coinbasedisplay),sans-serif;font-size:64px;font-weight:400;color:var(--color-pure-white);line-height:1;\">14%</span><span style=\"font-family:var(--font-coinbasesans),sans-serif;font-size:16px;color:var(--color-positive-green);font-weight:600;\">APY on your crypto</span></div><div style=\"width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#27ad75,#0052ff);display:flex;align-items:center;justify-content:center;flex-shrink:0;\"><svg width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\"><path d=\"M18 6v24M10 14l8-8 8 8\" stroke=\"white\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M8 28h20\" stroke=\"white\" stroke-width=\"2.5\" stroke-linecap=\"round\"/></svg></div></div><div style=\"display:flex;flex-direction:column;gap:12px;\"><h2 style=\"font-family:var(--font-coinbasedisplay),sans-serif;font-size:36px;font-weight:400;color:var(--color-pure-white);margin:0;line-height:1.1;\">Earn up to 14% APY on your crypto</h2><p style=\"font-family:var(--font-coinbasetext),sans-serif;font-size:16px;color:var(--color-ash);margin:0;line-height:1.5;\">Put your crypto to work by staking with Coinbase and earn rewards of up to 14% APY on your holdings.</p></div><div style=\"display:flex;flex-direction:column;gap:16px;\"><a href=\"#\" style=\"display:inline-block;background:var(--color-pure-white);color:var(--color-midnight);font-family:var(--font-coinbasesans),sans-serif;font-size:16px;font-weight:600;padding:18px 32px;border-radius:100000px;text-decoration:none;line-height:1;text-align:center;\">Explore staking options</a><p style=\"font-family:var(--font-coinbasetext),sans-serif;font-size:13px;color:var(--color-ash);margin:0;line-height:1.5;\">Available for certain assets. APYs are indicative and not guaranteed and may vary over time. <a href=\"#\" style=\"color:var(--color-interactive-blue);text-decoration:none;\">Learn more</a>.</p></div></div></div>1c:T500,### Quick Color Reference\n- **Text:** `#0a0b0d`\n- **Background:** `#ffffff`\n- **CTA Button:** `#0052ff`\n- **Dark Section BG:** `#0a0b0d`\n- **Secondary Text:** `#5b616e`\n- **Link:** `#578bfa`\n\n### Example Component Prompts\n1. **Hero Section:** \"Create a two-column hero on a `#ffffff` background. Left column: headline 'Hello, Spain!' at 64px CoinbaseDisplay weight 400 in `#0a0b0d`. Subtext 'Coinbase is the world's safest platform...' at 18px CoinbaseSans weight 400 in `#5b616e`. Primary button 'Sign up' with `#0052ff` background, `#ffffff` text, 16px 32px padding, and 56px border-radius.\"\n2. **Dark Promo Section:** \"Create a full-width section with a `#0a0b0d` background and 80px vertical padding. Inside, place a centered headline 'Earn up to 14% APY on your crypto' at 36px CoinbaseSans weight 600 in `#ffffff`. Add a subtext below it. Below that, add a secondary pill button 'Explore staking options' with a `#ffffff` background, `#0a0b0d` text, 12px 24px padding, and 100000px radius.\"\n3. **Footer:** \"Design a footer on a `#f7f8f9` background. Create four columns. Each column has a heading like 'Company' or 'Learn' using 16px CoinbaseSans weight 600 in `#0a0b0d`. List links below each heading like 'About' or 'Blog' using 16px CoinbaseText weight 400 in `#5b616e`.\""
+}

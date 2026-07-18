@@ -1,0 +1,1459 @@
+{
+  "source": "https://styles.refero.design/style/ea9c37e8-c56c-42aa-8e81-9b55222a5cd3",
+  "uuid": "ea9c37e8-c56c-42aa-8e81-9b55222a5cd3",
+  "name": "Stark",
+  "northStar": "midnight lecture hall with yellow highlighter",
+  "capturedAt": "2026-07-18T07:13:12.700Z",
+  "meta": {
+    "url": "https://www.getstark.co",
+    "siteName": "Stark",
+    "extractedAt": "2026-06-03T22:08:43.948Z",
+    "durationMs": 32022,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 589,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use ArminGrotesk weight 900 at 110px with -2.2px letter-spacing for the primary hero headline — this is the signature wall-of-text moment.",
+      "Apply the diagonal yellow highlighter gradient (transparent 50% → #fedb63 50%) to one or two words inside a dark-on-light headline to create inline emphasis.",
+      "Set primary action buttons to #381fd1 fill with white text, 6px radius, and 8px×24px padding. Never use the midnight navy as a button fill.",
+      "Use RobotoMono 700 at 13px with 0.08em tracking for all uppercase eyebrow labels above section headings.",
+      "Alternate between midnight-navy hero sections and cream (#f6f6eb) body sections to maintain the dark-to-light page split.",
+      "Set the page background to #faf5ff (not pure white) to carry the subtle violet cast across all light surfaces.",
+      "Use #e5e7eb hairline borders at 1px for all card edges, input fields, and structural dividers — the system relies on lines, not shadows."
+    ],
+    "donts": [
+      "Do not use weight 400 or 500 for the hero display headline — the 900 weight at 110px is the brand's signature and must be deployed at maximum volume.",
+      "Do not apply the yellow highlighter gradient to more than 2-3 words in a single headline; it dilutes the marking-pen effect.",
+      "Do not use shadows for cards on the cream or light purple surfaces — the system prefers flat surfaces with hairline borders.",
+      "Do not introduce a second brand-violet shade; #381fd1 is the single chromatic action color and must remain uncontested.",
+      "Do not set body text below 16px or use letter-spacing wider than -0.01em at display sizes — the tight tracking is essential to the geometric grotesque feel.",
+      "Do not place CTA buttons on the midnight-navy hero without sufficient contrast padding or a distinctive fill — the violet and yellow must be the only bright spots on the dark field.",
+      "Do not use the cream (#f6f6eb) as a background for the hero — it is exclusively a secondary-section surface that appears after the dark fold."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#10284b",
+        "name": "Midnight Navy",
+        "role": "Hero background, primary headings, footer surface — the dominant brand color establishes authority and anchors the dark-to-light page split. Used as a background field for the above-the-fold section and as body-text color on the cream secondary surface",
+        "group": "brand"
+      },
+      {
+        "hex": "#381fd1",
+        "name": "Stark Violet",
+        "role": "Primary action fills (Get started, Sign up, Request demo), card border accents, active nav state, decorative icon strokes, and inline emphasis text. The vivid violet against midnight navy creates a switched-on, electric feel without aggression",
+        "group": "brand"
+      },
+      {
+        "hex": "#fedb63",
+        "name": "Highlighter Yellow",
+        "role": "Diagonal text-highlight gradient fill, one specific secondary CTA, and illustration accent. Yellow never decorates broadly — it marks, underlines, and punctuates specific words within dark-on-light headlines",
+        "group": "accent"
+      },
+      {
+        "hex": "#e5e0ff",
+        "name": "Lilac Tint",
+        "role": "Soft button surface variant, gentle tinted card backgrounds. A desaturated wash of the violet brand that softens interactive elements without competing with the primary action",
+        "group": "accent"
+      },
+      {
+        "hex": "#99d6cc",
+        "name": "Mint Splash",
+        "role": "Decorative illustration accent in feature cards and dashboard widgets. Used sparingly in flat geometric shapes within artwork, not in core UI controls",
+        "group": "accent"
+      },
+      {
+        "hex": "#faf5ff",
+        "name": "Page Canvas",
+        "role": "Lightly purple-tinted near-white page background. The faint violet cast unifies the cream and white surfaces under one chromatic family",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f6f6eb",
+        "name": "Cream Field",
+        "role": "Secondary section surface and body-text color on the dark hero. The warm greenish-cream provides a relaxed counterpoint to the midnight navy and is the dominant body-text/link color on the dark section",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Body text on light surfaces, icon strokes, and high-contrast elements. Not used as a background — the system prefers the midnight navy for darkness",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Text on dark hero, card surfaces, nav backgrounds, product screenshot frames. The bright surface that holds product imagery and dashboard content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Hairline Gray",
+        "role": "Universal border color for cards, inputs, dividers, link underlines, and structural separators. The single achromatic border workhorse",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page follows a dark-to-light vertical split. The hero is a full-bleed midnight-navy section with centered copy (headline at 110px, body text below, single yellow CTA), flanked by floating stat cards and avatar groups positioned asymmetrically. Below the fold, the layout transitions to a cream (#f6f6eb) band containing overlapping product screenshots (desktop, detail, mobile) arranged in a z-composition with intentional overlap. Feature sections use a max-width 1200px centered container with 4-column card grids on desktop. Each section begins with a centered uppercase eyebrow label, a large two-line headline (with yellow-highlighted phrase), and optional subtext. The rhythm alternates between tight, information-dense product-screenshot sections and spacious 4-column feature grids with 56px vertical gaps. Navigation is a flat top bar over the dark hero with no sticky behavior or shadow.",
+    "imagery": "The visual language is split between two modes. On the dark hero, the imagery is abstract: a field of dots and vertical bars in lighter lilac/purple that suggests a data-visualization chart without committing to literal content. On the light sections, the imagery is functional: real product screenshots (desktop dashboard with charts, a detailed scan-results panel, and a mobile app showing project lists) float in white frames with subtle shadows. Feature cards use flat, isometric-style geometric illustrations built from simple shapes (rectangles, circles, arrows, document icons) in a controlled palette of teal, yellow, violet, and midnight navy. No photography of people or environments appears — the product UI and abstract data patterns are the entire visual vocabulary. Iconography is minimal: simple line icons in the stat cards and feature illustrations, with stroke weight proportional to their container size.",
+    "similar": [
+      {
+        "why": "Same geometric grotesque display typography at maximum weight for hero headlines, single vivid accent color, and clean hairline-border card aesthetic on near-white backgrounds",
+        "business": "Linear"
+      },
+      {
+        "why": "Similar dark-to-light page split with full-bleed colored hero section transitioning to white/cream product content areas, plus confident oversized headline scale",
+        "business": "Notion"
+      },
+      {
+        "why": "Shared approach of vivid chromatic CTA button as the single bright interactive element against neutral surfaces, with display-typeface hero at extreme weight and size",
+        "business": "Pitch"
+      },
+      {
+        "why": "Similar product-screenshot-on-light-canvas presentation with floating overlapping frames, uppercase eyebrow labels above section headings, and high-contrast dark hero opening",
+        "business": "Loom"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "6px",
+        "cards": "12px",
+        "pills": "20px",
+        "buttons": "6px",
+        "feature-cards": "40px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "56px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#10284b",
+        "name": "Hero Field",
+        "level": 0,
+        "purpose": "Full-bleed dark navy above the fold, with decorative dot/bar chart pattern in lighter purple"
+      },
+      {
+        "hex": "#faf5ff",
+        "name": "Page Canvas",
+        "level": 1,
+        "purpose": "Primary light background for the body of the page, faintly violet-tinted"
+      },
+      {
+        "hex": "#f6f6eb",
+        "name": "Cream Section",
+        "level": 2,
+        "purpose": "Alternating warm-cream band that provides visual contrast and houses feature sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 3,
+        "purpose": "Elevated white cards for product screenshots, stat displays, and content blocks"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 20px 60px rgba(16, 40, 75, 0.15)",
+        "element": "Product Screenshot Frame"
+      },
+      {
+        "style": "0 8px 32px rgba(0, 0, 0, 0.2)",
+        "element": "Hero Stat Card"
+      }
+    ],
+    "northStar": "midnight lecture hall with yellow highlighter",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.7,
+        "letterSpacing": 0.4
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "display",
+        "size": 110,
+        "lineHeight": 1.1,
+        "letterSpacing": -2.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Violet Primary Button",
+        "role": "Main conversion action",
+        "description": "Filled button with #381fd1 background, white text, ArminGrotesk 500 at 16px, 6px border-radius, 8px vertical × 24px horizontal padding. Used for 'Sign up for free', 'Get started for free'. The vivid violet against both midnight navy and cream fields makes the action immediately findable."
+      },
+      {
+        "name": "Yellow Secondary Button",
+        "role": "Alternate call-to-action on dark hero",
+        "description": "Filled button with #fedb63 background, midnight navy text, ArminGrotesk 500 at 16px, 6px border-radius, same padding as primary. Appears once on the dark hero to provide a second action path that doesn't compete with the main violet CTA."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Tertiary action in navigation",
+        "description": "Transparent fill, 1px white border, white text, 6px border-radius, used for 'Request Demo' in the nav. Minimal weight that recedes behind the primary yellow or violet action."
+      },
+      {
+        "name": "Pill Label",
+        "role": "Category and feature eyebrow tags",
+        "description": "Small uppercase tag with ArminGrotesk 600 or RobotoMono 700 at 13-14px, 0.08em tracking. 20px border-radius for fully rounded pill shape. Violet text on light, white text on dark. Used above feature card titles and on the 'Team Project' avatar-group label."
+      },
+      {
+        "name": "Hero Stat Card",
+        "role": "Animated metric callout on hero",
+        "description": "Compact card floating over the midnight hero, showing a large number (e.g., '120', '641') in white with a label below. Contains a small icon (lightning bolt) and sits with partial transparency over the dotted chart pattern."
+      },
+      {
+        "name": "Status Legend Card",
+        "role": "Right-side stack on hero",
+        "description": "Three vertically stacked rows with colored dot indicators (violet, violet, teal) and labels: Violations, Potential Violations, Passed Checks. Semi-transparent dark background with white text, 8px padding between rows."
+      },
+      {
+        "name": "Product Screenshot Frame",
+        "role": "Desktop and mobile app previews",
+        "description": "White card with subtle shadow, housing actual product UI. Desktop frames are wide rectangles with 12px radius; mobile frame is a phone-shaped rounded rectangle. Positioned with intentional overlap to create depth."
+      },
+      {
+        "name": "Feature Card with Illustration",
+        "role": "Four-column feature grid",
+        "description": "Each card contains: an isometric/geometric flat illustration (teal, yellow, violet, navy palette) at top, a small uppercase violet label, a bold navy heading at 24px, and body text at 16px. 40px border-radius, generous internal padding, no visible border or shadow — relies on the illustration as visual anchor."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Horizontal bar on midnight navy background. Left: logo (circular leaf icon). Center: nav items in white uppercase with dropdown carets. Right: 'LOG IN' text link and outlined 'Request Demo' button. Sits over the dark hero without separate background fill."
+      },
+      {
+        "name": "Highlighted Text Run",
+        "role": "Inline emphasis within headings",
+        "description": "Specific words within a headline get a diagonal yellow highlighter effect via the linear-gradient(to right bottom, transparent 50%, #fedb63 50%) technique. Creates the impression of a marker pen swipe. Also available in violet variant for secondary emphasis."
+      },
+      {
+        "name": "Avatar Group + Label",
+        "role": "Social proof element",
+        "description": "Stack of 3-4 circular avatars (overlapping) followed by a pill-shaped label reading 'Team Project' in violet. Sits inline with hero copy as a trust signal."
+      },
+      {
+        "name": "Decorative Dot Pattern",
+        "role": "Hero background texture",
+        "description": "Grid of small dots and vertical bar shapes in lighter purple/lilac tones, scattered across the bottom of the dark hero. Creates data-visualization atmosphere without literal chart content."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The single custom typeface carries the entire brand voice. Weight 900 is the hero display weapon (110px headline) — used at maximum volume for the opening statement. Weight 600 handles section headings and subheadings (24-48px). Weight 500 is the button and label workhorse. Weight 400 is body text. The geometric grotesque construction gives a contemporary, slightly technical authority.",
+        "sizes": "14, 16, 20, 24, 28, 48, 56, 110",
+        "family": "ArminGrotesk",
+        "weight": "400, 500, 600, 900",
+        "lineHeight": "1.10, 1.43, 1.50, 1.70",
+        "substitute": "Space Grotesk or Inter at equivalent weights",
+        "letterSpacing": "-0.0200em at 110px, -0.0100em at 48-56px, 0.0200em at 16-20px, 0.0800em at 14px uppercase labels"
+      },
+      {
+        "role": "All-caps eyebrow labels and section markers (e.g., 'EXPLORE THE STARK PLATFORM', 'SPEED UP DESIGN & DEV'). The monospaced mono with wide tracking creates a distinct utilitarian signal that sits above the display heading and below the nav — a consistent navigational breadcrumb layer.",
+        "sizes": "13, 16",
+        "family": "RobotoMono",
+        "weight": "700",
+        "lineHeight": "1.40",
+        "substitute": "JetBrains Mono Bold or IBM Plex Mono Bold",
+        "letterSpacing": "0.0800em"
+      }
+    ],
+    "description": "Stark operates as a confident accessibility-infrastructure brand sitting on a dual-surface canvas: a deep midnight-navy hero that crashes into a warm cream secondary field, linked by a vivid violet primary action and a mustard-yellow highlighter that reads like a teacher's marking pen. The type system is anchored by ArminGrotesk at its heaviest possible weight (900) for hero display — the 110px headline is not a statement, it is a wall — then steps down through 56/48/28/24/20/16/14 with tight negative tracking (-0.02em) that pulls large letters into a single sculpted block. Yellow is not decoration; it marks emphasis inside running copy (the diagonal-split gradient) and signals one specific action. Violet is the chromatic engine: CTA fills, card borders, icon accents, active states. Everything else stays in a narrow achromatic corridor of #000, #fff, and #e5e7eb hairlines, so the two chromatic colors always read with maximum signal.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ea9c37e8-c56c-42aa-8e81-9b55222a5cd3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Stark design system\",\"item\":\"https://styles.refero.design/style/ea9c37e8-c56c-42aa-8e81-9b55222a5cd3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ea9c37e8-c56c-42aa-8e81-9b55222a5cd3#style-reference\",\"name\":\"Stark design system reference\",\"headline\":\"Stark design system | Refero Styles\",\"description\":\"Explore Stark's light SaaS design system: Midnight Navy #10284b, Stark Violet #381fd1 colors, ArminGrotesk, RobotoMono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ea9c37e8-c56c-42aa-8e81-9b55222a5cd3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ea9c37e8-c56c-42aa-8e81-9b55222a5cd3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Stark\",\"url\":\"https://www.getstark.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ea9c37e8-c56c-42aa-8e81-9b55222a5cd3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a25de810-eec0-4410-80c6-616dd92d5a72.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a25de810-eec0-4410-80c6-616dd92d5a72.jpg\",\"caption\":\"Screenshot of Stark\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a25de810-eec0-4410-80c6-616dd92d5a72.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Stark design system\",\"Stark website design\",\"Stark colors\",\"Stark typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Midnight Navy\",\"Stark Violet\",\"Highlighter Yellow\",\"Lilac Tint\",\"ArminGrotesk\",\"RobotoMono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Stark design system\"},{\"@type\":\"Thing\",\"name\":\"Stark website design\"},{\"@type\":\"Thing\",\"name\":\"Stark colors\"},{\"@type\":\"Thing\",\"name\":\"Stark typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T03:35:01.793Z\",\"dateModified\":\"2026-04-30T03:35:01.793Z\"}]}19:T5ab,**Quick Color Reference**\n- Text (light surfaces): #000000\n- Text (dark hero): #ffffff\n- Page background: #faf5ff\n- Cream section: #f6f6eb\n- Border: #e5e7eb\n- primary action: #381fd1 (filled action)\n- Highlighter accent: #fedb63\n\n**3 Example Component Prompts**\n\n1. *Hero Headline with Yellow Highlight*: Create a hero section on #10284b background. Display headline 'Digital accessibility compliance on autopilot' in ArminGrotesk weight 900 at 110px, color #ffffff, letter-spacing -2.2px, line-height 1.10. Apply the word 'autopilot' with a diagonal yellow highlighter using background: linear-gradient(to right bottom, transparent 50%, #fedb63 50%). Below: body text in ArminGrotesk 400 at 20px, color #f6f6eb, max-width 600px centered.\n\n2. *Violet Primary CTA Button*: Create a filled button with #381fd1 background, white text in ArminGrotesk 500 at 16px, 6px border-radius, 8px padding-top, 8px padding-bottom, 24px padding-left, 24px padding-right, letter-spacing 0.32px. No border, no shadow. Label: 'Get started for free'.\n\n3. *Feature Card Grid Item*: Create a card on #faf5ff background with 40px border-radius, 24px padding. Top: flat geometric illustration using #99d6cc, #fedb63, #381fd1, and #10284b. Below illustration: uppercase label in RobotoMono 700 at 13px, color #381fd1, letter-spacing 1.04px. Then: heading in ArminGrotesk 600 at 24px, color #10284b. Then: body text in ArminGrotesk 400 at 16px, color #000000, line-height 1.50."
+      },
+      {
+        "title": "Gradient System",
+        "content": "The gradient vocabulary is minimal and purposeful: two diagonal split-gradients that create the highlighter-pen effect under text. The yellow variant (transparent → #fedb63) is the primary emphasis tool, used on words inside headlines on the cream/light sections. The violet variant (transparent → #381fd1) is the secondary emphasis tool for less critical highlights. Both use the same 50%/50% diagonal split via 'to right bottom' or 'to left top' direction. No radial gradients, no multi-stop brand gradients, no decorative mesh — the gradient system is a single-purpose marking tool."
+      },
+      {
+        "title": "Color Role Strategy",
+        "content": "The palette enforces a strict 3-tier hierarchy. Tier 1 (Midnight Navy #10284b) is the structural foundation — hero background, all headings on light surfaces, and the brand's gravitational center. Tier 2 (Stark Violet #381fd1) is the interactive engine — every clickable primary action, every card border accent, every active state. Tier 3 (Highlighter Yellow #fedb63) is the emphasis marker — one word at a time, never decorative. Everything else is achromatic or near-achromatic supporting cast. This hierarchy means a user scanning the page sees: dark structure → violet actions → yellow marks → gray text. Violation of this order (e.g., yellow body text, violet headings) breaks the reading rhythm."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "body",
+            "image",
+            "hero",
+            "card",
+            "button",
+            "link",
+            "footer",
+            "icon"
+          ],
+          "frequency": 1200,
+          "confidence": 1,
+          "prominence": 146723965.7989037,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 60,
+            "body/borderColor": 268,
+            "card/borderColor": 8,
+            "hero/borderColor": 4,
+            "icon/borderColor": 20,
+            "link/borderColor": 172,
+            "image/borderColor": 64,
+            "other/borderColor": 472,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 124
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "hero",
+            "card",
+            "footer",
+            "link",
+            "icon"
+          ],
+          "frequency": 158,
+          "confidence": 1,
+          "prominence": 104884950.65733632,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "card/color": 3,
+            "hero/color": 1,
+            "icon/color": 5,
+            "link/color": 6,
+            "image/color": 16,
+            "other/color": 119,
+            "footer/color": 1,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#10284b",
+          "oklch": {
+            "c": 0.07137914406671989,
+            "h": 257.9920550732595,
+            "l": 0.27876517359683267
+          },
+          "contexts": [
+            "button",
+            "heading",
+            "body",
+            "footer",
+            "other"
+          ],
+          "frequency": 283,
+          "confidence": 1,
+          "prominence": 10124740.536951207,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 17,
+            "other/fill": 248,
+            "button/color": 1,
+            "heading/color": 16,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#381fd1",
+          "oklch": {
+            "c": 0.24544697955093314,
+            "h": 274.7968166045968,
+            "l": 0.42826198841699686
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "heading",
+            "button",
+            "card",
+            "link"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 7269062.848264012,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "body/color": 7,
+            "link/color": 3,
+            "other/fill": 1,
+            "button/color": 1,
+            "heading/color": 13,
+            "card/borderColor": 4,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 38,
+          "confidence": 1,
+          "prominence": 1918601.0054469963,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/color": 15,
+            "body/color": 8,
+            "other/fill": 3,
+            "button/color": 6,
+            "heading/color": 2,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#faf5ff",
+          "oklch": {
+            "c": 0.01420005975061745,
+            "h": 308.2989442990313,
+            "l": 0.9768478338212063
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1251587.828169471,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#99d6cc",
+          "oklch": {
+            "c": 0.06382556491159047,
+            "h": 183.4707792865001,
+            "l": 0.8317876916162424
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 919320,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f6f6eb",
+          "oklch": {
+            "c": 0.014503220978135431,
+            "h": 106.6668963295801,
+            "l": 0.9701489659870399
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 68,
+          "confidence": 1,
+          "prominence": 84389.2653703904,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 34,
+            "link/color": 34
+          }
+        },
+        {
+          "hex": "#e5e0ff",
+          "oklch": {
+            "c": 0.042150475274497404,
+            "h": 292.9533487678297,
+            "l": 0.9200987092338591
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 70834,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fedb63",
+          "oklch": {
+            "c": 0.14278892715899003,
+            "h": 93.04357621984202,
+            "l": 0.898573824167236
+          },
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 22019.88402251902,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#211e1e",
+          "oklch": {
+            "c": 0.004617512464224534,
+            "h": 17.481490395245014,
+            "l": 0.23839654585776882
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 20885.469345313006,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 20
+          }
+        },
+        {
+          "hex": "#ff492c",
+          "oklch": {
+            "c": 0.22244731451443875,
+            "h": 31.82880898664511,
+            "l": 0.6656601653910652
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4900,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.05634405029942301,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.57,
+          "background": "#faf5ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.3,
+          "background": "#f6f6eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.55,
+          "background": "#ffffff",
+          "foreground": "#211e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.44,
+          "background": "#e5e0ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.53,
+          "background": "#fedb63",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.42,
+          "background": "#faf5ff",
+          "foreground": "#211e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.21,
+          "background": "#f6f6eb",
+          "foreground": "#211e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.71,
+          "background": "#ffffff",
+          "foreground": "#10284b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.71,
+          "background": "#faf5ff",
+          "foreground": "#10284b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.52,
+          "background": "#10284b",
+          "foreground": "#f6f6eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.36,
+          "background": "#e5e7eb",
+          "foreground": "#211e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.95,
+          "background": "#e5e0ff",
+          "foreground": "#211e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.85,
+          "background": "#99d6cc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.23,
+          "background": "#fedb63",
+          "foreground": "#211e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.88,
+          "background": "#e5e7eb",
+          "foreground": "#10284b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.52,
+          "background": "#e5e0ff",
+          "foreground": "#10284b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.88,
+          "background": "#fedb63",
+          "foreground": "#10284b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.12,
+          "background": "#99d6cc",
+          "foreground": "#211e1e"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "heading"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "link"
+          ],
+          "frequency": 57,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "marginBottom|body",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "image",
+            "heading",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|image",
+            "marginTop|heading",
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "hero",
+            "card"
+          ],
+          "frequency": 47,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap",
+            "marginTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "columnGap|nav",
+            "marginTop|body",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|hero",
+            "paddingRight|hero",
+            "paddingBottom|hero",
+            "paddingLeft|hero",
+            "rowGap|card"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "card",
+            "image",
+            "heading",
+            "link",
+            "footer"
+          ],
+          "frequency": 41,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "columnGap|other",
+            "marginTop|body",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "columnGap|card",
+            "paddingBottom|image",
+            "marginLeft|body",
+            "marginLeft|heading",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginBottom|heading",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginTop|heading",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "image",
+            "heading",
+            "card"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|image",
+            "marginBottom|heading",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|footer"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 188,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 233,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right bottom, rgba(0, 0, 0, 0) 50%, rgb(254, 219, 99) 50%)",
+        "colors": [
+          "rgba(0, 0, 0, 0)",
+          "rgb(254, 219, 99)"
+        ],
+        "frequency": 6
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to left top, rgba(0, 0, 0, 0) 50%, rgb(254, 219, 99) 50%)",
+        "colors": [
+          "rgba(0, 0, 0, 0)",
+          "rgb(254, 219, 99)"
+        ],
+        "frequency": 6
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right bottom, rgba(0, 0, 0, 0) 50%, rgb(56, 31, 209) 50%)",
+        "colors": [
+          "rgba(0, 0, 0, 0)",
+          "rgb(56, 31, 209)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(to left top, rgba(0, 0, 0, 0) 50%, rgb(56, 31, 209) 50%)",
+        "colors": [
+          "rgba(0, 0, 0, 0)",
+          "rgb(56, 31, 209)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ArminGrotesk",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600,
+            900
+          ],
+          "frequency": 305,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "RobotoMono",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "RobotoMono",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "ArminGrotesk",
+          "weight": 900,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "ArminGrotesk",
+          "weight": 900,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "ArminGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "hero",
+            "card",
+            "footer",
+            "link",
+            "icon"
+          ],
+          "frequency": 164,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ArminGrotesk",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "RobotoMono",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "ArminGrotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ArminGrotesk",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ArminGrotesk",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ArminGrotesk",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 68,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ArminGrotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "ArminGrotesk",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "ArminGrotesk",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "ArminGrotesk",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "ArminGrotesk",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 110,
+          "family": "ArminGrotesk",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/5b63e915-7c27-4e2c-86e1-e8b46617dcb1.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a25de810-eec0-4410-80c6-616dd92d5a72.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ea9c37e8-c56c-42aa-8e81-9b55222a5cd3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Stark design system\",\"item\":\"https://styles.refero.design/style/ea9c37e8-c56c-42aa-8e81-9b55222a5cd3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ea9c37e8-c56c-42aa-8e81-9b55222a5cd3#style-reference\",\"name\":\"Stark design system reference\",\"headline\":\"Stark design system | Refero Styles\",\"description\":\"Explore Stark's light SaaS design system: Midnight Navy #10284b, Stark Violet #381fd1 colors, ArminGrotesk, RobotoMono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ea9c37e8-c56c-42aa-8e81-9b55222a5cd3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ea9c37e8-c56c-42aa-8e81-9b55222a5cd3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Stark\",\"url\":\"https://www.getstark.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ea9c37e8-c56c-42aa-8e81-9b55222a5cd3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a25de810-eec0-4410-80c6-616dd92d5a72.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a25de810-eec0-4410-80c6-616dd92d5a72.jpg\",\"caption\":\"Screenshot of Stark\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a25de810-eec0-4410-80c6-616dd92d5a72.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Stark design system\",\"Stark website design\",\"Stark colors\",\"Stark typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Midnight Navy\",\"Stark Violet\",\"Highlighter Yellow\",\"Lilac Tint\",\"ArminGrotesk\",\"RobotoMono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Stark design system\"},{\"@type\":\"Thing\",\"name\":\"Stark website design\"},{\"@type\":\"Thing\",\"name\":\"Stark colors\"},{\"@type\":\"Thing\",\"name\":\"Stark typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T03:35:01.793Z\",\"dateModified\":\"2026-04-30T03:35:01.793Z\"}]}19:T5ab,**Quick Color Reference**\n- Text (light surfaces): #000000\n- Text (dark hero): #ffffff\n- Page background: #faf5ff\n- Cream section: #f6f6eb\n- Border: #e5e7eb\n- primary action: #381fd1 (filled action)\n- Highlighter accent: #fedb63\n\n**3 Example Component Prompts**\n\n1. *Hero Headline with Yellow Highlight*: Create a hero section on #10284b background. Display headline 'Digital accessibility compliance on autopilot' in ArminGrotesk weight 900 at 110px, color #ffffff, letter-spacing -2.2px, line-height 1.10. Apply the word 'autopilot' with a diagonal yellow highlighter using background: linear-gradient(to right bottom, transparent 50%, #fedb63 50%). Below: body text in ArminGrotesk 400 at 20px, color #f6f6eb, max-width 600px centered.\n\n2. *Violet Primary CTA Button*: Create a filled button with #381fd1 background, white text in ArminGrotesk 500 at 16px, 6px border-radius, 8px padding-top, 8px padding-bottom, 24px padding-left, 24px padding-right, letter-spacing 0.32px. No border, no shadow. Label: 'Get started for free'.\n\n3. *Feature Card Grid Item*: Create a card on #faf5ff background with 40px border-radius, 24px padding. Top: flat geometric illustration using #99d6cc, #fedb63, #381fd1, and #10284b. Below illustration: uppercase label in RobotoMono 700 at 13px, color #381fd1, letter-spacing 1.04px. Then: heading in ArminGrotesk 600 at 24px, color #10284b. Then: body text in ArminGrotesk 400 at 16px, color #000000, line-height 1.50."
+}

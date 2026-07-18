@@ -1,0 +1,480 @@
+{
+  "color": {
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Primary text, icons, hairline borders, nav typography, footer text — the dominant ink across every surface"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, product card backgrounds, hero text overlays, input fills"
+    },
+    "soot": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Soot — Dark feature sections, inverted text on light surfaces, high-contrast blocks"
+    },
+    "ink": {
+      "$value": "#161912",
+      "$type": "color",
+      "$description": "Ink — Near-black body text variant, deep borders — virtually indistinguishable from Onyx but carries a barely-warm cast"
+    },
+    "graphite": {
+      "$value": "#4c4c4c",
+      "$type": "color",
+      "$description": "Graphite — Secondary body text, muted descriptions, helper copy beneath headlines"
+    },
+    "slate": {
+      "$value": "#737373",
+      "$type": "color",
+      "$description": "Slate — Tertiary text, captions, price labels, disabled links"
+    },
+    "ash": {
+      "$value": "#9b9b9b",
+      "$type": "color",
+      "$description": "Ash — Subtle borders, dividers between product tiles, low-emphasis separators"
+    },
+    "linen": {
+      "$value": "#c8c0b8",
+      "$type": "color",
+      "$description": "Linen — Warm taupe surface for editorial bands, soft section backgrounds — the only chromatic neutral"
+    },
+    "pistachio-wash": {
+      "$value": "#d9e9bb",
+      "$type": "color",
+      "$description": "Pistachio Wash — Promotional bar fill, seasonal event accent — the single chromatic note in the entire system, used sparingly for time-bound urgency"
+    }
+  },
+  "font": {
+    "maison-neue-book": {
+      "$value": "Maison Neue Book",
+      "$type": "fontFamily",
+      "$description": "Primary workhorse for nav, body, labels, prices, and most UI — used at 400 for body, 700 for emphasized inline text and section anchors"
+    },
+    "maison-neue-demi": {
+      "$value": "Maison Neue Demi",
+      "$type": "fontFamily",
+      "$description": "Rare mid-weight emphasis for sub-headers and category labels — the half-step between Book and Book Bold"
+    },
+    "maison-neue": {
+      "$value": "Maison Neue",
+      "$type": "fontFamily",
+      "$description": "Secondary body variant for longer-form descriptive paragraphs in editorial sections"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    },
+    "gtstandard-m": {
+      "$value": "GTStandard-M",
+      "$type": "fontFamily",
+      "$description": "GTStandard-M — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 12px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 12px"
+    },
+    "xs-12": {
+      "$value": {
+        "fontFamily": "Maison Neue Demi",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-12 at 12px"
+    },
+    "xs-13": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-13 at 12px"
+    },
+    "xs-14": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-14 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "GTStandard-M",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 2.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Maison Neue Book",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background, dominant surface across most screens"
+    },
+    "promo-bar": {
+      "$value": "#d9e9bb",
+      "$type": "color",
+      "$description": "Surface level 1: Top announcement strip for sales and events"
+    },
+    "editorial-band": {
+      "$value": "#c8c0b8",
+      "$type": "color",
+      "$description": "Surface level 2: Warm taupe section backgrounds for brand-story content"
+    },
+    "dark-section": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted feature blocks, footer, high-contrast editorial moments"
+    },
+    "deepest-surface": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 4: Full-black closures, dramatic hero backgrounds"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://everlane.com",
+      "siteName": "Everlane",
+      "extractedAt": "2026-06-03T20:07:10.848Z",
+      "variant": "extended"
+    }
+  }
+}

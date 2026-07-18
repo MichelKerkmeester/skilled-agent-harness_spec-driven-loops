@@ -1,0 +1,1018 @@
+{
+  "source": "https://styles.refero.design/style/5b7ecaf1-de2d-4fb9-9995-9f0665e77862",
+  "uuid": "5b7ecaf1-de2d-4fb9-9995-9f0665e77862",
+  "name": "Guglieri",
+  "northStar": "monochrome typographic gallery. Every pixel is either ink-black, paper-white, or a gray between — hierarchy lives in the weight of Raveo Variable, never in color.",
+  "capturedAt": "2026-07-18T08:59:30.201Z",
+  "meta": {
+    "url": "https://guglieri.com",
+    "siteName": "Guglieri",
+    "extractedAt": "2026-06-03T21:08:07.941Z",
+    "durationMs": 28320,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 136,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Raveo Variable at weight 1000 for all headings and display text — never reduce to 700 or below; the heaviness is the signature",
+      "Set letter-spacing to -0.04em on 64px display text and -0.02em on 22-32px headings; let it breathe to 0 at 12px micro-labels",
+      "Maintain 0% colorfulness: every UI color must be achromatic. Never introduce a brand hue, accent, or state color",
+      "Use the 116px section gap between major content blocks; this generosity is what makes the page feel like a gallery, not a feed",
+      "Set pill buttons to 40-50px border-radius so they read as fully rounded, not as rounded rectangles",
+      "Place carousel pagination dots right-aligned directly under the display headline, spaced 10px apart",
+      "Activate the font features 'blwf', 'cv03', 'cv04', 'cv09', 'cv11' on every Raveo Variable instance — they are part of the typographic identity"
+    ],
+    "donts": [
+      "Never introduce color — no blues, no greens, no warm tones. The only color allowed is grayscale and the hues within editorial imagery",
+      "Never set Raveo Variable below weight 1000; lighter weights break the heavy typographic voice",
+      "Never use a standard sans-serif for display text; Raveo's compressed, heavy form factor is the entire brand",
+      "Never add drop shadows, glows, or gradients — the system is flat by intent; depth comes from grayscale layering only",
+      "Never center body text — left-align everything except display headlines; the asymmetric grid is the layout voice",
+      "Never pad buttons less than 40px horizontally; pill shapes need space to read as pills, not chips",
+      "Never use icons in the nav row; nav items are heavy type only. The icon language is reserved for buttons and cursors"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Page background, card surfaces, primary canvas — the default stage for all content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Primary text, pill button fills, display headlines on dark, thin borders for reverse-contrast components",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111111",
+        "name": "Carbon",
+        "role": "Input fields, secondary surface elevation, subtle dark borders — one shade above Obsidian for depth without contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1c1c1c",
+        "name": "Graphite",
+        "role": "Elevated surface layer above the canvas — for overlay cards, tooltips, and floating panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#454545",
+        "name": "Smoke",
+        "role": "Headline accent borders, secondary text, low-emphasis dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#575757",
+        "name": "Ash",
+        "role": "Body-level borders, inactive dividers, low-contrast separators between sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#050505",
+        "name": "Near Black",
+        "role": "Subtle hairlines and body borders that are nearly invisible against Obsidian",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark page with max-width 1200px content container. Hero is a single display headline right-aligned beside a left-aligned image gallery, with carousel controls beneath the headline. Sections are separated by 116px vertical gaps with no dividers or alternating bands — the rhythm comes from spacing alone. The footer is a two-column block: left column is contact text, right column is stacked social links in heavy type, both on the same Obsidian surface. Navigation is a sticky top bar with brand left and nav right. Content sections use asymmetric compositions (text-right/image-left, or full-bleed image with overlay type) rather than centered stacks. The 'Next — Section' transition pattern is a recurring device: a large display label in mixed gray and white at the leading edge of the next section.",
+    "imagery": "Imagery is editorial and high-contrast: black-and-white photography of working environments (desks, monitors, rooms) anchors content sections, while colorful 3D cursor renderings and graphic illustrations punctuate the hero — these are the only chromatic elements on the page, and they function as artwork within an otherwise monochrome frame. Images float on Obsidian with no borders or shadows; they are edge-to-edge or generous-margined, never thumbnail-sized. No icons in the UI itself — interaction symbols are reserved for buttons. Icon style in any UI context: none; the system relies on type and arrows. Photography treatment is documentary and candid (B&W, no color grading, no vignettes). The visual density is low: a few large images per page, each given room to breathe.",
+    "similar": [
+      {
+        "why": "Same ultra-minimal dark canvas with no chrome, left-aligned typographic navigation, and editorial image blocks floating on a near-black surface",
+        "business": "Are.na"
+      },
+      {
+        "why": "Personal portfolio with monochrome palette, custom variable display type, and large negative-tracked headlines as the primary brand element",
+        "business": "Rauno Freiberg"
+      },
+      {
+        "why": "Pure black background, system sans-serif body, and one display weight carrying all hierarchy — minimal UI lets the type do the work",
+        "business": "Vercel Design"
+      },
+      {
+        "why": "Treats the personal site as a gallery wall — generous spacing, B&W editorial photography, and no decorative UI elements",
+        "business": "Minimal Gallery (independent designers)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "4px",
+        "links": "8px",
+        "pills": "50px",
+        "buttons": "40px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "116px",
+      "cardPadding": "40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "level": 0,
+        "purpose": "Page canvas — the base floor for all content"
+      },
+      {
+        "hex": "#111111",
+        "name": "Carbon",
+        "level": 1,
+        "purpose": "Input fields and subtle elevation — one shade above the canvas for form surfaces"
+      },
+      {
+        "hex": "#1c1c1c",
+        "name": "Graphite",
+        "level": 2,
+        "purpose": "Floating panels, overlay cards, tooltips — two shades above the canvas"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 3,
+        "purpose": "Inverted surface for filled pill buttons and the rare reverse-contrast element"
+      }
+    ],
+    "northStar": "monochrome typographic gallery. Every pixel is either ink-black, paper-white, or a gray between — hierarchy lives in the weight of Raveo Variable, never in color.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 22,
+        "lineHeight": 1.18,
+        "letterSpacing": -0.44
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.06
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1,
+        "letterSpacing": -2.56
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill CTA Button",
+        "role": "Primary action trigger — the only filled button in the system",
+        "description": "40px border-radius (full pill), 40px horizontal padding, ~28px vertical padding. White background (#ffffff) with a black arrow icon. No text label — the arrow IS the affordance. Hairline 1px border optional. Used for carousel next, send, go."
+      },
+      {
+        "name": "Outline Pill Button",
+        "role": "Secondary action with ghost treatment",
+        "description": "40-50px border-radius, white 1px border on Obsidian background, transparent fill. Arrow or dot inside. Inverts the primary pill: same shape, no fill."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Horizontal row, 8px element gap, 12px vertical padding. Brand block (name + local time) left, nav links right. Nav items in Raveo Variable at 12px weight 1000, tracking normal. Active item ('NEW') uses Paper White; inactive items use Ash (#575757) with 1px borders forming underline-style separators."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Section and page titles",
+        "description": "Raveo Variable at 64px, weight 1000, line-height 1.0, letter-spacing -0.04em. Always Paper White on Obsidian. Two-line max. This is the loudest element on every page — it carries the brand voice alone."
+      },
+      {
+        "name": "Carousel Pagination Dots",
+        "role": "Indicates position within a horizontal scroll gallery",
+        "description": "Sequence of short horizontal lines (16-20px wide, 2-3px tall), Ash (#575757) inactive, Paper White active. Right-aligned under display headline. Spacing 10px between dots."
+      },
+      {
+        "name": "Section Transition Label",
+        "role": "Bridge between content blocks ('Next — About')",
+        "description": "Raveo Variable at 64px, weight 1000. Word 'Next' in Ash (#575757) at reduced opacity, dash separator, section name in Paper White. Sits at the leading edge of a full-bleed image or new section."
+      },
+      {
+        "name": "Footer Link Block",
+        "role": "Social and contact links in the page footer",
+        "description": "Two-column layout. Left column: intro text + email address in Raveo at 14-22px, weight 1000, Paper White. Right column: stacked social links (Twitter, Instagram, LinkedIn) at 32px Raveo weight 1000, no underlines, no bullets — just stacked heavy type."
+      },
+      {
+        "name": "Brand Header",
+        "role": "Identity lockup in the top-left corner",
+        "description": "Two lines: 'Claudio Guglieri' in Raveo Variable 14px weight 1000 Paper White, with 'Local time — HH:MM City' beneath in system sans-serif 12px weight 400 Ash. No logo mark — the name IS the mark."
+      },
+      {
+        "name": "Bordered Link",
+        "role": "Inline text links with border underlines",
+        "description": "8px border-radius on hover or focus. Text in Paper White, 1px Ash border as underline. 8px padding on tap target."
+      },
+      {
+        "name": "Image Gallery Card",
+        "role": "Container for editorial imagery in carousel or grid",
+        "description": "No card surface — images float on Obsidian with 40px between cards. Optional 4px radius on individual images. Images are the content; no shadow, no border, no background plate."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "14px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Display and heading font at its heaviest weight (1000). The variable axis is not used — the system commits to maximum weight to create typographic mass without chromatic weight. Sizes scale from 64px display down to 12px micro-labels (e.g., nav items 'NEW', 'Feed'). Letter-spacing tightens aggressively at large sizes (-0.04em at 64px, -0.02em at 22px) to lock the glyphs into a single visual block. Font features 'blwf', 'cv03', 'cv04', 'cv09', 'cv11' activate specific stylistic alternates — a signature typographic fingerprint. No web-safe substitute captures this; 'Inter' at weight 900 is the closest match, but weight and openness will differ.",
+        "sizes": "12px, 14px, 22px, 32px, 64px",
+        "family": "Raveo Variable Variable",
+        "weight": "1000",
+        "lineHeight": "1.00, 1.06, 1.18, 1.20, 1.60",
+        "substitute": "Inter (weight 900) or Manrope (weight 800)",
+        "letterSpacing": "-0.04em at 64px, -0.02em at 22px, normal at 12px",
+        "fontFeatureSettings": "'blwf', 'cv03', 'cv04', 'cv09', 'cv11'"
+      },
+      {
+        "role": "Secondary utility text — nav links, metadata, timestamps, captions. Weight 400 only; no bold variants. The system font acts as a quiet complement to Raveo's display voice.",
+        "sizes": "12px",
+        "family": "System Sans-Serif",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "system-ui, -apple-system, 'Segoe UI', Roboto"
+      },
+      {
+        "role": "One-off paragraph text at 22px — lighter weight than Raveo at the same size creates a body/heading tension within the same line height",
+        "sizes": "22px",
+        "family": "Inter Display",
+        "weight": "400",
+        "lineHeight": "1.18",
+        "substitute": "Inter"
+      }
+    ],
+    "description": "Guglieri is a monochrome typographic gallery: pure obsidian canvas, one voice of custom variable display type at its heaviest weight, and zero chromatic noise. The entire system is achromatic — every interface element, border, and label lives on a grayscale between true black and pure white, with the only color in the experience coming from editorial imagery and artwork. Hierarchy is built through weight, size, and negative letter-spacing rather than color, with the custom Raveo Variable font pushing to weight 1000 to create visual mass without warmth. Components are stripped to their skeletons: pill buttons with hairline borders, generous section spacing, and text-driven navigation. The mood is a designer-critic's reading room — confident, editorial, anti-decorative.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5b7ecaf1-de2d-4fb9-9995-9f0665e77862#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Guglieri design system\",\"item\":\"https://styles.refero.design/style/5b7ecaf1-de2d-4fb9-9995-9f0665e77862\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5b7ecaf1-de2d-4fb9-9995-9f0665e77862#style-reference\",\"name\":\"Guglieri design system reference\",\"headline\":\"Guglieri design system | Refero Styles\",\"description\":\"Explore Guglieri's dark Design design system: Obsidian #000000, Paper White #ffffff colors, Arial, Raveo Variable Variable typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/5b7ecaf1-de2d-4fb9-9995-9f0665e77862\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5b7ecaf1-de2d-4fb9-9995-9f0665e77862\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Guglieri\",\"url\":\"https://guglieri.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5b7ecaf1-de2d-4fb9-9995-9f0665e77862#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9a181ff3-1148-4f9b-a643-5fe5e5d51d5d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9a181ff3-1148-4f9b-a643-5fe5e5d51d5d.jpg\",\"caption\":\"Screenshot of Guglieri\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9a181ff3-1148-4f9b-a643-5fe5e5d51d5d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Guglieri design system\",\"Guglieri website design\",\"Guglieri colors\",\"Guglieri typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Obsidian\",\"Paper White\",\"Carbon\",\"Graphite\",\"Arial\",\"Raveo Variable Variable\",\"System Sans-Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Guglieri design system\"},{\"@type\":\"Thing\",\"name\":\"Guglieri website design\"},{\"@type\":\"Thing\",\"name\":\"Guglieri colors\"},{\"@type\":\"Thing\",\"name\":\"Guglieri typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:39:45.821Z\",\"dateModified\":\"2026-04-30T03:39:45.821Z\"}]}19:T54e,**Quick Color Reference**\n- background: #000000\n- surface: #111111\n- elevated surface: #1c1c1c\n- text: #ffffff\n- border: #575757\n- accent: none\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Display headline block**: 64px Raveo Variable weight 1000, color #ffffff, line-height 1.0, letter-spacing -2.56px. Right-aligned within a 1200px max-width container. Sits on #000000 canvas with 116px space above and below.\n\n2. **Pill navigation button**: 12px Raveo Variable weight 1000, text #ffffff (active) or #575757 (inactive). No background, no border. 8px gap between items, 12px vertical padding. Horizontal row, left-aligned brand / right-aligned nav.\n\n3. **Footer social link stack**: 32px Raveo Variable weight 1000, color #ffffff, line-height 1.06, letter-spacing -0.64px. Three items stacked vertically with 0px gap between them. No bullets, no underlines, no icons. Left-aligned in a two-column footer layout.\n\n4. **Section transition label**: 64px Raveo Variable weight 1000. First word in #575757, em-dash, second word in #ffffff. Left-aligned, 1200px max-width, sitting at the top edge of a full-bleed B&W image section.\n\n5. **Carousel pagination**: Five short horizontal bars (18px wide, 2px tall), spaced 10px apart, right-aligned. Bars 1-4 in #575757, bar 5 (current) in #ffffff. Sits 24px below the display headline."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally flat. No drop shadows, no glows, no gradients. Depth is implied by grayscale layering (Obsidian canvas → Carbon form surface → Graphite overlay) and by spacing alone. This flatness is the signature: every pixel of visual weight goes into typography, not into chrome."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "image",
+            "icon",
+            "heading",
+            "link"
+          ],
+          "frequency": 359,
+          "confidence": 1,
+          "prominence": 24456536.917429462,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "icon/color": 1,
+            "other/fill": 1,
+            "image/color": 1,
+            "other/color": 66,
+            "button/color": 1,
+            "heading/color": 1,
+            "icon/borderColor": 4,
+            "image/borderColor": 4,
+            "other/borderColor": 264,
+            "button/borderColor": 4,
+            "heading/borderColor": 4,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "body",
+            "other",
+            "heading",
+            "button"
+          ],
+          "frequency": 57,
+          "confidence": 1,
+          "prominence": 554493.0490747954,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/color": 1,
+            "heading/color": 8,
+            "body/borderColor": 8,
+            "other/borderColor": 4,
+            "heading/borderColor": 32,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#454545",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3904208434597007
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 241190.9343196273,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "heading/color": 3,
+            "body/borderColor": 4,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "body",
+            "input",
+            "button",
+            "other"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 40780.10412905842,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/fill": 2,
+            "input/color": 2,
+            "body/borderColor": 4,
+            "input/borderColor": 8,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1c1c1c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.22644986475198373
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 40176,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#050505",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.11567934671571979
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 17864.67584248391,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4
+          }
+        },
+        {
+          "hex": "#e5e5e5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9219060167761346
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 9936.595852772123,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#575757",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.45678199318143103
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 4980.389450250973,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "other/color": 5,
+            "body/borderColor": 20,
+            "other/borderColor": 20
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.38,
+          "background": "#ffffff",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#111111",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.04,
+          "background": "#1c1c1c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#000000",
+          "foreground": "#e5e5e5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.18,
+          "background": "#e5e5e5",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.99,
+          "background": "#111111",
+          "foreground": "#e5e5e5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.53,
+          "background": "#1c1c1c",
+          "foreground": "#e5e5e5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.59,
+          "background": "#ffffff",
+          "foreground": "#454545"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.61,
+          "background": "#e5e5e5",
+          "foreground": "#454545"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.23,
+          "background": "#ffffff",
+          "foreground": "#575757"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#e5e5e5",
+          "foreground": "#575757"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.91,
+          "background": "#000000",
+          "foreground": "#575757"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.61,
+          "background": "#111111",
+          "foreground": "#575757"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.36,
+          "background": "#1c1c1c",
+          "foreground": "#575757"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.19,
+          "background": "#000000",
+          "foreground": "#454545"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.97,
+          "background": "#111111",
+          "foreground": "#454545"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.78,
+          "background": "#1c1c1c",
+          "foreground": "#454545"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.26,
+          "background": "#ffffff",
+          "foreground": "#e5e5e5"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.23,
+          "background": "#1c1c1c",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 31,
+          "properties": [
+            "paddingLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 28,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 116,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 100,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Raveo Variable Variable",
+          "source": "custom",
+          "weights": [
+            1000
+          ],
+          "frequency": 29,
+          "fontFeatureSettings": [
+            "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+          ]
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter Display",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "image",
+            "icon"
+          ],
+          "frequency": 100,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Raveo Variable Variable",
+          "weight": 1000,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Raveo Variable Variable",
+          "weight": 1000,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.6,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Raveo Variable Variable",
+          "weight": 1000,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.18,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Inter Display",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Raveo Variable Variable",
+          "weight": 1000,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Raveo Variable Variable",
+          "weight": 1000,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.06,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Raveo Variable Variable",
+          "weight": 1000,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ebc0ce38-b39c-4b95-8804-2325841a72a4.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/9a181ff3-1148-4f9b-a643-5fe5e5d51d5d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5b7ecaf1-de2d-4fb9-9995-9f0665e77862#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Guglieri design system\",\"item\":\"https://styles.refero.design/style/5b7ecaf1-de2d-4fb9-9995-9f0665e77862\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5b7ecaf1-de2d-4fb9-9995-9f0665e77862#style-reference\",\"name\":\"Guglieri design system reference\",\"headline\":\"Guglieri design system | Refero Styles\",\"description\":\"Explore Guglieri's dark Design design system: Obsidian #000000, Paper White #ffffff colors, Arial, Raveo Variable Variable typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/5b7ecaf1-de2d-4fb9-9995-9f0665e77862\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5b7ecaf1-de2d-4fb9-9995-9f0665e77862\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Guglieri\",\"url\":\"https://guglieri.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5b7ecaf1-de2d-4fb9-9995-9f0665e77862#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9a181ff3-1148-4f9b-a643-5fe5e5d51d5d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9a181ff3-1148-4f9b-a643-5fe5e5d51d5d.jpg\",\"caption\":\"Screenshot of Guglieri\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9a181ff3-1148-4f9b-a643-5fe5e5d51d5d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Guglieri design system\",\"Guglieri website design\",\"Guglieri colors\",\"Guglieri typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Obsidian\",\"Paper White\",\"Carbon\",\"Graphite\",\"Arial\",\"Raveo Variable Variable\",\"System Sans-Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Guglieri design system\"},{\"@type\":\"Thing\",\"name\":\"Guglieri website design\"},{\"@type\":\"Thing\",\"name\":\"Guglieri colors\"},{\"@type\":\"Thing\",\"name\":\"Guglieri typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:39:45.821Z\",\"dateModified\":\"2026-04-30T03:39:45.821Z\"}]}19:T54e,**Quick Color Reference**\n- background: #000000\n- surface: #111111\n- elevated surface: #1c1c1c\n- text: #ffffff\n- border: #575757\n- accent: none\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Display headline block**: 64px Raveo Variable weight 1000, color #ffffff, line-height 1.0, letter-spacing -2.56px. Right-aligned within a 1200px max-width container. Sits on #000000 canvas with 116px space above and below.\n\n2. **Pill navigation button**: 12px Raveo Variable weight 1000, text #ffffff (active) or #575757 (inactive). No background, no border. 8px gap between items, 12px vertical padding. Horizontal row, left-aligned brand / right-aligned nav.\n\n3. **Footer social link stack**: 32px Raveo Variable weight 1000, color #ffffff, line-height 1.06, letter-spacing -0.64px. Three items stacked vertically with 0px gap between them. No bullets, no underlines, no icons. Left-aligned in a two-column footer layout.\n\n4. **Section transition label**: 64px Raveo Variable weight 1000. First word in #575757, em-dash, second word in #ffffff. Left-aligned, 1200px max-width, sitting at the top edge of a full-bleed B&W image section.\n\n5. **Carousel pagination**: Five short horizontal bars (18px wide, 2px tall), spaced 10px apart, right-aligned. Bars 1-4 in #575757, bar 5 (current) in #ffffff. Sits 24px below the display headline."
+}

@@ -1,0 +1,857 @@
+{
+  "color": {
+    "deep-iris": {
+      "$value": "#4d3e78",
+      "$type": "color",
+      "$description": "Deep Iris — Primary brand color, dominant borders, body text, icon strokes, link color — saturates the interface like violet ink on parchment"
+    },
+    "amethyst": {
+      "$value": "#6956a8",
+      "$type": "color",
+      "$description": "Amethyst — Secondary brand violet for mid-weight text, secondary borders, and decorative iconography"
+    },
+    "iris-glow": {
+      "$value": "#745fbb",
+      "$type": "color",
+      "$description": "Iris Glow — Filled primary action button background — the only filled CTA color, used sparingly to make Book a demo / Sign up commands feel switched on"
+    },
+    "lilac-mist": {
+      "$value": "#f3ecf7",
+      "$type": "color",
+      "$description": "Lilac Mist — Soft violet-tinted surface for cards, table rows, and section backgrounds"
+    },
+    "parchment": {
+      "$value": "#fcf9f5",
+      "$type": "color",
+      "$description": "Parchment — Primary page canvas — warm off-white, the base layer everything sits on"
+    },
+    "licheno": {
+      "$value": "#e9f3e7",
+      "$type": "color",
+      "$description": "Licheno — Mint-tinted card surface for testimonial and feature cards"
+    },
+    "apricot-wash": {
+      "$value": "#feede0",
+      "$type": "color",
+      "$description": "Apricot Wash — Peach-tinted card surface for warm-coded testimonial cards"
+    },
+    "rose-quartz": {
+      "$value": "#ffdce8",
+      "$type": "color",
+      "$description": "Rose Quartz — Pink-tinted card surface for pink-themed testimonial cards"
+    },
+    "sky-tint": {
+      "$value": "#ccdcf8",
+      "$type": "color",
+      "$description": "Sky Tint — Blue-tinted card surface for blue-themed testimonial cards"
+    },
+    "lavender-veil": {
+      "$value": "#eadff8",
+      "$type": "color",
+      "$description": "Lavender Veil — Muted violet surface for table headers, footer accents, and subtle dividers"
+    },
+    "orchid-pink": {
+      "$value": "#a54b7a",
+      "$type": "color",
+      "$description": "Orchid Pink — Vivid pink accent for specimen-card borders, icon fills, and decorative illustration strokes"
+    },
+    "tangerine": {
+      "$value": "#b74d1a",
+      "$type": "color",
+      "$description": "Tangerine — Vivid orange accent for specimen-card borders, icon strokes, and secondary callouts"
+    },
+    "forest-fern": {
+      "$value": "#1f7a57",
+      "$type": "color",
+      "$description": "Forest Fern — Green outline accent for tags, dividers, and focused UI edges"
+    },
+    "cobalt": {
+      "$value": "#3c699b",
+      "$type": "color",
+      "$description": "Cobalt — Vivid blue accent for specimen-card borders and tech iconography"
+    },
+    "peacock": {
+      "$value": "#058380",
+      "$type": "color",
+      "$description": "Peacock — Vivid teal accent for specimen-card borders and unique illustration touches"
+    },
+    "periwinkle": {
+      "$value": "#4780bc",
+      "$type": "color",
+      "$description": "Periwinkle — Secondary blue border for grid-card variants and icon strokes"
+    },
+    "plum": {
+      "$value": "#803218",
+      "$type": "color",
+      "$description": "Plum — Deep maroon for text emphasis, badge labels, and inline highlights on warm cards"
+    },
+    "crimson": {
+      "$value": "#a53c3a",
+      "$type": "color",
+      "$description": "Crimson — Red accent for outlined action borders, linked labels, and lightweight interactive emphasis. Use as a supporting accent, not as a status color"
+    },
+    "vermilion": {
+      "$value": "#e14f4c",
+      "$type": "color",
+      "$description": "Vermilion — Red decorative accent for icons, marks, and small graphic details. Use as a supporting accent, not as a status color"
+    },
+    "pure": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure — Card foreground, inverted text on dark surfaces, base layer for product screenshot cards"
+    }
+  },
+  "font": {
+    "reckless": {
+      "$value": "Reckless",
+      "$type": "fontFamily",
+      "$description": "Display and editorial headlines, hero statements, and section titles. The 300-weight headlines with negative letter-spacing (as tight as -0.030em at 72px) create a quiet, confident serif voice that contrasts the playful sans body"
+    },
+    "roobert": {
+      "$value": "Roobert",
+      "$type": "fontFamily",
+      "$description": "Body text, navigation, buttons, labels, and all UI microcopy. Carries positive letter-spacing (0.007em–0.100em) at small sizes, giving uppercase tags and nav a spaced, instrument-label quality"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "10px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "10px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 10px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "11px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 11px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 11px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 12px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 12px"
+    },
+    "xs-12": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-12 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "sm-13": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "14px",
+        "fontWeight": 900,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-13 at 14px"
+    },
+    "sm-14": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-14 at 14px"
+    },
+    "sm-15": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-15 at 14px"
+    },
+    "sm-16": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-16 at 14px"
+    },
+    "sm-17": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-17 at 14px"
+    },
+    "sm-18": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-18 at 14px"
+    },
+    "sm-19": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-19 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 20px"
+    },
+    "xl-7": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-7 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "26px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "26px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 26px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 26px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "26px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 26px"
+    },
+    "2xl-7": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-7 at 28px"
+    },
+    "2xl-8": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-8 at 28px"
+    },
+    "2xl-9": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-9 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "46px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "64px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Reckless",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "156": {
+      "$value": "156px",
+      "$type": "dimension",
+      "$description": "Spacing 156px"
+    },
+    "168": {
+      "$value": "168px",
+      "$type": "dimension",
+      "$description": "Spacing 168px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "9.6px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "21.6px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "3xl-4": {
+      "$value": "39px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-4"
+    }
+  },
+  "surface": {
+    "parchment": {
+      "$value": "#fcf9f5",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the warm white base all sections sit on"
+    },
+    "lilac-mist": {
+      "$value": "#f3ecf7",
+      "$type": "color",
+      "$description": "Surface level 1: First elevated surface — table rows, subtle section differentiation, light card backgrounds"
+    },
+    "pastel-tints": {
+      "$value": "#e9f3e7",
+      "$type": "color",
+      "$description": "Surface level 2: Card surface family — each card picks from mint, peach, pink, blue, or sky tints"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Product screenshot frames, modal surfaces, cookie bar — the most elevated layer"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.tines.com",
+      "siteName": "Tines",
+      "extractedAt": "2026-06-03T20:31:54.076Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,1135 @@
+{
+  "source": "https://styles.refero.design/style/7be94705-3666-4fb1-a389-0cfd7cb223cd",
+  "uuid": "7be94705-3666-4fb1-a389-0cfd7cb223cd",
+  "name": "Penpot",
+  "northStar": "midnight design studio with teal sparks — a deep violet hero stage where one bright teal button and one teal word ignite an otherwise monochrome canvas.",
+  "capturedAt": "2026-07-18T08:43:07.766Z",
+  "meta": {
+    "url": "https://penpot.app",
+    "siteName": "Penpot",
+    "extractedAt": "2026-06-03T21:57:44.239Z",
+    "durationMs": 29133,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 276,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #1ccac7 fill with Deep Space Violet text for the one and only primary action button per screen — its scarcity is what makes it powerful",
+      "Set hero headlines at 48-72px Work Sans weight 700 with -0.028em tracking, and color the final word #1ccac7 to echo the brand gesture",
+      "Use 8px border-radius for all controls (buttons, inputs, links) and 20px for cards — the two-radius system is the geometry rule",
+      "Separate dark sections (Deep Space Violet) from light sections (Off-White) by color block, not by shadow or divider line",
+      "Apply -0.028em letter-spacing uniformly across all Work Sans sizes — the tightened tracking is what gives the geometric forms their architectural feel",
+      "Use 1px #eeeeee borders for card edges and section dividers on light surfaces; use 1px #fafafa borders for ghost controls on dark surfaces",
+      "Maintain the chromatic ration: teal appears on CTAs, one headline word, and active tab indicators — never on body text, icons, or backgrounds"
+    ],
+    "donts": [
+      "Don't use drop shadows anywhere — Penpot builds depth through color contrast and hairline borders, not elevation",
+      "Don't use #1ccac7 for body text, icons, or large background fills — the accent must remain rationed to single words and button fills",
+      "Don't introduce additional chromatic colors in UI chrome — the system is intentionally achromatic with one accent; let the product screenshots carry the color",
+      "Don't use pure white (#ffffff) for backgrounds or text — #fafafa is slightly warmer and pairs better with the deep violet",
+      "Don't mix border-radius values randomly — controls are 8px, cards are 20px, pills are 9999px. Never use 4px or 12px",
+      "Don't use weight 400 for headlines — weight 700 with tight tracking is the headline voice; weight 500 is for UI labels",
+      "Don't place teal and violet in the same small area (except within the product UI screenshot) — the violet and teal relationship works because they're on opposite sides of the value scale and rarely share real estate"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#151035",
+        "name": "Deep Space Violet",
+        "role": "Primary brand surface — hero background, navigation, dark panels, code/token sidebars, and the product UI shell. Sets the dark-mode identity and creates the canvas against which the teal accent glows",
+        "group": "brand"
+      },
+      {
+        "hex": "#1ccac7",
+        "name": "Bright Teal",
+        "role": "Primary action fill, emphasis word in headlines, active tab indicator, and decorative spark. The single chromatic note — rationed to CTAs, highlights, and one word per headline — making each occurrence feel switched on",
+        "group": "brand"
+      },
+      {
+        "hex": "#2f226c",
+        "name": "Rich Violet",
+        "role": "Secondary violet for subtle borders, dividers, and accent strokes within the dark panels. A bridge between Deep Space Violet and Bright Teal on the dark canvas",
+        "group": "brand"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Off-White",
+        "role": "Page canvas, light card surfaces, body text on dark surfaces, icon fills. The light-mode workhorse — never pure white, slightly warm to soften the contrast against Deep Space Violet",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Light Gray",
+        "role": "Hairline borders, subtle dividers, and nav separators on light surfaces. The quietest neutral — present but never demanding attention",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d3d3d3",
+        "name": "Silver",
+        "role": "Button borders and disabled/secondary control outlines. Slightly heavier than Light Gray — used when a border needs to define a control edge",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Body text on light surfaces and maximum-contrast borders where the violet would be too soft. Sparingly used — the violet handles most dark roles",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page follows a dark-to-light two-act structure: a full-viewport dark hero (Deep Space Violet, centered headline, centered CTA pair, large product screenshot extending below the fold) transitions into lighter feature sections (off-white/cream canvas with embedded product UI). The hero is centered and symmetrical with generous vertical padding (80-120px). Below the fold, content alternates between dark product showcases and light text+visual sections. The feature tab section uses centered tab navigation above a wide product screenshot. Grid usage is primarily 2-column text+image in feature sections and single-column centered stacks in the hero. Navigation is a sticky top bar on the dark canvas. Max content width approximately 1200px with 20-24px column gaps.",
+    "imagery": "Product screenshots are the primary visual content — large, full-width frames showing the Penpot design tool interface with its dark sidebar panels, colorful canvas content (pink, purple, yellow cards), and token management UI. The product is shown in-context: a real canvas with a design being built, not an abstract wireframe. No photography, no illustration, no 3D renders. Icon style within the product is outlined with thin strokes, monochrome. The hero product screenshot is slightly cropped at the viewport bottom for dramatic reveal. Feature sections show the product in different states (UI Design, Code, Design System, AI Workflows) to demonstrate breadth.",
+    "similar": [
+      {
+        "why": "Same dark-to-light hero structure with centered headline and product screenshot reveal; similar generous spacing and confident Work Sans / geometric sans typography",
+        "business": "Figma"
+      },
+      {
+        "why": "Same disciplined monochrome palette with a single vivid accent color, flat surfaces with no shadows, and tight letter-spacing on large display headlines",
+        "business": "Linear"
+      },
+      {
+        "why": "Same dramatic dark hero stage transitioning to light content, hairline borders, and 8px-radius controls with one chromatic accent appearing sparingly",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same dark-violet/near-black hero with teal accent button, open-source platform presentation style, and Work Sans-class geometric typography",
+        "business": "Supabase"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tabs": "8px",
+        "cards": "20px",
+        "pills": "9999px",
+        "inputs": "8px",
+        "buttons": "8px"
+      },
+      "elementGap": "8-12px",
+      "sectionGap": "80-120px",
+      "cardPadding": "20-24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#fafafa",
+        "name": "Off-White Canvas",
+        "level": 0,
+        "purpose": "Base page background for all light sections — the default working surface"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Inset card panels on the light canvas (same tone, separated by border rather than shadow)"
+      },
+      {
+        "hex": "#151035",
+        "name": "Deep Space Stage",
+        "level": 2,
+        "purpose": "Hero section, navigation bar, and product UI shell — the dark mode identity"
+      },
+      {
+        "hex": "#1ccac7",
+        "name": "Teal Accent Surface",
+        "level": 3,
+        "purpose": "Primary CTA buttons, active states, and emphasis — sits on top of any surface as a high-contrast focal point"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — the screenshot's internal contrast against the dark hero creates depth without a shadow",
+        "element": "Product Screenshot Frame"
+      }
+    ],
+    "northStar": "midnight design studio with teal sparks — a deep violet hero stage where one bright teal button and one teal word ignite an otherwise monochrome canvas.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.336
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.392
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.448
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.504
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.672
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.344
+      },
+      {
+        "role": "heading-lg",
+        "size": 52,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.456
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1.1,
+        "letterSpacing": -2.016
+      }
+    ],
+    "components": [
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Full-width dark bar on Deep Space Violet (#151035). Logo (white Penpot mark + wordmark) left, dropdown nav items (Product, Community, Resources) center-left, Pricing link, then Log In text link, a ghost 'Contact Sales' button (#fafafa border, #fafafa text, 8px radius, 8px 20px padding), and a filled teal 'Sign up' button (#1ccac7, dark text, 8px radius, 8px 20px padding). 64-72px tall, no shadow — the dark fill creates separation from the hero."
+      },
+      {
+        "name": "Primary CTA Button (Filled Teal)",
+        "role": "Main action button",
+        "description": "Bright Teal (#1ccac7) fill with Deep Space Violet text, 8px border-radius, padding 8px 20px. Work Sans weight 500 at 14-16px. The only filled chromatic button in the system — its scarcity makes it the definitive action. Used for 'Sign up, it's free' and the nav 'Sign up' button."
+      },
+      {
+        "name": "Ghost Button (Outlined Light)",
+        "role": "Secondary action on dark surfaces",
+        "description": "Transparent fill with 1px Off-White (#fafafa) border, #fafafa text, 8px border-radius, padding 8px 20px. Work Sans weight 500 at 14-16px. Used for 'Contact Sales' on the dark nav and 'Self-host install' on the hero."
+      },
+      {
+        "name": "New Badge Pill",
+        "role": "Announcement/badge indicator",
+        "description": "Small pill with 'New' label in Rich Violet (#2f226c) or Deep Space Violet text, rounded at 9999px or 50px radius, padding 4px 12px. Sits beside announcement text in a horizontal row. Background can be transparent on the dark hero with a subtle border. Work Sans weight 500 at 12-14px."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Primary page headline",
+        "description": "Work Sans weight 700 at 48-72px, #fafafa text, line-height 1.10-1.20, letter-spacing -0.028em (~-2px at 72px). The signature move: the final word switches to Bright Teal (#1ccac7) for emphasis — e.g. 'Think and build digital products. Together.' — creating a two-tone headline that is the brand's visual identity condensed into one line."
+      },
+      {
+        "name": "Feature Tab Navigation",
+        "role": "Section tab selector",
+        "description": "Horizontal row of 4 tab labels (UI Design, Code, Design System, AI Workflows) centered above content. Work Sans weight 500 at 14-16px in #fafafa. Active tab is distinguished by a teal underline or pill background (#1ccac7). No visible container — the tabs float on the dark hero canvas, separated by 24-32px gaps."
+      },
+      {
+        "name": "Product Screenshot Frame",
+        "role": "Product showcase container",
+        "description": "Large rectangular frame containing a screenshot of the Penpot design tool interface. Rounded corners at 8-20px. In the hero, shown on the dark Deep Space Violet canvas. In the feature section, placed on a warm cream/light background. No shadow — the screenshot's own internal contrast creates depth. Slightly cropped at the bottom edge of the viewport in the hero for dramatic effect."
+      },
+      {
+        "name": "Design System Token Panel",
+        "role": "Product UI sidebar showing tokens",
+        "description": "Dark Deep Space Violet (#151035) panel with rounded 8px corners, representing the product's left sidebar. Contains nested sections (LAYERS, ASSETS, TOKENS) with active tab highlighted in teal. Token items use Rich Violet (#2f226c) accent for selected/active states. The design system's own tokens are displayed as a meta-reference within the marketing page."
+      },
+      {
+        "name": "Color Swatch Token",
+        "role": "Design system color display",
+        "description": "Small circular or rounded-square swatches (20-50px) showing color values. Filled with the actual color (#1ccac7 teal, violet hues). Used within the product screenshot to demonstrate the color tokens feature. White or dark text labels beneath showing the hex value."
+      },
+      {
+        "name": "Emphasis Word in Headline",
+        "role": "Highlighted word within a headline",
+        "description": "A single word in a headline set in Bright Teal (#1ccac7) while the rest of the headline is Off-White (#fafafa). Work Sans weight 700, same size and tracking as the surrounding text. The defining brand gesture — one teal word per hero-level headline, always placed at the end as a period and a promise."
+      },
+      {
+        "name": "Stat Badge / Icon Counter",
+        "role": "Quantitative indicator",
+        "description": "Small rounded badge with an icon (headphones, etc.) and a number (35K). Rounded at 9999px (pill) or 50px. White or light teal background on the dark product canvas. Work Sans weight 500 at 14px. Used within the product UI screenshot to show analytics or token usage."
+      },
+      {
+        "name": "Card with 20px Radius",
+        "role": "Content card",
+        "description": "White or light surface card with 20px border-radius, hairline Light Gray (#eeeeee) border, 20-24px padding. No shadow — the border alone defines the edge. Used for feature cards, content blocks, and the product UI's own card components. The larger radius (20px vs 8px for controls) signals a different functional layer."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole typeface — used for everything from 72px hero headlines down to 12px captions. Geometric humanist sans with friendly proportions; weight 400 for body, 500 for nav/buttons, 700 for headings and emphasis. The -0.028em tracking is a signature choice: it tightens the wide geometric forms of Work Sans at large sizes so headlines feel architectural rather than airy.",
+        "sizes": "12, 14, 16, 18, 24, 48, 52, 72",
+        "family": "Work Sans",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.10 (display), 1.20 (headings), 1.50 (body)",
+        "substitute": "Inter, DM Sans, or Plus Jakarta Sans",
+        "letterSpacing": "-0.0280em across all sizes — tightens geometric forms at display sizes and keeps body text crisp"
+      },
+      {
+        "role": "Times — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Penpot operates as a two-act visual system: a deep midnight-violet hero stage that commands attention, then a luminous off-white working area that lets product content breathe. The chromatic palette is intentionally austere — one deep violet, one vivid teal, and neutral grays — so the colorful design tool interface (the actual product) becomes the only place multicolor lives. Work Sans at large display sizes creates confident, slightly tightened headlines, while the same family at 14–16px keeps interface chrome readable and unpretentious. Components are flat and geometric: 8px radii on controls, 20px radii on cards, hairline borders, no decorative shadows. The single teal accent is rationed carefully — it activates CTAs, the emphasis word in headlines, and a few decorative strokes — making it feel like a switch flipped on rather than decoration.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7be94705-3666-4fb1-a389-0cfd7cb223cd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Penpot design system\",\"item\":\"https://styles.refero.design/style/7be94705-3666-4fb1-a389-0cfd7cb223cd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7be94705-3666-4fb1-a389-0cfd7cb223cd#style-reference\",\"name\":\"Penpot design system reference\",\"headline\":\"Penpot design system | Refero Styles\",\"description\":\"Explore Penpot's mixed Design design system: Deep Space Violet #151035, Bright Teal #1ccac7 colors, Work Sans, Times typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7be94705-3666-4fb1-a389-0cfd7cb223cd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7be94705-3666-4fb1-a389-0cfd7cb223cd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Penpot\",\"url\":\"https://penpot.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7be94705-3666-4fb1-a389-0cfd7cb223cd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bc03dd69-92d9-4358-afeb-0abed142bb78.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bc03dd69-92d9-4358-afeb-0abed142bb78.jpg\",\"caption\":\"Screenshot of Penpot\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bc03dd69-92d9-4358-afeb-0abed142bb78.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Penpot design system\",\"Penpot website design\",\"Penpot colors\",\"Penpot typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Deep Space Violet\",\"Bright Teal\",\"Rich Violet\",\"Off-White\",\"Work Sans\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Penpot design system\"},{\"@type\":\"Thing\",\"name\":\"Penpot website design\"},{\"@type\":\"Thing\",\"name\":\"Penpot colors\"},{\"@type\":\"Thing\",\"name\":\"Penpot typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-05-07T22:03:03.231Z\",\"dateModified\":\"2026-05-07T22:03:03.231Z\"}]}19:T593,## Quick Color Reference\n- Text on dark: #fafafa\n- Text on light: #000000 or #151035\n- Page background (light): #fafafa\n- Dark hero surface: #151035\n- Border (light surfaces): #eeeeee\n- Border (dark surfaces): #fafafa\n- Accent / emphasis word / active state: #1ccac7\n- primary action: #1ccac7 (filled action)\n\n## Example Component Prompts\n\n1. **Hero Headline**: Create a hero headline at 72px, Work Sans weight 700, #fafafa, letter-spacing -2px (which is -0.028em), line-height 1.10. The final word should be #1ccac7 instead of white. Center the text on a #151035 background.\n\n2. Create a Primary Action Button: #1ccac7 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **Ghost Button on Dark**: Create a transparent button with 1px #fafafa border, #fafafa text, Work Sans weight 500 at 16px, 8px border-radius, 8px vertical and 20px horizontal padding. Place on a #151035 background.\n\n4. **Feature Tab Bar**: Create a horizontal row of 4 tab labels (UI Design, Code, Design System, AI Workflows) centered on a #151035 background. Work Sans weight 500 at 16px, #fafafa color, 32px gap between tabs. The active tab gets a 2px #1ccac7 underline.\n\n5. **Content Card**: Create a card with #fafafa background, 20px border-radius, 1px #eeeeee border, 24px padding. No shadow. Work Sans weight 700 at 24px for the card title and weight 400 at 16px for body text in #000000."
+      }
+    ],
+    "elevationPhilosophy": "Penpot deliberately avoids drop shadows. Depth is achieved through surface color contrast (Deep Space Violet vs Off-White) and border definition (1px hairlines in #eeeeee or #fafafa). The dark hero stage is separated from the page by color, not shadow. This flat approach keeps the system feeling modern, architectural, and tool-like — appropriate for a design platform where shadows would compete with the product's own canvas."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#151035",
+          "oklch": {
+            "c": 0.0697018799261596,
+            "h": 284.58030936781114,
+            "l": 0.2050868270150066
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "button",
+            "body",
+            "hero",
+            "card",
+            "footer",
+            "list"
+          ],
+          "frequency": 727,
+          "confidence": 1,
+          "prominence": 40916480.47687196,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 10,
+            "body/color": 3,
+            "card/color": 1,
+            "hero/color": 1,
+            "link/color": 13,
+            "list/color": 39,
+            "image/color": 10,
+            "other/color": 71,
+            "button/color": 9,
+            "footer/color": 1,
+            "nav/borderColor": 40,
+            "body/borderColor": 12,
+            "card/borderColor": 4,
+            "hero/borderColor": 4,
+            "link/borderColor": 44,
+            "list/borderColor": 156,
+            "image/borderColor": 40,
+            "other/borderColor": 260,
+            "footer/borderColor": 4,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 3,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 17213868,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 2,
+            "body/borderColor": 4,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#fafafa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9851036517304731
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "link",
+            "list",
+            "body",
+            "icon"
+          ],
+          "frequency": 472,
+          "confidence": 1,
+          "prominence": 1228340.8952576912,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "icon/color": 9,
+            "link/color": 46,
+            "list/color": 11,
+            "other/fill": 13,
+            "other/color": 8,
+            "heading/color": 9,
+            "body/borderColor": 12,
+            "icon/borderColor": 36,
+            "link/borderColor": 184,
+            "list/borderColor": 44,
+            "other/borderColor": 36,
+            "button/borderColor": 28,
+            "heading/borderColor": 32,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1ccac7",
+          "oklch": {
+            "c": 0.1266035485247355,
+            "h": 192.8766643511083,
+            "l": 0.7603627880008788
+          },
+          "contexts": [
+            "button",
+            "heading"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 482263.39078776253,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 2,
+            "heading/borderColor": 12,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "other",
+            "heading"
+          ],
+          "frequency": 61,
+          "confidence": 1,
+          "prominence": 403956.49448188714,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 6,
+            "nav/stroke": 3,
+            "other/color": 3,
+            "heading/color": 1,
+            "nav/borderColor": 24,
+            "link/borderColor": 8,
+            "other/borderColor": 12,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#2f226c",
+          "oklch": {
+            "c": 0.12241697637398216,
+            "h": 285.0490957693793,
+            "l": 0.31661656691546686
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 34048.75358342828,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#d3d3d3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8668630753134526
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 14144.205356435597,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#8ee4e3",
+          "oklch": {
+            "c": 0.08417569544063792,
+            "h": 194.29830506238557,
+            "l": 0.8651399432461397
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 11771.892982800977,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 16
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.11174600437526369,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.12,
+          "background": "#fafafa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.38,
+          "background": "#fafafa",
+          "foreground": "#151035"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.64,
+          "background": "#151035",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.36,
+          "background": "#8ee4e3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.03,
+          "background": "#d3d3d3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.85,
+          "background": "#fafafa",
+          "foreground": "#2f226c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.4,
+          "background": "#8ee4e3",
+          "foreground": "#151035"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.12,
+          "background": "#d3d3d3",
+          "foreground": "#151035"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.56,
+          "background": "#eeeeee",
+          "foreground": "#2f226c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.32,
+          "background": "#1ccac7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.17,
+          "background": "#8ee4e3",
+          "foreground": "#2f226c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.96,
+          "background": "#d3d3d3",
+          "foreground": "#2f226c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.92,
+          "background": "#1ccac7",
+          "foreground": "#151035"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.59,
+          "background": "#1ccac7",
+          "foreground": "#2f226c"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.95,
+          "background": "#1ccac7",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.75,
+          "background": "#1ccac7",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.16,
+          "background": "#151035",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#fafafa",
+          "foreground": "#eeeeee"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "link",
+            "other"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link"
+          ],
+          "frequency": 84,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "columnGap|nav",
+            "columnGap|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 9,
+          "properties": [
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "rowGap|list"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link",
+            "list"
+          ],
+          "frequency": 42,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingTop|heading",
+            "paddingRight|heading",
+            "paddingBottom|heading",
+            "paddingLeft|heading",
+            "columnGap|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "link",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "columnGap|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 130,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 217,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Work Sans",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 257,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Work Sans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Work Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Work Sans",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Work Sans",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Work Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link",
+            "hero",
+            "image",
+            "card",
+            "footer",
+            "list",
+            "body"
+          ],
+          "frequency": 150,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Work Sans",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other",
+            "image",
+            "nav",
+            "body",
+            "icon"
+          ],
+          "frequency": 88,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Work Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Work Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Work Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Work Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Work Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.028,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/314c6647-95d2-48dc-9ac1-a0c61ef1ae75.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/bc03dd69-92d9-4358-afeb-0abed142bb78.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7be94705-3666-4fb1-a389-0cfd7cb223cd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Penpot design system\",\"item\":\"https://styles.refero.design/style/7be94705-3666-4fb1-a389-0cfd7cb223cd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7be94705-3666-4fb1-a389-0cfd7cb223cd#style-reference\",\"name\":\"Penpot design system reference\",\"headline\":\"Penpot design system | Refero Styles\",\"description\":\"Explore Penpot's mixed Design design system: Deep Space Violet #151035, Bright Teal #1ccac7 colors, Work Sans, Times typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7be94705-3666-4fb1-a389-0cfd7cb223cd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7be94705-3666-4fb1-a389-0cfd7cb223cd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Penpot\",\"url\":\"https://penpot.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7be94705-3666-4fb1-a389-0cfd7cb223cd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bc03dd69-92d9-4358-afeb-0abed142bb78.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bc03dd69-92d9-4358-afeb-0abed142bb78.jpg\",\"caption\":\"Screenshot of Penpot\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bc03dd69-92d9-4358-afeb-0abed142bb78.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Penpot design system\",\"Penpot website design\",\"Penpot colors\",\"Penpot typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Deep Space Violet\",\"Bright Teal\",\"Rich Violet\",\"Off-White\",\"Work Sans\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Penpot design system\"},{\"@type\":\"Thing\",\"name\":\"Penpot website design\"},{\"@type\":\"Thing\",\"name\":\"Penpot colors\"},{\"@type\":\"Thing\",\"name\":\"Penpot typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-05-07T22:03:03.231Z\",\"dateModified\":\"2026-05-07T22:03:03.231Z\"}]}19:T593,## Quick Color Reference\n- Text on dark: #fafafa\n- Text on light: #000000 or #151035\n- Page background (light): #fafafa\n- Dark hero surface: #151035\n- Border (light surfaces): #eeeeee\n- Border (dark surfaces): #fafafa\n- Accent / emphasis word / active state: #1ccac7\n- primary action: #1ccac7 (filled action)\n\n## Example Component Prompts\n\n1. **Hero Headline**: Create a hero headline at 72px, Work Sans weight 700, #fafafa, letter-spacing -2px (which is -0.028em), line-height 1.10. The final word should be #1ccac7 instead of white. Center the text on a #151035 background.\n\n2. Create a Primary Action Button: #1ccac7 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **Ghost Button on Dark**: Create a transparent button with 1px #fafafa border, #fafafa text, Work Sans weight 500 at 16px, 8px border-radius, 8px vertical and 20px horizontal padding. Place on a #151035 background.\n\n4. **Feature Tab Bar**: Create a horizontal row of 4 tab labels (UI Design, Code, Design System, AI Workflows) centered on a #151035 background. Work Sans weight 500 at 16px, #fafafa color, 32px gap between tabs. The active tab gets a 2px #1ccac7 underline.\n\n5. **Content Card**: Create a card with #fafafa background, 20px border-radius, 1px #eeeeee border, 24px padding. No shadow. Work Sans weight 700 at 24px for the card title and weight 400 at 16px for body text in #000000."
+}

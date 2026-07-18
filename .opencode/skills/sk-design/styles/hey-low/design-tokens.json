@@ -1,0 +1,517 @@
+{
+  "color": {
+    "forest-ink": {
+      "$value": "#003329",
+      "$type": "color",
+      "$description": "Forest Ink — Headlines, body copy, navigation text, illustration strokes, link color — the structural color that carries every page"
+    },
+    "chartreuse-sprig": {
+      "$value": "#e6ffa3",
+      "$type": "color",
+      "$description": "Chartreuse Sprig — Primary CTA button fill, feature card surfaces, highlight washes — the single accent that makes interactive elements feel switched on"
+    },
+    "deep-moss": {
+      "$value": "#042725",
+      "$type": "color",
+      "$description": "Deep Moss — Secondary action button, hover or pressed states where a darker counterweight to the lime CTA is needed"
+    },
+    "vivid-lime": {
+      "$value": "#9bff48",
+      "$type": "color",
+      "$description": "Vivid Lime — Decorative high-energy accent inside illustrations, hover halos, or emphasis marks — louder sibling of Chartreuse Sprig"
+    },
+    "mist-paper": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Mist Paper — Page canvas, hairline borders across cards/links/images, subtle section backgrounds — the surface that the design breathes on"
+    },
+    "white-sheet": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "White Sheet — Card surfaces, elevated tiles, button backgrounds, inverse text on dark fills"
+    },
+    "graphite": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Graphite — Occasional true-black fills for SVG details and one dark button variant"
+    },
+    "sage-dust": {
+      "$value": "#52756e",
+      "$type": "color",
+      "$description": "Sage Dust — Muted helper text, secondary descriptions, caption-level copy where full Forest Ink would compete with the headline"
+    },
+    "pine-shadow": {
+      "$value": "#33544c",
+      "$type": "color",
+      "$description": "Pine Shadow — Tertiary text, subdued labels, low-priority annotations"
+    }
+  },
+  "font": {
+    "untitledsans": {
+      "$value": "UntitledSans",
+      "$type": "fontFamily",
+      "$description": "Primary interface typeface — UI controls, body, navigation, and display headings. The aggressively negative tracking at large sizes (up to -0.064em) tightens the letterforms into a near-poster density that makes even short headlines feel like brand statements. A 600 weight is reserved for emphasis and CTA labels."
+    },
+    "boogybrutposter": {
+      "$value": "BoogyBrutPoster",
+      "$type": "fontFamily",
+      "$description": "Decorative italic-display accent used for the hand-lettered-feel phrases that ride alongside the geometric headline ('for You & the Planet', 'Fast by nature', '& love'). The contrast between this organic, almost-calligraphic display and UntitledSans's clinical geometry is the site's signature typographic move."
+    },
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "9px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.61
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.61
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "43px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 43px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "43px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "BoogyBrutPoster",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 52px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "UntitledSans",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 62px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "BoogyBrutPoster",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 62px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "BoogyBrutPoster",
+        "fontSize": "68px",
+        "fontWeight": 400,
+        "lineHeight": 0.82
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 68px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "13.8896px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "110px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "600px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "9000px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "999999px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    }
+  },
+  "surface": {
+    "mist-paper": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Surface level 0: Page-level canvas and section separators"
+    },
+    "white-sheet": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default card and elevated component background"
+    },
+    "chartreuse-sprig": {
+      "$value": "#e6ffa3",
+      "$type": "color",
+      "$description": "Surface level 2: Highlighted feature cards and CTA surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://heylow.world",
+      "siteName": "Hey Low",
+      "extractedAt": "2026-06-03T18:28:04.459Z",
+      "variant": "extended"
+    }
+  }
+}

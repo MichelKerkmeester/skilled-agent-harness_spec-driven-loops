@@ -1,0 +1,427 @@
+{
+  "color": {
+    "coral-pop": {
+      "$value": "#fa7864",
+      "$type": "color",
+      "$description": "Coral Pop — Orange action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "terracotta-whisper": {
+      "$value": "#dc8264",
+      "$type": "color",
+      "$description": "Terracotta Whisper — Orange accent for outlined action borders, linked labels, and lightweight interactive emphasis."
+    },
+    "cream-linen": {
+      "$value": "#fff5e6",
+      "$type": "color",
+      "$description": "Cream Linen — Primary page canvas — every section background. The signature surface: warm, not white, immediately domestic. Used for the hero band, the about/letter section, the category circles area, and footer transitions"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, logo, all hairline borders on nav buttons/cards/circles/icons, and the thin rules that define almost every component — the structural skeleton of the entire interface"
+    },
+    "charcoal": {
+      "$value": "#282828",
+      "$type": "color",
+      "$description": "Charcoal — Neutral form states, badge text, and quiet UI feedback where color should stay understated."
+    },
+    "stone": {
+      "$value": "#707070",
+      "$type": "color",
+      "$description": "Stone — Subtle dividers and rules that recede — used where a border needs to exist for spatial structure without competing with the primary black borders"
+    },
+    "bone": {
+      "$value": "#e8e8e1",
+      "$type": "color",
+      "$description": "Bone — Warm gray for footer borders, input field backgrounds, and the faintest surface separation — the slightly cooler cousin of Cream Linen for creating quiet contrast"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces and button text — the only true white in the system, reserved for elevated elements that need to pop above the cream canvas"
+    },
+    "mist": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Mist — Card borders where a soft outline is needed without the weight of black — quieter than #707070, used on the product card grid in the New Arrivals section"
+    }
+  },
+  "font": {
+    "gascognets": {
+      "$value": "GascogneTS",
+      "$type": "fontFamily",
+      "$description": "Display and heading serif — used for hero headlines like \"Buttercream, whipped to perfection.\" and section titles like \"New Arrivals\". This old-style serif is the editorial voice of the brand; it carries the warmth that the sans-serif cannot. Weight 500 for emphasis without going bold. The 1.0–1.2 line-height on 39–52px sizes is tight, creating a confident, magazine-display feel rather than airy editorial"
+    },
+    "basis-grotesque-pro": {
+      "$value": "Basis Grotesque Pro",
+      "$type": "fontFamily",
+      "$description": "Primary body and UI sans-serif — nav labels, button text, body copy, product descriptions, and the \"NEW\" label. The consistently positive letter-spacing (0.019–0.031em) is distinctive: most grotesques tighten tracking at body sizes, but this one opens it, creating a calm, unhurried reading rhythm that matches the domestic warmth. Weight stays at 400 — no bold/medium variations, keeping the voice quiet and conversational"
+    },
+    "basisgrotesquepro-mono": {
+      "$value": "BasisGrotesquePro-Mono",
+      "$type": "fontFamily",
+      "$description": "Monospace variant used for input fields, code-like UI elements, and the uppercase \"NEW\" label (at 0.056em — the widest tracking in the system, giving small labels a stamped, editorial feel). The wider 0.056em at the label sizes creates the signature tracked-out uppercase micro-text that appears in coral above hero headlines"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "BasisGrotesquePro-Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "BasisGrotesquePro-Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "BasisGrotesquePro-Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "BasisGrotesquePro-Mono",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "BasisGrotesquePro-Mono",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "GascogneTS",
+        "fontSize": "25px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "GascogneTS",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "GascogneTS",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "GascogneTS",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "GascogneTS",
+        "fontSize": "39px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 39px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "GascogneTS",
+        "fontSize": "43px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "GascogneTS",
+        "fontSize": "52px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "cream-linen-canvas": {
+      "$value": "#fff5e6",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — every section, every band sits on this warm cream"
+    },
+    "bone-divider": {
+      "$value": "#e8e8e1",
+      "$type": "color",
+      "$description": "Surface level 1: Faintest separation — footer rules, input field backgrounds, the barely-there contrast layer"
+    },
+    "pure-white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Product card surfaces and button text — the only true white, used to lift content above the cream"
+    },
+    "coral-accent-surface": {
+      "$value": "#fa7864",
+      "$type": "color",
+      "$description": "Surface level 3: The single coral banner strip — a full-bleed accent surface that functions as a section divider"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://cookwithbeautiful.com",
+      "siteName": "Beautiful™",
+      "extractedAt": "2026-06-03T18:28:06.179Z",
+      "variant": "extended"
+    }
+  }
+}

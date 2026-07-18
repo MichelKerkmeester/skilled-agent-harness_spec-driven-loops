@@ -1,0 +1,110 @@
+:root {
+  /* Colors */
+  --color-lime-spark: #bfff5a;
+  --color-cobalt-signal: #1a67fd;
+  --color-forest-depth: #0b3d28;
+  --color-paper-white: #fcfcfd;
+  --color-midnight-ink: #1d2130;
+  --color-carbon: #151720;
+  --color-obsidian: #0a0d16;
+  --color-mist-gray: #ebeef7;
+  --color-slate-edge: #d5d9e8;
+  --color-silver-wash: #d6d6d7;
+  --color-pewter: #6b6d72;
+  --color-graphite: #474950;
+  --color-cyan-beam: #46d8ff;
+  --gradient-cyan-beam: radial-gradient(100% 100% at 50% 0px, rgb(122, 227, 255) 0%, rgb(70, 216, 255) 100%);
+  --color-mint-pulse: #19f79a;
+  --gradient-mint-pulse: radial-gradient(100% 100% at 50% 0px, rgb(93, 247, 182) 0%, rgb(25, 247, 154) 100%);
+  --color-citron-wave: #e5ed38;
+  --gradient-citron-wave: radial-gradient(100% 100% at 50% 0px, rgb(236, 241, 116) 0%, rgb(229, 237, 56) 100%);
+  --color-orchid-glaze: #ff9dec;
+  --gradient-orchid-glaze: radial-gradient(100% 100% at 50% 0px, rgb(255, 181, 241) 0%, rgb(255, 157, 236) 100%);
+  --color-amber-glow: #ffc650;
+  --gradient-amber-glow: radial-gradient(100% 100% at 50% 0px, rgb(255, 216, 136) 0%, rgb(255, 198, 80) 100%);
+  --color-mint-tint: #d8fbed;
+
+  /* Typography — Font Families */
+  --font-ibm-plex-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ibm-plex-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 2;
+  --tracking-caption: 2px;
+  --text-subheading: 18px;
+  --leading-subheading: 1.45;
+  --text-heading-sm: 22px;
+  --leading-heading-sm: 1.43;
+  --tracking-heading-sm: -0.26px;
+  --text-heading: 48px;
+  --leading-heading: 1;
+  --tracking-heading: -1px;
+  --text-display: 80px;
+  --leading-display: 0.9;
+  --tracking-display: -3.6px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-72: 72px;
+  --spacing-96: 96px;
+  --spacing-120: 120px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-xl: 14px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 44px;
+  --radius-full: 56px;
+  --radius-full-2: 78px;
+  --radius-full-3: 9999px;
+
+  /* Named Radii */
+  --radius-cards: 24px;
+  --radius-pills: 9999px;
+  --radius-images: 8px;
+  --radius-buttons: 56px;
+  --radius-navlinks: 44px;
+  --radius-smallcards: 14px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(29, 33, 48, 0.04) 0px 3px 3px -1px, rgba(29, 33, 48, 0.04) 0px 6px 6px -3px, rgba(29, 33, 48, 0.04) 0px 12px 12px -6px, rgba(29, 33, 48, 0.04) 0px 24px 24px -12px, rgba(29, 33, 48, 0.04) 0px 32px 32px -16px;
+  --shadow-subtle-2: rgba(255, 255, 255, 0.72) 0px 1px 0px 0px inset, rgba(29, 33, 48, 0.12) 0px -2px 0px 0px inset, rgba(29, 33, 48, 0.04) 0px 1px 1px -1px, rgba(29, 33, 48, 0.04) 0px 4px 4px -2px;
+  --shadow-subtle-3: rgba(255, 255, 255, 0.72) 0px 0px 0px 1px inset, rgb(213, 217, 232) 0px 0px 0px 1px, rgba(29, 33, 48, 0.03) 0px 1px 1px -1px, rgba(29, 33, 48, 0.05) 0px 3px 3px -2px, rgba(29, 33, 48, 0.03) 0px 5px 5px -3px, rgba(213, 217, 232, 0.22) 0px 5px 5px -2px;
+  --shadow-subtle-4: rgba(29, 33, 48, 0.08) 0px 0px 0px 1px, rgba(29, 33, 48, 0.04) 0px 1px 1px -1px, rgba(29, 33, 48, 0.04) 0px 2px 2px -1px, rgba(29, 33, 48, 0.04) 0px 3px 3px -1.5px, rgba(29, 33, 48, 0.04) 0px 5px 5px -2.5px, rgba(70, 216, 255, 0.08) 0px 10px 10px -5px, rgba(70, 216, 255, 0.08) 0px 24px 24px -8px;
+  --shadow-subtle-5: rgba(29, 33, 48, 0.08) 0px 0px 0px 1px, rgba(29, 33, 48, 0.04) 0px 1px 1px -1px, rgba(29, 33, 48, 0.04) 0px 2px 2px -1px, rgba(29, 33, 48, 0.04) 0px 3px 3px -1.5px, rgba(29, 33, 48, 0.04) 0px 5px 5px -2.5px, rgba(183, 255, 90, 0.08) 0px 10px 10px -5px, rgba(183, 255, 90, 0.08) 0px 24px 24px -8px;
+  --shadow-subtle-6: rgba(29, 33, 48, 0.08) 0px 0px 0px 1px, rgba(29, 33, 48, 0.04) 0px 1px 1px -1px, rgba(29, 33, 48, 0.04) 0px 2px 2px -1px, rgba(29, 33, 48, 0.04) 0px 3px 3px -1.5px, rgba(29, 33, 48, 0.04) 0px 5px 5px -2.5px, rgba(25, 247, 154, 0.08) 0px 10px 10px -5px, rgba(25, 247, 154, 0.08) 0px 24px 24px -8px;
+  --shadow-subtle-7: rgba(29, 33, 48, 0.08) 0px 0px 0px 1px, rgba(29, 33, 48, 0.04) 0px 1px 1px -1px, rgba(29, 33, 48, 0.04) 0px 2px 2px -1px, rgba(29, 33, 48, 0.04) 0px 3px 3px -1.5px, rgba(29, 33, 48, 0.04) 0px 5px 5px -2.5px, rgba(193, 154, 255, 0.08) 0px 10px 10px -5px, rgba(193, 154, 255, 0.08) 0px 24px 24px -8px;
+  --shadow-subtle-8: rgba(29, 33, 48, 0.08) 0px 0px 0px 1px, rgba(29, 33, 48, 0.04) 0px 1px 1px -1px, rgba(29, 33, 48, 0.04) 0px 2px 2px -1px, rgba(29, 33, 48, 0.04) 0px 3px 3px -1.5px, rgba(29, 33, 48, 0.04) 0px 5px 5px -2.5px, rgba(229, 237, 56, 0.08) 0px 10px 10px -5px, rgba(229, 237, 56, 0.08) 0px 24px 24px -8px;
+  --shadow-subtle-9: rgba(29, 33, 48, 0.08) 0px 0px 0px 1px, rgba(29, 33, 48, 0.04) 0px 1px 1px -1px, rgba(29, 33, 48, 0.04) 0px 2px 2px -1px, rgba(29, 33, 48, 0.04) 0px 3px 3px -1.5px, rgba(29, 33, 48, 0.04) 0px 5px 5px -2.5px, rgba(255, 160, 48, 0.08) 0px 10px 10px -5px, rgba(255, 160, 48, 0.08) 0px 24px 24px -8px;
+  --shadow-subtle-10: rgba(29, 33, 48, 0.08) 0px 0px 0px 1px, rgba(29, 33, 48, 0.04) 0px 1px 1px -1px, rgba(29, 33, 48, 0.04) 0px 2px 2px -1px, rgba(29, 33, 48, 0.04) 0px 3px 3px -1.5px, rgba(29, 33, 48, 0.04) 0px 5px 5px -2.5px, rgba(255, 128, 110, 0.08) 0px 10px 10px -5px, rgba(255, 128, 110, 0.08) 0px 24px 24px -8px;
+  --shadow-subtle-11: rgba(17, 17, 17, 0.16) 0px 0px 0px 1px inset, rgba(29, 33, 48, 0.04) 0px 3px 3px -1px, rgba(29, 33, 48, 0.04) 0px 6px 6px -3px, rgba(29, 33, 48, 0.04) 0px 12px 12px -6px, rgba(29, 33, 48, 0.04) 0px 24px 24px -12px, rgba(255, 198, 80, 0.08) 0px 26px 32px -16px, rgba(255, 198, 80, 0.08) 0px 20px 44px -16px;
+  --shadow-subtle-12: rgba(17, 17, 17, 0.16) 0px 0px 0px 1px inset, rgba(29, 33, 48, 0.04) 0px 3px 3px -1px, rgba(29, 33, 48, 0.04) 0px 6px 6px -3px, rgba(29, 33, 48, 0.04) 0px 12px 12px -6px, rgba(29, 33, 48, 0.04) 0px 24px 24px -12px, rgba(255, 157, 236, 0.08) 0px 26px 32px -16px, rgba(255, 157, 236, 0.08) 0px 20px 44px -16px;
+  --shadow-subtle-13: rgba(17, 17, 17, 0.16) 0px 0px 0px 1px inset, rgba(29, 33, 48, 0.04) 0px 3px 3px -1px, rgba(29, 33, 48, 0.04) 0px 6px 6px -3px, rgba(29, 33, 48, 0.04) 0px 12px 12px -6px, rgba(29, 33, 48, 0.04) 0px 24px 24px -12px, rgba(229, 237, 56, 0.08) 0px 26px 32px -16px, rgba(229, 237, 56, 0.08) 0px 20px 44px -16px;
+  --shadow-subtle-14: rgba(17, 17, 17, 0.16) 0px 0px 0px 1px inset, rgba(29, 33, 48, 0.04) 0px 3px 3px -1px, rgba(29, 33, 48, 0.04) 0px 6px 6px -3px, rgba(29, 33, 48, 0.04) 0px 12px 12px -6px, rgba(29, 33, 48, 0.04) 0px 24px 24px -12px, rgba(25, 247, 154, 0.08) 0px 26px 32px -16px, rgba(25, 247, 154, 0.08) 0px 20px 44px -16px;
+  --shadow-subtle-15: rgba(17, 17, 17, 0.16) 0px 0px 0px 1px inset, rgba(29, 33, 48, 0.04) 0px 3px 3px -1px, rgba(29, 33, 48, 0.04) 0px 6px 6px -3px, rgba(29, 33, 48, 0.04) 0px 12px 12px -6px, rgba(29, 33, 48, 0.04) 0px 24px 24px -12px, rgba(70, 216, 255, 0.08) 0px 26px 32px -16px, rgba(70, 216, 255, 0.08) 0px 20px 44px -16px;
+
+  /* Surfaces */
+  --surface-canvas: #fcfcfd;
+  --surface-card: #fcfcfd;
+  --surface-dark-section: #0a0d16;
+  --surface-amber-card: #ffd888;
+}

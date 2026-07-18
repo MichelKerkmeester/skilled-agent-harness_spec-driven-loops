@@ -1,0 +1,1406 @@
+{
+  "source": "https://styles.refero.design/style/12db22d6-7738-4aee-ab6b-6d6731c7e1e0",
+  "uuid": "12db22d6-7738-4aee-ab6b-6d6731c7e1e0",
+  "name": "CQCM",
+  "northStar": "Verdant cooperative megaphone. A vivid green slab screams a civic message across a white grid while black pill buttons ground the chromatic energy.",
+  "capturedAt": "2026-07-18T09:21:40.941Z",
+  "meta": {
+    "url": "https://cqcm.coop",
+    "siteName": "CQCM",
+    "extractedAt": "2026-06-03T19:59:10.801Z",
+    "durationMs": 34821,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 746,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Athletics 400–500 for all display and badge text with letter-spacing 0.04em — the wide tracking is the brand's typographic identity, not a stylistic option",
+      "Set pill buttons at 100px radius with #000000 fill and #ffffff text in 14–16px Manrope, uppercase",
+      "Reach for #44d991 (Cooperative Green) as the dominant chromatic surface — hero, stat blocks, and decorative dots — not for buttons or text accents",
+      "Crop images to circles inside blue (#4c92e9) news cards; reserve the circle shape for imagery only",
+      "Stack stat blocks in a 5-block staircase with ~30px vertical and horizontal offset between each",
+      "Use #eaf9f2 (Mint Whisper) for soft card and nav surfaces when white feels too clinical",
+      "Separate nav items with 20–30px horizontal gap; keep the nav a single non-sticky white bar"
+    ],
+    "donts": [
+      "Do not use any chromatic color as a button fill — buttons are always #000000 or outlined; color is for surfaces and decoration only",
+      "Do not add shadows to cards, buttons, or content — the system is flat by design; the only shadow is the nav bar's soft halo",
+      "Do not mix Athletics into body copy or Manrope into hero headlines — the font split is strict: Athletics displays, Manrope reads",
+      "Do not use letter-spacing tighter than 0.01em on Manrope or 0.04em on Athletics — the opened tracking is part of the brand's breathable French-institutional feel",
+      "Do not use coral (#ff6a51) more than once per surface — it is a single-note punctuation, not a system color",
+      "Do not use square corners on buttons — pill shape (100px) is the only button geometry; cards get 8px, small elements get 4px",
+      "Do not introduce gradients, blurs, or glass effects — the system is unapologetically flat, saturated, and solid"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#44d991",
+        "name": "Cooperative Green",
+        "role": "Hero panel fill, primary stat block, decorative dot overlays — the loudest brand voice; the color that makes the page feel activated",
+        "group": "brand"
+      },
+      {
+        "hex": "#4c92e9",
+        "name": "Civic Blue",
+        "role": "News card surfaces, secondary stat blocks — chromatic but cooler, reserved for media/content contexts rather than primary brand expression",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff6a51",
+        "name": "Sunset Coral",
+        "role": "Accent stat block only — appears once as data emphasis, treated as a single-note punctuation rather than a system color",
+        "group": "accent"
+      },
+      {
+        "hex": "#eaf9f2",
+        "name": "Mint Whisper",
+        "role": "Card and nav surface tint — a barely-there green echo of the hero green, softens white space without breaking the light theme",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, pill button fill, all borders and dividers — does the structural work of the system, the only color used for controls",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, text on filled buttons, image surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Steel Gray",
+        "role": "Muted helper text, secondary nav borders — the only mid-gray in the system, used sparingly for de-emphasis",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is max-width 1280px contained, with a strong split-hero pattern: photograph left, solid green panel right. Below the hero, sections flow as full-width bands separated by 60–80px vertical gaps. The stats section uses an offset staircase of chromatic blocks (5 blocks, each shifted ~30px down and to the right) — this is the page's signature compositional move. News and feature sections use a 3-column card grid with 20px gutters. The navigation is a single top bar, not sticky, with a clean white background. Content density is comfortable — sections breathe, never feel packed. The overall rhythm alternates between solid chromatic blocks (green hero, blue news cards, multicolor stat stack) and white reading surfaces, creating high-contrast visual punctuation without literal dividers.",
+    "imagery": "Imagery is photographic, human-centered, and tightly cropped — close-up portraits and candid workplace moments, never staged stock photography. Treatment is high-key and natural-light, full-color, with no filters or duotone. The signature visual treatment is the green dot grid overlaid on the hero portrait; subsequent images appear as circular cutouts inside blue card surfaces. The system avoids decorative illustration entirely — it is a photography-and-typography system, not an illustration system.",
+    "similar": [
+      {
+        "why": "Same activist-institutional confidence with a single dominant chromatic color (vivid green) used as a brand surface rather than an accent",
+        "business": "Greenpeace"
+      },
+      {
+        "why": "Civic-movement identity that pairs electric chromatic blocks with bold uppercase display type and generous white space",
+        "business": "Sunrise Movement"
+      },
+      {
+        "why": "Multicolor data-block compositions and a comfortable, educational-institution density with flat saturated fills",
+        "business": "Khan Academy"
+      },
+      {
+        "why": "Brave chromatic surfaces (yellow, blue, green) used as full panels, with a custom display face and minimal shadow elevation",
+        "business": "Mailchimp (pre-2020 rebrand)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "badges": "4px",
+        "images": "4px",
+        "buttons": "100px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Page canvas, default reading surface"
+      },
+      {
+        "hex": "#eaf9f2",
+        "name": "Mint",
+        "level": 1,
+        "purpose": "Soft card surface, quiet nav fill, feature panel background"
+      },
+      {
+        "hex": "#4c92e9",
+        "name": "Civic Blue",
+        "level": 2,
+        "purpose": "News and media card surfaces, chromatically distinct content layer"
+      },
+      {
+        "hex": "#44d991",
+        "name": "Cooperative Green",
+        "level": 3,
+        "purpose": "Hero panel, stat blocks, brand-dominant content surfaces"
+      },
+      {
+        "hex": "#ff6a51",
+        "name": "Sunset Coral",
+        "level": 4,
+        "purpose": "Single data-emphasis block, used once for accent stat"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.1) 0px 0px 20px 0px",
+        "element": "Navigation bar"
+      }
+    ],
+    "northStar": "Verdant cooperative megaphone. A vivid green slab screams a civic message across a white grid while black pill buttons ground the chromatic energy.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.12
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.14
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.16
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.18
+      },
+      {
+        "role": "subheading-lg",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.22
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1,
+        "letterSpacing": 0.88
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1,
+        "letterSpacing": 1.92
+      },
+      {
+        "role": "heading-lg",
+        "size": 59,
+        "lineHeight": 1,
+        "letterSpacing": 2.36
+      },
+      {
+        "role": "display",
+        "size": 78,
+        "lineHeight": 1,
+        "letterSpacing": 3.12
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Green Panel",
+        "role": "Primary brand surface — declares the organization's mission at full volume",
+        "description": "Solid #44d991 fill, no border, no shadow. Contains an uppercase Athletics headline at 48–78px, weight 500, letter-spacing 0.04em, color #000000. Black pill button (100px radius) sits at the bottom-left of the panel with 10px 20px padding. The panel occupies the full right half of the hero on desktop and stacks below the image on mobile."
+      },
+      {
+        "name": "Pill Button (Filled)",
+        "role": "Primary action — the only filled button variant in the system",
+        "description": "Background #000000, text #ffffff, Manrope 14–16px weight 400, letter-spacing 0.01em, uppercase. Border-radius 100px (full pill). Padding 10px 20px. No hover state change specified beyond color shift. Used for 'QUI SOMMES-NOUS', 'DÉCOUVRIR LE MOUVEMENT', 'LIRE', and 'PLUS' controls."
+      },
+      {
+        "name": "Pill Button (Ghost)",
+        "role": "Secondary navigation — for less prominent calls",
+        "description": "Background #ffffff, border 1px #000000, text #000000, Manrope 14px, uppercase. Border-radius 100px. Padding 10px 20px. Used for the 'PLUS' nav item in the top bar."
+      },
+      {
+        "name": "Circular Image Frame",
+        "role": "Signature image treatment — softens the grid-heavy layout",
+        "description": "Image cropped to a perfect circle (border-radius 50%), 4px subtle edge. Sits centered in a blue (#4c92e9) card surface. Diameter varies with context (approximately 240–280px). The circle shape is the only non-rectangular geometry in the system and is reserved for imagery."
+      },
+      {
+        "name": "Dot Pattern Overlay",
+        "role": "Decorative brand texture on hero imagery",
+        "description": "Grid of solid #44d991 circles overlaid on the hero photograph. Dots are uniform size (~30px), arranged in a regular grid, partially bleeding off the image edges. Not a component to be reused structurally — it is a single brand artifact on the hero image only."
+      },
+      {
+        "name": "News Card",
+        "role": "Content card for articles, communiqués, and nouvelles",
+        "description": "Background #4c92e9 (Civic Blue) on the upper image area, #ffffff on the lower text area. Border-radius 8px. No shadow. Contains a circular image frame at top, a tag badge (COMMUNIQUÉ / NOUVELLES) in uppercase Athletics 12px, a date in Manrope 12px #666666, a headline in Manrope 16–18px weight 400 #000000, a short description in Manrope 14px #000000, and a black pill 'LIRE' button at the bottom. Padding 20px on the text section."
+      },
+      {
+        "name": "Stat Block",
+        "role": "Large data display — one color per metric, stacked for rhythm",
+        "description": "Solid chromatic fill (rotates through #44d991, #eaf9f2, #4c92e9, #ffffff, #ff6a51) per block. Border-radius 8px. Padding 20px. Number in Athletics 48–78px weight 500 letter-spacing 0.04em, #000000. Vertical label in uppercase Athletics 12–14px #000000, rotated or stacked beside the number. Blocks are offset vertically to create a staircase composition."
+      },
+      {
+        "name": "Category Tag",
+        "role": "Content classification — COMMUNIQUÉ, NOUVELLES, etc.",
+        "description": "Background #ffffff, text #000000, uppercase Athletics 12px weight 400 letter-spacing 0.04em. No border, no radius (square corners) or 4px radius. Inline with a date in Manrope 12px #666666. Padding 0 or 7px vertical, 10px horizontal."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Background #ffffff, no border or a 1px #000000 bottom border. Logo (CQCM wordmark with green geometric mark) at the far left. Nav items in Manrope 14px weight 400 #000000, uppercase, separated by 20–30px horizontal gap. 'PLUS' ghost pill button at far right. Padding 15–20px vertical, 40px horizontal."
+      },
+      {
+        "name": "'See All' Link",
+        "role": "Section-level navigation — to full listings",
+        "description": "Text link with a small black filled circle bullet to the left of the label. Label in uppercase Athletics 12px #000000 letter-spacing 0.04em. No underline. Used as the right-aligned companion to section headings like 'À LA UNE'."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Top-of-section title — minimalist and structural",
+        "description": "Text in Manrope 22–24px weight 400 #000000, mixed case (e.g. 'À LA UNE'). Left-aligned. No decorative underline or accent — the type weight and size alone carry the section identity. Pairs with the 'See All' link to the right."
+      },
+      {
+        "name": "Hero Image Panel",
+        "role": "Left half of the hero — photography with brand dot overlay",
+        "description": "Full-bleed photographic image (a smiling person in this case). No border-radius. Overlaid with the #44d991 dot pattern. The image extends to the left edge of the viewport and meets the green panel with no gap."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and badge type — used for hero headlines (48–78px), card labels, and uppercase tags. The wide letter-spacing (0.04em) is a French institutional signature that turns every headline into a civic declaration. Custom face; substitute with Archivo Black, Anton, or Druk for similar uppercase weight and tracking, or with a wide-tracked geometric like Bebas Neue for closer feel.",
+        "sizes": "12px, 14px, 16px, 22px, 48px, 59px, 78px",
+        "family": "Athletics",
+        "weight": "400, 500",
+        "lineHeight": "1.00",
+        "substitute": "Archivo Black, Anton, or Druk Wide",
+        "letterSpacing": "0.04em at 22px and above (≈1.88px at 48px, ≈2.36px at 59px, ≈3.12px at 78px); 0.004em at 16px and below"
+      },
+      {
+        "role": "Body, navigation, button labels, and small text — the working font. Slightly opened tracking (0.01–0.011em) is a subtle departure from default; it keeps dense French text feeling breathable without becoming display-like. Pairs cleanly with Athletics because both share geometric, humanist proportions.",
+        "sizes": "12px, 14px, 16px, 18px, 20px, 22px",
+        "family": "Manrope",
+        "weight": "400",
+        "lineHeight": "1.00, 1.30, 1.40",
+        "substitute": "Manrope (Google Fonts)",
+        "letterSpacing": "0.01em at 12–18px, 0.011em at 20–22px (≈0.12–0.24px)"
+      }
+    ],
+    "description": "CQCM radiates civic confidence through oversized uppercase display type, vivid flat chromatic blocks, and generous white space. A custom wide-tracked display face (Athletics) gives French institutional weight, while Manrope handles reading at human sizes with slightly opened tracking. Black pill buttons are the only filled action element — every other color is a decorative block, not a control. The palette is unapologetically chromatic: a dominant electric green for the hero and key stats, a saturated blue for news surfaces, a coral orange for data emphasis, and a pale mint for quiet card surfaces. Dot patterns and circular image cutouts soften an otherwise orthogonal, grid-heavy layout. The overall feel is a Quebec cooperative movement's visual identity — bold, optimistic, and declarative without ever feeling corporate.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/12db22d6-7738-4aee-ab6b-6d6731c7e1e0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"CQCM design system\",\"item\":\"https://styles.refero.design/style/12db22d6-7738-4aee-ab6b-6d6731c7e1e0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/12db22d6-7738-4aee-ab6b-6d6731c7e1e0#style-reference\",\"name\":\"CQCM design system reference\",\"headline\":\"CQCM design system | Refero Styles\",\"description\":\"Explore CQCM's light Other design system: Cooperative Green #44d991, Civic Blue #4c92e9 colors, Athletics, Manrope typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/12db22d6-7738-4aee-ab6b-6d6731c7e1e0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/12db22d6-7738-4aee-ab6b-6d6731c7e1e0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"CQCM\",\"url\":\"https://cqcm.coop\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/12db22d6-7738-4aee-ab6b-6d6731c7e1e0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7f63b533-b958-455d-b5f6-ebfc627d4298.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7f63b533-b958-455d-b5f6-ebfc627d4298.jpg\",\"caption\":\"Screenshot of CQCM\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7f63b533-b958-455d-b5f6-ebfc627d4298.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"CQCM design system\",\"CQCM website design\",\"CQCM colors\",\"CQCM typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Cooperative Green\",\"Civic Blue\",\"Sunset Coral\",\"Mint Whisper\",\"Athletics\",\"Manrope\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"CQCM design system\"},{\"@type\":\"Thing\",\"name\":\"CQCM website design\"},{\"@type\":\"Thing\",\"name\":\"CQCM colors\"},{\"@type\":\"Thing\",\"name\":\"CQCM typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-10T23:40:48.837Z\",\"dateModified\":\"2026-05-10T23:40:48.837Z\"}]}19:T933,## Quick Color Reference\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px hairline) or #eaf9f2 (soft surface)\n- accent (brand surface): #44d991 (Cooperative Green)\n- secondary accent (content surface): #4c92e9 (Civic Blue)\n- primary action: #000000 (filled action)\n\n## 3-5 Example Component Prompts\n1. **Build the hero panel**: Solid #44d991 fill covering the right half of the viewport. Headline in Athletics weight 500, 78px, line-height 1.0, letter-spacing 3.12px, color #000000, uppercase, text 'APPUYER LE DÉVELOPPEMENT SOCIAL ET ÉCONOMIQUE DU QUÉBEC.' Black pill button (border-radius 100px, padding 10px 20px, Manrope 14px uppercase #ffffff on #000000) anchored bottom-left of the panel.\n\n2. **Build a news card**: White background, border-radius 8px, no shadow. Top half is a #4c92e9 (Civic Blue) block containing a circular image (border-radius 50%, centered, ~260px diameter). Below the blue area: padding 20px, a small uppercase tag 'COMMUNIQUÉ' in Athletics 12px letter-spacing 0.48px #000000, a date '24 AVRIL 2026' in Manrope 12px #666666, a headline in Manrope 18px #000000, a description in Manrope 14px #000000, and a black pill 'LIRE' button at the bottom.\n\n3. **Build the stat staircase**: Five solid-fill blocks stacked with ~30px vertical and horizontal offset. Block 1: #44d991 with number '2 900' in Athletics 59px weight 500 letter-spacing 2.36px. Block 2: #eaf9f2 with '10M'. Block 3: #4c92e9 with '130 000'. Block 4: #ffffff with '42,6G$'. Block 5: #ff6a51 with '484G$'. Each block has border-radius 8px, padding 20px, and a vertical uppercase Athletics 12px label rotated beside the number.\n\n4. **Build the top navigation**: White background, padding 15px 40px, no shadow. Left: CQCM logo with a small green geometric mark. Center-left: nav items 'DOSSIERS', 'INITIATIVES' in Manrope 14px uppercase #000000 with 20–30px gaps. Center-right: 'À propos', 'Le mouvement', 'Devenir membre', 'Nous joindre' in Manrope 14px #000000. Far right: a ghost pill button 'PLUS' with 1px #000000 border, border-radius 100px, padding 10px 20px.\n\n5. **Build a 'See All' link**: Small #000000 filled circle (8px diameter) to the left of uppercase Athletics 12px letter-spacing 0.48px #000000 text 'VOIR TOUT'. No underline. Right-aligned within a section header row that also contains a left-aligned Manrope 22px section title."
+      },
+      {
+        "title": "Typography Pairing Logic",
+        "content": "Athletics and Manrope share geometric, humanist proportions — both have open apertures, similar x-heights, and clean terminals. The pairing works because the shared DNA keeps them feeling like one family, while the contrast in tracking (Athletics 0.04em, Manrope 0.01em) and weight (Athletics goes to 500, Manrope stays at 400) prevents them from competing. Rule: any text above 22px or in all-caps must be Athletics; anything meant to be read for more than two seconds must be Manrope."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is used exactly once — on the top navigation — and never on cards, buttons, or content surfaces. The system deliberately relies on flat chromatic fills and background color contrast (not shadows) to create visual hierarchy. Cards on blue or green backgrounds have no shadow because the saturated fill itself is the elevation cue."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "image",
+            "card",
+            "list",
+            "badge",
+            "body",
+            "icon",
+            "hero",
+            "heading",
+            "footer"
+          ],
+          "frequency": 2964,
+          "confidence": 1,
+          "prominence": 89286363.73339605,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 18,
+            "icon/fill": 14,
+            "nav/color": 178,
+            "body/color": 68,
+            "card/color": 127,
+            "hero/color": 1,
+            "icon/color": 7,
+            "link/color": 3,
+            "list/color": 9,
+            "other/fill": 118,
+            "badge/color": 37,
+            "image/color": 21,
+            "other/color": 96,
+            "button/color": 5,
+            "footer/color": 1,
+            "heading/color": 8,
+            "nav/borderColor": 712,
+            "body/borderColor": 272,
+            "card/borderColor": 504,
+            "hero/borderColor": 4,
+            "icon/borderColor": 28,
+            "link/borderColor": 12,
+            "list/borderColor": 36,
+            "badge/borderColor": 148,
+            "image/borderColor": 84,
+            "other/borderColor": 384,
+            "button/borderColor": 20,
+            "footer/borderColor": 4,
+            "heading/borderColor": 32,
+            "list/backgroundColor": 3,
+            "button/backgroundColor": 10
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "list",
+            "icon",
+            "hero"
+          ],
+          "frequency": 110,
+          "confidence": 1,
+          "prominence": 12545807.364225075,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "body/color": 12,
+            "icon/color": 2,
+            "list/color": 3,
+            "other/fill": 2,
+            "other/color": 1,
+            "button/color": 10,
+            "body/borderColor": 48,
+            "icon/borderColor": 8,
+            "list/borderColor": 12,
+            "other/borderColor": 4,
+            "hero/backgroundColor": 1,
+            "list/backgroundColor": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#eaf9f2",
+          "oklch": {
+            "c": 0.01827247107500931,
+            "h": 166.38544677757488,
+            "l": 0.9690618526538296
+          },
+          "contexts": [
+            "nav",
+            "card",
+            "other",
+            "footer"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 5010587.188867926,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/backgroundColor": 3,
+            "card/backgroundColor": 6,
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#44d991",
+          "oklch": {
+            "c": 0.16254022661420714,
+            "h": 157.7749777252427,
+            "l": 0.7895898948055402
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 4129076.4161281832,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 14,
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#4c92e9",
+          "oklch": {
+            "c": 0.14842838179520768,
+            "h": 255.07357362197448,
+            "l": 0.6551122858294369
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2843660.377868328,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff6a51",
+          "oklch": {
+            "c": 0.18678453233382616,
+            "h": 31.65196276271139,
+            "l": 0.7062121186930739
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 206116,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 29654.050345561092,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 6,
+            "body/color": 1,
+            "other/color": 1,
+            "nav/borderColor": 24,
+            "body/borderColor": 4,
+            "other/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.003386247942567796,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.33,
+          "background": "#eaf9f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.58,
+          "background": "#44d991",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.43,
+          "background": "#ff6a51",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.6,
+          "background": "#4c92e9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.29,
+          "background": "#eaf9f2",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.66,
+          "background": "#000000",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.18,
+          "background": "#4c92e9",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.17,
+          "background": "#44d991",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.83,
+          "background": "#ff6a51",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.03,
+          "background": "#ff6a51",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.81,
+          "background": "#44d991",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.8,
+          "background": "#4c92e9",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#eaf9f2",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "card"
+          ],
+          "frequency": 22
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "image",
+            "badge",
+            "card"
+          ],
+          "frequency": 20
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 0px 20px 0px",
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "body",
+            "badge"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginTop|badge"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav",
+            "other",
+            "badge",
+            "card",
+            "list"
+          ],
+          "frequency": 92,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|badge",
+            "columnGap|badge",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "paddingBottom|badge"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "list",
+            "badge"
+          ],
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list",
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "other",
+            "card",
+            "link",
+            "nav"
+          ],
+          "frequency": 107,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|card",
+            "marginRight|other",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "nav",
+            "badge",
+            "card"
+          ],
+          "frequency": 91,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingBottom|nav",
+            "rowGap|badge",
+            "columnGap|badge",
+            "paddingTop|card",
+            "paddingRight|card",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "card",
+            "badge"
+          ],
+          "frequency": 141,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "button"
+          ],
+          "frequency": 41,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "paddingRight|card",
+            "rowGap|button",
+            "columnGap|button",
+            "marginRight|other",
+            "rowGap|card",
+            "columnGap|card",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 33,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "other",
+            "list"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|other",
+            "paddingRight|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|list",
+            "columnGap|list",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 130,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 195,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 260,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|card"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Manrope",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 539,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Athletics",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 58,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Athletics",
+          "weight": 500,
+          "contexts": [
+            "badge",
+            "card",
+            "body"
+          ],
+          "frequency": 17,
+          "lineHeight": 1,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "badge"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Athletics",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Athletics",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "body",
+            "other",
+            "list"
+          ],
+          "frequency": 14,
+          "lineHeight": 1,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "button",
+            "card"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "image",
+            "card",
+            "button",
+            "list",
+            "badge",
+            "body",
+            "hero",
+            "icon",
+            "footer"
+          ],
+          "frequency": 418,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "list"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Athletics",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 48,
+          "family": "Athletics",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.004,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 59,
+          "family": "Athletics",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 78,
+          "family": "Athletics",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/5fda5414-4a9f-4a4d-82ed-cb0e525bf688.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7f63b533-b958-455d-b5f6-ebfc627d4298.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/12db22d6-7738-4aee-ab6b-6d6731c7e1e0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"CQCM design system\",\"item\":\"https://styles.refero.design/style/12db22d6-7738-4aee-ab6b-6d6731c7e1e0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/12db22d6-7738-4aee-ab6b-6d6731c7e1e0#style-reference\",\"name\":\"CQCM design system reference\",\"headline\":\"CQCM design system | Refero Styles\",\"description\":\"Explore CQCM's light Other design system: Cooperative Green #44d991, Civic Blue #4c92e9 colors, Athletics, Manrope typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/12db22d6-7738-4aee-ab6b-6d6731c7e1e0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/12db22d6-7738-4aee-ab6b-6d6731c7e1e0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"CQCM\",\"url\":\"https://cqcm.coop\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/12db22d6-7738-4aee-ab6b-6d6731c7e1e0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7f63b533-b958-455d-b5f6-ebfc627d4298.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7f63b533-b958-455d-b5f6-ebfc627d4298.jpg\",\"caption\":\"Screenshot of CQCM\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7f63b533-b958-455d-b5f6-ebfc627d4298.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"CQCM design system\",\"CQCM website design\",\"CQCM colors\",\"CQCM typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Cooperative Green\",\"Civic Blue\",\"Sunset Coral\",\"Mint Whisper\",\"Athletics\",\"Manrope\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"CQCM design system\"},{\"@type\":\"Thing\",\"name\":\"CQCM website design\"},{\"@type\":\"Thing\",\"name\":\"CQCM colors\"},{\"@type\":\"Thing\",\"name\":\"CQCM typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-10T23:40:48.837Z\",\"dateModified\":\"2026-05-10T23:40:48.837Z\"}]}19:T933,## Quick Color Reference\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px hairline) or #eaf9f2 (soft surface)\n- accent (brand surface): #44d991 (Cooperative Green)\n- secondary accent (content surface): #4c92e9 (Civic Blue)\n- primary action: #000000 (filled action)\n\n## 3-5 Example Component Prompts\n1. **Build the hero panel**: Solid #44d991 fill covering the right half of the viewport. Headline in Athletics weight 500, 78px, line-height 1.0, letter-spacing 3.12px, color #000000, uppercase, text 'APPUYER LE DÉVELOPPEMENT SOCIAL ET ÉCONOMIQUE DU QUÉBEC.' Black pill button (border-radius 100px, padding 10px 20px, Manrope 14px uppercase #ffffff on #000000) anchored bottom-left of the panel.\n\n2. **Build a news card**: White background, border-radius 8px, no shadow. Top half is a #4c92e9 (Civic Blue) block containing a circular image (border-radius 50%, centered, ~260px diameter). Below the blue area: padding 20px, a small uppercase tag 'COMMUNIQUÉ' in Athletics 12px letter-spacing 0.48px #000000, a date '24 AVRIL 2026' in Manrope 12px #666666, a headline in Manrope 18px #000000, a description in Manrope 14px #000000, and a black pill 'LIRE' button at the bottom.\n\n3. **Build the stat staircase**: Five solid-fill blocks stacked with ~30px vertical and horizontal offset. Block 1: #44d991 with number '2 900' in Athletics 59px weight 500 letter-spacing 2.36px. Block 2: #eaf9f2 with '10M'. Block 3: #4c92e9 with '130 000'. Block 4: #ffffff with '42,6G$'. Block 5: #ff6a51 with '484G$'. Each block has border-radius 8px, padding 20px, and a vertical uppercase Athletics 12px label rotated beside the number.\n\n4. **Build the top navigation**: White background, padding 15px 40px, no shadow. Left: CQCM logo with a small green geometric mark. Center-left: nav items 'DOSSIERS', 'INITIATIVES' in Manrope 14px uppercase #000000 with 20–30px gaps. Center-right: 'À propos', 'Le mouvement', 'Devenir membre', 'Nous joindre' in Manrope 14px #000000. Far right: a ghost pill button 'PLUS' with 1px #000000 border, border-radius 100px, padding 10px 20px.\n\n5. **Build a 'See All' link**: Small #000000 filled circle (8px diameter) to the left of uppercase Athletics 12px letter-spacing 0.48px #000000 text 'VOIR TOUT'. No underline. Right-aligned within a section header row that also contains a left-aligned Manrope 22px section title."
+}

@@ -1,0 +1,102 @@
+:root {
+  /* Colors */
+  --color-electric-lime: #faff69;
+  --gradient-electric-lime: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(250, 255, 105), rgba(0, 0, 0, 0));
+  --color-olive-ink: #161600;
+  --color-dark-olive: #4f5100;
+  --color-lime-glow: #fbff46;
+  --color-void-black: #151515;
+  --color-carbon: #1f1f1c;
+  --color-graphite: #282828;
+  --color-slate-dark: #343434;
+  --color-iron: #3a3a3a;
+  --color-steel: #414141;
+  --color-smoke: #a0a0a0;
+  --color-fog: #bcbcbb;
+  --color-bone: #dfdfdf;
+  --color-paper: #e5e7eb;
+  --color-pure-white: #ffffff;
+  --color-true-black: #000000;
+
+  /* Typography — Font Families */
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-basier: 'Basier', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inconsolata: 'Inconsolata', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans-serif: 'sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 18px;
+  --leading-subheading: 1.5;
+  --text-heading-sm: 20px;
+  --leading-heading-sm: 1.4;
+  --text-heading: 24px;
+  --leading-heading: 1.33;
+  --text-heading-lg: 36px;
+  --leading-heading-lg: 1.3;
+  --text-heading-xl: 72px;
+  --leading-heading-xl: 1;
+  --text-display: 96px;
+  --leading-display: 1;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-44: 44px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-112: 112px;
+  --spacing-128: 128px;
+  --spacing-160: 160px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 24-32px;
+  --element-gap: 12-16px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-tags: 4px;
+  --radius-cards: 8px;
+  --radius-pills: 9999px;
+  --radius-inputs: 4px;
+  --radius-buttons: 8px;
+
+  /* Shadows */
+  --shadow-md: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
+  --shadow-sm: rgba(0, 0, 0, 0.06) 0px 4px 4px 0px, rgba(0, 0, 0, 0.14) 0px 4px 25px 0px inset;
+
+  /* Surfaces */
+  --surface-void-black: #151515;
+  --surface-carbon: #1f1f1c;
+  --surface-graphite: #282828;
+  --surface-slate-dark: #343434;
+  --surface-iron: #3a3a3a;
+}

@@ -1,0 +1,437 @@
+{
+  "color": {
+    "paper": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Paper — Page background, card surfaces, inverted-section type — the cream-white ground that all dark type sits on"
+    },
+    "hairline": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Hairline — Card and tile borders — only visible against Paper"
+    },
+    "midstone": {
+      "$value": "#9f9f9f",
+      "$type": "color",
+      "$description": "Midstone — Nav borders, muted borders, light decorative borders on dark sections"
+    },
+    "ash": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Ash — Secondary borders, muted UI text, low-emphasis dividers"
+    },
+    "pebble": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Pebble — Inactive nav text and borders"
+    },
+    "sepia": {
+      "$value": "#3e3b36",
+      "$type": "color",
+      "$description": "Sepia — Strong borders, secondary heading text — the warm-brown near-black that flanks Headline Ink"
+    },
+    "headline-ink": {
+      "$value": "#2a2722",
+      "$type": "color",
+      "$description": "Headline Ink — Primary text, body ink, dominant borders, nav rules — warm near-black that carries every word on the page"
+    }
+  },
+  "font": {
+    "neue-montreal": {
+      "$value": "Neue Montreal",
+      "$type": "fontFamily",
+      "$description": "All UI, body, nav, and small labels at 12–32px. Weight 400 for body, 700 for nav items and labels. -0.01em tracking is hairline-tight even at body sizes — the type is condensed, not airy"
+    },
+    "louize-display": {
+      "$value": "Louize Display",
+      "$type": "fontFamily",
+      "$description": "Editorial display serif for headlines, section titles, and the centered prose blocks in dark sections. The high-contrast, narrow-serif italics mixed with the roman create the broadside feel. 77px is the standard section hero, 116–132px is the marquee headline"
+    },
+    "louize": {
+      "$value": "Louize",
+      "$type": "fontFamily",
+      "$description": "Secondary serif for short editorial copy and link text alongside Louize Display"
+    },
+    "manuka": {
+      "$value": "Manuka",
+      "$type": "fontFamily",
+      "$description": "Ultra-condensed display sans stamped at near-architectural scale (226–371px) for section mastheads like SELECTED WORKS. 0.75 line-height locks the glyphs into a tight horizontal slab that spans edge-to-edge. Only ever used white-on-ink or ink-on-paper, always in one weight, always uppercase"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Louize",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Louize",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Louize",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Louize Display",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Louize Display",
+        "fontSize": "35px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 35px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Louize Display",
+        "fontSize": "77px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 77px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Louize Display",
+        "fontSize": "116px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 116px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Louize Display",
+        "fontSize": "126px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 126px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Louize Display",
+        "fontSize": "132px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 132px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Manuka",
+        "fontSize": "226px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 226px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Manuka",
+        "fontSize": "226px",
+        "fontWeight": 400,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 226px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Manuka",
+        "fontSize": "371px",
+        "fontWeight": 400,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 371px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "224": {
+      "$value": "224px",
+      "$type": "dimension",
+      "$description": "Spacing 224px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas — cream-white ground"
+    },
+    "ink": {
+      "$value": "#2a2722",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed dark sections where cream serif type is set inverted"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://henry.codes",
+      "siteName": "Henry",
+      "extractedAt": "2026-06-03T18:12:39.112Z",
+      "variant": "extended"
+    }
+  }
+}

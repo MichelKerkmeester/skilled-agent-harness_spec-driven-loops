@@ -1,0 +1,232 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas, primary surface, image card backgrounds, footer/header fields"
+    },
+    "ash": {
+      "$value": "#5a5a5a",
+      "$type": "color",
+      "$description": "Ash — Secondary structural elements, input borders, mid-tone dividers, muted UI chrome"
+    },
+    "ghost-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Ghost White — Primary text, heading fills, hairline borders, badge outlines, link strokes"
+    }
+  },
+  "font": {
+    "polysans": {
+      "$value": "PolySans",
+      "$type": "fontFamily",
+      "$description": "Sole typeface. Weight stays at 400 across every size from caption to display — hierarchy is created purely by scale and negative tracking, never by weight contrast. Display sizes (50–77px) use line-height 0.90–1.00 and letter-spacing compressed to -0.044em/-0.056em, pulling characters into tight sculptural forms. Body sits at 14–16px with 1.43 line-height for legibility. The single-weight discipline is the signature: no bold, no italic, no fallback hierarchy — scale is everything."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "PolySans",
+        "fontSize": "77px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 77px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "54": {
+      "$value": "54px",
+      "$type": "dimension",
+      "$description": "Spacing 54px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "173": {
+      "$value": "173px",
+      "$type": "dimension",
+      "$description": "Spacing 173px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4.5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "obsidian-field": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed page canvas extending edge to edge"
+    },
+    "ash-inset": {
+      "$value": "#5a5a5a",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle surface variation for secondary controls and muted elements"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://minimalcollective.digital",
+      "siteName": "Minimal Collective",
+      "extractedAt": "2026-06-03T17:27:27.922Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,517 @@
+{
+  "color": {
+    "ultramarine": {
+      "$value": "#1009f6",
+      "$type": "color",
+      "$description": "Ultramarine — Feature card backgrounds, brand-emphasis headlines, footer primary CTA — vivid violet-blue carries the entire brand voice, used as punctuation against the monochromatic cream field"
+    },
+    "gold": {
+      "$value": "#ffba09",
+      "$type": "color",
+      "$description": "Gold — Primary action buttons (Request a demo), accent cards — warm yellow against neutral surfaces creates the only chromatic urgency in an otherwise achromatic system"
+    },
+    "forest": {
+      "$value": "#304801",
+      "$type": "color",
+      "$description": "Forest — Decorative illustration and testimonial card accents — deep dark green used in editorial color blocks"
+    },
+    "tangerine": {
+      "$value": "#ff3b09",
+      "$type": "color",
+      "$description": "Tangerine — Decorative scribble accents and highlight strokes in illustrations"
+    },
+    "royal": {
+      "$value": "#505cf9",
+      "$type": "color",
+      "$description": "Royal — Soft highlight washes and secondary illustration fills — lighter companion to ultramarine"
+    },
+    "sky": {
+      "$value": "#add3e5",
+      "$type": "color",
+      "$description": "Sky — Pastel card surfaces and muted testimonial accents — near-gray blue used as a quiet cool counterpoint to the warm beige field"
+    },
+    "thistle": {
+      "$value": "#e3c7de",
+      "$type": "color",
+      "$description": "Thistle — Pastel illustration fills and testimonial card tints — near-gray mauve"
+    },
+    "mint": {
+      "$value": "#00e9a7",
+      "$type": "color",
+      "$description": "Mint — Decorative green accent for illustration highlights"
+    },
+    "cream": {
+      "$value": "#f0f0ec",
+      "$type": "color",
+      "$description": "Cream — Page background, card surfaces, input fills — warm off-white dominates the entire canvas"
+    },
+    "pearl": {
+      "$value": "#f7f7f3",
+      "$type": "color",
+      "$description": "Pearl — Elevated card surfaces, lighter than cream — used for nested content blocks"
+    },
+    "white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "White — Pure white cards and inverted button text"
+    },
+    "smoke": {
+      "$value": "#d4d4d0",
+      "$type": "color",
+      "$description": "Smoke — Muted helper text and secondary labels"
+    },
+    "concrete": {
+      "$value": "#eaeae6",
+      "$type": "color",
+      "$description": "Concrete — Hairline borders, subtle dividers, disabled states"
+    },
+    "washed-black": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Washed Black — Primary text, headings, body copy — slightly softer than pure black for warmer reading"
+    },
+    "ink": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Ink — Secondary text and nav items"
+    },
+    "charcoal": {
+      "$value": "#4d4d4d",
+      "$type": "color",
+      "$description": "Charcoal — Muted body text, captions, metadata"
+    },
+    "dim": {
+      "$value": "#6d6868",
+      "$type": "color",
+      "$description": "Dim — Tertiary text, timestamps, fine print"
+    },
+    "black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Black — Button text on bright fills, strong borders"
+    }
+  },
+  "font": {
+    "abcwhyte": {
+      "$value": "Abcwhyte",
+      "$type": "fontFamily",
+      "$description": "UI micro-copy — nav labels, tag chips, small captions, footer links"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.87
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "11px",
+        "fontWeight": 700,
+        "lineHeight": 1.87
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "25px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.49
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Abcwhyte",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4.375px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10.5px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#f0f0ec",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — warm off-white dominates the entire page"
+    },
+    "pearl-card": {
+      "$value": "#f7f7f3",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card surfaces, hero panels — slightly lighter than canvas for subtle lift"
+    },
+    "white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Pure white surfaces for highest contrast content blocks and form containers"
+    },
+    "brand-surface": {
+      "$value": "#1009f6",
+      "$type": "color",
+      "$description": "Surface level 3: Ultramarine feature cards — brand-color surface for emphasis panels"
+    },
+    "dark-footer": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 4: Footer background — only dark surface, anchors page bottom"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://contractbook.com",
+      "siteName": "Contractbook",
+      "extractedAt": "2026-07-03T03:40:58.665Z",
+      "variant": "extended"
+    }
+  }
+}

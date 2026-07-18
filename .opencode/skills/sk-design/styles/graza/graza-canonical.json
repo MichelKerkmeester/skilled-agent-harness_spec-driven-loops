@@ -1,0 +1,1162 @@
+{
+  "source": "https://styles.refero.design/style/f2a84e0f-cf77-41fa-ade0-b062a3a42495",
+  "uuid": "f2a84e0f-cf77-41fa-ade0-b062a3a42495",
+  "name": "GRAZA",
+  "northStar": "Mediterranean deli counter, sunlit and hand-set",
+  "capturedAt": "2026-07-18T08:13:10.207Z",
+  "meta": {
+    "url": "https://graza.co",
+    "siteName": "GRAZA",
+    "extractedAt": "2026-06-03T17:58:09.573Z",
+    "durationMs": 32086,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 602,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set display headlines in ITC Garamond Condensed at 72–120px with -0.03em tracking — the condensed swoop is the brand's signature silhouette.",
+      "Use Olive Ink (#3c422e) for all text and borders; never use pure black or a neutral gray. The olive undertone is non-negotiable.",
+      "Let accent colors (Mustard Sun #fbd535, Squeeze Bottle Green #9eef80) run full-bleed as section bands rather than as small UI chips — their job is to carry pages, not decorate buttons.",
+      "Apply 20px radius to all product and lifestyle imagery; 10px radius to buttons and inputs; 9999px to cart/account pills.",
+      "Center editorial section content with roughly 30px side padding rather than locking it to a max-width grid; the page is meant to feel hand-set.",
+      "Pair the typewriter serif (GT Alpina Typewriter) with all utility text — nav, buttons, inputs, body, captions — at 12–20px weight 400–700.",
+      "Use the Apercu 13px badge style only for all-caps status labels flanked by small decorative glyphs."
+    ],
+    "donts": [
+      "Don't use a neutral system gray or pure black for text or borders — always reach for Olive Ink (#3c422e).",
+      "Don't set body copy in ITC Garamond Condensed; the condensed display serif is reserved for headlines 46px and above.",
+      "Don't apply shadows to cards, buttons, or images. The system relies on color bands and radius, not elevation.",
+      "Don't use the vivid greens as small button fills or chip backgrounds — they are full-bleed section colors or large decorative type, not chrome.",
+      "Don't lock the layout to a rigid 12-column grid; editorial sections breathe with asymmetric text placement and scattered keyword clusters.",
+      "Don't mix multiple accent colors within a single section — one section gets one accent band (yellow OR green), never both.",
+      "Don't add a neutral gray border or divider where a 1px Olive Ink line would do; the border color is part of the system, not a fallback."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#3c422e",
+        "name": "Olive Ink",
+        "role": "Primary text, nav links, borders, button outlines, icon strokes — near-black with an olive undertone that keeps the page from feeling clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fff4ec",
+        "name": "Linen Cream",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f6e6d9",
+        "name": "Buttery Peach",
+        "role": "Secondary surface and warm contrast bands — slightly deeper than Linen Cream, used to break long pages and nest cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9eef80",
+        "name": "Squeeze Bottle Green",
+        "role": "Full-bleed section bands, highlighted text treatments — bright produce-shelf green that carries entire pages",
+        "group": "accent"
+      },
+      {
+        "hex": "#d1e030",
+        "name": "EVOO Yellow-Green",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#fbd535",
+        "name": "Mustard Sun",
+        "role": "Full-bleed editorial section bands, large decorative type wash — warmer sibling to EVOO Yellow-Green, carries hero-level moments",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed page model with no rigid max-width container — sections either run edge-to-edge in solid color or feature edge-to-edge photography. Hero pattern: full-viewport lifestyle photograph with bottom-left headline overlay. Section rhythm alternates between photographic plates and flat color bands (Mustard Sun → Squeeze Bottle Green), with the warm cream canvas threading between them. Content arrangement is editorial and asymmetric: centered headline blocks over color fields, 50/50 split text+image blocks, and scattered keyword clusters (Sear, Grill, Fry) that break the grid intentionally. No card grids, no pricing tables, no masonry. Navigation is a minimal top bar with brand wordmark left, text links center-right, and pill-shaped cart/account buttons at far right. Vertical spacing is generous — 35–64px between editorial sections — creating a magazine-spread pace rather than a product-listing density.",
+    "imagery": "Photography is the dominant visual content — warm-toned, natural-light food and lifestyle shots showing hands spreading, slicing, pouring, and plating olive oil. Images are tight product crops or medium shots of food in domestic kitchen contexts, not staged studio setups. Treatment: full-bleed hero plates with no radius, 20px-radius product cards in editorial layouts. No illustrations, no icons beyond minimal line glyphs, no 3D renders. The photography carries the color story (warm cream, olive green produce, golden oil) rather than relying on graphic overlays. Dense: a single large photograph typically occupies 50–100% of any given section.",
+    "similar": [
+      {
+        "why": "Same warm cream + bold accent color band approach for food ecommerce, with editorial serif display headlines and full-bleed lifestyle photography",
+        "business": "Fly By Jing"
+      },
+      {
+        "why": "Playful use of vivid full-bleed section colors (their yellow, green, pink) against warm neutrals, with confident serif type and hand-set editorial layouts",
+        "business": "Omsom"
+      },
+      {
+        "why": "Olive oil adjacent food brand with warm linen backgrounds, dark olive text, and bold condensed serif display headlines on lifestyle product photography",
+        "business": "Brightland"
+      },
+      {
+        "why": "Direct-to-consumer food brand leaning into bright single-accent color blocks and large condensed serif editorial headlines over warm cream surfaces",
+        "business": "Magic Spoon"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "pills": "9999px",
+        "images": "20px",
+        "inputs": "10px",
+        "buttons": "10px",
+        "nav-capsule": "32px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "64px",
+      "cardPadding": "30px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#fff4ec",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Default page background — warm linen white for most content"
+      },
+      {
+        "hex": "#f6e6d9",
+        "name": "Warm Card",
+        "level": 1,
+        "purpose": "Secondary surface and alternating content bands — slightly deeper peach-cream"
+      },
+      {
+        "hex": "#fbd535",
+        "name": "Mustard Band",
+        "level": 2,
+        "purpose": "Full-bleed editorial section background — warm yellow for feature spreads"
+      },
+      {
+        "hex": "#9eef80",
+        "name": "Green Band",
+        "level": 3,
+        "purpose": "Full-bleed editorial section background — bright produce green for recipe/keyword sections"
+      },
+      {
+        "hex": "#d1e030",
+        "name": "CTA Surface",
+        "level": 4,
+        "purpose": "Action accent — only on the primary filled button, not as a section band"
+      }
+    ],
+    "northStar": "Mediterranean deli counter, sunlit and hand-set",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 46,
+        "lineHeight": 1,
+        "letterSpacing": -0.97
+      },
+      {
+        "role": "heading",
+        "size": 72,
+        "lineHeight": 0.9,
+        "letterSpacing": -2.16
+      },
+      {
+        "role": "heading-lg",
+        "size": 102,
+        "lineHeight": 0.9,
+        "letterSpacing": -3.06
+      },
+      {
+        "role": "display",
+        "size": 120,
+        "lineHeight": 0.9,
+        "letterSpacing": -3.72
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Nav Button",
+        "role": "Cart and account icon buttons in header",
+        "description": "Oval capsule at 9999px radius, 1px Olive Ink (#3c422e) border, Linen Cream (#fff4ec) fill, 10px horizontal padding, contains small icon + text count. Sits flush in the top-right nav cluster."
+      },
+      {
+        "name": "Nav Capsule",
+        "role": "Distinct rounded nav container",
+        "description": "32px radius container holding a single icon, used as a floating utility element above the main nav row."
+      },
+      {
+        "name": "Primary Filled CTA",
+        "role": "Key purchase or action trigger",
+        "description": "EVOO Yellow-Green (#d1e030) background, Olive Ink (#3c422e) text, 10px radius, roughly 20px vertical and 30px horizontal padding. GT Alpina Typewriter at 16px weight 700, all-caps tracking. The single saturated CTA in the system."
+      },
+      {
+        "name": "Outline Ghost Button",
+        "role": "Secondary action, editorial call-to-action",
+        "description": "Transparent or Linen Cream background, 1px Olive Ink (#3c422e) border, 10px radius, 20px vertical padding, 30px horizontal padding. GT Alpina Typewriter 16px weight 500. Used for 'Get The Chips' style links."
+      },
+      {
+        "name": "Carousel Arrow Control",
+        "role": "Paginated content navigation",
+        "description": "Small pill at 10px radius, 1px Olive Ink border, Linen Cream fill, contains left/right arrow glyph. Sits centered under hero text blocks."
+      },
+      {
+        "name": "Editorial Section Band",
+        "role": "Full-bleed colored content section",
+        "description": "Edge-to-edge block in Mustard Sun (#fbd535) or Squeeze Bottle Green (#9eef80). No internal max-width on the color fill — content inside is loosely centered with 30px side padding. Display headlines in ITC Garamond Condensed drop to 72–120px."
+      },
+      {
+        "name": "Full-Bleed Hero Plate",
+        "role": "Lifestyle/product photography hero",
+        "description": "Photograph bleeds to all four edges, no radius. Headline and CTA overlay bottom-left in Olive Ink on a subtle gradient dim or directly on the warm image. Headline set in Garamond Condensed 46–72px."
+      },
+      {
+        "name": "Split Feature Block",
+        "role": "Text + image product highlight",
+        "description": "50/50 grid on editorial bands: text column left (centered vertically, max ~480px wide), image column right with 20px radius and slight internal padding. Headline at 46–72px Garamond, body at 16–18px Alpina."
+      },
+      {
+        "name": "Product Image Card",
+        "role": "Lifestyle product shot in editorial layouts",
+        "description": "Photograph at 20px border radius, no shadow, no border. Often paired with a caption block below in GT Alpina Typewriter 12–16px."
+      },
+      {
+        "name": "Status Badge",
+        "role": "Inline label like \"BACK IN STOCK\"",
+        "description": "No container — text-only in Apercu 13px, all-caps, weight 400, Olive Ink. Flanked by small decorative asterisk or floral glyphs. Sits centered above section headlines."
+      },
+      {
+        "name": "Text Link with Arrow",
+        "role": "Editorial link like \"MAKE THIS DISH →\"",
+        "description": "Olive Ink GT Alpina Typewriter 16px weight 500, underlined or followed by an em-arrow. No button chrome — reads as editorial cross-reference."
+      },
+      {
+        "name": "Inline Recipe Card",
+        "role": "Recipe caption paired with a food photo",
+        "description": "Photograph at 20px radius on top, caption below in GT Alpina Typewriter 12–16px: 'Recipe: [name]' in weight 400, followed by a text link arrow. No card surface, no border — floats on the section band color."
+      },
+      {
+        "name": "Scattered Text Cluster",
+        "role": "Asymmetric keyword cloud on green section",
+        "description": "Large ITC Garamond Condensed words (Sear, Grill, Fry, Roast, Bake, Garnish, Knead) placed at varying sizes (46–72px) and slight rotations within a full-bleed Squeeze Bottle Green band. One word circled with a thin Olive Ink oval. Editorial, not functional."
+      },
+      {
+        "name": "Footer Olive Branch Photo",
+        "role": "Atmospheric closing image",
+        "description": "Full-bleed photograph of olive branches, no radius, no overlay text — serves as a tonal palette cleanser between content sections and the next navigation moment."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary workhorse for body copy, nav, buttons, links, captions, input fields, and small editorial labels. The typewriter serif gives the brand its hand-set, kitchen-counter voice — slightly imperfect letterforms make utility text feel editorial rather than transactional.",
+        "sizes": "12, 16, 18, 20",
+        "family": "GT Alpina Typewriter",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.0, 1.2, 1.25, 1.5",
+        "substitute": "IBM Plex Serif, Lora, or Recoleta",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Display and hero headlines only — the tall, narrow Garamond contrasts sharply with the typewriter body, creating a magazine-cover hierarchy. The 120px size with -0.031em tracking is the brand's signature mark: editorial confidence that swallows the page.",
+        "sizes": "46, 48, 72, 102, 120",
+        "family": "ITC Garamond Condensed",
+        "weight": "400",
+        "lineHeight": "0.9, 1.0, 1.6",
+        "substitute": "Playfair Display, Cormorant Garamond, or DM Serif Display",
+        "letterSpacing": "-0.031em at 120px, -0.030em at 102px, -0.021em at 46-48px"
+      },
+      {
+        "role": "Badge and status micro-labels — a neutral geometric sans used in tight all-caps tags like 'BACK IN STOCK'. Appears only in badge contexts to avoid competing with the serif system.",
+        "sizes": "13",
+        "family": "Apercu",
+        "weight": "400",
+        "lineHeight": "1.0",
+        "substitute": "Inter, Söhne, or Work Sans",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Graza channels a sun-drenched Mediterranean deli counter — warm cream surfaces, an olive-dark ink that reads like aged wood, and occasional bursts of acid-green that feel like produce under fluorescent market lights. Typography carries a confident editorial weight: a typewriter serif does the conversational work while a condensed Garamond swoops in for oversized display moments. Color behaves like a produce aisle — the canvas is always warm and neutral, and the vivid greens appear as full-bleed section bands or small functional punctuation, never as chrome on chrome. Components stay spare and hand-set: pill buttons, hairline borders, gentle 20px image radii, and almost no shadow. The rhythm alternates between photographic full-bleed hero plates, text-only editorial spreads on solid color fields, and split text+image compositions. Nothing is grid-locked; whitespace and asymmetry do the work.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f2a84e0f-cf77-41fa-ade0-b062a3a42495#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"GRAZA design system\",\"item\":\"https://styles.refero.design/style/f2a84e0f-cf77-41fa-ade0-b062a3a42495\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f2a84e0f-cf77-41fa-ade0-b062a3a42495#style-reference\",\"name\":\"GRAZA design system reference\",\"headline\":\"GRAZA design system | Refero Styles\",\"description\":\"Explore GRAZA's light E-commerce design system: Olive Ink #3c422e, Linen Cream #fff4ec colors, GT Alpina Typewriter, ITC Garamond Condensed typography, and...\",\"url\":\"https://styles.refero.design/style/f2a84e0f-cf77-41fa-ade0-b062a3a42495\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f2a84e0f-cf77-41fa-ade0-b062a3a42495\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"GRAZA\",\"url\":\"https://graza.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f2a84e0f-cf77-41fa-ade0-b062a3a42495#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/126ce15c-4acc-4db9-8f61-fd48bdb31f95.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/126ce15c-4acc-4db9-8f61-fd48bdb31f95.jpg\",\"caption\":\"Screenshot of GRAZA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/126ce15c-4acc-4db9-8f61-fd48bdb31f95.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"GRAZA design system\",\"GRAZA website design\",\"GRAZA colors\",\"GRAZA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Olive Ink\",\"Linen Cream\",\"Buttery Peach\",\"Squeeze Bottle Green\",\"GT Alpina Typewriter\",\"ITC Garamond Condensed\",\"Apercu\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"GRAZA design system\"},{\"@type\":\"Thing\",\"name\":\"GRAZA website design\"},{\"@type\":\"Thing\",\"name\":\"GRAZA colors\"},{\"@type\":\"Thing\",\"name\":\"GRAZA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-02-09T09:18:16.000Z\",\"dateModified\":\"2026-02-09T09:18:16.000Z\"}]}19:T66f,**Quick Color Reference**\n- text/border: #3c422e Olive Ink\n- background: #fff4ec Linen Cream\n- secondary surface: #f6e6d9 Buttery Peach\n- accent band: #fbd535 Mustard Sun (editorial sections) or #9eef80 Squeeze Bottle Green (editorial sections)\n- primary action: no distinct CTA color\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n**Example Component Prompts**\n2. Build a full-bleed Mustard Sun section: #fbd535 background running edge-to-edge with no max-width. Center-aligned content with 30px side padding. Apercu 13px badge reading 'BACK IN STOCK' flanked by asterisks, then Garamond Condensed 102px headline at -3.06px tracking, then Alpina Typewriter 16px body, then an outline ghost button with 1px Olive Ink border at 10px radius.\n3. Build a 50/50 split feature block on Squeeze Bottle Green (#9eef80) full-bleed: left column holds a centered Garamond Condensed 48px headline and a text link with em-arrow in Alpina Typewriter 16px weight 500. Right column holds a single 20px-radius product photograph.\n4. Build a scattered keyword cluster on Squeeze Bottle Green: words 'Sear', 'Grill', 'Fry', 'Roast', 'Bake', 'Garnish', 'Knead' placed at varying positions and sizes (46–72px Garamond Condensed), one word circled with a thin 1px Olive Ink oval stroke.\n5. Build a top nav: brand wordmark 'GRAZA' in Garamond Condensed ~20px left, text links 'Shop / Get Refills / About / Glog' in Alpina Typewriter 16px center-right, and two pill buttons (9999px radius, 1px Olive Ink border, Linen Cream fill, ~10px padding) for cart and account on the far right."
+      },
+      {
+        "title": "Typography Pairing Philosophy",
+        "content": "The system is a two-serif dialogue: GT Alpina Typewriter (slightly irregular, humanist serif) handles every functional surface — nav, buttons, inputs, body, captions — while ITC Garamond Condensed (tall, narrow, high-contrast display serif) appears only at 46px and above for editorial headlines. Apercu enters as a third voice for all-caps micro-labels (badges, status tags) at 13px. Never use Garamond Condensed for body. Never use Alpina for display. The contrast between the slightly imperfect typewriter and the sharp condensed Garamond is what gives Graza its editorial confidence — utility feels warm, display feels architectural."
+      }
+    ],
+    "elevationPhilosophy": "The system has no shadow vocabulary. Depth is communicated through full-bleed color bands transitioning from cream to yellow to green, and through 20px image radius. Components sit directly on the canvas with 1px Olive Ink hairlines when separation is needed. No drop shadows, no glow, no floating cards."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#3c422e",
+          "oklch": {
+            "c": 0.0337275774472399,
+            "h": 121.63142349049458,
+            "l": 0.36736975638024494
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "nav",
+            "body",
+            "button",
+            "image",
+            "link",
+            "icon",
+            "hero",
+            "badge",
+            "list",
+            "input"
+          ],
+          "frequency": 2503,
+          "confidence": 1,
+          "prominence": 137688497.3995572,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fff4ec",
+          "oklch": {
+            "c": 0.015951690002015458,
+            "h": 58.64127645925721,
+            "l": 0.9735556469490682
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "image",
+            "body"
+          ],
+          "frequency": 230,
+          "confidence": 1,
+          "prominence": 10069868.145616094,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f6e6d9",
+          "oklch": {
+            "c": 0.024693048471392694,
+            "h": 61.639750807067614,
+            "l": 0.9341975094979483
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 132,
+          "confidence": 1,
+          "prominence": 9048399.723530276,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d1e030",
+          "oklch": {
+            "c": 0.18385524585822474,
+            "h": 114.69715844154108,
+            "l": 0.8668725888201947
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2094750,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9eef80",
+          "oklch": {
+            "c": 0.16516185050813065,
+            "h": 137.77209006559968,
+            "l": 0.8749152568517209
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2094750,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fbd535",
+          "oklch": {
+            "c": 0.167711345142889,
+            "h": 94.63332342460596,
+            "l": 0.8804181106228588
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1047375,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.08710688481834941,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 9.65,
+          "background": "#fff4ec",
+          "foreground": "#3c422e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.57,
+          "background": "#f6e6d9",
+          "foreground": "#3c422e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.52,
+          "background": "#9eef80",
+          "foreground": "#3c422e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.3,
+          "background": "#fbd535",
+          "foreground": "#3c422e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.17,
+          "background": "#d1e030",
+          "foreground": "#3c422e"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.35,
+          "background": "#d1e030",
+          "foreground": "#fff4ec"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.32,
+          "background": "#fbd535",
+          "foreground": "#fff4ec"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.28,
+          "background": "#9eef80",
+          "foreground": "#fff4ec"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.2,
+          "background": "#d1e030",
+          "foreground": "#f6e6d9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.18,
+          "background": "#fbd535",
+          "foreground": "#f6e6d9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.14,
+          "background": "#9eef80",
+          "foreground": "#f6e6d9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.13,
+          "background": "#f6e6d9",
+          "foreground": "#fff4ec"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 34
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "body",
+            "input",
+            "other",
+            "button"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 21,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 27,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 25,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 71,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 35,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 67,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 68,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 72,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 77,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 100,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 137,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 143,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 147,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 169,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "GT Alpina Typewriter",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 518,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ITC Garamond Condensed",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 46,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Apercu",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "GT Alpina Typewriter",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Apercu",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "GT Alpina Typewriter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "nav",
+            "image",
+            "body",
+            "icon",
+            "hero",
+            "button",
+            "link",
+            "list"
+          ],
+          "frequency": 386,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT Alpina Typewriter",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav",
+            "heading",
+            "body",
+            "other",
+            "input",
+            "list",
+            "link"
+          ],
+          "frequency": 55,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT Alpina Typewriter",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "heading",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "GT Alpina Typewriter",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT Alpina Typewriter",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT Alpina Typewriter",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "GT Alpina Typewriter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GT Alpina Typewriter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GT Alpina Typewriter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "GT Alpina Typewriter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "GT Alpina Typewriter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "ITC Garamond Condensed",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "ITC Garamond Condensed",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.5,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "ITC Garamond Condensed",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "ITC Garamond Condensed",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "button"
+          ],
+          "frequency": 26,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 102,
+          "family": "ITC Garamond Condensed",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "ITC Garamond Condensed",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f9fbba96-f0b4-4b75-b3c1-63a3c1433ba0.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/126ce15c-4acc-4db9-8f61-fd48bdb31f95.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f2a84e0f-cf77-41fa-ade0-b062a3a42495#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"GRAZA design system\",\"item\":\"https://styles.refero.design/style/f2a84e0f-cf77-41fa-ade0-b062a3a42495\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f2a84e0f-cf77-41fa-ade0-b062a3a42495#style-reference\",\"name\":\"GRAZA design system reference\",\"headline\":\"GRAZA design system | Refero Styles\",\"description\":\"Explore GRAZA's light E-commerce design system: Olive Ink #3c422e, Linen Cream #fff4ec colors, GT Alpina Typewriter, ITC Garamond Condensed typography, and...\",\"url\":\"https://styles.refero.design/style/f2a84e0f-cf77-41fa-ade0-b062a3a42495\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f2a84e0f-cf77-41fa-ade0-b062a3a42495\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"GRAZA\",\"url\":\"https://graza.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f2a84e0f-cf77-41fa-ade0-b062a3a42495#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/126ce15c-4acc-4db9-8f61-fd48bdb31f95.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/126ce15c-4acc-4db9-8f61-fd48bdb31f95.jpg\",\"caption\":\"Screenshot of GRAZA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/126ce15c-4acc-4db9-8f61-fd48bdb31f95.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"GRAZA design system\",\"GRAZA website design\",\"GRAZA colors\",\"GRAZA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Olive Ink\",\"Linen Cream\",\"Buttery Peach\",\"Squeeze Bottle Green\",\"GT Alpina Typewriter\",\"ITC Garamond Condensed\",\"Apercu\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"GRAZA design system\"},{\"@type\":\"Thing\",\"name\":\"GRAZA website design\"},{\"@type\":\"Thing\",\"name\":\"GRAZA colors\"},{\"@type\":\"Thing\",\"name\":\"GRAZA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-02-09T09:18:16.000Z\",\"dateModified\":\"2026-02-09T09:18:16.000Z\"}]}19:T66f,**Quick Color Reference**\n- text/border: #3c422e Olive Ink\n- background: #fff4ec Linen Cream\n- secondary surface: #f6e6d9 Buttery Peach\n- accent band: #fbd535 Mustard Sun (editorial sections) or #9eef80 Squeeze Bottle Green (editorial sections)\n- primary action: no distinct CTA color\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n**Example Component Prompts**\n2. Build a full-bleed Mustard Sun section: #fbd535 background running edge-to-edge with no max-width. Center-aligned content with 30px side padding. Apercu 13px badge reading 'BACK IN STOCK' flanked by asterisks, then Garamond Condensed 102px headline at -3.06px tracking, then Alpina Typewriter 16px body, then an outline ghost button with 1px Olive Ink border at 10px radius.\n3. Build a 50/50 split feature block on Squeeze Bottle Green (#9eef80) full-bleed: left column holds a centered Garamond Condensed 48px headline and a text link with em-arrow in Alpina Typewriter 16px weight 500. Right column holds a single 20px-radius product photograph.\n4. Build a scattered keyword cluster on Squeeze Bottle Green: words 'Sear', 'Grill', 'Fry', 'Roast', 'Bake', 'Garnish', 'Knead' placed at varying positions and sizes (46–72px Garamond Condensed), one word circled with a thin 1px Olive Ink oval stroke.\n5. Build a top nav: brand wordmark 'GRAZA' in Garamond Condensed ~20px left, text links 'Shop / Get Refills / About / Glog' in Alpina Typewriter 16px center-right, and two pill buttons (9999px radius, 1px Olive Ink border, Linen Cream fill, ~10px padding) for cart and account on the far right."
+}

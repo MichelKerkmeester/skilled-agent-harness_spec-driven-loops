@@ -1,0 +1,858 @@
+{
+  "source": "https://styles.refero.design/style/98ab0172-9474-43b5-9055-98cf1a6a2401",
+  "uuid": "98ab0172-9474-43b5-9055-98cf1a6a2401",
+  "name": "Analogue",
+  "northStar": "Black gallery vitrine — products float in void",
+  "capturedAt": "2026-07-18T08:22:38.870Z",
+  "meta": {
+    "url": "https://analogue.co",
+    "siteName": "Analogue",
+    "extractedAt": "2026-06-03T17:24:20.630Z",
+    "durationMs": 27476,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 383,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only the five neutrals: #000000, #ffffff, #e5e7eb, #bfbfbf, #999999. No chromatic colors in the system.",
+      "Apply circularXx at weight 450 for all display and heading sizes — this mid-weight is the signature, not 500 or 700.",
+      "Tighten letter-spacing aggressively as size grows: -0.02em at 16px, scaling to -0.06em at 53px. Never use positive tracking.",
+      "Use the single 17.6px radius for all cards and containers. Buttons and tags get 9999px for pill shape.",
+      "Set section backgrounds to pure #000000; let product photography carry color and light, not the interface.",
+      "Pair every section title with a two-line stack: small light-gray label above large white status word.",
+      "Keep the single white pill button as the only filled action surface on dark sections — no secondary buttons compete."
+    ],
+    "donts": [
+      "Don't introduce any color outside the five neutrals — no blues, reds, greens, or accent hues.",
+      "Don't use weights above 500 — headlines should feel precise and engineered, not bold or shouty.",
+      "Don't apply box-shadows to cards on dark backgrounds — use 1px hairline borders in low-opacity white instead.",
+      "Don't use positive letter-spacing or letter-spacing: normal anywhere in the system.",
+      "Don't use corner radii other than 17.6px (cards) or 9999px (pills). No sharp 0px corners, no 8px defaults.",
+      "Don't add gradients, glows, or color washes — the aesthetic depends on flat darkness and pure contrast.",
+      "Don't use icons in colored fills — all icons are white strokes on dark, or black strokes on light."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Carbon Canvas",
+        "role": "Page backgrounds, section canvases, card surfaces in dark sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Ash Veil",
+        "role": "Subtle borders, hairline dividers, light-mode card surfaces, light section backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bfbfbf",
+        "name": "Smoke",
+        "role": "Secondary text, muted captions, supporting metadata on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Iron Gray",
+        "role": "Tertiary text, placeholders, disabled state text, publication/attribution labels",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page model with no persistent sidebar. Navigation is a minimal top bar: brand mark far-left, three two-line nav groups center, social icon far-right — all on a single transparent row over the dark canvas. Hero is a full-viewport dark composition with centered product cluster and centered title block below. Sections alternate between full-bleed dark (#000000) and full-bleed light (#e5e7eb) bands with sharp edges, no gradients between. Light sections house product showcase grids (centered, max-width ~1200px). Dark sections house review card grids (4 columns, equal-width). Vertical rhythm is generous: ~80px between major sections, 26-29px internal padding. Content is always horizontally centered with auto margins — no asymmetric or left-aligned compositions.",
+    "imagery": "Product photography is the entire visual language. Devices and game cartridges are shot on pure black, floating in space with no surface or context — each object is isolated like a museum artifact. Cartridges appear in slight rotation and varied scale, scattered around a central hero device in a loose orbital composition. Lighting is studio-precise: hard key light reveals product texture, no environmental spill. No lifestyle photography, no human subjects, no backgrounds beyond pure void. The product IS the image; the page provides only darkness and typography.",
+    "similar": [
+      {
+        "why": "Same product-as-sculpt presentation on pure black canvases with centered white typography and dramatic negative tracking on display sizes",
+        "business": "Apple"
+      },
+      {
+        "why": "Same dark, design-forward hardware aesthetic with monochrome palettes and product photography floating without context",
+        "business": "Teenage Engineering"
+      },
+      {
+        "why": "Same premium dark product presentation — objects on void, gallery-style isolation, minimal UI chrome",
+        "business": "Leica"
+      },
+      {
+        "why": "Same restrained monochrome interface and dramatic floating product compositions on pure black",
+        "business": "Nothing"
+      },
+      {
+        "why": "Same luxury hardware treatment with dark product photography and tightly tracked sans-serif display type",
+        "business": "Bang & Olufsen"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "17.6px",
+        "buttons": "9999px"
+      },
+      "elementGap": "18px",
+      "sectionGap": "80px",
+      "cardPadding": "26px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 1,
+        "purpose": "Primary page canvas and section background"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Light Section",
+        "level": 2,
+        "purpose": "Alternating light bands for product showcases on light backgrounds"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "level": 3,
+        "purpose": "Card surfaces within light sections, pill button fills"
+      }
+    ],
+    "northStar": "Black gallery vitrine — products float in void",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.26
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.3
+      },
+      {
+        "role": "subheading-lg",
+        "size": 19,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.59
+      },
+      {
+        "role": "heading-sm",
+        "size": 21,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.61
+      },
+      {
+        "role": "heading",
+        "size": 26,
+        "lineHeight": 1.14,
+        "letterSpacing": -0.78
+      },
+      {
+        "role": "heading-lg",
+        "size": 35,
+        "lineHeight": 1.11,
+        "letterSpacing": -1.16
+      },
+      {
+        "role": "display",
+        "size": 47,
+        "lineHeight": 1,
+        "letterSpacing": -2.35
+      },
+      {
+        "role": "display-lg",
+        "size": 53,
+        "lineHeight": 0.8,
+        "letterSpacing": -3.18
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Action Pill",
+        "role": "Single conversion surface — 'Available Now', 'Shop Now'",
+        "description": "White filled pill, 9999px radius, 16px 32px padding, circularXx weight 500 at 15px in #000000. Sits as a beacon against the dark canvas. No border, no shadow — pure contrast is the affordance."
+      },
+      {
+        "name": "Ghost Nav Link",
+        "role": "Primary navigation items in header",
+        "description": "No background, no border. circularXx weight 400-450 at 15px in #ffffff, tracking -0.30px. Stack label (Store, Editions, Support) above link (Products, Developer, Announcements) with 2-3px row gap, creating a compact two-line nav cell."
+      },
+      {
+        "name": "Brand Mark",
+        "role": "Logo placement in top-left",
+        "description": "Abstract 'A' glyph in #ffffff on dark canvas, approximately 30px square. No wordmark adjacent — symbol carries identity alone."
+      },
+      {
+        "name": "Section Title Block",
+        "role": "Section header pairing product family with status word",
+        "description": "Two stacked centered lines: top line circularXx weight 400 at 21px in #e5e7eb (e.g., 'Analogue Pocket'), bottom line circularXx weight 450 at 47-53px in #ffffff (e.g., 'Restock', 'Shipping Now'). Tracking on the large line is -2.35px to -3.18px. No other decoration."
+      },
+      {
+        "name": "Product Hero Composition",
+        "role": "First-screen product showcase",
+        "description": "Central product device (Analogue Pocket) at 60-70% viewport height, surrounded by 6-8 floating game cartridges in random rotation, each with subtle drop shadow. Pure #000000 background. No grid, no alignment — objects appear scattered in 3D space."
+      },
+      {
+        "name": "Review Card",
+        "role": "Press quotes on dark sections",
+        "description": "17.6px radius, 1px border in rgba(255,255,255,0.1) or #e5e7eb at low opacity, 26px internal padding. Layout: rating (35px weight 450 #ffffff) top-left, publication logo top-right, pull-quote (16px weight 400 #e5e7eb) middle, attribution (15px weight 400 #999999) bottom. Arranged in 4-column grid with 12-18px gaps."
+      },
+      {
+        "name": "Product Showcase Card",
+        "role": "Light-section product display tiles",
+        "description": "#ffffff surface on #e5e7eb background, 17.6px radius, 26px padding. Product photo centered, label below at 16px weight 400 in #000000. No shadow — flat against the gray field."
+      },
+      {
+        "name": "Shipping Note",
+        "role": "Temporal metadata under action button",
+        "description": "circularXx weight 400 at 15px in #999999, centered, single line. No icon, no decoration — typographic only."
+      },
+      {
+        "name": "Social Icon Button",
+        "role": "Header social link (Instagram)",
+        "description": "24px square white stroke icon, no background, no label. Sits far-right of nav."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family system used everywhere. Display sizes (47-53px) carry dramatic -3.18px to -2.35px tracking that compresses letterforms into near-monoline blocks; body sizes hold -0.32px to -0.26px tracking. The 450 weight is the signature — lighter than typical medium, thicker than regular — giving headlines a precise, engineered feel. Font feature 'ss08' is globally active.",
+        "sizes": "13, 15, 16, 18, 19, 21, 26, 35, 47, 53",
+        "family": "circularXx",
+        "weight": "400, 450, 500",
+        "lineHeight": "0.80, 1.00, 1.11, 1.14, 1.15, 1.20, 1.23, 1.50",
+        "substitute": "Inter, General Sans, Satoshi",
+        "letterSpacing": "-0.06em at 53px, -0.05em at 47px, -0.033em at 35px, -0.03em at 26px, -0.029em at 21px, -0.031em at 19px, -0.02em at 16px and below",
+        "fontFeatureSettings": "\"ss08\" on"
+      }
+    ],
+    "description": "Analogue presents as a black-box gallery: products float untethered against pure dark voids, lit like museum objects rather than marketed like commodities. The visual language is rigorously monochrome — black, white, and a single soft gray do all the work, with no chromatic accents competing for attention. Typography is a single custom family used at whisper-to-medium weights, carrying dramatic negative tracking that tightens aggressively as size increases. Components feel weighted and architectural: rounded card corners, generous breathing room, and the only 'action' surface is a clean white pill that reads as a beacon against the dark. Every screen should read as quiet and confident, letting the hardware itself be the spectacle.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/98ab0172-9474-43b5-9055-98cf1a6a2401#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Analogue design system\",\"item\":\"https://styles.refero.design/style/98ab0172-9474-43b5-9055-98cf1a6a2401\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/98ab0172-9474-43b5-9055-98cf1a6a2401#style-reference\",\"name\":\"Analogue design system reference\",\"headline\":\"Analogue design system | Refero Styles\",\"description\":\"Explore Analogue's dark E-commerce design system: Carbon Canvas #000000, Bone White #ffffff colors, circularXx typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/98ab0172-9474-43b5-9055-98cf1a6a2401\",\"mainEntityOfPage\":\"https://styles.refero.design/style/98ab0172-9474-43b5-9055-98cf1a6a2401\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Analogue\",\"url\":\"https://analogue.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/98ab0172-9474-43b5-9055-98cf1a6a2401#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e4ca79ca-2771-4244-b6c3-a54e466bd4ff.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e4ca79ca-2771-4244-b6c3-a54e466bd4ff.jpg\",\"caption\":\"Screenshot of Analogue\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e4ca79ca-2771-4244-b6c3-a54e466bd4ff.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Analogue design system\",\"Analogue website design\",\"Analogue colors\",\"Analogue typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Carbon Canvas\",\"Bone White\",\"Ash Veil\",\"Smoke\",\"circularXx\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Analogue design system\"},{\"@type\":\"Thing\",\"name\":\"Analogue website design\"},{\"@type\":\"Thing\",\"name\":\"Analogue colors\"},{\"@type\":\"Thing\",\"name\":\"Analogue typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-01-28T18:21:12.000Z\",\"dateModified\":\"2026-01-28T18:21:12.000Z\"}]}19:T676,## Quick Color Reference\n- text: #ffffff (primary), #e5e7eb (secondary), #999999 (tertiary)\n- background: #000000 (dark sections), #e5e7eb (light sections), #ffffff (cards on light)\n- border: #e5e7eb at 10-20% opacity (dark mode), #bfbfbf (light mode)\n- accent: none — monochrome only\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Section Title Block**: Two stacked centered lines on #000000. Line 1: circularXx weight 400, 21px, #e5e7eb, letter-spacing -0.61px. Line 2: circularXx weight 450, 53px, #ffffff, letter-spacing -3.18px, line-height 0.80. 12px vertical gap between lines.\n\n2. **Available Now Pill Button**: White filled pill on #000000. 9999px border-radius. circularXx weight 500, 15px, #000000, letter-spacing -0.30px. Padding 16px vertical, 32px horizontal. No border, no shadow.\n\n3. **Review Card**: 17.6px border-radius, 1px solid border in rgba(229,231,235,0.15), 26px padding on all sides, #000000 background. Rating at 35px circularXx weight 450 in #ffffff, letter-spacing -1.16px. Quote at 16px weight 400 in #e5e7eb. Attribution at 15px weight 400 in #999999.\n\n4. **Ghost Nav Link Group**: No background. Two stacked lines with 3px row gap: category label (Store) in circularXx weight 400 at 15px #e5e7eb, sub-link (Products) in circularXx weight 450 at 15px #ffffff. Letter-spacing -0.30px both lines. 29px horizontal padding.\n\n5. **Product Hero Background**: Full-viewport #000000 canvas. Single centered product image at 60% viewport height, surrounded by 6-8 smaller product images in random rotation (-20° to +20°), each with subtle drop-shadow (0 10px 30px rgba(0,0,0,0.5)). No grid alignment."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "Analogue deliberately avoids shadow-based elevation. Dark sections use 1px hairline borders in low-opacity white (rgba(229,231,235,0.1-0.2)) to delineate cards — borders carry separation, not depth. Light sections rely on the #e5e7eb-to-#ffffff surface step. The only shadows present are on product photography itself, where studio lighting creates natural depth on the objects, not on the UI containers. This creates a flat, architectural feel where the page is a stage and the products are sculptures lit within it."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.00599996946660428,
+            "h": 264.5285381460292,
+            "l": 0.9280000564226094
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "body",
+            "image",
+            "heading",
+            "button",
+            "footer",
+            "input",
+            "list"
+          ],
+          "frequency": 1034,
+          "confidence": 1,
+          "prominence": 51813147.30711415,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "body",
+            "image",
+            "heading",
+            "button",
+            "footer",
+            "input",
+            "list"
+          ],
+          "frequency": 438,
+          "confidence": 1,
+          "prominence": 45411977.53731045,
+          "properties": [
+            "color",
+            "fill",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "heading",
+            "link",
+            "footer"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 20693360,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#bfbfbf",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8046580202974766
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 167460,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 25116,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.01126090143660506,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.42,
+          "background": "#000000",
+          "foreground": "#bfbfbf"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.37,
+          "background": "#000000",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.85,
+          "background": "#ffffff",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.3,
+          "background": "#e5e7eb",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.84,
+          "background": "#ffffff",
+          "foreground": "#bfbfbf"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.49,
+          "background": "#e5e7eb",
+          "foreground": "#bfbfbf"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.24,
+          "background": "#e5e7eb",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 17.6256,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 26,
+          "contexts": [],
+          "frequency": 65,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 29,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 35,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 41,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 47,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 103,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "circularXx",
+          "source": "custom",
+          "weights": [
+            400,
+            450,
+            500
+          ],
+          "frequency": 274,
+          "fontFeatureSettings": [
+            "\"ss08\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "circularXx",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "circularXx",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "circularXx",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "circularXx",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "input",
+            "button",
+            "other",
+            "list"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "circularXx",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "circularXx",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "circularXx",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 169,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "circularXx",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "circularXx",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "circularXx",
+          "weight": 450,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "circularXx",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.23,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "circularXx",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "circularXx",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "circularXx",
+          "weight": 450,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.029,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "circularXx",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "circularXx",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": -0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 47,
+          "family": "circularXx",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 53,
+          "family": "circularXx",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 53,
+          "family": "circularXx",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.022,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/765afc2f-746f-4019-b743-4d16a3e7cf41.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e4ca79ca-2771-4244-b6c3-a54e466bd4ff.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/98ab0172-9474-43b5-9055-98cf1a6a2401#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Analogue design system\",\"item\":\"https://styles.refero.design/style/98ab0172-9474-43b5-9055-98cf1a6a2401\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/98ab0172-9474-43b5-9055-98cf1a6a2401#style-reference\",\"name\":\"Analogue design system reference\",\"headline\":\"Analogue design system | Refero Styles\",\"description\":\"Explore Analogue's dark E-commerce design system: Carbon Canvas #000000, Bone White #ffffff colors, circularXx typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/98ab0172-9474-43b5-9055-98cf1a6a2401\",\"mainEntityOfPage\":\"https://styles.refero.design/style/98ab0172-9474-43b5-9055-98cf1a6a2401\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Analogue\",\"url\":\"https://analogue.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/98ab0172-9474-43b5-9055-98cf1a6a2401#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e4ca79ca-2771-4244-b6c3-a54e466bd4ff.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e4ca79ca-2771-4244-b6c3-a54e466bd4ff.jpg\",\"caption\":\"Screenshot of Analogue\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e4ca79ca-2771-4244-b6c3-a54e466bd4ff.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Analogue design system\",\"Analogue website design\",\"Analogue colors\",\"Analogue typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Carbon Canvas\",\"Bone White\",\"Ash Veil\",\"Smoke\",\"circularXx\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Analogue design system\"},{\"@type\":\"Thing\",\"name\":\"Analogue website design\"},{\"@type\":\"Thing\",\"name\":\"Analogue colors\"},{\"@type\":\"Thing\",\"name\":\"Analogue typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-01-28T18:21:12.000Z\",\"dateModified\":\"2026-01-28T18:21:12.000Z\"}]}19:T676,## Quick Color Reference\n- text: #ffffff (primary), #e5e7eb (secondary), #999999 (tertiary)\n- background: #000000 (dark sections), #e5e7eb (light sections), #ffffff (cards on light)\n- border: #e5e7eb at 10-20% opacity (dark mode), #bfbfbf (light mode)\n- accent: none — monochrome only\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Section Title Block**: Two stacked centered lines on #000000. Line 1: circularXx weight 400, 21px, #e5e7eb, letter-spacing -0.61px. Line 2: circularXx weight 450, 53px, #ffffff, letter-spacing -3.18px, line-height 0.80. 12px vertical gap between lines.\n\n2. **Available Now Pill Button**: White filled pill on #000000. 9999px border-radius. circularXx weight 500, 15px, #000000, letter-spacing -0.30px. Padding 16px vertical, 32px horizontal. No border, no shadow.\n\n3. **Review Card**: 17.6px border-radius, 1px solid border in rgba(229,231,235,0.15), 26px padding on all sides, #000000 background. Rating at 35px circularXx weight 450 in #ffffff, letter-spacing -1.16px. Quote at 16px weight 400 in #e5e7eb. Attribution at 15px weight 400 in #999999.\n\n4. **Ghost Nav Link Group**: No background. Two stacked lines with 3px row gap: category label (Store) in circularXx weight 400 at 15px #e5e7eb, sub-link (Products) in circularXx weight 450 at 15px #ffffff. Letter-spacing -0.30px both lines. 29px horizontal padding.\n\n5. **Product Hero Background**: Full-viewport #000000 canvas. Single centered product image at 60% viewport height, surrounded by 6-8 smaller product images in random rotation (-20° to +20°), each with subtle drop-shadow (0 10px 30px rgba(0,0,0,0.5)). No grid alignment."
+}

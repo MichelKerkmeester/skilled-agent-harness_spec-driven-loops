@@ -1,0 +1,300 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#292929",
+      "$type": "color",
+      "$description": "Ink — Primary text, heading color, link color, border strokes, surface blocks — the structural dark that replaces shadow everywhere in the system"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surface, input fill, inverse text — the dominant white ground"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — SVG illustration fills and input text — appears in decorative line-art and form value color"
+    }
+  },
+  "font": {
+    "nh": {
+      "$value": "NH",
+      "$type": "fontFamily",
+      "$description": "Primary type family for body copy, hero text, headings, and interactive labels"
+    },
+    "s-condensed": {
+      "$value": "S-Condensed",
+      "$type": "fontFamily",
+      "$description": "Utility face for uppercase labels, nav, tags, captions, and condensed body"
+    },
+    "ev": {
+      "$value": "EV",
+      "$type": "fontFamily",
+      "$description": "Special display accent"
+    },
+    "s-works": {
+      "$value": "S-Works",
+      "$type": "fontFamily",
+      "$description": "Reserved display heading"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "S-Condensed",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "S-Condensed",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "S-Condensed",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "S-Condensed",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "S-Condensed",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "S-Condensed",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "S-Condensed",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "NH",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "NH",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "NH",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "NH",
+        "fontSize": "25px",
+        "fontWeight": 300,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "NH",
+        "fontSize": "25px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "EV",
+        "fontSize": "28px",
+        "fontWeight": 100,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "NH",
+        "fontSize": "32px",
+        "fontWeight": 100,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "S-Condensed",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "NH",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "S-Works",
+        "fontSize": "40px",
+        "fontWeight": 350,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "NH",
+        "fontSize": "43px",
+        "fontWeight": 300,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 43px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "43": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Spacing 43px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas, dominant cell fill, input ground"
+    },
+    "ink-block": {
+      "$value": "#292929",
+      "$type": "color",
+      "$description": "Surface level 2: Inverse dark surface used sparingly for contrast panels and product overlay labels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://mono.frm.fm/en",
+      "siteName": "mono",
+      "extractedAt": "2026-07-03T03:42:01.498Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,1570 @@
+{
+  "source": "https://styles.refero.design/style/b6f25b86-ffcf-42f1-9f37-5e37d08cb4ce",
+  "uuid": "b6f25b86-ffcf-42f1-9f37-5e37d08cb4ce",
+  "name": "Alden",
+  "northStar": "serene clinic on warm parchment — a page so quiet the single blue word and sage button feel like the only sound in the room",
+  "capturedAt": "2026-07-18T08:51:08.298Z",
+  "meta": {
+    "url": "https://www.alden.health",
+    "siteName": "Alden",
+    "extractedAt": "2026-06-03T21:34:53.453Z",
+    "durationMs": 35501,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1316,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Keep the canvas 98% achromatic — let Sky Highlight and Sage Action be the only chromatic pixels in any viewport.",
+      "Use Stk bureau Sans for everything functional and switch to Stk bureau Serif only at 40px and above for editorial gravity.",
+      "Tighten tracking aggressively: -0.04em at 56px, -0.02em at 16px. Negative letter-spacing is the system's signature.",
+      "Use Sky Highlight (#97cde5) on individual words inside headings, not on full lines, never on backgrounds.",
+      "Reach for 100px border-radius on every button and badge — the pill shape is non-negotiable for brand consistency.",
+      "Use Parchment Cream (#f3f1eb) as a second surface, not as a background tint — full bands or full containers, never partial fills.",
+      "Separate layers with contrast between white and cream rather than with shadows or borders."
+    ],
+    "donts": [
+      "Don't introduce a new accent color — the system is intentionally limited to sky blue and sage green.",
+      "Don't add box-shadows. Elevation comes from the white-to-cream surface contrast, not depth.",
+      "Don't use 24px border-radius on buttons — buttons are always fully pill-shaped at 100px.",
+      "Don't apply Sky Highlight to body paragraphs or backgrounds — it is an in-heading annotation only.",
+      "Don't use Inter or system fonts as the default; always load the Stk bureau (or its Inter/Source Serif substitutes) to preserve the editorial register.",
+      "Don't center product screenshots on pure white — always stage them on Parchment Cream so the device frame reads as object, not page.",
+      "Don't use serif for UI chrome (nav, buttons, badges, form fields) — serif is display-only."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f3f1eb",
+        "name": "Parchment Cream",
+        "role": "Alternate surface and product-mockup backdrop — the warm cream gives the white canvas a second, softer layer without introducing contrast noise",
+        "group": "neutral"
+      },
+      {
+        "hex": "#28262a",
+        "name": "Ink Black",
+        "role": "Primary headings, body text, and the heaviest borders — a near-black with the faintest plum undertone, softer than pure #000 for large blocks of text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4a4a4c",
+        "name": "Graphite",
+        "role": "Secondary text, icon strokes, and lighter borders — the mid-neutral that separates captions from body without going to gray",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas and card surfaces — the dominant background across the entire system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dddcdd",
+        "name": "Fog Border",
+        "role": "Hairline dividers, badge fills, and the softest UI separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cbcbcb",
+        "name": "Silver",
+        "role": "Mid-weight dividers and de-emphasized body borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#97cde5",
+        "name": "Sky Highlight",
+        "role": "In-line accent on chosen words within headings, and soft card iconography — a dusty pastel blue that reads as annotation, never as brand chrome",
+        "group": "accent"
+      },
+      {
+        "hex": "#c8dfaa",
+        "name": "Sage Action",
+        "role": "Primary CTA fill and decorative wash — the only saturated fill in the interface, used sparingly so the button always feels intentional",
+        "group": "brand"
+      }
+    ],
+    "layout": "Page is max-width ~1200px centered, but hero and product-stage sections break to full-bleed white-to-cream bands. Hero pattern is a centered headline-over-canvas with the product mockup staged on a cream band beneath. Section rhythm alternates: white canvas → cream product stage → white canvas with centered editorial headline → cream band with logo strip. Content arrangement is almost entirely centered stacks, never left-aligned text-with-side-image. The avatar accents break the symmetry by floating loosely around headlines, creating intentional negative space. The navigation is a minimal top bar with logo left and three links plus a pill CTA right; no sticky behavior, no mega-menu. Card grids are not used — the system prefers vertical centered stacks over multi-column feature grids.",
+    "imagery": "Imagery is almost entirely product UI mockups staged on the Parchment Cream surface — no lifestyle photography, no abstract illustration, no 3D. The hero centers a three-panel scheduling/voice agent mockup rendered as clean white cards on cream. People appear only as small circular avatar crops (40px) scattered around section openers, used as human punctuation rather than portraiture. A soft blue atmospheric wash anchors the bottom-right of the testimonial section. Iconography is mono-stroke in Ink Black, consistent 1.5px weight, drawn geometric rather than rounded. The overall visual register is editorial-documentary: the product UI is the hero, avatars are proof of people, and the blue wash is the only decorative element.",
+    "similar": [
+      {
+        "why": "Same near-monochrome discipline with a single muted accent and pill-shaped CTAs, though Linear skews dark where Alden is editorial-light.",
+        "business": "Linear"
+      },
+      {
+        "why": "Equally restrained palette, centered hero, editorial serif/sans pairing, and the practice of using a single soft color as inline emphasis inside otherwise black headlines.",
+        "business": "Stripe"
+      },
+      {
+        "why": "Comfortable spacing, near-white canvas, pill primary buttons, and the same confidence of letting the product mockup do the visual work while chrome stays nearly invisible.",
+        "business": "Anthropic"
+      },
+      {
+        "why": "Cream-and-ink palette, serif display headlines, near-zero decorative chrome — the same editorial-documentary register applied to a different industry.",
+        "business": "Aesop"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "badges": "30px",
+        "images": "24px",
+        "buttons": "100px",
+        "smallUI": "4px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 1,
+        "purpose": "Default page background and primary reading surface"
+      },
+      {
+        "hex": "#f3f1eb",
+        "name": "Parchment Band",
+        "level": 2,
+        "purpose": "Warm cream section backdrop and product-mockup stage"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 3,
+        "purpose": "Elevated cards and inner panels on top of either canvas or parchment"
+      },
+      {
+        "hex": "#c8dfaa",
+        "name": "Accent Wash",
+        "level": 4,
+        "purpose": "Sparingly used decorative highlight, usually behind a CTA or as section edge wash"
+      }
+    ],
+    "elevation": [],
+    "northStar": "serene clinic on warm parchment — a page so quiet the single blue word and sage button feel like the only sound in the room",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.24
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.44
+      },
+      {
+        "role": "display",
+        "size": 56,
+        "lineHeight": 1,
+        "letterSpacing": -2.24
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Primary Button",
+        "role": "Main conversion action — the only saturated filled button in the system",
+        "description": "Sage green fill (#c8dfaa), Ink Black text (#28262a), 100px border-radius, 12px vertical / 20px horizontal padding, Stk bureau Sans 16px / 500. No border, no shadow. Sits quiet against the white canvas — the color does the work, not the container."
+      },
+      {
+        "name": "Ghost Navigation Link",
+        "role": "Top-nav and footer text links",
+        "description": "No background, no border, Ink Black text (#28262a) at 14–16px / 400, 8px vertical / 12px horizontal hit area. No underline; active state uses the same color with weight 500."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Above-the-fold statement on every primary page",
+        "description": "Stk bureau Sans 48–56px / 400, Ink Black (#28262a), line-height 1.00, letter-spacing -1.44 to -2.24px. One phrase is swapped to Sky Highlight (#97cde5) to act as inline annotation. Centered on white canvas with the paragraph beneath at 18px."
+      },
+      {
+        "name": "Editorial Section Headline",
+        "role": "Large body-section openers in the About and feature sections",
+        "description": "Stk bureau Serif 40–56px / 400, Ink Black (#28262a), line-height 1.20, letter-spacing -1.44 to -2.24px, centered. One or two inline words re-colored to Sky Highlight (#97cde5) for emphasis."
+      },
+      {
+        "name": "Cream Product Stage",
+        "role": "Container that presents UI mockups and screenshots",
+        "description": "Parchment Cream (#f3f1eb) background, 24px corner radius on inner device frames, generous 40–48px internal padding. No shadow — the contrast between the white canvas and cream stage is the only elevation cue."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Content card on cream or white surfaces",
+        "description": "White (#ffffff) fill, 16px border-radius, 1px Fog Border (#dddcdd) or no border at all, 40px padding. Headings 24px / 500 Ink Black, body 16px Graphite (#4a4a4c). No shadow, no hover lift."
+      },
+      {
+        "name": "Pill Badge",
+        "role": "Category labels, status tags, inline annotations",
+        "description": "Fog Border (#dddcdd) fill or Sky Highlight (#97cde5) fill for accent variants, Ink Black or white text, 30–50px border-radius, 8px vertical / 16px horizontal padding, Stk bureau Sans 12px / 500 with +0.24px tracking."
+      },
+      {
+        "name": "Logo Strip",
+        "role": "Social proof band of partner / investor marks",
+        "description": "Single horizontal row, 16px row-gap, all logos rendered monochrome (#28262a) on white. No card frame, no divider — spacing is the only separator."
+      },
+      {
+        "name": "Quote Block",
+        "role": "Testimonial or pull-quote section",
+        "description": "Stk bureau Serif 24–32px / 400, Ink Black, centered, with a single highlighted phrase in Sky Highlight. Attributor block beneath: 40px avatar, 14px name in 500, 12px role in Graphite. Subtle blue gradient wash anchored bottom-right."
+      },
+      {
+        "name": "Decorative Blue Wash",
+        "role": "Atmospheric accent at section corners",
+        "description": "Soft radial or linear gradient from Sky Highlight (#97cde5) at low opacity fading to transparent. Anchored at the bottom-right of testimonial sections. Never used as a background fill — only as edge atmosphere."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent site header",
+        "description": "White (#ffffff) background, 16px vertical padding, logo left (Alden wordmark in Ink Black 18px / 500), nav links right at 14px / 400 with 32px gaps. 'Get Started' is a Sage Action pill button. No shadow, no border-bottom."
+      },
+      {
+        "name": "Avatar Stack",
+        "role": "Small group of headshots used as social proof or team accents",
+        "description": "Circular 40px avatars with 1px Fog Border ring, overlapping 8–12px, arranged loosely around section openers. No labels."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Workhorse sans for body, nav, buttons, badges, cards, and most UI. Tight tracking (-0.02em at body, scaling to -0.04em at 56px) gives it a condensed, editorial density. Substitute: Inter or Söhne.",
+        "sizes": "12, 14, 16, 18, 24, 30, 32, 40, 48, 56",
+        "family": "Stk bureau Sans Book Trial",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.00–1.50",
+        "substitute": "Inter",
+        "letterSpacing": "-0.04em at 56px, -0.03em at 40px, -0.02em at 16px, 0.02em at 12px (badges)"
+      },
+      {
+        "role": "Display serif reserved for the largest editorial statements — the About headline and pull quotes. The 258px instance is a single oversized decorative mark, not a functional type size. Bring it in to add gravity to section openers; never use it in UI. Substitute: Source Serif 4 or Lora.",
+        "sizes": "24, 40, 48, 56, 258",
+        "family": "Stk bureau Serif Book Trial",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.20, 1.40",
+        "substitute": "Source Serif 4",
+        "letterSpacing": "-0.04em at 48–56px, -0.02em at 24px"
+      },
+      {
+        "role": "Inter — detected in extracted data but not described by AI",
+        "sizes": "32px, 40px",
+        "family": "Inter",
+        "weight": "400",
+        "lineHeight": "1.2, 1.3",
+        "letterSpacing": "-0.02"
+      }
+    ],
+    "description": "Alden operates on an editorial healthcare register: a near-white canvas warmed by a single cream parchment surface, deep near-black typography, and exactly two chromatic accents — a whisper-soft sky blue used like a highlighter on chosen words, and a muted sage green reserved for the primary action. The system is 98% achromatic and feels intentionally clinical-but-warm, closer to a premium health magazine than a SaaS dashboard. Type mixes a geometric sans for UI with a contemporary serif for the biggest headlines, tightened by consistently negative tracking so the type sits dense and confident rather than airy. Surfaces are flat with very soft card edges (16px), buttons are fully pill-shaped, and the only decorative motion is the subtle blue wash at section edges. An AI agent should treat color as punctuation, not decoration — silence is the default state.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b6f25b86-ffcf-42f1-9f37-5e37d08cb4ce#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Alden design system\",\"item\":\"https://styles.refero.design/style/b6f25b86-ffcf-42f1-9f37-5e37d08cb4ce\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b6f25b86-ffcf-42f1-9f37-5e37d08cb4ce#style-reference\",\"name\":\"Alden design system reference\",\"headline\":\"Alden design system | Refero Styles\",\"description\":\"Explore Alden's light AI design system: Parchment Cream #f3f1eb, Ink Black #28262a colors, Stk bureau Sans Book Trial, Stk bureau Serif Book Trial...\",\"url\":\"https://styles.refero.design/style/b6f25b86-ffcf-42f1-9f37-5e37d08cb4ce\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b6f25b86-ffcf-42f1-9f37-5e37d08cb4ce\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Alden\",\"url\":\"https://www.alden.health\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b6f25b86-ffcf-42f1-9f37-5e37d08cb4ce#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/81a23dd4-667f-4129-be77-f047570f5fd5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/81a23dd4-667f-4129-be77-f047570f5fd5.jpg\",\"caption\":\"Screenshot of Alden\"},\"image\":\"https://images.refero.design/styles/refero.design/image/81a23dd4-667f-4129-be77-f047570f5fd5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Alden design system\",\"Alden website design\",\"Alden colors\",\"Alden typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Parchment Cream\",\"Ink Black\",\"Graphite\",\"Paper White\",\"Stk bureau Sans Book Trial\",\"Stk bureau Serif Book Trial\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Alden design system\"},{\"@type\":\"Thing\",\"name\":\"Alden website design\"},{\"@type\":\"Thing\",\"name\":\"Alden colors\"},{\"@type\":\"Thing\",\"name\":\"Alden typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-10T22:32:45.404Z\",\"dateModified\":\"2026-05-10T22:32:45.404Z\"}]}19:T532,## Quick Color Reference\n- text: #28262a (Ink Black)\n- background: #ffffff (Paper White)\n- border: #dddcdd (Fog Border)\n- accent: #97cde5 (Sky Highlight) — in-heading word annotation only\n- primary action: #c8dfaa (filled action)\n- alternate surface: #f3f1eb (Parchment Cream)\n\n## Example Component Prompts\n1. **Hero Headline**: Center on white canvas. 56px Stk bureau Sans weight 400, #28262a, letter-spacing -2.24px, line-height 1.00. Wrap the phrase 'Home Healthcare' in a span with color #97cde5. Subline at 18px / 400 / #4a4a4c, 24px below.\n\n2. **Pill CTA Button**: Background #c8dfaa, text #28262a, 100px border-radius, 12px vertical / 20px horizontal padding, 16px Stk bureau Sans weight 500, no border, no shadow. Place 24px below the subline.\n\n3. **Cream Product Stage**: Full-bleed #f3f1eb band, 80px vertical padding. Inside, a 24px-radius frame holding white (#ffffff) UI cards with 16px radius, 1px #dddcdd border, 40px padding. Stage width max 1100px centered.\n\n4. **Editorial Section Headline**: 48px Stk bureau Serif weight 400, #28262a, line-height 1.20, letter-spacing -1.44px, centered on white canvas. Color the word 'healthcare' #97cde5.\n\n5. **Pill Badge**: 30px border-radius, 8px vertical / 16px horizontal padding, #dddcdd background, 12px Stk bureau Sans weight 500, #28262a text, letter-spacing 0.24px."
+      },
+      {
+        "title": "Surface & Contrast Logic",
+        "content": "The system uses exactly two surfaces: #ffffff (Paper White) for the default reading canvas and #f3f1eb (Parchment Cream) as a second, warmer stage. Cards on either surface are always #ffffff themselves, so the card edge reads against the surrounding tone rather than via border or shadow. This white-on-white-on-cream layering is the only elevation language in the system. Sage Action (#c8dfaa) and Sky Highlight (#97cde5) are functional paints, not surface tones — they never appear as full backgrounds, only as button fills, in-heading word annotations, and edge washes."
+      }
+    ],
+    "elevationPhilosophy": "Alden deliberately avoids box-shadows. Elevation is communicated entirely through surface contrast: white cards on a cream band, or cream bands on a white canvas. The only structural line in the system is a 1px #dddcdd hairline, used sparingly. This produces a flat, editorial-documentary feel where hierarchy comes from typography scale and surface tone, not depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#4a4a4c",
+          "oklch": {
+            "c": 0.003292647982994259,
+            "h": 286.25346625096176,
+            "l": 0.40982522676332145
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "body",
+            "icon",
+            "image",
+            "heading",
+            "card",
+            "button",
+            "footer"
+          ],
+          "frequency": 1448,
+          "confidence": 1,
+          "prominence": 128293500.12055093,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 12,
+            "body/color": 46,
+            "card/color": 9,
+            "hero/color": 1,
+            "icon/color": 7,
+            "link/color": 11,
+            "image/color": 26,
+            "other/color": 174,
+            "button/color": 2,
+            "footer/color": 1,
+            "heading/color": 1,
+            "nav/borderColor": 48,
+            "body/borderColor": 184,
+            "card/borderColor": 36,
+            "hero/borderColor": 4,
+            "icon/borderColor": 28,
+            "link/borderColor": 44,
+            "image/borderColor": 104,
+            "other/borderColor": 694,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "card",
+            "heading",
+            "body",
+            "badge"
+          ],
+          "frequency": 106,
+          "confidence": 1,
+          "prominence": 25937794.230178416,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "card/color": 5,
+            "other/fill": 23,
+            "other/color": 5,
+            "heading/color": 3,
+            "body/borderColor": 4,
+            "card/borderColor": 20,
+            "other/borderColor": 21,
+            "heading/borderColor": 12,
+            "card/backgroundColor": 1,
+            "hero/backgroundColor": 1,
+            "badge/backgroundColor": 3,
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 523,
+          "confidence": 1,
+          "prominence": 8891218.856647247,
+          "properties": [
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/fill": 522,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f3f1eb",
+          "oklch": {
+            "c": 0.008256989009762957,
+            "h": 91.48371062737566,
+            "l": 0.9580268026251421
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 6532642.036584539,
+          "properties": [
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 13,
+            "other/stroke": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#28262a",
+          "oklch": {
+            "c": 0.007818625023131109,
+            "h": 308.14222719181663,
+            "l": 0.27235522480749363
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "heading",
+            "badge",
+            "card",
+            "body",
+            "icon",
+            "link"
+          ],
+          "frequency": 1905,
+          "confidence": 1,
+          "prominence": 3455924.370553693,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "body/color": 3,
+            "card/color": 9,
+            "icon/color": 3,
+            "other/fill": 59,
+            "badge/color": 6,
+            "other/color": 22,
+            "button/color": 4,
+            "other/stroke": 11,
+            "heading/color": 320,
+            "nav/borderColor": 8,
+            "body/borderColor": 12,
+            "card/borderColor": 36,
+            "icon/borderColor": 12,
+            "badge/borderColor": 12,
+            "other/borderColor": 88,
+            "button/borderColor": 16,
+            "heading/borderColor": 1280,
+            "card/backgroundColor": 1,
+            "link/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#dddcdd",
+          "oklch": {
+            "c": 0.0009281220803743343,
+            "h": 308.44894094777817,
+            "l": 0.8957788148199866
+          },
+          "contexts": [
+            "other",
+            "badge",
+            "heading"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 914235.0651276022,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 7,
+            "heading/borderColor": 28,
+            "badge/backgroundColor": 3,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#97cde5",
+          "oklch": {
+            "c": 0.06524231800131487,
+            "h": 227.20425811840983,
+            "l": 0.8191090265409912
+          },
+          "contexts": [
+            "heading",
+            "card"
+          ],
+          "frequency": 91,
+          "confidence": 1,
+          "prominence": 495347.10644732113,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "heading/color": 18,
+            "heading/borderColor": 72,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c8dfaa",
+          "oklch": {
+            "c": 0.07473606164140263,
+            "h": 126.95767947842769,
+            "l": 0.8731705935724062
+          },
+          "contexts": [
+            "button",
+            "card",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 213168.073941678,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "card/backgroundColor": 1,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#cbcbcb",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.842119453323592
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 73229.24850331432,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 1,
+            "body/borderColor": 4,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#dad7ca",
+          "oklch": {
+            "c": 0.017861576797069463,
+            "h": 96.12876142715922,
+            "l": 0.8779477662841687
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5496,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#e8e8db",
+          "oklch": {
+            "c": 0.017312297154133908,
+            "h": 106.73243497466682,
+            "l": 0.9274423014426836
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 4650,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 3
+          }
+        },
+        {
+          "hex": "#ddecc7",
+          "oklch": {
+            "c": 0.051522052036290435,
+            "h": 125.38172854667782,
+            "l": 0.9222179228633486
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2788,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.017150604459697443,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.59,
+          "background": "#f3f1eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17,
+          "background": "#e8e8db",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.9,
+          "background": "#ddecc7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.36,
+          "background": "#000000",
+          "foreground": "#dddcdd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.99,
+          "background": "#28262a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.59,
+          "background": "#c8dfaa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.55,
+          "background": "#dad7ca",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.27,
+          "background": "#f3f1eb",
+          "foreground": "#28262a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.94,
+          "background": "#000000",
+          "foreground": "#cbcbcb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.18,
+          "background": "#000000",
+          "foreground": "#97cde5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.13,
+          "background": "#e8e8db",
+          "foreground": "#28262a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.06,
+          "background": "#ddecc7",
+          "foreground": "#28262a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.96,
+          "background": "#dddcdd",
+          "foreground": "#28262a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.42,
+          "background": "#c8dfaa",
+          "foreground": "#28262a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.39,
+          "background": "#dad7ca",
+          "foreground": "#28262a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.24,
+          "background": "#28262a",
+          "foreground": "#cbcbcb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.84,
+          "background": "#ffffff",
+          "foreground": "#4a4a4c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.69,
+          "background": "#97cde5",
+          "foreground": "#28262a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.83,
+          "background": "#f3f1eb",
+          "foreground": "#4a4a4c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "other",
+            "badge"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|other",
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "badge",
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "badge"
+          ],
+          "frequency": 58,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 35,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 33,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 71,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 79,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 102,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 146,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 148,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 152,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 161,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 289,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 294,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Stk bureau Sans Book Trial",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 635,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Stk bureau Serif Book Trial",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 63,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.91
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Stk bureau Sans Book Trial",
+          "weight": 600,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Stk bureau Sans Book Trial",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Stk bureau Sans Book Trial",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Stk bureau Sans Book Trial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "icon",
+            "image",
+            "card",
+            "body",
+            "badge",
+            "button",
+            "footer"
+          ],
+          "frequency": 262,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Stk bureau Sans Book Trial",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Stk bureau Sans Book Trial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Stk bureau Sans Book Trial",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Stk bureau Sans Book Trial",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Stk bureau Sans Book Trial",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Stk bureau Serif Book Trial",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Stk bureau Sans Book Trial",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Stk bureau Sans Book Trial",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Stk bureau Sans Book Trial",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Stk bureau Serif Book Trial",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Stk bureau Sans Book Trial",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 205,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Stk bureau Serif Book Trial",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Stk bureau Sans Book Trial",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Stk bureau Serif Book Trial",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 258,
+          "family": "Stk bureau Serif Book Trial",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d050ff86-fd76-4f87-9a0f-6519239c9845.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/81a23dd4-667f-4129-be77-f047570f5fd5.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b6f25b86-ffcf-42f1-9f37-5e37d08cb4ce#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Alden design system\",\"item\":\"https://styles.refero.design/style/b6f25b86-ffcf-42f1-9f37-5e37d08cb4ce\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b6f25b86-ffcf-42f1-9f37-5e37d08cb4ce#style-reference\",\"name\":\"Alden design system reference\",\"headline\":\"Alden design system | Refero Styles\",\"description\":\"Explore Alden's light AI design system: Parchment Cream #f3f1eb, Ink Black #28262a colors, Stk bureau Sans Book Trial, Stk bureau Serif Book Trial...\",\"url\":\"https://styles.refero.design/style/b6f25b86-ffcf-42f1-9f37-5e37d08cb4ce\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b6f25b86-ffcf-42f1-9f37-5e37d08cb4ce\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Alden\",\"url\":\"https://www.alden.health\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b6f25b86-ffcf-42f1-9f37-5e37d08cb4ce#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/81a23dd4-667f-4129-be77-f047570f5fd5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/81a23dd4-667f-4129-be77-f047570f5fd5.jpg\",\"caption\":\"Screenshot of Alden\"},\"image\":\"https://images.refero.design/styles/refero.design/image/81a23dd4-667f-4129-be77-f047570f5fd5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Alden design system\",\"Alden website design\",\"Alden colors\",\"Alden typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Parchment Cream\",\"Ink Black\",\"Graphite\",\"Paper White\",\"Stk bureau Sans Book Trial\",\"Stk bureau Serif Book Trial\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Alden design system\"},{\"@type\":\"Thing\",\"name\":\"Alden website design\"},{\"@type\":\"Thing\",\"name\":\"Alden colors\"},{\"@type\":\"Thing\",\"name\":\"Alden typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-10T22:32:45.404Z\",\"dateModified\":\"2026-05-10T22:32:45.404Z\"}]}19:T532,## Quick Color Reference\n- text: #28262a (Ink Black)\n- background: #ffffff (Paper White)\n- border: #dddcdd (Fog Border)\n- accent: #97cde5 (Sky Highlight) — in-heading word annotation only\n- primary action: #c8dfaa (filled action)\n- alternate surface: #f3f1eb (Parchment Cream)\n\n## Example Component Prompts\n1. **Hero Headline**: Center on white canvas. 56px Stk bureau Sans weight 400, #28262a, letter-spacing -2.24px, line-height 1.00. Wrap the phrase 'Home Healthcare' in a span with color #97cde5. Subline at 18px / 400 / #4a4a4c, 24px below.\n\n2. **Pill CTA Button**: Background #c8dfaa, text #28262a, 100px border-radius, 12px vertical / 20px horizontal padding, 16px Stk bureau Sans weight 500, no border, no shadow. Place 24px below the subline.\n\n3. **Cream Product Stage**: Full-bleed #f3f1eb band, 80px vertical padding. Inside, a 24px-radius frame holding white (#ffffff) UI cards with 16px radius, 1px #dddcdd border, 40px padding. Stage width max 1100px centered.\n\n4. **Editorial Section Headline**: 48px Stk bureau Serif weight 400, #28262a, line-height 1.20, letter-spacing -1.44px, centered on white canvas. Color the word 'healthcare' #97cde5.\n\n5. **Pill Badge**: 30px border-radius, 8px vertical / 16px horizontal padding, #dddcdd background, 12px Stk bureau Sans weight 500, #28262a text, letter-spacing 0.24px."
+}

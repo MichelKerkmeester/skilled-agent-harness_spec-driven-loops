@@ -1,0 +1,1018 @@
+{
+  "source": "https://styles.refero.design/style/74be1036-f867-4cee-959a-a9a9129111c0",
+  "uuid": "74be1036-f867-4cee-959a-a9a9129111c0",
+  "name": "Moonli",
+  "northStar": "Electric lime on white canvas — one vivid room carved out of monochrome space, framed by generous rounded edges.",
+  "capturedAt": "2026-07-18T09:15:32.704Z",
+  "meta": {
+    "url": "https://moonli.me",
+    "siteName": "Moonli",
+    "extractedAt": "2026-06-03T20:18:39.108Z",
+    "durationMs": 30320,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 418,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #b8ff65 only as a full-section or full-card background — never as a button fill, text color, or icon tint",
+      "Apply 30px border-radius to all cards and 40px to all nav-pill elements",
+      "Use DM Sans 700 with letter-spacing -0.05em for any text at 48px or above",
+      "Keep all icons, borders, and text #000000 — the system is binary between black and white, with lime as the only third voice",
+      "Use line illustrations (single-weight black strokes, no fill) to add personality on lime surfaces",
+      "Pair sections as adjacent rounded blocks rather than separating with dividers — the 30px radius and color contrast create the structure",
+      "Center the page at ~1200px max-width; let white margins breathe"
+    ],
+    "donts": [
+      "Never use #b8ff65 as a CTA button background or link color — the lime is atmospheric, not interactive",
+      "Avoid introducing additional chromatic colors — no blues, purples, or status hues. The system is two-tone plus lime",
+      "Don't apply shadows or gradients — the design is strictly flat with border-defined elevation",
+      "Avoid sharp corners below 30px on cards or containers — small radii break the system's softness",
+      "Don't use letter-spacing looser than -0.01em at body sizes or tighter than -0.05em at display",
+      "Never place lime text on white or white text on lime at small sizes — keep it large to preserve the 17.5:1 contrast",
+      "Avoid photographic imagery, gradients, or filled illustrations — line art in black is the only visual language"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#b8ff65",
+        "name": "Lime Voltage",
+        "role": "Atmospheric section backgrounds, hero block — the single chromatic voice of the system, used at full-section scale rather than as UI accent",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Primary text, all borders, all icons, scroll-indicator fill, logo mark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page background, card surfaces, nav element fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f3f3f3",
+        "name": "Fog White",
+        "role": "Secondary card surface, alternating section backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2e2e2",
+        "name": "Ash Border",
+        "role": "Card borders, hairline dividers on white surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#757575",
+        "name": "Smoke",
+        "role": "Muted helper text, secondary metadata, caption-level information",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Centered, max-width ~1200px contained layout. The hero is a full-width lime block with centered headline and flanking line illustrations. Below, a horizontally scrolling row of network cards (#ffffff, 30px radius) sits inside a fog-white container. Two-column sections follow a repeating pattern: one lime column paired with one fog-white column, each 30px radius, creating a yin-yang rhythm. Generous vertical spacing (40-70px between sections). Navigation is a minimal top bar with a pill-shaped CTA on the right. The overall density is spacious — white space dominates, with content blocks floating as discrete rounded cards rather than filling the page edge-to-edge.",
+    "imagery": "No photography. All visuals are hand-drawn line illustrations in single-weight black strokes (approximately 1.5px) depicting geometric 3D objects — monitors, coins, books, crystals, pyramids, coins on stacks. Illustrations sit on lime backgrounds and function as atmospheric decoration rather than explanatory content. Third-party logos (network chains, charities) appear as small monochrome marks inside circular or pill containers. The visual density is low — illustrations occupy generous negative space and never overlap or crowd the typography.",
+    "similar": [
+      {
+        "why": "Same ultra-minimal palette discipline with one accent color, generous rounded corners, and tight letter-spacing on display headings",
+        "business": "Linear"
+      },
+      {
+        "why": "Similar poster-like hero blocks with full-bleed color washes and bold sans-serif display type",
+        "business": "Evervault"
+      },
+      {
+        "why": "Same crypto/blockchain domain with stark monochrome UI and rounded card surfaces",
+        "business": "Ledger (corporate site)"
+      },
+      {
+        "why": "Shared two-tone aesthetic (white + single vivid accent) with large border-radius and confident display type",
+        "business": "Cove"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "40px",
+        "cards": "30px",
+        "buttons": "40px",
+        "circles": "9999px"
+      },
+      "elementGap": "20-25px",
+      "sectionGap": "40-70px",
+      "cardPadding": "30-40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Page canvas, nav background"
+      },
+      {
+        "hex": "#f3f3f3",
+        "name": "Fog White",
+        "level": 1,
+        "purpose": "Secondary card surface, alternating sections"
+      },
+      {
+        "hex": "#b8ff65",
+        "name": "Lime Voltage",
+        "level": 2,
+        "purpose": "Atmospheric hero and feature block backgrounds"
+      }
+    ],
+    "northStar": "Electric lime on white canvas — one vivid room carved out of monochrome space, framed by generous rounded edges.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.75
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.26
+      },
+      {
+        "role": "heading-sm",
+        "size": 38,
+        "lineHeight": 1.17
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.13
+      },
+      {
+        "role": "display",
+        "size": 58,
+        "lineHeight": 1.08
+      }
+    ],
+    "components": [
+      {
+        "name": "Lime Hero Block",
+        "role": "Primary hero — full-width atmospheric section",
+        "description": "Full-width #b8ff65 background, 30px border-radius, padded 40-70px. Black DM Sans 58px/1.08/weight 700/letter-spacing -0.05em headline centered or left-aligned. Black line illustrations flanking the text on left and right. Black body copy at 16px/1.5 underneath."
+      },
+      {
+        "name": "White Content Card",
+        "role": "Standard surface for information blocks",
+        "description": "#ffffff background, 1px #e2e2e2 border, 30px border-radius, 30-40px padding. Contains black headings at 38-48px and body at 16px."
+      },
+      {
+        "name": "Network Logo Card",
+        "role": "Horizontal scroll card showing a blockchain network",
+        "description": "#ffffff background, 1px #e2e2e2 border, 30px border-radius, 20px padding. Network name in DM Sans 500 at 24px, logo icon as circular 48-56px element on the right side."
+      },
+      {
+        "name": "Charity Circle",
+        "role": "Circular badge for charity/cause logos in the Giving Back section",
+        "description": "Perfect circle (9999px radius), #f3f3f3 background, black logo inside at ~50% fill. Arranged in grid."
+      },
+      {
+        "name": "Nav Pill Button",
+        "role": "Primary navigation CTA (Stake Now)",
+        "description": "#ffffff background, 1px #e2e2e2 border, 40px border-radius, 12px vertical / 20px horizontal padding. Text in DM Sans 500 at 16px, #000000."
+      },
+      {
+        "name": "Ghost Nav Link",
+        "role": "Standard navigation text item",
+        "description": "No background, no border. DM Sans 500 at 16px, #000000. Horizontal spacing 25px between items."
+      },
+      {
+        "name": "Scroll-Down Indicator",
+        "role": "Floating circular button prompting scroll",
+        "description": "#000000 fill, perfect circle (~48px), white chevron icon centered. Positioned overlapping section boundary."
+      },
+      {
+        "name": "Two-Column Feature Section",
+        "role": "Giving Back and similar split layouts",
+        "description": "Lime green left column (#b8ff65) paired with Fog White right column (#f3f3f3), both 30px border-radius. Left holds heading + body + illustration; right holds logo grid + supporting copy."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand identity in nav and footer",
+        "description": "Black circular icon (~36px) containing a white abstract curve mark, followed by 'moonli' wordmark in DM Sans 500 at ~20px, #000000."
+      },
+      {
+        "name": "Line Illustration Block",
+        "role": "Decorative visual on green surfaces",
+        "description": "Black single-weight line art depicting 3D objects (books, coins, monitors, crystals). Drawn at ~1.5px stroke, no fill. Positioned at edges of lime sections."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface — weight 700 for display and headings, 500 for navigation and subheadings, 400 for body and captions. The aggressive negative tracking at display sizes (-0.05em at 58px) is signature: DM Sans becomes a compressed, poster-like headline tool rather than a neutral body face. At body sizes tracking relaxes to -0.01em, giving copy a natural rhythm without feeling mechanical.",
+        "sizes": "14px, 16px, 24px, 38px, 48px, 58px",
+        "family": "DM Sans",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.08 (display), 1.13–1.17 (large headings), 1.26 (subheadings), 1.45–1.50 (body), 1.75 (body-sm/captions)",
+        "substitute": "Inter, Satoshi, General Sans",
+        "letterSpacing": "-0.05em at 58px, -0.03em at 38–48px, -0.01em at 14–24px"
+      }
+    ],
+    "description": "Moonli runs on radical color minimalism: a white canvas, black type, and one electrifying lime accent that appears as a single massive atmospheric block rather than scattered UI elements. The lime (#b8ff65) functions as a room, not a highlight — it floods the hero entirely and reappears in section backgrounds, never as a button fill or icon tint. Everything else is pure black-on-white, anchored by generous 30-40px border radii that soften the stark monochrome contrast. DM Sans carries the entire typographic system across a wide weight range, with tight letter-spacing that scales aggressively negative at display sizes (-0.05em at 58px). Line illustrations in black on the green surfaces add personality and warmth without breaking the two-color discipline. The result reads as confident, almost poster-like — like a single bright object in a gallery of white walls.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/74be1036-f867-4cee-959a-a9a9129111c0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Moonli design system\",\"item\":\"https://styles.refero.design/style/74be1036-f867-4cee-959a-a9a9129111c0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/74be1036-f867-4cee-959a-a9a9129111c0#style-reference\",\"name\":\"Moonli design system reference\",\"headline\":\"Moonli design system | Refero Styles\",\"description\":\"Explore Moonli's light Crypto design system: Lime Voltage #b8ff65, Obsidian #000000 colors, DM Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/74be1036-f867-4cee-959a-a9a9129111c0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/74be1036-f867-4cee-959a-a9a9129111c0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Moonli\",\"url\":\"https://moonli.me\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/74be1036-f867-4cee-959a-a9a9129111c0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ed23be71-a6aa-459f-a93e-c934eb2813e1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ed23be71-a6aa-459f-a93e-c934eb2813e1.jpg\",\"caption\":\"Screenshot of Moonli\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ed23be71-a6aa-459f-a93e-c934eb2813e1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Moonli design system\",\"Moonli website design\",\"Moonli colors\",\"Moonli typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Lime Voltage\",\"Obsidian\",\"Paper White\",\"Fog White\",\"DM Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Moonli design system\"},{\"@type\":\"Thing\",\"name\":\"Moonli website design\"},{\"@type\":\"Thing\",\"name\":\"Moonli colors\"},{\"@type\":\"Thing\",\"name\":\"Moonli typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-07T18:05:59.221Z\",\"dateModified\":\"2026-05-07T18:05:59.221Z\"}]}19:T61c,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- surface: #f3f3f3\n- border: #e2e2e2\n- accent (atmospheric only): #b8ff65\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a hero section: full-width #b8ff65 background, 30px border-radius, 60px vertical padding. Headline at 58px DM Sans weight 700, #000000, letter-spacing -0.05em, line-height 1.08. Subtext at 16px DM Sans weight 400, #000000, line-height 1.5. Black single-stroke line illustrations flanking the text.\n\n2. Create a network card: #ffffff background, 1px #e2e2e2 border, 30px border-radius, 20px padding. Network name at 24px DM Sans weight 500, #000000. Circular logo icon (48px) on the right side.\n\n3. Create a nav bar: #ffffff background, centered at 1200px max-width. Logo (black circle + 'moonli' wordmark in DM Sans 500) on the left. Nav links at 16px DM Sans weight 500, #000000, 25px horizontal spacing. 'Stake Now' button on the right: #ffffff background, 1px #e2e2e2 border, 40px border-radius, 12px 20px padding, DM Sans 500 at 16px.\n\n4. Create a two-column feature block: left column #b8ff65 with 30px border-radius, right column #f3f3f3 with 30px border-radius. Left column has 38px DM Sans 700 heading + 16px body + black line illustration. Right column has a 3×2 grid of charity circles (#f3f3f3 background, perfect circle, black logo inside).\n\n5. Create a scroll-down indicator: 48px perfect circle, #000000 fill, white chevron-down icon centered. Positioned overlapping the boundary between the lime hero and the next white section."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. Elevation is expressed through border color (1px #e2e2e2) and surface color shifts (white → fog → lime). The system is strictly flat; depth comes from layering rounded blocks, not from drop shadows."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "hero",
+            "card",
+            "heading",
+            "icon",
+            "footer"
+          ],
+          "frequency": 1999,
+          "confidence": 1,
+          "prominence": 129448890.323579,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 24,
+            "card/color": 35,
+            "hero/color": 2,
+            "icon/color": 4,
+            "link/color": 6,
+            "image/color": 105,
+            "other/color": 219,
+            "footer/color": 1,
+            "heading/color": 10,
+            "nav/borderColor": 88,
+            "card/borderColor": 112,
+            "hero/borderColor": 8,
+            "icon/borderColor": 16,
+            "link/borderColor": 24,
+            "image/borderColor": 420,
+            "other/borderColor": 876,
+            "footer/borderColor": 4,
+            "heading/borderColor": 40,
+            "link/backgroundColor": 4,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b8ff65",
+          "oklch": {
+            "c": 0.19711242920277033,
+            "h": 130.38418275681158,
+            "l": 0.9229691929514113
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1062503.3867959378,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f3f3f3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9641535001508271
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 864034.3824556347,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "card",
+            "heading",
+            "nav",
+            "other"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 453794.0273577196,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 6,
+            "other/fill": 3,
+            "heading/color": 1,
+            "nav/borderColor": 28,
+            "other/borderColor": 1,
+            "heading/borderColor": 4,
+            "card/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#e2e2e2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9127904142191143
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 28,
+          "confidence": 1,
+          "prominence": 388638.47961020574,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 28
+          }
+        },
+        {
+          "hex": "#757575",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5624050641913382
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 160648.44266875283,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 1,
+            "body/borderColor": 4,
+            "other/borderColor": 3
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0005097954977441364,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.93,
+          "background": "#f3f3f3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.53,
+          "background": "#b8ff65",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.21,
+          "background": "#e2e2e2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.61,
+          "background": "#ffffff",
+          "foreground": "#757575"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.56,
+          "background": "#000000",
+          "foreground": "#757575"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.15,
+          "background": "#f3f3f3",
+          "foreground": "#757575"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.85,
+          "background": "#b8ff65",
+          "foreground": "#757575"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.2,
+          "background": "#b8ff65",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#f3f3f3",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 30,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 10,
+          "contexts": [
+            "heading",
+            "other",
+            "card"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading",
+            "paddingBottom|other",
+            "marginRight|card",
+            "marginLeft|card",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "nav",
+            "card"
+          ],
+          "frequency": 123,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingTop|other",
+            "marginRight|card",
+            "marginBottom|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "hero",
+            "card",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "card",
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginBottom|card",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 73,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "heading",
+            "card"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 113,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 184,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 210,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 215,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "DM Sans",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 415,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "hero",
+            "card",
+            "icon",
+            "footer",
+            "body"
+          ],
+          "frequency": 369,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.75,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "card"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.45,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "DM Sans",
+          "weight": 700,
+          "contexts": [
+            "card",
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.26,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "DM Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.08,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "DM Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "DM Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.08,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "DM Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/27d58ca6-59d6-4d78-bb10-67851f8876cd.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ed23be71-a6aa-459f-a93e-c934eb2813e1.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/74be1036-f867-4cee-959a-a9a9129111c0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Moonli design system\",\"item\":\"https://styles.refero.design/style/74be1036-f867-4cee-959a-a9a9129111c0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/74be1036-f867-4cee-959a-a9a9129111c0#style-reference\",\"name\":\"Moonli design system reference\",\"headline\":\"Moonli design system | Refero Styles\",\"description\":\"Explore Moonli's light Crypto design system: Lime Voltage #b8ff65, Obsidian #000000 colors, DM Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/74be1036-f867-4cee-959a-a9a9129111c0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/74be1036-f867-4cee-959a-a9a9129111c0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Moonli\",\"url\":\"https://moonli.me\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/74be1036-f867-4cee-959a-a9a9129111c0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ed23be71-a6aa-459f-a93e-c934eb2813e1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ed23be71-a6aa-459f-a93e-c934eb2813e1.jpg\",\"caption\":\"Screenshot of Moonli\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ed23be71-a6aa-459f-a93e-c934eb2813e1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Moonli design system\",\"Moonli website design\",\"Moonli colors\",\"Moonli typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Lime Voltage\",\"Obsidian\",\"Paper White\",\"Fog White\",\"DM Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Moonli design system\"},{\"@type\":\"Thing\",\"name\":\"Moonli website design\"},{\"@type\":\"Thing\",\"name\":\"Moonli colors\"},{\"@type\":\"Thing\",\"name\":\"Moonli typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-07T18:05:59.221Z\",\"dateModified\":\"2026-05-07T18:05:59.221Z\"}]}19:T61c,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- surface: #f3f3f3\n- border: #e2e2e2\n- accent (atmospheric only): #b8ff65\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a hero section: full-width #b8ff65 background, 30px border-radius, 60px vertical padding. Headline at 58px DM Sans weight 700, #000000, letter-spacing -0.05em, line-height 1.08. Subtext at 16px DM Sans weight 400, #000000, line-height 1.5. Black single-stroke line illustrations flanking the text.\n\n2. Create a network card: #ffffff background, 1px #e2e2e2 border, 30px border-radius, 20px padding. Network name at 24px DM Sans weight 500, #000000. Circular logo icon (48px) on the right side.\n\n3. Create a nav bar: #ffffff background, centered at 1200px max-width. Logo (black circle + 'moonli' wordmark in DM Sans 500) on the left. Nav links at 16px DM Sans weight 500, #000000, 25px horizontal spacing. 'Stake Now' button on the right: #ffffff background, 1px #e2e2e2 border, 40px border-radius, 12px 20px padding, DM Sans 500 at 16px.\n\n4. Create a two-column feature block: left column #b8ff65 with 30px border-radius, right column #f3f3f3 with 30px border-radius. Left column has 38px DM Sans 700 heading + 16px body + black line illustration. Right column has a 3×2 grid of charity circles (#f3f3f3 background, perfect circle, black logo inside).\n\n5. Create a scroll-down indicator: 48px perfect circle, #000000 fill, white chevron-down icon centered. Positioned overlapping the boundary between the lime hero and the next white section."
+}

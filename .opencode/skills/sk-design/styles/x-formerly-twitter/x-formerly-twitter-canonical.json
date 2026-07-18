@@ -1,0 +1,1337 @@
+{
+  "source": "https://styles.refero.design/style/655340ae-abff-4a90-8545-8feb62411f68",
+  "uuid": "655340ae-abff-4a90-8545-8feb62411f68",
+  "name": "X (formerly Twitter)",
+  "northStar": "blue wire on white newsprint. A stark, content-first timeline where one vivid blue punctures an otherwise monochrome interface, and pill-shaped controls signal action without weight.",
+  "capturedAt": "2026-07-18T09:28:36.514Z",
+  "meta": {
+    "url": "https://create.video",
+    "siteName": "X (formerly Twitter)",
+    "extractedAt": "2026-06-03T19:32:01.467Z",
+    "durationMs": 32211,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1570,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 9999px radius on all interactive buttons, tags, and avatars",
+      "Apply TwitterChirp with font-feature-settings: \"ss01\" on all UI text",
+      "Use #1d9bf0 exclusively for actionable elements: Follow buttons, links, verified badges, active states",
+      "Separate cards with 1px borders in #eff3f4 or #cfd9de — never use shadows for card definition",
+      "Use #0f1419 for primary text, #536471 for secondary text, and #829aab for tertiary/disabled",
+      "Maintain the three-column layout: left nav (68px), center feed (600px), right rail (290px) within a 990px max-width",
+      "Use #eff3f4 for hover states and secondary surface fills only"
+    ],
+    "donts": [
+      "Don't introduce any chromatic color beyond #1d9bf0 — the single-accent rule defines the system",
+      "Don't use shadows for card separation — use hairline borders only",
+      "Don't use sharp or moderate radii (0-8px) on buttons, tags, or avatars — 9999px is mandatory for interactive surfaces",
+      "Don't center body text or feed content — left-align everything for scannability",
+      "Don't use weight 800 for body text — reserve for display names, headlines, and the 20-23px scale only",
+      "Don't add decorative imagery, illustrations, or branded graphics — user content is the visual layer",
+      "Don't use #000000 for text — use #0f1419 for the softer near-black that defines the system"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#1d9bf0",
+        "name": "X Blue",
+        "role": "Follow buttons, link text, verified badges, active nav icons, bottom CTA accents — the only chromatic color in the system, used sparingly to mark anything interactive or trustworthy",
+        "group": "brand"
+      },
+      {
+        "hex": "#0f1419",
+        "name": "Ink Black",
+        "role": "Primary text, button text, icon fills — the dominant readable foreground on light surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#536471",
+        "name": "Graphite",
+        "role": "Secondary text, metadata, timestamps, muted icon fills, helper labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#829aab",
+        "name": "Fog Gray",
+        "role": "Tertiary text and disabled-state foreground",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page background, card surfaces, modal surfaces, button text on chromatic fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eff3f4",
+        "name": "Mist Gray",
+        "role": "Hover states, secondary surface fills, subtle dividers, input backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cfd9de",
+        "name": "Hairline Gray",
+        "role": "1px border strokes separating cards, inputs, nav sections, and buttons",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e0e4e7",
+        "name": "Shadow Dust",
+        "role": "Inset shadow base for inputs and select surfaces — 3% opacity black on this tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4b4f53",
+        "name": "Charcoal",
+        "role": "Dark-mode surface fill (previews, code blocks, dim button state)",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Three-column desktop layout centered within ~990px max-width. Left column: icon-only vertical nav (~68px), black X logo at top, navigation icons stacked vertically centered. Center column: ~600px wide, the main content surface (feed, profile, explore). Right column: ~290px wide, sticky sidebar with search, sign-up card, and footer links. Profile pages add a full-bleed banner image at top spanning the center+right columns, with the avatar overlapping the banner/content boundary. Cards stack vertically with 0px gap (separated only by 1px #eff3f4 hairline borders). No alternating section bands — the entire page is one continuous white surface. A full-width sticky bottom bar (blue) appears as an acquisition prompt. Navigation is minimal: left icon rail on desktop, bottom tab bar on mobile.",
+    "imagery": "Imagery is user-generated, not branded. Profile banners are user-uploaded photos or abstract color fields (often warm tones like the orange shown). Post media is user-uploaded images and videos displayed at full card width with no decorative treatment — no masks, no rounded corners on the media itself. The X logo is the only branded visual asset: a stark black geometric mark. Icons throughout are single-color, filled, simple geometric shapes (circles, arrows, hearts, retweet arrows) at ~18.75px, rendered in #0f1419 or #536471 with no multi-color treatments. There are no illustrations, no abstract decorative graphics, no product photography — the platform is a container for user content, and the visual language reinforces that by being completely transparent.",
+    "similar": [
+      {
+        "why": "Same text-first content feed philosophy, hairline border card separation, single accent color (Reddit Orange vs X Blue) on an otherwise monochrome interface, pill-shaped action buttons",
+        "business": "Reddit"
+      },
+      {
+        "why": "Near-identical three-column layout, infinite-radius pill buttons, and the same minimal-chrome approach to surfacing social conversation; both treat the timeline as a content surface rather than a software product",
+        "business": "Threads"
+      },
+      {
+        "why": "Same compact density, hairline borders instead of shadows, and content-first vertical feed; Mastodon's purple accent operates the same single-color-punctuation role as X Blue",
+        "business": "Mastodon"
+      },
+      {
+        "why": "Same newswire-on-white-paper philosophy — pure typographic hierarchy, zero decorative chrome, information density prioritized over visual comfort, hairline separators between items",
+        "business": "Hacker News"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "16px",
+        "inputs": "4px",
+        "modals": "16px",
+        "avatars": "9999px",
+        "buttons": "9999px"
+      },
+      "elementGap": "4px",
+      "sectionGap": "",
+      "cardPadding": "12px",
+      "pageMaxWidth": "990px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — the entire app sits on pure white"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Post cards, profile sections, sidebar widgets — same white as canvas, defined only by hairline borders"
+      },
+      {
+        "hex": "#eff3f4",
+        "name": "Hover",
+        "level": 2,
+        "purpose": "Interactive feedback on rows, links, nav items — the only secondary fill"
+      },
+      {
+        "hex": "#1d9bf0",
+        "name": "Action",
+        "level": 3,
+        "purpose": "Filled button backgrounds, active states, accent washes"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(101, 119, 134, 0.2) 0px 0px 8px 0px, rgba(101, 119, 134, 0.25) 0px 1px 3px 1px",
+        "element": "Dropdown Overlay"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.03) 0px 0px 2px 0px inset",
+        "element": "Input Fields"
+      }
+    ],
+    "northStar": "blue wire on white newsprint. A stark, content-first timeline where one vivid blue punctures an otherwise monochrome interface, and pill-shaped controls signal action without weight.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.22
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 23,
+        "lineHeight": 1.09
+      }
+    ],
+    "components": [
+      {
+        "name": "Follow Button",
+        "role": "Primary action — subscribing to a user's timeline",
+        "description": "Pill button, 9999px radius, #1d9bf0 background, #ffffff text, TwitterChirp 15px weight 700, padding 0 16px, height ~36px. On hover, background lightens to ~#1a8cd8. Followed state inverts to outlined: transparent background, #536471 border (1px), #536471 text."
+      },
+      {
+        "name": "Post/Reply Button",
+        "role": "Composing a new post or reply",
+        "description": "Pill button, 9999px radius, #1d9bf0 background, #ffffff text, TwitterChirp 15px weight 700, full-width in compose area, min-height 36px, padding 0 16px. Disabled state reduces opacity to ~50%."
+      },
+      {
+        "name": "Ghost Nav Button",
+        "role": "Secondary nav actions (back, more menus)",
+        "description": "Circular 36×36px button, 9999px radius, transparent background, #0f1419 icon fill, no border. On hover, background fills with #eff3f4."
+      },
+      {
+        "name": "Tweet Card",
+        "role": "Single post in the feed timeline",
+        "description": "Full-width card on white (#ffffff), 1px bottom border in #eff3f4, padding 12px 16px. Contains 40px circular avatar, display name (TwitterChirp 15px weight 700 #0f1419) with optional verified check in #1d9bf0, @handle (TwitterChirp 15px weight 400 #536471), timestamp (13px #536471), post body (15px #0f1419), and optional media. Three-dot overflow menu at top-right."
+      },
+      {
+        "name": "Post Action Bar",
+        "role": "Engagement interactions on each post",
+        "description": "Horizontal row of five icon+count groups: reply, retweet, like, view count, bookmark, share. Icons in #536471 at 18.75px. Active states: retweet turns #00ba7c green, like turns #f91880 pink. Numbers in TwitterChirp 13px #536471. Vertical spacing between icon groups auto-distributes."
+      },
+      {
+        "name": "Sign Up Card (Right Sidebar)",
+        "role": "New user acquisition in right rail",
+        "description": "Card with #ffffff background, 16px radius, 1px #eff3f4 border (or no border on flat variant), padding ~16px. Contains headline 'New to X?' (20px weight 800 #0f1419), subtext (15px #536471), three stacked buttons: 'Sign up with Google' (white bg, #cfd9de border, black Google icon), 'Sign up with Apple' (white bg, #cfd9de border, black Apple icon), 'Create account' (outlined pill, #cfd9de border, #0f1419 text, 9999px radius)."
+      },
+      {
+        "name": "Bottom Sticky CTA Bar",
+        "role": "Persistent acquisition prompt",
+        "description": "Full-width sticky bar at viewport bottom, #1d9bf0 background, padding 12px 16px. Left side: headline 'Don't miss what's happening' (15px weight 700 #ffffff), subtext (13px #ffffff). Right side: two pill buttons — 'Log in' (white bg, #0f1419 text) and 'Sign up' (outline white border, #ffffff text), both 9999px radius, ~32px height."
+      },
+      {
+        "name": "Profile Header",
+        "role": "User identity surface on profile pages",
+        "description": "Top section with full-width banner image (auto-height, no radius), 133×133px circular avatar overlapping banner by ~33px, padding 16px below. Profile name (20px weight 800 #0f1419) with verified badge, @handle (15px #536471), bio (15px #0f1419), link (15px #1d9bf0), metadata row (join date, location in 15px #536471), follower/following counts (15px #0f1419, label #536471). Follow button positioned top-right as pill."
+      },
+      {
+        "name": "Search Input",
+        "role": "Global search and query input",
+        "description": "Rounded input with 4px radius, #eff3f4 background, padding 8px 12px, placeholder text 15px #536471. No visible border. Search icon prefix in #536471. On focus, adds inset shadow rgba(0,0,0,0.03) 0px 0px 2px 0px."
+      },
+      {
+        "name": "Verified Badge",
+        "role": "Authenticity marker on accounts",
+        "description": "Small inline icon (~16px) in #1d9bf0, placed immediately after display name. Filled badge with check mark. No text label in standard variant."
+      },
+      {
+        "name": "Tab Bar (Posts/Replies/Media)",
+        "role": "Profile page content filter",
+        "description": "Horizontal tab strip, no background, 1px bottom border #cfd9de spanning full width. Each tab: TwitterChirp 15px weight 500, #536471 inactive / #0f1419 active, padding 16px, centered text. Active tab has 2px #1d9bf0 underline at bottom edge."
+      },
+      {
+        "name": "Avatar",
+        "role": "User identity thumbnail",
+        "description": "Circular image, 9999px radius, sizes range from 32px (feed) to 40px (tweet cards) to 133px (profile header). Fallback: #cfd9de background with user initial in #0f1419."
+      },
+      {
+        "name": "Dropdown Overlay",
+        "role": "Contextual menus and pickers",
+        "description": "Floating card with #ffffff background, 16px radius, subtle shadow rgba(101,119,134,0.2) 0px 0px 8px 0px + rgba(101,119,134,0.25) 0px 1px 3px 1px, padding 4px 0. Menu items: TwitterChirp 15px #0f1419, padding 8px 12px, hover fills #eff3f4."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary brand typeface across all UI — feeds, nav, buttons, headings, body. The custom letterforms with ss01 stylistic set create X's distinctive voice; the tightly compressed 0.80 lineHeight on small sizes maximizes information density in the feed.",
+        "sizes": "11px, 13px, 14px, 15px, 20px, 23px",
+        "family": "TwitterChirp",
+        "weight": "400, 500, 700, 800",
+        "lineHeight": "0.80, 1.09, 1.14, 1.20, 1.22, 1.23, 1.33",
+        "substitute": "Inter, system-ui, -apple-system",
+        "fontFeatureSettings": "\"ss01\" on"
+      },
+      {
+        "role": "System fallback for legacy rendering paths; not a design choice but a technical fallback that should never appear in production UI",
+        "sizes": "15px",
+        "family": "Times",
+        "weight": "400, 700",
+        "lineHeight": "1.20",
+        "substitute": "n/a"
+      }
+    ],
+    "description": "X is a newswire on white paper: a content-first real-time conversation surface where the UI dissolves into the background so text and media carry the experience. The design is ruthlessly minimal — a three-column grid (left nav, center feed, right rail), hairline borders instead of shadows, and one chromatic accent (X Blue) that appears only on things you can tap. Typography is the product: TwitterChirp's custom letterforms with the ss01 stylistic set create a distinctive voice across every weight. Buttons are infinite-radius pills, surfaces are flat whites, and density stays compact to maximize feed real estate. Every visual choice reinforces the idea that X is a public square, not a software product — the chrome is scaffolding, the content is the building.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/655340ae-abff-4a90-8545-8feb62411f68#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"X (formerly Twitter) design system\",\"item\":\"https://styles.refero.design/style/655340ae-abff-4a90-8545-8feb62411f68\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/655340ae-abff-4a90-8545-8feb62411f68#style-reference\",\"name\":\"X (formerly Twitter) design system reference\",\"headline\":\"X (formerly Twitter) design system | Refero Styles\",\"description\":\"Explore X (formerly Twitter)'s light Media design system: X Blue #1d9bf0, Ink Black #0f1419 colors, TwitterChirp, Times typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/655340ae-abff-4a90-8545-8feb62411f68\",\"mainEntityOfPage\":\"https://styles.refero.design/style/655340ae-abff-4a90-8545-8feb62411f68\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"X (formerly Twitter)\",\"url\":\"https://create.video\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/655340ae-abff-4a90-8545-8feb62411f68#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5a3aae32-0646-4cb1-b265-59a8814b36c9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5a3aae32-0646-4cb1-b265-59a8814b36c9.jpg\",\"caption\":\"Screenshot of X (formerly Twitter)\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5a3aae32-0646-4cb1-b265-59a8814b36c9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"X (formerly Twitter) design system\",\"X (formerly Twitter) website design\",\"X (formerly Twitter) colors\",\"X (formerly Twitter) typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"X Blue\",\"Ink Black\",\"Graphite\",\"Fog Gray\",\"TwitterChirp\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"X (formerly Twitter) design system\"},{\"@type\":\"Thing\",\"name\":\"X (formerly Twitter) website design\"},{\"@type\":\"Thing\",\"name\":\"X (formerly Twitter) colors\"},{\"@type\":\"Thing\",\"name\":\"X (formerly Twitter) typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T01:53:48.786Z\",\"dateModified\":\"2026-04-30T01:53:48.786Z\"}]}19:T7cb,## Quick Color Reference\n- text (primary): #0f1419\n- text (secondary): #536471\n- background: #ffffff\n- border: #cfd9de\n- accent: #1d9bf0\n- primary action: #1d9bf0 (filled action)\n\n## Example Component Prompts\n\n**1. Create a Follow Button:**\nPill button, 9999px radius, #1d9bf0 background, #ffffff text, TwitterChirp 15px weight 700 with font-feature-settings \"ss01\" on, padding 0 16px, height 36px. Hover: background #1a8cd8.\n\n**2. Create a Tweet Card:**\nFull-width card, #ffffff background, 1px bottom border #eff3f4, padding 12px 16px. Left: 40px circular avatar (9999px radius). Right: display name (TwitterChirp 15px weight 700 #0f1419) + verified badge (#1d9bf0 check icon) + @handle (15px weight 400 #536471) + timestamp (13px #536471). Body text: 15px #0f1419. Action bar below: five icon groups in #536471 at 18.75px, with counts in 13px #536471.\n\n**3. Create a Profile Header:**\nFull-width banner image (no radius, auto height ~200px). 133px circular avatar (9999px radius) overlapping banner bottom by ~33px, positioned 16px from left. Name: TwitterChirp 20px weight 800 #0f1419 + verified badge. Handle: 15px #536471. Bio: 15px #0f1419. Follow button top-right: pill 9999px, #1d9bf0 bg, #ffffff text, 15px weight 700.\n\n**4. Create a Sign-Up Sidebar Card:**\nCard with #ffffff background, 16px radius, no border, padding 16px. Headline: 'New to X?' at 20px weight 800 #0f1419. Subtext: 15px #536471. Three stacked buttons: two social auth buttons (#ffffff bg, 1px #cfd9de border, 9999px radius, black brand icon, 15px weight 500 #0f1419 text) and one 'Create account' outlined button (transparent bg, 1px #cfd9de border, #0f1419 text, 9999px radius, full width).\n\n**5. Create a Bottom Sticky CTA Bar:**\nFull-width sticky bar, #1d9bf0 background, padding 12px 16px. Left: headline 15px weight 700 #ffffff, subtext 13px #ffffff. Right: two pill buttons — 'Log in' (white bg, #0f1419 text) and 'Sign up' (1px white border, transparent bg, #ffffff text), both 9999px radius, ~32px height."
+      },
+      {
+        "title": "Single-Accent Philosophy",
+        "content": "X enforces a monochrome interface with exactly one chromatic accent. The system is designed so that if you removed all #1d9bf0 from the interface, you would still understand the entire information architecture — the blue is decoration layered onto a complete achromatic system, not a load-bearing color. This means: text hierarchy works without color (weight + #0f1419 vs #536471), card separation works without color (hairline borders), interactive affordance works without color (pill shape + cursor). The blue arrives only on things that demand attention: a button you haven't pressed yet, a link you haven't clicked, a verified account. This restraint is the brand — X feels confident because it doesn't reach for color to explain itself."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "button",
+            "nav",
+            "link",
+            "card",
+            "hero"
+          ],
+          "frequency": 5581,
+          "confidence": 1,
+          "prominence": 492803301.3692871,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 14,
+            "card/color": 7,
+            "hero/color": 1,
+            "link/color": 1,
+            "other/fill": 6,
+            "other/color": 595,
+            "button/color": 49,
+            "heading/color": 3,
+            "nav/borderColor": 231,
+            "body/borderColor": 561,
+            "card/borderColor": 28,
+            "hero/borderColor": 4,
+            "link/borderColor": 216,
+            "other/borderColor": 3678,
+            "button/borderColor": 164,
+            "heading/borderColor": 20,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "button",
+            "icon",
+            "card",
+            "nav"
+          ],
+          "frequency": 56,
+          "confidence": 1,
+          "prominence": 97239835.28030974,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "nav/color": 2,
+            "body/color": 8,
+            "icon/color": 1,
+            "other/fill": 4,
+            "other/color": 8,
+            "heading/color": 1,
+            "icon/borderColor": 4,
+            "button/borderColor": 4,
+            "card/backgroundColor": 2,
+            "other/backgroundColor": 18,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#eff3f4",
+          "oklch": {
+            "c": 0.004483325757182605,
+            "h": 214.32891169517958,
+            "l": 0.9614033854764289
+          },
+          "contexts": [
+            "button",
+            "other",
+            "nav",
+            "card"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 73224117.31622584,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 1,
+            "card/borderColor": 4,
+            "other/borderColor": 14,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cfd9de",
+          "oklch": {
+            "c": 0.012865130348095964,
+            "h": 228.94623654392007,
+            "l": 0.8791401561569517
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 66,
+          "confidence": 1,
+          "prominence": 1109208.6728319654,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 8,
+            "nav/color": 2,
+            "nav/borderColor": 8,
+            "link/borderColor": 4,
+            "other/borderColor": 28,
+            "button/borderColor": 16
+          }
+        },
+        {
+          "hex": "#1d9bf0",
+          "oklch": {
+            "c": 0.1614533750261601,
+            "h": 245.53998081356178,
+            "l": 0.6670531250008304
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "button",
+            "link",
+            "body",
+            "nav"
+          ],
+          "frequency": 94,
+          "confidence": 1,
+          "prominence": 674067.1854147553,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 18,
+            "body/color": 4,
+            "icon/color": 9,
+            "link/color": 6,
+            "other/fill": 18,
+            "icon/borderColor": 36,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0f1419",
+          "oklch": {
+            "c": 0.012843411229135978,
+            "h": 248.5103553241987,
+            "l": 0.18836141617276472
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "heading",
+            "button",
+            "link",
+            "nav"
+          ],
+          "frequency": 188,
+          "confidence": 1,
+          "prominence": 313379.32605972124,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "nav/color": 3,
+            "body/color": 60,
+            "icon/color": 7,
+            "link/color": 3,
+            "other/fill": 12,
+            "other/color": 49,
+            "button/color": 1,
+            "heading/color": 1,
+            "body/borderColor": 11,
+            "icon/borderColor": 28,
+            "other/borderColor": 4,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e0e4e7",
+          "oklch": {
+            "c": 0.005641700572402666,
+            "h": 242.79241736476192,
+            "l": 0.9163619330942792
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 205200,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1,
+            "button/boxShadow": 2
+          }
+        },
+        {
+          "hex": "#536471",
+          "oklch": {
+            "c": 0.029393384488120244,
+            "h": 241.15601743541066,
+            "l": 0.49392350929744866
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "link",
+            "nav"
+          ],
+          "frequency": 839,
+          "confidence": 1,
+          "prominence": 108177.83808472996,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 4,
+            "icon/fill": 92,
+            "nav/color": 19,
+            "body/color": 94,
+            "icon/color": 46,
+            "link/color": 8,
+            "other/fill": 92,
+            "other/color": 176,
+            "nav/borderColor": 4,
+            "body/borderColor": 92,
+            "icon/borderColor": 184,
+            "other/borderColor": 28
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 5520.424390011786,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#4b4f53",
+          "oklch": {
+            "c": 0.007895283932863598,
+            "h": 248.01384158386128,
+            "l": 0.4245871265021391
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054.1114009346184,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#3b3b3b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3509731716394262
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 874,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#829aab",
+          "oklch": {
+            "c": 0.03701913518914788,
+            "h": 238.97085030852136,
+            "l": 0.6734788293419081
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 872,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 15
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.017230466100940117,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.8,
+          "background": "#eff3f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.51,
+          "background": "#0f1419",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.57,
+          "background": "#eff3f4",
+          "foreground": "#0f1419"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.42,
+          "background": "#e0e4e7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.63,
+          "background": "#000000",
+          "foreground": "#cfd9de"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.48,
+          "background": "#e0e4e7",
+          "foreground": "#0f1419"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.9,
+          "background": "#0f1419",
+          "foreground": "#cfd9de"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.31,
+          "background": "#eff3f4",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.2,
+          "background": "#3b3b3b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.03,
+          "background": "#eff3f4",
+          "foreground": "#3b3b3b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.88,
+          "background": "#e0e4e7",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.8,
+          "background": "#cfd9de",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.76,
+          "background": "#e0e4e7",
+          "foreground": "#3b3b3b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.26,
+          "background": "#4b4f53",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.81,
+          "background": "#3b3b3b",
+          "foreground": "#cfd9de"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.39,
+          "background": "#eff3f4",
+          "foreground": "#4b4f53"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.16,
+          "background": "#000000",
+          "foreground": "#829aab"
+        },
+        {
+          "level": "AA",
+          "ratio": 7,
+          "background": "#1d9bf0",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "link",
+            "other",
+            "card",
+            "nav"
+          ],
+          "frequency": 97
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "link",
+            "card"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.03) 0px 0px 2px 0px inset",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": "rgba(101, 119, 134, 0.2) 0px 0px 8px 0px, rgba(101, 119, 134, 0.25) 0px 1px 3px 1px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|icon",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "heading",
+            "icon",
+            "button",
+            "nav"
+          ],
+          "frequency": 44,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginLeft",
+            "marginBottom",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "paddingTop|heading",
+            "paddingBottom|heading",
+            "marginLeft|icon",
+            "marginLeft|button",
+            "marginBottom|other",
+            "marginRight|other",
+            "marginTop|nav",
+            "marginBottom|nav",
+            "marginTop|button",
+            "marginBottom|button",
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "link",
+            "body",
+            "nav"
+          ],
+          "frequency": 130,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginTop",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginLeft|other",
+            "marginTop|other",
+            "marginRight|icon",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "marginRight|other",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "nav"
+          ],
+          "frequency": 61,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "marginRight",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "marginLeft|other",
+            "paddingTop|other",
+            "marginRight|link",
+            "paddingBottom|other",
+            "marginRight|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|button",
+            "paddingRight|nav",
+            "paddingRight|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "card"
+          ],
+          "frequency": 52,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginBottom|card",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 142,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 290,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 848,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "TwitterChirp",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700,
+            800
+          ],
+          "frequency": 521,
+          "fontFeatureSettings": [
+            "\"ss01\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "TwitterChirp",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.09,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "TwitterChirp",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 62,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "TwitterChirp",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TwitterChirp",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TwitterChirp",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "icon",
+            "link",
+            "card",
+            "hero"
+          ],
+          "frequency": 843,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "TwitterChirp",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "icon",
+            "nav"
+          ],
+          "frequency": 333,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "TwitterChirp",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "nav"
+          ],
+          "frequency": 60,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "TwitterChirp",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "TwitterChirp",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Times",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "TwitterChirp",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "TwitterChirp",
+          "weight": 800,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "TwitterChirp",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "TwitterChirp",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c829e152-2d31-4d36-a277-09084f01f38d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5a3aae32-0646-4cb1-b265-59a8814b36c9.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/655340ae-abff-4a90-8545-8feb62411f68#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"X (formerly Twitter) design system\",\"item\":\"https://styles.refero.design/style/655340ae-abff-4a90-8545-8feb62411f68\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/655340ae-abff-4a90-8545-8feb62411f68#style-reference\",\"name\":\"X (formerly Twitter) design system reference\",\"headline\":\"X (formerly Twitter) design system | Refero Styles\",\"description\":\"Explore X (formerly Twitter)'s light Media design system: X Blue #1d9bf0, Ink Black #0f1419 colors, TwitterChirp, Times typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/655340ae-abff-4a90-8545-8feb62411f68\",\"mainEntityOfPage\":\"https://styles.refero.design/style/655340ae-abff-4a90-8545-8feb62411f68\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"X (formerly Twitter)\",\"url\":\"https://create.video\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/655340ae-abff-4a90-8545-8feb62411f68#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5a3aae32-0646-4cb1-b265-59a8814b36c9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5a3aae32-0646-4cb1-b265-59a8814b36c9.jpg\",\"caption\":\"Screenshot of X (formerly Twitter)\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5a3aae32-0646-4cb1-b265-59a8814b36c9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"X (formerly Twitter) design system\",\"X (formerly Twitter) website design\",\"X (formerly Twitter) colors\",\"X (formerly Twitter) typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"X Blue\",\"Ink Black\",\"Graphite\",\"Fog Gray\",\"TwitterChirp\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"X (formerly Twitter) design system\"},{\"@type\":\"Thing\",\"name\":\"X (formerly Twitter) website design\"},{\"@type\":\"Thing\",\"name\":\"X (formerly Twitter) colors\"},{\"@type\":\"Thing\",\"name\":\"X (formerly Twitter) typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T01:53:48.786Z\",\"dateModified\":\"2026-04-30T01:53:48.786Z\"}]}19:T7cb,## Quick Color Reference\n- text (primary): #0f1419\n- text (secondary): #536471\n- background: #ffffff\n- border: #cfd9de\n- accent: #1d9bf0\n- primary action: #1d9bf0 (filled action)\n\n## Example Component Prompts\n\n**1. Create a Follow Button:**\nPill button, 9999px radius, #1d9bf0 background, #ffffff text, TwitterChirp 15px weight 700 with font-feature-settings \"ss01\" on, padding 0 16px, height 36px. Hover: background #1a8cd8.\n\n**2. Create a Tweet Card:**\nFull-width card, #ffffff background, 1px bottom border #eff3f4, padding 12px 16px. Left: 40px circular avatar (9999px radius). Right: display name (TwitterChirp 15px weight 700 #0f1419) + verified badge (#1d9bf0 check icon) + @handle (15px weight 400 #536471) + timestamp (13px #536471). Body text: 15px #0f1419. Action bar below: five icon groups in #536471 at 18.75px, with counts in 13px #536471.\n\n**3. Create a Profile Header:**\nFull-width banner image (no radius, auto height ~200px). 133px circular avatar (9999px radius) overlapping banner bottom by ~33px, positioned 16px from left. Name: TwitterChirp 20px weight 800 #0f1419 + verified badge. Handle: 15px #536471. Bio: 15px #0f1419. Follow button top-right: pill 9999px, #1d9bf0 bg, #ffffff text, 15px weight 700.\n\n**4. Create a Sign-Up Sidebar Card:**\nCard with #ffffff background, 16px radius, no border, padding 16px. Headline: 'New to X?' at 20px weight 800 #0f1419. Subtext: 15px #536471. Three stacked buttons: two social auth buttons (#ffffff bg, 1px #cfd9de border, 9999px radius, black brand icon, 15px weight 500 #0f1419 text) and one 'Create account' outlined button (transparent bg, 1px #cfd9de border, #0f1419 text, 9999px radius, full width).\n\n**5. Create a Bottom Sticky CTA Bar:**\nFull-width sticky bar, #1d9bf0 background, padding 12px 16px. Left: headline 15px weight 700 #ffffff, subtext 13px #ffffff. Right: two pill buttons — 'Log in' (white bg, #0f1419 text) and 'Sign up' (1px white border, transparent bg, #ffffff text), both 9999px radius, ~32px height."
+}

@@ -1,0 +1,1572 @@
+{
+  "source": "https://styles.refero.design/style/2b6642d9-fa66-4c06-9804-30f56e544a6d",
+  "uuid": "2b6642d9-fa66-4c06-9804-30f56e544a6d",
+  "name": "Mural",
+  "northStar": "Blackboard flipping to whiteboard — same hand, same authority, opposite ground.",
+  "capturedAt": "2026-07-18T10:16:20.225Z",
+  "meta": {
+    "url": "https://mural.co",
+    "siteName": "Mural",
+    "extractedAt": "2026-04-11T19:05:34.543Z",
+    "durationMs": 136770,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 701,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use STK Bureau weight 300 exclusively for all display and hero headlines at -0.04em to -0.05em tracking. Never use it at body or UI sizes.",
+      "Apply #00c27a only to primary CTA buttons (with 1px #000000 border) and active link states. Do not use it for decorative color blocks or illustrations.",
+      "Use 26px border-radius for all pill badges and 8px for all buttons and inputs. Keep 24px for large content cards only.",
+      "Open letter-spacing to +0.175em only for uppercase eyebrow labels in ABC Social at 11-12px. All other sizes track at -0.02em or default.",
+      "Establish section separation through background-color switching (#000000 → #ffffff → #eeeeee) rather than dividers or shadows between sections.",
+      "Use the blue-tinted shadow (rgba(11,41,70,0.32) 0px 0px 1px 0px, rgba(42,82,121,0.08) 0px 24px 20px 0px) exclusively for overlaying floating elements like the chat widget.",
+      "Keep photography on cards full-bleed to the card edge with no internal padding — let the 24px card radius clip the image corners."
+    ],
+    "tags": [
+      "dark-hero",
+      "monochromatic",
+      "dual-typeface",
+      "flat-cards",
+      "jade-accent",
+      "collaboration",
+      "enterprise",
+      "custom-typography",
+      "negative-tracking",
+      "b2b"
+    ],
+    "donts": [
+      "Do not use STK Bureau for body copy, UI labels, or anything below 32px — the tight tracking at small sizes becomes illegible.",
+      "Do not add colored backgrounds using the extended CSS token palette (--lavender, --flamingo, --mural-blue, etc.) on any marketing page — those are reserved for in-canvas product contexts only.",
+      "Do not use shadows for card grouping or section organization — use background-color differences instead. Shadows are only for floating overlays.",
+      "Do not apply #00c27a to text on white backgrounds as a body link color — it only appears as a button background or hover state on black backgrounds.",
+      "Do not use border-radius values other than 8px, 16px, 24px, or 26px. In particular, avoid pill shapes (9999px) on buttons — Mural uses 8px squared buttons, not pill buttons.",
+      "Do not mix STK Bureau with any weight other than 300 — the light-weight display type is the deliberate choice; heavier weights destroy the contrast with the dense tracking.",
+      "Do not use the #dce1e5 Cool Grey as text — it is a border and divider color only."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#00c27a",
+        "name": "Jade CTA",
+        "role": "Primary CTA buttons, active links, key interactive highlights — jade against black in the hero and against white in body sections maintains equal visual force without changing hue",
+        "group": "brand"
+      },
+      {
+        "hex": "#b4f5c8",
+        "name": "Mint Surface",
+        "role": "Card backgrounds, feature highlight areas — pastel counterpoint to jade that reads as 'selected' or 'active' without the full saturation of CTA jade",
+        "group": "brand"
+      },
+      {
+        "hex": "#00843f",
+        "name": "Forest",
+        "role": "Card accent backgrounds, deep green surface variant",
+        "group": "brand"
+      },
+      {
+        "hex": "#d5f8e0",
+        "name": "Badge Leaf",
+        "role": "Blog/category badge backgrounds — near-white green tint that signals categorization without demanding attention",
+        "group": "brand"
+      },
+      {
+        "hex": "#007b3b",
+        "name": "Badge Text",
+        "role": "Badge text and border on leaf background — dark enough on #d5f8e0 to pass contrast without going full black",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Hero background, primary text, button borders, icon fills — the dominant surface and text color simultaneously; this dual role is the system's core tension",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Section backgrounds, card surfaces, nav background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f3f3f3",
+        "name": "Fog",
+        "role": "Secondary button fill, subtle input backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Ash",
+        "role": "Card background variant, divider surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dce1e5",
+        "name": "Cool Grey",
+        "role": "Borders, nav dividers, separator lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8c8c8c",
+        "name": "Slate",
+        "role": "Subheadings, secondary headings, muted heading text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Stone",
+        "role": "Body secondary text, muted links",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4f5457",
+        "name": "Graphite",
+        "role": "Input border color (dark variant)",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Ink",
+        "role": "Link text, image overlay text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#626262",
+        "name": "Charcoal",
+        "role": "Nav secondary elements, supplementary UI chrome",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width approximately 1280px, centered. Hero is full-bleed black spanning 100vh with left-aligned STK Bureau display headline, left-aligned email capture row, and product screenshot cards overlapping the hero bottom edge into the next white section — creating a cinematic cut between dark and light. Section rhythm alternates: black hero → white feature section → white with ash card grid → white trust bar → back to feature sections. No alternating dark/light bands beyond the opening hero. Content arrangement is primarily left-text + right-visual (2-column) for feature sections, and 3-column card grids for blog/resource content. Navigation is a fixed top bar: logo left, centered horizontal nav links, login + two CTA buttons right. No mega-menu visible — nav links expand to dropdowns. The left-edge vertical tool palette (appearing in product screenshots) is a product UI element shown for demo context, not page navigation.",
+    "imagery": "Three distinct image modes coexist: (1) Product UI screenshots presented as floating white-background cards with 24px radius, cropped tightly to show the canvas tool in use — no lifestyle context around the product itself. (2) Photography on blog cards: candid workplace scenes, high-key natural light, people in conversation — desaturated to near-grayscale with warm midtones, full-bleed to card edge with no internal padding. (3) In-canvas illustration within product screenshots: hand-drawn circle annotations in saturated reds and blues, avatar photos in circular crops with colored ring borders, sticky-note callout boxes — these are product content, not brand illustration. Icons in the left-rail tool palette are outlined, single-color (white on black), approximately 18-20px with ~1.5px stroke weight. The brand palette (jade green) appears only in UI chrome and CTAs, never in photography or illustration.",
+    "similar": [
+      {
+        "why": "Same dark-hero-to-white-body flip with a single vivid accent (Figma uses blue, Mural uses jade) against an otherwise monochromatic marketing palette",
+        "business": "Figma (figma.com)"
+      },
+      {
+        "why": "Identical custom sans-serif + display typeface dual-font pairing with tight negative tracking on headlines and achromatic color discipline",
+        "business": "Notion (notion.so)"
+      },
+      {
+        "why": "Direct competitor with same visual workspace product category — both use full-bleed hero product screenshots and green-family accent CTAs",
+        "business": "Miro (miro.com)"
+      },
+      {
+        "why": "Same bordered CTA button approach (colored fill + visible dark border) and flat card system using background-color for hierarchy instead of shadows",
+        "business": "Loom (loom.com)"
+      },
+      {
+        "why": "Weight 300 display type at large sizes with aggressive negative tracking as the primary typographic statement — authority through restraint not weight",
+        "business": "Linear (linear.app)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8-24px",
+        "badges": "26px",
+        "inputs": "8px",
+        "buttons": "8px",
+        "largeCards": "24px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "24-40px",
+      "pageMaxWidth": "1280px"
+    },
+    "category": "SaaS",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Hero Void",
+        "level": 0,
+        "purpose": "Full-bleed hero section background, the page's dramatic opening"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Page White",
+        "level": 1,
+        "purpose": "Primary page and section background after hero"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Ash Surface",
+        "level": 2,
+        "purpose": "Card and tile backgrounds for grouping without elevation"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Elevated Card",
+        "level": 3,
+        "purpose": "Content cards with 4px shadow — only layer using drop shadows for grouping"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Overlay Float",
+        "level": 4,
+        "purpose": "AI chat widget and product UI cards floating over sections with blue-tinted composite shadow"
+      }
+    ],
+    "northStar": "Blackboard flipping to whiteboard — same hand, same authority, opposite ground.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.5,
+        "letterSpacing": 1.925
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.52
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "heading-lg",
+        "size": 54,
+        "lineHeight": 1.1,
+        "letterSpacing": -2.16
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1,
+        "letterSpacing": -4
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Hero Email Capture CTA",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Blog / Resource Cards",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Trusted Brands Logo Bar",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary CTA Button",
+        "role": "Hero email capture submit, section CTAs",
+        "description": "Background #00c27a, color #000000, border #000000 1px solid, border-radius 8px, padding 9px 52px 9px 16px (asymmetric — wide right for icon/arrow). ABC Social 500, 14-16px. The black border on a green button is unconventional — it adds weight and keeps jade from floating."
+      },
+      {
+        "name": "Outlined Black Button",
+        "role": "Secondary CTAs on white sections",
+        "description": "Background transparent, color #000000, border #000000 1px solid, border-radius 8px, padding 8px 16px. ABC Social 500. Sits beside CTA buttons as the 'no-commitment' option."
+      },
+      {
+        "name": "Ghost White Button",
+        "role": "CTAs on dark/black hero sections",
+        "description": "Background transparent, color #ffffff, border #ffffff 1px solid, border-radius 0px, padding 0. Zero radius and zero padding — these appear as inline underlined-style links styled as ghost buttons in the hero, not pill or block shapes."
+      },
+      {
+        "name": "Large Filled Grey Button",
+        "role": "Feature navigation tabs, section-level action buttons",
+        "description": "Background #f3f3f3, color #000000, no border, border-radius 8px, padding 23px 44px. ABC Social 500 at 16px. Large padding (23px vertical) creates a tall, substantial button used for primary section navigation choices."
+      },
+      {
+        "name": "Email Input Field",
+        "role": "Hero lead capture",
+        "description": "Background #000000, color #ffffff, border #4f5457 1px solid, border-radius 8px, padding 8px 16px. Dark input on dark background — distinguishable only by the #4f5457 border. Placeholder text in #808080."
+      },
+      {
+        "name": "Blog Badge",
+        "role": "Content categorization on card thumbnails",
+        "description": "Background #d5f8e0, color #007b3b, border-radius 26px, padding 2px 16px 1px 16px. ABC Social 500 at 12px. The 26px radius creates a true pill. Leaf green background with forest text — the only colored text element in the body sections."
+      },
+      {
+        "name": "Content Card — Large Rounded",
+        "role": "Blog/resource listing cards",
+        "description": "Background #ffffff, border-radius 24px, no border, shadow rgba(0,0,0,0.08) 0px 4px 4px 0px. Padding 0 (image fills top, text below with internal padding). The 24px radius softens what is otherwise a sharp-edged system — cards are the site's only round affordance."
+      },
+      {
+        "name": "Content Card — Ash Fill",
+        "role": "Feature comparison or info tiles",
+        "description": "Background #eeeeee, border-radius 7-8px, no border, no shadow. Padding 40px 5-6px. The extreme vertical padding with minimal horizontal padding creates a tall narrow container used for icon-led feature columns."
+      },
+      {
+        "name": "Product UI Card",
+        "role": "In-page product screenshot/demo containers",
+        "description": "Background #ffffff, border-radius 24px, no box-shadow, full-bleed image content inside. Floated over the dark hero section to create contrast between the product and the marketing context."
+      },
+      {
+        "name": "AI Chat Widget",
+        "role": "Muriel AI consultant persistent overlay",
+        "description": "Background #ffffff, border-radius 16px, shadow rgba(11,41,70,0.32) 0px 0px 1px 0px, rgba(42,82,121,0.08) 0px 24px 20px 0px. Contains avatar, name, role label, conversation text, CTA button (#00c27a, 8px radius), and text input. The blue-tinted shadow (rgba(11,41,70)) is the only non-monochrome shadow in the system."
+      },
+      {
+        "name": "Section Eyebrow Label",
+        "role": "Pre-heading category labels above section titles",
+        "description": "Color #8c8c8c or #000000, ABC Social 500 at 11px, letter-spacing +0.175em, uppercase transform. No background, no border. Acts as a whispered section tag before the STK Bureau headline drops."
+      },
+      {
+        "name": "Logo Bar — Trusted Brands",
+        "role": "Social proof strip",
+        "description": "White or light-grey background strip, grayscale brand logos (Microsoft, IBM, etc.) at medium opacity. ABC Social 500 at 11px uppercase label 'TRUSTED BY BRANDS AROUND THE WORLD' at +0.175em tracking centered above. No border, no card, flush horizontal scroll."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All display and hero headlines exclusively. Weight 300 at 70-100px with -0.04 to -0.05em tracking is the signature voice — letters crowd each other at scale, creating mass through density rather than weight. Nothing else in the system uses this font.",
+        "sizes": "32px, 40px, 54px, 70px, 80px, 100px",
+        "family": "STK Bureau",
+        "weight": "300",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Barlow Condensed Light, or Helvetica Neue Light",
+        "letterSpacing": "-0.04em at 54-70px, -0.05em at 80-100px"
+      },
+      {
+        "role": "Everything else: nav (14px/500), body copy (16-18px/400), buttons (14-16px/500-600), badges (12px/500), eyebrow labels (11px/500 at +0.175em tracking). The +0.175-0.25em tracking on small caps/eyebrows is the only place the system opens up letter-spacing — everywhere else it's tight or default.",
+        "sizes": "11px, 12px, 14px, 16px, 18px, 20px, 22px, 26px, 40px",
+        "family": "ABC Social",
+        "weight": "300, 400, 500, 600",
+        "lineHeight": "1.00–1.75",
+        "substitute": "Inter, DM Sans",
+        "letterSpacing": "-0.02em at larger sizes (26px+), +0.175em and +0.25em for uppercase eyebrow labels at 11-12px"
+      }
+    ],
+    "description": "Mural hits like a blackboard in a bright studio — the hero opens pitch-black with oversized serif-adjacent display type bleeding edge to edge, then the page snaps into clinical white with the same confidence. The dual-font system is the signature move: STK Bureau (weight 300 only) handles all display and headline work with tight negative tracking (-0.04 to -0.05em), while ABC Social runs everything from captions to body in a humanist groove. Electric jade (#00c27a) is the single chromatic anchor — appearing on CTAs and key links against both black and white backgrounds, creating identical urgency in both contexts. Cards live in a borderless, shadow-free world where containment comes from background-color switches (#eeeeee, #ffffff) rather than depth. The Mural logomark's rainbow-spectrum identity is carefully quarantined from the page palette — the product itself runs monochromatic with jade as its only relief valve.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      },
+      {
+        "title": "Extended Brand Color Palette (In-Canvas Use Only)",
+        "content": "Mural's CSS tokens reveal a rich chromatic palette reserved exclusively for the in-product canvas environment and internal template colors: --lemon #ffe146, --lavender #e6bfff, --mural-blue #5887ff, --ice #bed7ff, --mural-red #ff4b4b, --indigo #195ad7, --violet #8728e6, --flamingo #ff98b4, --burgundy #c8056, --blush #ffcee0, --sky #79c1ff, --orange #ed6000, --mural-yellow #ffaa00, --canary #ffed87, --grape #be53ff, --mural-pink #fc83ff, --natural #ededdb. These colors appear as sticky note fills, annotation colors, and avatar ring borders within product screenshots. They must NOT be applied to marketing page backgrounds, typography, buttons, or navigation — doing so would break the monochromatic discipline that defines the brand's marketing presence."
+      }
+    ],
+    "elevationPhilosophy": "The system is almost entirely flat — card containers use background-color switching (#eeeeee, #f3f3f3, #ffffff) rather than shadows to establish hierarchy. The only shadows appear on the AI chat overlay (blue-tinted, substantial: 0px 24px 20px rgba(42,82,121,0.08)) and blog cards (shallow: 0px 4px 4px rgba(0,0,0,0.08)). Elevation is reserved for things that literally float above the page, not for organizational grouping."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "nav",
+            "button",
+            "hero",
+            "input",
+            "image",
+            "card",
+            "body",
+            "link",
+            "heading",
+            "badge",
+            "list"
+          ],
+          "frequency": 3073,
+          "confidence": 1,
+          "prominence": 243340715.68060896,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "body",
+            "input",
+            "card",
+            "link",
+            "button",
+            "icon"
+          ],
+          "frequency": 161,
+          "confidence": 1,
+          "prominence": 5648014.577219718,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#dce1e5",
+          "oklch": {
+            "c": 0.007691137947704468,
+            "h": 241.67203931683824,
+            "l": 0.9070698920394541
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "link"
+          ],
+          "frequency": 84,
+          "confidence": 1,
+          "prominence": 3722503.75240848,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#b1bbc4",
+          "oklch": {
+            "c": 0.0169722819741591,
+            "h": 247.11652208562117,
+            "l": 0.7858983848209656
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 438452.9314619956,
+          "properties": [
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#8c8c8c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6400867863507902
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 389670.3775233052,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#00c27a",
+          "oklch": {
+            "c": 0.1676272232144073,
+            "h": 158.03476215622126,
+            "l": 0.7170346575496861
+          },
+          "contexts": [
+            "button",
+            "link",
+            "card"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 208159.13093402187,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#b4f5c8",
+          "oklch": {
+            "c": 0.08965447230693153,
+            "h": 154.10949951115452,
+            "l": 0.9146166037866197
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 188004.7758899862,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 91572,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#f3f3f3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9641535001508271
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 85895.08601416819,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#4f5457",
+          "oklch": {
+            "c": 0.00809718693807384,
+            "h": 233.8089262752298,
+            "l": 0.44244022958053936
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 26957.585181642276,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 21120,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#00843f",
+          "oklch": {
+            "c": 0.14385440982217387,
+            "h": 151.165396479639,
+            "l": 0.5367152227972163
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 17920,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 13135.461855965817,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#8fec7f",
+          "oklch": {
+            "c": 0.16978989781337764,
+            "h": 140.8029551431634,
+            "l": 0.8600743069044642
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5495,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#d5f8e0",
+          "oklch": {
+            "c": 0.04845216823782039,
+            "h": 155.41654605920183,
+            "l": 0.947610110938049
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2824,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#007b3b",
+          "oklch": {
+            "c": 0.13601156729324168,
+            "h": 151.40480956711625,
+            "l": 0.5102091355793091
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 2252,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#626262",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.49615554574289894
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054.1114009346184,
+          "properties": [
+            "backgroundColor"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.005661250353294627,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.93,
+          "background": "#f3f3f3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.33,
+          "background": "#d5f8e0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.84,
+          "background": "#b4f5c8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.94,
+          "background": "#dce1e5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.47,
+          "background": "#8fec7f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.39,
+          "background": "#f3f3f3",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.03,
+          "background": "#d5f8e0",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.89,
+          "background": "#eeeeee",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.77,
+          "background": "#b1bbc4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.13,
+          "background": "#b4f5c8",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.59,
+          "background": "#dce1e5",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9,
+          "background": "#00c27a",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.71,
+          "background": "#8fec7f",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.67,
+          "background": "#ffffff",
+          "foreground": "#4f5457"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.91,
+          "background": "#f3f3f3",
+          "foreground": "#4f5457"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.7,
+          "background": "#d5f8e0",
+          "foreground": "#4f5457"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.61,
+          "background": "#eeeeee",
+          "foreground": "#4f5457"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "button",
+            "input",
+            "link"
+          ],
+          "frequency": 78
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "other",
+            "card"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 26.4,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.08) 0px 4px 4px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": "rgba(11, 41, 70, 0.32) 0px 0px 1px 0px, rgba(42, 82, 121, 0.08) 0px 24px 20px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 2,
+          "frequency": 20,
+          "properties": [
+            "marginRight",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 17,
+          "properties": [
+            "paddingLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 55,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 9,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 133,
+          "properties": [
+            "paddingTop",
+            "paddingLeft",
+            "paddingRight",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 18,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 23,
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 56,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 28,
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingLeft",
+            "marginBottom",
+            "paddingRight",
+            "marginTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 37,
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 39,
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 41,
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 42,
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 44,
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingTop",
+            "paddingLeft",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 55,
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 56,
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "paddingRight"
+          ]
+        },
+        {
+          "value": 57,
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 58,
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 63,
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 84,
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 96,
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 100,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 112,
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 128,
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 192,
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 208,
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ABC Social",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            600
+          ],
+          "frequency": 634,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "STK Bureau",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 27,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "ABC Social",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "ABC Social",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABC Social",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.25,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "ABC Social",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.175,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "ABC Social",
+          "weight": 300,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Social",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "icon",
+            "nav",
+            "button",
+            "hero",
+            "card",
+            "body",
+            "badge"
+          ],
+          "frequency": 454,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Social",
+          "weight": 300,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Social",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Social",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Social",
+          "weight": 300,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Social",
+          "weight": 500,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Social",
+          "weight": 300,
+          "contexts": [
+            "list",
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 94,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Social",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ABC Social",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ABC Social",
+          "weight": 500,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABC Social",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "ABC Social",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "ABC Social",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "STK Bureau",
+          "weight": 300,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "STK Bureau",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "ABC Social",
+          "weight": 300,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "STK Bureau",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 70,
+          "family": "STK Bureau",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "STK Bureau",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 100,
+          "family": "STK Bureau",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/26d4980f-8dbf-4388-80d3-9e2e348feab4.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3f101977-0c28-4952-8a31-305371ae704a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2b6642d9-fa66-4c06-9804-30f56e544a6d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Mural design system\",\"item\":\"https://styles.refero.design/style/2b6642d9-fa66-4c06-9804-30f56e544a6d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2b6642d9-fa66-4c06-9804-30f56e544a6d#style-reference\",\"name\":\"Mural design system reference\",\"headline\":\"Mural design system | Refero Styles\",\"description\":\"Explore Mural's mixed Productivity design system: Jade CTA #00c27a, Mint Surface #b4f5c8 colors, STK Bureau, ABC Social typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2b6642d9-fa66-4c06-9804-30f56e544a6d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2b6642d9-fa66-4c06-9804-30f56e544a6d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Mural\",\"url\":\"https://mural.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2b6642d9-fa66-4c06-9804-30f56e544a6d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3f101977-0c28-4952-8a31-305371ae704a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3f101977-0c28-4952-8a31-305371ae704a.jpg\",\"caption\":\"Screenshot of Mural\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3f101977-0c28-4952-8a31-305371ae704a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Mural design system\",\"Mural website design\",\"Mural colors\",\"Mural typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Jade CTA\",\"Mint Surface\",\"Forest\",\"Badge Leaf\",\"STK Bureau\",\"ABC Social\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Mural design system\"},{\"@type\":\"Thing\",\"name\":\"Mural website design\"},{\"@type\":\"Thing\",\"name\":\"Mural colors\"},{\"@type\":\"Thing\",\"name\":\"Mural typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-03-25T10:06:31.000Z\",\"dateModified\":\"2026-03-25T10:06:31.000Z\"}]}19:Ta85,<style>:root{--color-jade-cta:#00c27a;--color-void:#000000;--color-paper:#ffffff;--color-slate:#8c8c8c;--color-stone:#808080;--color-graphite:#4f5457;--color-ink:#333333;--color-fog:#f3f3f3;--color-ash:#eeeeee;--color-badge-leaf:#d5f8e0;--color-badge-text:#007b3b;--font-stk-bureau:'Barlow Condensed',Helvetica Neue,Arial,sans-serif;--font-abc-social:'Inter','DM Sans',Arial,sans-serif;}*{box-sizing:border-box;margin:0;padding:0;}</style><div style=\"background:var(--color-void);padding:64px 48px 72px 48px;font-family:var(--font-abc-social);width:600px;\"><p style=\"font-family:var(--font-abc-social);font-size:11px;font-weight:500;letter-spacing:0.175em;text-transform:uppercase;color:var(--color-slate);margin-bottom:20px;\">Visual AI Platform</p><h1 style=\"font-family:var(--font-stk-bureau);font-weight:300;font-size:70px;line-height:1.0;letter-spacing:-0.04em;color:var(--color-slate);margin-bottom:0;\">Sync up. Speed up.</h1><h1 style=\"font-family:var(--font-stk-bureau);font-weight:300;font-size:70px;line-height:1.05;letter-spacing:-0.04em;color:var(--color-paper);margin-bottom:24px;\">Stand out.</h1><p style=\"font-family:var(--font-abc-social);font-size:16px;font-weight:400;line-height:1.6;color:#b0b0b0;max-width:480px;margin-bottom:36px;\">You're busier than ever. Mural is the visual AI platform that turns alignment into an ongoing way of working, connecting strategy to execution and driving results in one shared workspace.</p><div style=\"display:flex;align-items:stretch;gap:8px;margin-bottom:14px;\"><input type=\"email\" placeholder=\"Enter your email\" style=\"flex:1;background:var(--color-void);color:var(--color-paper);border:1px solid var(--color-graphite);border-radius:8px;padding:12px 16px;font-family:var(--font-abc-social);font-size:15px;font-weight:400;outline:none;\" /><button style=\"background:var(--color-jade-cta);color:var(--color-void);border:1px solid var(--color-void);border-radius:8px;padding:12px 20px 12px 20px;font-family:var(--font-abc-social);font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:10px;white-space:nowrap;\">Get started free<svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M4 9h10M10 5l4 4-4 4\" stroke=\"#000\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button></div><p style=\"font-family:var(--font-abc-social);font-size:12px;font-weight:400;color:var(--color-stone);line-height:1.5;\">By continuing, I agree to Mural's <a href=\"#\" style=\"color:var(--color-stone);text-decoration:underline;\">Collaborator Notice</a> &amp; <a href=\"#\" style=\"color:var(--color-stone);text-decoration:underline;\">Privacy Statement</a>.</p></div>1a:Tf5f,<style>:root{--color-jade-cta:#00c27a;--color-void:#000000;--color-paper:#ffffff;--color-slate:#8c8c8c;--color-stone:#808080;--color-graphite:#4f5457;--color-ink:#333333;--color-fog:#f3f3f3;--color-ash:#eeeeee;--color-badge-leaf:#d5f8e0;--color-badge-text:#007b3b;--shadow-sm:rgba(0,0,0,0.08) 0px 4px 4px 0px;--font-stk-bureau:'Barlow Condensed',Helvetica Neue,Arial,sans-serif;--font-abc-social:'Inter','DM Sans',Arial,sans-serif;}*{box-sizing:border-box;margin:0;padding:0;}</style><div style=\"background:var(--color-paper);padding:48px 32px;font-family:var(--font-abc-social);width:600px;\"><p style=\"font-family:var(--font-abc-social);font-size:11px;font-weight:500;letter-spacing:0.175em;text-transform:uppercase;color:var(--color-slate);text-align:center;margin-bottom:12px;\">Resources</p><h2 style=\"font-family:var(--font-stk-bureau);font-weight:300;font-size:40px;line-height:1.1;letter-spacing:-0.04em;color:var(--color-void);text-align:center;margin-bottom:36px;\">Latest insights and updates</h2><div style=\"display:flex;flex-direction:column;gap:20px;\"><div style=\"background:var(--color-paper);border-radius:24px;box-shadow:var(--shadow-sm);overflow:hidden;\"><div style=\"width:100%;height:180px;background:linear-gradient(135deg,#2a2a2a 0%,#444 60%,#c8a87a 100%);position:relative;display:flex;align-items:center;justify-content:center;\"><div style=\"position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.18);\"></div><div style=\"width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;z-index:1;\"><svg width=\"28\" height=\"28\" viewBox=\"0 0 28 28\" fill=\"none\"><circle cx=\"14\" cy=\"11\" r=\"5\" fill=\"#fff\" opacity=\"0.85\"/><ellipse cx=\"14\" cy=\"21\" rx=\"8\" ry=\"4\" fill=\"#fff\" opacity=\"0.65\"/></svg></div></div><div style=\"padding:24px 24px 28px 24px;\"><span style=\"display:inline-block;background:var(--color-badge-leaf);color:var(--color-badge-text);border-radius:26px;padding:2px 14px;font-size:12px;font-weight:500;margin-bottom:14px;\">Blog</span><h3 style=\"font-family:var(--font-abc-social);font-size:20px;font-weight:600;line-height:1.25;color:var(--color-void);margin-bottom:10px;\">12 tips for building stakeholder engagement</h3><p style=\"font-family:var(--font-abc-social);font-size:15px;font-weight:400;line-height:1.6;color:var(--color-stone);\">Learn how to strengthen collaboration with stakeholder engagement. Explore practical tips to build trust, gain alignment, and drive successful outcomes.</p></div></div><div style=\"background:var(--color-paper);border-radius:24px;box-shadow:var(--shadow-sm);overflow:hidden;\"><div style=\"width:100%;height:180px;background:#7B2FBE;display:flex;align-items:center;justify-content:center;position:relative;\"><div style=\"text-align:center;padding:20px;\"><div style=\"font-family:'Georgia',serif;font-size:30px;font-weight:700;color:var(--color-paper);line-height:1.1;\">Product<br>Updates</div><div style=\"margin-top:10px;\"><svg width=\"40\" height=\"24\" viewBox=\"0 0 40 24\" fill=\"none\"><circle cx=\"12\" cy=\"12\" r=\"5\" fill=\"#fff\" opacity=\"0.7\"/><circle cx=\"28\" cy=\"12\" r=\"5\" fill=\"#fff\" opacity=\"0.7\"/><line x1=\"17\" y1=\"12\" x2=\"23\" y2=\"12\" stroke=\"#fff\" stroke-width=\"2\" opacity=\"0.7\"/></svg></div></div></div><div style=\"padding:24px 24px 28px 24px;\"><span style=\"display:inline-block;background:var(--color-badge-leaf);color:var(--color-badge-text);border-radius:26px;padding:2px 14px;font-size:12px;font-weight:500;margin-bottom:14px;\">Blog</span><h3 style=\"font-family:var(--font-abc-social);font-size:20px;font-weight:600;line-height:1.25;color:var(--color-void);margin-bottom:10px;\">Release Notes</h3><p style=\"font-family:var(--font-abc-social);font-size:15px;font-weight:400;line-height:1.6;color:var(--color-stone);\">Check out our latest updates! From fresh features to performance tweaks, our release notes keep you in the loop on all the changes that matter.</p></div></div></div></div>1b:Ta4a,<style>:root{--color-jade-cta:#00c27a;--color-void:#000000;--color-paper:#ffffff;--color-slate:#8c8c8c;--color-stone:#808080;--color-ash:#eeeeee;--font-stk-bureau:'Barlow Condensed',Helvetica Neue,Arial,sans-serif;--font-abc-social:'Inter','DM Sans',Arial,sans-serif;}*{box-sizing:border-box;margin:0;padding:0;}</style><div style=\"background:var(--color-paper);padding:52px 32px;font-family:var(--font-abc-social);width:600px;\"><p style=\"font-family:var(--font-abc-social);font-size:11px;font-weight:500;letter-spacing:0.175em;text-transform:uppercase;color:var(--color-slate);text-align:center;margin-bottom:40px;\">Trusted by brands around the world</p><div style=\"display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:36px 40px;\"><div style=\"display:flex;align-items:center;gap:8px;opacity:0.75;\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\"><rect x=\"0\" y=\"0\" width=\"8\" height=\"8\" fill=\"#F25022\"/><rect x=\"10\" y=\"0\" width=\"8\" height=\"8\" fill=\"#7FBA00\"/><rect x=\"0\" y=\"10\" width=\"8\" height=\"8\" fill=\"#00A4EF\"/><rect x=\"10\" y=\"10\" width=\"8\" height=\"8\" fill=\"#FFB900\"/></svg><span style=\"font-family:var(--font-abc-social);font-size:18px;font-weight:400;color:var(--color-void);letter-spacing:-0.01em;\">Microsoft</span></div><div style=\"opacity:0.75;\"><span style=\"font-family:Georgia,serif;font-size:22px;font-weight:700;color:var(--color-void);letter-spacing:0.1em;\">IBM</span></div><div style=\"opacity:0.75;\"><span style=\"font-family:var(--font-abc-social);font-size:14px;font-weight:500;color:var(--color-void);letter-spacing:0.04em;\">Abercrombie &amp; Fitch</span></div><div style=\"display:flex;align-items:center;gap:5px;opacity:0.75;\"><svg width=\"18\" height=\"14\" viewBox=\"0 0 18 14\" fill=\"none\"><path d=\"M2 7 Q9 1 16 7 Q9 13 2 7Z\" stroke=\"#000\" stroke-width=\"1.5\" fill=\"none\"/></svg><span style=\"font-family:var(--font-abc-social);font-size:16px;font-weight:600;color:var(--color-void);\">Kroger</span></div><div style=\"opacity:0.75;\"><span style=\"font-family:Georgia,serif;font-size:22px;font-weight:700;color:var(--color-void);letter-spacing:0.06em;\">Jack</span></div><div style=\"opacity:0.75;\"><span style=\"font-family:var(--font-abc-social);font-size:15px;font-weight:500;color:var(--color-void);letter-spacing:0.04em;\">Autodesk</span></div><div style=\"opacity:0.75;\"><span style=\"font-family:var(--font-abc-social);font-size:15px;font-weight:400;color:var(--color-void);letter-spacing:-0.01em;\">Nvidia</span></div><div style=\"opacity:0.75;\"><span style=\"font-family:Georgia,serif;font-size:16px;font-weight:700;color:var(--color-void);letter-spacing:0.08em;\">LEGO</span></div></div></div>1c:T9a0,**Quick Color Reference**\n- Text (primary): #000000\n- Text (on dark): #ffffff\n- Page background: #ffffff\n- Hero background: #000000\n- CTA button bg: #00c27a\n- CTA button border: #000000\n- Card surface: #eeeeee or #ffffff\n- Border/divider: #dce1e5\n- Badge bg: #d5f8e0, badge text: #007b3b\n- Muted text: #8c8c8c\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-bleed black (#000000) background. Left-aligned headline in STK Bureau weight 300 at 80px, color #ffffff, letter-spacing -0.05em, line-height 1.0. Below it: body text in ABC Social weight 400 at 18px, color #ffffff, line-height 1.43, max-width 520px. Below that: horizontal row with a dark email input (background #000000, border #4f5457, border-radius 8px, padding 8px 16px, text #ffffff) and a jade CTA button (background #00c27a, color #000000, border 1px solid #000000, border-radius 8px, padding 9px 52px 9px 16px, ABC Social 500 16px). Product screenshot card overlaps bottom of section at right side.\n\n2. **Blog Card Grid**: 3-column grid, gap 24px. Each card: background #ffffff, border-radius 24px, shadow rgba(0,0,0,0.08) 0px 4px 4px 0px. Top half: full-bleed image clipped by 24px radius. Bottom half padding 24px. Badge first: background #d5f8e0, color #007b3b, border-radius 26px, padding 2px 16px, ABC Social 500 12px. Headline: ABC Social 600 at 20px, color #000000, line-height 1.3. Body: ABC Social 400 at 14px, color #808080, line-height 1.5.\n\n3. **Section Eyebrow + Headline**: Eyebrow label in ABC Social 500 at 11px, uppercase, letter-spacing +0.175em (1.925px), color #8c8c8c. Below it: STK Bureau weight 300 at 54px, color #000000, letter-spacing -0.04em (-2.16px), line-height 1.1. Spacing between eyebrow and headline: 12px.\n\n4. **Feature Tab Navigation**: Row of large buttons, each background #f3f3f3, color #000000, no border, border-radius 8px, padding 23px 44px, ABC Social 500 16px. Active state: background #000000, color #ffffff. Gap between buttons: 8px.\n\n5. **AI Chat Widget**: Floating card, background #ffffff, border-radius 16px, shadow rgba(11,41,70,0.32) 0px 0px 1px 0px + rgba(42,82,121,0.08) 0px 24px 20px 0px. Internal padding 16px. Header: avatar (32px circle) + 'Muriel' in ABC Social 600 14px + 'AI Consultant' in 400 12px #808080. Message body: ABC Social 400 14px #000000. CTA button: background #00c27a, color #000000, border-radius 8px, padding 8px 16px, ABC Social 500. Input row: border-top 1px #dce1e5, padding 8px 16px, placeholder in #808080."
+}

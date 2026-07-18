@@ -1,0 +1,645 @@
+{
+  "source": "https://styles.refero.design/style/286b6ba8-a45d-48e0-b556-ff6aeac68058",
+  "uuid": "286b6ba8-a45d-48e0-b556-ff6aeac68058",
+  "name": "Bōjka Studio",
+  "northStar": "fluorescent gallery wall",
+  "capturedAt": "2026-07-18T09:15:04.431Z",
+  "meta": {
+    "url": "https://bojka.studio",
+    "siteName": "Bōjka Studio",
+    "extractedAt": "2026-06-03T20:19:51.946Z",
+    "durationMs": 26248,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 141,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set the wordmark at 157px in custom_15364 weight 400 with line-height 1.0 and letter-spacing -0.008em — this exact combination is the brand's identity",
+      "Reserve Fluorescent (#0af500) for full-bleed section bands only; never use it for buttons, text, borders, or small UI elements",
+      "Use 68px border-radius on all cards, image frames, and tag-like elements to maintain the rounded-poster feel",
+      "Separate UI layers with 1px borders in #282828, never with shadows — the system is intentionally flat",
+      "Set body copy in -apple-system at 16px with line-height 1.0; the tight rhythm matches the compressed display type",
+      "Let the display face carry section titles at 44px or 157px — never substitute a system font for headlines",
+      "Use the 16px column gap token for inline element spacing; pad cards internally with 32-48px"
+    ],
+    "donts": [
+      "Do not add box-shadows to any element — depth comes from scale, not elevation",
+      "Do not use the Fluorescent green on text, icons, or button fills — it's a section background color only",
+      "Do not call #ff4600 a CTA or primary action color — it has no action-background or action-border evidence and is used purely for heading/border decoration",
+      "Do not shrink the wordmark below 44px; the custom face is designed for poster dimensions",
+      "Do not introduce additional accent hues (blues, pinks, yellows) — the palette is intentionally black/white/green/orange",
+      "Do not use a multi-column grid system for hero sections — hero text breaks the grid intentionally for editorial effect",
+      "Do not use icons in navigation or as decoration — the design relies on type and whitespace, not iconography"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Primary text, all hairline borders, nav text, link underlines — the dominant ink. At 21:1 against white it carries the entire typographic system on its own",
+        "group": "neutral"
+      },
+      {
+        "hex": "#282828",
+        "name": "Graphite",
+        "role": "Secondary text, image and card borders, soft structural strokes — slightly lifted from pure black to create a quieter border weight without losing contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Page canvas, card surfaces, image backgrounds — the neutral ground that lets the green and oversized type do all the visual work",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0af500",
+        "name": "Fluorescent",
+        "role": "Full-bleed hero/feature band background, section color blocks — a near-lime pure green used sparingly as a single saturated field. Its only job is to shock the eye and establish the studio's visual voice; it should never appear on UI controls, text, or thin UI strokes",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff4600",
+        "name": "Ember",
+        "role": "Orange outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page is a vertical sequence of full-bleed horizontal bands: a tall Fluorescent hero (roughly one viewport) with the 157px wordmark top-aligned, followed by white sections with centered or left-aligned oversized type, and a fixed bottom nav strip. Content is max-width contained (~1440px) with generous gutters, but sections themselves are full-bleed to allow the green band to span edge-to-edge. Project/showcase cards are large single-column or two-column blocks with 68px radius and 1px graphite borders — they read as physical prints pinned to a gallery wall rather than UI components. The grid is loose, not a strict 12-column: expect asymmetric arrangements where oversized headings dictate flow.",
+    "imagery": "Photography is used selectively as product/lifestyle evidence (e.g., the framed device shot in the hero) — always full-bleed within a card, always contained inside the 68px radius that defines the system. No decorative illustration, no abstract graphics, no icons in the traditional sense; the only 'graphic' element is the massive type itself. When imagery appears it sits on a clean light surface, cropped tight, and never overlaps type. The Fluorescent green band acts as a pure-color stand-in for imagery in sections that don't need a photograph.",
+    "similar": [
+      {
+        "why": "Same editorial-poster sensibility with oversized display type and full-bleed color bands interrupting white sections",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Confident typographic identity pushed to extreme scale, with bold flat color sections and zero reliance on shadows or gradients",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Studio-as-author voice: the wordmark and type do the branding, supported by a single saturated accent color used as full-bleed canvas",
+        "business": "Wieden+Kennedy"
+      },
+      {
+        "why": "Restrained palette with one electric accent color and oversized display type breaking conventional grid hierarchies",
+        "business": "Instrument"
+      },
+      {
+        "why": "Gallery-wall presentation of work — large rounded image cards, generous whitespace, and type-led layout with minimal UI chrome",
+        "business": "Vitra"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "68px",
+        "cards": "68px",
+        "buttons": "20px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "32-48px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Bone Canvas",
+        "level": 1,
+        "purpose": "Default page background across all body sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 2,
+        "purpose": "Project cards and content blocks sitting on the canvas — distinguished by 68px radius and hairline graphite border, not by fill change"
+      },
+      {
+        "hex": "#0af500",
+        "name": "Fluorescent Band",
+        "level": 3,
+        "purpose": "Full-bleed accent section (hero/feature) that interrupts the white canvas — the only chromatic surface in the system"
+      }
+    ],
+    "elevation": [],
+    "northStar": "fluorescent gallery wall",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 16,
+        "letterSpacing": -0.128
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 26,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 22,
+        "letterSpacing": -0.176
+      },
+      {
+        "role": "heading",
+        "size": 44,
+        "lineHeight": 48,
+        "letterSpacing": 0.396
+      },
+      {
+        "role": "display",
+        "size": 157,
+        "lineHeight": 157,
+        "letterSpacing": -1.256
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Wordmark Block",
+        "role": "Studio identity statement at the top of the page",
+        "description": "Full-bleed Fluorescent (#0af500) section, min-height 100vh, padding 48px. Displays the brand wordmark at 157px using custom_15364 weight 400, line-height 1.0, letter-spacing -0.008em, color #000000. Text is top-left aligned, breaking the viewport edge if needed."
+      },
+      {
+        "name": "Image Card",
+        "role": "Project showcase and case-study thumbnail",
+        "description": "White (#ffffff) surface, 1px solid #282828 border, border-radius 68px, padding 0 (image bleeds to the radius edge). Image is full-bleed within the card. No shadow. Card sits on the white page canvas, separated only by its border and radius — never by elevation."
+      },
+      {
+        "name": "Section Heading (Display)",
+        "role": "Section titles and feature statements",
+        "description": "Custom_15364 weight 400 at 44px, line-height 1.09, letter-spacing +0.009em, color #000000. Left-aligned, no underline, no accompanying label. May use Ember (#ff4600) as text color for emphasis variants."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Descriptive and supporting copy",
+        "description": "System font (apple-system) at 16px, line-height 1.0, color #000000. Tighter leading than usual — the tight rhythm is intentional and matches the compressed display type. For longer paragraphs, switch to Roboto 18px / 1.44."
+      },
+      {
+        "name": "Bottom Nav Strip",
+        "role": "Primary site navigation",
+        "description": "Fixed/sticky horizontal bar at viewport bottom, white (#ffffff) background, 1px top border #000000. Links set in system font 16px weight 400, color #000000, separated by generous horizontal gap (~48px). No background fills, no pills, no icons — pure text navigation. Language toggle ('ENG') right-aligned."
+      },
+      {
+        "name": "Accent Rule Line",
+        "role": "Decorative horizontal divider and section punctuation",
+        "description": "1-2px solid Ember (#ff4600) line used as an editorial accent between sections or beneath key headings. Functions as the only warm color thread in the system besides the green band — use sparingly, never as a functional UI divider (use #282828 for those)."
+      },
+      {
+        "name": "Oversized Section Title",
+        "role": "Full-bleed statement type between content sections",
+        "description": "Custom_15364 at 157px, line-height 1.0, color #000000, set on white canvas with 80-120px vertical padding. Functions as a typographic 'section break' — essentially a second hero in miniature. Letter-spacing -0.008em."
+      },
+      {
+        "name": "Language Toggle",
+        "role": "Locale switcher in bottom nav",
+        "description": "Plain text label ('ENG') in system font 16px, color #000000, no background, no border, no chevron. Underline on hover only."
+      },
+      {
+        "name": "Full-Bleed Color Band",
+        "role": "Section background block — the only chromatic surface",
+        "description": "Edge-to-edge Fluorescent (#0af500) section containing a headline and optional image. No border, no internal card, no shadow. Always sits between two white sections to maximize contrast."
+      },
+      {
+        "name": "Rounded Image Frame",
+        "role": "Inline image/photography within body sections",
+        "description": "Image wrapped in a 68px radius container with 1px #282828 border. Used for secondary images that aren't full project cards. Padding inside the radius is 0; the image fills the frame."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The studio's signature display face — used at 157px for the wordmark and section headlines, and at 44px for sub-headings. Its 1.0 line-height at 157px lets characters nearly touch; this tight vertical spacing combined with negative tracking is what gives the wordmark its poster-like compression. The custom letterforms (note the macron over 'o' in 'Bōjka') are non-negotiable brand identity and must be preserved at all sizes.",
+        "sizes": "22px, 44px, 157px",
+        "family": "custom_15364 (Bōjka Display)",
+        "weight": "400",
+        "lineHeight": "1.00, 1.09, 2.73",
+        "substitute": "If unavailable, use PP Editorial New or Migra Italic for closest editorial weight; never substitute a geometric grotesque — the warmth and slight contrast variation of the custom face is the point",
+        "letterSpacing": "-0.008em at body, +0.009em at display",
+        "fontFeatureSettings": "\"ss01\" on, \"kern\" on, \"liga\" on"
+      },
+      {
+        "role": "Body copy, supporting text, and utilitarian UI labels. Intentionally restrained — the system font at default 16px recedes so the display face carries the personality. Never use it for headlines or navigation links.",
+        "sizes": "16px",
+        "family": "-apple-system / BlinkMacSystemFont (System UI)",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "SF Pro Text, Inter, Helvetica Neue"
+      },
+      {
+        "role": "Larger body and descriptive paragraphs where the system stack needs a more readable default — slightly looser leading (1.44) suggests it's used for longer copy blocks rather than labels.",
+        "sizes": "18px",
+        "family": "Roboto",
+        "weight": "400",
+        "lineHeight": "1.44",
+        "substitute": "Inter, IBM Plex Sans"
+      }
+    ],
+    "description": "Bōjka Studio operates on radical typographic confidence: a single custom display face blown up to poster dimensions, paired with a near-total absence of color until a saturated electric green detonates across the hero. The page reads as a printed art-poster dragged into a browser — oversized black wordmark, generous whitespace, a single chromatic explosion, then calm white again. Surfaces stay flat and unshadowed; weight comes from scale and contrast, never from elevation or gradients. Components are reduced to their typographic essence — nav is bare text on a white strip, cards are giant rounded rectangles, and decorative geometry is implied by oversized radii (68px) rather than by borders or shadows. An orange (#ff4600) accent threads through headings and rule lines as a warm counterpoint to the cold green, never enough to compete — it just keeps the eye moving.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/286b6ba8-a45d-48e0-b556-ff6aeac68058#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bōjka Studio design system\",\"item\":\"https://styles.refero.design/style/286b6ba8-a45d-48e0-b556-ff6aeac68058\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/286b6ba8-a45d-48e0-b556-ff6aeac68058#style-reference\",\"name\":\"Bōjka Studio design system reference\",\"headline\":\"Bōjka Studio design system | Refero Styles\",\"description\":\"Explore Bōjka Studio's light Agency design system: Carbon #000000, Graphite #282828 colors, custom_15364 (Bōjka Display), -apple-system / BlinkMacSystemFont...\",\"url\":\"https://styles.refero.design/style/286b6ba8-a45d-48e0-b556-ff6aeac68058\",\"mainEntityOfPage\":\"https://styles.refero.design/style/286b6ba8-a45d-48e0-b556-ff6aeac68058\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Bōjka Studio\",\"url\":\"https://bojka.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/286b6ba8-a45d-48e0-b556-ff6aeac68058#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/973eac8c-123e-472f-a1bf-02c8d6bb95f3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/973eac8c-123e-472f-a1bf-02c8d6bb95f3.jpg\",\"caption\":\"Screenshot of Bōjka Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/973eac8c-123e-472f-a1bf-02c8d6bb95f3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Bōjka Studio design system\",\"Bōjka Studio website design\",\"Bōjka Studio colors\",\"Bōjka Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Carbon\",\"Graphite\",\"Bone\",\"Fluorescent\",\"custom_15364 (Bōjka Display)\",\"-apple-system / BlinkMacSystemFont (System UI)\",\"Roboto\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Bōjka Studio design system\"},{\"@type\":\"Thing\",\"name\":\"Bōjka Studio website design\"},{\"@type\":\"Thing\",\"name\":\"Bōjka Studio colors\"},{\"@type\":\"Thing\",\"name\":\"Bōjka Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:46:58.382Z\",\"dateModified\":\"2026-04-30T02:46:58.382Z\"}]}19:T578,**Quick Color Reference**\n- background: #ffffff (Bone)\n- text: #000000 (Carbon)\n- border: #282828 (Graphite, 1px)\n- accent (section band): #0af500 (Fluorescent — full-bleed only)\n- accent (decorative rule/heading): #ff4600 (Ember)\n- primary action: no distinct CTA color\n\n**3 Example Component Prompts**\n\n1. *Hero section*: Full-bleed background #0af500, min-height 100vh, padding 48px. Wordmark at 157px custom_15364 weight 400, color #000000, line-height 1.0, letter-spacing -0.008em, top-left aligned. Below it, a body paragraph at 16px -apple-system, line-height 1.0, color #000000, max-width 600px. A project image card follows inside the same green band: white surface, 1px #282828 border, 68px radius, full-bleed device photo.\n\n2. *Project showcase card*: White (#ffffff) background, 1px solid #282828 border, 68px border-radius, padding 0. Image fills the card edge-to-edge. Below the image, a 48px white padding zone containing a 22px custom_15364 subheading in #000000 and a 16px -apple-system description in #000000. No shadow, no hover lift.\n\n3. *Section statement*: Full-width white (#ffffff) band with 80px vertical padding. Centered or left-aligned text in custom_15364 at 44px, weight 400, line-height 1.09, letter-spacing +0.009em, color #000000. A 2px solid #ff4600 horizontal rule sits 24px beneath the text, spanning 120px wide — an editorial accent, not a functional divider."
+      }
+    ],
+    "elevationPhilosophy": "The system uses zero shadows. Depth and hierarchy are created entirely through scale, color contrast, and hairline borders (1px graphite #282828). Any added shadow breaks the flat poster aesthetic and must be avoided."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#282828",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.276848202684105
+          },
+          "contexts": [
+            "other",
+            "card",
+            "image"
+          ],
+          "frequency": 267,
+          "confidence": 1,
+          "prominence": 41177586.96951669,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 1,
+            "image/color": 1,
+            "other/color": 53,
+            "card/borderColor": 4,
+            "image/borderColor": 4,
+            "other/borderColor": 204
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "body",
+            "link",
+            "heading",
+            "card",
+            "other"
+          ],
+          "frequency": 386,
+          "confidence": 1,
+          "prominence": 9445596.45832855,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 60,
+            "link/color": 7,
+            "heading/color": 7,
+            "body/borderColor": 240,
+            "card/borderColor": 12,
+            "link/borderColor": 28,
+            "heading/borderColor": 28,
+            "card/backgroundColor": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 8778216.587466745,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "card/color": 3,
+            "other/color": 3,
+            "other/borderColor": 20,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#0af500",
+          "oklch": {
+            "c": 0.2855049540005747,
+            "h": 142.39740354888963,
+            "l": 0.8409508588386985
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1771875,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff4600",
+          "oklch": {
+            "c": 0.22864803929581534,
+            "h": 35.588248901667576,
+            "l": 0.6610894983493665
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 413284,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 3,
+            "heading/borderColor": 12
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.014365021627180933,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.74,
+          "background": "#ffffff",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.07,
+          "background": "#0af500",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.88,
+          "background": "#0af500",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.13,
+          "background": "#000000",
+          "foreground": "#ff4600"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.43,
+          "background": "#ffffff",
+          "foreground": "#ff4600"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.3,
+          "background": "#0af500",
+          "foreground": "#ff4600"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.49,
+          "background": "#0af500",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.42,
+          "background": "#000000",
+          "foreground": "#282828"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 68,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "custom_15364",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 81,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "-apple-system",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 45,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Roboto",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 15,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 22,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 0.8
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "image"
+          ],
+          "frequency": 43,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Roboto",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "custom_15364",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.09,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "custom_15364",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 49,
+          "lineHeight": 0.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "custom_15364",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "custom_15364",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 2.73,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "custom_15364",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "custom_15364",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.02,
+          "letterSpacing": 0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 157,
+          "family": "custom_15364",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.01,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/dccff6a6-a8e3-4784-bfb6-45df7462ec62.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/973eac8c-123e-472f-a1bf-02c8d6bb95f3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/286b6ba8-a45d-48e0-b556-ff6aeac68058#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bōjka Studio design system\",\"item\":\"https://styles.refero.design/style/286b6ba8-a45d-48e0-b556-ff6aeac68058\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/286b6ba8-a45d-48e0-b556-ff6aeac68058#style-reference\",\"name\":\"Bōjka Studio design system reference\",\"headline\":\"Bōjka Studio design system | Refero Styles\",\"description\":\"Explore Bōjka Studio's light Agency design system: Carbon #000000, Graphite #282828 colors, custom_15364 (Bōjka Display), -apple-system / BlinkMacSystemFont...\",\"url\":\"https://styles.refero.design/style/286b6ba8-a45d-48e0-b556-ff6aeac68058\",\"mainEntityOfPage\":\"https://styles.refero.design/style/286b6ba8-a45d-48e0-b556-ff6aeac68058\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Bōjka Studio\",\"url\":\"https://bojka.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/286b6ba8-a45d-48e0-b556-ff6aeac68058#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/973eac8c-123e-472f-a1bf-02c8d6bb95f3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/973eac8c-123e-472f-a1bf-02c8d6bb95f3.jpg\",\"caption\":\"Screenshot of Bōjka Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/973eac8c-123e-472f-a1bf-02c8d6bb95f3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Bōjka Studio design system\",\"Bōjka Studio website design\",\"Bōjka Studio colors\",\"Bōjka Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Carbon\",\"Graphite\",\"Bone\",\"Fluorescent\",\"custom_15364 (Bōjka Display)\",\"-apple-system / BlinkMacSystemFont (System UI)\",\"Roboto\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Bōjka Studio design system\"},{\"@type\":\"Thing\",\"name\":\"Bōjka Studio website design\"},{\"@type\":\"Thing\",\"name\":\"Bōjka Studio colors\"},{\"@type\":\"Thing\",\"name\":\"Bōjka Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:46:58.382Z\",\"dateModified\":\"2026-04-30T02:46:58.382Z\"}]}19:T578,**Quick Color Reference**\n- background: #ffffff (Bone)\n- text: #000000 (Carbon)\n- border: #282828 (Graphite, 1px)\n- accent (section band): #0af500 (Fluorescent — full-bleed only)\n- accent (decorative rule/heading): #ff4600 (Ember)\n- primary action: no distinct CTA color\n\n**3 Example Component Prompts**\n\n1. *Hero section*: Full-bleed background #0af500, min-height 100vh, padding 48px. Wordmark at 157px custom_15364 weight 400, color #000000, line-height 1.0, letter-spacing -0.008em, top-left aligned. Below it, a body paragraph at 16px -apple-system, line-height 1.0, color #000000, max-width 600px. A project image card follows inside the same green band: white surface, 1px #282828 border, 68px radius, full-bleed device photo.\n\n2. *Project showcase card*: White (#ffffff) background, 1px solid #282828 border, 68px border-radius, padding 0. Image fills the card edge-to-edge. Below the image, a 48px white padding zone containing a 22px custom_15364 subheading in #000000 and a 16px -apple-system description in #000000. No shadow, no hover lift.\n\n3. *Section statement*: Full-width white (#ffffff) band with 80px vertical padding. Centered or left-aligned text in custom_15364 at 44px, weight 400, line-height 1.09, letter-spacing +0.009em, color #000000. A 2px solid #ff4600 horizontal rule sits 24px beneath the text, spanning 120px wide — an editorial accent, not a functional divider."
+}

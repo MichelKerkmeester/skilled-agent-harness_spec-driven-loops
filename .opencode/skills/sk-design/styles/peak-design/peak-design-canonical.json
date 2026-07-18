@@ -1,0 +1,1330 @@
+{
+  "source": "https://styles.refero.design/style/6f3fb64d-d4c9-4ec1-86a1-7983e5180985",
+  "uuid": "6f3fb64d-d4c9-4ec1-86a1-7983e5180985",
+  "name": "Peak Design",
+  "northStar": "Gallery wall, half lit",
+  "capturedAt": "2026-07-18T08:31:09.445Z",
+  "meta": {
+    "url": "https://peakdesign.com",
+    "siteName": "Peak Design",
+    "extractedAt": "2026-06-03T16:44:14.809Z",
+    "durationMs": 38478,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 931,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the Exposure-style serif italic only for hero and section-display headlines at 48px or larger; never for body, UI labels, or anything below 40px.",
+      "Set body text in Geist 400 at 16px with 1.5 line-height; reserve Geist 600/700 for product names and inline emphasis only.",
+      "Use bryant 700 uppercase with positive tracking (0.038em at 14px, 0.057em at 16px) for every navigation label, button, and eyebrow text — never set bryant in mixed case.",
+      "Alternate between white (#ffffff) and near-black (#0c0c0c or #1a211e) full-bleed sections to create editorial split layouts; never use both tones within a single product card or form.",
+      "Maintain 8px border-radius for all cards and product images, 4px for all buttons, inputs, and nav elements, and 9999px for all badges and filter pills.",
+      "Use #cc2e39 Ember Red only for single-instance emphasis (a sale indicator, urgency badge, or brand punctuation); never apply it to standard buttons, links, or repeated UI elements.",
+      "Keep product cards borderless and shadowless — separate them from the canvas with 24px+ whitespace, not with containers or elevation."
+    ],
+    "donts": [
+      "Do not introduce colored backgrounds for buttons, cards, or section panels — the system is deliberately monochromatic with black/white/gray only.",
+      "Do not add box-shadow or drop-shadow to any element; the design relies on flat color contrast and hairline borders for separation.",
+      "Do not set body or UI text in the Exposure serif — it is a display face only and loses legibility below 32px.",
+      "Do not use mixed case with the bryant font; it is designed for compressed uppercase labels and reads as a different typeface in lowercase.",
+      "Do not place the full-color Ember Red on more than one element per viewport; its power comes from scarcity in a grayscale system.",
+      "Do not use rounded corners larger than 8px on cards or images, and never apply 32px or 9999px radius to anything other than buttons and badges respectively.",
+      "Do not center-align body copy or product descriptions — the layout language is left-aligned and editorial, with centered alignment reserved for hero headlines and section labels only."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#1a211e",
+        "name": "Carbon Ink",
+        "role": "Primary text, dark hero panels, body copy, icons, borders on light surfaces — the near-black that anchors every headline and forms the deep-background panels of split sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "True Black",
+        "role": "Maximum contrast elements: headline fills on white, announcement bar, footer treatments, solid icon strokes — appears where the design demands the sharpest edge",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0c0c0c",
+        "name": "Obsidian",
+        "role": "Deep panel surfaces and image overlays — slightly softer than true black, used for full-bleed dark sections that need to feel weighty without flat black's harshness",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eef1f0",
+        "name": "Fog",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e0e0e0",
+        "name": "Mist",
+        "role": "Divider lines, disabled states, subtle structural separators — the mid-light gray that defines boundaries between sections on the white canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#606562",
+        "name": "Graphite",
+        "role": "Muted body text, secondary navigation, metadata labels — the de-emphasized text tone for information that supports but should not compete with headlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccfcd",
+        "name": "Ash Border",
+        "role": "Hairline input borders, subtle dividers — a warm-leaning gray that reads as a soft pencil line against white surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#363537",
+        "name": "Slate",
+        "role": "Navigation text on light surfaces, mid-weight borders — reads as near-black at small sizes but carries a subtle warmth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4e4e4e",
+        "name": "Pewter",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cc2e39",
+        "name": "Ember Red",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed page sections that alternate between white and near-black, each section spanning the full viewport width with no max-width constraint at the section level. Content within sections is max-width ~1440px and centered. The dominant hero pattern is a 50/50 split: text block (eyebrow + display headline + subtext + buttons) on one side, full-bleed product or lifestyle image on the other. Below the fold, product grids use 4 columns of equal-width product cards with generous 24-32px gaps. Category filter bars sit directly below the main nav as a horizontal row of pill chips. Section rhythm is defined by alternating light/dark bands with 80px vertical padding between sections, creating an editorial magazine cadence. Navigation is a sticky top bar with a thin announcement strip above it.",
+    "imagery": "Product photography dominates the visual language: bags, slings, and camera gear shot on pure white backgrounds with no lifestyle context, lit to show material texture and hardware details. Lifestyle imagery appears only in full-bleed editorial sections (e.g., hands holding cameras in a circle) and occupies the full viewport width on one side of a split panel. Images have no border-radius in hero contexts (flush to edges) and 8px radius in card contexts. No illustrations, no abstract graphics, no icon illustrations beyond functional UI icons. The product IS the hero — the photography is studio-grade, consistent angle, consistent lighting, consistent white ground, and the UI steps back to let the objects speak.",
+    "similar": [
+      {
+        "why": "Same restrained editorial typography with serif display + clean sans body, monochromatic warm-neutral palette, generous whitespace, and product photography on pure backgrounds",
+        "business": "Aesop"
+      },
+      {
+        "why": "Same premium bag/accessories commerce aesthetic with split hero sections, condensed uppercase nav labels, and near-monochrome palette with black hero panels",
+        "business": "Mismo"
+      },
+      {
+        "why": "Same product-grid-first commerce layout with flat product cards, hairline borders, compressed sans nav, and alternating light/dark section bands",
+        "business": "Bellroy"
+      },
+      {
+        "why": "Same flat-shaded minimalism with no shadows or gradients, typographic hierarchy as the only visual structure, and a system where whitespace does the work of decoration",
+        "business": "Muji"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "4px",
+        "cards": "8px",
+        "badges": "9999px",
+        "images": "8px",
+        "inputs": "4px",
+        "buttons": "4px",
+        "buttonsRounded": "32px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Primary page background for product grids, content sections, and the right side of split layouts"
+      },
+      {
+        "hex": "#eef1f0",
+        "name": "Soft Card",
+        "level": 1,
+        "purpose": "Contained component backgrounds, input fields, secondary buttons — subtle lift from canvas"
+      },
+      {
+        "hex": "#e0e0e0",
+        "name": "Hairline",
+        "level": 2,
+        "purpose": "Divider lines and border separators between sections and cards"
+      },
+      {
+        "hex": "#0c0c0c",
+        "name": "Deep Panel",
+        "level": 3,
+        "purpose": "Full-bleed dark sections, hero panels, image overlays — dramatic contrast zones"
+      }
+    ],
+    "northStar": "Gallery wall, half lit",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      },
+      {
+        "role": "button-label",
+        "size": 16,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.91
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.91
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1.1,
+        "letterSpacing": -2
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Top utility bar for promotions and links",
+        "description": "Full-width black (#1a211e) strip, ~32px tall, white (#ffffff) text at 14px bryant weight 700 uppercase with 0.057em tracking. Content centered horizontally. Provides shipping/warranty/return info and secondary navigation entry points (store finder, mission)."
+      },
+      {
+        "name": "Primary Navigation",
+        "role": "Main site header with logo, category links, search, and account controls",
+        "description": "White (#ffffff) background, ~64px tall, with hairline bottom border (#e0e0e0). Left: Peak Design diamond/peak logo in #1a211e. Center-left: category links in bryant 700 16px uppercase (#363537), letter-spacing 0.057em. Center: full search input field with #eef1f0 background, #cccfcd border, 4px radius, 14px Geist placeholder text in #606562. Right: Support link, account icon, cart icon — all in #1a211e. No background fill, no elevation."
+      },
+      {
+        "name": "Category Filter Bar",
+        "role": "Horizontal scrollable product category selector",
+        "description": "Pill-shaped filter chips below the main nav, 8px row gap between chips. Active state: #1a211 fill with #ffffff text. Inactive: transparent fill with #363537 text and #cccfcd border. Text: bryant 700 16px uppercase. Height ~40px, horizontal padding 20px, border-radius 9999px. Arrow buttons on right edge for overflow."
+      },
+      {
+        "name": "Product Card",
+        "role": "Individual product tile in the product grid",
+        "description": "White (#ffffff) background, no visible border. Product image fills the card top with 8px border-radius. No padding between image and text. 'New' badge: #4e4e4 pill at top-left of image, white bryant 700 14px text, padding 2px 8px, 9999px radius. Product title: Geist 400 16px #1a211, 4px gap to brand label. Brand label 'Kelp': Geist 400 14px #606562. Price: Geist 400 16px #1a211, 8px below brand label. Card has no shadow or border — content separates by whitespace alone."
+      },
+      {
+        "name": "Hero Split Panel",
+        "role": "Full-width hero with editorial headline on one side, product image on the other",
+        "description": "Two-column 50/50 split, full viewport width, 400-600px height. Left panel: #0c0c0c or #1a211 background with eyebrow label in bryant 700 14px white uppercase, then display headline in Exposure-style serif 48-80px italic #ffffff with -0.025em tracking, line-height 1.10. Subtext in Geist 400 16px white at 80% opacity. Right panel: full-bleed product or lifestyle image with no border-radius (flush to viewport edge). Vertical centering of text content within left panel."
+      },
+      {
+        "name": "Filled Button (on dark)",
+        "role": "Primary action button on dark hero panels",
+        "description": "White (#ffffff) fill, no border, 4px corner radius. Padding: 12px vertical, 20px horizontal. Text: bryant 700 16px uppercase in #1a211, letter-spacing 0.057em. No shadow, no hover state with elevation shift — the button is a solid rectangle of contrast."
+      },
+      {
+        "name": "Outlined Button (on dark)",
+        "role": "Secondary action button on dark hero panels",
+        "description": "Transparent fill, 1px white (#ffffff) border, 4px corner radius. Padding: 12px vertical, 20px horizontal. Text: bryant 700 16px uppercase in #ffffff, letter-spacing 0.057em. Border is thin enough to read as an annotation rather than a container."
+      },
+      {
+        "name": "Ghost Button (on light)",
+        "role": "Text-only or borderless action on white surfaces",
+        "description": "No background, no border. Text: bryant 700 14-16px uppercase in #1a211, letter-spacing 0.057em. Used for inline links and low-emphasis actions that should feel like annotations on the page."
+      },
+      {
+        "name": "Carousel Pagination Dots",
+        "role": "Position indicator for scrollable product carousels",
+        "description": "Horizontal row of 4-6 dots, 8px gap. Active dot: ~8px wide solid #1a211 rounded pill. Inactive: ~8px circle in #cccfcd. Centered below the product row."
+      },
+      {
+        "name": "Search Field",
+        "role": "Persistent search input in the main navigation",
+        "description": "#eef1f0 background fill, 1px #cccfcd border, 4px corner radius. Height ~40px, width fills available nav space. Left icon (magnifying glass) in #606562 at 16px. Placeholder text 'Search for packing cubes' in Geist 400 14px #606562."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Editorial heading for content sections like 'Explore our products'",
+        "description": "Large display serif in #1a211, left-aligned, 48-80px size, line-height 1.10. Optional em-dash suffix (—) as a visual terminal. Appears at the top of content sections with 64px top padding from the previous section."
+      },
+      {
+        "name": "Navigation Icon Button",
+        "role": "Account, cart, and utility icons in the header",
+        "description": "No background, no border. Icon only at 20-24px, stroke weight 1.5px, color #1a211e. 8px padding around clickable area. No hover state with background fill — the icon darkens slightly on interaction."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body copy, product titles, descriptions, form inputs, link text, footer content. Weight 400 for body, 600 for emphasis, 700 for product names and important inline labels. The neutral grotesque lets the display serif and condensed sans carry the brand voice while Geist handles everything functional and readable.",
+        "sizes": "14px, 16px",
+        "family": "Geist",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.00–1.50",
+        "substitute": "Inter, Söhne, Helvetica Neue"
+      },
+      {
+        "role": "Display and hero headlines. Single weight (400) in an italic-leaning serif creates editorial gravitas — these are the words that set the brand's tone, used sparingly on full-bleed dark panels and key section openers. The tight tracking (-0.025em) lets large letterforms feel composed rather than airy.",
+        "sizes": "40px, 48px, 80px",
+        "family": "Exposure-style serif (Exposure-10)",
+        "weight": "400",
+        "lineHeight": "1.10",
+        "substitute": "Playfair Display, GT Super, Tiempos Headline",
+        "letterSpacing": "-0.025em at 40-80px"
+      },
+      {
+        "role": "Navigation labels, category filter buttons, button text, eyebrows, section tags, and secondary headings. The compressed uppercase forms with positive tracking create an industrial, label-like voice — these words identify and instruct, never describe.",
+        "sizes": "14px, 16px, 24px, 32px",
+        "family": "Bryant-style condensed sans (bryant)",
+        "weight": "700",
+        "lineHeight": "1.10–1.40",
+        "substitute": "Druk Wide, Inter Display Bold, Neue Haas Grotesk Display Bold (uppercase)",
+        "letterSpacing": "0.038em at 14px, 0.057em at 16px (positive tracking for all-caps treatment)"
+      },
+      {
+        "role": "Small technical labels, SKUs, or micro-data — appears in the smallest details where monospaced alignment signals precision or product specification.",
+        "sizes": "14px",
+        "family": "Geist Mono",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "JetBrains Mono, IBM Plex Mono"
+      },
+      {
+        "role": "Exposure-10 — detected in extracted data but not described by AI",
+        "sizes": "40px, 48px, 80px",
+        "family": "Exposure-10",
+        "weight": "400",
+        "lineHeight": "1.1",
+        "letterSpacing": "-0.025, -0.01"
+      }
+    ],
+    "description": "Peak Design is a gallery-grade commerce experience: a near-monochrome canvas where editorial typography and product photography do all the work. The system alternates between crisp white surfaces and deep near-black panels, creating dramatic split layouts where one side carries an italic serif headline and the other a full-bleed product or lifestyle image. Typography is the brand's primary voice — a tall condensed display serif (Exposure-style) for headlines paired with a neutral grotesque (Geist) for UI and an all-caps compressed sans (bryant) for labels, eyebrows, and buttons. The interface stays disciplined: no chromatic UI elements, no decorative gradients, no shadows — just hairline borders, two corner radii (4 and 8), and a single red accent reserved for rare emphasis. Components feel engineered rather than decorated: thin dividers, flat product cards, pill-shaped filter chips, and ghost buttons that read as architectural annotations.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6f3fb64d-d4c9-4ec1-86a1-7983e5180985#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Peak Design design system\",\"item\":\"https://styles.refero.design/style/6f3fb64d-d4c9-4ec1-86a1-7983e5180985\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6f3fb64d-d4c9-4ec1-86a1-7983e5180985#style-reference\",\"name\":\"Peak Design design system reference\",\"headline\":\"Peak Design design system | Refero Styles\",\"description\":\"Explore Peak Design's light E-commerce design system: Carbon Ink #1a211e, Paper White #ffffff colors, Geist, Exposure-style serif (Exposure-10) typography,...\",\"url\":\"https://styles.refero.design/style/6f3fb64d-d4c9-4ec1-86a1-7983e5180985\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6f3fb64d-d4c9-4ec1-86a1-7983e5180985\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Peak Design\",\"url\":\"https://peakdesign.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6f3fb64d-d4c9-4ec1-86a1-7983e5180985#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6b966c5c-0fef-4c36-8ab5-7addcf6cf289.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6b966c5c-0fef-4c36-8ab5-7addcf6cf289.jpg\",\"caption\":\"Screenshot of Peak Design\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6b966c5c-0fef-4c36-8ab5-7addcf6cf289.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Peak Design design system\",\"Peak Design website design\",\"Peak Design colors\",\"Peak Design typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Carbon Ink\",\"Paper White\",\"True Black\",\"Obsidian\",\"Geist\",\"Exposure-style serif (Exposure-10)\",\"Bryant-style condensed sans (bryant)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Peak Design design system\"},{\"@type\":\"Thing\",\"name\":\"Peak Design website design\"},{\"@type\":\"Thing\",\"name\":\"Peak Design colors\"},{\"@type\":\"Thing\",\"name\":\"Peak Design typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-01-21T12:07:18.000Z\",\"dateModified\":\"2026-01-21T12:07:18.000Z\"}]}19:T73c,**Quick Color Reference**\n- text: #1a211e\n- background: #ffffff\n- dark panel: #0c0c0c\n- border: #e0e0e0\n- muted text: #606562\n- accent: #cc2e39 (rare emphasis only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero Split Panel**: Full-viewport-width section, 50/50 split. Left half: #0c0c0c background, vertical-center aligned. Eyebrow text in bryant 700 14px white uppercase, letter-spacing 0.91px, margin-bottom 8px. Display headline in Exposure-style serif italic 56px #ffffff, letter-spacing -1.4px, line-height 1.10, max-width 480px. Subtext in Geist 400 16px white, 12px margin-top. Right half: full-bleed product image, no border-radius, object-fit cover, flush to viewport edge.\n\n2. **Product Grid Card**: White background, no border, no shadow. Product image at top with 8px border-radius, aspect-ratio 1:1. 'New' badge: absolute top-left 8px from edge, #4e4e4e fill, bryant 700 12px white text, padding 2px 8px, 9999px radius. Below image, 12px gap, then product title in Geist 400 16px #1a211e. 4px gap, brand label 'Kelp' in Geist 400 14px #606562. 4px gap, price in Geist 400 16px #1a211e.\n\n3. **Outlined Hero Button**: Transparent fill, 1px #ffffff border, 4px radius. Padding 12px 20px. Text: bryant 700 16px uppercase in #ffffff, letter-spacing 0.91px. No hover state changes background — only opacity shifts to 0.85.\n\n4. **Category Filter Pill (Active)**: #1a211e background, no border, 9999px radius, padding 8px 20px. Text: bryant 700 14px white uppercase, letter-spacing 0.53px. Inactive variant: transparent background, 1px #cccfcd border, text in #363537.\n\n5. **Search Field**: Full-width within nav, height 40px. #eef1f0 background, 1px #cccfcd border, 4px radius. Left padding 36px for icon. Magnifying glass icon 16px in #606562, absolute left 12px. Placeholder text in Geist 400 14px #606562."
+      },
+      {
+        "title": "Editorial Section Patterns",
+        "content": "Peak Design's layout language follows three repeating section archetypes: (1) Split hero — 50/50 dark-left/text + light-right/image, with the display serif doing the work; (2) Product carousel — horizontal row of 4 product cards under a left-aligned display heading, with pagination dots below; (3) Manifesto blocks — centered or left-aligned display serif text on white, with optional em-dash terminal, followed by a single ghost or outlined button. Every full-bleed section alternates polarity (white → black → white) to maintain editorial rhythm. No section uses a gradient, image overlay with text, or colored background."
+      }
+    ],
+    "elevationPhilosophy": "The design intentionally avoids all shadows and elevation effects. Separation between elements is achieved through flat color contrast (white vs near-black panels), hairline 1px borders in #e0e0e0 or #cccfcd, and generous whitespace. There is no z-axis in this system — everything sits on a single plane, and depth is implied by tone rather than by offset or blur."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1a211e",
+          "oklch": {
+            "c": 0.011660511666561485,
+            "h": 167.55688212390336,
+            "l": 0.23960308377744077
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "body",
+            "link",
+            "image",
+            "icon",
+            "card",
+            "footer",
+            "heading",
+            "input"
+          ],
+          "frequency": 3054,
+          "confidence": 1,
+          "prominence": 99961336.51401474,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "link",
+            "icon",
+            "body",
+            "list",
+            "nav",
+            "heading",
+            "badge",
+            "input"
+          ],
+          "frequency": 480,
+          "confidence": 1,
+          "prominence": 19057691.073026758,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "icon",
+            "card",
+            "body",
+            "button"
+          ],
+          "frequency": 537,
+          "confidence": 1,
+          "prominence": 10128178.87024612,
+          "properties": [
+            "fill",
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0c0c0c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1543399938085494
+          },
+          "contexts": [
+            "other",
+            "input",
+            "image"
+          ],
+          "frequency": 57,
+          "confidence": 1,
+          "prominence": 3063577.610926842,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eef1f0",
+          "oklch": {
+            "c": 0.003456986132120398,
+            "h": 174.48185644353802,
+            "l": 0.9555828006712379
+          },
+          "contexts": [
+            "other",
+            "button",
+            "input"
+          ],
+          "frequency": 38,
+          "confidence": 1,
+          "prominence": 2764133.2254094845,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e0e0e0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9067006916295425
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 1399199.4354946518,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#606562",
+          "oklch": {
+            "c": 0.007769427617472587,
+            "h": 159.87450272026945,
+            "l": 0.5013763648221629
+          },
+          "contexts": [
+            "nav",
+            "body",
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 59,
+          "confidence": 1,
+          "prominence": 116779.22707518042,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cccfcd",
+          "oklch": {
+            "c": 0.004262574565818954,
+            "h": 157.1631939977782,
+            "l": 0.8515889159140837
+          },
+          "contexts": [
+            "nav",
+            "input"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 102472.57667476313,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#363537",
+          "oklch": {
+            "c": 0.003722729100503935,
+            "h": 308.335307399517,
+            "l": 0.33071967315049405
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 80,
+          "confidence": 1,
+          "prominence": 62669.41727851451,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4e4e4e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.42392648371120567
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 6437.2648362780865,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b8bcba",
+          "oklch": {
+            "c": 0.005245625421767657,
+            "h": 164.96912444432294,
+            "l": 0.7914592100354381
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1297,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#050505",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1149182763483161
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 718.6828600467467,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cc2e39",
+          "oklch": {
+            "c": 0.19329201699288343,
+            "h": 22.956820204471114,
+            "l": 0.5560444551034228
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 440,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.022884836964363567,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.38,
+          "background": "#ffffff",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.56,
+          "background": "#0c0c0c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.48,
+          "background": "#eef1f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.93,
+          "background": "#eef1f0",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.21,
+          "background": "#eef1f0",
+          "foreground": "#0c0c0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.4,
+          "background": "#ffffff",
+          "foreground": "#1a211e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#e0e0e0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.44,
+          "background": "#e0e0e0",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.82,
+          "background": "#e0e0e0",
+          "foreground": "#0c0c0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.43,
+          "background": "#eef1f0",
+          "foreground": "#1a211e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.37,
+          "background": "#cccfcd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.98,
+          "background": "#cccfcd",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.46,
+          "background": "#cccfcd",
+          "foreground": "#0c0c0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.43,
+          "background": "#e0e0e0",
+          "foreground": "#1a211e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.2,
+          "background": "#ffffff",
+          "foreground": "#363537"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.94,
+          "background": "#b8bcba",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.73,
+          "background": "#eef1f0",
+          "foreground": "#363537"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.62,
+          "background": "#b8bcba",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.45,
+          "background": "#cccfcd",
+          "foreground": "#1a211e"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "card",
+            "other",
+            "image"
+          ],
+          "frequency": 53
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "button",
+            "link",
+            "image",
+            "input"
+          ],
+          "frequency": 29
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 6
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 106,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 127,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 67,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 76,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 58,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 228,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 38,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 60,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Geist",
+          "source": "custom",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 669,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "bryant",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 107,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Bryant",
+          "source": "custom",
+          "weights": [
+            500,
+            700
+          ],
+          "frequency": 29,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Exposure-10",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 16,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Geist Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "bryant",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 15,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "bryant",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Geist",
+          "weight": 600,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 14,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 38,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Geist Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Bryant",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0.057,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "bryant",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "hero",
+            "link",
+            "image",
+            "body",
+            "card",
+            "footer"
+          ],
+          "frequency": 481,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "input",
+            "body"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Bryant",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.038,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "bryant",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body",
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 86,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Geist",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "nav"
+          ],
+          "frequency": 54,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Bryant",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Bryant",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Bryant",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "Exposure-10",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Exposure-10",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Exposure-10",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/197ec1a5-a558-423f-beea-53742b99a9e7.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6b966c5c-0fef-4c36-8ab5-7addcf6cf289.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6f3fb64d-d4c9-4ec1-86a1-7983e5180985#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Peak Design design system\",\"item\":\"https://styles.refero.design/style/6f3fb64d-d4c9-4ec1-86a1-7983e5180985\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6f3fb64d-d4c9-4ec1-86a1-7983e5180985#style-reference\",\"name\":\"Peak Design design system reference\",\"headline\":\"Peak Design design system | Refero Styles\",\"description\":\"Explore Peak Design's light E-commerce design system: Carbon Ink #1a211e, Paper White #ffffff colors, Geist, Exposure-style serif (Exposure-10) typography,...\",\"url\":\"https://styles.refero.design/style/6f3fb64d-d4c9-4ec1-86a1-7983e5180985\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6f3fb64d-d4c9-4ec1-86a1-7983e5180985\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Peak Design\",\"url\":\"https://peakdesign.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6f3fb64d-d4c9-4ec1-86a1-7983e5180985#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6b966c5c-0fef-4c36-8ab5-7addcf6cf289.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6b966c5c-0fef-4c36-8ab5-7addcf6cf289.jpg\",\"caption\":\"Screenshot of Peak Design\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6b966c5c-0fef-4c36-8ab5-7addcf6cf289.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Peak Design design system\",\"Peak Design website design\",\"Peak Design colors\",\"Peak Design typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Carbon Ink\",\"Paper White\",\"True Black\",\"Obsidian\",\"Geist\",\"Exposure-style serif (Exposure-10)\",\"Bryant-style condensed sans (bryant)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Peak Design design system\"},{\"@type\":\"Thing\",\"name\":\"Peak Design website design\"},{\"@type\":\"Thing\",\"name\":\"Peak Design colors\"},{\"@type\":\"Thing\",\"name\":\"Peak Design typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-01-21T12:07:18.000Z\",\"dateModified\":\"2026-01-21T12:07:18.000Z\"}]}19:T73c,**Quick Color Reference**\n- text: #1a211e\n- background: #ffffff\n- dark panel: #0c0c0c\n- border: #e0e0e0\n- muted text: #606562\n- accent: #cc2e39 (rare emphasis only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero Split Panel**: Full-viewport-width section, 50/50 split. Left half: #0c0c0c background, vertical-center aligned. Eyebrow text in bryant 700 14px white uppercase, letter-spacing 0.91px, margin-bottom 8px. Display headline in Exposure-style serif italic 56px #ffffff, letter-spacing -1.4px, line-height 1.10, max-width 480px. Subtext in Geist 400 16px white, 12px margin-top. Right half: full-bleed product image, no border-radius, object-fit cover, flush to viewport edge.\n\n2. **Product Grid Card**: White background, no border, no shadow. Product image at top with 8px border-radius, aspect-ratio 1:1. 'New' badge: absolute top-left 8px from edge, #4e4e4e fill, bryant 700 12px white text, padding 2px 8px, 9999px radius. Below image, 12px gap, then product title in Geist 400 16px #1a211e. 4px gap, brand label 'Kelp' in Geist 400 14px #606562. 4px gap, price in Geist 400 16px #1a211e.\n\n3. **Outlined Hero Button**: Transparent fill, 1px #ffffff border, 4px radius. Padding 12px 20px. Text: bryant 700 16px uppercase in #ffffff, letter-spacing 0.91px. No hover state changes background — only opacity shifts to 0.85.\n\n4. **Category Filter Pill (Active)**: #1a211e background, no border, 9999px radius, padding 8px 20px. Text: bryant 700 14px white uppercase, letter-spacing 0.53px. Inactive variant: transparent background, 1px #cccfcd border, text in #363537.\n\n5. **Search Field**: Full-width within nav, height 40px. #eef1f0 background, 1px #cccfcd border, 4px radius. Left padding 36px for icon. Magnifying glass icon 16px in #606562, absolute left 12px. Placeholder text in Geist 400 14px #606562."
+}

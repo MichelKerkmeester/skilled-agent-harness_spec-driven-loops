@@ -1,0 +1,1648 @@
+{
+  "source": "https://styles.refero.design/style/a7530405-e523-4268-bba5-ef13549fd61c",
+  "uuid": "a7530405-e523-4268-bba5-ef13549fd61c",
+  "name": "Datalands",
+  "northStar": "Black cathedral with a single neon heartbeat. The wordmark fills the nave; everything else is a whispered caption beneath it.",
+  "capturedAt": "2026-07-18T08:08:09.293Z",
+  "meta": {
+    "url": "https://datalands.co",
+    "siteName": "Datalands",
+    "extractedAt": "2026-06-03T18:20:46.760Z",
+    "durationMs": 41718,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1046,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set primary display text in OZIK Black at 358px, line-height 0.83, letter-spacing -0.01em, one wordmark per page maximum",
+      "Use Martian Mono 12px weight 200 with letter-spacing 0.10em for all uppercase UI labels, nav items, and tags",
+      "Apply border-radius 96px to every button and input; 300px for special capsule elements",
+      "Reserve #fc74dd exclusively for filled primary action buttons and thin accent bars; never use it for body text or large surfaces",
+      "Maintain a pure #000000 canvas across all sections; let white type and single-color accents carry the visual weight",
+      "Set Basis Grotesque Pro headings with aggressive negative tracking: -0.04em at 80px scaling linearly toward 0 at 14px",
+      "Use #ff4c33 only for the status dot in the nav and inside data viz artwork — never as a button or text color"
+    ],
+    "donts": [
+      "Don't apply gradients, shadows, or glassmorphism — the system is flat and high-contrast",
+      "Don't use #fc74dd for anything other than the primary filled action; one vivid color must stay singular",
+      "Don't use OZIK Black for body copy or UI labels — it's a wordmark asset, not a system face",
+      "Don't introduce mid-gray surfaces between #000000 and #1d1a1a; the elevation stack is intentionally two steps",
+      "Don't use rounded corners below 18px on cards or 96px on interactive elements; the capsule geometry is the system",
+      "Don't set body copy larger than 22px; the type system separates editorial display (60–80px) from prose (14–22px) with a deliberate gap",
+      "Don't use color for de-emphasized text — use #d9d9d9 or reduced opacity on white instead of gray-blue or gray-violet"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Universal canvas, page background, default text, hairline borders, monogram fills. Pure black, no warm or cool bias — used at maximum density to let white type and color accents do all the work",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Primary headings, body copy on dark, inverse button labels, inverted card surfaces for case studies",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1d1a1a",
+        "name": "Charcoal",
+        "role": "Elevated card and button-fill surfaces sitting one step above the black canvas. Slightly warm-tinted dark gray",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111212",
+        "name": "Ink",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3d3d3d",
+        "name": "Graphite",
+        "role": "Secondary button borders and button text — a mid-gray frame for outlined/ghost controls on dark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d9d9d9",
+        "name": "Mist",
+        "role": "De-emphasized body text and subtle border work when pure white would overstate the hierarchy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f3f3ef",
+        "name": "Parchment",
+        "role": "Light input field background — a warm near-white that gives the rare form elements a paper-like quality against the black void",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fc74dd",
+        "name": "Neon Magenta",
+        "role": "Pink action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff4c33",
+        "name": "Ember Dot",
+        "role": "Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content",
+        "group": "accent"
+      },
+      {
+        "hex": "#122d8b",
+        "name": "Deep Violet",
+        "role": "Decorative illustration fill used in data-visualization case study artwork. Not an interface token — appears inside graphics",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed dark page with the OZIK wordmark occupying the entire hero viewport. Below the hero, content is centered within a max-width of ~1440px with generous left/right gutters. The page rhythm is: massive wordmark → video block with two-column manifesto text below → vertical case study list. Case study cards stack vertically with consistent vertical rhythm (~80px between sections), each opening with a small monospace category tag, then a large image/video artwork block, then a short caption in Basis Grotesque. Navigation is a single thin top bar: left-side ticker text, centered live status with timestamp, right-side pill CTA — all in 12px Martian Mono. The grid is implicitly single-column at the section level with internal two-column splits for intro text and media. No sidebar, no footer chrome visible above the fold — the wordmark IS the page.",
+    "imagery": "Photography and traditional imagery are absent. The visual language is built from flat geometric data-visualization compositions — overlapping circles, pie segments, and bar charts rendered in solid chromatic fills (orange #ff4c33, neon yellow, gray, soft blue) with numeric labels in Martian Mono centered inside. Case study artwork sits on solid color backgrounds (orange, white, dark) and acts as the only 'color' on the page. Icons are minimal and line-based in white. No lifestyle photography, no product shots, no stock — the studio positions data itself as the aesthetic subject. Video content appears as a single full-bleed black player near the top of the page.",
+    "similar": [
+      {
+        "why": "Same studio-portfolio-as-artwork philosophy with a single oversized typographic hero and a nearly all-black canvas that lets individual project tiles erupt with color",
+        "business": "Resn"
+      },
+      {
+        "why": "Dark-mode agency site using condensed geometric sans for display and monospaced type for UI labels, with generous vertical rhythm between case study blocks",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Full-bleed dark creative agency site where the wordmark or hero visual fills the viewport and the rest of the page is a quiet monochrome support system",
+        "business": "Active Theory"
+      },
+      {
+        "why": "Brutalist display type at extreme sizes on a black canvas, with minimal UI chrome and a single accent color punctuating an otherwise monochrome system",
+        "business": "Manual (manualcreative.co)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "30px",
+        "cards": "18-30px",
+        "inputs": "96px",
+        "buttons": "96px",
+        "special": "300px"
+      },
+      "elementGap": "10-20px",
+      "sectionGap": "80px",
+      "cardPadding": "48px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Base canvas, page background, hero stage"
+      },
+      {
+        "hex": "#1d1a1a",
+        "name": "Charcoal",
+        "level": 1,
+        "purpose": "Elevated cards, dark filled button states"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "level": 2,
+        "purpose": "Inverted case study cards, light mode contrast blocks"
+      }
+    ],
+    "northStar": "Black cathedral with a single neon heartbeat. The wordmark fills the nave; everything else is a whispered caption beneath it.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.05
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.002
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.45,
+        "letterSpacing": -0.008
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "heading-sm",
+        "size": 35,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "heading",
+        "size": 42,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.025
+      },
+      {
+        "role": "heading-lg",
+        "size": 60,
+        "lineHeight": 1,
+        "letterSpacing": -0.03
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1,
+        "letterSpacing": -0.04
+      }
+    ],
+    "components": [
+      {
+        "name": "Wordmark Display",
+        "role": "Brand-defining hero title",
+        "description": "OZIK Black at 358px, white on void, line-height 0.83, letter-spacing -0.01em. One per page, full viewport width. The letterforms have distinctive cut-out apertures that are the brand's geometric signature."
+      },
+      {
+        "name": "Pill Nav Button (LET'S TALK)",
+        "role": "Primary header CTA",
+        "description": "Ghost pill: 1px border #3d3d3d, border-radius 96px, padding 10px 22px, text in Martian Mono 12px weight 200 all-caps, tracked +0.10em, white. A 34px circular icon button sits flush right containing a directional arrow."
+      },
+      {
+        "name": "Filled Magenta CTA",
+        "role": "Primary action button",
+        "description": "Background #fc74dd, text #1d1a1a, border-radius 96px, padding 10px 24px, Martian Mono 12px weight 200 all-caps, letter-spacing 0.10em. The only filled chromatic element in the system."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action",
+        "description": "Transparent fill, 1px border #3d3d3d or #ffffff, border-radius 96px, padding 10px 22px, Martian Mono label white or #3d3d3d."
+      },
+      {
+        "name": "Status Dot + Timestamp",
+        "role": "Live indicator in nav",
+        "description": "8px #ff4c33 dot paired with Martian Mono 12px weight 200 white time text. Signals 'now' / recording metaphor."
+      },
+      {
+        "name": "Ticker Label",
+        "role": "Uppercase header descriptor (e.g. 'BRANDING AND DATA, TOGETHER AT LAST >')",
+        "description": "Martian Mono 12px weight 200 all-caps, white, letter-spacing 0.10em, with trailing arrow glyph. Functions as marquee/tagline."
+      },
+      {
+        "name": "Case Study Card",
+        "role": "Project showcase block",
+        "description": "Variable: white card variant uses #ffffff background, 30px radius, 48px padding, with a small dark pill category tag ('NIKE', 'MICROSOFT') in Martian Mono 12px white-on-charcoal. Dark card variant uses #1d1a1a on the void canvas. Featured artwork (data viz) uses flat chromatic shapes (orange #ff4c33, gray, neon yellow)."
+      },
+      {
+        "name": "Category Pill Tag",
+        "role": "Brand/client label on case studies",
+        "description": "Dark pill, background #1d1a1a, text white, border-radius 30px, padding 4px 12px, Martian Mono 12px weight 400 all-caps. Sits in the top-left of case study cards."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form input (rare in this portfolio context)",
+        "description": "Background #f3f3ef, border 1px #111212, border-radius 96px, padding 10px 22px, text in Martian Mono 18px weight 200. The only light-on-dark inverted form surface in the system."
+      },
+      {
+        "name": "Video Player",
+        "role": "Full-bleed media block",
+        "description": "Native HTML5 video with custom controls at 1.50 line-height for timestamps. Black background, white progress bar, mute/fullscreen icons in white."
+      },
+      {
+        "name": "Section Heading Pair",
+        "role": "Two-column intro text under hero",
+        "description": "Two columns at ~50/50 width: left in Basis Grotesque Pro 22px weight 400 white, right in Basis Grotesque Pro 18px weight 400 #d9d9d9 or white. Acts as manifesto/positioning statement."
+      },
+      {
+        "name": "Accent Bar",
+        "role": "Decorative vertical element on cards",
+        "description": "Thin vertical bar (3-6px wide) in #fc74dd or case-study-specific chromatic color, positioned flush to the left edge of a card. Functions as a color code for project category."
+      },
+      {
+        "name": "Data Visualization Artwork",
+        "role": "Case study hero illustration",
+        "description": "Flat geometric compositions: large overlapping circles in gray (#d9d9d9) and solid fills (#ff4c33 orange, neon yellow #d4f542, #94bcee blue), with numeric labels in Martian Mono centered inside. No gradients, no shadows — pure flat color blocking."
+      }
+    ],
+    "typography": [
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Display wordmark only — the brand's signature act. 358px condensed ultra-black with distinctive cut-out apertures in the 'a' and 'd' forms. No substitute captures the same geometric density; treat as a logo asset, not a system font.",
+        "sizes": "358px",
+        "family": "OZIK Black",
+        "weight": "400",
+        "lineHeight": "0.83",
+        "substitute": "Druk Wide Heavy, obviously",
+        "letterSpacing": "-0.01em"
+      },
+      {
+        "role": "Primary body and heading family for all running text and subheadings. Aggressive negative tracking at large sizes (–0.04em at 80px) tightens the geometric forms; at body sizes tracking relaxes to near-normal. The wide size range (14–80px) and tight leading (1.00–1.10 for display) let it carry both paragraph text and large editorial headlines.",
+        "sizes": "14px, 18px, 22px, 35px, 38px, 42px, 60px, 80px",
+        "family": "Basis Grotesque Pro",
+        "weight": "400",
+        "lineHeight": "1.00–1.45",
+        "substitute": "Inter, Söhne, or any geometric grotesque",
+        "letterSpacing": "-0.04em at 80px, scaling down to -0.002em at 14px"
+      },
+      {
+        "role": "UI chrome — nav labels, button text, tags, case study categories, time stamps, and the 'CASE STUDIES' / 'MICROSOFT' / 'NIKE' labels. The tracked-out positive spacing (0.05–0.10em) on small sizes creates a typewriter/terminal feel that codes the meta-information as system, not content. All caps throughout.",
+        "sizes": "13px, 16px",
+        "family": "Martian Mono",
+        "weight": "200, 400, 600",
+        "lineHeight": "1.00–1.45",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Space Mono",
+        "letterSpacing": "0.02em at 15px, 0.05em at 16px, 0.10em at 16px, -0.05em at 16px"
+      },
+      {
+        "role": "Martian Mono Std xLt Extra-light — detected in extracted data but not described by AI",
+        "sizes": "18px",
+        "family": "Martian Mono Std xLt Extra-light",
+        "weight": "200, 600",
+        "lineHeight": "1.4"
+      },
+      {
+        "role": "Martian Mono Std xLt — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Martian Mono Std xLt",
+        "weight": "400",
+        "lineHeight": "1.45",
+        "letterSpacing": "-0.05"
+      },
+      {
+        "role": "Martian Mono Nr xLt — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "Martian Mono Nr xLt",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Martian Mono Extra-light — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "Martian Mono Extra-light",
+        "weight": "200",
+        "lineHeight": "1"
+      },
+      {
+        "role": "Martian Mono ExtraLight — detected in extracted data but not described by AI",
+        "sizes": "15px",
+        "family": "Martian Mono ExtraLight",
+        "weight": "400",
+        "lineHeight": "1.25",
+        "letterSpacing": "0.02"
+      }
+    ],
+    "description": "Datalands is a monochrome-black studio portfolio built around a single act of typographic spectacle: an OZIK Black wordmark blown to 358px, reducing the entire brand to a shape you feel before you read. The interface is deliberately austere — pure black canvas, white text, Martian Mono for all UI chrome and labels, Basis Grotesque for body copy with aggressive negative tracking. Chromatic color appears only as punctuation: a vivid magenta #fc74dd for the primary action, a small ember-orange #ff4c33 dot ticking in the nav, and case study visuals that erupt with flat geometric color. Everything rounded — inputs, buttons, tags, and the 'LET'S TALK' CTA all use 96px+ radii, creating a soft, almost capsule-like quality that contrasts the brutalist display type. The grid breathes; sections sit 80px apart, cards carry 48px of internal padding, and the dark mode is treated as a content environment, not a surface to be layered.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a7530405-e523-4268-bba5-ef13549fd61c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Datalands design system\",\"item\":\"https://styles.refero.design/style/a7530405-e523-4268-bba5-ef13549fd61c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a7530405-e523-4268-bba5-ef13549fd61c#style-reference\",\"name\":\"Datalands design system reference\",\"headline\":\"Datalands design system | Refero Styles\",\"description\":\"Explore Datalands's dark Agency design system: Void #000000, Bone #ffffff colors, sans-serif, OZIK Black typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a7530405-e523-4268-bba5-ef13549fd61c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a7530405-e523-4268-bba5-ef13549fd61c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Datalands\",\"url\":\"https://datalands.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a7530405-e523-4268-bba5-ef13549fd61c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/377cf164-e4c7-4d82-8e33-b76698409ff5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/377cf164-e4c7-4d82-8e33-b76698409ff5.jpg\",\"caption\":\"Screenshot of Datalands\"},\"image\":\"https://images.refero.design/styles/refero.design/image/377cf164-e4c7-4d82-8e33-b76698409ff5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Datalands design system\",\"Datalands website design\",\"Datalands colors\",\"Datalands typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void\",\"Bone\",\"Charcoal\",\"Ink\",\"sans-serif\",\"OZIK Black\",\"Basis Grotesque Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Datalands design system\"},{\"@type\":\"Thing\",\"name\":\"Datalands website design\"},{\"@type\":\"Thing\",\"name\":\"Datalands colors\"},{\"@type\":\"Thing\",\"name\":\"Datalands typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:06:53.555Z\",\"dateModified\":\"2026-04-30T03:06:53.555Z\"}]}19:T6e4,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- card surface: #1d1a1a\n- inverted card: #ffffff\n- accent: #fc74dd (Neon Magenta)\n- primary action: #fc74dd (filled action)\n\n**Example Component Prompts**\n\n1. *Hero Wordmark Section*: Full-viewport black canvas (#000000). Display 'Datalands' in OZIK Black at 358px, white (#ffffff), line-height 0.83, letter-spacing -0.01em, centered. No subtitle — the wordmark is the entire hero.\n\n2. *Nav Bar*: Top bar, 10px vertical padding, 22px horizontal padding. Left: Martian Mono 12px weight 200 all-caps, white, letter-spacing 0.10em, text 'BRANDING AND DATA, TOGETHER AT LAST >'. Center: 8px #ff4c33 dot followed by Martian Mono 12px white time string. Right: ghost pill button, 1px #3d3d3d border, 96px radius, padding 10px 22px, Martian Mono 12px white 'LET'S TALK'.\n\n3. *Case Study Card (Dark Variant)*: Background #1d1a1a, border-radius 30px, padding 48px. Top-left: dark category pill tag (background #1d1a1a, 30px radius, 4px 12px padding, Martian Mono 12px white 'MICROSOFT'). Left edge: 4px wide vertical bar in #fc74dd running full card height. Below: case study caption in Basis Grotesque Pro 22px weight 400, white.\n\n4. *Two-Column Manifesto*: 48px section gap above. Two equal columns at max-width 1440px. Left: Basis Grotesque Pro 22px weight 400 white, 'Datalands is a visual communication and information design studio.' Right: Basis Grotesque Pro 18px weight 400 #d9d9d9, 'We produce groundbreaking, thrilling projects—shaping the aesthetics and essence of forward-thinking brands.'\n\n5. *Section Label Tag*: A small 8px #ff4c33 dot followed by Martian Mono 12px weight 200 all-caps white, letter-spacing 0.10em, text 'CASE STUDIES'. Used to introduce any new content block on the page."
+      },
+      {
+        "title": "Typographic Identity",
+        "content": "The type system operates on a radical three-tier hierarchy: OZIK Black at 358px for the wordmark (one instance per page, treated as logo asset), Basis Grotesque Pro for all reading and editorial content with sizes ranging from 14px body to 80px display and aggressive negative tracking that scales with size, and Martian Mono for all UI chrome — nav, labels, tags, buttons, timestamps. The Martian Mono family is the connective tissue: its monospaced geometry codes everything as system/metadata, freeing Basis Grotesque to carry the actual content. Weight choices within Martian Mono are sparse: 200 (extra-light) for most UI text, 400 for body, 600 for emphasis. The negative letter-spacing on Basis Grotesque at large sizes (-0.04em at 80px) tightens the geometric forms so tightly that the type reads almost as a logo at display sizes — a visual rhyme with the OZIK wordmark above it."
+      }
+    ],
+    "elevationPhilosophy": "The design deliberately avoids drop shadows and material elevation. Depth is communicated through value contrast (black canvas → #1d1a1a card → #ffffff inverted card) and through the dramatic typographic scale jump from 22px body to 358px display. There is no shadow stack, no blur, no glow — only flat planes and type weight doing the work."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link",
+            "image",
+            "hero",
+            "list",
+            "icon",
+            "heading",
+            "body"
+          ],
+          "frequency": 3993,
+          "confidence": 1,
+          "prominence": 192511516.18416134,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 18,
+            "body/color": 8,
+            "hero/color": 1,
+            "icon/color": 2,
+            "link/color": 18,
+            "list/color": 25,
+            "other/fill": 188,
+            "image/color": 71,
+            "other/color": 592,
+            "button/color": 18,
+            "heading/color": 6,
+            "nav/borderColor": 72,
+            "body/borderColor": 32,
+            "hero/borderColor": 4,
+            "icon/borderColor": 8,
+            "link/borderColor": 72,
+            "list/borderColor": 100,
+            "image/borderColor": 284,
+            "other/borderColor": 2368,
+            "button/borderColor": 72,
+            "heading/borderColor": 24,
+            "other/backgroundColor": 10
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 462,
+          "confidence": 1,
+          "prominence": 6413014.45841886,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "body/color": 52,
+            "other/fill": 27,
+            "heading/color": 27,
+            "nav/borderColor": 16,
+            "body/borderColor": 208,
+            "heading/borderColor": 108,
+            "other/backgroundColor": 20
+          }
+        },
+        {
+          "hex": "#94bcee",
+          "oklch": {
+            "c": 0.08371138290716745,
+            "h": 254.30413579793645,
+            "l": 0.7845153884436507
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1345890,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#111212",
+          "oklch": {
+            "c": 0.0016124015182803556,
+            "h": 197.01403762526354,
+            "l": 0.18106239743299662
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 573620.9152890824,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/color": 12,
+            "input/borderColor": 48
+          }
+        },
+        {
+          "hex": "#f3f3ef",
+          "oklch": {
+            "c": 0.005299283183516023,
+            "h": 106.49868991763078,
+            "l": 0.9630422303955797
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 357906.5295386064,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "input/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#122d8b",
+          "oklch": {
+            "c": 0.15868333829702091,
+            "h": 265.6041575049735,
+            "l": 0.3491685538015756
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 116043.02949029944,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#3d3d3d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3600233686910596
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 64692.48287813597,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 12,
+            "button/borderColor": 48
+          }
+        },
+        {
+          "hex": "#d9d9d9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8853053140427017
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 47881.26040085797,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4
+          }
+        },
+        {
+          "hex": "#fc74dd",
+          "oklch": {
+            "c": 0.20349833863659741,
+            "h": 337.0291822162759,
+            "l": 0.7532363320666441
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 40364.396445483035,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#1d1a1a",
+          "oklch": {
+            "c": 0.004818861043881764,
+            "h": 17.52622195414512,
+            "l": 0.21912923273854362
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2535.9400011538496,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ff4c33",
+          "oklch": {
+            "c": 0.21907968143216683,
+            "h": 31.143986676980703,
+            "l": 0.6690645805016282
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 135,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0018948883250039998,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#f3f3ef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.77,
+          "background": "#ffffff",
+          "foreground": "#111212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.29,
+          "background": "#1d1a1a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.87,
+          "background": "#f3f3ef",
+          "foreground": "#111212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.54,
+          "background": "#f3f3ef",
+          "foreground": "#1d1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.88,
+          "background": "#000000",
+          "foreground": "#d9d9d9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.29,
+          "background": "#d9d9d9",
+          "foreground": "#111212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.25,
+          "background": "#1d1a1a",
+          "foreground": "#d9d9d9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.84,
+          "background": "#ffffff",
+          "foreground": "#122d8b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.86,
+          "background": "#ffffff",
+          "foreground": "#3d3d3d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.69,
+          "background": "#94bcee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.64,
+          "background": "#f3f3ef",
+          "foreground": "#122d8b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.76,
+          "background": "#f3f3ef",
+          "foreground": "#3d3d3d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.55,
+          "background": "#94bcee",
+          "foreground": "#111212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.8,
+          "background": "#94bcee",
+          "foreground": "#1d1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.68,
+          "background": "#fc74dd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.39,
+          "background": "#d9d9d9",
+          "foreground": "#122d8b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.76,
+          "background": "#fc74dd",
+          "foreground": "#111212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.7,
+          "background": "#d9d9d9",
+          "foreground": "#3d3d3d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 96,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 24
+        },
+        {
+          "value": 300,
+          "contexts": [
+            "other",
+            "image",
+            "button"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 49,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 125,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingLeft|button",
+            "paddingRight|button",
+            "paddingBottom|link",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 32,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 48,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 47,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "input",
+            "button",
+            "link"
+          ],
+          "frequency": 60,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 83,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 764,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Basis Grotesque Pro Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 47,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Martian Mono sWd Rg",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 43,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Martian Mono Std xLt Extra-light",
+          "source": "custom",
+          "weights": [
+            200,
+            600
+          ],
+          "frequency": 24,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Martian Mono Std xLt",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "OZIK Black",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Martian Mono Nr xLt",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Martian Mono Extra-light",
+          "source": "custom",
+          "weights": [
+            200
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Martian Mono ExtraLight",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.92
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link",
+            "image",
+            "hero",
+            "list",
+            "icon"
+          ],
+          "frequency": 764,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Martian Mono Nr xLt",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Martian Mono Extra-light",
+          "weight": 200,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Martian Mono sWd Rg",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "link"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Basis Grotesque Pro Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Martian Mono ExtraLight",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Martian Mono Std xLt",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.45,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Martian Mono sWd Rg",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.45,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Basis Grotesque Pro Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.45,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Martian Mono Std xLt Extra-light",
+          "weight": 200,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Martian Mono Std xLt Extra-light",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Basis Grotesque Pro Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Basis Grotesque Pro Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "Basis Grotesque Pro Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Basis Grotesque Pro Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Basis Grotesque Pro Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 19,
+          "lineHeight": 1,
+          "letterSpacing": -0.003,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Basis Grotesque Pro Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 358,
+          "family": "OZIK Black",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 358,
+          "family": "OZIK Black",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.83,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/711ed332-a6fc-4ba0-ae51-807069c208a0.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/377cf164-e4c7-4d82-8e33-b76698409ff5.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a7530405-e523-4268-bba5-ef13549fd61c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Datalands design system\",\"item\":\"https://styles.refero.design/style/a7530405-e523-4268-bba5-ef13549fd61c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a7530405-e523-4268-bba5-ef13549fd61c#style-reference\",\"name\":\"Datalands design system reference\",\"headline\":\"Datalands design system | Refero Styles\",\"description\":\"Explore Datalands's dark Agency design system: Void #000000, Bone #ffffff colors, sans-serif, OZIK Black typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a7530405-e523-4268-bba5-ef13549fd61c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a7530405-e523-4268-bba5-ef13549fd61c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Datalands\",\"url\":\"https://datalands.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a7530405-e523-4268-bba5-ef13549fd61c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/377cf164-e4c7-4d82-8e33-b76698409ff5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/377cf164-e4c7-4d82-8e33-b76698409ff5.jpg\",\"caption\":\"Screenshot of Datalands\"},\"image\":\"https://images.refero.design/styles/refero.design/image/377cf164-e4c7-4d82-8e33-b76698409ff5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Datalands design system\",\"Datalands website design\",\"Datalands colors\",\"Datalands typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void\",\"Bone\",\"Charcoal\",\"Ink\",\"sans-serif\",\"OZIK Black\",\"Basis Grotesque Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Datalands design system\"},{\"@type\":\"Thing\",\"name\":\"Datalands website design\"},{\"@type\":\"Thing\",\"name\":\"Datalands colors\"},{\"@type\":\"Thing\",\"name\":\"Datalands typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:06:53.555Z\",\"dateModified\":\"2026-04-30T03:06:53.555Z\"}]}19:T6e4,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- card surface: #1d1a1a\n- inverted card: #ffffff\n- accent: #fc74dd (Neon Magenta)\n- primary action: #fc74dd (filled action)\n\n**Example Component Prompts**\n\n1. *Hero Wordmark Section*: Full-viewport black canvas (#000000). Display 'Datalands' in OZIK Black at 358px, white (#ffffff), line-height 0.83, letter-spacing -0.01em, centered. No subtitle — the wordmark is the entire hero.\n\n2. *Nav Bar*: Top bar, 10px vertical padding, 22px horizontal padding. Left: Martian Mono 12px weight 200 all-caps, white, letter-spacing 0.10em, text 'BRANDING AND DATA, TOGETHER AT LAST >'. Center: 8px #ff4c33 dot followed by Martian Mono 12px white time string. Right: ghost pill button, 1px #3d3d3d border, 96px radius, padding 10px 22px, Martian Mono 12px white 'LET'S TALK'.\n\n3. *Case Study Card (Dark Variant)*: Background #1d1a1a, border-radius 30px, padding 48px. Top-left: dark category pill tag (background #1d1a1a, 30px radius, 4px 12px padding, Martian Mono 12px white 'MICROSOFT'). Left edge: 4px wide vertical bar in #fc74dd running full card height. Below: case study caption in Basis Grotesque Pro 22px weight 400, white.\n\n4. *Two-Column Manifesto*: 48px section gap above. Two equal columns at max-width 1440px. Left: Basis Grotesque Pro 22px weight 400 white, 'Datalands is a visual communication and information design studio.' Right: Basis Grotesque Pro 18px weight 400 #d9d9d9, 'We produce groundbreaking, thrilling projects—shaping the aesthetics and essence of forward-thinking brands.'\n\n5. *Section Label Tag*: A small 8px #ff4c33 dot followed by Martian Mono 12px weight 200 all-caps white, letter-spacing 0.10em, text 'CASE STUDIES'. Used to introduce any new content block on the page."
+}

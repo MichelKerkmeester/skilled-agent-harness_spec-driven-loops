@@ -1,0 +1,399 @@
+{
+  "color": {
+    "tally-magenta": {
+      "$value": "#f81ce5",
+      "$type": "color",
+      "$description": "Tally Magenta — Pink decorative accent for icons, marks, and small graphic details. Do not promote it to the primary CTA color; Decorative focus-ring and glow tint used to draw the eye to a highlighted feature card, applied as a soft 2–4px outer ring rather than a fill"
+    },
+    "action-blue": {
+      "$value": "#0070d7",
+      "$type": "color",
+      "$description": "Action Blue — Primary action buttons only — the lone chromatic fill in the system, used to mark conversion moments without competing with the magenta brand mark"
+    },
+    "ink": {
+      "$value": "#37352f",
+      "$type": "color",
+      "$description": "Ink — Primary text, heading fills, and the dominant dark border color across cards, body elements, and form chrome. A warm near-black rather than pure black"
+    },
+    "paper": {
+      "$value": "#e0e0df",
+      "$type": "color",
+      "$description": "Paper — Page canvas — the warm light-gray background that all white card surfaces sit on. The signature surface of the system"
+    },
+    "white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "White — Card surfaces, form previews, input fields, and icon fills on the canvas. Provides the only bright surface layer"
+    },
+    "mist": {
+      "$value": "#f3f3f3",
+      "$type": "color",
+      "$description": "Mist — Subtle elevated or muted surface for secondary panels, code blocks, and hover washes — a half-step darker than pure white"
+    },
+    "graphite": {
+      "$value": "#898884",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, helper copy, and tertiary borders on icons and body elements"
+    },
+    "ash": {
+      "$value": "#777672",
+      "$type": "color",
+      "$description": "Ash — Muted borders, inactive dividers, and low-emphasis strokes for icons and form elements"
+    },
+    "charcoal": {
+      "$value": "#45433e",
+      "$type": "color",
+      "$description": "Charcoal — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Black — Heading borders, the dark header CTA button fill, and the highest-contrast button text — reserved for moments that need maximum weight"
+    },
+    "purple-to-pink": {
+      "$value": "#f81ce0",
+      "$type": "color",
+      "$description": "Purple-to-Pink — Underline and streak flourishes under display headlines — a short linear sweep from violet to magenta that replaces the traditional squiggle"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "The only typeface across the entire system. Used for display headlines at 64px weight 800, section headings at 30–36px weight 700, subheadings at 22–26px weight 600, body at 16–18px weight 400–500, and caption/label at 13–14px weight 500. The tight -0.031em tracking and high x-height make it read like a serif replacement at display sizes."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 800,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "26px",
+        "fontWeight": 800,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "192": {
+      "$value": "192px",
+      "$type": "dimension",
+      "$description": "Spacing 192px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, rgba(61, 59, 53, 0.16) 0px 0px 0px 1px, rgba(61, 59, 53, 0.08) 0px 3px 9px 0px, rgba(61, 59, 53, 0.08) 0px 2px 5px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.09) 0px 3px 12px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "subtle-2": {
+      "$value": "rgb(248, 28, 229) 0px 0px 0px 2px, rgba(248, 28, 229, 0.36) 0px 0px 0px 4px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#e0e0df",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the warm gray background behind every section"
+    },
+    "white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card and form-preview surfaces that sit on the paper canvas"
+    },
+    "mist": {
+      "$value": "#f3f3f3",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary elevated surfaces, code snippets, and quiet hover states"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://tally.so",
+      "siteName": "Tally Forms",
+      "extractedAt": "2026-06-03T18:23:44.870Z",
+      "variant": "extended"
+    }
+  }
+}

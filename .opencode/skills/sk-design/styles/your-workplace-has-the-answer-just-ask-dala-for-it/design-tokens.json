@@ -1,0 +1,337 @@
+{
+  "color": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Page canvas, section backgrounds, negative space — pure black is the dominant surface, not dark gray, creating the void that lets chromatic accents float"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Headlines, body text, icon fills, nav active state — the only typographic color, carrying maximum hierarchy on black"
+    },
+    "ash-gray": {
+      "$value": "#9a9a9a",
+      "$type": "color",
+      "$description": "Ash Gray — Muted nav text, ghost link color, secondary labels — recedes behind primary text without going invisible"
+    },
+    "silver-mist": {
+      "$value": "#bdbdbd",
+      "$type": "color",
+      "$description": "Silver Mist — Tertiary body text, caption-level information — the quietest readable gray, for supporting context"
+    },
+    "electric-iris": {
+      "$value": "#8052ff",
+      "$type": "color",
+      "$description": "Electric Iris — Primary action buttons, logo mark, brand accents — the single saturated violet that signals interactivity and brand identity against the black void"
+    },
+    "saffron-spark": {
+      "$value": "#ffb829",
+      "$type": "color",
+      "$description": "Saffron Spark — Highlight emphasis text, accent links, attention punctuation — warm yellow against violet creates the brand's chromatic tension"
+    },
+    "deep-verdant": {
+      "$value": "#15846e",
+      "$type": "color",
+      "$description": "Deep Verdant — Secondary surface tint, logo gradient stop — appears as the deeper end of the brand gradient and in subtle accent washes"
+    }
+  },
+  "font": {
+    "ppneuemontreal": {
+      "$value": "PPNeueMontreal",
+      "$type": "fontFamily",
+      "$description": "Single typeface across all UI contexts. Display sizes (78–113px) carry headlines at weight 400 with -0.04em tracking — the same weight as body text but massive scale creates hierarchy. Weight 200 (ultra-light) is reserved for 18px body copy, a signature choice: most AI/SaaS sites use 400 for body, but Dala strips weight to make paragraphs feel airy and non-aggressive. Weight 600 at 14px with 0.025em tracking and uppercase serves nav and small labels. The number 400 doing both 113px display and 15px body is unusual — it means the brand trusts scale, not weight, for hierarchy."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 0.81
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "18px",
+        "fontWeight": 200,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 27px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "78px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 78px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "78px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 78px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "113px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 113px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page background, all section backgrounds, the base void"
+    },
+    "deep-verdant-tint": {
+      "$value": "#15846",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle accent surface for brand gradient and logo depth"
+    },
+    "electric-iris": {
+      "$value": "#8052ff",
+      "$type": "color",
+      "$description": "Surface level 2: Highest surface — filled buttons, active interactive elements only"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://dala.craftedbygc.com",
+      "siteName": "Your workplace has the answer. Just ask Dala for it.",
+      "extractedAt": "2026-07-03T02:42:43.049Z",
+      "variant": "extended"
+    }
+  }
+}

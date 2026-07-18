@@ -1,0 +1,362 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#020108",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, borders, icon strokes — near-black carries all body and heading copy"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal — Dominant border color across the entire interface, card outlines, dividers"
+    },
+    "steel": {
+      "$value": "#5d5c61",
+      "$type": "color",
+      "$description": "Steel — Secondary borders, muted icon fills, tertiary structural lines"
+    },
+    "pewter": {
+      "$value": "#818084",
+      "$type": "color",
+      "$description": "Pewter — Muted helper text, secondary link text, subdued metadata"
+    },
+    "ash": {
+      "$value": "#d7d7d6",
+      "$type": "color",
+      "$description": "Ash — Subtle background washes, low-contrast surface differentiation"
+    },
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Card surfaces, image backgrounds, inverted text on dark regions"
+    },
+    "paper": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Paper — Page background — the dominant canvas tone behind all content"
+    },
+    "ember-orange": {
+      "$value": "#fd7b03",
+      "$type": "color",
+      "$description": "Ember Orange — Supporting palette color for small decorative accents when the core palette needs contrast."
+    },
+    "cobalt-drift": {
+      "$value": "#3a54ff",
+      "$type": "color",
+      "$description": "Cobalt Drift — Gradient stop — blue-violet entry point in the tri-color brand gradient (blue → violet → orange) used for special accent surfaces"
+    },
+    "crimson-edge": {
+      "$value": "#9a0101",
+      "$type": "color",
+      "$description": "Crimson Edge — Gradient stop — deep red entry in the four-color brand gradient variant"
+    },
+    "teal-bridge": {
+      "$value": "#48a3d1",
+      "$type": "color",
+      "$description": "Teal Bridge — Gradient stop — cool blue bridge into orange in the dual-tone gradient"
+    }
+  },
+  "font": {
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    },
+    "sf-pro-display": {
+      "$value": "SF Pro Display",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the system — display headlines reach 100px at weight 400 with -3.1% tracking, subheadings at 53px weight 500 with -2% tracking, body at 15–17px weight 400. The choice to use weight 400–500 even at display sizes (rather than going bold) is signature: the type commands attention through scale and tightness, not weight. Substitute: Inter, or any geometric grotesque with strong x-height and tight default tracking."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "8px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.39
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 0.63
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "43px",
+        "fontWeight": 500,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "53px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 53px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "73px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 73px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Sf Pro Display",
+        "fontSize": "100px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 100px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "172": {
+      "$value": "172px",
+      "$type": "dimension",
+      "$description": "Spacing 172px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1.33084px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6.65421px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "19.9626px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "26.6168px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "39.9252px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "119.776px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1317.53px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the dominant canvas behind all content"
+    },
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, image backgrounds, inverted text on dark regions"
+    },
+    "ash": {
+      "$value": "#d7d7d6",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle background washes, low-contrast surface differentiation within cards"
+    },
+    "ink-black": {
+      "$value": "#020108",
+      "$type": "color",
+      "$description": "Surface level 3: Inverse surface for media player strips, dark app preview frames, terminal-like zones"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://fourmula.ai",
+      "siteName": "AI Product Generation",
+      "extractedAt": "2026-06-03T18:09:13.950Z",
+      "variant": "extended"
+    }
+  }
+}

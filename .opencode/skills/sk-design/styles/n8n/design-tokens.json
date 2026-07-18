@@ -1,0 +1,469 @@
+{
+  "color": {
+    "void-base": {
+      "$value": "#0e0918",
+      "$type": "color",
+      "$description": "Void Base — Primary page background and hero section — the near-black violet creates depth without being neutral charcoal"
+    },
+    "elevated-surface": {
+      "$value": "#1a1624",
+      "$type": "color",
+      "$description": "Elevated Surface — Card backgrounds (rgb(26,22,36)) — one step above void, visible as panels"
+    },
+    "deep-panel": {
+      "$value": "#1b1728",
+      "$type": "color",
+      "$description": "Deep Panel — Secondary card surface (rgb(27,23,40)) — close to Elevated Surface, used for 24px-radius feature cards"
+    },
+    "muted-shell": {
+      "$value": "#2c2834",
+      "$type": "color",
+      "$description": "Muted Shell — Ghost button backgrounds — semi-transparent frosted layer over dark surfaces"
+    },
+    "border-smoke": {
+      "$value": "#3e3a46",
+      "$type": "color",
+      "$description": "Border Smoke — Nav and container borders — low-contrast edge definition on dark surfaces"
+    },
+    "ash-text": {
+      "$value": "#d1cece",
+      "$type": "color",
+      "$description": "Ash Text — Primary body and UI text — warm-gray rather than pure white, reducing harshness against dark bg"
+    },
+    "fog-text": {
+      "$value": "#9d9797",
+      "$type": "color",
+      "$description": "Fog Text — Secondary body text, captions, de-emphasized labels"
+    },
+    "silver-rail": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Silver Rail — Border lines across components and nav — light border on dark background creates fine hairline edges"
+    },
+    "cloud-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Cloud White — High-emphasis headings, icon fills, badge text, active nav items"
+    },
+    "steel-muted": {
+      "$value": "#48556a",
+      "$type": "color",
+      "$description": "Steel Muted — Badge text on light badge backgrounds"
+    },
+    "ember-cta": {
+      "$value": "#fd8925",
+      "$type": "color",
+      "$description": "Ember CTA — Primary CTA buttons — orange-to-red gradient (rgb(253,137,37) → rgb(255,12,0)) burns against the dark void; the only warm-chromatic element above the fold, creating immediate focal pull"
+    },
+    "electric-current": {
+      "$value": "#077ac7",
+      "$type": "color",
+      "$description": "Electric Current — Link underline glow, active focus rings, node connection lines in workflow canvas — blue-to-violet gradient (rgb(7,122,199) → rgb(107,33,239)) signals data flow and connectivity"
+    },
+    "ember-scorch": {
+      "$value": "#ff492c",
+      "$type": "color",
+      "$description": "Ember Scorch — Icon fills and secondary highlight accents — pure saturated red-orange for SVG emphasis marks"
+    },
+    "crimson-glow": {
+      "$value": "#56312d",
+      "$type": "color",
+      "$description": "Crimson Glow — Card box-shadow tint — dark muted red used in shadow layers beneath cards, creating a heat-haze underneath panels"
+    }
+  },
+  "font": {
+    "geomanist": {
+      "$value": "geomanist",
+      "$type": "fontFamily",
+      "$description": "The sole display and body typeface. Weight 300 at 48–54px is the defining choice — headlines whisper against the dark background rather than asserting. Weight 400 handles body copy at 15–18px with 1.5–1.7 line-height for comfortable reading in dark contexts. The compressed line-height of 0.88 at 54px stacks headline lines into a dense visual block."
+    },
+    "geomanist-book": {
+      "$value": "geomanist-book",
+      "$type": "fontFamily",
+      "$description": "Medium-emphasis subheadings and section labels. The 'book' variant sits optically between 300 and regular 400, used for callout text in feature cards and section introductions at 20–24px."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "geomanist-book",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "geomanist-book",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "geomanist-book",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "geomanist-book",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "geomanist-book",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "geomanist-book",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "geomanist",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 54px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(255, 255, 255, 0.2) 0px 1px 1px 0px inset, rgba(8, 8, 8, 0.2) 0px 1px 2px 0px, rgba(8, 8, 8, 0.08) 0px 4px 4px 0px, rgb(7, 122, 199) 0px 7px 0px -12px, rgba(255, 255, 255, 0.12) 0px 6px 12px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.26) 0px 0px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "subtle-2": {
+      "$value": "rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset, rgba(255, 142, 93, 0.3) 0px 1px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "void-base": {
+      "$value": "#0e0918",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, hero, full-bleed sections"
+    },
+    "elevated-surface": {
+      "$value": "#1a1624",
+      "$type": "color",
+      "$description": "Surface level 1: Primary card backgrounds in features grid"
+    },
+    "deep-panel": {
+      "$value": "#1b1728",
+      "$type": "color",
+      "$description": "Surface level 2: Large feature panels and workflow canvas backdrops"
+    },
+    "muted-shell": {
+      "$value": "#2c2834",
+      "$type": "color",
+      "$description": "Surface level 3: Ghost buttons and tertiary interactive surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://n8n.io",
+      "siteName": "N8n",
+      "extractedAt": "2026-04-11T22:06:16.927Z",
+      "variant": "extended"
+    }
+  }
+}

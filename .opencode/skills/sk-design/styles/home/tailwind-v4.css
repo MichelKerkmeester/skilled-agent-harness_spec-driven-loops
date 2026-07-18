@@ -1,0 +1,72 @@
+@theme {
+  /* Colors */
+  --color-bone-white: #fafffa;
+  --color-press-black: #121613;
+  --color-typesetter-ink: #000000;
+  --color-slate-verdant: #232924;
+  --color-newsprint-gray: #516254;
+  --color-muted-sage: #c8d2c8;
+  --color-highlighter-green: #2bee4b;
+  --color-shadow-moss: #93b799;
+  --color-echo-green: #c4e4c9;
+
+  /* Typography */
+  --font-twk-lausanne: 'TWK Lausanne', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-pp-mondwest: 'PP Mondwest', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-editorial-new: 'Editorial New', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-times: 'Times', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.1;
+  --tracking-caption: 0.11px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.1;
+  --tracking-body-sm: 0.14px;
+  --text-body: 18px;
+  --leading-body: 1;
+  --tracking-body: -0.36px;
+  --text-subheading: 60px;
+  --leading-subheading: 0.9;
+  --tracking-subheading: -1.2px;
+  --text-heading-sm: 72px;
+  --leading-heading-sm: 1;
+  --tracking-heading-sm: -1.44px;
+  --text-heading: 96px;
+  --leading-heading: 1;
+  --tracking-heading: -1.92px;
+  --text-heading-lg: 155px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -6.2px;
+  --text-display: 295px;
+  --leading-display: 0.9;
+  --tracking-display: -11.8px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-15: 15px;
+  --spacing-20: 20px;
+  --spacing-25: 25px;
+  --spacing-30: 30px;
+  --spacing-32: 32px;
+  --spacing-35: 35px;
+  --spacing-40: 40px;
+  --spacing-45: 45px;
+  --spacing-50: 50px;
+  --spacing-55: 55px;
+  --spacing-60: 60px;
+  --spacing-120: 120px;
+  --spacing-190: 190px;
+
+  /* Border Radius */
+  --radius-md: 4.9968px;
+  --radius-lg: 9.9936px;
+  --radius-xl: 14px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-lg: rgba(16, 94, 29, 0.45) 1px 8px 20px 0px;
+  --shadow-lg-2: rgba(18, 146, 39, 0.25) 1px 8px 20px 0px;
+}

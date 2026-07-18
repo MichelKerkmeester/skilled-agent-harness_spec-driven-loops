@@ -1,0 +1,175 @@
+{
+  "color": {
+    "page-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Page White — Page canvas, card surfaces, input fills — the base everything sits on"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Body text, headings, nav links, border lines, icon strokes — the dominant structural color"
+    },
+    "hairline-gray": {
+      "$value": "#e4e4e4",
+      "$type": "color",
+      "$description": "Hairline Gray — Footer divider border — barely-there separator"
+    },
+    "input-border": {
+      "$value": "#b4b4b4",
+      "$type": "color",
+      "$description": "Input Border — Search input and form field borders"
+    },
+    "glitch-magenta": {
+      "$value": "#ff00bc",
+      "$type": "color",
+      "$description": "Glitch Magenta — Pink accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "intervariable": {
+      "$value": "InterVariable",
+      "$type": "fontFamily",
+      "$description": "All text across the site — navigation, body, headings, dates, links. Inter Variable provides a neutral editorial voice that lets the artwork speak. Weight 400 carries body and meta, weight 600–700 carries titles and nav for confident hierarchy without serifs."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — the paper"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Blog post cards and featured post — no elevation, no border, just implicit separation by spacing"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://glitch.com",
+      "siteName": "Glitch Blog",
+      "extractedAt": "2026-06-03T19:55:05.942Z",
+      "variant": "extended"
+    }
+  }
+}

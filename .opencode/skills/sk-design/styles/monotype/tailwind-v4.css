@@ -1,0 +1,47 @@
+@theme {
+  /* Colors */
+  --color-ink: #1e242c;
+  --color-steel: #576579;
+  --color-paper: #ffffff;
+  --color-mist: #e7eaee;
+  --color-fog: #dbdfe5;
+  --color-ash: #cfd5dd;
+  --color-signal-blue: #1a73e8;
+  --color-coal: #000000;
+
+  /* Typography */
+  --font-sans-serif: 'sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-helveticanowmtdisplaymedium: 'HelveticaNowMTDisplayMedium', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-helveticanowmttextregular: 'HelveticaNowMTTextRegular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-helveticanowmttextbold: 'HelveticaNowMTTextBold', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-helveticanowmtmicroregular: 'HelveticaNowMTMicroRegular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-typecasevar: 'TypecaseVar', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-micro: 11px;
+  --leading-micro: 1.45;
+  --text-caption: 13px;
+  --leading-caption: 1.2;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 26px;
+  --leading-subheading: 1.2;
+  --text-display: 57px;
+  --leading-display: 1.12;
+
+  /* Spacing */
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-104: 104px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-2xl: 16px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(0, 0, 0, 0.16) 0px 0px 2px 0px;
+}

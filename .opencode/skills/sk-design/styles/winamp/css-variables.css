@@ -1,0 +1,81 @@
+:root {
+  /* Colors */
+  --color-bone-white: #f7f7f7;
+  --color-paper-white: #ffffff;
+  --color-ink-black: #09090b;
+  --color-carbon: #18181b;
+  --color-pure-black: #000000;
+  --color-slate: #71717a;
+  --color-ash: #a1a1aa;
+  --color-mist: #d4d4d8;
+  --color-ember-orange: #e95420;
+
+  /* Typography — Font Families */
+  --font-rubik: 'Rubik', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-poppins: 'Poppins', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-system-ui-sans-serif: 'system-ui sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --tracking-caption: -0.264px;
+  --text-body: 15px;
+  --leading-body: 1.6;
+  --tracking-body: -0.33px;
+  --text-subheading: 19px;
+  --leading-subheading: 1.5;
+  --tracking-subheading: -0.418px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.33;
+  --tracking-heading-sm: -0.528px;
+  --text-heading: 34px;
+  --leading-heading: 1.25;
+  --tracking-heading: -0.748px;
+  --text-display: 69px;
+  --leading-display: 1.13;
+  --tracking-display: -1.518px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 40px;
+  --card-padding: 24px;
+  --element-gap: 10px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+
+  /* Named Radii */
+  --radius-cards: 16px;
+  --radius-buttons: 8px;
+  --radius-navelements: 8px;
+
+  /* Surfaces */
+  --surface-canvas: #f7f7f7;
+  --surface-card: #ffffff;
+  --surface-ink-surface: #18181b;
+}

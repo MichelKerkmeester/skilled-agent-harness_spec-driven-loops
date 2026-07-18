@@ -1,0 +1,549 @@
+{
+  "color": {
+    "blueprint-blue": {
+      "$value": "#1d52de",
+      "$type": "color",
+      "$description": "Blueprint Blue — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "ink-black": {
+      "$value": "#16191c",
+      "$type": "color",
+      "$description": "Ink Black — Primary body text, headings, icon strokes — the dominant ink"
+    },
+    "carbon": {
+      "$value": "#1c2024",
+      "$type": "color",
+      "$description": "Carbon — Secondary heading text and high-emphasis icon fills where a subtle warmth is desired over pure ink"
+    },
+    "slate": {
+      "$value": "#7b8187",
+      "$type": "color",
+      "$description": "Slate — Muted metadata, helper text, placeholder text, secondary icons, timestamps, vote/comment counts"
+    },
+    "fog": {
+      "$value": "#d1d4d9",
+      "$type": "color",
+      "$description": "Fog — Hairline borders, card outlines, dividers, subtle separator strokes — the structural gray that defines every card edge"
+    },
+    "paper": {
+      "$value": "#f4f5f7",
+      "$type": "color",
+      "$description": "Paper — Subtle surface tint behind nested elements, hover states, and tag/chip backgrounds"
+    },
+    "stone": {
+      "$value": "#e6e8eb",
+      "$type": "color",
+      "$description": "Stone — Mid-surface layer for inset panels and elevated cards between Paper and Fog"
+    },
+    "canvas": {
+      "$value": "#f9fafb",
+      "$type": "color",
+      "$description": "Canvas — Page background, primary card surface — the base on which everything sits"
+    },
+    "mint": {
+      "$value": "#00bc7d",
+      "$type": "color",
+      "$description": "Mint — Green supporting accent for decorative details and low-frequency emphasis"
+    }
+  },
+  "font": {
+    "suisseintl": {
+      "$value": "suisseIntl",
+      "$type": "fontFamily",
+      "$description": "suisseIntl — detected in extracted data but not described by AI"
+    },
+    "suisse-intl": {
+      "$value": "Suisse Int'l",
+      "$type": "fontFamily",
+      "$description": "Sole text family for everything: body, headings, nav, buttons, links. Tight -0.025em tracking on larger sizes creates a confident editorial feel; the 0.05em and 0.10em tracking on smaller sizes mark small caps and category labels. Weight 500–600 is the workhorse range; 700 is reserved for the largest hero headline (30px). The 'ss01' stylistic set is active and shapes the typeface's distinctive flavor — a designer should never opt out of it."
+    },
+    "font-awesome-7-jelly-pro": {
+      "$value": "Font Awesome 7 Jelly / Pro",
+      "$type": "fontFamily",
+      "$description": "Icon system — Jelly for soft-filled illustrated icons, Pro for sharp utility icons. Icons align to text-baseline and inherit color from the surrounding text level (Ink for primary, Slate for secondary)."
+    },
+    "suisse-mono": {
+      "$value": "Suisse Mono",
+      "$type": "fontFamily",
+      "$description": "Tiny uppercase monospace for micro-labels and badge pills where monospaced character spacing signals 'system/metadata' — extremely rare, used as a typographic accent only"
+    },
+    "font-awesome-7-pro": {
+      "$value": "Font Awesome 7 Pro",
+      "$type": "fontFamily",
+      "$description": "Font Awesome 7 Pro — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "suisseMono",
+        "fontSize": "10px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Font Awesome 7 Pro",
+        "fontSize": "12px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Font Awesome 7 Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Font Awesome 7 Jelly",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "Font Awesome 7 Jelly",
+        "fontSize": "14px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "sm-13": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-13 at 14px"
+    },
+    "sm-14": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-14 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Font Awesome 7 Jelly",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Font Awesome 7 Jelly",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "Font Awesome 7 Pro",
+        "fontSize": "18px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "lg-8": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-8 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Font Awesome 7 Jelly",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "suisseIntl",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "oklab(0 0 0 / 0.1) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f9fafb",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, main feed surface"
+    },
+    "paper": {
+      "$value": "#f4f5f7",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle hover states, nested chip backgrounds"
+    },
+    "stone": {
+      "$value": "#e6e8eb",
+      "$type": "color",
+      "$description": "Surface level 2: Inset panels, sidebar background tints"
+    },
+    "fog": {
+      "$value": "#d1d4d9",
+      "$type": "color",
+      "$description": "Surface level 3: Border / hairline separator — not a fill"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://hashnode.com",
+      "siteName": "Hashnode",
+      "extractedAt": "2026-06-03T20:47:55.284Z",
+      "variant": "extended"
+    }
+  }
+}

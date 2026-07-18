@@ -1,0 +1,239 @@
+{
+  "color": {
+    "microsoft-blue": {
+      "$value": "#0067b8",
+      "$type": "color",
+      "$description": "Microsoft Blue — Primary action background, link text, navigation accents, icon strokes — the single chromatic authority in the system, used for all filled CTAs and interactive highlights"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page background, card surfaces, button text on blue, surface elevation"
+    },
+    "mist-gray": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Mist Gray — Footer background, subtle surface tone, page canvas under cards"
+    },
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Primary text, card borders, hairline dividers — the dominant typographic and structural color"
+    },
+    "steel-gray": {
+      "$value": "#616161",
+      "$type": "color",
+      "$description": "Steel Gray — Secondary text, navigation text, muted UI elements, footer copy"
+    },
+    "graphite": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Graphite — Body text variant, list borders, navigation dividers, secondary headings"
+    },
+    "deep-charcoal": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Deep Charcoal — Dense text blocks, list separators, button border variant — the darkest neutral after pure black"
+    }
+  },
+  "font": {
+    "segoe-ui": {
+      "$value": "Segoe UI",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire system — navigation, body, headings, buttons, footer. Weight 400 is the workhorse; weight 600 is reserved for headings and button labels to create section-level contrast without switching families. Segoe UI's humanist proportions and open apertures give the system its calm, enterprise-confident voice — the type does not perform, it informs."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 2.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "29px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 29px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Segoe UI",
+        "fontSize": "37px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 37px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.13) 0px 3px 7px 0px, rgba(0, 0, 0, 0.11) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background — the showroom floor"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Product cards, hero overlays, content blocks — same white as canvas but elevated by border and shadow"
+    },
+    "muted-surface": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 2: Footer background, subtle section differentiation"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.microsoft.com",
+      "siteName": "Microsoft",
+      "extractedAt": "2026-06-03T22:09:57.481Z",
+      "variant": "extended"
+    }
+  }
+}

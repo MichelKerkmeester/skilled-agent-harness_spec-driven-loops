@@ -1,0 +1,1235 @@
+{
+  "source": "https://styles.refero.design/style/eb804e3a-1b75-446c-8374-114bbabaf0cd",
+  "uuid": "eb804e3a-1b75-446c-8374-114bbabaf0cd",
+  "name": "Cosmos",
+  "northStar": "Linen gallery wall with floating polaroids",
+  "capturedAt": "2026-07-18T06:23:24.760Z",
+  "meta": {
+    "url": "https://cosmos.so",
+    "siteName": "Cosmos",
+    "extractedAt": "2026-06-03T17:19:29.348Z",
+    "durationMs": 33839,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 363,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 4
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only Linen Canvas (#f7f7f5f3) as the root background — never pure white at the page level; white is reserved for cards and inputs.",
+      "Apply 16px border-radius to every container, button, and input — this is the single signature radius of the system.",
+      "Set hero and display copy at weight 350 with letter-spacing between -0.04em and -0.05em; do not bold headlines above 400.",
+      "Pair every primary filled button with an outlined secondary at identical padding and radius so they read as a set.",
+      "Let user imagery carry all chromatic content; the UI palette stays at black/white/cream/gray.",
+      "Use 24px gaps between grid cards and 16px padding inside cards as the default content rhythm.",
+      "Position the nav as a single floating pill with 9999px radius at the top of every page."
+    ],
+    "donts": [
+      "Do not introduce accent colors (red, blue, green) into interface chrome — color belongs only in user content.",
+      "Do not use weights above 500 in cosmosOracle; the face is not designed for bold display and will feel chunky.",
+      "Do not apply shadows to cards or buttons; the system is deliberately flat and relies on radius and surface contrast.",
+      "Do not set body text larger than 18px or below 14px; cosmosOracle was sized for a tight 14–18px body range.",
+      "Do not mix border-radius values within a single page (avoid 8px or 24px radii) — 16px is the rule, 12px only for image tiles.",
+      "Do not use pure #000000; always #0d0d0d so the black warms against the cream canvas.",
+      "Do not place colored backgrounds behind text; all text sits on Linen Canvas, Paper White, or directly on imagery."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f7f5f3",
+        "name": "Linen Canvas",
+        "role": "Page background — warm off-white, never pure #ffffff at the root, gives the interface a paper-like, gallery-wall base",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0d0d0d",
+        "name": "Ink Black",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color; Borders, dividers, outlined button strokes — used at low opacity to create subtle structural lines, always Ink Black rather than a separate gray",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6e6a69",
+        "name": "Stone",
+        "role": "Body text, secondary icons, inactive UI — warm mid-gray for body copy and supporting metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9a9796",
+        "name": "Pebble",
+        "role": "Muted helper text, disabled states, tertiary icon strokes — lightest readable gray in the neutral ramp",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Page is centered with a ~1280px max-width content well, though the hero uses full-bleed positioning for the scattered image tiles. The hero is a centered text stack: eyebrow ('COSMOS') → 74px headline → two-button row, all vertically and horizontally centered while image tiles float around the periphery at varied rotations. Below the hero, the video container spans the full content width at 16px radius. The feature row is a strict 3-column grid with 24px gap, each cell leading with an image and trailing with a 18px label. Navigation is a single floating pill bar that hovers near the top of the viewport on every page, containing logo, two text links, centered search, theme toggle, and Login/Sign up — it never duplicates into a secondary bar. Vertical rhythm between sections is generous (80px+), giving each band room to breathe like separate gallery rooms.",
+    "imagery": "Imagery is the product, not decoration. The hero scatters small cropped image tiles (60–140px) at 12px radius around the centered text like polaroids pinned to a gallery wall. The three feature cards lead with edge-to-edge photography and collage — vivid red florals, warm beige bag silhouettes, and moody purple portraiture — each carrying the only chromatic color in the interface. The video container uses a cinematic still (green-tiled interior, soft focus) with a 9-dot loading animation overlaid in white. There are no illustrations, no abstract graphics, no 3D renders. Icons are minimal stroked linework in Ink Black, used sparingly (magnifier, play triangle, sun/moon, social glyphs). Photography style across the collage feels curated and editorial: high contrast, varied subjects, no unified color treatment — the variety is the point.",
+    "similar": [
+      {
+        "why": "Same warm cream canvas, monochrome UI that stays out of the way of user-curated imagery, and an editorial single-typeface approach to a visual bookmarking product",
+        "business": "Are.na"
+      },
+      {
+        "why": "Image-led grid systems and the philosophy that color belongs to user content, not the interface chrome",
+        "business": "Pinterest"
+      },
+      {
+        "why": "Gallery-wall aesthetic with floating image tiles, minimal text UI, and a single warm neutral background that frames rather than competes with photography",
+        "business": "VSCO"
+      },
+      {
+        "why": "Portfolio-first visual discovery tools that use restrained typography and generous whitespace to let creator imagery dominate",
+        "business": "Cargo (cargo.site)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "inputs": "16px",
+        "buttons": "16px",
+        "imageTiles": "12px",
+        "videoContainer": "16px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "80px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#f7f5f3",
+        "name": "Linen Canvas",
+        "level": 0,
+        "purpose": "Root page background, the gallery wall"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 1,
+        "purpose": "Cards, inputs, outlined buttons — the only elevated surface in the system"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Linen gallery wall with floating polaroids",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.29,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading",
+        "size": 33,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.32
+      },
+      {
+        "role": "heading-lg",
+        "size": 38,
+        "lineHeight": 1.08,
+        "letterSpacing": -1.52
+      },
+      {
+        "role": "display",
+        "size": 58,
+        "lineHeight": 1.06,
+        "letterSpacing": -2.32
+      },
+      {
+        "role": "display-xl",
+        "size": 74,
+        "lineHeight": 0.8,
+        "letterSpacing": -3.7
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Filled Button",
+        "role": "Main conversion action (Sign up)",
+        "description": "Ink Black (#0d0d0d) fill, Paper White (#ffffff) text, cosmosOracle weight 500, 16px font-size, 16px border-radius, 16px vertical / 24px horizontal padding. Tight, pill-like but squared at the radius. No shadow, no border."
+      },
+      {
+        "name": "Secondary Outlined Button",
+        "role": "Secondary action (Get the app, Login)",
+        "description": "Paper White (#ffffff) fill, 1px Ink Black border at ~15% opacity, Ink Black text, 16px radius, 16px/24px padding. Identical sizing to the primary button so they pair as a two-button row."
+      },
+      {
+        "name": "Pill Navigation Bar",
+        "role": "Top-of-page floating navigation",
+        "description": "A single horizontal pill containing the logo (8-dot cluster glyph), Explore / Careers links, centered search input, and Login / Sign up. Background is Paper White with subtle border, 9999px radius, hovers just below the top edge of the viewport with no shadow."
+      },
+      {
+        "name": "Search Input",
+        "role": "Global search inside the nav pill",
+        "description": "Borderless text input with a leading magnifier icon, placeholder 'Search Cosmos...' in Stone (#6e6a69). Transparent fill so it sits flush inside the nav pill. 16px text, weight 400."
+      },
+      {
+        "name": "Floating Image Tile",
+        "role": "Scattered collage images in the hero",
+        "description": "User-content image cropped to ~12px border-radius, floating at slight rotations or in a loose grid around the hero text. No caption, no border, no shadow — the image is the component. Sized 60–140px, positioned absolutely around the centered headline."
+      },
+      {
+        "name": "Feature Image Card",
+        "role": "Three-up feature row showing product capabilities",
+        "description": "Large image-first card with a 16px radius. The image fills the card edge-to-edge; below it sits a cosmosOracle weight 400 label at 18px (e.g. 'By color'). No visible border, no shadow, no background color — the image defines the card. Three cards sit in a 3-column grid with 24px gap."
+      },
+      {
+        "name": "Video Container",
+        "role": "Full-bleed film/video embed",
+        "description": "A 16px-radius container spanning the page max-width, holding a video poster with a 9-dot loading animation overlaid in white at center. Split text overlay: 'Watch' left-aligned and 'the film' right-aligned at 38px weight 350, with a play triangle between. Small caption 'featuring Odessa Azion' centered near the bottom."
+      },
+      {
+        "name": "AI Content Detection Overlay",
+        "role": "AI-generated image warning card",
+        "description": "Paper White surface with 12px radius, ~280px wide, positioned top-right inside a feature card. Title 'AI content' in Ink Black 16px weight 500, body 'Content detected as likely generated by AI' in Stone 14px. Below: three text buttons — 'Show' (Ink Black, 16px radius, white fill), 'Blur' (neutral), 'Hide' (neutral)."
+      },
+      {
+        "name": "Text Link with Play Icon",
+        "role": "Inline call-to-action link (Watch our new film)",
+        "description": "Inline at 18px weight 400, Ink Black, preceded by a small triangle play icon. No underline by default; subtle color shift on hover. Used for tertiary navigation cues that should not compete with the button row."
+      },
+      {
+        "name": "Theme Toggle",
+        "role": "Light/dark mode switch in the nav",
+        "description": "A small icon-only button (sun/moon glyph) at the right edge of the nav pill, before the Login/Sign up cluster. 32×32px hit area, no visible border, 9999px radius on hover background."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Small uppercase section pre-title",
+        "description": "cosmosOracle weight 500, 15–16px, tracked at 0em, rendered as 'COSMOS' above the hero headline. Sets the editorial tone: small, all-caps, almost a stamp rather than a label."
+      },
+      {
+        "name": "Dot Cluster Logo",
+        "role": "Brand mark in nav and favicon",
+        "description": "Eight small black dots arranged in a 3×3 grid with the center dot removed, reading as a tiny flower or asterisk. Always Ink Black on Linen Canvas, always at ~18px in the nav, larger at marketing contexts."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single custom face used for everything. Weight 350 is the signature — hero and display copy use this whisper-weight instead of the conventional 700, creating editorial calm. Weight 400 for body, weight 500 reserved for buttons and labels. Negative tracking scales with size: tightest (-0.05em) on the 74px display, opening to normal at 14px. The low line-heights on large sizes (0.80–1.10) hug the baseline tightly so headlines read as deliberate blocks, not airy paragraphs.",
+        "sizes": "14, 15, 16, 18, 24, 26, 33, 38, 58, 66, 74",
+        "family": "cosmosOracle",
+        "weight": "350, 400, 500",
+        "lineHeight": "0.80, 1.00, 1.06, 1.08, 1.10, 1.20, 1.25, 1.29, 1.50",
+        "substitute": "GT Super, Fraunces, or any high-contrast didone-influenced serif with optical sizing; fall back to 'Georgia' if no serif is available",
+        "letterSpacing": "-0.0500em at 74/66/58px, -0.0400em at 38/33px, -0.0200em at 24/26px, -0.0110em at 18/16px, 0 at 14/15px",
+        "fontFeatureSettings": "Opt for old-style figures and discretionary ligatures if cosmosOracle exposes them; the typeface behaves like a didone-meets-grotesque hybrid"
+      }
+    ],
+    "description": "Cosmos is a gallery-wrapped canvas for visual discovery: a warm cream background (#f7f5f3) that reads like unprimed linen, black ink typography, and a strict monochrome UI where color only intrudes through user-curated imagery. The product believes in restraint — the chrome is invisible so the images can shout. Type is a single custom serif-influenced face (cosmosOracle) pulled tight with negative tracking, using weight 350 for hero copy to create editorial softness rather than marketing aggression. Surfaces are flat with a single signature radius (16px) repeated across cards, inputs, and video containers. The hero scatters image tiles in a free-form collage that frames centered copy, and the rest of the page settles into a three-column grid of image-led feature cards. There are no gradients, no shadows beyond what the collage cards cast naturally, and no chromatic accents in the interface itself.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/eb804e3a-1b75-446c-8374-114bbabaf0cd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Cosmos design system\",\"item\":\"https://styles.refero.design/style/eb804e3a-1b75-446c-8374-114bbabaf0cd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/eb804e3a-1b75-446c-8374-114bbabaf0cd#style-reference\",\"name\":\"Cosmos design system reference\",\"headline\":\"Cosmos design system | Refero Styles\",\"description\":\"Explore Cosmos's light Design design system: Linen Canvas #f7f5f3, Ink Black #0d0d0d colors, cosmosOracle typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/eb804e3a-1b75-446c-8374-114bbabaf0cd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/eb804e3a-1b75-446c-8374-114bbabaf0cd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Cosmos\",\"url\":\"https://cosmos.so\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/eb804e3a-1b75-446c-8374-114bbabaf0cd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0a8a2a8a-3f7d-4062-9555-719ebc8aeb23.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0a8a2a8a-3f7d-4062-9555-719ebc8aeb23.jpg\",\"caption\":\"Screenshot of Cosmos\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0a8a2a8a-3f7d-4062-9555-719ebc8aeb23.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Cosmos design system\",\"Cosmos website design\",\"Cosmos colors\",\"Cosmos typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Linen Canvas\",\"Ink Black\",\"Paper White\",\"Stone\",\"cosmosOracle\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Cosmos design system\"},{\"@type\":\"Thing\",\"name\":\"Cosmos website design\"},{\"@type\":\"Thing\",\"name\":\"Cosmos colors\"},{\"@type\":\"Thing\",\"name\":\"Cosmos typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-02-13T12:37:41.000Z\",\"dateModified\":\"2026-02-13T12:37:41.000Z\"}]}19:T818,**Quick Color Reference**\n- text: #0d0d0d (Ink Black)\n- background: #f7f5f3 (Linen Canvas)\n- surface/card: #ffffff (Paper White)\n- muted text: #6e6a69 (Stone)\n- border: #0d0d0d at 10–15% opacity\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. *Hero headline*: Center a 74px cosmosOracle weight 350 headline in #0d0d0d with letter-spacing -3.7px and line-height 0.80. Above it place a 15px weight 500 'COSMOS' eyebrow in Ink Black, tracked at 0. Below place a two-button row: a filled Ink Black button with white 16px text at weight 500, 16px radius, 16px/24px padding, beside a white outlined button with 1px Ink Black border at 12% opacity, identical radius and padding. All on a #f7f5f3 canvas.\n\n2. *Feature image card*: A 3-column grid card with 16px radius, edge-to-edge image filling the card (no padding around the image), and a 18px cosmosOracle weight 400 label in Ink Black below the image at 16px top spacing. No border, no shadow. Gap between cards: 24px.\n\n3. *Floating image tile (hero collage)*: A 100px square user-content image with 12px border-radius, positioned absolutely with a slight 2–4° rotation, no border, no shadow, sitting on the Linen Canvas around the hero text. No caption.\n\n4. *Video container*: A full-width (within 1280px max) 16:9 container with 16px radius, holding a photographic poster image. Overlay a 3×3 grid of 8 white dots (center removed) at 60% opacity in the center. Place 'Watch' left-aligned and 'the film' right-aligned at 38px weight 350 in white, with a small white play triangle between them. Small 14px caption 'featuring …' centered near the bottom in white at 70% opacity.\n\n5. *AI content overlay*: A 280px wide Paper White (#ffffff) card with 12px radius, positioned top-right of a feature image. Title 'AI content' in 16px weight 500 Ink Black, body text 'Content detected as likely generated by AI' in 14px Stone. Three text buttons below: 'Show' as a small filled Ink Black button (16px radius, white text, 8px/16px padding), 'Blur' and 'Hide' as neutral text buttons in Stone."
+      },
+      {
+        "title": "Typography Signature",
+        "content": "The defining typographic choice is using a whisper-weight (350) serif at display sizes. Most modern product sites reach for 600–800 on hero copy; Cosmos goes the other way, letting the serif's high stroke contrast and tight tracking carry authority without volume. The negative letter-spacing scales aggressively with size (-0.05em at 74px, 0 at 14px), which is what makes the large headlines feel architectural rather than decorative. When recreating pages, never substitute a bold sans for the display — the soft serif is the entire brand voice."
+      },
+      {
+        "title": "Image-First Component Rule",
+        "content": "Cosmos is a visual product, so the component system intentionally limits UI chrome and lets images do the work. The rule: if a component is not navigation, input, or a button, it is probably an image card with a small text label. Resist building dashboards, tables, or data-dense UI; this system is for galleries, feeds, and discovery surfaces where the image is the unit of value."
+      }
+    ],
+    "elevationPhilosophy": "Cosmos is intentionally flat: no drop shadows on cards, buttons, or the navigation pill. Elevation is communicated exclusively through surface color contrast — Linen Canvas (#f7f5f3) at the base, Paper White (#ffffff) for cards and inputs sitting on top. The only depth in the interface comes from the scattered hero image tiles, which read as physical polaroids on the canvas. Resist adding shadows; the flatness is the point."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0d0d0d",
+          "oklch": {
+            "c": 3.902157730306981e-8,
+            "h": 176.4666627516448,
+            "l": 0.15910005062340157
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "input",
+            "button",
+            "hero",
+            "heading",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 1396,
+          "confidence": 1,
+          "prominence": 92196748.51554424,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f7f5f3",
+          "oklch": {
+            "c": 0.0034,
+            "h": 67.78,
+            "l": 0.9711
+          },
+          "contexts": [
+            "hero",
+            "other",
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2565000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 1.7021810227732055e-8,
+            "h": 129.62590542102208,
+            "l": 1.0000000075756754
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 159,
+          "confidence": 1,
+          "prominence": 518370.5433337406,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a4a38f",
+          "oklch": {
+            "c": 0.02824568650493352,
+            "h": 104.75262633463272,
+            "l": 0.7106958299916833
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 492765,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6e6a69",
+          "oklch": {
+            "c": 0.005300025035616211,
+            "h": 34.29933848371361,
+            "l": 0.5275996285560799
+          },
+          "contexts": [
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 111,
+          "confidence": 1,
+          "prominence": 220851.01573631485,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d1543e",
+          "oklch": {
+            "c": 0.16285636589600158,
+            "h": 32.06806536179134,
+            "l": 0.6055066522932374
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 180000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eac7a0",
+          "oklch": {
+            "c": 0.06514567281858699,
+            "h": 69.80691179941383,
+            "l": 0.850117645510246
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 180000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9a9796",
+          "oklch": {
+            "c": 0.003799978788919449,
+            "h": 39.47019353877765,
+            "l": 0.6785999566320472
+          },
+          "contexts": [
+            "link",
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 69,
+          "confidence": 1,
+          "prominence": 28930.215839980243,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#bc361b",
+          "oklch": {
+            "c": 0.17507015236412526,
+            "h": 33.12793375771248,
+            "l": 0.5318423990662646
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1444,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4694f6",
+          "oklch": {
+            "c": 0.16495399143842357,
+            "h": 255.540290826259,
+            "l": 0.6648051103369446
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 15,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c877cb",
+          "oklch": {
+            "c": 0.1480455158974074,
+            "h": 325.7629989832826,
+            "l": 0.6859167159463108
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 15,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#81b386",
+          "oklch": {
+            "c": 0.08368595055727776,
+            "h": 147.19349367981562,
+            "l": 0.7191316159745875
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 15,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9c6030",
+          "oklch": {
+            "c": 0.10037712702211715,
+            "h": 57.09716403645819,
+            "l": 0.5462693609291779
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 15,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a0213e",
+          "oklch": {
+            "c": 0.1617797105925724,
+            "h": 13.760011076462611,
+            "l": 0.46721324654134144
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 15,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ebb042",
+          "oklch": {
+            "c": 0.14028742508871833,
+            "h": 79.43135520677484,
+            "l": 0.7930915332066457
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 15,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#77cdd0",
+          "oklch": {
+            "c": 0.08348180012230597,
+            "h": 198.5149573701351,
+            "l": 0.795329435939936
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 15,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6951f5",
+          "oklch": {
+            "c": 0.23272045363847577,
+            "h": 282.51053057932484,
+            "l": 0.5595958292510821
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 15,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0037180051705320905,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.44,
+          "background": "#ffffff",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.87,
+          "background": "#f7f5f3",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.19,
+          "background": "#eac7a0",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.58,
+          "background": "#77cdd0",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#ebb042",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.08,
+          "background": "#81b386",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.6,
+          "background": "#a4a38f",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.55,
+          "background": "#ffffff",
+          "foreground": "#a0213e"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.94,
+          "background": "#f7f5f3",
+          "foreground": "#a0213e"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.7,
+          "background": "#0d0d0d",
+          "foreground": "#9a9796"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.7,
+          "background": "#bc361b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.35,
+          "background": "#ffffff",
+          "foreground": "#6e6a69"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.92,
+          "background": "#f7f5f3",
+          "foreground": "#6e6a69"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.74,
+          "background": "#eac7a0",
+          "foreground": "#a0213e"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.67,
+          "background": "#d1543e",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.16,
+          "background": "#d1543e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.11,
+          "background": "#77cdd0",
+          "foreground": "#a0213e"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.89,
+          "background": "#ebb042",
+          "foreground": "#a0213e"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.64,
+          "background": "#0d0d0d",
+          "foreground": "#6e6a69"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.41,
+          "background": "#bc361b",
+          "foreground": "#0d0d0d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 97
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 27,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 26,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 21,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 63,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 72,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 200,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "cosmosOracle",
+          "source": "custom",
+          "weights": [
+            350,
+            400,
+            500
+          ],
+          "frequency": 329,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "cosmosOracle",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "button",
+            "input",
+            "body"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.29,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "cosmosOracle",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "body",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.29,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "cosmosOracle",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "cosmosOracle",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "hero",
+            "button",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 223,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "cosmosOracle",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "cosmosOracle",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "cosmosOracle",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "cosmosOracle",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "cosmosOracle",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "cosmosOracle",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "cosmosOracle",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "cosmosOracle",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.06,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 38,
+          "family": "cosmosOracle",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "cosmosOracle",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 66,
+          "family": "cosmosOracle",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.08,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 66,
+          "family": "cosmosOracle",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 66,
+          "family": "cosmosOracle",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 74,
+          "family": "cosmosOracle",
+          "weight": 350,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/b44cc30e-59b8-4e77-b597-586c517270e9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/0a8a2a8a-3f7d-4062-9555-719ebc8aeb23.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/eb804e3a-1b75-446c-8374-114bbabaf0cd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Cosmos design system\",\"item\":\"https://styles.refero.design/style/eb804e3a-1b75-446c-8374-114bbabaf0cd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/eb804e3a-1b75-446c-8374-114bbabaf0cd#style-reference\",\"name\":\"Cosmos design system reference\",\"headline\":\"Cosmos design system | Refero Styles\",\"description\":\"Explore Cosmos's light Design design system: Linen Canvas #f7f5f3, Ink Black #0d0d0d colors, cosmosOracle typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/eb804e3a-1b75-446c-8374-114bbabaf0cd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/eb804e3a-1b75-446c-8374-114bbabaf0cd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Cosmos\",\"url\":\"https://cosmos.so\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/eb804e3a-1b75-446c-8374-114bbabaf0cd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0a8a2a8a-3f7d-4062-9555-719ebc8aeb23.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0a8a2a8a-3f7d-4062-9555-719ebc8aeb23.jpg\",\"caption\":\"Screenshot of Cosmos\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0a8a2a8a-3f7d-4062-9555-719ebc8aeb23.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Cosmos design system\",\"Cosmos website design\",\"Cosmos colors\",\"Cosmos typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Linen Canvas\",\"Ink Black\",\"Paper White\",\"Stone\",\"cosmosOracle\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Cosmos design system\"},{\"@type\":\"Thing\",\"name\":\"Cosmos website design\"},{\"@type\":\"Thing\",\"name\":\"Cosmos colors\"},{\"@type\":\"Thing\",\"name\":\"Cosmos typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-02-13T12:37:41.000Z\",\"dateModified\":\"2026-02-13T12:37:41.000Z\"}]}19:T818,**Quick Color Reference**\n- text: #0d0d0d (Ink Black)\n- background: #f7f5f3 (Linen Canvas)\n- surface/card: #ffffff (Paper White)\n- muted text: #6e6a69 (Stone)\n- border: #0d0d0d at 10–15% opacity\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. *Hero headline*: Center a 74px cosmosOracle weight 350 headline in #0d0d0d with letter-spacing -3.7px and line-height 0.80. Above it place a 15px weight 500 'COSMOS' eyebrow in Ink Black, tracked at 0. Below place a two-button row: a filled Ink Black button with white 16px text at weight 500, 16px radius, 16px/24px padding, beside a white outlined button with 1px Ink Black border at 12% opacity, identical radius and padding. All on a #f7f5f3 canvas.\n\n2. *Feature image card*: A 3-column grid card with 16px radius, edge-to-edge image filling the card (no padding around the image), and a 18px cosmosOracle weight 400 label in Ink Black below the image at 16px top spacing. No border, no shadow. Gap between cards: 24px.\n\n3. *Floating image tile (hero collage)*: A 100px square user-content image with 12px border-radius, positioned absolutely with a slight 2–4° rotation, no border, no shadow, sitting on the Linen Canvas around the hero text. No caption.\n\n4. *Video container*: A full-width (within 1280px max) 16:9 container with 16px radius, holding a photographic poster image. Overlay a 3×3 grid of 8 white dots (center removed) at 60% opacity in the center. Place 'Watch' left-aligned and 'the film' right-aligned at 38px weight 350 in white, with a small white play triangle between them. Small 14px caption 'featuring …' centered near the bottom in white at 70% opacity.\n\n5. *AI content overlay*: A 280px wide Paper White (#ffffff) card with 12px radius, positioned top-right of a feature image. Title 'AI content' in 16px weight 500 Ink Black, body text 'Content detected as likely generated by AI' in 14px Stone. Three text buttons below: 'Show' as a small filled Ink Black button (16px radius, white text, 8px/16px padding), 'Blur' and 'Hide' as neutral text buttons in Stone."
+}

@@ -1,0 +1,504 @@
+{
+  "color": {
+    "pulse-violet": {
+      "$value": "#4a53ff",
+      "$type": "color",
+      "$description": "Pulse Violet — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text on light surfaces, dark hero/section backgrounds, filled neutral buttons, icon strokes"
+    },
+    "carbon": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Carbon — Secondary dark surface (footer band, alternating black sections), heading text on light surfaces"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary page canvas, card surfaces on dark sections, text on dark backgrounds, filled white pill buttons"
+    },
+    "lab-mist": {
+      "$value": "#f3f5f9",
+      "$type": "color",
+      "$description": "Lab Mist — Soft elevated surface for light cards and feature panels — a cool off-white that distinguishes cards from the page without using shadow"
+    },
+    "hairline": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Hairline — Borders, dividers, outlined button strokes, input frames — the most-used neutral in the system (2560 occurrences)"
+    },
+    "fog-gray": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Fog Gray — Muted body text, secondary descriptions, placeholder copy on light surfaces"
+    },
+    "ash": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Ash — Tertiary text, inactive button labels, disabled icon strokes — sits one step below Fog Gray for de-emphasized metadata"
+    }
+  },
+  "font": {
+    "proxima-nova": {
+      "$value": "Proxima Nova",
+      "$type": "fontFamily",
+      "$description": "Single-family system covering everything from 14px captions to 120px display headlines. The aggressive letter-spacing compression at display sizes (-4.8px at 120px) is signature — it makes oversized headlines feel carved rather than stacked. Proxima Nova's geometric warmth keeps the clinical data aesthetic from feeling cold."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 0.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.49
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.59
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "35px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 35px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "50px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "120px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 120px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "33": {
+      "$value": "33px",
+      "$type": "dimension",
+      "$description": "Spacing 33px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "92": {
+      "$value": "92px",
+      "$type": "dimension",
+      "$description": "Spacing 92px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "300px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(199, 199, 199, 0.25) 0px 4px 15px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default light section background"
+    },
+    "lab-mist-card": {
+      "$value": "#f3f5f9",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated feature card on light sections — flat elevation via color, not shadow"
+    },
+    "dark-section": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed theatrical hero and closing CTA band"
+    },
+    "carbon-band": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Surface level 3: Secondary dark surface for transitional bands between black and white"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://whoop.com",
+      "siteName": "WHOOP",
+      "extractedAt": "2026-06-03T17:01:52.654Z",
+      "variant": "extended"
+    }
+  }
+}

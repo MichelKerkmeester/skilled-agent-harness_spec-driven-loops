@@ -1,0 +1,474 @@
+{
+  "color": {
+    "vermillion-signal": {
+      "$value": "#e42b0c",
+      "$type": "color",
+      "$description": "Vermillion Signal — Orange action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Hairline borders, logo marks, high-contrast icon strokes, strong body emphasis"
+    },
+    "carbon": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Carbon — Dark card backgrounds, inverted feature panels, footer surface"
+    },
+    "slate-900": {
+      "$value": "#101828",
+      "$type": "color",
+      "$description": "Slate 900 — Display and heading text, hero headlines — the dominant typographic color"
+    },
+    "slate-700": {
+      "$value": "#364153",
+      "$type": "color",
+      "$description": "Slate 700 — Navigation text, active nav items, secondary headings"
+    },
+    "slate-600": {
+      "$value": "#4a5565",
+      "$type": "color",
+      "$description": "Slate 600 — Body copy, sub-text, icon strokes, eyebrow labels"
+    },
+    "steel": {
+      "$value": "#676767",
+      "$type": "color",
+      "$description": "Steel — Subdued heading text, testimonial attributions"
+    },
+    "iron": {
+      "$value": "#8a8a8a",
+      "$type": "color",
+      "$description": "Iron — Tertiary helper text, decorative dividers"
+    },
+    "mist": {
+      "$value": "#99a1af",
+      "$type": "color",
+      "$description": "Mist — Icon borders, muted labels, disabled states"
+    },
+    "cloud": {
+      "$value": "#d4d4d4",
+      "$type": "color",
+      "$description": "Cloud — Button borders, input borders, section dividers"
+    },
+    "frost": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Frost — Card hairline borders, subtle container edges"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card surfaces, button text on dark fills, primary content canvas"
+    },
+    "vellum": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Vellum — Primary page canvas and white card surfaces."
+    }
+  },
+  "font": {
+    "telegraf": {
+      "$value": "telegraf",
+      "$type": "fontFamily",
+      "$description": "The workhorse grotesk used across every context: display, heading, body, nav, button, card, icon, input, footer. Tight tracking on large sizes (−0.025em to −0.03em) signals editorial confidence; expanded 0.025em on uppercase eyebrows gives the system its industrial-label voice. Weights 300–500 carry the personality — weight 700 appears sparingly for emphasis."
+    },
+    "moderngothic": {
+      "$value": "modernGothic",
+      "$type": "fontFamily",
+      "$description": "A geometric secondary used at a single 14px register for body and link contexts where a more humanist tone is desired. Carries the ss02 stylistic alternate for a distinctive lowercase 'a' and 'g'."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "modernGothic",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Telegraf",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "30px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "30px",
+        "fontWeight": 300,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 30px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "30px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "48px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "60px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "60px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 60px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "60px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 60px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "72px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 72px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "vellum-canvas": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the matte-paper base that every section sits on"
+    },
+    "paper-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary card and content surface — sits one step above the vellum canvas"
+    },
+    "carbon-panel": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Surface level 2: Inverted dark panel for emphasis sections, footers, or product visual containers"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.orderful.com",
+      "siteName": "Orderful",
+      "extractedAt": "2026-06-03T16:41:38.493Z",
+      "variant": "extended"
+    }
+  }
+}

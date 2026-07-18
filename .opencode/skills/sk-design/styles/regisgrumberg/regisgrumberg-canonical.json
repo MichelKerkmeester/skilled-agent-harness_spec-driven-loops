@@ -1,0 +1,912 @@
+{
+  "source": "https://styles.refero.design/style/1a2ca4fb-1087-4fd0-83ba-590bc63f54ee",
+  "uuid": "1a2ca4fb-1087-4fd0-83ba-590bc63f54ee",
+  "name": "Regisgrumberg",
+  "northStar": "Orbital type on a black void — a typographic planetarium where Anton orbits a single white dot.",
+  "capturedAt": "2026-07-18T08:58:14.200Z",
+  "meta": {
+    "url": "https://www.regisgrumberg.com",
+    "siteName": "Regisgrumberg",
+    "extractedAt": "2026-06-03T21:14:35.192Z",
+    "durationMs": 40415,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 286,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Anton 500 at 48px or larger for any display heading — Anton under 30px loses its architectural impact and should be swapped for Montserrat 600",
+      "Maintain a 4-color palette only: #000000, #ffffff, #c4c4c4, #363636 — any other color breaks the void-poster language",
+      "Keep all border radii at 2px — the near-zero radius is part of the signature; pill shapes or large radii look out of system",
+      "Center hero compositions both horizontally and vertically in the viewport — the design language assumes centered, symmetric tension",
+      "Use hairline 1px borders (#c4c4c4 or #ffffff) for all separators — never use heavy blocks of color to divide sections",
+      "Apply the 2.78 line-height on 18px Montserrat body text to preserve the airy typographic rhythm",
+      "Treat the monospace 13px as the only technical voice — reserve it for metadata, dates, and tags, not for body content"
+    ],
+    "donts": [
+      "Do not introduce any color beyond the four neutrals — no accent, no brand hue, no gradients, no hover color shifts",
+      "Do not add drop shadows, glows, or blur effects — elevation is expressed through tonal steps, not depth",
+      "Do not use photography, illustrations, or icons as primary content — type is the only visual subject",
+      "Do not apply large border radii (8px+) — the 2px maximum is a deliberate anti-pattern against soft, friendly SaaS conventions",
+      "Do not mix multiple display-weight sans-serifs — Anton owns display, Montserrat owns text, monospace owns metadata; no fourth voice",
+      "Do not use filled backgrounds on list items or rows — use hairline #c4c4c4 borders only",
+      "Do not break the centered, symmetric layout with asymmetric or left-aligned hero compositions unless the page is a content page below the fold"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Page canvas, full-bleed background, link text — the default surface for every screen; nothing sits on a lighter background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Display type, body text, button fills, hairline borders — the only ink color, used at full saturation with zero tints",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c4c4c4",
+        "name": "Concrete",
+        "role": "Secondary borders, muted list rules, subdued dividers — the single mid-tone for de-emphasized structure",
+        "group": "neutral"
+      },
+      {
+        "hex": "#363636",
+        "name": "Charcoal",
+        "role": "Elevated nav surfaces and secondary panels — the only step off pure black for distinct UI layers",
+        "group": "neutral"
+      }
+    ],
+    "imagery": "No photography, no illustrations, no icons, no decorative graphics. The design is pure typography on a black field. The only visual content is type — Anton at large sizes forming the orbital hero, Montserrat at body sizes forming text blocks, and the occasional monospace tag. If the brief requires a visual asset, it should be a type specimen or a typographic composition, never a photograph or illustration.",
+    "similar": [
+      {
+        "why": "Same type-as-hero philosophy with large-scale display typography on minimal backgrounds and near-zero color palette",
+        "business": "Pentagram (pentagram.com)"
+      },
+      {
+        "why": "Shared monochromatic rigor, bold geometric type, hairline rules, and 2px-or-zero radii — modernist restraint at every level",
+        "business": "Massimo Vignelli's NYC Subway signs"
+      },
+      {
+        "why": "Identical approach of using one display face at extreme scale as the entire visual identity, monochrome backgrounds, hairline structure",
+        "business": "Studio Dumbar (studio-dumbar.com)"
+      },
+      {
+        "why": "Circular typographic compositions, pure black canvas, condensed display sans (Anton's spiritual ancestor Futura), no decorative imagery",
+        "business": "Bauhaus 100 (bauhaus100.de)"
+      },
+      {
+        "why": "Deconstructivist layout where type arrangement and scale replace imagery as the primary visual content",
+        "business": "David Carson experimental portfolio sites"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "2px",
+        "cards": "2px",
+        "inputs": "2px",
+        "buttons": "2px",
+        "default": "2px"
+      },
+      "elementGap": "23px",
+      "sectionGap": "54px",
+      "cardPadding": "23px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background"
+      },
+      {
+        "hex": "#363636",
+        "name": "Charcoal Panel",
+        "level": 1,
+        "purpose": "Elevated nav and secondary surface"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White Mark",
+        "level": 2,
+        "purpose": "Inverted surfaces (the ENTER button, any inverted panel)"
+      }
+    ],
+    "northStar": "Orbital type on a black void — a typographic planetarium where Anton orbits a single white dot.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 2.78,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 90,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display-xl",
+        "size": 150,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Orbital Type Composition",
+        "role": "Signature hero element — concentric rings of Anton 48–90px type rotating around a central focal point",
+        "description": "The page-defining element. Multiple text strings (e.g. 'BELIEVE IN THINKING DIFFERENT', 'PORTFOLIO', author name) are arranged in full circles at varying radii using CSS transforms. Type is Anton 500 at 48–90px, #ffffff on #000000, tracking normal, with each character precisely positioned along the circular path. The composition is perfectly centered, both horizontally and vertically, in the viewport. Padding around the composition uses the 42–54px scale to maintain generous breathing room."
+      },
+      {
+        "name": "Enter Dot Button",
+        "role": "Central focal point and primary navigation trigger",
+        "description": "A small #ffffff filled circle (roughly 50–60px diameter) positioned at the exact center of the orbital composition. Contains the word 'ENTER' in monospace or Montserrat 11–13px, #000000, centered. 2px radius (essentially perfectly round at small size, or sharp-edged if larger). No border, no shadow, no hover transition — the inversion of white-on-black is the entire affordance."
+      },
+      {
+        "name": "Nav Border Rule",
+        "role": "Thin horizontal hairline that separates nav from content",
+        "description": "A 1px line in #ffffff or #c4c4c4 spanning the full width of the viewport, positioned directly below the nav row. 0 padding above/below the rule itself. Anchors the navigation zone without using a filled background."
+      },
+      {
+        "name": "Nav Link",
+        "role": "Top-level navigation item",
+        "description": "Montserrat 600 at 11–14px, #ffffff, normal letter-spacing, transparent background, no underline. Active state adds a #ffffff bottom border 2px thick. Horizontal gap between items is 23–42px. No hover background fill — only color shift if any."
+      },
+      {
+        "name": "Hairline List Divider",
+        "role": "Separates entries in stacked content lists (project index, links)",
+        "description": "1px solid #c4c4c4 or #ffffff border between list items. No padding beyond the item's own vertical padding (23px). The list itself is unstyled — no bullets, no indentation — just rows separated by rules."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action — outlined, not filled",
+        "description": "Transparent background, 1px #ffffff border, Montserrat 400–600 at 11–14px, #ffffff text, 23px horizontal padding, 12px vertical padding, 2px radius. No hover fill — type remains white on transparent. Used for non-primary actions where a filled button would be too loud."
+      },
+      {
+        "name": "Inverted Filled Button",
+        "role": "Primary action in inverted contexts",
+        "description": "#ffffff background, #000000 text, Montserrat 600 at 11–14px, 23px horizontal padding, 12px vertical padding, 2px radius. The inverse of the canvas — only used sparingly, typically on dark panels or the rare light surface. No shadow, no gradient."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Major section title",
+        "description": "Anton 500 at 48–90px, #ffffff, line-height 1.0–1.2, normal tracking. Often appears alone, centered or left-aligned, with 42–54px of space above and 23px below. No underline, no decoration — the size and weight carry all the hierarchy."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Paragraph content",
+        "description": "Montserrat 400 at 18px, #ffffff, line-height 2.78 (the airy rhythm is deliberate — generous vertical space between lines creates a typographic breathing effect). Max width implied around 600–700px. Left-aligned, no first-line indent."
+      },
+      {
+        "name": "Monospace Tag",
+        "role": "Metadata, dates, category labels",
+        "description": "System monospace at 13px, #c4c4c4, line-height 1.0–1.2. Inline or stacked. The only place monospace appears — its mechanical character contrasts with the display Anton and body Montserrat."
+      },
+      {
+        "name": "Footer Rule",
+        "role": "Bottom-of-page divider",
+        "description": "1px #ffffff or #c4c4c4 horizontal line at the very bottom of the viewport, mirroring the nav rule. Footer content sits above it in Montserrat 11–14px #c4c4c4."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Small technical UI text — system monospace at fixed 13px for tags, metadata, or any content that needs a typewriter feel against the sans-serif body",
+        "sizes": "13px",
+        "family": "monospace",
+        "weight": "400",
+        "lineHeight": "1.0, 1.2",
+        "substitute": "JetBrains Mono, IBM Plex Mono, ui-monospace"
+      },
+      {
+        "role": "Display and orbital type — the only voice for headings, hero text, and the signature circular compositions. Anton's condensed grotesque geometry lets words like 'BELIEVE' and 'THINKING' become architectural forms; the heavy 500 weight at 90–150px is the design's entire visual identity",
+        "sizes": "18px, 24px, 48px, 90px, 150px",
+        "family": "Anton",
+        "weight": "500",
+        "lineHeight": "1.0, 1.2",
+        "substitute": "Oswald, Bebas Neue, Archivo Black"
+      },
+      {
+        "role": "Body copy, navigation, button labels, list items, subheadings. The 2.78 line-height on the 18px size signals intentional airy rhythm in body blocks; 600 weight reserved for nav emphasis and small heading accents",
+        "sizes": "11px, 14px, 18px, 24px, 30px, 36px",
+        "family": "Montserrat",
+        "weight": "400, 600",
+        "lineHeight": "1.0, 1.2, 2.78",
+        "substitute": "Inter, Work Sans, DM Sans"
+      },
+      {
+        "role": "Times — detected in extracted data but not described by AI",
+        "sizes": "",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1"
+      }
+    ],
+    "description": "A stark monochromatic portfolio built on a pure black void where typography is the only object. The signature is a circular orbital type composition — concentric rings of type rotating around a central 'ENTER' button — that treats the page as a kinetic poster rather than a website. Anton at extreme sizes (90–150px) does all the visual work; everything else is white-on-black sans-serif body text and hairline gray rules. There is no color, no imagery, no shadows, no gradients, no rounded corners of consequence (2px maximum). The aesthetic is closer to a Bauhaus broadside or a black-box art installation than a typical portfolio — every element earns its place through scale and silence.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1a2ca4fb-1087-4fd0-83ba-590bc63f54ee#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Regisgrumberg design system\",\"item\":\"https://styles.refero.design/style/1a2ca4fb-1087-4fd0-83ba-590bc63f54ee\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1a2ca4fb-1087-4fd0-83ba-590bc63f54ee#style-reference\",\"name\":\"Regisgrumberg design system reference\",\"headline\":\"Regisgrumberg design system | Refero Styles\",\"description\":\"Explore Regisgrumberg's dark Agency design system: Obsidian #000000, Pure White #ffffff colors, monospace, Anton typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/1a2ca4fb-1087-4fd0-83ba-590bc63f54ee\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1a2ca4fb-1087-4fd0-83ba-590bc63f54ee\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Regisgrumberg\",\"url\":\"https://www.regisgrumberg.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1a2ca4fb-1087-4fd0-83ba-590bc63f54ee#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/369d7faa-f192-4257-a6e2-8a1fef98d906.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/369d7faa-f192-4257-a6e2-8a1fef98d906.jpg\",\"caption\":\"Screenshot of Regisgrumberg\"},\"image\":\"https://images.refero.design/styles/refero.design/image/369d7faa-f192-4257-a6e2-8a1fef98d906.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Regisgrumberg design system\",\"Regisgrumberg website design\",\"Regisgrumberg colors\",\"Regisgrumberg typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Pure White\",\"Concrete\",\"Charcoal\",\"monospace\",\"Anton\",\"Montserrat\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Regisgrumberg design system\"},{\"@type\":\"Thing\",\"name\":\"Regisgrumberg website design\"},{\"@type\":\"Thing\",\"name\":\"Regisgrumberg colors\"},{\"@type\":\"Thing\",\"name\":\"Regisgrumberg typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:42:24.574Z\",\"dateModified\":\"2026-04-30T01:42:24.574Z\"}]}19:T5a0,**Quick Color Reference**\n- background: #000000\n- text: #ffffff\n- border: #c4c4c4 (secondary) or #ffffff (primary)\n- elevated surface: #363636\n- accent: none observed (use inverted white-on-black)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Orbital Type Composition*: Full-viewport #000000 canvas. Three concentric rings of type in Anton 500 weight at 90px, #ffffff, letter-spacing normal, line-height 1.0. Outer ring: 'BELIEVE IN THINKING DIFFERENT' at radius ~280px. Middle ring: 'PORTFOLIO' at radius ~200px. Inner ring: author name in Montserrat 400 at 18px at radius ~120px. All rings perfectly centered both axes. 2.78 line-height on inner text.\n\n2. *Enter Dot Button*: Position at exact center of viewport. 56px diameter circle, #ffffff fill, 2px radius. Contains 'ENTER' in monospace 400 at 13px, #000000, centered both axes, line-height 1.0. No border, no shadow, no hover state.\n\n3. *Ghost Outline Button*: Transparent background, 1px solid #ffffff border, 2px radius. Padding 12px vertical, 23px horizontal. Text: Montserrat 600 at 14px, #ffffff, normal tracking. No fill on hover.\n\n4. *Section Heading*: Anton 500 at 90px, #ffffff, line-height 1.0, normal tracking, left-aligned with 54px margin-top and 23px margin-bottom. No decoration, no underline.\n\n5. *Body Text Block*: Montserrat 400 at 18px, #ffffff, line-height 2.78, max-width 680px, left-aligned. Followed by 23px margin to next block."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. Elevation is expressed purely through tonal steps: #000000 → #363636 → #ffffff. A surface is 'raised' by being lighter, not by casting a shadow. This is a flat, printed-poster design language that refuses skeuomorphic depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "button",
+            "body",
+            "nav",
+            "link",
+            "list",
+            "footer"
+          ],
+          "frequency": 587,
+          "confidence": 1,
+          "prominence": 382091831.43255764,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 53,
+            "body/color": 4,
+            "hero/color": 2,
+            "link/color": 4,
+            "list/color": 1,
+            "other/fill": 2,
+            "other/color": 48,
+            "button/color": 4,
+            "nav/borderColor": 212,
+            "body/borderColor": 16,
+            "hero/borderColor": 8,
+            "link/borderColor": 16,
+            "list/borderColor": 4,
+            "other/borderColor": 192,
+            "button/borderColor": 16,
+            "other/backgroundColor": 4,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "nav",
+            "heading",
+            "body",
+            "list",
+            "footer",
+            "link"
+          ],
+          "frequency": 295,
+          "confidence": 1,
+          "prominence": 14941861.881713938,
+          "properties": [
+            "backgroundColor",
+            "stroke",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "body/color": 5,
+            "link/color": 3,
+            "list/color": 7,
+            "other/fill": 94,
+            "other/color": 16,
+            "footer/color": 1,
+            "other/stroke": 4,
+            "heading/color": 3,
+            "nav/borderColor": 4,
+            "body/borderColor": 20,
+            "link/borderColor": 12,
+            "list/borderColor": 28,
+            "other/borderColor": 64,
+            "footer/borderColor": 4,
+            "heading/borderColor": 12,
+            "nav/backgroundColor": 16,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c4c4c4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.820318833734093
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "list"
+          ],
+          "frequency": 180,
+          "confidence": 1,
+          "prominence": 467037.9029263325,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "body/color": 25,
+            "list/color": 3,
+            "button/color": 1,
+            "nav/borderColor": 28,
+            "body/borderColor": 100,
+            "list/borderColor": 12,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#363636",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3328899840110902
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 2011.0317178951668,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 16
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.08,
+          "background": "#363636",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.04,
+          "background": "#000000",
+          "foreground": "#c4c4c4"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.93,
+          "background": "#363636",
+          "foreground": "#c4c4c4"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.74,
+          "background": "#363636",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.74,
+          "background": "#ffffff",
+          "foreground": "#c4c4c4"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 7
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|list",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "button",
+            "hero",
+            "other",
+            "body"
+          ],
+          "frequency": 26,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button",
+            "paddingTop|hero",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|body",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "hero",
+            "other",
+            "heading"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 54,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 288,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "monospace",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 88,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 47,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Montserrat",
+          "source": "google",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 47,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Anton",
+          "source": "google",
+          "weights": [
+            500
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.91
+      },
+      "steps": [
+        {
+          "size": 6,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "body",
+            "nav",
+            "footer",
+            "list"
+          ],
+          "frequency": 47,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 6,
+          "family": "monospace",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "link",
+            "list",
+            "body"
+          ],
+          "frequency": 44,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Montserrat",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "monospace",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "nav"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Montserrat",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Montserrat",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 14,
+          "family": "Montserrat",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 2.78,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 14,
+          "family": "Montserrat",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Anton",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Montserrat",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.06,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Anton",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Anton",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Montserrat",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Montserrat",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "Montserrat",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 36,
+          "family": "Montserrat",
+          "weight": 600,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 48,
+          "family": "Anton",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 90,
+          "family": "Anton",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 150,
+          "family": "Anton",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/21a3316d-0daa-4f61-86ce-792ff41238de.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/369d7faa-f192-4257-a6e2-8a1fef98d906.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1a2ca4fb-1087-4fd0-83ba-590bc63f54ee#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Regisgrumberg design system\",\"item\":\"https://styles.refero.design/style/1a2ca4fb-1087-4fd0-83ba-590bc63f54ee\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1a2ca4fb-1087-4fd0-83ba-590bc63f54ee#style-reference\",\"name\":\"Regisgrumberg design system reference\",\"headline\":\"Regisgrumberg design system | Refero Styles\",\"description\":\"Explore Regisgrumberg's dark Agency design system: Obsidian #000000, Pure White #ffffff colors, monospace, Anton typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/1a2ca4fb-1087-4fd0-83ba-590bc63f54ee\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1a2ca4fb-1087-4fd0-83ba-590bc63f54ee\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Regisgrumberg\",\"url\":\"https://www.regisgrumberg.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1a2ca4fb-1087-4fd0-83ba-590bc63f54ee#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/369d7faa-f192-4257-a6e2-8a1fef98d906.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/369d7faa-f192-4257-a6e2-8a1fef98d906.jpg\",\"caption\":\"Screenshot of Regisgrumberg\"},\"image\":\"https://images.refero.design/styles/refero.design/image/369d7faa-f192-4257-a6e2-8a1fef98d906.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Regisgrumberg design system\",\"Regisgrumberg website design\",\"Regisgrumberg colors\",\"Regisgrumberg typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Pure White\",\"Concrete\",\"Charcoal\",\"monospace\",\"Anton\",\"Montserrat\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Regisgrumberg design system\"},{\"@type\":\"Thing\",\"name\":\"Regisgrumberg website design\"},{\"@type\":\"Thing\",\"name\":\"Regisgrumberg colors\"},{\"@type\":\"Thing\",\"name\":\"Regisgrumberg typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:42:24.574Z\",\"dateModified\":\"2026-04-30T01:42:24.574Z\"}]}19:T5a0,**Quick Color Reference**\n- background: #000000\n- text: #ffffff\n- border: #c4c4c4 (secondary) or #ffffff (primary)\n- elevated surface: #363636\n- accent: none observed (use inverted white-on-black)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Orbital Type Composition*: Full-viewport #000000 canvas. Three concentric rings of type in Anton 500 weight at 90px, #ffffff, letter-spacing normal, line-height 1.0. Outer ring: 'BELIEVE IN THINKING DIFFERENT' at radius ~280px. Middle ring: 'PORTFOLIO' at radius ~200px. Inner ring: author name in Montserrat 400 at 18px at radius ~120px. All rings perfectly centered both axes. 2.78 line-height on inner text.\n\n2. *Enter Dot Button*: Position at exact center of viewport. 56px diameter circle, #ffffff fill, 2px radius. Contains 'ENTER' in monospace 400 at 13px, #000000, centered both axes, line-height 1.0. No border, no shadow, no hover state.\n\n3. *Ghost Outline Button*: Transparent background, 1px solid #ffffff border, 2px radius. Padding 12px vertical, 23px horizontal. Text: Montserrat 600 at 14px, #ffffff, normal tracking. No fill on hover.\n\n4. *Section Heading*: Anton 500 at 90px, #ffffff, line-height 1.0, normal tracking, left-aligned with 54px margin-top and 23px margin-bottom. No decoration, no underline.\n\n5. *Body Text Block*: Montserrat 400 at 18px, #ffffff, line-height 2.78, max-width 680px, left-aligned. Followed by 23px margin to next block."
+}

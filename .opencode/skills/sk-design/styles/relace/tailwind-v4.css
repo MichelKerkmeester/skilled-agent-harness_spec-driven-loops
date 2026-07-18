@@ -1,0 +1,65 @@
+@theme {
+  /* Colors */
+  --color-page-cream: #fffef2;
+  --color-ink-black: #191918;
+  --color-rule-black: #000000;
+  --color-warm-stone: #75756f;
+  --color-linen-beige: #edece0;
+  --color-ash-gray: #bab9b0;
+  --color-amber-signal: #fcaa2d;
+
+  /* Typography */
+  --font-sans-serif: 'sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-parabole-trial: 'Parabole Trial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-decima-mono-pro: 'Decima Mono Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-parabole-trial-regular-text: 'Parabole Trial Regular Text', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-parabole-trial-regular-display: 'Parabole Trial Regular Display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-karla: 'Karla', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-mono-xs: 10px;
+  --leading-mono-xs: 1.2;
+  --tracking-mono-xs: 0.4px;
+  --text-mono-sm: 12px;
+  --leading-mono-sm: 1.2;
+  --tracking-mono-sm: 0.36px;
+  --text-caption: 14px;
+  --leading-caption: 1.5;
+  --tracking-caption: -0.42px;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.5;
+  --tracking-body-sm: -0.64px;
+  --text-body: 18px;
+  --leading-body: 1.5;
+  --tracking-body: -0.72px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.06;
+  --tracking-subheading: -0.6px;
+  --text-heading: 36px;
+  --leading-heading: 1.1;
+  --tracking-heading: -1.8px;
+  --text-heading-lg: 40px;
+  --leading-heading-lg: 1.1;
+  --tracking-heading-lg: -1.6px;
+  --text-display: 64px;
+  --leading-display: 1.1;
+  --tracking-display: -3.2px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-60: 60px;
+  --spacing-64: 64px;
+  --spacing-96: 96px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-full: 800px;
+}

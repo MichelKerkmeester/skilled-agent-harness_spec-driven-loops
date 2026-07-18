@@ -1,0 +1,474 @@
+{
+  "color": {
+    "signal-blue": {
+      "$value": "#0063e1",
+      "$type": "color",
+      "$description": "Signal Blue — Primary CTA fill, active nav indicator, brand accent dots, link highlights — the single chromatic voice in an otherwise silent monochrome system"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas, dominant background, hairline divider color, icon fill — the floor of the entire system"
+    },
+    "carbon": {
+      "$value": "#040910",
+      "$type": "color",
+      "$description": "Carbon — Card surface base, deep panel backgrounds — first step above the page canvas"
+    },
+    "graphite": {
+      "$value": "#0d0d0d",
+      "$type": "color",
+      "$description": "Graphite — Elevated card surfaces, section backgrounds, border fills — the mid-surface layer"
+    },
+    "iron": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Iron — Input field backgrounds, form controls, tertiary surfaces"
+    },
+    "steel": {
+      "$value": "#2b2c2e",
+      "$type": "color",
+      "$description": "Steel — Highest card elevation, modal surfaces, hover-state surfaces — the ceiling of the surface stack"
+    },
+    "ash": {
+      "$value": "#858585",
+      "$type": "color",
+      "$description": "Ash — Body text, muted labels, secondary borders, link underlines — the workhorse neutral for non-heading text"
+    },
+    "smoke": {
+      "$value": "#979797",
+      "$type": "color",
+      "$description": "Smoke — Icon strokes, tertiary button borders, low-priority text"
+    },
+    "fog": {
+      "$value": "#8c8c8c",
+      "$type": "color",
+      "$description": "Fog — Link text, subdued navigation labels"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Light neutral action fill for buttons on dark surfaces."
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "diatype-rekki": {
+      "$value": "Diatype REKKI",
+      "$type": "fontFamily",
+      "$description": "Primary brand typeface — body text at 16-20px weight 400, large headlines at 56-86px weight 400 with aggressive negative tracking (as tight as -0.064em at 86px). The whisper-weight headlines are signature: no bold shouting, just precise geometric calm. Subheadings/nav at 16-20px weight 400-600."
+    },
+    "diatype-rekki-bolder-rounded": {
+      "$value": "Diatype REKKI Bolder Rounded",
+      "$type": "fontFamily",
+      "$description": "Display variant for the most prominent brand moments — heavier geometric terminals, used sparingly at 72px for hero declarations and at 12-20px weight 700 for emphasis labels in nav/inputs."
+    },
+    "ocd-garri": {
+      "$value": "OCD-GARRI",
+      "$type": "fontFamily",
+      "$description": "Secondary utility face — likely for product UI labels, status indicators, or monospaced-feeling tabular data within the embedded product screenshots. Carries slight positive letter-spacing (0.033-0.038em) giving it a structured, instrument-label quality."
+    },
+    "diatype-rekki-regular": {
+      "$value": "Diatype REKKI Regular",
+      "$type": "fontFamily",
+      "$description": "Diatype REKKI Regular — detected in extracted data but not described by AI"
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Inter — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Diatype REKKI Bolder Rounded",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Diatype REKKI Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Diatype REKKI Regular",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "OCD-GARRI-V01 Regular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Diatype REKKI Bolder Rounded",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "OCD-GARRI-V01 Regular",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Diatype REKKI Medium",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Diatype REKKI Bolder Rounded",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "OCD-GARRI-V01 Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Diatype REKKI Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Diatype REKKI Medium",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Diatype REKKI Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Diatype REKKI Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Diatype REKKI Bolder Rounded",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Diatype REKKI Regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Diatype REKKI Medium",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Diatype REKKI Medium",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Diatype REKKI Bolder Rounded",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Diatype REKKI Medium",
+        "fontSize": "86px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 86px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "59px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(255, 255, 255, 0.12) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, infinite floor"
+    },
+    "carbon-panel": {
+      "$value": "#040910",
+      "$type": "color",
+      "$description": "Surface level 1: First card elevation, product UI containers"
+    },
+    "graphite-card": {
+      "$value": "#0d0d0d",
+      "$type": "color",
+      "$description": "Surface level 2: Standard card surfaces, content blocks"
+    },
+    "iron-form": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Surface level 3: Input fields, interactive form surfaces"
+    },
+    "steel-overlay": {
+      "$value": "#2b2c2",
+      "$type": "color",
+      "$description": "Surface level 4: Top elevation, hover states, prominent overlays"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://rekki.com",
+      "siteName": "REKKI",
+      "extractedAt": "2026-06-03T20:24:24.551Z",
+      "variant": "extended"
+    }
+  }
+}

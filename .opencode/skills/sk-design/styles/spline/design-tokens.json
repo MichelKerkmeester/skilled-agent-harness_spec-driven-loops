@@ -1,0 +1,522 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void Black — Global page background, the foundational canvas for all content"
+    },
+    "panel-sheen": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Panel Sheen — Card and panel surfaces (CSS var: --color-panel-bg)"
+    },
+    "button-sheen": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Button Sheen — Secondary button backgrounds (CSS var: --color-btn-bg)"
+    },
+    "bright-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bright White — Headlines, primary text, active icons, logos"
+    },
+    "cloud": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Cloud — Secondary body text"
+    },
+    "silver": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Silver — Tertiary text, metadata, placeholder text"
+    },
+    "text-dim": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Text Dim — Inactive navigation link text"
+    },
+    "nav-background": {
+      "$value": "#191a1d",
+      "$type": "color",
+      "$description": "Nav Background — Opaque background for navigation bar on scroll"
+    },
+    "spline-blue": {
+      "$value": "#0062ff",
+      "$type": "color",
+      "$description": "Spline Blue — Primary CTA buttons — the single, high-energy action color"
+    },
+    "neon-pink": {
+      "$value": "#ff5cab",
+      "$type": "color",
+      "$description": "Neon Pink — Hero graphic accents and illustrative elements"
+    },
+    "golden-orb": {
+      "$value": "#ffb01f",
+      "$type": "color",
+      "$description": "Golden Orb — Hero graphic accents and illustrative elements"
+    },
+    "violet-haze": {
+      "$value": "#a770ff",
+      "$type": "color",
+      "$description": "Violet Haze — Hero graphic accents and illustrative elements"
+    },
+    "emerald-glow": {
+      "$value": "#47b35f",
+      "$type": "color",
+      "$description": "Emerald Glow — Hero graphic accents and illustrative elements"
+    },
+    "code-orange": {
+      "$value": "#ce9178",
+      "$type": "color",
+      "$description": "Code Orange — Syntax highlighting in code blocks"
+    },
+    "code-green": {
+      "$value": "#6a9955",
+      "$type": "color",
+      "$description": "Code Green — Syntax highlighting in code blocks"
+    },
+    "code-blue": {
+      "$value": "#569cd6",
+      "$type": "color",
+      "$description": "Code Blue — Syntax highlighting in code blocks"
+    }
+  },
+  "font": {
+    "spline-sans": {
+      "$value": "Spline Sans",
+      "$type": "fontFamily",
+      "$description": "The universal brand typeface for all UI text, from display headlines to body copy. Its use at normal weights (400/500) gives the design an approachable, technical feel, avoiding the aggression of heavy, bold headlines."
+    },
+    "spline-sans-mono": {
+      "$value": "Spline Sans Mono",
+      "$type": "fontFamily",
+      "$description": "Used exclusively for code snippets and technical text, providing clear differentiation from UI copy."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Spline Sans Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "ui-monospace",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Spline Sans",
+        "fontSize": "58px",
+        "fontWeight": 500,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Global page background"
+    },
+    "panel": {
+      "$value": "#ffffff14",
+      "$type": "color",
+      "$description": "Surface level 1: Base card and large container surfaces"
+    },
+    "interactive": {
+      "$value": "#ffffff26",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary buttons and interactive surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://spline.design",
+      "siteName": "Spline",
+      "extractedAt": "2026-04-11T17:42:35.262Z",
+      "variant": "extended"
+    }
+  }
+}

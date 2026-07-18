@@ -1,0 +1,442 @@
+{
+  "color": {
+    "royal-violet": {
+      "$value": "#5423e7",
+      "$type": "color",
+      "$description": "Royal Violet — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "electric-iris": {
+      "$value": "#7047eb",
+      "$type": "color",
+      "$description": "Electric Iris — Icon strokes, secondary accents on violet backgrounds, chart highlights — a slightly lighter companion to Royal Violet"
+    },
+    "lemon-zest": {
+      "$value": "#ffc233",
+      "$type": "color",
+      "$description": "Lemon Zest — Top announcement banners, brand lemon accent, key highlight moments — a sharp citrus spike against the violet/white system"
+    },
+    "orchid": {
+      "$value": "#cf75ff",
+      "$type": "color",
+      "$description": "Orchid — Decorative pastel accent on violet sections, soft highlight washes, pill badge fills"
+    },
+    "lilac-mist": {
+      "$value": "#e5b5fe",
+      "$type": "color",
+      "$description": "Lilac Mist — Soft pastel background fills, subtle card highlights, eyebrow tag backgrounds"
+    },
+    "blush": {
+      "$value": "#fcc7f3",
+      "$type": "color",
+      "$description": "Blush — Pale wash backgrounds, secondary pastel accent"
+    },
+    "cobalt": {
+      "$value": "#0075ad",
+      "$type": "color",
+      "$description": "Cobalt — Brand icon accents, chart data lines, secondary illustration color"
+    },
+    "emerald": {
+      "$value": "#1e874c",
+      "$type": "color",
+      "$description": "Emerald — Green supporting accent for decorative details and low-frequency emphasis"
+    },
+    "magenta": {
+      "$value": "#db0bb9",
+      "$type": "color",
+      "$description": "Magenta — Decorative accent, illustration color, highlight moments"
+    },
+    "crimson": {
+      "$value": "#d50b3e",
+      "$type": "color",
+      "$description": "Crimson — Decorative accent, illustration color, highlight moments"
+    },
+    "ember": {
+      "$value": "#eb3a00",
+      "$type": "color",
+      "$description": "Ember — Decorative accent, illustration color, warm highlight moments"
+    },
+    "obsidian": {
+      "$value": "#121217",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, dark filled buttons, nav text, headings — the near-black that carries all foreground content"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "fog": {
+      "$value": "#f7f7f8",
+      "$type": "color",
+      "$description": "Fog — Page canvas, subtle section backgrounds, surface level beneath cards"
+    },
+    "slate": {
+      "$value": "#6c6c89",
+      "$type": "color",
+      "$description": "Slate — Muted body text, secondary descriptions, nav links, helper copy"
+    },
+    "ash": {
+      "$value": "#d1d1db",
+      "$type": "color",
+      "$description": "Ash — Hairline borders, dividers, subtle separation lines"
+    }
+  },
+  "font": {
+    "circularpro-book": {
+      "$value": "Circularpro Book",
+      "$type": "fontFamily",
+      "$description": "Display and heading family — used for all headlines from 18px sub-labels up to 80px hero display. Custom geometric sans with tight negative tracking creates a blocky, confident presence. The ss04 alternate set should be enabled for brand character."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Body and UI text — nav links at 15px, body copy at 16-18px, uppercase labels at 14px with wide tracking. The 0.143em letter-spacing at 14px signals the eyebrow/label style for section headers."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Circularpro book",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Circularpro book",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Circularpro book",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Circularpro book",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Circularpro book",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Circularpro book",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Circularpro book",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "fog": {
+      "$value": "#f7f7f8",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas — the base background behind all content"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Card surfaces, navigation bar, form backgrounds — one level above canvas"
+    },
+    "royal-violet": {
+      "$value": "#5423e7",
+      "$type": "color",
+      "$description": "Surface level 3: Brand hero and CTA section backgrounds — the highest visual level"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://lemonsqueezy.com",
+      "siteName": "Payments",
+      "extractedAt": "2026-06-03T18:46:23.577Z",
+      "variant": "extended"
+    }
+  }
+}

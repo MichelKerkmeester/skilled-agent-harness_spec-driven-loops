@@ -1,0 +1,53 @@
+:root {
+  /* Colors */
+  --color-void-black: #000000;
+  --color-smolder-earth: #0b0502;
+  --color-charcoal: #1a1a1a;
+  --color-bone-white: #ffffff;
+  --color-ash: #e3e3e2;
+  --color-driftwood: #c0bfbe;
+
+  /* Typography — Font Families */
+  --font-enreal: 'Enreal', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ciutadella-medium: 'Ciutadella-Medium', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 13px;
+  --leading-caption: 1.2;
+  --text-body: 16px;
+  --leading-body: 1.2;
+  --tracking-body: 0.67px;
+  --text-subheading: 24px;
+  --leading-subheading: 1.2;
+  --tracking-subheading: 1.01px;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-16: 16px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+
+  /* Layout */
+  --section-gap: 40px;
+  --card-padding: 16px;
+  --element-gap: 4px;
+
+  /* Named Radii */
+  --radius-cards: 0px;
+  --radius-inputs: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-void-black: #000000;
+  --surface-smolder-earth: #0b0502;
+  --surface-charcoal: #1a1a1a;
+}

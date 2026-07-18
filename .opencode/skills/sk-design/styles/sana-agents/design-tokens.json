@@ -1,0 +1,247 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#0a1217",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, dark card surfaces, sign-up panel, filled primary buttons on light backgrounds"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "frost-wash": {
+      "$value": "#e4eff7",
+      "$type": "color",
+      "$description": "Frost Wash — Soft tinted surface for light product cards and secondary panels — the only chromatic step between paper white and ink black"
+    },
+    "stone-gray": {
+      "$value": "#85898b",
+      "$type": "color",
+      "$description": "Stone Gray — Muted helper text, footer labels, and desaturated secondary copy"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Hairline borders, nav text, and input outlines where the sharpest contrast edge is required"
+    },
+    "electric-lime": {
+      "$value": "#cdfe00",
+      "$type": "color",
+      "$description": "Electric Lime — Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "sana-serif": {
+      "$value": "Sana Serif",
+      "$type": "fontFamily",
+      "$description": "Hero display headline only. A weight-400 serif at 72px is the system's signature move: most AI brands shout with bold sans, Sana whispers with editorial type and lets the scale carry authority. The serif counterforms and bracket serifs give the wordmark a literary, humanist quality absent from typical product UI."
+    },
+    "sana-sans": {
+      "$value": "Sana Sans",
+      "$type": "fontFamily",
+      "$description": "All UI, body, navigation, buttons, and subheadings. The 450 weight is a distinctive mid-step between regular and medium — used for button labels and nav links instead of jumping to 500, producing quieter emphasis. Tabular numerals (tnum) and lining figures (lnum) are always on, giving all numeric data a consistent grid."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Sana Sans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Sana Sans",
+        "fontSize": "14px",
+        "fontWeight": 450,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Sana Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Sana Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Sana Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Sana Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Sana Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Sana Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Sana Sans",
+        "fontSize": "20px",
+        "fontWeight": 450,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Sana Serif",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "62": {
+      "$value": "62px",
+      "$type": "dimension",
+      "$description": "Spacing 62px"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas, default background for all sections and footer"
+    },
+    "frost-wash": {
+      "$value": "#e4eff7",
+      "$type": "color",
+      "$description": "Surface level 1: Light product cards and secondary panels — subtle cool tint to separate from the white canvas"
+    },
+    "ink-black": {
+      "$value": "#0a1217",
+      "$type": "color",
+      "$description": "Surface level 2: Dark product cards, sign-up CTA panels, and filled button fills — the strongest contrast surface in the system"
+    },
+    "electric-lime": {
+      "$value": "#cdfe00",
+      "$type": "color",
+      "$description": "Surface level 3: Accent action surface, used only as filled button on ink-black backgrounds"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://sana.ai",
+      "siteName": "Sana Agents",
+      "extractedAt": "2026-06-03T15:26:40.726Z",
+      "variant": "extended"
+    }
+  }
+}

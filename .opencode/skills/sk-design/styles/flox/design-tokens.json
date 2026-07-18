@@ -1,0 +1,269 @@
+{
+  "color": {
+    "graphite-ink": {
+      "$value": "#020817",
+      "$type": "color",
+      "$description": "Graphite Ink — Primary text, headings, nav links, list markers — near-black with a faint cool cast gives ink-like density without the harshness of pure #000"
+    },
+    "hairline-slate": {
+      "$value": "#e2e8f0",
+      "$type": "color",
+      "$description": "Hairline Slate — Borders, dividers, card outlines, image frames — the workhorse neutral that defines structural edges across every surface"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, text on dark fills — the base layer everything sits on"
+    },
+    "carbon": {
+      "$value": "#1b1b1b",
+      "$type": "color",
+      "$description": "Carbon — Secondary text, monospace body fills, subtle iconography — slightly warmer than graphite for code and terminal contexts"
+    },
+    "mist": {
+      "$value": "#f3f3f3",
+      "$type": "color",
+      "$description": "Mist — Subtle surface lift, ghost button borders, soft section backgrounds — the second tier above pure white"
+    },
+    "obsidian": {
+      "$value": "#0c0c0c",
+      "$type": "color",
+      "$description": "Obsidian — High-contrast neutral action fill for primary buttons on light surfaces."
+    },
+    "iris-glow": {
+      "$value": "#8247ff",
+      "$type": "color",
+      "$description": "Iris Glow — Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color"
+    },
+    "magenta-pulse": {
+      "$value": "#f47bff",
+      "$type": "color",
+      "$description": "Magenta Pulse — Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color"
+    },
+    "ember-orange": {
+      "$value": "#ff8a3d",
+      "$type": "color",
+      "$description": "Ember Orange — Supporting palette color for small decorative accents when the core palette needs contrast."
+    },
+    "rose-hot": {
+      "$value": "#ff4fae",
+      "$type": "color",
+      "$description": "Rose Hot — Red text accent for links, tags, and emphasized short phrases."
+    }
+  },
+  "font": {
+    "geistsans": {
+      "$value": "GeistSans",
+      "$type": "fontFamily",
+      "$description": "Primary UI and display typeface. The 76px display size with -0.046em tracking creates a compressed, architectural headline that spans three lines without overwhelming the viewport. Geist's geometric construction gives a monospace-adjacent precision that fits the developer-tools context without committing to mono. 400 is the body workhorse, 500 carries nav and button labels, 600 is reserved for emphasis within dense lists."
+    },
+    "geistmono": {
+      "$value": "GeistMono",
+      "$type": "fontFamily",
+      "$description": "Code and terminal mockup typeface — used inside the hero terminal window and any inline code blocks. Single weight 500 keeps the monospace voice present but quiet, never competing with the display sans."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "GeistMono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "GeistSans",
+        "fontSize": "76px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 76px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(255, 255, 255, 0.2) 0px -2px 1px 0px inset, rgba(255, 255, 255, 0.1) 0px 4px 16px 0px inset, rgba(0, 0, 0, 0.08) 0px 6px 16px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.04) 0px 2px 8px 0px, rgba(0, 0, 0, 0.08) 0px 8px 24px 0px, rgba(0, 0, 0, 0.12) 0px 16px 48px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the flat base everything sits on"
+    },
+    "mist": {
+      "$value": "#f3f3f3",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle lift for alt sections, ghost button surfaces, code block backgrounds"
+    },
+    "obsidian": {
+      "$value": "#0c0c0c",
+      "$type": "color",
+      "$description": "Surface level 2: Inverted dark surface for terminal windows and solid dark action buttons"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://flox.dev",
+      "siteName": "Flox",
+      "extractedAt": "2026-06-03T21:26:23.523Z",
+      "variant": "extended"
+    }
+  }
+}

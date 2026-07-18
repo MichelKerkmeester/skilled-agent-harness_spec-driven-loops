@@ -1,0 +1,245 @@
+{
+  "color": {
+    "paper": {
+      "$value": "#fdfdfa",
+      "$type": "color",
+      "$description": "Paper — Page canvas and card surfaces — warm off-white reads as aged paper, not digital white"
+    },
+    "bone": {
+      "$value": "#f5f3ee",
+      "$type": "color",
+      "$description": "Bone — Elevated surface and subtle washes — used for card backgrounds and hover states, one step warmer than canvas"
+    },
+    "ink": {
+      "$value": "#2b2b2e",
+      "$type": "color",
+      "$description": "Ink — Primary text, navigation, borders, and outlined actions — near-black with a warm undertone, never pure #000"
+    },
+    "ash": {
+      "$value": "#bebcb4",
+      "$type": "color",
+      "$description": "Ash — Muted text and secondary borders — warm gray for metadata, subtitles, and hairline dividers"
+    },
+    "pebble": {
+      "$value": "#deddd8",
+      "$type": "color",
+      "$description": "Pebble — Light dividers and structural borders — barely visible rules between sections"
+    },
+    "mist": {
+      "$value": "#d9d7c9",
+      "$type": "color",
+      "$description": "Mist — Form input borders — slightly warmer than pebble to read as a distinct UI surface"
+    }
+  },
+  "font": {
+    "nomen-nescio-custom": {
+      "$value": "Nomen Nescio (custom)",
+      "$type": "fontFamily",
+      "$description": "Single-weight display and body sans-serif — a monoline custom face used for every text element on the site. No bold, no light, no italic variants exist; hierarchy is achieved through size and negative letter-spacing only. Substitutes with a similar monoline character: 'Neue Haas Grotesk Display Pro' or 'Söhne' at weight 400."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "nomennescio",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "nomennescio",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "nomennescio",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "nomennescio",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "nomennescio",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "nomennescio",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "nomennescio",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "nomennescio",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "nomennescio",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "nomennescio",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.26
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 19px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "nomennescio",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 0.71
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "nomennescio",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 0.56
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "nomennescio",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "47": {
+      "$value": "47px",
+      "$type": "dimension",
+      "$description": "Spacing 47px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#fdfdfa",
+      "$type": "color",
+      "$description": "Surface level 1: Page background — the warm white that everything sits on"
+    },
+    "bone": {
+      "$value": "#f5f3ee",
+      "$type": "color",
+      "$description": "Surface level 2: Card and elevated surface — subtly warmer than canvas to create gentle separation"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://nomennescio.fi",
+      "siteName": "Nomen Nescio",
+      "extractedAt": "2026-06-03T20:36:39.025Z",
+      "variant": "extended"
+    }
+  }
+}

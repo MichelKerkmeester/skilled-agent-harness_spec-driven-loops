@@ -1,0 +1,1522 @@
+{
+  "source": "https://styles.refero.design/style/b1e0a894-7440-44b8-9737-0ea4c988fc24",
+  "uuid": "b1e0a894-7440-44b8-9737-0ea4c988fc24",
+  "name": "Prevalent",
+  "northStar": "Editorial command observatory — serif intelligence briefings under a navy planetarium dome",
+  "capturedAt": "2026-07-18T08:48:57.210Z",
+  "meta": {
+    "url": "https://prevalent.ai",
+    "siteName": "Prevalent",
+    "extractedAt": "2026-06-03T21:39:59.568Z",
+    "durationMs": 30316,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 327,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Tiempos Headline 400 exclusively for all display and section titles — never use a sans for headlines, that contrast is the brand",
+      "Recolor exactly 2–3 key nouns in Iris Voltage within every serif headline; leave the rest of the sentence in Pure Ink or Paper White",
+      "Keep the page chromatic load below 5% — violet appears on one CTA, one link per card, and accent words; everything else stays black, white, or navy",
+      "Use 1px Pure Ink hairlines for all card and section separators; never reach for shadows or colored borders to create division",
+      "Set letter-spacing to -0.02em on every Tiempos size and -0.01em on every Matter body size — the tight tracking is part of the voice",
+      "Lead with the dark navy hero on the landing page; any sub-page that opens on a dark band reads as part of the same system",
+      "Illustrate the product with hand-drawn scenes of people and architecture rather than stock photography or 3D renders"
+    ],
+    "donts": [
+      "Don't introduce a second accent color — the system is monochromatic plus one violet; coral, green, and orange only appear inside the illustration art",
+      "Don't apply shadows, glows, or colored borders to cards or buttons — separation comes from 1px black hairlines or whitespace",
+      "Don't use Tiempos at body sizes below 30px — the serif is a display face and will look fussy as paragraph copy",
+      "Don't round buttons above 4px or cards above 10px — larger radii would clash with the editorial flatness",
+      "Don't set headlines in Pure White on a white background; the dark navy hero is the only place Paper White display type should live",
+      "Don't place violet text on the Midnight Vault background — the contrast drops and the accent loses its punch; use Paper White for hero body and iris only on white",
+      "Don't fill pages with photography; if a visual is needed, use the same illustrated, whimsical scene-style as the hero"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#6360d8",
+        "name": "Iris Voltage",
+        "role": "Brand accent for primary CTAs, link color, accent words inside serif headlines, and the thin violet underlines/arrows on navigation and article links",
+        "group": "brand"
+      },
+      {
+        "hex": "#060b25",
+        "name": "Midnight Vault",
+        "role": "Hero and footer canvas — the deep navy that frames the largest serif headlines and the top of the page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Ink",
+        "role": "Primary text, default hairlines, and the 1px borders that separate every card, section, and image",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, button text on violet, and inverse text on the dark hero",
+        "group": "neutral"
+      },
+      {
+        "hex": "#383c51",
+        "name": "Graphite Slate",
+        "role": "Cool desaturated border and secondary text — sits between Pure Ink and Midnight Vault when a softer line or muted label is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dad9ed",
+        "name": "Lavender Mist",
+        "role": "Light neutral action fill for buttons on dark surfaces.",
+        "group": "accent"
+      }
+    ],
+    "layout": "The landing page follows a strict rhythm: full-bleed dark hero (Midnight Vault) → white content sections → alternating subtle tints → dark footer. Content is centered in a ~1200px max-width container with generous side padding. The hero is a centered text stack (display headline → supporting paragraph → CTA) with the illustration bursting from the bottom. Content sections use a 2-column or 3-column grid — the value-prop section is a 3-column feature grid with equal-width cards separated by whitespace, and the resource section is a 3-column article grid. Section gaps are large (80–120px) giving the page a spacious, editorial cadence. The navigation is a single sticky top bar, white with a 1px bottom hairline; no sidebar, no mega-menu, no floating elements.",
+    "imagery": "Illustrations are the entire visual identity. Every visual asset is a hand-drawn, slightly whimsical scene — miniature people in spacesuits and office attire exploring futuristic cityscapes, domed laboratories, and rocket launchpads — rendered in a flat, editorial style with thick linework, saturated mid-tones (blues, corals, greens, purples), and white highlights. The illustrations overflow their containers, with the hero scene bleeding across the full width and even down into subsequent sections. There is no photography anywhere on the site; product UI and people are always depicted as drawn characters. Icons throughout the feature cards are simple, flat, and monochrome, sitting inside small rounded-square containers that pick up accent colors from the illustration palette.",
+    "similar": [
+      {
+        "why": "Same restrained monochrome canvas with a single vivid accent and flat, borderless cards",
+        "business": "Linear"
+      },
+      {
+        "why": "Same large serif/sans pairing for headlines, tight tracking, and near-black hero",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same illustration-driven hero and violet-on-near-black headline treatment",
+        "business": "Framer"
+      },
+      {
+        "why": "Same hand-drawn illustration style replacing product photography across the marketing site",
+        "business": "Notion"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "10px",
+        "pills": "9999px",
+        "badges": "9999px",
+        "buttons": "4px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "80-120px",
+      "cardPadding": "40-48px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Default page canvas for content sections, article cards, and feature cards"
+      },
+      {
+        "hex": "#dad9ed",
+        "name": "Lavender Mist",
+        "level": 1,
+        "purpose": "Pill badges, gentle section tints, and decorative surface washes"
+      },
+      {
+        "hex": "#060b25",
+        "name": "Midnight Vault",
+        "level": 2,
+        "purpose": "Full-bleed hero and footer backgrounds — the only dark surface in the system"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Editorial command observatory — serif intelligence briefings under a navy planetarium dome",
+    "typeScale": [
+      {
+        "role": "small",
+        "size": 12,
+        "lineHeight": 1.55,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.22,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "heading-lg",
+        "size": 50,
+        "lineHeight": 1,
+        "letterSpacing": -1
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 0.98,
+        "letterSpacing": -1.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "The single conversion action on any page (Get a demo, Learn more)",
+        "description": "Filled Iris Voltage (#6360d8) background, Paper White (#ffffff) text in Matter 500 at 16px, padding 12px 24px, border-radius 4px. Optional trailing arrow icon in white. No border, no shadow — color alone does the work."
+      },
+      {
+        "name": "Ghost Navigation Button",
+        "role": "Secondary actions in the header or inline within content",
+        "description": "Transparent background, 1px Pure Ink (#000000) border, Pure Ink text in Matter 500 at 14–16px, padding 8px 16px, border-radius 4px."
+      },
+      {
+        "name": "Pill Badge",
+        "role": "Compact label sitting next to the wordmark or beside a heading (e.g. 'Join our team')",
+        "description": "Lavender Mist (#dad9ed) background, Pure Ink text in Matter 500 at 12px, padding 4px 12px, border-radius 9999px."
+      },
+      {
+        "name": "Serif Section Heading",
+        "role": "Headlines that introduce every page section",
+        "description": "Tiempos Headline 400 at 48–80px, letter-spacing -0.02em, line-height ~1.0. The pattern is two-tone: 2–3 key nouns are recolored in Iris Voltage while the rest stays Pure Ink (on light backgrounds) or Paper White (on the dark hero). The contrast between white and violet words inside a single serif line is the brand's signature typographic move."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Three-column value props beneath the hero",
+        "description": "Paper White background, no shadow, 1px Pure Ink hairline border at the top, border-radius 10px. Heading in Tiempos 30px Pure Ink, body copy in Matter 18px Pure Ink. A small rounded-square icon container (10px radius) sits below the card, filled with Iris Voltage, coral, or green from the illustration palette."
+      },
+      {
+        "name": "Article Card",
+        "role": "Blog or resource entry in a 3-column grid",
+        "description": "Paper White background, no border. Full-bleed image at the top (square or 4:3 crop). Eyebrow label 'Article' in Matter 14px Iris Voltage above the title. Title in Tiempos Headline 400 at 20–24px Pure Ink. Trailing down-arrow link in Iris Voltage."
+      },
+      {
+        "name": "Arrow Link",
+        "role": "Inline navigation from headings to detail pages",
+        "description": "Matter 500 at 16px in Iris Voltage, followed by a small down-arrow (↳) glyph. No underline by default; the violet color and arrow are the affordance."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent header across all pages",
+        "description": "Paper White background, sits on a 1px Pure Ink hairline at the bottom. Wordmark + pill badge on the left, three nav items (Products, Company, Resources — each with a chevron dropdown) centered or left-aligned in Matter 500 16px Pure Ink, primary CTA on the right. No background blur or elevation."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Full-bleed opening band on the landing page",
+        "description": "Midnight Vault (#060b25) background, content centered with a max-width of ~1200px. Display headline in Tiempos 80px Paper White with two words recolored Iris Voltage. Supporting paragraph in Matter 18px at ~70% white. Violet filled CTA centered beneath. A hand-drawn illustration of futuristic architecture and miniature people overflows the bottom edge of the hero, bleeding into the next section."
+      },
+      {
+        "name": "Footer",
+        "role": "Closing band at the bottom of the page",
+        "description": "Midnight Vault (#060b25) background mirroring the hero. Top edges clipped with a 20px radius, giving the footer a rounded 'card' feel even though it spans the full viewport. Wordmark and link columns in Paper White at 14–16px Matter."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Serif used exclusively for headlines and section titles. The single weight (400) plus aggressive negative tracking gives headings a literary, almost newspaper-editorial quality that contrasts with the cyber-security subject matter. Letter-spacing tightens to -0.02em at every size, pulling the serifs into a dense, confident block.",
+        "sizes": "16px, 30px, 45px, 48px, 50px, 80px",
+        "family": "Tiempos Headline",
+        "weight": "400",
+        "lineHeight": "0.98–1.10",
+        "substitute": "Source Serif 4 or PT Serif Caption",
+        "letterSpacing": "-1.6px at 80px, -1.0px at 50px, -0.96px at 48px, -0.9px at 45px, -0.6px at 30px (all -0.02em)"
+      },
+      {
+        "role": "Workhorse sans for body copy, navigation, buttons, captions, and card meta. Weight 400 is default; 500 is used sparingly for emphasis in labels and small UI text. Generous line-heights (1.4–1.6) keep body copy breathable on a spacious canvas. Letter-spacing -0.01em at body sizes gives it a tighter, more engineered feel than a typical system sans.",
+        "sizes": "12px, 14px, 16px, 18px, 20px, 50px",
+        "family": "Matter",
+        "weight": "400, 500",
+        "lineHeight": "1.22–1.60",
+        "substitute": "Inter or Söhne",
+        "letterSpacing": "-0.24px at 24px, -0.2px at 20px, -0.18px at 18px, -0.16px at 16px, -0.14px at 14px, -0.12px at 12px (all -0.01em)"
+      }
+    ],
+    "description": "Prevalent's visual system is an editorial intelligence briefing set inside a dark observatory: a near-black navy hero anchors large serif headlines in Tiempos, while the body switches to a humanist sans (Matter) for UI, captions, and controls. A single vivid violet (#6360d8) carries the entire chromatic load — it paints the most important nouns in every headline, fills the primary CTA, and underlines article links — leaving the rest of the page in pure black-on-white. The product is illustrated, not photographed: whimsical hand-drawn scenes of miniature people navigating futuristic architecture replace the usual SaaS 3D renders, giving the brand a storybook quality that contrasts sharply with its serious cybersecurity subject matter. Components are flat, borderless by default, and depend on thin black hairlines rather than shadows for separation.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b1e0a894-7440-44b8-9737-0ea4c988fc24#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Prevalent design system\",\"item\":\"https://styles.refero.design/style/b1e0a894-7440-44b8-9737-0ea4c988fc24\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b1e0a894-7440-44b8-9737-0ea4c988fc24#style-reference\",\"name\":\"Prevalent design system reference\",\"headline\":\"Prevalent design system | Refero Styles\",\"description\":\"Explore Prevalent's mixed SaaS design system: Iris Voltage #6360d8, Midnight Vault #060b25 colors, Tiempos Headline, Matter typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/b1e0a894-7440-44b8-9737-0ea4c988fc24\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b1e0a894-7440-44b8-9737-0ea4c988fc24\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Prevalent\",\"url\":\"https://prevalent.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b1e0a894-7440-44b8-9737-0ea4c988fc24#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c454dba5-d510-495b-91fa-8dc93ceeac5e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c454dba5-d510-495b-91fa-8dc93ceeac5e.jpg\",\"caption\":\"Screenshot of Prevalent\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c454dba5-d510-495b-91fa-8dc93ceeac5e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Prevalent design system\",\"Prevalent website design\",\"Prevalent colors\",\"Prevalent typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Iris Voltage\",\"Midnight Vault\",\"Pure Ink\",\"Paper White\",\"Tiempos Headline\",\"Matter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Prevalent design system\"},{\"@type\":\"Thing\",\"name\":\"Prevalent website design\"},{\"@type\":\"Thing\",\"name\":\"Prevalent colors\"},{\"@type\":\"Thing\",\"name\":\"Prevalent typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T17:40:50.488Z\",\"dateModified\":\"2026-05-07T17:40:50.488Z\"}]}19:T860,**Quick Color Reference**\n- text: #000000 (Pure Ink)\n- background: #ffffff (Paper White)\n- dark surface: #060b25 (Midnight Vault — hero and footer only)\n- border: #000000 (1px hairline)\n- accent: #6360d8 (Iris Voltage — accent words, links, arrows)\n- primary action: #6360d8 (filled action)\n\n**Example Component Prompts**\n1. **Hero section**: Midnight Vault (#060b25) full-bleed background, content centered at max-width 1200px. Display headline at 80px Tiempos Headline weight 400, letter-spacing -1.6px, line-height 0.98. Write the headline as 'Every [asset]. Every [risk]. Complete [exposure management].' where the bracketed words are Iris Voltage and the rest are Paper White. Supporting paragraph in Matter 400 18px at #ffffffcc. Violet filled CTA beneath: bg #6360d8, text #ffffff, Matter 500 16px, padding 12px 24px, radius 4px.\n\n2. **Section heading**: Tiempos Headline 48px weight 400, letter-spacing -0.96px, Pure Ink. Recolor the last three words in Iris Voltage. Below, a 3-column feature grid; each card is Paper White with a 1px top border in Pure Ink, border-radius 10px, padding 48px. Card title in Tiempos 30px Pure Ink, body in Matter 18px Pure Ink, and a small 10px-radius icon container at the bottom filled with a single accent color.\n\n3. **Article card**: Paper White background, no border. Image at top (square crop, no rounding). Eyebrow 'Article' in Matter 14px Iris Voltage. Title in Tiempos 24px Pure Ink, letter-spacing -0.48px. Trailing arrow link in Matter 500 16px Iris Voltage with a down-arrow glyph.\n\n4. **Navigation bar**: Paper White background, 1px Pure Ink bottom border, padding 16px 40px. Wordmark + Lavender Mist (#dad9ed) pill badge labeled 'Join our team' on the left (radius 9999px, padding 4px 12px, Matter 500 12px). Three nav items in Matter 500 16px Pure Ink with chevron dropdowns. Primary CTA 'Get a demo' on the right: bg #6360d8, text #ffffff, padding 12px 24px, radius 4px.\n\n5. **Footer**: Midnight Vault (#060b25) background, top corners clipped at 20px radius to read as a card. Wordmark and link columns in Paper White at Matter 400 14px, max-width 1200px centered, padding 64px top."
+      }
+    ],
+    "elevationPhilosophy": "The system is deliberately flat — no shadows, no glows, no colored borders. Elevation is implied by layering (white card on white canvas, navy hero on white section) and by 1px Pure Ink hairlines when explicit separation is needed. The only curvature comes from the 4px and 10px radii and the asymmetric clip masks on the hero/footer illustrations."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "body",
+            "icon",
+            "hero",
+            "heading"
+          ],
+          "frequency": 907,
+          "confidence": 1,
+          "prominence": 91572612.87166682,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 11,
+            "hero/color": 1,
+            "icon/color": 10,
+            "link/color": 10,
+            "other/fill": 10,
+            "image/color": 11,
+            "other/color": 130,
+            "heading/color": 9,
+            "body/borderColor": 44,
+            "hero/borderColor": 4,
+            "icon/borderColor": 40,
+            "link/borderColor": 40,
+            "image/borderColor": 44,
+            "other/borderColor": 507,
+            "heading/borderColor": 36
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "hero",
+            "heading",
+            "body",
+            "icon",
+            "image",
+            "footer",
+            "link",
+            "card"
+          ],
+          "frequency": 561,
+          "confidence": 1,
+          "prominence": 27373993.989880152,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 13,
+            "card/color": 1,
+            "hero/color": 1,
+            "icon/color": 8,
+            "link/color": 12,
+            "other/fill": 7,
+            "image/color": 6,
+            "other/color": 64,
+            "button/color": 5,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 2,
+            "body/borderColor": 52,
+            "card/borderColor": 4,
+            "hero/borderColor": 4,
+            "icon/borderColor": 32,
+            "link/borderColor": 48,
+            "image/borderColor": 24,
+            "other/borderColor": 240,
+            "button/borderColor": 20,
+            "footer/borderColor": 4,
+            "heading/borderColor": 8,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#6360d8",
+          "oklch": {
+            "c": 0.17880453604686805,
+            "h": 279.983604974255,
+            "l": 0.5564499686005365
+          },
+          "contexts": [
+            "link",
+            "button",
+            "heading",
+            "other"
+          ],
+          "frequency": 83,
+          "confidence": 1,
+          "prominence": 7248887.957431114,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/color": 4,
+            "heading/color": 8,
+            "link/borderColor": 4,
+            "other/borderColor": 29,
+            "heading/borderColor": 32,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#060b25",
+          "oklch": {
+            "c": 0.054369176069204626,
+            "h": 270.15916964463145,
+            "l": 0.16346414368302112
+          },
+          "contexts": [
+            "hero",
+            "footer"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2820196.685808186,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f1fff9",
+          "oklch": {
+            "c": 0.01664111167858178,
+            "h": 168.51977288260076,
+            "l": 0.9879909484834904
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 284700,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f1f1ff",
+          "oklch": {
+            "c": 0.01866847602899624,
+            "h": 286.0436557978466,
+            "l": 0.9622171768801734
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 284100,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#383c51",
+          "oklch": {
+            "c": 0.03642446134533187,
+            "h": 275.9701586939928,
+            "l": 0.36057387799432755
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 145900.4534657035,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#dad9ed",
+          "oklch": {
+            "c": 0.027502754163727907,
+            "h": 287.19252724881187,
+            "l": 0.8918768174594646
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1796,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#4e5a6d",
+          "oklch": {
+            "c": 0.03447382062327757,
+            "h": 259.53003912839154,
+            "l": 0.4646566781243202
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 875,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.026350353519828527,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.41,
+          "background": "#f1fff9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.4,
+          "background": "#060b25",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.86,
+          "background": "#f1fff9",
+          "foreground": "#060b25"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.77,
+          "background": "#f1f1ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.34,
+          "background": "#f1f1ff",
+          "foreground": "#060b25"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#dad9ed",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.98,
+          "background": "#dad9ed",
+          "foreground": "#060b25"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.86,
+          "background": "#ffffff",
+          "foreground": "#383c51"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.56,
+          "background": "#f1fff9",
+          "foreground": "#383c51"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.71,
+          "background": "#f1f1ff",
+          "foreground": "#383c51"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.83,
+          "background": "#dad9ed",
+          "foreground": "#383c51"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.98,
+          "background": "#4e5a6d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.79,
+          "background": "#f1fff9",
+          "foreground": "#4e5a6d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.24,
+          "background": "#f1f1ff",
+          "foreground": "#4e5a6d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.03,
+          "background": "#dad9ed",
+          "foreground": "#4e5a6d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.01,
+          "background": "#6360d8",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.87,
+          "background": "#f1fff9",
+          "foreground": "#6360d8"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.47,
+          "background": "#f1f1ff",
+          "foreground": "#6360d8"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.2,
+          "background": "#6360d8",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "link",
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 20,
+          "corners": [
+            20,
+            20,
+            0,
+            0
+          ],
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        },
+        {
+          "value": 60,
+          "corners": [
+            0,
+            0,
+            60,
+            60
+          ],
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "paddingTop|other",
+            "marginTop|link",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|icon",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "marginTop|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 89,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 103,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 123,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 222,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 256,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 288,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 301,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Matter",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 281,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Tiempos Headline",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 28,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Matter",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Matter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.55,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Matter",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Matter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 16,
+          "family": "Matter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "body",
+            "icon",
+            "hero",
+            "button",
+            "footer",
+            "card"
+          ],
+          "frequency": 238,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Tiempos Headline",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Matter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.55,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Matter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.55,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Matter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Matter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Matter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Matter",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Tiempos Headline",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Tiempos Headline",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Tiempos Headline",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Matter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Tiempos Headline",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Tiempos Headline",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.98,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d2a77671-d25e-493e-a1ab-257ef91a5906.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c454dba5-d510-495b-91fa-8dc93ceeac5e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b1e0a894-7440-44b8-9737-0ea4c988fc24#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Prevalent design system\",\"item\":\"https://styles.refero.design/style/b1e0a894-7440-44b8-9737-0ea4c988fc24\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b1e0a894-7440-44b8-9737-0ea4c988fc24#style-reference\",\"name\":\"Prevalent design system reference\",\"headline\":\"Prevalent design system | Refero Styles\",\"description\":\"Explore Prevalent's mixed SaaS design system: Iris Voltage #6360d8, Midnight Vault #060b25 colors, Tiempos Headline, Matter typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/b1e0a894-7440-44b8-9737-0ea4c988fc24\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b1e0a894-7440-44b8-9737-0ea4c988fc24\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Prevalent\",\"url\":\"https://prevalent.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b1e0a894-7440-44b8-9737-0ea4c988fc24#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c454dba5-d510-495b-91fa-8dc93ceeac5e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c454dba5-d510-495b-91fa-8dc93ceeac5e.jpg\",\"caption\":\"Screenshot of Prevalent\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c454dba5-d510-495b-91fa-8dc93ceeac5e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Prevalent design system\",\"Prevalent website design\",\"Prevalent colors\",\"Prevalent typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Iris Voltage\",\"Midnight Vault\",\"Pure Ink\",\"Paper White\",\"Tiempos Headline\",\"Matter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Prevalent design system\"},{\"@type\":\"Thing\",\"name\":\"Prevalent website design\"},{\"@type\":\"Thing\",\"name\":\"Prevalent colors\"},{\"@type\":\"Thing\",\"name\":\"Prevalent typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T17:40:50.488Z\",\"dateModified\":\"2026-05-07T17:40:50.488Z\"}]}19:T860,**Quick Color Reference**\n- text: #000000 (Pure Ink)\n- background: #ffffff (Paper White)\n- dark surface: #060b25 (Midnight Vault — hero and footer only)\n- border: #000000 (1px hairline)\n- accent: #6360d8 (Iris Voltage — accent words, links, arrows)\n- primary action: #6360d8 (filled action)\n\n**Example Component Prompts**\n1. **Hero section**: Midnight Vault (#060b25) full-bleed background, content centered at max-width 1200px. Display headline at 80px Tiempos Headline weight 400, letter-spacing -1.6px, line-height 0.98. Write the headline as 'Every [asset]. Every [risk]. Complete [exposure management].' where the bracketed words are Iris Voltage and the rest are Paper White. Supporting paragraph in Matter 400 18px at #ffffffcc. Violet filled CTA beneath: bg #6360d8, text #ffffff, Matter 500 16px, padding 12px 24px, radius 4px.\n\n2. **Section heading**: Tiempos Headline 48px weight 400, letter-spacing -0.96px, Pure Ink. Recolor the last three words in Iris Voltage. Below, a 3-column feature grid; each card is Paper White with a 1px top border in Pure Ink, border-radius 10px, padding 48px. Card title in Tiempos 30px Pure Ink, body in Matter 18px Pure Ink, and a small 10px-radius icon container at the bottom filled with a single accent color.\n\n3. **Article card**: Paper White background, no border. Image at top (square crop, no rounding). Eyebrow 'Article' in Matter 14px Iris Voltage. Title in Tiempos 24px Pure Ink, letter-spacing -0.48px. Trailing arrow link in Matter 500 16px Iris Voltage with a down-arrow glyph.\n\n4. **Navigation bar**: Paper White background, 1px Pure Ink bottom border, padding 16px 40px. Wordmark + Lavender Mist (#dad9ed) pill badge labeled 'Join our team' on the left (radius 9999px, padding 4px 12px, Matter 500 12px). Three nav items in Matter 500 16px Pure Ink with chevron dropdowns. Primary CTA 'Get a demo' on the right: bg #6360d8, text #ffffff, padding 12px 24px, radius 4px.\n\n5. **Footer**: Midnight Vault (#060b25) background, top corners clipped at 20px radius to read as a card. Wordmark and link columns in Paper White at Matter 400 14px, max-width 1200px centered, padding 64px top."
+}

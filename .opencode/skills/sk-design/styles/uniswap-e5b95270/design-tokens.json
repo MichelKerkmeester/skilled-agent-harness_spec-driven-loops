@@ -1,0 +1,479 @@
+{
+  "color": {
+    "uniswap-magenta": {
+      "$value": "#ff37c7",
+      "$type": "color",
+      "$description": "Uniswap Magenta — Pink supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "ink": {
+      "$value": "#131313",
+      "$type": "color",
+      "$description": "Ink — Primary text, nav labels, headings, body copy, and default icon strokes — near-black rather than pure black for a slightly softer read"
+    },
+    "charcoal": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Charcoal — Secondary text and strong UI borders where extra weight is needed without going to pure black"
+    },
+    "steel": {
+      "$value": "#6a6a6a",
+      "$type": "color",
+      "$description": "Steel — Muted helper text, secondary labels, inactive nav items, and supporting copy"
+    },
+    "fog": {
+      "$value": "#acacac",
+      "$type": "color",
+      "$description": "Fog — Disabled states, placeholder text, and faint dividers"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, and button text on magenta fills"
+    },
+    "bone": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Bone — Subtle button borders and faint surface tints"
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Maximum-contrast text and select icon fills where absolute black is required"
+    },
+    "electric-violet": {
+      "$value": "#8251fb",
+      "$type": "color",
+      "$description": "Electric Violet — Decorative icon accent and floating orb color — part of the hero atmosphere palette, not a UI state"
+    },
+    "ember-orange": {
+      "$value": "#ff4d00",
+      "$type": "color",
+      "$description": "Ember Orange — Decorative orb and icon accent in the hero atmosphere"
+    },
+    "hot-pink": {
+      "$value": "#f50db4",
+      "$type": "color",
+      "$description": "Hot Pink — Decorative orb accent — deeper sibling to the primary magenta for tonal variety in background blobs"
+    },
+    "sky-cyan": {
+      "$value": "#2abdff",
+      "$type": "color",
+      "$description": "Sky Cyan — Decorative orb and icon accent in the hero atmosphere"
+    },
+    "mint-teal": {
+      "$value": "#00c3a0",
+      "$type": "color",
+      "$description": "Mint Teal — Decorative orb and icon accent in the hero atmosphere"
+    },
+    "coral-red": {
+      "$value": "#e01a2b",
+      "$type": "color",
+      "$description": "Coral Red — Decorative orb accent and select icon tint"
+    },
+    "forest-green": {
+      "$value": "#0c8911",
+      "$type": "color",
+      "$description": "Forest Green — Green supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    }
+  },
+  "font": {
+    "basel": {
+      "$value": "Basel",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for every text surface — nav, body, buttons, headings, and display. The signature 485 weight (slightly heavier than regular, lighter than medium) creates a distinctive subtly-compressed feel that no system font replicates. Consistent -0.02em tracking tightens the rhythm at every scale, from 12px captions to 64px display."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "12px",
+        "fontWeight": 535,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "12px",
+        "fontWeight": 485,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "14px",
+        "fontWeight": 535,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "14px",
+        "fontWeight": 535,
+        "lineHeight": 1.49
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "14px",
+        "fontWeight": 485,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "16px",
+        "fontWeight": 485,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "16px",
+        "fontWeight": 485,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "16px",
+        "fontWeight": 485,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "16px",
+        "fontWeight": 485,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "16px",
+        "fontWeight": 535,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "16px",
+        "fontWeight": 535,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "18px",
+        "fontWeight": 485,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "18px",
+        "fontWeight": 535,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "18px",
+        "fontWeight": 485,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "24px",
+        "fontWeight": 535,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "24px",
+        "fontWeight": 535,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "24px",
+        "fontWeight": 485,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "36px",
+        "fontWeight": 485,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "36px",
+        "fontWeight": 485,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "36px",
+        "fontWeight": 485,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "52px",
+        "fontWeight": 485,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "52px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 52px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "52px",
+        "fontWeight": 485,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 52px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Basel",
+        "fontSize": "64px",
+        "fontWeight": 485,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4.8px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "999999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "color(srgb 0.0745098 0.0745098 0.0745098 / 0.00313726) 0px 0px 10px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page background; the white space that lets the magenta and floating orbs carry all the visual energy"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Swap input cards, stat tiles, and feature cards sit on the same white but are defined by a faint border or near-invisible shadow"
+    },
+    "elevated-widget": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: The swap terminal and overlay surfaces; same white but separated by a barely-perceptible 10px black-3% shadow"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://uniswap.org",
+      "siteName": "Uniswap",
+      "extractedAt": "2026-06-03T19:05:51.909Z",
+      "variant": "extended"
+    }
+  }
+}

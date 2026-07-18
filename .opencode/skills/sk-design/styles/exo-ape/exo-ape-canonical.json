@@ -1,0 +1,1068 @@
+{
+  "source": "https://styles.refero.design/style/18e84ffd-4a5d-453d-aeff-dae2847aa3c9",
+  "uuid": "18e84ffd-4a5d-453d-aeff-dae2847aa3c9",
+  "name": "Exo Ape",
+  "northStar": "Venetian gallery at golden hour",
+  "capturedAt": "2026-07-18T08:17:16.868Z",
+  "meta": {
+    "url": "https://www.exoape.com",
+    "siteName": "Exo Ape",
+    "extractedAt": "2026-06-03T17:42:33.758Z",
+    "durationMs": 46219,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 196,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set display type at 144–250px in Lausanne weight 400 with tracking between -0.035em and -0.046em — the size IS the hierarchy",
+      "Use #e6d7ca 1px borders for all interactive elements; let the outlined link be the only action shape in the system",
+      "Maintain 200px section gaps to create editorial whitespace; resist pulling sections closer together",
+      "Use #e4e0db as the default page canvas, not pure white, to preserve the warm paper-like atmosphere",
+      "Set body text line-height at 1.88 for 14px and 1.50 for 16px; the generous leading is what makes Lausanne readable at small sizes",
+      "Use #e0ccbb for all structural dividers, list separators, and hairline borders — never default to cool gray",
+      "Let images bleed to all four edges with 0px corner radius; the warmth comes from the canvas behind, not from rounded framing"
+    ],
+    "donts": [
+      "Do not introduce filled buttons, filled backgrounds for actions, or any solid color button — the outlined link is the only action component",
+      "Do not use box-shadow, drop-shadow, or blur effects; depth comes from surface color contrast and whitespace only",
+      "Do not use saturated colors, gradients, or brand accent hues; the palette ends at warm sand tones",
+      "Do not set body type below 14px or above 16px; the 14–16px range is the only legible band in the system",
+      "Do not add corner radius to cards, buttons, or images; every edge in the system is sharp 0px",
+      "Do not use bold or semibold weights; the system has one weight (400) and hierarchy comes from size alone",
+      "Do not center-align body prose; keep running text left-aligned with a 480–560px measure for editorial readability"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0d0e13",
+        "name": "Ink Black",
+        "role": "Primary text, dark UI frames, icon strokes — the deepest near-black with a barely-perceptible cool cast that keeps it from feeling warm or brown against the beige canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces, nav background, image bleeds — the brightest surface level that lifts content off the warm canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e4e0db",
+        "name": "Canvas Beige",
+        "role": "Page background, section bands — a warm light gray-beige that gives the whole site its sunlit, paper-like quality",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6e6e71",
+        "name": "Steel Gray",
+        "role": "Secondary body text, muted borders — the only truly achromatic neutral in the system, used sparingly to signal de-emphasis",
+        "group": "neutral"
+      },
+      {
+        "hex": "#070707",
+        "name": "Footer Ink",
+        "role": "Footer background — a pure near-black that reads as the deepest possible dark without losing detail",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e0ccbb",
+        "name": "Sand Border",
+        "role": "Default hairline borders, icon outlines, structural dividers — the warm tan that replaces cold gray chrome throughout the interface",
+        "group": "accent"
+      },
+      {
+        "hex": "#e6d7ca",
+        "name": "Warm Linen",
+        "role": "Outlined action borders, link underlines, interactive link states — the lighter, more luminous sand tone that signals interactivity without filling the shape",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed, viewport-scale layout with no max-width container. The hero is a single full-viewport image with overlay display text anchored bottom-left at 120px horizontal padding. Below the hero, sections alternate between #ffffff and #e4e0db surfaces, each separated by 200px of vertical breathing room. Content blocks are left-aligned, narrow-measure prose columns (480–560px) for body text, with display headlines allowed to break at their natural line-length creating irregular right edges. The grid is loose — no rigid 12-column system, no card grids with uniform sizing. Navigation is a single top bar with no sticky behavior, no mega-menu, and no visual weight. The page reads top-to-bottom as a vertical scroll through atmospheric photography punctuated by monumental type, ending in a near-black footer that provides the only dramatic contrast in the entire layout.",
+    "imagery": "The visual language is dominated by full-bleed editorial photography — architectural exteriors (domes, basilicas, civic buildings), warm-toned landscapes, and lifestyle imagery shot at golden hour. Treatment is always full-bleed, always edge-to-edge with zero corner radius, always with the warmest possible white balance to match the #e4e0db canvas. Images are never cropped to thumbnails with padding; they are always presented at maximum scale, often as full-viewport hero backgrounds. The photography style is high-key warm, staged but not sterile, with deep shadow detail preserved in the architecture. Icons, when present, are minimal thin-stroke line icons at 1px weight in #0d0e13. The site is image-heavy but uses images as atmosphere, not as product showcase — the photography sells the studio's aesthetic sensibility, not its deliverables.",
+    "similar": [
+      {
+        "why": "Same editorial full-bleed photography approach with massive neo-grotesque display type and warm-neutral canvas — both treat the website as a printed monograph",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Similar oversized display headlines, generous whitespace, and warm-toned hero photography with minimal UI chrome",
+        "business": "Resn"
+      },
+      {
+        "why": "Same single-weight type scale spanning body-to-display sizes, warm-neutral palette, and editorial layout that prioritizes type and photography over UI elements",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same full-bleed atmospheric hero photography with overlay display type and minimal navigation, though Active Theory pushes more into motion and depth",
+        "business": "Active Theory"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "13-15px",
+      "sectionGap": "200px",
+      "cardPadding": "50-60px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#e4e0db",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-page warm background establishing the paper-like base"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Surface White",
+        "level": 1,
+        "purpose": "Card and panel surfaces that lift content off the canvas"
+      },
+      {
+        "hex": "#e0ccbb",
+        "name": "Sand Tint",
+        "level": 2,
+        "purpose": "Subtle warm wash for highlighted sections or accent bands"
+      },
+      {
+        "hex": "#070707",
+        "name": "Footer Ink",
+        "level": 3,
+        "purpose": "Terminal dark surface closing the page with contrast"
+      }
+    ],
+    "northStar": "Venetian gallery at golden hour",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.88,
+        "letterSpacing": 0.098
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.096
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.84
+      },
+      {
+        "role": "heading-lg",
+        "size": 144,
+        "lineHeight": 0.76,
+        "letterSpacing": -5.04
+      },
+      {
+        "role": "display",
+        "size": 250,
+        "lineHeight": 0.76,
+        "letterSpacing": -11.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal primary navigation",
+        "description": "Full-bleed white bar with the Exo Ape wordmark left-aligned and 4 text links (Work, Studio, News, Contact) right-aligned. 48–60px vertical padding, no border, no shadow. Links in Lausanne 14px at #0d0e13, no underline. The nav floats over hero imagery with no backdrop blur — it simply sits on the surface."
+      },
+      {
+        "name": "Full-Bleed Hero Section",
+        "role": "Atmospheric page opening",
+        "description": "Edge-to-edge editorial photography (architecture, landscape, lifestyle) at viewport height or larger. Overlay text in Lausanne 250px, weight 400, #ffffff, letter-spacing -0.046em, positioned bottom-left with 120px horizontal padding. The hero text acts as architectural type — it does not describe the image, it becomes part of it."
+      },
+      {
+        "name": "Outlined Action Link",
+        "role": "Primary interaction element",
+        "description": "The site's de facto button. 1px solid #e6d7ca border around Lausanne 16px text, #0d0e13, with 8–16px vertical and 20–32px horizontal padding. No fill, no shadow. On hover, the border darkens to #0d0e13. Zero corner radius. Reads as a caption with a frame, not a button."
+      },
+      {
+        "name": "Display Headline Block",
+        "role": "Section-defining type",
+        "description": "Lausanne 144–250px, weight 400, #0d0e13 on light sections or #ffffff on dark imagery. Line-height 0.76, letter-spacing -0.035em to -0.046em. No max-width constraint — headlines are allowed to break wherever the line-break algorithm decides, creating irregular right edges that feel editorial."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Running prose and descriptions",
+        "description": "Lausanne 16px, weight 400, #0d0e13, line-height 1.50, max-width ~480–560px. Secondary descriptions drop to 14px with line-height 1.88. No first-line indent, no drop cap. The narrow measure and generous leading give long-form text a literary, unhurried quality."
+      },
+      {
+        "name": "Image Card",
+        "role": "Project thumbnail or case study",
+        "description": "Full-bleed photograph with 0px corner radius, no border, no shadow. Caption text in Lausanne 14px, #0d0e13, positioned beneath with 13–15px gap. Cards sit directly on the #e4e0db canvas — the warm background provides the only visual separation."
+      },
+      {
+        "name": "List Item with Sand Divider",
+        "role": "Work index, navigation lists, footer links",
+        "description": "List items separated by 1px #e0ccbb bottom borders, 30–50px vertical padding per row. Text in Lausanne 14–16px, #0d0e13. The warm tan divider replaces the conventional cool-gray hairline, making every list feel like a printed table of contents."
+      },
+      {
+        "name": "Footer Block",
+        "role": "Terminal dark surface",
+        "description": "#070707 background, full-bleed, 200px vertical padding. All text in #ffffff, Lausanne 14–16px. No social icons rendered in color, no accent highlights. The footer closes the page with the deepest possible black, creating maximum contrast against the warm beige canvas above."
+      },
+      {
+        "name": "Section Spacer",
+        "role": "Vertical rhythm between sections",
+        "description": "Not a component but a rhythm rule: 200px of vertical breathing room between major sections, implemented as paddingTop/paddingBottom on the outer section wrapper. This is the system's primary elevation tool — it replaces shadows, cards, and dividers with pure whitespace."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Lausanne-400 — detected in extracted data but not described by AI",
+        "sizes": "14px",
+        "family": "Lausanne-400",
+        "weight": "400",
+        "lineHeight": "2.64"
+      },
+      {
+        "role": "Primary typeface for everything from 14px body to 250px display. The 250px hero display with -0.046em tracking is the signature element — letters nearly collide, creating a monolithic word-as-architecture presence. The single weight 400 across the full scale (from 14px to 250px) means hierarchy comes from size and tracking alone, not from bold.",
+        "sizes": "14, 16, 24, 144, 250",
+        "family": "Lausanne",
+        "weight": "400",
+        "lineHeight": "0.76, 0.90, 1.33, 1.50, 1.88",
+        "substitute": "Inter, Neue Haas Grotesk, Suisse Int'l",
+        "letterSpacing": "-0.046em at 250px, -0.035em at 144–24px, +0.006em at 16px, +0.007em at 14px",
+        "fontFeatureSettings": "\"ss01\" on, \"tnum\" on"
+      },
+      {
+        "role": "System serif fallback used in tertiary body contexts. Acts as a quiet typographic counterpoint to the neo-grotesque — never set in display sizes, always at 16px with generous leading.",
+        "sizes": "16",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.20, 2.00",
+        "substitute": "Times New Roman, system serif"
+      }
+    ],
+    "description": "Exo Ape operates as a digital studio site that reads like a printed architecture monograph: one massive custom neo-grotesque (Lausanne) sets a near-monastic tone while full-bleed editorial photography does the heavy atmospheric work. The palette is almost entirely warm neutrals — a deep ink-black, warm canvas beige, and two sand-toned border colors that replace the usual cool-gray UI chrome. Headlines are not styled; they are BUILT at 144–250px with negative tracking tight enough to make the letterforms collide, while body copy drops to 14–16px in the same family at loose, breathable line-heights (1.88–2.64). There is no shadow, no gradient, no accent color, and no filled button — interactions are thin warm-beige outlined links that feel like captions, not calls to action. The whole system whispers prestige through scale, whitespace, and warmth rather than shouting it through saturation or contrast.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/18e84ffd-4a5d-453d-aeff-dae2847aa3c9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Exo Ape design system\",\"item\":\"https://styles.refero.design/style/18e84ffd-4a5d-453d-aeff-dae2847aa3c9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/18e84ffd-4a5d-453d-aeff-dae2847aa3c9#style-reference\",\"name\":\"Exo Ape design system reference\",\"headline\":\"Exo Ape design system | Refero Styles\",\"description\":\"Explore Exo Ape's light Agency design system: Ink Black #0d0e13, Pure White #ffffff colors, Lausanne-400, Lausanne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/18e84ffd-4a5d-453d-aeff-dae2847aa3c9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/18e84ffd-4a5d-453d-aeff-dae2847aa3c9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Exo Ape\",\"url\":\"https://www.exoape.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/18e84ffd-4a5d-453d-aeff-dae2847aa3c9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4eca9c47-bd7a-4a7c-96bf-953c44a7d912.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4eca9c47-bd7a-4a7c-96bf-953c44a7d912.jpg\",\"caption\":\"Screenshot of Exo Ape\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4eca9c47-bd7a-4a7c-96bf-953c44a7d912.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Exo Ape design system\",\"Exo Ape website design\",\"Exo Ape colors\",\"Exo Ape typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Pure White\",\"Canvas Beige\",\"Steel Gray\",\"Lausanne-400\",\"Lausanne\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Exo Ape design system\"},{\"@type\":\"Thing\",\"name\":\"Exo Ape website design\"},{\"@type\":\"Thing\",\"name\":\"Exo Ape colors\"},{\"@type\":\"Thing\",\"name\":\"Exo Ape typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:52:07.151Z\",\"dateModified\":\"2026-04-30T01:52:07.151Z\"}]}19:T588,QUICK COLOR REFERENCE\n- text: #0d0e13\n- background: #ffffff (cards) or #e4e0db (canvas)\n- border: #e0ccbb (structural) or #e6d7ca (interactive)\n- muted text: #6e6e71\n- primary action: no distinct CTA color\n\nEXAMPLE COMPONENT PROMPTS\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. OUTLINED ACTION LINK: Lausanne 16px, weight 400, #0d0e13 text. 1px solid #e6d7ca border, 12px vertical padding, 24px horizontal padding, 0px corner radius. On hover, border becomes #0d0e13. No background fill, no shadow. Use this for every interactive element on the site.\n\n3. BODY TEXT BLOCK: Lausanne 16px, weight 400, #0d0e13, line-height 1.50, max-width 520px, left-aligned. For longer passages, drop to 14px with line-height 1.88. No first-line indent, no drop cap, no italic for emphasis — size contrast does all the work.\n\n4. SECTION WITH WARM CANVAS: Background #e4e0db, 200px top and bottom padding. Display headline in Lausanne 144px, weight 400, #0d0e13, letter-spacing -0.035em, line-height 0.76. Narrow body text column below at 520px max-width in Lausanne 16px.\n\n5. LIST WITH SAND DIVIDERS: Vertical list of items, each separated by 1px solid #e0ccbb bottom border. Each item has 30px vertical padding. Text in Lausanne 14px, #0d0e13, line-height 1.88. No bullet points, no icons — the divider line is the only visual structure."
+      },
+      {
+        "title": "Typographic Architecture",
+        "content": "The single most defining choice in this system is the use of one weight (400) across a type scale that spans 14px to 250px. This is anti-conventional — most design systems solve hierarchy with weight (300/400/500/600/700). Exo Ape solves it with size and tracking alone. The 250px display with -0.046em letter-spacing creates letterforms so tight that the word becomes a solid mass — 'Digital' at 250px reads as a single architectural object, not as eight characters. The 14px body at +0.007em tracking and 1.88 line-height creates the opposite effect: letters breathe, lines breathe, the page breathes. The system oscillates between these two extremes and never uses intermediate weights to smooth the transition — the jump from 24px to 144px is deliberately jarring, like turning a page in a monograph."
+      },
+      {
+        "title": "Warm Neutral System",
+        "content": "Every neutral in the system has a warm cast — even the near-black #0d0e13 has a barely-perceptible blue undertone that reads as cool only when placed directly next to a truly achromatic gray. The canvas #e4e0db is a warm light gray-beige, the dividers #e0ccbb and #e6d7ca are warm sands, and the white surfaces are used sparingly to lift content. The only truly cool element is the muted text gray #6e6e71, which is used minimally for de-emphasis. This warm-cool tension is subtle but consistent — the site feels like it was printed on cream paper, not displayed on a screen."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately uses zero box-shadow. Depth is communicated exclusively through surface color contrast — white cards on a beige canvas, dark footer on light sections, and warm sand borders as visual dividers. This is a design-without-shadows philosophy rooted in editorial print design, where page layers are read by ink density and color temperature rather than by drop-shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0d0e13",
+          "oklch": {
+            "c": 0.010619695083971804,
+            "h": 276.28202974037396,
+            "l": 0.16505074721681212
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "hero",
+            "heading",
+            "link",
+            "list"
+          ],
+          "frequency": 318,
+          "confidence": 1,
+          "prominence": 31990765.09156699,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "hero/color": 1,
+            "icon/color": 6,
+            "link/color": 6,
+            "list/color": 6,
+            "other/fill": 4,
+            "other/color": 36,
+            "other/stroke": 2,
+            "heading/color": 4,
+            "body/borderColor": 12,
+            "hero/borderColor": 4,
+            "icon/borderColor": 24,
+            "link/borderColor": 24,
+            "list/borderColor": 24,
+            "other/borderColor": 144,
+            "heading/borderColor": 16,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "heading",
+            "link",
+            "icon",
+            "list",
+            "image"
+          ],
+          "frequency": 311,
+          "confidence": 1,
+          "prominence": 23480167.056078102,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 12,
+            "body/color": 3,
+            "icon/color": 3,
+            "link/color": 7,
+            "list/color": 8,
+            "other/fill": 9,
+            "image/color": 1,
+            "other/color": 25,
+            "other/stroke": 1,
+            "heading/color": 1,
+            "nav/borderColor": 48,
+            "body/borderColor": 12,
+            "icon/borderColor": 12,
+            "link/borderColor": 28,
+            "list/borderColor": 32,
+            "image/borderColor": 4,
+            "other/borderColor": 100,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e4e0db",
+          "oklch": {
+            "c": 0.008047244412530834,
+            "h": 73.73920715843194,
+            "l": 0.9084318089623724
+          },
+          "contexts": [
+            "hero",
+            "other",
+            "heading",
+            "icon",
+            "body"
+          ],
+          "frequency": 72,
+          "confidence": 1,
+          "prominence": 16044025.256617006,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "hero/color": 1,
+            "icon/color": 1,
+            "other/fill": 1,
+            "other/color": 9,
+            "heading/color": 2,
+            "body/borderColor": 4,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "other/borderColor": 36,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e0ccbb",
+          "oklch": {
+            "c": 0.03224404744677675,
+            "h": 62.7661688140902,
+            "l": 0.8571651947409106
+          },
+          "contexts": [
+            "footer",
+            "other",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 87,
+          "confidence": 1,
+          "prominence": 8380724.959284775,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "link/color": 1,
+            "list/color": 3,
+            "other/color": 11,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "icon/borderColor": 4,
+            "link/borderColor": 4,
+            "list/borderColor": 12,
+            "other/borderColor": 44,
+            "footer/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#070707",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.12855780499391534
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1297440,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e6d7ca",
+          "oklch": {
+            "c": 0.02418185043201865,
+            "h": 62.64643112502125,
+            "l": 0.8879657691107007
+          },
+          "contexts": [
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 105,
+          "confidence": 1,
+          "prominence": 207253.58960281932,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 10,
+            "list/color": 10,
+            "body/borderColor": 4,
+            "link/borderColor": 40,
+            "list/borderColor": 40
+          }
+        },
+        {
+          "hex": "#6e6e71",
+          "oklch": {
+            "c": 0.00468187565087501,
+            "h": 277.1395705614254,
+            "l": 0.5400859689707007
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 53867.38087295872,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "body/borderColor": 16
+          }
+        },
+        {
+          "hex": "#9e9fa1",
+          "oklch": {
+            "c": 0.0029196895661239433,
+            "h": 277.20231935314627,
+            "l": 0.7014932858996524
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 179.10076258149064,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.02773594933844724,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.14,
+          "background": "#070707",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.28,
+          "background": "#ffffff",
+          "foreground": "#0d0e13"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.33,
+          "background": "#070707",
+          "foreground": "#e4e0db"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.67,
+          "background": "#e4e0db",
+          "foreground": "#0d0e13"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.33,
+          "background": "#070707",
+          "foreground": "#e6d7ca"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.71,
+          "background": "#0d0e13",
+          "foreground": "#e6d7ca"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.97,
+          "background": "#070707",
+          "foreground": "#e0ccbb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.42,
+          "background": "#e0ccbb",
+          "foreground": "#0d0e13"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.6,
+          "background": "#9e9fa1",
+          "foreground": "#070707"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.28,
+          "background": "#9e9fa1",
+          "foreground": "#0d0e13"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.08,
+          "background": "#ffffff",
+          "foreground": "#6e6e71"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.96,
+          "background": "#070707",
+          "foreground": "#6e6e71"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.87,
+          "background": "#e4e0db",
+          "foreground": "#6e6e71"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.79,
+          "background": "#0d0e13",
+          "foreground": "#6e6e71"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.27,
+          "background": "#e0ccbb",
+          "foreground": "#6e6e71"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.65,
+          "background": "#9e9fa1",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.02,
+          "background": "#9e9fa1",
+          "foreground": "#e4e0db"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.92,
+          "background": "#9e9fa1",
+          "foreground": "#6e6e71"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.88,
+          "background": "#9e9fa1",
+          "foreground": "#e6d7ca"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.71,
+          "background": "#9e9fa1",
+          "foreground": "#e0ccbb"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 67,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 206,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Lausanne-300",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 100,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 69,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Lausanne-400",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 9,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Perfect Fourth",
+        "ratio": 1.333,
+        "confidence": 0.8
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Lausanne-400",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "icon",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 2.64,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "nav",
+            "list",
+            "image",
+            "hero",
+            "link",
+            "footer"
+          ],
+          "frequency": 63,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 28,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 6,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.88,
+          "letterSpacing": 0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 144,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.035,
+          "textTransform": "none"
+        },
+        {
+          "size": 144,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.76,
+          "letterSpacing": -0.035,
+          "textTransform": "none"
+        },
+        {
+          "size": 250,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.046,
+          "textTransform": "none"
+        },
+        {
+          "size": 250,
+          "family": "Lausanne-300",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.73,
+          "letterSpacing": -0.046,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/47aa44cd-7a3b-445c-b517-158ecbc0a7a4.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4eca9c47-bd7a-4a7c-96bf-953c44a7d912.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/18e84ffd-4a5d-453d-aeff-dae2847aa3c9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Exo Ape design system\",\"item\":\"https://styles.refero.design/style/18e84ffd-4a5d-453d-aeff-dae2847aa3c9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/18e84ffd-4a5d-453d-aeff-dae2847aa3c9#style-reference\",\"name\":\"Exo Ape design system reference\",\"headline\":\"Exo Ape design system | Refero Styles\",\"description\":\"Explore Exo Ape's light Agency design system: Ink Black #0d0e13, Pure White #ffffff colors, Lausanne-400, Lausanne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/18e84ffd-4a5d-453d-aeff-dae2847aa3c9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/18e84ffd-4a5d-453d-aeff-dae2847aa3c9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Exo Ape\",\"url\":\"https://www.exoape.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/18e84ffd-4a5d-453d-aeff-dae2847aa3c9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4eca9c47-bd7a-4a7c-96bf-953c44a7d912.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4eca9c47-bd7a-4a7c-96bf-953c44a7d912.jpg\",\"caption\":\"Screenshot of Exo Ape\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4eca9c47-bd7a-4a7c-96bf-953c44a7d912.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Exo Ape design system\",\"Exo Ape website design\",\"Exo Ape colors\",\"Exo Ape typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Pure White\",\"Canvas Beige\",\"Steel Gray\",\"Lausanne-400\",\"Lausanne\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Exo Ape design system\"},{\"@type\":\"Thing\",\"name\":\"Exo Ape website design\"},{\"@type\":\"Thing\",\"name\":\"Exo Ape colors\"},{\"@type\":\"Thing\",\"name\":\"Exo Ape typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:52:07.151Z\",\"dateModified\":\"2026-04-30T01:52:07.151Z\"}]}19:T588,QUICK COLOR REFERENCE\n- text: #0d0e13\n- background: #ffffff (cards) or #e4e0db (canvas)\n- border: #e0ccbb (structural) or #e6d7ca (interactive)\n- muted text: #6e6e71\n- primary action: no distinct CTA color\n\nEXAMPLE COMPONENT PROMPTS\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. OUTLINED ACTION LINK: Lausanne 16px, weight 400, #0d0e13 text. 1px solid #e6d7ca border, 12px vertical padding, 24px horizontal padding, 0px corner radius. On hover, border becomes #0d0e13. No background fill, no shadow. Use this for every interactive element on the site.\n\n3. BODY TEXT BLOCK: Lausanne 16px, weight 400, #0d0e13, line-height 1.50, max-width 520px, left-aligned. For longer passages, drop to 14px with line-height 1.88. No first-line indent, no drop cap, no italic for emphasis — size contrast does all the work.\n\n4. SECTION WITH WARM CANVAS: Background #e4e0db, 200px top and bottom padding. Display headline in Lausanne 144px, weight 400, #0d0e13, letter-spacing -0.035em, line-height 0.76. Narrow body text column below at 520px max-width in Lausanne 16px.\n\n5. LIST WITH SAND DIVIDERS: Vertical list of items, each separated by 1px solid #e0ccbb bottom border. Each item has 30px vertical padding. Text in Lausanne 14px, #0d0e13, line-height 1.88. No bullet points, no icons — the divider line is the only visual structure."
+}

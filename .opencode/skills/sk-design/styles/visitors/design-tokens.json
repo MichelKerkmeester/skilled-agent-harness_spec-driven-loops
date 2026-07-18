@@ -1,0 +1,444 @@
+{
+  "color": {
+    "carbon": {
+      "$value": "#181925",
+      "$type": "color",
+      "$description": "Carbon — Primary text, headings, nav links — near-black with the faintest cool tint gives type a deliberate, engineered weight without pure-black harshness"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, button fills — the base layer everything sits on"
+    },
+    "linen": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Linen — Subtle background sections, table rows, secondary surfaces — separates content bands from pure white without introducing a visible gray"
+    },
+    "mist": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Mist — Primary page canvas and white card surfaces. Do not promote it to the primary CTA color"
+    },
+    "fog": {
+      "$value": "#e8e8e8",
+      "$type": "color",
+      "$description": "Fog — Table gridlines, hairline borders, divider lines — the structural 1px that defines table cells and card edges"
+    },
+    "ash": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Ash — Muted body text, placeholder text, inactive nav items — secondary information that recedes"
+    },
+    "graphite": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, button text on light fills, captions — readable but clearly subordinate to Carbon"
+    },
+    "lavender": {
+      "$value": "#918df6",
+      "$type": "color",
+      "$description": "Lavender — Violet action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "iris": {
+      "$value": "#9580ff",
+      "$type": "color",
+      "$description": "Iris — Register button and gradient endpoint — a slightly deeper lavender for secondary action emphasis"
+    },
+    "mint": {
+      "$value": "#33c758",
+      "$type": "color",
+      "$description": "Mint — Green text accent for links, tags, and emphasized short phrases. Use as a supporting accent, not as a status color"
+    },
+    "mint-wash": {
+      "$value": "#def6e4",
+      "$type": "color",
+      "$description": "Mint Wash — Soft section background, alternate surface, and quiet card fill. Use as a supporting accent, not as a status color"
+    },
+    "amber": {
+      "$value": "#ffa600",
+      "$type": "color",
+      "$description": "Amber — Yellow text accent for links, tags, and emphasized short phrases"
+    },
+    "sky": {
+      "$value": "#2c78fc",
+      "$type": "color",
+      "$description": "Sky — Violet text accent for links, tags, and emphasized short phrases."
+    },
+    "magenta": {
+      "$value": "#d6409f",
+      "$type": "color",
+      "$description": "Magenta — Visitor profiles category, icon accents — vivid pink that earns its place by mapping to one specific feature domain"
+    },
+    "ember": {
+      "$value": "#ff3e00",
+      "$type": "color",
+      "$description": "Ember — Chart fill accents, decorative illustration — warm orange that breaks the cool palette inside data visualizations"
+    }
+  },
+  "font": {
+    "openrunde": {
+      "$value": "OpenRunde",
+      "$type": "fontFamily",
+      "$description": "Single typeface across all UI — geometric humanist sans with tight apertures and slightly compressed proportions. Display headlines at 60px/600 with -3px tracking feel engineered; body at 16px/400 with -0.32px tracking reads crisp without feeling clinical."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "OpenRunde",
+        "fontSize": "60px",
+        "fontWeight": 600,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.08) 0px 1px 1px 1px, rgba(0, 0, 0, 0.06) 0px 0px 0px 0.5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(0, 0, 0, 0.08) 0px 1px 1px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgba(0, 0, 0, 0.06) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 8px 16px 0px, rgba(0, 0, 0, 0.02) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background, hero area, dashboard cards"
+    },
+    "linen-band": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle alternating sections, feature rows, secondary content bands"
+    },
+    "mist-fill": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Surface level 2: Ghost button backgrounds, input fields, disabled states"
+    },
+    "mint-wash": {
+      "$value": "#def6e4",
+      "$type": "color",
+      "$description": "Surface level 3: Positive metric callout backgrounds, growth indicator surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://visitors.now",
+      "siteName": "Visitors",
+      "extractedAt": "2026-07-03T03:27:12.471Z",
+      "variant": "extended"
+    }
+  }
+}

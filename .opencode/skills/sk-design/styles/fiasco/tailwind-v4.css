@@ -1,0 +1,74 @@
+@theme {
+  /* Colors */
+  --color-canvas-cream: #f8f9f3;
+  --color-ink-black: #1d1e19;
+  --color-stone-mist: #e9eae2;
+  --color-shadow-stone: #d0d1cc;
+  --color-carbon: #151612;
+  --color-pewter: #686e77;
+  --color-sulfur-yellow: #fff714;
+  --color-carnation-pink: #fbc2d1;
+  --color-sky-blue: #84bdff;
+  --color-ember-orange: #fd6b01;
+  --color-cobalt-violet: #204ce5;
+  --color-midnight: #112337;
+  --color-lichen-green: #03ac47;
+
+  /* Typography */
+  --font-area-normal: 'area-normal', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-hal-timezone: 'HAL Timezone', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gooper: 'Gooper', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-oc-highway: 'OC Highway', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 14.4;
+  --tracking-caption: -0.15px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 20;
+  --tracking-body-sm: -0.07px;
+  --text-body: 18px;
+  --leading-body: 25.2;
+  --tracking-body: -0.23px;
+  --text-subheading: 20px;
+  --leading-subheading: 28;
+  --tracking-subheading: -0.4px;
+  --text-heading-sm: 30px;
+  --leading-heading-sm: 36;
+  --tracking-heading-sm: -0.9px;
+  --text-heading: 40px;
+  --leading-heading: 32;
+  --tracking-heading: -1px;
+  --text-heading-lg: 60px;
+  --leading-heading-lg: 66;
+  --tracking-heading-lg: -1.74px;
+  --text-display: 80px;
+  --leading-display: 88;
+  --tracking-display: -2.32px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-68: 68px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+  --spacing-160: 160px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius-lg: 8px;
+  --radius-3xl: 40px;
+  --radius-3xl-2: 44px;
+  --radius-full: 800px;
+
+  /* Shadows */
+  --shadow-sm: rgba(18, 25, 97, 0.08) 0px 1px 4px 0px;
+  --shadow-xl: rgba(0, 0, 0, 0.16) 0px 28px 80px 0px;
+}

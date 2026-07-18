@@ -1,0 +1,1040 @@
+{
+  "source": "https://styles.refero.design/style/357e6fee-72db-40cf-b858-254b802018bd",
+  "uuid": "357e6fee-72db-40cf-b858-254b802018bd",
+  "name": "Aaply",
+  "northStar": "Digital sketchpad with electric highlighter",
+  "capturedAt": "2026-07-18T08:30:41.687Z",
+  "meta": {
+    "url": "https://aaply.app",
+    "siteName": "Aaply",
+    "extractedAt": "2026-06-03T16:48:25.505Z",
+    "durationMs": 29228,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 467,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use border-radius 3000px for all buttons, tags, and small interactive elements",
+      "Use Poppins weight 700 with tight negative tracking (-0.0740em) for display and hero headlines",
+      "Pair every yellow filled button with a black filled button as a high-contrast companion",
+      "Embed emoji or flat icon illustrations directly inside headlines — not beside them",
+      "Use the dot-grid texture on product preview backgrounds to signal 'this is a working canvas'",
+      "Set card border-radius between 30-40px for feature cards; 16px only for small UI mockups",
+      "Keep all text #000000 on white/light surfaces — the system runs on maximum contrast"
+    ],
+    "donts": [
+      "Do not stack multiple shadow layers — the system uses one shadow, on the nav bar, and nothing else",
+      "Do not introduce new accent hues beyond the four-color palette (yellow, red, blue, peach)",
+      "Do not use light or thin font weights for headlines — Poppins 700 is the floor for display text",
+      "Do not use sharp corners on buttons, tags, or cards — every interactive element is fully rounded",
+      "Do not separate the yellow and black buttons with other styles — they always appear as a matched pair",
+      "Do not use emoji or illustrations as standalone decorations outside of headlines and product mockups",
+      "Do not apply the peach #ff8562 as a full background section — it stays as a soft wash behind mockup clusters only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e6e51e",
+        "name": "Highlighter Yellow",
+        "role": "Primary brand accent — logo mark, filled pill buttons, accent shapes inside product mockups, highlight washes on feature cards",
+        "group": "brand"
+      },
+      {
+        "hex": "#f34646",
+        "name": "Annotation Red",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis",
+        "group": "accent"
+      },
+      {
+        "hex": "#466cf3",
+        "name": "Signal Blue",
+        "role": "Product mockup logos, icon accents, connector arrows inside the flow diagram — the cool counterweight to warm yellow",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff8562",
+        "name": "Peach Wash",
+        "role": "Soft tinted background blocks behind product mockup clusters — warm secondary surface that softens the gray canvas",
+        "group": "accent"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Primary text, dark filled buttons, icon strokes — the structural ink of the entire system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Card surfaces, navigation bar background, product mockup canvas — every elevated surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Graphite Mist",
+        "role": "Page canvas background — the cool gray field that makes white cards appear to float",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e6e6e6",
+        "name": "Hairline Gray",
+        "role": "Subtle borders, secondary surface fills, dividers between content sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Shadow Gray",
+        "role": "Single soft drop shadow color (used at 20% opacity as rgba), muted text on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fff705",
+        "name": "Sunbeam",
+        "role": "Brighter yellow variant for highlighted feature containers — the outer glow on flow-diagram cards",
+        "group": "brand"
+      }
+    ],
+    "layout": "Centered max-width layout (~1200px) on a light gray canvas. The hero is a centered headline stack with two pill buttons below, followed by a full-width product screenshot that bleeds edge-to-edge within the content container. Sections are separated by generous vertical rhythm (80-120px) rather than visual dividers. The navigation bar floats as a rounded white card with a single soft shadow. The product preview itself uses a Z-pattern: mockups flow left-to-right with connector arrows, then the flow continues in a second row slightly below. Content is text-light and visual-heavy — the product screenshot occupies more vertical space than all text combined above it.",
+    "imagery": "The visual language is dominated by product mockups and flat illustration, not photography. The hero contains a large browser-style screenshot of the actual product — a flowchart editor with phone-shaped screen cards connected by arrows on a dot-grid background. Inside the mockup, phone screens show the app's own onboarding flow (log in, company name, sign up) rendered in miniature. The page background carries a faint dot-grid texture, reinforcing the whiteboard/canvas metaphor. The only other visual elements are emoji and small flat icons (speech bubbles, flags, zigzags) placed directly inside the headline text. No stock photography, no 3D renders, no lifestyle imagery — the product IS the hero.",
+    "similar": [
+      {
+        "why": "Same bold sans-serif headlines with tight tracking, playful use of inline emoji, and a product screenshot as the hero visual",
+        "business": "Framer"
+      },
+      {
+        "why": "Same generous border-radius on cards and buttons, light canvas with floating white surfaces, and a single vibrant accent color carrying the brand energy",
+        "business": "Pitch"
+      },
+      {
+        "why": "Same yellow as dominant brand accent, pill-shaped CTAs, and a flat illustration style that treats the product preview as decorative hero art",
+        "business": "Popsy"
+      },
+      {
+        "why": "Same dot-grid background texture, flowchart-style product visualization, and a working-canvas aesthetic that makes the tool feel like the artifact",
+        "business": "Whimsical"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "30px",
+        "tags": "3000px",
+        "cards": "30-40px",
+        "inputs": "16px",
+        "buttons": "3000px",
+        "productFrame": "16px"
+      },
+      "elementGap": "16-24px",
+      "sectionGap": "80-120px",
+      "cardPadding": "32-48px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#f2f2f2",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — cool gray field with dot-grid texture"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Navigation bar, feature cards, product mockup containers"
+      },
+      {
+        "hex": "#ff8562",
+        "name": "Tinted Accent",
+        "level": 2,
+        "purpose": "Peach wash behind mockup clusters, subtle warmth"
+      },
+      {
+        "hex": "#fff705",
+        "name": "Highlight Frame",
+        "level": 3,
+        "purpose": "Yellow-bordered feature containers that frame the hero product flow"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.2) 0px 10px 10px -5px",
+        "element": "Navigation bar"
+      }
+    ],
+    "northStar": "Digital sketchpad with electric highlighter",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.57
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.53
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 27,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.49
+      },
+      {
+        "role": "heading",
+        "size": 34,
+        "lineHeight": 1.05,
+        "letterSpacing": -0.65
+      },
+      {
+        "role": "heading-lg",
+        "size": 52,
+        "lineHeight": 1,
+        "letterSpacing": -3.85
+      },
+      {
+        "role": "display",
+        "size": 57,
+        "lineHeight": 1.05,
+        "letterSpacing": -4.22
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Yellow Pill Button",
+        "role": "Primary brand accent button",
+        "description": "#e6e51 background, #000000 text, border-radius 3000px, padding 16px 32px, Inter weight 500 at 16px. The highest-energy button in the system — used for the main conversion moment. Black text on yellow achieves 15.6:1 contrast."
+      },
+      {
+        "name": "Filled Black Pill Button",
+        "role": "Secondary high-emphasis button",
+        "description": "#000000 background, #ffffff text, border-radius 3000px, padding 16px 32px, Inter weight 500 at 16px. Used for the darker companion CTA beside the yellow button. Maximum contrast and weight."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Low-emphasis navigation action",
+        "description": "Transparent background, #000000 1px border, border-radius 3000px, padding 12px 24px, Inter weight 500 at 15px. Used for 'Log in' in the nav bar — present but quiet."
+      },
+      {
+        "name": "Navigation Bar Card",
+        "role": "Top-level site navigation",
+        "description": "White #ffffff surface on the gray canvas, border-radius 30px, horizontal padding 24px, vertically centered logo + link group + button group. Floats with a single soft drop shadow (rgba(0,0,0,0.2) 0px 10px 10px -5px). Max-width aligns with page content."
+      },
+      {
+        "name": "Product Screenshot Frame",
+        "role": "Browser-style product preview container",
+        "description": "White card with border-radius 16px, three colored traffic-light dots (red/yellow/blue) in the top-left corner to simulate a browser window. Contains a dot-grid background pattern and nested UI mockups."
+      },
+      {
+        "name": "Phone Mockup Card",
+        "role": "Individual screen preview in a flow diagram",
+        "description": "White rounded rectangle (~16px radius) with a bold blue #466cf3 zigzag 'N' mark at the top, screen label text below (Inter 14px). Connected to adjacent mockups by thin lines with small arrowheads."
+      },
+      {
+        "name": "Flow Connector Line",
+        "role": "Visual link between product screens",
+        "description": "Thin #000000 1px line with a small arrowhead or node dot at the endpoint. Black-on-white, no fill — the lines are the diagram's grammar."
+      },
+      {
+        "name": "Annotation Tag",
+        "role": "Callout label on product mockups",
+        "description": "#f34646 background, #ffffff text, border-radius 3000px, padding 6px 14px, Inter weight 500 at 13px. Small, saturated, attention-grabbing — points to specific features inside the product preview."
+      },
+      {
+        "name": "Highlight Feature Container",
+        "role": "Yellow-bordered flow card grouping related screens",
+        "description": "Outer container with a #fff705 border (2-3px), border-radius ~30px, wrapping a group of 2-3 phone mockup cards. Functions as a visual 'chapter' boundary within the product preview."
+      },
+      {
+        "name": "Avatar Stack",
+        "role": "Social proof / collaboration indicator",
+        "description": "Circular user avatars (24-32px diameter) with 2px white border, stacked with negative horizontal offset. Positioned on the right edge of the product preview to suggest multi-user activity."
+      },
+      {
+        "name": "Brand Logo Mark",
+        "role": "Brand identity in nav and footer",
+        "description": "Yellow #e6e51 rounded square (~20px) with a simple 'A' or mountain-like glyph in black, paired with 'aaply' wordmark in Poppins 500 at 18px, #000000."
+      },
+      {
+        "name": "Emoji/Illustration Accent",
+        "role": "Decorative element embedded in headlines",
+        "description": "Full-color emoji or flat icon illustrations placed inline within the hero headline. They sit at baseline and break the text rhythm — a signature device that makes the headline feel hand-assembled rather than typeset."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Times — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Display and heading family — weight 700 for the hero headline and section titles, weight 500 for sub-headings. Its geometric roundness echoes the pill buttons and rounded cards, making type and shape feel like one material. Tight negative tracking at large sizes pulls letters together into a confident block.",
+        "sizes": "14px, 27px, 34px, 52px, 57px",
+        "family": "Poppins",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.00, 1.05, 1.33, 1.35, 1.57",
+        "substitute": "DM Sans, Nunito Sans",
+        "letterSpacing": "-0.0740em at display sizes, -0.0190em at heading, -0.0180em at heading-sm"
+      },
+      {
+        "role": "Body and UI text — nav links, button labels, descriptions, form text. Inter's humanist proportions provide readable density at small sizes while weight 700 can punch up to match Poppins in nav and button contexts.",
+        "sizes": "15px, 16px, 18px, 27px, 31px",
+        "family": "Inter",
+        "weight": "300, 400, 500, 700",
+        "lineHeight": "1.40, 1.44, 1.53, 1.55, 1.56",
+        "substitute": "system-ui, -apple-system, Segoe UI",
+        "letterSpacing": "-0.0740em at large sizes, -0.0280em at 18px, normal at 16px and below"
+      }
+    ],
+    "description": "Aaply reads as a digital sketchpad on a light gray canvas: everything is flat, everything is rounded, and electric yellow carries the energy while black anchors the structure. The headline itself behaves like a whiteboard — bold black type interrupted by colorful emoji and icon stickers, signaling that this is a tool for creative work. Surfaces float as soft white cards on a cool gray field with a faint dot-grid texture, never relying on shadows for depth. Brand color appears as generous fills (buttons, accent shapes, logo marks) rather than thin strokes or tinted backgrounds. The overall feeling is energetic but unpretentious — a working surface, not a gallery.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/357e6fee-72db-40cf-b858-254b802018bd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Aaply design system\",\"item\":\"https://styles.refero.design/style/357e6fee-72db-40cf-b858-254b802018bd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/357e6fee-72db-40cf-b858-254b802018bd#style-reference\",\"name\":\"Aaply design system reference\",\"headline\":\"Aaply design system | Refero Styles\",\"description\":\"Explore Aaply's light Design design system: Highlighter Yellow #e6e51e, Annotation Red #f34646 colors, Times, Poppins typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/357e6fee-72db-40cf-b858-254b802018bd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/357e6fee-72db-40cf-b858-254b802018bd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Aaply\",\"url\":\"https://aaply.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/357e6fee-72db-40cf-b858-254b802018bd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e5c6c4b3-1f24-452f-9712-f46cbce6beb2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e5c6c4b3-1f24-452f-9712-f46cbce6beb2.jpg\",\"caption\":\"Screenshot of Aaply\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e5c6c4b3-1f24-452f-9712-f46cbce6beb2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Aaply design system\",\"Aaply website design\",\"Aaply colors\",\"Aaply typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Highlighter Yellow\",\"Annotation Red\",\"Signal Blue\",\"Peach Wash\",\"Times\",\"Poppins\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Aaply design system\"},{\"@type\":\"Thing\",\"name\":\"Aaply website design\"},{\"@type\":\"Thing\",\"name\":\"Aaply colors\"},{\"@type\":\"Thing\",\"name\":\"Aaply typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-03-11T10:44:05.000Z\",\"dateModified\":\"2026-03-11T10:44:05.000Z\"}]}19:T64a,**Quick Color Reference**\n- text: #000000\n- background: #f2f2f2 (page) / #ffffff (card)\n- border: #e6e6e6\n- accent (brand): #e6e51e\n- annotation/callout: #f34646\n- mockup icon/connector: #466cf3\n- soft tint wash: #ff8562\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Create a hero headline: Poppins weight 700, 57px, #000000, line-height 1.05, letter-spacing -4.22px. Center-aligned on #f2f2f2 background. Include 2-3 inline emoji or flat icon illustrations at baseline level. Below: a yellow pill button (#e6e51e, #000000 text, 3000px radius, 16px 32px padding) and a black pill button (#000000, #ffffff text, same shape) side by side with 16px gap.\n\n2. Create a product preview card: white #ffffff surface, 16px border-radius, with three small traffic-light dots (red #f34646, yellow #e6e51e, blue #466cf3) in the top-left corner at 8px from edges. Interior background is a repeating dot-grid pattern in #e6e6e6 at 20px spacing. Contains 3-4 phone-shaped mockup cards (white, 16px radius, each with a blue #466cf3 zigzag mark at top and Inter 14px label below) connected by thin black lines with small arrowheads.\n\n3. Create a navigation bar: white #ffffff background, 30px border-radius, single shadow rgba(0,0,0,0.2) 0px 10px 10px -5px. Left: yellow logo mark (rounded square #e6e51e, 20px, with black glyph) + 'aaply' wordmark in Poppins 500 18px #000000. Center: 4 nav links in Inter 500 15px #000000, 24px gap. Right: ghost pill button (transparent, 1px #000000 border, 3000px radius, 'Log in') + filled black pill button (#000000 bg, #ffffff text, 3000px radius, 'Sign up')."
+      },
+      {
+        "title": "Signature Devices",
+        "content": "Three patterns define Aaply's visual identity and should be repeated across every new page:\n\n1. **The Emoji-In-Headline Pattern**: Display headlines are interrupted by inline emoji or flat icon stickers that sit at text baseline. The icons are full-color and bold, not monochrome or line-art. They are part of the sentence, not adjacent to it.\n\n2. **The Yellow-Black Button Pair**: Conversion moments always offer two pill buttons — yellow first (the primary brand accent), black second (the high-contrast alternative). Never split them apart or substitute other styles.\n\n3. **The Product-Is-The-Hero Pattern**: Below every headline section, a large browser-frame screenshot of the product fills the visual space. The screenshot is a true representation, not a stylized illustration — but the UI inside it uses the same yellow/blue/red accent system, creating a recursive brand experience."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is used once and only once: on the navigation bar. Everything else separates surfaces through color contrast (white card on gray canvas) or border definition, never through stacked shadows. This keeps the system feeling flat, modern, and fast — a whiteboard rather than a control panel."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "image",
+            "list",
+            "footer"
+          ],
+          "frequency": 1535,
+          "confidence": 1,
+          "prominence": 75915615.67923465,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 158,
+          "confidence": 1,
+          "prominence": 4701891.224929629,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 4218000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e6e51e",
+          "oklch": {
+            "c": 0.18942202842004055,
+            "h": 109.36272728577542,
+            "l": 0.8937107137732587
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 2583821.492247461,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e6e6e6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9249395393966913
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1795302.9860758558,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f34646",
+          "oklch": {
+            "c": 0.20979009019027542,
+            "h": 25.27502191563492,
+            "l": 0.6456259466508509
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 1442105.7634362013,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#466cf3",
+          "oklch": {
+            "c": 0.20681582776182184,
+            "h": 267.5626990814314,
+            "l": 0.5815053330893938
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 399484.4576666287,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 88444.18930338565,
+          "properties": [
+            "borderColor",
+            "boxShadow",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff8562",
+          "oklch": {
+            "c": 0.15669089110890494,
+            "h": 36.8736589254908,
+            "l": 0.7465120830437746
+          },
+          "contexts": [
+            "link",
+            "image",
+            "icon"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 15741.466880444728,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f5bd50",
+          "oklch": {
+            "c": 0.13930025745135655,
+            "h": 81.19807443440004,
+            "l": 0.8296157321146042
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1726.024163285339,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fff705",
+          "oklch": {
+            "c": 0.20384475701550958,
+            "h": 107.31151884766223,
+            "l": 0.9515026217551672
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 961,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.01984116285477041,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.56,
+          "background": "#fff705",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.83,
+          "background": "#e6e6e6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.59,
+          "background": "#e6e51e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#000000",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.28,
+          "background": "#f5bd50",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.78,
+          "background": "#000000",
+          "foreground": "#ff8562"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.78,
+          "background": "#f34646",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.7,
+          "background": "#466cf3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.47,
+          "background": "#466cf3",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.64,
+          "background": "#f34646",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.32,
+          "background": "#466cf3",
+          "foreground": "#e6e51e"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.78,
+          "background": "#466cf3",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.7,
+          "background": "#f34646",
+          "foreground": "#e6e51e"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.39,
+          "background": "#ffffff",
+          "foreground": "#ff8562"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.26,
+          "background": "#f34646",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.14,
+          "background": "#f2f2f2",
+          "foreground": "#ff8562"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.11,
+          "background": "#fff705",
+          "foreground": "#ff8562"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.92,
+          "background": "#e6e6e6",
+          "foreground": "#ff8562"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3000,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.2) 0px 10px 10px -5px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 390,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            300,
+            400,
+            500,
+            700
+          ],
+          "frequency": 48,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Poppins",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 27,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.53,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "icon",
+            "footer"
+          ],
+          "frequency": 390,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 300,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": -0.028,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.44,
+          "letterSpacing": -0.028,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "Poppins",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.56,
+          "letterSpacing": -0.074,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": -0.074,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Poppins",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": -0.019,
+          "textTransform": "none"
+        },
+        {
+          "size": 57,
+          "family": "Poppins",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 57,
+          "family": "Poppins",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.018,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/204f7415-a18d-4237-b778-15d480286f50.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e5c6c4b3-1f24-452f-9712-f46cbce6beb2.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/357e6fee-72db-40cf-b858-254b802018bd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Aaply design system\",\"item\":\"https://styles.refero.design/style/357e6fee-72db-40cf-b858-254b802018bd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/357e6fee-72db-40cf-b858-254b802018bd#style-reference\",\"name\":\"Aaply design system reference\",\"headline\":\"Aaply design system | Refero Styles\",\"description\":\"Explore Aaply's light Design design system: Highlighter Yellow #e6e51e, Annotation Red #f34646 colors, Times, Poppins typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/357e6fee-72db-40cf-b858-254b802018bd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/357e6fee-72db-40cf-b858-254b802018bd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Aaply\",\"url\":\"https://aaply.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/357e6fee-72db-40cf-b858-254b802018bd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e5c6c4b3-1f24-452f-9712-f46cbce6beb2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e5c6c4b3-1f24-452f-9712-f46cbce6beb2.jpg\",\"caption\":\"Screenshot of Aaply\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e5c6c4b3-1f24-452f-9712-f46cbce6beb2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Aaply design system\",\"Aaply website design\",\"Aaply colors\",\"Aaply typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Highlighter Yellow\",\"Annotation Red\",\"Signal Blue\",\"Peach Wash\",\"Times\",\"Poppins\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Aaply design system\"},{\"@type\":\"Thing\",\"name\":\"Aaply website design\"},{\"@type\":\"Thing\",\"name\":\"Aaply colors\"},{\"@type\":\"Thing\",\"name\":\"Aaply typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-03-11T10:44:05.000Z\",\"dateModified\":\"2026-03-11T10:44:05.000Z\"}]}19:T64a,**Quick Color Reference**\n- text: #000000\n- background: #f2f2f2 (page) / #ffffff (card)\n- border: #e6e6e6\n- accent (brand): #e6e51e\n- annotation/callout: #f34646\n- mockup icon/connector: #466cf3\n- soft tint wash: #ff8562\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Create a hero headline: Poppins weight 700, 57px, #000000, line-height 1.05, letter-spacing -4.22px. Center-aligned on #f2f2f2 background. Include 2-3 inline emoji or flat icon illustrations at baseline level. Below: a yellow pill button (#e6e51e, #000000 text, 3000px radius, 16px 32px padding) and a black pill button (#000000, #ffffff text, same shape) side by side with 16px gap.\n\n2. Create a product preview card: white #ffffff surface, 16px border-radius, with three small traffic-light dots (red #f34646, yellow #e6e51e, blue #466cf3) in the top-left corner at 8px from edges. Interior background is a repeating dot-grid pattern in #e6e6e6 at 20px spacing. Contains 3-4 phone-shaped mockup cards (white, 16px radius, each with a blue #466cf3 zigzag mark at top and Inter 14px label below) connected by thin black lines with small arrowheads.\n\n3. Create a navigation bar: white #ffffff background, 30px border-radius, single shadow rgba(0,0,0,0.2) 0px 10px 10px -5px. Left: yellow logo mark (rounded square #e6e51e, 20px, with black glyph) + 'aaply' wordmark in Poppins 500 18px #000000. Center: 4 nav links in Inter 500 15px #000000, 24px gap. Right: ghost pill button (transparent, 1px #000000 border, 3000px radius, 'Log in') + filled black pill button (#000000 bg, #ffffff text, 3000px radius, 'Sign up')."
+}

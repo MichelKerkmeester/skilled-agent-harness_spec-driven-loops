@@ -1,0 +1,76 @@
+:root {
+  /* Colors */
+  --color-iris-violet: #49369e;
+  --color-soft-lavender: #a9a7db;
+  --color-iris-focus: #524eb7;
+  --color-blush-petal: #ec9bad;
+  --color-pure-white: #ffffff;
+  --color-stone-linen: #f2f1ef;
+  --color-warm-ash: #a09c97;
+  --color-charcoal: #333333;
+  --color-graphite: #000000;
+
+  /* Typography — Font Families */
+  --font-martina-plantijn: 'Martina Plantijn', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-regola-pro-book: 'Regola Pro Book', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.4;
+  --text-body-lg: 16px;
+  --leading-body-lg: 1.69;
+  --text-subheading: 20px;
+  --leading-subheading: 1.38;
+  --text-heading-sm: 30px;
+  --leading-heading-sm: 1.25;
+  --text-display: 80px;
+  --leading-display: 1.2;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-5: 5px;
+  --spacing-6: 6px;
+  --spacing-7: 7px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-22: 22px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-50: 50px;
+  --spacing-60: 60px;
+  --spacing-90: 90px;
+  --spacing-120: 120px;
+  --spacing-144: 144px;
+
+  /* Layout */
+  --page-max-width: 1440px;
+  --section-gap: 48-80px;
+  --card-padding: 20-30px;
+  --element-gap: 12px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius-lg: 10px;
+  --radius-3xl: 30px;
+  --radius-full: 50px;
+
+  /* Named Radii */
+  --radius-nav: 50px;
+  --radius-cards: 30px;
+  --radius-badges: 10px;
+  --radius-buttons: 3px;
+
+  /* Surfaces */
+  --surface-stone-linen-canvas: #f2f1ef;
+  --surface-pure-white-card: #ffffff;
+  --surface-warm-ash-panel: #a09c97;
+  --surface-blush-stage: #ec9bad;
+  --surface-iris-accent: #49369;
+}

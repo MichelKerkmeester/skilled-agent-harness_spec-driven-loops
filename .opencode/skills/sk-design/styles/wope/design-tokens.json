@@ -1,0 +1,387 @@
+{
+  "color": {
+    "night-violet": {
+      "$value": "#0a0118",
+      "$type": "color",
+      "$description": "Night Violet — Page background, dark card surfaces, footer and section canvas"
+    },
+    "void-plum": {
+      "$value": "#0c0616",
+      "$type": "color",
+      "$description": "Void Plum — Inverse text on light treatments, occasional dark text on pale surfaces"
+    },
+    "soft-quartz": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Soft Quartz — Primary headings, buttons, borders, icons, input text, dominant foreground"
+    },
+    "muted-steel": {
+      "$value": "#d2d0dd",
+      "$type": "color",
+      "$description": "Muted Steel — Secondary heading tone, brighter muted copy over Night Violet"
+    },
+    "ash-lilac": {
+      "$value": "#9b96b0",
+      "$type": "color",
+      "$description": "Ash Lilac — Body copy, navigation links, supporting labels, low-emphasis UI text"
+    },
+    "dim-fog": {
+      "$value": "#85808c",
+      "$type": "color",
+      "$description": "Dim Fog — Inactive icons, subtle separators, tertiary interface details"
+    },
+    "ultraviolet-core": {
+      "$value": "#713dff",
+      "$type": "color",
+      "$description": "Ultraviolet Core — Primary accent, active links, luminous highlights — saturated violet against the black-violet canvas creates the site’s underlit glow"
+    },
+    "lilac-beam": {
+      "$value": "#b7a4fb",
+      "$type": "color",
+      "$description": "Lilac Beam — Gradient flare, line effects, ambient glow edges — used as the cooler top note inside purple light blooms"
+    },
+    "horizon-glow": {
+      "$value": "#8562ff",
+      "$type": "color",
+      "$description": "Horizon Glow — Gradient midpoint and visual hotspot — the brighter violet that makes hero illumination feel energized instead of flat"
+    },
+    "glass-white-04": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Glass White 04 — Tinted fills for ghost pills, badge backgrounds, translucent overlays"
+    },
+    "glass-white-10": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Glass White 10 — Hairline borders on pills and glass panels"
+    },
+    "ultraviolet-horizon": {
+      "$value": "#8562ff",
+      "$type": "color",
+      "$description": "Ultraviolet Horizon — Hero light field, illuminated dividers, ambient section glow"
+    },
+    "violet-beam": {
+      "$value": "#8562ff",
+      "$type": "color",
+      "$description": "Violet Beam — Brighter line and halo treatments where the glow should read crisp instead of misty"
+    },
+    "deep-fade-veil": {
+      "$value": "#16092a",
+      "$type": "color",
+      "$description": "Deep Fade Veil — Section overlays and bottom fades that darken content without breaking the purple atmosphere"
+    }
+  },
+  "font": {
+    "inter-v": {
+      "$value": "Inter V",
+      "$type": "fontFamily",
+      "$description": "System font for navigation, body copy, links, buttons, badges, inputs, and smaller headings. The custom build is doing more than a stock Inter install: disabled standard ligature behavior plus alternate stylistic sets make the text feel slightly engineered rather than default SaaS. Use 400 for body, 500 for controls and links, 700 for compact emphasis; apply tighter tracking at larger UI sizes and the wide tracking only for utility-style labels."
+    },
+    "rebond-grotesque": {
+      "$value": "Rebond Grotesque",
+      "$type": "fontFamily",
+      "$description": "Display and headline font for hero statements and major section titles. The heavier serifless grotesque gives Wope its large-scale voice: broad, compact, and slightly formal, which keeps the glowing purple environment from feeling playful. Use only for headline moments, not for buttons or dense UI."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter V",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter V",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter V",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inter V",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter V",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter V",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter V",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter V",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter V",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Inter V",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Rebond Grotesque",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Rebond Grotesque",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Inter V",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Inter V",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Rebond Grotesque",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Rebond Grotesque",
+        "fontSize": "72px",
+        "fontWeight": 700,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "108": {
+      "$value": "108px",
+      "$type": "dimension",
+      "$description": "Spacing 108px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "124": {
+      "$value": "124px",
+      "$type": "dimension",
+      "$description": "Spacing 124px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "night-canvas": {
+      "$value": "#0a0118",
+      "$type": "color",
+      "$description": "Surface level 0: Global page background and default section base"
+    },
+    "glass-film": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Translucent fills at 2% to 4% opacity for badges, CTAs, and frosted cards"
+    },
+    "dark-panel": {
+      "$value": "#0a0118",
+      "$type": "color",
+      "$description": "Surface level 2: Primary cards and screenshot frames with 16px radius"
+    },
+    "overlay-veil": {
+      "$value": "#16092a",
+      "$type": "color",
+      "$description": "Surface level 3: Gradient fades and blurred overlays above the base canvas"
+    },
+    "ultraviolet-glow": {
+      "$value": "#713dff",
+      "$type": "color",
+      "$description": "Surface level 4: Illuminated accent field beneath hero imagery and active focal points"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://wope.com",
+      "siteName": "Wope",
+      "extractedAt": "2026-04-14T00:48:59.323Z",
+      "variant": "extended"
+    }
+  }
+}

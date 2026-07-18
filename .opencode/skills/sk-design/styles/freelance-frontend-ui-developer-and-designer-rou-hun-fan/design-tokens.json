@@ -1,0 +1,125 @@
+{
+  "color": {
+    "carbon": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Carbon — Page canvas and section backgrounds — near-true-black maximizes the contrast pop of white type and saturated accent blocks"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — Primary text, display headlines, borders, and link strokes — the only voice for the majority of the page"
+    },
+    "voltage-cyan": {
+      "$value": "#1ef0e4",
+      "$type": "color",
+      "$description": "Voltage Cyan — Accent card backgrounds, highlight panels — flat saturated cyan that screams against the dark canvas, reserved for project cards and editorial callout blocks"
+    },
+    "plasma-magenta": {
+      "$value": "#e91e8c",
+      "$type": "color",
+      "$description": "Plasma Magenta — Display text on cyan cards, decorative script flourishes — hot pink/magenta used only as ink-on-cyan contrast or as editorial accent"
+    },
+    "ember": {
+      "$value": "#ff3a1a",
+      "$type": "color",
+      "$description": "Ember — Supporting palette color for small decorative accents when the core palette needs contrast."
+    }
+  },
+  "font": {
+    "azeret-mono": {
+      "$value": "Azeret Mono",
+      "$type": "fontFamily",
+      "$description": "Monospace system voice — navigation, metadata, UI labels, footer text. Brings a developer-terminal identity that matches the frontend-developer positioning"
+    },
+    "azeretmono-display-variant": {
+      "$value": "AzeretMono (display variant)",
+      "$type": "fontFamily",
+      "$description": "Oversized condensed display headlines (ROU HUN FAN, UI DEV, DESIGN, MOTION & FRONTEND). The extreme scale and bold weight turn the page into a typographic poster — type IS the design"
+    },
+    "ephidona": {
+      "$value": "Ephidona",
+      "$type": "fontFamily",
+      "$description": "Calligraphic editorial script for section labels (PROJECTS). Counter-typography that breaks the geometric/mono discipline with human handwriting — the anti-machine flourish that signals personal craft over automated output"
+    }
+  },
+  "typography": {
+    "5xl": {
+      "$value": {
+        "fontFamily": "AzeretMono Black",
+        "fontSize": "100px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 100px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "AzeretMono Black",
+        "fontSize": "100px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 100px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Ephidona",
+        "fontSize": "100px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 100px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Ephidona",
+        "fontSize": "108px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 108px"
+    }
+  },
+  "spacing": {
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "carbon-canvas": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page background, section bands"
+    },
+    "voltage-card": {
+      "$value": "#1ef0e4",
+      "$type": "color",
+      "$description": "Surface level 1: Featured project cards, editorial callout panels"
+    },
+    "image-plate": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 2: Photo containers, embedded media blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://flowen.me",
+      "siteName": "Freelance frontend UI developer and designer, Rou Hun Fan",
+      "extractedAt": "2026-06-03T21:23:41.675Z",
+      "variant": "extended"
+    }
+  }
+}

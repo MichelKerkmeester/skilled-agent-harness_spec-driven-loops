@@ -1,0 +1,825 @@
+{
+  "source": "https://styles.refero.design/style/8d37e9dd-1d6b-4b60-a636-55aa3e0fc238",
+  "uuid": "8d37e9dd-1d6b-4b60-a636-55aa3e0fc238",
+  "name": "Prisma Labs",
+  "northStar": "Sunlit monochrome studio — a white gallery wall where one beam of yellow light hits",
+  "capturedAt": "2026-07-18T08:53:49.701Z",
+  "meta": {
+    "url": "https://prisma-ai.com",
+    "siteName": "Prisma Labs",
+    "extractedAt": "2026-06-03T21:28:44.582Z",
+    "durationMs": 24984,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 84,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #ffd600 as the sole chromatic accent — for CTAs, active in-app states, and blob shapes behind mockups",
+      "Set all display headlines to Cofo Sans 72px weight 700 with -0.007em letter-spacing and 1.0 line-height",
+      "Apply 16px border-radius to all buttons; 10px to cards; no radius on the page canvas",
+      "Alternate text-left/visual-right and text-right/visual-left in feature sections to maintain Z-pattern flow",
+      "Keep vertical section gaps between 84px and 124px — breathing room is part of the brand",
+      "Pair every phone mockup with an organic colored blob behind it, offset 20–40px beyond the device edges",
+      "Use #ff0062 only for the notification dot — never as a CTA or background fill"
+    ],
+    "donts": [
+      "Don't introduce additional accent colors — the system is monochrome plus one yellow, anything else dilutes the signal",
+      "Don't use light or medium weights (300–500) for display headlines — the 700 weight is the signature",
+      "Don't add drop shadows to buttons, cards, or nav — surfaces stay flat, color does the work",
+      "Don't apply small radii (4–6px) to buttons — 16px is non-negotiable for the soft-pill feel",
+      "Don't use gradients, textures, or photographic backgrounds on the page itself",
+      "Don't center-align display headlines in wide sections — left-align preserves the editorial reading rhythm",
+      "Don't stack phone mockups or use them without the blob backing — the blob is what makes the product feel spotlighted"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0d0d0d",
+        "name": "Ink Black",
+        "role": "Primary text, nav links, all borders, button outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, button text on yellow fill",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Graphite",
+        "role": "Secondary text, image borders, link underlines, muted dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffd600",
+        "name": "Signal Yellow",
+        "role": "CTA button fill, in-app active tabs, decorative blob shapes behind mockups, active state highlights — the single chromatic accent that makes actions feel switched on",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff0062",
+        "name": "Alert Magenta",
+        "role": "Red outline accent for tags, dividers, and focused UI edges",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-width white canvas with a 1200px max-width inner container (120px horizontal padding on each side). Hero is a 50/50 split: display headline + yellow CTA on the left, oversized iPhone mockup with yellow blob on the right. Feature sections alternate the split orientation (text-right/visual-left) to create a Z-pattern reading flow. Vertical rhythm is generous: 84–124px between major sections, with no visible dividers or background bands — sections are separated by whitespace alone. Top navigation is a simple horizontal bar: logo lockup left, 4 nav links right, no sticky behavior visible. A light-gray rounded card surface begins to appear at the bottom of the second screen, suggesting a content section follows the alternating feature blocks.",
+    "imagery": "Phone mockups are the hero visual language — oversized, with realistic device chrome, floating over organic blob shapes in yellow or secondary teal. Inside the phones: portrait photography (real faces, candid smiles, expressive crops). No lifestyle or environmental photography on the page itself. The blobs are the only abstract/decorative visual; everything else is either type, device mockup, or the portrait inside the device. Icon style is minimal and absent from the visible screens — the product UI inside the phone uses small filled icons for controls.",
+    "similar": [
+      {
+        "why": "Same product-mockup-on-white-canvas approach with editorial-scale display type and minimal chromatic palette",
+        "business": "Apple"
+      },
+      {
+        "why": "Equally restrained single-accent system on white, with bold display headlines doing the personality work",
+        "business": "Linear"
+      },
+      {
+        "why": "Editorial-grade display typography, generous whitespace between sections, monochrome canvas with one signal color",
+        "business": "Pitch"
+      },
+      {
+        "why": "Phone mockup as the hero visual, clean white surface, minimal UI ornamentation, single-color accents",
+        "business": "Things 3"
+      },
+      {
+        "why": "Direct visual cousin — the in-app editing UI uses the same yellow-on-black pill chips and bold display type",
+        "business": "Lensa (the product itself)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "blobs": "irregular",
+        "cards": "10px",
+        "buttons": "16px"
+      },
+      "elementGap": "16-20px",
+      "sectionGap": "84-124px",
+      "cardPadding": "24-26px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page background, primary surface"
+      },
+      {
+        "hex": "#ffd600",
+        "name": "Accent Bloom",
+        "level": 2,
+        "purpose": "Decorative blob shapes, CTA fill, in-app accent panels"
+      }
+    ],
+    "northStar": "Sunlit monochrome studio — a white gallery wall where one beam of yellow light hits",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1,
+        "letterSpacing": -0.07
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.11,
+        "letterSpacing": -0.126
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.154
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -0.504
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "Filled yellow pill-shaped action button",
+        "description": "#ffd600 fill, #0d0d0d text, 16px border-radius, padding 12px vertical × 16–26px horizontal, label in Cofo Sans 18–22px weight 700 with right-arrow glyph (→). Black-on-yellow achieves 13.8:1 contrast — readable, punchy, never soft. No hover state needed; the color does the signaling."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal horizontal nav with logo left, links right",
+        "description": "White background, no border. Logo lockup left ('PRISMA LABS' wordmark in Cofo Sans 14–18px weight 600 with small triangle icon). Nav links right in Cofo Sans 14–18px weight 600, #0d0d0d text, 20–24px gap between items. One item may carry a small #ff0062 notification dot (3–4px circle) to signal new content."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Editorial-style hero and section headings",
+        "description": "Cofo Sans 72px weight 700, line-height 1.0, letter-spacing -0.504px (-0.007em), #0d0d0d. Tight tracking at this size prevents the letterforms from feeling loose; the near-1.0 line-height lets large multi-line headlines stack without excessive leading. Max width should wrap naturally at 8–12 words per line."
+      },
+      {
+        "name": "iPhone Mockup Frame",
+        "role": "Oversized product screenshot with device chrome",
+        "description": "Phone rendered at hero scale (roughly 40% of viewport height), with realistic notch and bezel. The device floats over a colored organic blob shape (yellow or teal) that bleeds 20–40px beyond the device edges. Slight tilt or straight-on, no perspective distortion."
+      },
+      {
+        "name": "Decorative Blob Shape",
+        "role": "Organic color shape behind phone mockups",
+        "description": "Irregular SVG blob in Signal Yellow (#ffd600) or secondary teal, positioned behind and offset from the phone mockup. Asymmetric, soft-curved, no defined radius — the only organic form in an otherwise rectilinear layout. Functions as visual spotlight and color amplifier."
+      },
+      {
+        "name": "Split Section Layout",
+        "role": "Two-column hero/feature section with text + visual",
+        "description": "50/50 split inside the 1200px container (120px outer padding). Headline and CTA stack on one side, phone mockup with blob backing sits on the other. Alternate left/right orientation per section to create Z-pattern reading flow. 80–124px vertical gap between sections."
+      },
+      {
+        "name": "Notification Dot",
+        "role": "Small status indicator on nav items",
+        "description": "3–4px solid #ff0062 circle, positioned top-right of a nav label, indicating new/urgent content. Used sparingly — only on items that genuinely require attention."
+      },
+      {
+        "name": "In-App Active Tab",
+        "role": "Selected control chip inside the product mockup",
+        "description": "Signal Yellow (#ffd600) pill background with #0d0d0d label text, small radius (4–8px), uppercase or compact caps treatment. Indicates the active editing mode (FACE, BACKGROUND, ADJUST, FX EFFECTS)."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Supporting paragraph copy under headlines",
+        "description": "Arial 14px weight 400, line-height 1.43, #333333 or #0d0d0d. Quiet by design — never competes with the display headline. Max width 480–560px to preserve readability."
+      },
+      {
+        "name": "Card Surface",
+        "role": "Light elevated panel for grouped content",
+        "description": "#ffffff background, 10px border-radius, subtle 1px #333333 border or no border at all, padding 24–26px. White-on-white means the card reads as quiet grouping, not heavy containment."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines at 72px weight 700 with extremely tight tracking read like editorial poster type — the weight does the work, not the size alone. Also used for nav links, button labels, and small caps text at 18–22px weight 600/700. The 700 weight is the signature: most sites use 500–600 for heroes, this goes maximum weight to create authority through volume rather than restraint.",
+        "sizes": "10px, 18px, 22px, 72px",
+        "family": "Cofo Sans",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.00–1.11",
+        "substitute": "Manrope or Outfit (geometric sans with similar weight range and tight tracking behavior)",
+        "letterSpacing": "-0.0070em"
+      },
+      {
+        "role": "System fallback for body copy and secondary text at 14px — deliberately quiet, never competes with the Cofo Sans display moments",
+        "sizes": "14px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.43",
+        "substitute": "Helvetica or system-ui"
+      }
+    ],
+    "description": "Prisma Labs runs a ruthlessly restrained visual system: pure white canvas, near-black type, and one vivid yellow as the only chromatic signal. Display headlines carry enormous weight (700) at near-1.0 line-height with tight negative tracking, reading like editorial type rather than typical SaaS hero copy. Yellow appears as functional punctuation — filled CTAs, active in-app controls, and as organic blob shapes bleeding behind phone mockups — never as decoration. The layout is split and alternating: text one side, oversized product mockup the other, with generous vertical breathing room (80–120px) between bands. Surfaces are flat; elevation is achieved through color contrast and blob backings rather than shadows.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8d37e9dd-1d6b-4b60-a636-55aa3e0fc238#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Prisma Labs design system\",\"item\":\"https://styles.refero.design/style/8d37e9dd-1d6b-4b60-a636-55aa3e0fc238\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8d37e9dd-1d6b-4b60-a636-55aa3e0fc238#style-reference\",\"name\":\"Prisma Labs design system reference\",\"headline\":\"Prisma Labs design system | Refero Styles\",\"description\":\"Explore Prisma Labs's light AI design system: Ink Black #0d0d0d, Paper White #ffffff colors, Cofo Sans, Arial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8d37e9dd-1d6b-4b60-a636-55aa3e0fc238\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8d37e9dd-1d6b-4b60-a636-55aa3e0fc238\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Prisma Labs\",\"url\":\"https://prisma-ai.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8d37e9dd-1d6b-4b60-a636-55aa3e0fc238#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/40ab98d2-3075-4a9a-8ef2-7de2223030e4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/40ab98d2-3075-4a9a-8ef2-7de2223030e4.jpg\",\"caption\":\"Screenshot of Prisma Labs\"},\"image\":\"https://images.refero.design/styles/refero.design/image/40ab98d2-3075-4a9a-8ef2-7de2223030e4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Prisma Labs design system\",\"Prisma Labs website design\",\"Prisma Labs colors\",\"Prisma Labs typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Ink Black\",\"Paper White\",\"Graphite\",\"Signal Yellow\",\"Cofo Sans\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Prisma Labs design system\"},{\"@type\":\"Thing\",\"name\":\"Prisma Labs website design\"},{\"@type\":\"Thing\",\"name\":\"Prisma Labs colors\"},{\"@type\":\"Thing\",\"name\":\"Prisma Labs typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-30T03:17:43.231Z\",\"dateModified\":\"2026-04-30T03:17:43.231Z\"}]}19:T6ad,**Quick Color Reference**\n- text: #0d0d0d\n- background: #ffffff\n- border: #333333\n- accent (blobs, in-app panels): #ffd600\n- primary action: #ffd600 (filled action)\n- notification dot: #ff0062\n\n**3-5 Example Component Prompts**\n\n1. **Hero section (split layout):** White #ffffff background, 1200px max-width container with 120px horizontal padding. Left column: display headline 'Cofo Sans 72px weight 700, #0d0d0d, line-height 1.0, letter-spacing -0.504px'. Below: yellow CTA button '#ffd600 fill, #0d0d0d text, 16px radius, 12px 24px padding, label in Cofo Sans 18px weight 700 with → arrow'. Right column: oversized iPhone mockup with a Signal Yellow #ffd600 organic blob shape behind it, offset 30px beyond the device edges.\n\n2. Create a Primary Action Button: #ffd600 background, #0d0d0d text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **Top navigation bar:** White #ffffff background, no border or shadow. Left: small triangle icon + 'PRISMA LABS' wordmark in Cofo Sans 14–18px weight 600, #0d0d0d. Right: four nav links (Products, Company, Career, Support) in Cofo Sans 14–18px weight 600, #0d0d0d, 20–24px gap between items. The 'Career' link carries a 3–4px #ff0062 notification dot at its top-right corner.\n\n4. **In-app active tab (inside product mockup):** Pill-shaped chip with #ffd600 fill, #0d0d0d uppercase label, 4–8px radius, 6–10px vertical padding, 12–16px horizontal padding. Used to indicate the active editing mode (e.g., FACE, BACKGROUND).\n\n5. **Body text block under a headline:** Arial 14px weight 400, line-height 1.43, color #333333, max-width 480–560px. Stays quiet and never competes with the display headline above it."
+      }
+    ],
+    "elevationPhilosophy": "Flat by design — no drop shadows on the main UI. Visual separation comes from generous whitespace, the organic blob shapes behind mockups, and the single yellow color against white rather than from elevation tokens. The one detected shadow is a soft card lift on a rounded surface, used sparingly."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0d0d0d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.15906639920862536
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "image",
+            "body"
+          ],
+          "frequency": 395,
+          "confidence": 1,
+          "prominence": 9960434.87872689,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 18,
+            "body/color": 1,
+            "image/color": 2,
+            "other/color": 49,
+            "button/color": 6,
+            "heading/color": 3,
+            "nav/borderColor": 72,
+            "body/borderColor": 4,
+            "image/borderColor": 8,
+            "other/borderColor": 196,
+            "button/borderColor": 24,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 359100,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 30899.64321766834,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "image/color": 1,
+            "link/borderColor": 4,
+            "image/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ffd600",
+          "oklch": {
+            "c": 0.18164223058590778,
+            "h": 94.89716094892123,
+            "l": 0.884794595831314
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 28540,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ff0062",
+          "oklch": {
+            "c": 0.2549412821174683,
+            "h": 11.705758686799316,
+            "l": 0.6378939975667175
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 183.5323375512021,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "nav/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.011821940633738728,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.44,
+          "background": "#ffffff",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.76,
+          "background": "#ffd600",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.95,
+          "background": "#ffd600",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.87,
+          "background": "#ffffff",
+          "foreground": "#ff0062"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.74,
+          "background": "#ffd600",
+          "foreground": "#ff0062"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|image",
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "nav",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginRight|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "nav",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginRight|nav",
+            "marginLeft|nav",
+            "paddingRight|other",
+            "paddingRight|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginRight",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 84,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 124,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 131,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 136,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 153,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 171,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|link"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 55,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Cofo sans",
+          "source": "custom",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 28,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Cofo sans",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image"
+          ],
+          "frequency": 55,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Cofo sans",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "image",
+            "button",
+            "nav",
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Cofo sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Cofo sans",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Cofo sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/125b904b-cd4c-48c6-8bce-2ca44a951e09.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/40ab98d2-3075-4a9a-8ef2-7de2223030e4.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8d37e9dd-1d6b-4b60-a636-55aa3e0fc238#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Prisma Labs design system\",\"item\":\"https://styles.refero.design/style/8d37e9dd-1d6b-4b60-a636-55aa3e0fc238\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8d37e9dd-1d6b-4b60-a636-55aa3e0fc238#style-reference\",\"name\":\"Prisma Labs design system reference\",\"headline\":\"Prisma Labs design system | Refero Styles\",\"description\":\"Explore Prisma Labs's light AI design system: Ink Black #0d0d0d, Paper White #ffffff colors, Cofo Sans, Arial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8d37e9dd-1d6b-4b60-a636-55aa3e0fc238\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8d37e9dd-1d6b-4b60-a636-55aa3e0fc238\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Prisma Labs\",\"url\":\"https://prisma-ai.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8d37e9dd-1d6b-4b60-a636-55aa3e0fc238#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/40ab98d2-3075-4a9a-8ef2-7de2223030e4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/40ab98d2-3075-4a9a-8ef2-7de2223030e4.jpg\",\"caption\":\"Screenshot of Prisma Labs\"},\"image\":\"https://images.refero.design/styles/refero.design/image/40ab98d2-3075-4a9a-8ef2-7de2223030e4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Prisma Labs design system\",\"Prisma Labs website design\",\"Prisma Labs colors\",\"Prisma Labs typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Ink Black\",\"Paper White\",\"Graphite\",\"Signal Yellow\",\"Cofo Sans\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Prisma Labs design system\"},{\"@type\":\"Thing\",\"name\":\"Prisma Labs website design\"},{\"@type\":\"Thing\",\"name\":\"Prisma Labs colors\"},{\"@type\":\"Thing\",\"name\":\"Prisma Labs typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-30T03:17:43.231Z\",\"dateModified\":\"2026-04-30T03:17:43.231Z\"}]}19:T6ad,**Quick Color Reference**\n- text: #0d0d0d\n- background: #ffffff\n- border: #333333\n- accent (blobs, in-app panels): #ffd600\n- primary action: #ffd600 (filled action)\n- notification dot: #ff0062\n\n**3-5 Example Component Prompts**\n\n1. **Hero section (split layout):** White #ffffff background, 1200px max-width container with 120px horizontal padding. Left column: display headline 'Cofo Sans 72px weight 700, #0d0d0d, line-height 1.0, letter-spacing -0.504px'. Below: yellow CTA button '#ffd600 fill, #0d0d0d text, 16px radius, 12px 24px padding, label in Cofo Sans 18px weight 700 with → arrow'. Right column: oversized iPhone mockup with a Signal Yellow #ffd600 organic blob shape behind it, offset 30px beyond the device edges.\n\n2. Create a Primary Action Button: #ffd600 background, #0d0d0d text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **Top navigation bar:** White #ffffff background, no border or shadow. Left: small triangle icon + 'PRISMA LABS' wordmark in Cofo Sans 14–18px weight 600, #0d0d0d. Right: four nav links (Products, Company, Career, Support) in Cofo Sans 14–18px weight 600, #0d0d0d, 20–24px gap between items. The 'Career' link carries a 3–4px #ff0062 notification dot at its top-right corner.\n\n4. **In-app active tab (inside product mockup):** Pill-shaped chip with #ffd600 fill, #0d0d0d uppercase label, 4–8px radius, 6–10px vertical padding, 12–16px horizontal padding. Used to indicate the active editing mode (e.g., FACE, BACKGROUND).\n\n5. **Body text block under a headline:** Arial 14px weight 400, line-height 1.43, color #333333, max-width 480–560px. Stays quiet and never competes with the display headline above it."
+}

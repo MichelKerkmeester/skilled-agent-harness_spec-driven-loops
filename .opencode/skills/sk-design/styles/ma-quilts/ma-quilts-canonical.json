@@ -1,0 +1,1324 @@
+{
+  "source": "https://styles.refero.design/style/6d4ef8f4-badd-4e3c-a168-0cc89c833b26",
+  "uuid": "6d4ef8f4-badd-4e3c-a168-0cc89c833b26",
+  "name": "MA Quilts",
+  "northStar": "Crayon-bright quilt workshop pinned to sunlit wall",
+  "capturedAt": "2026-07-18T08:56:10.080Z",
+  "meta": {
+    "url": "https://maquilts.com",
+    "siteName": "MA Quilts",
+    "extractedAt": "2026-06-03T21:19:48.491Z",
+    "durationMs": 25388,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 153,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Manrope weight 200 at 126px with 0.12em letter-spacing for display headlines — the whisper-thin strokes against Tangerine fill are the brand's defining look.",
+      "Apply the 66px border-radius exclusively to buttons and tags; keep all cards, images, and sections at 0px radius for a paper-poster feel.",
+      "Render buttons as outlined pills (1-2px Tangerine border, transparent fill) rather than filled rectangles — the system speaks in borders, not backgrounds.",
+      "Use full-bleed Sun Yellow, Blush Pink, or Coral Wash as section backgrounds in place of white cards with shadows.",
+      "Label product and blog images with Roboto Mono 14px uppercase Tangerine text, centered beneath the image.",
+      "Reserve Tangerine (#f15a24) for all heading text, button borders, and metadata — it is the only chromatic voice in the type system.",
+      "Set line-height to 1.00 for all display and heading sizes; the tight stacking is essential to the poster aesthetic."
+    ],
+    "donts": [
+      "Do not fill buttons with Tangerine or any solid color — the outlined pill is non-negotiable.",
+      "Do not add drop shadows, gradients, or any elevation to cards, buttons, or images — the system is strictly flat.",
+      "Do not center display headlines — they are always left-aligned and stacked vertically word by word.",
+      "Do not use Manrope weight 400 or 700 for display headlines — only weight 200 produces the signature thin-stroked poster type.",
+      "Do not introduce a fourth background color beyond Sun Yellow, Blush Pink, and Coral Wash without a clear visual reason.",
+      "Do not apply border-radius to images, cards, or product containers — sharp corners preserve the cut-and-paste craft identity.",
+      "Do not use letter-spacing below 0.06em on any heading or display text — the wide tracking is what makes the type read as label rather than sentence."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f15a24",
+        "name": "Tangerine",
+        "role": "Headlines, body text accents, and outlined button borders — the single loud color that carries the whole brand. Used as a 1-2px border on buttons and links, and as fill for all display and heading text. Never appears as a filled button background; the system speaks in outlines",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffed8c",
+        "name": "Sun Yellow",
+        "role": "Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content.",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffcccc",
+        "name": "Blush Pink",
+        "role": "Secondary full-bleed background block, often paired with product photography to make fabric colors pop. Used as a flat color field, never as a tint or gradient",
+        "group": "accent"
+      },
+      {
+        "hex": "#050133",
+        "name": "Midnight Navy",
+        "role": "Secondary text and link borders — a near-black with a violet bias that softens the page's high-contrast black on white. Used for body copy and as an alternate outlined-action border",
+        "group": "brand"
+      },
+      {
+        "hex": "#f4a398",
+        "name": "Coral Wash",
+        "role": "Soft warm surface for transitional sections — a diluted cousin of Tangerine used when a page needs a quieter colored block",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Default page canvas and content section background. The neutral ground between colored blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "SVG fills, occasional body text, and the darkest neutral when Midnight Navy reads too colored. Pure black only where the page demands the most weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Graphite",
+        "role": "Secondary text, image captions, and subtle borders. Sits between Ink Black and Paper White for muted helper copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cce1e2",
+        "name": "Mist Blue",
+        "role": "Decorative SVG fill and soft wash — a near-gray with a cool cast used inside illustrations and as a quiet background tint",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page reads as a vertical stack of full-bleed colored panels rather than a contained card grid. The hero is a 50/50 split: yellow left with left-aligned oversize headline, pink right with a single hanging garment photograph. Below the hero, sections return to white canvas with generous 48-80px vertical gaps between blocks. Product grids use a 4-column row of equal-width photographs, each captioned beneath — no gutters beyond the caption gap. Blog sections use a 3-column row. Section headings are oversized and left-aligned, often breaking across multiple lines with single words per line. Navigation is minimal: a small 'M' logo top-left and a hamburger top-right, both flat against whatever colored block the page is currently on. There are no sticky headers, no sidebars, no breadcrumbs — the page scrolls linearly through colored panels like turning pages in a zine. Content is contained within a 1200px max-width but the colored backgrounds themselves always bleed to the viewport edge.",
+    "imagery": "Photography is the product. Every product and blog image is a tight, straight-on photograph of a finished quilt or garment — no lifestyle context, no models in environments, no styled rooms. Garments are photographed hanging from visible wooden hangers against flat Blush Pink or Paper White backdrops, making the wooden hanger a recurring visual motif. Quilt photographs are shot flat-lay on neutral surfaces or hung vertically. Color treatment is true-to-life and saturated — the oranges, navies, pinks, and yellows of the patchwork read as vivid as possible because the rest of the interface is otherwise flat color blocks. No illustrations, no abstract graphics, no icons beyond the simple 'M' wordmark and the two-line hamburger. The quilt patterns themselves function as the site's only ornamental visual content — every triangle and stripe in a photograph echoes the geometric language of the headlines.",
+    "similar": [
+      {
+        "why": "Same craft-portfolio presentation with oversize serif/sans display type, textile-photography-first grids, and a single saturated accent color carrying the entire brand.",
+        "business": "Bode"
+      },
+      {
+        "why": "Same flat-poster aesthetic with full-bleed color blocks, product photography on saturated backgrounds, and oversized geometric type as the dominant visual element.",
+        "business": "Hay (hay.dk)"
+      },
+      {
+        "why": "Same bold geometric pattern language treated as hero content, flat color-block sectioning, and oversized sans-serif headlines in a single brand color.",
+        "business": "Marimekko"
+      },
+      {
+        "why": "Same zine-like layout with full-bleed colored panels, minimal outlined navigation, and display type that breaks across lines word by word.",
+        "business": "Studio Bergini"
+      },
+      {
+        "why": "Same craft-brand approach of oversize headings in a single accent color, flat product photography without lifestyle staging, and museum-label caption typography.",
+        "business": "Toast (toa.st)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "66px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "66px"
+      },
+      "elementGap": "14px",
+      "sectionGap": "48-80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 1,
+        "purpose": "Default canvas for product grids, blog lists, and the dominant content surface"
+      },
+      {
+        "hex": "#ffed8c",
+        "name": "Sun Yellow",
+        "level": 2,
+        "purpose": "Full-bleed hero and accent sections — the brand's most recognizable surface"
+      },
+      {
+        "hex": "#ffcccc",
+        "name": "Blush Pink",
+        "level": 3,
+        "purpose": "Product photography backdrop and secondary colored block"
+      },
+      {
+        "hex": "#f4a398",
+        "name": "Coral Wash",
+        "level": 4,
+        "purpose": "Tertiary warm surface for section transitions"
+      }
+    ],
+    "northStar": "Crayon-bright quilt workshop pinned to sunlit wall",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.6,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 18,
+        "lineHeight": 1.6,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 23,
+        "lineHeight": 1.4,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 30,
+        "lineHeight": 1.2,
+        "letterSpacing": 1.8
+      },
+      {
+        "role": "heading-sm",
+        "size": 36,
+        "lineHeight": 1.2,
+        "letterSpacing": 2.16
+      },
+      {
+        "role": "heading",
+        "size": 60,
+        "lineHeight": 1,
+        "letterSpacing": 7.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": 8.64
+      },
+      {
+        "role": "display",
+        "size": 126,
+        "lineHeight": 1,
+        "letterSpacing": 15.12
+      }
+    ],
+    "components": [
+      {
+        "name": "Outlined Pill Button",
+        "role": "Primary interactive control across the site",
+        "description": "Transparent background with 1-2px Tangerine (#f15a24) border, 66px border-radius, 9px vertical / 46px horizontal padding. Label in Manrope weight 400-700, uppercase, Tangerine fill. On hover the border thickens or inverts to filled Tangerine with white text. No drop shadow. The pill radius (66px) is the system's only rounded element — everything else is sharp-cornered."
+      },
+      {
+        "name": "Ghost Link Button",
+        "role": "Secondary navigation and inline links",
+        "description": "No background, no border. Underline rendered as a 1-2px Tangerine or Midnight Navy border-bottom. Text in Tangerine or Midnight Navy at body-sm (18px) Manrope. Sits inline within paragraphs and list items."
+      },
+      {
+        "name": "Display Headline Block",
+        "role": "Hero and section-opening typography",
+        "description": "Manrope weight 200 at 126px (display) or 60-72px (heading), line-height 1.00, letter-spacing 0.12em. Fill is always Tangerine (#f15a24). Text wraps naturally and is left-aligned, never centered. The light weight + wide tracking combination is the site's defining typographic signature."
+      },
+      {
+        "name": "Full-Bleed Color Section",
+        "role": "Page-level background blocks that replace the white canvas",
+        "description": "Edgeless section spanning the full viewport width. Background is Sun Yellow (#ffed8c), Blush Pink (#ffcccc), or Coral Wash (#f4a398). Internal content is contained within the 1200px page max-width. Used to break the page into 'colored paper sheets' rather than cards on a neutral surface."
+      },
+      {
+        "name": "Product Gallery Card",
+        "role": "Catalog item display in the shop grid",
+        "description": "Square or 4:5 product photograph on a flat Blush Pink or Paper White background. No border, no shadow, no rounded corners. Caption sits beneath in Roboto Mono 14px uppercase Tangerine: product name on one line, optional price below. Padding around image is 0 — the photo bleeds to the card edge."
+      },
+      {
+        "name": "Blog Post Card",
+        "role": "Editorial entry in the blog list",
+        "description": "Rectangular photograph (3:2 or 4:3 ratio) on Paper White, no border or radius. Date in Roboto Mono 14px Tangerine sits directly below the image, then the post title in Manrope 23px weight 400 in Ink Black. 30px gap between image and date, 10px between date and title. No card container — each post is a vertical stack on the white canvas."
+      },
+      {
+        "name": "Catalog Label",
+        "role": "Caption beneath product images",
+        "description": "Roboto Mono 14px, uppercase, Tangerine (#f15a24), letter-spacing normal. Centered beneath the corresponding image. Functions as a museum-style object label."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide header",
+        "description": "Transparent or Sun Yellow background depending on the current section. Left: Tangerine 'M' wordmark at 30px Manrope weight 700. Right: hamburger menu icon rendered as two Tangerine horizontal lines (no border, no background). Fixed to top edge with no visible divider."
+      },
+      {
+        "name": "Split Hero Block",
+        "role": "Opening screen layout",
+        "description": "Two-column split at full viewport height. Left column: Sun Yellow background with left-aligned Display Headline (Manrope 200 at 126px, Tangerine) stacked vertically. Right column: Blush Pink background containing a single large product photograph (the quilt coat) hanging from a visible wooden hanger. No margins between the two color blocks — they meet at a hard edge."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Subsection openers like 'BOLD AND GEOMETRIC'",
+        "description": "Manrope weight 700 at 60-72px, Tangerine, uppercase, left-aligned, letter-spacing 0.12em. Sits above a row of product cards with 48px vertical breathing room. Often breaks across multiple lines with each word on its own line."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary display and heading family across the entire site. Weight 200 (light) carries the massive display headlines — the thin strokes against tangerine fill create the signature 'stenciled poster' feel where the type reads as colored shape rather than inked letter. Weight 700 is used for emphasis and button labels.",
+        "sizes": "23px, 29px, 30px, 36px, 60px, 68px, 72px, 126px",
+        "family": "Manrope",
+        "weight": "200, 400, 700",
+        "lineHeight": "1.00–2.40 depending on size",
+        "substitute": "DM Sans",
+        "letterSpacing": "0.06em at subhead sizes, 0.12em at display sizes",
+        "fontFeatureSettings": ""
+      },
+      {
+        "role": "Captions, dates, product labels, and metadata — all uppercase tracking in Tangerine beneath images. The monospace's mechanical rhythm contrasts with Manrope's humanist curves and signals 'catalog label' rather than 'editorial body'.",
+        "sizes": "14px, 18px, 30px",
+        "family": "Roboto Mono",
+        "weight": "400, 700",
+        "lineHeight": "1.60–2.00",
+        "substitute": "IBM Plex Mono",
+        "letterSpacing": "normal",
+        "fontFeatureSettings": ""
+      }
+    ],
+    "description": "MA Quilts is a crayon-bright textile-art studio: a flat, poster-like canvas where oversize Manrope headlines shout in tangerine against wash-yellow and blush-pink full-bleed blocks. The entire interface stays two-dimensional — no shadows, no gradients, no filled buttons — relying on thick chromatic borders, enormous letter-spaced type, and full-bleed color blocks to do all the visual work. Layout is spacious and gallery-like, with product imagery given room to breathe and labels in monospace caps. The system reads more like a zine or museum wall text than a SaaS dashboard, and any new page should preserve that paper-poster logic: chromatic borders instead of fills, type as ornament, and backgrounds that change like colored paper sheets rather than cards on a neutral surface.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6d4ef8f4-badd-4e3c-a168-0cc89c833b26#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"MA Quilts design system\",\"item\":\"https://styles.refero.design/style/6d4ef8f4-badd-4e3c-a168-0cc89c833b26\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6d4ef8f4-badd-4e3c-a168-0cc89c833b26#style-reference\",\"name\":\"MA Quilts design system reference\",\"headline\":\"MA Quilts design system | Refero Styles\",\"description\":\"Explore MA Quilts's light E-commerce design system: Tangerine #f15a24, Sun Yellow #ffed8c colors, Manrope, Roboto Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6d4ef8f4-badd-4e3c-a168-0cc89c833b26\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6d4ef8f4-badd-4e3c-a168-0cc89c833b26\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"MA Quilts\",\"url\":\"https://maquilts.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6d4ef8f4-badd-4e3c-a168-0cc89c833b26#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e949756a-2875-497d-841e-19c919bfeeca.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e949756a-2875-497d-841e-19c919bfeeca.jpg\",\"caption\":\"Screenshot of MA Quilts\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e949756a-2875-497d-841e-19c919bfeeca.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"MA Quilts design system\",\"MA Quilts website design\",\"MA Quilts colors\",\"MA Quilts typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Tangerine\",\"Sun Yellow\",\"Blush Pink\",\"Midnight Navy\",\"Manrope\",\"Roboto Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"MA Quilts design system\"},{\"@type\":\"Thing\",\"name\":\"MA Quilts website design\"},{\"@type\":\"Thing\",\"name\":\"MA Quilts colors\"},{\"@type\":\"Thing\",\"name\":\"MA Quilts typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:55:29.337Z\",\"dateModified\":\"2026-04-30T03:55:29.337Z\"}]}19:T5d0,**Quick Color Reference**\n- text (headings, labels): #f15a24 Tangerine\n- text (body): #000000 Ink Black\n- text (secondary/captions): #333333 Graphite\n- background (canvas): #ffffff Paper White\n- background (hero/blocks): #ffed8c Sun Yellow, #ffcccc Blush Pink, #f4a398 Coral Wash\n- border (buttons, links): #f15a24 Tangerine, #050133 Midnight Navy\n- primary action: #f15a24 (outlined action border)\n\n**Example Component Prompts**\n1. *Outlined Pill Button*: Manrope weight 400 uppercase, 14-18px, Tangerine #f15a24 text on transparent background, 1-2px Tangerine solid border, 66px border-radius, 9px padding-top/bottom, 46px padding-left/right, no shadow.\n2. *Display Headline*: Manrope weight 200, 126px, line-height 1.00, letter-spacing 15.12px (0.12em), Tangerine #f15a24 fill, left-aligned, stacked vertically word per line.\n3. *Product Gallery Card*: photograph on flat Blush Pink #ffcccc background, 0px border-radius, no shadow, no padding — image bleeds to edge. Caption in Roboto Mono 14px uppercase Tangerine #f15a24, centered 30px below image.\n4. *Split Hero Block*: full-viewport, 50/50 split. Left: Sun Yellow #ffed8c background, display headline left-aligned. Right: Blush Pink #ffcccc background, product photograph of garment on wooden hanger, 0px border-radius, no padding.\n5. *Section Heading*: Manrope weight 700, 72px, line-height 1.00, letter-spacing 8.64px (0.12em), Tangerine #f15a24 fill, left-aligned, uppercase, 48-80px vertical breathing room above and below."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "The system has zero elevation. There are no drop shadows, no inner shadows, no glow effects, no blurred surfaces. Depth is communicated entirely through flat color blocks meeting at hard edges — Sun Yellow against Blush Pink, white against Tangerine text. This is a deliberate craft-zine choice: the quilts themselves are flat textiles, and the interface mirrors their two-dimensional material logic. Any new component must preserve this flatness; if a card or button needs separation from its background, the answer is always a 1-2px chromatic border, never a shadow."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f15a24",
+          "oklch": {
+            "c": 0.19632567858650551,
+            "h": 38.209439446511155,
+            "l": 0.66055404001537
+          },
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "heading",
+            "image",
+            "button",
+            "hero"
+          ],
+          "frequency": 494,
+          "confidence": 1,
+          "prominence": 18478002.767835595,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "hero/color": 2,
+            "link/color": 9,
+            "list/color": 12,
+            "other/fill": 2,
+            "image/color": 6,
+            "other/color": 47,
+            "button/color": 3,
+            "heading/color": 19,
+            "hero/borderColor": 8,
+            "link/borderColor": 36,
+            "list/borderColor": 48,
+            "image/borderColor": 24,
+            "other/borderColor": 187,
+            "button/borderColor": 12,
+            "heading/borderColor": 76,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 9644378.844296146,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 22
+          }
+        },
+        {
+          "hex": "#ffed8c",
+          "oklch": {
+            "c": 0.1194923808101587,
+            "h": 99.03463636332766,
+            "l": 0.9402244541254476
+          },
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 5336099.315801172,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 4231530.520612721,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#f4a398",
+          "oklch": {
+            "c": 0.09833760801956154,
+            "h": 27.973170011991865,
+            "l": 0.7922108531872644
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#797791",
+          "oklch": {
+            "c": 0.03958724248778627,
+            "h": 288.6253749092482,
+            "l": 0.5803090191599254
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1032143,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffcccc",
+          "oklch": {
+            "c": 0.0579856718687051,
+            "h": 18.299877983897535,
+            "l": 0.8896799762692101
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 616233.4202803855,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cce1e2",
+          "oklch": {
+            "c": 0.02241750951205967,
+            "h": 200.2323153602361,
+            "l": 0.8944602972292033
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 120238.72446564716,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4
+          }
+        },
+        {
+          "hex": "#050133",
+          "oklch": {
+            "c": 0.09484759447785257,
+            "h": 272.67899235994,
+            "l": 0.15425595562204877
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 80343.69871196443,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 8,
+            "other/color": 1,
+            "body/borderColor": 12,
+            "link/borderColor": 32,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#e2231f",
+          "oklch": {
+            "c": 0.22267795897640708,
+            "h": 28.318955831558025,
+            "l": 0.5857901555638568
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 51784,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#cd7e14",
+          "oklch": {
+            "c": 0.1428104923439014,
+            "h": 65.67210187674233,
+            "l": 0.6625503691165687
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 25881,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#efb72b",
+          "oklch": {
+            "c": 0.15547154845668557,
+            "h": 84.51096876485735,
+            "l": 0.8092757160055108
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 25881,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 21794.419197414973,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "image/color": 1,
+            "link/borderColor": 4,
+            "image/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.4644444252364894,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.84,
+          "background": "#ffffff",
+          "foreground": "#050133"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.74,
+          "background": "#ffed8c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.76,
+          "background": "#ffed8c",
+          "foreground": "#050133"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.44,
+          "background": "#cce1e2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.76,
+          "background": "#ffcccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.58,
+          "background": "#cce1e2",
+          "foreground": "#050133"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.94,
+          "background": "#ffcccc",
+          "foreground": "#050133"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.48,
+          "background": "#efb72b",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.84,
+          "background": "#efb72b",
+          "foreground": "#050133"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.68,
+          "background": "#ffed8c",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.54,
+          "background": "#f4a398",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.96,
+          "background": "#f4a398",
+          "foreground": "#050133"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.29,
+          "background": "#cce1e2",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.88,
+          "background": "#ffcccc",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.91,
+          "background": "#efb72b",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.34,
+          "background": "#f4a398",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.88,
+          "background": "#f15a24",
+          "foreground": "#050133"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.59,
+          "background": "#797791",
+          "foreground": "#050133"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 66,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "list",
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingRight|list"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "image",
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|image",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 51,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 54,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 66,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 115,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|hero",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 192,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Manrope",
+          "source": "google",
+          "weights": [
+            200,
+            400,
+            700
+          ],
+          "frequency": 112,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Roboto Mono",
+          "source": "google",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Roboto Mono",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Manrope",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 23,
+          "family": "Manrope",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 2.4,
+          "letterSpacing": 0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Manrope",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 2,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 29,
+          "family": "Manrope",
+          "weight": 700,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0.12,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "Manrope",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 9,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "hero"
+          ],
+          "frequency": 62,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Manrope",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 60,
+          "family": "Manrope",
+          "weight": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 68,
+          "family": "Manrope",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 68,
+          "family": "Manrope",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 4,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 68,
+          "family": "Manrope",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.4,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 72,
+          "family": "Manrope",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 2,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 126,
+          "family": "Manrope",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/64f98192-9eb4-403f-8674-d955caaa7f5d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e949756a-2875-497d-841e-19c919bfeeca.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6d4ef8f4-badd-4e3c-a168-0cc89c833b26#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"MA Quilts design system\",\"item\":\"https://styles.refero.design/style/6d4ef8f4-badd-4e3c-a168-0cc89c833b26\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6d4ef8f4-badd-4e3c-a168-0cc89c833b26#style-reference\",\"name\":\"MA Quilts design system reference\",\"headline\":\"MA Quilts design system | Refero Styles\",\"description\":\"Explore MA Quilts's light E-commerce design system: Tangerine #f15a24, Sun Yellow #ffed8c colors, Manrope, Roboto Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6d4ef8f4-badd-4e3c-a168-0cc89c833b26\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6d4ef8f4-badd-4e3c-a168-0cc89c833b26\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"MA Quilts\",\"url\":\"https://maquilts.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6d4ef8f4-badd-4e3c-a168-0cc89c833b26#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e949756a-2875-497d-841e-19c919bfeeca.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e949756a-2875-497d-841e-19c919bfeeca.jpg\",\"caption\":\"Screenshot of MA Quilts\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e949756a-2875-497d-841e-19c919bfeeca.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"MA Quilts design system\",\"MA Quilts website design\",\"MA Quilts colors\",\"MA Quilts typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Tangerine\",\"Sun Yellow\",\"Blush Pink\",\"Midnight Navy\",\"Manrope\",\"Roboto Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"MA Quilts design system\"},{\"@type\":\"Thing\",\"name\":\"MA Quilts website design\"},{\"@type\":\"Thing\",\"name\":\"MA Quilts colors\"},{\"@type\":\"Thing\",\"name\":\"MA Quilts typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:55:29.337Z\",\"dateModified\":\"2026-04-30T03:55:29.337Z\"}]}19:T5d0,**Quick Color Reference**\n- text (headings, labels): #f15a24 Tangerine\n- text (body): #000000 Ink Black\n- text (secondary/captions): #333333 Graphite\n- background (canvas): #ffffff Paper White\n- background (hero/blocks): #ffed8c Sun Yellow, #ffcccc Blush Pink, #f4a398 Coral Wash\n- border (buttons, links): #f15a24 Tangerine, #050133 Midnight Navy\n- primary action: #f15a24 (outlined action border)\n\n**Example Component Prompts**\n1. *Outlined Pill Button*: Manrope weight 400 uppercase, 14-18px, Tangerine #f15a24 text on transparent background, 1-2px Tangerine solid border, 66px border-radius, 9px padding-top/bottom, 46px padding-left/right, no shadow.\n2. *Display Headline*: Manrope weight 200, 126px, line-height 1.00, letter-spacing 15.12px (0.12em), Tangerine #f15a24 fill, left-aligned, stacked vertically word per line.\n3. *Product Gallery Card*: photograph on flat Blush Pink #ffcccc background, 0px border-radius, no shadow, no padding — image bleeds to edge. Caption in Roboto Mono 14px uppercase Tangerine #f15a24, centered 30px below image.\n4. *Split Hero Block*: full-viewport, 50/50 split. Left: Sun Yellow #ffed8c background, display headline left-aligned. Right: Blush Pink #ffcccc background, product photograph of garment on wooden hanger, 0px border-radius, no padding.\n5. *Section Heading*: Manrope weight 700, 72px, line-height 1.00, letter-spacing 8.64px (0.12em), Tangerine #f15a24 fill, left-aligned, uppercase, 48-80px vertical breathing room above and below."
+}

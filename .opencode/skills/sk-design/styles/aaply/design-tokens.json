@@ -1,0 +1,352 @@
+{
+  "color": {
+    "highlighter-yellow": {
+      "$value": "#e6e51e",
+      "$type": "color",
+      "$description": "Highlighter Yellow — Primary brand accent — logo mark, filled pill buttons, accent shapes inside product mockups, highlight washes on feature cards"
+    },
+    "annotation-red": {
+      "$value": "#f34646",
+      "$type": "color",
+      "$description": "Annotation Red — Red supporting accent for decorative details and low-frequency emphasis"
+    },
+    "signal-blue": {
+      "$value": "#466cf3",
+      "$type": "color",
+      "$description": "Signal Blue — Product mockup logos, icon accents, connector arrows inside the flow diagram — the cool counterweight to warm yellow"
+    },
+    "peach-wash": {
+      "$value": "#ff8562",
+      "$type": "color",
+      "$description": "Peach Wash — Soft tinted background blocks behind product mockup clusters — warm secondary surface that softens the gray canvas"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Primary text, dark filled buttons, icon strokes — the structural ink of the entire system"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, navigation bar background, product mockup canvas — every elevated surface"
+    },
+    "graphite-mist": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Graphite Mist — Page canvas background — the cool gray field that makes white cards appear to float"
+    },
+    "hairline-gray": {
+      "$value": "#e6e6e6",
+      "$type": "color",
+      "$description": "Hairline Gray — Subtle borders, secondary surface fills, dividers between content sections"
+    },
+    "shadow-gray": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Shadow Gray — Single soft drop shadow color (used at 20% opacity as rgba), muted text on dark surfaces"
+    },
+    "sunbeam": {
+      "$value": "#fff705",
+      "$type": "color",
+      "$description": "Sunbeam — Brighter yellow variant for highlighted feature containers — the outer glow on flow-diagram cards"
+    }
+  },
+  "font": {
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Times — detected in extracted data but not described by AI"
+    },
+    "poppins": {
+      "$value": "Poppins",
+      "$type": "fontFamily",
+      "$description": "Display and heading family — weight 700 for the hero headline and section titles, weight 500 for sub-headings. Its geometric roundness echoes the pill buttons and rounded cards, making type and shape feel like one material. Tight negative tracking at large sizes pulls letters together into a confident block."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Body and UI text — nav links, button labels, descriptions, form text. Inter's humanist proportions provide readable density at small sizes while weight 700 can punch up to match Poppins in nav and button contexts."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "27px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "27px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 27px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "27px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 27px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "31px",
+        "fontWeight": 500,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 31px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "34px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 34px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "52px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "57px",
+        "fontWeight": 700,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 57px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "57px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 57px"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "3xl-4": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-4"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "3000px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.2) 0px 10px 10px -5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — cool gray field with dot-grid texture"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Navigation bar, feature cards, product mockup containers"
+    },
+    "tinted-accent": {
+      "$value": "#ff8562",
+      "$type": "color",
+      "$description": "Surface level 2: Peach wash behind mockup clusters, subtle warmth"
+    },
+    "highlight-frame": {
+      "$value": "#fff705",
+      "$type": "color",
+      "$description": "Surface level 3: Yellow-bordered feature containers that frame the hero product flow"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://aaply.app",
+      "siteName": "Aaply",
+      "extractedAt": "2026-06-03T16:48:25.505Z",
+      "variant": "extended"
+    }
+  }
+}

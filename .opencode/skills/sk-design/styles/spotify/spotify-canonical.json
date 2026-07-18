@@ -1,0 +1,2262 @@
+{
+  "source": "https://styles.refero.design/style/cc59e195-fed0-4928-96d1-303752786073",
+  "uuid": "cc59e195-fed0-4928-96d1-303752786073",
+  "name": "Spotify",
+  "northStar": "Darkened record store at midnight — every surface recedes so the album art can glow.",
+  "capturedAt": "2026-07-18T07:13:03.381Z",
+  "meta": {
+    "url": "https://www.spotify.com",
+    "siteName": "Spotify",
+    "extractedAt": "2026-06-03T22:09:01.041Z",
+    "durationMs": 37042,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1924,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": "$undefined"
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 9999px border-radius for every button, tag, and search field — the pill shape is non-negotiable for Spotify's identity.",
+      "Apply 6px radius to all square content cards (albums, playlists) and 9999px for circular artist portraits — never mix radii within the same card type.",
+      "Reserve #1ed760 for the single most important action per screen — log in, play, confirm. Never use it for secondary links, metadata, or decorative elements.",
+      "Keep all text between 11px and 24px. The system is compact; no body copy should exceed 16px, and only section headings reach 24px.",
+      "Use #000000 for the page canvas, #121212 for content cards, and #1f1f1f for interactive controls — maintain this three-tier surface hierarchy on every screen.",
+      "Apply the 0px 8px 24px rgba(0,0,0,0.5) shadow only to content cards lifted off the canvas, never to navigation, buttons, or inputs.",
+      "Let album artwork and artist photography supply all chromatic color in the interface. The chrome itself should remain monochrome with #ffffff and #b3b3b3 as the only text colors."
+    ],
+    "donts": [
+      "Do not introduce a new chromatic accent color. The entire system runs on one green (#1ed760) plus the magenta-to-cobalt gradient for premium promotions.",
+      "Do not use sharp corners (<4px radius) on any interactive element. Pills and soft 6px squares are the only acceptable shapes.",
+      "Do not set body text below 11px or above 16px. The 4px size band is deliberate and compact.",
+      "Do not use #1ed760 for hover states on white or dark buttons — green is exclusively a primary action fill, never a state indicator.",
+      "Do not apply the premium magenta-to-cobalt gradient outside of subscription/promotional contexts. It is reserved for upsell moments.",
+      "Do not use white or light backgrounds for any surface. The system is dark-first; even elevated cards stay at #1f1f1f or below.",
+      "Do not add multi-layer shadow stacks, colored glows, or neumorphic effects. The single rgba(0,0,0,0.5) drop shadow is the only elevation treatment."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void Black",
+        "role": "Primary canvas, page background — deepest layer of the dark surface stack",
+        "group": "neutral"
+      },
+      {
+        "hex": "#121212",
+        "name": "Obsidian",
+        "role": "Card surfaces, raised panels, modal backgrounds — one step up from the canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Graphite",
+        "role": "Elevated controls, hover surfaces, filled button backgrounds — the interactive surface tier",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Ash Gray",
+        "role": "Input borders, subtle dividers, inactive control outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#767676",
+        "name": "Steel Mist",
+        "role": "Muted text, secondary nav, disabled labels — text that fades into the background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Cloud Gray",
+        "role": "Secondary body text, metadata, timestamps — readable but never competing with content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Primary text, headings, light icon fills, pill button fills — the highest-contrast element on the dark canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1ed760",
+        "name": "Spotify Green",
+        "role": "Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#af2896",
+        "name": "Premium Magenta",
+        "role": "Gradient anchor for premium promotional banners, subscription upsell surfaces",
+        "group": "brand"
+      },
+      {
+        "hex": "#509bf5",
+        "name": "Premium Cobalt",
+        "role": "Gradient terminus for premium promotional banners, feature callouts on subscription screens",
+        "group": "brand"
+      },
+      {
+        "hex": "#a16b1b",
+        "name": "Amber Glow",
+        "role": "Decorative warmth — album artwork occasionally carries this tonal range",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page uses a two-column layout: a fixed left sidebar (~340px) for 'Your Library' and navigation, and a flexible main content area that scrolls independently. The main area is organized as vertically stacked horizontal rails — each rail is a section heading (24px left-aligned, 'Show all' right-aligned) followed by a horizontally scrolling row of cards. Cards are uniform-width within each rail (albums: 180px squares, artists: 180px circles). Spacing between rails is 32px; between cards within a rail is 16px. The top bar is a full-width navigation strip with left-cluster icons/search and right-cluster text links and action buttons. A full-width gradient premium banner is sticky at the bottom of the viewport. There are no section dividers, background color changes, or visual separators between rails — the surface stays uniformly #000000, and hierarchy comes from typography and spacing alone.",
+    "imagery": "Imagery IS the product. The interface is a frame for user-consumed content: square album covers, circular artist portraits, and playlist cover art. Treatment is clean, uncropped (except to square or circle), no filters or overlays on content imagery. Card shadows (0px 8px 24px rgba(0,0,0,0.5)) give artwork dimensional lift off the void canvas. No illustrations, no abstract graphics, no lifestyle photography in the UI itself — the page is a gallery. Icons are minimal, monochromatic, and outlined or filled in white at reduced opacity. The only branded graphic element is the gradient premium banner.",
+    "similar": [
+      {
+        "why": "Same dark-first media browsing pattern with horizontal content rails, square album art cards, and a near-monochrome chrome that lets artwork supply the color",
+        "business": "Apple Music"
+      },
+      {
+        "why": "Identical rail-based home feed with circular artist images and square album tiles, dark background, and pill-shaped search/controls",
+        "business": "YouTube Music"
+      },
+      {
+        "why": "Same high-contrast dark interface with album-artwork-driven color and horizontal scro rails of square content tiles",
+        "business": "Tidal"
+      },
+      {
+        "why": "Dark canvas, compact dense card grids, pill navigation, and a near-monochrome interface that treats user-uploaded artwork as the primary visual content",
+        "business": "SoundCloud"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "6px",
+        "inputs": "4px",
+        "buttons": "9999px",
+        "artistImages": "9999px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "32px",
+      "cardPadding": "12px",
+      "pageMaxWidth": null
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void Canvas",
+        "level": 0,
+        "purpose": "Page background, left sidebar, footer areas"
+      },
+      {
+        "hex": "#121212",
+        "name": "Obsidian Card",
+        "level": 1,
+        "purpose": "Album cards, playlist prompt cards, content surfaces"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Graphite Control",
+        "level": 2,
+        "purpose": "Search bar, elevated buttons, hover states"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0px 8px 24px 0px rgba(0, 0, 0, 0.5)",
+        "element": "Album / Playlist Card"
+      }
+    ],
+    "gradients": [
+      {
+        "hex": "#af2896",
+        "name": "Premium Banner",
+        "role": "Full-width promotional strip for premium subscription — the only place the UI abandons monochrome",
+        "group": "brand",
+        "gradient": "linear-gradient(90deg, #af2896, #509bf5)"
+      }
+    ],
+    "northStar": "Darkened record store at midnight — every surface recedes so the album art can glow.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button — Green Primary",
+        "role": "High-emphasis action button",
+        "description": "Filled pill with #1ed760 background, #000000 text, weight 700 at 14px. 9999px border radius, 12px vertical / 32px horizontal padding. No border. Used for 'Log in' and confirmatory actions. Sits as the only chromatic button in the system."
+      },
+      {
+        "name": "Pill Button — White Secondary",
+        "role": "Medium-emphasis action",
+        "description": "Filled white pill (#ffffff) with #000000 text, weight 700 at 14px. 9999px radius, 12px 32px padding. Functions as the secondary CTA paired with the green primary — e.g. 'Sign up free' in the premium banner. High contrast against the dark canvas."
+      },
+      {
+        "name": "Pill Button — Ghost Outline",
+        "role": "Low-emphasis action",
+        "description": "Transparent fill with a 1px white border at reduced opacity, white text. 9999px radius. Used for secondary nav items and 'Create playlist' / 'Browse podcasts' CTAs inside the sidebar."
+      },
+      {
+        "name": "Album Card",
+        "role": "Content tile for albums, singles, playlists",
+        "description": "Square 1:1 album artwork on #121212 background, 6px border radius, 0px 8px 24px rgba(0,0,0,0.5) shadow. Title in #ffffff at 16px weight 400 below the image; artist/subtitle in #b3b3b3 at 14px. 12px padding around the text block. No border."
+      },
+      {
+        "name": "Artist Card",
+        "role": "Circular artist portrait with name",
+        "description": "1:1 image cropped to full circle (9999px radius) on transparent background. Artist name in #ffffff at 16px below, role label ('Artist') in #b3b3b3 at 14px. No card surface or shadow — the circular image floats directly on the void canvas."
+      },
+      {
+        "name": "Sidebar Library Panel",
+        "role": "Left-rail persistent navigation container",
+        "description": "#000000 background, full-height column, 8px horizontal padding. Houses 'Your Library' header with + icon, then scrollable list of playlist/artist shortcuts. No visible border between sidebar and main content — separation is achieved through the surface tier alone."
+      },
+      {
+        "name": "Playlist Prompt Card",
+        "role": "Onboarding call-out inside the library",
+        "description": "Rounded rectangle at 6px radius on #121212 with 0 8px 24px shadow. Bold heading in #ffffff at 16px, supporting copy in #b3b3b3 at 14px, and a pill ghost button below. 12px internal padding. Example patterns: 'Create your first playlist' and 'Let's find some podcasts to follow'."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global header",
+        "description": "Horizontal bar with #000000 background. Left cluster: home icon button, then search field. Right cluster: text nav links (Premium, Support, Download) at 14px weight 600 in #b3b3b3, vertical divider, 'Install App' link, 'Sign up' ghost button, and 'Log in' green pill. Search field is #1f1f1f with 9999px radius."
+      },
+      {
+        "name": "Search Field",
+        "role": "Global search input",
+        "description": "#1f1f1f background, 9999px radius (pill shape), #ffffff at low-opacity placeholder text, 14px SpotifyMixUI. Expands on focus. Left-aligned search icon in #b3b3b3. No visible border; the surface tier difference is the only separator."
+      },
+      {
+        "name": "Content Rail Header",
+        "role": "Section title bar",
+        "description": "Section name in #ffffff at 24px weight 700 (SpotifyMixUITitle), right-aligned 'Show all' link in #b3b3b3 at 14px weight 700. 12px vertical padding above the rail content. No background or border."
+      },
+      {
+        "name": "Horizontal Content Rail",
+        "role": "Scrollable card row",
+        "description": "Flex row of album or artist cards with 16px column gap. Overflow scrolls horizontally. Cards are fixed-width (albums ~180px, artists ~180px circles) with 6px radius for squares and full circle for portraits. No visible scrollbar."
+      },
+      {
+        "name": "Premium Banner",
+        "role": "Full-width subscription promotion",
+        "description": "Sticky bottom strip with 90deg linear-gradient from #af2896 to #509bf5. Left text block: 'Preview of Spotify' bold white + descriptive copy in white at reduced opacity. Right: 'Sign up free' white pill button at 9999px radius. No border or shadow — the gradient IS the visual weight."
+      },
+      {
+        "name": "Language Selector",
+        "role": "Footer utility control",
+        "description": "Ghost pill button at 9999px radius, #ffffff border, globe icon + 'English' label in #ffffff at 14px weight 700. 8px vertical / 12px horizontal padding. Sits in the bottom-left of the sidebar above the premium banner."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary UI typeface — handles all body copy, navigation, buttons, metadata, and small headings. Weight 400 carries body and labels, weight 600 appears in tab headers and emphasized metadata, weight 700 anchors section titles. The 4px size range (11–16px) keeps the entire interface at conversational volume, never editorial. Substitute: Inter, IBM Plex Sans, or DM Sans as freely available alternates with similar geometric warmth.",
+        "sizes": "11px, 12px, 13px, 14px, 16px",
+        "family": "SpotifyMixUI",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.20, 1.33, 1.50",
+        "substitute": "Inter"
+      },
+      {
+        "role": "Rail and section headings — the 24px bold treatment for 'Trending songs', 'Popular artists', etc. is the only typographic moment that breaks above body size. Substitutes should be a geometric grotesque with a tall x-height and even stroke contrast.",
+        "sizes": "24px",
+        "family": "SpotifyMixUITitle",
+        "weight": "700",
+        "lineHeight": "1.20",
+        "substitute": "Inter"
+      }
+    ],
+    "description": "Spotify operates as a darkened cinema for music: a near-black canvas lets album artwork and artist photography supply all the color, while the chrome itself stays nearly monochrome to keep focus on the content. The interface is compact, information-dense, and built around horizontal scrolling rails of square album cards and circular artist portraits. One signature vivid green (#1ed760) punctuates the system for primary actions, play states, and brand identity, while a purple-to-blue gradient appears only in premium promotional banners. Buttons are fully pill-shaped (9999px), cards carry a modest 6px radius with a generous drop shadow, and typography is a tight, geometric sans-serif that speaks at conversational volumes — never shouting, always functional.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cc59e195-fed0-4928-96d1-303752786073#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Spotify design system\",\"item\":\"https://styles.refero.design/style/cc59e195-fed0-4928-96d1-303752786073\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cc59e195-fed0-4928-96d1-303752786073#style-reference\",\"name\":\"Spotify design system reference\",\"headline\":\"Spotify design system | Refero Styles\",\"description\":\"Explore Spotify's dark Media design system: Void Black #000000, Obsidian #121212 colors, SpotifyMixUI, SpotifyMixUITitle typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/cc59e195-fed0-4928-96d1-303752786073\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cc59e195-fed0-4928-96d1-303752786073\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Spotify\",\"url\":\"https://www.spotify.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cc59e195-fed0-4928-96d1-303752786073#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/efba068a-928c-4217-b22b-4703c59d0bda.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/efba068a-928c-4217-b22b-4703c59d0bda.jpg\",\"caption\":\"Screenshot of Spotify\"},\"image\":\"https://images.refero.design/styles/refero.design/image/efba068a-928c-4217-b22b-4703c59d0bda.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Spotify design system\",\"Spotify website design\",\"Spotify colors\",\"Spotify typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Void Black\",\"Obsidian\",\"Graphite\",\"Ash Gray\",\"SpotifyMixUI\",\"SpotifyMixUITitle\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Spotify design system\"},{\"@type\":\"Thing\",\"name\":\"Spotify website design\"},{\"@type\":\"Thing\",\"name\":\"Spotify colors\"},{\"@type\":\"Thing\",\"name\":\"Spotify typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-29T00:46:03.114Z\",\"dateModified\":\"2026-04-29T00:46:03.114Z\"}]}19:T597,Quick Color Reference:\n- canvas: #000000\n- surface: #121212\n- elevated: #1f1f1f\n- border: #ffffff (at low opacity, ~5-10%)\n- text primary: #ffffff\n- text secondary: #b3b3b3\n- primary action: #1f1f1f (filled action)\n- premium gradient: linear-gradient(90deg, #af2896, #509bf5)\n\nExample Component Prompts:\n\n1. Album Card: 180px square with #121212 background, 6px border radius, 0px 8px 24px rgba(0,0,0,0.5) shadow. Square album artwork fills the card with no internal padding. Below the image: song title in #ffffff at 16px SpotifyMixUI weight 400, artist name in #b3b3b3 at 14px. 12px padding around the text block.\n\n2. Create a Primary Action Button: #1f1f1f background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. Artist Portrait Card: 180px diameter circle (9999px radius) with 1:1 artist image, no background, no shadow, no border. Below: artist name in #ffffff at 16px, 'Artist' label in #b3b3b3 at 14px.\n\n4. Search Field: #1f1f1f background, 9999px radius (pill), placeholder in #ffffff at 40% opacity at 14px, left-aligned search icon in #b3b3b3. Expands width on focus. No border.\n\n5. Premium Banner: Full-width strip, linear-gradient(90deg, #af2896, #509bf5) background. Left: 'Preview of Spotify' in #ffffff at 14px weight 700, subtitle in #ffffff at 60% opacity at 12px. Right: white pill button at 9999px radius, #000000 text at 14px weight 700, 12px 32px padding."
+      },
+      {
+        "title": "Chromatic Discipline",
+        "content": "The Spotify interface is a vessel for colorful content. The UI chrome is intentionally desaturated to near-monochrome so that album artwork, artist photography, and playlist cover art can provide all the visual energy. If a screen feels too gray, the answer is better content imagery, not more UI color. The only chromatic escapes from this rule are: (1) the single green #1ed760 for the primary action, (2) the magenta-to-cobalt gradient for premium upsell banners, and (3) the 'now playing' green indicator. Everything else is #000 through #ffffff."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is minimal and heavy when used — a single, generous drop shadow lifts content cards off the void canvas. No inset shadows, no multi-layer stacks. The system avoids relying on elevation for hierarchy; instead, the three-tier surface stack (#000 → #121212 → #1f1f1f) does the structural work, with shadows reserved for the content card moment."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7667552121346497
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon",
+            "card",
+            "nav",
+            "heading",
+            "link"
+          ],
+          "frequency": 3633,
+          "confidence": 1,
+          "prominence": 22002405.632686727,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "icon/fill": 18,
+            "nav/color": 97,
+            "body/color": 106,
+            "card/color": 2,
+            "icon/color": 19,
+            "link/color": 49,
+            "other/fill": 14,
+            "other/color": 370,
+            "button/color": 74,
+            "heading/color": 1,
+            "nav/borderColor": 388,
+            "body/borderColor": 424,
+            "card/borderColor": 8,
+            "icon/borderColor": 76,
+            "link/borderColor": 196,
+            "other/borderColor": 1479,
+            "button/borderColor": 296,
+            "heading/borderColor": 4,
+            "body/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "card",
+            "nav",
+            "icon"
+          ],
+          "frequency": 1055,
+          "confidence": 1,
+          "prominence": 13017534.778688557,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 114,
+            "nav/color": 2,
+            "body/color": 116,
+            "icon/color": 57,
+            "other/fill": 57,
+            "other/color": 1,
+            "nav/borderColor": 8,
+            "body/borderColor": 464,
+            "icon/borderColor": 228,
+            "other/borderColor": 4,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "body",
+            "input"
+          ],
+          "frequency": 108,
+          "confidence": 1,
+          "prominence": 5536983.914256755,
+          "properties": [
+            "boxShadow",
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 18,
+            "input/color": 2,
+            "other/boxShadow": 3,
+            "body/borderColor": 72,
+            "input/borderColor": 8,
+            "nav/backgroundColor": 3,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "icon",
+            "button",
+            "body",
+            "input",
+            "other",
+            "heading",
+            "nav",
+            "card",
+            "image"
+          ],
+          "frequency": 4186,
+          "confidence": 1,
+          "prominence": 688165.1819919343,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 13,
+            "icon/fill": 24,
+            "nav/color": 21,
+            "body/color": 99,
+            "card/color": 280,
+            "icon/color": 2,
+            "link/color": 67,
+            "other/fill": 12,
+            "image/color": 42,
+            "input/color": 1,
+            "other/color": 245,
+            "button/color": 58,
+            "heading/color": 11,
+            "nav/borderColor": 84,
+            "body/borderColor": 396,
+            "card/borderColor": 1120,
+            "icon/borderColor": 8,
+            "link/borderColor": 268,
+            "image/borderColor": 168,
+            "input/borderColor": 4,
+            "other/borderColor": 980,
+            "button/borderColor": 228,
+            "heading/borderColor": 44,
+            "nav/backgroundColor": 2,
+            "body/backgroundColor": 3,
+            "link/backgroundColor": 1,
+            "input/backgroundColor": 2,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#535353",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4422550585185069
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 555520,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#767676",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5658363307995767
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "card"
+          ],
+          "frequency": 58,
+          "confidence": 1,
+          "prominence": 173020.29736783047,
+          "properties": [
+            "boxShadow",
+            "borderColor",
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "button/color": 1,
+            "nav/borderColor": 32,
+            "other/boxShadow": 3,
+            "other/borderColor": 1,
+            "button/borderColor": 8,
+            "card/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#090909",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.13979123394671675
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 56,
+          "confidence": 1,
+          "prominence": 171556.96109661338,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "card/boxShadow": 56
+          }
+        },
+        {
+          "hex": "#1f1f1f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23929237775790413
+          },
+          "contexts": [
+            "button",
+            "input",
+            "nav",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 144932.88766280957,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 2,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 5,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "input",
+            "card"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 93233.83414242128,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 4,
+            "card/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#c80808",
+          "oklch": {
+            "c": 0.21226908624152283,
+            "h": 28.896117482345375,
+            "l": 0.525238948716584
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 58824,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#c0574a",
+          "oklch": {
+            "c": 0.13778722682311026,
+            "h": 29.069595244417375,
+            "l": 0.585686434285055
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 58824,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#667a7a",
+          "oklch": {
+            "c": 0.02347973907394707,
+            "h": 196.50409753950566,
+            "l": 0.5634175195644142
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 46616.91707121064,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#8e69a3",
+          "oklch": {
+            "c": 0.0959514913692211,
+            "h": 312.7538736803882,
+            "l": 0.580088729345253
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 46616.91707121064,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#508162",
+          "oklch": {
+            "c": 0.07209680741816275,
+            "h": 155.51539354447397,
+            "l": 0.5591299284470792
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 46616.91707121064,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#dc392b",
+          "oklch": {
+            "c": 0.20172632234362053,
+            "h": 29.405830564421656,
+            "l": 0.5916878840564032
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 46616.91707121064,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#e82018",
+          "oklch": {
+            "c": 0.2298036950977074,
+            "h": 29.034690448127332,
+            "l": 0.5948382548163091
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#303840",
+          "oklch": {
+            "c": 0.017810553737688806,
+            "h": 248.35567569250958,
+            "l": 0.3364652559433996
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0b8293",
+          "oklch": {
+            "c": 0.09468093085147808,
+            "h": 211.05444781293434,
+            "l": 0.5570879389604602
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c00868",
+          "oklch": {
+            "c": 0.21056437593859761,
+            "h": 358.97099873524115,
+            "l": 0.5262361989914148
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1078a8",
+          "oklch": {
+            "c": 0.11295527711894955,
+            "h": 236.3463747027697,
+            "l": 0.5424395781710557
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0038a8",
+          "oklch": {
+            "c": 0.18642501955734256,
+            "h": 262.241517657966,
+            "l": 0.39565098197124743
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#182840",
+          "oklch": {
+            "c": 0.04975563651910338,
+            "h": 258.27566182107176,
+            "l": 0.2755388495766863
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#9860a8",
+          "oklch": {
+            "c": 0.12328150574953155,
+            "h": 318.4916281172475,
+            "l": 0.5776079836647037
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#81765d",
+          "oklch": {
+            "c": 0.039014579349628806,
+            "h": 87.04394470424707,
+            "l": 0.5689823068357744
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#403030",
+          "oklch": {
+            "c": 0.023425988704411885,
+            "h": 18.42087488443833,
+            "l": 0.3272804930942741
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#786030",
+          "oklch": {
+            "c": 0.0725668302164965,
+            "h": 83.06410401667053,
+            "l": 0.5022988225151506
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#204868",
+          "oklch": {
+            "c": 0.07083149732031419,
+            "h": 245.2475022212583,
+            "l": 0.38863496992430024
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a16b1b",
+          "oklch": {
+            "c": 0.11298235831875837,
+            "h": 71.19951933226362,
+            "l": 0.5719085871233714
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2b8737",
+          "oklch": {
+            "c": 0.14501785322001481,
+            "h": 145.39995656642526,
+            "l": 0.551087109388116
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#306088",
+          "oklch": {
+            "c": 0.08349796389540942,
+            "h": 245.95478890913154,
+            "l": 0.4740357581934549
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#4f8400",
+          "oklch": {
+            "c": 0.15373066884025724,
+            "h": 131.93497414818313,
+            "l": 0.5543415065263322
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#305868",
+          "oklch": {
+            "c": 0.05221566071651716,
+            "h": 225.9400061387748,
+            "l": 0.4378209976190983
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#004080",
+          "oklch": {
+            "c": 0.12254189225151213,
+            "h": 254.67736923678507,
+            "l": 0.37630471107299546
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#405820",
+          "oklch": {
+            "c": 0.08676593035901749,
+            "h": 129.00983236790302,
+            "l": 0.4273395551353968
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a82838",
+          "oklch": {
+            "c": 0.1632991081209854,
+            "h": 19.272062980192366,
+            "l": 0.486436753133975
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#5477af",
+          "oklch": {
+            "c": 0.09605181091369308,
+            "h": 259.4901675543042,
+            "l": 0.5674114974425589
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#905850",
+          "oklch": {
+            "c": 0.07591182578935625,
+            "h": 28.692021622139805,
+            "l": 0.5212599113011768
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ac6432",
+          "oklch": {
+            "c": 0.11313346164874138,
+            "h": 53.09381938017532,
+            "l": 0.5750400661094169
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#7b7b16",
+          "oklch": {
+            "c": 0.11555457602070326,
+            "h": 109.59059365449454,
+            "l": 0.5650246575973383
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#de2e5c",
+          "oklch": {
+            "c": 0.20966560175468335,
+            "h": 12.154265139595292,
+            "l": 0.5941323511139501
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#5878a1",
+          "oklch": {
+            "c": 0.07384824552452922,
+            "h": 254.96271968331803,
+            "l": 0.5650723955749947
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#857827",
+          "oklch": {
+            "c": 0.10089143815115577,
+            "h": 100.0309216365562,
+            "l": 0.5688285304081945
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a16387",
+          "oklch": {
+            "c": 0.09291864787922112,
+            "h": 344.6244234564572,
+            "l": 0.5791964421000475
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6f74a4",
+          "oklch": {
+            "c": 0.07405989887550918,
+            "h": 279.19777533153064,
+            "l": 0.5739181405103413
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#703090",
+          "oklch": {
+            "c": 0.15755588280613778,
+            "h": 312.410860307274,
+            "l": 0.4424460847241559
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#302040",
+          "oklch": {
+            "c": 0.06033118381672097,
+            "h": 305.91132159868215,
+            "l": 0.27911616660653343
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#183860",
+          "oklch": {
+            "c": 0.08010414426697499,
+            "h": 255.29645023809724,
+            "l": 0.33889289969939895
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1b8857",
+          "oklch": {
+            "c": 0.12135264760678502,
+            "h": 157.95804368466344,
+            "l": 0.5558098332141652
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 29412,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1ed760",
+          "oklch": {
+            "c": 0.2123598637631542,
+            "h": 148.6695151473573,
+            "l": 0.769720537433771
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 56,
+          "confidence": 1,
+          "prominence": 13438.978592635563,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 56
+          }
+        },
+        {
+          "hex": "#292929",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2809402269547256
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 3200,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#c5c5c5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8234420009538047
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2064,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "input/color": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.005054785612526187,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.91,
+          "background": "#ffffff",
+          "foreground": "#090909"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#ffffff",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.48,
+          "background": "#1f1f1f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.93,
+          "background": "#302040",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.83,
+          "background": "#182840",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.55,
+          "background": "#292929",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#333333",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.47,
+          "background": "#403030",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.17,
+          "background": "#000000",
+          "foreground": "#c5c5c5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.9,
+          "background": "#303840",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.84,
+          "background": "#183860",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.54,
+          "background": "#c5c5c5",
+          "foreground": "#090909"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.94,
+          "background": "#1ed760",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.85,
+          "background": "#121212",
+          "foreground": "#c5c5c5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.38,
+          "background": "#1ed760",
+          "foreground": "#090909"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.27,
+          "background": "#004080",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#000000",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.85,
+          "background": "#0038a8",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.76,
+          "background": "#1ed760",
+          "foreground": "#121212"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "card",
+            "image",
+            "nav"
+          ],
+          "frequency": 145
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "body",
+            "nav"
+          ],
+          "frequency": 137
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 20
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 500,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.5) 0px 8px 24px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 56
+        },
+        {
+          "value": "rgb(18, 18, 18) 0px 1px 0px 0px, rgb(124, 124, 124) 0px 0px 0px 1px inset",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "input",
+            "link"
+          ],
+          "frequency": 39,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginTop|input",
+            "marginRight|input",
+            "marginBottom|input",
+            "marginLeft|input",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "heading",
+            "card",
+            "body"
+          ],
+          "frequency": 178,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginLeft|heading",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginBottom|other",
+            "paddingTop|other",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|body",
+            "columnGap|body",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "nav",
+            "link",
+            "card"
+          ],
+          "frequency": 259,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "marginTop",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|button",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingBottom|nav",
+            "paddingRight|button",
+            "marginTop|nav",
+            "marginBottom|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginBottom|other",
+            "marginRight|other",
+            "marginRight|link",
+            "rowGap|card",
+            "marginRight|body",
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "input",
+            "body",
+            "other",
+            "card"
+          ],
+          "frequency": 308,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingLeft|other",
+            "columnGap|other",
+            "rowGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "nav"
+          ],
+          "frequency": 35,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingRight",
+            "paddingTop",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other",
+            "paddingRight|button",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginRight|nav",
+            "marginLeft|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link",
+            "nav"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "marginRight|link",
+            "marginBottom|link",
+            "marginLeft|link",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "body",
+            "nav",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body",
+            "marginTop|nav",
+            "marginBottom|nav",
+            "paddingBottom|other",
+            "columnGap|other",
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|nav",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|input",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 162,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 172,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 56,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(175, 40, 150), rgb(80, 155, 245))",
+        "colors": [
+          "rgb(175, 40, 150)",
+          "rgb(80, 155, 245)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgba(0, 0, 0, 0.6) 0%, rgb(18, 18, 18) 100%)",
+        "colors": [
+          "rgba(0, 0, 0, 0.6)",
+          "rgb(18, 18, 18)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "SpotifyMixUI",
+          "source": "custom",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 1737,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "SpotifyMixUITitle",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 15,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "SpotifyMixUI",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "SpotifyMixUI",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 12,
+          "family": "SpotifyMixUI",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "SpotifyMixUI",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "SpotifyMixUI",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "input",
+            "body",
+            "icon"
+          ],
+          "frequency": 233,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SpotifyMixUI",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "nav"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SpotifyMixUI",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 269,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SpotifyMixUI",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "button",
+            "body",
+            "input",
+            "card",
+            "nav",
+            "heading",
+            "image"
+          ],
+          "frequency": 1155,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SpotifyMixUI",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SpotifyMixUI",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body",
+            "heading",
+            "nav"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "SpotifyMixUITitle",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/bd011f49-f4a9-4526-9edc-6011c829cd7b.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/efba068a-928c-4217-b22b-4703c59d0bda.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cc59e195-fed0-4928-96d1-303752786073#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Spotify design system\",\"item\":\"https://styles.refero.design/style/cc59e195-fed0-4928-96d1-303752786073\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cc59e195-fed0-4928-96d1-303752786073#style-reference\",\"name\":\"Spotify design system reference\",\"headline\":\"Spotify design system | Refero Styles\",\"description\":\"Explore Spotify's dark Media design system: Void Black #000000, Obsidian #121212 colors, SpotifyMixUI, SpotifyMixUITitle typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/cc59e195-fed0-4928-96d1-303752786073\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cc59e195-fed0-4928-96d1-303752786073\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Spotify\",\"url\":\"https://www.spotify.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cc59e195-fed0-4928-96d1-303752786073#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/efba068a-928c-4217-b22b-4703c59d0bda.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/efba068a-928c-4217-b22b-4703c59d0bda.jpg\",\"caption\":\"Screenshot of Spotify\"},\"image\":\"https://images.refero.design/styles/refero.design/image/efba068a-928c-4217-b22b-4703c59d0bda.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Spotify design system\",\"Spotify website design\",\"Spotify colors\",\"Spotify typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Void Black\",\"Obsidian\",\"Graphite\",\"Ash Gray\",\"SpotifyMixUI\",\"SpotifyMixUITitle\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Spotify design system\"},{\"@type\":\"Thing\",\"name\":\"Spotify website design\"},{\"@type\":\"Thing\",\"name\":\"Spotify colors\"},{\"@type\":\"Thing\",\"name\":\"Spotify typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-29T00:46:03.114Z\",\"dateModified\":\"2026-04-29T00:46:03.114Z\"}]}19:T597,Quick Color Reference:\n- canvas: #000000\n- surface: #121212\n- elevated: #1f1f1f\n- border: #ffffff (at low opacity, ~5-10%)\n- text primary: #ffffff\n- text secondary: #b3b3b3\n- primary action: #1f1f1f (filled action)\n- premium gradient: linear-gradient(90deg, #af2896, #509bf5)\n\nExample Component Prompts:\n\n1. Album Card: 180px square with #121212 background, 6px border radius, 0px 8px 24px rgba(0,0,0,0.5) shadow. Square album artwork fills the card with no internal padding. Below the image: song title in #ffffff at 16px SpotifyMixUI weight 400, artist name in #b3b3b3 at 14px. 12px padding around the text block.\n\n2. Create a Primary Action Button: #1f1f1f background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. Artist Portrait Card: 180px diameter circle (9999px radius) with 1:1 artist image, no background, no shadow, no border. Below: artist name in #ffffff at 16px, 'Artist' label in #b3b3b3 at 14px.\n\n4. Search Field: #1f1f1f background, 9999px radius (pill), placeholder in #ffffff at 40% opacity at 14px, left-aligned search icon in #b3b3b3. Expands width on focus. No border.\n\n5. Premium Banner: Full-width strip, linear-gradient(90deg, #af2896, #509bf5) background. Left: 'Preview of Spotify' in #ffffff at 14px weight 700, subtitle in #ffffff at 60% opacity at 12px. Right: white pill button at 9999px radius, #000000 text at 14px weight 700, 12px 32px padding."
+}

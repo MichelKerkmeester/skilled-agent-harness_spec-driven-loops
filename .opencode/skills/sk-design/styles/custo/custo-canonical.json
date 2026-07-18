@@ -1,0 +1,1102 @@
+{
+  "source": "https://styles.refero.design/style/3ad131ed-b603-49a3-9491-7407db6cb423",
+  "uuid": "3ad131ed-b603-49a3-9491-7407db6cb423",
+  "name": "Custo",
+  "northStar": "Gunmetal gallery with monolithic type. A muted gray-green showroom where a single dark object and 57px type do all the talking.",
+  "capturedAt": "2026-07-18T08:10:57.023Z",
+  "meta": {
+    "url": "https://custo.io",
+    "siteName": "Custo",
+    "extractedAt": "2026-06-03T18:09:43.299Z",
+    "durationMs": 31436,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 289,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set the 57px display wordmark in Paper White directly on the Canvas Gunmetal #9ea29f hero so the type reads as part of the product silhouette rather than floating above it",
+      "Use a single 1px border in Obsidian #000000 or Paper White #ffffff for all interactive elements — never introduce fills, gradients, or shadows on buttons or cards",
+      "Apply 31.35px pill radius exclusively to the primary action button ('Order now'); use 8px radius for every other input, card, and secondary button",
+      "Maintain the 110px vertical section gap between content bands and alternate between Canvas Gunmetal and Paper White to create the gallery rhythm",
+      "Keep body text at 19px / 1.42 and reserve 30px+ sizes for actual section headings — never use the display scale for body copy or UI labels",
+      "Source product photography on Anodized Graphite #4b514d backgrounds so the mailbox material and the UI surface share the same value",
+      "Enable \"kern\" and \"liga\" OpenType features on all PP Neue Montreal text to preserve the geometric spacing at large display sizes"
+    ],
+    "donts": [
+      "Do not introduce any chromatic color — no blues, reds, greens, or purples for buttons, accents, or status states; the system is intentionally achromatic",
+      "Do not use drop shadows, inner shadows, or glow effects on cards, buttons, or images; depth comes from the gunmetal/white alternation only",
+      "Do not set the 57px display type in a condensed, italic, or different font family — PP Neue Montreal Medium at 400 is the only display voice",
+      "Do not use borders thicker than 1px; the entire system relies on hairline structure and thicker rules would break the gallery feel",
+      "Do not place the primary action button as a filled solid — all CTAs remain ghost/outlined so the gunmetal canvas stays visible",
+      "Do not use background colors other than Canvas Gunmetal, Paper White, or Anodized Graphite for full-bleed sections",
+      "Do not break the 4px spacing base; pad and gap values must snap to multiples of 4 (18, 20, 24, 32, 40)"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#9ea29f",
+        "name": "Canvas Gunmetal",
+        "role": "Hero and feature-section background — the warm gray-green tint distinguishes Custo from generic white SaaS canvases and reads as architectural concrete rather than digital surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Primary text, hairline borders, icon strokes — the highest-contrast ink in the system, used for headings and structural dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Body section backgrounds, reversed text on gunmetal canvas, text on the dark product photography",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4b514d",
+        "name": "Anodized Graphite",
+        "role": "Dark surface for product photography, secondary headings, and elevated text — echoes the mailbox finish so the UI and product share a material",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8e9194",
+        "name": "Brushed Steel",
+        "role": "Muted body text, list dividers, secondary icon strokes — sits between Paper White and Obsidian for inline metadata and subdued links",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a7aaad",
+        "name": "Linen Mist",
+        "role": "Light border and divider color for headings and section rules — a hairline tone that never competes with Obsidian structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d8d8d8",
+        "name": "Aluminum Hairline",
+        "role": "Input field borders, footer separators, the lightest structural line — appears only where a near-invisible boundary is needed",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page model is a vertically stacked single column with a max content width of ~1280px centered in the viewport. The hero breaks full-bleed as Canvas Gunmetal #9ea29f from edge to edge, with the mailbox photograph centered-right and the 57px CUSTO® wordmark anchoring the bottom. Below the hero, sections alternate: a 2-column text block (small caption left, large heading right), followed by a horizontal 3-card product image grid, then 2-column text-image rows where body copy alternates sides. Section gaps are 110px, creating strong vertical breathing room. Navigation is a single transparent top bar that becomes Paper White on scroll. The CES badge is a fixed bottom-right floater. The overall rhythm is gallery-like: few elements per section, large type, wide gaps, and the product photograph as the visual punctuation between text bands.",
+    "imagery": "Imagery is exclusively product photography of the Custo mailbox, shot in three modes: full-body hero portrait on the gunmetal canvas, lifestyle shots showing a person interacting with the unit, and extreme close-ups of the scanning interface and LED ring. All photography shares a desaturated, high-key treatment with the mailbox's matte black finish as the consistent visual anchor. No illustrations, no abstract graphics, no stock photography. Photographs are contained within 8px-radius cards or used full-bleed behind the 57px display wordmark. The CES award badge is the only piece of multicolor artwork on the entire site.",
+    "similar": [
+      {
+        "why": "Same product-gallery presentation — large wordmark overlapping a single dark product photo, achromatic palette, oversized geometric sans-serif as the primary visual device",
+        "business": "Teenage Engineering"
+      },
+      {
+        "why": "Shared achromatic industrial product language with the display wordmark treated as a graphic element rather than just a brand mark, monochrome hero with a single physical object",
+        "business": "Nothing.tech"
+      },
+      {
+        "why": "Product-as-hero photography on a muted neutral background with a tall display headline and minimal UI chrome — the product's own material finish drives the visual system",
+        "business": "Dyson"
+      },
+      {
+        "why": "Same restrained typographic scale, gunmetal-and-white alternation, and the wordmark deployed at architectural size as a near-watermark across hero sections",
+        "business": "Bowers & Wilkins"
+      },
+      {
+        "why": "Premium hardware brand that lets the product photograph and one oversized display type carry the entire page — no decorative UI elements, no chromatic accents",
+        "business": "Bang & Olufsen"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "images": "8px",
+        "inputs": "8px",
+        "buttons": "31.35px (pill) for primary action; 8px for secondary"
+      },
+      "elementGap": "24px",
+      "sectionGap": "110px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#9ea29f",
+        "name": "Gunmetal Hero Canvas",
+        "level": 1,
+        "purpose": "Full-bleed hero and key feature band backgrounds"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 2,
+        "purpose": "Default content section background — body copy, text-image rows, footer"
+      },
+      {
+        "hex": "#4b514d",
+        "name": "Anodized Graphite",
+        "level": 3,
+        "purpose": "Dark elevated surface, product photography backdrop, reversed heading text"
+      }
+    ],
+    "northStar": "Gunmetal gallery with monolithic type. A muted gray-green showroom where a single dark object and 57px type do all the talking.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 15,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.38
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading",
+        "size": 38,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "display",
+        "size": 57,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Pill Button (Primary Action)",
+        "role": "Hero and feature-section call-to-action — 'Order now', 'Discover our smart mailbox'",
+        "description": "Transparent background, 1px white border on gunmetal canvas or 1px Obsidian border on white sections, Paper White or Obsidian text, 31.35px pill radius, ~16px vertical / ~28px horizontal padding, PP Neue Montreal at 16px / 1.62. No fill state; hover inverts fill and text color."
+      },
+      {
+        "name": "Text Link with Arrow",
+        "role": "Inline section CTA that bridges body copy to the next scroll position",
+        "description": "Underlined text link in Obsidian or Paper White (reversed on gunmetal) with a right-arrow glyph. 15–16px PP Neue Montreal, 1.43–1.62 line-height, 15px padding-bottom for the underline to breathe."
+      },
+      {
+        "name": "Display Wordmark",
+        "role": "Hero-scale brand statement — the CUSTO® lockup at architectural size",
+        "description": "57px PP Neue Montreal Medium, line-height 1.00, set in Paper White on the gunmetal hero so it bleeds into the product silhouette. Registered-trademark glyph sits to the right as a circle-stroke mark."
+      },
+      {
+        "name": "Product Image Card",
+        "role": "Horizontal scroll/grid of mailbox photography — lifestyle, close-up, in-situ",
+        "description": "8px border-radius, Paper White or transparent surface, 1px Linen Mist border optional, full-bleed photograph with no overlay text. Three-up grid on desktop, single column on mobile."
+      },
+      {
+        "name": "Two-Column Text Block",
+        "role": "Content sections pairing a small caption heading on the left with body copy on the right",
+        "description": "Left column: 15–16px caption label in Obsidian. Right column: 30–38px heading in Obsidian, 19px body in Obsidian, line-height 1.42. 24px column gap, 110px vertical section gap."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent header across all pages",
+        "description": "Transparent over hero, becomes Paper White on scroll. Wordmark 'CUSTO®' left in 15–16px PP Neue Montreal, nav links centered (Smart mailboxes, How it works, The app, About) at 15–16px, Order now pill button right. 32px vertical padding."
+      },
+      {
+        "name": "Text Input Field",
+        "role": "Form input for email capture, delivery address, or app registration",
+        "description": "1px Aluminum Hairline (#d8d8d8) border, 8px radius, 16px vertical / 32px horizontal padding, 15–16px PP Neue Montreal placeholder in Brushed Steel. No visible focus ring; active state deepens border to Obsidian."
+      },
+      {
+        "name": "Feature Heading (Hero Scale)",
+        "role": "Second-tier display statement — 'Receive the world at your doorstep.'",
+        "description": "38px PP Neue Montreal, line-height 1.15, Paper White on gunmetal hero or Obsidian on white sections. Two-line wrap at 30–38 character column."
+      },
+      {
+        "name": "Section Caption Label",
+        "role": "Small kicker text introducing each content block — 'Never let a parcel delivery rule your entire schedule again.'",
+        "description": "15–16px PP Neue Montreal, line-height 1.43, Obsidian, max-width ~280px, left-aligned to mark the start of a section before the larger heading arrives."
+      },
+      {
+        "name": "Award Badge",
+        "role": "Third-party trust mark — CES Innovation Awards 2024",
+        "description": "Fixed bottom-right floater, ~56px square, full-color source artwork preserved (blue/yellow), 4px radius. No border or shadow; acts as a single decorative punctuation mark."
+      },
+      {
+        "name": "Footer",
+        "role": "Minimal site footer",
+        "description": "Paper White background, 1px Linen Mist top border, 15px PP Neue Montreal body text in Brushed Steel, single row of links. No social icons, no logo repeat, no newsletter form."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family type system used for everything from body copy to 57px display statements — the geometric uniformity across weights is the signature choice, avoiding any secondary or display-specific font so the wordmark 'CUSTO®' set at 57px reads as the same typographic family as a 15px form input label",
+        "sizes": "15px, 16px, 19px, 20px, 30px, 38px, 57px",
+        "family": "PP Neue Montreal",
+        "weight": "400 (Medium)",
+        "lineHeight": "1.00–1.62 (tighter as size grows; 1.00 at 57px, 1.62 at 15–16px)",
+        "substitute": "Inter, Manrope, or DM Sans at matching optical sizes",
+        "letterSpacing": "normal across the entire scale",
+        "fontFeatureSettings": "\"kern\" on, \"liga\" on"
+      }
+    ],
+    "description": "Custo operates as an industrial product gallery: a warm gunmetal canvas hosts the physical product while oversized display typography serves as the primary visual ornament. The system is rigorously achromatic — zero chromatic colors — letting the dark anodized mailbox and the geometric weight of a single sans-serif carry all brand personality. Every screen balances generous negative space against one monumental typographic statement, with the brand wordmark recurring as a near-architectural element. Surfaces are flat and matte; depth is implied by the product's own reflectivity rather than drop shadows or gradients.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3ad131ed-b603-49a3-9491-7407db6cb423#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Custo design system\",\"item\":\"https://styles.refero.design/style/3ad131ed-b603-49a3-9491-7407db6cb423\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3ad131ed-b603-49a3-9491-7407db6cb423#style-reference\",\"name\":\"Custo design system reference\",\"headline\":\"Custo design system | Refero Styles\",\"description\":\"Explore Custo's light Other design system: Canvas Gunmetal #9ea29f, Obsidian #000000 colors, PP Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3ad131ed-b603-49a3-9491-7407db6cb423\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3ad131ed-b603-49a3-9491-7407db6cb423\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Custo\",\"url\":\"https://custo.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3ad131ed-b603-49a3-9491-7407db6cb423#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b1464b23-b7ff-47f0-bc7b-bceb21c536ac.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b1464b23-b7ff-47f0-bc7b-bceb21c536ac.jpg\",\"caption\":\"Screenshot of Custo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b1464b23-b7ff-47f0-bc7b-bceb21c536ac.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Custo design system\",\"Custo website design\",\"Custo colors\",\"Custo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Canvas Gunmetal\",\"Obsidian\",\"Paper White\",\"Anodized Graphite\",\"PP Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Custo design system\"},{\"@type\":\"Thing\",\"name\":\"Custo website design\"},{\"@type\":\"Thing\",\"name\":\"Custo colors\"},{\"@type\":\"Thing\",\"name\":\"Custo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:42:50.792Z\",\"dateModified\":\"2026-04-30T01:42:50.792Z\"}]}19:T71d,**Quick Color Reference**\n- background: Canvas Gunmetal #9ea29f (hero) / Paper White #ffffff (content)\n- text: Obsidian #000000 (primary) / Brushed Steel #8e9194 (muted)\n- border: Obsidian #000000 (structural) / Aluminum Hairline #d8d8d8 (inputs)\n- accent: Anodized Graphite #4b514d (dark surface, product photography)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. **Hero Section** — Full-bleed Canvas Gunmetal #9ea29f background. Display wordmark 'CUSTO®' at 57px PP Neue Montreal Medium weight 400, line-height 1.00, color Paper White #ffffff, positioned bottom-center to overlap a centered product photograph. Secondary headline 'Receive the world at your doorstep.' at 38px / 1.15 in Paper White, top-left. Ghost pill button 'Order now' at 16px PP Neue Montreal, 1px Paper White border, 31.35px radius, 16px 28px padding.\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n3. **Product Image Card Grid** — Three cards in a row, each 8px border-radius, 1px Linen Mist #a7aaad border, Paper White background padding 20px around a full-bleed product photograph. 24px column gap, 110px vertical gap from the preceding text block.\n4. **Two-Column Content Row** — Left column 280px wide: 15px PP Neue Montreal caption label in Obsidian #000000. Right column flex: 38px heading (1.15 line-height) followed by 19px body copy (1.42 line-height) in Obsidian #000000. 24px column gap, 110px section gap top and bottom, Paper White #ffffff background.\n5. **Email Input Field** — 1px Aluminum Hairline #d8d8d8 border, 8px radius, 16px vertical / 32px horizontal padding. Placeholder text 'Your email address' in 15px PP Neue Montreal, color Brushed Steel #8e9194. Active state deepens border to Obsidian #000000."
+      }
+    ],
+    "elevationPhilosophy": "Custo avoids shadows entirely. Depth is communicated through three flat surface values (Canvas Gunmetal → Paper White → Anodized Graphite) and the product's own photographic reflectivity. This is a deliberate material decision — the UI behaves like a printed catalog spread, not a digital app."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "body",
+            "heading",
+            "link",
+            "image",
+            "list",
+            "footer",
+            "input",
+            "button",
+            "icon"
+          ],
+          "frequency": 668,
+          "confidence": 1,
+          "prominence": 126928095.80674188,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 11,
+            "hero/color": 1,
+            "icon/color": 4,
+            "link/color": 8,
+            "list/color": 10,
+            "other/fill": 4,
+            "image/color": 13,
+            "input/color": 2,
+            "other/color": 73,
+            "button/color": 1,
+            "footer/color": 1,
+            "heading/color": 11,
+            "body/borderColor": 44,
+            "hero/borderColor": 4,
+            "icon/borderColor": 16,
+            "link/borderColor": 32,
+            "list/borderColor": 40,
+            "image/borderColor": 52,
+            "other/borderColor": 290,
+            "button/borderColor": 4,
+            "footer/borderColor": 3,
+            "heading/borderColor": 44
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "button",
+            "body",
+            "hero",
+            "image",
+            "heading"
+          ],
+          "frequency": 334,
+          "confidence": 1,
+          "prominence": 30395616.29681874,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "hero/color": 1,
+            "link/color": 6,
+            "list/color": 5,
+            "other/fill": 14,
+            "image/color": 5,
+            "other/color": 35,
+            "button/color": 1,
+            "heading/color": 5,
+            "body/borderColor": 24,
+            "hero/borderColor": 4,
+            "link/borderColor": 24,
+            "list/borderColor": 20,
+            "image/borderColor": 20,
+            "other/borderColor": 140,
+            "button/borderColor": 4,
+            "heading/borderColor": 20
+          }
+        },
+        {
+          "hex": "#d8d8d8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8822383241093221
+          },
+          "contexts": [
+            "other",
+            "footer",
+            "input"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 3867200.4940477316,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 8,
+            "other/borderColor": 5,
+            "footer/borderColor": 1
+          }
+        },
+        {
+          "hex": "#4b514d",
+          "oklch": {
+            "c": 0.010083420755700645,
+            "h": 156.77830525471074,
+            "l": 0.42815987101573605
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3623695,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#9ea29f",
+          "oklch": {
+            "c": 0.0062618763643414,
+            "h": 153.7267175068824,
+            "l": 0.7080722125281869
+          },
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8e9194",
+          "oklch": {
+            "c": 0.005667709914361342,
+            "h": 247.9120533293068,
+            "l": 0.6551006835715937
+          },
+          "contexts": [
+            "other",
+            "body",
+            "list",
+            "link",
+            "icon",
+            "image"
+          ],
+          "frequency": 263,
+          "confidence": 1,
+          "prominence": 712129.9894162072,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "body/color": 8,
+            "link/color": 16,
+            "list/color": 22,
+            "other/fill": 5,
+            "image/color": 1,
+            "other/color": 3,
+            "body/borderColor": 32,
+            "link/borderColor": 64,
+            "list/borderColor": 88,
+            "image/borderColor": 4,
+            "other/borderColor": 12
+          }
+        },
+        {
+          "hex": "#a7aaad",
+          "oklch": {
+            "c": 0.005504111941943568,
+            "h": 247.89979873808818,
+            "l": 0.7365023246864945
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 77,
+          "confidence": 1,
+          "prominence": 591688.9086770355,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "other/color": 10,
+            "heading/color": 3,
+            "body/borderColor": 12,
+            "other/borderColor": 37,
+            "heading/borderColor": 12
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0038426334914754006,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.73,
+          "background": "#d8d8d8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9,
+          "background": "#a7aaad",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.13,
+          "background": "#4b514d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.12,
+          "background": "#9ea29f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.7,
+          "background": "#d8d8d8",
+          "foreground": "#4b514d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.48,
+          "background": "#4b514d",
+          "foreground": "#a7aaad"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.14,
+          "background": "#9ea29f",
+          "foreground": "#4b514d"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.59,
+          "background": "#9ea29f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.58,
+          "background": "#4b514d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.57,
+          "background": "#4b514d",
+          "foreground": "#8e9194"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.23,
+          "background": "#9ea29f",
+          "foreground": "#8e9194"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#9ea29f",
+          "foreground": "#a7aaad"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "input",
+            "other",
+            "button"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 31.35,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|image",
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "list"
+          ],
+          "frequency": 15,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "marginBottom|body",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "input",
+            "button",
+            "list"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginRight|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 37,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 37,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 41,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 54,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 62,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 76,
+          "contexts": [
+            "other",
+            "hero",
+            "footer"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 110,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|footer",
+            "marginTop|footer"
+          ]
+        },
+        {
+          "value": 115,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero"
+          ]
+        },
+        {
+          "value": 182,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 278,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "PP Neue Montreal Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 265,
+          "fontFeatureSettings": [
+            "\"kern\", \"liga\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 15,
+          "family": "PP Neue Montreal Medium",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PP Neue Montreal Medium",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "hero",
+            "image",
+            "list",
+            "footer",
+            "icon"
+          ],
+          "frequency": 149,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "PP Neue Montreal Medium",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "image",
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.42,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "PP Neue Montreal Medium",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "button",
+            "other",
+            "body",
+            "link",
+            "heading"
+          ],
+          "frequency": 69,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "PP Neue Montreal Medium",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.62,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "PP Neue Montreal Medium",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "button",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "PP Neue Montreal Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "PP Neue Montreal Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 57,
+          "family": "PP Neue Montreal Medium",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c15df272-7173-4fcb-aa50-e363305de7c0.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b1464b23-b7ff-47f0-bc7b-bceb21c536ac.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3ad131ed-b603-49a3-9491-7407db6cb423#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Custo design system\",\"item\":\"https://styles.refero.design/style/3ad131ed-b603-49a3-9491-7407db6cb423\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3ad131ed-b603-49a3-9491-7407db6cb423#style-reference\",\"name\":\"Custo design system reference\",\"headline\":\"Custo design system | Refero Styles\",\"description\":\"Explore Custo's light Other design system: Canvas Gunmetal #9ea29f, Obsidian #000000 colors, PP Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3ad131ed-b603-49a3-9491-7407db6cb423\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3ad131ed-b603-49a3-9491-7407db6cb423\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Custo\",\"url\":\"https://custo.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3ad131ed-b603-49a3-9491-7407db6cb423#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b1464b23-b7ff-47f0-bc7b-bceb21c536ac.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b1464b23-b7ff-47f0-bc7b-bceb21c536ac.jpg\",\"caption\":\"Screenshot of Custo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b1464b23-b7ff-47f0-bc7b-bceb21c536ac.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Custo design system\",\"Custo website design\",\"Custo colors\",\"Custo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Canvas Gunmetal\",\"Obsidian\",\"Paper White\",\"Anodized Graphite\",\"PP Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Custo design system\"},{\"@type\":\"Thing\",\"name\":\"Custo website design\"},{\"@type\":\"Thing\",\"name\":\"Custo colors\"},{\"@type\":\"Thing\",\"name\":\"Custo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:42:50.792Z\",\"dateModified\":\"2026-04-30T01:42:50.792Z\"}]}19:T71d,**Quick Color Reference**\n- background: Canvas Gunmetal #9ea29f (hero) / Paper White #ffffff (content)\n- text: Obsidian #000000 (primary) / Brushed Steel #8e9194 (muted)\n- border: Obsidian #000000 (structural) / Aluminum Hairline #d8d8d8 (inputs)\n- accent: Anodized Graphite #4b514d (dark surface, product photography)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. **Hero Section** — Full-bleed Canvas Gunmetal #9ea29f background. Display wordmark 'CUSTO®' at 57px PP Neue Montreal Medium weight 400, line-height 1.00, color Paper White #ffffff, positioned bottom-center to overlap a centered product photograph. Secondary headline 'Receive the world at your doorstep.' at 38px / 1.15 in Paper White, top-left. Ghost pill button 'Order now' at 16px PP Neue Montreal, 1px Paper White border, 31.35px radius, 16px 28px padding.\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n3. **Product Image Card Grid** — Three cards in a row, each 8px border-radius, 1px Linen Mist #a7aaad border, Paper White background padding 20px around a full-bleed product photograph. 24px column gap, 110px vertical gap from the preceding text block.\n4. **Two-Column Content Row** — Left column 280px wide: 15px PP Neue Montreal caption label in Obsidian #000000. Right column flex: 38px heading (1.15 line-height) followed by 19px body copy (1.42 line-height) in Obsidian #000000. 24px column gap, 110px section gap top and bottom, Paper White #ffffff background.\n5. **Email Input Field** — 1px Aluminum Hairline #d8d8d8 border, 8px radius, 16px vertical / 32px horizontal padding. Placeholder text 'Your email address' in 15px PP Neue Montreal, color Brushed Steel #8e9194. Active state deepens border to Obsidian #000000."
+}

@@ -1,0 +1,1632 @@
+{
+  "source": "https://styles.refero.design/style/537641a0-5a24-4203-ae9b-cd29516aa3f8",
+  "uuid": "537641a0-5a24-4203-ae9b-cd29516aa3f8",
+  "name": "Atoms",
+  "northStar": "white atelier with one blue spark",
+  "capturedAt": "2026-07-18T08:04:20.762Z",
+  "meta": {
+    "url": "https://atoms.dev",
+    "siteName": "Atoms",
+    "extractedAt": "2026-06-03T18:28:58.687Z",
+    "durationMs": 29678,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1250,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #4267ff only for primary actions, link text, and the brand wordmark — never as a background wash or decorative fill",
+      "Set border-radius to 9999px for every button, badge, and pill-shaped interactive element",
+      "Set border-radius to 24px for all card-level containers and 12px for preview images inside them",
+      "Use IBM Plex Serif 48px/600 exactly once per page — the hero headline — and never elsewhere",
+      "Apply the dual-layer shadow (0px 8px 24px -4px at 0.08 + 0px 4px 4px at 0.04) to any card that lifts off the #e5e7eb canvas",
+      "Build on the three-layer surface stack: #e5e7eb page → #ffffff cards → #f6f6f6 recessed wells",
+      "Use #0d0d0d (not #000000) for body text and primary borders — the near-black is deliberately softer"
+    ],
+    "donts": [
+      "Don't introduce additional accent colors — the system is intentionally monochromatic with one blue voice",
+      "Don't use square corners or small radii (<8px) on any interactive element",
+      "Don't use #4267ff on backgrounds larger than 120px wide — the chromatic note must stay small and intentional",
+      "Don't apply the serif font to subheadings, card titles, or anywhere below 48px",
+      "Don't use drop shadows stronger than the defined dual-layer stack — heavy shadows would break the soft, flat character",
+      "Don't use #000000 for text — always prefer #0d0d0d for warmth and #3c3c3c for secondary copy",
+      "Don't stack more than one Primary Pill Button per viewport quadrant — the blue should never compete with itself"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#4267ff",
+        "name": "Atoms Blue",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#425ce1",
+        "name": "Atoms Blue Deep",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff5f56",
+        "name": "Mac Red",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffbd2e",
+        "name": "Mac Yellow",
+        "role": "Decorative window-chrome dot on template preview thumbnails",
+        "group": "accent"
+      },
+      {
+        "hex": "#27c93f",
+        "name": "Mac Green",
+        "role": "Decorative window-chrome dot on template preview thumbnails",
+        "group": "accent"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Canvas Mist",
+        "role": "Page-level background, hairline dividers, icon strokes — the dominant neutral that defines the system's floor",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Surface White",
+        "role": "Card backgrounds, input fields, elevated surfaces — the top layer of the surface stack",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f6f6f6",
+        "name": "Surface Fog",
+        "role": "Subtle recessed surfaces, secondary card backgrounds, image overlays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0d0d0d",
+        "name": "Ink Black",
+        "role": "Primary text, heading text, icon fills, input borders — near-black rather than pure black for less harshness",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Maximum-contrast text, dark template preview surfaces, image elements requiring true black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3c3c3c",
+        "name": "Charcoal",
+        "role": "Secondary text, badge labels, muted icon fills — sits between Ink Black and the mid-grays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#767676",
+        "name": "Mid Gray",
+        "role": "Tertiary text, placeholder text, disabled button labels, input helper text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b0b0b0",
+        "name": "Silver",
+        "role": "Muted icon fills, decorative text, low-emphasis UI marks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d1d1d1",
+        "name": "Border Gray",
+        "role": "Subtle borders and dividers where Canvas Mist feels too prominent",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Centered, max-width ~1200px container. Hero is a vertically stacked single column: avatar row → display headline → subtitle → input card → suggestion chips. The page then transitions to a template gallery (3-column grid with category filter pills above) and a testimonial wall (3-4 column masonry of equal-height cards). Navigation is a minimal top bar — logo left, page links center-left, auth actions right. No sidebar, no sticky header effects, no full-bleed sections. Sections are separated by 64px vertical gaps on the #e5e7eb canvas, creating a rhythm of white cards floating in gray space.",
+    "imagery": "Template preview thumbnails dominate the visual content: product screenshots framed as Mac desktop windows (rounded-corner browser/app chrome with red/yellow/green traffic-light dots). No lifestyle photography, no abstract illustrations, no hero imagery. The avatar row above the headline is the only burst of warm, human color — seven distinct-hue circular faces with white ring borders. Product screenshots inside templates are dark and content-rich, creating contrast against the white card containers. Icon style is small, monoline, and appears as inline glyphs within suggestion chips and social proof rows.",
+    "similar": [
+      {
+        "why": "Same near-monochrome canvas (#f6f6f6 / white cards), one blue accent, generous 24px card radii, and centered max-width hero composition",
+        "business": "Vercel"
+      },
+      {
+        "why": "Shares the minimal color philosophy with a single chromatic action color, pill-shaped controls, and Plex-family geometric sans-serif typography",
+        "business": "Linear"
+      },
+      {
+        "why": "Same centered hero with input-as-hero-element pattern, dark template preview cards on light canvas, and pill-shaped CTA buttons",
+        "business": "Framer"
+      },
+      {
+        "why": "Mac-window-chrome aesthetic on product previews (traffic-light dots), compact pill badges for categories, and a quiet achromatic palette with selective color",
+        "business": "Raycast"
+      },
+      {
+        "why": "Similar template-card layout with rounded images and titles below, social-proof stat row pattern, and light gray canvas supporting white floating cards",
+        "business": "Cal.com"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "24px",
+        "small": "8px",
+        "badges": "9999px",
+        "images": "12px",
+        "inputs": "8px",
+        "buttons": "9999px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#e5e7eb",
+        "name": "Canvas Mist",
+        "level": 0,
+        "purpose": "Page background — the floor of the entire interface"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Surface White",
+        "level": 1,
+        "purpose": "Cards, input fields, elevated content blocks"
+      },
+      {
+        "hex": "#f6f6f6",
+        "name": "Surface Fog",
+        "level": 2,
+        "purpose": "Recessed wells, secondary panels, subtle background differentiation"
+      },
+      {
+        "hex": "#0d0d0d",
+        "name": "Ink Black",
+        "level": 3,
+        "purpose": "Active/selected pill badges, dark contrast surfaces (used sparingly)"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(13, 13, 13, 0.08) 0px 8px 24px -4px, rgba(13, 13, 13, 0.04) 0px 4px 4px 0px",
+        "element": "Card (template preview, testimonial)"
+      },
+      {
+        "style": "rgba(13, 13, 13, 0.04) 0px 1px 4px 0px",
+        "element": "Subtle UI element (input border, divider)"
+      }
+    ],
+    "northStar": "white atelier with one blue spark",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.57
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.49
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading-lg",
+        "size": 32,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1.17
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Pill Button",
+        "role": "Main action trigger — Sign up, Start for free",
+        "description": "Background #4267ff, text #ffffff, IBM Plex Sans 14px/500, padding 8px 16px, border-radius 9999px (fully pill-shaped). The chromatic exception in a grayscale system; appears at most once or twice per screen to maintain visual scarcity."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Secondary navigation action — Log in",
+        "description": "Transparent background, text #0d0d0d, IBM Plex Sans 14px/500, padding 8px 16px, border-radius 9999px. The quiet companion to the Primary Pill Button."
+      },
+      {
+        "name": "Nav Link",
+        "role": "Top navigation items — Pricing, Resources",
+        "description": "Text #0d0d0d, IBM Plex Sans 14px/500, padding 4px 12px, border-radius 9999px, optional dropdown caret. No underline, no bold — the weight difference between nav and body text is 500 vs 400, barely perceptible."
+      },
+      {
+        "name": "Hero Prompt Input",
+        "role": "Central product input on landing — 'Create a SaaS subscription app…'",
+        "description": "Background #ffffff, border 1px #e5e7eb, border-radius 8px, padding 20px, IBM Plex Sans 16px/400 placeholder text in #767676. The input sits inside a container card with a + add button and the Primary Pill Button aligned right. Container padding 24px, border-radius 8px."
+      },
+      {
+        "name": "Template Preview Card",
+        "role": "Showcase of pre-built app templates",
+        "description": "Background #ffffff, border-radius 12px on the preview image (24px on the outer card), Mac window chrome (three traffic-light dots in #ff5f56 / #ffbd2 / #27c93f) rendered above the image. Title in IBM Plex Sans 16px/600 #0d0d0d below the image. Shadow: rgba(13,13,13,0.08) 0px 8px 24px -4px + rgba(13,13,13,0.04) 0px 4px 4px 0px."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "User quote display — grid of 3–4 columns",
+        "description": "Background #ffffff, border-radius 24px (generous), padding 24px, shadow stack same as template card. Header row: platform icon (Discord/X/Reddit/Product Hunt logo in 24px square with 4px radius) + title in IBM Plex Sans 16px/600 with the word 'Atoms' highlighted in #4267ff. Body in IBM Plex Sans 14px/400 #3c3c3c. Footer: avatar (24px circle) + name in 14px/500."
+      },
+      {
+        "name": "Pill Badge Tag",
+        "role": "Category filters — SaaS Apps, E-commerce, Internal Tools, Personal Projects",
+        "description": "Background transparent, border 1px #e5e7eb, text #0d0d0d, IBM Plex Sans 14px/500, padding 4px 12px, border-radius 9999px. Active state: background #0d0d0d, text #ffffff. The 'SaaS Apps' active state is the only dark pill in the system."
+      },
+      {
+        "name": "Suggestion Chip",
+        "role": "Quick-build prompts below input — AI Tool, Internal Tool, SaaS, Dashboard, E-commerce, Game",
+        "description": "Background transparent, text #0d0d0d, IBM Plex Sans 14px/400, inline icon (16px) + label, padding 4px 8px, no border, no radius. Arranged in a horizontal scrollable row separated by 4px gaps."
+      },
+      {
+        "name": "Avatar Stack",
+        "role": "Social proof element above hero headline",
+        "description": "Seven circular avatars (32px) with 8px overlap, each in a distinct hue (orange, gray, pink, blue, teal, green, purple) with 2px white border. The only place where the palette breaks its achromatic discipline — deliberately human and warm above the clinical headline."
+      },
+      {
+        "name": "Social Proof Stat Row",
+        "role": "Trust metrics — 100K+ GitHub Star, 1,000,000+ Builders, 1# on ProductHunt",
+        "description": "Horizontal row, IBM Plex Sans 16px/400 #767676 for labels, italic 16px/500 for numbers, small icon (16px) preceding each. Vertically separated by generous horizontal padding (48px+). No card, no background — sits directly on #e5e7eb canvas."
+      },
+      {
+        "name": "Brand Wordmark",
+        "role": "Logo in top-left",
+        "description": "Dark atom/gear icon (20px) + 'Atoms' text in IBM Plex Sans 16px/600 #0d0d0d. The icon is the only brand mark element; no separate colored logo treatment."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The workhorse — body, buttons, nav, cards, badges, inputs, small headings. Plex Sans brings a technical, slightly geometric quality that reads as 'builder tool' rather than 'marketing page.' 400 for body, 500 for nav and button labels, 600 for card titles and section headings.",
+        "sizes": "12px, 14px, 16px, 18px, 20px, 24px, 32px, 48px",
+        "family": "IBM Plex Sans",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.17–1.67",
+        "substitute": "Inter, DM Sans, system-ui"
+      },
+      {
+        "role": "The hero headline voice — used at 48px/600 exactly once on the page. A serif on a dev-tool site is anti-convention; it gives the main promise editorial weight while the rest of the UI stays in the sans-serif workshop tone. This single serif moment is the brand's typographic signature.",
+        "sizes": "48px",
+        "family": "IBM Plex Serif",
+        "weight": "600",
+        "lineHeight": "1.17",
+        "substitute": "Source Serif Pro, Lora, Georgia"
+      }
+    ],
+    "description": "Atoms operates as a quiet workshop: near-white canvas, one confident blue-violet accent, and typography that lets content breathe rather than perform. The system is almost achromatic — gray is the structural material, and the single chromatic note appears only when something is actionable, linked, or wants to be named. Surfaces are flat and soft, cards float on barely-there shadows, and radii swing between fully pill-shaped (9999px) and generously rounded (24px) — never sharp, never heavy. IBM Plex Sans carries the UI at compact sizes while Plex Serif surfaces once, at 48px, giving the hero headline a literary weight that the product photography (template thumbnails with Mac chrome) deliberately undercuts with its playful, colorful content.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/537641a0-5a24-4203-ae9b-cd29516aa3f8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Atoms design system\",\"item\":\"https://styles.refero.design/style/537641a0-5a24-4203-ae9b-cd29516aa3f8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/537641a0-5a24-4203-ae9b-cd29516aa3f8#style-reference\",\"name\":\"Atoms design system reference\",\"headline\":\"Atoms design system | Refero Styles\",\"description\":\"Explore Atoms's light Dev Tools design system: Atoms Blue #4267ff, Atoms Blue Deep #425ce1 colors, IBM Plex Sans, IBM Plex Serif typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/537641a0-5a24-4203-ae9b-cd29516aa3f8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/537641a0-5a24-4203-ae9b-cd29516aa3f8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Atoms\",\"url\":\"https://atoms.dev\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/537641a0-5a24-4203-ae9b-cd29516aa3f8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9727ba52-c2eb-4757-b80a-028e33895f78.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9727ba52-c2eb-4757-b80a-028e33895f78.jpg\",\"caption\":\"Screenshot of Atoms\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9727ba52-c2eb-4757-b80a-028e33895f78.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Atoms design system\",\"Atoms website design\",\"Atoms colors\",\"Atoms typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Atoms Blue\",\"Atoms Blue Deep\",\"Mac Red\",\"Mac Yellow\",\"IBM Plex Sans\",\"IBM Plex Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Atoms design system\"},{\"@type\":\"Thing\",\"name\":\"Atoms website design\"},{\"@type\":\"Thing\",\"name\":\"Atoms colors\"},{\"@type\":\"Thing\",\"name\":\"Atoms typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-03-06T18:18:48.000Z\",\"dateModified\":\"2026-03-06T18:18:48.000Z\"}]}19:T55b,## Quick Color Reference\n- Page background: #e5e7eb\n- Card surface: #ffffff\n- Primary text: #0d0d0d\n- Secondary text: #3c3c3c\n- Muted/placeholder text: #767676\n- Hairline borders: #e5e7eb\n- Accent / brand blue: #4267ff\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n**Template Preview Card**: White card on #e5e7eb canvas. Border-radius 24px, padding 24px below image. Image area (border-radius 12px) shows a Mac window with traffic-light dots (#ff5f56, #ffbd2e, #27c93f) in the top-left corner over a dark product screenshot. Title below in IBM Plex Sans 16px weight 600 #0d0d0d. Apply dual shadow: rgba(13,13,13,0.08) 0px 8px 24px -4px + rgba(13,13,13,0.04) 0px 4px 4px 0px.\n\n**Testimonial Card**: White card, border-radius 24px, padding 24px. Header: 24px platform icon (border-radius 4px) + title in IBM Plex Sans 16px/600 with the word 'Atoms' in #4267ff. Body text in IBM Plex Sans 14px/400 #3c3c3c. Footer: 24px circular avatar + name in 14px/500 #0d0d0d. Same dual shadow as template card.\n\n\n**Category Filter Pill**: Transparent background, 1px border #e5e7eb, text #0d0d0d, IBM Plex Sans 14px/500, padding 4px 12px, border-radius 9999px. Active state inverts: background #0d0d0d, text #ffffff, no border."
+      },
+      {
+        "title": "Typographic Signature",
+        "content": "The system's most distinctive choice is the single-use IBM Plex Serif at 48px/600 for the hero headline. Every other piece of text — subheadings, body, nav, buttons, card titles — stays in IBM Plex Sans. This creates a one-moment-of-warmth effect: the promise ('Turn ideas into products that sell') feels editorial and human, while the rest of the interface feels like a clean workshop. An AI agent should never apply Plex Serif to subheadings, card titles, or any text below 32px — doing so dilutes the signature."
+      },
+      {
+        "title": "Avatar Stack Rule",
+        "content": "Above the hero headline sits a horizontal row of 7 circular avatars in distinct hues (warm orange, cool gray, pink, blue, teal, green, purple), each 32px with 2px white borders and 8px overlap. This is the only place the system allows chromatic diversity outside the brand blue. The purpose is human warmth and social proof — the faces break the grayscale discipline to signal 'real people built things here.' Replicate this only above the primary headline on landing pages, never within content sections."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is built from a near-black shadow color (not the common blue-tinted shadow) to stay tonally consistent with the grayscale system. The dual-layer stack — a soft ambient blur plus a tight contact shadow — creates depth without warmth, so cards feel like they were placed on the canvas rather than floating above it. Never use a single harsh drop shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "button",
+            "image",
+            "heading",
+            "card",
+            "hero"
+          ],
+          "frequency": 3872,
+          "confidence": 1,
+          "prominence": 226293044.3504221,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "image",
+            "card",
+            "body",
+            "icon",
+            "badge",
+            "hero",
+            "button"
+          ],
+          "frequency": 564,
+          "confidence": 1,
+          "prominence": 173567775.22595045,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f6f6f6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9731459330353415
+          },
+          "contexts": [
+            "other",
+            "image",
+            "card"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 104867767.79426497,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "icon",
+            "card",
+            "badge",
+            "link"
+          ],
+          "frequency": 190,
+          "confidence": 1,
+          "prominence": 7045576.676024747,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0d0d0d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.15906639920862536
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "button",
+            "heading",
+            "input",
+            "card"
+          ],
+          "frequency": 213,
+          "confidence": 1,
+          "prominence": 2507368.2592914947,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d1d1d1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8600763783392623
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1443895.629661896,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4267ff",
+          "oklch": {
+            "c": 0.22896281338202845,
+            "h": 267.8776854070893,
+            "l": 0.5800799717614195
+          },
+          "contexts": [
+            "button",
+            "body",
+            "heading",
+            "card"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 955477.7159095283,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#232324",
+          "oklch": {
+            "c": 0.0018504754351687238,
+            "h": 286.26848722204977,
+            "l": 0.2565491365281873
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 699411,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3c3c3c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.354638706436495
+          },
+          "contexts": [
+            "icon",
+            "body",
+            "badge",
+            "card",
+            "other"
+          ],
+          "frequency": 316,
+          "confidence": 1,
+          "prominence": 646056.4429836404,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#767676",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5653219730817737
+          },
+          "contexts": [
+            "button",
+            "other",
+            "icon",
+            "body",
+            "input"
+          ],
+          "frequency": 58,
+          "confidence": 1,
+          "prominence": 108417.11139973874,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b0b0b0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7575255224176611
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 69,
+          "confidence": 1,
+          "prominence": 71614.54276998498,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#425ce1",
+          "oklch": {
+            "c": 0.20351736058186495,
+            "h": 269.69444359606956,
+            "l": 0.5356574917774088
+          },
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 49632.78506707485,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b88ade",
+          "oklch": {
+            "c": 0.12825615897134593,
+            "h": 308.5831462047011,
+            "l": 0.708792685565447
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 41209.02501875006,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8890ce",
+          "oklch": {
+            "c": 0.09224482524360274,
+            "h": 277.9488748370665,
+            "l": 0.6710636677573939
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 41209.02501875006,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff7fa7",
+          "oklch": {
+            "c": 0.16011516270037354,
+            "h": 1.8944227552431157,
+            "l": 0.7527269950827739
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 41209.02501875006,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffba6c",
+          "oklch": {
+            "c": 0.12407541104106347,
+            "h": 68.09893054899092,
+            "l": 0.8375941380989511
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 41209.02501875006,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e6ddc8",
+          "oklch": {
+            "c": 0.02973056475697176,
+            "h": 87.55052220749349,
+            "l": 0.8990963537985996
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 41209.02501875006,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2ba3ff",
+          "oklch": {
+            "c": 0.16861932390297257,
+            "h": 247.35740166920039,
+            "l": 0.6957883689322131
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 41209.02501875006,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2dbb5c",
+          "oklch": {
+            "c": 0.17886192959745273,
+            "h": 149.43368208451412,
+            "l": 0.6978311106792021
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 41209.02501875006,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff5f56",
+          "oklch": {
+            "c": 0.1965299517149691,
+            "h": 26.686345580313567,
+            "l": 0.6934516008805208
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 72,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffbd2e",
+          "oklch": {
+            "c": 0.1618254400739136,
+            "h": 81.06463157010958,
+            "l": 0.8377226308531867
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 72,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#27c93f",
+          "oklch": {
+            "c": 0.21930287322095246,
+            "h": 144.6323149471041,
+            "l": 0.7304404626857728
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 72,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.016047320499401593,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.44,
+          "background": "#0d0d0d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.43,
+          "background": "#f6f6f6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.98,
+          "background": "#f6f6f6",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.7,
+          "background": "#232324",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.7,
+          "background": "#e5e7eb",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.54,
+          "background": "#e6ddc8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.53,
+          "background": "#f6f6f6",
+          "foreground": "#232324"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.38,
+          "background": "#e6ddc8",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.75,
+          "background": "#d1d1d1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.73,
+          "background": "#d1d1d1",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.68,
+          "background": "#e5e7eb",
+          "foreground": "#232324"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.57,
+          "background": "#ffbd2e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.49,
+          "background": "#ffba6c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.63,
+          "background": "#ffbd2e",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.62,
+          "background": "#e6ddc8",
+          "foreground": "#232324"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.56,
+          "background": "#ffba6c",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.03,
+          "background": "#ffffff",
+          "foreground": "#3c3c3c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.28,
+          "background": "#d1d1d1",
+          "foreground": "#232324"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "other",
+            "badge",
+            "button",
+            "body"
+          ],
+          "frequency": 76
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 36
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 31
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 17
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "body",
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 999,
+          "contexts": [
+            "button",
+            "card"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(13, 13, 13, 0.08) 0px 8px 24px -4px, rgba(13, 13, 13, 0.04) 0px 4px 4px 0px",
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 33
+        },
+        {
+          "value": "rgba(13, 13, 13, 0.04) 0px 1px 4px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 52,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 120,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 33,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 198,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 82,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 132,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 42,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 238,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 56,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 38,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 44,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "rowGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 90,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 240,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(66, 127, 165), rgb(241, 238, 214))",
+        "colors": [
+          "rgb(66, 127, 165)",
+          "rgb(241, 238, 214)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(45deg, rgb(210, 185, 255), rgb(239, 203, 255) 20%, rgb(243, 230, 249) 60%, rgba(255, 255, 255, 0))",
+        "colors": [
+          "rgb(210, 185, 255)",
+          "rgb(239, 203, 255)",
+          "rgb(243, 230, 249)",
+          "rgba(255, 255, 255, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(-60deg, rgba(255, 255, 255, 0), rgb(95, 123, 244) 0px, rgb(109, 218, 255) 40%)",
+        "colors": [
+          "rgba(255, 255, 255, 0)",
+          "rgb(95, 123, 244)",
+          "rgb(109, 218, 255)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "IBM Plex Sans",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 1042,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "IBM Plex Serif",
+          "source": "google",
+          "weights": [
+            600
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "IBM Plex Sans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "image",
+            "button",
+            "card",
+            "badge",
+            "hero"
+          ],
+          "frequency": 761,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Sans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "badge",
+            "icon",
+            "other"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Sans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Sans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "body",
+            "card",
+            "icon",
+            "other",
+            "link"
+          ],
+          "frequency": 103,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "IBM Plex Sans",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.49,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "IBM Plex Sans",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "card"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "card"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "IBM Plex Sans",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "card"
+          ],
+          "frequency": 49,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "IBM Plex Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "IBM Plex Sans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "IBM Plex Sans",
+          "weight": 600,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "IBM Plex Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "IBM Plex Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "IBM Plex Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "IBM Plex Serif",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e5d9fe5c-e7fa-49af-80d1-f1b745250c2b.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/9727ba52-c2eb-4757-b80a-028e33895f78.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/537641a0-5a24-4203-ae9b-cd29516aa3f8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Atoms design system\",\"item\":\"https://styles.refero.design/style/537641a0-5a24-4203-ae9b-cd29516aa3f8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/537641a0-5a24-4203-ae9b-cd29516aa3f8#style-reference\",\"name\":\"Atoms design system reference\",\"headline\":\"Atoms design system | Refero Styles\",\"description\":\"Explore Atoms's light Dev Tools design system: Atoms Blue #4267ff, Atoms Blue Deep #425ce1 colors, IBM Plex Sans, IBM Plex Serif typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/537641a0-5a24-4203-ae9b-cd29516aa3f8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/537641a0-5a24-4203-ae9b-cd29516aa3f8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Atoms\",\"url\":\"https://atoms.dev\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/537641a0-5a24-4203-ae9b-cd29516aa3f8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9727ba52-c2eb-4757-b80a-028e33895f78.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9727ba52-c2eb-4757-b80a-028e33895f78.jpg\",\"caption\":\"Screenshot of Atoms\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9727ba52-c2eb-4757-b80a-028e33895f78.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Atoms design system\",\"Atoms website design\",\"Atoms colors\",\"Atoms typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Atoms Blue\",\"Atoms Blue Deep\",\"Mac Red\",\"Mac Yellow\",\"IBM Plex Sans\",\"IBM Plex Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Atoms design system\"},{\"@type\":\"Thing\",\"name\":\"Atoms website design\"},{\"@type\":\"Thing\",\"name\":\"Atoms colors\"},{\"@type\":\"Thing\",\"name\":\"Atoms typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-03-06T18:18:48.000Z\",\"dateModified\":\"2026-03-06T18:18:48.000Z\"}]}19:T55b,## Quick Color Reference\n- Page background: #e5e7eb\n- Card surface: #ffffff\n- Primary text: #0d0d0d\n- Secondary text: #3c3c3c\n- Muted/placeholder text: #767676\n- Hairline borders: #e5e7eb\n- Accent / brand blue: #4267ff\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n**Template Preview Card**: White card on #e5e7eb canvas. Border-radius 24px, padding 24px below image. Image area (border-radius 12px) shows a Mac window with traffic-light dots (#ff5f56, #ffbd2e, #27c93f) in the top-left corner over a dark product screenshot. Title below in IBM Plex Sans 16px weight 600 #0d0d0d. Apply dual shadow: rgba(13,13,13,0.08) 0px 8px 24px -4px + rgba(13,13,13,0.04) 0px 4px 4px 0px.\n\n**Testimonial Card**: White card, border-radius 24px, padding 24px. Header: 24px platform icon (border-radius 4px) + title in IBM Plex Sans 16px/600 with the word 'Atoms' in #4267ff. Body text in IBM Plex Sans 14px/400 #3c3c3c. Footer: 24px circular avatar + name in 14px/500 #0d0d0d. Same dual shadow as template card.\n\n\n**Category Filter Pill**: Transparent background, 1px border #e5e7eb, text #0d0d0d, IBM Plex Sans 14px/500, padding 4px 12px, border-radius 9999px. Active state inverts: background #0d0d0d, text #ffffff, no border."
+}

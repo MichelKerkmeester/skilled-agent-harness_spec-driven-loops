@@ -1,0 +1,1365 @@
+{
+  "source": "https://styles.refero.design/style/981d90e9-7be3-497f-a899-52a0a9ec16f4",
+  "uuid": "981d90e9-7be3-497f-a899-52a0a9ec16f4",
+  "name": "(dot)connect",
+  "northStar": "Swiss engineering blueprint with a single ember",
+  "capturedAt": "2026-07-18T10:11:06.334Z",
+  "meta": {
+    "url": "https://dotconnect.vc",
+    "siteName": "(dot)connect",
+    "extractedAt": "2026-06-03T15:06:24.539Z",
+    "durationMs": 39915,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1175,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Ember (#fd5321) for exactly one CTA per viewport — it loses all power if it appears twice on screen",
+      "Set headline letter-spacing to -0.025em at 72px+ and relax it to +0.010em at body sizes — this asymmetry is the typographic signature",
+      "Apply 20px radius to all cards, 24px to all buttons, 44-48px to pill-shaped elements — never mix 8px and 20px in the same component family",
+      "Separate sections with 96px vertical breathing room on bone canvas — the whitespace IS the layout system",
+      "Use the Arrow Pill Button (dark fill, circular icon) for inline 'more' actions, not the Ember CTA — reserve Ember for top-right header and key conversion moments",
+      "Enable 'dlig', 'ss02', 'ss08' font features on all AeonikPro text — these stylistic alternates are part of the brand voice",
+      "Use #c1c4c2 hairline borders (1px) for structure instead of shadows — the system is border-driven, not elevation-driven"
+    ],
+    "donts": [
+      "Don't use shadows or drop-shadow effects — the system has no elevation language; depth comes from tonal surface shifts",
+      "Don't place Ember on Ember or Ember on #001011 surfaces without testing contrast — the orange can vibrate uncomfortably against the dark charcoal",
+      "Don't set body text below 16px or above 21px — the type scale skips small sizes deliberately to maintain confidence",
+      "Don't use #007aff as a filled background — it is a ghost/outlined accent only; filled blue breaks the monochrome-ember logic",
+      "Don't add decorative gradients, glows, or blur effects — the system is flat, bordered, and high-contrast",
+      "Don't right-align body paragraphs — body text is always left-aligned; only display headlines may be centered",
+      "Don't use icons with stroke weights under 1.5px or over 2px — the icon system matches the 1px border language"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fcfbf8",
+        "name": "Bone Canvas",
+        "role": "Primary page background, card surfaces, light text on dark — warm off-white reads as paper, not screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#001011",
+        "name": "Charcoal Ink",
+        "role": "Primary text, headings, primary action fill, dominant borders — near-black with a barely-perceptible cool tint that distinguishes it from pure #000",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0f1e1f",
+        "name": "Smoke Veil",
+        "role": "Secondary text and borders for body-level elements — a half-step lighter than Charcoal for visual hierarchy without contrast loss",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ededea",
+        "name": "Ash Layer",
+        "role": "Elevated card backgrounds, subtle surface differentiation, hover states — a warm gray that complements the bone canvas without going cold",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c1c4c2",
+        "name": "Mist Border",
+        "role": "Hairline borders, dividers, section separators — barely visible structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fd5321",
+        "name": "Ember",
+        "role": "Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#007aff",
+        "name": "Signal Blue",
+        "role": "Outlined action border for secondary interactive elements — ghost-button strokes only, never filled",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-width sections on bone canvas with content centered to a ~1200px max-width. The page rhythm is: text-hero → full-bleed 3D visual → numbered text section with 2-column card grid → full-bleed 3D visual → numbered text section with 3-column carousel. Sections are separated by 96px vertical gaps with no dividers — whitespace defines boundaries. The top navigation is a single thin bar (logo left, links center, Ember CTA right) that sits on bone canvas without a background fill or border. Section headers use a split layout: numbered label left, parenthetical count right, with centered headlines below for major sections. The grid system is implicit — content aligns to a 24px column gap with cards arranged in 2 or 3 columns depending on context. No sidebar, no sticky elements other than nav, no mega-menus.",
+    "imagery": "Imagery is sparse and high-impact: large full-bleed 3D renders sit as interludes between text-heavy sections, never as backgrounds under text. The renders are metallic/chrome with glass-like translucency, often featuring a single Ember-orange accent (particles falling from a chrome brain, orange geometric objects). Case study cards use 3D illustration thumbnails with the same metallic+orange treatment. No photography, no people, no lifestyle imagery — the visual language is object-as-hero, abstract and sculptural. Iconography is minimal and monoline: simple arrow glyphs in circular containers, no icon sets or decorative symbols. The overall density is text-dominant with imagery appearing once per 2-3 viewport heights.",
+    "similar": [
+      {
+        "why": "Same commitment to generous whitespace, geometric sans-serif at extreme display sizes, and monochrome interfaces with a single accent color used surgically",
+        "business": "Linear"
+      },
+      {
+        "why": "Identical typographic confidence — oversized tightly-tracked headlines, minimal component vocabulary, and the same border-over-shadow elevation philosophy",
+        "business": "Vercel"
+      },
+      {
+        "why": "Shares the warm off-white canvas treatment and the pattern of using a vivid accent (orange-adjacent) only for high-intent CTAs while keeping all structural elements achromatic",
+        "business": "Pitch"
+      },
+      {
+        "why": "Same pill-shaped button language with circular icon prefixes, and the same restraint of letting a single warm color carry all the emotional weight in an otherwise quiet system",
+        "business": "Loom"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "20px",
+        "links": "44px",
+        "pills": "48px",
+        "badges": "8px",
+        "images": "20px",
+        "buttons": "24px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "96px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#fcfbf8",
+        "name": "Bone Canvas",
+        "level": 0,
+        "purpose": "Page background, base layer"
+      },
+      {
+        "hex": "#ededea",
+        "name": "Ash Layer",
+        "level": 1,
+        "purpose": "Card and elevated surface backgrounds"
+      },
+      {
+        "hex": "#0f1e1f",
+        "name": "Smoke Veil",
+        "level": 2,
+        "purpose": "Dark mode moments, high-contrast containers"
+      },
+      {
+        "hex": "#fd5321",
+        "name": "Ember",
+        "level": 3,
+        "purpose": "Brand-emphasis surface — used on CTA buttons and accent blocks"
+      }
+    ],
+    "northStar": "Swiss engineering blueprint with a single ember",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.16
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.18
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.29
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.38
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.72
+      },
+      {
+        "role": "heading-lg",
+        "size": 72,
+        "lineHeight": 0.9,
+        "letterSpacing": -1.8
+      },
+      {
+        "role": "display",
+        "size": 101,
+        "lineHeight": 0.8,
+        "letterSpacing": -2.53
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled CTA Button (Ember)",
+        "role": "Primary action — 'let's connect' in header, key conversion points",
+        "description": "Pill-shaped (24px radius) filled button. Background: #fd5321. Text: #fcfbf8 at 16px, AeonikPro 500, letter-spacing +0.010em. Padding: 8px 24px. Optional leading icon slot. No border, no shadow — the orange does all the work against the bone canvas."
+      },
+      {
+        "name": "Arrow Pill Button",
+        "role": "Secondary action — 'more' CTAs, inline navigation triggers",
+        "description": "Pill-shaped (44px radius) button with circular arrow icon on left and label on right. Background: #001011. Icon circle: #fcfbf8 with #001011 arrow glyph. Text: #fcfbf8 at 16px AeonikPro 500. Padding: 6px 20px 6px 6px. Icon circle is 32px diameter."
+      },
+      {
+        "name": "Ghost/Outlined Action",
+        "role": "Tertiary interactive — secondary CTAs that should not compete with Ember",
+        "description": "Transparent fill with #007aff border (1px). Text: #007aff at 16px AeonikPro 500. Radius: 24px. Padding: 12px 24px. Used when an action exists but is subordinate to the primary Ember CTA."
+      },
+      {
+        "name": "Offer Card",
+        "role": "Two-column service offering cards ('corporates', 'investors')",
+        "description": "Background: #fcfbf8. Border: 1px #c1c4c2. Border-radius: 20px. Padding: 32px. Title: AeonikPro 500 at 24px, #001011. Body: AeonikPro 400 at 18px, #0f1e1f. Arrow icon prefix on title in a 24px circle. No shadow — borders carry the structure."
+      },
+      {
+        "name": "Case Study Card",
+        "role": "Stories carousel cards (e.g. 'skillchain')",
+        "description": "Vertical card with image container on top, text below. Image container: aspect ratio ~4:3, 20px top radius, overflow hidden. Text block: padding 16px on bone canvas. Project name: AeonikPro 500 at 18px, #001011. Description: AeonikPro 400 at 16px, #0f1e1f. Subtle border or no border — image is the visual anchor."
+      },
+      {
+        "name": "Section Header",
+        "role": "Section openers — 'offer', 'stories', etc.",
+        "description": "Two-part header: left side has a numbered arrow icon + section name in AeonikPro 500 at 18px, #001011. Right side has parenthetical section number (e.g. '(02)', '(04)') in same style. Below, optional centered headline at 32-36px. Horizontal hairline (#c1c4c2) separates header from content."
+      },
+      {
+        "name": "Top Navigation",
+        "role": "Primary site navigation",
+        "description": "Fixed/sticky top bar. Logo '(dot)connect' on far left at 19px AeonikPro 500. Center: nav links (about, offer, brainpower, stories, team, philosophy) at 16px AeonikPro 400, #0f1e1f, 24px gap. Far right: Ember CTA button. No background blur or border — sits on bone canvas."
+      },
+      {
+        "name": "Carousel Navigation",
+        "role": "Horizontal scroll indicators for stories section",
+        "description": "Circular buttons (32px) positioned at vertical center of carousel track. Background: #fcfbf8 with #001011 arrow glyph. No border, no shadow. Left/right pair flanking the card row."
+      },
+      {
+        "name": "Badge / Tag",
+        "role": "Inline metadata, small status labels",
+        "description": "Small pill with 8px radius. Background: #fcfbf8. Border: 1px #c1c4c2. Padding: 4px 8px. Text: AeonikPro 400 at 14px, #0f1e1f."
+      },
+      {
+        "name": "Hero Section",
+        "role": "First-viewport statement",
+        "description": "Full-width on bone canvas. Centered text block, max-width ~900px. Headline: AeonikPro 400-500 at 72-101px, #001011, line-height 0.8-0.9, letter-spacing -0.025em. Subtext: AeonikPro 400 at 18px, #0f1e1f, max 60ch. Arrow pill CTA centered below. No hero image — text IS the hero."
+      },
+      {
+        "name": "3D Render Feature Block",
+        "role": "Full-width visual interludes between text sections",
+        "description": "Full-bleed image area on bone canvas. Contains metallic/glass 3D render (brain, abstract objects) often with Ember-colored particle accents. No caption overlay — the visual speaks alone with breathing room above and below."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface across all UI: body (16-18px/400), navigation (16px/500), card titles (24-32px/500), section headings (36px/500), hero display (72-101px/400-500). The custom font's geometric proportions and the 'dlig', 'ss02', 'ss08' stylistic alternates give the system its engineering-precise voice — ss08 likely enables a more open 'a' and 'e', ss02 a distinctive 'g'",
+        "sizes": "16, 18, 21, 24, 32, 36, 72, 101",
+        "family": "AeonikPro",
+        "weight": "400, 500",
+        "lineHeight": "1.0–1.5",
+        "substitute": "Inter, Satoshi, General Sans",
+        "letterSpacing": "-0.025em at 72-101px, -0.012em at 32-36px, +0.010em at 16-18px body",
+        "fontFeatureSettings": "\"dlig\" on, \"ss02\" on, \"ss08\" on"
+      },
+      {
+        "role": "Branded display variant for hero and section headings — used selectively where the brand name or signature statements appear, giving those moments a distinct voice from the general AeonikPro headlines",
+        "sizes": "19, 24, 36, 73",
+        "family": "DotConnect",
+        "weight": "500",
+        "lineHeight": "1.0–1.67",
+        "substitute": "AeonikPro with same tracking values",
+        "letterSpacing": "-0.012em at 36-73px, +0.010em at 19px",
+        "fontFeatureSettings": "\"dlig\" on, \"ss02\" on, \"ss08\" on"
+      }
+    ],
+    "description": "(dot)connect operates as a Swiss-engineering canvas: a warm off-white stage (#fcfbf8) where a single near-black ink (#001011) does almost all the work, and a vivid orange (#fd5321) appears only as deliberate punctuation — never decoration. The typographic signature is extreme: headlines balloon to 72-101px with aggressive negative tracking (-0.025em), creating a display voice that feels architectural rather than marketing-soft. Components are softly rounded (20-24px radii on cards and buttons), never sharp, never heavy — elevation is implied through hairline borders and tonal surface shifts, not shadows. The system reads as 'engineering blueprint with a pulse of fire': monochromatic discipline broken by one warm chromatic gesture per viewport.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/981d90e9-7be3-497f-a899-52a0a9ec16f4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"(dot)connect design system\",\"item\":\"https://styles.refero.design/style/981d90e9-7be3-497f-a899-52a0a9ec16f4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/981d90e9-7be3-497f-a899-52a0a9ec16f4#style-reference\",\"name\":\"(dot)connect design system reference\",\"headline\":\"(dot)connect design system | Refero Styles\",\"description\":\"Explore (dot)connect's light Other design system: Bone Canvas #fcfbf8, Charcoal Ink #001011 colors, AeonikPro, DotConnect typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/981d90e9-7be3-497f-a899-52a0a9ec16f4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/981d90e9-7be3-497f-a899-52a0a9ec16f4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"(dot)connect\",\"url\":\"https://dotconnect.vc\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/981d90e9-7be3-497f-a899-52a0a9ec16f4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/00796efb-f742-4b85-8093-1b82e8fe5b7c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/00796efb-f742-4b85-8093-1b82e8fe5b7c.jpg\",\"caption\":\"Screenshot of (dot)connect\"},\"image\":\"https://images.refero.design/styles/refero.design/image/00796efb-f742-4b85-8093-1b82e8fe5b7c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"(dot)connect design system\",\"(dot)connect website design\",\"(dot)connect colors\",\"(dot)connect typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Bone Canvas\",\"Charcoal Ink\",\"Smoke Veil\",\"Ash Layer\",\"AeonikPro\",\"DotConnect\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"(dot)connect design system\"},{\"@type\":\"Thing\",\"name\":\"(dot)connect website design\"},{\"@type\":\"Thing\",\"name\":\"(dot)connect colors\"},{\"@type\":\"Thing\",\"name\":\"(dot)connect typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-08T18:56:24.376Z\",\"dateModified\":\"2026-05-08T18:56:24.376Z\"}]}19:T69c,## Quick Color Reference\n- background: #fcfbf8\n- text: #001011\n- secondary text: #0f1e1f\n- card surface: #ededea\n- border: #c1c4c2\n- accent: #fd5321 (Ember)\n- primary action: #001011 (filled action)\n\n## Example Component Prompts\n\n1. **Hero Section**: bone canvas (#fcfbf8) background, full-width. Centered headline at 72px AeonikPro weight 400, #001011, letter-spacing -1.8px, line-height 0.9. Subtext at 18px AeonikPro 400, #0f1e1f, max-width 60ch, centered. Arrow pill button (24px radius, #001011 background, #fcfbf8 text, 32px circular icon with arrow glyph) labeled 'more', centered below subtext. 120px vertical padding top and bottom.\n\n2. **Offer Card**: #fcfbf8 background, 1px #c1c4c2 border, 20px radius, 32px padding. Title at 24px AeonikPro 500, #001011, with 24px circular arrow icon prefix (#001011 bg, #fcfbf8 arrow). Body text at 18px AeonikPro 400, #0f1e1f, line-height 1.4. No shadow.\n\n3. **Arrow Pill Button**: 44px radius, #001011 background, padding 6px 20px 6px 6px. Leading 32px circular icon slot (#fcfbf8 bg, #001011 arrow at 16px). Label text at 16px AeonikPro 500, #fcfbf8, letter-spacing +0.16px.\n\n4. **Case Study Card**: vertical layout, no border. Image container 4:3 aspect ratio, 20px top radius (matching card), overflow hidden, #ededea placeholder. Text block below with 16px padding. Project name at 18px AeonikPro 500, #001011. Description at 16px AeonikPro 400, #0f1e1f, 3-line clamp.\n\n5. **Section Header**: full-width row. Left: 24px circular arrow icon (#001011 bg, #fcfbf8 arrow) + section name at 18px AeonikPro 500, #001011, gap 12px. Right: parenthetical number '(02)' at 18px AeonikPro 500, #001011. 1px #c1c4c2 hairline below spanning full width."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#001011",
+          "oklch": {
+            "c": 0.026725755782383467,
+            "h": 199.35027812502025,
+            "l": 0.1572019996582469
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "hero",
+            "heading",
+            "card",
+            "icon",
+            "button",
+            "image"
+          ],
+          "frequency": 1437,
+          "confidence": 1,
+          "prominence": 146259268.2722877,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "card/color": 56,
+            "hero/color": 2,
+            "icon/color": 12,
+            "link/color": 22,
+            "other/fill": 17,
+            "image/color": 1,
+            "other/color": 144,
+            "heading/color": 37,
+            "nav/borderColor": 32,
+            "card/borderColor": 224,
+            "hero/borderColor": 6,
+            "icon/borderColor": 48,
+            "link/borderColor": 88,
+            "image/borderColor": 4,
+            "other/borderColor": 554,
+            "heading/borderColor": 148,
+            "other/backgroundColor": 32,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#fcfbf8",
+          "oklch": {
+            "c": 0.0041033964504472095,
+            "h": 91.44554043868351,
+            "l": 0.9880186352153816
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "hero",
+            "badge",
+            "heading",
+            "body"
+          ],
+          "frequency": 593,
+          "confidence": 1,
+          "prominence": 21155744.985870212,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 10,
+            "other/fill": 16,
+            "other/color": 96,
+            "heading/color": 4,
+            "body/borderColor": 4,
+            "icon/borderColor": 40,
+            "other/borderColor": 387,
+            "heading/borderColor": 16,
+            "hero/backgroundColor": 2,
+            "badge/backgroundColor": 9,
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#fd5321",
+          "oklch": {
+            "c": 0.21419962954345825,
+            "h": 35.813603871077646,
+            "l": 0.6715959945543044
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 8820321.610762324,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 23
+          }
+        },
+        {
+          "hex": "#c1c4c2",
+          "oklch": {
+            "c": 0.004306289140095805,
+            "h": 157.15782115863004,
+            "l": 0.8173649115931335
+          },
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 7627027.316449967,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "hero/borderColor": 2,
+            "other/borderColor": 7
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 683,
+          "confidence": 1,
+          "prominence": 4984888.171834135,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 683
+          }
+        },
+        {
+          "hex": "#ededea",
+          "oklch": {
+            "c": 0.0039945137758303165,
+            "h": 106.47577192949706,
+            "l": 0.9452659593863603
+          },
+          "contexts": [
+            "card",
+            "link",
+            "other"
+          ],
+          "frequency": 31,
+          "confidence": 1,
+          "prominence": 2592000,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 10,
+            "card/backgroundColor": 18,
+            "link/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#0f1e1f",
+          "oklch": {
+            "c": 0.02062517884593011,
+            "h": 201.17641092905,
+            "l": 0.2220370477475568
+          },
+          "contexts": [
+            "nav",
+            "body",
+            "badge",
+            "other"
+          ],
+          "frequency": 280,
+          "confidence": 1,
+          "prominence": 448174.3525388922,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 6,
+            "body/color": 40,
+            "badge/color": 9,
+            "other/color": 1,
+            "nav/borderColor": 24,
+            "body/borderColor": 160,
+            "badge/borderColor": 36,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 9678.09960270001,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "link/borderColor": 4
+          }
+        },
+        {
+          "hex": "#007aff",
+          "oklch": {
+            "c": 0.21771224104574957,
+            "h": 257.4238698955573,
+            "l": 0.6027647392623869
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 7970.530449340333,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 2,
+            "button/borderColor": 8
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.04741793381021175,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.29,
+          "background": "#fcfbf8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.75,
+          "background": "#fcfbf8",
+          "foreground": "#001011"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.9,
+          "background": "#ededea",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.56,
+          "background": "#fcfbf8",
+          "foreground": "#0f1e1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.54,
+          "background": "#ededea",
+          "foreground": "#001011"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.6,
+          "background": "#ededea",
+          "foreground": "#0f1e1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.21,
+          "background": "#fcfbf8",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.94,
+          "background": "#c1c4c2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.04,
+          "background": "#c1c4c2",
+          "foreground": "#001011"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.77,
+          "background": "#ededea",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.74,
+          "background": "#c1c4c2",
+          "foreground": "#0f1e1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.19,
+          "background": "#c1c4c2",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.95,
+          "background": "#fd5321",
+          "foreground": "#001011"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.25,
+          "background": "#fd5321",
+          "foreground": "#0f1e1f"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.83,
+          "background": "#001011",
+          "foreground": "#007aff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.88,
+          "background": "#fcfbf8",
+          "foreground": "#007aff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.87,
+          "background": "#fd5321",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.42,
+          "background": "#ededea",
+          "foreground": "#007aff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.15,
+          "background": "#fd5321",
+          "foreground": "#fcfbf8"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.54,
+          "background": "#001011",
+          "foreground": "#333333"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card",
+            "other",
+            "link",
+            "image"
+          ],
+          "frequency": 20
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 18
+        },
+        {
+          "value": 24,
+          "corners": [
+            0,
+            24,
+            24,
+            0
+          ],
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 11,
+          "asymmetric": true
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "paddingBottom|badge"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 25,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "columnGap",
+            "rowGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginBottom|other",
+            "columnGap|link",
+            "columnGap|other",
+            "rowGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 36,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "body",
+            "other",
+            "card",
+            "badge"
+          ],
+          "frequency": 75,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|body",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "link",
+            "heading",
+            "body",
+            "other",
+            "card"
+          ],
+          "frequency": 262,
+          "properties": [
+            "marginLeft",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|link",
+            "marginBottom|heading",
+            "marginBottom|body",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|card",
+            "columnGap|card",
+            "marginRight|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "card",
+            "button"
+          ],
+          "frequency": 28,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|button",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 119,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 269,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 44,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 273,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "AeonikPro",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 429,
+          "fontFeatureSettings": [
+            "\"dlig\", \"ss02\", \"ss08\""
+          ]
+        },
+        {
+          "family": "DotConnect",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 23,
+          "fontFeatureSettings": [
+            "\"dlig\", \"ss02\", \"ss08\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "AeonikPro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "icon",
+            "hero",
+            "card",
+            "body",
+            "button",
+            "image"
+          ],
+          "frequency": 318,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "AeonikPro",
+          "weight": 500,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "AeonikPro",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "AeonikPro",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "lineHeight": 1,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "DotConnect",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "AeonikPro",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "AeonikPro",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "DotConnect",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "AeonikPro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "AeonikPro",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "AeonikPro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "DotConnect",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "AeonikPro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 73,
+          "family": "DotConnect",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 101,
+          "family": "AeonikPro",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/0631fe94-88e1-49cf-8482-483b071143f8.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/00796efb-f742-4b85-8093-1b82e8fe5b7c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/981d90e9-7be3-497f-a899-52a0a9ec16f4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"(dot)connect design system\",\"item\":\"https://styles.refero.design/style/981d90e9-7be3-497f-a899-52a0a9ec16f4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/981d90e9-7be3-497f-a899-52a0a9ec16f4#style-reference\",\"name\":\"(dot)connect design system reference\",\"headline\":\"(dot)connect design system | Refero Styles\",\"description\":\"Explore (dot)connect's light Other design system: Bone Canvas #fcfbf8, Charcoal Ink #001011 colors, AeonikPro, DotConnect typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/981d90e9-7be3-497f-a899-52a0a9ec16f4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/981d90e9-7be3-497f-a899-52a0a9ec16f4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"(dot)connect\",\"url\":\"https://dotconnect.vc\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/981d90e9-7be3-497f-a899-52a0a9ec16f4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/00796efb-f742-4b85-8093-1b82e8fe5b7c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/00796efb-f742-4b85-8093-1b82e8fe5b7c.jpg\",\"caption\":\"Screenshot of (dot)connect\"},\"image\":\"https://images.refero.design/styles/refero.design/image/00796efb-f742-4b85-8093-1b82e8fe5b7c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"(dot)connect design system\",\"(dot)connect website design\",\"(dot)connect colors\",\"(dot)connect typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Bone Canvas\",\"Charcoal Ink\",\"Smoke Veil\",\"Ash Layer\",\"AeonikPro\",\"DotConnect\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"(dot)connect design system\"},{\"@type\":\"Thing\",\"name\":\"(dot)connect website design\"},{\"@type\":\"Thing\",\"name\":\"(dot)connect colors\"},{\"@type\":\"Thing\",\"name\":\"(dot)connect typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-08T18:56:24.376Z\",\"dateModified\":\"2026-05-08T18:56:24.376Z\"}]}19:T69c,## Quick Color Reference\n- background: #fcfbf8\n- text: #001011\n- secondary text: #0f1e1f\n- card surface: #ededea\n- border: #c1c4c2\n- accent: #fd5321 (Ember)\n- primary action: #001011 (filled action)\n\n## Example Component Prompts\n\n1. **Hero Section**: bone canvas (#fcfbf8) background, full-width. Centered headline at 72px AeonikPro weight 400, #001011, letter-spacing -1.8px, line-height 0.9. Subtext at 18px AeonikPro 400, #0f1e1f, max-width 60ch, centered. Arrow pill button (24px radius, #001011 background, #fcfbf8 text, 32px circular icon with arrow glyph) labeled 'more', centered below subtext. 120px vertical padding top and bottom.\n\n2. **Offer Card**: #fcfbf8 background, 1px #c1c4c2 border, 20px radius, 32px padding. Title at 24px AeonikPro 500, #001011, with 24px circular arrow icon prefix (#001011 bg, #fcfbf8 arrow). Body text at 18px AeonikPro 400, #0f1e1f, line-height 1.4. No shadow.\n\n3. **Arrow Pill Button**: 44px radius, #001011 background, padding 6px 20px 6px 6px. Leading 32px circular icon slot (#fcfbf8 bg, #001011 arrow at 16px). Label text at 16px AeonikPro 500, #fcfbf8, letter-spacing +0.16px.\n\n4. **Case Study Card**: vertical layout, no border. Image container 4:3 aspect ratio, 20px top radius (matching card), overflow hidden, #ededea placeholder. Text block below with 16px padding. Project name at 18px AeonikPro 500, #001011. Description at 16px AeonikPro 400, #0f1e1f, 3-line clamp.\n\n5. **Section Header**: full-width row. Left: 24px circular arrow icon (#001011 bg, #fcfbf8 arrow) + section name at 18px AeonikPro 500, #001011, gap 12px. Right: parenthetical number '(02)' at 18px AeonikPro 500, #001011. 1px #c1c4c2 hairline below spanning full width."
+}

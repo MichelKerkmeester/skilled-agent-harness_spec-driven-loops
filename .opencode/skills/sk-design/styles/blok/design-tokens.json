@@ -1,0 +1,422 @@
+{
+  "color": {
+    "carbon-ink": {
+      "$value": "#0a0d0f",
+      "$type": "color",
+      "$description": "Carbon Ink — Primary text, product page borders, body type — the near-black that carries the entire brand voice in type"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, product card surface, button text on dark — the base everything sits on"
+    },
+    "slate-veil": {
+      "$value": "#2e3438",
+      "$type": "color",
+      "$description": "Slate Veil — Secondary text and icon strokes — slightly cooler than Carbon Ink, used where pure black would feel too heavy"
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Body borders, heading text — the hardest black in the system, used sparingly for maximum edge definition"
+    },
+    "bone": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Bone — Alternate section background, subtle card wash, press-logo band — the warm off-white that breaks up white-on-white without introducing a color"
+    },
+    "footer-ash": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Footer Ash — Footer surface only — one step deeper than Bone to separate the footer from the body"
+    },
+    "silver-mist": {
+      "$value": "#d5d6d7",
+      "$type": "color",
+      "$description": "Silver Mist — Input borders, subtle dividers — hairline neutral that only shows on form elements"
+    },
+    "graphite-tag": {
+      "$value": "#656565",
+      "$type": "color",
+      "$description": "Graphite Tag — Neutral form states, badge text, and quiet UI feedback where color should stay understated."
+    },
+    "signal-teal": {
+      "$value": "#1dd8e1",
+      "$type": "color",
+      "$description": "Signal Teal — Primary action buttons, link text, product dial accents, active tab indicators — the only chromatic color in the entire system, carrying every interactive moment on its own"
+    }
+  },
+  "font": {
+    "poppins": {
+      "$value": "Poppins",
+      "$type": "fontFamily",
+      "$description": "Body copy, product titles, button text, UI chrome — the rounded geometry contrasts with Jost's squared display weight, keeping the system from feeling monotone"
+    },
+    "jost": {
+      "$value": "Jost",
+      "$type": "fontFamily",
+      "$description": "Display and section headlines — the wide 0.09em tracking turns bold weight into something architectural rather than shouty; treat as the only voice for H1/H2/page titles"
+    },
+    "cabin": {
+      "$value": "Cabin",
+      "$type": "fontFamily",
+      "$description": "Eyebrow labels, nav tabs, small section captions, badge text — the 0.064em-0.09em tracking at small sizes creates a 'label-grade' voice that sits above Poppins without dominating it"
+    },
+    "gtstandard-m": {
+      "$value": "GTStandard-M",
+      "$type": "fontFamily",
+      "$description": "GTStandard-M — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Cabin",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Cabin",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Cabin",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Cabin",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Cabin",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Cabin",
+        "fontSize": "17px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Cabin",
+        "fontSize": "17px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 17px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 17px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "GTStandard-M",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Cabin",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Cabin",
+        "fontSize": "21px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Jost",
+        "fontSize": "23px",
+        "fontWeight": 700,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Jost",
+        "fontSize": "34px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Jost",
+        "fontSize": "42px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Jost",
+        "fontSize": "51px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 51px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Cabin",
+        "fontSize": "68px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 68px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "113": {
+      "$value": "113px",
+      "$type": "dimension",
+      "$description": "Spacing 113px"
+    },
+    "166": {
+      "$value": "166px",
+      "$type": "dimension",
+      "$description": "Spacing 166px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, default surface"
+    },
+    "band": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Surface level 1: Press logos strip, alternating section"
+    },
+    "footer": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 2: Footer base"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://blokwatches.com",
+      "siteName": "Blok",
+      "extractedAt": "2026-06-03T21:14:21.425Z",
+      "variant": "extended"
+    }
+  }
+}

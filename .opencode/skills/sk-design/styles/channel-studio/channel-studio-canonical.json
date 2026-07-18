@@ -1,0 +1,619 @@
+{
+  "source": "https://styles.refero.design/style/4c19bf7b-d5e8-4e2a-b3e3-69a9bde19b7a",
+  "uuid": "4c19bf7b-d5e8-4e2a-b3e3-69a9bde19b7a",
+  "name": "Channel Studio",
+  "northStar": "Studio darkroom with a single coral flare",
+  "capturedAt": "2026-07-18T07:48:00.836Z",
+  "meta": {
+    "url": "https://channel.studio",
+    "siteName": "Channel Studio",
+    "extractedAt": "2026-06-03T19:39:13.498Z",
+    "durationMs": 29220,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 105,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #cacaca for all text and borders on black surfaces — never pure #fff, the slight desaturation is the signature",
+      "Set display headlines at 75px with line-height 0.90 and letter-spacing -0.03em for the compressed staircase effect",
+      "Reserve #ff7777 exclusively for project titles and signature borders — never use it for body text, navigation, or UI controls",
+      "Keep all radii at 0px — sharp edges are non-negotiable for this editorial aesthetic",
+      "Use full-bleed imagery (viewport-width) for all project cards and hero sections; never constrain images to card-sized containers",
+      "Maintain generous vertical spacing: 40px between sections, 192px above the footer",
+      "Set all type in Lausanne weight 400 — build hierarchy through size and tracking, never through bold weights"
+    ],
+    "donts": [
+      "Never use shadows, gradients, or any elevation effects — the design is deliberately flat",
+      "Never add border-radius to cards, buttons, images, or any element — 0px everywhere",
+      "Never use color other than #ff7777 for accents — no blues, greens, or other hues; the system is monochromatic plus one coral",
+      "Never set body or heading text in pure #fff — always use #cacaca for the softened-light quality",
+      "Never use multiple font weights — the system is weight 400 only across all roles",
+      "Never use centered text alignment for body content — everything is left-aligned with the viewport edge",
+      "Never add background colors to cards, buttons, or interactive elements — they sit directly on the black canvas"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#cacaca",
+        "name": "Bone Gray",
+        "role": "Primary text on dark surfaces, hairline borders on images and links, divider strokes — a desaturated near-white that reads softer than pure #fff against black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Carbon Black",
+        "role": "Page background, section canvas, project card surface — the entire design lives here",
+        "group": "neutral"
+      },
+      {
+        "hex": "#727272",
+        "name": "Iron Gray",
+        "role": "Muted secondary text, low-emphasis borders, caption-level metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ff7777",
+        "name": "Coral Flare",
+        "role": "Accent for project titles, signature heading borders, and occasional decorative strokes — the only chromatic element in the system, used sparingly for editorial emphasis",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed sections that fill the entire viewport width. Content is left-aligned against the left edge with consistent left padding. The page alternates between two section types: (1) type-only black panels with large display headlines, small labels, and inline 3D renders or client logos, and (2) full-bleed project images with overlaid labels. No max-width content container — text and images both edge-to-edge. Vertical rhythm is generous: 40px between sections, 192px above the footer. Navigation is a small text block in the top-left corner, not a bar. The overall effect is a vertical-scroll editorial spread, not a typical SaaS page layout.",
+    "imagery": "Photography is central — full-bleed, viewport-width, often desaturated or near-monochrome to harmonize with the black-and-gray palette. Project showcases use tight, intimate crops (close-up of a translucent sculpture, macro product detail) rather than wide environmental shots. 3D renders (particle clouds, abstract forms) appear as decorative punctuation in type-only sections. The grayscale hero in the first screenshot — soft studio lighting on what appears to be brushed metal or fabric — exemplifies the atmospheric, gallery-lit treatment. No stock photography, no people, no lifestyle imagery.",
+    "similar": [
+      {
+        "why": "Same editorial fashion-studio aesthetic with full-bleed photography, monochrome palette, and a single warm accent color used sparingly",
+        "business": "Acne Studios"
+      },
+      {
+        "why": "Minimal fashion-brand restraint with flat surfaces, zero radii, and typography-driven hierarchy over decorative UI elements",
+        "business": "COS"
+      },
+      {
+        "why": "Design-agency portfolio layout with large display type, project-card-as-full-bleed-image pattern, and minimal navigation chrome",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Dark-mode design studio site with single-weight sans-serif, tight letter-spacing, and image-led case study presentation",
+        "business": "Manual (design agency)"
+      },
+      {
+        "why": "Editorial studio aesthetic with compressed display type, generous whitespace, and flat black-canvas layout",
+        "business": "Bureau Cool"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "40px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#0a0a0a",
+        "name": "Carbon Canvas",
+        "level": 0,
+        "purpose": "Page background, all section panels, footer — the single base surface"
+      },
+      {
+        "hex": "#cacaca",
+        "name": "Grayscale Photographic Surface",
+        "level": 1,
+        "purpose": "Full-bleed hero backgrounds and atmospheric imagery — desaturated photographic textures that read as a lighter surface without being a solid color"
+      }
+    ],
+    "northStar": "Studio darkroom with a single coral flare",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.26
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.3
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "heading",
+        "size": 45,
+        "lineHeight": 1.19,
+        "letterSpacing": -1.35
+      },
+      {
+        "role": "display",
+        "size": 75,
+        "lineHeight": 0.9,
+        "letterSpacing": -2.25
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation",
+        "role": "Primary site navigation",
+        "description": "Flat text-only nav in the top-left corner. Logo 'C:S' set in 18px Lausanne, navigation links (Home, Projects, About, Careers) below in 13px. No background, no border, no hamburger — just typographic blocks against the black canvas with 9–10px vertical rhythm."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Hero section typography",
+        "description": "75px Lausanne weight 400, line-height 0.90, letter-spacing -0.03em, color #cacaca. Lines stack tightly creating a staircase block. Set in the top-left over a full-bleed grayscale photographic background (studio lighting / brushed metal)."
+      },
+      {
+        "name": "Full-Bleed Hero Background",
+        "role": "Atmospheric hero surface",
+        "description": "Grayscale photographic or 3D-rendered texture filling the entire viewport — often soft studio lighting, particle clouds, or abstract metallic gradients. All desaturated to near-monochrome. Acts as the only non-black surface in the system."
+      },
+      {
+        "name": "Section Display Headline",
+        "role": "Large editorial text on black panels",
+        "description": "45–75px Lausanne weight 400, line-height 0.95, color #cacaca on black background. Typically left-aligned, no max-width constraint beyond the viewport. Carries the full message of the section in type alone."
+      },
+      {
+        "name": "Client Logo Strip",
+        "role": "Social proof / client listing",
+        "description": "Small uppercase label 'Select Clients:' in 13px #cacaca, followed by a horizontal row of grayscale client logos (NYT, Microsoft, Google, etc.). Logos are rendered in #cacaca or near-white, no color, no borders, evenly spaced with 10–19px gaps."
+      },
+      {
+        "name": "Project Card",
+        "role": "Portfolio entry / case study preview",
+        "description": "Full-bleed image filling the entire viewport width. Above the image: small uppercase label (e.g. 'Channel Studio - Selected Projects:') in 13px #cacaca, project title in 45px Lausanne #ff7777 (the only red element), and a 'See Project →' link in 13–15px #cacaca right-aligned. No card chrome, no border, no radius — the image IS the card."
+      },
+      {
+        "name": "Arrow Link",
+        "role": "Text link with directional indicator",
+        "description": "13–15px Lausanne #cacaca text followed by a thin → arrow. Used for navigation to projects, external links, and calls-to-read. No underline, no button background — the arrow glyph is the affordance."
+      },
+      {
+        "name": "Decorative Coral Border",
+        "role": "Signature accent stroke",
+        "description": "1px solid #ff7777 line used as a horizontal divider or section accent. Appears under key headings or as a section separator. The coral red stroke against black is the system's most distinctive non-typographic element."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer",
+        "description": "192px top margin separates footer from content above. Contains small text links and metadata in 13px #cacaca. Minimal, text-only, no social icons or decorative elements."
+      },
+      {
+        "name": "Inline 3D Render",
+        "role": "Decorative/artistic element",
+        "description": "Full-color or grayscale 3D renders (particle clouds, abstract forms) embedded in type-only sections as visual punctuation. Floats or sits beside text, breaking the pure typography flow."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across all roles — navigation, body, subheadings, and display headlines. Weight stays at 400 throughout; visual hierarchy is built entirely through size and tracking, not weight. Display at 75px uses line-height 0.90–0.95, creating a compressed poetry-staircase effect unique to this system.",
+        "sizes": "13px, 15px, 16px, 18px, 45px, 75px",
+        "family": "Lausanne",
+        "weight": "400",
+        "lineHeight": "0.90–1.20",
+        "substitute": "Inter",
+        "letterSpacing": "-0.03em on display (75px) = -2.25px, -0.03em on heading (45px) = -1.35px, -0.02em on body and smaller (13–18px) = -0.26 to -0.36px"
+      }
+    ],
+    "description": "Channel Studio lives in a monochrome studio-darkroom: near-black canvas, flat surfaces, no shadows, no gradients, and a single warm coral red that fires like a signal flare against the grayscale. Typography carries the entire identity — one neo-grotesque sans-serif at one weight, tight negative tracking, and display sizes (45px, 75px) set at sub-1.0 line-heights so headlines stack like a concrete poem. Layout is full-bleed and editorial: alternating type-only black panels and oversized project photography that treats the viewport as a gallery wall. Components are stripped to bare text and raw images — no buttons in the traditional sense, just links with arrows, small uppercase labels, and a red accent reserved exclusively for project titles and signature borders.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4c19bf7b-d5e8-4e2a-b3e3-69a9bde19b7a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Channel Studio design system\",\"item\":\"https://styles.refero.design/style/4c19bf7b-d5e8-4e2a-b3e3-69a9bde19b7a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4c19bf7b-d5e8-4e2a-b3e3-69a9bde19b7a#style-reference\",\"name\":\"Channel Studio design system reference\",\"headline\":\"Channel Studio design system | Refero Styles\",\"description\":\"Explore Channel Studio's dark Agency design system: Bone Gray #cacaca, Carbon Black #0a0a0a colors, Lausanne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/4c19bf7b-d5e8-4e2a-b3e3-69a9bde19b7a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4c19bf7b-d5e8-4e2a-b3e3-69a9bde19b7a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Channel Studio\",\"url\":\"https://channel.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4c19bf7b-d5e8-4e2a-b3e3-69a9bde19b7a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8ec07d51-3164-447e-b235-bfb9e06017e9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8ec07d51-3164-447e-b235-bfb9e06017e9.jpg\",\"caption\":\"Screenshot of Channel Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8ec07d51-3164-447e-b235-bfb9e06017e9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Channel Studio design system\",\"Channel Studio website design\",\"Channel Studio colors\",\"Channel Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone Gray\",\"Carbon Black\",\"Iron Gray\",\"Coral Flare\",\"Lausanne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Channel Studio design system\"},{\"@type\":\"Thing\",\"name\":\"Channel Studio website design\"},{\"@type\":\"Thing\",\"name\":\"Channel Studio colors\"},{\"@type\":\"Thing\",\"name\":\"Channel Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:41:27.816Z\",\"dateModified\":\"2026-04-30T01:41:27.816Z\"}]}19:T6aa,**Quick Color Reference**\n- text: #cacaca\n- background: #0a0a0a\n- border: #cacaca (1px hairlines)\n- accent: #ff7777 (project titles, signature borders only)\n- muted text: #727272\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Project Card**: Full-bleed image filling 100vw width. Above the image on a black #0a0a0a panel: small uppercase label in 13px Lausanne weight 400, letter-spacing -0.26px, color #cacaca. Project title at 45px Lausanne weight 400, line-height 1.19, letter-spacing -1.35px, color #ff7777. Right-aligned 'See Project →' link in 13px #cacaca. Zero border-radius on everything.\n\n2. **Hero Section**: Full-bleed grayscale photographic background (soft studio lighting texture). Top-left: 'C:S' logo at 18px Lausanne weight 400, color #cacaca. Below: nav links (Home, Projects, About, Careers) at 13px #cacaca with 9px vertical gap. Display headline at 75px Lausanne weight 400, line-height 0.90, letter-spacing -2.25px, color #cacaca, left-aligned.\n\n3. **Client Logo Row**: Small label 'Select Clients:' in 13px Lausanne weight 400, color #cacaca. Below: horizontal row of grayscale client logos, each rendered in #cacaca, evenly spaced with 19px gaps. No borders, no backgrounds.\n\n4. **Type-Only Section**: Black #0a0a0a background. Display text at 75px Lausanne weight 400, line-height 0.95, letter-spacing -2.25px, color #cacaca, left-aligned. Optional 3D render or abstract visual element positioned to the right of or below the text block.\n\n5. **Arrow Link**: Plain text in 15px Lausanne weight 400, color #cacaca, followed by a thin → arrow character. No underline, no background, no border. Padded with 10px margins from surrounding elements."
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no elevation effects, no z-axis depth. All elements sit flat on the black canvas. Visual separation comes from whitespace, typographic scale, and full-bleed imagery — not from drop shadows or card elevation. This flatness is a deliberate editorial choice that keeps the design feeling like a printed magazine spread rather than a software interface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#cacaca",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8390137901083995
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "card",
+            "hero",
+            "heading",
+            "image",
+            "list",
+            "footer",
+            "input",
+            "body"
+          ],
+          "frequency": 472,
+          "confidence": 1,
+          "prominence": 96754499.58444701,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 10,
+            "body/color": 2,
+            "card/color": 1,
+            "hero/color": 2,
+            "link/color": 22,
+            "list/color": 7,
+            "other/fill": 3,
+            "image/color": 9,
+            "input/color": 1,
+            "other/color": 35,
+            "footer/color": 1,
+            "heading/color": 4,
+            "nav/borderColor": 40,
+            "body/borderColor": 8,
+            "card/borderColor": 4,
+            "hero/borderColor": 8,
+            "link/borderColor": 88,
+            "list/borderColor": 28,
+            "image/borderColor": 36,
+            "input/borderColor": 4,
+            "other/borderColor": 139,
+            "footer/borderColor": 4,
+            "heading/borderColor": 16
+          }
+        },
+        {
+          "hex": "#ff7777",
+          "oklch": {
+            "c": 0.16642812640363527,
+            "h": 22.05058870934739,
+            "l": 0.729860526477013
+          },
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 315660.1108130633,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "heading/color": 6,
+            "body/borderColor": 4,
+            "heading/borderColor": 24
+          }
+        },
+        {
+          "hex": "#727272",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5520796201025747
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 99363.52011130685,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4,
+            "other/borderColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.030688501259824218,
+      "contrastPairs": []
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 9,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "link",
+            "footer"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other",
+            "marginTop|link",
+            "marginRight|footer",
+            "marginBottom|footer"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "image",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|image",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other",
+            "marginTop|other",
+            "marginLeft|footer"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list",
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "heading",
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 192,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|footer"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Lausanne",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 102,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.19,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "hero",
+            "other",
+            "image",
+            "heading",
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 66,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 75,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/9fef995b-32ea-4384-a999-0a44fde1e608.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/8ec07d51-3164-447e-b235-bfb9e06017e9.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4c19bf7b-d5e8-4e2a-b3e3-69a9bde19b7a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Channel Studio design system\",\"item\":\"https://styles.refero.design/style/4c19bf7b-d5e8-4e2a-b3e3-69a9bde19b7a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4c19bf7b-d5e8-4e2a-b3e3-69a9bde19b7a#style-reference\",\"name\":\"Channel Studio design system reference\",\"headline\":\"Channel Studio design system | Refero Styles\",\"description\":\"Explore Channel Studio's dark Agency design system: Bone Gray #cacaca, Carbon Black #0a0a0a colors, Lausanne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/4c19bf7b-d5e8-4e2a-b3e3-69a9bde19b7a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4c19bf7b-d5e8-4e2a-b3e3-69a9bde19b7a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Channel Studio\",\"url\":\"https://channel.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4c19bf7b-d5e8-4e2a-b3e3-69a9bde19b7a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8ec07d51-3164-447e-b235-bfb9e06017e9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8ec07d51-3164-447e-b235-bfb9e06017e9.jpg\",\"caption\":\"Screenshot of Channel Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8ec07d51-3164-447e-b235-bfb9e06017e9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Channel Studio design system\",\"Channel Studio website design\",\"Channel Studio colors\",\"Channel Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone Gray\",\"Carbon Black\",\"Iron Gray\",\"Coral Flare\",\"Lausanne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Channel Studio design system\"},{\"@type\":\"Thing\",\"name\":\"Channel Studio website design\"},{\"@type\":\"Thing\",\"name\":\"Channel Studio colors\"},{\"@type\":\"Thing\",\"name\":\"Channel Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:41:27.816Z\",\"dateModified\":\"2026-04-30T01:41:27.816Z\"}]}19:T6aa,**Quick Color Reference**\n- text: #cacaca\n- background: #0a0a0a\n- border: #cacaca (1px hairlines)\n- accent: #ff7777 (project titles, signature borders only)\n- muted text: #727272\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Project Card**: Full-bleed image filling 100vw width. Above the image on a black #0a0a0a panel: small uppercase label in 13px Lausanne weight 400, letter-spacing -0.26px, color #cacaca. Project title at 45px Lausanne weight 400, line-height 1.19, letter-spacing -1.35px, color #ff7777. Right-aligned 'See Project →' link in 13px #cacaca. Zero border-radius on everything.\n\n2. **Hero Section**: Full-bleed grayscale photographic background (soft studio lighting texture). Top-left: 'C:S' logo at 18px Lausanne weight 400, color #cacaca. Below: nav links (Home, Projects, About, Careers) at 13px #cacaca with 9px vertical gap. Display headline at 75px Lausanne weight 400, line-height 0.90, letter-spacing -2.25px, color #cacaca, left-aligned.\n\n3. **Client Logo Row**: Small label 'Select Clients:' in 13px Lausanne weight 400, color #cacaca. Below: horizontal row of grayscale client logos, each rendered in #cacaca, evenly spaced with 19px gaps. No borders, no backgrounds.\n\n4. **Type-Only Section**: Black #0a0a0a background. Display text at 75px Lausanne weight 400, line-height 0.95, letter-spacing -2.25px, color #cacaca, left-aligned. Optional 3D render or abstract visual element positioned to the right of or below the text block.\n\n5. **Arrow Link**: Plain text in 15px Lausanne weight 400, color #cacaca, followed by a thin → arrow character. No underline, no background, no border. Padded with 10px margins from surrounding elements."
+}

@@ -1,0 +1,1861 @@
+{
+  "source": "https://styles.refero.design/style/4d4772a3-e1da-415f-a6d7-658dcefdcecd",
+  "uuid": "4d4772a3-e1da-415f-a6d7-658dcefdcecd",
+  "name": "Branding",
+  "northStar": "Black gallery wall, blood-red punctuation — Oversized white display type floats on a void-like dark canvas, interrupted by a single vivid red accent and dramatic ornamental display faces that feel like gallery signage rather than web UI.",
+  "capturedAt": "2026-07-18T08:30:51.112Z",
+  "meta": {
+    "url": "https://www.svz.io",
+    "siteName": "Branding",
+    "extractedAt": "2026-06-03T16:45:35.103Z",
+    "durationMs": 35695,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1906,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "skipped",
+        "attempts": 1
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Let type carry hierarchy — use 80–160px display sizes for hero moments and 10–12px tracked uppercase for metadata; do not introduce color, chrome, or icons to compensate.",
+      "Use #fe1e34 only as a 1px border on one or two featured elements per page, plus the accent dot — the red must remain rare to function as punctuation.",
+      "Mix Kmr Waldenburg caps at 700 with Editorialnew italic weight 300 on the same baseline for editorial contrast — this two-family dialogue is the signature.",
+      "Maintain 0.90–1.10 line-height on all display sizes; the system uses tight leading to let oversized type feel architectural rather than airy.",
+      "Track 10–12px nav and label text OUT to +0.071em–+0.308em and display text IN to -0.050em–-0.080em — letter-spacing is a load-bearing typographic tool, not decoration.",
+      "Anchor interactive elements with a diagonal arrow icon (↗) rather than color, weight, or background change — hover states should shift position or weight, not hue.",
+      "Use #f3efef as the only surface that escapes the void; light sections feel like turning a page in a magazine."
+    ],
+    "donts": [
+      "Do not introduce filled buttons, drop shadows, or gradients on UI elements — the system rejects conventional depth and uses a single white inset highlight at most.",
+      "Do not use #fe1e34 as a text color, background fill, or icon color beyond borders and the single accent dot; spreading the red flattens its meaning.",
+      "Do not use Kmr Waldenburg body weights (300/400) for display headings under 64px — the system reserves 700 weight for sizes 42px and above to preserve impact.",
+      "Do not apply border-radius above 14.4px; the system uses crisp 3px (nav/links) and 8px (cards/buttons) only — rounding is a whisper, not a curve.",
+      "Do not place body text below 14px or above 32px without shifting to a display role; 10–12px is reserved for tracked uppercase labels with no sentence structure.",
+      "Do not combine more than two typeface families in a single composition (Kmr Waldenburg + Editorialnew, or + Dirtyline 36); adding a third breaks the editorial discipline.",
+      "Do not use #000000 as a text color on dark surfaces — the void (#080808) and bone-white (#fcfcfc) pairing is the system's reading contract; pure black text only appears on #f3efef."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#080808",
+        "name": "Void Canvas",
+        "role": "Primary page background; the base upon which all display type and floating shapes sit",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Absolute Black",
+        "role": "Deepest surface, decorative fills, icon strokes — the floor beneath the void",
+        "group": "neutral"
+      },
+      {
+        "hex": "#171617",
+        "name": "Charcoal Plate",
+        "role": "Footer and inverted section backgrounds, slightly elevated off the base void",
+        "group": "neutral"
+      },
+      {
+        "hex": "#262525",
+        "name": "Smoke Plate",
+        "role": "Secondary surface for content blocks and image treatments layered over the void",
+        "group": "neutral"
+      },
+      {
+        "hex": "#393939",
+        "name": "Graphite Lift",
+        "role": "Subtle elevation surface and card background; the only visible shadow color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fcfcfc",
+        "name": "Bone White",
+        "role": "Primary text, hairline borders, icon outlines — the dominant non-black color in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f3efef",
+        "name": "Linen",
+        "role": "Inverted body sections, off-white text on dark cards, soft warm-white content surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d4d2d2",
+        "name": "Ash",
+        "role": "Muted secondary text, nav labels, subtle borders — the whispered voice between bone and graphite",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b5b2b2",
+        "name": "Pebble",
+        "role": "Disabled borders, tertiary helper text, low-priority metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#525252",
+        "name": "Iron",
+        "role": "Link underlines, nav dividers, hairline separators on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fe1e34",
+        "name": "Arterial Red",
+        "role": "Sole brand accent — card borders, cursor, hero dot, gradient terminator; the only saturated color and it is used like a heartbeat, not a coat of paint",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff0000",
+        "name": "Crimson Pure",
+        "role": "Heading underline accent and decorative fill — a purer red for typographic emphasis only",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with no max-width container — content uses generous internal padding (48–64px section gaps) to feel composed against the void. The hero is a full-viewport moment dominated by 160px display type centered or left-aligned, with the dark background visible around all four edges. Sections alternate between void (#080808) and a single inverted linen (#f3efef) body panel, with 48–80px vertical breathing room. Navigation is a transparent top bar; no sticky header, no sidebar. Content arrangement is editorial: asymmetric, with display headlines set as two- or three-line stacks and small italic connectives. Card grids (when used) are 2–3 columns with 24px gaps, 8px radius, and 1px hairline borders.",
+    "imagery": "Imagery is editorial-collage: large-scale photographic textures (leopard-print heart, animal patterns) and oversized geometric shapes bleeding off-canvas in Smoke (#171617–#262525) tones. Full-bleed, no rounded corners, no contained frames — images occupy the canvas like wallpaper, not thumbnails. Photography is high-contrast, dark/moody, often surreal or fashion-editorial, used to punctuate display type rather than explain product. Iconography is minimal: 1px hairline arrows (↗) and stroked SVGs in bone-white on the void. No illustration, no 3D, no abstract gradients on content.",
+    "similar": [
+      {
+        "why": "Same agency-portfolio instinct for oversized display type on dark canvases, with display faces treated as editorial objects rather than UI text",
+        "business": "Locomotive Mtl"
+      },
+      {
+        "why": "Dark-mode creative agency site with a single saturated accent color used as punctuation and a refusal of conventional button chrome",
+        "business": "Resn"
+      },
+      {
+        "why": "Editorial-magazine layout rhythm, hairline-bordered cards on near-black surfaces, and serif-italic connectives woven into display caps",
+        "business": "Huge"
+      },
+      {
+        "why": "Full-bleed dark canvas, bleeding decorative shapes behind display type, and a single vivid accent (their neon) used as rare punctuation",
+        "business": "Active Theory"
+      },
+      {
+        "why": "Agency sites that treat typography as art direction — mixing geometric sans display with editorial serif italics and letting the type do the layout work",
+        "business": "Ueno"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "3px",
+        "cards": "8px",
+        "buttons": "8px",
+        "largeCards": "14.4px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "48-64px",
+      "cardPadding": "12-24px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#080808",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Page canvas — the absolute floor"
+      },
+      {
+        "hex": "#000000",
+        "name": "Absolute",
+        "level": 1,
+        "purpose": "Deepest surface, behind decorative shapes and image overlays"
+      },
+      {
+        "hex": "#171617",
+        "name": "Charcoal",
+        "level": 2,
+        "purpose": "Footer and inverted content surfaces"
+      },
+      {
+        "hex": "#262525",
+        "name": "Smoke",
+        "level": 3,
+        "purpose": "Elevated content blocks and image treatments"
+      },
+      {
+        "hex": "#393939",
+        "name": "Graphite",
+        "level": 4,
+        "purpose": "Card surface — the only platform that receives the white inset highlight shadow"
+      },
+      {
+        "hex": "#f3efef",
+        "name": "Linen",
+        "level": 5,
+        "purpose": "Inverted body panel — warm-white surface for content contrast"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(255, 255, 255, 0.2) 0px 2px 5px 0px inset",
+        "element": "Card (dark variant)"
+      }
+    ],
+    "northStar": "Black gallery wall, blood-red punctuation — Oversized white display type floats on a void-like dark canvas, interrupted by a single vivid red accent and dramatic ornamental display faces that feel like gallery signage rather than web UI.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.8
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.91
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.05,
+        "letterSpacing": -1.6
+      },
+      {
+        "role": "heading",
+        "size": 42,
+        "lineHeight": 1.05,
+        "letterSpacing": -2
+      },
+      {
+        "role": "heading-lg",
+        "size": 64,
+        "lineHeight": 1,
+        "letterSpacing": -4.8
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 0.9,
+        "letterSpacing": -6
+      },
+      {
+        "role": "display-xl",
+        "size": 160,
+        "lineHeight": 0.9,
+        "letterSpacing": -12.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost CTA Link",
+        "role": "Primary action affordance across the site",
+        "description": "Uppercase 12px Kmr Waldenburg weight 400 with 0.071em letter-spacing, bone-white (#fcfcfc) text on void canvas, paired with a 45° arrow icon. No fill, no background, no border. 32px vertical padding, 8px horizontal. Replaces the conventional button entirely — the system treats calls-to-action as editorial pull-quotes, not UI controls."
+      },
+      {
+        "name": "Discovery Call Outlined Button",
+        "role": "Rare filled-style affordance for high-intent actions",
+        "description": "Top-right header element: uppercase 12px tracked text inside an 8px-radius rectangle with a 1px hairline border at #d4d2d2 on the void, containing a diagonal arrow. Internal padding 12px 24px. This is the only element that visually resembles a 'button' in the conventional sense — even it is a ghost."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Page-opening typographic statement",
+        "description": "160px Kmr Waldenburg weight 700, all caps, line-height 0.90, letter-spacing -12.8px. White (#fcfcfc) on void (#080808). Small Editorialnew italic weight 300 words ('crafting', 'for the') sit inline at 42px between the caps as connective tissue. The two type families are locked at the same baseline grid."
+      },
+      {
+        "name": "Section Transition Headline",
+        "role": "Mid-page typographic punctuation (e.g. 'WE ARE')",
+        "description": "80px Kmr Waldenburg weight 700 with -6px tracking, paired with a single oversized ornamental letter from Dirtyline 36 Daysoftype 2022 in 80–160px. The contrast between blocky geometric caps and a hand-drawn calligraphic glyph is the signature moment."
+      },
+      {
+        "name": "Bordered Brand Card",
+        "role": "Highlighted content card using the brand accent",
+        "description": "Background: void or smoke (#080808–#262525). Border: 1px solid #fe1e34. Border-radius: 8px. Internal padding: 24px. The red border is the only chromatic border in the system; it functions as a 'featured' marker, not decoration."
+      },
+      {
+        "name": "Standard Card",
+        "role": "Generic content surface",
+        "description": "Background #080808 or #f3efef, 1px hairline border at #d4d2d2 (on dark) or #525252 (on light), 8px radius, 12–24px internal padding. Inset highlight: rgba(255,255,255,0.2) 0px 2px 5px 0px inset on dark variants to suggest a glass edge."
+      },
+      {
+        "name": "Hairline Link",
+        "role": "Inline and nav text links",
+        "description": "12–14px Kmr Waldenburg weight 400, uppercase, 0.071em tracking. Underline in #525252 (on dark) or #b5b2b2 (on light). 3px border-radius is reserved for link/nav containers only. No color change on hover — the system relies on weight or position shift instead."
+      },
+      {
+        "name": "Top Navigation",
+        "role": "Primary site navigation bar",
+        "description": "Full-width, transparent over void canvas. Logo 'SVZ' top-left in 32px Editorialnew or Kmr Waldenburg caps. Four column groups (AGENCY, WORK, CULTURE, INSIGHTS) centered as tracked uppercase labels with stacked sub-items in 12px. Discovery Call outlined button pinned top-right. No background fill — the nav floats on the void."
+      },
+      {
+        "name": "Footer Panel",
+        "role": "Site footer",
+        "description": "Charcoal (#171617) background, full-bleed, bone-white text. Mirrors the nav's column structure. 48px vertical padding minimum."
+      },
+      {
+        "name": "Accent Dot",
+        "role": "Scattered red punctuation across the canvas",
+        "description": "Solid 16–24px #fe1e34 circle, no border, no shadow. Appears as a cursor-like marker near CTA areas and as visual rhythm against the void. Functions like a drop of blood in the monochrome system."
+      },
+      {
+        "name": "Decorative Background Shape",
+        "role": "Atmospheric large-scale visual element",
+        "description": "Oversized geometric forms (crosses, arrows, letters) rendered in #171617 to #262525 with 8–20% perceived opacity, bleeding off-canvas. Establishes editorial composition without competing with foreground type. No interaction."
+      },
+      {
+        "name": "Editorial Body Panel",
+        "role": "Long-form content section",
+        "description": "Linen (#f3efef) background, 080808 text, 14px Kmr Waldenburg weight 400, line-height 1.50, 24px section padding. The only high-density reading surface in the system. 1px #d4d2d2 border or seamless transition from a dark section."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary display and UI typeface across nav, headings, body, buttons, and the full scale from 10px tracked nav labels to 160px hero display. The custom face is the system's signature — its bold caps at 64–160px carry negative tracking (-0.075em to -0.080em) that compresses the letters into architectural blocks. Substitute: Neue Haas Grotesk Display, or Inter at matching weights and tracking.",
+        "sizes": "10, 12, 14, 24, 32, 42, 64, 80, 160",
+        "family": "Kmr Waldenburg",
+        "weight": "300, 400, 700",
+        "lineHeight": "0.90, 1.00, 1.05, 1.10, 1.20, 1.50",
+        "substitute": "Neue Haas Grotesk Display / Inter",
+        "letterSpacing": "Tight: -0.017em at body, -0.038em to -0.050em at headings, -0.075em to -0.080em at 80–160px display; tracked OUT to +0.071em and +0.308em for 10–12px nav labels"
+      },
+      {
+        "role": "Serif italic companion — appears as the 'crafting' / 'for the' connective words between display caps and as refined body/heading accents. The contrast of this soft serif whisper against the 700-weight caps is the system's typographic signature. Substitute: Editorial Old, Canela, or Playfair Display Italic.",
+        "sizes": "14, 20, 32",
+        "family": "Editorialnew",
+        "weight": "300",
+        "lineHeight": "1.00, 1.10, 1.50",
+        "substitute": "Editorial Old / Playfair Display Italic",
+        "letterSpacing": "-0.050em at 32px, -0.020em at 20px"
+      },
+      {
+        "role": "Ornamental display face used for single-letter or short-word spectacle moments (the stylized 'a' in 'WE ARE'). Aggressive -0.100em tracking at 24px makes it a sculptural object rather than readable type. Substitute: Tobias, Rogue Serif, or any expressive display serif with calligraphic contrast.",
+        "sizes": "24, 64, 80",
+        "family": "Dirtyline 36 Daysoftype 2022",
+        "weight": "400",
+        "lineHeight": "0.90, 1.05, 1.10",
+        "substitute": "Tobias / Rogue Serif",
+        "letterSpacing": "-0.100em at 24px, -0.037em at 64px, -0.030em at 80px"
+      },
+      {
+        "role": "Quiet body fallback and small icon labels — only used where Kmr Waldenburg's geometric personality would overpower micro-copy. Effectively the 'muted' voice in the type system.",
+        "sizes": "12, 14",
+        "family": "system-ui",
+        "weight": "300, 400",
+        "lineHeight": "1.20, 1.50",
+        "substitute": "system-ui / -apple-system",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "SVZ operates in the visual register of a high-fashion editorial: pitch-black canvas, oversized display typography that dominates the viewport, and a single arterial red that appears like a wound in the monochrome. The interface is deliberately sparse — most surfaces carry no chrome at all, letting type, photographic collage, and oversized background shapes do the work. Text is primarily white on near-black, with an off-white (#f3efef) reserved for inverted bodies and footers. Hierarchy is achieved through scale (160px display stepping down to 10px labels) and weight contrast (300 whisper-thin body against 700 blocky caps), never through color or chrome. Every interactive element is ghost or hairline-bordered — the system refuses to shout with buttons, preferring arrows and discover-call links that feel like editorial pull-quotes.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4d4772a3-e1da-415f-a6d7-658dcefdcecd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Branding design system\",\"item\":\"https://styles.refero.design/style/4d4772a3-e1da-415f-a6d7-658dcefdcecd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4d4772a3-e1da-415f-a6d7-658dcefdcecd#style-reference\",\"name\":\"Branding design system reference\",\"headline\":\"Branding design system | Refero Styles\",\"description\":\"Explore Branding's dark Agency design system: Void Canvas #080808, Absolute Black #000000 colors, Kmr Waldenburg, Editorialnew typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/4d4772a3-e1da-415f-a6d7-658dcefdcecd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4d4772a3-e1da-415f-a6d7-658dcefdcecd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Branding\",\"url\":\"https://www.svz.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4d4772a3-e1da-415f-a6d7-658dcefdcecd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a3e6f8ed-4ae7-4cd5-ba74-fd92f33227ad.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a3e6f8ed-4ae7-4cd5-ba74-fd92f33227ad.jpg\",\"caption\":\"Screenshot of Branding\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a3e6f8ed-4ae7-4cd5-ba74-fd92f33227ad.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Branding design system\",\"Branding website design\",\"Branding colors\",\"Branding typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void Canvas\",\"Absolute Black\",\"Charcoal Plate\",\"Smoke Plate\",\"Kmr Waldenburg\",\"Editorialnew\",\"Dirtyline 36 Daysoftype 2022\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Branding design system\"},{\"@type\":\"Thing\",\"name\":\"Branding website design\"},{\"@type\":\"Thing\",\"name\":\"Branding colors\"},{\"@type\":\"Thing\",\"name\":\"Branding typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:07:48.002Z\",\"dateModified\":\"2026-04-30T03:07:48.002Z\"}]}19:T885,**Quick Color Reference**\n- text: #fcfcfc\n- background: #080808\n- border: #d4d2d2 (on dark) / #525252 (on light)\n- accent: #fe1e34\n- primary action: #fe1e34 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. Create a Primary Action Button: #fe1e34 background, #fcfcfc text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Build a featured project card: background #080808, 1px solid #fe1e34 border, 8px border-radius, 24px padding. Headline 'PROJECT NAME' in 24px Kmr Waldenburg weight 700, color #fcfcfc, letter-spacing -0.91px. Body description in 14px Kmr Waldenburg weight 400, color #d4d2d2, line-height 1.50. The red border is the only chromatic chrome — do not add shadows, fills, or icons.\n\n3. Build the top navigation: transparent background over void canvas. Left: logo 'SVZ' in 32px Kmr Waldenburg weight 700 caps, color #fcfcfc. Center: four column headers (AGENCY, WORK, CULTURE, INSIGHTS) in 10px Kmr Waldenburg weight 400 uppercase, tracked +0.8px, color #d4d2d2, each with 2–3 sub-items in 12px same color directly below at 8px row gap. Right: a Discovery Call outlined button — 8px border-radius rectangle with 1px #d4d2d2 border, 12px 24px padding, 'DISCOVERY CALL ↗' in 12px Kmr Waldenburg weight 400 uppercase, color #fcfcfc, tracked +0.85px.\n\n4. Build an inverted body section: background #f3efef, 64px vertical padding. Body text in 14px Kmr Waldenburg weight 400, color #080808, line-height 1.50. Section heading 'EDITORIAL' in 32px Kmr Waldenburg weight 700, color #080808, letter-spacing -1.6px, uppercase. Use this surface sparingly — it is the only escape from the void and should feel like turning a page.\n\n5. Build a 'WE ARE' transition moment: void background, 80px Kmr Waldenburg weight 700 caps spelling 'WE' and 'RE' with extreme letter-spacing -6px, color #fcfcfc, line-height 0.90. Between them, a single ornamental 160px character from Dirtyline 36 Daysoftype 2022 (a stylized 'a' or calligraphic letterform) as a sculptural object — the geometric caps and the hand-drawn glyph must sit on the same baseline with the cap-height of the glyph matching the cap-height of the surrounding letters."
+      }
+    ],
+    "elevationPhilosophy": "Elevation in this system is expressed as a single white inset highlight on cards against the void — the surface appears to catch light from above rather than cast shadow downward. This is a dark-mode inversion of conventional drop-shadow elevation: instead of dark shadows on light surfaces, the system uses white luminance to define edges against black. Cards do not float; they are etched into the void."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#fcfcfc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9910689031024799
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "heading",
+            "card",
+            "image",
+            "body",
+            "icon",
+            "link",
+            "footer",
+            "button"
+          ],
+          "frequency": 5297,
+          "confidence": 1,
+          "prominence": 354311284.0264176,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "nav/color": 27,
+            "body/color": 12,
+            "card/color": 35,
+            "hero/color": 1,
+            "icon/color": 90,
+            "link/color": 18,
+            "other/fill": 17,
+            "image/color": 11,
+            "other/color": 912,
+            "button/color": 2,
+            "footer/color": 1,
+            "other/stroke": 3,
+            "heading/color": 13,
+            "nav/borderColor": 108,
+            "body/borderColor": 48,
+            "card/borderColor": 124,
+            "hero/borderColor": 4,
+            "icon/borderColor": 360,
+            "link/borderColor": 72,
+            "image/borderColor": 44,
+            "other/borderColor": 3324,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 52,
+            "card/backgroundColor": 1,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#080808",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.13440923139492972
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "heading",
+            "link",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 376,
+          "confidence": 1,
+          "prominence": 231802557.03739274,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 6,
+            "nav/color": 4,
+            "body/color": 2,
+            "card/color": 4,
+            "icon/color": 1,
+            "other/fill": 134,
+            "other/color": 28,
+            "heading/color": 5,
+            "nav/borderColor": 16,
+            "body/borderColor": 8,
+            "card/borderColor": 16,
+            "icon/borderColor": 4,
+            "other/borderColor": 112,
+            "heading/borderColor": 20,
+            "card/backgroundColor": 5,
+            "link/backgroundColor": 2,
+            "other/backgroundColor": 8,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "hero",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 531,
+          "confidence": 1,
+          "prominence": 65211073.142315686,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "icon/fill": 12,
+            "nav/color": 3,
+            "icon/color": 8,
+            "other/fill": 358,
+            "other/color": 16,
+            "other/stroke": 20,
+            "nav/borderColor": 12,
+            "icon/borderColor": 32,
+            "other/borderColor": 64,
+            "hero/backgroundColor": 1,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#f3efef",
+          "oklch": {
+            "c": 0.004303719420030947,
+            "h": 17.23241677454722,
+            "l": 0.9552191583702312
+          },
+          "contexts": [
+            "card",
+            "other",
+            "link",
+            "heading",
+            "body"
+          ],
+          "frequency": 457,
+          "confidence": 1,
+          "prominence": 34366824.32812092,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 82,
+            "link/color": 1,
+            "other/color": 6,
+            "heading/color": 2,
+            "body/borderColor": 328,
+            "link/borderColor": 4,
+            "other/borderColor": 24,
+            "heading/borderColor": 8,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#525252",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.43897013079700276
+          },
+          "contexts": [
+            "nav",
+            "card",
+            "link",
+            "other"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 9137654.812066283,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 4,
+            "link/borderColor": 16,
+            "other/borderColor": 4,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#171617",
+          "oklch": {
+            "c": 0.0025043187380120444,
+            "h": 325.6691998806168,
+            "l": 0.2017580538385187
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 57,
+          "confidence": 1,
+          "prominence": 9110332.0436224,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 11,
+            "other/borderColor": 44,
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fe1e34",
+          "oklch": {
+            "c": 0.2466212122922136,
+            "h": 24.679936441191884,
+            "l": 0.636229736254709
+          },
+          "contexts": [
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 101,
+          "confidence": 1,
+          "prominence": 2901203.900815916,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/color": 12,
+            "other/color": 8,
+            "card/borderColor": 48,
+            "other/borderColor": 32,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff0000",
+          "oklch": {
+            "c": 0.2576833038053608,
+            "h": 29.233880279627854,
+            "l": 0.6279553639214311
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 2397687.3777042837,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 6,
+            "other/color": 4,
+            "heading/color": 2,
+            "other/borderColor": 16,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#262525",
+          "oklch": {
+            "c": 0.0014830112828246305,
+            "h": 17.250249800472584,
+            "l": 0.26554505735389095
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 81,
+          "confidence": 1,
+          "prominence": 719693.9595787809,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 81
+          }
+        },
+        {
+          "hex": "#d4d2d2",
+          "oklch": {
+            "c": 0.0022022235988912943,
+            "h": 17.200121740427132,
+            "l": 0.8653569713333431
+          },
+          "contexts": [
+            "nav",
+            "card",
+            "heading",
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 184,
+          "confidence": 1,
+          "prominence": 637531.4406327058,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 10,
+            "card/color": 3,
+            "icon/color": 5,
+            "link/color": 7,
+            "other/fill": 5,
+            "other/color": 15,
+            "heading/color": 3,
+            "nav/borderColor": 36,
+            "icon/borderColor": 20,
+            "link/borderColor": 12,
+            "other/borderColor": 56,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#393939",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.34613545531879625
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 309882.04667105456,
+          "properties": [
+            "boxShadow",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "card/boxShadow": 4,
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#b5b2b2",
+          "oklch": {
+            "c": 0.0034107690170808915,
+            "h": 17.23154352911116,
+            "l": 0.7660231197180954
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 113848.86759842548,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/color": 3,
+            "link/borderColor": 4,
+            "other/borderColor": 12
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.013895257842724855,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.47,
+          "background": "#000000",
+          "foreground": "#fcfcfc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.52,
+          "background": "#080808",
+          "foreground": "#fcfcfc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.4,
+          "background": "#f3efef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.59,
+          "background": "#171617",
+          "foreground": "#fcfcfc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.55,
+          "background": "#f3efef",
+          "foreground": "#080808"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.82,
+          "background": "#171617",
+          "foreground": "#f3efef"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.9,
+          "background": "#262525",
+          "foreground": "#fcfcfc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.95,
+          "background": "#000000",
+          "foreground": "#d4d2d2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.4,
+          "background": "#262525",
+          "foreground": "#f3efef"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.3,
+          "background": "#080808",
+          "foreground": "#d4d2d2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.99,
+          "background": "#171617",
+          "foreground": "#d4d2d2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.26,
+          "background": "#393939",
+          "foreground": "#fcfcfc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.15,
+          "background": "#262525",
+          "foreground": "#d4d2d2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.12,
+          "background": "#393939",
+          "foreground": "#f3efef"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.98,
+          "background": "#000000",
+          "foreground": "#b5b2b2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.51,
+          "background": "#080808",
+          "foreground": "#b5b2b2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.57,
+          "background": "#171617",
+          "foreground": "#b5b2b2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.67,
+          "background": "#393939",
+          "foreground": "#d4d2d2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.62,
+          "background": "#525252",
+          "foreground": "#fcfcfc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.26,
+          "background": "#262525",
+          "foreground": "#b5b2b2"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 173
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "card",
+            "link",
+            "button"
+          ],
+          "frequency": 18
+        },
+        {
+          "value": 14.4,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(255, 255, 255, 0.2) 0px 2px 5px 0px inset",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "card",
+            "other",
+            "link"
+          ],
+          "frequency": 79,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "marginTop|card",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 44,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|heading",
+            "paddingRight|body",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "link",
+            "button"
+          ],
+          "frequency": 68,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|button",
+            "columnGap|button",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 324,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 190,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 58,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 211,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "button"
+          ],
+          "frequency": 43,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginBottom|card",
+            "marginBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 47,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|image",
+            "marginLeft|image"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 333,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 184,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 288,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 302,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 312,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(356deg, rgb(254, 30, 52) 15%, rgba(0, 0, 0, 0) 70%)",
+        "colors": [
+          "rgb(254, 30, 52)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Kmr Waldenburg",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            700
+          ],
+          "frequency": 691,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "system-ui",
+          "source": "system",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 648,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Editorialnew",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 19,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Dirtyline 36 Daysoftype 2022",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.9
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Kmr Waldenburg",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 62,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Kmr Waldenburg",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.08,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Kmr Waldenburg",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0.308,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Kmr Waldenburg",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Kmr Waldenburg",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "system-ui",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 81,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Kmr Waldenburg",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "card",
+            "image",
+            "link",
+            "icon",
+            "button",
+            "body",
+            "footer"
+          ],
+          "frequency": 403,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Kmr Waldenburg",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 43,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Kmr Waldenburg",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "image",
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Editorialnew",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Kmr Waldenburg",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.071,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Kmr Waldenburg",
+          "weight": 300,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 486,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 81,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Editorialnew",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Editorialnew",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Kmr Waldenburg",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Kmr Waldenburg",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.017,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Dirtyline 36 Daysoftype 2022",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Kmr Waldenburg",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 93,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Editorialnew",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Kmr Waldenburg",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.038,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 64,
+          "family": "Kmr Waldenburg",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.075,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 64,
+          "family": "Kmr Waldenburg",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.047,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 64,
+          "family": "Dirtyline 36 Daysoftype 2022",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.037,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 64,
+          "family": "Kmr Waldenburg",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.047,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 64,
+          "family": "Dirtyline 36 Daysoftype 2022",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.037,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 80,
+          "family": "Kmr Waldenburg",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.037,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 80,
+          "family": "Dirtyline 36 Daysoftype 2022",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 80,
+          "family": "Kmr Waldenburg",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 80,
+          "family": "Dirtyline 36 Daysoftype 2022",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 160,
+          "family": "Kmr Waldenburg",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.08,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/abe102a7-5ed9-4a42-bbfc-cd809a72ebc9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a3e6f8ed-4ae7-4cd5-ba74-fd92f33227ad.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4d4772a3-e1da-415f-a6d7-658dcefdcecd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Branding design system\",\"item\":\"https://styles.refero.design/style/4d4772a3-e1da-415f-a6d7-658dcefdcecd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4d4772a3-e1da-415f-a6d7-658dcefdcecd#style-reference\",\"name\":\"Branding design system reference\",\"headline\":\"Branding design system | Refero Styles\",\"description\":\"Explore Branding's dark Agency design system: Void Canvas #080808, Absolute Black #000000 colors, Kmr Waldenburg, Editorialnew typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/4d4772a3-e1da-415f-a6d7-658dcefdcecd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4d4772a3-e1da-415f-a6d7-658dcefdcecd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Branding\",\"url\":\"https://www.svz.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4d4772a3-e1da-415f-a6d7-658dcefdcecd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a3e6f8ed-4ae7-4cd5-ba74-fd92f33227ad.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a3e6f8ed-4ae7-4cd5-ba74-fd92f33227ad.jpg\",\"caption\":\"Screenshot of Branding\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a3e6f8ed-4ae7-4cd5-ba74-fd92f33227ad.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Branding design system\",\"Branding website design\",\"Branding colors\",\"Branding typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void Canvas\",\"Absolute Black\",\"Charcoal Plate\",\"Smoke Plate\",\"Kmr Waldenburg\",\"Editorialnew\",\"Dirtyline 36 Daysoftype 2022\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Branding design system\"},{\"@type\":\"Thing\",\"name\":\"Branding website design\"},{\"@type\":\"Thing\",\"name\":\"Branding colors\"},{\"@type\":\"Thing\",\"name\":\"Branding typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:07:48.002Z\",\"dateModified\":\"2026-04-30T03:07:48.002Z\"}]}19:T885,**Quick Color Reference**\n- text: #fcfcfc\n- background: #080808\n- border: #d4d2d2 (on dark) / #525252 (on light)\n- accent: #fe1e34\n- primary action: #fe1e34 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. Create a Primary Action Button: #fe1e34 background, #fcfcfc text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Build a featured project card: background #080808, 1px solid #fe1e34 border, 8px border-radius, 24px padding. Headline 'PROJECT NAME' in 24px Kmr Waldenburg weight 700, color #fcfcfc, letter-spacing -0.91px. Body description in 14px Kmr Waldenburg weight 400, color #d4d2d2, line-height 1.50. The red border is the only chromatic chrome — do not add shadows, fills, or icons.\n\n3. Build the top navigation: transparent background over void canvas. Left: logo 'SVZ' in 32px Kmr Waldenburg weight 700 caps, color #fcfcfc. Center: four column headers (AGENCY, WORK, CULTURE, INSIGHTS) in 10px Kmr Waldenburg weight 400 uppercase, tracked +0.8px, color #d4d2d2, each with 2–3 sub-items in 12px same color directly below at 8px row gap. Right: a Discovery Call outlined button — 8px border-radius rectangle with 1px #d4d2d2 border, 12px 24px padding, 'DISCOVERY CALL ↗' in 12px Kmr Waldenburg weight 400 uppercase, color #fcfcfc, tracked +0.85px.\n\n4. Build an inverted body section: background #f3efef, 64px vertical padding. Body text in 14px Kmr Waldenburg weight 400, color #080808, line-height 1.50. Section heading 'EDITORIAL' in 32px Kmr Waldenburg weight 700, color #080808, letter-spacing -1.6px, uppercase. Use this surface sparingly — it is the only escape from the void and should feel like turning a page.\n\n5. Build a 'WE ARE' transition moment: void background, 80px Kmr Waldenburg weight 700 caps spelling 'WE' and 'RE' with extreme letter-spacing -6px, color #fcfcfc, line-height 0.90. Between them, a single ornamental 160px character from Dirtyline 36 Daysoftype 2022 (a stylized 'a' or calligraphic letterform) as a sculptural object — the geometric caps and the hand-drawn glyph must sit on the same baseline with the cap-height of the glyph matching the cap-height of the surrounding letters."
+}

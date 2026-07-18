@@ -1,0 +1,780 @@
+{
+  "source": "https://styles.refero.design/style/9c92c3d1-a2fe-4a27-a324-826b19501774",
+  "uuid": "9c92c3d1-a2fe-4a27-a324-826b19501774",
+  "name": "Medium",
+  "northStar": "cream-colored broadsheet at golden hour",
+  "capturedAt": "2026-07-18T08:36:31.522Z",
+  "meta": {
+    "url": "https://medium.com",
+    "siteName": "Medium",
+    "extractedAt": "2026-06-03T15:18:59.835Z",
+    "durationMs": 30873,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 89,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #f7f4ed as the page canvas on all full-width backgrounds and section bands",
+      "Use GT Super at 120px with letter-spacing -0.055em and line-height 0.83 for display headlines",
+      "Use Söhne weight 400 for all UI text (navigation, buttons, subheadings)",
+      "Use border-radius 9999px for all buttons and tags",
+      "Use #191919 as the only filled-button background color in the system",
+      "Use #ffffff for card and panel surfaces that need to lift off the cream canvas",
+      "Use 0px radius for all non-button containers (cards, inputs, images, modals)"
+    ],
+    "donts": [
+      "Do not introduce any chromatic color in UI elements — no blue links, no green buttons, no red errors in the visual system",
+      "Do not use shadows or blur effects to separate surfaces — rely on color value shifts only",
+      "Do not use bold or semibold weights for the GT Super display headline — weight 400 is the signature",
+      "Do not set line-height above 1.0 for the display headline — the 0.83 overlap is intentional",
+      "Do not apply border-radius to cards, inputs, or containers — only buttons and tags get radius",
+      "Do not use the green from the hero illustration as a brand color — it is editorial art only",
+      "Do not use centered alignment for body text or long-form content — left-align to the reading axis"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f7f4ed",
+        "name": "Newsprint Cream",
+        "role": "Page canvas, hero background, section backgrounds — the warm off-white that makes the entire interface feel printed rather than digital",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Card surfaces, elevated panels, form inputs, and any surface that needs to lift off the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#242424",
+        "name": "Ink",
+        "role": "Primary text, body copy, links, heading text — slightly warmer than pure black, sits comfortably on cream",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Body Gray",
+        "role": "Secondary text and default body color where slightly lighter than Ink is needed without losing contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#191919",
+        "name": "Button Black",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6b6b6b",
+        "name": "Marginalia Gray",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Two-column hero: left ~55% holds the headline, subtext, and CTA stacked vertically with generous internal spacing; right ~45% holds the illustration panel. The left column is left-aligned (not centered), anchoring the page to a reading axis. Below the hero, the page flows as a single full-width cream band with centered footer links. No card grids, no feature sections, no alternating bands on the homepage — the hero IS the page. Content density is intentionally low: one headline, one sentence, one button, one image. The page is a cover, not a dashboard.",
+    "imagery": "Illustration is editorial and occasional, not systematic. The hero uses a single hand-drawn illustration (green flower, geometric hand, constellation lines) in a loose, slightly naive style. Illustrations appear to be commissioned artwork that changes seasonally rather than a fixed library. No photography is used on the homepage. Icons are not present on the hero page — the wordmark and text do all the work. The visual language is fundamentally text-first, with illustration as punctuation.",
+    "similar": [
+      {
+        "why": "Same warm cream canvas and book-serif display treatment for a reading-first publishing platform",
+        "business": "Substack"
+      },
+      {
+        "why": "Same editorial restraint — warm off-white backgrounds, serif display type, no chromatic UI accents, illustration as the only color",
+        "business": "The New Yorker"
+      },
+      {
+        "why": "Same near-monochrome palette and anti-SaaS visual language with warm grays replacing pure black-and-white",
+        "business": "Are.na"
+      },
+      {
+        "why": "Same reading-room aesthetic with serif display type and a muted, warm-neutral palette",
+        "business": "Read.cv"
+      },
+      {
+        "why": "Same content-first minimalism with sharp-cornered cards on a warm off-white background and full-pill buttons",
+        "business": "Pocket"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "9999px"
+      },
+      "elementGap": "16-24px",
+      "sectionGap": "64px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#f7f4ed",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page-level background, hero, section bands — the warm paper base"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 2,
+        "purpose": "Cards, modals, inputs — surfaces that need to read as distinct objects on the cream canvas"
+      },
+      {
+        "hex": "#191919",
+        "name": "Ink Surface",
+        "level": 3,
+        "purpose": "Filled buttons and the wordmark — the only dark surface, used sparingly as visual anchor"
+      }
+    ],
+    "elevation": [],
+    "northStar": "cream-colored broadsheet at golden hour",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.27,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.54
+      },
+      {
+        "role": "display",
+        "size": 120,
+        "lineHeight": 0.83,
+        "letterSpacing": -6.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button (Filled)",
+        "role": "Primary action — 'Start reading', 'Get started'",
+        "description": "Background #191919, text #ffffff, Söhne 14px weight 400, padding 8px vertical × 16–20px horizontal, border-radius 9999px (extracted as 1386–1980px). No border, no shadow. The extreme radius is the signature — not rounded, fully pill-shaped. Centered text, tight hit area."
+      },
+      {
+        "name": "Wordmark Logo",
+        "role": "Brand identity in the top-left",
+        "description": "Text 'Medium' in Söhne weight 400 at ~22px, color #191919. No icon, no custom mark — the wordmark IS the logo, set in the same UI font as navigation, which is itself a brand decision (the product voice and the brand voice are the same)."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary navigation",
+        "description": "Full-width bar on #f7f4ed canvas, ~64px tall, no border or shadow. Left: wordmark. Right: Söhne 14px links (#242424) — 'Our story', 'Membership', 'Write', 'Sign in' — followed by a filled pill button 'Get started'. Items separated by ~24px gap. No sticky behavior specified for homepage."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Page-level value proposition",
+        "description": "GT Super 120px, weight 400, line-height 0.83, letter-spacing -0.055em, color #242424. Renders as a tight 2-line block: 'Human' / 'stories & ideas'. The low line-height causes slight optical overlap between descenders and ascenders, reinforcing the book-print feel."
+      },
+      {
+        "name": "Hero Subtext",
+        "role": "Supporting description beneath hero headline",
+        "description": "Söhne 20px weight 400, color #6b6b6b, single line. Sized to read as a quiet footnote to the display headline — roughly 1/6 the headline size, creating a dramatic type contrast."
+      },
+      {
+        "name": "Hero CTA Button",
+        "role": "Primary call-to-action in the hero",
+        "description": "Identical to the Pill Button (Filled) component — #191919 background, #ffffff text, Söhne 14px, 8px × 16px padding, 9999px radius. Label 'Start reading'."
+      },
+      {
+        "name": "Hero Illustration Panel",
+        "role": "Decorative visual companion to hero text",
+        "description": "Right-side illustration occupying roughly 40% of the hero width. Contains a green flower and geometric hand/line elements. Note: the green is NOT a brand color — it exists only in editorial illustration and should not be used in UI."
+      },
+      {
+        "name": "Footer Link Bar",
+        "role": "Secondary navigation, legal, support",
+        "description": "Single horizontal row of Söhne 13px links in #6b6b6b, centered on the #f7f4ed canvas. Items: 'Help', 'Status', 'About', 'Careers', 'Press', 'Blog', 'Privacy', 'Rules', 'Terms', 'Text to speech'. Separated by ~16px gap. No dividers, no border above — the cream canvas flows seamlessly from content to footer."
+      },
+      {
+        "name": "Link (Inline)",
+        "role": "Text links within body content",
+        "description": "Söhne 16px or body-serif 16px, color #242424 (same as body text), underline on hover only. The lack of a distinct link color is intentional — links are typographic, not chromatic."
+      }
+    ],
+    "typography": [
+      {
+        "role": "medium-content-sans-serif-font — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "medium-content-sans-serif-font",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Display headlines and hero — a transitional book serif at extreme scale with tight tracking and 0.83 line-height. The choice to use weight 400 (not bold) at 120px is the signature: the letterforms do the work, not the weight. The negative tracking pulls the optical gaps closed, making 'Human stories & ideas' read as a single typographic block.",
+        "sizes": "120px",
+        "family": "GT Super",
+        "weight": "400",
+        "lineHeight": "0.83",
+        "substitute": "Playfair Display, EB Garamond, or Libre Caslon Text",
+        "letterSpacing": "-0.055em",
+        "fontFeatureSettings": "\"lnum\" on, \"pnum\" on"
+      },
+      {
+        "role": "UI sans-serif for navigation, buttons, subheadings, and small headings. The 13–14px range handles nav and button labels; 20–22px covers subheadings and secondary hero text. Clean grotesque with humanist proportions — readable at small sizes, unobtrusive at large.",
+        "sizes": "",
+        "family": "Söhne",
+        "weight": "400",
+        "lineHeight": "1.27–1.54",
+        "substitute": "Inter, Söhne (paid), or IBM Plex Sans"
+      },
+      {
+        "role": "Body content serif for reading view — the long-form article font. Set at 16px with tight 1.2 line-height, optimized for the column width of Medium's reader.",
+        "sizes": "",
+        "family": "Charter / Georgia stack",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Charter, Georgia, or Source Serif Pro"
+      },
+      {
+        "role": "Body sans-serif for non-reading contexts — descriptions, cards, inline content. Matches the content serif's metrics so the two can coexist at the same size.",
+        "sizes": "",
+        "family": "Söhne (extended)",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Inter or system-ui"
+      },
+      {
+        "role": "sohne — detected in extracted data but not described by AI",
+        "sizes": "13px, 14px, 20px, 22px",
+        "family": "sohne",
+        "weight": "400",
+        "lineHeight": "1.27, 1.4, 1.43, 1.54"
+      },
+      {
+        "role": "Times — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Medium operates as a literary reading room translated to the web: a warm cream canvas (#f7f4ed) replaces the sterile white common to SaaS, making long-form prose feel like a printed page. The visual system is aggressively monochromatic — nearly every UI surface, text, and border sits in a narrow band of warm grays from #242424 to #6b6b6b — so the reader's attention goes entirely to content. The single brand gesture is the serif hero headline (GT Super at 120px, weight 400, tracking -0.055em), a deliberate anti-trend choice: a transitional book serif at display scale with whisper weight, not a bold geometric sans, signals 'we publish books, not software.' Buttons are full pills in near-black, the only solid ink on the page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "**Quick Color Reference**\n- text: #242424\n- background: #f7f4ed\n- surface: #ffffff\n- border: #6b6b6b\n- accent: #191919 (button background, the only 'accent')\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. **Hero headline**: GT Super 120px weight 400, line-height 0.83, letter-spacing -0.055em, color #242424. Left-aligned, no max-width constraint. Sits on #f7f4ed canvas.\n2. **Filled pill button**: Background #191919, text #ffffff, Söhne 14px weight 400, padding 8px 20px, border-radius 9999px, no border, no shadow.\n3. **Navigation link**: Söhne 14px weight 400, color #242424, no underline by default, underline on hover. Spacing 24px between items.\n4. **Footer link bar**: Söhne 13px weight 400, color #6b6b6b, items separated by 16px gap, centered horizontally on #f7f4ed canvas, no top border.\n5. **Card surface**: Background #ffffff (NOT cream), no border, no shadow, no radius, padding 16px. The color shift from cream to white is the only visual separator."
+      },
+      {
+        "title": "Color Philosophy",
+        "content": "The entire UI is warm-grayscale. There is no blue, no green, no red in the interface — the green in the hero illustration is editorial art, not a design token. The palette moves from #f7f4ed (warm cream) through #6b6b6b (cool gray text) to #191919 (near-black ink). The warmth comes from the canvas, not the text. Never introduce a chromatic accent in UI; the single dark surface (#191919) is the only 'color' moment."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "Medium uses two voices: GT Super (a transitional book serif) for display, and Söhne (a humanist grotesque) for everything else. The display serif is weight 400, not bold — authority through letterform quality, not weight. The line-height of 0.83 is unusually tight for display type, creating overlap that reads as a printed headline block. Body text uses Charter/Georgia, a transitional serif optimized for screen reading. The system deliberately avoids geometric sans-serifs (no Helvetica, no Inter-as-display) to distance itself from generic SaaS aesthetics."
+      },
+      {
+        "title": "Radius Philosophy",
+        "content": "Buttons are fully pill-shaped (9999px), but everything else has zero radius. Cards, inputs, images, and containers are sharp-cornered. This high contrast — soft buttons on hard containers — makes the pill buttons feel like physical pills pressed onto the page, not rounded rectangles."
+      }
+    ],
+    "elevationPhilosophy": "Medium uses no shadows or blur effects. Surfaces are separated by color value shifts alone (cream #f7f4ed → paper #ffffff → ink #191919), not by elevation. This flat-on-flat approach is deliberate: the interface should feel like printed paper lying on a desk, not a glass-and-shadow app."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636325
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image"
+          ],
+          "frequency": 318,
+          "confidence": 1,
+          "prominence": 10779366.74743927,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2592000,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f7f4ed",
+          "oklch": {
+            "c": 0.009821969991466194,
+            "h": 87.47092624721957,
+            "l": 0.9675356728505989
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2393280,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#242424",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2603248134180716
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "heading"
+          ],
+          "frequency": 63,
+          "confidence": 1,
+          "prominence": 864000,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#191919",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.21342250711191385
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 31190.23547363387,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6b6b6b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5277958377351308
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 9501.312447802255,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00017816016672349342,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.58,
+          "background": "#191919",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.01,
+          "background": "#f7f4ed",
+          "foreground": "#191919"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.52,
+          "background": "#ffffff",
+          "foreground": "#242424"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.13,
+          "background": "#f7f4ed",
+          "foreground": "#242424"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.5,
+          "background": "#f7f4ed",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.33,
+          "background": "#ffffff",
+          "foreground": "#6b6b6b"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.85,
+          "background": "#f7f4ed",
+          "foreground": "#6b6b6b"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.3,
+          "background": "#191919",
+          "foreground": "#6b6b6b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.39,
+          "background": "#191919",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.13,
+          "background": "#191919",
+          "foreground": "#242424"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#f7f4ed",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 1386,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 1980,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "medium-content-sans-serif-font",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 62,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "sohne",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 23,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "gt-super",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": [
+            "\"lnum\", \"pnum\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "sohne",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "sohne",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "medium-content-sans-serif-font",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image"
+          ],
+          "frequency": 62,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "sohne",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "sohne",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "gt-super",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.83,
+          "letterSpacing": -0.055,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e31a5875-429a-4f34-9220-585768064ea0.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/24f1fe85-32b2-4e0c-9bb2-c60bf8b2ed54.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9c92c3d1-a2fe-4a27-a324-826b19501774#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Medium design system\",\"item\":\"https://styles.refero.design/style/9c92c3d1-a2fe-4a27-a324-826b19501774\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9c92c3d1-a2fe-4a27-a324-826b19501774#style-reference\",\"name\":\"Medium design system reference\",\"headline\":\"Medium design system | Refero Styles\",\"description\":\"Explore Medium's light Media design system: Newsprint Cream #f7f4ed, Paper White #ffffff colors, medium-content-sans-serif-font, GT Super typography, and...\",\"url\":\"https://styles.refero.design/style/9c92c3d1-a2fe-4a27-a324-826b19501774\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9c92c3d1-a2fe-4a27-a324-826b19501774\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Medium\",\"url\":\"https://medium.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9c92c3d1-a2fe-4a27-a324-826b19501774#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/24f1fe85-32b2-4e0c-9bb2-c60bf8b2ed54.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/24f1fe85-32b2-4e0c-9bb2-c60bf8b2ed54.jpg\",\"caption\":\"Screenshot of Medium\"},\"image\":\"https://images.refero.design/styles/refero.design/image/24f1fe85-32b2-4e0c-9bb2-c60bf8b2ed54.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Medium design system\",\"Medium website design\",\"Medium colors\",\"Medium typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Newsprint Cream\",\"Paper White\",\"Ink\",\"Body Gray\",\"medium-content-sans-serif-font\",\"GT Super\",\"Söhne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Medium design system\"},{\"@type\":\"Thing\",\"name\":\"Medium website design\"},{\"@type\":\"Thing\",\"name\":\"Medium colors\"},{\"@type\":\"Thing\",\"name\":\"Medium typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-05T18:44:52.000Z\",\"dateModified\":\"2026-04-05T18:44:52.000Z\"}]}"
+}

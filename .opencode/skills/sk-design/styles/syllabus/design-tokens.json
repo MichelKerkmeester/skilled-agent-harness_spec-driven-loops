@@ -1,0 +1,272 @@
+{
+  "color": {
+    "ink-violet": {
+      "$value": "#0d0129",
+      "$type": "color",
+      "$description": "Ink Violet — Violet accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    },
+    "butter-yellow": {
+      "$value": "#fae59b",
+      "$type": "color",
+      "$description": "Butter Yellow — Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "deep-teal": {
+      "$value": "#19615c",
+      "$type": "color",
+      "$description": "Deep Teal — Dark section backgrounds for contrasting content blocks and nav text. Used as a full-bleed band color when a section needs to shift away from the cream canvas into a more saturated, grounded tone"
+    },
+    "cream-paper": {
+      "$value": "#fffcf7",
+      "$type": "color",
+      "$description": "Cream Paper — Primary page canvas and card surface — replaces the default pure white. The slight warm tint is the most distinctive choice in the system; it makes the violet ink and yellow accent feel intentional rather than stark"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Inset card surfaces and elevated panels layered over the cream canvas. Used when a component needs to feel lifted off the paper without introducing a tint"
+    },
+    "shadow-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Shadow Black — Hard-offset button shadow color and SVG illustration fills. Never used as text or large surface — only as the 1–3px offset shadow behind Butter Yellow buttons and as fill on line-art elements that need maximum contrast"
+    }
+  },
+  "font": {
+    "roobert": {
+      "$value": "Roobert",
+      "$type": "fontFamily",
+      "$description": "The sole typeface across the system. Weight 700 reserved for display headlines and button labels; weight 400 for body, nav, and subheadings. The custom geometric forms give the cream-paper palette its modern editorial backbone — a system font would flatten the identity."
+    },
+    "supply": {
+      "$value": "Supply",
+      "$type": "fontFamily",
+      "$description": "Secondary use at 20px body size for supporting paragraphs in illustration-adjacent contexts. The monospace-adjacent quality suggests a technical or data-oriented voice; treat it as a sparing accent, not a co-equal voice."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Supply",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(0, 0, 0) 1px 1px 3px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#fffcf7",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — warm off-white that replaces pure white throughout the site"
+    },
+    "white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Inset card and panel surfaces layered over the cream canvas for quiet elevation"
+    },
+    "teal-block": {
+      "$value": "#19615c",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed dark section backgrounds when content needs a tonal shift"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://syllabus.io",
+      "siteName": "Syllabus",
+      "extractedAt": "2026-06-03T16:53:22.258Z",
+      "variant": "extended"
+    }
+  }
+}

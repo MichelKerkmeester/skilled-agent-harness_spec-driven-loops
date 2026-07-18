@@ -1,0 +1,407 @@
+{
+  "color": {
+    "canvas-cream": {
+      "$value": "#f4f4f0",
+      "$type": "color",
+      "$description": "Canvas Cream — Page background, input fills, and the warm base layer every other surface sits on"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card and product-tile surfaces elevated above the cream canvas"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "graphite": {
+      "$value": "#242423",
+      "$type": "color",
+      "$description": "Graphite — Secondary text and input borders; reads as a softened black when true black would feel too harsh against cream"
+    },
+    "hairline": {
+      "$value": "#d1d5dc",
+      "$type": "color",
+      "$description": "Hairline — Card and button borders, dividers, and ghost-button outlines"
+    },
+    "coin-pink": {
+      "$value": "#ff90e8",
+      "$type": "color",
+      "$description": "Coin Pink — Brand mascot coin fills, decorative accents, and the single chromatic signature of the product"
+    },
+    "highlight-yellow": {
+      "$value": "#ffc900",
+      "$type": "color",
+      "$description": "Highlight Yellow — Accent swatches and small punctuation marks — never backgrounds of full components"
+    },
+    "highlight-lime": {
+      "$value": "#f1f333",
+      "$type": "color",
+      "$description": "Highlight Lime — Accent swatches used alongside yellow as a paired color-marker system"
+    },
+    "highlight-vermillion": {
+      "$value": "#dc341e",
+      "$type": "color",
+      "$description": "Highlight Vermillion — Accent swatch for the third color in the marker trio; reserved for emphasis only"
+    }
+  },
+  "font": {
+    "abc-favorit": {
+      "$value": "ABC Favorit",
+      "$type": "fontFamily",
+      "$description": "The sole type family across the system — used for headings, body, buttons, inputs, and even icons. Weights split into 400 (body/UI), 500 (emphasis, prices, nav), 700 (display and oversized marketing type). Letter-spacing pulls negative on every step above 24px, reaching -0.029em at 192px, which tightens the geometric forms into a confident, almost stencil-like display voice. The stylistic alternates ss04 and ss11 are always on and shape the personality of every glyph."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "72px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 72px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 96px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "ABC Favorit",
+        "fontSize": "192px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 192px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "224": {
+      "$value": "224px",
+      "$type": "dimension",
+      "$description": "Spacing 224px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f4f4f0",
+      "$type": "color",
+      "$description": "Surface level 0: Page-level warm off-white base that all sections sit on"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Product tiles, feature cards, and content blocks lifted off the canvas"
+    },
+    "filled-action": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: The only solid black surface — primary CTA buttons and the active nav pill"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://gumroad.com",
+      "siteName": "Gumroad",
+      "extractedAt": "2026-06-03T15:01:11.612Z",
+      "variant": "extended"
+    }
+  }
+}

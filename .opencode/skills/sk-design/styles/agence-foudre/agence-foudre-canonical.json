@@ -1,0 +1,1139 @@
+{
+  "source": "https://styles.refero.design/style/c1534c74-f7b8-44de-a913-586d0f78fb08",
+  "uuid": "c1534c74-f7b8-44de-a913-586d0f78fb08",
+  "name": "Agence Foudre",
+  "northStar": "Magazine splash page in lipstick pink.",
+  "capturedAt": "2026-07-18T10:10:19.092Z",
+  "meta": {
+    "url": "https://www.agencefoudre.com",
+    "siteName": "Agence Foudre",
+    "extractedAt": "2026-06-03T15:10:07.512Z",
+    "durationMs": 24224,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 531,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Beni weight 900 with 0.70 line-height for all display type — the tight leading is what makes the headlines feel architectural, not just big",
+      "Default to #fff8f6 as the canvas; let #fce5df appear only as a 5-10% accent surface, never as a full page background",
+      "Pair #db3c8a (loud) with #fce5df (whisper) of the same hue to create dialogue between sections — full color makes a statement, faded color echoes it",
+      "Use #00522d for all body text and links — the deep green is a signature choice that no neutral substitute can replicate",
+      "Let whitespace do the structural work: 60-120px section gaps, and let individual display blocks own full viewport heights",
+      "Set all interactive circles (menu, brand) to 50px diameter with full radius and #db3c8a fill — these are the only two dots on the page",
+      "Cap body text width at 60ch regardless of viewport — readability over impact"
+    ],
+    "donts": [
+      "Never use #000000 for body text — #00522d is the editorial voice; black is reserved for icons and graphic elements only",
+      "Don't set Beni at body sizes (under 30px) — it was designed for display only; use Clash Grotesk for everything functional",
+      "Avoid card-heavy layouts — this system breathes through type and space, not through information density",
+      "Never apply #db3c8a to large body areas — pink is an exclamation, not a wallpaper",
+      "Don't add shadows, gradients, or glass effects — the system is deliberately flat; depth comes from color contrast and typographic scale",
+      "Avoid mixing more than two type families — Beni for display, Clash Grotesk for everything else; no serif, no monospace, no decorative fonts",
+      "Don't use symmetric centered layouts — everything left-aligns or uses deliberate asymmetric placement; the type should feel editorial, not ceremonial"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#db3c8a",
+        "name": "Lipstick Magenta",
+        "role": "Display headlines, primary brand color, icon buttons, heading accents — vivid pink carries 100% of brand recognition",
+        "group": "brand"
+      },
+      {
+        "hex": "#00522d",
+        "name": "Forest Ink",
+        "role": "Body text, links, iconography, footer — deep saturated green against cream creates editorial gravitas no neutral could",
+        "group": "brand"
+      },
+      {
+        "hex": "#fce5df",
+        "name": "Blush Cream",
+        "role": "Soft surface tint, badge backgrounds, gentle wash blocks, hover states — warm off-pink that sits between page and accent",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fff8f6",
+        "name": "Warm Chalk",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Charcoal Black",
+        "role": "High-contrast text, dark icons, line art, SVG fills — used sparingly for maximum punch",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d1cfe4",
+        "name": "Lilac Mist",
+        "role": "Decorative type tint, subtle dividers, soft outline strokes — cool gray-lilac for the quietest visual moments",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f29ebd",
+        "name": "Bubblegum",
+        "role": "Secondary accent, lighter pink washes, faded display type, ghost button borders — pink dialed back from brand magenta",
+        "group": "accent"
+      },
+      {
+        "hex": "#e878b2",
+        "name": "Cotton Pink",
+        "role": "Mid-tone pink surface for elevated cards, tonal accent between magenta and bubblegum",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed single-column layout with extreme vertical whitespace. Each section typically owns an entire viewport height, anchored by massive display type at the bottom-left or top-left. Navigation is stripped to two pink circles in the absolute corners — no nav bar, no mega-menu, no breadcrumbs. Content scrolls as a sequence of typographic statements rather than traditional sections: each scroll position delivers one bold message, then vast white space, then the next. No card grids, no multi-column layouts, no sidebar. The page reads like a typographic manifesto: one idea per screen, each rendered at maximum scale. Responsive behavior collapses display type proportionally but preserves the generous spacing and corner-circle navigation.",
+    "imagery": "Almost no traditional imagery. The site is a typographic showcase where oversized Beni display type IS the visual content. Where images appear (portfolio pieces, team, or case studies), they are treated as full-bleed editorial crops with no rounded corners, no shadows, no decorative frames — raw photographs presented in rectangular slabs. Any illustrations or graphic elements use the brand palette: hot pink forms, deep green line work, lilac accents. Icons are minimal line-art glyphs in black or green, never filled or colorful. The visual density is inverted: 95% typography, 5% image.",
+    "similar": [
+      {
+        "why": "Same editorial-magazine approach where oversized display typography replaces product imagery and layout is radically minimal",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Shared commitment to bold custom display type and generous whitespace as the primary structural system",
+        "business": "Locomotive (studio)"
+      },
+      {
+        "why": "Experimental agency aesthetic with unconventional navigation (circular triggers) and typographic-first page rhythm",
+        "business": "Resn"
+      },
+      {
+        "why": "Creative agency portfolio language using display type as hero content with restrained UI chrome",
+        "business": "Buck (studio)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "20px",
+        "badges": "10px",
+        "buttons": "10px",
+        "elevated": "25px",
+        "iconButtons": "9999px"
+      },
+      "elementGap": "15-20px",
+      "sectionGap": "120px",
+      "cardPadding": "30px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#fff8f6",
+        "name": "Warm Chalk",
+        "level": 1,
+        "purpose": "Page canvas — the base everything sits on"
+      },
+      {
+        "hex": "#fce5df",
+        "name": "Blush Cream",
+        "level": 2,
+        "purpose": "Soft tinted surface for badges, tags, and gentle color blocks"
+      },
+      {
+        "hex": "#e878b2",
+        "name": "Cotton Pink",
+        "level": 3,
+        "purpose": "Elevated accent surface, used rarely for standout card moments"
+      }
+    ],
+    "northStar": "Magazine splash page in lipstick pink.",
+    "typeScale": [
+      {
+        "role": "micro",
+        "size": 10,
+        "lineHeight": 12
+      },
+      {
+        "role": "label",
+        "size": 12,
+        "lineHeight": 14
+      },
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 17
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 19
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 24
+      },
+      {
+        "role": "subheading",
+        "size": 46,
+        "lineHeight": 32
+      },
+      {
+        "role": "heading-sm",
+        "size": 80,
+        "lineHeight": 56
+      },
+      {
+        "role": "heading",
+        "size": 94,
+        "lineHeight": 66
+      },
+      {
+        "role": "heading-lg",
+        "size": 130,
+        "lineHeight": 91
+      },
+      {
+        "role": "display",
+        "size": 230,
+        "lineHeight": 161
+      }
+    ],
+    "components": [
+      {
+        "name": "Circular Menu Trigger",
+        "role": "Primary navigation launcher",
+        "description": "50px diameter pink circle (#db3c8a), full radius. Contains a three-line hamburger glyph in dark or white. Fixed position top-left. No border, no shadow. The pink circle is the only UI element that breaks the cream canvas"
+      },
+      {
+        "name": "Circular Brand Mark",
+        "role": "Logo / brand icon button",
+        "description": "50px diameter circle matching menu trigger. Contains the agency mark (lightning bolt variant). Fixed top-right. Same pink fill (#db3c8a), same weight as menu — visual symmetry establishes these as the only two interactive dots on screen"
+      },
+      {
+        "name": "Display Headline Block",
+        "role": "Hero typographic statement",
+        "description": "Beni weight 900, sizes 94-230px, line-height 0.70. Color cycles between #db3c8a (full intensity), #f29ebd (mid pink), and #fce5df (faded wash) to create visual rhythm across sections. Left-aligned, bottom-anchored in viewport. No margins — the type itself is the layout"
+      },
+      {
+        "name": "Faded Echo Headline",
+        "role": "Repetition / counterpoint display type",
+        "description": "Same Beni 900 treatment as main headline but in #fce5df or #f29ebd — appears as a ghost version of a statement the full-color version just made. Creates dialogue between sections. Same massive scale (80-130px)"
+      },
+      {
+        "name": "Section Label",
+        "role": "Micro-typography category tag",
+        "description": "Clash Grotesk 400-500, 12-14px, uppercase or sentence case. Color: #00522d or faded #db3c8a. Positioned directly above the display headline it describes. Tight tracking, no decoration — just a whispered label"
+      },
+      {
+        "name": "Pill Badge / Tag",
+        "role": "Category or filter chip",
+        "description": "Clash Grotesk 500, 12-14px, #00522d text on #fce5df background. Radius 9999px (fully rounded). Padding 7px 15px. No border. Appears sparingly to tag content without competing with display type"
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Readable editorial text",
+        "description": "Clash Grotesk 400, 16-20px, line-height 1.20, color #00522d. Max width ~60ch. Generous vertical spacing (30-60px between blocks). The deep green on warm cream is the primary reading experience"
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline navigational or editorial link",
+        "description": "Clash Grotesk 500, inherits body size, color #00522d with possible #db3c8a accent. No underline by default; underline appears on hover in #db3c8a. Minimal, confident — the link should feel like a directional gesture, not a button"
+      },
+      {
+        "name": "Icon Button Ghost",
+        "role": "Minimal interaction surface",
+        "description": "No background, no border. Icon only in #000000 or #00522d, 20-24px. Hover state: icon shifts to #db3c8a. Used for secondary actions where the pink circle buttons are too loud"
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines only — ultra-black weight with 0.70 line-height packs lines tightly, creating dense typographic blocks that dominate the viewport. Letter-spacing normal lets the heavy weight do the work; no tracking adjustment needed at this scale",
+        "sizes": "46px, 80px, 94px, 130px, 230px",
+        "family": "Beni",
+        "weight": "900",
+        "lineHeight": "0.70",
+        "substitute": "Druk Wide Heavy, Tungsten Bold, Antonio Black"
+      },
+      {
+        "role": "Body text, labels, navigation, buttons, badges, links, all UI chrome — geometric grotesk carries the functional load while Beni performs. Weights create clear hierarchy: 400 for body, 500 for emphasized, 700 for buttons and active states",
+        "sizes": "10px, 12px, 13px, 14px, 16px, 20px, 24px, 30px",
+        "family": "Clash Grotesk",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.20",
+        "substitute": "Inter, Satoshi, General Sans"
+      }
+    ],
+    "description": "Agence Foudre uses a bold editorial-magazine language: warm cream canvas, oversized condensed display type in vivid magenta, and a surprising deep-forest green that reads as both body text and accent. The interface is deliberately sparse — most of the viewport is empty space, and content arrives in dense typographic punches rather than card grids or product visuals. Color is used as emotional punctuation: hot pink screams, faded pink whispers, deep green grounds, and warm off-white softens every surface. Components are minimal — circular pink buttons, pill-shaped badges, and big chunky type are the only chrome. This is a portfolio/expression site, not a product UI: the brand's personality IS the typography and color, everything else stays out of the way.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c1534c74-f7b8-44de-a913-586d0f78fb08#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Agence Foudre design system\",\"item\":\"https://styles.refero.design/style/c1534c74-f7b8-44de-a913-586d0f78fb08\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c1534c74-f7b8-44de-a913-586d0f78fb08#style-reference\",\"name\":\"Agence Foudre design system reference\",\"headline\":\"Agence Foudre design system | Refero Styles\",\"description\":\"Explore Agence Foudre's light Agency design system: Lipstick Magenta #db3c8a, Forest Ink #00522d colors, Beni, Clash Grotesk typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/c1534c74-f7b8-44de-a913-586d0f78fb08\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c1534c74-f7b8-44de-a913-586d0f78fb08\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Agence Foudre\",\"url\":\"https://www.agencefoudre.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c1534c74-f7b8-44de-a913-586d0f78fb08#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/548307a0-bbd9-4ffe-bc5c-fd242fad05c6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/548307a0-bbd9-4ffe-bc5c-fd242fad05c6.jpg\",\"caption\":\"Screenshot of Agence Foudre\"},\"image\":\"https://images.refero.design/styles/refero.design/image/548307a0-bbd9-4ffe-bc5c-fd242fad05c6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Agence Foudre design system\",\"Agence Foudre website design\",\"Agence Foudre colors\",\"Agence Foudre typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Lipstick Magenta\",\"Forest Ink\",\"Blush Cream\",\"Warm Chalk\",\"Beni\",\"Clash Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Agence Foudre design system\"},{\"@type\":\"Thing\",\"name\":\"Agence Foudre website design\"},{\"@type\":\"Thing\",\"name\":\"Agence Foudre colors\"},{\"@type\":\"Thing\",\"name\":\"Agence Foudre typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-03-22T09:53:39.000Z\",\"dateModified\":\"2026-03-22T09:53:39.000Z\"}]}19:T441,**Quick Color Reference**\n- text: #00522d\n- background: #fff8f6\n- border / divider: #fce5df\n- accent: #db3c8a\n- secondary accent: #f29ebd\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Create a hero display block: #fff8f6 background, left-aligned Beni weight 900 at 130px with 0.70 line-height, color #db3c8a. Add a 14px Clash Grotesk 500 label above in #00522d reading the section category.\n2. Create a ghost navigation link: no background, no border, Clash Grotesk 500 at 16px in #00522d, hover underline in #db3c8a. Inline within body text, max-width 60ch.\n3. Create a circular brand button: 50px diameter, border-radius 9999px, background #db3c8a, containing a black lightning-bolt glyph centered. Fixed top-right position.\n4. Create a faded echo headline: Beni weight 900 at 80px, line-height 0.70, color #fce5df. Positioned in a new section to echo a previous #db3c8a statement with reduced intensity.\n5. Create a pill category tag: Clash Grotesk 500 at 12px, color #00522d, background #fce5df, border-radius 9999px, padding 7px 15px. No border, no shadow."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "card",
+            "image",
+            "list"
+          ],
+          "frequency": 410,
+          "confidence": 1,
+          "prominence": 313882604.48186463,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#db3c8a",
+          "oklch": {
+            "c": 0.2055916167840121,
+            "h": 355.1137630742113,
+            "l": 0.6131572107974763
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "card",
+            "image",
+            "body",
+            "list",
+            "badge",
+            "button"
+          ],
+          "frequency": 579,
+          "confidence": 1,
+          "prominence": 60278955.04867407,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#00522d",
+          "oklch": {
+            "c": 0.0942191055739072,
+            "h": 155.58819922496295,
+            "l": 0.38546617838189107
+          },
+          "contexts": [
+            "link",
+            "button",
+            "icon",
+            "body",
+            "other",
+            "card",
+            "footer",
+            "image",
+            "list"
+          ],
+          "frequency": 276,
+          "confidence": 1,
+          "prominence": 10320258.120621935,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fff8f6",
+          "oklch": {
+            "c": 0.007979326924299143,
+            "h": 36.55404469156684,
+            "l": 0.9839729885481138
+          },
+          "contexts": [
+            "button",
+            "other",
+            "heading",
+            "card",
+            "body",
+            "image",
+            "badge",
+            "list"
+          ],
+          "frequency": 1118,
+          "confidence": 1,
+          "prominence": 4552391.655358395,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fce5df",
+          "oklch": {
+            "c": 0.026613283294785874,
+            "h": 34.97742307151701,
+            "l": 0.9388397547057632
+          },
+          "contexts": [
+            "link",
+            "other",
+            "heading",
+            "badge"
+          ],
+          "frequency": 112,
+          "confidence": 1,
+          "prominence": 2211599.89267926,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d1cfe4",
+          "oklch": {
+            "c": 0.028875326752369743,
+            "h": 290.15590097512256,
+            "l": 0.8625090791670024
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 1694648.5692803846,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f29ebd",
+          "oklch": {
+            "c": 0.1065023536836121,
+            "h": 356.0704343705876,
+            "l": 0.7912949896612954
+          },
+          "contexts": [
+            "button",
+            "heading",
+            "other"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 1068100.855216756,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#932323",
+          "oklch": {
+            "c": 0.14807029258945684,
+            "h": 25.73589953263742,
+            "l": 0.4400387915253972
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 449486,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#604a34",
+          "oklch": {
+            "c": 0.04518152292811118,
+            "h": 66.11841621115188,
+            "l": 0.42644926536520655
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 354367,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e878b2",
+          "oklch": {
+            "c": 0.15266605773150088,
+            "h": 349.3147680926413,
+            "l": 0.7165088850296085
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 259249,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0e5e8c",
+          "oklch": {
+            "c": 0.10261405378142098,
+            "h": 241.38554807629905,
+            "l": 0.4612604187680316
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 164130,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2885ba",
+          "oklch": {
+            "c": 0.11668550514180225,
+            "h": 238.95699151596526,
+            "l": 0.588086380714139
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 94014,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.17117628497790519,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.01,
+          "background": "#fff8f6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.41,
+          "background": "#fce5df",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.76,
+          "background": "#d1cfe4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.4,
+          "background": "#f29ebd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.91,
+          "background": "#fff8f6",
+          "foreground": "#00522d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.99,
+          "background": "#932323",
+          "foreground": "#fff8f6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.92,
+          "background": "#604a34",
+          "foreground": "#fff8f6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.76,
+          "background": "#e878b2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.76,
+          "background": "#fce5df",
+          "foreground": "#00522d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.95,
+          "background": "#932323",
+          "foreground": "#fce5df"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.89,
+          "background": "#604a34",
+          "foreground": "#fce5df"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.67,
+          "background": "#0e5e8c",
+          "foreground": "#fff8f6"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.13,
+          "background": "#00522d",
+          "foreground": "#d1cfe4"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.81,
+          "background": "#0e5e8c",
+          "foreground": "#fce5df"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.49,
+          "background": "#932323",
+          "foreground": "#d1cfe4"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.44,
+          "background": "#604a34",
+          "foreground": "#d1cfe4"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.15,
+          "background": "#2885ba",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.03,
+          "background": "#db3c8a",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.63,
+          "background": "#f29ebd",
+          "foreground": "#00522d"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.59,
+          "background": "#0e5e8c",
+          "foreground": "#d1cfe4"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "badge",
+            "other"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 21
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 11
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 21,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 74,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 102,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 26,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 73,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 78,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 140,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 149,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 161,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Clash Grotesk",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 412,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Beni",
+          "source": "custom",
+          "weights": [
+            900
+          ],
+          "frequency": 63,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.85
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Clash Grotesk",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other",
+            "card",
+            "list",
+            "badge",
+            "image",
+            "footer",
+            "icon",
+            "body"
+          ],
+          "frequency": 186,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Clash Grotesk",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "badge"
+          ],
+          "frequency": 22,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Clash Grotesk",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Clash Grotesk",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Clash Grotesk",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon",
+            "other",
+            "body"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Clash Grotesk",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Clash Grotesk",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "list",
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Clash Grotesk",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Clash Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Clash Grotesk",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Clash Grotesk",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 18,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Clash Grotesk",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "Beni",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 13,
+          "lineHeight": 0.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Beni",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 94,
+          "family": "Beni",
+          "weight": 900,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 0.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 130,
+          "family": "Beni",
+          "weight": 900,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 26,
+          "lineHeight": 0.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 230,
+          "family": "Beni",
+          "weight": 900,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 0.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/bfbb150c-5eab-46ae-9318-9ee9789a255a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/548307a0-bbd9-4ffe-bc5c-fd242fad05c6.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c1534c74-f7b8-44de-a913-586d0f78fb08#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Agence Foudre design system\",\"item\":\"https://styles.refero.design/style/c1534c74-f7b8-44de-a913-586d0f78fb08\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c1534c74-f7b8-44de-a913-586d0f78fb08#style-reference\",\"name\":\"Agence Foudre design system reference\",\"headline\":\"Agence Foudre design system | Refero Styles\",\"description\":\"Explore Agence Foudre's light Agency design system: Lipstick Magenta #db3c8a, Forest Ink #00522d colors, Beni, Clash Grotesk typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/c1534c74-f7b8-44de-a913-586d0f78fb08\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c1534c74-f7b8-44de-a913-586d0f78fb08\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Agence Foudre\",\"url\":\"https://www.agencefoudre.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c1534c74-f7b8-44de-a913-586d0f78fb08#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/548307a0-bbd9-4ffe-bc5c-fd242fad05c6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/548307a0-bbd9-4ffe-bc5c-fd242fad05c6.jpg\",\"caption\":\"Screenshot of Agence Foudre\"},\"image\":\"https://images.refero.design/styles/refero.design/image/548307a0-bbd9-4ffe-bc5c-fd242fad05c6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Agence Foudre design system\",\"Agence Foudre website design\",\"Agence Foudre colors\",\"Agence Foudre typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Lipstick Magenta\",\"Forest Ink\",\"Blush Cream\",\"Warm Chalk\",\"Beni\",\"Clash Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Agence Foudre design system\"},{\"@type\":\"Thing\",\"name\":\"Agence Foudre website design\"},{\"@type\":\"Thing\",\"name\":\"Agence Foudre colors\"},{\"@type\":\"Thing\",\"name\":\"Agence Foudre typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-03-22T09:53:39.000Z\",\"dateModified\":\"2026-03-22T09:53:39.000Z\"}]}19:T441,**Quick Color Reference**\n- text: #00522d\n- background: #fff8f6\n- border / divider: #fce5df\n- accent: #db3c8a\n- secondary accent: #f29ebd\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Create a hero display block: #fff8f6 background, left-aligned Beni weight 900 at 130px with 0.70 line-height, color #db3c8a. Add a 14px Clash Grotesk 500 label above in #00522d reading the section category.\n2. Create a ghost navigation link: no background, no border, Clash Grotesk 500 at 16px in #00522d, hover underline in #db3c8a. Inline within body text, max-width 60ch.\n3. Create a circular brand button: 50px diameter, border-radius 9999px, background #db3c8a, containing a black lightning-bolt glyph centered. Fixed top-right position.\n4. Create a faded echo headline: Beni weight 900 at 80px, line-height 0.70, color #fce5df. Positioned in a new section to echo a previous #db3c8a statement with reduced intensity.\n5. Create a pill category tag: Clash Grotesk 500 at 12px, color #00522d, background #fce5df, border-radius 9999px, padding 7px 15px. No border, no shadow."
+}

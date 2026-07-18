@@ -1,0 +1,1129 @@
+{
+  "source": "https://styles.refero.design/style/1e7dae3b-cb34-4fcf-8c32-051152aebbab",
+  "uuid": "1e7dae3b-cb34-4fcf-8c32-051152aebbab",
+  "name": "Foodnoms",
+  "northStar": "Sunlit fruit market on white porcelain — warm orange, fresh green, and generous rounded forms",
+  "capturedAt": "2026-07-18T08:29:54.399Z",
+  "meta": {
+    "url": "https://foodnoms.com",
+    "siteName": "Foodnoms",
+    "extractedAt": "2026-06-03T16:56:49.644Z",
+    "durationMs": 28901,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1128,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 26px border-radius on every interactive element and card — this is the system's signature softness",
+      "Apply the two-tone headline pattern: one color for the outcome word, Graphite (#2f2f2f) for the rest",
+      "Use Aquawax Pro Bold at 60px for hero displays and 30px for section headings — never interpolate intermediate sizes",
+      "Pair Verdant Green (#00b33f) with positive/progress data and Signal Red-Orange (#ff3400) with negative/overage data inside app screens",
+      "Use generous 96px section gaps between major page sections to let phone mockups breathe",
+      "Keep all text on white or Fog (#f5f5f5) — never place chromatic text on chromatic backgrounds",
+      "Show 3+ phone mockups side-by-side in the hero, slightly overlapping, to demonstrate the breadth of the app experience"
+    ],
+    "donts": [
+      "Don't use box-shadows or drop-shadows anywhere — the system is deliberately flat",
+      "Don't use a border-radius other than 26px on buttons, cards, tags, or inputs",
+      "Don't call any color a 'CTA' or 'primary action' in the token system — describe them by their brand role instead",
+      "Don't use Aquawax Pro at sizes below 12px — fall back to system sans-serif for micro UI",
+      "Don't place chromatic text on a chromatic background — always pair color text with white or Fog",
+      "Don't use gradient backgrounds or gradient buttons — the system is solid color only",
+      "Don't introduce new chromatic colors for marketing pages — the warm-primary + cool-accent + app-data palette is complete"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ff5406",
+        "name": "Ember Orange",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#00b33f",
+        "name": "Verdant Green",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff3400",
+        "name": "Signal Red-Orange",
+        "role": "Secondary warm accent visible in app screen UI elements and supporting brand moments. Sits one step hotter than Ember Orange for emphasis on selected or active app states",
+        "group": "accent"
+      },
+      {
+        "hex": "#00a9dd",
+        "name": "Sky Blue",
+        "role": "Cool counter-accent for app-internal data categories (carbs/protein/other nutrient groupings). Balances the warm-dominant palette inside phone mockups",
+        "group": "accent"
+      },
+      {
+        "hex": "#72a2c5",
+        "name": "Mist Blue",
+        "role": "Muted cool accent — softens Sky Blue for secondary data labels and chart backgrounds inside the app surfaces",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff6d00",
+        "name": "Sunset Orange",
+        "role": "Warm accent for secondary headings and emphasis text within the marketing pages",
+        "group": "accent"
+      },
+      {
+        "hex": "#945300",
+        "name": "Amber",
+        "role": "Deep warm accent for data-heavy text and chart labels in the app's nutrition displays",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff001e",
+        "name": "Alert Red",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis",
+        "group": "accent"
+      },
+      {
+        "hex": "#bd4be5",
+        "name": "Plum",
+        "role": "Accent for the carbs/protein/fat macro rings and category tags inside the app interface",
+        "group": "accent"
+      },
+      {
+        "hex": "#5856de",
+        "name": "Iris",
+        "role": "Accent for headings and emphasis text on supporting pages, and for specific data categories inside the app",
+        "group": "accent"
+      },
+      {
+        "hex": "#0099f9",
+        "name": "Electric Blue",
+        "role": "Accent for bold headings and highlighted text on supporting pages",
+        "group": "accent"
+      },
+      {
+        "hex": "#2f2f2f",
+        "name": "Graphite",
+        "role": "Primary text, dark buttons (App Store badge), and icon strokes. The dominant non-white color in headings and body copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Charcoal",
+        "role": "Maximum-emphasis text and icon fills. Used sparingly — reserved for the darkest typographic moments and SVG icon details",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Fog",
+        "role": "Alternate canvas for cards, feature sections, and soft UI containers. Distinguishes elevated content blocks from the white page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Dominant page background, button text, and card surfaces. The base layer of the entire visual system",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is a single-column, centered max-width layout (~1200px) with generous vertical rhythm. The header is a thin top bar with logo left, nav center, and filled orange action button right. The hero is a centered stack: two-tone display headline, single-line subhead, App Store badge, then a row of 3–5 phone mockups fanned across the full width. Below the hero, a centered 'As Featured By' press logo section in a 2×3 grid. Feature sections follow in a repeating pattern: two-column text + phone mockup, alternating sides, with section accent headings in orange/green. The final element before the footer is a full-width download CTA card. Section gaps are large (96px) creating a spacious, gallery-like feel. The navigation is a minimal top bar — no sidebar, no mega-menu.",
+    "imagery": "The visual language is dominated by high-fidelity iPhone device-frame mockups showing the live app interface — these are the heroes, not stock photography. The mockups are rendered at near-full opacity, fanned out with slight overlap and gentle rotation, floating directly on white. Inside the mockups, the app's own UI provides all the visual richness: nutrition data, food photos, macro rings, and colorful category tags. The only photographic content is user-submitted food imagery visible within the app's 'Scan Your Food' camera screen. No lifestyle photography, no abstract illustrations, no decorative graphics. The brand identity is carried entirely by the custom typeface, the orange/green/dark color system, and the app's own interface.",
+    "similar": [
+      {
+        "why": "Same single-column marketing page structure with phone mockup hero rows and two-tone headlines over a white canvas",
+        "business": "MyFitnessPal"
+      },
+      {
+        "why": "Similar large rounded display typography and warm-primary + cool-accent color logic for nutrition data dashboards",
+        "business": "Cronometer"
+      },
+      {
+        "why": "Same generous 26px+ corner radius treatment and friendly geometric sans-serif display type for health tracking",
+        "business": "Yazio"
+      },
+      {
+        "why": "Same flat-shadowless white-canvas approach with colorful accent typography and device-frame product showcases",
+        "business": "Notion"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "26px",
+        "cards": "26px",
+        "inputs": "26px",
+        "buttons": "26px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "96px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Dominant page canvas and base surface"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Fog",
+        "level": 1,
+        "purpose": "Alternate canvas for feature sections and soft card containers"
+      },
+      {
+        "hex": "#2f2f2f",
+        "name": "Graphite",
+        "level": 2,
+        "purpose": "Dark inverted surface for the App Store download badge"
+      },
+      {
+        "hex": "#ff5406",
+        "name": "Ember Orange",
+        "level": 3,
+        "purpose": "High-emphasis filled surface for the primary header button"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Sunlit fruit market on white porcelain — warm orange, fresh green, and generous rounded forms",
+    "typeScale": [
+      {
+        "role": "tiny",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.8
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Brand Wordmark",
+        "role": "Site identity in header and footer",
+        "description": "Logomark: a rounded orange square (color: Ember Orange) containing a white bar-chart icon. Wordmark: 'Foodnoms' in Aquawax Pro Bold, 18px, Graphite (#2f2f2f), sitting to the right of the icon. Total lockup height ~32px."
+      },
+      {
+        "name": "Header Filled Button",
+        "role": "Primary brand action in the navigation bar",
+        "description": "Filled Ember Orange (#ff5406) background, white text 'Get the App' in Aquawax Pro DemiBold at ~16px, arrow icon after label. 26px border-radius, ~12px vertical padding, ~20px horizontal padding. Sits at the far right of the header."
+      },
+      {
+        "name": "Ghost Nav Link",
+        "role": "Secondary navigation items",
+        "description": "No background, Graphite (#2f2f2f) text, Aquawax Pro Medium ~16–17px, no underline. Hover/active state not detected; default is text-only."
+      },
+      {
+        "name": "App Store Badge",
+        "role": "Download CTA in the hero",
+        "description": "Dark Graphite (#2f2f2f) rounded rectangle (~26px radius), Apple logo in white, 'Download on the App Store' text in white Aquawax Pro. ~56px tall. Sits centered beneath the hero subheadline."
+      },
+      {
+        "name": "Two-Tone Display Headline",
+        "role": "Hero page title",
+        "description": "60px Aquawax Pro Bold, line-height 1.2. First phrase ('Lose Weight') in Verdant Green (#00b33f), second phrase ('with Foodnoms') in Graphite (#2f2f2f). Center-aligned, max-width constrained to keep the color split legible."
+      },
+      {
+        "name": "Section Accent Heading",
+        "role": "Feature section titles",
+        "description": "30px Aquawax Pro Bold. Often appears in Ember Orange (#ff5406) or a mix of two chromatic colors to maintain the brand's two-tone headline pattern. 'Effortlessly' in one accent, 'Scan Food' in another."
+      },
+      {
+        "name": "Phone Mockup Carousel",
+        "role": "Visual showcase of the app interface",
+        "description": "Full device-frame iPhone renders at ~280px width, fanned out with slight overlap and rotation. No background card — they float directly on the white page. Contain the full app UI including status bar, navigation, and content screens."
+      },
+      {
+        "name": "Press Logo Grid",
+        "role": "Social proof / media mentions",
+        "description": "2-row × 3-column grid of grayscale publication logos (MacStories, iMore, 9TO5Mac, POPSUGAR, Good Housekeeping, Prevention). Rendered in Charcoal (#000000) or Graphite (#2f2f2f), evenly spaced with ~64px column gap. Heading 'As Featured By' in Ember Orange above."
+      },
+      {
+        "name": "Download CTA Card",
+        "role": "Sticky promotional banner",
+        "description": "White card with subtle Fog (#f5f5f5) background, 26px radius, ~32px padding. Contains a headline ('Get Started with Foodnoms Today'), subtext, and a filled Ember Orange 'Download' button with arrow icon. Sits at the bottom of the page above feature sections."
+      },
+      {
+        "name": "App-Internal Data Card",
+        "role": "Nutrition summary panel (shown inside phone mockups)",
+        "description": "White card with ~26px radius, light gray dividers. Contains large bold metric (e.g. '57g' for fat grams) in Verdant Green or Signal Red-Orange depending on positive/negative status, with secondary label text in Graphite at ~12–14px."
+      },
+      {
+        "name": "Macro Category Ring",
+        "role": "Circular progress indicator for nutrition goals",
+        "description": "Circular ring showing progress toward a macro goal (Calories, Carbs, Fat, Protein). Each category has a distinct color: Signal Red-Orange for Calories, Sky Blue for Carbs, Verdant Green for Fat, Plum for Protein. Ring stroke ~8px, centered numeric value inside in Aquawax Pro Bold."
+      },
+      {
+        "name": "Food Log Entry Row",
+        "role": "List item showing a logged food",
+        "description": "White background row with bottom hairline border in Fog (#f5f5f5). Left side: food name in Graphite Aquawax Pro Medium ~17px, with macro subtext below in lighter gray ~14px. Right side: colored dot indicating macro category, with point values in matching color."
+      },
+      {
+        "name": "Tab Bar",
+        "role": "Bottom navigation in the app",
+        "description": "White bar with three tab icons (Food Log, Insights, Library), separated by thin gray dividers. Active tab indicated by Ember Orange fill/icon color and small dot indicator. Right edge has a floating Ember Orange circular '+' button for adding food."
+      },
+      {
+        "name": "Goal Setup Card",
+        "role": "Onboarding/setting screen container",
+        "description": "White card, 26px radius, ~40px padding. Contains a heading, body text explaining the goal option, and a filled Ember Orange button ('Use Recommended Goal') stacked above a text-style 'Choose a Custom Goal' link. Decorative donut/breakfast icon at top."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Aquawax Pro Medium — detected in extracted data but not described by AI",
+        "sizes": "17px, 20px",
+        "family": "Aquawax Pro Medium",
+        "weight": "500",
+        "lineHeight": "1.6, 1.8",
+        "fontFeatureSettings": "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\", \"dlig\", \"ss01\", \"ss02\", \"ss03\""
+      },
+      {
+        "role": "Primary brand typeface used across all display, heading, and body contexts. The custom face has a wide x-height, rounded geometric forms, and friendly proportions. Bold (700) is used for the 60px display and 30px section headlines — these are the system's typographic anchors. DemiBold (600) handles subheadings and button labels at 14–16px. Medium (500) carries body copy at 17–20px with generous 1.6–1.8 line-height for comfortable reading.",
+        "sizes": "12, 14, 16, 17, 18, 20, 22, 30, 60",
+        "family": "Aquawax Pro",
+        "weight": "700, 500, 600",
+        "lineHeight": "1.2 / 1.4 / 1.6 / 1.8",
+        "substitute": "Nunito Sans, or DM Sans",
+        "fontFeatureSettings": "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\", \"dlig\", \"ss01\", \"ss02\", \"ss03\", \"ss07\""
+      },
+      {
+        "role": "Fallback for very small UI text and icon labels. Aquawax Pro is not used at micro sizes; system font handles them to keep render weight low.",
+        "sizes": "12",
+        "family": "System sans-serif",
+        "weight": "400, 700",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Aquawax Pro DemiBold — detected in extracted data but not described by AI",
+        "sizes": "14px, 16px",
+        "family": "Aquawax Pro DemiBold",
+        "weight": "600",
+        "lineHeight": "1.2, 1.4",
+        "fontFeatureSettings": "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\", \"dlig\", \"ss01\", \"ss02\", \"ss03\", \"ss07\"; \"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\", \"dlig\", \"ss01\", \"ss02\", \"ss03\""
+      }
+    ],
+    "description": "Foodnoms presents a sunlit nutrition-tracker marketing language: pure white canvas, oversized phone mockups as the visual anchor, and a playful chromatic vocabulary where color codes nutrients and progress. The two-tone headline convention (one color for the win word, dark graphite for the rest) makes the value proposition scannable in a glance. The system leans on a single custom display face (Aquawax Pro) with a distinctly rounded, geometric character that softens the dense data-heavy app screens. Most surfaces are flat and shadowless; a uniform 26px corner radius gives buttons, cards, and tags a friendly, pillow-like feel that makes health tracking feel approachable rather than clinical.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1e7dae3b-cb34-4fcf-8c32-051152aebbab#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Foodnoms design system\",\"item\":\"https://styles.refero.design/style/1e7dae3b-cb34-4fcf-8c32-051152aebbab\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1e7dae3b-cb34-4fcf-8c32-051152aebbab#style-reference\",\"name\":\"Foodnoms design system reference\",\"headline\":\"Foodnoms design system | Refero Styles\",\"description\":\"Explore Foodnoms's light Productivity design system: Ember Orange #ff5406, Verdant Green #00b33f colors, Aquawax Pro Medium, Aquawax Pro typography, and...\",\"url\":\"https://styles.refero.design/style/1e7dae3b-cb34-4fcf-8c32-051152aebbab\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1e7dae3b-cb34-4fcf-8c32-051152aebbab\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Foodnoms\",\"url\":\"https://foodnoms.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1e7dae3b-cb34-4fcf-8c32-051152aebbab#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bcb2fefb-0159-4290-807d-e97c448b253d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bcb2fefb-0159-4290-807d-e97c448b253d.jpg\",\"caption\":\"Screenshot of Foodnoms\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bcb2fefb-0159-4290-807d-e97c448b253d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Foodnoms design system\",\"Foodnoms website design\",\"Foodnoms colors\",\"Foodnoms typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Ember Orange\",\"Verdant Green\",\"Signal Red-Orange\",\"Sky Blue\",\"Aquawax Pro Medium\",\"Aquawax Pro\",\"System sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Foodnoms design system\"},{\"@type\":\"Thing\",\"name\":\"Foodnoms website design\"},{\"@type\":\"Thing\",\"name\":\"Foodnoms colors\"},{\"@type\":\"Thing\",\"name\":\"Foodnoms typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-03-17T16:42:30.000Z\",\"dateModified\":\"2026-03-17T16:42:30.000Z\"}]}19:T64d,## Quick Color Reference\n\n- Primary text: #2f2f2f (Graphite)\n- Background: #ffffff (Paper White)\n- Alternate surface: #f5f5f5 (Fog)\n- Brand accent (filled button, logo, heading color): #ff5406 (Ember Orange)\n- Achievement accent (headline color, positive data): #00b33f (Verdant Green)\n- App-internal cool accent: #00a9dd (Sky Blue)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Hero Section**: White (#ffffff) background. Two-tone headline at 60px Aquawax Pro Bold, line-height 1.2: first phrase in Verdant Green (#00b33f), second phrase in Graphite (#2f2f2f), centered. Subtext in Graphite Aquawax Pro Medium 17px, line-height 1.6. Dark Graphite (#2f2f2f) App Store badge below, 26px radius, ~56px tall. Row of 3–5 iPhone mockups fanned across the width below.\n\n2. **Feature Section Heading**: 30px Aquawax Pro Bold, line-height 1.2, in Ember Orange (#ff5406) for the first word and Graphite (#2f2f2f) for the second word, left-aligned. 96px top padding from previous section.\n\n3. **Filled Brand Button**: Ember Orange (#ff5406) background, white text in Aquawax Pro DemiBold 16px, line-height 1.2, 26px border-radius, 12px vertical padding, 20px horizontal padding, with a small white arrow icon after the label.\n\n4. **Press Logo Grid**: 2 rows × 3 columns of grayscale publication logos in Charcoal (#000000) or Graphite (#2f2f2f), 64px column gap, centered. Heading 'As Featured By' above in Ember Orange (#ff5406) at 20px Aquawax Pro Medium.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color."
+      },
+      {
+        "title": "Two-Tone Headline System",
+        "content": "A signature convention across the site: split a headline into two phrases, color the first (the verb/outcome) in a chromatic accent and the second (the object/brand) in Graphite. The accent color signals the *action* or *result*, while the dark second phrase anchors the sentence. Typical pairings: Verdant Green + Graphite for the hero (growth/winning), Ember Orange + Graphite for feature sections (action/enablement), or Ember Orange + Verdant Green for dual-accent section titles like 'Effortlessly Scan Food / Faster with AI'. Never use two chromatic colors as solid blocks of equal weight — the dark phrase is always the longer one."
+      }
+    ],
+    "elevationPhilosophy": "The system is deliberately flat. No box-shadows are used anywhere — depth is created through color contrast and the 26px radius instead of drop shadows. This keeps the page feeling light, fast, and friendly."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "list",
+            "image",
+            "icon"
+          ],
+          "frequency": 4188,
+          "confidence": 1,
+          "prominence": 75782532.117847,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 7.216449660063518e-16,
+            "h": 180,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 200,
+          "confidence": 1,
+          "prominence": 48187937.922951736,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff5406",
+          "oklch": {
+            "c": 0.23037816996750224,
+            "h": 37.11131504208896,
+            "l": 0.6960672289015327
+          },
+          "contexts": [
+            "button",
+            "other",
+            "heading"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 2108608.4998239526,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f5f5f5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9701505328312724
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 61,
+          "confidence": 1,
+          "prominence": 1405190.3292513024,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2f2f2f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.30519155846238966
+          },
+          "contexts": [
+            "heading",
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 709,
+          "confidence": 1,
+          "prominence": 484949.7709768727,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#00b33f",
+          "oklch": {
+            "c": 0.20134408176143237,
+            "h": 147.25135227934874,
+            "l": 0.6657242342789956
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 252997.48355205663,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff6d00",
+          "oklch": {
+            "c": 0.21110068583557834,
+            "h": 46.510955597364145,
+            "l": 0.7185723017071665
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 252997.48355205663,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#00a9dd",
+          "oklch": {
+            "c": 0.15950681729283456,
+            "h": 223.19012621162165,
+            "l": 0.6735995110256585
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 235437.85965601954,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#72a2c5",
+          "oklch": {
+            "c": 0.073506140175912,
+            "h": 240.34707659805906,
+            "l": 0.6917838420134614
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 235437.85965601954,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff001e",
+          "oklch": {
+            "c": 0.2656754011175874,
+            "h": 26.52175463094667,
+            "l": 0.6400581015765769
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 230400,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#bd4be5",
+          "oklch": {
+            "c": 0.23426741481879182,
+            "h": 315.71607283946406,
+            "l": 0.6281639429929164
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 230400,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#945300",
+          "oklch": {
+            "c": 0.11747979653650904,
+            "h": 61.73994049357507,
+            "l": 0.5073070915936463
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 199263.26123350832,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff3400",
+          "oklch": {
+            "c": 0.2556459113044283,
+            "h": 35.129325337561475,
+            "l": 0.6709194636695386
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 285,
+          "confidence": 1,
+          "prominence": 68477.64025824424,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5856de",
+          "oklch": {
+            "c": 0.20120231753460896,
+            "h": 277.988764828977,
+            "l": 0.5358518550891077
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 48308.963498767254,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0099f9",
+          "oklch": {
+            "c": 0.19079949094368698,
+            "h": 242.40447325426064,
+            "l": 0.6547905811774444
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 44482.03471240965,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.05077072430127537,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.26,
+          "background": "#f5f5f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.39,
+          "background": "#ffffff",
+          "foreground": "#2f2f2f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.28,
+          "background": "#f5f5f5",
+          "foreground": "#2f2f2f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.72,
+          "background": "#00a9dd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.69,
+          "background": "#72a2c5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.44,
+          "background": "#ff6d00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.52,
+          "background": "#ff5406",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.01,
+          "background": "#ffffff",
+          "foreground": "#945300"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ff3400",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.53,
+          "background": "#5856de",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.51,
+          "background": "#f5f5f5",
+          "foreground": "#945300"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.07,
+          "background": "#f5f5f5",
+          "foreground": "#5856de"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.92,
+          "background": "#00a9dd",
+          "foreground": "#2f2f2f"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.9,
+          "background": "#72a2c5",
+          "foreground": "#2f2f2f"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.74,
+          "background": "#ff6d00",
+          "foreground": "#2f2f2f"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.16,
+          "background": "#ff5406",
+          "foreground": "#2f2f2f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.98,
+          "background": "#ffffff",
+          "foreground": "#ff001e"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.96,
+          "background": "#ffffff",
+          "foreground": "#bd4be5"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.8,
+          "background": "#5856de",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 26,
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 69
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 113,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 28,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 124,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 81,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 256,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 836,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Aquawax Pro Bold",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 96,
+          "fontFeatureSettings": [
+            "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\", \"dlig\", \"ss01\", \"ss02\", \"ss03\", \"ss07\""
+          ]
+        },
+        {
+          "family": "Aquawax Pro Medium",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 95,
+          "fontFeatureSettings": [
+            "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\", \"dlig\", \"ss01\", \"ss02\", \"ss03\""
+          ]
+        },
+        {
+          "family": "Aquawax Pro DemiBold",
+          "source": "custom",
+          "weights": [
+            600
+          ],
+          "frequency": 14,
+          "fontFeatureSettings": [
+            "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\", \"dlig\", \"ss01\", \"ss02\", \"ss03\", \"ss07\"",
+            "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\", \"dlig\", \"ss01\", \"ss02\", \"ss03\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "image",
+            "icon"
+          ],
+          "frequency": 835,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Aquawax Pro DemiBold",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Aquawax Pro DemiBold",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "button",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Aquawax Pro Medium",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 93,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Aquawax Pro Bold",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 62,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Aquawax Pro Medium",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Aquawax Pro Bold",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Aquawax Pro Bold",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Aquawax Pro Bold",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/18944cde-ce05-46db-b6d3-b92b28388baf.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/bcb2fefb-0159-4290-807d-e97c448b253d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1e7dae3b-cb34-4fcf-8c32-051152aebbab#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Foodnoms design system\",\"item\":\"https://styles.refero.design/style/1e7dae3b-cb34-4fcf-8c32-051152aebbab\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1e7dae3b-cb34-4fcf-8c32-051152aebbab#style-reference\",\"name\":\"Foodnoms design system reference\",\"headline\":\"Foodnoms design system | Refero Styles\",\"description\":\"Explore Foodnoms's light Productivity design system: Ember Orange #ff5406, Verdant Green #00b33f colors, Aquawax Pro Medium, Aquawax Pro typography, and...\",\"url\":\"https://styles.refero.design/style/1e7dae3b-cb34-4fcf-8c32-051152aebbab\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1e7dae3b-cb34-4fcf-8c32-051152aebbab\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Foodnoms\",\"url\":\"https://foodnoms.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1e7dae3b-cb34-4fcf-8c32-051152aebbab#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bcb2fefb-0159-4290-807d-e97c448b253d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bcb2fefb-0159-4290-807d-e97c448b253d.jpg\",\"caption\":\"Screenshot of Foodnoms\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bcb2fefb-0159-4290-807d-e97c448b253d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Foodnoms design system\",\"Foodnoms website design\",\"Foodnoms colors\",\"Foodnoms typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Ember Orange\",\"Verdant Green\",\"Signal Red-Orange\",\"Sky Blue\",\"Aquawax Pro Medium\",\"Aquawax Pro\",\"System sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Foodnoms design system\"},{\"@type\":\"Thing\",\"name\":\"Foodnoms website design\"},{\"@type\":\"Thing\",\"name\":\"Foodnoms colors\"},{\"@type\":\"Thing\",\"name\":\"Foodnoms typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-03-17T16:42:30.000Z\",\"dateModified\":\"2026-03-17T16:42:30.000Z\"}]}19:T64d,## Quick Color Reference\n\n- Primary text: #2f2f2f (Graphite)\n- Background: #ffffff (Paper White)\n- Alternate surface: #f5f5f5 (Fog)\n- Brand accent (filled button, logo, heading color): #ff5406 (Ember Orange)\n- Achievement accent (headline color, positive data): #00b33f (Verdant Green)\n- App-internal cool accent: #00a9dd (Sky Blue)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Hero Section**: White (#ffffff) background. Two-tone headline at 60px Aquawax Pro Bold, line-height 1.2: first phrase in Verdant Green (#00b33f), second phrase in Graphite (#2f2f2f), centered. Subtext in Graphite Aquawax Pro Medium 17px, line-height 1.6. Dark Graphite (#2f2f2f) App Store badge below, 26px radius, ~56px tall. Row of 3–5 iPhone mockups fanned across the width below.\n\n2. **Feature Section Heading**: 30px Aquawax Pro Bold, line-height 1.2, in Ember Orange (#ff5406) for the first word and Graphite (#2f2f2f) for the second word, left-aligned. 96px top padding from previous section.\n\n3. **Filled Brand Button**: Ember Orange (#ff5406) background, white text in Aquawax Pro DemiBold 16px, line-height 1.2, 26px border-radius, 12px vertical padding, 20px horizontal padding, with a small white arrow icon after the label.\n\n4. **Press Logo Grid**: 2 rows × 3 columns of grayscale publication logos in Charcoal (#000000) or Graphite (#2f2f2f), 64px column gap, centered. Heading 'As Featured By' above in Ember Orange (#ff5406) at 20px Aquawax Pro Medium.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color."
+}

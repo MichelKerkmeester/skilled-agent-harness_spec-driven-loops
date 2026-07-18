@@ -1,0 +1,457 @@
+{
+  "color": {
+    "fuel-orange": {
+      "$value": "#ff7840",
+      "$type": "color",
+      "$description": "Fuel Orange — Side tab accent, occasional filled action — a single warm orange against clinical white acts as the only chromatic signal in an otherwise achromatic system, reading as urgency without aggression"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, filled CTA buttons, strongest borders — the hard stop in a system that otherwise lives in warm grays"
+    },
+    "graphite": {
+      "$value": "#303030",
+      "$type": "color",
+      "$description": "Graphite — Dominant text color, card and nav borders, icon strokes — softer than pure black for sustained reading while still reading as ink"
+    },
+    "sterling": {
+      "$value": "#707070",
+      "$type": "color",
+      "$description": "Sterling — Muted helper text, secondary headings, subdued borders"
+    },
+    "silversmith": {
+      "$value": "#c0c0c0",
+      "$type": "color",
+      "$description": "Silversmith — Quiet dividers, decorative heading borders"
+    },
+    "bone": {
+      "$value": "#e7e7e7",
+      "$type": "color",
+      "$description": "Bone — Card surfaces, soft fills, decorative icon backgrounds — the step between canvas and card"
+    },
+    "lab-white": {
+      "$value": "#fffffb",
+      "$type": "color",
+      "$description": "Lab White — Page canvas, the slightly warm white that makes the product photograph read as clinical rather than sterile"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, button fills, highlighted text — the cleanest tone, used where maximum contrast against graphite is needed"
+    }
+  },
+  "font": {
+    "gt-pressura-lc-standard": {
+      "$value": "GT Pressura LC Standard",
+      "$type": "fontFamily",
+      "$description": "Workhorse for all utility, body, navigation, button, and small-headline copy. The slightly compressed, technical character set gives every label a clinical-instrument feel; sizes stay small (10–24px) and line-heights tight, reinforcing the system’s compact density."
+    },
+    "helvetica-neue-lt-std": {
+      "$value": "Helvetica Neue LT Std",
+      "$type": "fontFamily",
+      "$description": "Display and section-heading face. Used at 30–56px with weight 800 and aggressive negative tracking (−0.04em to −0.05em) so headlines compress into a dense, race-bib-like slab. Weight 500 covers the few mid-size emphasis moments. The signature choice is using the heaviest weight with the tightest tracking to create visual density without raising size — authority through compression."
+    },
+    "gtstandard-m": {
+      "$value": "GTStandard-M",
+      "$type": "fontFamily",
+      "$description": "GTStandard-M — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT Std",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT Std",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "GTStandard-M",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT Std",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "GT Pressura LC Standard",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT Std",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT Std",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT Std",
+        "fontSize": "38px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT Std",
+        "fontSize": "38px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT Std",
+        "fontSize": "53px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 53px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT Std",
+        "fontSize": "56px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "76": {
+      "$value": "76px",
+      "$type": "dimension",
+      "$description": "Spacing 76px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "116": {
+      "$value": "116px",
+      "$type": "dimension",
+      "$description": "Spacing 116px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "md-2": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Border radius md-2"
+    },
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "lab-white-canvas": {
+      "$value": "#fffffb",
+      "$type": "color",
+      "$description": "Surface level 0: The slightly warm page background that frames all white-canvas product sections"
+    },
+    "pure-white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces and button fills where maximum contrast against the canvas is needed"
+    },
+    "bone-surface": {
+      "$value": "#e7e7e7",
+      "$type": "color",
+      "$description": "Surface level 2: Quiet secondary fills and decorative icon backgrounds, one step above the card"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://sapgoodenergy.com",
+      "siteName": "SAPGOODENERGY",
+      "extractedAt": "2026-06-03T19:09:28.948Z",
+      "variant": "extended"
+    }
+  }
+}

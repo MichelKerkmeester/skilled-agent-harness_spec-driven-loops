@@ -1,0 +1,447 @@
+{
+  "color": {
+    "chartreuse-pulse": {
+      "$value": "#e4e24e",
+      "$type": "color",
+      "$description": "Chartreuse Pulse — Primary CTA fill, active states, highlight tags, product accent cards — the only saturated color in the system, used at 100% saturation to make every action feel deliberate"
+    },
+    "lemon-cream": {
+      "$value": "#faf9b6",
+      "$type": "color",
+      "$description": "Lemon Cream — Soft highlight wash for product feature cards and emphasis panels — a 70%-diluted chartreuse that carries the same hue without competing with CTAs"
+    },
+    "midnight-ink": {
+      "$value": "#100f0f",
+      "$type": "color",
+      "$description": "Midnight Ink — Primary text, icon strokes, dominant borders, dark hero and footer backgrounds — near-black with a barely-warm tint"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Hard borders, focus rings, maximum-contrast text on light surfaces — pure black for structural edges"
+    },
+    "bone-paper": {
+      "$value": "#fffdf6",
+      "$type": "color",
+      "$description": "Bone Paper — Default page canvas, light section backgrounds — warm off-white with a cream bias that pairs with the yellow accent"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Elevated card surfaces, product illustration cards, content blocks sitting on the bone canvas"
+    },
+    "stone": {
+      "$value": "#64635c",
+      "$type": "color",
+      "$description": "Stone — Secondary text, muted helper copy, subdued borders, inactive tab labels"
+    },
+    "charcoal": {
+      "$value": "#3a3a3a",
+      "$type": "color",
+      "$description": "Charcoal — Tertiary borders, dimmed UI affordances, body-level low-emphasis elements"
+    },
+    "iron": {
+      "$value": "#262525",
+      "$type": "color",
+      "$description": "Iron — Deep card surface for dark mode product showcases — sits one step above pure black"
+    },
+    "smoke": {
+      "$value": "#171616",
+      "$type": "color",
+      "$description": "Smoke — Hero and footer background fill — a hair lighter than Midnight Ink, used where the page needs depth without going pure black"
+    }
+  },
+  "font": {
+    "gravity": {
+      "$value": "Gravity",
+      "$type": "fontFamily",
+      "$description": "Display headlines — only the 900 black weight is used, always at extreme sizes (96–205px) with tight negative tracking (-0.0210em to -0.006em) and 1.0 line-height. The 205px hero size is the system's signature moment. Substitute: Mona Sans Black, Inter Black, or a compressed geometric display like Druk"
+    },
+    "empowerserif": {
+      "$value": "EmpowerSerif",
+      "$type": "fontFamily",
+      "$description": "Companion serif for display moments — used at the same monumental scale as Gravity to create editorial contrast between a geometric sans and a humanist serif. Substitute: GT Super, Tiempos Headline, or Reckless"
+    },
+    "gtamericaextendedregular": {
+      "$value": "GTAmericaExtendedRegular",
+      "$type": "fontFamily",
+      "$description": "Primary body and subheading sans-serif at 16–21px with negative tracking (-0.019em to -0.015em). The extended/condensed width gives body copy a distinctive narrow rhythm. Substitute: Inter, Söhne, or GT America Regular"
+    },
+    "gtamericaexpandedmedium": {
+      "$value": "GTAmericaExpandedMedium",
+      "$type": "fontFamily",
+      "$description": "Buttons, nav links, and small-caps style labels at 11–13px with positive tracking (+0.094em to +0.10em) at the 11–12px size for an ALL-CAPS tracked-out feel; relaxes to negative tracking at 16px body. The expanded width and tracked caps give UI chrome an open, airy counterpoint to the narrow body. Substitute: Inter Medium in all-caps with letter-spacing, or GT America Expanded"
+    },
+    "gtamericaextendedmedium": {
+      "$value": "GTAmericaExtendedMedium",
+      "$type": "fontFamily",
+      "$description": "Mid-size section headings at 36px — a single-purpose weight for h2-level emphasis. Substitute: GT America Extended Medium, Inter SemiBold"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GTAmericaExpandedMedium",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.82
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "GTAmericaExtendedRegular",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "GTAmericaExpandedMedium",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "GTAmericaExpandedMedium",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "GTAmericaExpandedMedium",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "GTAmericaExtendedRegular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "GTAmericaExtendedRegular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Gravity",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "EmpowerSerif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "GTAmericaExpandedMedium",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "GTAmericaExtendedRegular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "GTAmericaExtendedRegular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "GTAmericaExtendedRegular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "GTAmericaExtendedRegular",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.48
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Gravity",
+        "fontSize": "24px",
+        "fontWeight": 900,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "GTAmericaExtendedRegular",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "GTAmericaExtendedMedium",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "EmpowerSerif",
+        "fontSize": "40px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Gravity",
+        "fontSize": "40px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Gravity",
+        "fontSize": "48px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Gravity",
+        "fontSize": "96px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 96px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "EmpowerSerif",
+        "fontSize": "96px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 96px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Gravity",
+        "fontSize": "205px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 205px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "EmpowerSerif",
+        "fontSize": "205px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 205px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    }
+  },
+  "surface": {
+    "smoke-stage": {
+      "$value": "#171616",
+      "$type": "color",
+      "$description": "Surface level 0: Dark hero and footer — the dramatic stage for the brand's emotional photography"
+    },
+    "bone-canvas": {
+      "$value": "#fffdf6",
+      "$type": "color",
+      "$description": "Surface level 1: Default page background — the warm cream that fills the light half of the site"
+    },
+    "white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated product cards and content blocks sitting on the bone canvas"
+    },
+    "lemon-wash": {
+      "$value": "#faf9b6",
+      "$type": "color",
+      "$description": "Surface level 3: Accent product highlight cards — the diluted chartreuse used to draw the eye to one product per section"
+    },
+    "chartreuse": {
+      "$value": "#e4e24",
+      "$type": "color",
+      "$description": "Surface level 4: Full-saturation CTA and tag surface — the brightest, most attention-commanding layer"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://empower.me",
+      "siteName": "Empower",
+      "extractedAt": "2026-06-03T19:19:29.646Z",
+      "variant": "extended"
+    }
+  }
+}

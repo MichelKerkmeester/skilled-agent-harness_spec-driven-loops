@@ -1,0 +1,277 @@
+{
+  "color": {
+    "carbon-ink": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Carbon Ink — Primary text, filled CTA buttons, nav bar, footer background, hairline borders, icon strokes — the only chromatic-acting color in the system; its near-black weight gives the page its editorial authority"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, button text, icon fills on dark backgrounds — the dominant surface and the foil against which all type sits"
+    },
+    "newsprint-gray": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Newsprint Gray — Alternate section backgrounds, footer surface, subtle banding to separate editorial blocks without visual noise"
+    },
+    "pebble": {
+      "$value": "#ebebeb",
+      "$type": "color",
+      "$description": "Pebble — Section divider washes, faint background blocks that fade further into the page than Newsprint Gray"
+    },
+    "fog": {
+      "$value": "#6a6a6a",
+      "$type": "color",
+      "$description": "Fog — Muted helper text, secondary heading weight reduction, low-priority borders"
+    },
+    "ash": {
+      "$value": "#a6a6a6",
+      "$type": "color",
+      "$description": "Ash — Disabled or low-emphasis button fills, de-emphasized UI elements"
+    }
+  },
+  "font": {
+    "airbnb-cereal-vf": {
+      "$value": "Airbnb Cereal VF",
+      "$type": "fontFamily",
+      "$description": "Single-family system for everything from 14px body to 72px hero headlines. Weight 500 dominates body and UI, weight 700 anchors headlines, weight 400 appears in long-form copy. Negative tracking tightens at scale (-0.03em at 72px, -0.02em at 48–52px, -0.01em at 22–26px) — the letters huddle closer as they grow, giving display text a compressed, authoritative feel typical of editorial design."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "26px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "52px",
+        "fontWeight": 700,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 52px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Airbnb Cereal VF",
+        "fontSize": "72px",
+        "fontWeight": 700,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default page background; hero, primary text blocks"
+    },
+    "band-gray": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Surface level 2: Alternate section background; footer; visual separation between editorial blocks"
+    },
+    "wash-gray": {
+      "$value": "#ebebeb",
+      "$type": "color",
+      "$description": "Surface level 3: Tertiary surface; faint dividers or background containers"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://airbnb.org",
+      "siteName": "Airbnb",
+      "extractedAt": "2026-06-03T17:47:17.707Z",
+      "variant": "extended"
+    }
+  }
+}

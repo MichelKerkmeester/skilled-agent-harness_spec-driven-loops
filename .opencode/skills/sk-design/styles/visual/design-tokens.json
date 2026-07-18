@@ -1,0 +1,347 @@
+{
+  "color": {
+    "vellum": {
+      "$value": "#f6f6f4",
+      "$type": "color",
+      "$description": "Vellum — Page background — the warm off-white that defines the entire canvas tone"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card surfaces, elevated panels, product mockup backgrounds"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, heavy structural borders, nav bar outlines"
+    },
+    "carbon": {
+      "$value": "#2c2c26",
+      "$type": "color",
+      "$description": "Carbon — Warm near-black for dark panels, footer background, and neutral filled button fill — the only filled button in the system"
+    },
+    "ash": {
+      "$value": "#d0d0c8",
+      "$type": "color",
+      "$description": "Ash — Light hairline borders, card outlines, subtle dividers"
+    },
+    "olive-char": {
+      "$value": "#57584b",
+      "$type": "color",
+      "$description": "Olive Char — Mid-dark structural borders, heavier dividers between sections"
+    },
+    "lichen": {
+      "$value": "#6d6e5e",
+      "$type": "color",
+      "$description": "Lichen — Body text, secondary borders, muted paragraph copy"
+    },
+    "sage": {
+      "$value": "#979886",
+      "$type": "color",
+      "$description": "Sage — Nav link text, muted UI labels, breadcrumb text"
+    },
+    "moss": {
+      "$value": "#aaab9c",
+      "$type": "color",
+      "$description": "Moss — Icon strokes and fills, tertiary text, decorative icon tint"
+    },
+    "bone": {
+      "$value": "#e8e7d9",
+      "$type": "color",
+      "$description": "Bone — Subtle warm tint surface for tag backgrounds, soft highlight washes"
+    },
+    "highlighter-yellow": {
+      "$value": "#fff347",
+      "$type": "color",
+      "$description": "Highlighter Yellow — Single accent — decorative bars, highlight washes, emphasis marks. Appears 3–4 times per page maximum, always as a 4–6px stroke or small fill block"
+    },
+    "khaki-olive": {
+      "$value": "#aaa674",
+      "$type": "color",
+      "$description": "Khaki Olive — Muted accent for tag borders, secondary button outlines, warm-tinted surface washes — the restrained sibling of the highlighter"
+    }
+  },
+  "font": {
+    "serif-custom-resembles-a-high-contrast-modern-editorial-serif-like-reckless-neue-gt-sectra-or-pp-editorial-new": {
+      "$value": "Serif (custom — resembles a high-contrast modern editorial serif like Reckless Neue, GT Sectra, or PP Editorial New)",
+      "$type": "fontFamily",
+      "$description": "All display and heading copy. Used at poster sizes (64–96px) for hero headlines and product section titles. The weight 300 at 96px is the signature move — whisper-thin strokes at near-poster scale create authority through restraint, not volume. Tight tracking (-0.05em) at all sizes; line-heights under 1.1 let letterspacing do the vertical work"
+    },
+    "mono-custom-clean-geometric-monospace": {
+      "$value": "Mono (custom — clean geometric monospace)",
+      "$type": "fontFamily",
+      "$description": "All UI text: navigation, buttons, labels, body copy, metadata, footer links. The mono choice is deliberate — it makes every UI element feel like terminal output or code annotation, contrasting the serif's editorial softness. Weight 400 dominates; 500 for button text; 300 reserved for large mono headings (28–48px range)"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "fontMono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "fontMono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "fontMono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "fontMono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "fontMono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "fontMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "fontMono",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "fontMono",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "fontMono",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "fontMono",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "fontSerif",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "fontMono",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "fontSerif",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "fontSerif",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "fontMono",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "fontSerif",
+        "fontSize": "64px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "fontSerif",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 96px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "vellum": {
+      "$value": "#f6f6f4",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the warm cream that defines the entire visual temperature"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, elevated content blocks, light product mockup panels"
+    },
+    "carbon": {
+      "$value": "#2c2c26",
+      "$type": "color",
+      "$description": "Surface level 2: Dark panels, product screenshot cards, footer, neutral filled buttons"
+    },
+    "highlighter": {
+      "$value": "#fff347",
+      "$type": "color",
+      "$description": "Surface level 3: Accent highlight washes — appears as small decorative fills, never large surfaces"
+    },
+    "bone": {
+      "$value": "#e8e7d9",
+      "$type": "color",
+      "$description": "Surface level 4: Subtle warm tint for tag backgrounds and soft highlight zones"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://designstripe.com",
+      "siteName": "Visual",
+      "extractedAt": "2026-06-03T16:36:25.256Z",
+      "variant": "extended"
+    }
+  }
+}

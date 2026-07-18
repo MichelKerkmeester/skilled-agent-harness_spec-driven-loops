@@ -1,0 +1,60 @@
+@theme {
+  /* Colors */
+  --color-ink: #141414;
+  --color-paper: #ffffff;
+  --color-canvas: #f5f5f5;
+  --color-mist: #e9e9e9;
+  --color-hairline: #d9d9d9;
+  --color-signal-green: #30a81d;
+  --color-forest: #21935b;
+  --color-highlight-yellow: #fecc33;
+  --color-ember: #ff8400;
+
+  /* Typography */
+  --font-swizzy: 'Swizzy', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-pp-neue-montreal-mono: 'PP Neue Montreal Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 12;
+  --tracking-caption: 0.72px;
+  --text-body-sm: 15px;
+  --leading-body-sm: 15;
+  --tracking-body-sm: 0.9px;
+  --text-subheading: 21px;
+  --leading-subheading: 21;
+  --text-heading-sm: 27px;
+  --leading-heading-sm: 27;
+  --text-heading: 32px;
+  --leading-heading: 36;
+  --text-heading-lg: 47px;
+  --leading-heading-lg: 47;
+  --text-display: 125px;
+  --leading-display: 108;
+  --tracking-display: -2.5px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-52: 52px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-100: 100px;
+  --spacing-180: 180px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-2xl: 16px;
+  --radius-3xl: 25.0353px;
+  --radius-full: 64px;
+  --radius-full-2: 160px;
+}

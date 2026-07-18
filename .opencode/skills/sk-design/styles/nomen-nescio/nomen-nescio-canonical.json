@@ -1,0 +1,934 @@
+{
+  "source": "https://styles.refero.design/style/2fd71e12-12fc-4346-8281-52afe12bb951",
+  "uuid": "2fd71e12-12fc-4346-8281-52afe12bb951",
+  "name": "Nomen Nescio",
+  "northStar": "ink on warm paper",
+  "capturedAt": "2026-07-18T09:08:49.347Z",
+  "meta": {
+    "url": "https://nomennescio.fi",
+    "siteName": "Nomen Nescio",
+    "extractedAt": "2026-06-03T20:36:39.025Z",
+    "durationMs": 41224,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 342,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the custom 'Nomen Nescio' font at weight 400 exclusively — never introduce bold, light, or italic weights for hierarchy; build contrast through size and negative letter-spacing alone",
+      "Set all borders to 0px radius — every corner is sharp, every image bleeds edge-to-edge without rounding",
+      "Reach for #fdfdfa as the page canvas and #f5f3ee only when you need subtle surface elevation; never use white (#ffffff) or pure black (#000000)",
+      "Apply letter-spacing of -0.036em at display sizes (36px) down to -0.008em at body sizes; reserve the positive +0.007em tracking exclusively for small uppercase micro-labels",
+      "Keep all buttons ghost/outlined with a 1px Ink border on Paper background — there is no filled button variant in this system",
+      "Let photography fill the entire viewport or grid cell; never pad, frame, or containerize images with backgrounds or borders",
+      "Use 20px for element gaps, 39–47px for section breaks, and 4px as the base spacing unit for all micro-adjustments"
+    ],
+    "donts": [
+      "Do not introduce any color outside the six neutrals (Paper, Bone, Ink, Ash, Pebble, Mist) — the system is 2% colorful by design and any accent will break the editorial paper language",
+      "Do not use box-shadows, drop-shadows, or glow effects — elevation comes from surface color shifts and borders, never from shadow",
+      "Do not use border-radius on any element — 0px everywhere, no exceptions for badges, buttons, or images",
+      "Do not set backgrounds to pure white (#ffffff) or text to pure black (#000000) — always use the warm off-white (#fdfdfa) and warm near-black (#2b2b2e) variants",
+      "Do not add a bold or semibold weight for emphasis — if something needs more visual weight, increase its size and tighten its letter-spacing further",
+      "Do not containerize or pad product images with white space — images should touch the grid edges and the page edges",
+      "Do not introduce filled (solid-color) buttons, gradient backgrounds, or colored badges — the discount tag is plain text on the image, not a pill"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fdfdfa",
+        "name": "Paper",
+        "role": "Page canvas and card surfaces — warm off-white reads as aged paper, not digital white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f3ee",
+        "name": "Bone",
+        "role": "Elevated surface and subtle washes — used for card backgrounds and hover states, one step warmer than canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2b2b2e",
+        "name": "Ink",
+        "role": "Primary text, navigation, borders, and outlined actions — near-black with a warm undertone, never pure #000",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bebcb4",
+        "name": "Ash",
+        "role": "Muted text and secondary borders — warm gray for metadata, subtitles, and hairline dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#deddd8",
+        "name": "Pebble",
+        "role": "Light dividers and structural borders — barely visible rules between sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d9d7c9",
+        "name": "Mist",
+        "role": "Form input borders — slightly warmer than pebble to read as a distinct UI surface",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page model is full-bleed with no max-width container on the hero and editorial sections, transitioning to a 1440px max-width on grid and product sections. Navigation is a single-line text bar overlaying the hero. The hero is a full-viewport-width photograph with overlaid text navigation. Below the hero, content alternates between two-column editorial feature cards and a 4-column product grid, with a left-edge 'Explore' label anchoring the section. Section rhythm is consistent: 39–47px vertical gaps, no alternating background bands (everything sits on Paper), no dividers between sections. Content is left-aligned with generous left margin. Grid usage: 4-column product grid with no gutters, 2-column editorial feature layout, 1-column mobile fallback. Density is spacious — large photographs dominate while text labels are small and secondary.",
+    "imagery": "Imagery is the primary brand expression: full-bleed editorial fashion photography, predominantly featuring dark monochromatic clothing on models in architectural or outdoor settings (concrete tracks, brutalist buildings, natural light). Treatment is high-key with natural daylight, muted color grading, and tight or environmental framing — no studio backdrops, no product-only flat-lays. Images are always uncropped and unrounded, bleeding to the page edges. The role of photography is atmospheric and identity-defining rather than informational; it occupies 60–80% of the visual space on key pages, with text acting as captions. No illustrations, no icons, no decorative graphics — the only visual elements are photographs and type.",
+    "similar": [
+      {
+        "why": "Same warm off-white canvas, flat photography-led layout, and single-weight minimal sans-serif typography with no decorative elements",
+        "business": "COS"
+      },
+      {
+        "why": "Shared editorial restraint — near-monochrome palette, oversized fashion photography, text-only navigation, and a near-absence of UI color",
+        "business": "The Row"
+      },
+      {
+        "why": "Identical approach to Scandinavian minimal fashion: warm neutrals, sharp 0px corners, single-weight typography, and photography as the primary brand surface",
+        "business": "Toteme"
+      },
+      {
+        "why": "Same conceptual minimalism — white-paper canvas, hairline borders, negative letter-spacing on display type, and editorial grid layouts",
+        "business": "Jil Sander"
+      },
+      {
+        "why": "Parallel philosophy of stripped-back presentation: warm cream surfaces, ghost outlines instead of filled buttons, and typography that whispers rather than shouts",
+        "business": "Lemaire"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "39-47px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#fdfdfa",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page background — the warm white that everything sits on"
+      },
+      {
+        "hex": "#f5f3ee",
+        "name": "Bone",
+        "level": 2,
+        "purpose": "Card and elevated surface — subtly warmer than canvas to create gentle separation"
+      }
+    ],
+    "northStar": "ink on warm paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.112
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.256
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.306
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.11,
+        "letterSpacing": -0.784
+      },
+      {
+        "role": "heading-lg",
+        "size": 36,
+        "lineHeight": 1.05,
+        "letterSpacing": -1.296
+      }
+    ],
+    "components": [
+      {
+        "name": "Full-Bleed Hero Image",
+        "role": "Opening viewport visual",
+        "description": "Edge-to-edge photograph with no padding, no border, no radius. Navigation text overlays directly on the image in #fdfdfa (white) for legibility. Aspect ratio fills the full viewport width; the image bleeds to the page edges with no container."
+      },
+      {
+        "name": "Text Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Text-only nav links at 15px in Ink (#2b2b2e) for light backgrounds or Paper (#fdfdfa) when overlaid on dark hero. No backgrounds, no borders, no padding blocks — just spaced words separated by ~20px gaps. Left-aligned logo, right-aligned utility links (EUR, Search, Bag)."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "Site-wide top banner",
+        "description": "Single-line centered text at 14px in Paper (#fdfdfa) on Ink (#2b2b2e) background. Full-bleed, 1px or minimal vertical padding, contains a dismiss 'Close' action right-aligned."
+      },
+      {
+        "name": "Editorial Feature Card",
+        "role": "Large content card for collections, articles, and installations",
+        "description": "Two-column card: full-width photograph on top, title and subtitle stacked below on Paper canvas. Title at 18–19px Ink, subtitle at 14–15px Ash. No border, no padding container around the image, 20px vertical spacing between image and text block."
+      },
+      {
+        "name": "Product Grid Card",
+        "role": "Individual product listing",
+        "description": "Square or portrait product photo (no radius, no border) with optional discount tag overlay in top-left corner. No text below the image in the visible grid; product details appear on interaction. Image fills its grid cell edge-to-edge."
+      },
+      {
+        "name": "Discount Badge",
+        "role": "Sale indicator on product images",
+        "description": "Plain text '-50%' at 14px in Ink (#2b2b2e), no background, no border, no pill shape. Positioned absolutely in the top-left of a product image. Relies on whitespace and position for emphasis."
+      },
+      {
+        "name": "Ghost Link",
+        "role": "Default interactive text element",
+        "description": "Ink-colored text link with 1px Ink underline or hairline border-bottom. No background fill, no padding, no hover background change. Inherits body font size and weight (always 400)."
+      },
+      {
+        "name": "Text Input",
+        "role": "Form fields for search, email, checkout",
+        "description": "Borderless or 1px Mist (#d9d7c9) bottom border, Paper (#fdfdfa) background, Ink text. No focus ring color shift — focus state uses a thicker Ink bottom border instead. Placeholder text in Ash (#bebcb4)."
+      },
+      {
+        "name": "Outlined Action Button",
+        "role": "Primary interactive button",
+        "description": "1px Ink (#2b2b2e) border, Paper (#fdfdfa) background, Ink text at 14–16px. 6–8px vertical padding, 20px horizontal padding. No radius. On dark/image backgrounds, inverts to Paper border with Paper text. This is the only button variant — there is no filled button."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Editorial section titles",
+        "description": "Ink text at 28–36px, weight 400, negative letter-spacing (-0.028em to -0.036em). Left-aligned with no decorative element. Generous whitespace above and below (39–47px section gap)."
+      },
+      {
+        "name": "Product Grid",
+        "role": "Collection display layout",
+        "description": "4-column grid of product cards on desktop, 2-column on tablet, 1-column on mobile. No gutters between cards — images touch edge-to-edge, creating a seamless editorial wall. Section sits directly on Paper canvas with no card container."
+      },
+      {
+        "name": "Side Label (Explore)",
+        "role": "Vertical or edge-anchored category label",
+        "description": "Small Ink text at 14–15px, vertically centered or left-edge anchored. Functions as a section divider label (e.g., 'Explore' on the left edge). No background, no border."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-weight display and body sans-serif — a monoline custom face used for every text element on the site. No bold, no light, no italic variants exist; hierarchy is achieved through size and negative letter-spacing only. Substitutes with a similar monoline character: 'Neue Haas Grotesk Display Pro' or 'Söhne' at weight 400.",
+        "sizes": "14, 15, 16, 18, 19, 28, 36",
+        "family": "Nomen Nescio (custom)",
+        "weight": "400",
+        "lineHeight": "1.05–1.43",
+        "substitute": "Söhne or Inter at 400",
+        "letterSpacing": "-0.036em at 36px, -0.028em at 28px, -0.021em at 19px, -0.017em at 18px, -0.016em at 16px, -0.008em at 14–15px, +0.007em for small uppercase labels"
+      }
+    ],
+    "description": "Nomen Nescio is an editorial paper-and-ink system for a conceptual fashion label: a warm off-white canvas (#fdfdfa) holds oversized fashion photography while every interface element recedes into a single near-black ink (#2b2b2e). The entire typography stack uses one custom sans-serif at one weight (400) — no bold, no light, no italic — so hierarchy is built purely through size and negative letter-spacing rather than contrast. Components are flat rectangles, no shadows, no rounded corners, no color: identity comes from the restraint, the warm neutrals, and the photography bleeding edge-to-edge. The system feels like a printed zine reproduced as a website — whitespace is the layout grid, and every UI surface could be cut from the same sheet of paper.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2fd71e12-12fc-4346-8281-52afe12bb951#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Nomen Nescio design system\",\"item\":\"https://styles.refero.design/style/2fd71e12-12fc-4346-8281-52afe12bb951\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2fd71e12-12fc-4346-8281-52afe12bb951#style-reference\",\"name\":\"Nomen Nescio design system reference\",\"headline\":\"Nomen Nescio design system | Refero Styles\",\"description\":\"Explore Nomen Nescio's light E-commerce design system: Paper #fdfdfa, Bone #f5f3ee colors, Nomen Nescio (custom) typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2fd71e12-12fc-4346-8281-52afe12bb951\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2fd71e12-12fc-4346-8281-52afe12bb951\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Nomen Nescio\",\"url\":\"https://nomennescio.fi\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2fd71e12-12fc-4346-8281-52afe12bb951#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/733970d6-7643-4aaa-a491-fa61b8b4389a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/733970d6-7643-4aaa-a491-fa61b8b4389a.jpg\",\"caption\":\"Screenshot of Nomen Nescio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/733970d6-7643-4aaa-a491-fa61b8b4389a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Nomen Nescio design system\",\"Nomen Nescio website design\",\"Nomen Nescio colors\",\"Nomen Nescio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Paper\",\"Bone\",\"Ink\",\"Ash\",\"Nomen Nescio (custom)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Nomen Nescio design system\"},{\"@type\":\"Thing\",\"name\":\"Nomen Nescio website design\"},{\"@type\":\"Thing\",\"name\":\"Nomen Nescio colors\"},{\"@type\":\"Thing\",\"name\":\"Nomen Nescio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:03:48.741Z\",\"dateModified\":\"2026-04-30T03:03:48.741Z\"}]}19:T73a,Quick Color Reference:\n- text: #2b2b2e (Ink)\n- background: #fdfdfa (Paper)\n- surface/elevated: #f5f3ee (Bone)\n- muted text: #bebcb4 (Ash)\n- border: #deddd8 (Pebble)\n- input border: #d9d7c9 (Mist)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a full-bleed hero section: 100vw width, no padding, no border, no radius. Edge-to-edge photograph fills the viewport. Navigation overlay uses 15px Nomen Nescio font at weight 400, color #fdfdfa (Paper) for legibility on dark images, letter-spacing -0.008em. Logo left-aligned, utility links (EUR, Search, Bag) right-aligned, 20px gap between items. Announcement bar above: full-bleed #2b2b2e (Ink) background, 14px #fdfdfa (Paper) text centered.\n\n2. Create an editorial feature card: two-column layout, no card background or border. Top half is full-width photograph touching both edges. Below image: title at 19px Nomen Nescio 400 in #2b2b2e, letter-spacing -0.021em. Subtitle at 15px in #bebcb4 (Ash). 20px gap between image and text, 39–47px gap to next card.\n\n3. Create a 4-column product grid: images fill each cell edge-to-edge with no gutters, no gaps, no border-radius. Each product photo touches its neighbors. Discount badge '-50%' as plain 14px #2b2b2e text positioned absolute top-left of the image, no background, no pill, no border.\n\n4. Create a section heading: 28px or 36px Nomen Nescio weight 400 in #2b2b2e, letter-spacing -0.028em to -0.036em, left-aligned on #fdfdfa background. 39px margin-top, 47px margin-bottom. No decorative lines, no underlines, no accent color.\n\n5. Create a text input field: 1px bottom border in #d9d7c9 (Mist), no other borders, no border-radius, #fdfdfa background. Text at 15px Nomen Nescio 400 in #2b2b2e, placeholder in #bebcb4. On focus, bottom border thickens to 1px #2b2b2e. No focus ring, no glow, no background change."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "The Nomen Nescio custom face is monoline and geometric at a single weight (400). The absence of weight variation forces all typographic hierarchy through size and letter-spacing — a deliberate anti-convention choice that gives the system its editorial restraint. Tracking is aggressively negative at display sizes (-0.036em at 36px) and eases toward neutral at body sizes (-0.008em at 14px), with one positive tracking value (+0.007em) reserved for tiny uppercase micro-labels. Line heights compress at large sizes (1.05 at 36px) and open up at small sizes (1.43 at 14px), creating a visual rhythm where display type feels dense and architectural while caption text breathes."
+      }
+    ],
+    "elevationPhilosophy": "The design system has no shadow vocabulary. Elevation is communicated exclusively through surface color shifts (canvas #fdfdfa → bone #f5f3ee) and hairline borders. Every element sits flush against the paper — the flatness is intentional, mimicking a printed publication rather than a skeuomorphic software interface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#2b2b2e",
+          "oklch": {
+            "c": 0.005396977622741286,
+            "h": 286.058681282055,
+            "l": 0.29025526441416916
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "table",
+            "link",
+            "hero",
+            "body",
+            "image",
+            "card",
+            "footer",
+            "input",
+            "badge"
+          ],
+          "frequency": 1445,
+          "confidence": 1,
+          "prominence": 39463230.685615204,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 12,
+            "body/color": 37,
+            "card/color": 8,
+            "hero/color": 1,
+            "link/color": 33,
+            "badge/color": 1,
+            "image/color": 61,
+            "input/color": 2,
+            "other/color": 120,
+            "table/color": 1,
+            "footer/color": 2,
+            "heading/color": 11,
+            "nav/borderColor": 47,
+            "body/borderColor": 148,
+            "card/borderColor": 32,
+            "hero/borderColor": 4,
+            "link/borderColor": 132,
+            "badge/borderColor": 4,
+            "image/borderColor": 244,
+            "input/borderColor": 7,
+            "other/borderColor": 480,
+            "table/borderColor": 4,
+            "footer/borderColor": 8,
+            "heading/borderColor": 44,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fdfdfa",
+          "oklch": {
+            "c": 0.003945691724204661,
+            "h": 106.47122241846331,
+            "l": 0.9932187681377568
+          },
+          "contexts": [
+            "link",
+            "body",
+            "nav",
+            "other",
+            "image",
+            "heading"
+          ],
+          "frequency": 154,
+          "confidence": 1,
+          "prominence": 7127946.131760827,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 11,
+            "body/color": 5,
+            "link/color": 5,
+            "image/color": 2,
+            "other/color": 4,
+            "heading/color": 2,
+            "nav/borderColor": 44,
+            "body/borderColor": 20,
+            "link/borderColor": 20,
+            "image/borderColor": 8,
+            "other/borderColor": 16,
+            "heading/borderColor": 8,
+            "body/backgroundColor": 8,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f5f3ee",
+          "oklch": {
+            "c": 0.006978479658627961,
+            "h": 88.64275411892478,
+            "l": 0.9643055077543865
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 553532.1680830853,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1,
+            "other/color": 3,
+            "body/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 12,
+            "link/backgroundColor": 8,
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#deddd8",
+          "oklch": {
+            "c": 0.0075011648224279845,
+            "h": 98.19256819380097,
+            "l": 0.8967808797708687
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 48194,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 1
+          }
+        },
+        {
+          "hex": "#bebcb4",
+          "oklch": {
+            "c": 0.011332058819677129,
+            "h": 95.1977492043032,
+            "l": 0.7945479587205279
+          },
+          "contexts": [
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 95,
+          "confidence": 1,
+          "prominence": 45831.33900501925,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "link/color": 8,
+            "button/color": 1,
+            "body/borderColor": 40,
+            "link/borderColor": 32,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#d9d7c9",
+          "oklch": {
+            "c": 0.01902026705482069,
+            "h": 100.15780297010376,
+            "l": 0.8768869860604475
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 6671,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.015241335443431515,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 13.85,
+          "background": "#fdfdfa",
+          "foreground": "#2b2b2e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.73,
+          "background": "#f5f3ee",
+          "foreground": "#2b2b2e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.38,
+          "background": "#deddd8",
+          "foreground": "#2b2b2e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.76,
+          "background": "#d9d7c9",
+          "foreground": "#2b2b2e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.42,
+          "background": "#2b2b2e",
+          "foreground": "#bebcb4"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.87,
+          "background": "#fdfdfa",
+          "foreground": "#bebcb4"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.72,
+          "background": "#f5f3ee",
+          "foreground": "#bebcb4"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#f5f3ee",
+          "foreground": "#fdfdfa"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "body",
+            "input",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|body",
+            "paddingBottom|input",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other",
+            "body",
+            "footer"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "link",
+            "input"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginRight|link",
+            "marginRight|input"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "paddingTop|link"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "nav",
+            "footer"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|nav",
+            "paddingBottom|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer",
+            "rowGap|footer",
+            "columnGap|footer"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 39,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|footer"
+          ]
+        },
+        {
+          "value": 47,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "nomennescio",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 342,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 19,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "nomennescio",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "footer",
+            "badge",
+            "input"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "nomennescio",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "nomennescio",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "nomennescio",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "nomennescio",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "nomennescio",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "nomennescio",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "body",
+            "link",
+            "heading"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "nomennescio",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "heading",
+            "table",
+            "hero",
+            "image",
+            "card"
+          ],
+          "frequency": 276,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "nomennescio",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "nomennescio",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.26,
+          "letterSpacing": -0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "nomennescio",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.71,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "nomennescio",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.56,
+          "letterSpacing": -0.028,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "nomennescio",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/361cc059-21c6-4d5c-9091-da0f68393690.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/733970d6-7643-4aaa-a491-fa61b8b4389a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2fd71e12-12fc-4346-8281-52afe12bb951#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Nomen Nescio design system\",\"item\":\"https://styles.refero.design/style/2fd71e12-12fc-4346-8281-52afe12bb951\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2fd71e12-12fc-4346-8281-52afe12bb951#style-reference\",\"name\":\"Nomen Nescio design system reference\",\"headline\":\"Nomen Nescio design system | Refero Styles\",\"description\":\"Explore Nomen Nescio's light E-commerce design system: Paper #fdfdfa, Bone #f5f3ee colors, Nomen Nescio (custom) typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2fd71e12-12fc-4346-8281-52afe12bb951\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2fd71e12-12fc-4346-8281-52afe12bb951\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Nomen Nescio\",\"url\":\"https://nomennescio.fi\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2fd71e12-12fc-4346-8281-52afe12bb951#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/733970d6-7643-4aaa-a491-fa61b8b4389a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/733970d6-7643-4aaa-a491-fa61b8b4389a.jpg\",\"caption\":\"Screenshot of Nomen Nescio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/733970d6-7643-4aaa-a491-fa61b8b4389a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Nomen Nescio design system\",\"Nomen Nescio website design\",\"Nomen Nescio colors\",\"Nomen Nescio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Paper\",\"Bone\",\"Ink\",\"Ash\",\"Nomen Nescio (custom)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Nomen Nescio design system\"},{\"@type\":\"Thing\",\"name\":\"Nomen Nescio website design\"},{\"@type\":\"Thing\",\"name\":\"Nomen Nescio colors\"},{\"@type\":\"Thing\",\"name\":\"Nomen Nescio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:03:48.741Z\",\"dateModified\":\"2026-04-30T03:03:48.741Z\"}]}19:T73a,Quick Color Reference:\n- text: #2b2b2e (Ink)\n- background: #fdfdfa (Paper)\n- surface/elevated: #f5f3ee (Bone)\n- muted text: #bebcb4 (Ash)\n- border: #deddd8 (Pebble)\n- input border: #d9d7c9 (Mist)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a full-bleed hero section: 100vw width, no padding, no border, no radius. Edge-to-edge photograph fills the viewport. Navigation overlay uses 15px Nomen Nescio font at weight 400, color #fdfdfa (Paper) for legibility on dark images, letter-spacing -0.008em. Logo left-aligned, utility links (EUR, Search, Bag) right-aligned, 20px gap between items. Announcement bar above: full-bleed #2b2b2e (Ink) background, 14px #fdfdfa (Paper) text centered.\n\n2. Create an editorial feature card: two-column layout, no card background or border. Top half is full-width photograph touching both edges. Below image: title at 19px Nomen Nescio 400 in #2b2b2e, letter-spacing -0.021em. Subtitle at 15px in #bebcb4 (Ash). 20px gap between image and text, 39–47px gap to next card.\n\n3. Create a 4-column product grid: images fill each cell edge-to-edge with no gutters, no gaps, no border-radius. Each product photo touches its neighbors. Discount badge '-50%' as plain 14px #2b2b2e text positioned absolute top-left of the image, no background, no pill, no border.\n\n4. Create a section heading: 28px or 36px Nomen Nescio weight 400 in #2b2b2e, letter-spacing -0.028em to -0.036em, left-aligned on #fdfdfa background. 39px margin-top, 47px margin-bottom. No decorative lines, no underlines, no accent color.\n\n5. Create a text input field: 1px bottom border in #d9d7c9 (Mist), no other borders, no border-radius, #fdfdfa background. Text at 15px Nomen Nescio 400 in #2b2b2e, placeholder in #bebcb4. On focus, bottom border thickens to 1px #2b2b2e. No focus ring, no glow, no background change."
+}

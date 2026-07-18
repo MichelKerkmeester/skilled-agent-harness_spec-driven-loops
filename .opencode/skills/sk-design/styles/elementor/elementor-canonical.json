@@ -1,0 +1,1340 @@
+{
+  "source": "https://styles.refero.design/style/4bbc63cf-c995-4c56-9873-e7f300f1c9e7",
+  "uuid": "4bbc63cf-c995-4c56-9873-e7f300f1c9e7",
+  "name": "Elementor",
+  "northStar": "High-stakes monochrome printing press — a system where black and white do all the heavy lifting, Roobert's compressed weight-900 headlines stamped like bold ink on paper.",
+  "capturedAt": "2026-07-18T10:14:06.079Z",
+  "meta": {
+    "url": "https://elementor.com",
+    "siteName": "Elementor",
+    "extractedAt": "2026-04-11T19:12:35.931Z",
+    "durationMs": 102959,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 794,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Roobert 900 with letter-spacing -0.02em for all display headlines at 56px and above — never swap to a lighter weight for main hero text",
+      "Apply 8px border-radius to all buttons and badges; apply 16px to all cards and large image containers",
+      "Alternate section backgrounds strictly between #000000 and #f6f6f6/#ffffff — never use a third background color to break the binary rhythm",
+      "Set white cards (padding 48px 32px) on black sections; set black cards (padding 24px) on white/light sections — always invert card color relative to section",
+      "Keep all interactive focus to black-fill or white-fill buttons with 24px horizontal padding — no colored CTAs, no gradients on buttons",
+      "Use #69727d for supporting body text and icon strokes — never use it for headings or primary navigation",
+      "Apply fontFeatureSettings '\"ss14\"' whenever rendering Roobert to activate the intended alternate letterforms"
+    ],
+    "tags": [
+      "monochrome",
+      "high-contrast",
+      "bold-typography",
+      "dark-hero",
+      "no-shadows",
+      "website-builder",
+      "alternating-surfaces",
+      "custom-typeface",
+      "lifestyle-photography",
+      "B&W"
+    ],
+    "donts": [
+      "Never add box-shadow to any card, button, or navigation element — depth is created through surface color inversion, not elevation",
+      "Never introduce a chromatic brand color (the CSS token pinks/magentas) into the main marketing page UI — these are reserved for product-feature illustration contexts only",
+      "Never use weight 400 for headings at 32px and above — minimum weight for heading-sm and up is 600, display sizes require 900",
+      "Never set a card background that matches its parent section background — every card must contrast against its container (#fff on #000, #000 on #fff or #f6f6f6)",
+      "Never use border-radius above 16px on interactive components or cards — the 160px pill radius is exclusive to image crops, not UI elements",
+      "Never use #69727d or #a6a6a6 for button labels or CTA copy — these gray tones are body/meta text only, never interactive labels",
+      "Never stack multiple black sections or multiple white sections consecutively — the alternating binary rhythm must be maintained across every section boundary"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Press Black",
+        "role": "Primary text, nav borders, button fills, card backgrounds, footer — the single dominant ink color driving the entire system's contrast logic",
+        "group": "neutral"
+      },
+      {
+        "hex": "#212121",
+        "name": "Charcoal Ink",
+        "role": "Body copy, secondary headings, list items — one step off pure black for long-form text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Blank Canvas",
+        "role": "Card backgrounds, button fills (secondary), icon fills — the pure white counterpart to Press Black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f6f6f6",
+        "name": "Fog Sheet",
+        "role": "Page section backgrounds, hero overlay text, badge fills — the off-white that softens full-white sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d1d1d1",
+        "name": "Ash Border",
+        "role": "Nav dividers, separator lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a6a6a6",
+        "name": "Slate Text",
+        "role": "Muted link text, de-emphasized body labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#69727d",
+        "name": "Steel Gray",
+        "role": "Body text, icon strokes, link defaults — mid-gray for supporting content hierarchy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0c0d0",
+        "name": "Deep Void",
+        "role": "Near-black nav text, alternate heading color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#FFB8E5",
+        "name": "Pixel Blush",
+        "role": "Token-defined accent — appears as CSS variable; reserved for product-feature highlights and gradient transitions",
+        "group": "accent"
+      },
+      {
+        "hex": "#ED01EE",
+        "name": "Neon Loop",
+        "role": "Token-defined vivid accent — CSS variable; reserved for on-brand product UI illustrations and feature callouts",
+        "group": "accent"
+      },
+      {
+        "hex": "#620856",
+        "name": "Codeberry",
+        "role": "Token-defined dark magenta — CSS variable; reserved for deep accent backgrounds in product feature sections",
+        "group": "accent"
+      }
+    ],
+    "layout": "Max-width contained at approximately 1200px, centered on page. Hero is a full-bleed dark lifestyle photograph — the container breaks the max-width to extend edge-to-edge, then the headline and CTA stack centered over the image. Below the hero, sections alternate strictly between #f6f6f6 and #000000 backgrounds with 96px vertical gaps. Feature sections use a 2–3 column card grid with white-on-black or black-on-white inversion. Stat counters appear in a single-row horizontal flex with generous spacing. Navigation is a top sticky bar with logo left, centered links, and auth+CTA right — the bar height is 40–80px. Footer is a full-width black band with a multi-column link grid (4–5 columns) and a large hero-scale headline. The overall rhythm is spacious and section-based, with no sidebar or asymmetric compositions.",
+    "imagery": "Lifestyle photography at full bleed — the hero is a moody, dark-toned photograph of a person in a relaxed creative pose. High contrast, slightly underexposed feel with warm golden tones in the subject against a near-black background environment. No color grading or duotone treatment; the natural darkness of the image provides headline contrast without any overlay scrim. Images are contained within 16px-radius cards in feature sections and 160px pill-radius crops for circular or elongated thumbnail treatments. Icons appear to use thin-to-medium stroke weight, monochrome (black or white depending on surface). Imagery is sparse relative to the text-dominant layout — photography is used for emotional atmosphere in the hero and sparingly as product/UI screenshots in feature sections.",
+    "similar": [
+      {
+        "why": "Same high-contrast monochrome palette with black-fill CTA buttons and bold custom typeface headlines; no brand color on primary UI",
+        "business": "Webflow"
+      },
+      {
+        "why": "Black/white alternating section bands and lifestyle photography as hero backdrop with white headline overlay",
+        "business": "Squarespace"
+      },
+      {
+        "why": "Roobert-class tight-tracked display type at extreme weights (700–900) over dark photography hero",
+        "business": "Framer"
+      },
+      {
+        "why": "Pure black-and-white surface system where depth comes from color inversion rather than shadow or gradient",
+        "business": "Cargo Collective"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "badges": "8px",
+        "images": "16px",
+        "inputs": "8px",
+        "buttons": "8px",
+        "imagePill": "160px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "96px",
+      "cardPadding": "",
+      "pageMaxWidth": "1200px"
+    },
+    "category": "SaaS",
+    "northStar": "High-stakes monochrome printing press — a system where black and white do all the heavy lifting, Roobert's compressed weight-900 headlines stamped like bold ink on paper.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-lg",
+        "size": 64,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.28
+      },
+      {
+        "role": "display",
+        "size": 88,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.76
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Button Group — Primary, Secondary, Ghost",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Stat Counter Block",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Feature Cards — White on Black",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary CTA Button (Black Fill)",
+        "role": "Main call-to-action across hero and section endings",
+        "description": "Background #000000, text #ffffff, border-radius 8px, horizontal padding 24px. Roobert 500–600 at 16px. The hero CTA 'Get started' appears with a light border version over the dark photograph. No shadow, no gradient."
+      },
+      {
+        "name": "Secondary Button (White Fill)",
+        "role": "Secondary action alongside primary CTAs",
+        "description": "Background #ffffff, text #000000, border 1px solid #000000, border-radius 8px, horizontal padding 24px. Roobert 500 at 16px. Identical sizing to primary — distinction is fill only."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Tertiary links styled as buttons — 'Learn more', 'How to start building a website'",
+        "description": "Background transparent, text #000000, no border, border-radius 0px, padding 0px. Pure text link with button semantics. Roobert 500 at 16px. Often paired with an arrow icon."
+      },
+      {
+        "name": "White Content Card",
+        "role": "Feature cards on dark-background sections",
+        "description": "Background #ffffff, border-radius 16px, padding 48px 32px, box-shadow none. Roobert 600 heading at 24px, body at 16–18px #212121. High-padding, generous breathing room — contrasts against black section backgrounds."
+      },
+      {
+        "name": "Black Content Card",
+        "role": "Feature or stat cards on light-background sections",
+        "description": "Background #000000, border-radius 16px, padding 24px all sides, box-shadow none. Text in #ffffff or #f6f6f6. Tighter padding than white cards — creates a dense, punchy information block."
+      },
+      {
+        "name": "Black Badge / Label",
+        "role": "Brand trust badges (e.g. 'CNN'), product labels",
+        "description": "Background #000000, text #f6f6f6, border-radius 8px, padding 4px 8px. Roobert 500–600 at 14px. Compact, pill-adjacent but rectangular. No border."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global site navigation — sticky, light background",
+        "description": "Background #ffffff, height 40–80px, border-bottom 1px solid #d1d1d1. Nav links in Roobert 500 16px #000000. 'Get started' button uses Primary CTA style (black fill, 8px radius, 24px horizontal padding). Logo left-aligned, links center, auth+CTA right."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Full-viewport opening section with lifestyle photography",
+        "description": "Full-bleed dark lifestyle photo background, no max-width constraint. Headline overlaid in Roobert 900 at 64–88px, #ffffff, letter-spacing -0.02em, line-height 1.10. Subtext in Roobert 400 at 18–20px, #f6f6f6. White-fill CTA button centered below text. No gradient overlay — raw photograph with text contrast achieved through image darkness."
+      },
+      {
+        "name": "Stat Counter Block",
+        "role": "Social proof metrics — '21M+' websites built",
+        "description": "Roobert 900 at 56–64px #000000 for the number. Supporting label in Roobert 400 16px #69727d. Displayed in a row or grid with generous column gaps. No card wrapper — floats on section background."
+      },
+      {
+        "name": "Footer",
+        "role": "Site-wide footer navigation grid",
+        "description": "Background #000000 or #212121, text #f6f6f6 and #a6a6a6. Multi-column link grid with Roobert 500 14px for categories, 400 14px for links. 'Build what's next' headline in Roobert 700–900 at 40–48px white. Padding 96px top."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The site's entire typographic identity. Weight 900 at 56–88px drives hero headlines — the extreme weight creates impact that substitutes for color. Negative letter-spacing (-0.02em at display, -0.01em at subheading) compresses letterforms into a dense, printed-matter feel. 'ss14' feature setting activates alternate letterforms. Used for headings, nav, buttons, badges, body at every weight.",
+        "sizes": "14px, 16px, 18px, 19px, 20px, 24px, 32px, 36px, 40px, 48px, 56px, 64px, 88px",
+        "family": "Roobert",
+        "weight": "400, 500, 600, 700, 900",
+        "lineHeight": "1.10–1.50 (tighter at large display sizes: 1.10 at 88px, 1.20 at 56–64px, 1.30–1.40 at 32–48px, 1.50 at body sizes)",
+        "substitute": "Cabinet Grotesk, Satoshi, or Plus Jakarta Sans at matching weights",
+        "letterSpacing": "-0.02em at display sizes (56px–88px), -0.01em at mid sizes (24px–48px), normal at body sizes",
+        "fontFeatureSettings": "\"ss14\""
+      },
+      {
+        "role": "System serif fallback — appears in nav, body, and footer contexts. Likely a browser fallback for edge cases rather than an intentional brand serif. Not a signature choice.",
+        "sizes": "16px, 24px, 32px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Georgia"
+      }
+    ],
+    "description": "Elementor's visual system is a high-contrast monochrome stage where black and near-white alternate as the sole performers — no brand color claims the throne, just pure #000000 and #f6f6f6 pushed to 19:1 contrast ratios. The hero is a full-bleed moody lifestyle photograph with massive weight-900 Roobert headlines in white overlay, commanding attention through scale rather than color. Roobert's 'ss14' feature and tight negative letter-spacing (-0.02em at display sizes) give the type a compressed urgency. Black-filled CTA buttons and white-filled secondary buttons create the only color distinction on the page — the entire interactive vocabulary runs on this two-tone switch. Cards flip between pure black (#000000, 16px radius, 24px padding) and pure white (#ffffff, 16px radius, 48px/32px padding), creating a checkerboard depth without any shadow or elevation.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      },
+      {
+        "title": "Surface System",
+        "content": "Three active surfaces form the depth model — no shadows involved:\n\n- **Page Light** (#f6f6f6): Default section background for light bands. Paired with black cards and black text.\n- **Page Dark** (#000000): Section background for dark bands. Paired with white cards and white text.\n- **Card White** (#ffffff): Card surface on dark sections. 16px radius, 48px/32px padding.\n- **Card Black** (#000000): Card surface on light sections. 16px radius, 24px padding.\n\nThe rule: every card must be the inverse of its parent section. There is no 'elevated' surface in the traditional sense — contrast IS elevation."
+      }
+    ],
+    "elevationPhilosophy": "Zero shadows throughout. Depth is created exclusively through surface color contrast — black cards (#000000) placed against white sections and white cards (#ffffff) placed against black sections. No box-shadow values appear on any component. The alternating black/white card system replaces the traditional light/shadow elevation hierarchy entirely."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "link",
+            "button",
+            "icon",
+            "badge",
+            "image",
+            "heading",
+            "hero",
+            "card",
+            "footer",
+            "body"
+          ],
+          "frequency": 2162,
+          "confidence": 1,
+          "prominence": 150056728.43753946,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#f6f6f6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9731459330353415
+          },
+          "contexts": [
+            "hero",
+            "heading",
+            "body",
+            "other",
+            "badge",
+            "nav"
+          ],
+          "frequency": 283,
+          "confidence": 1,
+          "prominence": 13873811.656107109,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#212121",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24775871011467596
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "body",
+            "other",
+            "list"
+          ],
+          "frequency": 645,
+          "confidence": 1,
+          "prominence": 9825162.274262587,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "link",
+            "button",
+            "heading",
+            "body",
+            "card",
+            "icon"
+          ],
+          "frequency": 212,
+          "confidence": 1,
+          "prominence": 6819755.349830084,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#d1d1d1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8606939027345074
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 20237.02852703043,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#a6a6a6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7251571669935564
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 7219.875407064717,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#69727d",
+          "oklch": {
+            "c": 0.020318593389385985,
+            "h": 253.44306585414665,
+            "l": 0.5482827728229358
+          },
+          "contexts": [
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 135,
+          "confidence": 1,
+          "prominence": 4082.3785965601955,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#0c0d0e",
+          "oklch": {
+            "c": 0.0026942637381821084,
+            "h": 247.99783597291304,
+            "l": 0.1583458272403721
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 25.26619429851844,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#2563eb",
+          "oklch": {
+            "c": 0.21520776794183366,
+            "h": 262.8809187139399,
+            "l": 0.5461497255380916
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 20.89735285398626,
+          "properties": [
+            "borderColor"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.002804989122368224,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.45,
+          "background": "#ffffff",
+          "foreground": "#0c0d0e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.43,
+          "background": "#f6f6f6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18,
+          "background": "#f6f6f6",
+          "foreground": "#0c0d0e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.1,
+          "background": "#ffffff",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.9,
+          "background": "#212121",
+          "foreground": "#f6f6f6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.75,
+          "background": "#d1d1d1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.74,
+          "background": "#d1d1d1",
+          "foreground": "#0c0d0e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.54,
+          "background": "#d1d1d1",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.63,
+          "background": "#000000",
+          "foreground": "#a6a6a6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.99,
+          "background": "#a6a6a6",
+          "foreground": "#0c0d0e"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.61,
+          "background": "#212121",
+          "foreground": "#a6a6a6"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.88,
+          "background": "#ffffff",
+          "foreground": "#69727d"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.52,
+          "background": "#f6f6f6",
+          "foreground": "#69727d"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.3,
+          "background": "#000000",
+          "foreground": "#69727d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.3,
+          "background": "#212121",
+          "foreground": "#69727d"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.43,
+          "background": "#ffffff",
+          "foreground": "#a6a6a6"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.25,
+          "background": "#f6f6f6",
+          "foreground": "#a6a6a6"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.3,
+          "background": "#212121",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.21,
+          "background": "#212121",
+          "foreground": "#0c0d0e"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "image",
+            "other",
+            "badge"
+          ],
+          "frequency": 34
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "image",
+            "card"
+          ],
+          "frequency": 30
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 65,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 9,
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "marginBottom",
+            "columnGap",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 79,
+          "properties": [
+            "marginBottom",
+            "paddingBottom",
+            "paddingTop",
+            "marginTop",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 17,
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ]
+        },
+        {
+          "value": 19,
+          "frequency": 14,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 115,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingBottom",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 34,
+          "properties": [
+            "rowGap",
+            "marginBottom",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 30,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 10,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 11,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 88,
+          "frequency": 23,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "paddingLeft",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 96,
+          "frequency": 36,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 112,
+          "frequency": 6,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 427,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Roobert",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600,
+            700,
+            900
+          ],
+          "frequency": 279,
+          "fontFeatureSettings": [
+            "\"ss14\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Roobert",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "body",
+            "nav"
+          ],
+          "frequency": 73,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Roobert",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "link",
+            "badge",
+            "image",
+            "button",
+            "icon",
+            "hero",
+            "card",
+            "footer",
+            "body"
+          ],
+          "frequency": 371,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Roobert",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Roobert",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "badge",
+            "body",
+            "other",
+            "list"
+          ],
+          "frequency": 77,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Roobert",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 16,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Roobert",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Roobert",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Roobert",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Roobert",
+          "weight": 900,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Roobert",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Roobert",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Roobert",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 27,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Roobert",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Roobert",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Roobert",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Roobert",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Roobert",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Roobert",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 88,
+          "family": "Roobert",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 88,
+          "family": "Roobert",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 88,
+          "family": "Roobert",
+          "weight": 900,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c767bdce-36c0-48d8-a8b6-55f78b3763ce.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4339baeb-5f73-4e1b-8c17-5d583c8603b9.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4bbc63cf-c995-4c56-9873-e7f300f1c9e7#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Elementor design system\",\"item\":\"https://styles.refero.design/style/4bbc63cf-c995-4c56-9873-e7f300f1c9e7\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4bbc63cf-c995-4c56-9873-e7f300f1c9e7#style-reference\",\"name\":\"Elementor design system reference\",\"headline\":\"Elementor design system | Refero Styles\",\"description\":\"Explore Elementor's light Dev Tools design system: Press Black #000000, Charcoal Ink #212121 colors, Roobert, Times typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/4bbc63cf-c995-4c56-9873-e7f300f1c9e7\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4bbc63cf-c995-4c56-9873-e7f300f1c9e7\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Elementor\",\"url\":\"https://elementor.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4bbc63cf-c995-4c56-9873-e7f300f1c9e7#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4339baeb-5f73-4e1b-8c17-5d583c8603b9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4339baeb-5f73-4e1b-8c17-5d583c8603b9.jpg\",\"caption\":\"Screenshot of Elementor\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4339baeb-5f73-4e1b-8c17-5d583c8603b9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Elementor design system\",\"Elementor website design\",\"Elementor colors\",\"Elementor typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Press Black\",\"Charcoal Ink\",\"Blank Canvas\",\"Fog Sheet\",\"Roobert\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Elementor design system\"},{\"@type\":\"Thing\",\"name\":\"Elementor website design\"},{\"@type\":\"Thing\",\"name\":\"Elementor colors\"},{\"@type\":\"Thing\",\"name\":\"Elementor typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-04-05T14:56:44.000Z\",\"dateModified\":\"2026-04-05T14:56:44.000Z\"}]}19:Tc51,<div style=\"--color-press-black:#000000;--color-charcoal-ink:#212121;--color-blank-canvas:#ffffff;--color-fog-sheet:#f6f6f6;--color-ash-border:#d1d1d1;--color-slate-text:#a6a6a6;--color-steel-gray:#69727d;--font-roobert:'Cabinet Grotesk','Plus Jakarta Sans','Satoshi',sans-serif;box-sizing:border-box;width:600px;background:var(--color-fog-sheet);padding:48px 40px;font-family:var(--font-roobert);display:flex;flex-direction:column;gap:32px;\"><style>*{box-sizing:border-box;}</style><p style=\"font-family:var(--font-roobert);font-size:14px;font-weight:500;color:var(--color-slate-text);letter-spacing:0.04em;text-transform:uppercase;margin:0 0 8px 0;\">Button Variants</p><div style=\"display:flex;flex-wrap:wrap;align-items:center;gap:16px;\"><button style=\"font-family:var(--font-roobert);font-size:16px;font-weight:600;color:var(--color-blank-canvas);background:var(--color-press-black);border:none;border-radius:8px;padding:14px 24px;cursor:pointer;letter-spacing:-0.01em;font-feature-settings:'ss14';\">Get started</button><button style=\"font-family:var(--font-roobert);font-size:16px;font-weight:500;color:var(--color-press-black);background:var(--color-blank-canvas);border:1.5px solid var(--color-press-black);border-radius:8px;padding:14px 24px;cursor:pointer;letter-spacing:-0.01em;font-feature-settings:'ss14';\">Learn more</button><button style=\"font-family:var(--font-roobert);font-size:16px;font-weight:500;color:var(--color-press-black);background:transparent;border:none;border-radius:0;padding:0;cursor:pointer;letter-spacing:-0.01em;font-feature-settings:'ss14';display:inline-flex;align-items:center;gap:6px;\">How to start building a website<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 8h10M9 4l4 4-4 4\" stroke=\"#000000\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button></div><div style=\"border-top:1px solid var(--color-ash-border);padding-top:24px;display:flex;flex-wrap:wrap;gap:16px;\"><button style=\"font-family:var(--font-roobert);font-size:16px;font-weight:600;color:var(--color-blank-canvas);background:var(--color-press-black);border:none;border-radius:8px;padding:10px 20px;cursor:pointer;letter-spacing:-0.01em;font-feature-settings:'ss14';font-size:14px;\">Start for free</button><button style=\"font-family:var(--font-roobert);font-size:14px;font-weight:500;color:var(--color-press-black);background:var(--color-blank-canvas);border:1.5px solid var(--color-press-black);border-radius:8px;padding:10px 20px;cursor:pointer;letter-spacing:-0.01em;font-feature-settings:'ss14';\">View pricing</button><button style=\"font-family:var(--font-roobert);font-size:14px;font-weight:500;color:var(--color-press-black);background:transparent;border:none;border-radius:0;padding:0;cursor:pointer;letter-spacing:-0.01em;font-feature-settings:'ss14';display:inline-flex;align-items:center;gap:5px;\">See all features<svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 8h10M9 4l4 4-4 4\" stroke=\"#000000\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button></div></div>1a:T8c6,<div style=\"--color-press-black:#000000;--color-charcoal-ink:#212121;--color-blank-canvas:#ffffff;--color-fog-sheet:#f6f6f6;--color-ash-border:#d1d1d1;--color-slate-text:#a6a6a6;--color-steel-gray:#69727d;--font-roobert:'Cabinet Grotesk','Plus Jakarta Sans','Satoshi',sans-serif;box-sizing:border-box;width:600px;background:var(--color-blank-canvas);padding:56px 40px;font-family:var(--font-roobert);\"><p style=\"font-family:var(--font-roobert);font-size:14px;font-weight:500;color:var(--color-slate-text);letter-spacing:0.04em;text-transform:uppercase;margin:0 0 40px 0;text-align:center;\">By the numbers</p><div style=\"display:flex;justify-content:space-between;align-items:flex-start;gap:16px;\"><div style=\"display:flex;flex-direction:column;align-items:center;flex:1;\"><span style=\"font-family:var(--font-roobert);font-size:56px;font-weight:900;color:var(--color-press-black);line-height:1.1;letter-spacing:-0.02em;font-feature-settings:'ss14';\">21M+</span><span style=\"font-family:var(--font-roobert);font-size:16px;font-weight:400;color:var(--color-steel-gray);margin-top:8px;text-align:center;line-height:1.5;\">Websites built</span></div><div style=\"width:1px;background:var(--color-ash-border);align-self:stretch;margin:8px 0;\"></div><div style=\"display:flex;flex-direction:column;align-items:center;flex:1;\"><span style=\"font-family:var(--font-roobert);font-size:56px;font-weight:900;color:var(--color-press-black);line-height:1.1;letter-spacing:-0.02em;font-feature-settings:'ss14';\">10M+</span><span style=\"font-family:var(--font-roobert);font-size:16px;font-weight:400;color:var(--color-steel-gray);margin-top:8px;text-align:center;line-height:1.5;\">Active users</span></div><div style=\"width:1px;background:var(--color-ash-border);align-self:stretch;margin:8px 0;\"></div><div style=\"display:flex;flex-direction:column;align-items:center;flex:1;\"><span style=\"font-family:var(--font-roobert);font-size:56px;font-weight:900;color:var(--color-press-black);line-height:1.1;letter-spacing:-0.02em;font-feature-settings:'ss14';\">159</span><span style=\"font-family:var(--font-roobert);font-size:16px;font-weight:400;color:var(--color-steel-gray);margin-top:8px;text-align:center;line-height:1.5;\">Countries worldwide</span></div></div></div>1b:T10b8,<div style=\"--color-press-black:#000000;--color-charcoal-ink:#212121;--color-blank-canvas:#ffffff;--color-fog-sheet:#f6f6f6;--color-ash-border:#d1d1d1;--color-slate-text:#a6a6a6;--color-steel-gray:#69727d;--font-roobert:'Cabinet Grotesk','Plus Jakarta Sans','Satoshi',sans-serif;box-sizing:border-box;width:600px;background:var(--color-press-black);padding:56px 32px;font-family:var(--font-roobert);\"><p style=\"font-family:var(--font-roobert);font-size:14px;font-weight:500;color:var(--color-slate-text);letter-spacing:0.04em;text-transform:uppercase;margin:0 0 12px 0;\">What you get</p><h2 style=\"font-family:var(--font-roobert);font-size:40px;font-weight:900;color:var(--color-blank-canvas);line-height:1.1;letter-spacing:-0.02em;font-feature-settings:'ss14';margin:0 0 40px 0;\">Build anything.<br>Fast.</h2><div style=\"display:flex;flex-direction:column;gap:16px;\"><div style=\"background:var(--color-blank-canvas);border-radius:16px;padding:40px 32px;\"><div style=\"width:40px;height:40px;background:var(--color-press-black);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"3\" y=\"3\" width=\"6\" height=\"6\" rx=\"1\" fill=\"white\"/><rect x=\"11\" y=\"3\" width=\"6\" height=\"6\" rx=\"1\" fill=\"white\"/><rect x=\"3\" y=\"11\" width=\"6\" height=\"6\" rx=\"1\" fill=\"white\"/><rect x=\"11\" y=\"11\" width=\"6\" height=\"6\" rx=\"1\" fill=\"white\"/></svg></div><h3 style=\"font-family:var(--font-roobert);font-size:24px;font-weight:600;color:var(--color-press-black);line-height:1.2;letter-spacing:-0.01em;font-feature-settings:'ss14';margin:0 0 12px 0;\">Drag & Drop Editor</h3><p style=\"font-family:var(--font-roobert);font-size:16px;font-weight:400;color:var(--color-charcoal-ink);line-height:1.5;margin:0 0 20px 0;\">Design visually without touching a line of code. Pixel-perfect precision with real-time preview on every device.</p><a href=\"#\" style=\"font-family:var(--font-roobert);font-size:16px;font-weight:500;color:var(--color-press-black);text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-feature-settings:'ss14';\">Explore the editor<svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 8h10M9 4l4 4-4 4\" stroke=\"#000000\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a></div><div style=\"display:flex;gap:16px;\"><div style=\"background:var(--color-blank-canvas);border-radius:16px;padding:32px 24px;flex:1;\"><div style=\"width:36px;height:36px;background:var(--color-press-black);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"10\" cy=\"10\" r=\"7\" stroke=\"white\" stroke-width=\"1.5\"/><path d=\"M10 6v4l3 2\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></svg></div><h3 style=\"font-family:var(--font-roobert);font-size:20px;font-weight:600;color:var(--color-press-black);line-height:1.2;letter-spacing:-0.01em;font-feature-settings:'ss14';margin:0 0 10px 0;\">100+ Widgets</h3><p style=\"font-family:var(--font-roobert);font-size:15px;font-weight:400;color:var(--color-charcoal-ink);line-height:1.5;margin:0;\">Every element you need, ready to drop in.</p></div><div style=\"background:var(--color-blank-canvas);border-radius:16px;padding:32px 24px;flex:1;\"><div style=\"width:36px;height:36px;background:var(--color-press-black);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M4 4h12v8a2 2 0 01-2 2H6a2 2 0 01-2-2V4z\" stroke=\"white\" stroke-width=\"1.5\"/><path d=\"M8 16h4\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></svg></div><h3 style=\"font-family:var(--font-roobert);font-size:20px;font-weight:600;color:var(--color-press-black);line-height:1.2;letter-spacing:-0.01em;font-feature-settings:'ss14';margin:0 0 10px 0;\">Responsive Design</h3><p style=\"font-family:var(--font-roobert);font-size:15px;font-weight:400;color:var(--color-charcoal-ink);line-height:1.5;margin:0;\">Looks perfect on every screen size.</p></div></div></div></div>1c:T5bc,**Quick Color Reference**\n- Text (primary): #000000 / #212121\n- Background (light): #f6f6f6\n- Background (dark): #000000\n- CTA button: #000000 fill, #ffffff text\n- Border / dividers: #d1d1d1\n- Supporting text: #69727d\n\n**Example Component Prompts**\n\n1. Hero Section: Full-bleed dark lifestyle photograph, no overlay scrim. Center-aligned headline in Roobert 900, 88px, #ffffff, letter-spacing -1.76px, line-height 1.10. Subtext Roobert 400 20px #f6f6f6, centered below. White-fill button (background #ffffff, text #000000, border 1px solid #000000, 8px radius, 24px horizontal padding) centered below subtext.\n\n2. Feature Card Grid (on dark section): Section background #000000. 3-column card grid, each card background #ffffff, border-radius 16px, padding 48px 32px, no shadow. Card heading Roobert 600 24px #000000, body Roobert 400 16px #212121.\n\n3. Stat Counter Row: Section background #f6f6f6. Horizontal flex row, 3 stats. Number in Roobert 900 64px #000000, letter-spacing -1.28px. Label below in Roobert 400 16px #69727d. No card wrapper, no border.\n\n4. Navigation Bar: Background #ffffff, border-bottom 1px #d1d1d1, height 64px. Logo left. Center links Roobert 500 16px #000000. Right side: 'Log in' ghost text button #000000 + 'Get started' filled button (#000000 bg, #ffffff text, 8px radius, 24px padding).\n\n5. Black Badge: Background #000000, text #f6f6f6, Roobert 600 14px, border-radius 8px, padding 4px 8px. Use for brand trust marks or product labels."
+}

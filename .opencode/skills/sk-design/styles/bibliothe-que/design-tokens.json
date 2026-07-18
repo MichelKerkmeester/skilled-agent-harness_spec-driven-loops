@@ -1,0 +1,185 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Page canvas, card surfaces, footer — the universal background. Cards do not lift from the canvas; they are demarcated only by hairline white borders"
+    },
+    "gallery-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Gallery White — Body text, headings, nav marks, hairline borders, link underlines, list dividers — the sole foreground. Used as 1px structural lines rather than fills"
+    }
+  },
+  "font": {
+    "unica77-ll": {
+      "$value": "Unica77 LL",
+      "$type": "fontFamily",
+      "$description": "The entire interface speaks in a single weight of one custom neo-grotesque. Weight 400 only — no bold, no light, no italic. The signature is the binary scale: 12–18px functional metadata against an isolated 80px display, with nothing in between. This extreme jump is the hierarchy."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Unica77 LL",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Unica77 LL",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Unica77 LL",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Unica77 LL",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Unica77 LL",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Unica77 LL",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "34": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Spacing 34px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "59": {
+      "$value": "59px",
+      "$type": "dimension",
+      "$description": "Spacing 59px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "162": {
+      "$value": "162px",
+      "$type": "dimension",
+      "$description": "Spacing 162px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Universal canvas — pages, cards, inputs, footer, nav all sit on this single level"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://bibliothequedesign.com",
+      "siteName": "Bibliothèque",
+      "extractedAt": "2026-06-03T20:02:54.340Z",
+      "variant": "extended"
+    }
+  }
+}

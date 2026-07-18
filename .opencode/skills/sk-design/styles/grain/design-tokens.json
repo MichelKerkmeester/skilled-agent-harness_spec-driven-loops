@@ -1,0 +1,459 @@
+{
+  "color": {
+    "forest-ink": {
+      "$value": "#009959",
+      "$type": "color",
+      "$description": "Forest Ink — Primary action — filled download buttons, outlined CTAs, and active nav indicators carry this deep botanical green that reads as decisive without aggression"
+    },
+    "vine": {
+      "$value": "#00b96c",
+      "$type": "color",
+      "$description": "Vine — Soft surface accent and gradient wash for feature sections — the mid-tone green that fades into the white canvas as ambient atmosphere"
+    },
+    "neon-sprout": {
+      "$value": "#00ff95",
+      "$type": "color",
+      "$description": "Neon Sprout — Decorative illustration fill and gradient endpoint — appears only inside brand graphics, never on UI controls"
+    },
+    "ice-blue": {
+      "$value": "#3de1ff",
+      "$type": "color",
+      "$description": "Ice Blue — Decorative illustration fill for brand mark and app icon glyphs — companion to Neon Sprout in the visual identity"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, heavy borders, and the dominant hairline divider color throughout the layout"
+    },
+    "graphite": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Graphite — Headline text and dark surface text — near-black with slight warmth for large display type"
+    },
+    "carbon": {
+      "$value": "#313232",
+      "$type": "color",
+      "$description": "Carbon — Secondary text, image overlays, and dark UI text on light backgrounds — the workhorse body tone"
+    },
+    "slate": {
+      "$value": "#545454",
+      "$type": "color",
+      "$description": "Slate — Body text helper copy and tertiary borders"
+    },
+    "fog": {
+      "$value": "#707070",
+      "$type": "color",
+      "$description": "Fog — Muted body text and subtle border tone for de-emphasized content"
+    },
+    "ash": {
+      "$value": "#949494",
+      "$type": "color",
+      "$description": "Ash — Icon strokes, placeholder text, and low-priority text color"
+    },
+    "mist": {
+      "$value": "#d6d6d6",
+      "$type": "color",
+      "$description": "Mist — Button borders and faint dividers — barely-there structural lines"
+    },
+    "cloud": {
+      "$value": "#e6e6e6",
+      "$type": "color",
+      "$description": "Cloud — Button background tint and elevated surface base"
+    },
+    "veil": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Veil — Hover states, tag backgrounds, and section background tint — the next surface above the canvas"
+    },
+    "paper": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Paper — Page canvas and card surfaces — the dominant background that everything floats on"
+    }
+  },
+  "font": {
+    "inter-variable": {
+      "$value": "Inter Variable",
+      "$type": "fontFamily",
+      "$description": "Universal UI font — handles all navigation, body, button, card, and heading text from 12px captions to 36px section headers. Weight 500 carries medium-emphasis labels, weight 600 anchors the heaviest UI elements. Slightly tightened tracking at -0.02em to -0.03em keeps the geometric letterforms feeling engineered rather than soft."
+    },
+    "poppins": {
+      "$value": "Poppins",
+      "$type": "fontFamily",
+      "$description": "Display heading font — used exclusively for major section titles like 'Everything your AI agents and team need from meetings'. The weight 600 Poppins at 38px creates a distinct typographic register shift from the Inter body, making section titles feel like editorial headings rather than UI labels. Normal letter-spacing lets the geometric forms breathe."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Inter Variablefont Slnt Wght",
+        "fontSize": "36px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "38px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.04) 0px 4px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.08) 0px 4px 16px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "md-2": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 0px 12px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation md-2"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas — the dominant background for the entire site"
+    },
+    "cloud": {
+      "$value": "#e6e6e6",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated button backgrounds and subtle surface tint"
+    },
+    "veil": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Surface level 3: Hover states, tag fills, and next-layer surface above the canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.grain.com",
+      "siteName": "Grain",
+      "extractedAt": "2026-06-03T18:32:42.477Z",
+      "variant": "extended"
+    }
+  }
+}

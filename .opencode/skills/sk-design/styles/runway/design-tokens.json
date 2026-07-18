@@ -1,0 +1,469 @@
+{
+  "color": {
+    "cream-canvas": {
+      "$value": "#f8f7f5",
+      "$type": "color",
+      "$description": "Cream Canvas — Page background, hero wash, elevated card shadows — the warm paper that grounds every screen"
+    },
+    "pure-paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure Paper — Card surfaces, product screenshot backgrounds, button fills for ghost variants — the clean layer on top of cream"
+    },
+    "linen-border": {
+      "$value": "#e3dfd5",
+      "$type": "color",
+      "$description": "Linen Border — Primary divider color, card borders, section separators — warm gray that separates without cutting"
+    },
+    "stone-mist": {
+      "$value": "#d5d2cd",
+      "$type": "color",
+      "$description": "Stone Mist — Subtle button borders, secondary dividers — a step lighter than Linen for nested separation"
+    },
+    "warm-ash": {
+      "$value": "#aca89f",
+      "$type": "color",
+      "$description": "Warm Ash — Shadow tint base, muted icon strokes — warm brown undertone keeps shadows on-brand"
+    },
+    "driftwood": {
+      "$value": "#8f897e",
+      "$type": "color",
+      "$description": "Driftwood — Muted body text, nav borders, secondary heading borders — readable but recedes"
+    },
+    "bark": {
+      "$value": "#61594a",
+      "$type": "color",
+      "$description": "Bark — Body text, secondary content — warm dark gray for paragraphs and descriptions"
+    },
+    "espresso": {
+      "$value": "#261b07",
+      "$type": "color",
+      "$description": "Espresso — Primary text, headings, icons, nav text, footer text, top banner — deep warm black that replaces true black throughout"
+    },
+    "amber-signal": {
+      "$value": "#f9a600",
+      "$type": "color",
+      "$description": "Amber Signal — Yellow action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "burnished-gold": {
+      "$value": "#e89b01",
+      "$type": "color",
+      "$description": "Burnished Gold — Yellow accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    },
+    "terracotta": {
+      "$value": "#f0624f",
+      "$type": "color",
+      "$description": "Terracotta — Decorative accent, chart highlight, warm icon stroke — the secondary warm hue for visual punctuation"
+    },
+    "wisteria": {
+      "$value": "#d5befa",
+      "$type": "color",
+      "$description": "Wisteria — Soft badge background — the only cool wash in the system, used sparingly for tag differentiation"
+    },
+    "honey-wash": {
+      "$value": "#f8da9d",
+      "$type": "color",
+      "$description": "Honey Wash — Warm badge background — amber-tinted tag fill for status and category labels"
+    }
+  },
+  "font": {
+    "interphases-pro-variable": {
+      "$value": "Interphases Pro Variable",
+      "$type": "fontFamily",
+      "$description": "All interface text — headings, body, nav, buttons, labels. The custom variable font's non-standard mid-weight (492) and semibold (584) create a distinctive rhythm that standard 400/500/600/700 scales can't replicate. Tight tracking (-0.022em at display) makes headlines feel set rather than typed."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "12px",
+        "fontWeight": 584,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "12px",
+        "fontWeight": 584,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "12px",
+        "fontWeight": 492,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "12px",
+        "fontWeight": 584,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "12px",
+        "fontWeight": 584,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "12px",
+        "fontWeight": 492,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "14px",
+        "fontWeight": 492,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "14px",
+        "fontWeight": 584,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "14px",
+        "fontWeight": 584,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "14px",
+        "fontWeight": 492,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "16px",
+        "fontWeight": 492,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "16px",
+        "fontWeight": 584,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "16px",
+        "fontWeight": 584,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "20px",
+        "fontWeight": 584,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "24px",
+        "fontWeight": 584,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "36px",
+        "fontWeight": 492,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "56px",
+        "fontWeight": 584,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "65px",
+        "fontWeight": 584,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 65px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Interphases Pro Variable",
+        "fontSize": "72px",
+        "fontWeight": 584,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "63": {
+      "$value": "63px",
+      "$type": "dimension",
+      "$description": "Spacing 63px"
+    },
+    "105": {
+      "$value": "105px",
+      "$type": "dimension",
+      "$description": "Spacing 105px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "color(srgb 0.14902 0.105882 0.027451 / 0.06) 0px 4px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "sm-2": {
+      "$value": "color(srgb 1 1 1 / 0.56) 0px 2px 4px 0px inset, color(srgb 0.14902 0.105882 0.027451 / 0.06) 0px 4px 8px 0px, color(srgb 0.14902 0.105882 0.027451 / 0.36) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-2"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#f8f7f5",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — the warm paper surface that grounds all content"
+    },
+    "pure-paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, product UI panels — the clean top layer"
+    },
+    "linen-surface": {
+      "$value": "#e3dfd5",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle elevated panels, active nav states, secondary surfaces"
+    },
+    "honey-wash": {
+      "$value": "#f8da9d",
+      "$type": "color",
+      "$description": "Surface level 3: Warm badge/tag backgrounds — highest non-interactive surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://runway.com",
+      "siteName": "Runway",
+      "extractedAt": "2026-06-03T19:03:23.827Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,467 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas, primary borders, image frame edges"
+    },
+    "carbon": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Carbon — Card surfaces, elevated panels, input fields — one step above the canvas"
+    },
+    "graphite": {
+      "$value": "#303030",
+      "$type": "color",
+      "$description": "Graphite — Deeper elevated surfaces, input interiors, subtle panel separation"
+    },
+    "slate": {
+      "$value": "#606060",
+      "$type": "color",
+      "$description": "Slate — Muted headings, secondary borders, subdued labels"
+    },
+    "ash": {
+      "$value": "#7b7b7b",
+      "$type": "color",
+      "$description": "Ash — Body secondary text, link borders, metadata text"
+    },
+    "fog": {
+      "$value": "#b4b4b4",
+      "$type": "color",
+      "$description": "Fog — Primary borders, hairlines, dividers, muted body text"
+    },
+    "mist": {
+      "$value": "#bfbfbf",
+      "$type": "color",
+      "$description": "Mist — Light borders, subtle surface edges"
+    },
+    "bone": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Bone — Primary text, high-contrast borders, heading strokes — the only near-white"
+    },
+    "pitch": {
+      "$value": "#050505",
+      "$type": "color",
+      "$description": "Pitch — Near-black for icon strokes, inverted button text, fine detail borders"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "geist": {
+      "$value": "Geist",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body font — used across all functional text, nav, buttons, inputs, labels, and standard headings. The weight range is tight (400 for body, 500 for emphasis, 600 for strong labels) creating a restrained typographic voice. Letter-spacing tightens at larger sizes (-0.0300em at 80px, -0.0170em at 20px) giving headings a compressed editorial feel. The cv03/cv04/cv09/cv11 alternates and blwf feature shape Geist's letterforms into a distinctly modern, slightly geometric sans."
+    },
+    "redaction-10": {
+      "$value": "Redaction 10",
+      "$type": "fontFamily",
+      "$description": "Display heading font — used for editorial section titles where the word itself needs presence. Redaction is a high-contrast serif/transitional with extreme thin strokes; at 42px with -0.0360em tracking it reads as a magazine masthead, not UI. The signature choice is using a serif on a pure-black generative-AI product — it humanizes the machine."
+    },
+    "redaction-50-italic": {
+      "$value": "Redaction 50 Italic",
+      "$type": "fontFamily",
+      "$description": "Accent display variant — used for one or two words within an otherwise upright Redaction headline (e.g. 'What should we make?' with 'make' in italic). The italic is a loaded gesture: it signals the creative act, the human agency of prompting. Tracking at -0.0240em keeps the italic from sprawling."
+    },
+    "satoshi": {
+      "$value": "Satoshi",
+      "$type": "fontFamily",
+      "$description": "Occasional bold subhead — used sparingly for card titles or section labels where Geist at 600 would feel too neutral and Redaction would feel too editorial. Satoshi at 700 fills the middle ground."
+    },
+    "geist-variable": {
+      "$value": "Geist Variable",
+      "$type": "fontFamily",
+      "$description": "Geist Variable — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "8px",
+        "fontWeight": 500,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Geist Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Geist Variable",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "22px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Redaction 10 Regular",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Redaction 50 Italic",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "60px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — pure black absorbs all attention toward the generated imagery"
+    },
+    "card": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated panels, prompt input, feature cards — one stop above the canvas"
+    },
+    "deep-surface": {
+      "$value": "#303030",
+      "$type": "color",
+      "$description": "Surface level 2: Input interiors, nested panels, subtle layering"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.florafauna.ai",
+      "siteName": "FLORA",
+      "extractedAt": "2026-06-03T18:41:34.218Z",
+      "variant": "extended"
+    }
+  }
+}

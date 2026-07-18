@@ -1,0 +1,369 @@
+{
+  "color": {
+    "cream-paper": {
+      "$value": "#fdfbf9",
+      "$type": "color",
+      "$description": "Cream Paper — Page canvas, card surfaces, button fills — the warm-white ground tone that makes dark borders and orange accents feel like ink and marker on paper"
+    },
+    "charcoal": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Charcoal — Dark borders and separators for elevated surfaces and inverted UI."
+    },
+    "cocoa-ink": {
+      "$value": "#2b1a07",
+      "$type": "color",
+      "$description": "Cocoa Ink — Headline color, decorative borders — a warmer dark that headlines and accent borders inherit from notebook-leather tones instead of pure black"
+    },
+    "true-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "True Black — Reserved for highest-emphasis headline moments and strict edge cases where charcoal feels too soft"
+    },
+    "dew-drop": {
+      "$value": "#f7efe9",
+      "$type": "color",
+      "$description": "Dew Drop — Secondary surface tint, the slightly warmer card layer that sits between the cream canvas and colored accents"
+    },
+    "marker-orange": {
+      "$value": "#ff6f1e",
+      "$type": "color",
+      "$description": "Marker Orange — Signature accent for handwritten captions, script annotations, the footer brand band, and the highlight underline beneath emphasis words — the uncapped-marker energy of the brand"
+    },
+    "burnt-sienna": {
+      "$value": "#ce500a",
+      "$type": "color",
+      "$description": "Burnt Sienna — Darker orange shade used for body-color and border accents when the marker orange needs more weight against cream"
+    },
+    "sky-sticker": {
+      "$value": "#3b82f6",
+      "$type": "color",
+      "$description": "Sky Sticker — Decorative illustration accent — appears in sticker characters, sparkle marks, and notebook cover patterns. Not a UI token; do not use for buttons or links"
+    },
+    "bubblegum-sticker": {
+      "$value": "#ff66cf",
+      "$type": "color",
+      "$description": "Bubblegum Sticker — Decorative illustration accent — used exclusively on sticker characters and pink notebook covers. Do not promote to functional UI"
+    },
+    "sprout-sticker": {
+      "$value": "#22c55e",
+      "$type": "color",
+      "$description": "Sprout Sticker — Green outline accent for tags, dividers, and focused UI edges"
+    },
+    "shadow-mist": {
+      "$value": "#bebcbb",
+      "$type": "color",
+      "$description": "Shadow Mist — Shadow base color — the desaturated gray under-toning the card and button drop shadows"
+    }
+  },
+  "font": {
+    "gelica": {
+      "$value": "gelica",
+      "$type": "fontFamily",
+      "$description": "All display, heading, and body text. The custom gelica is a rounded, slightly soft sans with heavy weight at 600 — at 104px the 'meet superrbook' headline becomes a tactile object, not a title. Lowercase is the default; the type speaks quietly through size and weight, not through capitalization. Substitutes: Recoleta, Fraunces (tight tracking), or DM Serif Display for the rounded display feel."
+    },
+    "geist": {
+      "$value": "Geist",
+      "$type": "fontFamily",
+      "$description": "Secondary body, navigation, and UI labels. Geist appears sparingly — for nav items, fine-print captions, and anywhere a clean grotesque cuts the warmth of gelica. Substitutes: Inter, Söhne, or General Sans."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "gelica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "gelica",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "gelica",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "gelica",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "gelica",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "gelica",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "gelica",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "gelica",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "gelica",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "gelica",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 40px"
+    },
+    "4xl-5": {
+      "$value": {
+        "fontFamily": "gelica",
+        "fontSize": "46px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-5 at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "gelica",
+        "fontSize": "104px",
+        "fontWeight": 600,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 104px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "116": {
+      "$value": "116px",
+      "$type": "dimension",
+      "$description": "Spacing 116px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "full": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "lg": {
+      "$value": "rgba(0, 0, 0, 0.06) 0px 2px 20px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    },
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.25) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#fdfbf9",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — warm cream paper"
+    },
+    "surface-tint": {
+      "$value": "#f7efe9",
+      "$type": "color",
+      "$description": "Surface level 1: Secondary card/panel layer, slightly warmer than canvas"
+    },
+    "brand-band": {
+      "$value": "#ff6f1",
+      "$type": "color",
+      "$description": "Surface level 2: Footer accent stripe — the only saturated surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.superr.ai",
+      "siteName": "Superr",
+      "extractedAt": "2026-06-03T17:48:09.582Z",
+      "variant": "extended"
+    }
+  }
+}

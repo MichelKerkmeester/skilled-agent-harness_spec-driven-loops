@@ -1,0 +1,1235 @@
+{
+  "source": "https://styles.refero.design/style/35f89ccd-614d-4f8f-9cce-bb94309df237",
+  "uuid": "35f89ccd-614d-4f8f-9cce-bb94309df237",
+  "name": "SoundCloud",
+  "northStar": "concert darkroom with neon blue signal — a near-black gallery where album art and one cool accent color do all the work, and the chrome around them stays invisible.",
+  "capturedAt": "2026-07-18T07:59:47.718Z",
+  "meta": {
+    "url": "https://soundcloud.com",
+    "siteName": "SoundCloud",
+    "extractedAt": "2026-06-03T18:49:18.048Z",
+    "durationMs": 27381,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 403,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #121212 as the default page background; reserve #303030 for inputs and elevated dark panels only",
+      "Set border-radius to 4px on all buttons, inputs, and badges — never use pill shapes (9999px) or large radii",
+      "Render buttons as flat fills with no drop shadow — use inset hairlines (rgba(18,18,18,0.1) 0 0 0 1px inset) for boundary definition",
+      "Use Söhne weight 100 at display scale (60px) for hero headlines to create editorial restraint; switch to 600–700 for body and UI",
+      "Let photography and album artwork supply all color in content sections; keep the surrounding chrome achromatic",
+      "Use #699fff exclusively for inline links and accent strokes — never as a button fill",
+      "Maintain a 6-column grid for content tiles with 16px row and column gaps on desktop"
+    ],
+    "donts": [
+      "Do not introduce drop shadows on cards or buttons — the system is flat by design",
+      "Do not use #699fff as a CTA background or button fill — the action color is white (#ffffff)",
+      "Do not use border-radius larger than 4px on interactive elements; the squared corner is part of the identity",
+      "Do not add gradients to buttons, cards, or background surfaces — the page is flat black",
+      "Do not set body text below 14px or use weight 100 for anything smaller than display scale",
+      "Do not use multiple saturated accent colors — the system is monochromatic with one blue signal",
+      "Do not add elevation tiers beyond the gray scale shifts (#121212 → #303030 → #666666) — there is no shadow stack"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#121212",
+        "name": "Obsidian",
+        "role": "Page background, hero overlay base, primary dark surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#303030",
+        "name": "Graphite",
+        "role": "Elevated dark surfaces — input fields, card backgrounds over the dark canvas, nested panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Mid Gray",
+        "role": "Mid-tone dividers, secondary surface tier above Graphite",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Fog",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Silver",
+        "role": "Hairline borders, subtle dividers between dark surface tiers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Bone",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White",
+        "role": "Primary text, primary filled buttons, headings, input text on dark — the dominant high-contrast tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#699fff",
+        "name": "Signal Blue",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with a max-width ~1200px content column. The hero is a split layout: editorial photograph fills the right two-thirds, headline + subhead + CTA stack left-aligned in the left third. A 6-column card grid for trending content follows, centered with even gutters. The mid-page mobile app section is a light inverted band (#f2f2f2) with device mockups on the left and text + app store badges on the right — a single visual break from the dark theme. Navigation is a transparent top bar that sits over the hero and may solidify to #121212 on scroll. Section gaps are generous (48–64px) creating breathing room between bands. Content is image-dense in the discovery areas and text-sparse, letting the artwork carry each row.",
+    "imagery": "Photography-driven: editorial artist portraits in the hero (full-bleed, tight crops, slightly desaturated, moody lighting), square 1:1 album/track artwork as the dominant tile imagery, and product screenshots of the mobile app inside device mockups for the promotional band. Imagery is treated as full-bleed content with no decorative framing or rounded overlays on the hero (only 4px radius on tiles). Color treatment is naturalistic — photography carries the warm and cool tones, while the surrounding chrome stays achromatic. No illustrations, no 3D renders, no abstract graphics. The visual hierarchy is: hero photo > album tiles > device mockups > text.",
+    "similar": [
+      {
+        "why": "Same dark-stage layout philosophy — near-black canvas, white text hierarchy, squared components, album-art-driven content grids, minimal elevation, one chromatic accent for interactive moments",
+        "business": "Spotify (web)"
+      },
+      {
+        "why": "Same image-first discovery grid with 1:1 artwork tiles on a dark surface, flat button style with no shadows, and an editorial photography hero",
+        "business": "Bandcamp"
+      },
+      {
+        "why": "Same dark canvas with full-bleed editorial hero photography, near-monochrome interface, squared 4px corners on inputs, and content-led grids where the media itself supplies the color",
+        "business": "Vimeo"
+      },
+      {
+        "why": "Same image-tile-first grid approach on a dark neutral background with compact metadata text and minimal chrome around the artwork",
+        "business": "Pinterest"
+      },
+      {
+        "why": "Same editorial hero with large display typography over a dark photographic background, content grid of 1:1 album tiles, and a flat button system without drop shadows",
+        "business": "Apple Music (web)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "4px",
+        "images": "4px",
+        "inputs": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#121212",
+        "name": "Obsidian Canvas",
+        "level": 0,
+        "purpose": "Page background, hero stage"
+      },
+      {
+        "hex": "#303030",
+        "name": "Graphite Surface",
+        "level": 1,
+        "purpose": "Input fields, nested dark panels, elevated cards on dark"
+      },
+      {
+        "hex": "#666666",
+        "name": "Mid Gray Tier",
+        "level": 2,
+        "purpose": "Hover or secondary dark surfaces, dividers"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Bone Light Band",
+        "level": 3,
+        "purpose": "Inverted promotional sections (mobile app, light-themed marketing blocks)"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White Highlight",
+        "level": 4,
+        "purpose": "Primary filled buttons, highest-emphasis text, app store badges on light"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "inset 0 0 0 1px rgba(18, 18, 18, 0.1)",
+        "element": "Card / surface boundary"
+      }
+    ],
+    "northStar": "concert darkroom with neon blue signal — a near-black gallery where album art and one cool accent color do all the work, and the chrome around them stays invisible.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.41
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 17,
+        "lineHeight": 1.41
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.27
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.29
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Promotional Banner",
+        "role": "Top-of-page announcement strip",
+        "description": "Full-width #121212 bar, 4px vertical padding, single-line message. Uses small orange dot icon (#ff5500 not in palette) as live indicator, inline text in white at 14px, inline link in #699fff. Close × icon on the right in #999999."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global site navigation",
+        "description": "Transparent over hero, switches to #121212 solid on scroll. Left: SoundCloud wordmark + waveform icon in white. Right cluster: 'Sign In' text link in #999999, 'Create account' filled white button (4px radius, #ffffff background, #121212 text, 600 weight, ~8px 16px padding), 'For Artists' text link in #999999."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Above-the-fold brand pitch",
+        "description": "Full-bleed editorial photograph (artist portrait) with subtle dark gradient overlay. Left-aligned content column: display headline at 60px Söhne 100, white. Body subhead at 17px white. 'Get Started' filled white button (4px radius, #ffffff bg, #121212 text, 600 weight). Pagination dots in lower right (#999999 inactive, #ffffff active)."
+      },
+      {
+        "name": "Search Bar with Upload",
+        "role": "Primary discovery + contribution input",
+        "description": "Horizontal row centered on page. Search input: #303030 background, 4px radius, no visible border, 16px left/right padding, placeholder text in #999999 at 14px, white magnifier icon right-aligned. Adjacent: 'or' divider in #999999. 'Upload your own' filled white button matching the Create account button style."
+      },
+      {
+        "name": "Track / Album Card",
+        "role": "Trending content tile",
+        "description": "Bare container — no card background, no border, no shadow. Square cover art thumbnail (1:1 aspect, 4px radius, no padding around image). Below image: track title at 14px white weight 600, artist name at 14px #999999 weight 400. Stacked vertically with 16px gap between image and text."
+      },
+      {
+        "name": "Trending Grid Section",
+        "role": "Browse trending content",
+        "description": "Section heading 'Hear what's trending for free in the SoundCloud community' at 22px white, centered. 6-column grid of Track Cards with 16px row gap and 16px column gap. Centered 'Explore trending playlists' white filled button below grid."
+      },
+      {
+        "name": "Primary Filled Button",
+        "role": "Main call-to-action",
+        "description": "#ffffff background, #121212 text, 4px radius, 700 weight, ~8px 16px padding, 14px font size. Used for 'Create account', 'Get Started', 'Upload your own', 'Explore trending playlists'. Square corners with confident weight give it a direct, unfussy feel."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Tertiary or navigation action",
+        "description": "No background, no border. Text in #999999 at 14px weight 400. Used for 'Sign In', 'For Artists', and similar low-emphasis navigation points. Hovers to white."
+      },
+      {
+        "name": "Input Field (Dark)",
+        "role": "Search and form inputs",
+        "description": "#303030 background, 4px radius, 1px inset hairline at rgba(18,18,18,0.1), 12–16px vertical padding, 16px horizontal padding. Placeholder and icon in #999999, typed text in #ffffff. No visible focus ring — focus state uses slightly lighter background."
+      },
+      {
+        "name": "App Store Badge",
+        "role": "Download CTA on light promotional band",
+        "description": "Standard Apple/Google download badges, black (#000000) with white text and icons, 4px radius. Appears on the light (#f2f2f2) mobile app promotion section."
+      },
+      {
+        "name": "Device Mockup Section",
+        "role": "Cross-platform availability showcase",
+        "description": "Light band (#f2f2f2 background) breaking from the dark page. Left side: phone and tablet mockups with orange device frames showing app UI screenshots. Right side: heading 'Never stop listening' at 36px Söhne weight 100, short body copy at 17px #121212, then App Store and Google Play badges side by side."
+      },
+      {
+        "name": "Pagination Dot Indicator",
+        "role": "Carousel position indicator",
+        "description": "Three small circles, 8px diameter. Active dot in #ffffff, inactive dots in #999999 with ~40% opacity. Inline horizontal with 8px gap."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Söhne is the only typeface across the system. Weight 100 is used at display scale (60px) to make the hero whisper rather than shout — most brands push 700 at this size; Söhne 100 inverts the convention and creates editorial weight through restraint. Weight 400 handles body and UI text, 600 covers subheadings and emphasis, 700 reserves itself for button labels and strong CTAs. The wide 100–700 range means the same family can do both ethereal display and utilitarian UI without switching typefaces.",
+        "sizes": "12, 14, 17, 18, 22, 28, 36, 60",
+        "family": "Söhne (custom)",
+        "weight": "100, 400, 600, 700",
+        "lineHeight": "1.00–1.71",
+        "substitute": "Inter (closest free alternative with similar 100–900 range and geometric proportions); fallback DM Sans or Manrope"
+      }
+    ],
+    "description": "SoundCloud is a dark-stage media environment: near-black canvas (#121212) sets the venue, album artwork and photography carry the color, and a single cool blue (#699fff) punctuates links and interactive moments. The interface stays flat and almost shadowless — definition comes from inset hairlines and gray scale shifts rather than elevation, which keeps the focus on the visuals (artists, track artwork, lifestyle photography). Typography is a custom geometric sans (Söhne) with an unusually wide weight range including a 100-weight for whisper-thin display moments, paired with comfortable 8–16px padding and squared 4px corners that feel utilitarian and unfussy. Components are rectangular and content-dense — buttons are flat fills, cards are bare containers for cover art, inputs are minimal — letting the music content be the visual hero.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/35f89ccd-614d-4f8f-9cce-bb94309df237#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"SoundCloud design system\",\"item\":\"https://styles.refero.design/style/35f89ccd-614d-4f8f-9cce-bb94309df237\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/35f89ccd-614d-4f8f-9cce-bb94309df237#style-reference\",\"name\":\"SoundCloud design system reference\",\"headline\":\"SoundCloud design system | Refero Styles\",\"description\":\"Explore SoundCloud's dark Media design system: Obsidian #121212, Graphite #303030 colors, Söhne (custom) typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/35f89ccd-614d-4f8f-9cce-bb94309df237\",\"mainEntityOfPage\":\"https://styles.refero.design/style/35f89ccd-614d-4f8f-9cce-bb94309df237\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"SoundCloud\",\"url\":\"https://soundcloud.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/35f89ccd-614d-4f8f-9cce-bb94309df237#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/24bb5310-8f96-4e70-9e6d-a333b9b23d76.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/24bb5310-8f96-4e70-9e6d-a333b9b23d76.jpg\",\"caption\":\"Screenshot of SoundCloud\"},\"image\":\"https://images.refero.design/styles/refero.design/image/24bb5310-8f96-4e70-9e6d-a333b9b23d76.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"SoundCloud design system\",\"SoundCloud website design\",\"SoundCloud colors\",\"SoundCloud typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Obsidian\",\"Graphite\",\"Mid Gray\",\"Fog\",\"Söhne (custom)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"SoundCloud design system\"},{\"@type\":\"Thing\",\"name\":\"SoundCloud website design\"},{\"@type\":\"Thing\",\"name\":\"SoundCloud colors\"},{\"@type\":\"Thing\",\"name\":\"SoundCloud typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-03-20T09:06:07.000Z\",\"dateModified\":\"2026-03-20T09:06:07.000Z\"}]}19:T7f1,**Quick Color Reference**\n- text: #ffffff (primary), #999999 (muted), #121212 (on light)\n- background: #121212 (page), #303030 (elevated dark), #f2f2f2 (light band)\n- border: rgba(18,18,18,0.1) inset 1px (dark surfaces), #cccccc (light surfaces)\n- accent: #699fff (links only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a navigation bar: transparent over hero. Left — SoundCloud wordmark in #ffffff at 17px Söhne weight 600 with a small waveform icon. Right cluster — 'Sign In' as ghost text link in #999999 14px, then a white filled button labeled 'Create account' (#ffffff background, #121212 text, 4px radius, 8px 16px padding, weight 700), then 'For Artists' ghost link in #999999.\n\n2. Create a hero section: full-bleed editorial photograph background with a subtle dark gradient overlay. Left-aligned content — display headline at 60px Söhne weight 100 in #ffffff, two lines. Below at 17px Söhne weight 400, a short white subhead. Below that, a white filled 'Get Started' button (#ffffff bg, #121212 text, 4px radius, 8px 24px padding, weight 700).\n\n3. Create a track card grid: 6 columns, 16px row and column gap. Each card has no background or border — just a 1:1 cover art image with 4px radius, then 16px below it the track title in 14px Söhne weight 600 #ffffff, and the artist name in 14px weight 400 #999999.\n\n4. Create a search input: #303030 background, 4px radius, 1px inset border at rgba(18,18,18,0.1), 16px horizontal padding and 12px vertical. Placeholder text 'Search for artists, bands, tracks, podcasts' in #999999 at 14px, white magnifier icon at the right end.\n\n5. Create a light promotional band: #f2f2f2 full-width background section, 64px vertical padding. Left side shows two device mockups (phone in front, tablet behind) with orange device frames and app screenshots. Right side — heading 'Never stop listening' at 36px Söhne weight 100 in #121212, body copy at 17px in #121212, then black App Store and Google Play badges (4px radius) side by side."
+      }
+    ],
+    "elevationPhilosophy": "SoundCloud avoids drop shadows almost entirely. Depth is communicated through inset hairlines and gray-tier shifts in the neutral scale rather than z-axis elevation. This flat, border-driven approach keeps the dark stage quiet and lets photography and album art supply all visual weight."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "input",
+            "button",
+            "body",
+            "icon",
+            "heading",
+            "link",
+            "badge",
+            "list"
+          ],
+          "frequency": 1129,
+          "confidence": 1,
+          "prominence": 38935041.887631625,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 113,
+          "confidence": 1,
+          "prominence": 3812752.6279039257,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1442409.075402405,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "icon",
+            "body",
+            "list"
+          ],
+          "frequency": 414,
+          "confidence": 1,
+          "prominence": 1013718.5348578686,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 558000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#303030",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3091856337459671
+          },
+          "contexts": [
+            "input",
+            "other",
+            "button"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 284502.62405723095,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#699fff",
+          "oklch": {
+            "c": 0.15241388616515353,
+            "h": 261.1456164547145,
+            "l": 0.7079615250369633
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 190,
+          "confidence": 1,
+          "prominence": 245508.69402835827,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 21336.735414801537,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 19252.539496259884,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff5500",
+          "oklch": {
+            "c": 0.21747014819423893,
+            "h": 38.80221346732927,
+            "l": 0.6758925007151809
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 196,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.04145864739758065,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#121212",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.73,
+          "background": "#f2f2f2",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.2,
+          "background": "#303030",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.79,
+          "background": "#f2f2f2",
+          "foreground": "#303030"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.67,
+          "background": "#cccccc",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.22,
+          "background": "#cccccc",
+          "foreground": "#303030"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8,
+          "background": "#699fff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.14,
+          "background": "#121212",
+          "foreground": "#699fff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.58,
+          "background": "#121212",
+          "foreground": "#999999"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#666666",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.03,
+          "background": "#303030",
+          "foreground": "#699fff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.63,
+          "background": "#303030",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.26,
+          "background": "#666666",
+          "foreground": "#121212"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.85,
+          "background": "#ffffff",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.62,
+          "background": "#ffffff",
+          "foreground": "#699fff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.54,
+          "background": "#f2f2f2",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.34,
+          "background": "#f2f2f2",
+          "foreground": "#699fff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "input",
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 26
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(18, 18, 18, 0.1) 0px 0px 0px 1px inset",
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 39,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 55,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginBottom",
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 31,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 29,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 23,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "marginTop",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 70,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 93,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 180,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(135deg, rgb(142, 132, 133), rgb(230, 132, 110))",
+        "colors": [
+          "rgb(142, 132, 133)",
+          "rgb(230, 132, 110)"
+        ],
+        "frequency": 4
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(135deg, rgb(112, 146, 156), rgb(142, 132, 133))",
+        "colors": [
+          "rgb(112, 146, 156)",
+          "rgb(142, 132, 133)"
+        ],
+        "frequency": 3
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(135deg, rgb(230, 132, 110), rgb(142, 132, 133))",
+        "colors": [
+          "rgb(230, 132, 110)",
+          "rgb(142, 132, 133)"
+        ],
+        "frequency": 3
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(135deg, rgb(132, 97, 112), rgb(142, 132, 133))",
+        "colors": [
+          "rgb(132, 97, 112)",
+          "rgb(142, 132, 133)"
+        ],
+        "frequency": 2
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Söhne",
+          "source": "custom",
+          "weights": [
+            100,
+            400,
+            600,
+            700
+          ],
+          "frequency": 352,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "a",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 22,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "input",
+            "badge",
+            "list",
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 216,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Söhne",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "icon",
+            "body",
+            "link",
+            "list"
+          ],
+          "frequency": 62,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Söhne",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Söhne",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Söhne",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Söhne",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "button",
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.41,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Söhne",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Söhne",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Söhne",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Söhne",
+          "weight": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Söhne",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7f8cbd84-0065-45c4-b2e6-2d2c4b9c28ef.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/24bb5310-8f96-4e70-9e6d-a333b9b23d76.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/35f89ccd-614d-4f8f-9cce-bb94309df237#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"SoundCloud design system\",\"item\":\"https://styles.refero.design/style/35f89ccd-614d-4f8f-9cce-bb94309df237\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/35f89ccd-614d-4f8f-9cce-bb94309df237#style-reference\",\"name\":\"SoundCloud design system reference\",\"headline\":\"SoundCloud design system | Refero Styles\",\"description\":\"Explore SoundCloud's dark Media design system: Obsidian #121212, Graphite #303030 colors, Söhne (custom) typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/35f89ccd-614d-4f8f-9cce-bb94309df237\",\"mainEntityOfPage\":\"https://styles.refero.design/style/35f89ccd-614d-4f8f-9cce-bb94309df237\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"SoundCloud\",\"url\":\"https://soundcloud.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/35f89ccd-614d-4f8f-9cce-bb94309df237#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/24bb5310-8f96-4e70-9e6d-a333b9b23d76.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/24bb5310-8f96-4e70-9e6d-a333b9b23d76.jpg\",\"caption\":\"Screenshot of SoundCloud\"},\"image\":\"https://images.refero.design/styles/refero.design/image/24bb5310-8f96-4e70-9e6d-a333b9b23d76.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"SoundCloud design system\",\"SoundCloud website design\",\"SoundCloud colors\",\"SoundCloud typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Obsidian\",\"Graphite\",\"Mid Gray\",\"Fog\",\"Söhne (custom)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"SoundCloud design system\"},{\"@type\":\"Thing\",\"name\":\"SoundCloud website design\"},{\"@type\":\"Thing\",\"name\":\"SoundCloud colors\"},{\"@type\":\"Thing\",\"name\":\"SoundCloud typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-03-20T09:06:07.000Z\",\"dateModified\":\"2026-03-20T09:06:07.000Z\"}]}19:T7f1,**Quick Color Reference**\n- text: #ffffff (primary), #999999 (muted), #121212 (on light)\n- background: #121212 (page), #303030 (elevated dark), #f2f2f2 (light band)\n- border: rgba(18,18,18,0.1) inset 1px (dark surfaces), #cccccc (light surfaces)\n- accent: #699fff (links only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a navigation bar: transparent over hero. Left — SoundCloud wordmark in #ffffff at 17px Söhne weight 600 with a small waveform icon. Right cluster — 'Sign In' as ghost text link in #999999 14px, then a white filled button labeled 'Create account' (#ffffff background, #121212 text, 4px radius, 8px 16px padding, weight 700), then 'For Artists' ghost link in #999999.\n\n2. Create a hero section: full-bleed editorial photograph background with a subtle dark gradient overlay. Left-aligned content — display headline at 60px Söhne weight 100 in #ffffff, two lines. Below at 17px Söhne weight 400, a short white subhead. Below that, a white filled 'Get Started' button (#ffffff bg, #121212 text, 4px radius, 8px 24px padding, weight 700).\n\n3. Create a track card grid: 6 columns, 16px row and column gap. Each card has no background or border — just a 1:1 cover art image with 4px radius, then 16px below it the track title in 14px Söhne weight 600 #ffffff, and the artist name in 14px weight 400 #999999.\n\n4. Create a search input: #303030 background, 4px radius, 1px inset border at rgba(18,18,18,0.1), 16px horizontal padding and 12px vertical. Placeholder text 'Search for artists, bands, tracks, podcasts' in #999999 at 14px, white magnifier icon at the right end.\n\n5. Create a light promotional band: #f2f2f2 full-width background section, 64px vertical padding. Left side shows two device mockups (phone in front, tablet behind) with orange device frames and app screenshots. Right side — heading 'Never stop listening' at 36px Söhne weight 100 in #121212, body copy at 17px in #121212, then black App Store and Google Play badges (4px radius) side by side."
+}

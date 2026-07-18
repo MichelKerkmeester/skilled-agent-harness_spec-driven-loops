@@ -1,0 +1,170 @@
+{
+  "color": {
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Page canvas, section backgrounds, project card fills — the void everything else floats on"
+    },
+    "soft-black": {
+      "$value": "#101010",
+      "$type": "color",
+      "$description": "Soft Black — Subtle surface elevation over the pure black canvas, card backgrounds in tight stacks"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Primary text, headings, hairline borders, nav text — the only light in the room"
+    },
+    "fog-gray": {
+      "$value": "#a0a0a0",
+      "$type": "color",
+      "$description": "Fog Gray — Secondary text, metadata, captions, image borders, inactive labels"
+    },
+    "graphite": {
+      "$value": "#484848",
+      "$type": "color",
+      "$description": "Graphite — Footer borders, section dividers, rare structural lines that recede into the dark"
+    },
+    "scarlet-signal": {
+      "$value": "#e4002b",
+      "$type": "color",
+      "$description": "Scarlet Signal — Supporting palette color for small decorative accents when the core palette needs contrast."
+    },
+    "rose-brand-spectrum": {
+      "$value": "#e85a5a",
+      "$type": "color",
+      "$description": "Rose Brand Spectrum — Brand color exploration panel — a pink-to-black swatch that walks from #f5a5a5 → #e85a5a → #d42020 → #7a0a0a → #2a0606 → #000000 as a literal brand-color system reveal"
+    }
+  },
+  "font": {
+    "nextbook": {
+      "$value": "NextBook",
+      "$type": "fontFamily",
+      "$description": "The studio's own custom display and text face. Weight 300 whispers in section headings and 80px display; weight 400 carries body, labels, and nav. Used across every context — hero, body, heading, link, list, icon, footer."
+    },
+    "circular-std": {
+      "$value": "Circular Std",
+      "$type": "fontFamily",
+      "$description": "Referenced inside project case studies (the 'AaBbCc 1234' specimen tile) as a client font example — not part of Studio Oker's own UI system"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "NextBookRegular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "NextBookRegular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "NextBookLight",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "NextBookRegular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "NextBookRegular",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "NextBookLight",
+        "fontSize": "80px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page background across all sections"
+    },
+    "soft-black": {
+      "$value": "#101010",
+      "$type": "color",
+      "$description": "Surface level 1: Rare slightly-elevated card or panel that breaks the void by 1-2% lightness"
+    },
+    "graphite-line": {
+      "$value": "#484848",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline divider between footer blocks and major section breaks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://oker.com",
+      "siteName": "Studio Oker",
+      "extractedAt": "2026-06-03T21:03:14.903Z",
+      "variant": "extended"
+    }
+  }
+}

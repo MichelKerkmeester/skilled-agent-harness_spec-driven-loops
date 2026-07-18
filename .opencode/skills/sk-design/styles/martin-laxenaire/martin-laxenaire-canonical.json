@@ -1,0 +1,1045 @@
+{
+  "source": "https://styles.refero.design/style/0e8db8d0-4d8f-48ac-a8e7-aaea9601e3ce",
+  "uuid": "0e8db8d0-4d8f-48ac-a8e7-aaea9601e3ce",
+  "name": "Martin Laxenaire",
+  "northStar": "kinetic poster crashing through liquid color waves",
+  "capturedAt": "2026-07-18T07:30:20.599Z",
+  "meta": {
+    "url": "https://www.martin-laxenaire.fr",
+    "siteName": "Martin Laxenaire",
+    "extractedAt": "2026-06-03T20:39:31.114Z",
+    "durationMs": 43853,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 820,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use MonumentExtended UltraBold at 94px or larger for any headline meant to be a focal point, with line-height 0.75–0.85",
+      "Set all borders to 1px solid #121212 — no colored borders, no thicker hairlines",
+      "Use 20.93px border-radius for all interactive controls (buttons, tags, indicators) — never square corners on controls",
+      "Keep the page background #ffffff everywhere except the hero zone, which uses #f9d9f7 as the wave-art canvas",
+      "Use Swiss at 16–19px for all body, button labels, and utility text with line-height 1.20",
+      "Position wave-art shapes to intersect headline text, using white text outlines to maintain legibility through the color",
+      "Maintain a 42px minimum vertical gap between content sections to preserve gallery-wall breathing room"
+    ],
+    "donts": [
+      "Never use color on functional UI elements — buttons, links, tags, and text are always #121212 on #ffffff",
+      "Never use drop shadows, box-shadows, or any elevation — the design is poster-flat",
+      "Never use border-radius other than 20.93px (for controls) or 0px (for surfaces) — no mixed rounding",
+      "Never set body text larger than 31px or with line-height above 1.20 — the utility voice must stay quiet",
+      "Never use decorative icons or illustrations outside the hero wave composition — the rest of the page is type-only",
+      "Never use #f9d9f7 as a card, section, or component background — it exists solely as the wave-art field",
+      "Never add more than one wave-art composition per page — the collision of monochrome and color is a single-moment effect"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#121212",
+        "name": "Ink Black",
+        "role": "Primary text, all borders, icon strokes, the dominant UI color — every word and divider is this near-black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, surface background, button fills for outlined ghost controls",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f9d9f7",
+        "name": "Blush Wash",
+        "role": "Hero art backdrop, accent surface — the soft pink that hosts the fluid color-shape composition",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed single-column hero with the wave composition centered on the page, massive display text breaking through it. Below the fold, content likely shifts to a max-width 1200px centered container with generous 42px section gaps. The overall page rhythm is: one explosive focal point, then quiet monochrome sections that let the hero breathe. Navigation is a minimal two-element top bar (brand left, scroll percentage right). The layout philosophy is gallery-wall: the hero piece commands the room, everything else recedes.",
+    "imagery": "Imagery is dominated by the abstract wave-shape composition: fluid, organic blobs in vivid purples, violets, teals, pinks, and blues that radiate outward like a paint pour. These are not illustrations of objects — they are pure color-form compositions with a hand-drawn, liquid quality. Below the hero, imagery would shift to project screenshots, process videos, and case-study visuals rendered without frames or rounded corners (matching the poster-flat aesthetic). No lifestyle photography, no stock imagery, no decorative icons — every visual element is either the wave art, a project deliverable, or the typography itself.",
+    "similar": [
+      {
+        "why": "Same maximalist display typography (oversized, condensed sans-serifs) crashing through minimal monochrome layouts — a French web agency tradition of treating each page as a printed poster",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Personal portfolio for a creative technologist using a single-color-accent-against-white approach with oversized display type and organic abstract shape compositions as hero art",
+        "business": "Benedikt Groß"
+      },
+      {
+        "why": "Bold, poster-scale typography with zero surface elevation, relying on the collision of massive type and abstract geometric/organic shapes rather than traditional UI chrome",
+        "business": "Active Theory"
+      },
+      {
+        "why": "Editorial-print sensibility applied to web — binary typographic scale (whisper or roar), monochrome interface with a single hero moment of visual complexity, gallery-wall spatial rhythm",
+        "business": "Pentagram"
+      },
+      {
+        "why": "French creative portfolio aesthetic with oversized MonumentExtended-style display faces at extreme sizes, pill-shaped controls, and an anti-app anti-dashboard spatial approach",
+        "business": "Hungryman"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "20.93px",
+        "buttons": "20.93px",
+        "controls": "20.93px",
+        "surfaces": "0px"
+      },
+      "elementGap": "21px",
+      "sectionGap": "42px",
+      "cardPadding": "21px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 1,
+        "purpose": "Default page background, dominates all non-hero sections"
+      },
+      {
+        "hex": "#f9d9f7",
+        "name": "Blush Wash",
+        "level": 2,
+        "purpose": "Hero zone only — the field behind the wave-shaped color shapes"
+      }
+    ],
+    "elevation": [],
+    "northStar": "kinetic poster crashing through liquid color waves",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 19,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 0.85
+      },
+      {
+        "role": "heading",
+        "size": 31,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 63,
+        "lineHeight": 0.85
+      },
+      {
+        "role": "display",
+        "size": 94,
+        "lineHeight": 0.85
+      },
+      {
+        "role": "display-xl",
+        "size": 167,
+        "lineHeight": 0.75
+      },
+      {
+        "role": "poster",
+        "size": 419,
+        "lineHeight": 0.75
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button (Outlined)",
+        "role": "Primary interactive control",
+        "description": "Ghost/pill-shaped button: 1px Ink Black (#121212) border, transparent or Paper White fill, Swiss 16–21px text, 20.93px border-radius (fully rounded ends), 8px vertical × 21px horizontal padding. The pill geometry is the only border-radius used — no squares, no cards."
+      },
+      {
+        "name": "Pill Button (Filled)",
+        "role": "Secondary or selected control",
+        "description": "Solid Ink Black (#121212) fill with Paper White (#ffffff) text. Same 20.93px radius, 8px × 21px padding. Used sparingly to indicate active/selected states or the primary action among siblings."
+      },
+      {
+        "name": "Display Headline (Poster Scale)",
+        "role": "Hero text moments",
+        "description": "MonumentExtended UltraBold at 94–419px, line-height 0.75–0.85 (lines physically touch/overlap), Ink Black (#121212) fill with white stroke/outline effect where the text intersects color shapes. The white outline punches through the abstract shapes to maintain legibility. Never set in more than 4 lines."
+      },
+      {
+        "name": "Abstract Wave Composition",
+        "role": "Hero art and section dividers",
+        "description": "Organic, flowing blob/wave shapes in vivid purples, violets, teals, blues, and pinks that radiate from a central point and fill the hero zone on the Blush Wash (#f9d9f7) background. Shapes have soft, hand-drawn curves — no geometric edges. The headline text overlays and intersects these shapes."
+      },
+      {
+        "name": "Minimal Top Bar",
+        "role": "Site navigation",
+        "description": "Transparent background, Paper White canvas. Left: brand name 'MARTIN LAXENAIRE' in MonumentExtended UltraBold at 18–21px, uppercase, Ink Black. Right: a pill-shaped percentage indicator (0%) showing scroll progress. No menu items, no links — the nav is intentionally stripped to two elements."
+      },
+      {
+        "name": "Scroll Cue",
+        "role": "Invitation to interact",
+        "description": "'SLIDE TO BEGIN' label in MonumentExtended Regular at 16px uppercase, letter-spacing wide, positioned below the hero composition. A horizontal pill-shaped track (pill radius 20.93px) sits beneath as the interaction surface. Minimal, deliberate, no arrows or icons."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Content section titles",
+        "description": "MonumentExtended Regular at 26–31px, line-height 0.85, Ink Black. Used to introduce project sections, about blocks, and case studies. Paired with generous 31–38px column gaps in multi-column layouts."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Paragraphs and descriptions",
+        "description": "Swiss at 17–19px, line-height 1.20, Ink Black. Dense but not crowded. Paragraphs are short (2–3 lines max). The tight 1.20 line-height keeps the body voice compact and utilitarian, contrasting the display voice's expansiveness."
+      },
+      {
+        "name": "Link List Item",
+        "role": "Navigation within content",
+        "description": "MonumentExtended Regular at 21px, line-height 0.85, Ink Black with underline or 2px vertical padding. Links stack vertically with 21px row gaps. Tight line-height creates visual stacking that reads as a printed list, not a web menu."
+      },
+      {
+        "name": "Footer Mark",
+        "role": "Closing signature",
+        "description": "MonumentExtended UltraBold or Regular at 16–21px, Ink Black, minimal content. The footer carries the same typographic confidence as the hero but at utility scale — a bookend, not a statement."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading voice — used at extreme sizes (94–419px) with crushed line-height (0.75–0.85) to create block-of-ink typographic moments. This is the site's signature: oversized, nearly touching, black slab letterforms that read as physical print objects, not web text. At smaller sizes (18–21px) it serves nav and icon labels.",
+        "sizes": "18px, 21px, 63px, 94px, 105px, 167px, 419px",
+        "family": "MonumentExtended UltraBold",
+        "weight": "400, 700",
+        "lineHeight": "0.75–1.20",
+        "substitute": "Druk Wide Bold, Antonio Bold, Knockout 90 Ultblack"
+      },
+      {
+        "role": "Secondary display weight — used for subheadings and link labels where UltraBold would be excessive. The Regular cut retains the same wide proportions but with thinner strokes, creating a secondary rhythm below the UltraBold roars.",
+        "sizes": "16px, 21px, 26px",
+        "family": "MonumentExtended Regular",
+        "weight": "400",
+        "lineHeight": "0.85, 1.20",
+        "substitute": "Druk Wide Medium, Antonio Regular, Knockout 50 Wide"
+      },
+      {
+        "role": "Body and utility voice — the invisible workhorse for paragraphs, button labels, footer text, list items. At 31px it steps into subheading territory. Its neutral, humanist sans character prevents the MonumentExtended from exhausting the reader.",
+        "sizes": "16px, 17px, 19px, 21px, 31px",
+        "family": "Swiss",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Inter, Söhne, Neue Haas Grotesk"
+      }
+    ],
+    "description": "Martin Laxenaire's site operates as a kinetic poster on a white gallery wall: a near-monochrome interface where one massive black display typeface (MonumentExtended UltraBold) at sizes up to 419px does all the shouting, surrounded by generous negative space. The rest of the typography collapses into a tiny, tight utility voice (Swiss 16–21px) for links, buttons, and body — the hierarchy is binary, either whisper or roar. A single soft pink (#f9d9f7) provides the canvas for an abstract, organic wave-field of fluid color shapes that the headline text crashes through, creating the site's signature collision of brutalist black letterpress against liquid color. Components are minimal — pill-shaped controls, hairline borders, and almost no surface differentiation. The system feels like a print designer's portfolio disguised as a web dev portfolio: editorial in restraint, explosive in the focal pieces.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0e8db8d0-4d8f-48ac-a8e7-aaea9601e3ce#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Martin Laxenaire design system\",\"item\":\"https://styles.refero.design/style/0e8db8d0-4d8f-48ac-a8e7-aaea9601e3ce\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0e8db8d0-4d8f-48ac-a8e7-aaea9601e3ce#style-reference\",\"name\":\"Martin Laxenaire design system reference\",\"headline\":\"Martin Laxenaire design system | Refero Styles\",\"description\":\"Explore Martin Laxenaire's light Agency design system: Ink Black #121212, Paper White #ffffff colors, MonumentExtended UltraBold, MonumentExtended Regular...\",\"url\":\"https://styles.refero.design/style/0e8db8d0-4d8f-48ac-a8e7-aaea9601e3ce\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0e8db8d0-4d8f-48ac-a8e7-aaea9601e3ce\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Martin Laxenaire\",\"url\":\"https://www.martin-laxenaire.fr\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0e8db8d0-4d8f-48ac-a8e7-aaea9601e3ce#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c18e64a0-5a1b-4d77-bc50-35f6fca90426.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c18e64a0-5a1b-4d77-bc50-35f6fca90426.jpg\",\"caption\":\"Screenshot of Martin Laxenaire\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c18e64a0-5a1b-4d77-bc50-35f6fca90426.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Martin Laxenaire design system\",\"Martin Laxenaire website design\",\"Martin Laxenaire colors\",\"Martin Laxenaire typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Paper White\",\"Blush Wash\",\"MonumentExtended UltraBold\",\"MonumentExtended Regular\",\"Swiss\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Martin Laxenaire design system\"},{\"@type\":\"Thing\",\"name\":\"Martin Laxenaire website design\"},{\"@type\":\"Thing\",\"name\":\"Martin Laxenaire colors\"},{\"@type\":\"Thing\",\"name\":\"Martin Laxenaire typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:00:11.860Z\",\"dateModified\":\"2026-04-30T03:00:11.860Z\"}]}19:T737,**Quick Color Reference**\n- text: #121212 (Ink Black)\n- background: #ffffff (Paper White)\n- border: #121212 (Ink Black, 1px hairlines)\n- accent: #f9d9f7 (Blush Wash — hero art backdrop only)\n- wave art palette: #7c4dff (vivid violet), #b14dff (magenta-purple), #4d6fff (electric blue), #1a8a8a (deep teal), #ff6db5 (hot pink)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Build a display headline section: Paper White (#ffffff) page background. Headline set in MonumentExtended UltraBold at 167px, line-height 0.75, color #121212, with a 2px white stroke outline where text meets the wave art layer. Behind the text, an organic blob composition using #7c4dff, #b14dff, #4d6fff, #1a8a8a, #ff6db5 on a #f9d9f7 backdrop.\n\n2. Build a pill navigation button: 1px solid #121212 border, transparent background, Swiss 16px weight 400 text in #121212, border-radius 20.93px, padding 8px 21px. On hover, invert to filled #121212 with #ffffff text.\n\n3. Build a section heading and body block: heading in MonumentExtended Regular at 31px line-height 0.85 color #121212 with 31px margin-bottom. Body paragraph in Swiss at 19px line-height 1.20 color #121212, max-width 680px, margin-bottom 21px.\n\n4. Build a minimal top bar: transparent background, full-width, 21px top/bottom padding. Left: 'BRAND NAME' in MonumentExtended UltraBold 18px uppercase letter-spacing 0.1em color #121212. Right: a pill indicator showing '0%' in Swiss 16px inside a 1px #121212 border, border-radius 20.93px, padding 4px 8px.\n\n5. Build a wave-art hero background: full-viewport #f9d9f7 canvas with 5–7 organic, overlapping blob shapes positioned radially from center. Shape fills drawn from the wave palette (#7c4dff, #b14dff, #4d6fff, #1a8a8a, #ff6db5). Each blob has soft, hand-drawn curves — no geometric edges, no gradients, flat fills only."
+      },
+      {
+        "title": "Typographic Philosophy",
+        "content": "The system operates on a binary typographic scale: MonumentExtended UltraBold at near-illegal sizes (up to 419px) for focal moments, and Swiss at 16–21px for everything else. There is no middle ground. Heading line-heights of 0.75–0.85 mean display lines physically touch or overlap, creating the sensation of stacked slabs of ink rather than flowing text. This is print-design language imposed on a web canvas — the headline reads as a poster, not a paragraph."
+      },
+      {
+        "title": "Color Philosophy",
+        "content": "The interface is monochrome by design (black on white). Color exists only as the wave art — a single compositionally complex moment in the hero. The system is a black-and-white editorial layout interrupted by a vivid abstract painting. Never use color for functional UI roles (no colored buttons, no colored tags, no colored text accents). The pink (#f9d9f7) is exclusively the canvas for the wave art, never a surface tint for cards or sections."
+      }
+    ],
+    "elevationPhilosophy": "The system has zero elevation. There are no drop shadows, no box-shadows, no layered surfaces. Depth is created entirely through the interplay of black text against flat color shapes on a white page. Components sit on the same plane — the design is poster-flat, not app-dimensional."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "body",
+            "heading",
+            "list",
+            "hero",
+            "link",
+            "icon",
+            "footer"
+          ],
+          "frequency": 4052,
+          "confidence": 1,
+          "prominence": 60742192.70036621,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "body/color": 24,
+            "hero/color": 1,
+            "icon/color": 1,
+            "link/color": 31,
+            "list/color": 26,
+            "other/color": 175,
+            "button/color": 10,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 544,
+            "nav/borderColor": 8,
+            "body/borderColor": 96,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 124,
+            "list/borderColor": 104,
+            "other/borderColor": 692,
+            "button/borderColor": 40,
+            "footer/borderColor": 4,
+            "heading/borderColor": 2160
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 37,
+          "confidence": 1,
+          "prominence": 1114701.787275525,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 3,
+            "heading/borderColor": 28,
+            "body/backgroundColor": 1,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#f9d9f7",
+          "oklch": {
+            "c": 0.05212213110184032,
+            "h": 328.22545499146423,
+            "l": 0.9202956226887684
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 157055.21633818117,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 24
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0008220021858472265,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#ffffff",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.54,
+          "background": "#f9d9f7",
+          "foreground": "#121212"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.29,
+          "background": "#f9d9f7",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20.9333,
+          "contexts": [
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 16.2233,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "columnGap|button",
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "heading"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "button",
+            "heading"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other",
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "list"
+          ],
+          "frequency": 127,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "rowGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "columnGap|other",
+            "rowGap|other",
+            "marginTop|button",
+            "marginTop|body",
+            "paddingTop|list",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|heading"
+          ]
+        },
+        {
+          "value": 31,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|heading"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "heading",
+            "other",
+            "list"
+          ],
+          "frequency": 15,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "columnGap|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingRight|list"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 63,
+          "contexts": [
+            "other",
+            "footer",
+            "list"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingBottom|footer",
+            "paddingTop|list",
+            "marginTop|list",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 67,
+          "contexts": [
+            "hero",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 157,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 251,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Swiss",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 687,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "MonumentExtended UltraBold",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 113,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "MonumentExtended Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 18,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 31,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.92
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Swiss",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "list"
+          ],
+          "frequency": 39,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Swiss",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "MonumentExtended Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 17,
+          "family": "Swiss",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "button",
+            "body"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "MonumentExtended UltraBold",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 19,
+          "family": "Swiss",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Swiss",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "body",
+            "list",
+            "link",
+            "button",
+            "footer"
+          ],
+          "frequency": 167,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "MonumentExtended UltraBold",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 21,
+          "family": "Swiss",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 21,
+          "family": "MonumentExtended Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 21,
+          "family": "MonumentExtended Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 26,
+          "family": "MonumentExtended Regular",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "MonumentExtended Regular",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 31,
+          "family": "Swiss",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 449,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 63,
+          "family": "MonumentExtended UltraBold",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "heading"
+          ],
+          "frequency": 19,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 94,
+          "family": "MonumentExtended UltraBold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 45,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 105,
+          "family": "MonumentExtended UltraBold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 39,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 167,
+          "family": "MonumentExtended UltraBold",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 419,
+          "family": "MonumentExtended UltraBold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.75,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f7a25a8c-1cb5-48b5-ac8f-412a14d8d07e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c18e64a0-5a1b-4d77-bc50-35f6fca90426.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0e8db8d0-4d8f-48ac-a8e7-aaea9601e3ce#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Martin Laxenaire design system\",\"item\":\"https://styles.refero.design/style/0e8db8d0-4d8f-48ac-a8e7-aaea9601e3ce\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0e8db8d0-4d8f-48ac-a8e7-aaea9601e3ce#style-reference\",\"name\":\"Martin Laxenaire design system reference\",\"headline\":\"Martin Laxenaire design system | Refero Styles\",\"description\":\"Explore Martin Laxenaire's light Agency design system: Ink Black #121212, Paper White #ffffff colors, MonumentExtended UltraBold, MonumentExtended Regular...\",\"url\":\"https://styles.refero.design/style/0e8db8d0-4d8f-48ac-a8e7-aaea9601e3ce\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0e8db8d0-4d8f-48ac-a8e7-aaea9601e3ce\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Martin Laxenaire\",\"url\":\"https://www.martin-laxenaire.fr\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0e8db8d0-4d8f-48ac-a8e7-aaea9601e3ce#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c18e64a0-5a1b-4d77-bc50-35f6fca90426.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c18e64a0-5a1b-4d77-bc50-35f6fca90426.jpg\",\"caption\":\"Screenshot of Martin Laxenaire\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c18e64a0-5a1b-4d77-bc50-35f6fca90426.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Martin Laxenaire design system\",\"Martin Laxenaire website design\",\"Martin Laxenaire colors\",\"Martin Laxenaire typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Paper White\",\"Blush Wash\",\"MonumentExtended UltraBold\",\"MonumentExtended Regular\",\"Swiss\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Martin Laxenaire design system\"},{\"@type\":\"Thing\",\"name\":\"Martin Laxenaire website design\"},{\"@type\":\"Thing\",\"name\":\"Martin Laxenaire colors\"},{\"@type\":\"Thing\",\"name\":\"Martin Laxenaire typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:00:11.860Z\",\"dateModified\":\"2026-04-30T03:00:11.860Z\"}]}19:T737,**Quick Color Reference**\n- text: #121212 (Ink Black)\n- background: #ffffff (Paper White)\n- border: #121212 (Ink Black, 1px hairlines)\n- accent: #f9d9f7 (Blush Wash — hero art backdrop only)\n- wave art palette: #7c4dff (vivid violet), #b14dff (magenta-purple), #4d6fff (electric blue), #1a8a8a (deep teal), #ff6db5 (hot pink)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Build a display headline section: Paper White (#ffffff) page background. Headline set in MonumentExtended UltraBold at 167px, line-height 0.75, color #121212, with a 2px white stroke outline where text meets the wave art layer. Behind the text, an organic blob composition using #7c4dff, #b14dff, #4d6fff, #1a8a8a, #ff6db5 on a #f9d9f7 backdrop.\n\n2. Build a pill navigation button: 1px solid #121212 border, transparent background, Swiss 16px weight 400 text in #121212, border-radius 20.93px, padding 8px 21px. On hover, invert to filled #121212 with #ffffff text.\n\n3. Build a section heading and body block: heading in MonumentExtended Regular at 31px line-height 0.85 color #121212 with 31px margin-bottom. Body paragraph in Swiss at 19px line-height 1.20 color #121212, max-width 680px, margin-bottom 21px.\n\n4. Build a minimal top bar: transparent background, full-width, 21px top/bottom padding. Left: 'BRAND NAME' in MonumentExtended UltraBold 18px uppercase letter-spacing 0.1em color #121212. Right: a pill indicator showing '0%' in Swiss 16px inside a 1px #121212 border, border-radius 20.93px, padding 4px 8px.\n\n5. Build a wave-art hero background: full-viewport #f9d9f7 canvas with 5–7 organic, overlapping blob shapes positioned radially from center. Shape fills drawn from the wave palette (#7c4dff, #b14dff, #4d6fff, #1a8a8a, #ff6db5). Each blob has soft, hand-drawn curves — no geometric edges, no gradients, flat fills only."
+}

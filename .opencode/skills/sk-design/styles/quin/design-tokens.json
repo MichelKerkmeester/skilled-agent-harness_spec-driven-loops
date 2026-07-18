@@ -1,0 +1,520 @@
+{
+  "color": {
+    "ivory-page": {
+      "$value": "#fffcf2",
+      "$type": "color",
+      "$description": "Ivory Page — Primary canvas — page background, card surfaces, light section bands"
+    },
+    "sandstone": {
+      "$value": "#f0ecdf",
+      "$type": "color",
+      "$description": "Sandstone — Secondary surface — alternating bands, section dividers, subtle card fills"
+    },
+    "pebble-border": {
+      "$value": "#d0cec6",
+      "$type": "color",
+      "$description": "Pebble Border — Hairline borders, button outlines, nav dividers, card edges"
+    },
+    "driftwood": {
+      "$value": "#a19c8c",
+      "$type": "color",
+      "$description": "Driftwood — Muted decorative borders and tonal accents where a softer line is needed"
+    },
+    "stone-mid": {
+      "$value": "#68655b",
+      "$type": "color",
+      "$description": "Stone Mid — Mid-neutral text, icon strokes, secondary borders"
+    },
+    "graphite": {
+      "$value": "#545454",
+      "$type": "color",
+      "$description": "Graphite — Body text, link borders, icon color — the workhorse neutral for readable content"
+    },
+    "charcoal": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Charcoal — Heading text, emphasized body copy, dark surface text"
+    },
+    "obsidian": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Obsidian — Primary action fill, strongest text, dominant border color — the visual anchor"
+    },
+    "jet-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Jet Black — SVG fills, icon strokes, maximum contrast accents"
+    },
+    "smoke": {
+      "$value": "#393737",
+      "$type": "color",
+      "$description": "Smoke — Decorative SVG fills and strokes — vector artwork on dark sections"
+    },
+    "honey-yellow": {
+      "$value": "#f7cf49",
+      "$type": "color",
+      "$description": "Honey Yellow — Primary brand accent — announcement bar, highlight badges, decorative blocks, the signature warm punctuation against cream"
+    },
+    "burnt-umber": {
+      "$value": "#492812",
+      "$type": "color",
+      "$description": "Burnt Umber — Dark warm accent — button fills in warm contexts, icon borders, tertiary buttons needing chromatic weight"
+    },
+    "powder-blue": {
+      "$value": "#a9e1ff",
+      "$type": "color",
+      "$description": "Powder Blue — Cool accent — secondary CTA fills, info badges, test card backgrounds, the soft counterpoint to honey yellow"
+    },
+    "ash": {
+      "$value": "#8a8883",
+      "$type": "color",
+      "$description": "Ash — Subtle border accent, near-gray for dividers that need to recede"
+    }
+  },
+  "font": {
+    "instrument-sans": {
+      "$value": "Instrument Sans",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all editorial and UI text — display headlines compress to 0.75 with -3.17em tracking, body sits at 1.5–1.71 with relaxed tracking"
+    },
+    "geist-mono": {
+      "$value": "Geist Mono",
+      "$type": "fontFamily",
+      "$description": "Monospaced label face for nav items, buttons, badges, and tags — set uppercase with wide positive tracking to read as typeset stamps"
+    },
+    "font-awesome-7-sharp": {
+      "$value": "Font Awesome 7 Sharp",
+      "$type": "fontFamily",
+      "$description": "Icon glyphs rendered at heavy weight — sharp geometric forms that match the editorial type system"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 0.54
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Font Awesome 7 Sharp",
+        "fontSize": "26px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Font Awesome 7 Sharp",
+        "fontSize": "26px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 26px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 0.62
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 26px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Font Awesome 7 Sharp",
+        "fontSize": "40px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "44px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "56px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "80px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "96px",
+        "fontWeight": 500,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 96px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Instrument Sans Variable",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 96px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "ivory-page": {
+      "$value": "#fffcf2",
+      "$type": "color",
+      "$description": "Surface level 1: Default page canvas — all editorial and product sections"
+    },
+    "sandstone-band": {
+      "$value": "#f0ecdf",
+      "$type": "color",
+      "$description": "Surface level 2: Alternating section background, subtle tonal shift within the cream scale"
+    },
+    "blue-feature-section": {
+      "$value": "#a9e1ff",
+      "$type": "color",
+      "$description": "Surface level 3: Full-width colored band for testimonials and feature highlights"
+    },
+    "honey-accent": {
+      "$value": "#f7cf49",
+      "$type": "color",
+      "$description": "Surface level 4: Saturated accent surface for announcement bars and highlight blocks"
+    },
+    "dark-footer": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Surface level 5: Inverted dark surface for footer and terminal sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.heyquin.io",
+      "siteName": "Quin",
+      "extractedAt": "2026-06-03T22:07:21.905Z",
+      "variant": "extended"
+    }
+  }
+}

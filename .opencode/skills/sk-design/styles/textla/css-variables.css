@@ -1,0 +1,85 @@
+:root {
+  /* Colors */
+  --color-sunlit-cream: #f2ee98;
+  --color-forest-ink: #10380b;
+  --color-marigold: #fce519;
+  --color-sage-wash: #dbe8ac;
+  --color-vivid-fern: #30be60;
+  --color-parchment: #fefde6;
+  --color-snowcap: #ffffff;
+
+  /* Typography — Font Families */
+  --font-national-2-condensed: 'National 2 Condensed', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-rethinksans: 'RethinkSans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 16px;
+  --leading-caption: 24;
+  --text-body: 18px;
+  --leading-body: 28;
+  --text-subheading: 20px;
+  --leading-subheading: 32;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 30;
+  --tracking-heading-sm: -0.72px;
+  --text-heading: 32px;
+  --leading-heading: 38;
+  --tracking-heading: -0.96px;
+  --text-heading-lg: 56px;
+  --leading-heading-lg: 62;
+  --tracking-heading-lg: -1.68px;
+  --text-display: 86px;
+  --leading-display: 70;
+  --tracking-display: -2.58px;
+  --text-display-xl: 180px;
+  --leading-display-xl: 144;
+  --tracking-display-xl: -5.4px;
+
+  /* Typography — Weights */
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+  --spacing-160: 160px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80-120px;
+  --card-padding: 24-40px;
+  --element-gap: 24px;
+
+  /* Border Radius */
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 40px;
+  --radius-full: 1440px;
+
+  /* Named Radii */
+  --radius-nav: 16px;
+  --radius-tags: 40px;
+  --radius-cards: 40px;
+  --radius-badges: 1440px;
+  --radius-images: 40px;
+  --radius-inputs: 1440px;
+  --radius-buttons: 1440px;
+
+  /* Shadows */
+  --shadow-subtle: rgb(16, 56, 11) 8px 8px 0px 0px;
+
+  /* Surfaces */
+  --surface-sunlit-cream: #f2ee98;
+  --surface-parchment: #fefde6;
+  --surface-sage-wash: #dbe8ac;
+  --surface-snowcap: #ffffff;
+  --surface-forest-ink: #10380b;
+}

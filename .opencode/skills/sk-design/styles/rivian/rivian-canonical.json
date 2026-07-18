@@ -1,0 +1,1698 @@
+{
+  "source": "https://styles.refero.design/style/a5dc5626-1103-42e3-9edb-a6d52fb9a210",
+  "uuid": "a5dc5626-1103-42e3-9edb-a6d52fb9a210",
+  "name": "Rivian",
+  "northStar": "Electric monolith on a concrete gallery wall. Rivian stages each vehicle as a sculpture against vast white space, with typography so large it becomes architecture and one warm yellow that breaks the monochrome like sunlight on a matte surface.",
+  "capturedAt": "2026-07-18T09:57:26.270Z",
+  "meta": {
+    "url": "https://rivian.com",
+    "siteName": "Rivian",
+    "extractedAt": "2026-06-03T17:16:58.017Z",
+    "durationMs": 37411,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 608,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Solar Yellow (#ffac00) for exactly one primary CTA per screen — never pair it with another yellow element.",
+      "Use 40px border-radius for all action buttons and 9999px for nav links and tag chips — these two radii define the system.",
+      "Let photography fill the viewport edge-to-edge in hero sections; never frame vehicle images in cards on landing pages.",
+      "Scale typography aggressively: use 56px+ for page-level headings, 120px for display moments, and 360px Liga for product monograms only.",
+      "Set letter-spacing to negative values at all sizes above 20px: -0.020em at 24px scaling to -0.045em at 120px.",
+      "Keep most surfaces flat — use #e5e7eb hairline borders for definition rather than shadows.",
+      "Use #f2f2f2 (Chalk) to alternate section backgrounds and break white-only monotony."
+    ],
+    "donts": [
+      "Do not use any chromatic color other than Solar Yellow for primary actions — the system is monochrome by design.",
+      "Do not use shadows for elevation; use surface color shifts (#ffffff → #f2f2f2 → #e5e7eb) instead.",
+      "Do not set body text below 12px or above 18px — the 14-16px body range is deliberate.",
+      "Do not use rounded images above 20px radius on landing pages; the product should feel architectural, not soft.",
+      "Do not use multiple typefaces in a single composition — Adventure handles 99% of the system; Liga is reserved for product monograms.",
+      "Do not apply gradients to UI components; gradients in the data are atmospheric washes only, not interface decoration.",
+      "Do not use color for hierarchy in monochrome sections — rely on weight (400 vs 500 vs 600) and size differences."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffac00",
+        "name": "Solar Yellow",
+        "role": "Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#e84826",
+        "name": "Canyon Orange",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#629b5c",
+        "name": "Forest Green",
+        "role": "Secondary accent for vehicle color options and category tags",
+        "group": "accent"
+      },
+      {
+        "hex": "#77afd8",
+        "name": "Sky Blue",
+        "role": "Secondary accent for vehicle color options and informational highlights",
+        "group": "accent"
+      },
+      {
+        "hex": "#9fa1b8",
+        "name": "Slate Blue",
+        "role": "Cool-tinted shadow base and atmospheric wash — the only chromatic neutral, gives elevation a slightly overcast feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#151515",
+        "name": "Graphite",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "High-contrast text, icon fills, and the heaviest display headings where maximum weight is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Concrete",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cfd0d0",
+        "name": "Ash",
+        "role": "Mid-gray surface and shadow base for elevated cards and subtle depth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b8b8b8",
+        "name": "Fog",
+        "role": "Muted helper text and tertiary metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#616161",
+        "name": "Steel",
+        "role": "Secondary nav text, subdued icon fills, inactive labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, card surface, reversed text on dark fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Chalk",
+        "role": "Alternate page background for content sections — warmer than pure white, breaks the canvas rhythm",
+        "group": "neutral"
+      },
+      {
+        "hex": "#212121",
+        "name": "Charcoal",
+        "role": "Input field backgrounds and dark UI surfaces — slightly lighter than Graphite to read as surface rather than text",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Page model is full-bleed with centered max-width content containers at ~1440px. Navigation is a minimal top bar (white, fixed) with centered links and a right-aligned yellow CTA. Hero sections are full-viewport-width photographic backgrounds with text overlays positioned bottom-left. Product monogram pages use centered symmetry: massive type → centered vehicle profile → centered text stack → centered button pair. Section rhythm alternates between full-bleed photo sections and centered narrow text blocks. Content arrangement favors centered stacks over asymmetric layouts. Card grids appear for vehicle comparisons and feature listings, typically 2-3 columns with generous gutters. Dense sections (legal, specs) use constrained max-width with justified text. Spacing is generous — 80px section gaps, 24px card padding, 8px element gaps — the system breathes.",
+    "imagery": "Photography is the dominant visual asset: full-bleed, cinematic, environmental shots of vehicles in natural and urban settings (city streets, dirt roads, twilight landscapes). Treatment is naturalistic with no duotone or heavy color grading — the vehicles appear as they are, shot at golden hour or overcast light for drama. No lifestyle people-centric framing; the vehicle is always the hero, sometimes with a single human figure for scale. Images use 20px border-radius when contained. The visual language also includes the 360px Liga monogram as a graphic element — typography that functions as art. No illustrations, no abstract graphics, no 3D renders in marketing contexts.",
+    "similar": [
+      {
+        "why": "Same monochrome gallery approach with single accent color, massive product monogram typography, and full-bleed environmental vehicle photography on clean white surfaces",
+        "business": "Polestar"
+      },
+      {
+        "why": "Minimalist automotive presentation with one-color accent system, generous white space, and large-format product name typography",
+        "business": "Lucid Motors"
+      },
+      {
+        "why": "Full-bleed product photography, centered narrow text blocks, oversized display typography, and near-monochrome palette with one accent",
+        "business": "Apple (product pages)"
+      },
+      {
+        "why": "Restrained UI chrome, photography-first product presentation, and minimal use of decorative color",
+        "business": "Tesla"
+      },
+      {
+        "why": "Custom typeface, monochrome canvas, hairline borders, pill-shaped controls, and emphasis on letting product imagery dominate",
+        "business": "Arc'teryx"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "12px",
+        "cards": "20px",
+        "chips": "99px",
+        "icons": "8px",
+        "pills": "9999px",
+        "images": "20px",
+        "inputs": "4px",
+        "buttons": "40px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper Canvas",
+        "level": 1,
+        "purpose": "Default page background and primary card surface"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Chalk Section",
+        "level": 2,
+        "purpose": "Alternate section background to create rhythm on long pages"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Concrete Border",
+        "level": 3,
+        "purpose": "Hairline dividers, button base, fine print background"
+      },
+      {
+        "hex": "#cfd0d0",
+        "name": "Ash Elevation",
+        "level": 4,
+        "purpose": "Subtle elevated surface and shadow base"
+      },
+      {
+        "hex": "#212121",
+        "name": "Charcoal Utility",
+        "level": 5,
+        "purpose": "Input fields and dark utility surfaces"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 4px 12px rgba(159, 161, 184, 0.15)",
+        "element": "Cards and elevated surfaces"
+      },
+      {
+        "style": "0 8px 24px rgba(159, 161, 184, 0.2)",
+        "element": "Floating panels and dropdowns"
+      }
+    ],
+    "northStar": "Electric monolith on a concrete gallery wall. Rivian stages each vehicle as a sculpture against vast white space, with typography so large it becomes architecture and one warm yellow that breaks the monochrome like sunlight on a matte surface.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.55,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-lg",
+        "size": 44,
+        "lineHeight": 1.14,
+        "letterSpacing": -1.364
+      },
+      {
+        "role": "heading-xl",
+        "size": 56,
+        "lineHeight": 1.13,
+        "letterSpacing": -2.016
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1.09,
+        "letterSpacing": -3.024
+      },
+      {
+        "role": "display-lg",
+        "size": 120,
+        "lineHeight": 1,
+        "letterSpacing": -5.4
+      },
+      {
+        "role": "hero",
+        "size": 360,
+        "lineHeight": 1,
+        "letterSpacing": -7.92
+      }
+    ],
+    "components": [
+      {
+        "name": "Solar Yellow CTA Button",
+        "role": "Primary action button (Demo drive, key conversions)",
+        "description": "Pill shape at 40px radius, #ffac00 fill, #151515 text in Adventure weight 500 at 14px. Padding 12px 24px. The single chromatic button in the system — it exists to be the visual climax of any page. Never use a second yellow button on the same screen."
+      },
+      {
+        "name": "Graphite Filled Button",
+        "role": "Primary action in sections without the yellow demo CTA (Explore vehicle)",
+        "description": "Pill shape at 40px radius, #151515 fill, #ffffff text in Adventure weight 500 at 14px. Padding 12px 24px. The dark counterpart to Solar Yellow — used when the yellow is reserved for the demo conversion."
+      },
+      {
+        "name": "Light Filled Button",
+        "role": "Tertiary action (Buy, secondary commerce flow)",
+        "description": "Pill shape at 40px radius, #e5e7eb fill, #151515 text in Adventure weight 500 at 14px. Padding 12px 24px. Quiet alternative that doesn't compete with the dark or yellow primary buttons."
+      },
+      {
+        "name": "Ghost Button — Light Outline",
+        "role": "Secondary action over photography (View all offers)",
+        "description": "Pill shape at 40px radius, transparent fill, 1px #ffffff border, #ffffff text in Adventure weight 500 at 14px. Padding 12px 24px. Designed to sit on dark or photographic backgrounds without competing with the image."
+      },
+      {
+        "name": "Ghost Button — Dark Outline",
+        "role": "Secondary action on light backgrounds (Shop)",
+        "description": "Pill shape at 40px radius, transparent fill, 1px #151515 border, #151515 text in Adventure weight 500 at 14px. Padding 12px 24px. Mirrors the light ghost for use on white or chalk surfaces."
+      },
+      {
+        "name": "Pill Nav Button",
+        "role": "Top-level navigation items and category chips",
+        "description": "Full 9999px radius, 8px 16px padding, Adventure weight 500 at 12-14px. #151515 text. Used for primary nav links, tag chips, and filter pills. The fully rounded form contrasts with the 40px buttons to create a typology of roundness."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global site navigation",
+        "description": "White (#ffffff) background, 1px #e5e7eb bottom border, fixed position. Logo left (not extracted, assumed), centered nav links (Vehicles, Charging, Technology, Discover, Gear Shop) in Adventure 500 at 14px #151515, Solar Yellow Demo drive CTA right. Height approximately 60px. Minimal, airy, high-contrast."
+      },
+      {
+        "name": "Hero Carousel Slide",
+        "role": "Full-bleed promotional hero with vehicle photography",
+        "description": "Full viewport width, ~80vh height. Background is a full-bleed photographic image of a vehicle in an environmental context. Overlaid white headline (Adventure 500, 44-56px, -1.36 to -2.02px tracking) positioned bottom-left. Subtext at 16px weight 400. Two buttons side by side: ghost-light + filled-yellow or ghost-dark. Carousel pagination as small pill indicators centered below."
+      },
+      {
+        "name": "Product Monogram Block",
+        "role": "R1S/R1T product identity page header",
+        "description": "Chalk (#f2f2f2) background. Liga at 360px weight 500 in #000000, centered, with -7.92px tracking. Vehicle product photo centered below in full profile view, with no card or frame — the vehicle sits directly on the background. Tagline below at 20px weight 500 #151515, then price at 14px weight 400 #616161, then two buttons (Explore = Graphite, Buy = Light)."
+      },
+      {
+        "name": "Location Selector Dropdown",
+        "role": "Region/continent selection in nav",
+        "description": "Dark surface (#151515) panel, white text, with +/– expand indicators. Expanded items show \"North America\" and \"Europe\" in Adventure 500 at 14px. Rounded at 12px. The dark surface in an otherwise light nav signals utility/configuration rather than marketing."
+      },
+      {
+        "name": "Legal/Disclosure Text Block",
+        "role": "Fine print, terms, disclaimers",
+        "description": "#e5e7eb background, full-width contained. Body text in Adventure 400 at 12px #151515 with normal tracking, line-height 1.55. Left-aligned, max-width container. Dense and utilitarian — a stark contrast to the theatrical hero above."
+      },
+      {
+        "name": "Chip Tag (99px radius)",
+        "role": "Category labels, vehicle feature tags",
+        "description": "Fully rounded at 99px, #e5e7eb background or #f2f2f2, #151515 text in Adventure 500 at 12px. Padding 6px 14px. Used for product categories, feature labels, and contextual tags."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary brand typeface used across nav, body, headings, buttons, and cards. Custom geometric humanist sans with slightly squared terminals — chosen for its engineering feel that matches the vehicle aesthetic. Letter-spacing tightens aggressively at large sizes (-0.045em at 120px down to -0.01em at body). The weight 400 body is light for a technical brand; weight 500 is the working weight for UI; weight 600 is reserved for emphasis and key CTAs. Font features disable contextual alternates and standard ligatures for a clean modern feel.",
+        "sizes": "10, 11, 12, 14, 16, 20, 24, 32, 36, 44, 56, 72, 120",
+        "family": "Adventure",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.0–1.55 (tight at large sizes, open at body)",
+        "substitute": "Inter, Söhne, or Neue Haas Grotesk",
+        "letterSpacing": "-0.045em at 120px, -0.042em at 72px, -0.036em at 56px, -0.031em at 44px, -0.025em at 36px, -0.021em at 32px, -0.020em at 24px, -0.01em at 16-20px, normal at 12-14px",
+        "fontFeatureSettings": "\"clig\" 0, \"liga\" 0, \"ss01\" 0"
+      },
+      {
+        "role": "Monumental display font used exclusively for product monograms (R1S, R1T) at 360px. A geometric display face with characteristic sharp cuts — it functions as a logo, not running text. The tight -0.022em tracking at 360px creates a dense visual block that anchors the entire product page.",
+        "sizes": "360",
+        "family": "Liga",
+        "weight": "500",
+        "lineHeight": "1.0",
+        "substitute": "Druk Wide, GT America Compressed, or Title Condensed",
+        "letterSpacing": "-0.0220em",
+        "fontFeatureSettings": "\"clig\", \"liga\", \"ss01\""
+      },
+      {
+        "role": "Used sparingly for fine print and legal micro-copy where a different voice signals regulatory content",
+        "sizes": "12",
+        "family": "Söhne",
+        "weight": "500",
+        "lineHeight": "1.33",
+        "substitute": "Inter or system-ui"
+      },
+      {
+        "role": "Sohne — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "Sohne",
+        "weight": "500",
+        "lineHeight": "1.33"
+      }
+    ],
+    "description": "Rivian presents its vehicles as monumental objects in a clean architectural gallery: white concrete canvases, full-bleed cinematic photography, and one signature Solar Yellow accent that electrifies the otherwise monochrome system. Typography does the heavy lifting — a custom Adventure typeface at near-black weights paired with Liga at 360px for product monograms makes each vehicle feel branded and indivisible. Components are minimal and confident: pill-shaped controls, hairline borders, flat surfaces, and generous negative space that lets photography breathe. Color is rationed to the single yellow CTA and a few paint-swatch accents; everything else is graphite, concrete, and white. The system rejects decoration in favor of scale, restraint, and theatrical product presentation.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a5dc5626-1103-42e3-9edb-a6d52fb9a210#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Rivian design system\",\"item\":\"https://styles.refero.design/style/a5dc5626-1103-42e3-9edb-a6d52fb9a210\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a5dc5626-1103-42e3-9edb-a6d52fb9a210#style-reference\",\"name\":\"Rivian design system reference\",\"headline\":\"Rivian design system | Refero Styles\",\"description\":\"Explore Rivian's light E-commerce design system: Solar Yellow #ffac00, Canyon Orange #e84826 colors, Adventure, Liga typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a5dc5626-1103-42e3-9edb-a6d52fb9a210\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a5dc5626-1103-42e3-9edb-a6d52fb9a210\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Rivian\",\"url\":\"https://rivian.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a5dc5626-1103-42e3-9edb-a6d52fb9a210#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8a12cf7a-04ee-415d-a30b-82a5bd8d5670.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8a12cf7a-04ee-415d-a30b-82a5bd8d5670.jpg\",\"caption\":\"Screenshot of Rivian\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8a12cf7a-04ee-415d-a30b-82a5bd8d5670.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Rivian design system\",\"Rivian website design\",\"Rivian colors\",\"Rivian typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Solar Yellow\",\"Canyon Orange\",\"Forest Green\",\"Sky Blue\",\"Adventure\",\"Liga\",\"Söhne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Rivian design system\"},{\"@type\":\"Thing\",\"name\":\"Rivian website design\"},{\"@type\":\"Thing\",\"name\":\"Rivian colors\"},{\"@type\":\"Thing\",\"name\":\"Rivian typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-02-16T13:21:01.000Z\",\"dateModified\":\"2026-02-16T13:21:01.000Z\"}]}19:T803,**Quick Color Reference**\n- background: #ffffff (primary canvas), #f2f2f2 (alternate section)\n- text: #151515 (primary), #616161 (secondary), #b8b8b8 (tertiary)\n- border: #e5e7eb (hairline), #cfd0d0 (emphasis)\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero Carousel Slide**: Full-bleed 80vh, background image of vehicle in urban environment. White headline 'Choose your own savings' at 56px Adventure weight 500, -2.016px tracking, positioned bottom-left with 40px left padding. Subtext at 16px weight 400 #ffffff. Two buttons: ghost (1px #ffffff border, transparent fill, white text, 40px radius) and yellow filled (#ffac00, #151515 text, 40px radius). Both at 14px Adventure 500 with 12px 24px padding.\n\n2. **Product Monogram Page**: Chalk #f2f2f2 background. Liga at 360px weight 500 #000000, centered, -7.92px tracking for the R1S mark. Vehicle profile image centered below at 80% width with no frame. Tagline at 20px weight 500 #151515 centered, then 'From $76,990' at 14px weight 400 #616161. Two centered buttons: Explore (#151515 fill, white text) and Buy (#e5e7eb fill, #151515 text), both 40px radius, 12px 24px padding.\n\n3. **Top Navigation Bar**: White #ffffff background, 1px #e5e7eb bottom border, 60px height. Centered nav links (Vehicles, Charging, Technology, Discover, Gear Shop) in Adventure 500 at 14px #151515 with 32px horizontal gaps. Solar Yellow 'Demo drive' pill button right-aligned (40px radius, 12px 24px padding, Adventure 500 14px #151515 text).\n\n4. **Feature Tag Chips**: 99px border-radius, #e5e7eb background, #151515 text in Adventure 500 at 12px, padding 6px 14px. Used inline to label vehicle capabilities and categories.\n\n5. **Legal Disclaimer Block**: #e5e7eb full-width background, max-width 1200px container. Body text at 12px Adventure 400 #151515, line-height 1.55, normal tracking. Dense paragraph block with 4px row-gap between paragraphs."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "image",
+            "heading",
+            "body",
+            "link",
+            "icon",
+            "card",
+            "list",
+            "footer"
+          ],
+          "frequency": 2257,
+          "confidence": 1,
+          "prominence": 274541150.74856675,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#151515",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.19573496075691943
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "heading",
+            "image",
+            "footer",
+            "list",
+            "button",
+            "icon",
+            "link",
+            "body"
+          ],
+          "frequency": 364,
+          "confidence": 1,
+          "prominence": 209753350.20223755,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 20349006.31509766,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "icon",
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 115,
+          "confidence": 1,
+          "prominence": 13853306.775644563,
+          "properties": [
+            "color",
+            "fill",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "heading",
+            "body",
+            "button",
+            "link",
+            "icon",
+            "input",
+            "list"
+          ],
+          "frequency": 211,
+          "confidence": 1,
+          "prominence": 12333761.045482865,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9fa1b8",
+          "oklch": {
+            "c": 0.033344380248176576,
+            "h": 281.57900259034614,
+            "l": 0.7149359048652424
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 7843200,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#212121",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24775871011467596
+          },
+          "contexts": [
+            "input",
+            "other",
+            "footer"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3705797.23944023,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8ba8bd",
+          "oklch": {
+            "c": 0.04439674587050358,
+            "h": 239.6992020630749,
+            "l": 0.7168924550457203
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 199500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cfd0d0",
+          "oklch": {
+            "c": 0.0014134815574233664,
+            "h": 247.83851766212507,
+            "l": 0.8559725009297673
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 166533.7042907996,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffac00",
+          "oklch": {
+            "c": 0.17039925679942458,
+            "h": 74.30849693064769,
+            "l": 0.8051702327043634
+          },
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 94692,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#629b5c",
+          "oklch": {
+            "c": 0.10952107808367172,
+            "h": 142.03874145939147,
+            "l": 0.6338410643846034
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 47346,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e84826",
+          "oklch": {
+            "c": 0.20208535825461738,
+            "h": 33.51958354798085,
+            "l": 0.6260096957846033
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 47346,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#77afd8",
+          "oklch": {
+            "c": 0.08372420021697172,
+            "h": 241.08514784142216,
+            "l": 0.7306963963327903
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 47346,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#abacad",
+          "oklch": {
+            "c": 0.0025620437590103216,
+            "h": 247.85752666277142,
+            "l": 0.743873885064256
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 43740,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b8b8b8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7826037156503541
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 6834,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#616161",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4926091942525259
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2377.654369164659,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0066ff",
+          "oklch": {
+            "c": 0.2408052392865458,
+            "h": 260.8177576265576,
+            "l": 0.5634552426832016
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 795.6511753620204,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7af400",
+          "oklch": {
+            "c": 0.25576415730537927,
+            "h": 135.91554769162374,
+            "l": 0.861324938114446
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 576,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.013500343934270137,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#ffffff",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.31,
+          "background": "#f2f2f2",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.1,
+          "background": "#212121",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.77,
+          "background": "#7af400",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.75,
+          "background": "#e5e7eb",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.38,
+          "background": "#f2f2f2",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.59,
+          "background": "#cfd0d0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.01,
+          "background": "#e5e7eb",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.84,
+          "background": "#7af400",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.81,
+          "background": "#cfd0d0",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.32,
+          "background": "#7af400",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.15,
+          "background": "#ffac00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.59,
+          "background": "#000000",
+          "foreground": "#b8b8b8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.42,
+          "background": "#cfd0d0",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.7,
+          "background": "#ffac00",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.24,
+          "background": "#abacad",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.21,
+          "background": "#b8b8b8",
+          "foreground": "#151515"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 40,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 34
+        },
+        {
+          "value": 99,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "nav",
+            "button"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 105,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 35,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 103,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 17,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 39,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 35,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 52,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 100,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 112,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 200,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(242, 242, 242) 0%, rgb(139, 168, 189) 100%)",
+        "colors": [
+          "rgb(242, 242, 242)",
+          "rgb(139, 168, 189)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(37, 40, 38), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(37, 40, 38)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 0, 0) 0%, rgb(93, 118, 125) 100%)",
+        "colors": [
+          "rgb(0, 0, 0)",
+          "rgb(93, 118, 125)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Adventure",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 573,
+          "fontFeatureSettings": [
+            "\"clig\" 0, \"liga\" 0, \"ss01\" 0"
+          ]
+        },
+        {
+          "family": "Liga",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": [
+            "\"clig\", \"liga\", \"ss01\""
+          ]
+        },
+        {
+          "family": "Sohne",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.93
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Adventure",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "card",
+            "footer",
+            "list",
+            "button",
+            "icon",
+            "link",
+            "body"
+          ],
+          "frequency": 414,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Adventure",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Adventure",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.042,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Adventure",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Sohne",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Adventure",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Adventure",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Adventure",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "other",
+            "link"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Adventure",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Adventure",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "input",
+            "other"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Adventure",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Adventure",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Adventure",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Adventure",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Adventure",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Adventure",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Adventure",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Adventure",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Adventure",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Adventure",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Adventure",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Adventure",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Adventure",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Adventure",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Adventure",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.042,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "Adventure",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.09,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Adventure",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.07,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Adventure",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "Adventure",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.93,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 360,
+          "family": "Liga",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.022,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/9eadcaea-ddeb-4f84-b951-5aeb2cc83aba.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/8a12cf7a-04ee-415d-a30b-82a5bd8d5670.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a5dc5626-1103-42e3-9edb-a6d52fb9a210#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Rivian design system\",\"item\":\"https://styles.refero.design/style/a5dc5626-1103-42e3-9edb-a6d52fb9a210\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a5dc5626-1103-42e3-9edb-a6d52fb9a210#style-reference\",\"name\":\"Rivian design system reference\",\"headline\":\"Rivian design system | Refero Styles\",\"description\":\"Explore Rivian's light E-commerce design system: Solar Yellow #ffac00, Canyon Orange #e84826 colors, Adventure, Liga typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a5dc5626-1103-42e3-9edb-a6d52fb9a210\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a5dc5626-1103-42e3-9edb-a6d52fb9a210\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Rivian\",\"url\":\"https://rivian.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a5dc5626-1103-42e3-9edb-a6d52fb9a210#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8a12cf7a-04ee-415d-a30b-82a5bd8d5670.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8a12cf7a-04ee-415d-a30b-82a5bd8d5670.jpg\",\"caption\":\"Screenshot of Rivian\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8a12cf7a-04ee-415d-a30b-82a5bd8d5670.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Rivian design system\",\"Rivian website design\",\"Rivian colors\",\"Rivian typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Solar Yellow\",\"Canyon Orange\",\"Forest Green\",\"Sky Blue\",\"Adventure\",\"Liga\",\"Söhne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Rivian design system\"},{\"@type\":\"Thing\",\"name\":\"Rivian website design\"},{\"@type\":\"Thing\",\"name\":\"Rivian colors\"},{\"@type\":\"Thing\",\"name\":\"Rivian typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-02-16T13:21:01.000Z\",\"dateModified\":\"2026-02-16T13:21:01.000Z\"}]}19:T803,**Quick Color Reference**\n- background: #ffffff (primary canvas), #f2f2f2 (alternate section)\n- text: #151515 (primary), #616161 (secondary), #b8b8b8 (tertiary)\n- border: #e5e7eb (hairline), #cfd0d0 (emphasis)\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero Carousel Slide**: Full-bleed 80vh, background image of vehicle in urban environment. White headline 'Choose your own savings' at 56px Adventure weight 500, -2.016px tracking, positioned bottom-left with 40px left padding. Subtext at 16px weight 400 #ffffff. Two buttons: ghost (1px #ffffff border, transparent fill, white text, 40px radius) and yellow filled (#ffac00, #151515 text, 40px radius). Both at 14px Adventure 500 with 12px 24px padding.\n\n2. **Product Monogram Page**: Chalk #f2f2f2 background. Liga at 360px weight 500 #000000, centered, -7.92px tracking for the R1S mark. Vehicle profile image centered below at 80% width with no frame. Tagline at 20px weight 500 #151515 centered, then 'From $76,990' at 14px weight 400 #616161. Two centered buttons: Explore (#151515 fill, white text) and Buy (#e5e7eb fill, #151515 text), both 40px radius, 12px 24px padding.\n\n3. **Top Navigation Bar**: White #ffffff background, 1px #e5e7eb bottom border, 60px height. Centered nav links (Vehicles, Charging, Technology, Discover, Gear Shop) in Adventure 500 at 14px #151515 with 32px horizontal gaps. Solar Yellow 'Demo drive' pill button right-aligned (40px radius, 12px 24px padding, Adventure 500 14px #151515 text).\n\n4. **Feature Tag Chips**: 99px border-radius, #e5e7eb background, #151515 text in Adventure 500 at 12px, padding 6px 14px. Used inline to label vehicle capabilities and categories.\n\n5. **Legal Disclaimer Block**: #e5e7eb full-width background, max-width 1200px container. Body text at 12px Adventure 400 #151515, line-height 1.55, normal tracking. Dense paragraph block with 4px row-gap between paragraphs."
+}

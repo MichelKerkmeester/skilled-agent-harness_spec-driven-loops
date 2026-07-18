@@ -1,0 +1,292 @@
+{
+  "color": {
+    "abyss-black": {
+      "$value": "#070708",
+      "$type": "color",
+      "$description": "Abyss Black — Page canvas, footer ground — near-black rather than #000 gives the cosmic field a slight warmth and lets white type feel luminous rather than harsh"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary text, hairline dividers, section borders, icon strokes — the sole foreground color across the system"
+    },
+    "steel-gray": {
+      "$value": "#8f8f93",
+      "$type": "color",
+      "$description": "Steel Gray — Muted body copy, secondary descriptions — sits between the white headlines and the dark canvas to create a three-tier reading hierarchy"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — SVG fill on iconography and button borders — true black for graphic elements that need maximum weight against the warm #070708 ground"
+    },
+    "electric-cobalt": {
+      "$value": "#1954ec",
+      "$type": "color",
+      "$description": "Electric Cobalt — Accent stroke on circle indicators, gradient terminus, decorative line art — the only chromatic voice in the UI, reserved for the data-circle motifs and the particle field's deepest point; 135° gradient sweeping from cyan through electric blue to deep cobalt — wraps the right-side particle visualization and ties the cosmic backdrop to the accent color"
+    }
+  },
+  "font": {
+    "graphik": {
+      "$value": "Graphik",
+      "$type": "fontFamily",
+      "$description": "Body text, UI labels, navigation, badges, small captions, the 59px display variant. Light weights (200–300) are the default; 400–500 reserved for emphasis and numeric data. Tabular figures enabled via 'tnum' — critical for stat readouts like '17' and '30M+'."
+    },
+    "darius": {
+      "$value": "Darius",
+      "$type": "fontFamily",
+      "$description": "Hero and section headlines only — a high-contrast didone-influenced serif used at whisper weight to create editorial gravity. The pairing against Graphik's geometric neutrality is the site's defining typographic move: the serif carries brand voice, the sans carries information. Single weight (300) forces restraint — no bold, no italic."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Button text fallback only — appears where Graphik is not loaded"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "9px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "15px",
+        "fontWeight": 200,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Darius",
+        "fontSize": "45px",
+        "fontWeight": 300,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Darius",
+        "fontSize": "52px",
+        "fontWeight": 300,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Darius",
+        "fontSize": "54px",
+        "fontWeight": 300,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 54px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "59px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 59px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Darius",
+        "fontSize": "72px",
+        "fontWeight": 300,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 72px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "39": {
+      "$value": "39px",
+      "$type": "dimension",
+      "$description": "Spacing 39px"
+    },
+    "59": {
+      "$value": "59px",
+      "$type": "dimension",
+      "$description": "Spacing 59px"
+    },
+    "63": {
+      "$value": "63px",
+      "$type": "dimension",
+      "$description": "Spacing 63px"
+    },
+    "99": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Spacing 99px"
+    },
+    "119": {
+      "$value": "119px",
+      "$type": "dimension",
+      "$description": "Spacing 119px"
+    },
+    "171": {
+      "$value": "171px",
+      "$type": "dimension",
+      "$description": "Spacing 171px"
+    },
+    "238": {
+      "$value": "238px",
+      "$type": "dimension",
+      "$description": "Spacing 238px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "abyss-canvas": {
+      "$value": "#070708",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background across all sections — the warm near-black that makes the particle field and white type read correctly"
+    },
+    "particle-field": {
+      "$value": "#1954ec",
+      "$type": "color",
+      "$description": "Surface level 2: Right-side decorative layer that bleeds across sections; not a true surface but a visual depth marker using the cobalt gradient"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://dnacapital.com",
+      "siteName": "DNA",
+      "extractedAt": "2026-06-03T16:51:51.506Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "color": {
+    "acid-lime": {
+      "$value": "#ebff00",
+      "$type": "color",
+      "$description": "Acid Lime — Green action color for filled buttons, selected navigation states, and focused conversion moments"
+    },
+    "obsidian": {
+      "$value": "#080707",
+      "$type": "color",
+      "$description": "Obsidian — Body and heading text, dominant border color, dark section canvas — near-pure black for maximum contrast"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — High-frequency borders, icons, decorative strokes, image outlines — the structural black that outlines every other element"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Light section canvas, card surfaces, inverted text on dark sections and lime buttons"
+    },
+    "fog": {
+      "$value": "#c8c8c8",
+      "$type": "color",
+      "$description": "Fog — Placeholder surfaces, muted image backgrounds, subtle borders, disabled state fills"
+    },
+    "slate": {
+      "$value": "#383838",
+      "$type": "color",
+      "$description": "Slate — Secondary dark surfaces, dark mode card backgrounds, subdued text on dark canvases"
+    }
+  },
+  "font": {
+    "fk-raster-grotesk-compact-trial-sharp": {
+      "$value": "FK Raster Grotesk Compact Trial Sharp",
+      "$type": "fontFamily",
+      "$description": "Display headlines for section titles (e.g. 'FEATURED WORK'). The wide, compact, near-square grotesque proportions at 32–48px with 1.0 line-height and +0.042em tracking are the site's signature — every section is announced with this single cut, no fallback weights exist"
+    },
+    "ibm-plex-mono": {
+      "$value": "IBM Plex Mono",
+      "$type": "fontFamily",
+      "$description": "All uppercase labels, metadata tags, navigation items, technical strings, section indices like '014 — TODAY' and '[GOOD DESIGN AWARD WINNER 2023/24]'. The 0.086em–0.109em positive tracking on the 10–11px sizes is the monospace's defining behavior — tiny, widely-spaced, all-caps annotations that read like typeset engineering labels"
+    },
+    "be-vietnam-pro": {
+      "$value": "Be Vietnam Pro",
+      "$type": "fontFamily",
+      "$description": "Long-form body copy and link text. Stays at 16px only — the design avoids type-size variation in body text, relying on monospace labels for hierarchy instead"
+    },
+    "inter-medium": {
+      "$value": "Inter Medium",
+      "$type": "fontFamily",
+      "$description": "Button text — the one place a humanist sans is used at 500 weight with slight negative tracking for legibility in small pill CTAs"
+    },
+    "system-sans-serif": {
+      "$value": "system sans-serif",
+      "$type": "fontFamily",
+      "$description": "Icon-adjacent micro-text and fallback rendering for system UI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "10px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "11px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Be Vietnam Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter Medium",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "FK Raster Grotesk Compact Trial Sharp",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "FK Raster Grotesk Compact Trial Sharp",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "84px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    },
+    "full-5": {
+      "$value": "94px",
+      "$type": "dimension",
+      "$description": "Border radius full-5"
+    },
+    "full-6": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Border radius full-6"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default light section background, hero, project galleries"
+    },
+    "acid-highlight": {
+      "$value": "#ebff00",
+      "$type": "color",
+      "$description": "Surface level 1: Time badge, contact CTA, occasional section accent"
+    },
+    "fog-plate": {
+      "$value": "#c8c8c8",
+      "$type": "color",
+      "$description": "Surface level 2: Image placeholders, product mockup backgrounds, neutral cards"
+    },
+    "slate-card": {
+      "$value": "#383838",
+      "$type": "color",
+      "$description": "Surface level 3: Elevated dark surface inside dark sections"
+    },
+    "obsidian-ground": {
+      "$value": "#080707",
+      "$type": "color",
+      "$description": "Surface level 4: Dark contact/footer section, near-black canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.alejandromejias.com.au",
+      "siteName": "Alejandro Mejias",
+      "extractedAt": "2026-06-03T18:04:02.626Z",
+      "variant": "extended"
+    }
+  }
+}

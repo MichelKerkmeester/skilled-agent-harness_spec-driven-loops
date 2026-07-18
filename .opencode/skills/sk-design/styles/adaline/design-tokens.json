@@ -1,0 +1,694 @@
+{
+  "color": {
+    "forest-ink": {
+      "$value": "#0a1d08",
+      "$type": "color",
+      "$description": "Forest Ink — Gray text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "olive-press": {
+      "$value": "#2b390a",
+      "$type": "color",
+      "$description": "Olive Press — Headings at large sizes, high-contrast body text, hover states on filled buttons"
+    },
+    "sage-leaf": {
+      "$value": "#4a6d47",
+      "$type": "color",
+      "$description": "Sage Leaf — Decorative icon accent, badge fills, subtle wash backgrounds on spec cards"
+    },
+    "deep-teal": {
+      "$value": "#2b6b5e",
+      "$type": "color",
+      "$description": "Deep Teal — Secondary category fills, alt-card backgrounds, tonal pair with the dominant greens"
+    },
+    "crimson-specimen": {
+      "$value": "#991e4b",
+      "$type": "color",
+      "$description": "Crimson Specimen — Red text accent for links, tags, and emphasized short phrases. Use as a supporting accent, not as a status color"
+    },
+    "amber-pin": {
+      "$value": "#80581c",
+      "$type": "color",
+      "$description": "Amber Pin — Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Use as a supporting accent, not as a status color"
+    },
+    "linen": {
+      "$value": "#f8f9f5",
+      "$type": "color",
+      "$description": "Linen — Page canvas, default surface — warm off-white with a faint green cast"
+    },
+    "bone": {
+      "$value": "#eff2e8",
+      "$type": "color",
+      "$description": "Bone — Card surface, elevated panels, subtle inset containers"
+    },
+    "mist": {
+      "$value": "#e1e6df",
+      "$type": "color",
+      "$description": "Mist — Hairline borders, card outlines, separator strokes"
+    },
+    "slate-hollow": {
+      "$value": "#2a332a",
+      "$type": "color",
+      "$description": "Slate Hollow — Inverse surface for footer and dark bands, modal scrims"
+    },
+    "sage-gray": {
+      "$value": "#6b7860",
+      "$type": "color",
+      "$description": "Sage Gray — Secondary body text, supporting copy, icon strokes"
+    },
+    "sage-mist": {
+      "$value": "#a5ac9f",
+      "$type": "color",
+      "$description": "Sage Mist — Muted helper text, disabled labels, low-emphasis metadata"
+    },
+    "eucalyptus": {
+      "$value": "#c9d5c5",
+      "$type": "color",
+      "$description": "Eucalyptus — Soft surface tints, category tag backgrounds, hover wash"
+    },
+    "lichen": {
+      "$value": "#c5ccb6",
+      "$type": "color",
+      "$description": "Lichen — Outlined-button border color, link underlines, specimen-card borders"
+    },
+    "blush": {
+      "$value": "#e3c9d0",
+      "$type": "color",
+      "$description": "Blush — Decorative alt-card background, tonal contrast specimen"
+    },
+    "sand": {
+      "$value": "#ad9d80",
+      "$type": "color",
+      "$description": "Sand — Decorative card surface, tertiary alt fill"
+    },
+    "sage-foam": {
+      "$value": "#729d92",
+      "$type": "color",
+      "$description": "Sage Foam — Decorative alt-card surface, soft cool counterpoint to the sage family"
+    },
+    "rose-clay": {
+      "$value": "#c27c93",
+      "$type": "color",
+      "$description": "Rose Clay — Decorative alt-card background, warm-tonal specimen"
+    },
+    "surface-glow": {
+      "$value": "#fdfefb",
+      "$type": "color",
+      "$description": "Surface Glow — Surface-highest token, used for elevated card layers above Linen"
+    }
+  },
+  "font": {
+    "akkurat": {
+      "$value": "akkurat",
+      "$type": "fontFamily",
+      "$description": "Workhorse sans for body, nav, headings, buttons, cards across the entire system"
+    },
+    "newsreader": {
+      "$value": "Newsreader",
+      "$type": "fontFamily",
+      "$description": "Single display-size serif headline — unexpected literary anchor against the utility sans"
+    },
+    "fragment-mono": {
+      "$value": "Fragment Mono",
+      "$type": "fontFamily",
+      "$description": "Field-note tagging: badges, category labels, button text, code-lite metadata, tracked micro-copy"
+    },
+    "ui-monospace": {
+      "$value": "ui-monospace",
+      "$type": "fontFamily",
+      "$description": "System mono fallback for the tightest micro-tags (8px, 500 weight, 0.04em tracking)"
+    },
+    "gt-america-mono": {
+      "$value": "GT America Mono",
+      "$type": "fontFamily",
+      "$description": "GT America Mono — detected in extracted data but not described by AI"
+    },
+    "fragmentmono": {
+      "$value": "fragmentMono",
+      "$type": "fontFamily",
+      "$description": "fragmentMono — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ui-monospace",
+        "fontSize": "8px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ui-monospace",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 8px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Akkurat",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 2.89
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 9px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Akkurat",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 9px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Akkurat",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 9px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "ui-monospace",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 9px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "ui-monospace",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 9px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Akkurat",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 2.89
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 9px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Fragment Mono",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 9px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "Fragment Mono",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 2.89
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 9px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "GT America Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 10px"
+    },
+    "xs-12": {
+      "$value": {
+        "fontFamily": "Fragment Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-12 at 10px"
+    },
+    "xs-13": {
+      "$value": {
+        "fontFamily": "Fragment Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-13 at 10px"
+    },
+    "xs-14": {
+      "$value": {
+        "fontFamily": "akkurat",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-14 at 10px"
+    },
+    "xs-15": {
+      "$value": {
+        "fontFamily": "Fragment Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-15 at 10px"
+    },
+    "xs-16": {
+      "$value": {
+        "fontFamily": "Fragment Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.26
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-16 at 10px"
+    },
+    "xs-17": {
+      "$value": {
+        "fontFamily": "Fragment Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-17 at 11px"
+    },
+    "xs-18": {
+      "$value": {
+        "fontFamily": "Fragment Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-18 at 11px"
+    },
+    "xs-19": {
+      "$value": {
+        "fontFamily": "Akkurat",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-19 at 11px"
+    },
+    "xs-20": {
+      "$value": {
+        "fontFamily": "ui-monospace",
+        "fontSize": "11px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-20 at 11px"
+    },
+    "xs-21": {
+      "$value": {
+        "fontFamily": "Fragment Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 2.48
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-21 at 11px"
+    },
+    "xs-22": {
+      "$value": {
+        "fontFamily": "Fragment Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-22 at 11px"
+    },
+    "xs-23": {
+      "$value": {
+        "fontFamily": "Fragment Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.52
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-23 at 11px"
+    },
+    "xs-24": {
+      "$value": {
+        "fontFamily": "Akkurat",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-24 at 11px"
+    },
+    "xs-25": {
+      "$value": {
+        "fontFamily": "Akkurat",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-25 at 11px"
+    },
+    "xs-26": {
+      "$value": {
+        "fontFamily": "fragmentMono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-26 at 11px"
+    },
+    "xs-27": {
+      "$value": {
+        "fontFamily": "akkurat",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 2.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-27 at 11px"
+    },
+    "xs-28": {
+      "$value": {
+        "fontFamily": "akkurat",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-28 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "akkurat",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "fragmentMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "fragmentMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "akkurat",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "akkurat",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "akkurat",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "akkurat",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "akkurat",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "akkurat",
+        "fontSize": "26px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "fragmentMono",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 0.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "akkurat",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "akkurat",
+        "fontSize": "53px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 53px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Newsreader",
+        "fontSize": "108px",
+        "fontWeight": 300,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 108px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "34": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Spacing 34px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1.5px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(153, 30, 75) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(99, 143, 61, 0.1) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "linen": {
+      "$value": "#f8f9f5",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas and primary background"
+    },
+    "bone": {
+      "$value": "#eff2e8",
+      "$type": "color",
+      "$description": "Surface level 1: First elevation — cards and panels"
+    },
+    "eucalyptus": {
+      "$value": "#c9d5c5",
+      "$type": "color",
+      "$description": "Surface level 2: Mid-elevation — tags, spec cards, hover wash"
+    },
+    "sage-leaf": {
+      "$value": "#4a6d47",
+      "$type": "color",
+      "$description": "Surface level 3: Tinted surface — featured blocks, decorative wash"
+    },
+    "slate-hollow": {
+      "$value": "#2a332a",
+      "$type": "color",
+      "$description": "Surface level 4: Inverse surface — footer, dark bands, modal scrim"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.adaline.ai",
+      "siteName": "Adaline",
+      "extractedAt": "2026-07-03T03:02:41.642Z",
+      "variant": "extended"
+    }
+  }
+}

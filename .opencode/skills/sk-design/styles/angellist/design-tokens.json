@@ -1,0 +1,457 @@
+{
+  "color": {
+    "abyssal-teal": {
+      "$value": "#001d21",
+      "$type": "color",
+      "$description": "Abyssal Teal — Page canvas, hero background, navigation surface, footer, primary text on light surfaces — the void that everything sits on"
+    },
+    "deep-reef": {
+      "$value": "#002b31",
+      "$type": "color",
+      "$description": "Deep Reef — Elevated card surfaces, secondary buttons, filled chip backgrounds — one tonal step above the canvas to create subtle depth without leaving the dark family"
+    },
+    "bio-mint": {
+      "$value": "#e0fee6",
+      "$type": "color",
+      "$description": "Bio Mint — Display headlines, hero copy, large numerical type — bioluminescent mint that carries the brand's visual identity on the dark canvas"
+    },
+    "lavender-dawn": {
+      "$value": "#cdcbff",
+      "$type": "color",
+      "$description": "Lavender Dawn — Violet text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "vivid-iris": {
+      "$value": "#3a25f5",
+      "$type": "color",
+      "$description": "Vivid Iris — Outlined link borders, chromatic accent borders, selected/active link text — high-saturation violet for moments that need a sharper electric accent"
+    },
+    "pale-periwinkle": {
+      "$value": "#bdbbff",
+      "$type": "color",
+      "$description": "Pale Periwinkle — Secondary button fill, hover state for lavender actions — lighter wash of the primary violet for tonal stepping"
+    },
+    "mint-whisper": {
+      "$value": "#cdeed3",
+      "$type": "color",
+      "$description": "Mint Whisper — Navigation accents, stroke details, secondary mint highlights — a desaturated version of the headline mint for subtle interface details"
+    },
+    "olive-grove": {
+      "$value": "#5d5337",
+      "$type": "color",
+      "$description": "Olive Grove — Full-bleed earth-toned section background, warm break-band — introduces an unexpected organic warmth to the dark system"
+    },
+    "dark-olive": {
+      "$value": "#544a2e",
+      "$type": "color",
+      "$description": "Dark Olive — Borders and text within olive-toned sections, link borders on warm bands"
+    },
+    "fog-veil": {
+      "$value": "#f1f3f2",
+      "$type": "color",
+      "$description": "Fog Veil — Light surface break, navigation pill backgrounds, light-mode card surfaces — the neutral that appears when the system briefly surfaces to light"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Outlined button text, light card surfaces, inverted text on dark, image card content backgrounds"
+    },
+    "graphite": {
+      "$value": "#1d2a29",
+      "$type": "color",
+      "$description": "Graphite — Subtle dark borders, hairline dividers within dark sections"
+    },
+    "steel": {
+      "$value": "#68706f",
+      "$type": "color",
+      "$description": "Steel — Body text on light surfaces, muted helper text, secondary copy"
+    },
+    "ash-border": {
+      "$value": "#ccd5d6",
+      "$type": "color",
+      "$description": "Ash Border — Hairline borders across all surfaces, card outlines, divider lines, subtle structural edges"
+    },
+    "pewter": {
+      "$value": "#e1e3e3",
+      "$type": "color",
+      "$description": "Pewter — Secondary text on light cards, muted body copy, icon fills in neutral contexts"
+    }
+  },
+  "font": {
+    "angellistdisplay": {
+      "$value": "angellistDisplay",
+      "$type": "fontFamily",
+      "$description": "Display serif — reserved for hero headlines, section titles, and large numerical statements (e.g. $171B). Its single weight at 400 with extreme negative tracking (-0.04em to -0.05em) creates a compressed, sculptural quality. A serif at fintech scale is anti-convention; the choice signals editorial confidence over utility-app sterility. Substitute: 'GT Sectra', 'Tiempos Headline', or 'DM Serif Display'."
+    },
+    "angellist": {
+      "$value": "angellist",
+      "$type": "fontFamily",
+      "$description": "Primary sans for all UI, body, navigation, buttons, cards, and micro-copy. Weights step cleanly from 400 (body) to 600 (subheadings) to 700 (emphasis). The tall line-heights (up to 2.64 for oversized text) and tabular numerals make it a working interface face. Font features 'lnum' and 'tnum' ensure consistent digit widths in financial contexts. Substitute: 'Inter', 'GT America', or 'Söhne'."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "AngelList",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2.64
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "AngelList",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "angellistDisplay",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "angellistDisplay",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "angellistDisplay",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "angellistDisplay",
+        "fontSize": "90px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 90px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "90px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 90px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "angellistDisplay",
+        "fontSize": "112px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 112px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "angellistDisplay",
+        "fontSize": "216px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 216px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "angellist",
+        "fontSize": "216px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 216px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "abyssal-teal": {
+      "$value": "#001d21",
+      "$type": "color",
+      "$description": "Surface level 1: Base page canvas — the dark teal void that fills the viewport"
+    },
+    "deep-reef": {
+      "$value": "#002b31",
+      "$type": "color",
+      "$description": "Surface level 2: Card and button surface — subtle elevation within the dark family"
+    },
+    "fog-veil": {
+      "$value": "#f1f3f2",
+      "$type": "color",
+      "$description": "Surface level 3: Light break surface — navigation pill, occasional light-band sections"
+    },
+    "olive-grove": {
+      "$value": "#5d5337",
+      "$type": "color",
+      "$description": "Surface level 4: Earth-toned full-bleed band — warm contrast section"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.angellist.com",
+      "siteName": "AngelList",
+      "extractedAt": "2026-06-03T19:10:03.570Z",
+      "variant": "extended"
+    }
+  }
+}

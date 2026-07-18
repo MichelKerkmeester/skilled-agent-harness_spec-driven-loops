@@ -1,0 +1,1881 @@
+{
+  "source": "https://styles.refero.design/style/71db2a51-118e-42b1-879d-29872d52142f",
+  "uuid": "71db2a51-118e-42b1-879d-29872d52142f",
+  "name": "NaN",
+  "northStar": "mint greenhouse of living letters — a pastel type lab where every headline is the product itself",
+  "capturedAt": "2026-07-18T07:26:32.141Z",
+  "meta": {
+    "url": "https://www.nan.xyz",
+    "siteName": "NaN",
+    "extractedAt": "2026-06-03T21:10:00.986Z",
+    "durationMs": 42770,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 548,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all interface text in NaN Holo Mono with 0.075em tracking — the monospace + tracking combo is what reads as 'NaN UI' versus generic mono",
+      "Use #262626 for text and borders, never #000000 for UI chrome — pure black is reserved for the heaviest display specimens",
+      "Let display specimens bleed to viewport edges without a max-width clamp; the type defines the lateral scale",
+      "Use the aurora gradient button (29.4px radius) exactly once per page — the gradient is rationed because it's the only warm element",
+      "Mark every new section with a hollow circle bullet (◉) in 14px NaN Holo Mono, followed by 60-80px vertical space",
+      "Make specimen cards self-documenting: render the card's font name IN that font, not as a label",
+      "Keep all elevation to 1-2px hairline borders in #262626 — never introduce drop shadows"
+    ],
+    "donts": [
+      "Don't use #ffffff as a page surface — it kills the mint canvas identity",
+      "Don't use #000000 for body text or UI borders — it fights the pastel canvas",
+      "Don't set the Holo Mono tracking below 0.05em — the letter-spacing is what makes the mono read as deliberate UI",
+      "Don't introduce additional accent colors — the palette is mint, lime, carbon, and the aurora gradient, nothing else",
+      "Don't add drop shadows to cards or buttons — the site defines depth through borders and whitespace only",
+      "Don't use a 4px or 8px radius on cards — the 18px card radius is the signature soft-corner language",
+      "Don't wrap display specimens in centered containers; full-bleed is what makes the type feel architectural"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#b7ffb4",
+        "name": "Mint Canvas",
+        "role": "Page background, card surfaces — the signature pastel that makes dark type appear sunlit rather than printed",
+        "group": "brand"
+      },
+      {
+        "hex": "#00ff00",
+        "name": "Lime Spark",
+        "role": "Decorative typographic flourishes and SVG scribble overlays — a raw signal-green that contrasts the pastel canvas without warming it",
+        "group": "accent"
+      },
+      {
+        "hex": "#262626",
+        "name": "Carbon Ink",
+        "role": "Primary text, borders, icon strokes, button outlines — softer than pure black, sits on mint without vibrating",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Display-type fills at the largest sizes, pure-black SVG fills for the heaviest display specimens",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Fog",
+        "role": "Muted helper text, inactive borders, disabled controls — the quietest readable neutral on the mint canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#767676",
+        "name": "Smoke",
+        "role": "Input field borders in resting state — darker than fog to signal interactivity without competing with the canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Bone",
+        "role": "Light surface for elevated UI bits (button hover, inverted controls) — provides a near-white counterpoint when the canvas needs to recede",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Input field interior, pure-white text on dark inverted moments",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffa3b6",
+        "name": "Aurora Gradient",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "accent",
+        "gradient": "linear-gradient(270deg, rgb(255, 163, 182), rgb(221, 169, 255) 33%, rgb(162, 209, 255) 66%, rgb(255, 163, 182))"
+      }
+    ],
+    "layout": "Full-bleed canvas with no global max-width clamp on display type. Top nav is a single horizontal row, sticky, with the wordmark left and utility links right. The hero is a left-aligned statement paragraph occupying ~75% viewport width, with no centered hero or split-screen image. Sections stack vertically with 60-80px gaps, each opened by a small mono-uppercase label. The 'You Might Have Missed' section is a 3-column card grid. The display specimens in the font tester span the full viewport width and bleed off the right edge intentionally. Density is sparse and editorial — the mint canvas breathes between sections, and the only dense moment is the font tester control row.",
+    "imagery": "Zero photography, zero illustration beyond the lime SVG scribble overlay. The site IS imagery: each custom typeface is photographed (rendered) at 200-336px and the resulting letterforms ARE the visual content. Product screenshots are absent because the product is the typography itself. The only non-typographic graphical element is a tri-color circle icon (likely a theme/palette swatch) in the nav and a pear emoji in the font tester — small, playful, and accepted as part of the studio's informal voice. Card specimens double as their own photography: the card titled 'Rage Zipp' is photographed by being typeset in Rage Zipp.",
+    "similar": [
+      {
+        "why": "Same type-foundry-as-website model where custom display faces at 100-200px ARE the page, with a minimal mono-uppercase nav wrapping the specimens",
+        "business": "Pangram Pangram"
+      },
+      {
+        "why": "Same specimen-first architecture — large type specimens dominate the viewport, monospaced metadata labels, single-color canvas with no decorative imagery",
+        "business": "Klim Type Foundry"
+      },
+      {
+        "why": "Same bold-display-on-pastel-canvas approach and playful studio tone, with type specimens doubling as page composition",
+        "business": "OH no Type"
+      },
+      {
+        "why": "Same experimental-foundry aesthetic — mint-toned canvas, uppercase mono nav, type families presented as cards with the family name set in its own face",
+        "business": "Future Fonts"
+      },
+      {
+        "why": "Same live font-tester pattern with sliders and dropdowns controlling a real-time display specimen, and 1px hairline borders defining all UI frames",
+        "business": "Commercial Type"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "18px",
+        "small": "2px",
+        "inputs": "2px",
+        "buttons": "29.4px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#b7ffb4",
+        "name": "Mint Canvas",
+        "level": 0,
+        "purpose": "Page background and base surface for all sections"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Bone Lift",
+        "level": 1,
+        "purpose": "Rare elevated surface for inverted or hover states where mint needs to recede"
+      },
+      {
+        "hex": "#ffa3b6",
+        "name": "Aurora CTA",
+        "level": 2,
+        "purpose": "The sole gradient surface — the discover-more button"
+      }
+    ],
+    "northStar": "mint greenhouse of living letters — a pastel type lab where every headline is the product itself",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 1.2
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display-sm",
+        "size": 45,
+        "lineHeight": 1.2,
+        "letterSpacing": 3.4
+      },
+      {
+        "role": "display",
+        "size": 86,
+        "lineHeight": 1
+      },
+      {
+        "role": "display-lg",
+        "size": 216,
+        "lineHeight": 0.85
+      },
+      {
+        "role": "display-xl",
+        "size": 228,
+        "lineHeight": 0.9
+      },
+      {
+        "role": "display-mega",
+        "size": 336,
+        "lineHeight": 0.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Sticky top bar on #b7ffb4 canvas. Left: 'NaN' wordmark in NaN Holo Mono 14px uppercase. Center: nav links (FONTS, COMMISSIONS, PROJECTS, TXT, SHOP, STUDIO) in NaN Holo Mono 14px uppercase, #262626, letter-spacing 0.075em, 32px gap. Right: CART (0), ACCOUNT, then a tri-color circle icon and a small 'NaN' dot. No background fill, no shadow — sits directly on canvas. Bottom edge: no border, sections define their own top spacing."
+      },
+      {
+        "name": "Hero Statement Block",
+        "role": "Opening brand description",
+        "description": "Left-aligned paragraph in NaN Holo Mono 26px weight 400, #262626, line-height 2.25. Content fills roughly 75% of viewport width. No background, no border — the text IS the hero. A lime-green (#00ff00) SVG scribble overlays the right portion at ~40% opacity, drawing the eye past the text without blocking it."
+      },
+      {
+        "name": "Live Font Tester",
+        "role": "Interactive type specimen controller",
+        "description": "Sectioned widget with four control rows stacked vertically on a #b7ffb4 canvas. Row 1: small section label (◉ Our Latest Font Release, NaN Holo Mono 14px #262626, 0.075em tracking). Row 2: Size slider (left-aligned label 'Size 220px', then NaN Holo Mono 12px, line-track 1px #262626 with 6px #262626 thumb) + Leading slider (right-side label 'Leading', identical track style) + two select dropdowns (NaN Holo Mono 13px, 1px #262626 border, 2px radius, no fill). Row 3: keyboard-shortcut chips (rounded squares, 1px #262626 border, NaN Holo Mono 12px) + a pear emoji. Row 4: a massive display specimen in the selected family at the selected size. No drop shadows — borders and whitespace define the frame."
+      },
+      {
+        "name": "Aurora CTA Button",
+        "role": "Sole chromatic primary action",
+        "description": "Filled pill button, 29.4px radius, horizontal aurora gradient (pink #ffa3b6 → violet #dda9ff → blue #a2d1ff → pink). Label in NaN Holo Mono 14px weight 500, #262626, uppercase, 0.075em tracking. Padding 14px 20px. Sits centered below the display specimen. One per page — this gradient is rationed because it is the only warm element in a cool palette."
+      },
+      {
+        "name": "Display Headline (Specimen)",
+        "role": "Full-bleed type demonstration",
+        "description": "Massive custom typeface rendered at 216-336px, weight 400, #000000 or #262626, line-height 0.80-0.90 depending on face. Text bleeds to both edges of the viewport (no max-width clamp) so the letterforms define the page's lateral scale. No background, no border — the type floats on the mint canvas."
+      },
+      {
+        "name": "Font Specimen Card",
+        "role": "Library entry in the 'You Might Have Missed' grid",
+        "description": "Three-column grid on the mint canvas. Each card: 1px #262626 border, 18px radius, transparent fill (shows mint through). Interior padding 20px. The card's own family name is rendered IN that family at 86px, weight 400, #262626, line-height 1.0 — the card is its own specimen. Two-line stack: 'NaN' (smaller) above 'Rage Zipp' (larger). No shadow, no hover elevation — the 1px border does all the work."
+      },
+      {
+        "name": "Section Label",
+        "role": "Subsection heading",
+        "description": "Left-aligned '◉ Section Name' in NaN Holo Mono 14px weight 400, #262626, 0.075em tracking. The hollow circle (◉) is a recurring typographic bullet that marks every new section without using color or weight changes. Followed by generous vertical breathing space (60-80px) before the section content."
+      },
+      {
+        "name": "Select Dropdown",
+        "role": "Form control within the font tester",
+        "description": "Inline select element, NaN Holo Mono 13px, #262626, 1px #262626 border, 2px radius, transparent fill. No focus ring color change — interaction is communicated through a 1-2px border darkening to #000000 on hover/focus. Inline with text controls on a single row."
+      },
+      {
+        "name": "Range Slider",
+        "role": "Numeric control for size/leading",
+        "description": "Native range input styled as a 1px #262626 line track with a 6px square #262626 thumb. Label text in NaN Holo Mono 12px, #262626, sits above the track. No value tooltip — the display specimen updates in real time as the user drags, providing feedback."
+      },
+      {
+        "name": "Keyboard Hint Chip",
+        "role": "Reveals power-user shortcuts",
+        "description": "Small rounded-square button, ~20×20px, 1px #262626 border, 2px radius, NaN Holo Mono 11px #262626 label. Used to surface shortcuts (e.g. 'R', arrows, 'OT') adjacent to the font tester controls."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All interface chrome — navigation, labels, buttons, form controls, metadata, keyboard hints. Set uppercase with +0.075em tracking, the letter-spacing is the signature that makes mono read as a deliberate UI system rather than terminal output. The weight range lets it flex from thin nav links to heavy button text without leaving the family.",
+        "sizes": "12, 13, 14, 16, 20, 24, 26, 32, 45px",
+        "family": "NaN Holo Mono",
+        "weight": "300, 400, 500, 700, 800, 900",
+        "lineHeight": "1.0–3.0",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Space Mono",
+        "letterSpacing": "0.075em (≈1.2px at 16px, ≈3.4px at 45px)",
+        "fontFeatureSettings": "\"dlig\" 0, \"liga\" 0"
+      },
+      {
+        "role": "Prose body and large secondary headlines that need to sit beside display specimens without competing. The 86px weight-300 size is a typographic statement — a humanist counterweight to the blocky display faces above it.",
+        "sizes": "12, 16, 45, 86px",
+        "family": "NaN Holo",
+        "weight": "300, 400, 700",
+        "lineHeight": "1.2–1.5",
+        "substitute": "Inter, Söhne, Untitled Sans",
+        "fontFeatureSettings": "\"dlig\" 0, \"liga\" 0"
+      },
+      {
+        "role": "Hero display headline — the signature specimen face, shown at its native 228px with tight 0.90 leading so the letterforms stack into a near-monolithic mass. This is the typeface the homepage exists to sell.",
+        "sizes": "228px",
+        "family": "NaN Archy On ExtraBlack",
+        "weight": "400",
+        "lineHeight": "0.90",
+        "substitute": "Druk, Compacta, Inter Black Compressed",
+        "fontFeatureSettings": "\"dlig\", \"frac\" 0, \"onum\" 0, \"ss01\" 0, \"ss02\" 0, \"ss03\" 0, \"ss05\" 0, \"tnum\" 0"
+      },
+      {
+        "role": "Secondary display face — ultra-tight 0.85 leading creates a dense typographic slab, the contrast to Archy's rounded forms. Used in alternate hero rotations.",
+        "sizes": "216px",
+        "family": "NaN SuperX Sans Display Black",
+        "weight": "400",
+        "lineHeight": "0.85",
+        "substitute": "Druk Wide, Inter Black, Söhne Breit",
+        "fontFeatureSettings": "\"dlig\", \"frac\" 0, \"onum\" 0, \"ss01\" 0, \"ss02\" 0, \"ss03\" 0, \"tnum\" 0"
+      },
+      {
+        "role": "Editorial italic display — the serif counterpoint that proves the practice spans humanist letterforms, not just geometric sans. Thin weight at 216px is a tension device: fragile strokes at monumental size.",
+        "sizes": "216px",
+        "family": "NaN SuperX Serif Text Thin Italic",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Tiempos Headline, Domaine Display, Canela",
+        "fontFeatureSettings": "\"dlig\" 0, \"frac\" 0, \"onum\" 0, \"ss01\" 0, \"ss02\" 0, \"ss03\" 0, \"ss05\" 0, \"tnum\" 0"
+      },
+      {
+        "role": "Ultra-condensed display at 336px — the widest single-character scale on the site, used sparingly as a one-word exclamation.",
+        "sizes": "336px",
+        "family": "NaN Holo Gigawide Ultra1",
+        "weight": "400",
+        "lineHeight": "0.80",
+        "substitute": "Druk Condensed Super, Compacta Black",
+        "fontFeatureSettings": "\"ss01\" 0, \"ss02\" 0, \"ss03\" 0, \"ss04\" 0, \"ss05\" 0, \"ss06\" 0, \"ss07\" 0, \"ss08\" 0, \"ss09\" 0, \"ss10\" 0"
+      },
+      {
+        "role": "Card specimen headlines in the 'You Might Have Missed' grid — each card shows the family name rendered in that exact family at 86px, making the grid self-documenting.",
+        "sizes": "86px",
+        "family": "NaN Rage family (Zipp, Soft, Beau, Sans Narrow)",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Recoleta, Pangram Sans, GT America"
+      },
+      {
+        "role": "NaNRageZippNarrowThin — detected in extracted data but not described by AI",
+        "sizes": "86px",
+        "family": "NaNRageZippNarrowThin",
+        "weight": "400",
+        "lineHeight": "1"
+      },
+      {
+        "role": "NaNRageSoftXCondensedRegular — detected in extracted data but not described by AI",
+        "sizes": "86px",
+        "family": "NaNRageSoftXCondensedRegular",
+        "weight": "400",
+        "lineHeight": "1"
+      },
+      {
+        "role": "NaNRageBeauStandardSemibold — detected in extracted data but not described by AI",
+        "sizes": "86px",
+        "family": "NaNRageBeauStandardSemibold",
+        "weight": "400",
+        "lineHeight": "1"
+      },
+      {
+        "role": "NaNRageSansNarrowMedium — detected in extracted data but not described by AI",
+        "sizes": "86px",
+        "family": "NaNRageSansNarrowMedium",
+        "weight": "400",
+        "lineHeight": "1"
+      },
+      {
+        "role": "NaNSerfATextLightItalic — detected in extracted data but not described by AI",
+        "sizes": "86px",
+        "family": "NaNSerfATextLightItalic",
+        "weight": "400",
+        "lineHeight": "1"
+      },
+      {
+        "role": "NaNSerfSansLightItalic — detected in extracted data but not described by AI",
+        "sizes": "86px",
+        "family": "NaNSerfSansLightItalic",
+        "weight": "400",
+        "lineHeight": "1"
+      }
+    ],
+    "description": "NaN runs its website like a working specimen sheet: the mint-green canvas is the page, and the page is the product. Massive custom display faces (200-336px) are the visual architecture; a monospaced sans (NaN Holo Mono) set in uppercase with 0.075em tracking is the chrome that holds everything together. The palette is ruthlessly tight — one pastel canvas, near-black text (#262626, never pure black), one bright lime accent (#00ff00) for raw typographic flourishes, and a single pink-purple-blue gradient for the lone chromatic CTA. Borders do the work that shadows usually do: 1-2px hairlines define cards, inputs, and the type tester frame with no elevation. The interaction model is a live font tester — sliders for size and leading, dropdowns for family and weight — letting visitors steer the display in real time, which makes the site function as both storefront and demo.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/71db2a51-118e-42b1-879d-29872d52142f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"NaN design system\",\"item\":\"https://styles.refero.design/style/71db2a51-118e-42b1-879d-29872d52142f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/71db2a51-118e-42b1-879d-29872d52142f#style-reference\",\"name\":\"NaN design system reference\",\"headline\":\"NaN design system | Refero Styles\",\"description\":\"Explore NaN's light Design design system: Mint Canvas #b7ffb4, Lime Spark #00ff00 colors, NaN Holo Mono, NaN Holo typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/71db2a51-118e-42b1-879d-29872d52142f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/71db2a51-118e-42b1-879d-29872d52142f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"NaN\",\"url\":\"https://www.nan.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/71db2a51-118e-42b1-879d-29872d52142f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ca8ae458-4520-4a58-a899-368da7bdb53e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ca8ae458-4520-4a58-a899-368da7bdb53e.jpg\",\"caption\":\"Screenshot of NaN\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ca8ae458-4520-4a58-a899-368da7bdb53e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"NaN design system\",\"NaN website design\",\"NaN colors\",\"NaN typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Mint Canvas\",\"Lime Spark\",\"Carbon Ink\",\"Obsidian\",\"NaN Holo Mono\",\"NaN Holo\",\"NaN Archy On ExtraBlack\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"NaN design system\"},{\"@type\":\"Thing\",\"name\":\"NaN website design\"},{\"@type\":\"Thing\",\"name\":\"NaN colors\"},{\"@type\":\"Thing\",\"name\":\"NaN typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:58:47.536Z\",\"dateModified\":\"2026-04-30T02:58:47.536Z\"}]}19:T51e,**Quick Color Reference**\n- Page background: #b7ffb4 (Mint Canvas)\n- Primary text & borders: #262626 (Carbon Ink)\n- Muted text & disabled borders: #999999 (Fog)\n- Decorative accent: #00ff00 (Lime Spark)\n- Inverted / elevated surface: #efefef (Bone)\n- primary action: #b7ffb4 (filled action)\n\n**Example Component Prompts**\n1. *Hero statement*: full-width #b7ffb4 background, left-aligned paragraph in NaN Holo Mono 26px weight 400, #262626, line-height 2.25, letter-spacing 0.075em, occupying ~75% viewport width. Overlay a lime (#00ff00) SVG scribble at the right edge.\n2. *Display specimen*: full-bleed headline in NaN Archy On ExtraBlack 228px, weight 400, #000000, line-height 0.90, bleeding past the right viewport edge. No background, no border, no max-width.\n3. Create a Primary Action Button: #b7ffb4 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n4. *Font specimen card*: 1px #262626 border, 18px radius, transparent fill (shows #b7ffb4 through), 20px padding. The card's own title rendered in its native family at 86px weight 400 #262626 line-height 1.0. Three-column grid.\n5. *Section label*: left-aligned '◉ Section Name' in NaN Holo Mono 14px weight 400, #262626, 0.075em tracking, followed by 80px vertical space before content begins."
+      },
+      {
+        "title": "Type Tester Interaction Model",
+        "content": "The font tester is a signature component: visitors drag Size (80-336px) and Leading (0.8-1.2) sliders and select a family + weight from dropdowns, and a live display specimen updates in real time. The interaction makes the site function as both a storefront and a working demo. When recreating, render the four control elements (size slider, leading slider, family dropdown, weight dropdown) on a single row above the specimen, with section labels in NaN Holo Mono 12px, all borders at 1px #262626, 2px radius, transparent fill. The specimen below should use the same color and padding rhythm as the hero display block. No toggle buttons, no modal — the tester is always visible and always live."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#262626",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.26861827698438745
+          },
+          "contexts": [
+            "other",
+            "button",
+            "list",
+            "link",
+            "body",
+            "heading",
+            "image",
+            "icon",
+            "footer"
+          ],
+          "frequency": 1913,
+          "confidence": 1,
+          "prominence": 192050603.48885164,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 52,
+            "icon/color": 1,
+            "link/color": 46,
+            "list/color": 10,
+            "image/color": 4,
+            "other/color": 222,
+            "button/color": 14,
+            "heading/color": 22,
+            "body/borderColor": 208,
+            "icon/borderColor": 4,
+            "link/borderColor": 184,
+            "list/borderColor": 40,
+            "image/borderColor": 16,
+            "other/borderColor": 888,
+            "button/borderColor": 84,
+            "heading/borderColor": 88,
+            "other/backgroundColor": 24,
+            "button/backgroundColor": 5,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b7ffb4",
+          "oklch": {
+            "c": 0.12293140474024707,
+            "h": 143.5659986187896,
+            "l": 0.9340236838719885
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "footer",
+            "list",
+            "link",
+            "image"
+          ],
+          "frequency": 716,
+          "confidence": 1,
+          "prominence": 167097464.92834014,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "link/color": 58,
+            "list/color": 62,
+            "image/color": 1,
+            "other/color": 12,
+            "button/color": 4,
+            "footer/color": 1,
+            "body/borderColor": 20,
+            "link/borderColor": 232,
+            "list/borderColor": 248,
+            "image/borderColor": 4,
+            "other/borderColor": 48,
+            "footer/borderColor": 4,
+            "other/backgroundColor": 8,
+            "button/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "other",
+            "input"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 1960400.2510016384,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 11,
+            "input/color": 2,
+            "other/color": 1,
+            "button/color": 4,
+            "input/borderColor": 4,
+            "other/borderColor": 4,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 805726,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "input/backgroundColor": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 572661.5609470493,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "other/borderColor": 16
+          }
+        },
+        {
+          "hex": "#00ff00",
+          "oklch": {
+            "c": 0.29482722454269544,
+            "h": 142.4953450414438,
+            "l": 0.8664396175234368
+          },
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 44,
+          "confidence": 1,
+          "prominence": 456005.03814754187,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/color": 6,
+            "other/stroke": 10,
+            "other/borderColor": 24,
+            "body/backgroundColor": 3,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#efefef",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9521308451894797
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 12783,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#767676",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5658363307995767
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 8658.469865834973,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 4
+          }
+        },
+        {
+          "hex": "#0000ff",
+          "oklch": {
+            "c": 0.31321438863448475,
+            "h": 264.05202261636987,
+            "l": 0.45201371817442365
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 100,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.10021813349543941,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#efefef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.98,
+          "background": "#b7ffb4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.3,
+          "background": "#00ff00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#ffffff",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.16,
+          "background": "#efefef",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.95,
+          "background": "#b7ffb4",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.03,
+          "background": "#00ff00",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.59,
+          "background": "#ffffff",
+          "foreground": "#0000ff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.47,
+          "background": "#efefef",
+          "foreground": "#0000ff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.36,
+          "background": "#0000ff",
+          "foreground": "#b7ffb4"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.26,
+          "background": "#0000ff",
+          "foreground": "#00ff00"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.31,
+          "background": "#262626",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.02,
+          "background": "#0000ff",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.85,
+          "background": "#ffffff",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.48,
+          "background": "#efefef",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.44,
+          "background": "#0000ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.44,
+          "background": "#b7ffb4",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.08,
+          "background": "#00ff00",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.76,
+          "background": "#0000ff",
+          "foreground": "#262626"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 35
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 29.4,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "input"
+          ],
+          "frequency": 48,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|other",
+            "paddingBottom|button",
+            "paddingTop|button",
+            "paddingBottom|other",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "button",
+            "input"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "link",
+            "heading",
+            "body"
+          ],
+          "frequency": 35,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginBottom|heading",
+            "paddingTop|link",
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 111,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button",
+            "marginRight|button",
+            "marginBottom|button",
+            "marginLeft|button",
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "body",
+            "other",
+            "button"
+          ],
+          "frequency": 35,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|body",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "list",
+            "other",
+            "button"
+          ],
+          "frequency": 41,
+          "properties": [
+            "marginRight",
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "heading",
+            "other",
+            "image"
+          ],
+          "frequency": 74,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|image",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|other",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 27,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "link",
+            "heading"
+          ],
+          "frequency": 40,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|link",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginTop|heading",
+            "marginBottom|heading",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "list",
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginRight|list",
+            "marginRight|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "link",
+            "body",
+            "input"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|body",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 49,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button",
+            "marginRight|button",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingLeft",
+            "marginBottom",
+            "paddingRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "marginBottom|body",
+            "paddingRight|body",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "body",
+            "other",
+            "button"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginRight|other",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 121,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 171,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 218,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|list"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(270deg, rgb(255, 163, 182), rgb(221, 169, 255) 33%, rgb(162, 209, 255) 66%, rgb(255, 163, 182))",
+        "colors": [
+          "rgb(255, 163, 182)",
+          "rgb(221, 169, 255)",
+          "rgb(162, 209, 255)",
+          "rgb(255, 163, 182)"
+        ],
+        "frequency": 7
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "NaN Holo Mono",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            700,
+            800,
+            900
+          ],
+          "frequency": 289,
+          "fontFeatureSettings": [
+            "\"dlig\" 0, \"liga\" 0"
+          ]
+        },
+        {
+          "family": "NaN Holo",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            700
+          ],
+          "frequency": 212,
+          "fontFeatureSettings": [
+            "\"dlig\" 0, \"liga\" 0"
+          ]
+        },
+        {
+          "family": "NaNArchyONExtraBlack_PREVIEW",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": [
+            "\"dlig\", \"frac\" 0, \"onum\" 0, \"ss01\" 0, \"ss02\" 0, \"ss03\" 0, \"ss05\" 0, \"tnum\" 0"
+          ]
+        },
+        {
+          "family": "NaNSuperXSerifTextThinItalicPREVIEW",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": [
+            "\"dlig\" 0, \"frac\" 0, \"onum\" 0, \"ss01\" 0, \"ss02\" 0, \"ss03\" 0, \"ss05\" 0, \"tnum\" 0"
+          ]
+        },
+        {
+          "family": "NaNSuperXSansDisplayBlackPREVIEW",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": [
+            "\"dlig\", \"frac\" 0, \"onum\" 0, \"ss01\" 0, \"ss02\" 0, \"ss03\" 0, \"tnum\" 0"
+          ]
+        },
+        {
+          "family": "NaNHoloGigawideUltra1",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": [
+            "\"ss01\" 0, \"ss02\" 0, \"ss03\" 0, \"ss04\" 0, \"ss05\" 0, \"ss06\" 0, \"ss07\" 0, \"ss08\" 0, \"ss09\" 0, \"ss10\" 0"
+          ]
+        },
+        {
+          "family": "NaNRageZippNarrowThin",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "NaNRageSoftXCondensedRegular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "NaNRageBeauStandardSemibold",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "NaNRageSansNarrowMedium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "NaNSerfATextLightItalic",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "NaNSerfSansLightItalic",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.77
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "NaN Holo Mono",
+          "weight": 500,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.075,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "NaN Holo Mono",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 4,
+          "letterSpacing": 0.075,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "NaN Holo Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "NaN Holo Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 11,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "NaN Holo",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "NaN Holo Mono",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "input"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "NaN Holo Mono",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "NaN Holo Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "other",
+            "icon",
+            "footer",
+            "list",
+            "image"
+          ],
+          "frequency": 146,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "NaN Holo Mono",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "NaN Holo Mono",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "NaN Holo Mono",
+          "weight": 800,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 2.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "NaN Holo Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "NaN Holo",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image"
+          ],
+          "frequency": 174,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "NaN Holo Mono",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "NaN Holo",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "NaN Holo Mono",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "NaN Holo Mono",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "NaN Holo Mono",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "NaN Holo Mono",
+          "weight": 900,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "NaN Holo Mono",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "NaN Holo Mono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "NaN Holo Mono",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "NaN Holo",
+          "weight": 300,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "NaN Holo",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "NaNRageZippNarrowThin",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "NaNRageSoftXCondensedRegular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "NaNRageBeauStandardSemibold",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "NaNRageSansNarrowMedium",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "NaNSerfATextLightItalic",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "NaNSerfSansLightItalic",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 216,
+          "family": "NaNSuperXSerifTextThinItalicPREVIEW",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 216,
+          "family": "NaNSuperXSansDisplayBlackPREVIEW",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 228,
+          "family": "NaNArchyONExtraBlack_PREVIEW",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 336,
+          "family": "NaNHoloGigawideUltra1",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/9d9f0185-3fb0-4c4a-82b1-443408a32f71.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ca8ae458-4520-4a58-a899-368da7bdb53e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/71db2a51-118e-42b1-879d-29872d52142f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"NaN design system\",\"item\":\"https://styles.refero.design/style/71db2a51-118e-42b1-879d-29872d52142f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/71db2a51-118e-42b1-879d-29872d52142f#style-reference\",\"name\":\"NaN design system reference\",\"headline\":\"NaN design system | Refero Styles\",\"description\":\"Explore NaN's light Design design system: Mint Canvas #b7ffb4, Lime Spark #00ff00 colors, NaN Holo Mono, NaN Holo typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/71db2a51-118e-42b1-879d-29872d52142f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/71db2a51-118e-42b1-879d-29872d52142f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"NaN\",\"url\":\"https://www.nan.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/71db2a51-118e-42b1-879d-29872d52142f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ca8ae458-4520-4a58-a899-368da7bdb53e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ca8ae458-4520-4a58-a899-368da7bdb53e.jpg\",\"caption\":\"Screenshot of NaN\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ca8ae458-4520-4a58-a899-368da7bdb53e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"NaN design system\",\"NaN website design\",\"NaN colors\",\"NaN typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Mint Canvas\",\"Lime Spark\",\"Carbon Ink\",\"Obsidian\",\"NaN Holo Mono\",\"NaN Holo\",\"NaN Archy On ExtraBlack\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"NaN design system\"},{\"@type\":\"Thing\",\"name\":\"NaN website design\"},{\"@type\":\"Thing\",\"name\":\"NaN colors\"},{\"@type\":\"Thing\",\"name\":\"NaN typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:58:47.536Z\",\"dateModified\":\"2026-04-30T02:58:47.536Z\"}]}19:T51e,**Quick Color Reference**\n- Page background: #b7ffb4 (Mint Canvas)\n- Primary text & borders: #262626 (Carbon Ink)\n- Muted text & disabled borders: #999999 (Fog)\n- Decorative accent: #00ff00 (Lime Spark)\n- Inverted / elevated surface: #efefef (Bone)\n- primary action: #b7ffb4 (filled action)\n\n**Example Component Prompts**\n1. *Hero statement*: full-width #b7ffb4 background, left-aligned paragraph in NaN Holo Mono 26px weight 400, #262626, line-height 2.25, letter-spacing 0.075em, occupying ~75% viewport width. Overlay a lime (#00ff00) SVG scribble at the right edge.\n2. *Display specimen*: full-bleed headline in NaN Archy On ExtraBlack 228px, weight 400, #000000, line-height 0.90, bleeding past the right viewport edge. No background, no border, no max-width.\n3. Create a Primary Action Button: #b7ffb4 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n4. *Font specimen card*: 1px #262626 border, 18px radius, transparent fill (shows #b7ffb4 through), 20px padding. The card's own title rendered in its native family at 86px weight 400 #262626 line-height 1.0. Three-column grid.\n5. *Section label*: left-aligned '◉ Section Name' in NaN Holo Mono 14px weight 400, #262626, 0.075em tracking, followed by 80px vertical space before content begins."
+}

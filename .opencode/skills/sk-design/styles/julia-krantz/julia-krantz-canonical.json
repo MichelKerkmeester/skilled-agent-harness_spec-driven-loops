@@ -1,0 +1,705 @@
+{
+  "source": "https://styles.refero.design/style/92857b05-1c01-4c7a-b196-beb4e4871998",
+  "uuid": "92857b05-1c01-4c7a-b196-beb4e4871998",
+  "name": "Julia Krantz",
+  "northStar": "Darkroom contact sheet — a grid of photographic tiles on pure black, identity spelled in barely-visible weight-300 letterforms.",
+  "capturedAt": "2026-07-18T07:19:54.014Z",
+  "meta": {
+    "url": "https://juliakrantz.com",
+    "siteName": "Julia Krantz",
+    "extractedAt": "2026-04-28T21:33:21.869Z",
+    "durationMs": 112551,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 229,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 1
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #000000 for all backgrounds — the CSS token --bg: #000 is absolute; never substitute dark gray or near-black",
+      "Set all ClashDisplay display headings (44px tile codes) at weight 300 with letter-spacing -0.04em — the ultra-light setting against photography is the signature move",
+      "Apply 1px solid rgba(248,248,248,0.12) for every structural border: tile separators, section dividers, column rules",
+      "Keep all interactive hover states to color/filter transitions only — color: rgba(248,248,248,0.45) for links, filter: brightness(0.82) for image tiles, 0.2s ease",
+      "Use 0px border-radius on every element — tiles, any containers, any interactive elements. The sharp-corner rule is absolute",
+      "Maintain DM Sans weight 300 for all body, nav, and label text — no bold text anywhere in the UI layer",
+      "Express secondary hierarchy through #707070 (section labels, numbers, category tags) — never through size increases or weight changes"
+    ],
+    "donts": [
+      "Never add any color to the UI chrome — buttons, links, labels, borders must remain in the #f8f8f8 / #707070 / rgba opacity system only",
+      "Never round corners — no border-radius on tiles, containers, or any interactive element; 0px is non-negotiable",
+      "Never use font weight above 500 — ClashDisplay 500 is the ceiling and used only for the name logotype; DM Sans stays at 300",
+      "Never add box-shadows or elevation — the design has zero shadow tokens; depth comes from contrast with the black canvas only",
+      "Never add hover backgrounds or button fills — interactive states change text opacity or image brightness only, never add a background color",
+      "Never introduce gradients, overlays, or tinted backgrounds — the CSS tokens confirm no gradient system exists; #000 is the only background",
+      "Never separate the category label from its tile project code with more than 4px margin — the tight stacking (4px marginBottom between elements) is the spatial rhythm"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Page canvas, all section backgrounds — the true floor of the UI; every element floats above absolute black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8f8f8",
+        "name": "Salt",
+        "role": "All text, links, nav labels, borders, icons — the single foreground tone serving every text and UI edge function against black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#707070",
+        "name": "Ash",
+        "role": "Secondary labels, muted nav text, subdued body copy — mid-tone for visual hierarchy without introducing any hue",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8f8f8",
+        "name": "Ghost Line",
+        "role": "Grid tile borders, dividers — rgba(248,248,248,0.12) at 12% opacity; nearly invisible structural seams",
+        "group": "neutral",
+        "gradient": "rgba(248,248,248,0.12)"
+      },
+      {
+        "hex": "#f8f8f8",
+        "name": "Veil",
+        "role": "Overlay labels, secondary text on image tiles — rgba(248,248,248,0.45) at 45% opacity for text sitting over photography",
+        "group": "neutral",
+        "gradient": "rgba(248,248,248,0.45)"
+      }
+    ],
+    "layout": "Full-bleed, no max-width container. Header bar spans full width: name logotype pinned left, email and nav pinned right, both at 16px horizontal padding. Bio section below header uses a multi-column horizontal layout — approximately 4-5 text columns (About, Press, Speaking, Podcasts, Links) filling full width with 20-32px column gaps. Grid section below bio: 10-column mosaic of variable-width tiles in rows, each tile filled with photography. Tiles vary in width — some span one column, some two — creating a journalistic contact-sheet rhythm. No gutters visible between tiles except the 1px Ghost Line border. Navigation is a minimal top-right inline set of 3 links. No sidebar, no sticky header. The entire page scrolls vertically with no section anchoring or visual dividers beyond the Ghost Line horizontal rule.",
+    "imagery": "Photography-dominant — every project grid tile is a full-bleed photographic crop: fashion portraiture, macro textile/material studies, AI-generated imagery, event photography. Photographs are raw-edged, sharp-cornered, zero border-radius. Images are not contained or padded — they fill their tile completely, edge to edge. No lifestyle staging context visible; images are treated as abstract color fields at tile scale, only readable as subjects when enlarged. Color in the UI exists exclusively within these photographs — from vivid AI-generated chromatics to desaturated fashion editorial. The photographic density IS the design: at the grid scale, the tiles form a chromatic mosaic against black. Icons: minimal use of directional glyphs ('↗', '→') inline with text, no standalone icon components. No illustrations, no 3D renders in the UI chrome.",
+    "similar": [
+      {
+        "why": "Same black-canvas grid-of-photographs approach where photography provides all color and UI chrome is pure white typography on black",
+        "business": "Hiepler & Brunier (photographer portfolio)"
+      },
+      {
+        "why": "Identical ultra-light weight-300 display typography as identity mark, with text-only brand and no decorative UI elements",
+        "business": "Bureau Borsche"
+      },
+      {
+        "why": "Same mosaic grid of full-bleed images with zero-radius tiles and typographic labels floating over photography",
+        "business": "Cargo Collective (minimal dark template)"
+      },
+      {
+        "why": "Shared achromatic UI-layer philosophy where brand color is entirely absent from chrome and delegated to content imagery",
+        "business": "Koto Studio portfolio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "tiles": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "6px",
+      "sectionGap": "30px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void Canvas",
+        "level": 1,
+        "purpose": "Base page background, section backgrounds, nav bar"
+      },
+      {
+        "hex": "#111111",
+        "name": "Image Tile",
+        "level": 2,
+        "purpose": "Grid project tiles — filled with photography, bordered by Ghost Line 1px"
+      }
+    ],
+    "northStar": "Darkroom contact sheet — a grid of photographic tiles on pure black, identity spelled in barely-visible weight-300 letterforms.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.6
+      },
+      {
+        "role": "heading",
+        "size": 29,
+        "lineHeight": 1,
+        "letterSpacing": -1.16
+      },
+      {
+        "role": "display",
+        "size": 44,
+        "lineHeight": 1,
+        "letterSpacing": -1.76
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Project Grid Tiles",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "About Bio Block",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Header Identity + Email CTA",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Project Grid Tile",
+        "role": "Primary portfolio navigation — each tile is a cropped photograph with abbreviated project code overlaid",
+        "description": "Full-bleed photograph filling the tile. No border-radius (0px). Border: 1px solid rgba(248,248,248,0.12). Project code (e.g. 'Cd', 'Ga') in ClashDisplay 44px weight 300, #f8f8f8, letter-spacing -0.04em, positioned top-left with 16px padding. Sequential number ('01', '02') in DM Sans 10px weight 300, #707070, top-left above the code. Practice/category label in DM Sans 10px weight 300, tracking 0.14em, #707070 below project name. Hover: filter: brightness(0.82) transition 0.4s ease."
+      },
+      {
+        "name": "Name Logotype",
+        "role": "Primary identity mark in the top-left header",
+        "description": "ClashDisplay weight 500, approximately 29px, #f8f8f8, letter-spacing -0.04em. Sits against #000000 background with 16px left padding. No decoration, no logo mark — text is the entire brand."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Top-right global nav: Magic Fabric ↗, Bio, Contact",
+        "description": "DM Sans 12px weight 300, #f8f8f8, letter-spacing 0.06em. External links include '↗' glyph appended directly. No underline by default. Color transitions to rgba(248,248,248,0.45) on hover over 0.2s ease. No background, no border, no padding block."
+      },
+      {
+        "name": "About Bio Block",
+        "role": "Multi-column text section with label headers",
+        "description": "Background #000000. Column header label (e.g. 'ABOUT', 'PRESS') in DM Sans 10px weight 300, #707070, letter-spacing 0.07em, uppercase. Body text in DM Sans 13px weight 300, #f8f8f8, line-height 1.72. Paragraph margin-bottom 3px. Column gap 20-32px. Top border: 1px solid rgba(248,248,248,0.12) separating from header."
+      },
+      {
+        "name": "Press List Item",
+        "role": "Numbered external press links within the bio section",
+        "description": "DM Sans 12px weight 300, #f8f8f8. Number prefix in #707070. '↗' arrow glyph after publication name. Spacing: margin-bottom 3-4px per item. On hover: color transitions from #f8f8f8 to rgba(248,248,248,0.45) over 0.2s ease."
+      },
+      {
+        "name": "Email CTA Link",
+        "role": "Contact email in the top-right of the header, the site's only direct CTA",
+        "description": "DM Sans 12px weight 300, #f8f8f8. Followed by ' →' directional arrow. Letter-spacing 0.06em. Small dot indicator (8px circle, #f8f8f8) sits adjacent — likely an availability indicator. No button chrome — plain text link on black."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Horizontal rule separating header from bio section and bio section from grid",
+        "description": "1px solid rgba(248,248,248,0.12). Full-width of container. No margin offset — content begins immediately below."
+      },
+      {
+        "name": "Category Label",
+        "role": "Small uppercase tag beneath project initials on tiles",
+        "description": "DM Sans 10px weight 300, #707070, letter-spacing 0.14em. Values: 'PRACTICE', 'ARCHIVE', 'BLOG'. All-caps text transform. No background, no border — pure typographic label."
+      },
+      {
+        "name": "Archive Year Badge",
+        "role": "Year label on archive tiles (e.g. '· 2009', '· 2011')",
+        "description": "DM Sans 10px weight 300, rgba(248,248,248,0.45). Preceded by middot separator. Inline after project title on tile."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All body copy, navigation labels, press list items, links, captions. Weight 300 across every size — the site refuses to bold anything in this family, keeping the text layer visually quiet against photography.",
+        "sizes": "10px, 12px, 13px, 14px",
+        "family": "DM Sans",
+        "weight": "300",
+        "lineHeight": "1.30 – 1.72",
+        "substitute": "DM Sans (Google Fonts — same family)",
+        "letterSpacing": "0.06em at small sizes (10-12px), 0.07em at 13-14px — wide tracking compensates for the light weight at small sizes",
+        "fontFeatureSettings": ""
+      },
+      {
+        "role": "Project initials on tiles (44px weight 300, tracking -0.04em), section codes and labels (12-14px weight 300, tracking +0.05em to +0.14em), name logotype. The 44px weight-300 display setting — a nearly invisible letterform over a photograph — is the signature visual move of the portfolio.",
+        "sizes": "10px, 12px, 14px, 29px, 44px",
+        "family": "ClashDisplay",
+        "weight": "300, 500",
+        "lineHeight": "1.00 at display / 1.72 at text sizes",
+        "substitute": "Cabinet Grotesk (Fontshare) or Space Grotesk (Google Fonts)",
+        "letterSpacing": "-0.04em at 44px display; +0.04em to +0.14em at 10-14px label sizes"
+      }
+    ],
+    "description": "Julia Krantz's portfolio operates like a darkroom contact sheet — dense grid of image tiles on near-black, with stark white typography hovering over photography. The canvas is #000000, surfaces are pure darkness, and the only warmth comes from the photographic content inside each tile. Typographic restraint is extreme: ClashDisplay at weight 300 for large display initials (the abbreviated project codes 'Se', 'Fd', 'Ga') creates a barely-there identity mark, while DM Sans at weight 300 handles all body and navigation at 10-14px with wide tracking. The grid is the interface — a mosaic of image tiles with 1px solid rgba(248,248,248,0.12) borders separating them, no rounded corners anywhere, no shadows, no gradients. Color is entirely absent from the UI layer; all chromatic interest is delegated to the photography.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      },
+      {
+        "title": "Motion System",
+        "content": "Two-tier transition system: fast micro-interactions at 0.2s ease for color state changes on hover (links, labels), slower content transitions at 0.4s ease for image filter changes (tile brightness). The single custom easing cubic-bezier(0.22, 0.61, 0.36, 1) is reserved for transforms — a deceleration curve suggesting controlled arrival. No entry animations, no scroll-triggered effects visible. The motion philosophy is minimal: only hover feedback, nothing decorative."
+      },
+      {
+        "title": "Grid Architecture",
+        "content": "The project grid is a mosaic with no fixed column count — tiles appear to vary in width (single-column vs double-column span) creating a contact-sheet irregularity. All tiles are flush to each other with 0px gap; the only visual separator is the 1px Ghost Line border. Tile height appears uniform within rows. Sequential numbering (01-13 visible) runs left-to-right, top-to-bottom. The grid is full-bleed with 0px page margins — tiles extend to browser edge. This flat, card-free, shadow-free grid is the dominant layout paradigm of the entire site."
+      }
+    ],
+    "elevationPhilosophy": "Zero shadows across the entire system. Depth is created purely by the contrast between the black canvas and photographic tile content. No box-shadow values appear anywhere; the 1px rgba(248,248,248,0.12) border is the only surface separator. Hover states use filter: brightness(0.82) — darkening the image rather than lifting the element."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f8f8f8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9791293560100793
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "heading",
+            "body",
+            "image",
+            "footer"
+          ],
+          "frequency": 733,
+          "confidence": 1,
+          "prominence": 11484136.948888697,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#707070",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5437844041295207
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "body"
+          ],
+          "frequency": 310,
+          "confidence": 1,
+          "prominence": 140773.10309222026,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AA",
+          "ratio": 4.66,
+          "background": "#f8f8f8",
+          "foreground": "#707070"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 26,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 120,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "DM Sans",
+          "source": "google",
+          "weights": [
+            300
+          ],
+          "frequency": 171,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ClashDisplay",
+          "source": "custom",
+          "weights": [
+            300,
+            500
+          ],
+          "frequency": 58,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "ClashDisplay",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.72,
+          "letterSpacing": 0.14,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "ClashDisplay",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.72,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "ClashDisplay",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "DM Sans",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.72,
+          "letterSpacing": 0.07,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "DM Sans",
+          "weight": 300,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.72,
+          "letterSpacing": 0.07,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "DM Sans",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.72,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "DM Sans",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.72,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "ClashDisplay",
+          "weight": 300,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.72,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "DM Sans",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "DM Sans",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "image",
+            "footer"
+          ],
+          "frequency": 92,
+          "lineHeight": 1.72,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ClashDisplay",
+          "weight": 300,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.72,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "DM Sans",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.65,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "ClashDisplay",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "ClashDisplay",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/27a5f16b-ef99-45b3-8cb1-2328694e40c5.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/41705c16-89ca-4e30-90f8-f8c716bb7864.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/92857b05-1c01-4c7a-b196-beb4e4871998#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Julia Krantz design system\",\"item\":\"https://styles.refero.design/style/92857b05-1c01-4c7a-b196-beb4e4871998\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/92857b05-1c01-4c7a-b196-beb4e4871998#style-reference\",\"name\":\"Julia Krantz design system reference\",\"headline\":\"Julia Krantz design system | Refero Styles\",\"description\":\"Explore Julia Krantz's dark Agency design system: Void #000000, Salt #f8f8f8 colors, DM Sans, ClashDisplay typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/92857b05-1c01-4c7a-b196-beb4e4871998\",\"mainEntityOfPage\":\"https://styles.refero.design/style/92857b05-1c01-4c7a-b196-beb4e4871998\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Julia Krantz\",\"url\":\"https://juliakrantz.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/92857b05-1c01-4c7a-b196-beb4e4871998#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/41705c16-89ca-4e30-90f8-f8c716bb7864.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/41705c16-89ca-4e30-90f8-f8c716bb7864.jpg\",\"caption\":\"Screenshot of Julia Krantz\"},\"image\":\"https://images.refero.design/styles/refero.design/image/41705c16-89ca-4e30-90f8-f8c716bb7864.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Julia Krantz design system\",\"Julia Krantz website design\",\"Julia Krantz colors\",\"Julia Krantz typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void\",\"Salt\",\"Ash\",\"Ghost Line\",\"DM Sans\",\"ClashDisplay\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Julia Krantz design system\"},{\"@type\":\"Thing\",\"name\":\"Julia Krantz website design\"},{\"@type\":\"Thing\",\"name\":\"Julia Krantz colors\"},{\"@type\":\"Thing\",\"name\":\"Julia Krantz typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-28T21:33:22.049Z\",\"dateModified\":\"2026-04-28T21:33:22.049Z\"}]}19:T199d,<style>\n  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300&family=Space+Grotesk:wght@300;500&display=swap');\n\n  :root {\n    --color-void: #000000;\n    --color-salt: #f8f8f8;\n    --color-ash: #707070;\n    --color-ghost-line: rgba(248,248,248,0.12);\n    --color-veil: rgba(248,248,248,0.45);\n    --font-dm-sans: 'DM Sans', sans-serif;\n    --font-clashdisplay: 'Space Grotesk', sans-serif;\n  }\n\n  .grid-wrap {\n    background: var(--color-void);\n    display: grid;\n    grid-template-columns: repeat(3, 1fr);\n    width: 600px;\n    font-family: var(--font-dm-sans);\n  }\n\n  .tile {\n    position: relative;\n    border: 1px solid var(--color-ghost-line);\n    overflow: hidden;\n    aspect-ratio: 1 / 1;\n    cursor: pointer;\n  }\n\n  .tile-img {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n    display: block;\n    transition: filter 0.4s ease;\n  }\n\n  .tile:hover .tile-img {\n    filter: brightness(0.82);\n  }\n\n  .tile-overlay {\n    position: absolute;\n    top: 0;\n    left: 0;\n    padding: 16px;\n    display: flex;\n    flex-direction: column;\n    gap: 0;\n  }\n\n  .tile-number {\n    font-family: var(--font-dm-sans);\n    font-size: 10px;\n    font-weight: 300;\n    color: var(--color-ash);\n    letter-spacing: 0.06em;\n    line-height: 1.3;\n    margin-bottom: 2px;\n  }\n\n  .tile-code {\n    font-family: var(--font-clashdisplay);\n    font-size: 44px;\n    font-weight: 300;\n    color: var(--color-salt);\n    letter-spacing: -0.04em;\n    line-height: 1;\n    margin-bottom: 4px;\n  }\n\n  .tile-title {\n    font-family: var(--font-dm-sans);\n    font-size: 12px;\n    font-weight: 300;\n    color: var(--color-salt);\n    letter-spacing: 0.06em;\n    line-height: 1.3;\n    margin-bottom: 2px;\n  }\n\n  .tile-category {\n    font-family: var(--font-dm-sans);\n    font-size: 10px;\n    font-weight: 300;\n    color: var(--color-ash);\n    letter-spacing: 0.14em;\n    line-height: 1.3;\n    text-transform: uppercase;\n  }\n\n  .tile-bg-1 { background: linear-gradient(135deg, #1a0a05 0%, #3d1c0e 40%, #6b2e14 100%); }\n  .tile-bg-2 { background: linear-gradient(135deg, #0a1a05 0%, #1c3d0e 40%, #2e6b14 100%); }\n  .tile-bg-3 { background: linear-gradient(135deg, #050a1a 0%, #0e1c3d 40%, #142e6b 100%); }\n  .tile-bg-4 { background: linear-gradient(135deg, #1a1505 0%, #3d2e0e 40%, #6b5214 100%); }\n  .tile-bg-5 { background: linear-gradient(135deg, #0a050a 0%, #1c0e1c 40%, #3d1c3d 100%); }\n  .tile-bg-6 { background: linear-gradient(135deg, #05101a 0%, #0e243d 40%, #14426b 100%); }\n\n  .photo-noise {\n    position: absolute;\n    inset: 0;\n    background-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E\");\n    background-size: cover;\n    mix-blend-mode: overlay;\n    pointer-events: none;\n  }\n\n  .shape-1 {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse 80% 60% at 70% 60%, rgba(180,80,30,0.55) 0%, transparent 70%);\n    pointer-events: none;\n  }\n  .shape-2 {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse 70% 80% at 30% 40%, rgba(60,160,40,0.5) 0%, transparent 70%);\n    pointer-events: none;\n  }\n  .shape-3 {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse 90% 70% at 50% 70%, rgba(30,60,200,0.45) 0%, transparent 70%);\n    pointer-events: none;\n  }\n  .shape-4 {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse 60% 90% at 60% 30%, rgba(200,160,30,0.5) 0%, transparent 70%);\n    pointer-events: none;\n  }\n  .shape-5 {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse 80% 80% at 40% 60%, rgba(160,30,160,0.5) 0%, transparent 70%);\n    pointer-events: none;\n  }\n  .shape-6 {\n    position: absolute;\n    inset: 0;\n    background: radial-gradient(ellipse 75% 65% at 55% 45%, rgba(20,100,200,0.55) 0%, transparent 70%);\n    pointer-events: none;\n  }\n</style>\n\n<div class=\"grid-wrap\">\n  <div class=\"tile\">\n    <div style=\"width:100%;height:100%;background:#0d0a08;position:absolute;\"></div>\n    <div class=\"shape-1\"></div>\n    <div class=\"photo-noise\"></div>\n    <div class=\"tile-overlay\">\n      <span class=\"tile-number\">01</span>\n      <span class=\"tile-code\">Se</span>\n      <span class=\"tile-title\">Stockholm, Sweden</span>\n      <span class=\"tile-category\">Location</span>\n    </div>\n  </div>\n  <div class=\"tile\">\n    <div style=\"width:100%;height:100%;background:#080d08;position:absolute;\"></div>\n    <div class=\"shape-2\"></div>\n    <div class=\"photo-noise\"></div>\n    <div class=\"tile-overlay\">\n      <span class=\"tile-number\">02</span>\n      <span class=\"tile-code\">Fd</span>\n      <span class=\"tile-title\">Fashion Design</span>\n      <span class=\"tile-category\">Practice</span>\n    </div>\n  </div>\n  <div class=\"tile\">\n    <div style=\"width:100%;height:100%;background:#08080d;position:absolute;\"></div>\n    <div class=\"shape-3\"></div>\n    <div class=\"photo-noise\"></div>\n    <div class=\"tile-overlay\">\n      <span class=\"tile-number\">03</span>\n      <span class=\"tile-code\">Ga</span>\n      <span class=\"tile-title\">Generative AI</span>\n      <span class=\"tile-category\">Practice</span>\n    </div>\n  </div>\n  <div class=\"tile\">\n    <div style=\"width:100%;height:100%;background:#0d0c08;position:absolute;\"></div>\n    <div class=\"shape-4\"></div>\n    <div class=\"photo-noise\"></div>\n    <div class=\"tile-overlay\">\n      <span class=\"tile-number\">04</span>\n      <span class=\"tile-code\">Cd</span>\n      <span class=\"tile-title\">Creative Direction</span>\n      <span class=\"tile-category\">Practice</span>\n    </div>\n  </div>\n  <div class=\"tile\">\n    <div style=\"width:100%;height:100%;background:#0d080d;position:absolute;\"></div>\n    <div class=\"shape-5\"></div>\n    <div class=\"photo-noise\"></div>\n    <div class=\"tile-overlay\">\n      <span class=\"tile-number\">05</span>\n      <span class=\"tile-code\">Et</span>\n      <span class=\"tile-title\">Emerging Tech</span>\n      <span class=\"tile-category\">Practice</span>\n    </div>\n  </div>\n  <div class=\"tile\">\n    <div style=\"width:100%;height:100%;background:#08090d;position:absolute;\"></div>\n    <div class=\"shape-6\"></div>\n    <div class=\"photo-noise\"></div>\n    <div class=\"tile-overlay\">\n      <span class=\"tile-number\">06</span>\n      <span class=\"tile-code\">Ma</span>\n      <span class=\"tile-title\">Magic Fabric ↗</span>\n      <span class=\"tile-category\">Blog</span>\n    </div>\n  </div>\n</div>1a:T161c,<style>\n  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300&family=Space+Grotesk:wght@300;500&display=swap');\n\n  :root {\n    --color-void: #000000;\n    --color-salt: #f8f8f8;\n    --color-ash: #707070;\n    --color-ghost-line: rgba(248,248,248,0.12);\n    --color-veil: rgba(248,248,248,0.45);\n    --font-dm-sans: 'DM Sans', sans-serif;\n    --font-clashdisplay: 'Space Grotesk', sans-serif;\n  }\n\n  .bio-section {\n    background: var(--color-void);\n    width: 600px;\n    box-sizing: border-box;\n    border-top: 1px solid var(--color-ghost-line);\n  }\n\n  .bio-grid {\n    display: grid;\n    grid-template-columns: 2fr 1.4fr 1.4fr;\n    border-bottom: 1px solid var(--color-ghost-line);\n  }\n\n  .bio-col {\n    padding: 20px 20px 24px 20px;\n    border-right: 1px solid var(--color-ghost-line);\n    box-sizing: border-box;\n  }\n\n  .bio-col:last-child {\n    border-right: none;\n  }\n\n  .col-label {\n    font-family: var(--font-dm-sans);\n    font-size: 10px;\n    font-weight: 300;\n    color: var(--color-ash);\n    letter-spacing: 0.07em;\n    text-transform: uppercase;\n    line-height: 1.3;\n    margin-bottom: 16px;\n    display: block;\n  }\n\n  .bio-body {\n    font-family: var(--font-dm-sans);\n    font-size: 13px;\n    font-weight: 300;\n    color: var(--color-salt);\n    line-height: 1.72;\n    letter-spacing: 0.01em;\n    margin: 0;\n  }\n\n  .bio-body .arrow-link {\n    color: var(--color-salt);\n    text-decoration: none;\n    display: inline;\n  }\n\n  .press-list {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n  }\n\n  .press-list li {\n    display: flex;\n    align-items: baseline;\n    gap: 8px;\n    margin-bottom: 4px;\n  }\n\n  .press-num {\n    font-family: var(--font-dm-sans);\n    font-size: 10px;\n    font-weight: 300;\n    color: var(--color-ash);\n    letter-spacing: 0.06em;\n    min-width: 18px;\n    line-height: 1.3;\n  }\n\n  .press-link {\n    font-family: var(--font-dm-sans);\n    font-size: 12px;\n    font-weight: 300;\n    color: var(--color-salt);\n    letter-spacing: 0.06em;\n    text-decoration: none;\n    line-height: 1.3;\n    transition: color 0.2s ease;\n  }\n\n  .press-link:hover {\n    color: var(--color-veil);\n  }\n\n  .speaking-list {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n  }\n\n  .speaking-list li {\n    display: flex;\n    align-items: baseline;\n    gap: 8px;\n    margin-bottom: 4px;\n  }\n\n  .speaking-link {\n    font-family: var(--font-dm-sans);\n    font-size: 12px;\n    font-weight: 300;\n    color: var(--color-salt);\n    letter-spacing: 0.06em;\n    text-decoration: none;\n    line-height: 1.3;\n    transition: color 0.2s ease;\n  }\n\n  .speaking-link:hover {\n    color: var(--color-veil);\n  }\n</style>\n\n<div class=\"bio-section\">\n  <div class=\"bio-grid\">\n    <div class=\"bio-col\">\n      <span class=\"col-label\">About</span>\n      <p class=\"bio-body\">I started in fashion, cutting patterns, building garments, understanding the body. Over time I moved into emerging technologies, not to leave that world behind but to expand what it could be. The craft background stays with me. It shapes how I approach AI, with the same conviction that making something means leaving something of yourself in it. <a class=\"arrow-link\" href=\"#\">↗</a></p>\n    </div>\n    <div class=\"bio-col\">\n      <span class=\"col-label\">Press</span>\n      <ul class=\"press-list\">\n        <li><span class=\"press-num\">01</span><a class=\"press-link\" href=\"#\">Vogue ↗</a></li>\n        <li><span class=\"press-num\">02</span><a class=\"press-link\" href=\"#\">Elle ↗</a></li>\n        <li><span class=\"press-num\">03</span><a class=\"press-link\" href=\"#\">Dezeen ↗</a></li>\n        <li><span class=\"press-num\">04</span><a class=\"press-link\" href=\"#\">Trendland ↗</a></li>\n        <li><span class=\"press-num\">05</span><a class=\"press-link\" href=\"#\">Coveteur ↗</a></li>\n        <li><span class=\"press-num\">06</span><a class=\"press-link\" href=\"#\">Dagens Industri ↗</a></li>\n        <li><span class=\"press-num\">07</span><a class=\"press-link\" href=\"#\">Scandinavian Mind</a></li>\n        <li><span class=\"press-num\">08</span><a class=\"press-link\" href=\"#\">SR / P3 News ↗</a></li>\n        <li><span class=\"press-num\">09</span><a class=\"press-link\" href=\"#\">Visual Atelier 8 ↗</a></li>\n        <li><span class=\"press-num\">10</span><a class=\"press-link\" href=\"#\">Women of Wearable</a></li>\n        <li><span class=\"press-num\">11</span><a class=\"press-link\" href=\"#\" style=\"color:var(--color-ash);\">SR / Studio Ett</a></li>\n        <li><span class=\"press-num\">12</span><a class=\"press-link\" href=\"#\">Blowup Guild ↗</a></li>\n      </ul>\n    </div>\n    <div class=\"bio-col\">\n      <span class=\"col-label\">Speaking</span>\n      <ul class=\"speaking-list\">\n        <li><span class=\"press-num\">01</span><a class=\"speaking-link\" href=\"#\">PI Apparel ↗</a></li>\n        <li><span class=\"press-num\">02</span><a class=\"speaking-link\" href=\"#\">Hyper Island</a></li>\n        <li><span class=\"press-num\">03</span><a class=\"speaking-link\" href=\"#\">H&M Global 3D Forum</a></li>\n        <li><span class=\"press-num\">04</span><a class=\"speaking-link\" href=\"#\">Sw. School of Textiles</a></li>\n        <li><span class=\"press-num\">05</span><a class=\"speaking-link\" href=\"#\">Board of Innovation ↗</a></li>\n        <li><span class=\"press-num\">06</span><a class=\"speaking-link\" href=\"#\">HDK / University of Gothenburg ↗</a></li>\n        <li><span class=\"press-num\">07</span><a class=\"speaking-link\" href=\"#\">FutureGames</a></li>\n        <li><span class=\"press-num\">08</span><a class=\"speaking-link\" href=\"#\">Swedish Fashion Council</a></li>\n        <li><span class=\"press-num\">09</span><a class=\"speaking-link\" href=\"#\">Gravity Sketch ↗</a></li>\n      </ul>\n    </div>\n  </div>\n</div>1b:Tc14,<style>\n  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300&family=Space+Grotesk:wght@300;500&display=swap');\n\n  :root {\n    --color-void: #000000;\n    --color-salt: #f8f8f8;\n    --color-ash: #707070;\n    --color-ghost-line: rgba(248,248,248,0.12);\n    --color-veil: rgba(248,248,248,0.45);\n    --font-dm-sans: 'DM Sans', sans-serif;\n    --font-clashdisplay: 'Space Grotesk', sans-serif;\n  }\n\n  .header-wrap {\n    background: var(--color-void);\n    width: 600px;\n    box-sizing: border-box;\n    padding: 0 16px;\n    border-bottom: 1px solid var(--color-ghost-line);\n  }\n\n  .nav-bar {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    padding: 14px 0;\n    border-bottom: 1px solid var(--color-ghost-line);\n  }\n\n  .logo-mark {\n    width: 32px;\n    height: 32px;\n    border: 1px solid var(--color-ghost-line);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n  }\n\n  .logo-mark span {\n    font-family: var(--font-clashdisplay);\n    font-size: 12px;\n    font-weight: 500;\n    color: var(--color-salt);\n    letter-spacing: 0.04em;\n  }\n\n  .nav-links {\n    display: flex;\n    align-items: center;\n    gap: 24px;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n  }\n\n  .nav-links a {\n    font-family: var(--font-dm-sans);\n    font-size: 12px;\n    font-weight: 300;\n    color: var(--color-salt);\n    letter-spacing: 0.06em;\n    text-decoration: none;\n    line-height: 1.3;\n    transition: color 0.2s ease;\n  }\n\n  .nav-links a:hover {\n    color: var(--color-veil);\n  }\n\n  .identity-row {\n    display: flex;\n    align-items: flex-end;\n    justify-content: space-between;\n    padding: 32px 0 28px 0;\n  }\n\n  .name-logotype {\n    font-family: var(--font-clashdisplay);\n    font-size: 52px;\n    font-weight: 500;\n    color: var(--color-salt);\n    letter-spacing: -0.04em;\n    line-height: 1;\n    margin: 0;\n    padding: 0;\n    text-decoration: none;\n    display: block;\n  }\n\n  .email-cta {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    flex-shrink: 0;\n    padding-bottom: 4px;\n  }\n\n  .availability-dot {\n    width: 8px;\n    height: 8px;\n    border-radius: 50%;\n    background: var(--color-salt);\n    flex-shrink: 0;\n  }\n\n  .email-link {\n    font-family: var(--font-dm-sans);\n    font-size: 12px;\n    font-weight: 300;\n    color: var(--color-salt);\n    letter-spacing: 0.06em;\n    text-decoration: none;\n    line-height: 1.3;\n    transition: color 0.2s ease;\n  }\n\n  .email-link:hover {\n    color: var(--color-veil);\n  }\n</style>\n\n<div class=\"header-wrap\">\n  <nav class=\"nav-bar\">\n    <div class=\"logo-mark\">\n      <span>Jk</span>\n    </div>\n    <ul class=\"nav-links\">\n      <li><a href=\"#\">Magic Fabric ↗</a></li>\n      <li><a href=\"#\">Bio</a></li>\n      <li><a href=\"#\">Contact</a></li>\n    </ul>\n  </nav>\n  <div class=\"identity-row\">\n    <span class=\"name-logotype\">Julia Krantz</span>\n    <div class=\"email-cta\">\n      <div class=\"availability-dot\"></div>\n      <a class=\"email-link\" href=\"mailto:julia@magicfabricblog.com\">julia@magicfabricblog.com →</a>\n    </div>\n  </div>\n</div>1c:T74c,**Quick Color Reference**\n- Page background: #000000\n- Primary text / all UI elements: #f8f8f8\n- Secondary / muted text: #707070\n- Borders / dividers: rgba(248,248,248,0.12)\n- Overlay text on images: rgba(248,248,248,0.45)\n- No accent colors exist — the palette is purely achromatic\n\n**Example Component Prompts**\n\n1. **Project Grid Tile**: Black background tile with full-bleed photograph. Top-left: sequential number in DM Sans 10px weight 300 #707070, then project code (e.g. 'Fd') in ClashDisplay 44px weight 300 #f8f8f8 letter-spacing -0.04em, then category label 'PRACTICE' in DM Sans 10px weight 300 #707070 letter-spacing 0.14em. All text padded 16px from edges. Border: 1px solid rgba(248,248,248,0.12). Border-radius: 0px. Hover: filter brightness(0.82) transition 0.2s ease.\n\n2. **Page Header**: Full-width bar, #000000 background, 16px horizontal padding, 52px height. Left: 'Julia Krantz' in ClashDisplay 29px weight 500 #f8f8f8 letter-spacing -0.04em. Right: 'julia@magicfabricblog.com →' in DM Sans 12px weight 300 #f8f8f8 with small dot indicator, then nav links 'Magic Fabric ↗', 'Bio', 'Contact' in DM Sans 12px weight 300 #f8f8f8 letter-spacing 0.06em, 32px gap between items. Bottom border: 1px solid rgba(248,248,248,0.12).\n\n3. **Bio Multi-Column Section**: #000000 background, 16px padding, 5 columns with 32px gaps. Each column starts with an uppercase label ('ABOUT', 'PRESS') in DM Sans 10px weight 300 #707070 letter-spacing 0.07em, margin-bottom 4px. Body text in DM Sans 13px weight 300 #f8f8f8 line-height 1.72. Numbered list items use #707070 for the number and #f8f8f8 for the link text. External links append '↗' glyph.\n\n4. **Category Label / Tag**: DM Sans 10px weight 300 #707070 letter-spacing 0.14em. Uppercase. No background, no border, no padding. Values are 'PRACTICE', 'ARCHIVE', or 'BLOG'. Sits 4px below project title."
+}

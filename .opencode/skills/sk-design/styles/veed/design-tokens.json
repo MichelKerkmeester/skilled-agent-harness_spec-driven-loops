@@ -1,0 +1,479 @@
+{
+  "color": {
+    "lime-spark": {
+      "$value": "#96ff1a",
+      "$type": "color",
+      "$description": "Lime Spark — Primary CTA fills, active toggle states, the AI creation prompt accent — an electric green that functions as the brand's ignition switch, impossible to miss on the white canvas"
+    },
+    "spring-wash": {
+      "$value": "#d6ffa6",
+      "$type": "color",
+      "$description": "Spring Wash — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "forest-ink": {
+      "$value": "#083300",
+      "$type": "color",
+      "$description": "Forest Ink — Deep brand green used for borders, icon strokes, and text on light green washes — the anchor tone that gives the lime palette a grounded counterweight"
+    },
+    "mint-mist": {
+      "$value": "#e6ffc8",
+      "$type": "color",
+      "$description": "Mint Mist — Subtle tint for secondary button hovers and soft highlight zones — the palest breath of the green family"
+    },
+    "carbon": {
+      "$value": "#0c0a09",
+      "$type": "color",
+      "$description": "Carbon — Primary heading and body text — a warm near-black with a whisper of brown that pairs with the lime accent without reading as dead-black"
+    },
+    "charcoal": {
+      "$value": "#323232",
+      "$type": "color",
+      "$description": "Charcoal — Workhorse text, secondary borders, link undertones — the most-used neutral across borders and structural lines"
+    },
+    "graphite": {
+      "$value": "#292a2e",
+      "$type": "color",
+      "$description": "Graphite — Dark surface fills, button text on light backgrounds, icon strokes — the primary dark tone for elevated dark sections"
+    },
+    "onyx": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Onyx — Dark section backgrounds, heading text on light surfaces — the deepest neutral for full-bleed dark bands"
+    },
+    "slate": {
+      "$value": "#4d4d51",
+      "$type": "color",
+      "$description": "Slate — Icon borders, secondary structural lines — a mid-gray for non-content boundaries"
+    },
+    "smoke": {
+      "$value": "#71737a",
+      "$type": "color",
+      "$description": "Smoke — Muted helper text, link borders, placeholder text — the voice of secondary information"
+    },
+    "ash": {
+      "$value": "#444446",
+      "$type": "color",
+      "$description": "Ash — Tertiary borders, icon detail strokes — a bridge tone between slate and charcoal"
+    },
+    "mist": {
+      "$value": "#f2f1f0",
+      "$type": "color",
+      "$description": "Mist — Secondary surface fills, button backgrounds on hero areas, subtle tonal dividers"
+    },
+    "fog": {
+      "$value": "#e6e6e7",
+      "$type": "color",
+      "$description": "Fog — Hairline borders on light surfaces, divider lines"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces, button fills — the dominant light surface"
+    }
+  },
+  "font": {
+    "swissnow": {
+      "$value": "SwissNow",
+      "$type": "fontFamily",
+      "$description": "The universal workhorse — handles all UI, body, navigation, button labels, inputs, footer, and most headings. A neo-grotesque with tight geometry and very tight tracking at large sizes (-0.05em at display, easing to near-normal at body). Its neutrality lets the lime accent and editorial serif carry the personality."
+    },
+    "ppeditorialnew": {
+      "$value": "PPEditorialNew",
+      "$type": "fontFamily",
+      "$description": "The editorial display serif reserved exclusively for top-tier section headings. A high-contrast didone-influenced face with extremely tight tracking (-0.05em at 54px) and near-zero leading (0.88–1.0) — it whispers luxury into a tool that could otherwise feel utilitarian. The contrast between SwissNow and PPEditorialNew is the brand's typographic signature."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "PPEditorialNew",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "PPEditorialNew",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 40px"
+    },
+    "4xl-5": {
+      "$value": {
+        "fontFamily": "PPEditorialNew",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-5 at 40px"
+    },
+    "4xl-6": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "44px",
+        "fontWeight": 500,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-6 at 44px"
+    },
+    "4xl-7": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-7 at 44px"
+    },
+    "4xl-8": {
+      "$value": {
+        "fontFamily": "PPEditorialNew",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-8 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "SwissNow",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "PPEditorialNew",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 54px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(68, 68, 70, 0.15) 0px 1px 2px -1px, rgba(68, 68, 70, 0.05) 0px 2px 5px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "oklch(0.3171 0 0) 0px 0px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas, primary background"
+    },
+    "mist": {
+      "$value": "#f2f1f0",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle elevated surface for hero input surrounds and tonal sections"
+    },
+    "spring-wash": {
+      "$value": "#d6ffa6",
+      "$type": "color",
+      "$description": "Surface level 2: Brand-tinted card backgrounds and feature highlight zones"
+    },
+    "onyx": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed dark bands for structural rhythm breaks"
+    },
+    "graphite": {
+      "$value": "#292a2",
+      "$type": "color",
+      "$description": "Surface level 4: Deepest elevated dark surface for nested dark-mode content"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.veed.io",
+      "siteName": "VEED",
+      "extractedAt": "2026-06-03T18:32:02.467Z",
+      "variant": "extended"
+    }
+  }
+}

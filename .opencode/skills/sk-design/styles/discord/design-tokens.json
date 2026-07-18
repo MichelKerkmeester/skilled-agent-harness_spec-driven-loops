@@ -1,0 +1,392 @@
+{
+  "color": {
+    "blurple": {
+      "$value": "#5865f2",
+      "$type": "color",
+      "$description": "Blurple — Primary CTA buttons, brand icon, active states — the single chromatic anchor in a near-monochrome blue-black space, creating instant recognition as the only saturated element in the layout"
+    },
+    "dark-blurple": {
+      "$value": "#3442d9",
+      "$type": "color",
+      "$description": "Dark Blurple — Hover state for primary buttons, pressed states"
+    },
+    "hover-blurple": {
+      "$value": "#8891f2",
+      "$type": "color",
+      "$description": "Hover Blurple — Button hover tint, elevated blurple interactions"
+    },
+    "spring-green": {
+      "$value": "#57f287",
+      "$type": "color",
+      "$description": "Spring Green — Online status indicators, success states"
+    },
+    "fuchsia": {
+      "$value": "#eb459",
+      "$type": "color",
+      "$description": "Fuchsia — Nitro gradient accents, special event highlights"
+    },
+    "vivid-cerulean": {
+      "$value": "#00b0f4",
+      "$type": "color",
+      "$description": "Vivid Cerulean — Voice/video channel indicators, info states"
+    },
+    "ember-orange": {
+      "$value": "#fda220",
+      "$type": "color",
+      "$description": "Ember Orange — Quest indicators, achievement highlights"
+    },
+    "ekko-red": {
+      "$value": "#de2761",
+      "$type": "color",
+      "$description": "Ekko Red — Destructive actions, critical alerts"
+    },
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Text on light surfaces, icon fills, overlay backgrounds"
+    },
+    "snow": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Snow — Primary text on dark backgrounds, button text, nav links, card backgrounds"
+    },
+    "not-quite-black": {
+      "$value": "#23272a",
+      "$type": "color",
+      "$description": "Not Quite Black — Secondary button text and borders, dark UI surface color"
+    },
+    "dark-charcoal": {
+      "$value": "#2c2f33",
+      "$type": "color",
+      "$description": "Dark Charcoal — App UI chrome surfaces, elevated dark panels"
+    },
+    "graphite": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Graphite — Tertiary text on light surfaces, image overlays"
+    },
+    "fog": {
+      "$value": "#babcd9",
+      "$type": "color",
+      "$description": "Fog — Subdued headings and body text on dark backgrounds — a lavender-tinted neutral that stays on-brand while reducing contrast"
+    },
+    "greyple": {
+      "$value": "#99aab5",
+      "$type": "color",
+      "$description": "Greyple — Disabled states, placeholder text, muted metadata"
+    },
+    "dim-grey": {
+      "$value": "#50555f",
+      "$type": "color",
+      "$description": "Dim Grey — Input borders, dividers, secondary icon fills"
+    },
+    "off-white": {
+      "$value": "#f6f6f6",
+      "$type": "color",
+      "$description": "Off White — Light section backgrounds, card surfaces in light contexts"
+    }
+  },
+  "font": {
+    "abc-ginto-nord-discord": {
+      "$value": "ABC Ginto Nord Discord",
+      "$type": "fontFamily",
+      "$description": "All display headlines and section headings. Weight 800 is the signature move — combined with all-caps styling and -0.01em tracking, headlines compress into dense rectangular blocks. No other font or weight creates this stamped-label effect. Used at 56–61px for hero, 48px for section leads, 36px for subsections."
+    },
+    "abc-ginto-discord": {
+      "$value": "ABC Ginto Discord",
+      "$type": "fontFamily",
+      "$description": "Navigation labels, body copy, button text, UI labels. Letter-spacing at 0.013–0.016em adds subtle openness at small sizes — compensating for the condensed feel of the Nord headline font above. Weight 500 for buttons and nav emphasis, 400 for body and metadata."
+    },
+    "gg-sans": {
+      "$value": "GG Sans",
+      "$type": "fontFamily",
+      "$description": "Discord's proprietary UI font used inside product UI mock-ups and app interface screenshots embedded in marketing sections. Appears at 16px/1.5 exclusively — mirrors the in-product typeface to keep screenshots authentic."
+    },
+    "abc-ginto-normal": {
+      "$value": "ABC Ginto Normal",
+      "$type": "fontFamily",
+      "$description": "Long-form paragraph body text in feature sections, link lists in footer. Functionally identical metrics to ABC Ginto Discord but a separate optical variant for extended reading."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Ggsans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABC Ginto Normal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Abcgintodiscord",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Abcgintodiscord",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Abcgintodiscord",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Abcgintodiscord",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Abcgintodiscord",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Abcgintodiscord",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Abcgintodiscord",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Abcgintodiscord",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Abcgintodiscordnord",
+        "fontSize": "36px",
+        "fontWeight": 800,
+        "lineHeight": 0.93
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Abcgintodiscordnord",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Abcgintodiscordnord",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 0.86
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Abcgintodiscordnord",
+        "fontSize": "61px",
+        "fontWeight": 700,
+        "lineHeight": 0.41
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 61px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "136": {
+      "$value": "136px",
+      "$type": "dimension",
+      "$description": "Spacing 136px"
+    },
+    "176": {
+      "$value": "176px",
+      "$type": "dimension",
+      "$description": "Spacing 176px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "cosmic-page": {
+      "$value": "#0e0f2d",
+      "$type": "color",
+      "$description": "Surface level 0: Global page background — deep indigo-navy environment that all sections sit within"
+    },
+    "app-chrome": {
+      "$value": "#23272a",
+      "$type": "color",
+      "$description": "Surface level 1: Product UI sidebar and panel backgrounds shown in mock-ups"
+    },
+    "app-surface": {
+      "$value": "#2c2f33",
+      "$type": "color",
+      "$description": "Surface level 2: Main content area inside product screenshots"
+    },
+    "feature-card": {
+      "$value": "#5865f2",
+      "$type": "color",
+      "$description": "Surface level 3: Feature section card backgrounds — each card uses its own themed gradient/solid (not always blurple), but this represents the brand-colored variant"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://discord.com",
+      "siteName": "Discord",
+      "extractedAt": "2026-04-11T18:08:26.644Z",
+      "variant": "extended"
+    }
+  }
+}

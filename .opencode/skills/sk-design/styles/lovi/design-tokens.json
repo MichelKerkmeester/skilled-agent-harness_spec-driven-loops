@@ -1,0 +1,629 @@
+{
+  "color": {
+    "indigo-ink": {
+      "$value": "#151581",
+      "$type": "color",
+      "$description": "Indigo Ink — Primary headlines, body emphasis, and brand voice — this is the only color that carries the brand identity. All top-level headings and primary body text are set in this violet rather than black, giving every screen a tinted authority without ever feeling decorative"
+    },
+    "electric-violet": {
+      "$value": "#5465ff",
+      "$type": "color",
+      "$description": "Electric Violet — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color; Voice-bar and scan-overlay gradient sweeping Electric Violet → Lilac → Petal Blush — the signature visual of the AI interaction moment"
+    },
+    "lavender-mist": {
+      "$value": "#a1a1cd",
+      "$type": "color",
+      "$description": "Lavender Mist — Secondary body text, muted links, and sub-labels — sits one step down from Indigo Ink on the same hue, creating a tonal ladder without introducing a different color family"
+    },
+    "lilac-accent": {
+      "$value": "#9f73e6",
+      "$type": "color",
+      "$description": "Lilac Accent — Decorative and illustrative accent — used in iconography, gradient midpoints, and the scan/voice visual treatment rather than for UI controls"
+    },
+    "petal-blush": {
+      "$value": "#de62de",
+      "$type": "color",
+      "$description": "Petal Blush — Decorative accent in illustrations and the brand gradient — supports the scan/face-overlay visual treatment, not part of the UI palette"
+    },
+    "verified-green": {
+      "$value": "#00bb76",
+      "$type": "color",
+      "$description": "Verified Green — Green supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    },
+    "alert-rose": {
+      "$value": "#f25c75",
+      "$type": "color",
+      "$description": "Alert Rose — Red supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    },
+    "info-blue": {
+      "$value": "#20a2e3",
+      "$type": "color",
+      "$description": "Info Blue — Blue supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    },
+    "porcelain": {
+      "$value": "#f6f6fa",
+      "$type": "color",
+      "$description": "Porcelain — Dominant page canvas — every section breathes on this near-white, slightly cool surface"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, phone mockup screen, and elevated content blocks — sits one step above Porcelain for subtle layering"
+    },
+    "bone": {
+      "$value": "#f6f5f4",
+      "$type": "color",
+      "$description": "Bone — Warm surface for review cards and section blocks that need tonal separation from the cool Porcelain canvas"
+    },
+    "fog": {
+      "$value": "#d6d6d6",
+      "$type": "color",
+      "$description": "Fog — Hairline borders, divider lines, and the ambient shadow tint source — the only structural gray in the system"
+    },
+    "pebble": {
+      "$value": "#bfbfbd",
+      "$type": "color",
+      "$description": "Pebble — Inactive controls, placeholder fills, and tertiary borders — warm gray that recedes"
+    },
+    "graphite": {
+      "$value": "#292824",
+      "$type": "color",
+      "$description": "Graphite — Dark mode text and icon fills — near-black with a faint warm cast, used when maximum contrast is needed against light surfaces"
+    },
+    "ash": {
+      "$value": "#949392",
+      "$type": "color",
+      "$description": "Ash — Secondary metadata, timestamps, and de-emphasized body text — sits between Graphite and Pebble in the neutral scale"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "es-rebond-grotesque": {
+      "$value": "ES Rebond Grotesque",
+      "$type": "fontFamily",
+      "$description": "Display and heading face — used at 28–48px weight 400 for hero headlines, section titles, and brand statements. The geometric construction and uniform weight (no bold) create an anti-convention restraint: authority through proportions, not stroke thickness. The 'ss02' feature setting activates a specific alternate glyph set that gives the headlines their slightly architectural feel. Substitute: Inter Tight or Manrope as a free alternative, though the exact geometric warmth will differ."
+    },
+    "es-rebond-grotesque-medium": {
+      "$value": "ES Rebond Grotesque Medium",
+      "$type": "fontFamily",
+      "$description": "Sub-heading and emphasis face — used for 14–22px text that needs a touch more presence than Inter body, like card titles and emphasized inline text within body copy."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Primary body and UI face — covers all functional text from 9px metadata to 24px subheadings. Weight 400 for body, 500 for labels and emphasis, 600 for strong UI elements. Substitute: keep Inter — it's already free and ubiquitous."
+    },
+    "geist": {
+      "$value": "Geist",
+      "$type": "fontFamily",
+      "$description": "Secondary body face for specific content blocks — used where a slightly different rhythm is desired. The 'dlig', 'ss01', 'ss02', 'ss06' features activate Geist's discretionary ligatures and alternate sets for a more refined reading experience. Substitute: Inter (close enough) or Geist Sans (free)."
+    },
+    "inter-medium": {
+      "$value": "Inter-Medium",
+      "$type": "fontFamily",
+      "$description": "Inter-Medium — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter-Medium",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "ES Rebond Grotesque Medium",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter-Medium",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter-Medium",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Inter-Medium",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "ES Rebond Grotesque Medium",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter-Medium",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ES Rebond Grotesque Medium",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "ES Rebond Grotesque Medium",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter-Medium",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "ES Rebond Grotesque Regular",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ES Rebond Grotesque Regular",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "ES Rebond Grotesque Regular",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "ES Rebond Grotesque Regular",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 0.91
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ES Rebond Grotesque Regular",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "3xl-4": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-4"
+    },
+    "3xl-5": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-5"
+    },
+    "3xl-6": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-6"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    },
+    "full-5": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Border radius full-5"
+    },
+    "full-6": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full-6"
+    },
+    "full-7": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-7"
+    },
+    "full-8": {
+      "$value": "300px",
+      "$type": "dimension",
+      "$description": "Border radius full-8"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(36, 36, 41, 0.07) 0px 8px 34px 0px, rgba(37, 36, 41, 0.09) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f6f6fa",
+      "$type": "color",
+      "$description": "Surface level 0: Dominant page background — the cool near-white that every section sits on"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated content blocks, phone mockup screen, and review cards"
+    },
+    "warm-block": {
+      "$value": "#f6f5f4",
+      "$type": "color",
+      "$description": "Surface level 2: Tonal section backgrounds and review containers for warm separation"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://lovi.care",
+      "siteName": "Lovi",
+      "extractedAt": "2026-06-03T15:09:48.384Z",
+      "variant": "extended"
+    }
+  }
+}

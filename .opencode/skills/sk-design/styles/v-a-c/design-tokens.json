@@ -1,0 +1,175 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, all borders, card outlines, link color, arrow glyphs, V—A—C registration marks"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "graphite": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Graphite — Diagonal category watermarks on cards, subtle decorative strokes — the only third tone in the system"
+    }
+  },
+  "font": {
+    "diagramatika-text": {
+      "$value": "Diagramatika Text",
+      "$type": "fontFamily",
+      "$description": "Body copy, metadata links, card titles, list items, navigation, all UI text. The only weight used is 400 — no bold, no medium, no light. This even single-weight voice is the defining typographic choice: nothing shouts, everything reads at the same conversational volume."
+    },
+    "diagramatika-display": {
+      "$value": "Diagramatika Display",
+      "$type": "fontFamily",
+      "$description": "Larger headings, hero text, featured card titles. Despite the name, used at the same 400 weight as body — the distinction is size and tight line-height (0.88–0.90) which lets lines of large type lock together into a dense block. The absence of weight contrast between display and text is anti-convention; most systems use 600-700 for headings."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Diagramatika Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Diagramatika Text",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Diagramatika Text",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Diagramatika Text",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Diagramatika Text",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Diagramatika Display",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Diagramatika Display",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Diagramatika Display",
+        "fontSize": "35px",
+        "fontWeight": 400,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 35px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "150": {
+      "$value": "150px",
+      "$type": "dimension",
+      "$description": "Spacing 150px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the entire site sits on pure white"
+    },
+    "image-field": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Surface level 1: Implicit neutral behind unloaded card images (placeholder gray before media renders)"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://v-a-c.org/en",
+      "siteName": "V–A–C",
+      "extractedAt": "2026-06-03T21:42:36.352Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,430 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#231f20",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, filled action buttons, nav, headings, hairline borders, product bar backgrounds"
+    },
+    "cream-paper": {
+      "$value": "#f0ede7",
+      "$type": "color",
+      "$description": "Cream Paper — Primary page canvas, section backgrounds, image backgrounds"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Inverted text on dark surfaces, button text, card/image backgrounds"
+    },
+    "blast-red": {
+      "$value": "#ff634b",
+      "$type": "color",
+      "$description": "Blast Red — Flavor-coded product accent (Salted Peanut bar), footer band, brand mark, single decorative punctuation across the cream canvas"
+    },
+    "true-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "True Black — Minor icon strokes and print-style detail"
+    }
+  },
+  "font": {
+    "neue-haas-grotesk-display": {
+      "$value": "Neue Haas Grotesk Display",
+      "$type": "fontFamily",
+      "$description": "Exclusive brand typeface. Weight 700 drives the hero display voice and section openers — set huge, tracked wide, the type IS the graphic. Weights 450/500 handle subheadings, nav, and product labels. Weight 400 at 14–16px with wide tracking (0.0310–0.0500em) runs body and button text. The all-caps + wide-tracking + heavy-weight combination is the signature."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    },
+    "gtstandard-m": {
+      "$value": "GTStandard-M",
+      "$type": "fontFamily",
+      "$description": "GTStandard-M — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "16px",
+        "fontWeight": 450,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "16px",
+        "fontWeight": 450,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "GTStandard-M",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "lg-8": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-8 at 18px"
+    },
+    "lg-9": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-9 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 25px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 25px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "55": {
+      "$value": "55px",
+      "$type": "dimension",
+      "$description": "Spacing 55px"
+    }
+  },
+  "surface": {
+    "cream-paper": {
+      "$value": "#f0ede7",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page canvas — every section sits on this warm off-white"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card/product image backgrounds, elevated content blocks"
+    },
+    "ink-black": {
+      "$value": "#231f20",
+      "$type": "color",
+      "$description": "Surface level 2: Dark feature sections, product bar background, button fills"
+    },
+    "blast-red": {
+      "$value": "#ff634b",
+      "$type": "color",
+      "$description": "Surface level 3: Flavor-coded product surfaces and footer wash"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://giganticcandy.com",
+      "siteName": "Gigantic",
+      "extractedAt": "2026-06-03T20:52:07.575Z",
+      "variant": "extended"
+    }
+  }
+}

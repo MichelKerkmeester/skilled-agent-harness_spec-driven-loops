@@ -1,0 +1,422 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#0c0c0c",
+      "$type": "color",
+      "$description": "Ink Black — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "carbon": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Carbon — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "graphite": {
+      "$value": "#2a2a2a",
+      "$type": "color",
+      "$description": "Graphite — Secondary dark surface, button hover states"
+    },
+    "slate": {
+      "$value": "#404040",
+      "$type": "color",
+      "$description": "Slate — Body text, secondary headings, dense paragraph copy"
+    },
+    "steel": {
+      "$value": "#6b7280",
+      "$type": "color",
+      "$description": "Steel — Muted helper text, tertiary metadata, subdued links"
+    },
+    "silver": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Silver — Disabled states, placeholder text, low-priority captions"
+    },
+    "bone": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Bone — Hairline borders, divider lines, card outlines, structural separators"
+    },
+    "cloud": {
+      "$value": "#eef1f5",
+      "$type": "color",
+      "$description": "Cloud — Subtle background wash, hover state for neutral surfaces"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, button text on dark fills"
+    },
+    "cobalt-signal": {
+      "$value": "#2b22fa",
+      "$type": "color",
+      "$description": "Cobalt Signal — Promotional announcement bar, brand accent — the only chromatic moment in the system, used sparingly to signal news or offers without competing with the research content"
+    }
+  },
+  "font": {
+    "abcnormal": {
+      "$value": "abcNormal",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire interface — navigation, body, buttons, and display headlines. Weight 450 (a half-step) and 500 carry most UI text; 600 is reserved for emphasis. The tight tracking on large sizes (-0.025em at 48px) prevents headlines from feeling airy, keeping them grounded as editorial statements rather than marketing shouts. The positive tracking at 11px (+0.025em) compensates for small-size readability. Weight 400 for body keeps long research paragraphs light on the eye."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "11px",
+        "fontWeight": 450,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "abcNormal",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "176": {
+      "$value": "176px",
+      "$type": "dimension",
+      "$description": "Spacing 176px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base background for the entire site"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Research project cards, feature blocks — sit flat against the page, distinguished by content not elevation"
+    },
+    "soft-wash": {
+      "$value": "#eef1f5",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle section backgrounds, hover states for neutral elements"
+    },
+    "announcement-bar": {
+      "$value": "#2b22fa",
+      "$type": "color",
+      "$description": "Surface level 3: Promotional banner — the only chromatic surface, signals news/offers above the fold"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://runwayml.com",
+      "siteName": "Runway",
+      "extractedAt": "2026-06-03T18:48:28.392Z",
+      "variant": "extended"
+    }
+  }
+}

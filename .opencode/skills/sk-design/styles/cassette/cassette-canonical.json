@@ -1,0 +1,1155 @@
+{
+  "source": "https://styles.refero.design/style/fb4cfe58-00b5-4e6a-b251-0c65e60b6649",
+  "uuid": "fb4cfe58-00b5-4e6a-b251-0c65e60b6649",
+  "name": "Cassette",
+  "northStar": "Neon cassette on black velvet. A single hi-vis yellow burns against a warm-black void, the way a tape label glows under a single bulb in a dark room.",
+  "capturedAt": "2026-07-18T08:05:27.509Z",
+  "meta": {
+    "url": "https://cassettemusic.com",
+    "siteName": "Cassette",
+    "extractedAt": "2026-06-03T18:27:04.829Z",
+    "durationMs": 51703,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 757,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #f0e226 Hi-Vis Yellow for every interactive element and brand mark — it is the only chromatic color and must carry all functional energy",
+      "Set all buttons, badges, and tags to 900px border-radius for a fully pill-shaped silhouette",
+      "Use Apercu Mono Pro for all UI chrome (nav, badges, buttons, labels) and Apercu Pro for display type and body copy",
+      "Apply grain/noise texture overlays to large yellow fills to maintain the risograph-printed analog feel",
+      "Keep backgrounds flat — use #19181a as the canvas, never add gradients, shadows, or background images to UI surfaces",
+      "Use 1px solid borders in #f0e226 or #272727 to create structure and grid cells instead of relying on spacing alone",
+      "Set section headings at 37px and body text at 15px — the 2.5× size jump creates hierarchy without needing weight variation"
+    ],
+    "donts": [
+      "Never introduce a second chromatic color — the system is monochrome + yellow, period",
+      "Never use rounded corners smaller than 900px on interactive elements — partial rounding breaks the pill language",
+      "Never use drop shadows, glows, or blur effects — the system is flat and printed",
+      "Never use font weights other than 400 — hierarchy comes from size, not weight",
+      "Never place #f0e226 text on a light background without sufficient contrast testing — it is designed for dark surfaces",
+      "Never use multi-color gradients, even subtle ones — the color palette is strictly flat",
+      "Never add decorative icon colors beyond #f0e226 and #f5f4f0 — icons should be mono-colored to match the system restraint"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#f0e226",
+        "name": "Hi-Vis Yellow",
+        "role": "Primary action buttons, wordmark, navigation pill borders, section badges, equalizer bars, brand asterisk, highlight underlines — the only chromatic color in the system, carrying 100% of brand voice and functional energy",
+        "group": "brand"
+      },
+      {
+        "hex": "#19181a",
+        "name": "Ink Black",
+        "role": "Primary page background — a warm near-black that sits behind every screen, softer than pure black and warmer against the yellow",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Hard borders, image outlines, logo grid dividers, text on yellow fills — the structural ink that gives the system its edges",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f4f0",
+        "name": "Bone",
+        "role": "Primary text color, body copy, headings, client logos, light surface fills — a warm off-white that reads as paper against the warm-black ground",
+        "group": "neutral"
+      },
+      {
+        "hex": "#272727",
+        "name": "Charcoal",
+        "role": "Subtle dividers, secondary borders, low-contrast structural lines between grid cells",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d9d7ce",
+        "name": "Sand",
+        "role": "Muted helper text, secondary descriptive copy, low-emphasis labels",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with no max-width constraint on the background. Content is contained within a centered ~1440px column, but the yellow graphic elements (wordmark, equalizer bars, nav cluster) break beyond the content column to the viewport edges. Hero: oversized CASSETTE wordmark spanning full viewport width, city names distributed across the width beneath it, nav cluster fixed top-left, hero headline right-aligned, equalizer bars anchored to the bottom. Content sections: asymmetric two-column splits — left column holds image collage, right column holds badge + heading + body + CTA. The clients section is a 4-column × 4-row logo grid with shared 1px borders forming a continuous lattice. Vertical rhythm: generous 80px section gaps, sections separated by the dark background alone with no dividers or color bands. Navigation is a sticky pill cluster in the top-left corner that persists across all sections.",
+    "imagery": "Mixed-media collage: full-color photography (sky, product shots, textured surfaces) layered with grainy yellow graphic elements. Images are sharp-cornered (0px radius), often 1px-bordered, and arranged in asymmetric overlapping stacks. Photography is high-key and saturated — blue sky, pink stucco, green foliage — chosen to pop against the black canvas. The yellow graphic elements (equalizer bars, wordmark) carry a uniform noise/grain texture that mimics risograph printing or photocopied zines. Client logos are predominantly typographic, rendered in #f5f4f0 on the dark background. No lifestyle or staged photography — the objects and surfaces are presented raw, as if scanned directly from a mood board.",
+    "similar": [
+      {
+        "why": "Same high-contrast single-accent color treatment — bright yellow wordmark on black with mono-typographic UI",
+        "business": "Golf Wang"
+      },
+      {
+        "why": "Editorial collage layout with sharp-cornered image stacks and a mono/sans type pair, mixed-media photography",
+        "business": "Aries (fashion brand)"
+      },
+      {
+        "why": "Dark-canvas music platform with pill-shaped navigation and mono labels, communal/waveform visual language",
+        "business": "NTS Radio"
+      },
+      {
+        "why": "Agency site with oversized type, asymmetric image-text splits, and a restrained monochromatic palette with one accent",
+        "business": "Wieden+ Kennedy"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "900px",
+        "images": "0px",
+        "buttons": "900px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#19181a",
+        "name": "Ink Black Canvas",
+        "level": 1,
+        "purpose": "Primary page background across all sections"
+      },
+      {
+        "hex": "#f5f4f0",
+        "name": "Bone Surface",
+        "level": 2,
+        "purpose": "Inverse surface — text and logo fills sitting on the dark canvas"
+      },
+      {
+        "hex": "#f0e226",
+        "name": "Hi-Vis Accent",
+        "level": 3,
+        "purpose": "Functional accent surface for pills, badges, and active marks"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Neon cassette on black velvet. A single hi-vis yellow burns against a warm-black void, the way a tape label glows under a single bulb in a dark room.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.16
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 37,
+        "lineHeight": 1.08
+      },
+      {
+        "role": "display",
+        "size": 56,
+        "lineHeight": 1.08
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button — Filled",
+        "role": "Primary action call-to-action",
+        "description": "Fully rounded (900px radius) pill button. Background: #f0e226 Hi-Vis Yellow. Text: #000000 Pure Black, Apercu Mono Pro 13–14px weight 400, uppercase, 5px horizontal padding, 4px vertical padding. No border. The yellow-on-black contrast (15.6:1) makes every filled button feel switched on."
+      },
+      {
+        "name": "Pill Button — Outlined",
+        "role": "Navigation link, secondary action",
+        "description": "Same 900px radius and 13px/4px padding as the filled variant. Transparent background, 1px solid #f0e226 border, text in #f0e226. Used for the persistent nav cluster (ABOUT, CLIENTS, TEAM, SERVICES, CONTACT, WHY). The outlined form keeps the yellow energy without doubling the filled accent weight."
+      },
+      {
+        "name": "Section Badge",
+        "role": "Section identifier label",
+        "description": "Small pill (900px radius) placed above section headings. 1px solid #f0e226 border, transparent fill, text in #f0e226, Apercu Mono Pro 13px. Two-line stacked format: section name on top, descriptor below (e.g. \"ABOUT CASSETTE / A MUSIC CURATION AGENCY\"). Functions like a stamp or label on a record sleeve."
+      },
+      {
+        "name": "Display Wordmark",
+        "role": "Primary brand identity element",
+        "description": "The \"CASSETTE\" text set in Apercu Pro at 56–60px weight 400, letter-spacing normal, color #f0e226. Stretches edge-to-edge of the viewport. No shadow, no gradient — flat yellow on black. A grain/noise texture overlay softens the fill so it reads like a screen-printed poster rather than a digital render."
+      },
+      {
+        "name": "Brand Asterisk",
+        "role": "Logo mark, favicon, decorative icon",
+        "description": "A six-pointed asterisk/flower glyph in #f0e226, used as the site logo. Appears in the nav cluster, as a favicon, and as a repeated motif. Flat fill, no border, no effects."
+      },
+      {
+        "name": "Audio Equalizer Bars",
+        "role": "Decorative hero/footer graphic",
+        "description": "Horizontal rectangular bars in #f0e226 arranged in a spectrum-equalizer pattern across the full viewport width. Each bar is ~8px tall with small gaps. A grain/noise texture is applied across the entire group, giving the yellow a risograph-printed, slightly degraded quality. Functions as a visual metronome for the music-agency concept."
+      },
+      {
+        "name": "Navigation Pill Cluster",
+        "role": "Primary site navigation",
+        "description": "A horizontal group of 6 outlined pill buttons (ABOUT, CLIENTS, TEAM, SERVICES, CONTACT, WHY) wrapping in 2 rows. Fixed/sticky in the top-left area. Each pill: 900px radius, 1px #f0e226 border, #f0e226 text, Apercu Mono Pro 13px. The brand asterisk sits to the left of the cluster."
+      },
+      {
+        "name": "City Label Row",
+        "role": "Geographic presence indicator",
+        "description": "Four location names (LOS ANGELES, NEW YORK, LONDON, PARIS) in Apercu Mono Pro 13px, #f5f4f0, uppercase, distributed across the full viewport width directly beneath the CASSETTE wordmark. No dividers, no markers — the spatial distribution itself communicates the global presence."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Page section title",
+        "description": "Apercu Pro 37px weight 400, color #f5f4f0 Bone, line-height 1.08. Appears left-aligned above body text. The first heading on the about page includes a #f0e226 underline highlight beneath the key phrase. No drop cap, no decoration beyond the optional highlight stroke."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Paragraph content",
+        "description": "Apercu Pro 15px weight 400, color #f5f4f0 with occasional #d9d7ce Sand for sub-labels, line-height 1.20. All-caps formatting is common, reinforcing the editorial/label-print feel. Paragraphs are short — typically 1–3 sentences — with generous breathing room between them."
+      },
+      {
+        "name": "Logo Grid Cell",
+        "role": "Client logo display",
+        "description": "Individual cell in a 4-column logo grid. 1px solid #272727 Charcoal border on all sides (no gap between cells — borders share edges). Cell content: client logo in #f5f4f0, centered, at roughly 60% cell width. Logos are predominantly typographic; icon+wordmark logos appear at smaller scale. The grid spans the full content width with no outer border."
+      },
+      {
+        "name": "Image Collage",
+        "role": "Mixed-media visual storytelling",
+        "description": "Asymmetric arrangement of photographs and textured surfaces on the left side of content sections. Images have 0px radius (sharp corners), slight overlapping, and 1px borders. Content includes sky/cloud photography, product shots (cassette tape on blue sky), and textured surfaces in accent colors (pink, coral, green). No shadows — the collage relies on layering and color contrast for depth."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and body sans-serif — carries the CASSETTE wordmark at 56–60px, section headings at 37px, and body text at 15px. The single weight (400) used across all sizes is deliberate: hierarchy comes from size jumps, not weight shifts, giving the type a calm, even voice.",
+        "sizes": "15px, 37px, 56px, 60px",
+        "family": "Apercu Pro",
+        "weight": "400",
+        "lineHeight": "1.08 (display/headings), 1.20 (body)",
+        "substitute": "Inter, Söhne, or Neue Haas Grotesk"
+      },
+      {
+        "role": "Monospace workhorse for all UI chrome: navigation pills, section badges, city labels, button text, footer, and small body annotations. The monospace proportions give every interactive element a technical, label-like quality — the chrome feels like equipment markings rather than marketing type.",
+        "sizes": "13px, 14px",
+        "family": "Apercu Mono Pro",
+        "weight": "400",
+        "lineHeight": "1.00 (tight badges), 1.16 (UI), 1.30 (small body)",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Berkeley Mono"
+      }
+    ],
+    "description": "Cassette is a music curation agency site that reads like a single-color risograph print: near-black canvas, one electric yellow doing all the work, and a mono/sans typography pair that feels like liner notes and stage signage. The visual system is deliberately austere — no gradients, no shadows, no decorative secondary hues — so the yellow wordmark, pill buttons, and equalizer bars hit with amplifier-level intensity against the dark ground. Layout is editorial and collage-driven: oversized type, asymmetric image stacks, and bordered logo grids. Components are flat, fully rounded (900px pills), and bordered rather than elevated, with a pervasive grain/noise texture that gives even flat color a tactile, photocopied quality.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fb4cfe58-00b5-4e6a-b251-0c65e60b6649#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Cassette design system\",\"item\":\"https://styles.refero.design/style/fb4cfe58-00b5-4e6a-b251-0c65e60b6649\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fb4cfe58-00b5-4e6a-b251-0c65e60b6649#style-reference\",\"name\":\"Cassette design system reference\",\"headline\":\"Cassette design system | Refero Styles\",\"description\":\"Explore Cassette's dark Agency design system: Hi-Vis Yellow #f0e226, Ink Black #19181a colors, Apercu Pro, Apercu Mono Pro typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/fb4cfe58-00b5-4e6a-b251-0c65e60b6649\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fb4cfe58-00b5-4e6a-b251-0c65e60b6649\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Cassette\",\"url\":\"https://cassettemusic.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fb4cfe58-00b5-4e6a-b251-0c65e60b6649#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2133cfc0-5109-45ab-815e-b684fbcaf7ad.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2133cfc0-5109-45ab-815e-b684fbcaf7ad.jpg\",\"caption\":\"Screenshot of Cassette\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2133cfc0-5109-45ab-815e-b684fbcaf7ad.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Cassette design system\",\"Cassette website design\",\"Cassette colors\",\"Cassette typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Hi-Vis Yellow\",\"Ink Black\",\"Pure Black\",\"Bone\",\"Apercu Pro\",\"Apercu Mono Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Cassette design system\"},{\"@type\":\"Thing\",\"name\":\"Cassette website design\"},{\"@type\":\"Thing\",\"name\":\"Cassette colors\"},{\"@type\":\"Thing\",\"name\":\"Cassette typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:25:16.970Z\",\"dateModified\":\"2026-04-30T00:25:16.970Z\"}]}19:T52e,## Quick Color Reference\n- text: #f5f4f0 (Bone)\n- background: #19181a (Ink Black)\n- border: #f0e226 (Hi-Vis Yellow)\n- accent: #f0e226 (Hi-Vis Yellow)\n- primary action: #f0e226 (filled action)\n\n## Example Component Prompts\n\n1. **Create a pill button (filled):** 900px border-radius, background #f0e226, text #000000, Apercu Mono Pro 13px weight 400 uppercase, padding 4px 13px, no border. The yellow fill should be flat with a subtle noise/grain texture overlay.\n\n2. **Create a pill button (outlined):** 900px border-radius, background transparent, 1px solid #f0e226 border, text #f0e226, Apercu Mono Pro 13px weight 400 uppercase, padding 4px 13px.\n\n3. **Create a section badge:** 900px border-radius, background transparent, 1px solid #f0e226 border, text #f0e226, Apercu Mono Pro 13px weight 400, two lines stacked. Place above section headings with 24px gap below.\n\n4. **Create a display wordmark:** Apercu Pro 56px weight 400, color #f0e226, letter-spacing normal, stretching full viewport width. Apply a grain/noise texture overlay at 10–15% opacity for a risograph print effect.\n\n5. **Create a logo grid cell:** 1px solid #272727 border on all sides (shared edges with adjacent cells), background #19181a, content centered — a client logo in #f5f4f0 at ~60% cell width. 4-column grid spanning the full content width."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally shadowless. Depth and hierarchy are achieved through color contrast (yellow on black), border weight (1px hairlines in #272727 or #f0e226), and size jumps in typography — never through drop shadows or blur. Flat color and sharp edges give the site a printed, analog quality that matches the cassette/music-curation concept."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "link",
+            "button",
+            "badge",
+            "icon",
+            "heading",
+            "footer"
+          ],
+          "frequency": 671,
+          "confidence": 1,
+          "prominence": 82814345.04977407,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "hero/color": 1,
+            "icon/color": 5,
+            "link/color": 1,
+            "other/fill": 86,
+            "badge/color": 4,
+            "image/color": 18,
+            "other/color": 76,
+            "button/color": 6,
+            "footer/color": 1,
+            "heading/color": 5,
+            "hero/borderColor": 4,
+            "icon/borderColor": 20,
+            "link/borderColor": 4,
+            "badge/borderColor": 16,
+            "image/borderColor": 72,
+            "other/borderColor": 304,
+            "button/borderColor": 24,
+            "footer/borderColor": 4,
+            "heading/borderColor": 20
+          }
+        },
+        {
+          "hex": "#19181a",
+          "oklch": {
+            "c": 0.004166399812222592,
+            "h": 308.2412855802888,
+            "l": 0.21101063267142303
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "badge",
+            "button",
+            "icon",
+            "footer"
+          ],
+          "frequency": 221,
+          "confidence": 1,
+          "prominence": 68725258.73666441,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "badge/color": 15,
+            "image/color": 4,
+            "other/color": 22,
+            "button/color": 1,
+            "other/stroke": 1,
+            "icon/borderColor": 4,
+            "badge/borderColor": 60,
+            "image/borderColor": 16,
+            "other/borderColor": 88,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 7,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f5f4f0",
+          "oklch": {
+            "c": 0.005412412975512232,
+            "h": 95.09982354160404,
+            "l": 0.966809247089108
+          },
+          "contexts": [
+            "heading",
+            "badge",
+            "other",
+            "image",
+            "link",
+            "body"
+          ],
+          "frequency": 1157,
+          "confidence": 1,
+          "prominence": 15308884.646462947,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 16,
+            "link/color": 8,
+            "other/fill": 105,
+            "image/color": 1,
+            "other/color": 193,
+            "heading/color": 6,
+            "body/borderColor": 64,
+            "link/borderColor": 32,
+            "image/borderColor": 4,
+            "other/borderColor": 694,
+            "heading/borderColor": 24,
+            "badge/backgroundColor": 10
+          }
+        },
+        {
+          "hex": "#272727",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.27274100075141233
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 104,
+          "confidence": 1,
+          "prominence": 9239614.256016223,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 2,
+            "other/borderColor": 102
+          }
+        },
+        {
+          "hex": "#f0e226",
+          "oklch": {
+            "c": 0.18285862302202557,
+            "h": 104.77660916936682,
+            "l": 0.8961341621690686
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 527,
+          "confidence": 1,
+          "prominence": 2013490.1520339372,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/color": 28,
+            "other/fill": 52,
+            "other/color": 57,
+            "button/color": 5,
+            "other/stroke": 28,
+            "icon/borderColor": 112,
+            "other/borderColor": 212,
+            "button/borderColor": 24,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#fac4f0",
+          "oklch": {
+            "c": 0.08352859185417144,
+            "h": 332.761217833367,
+            "l": 0.8812631939126336
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 245844,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff8461",
+          "oklch": {
+            "c": 0.15792349175782694,
+            "h": 36.76427085978445,
+            "l": 0.7448519022594904
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 245844,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2896f3",
+          "oklch": {
+            "c": 0.16755883585213321,
+            "h": 249.49370659880316,
+            "l": 0.6593751320457415
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 222623,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0db55b",
+          "oklch": {
+            "c": 0.17827652733854735,
+            "h": 151.37433522810733,
+            "l": 0.6776126208760473
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 222623,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d9d7ce",
+          "oklch": {
+            "c": 0.012380253494699558,
+            "h": 96.44136518221686,
+            "l": 0.8782271100568225
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 180667.368699731,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/color": 7,
+            "link/borderColor": 4,
+            "other/borderColor": 28
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.10381387475727963,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.08,
+          "background": "#f5f4f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.08,
+          "background": "#f5f4f0",
+          "foreground": "#19181a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.61,
+          "background": "#f0e226",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.56,
+          "background": "#d9d7ce",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.22,
+          "background": "#fac4f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.57,
+          "background": "#f5f4f0",
+          "foreground": "#272727"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.15,
+          "background": "#f0e226",
+          "foreground": "#19181a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.27,
+          "background": "#19181a",
+          "foreground": "#d9d7ce"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.98,
+          "background": "#fac4f0",
+          "foreground": "#19181a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.11,
+          "background": "#f0e226",
+          "foreground": "#272727"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.36,
+          "background": "#d9d7ce",
+          "foreground": "#272727"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.11,
+          "background": "#fac4f0",
+          "foreground": "#272727"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.73,
+          "background": "#ff8461",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.78,
+          "background": "#0db55b",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.35,
+          "background": "#ff8461",
+          "foreground": "#19181a"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.75,
+          "background": "#2896f3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.55,
+          "background": "#0db55b",
+          "foreground": "#19181a"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.21,
+          "background": "#ff8461",
+          "foreground": "#272727"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.68,
+          "background": "#2896f3",
+          "foreground": "#19181a"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.53,
+          "background": "#0db55b",
+          "foreground": "#272727"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 900,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 24
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "paddingBottom|badge"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 76,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button",
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 35,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "hero",
+            "footer"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingRight|hero",
+            "paddingBottom|hero",
+            "paddingLeft|hero",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 54,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|badge"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "marginTop",
+            "paddingRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "image",
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|image",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Apercu Mono Pro",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 451,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Apercu Pro",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 35,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 13,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Apercu Mono Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "link",
+            "badge",
+            "icon",
+            "footer"
+          ],
+          "frequency": 315,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Apercu Mono Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "badge",
+            "button",
+            "icon",
+            "link",
+            "body"
+          ],
+          "frequency": 122,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Apercu Mono Pro",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Apercu Mono Pro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.16,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Apercu Pro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.08,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 37,
+          "family": "Apercu Pro",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Apercu Pro",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Apercu Pro",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/9555c35e-c72b-4db0-a38d-aa9460b2bee8.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2133cfc0-5109-45ab-815e-b684fbcaf7ad.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fb4cfe58-00b5-4e6a-b251-0c65e60b6649#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Cassette design system\",\"item\":\"https://styles.refero.design/style/fb4cfe58-00b5-4e6a-b251-0c65e60b6649\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fb4cfe58-00b5-4e6a-b251-0c65e60b6649#style-reference\",\"name\":\"Cassette design system reference\",\"headline\":\"Cassette design system | Refero Styles\",\"description\":\"Explore Cassette's dark Agency design system: Hi-Vis Yellow #f0e226, Ink Black #19181a colors, Apercu Pro, Apercu Mono Pro typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/fb4cfe58-00b5-4e6a-b251-0c65e60b6649\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fb4cfe58-00b5-4e6a-b251-0c65e60b6649\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Cassette\",\"url\":\"https://cassettemusic.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fb4cfe58-00b5-4e6a-b251-0c65e60b6649#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2133cfc0-5109-45ab-815e-b684fbcaf7ad.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2133cfc0-5109-45ab-815e-b684fbcaf7ad.jpg\",\"caption\":\"Screenshot of Cassette\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2133cfc0-5109-45ab-815e-b684fbcaf7ad.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Cassette design system\",\"Cassette website design\",\"Cassette colors\",\"Cassette typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Hi-Vis Yellow\",\"Ink Black\",\"Pure Black\",\"Bone\",\"Apercu Pro\",\"Apercu Mono Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Cassette design system\"},{\"@type\":\"Thing\",\"name\":\"Cassette website design\"},{\"@type\":\"Thing\",\"name\":\"Cassette colors\"},{\"@type\":\"Thing\",\"name\":\"Cassette typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:25:16.970Z\",\"dateModified\":\"2026-04-30T00:25:16.970Z\"}]}19:T52e,## Quick Color Reference\n- text: #f5f4f0 (Bone)\n- background: #19181a (Ink Black)\n- border: #f0e226 (Hi-Vis Yellow)\n- accent: #f0e226 (Hi-Vis Yellow)\n- primary action: #f0e226 (filled action)\n\n## Example Component Prompts\n\n1. **Create a pill button (filled):** 900px border-radius, background #f0e226, text #000000, Apercu Mono Pro 13px weight 400 uppercase, padding 4px 13px, no border. The yellow fill should be flat with a subtle noise/grain texture overlay.\n\n2. **Create a pill button (outlined):** 900px border-radius, background transparent, 1px solid #f0e226 border, text #f0e226, Apercu Mono Pro 13px weight 400 uppercase, padding 4px 13px.\n\n3. **Create a section badge:** 900px border-radius, background transparent, 1px solid #f0e226 border, text #f0e226, Apercu Mono Pro 13px weight 400, two lines stacked. Place above section headings with 24px gap below.\n\n4. **Create a display wordmark:** Apercu Pro 56px weight 400, color #f0e226, letter-spacing normal, stretching full viewport width. Apply a grain/noise texture overlay at 10–15% opacity for a risograph print effect.\n\n5. **Create a logo grid cell:** 1px solid #272727 border on all sides (shared edges with adjacent cells), background #19181a, content centered — a client logo in #f5f4f0 at ~60% cell width. 4-column grid spanning the full content width."
+}

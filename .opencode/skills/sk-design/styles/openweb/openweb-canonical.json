@@ -1,0 +1,1596 @@
+{
+  "source": "https://styles.refero.design/style/c38d077b-3cdb-48c6-899c-e8a543508c31",
+  "uuid": "c38d077b-3cdb-48c6-899c-e8a543508c31",
+  "name": "OpenWeb",
+  "northStar": "Editorial broadsheet on warm rose paper. A blush canvas carries enormous serif headlines and one electric-blue accent — the whole page reads like a printed editorial spread rebuilt as a screen, where type weight and warm negative space replace panels, borders, and shadows.",
+  "capturedAt": "2026-07-18T08:25:48.554Z",
+  "meta": {
+    "url": "https://www.openweb.com",
+    "siteName": "OpenWeb",
+    "extractedAt": "2026-06-03T15:45:05.032Z",
+    "durationMs": 33962,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 593,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all body and heading type in Copernicus (or a high-contrast transitional serif substitute) at the sizes in the type scale — never substitute a sans-serif for the running text.",
+      "Use #f1e9e7 (Blush Paper) as the canvas for every section; do not introduce white, cool gray, or any other background tone.",
+      "Reserve #0058fe (Signal Blue) exclusively for active states, in-prose links, and the active tab — never use it for fills, large surfaces, or decorative accents.",
+      "Apply aggressive negative tracking to all display sizes (≥40px): at minimum -0.047em, scaling to -0.092em at 90px. Body sizes (15–18px) stay at near-zero tracking.",
+      "Use the Filled Black CTA Button (sharp 0px corners, italic Copernicus label) as the single button variant; pair it with the Inline Link pattern for secondary actions.",
+      "Separate sections and structure pages with 1px #000000 hairline rules rather than borders, shadows, or background tints.",
+      "Center key editorial blocks (hero, section headings, body paragraphs) at a 1200px max-width with generous 80–120px section gaps."
+    ],
+    "donts": [
+      "Do not add drop shadows, glows, or any box-shadow value to cards, buttons, or floating elements — the system is flat by design.",
+      "Do not use border-radius on buttons, inputs, badges, or tags — keep them at 0px. The only rounded element is the 40px isometric device mockup.",
+      "Do not introduce a second accent color or a second blue shade — Signal Blue is the only chromatic note in the system.",
+      "Do not set large display type in anything but Copernicus 400 with negative tracking — bold weights break the editorial feel.",
+      "Do not use a sans-serif for body copy, nav items, or button labels — the serif is the voice; sans-serif ruins the broadsheet illusion.",
+      "Do not wrap content in cards with backgrounds, borders, or padding blocks — let type sit directly on the Blush Paper canvas.",
+      "Do not use #ffffff as a page or section background — it will flatten the warm editorial tone that defines the brand."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f1e9e7",
+        "name": "Blush Paper",
+        "role": "Page canvas, all section backgrounds — the warm rose-tinted ground that gives the entire site its editorial, printed-on-paper feel. Never a flat white, never a cool gray",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon Ink",
+        "role": "Primary text, filled buttons, all iconography, form labels, footer rules. The dominant non-canvas color — drives every typographic and interactive element",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Text color inside filled black buttons, reverse-fill surfaces, and form input contrast. Used sparingly as the counter-tone to Carbon Ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7b7f83",
+        "name": "Fossil Gray",
+        "role": "Muted helper text, secondary metadata, subdued form placeholder tones. The only neutral that softens Carbon Ink for non-primary copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0058fe",
+        "name": "Signal Blue",
+        "role": "Violet accent for outlined action borders, linked labels, and lightweight interactive emphasis.",
+        "group": "brand"
+      }
+    ],
+    "layout": "The page model is centered and max-width contained at ~1200px, with the Blush Paper canvas extending full-bleed behind. The hero is a single vertical stack: centered sunburst logo, a 70–90px display headline set on two lines, a 3–4 line body paragraph at 15–18px, and a Filled Black CTA Button — all centered, with 40–60px of vertical breathing room between elements. Section rhythm is single-column editorial: each subsequent block is a centered headline + short paragraph, often interrupted by a full-bleed isometric device mockup. There are no card grids, no multi-column feature blocks, no sidebars. Navigation is a flat top bar with a logo, four text links with dropdown chevrons, and a right-aligned black CTA button. The footer is a 4-column text link grid separated from the body by a single hairline rule.",
+    "imagery": "Imagery is sparse and product-focused: the only visual elements are photorealistic device renders (smartphone and laptop) shown at a 15–20° isometric angle, floating on the Blush Paper canvas with no cast shadow. The device screens contain realistic UI screenshots of the OpenWeb comment product with real content (article text, user comments, profile images). No photography, no illustration, no abstract graphics, no decorative shapes — the OpenWeb sunburst logo is the sole brand mark and appears flat in Carbon Ink. The overall visual density is text-dominant; imagery occupies maybe 15–20% of any given screen and exists only to demonstrate the product.",
+    "similar": [
+      {
+        "why": "Same editorial-on-warm-paper feel: warm off-white canvas, large high-contrast serif headlines, generous whitespace, no card UI, and a single muted accent color reserved for links and active states",
+        "business": "The New Yorker (newyorker.com)"
+      },
+      {
+        "why": "Shared publisher-magazine identity — huge serif display type, centered editorial blocks, hairline rules instead of borders, and a near-monochrome palette with one vivid accent",
+        "business": "Substack (onboardings and brand pages)"
+      },
+      {
+        "why": "Same restraint philosophy — typographic-first design, warm neutral canvas, no shadows or decorative surfaces, and serif-led type that treats the page as a reading surface rather than an app",
+        "business": "Are.na"
+      },
+      {
+        "why": "Same minimalism with large display headlines and a single warm canvas tone, though OpenWeb leans editorial-serif where Notion uses sans-serif",
+        "business": "Notion (marketing site)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "inputs": "0px",
+        "buttons": "0px",
+        "largeSurface": "40px"
+      },
+      "elementGap": "15px",
+      "sectionGap": "80-120px",
+      "cardPadding": "30px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#f1e9e7",
+        "name": "Blush Paper",
+        "level": 1,
+        "purpose": "Page canvas — the single base surface for the entire site"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon Ink",
+        "level": 2,
+        "purpose": "Filled button surface and inverted text background"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "level": 3,
+        "purpose": "Reverse-fill elements (button labels, form field text) on Carbon Ink"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Editorial broadsheet on warm rose paper. A blush canvas carries enormous serif headlines and one electric-blue accent — the whole page reads like a printed editorial spread rebuilt as a screen, where type weight and warm negative space replace panels, borders, and shadows.",
+    "typeScale": [
+      {
+        "role": "nano",
+        "size": 11,
+        "lineHeight": 1.3,
+        "letterSpacing": 0
+      },
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.3,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.27,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.21,
+        "letterSpacing": -0.216
+      },
+      {
+        "role": "subheading",
+        "size": 25,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.875
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.08,
+        "letterSpacing": -2
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.05,
+        "letterSpacing": -2.69
+      },
+      {
+        "role": "heading-xl",
+        "size": 60,
+        "lineHeight": 1.04,
+        "letterSpacing": -3.78
+      },
+      {
+        "role": "display",
+        "size": 70,
+        "lineHeight": 1,
+        "letterSpacing": -4.83
+      },
+      {
+        "role": "display-lg",
+        "size": 90,
+        "lineHeight": 0.84,
+        "letterSpacing": -8.28
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Black CTA Button",
+        "role": "Primary action surface — used for 'Contact us' in the nav, 'Let's talk', 'Get In Touch'",
+        "description": "Solid #000000 background, #ffffff text, Copernicus 15px italic 400, 10–12px vertical padding and ~20px horizontal padding, 0px border-radius (square corners — the sharp edges are intentional, echoing the serif terminals). No shadow, no border, no hover lift; on hover the background remains black with subtle opacity shift. The italic treatment on the label gives it a handwritten-editorial weight."
+      },
+      {
+        "name": "Ghost Tab Selector",
+        "role": "Active/inactive section toggle — visible on the contact form (Publisher / Advertiser)",
+        "description": "No background, no border, no box. Active tab is Copernicus ~40px italic in #0058fe; inactive tab is the same size and weight in #000000. A single hairline divider rule above separates the tab row from the form. The blue italic signals selection through color and slant alone — no underline, no pill, no fill."
+      },
+      {
+        "name": "Inline Link",
+        "role": "In-prose hyperlinks (e.g. 'legal@openweb.com')",
+        "description": "Underlined in #0058fe, sitting inline with the surrounding body copy at 15–18px Copernicus 400. Color is the only differentiator from body text — no bold, no weight change, no background highlight. Signal Blue is reserved for this role; body copy is never blue."
+      },
+      {
+        "name": "Bottom-Border Text Input",
+        "role": "Form fields — Work Email, Job Title, message",
+        "description": "No background, no surrounding box. A single 1px #000000 bottom border defines the field. Label sits above the input in Copernicus 14–15px 400 #000000 with an asterisk for required fields. Placeholder text in #7b7f83 at the same size. Focus state deepens the bottom border to ~2px or shifts it to #0058fe — no outline glow, no floating label animation."
+      },
+      {
+        "name": "Radio Option Row",
+        "role": "Single-select form options under 'What Are You Interested In?'",
+        "description": "Custom circular radio: 18px outer ring, 1px #000000 border, #0058fe fill on the inner dot when selected. Label sits to the right in Copernicus 15px 400 #000000. No background highlight on the row, no card wrapper — the radio is the only visual unit."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-of-page site navigation",
+        "description": "Full-width Blush Paper background, no border, no shadow. Logo (OpenWeb wordmark + sunburst icon) left-aligned in #000000, nav items centered/left-aligned as plain Copernicus 14–15px text with chevron dropdowns, and the Filled Black CTA Button right-aligned. ~60–72px tall, generous breathing room. A single hairline #000000 rule sits beneath the bar."
+      },
+      {
+        "name": "Hairline Divider Rule",
+        "role": "Structural separator between sections and within the footer",
+        "description": "1px solid #000000, full-width or content-width. The only structural line in the system — replaces borders, card edges, and section transitions that other systems would draw with shadows or backgrounds."
+      },
+      {
+        "name": "Isometric Phone Mockup",
+        "role": "Product showcase — appears in the middle scroll section showing comment threads",
+        "description": "Photorealistic device renders (smartphone and laptop) presented at a 15–20° isometric angle, floating on the Blush Paper canvas with no cast shadow. The devices themselves contain realistic UI screenshots of the OpenWeb comment product. A ~40px border-radius on the device frame softens the otherwise sharp system."
+      },
+      {
+        "name": "Footer Column Block",
+        "role": "Bottom-of-page link groups — Publishers, Advertisers, Resources, About",
+        "description": "Four equal columns of plain text links in Copernicus 14–15px 400 #000000, separated from the body by a top hairline rule. No headings, no icons, no social-link styling beyond simple circular outlined badges in the row above. The footer sits on the same Blush Paper canvas as the rest of the site."
+      },
+      {
+        "name": "Social Link Badge",
+        "role": "LinkedIn and Threads icons in the footer",
+        "description": "Small circular outline (~32px diameter, 1px #000000 border), icon centered inside in #000000. No fill, no background — the circle is implied only by the stroke."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Copernicus carries the entire voice — it is a high-contrast transitional serif whose terminals and sharp serifs make 70–90px display sizes feel literary rather than decorative. The signature move is its aggressive negative tracking: -0.092em at 90px tightens the headline into a near-solid mass of type, which against the warm blush ground reads as a printed editorial pull-quote, not a SaaS H1. Body sizes (15–18px) sit at near-normal tracking, so the tension between tight display and loose running text mirrors a magazine spread.",
+        "sizes": "11, 14, 15, 16, 18, 25, 30, 40, 48, 60, 70, 80, 90",
+        "family": "Copernicus",
+        "weight": "400, 700",
+        "lineHeight": "0.84, 1.00, 1.04, 1.05, 1.08, 1.10, 1.15, 1.17, 1.20, 1.21, 1.27, 1.28, 1.30",
+        "substitute": "Playfair Display (display), Lora (body), or any high-contrast transitional serif — Source Serif Pro as a free fallback",
+        "letterSpacing": "-0.092em at 90px display, scaling to -0.047em at 30px, -0.010em at 16px body, 0em at 14px and below",
+        "fontFeatureSettings": "\"liga\" on, \"kern\" on"
+      },
+      {
+        "role": "A vestigial system-font presence — appears only in minor utility spots (small labels, icons-in-text). Not a typographic voice; effectively a fallback safety net.",
+        "sizes": "15",
+        "family": "Helvetica",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "system-ui, -apple-system, Helvetica, Arial, sans-serif",
+        "letterSpacing": "0.0070em"
+      }
+    ],
+    "description": "OpenWeb reads like an editorial broadsheet printed on warm rose paper: a single blush canvas (#f1e9e7), nearly all-black type set in a sharp transitional serif, and one vivid electric blue as the only chromatic accent. The interface is almost entirely typographic — no card shadows, no panel borders, no decorative dividers — letting huge serif headlines at 70–90px with aggressively tight negative tracking do all the structural work. Black filled buttons and ghost blue links provide the only UI punctuation; everything else is whitespace, line breaks, and the warm paper tone. The mood is literary and considered, not app-like; pages feel closer to a magazine spread than a SaaS dashboard.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c38d077b-3cdb-48c6-899c-e8a543508c31#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"OpenWeb design system\",\"item\":\"https://styles.refero.design/style/c38d077b-3cdb-48c6-899c-e8a543508c31\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c38d077b-3cdb-48c6-899c-e8a543508c31#style-reference\",\"name\":\"OpenWeb design system reference\",\"headline\":\"OpenWeb design system | Refero Styles\",\"description\":\"Explore OpenWeb's light SaaS design system: Blush Paper #f1e9e7, Carbon Ink #000000 colors, Copernicus, Helvetica typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c38d077b-3cdb-48c6-899c-e8a543508c31\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c38d077b-3cdb-48c6-899c-e8a543508c31\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"OpenWeb\",\"url\":\"https://www.openweb.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c38d077b-3cdb-48c6-899c-e8a543508c31#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c1a93baf-c0f9-4fba-aff5-ee21b90b070c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c1a93baf-c0f9-4fba-aff5-ee21b90b070c.jpg\",\"caption\":\"Screenshot of OpenWeb\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c1a93baf-c0f9-4fba-aff5-ee21b90b070c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"OpenWeb design system\",\"OpenWeb website design\",\"OpenWeb colors\",\"OpenWeb typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Blush Paper\",\"Carbon Ink\",\"Bone White\",\"Fossil Gray\",\"Copernicus\",\"Helvetica\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"OpenWeb design system\"},{\"@type\":\"Thing\",\"name\":\"OpenWeb website design\"},{\"@type\":\"Thing\",\"name\":\"OpenWeb colors\"},{\"@type\":\"Thing\",\"name\":\"OpenWeb typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T03:46:16.060Z\",\"dateModified\":\"2026-04-30T03:46:16.060Z\"}]}19:T6e2,**Quick Color Reference**\n- text: #000000 (Carbon Ink)\n- background: #f1e9e7 (Blush Paper)\n- border: #000000 (hairline rules only)\n- accent: #0058fe (Signal Blue — links, active tab, radio dot)\n- muted text: #7b7f83 (Fossil Gray)\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n\n1. *Hero block*: Blush Paper (#f1e9e7) canvas, centered sunburst logo in #000000, then a 70px Copernicus weight 400 headline in #000000 with letter-spacing -4.83px set across two lines, followed by a 18px body paragraph (line-height 1.21, letter-spacing -0.216px) in #000000, then a Filled Black CTA Button (10px 20px padding, 0px radius, italic 15px Copernicus #ffffff). All elements centered, 40px vertical gap between them, max-width 1200px.\n\n2. *Ghost tab selector*: Two tab labels (Publisher, Advertiser) in 40px Copernicus italic 400, the active tab in #0058fe, the inactive tab in #000000, separated from a form below by a 1px #000000 hairline rule. No background, no underline, no border on the tabs themselves.\n\n3. *Bottom-border text input*: Label above in 14px Copernicus 400 #000000 with required asterisk, then a transparent input with a 1px #000000 bottom border only, 15px Copernicus placeholder text in #7b7f83. No box, no background, no rounded corners.\n\n4. *Inline link inside a body paragraph*: A 15–18px Copernicus body sentence in #000000 with a single word wrapped in #0058fe underline — color and underline are the only differentiators from the surrounding text.\n\n5. *Isometric device mockup section*: Blush Paper canvas, a photorealistic smartphone rendered at 15° isometric, floating with no shadow, screen showing a realistic comment-thread UI, max-width 800px, centered, with 80–120px of empty Blush Paper above and below."
+      }
+    ],
+    "elevationPhilosophy": "The system intentionally avoids all box-shadows and z-axis elevation. Depth is communicated exclusively through the warm Blush Paper canvas against Carbon Ink type and a single hairline rule. A filled black button reads as 'pressed' through color contrast alone, not through a drop shadow — a deliberate editorial choice that keeps every page on a single typographic plane."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "nav",
+            "card",
+            "image",
+            "body",
+            "button",
+            "hero",
+            "list",
+            "input",
+            "badge",
+            "icon",
+            "footer"
+          ],
+          "frequency": 2583,
+          "confidence": 1,
+          "prominence": 149524454.04534626,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 12,
+            "icon/fill": 4,
+            "nav/color": 19,
+            "body/color": 36,
+            "card/color": 29,
+            "hero/color": 2,
+            "icon/color": 5,
+            "link/color": 22,
+            "list/color": 40,
+            "other/fill": 12,
+            "badge/color": 1,
+            "image/color": 43,
+            "input/color": 10,
+            "other/color": 294,
+            "button/color": 1,
+            "footer/color": 1,
+            "other/stroke": 4,
+            "heading/color": 32,
+            "nav/borderColor": 76,
+            "body/borderColor": 144,
+            "card/borderColor": 116,
+            "hero/borderColor": 8,
+            "icon/borderColor": 20,
+            "link/borderColor": 88,
+            "list/borderColor": 160,
+            "badge/borderColor": 4,
+            "image/borderColor": 172,
+            "input/borderColor": 40,
+            "other/borderColor": 1040,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 128,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#0058fe",
+          "oklch": {
+            "c": 0.25524201374621464,
+            "h": 262.34271770815434,
+            "l": 0.5373216893210173
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 1947364.9089796364,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 6,
+            "other/color": 2,
+            "button/color": 1,
+            "link/borderColor": 24,
+            "other/borderColor": 8,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f1e9e7",
+          "oklch": {
+            "c": 0.009111892197849704,
+            "h": 34.302519816491696,
+            "l": 0.939723812689104
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1702630.1167746948,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "heading",
+            "other",
+            "icon"
+          ],
+          "frequency": 104,
+          "confidence": 1,
+          "prominence": 357520.14532468567,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 5,
+            "body/color": 4,
+            "icon/color": 1,
+            "other/fill": 1,
+            "other/color": 1,
+            "button/color": 7,
+            "heading/color": 5,
+            "nav/borderColor": 16,
+            "body/borderColor": 16,
+            "icon/borderColor": 4,
+            "other/borderColor": 4,
+            "button/borderColor": 20,
+            "heading/borderColor": 20
+          }
+        },
+        {
+          "hex": "#7b7f83",
+          "oklch": {
+            "c": 0.007742911700059265,
+            "h": 247.95716917175685,
+            "l": 0.5943926683225781
+          },
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 43120.9716028048,
+          "properties": [
+            "boxShadow",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "badge/boxShadow": 1,
+            "other/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.011393343729705773,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.55,
+          "background": "#f1e9e7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.21,
+          "background": "#000000",
+          "foreground": "#7b7f83"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.59,
+          "background": "#f1e9e7",
+          "foreground": "#0058fe"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.83,
+          "background": "#000000",
+          "foreground": "#0058fe"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.37,
+          "background": "#f1e9e7",
+          "foreground": "#7b7f83"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.2,
+          "background": "#f1e9e7",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 36,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "input",
+            "list"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginLeft|other",
+            "marginTop|heading",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "list",
+            "heading"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|list",
+            "columnGap|list",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "body",
+            "list",
+            "input"
+          ],
+          "frequency": 44,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginTop|body",
+            "paddingBottom|list",
+            "paddingLeft|list",
+            "marginRight|input",
+            "paddingRight|list"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|list",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "body",
+            "other",
+            "card",
+            "list"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|card",
+            "marginBottom|list",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "card"
+          ],
+          "frequency": 41,
+          "properties": [
+            "paddingLeft",
+            "marginRight",
+            "marginBottom",
+            "marginTop",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav",
+            "marginRight|nav",
+            "marginBottom|other",
+            "marginTop|body",
+            "marginBottom|body",
+            "marginLeft|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 31,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 30,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 47,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "image",
+            "hero"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|image",
+            "marginTop|hero",
+            "marginBottom|hero"
+          ]
+        },
+        {
+          "value": 55,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 79,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "heading",
+            "body",
+            "hero"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "marginBottom|heading",
+            "marginTop|hero",
+            "marginBottom|hero"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 140,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 188,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 220,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 235,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Copernicus",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 565,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Helvetica",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Copernicus",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Copernicus",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.27,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "card",
+            "image",
+            "body",
+            "hero",
+            "list",
+            "input",
+            "badge",
+            "icon",
+            "footer"
+          ],
+          "frequency": 418,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Copernicus",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.28,
+          "letterSpacing": -0.052,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.28,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.052,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.04,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.28,
+          "letterSpacing": -0.092,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.047,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.08,
+          "letterSpacing": -0.063,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.21,
+          "letterSpacing": -0.062,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.08,
+          "letterSpacing": -0.069,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.08,
+          "letterSpacing": -0.083,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.035,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.067,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.003,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.067,
+          "textTransform": "none"
+        },
+        {
+          "size": 70,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.21,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.063,
+          "textTransform": "none"
+        },
+        {
+          "size": 90,
+          "family": "Copernicus",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.84,
+          "letterSpacing": -0.056,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/52aab786-7bd2-4c17-96e7-3067f998cbc1.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c1a93baf-c0f9-4fba-aff5-ee21b90b070c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c38d077b-3cdb-48c6-899c-e8a543508c31#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"OpenWeb design system\",\"item\":\"https://styles.refero.design/style/c38d077b-3cdb-48c6-899c-e8a543508c31\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c38d077b-3cdb-48c6-899c-e8a543508c31#style-reference\",\"name\":\"OpenWeb design system reference\",\"headline\":\"OpenWeb design system | Refero Styles\",\"description\":\"Explore OpenWeb's light SaaS design system: Blush Paper #f1e9e7, Carbon Ink #000000 colors, Copernicus, Helvetica typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c38d077b-3cdb-48c6-899c-e8a543508c31\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c38d077b-3cdb-48c6-899c-e8a543508c31\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"OpenWeb\",\"url\":\"https://www.openweb.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c38d077b-3cdb-48c6-899c-e8a543508c31#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c1a93baf-c0f9-4fba-aff5-ee21b90b070c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c1a93baf-c0f9-4fba-aff5-ee21b90b070c.jpg\",\"caption\":\"Screenshot of OpenWeb\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c1a93baf-c0f9-4fba-aff5-ee21b90b070c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"OpenWeb design system\",\"OpenWeb website design\",\"OpenWeb colors\",\"OpenWeb typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Blush Paper\",\"Carbon Ink\",\"Bone White\",\"Fossil Gray\",\"Copernicus\",\"Helvetica\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"OpenWeb design system\"},{\"@type\":\"Thing\",\"name\":\"OpenWeb website design\"},{\"@type\":\"Thing\",\"name\":\"OpenWeb colors\"},{\"@type\":\"Thing\",\"name\":\"OpenWeb typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T03:46:16.060Z\",\"dateModified\":\"2026-04-30T03:46:16.060Z\"}]}19:T6e2,**Quick Color Reference**\n- text: #000000 (Carbon Ink)\n- background: #f1e9e7 (Blush Paper)\n- border: #000000 (hairline rules only)\n- accent: #0058fe (Signal Blue — links, active tab, radio dot)\n- muted text: #7b7f83 (Fossil Gray)\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n\n1. *Hero block*: Blush Paper (#f1e9e7) canvas, centered sunburst logo in #000000, then a 70px Copernicus weight 400 headline in #000000 with letter-spacing -4.83px set across two lines, followed by a 18px body paragraph (line-height 1.21, letter-spacing -0.216px) in #000000, then a Filled Black CTA Button (10px 20px padding, 0px radius, italic 15px Copernicus #ffffff). All elements centered, 40px vertical gap between them, max-width 1200px.\n\n2. *Ghost tab selector*: Two tab labels (Publisher, Advertiser) in 40px Copernicus italic 400, the active tab in #0058fe, the inactive tab in #000000, separated from a form below by a 1px #000000 hairline rule. No background, no underline, no border on the tabs themselves.\n\n3. *Bottom-border text input*: Label above in 14px Copernicus 400 #000000 with required asterisk, then a transparent input with a 1px #000000 bottom border only, 15px Copernicus placeholder text in #7b7f83. No box, no background, no rounded corners.\n\n4. *Inline link inside a body paragraph*: A 15–18px Copernicus body sentence in #000000 with a single word wrapped in #0058fe underline — color and underline are the only differentiators from the surrounding text.\n\n5. *Isometric device mockup section*: Blush Paper canvas, a photorealistic smartphone rendered at 15° isometric, floating with no shadow, screen showing a realistic comment-thread UI, max-width 800px, centered, with 80–120px of empty Blush Paper above and below."
+}

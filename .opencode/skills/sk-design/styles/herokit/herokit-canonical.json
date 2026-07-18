@@ -1,0 +1,1466 @@
+{
+  "source": "https://styles.refero.design/style/b3f7b44d-6564-4015-902a-259b4790b9de",
+  "uuid": "b3f7b44d-6564-4015-902a-259b4790b9de",
+  "name": "HeroKit",
+  "northStar": "Pale lemon neon on an obsidian void — an editorial poster that happens to be a product page.",
+  "capturedAt": "2026-07-18T09:06:46.107Z",
+  "meta": {
+    "url": "https://herokit.design",
+    "siteName": "HeroKit",
+    "extractedAt": "2026-06-03T20:45:06.494Z",
+    "durationMs": 38365,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1279,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Pale Lemon #ffffa7 as the only chromatic action color — one filled button per viewport, maximum",
+      "Set display headlines at 100–120px with letter-spacing -4.8px and line-height 1.0 for editorial compression",
+      "Apply 8px radius to every interactive element and card — never mix in larger curves",
+      "Keep the canvas pure #000000 for all non-hero sections; reserve Pale Lemon background for at most one full-bleed section per page",
+      "Differentiate hierarchy through size and color, not weight — PP Neue Montreal ships at 400 only",
+      "Let 3D renders bleed off canvas edges in hero/section openers; contain them in 8px-radius cards inside the gallery",
+      "Maintain 80px section gaps and 10px element gaps; the generous negative space is what makes the minimal palette feel premium"
+    ],
+    "donts": [
+      "Never introduce a second chromatic accent — the brand speaks in lemon yellow, obsidian, and paper only",
+      "Never use drop shadows or scale-on-hover to imply elevation; use 1px #333333 borders or color contrast instead",
+      "Never set body type below 16px or above 20px — the scale jumps from 20px body to 30px subheading deliberately",
+      "Never mix multiple border radii; 8px is the only value across buttons, cards, tags, and inputs",
+      "Never place Pale Lemon on a light section background — the contrast only works against Obsidian #000000",
+      "Never add gradients to UI surfaces; the product sells flat 3D renders, the chrome must stay matte",
+      "Never center-align body copy or nav items; the system is left-anchored, editorial-style"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#ffffa7",
+        "name": "Pale Lemon",
+        "role": "Primary action fill, brand accent, hero section wash, badge labels — the single chromatic voice of the entire system",
+        "group": "brand"
+      },
+      {
+        "hex": "#fddd05",
+        "name": "Electric Yellow",
+        "role": "Yellow outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Page canvas, card surfaces, text on light fills, hairline dividers, image borders — the base everything floats on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Primary text on dark, card surface alt, heading strokes, inverted button text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Graphite",
+        "role": "Muted heading strokes, de-emphasized outline text, secondary borders on dark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Mist",
+        "role": "Body subtext, link idle state, tertiary metadata — the only neutral that softens body copy without going silver",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Steel",
+        "role": "Captions, helper text, dense metadata rows, low-emphasis body",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed sections that alternate between Obsidian #000000 and rare Pale Lemon #ffffa7 washes. The hero is a split layout: headline+CTA anchored left at max-width 480px, floating 3D render bleeding off the right edge. Below the hero, sections stack vertically with 80px gaps, content centered at max-width 1200px. Product gallery is a 3-column grid of cards with 10px gutters, allowing the dark cards to create a subtle grid pattern against the canvas. Navigation is a single sticky top bar, minimal and transparent. The page rhythm is: bold hero → trust strip → product showcase → feature deep-dives → CTA close. No sidebar, no mega-menu, no secondary nav.",
+    "imagery": "The visual language is entirely 3D-rendered abstract forms: warm amber bubble clusters, metallic sculptural blobs, kinetic typographic shapes, and fractal gradient washes. These are the product — the site sells 3D hero assets, so every illustration is a self-referential showcase. Treatment is tight-crop, contained within 8px radius frames on gallery cards, or full-bleed in hero/section openers with forms bleeding off the canvas edge. No photography, no flat illustration, no human subjects. Icon style is minimal: small monogram-style logos for partner platforms, a single brand bolt icon, and tiny status dots — all mono, no decoration.",
+    "similar": [
+      {
+        "why": "Same Obsidian-canvas + single neon accent approach, 3D product renders as primary visual content, tight geometric display type",
+        "business": "Spline"
+      },
+      {
+        "why": "Same near-monochrome dark palette with one chromatic punctuation color, editorial-poster display headlines, zero drop shadows",
+        "business": "Linear"
+      },
+      {
+        "why": "Same black-canvas minimalism with sparse bright accent, thin borders over elevation, geometric grotesque typography",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same tight-tracked large display type and generous negative space; both treat whitespace as a primary design material",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same product-as-imagery ethos where 3D renders and animated visuals float on a dark canvas with minimal chrome",
+        "business": "Framer"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "8px",
+        "cards": "8px",
+        "images": "8px",
+        "inputs": "8px",
+        "buttons": "8px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian Void",
+        "level": 0,
+        "purpose": "Page canvas, product gallery backdrop, full-bleed sections"
+      },
+      {
+        "hex": "#000000",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Product cards and feature tiles — distinguished from canvas by 1px border, not by a lighter fill"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Inverted Surface",
+        "level": 2,
+        "purpose": "Rare light sections, footer blocks, inverted control backgrounds"
+      },
+      {
+        "hex": "#ffffa7",
+        "name": "Pale Lemon Wash",
+        "level": 3,
+        "purpose": "Hero section background — a single full-bleed chromatic moment that signals the brand's only color"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — distinguished by 1px #333333 border only",
+        "element": "Product Gallery Card"
+      },
+      {
+        "style": "none — flat against canvas",
+        "element": "Navigation Bar"
+      },
+      {
+        "style": "none — Pale Lemon background defines its own plane",
+        "element": "Hero Section"
+      },
+      {
+        "style": "none — 1px border only",
+        "element": "Browser Frame Mockup"
+      }
+    ],
+    "northStar": "Pale lemon neon on an obsidian void — an editorial poster that happens to be a product page.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "subheading",
+        "size": 30,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "heading-lg",
+        "size": 50,
+        "lineHeight": 1.08,
+        "letterSpacing": -1
+      },
+      {
+        "role": "display",
+        "size": 120,
+        "lineHeight": 1,
+        "letterSpacing": -4.8
+      },
+      {
+        "role": "display-lg",
+        "size": 144,
+        "lineHeight": 1,
+        "letterSpacing": -4.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Filled Button (Pale Lemon)",
+        "role": "Default action for sign-up, CTA on the hero, and product entry points",
+        "description": "Background #ffffa7, text #000000, 8px radius, 14px 20px padding, PP Neue Montreal 16px weight 400, letter-spacing -0.16px. No border. The Pale Lemon fill against Obsidian creates the system's only color contrast — this button should appear sparingly, one per viewport maximum."
+      },
+      {
+        "name": "Primary Filled Button (Electric Yellow)",
+        "role": "High-emphasis CTA in the navigation bar (Try for free)",
+        "description": "Background #fddd05, text #000000, 8px radius, 8px 16px padding, 16px weight 400. Sits in the top-right nav. Slightly smaller and more saturated than the Pale Lemon variant — this is the always-visible conversion entry point."
+      },
+      {
+        "name": "Ghost Navigation Link",
+        "role": "Nav items: How it works, Pricing, Login",
+        "description": "No background, text #ffffff, PP Neue Montreal Medium 16px, 14px padding vertical. Underline absent. Hover state inverts to Pale Lemon fill with #000000 text."
+      },
+      {
+        "name": "Outlined Ghost Button",
+        "role": "Secondary action, e.g. 'Get started for free' on dark sections",
+        "description": "Background transparent, border 1px #ffffff, text #ffffff, 8px radius, 8px 16px padding. Used when a Pale Lemon filled button would steal too much attention on a dark section."
+      },
+      {
+        "name": "Product Gallery Card",
+        "role": "Showcase individual 3D hero assets in the gallery grid",
+        "description": "Background #000000, 1px border #333333, 8px radius, 20px padding. Image fills the card body edge-to-edge. Footer row contains a Pale Lemon status dot, small 'HERO' label in #ffffff, and an asset name in #999999. Card is inert — no hover elevation, no scale."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Above-the-fold headline + visual introduction",
+        "description": "Full-bleed Pale Lemon #ffffa7 background. Display headline at 120px PP Neue Montreal, #000000, line-height 1.0, letter-spacing -4.8px. Subhead at 20px weight 400 #000000 max-width ~480px. CTA button group below. Right side occupied by a floating 3D render (warm amber bubbles) that bleeds off the canvas edges. 80px section padding."
+      },
+      {
+        "name": "Browser Frame Mockup",
+        "role": "Display product screenshots inside a stylized browser chrome",
+        "description": "Black 1px border, 8px radius, dark interior #0a0a0a. Top bar contains three traffic-light dots in #808080. Content area fills with a product screenshot or animation. The frame sits centered on the Obsidian canvas with generous 80–120px margin."
+      },
+      {
+        "name": "Logo Sticker Strip",
+        "role": "Social proof — platforms HeroKit integrates with",
+        "description": "Single horizontal row of platform logos (Wix, Squarespace, WordPress, Framer, Webflow) rendered in white on Obsidian. Small caption 'Works with your favorite site builder' at 12px above. No cards, no borders, no hover — logos float directly on the canvas."
+      },
+      {
+        "name": "Status Badge Dot",
+        "role": "Inline indicator on cards and metadata rows",
+        "description": "6px filled circle in Pale Lemon #ffffa7 paired with 12px uppercase label in #ffffff. No border, no padding around the dot. Signals 'live' or 'new' state on product entries."
+      },
+      {
+        "name": "Asset Tag (HERO label)",
+        "role": "Category label on each product gallery card",
+        "description": "12px PP Neue Montreal weight 400 uppercase, text #ffffff, bullet separator between dot and label. Appears in the footer of every Product Gallery Card."
+      },
+      {
+        "name": "Sticky Top Navigation",
+        "role": "Persistent site-wide header",
+        "description": "Height ~56px, background transparent or Obsidian #000000 on scroll, full-bleed. Left: HeroKit wordmark in white with small lemon-yellow bolt icon. Right: three ghost nav links + Electric Yellow 'Try for free' button, 10px gap between elements. No drop shadow, no border bottom."
+      },
+      {
+        "name": "3D Product Render",
+        "role": "Primary visual content — the product IS the imagery",
+        "description": "Tight crop of a 3D asset (bubbles, blobs, abstract organic forms) rendered in warm amber/peach or saturated single-hue palettes. Always contained within 8px radius frames on gallery cards, or full-bleed in hero/section openers. No lifestyle context, no human subjects — the object is the hero."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary face across body, navigation, subheadings, and display. The custom geometric grotesque carries the entire brand voice: tight tracking at display sizes (up to -4.8px at 120px) compresses headlines into editorial-poster blocks, while relaxed tracking at body keeps 16px reading clean. Single weight 400 used throughout — weight does not differentiate hierarchy; size and color do.",
+        "sizes": "16px, 20px, 30px, 32px, 50px, 120px, 144px",
+        "family": "PP Neue Montreal",
+        "weight": "400",
+        "lineHeight": "1.0–1.4",
+        "substitute": "Inter, General Sans, Satoshi",
+        "letterSpacing": "-0.0100em at body, -0.0200em at subheading/heading, -0.0400em at display"
+      },
+      {
+        "role": "Navigation and select body emphasis at the 16px size — the only place a medium weight appears, used to give nav links a subtle lift over body text without breaking the single-weight visual rhythm",
+        "sizes": "16px",
+        "family": "PP Neue Montreal Medium",
+        "weight": "500",
+        "lineHeight": "1.2",
+        "substitute": "Inter Medium, General Sans Medium",
+        "letterSpacing": "-0.0100em"
+      },
+      {
+        "role": "Alternate display face for the largest hero statement — a wider, more architectural grotesque that provides a second editorial voice at maximum scale without competing with PP Neue Montreal elsewhere",
+        "sizes": "120px",
+        "family": "ABC Monument Grotesk",
+        "weight": "400",
+        "lineHeight": "1.0",
+        "substitute": "Druk Wide, NB Architekt",
+        "letterSpacing": "-0.0400em"
+      },
+      {
+        "role": "Micro labels, copyright, legal footnotes — the only size at which the system stack appears, keeping fine print neutral and invisible",
+        "sizes": "12px",
+        "family": "System Sans-Serif",
+        "weight": "400",
+        "lineHeight": "1.2",
+        "substitute": "system-ui, -apple-system, Segoe UI"
+      }
+    ],
+    "description": "HeroKit uses an obsidian-canvas, neon-punctuation language: pure black surfaces swallow the page, and a single pale lemon yellow #ffffa7 is the entire chromatic vocabulary for action and brand identity. Display type is huge, tight-tracked PP Neue Montreal at 100–120px with negative tracking around -4.8px, giving headlines a compressed, editorial-poster feel that dominates the hero and section openers. The product speaks through 3D bubbly, organic renders rather than photography or flat illustration, floating against the void like jellyfish under spotlight. Components stay light: thin borders, 8px radii, no drop shadows, no gradients — structure is implied through contrast and whitespace rather than elevation. Density is generous; the site breathes because the product visuals do the heavy work.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b3f7b44d-6564-4015-902a-259b4790b9de#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"HeroKit design system\",\"item\":\"https://styles.refero.design/style/b3f7b44d-6564-4015-902a-259b4790b9de\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b3f7b44d-6564-4015-902a-259b4790b9de#style-reference\",\"name\":\"HeroKit design system reference\",\"headline\":\"HeroKit design system | Refero Styles\",\"description\":\"Explore HeroKit's dark Design design system: Pale Lemon #ffffa7, Electric Yellow #fddd05 colors, PP Neue Montreal, PP Neue Montreal Medium typography, and...\",\"url\":\"https://styles.refero.design/style/b3f7b44d-6564-4015-902a-259b4790b9de\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b3f7b44d-6564-4015-902a-259b4790b9de\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"HeroKit\",\"url\":\"https://herokit.design\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b3f7b44d-6564-4015-902a-259b4790b9de#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f06a0344-6093-4e4a-9f49-3c787e550c2a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f06a0344-6093-4e4a-9f49-3c787e550c2a.jpg\",\"caption\":\"Screenshot of HeroKit\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f06a0344-6093-4e4a-9f49-3c787e550c2a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"HeroKit design system\",\"HeroKit website design\",\"HeroKit colors\",\"HeroKit typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Pale Lemon\",\"Electric Yellow\",\"Obsidian\",\"Paper\",\"PP Neue Montreal\",\"PP Neue Montreal Medium\",\"ABC Monument Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"HeroKit design system\"},{\"@type\":\"Thing\",\"name\":\"HeroKit website design\"},{\"@type\":\"Thing\",\"name\":\"HeroKit colors\"},{\"@type\":\"Thing\",\"name\":\"HeroKit typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-05-07T18:36:25.744Z\",\"dateModified\":\"2026-05-07T18:36:25.744Z\"}]}19:T5f6,Quick Color Reference:\n- text: #000000 (on light) or #ffffff (on dark)\n- background: #000000 (page), #ffffa7 (hero wash)\n- border: #333333 (subtle), #ffffff (inverted)\n- accent: #ffffa7 (brand single accent)\n- primary action: #ffffa7 (filled action)\n\nExample Component Prompts:\n\n1. Create a Primary Action Button: #ffffa7 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Create a product gallery card: #000000 background, 1px #333333 border, 8px radius, 20px padding. 3D render fills the card body. Footer row with a 6px #ffffa7 status dot, 12px 'HERO' label in #ffffff, asset name in #999999. No hover state, no shadow.\n\n3. Create the sticky top navigation: transparent background over Obsidian canvas, height 56px. Left: 'HeroKit' wordmark in #ffffff with a small lemon bolt icon. Right: three ghost links (#ffffff text, 16px PP Neue Montreal Medium) spaced 10px apart, then an Electric Yellow #fddd05 'Try for free' button with #000000 text, 8px radius, 8px 16px padding.\n\n4. Create a browser frame mockup: 1px #ffffff border, 8px radius, dark #0a0a0a interior, centered on Obsidian canvas with 100px top/bottom margin. Top bar contains three 6px #808080 traffic-light dots. Content area shows a product screenshot filling the frame.\n\n5. Create a section divider: full-bleed #000000, 80px vertical padding, centered PP Neue Montreal 50px weight 400 headline in #ffffff with letter-spacing -1.0px, followed by a single Pale Lemon #ffffa7 filled CTA button below."
+      },
+      {
+        "title": "Typography Rhythm",
+        "content": "The type system is built on extreme size jumps: 12px → 16px → 20px → 30px → 50px → 120px. There are no intermediate sizes. This creates a poster-like rhythm where body and display are visually far apart, forcing clear sectioning. Tracking tightens as size grows: -0.16px at body, -0.6px at subheading, -4.8px at display. Negative space between type sizes is part of the visual language — never bridge the gap with a 24px or 40px size."
+      },
+      {
+        "title": "Single-Color Brand Discipline",
+        "content": "Pale Lemon #ffffa7 carries the entire brand identity. It appears as: hero section background, primary button fill, status dot, logo accent, and the sole chromatic note in an otherwise monochrome system. The discipline is to never dilute it — if a screen needs more color, the answer is grayscale contrast, not a second hue. This is what makes HeroKit instantly recognizable in a feed of dark-mode SaaS sites: it commits to one color the way a print magazine commits to one ink."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is rejected entirely. The system distinguishes surfaces through color contrast and 1px borders, never drop shadows or scale transforms. This keeps the dark canvas feeling flat and editorial — the 3D renders provide all the dimensional interest the UI itself refuses to."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "button",
+            "list",
+            "hero",
+            "card",
+            "image",
+            "body"
+          ],
+          "frequency": 5101,
+          "confidence": 1,
+          "prominence": 182269114.05424112,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/color": 13,
+            "body/color": 1,
+            "card/color": 33,
+            "hero/color": 1,
+            "list/color": 37,
+            "other/fill": 126,
+            "image/color": 44,
+            "other/color": 829,
+            "button/color": 1,
+            "heading/color": 28,
+            "nav/borderColor": 52,
+            "body/borderColor": 4,
+            "card/borderColor": 132,
+            "hero/borderColor": 4,
+            "list/borderColor": 148,
+            "image/borderColor": 176,
+            "other/borderColor": 3316,
+            "button/borderColor": 4,
+            "heading/borderColor": 112,
+            "nav/backgroundColor": 1,
+            "card/backgroundColor": 33,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffa7",
+          "oklch": {
+            "c": 0.10918175174535197,
+            "h": 108.25494449522128,
+            "l": 0.9805444133491484
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "heading",
+            "button"
+          ],
+          "frequency": 28,
+          "confidence": 1,
+          "prominence": 6230360.626251111,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "body/color": 1,
+            "other/fill": 1,
+            "heading/color": 3,
+            "nav/borderColor": 4,
+            "body/borderColor": 4,
+            "heading/borderColor": 12,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "body",
+            "other",
+            "heading"
+          ],
+          "frequency": 442,
+          "confidence": 1,
+          "prominence": 729165.4234654189,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "other/fill": 19,
+            "heading/color": 72,
+            "body/borderColor": 28,
+            "heading/borderColor": 288,
+            "other/backgroundColor": 28
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 338738.65601950174,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 7,
+            "heading/borderColor": 28
+          }
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 172136.28479856075,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "link/color": 3,
+            "body/borderColor": 24,
+            "link/borderColor": 12
+          }
+        },
+        {
+          "hex": "#fddd05",
+          "oklch": {
+            "c": 0.18508607400747323,
+            "h": 98.53174150983985,
+            "l": 0.8968996833066666
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 14325.996755479613,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "body/borderColor": 24,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#cfc8ff",
+          "oklch": {
+            "c": 0.07610823010953091,
+            "h": 290.5294026085046,
+            "l": 0.8567850289020214
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 9481.374210006083,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "body/borderColor": 12,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ff4278",
+          "oklch": {
+            "c": 0.22462454000383406,
+            "h": 9.12750205817156,
+            "l": 0.6713458209182379
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 9481.374210006083,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "body/borderColor": 12,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 150,
+          "confidence": 1,
+          "prominence": 6101.975195251041,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 30,
+            "body/borderColor": 120
+          }
+        },
+        {
+          "hex": "#73c2c9",
+          "oklch": {
+            "c": 0.07840767124102377,
+            "h": 202.96898155719535,
+            "l": 0.7658673033518297
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 5615.7601727724195,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "body/borderColor": 12,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ff709d",
+          "oklch": {
+            "c": 0.17855478182170292,
+            "h": 2.8555375855175082,
+            "l": 0.7297210107391835
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 5615.7601727724195,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "body/borderColor": 12,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#b3d7b2",
+          "oklch": {
+            "c": 0.06350387294793226,
+            "h": 144.28484406877317,
+            "l": 0.8431128239193794
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 5615.7601727724195,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "body/borderColor": 12,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ffbec3",
+          "oklch": {
+            "c": 0.07521576278958052,
+            "h": 13.62511222771503,
+            "l": 0.8620156445294144
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 4625.9930621400645,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "body/borderColor": 12,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#d1faff",
+          "oklch": {
+            "c": 0.04258679109107524,
+            "h": 205.5236964112721,
+            "l": 0.9578362714724599
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 4625.9930621400645,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "body/borderColor": 12,
+            "other/backgroundColor": 3
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.010434715617126843,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.11,
+          "background": "#ffffa7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.83,
+          "background": "#d1faff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.52,
+          "background": "#fddd05",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.41,
+          "background": "#ffbec3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.36,
+          "background": "#cfc8ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.28,
+          "background": "#b3d7b2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.1,
+          "background": "#ffffa7",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.33,
+          "background": "#d1faff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.29,
+          "background": "#73c2c9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.34,
+          "background": "#fddd05",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.07,
+          "background": "#ffbec3",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.06,
+          "background": "#ff709d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.04,
+          "background": "#cfc8ff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.99,
+          "background": "#b3d7b2",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.37,
+          "background": "#000000",
+          "foreground": "#999999"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.3,
+          "background": "#ff4278",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.19,
+          "background": "#73c2c9",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#000000",
+          "foreground": "#808080"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "link",
+            "card",
+            "other"
+          ],
+          "frequency": 44
+        },
+        {
+          "value": 16,
+          "corners": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "asymmetric": true
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 60,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 178,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav",
+            "button",
+            "link"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 126,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 112,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 107,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 25,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 49,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 192,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 975,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PP Neue Montreal Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 144,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PP Neue Montreal Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 42,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ABC Monument Grotesk Unlicensed Trial Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 9,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "list",
+            "link",
+            "hero",
+            "card",
+            "image"
+          ],
+          "frequency": 975,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PP Neue Montreal Medium",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PP Neue Montreal Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PP Neue Montreal Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "PP Neue Montreal Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "PP Neue Montreal Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "PP Neue Montreal Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "PP Neue Montreal Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "PP Neue Montreal Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "PP Neue Montreal Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "PP Neue Montreal Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "PP Neue Montreal Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 60,
+          "lineHeight": 1.08,
+          "letterSpacing": -0.02,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 120,
+          "family": "ABC Monument Grotesk Unlicensed Trial Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "PP Neue Montreal Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 144,
+          "family": "PP Neue Montreal Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 29,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/9d9c819d-6829-41e8-bda3-e146851edfa9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f06a0344-6093-4e4a-9f49-3c787e550c2a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b3f7b44d-6564-4015-902a-259b4790b9de#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"HeroKit design system\",\"item\":\"https://styles.refero.design/style/b3f7b44d-6564-4015-902a-259b4790b9de\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b3f7b44d-6564-4015-902a-259b4790b9de#style-reference\",\"name\":\"HeroKit design system reference\",\"headline\":\"HeroKit design system | Refero Styles\",\"description\":\"Explore HeroKit's dark Design design system: Pale Lemon #ffffa7, Electric Yellow #fddd05 colors, PP Neue Montreal, PP Neue Montreal Medium typography, and...\",\"url\":\"https://styles.refero.design/style/b3f7b44d-6564-4015-902a-259b4790b9de\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b3f7b44d-6564-4015-902a-259b4790b9de\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"HeroKit\",\"url\":\"https://herokit.design\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b3f7b44d-6564-4015-902a-259b4790b9de#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f06a0344-6093-4e4a-9f49-3c787e550c2a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f06a0344-6093-4e4a-9f49-3c787e550c2a.jpg\",\"caption\":\"Screenshot of HeroKit\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f06a0344-6093-4e4a-9f49-3c787e550c2a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"HeroKit design system\",\"HeroKit website design\",\"HeroKit colors\",\"HeroKit typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Pale Lemon\",\"Electric Yellow\",\"Obsidian\",\"Paper\",\"PP Neue Montreal\",\"PP Neue Montreal Medium\",\"ABC Monument Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"HeroKit design system\"},{\"@type\":\"Thing\",\"name\":\"HeroKit website design\"},{\"@type\":\"Thing\",\"name\":\"HeroKit colors\"},{\"@type\":\"Thing\",\"name\":\"HeroKit typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-05-07T18:36:25.744Z\",\"dateModified\":\"2026-05-07T18:36:25.744Z\"}]}19:T5f6,Quick Color Reference:\n- text: #000000 (on light) or #ffffff (on dark)\n- background: #000000 (page), #ffffa7 (hero wash)\n- border: #333333 (subtle), #ffffff (inverted)\n- accent: #ffffa7 (brand single accent)\n- primary action: #ffffa7 (filled action)\n\nExample Component Prompts:\n\n1. Create a Primary Action Button: #ffffa7 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Create a product gallery card: #000000 background, 1px #333333 border, 8px radius, 20px padding. 3D render fills the card body. Footer row with a 6px #ffffa7 status dot, 12px 'HERO' label in #ffffff, asset name in #999999. No hover state, no shadow.\n\n3. Create the sticky top navigation: transparent background over Obsidian canvas, height 56px. Left: 'HeroKit' wordmark in #ffffff with a small lemon bolt icon. Right: three ghost links (#ffffff text, 16px PP Neue Montreal Medium) spaced 10px apart, then an Electric Yellow #fddd05 'Try for free' button with #000000 text, 8px radius, 8px 16px padding.\n\n4. Create a browser frame mockup: 1px #ffffff border, 8px radius, dark #0a0a0a interior, centered on Obsidian canvas with 100px top/bottom margin. Top bar contains three 6px #808080 traffic-light dots. Content area shows a product screenshot filling the frame.\n\n5. Create a section divider: full-bleed #000000, 80px vertical padding, centered PP Neue Montreal 50px weight 400 headline in #ffffff with letter-spacing -1.0px, followed by a single Pale Lemon #ffffa7 filled CTA button below."
+}

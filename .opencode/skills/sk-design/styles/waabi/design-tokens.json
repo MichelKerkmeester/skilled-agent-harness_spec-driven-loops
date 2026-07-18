@@ -1,0 +1,337 @@
+{
+  "color": {
+    "hot-signal": {
+      "$value": "#ff2c6b",
+      "$type": "color",
+      "$description": "Hot Signal — Red action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "carbon": {
+      "$value": "#191818",
+      "$type": "color",
+      "$description": "Carbon — Primary text, heading text, border lines, icon strokes — near-black with a faint warm cast; the dominant neutral carrying all structural information"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Light neutral action fill for buttons on dark surfaces."
+    },
+    "concrete": {
+      "$value": "#e8e6e3",
+      "$type": "color",
+      "$description": "Concrete — Page background, hero canvas, section bands — the warm neutral that defines the site's atmosphere; slightly desaturated and warm-toned, not cool gray"
+    },
+    "ash": {
+      "$value": "#8c8b8b",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, secondary borders, caption labels — warm mid-gray for non-load-bearing information"
+    },
+    "smoke": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Smoke — Tertiary text, disabled states, inactive borders — sits between Ash and Carbon in the warm-gray scale"
+    },
+    "slate": {
+      "$value": "#d1d5dc",
+      "$type": "color",
+      "$description": "Slate — Cooler secondary card surface, placeholder or empty-state panels — the only cool-tinted neutral, used sparingly to separate distinct UI layers"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Pure black for icons and link borders where maximum contrast is required — used selectively, not as a general text color"
+    }
+  },
+  "font": {
+    "zagma": {
+      "$value": "Zagma",
+      "$type": "fontFamily",
+      "$description": "Display and heading typeface — all hero headlines, section titles, and large editorial copy. The 0.85 line-height at 150px is the signature: type stacks into tight, sculptural blocks rather than airy paragraphs. Negative tracking tightens with scale (from -0.020em at 40px to -0.048em at 150px) to keep large glyphs from feeling spaced-out."
+    },
+    "neuehaas": {
+      "$value": "NeueHaas",
+      "$type": "fontFamily",
+      "$description": "UI and body text — nav items, button labels, captions, helper text, link text. Set at micro sizes (10–15px) with slightly open tracking (+0.010em to +0.020em) to stay legible at small scale. Weight 500 reserved for nav and button emphasis; 400 for everything else."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Zagma",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "NeueHaas",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "NeueHaas",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "NeueHaas",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "NeueHaas",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "NeueHaas",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "NeueHaas",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Zagma",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Zagma",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Zagma",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Zagma",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Zagma",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Zagma",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Zagma",
+        "fontSize": "130px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 130px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Zagma",
+        "fontSize": "150px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 150px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "63.4059px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "concrete-canvas": {
+      "$value": "#e8e6e3",
+      "$type": "color",
+      "$description": "Surface level 1: Page background, hero backdrop, section bands — the warm gray that defines the site's atmosphere"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Card surfaces, content panels, navigation pill, button fills — the 'lifted' surface sitting on the canvas"
+    },
+    "slate-panel": {
+      "$value": "#d1d5dc",
+      "$type": "color",
+      "$description": "Surface level 3: Secondary or empty-state card surface, slightly cooler tone to differentiate from primary white cards"
+    },
+    "carbon-block": {
+      "$value": "#191818",
+      "$type": "color",
+      "$description": "Surface level 4: Dark info panels, inverse surfaces for high-contrast content blocks paired with hero imagery"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://waabi.ai",
+      "siteName": "Waabi",
+      "extractedAt": "2026-06-03T21:48:39.751Z",
+      "variant": "extended"
+    }
+  }
+}

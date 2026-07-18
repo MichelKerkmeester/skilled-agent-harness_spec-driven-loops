@@ -1,0 +1,317 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, navigation links, logo wordmark, footer links, SVG icon strokes — the anchor color of the entire system"
+    },
+    "graphite": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Graphite — Body text and headings — slightly softer than pure black for long-form editorial readability at large sizes"
+    },
+    "silver": {
+      "$value": "#979797",
+      "$type": "color",
+      "$description": "Silver — Hairline borders, dividers, inactive UI separators, secondary meta labels"
+    },
+    "ash": {
+      "$value": "#888888",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, list items, tertiary metadata, subdued navigation states"
+    },
+    "marble": {
+      "$value": "#f4f4f4",
+      "$type": "color",
+      "$description": "Marble — Page canvas background, subtle section differentiation, footer surface — barely warmer than pure white"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card surfaces, hero background, product tiles, elevated content panels"
+    },
+    "mist": {
+      "$value": "#e8e8e8",
+      "$type": "color",
+      "$description": "Mist — Alternative surface tint, subtle alternating bands, ghost button hover backgrounds"
+    }
+  },
+  "font": {
+    "jha-times-now": {
+      "$value": "JHA Times Now",
+      "$type": "fontFamily",
+      "$description": "Editorial display and subhead serif — the voice of the brand. Used at 56px for hero editorial titles with extreme tight tracking (-0.04em) and 1.07 line-height, creating a compressed magazine-cover effect. Weight 100 is a near-hairline whisper that feels anti-commerce. Substitute: Playfair Display, GT Sectra, or Canela for a similar high-contrast transitional serif."
+    },
+    "favorit-ssense-inter": {
+      "$value": "Favorit SSENSE Inter",
+      "$type": "fontFamily",
+      "$description": "Primary UI and content sans-serif — used for navigation, body text, editorial descriptions, and the largest display sizes (95px). The letter-spacing scales aggressively tighter as size increases: -0.047em at 95px pulls the giant wordforms into a dense architectural block, while -0.004em at 14px keeps body text natural. This negative-tracking-at-scale pattern is the signature. Substitute: Inter, Söhne, or Neue Haas Grotesk."
+    },
+    "ssense-fonts-micro-tag": {
+      "$value": "ssense-fonts (micro-tag)",
+      "$type": "fontFamily",
+      "$description": "Bold micro-label for category tags and merchandising markers — the one place weight 700 appears in the entire system. Always uppercase, always 11px, always tight line-height."
+    },
+    "favorit-ssense-inter1": {
+      "$value": "Favorit SSENSE Inter1",
+      "$type": "fontFamily",
+      "$description": "Favorit SSENSE Inter1 — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Favorit SSENSE Inter",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Favorit SSENSE Inter",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "ssense-fonts",
+        "fontSize": "11px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Favorit SSENSE Inter",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 4.55
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Favorit SSENSE Inter1",
+        "fontSize": "14px",
+        "fontWeight": 100,
+        "lineHeight": 1.26
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Favorit SSENSE Inter1",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.26
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "JHA Times Now",
+        "fontSize": "15px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Favorit SSENSE Inter1",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Favorit SSENSE Inter1",
+        "fontSize": "19px",
+        "fontWeight": 100,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "JHA Times Now",
+        "fontSize": "20px",
+        "fontWeight": 100,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "JHA Times Now",
+        "fontSize": "20px",
+        "fontWeight": 100,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Favorit SSENSE Inter1",
+        "fontSize": "29px",
+        "fontWeight": 100,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 29px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Favorit SSENSE Inter1",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "JHA Times Now",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Favorit SSENSE Inter1",
+        "fontSize": "95px",
+        "fontWeight": 400,
+        "lineHeight": 0.99
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 95px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "31": {
+      "$value": "31px",
+      "$type": "dimension",
+      "$description": "Spacing 31px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "55": {
+      "$value": "55px",
+      "$type": "dimension",
+      "$description": "Spacing 55px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "105": {
+      "$value": "105px",
+      "$type": "dimension",
+      "$description": "Spacing 105px"
+    },
+    "119": {
+      "$value": "119px",
+      "$type": "dimension",
+      "$description": "Spacing 119px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f4f4f4",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the warm-white gallery wall"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated content areas, hero backgrounds, product tiles"
+    },
+    "alt-band": {
+      "$value": "#e8e8e8",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle section alternation, ghost hover states"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ssense.com",
+      "siteName": "Ssense",
+      "extractedAt": "2026-06-03T18:33:16.771Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@theme {
+  /* Colors */
+  --color-slate-canvas: #1c1e21;
+  --color-ink-well: #121317;
+  --color-graphite-hairline: #3b3e45;
+  --color-steel-border: #272a2e;
+  --color-ash-text: #b5b8c0;
+  --color-fog-text: #878c99;
+  --color-cloud-text: #d7d9dd;
+  --color-bone-text: #e5e7eb;
+  --color-signal-lime: #a8ff53;
+  --color-syntax-violet: #9c9af2;
+  --color-syntax-pink: #fa3abf;
+  --color-event-violet: #7655fd;
+  --color-loop-green: #afec73;
+  --color-key-lime: #d9f07c;
+  --color-tag-magenta: #e888f8;
+  --color-mute-red: #f43f5e;
+
+  /* Typography */
+  --font-satoshi: 'Satoshi', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-geist: 'Geist', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-geist-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 1.43;
+  --text-body: 16px;
+  --leading-body: 1.56;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.5;
+  --text-subheading: 20px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: 0.4px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.38;
+  --text-heading: 30px;
+  --leading-heading: 1.33;
+  --text-heading-lg: 36px;
+  --leading-heading-lg: 1.2;
+  --tracking-heading-lg: 1.8px;
+  --text-display: 48px;
+  --leading-display: 1.11;
+  --tracking-display: 2.4px;
+  --text-hero: 60px;
+  --leading-hero: 1;
+  --tracking-hero: 3px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-96: 96px;
+  --spacing-160: 160px;
+  --spacing-192: 192px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-full: 9999px;
+}

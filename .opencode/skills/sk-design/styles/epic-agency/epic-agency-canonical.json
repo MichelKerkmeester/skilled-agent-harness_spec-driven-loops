@@ -1,0 +1,922 @@
+{
+  "source": "https://styles.refero.design/style/6eb778ca-6808-4cc6-ac8a-7beea5a25c36",
+  "uuid": "6eb778ca-6808-4cc6-ac8a-7beea5a25c36",
+  "name": "EPIC agency",
+  "northStar": "violet observatory with gilded instruments — a gallery-as-night-sky where pale lavender light and warm gold details float over an infinite aubergine void.",
+  "capturedAt": "2026-07-18T07:46:54.752Z",
+  "meta": {
+    "url": "https://epic.net",
+    "siteName": "EPIC agency",
+    "extractedAt": "2026-06-03T19:38:10.872Z",
+    "durationMs": 29793,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 288,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Sang Bleu (or Cormorant Garamond substitute) for any display headline at 80px or larger — the serif voice is the brand's editorial signature",
+      "Set all body, nav, and label text in Inter with 0.111em tracking on uppercase and 0.036em on mixed-case",
+      "Apply 30px border-radius to all interactive elements (buttons, pills, tags) to maintain the pill-shaped rhythm",
+      "Use #dbc9ff as the default text and interactive color on the #271a47 canvas — the 13.8:1 contrast ratio is the structural backbone",
+      "Layer #000000 media blocks directly on the #271a47 canvas to create hard rectangular voids for video and imagery",
+      "Keep vertical rhythm compact: 10px between elements, 20px for card padding, 80px between major sections",
+      "Set the display tagline ('IMAGINE, BUILD, TELL.') in Inter 11px at 0.5em tracking — the wide tracking is a signature element of the brand voice"
+    ],
+    "donts": [
+      "Do not introduce drop shadows or blur elevation — the design system is deliberately flat, depth comes from color contrast only",
+      "Do not use rounded card corners above 10px for content containers — only buttons and pills get the 30px treatment",
+      "Do not place body text below 11px — the system never uses sub-11px sizes for any interface text",
+      "Do not use #bc994 (gold) for large fills or backgrounds — it is a jewelry accent for links and icons only",
+      "Do not mix the display serif into body or button text — Sang Bleu is strictly for display, Inter handles everything below 42px",
+      "Do not add gradients to backgrounds — the system is flat color, with depth expressed through value jumps between violet and black",
+      "Do not use sans-serif typefaces other than Inter for working surfaces — the pair is locked: one serif display, one sans workhorse"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#271a47",
+        "name": "Aubergine Canvas",
+        "role": "Page background, hero canvas, filled button surface, deep surface elevation — the foundational night-sky tone that everything floats on",
+        "group": "brand"
+      },
+      {
+        "hex": "#dbc9ff",
+        "name": "Moonlight Lavender",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis.",
+        "group": "brand"
+      },
+      {
+        "hex": "#bc994e",
+        "name": "Gilded Brass",
+        "role": "Secondary link color, decorative icon accent, highlight strokes — a warm metallic counterpoint to the cool violet, used sparingly as jewelry on the page",
+        "group": "accent"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian Black",
+        "role": "Video/showreel container background, inverse button surface, maximum-contrast surface for media blocks",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark sections on the #271a47 aubergine canvas, max content width 1200px centered. The hero is a split composition: left two-thirds hold the 3D illustration with the large serif headline overlaid at the bottom-left, right one-third holds a vertical 'JOURNAL' column with dated entries. Navigation sits in a thin transparent bar at the very top with a hairline divider below. Below the hero, a full-width black video block for the showreel creates a hard rectangular void. Section rhythm is compact (80px gaps) with flat seamless flow — no alternating light/dark bands, no visible card grids. Content stacks vertically in a single editorial column flow rather than multi-column grids.",
+    "imagery": "Imagery is dominated by 3D isometric illustrations rendered in a soft studio-lit style: pale lavender, pink, and violet color palette, glossy plastic-like material, floating props (satellites, trophies, charts) arranged on geometric platforms. Photography is absent — the 3D render IS the hero visual. The illustration casts no shadow and sits as a self-contained vignette centered on the aubergine canvas. Video content is presented in pure black containers that carve rectangular voids into the violet field. Icons are minimal line-style glyphs in #dbc9ff. The overall visual density is low — most of the page is the violet void with one or two media moments.",
+    "similar": [
+      {
+        "why": "Same deep purple-to-black color treatment, large editorial serif display, and ghost pill buttons for navigation — both agencies use the night-sky palette as a creative-agency signature",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Dark canvas with vivid accent colors, large custom display type, and 3D/illustrated hero vignettes — both use flat surfaces with no shadows and let illustration do the visual heavy lifting",
+        "business": "Resn (resn.co.nz)"
+      },
+      {
+        "why": "Immersive dark-mode agency site with centered 3D hero art, compact metadata columns beside the main visual, and a full-bleed black showreel block as the secondary anchor",
+        "business": "Active Theory"
+      },
+      {
+        "why": "Dark editorial layout, large serif display headlines, tight tracking on uppercase labels, and the same magazine-cover approach to agency landing pages",
+        "business": "Ueno (ueno.co)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "30px",
+        "cards": "10px",
+        "pills": "30px",
+        "buttons": "30px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#271a47",
+        "name": "Aubergine Void",
+        "level": 0,
+        "purpose": "Base page canvas — the night-sky background that defines the entire interface"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian Block",
+        "level": 1,
+        "purpose": "Media containers (video/showreel), contrast inversions that punch through the violet"
+      }
+    ],
+    "northStar": "violet observatory with gilded instruments — a gallery-as-night-sky where pale lavender light and warm gold details float over an infinite aubergine void.",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.65
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.7
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.7
+      },
+      {
+        "role": "heading",
+        "size": 42,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1
+      },
+      {
+        "role": "hero",
+        "size": 120,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Headline (Serif Display)",
+        "role": "Primary page title — the editorial anchor of every page",
+        "description": "Sang Bleu at 80–120px, weight 400, line-height 1.0, color #dbc9ff. Set tight with no letter-spacing adjustment. Breaks naturally to two lines with the second line slightly indented or right-aligned to create asymmetric editorial composition. No text shadow, no gradient — the weight and size alone carry impact."
+      },
+      {
+        "name": "Ghost Outlined Button",
+        "role": "Primary action surface — 'VISIT PROJECT', 'SEE ALL PROJECTS'",
+        "description": "Inter 14px weight 600, uppercase, color #dbc9ff, letter-spacing 0.111em. 1px solid #dbc9ff border, 30px border-radius (pill shape), padding 12px 20px. Includes an arrow icon (→) after the label. Transparent background sits directly on the aubergine canvas. On hover the background fills with #dbc9ff and text inverts to #271a47."
+      },
+      {
+        "name": "Pill Language Selector",
+        "role": "Locale switcher in the top nav",
+        "description": "Inter 13px weight 600, color #dbc9ff, 1px solid #dbc9ff border, 30px radius, padding 4px 14px. Includes a chevron-down icon. Mirrors the ghost button language but at a smaller scale for the nav context."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide header with brand mark, tagline, and utility actions",
+        "description": "Transparent over the aubergine canvas. Left: EPIC hexagonal mark in #dbc9ff at ~32px. Center: uppercase tagline 'IMAGINE, BUILD, TELL.' in Inter 11px weight 600 at 0.5em tracking, color #dbc9ff. Right: language pill + hamburger menu icon. A 1px hairline in #dbc9ff at ~10% opacity runs the full width below the nav as a divider."
+      },
+      {
+        "name": "Journal Entry Row",
+        "role": "Vertical list of dated project entries in the hero sidebar",
+        "description": "Each row separated by 1px hairline in #dbc9ff at low opacity. Date in Inter 11px weight 600, uppercase, 0.111em tracking, color #dbc9ff (e.g. '13 OCTOBER 2025'). Title in Inter 14–16px weight 400, color #dbc9ff, on the line below. Right-aligned 'READ' label in 11px with a small circle icon. Row padding 15–20px vertical."
+      },
+      {
+        "name": "3D Isometric Hero Illustration",
+        "role": "Brand storytelling centerpiece on the landing page",
+        "description": "Full-color 3D render with soft purple/violet platform base, character figures in lavender and pink, satellite and trophy props floating above. The illustration casts no shadow on the canvas — it sits as a self-contained vignette in the center of the hero. Lighting is studio-soft with a subtle violet glow underneath the platform."
+      },
+      {
+        "name": "Showreel Video Container",
+        "role": "Full-bleed media block below the hero",
+        "description": "Pure black (#000000) container with 10px border-radius, spanning the full content width. Centrally positioned circular play button: 80px diameter, #271a47 fill, white play triangle icon at 16px, with rotating text 'DOUBLE CLICK TO PLAY' wrapping the circle in Inter 10px weight 600 at 0.036em tracking. The black block sits on the aubergine canvas, creating a hard rectangular void."
+      },
+      {
+        "name": "Section Eyebrow Label",
+        "role": "Small uppercase section identifier (e.g. 'SHOWREEL', 'JOURNAL')",
+        "description": "Inter 11px weight 600, uppercase, letter-spacing 0.111em, color #dbc9ff. Centered or left-aligned above the section it labels. Tight line-height of 1.0. Functions as the editorial section name in a magazine spread."
+      },
+      {
+        "name": "Rotating Circular Badge",
+        "role": "Decorative micro-component around interactive media controls",
+        "description": "SVG text-path circle, 80–100px diameter, text in Inter 10px weight 600 at 0.036em tracking, color #dbc9ff, rotating slowly (CSS animation). Used around the showreel play button to add kinetic editorial detail."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body, nav, buttons, labels, journal entries, metadata — the utilitarian workhorse that handles every reading surface. Compact sizes (9–14px) with tight line-heights (1.00–1.65) create the dense, information-rich layout. Uppercase labels use 0.5em tracking for the editorial tagline rhythm.",
+        "sizes": "9px, 10px, 11px, 13px, 14px, 16px, 18px",
+        "family": "Inter",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.00, 1.33, 1.40, 1.56, 1.65, 1.70, 3.00",
+        "letterSpacing": "0.036em at body, 0.111em at small uppercase labels, 0.5em at display taglines (e.g. 'IMAGINE, BUILD, TELL.')"
+      },
+      {
+        "role": "Display and editorial headlines — the serif voice that carries brand authority. Used at 80–120px for hero titles, 42px for section-level headings. The high contrast strokes and Garamond-class proportions give every page a magazine-cover gravitas. Substitute with Cormorant Garamond or Playfair Display Black for free alternatives.",
+        "sizes": "42px, 80px, 120px",
+        "family": "Sang Bleu (custom)",
+        "weight": "400, 700, 900",
+        "lineHeight": "1.00, 1.20, 1.65",
+        "substitute": "Cormorant Garamond"
+      },
+      {
+        "role": "object-fit: cover — detected in extracted data but not described by AI",
+        "sizes": "18px",
+        "family": "object-fit: cover",
+        "weight": "400",
+        "lineHeight": "1.7"
+      }
+    ],
+    "description": "EPIC is a nocturnal creative agency language: a deep violet canvas plays the role of night sky while a pale lavender acts as the primary signal color for type, links, and iconography, with brushed gold as a second accent. The display face (Sang Bleu, a Garamond-class didone) arrives at colossal sizes (80–120px) to carry editorial weight, while Inter handles every working surface at compact sizes (9–18px) with generous tracking on uppercase labels. Layout is dense and magazine-like: a centered 3D hero illustration sits beside a vertical journal column, followed by a full-bleed black showreel block, with whitespace used as a controlled luxury rather than a cushion. Surfaces are flat — no shadows, no gradients — depth comes from color contrast (violet on black, lavender on violet) and from the typographic weight ratio between the display serif and the utilitarian sans.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6eb778ca-6808-4cc6-ac8a-7beea5a25c36#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"EPIC agency design system\",\"item\":\"https://styles.refero.design/style/6eb778ca-6808-4cc6-ac8a-7beea5a25c36\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6eb778ca-6808-4cc6-ac8a-7beea5a25c36#style-reference\",\"name\":\"EPIC agency design system reference\",\"headline\":\"EPIC agency design system | Refero Styles\",\"description\":\"Explore EPIC agency's dark Agency design system: Aubergine Canvas #271a47, Moonlight Lavender #dbc9ff colors, Inter, Sang Bleu (custom) typography, and...\",\"url\":\"https://styles.refero.design/style/6eb778ca-6808-4cc6-ac8a-7beea5a25c36\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6eb778ca-6808-4cc6-ac8a-7beea5a25c36\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"EPIC agency\",\"url\":\"https://epic.net\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6eb778ca-6808-4cc6-ac8a-7beea5a25c36#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1642c688-47a5-4f3f-95c4-deab02b9a370.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1642c688-47a5-4f3f-95c4-deab02b9a370.jpg\",\"caption\":\"Screenshot of EPIC agency\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1642c688-47a5-4f3f-95c4-deab02b9a370.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"EPIC agency design system\",\"EPIC agency website design\",\"EPIC agency colors\",\"EPIC agency typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Aubergine Canvas\",\"Moonlight Lavender\",\"Gilded Brass\",\"Obsidian Black\",\"Inter\",\"Sang Bleu (custom)\",\"object-fit: cover\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"EPIC agency design system\"},{\"@type\":\"Thing\",\"name\":\"EPIC agency website design\"},{\"@type\":\"Thing\",\"name\":\"EPIC agency colors\"},{\"@type\":\"Thing\",\"name\":\"EPIC agency typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-09T11:36:00.000Z\",\"dateModified\":\"2026-02-09T11:36:00.000Z\"}]}19:T64a,## Quick Color Reference\n- text: #dbc9ff (Moonlight Lavender)\n- background: #271a47 (Aubergine Canvas)\n- border: #dbc9ff (ghost/outline elements)\n- accent: #bc994e (Gilded Brass — links/icons only)\n- media surface: #000000 (Obsidian Black — video blocks)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Hero Headline**: Render a two-line serif headline at 80px, Sang Bleu weight 400, line-height 1.0, color #dbc9ff, left-aligned on #271a47 background. Second line slightly shorter to create asymmetric editorial composition.\n\n2. **Ghost Button**: Create a pill-shaped ghost button: Inter 14px weight 600, uppercase, 0.111em tracking, color #dbc9ff, 1px solid #dbc9ff border, 30px radius, padding 12px 20px, transparent background on #271a47. Append an arrow icon (→) after the label.\n\n3. **Journal Entry Row**: Build a horizontal row: left column shows date in Inter 11px weight 600, 0.111em tracking, #dbc9ff, uppercase. Below it, title in Inter 16px weight 400, #dbc9ff. Right-aligned 'READ' label in Inter 11px weight 600 with a small circle icon. 1px #dbc9ff hairline divider at 20% opacity below. Vertical padding 20px.\n\n4. **Showreel Block**: Full-width #000000 container with 10px radius, max-width 1200px centered, aspect ratio 16:9. Centered 80px circular play button with #271a47 fill, white triangle icon. Rotating text 'DOUBLE CLICK TO PLAY' in Inter 10px at 0.036em tracking wraps the circle.\n\n5. **Section Eyebrow**: Inter 11px weight 600, uppercase, 0.111em tracking, #dbc9ff, centered, line-height 1.0, with 40px margin-bottom before the section content begins."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is expressed through color contrast and scale, not shadow. Components float on the aubergine canvas by virtue of the 13.8:1 lavender-on-violet contrast; media blocks use pure black to carve negative space into the violet field. No drop shadows, no blur halos — depth is flat and graphic, derived from the value jump between layers."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#dbc9ff",
+          "oklch": {
+            "c": 0.07603822611179673,
+            "h": 300.069208228079,
+            "l": 0.8683124587943208
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "body",
+            "button",
+            "heading",
+            "link",
+            "nav"
+          ],
+          "frequency": 1170,
+          "confidence": 1,
+          "prominence": 90693915.3856543,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 4219657.22615945,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#271a47",
+          "oklch": {
+            "c": 0.08075073111183213,
+            "h": 293.32506320767544,
+            "l": 0.2611882128220487
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 1005642.5991211777,
+          "properties": [
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#bc994e",
+          "oklch": {
+            "c": 0.10265364684506817,
+            "h": 84.53638496010332,
+            "l": 0.6997003734937854
+          },
+          "contexts": [
+            "link",
+            "icon",
+            "other"
+          ],
+          "frequency": 49,
+          "confidence": 1,
+          "prominence": 954940.4673098833,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.20257207282483092,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 13.81,
+          "background": "#000000",
+          "foreground": "#dbc9ff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.42,
+          "background": "#271a47",
+          "foreground": "#dbc9ff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.8,
+          "background": "#000000",
+          "foreground": "#bc994e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.89,
+          "background": "#271a47",
+          "foreground": "#bc994e"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.77,
+          "background": "#dbc9ff",
+          "foreground": "#bc994e"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.33,
+          "background": "#271a47",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 30,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 25,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 41,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 117,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "inter",
+          "source": "google",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 134,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "sang-bleu",
+          "source": "custom",
+          "weights": [
+            400,
+            700,
+            900
+          ],
+          "frequency": 103,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "object-fit: cover",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 9,
+          "family": "inter",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.111,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "inter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 3,
+          "letterSpacing": 0.5,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "inter",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.65,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.65,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "inter",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.65,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "inter",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon",
+            "other",
+            "nav",
+            "button"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.65,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.65,
+          "letterSpacing": 0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.65,
+          "letterSpacing": 0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "inter",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.65,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "inter",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.65,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "inter",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "object-fit: cover",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "sang-bleu",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.65,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "sang-bleu",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.65,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "sang-bleu",
+          "weight": 900,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 57,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "sang-bleu",
+          "weight": 900,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 120,
+          "family": "sang-bleu",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/04ede315-8750-4c9f-8ae6-529223915101.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1642c688-47a5-4f3f-95c4-deab02b9a370.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6eb778ca-6808-4cc6-ac8a-7beea5a25c36#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"EPIC agency design system\",\"item\":\"https://styles.refero.design/style/6eb778ca-6808-4cc6-ac8a-7beea5a25c36\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6eb778ca-6808-4cc6-ac8a-7beea5a25c36#style-reference\",\"name\":\"EPIC agency design system reference\",\"headline\":\"EPIC agency design system | Refero Styles\",\"description\":\"Explore EPIC agency's dark Agency design system: Aubergine Canvas #271a47, Moonlight Lavender #dbc9ff colors, Inter, Sang Bleu (custom) typography, and...\",\"url\":\"https://styles.refero.design/style/6eb778ca-6808-4cc6-ac8a-7beea5a25c36\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6eb778ca-6808-4cc6-ac8a-7beea5a25c36\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"EPIC agency\",\"url\":\"https://epic.net\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6eb778ca-6808-4cc6-ac8a-7beea5a25c36#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1642c688-47a5-4f3f-95c4-deab02b9a370.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1642c688-47a5-4f3f-95c4-deab02b9a370.jpg\",\"caption\":\"Screenshot of EPIC agency\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1642c688-47a5-4f3f-95c4-deab02b9a370.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"EPIC agency design system\",\"EPIC agency website design\",\"EPIC agency colors\",\"EPIC agency typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Aubergine Canvas\",\"Moonlight Lavender\",\"Gilded Brass\",\"Obsidian Black\",\"Inter\",\"Sang Bleu (custom)\",\"object-fit: cover\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"EPIC agency design system\"},{\"@type\":\"Thing\",\"name\":\"EPIC agency website design\"},{\"@type\":\"Thing\",\"name\":\"EPIC agency colors\"},{\"@type\":\"Thing\",\"name\":\"EPIC agency typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-09T11:36:00.000Z\",\"dateModified\":\"2026-02-09T11:36:00.000Z\"}]}19:T64a,## Quick Color Reference\n- text: #dbc9ff (Moonlight Lavender)\n- background: #271a47 (Aubergine Canvas)\n- border: #dbc9ff (ghost/outline elements)\n- accent: #bc994e (Gilded Brass — links/icons only)\n- media surface: #000000 (Obsidian Black — video blocks)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Hero Headline**: Render a two-line serif headline at 80px, Sang Bleu weight 400, line-height 1.0, color #dbc9ff, left-aligned on #271a47 background. Second line slightly shorter to create asymmetric editorial composition.\n\n2. **Ghost Button**: Create a pill-shaped ghost button: Inter 14px weight 600, uppercase, 0.111em tracking, color #dbc9ff, 1px solid #dbc9ff border, 30px radius, padding 12px 20px, transparent background on #271a47. Append an arrow icon (→) after the label.\n\n3. **Journal Entry Row**: Build a horizontal row: left column shows date in Inter 11px weight 600, 0.111em tracking, #dbc9ff, uppercase. Below it, title in Inter 16px weight 400, #dbc9ff. Right-aligned 'READ' label in Inter 11px weight 600 with a small circle icon. 1px #dbc9ff hairline divider at 20% opacity below. Vertical padding 20px.\n\n4. **Showreel Block**: Full-width #000000 container with 10px radius, max-width 1200px centered, aspect ratio 16:9. Centered 80px circular play button with #271a47 fill, white triangle icon. Rotating text 'DOUBLE CLICK TO PLAY' in Inter 10px at 0.036em tracking wraps the circle.\n\n5. **Section Eyebrow**: Inter 11px weight 600, uppercase, 0.111em tracking, #dbc9ff, centered, line-height 1.0, with 40px margin-bottom before the section content begins."
+}

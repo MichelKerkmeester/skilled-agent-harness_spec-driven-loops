@@ -1,0 +1,344 @@
+{
+  "color": {
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Body text, structural hairlines, dark icon strokes — the universal ink that defines every other element on the page"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces, input fields, button text on dark fills"
+    },
+    "fog": {
+      "$value": "#f0eff0",
+      "$type": "color",
+      "$description": "Fog — Body background wash, second surface tier below cards"
+    },
+    "silver": {
+      "$value": "#e0dfe1",
+      "$type": "color",
+      "$description": "Silver — Input borders, subtle dividers between content bands"
+    },
+    "mist": {
+      "$value": "#c1c0c2",
+      "$type": "color",
+      "$description": "Mist — Card borders — a half-step lighter than the structural hairline, used to separate stacked cards from the canvas"
+    },
+    "ash": {
+      "$value": "#a09da1",
+      "$type": "color",
+      "$description": "Ash — Muted icon strokes, inactive nav borders, secondary metadata"
+    },
+    "obsidian": {
+      "$value": "#282729",
+      "$type": "color",
+      "$description": "Obsidian — Heavy icon borders, strong dividers, secondary structural lines that need more weight than #000 hairline"
+    },
+    "onyx": {
+      "$value": "#141315",
+      "$type": "color",
+      "$description": "Onyx — Deepest text tier for high-emphasis labels over light surfaces"
+    },
+    "graphite": {
+      "$value": "#3d3a3e",
+      "$type": "color",
+      "$description": "Graphite — Primary action button fill — the dark solid button (Sign in, Randomize); slightly lifted from pure black to read as a surface, not absence"
+    },
+    "cobalt-pulse": {
+      "$value": "#338fff",
+      "$type": "color",
+      "$description": "Cobalt Pulse — Link text, icon dots, chromatic borders — the blue half of the system, used to mark tokens, active links, and the start of gradients"
+    },
+    "ultraviolet": {
+      "$value": "#7a33ff",
+      "$type": "color",
+      "$description": "Ultraviolet — Outlined action border, secondary link accent — appears as a stroke on ghost controls and as the mid-stop in gradient transitions"
+    },
+    "spectrum-bridge": {
+      "$value": "#0079cc",
+      "$type": "color",
+      "$description": "Spectrum Bridge — Blue wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "aurora-wash": {
+      "$value": "#ff80d7",
+      "$type": "color",
+      "$description": "Aurora Wash — Hero card gradient — soft translucent wash from ember through pink to cobalt, a 30% opacity field that sits behind the launch prompt"
+    }
+  },
+  "font": {
+    "neuehaasunica": {
+      "$value": "NeueHaasUnica",
+      "$type": "fontFamily",
+      "$description": "All interface type — body, nav, buttons, cards, inputs, links, icons labels. Weight 400 for body and secondary; 500 for buttons and emphasized labels; 600 reserved for section headings. Tabular figures ('tnum', 'lnum') on all numeric displays so token counts and prices align in columns."
+    },
+    "silka": {
+      "$value": "Silka",
+      "$type": "fontFamily",
+      "$description": "Supplementary display face — used sparingly for editorial moments and icon-adjacent labels where a different texture is needed from the interface default"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "NeueHaasUnica",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "NeueHaasUnica",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "NeueHaasUnica",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "NeueHaasUnica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "NeueHaasUnica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "NeueHaasUnica",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "NeueHaasUnica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Silka",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "NeueHaasUnica",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Silka",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Silka",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Silka",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 28px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "Silka",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "NeueHaasUnica",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "NeueHaasUnica",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(40, 39, 41, 0.05) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page background — the dominant white field"
+    },
+    "body-wash": {
+      "$value": "#f0eff0",
+      "$type": "color",
+      "$description": "Surface level 2: Optional second-tier background for sections that need to recede behind the canvas"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Card surfaces — sit on the canvas with a #c1c0c2 hairline border, no shadow"
+    },
+    "launch-card": {
+      "$value": "#ff80d7",
+      "$type": "color",
+      "$description": "Surface level 4: Sole ceremonial surface — translucent aurora gradient field wrapping the token-launch prompt"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.common.xyz",
+      "siteName": "Common",
+      "extractedAt": "2026-06-03T19:43:32.747Z",
+      "variant": "extended"
+    }
+  }
+}

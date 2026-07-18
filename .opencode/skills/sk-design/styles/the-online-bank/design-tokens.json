@@ -1,0 +1,392 @@
+{
+  "color": {
+    "deep-teal": {
+      "$value": "#088177",
+      "$type": "color",
+      "$description": "Deep Teal — Teal supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "ink": {
+      "$value": "#1b1b1b",
+      "$type": "color",
+      "$description": "Ink — Primary body text, headings, icon strokes, link text, and nav labels — a near-black that softens to charcoal, avoiding the harshness of pure black on warm white"
+    },
+    "canvas-warmth": {
+      "$value": "#faf8f5",
+      "$type": "color",
+      "$description": "Canvas Warmth — Page background — a warm, paper-like off-white that gives the entire interface a human, editorial quality distinct from clinical SaaS whites"
+    },
+    "surface-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface White — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "hairline": {
+      "$value": "#e9e9e9",
+      "$type": "color",
+      "$description": "Hairline — Subtle borders, dividers between content blocks, and input field outlines — light enough to recede but present enough to structure information"
+    },
+    "border-soft": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Border Soft — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Reserved for icon fills and the rare element requiring maximum contrast — used sparingly alongside the softer Ink"
+    },
+    "teal-mist": {
+      "$value": "#d8edeb",
+      "$type": "color",
+      "$description": "Teal Mist — Light teal-tinted surface for accent backgrounds, highlight panels, and soft washes that echo the brand color without dominating"
+    },
+    "blush-neutral": {
+      "$value": "#f5e1e3",
+      "$type": "color",
+      "$description": "Blush Neutral — Warm pink-tinted surface for category differentiation in editorial layouts — used as a subtle alternative to teal-tinted sections"
+    }
+  },
+  "font": {
+    "n26": {
+      "$value": "N26",
+      "$type": "fontFamily",
+      "$description": "The workhorse sans-serif for all navigation, body copy, buttons, labels, and UI micro-text. Weight 500 for emphasis, 700 for primary action labels and key headings. Slight positive tracking (0.008–0.019em) gives small sizes a controlled, legible quality — the custom feel comes from this restrained openness rather than display flourishes."
+    },
+    "n26-extended": {
+      "$value": "N26-Extended",
+      "$type": "fontFamily",
+      "$description": "Display face reserved for hero headlines, section titles, and large statement copy. The wider proportions at 58–80px create breathing room that contrasts the compact N26 body face — this duality (tight UI type + expansive display type) is the typographic signature. Normal letter-spacing lets the wide letterforms do the work."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "N26",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "N26",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "N26",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "N26",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "N26",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "N26",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "N26",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "N26",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "N26",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "N26",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "N26",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "N26-Extended",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "N26-Extended",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "N26",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "N26",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "N26",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "N26",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "N26-Extended",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "N26-Extended",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "N26-Extended",
+        "fontSize": "58px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "N26-Extended",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "192": {
+      "$value": "192px",
+      "$type": "dimension",
+      "$description": "Spacing 192px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#faf8f5",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background — warm off-white that gives the entire interface its editorial, paper-like quality"
+    },
+    "surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Cards, elevated panels, and content blocks that need visual lift from the canvas"
+    },
+    "teal-mist": {
+      "$value": "#d8edeb",
+      "$type": "color",
+      "$description": "Surface level 3: Light teal-tinted accent surface for highlight panels and category sections"
+    },
+    "blush": {
+      "$value": "#f5e1e3",
+      "$type": "color",
+      "$description": "Surface level 4: Warm pink-tinted surface for editorial category differentiation"
+    },
+    "brand-band": {
+      "$value": "#088177",
+      "$type": "color",
+      "$description": "Surface level 5: Full-bleed brand hero sections and primary action fills — the highest-prominence surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://n26.com",
+      "siteName": "The online bank",
+      "extractedAt": "2026-06-03T18:35:03.395Z",
+      "variant": "extended"
+    }
+  }
+}

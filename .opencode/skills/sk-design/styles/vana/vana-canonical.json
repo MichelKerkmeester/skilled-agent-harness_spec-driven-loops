@@ -1,0 +1,1448 @@
+{
+  "source": "https://styles.refero.design/style/2a3cdb2e-effe-406b-932e-37e4dc88ab1d",
+  "uuid": "2a3cdb2e-effe-406b-932e-37e4dc88ab1d",
+  "name": "Vana",
+  "northStar": "Digital constellation map on midnight canvas — a dark protocol interface where electric blue traces the topography of user-owned data across a starfield of ASCII characters.",
+  "capturedAt": "2026-07-18T09:14:36.551Z",
+  "meta": {
+    "url": "https://www.vana.com",
+    "siteName": "Vana",
+    "extractedAt": "2026-06-03T20:22:15.273Z",
+    "durationMs": 40881,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 467,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #0000ff as the sole filled CTA color — no other blue should ever fill a button background",
+      "Set border-radius to 2px on all rectangular buttons and cards; use 1440px only for pill-shaped controls",
+      "Set the page background to #0d0d0d and step surfaces to #161616 → #252525 → #3b3b3b for elevation — never use shadows for separation",
+      "Use Cofo Sans weight 700 for all headings and button text; reserve weight 400 for body copy and descriptions",
+      "Use Cofo Sans Pixel with a dot prefix (•) for nav links, tags, and technical metadata labels",
+      "Apply letter-spacing -0.02em at 64px and -0.015em at 24px — the tight tracking is a signature choice, not a default",
+      "Keep the chromatic palette narrow: if you need a second color, use it as a 1px border or icon stroke, never as a background fill"
+    ],
+    "donts": [
+      "Don't use shadows or drop effects for card elevation — the surface stack (#0d0d0d → #161616 → #252525) is the elevation system",
+      "Don't introduce new blues outside the #0000ff / #4141fc / #8b8bfe family — the brand blue is singular",
+      "Don't use #7fd579 or #d896ff for backgrounds or large fills — these are punctuation colors, only for thin borders and small icons",
+      "Don't set border-radius above 2px on cards or buttons (except pill shapes at 1440px) — sharp corners are intentional",
+      "Don't use #ffffff for body copy — reserve it for headings and button text; use #eaeaea for paragraphs",
+      "Don't render the ASCII-art pattern at full opacity — it should sit at 10–20% opacity to read as texture, not content",
+      "Don't mix the pixel and non-pixel fonts in the same text block — use Cofo Sans Pixel only for standalone labels and nav items"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#0000ff",
+        "name": "Electric Indigo",
+        "role": "Primary CTA fill, brand text, decorative ASCII pattern — the signal color that makes actions switched on against the dark canvas",
+        "group": "brand"
+      },
+      {
+        "hex": "#4141fc",
+        "name": "Cobalt Pulse",
+        "role": "Button borders, secondary accent — slightly lighter than Electric Indigo for outlined controls and hover states",
+        "group": "brand"
+      },
+      {
+        "hex": "#8b8bfe",
+        "name": "Periwinkle Veil",
+        "role": "Outlined action border, light violet accent — ghost button outlines and muted decorative strokes",
+        "group": "accent"
+      },
+      {
+        "hex": "#7fd579",
+        "name": "Lime Beacon",
+        "role": "Rare chromatic punctuation — cursor marker, outlined button variant, location indicator on the data map",
+        "group": "accent"
+      },
+      {
+        "hex": "#d896ff",
+        "name": "Orchid Whisper",
+        "role": "Rare chromatic punctuation — outlined button variant, decorative icon accent",
+        "group": "accent"
+      },
+      {
+        "hex": "#0d0d0d",
+        "name": "Midnight Void",
+        "role": "Page background — the base canvas everything floats on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#161616",
+        "name": "Carbon Panel",
+        "role": "Card and panel surfaces — one step above the canvas for contained content blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#252525",
+        "name": "Graphite Lift",
+        "role": "Dark elevated surface for cards, headers, and contained panels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3b3b3b",
+        "name": "Steel Hover",
+        "role": "Highest surface elevation, filled neutral button background — the brightest the neutrals get",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Signal",
+        "role": "Primary headings, button text, high-contrast text — the loudest text voice",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eaeaea",
+        "name": "Soft Mist",
+        "role": "Body text, secondary copy, subtle fill — quieter than Pure Signal for paragraphs and descriptions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Charcoal",
+        "role": "Borders in light sections, link underlines — visible only against the white band",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b8ad97",
+        "name": "Warm Filament",
+        "role": "Decorative SVG stroke and fill — warm-toned accent for abstract graphics and illustration details",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page model is centered max-width (1200px) for content blocks, with full-bleed dark backgrounds extending to the viewport edges. The hero is full-bleed with the ASCII map spanning the full width, headline left-aligned over the texture. Subsequent sections use centered section headers (title + subtitle stack) followed by 4-column feature card grids. The layout rhythm is: dark hero → dark features section → light split-content band → blue divider band. Navigation is a minimal top bar (logo left, 4 links right) with a hairline bottom border. Cards are arranged in equal-width columns with 16–20px gaps. The overall density is comfortable — generous vertical breathing room between sections (48px+) with content blocks that feel measured and unhurried.",
+    "imagery": "The visual language is dominated by the ASCII-art world map texture in the hero — character density forms continental outlines in #0000ff at low opacity, suggesting a data topology rather than a literal map. A small #7fd579 cursor marker sits on the map as an interactive location indicator. The secondary visual is a 3D-rendered cloud/bubble structure in #0000ff and #4141fc with geometric dotted surfaces, used in split-layout sections. Abstract graphics favor geometric, computational forms (grids, interconnected nodes, stacked cubes) over organic or photographic imagery. Icons are thin-stroke line illustrations in #ffffff, centered above card titles. No photography, no lifestyle imagery — the visual system is pure data-art, not marketing photography.",
+    "similar": [
+      {
+        "why": "Same dark-canvas + single electric blue accent approach for data protocol branding, with a similar monospace-adjacent technical label treatment in navigation",
+        "business": "Protocol Labs"
+      },
+      {
+        "why": "Dark developer-focused UI with a vivid blue as the sole chromatic accent, sharp-cornered components, and a restrained neutral surface stack",
+        "business": "The Graph"
+      },
+      {
+        "why": "Dark hero with a textural background (map/network imagery) and a single brand blue, targeting a crypto/infrastructure audience with minimal marketing chrome",
+        "business": "Helium"
+      },
+      {
+        "why": "Data sovereignty narrative with a dark interface, electric blue accent, and geometric/abstract 3D renders as supporting imagery",
+        "business": "Ocean Protocol"
+      },
+      {
+        "why": "Dark devtool aesthetic with sharp 2px-radius components, a narrow blue palette, and technical metadata labels in a monospace variant",
+        "business": "Ceramic (ComposeDB)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "2px",
+        "large": "16px",
+        "pills": "1440px",
+        "buttons": "2px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "48px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#0d0d0d",
+        "name": "Midnight Void",
+        "level": 1,
+        "purpose": "Page base background — the canvas everything sits on"
+      },
+      {
+        "hex": "#161616",
+        "name": "Carbon Panel",
+        "level": 2,
+        "purpose": "Cards, feature panels, content containers — one step up from the canvas"
+      },
+      {
+        "hex": "#252525",
+        "name": "Graphite Lift",
+        "level": 3,
+        "purpose": "Elevated cards, hover states, interactive panels — second elevation step"
+      },
+      {
+        "hex": "#3b3b3b",
+        "name": "Steel Hover",
+        "level": 4,
+        "purpose": "Highest neutral surface — filled neutral buttons, active states"
+      }
+    ],
+    "northStar": "Digital constellation map on midnight canvas — a dark protocol interface where electric blue traces the topography of user-owned data across a starfield of ASCII characters.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.28
+      }
+    ],
+    "components": [
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Horizontal bar, full-width, #0d0d0d background with bottom hairline border in #ffffff (1px). Logo 'vana' left-aligned in Cofo Sans weight 700 at 16px. Nav links right-aligned in Cofo Sans Pixel at 10–13px uppercase with small dot prefix indicators. Vertical padding 22px, horizontal padding 24px."
+      },
+      {
+        "name": "Filled Primary Button",
+        "role": "Primary CTA (GET STARTED)",
+        "description": "#0000ff background, #ffffff text in Cofo Sans weight 700 at 13–14px uppercase, letter-spacing -0.02em. Padding 11px 20px. Border-radius 2px. No shadow, no gradient. The flat rectangular shape with 2px radius is deliberately sharp — it reads as a protocol command, not a marketing button."
+      },
+      {
+        "name": "Outlined Ghost Button",
+        "role": "Secondary action (OUR VISION, START BUILDING)",
+        "description": "Transparent background, 1px border in #8b8bfe or #ffffff, #ffffff text in Cofo Sans weight 700 at 13–14px uppercase. Padding 11px 20px. Border-radius 2px. Some variants include a leading arrow icon (→). The outlined form lets the blue do the work elsewhere while this button stays neutral."
+      },
+      {
+        "name": "Chromatic Outlined Button",
+        "role": "Accent action variant",
+        "description": "Transparent background, 1px border in #7fd579 (lime) or #d896ff (orchid), matching-color text. Same padding and 2px radius as other buttons. These rare variants add chromatic punctuation — used sparingly to draw the eye to specific protocol actions."
+      },
+      {
+        "name": "Pill Button",
+        "role": "Rounded action variant",
+        "description": "Border-radius 1440px (fully rounded). Same color tokens as filled or outlined variants. Used for tag-like actions or compact controls where the pill shape signals a different interaction type."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Four-column feature display (Connect, Move, Control, Build)",
+        "description": "#161616 background with 1px border in #ffffff (12% opacity) or subtle #333333. Padding 24–32px. Border-radius 2px. Icon centered top (24–32px, #ffffff or accent color, thin stroke). Title in Cofo Sans weight 700 at 16–24px, #ffffff. Description in Cofo Sans weight 400 at 14px, #eaeaea. No shadow — separation comes from the surface stack step, not elevation."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Full-bleed landing hero",
+        "description": "Full-viewport dark background with ASCII-art world map pattern rendered in #0000ff at low opacity across the full width. Headline at 64px Cofo Sans weight 700, #ffffff, letter-spacing -1.28px, positioned left-of-center. Subtext at 16px weight 400, #eaeaea. CTA pair (filled + outlined) below. A small #7fd579 cursor marker sits on the map as an interactive location indicator."
+      },
+      {
+        "name": "Section Header",
+        "role": "Centered section title block",
+        "description": "Title at 24–64px Cofo Sans weight 700, #ffffff, centered. Subtitle at 16px weight 400, #eaeaea, centered, max-width ~640px. Vertical spacing 48px above and below. This header pattern repeats across feature and content sections."
+      },
+      {
+        "name": "Pixel Nav Link",
+        "role": "Navigation item with dot indicator",
+        "description": "Cofo Sans Pixel at 10–13px uppercase, #ffffff. Prefixed with a small dot (•) in the same color. Tight letter-spacing. The pixel font + dot prefix is the signature navigation micro-style — it reads as protocol metadata, not a website menu."
+      },
+      {
+        "name": "Split Content Section",
+        "role": "Two-column text + visual layout",
+        "description": "Light or dark background band. Left column: heading in #0000ff or #ffffff at 24–40px, body text at 14–16px, outlined CTA button. Right column: full-bleed 3D render or illustration. Used for protocol explainer sections."
+      },
+      {
+        "name": "Band Divider",
+        "role": "Full-width colored separator band",
+        "description": "Solid #0000ff or #4141fc background, full-bleed, 80–120px height. Contains left-aligned text in #ffffff at 14–16px. Functions as a visual pause between major content sections."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface across all UI — headings at 64px weight 700, body at 14–16px weight 400, nav links at 13–14px. The tight -0.02em tracking at 64px creates a compressed, technical headline feel; most crypto/data brands use looser tracking at this size.",
+        "sizes": "13px, 14px, 16px, 24px, 64px",
+        "family": "Cofo Sans",
+        "weight": "400, 700",
+        "lineHeight": "1.00–1.25",
+        "substitute": "Inter",
+        "letterSpacing": "-0.02em at 64px, -0.015em at 24px, -0.02em at 13–16px"
+      },
+      {
+        "role": "Technical metadata labels — nav dot-prefixed links (BUILD, ABOUT, COMMUNITY, TOOLS), small uppercase tags, and machine-precise annotations. The pixel variant creates a monospace-adjacent rhythm that signals 'system metadata' vs 'human prose'.",
+        "sizes": "10px, 13px, 14px",
+        "family": "Cofo Sans Pixel",
+        "weight": "400",
+        "lineHeight": "1.00–1.25",
+        "substitute": "JetBrains Mono",
+        "letterSpacing": "-0.02em to -0.002em"
+      }
+    ],
+    "description": "Vana operates as a dark data-sovereign canvas: near-black surfaces host a vivid electric blue that functions less as decoration and more as signal. The hero's ASCII-art world map is not a graphic but a data texture — character density forms continents, suggesting the protocol maps personal data across the globe. Typography is restrained and geometric (Cofo Sans) with a pixel variant for technical metadata labels, creating tension between human-readable prose and machine-precise notation. Buttons are sharp-cornered (2px radius) and minimal, letting the blue carry the action language. The palette is deliberately narrow: one brand blue, two violet tints, and a stack of near-black surfaces, with green and pink appearing only as rare chromatic punctuation on outlined controls and decorative markers.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2a3cdb2e-effe-406b-932e-37e4dc88ab1d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Vana design system\",\"item\":\"https://styles.refero.design/style/2a3cdb2e-effe-406b-932e-37e4dc88ab1d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2a3cdb2e-effe-406b-932e-37e4dc88ab1d#style-reference\",\"name\":\"Vana design system reference\",\"headline\":\"Vana design system | Refero Styles\",\"description\":\"Explore Vana's dark Crypto design system: Electric Indigo #0000ff, Cobalt Pulse #4141fc colors, Cofo Sans, Cofo Sans Pixel typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/2a3cdb2e-effe-406b-932e-37e4dc88ab1d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2a3cdb2e-effe-406b-932e-37e4dc88ab1d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Vana\",\"url\":\"https://www.vana.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2a3cdb2e-effe-406b-932e-37e4dc88ab1d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0f28b4d1-8b13-49a2-b1e5-82cd3516479d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0f28b4d1-8b13-49a2-b1e5-82cd3516479d.jpg\",\"caption\":\"Screenshot of Vana\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0f28b4d1-8b13-49a2-b1e5-82cd3516479d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Vana design system\",\"Vana website design\",\"Vana colors\",\"Vana typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Electric Indigo\",\"Cobalt Pulse\",\"Periwinkle Veil\",\"Lime Beacon\",\"Cofo Sans\",\"Cofo Sans Pixel\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Vana design system\"},{\"@type\":\"Thing\",\"name\":\"Vana website design\"},{\"@type\":\"Thing\",\"name\":\"Vana colors\"},{\"@type\":\"Thing\",\"name\":\"Vana typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-07T17:42:17.072Z\",\"dateModified\":\"2026-05-07T17:42:17.072Z\"}]}19:T441,**Quick Color Reference**\n- text: #ffffff (headings, buttons), #eaeaea (body)\n- background: #0d0d0d (page), #161616 (cards), #252525 (elevated)\n- border: #ffffff at 10–20% opacity (hairlines), #333333 (light sections)\n- accent: #0000ff (brand), #4141fc (secondary blue), #8b8bfe (light violet)\n- primary action: #3b3b3b (filled action)\n\n**3 Example Component Prompts:**\n1. Create a Primary Action Button: #3b3b3b background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n2. Create a feature card on a dark page: #161616 background, 1px border in #ffffff at 15% opacity, 2px border-radius, 24px padding. Centered thin-stroke line icon in #ffffff at 32px. Title in Cofo Sans weight 700, #ffffff, 16px. Description in Cofo Sans weight 400, #eaeaea, 14px.\n3. Create a nav bar: full-width #0d0d0d background, 1px bottom border in #ffffff at 10% opacity, padding 22px 24px. Logo 'vana' left in Cofo Sans weight 700, #ffffff, 16px. Four right-aligned links in Cofo Sans Pixel, 10–13px, uppercase, #ffffff, each prefixed with a small dot (•)."
+      },
+      {
+        "title": "Signature Elements",
+        "content": "Three elements define Vana's visual identity and should be preserved across all pages:\n\n1. **ASCII-art world map hero texture** — Character density in #0000ff at 10–20% opacity forming continental outlines. This is the single most recognizable visual element. It should appear on the primary landing page and any major section that introduces a geographic or network concept.\n\n2. **Pixel-font nav links with dot prefixes** — Every navigation item uses Cofo Sans Pixel with a leading • dot. This micro-style signals 'protocol metadata' and distinguishes the nav from a standard website menu.\n\n3. **2px sharp-cornered buttons** — All rectangular buttons use 2px border-radius. This is deliberately sharp — it reads as a system command, not a marketing affordance. Combined with the flat surface stack (no shadows), buttons feel like terminal inputs rather than web CTAs."
+      },
+      {
+        "title": "Color Usage Hierarchy",
+        "content": "The palette operates on strict frequency rules:\n\n- **#0000ff** is the only color that fills large areas (hero pattern, CTA buttons, band dividers). It appears in body text and borders frequently but never as a page background.\n- **#4141fc and #8b8bfe** are the blue family for outlined controls and secondary accents. They should never fill large surfaces.\n- **#7fd579 and #d896ff** appear in a combined total of fewer than 10 instances across the site. They are chromatic exclamation points — use them only for 1px borders, small icons, or the cursor marker. Never as backgrounds.\n- **Neutrals form a strict stack** — #0d0d0d (canvas) → #161616 (card) → #252525 (elevated) → #3b3b3b (highest). Each step is +21–37 luminance. No element should skip a step."
+      }
+    ],
+    "elevationPhilosophy": "This design deliberately avoids drop shadows. Separation is achieved entirely through the surface stack: #0d0d0d → #161616 → #252525 → #3b3b3b, with 1px hairline borders in #ffffff (10–20% opacity) for additional delineation. The flat treatment reinforces the protocol/command-line aesthetic — surfaces feel like terminal panels, not floating cards. No element should appear to 'lift off' the page; everything sits flush in the dark stack."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "icon",
+            "heading",
+            "card",
+            "body",
+            "footer"
+          ],
+          "frequency": 1154,
+          "confidence": 1,
+          "prominence": 62455644.387524195,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 4,
+            "nav/color": 71,
+            "body/color": 7,
+            "card/color": 5,
+            "hero/color": 1,
+            "icon/color": 7,
+            "nav/stroke": 4,
+            "other/fill": 51,
+            "other/color": 86,
+            "button/color": 16,
+            "footer/color": 1,
+            "other/stroke": 52,
+            "heading/color": 24,
+            "nav/borderColor": 284,
+            "body/borderColor": 28,
+            "card/borderColor": 20,
+            "hero/borderColor": 4,
+            "icon/borderColor": 28,
+            "other/borderColor": 343,
+            "button/borderColor": 16,
+            "footer/borderColor": 4,
+            "heading/borderColor": 96,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#4141fc",
+          "oklch": {
+            "c": 0.264943025047602,
+            "h": 272.2305070225266,
+            "l": 0.5175461468188589
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 57,
+          "confidence": 1,
+          "prominence": 10326970.25851945,
+          "properties": [
+            "borderColor",
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/color": 8,
+            "other/borderColor": 32,
+            "button/borderColor": 16,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#161616",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20019308840256111
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 9149532.1424806,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 12,
+            "other/color": 1,
+            "heading/color": 2,
+            "other/borderColor": 4,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#0000ff",
+          "oklch": {
+            "c": 0.31321438863448475,
+            "h": 264.05202261636987,
+            "l": 0.45201371817442365
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "body",
+            "image"
+          ],
+          "frequency": 268,
+          "confidence": 1,
+          "prominence": 6355840.751545763,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 49,
+            "image/color": 1,
+            "other/color": 2,
+            "heading/color": 1,
+            "body/borderColor": 196,
+            "image/borderColor": 4,
+            "other/borderColor": 8,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 71,
+          "confidence": 1,
+          "prominence": 4939506.217804683,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 71
+          }
+        },
+        {
+          "hex": "#0d0d0d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.16000744803484684
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8b8bfe",
+          "oklch": {
+            "c": 0.16595795166407837,
+            "h": 281.1285533346557,
+            "l": 0.6888063057886378
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 574615.6651987506,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 4,
+            "button/borderColor": 12
+          }
+        },
+        {
+          "hex": "#b8ad97",
+          "oklch": {
+            "c": 0.033073817747862146,
+            "h": 84.57706391143917,
+            "l": 0.7508794536704666
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 337066.41505553183,
+          "properties": [
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 8,
+            "other/stroke": 24
+          }
+        },
+        {
+          "hex": "#3b3b3b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3523247402852869
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 319961.6914754785,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#7fd579",
+          "oklch": {
+            "c": 0.15126095223378117,
+            "h": 142.62826416655923,
+            "l": 0.7965112009757462
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 319961.6914754785,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#d896ff",
+          "oklch": {
+            "c": 0.15927191512456448,
+            "h": 312.0434962399554,
+            "l": 0.775937751128111
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 319961.6914754785,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#eaeaea",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9370488987176951
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 116222.84051001877,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/fill": 27,
+            "body/borderColor": 4
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 6489.89371656357,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "image/color": 1,
+            "link/borderColor": 4,
+            "image/borderColor": 4
+          }
+        },
+        {
+          "hex": "#00c600",
+          "oklch": {
+            "c": 0.24369304215828377,
+            "h": 142.49534504144387,
+            "l": 0.7161662447158738
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 988,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#252525",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2644796726260613
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 72,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.16717157749386416,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.44,
+          "background": "#0d0d0d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#161616",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.46,
+          "background": "#eaeaea",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.16,
+          "background": "#0d0d0d",
+          "foreground": "#eaeaea"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.33,
+          "background": "#252525",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.04,
+          "background": "#161616",
+          "foreground": "#eaeaea"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.74,
+          "background": "#252525",
+          "foreground": "#eaeaea"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.7,
+          "background": "#7fd579",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.2,
+          "background": "#3b3b3b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.82,
+          "background": "#7fd579",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.5,
+          "background": "#eaeaea",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.08,
+          "background": "#7fd579",
+          "foreground": "#161616"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.73,
+          "background": "#d896ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.46,
+          "background": "#b8ad97",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.31,
+          "background": "#3b3b3b",
+          "foreground": "#eaeaea"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.08,
+          "background": "#00c600",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9,
+          "background": "#d896ff",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.76,
+          "background": "#b8ad97",
+          "foreground": "#0d0d0d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 1440,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 24,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "card",
+            "nav"
+          ],
+          "frequency": 38,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|other",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "nav"
+          ],
+          "frequency": 21,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|button",
+            "columnGap|button",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 85,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 88,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 175,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 213,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Cofo Sans",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 219,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Cofo Sans Pixel",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 67,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Cofo Sans Pixel",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.002,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Cofo Sans Pixel",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 44,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Cofo Sans Pixel",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Cofo Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cofo Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "hero",
+            "icon",
+            "card",
+            "button",
+            "footer"
+          ],
+          "frequency": 121,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cofo Sans Pixel",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Cofo Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Cofo Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 50,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Cofo Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Cofo Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Cofo Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Cofo Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 13,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Cofo Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Cofo Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1be54002-a489-4e49-986d-5fa0e120b386.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/0f28b4d1-8b13-49a2-b1e5-82cd3516479d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2a3cdb2e-effe-406b-932e-37e4dc88ab1d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Vana design system\",\"item\":\"https://styles.refero.design/style/2a3cdb2e-effe-406b-932e-37e4dc88ab1d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2a3cdb2e-effe-406b-932e-37e4dc88ab1d#style-reference\",\"name\":\"Vana design system reference\",\"headline\":\"Vana design system | Refero Styles\",\"description\":\"Explore Vana's dark Crypto design system: Electric Indigo #0000ff, Cobalt Pulse #4141fc colors, Cofo Sans, Cofo Sans Pixel typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/2a3cdb2e-effe-406b-932e-37e4dc88ab1d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2a3cdb2e-effe-406b-932e-37e4dc88ab1d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Vana\",\"url\":\"https://www.vana.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2a3cdb2e-effe-406b-932e-37e4dc88ab1d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0f28b4d1-8b13-49a2-b1e5-82cd3516479d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0f28b4d1-8b13-49a2-b1e5-82cd3516479d.jpg\",\"caption\":\"Screenshot of Vana\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0f28b4d1-8b13-49a2-b1e5-82cd3516479d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Vana design system\",\"Vana website design\",\"Vana colors\",\"Vana typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Electric Indigo\",\"Cobalt Pulse\",\"Periwinkle Veil\",\"Lime Beacon\",\"Cofo Sans\",\"Cofo Sans Pixel\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Vana design system\"},{\"@type\":\"Thing\",\"name\":\"Vana website design\"},{\"@type\":\"Thing\",\"name\":\"Vana colors\"},{\"@type\":\"Thing\",\"name\":\"Vana typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-07T17:42:17.072Z\",\"dateModified\":\"2026-05-07T17:42:17.072Z\"}]}19:T441,**Quick Color Reference**\n- text: #ffffff (headings, buttons), #eaeaea (body)\n- background: #0d0d0d (page), #161616 (cards), #252525 (elevated)\n- border: #ffffff at 10–20% opacity (hairlines), #333333 (light sections)\n- accent: #0000ff (brand), #4141fc (secondary blue), #8b8bfe (light violet)\n- primary action: #3b3b3b (filled action)\n\n**3 Example Component Prompts:**\n1. Create a Primary Action Button: #3b3b3b background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n2. Create a feature card on a dark page: #161616 background, 1px border in #ffffff at 15% opacity, 2px border-radius, 24px padding. Centered thin-stroke line icon in #ffffff at 32px. Title in Cofo Sans weight 700, #ffffff, 16px. Description in Cofo Sans weight 400, #eaeaea, 14px.\n3. Create a nav bar: full-width #0d0d0d background, 1px bottom border in #ffffff at 10% opacity, padding 22px 24px. Logo 'vana' left in Cofo Sans weight 700, #ffffff, 16px. Four right-aligned links in Cofo Sans Pixel, 10–13px, uppercase, #ffffff, each prefixed with a small dot (•)."
+}

@@ -1,0 +1,82 @@
+:root {
+  /* Colors */
+  --color-midnight-violet: #2a2a63;
+  --color-deep-ink: #151531;
+  --color-periwinkle-accent: #6868f7;
+  --color-cream-canvas: #fafafa;
+  --color-lavender-mist: #f0f0fe;
+  --color-mist-border: #e9ecef;
+  --color-graphite: #343a40;
+  --color-smoke: #cfd0d1;
+  --color-fog: #c3c4c6;
+
+  /* Typography — Font Families */
+  --font-sf-pro-rounded: 'SF Pro Rounded', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.3px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --tracking-body-sm: 0.35px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 18px;
+  --leading-subheading: 1.43;
+  --tracking-subheading: -0.27px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.36px;
+  --text-heading: 40px;
+  --leading-heading: 1.17;
+  --tracking-heading: -0.6px;
+  --text-display: 60px;
+  --leading-display: 1;
+  --tracking-display: -0.9px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-160: 160px;
+
+  /* Layout */
+  --page-max-width: 720px;
+  --section-gap: 64-80px;
+  --card-padding: 48px;
+  --element-gap: 24px;
+
+  /* Border Radius */
+  --radius-xl: 12px;
+  --radius-2xl: 20px;
+
+  /* Named Radii */
+  --radius-tags: 12px;
+  --radius-cards: 12px;
+  --radius-inputs: 12px;
+  --radius-buttons: 12px;
+  --radius-featuredcards: 20px;
+
+  /* Shadows */
+  --shadow-md: rgba(13, 19, 27, 0.1) 0px 2px 10px 0px, rgba(13, 19, 27, 0.2) 0px 0px 2px 0px;
+  --shadow-subtle: rgba(13, 19, 27, 0.05) 0px 0px 0px 1px inset;
+  --shadow-subtle-2: rgba(13, 19, 27, 0.25) 0px 0px 1px 0px, rgba(13, 19, 27, 0.05) 0px 2px 1px 0px;
+
+  /* Surfaces */
+  --surface-cream-canvas: #fafafa;
+  --surface-lavender-mist: #f0f0fe;
+  --surface-periwinkle-highlight: #6868f7;
+}

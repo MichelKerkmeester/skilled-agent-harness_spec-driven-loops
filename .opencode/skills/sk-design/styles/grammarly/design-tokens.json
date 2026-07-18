@@ -1,0 +1,442 @@
+{
+  "color": {
+    "grammarly-teal": {
+      "$value": "#027e6f",
+      "$type": "color",
+      "$description": "Grammarly Teal — Primary buttons, links, active nav, dark enterprise hero bands, decorative icon strokes — a deep botanical teal that reads as both professional and approachable against white and near-black surfaces"
+    },
+    "midnight-navy": {
+      "$value": "#1f243c",
+      "$type": "color",
+      "$description": "Midnight Navy — Headings, navigation text, body copy, card text, icon strokes, footer copy — the dominant dark color carrying nearly all prose"
+    },
+    "ink-black": {
+      "$value": "#0e101a",
+      "$type": "color",
+      "$description": "Ink Black — Display headings, high-emphasis body text, link text — slightly cooler/deeper than Midnight Navy, used for the heaviest type"
+    },
+    "graphite": {
+      "$value": "#545454",
+      "$type": "color",
+      "$description": "Graphite — Muted body text, secondary button labels, helper copy, icon strokes"
+    },
+    "steel": {
+      "$value": "#707070",
+      "$type": "color",
+      "$description": "Steel — Tertiary text, disabled labels, low-emphasis metadata"
+    },
+    "silver": {
+      "$value": "#b7b7b7",
+      "$type": "color",
+      "$description": "Silver — Disabled borders, placeholder icons, very low-emphasis strokes"
+    },
+    "ash": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Ash — Hairline borders, subtle dividers, input rest states"
+    },
+    "fog": {
+      "$value": "#ebebeb",
+      "$type": "color",
+      "$description": "Fog — Lighter hairline borders, checkbox outlines, secondary dividers"
+    },
+    "cloud": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Cloud — Subtle surface backgrounds, hover washes, secondary panels"
+    },
+    "carbon": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Carbon — Dark surface fills for footer or alternate bands — warmer than Ink Black"
+    },
+    "slate": {
+      "$value": "#4d536e",
+      "$type": "color",
+      "$description": "Slate — Button hover states, secondary icon tinting, muted UI chrome"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Primary page background, card surfaces, button text on teal"
+    }
+  },
+  "font": {
+    "glyph": {
+      "$value": "Glyph",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body typeface — a custom humanist sans with wider proportions and more open apertures than matter. Weight 400 for body, nav, buttons, labels; 700 for emphasis and subheadings. The 1.45 line-height is generous for reading comfort at 16px body size."
+    },
+    "matter": {
+      "$value": "matter",
+      "$type": "fontFamily",
+      "$description": "Display and heading typeface — a custom geometric grotesque with a slight humanist warmth. Weight 670 (between bold and black) gives headlines visual weight without becoming heavy; the -0.0100em tracking and tight 1.09 line-height create a compressed, editorial feel. Used for h1–h3 and large stat numbers."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Secondary body in card contexts — appears in product UI cards and embedded components"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    },
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Glyph",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Glyph",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Glyph",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Glyph",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Glyph",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Glyph",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 2.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Glyph",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Glyph",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "glyph",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "Glyph",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "Glyph",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "glyph",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "sm-13": {
+      "$value": {
+        "fontFamily": "Glyph",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-13 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Glyph",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Glyph",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "glyph",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "glyph",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "glyph",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "matter",
+        "fontSize": "36px",
+        "fontWeight": 670,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "matter",
+        "fontSize": "46px",
+        "fontWeight": 670,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "matter",
+        "fontSize": "52px",
+        "fontWeight": 670,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background"
+    },
+    "cloud": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle alternating section backgrounds, hover washes"
+    },
+    "card-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated card surfaces with hairline borders"
+    },
+    "grammarly-teal-band": {
+      "$value": "#027e6f",
+      "$type": "color",
+      "$description": "Surface level 3: Dark enterprise hero sections, full-bleed brand bands"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://grammarly.com",
+      "siteName": "Grammarly",
+      "extractedAt": "2026-06-03T19:52:13.706Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,337 @@
+{
+  "color": {
+    "pitch-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pitch Black — Primary text, filled pill buttons, full-bleed dark section backgrounds, icon strokes, hairline borders — the structural backbone of every page"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, text on dark sections, button text on filled black buttons, search field fill"
+    },
+    "ash-gray": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Ash Gray — Soft image backgrounds, secondary surface tint, subtle card/poster fill behind event artwork"
+    },
+    "concrete": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Concrete — Hairline dividers, muted borders, input field outlines"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal — Secondary button fills, elevated dark surfaces, muted-on-dark text in nested components"
+    },
+    "slate": {
+      "$value": "#595959",
+      "$type": "color",
+      "$description": "Slate — Muted body text, secondary navigation labels, supporting metadata"
+    },
+    "stone": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Stone — Tertiary body text, disabled states, low-priority metadata"
+    }
+  },
+  "font": {
+    "favorit": {
+      "$value": "Favorit",
+      "$type": "fontFamily",
+      "$description": "All UI text — navigation, body copy, buttons, labels, card metadata. Weight 400 is the default; 700 is used for section headings like 'Trending in Barcelona'; 350 is reserved for quiet helper text. The 0.06em tracking gives every line a slightly looser, editorial feel — body copy never feels cramped. Stylistic sets ss02/ss03/ss05/ss06/ss08 are always on and define the character of the typeface."
+    },
+    "foggy": {
+      "$value": "Foggy",
+      "$type": "fontFamily",
+      "$description": "Hero display headlines only. The extreme condensed proportions, ultra-tight 0.83 line-height, and 106px size let 3–4 stacked words fill a half-screen. This is the signature element — it transforms standard product copy ('WELCOME TO THE ALTERNATIVE') into a gig poster."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "16px",
+        "fontWeight": 350,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "16px",
+        "fontWeight": 350,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "18px",
+        "fontWeight": 350,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "24px",
+        "fontWeight": 350,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "28px",
+        "fontWeight": 350,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Foggy",
+        "fontSize": "106px",
+        "fontWeight": 400,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 106px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas — all white sections, card surfaces, navigation background"
+    },
+    "ash-gray": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Surface level 1: Soft fill behind poster images and subtle surface tinting"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary button fills and elevated dark surfaces"
+    },
+    "pitch-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed dark section bands and primary filled buttons"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://dice.fm",
+      "siteName": "DICE",
+      "extractedAt": "2026-06-03T17:44:42.754Z",
+      "variant": "extended"
+    }
+  }
+}

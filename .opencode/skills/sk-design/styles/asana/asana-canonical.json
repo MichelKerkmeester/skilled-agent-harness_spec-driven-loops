@@ -1,0 +1,1589 @@
+{
+  "source": "https://styles.refero.design/style/6b2a0513-df80-4140-87a8-38b1fef34313",
+  "uuid": "6b2a0513-df80-4140-87a8-38b1fef34313",
+  "name": "Asana",
+  "northStar": "Productivity whiteboard lit by a coral lamp — authoritative black type on a breathing white field, with a warm coral flash and a deep-navy flicker to signal where action lives.",
+  "capturedAt": "2026-07-18T10:18:16.673Z",
+  "meta": {
+    "url": "https://asana.com",
+    "siteName": "Asana",
+    "extractedAt": "2026-04-11T19:03:30.181Z",
+    "durationMs": 131634,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 861,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Ghost font at 60-72px with letter-spacing -0.0070em exclusively for top-level display headlines — no other element should compete at this scale",
+      "Apply 100px+ border-radius on all CTA buttons (primary and secondary) and filter chips — pill shapes are the only soft element in an otherwise angular component set",
+      "Reserve #222875 (Asana Violet) for product UI frames and informational containers — never use it as a button fill or section background",
+      "Pair Coral Blush (#ffeaec) backgrounds exclusively with Deep Coral (#690031) text — they are a locked semantic pair; do not substitute either half",
+      "Maintain a near-achromatic page canvas (#ffffff primary, #f3f3f3 secondary) and introduce coral or violet only as small contained accents, never as full-section backgrounds",
+      "Use TWK Lausanne weight 300 for all body copy to preserve the open, non-urgent reading texture — weight 400 is for UI labels and nav, weight 500 for subheadings and CTAs",
+      "Set card borders to 1px solid #e7e7e7 with 10-16px radius — no box shadows on content cards; elevation is conveyed through color contrast alone"
+    ],
+    "tags": [
+      "productivity",
+      "enterprise",
+      "editorial-type",
+      "pill-buttons",
+      "coral-accent",
+      "whitespace-heavy",
+      "two-font-system",
+      "AI",
+      "project-management",
+      "flat-cards"
+    ],
+    "donts": [
+      "Never use Ghost font below 60px — TWK Lausanne at weight 500 handles all sub-display heading sizes",
+      "Never apply the pill button radius (100px+) to cards, inputs, or modal containers — the shape language is exclusive to interactive action elements",
+      "Never fill a full page section with #222875 or any saturated color — the violet and coral appear only in contained UI frames or chip-sized elements",
+      "Never use positive letter-spacing on headings — letter-spacing is negative or zero for all sizes 20px and above",
+      "Never mix the coral and violet accent families in the same component — they operate as separate semantic threads",
+      "Never add box-shadow elevation to feature cards — borders alone define card boundaries; shadows break the flat, print-like surface quality",
+      "Never set body copy weight above 400 — weight 500 is reserved for labels, CTAs, and subheading roles only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0d0d0d",
+        "name": "Ink Black",
+        "role": "Body text, headings, button fill, icon strokes — near-black rather than true black keeps contrast high without harshness",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page background, button text on dark fills, nav surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f3f3f3",
+        "name": "Mist",
+        "role": "Secondary button background, alternating section background fill",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e7e7e7",
+        "name": "Cloud",
+        "role": "Card borders, dividers, section background tint",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e0dedc",
+        "name": "Stone",
+        "role": "Subtle component borders, input strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6e6e6",
+        "name": "Graphite",
+        "role": "Nav text, secondary UI labels, ghost button labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#646f79",
+        "name": "Slate",
+        "role": "Body text secondary, border colors in nav and footer contexts",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3d3d3d",
+        "name": "Charcoal",
+        "role": "Body copy at normal reading weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#474748",
+        "name": "Iron",
+        "role": "List items, link text in content areas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9ca6af",
+        "name": "Ash",
+        "role": "Placeholder text, disabled state indicators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222875",
+        "name": "Asana Violet",
+        "role": "Hero product UI, informational badges, branded accent blocks — deep indigo-navy grounds AI and premium feature messaging",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffeaec",
+        "name": "Coral Blush",
+        "role": "Active filter chip background, soft badge backgrounds, warm section fills — coral warmth signals interaction state without aggression",
+        "group": "brand"
+      },
+      {
+        "hex": "#690031",
+        "name": "Deep Coral",
+        "role": "Coral-family high-contrast text on Coral Blush backgrounds, brand icon accents",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff584a",
+        "name": "Coral Ember",
+        "role": "Icon fills in use-case cards, logo mark accent — vivid red-coral appears only in small illustration contexts",
+        "group": "accent"
+      },
+      {
+        "hex": "#710c3a",
+        "name": "Coral Dark",
+        "role": "Hover/pressed state for coral-family brand elements",
+        "group": "accent"
+      },
+      {
+        "hex": "#cbefff",
+        "name": "Sky Ice",
+        "role": "Blue-tinted soft background for feature callouts and informational chips",
+        "group": "accent"
+      },
+      {
+        "hex": "#e1bbc7",
+        "name": "Coral Petal",
+        "role": "Icon strokes, subtle link decoration, light illustrative borders in coral family",
+        "group": "accent"
+      }
+    ],
+    "layout": "Max-width approximately 1200px centered on all content, but product UI screenshot cards bleed to wider containers. Hero is a centered-headline pattern: Ghost headline centered, subhead centered at ~560px max-width, two pill buttons in a row, then a full-width product UI screenshot card below. Sections below alternate between: full-width white logo bar (no containers), left-text + tabbed-filter + image right (2-column split), and horizontally scrolling card rails (4 cards visible, 10px gap, overflow hinted). Navigation is a fixed top bar at 56px with left logo, center nav, right utility links. Vertical section rhythm is generous — 80-120px between sections — giving each content cluster breathing room. The feature card carousel section uses explicit prev/next circular icon buttons for navigation control.",
+    "imagery": "Two visual registers coexist. Product UI screenshots dominate: flat, pixel-accurate app window captures dropped inside rounded violet frames, shown at large scale (full-width hero) and medium scale (section features). These are isolated, never lifestyle-contextualised — the interface IS the subject. The second register is a set of outline-only line illustrations used in use-case cards: single-color coral stroke illustrations on white (a campaign chart, an easel, a rocket) with minimal fill, geometric-organic hybrid style, approximately 1.5px apparent stroke weight. Icons across the UI are monochrome outlines, matching the TWK Lausanne light weight in visual mass. No photography anywhere on the visible page. The density balance is text-dominant with product UI serving as the single large visual anchor per section.",
+    "similar": [
+      {
+        "why": "Same near-achromatic white canvas with a near-black dominant type system and small chromatic accent color injected only at interaction points",
+        "business": "Notion"
+      },
+      {
+        "why": "Shared enterprise SaaS pattern of product UI screenshot as hero anchor, pill CTA buttons, and colorful accent chips on white backgrounds",
+        "business": "Monday.com"
+      },
+      {
+        "why": "Two-font editorial approach with a display custom font for hero scale and a humanist sans for everything else, on white background",
+        "business": "Figma (marketing site)"
+      },
+      {
+        "why": "Same flat-surface card philosophy with border-only elevation (no shadows), near-black text on white, and a single brand accent color held in reserve",
+        "business": "Linear"
+      },
+      {
+        "why": "Custom-weight display headlines at tight tracking alongside a utility sans, white field, and vivid accent used exclusively for CTA elements",
+        "business": "Webflow"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "999px",
+        "cards": "10-16px",
+        "inputs": "4px",
+        "modals": "20px",
+        "buttons-pill": "100px",
+        "buttons-pill-xl": "146px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "category": "SaaS",
+    "northStar": "Productivity whiteboard lit by a coral lamp — authoritative black type on a breathing white field, with a warm coral flash and a deep-navy flicker to signal where action lives.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.75,
+        "letterSpacing": 0.44
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "heading-lg",
+        "size": 60,
+        "lineHeight": 1,
+        "letterSpacing": -0.42
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -0.5
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "CTA Button Group",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Filter Chip Tab Bar",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Use Case Feature Cards",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary CTA Button (Pill)",
+        "role": "Main calls to action: 'Get started', primary conversion points",
+        "description": "Background #0d0d0d, text #ffffff, border-radius 100px, padding 16px 32px. TWK Lausanne weight 500 at 16px. No border. The extreme pill radius against square card containers is the site's primary tension — the softness of the button against the geometry of surrounding content."
+      },
+      {
+        "name": "Secondary Outline Button (Pill)",
+        "role": "Secondary actions: 'View demo', alternate CTAs alongside primary",
+        "description": "Background #f3f3f3, text #0d0d0d, border 1px solid #0d0d0d, border-radius 146px, padding 16px 32px. Matches primary pill shape but inverted surface — light fill with a defined border. Near-identical radius to primary (146px vs 100px) keeps the two visually paired."
+      },
+      {
+        "name": "Ghost Nav Button",
+        "role": "Navigation dropdown triggers and tertiary utility actions",
+        "description": "Background transparent, text #6e6e6, border-color #6e6e6 (1px), border-radius 3px, padding 0 12px. No vertical padding. TWK Lausanne weight 400 at 14px. The 3px radius is the sharpest shape on the site — nav triggers are deliberately not pill-shaped to distinguish them from CTAs."
+      },
+      {
+        "name": "Filter Chip (Active)",
+        "role": "Active category filter in tabbed product sections: 'Marketing', 'Operations', etc.",
+        "description": "Background #ffeaec, text #690031, border-radius 999px, padding 8-12px horizontal. Active state surfaces the coral brand family — warm against the white section background. Inactive sibling chips use #f3f3f3 background with #0d0d0d text."
+      },
+      {
+        "name": "Product UI Screenshot Card",
+        "role": "Hero and section feature showcases — framed product app screenshots",
+        "description": "Background #222875 (Asana Violet), border-radius 16px, contains a rounded inner app window (radius 10px, white background) dropped inside the colored frame. The violet container makes the white app UI float as if lit from within. Used at large scale in the hero section (full-width up to 760px tall)."
+      },
+      {
+        "name": "Logo Bar / Social Proof Strip",
+        "role": "Fortune 100 trust signal section with partner logos",
+        "description": "White background, no border, no shadow. Logos displayed in grayscale at medium opacity, horizontally spaced at 32-48px columnGap. Stat text ('85% of Fortune 100') at TWK Lausanne weight 500, 30px, #0d0d0d. Logos: Amazon, Accenture, Johnson & Johnson, Dell, Merck — all rendered in flat black/gray."
+      },
+      {
+        "name": "Arrow Circle Icon Button",
+        "role": "Carousel navigation and card-level CTA links",
+        "description": "Circular button 40px diameter, background #0d0d0d (active) or #e7e7e7 (inactive), icon #ffffff or #0d0d0d respectively, border-radius 100px. Appears both as standalone navigation controls (carousel prev/next) and as inline link embellishments at the base of feature cards."
+      },
+      {
+        "name": "Sticky Navigation Bar",
+        "role": "Global top navigation, persistent on scroll",
+        "description": "Background #ffffff, bottom border 1px solid #e7e7e7, height 56px. Logo left-aligned. Nav items (Ghost button style, transparent, #6e6e6e) center-grouped. Right side: 'Contact sales' text link (#0d0d0d), 'Log in' text link, 'Get started' primary pill button (#0d0d0d fill). TWK Lausanne 14px weight 400 for all nav text."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Large section titles introducing content clusters",
+        "description": "Ghost font weight 500, 60px, lineHeight 1.00, letter-spacing -0.42px, color #0d0d0d. Left-aligned on content sections, centered on hero. Subhead in TWK Lausanne weight 300, 20px, color #3d3d3d, max-width ~560px. Vertical gap between heading and subhead: 16-24px."
+      },
+      {
+        "name": "Informational Tint Chip",
+        "role": "Small inline labels and tag badges with semantic color tints",
+        "description": "Background #cbefff (blue tint) or #ffeaec (coral tint), text #222875 or #690031 respectively, border-radius 999px, padding 4px 12px, TWK Lausanne weight 500 at 12px with letter-spacing +0.03em. Used to label feature categories inside product UI screenshots and callout blocks."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines only — the hero statement and major section titles. Weight 500 at 60-72px with tight -0.007em tracking compresses letter forms into dense editorial blocks. No other font on the site operates at this scale, making Ghost the unambiguous voice of authority.",
+        "sizes": "60px, 72px",
+        "family": "Ghost",
+        "weight": "500",
+        "lineHeight": "1.00",
+        "substitute": "Neue Haas Grotesk Display, Aktiv Grotesk Ex",
+        "letterSpacing": "-0.0070em (-0.42px at 60px, -0.50px at 72px)",
+        "fontFeatureSettings": "normal"
+      },
+      {
+        "role": "Everything except hero display text: nav labels (weight 400, 14px), body copy (weight 300–400, 16px), subheadings (weight 500, 20-30px), section headings (weight 500, 24-36px). Weight 300 for body imparts an open, non-urgent reading texture. Weight 500 for UI labels and mid-hierarchy headings. Positive letter-spacing at small sizes (+0.025–0.04em) prevents optical crowding in captions and badges.",
+        "sizes": "11px, 12px, 13px, 14px, 16px, 20px, 22px, 24px, 30px, 36px",
+        "family": "TWK Lausanne",
+        "weight": "300, 400, 500",
+        "lineHeight": "1.20 – 2.57 depending on size (large sizes ~1.20, body ~1.50, captions ~1.75)",
+        "substitute": "Lausanne (Weltkern), Inter, DM Sans",
+        "letterSpacing": "Ranges from -0.01em at large sizes to +0.04em at caption/label sizes"
+      }
+    ],
+    "description": "Asana reads as a white canvas under a coral-and-violet editorial system — generous whitespace punctuated by a near-black (#0d0d0d) headline weight that commands attention, then released into light gray body copy. The signature move is two coexisting type voices: Ghost at 60-72px with -0.0070em tracking for display headlines that compress letter forms into dense, authoritative blocks, and TWK Lausanne at 300-500 weight handling everything else with a humanist openness. Pill buttons (100px+ radius) float as soft capsules against sharp-cornered cards (10-16px), creating gentle contrast between interaction surfaces and content containers. The coral tint (#ffeaec background, #690031 deep text) acts as a warm semantic accent for the product's brand-colored UI elements, while a saturated dark violet (#222875) marks interactive and informational states — both restrained to small, intentional doses against an otherwise achromatic canvas.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      },
+      {
+        "title": "Coral + Violet Accent System",
+        "content": "Asana operates two distinct chromatic accent families that never mix within the same component:\n\n**Coral Family** (warm, interaction-focused): #ffeaec (Coral Blush — soft backgrounds), #e1bbc7 (Coral Petal — strokes/borders), #690031 (Deep Coral — text on coral backgrounds), #ff584a (Coral Ember — illustration fills), #710c3a (Coral Dark — hover states). Used in: filter chips, icon illustrations in feature cards, active UI state indicators.\n\n**Violet Family** (cool, informational): #222875 (Asana Violet — product UI frames, feature containers), #cbefff (Sky Ice — informational chip backgrounds), #879fc8 / #6678ac (Blue-300/600 — focus rings and border states). Used in: hero product frame, AI feature callouts, trust/information signals.\n\nRule: Coral signals interaction and warm brand energy. Violet signals product, AI, and information architecture. Never apply coral to a purely informational element or violet to a CTA."
+      }
+    ],
+    "elevationPhilosophy": "Asana uses zero box-shadow elevation across all content components. Cards are defined by 1px solid #e7e7e7 borders on a white background — depth comes from color contrast between container and surface, not shadow. The only visual elevation effect is the Product UI Screenshot Card, where a #222875 violet frame makes a white inner window appear to float — achieved through color contrast, not shadow. This approach keeps the page feeling like a flat printed surface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#646f79",
+          "oklch": {
+            "c": 0.020601972242046535,
+            "h": 245.61986683637156,
+            "l": 0.535930166964334
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "footer",
+            "list",
+            "body"
+          ],
+          "frequency": 529,
+          "confidence": 1,
+          "prominence": 116601913.89978357,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#0d0d0d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.15906639920862536
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "other",
+            "body",
+            "image",
+            "button",
+            "icon",
+            "heading",
+            "list"
+          ],
+          "frequency": 2372,
+          "confidence": 1,
+          "prominence": 14792635.26848999,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 257,
+          "confidence": 1,
+          "prominence": 10569204.106852643,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#222875",
+          "oklch": {
+            "c": 0.1300074729429554,
+            "h": 273.27552307476424,
+            "l": 0.3255324877288081
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "button",
+            "image",
+            "body"
+          ],
+          "frequency": 111,
+          "confidence": 1,
+          "prominence": 8866627.437464483,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#e7e7e7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9279705767889539
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 149,
+          "confidence": 1,
+          "prominence": 6810588.156338551,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#cbefff",
+          "oklch": {
+            "c": 0.04331839267143234,
+            "h": 226.5032223917617,
+            "l": 0.9314053132217803
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "button"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 6452875.3736530775,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ffeaec",
+          "oklch": {
+            "c": 0.02302169003819656,
+            "h": 10.954970157101306,
+            "l": 0.9543917198171228
+          },
+          "contexts": [
+            "button",
+            "other",
+            "heading",
+            "body",
+            "list"
+          ],
+          "frequency": 87,
+          "confidence": 1,
+          "prominence": 4319790.110985023,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#690031",
+          "oklch": {
+            "c": 0.13564660602349973,
+            "h": 2.3375086183257614,
+            "l": 0.33616604519075655
+          },
+          "contexts": [
+            "button",
+            "other",
+            "nav"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 3655366.9066536766,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#474748",
+          "oklch": {
+            "c": 0.0016564919744773794,
+            "h": 286.3241753016277,
+            "l": 0.3982794562388228
+          },
+          "contexts": [
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 335011.14009346184,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#e0dedc",
+          "oklch": {
+            "c": 0.0034874686741138794,
+            "h": 67.77913486848992,
+            "l": 0.9015952248003549
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 237634.12626776745,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#3d3d3d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3600233686910596
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 221561.11718135892,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#a3c2ff",
+          "oklch": {
+            "c": 0.09259223157412573,
+            "h": 263.13249617694953,
+            "l": 0.8144380794221658
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 174745,
+          "properties": [
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#710c3a",
+          "oklch": {
+            "c": 0.13624288237595622,
+            "h": 0.5299134241612136,
+            "l": 0.3621715054967271
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 148200,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#6e6e6e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5382366621247504
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "other"
+          ],
+          "frequency": 105,
+          "confidence": 1,
+          "prominence": 81952.79905703432,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#879fc8",
+          "oklch": {
+            "c": 0.0663217656738022,
+            "h": 261.0255722947236,
+            "l": 0.6990328611312131
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 49549.097697544785,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#6678ac",
+          "oklch": {
+            "c": 0.08319808447781404,
+            "h": 269.0926523294785,
+            "l": 0.5796551670604662
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 32028.676140876272,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#f3f3f3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9641535001508271
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 31413.956764293314,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#e1bbc7",
+          "oklch": {
+            "c": 0.046181913697999066,
+            "h": 357.2252867646501,
+            "l": 0.828566478478861
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 307,
+          "confidence": 1,
+          "prominence": 29041.22111746119,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#9ca6af",
+          "oklch": {
+            "c": 0.01732575787742068,
+            "h": 245.1711477189357,
+            "l": 0.7200290916780382
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 7563.740193098092,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ff584a",
+          "oklch": {
+            "c": 0.2050935671021636,
+            "h": 28.421609161249016,
+            "l": 0.6838852630545833
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "nav"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1488.9384004153858,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.030826562569463915,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.44,
+          "background": "#ffffff",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.52,
+          "background": "#f3f3f3",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.87,
+          "background": "#ffeaec",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.04,
+          "background": "#cbefff",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.72,
+          "background": "#e7e7e7",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.49,
+          "background": "#e0dedc",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.9,
+          "background": "#222875",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.77,
+          "background": "#690031",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.62,
+          "background": "#f3f3f3",
+          "foreground": "#222875"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.56,
+          "background": "#710c3a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.5,
+          "background": "#f3f3f3",
+          "foreground": "#690031"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.23,
+          "background": "#0d0d0d",
+          "foreground": "#e1bbc7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.2,
+          "background": "#ffeaec",
+          "foreground": "#222875"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.08,
+          "background": "#690031",
+          "foreground": "#ffeaec"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.86,
+          "background": "#ffffff",
+          "foreground": "#3d3d3d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.85,
+          "background": "#a3c2ff",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.64,
+          "background": "#cbefff",
+          "foreground": "#222875"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.53,
+          "background": "#690031",
+          "foreground": "#cbefff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.43,
+          "background": "#e7e7e7",
+          "foreground": "#222875"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.42,
+          "background": "#f3f3f3",
+          "foreground": "#710c3a"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "other",
+            "image"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "other",
+            "image",
+            "body"
+          ],
+          "frequency": 53
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "image",
+            "link"
+          ],
+          "frequency": 22
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "nav",
+            "button",
+            "link"
+          ],
+          "frequency": 22
+        },
+        {
+          "value": 146,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 999,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 70,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 47,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 30,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 25,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 55,
+          "properties": [
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 15,
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 139,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 19,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 93,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 28,
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 30,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 137,
+          "properties": [
+            "columnGap",
+            "rowGap",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 29,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingLeft",
+            "paddingRight",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 56,
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "marginBottom",
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 75,
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 76,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 100,
+          "frequency": 8,
+          "properties": [
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 104,
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 108,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 120,
+          "frequency": 19,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 160,
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "TWK Lausanne",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 781,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Ghost",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 9,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "TWK Lausanne",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "TWK Lausanne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "TWK Lausanne",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TWK Lausanne",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 2.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TWK Lausanne",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TWK Lausanne",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav",
+            "icon"
+          ],
+          "frequency": 10,
+          "lineHeight": 2.57,
+          "letterSpacing": 0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TWK Lausanne",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TWK Lausanne",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "list",
+            "icon",
+            "body"
+          ],
+          "frequency": 90,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TWK Lausanne",
+          "weight": 500,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TWK Lausanne",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "list",
+            "body",
+            "icon"
+          ],
+          "frequency": 454,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button",
+            "link",
+            "other",
+            "body",
+            "image",
+            "icon"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 60,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "TWK Lausanne",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "link",
+            "icon"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "TWK Lausanne",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "TWK Lausanne",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "TWK Lausanne",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "TWK Lausanne",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Ghost",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Ghost",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6fdc2755-8c7d-4d5c-8b21-83b0f822a058.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/0b7cfac0-12dd-46bc-ac64-df06a8138f9f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6b2a0513-df80-4140-87a8-38b1fef34313#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Asana design system\",\"item\":\"https://styles.refero.design/style/6b2a0513-df80-4140-87a8-38b1fef34313\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6b2a0513-df80-4140-87a8-38b1fef34313#style-reference\",\"name\":\"Asana design system reference\",\"headline\":\"Asana design system | Refero Styles\",\"description\":\"Explore Asana's light Productivity design system: Ink Black #0d0d0d, Pure White #ffffff colors, Ghost, TWK Lausanne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6b2a0513-df80-4140-87a8-38b1fef34313\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6b2a0513-df80-4140-87a8-38b1fef34313\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Asana\",\"url\":\"https://asana.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6b2a0513-df80-4140-87a8-38b1fef34313#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0b7cfac0-12dd-46bc-ac64-df06a8138f9f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0b7cfac0-12dd-46bc-ac64-df06a8138f9f.jpg\",\"caption\":\"Screenshot of Asana\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0b7cfac0-12dd-46bc-ac64-df06a8138f9f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Asana design system\",\"Asana website design\",\"Asana colors\",\"Asana typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Ink Black\",\"Pure White\",\"Mist\",\"Cloud\",\"Ghost\",\"TWK Lausanne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Asana design system\"},{\"@type\":\"Thing\",\"name\":\"Asana website design\"},{\"@type\":\"Thing\",\"name\":\"Asana colors\"},{\"@type\":\"Thing\",\"name\":\"Asana typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-03-11T12:24:28.000Z\",\"dateModified\":\"2026-03-11T12:24:28.000Z\"}]}19:T66c,<style>\n  :root {\n    --color-ink-black: #0d0d0d;\n    --color-pure-white: #ffffff;\n    --color-mist: #f3f3f3;\n    --font-twk-lausanne: 'Inter', 'DM Sans', sans-serif;\n  }\n\n  .btn-group-wrapper {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    gap: 12px;\n    padding: 48px 24px;\n    background: var(--color-pure-white);\n    font-family: var(--font-twk-lausanne);\n  }\n\n  .btn-primary {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    background: var(--color-ink-black);\n    color: var(--color-pure-white);\n    font-family: var(--font-twk-lausanne);\n    font-size: 16px;\n    font-weight: 500;\n    line-height: 1.5;\n    letter-spacing: 0;\n    padding: 16px 32px;\n    border-radius: 100px;\n    border: none;\n    cursor: pointer;\n    text-decoration: none;\n    white-space: nowrap;\n    transition: opacity 0.15s ease;\n  }\n\n  .btn-primary:hover {\n    opacity: 0.88;\n  }\n\n  .btn-secondary {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    background: var(--color-mist);\n    color: var(--color-ink-black);\n    font-family: var(--font-twk-lausanne);\n    font-size: 16px;\n    font-weight: 500;\n    line-height: 1.5;\n    letter-spacing: 0;\n    padding: 16px 32px;\n    border-radius: 146px;\n    border: 1px solid var(--color-ink-black);\n    cursor: pointer;\n    text-decoration: none;\n    white-space: nowrap;\n    transition: background 0.15s ease;\n  }\n\n  .btn-secondary:hover {\n    background: #e8e8e8;\n  }\n</style>\n\n<div class=\"btn-group-wrapper\">\n  <a href=\"#\" class=\"btn-primary\">Get started</a>\n  <a href=\"#\" class=\"btn-secondary\">View demo</a>\n</div>1a:T968,<style>\n  :root {\n    --color-ink-black: #0d0d0d;\n    --color-pure-white: #ffffff;\n    --color-mist: #f3f3f3;\n    --color-coral-blush: #ffeaec;\n    --color-deep-coral: #690031;\n    --font-twk-lausanne: 'Inter', 'DM Sans', sans-serif;\n  }\n\n  .filter-section {\n    background: var(--color-pure-white);\n    padding: 48px 32px;\n    font-family: var(--font-twk-lausanne);\n  }\n\n  .filter-label {\n    font-family: var(--font-twk-lausanne);\n    font-size: 13px;\n    font-weight: 400;\n    color: #9ca6af;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    margin-bottom: 16px;\n  }\n\n  .filter-chips {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 10px;\n    align-items: center;\n  }\n\n  .chip {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    font-family: var(--font-twk-lausanne);\n    font-size: 15px;\n    font-weight: 500;\n    line-height: 1.3;\n    padding: 10px 22px;\n    border-radius: 999px;\n    cursor: pointer;\n    border: none;\n    text-decoration: none;\n    transition: background 0.15s ease, color 0.15s ease;\n    white-space: nowrap;\n  }\n\n  .chip-active {\n    background: var(--color-coral-blush);\n    color: var(--color-deep-coral);\n  }\n\n  .chip-inactive {\n    background: var(--color-mist);\n    color: var(--color-ink-black);\n  }\n\n  .chip-inactive:hover {\n    background: #e8e8e8;\n  }\n\n  .filter-content-hint {\n    margin-top: 32px;\n    padding: 24px;\n    background: #f9f9f9;\n    border-radius: 14px;\n    border: 1px solid #e7e7e7;\n  }\n\n  .hint-headline {\n    font-family: var(--font-twk-lausanne);\n    font-size: 22px;\n    font-weight: 500;\n    color: var(--color-ink-black);\n    margin: 0 0 8px 0;\n    line-height: 1.2;\n  }\n\n  .hint-body {\n    font-family: var(--font-twk-lausanne);\n    font-size: 15px;\n    font-weight: 300;\n    color: #3d3d3d;\n    margin: 0;\n    line-height: 1.6;\n  }\n</style>\n\n<div class=\"filter-section\">\n  <div class=\"filter-chips\">\n    <span class=\"chip chip-active\">Marketing</span>\n    <span class=\"chip chip-inactive\">Operations</span>\n    <span class=\"chip chip-inactive\">IT</span>\n    <span class=\"chip chip-inactive\">Leadership</span>\n  </div>\n  <div class=\"filter-content-hint\">\n    <p class=\"hint-headline\">Maximize campaign ROI</p>\n    <p class=\"hint-body\">Plan, track, and complete your campaigns all in one place — with AI that understands your team's goals and keeps every project moving forward.</p>\n  </div>\n</div>1b:T1c9c,<style>\n  :root {\n    --color-ink-black: #0d0d0d;\n    --color-pure-white: #ffffff;\n    --color-cloud: #e7e7e7;\n    --color-mist: #f3f3f3;\n    --color-charcoal: #3d3d3d;\n    --color-coral-ember: #ff584a;\n    --color-coral-petal: #e1bbc7;\n    --font-twk-lausanne: 'Inter', 'DM Sans', sans-serif;\n  }\n\n  .cards-section {\n    background: var(--color-pure-white);\n    padding: 40px 24px;\n    font-family: var(--font-twk-lausanne);\n  }\n\n  .cards-grid {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: 12px;\n  }\n\n  .feature-card {\n    background: var(--color-pure-white);\n    border: 1px solid var(--color-cloud);\n    border-radius: 14px;\n    padding: 24px;\n    display: flex;\n    flex-direction: column;\n    gap: 0;\n    position: relative;\n    transition: border-color 0.15s ease;\n  }\n\n  .feature-card:hover {\n    border-color: #c8c8c8;\n  }\n\n  .card-icon {\n    width: 64px;\n    height: 64px;\n    margin-bottom: 20px;\n    flex-shrink: 0;\n  }\n\n  .card-title {\n    font-family: var(--font-twk-lausanne);\n    font-size: 18px;\n    font-weight: 500;\n    color: var(--color-ink-black);\n    line-height: 1.25;\n    margin: 0 0 10px 0;\n  }\n\n  .card-body {\n    font-family: var(--font-twk-lausanne);\n    font-size: 14px;\n    font-weight: 300;\n    color: var(--color-charcoal);\n    line-height: 1.6;\n    margin: 0 0 24px 0;\n    flex: 1;\n  }\n\n  .card-link {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    font-family: var(--font-twk-lausanne);\n    font-size: 14px;\n    font-weight: 500;\n    color: var(--color-ink-black);\n    text-decoration: none;\n    margin-top: auto;\n  }\n\n  .card-link:hover .arrow-circle {\n    background: #333;\n  }\n\n  .arrow-circle {\n    width: 32px;\n    height: 32px;\n    border-radius: 100px;\n    background: var(--color-ink-black);\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n    transition: background 0.15s ease;\n  }\n\n  .arrow-circle svg {\n    width: 14px;\n    height: 14px;\n  }\n</style>\n\n<div class=\"cards-section\">\n  <div class=\"cards-grid\">\n\n    <div class=\"feature-card\">\n      <svg class=\"card-icon\" viewBox=\"0 0 64 64\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <rect x=\"8\" y=\"20\" width=\"22\" height=\"28\" rx=\"3\" stroke=\"#e1bbc7\" stroke-width=\"1.5\" fill=\"#ffeaec\"/>\n        <rect x=\"14\" y=\"28\" width=\"10\" height=\"12\" rx=\"1.5\" fill=\"#ff584a\" opacity=\"0.7\"/>\n        <rect x=\"32\" y=\"14\" width=\"22\" height=\"34\" rx=\"3\" stroke=\"#e1bbc7\" stroke-width=\"1.5\" fill=\"#ffeaec\"/>\n        <rect x=\"37\" y=\"22\" width=\"7\" height=\"18\" rx=\"1.5\" fill=\"#ff584a\" opacity=\"0.5\"/>\n        <rect x=\"46\" y=\"30\" width=\"4\" height=\"10\" rx=\"1\" fill=\"#ff584a\"/>\n        <path d=\"M8 46 L20 34 L28 40 L38 28 L56 20\" stroke=\"#ff584a\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/>\n      </svg>\n      <h3 class=\"card-title\">Campaign management</h3>\n      <p class=\"card-body\">Plan, track, and complete your campaigns all in one place.</p>\n      <a href=\"#\" class=\"card-link\">\n        See campaign management\n        <span class=\"arrow-circle\">\n          <svg viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path d=\"M3 7h8M7.5 3.5L11 7l-3.5 3.5\" stroke=\"#ffffff\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          </svg>\n        </span>\n      </a>\n    </div>\n\n    <div class=\"feature-card\">\n      <svg class=\"card-icon\" viewBox=\"0 0 64 64\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <rect x=\"18\" y=\"10\" width=\"28\" height=\"36\" rx=\"3\" stroke=\"#e1bbc7\" stroke-width=\"1.5\" fill=\"#ffeaec\"/>\n        <line x1=\"18\" y1=\"20\" x2=\"46\" y2=\"20\" stroke=\"#e1bbc7\" stroke-width=\"1.5\"/>\n        <path d=\"M32 10 L32 6\" stroke=\"#e1bbc7\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>\n        <path d=\"M26 6 L38 6\" stroke=\"#e1bbc7\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>\n        <rect x=\"24\" y=\"28\" width=\"6\" height=\"8\" rx=\"1\" fill=\"#ff584a\" opacity=\"0.8\"/>\n        <rect x=\"34\" y=\"24\" width=\"6\" height=\"12\" rx=\"1\" fill=\"#ff584a\"/>\n        <path d=\"M22 48 Q32 38 42 48\" stroke=\"#ff584a\" stroke-width=\"1.5\" fill=\"none\" stroke-linecap=\"round\"/>\n      </svg>\n      <h3 class=\"card-title\">Creative production</h3>\n      <p class=\"card-body\">Accelerate creative work by automating workflows from start to finish.</p>\n      <a href=\"#\" class=\"card-link\">\n        See creative production\n        <span class=\"arrow-circle\">\n          <svg viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path d=\"M3 7h8M7.5 3.5L11 7l-3.5 3.5\" stroke=\"#ffffff\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          </svg>\n        </span>\n      </a>\n    </div>\n\n    <div class=\"feature-card\">\n      <svg class=\"card-icon\" viewBox=\"0 0 64 64\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <rect x=\"10\" y=\"14\" width=\"44\" height=\"32\" rx=\"4\" stroke=\"#e1bbc7\" stroke-width=\"1.5\" fill=\"#ffeaec\"/>\n        <rect x=\"18\" y=\"26\" width=\"6\" height=\"12\" rx=\"1.5\" fill=\"#ff584a\"/>\n        <rect x=\"29\" y=\"20\" width=\"6\" height=\"18\" rx=\"1.5\" fill=\"#ff584a\" opacity=\"0.7\"/>\n        <rect x=\"40\" y=\"30\" width=\"6\" height=\"8\" rx=\"1.5\" fill=\"#ff584a\" opacity=\"0.5\"/>\n        <circle cx=\"18\" cy=\"18\" r=\"3\" fill=\"#ffeaec\" stroke=\"#e1bbc7\" stroke-width=\"1.2\"/>\n        <circle cx=\"32\" cy=\"12\" r=\"3\" fill=\"#ffeaec\" stroke=\"#ff584a\" stroke-width=\"1.2\"/>\n        <circle cx=\"46\" cy=\"16\" r=\"3\" fill=\"#ffeaec\" stroke=\"#e1bbc7\" stroke-width=\"1.2\"/>\n        <path d=\"M18 18 L32 12 L46 16\" stroke=\"#e1bbc7\" stroke-width=\"1\" stroke-dasharray=\"2 2\"/>\n      </svg>\n      <h3 class=\"card-title\">Project intake</h3>\n      <p class=\"card-body\">Capture, prioritize, and assign requests automatically so your teams have more time to work.</p>\n      <a href=\"#\" class=\"card-link\">\n        See project intake\n        <span class=\"arrow-circle\">\n          <svg viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path d=\"M3 7h8M7.5 3.5L11 7l-3.5 3.5\" stroke=\"#ffffff\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          </svg>\n        </span>\n      </a>\n    </div>\n\n    <div class=\"feature-card\">\n      <svg class=\"card-icon\" viewBox=\"0 0 64 64\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M32 8 L36 18 L46 18 L38 24 L41 34 L32 28 L23 34 L26 24 L18 18 L28 18 Z\" stroke=\"#e1bbc7\" stroke-width=\"1.2\" fill=\"#ffeaec\"/>\n        <ellipse cx=\"32\" cy=\"48\" rx=\"12\" ry=\"4\" fill=\"#ffeaec\" stroke=\"#e1bbc7\" stroke-width=\"1.2\"/>\n        <path d=\"M26 44 Q20 36 24 26\" stroke=\"#e1bbc7\" stroke-width=\"1.2\" fill=\"none\" stroke-linecap=\"round\"/>\n        <path d=\"M38 44 Q44 36 40 26\" stroke=\"#e1bbc7\" stroke-width=\"1.2\" fill=\"none\" stroke-linecap=\"round\"/>\n        <rect x=\"28\" y=\"46\" width=\"8\" height=\"6\" rx=\"1\" fill=\"#ff584a\" opacity=\"0.7\"/>\n      </svg>\n      <h3 class=\"card-title\">Product launches</h3>\n      <p class=\"card-body\">Coordinate teams, tasks, and timelines to keep every launch on schedule.</p>\n      <a href=\"#\" class=\"card-link\">\n        See product launches\n        <span class=\"arrow-circle\">\n          <svg viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path d=\"M3 7h8M7.5 3.5L11 7l-3.5 3.5\" stroke=\"#ffffff\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          </svg>\n        </span>\n      </a>\n    </div>\n\n  </div>\n</div>1c:T864,**Quick Color Reference**\n- Text (primary): #0d0d0d\n- Text (body): #3d3d3d\n- Background (page): #ffffff\n- Background (secondary section): #f3f3f3\n- CTA button fill: #0d0d0d\n- CTA button text: #ffffff\n- Brand accent (violet): #222875\n- Brand accent (coral bg): #ffeaec\n- Brand accent (coral text): #690031\n- Border (cards): #e7e7e7\n\n**Example Component Prompts**\n\n1. **Hero Section**: White background, max-width 1200px centered. Headline in Ghost font 72px weight 500, #0d0d0d, letter-spacing -0.50px, line-height 1.00, centered. Subhead in TWK Lausanne 20px weight 300, #3d3d3d, centered, max-width 560px, 16px below headline. Two buttons in a row centered below (24px gap): primary pill (#0d0d0d fill, #ffffff text, 100px radius, 16px 32px padding) + secondary pill (#f3f3f3 fill, #0d0d0d text, 1px solid #0d0d0d, 146px radius, 16px 32px padding). Product UI screenshot card below buttons in a #222875 frame with 16px radius.\n\n2. **Use-Case Feature Card**: White background, 1px solid #e7e7e7 border, 10px radius, 24px padding. Coral stroke line illustration at top (~80px tall). Heading TWK Lausanne 20px weight 500 #0d0d0d, 16px below illustration. Body TWK Lausanne 16px weight 300 #3d3d3d, 14px below heading. 'See [X]' text link #0d0d0d weight 400, with a 40px circular #0d0d0d arrow icon button at bottom-left of card.\n\n3. **Filter Chip Row**: Horizontally arranged pill chips (999px radius). Active chip: #ffeaec background, #690031 text, TWK Lausanne 14px weight 500. Inactive chips: #f3f3f3 background, #0d0d0d text, same font. 8px horizontal gap between chips. 16px 24px padding per chip.\n\n4. **Logo / Social Proof Bar**: White background, full-width, 80px vertical padding. Left side: stat text TWK Lausanne 30px weight 500 #0d0d0d ('85% of Fortune 100 companies choose Asana'). Right side: 5 company logos in a horizontal row at 48px gap, rendered flat gray (#646f79 or desaturated). No border, no shadow.\n\n5. **Section Header Block**: Left-aligned. Ghost font 60px weight 500 #0d0d0d, letter-spacing -0.42px, line-height 1.00. Below: TWK Lausanne 16-20px weight 300 #3d3d3d, max-width 480px, 16px margin-top. Section gap above: 96px."
+}

@@ -1,0 +1,70 @@
+:root {
+  /* Colors */
+  --color-void: #0a0a0a;
+  --color-chalk: #f7f7f7;
+  --color-ivory: #ebebeb;
+  --color-ash: #7c7c7c;
+  --color-graphite: #4d4d4d;
+  --color-smoke: #707070;
+  --color-steel: #616161;
+  --color-charcoal: #585858;
+
+  /* Typography — Font Families */
+  --font-wand-ui-pro: 'Wand UI Pro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.4;
+  --tracking-caption: 0.25px;
+  --text-body-lg: 16px;
+  --leading-body-lg: 1.6;
+  --tracking-body-lg: -0.16px;
+  --text-heading: 32px;
+  --leading-heading: 1.25;
+  --tracking-heading: -0.384px;
+  --text-display: 96px;
+  --leading-display: 1;
+  --tracking-display: -1.632px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-w475: 475;
+  --font-weight-medium: 500;
+  --font-weight-w550: 550;
+  --font-weight-w650: 650;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+
+  /* Layout */
+  --page-max-width: 640px;
+  --section-gap: 120px;
+  --card-padding: 16px;
+  --element-gap: 12px;
+
+  /* Border Radius */
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 24px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-cards: 24px;
+  --radius-badges: 9999px;
+  --radius-buttons: 9999px;
+  --radius-smallcontainers: 16px;
+
+  /* Shadows */
+  --shadow-xl: rgba(0, 0, 0, 0.25) 0px 64px 72px 0px;
+
+  /* Surfaces */
+  --surface-void: #0a0a0a;
+  --surface-charcoal: #585858;
+}

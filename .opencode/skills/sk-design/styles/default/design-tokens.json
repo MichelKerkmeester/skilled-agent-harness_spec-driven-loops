@@ -1,0 +1,954 @@
+{
+  "color": {
+    "void": {
+      "$value": "#0b0c0e",
+      "$type": "color",
+      "$description": "Void — Deepest page canvas, terminal background, behind everything"
+    },
+    "graphite": {
+      "$value": "#131416",
+      "$type": "color",
+      "$description": "Graphite — Primary card surface, panels, elevated containers, table rows"
+    },
+    "charcoal": {
+      "$value": "#1f1f21",
+      "$type": "color",
+      "$description": "Charcoal — Secondary surface, borders, dividers, rail backgrounds"
+    },
+    "smoke": {
+      "$value": "#3c3d3e",
+      "$type": "color",
+      "$description": "Smoke — Button borders, subtle separators"
+    },
+    "steel": {
+      "$value": "#71717a",
+      "$type": "color",
+      "$description": "Steel — Muted body text, captions, helper text, dimmed labels"
+    },
+    "fog": {
+      "$value": "#858687",
+      "$type": "color",
+      "$description": "Fog — Secondary text, icon strokes, inactive nav items"
+    },
+    "ash": {
+      "$value": "#9d9e9f",
+      "$type": "color",
+      "$description": "Ash — Tertiary text, placeholder text, disabled states"
+    },
+    "chalk": {
+      "$value": "#cececf",
+      "$type": "color",
+      "$description": "Chalk — Body text secondary, table cell text"
+    },
+    "snow": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Snow — Primary headings, body text, icon fills, active states — the dominant ink at 413 occurrences"
+    },
+    "bone": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Bone — Primary action button fill — off-white pill against dark creates the highest-contrast CTA without introducing a chromatic brand color"
+    },
+    "ink": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Ink — Secondary body text, navigation labels, and subdued headings. Do not promote it to the primary CTA color"
+    },
+    "signal-blue": {
+      "$value": "#3b82f6",
+      "$type": "color",
+      "$description": "Signal Blue — Brand accent — active nav indicators, link highlights, icon fills, active card borders. The one true chromatic color; used 21 times as fills, borders, and background tints"
+    },
+    "arc-blue": {
+      "$value": "#60a5fa",
+      "$type": "color",
+      "$description": "Arc Blue — Light blue text accent, informational highlights, node icons in workflow diagrams"
+    },
+    "ring-blue": {
+      "$value": "#93c5fd",
+      "$type": "color",
+      "$description": "Ring Blue — Focus rings, active card outline borders, selection state outlines at low alpha"
+    },
+    "mint": {
+      "$value": "#4ade80",
+      "$type": "color",
+      "$description": "Mint — Green outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color"
+    },
+    "fern": {
+      "$value": "#22c55e",
+      "$type": "color",
+      "$description": "Fern — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Use as a supporting accent, not as a status color"
+    },
+    "coral": {
+      "$value": "#f87171",
+      "$type": "color",
+      "$description": "Coral — Red text accent for links, tags, and emphasized short phrases. Use as a supporting accent, not as a status color"
+    },
+    "ember": {
+      "$value": "#ea580c",
+      "$type": "color",
+      "$description": "Ember — Decorative icon accent — orange chromatic chip in product mockups"
+    },
+    "iris": {
+      "$value": "#314ef0",
+      "$type": "color",
+      "$description": "Iris — Brand chip background tint in embedded mockups and product screenshots"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Used for everything — display, body, UI, labels. The distinctive choice is weight 400 at 52–64px for headlines: most SaaS sites use 600–700, but Default's whisper-weight headlines feel more like a technical document or terminal readout than a marketing page. Fractional weights (420, 440, 450) are deployed at the 15–18px body range for fine-grained text density control. Font features ss01 and ss03 are enabled — these are Inter's stylistic alternates (single-storey 'a' and 'g' with closed tails) that give the type a more geometric, engineered feel."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "6px",
+        "fontWeight": 500,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 6px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "7px",
+        "fontWeight": 500,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 7px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "7px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 7px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "8px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 8px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "9px",
+        "fontWeight": 420,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 9px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 9px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 9px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "9px",
+        "fontWeight": 580,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 9px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 9px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 10px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 10px"
+    },
+    "xs-12": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-12 at 10px"
+    },
+    "xs-13": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-13 at 10px"
+    },
+    "xs-14": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-14 at 10px"
+    },
+    "xs-15": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-15 at 10px"
+    },
+    "xs-16": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-16 at 11px"
+    },
+    "xs-17": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-17 at 11px"
+    },
+    "xs-18": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-18 at 11px"
+    },
+    "xs-19": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-19 at 11px"
+    },
+    "xs-20": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-20 at 12px"
+    },
+    "xs-21": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-21 at 12px"
+    },
+    "xs-22": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-22 at 12px"
+    },
+    "xs-23": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-23 at 12px"
+    },
+    "xs-24": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-24 at 12px"
+    },
+    "xs-25": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-25 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.69
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 13px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 13px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 440,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "sm-13": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-13 at 14px"
+    },
+    "sm-14": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 480,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-14 at 14px"
+    },
+    "sm-15": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 420,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-15 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 420,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 15px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 420,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "base-12": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 480,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-12 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "17px",
+        "fontWeight": 420,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "17px",
+        "fontWeight": 440,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 450,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 52px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 52px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "116": {
+      "$value": "116px",
+      "$type": "dimension",
+      "$description": "Spacing 116px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5.26171px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8.76951px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 1px 4px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "sm-2": {
+      "$value": "rgba(0, 0, 0, 0.02) 0px 2px 4px 0px, rgba(0, 0, 0, 0.02) 0px 0px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-2"
+    },
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.25) 0px 1px 2px 0px inset, rgba(0, 0, 0, 0.02) 0px 2px 4px 0px, rgba(0, 0, 0, 0.02) 0px 0px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(0, 0, 0, 0.04) 0px 0px 0px 1px, rgba(0, 0, 0, 0.06) 0px 1px 1px -0.5px, rgba(0, 0, 0, 0.06) 0px 3px 3px -1.5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 100px 106px 0px, rgba(0, 0, 0, 0.04) 0px 42px 44px 0px, rgba(0, 0, 0, 0.03) 0px 22px 24px 0px, rgba(0, 0, 0, 0.03) 0px 12px 12px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "xl-2": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 20px 25px -5px, rgba(0, 0, 0, 0.05) 0px 8px 10px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-2"
+    },
+    "sm-3": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 1px 4px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px, rgba(255, 255, 255, 0.06) 0px 1px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-3"
+    },
+    "subtle-3": {
+      "$value": "rgba(59, 130, 246, 0.25) 0px 0px 0px 1.5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    },
+    "sm-4": {
+      "$value": "rgba(0, 0, 0, 0.063) 0px 4px 6px 1px, rgba(0, 0, 0, 0.15) 0px 0px 1px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-4"
+    },
+    "subtle-4": {
+      "$value": "rgba(0, 0, 0, 0.15) 0px 0px 2px 0px, rgba(0, 0, 0, 0.08) 0px 16px 40px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-4"
+    },
+    "sm-5": {
+      "$value": "rgba(34, 197, 94, 0.55) 0px 0px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-5"
+    },
+    "sm-6": {
+      "$value": "rgba(59, 130, 246, 0.55) 0px 0px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-6"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#0b0c0",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas, hero background, footer"
+    },
+    "graphite": {
+      "$value": "#131416",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, panels, elevated containers"
+    },
+    "charcoal": {
+      "$value": "#1f1f21",
+      "$type": "color",
+      "$description": "Surface level 2: Nested surfaces, input fields, secondary panels"
+    },
+    "soft-fill": {
+      "$value": "#ffffff0f",
+      "$type": "color",
+      "$description": "Surface level 3: Hover states, ghost button backgrounds, subtle interactive surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.default.com",
+      "siteName": "Default",
+      "extractedAt": "2026-07-03T03:25:49.096Z",
+      "variant": "extended"
+    }
+  }
+}

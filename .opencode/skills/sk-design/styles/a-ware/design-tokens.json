@@ -1,0 +1,437 @@
+{
+  "color": {
+    "obsidian-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian Ink — Primary text, hairline borders, icon strokes, button outlines — the near-total absence of color in the UI makes pure black the structural backbone"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary canvas, card surfaces, button text on dark fills"
+    },
+    "parchment": {
+      "$value": "#f7f5ee",
+      "$type": "color",
+      "$description": "Parchment — Warm off-white surface layer above the page — hero overlays, section backgrounds, and elevated product zones"
+    },
+    "linen": {
+      "$value": "#ece9df",
+      "$type": "color",
+      "$description": "Linen — Subtle surface step for footers and the deepest background band — barely darker than Parchment, used to create quiet zone separation"
+    },
+    "graphite": {
+      "$value": "#403e3c",
+      "$type": "color",
+      "$description": "Graphite — Body text secondary, form field borders — a soft black that softens dense body copy"
+    },
+    "stone": {
+      "$value": "#888783",
+      "$type": "color",
+      "$description": "Stone — Medium-contrast borders, control outlines, and structural separators."
+    },
+    "mist": {
+      "$value": "#b9b8b3",
+      "$type": "color",
+      "$description": "Mist — Disabled borders and ultra-subtle dividers"
+    },
+    "bronze-seal": {
+      "$value": "#a77a41",
+      "$type": "color",
+      "$description": "Bronze Seal — Sole chromatic accent — product award seals, premium badges, decorative icon strokes. Warm against matte black, evokes a pharmacist's stamp on a label"
+    },
+    "alpine-forest": {
+      "$value": "#205f4b",
+      "$type": "color",
+      "$description": "Alpine Forest — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    }
+  },
+  "font": {
+    "plantin": {
+      "$value": "plantin",
+      "$type": "fontFamily",
+      "$description": "Display and hero headlines. The condensed proportions with extreme negative tracking (-0.43em at display sizes) create a fashion-editorial compression — a custom-feeling face that is the brand's signature. Weight 300 dominates to keep display type quiet and sophisticated rather than loud"
+    },
+    "practice": {
+      "$value": "practice",
+      "$type": "fontFamily",
+      "$description": "The workhorse sans — body copy (18px/400), sub-headlines (23–25px/600), section titles (36–38px/600), and the massive 88px hero lockup. All-caps labels use 0.10em tracking to read as pharmaceutical or sports-science signage"
+    },
+    "lab-mono": {
+      "$value": "lab-mono",
+      "$type": "fontFamily",
+      "$description": "Micro-labels, tag prefixes (NEU, VEGAN-HYBRID), ingredient metadata, footer fine print. The monospaced face reads as laboratory notepad, reinforcing the scientific-formulation angle"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "lab-mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "lab-mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "23px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 23px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "23px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "plantin",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "plantin",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "plantin",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "plantin",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "25px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 25px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "36px",
+        "fontWeight": 600,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "plantin",
+        "fontSize": "38px",
+        "fontWeight": 300,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "38px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "88px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 88px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "practice",
+        "fontSize": "88px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 88px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "220": {
+      "$value": "220px",
+      "$type": "dimension",
+      "$description": "Spacing 220px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base background for most product and content sections"
+    },
+    "parchment-zone": {
+      "$value": "#f7f5ee",
+      "$type": "color",
+      "$description": "Surface level 1: Warm cream band used for product showcases, category dividers, and elevated content blocks"
+    },
+    "linen-band": {
+      "$value": "#ece9df",
+      "$type": "color",
+      "$description": "Surface level 2: Footer and deepest background tier — used sparingly for zone separation"
+    },
+    "alpine-bar": {
+      "$value": "#205f4b",
+      "$type": "color",
+      "$description": "Surface level 3: Top announcement strip only"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://a-ware.at",
+      "siteName": "A-WARE",
+      "extractedAt": "2026-06-03T20:44:11.949Z",
+      "variant": "extended"
+    }
+  }
+}

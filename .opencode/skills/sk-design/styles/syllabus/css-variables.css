@@ -1,0 +1,63 @@
+:root {
+  /* Colors */
+  --color-ink-violet: #0d0129;
+  --color-butter-yellow: #fae59b;
+  --color-deep-teal: #19615c;
+  --color-cream-paper: #fffcf7;
+  --color-pure-white: #ffffff;
+  --color-shadow-black: #000000;
+
+  /* Typography — Font Families */
+  --font-roobert: 'Roobert', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-supply: 'Supply', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.6;
+  --text-body: 20px;
+  --leading-body: 1.6;
+  --text-subheading: 24px;
+  --leading-subheading: 1.4;
+  --text-heading-sm: 40px;
+  --leading-heading-sm: 1.27;
+  --text-heading: 48px;
+  --leading-heading: 1.25;
+  --text-heading-lg: 56px;
+  --leading-heading-lg: 1.25;
+  --text-display: 64px;
+  --leading-display: 1.25;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-40: 40px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-104: 104px;
+  --spacing-120: 120px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 120px;
+  --card-padding: 40px;
+  --element-gap: 24px;
+
+  /* Named Radii */
+  --radius-tags: 0px;
+  --radius-cards: 0px;
+  --radius-inputs: 0px;
+  --radius-buttons: 0px;
+
+  /* Shadows */
+  --shadow-subtle: rgb(0, 0, 0) 1px 1px 3px 0px;
+
+  /* Surfaces */
+  --surface-cream-canvas: #fffcf7;
+  --surface-white-card: #ffffff;
+  --surface-teal-block: #19615c;
+}

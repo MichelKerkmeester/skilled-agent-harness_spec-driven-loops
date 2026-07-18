@@ -1,0 +1,1223 @@
+{
+  "source": "https://styles.refero.design/style/d67e1407-6d16-47e8-89cf-22f5c5f2dd88",
+  "uuid": "d67e1407-6d16-47e8-89cf-22f5c5f2dd88",
+  "name": "Gumroad",
+  "northStar": "Pink coin on a cream sketchbook. Warm off-white canvas, inky geometric type, and a single hot-pink coin mascot stamped across every page like a sticker on a notebook.",
+  "capturedAt": "2026-07-18T08:37:18.222Z",
+  "meta": {
+    "url": "https://gumroad.com",
+    "siteName": "Gumroad",
+    "extractedAt": "2026-06-03T15:01:11.612Z",
+    "durationMs": 25141,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 601,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 4
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use ABC Favorit with 'ss04' and 'ss11' feature settings on at all times — these alternates are part of the brand voice.",
+      "Set the page background to #f4f4f0 and every card surface to #ffffff with a 1px #d1d5dc border; never use shadows to separate layers.",
+      "Make the primary action a solid #000000 button with white text at 4px radius — the only filled button in the system.",
+      "Keep all display type from 30px upward with negative letter-spacing reaching -2.4px at 96px; tracking is part of the aesthetic.",
+      "Use the pink coin (#ff90e8) only as the mascot and as one item in the yellow / lime / vermillion / pink marker palette; never as a button background.",
+      "Pad section blocks with 40–48px vertical rhythm and 12–16px between UI elements; use 58px horizontal page padding on hero areas.",
+      "Round cards at 16px (product tiles) or 24px (feature cards) and round buttons, inputs, and nav pills at 4px or 9999px — never an intermediate value."
+    ],
+    "donts": [
+      "Don't add box-shadows to cards, buttons, or navigation; the system expresses depth with hairline #d1d5dc borders only.",
+      "Don't introduce gradients — the palette is fully flat; color appears as solid fills only.",
+      "Don't use blue, purple, or any hue outside the cream / black / pink / yellow / lime / vermillion set.",
+      "Don't create a colored CTA — black is the only filled button color; secondary actions are ghost-outlined in #d1d5dc.",
+      "Don't set body text below 14px or use anything other than ABC Favorit (or its substitute) for the entire interface.",
+      "Don't set the canvas to pure #ffffff; the warm #f4f4f0 cream is what makes the system feel like a sketchbook rather than a blank app shell.",
+      "Don't use the accent colors (#ffc900, #f1f333, #dc341e) as full backgrounds of components — they live only as small swatches and inline punctuation."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f4f4f0",
+        "name": "Canvas Cream",
+        "role": "Page background, input fills, and the warm base layer every other surface sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Card and product-tile surfaces elevated above the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#242423",
+        "name": "Graphite",
+        "role": "Secondary text and input borders; reads as a softened black when true black would feel too harsh against cream",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d1d5dc",
+        "name": "Hairline",
+        "role": "Card and button borders, dividers, and ghost-button outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ff90e8",
+        "name": "Coin Pink",
+        "role": "Brand mascot coin fills, decorative accents, and the single chromatic signature of the product",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffc900",
+        "name": "Highlight Yellow",
+        "role": "Accent swatches and small punctuation marks — never backgrounds of full components",
+        "group": "accent"
+      },
+      {
+        "hex": "#f1f333",
+        "name": "Highlight Lime",
+        "role": "Accent swatches used alongside yellow as a paired color-marker system",
+        "group": "accent"
+      },
+      {
+        "hex": "#dc341e",
+        "name": "Highlight Vermillion",
+        "role": "Accent swatch for the third color in the marker trio; reserved for emphasis only",
+        "group": "accent"
+      }
+    ],
+    "layout": "Max-width 1200px centered content with full-bleed cream #f4f4f0 background. Hero is a single centered column — oversized 72–96px headline, a 1–2 line subhead, then a horizontal row containing a black filled CTA plus a white-outlined search input side by side, followed by a small 'Contribute on GitHub' helper line. The mascot coins float as absolute-positioned decorative elements in the hero corners at 45° tilts, breaking the centered alignment. Below the hero, the page flows into a 2-column or 3-column card grid for product tiles and feature blocks, with alternating white card surfaces on the cream canvas separated by 40–48px vertical gaps. The top navigation is a single horizontal bar with the wordmark on the left, text links centered, and 'Log in' plus a black 'Start selling' CTA on the right; an active nav link is marked by a black filled pill behind white text. Sections never alternate dark/light — the whole page stays on cream with white cards.",
+    "imagery": "Illustration-driven, not photographic. The dominant visual motif is a flat hot-pink (#ff90e8) coin with a black 'G' and a thin black outline, scattered at multiple sizes and 45° tilts as a mascot. Secondary visuals are flat product mockups rendered inside a black-outlined phone frame sitting on a white screen. The illustration style is hand-drawn and slightly wobbly — line work is 1–2px black strokes, fills are flat, no gradients or shading. Icons are inline 1px black line glyphs drawn in the same stroke language. Photography is absent; the system relies on creator-product screenshots and vector coin/phone illustrations to carry visual interest.",
+    "similar": [
+      {
+        "why": "Same off-white canvas, oversized single-family geometric sans for headlines, and a single accent-orange CTA — the anti-corporate creator-platform look.",
+        "business": "Substack"
+      },
+      {
+        "why": "Same warm cream background, flat illustration mascots, informal tone, and a high-contrast black filled CTA anchoring the hero.",
+        "business": "Buy Me a Coffee"
+      },
+      {
+        "why": "Shared creator-economy visual language: hairline-bordered cards, 4px-radius controls, and zero box-shadow depth.",
+        "business": "Kofi / Gumroad competitor set"
+      },
+      {
+        "why": "Same single-typeface system, tight negative tracking on display, and ultra-flat card surfaces with hairline borders.",
+        "business": "Carrd"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "tiles": "24px",
+        "inputs": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "40-48px",
+      "cardPadding": "24-32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f4f4f0",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page-level warm off-white base that all sections sit on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Product tiles, feature cards, and content blocks lifted off the canvas"
+      },
+      {
+        "hex": "#000000",
+        "name": "Filled Action",
+        "level": 2,
+        "purpose": "The only solid black surface — primary CTA buttons and the active nav pill"
+      }
+    ],
+    "northStar": "Pink coin on a cream sketchbook. Warm off-white canvas, inky geometric type, and a single hot-pink coin mascot stamped across every page like a sticker on a notebook.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.028
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.064
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.56,
+        "letterSpacing": -0.108
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.264
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.38,
+        "letterSpacing": -0.39
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.612
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "display",
+        "size": 96,
+        "lineHeight": 1,
+        "letterSpacing": -2.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Black Button",
+        "role": "Primary action — the only solid-color button in the system",
+        "description": "#000000 background, #ffffff text in ABC Favorit 16px / 500, 4px radius, 12px 24px padding, no border. Used for the main CTA on each page (e.g. 'Start selling'). Text is the only white element allowed to sit on black; never put a colored fill behind it."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action paired next to the filled black button",
+        "description": "Transparent background on the cream canvas, #000000 text in 16px / 500, 1px border in #d1d5dc, 4px radius, 12px 24px padding. Reads as the soft counterpart to the black filled button."
+      },
+      {
+        "name": "Search Input",
+        "role": "Marketplace search field embedded inline in the hero",
+        "description": "#ffffff background, 1px #d1d5dc border, 4px radius, 12px 16px padding. Placeholder in #242423 at 16px / 400. Trailing search icon button is a square 40×40 inset in the same border color."
+      },
+      {
+        "name": "Nav Pill (Active)",
+        "role": "Currently selected top-nav item",
+        "description": "#000000 pill with #ffffff text in 14px / 500, full-radius (9999px), 6px 12px padding. Sits inline with the regular text-nav links to mark the active page."
+      },
+      {
+        "name": "Stat Badge",
+        "role": "Inline social-proof chip — the '8.9K ★' marker beside the wordmark",
+        "description": "#ffffff background, 1px #000000 border, full-radius (9999px), 4px 8px padding. Text in ABC Favorit 14px / 500 in #000000. Star icon inline."
+      },
+      {
+        "name": "Product Tile Card",
+        "role": "White card showing a creator's product preview in the marketplace",
+        "description": "#ffffff background, 1px #d1d5dc border, 16px radius, no shadow. Internal layout: 12px row gap between thumbnail image, title (ABC Favorit 18px / 500), and price (ABC Favorit 16px / 500 in #000000). Tile sits on the cream canvas with 32px gap between siblings in a grid."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Larger content block used in feature sections like 'Sell anything' and 'Make your own road'",
+        "description": "#ffffff background, 1px #d1d5dc border, 24px radius, 32–40px internal padding. Heading at ABC Favorit 30–36px / 500 in #000000, optional supporting copy at 16px / 400 in #242423. Generous breathing room — no shadows, only the hairline border to define the edge."
+      },
+      {
+        "name": "Phone Mockup Frame",
+        "role": "Decorative device frame that holds a product screenshot inside feature cards",
+        "description": "Outlined phone illustration in #242423 stroke, white screen, 16px radius on the device, content (a small product card) inset with 8px padding. Always rendered as a flat illustration, never a photo."
+      },
+      {
+        "name": "Pink Coin Mascot",
+        "role": "Signature decorative element scattered across hero and feature sections",
+        "description": "Flat hot-pink #ff90e8 ellipse with a 1px #000000 stroke, 45° tilt, centered black 'G' set in ABC Favorit 700. Used at 60–160px sizes; always floating, never as a clickable element."
+      },
+      {
+        "name": "Color Marker Swatch",
+        "role": "Tiny inline color chip used as a decorative period or bullet",
+        "description": "Small 8–12px square or circle in #ffc900, #f1f333, #dc341, or #ff90e8. Placed inline with text as a playful replacement for a dot or comma. Never carries information on its own."
+      },
+      {
+        "name": "Footer Link",
+        "role": "Low-weight secondary navigation",
+        "description": "ABC Favorit 14px / 400 in #242423, no underline, 8px vertical gap between siblings. Hover state lifts to #000000."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole type family across the system — used for headings, body, buttons, inputs, and even icons. Weights split into 400 (body/UI), 500 (emphasis, prices, nav), 700 (display and oversized marketing type). Letter-spacing pulls negative on every step above 24px, reaching -0.029em at 192px, which tightens the geometric forms into a confident, almost stencil-like display voice. The stylistic alternates ss04 and ss11 are always on and shape the personality of every glyph.",
+        "sizes": "14, 16, 18, 20, 24, 30, 36, 48, 72, 96, 192",
+        "family": "ABC Favorit",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.20 (body), 0.90–1.00 (display)",
+        "substitute": "Inter (closest freely available geometric grotesque with similar apertures) or General Sans",
+        "letterSpacing": "Tracking is negative on every step: -0.0020em at 14px, -0.0040em at 16px, -0.0060em at 18px, -0.0080em at 20px, -0.0110em at 24px, -0.0130em at 30px, -0.0170em at 36px, -0.0200em at 48px, -0.0220em at 72px, -0.0250em at 96px, -0.0290em at 192px",
+        "fontFeatureSettings": "\"ss04\" on, \"ss11\" on"
+      }
+    ],
+    "description": "Gumroad is a warm-cream canvas stamped with a single hand-drawn pink coin motif and an inky geometric sans. The off-white #f4f4f0 background feels like a sketchbook page; black type and black filled buttons land on it with the weight of a marker stroke. Surfaces stay flat — white cards sit on the warm canvas with thin gray hairline borders rather than shadows. Saturated color appears in small, deliberate punctuation: a pink coin mascot, yellow and green accent swatches used as inline color markers, and the occasional red highlight. The tone is informal, creator-first, anti-corporate — typography is tight, tracking pulls negative on display sizes, and the type scale stretches from 14px body up to 192px hero type, all from one family. Components are utility-shaped (4px radii on inputs and buttons, 16–24px on larger cards) and never decorated with gradients or glow.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d67e1407-6d16-47e8-89cf-22f5c5f2dd88#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Gumroad design system\",\"item\":\"https://styles.refero.design/style/d67e1407-6d16-47e8-89cf-22f5c5f2dd88\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d67e1407-6d16-47e8-89cf-22f5c5f2dd88#style-reference\",\"name\":\"Gumroad design system reference\",\"headline\":\"Gumroad design system | Refero Styles\",\"description\":\"Explore Gumroad's light E-commerce design system: Canvas Cream #f4f4f0, Paper White #ffffff colors, ABC Favorit typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d67e1407-6d16-47e8-89cf-22f5c5f2dd88\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d67e1407-6d16-47e8-89cf-22f5c5f2dd88\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Gumroad\",\"url\":\"https://gumroad.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d67e1407-6d16-47e8-89cf-22f5c5f2dd88#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6b9beec2-d3a7-4315-a69f-df00353a80d2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6b9beec2-d3a7-4315-a69f-df00353a80d2.jpg\",\"caption\":\"Screenshot of Gumroad\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6b9beec2-d3a7-4315-a69f-df00353a80d2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Gumroad design system\",\"Gumroad website design\",\"Gumroad colors\",\"Gumroad typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Canvas Cream\",\"Paper White\",\"Ink Black\",\"Graphite\",\"ABC Favorit\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Gumroad design system\"},{\"@type\":\"Thing\",\"name\":\"Gumroad website design\"},{\"@type\":\"Thing\",\"name\":\"Gumroad colors\"},{\"@type\":\"Thing\",\"name\":\"Gumroad typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-01-14T15:54:52.000Z\",\"dateModified\":\"2026-01-14T15:54:52.000Z\"}]}19:T47d,Quick Color Reference\n- text: #000000 (primary), #242423 (secondary)\n- background: #f4f4f0 (canvas), #ffffff (cards)\n- border: #d1d5dc (hairline)\n- accent: #ff90e8 (pink coin mascot)\n- primary action: no distinct CTA color\n- secondary marker: #ffc900 / #f1f333 / #dc341e (inline swatches only)\n\n3 Example Component Prompts\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Product tile card: #ffffff background, 1px #d1d5dc border, 16px radius, 24px padding, no shadow. Thumbnail 16:9 image filling width with 8px radius, 12px gap, then title in ABC Favorit 18px / 500 #000000, then price in 16px / 500 #000000. Sits on the cream canvas in a 3-column grid with 32px gap between tiles.\n\n3. Feature card: #ffffff background, 1px #d1d5dc border, 24px radius, 40px padding. Heading 'Sell anything' in ABC Favorit 36px / 500, #000000, letter-spacing -0.612px, followed by supporting copy in 16px / 400 #242423 with 12px top gap. Optional phone-mockup illustration on the right: 1px #242423 stroke outline, white screen, 16px device radius, flat product preview inside."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "button",
+            "icon",
+            "body",
+            "heading",
+            "input"
+          ],
+          "frequency": 2172,
+          "confidence": 1,
+          "prominence": 124413609.83703156,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "input",
+            "icon",
+            "link"
+          ],
+          "frequency": 326,
+          "confidence": 1,
+          "prominence": 93748385.90647769,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f4f4f0",
+          "oklch": {
+            "c": 0.005295196754400436,
+            "h": 106.49830757254644,
+            "l": 0.966042848778518
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 35215083.57187282,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#242423",
+          "oklch": {
+            "c": 0.0018371600174309534,
+            "h": 106.52671979211905,
+            "l": 0.2599404956286688
+          },
+          "contexts": [
+            "input",
+            "button",
+            "icon",
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 90,
+          "confidence": 1,
+          "prominence": 2263541.131753911,
+          "properties": [
+            "borderColor",
+            "color",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffc900",
+          "oklch": {
+            "c": 0.17561960486384168,
+            "h": 88.96617954355955,
+            "l": 0.8594007663337662
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 1034903.3184673152,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d1d5dc",
+          "oklch": {
+            "c": 0.01,
+            "h": 258.338,
+            "l": 0.872
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 408,
+          "confidence": 1,
+          "prominence": 109794.23625187784,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f1f333",
+          "oklch": {
+            "c": 0.19261687384220472,
+            "h": 110.25145224455053,
+            "l": 0.9328344828104345
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 29177.34844035459,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dc341e",
+          "oklch": {
+            "c": 0.20706620437254764,
+            "h": 31.006875795270926,
+            "l": 0.5864071023965536
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 29177.34844035459,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff90e8",
+          "oklch": {
+            "c": 0.16973765325952936,
+            "h": 335.22862198965475,
+            "l": 0.7992481215570502
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 7355.868204603164,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0068140899446260455,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.05,
+          "background": "#f4f4f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.61,
+          "background": "#f1f333",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.54,
+          "background": "#ffffff",
+          "foreground": "#242423"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.26,
+          "background": "#d1d5dc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.09,
+          "background": "#f4f4f0",
+          "foreground": "#242423"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.61,
+          "background": "#ffc900",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.03,
+          "background": "#f1f333",
+          "foreground": "#242423"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.55,
+          "background": "#d1d5dc",
+          "foreground": "#242423"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.41,
+          "background": "#ff90e8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.07,
+          "background": "#ffc900",
+          "foreground": "#242423"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.7,
+          "background": "#ff90e8",
+          "foreground": "#242423"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.61,
+          "background": "#dc341e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.55,
+          "background": "#dc341e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.37,
+          "background": "#dc341e",
+          "foreground": "#242423"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.02,
+          "background": "#ff90e8",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.54,
+          "background": "#ffc900",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.35,
+          "background": "#000000",
+          "foreground": "#242423"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.19,
+          "background": "#f1f333",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#f4f4f0",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "button",
+            "input"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 233,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 311,
+          "properties": [
+            "marginRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 268,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 25,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 60,
+          "properties": [
+            "paddingLeft",
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 58,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "marginRight",
+            "marginLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 101,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 115,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 128,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 137,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 143,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 207,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 224,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ABC Favorit",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 565,
+          "fontFeatureSettings": [
+            "\"ss04\", \"ss11\""
+          ]
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.91
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "ABC Favorit",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.029,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Favorit",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Favorit",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "button",
+            "icon"
+          ],
+          "frequency": 398,
+          "lineHeight": 1.63,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Favorit",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Favorit",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Favorit",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ABC Favorit",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.56,
+          "letterSpacing": -0.022,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ABC Favorit",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.56,
+          "letterSpacing": -0.022,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABC Favorit",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABC Favorit",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABC Favorit",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABC Favorit",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.63,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "ABC Favorit",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "ABC Favorit",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 102,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "ABC Favorit",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "ABC Favorit",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "ABC Favorit",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "ABC Favorit",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "ABC Favorit",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "ABC Favorit",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "ABC Favorit",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 192,
+          "family": "ABC Favorit",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1c22b919-1a70-4621-be34-367d25dfabb9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6b9beec2-d3a7-4315-a69f-df00353a80d2.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d67e1407-6d16-47e8-89cf-22f5c5f2dd88#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Gumroad design system\",\"item\":\"https://styles.refero.design/style/d67e1407-6d16-47e8-89cf-22f5c5f2dd88\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d67e1407-6d16-47e8-89cf-22f5c5f2dd88#style-reference\",\"name\":\"Gumroad design system reference\",\"headline\":\"Gumroad design system | Refero Styles\",\"description\":\"Explore Gumroad's light E-commerce design system: Canvas Cream #f4f4f0, Paper White #ffffff colors, ABC Favorit typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d67e1407-6d16-47e8-89cf-22f5c5f2dd88\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d67e1407-6d16-47e8-89cf-22f5c5f2dd88\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Gumroad\",\"url\":\"https://gumroad.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d67e1407-6d16-47e8-89cf-22f5c5f2dd88#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6b9beec2-d3a7-4315-a69f-df00353a80d2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6b9beec2-d3a7-4315-a69f-df00353a80d2.jpg\",\"caption\":\"Screenshot of Gumroad\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6b9beec2-d3a7-4315-a69f-df00353a80d2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Gumroad design system\",\"Gumroad website design\",\"Gumroad colors\",\"Gumroad typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Canvas Cream\",\"Paper White\",\"Ink Black\",\"Graphite\",\"ABC Favorit\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Gumroad design system\"},{\"@type\":\"Thing\",\"name\":\"Gumroad website design\"},{\"@type\":\"Thing\",\"name\":\"Gumroad colors\"},{\"@type\":\"Thing\",\"name\":\"Gumroad typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-01-14T15:54:52.000Z\",\"dateModified\":\"2026-01-14T15:54:52.000Z\"}]}19:T47d,Quick Color Reference\n- text: #000000 (primary), #242423 (secondary)\n- background: #f4f4f0 (canvas), #ffffff (cards)\n- border: #d1d5dc (hairline)\n- accent: #ff90e8 (pink coin mascot)\n- primary action: no distinct CTA color\n- secondary marker: #ffc900 / #f1f333 / #dc341e (inline swatches only)\n\n3 Example Component Prompts\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Product tile card: #ffffff background, 1px #d1d5dc border, 16px radius, 24px padding, no shadow. Thumbnail 16:9 image filling width with 8px radius, 12px gap, then title in ABC Favorit 18px / 500 #000000, then price in 16px / 500 #000000. Sits on the cream canvas in a 3-column grid with 32px gap between tiles.\n\n3. Feature card: #ffffff background, 1px #d1d5dc border, 24px radius, 40px padding. Heading 'Sell anything' in ABC Favorit 36px / 500, #000000, letter-spacing -0.612px, followed by supporting copy in 16px / 400 #242423 with 12px top gap. Optional phone-mockup illustration on the right: 1px #242423 stroke outline, white screen, 16px device radius, flat product preview inside."
+}

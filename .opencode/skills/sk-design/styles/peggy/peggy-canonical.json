@@ -1,0 +1,1121 @@
+{
+  "source": "https://styles.refero.design/style/0ed4e85f-f3e9-438c-bc34-2a726863c602",
+  "uuid": "0ed4e85f-f3e9-438c-bc34-2a726863c602",
+  "name": "Peggy",
+  "northStar": "monochrome art gallery on a winter morning — the only color comes from the work on the walls",
+  "capturedAt": "2026-07-18T08:52:43.947Z",
+  "meta": {
+    "url": "https://peggy.com/royalties",
+    "siteName": "Peggy",
+    "extractedAt": "2026-06-03T21:31:50.529Z",
+    "durationMs": 33079,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 296,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Reckless at weight 300 for any display-size heading (48px and above); the light cut is the brand's typographic signature — using 600+ breaks the editorial tone",
+      "Set the CTA background to #141414 with #ffffff text, 0px border-radius, Inter 14px weight 500; this is the only filled button style in the system",
+      "Mask all artwork and lifestyle photography to 9999px border-radius — the pill silhouette is how Peggy signals 'this is art' without color or framing",
+      "Use #f4f4f4 for both the page background AND 1px hairline borders; the canvas color doing double duty as the divider keeps the palette at six colors total",
+      "Reserve Inter for everything below 20px; Reckless handles 20px and up; Monument Grotesk stays at 12px for footer category labels only",
+      "Maintain the monochrome constraint — do not introduce chromatic brand colors, gradients, or colored status pills; trust the artwork to provide color",
+      "Use 128px vertical breathing room between major sections; the page earns its gallery feel through space, not decoration"
+    ],
+    "donts": [
+      "Do not add rounded corners (4px, 8px, 12px) to cards, buttons, or inputs — the system is deliberately sharp-edged, reserving curvature for pill-masked photography only",
+      "Do not use colored badges, tags, or status pills (no green for success, no red for error) — the palette is grayscale only; communicate status through text or icon shape",
+      "Do not use Reckless at weight 400 for display-size text; the serif loses its whisper quality and reads as ordinary at 60px",
+      "Do not apply drop shadows, colored glows, or colored borders to elevate cards — elevation is expressed through surface color contrast (#f4f4f4 canvas vs #ffffff card), never through shadow",
+      "Do not place CTAs anywhere except inside the top nav and as the primary action of a section; ghost links handle all secondary actions",
+      "Do not use Monument Grotesk for body copy or headings — it is a 12px label-only typeface; using it elsewhere breaks the typographic hierarchy",
+      "Do not introduce illustrations, icons with chromatic fills, or decorative gradients; the brushstroke curve is the only ornamental element and it should not be replicated"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Gallery White",
+        "role": "Card surfaces, input fields, button text on dark fills, nav surface over dark strips",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f4f4f4",
+        "name": "Canvas Mist",
+        "role": "Page background; also functions as the universal hairline border (borderColor 572 occurrences across every context) — the system draws structure with the canvas color itself",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, logo, nav labels, body copy — the strongest type color, never used as a surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#141414",
+        "name": "Charcoal",
+        "role": "High-contrast neutral action fill for primary buttons on light surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2e8f0",
+        "name": "Fog",
+        "role": "Muted accents, icon fills at rest, secondary surface tint, subtle dividers where Canvas Mist is too light",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Graphite",
+        "role": "Secondary/muted text — helper copy, metadata in transaction cards, footer body, link at rest",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed sections on a #f4f4f4 canvas, each section ~128px vertical padding, no visible section borders (the canvas color itself separates them). Hero is a 50/50 split: serif headline left, pill-masked photograph right. The 'What are royalties?' section inverts the split: illustration+transaction cards left, serif body copy right. Trust badges form a single 6-column row separated by 1px hairlines. Gallery CTA is a 2-column card on white. Footer is a 5-column link grid with a single-row copyright/social strip below. Navigation is a minimal top bar (logo left, one CTA right) with a full-bleed dark download-app strip immediately beneath it. The layout rhythm is gallery-catalog: quiet, spacious, typographically driven, with photographs acting as punctuation rather than wallpaper.",
+    "imagery": "Photography-first, zero illustration except for one decorative black brushstroke curve on the 'What are royalties?' section. Imagery is art-object photography (framed paintings, gallery interiors) and lifestyle context (a yellow chair beside a framed piece) — always high-key, well-lit, gallery-quality. Treatment is full-bleed within a pill mask (9999px radius) for hero and feature imagery, and rectangular for the gallery CTA panel. No duotone, no color grading — images are shown as-shot. Icons are solid black silhouettes (lock, shipping box, shield-check, museum, dollar, person) in a 6-cell trust row, and a single cloud-download icon in the notification strip. Image density is low: one photograph per section maximum, relying on typography and whitespace to carry the layout.",
+    "similar": [
+      {
+        "why": "Same serif-display-headline + monochrome palette approach, same gallery-marketplace positioning, same trust that art photography provides the color",
+        "business": "Artsy"
+      },
+      {
+        "why": "Same editorial serif at large sizes over a near-white canvas, same luxury restraint, same pill-or-sharp photographic crops",
+        "business": "1stDibs"
+      },
+      {
+        "why": "Same weight-300 serif display, same near-zero chromatic palette, same reliance on pill-masked photography to signal 'art object'",
+        "business": "The Weave Shop / Saint Paul Editions"
+      },
+      {
+        "why": "Same generous 128px section rhythm, same all-grayscale discipline, same single-weight-anchor CTA against a white field",
+        "business": "SSENSE (editorial mode)"
+      },
+      {
+        "why": "Same sharp-edged components, no rounded buttons, no shadows, one dark-on-light CTA, photograph does all the visual work",
+        "business": "Arc'teryx (product pages)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "images": "9999px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "128px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f4f4f4",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background and the default border color — one neutral does both jobs to keep the palette lean"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Elevated panels (royalty transaction cards, feature cells) sitting on the canvas"
+      },
+      {
+        "hex": "#141414",
+        "name": "Inverted Strip",
+        "level": 2,
+        "purpose": "Full-bleed dark band for the download-app notification and the only filled CTA"
+      }
+    ],
+    "northStar": "monochrome art gallery on a winter morning — the only color comes from the work on the walls",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.11
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site chrome",
+        "description": "White background, 1px bottom border in #f4f4f4, 16px vertical padding, 48px horizontal padding. Left: Peggy glyph logo (black mark). Right: 'Join Peggy' filled CTA. No other links visible in the header — navigation is intentionally minimal, consistent with the gallery-catalog feel."
+      },
+      {
+        "name": "Download App Notification Strip",
+        "role": "Dismissible app-promo bar",
+        "description": "Full-width #141414 background, white text. Left: close (×) icon + Peggy app-icon tile in white #f4f4f4 square. Center: 'Download the Peggy App' headline (Inter 14px weight 500, white) with sub-copy 'Install the app and sign in to get started.' (Inter 12px, #e2e8f0). Right: cloud-download icon. 48px vertical padding. This is the only dark band on the page outside the CTA button."
+      },
+      {
+        "name": "Primary Filled CTA Button",
+        "role": "Main conversion action (e.g. 'Join Peggy')",
+        "description": "#141414 background, #ffffff text, Inter 14px weight 500, 0px border-radius (sharp rectangle), 16px horizontal × ~12px vertical padding, single line, no icon. Sits as a deliberate weight-anchor against the white field — the only black rectangle in the interface."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Secondary inline action (e.g. 'Learn more')",
+        "description": "No background, no border, Inter 14px weight 500, #000000 text. Underline appears on hover. Used inside feature panels where a filled button would be too heavy."
+      },
+      {
+        "name": "Split Hero Section",
+        "role": "Above-the-fold brand statement",
+        "description": "Two-column layout on #f4f4f4 canvas, no top/bottom borders. Left column (roughly 50%): display headline in Reckless 60px weight 300, line-height 1.00, #000000 — multi-line, tight tracking. Below at 24px gap: sub-copy in Inter 16px weight 400, #000000, 2 lines max. Right column: full-bleed photograph masked to 9999px border-radius (pill shape), no caption. The pill-masked image is Peggy's signature visual element."
+      },
+      {
+        "name": "Section Header (Editorial)",
+        "role": "Introduces an explanatory section",
+        "description": "Reckless 36px weight 400, #000000, line-height 1.20. Sits left-aligned with generous left margin (48px). No eyebrow text, no decorative rule — the serif heading alone anchors the section."
+      },
+      {
+        "name": "Royalty Transaction Card",
+        "role": "Data row showing a resale payout",
+        "description": "#ffffff surface, 1px #f4f4f4 border, 0px radius, 16px padding. Internal grid: left column = small 24px square artwork thumbnail + title 'Royal Flush, 2021' (Inter 14px weight 500, #000000) with 'Sold on {date}, {year}' (Inter 12px, #666666) beneath. Right column: dollar amount (Inter 14px weight 500, #000000) with 'Royalties Paid' (Inter 12px, #666666) beneath. Cards stack vertically with 8px gap, no shadows."
+      },
+      {
+        "name": "Trust Badge Cell",
+        "role": "Reassurance row item (6 across)",
+        "description": "Centered icon (24px, #000000, solid filled style for lock/shield/shipping, line for museum/pricing/community) above label in Inter 14px weight 500, #000000. No background, no border, no padding — sits on the #f4f4f4 canvas as a bare typographic/icon unit. 6 cells in a single row, separated by 1px #f4f4f4 vertical dividers between adjacent cells."
+      },
+      {
+        "name": "Gallery CTA Panel",
+        "role": "Conversion block for gallery partners",
+        "description": "Two-column on #ffffff surface (one level above canvas). Left: 'Interested in joining as a gallery?' (Reckless 30px weight 400) over body copy in Inter 16px #000000, with a 'Learn more' ghost link below. Right: full-bleed gallery interior photograph, no border, no mask. 48px outer padding."
+      },
+      {
+        "name": "Footer Column",
+        "role": "Site map link group",
+        "description": "Five columns on #f4f4f4 canvas, top border 1px #f4f4f4 (effective divider by negative space). Column heading: Monument Grotesk 12px weight 400, #000000, uppercase tracking. Links below: Inter 14px weight 400, #666666, 8px row gap, 0px padding. No hover color shift documented — subtle and quiet."
+      },
+      {
+        "name": "Footer Copyright Bar",
+        "role": "Legal/social strip",
+        "description": "Below the link columns, 1px top border #f4f4f4, 24px vertical padding. Left: '© Peggy . {year}' in Monument Grotesk 12px #666666. Right: social icon cluster (Facebook, Instagram, X) in 20px solid #000000 squares with no radius."
+      },
+      {
+        "name": "Hero Photograph (Pill-Masked)",
+        "role": "Artwork/contextual imagery",
+        "description": "The only recurring shape in the system. 9999px border-radius creates a stadium/pill crop. Full-bleed within its container, no caption, no border, no shadow. The pill silhouette over the flat canvas is what makes the photography feel like a gallery object rather than a web image."
+      },
+      {
+        "name": "Decorative Brushstroke Curve",
+        "role": "Background motif on the 'What are royalties?' section",
+        "description": "A large organic #000000 line/curve that sweeps behind the transaction cards, partially extending past the section edges. Not an icon or illustration — a printed-mark motif. No other decorative graphics appear elsewhere on the site; this single gesture is the entire ornamental vocabulary."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All display and heading copy. Weight 300 at the largest sizes (48-60px) is the signature move — most gallery/marketplace sites use 600-700 serif weights; the light cut reads as editorial restraint rather than shouting authority. Weight 400 takes over for 20-36px subheadings. Line-height collapses from 1.40 at 20px to 1.00 at 60px, letting large display text sit tight like a magazine cover.",
+        "sizes": "20px, 30px, 36px, 48px, 60px",
+        "family": "Reckless",
+        "weight": "300, 400",
+        "lineHeight": "1.00, 1.11, 1.20, 1.40",
+        "substitute": "Cormorant Garamond, Lora, or PT Serif for close editorial spirit; no system serif substitutes the specific warmth of Reckless"
+      },
+      {
+        "role": "All UI chrome: nav labels, button text, body paragraphs, helper copy, card metadata. Inter is deliberately invisible here — it serves Reckless by getting out of the way. Weight 500 appears in nav and active states; 400 is the body default. Line-height opens up to 1.50 at 16px for paragraph readability.",
+        "sizes": "12px, 14px, 16px",
+        "family": "Inter",
+        "weight": "400, 500",
+        "lineHeight": "1.33, 1.43, 1.50",
+        "substitute": "system-ui, -apple-system, Segoe UI"
+      },
+      {
+        "role": "Footer column labels ('Product', 'Partners', 'Company', 'Support', 'Get the App') and the copyright line. Acts as a structural label typeface — small caps category architecture under a serif body. Strictly 12px, weight 400, used at 11 occurrences, signaling intentional scarcity.",
+        "sizes": "12px",
+        "family": "Monument Grotesk",
+        "weight": "400",
+        "lineHeight": "1.33",
+        "substitute": "Space Grotesk, Inter at weight 500 with letter-spacing 0.08em"
+      }
+    ],
+    "description": "Peggy operates as a curated white-cube gallery translated to the web: an entirely monochrome interface that treats color as something the artwork supplies, not the chrome. The page is anchored by Reckless, a contemporary serif used at whisper weight (300) for display and regular weight (400) for mid-tier headings — this single typographic decision is what separates Peggy from the sea of geometric-sans art marketplaces. Inter handles all UI chrome at 12-16px, Monument Grotesk micro-caps label the footer's category architecture. Surfaces are flat and almost invisible: #f4f4f4 canvas, #ffffff cards, hairline #f4f4f4 borders, with one dark surface (#141414) reserved for the app-download notification strip and the primary CTA. There is no brand color, no gradient, no decorative elevation — the system earns its atmosphere through generous negative space, squareness (no rounded corners except pill-masked photography), and the trust that real art and real type are enough.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0ed4e85f-f3e9-438c-bc34-2a726863c602#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Peggy design system\",\"item\":\"https://styles.refero.design/style/0ed4e85f-f3e9-438c-bc34-2a726863c602\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0ed4e85f-f3e9-438c-bc34-2a726863c602#style-reference\",\"name\":\"Peggy design system reference\",\"headline\":\"Peggy design system | Refero Styles\",\"description\":\"Explore Peggy's light E-commerce design system: Gallery White #ffffff, Canvas Mist #f4f4f4 colors, Reckless, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/0ed4e85f-f3e9-438c-bc34-2a726863c602\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0ed4e85f-f3e9-438c-bc34-2a726863c602\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Peggy\",\"url\":\"https://peggy.com/royalties\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0ed4e85f-f3e9-438c-bc34-2a726863c602#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/de085970-2c24-4d1d-b293-bae0db961717.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/de085970-2c24-4d1d-b293-bae0db961717.jpg\",\"caption\":\"Screenshot of Peggy\"},\"image\":\"https://images.refero.design/styles/refero.design/image/de085970-2c24-4d1d-b293-bae0db961717.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Peggy design system\",\"Peggy website design\",\"Peggy colors\",\"Peggy typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Gallery White\",\"Canvas Mist\",\"Ink Black\",\"Charcoal\",\"Reckless\",\"Inter\",\"Monument Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Peggy design system\"},{\"@type\":\"Thing\",\"name\":\"Peggy website design\"},{\"@type\":\"Thing\",\"name\":\"Peggy colors\"},{\"@type\":\"Thing\",\"name\":\"Peggy typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:57:40.285Z\",\"dateModified\":\"2026-04-30T03:57:40.285Z\"}]}19:T71b,**Quick Color Reference**\n- canvas/background: #f4f4f4\n- card surface: #ffffff\n- primary text: #000000\n- muted text: #666666\n- border/hairline: #f4f4f4\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Hero section*: #f4f4f4 background, no border. Left half: display headline 'Artists deserve compensation on every sale of their work' in Reckless 60px weight 300, #000000, line-height 1.00. 24px below: sub-copy in Inter 16px weight 400, #000000, max 2 lines. Right half: full-bleed photograph of a framed artwork in an interior, masked to 9999px border-radius, no caption or border. 128px vertical padding, max-width 1200px centered.\n\n2. *Royalty transaction card row*: four stacked cards on #f4f4f4 canvas. Each card: #ffffff background, 1px #f4f4f4 border, 0px radius, 16px padding. Internal layout: 24px square artwork thumbnail + title in Inter 14px weight 500 (#000000) + 'Sold on {date}' in Inter 12px #666666 on the left; dollar amount in Inter 14px weight 500 (#000000) + 'Royalties Paid' in Inter 12px #666666 on the right. 8px gap between cards.\n\n\n4. *Trust badge row*: single horizontal row of 6 cells on #f4f4f4 canvas, separated by 1px #f4f4f4 vertical dividers. Each cell: 24px solid #000000 icon centered (lock, shipping box, shield-check, museum frame, dollar bill, person silhouette) above label in Inter 14px weight 500 #000000. No background, no border, no padding on the cell itself.\n\n5. *Footer column*: on #f4f4f4 canvas with a 1px #f4f4f4 top border. Column heading in Monument Grotesk 12px weight 400 #000000. Below: list of links in Inter 14px weight 400 #666666 with 8px row gap. 5 columns total, equal width, 48px horizontal padding."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f4f4f4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.967153298496294
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "icon",
+            "heading",
+            "body",
+            "link",
+            "card",
+            "image",
+            "button",
+            "footer"
+          ],
+          "frequency": 1140,
+          "confidence": 1,
+          "prominence": 73116079.52614053,
+          "properties": [
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "nav/borderColor": 220,
+            "body/borderColor": 108,
+            "card/borderColor": 48,
+            "icon/borderColor": 56,
+            "link/borderColor": 20,
+            "image/borderColor": 40,
+            "other/borderColor": 572,
+            "button/borderColor": 24,
+            "footer/borderColor": 4,
+            "heading/borderColor": 40,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "image",
+            "heading",
+            "body",
+            "icon",
+            "link"
+          ],
+          "frequency": 234,
+          "confidence": 1,
+          "prominence": 56704935.8623886,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 55,
+            "body/color": 22,
+            "card/color": 6,
+            "icon/color": 6,
+            "link/color": 1,
+            "image/color": 10,
+            "other/color": 127,
+            "heading/color": 7
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "button"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 4471561.192397482,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "other/color": 5,
+            "button/color": 1,
+            "heading/color": 1,
+            "other/borderColor": 4,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 18,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#141414",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1912512996316179
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "heading",
+            "icon"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 3010669.77647354,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 2,
+            "other/fill": 7,
+            "button/color": 4,
+            "heading/color": 1,
+            "nav/borderColor": 4,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e2e8f0",
+          "oklch": {
+            "c": 0.01261877443265105,
+            "h": 255.5078854448309,
+            "l": 0.928761267190067
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 479232,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 2,
+            "link/color": 1,
+            "other/fill": 1,
+            "other/color": 9,
+            "heading/color": 1
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "card",
+            "body",
+            "footer",
+            "other",
+            "link",
+            "icon",
+            "button"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 333513.1758961715,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "card/color": 6,
+            "icon/color": 4,
+            "link/color": 3,
+            "other/fill": 1,
+            "other/color": 3,
+            "button/color": 1,
+            "footer/color": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00034824502141513026,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.09,
+          "background": "#f4f4f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#141414",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.03,
+          "background": "#e2e8f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.75,
+          "background": "#f4f4f4",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.94,
+          "background": "#141414",
+          "foreground": "#e2e8f0"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.22,
+          "background": "#f4f4f4",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.21,
+          "background": "#141414",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.23,
+          "background": "#ffffff",
+          "foreground": "#e2e8f0"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.14,
+          "background": "#141414",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#f4f4f4",
+          "foreground": "#e2e8f0"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#f4f4f4",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "icon",
+            "button"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginBottom|other",
+            "marginLeft|other",
+            "marginBottom|card",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|icon",
+            "marginRight|other",
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "image",
+            "card",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|image",
+            "marginTop|card",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "body",
+            "heading",
+            "footer",
+            "button"
+          ],
+          "frequency": 64,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginBottom",
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginLeft|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginBottom|body",
+            "marginBottom|heading",
+            "paddingRight|footer",
+            "paddingLeft|footer",
+            "marginTop|button",
+            "marginRight|button",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card",
+            "body",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginTop|body",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "heading",
+            "link",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginBottom|heading",
+            "marginTop|link",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 54,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginRight|body",
+            "marginLeft|body",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "nav",
+            "other",
+            "footer"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginRight|footer",
+            "marginLeft|footer"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 157,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|image",
+            "marginLeft|image"
+          ]
+        },
+        {
+          "value": 168,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 261,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Reckless",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 13,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Monument Grotesk",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "icon",
+            "link",
+            "card",
+            "image",
+            "body",
+            "button"
+          ],
+          "frequency": 232,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "body",
+            "button"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "body",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body",
+            "button"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Reckless",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Reckless",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Reckless",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Reckless",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Reckless",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Reckless",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/2a6ca652-52ea-4179-8c73-54d1d30b2061.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/de085970-2c24-4d1d-b293-bae0db961717.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0ed4e85f-f3e9-438c-bc34-2a726863c602#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Peggy design system\",\"item\":\"https://styles.refero.design/style/0ed4e85f-f3e9-438c-bc34-2a726863c602\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0ed4e85f-f3e9-438c-bc34-2a726863c602#style-reference\",\"name\":\"Peggy design system reference\",\"headline\":\"Peggy design system | Refero Styles\",\"description\":\"Explore Peggy's light E-commerce design system: Gallery White #ffffff, Canvas Mist #f4f4f4 colors, Reckless, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/0ed4e85f-f3e9-438c-bc34-2a726863c602\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0ed4e85f-f3e9-438c-bc34-2a726863c602\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Peggy\",\"url\":\"https://peggy.com/royalties\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0ed4e85f-f3e9-438c-bc34-2a726863c602#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/de085970-2c24-4d1d-b293-bae0db961717.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/de085970-2c24-4d1d-b293-bae0db961717.jpg\",\"caption\":\"Screenshot of Peggy\"},\"image\":\"https://images.refero.design/styles/refero.design/image/de085970-2c24-4d1d-b293-bae0db961717.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Peggy design system\",\"Peggy website design\",\"Peggy colors\",\"Peggy typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Gallery White\",\"Canvas Mist\",\"Ink Black\",\"Charcoal\",\"Reckless\",\"Inter\",\"Monument Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Peggy design system\"},{\"@type\":\"Thing\",\"name\":\"Peggy website design\"},{\"@type\":\"Thing\",\"name\":\"Peggy colors\"},{\"@type\":\"Thing\",\"name\":\"Peggy typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:57:40.285Z\",\"dateModified\":\"2026-04-30T03:57:40.285Z\"}]}19:T71b,**Quick Color Reference**\n- canvas/background: #f4f4f4\n- card surface: #ffffff\n- primary text: #000000\n- muted text: #666666\n- border/hairline: #f4f4f4\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Hero section*: #f4f4f4 background, no border. Left half: display headline 'Artists deserve compensation on every sale of their work' in Reckless 60px weight 300, #000000, line-height 1.00. 24px below: sub-copy in Inter 16px weight 400, #000000, max 2 lines. Right half: full-bleed photograph of a framed artwork in an interior, masked to 9999px border-radius, no caption or border. 128px vertical padding, max-width 1200px centered.\n\n2. *Royalty transaction card row*: four stacked cards on #f4f4f4 canvas. Each card: #ffffff background, 1px #f4f4f4 border, 0px radius, 16px padding. Internal layout: 24px square artwork thumbnail + title in Inter 14px weight 500 (#000000) + 'Sold on {date}' in Inter 12px #666666 on the left; dollar amount in Inter 14px weight 500 (#000000) + 'Royalties Paid' in Inter 12px #666666 on the right. 8px gap between cards.\n\n\n4. *Trust badge row*: single horizontal row of 6 cells on #f4f4f4 canvas, separated by 1px #f4f4f4 vertical dividers. Each cell: 24px solid #000000 icon centered (lock, shipping box, shield-check, museum frame, dollar bill, person silhouette) above label in Inter 14px weight 500 #000000. No background, no border, no padding on the cell itself.\n\n5. *Footer column*: on #f4f4f4 canvas with a 1px #f4f4f4 top border. Column heading in Monument Grotesk 12px weight 400 #000000. Below: list of links in Inter 14px weight 400 #666666 with 8px row gap. 5 columns total, equal width, 48px horizontal padding."
+}

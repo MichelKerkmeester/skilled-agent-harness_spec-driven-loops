@@ -1,0 +1,805 @@
+{
+  "source": "https://styles.refero.design/style/7afd842e-44d4-4f01-9ef5-683c31d820c9",
+  "uuid": "7afd842e-44d4-4f01-9ef5-683c31d820c9",
+  "name": "Bpowell",
+  "northStar": "type as architecture on white plaster",
+  "capturedAt": "2026-07-18T07:34:34.312Z",
+  "meta": {
+    "url": "https://www.bpowell.co",
+    "siteName": "Bpowell",
+    "extractedAt": "2026-06-03T20:32:46.195Z",
+    "durationMs": 27133,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 259,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use exactly two surfaces — #ffffff and #111111 — and alternate them as full-bleed sections to create rhythm without any divider lines",
+      "Set project names in Teg at 86px / line-height 1.04 / letter-spacing -0.033em on desktop; this aggressive tracking is what makes the list read as a wall of text",
+      "Use New Grotesk 600 with 0.069em tracking for all section labels — the wide spacing is the system's only 'decorative' typographic move",
+      "Distribute nav items across the full viewport width with space-between; never cluster them in a corner or center them",
+      "Anchor the leftmost nav item at weight 700 (Diatype) so the owner's name reads as the only visual weight in an otherwise flat row",
+      "Maintain 40px left padding from the viewport edge for the content column on all sections",
+      "Use 104px for the major vertical section padding — it is the largest spacing unit in the system and defines the page's breathing rhythm"
+    ],
+    "donts": [
+      "Do not introduce any color beyond #ffffff, #111111, #000000, and #2b2b2b — the system is monochrome by design",
+      "Do not add images, thumbnails, or preview artwork to project list items; the name alone is the entry",
+      "Do not center project names or align them to a grid — they are pinned to the left margin and let their own length determine the column",
+      "Do not use card containers, rounded corners, or drop shadows; the system has zero elevation and zero radius",
+      "Do not set body or nav text larger than 26px; the scale jumps directly to 58px for sub-headings and 86px for display, and bridging that gap destroys the contrast",
+      "Do not add hover color changes, underlines, or button styles to project names — they read as a list, not as links",
+      "Do not use more than one typeface per text block; mixing Teg with Beatricedisplay inside the same line breaks the typographic system"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Plaster White",
+        "role": "Primary canvas for the light sections; text color on the dark sections; hairline dividers on the dark sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111111",
+        "name": "Carbon",
+        "role": "Page background for the dark/film section; primary body text on light sections; structural fill for project name typography",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Secondary text and fill on light sections; used where maximum contrast is needed against the white canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2b2b2b",
+        "name": "Graphite",
+        "role": "Subtle darker border for low-emphasis rules on light surfaces",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is a vertical scroll of full-bleed sections that alternate between white and near-black surfaces. There is no traditional hero — the viewport opens directly onto the distributed top nav, then immediately into a left-aligned list of project names. Each section begins with a tiny wide-tracked label ('Design', 'Film') followed by a stack of oversized project names pinned to the left margin. Content is asymmetric and left-aligned throughout; there is no centered text, no right rail, no grid columns. The nav itself is the only horizontal layout decision, and it uses space-between to push four text items to the four edges of the viewport. Section breaks are created entirely by surface color inversion — there are no dividers, rules, or extra spacing between sections beyond the 104px internal padding. The overall density is extremely sparse: one or two text elements per viewport height, with vast areas of negative space.",
+    "imagery": "No imagery whatsoever — the site is pure typography. There are no photographs, illustrations, product screenshots, project thumbnails, icons, or decorative graphics. Every visual decision is made through type, color inversion, and spatial rhythm. Even the contact email in the nav is rendered as raw text rather than an icon. The absence of imagery is the defining visual language: the work itself is the portfolio, and the typography asks you to recognize the names.",
+    "similar": [
+      {
+        "why": "Same text-as-portfolio philosophy with oversized project names stacked on a near-empty canvas",
+        "business": "Manual (manual.co)"
+      },
+      {
+        "why": "Single-column left-aligned typography, monochrome palette, no imagery, work presented as a typographic list",
+        "business": "Rauno Freiberg (raunofreiberg.com)"
+      },
+      {
+        "why": "Editorial manuscript feel with generous whitespace and typography carrying all visual weight",
+        "business": "Frank Chimero"
+      },
+      {
+        "why": "Extreme typographic restraint, text-only page structure, content density expressed through size jumps rather than imagery",
+        "business": "Bret Victor"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "none": "0px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "104px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Plaster White",
+        "level": 1,
+        "purpose": "Default page canvas for the design section; all text and labels render as #111111 on it"
+      },
+      {
+        "hex": "#111111",
+        "name": "Carbon",
+        "level": 2,
+        "purpose": "Inverted canvas for the film section; all text and labels render as #ffffff on it"
+      }
+    ],
+    "northStar": "type as architecture on white plaster",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 26,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "heading",
+        "size": 58,
+        "lineHeight": 1.05,
+        "letterSpacing": -0.17
+      },
+      {
+        "role": "display",
+        "size": 86,
+        "lineHeight": 1.04,
+        "letterSpacing": -2.84
+      }
+    ],
+    "components": [
+      {
+        "name": "Distributed Top Nav",
+        "role": "Primary navigation — replaces a conventional logo-cluster layout",
+        "description": "A single horizontal row pinned to the very top of the viewport, 40px horizontal padding, items distributed across the full width using flexbox space-between (no centered logo, no hamburger). Four text items: the owner name (Diatype 500/700), the descriptor ('Designer & filmmaker'), the email address, and an availability status. Font: Diatype 500 at 26px, color #111111. The first item (owner name) is set at weight 700 to act as the only visual anchor in an otherwise flat row."
+      },
+      {
+        "name": "Section Label",
+        "role": "Marker that introduces a new category block",
+        "description": "Small, wide-tracked, acts as a typographic flag above each project list. Font: New Grotesk 600, ~12-14px, letter-spacing 0.069em, all uppercase or sentence case. Color: #111111 on light sections, #ffffff on the dark section. Sits 40-56px above the first project name. No underline, no icon — the tracking does the work."
+      },
+      {
+        "name": "Project List Item — Large",
+        "role": "The primary content unit; project names that form the page's structure",
+        "description": "Oversized text in Teg 500 or 600, 86px on desktop, line-height 1.04, letter-spacing -0.033em. Color: #111111 on light sections, #ffffff on the dark section. Stacked vertically with 0-4px gap between lines (the lines nearly touch, creating a continuous block). No bullet, no link styling, no metadata — the name is the entire item."
+      },
+      {
+        "name": "Project List Item — Secondary",
+        "role": "Typographic counterpoint in the list stack",
+        "description": "Slightly smaller project names at 58px, set in Beatricedisplay or Teg weight 500, line-height 1.05, letter-spacing -0.017em. Appears alongside the 86px names to create a rhythmic size alternation in the list — some names shout, others speak. Same color rules as the large variant."
+      },
+      {
+        "name": "Light Canvas Section",
+        "role": "The default page surface for design work",
+        "description": "Full-bleed white (#ffffff) background, left-aligned content column starting at the 40px page margin, 104px top/bottom internal padding. Contains the section label and project list. No borders, no shadows, no card containers."
+      },
+      {
+        "name": "Dark Canvas Section",
+        "role": "Inverted surface for the film category",
+        "description": "Full-bleed near-black (#111111) background with identical layout rhythm to the light section — same 40px left margin, same 104px vertical padding, same typographic structure. Text and labels invert to #ffffff. The alternation between the two surfaces is the page's only visual section break; there is no dividing line or gradient between them."
+      },
+      {
+        "name": "Content Column",
+        "role": "The single left-aligned text column that holds all content",
+        "description": "Left-pinned at 40px from the viewport edge, extends rightward as far as the longest line needs. No max-width cap on the text itself, but the longest project names (e.g. 'Iceland in Winter') naturally bound the column at roughly 800-900px. No centering, no right rail."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display — reserved for the largest project names and the hero text. The aggressive -0.033em tracking at 86px tightens the letters into a near-monolithic block; this is the font that creates the 'stacked concrete' reading. Substitute: Migra, Editorial New, or Canela Display.",
+        "sizes": "58px, 86px",
+        "family": "Teg",
+        "weight": "500, 600",
+        "lineHeight": "1.04, 1.05",
+        "substitute": "Migra or Editorial New",
+        "letterSpacing": "-0.0330em at 86px, -0.0170em at 58px"
+      },
+      {
+        "role": "Mid-scale editorial type — appears as secondary project list text alongside the larger Teg names, providing typographic counterpoint at a calmer scale. Substitute: Tiempos Headline, Canela, or Reckless.",
+        "sizes": "26px",
+        "family": "Beatrice Display",
+        "weight": "500, 600",
+        "lineHeight": "1.15",
+        "substitute": "Tiempos Headline or Canela",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Body-weight Beatrice variant for the same 26px role but with the text-figure character set. Substitute: same as Beatrice Display.",
+        "sizes": "26px",
+        "family": "Beatrice",
+        "weight": "500",
+        "lineHeight": "1.15",
+        "substitute": "Tiempos Text",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Workhorse sans for body copy, nav items, and supporting text. Weight 500 is the default; 700 is reserved for the nav name 'Ben Powell' to give it anchor weight in the distributed nav. Substitute: Söhne, Inter, or ABC Diatype.",
+        "sizes": "26px, 58px",
+        "family": "Diatype",
+        "weight": "500, 700",
+        "lineHeight": "1.04, 1.05, 1.15",
+        "substitute": "Söhne or Inter",
+        "letterSpacing": "-0.0170em"
+      },
+      {
+        "role": "Wide-tracked all-caps label face for section markers ('Design', 'Film'). The extreme +0.069em tracking turns short words into spaced-out type-art — this is the system's only 'decorative' choice. Substitute: ABC Diatype Mono Upper, Space Grotesk, or Neue Haas Grotesk Display.",
+        "sizes": "58px, 60px",
+        "family": "New Grotesk",
+        "weight": "600",
+        "lineHeight": "1.00, 1.04",
+        "substitute": "Space Grotesk or ABC Diatype Mono",
+        "letterSpacing": "0.0690em"
+      }
+    ],
+    "description": "A text-only portfolio that lets typography do every job — no imagery, no decoration, no chrome. The page reads as an architectural list: small tightly-set labels act as section markers, then oversized project names stack like concrete blocks on a wall. Two surfaces alternate — a bright white canvas for design work, an inverted near-black canvas for film — and the contrast between them is the only visual rhythm. The layout is brutally asymmetric: a single column of oversized text pinned to the left, generous gutters of negative space, and a top nav that distributes itself across the full viewport width rather than clustering in a corner. The system has no buttons, no cards, no borders in the traditional sense — the nearest thing to a border is a 1px black hairline, and even that is used sparingly. The result feels like reading a credits sequence printed on a gallery wall: austere, deliberate, and confident that the names themselves carry the weight.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7afd842e-44d4-4f01-9ef5-683c31d820c9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bpowell design system\",\"item\":\"https://styles.refero.design/style/7afd842e-44d4-4f01-9ef5-683c31d820c9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7afd842e-44d4-4f01-9ef5-683c31d820c9#style-reference\",\"name\":\"Bpowell design system reference\",\"headline\":\"Bpowell design system | Refero Styles\",\"description\":\"Explore Bpowell's mixed Design design system: Plaster White #ffffff, Carbon #111111 colors, Teg, Beatrice Display typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7afd842e-44d4-4f01-9ef5-683c31d820c9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7afd842e-44d4-4f01-9ef5-683c31d820c9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Bpowell\",\"url\":\"https://www.bpowell.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7afd842e-44d4-4f01-9ef5-683c31d820c9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a665094f-7975-42c8-8555-16d4e4b81c50.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a665094f-7975-42c8-8555-16d4e4b81c50.jpg\",\"caption\":\"Screenshot of Bpowell\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a665094f-7975-42c8-8555-16d4e4b81c50.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Bpowell design system\",\"Bpowell website design\",\"Bpowell colors\",\"Bpowell typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Plaster White\",\"Carbon\",\"Ink Black\",\"Graphite\",\"Teg\",\"Beatrice Display\",\"Beatrice\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Bpowell design system\"},{\"@type\":\"Thing\",\"name\":\"Bpowell website design\"},{\"@type\":\"Thing\",\"name\":\"Bpowell colors\"},{\"@type\":\"Thing\",\"name\":\"Bpowell typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:39:54.380Z\",\"dateModified\":\"2026-04-30T01:39:54.380Z\"}]}19:T6c3,## Quick Color Reference\n- background (light): #ffffff\n- background (dark): #111111\n- text (on light): #111111\n- text (on dark): #ffffff\n- border: #2b2b2b\n- accent: none (monochrome system)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Distributed top nav**: Full-width horizontal row at the top of the page, 40px padding from the viewport edges. Four text items pushed to the far edges with space-between justification. Items use Diatype 500 at 26px, color #111111. The leftmost item (owner name) is weight 700; the remaining three items are weight 500.\n\n2. **Section label**: Small wide-tracked marker text reading 'Design' or 'Film'. Set in New Grotesk 600, ~12-14px, letter-spacing 0.069em, color #111111 on a white background. Sits 40-56px above the first project name in the list below it.\n\n3. **Oversized project name**: Text block pinned to the left margin, font Teg 500, 86px, line-height 1.04, letter-spacing -0.033em, color #111111. No underline, no hover state, no surrounding card — the name sits directly on the white canvas with zero decoration.\n\n4. **Full-bleed dark section**: A section that fills the entire viewport width with background #111111. Internal padding is 104px top and bottom, 40px left. All text within inverts to #ffffff. The section contains the same label-plus-list structure as the light sections, with no visual transition or divider from the preceding white section.\n\n5. **Project list stack**: A vertical column of project names in alternating sizes — some at 86px in Teg 500/600, others at 58px in Beatricedisplay 500/600. Each name is on its own line with 0-4px vertical gap between lines so the names nearly touch, reading as a continuous typographic wall."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 183,
+          "confidence": 1,
+          "prominence": 31357476.44733589,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 80,
+            "other/color": 7,
+            "link/borderColor": 68,
+            "other/borderColor": 28
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "body",
+            "heading"
+          ],
+          "frequency": 417,
+          "confidence": 1,
+          "prominence": 13959664.28262947,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 17,
+            "list/color": 23,
+            "other/fill": 7,
+            "other/color": 51,
+            "heading/color": 1,
+            "body/borderColor": 4,
+            "list/borderColor": 92,
+            "other/borderColor": 217,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading"
+          ],
+          "frequency": 324,
+          "confidence": 1,
+          "prominence": 10701559.501902035,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "other/color": 74,
+            "heading/color": 1,
+            "other/borderColor": 240,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2b2b2b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.28908005129278536
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 266878.6238309171,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 16
+          }
+        },
+        {
+          "hex": "#000111",
+          "oklch": {
+            "c": 0.04951241442891864,
+            "h": 263.7573464223005,
+            "l": 0.08945256119172382
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 225.89111045234063,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 9
+          }
+        },
+        {
+          "hex": "#888888",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6267535410065036
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0012677431859467077,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.74,
+          "background": "#ffffff",
+          "foreground": "#000111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#111111",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.16,
+          "background": "#ffffff",
+          "foreground": "#2b2b2b"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.92,
+          "background": "#888888",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.33,
+          "background": "#888888",
+          "foreground": "#111111"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.54,
+          "background": "#888888",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#111111",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginRight|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 54,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 104,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|heading"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Diatype",
+          "source": "custom",
+          "weights": [
+            500,
+            700
+          ],
+          "frequency": 91,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Beatricedisplay",
+          "source": "custom",
+          "weights": [
+            500,
+            600
+          ],
+          "frequency": 64,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Teg",
+          "source": "custom",
+          "weights": [
+            500,
+            600
+          ],
+          "frequency": 19,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Beatrice",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "New Grotesk",
+          "source": "custom",
+          "weights": [
+            600
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 26,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 26,
+          "family": "Diatype",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "body"
+          ],
+          "frequency": 84,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Beatricedisplay",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Beatricedisplay",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Beatrice",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Diatype",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Diatype",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "Teg",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.04,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "Teg",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.04,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "New Grotesk",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.04,
+          "letterSpacing": 0.069,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "Diatype",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.04,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "New Grotesk",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "Teg",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.033,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f99e69eb-f8c3-4ef1-a46d-e0abc04e62a6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a665094f-7975-42c8-8555-16d4e4b81c50.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7afd842e-44d4-4f01-9ef5-683c31d820c9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bpowell design system\",\"item\":\"https://styles.refero.design/style/7afd842e-44d4-4f01-9ef5-683c31d820c9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7afd842e-44d4-4f01-9ef5-683c31d820c9#style-reference\",\"name\":\"Bpowell design system reference\",\"headline\":\"Bpowell design system | Refero Styles\",\"description\":\"Explore Bpowell's mixed Design design system: Plaster White #ffffff, Carbon #111111 colors, Teg, Beatrice Display typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7afd842e-44d4-4f01-9ef5-683c31d820c9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7afd842e-44d4-4f01-9ef5-683c31d820c9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Bpowell\",\"url\":\"https://www.bpowell.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7afd842e-44d4-4f01-9ef5-683c31d820c9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a665094f-7975-42c8-8555-16d4e4b81c50.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a665094f-7975-42c8-8555-16d4e4b81c50.jpg\",\"caption\":\"Screenshot of Bpowell\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a665094f-7975-42c8-8555-16d4e4b81c50.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Bpowell design system\",\"Bpowell website design\",\"Bpowell colors\",\"Bpowell typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Plaster White\",\"Carbon\",\"Ink Black\",\"Graphite\",\"Teg\",\"Beatrice Display\",\"Beatrice\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Bpowell design system\"},{\"@type\":\"Thing\",\"name\":\"Bpowell website design\"},{\"@type\":\"Thing\",\"name\":\"Bpowell colors\"},{\"@type\":\"Thing\",\"name\":\"Bpowell typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:39:54.380Z\",\"dateModified\":\"2026-04-30T01:39:54.380Z\"}]}19:T6c3,## Quick Color Reference\n- background (light): #ffffff\n- background (dark): #111111\n- text (on light): #111111\n- text (on dark): #ffffff\n- border: #2b2b2b\n- accent: none (monochrome system)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Distributed top nav**: Full-width horizontal row at the top of the page, 40px padding from the viewport edges. Four text items pushed to the far edges with space-between justification. Items use Diatype 500 at 26px, color #111111. The leftmost item (owner name) is weight 700; the remaining three items are weight 500.\n\n2. **Section label**: Small wide-tracked marker text reading 'Design' or 'Film'. Set in New Grotesk 600, ~12-14px, letter-spacing 0.069em, color #111111 on a white background. Sits 40-56px above the first project name in the list below it.\n\n3. **Oversized project name**: Text block pinned to the left margin, font Teg 500, 86px, line-height 1.04, letter-spacing -0.033em, color #111111. No underline, no hover state, no surrounding card — the name sits directly on the white canvas with zero decoration.\n\n4. **Full-bleed dark section**: A section that fills the entire viewport width with background #111111. Internal padding is 104px top and bottom, 40px left. All text within inverts to #ffffff. The section contains the same label-plus-list structure as the light sections, with no visual transition or divider from the preceding white section.\n\n5. **Project list stack**: A vertical column of project names in alternating sizes — some at 86px in Teg 500/600, others at 58px in Beatricedisplay 500/600. Each name is on its own line with 0-4px vertical gap between lines so the names nearly touch, reading as a continuous typographic wall."
+}

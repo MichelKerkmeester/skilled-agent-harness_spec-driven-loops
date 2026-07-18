@@ -1,0 +1,524 @@
+{
+  "color": {
+    "midnight-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Midnight Ink — Primary text, filled CTA buttons, icon fills, card borders — black on white is the entire contrast system; no blue or colored accent dilutes it"
+    },
+    "pure-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure Canvas — Page background, card surfaces, button text on dark backgrounds, nav surfaces"
+    },
+    "graphite": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Graphite — Secondary body text, footer links, supporting labels"
+    },
+    "slate": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Slate — Tertiary body copy, descriptive paragraphs, helper text in feature sections"
+    },
+    "ash": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Ash — Muted captions, attribution text, ratings sub-labels"
+    },
+    "fog": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Fog — Footer section headings, disabled labels"
+    },
+    "silver": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Silver — Hairline borders, disabled button backgrounds"
+    },
+    "warm-sand": {
+      "$value": "#d9c58b",
+      "$type": "color",
+      "$description": "Warm Sand — Active nav item highlight text — the single warm accent in an otherwise achromatic nav bar"
+    },
+    "party-pink": {
+      "$value": "#f8c4ff",
+      "$type": "color",
+      "$description": "Party Pink — Hero gradient start — soft pink-violet wash over photography"
+    },
+    "sky-periwinkle": {
+      "$value": "#96c4ff",
+      "$type": "color",
+      "$description": "Sky Periwinkle — Section gradient accent — soft blue tint fading to white for feature-section backgrounds"
+    },
+    "spearmint": {
+      "$value": "#85dadc",
+      "$type": "color",
+      "$description": "Spearmint — Decorative surface gradient — teal-to-pale wash used in invitation card previews"
+    },
+    "midnight-blue": {
+      "$value": "#001666",
+      "$type": "color",
+      "$description": "Midnight Blue — Deep brand accent in invitation templates and decorative event card designs"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "partiful-display-medium": {
+      "$value": "Partiful Display Medium",
+      "$type": "fontFamily",
+      "$description": "Hero headlines and section display titles only — this custom face is the brand's signature; its slightly rounded geometric letterforms at weight 500 read as celebratory without being childish. Used exclusively for the largest type on any screen."
+    },
+    "twk-lausanne-pan": {
+      "$value": "TWK Lausanne Pan",
+      "$type": "fontFamily",
+      "$description": "Everything else: nav links, body copy, card labels, buttons, captions, and the massive 112px decorative numeral at weight 825. The variable weight axis means the entire type system runs through one family — 400 for prose, 550-650 for UI emphasis, 700 for section headings, 825 only for oversized display numerals. The tight -0.04em tracking at bold weights and -0.02em at regular weights gives text a snug, editorial density uncommon in event apps."
+    },
+    "sfnsdisplay-sfnstext": {
+      "$value": ".SFNSDisplay / .SFNSText",
+      "$type": "fontFamily",
+      "$description": "System UI fallback appearing in app-like micro-UI contexts (notification previews, in-app RSVP widget). Renders as San Francisco on Apple devices — not a brand choice but a functional system font for OS-native feeling components."
+    },
+    "twk-lausanne-pan-550": {
+      "$value": "TWK Lausanne Pan 550",
+      "$type": "fontFamily",
+      "$description": "TWK Lausanne Pan 550 — detected in extracted data but not described by AI"
+    },
+    "twk-lausanne-pan-400": {
+      "$value": "TWK Lausanne Pan 400",
+      "$type": "fontFamily",
+      "$description": "TWK Lausanne Pan 400 — detected in extracted data but not described by AI"
+    },
+    "twk-lausanne-pan-700": {
+      "$value": "TWK Lausanne Pan 700",
+      "$type": "fontFamily",
+      "$description": "TWK Lausanne Pan 700 — detected in extracted data but not described by AI"
+    },
+    "sfnstext": {
+      "$value": ".SFNSText",
+      "$type": "fontFamily",
+      "$description": ".SFNSText — detected in extracted data but not described by AI"
+    },
+    "sfnsdisplay-semibold": {
+      "$value": ".SFNSDisplay-Semibold",
+      "$type": "fontFamily",
+      "$description": ".SFNSDisplay-Semibold — detected in extracted data but not described by AI"
+    },
+    "twk-lausanne-pan-600": {
+      "$value": "TWK Lausanne Pan 600",
+      "$type": "fontFamily",
+      "$description": "TWK Lausanne Pan 600 — detected in extracted data but not described by AI"
+    },
+    "twk-lausanne-pan-650": {
+      "$value": "TWK Lausanne Pan 650",
+      "$type": "fontFamily",
+      "$description": "TWK Lausanne Pan 650 — detected in extracted data but not described by AI"
+    },
+    "twk-lausanne-pan-500": {
+      "$value": "TWK Lausanne Pan 500",
+      "$type": "fontFamily",
+      "$description": "TWK Lausanne Pan 500 — detected in extracted data but not described by AI"
+    },
+    "twk-lausanne-pan-850": {
+      "$value": "TWK Lausanne Pan 850",
+      "$type": "fontFamily",
+      "$description": "TWK Lausanne Pan 850 — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": ".SFNSDisplay",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": ".SFNSText",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": ".SFNSDisplay-Semibold",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "TWK Lausanne Pan 700",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "TWK Lausanne Pan 700",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "TWK Lausanne Pan 600",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "TWK Lausanne Pan 400",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "TWK Lausanne Pan 500",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "TWK Lausanne Pan 550",
+        "fontSize": "16px",
+        "fontWeight": 550,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "TWK Lausanne Pan",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "TWK Lausanne Pan 700",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "TWK Lausanne Pan 400",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "TWK Lausanne Pan 550",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "TWK Lausanne Pan 650",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "TWK Lausanne Pan 700",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "TWK Lausanne Pan 550",
+        "fontSize": "24px",
+        "fontWeight": 550,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Partiful Display Medium",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "TWK Lausanne Pan 700",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Partiful Display Medium",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Partiful Display Medium",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Partiful Display Medium",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "TWK Lausanne Pan 850",
+        "fontSize": "112px",
+        "fontWeight": 825,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 112px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "960px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 0px 6px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "lg": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 0px 20px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background for all feature and content sections"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: White card with shadow separation (rgba(0,0,0,0.1) 0px 0px 6px 0px) — floats above canvas via shadow, not color difference"
+    },
+    "gradient-wash": {
+      "$value": "#96c4ff",
+      "$type": "color",
+      "$description": "Surface level 2: Section backgrounds using periwinkle-to-white or pink-to-mauve gradients — the only non-white surface level, used for hero and alternating feature bands"
+    },
+    "overlay-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Dark overlay for hero photography — photography sections use black with gradient overlay and backdrop blur for legible white text"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://partiful.com",
+      "siteName": "Partiful",
+      "extractedAt": "2026-04-29T23:17:09.758Z",
+      "variant": "extended"
+    }
+  }
+}

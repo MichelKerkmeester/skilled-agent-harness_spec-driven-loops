@@ -1,0 +1,334 @@
+{
+  "color": {
+    "spotify-green": {
+      "$value": "#1ed760",
+      "$type": "color",
+      "$description": "Spotify Green — Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "signal-red": {
+      "$value": "#b85850",
+      "$type": "color",
+      "$description": "Signal Red — Red supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    },
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void Black — Page canvas, top nav background, deepest surface layer"
+    },
+    "carbon": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Carbon — Card surfaces, sidebar panels, secondary surface layer above canvas"
+    },
+    "graphite": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Graphite — Elevated surface — hover states, input fields, selected nav items"
+    },
+    "smoke": {
+      "$value": "#292929",
+      "$type": "color",
+      "$description": "Smoke — Active navigation background, subtle highlight wash"
+    },
+    "iron": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Iron — Input borders, subtle dividers between surface layers"
+    },
+    "steel": {
+      "$value": "#535353",
+      "$type": "color",
+      "$description": "Steel — Muted UI elements, secondary borders"
+    },
+    "fog": {
+      "$value": "#73777c",
+      "$type": "color",
+      "$description": "Fog — Muted text, secondary icon fills, inactive nav icons"
+    },
+    "mist": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Mist — Secondary text, metadata, artist names, timestamps"
+    },
+    "bone": {
+      "$value": "#c5c5c5",
+      "$type": "color",
+      "$description": "Bone — Input placeholder text, subtle captions"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "promo-gradient": {
+      "$value": "#509bf5",
+      "$type": "color",
+      "$description": "Promo Gradient — Sign-up banner gradient endpoint — energetic blue anchor"
+    },
+    "magenta-glow": {
+      "$value": "#af2896",
+      "$type": "color",
+      "$description": "Magenta Glow — Promotional banner gradient start — vivid pink-to-blue sweep for marketing CTAs"
+    }
+  },
+  "font": {
+    "spotifymixui": {
+      "$value": "SpotifyMixUI",
+      "$type": "fontFamily",
+      "$description": "Body, navigation, buttons, metadata, small labels — compact and information-dense, designed to disappear so artwork dominates"
+    },
+    "spotifymixuititle": {
+      "$value": "SpotifyMixUITitle",
+      "$type": "fontFamily",
+      "$description": "Section headings ('Trending songs', 'Popular artists') — heavy bold weight at modest size keeps headlines assertive without overwhelming card grids"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "11px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "SpotifyMixUITitle",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "172": {
+      "$value": "172px",
+      "$type": "dimension",
+      "$description": "Spacing 172px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "500px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "lg": {
+      "$value": "rgba(0, 0, 0, 0.5) 0px 8px 24px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    },
+    "subtle": {
+      "$value": "rgb(18, 18, 18) 0px 1px 0px 0px, rgb(124, 124, 124) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Page background, top navigation bar"
+    },
+    "sidebar": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Surface level 2: Left library panel, main content wrapper"
+    },
+    "card": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Surface level 3: Individual content cards, input fields, elevated tiles"
+    },
+    "card-hover": {
+      "$value": "#292929",
+      "$type": "color",
+      "$description": "Surface level 4: Interactive card hover state"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://spotify.com",
+      "siteName": "Spotify",
+      "extractedAt": "2026-06-03T16:53:22.094Z",
+      "variant": "extended"
+    }
+  }
+}

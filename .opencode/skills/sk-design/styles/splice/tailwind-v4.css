@@ -1,0 +1,69 @@
+@theme {
+  /* Colors */
+  --color-signal-blue: #528fff;
+  --color-button-blue: #1253ff;
+  --color-voltage-yellow: #f1f607;
+  --color-carbon: #121214;
+  --color-obsidian: #000000;
+  --color-platinum: #ffffff;
+  --color-graphite: #232426;
+  --color-fog: #a6a8ad;
+  --color-ash: #c8c9cc;
+  --color-slate: #63656d;
+  --color-iron: #45464d;
+
+  /* Typography */
+  --font-intervariable-custom: 'InterVariable (custom)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-soehnebreit-custom: 'SoehneBreit (custom)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-soehne-custom: 'Soehne (custom)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --tracking-caption: -0.18px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --tracking-body-sm: -0.21px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: -0.24px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.25;
+  --tracking-subheading: -0.3px;
+  --text-heading-sm: 28px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.42px;
+  --text-heading: 36px;
+  --leading-heading: 1.25;
+  --tracking-heading: -0.54px;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.25;
+  --tracking-heading-lg: -0.72px;
+  --text-display: 54px;
+  --leading-display: 1.25;
+  --tracking-display: -0.81px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-2xl: 16px;
+  --radius-full: 60px;
+  --radius-full-2: 100px;
+  --radius-full-3: 128px;
+  --radius-full-4: 180px;
+  --radius-full-5: 1440px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(0, 0, 0, 0.07) 0px 0px 0px 1px inset;
+}

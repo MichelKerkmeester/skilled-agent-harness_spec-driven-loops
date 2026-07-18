@@ -1,0 +1,382 @@
+{
+  "color": {
+    "liquid-abyss": {
+      "$value": "#012624",
+      "$type": "color",
+      "$description": "Liquid Abyss — Primary canvas — page background, header, hero, and the dominant dark-teal field. Establishes the deep-water atmosphere"
+    },
+    "liquid-deep": {
+      "$value": "#011d1c",
+      "$type": "color",
+      "$description": "Liquid Deep — Recessed surface level — footer background and deeper card panels. Reads as a half-step darker than the canvas, creating a subtle depth gradient downward"
+    },
+    "liquid-kelp": {
+      "$value": "#003734",
+      "$type": "color",
+      "$description": "Liquid Kelp — Raised card surface and primary button fill — the lifted surface that sits one step above the abyss. Used for feature cards, content panels, and the gradient button's origin point"
+    },
+    "liquid-mist": {
+      "$value": "#edfffe",
+      "$type": "color",
+      "$description": "Liquid Mist — Cool-tinted off-white for emphasized body text, section labels, and warm-light typographic moments. Carries a barely-perceptible cyan whisper that ties body text to the teal atmosphere"
+    },
+    "platinum": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Platinum — Pure white for headings, nav items, icon strokes, and high-contrast text. The dominant text color across all heading levels and the primary nav"
+    },
+    "silver-mist": {
+      "$value": "#bbc7c6",
+      "$type": "color",
+      "$description": "Silver Mist — Secondary body text, muted descriptions, and link color in resting state. Carries a faint green undertone that harmonizes with the teal canvas"
+    },
+    "ash": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Ash — Tertiary text for pull-quotes and testimonial copy. A neutral cool-gray fallback when Silver Mist's teal undertone is too colored"
+    },
+    "slate-deep": {
+      "$value": "#707777",
+      "$type": "color",
+      "$description": "Slate Deep — Subtle surface tint for inactive or low-emphasis backgrounds. Sits between canvas and card for very low-elevation differentiation"
+    },
+    "lavender-phosphor": {
+      "$value": "#fde9ff",
+      "$type": "color",
+      "$description": "Lavender Phosphor — Highlight color for large statistics, counter numbers, and emphasis figures. The pink end of the signature gradient — used sparingly as luminous punctuation on dark surfaces"
+    },
+    "bioluminescent-gradient": {
+      "$value": "#00827c",
+      "$type": "color",
+      "$description": "Bioluminescent Gradient — Signature button and UI gradient — linear sweep from teal-cyan through pale aqua into lavender-pink. The brand's signature chromatic gesture"
+    },
+    "aurora-gradient": {
+      "$value": "#cbfffc",
+      "$type": "color",
+      "$description": "Aurora Gradient — Supporting palette color for small decorative accents when the core palette needs contrast."
+    }
+  },
+  "font": {
+    "matter": {
+      "$value": "Matter",
+      "$type": "fontFamily",
+      "$description": "Primary display and body face — used at weight 500 for all headings (H1–H3) and oversized kinetic text (86–295px). Weight 400 for body and UI copy. Characterized by aggressive negative tracking on large sizes (-0.04em at 61px, -0.046em at 86px) and wide positive tracking on uppercase labels (0.08em at 20px, 0.12em at 12px, 0.15em at 10px). The medium-weight-only heading strategy is distinctive — no bold, no light — giving the type a uniform mechanical confidence."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Secondary fallback for interactive UI elements (nav, buttons, hero micro-copy, footer). Only appears at 14px — used as a safe generic fallback where Matter isn't loaded, covering form labels, button text, and small utility copy."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "61px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 61px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "86px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 86px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "96px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 96px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "295px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 295px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "164": {
+      "$value": "164px",
+      "$type": "dimension",
+      "$description": "Spacing 164px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "liquid-abyss": {
+      "$value": "#012624",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the dominant background field. All content floats on this."
+    },
+    "liquid-deep": {
+      "$value": "#011d1c",
+      "$type": "color",
+      "$description": "Surface level 1: Recessed surface — footer and very deep panels that sink below the canvas."
+    },
+    "liquid-kelp": {
+      "$value": "#003734",
+      "$type": "color",
+      "$description": "Surface level 2: Raised card surface — content cards, feature panels, and the lifted UI layer."
+    },
+    "slate-deep": {
+      "$value": "#707777",
+      "$type": "color",
+      "$description": "Surface level 3: Low-emphasis surface tint for inactive states and subtle differentiation."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://auros.global",
+      "siteName": "Auros",
+      "extractedAt": "2026-07-03T03:04:41.961Z",
+      "variant": "extended"
+    }
+  }
+}

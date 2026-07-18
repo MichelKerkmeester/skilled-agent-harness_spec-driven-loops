@@ -1,0 +1,735 @@
+{
+  "source": "https://styles.refero.design/style/23d83a89-8f22-405a-aa33-74fd0ebde9d8",
+  "uuid": "23d83a89-8f22-405a-aa33-74fd0ebde9d8",
+  "name": "Brisbane Web Developer",
+  "northStar": "gallery wall in winter light. An achromatic, spacious portfolio on a warm bone-white canvas, with each project tile framed by soft brown-toned shadows and labeled in a whisper-thin display face.",
+  "capturedAt": "2026-07-18T08:19:30.008Z",
+  "meta": {
+    "url": "https://carlbeaverson.com",
+    "siteName": "Brisbane Web Developer",
+    "extractedAt": "2026-06-03T17:38:39.701Z",
+    "durationMs": 26129,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 897,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #f4f3f1 as the only background color for page, cards, and inputs — never introduce a pure white or pure gray",
+      "Use 5px border-radius uniformly for buttons, inputs, cards, and tiles — do not mix in larger radii",
+      "Use the warm brown shadow stack (rgba(90,50,40,0.15) + rgba(80,40,30,0.1)) only beneath artwork and imagery — never on text blocks or nav",
+      "Use 20px for element gaps and 122px for section gaps to maintain the spacious gallery rhythm",
+      "Use Suisse Works (or a serif substitute) at 13px with -0.038em tracking for editorial section labels — never larger than 13px",
+      "Use #aaaaaa for all borders, dividers, and attribution text — let hierarchy come from spacing, not weight",
+      "Keep the palette to the six neutral tokens — no brand color, no semantic hue, no accent"
+    ],
+    "donts": [
+      "Do not introduce any chromatic color — no blues, greens, reds, or purples anywhere in the system",
+      "Do not use cool gray shadows — the shadow tone must stay warm (brown undertone) or be omitted entirely",
+      "Do not set Suisse Works above 13px — it is a caption face, not a heading face",
+      "Do not use card padding around project artwork — the image must fill the tile to the edges",
+      "Do not use borders to separate cards from the canvas — rely on shadow and the #f4f3f1 surface tone instead",
+      "Do not use bold weights — the system is 400 across the board, hierarchy comes from size and color only",
+      "Do not use uppercase, letter-spacing on body text, or decorative type treatments — restraint is the identity"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f4f3f1",
+        "name": "Bone Canvas",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Ink",
+        "role": "Primary headings, button text, input text, high-contrast labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4d4d4d",
+        "name": "Graphite",
+        "role": "Body text, paragraph copy, longer-form descriptions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Slate",
+        "role": "Muted secondary text, tertiary metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#aaaaaa",
+        "name": "Ash",
+        "role": "Subtle borders, dividers, light secondary text, project attribution labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dddddd",
+        "name": "Mist",
+        "role": "Card surface lift from canvas, subtle background variation",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width container — content stretches to viewport edges. Top bar is minimal: circular monogram left, two text links right. Hero is a centered single-paragraph block, vertically positioned in the upper third. Below the hero is a large section gap (122px), then a tiny section label left-aligned, followed by a 3-column project grid with 20px row gap and ~65px column gap. Project tiles are roughly 33% viewport width each, with artwork filling the tile and metadata in a single line below (title left, designer credit right). The grid is the dominant page pattern — repetitive, rhythmic, gallery-like. Navigation does not persist as a heavy bar; it sits featherlight at the top with no background fill.",
+    "imagery": "Photography and product screenshots are the visual content. Project tiles display high-quality web/photography artwork (sunsets, editorial portraits, aerial drone shots, brand identity spreads) presented as flat rectangular images with 5px corners. No illustrations, no abstract graphics, no icons in the UI. The logo monogram is the only graphic mark. Artwork is presented as-is — no duotones, no overlays, no color grading treatment. Images occupy roughly 40% of total visual space, balanced by generous negative space and large gutters.",
+    "similar": [
+      {
+        "why": "Same achromatic-only portfolio approach with large white space, tiny gray labels, and project grid as the primary layout",
+        "business": "Studio Snny"
+      },
+      {
+        "why": "Extreme minimal monochrome portfolio on warm off-white canvas with hairline navigation and generous gutters",
+        "business": "Rauno Freiberg"
+      },
+      {
+        "why": "Austere light-mode personal site with bone-white background, no brand color, and grid-based project presentation",
+        "business": "Tobias van Schneider"
+      },
+      {
+        "why": "Editorial agency portfolio using generous spacing, tiny serif labels, and project tiles with subtle warm shadows",
+        "business": "Manual Studio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "5px",
+        "tiles": "5px",
+        "inputs": "5px",
+        "buttons": "5px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "122px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f4f3f1",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Base page background — warm bone-white"
+      },
+      {
+        "hex": "#dddddd",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Slightly lifted surface for project tile containers"
+      },
+      {
+        "hex": "#f4f3f1",
+        "name": "Elevated Tile",
+        "level": 2,
+        "purpose": "Project artwork sits on canvas-tinted surface, separated by warm brown shadow"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 5px 15px rgba(90, 50, 40, 0.15), 0 4px 8px rgba(80, 40, 30, 0.1)",
+        "element": "Project tile artwork"
+      }
+    ],
+    "northStar": "gallery wall in winter light. An achromatic, spacious portfolio on a warm bone-white canvas, with each project tile framed by soft brown-toned shadows and labeled in a whisper-thin display face.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.49
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Project Tile Card",
+        "role": "Primary content unit — displays one portfolio project",
+        "description": "Container with no visible border, 5px radius. Background matches canvas. Contains centered project artwork (no padding around image — image fills tile). Warm brown shadow stack below artwork. Project title in 14px system sans, #333333, left-aligned below tile. 'Design by [studio]' in 14px system sans, #aaaaaa, right-aligned on same line."
+      },
+      {
+        "name": "Project Grid",
+        "role": "Three-column responsive grid of project tiles",
+        "description": "3 columns, 20px row gap, ~65px column gap. Tiles are roughly equal width. Grid breathes with 122px top margin from the section header."
+      },
+      {
+        "name": "Section Header Label",
+        "role": "Editorial section marker",
+        "description": "13px Suisse Works Trial, #aaaaaa, letter-spacing -0.038em. Left-aligned. Acts as a typographic signature moment — the only place the serif face appears."
+      },
+      {
+        "name": "Hero Description Block",
+        "role": "Centered introductory paragraph at top of page",
+        "description": "20px system sans, #4d4d4d, centered, max-width constrained to roughly 600px. Line-height 1.2. No eyebrow, no headline — the paragraph is the hero."
+      },
+      {
+        "name": "Minimal Top Navigation",
+        "role": "Persistent header",
+        "description": "Logo (circular 'C' monogram) left, nav links right. No background fill — sits directly on canvas. Links in 14px system sans, #aaaaaa, normal tracking."
+      },
+      {
+        "name": "Nav Link",
+        "role": "Text-only navigation item",
+        "description": "14px system sans, #aaaaaa. No underline, no hover background. No visible active state — presence is implied by position."
+      },
+      {
+        "name": "Ghost Button",
+        "role": "Inline action trigger (implied by button color evidence)",
+        "description": "5px radius, #f4f3f1 background or transparent, 1px border in #333333 or #4d4d4d. 14–15px system sans text in #333333. No fill, no shadow — pure outline."
+      },
+      {
+        "name": "Image Container",
+        "role": "Artwork presentation within a project tile",
+        "description": "No padding, image fills the tile edge-to-edge. The warm brown shadow lifts it off the canvas. 5px radius corners on the tile and on the image."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body copy, navigation, buttons, inputs, hero description, project labels — the workhorse face. 14px for inline meta, 15px for inputs/buttons, 20px for hero paragraph and project titles.",
+        "sizes": "14px, 15px, 20px",
+        "family": "system-ui, -apple-system, sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2–1.5",
+        "substitute": "Inter, Helvetica Neue, Arial"
+      },
+      {
+        "role": "Reserved exclusively for the '60 Selected Projects' section label. A serif display face set at 13px with tightened tracking — an anti-type-scale choice that makes a heading read as an editorial caption. This font carries the only typographic personality in the system.",
+        "sizes": "13px",
+        "family": "Suisse Works Trial",
+        "weight": "400",
+        "lineHeight": "1.5",
+        "substitute": "GT Sectra, Tiempos Text, Source Serif Pro",
+        "letterSpacing": "-0.038em"
+      }
+    ],
+    "description": "Carl Beaverson's portfolio operates on radical restraint: a warm off-white canvas, exclusively neutral tones, and a single accent typeface (Suisse Works) reserved for the smallest typographic moments. The entire system is achromatic — no brand color, no chromatic accent, no semantic hues. Hierarchy is built through scale jumps, tracking, and generous negative space rather than color or weight. Components float on warm-tinted brown shadows that subtly warm an otherwise cold minimalist grid. The reading order is content-first: three-up project tiles, tiny attribution text, and large section gutters that let each piece breathe independently.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/23d83a89-8f22-405a-aa33-74fd0ebde9d8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Brisbane Web Developer design system\",\"item\":\"https://styles.refero.design/style/23d83a89-8f22-405a-aa33-74fd0ebde9d8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/23d83a89-8f22-405a-aa33-74fd0ebde9d8#style-reference\",\"name\":\"Brisbane Web Developer design system reference\",\"headline\":\"Brisbane Web Developer design system | Refero Styles\",\"description\":\"Explore Brisbane Web Developer's light Agency design system: Bone Canvas #f4f3f1, Ink #333333 colors, system-ui, -apple-system, sans-serif, Suisse Works...\",\"url\":\"https://styles.refero.design/style/23d83a89-8f22-405a-aa33-74fd0ebde9d8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/23d83a89-8f22-405a-aa33-74fd0ebde9d8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Brisbane Web Developer\",\"url\":\"https://carlbeaverson.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/23d83a89-8f22-405a-aa33-74fd0ebde9d8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/67e6884e-f912-45d1-98f4-613d94102af6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/67e6884e-f912-45d1-98f4-613d94102af6.jpg\",\"caption\":\"Screenshot of Brisbane Web Developer\"},\"image\":\"https://images.refero.design/styles/refero.design/image/67e6884e-f912-45d1-98f4-613d94102af6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Brisbane Web Developer design system\",\"Brisbane Web Developer website design\",\"Brisbane Web Developer colors\",\"Brisbane Web Developer typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone Canvas\",\"Ink\",\"Graphite\",\"Slate\",\"system-ui, -apple-system, sans-serif\",\"Suisse Works Trial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Brisbane Web Developer design system\"},{\"@type\":\"Thing\",\"name\":\"Brisbane Web Developer website design\"},{\"@type\":\"Thing\",\"name\":\"Brisbane Web Developer colors\"},{\"@type\":\"Thing\",\"name\":\"Brisbane Web Developer typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-03-10T12:53:45.000Z\",\"dateModified\":\"2026-03-10T12:53:45.000Z\"}]}19:T4d2,QUICK COLOR REFERENCE\n- text: #333333 (primary), #4d4d4d (body), #aaaaaa (muted/borders)\n- background: #f4f3f1 (canvas), #dddddd (card lift)\n- border: #aaaaaa\n- shadow: rgba(90, 50, 40, 0.15) + rgba(80, 40, 30, 0.1) — warm brown only\n- primary action: no distinct CTA color\n\nEXAMPLE COMPONENT PROMPTS\n1. Project Tile: full-bleed image, 5px radius corners, warm brown shadow stack (0 5px 15px rgba(90,50,40,0.15), 0 4px 8px rgba(80,40,30,0.1)). Below image: 14px system sans, project title left in #333333, 'Design by [name]' right in #aaaaaa, on one line. 20px gap to next row.\n\n2. Section Header: 13px Suisse Works Trial (or Source Serif Pro substitute), #aaaaaa, letter-spacing -0.038em, left-aligned. Sits 122px above its content block.\n\n3. Hero Description: 20px system sans, #4d4d4d, centered, line-height 1.2, max-width ~600px. No headline above, no button below — just the paragraph.\n\n4. Ghost Button: 5px radius, 1px border #333333, transparent fill, 14px system sans text #333333, 10px vertical / 15px horizontal padding. No shadow, no fill state.\n\n5. Minimal Nav Bar: logo monogram (16px circle outline) left, two 14px system sans text links right in #aaaaaa. No background, no border, no shadow. Sits on #f4f3f1 canvas."
+      },
+      {
+        "title": "Achromatic Discipline",
+        "content": "This system deliberately excludes all chromatic color. The 0% colorfulness is not a limitation — it is the identity. Every interface decision is resolved through neutrals, spacing, and one serif accent. Any addition of brand color, accent hue, or semantic color (green for success, red for error) would break the system's coherence. The warm brown shadow is the only place the palette permits chromatic warmth, and even that is sub-15% opacity, readable as warmth rather than color."
+      }
+    ],
+    "elevationPhilosophy": "Shadows are warm — built from brown (rgba 90,50,40) rather than cool gray. This is the one place the design system allows color to creep in: a subtle amber undertone that makes the off-white canvas feel lived-in rather than clinical. Elevation is used sparingly and only beneath artwork tiles; the rest of the interface stays flat and borderless."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#aaaaaa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7380186709485949
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image",
+            "footer"
+          ],
+          "frequency": 4427,
+          "confidence": 1,
+          "prominence": 190414816.51031005,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f4f3f1",
+          "oklch": {
+            "c": 0.0028708662587219086,
+            "h": 84.55897521567223,
+            "l": 0.9643612929067119
+          },
+          "contexts": [
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 92,
+          "confidence": 1,
+          "prominence": 1471310.732499307,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636325
+          },
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 317626.48514451965,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4d4d4d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.41838944017064794
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 62269.76913547135,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 12000,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dddddd",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8975468705785317
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 916.1083254168282,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00015702530041403524,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 11.39,
+          "background": "#f4f3f1",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.3,
+          "background": "#dddddd",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.62,
+          "background": "#f4f3f1",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.22,
+          "background": "#dddddd",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.44,
+          "background": "#aaaaaa",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.18,
+          "background": "#f4f3f1",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.64,
+          "background": "#aaaaaa",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.09,
+          "background": "#f4f3f1",
+          "foreground": "#aaaaaa"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 5,
+          "contexts": [
+            "input",
+            "button",
+            "other"
+          ],
+          "frequency": 127
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(90, 50, 40, 0.15) 0px 5px 15px 0px, rgba(80, 40, 30, 0.1) 0px 4px 8px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 60
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 220,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 19,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 38,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 55,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 65,
+          "contexts": [],
+          "frequency": 70,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 98,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 122,
+          "contexts": [],
+          "frequency": 71,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 127,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 136,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 141,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 161,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 163,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 164,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 172,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 190,
+          "contexts": [],
+          "frequency": 60,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 191,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 896,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Suisse Works Trial",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Suisse Works Trial",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.038,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image",
+            "footer"
+          ],
+          "frequency": 883,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/11e0edf2-0936-44bd-91c2-80fbff5b6758.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/67e6884e-f912-45d1-98f4-613d94102af6.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/23d83a89-8f22-405a-aa33-74fd0ebde9d8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Brisbane Web Developer design system\",\"item\":\"https://styles.refero.design/style/23d83a89-8f22-405a-aa33-74fd0ebde9d8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/23d83a89-8f22-405a-aa33-74fd0ebde9d8#style-reference\",\"name\":\"Brisbane Web Developer design system reference\",\"headline\":\"Brisbane Web Developer design system | Refero Styles\",\"description\":\"Explore Brisbane Web Developer's light Agency design system: Bone Canvas #f4f3f1, Ink #333333 colors, system-ui, -apple-system, sans-serif, Suisse Works...\",\"url\":\"https://styles.refero.design/style/23d83a89-8f22-405a-aa33-74fd0ebde9d8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/23d83a89-8f22-405a-aa33-74fd0ebde9d8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Brisbane Web Developer\",\"url\":\"https://carlbeaverson.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/23d83a89-8f22-405a-aa33-74fd0ebde9d8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/67e6884e-f912-45d1-98f4-613d94102af6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/67e6884e-f912-45d1-98f4-613d94102af6.jpg\",\"caption\":\"Screenshot of Brisbane Web Developer\"},\"image\":\"https://images.refero.design/styles/refero.design/image/67e6884e-f912-45d1-98f4-613d94102af6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Brisbane Web Developer design system\",\"Brisbane Web Developer website design\",\"Brisbane Web Developer colors\",\"Brisbane Web Developer typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone Canvas\",\"Ink\",\"Graphite\",\"Slate\",\"system-ui, -apple-system, sans-serif\",\"Suisse Works Trial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Brisbane Web Developer design system\"},{\"@type\":\"Thing\",\"name\":\"Brisbane Web Developer website design\"},{\"@type\":\"Thing\",\"name\":\"Brisbane Web Developer colors\"},{\"@type\":\"Thing\",\"name\":\"Brisbane Web Developer typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-03-10T12:53:45.000Z\",\"dateModified\":\"2026-03-10T12:53:45.000Z\"}]}19:T4d2,QUICK COLOR REFERENCE\n- text: #333333 (primary), #4d4d4d (body), #aaaaaa (muted/borders)\n- background: #f4f3f1 (canvas), #dddddd (card lift)\n- border: #aaaaaa\n- shadow: rgba(90, 50, 40, 0.15) + rgba(80, 40, 30, 0.1) — warm brown only\n- primary action: no distinct CTA color\n\nEXAMPLE COMPONENT PROMPTS\n1. Project Tile: full-bleed image, 5px radius corners, warm brown shadow stack (0 5px 15px rgba(90,50,40,0.15), 0 4px 8px rgba(80,40,30,0.1)). Below image: 14px system sans, project title left in #333333, 'Design by [name]' right in #aaaaaa, on one line. 20px gap to next row.\n\n2. Section Header: 13px Suisse Works Trial (or Source Serif Pro substitute), #aaaaaa, letter-spacing -0.038em, left-aligned. Sits 122px above its content block.\n\n3. Hero Description: 20px system sans, #4d4d4d, centered, line-height 1.2, max-width ~600px. No headline above, no button below — just the paragraph.\n\n4. Ghost Button: 5px radius, 1px border #333333, transparent fill, 14px system sans text #333333, 10px vertical / 15px horizontal padding. No shadow, no fill state.\n\n5. Minimal Nav Bar: logo monogram (16px circle outline) left, two 14px system sans text links right in #aaaaaa. No background, no border, no shadow. Sits on #f4f3f1 canvas."
+}

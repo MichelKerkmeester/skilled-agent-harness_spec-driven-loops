@@ -1,0 +1,1472 @@
+{
+  "source": "https://styles.refero.design/style/ff4b9eff-dc0b-4886-bd65-c2f5e9069318",
+  "uuid": "ff4b9eff-dc0b-4886-bd65-c2f5e9069318",
+  "name": "Henry",
+  "northStar": "Gothic broadside poster on warm cream paper. One hundred percent monochrome, no chromatic accent, all visual intensity carried by display type and full-bleed paper-to-ink inversions.",
+  "capturedAt": "2026-07-18T08:10:19.424Z",
+  "meta": {
+    "url": "https://henry.codes",
+    "siteName": "Henry",
+    "extractedAt": "2026-06-03T18:12:39.112Z",
+    "durationMs": 31780,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 555,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Louize Display at 77px+ for any section-defining headline; below that, the editorial feel collapses into generic web type",
+      "Set body and UI type in Neue Montreal at 12/16/20/24/32px with -0.01em letter-spacing — never let body text breathe wider than 1.5 line-height",
+      "Alternate Paper (#fafafa) and Ink (#2a2722) sections as full-bleed bands; never gradient-blend between them, never place a card that crosses the boundary",
+      "Use 12px as the only border-radius across cards, buttons, and tags — no square corners, no pill shapes (no 9999px)",
+      "Carry all display typography in #2a2722 on Paper or #fafafa on Ink — no third surface color, no shadowed cards, no tinted panels",
+      "Use Manuka only for the largest section mastheads (226–371px) and always in one weight, one case, one color — the type does the work alone",
+      "Let 90% of any page be empty Paper or Ink; dense regions are limited to the brand ticker and the bottom-byline"
+    ],
+    "donts": [
+      "Never introduce a chromatic accent color — the system is one-hundred-percent warm monochrome, and any blue/red/green breaks the broadside identity",
+      "Never use a filled colored CTA button — the role evidence shows zero action backgrounds; emphasis comes from scale and inversion, not fill",
+      "Never apply box-shadow, drop-shadow, or glow — there are no detected shadows and adding them turns the editorial print feel into generic SaaS card UI",
+      "Never set body copy in Louize Display at 116–132px; the display serif is for headlines only and becomes illegible below 32px on long passages",
+      "Never use a border-radius other than 12px; no sharp 0px, no pills, no asymmetric rounding",
+      "Never break the Paper/Ink binary with a gray panel, a muted surface, or a tinted hero gradient — those don't exist in the token set",
+      "Never center-align body copy in Neue Montreal; only Louize Display/Louize editorial blocks use center alignment, and only inside Ink sections"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#fafafa",
+        "name": "Paper",
+        "role": "Page background, card surfaces, inverted-section type — the cream-white ground that all dark type sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Hairline",
+        "role": "Card and tile borders — only visible against Paper",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9f9f9f",
+        "name": "Midstone",
+        "role": "Nav borders, muted borders, light decorative borders on dark sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Ash",
+        "role": "Secondary borders, muted UI text, low-emphasis dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Pebble",
+        "role": "Inactive nav text and borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3e3b36",
+        "name": "Sepia",
+        "role": "Strong borders, secondary heading text — the warm-brown near-black that flanks Headline Ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2a2722",
+        "name": "Headline Ink",
+        "role": "Primary text, body ink, dominant borders, nav rules — warm near-black that carries every word on the page",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Layout is full-bleed editorial — no max-width container, no sidebar, no card grid in the traditional sense. The page stacks as a sequence of horizontally-bleed sections that alternate Paper and Ink bands. The hero is a split composition: oversized Louize Display headline occupies the left two-thirds with no padding constraint, and a square halftone illustration block anchors the right third. Subsequent sections are centered single-column editorial blocks (the inverted letter) or horizontally-tickered marquee bands. Navigation is a minimal top-left list of uppercase items with no background bar. The page model is zine/broadsheet, not SaaS dashboard: vertical rhythm is loose (64–96px between sections) but each section is internally dense with type. No grids of feature cards, no pricing tables, no comparison blocks — content is delivered as long-form editorial prose and a single works ticker.",
+    "imagery": "Imagery is treated as monochrome halftone illustration only — no photography, no product screenshots, no gradients, no color images. The hero uses a square right-side plate showing a black butterfly/moth creature in halftone dots against the cream paper. All imagery is high-contrast black-on-white or white-on-black, sharp square corners, no rounded masks, no overlap with type. Illustrations function as typographic counterweights inside a paper/ink composition rather than as standalone visuals. Iconography is absent from the interface — no system icons, no nav icons, no UI pictograms. Social proof and client logos are rendered as Louize Display wordmarks inside a dark ticker band rather than as image files.",
+    "similar": [
+      {
+        "why": "Same editorial-broadsheet approach: display serif headlines, paper-white canvas, zero chromatic accent, type as the only visual asset",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same condensed display sans (Druk/Manuka-family) stamped at near-architectural scale for section mastheads, same warm-paper monochrome palette",
+        "business": "Manual (manualcreative.com)"
+      },
+      {
+        "why": "Same oversized display-serif hero with italic inline subhead treatment, same full-bleed alternating light/dark editorial bands",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Same print-magazine metaphor: cream paper, warm near-black ink, serif display for headlines, no shadows, one radius (12px), zero color accent",
+        "business": "Cereal magazine"
+      },
+      {
+        "why": "Same brutalist personal-portfolio instinct: type-only hero, monochrome palette, no CTAs, no product art, the design IS the work",
+        "business": "Rauno Freiberg"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "12px",
+        "cards": "12px",
+        "buttons": "12px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64-96px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#fafafa",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Page canvas — cream-white ground"
+      },
+      {
+        "hex": "#2a2722",
+        "name": "Ink",
+        "level": 2,
+        "purpose": "Full-bleed dark sections where cream serif type is set inverted"
+      }
+    ],
+    "northStar": "Gothic broadside poster on warm cream paper. One hundred percent monochrome, no chromatic accent, all visual intensity carried by display type and full-bleed paper-to-ink inversions.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.12
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "heading-lg",
+        "size": 77,
+        "lineHeight": 0.9,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 132,
+        "lineHeight": 0.8,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display-xl",
+        "size": 371,
+        "lineHeight": 0.75,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Masthead Display Headline",
+        "role": "Hero and section-defining typography",
+        "description": "Louize Display at 116–132px, weight 400, line-height 0.8, color #2a2722 on Paper or #fafafa on Ink. Sometimes intersected with an italic Louize Display phrase at half size set inside the same baseline (e.g. 'of the' italic at 35px set within 'TRUE TERRORS / NEW DARK WEB' at 132px). No tracking, no all-caps, relies on the serif contrast for presence."
+      },
+      {
+        "name": "Stamped Display Section Header",
+        "role": "Full-bleed section titles on dark inverted bands",
+        "description": "Manuka at 226–371px, weight 400, line-height 0.75, uppercase, color #fafafa on #2a2722. Stretches edge-to-edge with a trailing em-dash or rule. Single-weight, single-color — the slab of condensed type is the entire section identity."
+      },
+      {
+        "name": "Top Ticker Banner",
+        "role": "Full-bleed announcement strip above the masthead",
+        "description": "Neue Montreal 12px, weight 400, letter-spacing -0.12px, color #2a2722, set in uppercase on Paper. Optional horizontal hairline dividers in #2a2722 at 1px above and below. Padding 4–6px vertical, full-bleed."
+      },
+      {
+        "name": "Inverted Editorial Letter",
+        "role": "Centered prose block on a full-bleed dark section",
+        "description": "Background #2a2722, padding 48–64px vertical, full-bleed. Body text in Louize Display at 32px, weight 400, line-height 1.2, color #fafafa, text-align center. Optional small-caps eyebrow at top and bottom ('A BRIEF LETTER FROM THE EDITOR', 'A LETTER FROM THE WORK DESK') in Neue Montreal 12px, weight 400, letter-spacing -0.12px, color #fafafa, opacity 0.6."
+      },
+      {
+        "name": "Nav Link (Uppercase)",
+        "role": "Top-of-page navigation items",
+        "description": "Neue Montreal 12–16px, weight 700, uppercase, color #2a2722, letter-spacing -0.12px. No underline, no background. Active state shares the same color but is set in a larger size (16–20px) — emphasis comes from scale, not color or weight shift."
+      },
+      {
+        "name": "Section Divider Rule",
+        "role": "Horizontal separation between editorial sections",
+        "description": "1px solid #2a2722, full-bleed width, no margin. Used as a typographic break, never decorative."
+      },
+      {
+        "name": "Brand Ticker Strip",
+        "role": "Recurring brand names in a horizontally repeated marquee band",
+        "description": "Full-bleed dark band (#2a2722). Brand names in Louize Display at 24–32px, weight 400, color #fafafa, repeated horizontally with tight gap. Interleaved with a small 'COMING SOON' tag (Neue Montreal 12px, weight 400, uppercase, #fafafa, 12px radius, 4px 8px padding, 1px border #fafafa)."
+      },
+      {
+        "name": "Coming Soon Tag",
+        "role": "Status pill overlaid on a brand ticker entry",
+        "description": "Neue Montreal 12px, weight 400, uppercase, color #fafafa, 1px solid #fafafa border, 12px radius, padding 4px 8px. No background fill — outlined ghost variant only."
+      },
+      {
+        "name": "Coordinate Footer",
+        "role": "Small monospaced-feel footer line",
+        "description": "Neue Montreal 12px, weight 400, letter-spacing -0.12px, color #2a2722, single-line format '° 43°31'56\" N 104° 58' 0.94\" (DENVER, COLORADO) — 11:27 PM — ● 48°9 @ N 39°43'31'56\" W 104°58' 0.94\" (DENVER, COLOR...'. Uppercase with em-dash separators."
+      },
+      {
+        "name": "Hero Halftone Plate",
+        "role": "Right-side illustration block in the hero",
+        "description": "Full-height image area (~60% of hero width), no border-radius (square corners), monochrome halftone illustration in Headline Ink on Paper. Functions as typographic counterweight to the display headline — no caption, no label."
+      },
+      {
+        "name": "Footnotes / Meta Line",
+        "role": "Small all-caps caption beneath a major work",
+        "description": "Neue Montreal 12px, weight 400, uppercase, letter-spacing -0.12px, color #2a2722. Used for 'READ THE CASE STUDY ON GODCOMMON.COM'-style attribution lines."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI, body, nav, and small labels at 12–32px. Weight 400 for body, 700 for nav items and labels. -0.01em tracking is hairline-tight even at body sizes — the type is condensed, not airy",
+        "sizes": "12px, 16px, 20px, 24px, 32px",
+        "family": "Neue Montreal",
+        "weight": "400, 700",
+        "lineHeight": "1.00–1.50",
+        "substitute": "Inter, Söhne, General Sans",
+        "letterSpacing": "-0.01em across all sizes"
+      },
+      {
+        "role": "Editorial display serif for headlines, section titles, and the centered prose blocks in dark sections. The high-contrast, narrow-serif italics mixed with the roman create the broadside feel. 77px is the standard section hero, 116–132px is the marquee headline",
+        "sizes": "32px, 35px, 77px, 116px, 126px, 132px",
+        "family": "Louize Display",
+        "weight": "400",
+        "lineHeight": "0.80–1.20",
+        "substitute": "Fraunces, GT Sectra, Lyon Display"
+      },
+      {
+        "role": "Secondary serif for short editorial copy and link text alongside Louize Display",
+        "sizes": "16px, 20px, 24px",
+        "family": "Louize",
+        "weight": "400",
+        "lineHeight": "1.20–1.30",
+        "substitute": "Fraunces, GT Sectra",
+        "letterSpacing": "-0.0100em"
+      },
+      {
+        "role": "Ultra-condensed display sans stamped at near-architectural scale (226–371px) for section mastheads like SELECTED WORKS. 0.75 line-height locks the glyphs into a tight horizontal slab that spans edge-to-edge. Only ever used white-on-ink or ink-on-paper, always in one weight, always uppercase",
+        "sizes": "226px, 371px",
+        "family": "Manuka",
+        "weight": "400",
+        "lineHeight": "0.75–0.80",
+        "substitute": "Druk, Condor, Antonio"
+      }
+    ],
+    "description": "Henry Codes reads like an editorial broadside printed in warm ink: near-black headlines carved into cream paper, alternating with full-bleed dark sections where cream serif type glows. The palette is one-hundred-percent warm monochrome — no chromatic accent, no product color, no blue link — every visual move comes from scale, weight, and inversion. Type is the brand: a display serif (Louize) sets poetry and editorial prose, a condensed display sans (Manuka) stamps section headers at 200–370px, and a neo-grotesque (Neue Montreal) carries all UI at 12–24px. The spacing system is austere: 4–32px increments, one radius (12px), no shadows. Sections flip between paper and ink like a broadsheet newspaper, and most screens should be dominated by two or three enormous words rather than illustrated product art.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ff4b9eff-dc0b-4886-bd65-c2f5e9069318#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Henry design system\",\"item\":\"https://styles.refero.design/style/ff4b9eff-dc0b-4886-bd65-c2f5e9069318\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ff4b9eff-dc0b-4886-bd65-c2f5e9069318#style-reference\",\"name\":\"Henry design system reference\",\"headline\":\"Henry design system | Refero Styles\",\"description\":\"Explore Henry's mixed Agency design system: Paper #fafafa, Hairline #eeeeee colors, Neue Montreal, Louize Display typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ff4b9eff-dc0b-4886-bd65-c2f5e9069318\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ff4b9eff-dc0b-4886-bd65-c2f5e9069318\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Henry\",\"url\":\"https://henry.codes\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ff4b9eff-dc0b-4886-bd65-c2f5e9069318#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/09fa6263-e520-49b4-8c0c-640b3463a246.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/09fa6263-e520-49b4-8c0c-640b3463a246.jpg\",\"caption\":\"Screenshot of Henry\"},\"image\":\"https://images.refero.design/styles/refero.design/image/09fa6263-e520-49b4-8c0c-640b3463a246.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Henry design system\",\"Henry website design\",\"Henry colors\",\"Henry typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper\",\"Hairline\",\"Midstone\",\"Ash\",\"Neue Montreal\",\"Louize Display\",\"Louize\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Henry design system\"},{\"@type\":\"Thing\",\"name\":\"Henry website design\"},{\"@type\":\"Thing\",\"name\":\"Henry colors\"},{\"@type\":\"Thing\",\"name\":\"Henry typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:27:37.213Z\",\"dateModified\":\"2026-04-30T03:27:37.213Z\"}]}19:T6e8,Quick Color Reference:\n- text: #2a2722 (Headline Ink) on #fafafa (Paper)\n- background: #fafafa (Paper) for default, #2a2722 (Ink) for inverted sections\n- border: #2a2722 for strong rules, #9f9f9f for muted, #eeeeee for hairline on cards\n- accent: none (system is fully monochrome)\n- primary action: no distinct CTA color\n\n3-5 Example Component Prompts:\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n2. Create an inverted editorial section: full-bleed #2a2722 background, padding 64px vertical. Eyebrow 'A BRIEF LETTER FROM THE EDITOR' in Neue Montreal 12px weight 400 uppercase letter-spacing -0.12px color #fafafa centered at top. Body in Louize Display 32px weight 400 line-height 1.2 color #fafafa text-align center, 3–5 short lines. Mirror eyebrow at bottom.\n3. Create a stamped section header: full-bleed #2a2722 background, padding 48px vertical. Single line 'SELECTED WORKS' in Manuka 226px weight 400 line-height 0.75 color #fafafa uppercase, with a trailing horizontal white rule extending to the right edge.\n4. Create a brand ticker band: full-bleed #2a2722 background, no padding. Louize Display 24px weight 400 color #fafafa brand names ('Stripe', 'YouTube', 'The New York Times', 'Matter', 'Uber Eats x Taco Bell') repeated horizontally at 32px gap, one row. Overlay a 'COMING SOON' ghost tag (Neue Montreal 12px weight 400 uppercase, 1px solid #fafafa border, 12px radius, 4px 8px padding) on selected entries.\n5. Create a top nav: Paper (#fafafa) background, no bar. Left-aligned vertical list of Neue Montreal 12px weight 700 uppercase items in #2a2722, 12px row gap. Active item rendered larger (16px) but same color/weight. No underline, no background highlight."
+      }
+    ],
+    "elevationPhilosophy": "The system is shadowless by design. There are zero detected box-shadows, drop-shadows, or elevation tokens. Hierarchy is communicated entirely through type scale, color inversion, and 1px hairline borders — never through depth. This is an editorial print metaphor, not a Material/iOS elevation model: the page lies flat on the paper surface, and dark sections are achieved by flipping the canvas to ink, not by floating panels above it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#2a2722",
+          "oklch": {
+            "c": 0.010020177645492234,
+            "h": 80.63645021508079,
+            "l": 0.2741974456864957
+          },
+          "contexts": [
+            "card",
+            "nav",
+            "other",
+            "hero",
+            "heading",
+            "body",
+            "image",
+            "link",
+            "icon",
+            "list",
+            "footer"
+          ],
+          "frequency": 641,
+          "confidence": 1,
+          "prominence": 61436119.53053357,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 16,
+            "nav/color": 22,
+            "body/color": 12,
+            "card/color": 7,
+            "hero/color": 1,
+            "icon/color": 8,
+            "link/color": 18,
+            "list/color": 14,
+            "other/fill": 9,
+            "image/color": 3,
+            "other/color": 36,
+            "heading/color": 11,
+            "nav/borderColor": 88,
+            "body/borderColor": 48,
+            "card/borderColor": 4,
+            "hero/borderColor": 4,
+            "icon/borderColor": 32,
+            "link/borderColor": 72,
+            "list/borderColor": 56,
+            "image/borderColor": 12,
+            "other/borderColor": 121,
+            "heading/borderColor": 44,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fafafa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9851036517304731
+          },
+          "contexts": [
+            "heading",
+            "hero",
+            "other",
+            "body",
+            "list",
+            "card",
+            "link",
+            "footer",
+            "nav"
+          ],
+          "frequency": 697,
+          "confidence": 1,
+          "prominence": 17548693.965176076,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 18,
+            "nav/color": 41,
+            "body/color": 4,
+            "card/color": 6,
+            "hero/color": 1,
+            "link/color": 7,
+            "list/color": 9,
+            "other/fill": 23,
+            "other/color": 24,
+            "footer/color": 1,
+            "heading/color": 32,
+            "nav/borderColor": 164,
+            "body/borderColor": 16,
+            "card/borderColor": 24,
+            "hero/borderColor": 4,
+            "link/borderColor": 28,
+            "list/borderColor": 36,
+            "other/borderColor": 120,
+            "footer/borderColor": 4,
+            "heading/borderColor": 128,
+            "other/backgroundColor": 1,
+            "heading/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#3e3b36",
+          "oklch": {
+            "c": 0.009438513206699568,
+            "h": 80.67623786275931,
+            "l": 0.353630456284006
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 480,
+          "confidence": 1,
+          "prominence": 3181063.488126083,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 16,
+            "heading/color": 80,
+            "other/borderColor": 64,
+            "heading/borderColor": 320
+          }
+        },
+        {
+          "hex": "#9f9f9f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.702510749939157
+          },
+          "contexts": [
+            "heading",
+            "card",
+            "other",
+            "link",
+            "nav",
+            "body"
+          ],
+          "frequency": 141,
+          "confidence": 1,
+          "prominence": 1102319.4118967538,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/color": 3,
+            "body/color": 1,
+            "card/color": 2,
+            "link/color": 3,
+            "other/fill": 6,
+            "other/color": 7,
+            "heading/color": 10,
+            "nav/borderColor": 12,
+            "body/borderColor": 4,
+            "card/borderColor": 8,
+            "link/borderColor": 12,
+            "other/borderColor": 28,
+            "heading/borderColor": 40,
+            "heading/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 534990.8084868074,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 24
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "nav",
+            "body",
+            "list",
+            "icon",
+            "link"
+          ],
+          "frequency": 557,
+          "confidence": 1,
+          "prominence": 399554.39636631194,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "nav/color": 8,
+            "body/color": 6,
+            "icon/color": 1,
+            "link/color": 1,
+            "list/color": 1,
+            "other/fill": 1,
+            "other/color": 89,
+            "heading/color": 5,
+            "nav/borderColor": 32,
+            "body/borderColor": 24,
+            "icon/borderColor": 4,
+            "link/borderColor": 4,
+            "list/borderColor": 4,
+            "other/borderColor": 355,
+            "heading/borderColor": 20
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7667552121346497
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 41382.67127851417,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 5,
+            "nav/borderColor": 20
+          }
+        },
+        {
+          "hex": "#a9a9a9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7348085828066984
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 19283.820255379826,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "nav/borderColor": 28
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.011386091694362074,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 14.25,
+          "background": "#fafafa",
+          "foreground": "#2a2722"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.82,
+          "background": "#eeeeee",
+          "foreground": "#2a2722"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.68,
+          "background": "#fafafa",
+          "foreground": "#3e3b36"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.61,
+          "background": "#eeeeee",
+          "foreground": "#3e3b36"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.09,
+          "background": "#2a2722",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.33,
+          "background": "#2a2722",
+          "foreground": "#a9a9a9"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.62,
+          "background": "#9f9f9f",
+          "foreground": "#2a2722"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.5,
+          "background": "#fafafa",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#b3b3b3",
+          "foreground": "#3e3b36"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.74,
+          "background": "#a9a9a9",
+          "foreground": "#3e3b36"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.21,
+          "background": "#9f9f9f",
+          "foreground": "#3e3b36"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.59,
+          "background": "#2a2722",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.54,
+          "background": "#9f9f9f",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.25,
+          "background": "#fafafa",
+          "foreground": "#a9a9a9"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.17,
+          "background": "#9f9f9f",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.01,
+          "background": "#fafafa",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.33,
+          "background": "#2a2722",
+          "foreground": "#3e3b36"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.26,
+          "background": "#9f9f9f",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.13,
+          "background": "#9f9f9f",
+          "foreground": "#a9a9a9"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 8
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "list",
+            "nav"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "columnGap",
+            "rowGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "columnGap|other",
+            "rowGap|list",
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "body",
+            "other",
+            "nav",
+            "heading"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|nav",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "heading",
+            "list",
+            "nav"
+          ],
+          "frequency": 22,
+          "properties": [
+            "marginBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|heading",
+            "columnGap|list",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "card",
+            "nav",
+            "hero",
+            "heading",
+            "other",
+            "list",
+            "link",
+            "footer"
+          ],
+          "frequency": 57,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingBottom|nav",
+            "marginBottom|nav",
+            "paddingTop|nav",
+            "paddingTop|hero",
+            "paddingRight|hero",
+            "paddingBottom|hero",
+            "paddingLeft|hero",
+            "rowGap|hero",
+            "columnGap|hero",
+            "marginTop|heading",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|heading",
+            "paddingBottom|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|list",
+            "marginTop|list",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingRight|footer",
+            "paddingLeft|footer",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "body",
+            "heading",
+            "card"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginBottom|heading",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "card",
+            "heading",
+            "nav"
+          ],
+          "frequency": 42,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingLeft|link",
+            "marginBottom|list",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "marginBottom|heading",
+            "rowGap|nav",
+            "marginBottom|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|hero",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 224,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Neue Montreal",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 317,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Louize Display",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 171,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Louize",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Manuka",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.83
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 84,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Neue Montreal",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other",
+            "hero",
+            "image",
+            "nav",
+            "list",
+            "footer"
+          ],
+          "frequency": 94,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 19,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Louize",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "list"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Louize",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "icon",
+            "link"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Louize",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Neue Montreal",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Louize Display",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Louize Display",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 77,
+          "family": "Louize Display",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 159,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 116,
+          "family": "Louize Display",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 126,
+          "family": "Louize Display",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 132,
+          "family": "Louize Display",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 226,
+          "family": "Manuka",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 226,
+          "family": "Manuka",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.75,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 371,
+          "family": "Manuka",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.75,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/06e875ac-54ab-4045-8ed4-ecc26ad1e63c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/09fa6263-e520-49b4-8c0c-640b3463a246.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ff4b9eff-dc0b-4886-bd65-c2f5e9069318#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Henry design system\",\"item\":\"https://styles.refero.design/style/ff4b9eff-dc0b-4886-bd65-c2f5e9069318\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ff4b9eff-dc0b-4886-bd65-c2f5e9069318#style-reference\",\"name\":\"Henry design system reference\",\"headline\":\"Henry design system | Refero Styles\",\"description\":\"Explore Henry's mixed Agency design system: Paper #fafafa, Hairline #eeeeee colors, Neue Montreal, Louize Display typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ff4b9eff-dc0b-4886-bd65-c2f5e9069318\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ff4b9eff-dc0b-4886-bd65-c2f5e9069318\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Henry\",\"url\":\"https://henry.codes\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ff4b9eff-dc0b-4886-bd65-c2f5e9069318#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/09fa6263-e520-49b4-8c0c-640b3463a246.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/09fa6263-e520-49b4-8c0c-640b3463a246.jpg\",\"caption\":\"Screenshot of Henry\"},\"image\":\"https://images.refero.design/styles/refero.design/image/09fa6263-e520-49b4-8c0c-640b3463a246.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Henry design system\",\"Henry website design\",\"Henry colors\",\"Henry typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper\",\"Hairline\",\"Midstone\",\"Ash\",\"Neue Montreal\",\"Louize Display\",\"Louize\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Henry design system\"},{\"@type\":\"Thing\",\"name\":\"Henry website design\"},{\"@type\":\"Thing\",\"name\":\"Henry colors\"},{\"@type\":\"Thing\",\"name\":\"Henry typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:27:37.213Z\",\"dateModified\":\"2026-04-30T03:27:37.213Z\"}]}19:T6e8,Quick Color Reference:\n- text: #2a2722 (Headline Ink) on #fafafa (Paper)\n- background: #fafafa (Paper) for default, #2a2722 (Ink) for inverted sections\n- border: #2a2722 for strong rules, #9f9f9f for muted, #eeeeee for hairline on cards\n- accent: none (system is fully monochrome)\n- primary action: no distinct CTA color\n\n3-5 Example Component Prompts:\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n2. Create an inverted editorial section: full-bleed #2a2722 background, padding 64px vertical. Eyebrow 'A BRIEF LETTER FROM THE EDITOR' in Neue Montreal 12px weight 400 uppercase letter-spacing -0.12px color #fafafa centered at top. Body in Louize Display 32px weight 400 line-height 1.2 color #fafafa text-align center, 3–5 short lines. Mirror eyebrow at bottom.\n3. Create a stamped section header: full-bleed #2a2722 background, padding 48px vertical. Single line 'SELECTED WORKS' in Manuka 226px weight 400 line-height 0.75 color #fafafa uppercase, with a trailing horizontal white rule extending to the right edge.\n4. Create a brand ticker band: full-bleed #2a2722 background, no padding. Louize Display 24px weight 400 color #fafafa brand names ('Stripe', 'YouTube', 'The New York Times', 'Matter', 'Uber Eats x Taco Bell') repeated horizontally at 32px gap, one row. Overlay a 'COMING SOON' ghost tag (Neue Montreal 12px weight 400 uppercase, 1px solid #fafafa border, 12px radius, 4px 8px padding) on selected entries.\n5. Create a top nav: Paper (#fafafa) background, no bar. Left-aligned vertical list of Neue Montreal 12px weight 700 uppercase items in #2a2722, 12px row gap. Active item rendered larger (16px) but same color/weight. No underline, no background highlight."
+}

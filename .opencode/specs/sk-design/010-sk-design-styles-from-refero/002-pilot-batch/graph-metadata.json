@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/010-sk-design-styles-from-refero/002-pilot-batch",
+  "spec_folder": "sk-design/010-sk-design-styles-from-refero/002-pilot-batch",
+  "parent_id": "sk-design/010-sk-design-styles-from-refero",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "refero pilot batch",
+      "styles pilot extraction",
+      "50 style go no-go",
+      "refero pilot plan",
+      "styles pilot plan",
+      "go no-go plan",
+      "refero pilot tasks",
+      "styles pilot tasks",
+      "go no-go tasks",
+      "refero pilot checklist",
+      "styles pilot gates",
+      "go no-go verification"
+    ],
+    "key_topics": [
+      "refero",
+      "pilot",
+      "batch",
+      "styles",
+      "extraction",
+      "style",
+      "no-go",
+      "plan",
+      "tasks",
+      "checklist",
+      "gates",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/sk-design/styles/README.md",
+      ".opencode/skills/sk-design/styles/_manifest.json",
+      ".opencode/skills/sk-design/styles/_harness/extract-refero.mjs",
+      "implementation-summary.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/styles/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "_manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/styles/_manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "extract-refero.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_harness/extract-refero.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its Refero URL",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The harness is proven on three styles, but a decision to extract all 1,290 needs evidence at a representative scale: does the output hold across varied styles, how long does it take, and what does the storage footprint look like?",
+    "created_at": "2026-07-18T06:30:48.677Z",
+    "last_save_at": "2026-07-18T10:25:47.246Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0df9562df1db9be460390f06399ab8c8001fbbc0b1d56d73fe45ea30554787a5",
+    "source_doc_hashes": {
+      "spec.md": "6db45e284e2853c37f9097054e8187b625b068a521e36f09d324af9973dd8fd1",
+      "plan.md": "fa3c868360bbd0798c4d2061f05fa30241f31a23bb62cc05a78417538a12c3ed",
+      "tasks.md": "c7d5501bad571a152941f144f7b0cc7ff7acf8c83ff5ad15711fb44977015ba7",
+      "checklist.md": "76b564eebdb369fbdb634bce2a0f3af27de3be050a08067e5b277032d5bb4ee7",
+      "implementation-summary.md": "506c4cde35133dc33533cd154eb16f543aa73f3f48aafe1df70c6481487e2815"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

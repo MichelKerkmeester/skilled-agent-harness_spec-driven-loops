@@ -1,0 +1,589 @@
+{
+  "color": {
+    "canopy-green": {
+      "$value": "#0a3922",
+      "$type": "color",
+      "$description": "Canopy Green — Hero canvas, dark section backgrounds, primary heading color on light backgrounds — establishes the dominant brand surface"
+    },
+    "coral-pulse": {
+      "$value": "#ff643b",
+      "$type": "color",
+      "$description": "Coral Pulse — Primary action buttons, filled CTAs — the only warm high-saturation color in the system, creates urgency without aggression"
+    },
+    "indigo-bloom": {
+      "$value": "#460095",
+      "$type": "color",
+      "$description": "Indigo Bloom — Toolkit section background overlay, secondary brand headings — anchors the purple-lavender pastel system"
+    },
+    "leaf-bright": {
+      "$value": "#1dbf73",
+      "$type": "color",
+      "$description": "Leaf Bright — Green outline accent for tags, dividers, and focused UI edges"
+    },
+    "deep-teal": {
+      "$value": "#003642",
+      "$type": "color",
+      "$description": "Deep Teal — Blue outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    },
+    "orchid-tint": {
+      "$value": "#f3b3fe",
+      "$type": "color",
+      "$description": "Orchid Tint — Decorative pink accent for badges, tag chips, and pink-section heading underlines"
+    },
+    "sky-signal": {
+      "$value": "#00b4dc",
+      "$type": "color",
+      "$description": "Sky Signal — Cyan accent for icons, chart lines, and notification-style data visualization inside cards"
+    },
+    "aubergine": {
+      "$value": "#47264c",
+      "$type": "color",
+      "$description": "Aubergine — Muted plum for body text on lavender backgrounds and plum-section headings — warm dark that pairs with #460095"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary body text, borders, icon strokes — used aggressively for 1px dividers and outline icon set"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, text on dark backgrounds, nav background, white phone-mockup surfaces"
+    },
+    "ash": {
+      "$value": "#a6a6a6",
+      "$type": "color",
+      "$description": "Ash — Mid-gray for secondary borders, placeholder text, disabled list items, icon strokes at reduced weight"
+    },
+    "slate": {
+      "$value": "#7a7a7a",
+      "$type": "color",
+      "$description": "Slate — Body meta text, subtle list dividers, caption-tier typography"
+    },
+    "graphite": {
+      "$value": "#3d3d3d",
+      "$type": "color",
+      "$description": "Graphite — Strong secondary text, icon strokes at full opacity, dark borders on light pastel cards"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal — Headlines on white/pastel surfaces, link text color when not using brand purple"
+    },
+    "frost-gray": {
+      "$value": "#e0e0e0",
+      "$type": "color",
+      "$description": "Frost Gray — Hairline dividers, subtle card separators on white sections"
+    },
+    "cloud-gray": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Cloud Gray — Neutral card surface when no pastel is appropriate, footer background, table stripes"
+    },
+    "lavender-mist": {
+      "$value": "#eee2ff",
+      "$type": "color",
+      "$description": "Lavender Mist — Dominant page background canvas — the near-gray violet that sets the overall atmospheric tint of the site"
+    },
+    "mint-wash": {
+      "$value": "#d2f2e3",
+      "$type": "color",
+      "$description": "Mint Wash — Green-tinted card and section background, pale green data viz fills"
+    },
+    "sky-wash": {
+      "$value": "#ccf0f8",
+      "$type": "color",
+      "$description": "Sky Wash — Pale cyan card backgrounds, cooling counterpoint to the warm greens and corals"
+    },
+    "sage-wash": {
+      "$value": "#e4f7ee",
+      "$type": "color",
+      "$description": "Sage Wash — Very pale green card surface, lighter than Mint Wash for secondary cards"
+    },
+    "lilac-wash": {
+      "$value": "#fdf0ff",
+      "$type": "color",
+      "$description": "Lilac Wash — Pale lavender card background, pink-adjacent pastel"
+    },
+    "peach-wash": {
+      "$value": "#ffede8",
+      "$type": "color",
+      "$description": "Peach Wash — Soft section background, alternate surface, and quiet card fill. Do not promote it to the primary CTA color"
+    },
+    "cream": {
+      "$value": "#faf7e8",
+      "$type": "color",
+      "$description": "Cream — Warm cream card background, editorial yellow-tinted sections"
+    },
+    "sand": {
+      "$value": "#f4ece9",
+      "$type": "color",
+      "$description": "Sand — Warm beige background variant, rarely used neutral surface"
+    }
+  },
+  "font": {
+    "dm-sans": {
+      "$value": "DM Sans",
+      "$type": "fontFamily",
+      "$description": "Single-family system — display headlines at 69–116px weight 500–600 with tight tracking create the editorial feel; body at 16–18px weight 400; UI at 14–16px weight 500–600. The same font handles 12px captions through 116px display, which is the signature: one voice, enormous dynamic range. The ss03 stylistic set is enabled site-wide."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 0.89
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 0.89
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "52px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 52px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "69px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 69px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "72px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 72px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "72px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 72px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "80px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 80px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "116px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 116px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 1px 1px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#eee2ff",
+      "$type": "color",
+      "$description": "Surface level 0: Dominant lavender-tinted page background that establishes atmospheric warmth"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: White surface for phone mockups, product cards, and overlaid content blocks"
+    },
+    "pastel-card": {
+      "$value": "#d2f2e3",
+      "$type": "color",
+      "$description": "Surface level 2: Tinted feature cards cycling through mint, sky, sage, lilac, peach, cream for section variety"
+    },
+    "dark-brand-surface": {
+      "$value": "#0a3922",
+      "$type": "color",
+      "$description": "Surface level 3: Hero and dark band — full-bleed forest green for high-contrast headline moments"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.turn.io",
+      "siteName": "Chat for impact",
+      "extractedAt": "2026-06-03T20:01:41.338Z",
+      "variant": "extended"
+    }
+  }
+}

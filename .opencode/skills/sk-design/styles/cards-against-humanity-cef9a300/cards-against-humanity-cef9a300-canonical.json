@@ -1,0 +1,936 @@
+{
+  "source": "https://styles.refero.design/style/cef9a300-8513-46c2-9c2c-c0016e5a5d30",
+  "uuid": "cef9a300-8513-46c2-9c2c-c0016e5a5d30",
+  "name": "Cards Against Humanity",
+  "northStar": "Apocalypse broadcast on blackout paper",
+  "capturedAt": "2026-07-18T09:00:08.480Z",
+  "meta": {
+    "url": "https://www.climatecatastrophepack.com",
+    "siteName": "Cards Against Humanity",
+    "extractedAt": "2026-06-03T21:06:36.930Z",
+    "durationMs": 33984,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 540,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Spektra at 100–202px for any headline that needs to read as a campaign poster; let the line-height drop to 0.82 so characters collide",
+      "Keep all readable text in Bone Cream (#ebe4d8) on Void Black (#000000) — the 16.6:1 contrast is the system's foundation",
+      "Reserve Alarm Red (#ff4034) for annotation, hazard, and link layers — never as a background fill for body content",
+      "Default to centered single-column layouts with a ~680px max-width for prose; the page is editorial, not dashboard",
+      "Use border-radius 120px for primary buttons and 2520px for the rare container card — there are no 4–8px radii in this system",
+      "Pair every filled button with the hard 0 4px 0 #c3bdb3 offset shadow; no soft drop-shadows anywhere",
+      "Treat the radar/circle motif and flame illustrations as recurring page furniture — reuse the Alarm Red concentric ring set on any full-bleed dark section"
+    ],
+    "donts": [
+      "Don't introduce a second chromatic accent — red is the only signal color and dilution destroys the alarm-broadcast feel",
+      "Don't set Spektra below 32px; the face is unreadable at body sizes and breaks the system",
+      "Don't use neutral grays (#777, #aaa) for text or borders — go from black to Bone Cream directly",
+      "Don't apply border-radius under 10px to any surface; the system relies on extreme roundness or none at all",
+      "Don't add card shadows, hover lifts, or transitions longer than ~150ms — the design is print, not app",
+      "Don't center-align body paragraphs wider than 680px; longer line lengths destroy the poster rhythm",
+      "Don't use photography or gradients — the visual language is flat, two-color graphic editorial only"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void Black",
+        "role": "Page canvas, body borders, all text in dark contexts — the default background every other element sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebe4d8",
+        "name": "Bone Cream",
+        "role": "Primary text color, button fills, surface highlights — warm off-white that reads as paper, not screen white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c3bdb3",
+        "name": "Ash Taupe",
+        "role": "Button box-shadow tint — the single warm-gray accent in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ff4034",
+        "name": "Alarm Red",
+        "role": "Hazard icons, strikethrough editorial links, flame illustrations, concentric radar rings — the only chromatic signal in the system, reserved for things requiring attention",
+        "group": "brand"
+      }
+    ],
+    "layout": "Single centered column, ~680px max-width, with full-bleed decorative layers behind the content. The hero is a viewport-height black field with the radar concentric ring pattern radiating from center and the massive Spektra headline stacked over it. Body sections drop into a tighter 680px centered prose column on the same black background — no alternating light/dark bands, no cards, no sidebars. Navigation is minimal (likely a small footer mark) and never competes with the content. Decorative elements (hazard icons, flame graphics) sit at the page margins or bleed off the bottom edge, framing the centered text like editorial layout rather than grid. The rhythm is: massive poster → tight prose → flame terminator → next section. Spacing is generous — 80px between major sections, 30px between paragraphs.",
+    "imagery": "Pure flat graphic editorial — no photography, no 3D, no gradients. The visual vocabulary is two-tone: Alarm Red shapes and glyphs on a black field. Hazard-icon squares (radiation, biohazard, fire, skull) appear as scattered attention markers; flame silhouettes bleed along section edges as terminator graphics; concentric red rings form a radar/sensor overlay behind the hero. Icons are uniformly 16–24px white symbol inside a solid red square. Imagery is decorative-atmospheric rather than explanatory — it signals 'emergency broadcast' rather than illustrating the product.",
+    "similar": [
+      {
+        "why": "Same editorial dark canvas with a single high-saturation accent color and oversized condensed display type for section titles",
+        "business": "VICE"
+      },
+      {
+        "why": "Print-poster aesthetic, hard-edged shadows, and centered editorial copy rather than SaaS card grids",
+        "business": "Patagonia (activism pages)"
+      },
+      {
+        "why": "Bold condensed display headlines over a flat dark background with minimal UI chrome and prose-first layout",
+        "business": "The Outline"
+      },
+      {
+        "why": "Civil-defense alarm vocabulary — flat red-on-black, hazard iconography, radar/concentric ring motifs, no soft shadows",
+        "business": "Adbusters"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "card": "2520px",
+        "input": "10px",
+        "button-lg": "120px",
+        "button-md": "80px",
+        "button-sm": "48px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "30px",
+      "pageMaxWidth": "680px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Blackout Canvas",
+        "level": 1,
+        "purpose": "Full-bleed page background — every section sits directly on black with no separator"
+      },
+      {
+        "hex": "#ebe4d8",
+        "name": "Bone Paper",
+        "level": 2,
+        "purpose": "Highlight/button surface for inverted controls"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 4px 0 #c3bdb3",
+        "element": "Pill Button"
+      }
+    ],
+    "northStar": "Apocalypse broadcast on blackout paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.27
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.27
+      },
+      {
+        "role": "subheading",
+        "size": 28,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 0.88
+      },
+      {
+        "role": "heading-lg",
+        "size": 100,
+        "lineHeight": 0.88
+      },
+      {
+        "role": "display",
+        "size": 202,
+        "lineHeight": 0.82
+      }
+    ],
+    "components": [
+      {
+        "name": "Apocalypse Display Headline",
+        "role": "Hero title block",
+        "description": "Spektra 202px, line-height 0.82, Bone Cream (#ebe4d8), centered. Stacks across up to 3 lines with near-zero leading so the letters touch. The defining signature: massive condensed display on a black field."
+      },
+      {
+        "name": "Brand Wordmark",
+        "role": "Small siteline above the display headline",
+        "description": "Spektra 32–40px, Bone Cream, centered, single line. Reads as the campaign attribution rather than a logo lockup."
+      },
+      {
+        "name": "Body Prose Block",
+        "role": "Long-form campaign copy",
+        "description": "Helvetica Neue 16px, line-height 1.27, Bone Cream, centered, max-width ~680px. Sentence case throughout, no paragraph indentation, generous 30px bottom margin between paragraphs."
+      },
+      {
+        "name": "Underlined Link",
+        "role": "Inline reference link inside body copy",
+        "description": "Bone Cream (#ebe4d8) text, 1px cream underline, no hover color shift. Standard editorial link."
+      },
+      {
+        "name": "Strikethrough Editorial Link",
+        "role": "Satirical or corrected inline link",
+        "description": "Alarm Red (#ff4034) text, 1px red line-through applied as a typographic annotation rather than deletion. The signature 'correction' device — it's the only place red appears in body type."
+      },
+      {
+        "name": "Hazard Icon Marker",
+        "role": "Decorative attention glyph",
+        "description": "16–24px Alarm Red square with a white hazard symbol (radiation, biohazard, fire, skull) inset. Scattered at fixed orbital radii around the concentric-circle radar. Sits on black with zero padding around the symbol."
+      },
+      {
+        "name": "Radar Concentric Field",
+        "role": "Background decorative motif for hero",
+        "description": "Four to six concentric rings in Alarm Red at decreasing opacity, alternating solid and 2px dashed strokes. Ring diameters scale from viewport-center outward. No interactive function — purely atmospheric."
+      },
+      {
+        "name": "Flame Footer Illustration",
+        "role": "Section terminator graphic",
+        "description": "Flat Alarm Red flame silhouettes along the bottom edge of the page, 100–160px tall, bleeding off the viewport. Black background shows through the gaps between tongues. No gradient, no detail — pure silhouette."
+      },
+      {
+        "name": "Pill Button (Large)",
+        "role": "Primary call-to-action",
+        "description": "Bone Cream fill, black text, Helvetica Neue 16px weight 800, padding 20px 60px, border-radius 120px. Box-shadow 0 4px 0 #c3bdb3 — the only shadow in the system, hard-edged, no blur. Feels stamped, not floated."
+      },
+      {
+        "name": "Pill Button (Compact)",
+        "role": "Secondary action",
+        "description": "Same fill and shadow as the large button, padding 7px 15px, border-radius 80px. Used for inline form submits or footer actions."
+      },
+      {
+        "name": "Text Input",
+        "role": "Form field",
+        "description": "1px Bone Cream border, 10px radius, Bone Cream text, black fill, padding ~20px horizontal. No focus ring — the border simply thickens or inverts on focus."
+      },
+      {
+        "name": "Blob Card",
+        "role": "Fully rounded content container",
+        "description": "Border-radius 2520px — effectively a fully rounded organic blob. Used sparingly as a highlight surface when the page needs a cream 'paper' resting on the black canvas."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading face — extremely condensed, near-black weight even at 400, used for the campaign title and brand wordmark at poster sizes",
+        "sizes": "32px, 40px, 100px, 202px",
+        "family": "Spektra",
+        "weight": "400",
+        "lineHeight": "0.82–1.00",
+        "substitute": "Bebas Neue, Anton, League Gothic"
+      },
+      {
+        "role": "Body, subheadings, UI text — quiet humanist sans at 400 for body, 800 for emphasized subheads and footer marks",
+        "sizes": "14px, 16px, 28px, 30px",
+        "family": "Helvetica Neue LT",
+        "weight": "400, 800",
+        "lineHeight": "1.27–1.50",
+        "substitute": "Inter, Helvetica, Arial"
+      }
+    ],
+    "description": "$19",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1a"
+      }
+    ],
+    "elevationPhilosophy": "The system rejects soft elevation entirely. The single shadow is a hard, zero-blur 4px offset in warm taupe, giving pressed buttons the feel of a physical rubber stamp rather than a floating card. There is no card shadow, no modal shadow, no hover lift — every element either sits flush on the black canvas or punches forward with a flat colored fill."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "image",
+            "button",
+            "heading",
+            "link",
+            "card",
+            "input",
+            "icon",
+            "footer"
+          ],
+          "frequency": 2104,
+          "confidence": 1,
+          "prominence": 53675661.126742974,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 2,
+            "icon/color": 15,
+            "link/color": 9,
+            "image/color": 231,
+            "input/color": 1,
+            "other/color": 125,
+            "button/color": 3,
+            "footer/color": 1,
+            "heading/color": 33,
+            "card/borderColor": 4,
+            "icon/borderColor": 60,
+            "link/borderColor": 36,
+            "image/borderColor": 924,
+            "input/borderColor": 4,
+            "other/borderColor": 500,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 132,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ebe4d8",
+          "oklch": {
+            "c": 0.01777951130229695,
+            "h": 81.32995631838952,
+            "l": 0.9210919622140259
+          },
+          "contexts": [
+            "other",
+            "image",
+            "icon",
+            "heading",
+            "link",
+            "button",
+            "card",
+            "input"
+          ],
+          "frequency": 573,
+          "confidence": 1,
+          "prominence": 42896594.322792575,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/color": 41,
+            "link/color": 2,
+            "image/color": 7,
+            "other/color": 49,
+            "button/color": 2,
+            "heading/color": 13,
+            "icon/borderColor": 164,
+            "link/borderColor": 8,
+            "image/borderColor": 28,
+            "other/borderColor": 196,
+            "button/borderColor": 8,
+            "heading/borderColor": 52,
+            "card/backgroundColor": 1,
+            "input/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff4034",
+          "oklch": {
+            "c": 0.22813758236548512,
+            "h": 28.682111884146803,
+            "l": 0.6584914950189006
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 5000137.929144326,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "link/color": 1,
+            "other/color": 1,
+            "heading/color": 2,
+            "body/borderColor": 8,
+            "link/borderColor": 4,
+            "other/borderColor": 4,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#c3bdb3",
+          "oklch": {
+            "c": 0.0152824817952268,
+            "h": 81.33040128203712,
+            "l": 0.8010348738813519
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 232270,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "button/boxShadow": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.01789805096312472,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 16.62,
+          "background": "#ebe4d8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.25,
+          "background": "#c3bdb3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.03,
+          "background": "#ff4034",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.75,
+          "background": "#ff4034",
+          "foreground": "#ebe4d8"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 80,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 2520,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|icon"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|icon",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|icon"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "input",
+            "heading"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "marginBottom|heading",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "heading",
+            "footer"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "marginBottom",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "marginBottom|heading",
+            "marginBottom|other",
+            "paddingBottom|other",
+            "paddingBottom|footer",
+            "paddingTop|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 168,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 272,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|image",
+            "marginLeft|image"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica Neue LT",
+          "source": "custom",
+          "weights": [
+            400,
+            800
+          ],
+          "frequency": 508,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Spektra",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 32,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.88
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Helvetica Neue LT",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Neue LT",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "icon",
+            "button",
+            "card",
+            "footer",
+            "link"
+          ],
+          "frequency": 197,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Helvetica Neue LT",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Helvetica Neue LT",
+          "weight": 800,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Spektra",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.88,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Spektra",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "Spektra",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.6,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "Spektra",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 14,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 100,
+          "family": "Spektra",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 202,
+          "family": "Spektra",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.82,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/9ab8a575-8c30-4d80-9aee-c387dbd6bfb6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/42d57fea-7024-487d-a123-ae351a880bca.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cef9a300-8513-46c2-9c2c-c0016e5a5d30#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Cards Against Humanity design system\",\"item\":\"https://styles.refero.design/style/cef9a300-8513-46c2-9c2c-c0016e5a5d30\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cef9a300-8513-46c2-9c2c-c0016e5a5d30#style-reference\",\"name\":\"Cards Against Humanity design system reference\",\"headline\":\"Cards Against Humanity design system | Refero Styles\",\"description\":\"Explore Cards Against Humanity's dark Media design system: Void Black #000000, Bone Cream #ebe4d8 colors, Spektra, Helvetica Neue LT typography, and...\",\"url\":\"https://styles.refero.design/style/cef9a300-8513-46c2-9c2c-c0016e5a5d30\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cef9a300-8513-46c2-9c2c-c0016e5a5d30\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Cards Against Humanity\",\"url\":\"https://www.climatecatastrophepack.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cef9a300-8513-46c2-9c2c-c0016e5a5d30#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/42d57fea-7024-487d-a123-ae351a880bca.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/42d57fea-7024-487d-a123-ae351a880bca.jpg\",\"caption\":\"Screenshot of Cards Against Humanity\"},\"image\":\"https://images.refero.design/styles/refero.design/image/42d57fea-7024-487d-a123-ae351a880bca.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Cards Against Humanity design system\",\"Cards Against Humanity website design\",\"Cards Against Humanity colors\",\"Cards Against Humanity typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Void Black\",\"Bone Cream\",\"Ash Taupe\",\"Alarm Red\",\"Spektra\",\"Helvetica Neue LT\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Cards Against Humanity design system\"},{\"@type\":\"Thing\",\"name\":\"Cards Against Humanity website design\"},{\"@type\":\"Thing\",\"name\":\"Cards Against Humanity colors\"},{\"@type\":\"Thing\",\"name\":\"Cards Against Humanity typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T02:25:05.972Z\",\"dateModified\":\"2026-04-30T02:25:05.972Z\"}]}19:T46b,Cards Against Humanity's Climate Catastrophe Pack deploys an emergency-broadcast aesthetic: a pitch-black canvas saturated with flat, vivid red as the only chromatic signal. Typography does almost all of the heavy lifting — an extreme condensed display face (Spektra) stacked in 200+ px blocks creates poster-sized alarm, while the body text is a quiet, humanist sans (Helvetica Neue) that reads like a caption on a civil defense poster. The page is content-sparse and editorial: no dashboards, no product cards, no marketing chrome — just a large headline, centered prose, and scattered red hazard glyphs orbiting a radar/concentric-circle motif. Color is used surgically: cream for almost all readable text, red reserved for annotations (strikethrough corrections, underlined links, flame graphics, icon squares), with the red itself functioning less as decoration than as a wayfinding color for 'pay attention here.' There is essentially no elevation system, no soft cards, no shadows — the design rejects SaaS niceties in favor of a printed-flyer feel where information sits directly on the black page like ink on a wall.1a:T5e5,**Quick Color Reference**\n- Background: #000000 (Void Black)\n- Text: #ebe4d8 (Bone Cream)\n- Border / button shadow: #c3bdb3 (Ash Taupe)\n- Accent (icons, annotation links, flames): #ff4034 (Alarm Red)\n- Surface highlight (inverted buttons, blob cards): #ebe4d8\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n1. *Hero section*: full-bleed #000000 canvas with four concentric #ff4034 rings (alternating solid and 2px dashed) centered behind the content. Headline 'CLIMATE CATASTROPHE PACK' in Spektra 202px weight 400, line-height 0.82, #ebe4d8, centered, up to 3 lines. Siteline 'Cards Against Humanity' in Spektra 40px, #ebe4d8, centered above. Scatter six 20px #ff4034 squares with white hazard symbols (radiation, fire, biohazard) at fixed orbital radii.\n2. *Body prose section*: #000000 background, centered column max-width 680px. Body text in Helvetica Neue 16px weight 400, line-height 1.27, #ebe4d8, sentence case. Insert one inline editorial link styled in #ff4034 with a 1px red line-through, and one standard #ff4034 underlined reference link. 30px between paragraphs, 80px before the next section.\n3. Create a Primary Action Button: #000000 background, #ebe4d8 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n4. *Flame footer illustration*: row of flat #ff4034 flame silhouettes, 100–160px tall, bleeding off the bottom viewport edge, with the #000000 canvas showing through the gaps between tongues. No gradient, no detail shading."
+}

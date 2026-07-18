@@ -1,0 +1,322 @@
+{
+  "color": {
+    "voltage-lime": {
+      "$value": "#d3fb52",
+      "$type": "color",
+      "$description": "Voltage Lime — Primary action fill, nav pill, active state, hero gradient endpoint — the single chromatic ignition point against an otherwise monochrome system"
+    },
+    "cyan-spark": {
+      "$value": "#7af3ff",
+      "$type": "color",
+      "$description": "Cyan Spark — Hero gradient start point, secondary glow tone — pairs with Voltage Lime to create the aurora-like radial background"
+    },
+    "mid-abyss": {
+      "$value": "#052326",
+      "$type": "color",
+      "$description": "Mid Abyss — Footer surface, dark section backgrounds — a near-black with a subtle teal undertone that keeps the dark mode on-brand"
+    },
+    "carbon-ink": {
+      "$value": "#14151c",
+      "$type": "color",
+      "$description": "Carbon Ink — Primary text, icon strokes, input borders — the slightly cool near-black used for the majority of foreground content"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, button text on lime fills, input interiors — the dominant surface tone (1590+ appearances)"
+    },
+    "true-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "True Black — Nav borders, strong text emphasis, icon fills — used sparingly where maximum contrast is needed"
+    },
+    "ash": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Ash — Body helper text, muted body borders — the secondary text level for de-emphasized copy"
+    }
+  },
+  "font": {
+    "noigrotesk": {
+      "$value": "NoiGrotesk",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body typeface — handles all navigation, buttons, inputs, cards, and headings up to 40px. Custom grotesque with active stylistic sets ss03, ss06, and ss12 that subtly shape letterforms across the entire system"
+    },
+    "sansplomb": {
+      "$value": "SansPlomb",
+      "$type": "fontFamily",
+      "$description": "Display-only typeface for hero and section-defining headlines. Used at 201px with ultra-tight 0.80 line-height and -0.020em tracking — the sheer scale makes the headline feel architectural, not typographic"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "NoiGrotesk",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "NoiGrotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "NoiGrotesk",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "NoiGrotesk",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "NoiGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "NoiGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "NoiGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "NoiGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "NoiGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "NoiGrotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "NoiGrotesk",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "NoiGrotesk",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "NoiGrotesk",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "SansPlomb",
+        "fontSize": "201px",
+        "fontWeight": 600,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 201px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background — the white paper the entire system sits on"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated content blocks with 24px radius and hairline borders"
+    },
+    "accent-surface": {
+      "$value": "#d3fb52",
+      "$type": "color",
+      "$description": "Surface level 2: Voltage Lime fills for CTAs, nav pills, and accent panels"
+    },
+    "hero-glow": {
+      "$value": "#7af3ff",
+      "$type": "color",
+      "$description": "Surface level 3: Radial gradient origin — cyan-to-lime aurora on the hero"
+    },
+    "dark-surface": {
+      "$value": "#052326",
+      "$type": "color",
+      "$description": "Surface level 4: Footer and dark section background — near-black with teal undertone"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://joinhandshake.com",
+      "siteName": "Handshake",
+      "extractedAt": "2026-06-03T16:38:04.247Z",
+      "variant": "extended"
+    }
+  }
+}

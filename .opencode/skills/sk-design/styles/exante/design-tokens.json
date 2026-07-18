@@ -1,0 +1,367 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#1e211e",
+      "$type": "color",
+      "$description": "Obsidian — Filled buttons, hero canvas, primary text on light surfaces — near-black with a barely-there green undertone that links it to the mint accent without announcing itself"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page background, card surfaces, button text on dark fills, nav background"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Hairline borders, icon strokes, sharpest outlines — provides the crispest edge against white surfaces"
+    },
+    "graphite": {
+      "$value": "#4b4d4b",
+      "$type": "color",
+      "$description": "Graphite — Secondary body text, subdued borders — the middle voice between Obsidian and Ash"
+    },
+    "ash": {
+      "$value": "#d2d3d2",
+      "$type": "color",
+      "$description": "Ash — Hairline dividers, accordion separators, disabled and inactive states"
+    },
+    "neon-mint": {
+      "$value": "#90fc95",
+      "$type": "color",
+      "$description": "Neon Mint — Highlight section backgrounds, stat callout fills, wireframe geometry accents — the single chromatic moment that makes the brand instantly recognizable"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "alliance-no2": {
+      "$value": "Alliance No.2",
+      "$type": "fontFamily",
+      "$description": "Display and heading face for editorial moments — set large (52–80px) with aggressive negative tracking (-0.05em to -0.01em). The Light weight at 80px is used once for a hero statement, a deliberate whisper-quiet choice against the dark canvas. Enables stylistic set ss10 plus character variants 03, 04, 09, 11."
+    },
+    "geist": {
+      "$value": "Geist",
+      "$type": "fontFamily",
+      "$description": "Secondary display and large body — used at 72px for an alternative hero treatment and 19–21px for comfortable long-form reading. Weight 300 echoes the Alliance No.2 Light restraint."
+    },
+    "geist-variable": {
+      "$value": "Geist Variable",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body face — nav links, button labels, body copy, form fields, card text. Slightly negative tracking (-0.01 to -0.02em) tightens Geist's default spacing for a more engineered feel."
+    },
+    "geist-mono": {
+      "$value": "Geist Mono",
+      "$type": "fontFamily",
+      "$description": "Eyebrow labels and monospaced micro-text — ALWAYS set in UPPERCASE with +0.06em tracking, used as the section-introduction line above every heading (e.g. 'AUTOMATE COLLECTIONS, YOUR WAY'). The only place tracking opens up."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Geist Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Geist Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Geist Variable",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Geist Variable",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "19px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Geist Variable",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Geist Variable",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Alliance No.2 Regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Alliance No.2 Regular",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Alliance No.2 Regular",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Alliance No.2 Regular",
+        "fontSize": "58px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 58px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Alliance No.2 Light",
+        "fontSize": "80px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 80px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Alliance No.2 Regular",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "124": {
+      "$value": "124px",
+      "$type": "dimension",
+      "$description": "Spacing 124px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas and dominant section background"
+    },
+    "stat-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: White cards floating on the Neon Mint highlight band"
+    },
+    "neon-mint-band": {
+      "$value": "#90fc95",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed highlight section breaking the white rhythm"
+    },
+    "obsidian-hero": {
+      "$value": "#1e211",
+      "$type": "color",
+      "$description": "Surface level 3: Dark full-bleed hero canvas with wireframe geometry"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.exante.app",
+      "siteName": "Exante",
+      "extractedAt": "2026-06-03T19:31:20.956Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,775 @@
+{
+  "source": "https://styles.refero.design/style/e99ae628-89df-4de9-ab80-9885b1be4dc0",
+  "uuid": "e99ae628-89df-4de9-ab80-9885b1be4dc0",
+  "name": "Altason",
+  "northStar": "architectural monochrome broadsheet",
+  "capturedAt": "2026-07-18T07:23:04.001Z",
+  "meta": {
+    "url": "https://atlason.com",
+    "siteName": "Altason",
+    "extractedAt": "2026-06-03T21:20:41.927Z",
+    "durationMs": 30985,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 163,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Haas Grotesk DS Pro weight 500 at 48–288px for all display headings with line-height 0.77–0.80",
+      "Set all border-radius to 0px — corners are always sharp",
+      "Use 1px solid #000000 borders to frame every image and separate every column",
+      "Use 112–288px padding-bottom for major section breaks to create architectural breathing room",
+      "Use weight 500 (not 700) for emphasis — the medium weight at large sizes carries all the authority needed",
+      "Set body text in Haas Grotesk TX Pro weight 400 at 18px with line-height 1.30",
+      "Use #212121 as the only dark surface — reserve #000000 for text and borders, not large fills"
+    ],
+    "donts": [
+      "Never introduce chromatic colors — the palette is strictly black, white, and gray",
+      "Never add box-shadow, drop-shadow, or any elevation effect — the page is flat",
+      "Never use border-radius greater than 0px on any element",
+      "Never use weight 700+ for headings — medium (500) is the heaviest weight in the system",
+      "Never set display type with line-height above 0.85 — the tight leading is what makes oversized type feel structural",
+      "Never use colored hover or active states on links — navigation is purely typographic and static",
+      "Never center text within columns — all text aligns left within its column"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, hairline borders, structural rules, image borders, heading fills — the dominant ink that draws the entire page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, reverse text on dark blocks — the surface that lets the black type speak",
+        "group": "neutral"
+      },
+      {
+        "hex": "#212121",
+        "name": "Charcoal Plate",
+        "role": "Dark surface blocks and image backgrounds where white reverse type sits — a softer alternative to pure black for large dark areas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b0b0b0",
+        "name": "Silver Hairline",
+        "role": "Subtle dividers and muted secondary links — a quiet mid-gray that recedes behind the black ink without disappearing",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed three-column grid with no max-width and no centered container. The page divides immediately at the top into three equal columns separated by 1px black vertical rules: left column holds the brand wordmark ('Atlason' at ~230px) and the footer contact block; center column holds the 'Works' section heading and a 2-column portfolio grid of framed images with captions; right column holds the 'More' section heading and a single large dark image with reverse-type caption. There is no navigation bar — the page is a single full-viewport experience. Footer sits at the bottom of the left column, aligned to the baseline of the page. Section spacing is architectural: 112–288px of vertical padding separates major regions. No alternating bands, no background color shifts between sections — everything sits on the same white plane.",
+    "imagery": "Imagery is portfolio photography and product shots treated as archival plates: each image is framed by a 1px black border, sits directly on the white canvas with no surrounding card, and is captioned in 16px Grotesk below. No lifestyle photography, no people in environmental shots, no color grading — the work itself (furniture, objects, interiors) is shot cleanly and presented without artifice. Images are arranged in a 2-column grid in the 'Works' section and a single-column stack in the 'More' section, with generous white space between rows. The overall visual register is that of an architecture or design monograph: documentation, not marketing.",
+    "similar": [
+      {
+        "why": "Same agency-portfolio-as-homepage structure with a three-column grid, oversized wordmark as the hero element, and no chromatic accent — the design IS the portfolio",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same editorial broadsheet approach: full-bleed white canvas, 1px black rules, massive Grotesk headings, flat image frames with captions",
+        "business": "Mass Moca / institutional art museum sites"
+      },
+      {
+        "why": "Same monochrome black-on-white restraint with massive Helvetica-family display type and product photography framed by hairline borders",
+        "business": "Vitsoe"
+      },
+      {
+        "why": "Same portfolio-as-monograph presentation: work shown as archival plates with 1px black borders, captioned in clean Grotesk, laid out in a strict columnar grid",
+        "business": "Order of Design (or similar architecture studios)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "0px",
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "8-10px",
+      "sectionGap": "",
+      "cardPadding": "20px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper Canvas",
+        "level": 1,
+        "purpose": "Base page background — the default surface for all content"
+      },
+      {
+        "hex": "#212121",
+        "name": "Charcoal Plate",
+        "level": 2,
+        "purpose": "Dark accent surface for image panels and reverse-type blocks"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Ground",
+        "level": 3,
+        "purpose": "Full-black surfaces used sparingly for maximum contrast moments"
+      }
+    ],
+    "elevation": [],
+    "northStar": "architectural monochrome broadsheet",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.3,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 36,
+        "lineHeight": 0.9,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 48,
+        "lineHeight": 0.8,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 106,
+        "lineHeight": 0.8,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-lg",
+        "size": 230,
+        "lineHeight": 0.77,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 288,
+        "lineHeight": 0.77,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Wordmark",
+        "role": "Brand name or section title rendered as oversized type",
+        "description": "The brand name 'Atlason' rendered in Haas Grotesk DS Pro weight 500 at 230–288px, line-height 0.77, pure black on white. This is the primary visual element of the page — it occupies nearly the full height of a single column. No decoration, no underline, no color. The sheer scale and tight leading create the wordmark's presence."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Column or section labels in the three-column grid",
+        "description": "Words like 'Works' and 'More' set in Haas Grotesk DS Pro weight 500 at 106–230px, line-height 0.80, black on white. Sized to anchor their column while leaving room for content below. The size step between the brand wordmark (288px) and these section labels (106–230px) creates a clear typographic hierarchy through size alone, not weight."
+      },
+      {
+        "name": "Portfolio Tile",
+        "role": "Image card displaying a project thumbnail with caption",
+        "description": "Rectangular image (no border-radius) with a 1px black border (borderColor from #000000), followed by a caption in Haas Grotesk TX Pro weight 400 at 16px, line-height 1.20, in black. The 1px black border frames the image like a museum print. No hover effects, no shadows, no overlay. Images sit directly on the white canvas with 20–32px gap between tiles."
+      },
+      {
+        "name": "Footer Contact Block",
+        "role": "Multi-column footer with studio address, contacts, and press info",
+        "description": "Divided into four narrow columns by hairline 1px vertical borders (black). Labels ('Visit', 'Contact', 'Connect', 'Follow') in Haas Grotesk TX Pro weight 500 at 16px, values below in weight 400 at 16px. Black on white, 20px padding-top/bottom, 48px padding-left for the first column. No background fill, no dividers heavier than 1px."
+      },
+      {
+        "name": "Three-Column Page Grid",
+        "role": "Primary layout structure dividing the page into three equal-width columns",
+        "description": "Full-bleed layout with three equal columns separated by 1px black vertical rules. The left column holds the brand wordmark and footer contact info; the center column holds the 'Works' portfolio grid; the right column holds the 'More' section. The grid has no max-width — it extends edge-to-edge. Column gaps are created by the 1px borders, not by padding."
+      },
+      {
+        "name": "Hairline Rule",
+        "role": "Structural 1px border used to subdivide the page",
+        "description": "A 1px solid line in #000000 used to separate columns, frame images, and divide footer sections. The rule is the only structural device in the system — there are no shadows, no background fills, no card containers. The visual hierarchy comes entirely from where these rules are placed."
+      },
+      {
+        "name": "Image Frame",
+        "role": "Border treatment for all portfolio and content images",
+        "description": "Every image is wrapped in a 1px solid black border (#000000). No padding between the image and the border, no radius, no shadow. This gives all images the quality of mounted photographic prints in an architecture portfolio."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Text-based navigation item in the footer or header",
+        "description": "Plain text in Haas Grotesk TX Pro weight 500 at 16px, black on white. No underlines by default; links may use a 1px black bottom border for emphasis. No hover color change, no background fill. Navigation is typographic, not buttonographic."
+      },
+      {
+        "name": "Dark Image Panel",
+        "role": "Large image or section with a dark/charcoal background where reverse white type sits",
+        "description": "A surface filled with #212121 containing a single large image or block of white text (e.g. 'Everything we imagine can be made.'). White text in Haas Grotesk TX Pro weight 500 at 18–36px. The dark panel creates the only tonal contrast in the system — it's the place where reverse type appears, and it functions as a visual pause between white sections."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and section wordmarks — used at 48–288px with extremely tight leading (0.77–0.80) so multi-line display type nearly touches. The DS variant's compressed proportions are what let 288px headlines fit within a single viewport without breaking rhythm. Substitute: Neue Haas Grotesk Display, or Akzidenz-Grotesk Pro Medium",
+        "sizes": "48px, 106px, 230px, 288px",
+        "family": "Haas Grotesk DS Pro",
+        "weight": "500",
+        "lineHeight": "0.77–1.20",
+        "substitute": "Neue Haas Grotesk Display 65 Medium, or Inter Tight 500",
+        "letterSpacing": "normal (0)",
+        "fontFeatureSettings": "\"calt\" on, \"kern\" on, \"liga\" on, \"rclt\" on, \"rlig\" on, \"rvrn\" on"
+      },
+      {
+        "role": "Body copy, captions, image labels, navigation links, UI text. Weight 400 for body, weight 500 for navigation labels and emphasis. The 36px size at line-height 0.90 creates a tight subheading that bridges body and display scales. Substitute: Neue Haas Grotesk Text, or Inter",
+        "sizes": "16px, 18px, 36px",
+        "family": "Haas Grotesk TX Pro",
+        "weight": "400, 500",
+        "lineHeight": "0.90–1.30",
+        "substitute": "Neue Haas Grotesk Text, or Inter 400/500",
+        "letterSpacing": "normal (0)",
+        "fontFeatureSettings": "\"calt\" on, \"kern\" on, \"liga\" on, \"rclt\" on, \"rlig\" on, \"rvrn\" on"
+      }
+    ],
+    "description": "Altason is a portfolio-as-canvas: a pure black-on-white editorial grid where massive, medium-weight Grotesk wordmarks are the hero and the work itself is the product. The system is 0% chromatic — every visual moment is built from ink, paper, and the negative space between them. Components are borderless except for hairline 1px black lines that quietly subdivide the page; there are no shadows, no gradients, no rounded corners, no accent hues. Type does all the work, and it speaks loudly by being huge and only weight 500 — the restraint of a medium weight at 288px is the signature move. Density is generous and architectural: sections breathe with 112–288px vertical padding, content sits in a three-column grid, and every surface is a flat plane with no elevation hierarchy. An AI agent should think of this as designing a printed magazine spread, not a SaaS dashboard.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e99ae628-89df-4de9-ab80-9885b1be4dc0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Altason design system\",\"item\":\"https://styles.refero.design/style/e99ae628-89df-4de9-ab80-9885b1be4dc0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e99ae628-89df-4de9-ab80-9885b1be4dc0#style-reference\",\"name\":\"Altason design system reference\",\"headline\":\"Altason design system | Refero Styles\",\"description\":\"Explore Altason's light Agency design system: Ink Black #000000, Paper White #ffffff colors, Haas Grotesk DS Pro, Haas Grotesk TX Pro typography, and...\",\"url\":\"https://styles.refero.design/style/e99ae628-89df-4de9-ab80-9885b1be4dc0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e99ae628-89df-4de9-ab80-9885b1be4dc0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Altason\",\"url\":\"https://atlason.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e99ae628-89df-4de9-ab80-9885b1be4dc0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a0b86fd2-b1bf-44e0-a26c-68d8faeed264.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a0b86fd2-b1bf-44e0-a26c-68d8faeed264.jpg\",\"caption\":\"Screenshot of Altason\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a0b86fd2-b1bf-44e0-a26c-68d8faeed264.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Altason design system\",\"Altason website design\",\"Altason colors\",\"Altason typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Paper White\",\"Charcoal Plate\",\"Silver Hairline\",\"Haas Grotesk DS Pro\",\"Haas Grotesk TX Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Altason design system\"},{\"@type\":\"Thing\",\"name\":\"Altason website design\"},{\"@type\":\"Thing\",\"name\":\"Altason colors\"},{\"@type\":\"Thing\",\"name\":\"Altason typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:31:53.571Z\",\"dateModified\":\"2026-04-30T01:31:53.571Z\"}]}19:T587,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px solid)\n- dark surface: #212121\n- muted/divider: #b0b0b0\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. Create a portfolio tile: white canvas, 1px solid #000000 border around a rectangular image, 20px gap below. Caption in Haas Grotesk TX Pro weight 400, 16px, #000000, line-height 1.20, left-aligned directly under the image.\n\n2. Create a display wordmark: the word 'Studio' in Haas Grotesk DS Pro weight 500 at 230px, #000000, line-height 0.77, left-aligned, occupying the full height of a three-column layout's first column. No decoration, no underline, no color.\n\n3. Create a footer contact block: four narrow columns separated by 1px solid #000000 vertical borders, 20px padding-top, 48px padding-left on the first column. Labels in Haas Grotesk TX Pro weight 500 at 16px, values in weight 400 at 16px, all #000000 on #ffffff.\n\n4. Create a dark image panel: #212121 background filling a full column, containing a single line of white text in Haas Grotesk TX Pro weight 500 at 36px, line-height 0.90, bottom-left aligned with 20px padding.\n\n5. Create a three-column page grid: full-bleed white layout divided into three equal-width columns by 1px solid #000000 vertical rules. No max-width, no centering, no gaps — the rules ARE the gutters. Each column holds its own vertical content stack."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "The system uses exactly two fonts from the same family — Haas Grotesk DS Pro (Display) for oversized headings and Haas Grotesk TX Pro (Text) for everything else. The signature move is weight 500 at 230–288px: medium weight, not bold, at extreme sizes. This creates type that is architectural and confident without being aggressive. Line-heights below 0.85 on display sizes mean multi-line headings nearly touch, giving text a monolithic, sculptural quality. Body text stays at 16–18px with generous 1.20–1.30 leading for readability. There is no italic, no condensed, no display-script variation — the system has one voice and speaks it loudly through scale alone."
+      },
+      {
+        "title": "Border System",
+        "content": "Borders are the primary structural device. Every image gets a 1px #000000 frame. Every column boundary is a 1px #000000 vertical rule. Every footer section is divided by 1px vertical lines. There are no background-filled cards, no shadow-defined containers, no colored chips. If something needs to be separated from its surroundings, it gets a 1px black line. If something needs to be grouped, it shares a line with its neighbors. This border-first approach is what makes the system read as editorial print rather than digital UI."
+      }
+    ],
+    "northStarGrounding": "A white paper sheet divided by hairline black rules, with oversized Grotesk type and portfolio images floating in the grid like plates in an architecture monograph.",
+    "elevationPhilosophy": "The system deliberately avoids shadows as an elevation mechanism. All structural separation is achieved through 1px hairline rules and tonal contrast (white → #212121 → #000000). There is no z-axis — the page is a flat editorial plane where hierarchy comes from typographic scale, not depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "link",
+            "heading"
+          ],
+          "frequency": 667,
+          "confidence": 1,
+          "prominence": 14584247.048406096,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/color": 1,
+            "link/color": 16,
+            "other/fill": 18,
+            "image/color": 8,
+            "other/color": 98,
+            "heading/color": 5,
+            "hero/borderColor": 4,
+            "link/borderColor": 64,
+            "image/borderColor": 32,
+            "other/borderColor": 392,
+            "heading/borderColor": 20,
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "hero",
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 130,
+          "confidence": 1,
+          "prominence": 9115316.209992535,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "link/color": 6,
+            "other/color": 14,
+            "body/borderColor": 16,
+            "link/borderColor": 24,
+            "other/borderColor": 56,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#212121",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24775871011467596
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 100700,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b0b0b0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7572067572371308
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 3922.9954555346953,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/color": 1,
+            "link/borderColor": 4,
+            "other/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.1,
+          "background": "#212121",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.68,
+          "background": "#000000",
+          "foreground": "#b0b0b0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.42,
+          "background": "#212121",
+          "foreground": "#b0b0b0"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.17,
+          "background": "#ffffff",
+          "foreground": "#b0b0b0"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.3,
+          "background": "#212121",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 31,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 134,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 241,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 288,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "haas-grotesk-tx-pro",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 143,
+          "fontFeatureSettings": [
+            "\"calt\", \"kern\", \"liga\", \"rclt\", \"rlig\", \"rvrn\""
+          ]
+        },
+        {
+          "family": "haas-grotesk-ds-pro",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": [
+            "\"calt\", \"kern\", \"liga\", \"rclt\", \"rlig\", \"rvrn\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.71
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "haas-grotesk-tx-pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "link"
+          ],
+          "frequency": 108,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "haas-grotesk-tx-pro",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "haas-grotesk-tx-pro",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "haas-grotesk-tx-pro",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "haas-grotesk-tx-pro",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "haas-grotesk-tx-pro",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "haas-grotesk-ds-pro",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 106,
+          "family": "haas-grotesk-ds-pro",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 230,
+          "family": "haas-grotesk-ds-pro",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.77,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 288,
+          "family": "haas-grotesk-ds-pro",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c1d44b43-a3c4-4478-839f-a9de05e5ba27.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a0b86fd2-b1bf-44e0-a26c-68d8faeed264.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e99ae628-89df-4de9-ab80-9885b1be4dc0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Altason design system\",\"item\":\"https://styles.refero.design/style/e99ae628-89df-4de9-ab80-9885b1be4dc0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e99ae628-89df-4de9-ab80-9885b1be4dc0#style-reference\",\"name\":\"Altason design system reference\",\"headline\":\"Altason design system | Refero Styles\",\"description\":\"Explore Altason's light Agency design system: Ink Black #000000, Paper White #ffffff colors, Haas Grotesk DS Pro, Haas Grotesk TX Pro typography, and...\",\"url\":\"https://styles.refero.design/style/e99ae628-89df-4de9-ab80-9885b1be4dc0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e99ae628-89df-4de9-ab80-9885b1be4dc0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Altason\",\"url\":\"https://atlason.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e99ae628-89df-4de9-ab80-9885b1be4dc0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a0b86fd2-b1bf-44e0-a26c-68d8faeed264.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a0b86fd2-b1bf-44e0-a26c-68d8faeed264.jpg\",\"caption\":\"Screenshot of Altason\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a0b86fd2-b1bf-44e0-a26c-68d8faeed264.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Altason design system\",\"Altason website design\",\"Altason colors\",\"Altason typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Paper White\",\"Charcoal Plate\",\"Silver Hairline\",\"Haas Grotesk DS Pro\",\"Haas Grotesk TX Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Altason design system\"},{\"@type\":\"Thing\",\"name\":\"Altason website design\"},{\"@type\":\"Thing\",\"name\":\"Altason colors\"},{\"@type\":\"Thing\",\"name\":\"Altason typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:31:53.571Z\",\"dateModified\":\"2026-04-30T01:31:53.571Z\"}]}19:T587,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px solid)\n- dark surface: #212121\n- muted/divider: #b0b0b0\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. Create a portfolio tile: white canvas, 1px solid #000000 border around a rectangular image, 20px gap below. Caption in Haas Grotesk TX Pro weight 400, 16px, #000000, line-height 1.20, left-aligned directly under the image.\n\n2. Create a display wordmark: the word 'Studio' in Haas Grotesk DS Pro weight 500 at 230px, #000000, line-height 0.77, left-aligned, occupying the full height of a three-column layout's first column. No decoration, no underline, no color.\n\n3. Create a footer contact block: four narrow columns separated by 1px solid #000000 vertical borders, 20px padding-top, 48px padding-left on the first column. Labels in Haas Grotesk TX Pro weight 500 at 16px, values in weight 400 at 16px, all #000000 on #ffffff.\n\n4. Create a dark image panel: #212121 background filling a full column, containing a single line of white text in Haas Grotesk TX Pro weight 500 at 36px, line-height 0.90, bottom-left aligned with 20px padding.\n\n5. Create a three-column page grid: full-bleed white layout divided into three equal-width columns by 1px solid #000000 vertical rules. No max-width, no centering, no gaps — the rules ARE the gutters. Each column holds its own vertical content stack."
+}

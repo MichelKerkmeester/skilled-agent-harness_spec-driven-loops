@@ -1,0 +1,75 @@
+:root {
+  /* Colors */
+  --color-bone-white: #ffffff;
+  --color-smoke: #808080;
+  --color-obsidian: #000000;
+  --color-graphite: #333333;
+  --color-radish-bloom: #eb516d;
+
+  /* Typography — Font Families */
+  --font-times-new-roman: 'Times New Roman', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-suisse-intl-webm: 'Suisse Intl WebM', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-editorial-new: 'Editorial New', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 1.2;
+  --text-body: 16px;
+  --leading-body: 1.4;
+  --tracking-body: -0.13px;
+  --text-subheading: 18px;
+  --leading-subheading: 1.2;
+  --tracking-subheading: -0.14px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -0.19px;
+  --text-heading: 36px;
+  --leading-heading: 1.16;
+  --tracking-heading: -0.29px;
+  --text-display: 90px;
+  --leading-display: 0.82;
+  --tracking-display: -0.9px;
+
+  /* Typography — Weights */
+  --font-weight-thin: 100;
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-7: 7px;
+  --spacing-9: 9px;
+  --spacing-10: 10px;
+  --spacing-13: 13px;
+  --spacing-15: 15px;
+  --spacing-20: 20px;
+  --spacing-22: 22px;
+  --spacing-25: 25px;
+  --spacing-35: 35px;
+  --spacing-40: 40px;
+  --spacing-50: 50px;
+  --spacing-60: 60px;
+  --spacing-70: 70px;
+  --spacing-80: 80px;
+  --spacing-100: 100px;
+  --spacing-120: 120px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 70px;
+  --card-padding: 25px;
+  --element-gap: 22px;
+
+  /* Border Radius */
+  --radius-3xl: 24px;
+  --radius-3xl-2: 40px;
+  --radius-3xl-3: 44.0001px;
+
+  /* Named Radii */
+  --radius-cards: 0px;
+  --radius-links: 24px;
+  --radius-pills: 44px;
+  --radius-buttons: 40px;
+
+  /* Surfaces */
+  --surface-obsidian-canvas: #000000;
+  --surface-radish-panel: #eb516d;
+}

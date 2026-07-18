@@ -1,0 +1,174 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, all borders, nav link color, product card frame, massive hero wordmark — the structural color of the entire system"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card backgrounds, image backgrounds, inverted text on dark controls"
+    },
+    "graphite": {
+      "$value": "#595959",
+      "$type": "color",
+      "$description": "Graphite — Muted secondary text, tertiary borders, inactive UI elements"
+    }
+  },
+  "font": {
+    "helvmono": {
+      "$value": "HELVMONO",
+      "$type": "fontFamily",
+      "$description": "Primary interface font — all body text, navigation links, product names, section labels, card metadata. The monospaced character set is the signature choice; it makes even navigation read like a technical catalog. A 14px size with 1.0–1.3 line-height creates a dense, label-like rhythm."
+    },
+    "helvetica-bold": {
+      "$value": "helvetica-bold",
+      "$type": "fontFamily",
+      "$description": "Footer/legal micro-copy and secondary link text. The 12px size with 2.5 line-height signals fine-print territory."
+    },
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "Button labels and the dominant system fallback for interactive elements. The bold weight creates a single moment of typographic contrast against the 400-weight monospace body."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "helvetica-bold",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "helvetica-bold",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "HELVMONO",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "HELVMONO",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 2.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "14.4px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.15) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Base background for the entire site — no gradient, no texture, pure white"
+    },
+    "product-frame": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline 1px black border around each product card image — the only 'frame' in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.b-line.it",
+      "siteName": "B—Line",
+      "extractedAt": "2026-06-03T19:45:37.229Z",
+      "variant": "extended"
+    }
+  }
+}

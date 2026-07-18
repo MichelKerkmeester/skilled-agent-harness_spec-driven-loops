@@ -1,0 +1,1407 @@
+{
+  "source": "https://styles.refero.design/style/65c01b0f-7ae5-42ff-ad5b-162bbdce8e01",
+  "uuid": "65c01b0f-7ae5-42ff-ad5b-162bbdce8e01",
+  "name": "Odin's Crow",
+  "northStar": "Swiss broadsheet on warm bone — a single typographic grid held together by hairline rules, where one massive headline bleeds past the fold while a 10px wordmark anchors the corner.",
+  "capturedAt": "2026-07-18T08:11:35.178Z",
+  "meta": {
+    "url": "https://odins-crow.com",
+    "siteName": "Odin's Crow",
+    "extractedAt": "2026-06-03T18:07:27.708Z",
+    "durationMs": 25780,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 615,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the full size range of Plain: let 10px wordmarks exist in the same composition as 190px headlines. The scale contrast is the design.",
+      "Set display headlines flush-left at the page margin and let them overflow the viewport horizontally — never constrain them to a container width.",
+      "Use 1px #e5e7eb full-bleed hairline rules as the sole structural divider. Stack 2–4 rules in parallel to imply a card boundary without enclosing a surface.",
+      "Pair every section header with a right-aligned section number in matching size, separated below by one full-width rule and surrounded by 80px vertical space.",
+      "Use only #2b2b2b for all text at all sizes. Reserve #535251 exclusively for sub-labels and metadata that should feel secondary.",
+      "Tighten letter-spacing aggressively at large sizes: -0.025em at 20–27px, stepping to -0.050em at the mega display sizes. The dense, near-colliding letterforms are the signature.",
+      "Let the bone canvas (#dbd7d3) carry the entire page. Do not introduce card backgrounds — the system has no surface elevation, only the bone and its warm/cool variants."
+    ],
+    "donts": [
+      "Do not introduce any chromatic color, gradient, or filled CTA. The system has no accent and no button-fill token — the only color contrast is ink on bone.",
+      "Do not apply border-radius to anything. All corners are sharp 0px — cards, buttons, inputs, badges.",
+      "Do not add box-shadows or drop-shadows. The system has no elevation tokens. Depth is communicated only through hairline rules and surface-tone shifts.",
+      "Do not pair Plain with a second typeface. The single-family constraint is non-negotiable.",
+      "Do not use a sans-serif lighter than 400 or heavier than 700. Plain has only two weights; using anything else breaks the system.",
+      "Do not center-align body text or headlines. Everything is flush-left (or right-aligned for section numbers only).",
+      "Do not introduce imagery, photography, illustration, or iconography with visual weight. Icons, if used, are flat #2b2b2b glyphs at the smallest text sizes — nothing decorative."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#dbd7d3",
+        "name": "Bone",
+        "role": "Primary page canvas — warm off-white that carries the entire reading surface; everything else floats on or beside it",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Ash",
+        "role": "Structural divider lines and hairline borders — the single most-used color in the system at 2300+ occurrences, used exclusively to draw the rules that separate sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2b2b2b",
+        "name": "Inkstone",
+        "role": "Primary text and graphic fill — near-black with no pure-black harshness, used for all type at every size and for icon/illustration fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#535251",
+        "name": "Graphite",
+        "role": "Secondary text and muted borders — for sub-labels, metadata, and the dimmer secondary rule lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5d5c3",
+        "name": "Sand",
+        "role": "Warm section surface — slightly more saturated beige used to differentiate bands or sidebar zones from the main bone canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cdc0b1",
+        "name": "Linen",
+        "role": "Deepest warm surface — tan accent band, used sparingly as a third surface level for footer blocks or inverted sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c9c8c9",
+        "name": "Frost",
+        "role": "Muted UI surface for disabled controls, low-emphasis panels, and placeholder blocks.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#82887c",
+        "name": "Sage Stone",
+        "role": "Subtle warm-gray accent — the only chromatically-tinged neutral, reserved for occasional emphasis on a word or number",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed edge-to-edge layout with no max-width container and no centered column. The page is structured as a vertical sequence of horizontal bands, each separated by 1px #e5e7eb rules that span the entire viewport. The top-left corner holds a 10px wordmark at 20px padding; the top-right is left empty. Each section opens with a label+number header row (label left, number right) sitting on a single rule. Content within a section runs full-width with 20px horizontal padding from the viewport edge — body text is not constrained to a reading column. Hero headlines deliberately extend past the right edge of the viewport. Section rhythm is generous: 80px vertical space above and below each header line, with stacked rules marking transitions. Navigation is implicit through the numbered section index, not through a menu or sidebar. The overall feel is a single broadsheet column where the horizontal rules are the page furniture.",
+    "imagery": "The site carries no photography, no illustration, no product imagery, and no decorative graphics. Visual content is exclusively typographic: oversized type, the wordmark, section numbers, and footer labels. If a glyph or icon is needed, it is a flat #2b2b2b geometric shape sized to match the 10–16px text scale — never larger, never decorative, never colored.",
+    "similar": [
+      {
+        "why": "Same single-family grotesque typography and aggressive display-size bleed; identical broadsheet-with-rules structural language",
+        "business": "Hershey-Felix studio site"
+      },
+      {
+        "why": "Swiss editorial grid, section-numbering pattern, and the typographic-only visual identity with zero decoration",
+        "business": "Pentagram partner pages"
+      },
+      {
+        "why": "Warm bone canvas, oversized type, and the manuscript/broadsheet rhythm with chapter numbers",
+        "business": "Lars Müller Publishers"
+      },
+      {
+        "why": "Near-monochrome palette where #2b2b2b ink on warm off-white is the entire visual system",
+        "business": "Off-Black (studio site)"
+      },
+      {
+        "why": "Hairline rules as the sole structural device and display headlines that overflow the viewport edge",
+        "business": "Manuel Bürger portfolio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#dbd7d3",
+        "name": "Bone Canvas",
+        "level": 1,
+        "purpose": "Primary page background — the warm off-white everything reads against"
+      },
+      {
+        "hex": "#e5d5c3",
+        "name": "Sand Section",
+        "level": 2,
+        "purpose": "Warm secondary band for differentiated content sections"
+      },
+      {
+        "hex": "#cdc0b1",
+        "name": "Linen Accent",
+        "level": 3,
+        "purpose": "Deeper warm zone for footer or inverted blocks"
+      },
+      {
+        "hex": "#c9c8c9",
+        "name": "Frost Cool Band",
+        "level": 4,
+        "purpose": "Cool gray break from the warm palette — used as a deliberate cold note"
+      }
+    ],
+    "northStar": "Swiss broadsheet on warm bone — a single typographic grid held together by hairline rules, where one massive headline bleeds past the fold while a 10px wordmark anchors the corner.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-lg",
+        "size": 20,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "subheading",
+        "size": 27,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.675
+      },
+      {
+        "role": "heading-sm",
+        "size": 34,
+        "lineHeight": 1.25,
+        "letterSpacing": -1.36
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.25,
+        "letterSpacing": -1.44
+      },
+      {
+        "role": "heading-lg",
+        "size": 42,
+        "lineHeight": 1.11,
+        "letterSpacing": -1.68
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1.08,
+        "letterSpacing": -2.82
+      },
+      {
+        "role": "display-mega",
+        "size": 190,
+        "lineHeight": 1,
+        "letterSpacing": -9.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Corner Wordmark",
+        "role": "Persistent brand label in the top-left corner of every screen",
+        "description": "10px Plain weight 700, #2b2b2b, sitting at the top-left with 20px padding. No logo mark, no symbol — pure type. Functions as a home button and brand anchor."
+      },
+      {
+        "name": "Mega Display Headline",
+        "role": "The hero/display headline — deliberately bleeds past the right viewport edge",
+        "description": "Plain 700, 187–190px, line-height 1.00, letter-spacing -9.5px (-0.05em), color #2b2b2b. Set flush-left at the page margin with no container constraining it; the text is permitted to overflow horizontally. This is the signature element."
+      },
+      {
+        "name": "Section Header Row",
+        "role": "Section label + numbered index, e.g. \"What we do\" + \"1.1\"",
+        "description": "Two-part line: left side is Plain 700 at 34–36px in #2b2b2b (the section name), right side is the section number in matching size and weight, right-aligned to the page margin. Below it runs a single 1px #e5e7eb rule spanning the full viewport width. 80px vertical breathing room above and below the line."
+      },
+      {
+        "name": "Full-Width Hairline Rule",
+        "role": "The primary structural divider — the design system's most-used element",
+        "description": "1px solid #e5e7eb, stretched edge-to-edge with no margin. Used to separate every section, sub-section, and content block. Stacks of 2–4 parallel rules create the visual equivalent of card borders without any enclosed surface."
+      },
+      {
+        "name": "Footer Credit Bar",
+        "role": "Small metadata strip at the bottom of sections",
+        "description": "Plain 400 at 10–12px, #2b2b2b, with 20px horizontal padding. Left text (brand name) and right text (copyright/year) aligned to opposite edges. Sits directly on the bone canvas — no background fill, no border, separated from content above by a single hairline rule."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Running paragraphs and long-form content",
+        "description": "Plain 400, 16–20px, line-height 1.5, color #2b2b2b. No max-width constraint — text runs the full page width. Paragraph spacing is 20–40px (the 5x–10x base-unit rhythm). Letter-spacing defaults to 0."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline links and navigation references within body copy",
+        "description": "Plain 400, same size as surrounding text, color #2b2b2b with a 1px #2b2b2b underline offset 2px from baseline. No color change on hover — weight shifts to 700."
+      },
+      {
+        "name": "Section Number Index",
+        "role": "Right-aligned numeric counter that labels each section (1.1, 1.2, 2.1…)",
+        "description": "Plain 700, matches the section header size, #2b2b2b, right-aligned to the page margin. Functions as both navigation hint and editorial-style chapter numbering."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Sparingly used CTA — invisible until it is the only thing on the line",
+        "description": "Plain 400, 16px, #2b2b2b, with a 1px #2b2b2b bottom border acting as the button chrome. 5px vertical padding, no horizontal padding. Hover: weight shifts to 700. Never filled, never rounded — the system has no color tokens for a filled button."
+      },
+      {
+        "name": "Form Input",
+        "role": "Borderless or single-line-bordered text input for contact/data entry",
+        "description": "Plain 400, 16px, #2b2b2b text on bone canvas. 1px #e5e7eb bottom border only (no left/right/top), 1px top padding, 22px bottom padding. Placeholder text in #535251 at the same size. No focus ring — border darkens to #2b2b2b on focus."
+      },
+      {
+        "name": "Label Tag",
+        "role": "Small inline metadata labels (category, date, index)",
+        "description": "Plain 700, 10–12px, #2b2b2b, uppercase tracking at the natural 0 letter-spacing. Sits inline with text or as a standalone line above a content block. No background, no border — type only."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole typeface — a geometric grotesque carrying every role from 10px wordmark to 190px bleeding display. Two weights only: 400 for body and 700 for display/emphasis. The brand's voice is this single family; never pair it with a secondary face.",
+        "sizes": "10, 16, 20, 27, 34, 36, 42, 60, 187, 190",
+        "family": "Plain",
+        "weight": "400, 700",
+        "lineHeight": "1.00–2.00 (extreme: 1.00 for display, 1.50 for body, 2.00 for label sets)",
+        "substitute": "Inter, Helvetica Neue, Söhne, or Neue Haas Grotesk",
+        "letterSpacing": "Tightens aggressively with scale: -0.025em at 20–27px, -0.040em at 36–42px, -0.047em at 60px, -0.050em at 187–190px. The display sizes are pulled so tight that letters nearly collide, creating the signature condensed, dense headline mass.",
+        "fontFeatureSettings": ""
+      }
+    ],
+    "description": "Odin's Crow operates as a typographic broadsheet — a Swiss editorial design language where type, rules, and negative space do all the work. The palette is almost entirely warm bone-and-ink: a single near-black text color sits on warm parchment surfaces, separated not by cards or shadows but by full-bleed horizontal rules in stone gray. Scale is weaponized: a 10px wordmark in the top corner exists in the same composition as 190px display headlines that deliberately bleed off the right edge. Section organization uses a numbered system (1.1, 1.2…) paired with short labels, mimicking manuscript chapters. There are no buttons, no gradients, no shadows, no imagery — the design system is purely typographic and structural, trusting the geometry of the page to carry the entire visual identity.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/65c01b0f-7ae5-42ff-ad5b-162bbdce8e01#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Odin's Crow design system\",\"item\":\"https://styles.refero.design/style/65c01b0f-7ae5-42ff-ad5b-162bbdce8e01\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/65c01b0f-7ae5-42ff-ad5b-162bbdce8e01#style-reference\",\"name\":\"Odin's Crow design system reference\",\"headline\":\"Odin's Crow design system | Refero Styles\",\"description\":\"Explore Odin's Crow's light Agency design system: Bone #dbd7d3, Ash #e5e7eb colors, Plain typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/65c01b0f-7ae5-42ff-ad5b-162bbdce8e01\",\"mainEntityOfPage\":\"https://styles.refero.design/style/65c01b0f-7ae5-42ff-ad5b-162bbdce8e01\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Odin's Crow\",\"url\":\"https://odins-crow.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/65c01b0f-7ae5-42ff-ad5b-162bbdce8e01#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/edcd42fb-83ab-4974-ba0e-ed3f23ae6abc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/edcd42fb-83ab-4974-ba0e-ed3f23ae6abc.jpg\",\"caption\":\"Screenshot of Odin's Crow\"},\"image\":\"https://images.refero.design/styles/refero.design/image/edcd42fb-83ab-4974-ba0e-ed3f23ae6abc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Odin's Crow design system\",\"Odin's Crow website design\",\"Odin's Crow colors\",\"Odin's Crow typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone\",\"Ash\",\"Inkstone\",\"Graphite\",\"Plain\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Odin's Crow design system\"},{\"@type\":\"Thing\",\"name\":\"Odin's Crow website design\"},{\"@type\":\"Thing\",\"name\":\"Odin's Crow colors\"},{\"@type\":\"Thing\",\"name\":\"Odin's Crow typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:24:41.409Z\",\"dateModified\":\"2026-04-30T01:24:41.409Z\"}]}19:T660,**Quick Color Reference**\n- text: #2b2b2b\n- background: #dbd7d3\n- border / hairline rule: #e5e7eb\n- secondary text: #535251\n- warm surface variant: #e5d5c3\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Create a section header row**: 80px top margin. Left side: \"What we do\" in Plain 700, 36px, #2b2b2b, letter-spacing -1.44px. Right side: \"1.1\" in matching size and weight, right-aligned to the viewport edge with 20px right padding. Below: a 1px solid #e5e7eb rule spanning the full viewport width. 80px bottom margin.\n\n2. **Create a mega display headline**: Plain 700, 190px, line-height 1.0, color #2b2b2b, letter-spacing -9.5px. Set flush-left at the page edge with 20px left padding. The text must be allowed to overflow horizontally past the right viewport edge — do not wrap or constrain it to a container. 60px bottom margin.\n\n3. **Create a full-width stacked rule divider**: 4 parallel 1px #e5e7eb rules, each separated by 8px of vertical space, spanning the full viewport width. 40px margin above and below the stack. Functions as a card boundary without a filled surface.\n\n4. **Create a footer credit bar**: 1px solid #e5e7eb rule above. Inside: Plain 400, 10px, line-height 2.0, color #2b2b2b. Left-aligned: brand name. Right-aligned: copyright + year. 20px horizontal padding from viewport edges. No background fill.\n\n5. **Create a body text block**: Plain 400, 16px, line-height 1.5, color #2b2b2b. Full viewport width with 20px left/right padding. Paragraph spacing 20px. Inline links: 1px #2b2b2b underline offset 2px from baseline, weight shifts to 700 on hover — no color change."
+      }
+    ],
+    "elevationPhilosophy": "The system has no shadows. Depth is constructed entirely through (a) 1px #e5e7eb hairline rules that separate sections, and (b) subtle shifts between the four warm/cool surface tones (#dbd7d3 → #e5d5c3 → #cdc0b1 → #c9c8c9). Never introduce a drop shadow, inner shadow, or glow — it would break the editorial broadsheet language."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "icon",
+            "image",
+            "badge",
+            "body",
+            "link",
+            "footer",
+            "input"
+          ],
+          "frequency": 2306,
+          "confidence": 1,
+          "prominence": 303249535.138248,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "icon/color": 8,
+            "link/color": 2,
+            "other/fill": 8,
+            "badge/color": 1,
+            "image/color": 1,
+            "other/color": 8,
+            "heading/color": 5,
+            "body/borderColor": 620,
+            "icon/borderColor": 160,
+            "link/borderColor": 48,
+            "badge/borderColor": 73,
+            "image/borderColor": 28,
+            "input/borderColor": 3,
+            "other/borderColor": 977,
+            "footer/borderColor": 4,
+            "heading/borderColor": 348,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#2b2b2b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.28908005129278536
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body",
+            "heading",
+            "image",
+            "badge",
+            "footer",
+            "input"
+          ],
+          "frequency": 606,
+          "confidence": 1,
+          "prominence": 250963048.5591711,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 145,
+            "icon/color": 32,
+            "link/color": 11,
+            "other/fill": 33,
+            "badge/color": 18,
+            "image/color": 6,
+            "input/color": 1,
+            "other/color": 241,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 82,
+            "input/borderColor": 1,
+            "other/borderColor": 12,
+            "other/backgroundColor": 22
+          }
+        },
+        {
+          "hex": "#e5d5c3",
+          "oklch": {
+            "c": 0.03007303998774136,
+            "h": 70.6893978798095,
+            "l": 0.8811802734033329
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2849423.3943214845,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#c9c8c9",
+          "oklch": {
+            "c": 0.0017556769588117594,
+            "h": 325.5920463708402,
+            "l": 0.8338793795960844
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2405517.506303307,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#afa7a2",
+          "oklch": {
+            "c": 0.011715931368895878,
+            "h": 54.4350743434125,
+            "l": 0.7336160685477444
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2076934.8609450029,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#535251",
+          "oklch": {
+            "c": 0.0019326299480976342,
+            "h": 73.77091494995588,
+            "l": 0.43828276877713623
+          },
+          "contexts": [
+            "other",
+            "badge",
+            "link"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 1580727.9349832067,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 4,
+            "badge/borderColor": 3,
+            "other/borderColor": 7
+          }
+        },
+        {
+          "hex": "#dbd7d3",
+          "oklch": {
+            "c": 0.0070135703480298855,
+            "h": 67.73418408744924,
+            "l": 0.8811933787111252
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#82887c",
+          "oklch": {
+            "c": 0.019034246616241462,
+            "h": 128.80819484352133,
+            "l": 0.6181321466556698
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 362662,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#cdc0b1",
+          "oklch": {
+            "c": 0.025348045392028975,
+            "h": 71.41238359623922,
+            "l": 0.814388928339574
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 334412.82298965746,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.012537689447333362,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 11.44,
+          "background": "#2b2b2b",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.89,
+          "background": "#dbd7d3",
+          "foreground": "#2b2b2b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.87,
+          "background": "#e5d5c3",
+          "foreground": "#2b2b2b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.49,
+          "background": "#c9c8c9",
+          "foreground": "#2b2b2b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.94,
+          "background": "#cdc0b1",
+          "foreground": "#2b2b2b"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.3,
+          "background": "#e5e7eb",
+          "foreground": "#535251"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.98,
+          "background": "#afa7a2",
+          "foreground": "#2b2b2b"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.45,
+          "background": "#dbd7d3",
+          "foreground": "#535251"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.43,
+          "background": "#e5d5c3",
+          "foreground": "#535251"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.67,
+          "background": "#c9c8c9",
+          "foreground": "#535251"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.37,
+          "background": "#cdc0b1",
+          "foreground": "#535251"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.88,
+          "background": "#82887c",
+          "foreground": "#2b2b2b"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.29,
+          "background": "#afa7a2",
+          "foreground": "#535251"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.94,
+          "background": "#82887c",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.91,
+          "background": "#afa7a2",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.44,
+          "background": "#cdc0b1",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.35,
+          "background": "#c9c8c9",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.16,
+          "background": "#e5d5c3",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.16,
+          "background": "#dbd7d3",
+          "foreground": "#e5e7eb"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginLeft",
+            "marginTop",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body",
+            "marginTop|heading",
+            "marginRight|heading",
+            "marginRight|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 33,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other",
+            "paddingLeft|body",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|link",
+            "marginRight|body",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "body",
+            "other",
+            "heading"
+          ],
+          "frequency": 28,
+          "properties": [
+            "marginLeft",
+            "marginBottom",
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|link",
+            "marginLeft|body",
+            "marginBottom|other",
+            "marginRight|body",
+            "marginTop|other",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "heading",
+            "footer"
+          ],
+          "frequency": 77,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginRight|heading",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "link",
+            "input"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 47,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 176,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 220,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Plain",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 573,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.9
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 73,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body",
+            "image",
+            "badge",
+            "footer"
+          ],
+          "frequency": 158,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "button"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "input"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "badge",
+            "body",
+            "icon"
+          ],
+          "frequency": 60,
+          "lineHeight": 2,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Plain",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "Plain",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Plain",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "heading",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Plain",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Plain",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Plain",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Plain",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Plain",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.08,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Plain",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.08,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Plain",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 30,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Plain",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Plain",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 46,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 187,
+          "family": "Plain",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 31,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 190,
+          "family": "Plain",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.047,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6c49440f-5e81-49c1-be5e-c53f4596ff13.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/edcd42fb-83ab-4974-ba0e-ed3f23ae6abc.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/65c01b0f-7ae5-42ff-ad5b-162bbdce8e01#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Odin's Crow design system\",\"item\":\"https://styles.refero.design/style/65c01b0f-7ae5-42ff-ad5b-162bbdce8e01\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/65c01b0f-7ae5-42ff-ad5b-162bbdce8e01#style-reference\",\"name\":\"Odin's Crow design system reference\",\"headline\":\"Odin's Crow design system | Refero Styles\",\"description\":\"Explore Odin's Crow's light Agency design system: Bone #dbd7d3, Ash #e5e7eb colors, Plain typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/65c01b0f-7ae5-42ff-ad5b-162bbdce8e01\",\"mainEntityOfPage\":\"https://styles.refero.design/style/65c01b0f-7ae5-42ff-ad5b-162bbdce8e01\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Odin's Crow\",\"url\":\"https://odins-crow.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/65c01b0f-7ae5-42ff-ad5b-162bbdce8e01#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/edcd42fb-83ab-4974-ba0e-ed3f23ae6abc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/edcd42fb-83ab-4974-ba0e-ed3f23ae6abc.jpg\",\"caption\":\"Screenshot of Odin's Crow\"},\"image\":\"https://images.refero.design/styles/refero.design/image/edcd42fb-83ab-4974-ba0e-ed3f23ae6abc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Odin's Crow design system\",\"Odin's Crow website design\",\"Odin's Crow colors\",\"Odin's Crow typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone\",\"Ash\",\"Inkstone\",\"Graphite\",\"Plain\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Odin's Crow design system\"},{\"@type\":\"Thing\",\"name\":\"Odin's Crow website design\"},{\"@type\":\"Thing\",\"name\":\"Odin's Crow colors\"},{\"@type\":\"Thing\",\"name\":\"Odin's Crow typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:24:41.409Z\",\"dateModified\":\"2026-04-30T01:24:41.409Z\"}]}19:T660,**Quick Color Reference**\n- text: #2b2b2b\n- background: #dbd7d3\n- border / hairline rule: #e5e7eb\n- secondary text: #535251\n- warm surface variant: #e5d5c3\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Create a section header row**: 80px top margin. Left side: \"What we do\" in Plain 700, 36px, #2b2b2b, letter-spacing -1.44px. Right side: \"1.1\" in matching size and weight, right-aligned to the viewport edge with 20px right padding. Below: a 1px solid #e5e7eb rule spanning the full viewport width. 80px bottom margin.\n\n2. **Create a mega display headline**: Plain 700, 190px, line-height 1.0, color #2b2b2b, letter-spacing -9.5px. Set flush-left at the page edge with 20px left padding. The text must be allowed to overflow horizontally past the right viewport edge — do not wrap or constrain it to a container. 60px bottom margin.\n\n3. **Create a full-width stacked rule divider**: 4 parallel 1px #e5e7eb rules, each separated by 8px of vertical space, spanning the full viewport width. 40px margin above and below the stack. Functions as a card boundary without a filled surface.\n\n4. **Create a footer credit bar**: 1px solid #e5e7eb rule above. Inside: Plain 400, 10px, line-height 2.0, color #2b2b2b. Left-aligned: brand name. Right-aligned: copyright + year. 20px horizontal padding from viewport edges. No background fill.\n\n5. **Create a body text block**: Plain 400, 16px, line-height 1.5, color #2b2b2b. Full viewport width with 20px left/right padding. Paragraph spacing 20px. Inline links: 1px #2b2b2b underline offset 2px from baseline, weight shifts to 700 on hover — no color change."
+}

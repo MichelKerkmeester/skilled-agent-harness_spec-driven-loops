@@ -1,0 +1,209 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, icon strokes, structural borders, and the filled Log in button — the load-bearing color that carries almost every interface element"
+    },
+    "paper-white": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Paper White — Page canvas and the topmost surface layer — warm off-white that softens the contrast of pure black text"
+    },
+    "mist-gray": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Mist Gray — Secondary surface beneath the elevated feed container — the shadow-tinted plane that gives the feed column its lifted feel"
+    },
+    "cloud-gray": {
+      "$value": "#d5d5d5",
+      "$type": "color",
+      "$description": "Cloud Gray — Post dividers and card outline borders — the thinnest structural separator between stacked feed items"
+    },
+    "ash-gray": {
+      "$value": "#969696",
+      "$type": "color",
+      "$description": "Ash Gray — Secondary borders on buttons, muted metadata text, and placeholder strokes — the middle-tone neutral for inactive controls"
+    },
+    "graphite": {
+      "$value": "#424242",
+      "$type": "color",
+      "$description": "Graphite — Body text borders, secondary icon fills, and medium-emphasis strokes — sits between Ink Black and Ash Gray for tertiary text and outlines"
+    },
+    "meta-blue": {
+      "$value": "#385898",
+      "$type": "color",
+      "$description": "Meta Blue — Outlined link borders, hyperlink text, verified-badge fill, and icon accents — the single chromatic note in the system, used for interactive emphasis without ever filling a large surface"
+    }
+  },
+  "font": {
+    "system-ui": {
+      "$value": "system-ui",
+      "$type": "fontFamily",
+      "$description": "Entire interface — system-ui at 15px/400 for post body text, 15px/600 for usernames, 13px/400 for timestamps and metadata, 12px/400 for fine print. The choice of system-ui rather than a webfont keeps rendering native to each platform; the narrow size range (12–17px) and tight 1.33–1.4 line-height create the compact, information-dense rhythm of a social feed where many posts share a single screen"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.04) 0px 0px 12px 0px, rgb(250, 250, 250) 0px 0px 0px 48px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "md-2": {
+      "$value": "rgba(0, 0, 0, 0.04) 0px 0px 12px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md-2"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 0: Outermost background visible around the feed container and in the sidebar gutters"
+    },
+    "backdrop-tint": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 1: The slightly darker plane revealed by the feed container's spread shadow — exists only as shadow artifact, not a painted surface"
+    },
+    "feed-column": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 2: The elevated rounded container that holds all posts; visually identical to the canvas but lifted by the 12px shadow halo and 18px radius"
+    },
+    "post-surface": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 3: Inherited from the feed column — posts are flat, separated only by 1px dividers, never by card backgrounds"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.threads.com",
+      "siteName": "Threads",
+      "extractedAt": "2026-06-03T19:15:32.029Z",
+      "variant": "extended"
+    }
+  }
+}

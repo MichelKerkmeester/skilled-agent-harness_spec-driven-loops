@@ -1,0 +1,42 @@
+@theme {
+  /* Colors */
+  --color-newsprint-cream: #f7f4ed;
+  --color-paper-white: #ffffff;
+  --color-ink: #242424;
+  --color-body-gray: #333333;
+  --color-button-black: #191919;
+  --color-marginalia-gray: #6b6b6b;
+
+  /* Typography */
+  --font-medium-content-sans-serif-font: 'medium-content-sans-serif-font', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gt-super: 'GT Super', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-shne: 'Söhne', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-charter-georgia-stack: 'Charter / Georgia stack', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-shne-extended: 'Söhne (extended)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sohne: 'sohne', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-times: 'Times', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 13px;
+  --leading-caption: 1.27;
+  --text-body: 16px;
+  --leading-body: 1.2;
+  --text-subheading: 20px;
+  --leading-subheading: 1.4;
+  --text-heading-sm: 22px;
+  --leading-heading-sm: 1.54;
+  --text-display: 120px;
+  --leading-display: 0.83;
+  --tracking-display: -6.6px;
+
+  /* Spacing */
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+
+  /* Border Radius */
+  --radius-full: 1386px;
+  --radius-full-2: 1980px;
+}

@@ -1,0 +1,624 @@
+{
+  "color": {
+    "signal-green": {
+      "$value": "#71d083",
+      "$type": "color",
+      "$description": "Signal Green — Green supporting accent for decorative details and low-frequency emphasis"
+    },
+    "led-green": {
+      "$value": "#366740",
+      "$type": "color",
+      "$description": "LED Green — Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "moss-border": {
+      "$value": "#2d5736",
+      "$type": "color",
+      "$description": "Moss Border — Subtle green-tinted border accent for highlighted cards and notification states — keeps the green theme at low intensity"
+    },
+    "forest-wash": {
+      "$value": "#1d3a24",
+      "$type": "color",
+      "$description": "Forest Wash — Tinted card background for highlighted/featured panels — dark green surface that sets apart spotlighted content"
+    },
+    "fern-ground": {
+      "$value": "#1b2a1e",
+      "$type": "color",
+      "$description": "Fern Ground — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "link-blue": {
+      "$value": "#70b8ff",
+      "$type": "color",
+      "$description": "Link Blue — Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "lilac-accent": {
+      "$value": "#baa7ff",
+      "$type": "color",
+      "$description": "Lilac Accent — Decorative icon accent and secondary highlight — soft violet for visual variety in feature icons and subtle UI flourishes"
+    },
+    "plum-edge": {
+      "$value": "#291f43",
+      "$type": "color",
+      "$description": "Plum Edge — Muted violet border tint for tag/label outlines — secondary border color for grouped metadata"
+    },
+    "iris-border": {
+      "$value": "#473876",
+      "$type": "color",
+      "$description": "Iris Border — Mid-violet link and body accent — used for inline code links and grouped label borders"
+    },
+    "lavender-mist": {
+      "$value": "#e2ddfe",
+      "$type": "color",
+      "$description": "Lavender Mist — Pale lavender text accent for highlighted inline labels and decorative typography touches"
+    },
+    "carbon": {
+      "$value": "#04040b",
+      "$type": "color",
+      "$description": "Carbon — Page canvas — the base near-black that everything sits on"
+    },
+    "graphite": {
+      "$value": "#121113",
+      "$type": "color",
+      "$description": "Graphite — First surface lift — card backgrounds, nav header surface, elevated panels"
+    },
+    "obsidian": {
+      "$value": "#1a191b",
+      "$type": "color",
+      "$description": "Obsidian — Second surface lift — nested cards, secondary panels, footer surface"
+    },
+    "slate": {
+      "$value": "#232225",
+      "$type": "color",
+      "$description": "Slate — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "basalt": {
+      "$value": "#2b292d",
+      "$type": "color",
+      "$description": "Basalt — Borders and dividers — the primary hairline color separating surfaces and defining card edges"
+    },
+    "iron": {
+      "$value": "#323035",
+      "$type": "color",
+      "$description": "Iron — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "pewter": {
+      "$value": "#3c393f",
+      "$type": "color",
+      "$description": "Pewter — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "steel": {
+      "$value": "#49474e",
+      "$type": "color",
+      "$description": "Steel — Mid-gray borders and muted icon strokes — subtle structural lines"
+    },
+    "fog": {
+      "$value": "#7c7a85",
+      "$type": "color",
+      "$description": "Fog — Muted body text, footer text, nav inactive items, secondary copy"
+    },
+    "silver": {
+      "$value": "#b5b2bc",
+      "$type": "color",
+      "$description": "Silver — Secondary text, placeholder text, button text on dark fills, icon outlines"
+    },
+    "ash": {
+      "$value": "#eeeef0",
+      "$type": "color",
+      "$description": "Ash — Primary body text — high-contrast off-white for reading copy"
+    },
+    "chalk": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Chalk — Headings and primary headings — the brightest text for display type"
+    }
+  },
+  "font": {
+    "red-hat-display-variable": {
+      "$value": "Red Hat Display Variable",
+      "$type": "fontFamily",
+      "$description": "Display and heading type — used at 48-60px for hero headlines with weight 700, at 36px for section headings with weight 600. The negative tracking at display sizes (-0.025em) tightens the letterforms for a compressed, industrial look. Weight drops to 400-500 for subheadings and feature card titles. Substitute: Inter, Space Grotesk"
+    },
+    "red-hat-text-variable": {
+      "$value": "Red Hat Text Variable",
+      "$type": "fontFamily",
+      "$description": "Body and UI text — the workhorse family for paragraphs, nav items, button labels, and all functional text. The positive tracking (0.025em) at all sizes is a signature choice: body copy breathes with slightly loosened letterspacing, which gives the dense dark UI an airy, readable quality. Weight 500-600 for emphasis, 400 for default body. Substitute: Inter, IBM Plex Sans"
+    },
+    "red-hat-mono-variable": {
+      "$value": "Red Hat Mono Variable",
+      "$type": "fontFamily",
+      "$description": "Code snippets, terminal-style labels, build status indicators — the monospace voice for developer-context content. Appears in the CI workflow comparison section for job names like 'Job picked up', 'Install dependencies'. Substitute: JetBrains Mono, IBM Plex Mono"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Red Hat Display Variable",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Red Hat Display Variable",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Red Hat Mono Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Red Hat Display Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Red Hat Display Variable",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Red Hat Display Variable",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Red Hat Mono Variable",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Red Hat Display Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Red Hat Display Variable",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Red Hat Display Variable",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Red Hat Text Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Red Hat Display Variable",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Red Hat Display Variable",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Red Hat Display Variable",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Red Hat Display Variable",
+        "fontSize": "60px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(255, 255, 255, 0.06) 0px 1px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "carbon-canvas": {
+      "$value": "#04040b",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the deepest near-black that all content sits on"
+    },
+    "graphite-card": {
+      "$value": "#121113",
+      "$type": "color",
+      "$description": "Surface level 1: First elevated surface — feature cards, content panels, nav dropdowns"
+    },
+    "obsidian-panel": {
+      "$value": "#1a191b",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary surface — nested panels, section dividers, footer surface"
+    },
+    "slate-interactive": {
+      "$value": "#232225",
+      "$type": "color",
+      "$description": "Surface level 3: Interactive surfaces — button fills, input fields, hover states"
+    },
+    "fern-ground": {
+      "$value": "#1b2a1",
+      "$type": "color",
+      "$description": "Surface level 4: Tinted highlight surface — featured/active card backgrounds with green identity"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://depot.dev",
+      "siteName": "Depot",
+      "extractedAt": "2026-06-03T19:57:10.436Z",
+      "variant": "extended"
+    }
+  }
+}

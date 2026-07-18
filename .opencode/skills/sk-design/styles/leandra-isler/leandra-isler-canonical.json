@@ -1,0 +1,1350 @@
+{
+  "source": "https://styles.refero.design/style/515da65c-f9e3-4296-a05d-0d921f5cdab1",
+  "uuid": "515da65c-f9e3-4296-a05d-0d921f5cdab1",
+  "name": "Leandra-isler",
+  "northStar": "dried botanicals pressed into warm vellum — calm, tactile, editorial, almost reverent.",
+  "capturedAt": "2026-07-18T08:12:22.534Z",
+  "meta": {
+    "url": "https://www.leandra-isler.ch",
+    "siteName": "Leandra-isler",
+    "extractedAt": "2026-06-03T17:59:59.853Z",
+    "durationMs": 44427,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 965,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use PP Neue Montreal as the single typeface across every element — no serif, no mono, no display face",
+      "Scale the hero headline to 122–173px weight 500 with letter-spacing -0.045em; that extreme size is the brand's loudest signature",
+      "Let the Vellum Sand (#f4e6cd) fill the full viewport edge-to-edge with no max-width wrapper and no card panels",
+      "Separate sections with 80–120px of vertical space plus optional 1px hairline in #1e211 — never with cards, tinted panels, or shadows",
+      "Mark interactive elements with a 1px underline in #1e211 offset 2–4px below the baseline; never use filled buttons or pill chips",
+      "Use real botanical photography as the only non-neutral color in the system; let leaves and stems break the viewport edges to suggest specimens pressed onto paper",
+      "Apply the vertical 4-stop linear gradient (184deg, #8f774b → #ba9d6a → #d6bd97 → #f4e6cd) as a subtle wash on the hero only, so the page reads as sun-warmed vellum rather than flat beige"
+    ],
+    "donts": [
+      "Don't introduce any new color — the system is warm sand plus near-black plus photographic green; any blue, red, or saturated accent breaks the herbalist aesthetic",
+      "Don't use a filled, pill, or rounded button — the interface has no containers, so a button would feel alien against the flat vellum",
+      "Don't wrap content in cards, panels, or boxed surfaces with shadows; sections are separated by space and hairlines only",
+      "Don't use a max-width centered column for the hero headline — the display text bleeds to the viewport edge to read as editorial print",
+      "Don't apply a dark mode or invert the palette; the Vellum Sand is the brand, not just a light-theme choice",
+      "Don't use stock illustration, icons-as-decoration, or geometric shapes; the only visual vocabulary is typography and a real plant",
+      "Don't set the body text below 16px or above 20px — the page intentionally uses tiny captions and massive display sizes, but the readable body stays in this narrow band"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f4e6cd",
+        "name": "Vellum Sand",
+        "role": "Primary page canvas — the base warm-cream that fills every section, never competing with content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#edddc3",
+        "name": "Pressed Linen",
+        "role": "Secondary surface for subtle section breaks, link backgrounds, and content cards resting on Vellum Sand",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1e211e",
+        "name": "Aged Ink",
+        "role": "Dominant text and hairline border color — near-black with a touch of warmth, used for 95% of all rules, headings, and body copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Charcoal Black",
+        "role": "Hard ink for display headings, icon fills, and the strongest contrast moments where absolute black reads better than warm",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8f774b",
+        "name": "Twilight Bronze",
+        "role": "Gradient stop — the deepest tone in the vertical vellum wash, used only inside the hero gradient",
+        "group": "accent"
+      },
+      {
+        "hex": "#ba9d6a",
+        "name": "Hayfield",
+        "role": "Gradient midtone — the saturated middle of the vertical wash, gives the canvas its sun-warmed depth",
+        "group": "accent"
+      },
+      {
+        "hex": "#d6bd97",
+        "name": "Wheat Sheaf",
+        "role": "Gradient light tone — the transition stop between the warm mid and the Vellum base",
+        "group": "accent"
+      }
+    ],
+    "layout": "$19",
+    "imagery": "Imagery is essentially one element type: real botanical photography, shot as a tight specimen crop on a plain warm background. The plant (nettle, in the hero) is full-color with natural deep greens and yellow-green highlights, not duotone or filtered. It is positioned without a frame, without rounded corners larger than 4px, and with leaves extending past the viewport edge so the plant feels physically present in the room rather than placed inside a UI container. There are no illustrations, no icons-as-decoration (the small starburst next to the wordmark is a brand mark, not iconography), no abstract shapes, no product screenshots. The density is image-light: a single plant photograph per major section, surrounded by vast vellum whitespace. This is the design's visual restraint — the interface trusts one good photograph to do the work that most sites spread across six stock images.",
+    "similar": [
+      {
+        "why": "Same warm-sand-canvas-plus-near-black-typeface editorial restraint, with real product photography as the only color accent and hairline rules instead of buttons",
+        "business": "Aesop (aesop.com)"
+      },
+      {
+        "why": "Same edge-to-edge headline scaling, no card containers, botanical/earthy photography, and a single warm neutral background that reads as printed paper",
+        "business": "Mara Hoffman"
+      },
+      {
+        "why": "Same flat vellum-tone canvas, massive display type bleeding to viewport edges, and a deliberate absence of UI chrome — interface as gallery wall",
+        "business": "The Arca (thearca.com)"
+      },
+      {
+        "why": "Same single-typeface system stretched from caption to display on a warm neutral background, with real plant photography as the only non-neutral element",
+        "business": "Studio Daïdai"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "4px",
+        "buttons": "0px"
+      },
+      "elementGap": "4-8px",
+      "sectionGap": "80-120px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#f4e6cd",
+        "name": "Vellum Canvas",
+        "level": 1,
+        "purpose": "The base page background — every section lives directly on this surface with no containers above it"
+      },
+      {
+        "hex": "#edddc3",
+        "name": "Pressed Linen",
+        "level": 2,
+        "purpose": "Slightly deeper surface for subtle section bands and link-background hits, used when a section needs a whisper of differentiation from the base canvas"
+      }
+    ],
+    "gradients": [
+      {
+        "hex": "#ba9d6a",
+        "name": "Vellum Wash",
+        "role": "Hero-only vertical gradient that gives the flat Vellum Sand its sun-warmed depth — runs from a deep bronze at the top edge through warm hay to the Vellum base at the bottom",
+        "group": "accent",
+        "gradient": "linear-gradient(184deg, #8f774b, #ba9d6a 51%, #d6bd97 65%, #f4e6cd)"
+      }
+    ],
+    "northStar": "dried botanicals pressed into warm vellum — calm, tactile, editorial, almost reverent.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 75,
+        "lineHeight": 1,
+        "letterSpacing": -2.25
+      },
+      {
+        "role": "display",
+        "size": 173,
+        "lineHeight": 0.9,
+        "letterSpacing": -7.79
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Slim, full-bleed header sitting on the Vellum Sand canvas",
+        "description": "Transparent background, no border, no shadow. Left-aligned brand mark (small starburst icon + 'PRAXIS / LEANDRA ISLER' stacked in 14px weight 500, letter-spacing slightly open). Center: nav items HOME, ANGEBOT, BLOG, ÜBER MICH, KONTAKT at 14px weight 400 in #1e211e. Right: 'TERMIN VEREINBAREN ↗' as a 14px underlined link. The entire bar is roughly 70px tall and relies on alignment, not containers, to structure itself."
+      },
+      {
+        "name": "Display Headline Block",
+        "role": "The hero typography element that defines the brand",
+        "description": "PP Neue Montreal weight 500 at 75–173px, line-height 0.90–1.0, letter-spacing -0.045em to -0.030em. Color #000000 or #1e211e. Spans three or four lines ('Praxis für / Atlaslogie und / Naturheilkunde'), allowed to break across the full viewport edge-to-edge with no max-width constraint. Lives directly on Vellum Sand with no background container."
+      },
+      {
+        "name": "Underlined Text Link",
+        "role": "The only interactive UI element used in body contexts",
+        "description": "14–18px PP Neue Montreal weight 400 in #1e211, 1px underline offset 2–4px below the baseline in the same #1e211e. Hover shifts underline thickness to 2px or animates a color nudge toward #8f774b. Never boxed, never filled, never a chip."
+      },
+      {
+        "name": "Botanical Hero Image",
+        "role": "The sole visual content element — a real plant photograph",
+        "description": "Full-color product-grade photograph of a nettle/leaf cutting, tightly cropped, positioned over the Vellum Sand gradient. No border, 4px corner radius only on the cut edges, no shadow. The plant is large enough that leaves extend beyond the viewport top, reinforcing the 'specimen on paper' metaphor. No overlays, no duotone treatment — the green is the only non-neutral color in the entire system."
+      },
+      {
+        "name": "Vellum Section Background",
+        "role": "The base canvas for all content sections",
+        "description": "Pure #f4e6cd filling the full viewport edge-to-edge, no border between sections, no card containers. Sections are separated by 80–120px of vertical space alone. This is the design's signature restraint: there are no panels inside the page."
+      },
+      {
+        "name": "Section Divider Rule",
+        "role": "The only structural break element",
+        "description": "A 1px hairline in #1e211 spanning the full viewport width, with 60–100px of vertical padding above and below. No dots, no gradient fades, no ornamental marks. This replaces every card, panel, and background tint in the system."
+      },
+      {
+        "name": "Inline Body Paragraph",
+        "role": "The primary content carrier",
+        "description": "18px PP Neue Montreal weight 400 in #1e211, line-height 1.5, max measure roughly 65 characters. No drop cap, no first-line indent, no pulled quotes. Paragraphs separated by 8–14px of vertical space. Headings above are 24–26px weight 500 with 26px of space above them."
+      },
+      {
+        "name": "Footer",
+        "role": "Closing element with contact and legal",
+        "description": "Same Vellum Sand canvas, no border above (relies on a 1px hairline if a divider is used). Three-column grid at 14px weight 400: left column contact, center column navigation mirror, right column legal/social. The footer is the densest information zone on the page but uses the smallest type and the most whitespace — it whispers rather than announces."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole typeface across every screen. Body text sits at 16–20px weight 400; subheadings lift to 24–26px weight 500; display headlines scale dramatically from 75px through 122px to 158–173px at weight 500. The signature move is this extreme display scaling — the same family at 14px captions and 173px hero headlines proves the typeface can carry both whispered body copy and shouted editorial moments without switching personality.",
+        "sizes": "14, 16, 18, 20, 24, 26, 40, 43, 50, 58, 75, 122, 158, 173",
+        "family": "PP Neue Montreal",
+        "weight": "400, 500",
+        "lineHeight": "0.90, 1.00, 1.20, 1.40, 1.50",
+        "substitute": "Söhne (Klim Type Foundry) — closest geometric-grotesk cousin with identical warmth and identical 400/500 weights. Free fallback: Inter at the same weights.",
+        "letterSpacing": "-0.045em at 158–173px display, -0.030em at 75–122px, normal at body sizes"
+      }
+    ],
+    "description": "Praxis Leandra Isler reads like a printed herbalist's broadsheet — a single warm sand canvas stretching edge to edge, interrupted only by a dark, almost-black typeface and the living green of a botanical photograph. The entire visual system is held together by a monochromatic earth palette: no competing UI colors, no decorative surfaces, no shadows. Typography does all the structural work, scaling from a 14px caption to a 173px display headline on the same single typeface, so the eye reads scale itself as hierarchy. Surfaces are flat and paper-like; the only \"depth\" comes from a soft vertical gradient that deepens the tone at the top, mimicking vellum under raking light. Every chrome element — nav, links, buttons — is a thin underline or a hairline rule, never a filled chip. The result is a contemplative, gallery-wall atmosphere where the plant is the hero and the interface gets out of the way.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1a"
+      }
+    ],
+    "elevationPhilosophy": "The design intentionally uses zero elevation. There are no drop shadows, no border-based depth, no glassmorphism, no overlay tiers. Dimensionality is communicated entirely through the warm vertical gradient on the hero — the only place light and shadow exist in the system. This flat-on-flat approach is deliberate: the practice is a quiet healing space, and a shadow would feel too industrial, too interface-y. Sections sit beside each other as paper sheets on a table, not as floating cards in a UI kit."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1e211e",
+          "oklch": {
+            "c": 0.007147485318529924,
+            "h": 145.35142351488525,
+            "l": 0.24347705973210995
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "list",
+            "image",
+            "heading",
+            "body",
+            "footer",
+            "button"
+          ],
+          "frequency": 3757,
+          "confidence": 1,
+          "prominence": 144814205.79939416,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 142,
+            "icon/color": 35,
+            "link/color": 40,
+            "list/color": 24,
+            "other/fill": 60,
+            "image/color": 24,
+            "other/color": 349,
+            "button/color": 3,
+            "footer/color": 1,
+            "other/stroke": 74,
+            "heading/color": 102,
+            "body/borderColor": 568,
+            "icon/borderColor": 140,
+            "link/borderColor": 160,
+            "list/borderColor": 96,
+            "image/borderColor": 96,
+            "other/borderColor": 1396,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 408,
+            "link/backgroundColor": 4,
+            "other/backgroundColor": 19
+          }
+        },
+        {
+          "hex": "#f4e6cd",
+          "oklch": {
+            "c": 0.03639387627944233,
+            "h": 82.17863524364398,
+            "l": 0.9295551897220435
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 12194111,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#edddc3",
+          "oklch": {
+            "c": 0.03877320171463893,
+            "h": 80.01467727507035,
+            "l": 0.9036612517434798
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 1793594.8618673305,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 8,
+            "other/backgroundColor": 24
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "other",
+            "heading"
+          ],
+          "frequency": 259,
+          "confidence": 1,
+          "prominence": 1428992.2890635065,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 70,
+            "other/fill": 64,
+            "other/color": 4,
+            "heading/color": 21,
+            "other/borderColor": 16,
+            "heading/borderColor": 84
+          }
+        },
+        {
+          "hex": "#888151",
+          "oklch": {
+            "c": 0.06727771813738856,
+            "h": 101.00239674667483,
+            "l": 0.5976678980036924
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1307324.6194698312,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#b59866",
+          "oklch": {
+            "c": 0.0753013022128631,
+            "h": 80.6089917612973,
+            "l": 0.6942216076539204
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 625815,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a29a65",
+          "oklch": {
+            "c": 0.07243503961891104,
+            "h": 100.7062469354601,
+            "l": 0.6802792492299402
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 236916,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8ed59a",
+          "oklch": {
+            "c": 0.1096497970145975,
+            "h": 148.82533054078547,
+            "l": 0.8098941700430795
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2789.1745382781273,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 5
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.019288412236119747,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.05,
+          "background": "#f4e6cd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.73,
+          "background": "#edddc3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.2,
+          "background": "#f4e6cd",
+          "foreground": "#1e211e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.18,
+          "background": "#edddc3",
+          "foreground": "#1e211e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.13,
+          "background": "#8ed59a",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.4,
+          "background": "#8ed59a",
+          "foreground": "#1e211e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.65,
+          "background": "#b59866",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.35,
+          "background": "#a29a65",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.92,
+          "background": "#b59866",
+          "foreground": "#1e211e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.69,
+          "background": "#a29a65",
+          "foreground": "#1e211e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.31,
+          "background": "#888151",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.11,
+          "background": "#888151",
+          "foreground": "#1e211e"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.29,
+          "background": "#1e211e",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "image",
+            "link"
+          ],
+          "frequency": 33
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 30
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 41,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 49,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "link",
+            "heading"
+          ],
+          "frequency": 33,
+          "properties": [
+            "rowGap",
+            "paddingRight",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingRight|link",
+            "paddingRight|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|heading",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "marginRight|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingBottom|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "list",
+            "other",
+            "link"
+          ],
+          "frequency": 48,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|heading",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 48,
+          "properties": [
+            "paddingTop",
+            "paddingLeft",
+            "columnGap",
+            "paddingRight",
+            "paddingBottom",
+            "rowGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "rowGap|link",
+            "columnGap|link",
+            "marginBottom|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|link",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 33,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "rowGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "paddingRight|heading",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 84,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 173,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 198,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 280,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 284,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(184deg, rgb(143, 119, 75), rgb(186, 157, 106) 51%, rgb(214, 189, 151) 65%, rgb(244, 230, 205))",
+        "colors": [
+          "rgb(143, 119, 75)",
+          "rgb(186, 157, 106)",
+          "rgb(214, 189, 151)",
+          "rgb(244, 230, 205)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "PP Neue Montreal",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 745,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.79
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "heading"
+          ],
+          "frequency": 41,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "footer",
+            "image"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "list"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "list",
+            "image",
+            "body"
+          ],
+          "frequency": 315,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 128,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "heading"
+          ],
+          "frequency": 26,
+          "lineHeight": 1,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 52,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 75,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        },
+        {
+          "size": 122,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        },
+        {
+          "size": 158,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        },
+        {
+          "size": 173,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 22,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6b9e1439-7aad-466a-9a73-0dce38c8117c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/89bc6317-a040-48dd-b08b-06e16e0cb7bf.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/515da65c-f9e3-4296-a05d-0d921f5cdab1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Leandra-isler design system\",\"item\":\"https://styles.refero.design/style/515da65c-f9e3-4296-a05d-0d921f5cdab1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/515da65c-f9e3-4296-a05d-0d921f5cdab1#style-reference\",\"name\":\"Leandra-isler design system reference\",\"headline\":\"Leandra-isler design system | Refero Styles\",\"description\":\"Explore Leandra-isler's light Other design system: Vellum Sand #f4e6cd, Pressed Linen #edddc3 colors, PP Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/515da65c-f9e3-4296-a05d-0d921f5cdab1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/515da65c-f9e3-4296-a05d-0d921f5cdab1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Leandra-isler\",\"url\":\"https://www.leandra-isler.ch\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/515da65c-f9e3-4296-a05d-0d921f5cdab1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/89bc6317-a040-48dd-b08b-06e16e0cb7bf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/89bc6317-a040-48dd-b08b-06e16e0cb7bf.jpg\",\"caption\":\"Screenshot of Leandra-isler\"},\"image\":\"https://images.refero.design/styles/refero.design/image/89bc6317-a040-48dd-b08b-06e16e0cb7bf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Leandra-isler design system\",\"Leandra-isler website design\",\"Leandra-isler colors\",\"Leandra-isler typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Vellum Sand\",\"Pressed Linen\",\"Aged Ink\",\"Charcoal Black\",\"PP Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Leandra-isler design system\"},{\"@type\":\"Thing\",\"name\":\"Leandra-isler website design\"},{\"@type\":\"Thing\",\"name\":\"Leandra-isler colors\"},{\"@type\":\"Thing\",\"name\":\"Leandra-isler typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-11T00:38:42.354Z\",\"dateModified\":\"2026-05-11T00:38:42.354Z\"}]}19:T4d9,The layout is full-bleed and edge-to-edge at all times — there is no max-width container, no centered column, no sidebar. The hero is a single viewport-height block where the Vellum Sand gradient washes the top and a botanical photograph rises from the bottom-right corner, with the massive multi-line display headline ('Praxis für / Atlaslogie und / Naturheilkunde') spanning the full width and breaking naturally at three lines. Below the hero, content sections alternate as full-bleed vellum bands separated by 80–120px of vertical space and occasional 1px hairlines, with no card surfaces, no colored panels, and no visual dividers other than whitespace. Body text sits in a comfortable measure (~65 characters) floated left within the full-width canvas — it is not centered, not constrained to a 1200px column. Navigation is a slim top bar (roughly 70px) with the brand mark left, nav items center, and a single underlined CTA right. The page rhythm reads more like an editorial magazine spread than a SaaS product: one image, one headline, vast white(ish) space, repeat. There are no card grids, no feature grids, no pricing tables — the practice is a single practitioner and the layout reflects that singular, unhurried tone.1a:T60b,**Quick Color Reference**\n- text: #1e211e\n- background: #f4e6cd\n- border: #1e211e (1px hairlines only)\n- accent: #ba9d6a (hero gradient only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Hero section: full-bleed Vellum Sand (#f4e6cd) with the 184deg linear gradient overlay deepening to #8f774b at the top edge. Display headline 'Praxis für Atlaslogie und Naturheilkunde' at 158px PP Neue Montreal weight 500, letter-spacing -0.045em, line-height 0.90, color #000000, left-aligned, bleeding edge-to-edge across the viewport. A tightly cropped botanical photograph of a nettle plant positioned bottom-right with leaves extending past the viewport, no border, 4px corner radius on visible edges, no shadow.\n\n2. Underlined text link: 16px PP Neue Montreal weight 400, color #1e211e, 1px underline in #1e211e offset 3px below the baseline. No background, no padding, no border-radius.\n\n3. Section divider: full-viewport-width 1px hairline in #1e211e with 80px of vertical padding above and below. No other marks, dots, or gradients.\n\n4. Body paragraph: 18px PP Neue Montreal weight 400, color #1e211e, line-height 1.5, max measure 65 characters, floating left on the Vellum Sand canvas with no container. Paragraph spacing 8px.\n\n5. Top navigation bar: 70px tall, Vellum Sand background, no border or shadow. Left: starburst mark + 'PRAXIS / LEANDRA ISLER' stacked at 14px weight 500. Center: HOME, ANGEBOT, BLOG, ÜBER MICH, KONTAKT at 14px weight 400. Right: 'TERMIN VEREINBAREN ↗' as a 1px-underlined link in #1e211e."
+}

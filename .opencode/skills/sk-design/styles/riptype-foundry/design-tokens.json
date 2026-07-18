@@ -1,0 +1,162 @@
+{
+  "color": {
+    "workshop-black": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Workshop Black — Page background, primary canvas — the dark surface the type sits on"
+    },
+    "platen-gray": {
+      "$value": "#292929",
+      "$type": "color",
+      "$description": "Platen Gray — Raised surface for buttons, hover fills, interactive plate"
+    },
+    "bone": {
+      "$value": "#d0d0d0",
+      "$type": "color",
+      "$description": "Bone — Default body text, link strokes, hairline rules, icon outlines"
+    },
+    "ash": {
+      "$value": "#a0a0a0",
+      "$type": "color",
+      "$description": "Ash — Secondary text, metadata, subdued borders and captions"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Headings, display type, high-contrast text, image borders"
+    },
+    "acid-flash": {
+      "$value": "#d9ff00",
+      "$type": "color",
+      "$description": "Acid Flash — Green outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "office": {
+      "$value": "Office",
+      "$type": "fontFamily",
+      "$description": "Sole typeface — used for navigation, body, buttons, specimens, and display. The foundry sells custom type so the UI type IS the product showcase. Weights 400 (regular) for UI and body, 700 (bold) for the large display announcement and emphasis."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Office",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Office",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Office",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Office",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Office",
+        "fontSize": "43px",
+        "fontWeight": 700,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 43px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "full": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "workshop-black": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas — extends edge to edge"
+    },
+    "platen-gray": {
+      "$value": "#292929",
+      "$type": "color",
+      "$description": "Surface level 1: Interactive surface for buttons and hover states"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.riptype.xyz",
+      "siteName": "Riptype Foundry",
+      "extractedAt": "2026-06-03T22:06:14.473Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "color": {
+    "cream-paper": {
+      "$value": "#ffedd2",
+      "$type": "color",
+      "$description": "Cream Paper — Left-panel canvas, the warm half of the split — also used as a quiet heading surface and the background of the primary video preview tile"
+    },
+    "void-black": {
+      "$value": "#0d0d0d",
+      "$type": "color",
+      "$description": "Void Black — Right-panel canvas, primary text on cream, icon strokes and fills"
+    },
+    "polished-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Polished White — Filled auth button surfaces on the dark panel, body text on the dark panel, icon strokes on dark"
+    },
+    "hairline-gray": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Hairline Gray — Dividers, button borders, icon strokes, subtle structural lines on the cream side"
+    },
+    "muted-ash": {
+      "$value": "#9e9e9e",
+      "$type": "color",
+      "$description": "Muted Ash — Secondary helper text, muted link state, copyright/footer labels on dark"
+    },
+    "surface-charcoal": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Surface Charcoal — Subtle elevation lift on the dark panel — hovered or pressed button states, recessed containers"
+    }
+  },
+  "font": {
+    "telka": {
+      "$value": "telka",
+      "$type": "fontFamily",
+      "$description": "All functional UI — body copy, buttons, links, icons, captions. The whisper-weight stance (300-450 range) is anti-convention: most product UI pushes 500-600 for body. Light weights here make the chrome feel like editorial print, not SaaS dashboard."
+    },
+    "telkaextended": {
+      "$value": "telkaExtended",
+      "$type": "fontFamily",
+      "$description": "Sole display voice — the 'REALITY IS OPTIONAL' headline. Weight 900 is theatrical, designed to detonate against the whisper-weight body below. Use sparingly: one display moment per page, never for section headings or subheadings."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "telka",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "telka",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "telka",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "telka",
+        "fontSize": "14px",
+        "fontWeight": 450,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "telka",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "telka",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "telkaExtended",
+        "fontSize": "32px",
+        "fontWeight": 900,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#ffedd2",
+      "$type": "color",
+      "$description": "Surface level 1: Left half of the hero — the warm, editorial product surface that hosts video and copy"
+    },
+    "void-panel": {
+      "$value": "#0d0d0d",
+      "$type": "color",
+      "$description": "Surface level 2: Right half of the hero — the dark functional surface that hosts auth and navigation"
+    },
+    "white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Raised button surface on the void panel; the only 'lifted' element in the system"
+    },
+    "charcoal-lift": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Surface level 4: Pressed/hovered state of dark-panel elements — barely visible but distinct from the base void"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://pika.art",
+      "siteName": "Pika",
+      "extractedAt": "2026-06-03T17:12:25.763Z",
+      "variant": "extended"
+    }
+  }
+}

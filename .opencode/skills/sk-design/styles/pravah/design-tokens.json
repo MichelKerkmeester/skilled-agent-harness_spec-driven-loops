@@ -1,0 +1,262 @@
+{
+  "color": {
+    "parchment": {
+      "$value": "#f3f1ed",
+      "$type": "color",
+      "$description": "Parchment — Primary page canvas — the warm off-white that gives the entire system its editorial, non-digital feel"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, badge fills, and inset panels — sits one step above the parchment canvas to create gentle elevation without shadows"
+    },
+    "ink-black": {
+      "$value": "#181011",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, default borders, nav strokes, and structural outlines — the dominant typographic and border color across all contexts"
+    },
+    "charcoal": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Charcoal — Secondary headings and heavier-weight text where slightly softer than Ink Black is desired"
+    },
+    "aubergine-black": {
+      "$value": "#302023",
+      "$type": "color",
+      "$description": "Aubergine Black — Dramatic dark-section backgrounds (Problem, full-bleed inverse bands) — the only near-saturated tone, used to invert the page temperature"
+    },
+    "ash": {
+      "$value": "#aaaaaa",
+      "$type": "color",
+      "$description": "Ash — Muted text, inactive states, and lighter border treatments where Ink Black would be too heavy"
+    },
+    "dim": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Dim — Captions, timestamps, and tertiary metadata where hierarchy needs to recede"
+    },
+    "bone": {
+      "$value": "#d8d4d4",
+      "$type": "color",
+      "$description": "Bone — Hairline borders, illustration fills, and low-emphasis dividers — the lightest structural line color"
+    }
+  },
+  "font": {
+    "abcfavorit-book": {
+      "$value": "ABCfavorit Book",
+      "$type": "fontFamily",
+      "$description": "Single-family system carrying all UI text. The two-weight binary (regular/bold) replaces color or size variation for hierarchy. Weight 400 reads as body and supporting text; weight 700 is reserved for emphasis lines, key headings, and navigation. The two stylistic alternates ss04 and ss11 are enabled globally — these likely alter specific glyphs (likely the 'a' and 'g' or similar) that give ABCfavorit its distinctive contemporary grotesque character."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ABCfavorit Book",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ABCfavorit Book",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "ABCfavorit Book",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABCfavorit Book",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABCfavorit Book",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABCfavorit Book",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ABCfavorit Book",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ABCfavorit Book",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "ABCfavorit Book",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ABCfavorit Book",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ABCfavorit Book",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#f3f1ed",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background across most sections"
+    },
+    "white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Inset panels, alert cards, and badge fills one level above canvas"
+    },
+    "aubergine-inversion": {
+      "$value": "#302023",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed dark sections that flip tonal register for dramatic contrast"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://pravah.com",
+      "siteName": "Pravah",
+      "extractedAt": "2026-06-03T18:17:28.007Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,1086 @@
+{
+  "source": "https://styles.refero.design/style/d7ace114-0548-41f5-a2ff-2afbf32be94d",
+  "uuid": "d7ace114-0548-41f5-a2ff-2afbf32be94d",
+  "name": "Nike.com",
+  "northStar": "monochrome gallery of athletic performance — white walls, product as art, chrome dissolved into the background.",
+  "capturedAt": "2026-07-18T08:26:56.575Z",
+  "meta": {
+    "url": "https://nike.com",
+    "siteName": "Nike.com",
+    "extractedAt": "2026-06-03T15:44:37.448Z",
+    "durationMs": 30031,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1269,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only the monochrome palette: Obsidian (#111111), Paper White (#ffffff), Concrete Gray (#e5e5e5), Soft Mist (#f5f5f5), and Steel (#707072). No accent colors in the UI — the product photography provides all chromatic interest.",
+      "Set all interactive buttons to 30px border-radius for the pill shape; this is the only button geometry in the system.",
+      "Use Helvetica Now Text Medium 16px as the default for nav links, button labels, and product names; never set body text above 20px or below 12px.",
+      "Let product photography fill containers edge-to-edge with zero border-radius and zero border — the imagery is the design, not a framed element.",
+      "Use Nike Futura ND 76px exclusively for hero headlines with line-height locked to 1.0; smaller headings stay in Helvetica Now Display Medium 20-24px.",
+      "Separate surface layers with Concrete Gray (#e5e5e5) hairline borders or whitespace — never with shadows or colored backgrounds.",
+      "Keep the nav transparent on white: no background fill, no shadow, no sticky blur effect."
+    ],
+    "donts": [
+      "Do not introduce any accent or brand color into the UI — no blue, red, green, or yellow fills on buttons, links, badges, or icons. The only color in the interface comes from product photography.",
+      "Do not use bold or semibold weights; Nike's type system is exclusively 400 and 500. Heavier weights break the composed, restrained voice.",
+      "Do not add box-shadows to cards, buttons, or nav elements. Elevation in this system is communicated by the dark/light section alternation, not by shadows.",
+      "Do not round card corners. Product and category cards sit as sharp-edged full-bleed tiles — the only rounded elements are buttons (30px), the search field (24px), and the top utility bar (24px).",
+      "Do not use more than one CTA color treatment per page. The pill button is always Obsidian on white or white on Obsidian — never a third variant.",
+      "Do not add decorative gradients, patterns, or background imagery behind text. Every section is either pure white or full-bleed product photo.",
+      "Do not use display typography below 20px or above 76px. Nike Futura ND lives at hero scale only; Helvetica Now Display handles everything in between."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#111111",
+        "name": "Obsidian",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page background, card surface, button text on dark fills, icon strokes — the default canvas for product grids and category sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Concrete Gray",
+        "role": "Borders, dividers, hairline separators between grid sections, subtle input outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Soft Mist",
+        "role": "Subtle background tint for secondary surfaces, nav search field fill, tag backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#707072",
+        "name": "Steel",
+        "role": "Secondary text, muted helper copy, icon outlines at smaller sizes, breadcrumb labels, footer link separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9e9ea0",
+        "name": "Faint Gray",
+        "role": "Disabled icon strokes, tertiary UI affordances, lowest-emphasis borders",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page follows a full-bleed editorial rhythm: a dramatic dark viewport-height hero with a single product and oversized headline, followed by a 2x2 grid of full-bleed category tiles, then a horizontally-scrolling 3-column product card grid, then a dense multi-column footer. All content blocks span the full viewport width with no max-width container; the 1440px max-width applies to the nav and footer link grid only. Section transitions are stark: black hero → white category grid → white product grid → white footer, with Concrete Gray hairline borders as the only visual seam. The nav is a two-tier minimal bar (utility links top, main categories center) with no sticky behavior, no background fill, and no shadow. Content density is compact in the product grids (tight card padding) and spacious in the hero (full viewport).",
+    "imagery": "Photography is the dominant visual element and carries the entire brand identity. The system uses high-resolution, full-bleed product shots: athletic shoes photographed in isolation against dark or gradient backgrounds, cropped tight enough to fill the frame with no lifestyle context. Lifestyle imagery appears in category tiles showing athletes' feet and lower legs in motion. Treatment is high-contrast and color-saturated — red shoes on black, neon accents on white soles, warm and cool lighting to dramatize materials. No illustration, no abstract graphics, no 3D renders. Images are always sharp-edged (no rounded corners on photo containers), always full-bleed within their tiles, and always paired with minimal text overlay. Iconography is purely functional: outlined stroke icons for search, wishlist, bag, and account in Obsidian or Steel.",
+    "similar": [
+      {
+        "why": "Both sites use a monochrome UI palette (black/white/gray only) with zero accent color, letting full-bleed product photography carry all chromatic and emotional weight",
+        "business": "Apple"
+      },
+      {
+        "why": "Same flat card aesthetic with sharp-edged full-bleed product photography and minimal chrome — product is the hero, UI stays invisible",
+        "business": "Allbirds"
+      },
+      {
+        "why": "Identical editorial structure: dark full-bleed hero with oversized headline, followed by 2x2 category tile grid, then 3-column product card row with pill labels",
+        "business": "Adidas"
+      },
+      {
+        "why": "Same high-contrast editorial e-commerce approach with generous whitespace, minimal navigation, and product imagery treated as art on a white gallery wall",
+        "business": "SSENSE"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "24px",
+        "tags": "30px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "30px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "48px",
+      "cardPadding": "12px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 1,
+        "purpose": "Default page background for product grids, category sections, and footer"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Soft Mist",
+        "level": 2,
+        "purpose": "Search field fill, subtle section background tint, tag pill backgrounds"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Concrete Gray",
+        "level": 3,
+        "purpose": "Borders, dividers, separator lines between grid sections"
+      }
+    ],
+    "northStar": "monochrome gallery of athletic performance — white walls, product as art, chrome dissolved into the background.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.75,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.75,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 76,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button (Primary)",
+        "role": "The only interactive button style — used for Comprar, Comprar todo, and all call-to-action moments",
+        "description": "Obsidian (#111111) fill, white text, Helvetica Now Text Medium 16px/1.5, 30px border-radius (full pill), 6px vertical / 8px horizontal padding. No border, no shadow, no hover state decoration beyond opacity."
+      },
+      {
+        "name": "Category Hero Card",
+        "role": "Full-bleed product photography tiles in the 2x2 grid below the hero",
+        "description": "Container has no border, no radius, no shadow. Product photography fills edge-to-edge. Overlaid text sits bottom-left in white: small Helvetica Now Text 16px category label above a 20-24px Helvetica Now Display Medium headline. Pill buttons (white background, black text variant) sit below the headline."
+      },
+      {
+        "name": "Product Card",
+        "role": "Individual product tiles in the 3-column scrolling grid",
+        "description": "White background, no border, no radius, no shadow. Product image centered in the upper portion. Product name label appears as a small white pill (Obsidian fill, white text, 30px radius, Helvetica Now Text Medium 12-16px) overlaid on or below the image. No price, no description, no CTAs inside the card."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide header with category access, search, and account actions",
+        "description": "Two-tier layout: a thin top utility bar (search, help, login) in Helvetica Now Text 12px Obsidian on white, then the main nav row with Nike swoosh left, category links (Novedad, Hombre, Mujer, Niño/a, Deporte, NikeSKiMS) center in Helvetica Now Text Medium 16px, then search field + wishlist heart + bag icon right. The search field is #f5f5f5 with 24px radius. No background fill on the nav itself — sits directly on white."
+      },
+      {
+        "name": "Editorial Hero Section",
+        "role": "Full-viewport dark hero with single product and oversized headline",
+        "description": "Full-bleed near-black or dark gradient background. Product photographed large and centered or three-quarter. Headline in Nike Futura ND 76px white, line-height 1.0, positioned bottom-left. Sub-copy in Helvetica Now Text 16px white below. Single white pill button (white fill, black text) as the only CTA. No decorative elements, no carousel indicators visible."
+      },
+      {
+        "name": "Footer Link Grid",
+        "role": "Multi-column resource and help links at the bottom of the page",
+        "description": "White background. Four columns: Recursos, Ayuda, Empresa, Descuentos de la comunidad. Column headers in Helvetica Now Display Medium 16-20px Obsidian bold. Links in Helvetica Now Text 16px Steel (#707072) with 12px row-gap. Region selector (España) right-aligned in the header row. No dividers, no background fills."
+      },
+      {
+        "name": "Search Field",
+        "role": "Inline search input in the main nav",
+        "description": "#f5f5f5 background, 24px border-radius, no border, Helvetica Now Text 16px Obsidian placeholder text. Search icon in Steel (#707072) left-aligned. Compact 6px vertical / 8px horizontal padding."
+      },
+      {
+        "name": "Icon System",
+        "role": "Utility icons for wishlist, bag, search, and account",
+        "description": "Stroke-based outlined icons, 1.5-2px stroke weight, Obsidian (#111111) at default state, Steel (#707072) for secondary actions. No filled variants, no multicolor icons. 16-20px size range."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Helvetica Now Text Medium — detected in extracted data but not described by AI",
+        "sizes": "12px, 14px, 16px",
+        "family": "Helvetica Now Text Medium",
+        "weight": "500",
+        "lineHeight": "1.5, 1.75, 1.86"
+      },
+      {
+        "role": "Primary UI body and interface text — nav links, button labels, card titles, product names, footer lists, all running copy",
+        "sizes": "16px, 20px",
+        "family": "Helvetica Now Text",
+        "weight": "400, 500",
+        "lineHeight": "1.50, 1.75, 1.86",
+        "substitute": "Inter or Helvetica Neue",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Section headings, card category labels, medium-scale titles — medium weight at 20-24px is the signature of Nike's non-hero headings: never bold, always composed",
+        "sizes": "20px, 24px",
+        "family": "Helvetica Now Display Medium",
+        "weight": "500",
+        "lineHeight": "1.20, 1.50",
+        "substitute": "Inter Medium or Helvetica Neue Medium"
+      },
+      {
+        "role": "Hero-scale editorial headlines — used at full display size with line-height locked to 1.0 for maximum impact; the one moment where Nike uses a custom display face instead of Helvetica Now",
+        "sizes": "76px",
+        "family": "Nike Futura ND",
+        "weight": "500",
+        "lineHeight": "1.00",
+        "substitute": "Futura PT Medium"
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Arial",
+        "weight": "400, 700",
+        "lineHeight": "1.75"
+      },
+      {
+        "role": "Helvetica Neue — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Helvetica Neue",
+        "weight": "400, 500",
+        "lineHeight": "1"
+      }
+    ],
+    "description": "Nike.com operates as a product-first monochrome gallery: the UI stays nearly invisible so product photography can carry every screen. The entire interface is built from black, white, and three tints of gray — no accent color, no decorative gradient, no warm brand chrome. The Nike identity lives in the swoosh and the photography, never in the UI itself. Typography is compact and utilitarian, leaning on a custom Helvetica Now family at 12-20px with one oversized Nike Futura ND moment at 76px for hero headlines. Components are minimal: pill-shaped buttons at 30px radius, flat product cards, hairline borders, and almost zero elevation. The page alternates between pure white product surfaces and dramatic full-bleed dark editorial hero sections, creating rhythm through contrast rather than ornament.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d7ace114-0548-41f5-a2ff-2afbf32be94d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Nike.com design system\",\"item\":\"https://styles.refero.design/style/d7ace114-0548-41f5-a2ff-2afbf32be94d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d7ace114-0548-41f5-a2ff-2afbf32be94d#style-reference\",\"name\":\"Nike.com design system reference\",\"headline\":\"Nike.com design system | Refero Styles\",\"description\":\"Explore Nike.com's mixed E-commerce design system: Obsidian #111111, Paper White #ffffff colors, Helvetica Now Text Medium, Helvetica Now Text typography,...\",\"url\":\"https://styles.refero.design/style/d7ace114-0548-41f5-a2ff-2afbf32be94d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d7ace114-0548-41f5-a2ff-2afbf32be94d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Nike.com\",\"url\":\"https://nike.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d7ace114-0548-41f5-a2ff-2afbf32be94d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/441826be-bc18-4292-9be3-1869b252e1df.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/441826be-bc18-4292-9be3-1869b252e1df.jpg\",\"caption\":\"Screenshot of Nike.com\"},\"image\":\"https://images.refero.design/styles/refero.design/image/441826be-bc18-4292-9be3-1869b252e1df.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Nike.com design system\",\"Nike.com website design\",\"Nike.com colors\",\"Nike.com typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Obsidian\",\"Paper White\",\"Concrete Gray\",\"Soft Mist\",\"Helvetica Now Text Medium\",\"Helvetica Now Text\",\"Helvetica Now Display Medium\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Nike.com design system\"},{\"@type\":\"Thing\",\"name\":\"Nike.com website design\"},{\"@type\":\"Thing\",\"name\":\"Nike.com colors\"},{\"@type\":\"Thing\",\"name\":\"Nike.com typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-13T13:03:53.000Z\",\"dateModified\":\"2026-04-13T13:03:53.000Z\"}]}19:T8f2,**Quick Color Reference**\n- text: #111111 (Obsidian)\n- background: #ffffff (Paper White)\n- border: #e5e5e5 (Concrete Gray)\n- accent: none — no UI accent color; all color comes from product photography\n- secondary text: #707072 (Steel)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a full-bleed dark hero: near-black (#111111) background filling the viewport. Centered product photography of a red running shoe, three-quarter angle, occupying 60% of the width. Bottom-left text overlay: Nike Futura ND weight 500 at 76px, white, line-height 1.0, letter-spacing normal, text 'POTENCIA TOTAL'. Below it a Helvetica Now Text 16px white subhead, then a pill button (white fill, Obsidian text, 30px radius, 6px vertical / 8px horizontal padding).\n\n2. Create a 2x2 category card grid below the hero: four full-bleed tiles, no gap between tiles, no border-radius, no border. Each tile fills 50% of the viewport width and 50vh. Overlaid bottom-left on each tile: Helvetica Now Text 16px white category label above a Helvetica Now Display Medium 20px white headline. Two pill buttons (white fill, Obsidian text, 30px radius) sit stacked below the headline.\n\n3. Create a 3-column scrolling product card row: white background, three cards in a row, each card 33% width, no border, no radius, no shadow. Product image centered in the card, white background. Small pill label at the bottom of each image: Obsidian fill, white text, Helvetica Now Text Medium 12px, 30px radius, 6px padding. No price, no description inside the card.\n\n4. Create a top navigation bar: white background, no fill, no shadow, no border. Left: Nike swoosh SVG in Obsidian. Center: six nav links in Helvetica Now Text Medium 16px Obsidian with 24px gap. Right: Soft Mist (#f5f5f5) search field with 24px radius, 6px vertical / 8px horizontal padding, Helvetica Now Text 16px Obsidian placeholder, search icon in Steel (#707072), then wishlist heart icon and bag icon in Obsidian.\n\n5. Create a footer link grid: white background, four equal columns. Column headers in Helvetica Now Display Medium 16-20px Obsidian. Links in Helvetica Now Text 16px Steel (#707072) with 12px row-gap. Region selector 'España' right-aligned in the header row. No dividers, no background fills, no social icons."
+      }
+    ],
+    "elevationPhilosophy": "Nike's design system deliberately avoids box-shadows entirely. Elevation is communicated through three mechanisms only: (1) the stark alternation between full-bleed dark editorial hero sections and white product grids, (2) hairline Concrete Gray (#e5e5e5) borders between sections, and (3) generous whitespace. The flat aesthetic keeps focus on the product photography and reinforces the 'gallery' metaphor — nothing in the UI casts a shadow on the product."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link",
+            "card",
+            "image",
+            "icon",
+            "heading",
+            "list",
+            "footer",
+            "body"
+          ],
+          "frequency": 4671,
+          "confidence": 1,
+          "prominence": 60472683.50151626,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "heading",
+            "button",
+            "icon",
+            "footer"
+          ],
+          "frequency": 212,
+          "confidence": 1,
+          "prominence": 7280519.7366165565,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e5e5e5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9219060167761346
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 3450783.0395907043,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f5f5f5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9701507725365187
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 2823837,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#707072",
+          "oklch": {
+            "c": 0.0030631390435779567,
+            "h": 286.29771377766497,
+            "l": 0.545822711813413
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "body",
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 1337,
+          "confidence": 1,
+          "prominence": 111762.26529330276,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9e9ea0",
+          "oklch": {
+            "c": 0.0028774384191991814,
+            "h": 286.3250440025124,
+            "l": 0.6998732576230736
+          },
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 9417.514386240782,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0017900406360496863,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#ffffff",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.32,
+          "background": "#f5f5f5",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.99,
+          "background": "#e5e5e5",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.94,
+          "background": "#ffffff",
+          "foreground": "#707072"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.53,
+          "background": "#f5f5f5",
+          "foreground": "#707072"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.92,
+          "background": "#e5e5e5",
+          "foreground": "#707072"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.67,
+          "background": "#ffffff",
+          "foreground": "#9e9ea0"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.45,
+          "background": "#f5f5f5",
+          "foreground": "#9e9ea0"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.12,
+          "background": "#e5e5e5",
+          "foreground": "#9e9ea0"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.26,
+          "background": "#e5e5e5",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#f5f5f5",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 30,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "list"
+          ],
+          "frequency": 112,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "body",
+            "other"
+          ],
+          "frequency": 188,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "marginTop",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "list",
+            "link",
+            "body",
+            "heading"
+          ],
+          "frequency": 111,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap",
+            "rowGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 45,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "heading",
+            "list"
+          ],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 33,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "list",
+            "footer"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingBottom",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 253,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 308,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica Now Text Medium",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 620,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Helvetica Now Text",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 578,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 17,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Helvetica Neue",
+          "source": "system",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Helvetica Now Display Medium",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 9,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Nike Futura ND",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Helvetica Now Text Medium",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 177,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Helvetica Now Text Medium",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.86,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Helvetica Now Text Medium",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "link",
+            "body",
+            "heading",
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 167,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Now Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "card",
+            "list",
+            "image",
+            "footer",
+            "icon",
+            "body"
+          ],
+          "frequency": 517,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Now Text Medium",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "link"
+          ],
+          "frequency": 219,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Now Text Medium",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 56,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Now Text",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Arial",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Now Text",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Helvetica Now Text",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Helvetica Now Display Medium",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Helvetica Now Display Medium",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 76,
+          "family": "Nike Futura ND",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/0b830461-3938-425e-ad1d-4560d056ea7c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/441826be-bc18-4292-9be3-1869b252e1df.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d7ace114-0548-41f5-a2ff-2afbf32be94d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Nike.com design system\",\"item\":\"https://styles.refero.design/style/d7ace114-0548-41f5-a2ff-2afbf32be94d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d7ace114-0548-41f5-a2ff-2afbf32be94d#style-reference\",\"name\":\"Nike.com design system reference\",\"headline\":\"Nike.com design system | Refero Styles\",\"description\":\"Explore Nike.com's mixed E-commerce design system: Obsidian #111111, Paper White #ffffff colors, Helvetica Now Text Medium, Helvetica Now Text typography,...\",\"url\":\"https://styles.refero.design/style/d7ace114-0548-41f5-a2ff-2afbf32be94d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d7ace114-0548-41f5-a2ff-2afbf32be94d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Nike.com\",\"url\":\"https://nike.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d7ace114-0548-41f5-a2ff-2afbf32be94d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/441826be-bc18-4292-9be3-1869b252e1df.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/441826be-bc18-4292-9be3-1869b252e1df.jpg\",\"caption\":\"Screenshot of Nike.com\"},\"image\":\"https://images.refero.design/styles/refero.design/image/441826be-bc18-4292-9be3-1869b252e1df.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Nike.com design system\",\"Nike.com website design\",\"Nike.com colors\",\"Nike.com typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Obsidian\",\"Paper White\",\"Concrete Gray\",\"Soft Mist\",\"Helvetica Now Text Medium\",\"Helvetica Now Text\",\"Helvetica Now Display Medium\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Nike.com design system\"},{\"@type\":\"Thing\",\"name\":\"Nike.com website design\"},{\"@type\":\"Thing\",\"name\":\"Nike.com colors\"},{\"@type\":\"Thing\",\"name\":\"Nike.com typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-13T13:03:53.000Z\",\"dateModified\":\"2026-04-13T13:03:53.000Z\"}]}19:T8f2,**Quick Color Reference**\n- text: #111111 (Obsidian)\n- background: #ffffff (Paper White)\n- border: #e5e5e5 (Concrete Gray)\n- accent: none — no UI accent color; all color comes from product photography\n- secondary text: #707072 (Steel)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a full-bleed dark hero: near-black (#111111) background filling the viewport. Centered product photography of a red running shoe, three-quarter angle, occupying 60% of the width. Bottom-left text overlay: Nike Futura ND weight 500 at 76px, white, line-height 1.0, letter-spacing normal, text 'POTENCIA TOTAL'. Below it a Helvetica Now Text 16px white subhead, then a pill button (white fill, Obsidian text, 30px radius, 6px vertical / 8px horizontal padding).\n\n2. Create a 2x2 category card grid below the hero: four full-bleed tiles, no gap between tiles, no border-radius, no border. Each tile fills 50% of the viewport width and 50vh. Overlaid bottom-left on each tile: Helvetica Now Text 16px white category label above a Helvetica Now Display Medium 20px white headline. Two pill buttons (white fill, Obsidian text, 30px radius) sit stacked below the headline.\n\n3. Create a 3-column scrolling product card row: white background, three cards in a row, each card 33% width, no border, no radius, no shadow. Product image centered in the card, white background. Small pill label at the bottom of each image: Obsidian fill, white text, Helvetica Now Text Medium 12px, 30px radius, 6px padding. No price, no description inside the card.\n\n4. Create a top navigation bar: white background, no fill, no shadow, no border. Left: Nike swoosh SVG in Obsidian. Center: six nav links in Helvetica Now Text Medium 16px Obsidian with 24px gap. Right: Soft Mist (#f5f5f5) search field with 24px radius, 6px vertical / 8px horizontal padding, Helvetica Now Text 16px Obsidian placeholder, search icon in Steel (#707072), then wishlist heart icon and bag icon in Obsidian.\n\n5. Create a footer link grid: white background, four equal columns. Column headers in Helvetica Now Display Medium 16-20px Obsidian. Links in Helvetica Now Text 16px Steel (#707072) with 12px row-gap. Region selector 'España' right-aligned in the header row. No dividers, no background fills, no social icons."
+}

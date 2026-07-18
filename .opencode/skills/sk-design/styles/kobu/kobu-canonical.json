@@ -1,0 +1,1315 @@
+{
+  "source": "https://styles.refero.design/style/355d4b38-1a53-4544-911e-0f5073ab836b",
+  "uuid": "355d4b38-1a53-4544-911e-0f5073ab836b",
+  "name": "Kobu",
+  "northStar": "Monochrome travel gazette on warm parchment",
+  "capturedAt": "2026-07-18T08:25:29.844Z",
+  "meta": {
+    "url": "https://kobu.co",
+    "siteName": "Kobu",
+    "extractedAt": "2026-06-03T15:46:09.162Z",
+    "durationMs": 69259,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 455,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set the KOBU wordmark at 64px with line-height 1.00 to let the type fill the viewport — this is the hero element, not a logo in a corner.",
+      "Use Fira Mono with 0.167em–0.183em letter-spacing for every badge, label, and navigational item — the tracked monospace is the system’s only typographic accent.",
+      "Place property card images full-bleed with zero border-radius and rely on whitespace, not borders or shadows, to separate elements.",
+      "Let property photography be the sole source of color — keep all UI surfaces in the Parchment/Gallery White neutral range and never introduce an accent hue.",
+      "Use 10–15px gaps between card elements and 60–80px between sections to maintain an editorial, unhurried reading rhythm.",
+      "Right-align prices and View All links to create visual tension against left-aligned titles.",
+      "Treat borders as 1px Obsidian hairlines — they define structure without adding visual weight."
+    ],
+    "donts": [
+      "Never add a colored CTA button, filled accent, or gradient — Kobu has no primary action color; navigation happens through text and links.",
+      "Never apply border-radius greater than 5px to any element — the system is sharp-edged, not soft.",
+      "Never use shadows or elevation to separate surfaces — separation comes from whitespace and the Parchment vs Gallery White surface contrast.",
+      "Never set a heading below weight 400 or above weight 500 — the typography is deliberately restrained and should never shout.",
+      "Never add icon fills, illustrations, or decorative graphics to the UI — photography is the only visual content allowed beyond typography.",
+      "Never use a sans-serif other than Gill Sans for headings or body, or a monospace other than Fira Mono for labels — the pairing is non-negotiable.",
+      "Never introduce a new neutral or chromatic color into the palette; the monochrome discipline is the brand."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#242429",
+        "name": "Obsidian",
+        "role": "Primary text, icon strokes, hairline borders across the system — the workhorse dark that replaces pure black for a slightly warmer read",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f9f5f2",
+        "name": "Parchment",
+        "role": "Page canvas, hero and footer backgrounds — warm off-white that signals editorial paper rather than digital default",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Gallery White",
+        "role": "Card surfaces, image borders, badge backgrounds — the brighter neutral used to lift content off the parchment",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Headings, navigation borders, and high-contrast typographic moments where maximum weight is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3e3e3e",
+        "name": "Graphite",
+        "role": "Body text, card metadata, and list items — softer than Obsidian for secondary reading copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#919191",
+        "name": "Ash Gray",
+        "role": "Muted heading accent and de-emphasized text — the quietest neutral, used for location subtitles and tertiary labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#070707",
+        "name": "Charcoal Deep",
+        "role": "Reserved for the heaviest display headlines where a hair more density than Ink Black is desired",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-width, full-bleed layout with no centered max-width container for the hero — the KOBU wordmark stretches to the viewport edges. Below the hero, content is loosely constrained to roughly 1200–1440px max-width with generous side margins. The navigation is a single thin top bar (not sticky in evidence) with text-only links. The property grid is intentionally asymmetric: cards vary in width and vertical position, creating an editorial collage feel rather than a uniform grid. The first card in each collection is significantly wider (full content-width) and carries a FEATURED badge; subsequent cards are smaller and offset. Sections are separated by whitespace rather than dividers, with a single hairline border under the navigation and before the footer. Density is comfortable — large images dominate, and text is sparse. No sidebar, no mega-menu, no sticky elements beyond the back-to-top button.",
+    "imagery": "Photography is the only expressive element in the Kobu system — the UI is deliberately monochrome so that architecture, interiors, and landscapes become the color. Images are large, full-bleed, and editorial in framing: golden-hour resort exteriors, interior details with warm tungsten light, and lush tropical foliage against modernist concrete. Treatment is natural and unfiltered — no overlays, no duotone, no vignettes. Cards present single photographs with no cropping masks or rounded corners. The relationship is gallery-catalogue: each image is an artifact displayed on parchment, not a thumbnail in a product grid. No illustrations, no icons beyond simple line glyphs, no abstract graphics — the photography IS the visual language.",
+    "similar": [
+      {
+        "why": "Same editorial hotel-collection language — warm cream canvas, humanist serif-adjacent sans for headings, full-bleed property photography, and monochrome palette with no colored CTAs",
+        "business": "Mr & Mrs Smith"
+      },
+      {
+        "why": "Shared quiet-luxury print aesthetic — warm off-white paper background, restrained typography, large editorial photography as the primary visual element, and tracked monospace labels",
+        "business": "Cereal Magazine"
+      },
+      {
+        "why": "Same architectural-gallery approach — single warm neutral canvas, Gill Sans-adjacent humanist typeface, photography presented as curated artifacts rather than product thumbnails",
+        "business": "The Audo"
+      },
+      {
+        "why": "Parallel travel-brand minimalism — text-only navigation, large wordmark emphasis, monochrome interface that lets bold photography carry the brand voice",
+        "business": "Ace Hotel"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "5px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "10-15px",
+      "sectionGap": "60-80px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#f9f5f2",
+        "name": "Parchment Canvas",
+        "level": 1,
+        "purpose": "Base page background — warm cream visible in hero, footer, and breathing space between content blocks"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Gallery White",
+        "level": 2,
+        "purpose": "Elevated content surfaces — card backgrounds, image frames, badge fills"
+      }
+    ],
+    "northStar": "Monochrome travel gazette on warm parchment",
+    "typeScale": [
+      {
+        "role": "label",
+        "size": 10,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.183
+      },
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.43,
+        "letterSpacing": 0.167
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-lg",
+        "size": 33,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Navigation Bar",
+        "role": "Top-of-page site navigation",
+        "description": "Full-width bar with no background fill — text rests directly on the Parchment canvas. Left-aligned category links (HOTELS, VILLAS, RETREATS, PROPERTIES, JOURNAL) in Fira Mono 12px, uppercase, letter-spacing 0.167em, Obsidian color. Centered KOBU wordmark in Gill Sans 14px weight 500. Right-aligned search icon. A single 1px Obsidian hairline border runs along the bottom edge."
+      },
+      {
+        "name": "Display Wordmark",
+        "role": "Brand identifier and hero anchor",
+        "description": "The KOBU text set in Gill Sans 64px, weight 500 (or 400), line-height 1.00, color Obsidian. Stretches to fill the full viewport width, making the brand name the dominant visual element. No background, no container — the type sits directly on Parchment."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Introduces content groups",
+        "description": "Gill Sans 33px, line-height 1.20, weight 400, color Obsidian. Followed by an optional descriptive paragraph in Graphite body copy at 16px. No decorative underline or ornament — the type size and weight do all the work."
+      },
+      {
+        "name": "Property Card",
+        "role": "Primary content unit for hotels, villas, and properties",
+        "description": "Image-first layout. Full-bleed photograph with no border-radius, sitting on Parchment. Below the image: property name in Gill Sans 21px weight 500, location subtitle in Fira Mono 12px (Ash Gray, uppercase, tracked), and price anchor right-aligned in the same monospace style. No card background, no shadow, no border — only whitespace separates the image from the text."
+      },
+      {
+        "name": "Featured Badge",
+        "role": "Tags the first card in a collection",
+        "description": "Fira Mono 10px, weight 500, uppercase, letter-spacing 0.183em. White background, Obsidian text, 5px border-radius. Positioned top-left, inset 10px from the image edge, with a small dot character prefix. A 1px Obsidian hairline border surrounds the badge."
+      },
+      {
+        "name": "New Badge",
+        "role": "Flags recently added properties",
+        "description": "Identical structure to the Featured Badge — Fira Mono 10px weight 500, uppercase, white fill, Obsidian text, 5px radius, hairline border — differentiated only by the word NEW."
+      },
+      {
+        "name": "Price Tag",
+        "role": "Right-aligned price indicator on property cards",
+        "description": "Fira Mono 12px, weight 400, uppercase, letter-spacing 0.071em, color Obsidian. Aligned to the right edge of the card text row. No background, no border — pure typographic punctuation."
+      },
+      {
+        "name": "Back-to-Top Button",
+        "role": "Floating scroll-return control",
+        "description": "Circular surface button (approx. 40px diameter), white fill with a 1px Obsidian hairline border, containing an upward chevron icon. Fixed to the bottom-right viewport edge. No shadow."
+      },
+      {
+        "name": "View All Link",
+        "role": "Collection overflow link",
+        "description": "Gill Sans 21px weight 400, Obsidian color, with a trailing arrow glyph (↗). No underline. Right-aligned at the end of a card group. Functions as the only navigational action in the system."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Editorial description copy",
+        "description": "Gill Sans 16px, line-height 1.25, weight 400, color Graphite. Max-width constrained to roughly 480px for comfortable reading. No first-line indent, no drop cap."
+      },
+      {
+        "name": "Search Icon",
+        "role": "Trigger for property search",
+        "description": "Simple line-drawn magnifying glass in Obsidian, 16px, no background or border. Sits in the top-right of the navigation bar."
+      },
+      {
+        "name": "Footer",
+        "role": "Bottom-of-page closing band",
+        "description": "Full-width Parchment band with a 1px Obsidian top border. Contains minimal type in Fira Mono 12px, weight 400, uppercase, tracked. No CTA buttons, no newsletter form, no decorative graphics."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface for all editorial copy and headings. The humanist warmth of Gill Sans is the signature — its slightly organic strokes and bookish personality carry the literary travel-magazine tone. 400 handles body and nav; 500 adds weight for sub-headings and card titles. The 64px/1.00 setting powers the monumental KOBU wordmark, where line-height matches font-size to let the letters bleed.",
+        "sizes": "14px, 15px, 33px",
+        "family": "Gill Sans",
+        "weight": "400, 500",
+        "lineHeight": "1.00–1.43",
+        "substitute": "Avenir, Proxima Nova, or Museo Sans"
+      },
+      {
+        "role": "Monospace for small uppercase labels — badges, navigation, and category tags. The fixed-width geometry and wide letter-spacing (0.167em–0.183em on 10–12px) read as printed museum tags, turning functional labels into typographic detail rather than UI chrome.",
+        "sizes": "10px, 11px, 12px, 14px",
+        "family": "Fira Mono",
+        "weight": "400, 500",
+        "lineHeight": "1.25–2.00",
+        "substitute": "JetBrains Mono, IBM Plex Mono",
+        "letterSpacing": "0.167em–0.183em on small labels (10–12px)",
+        "fontFeatureSettings": "\"tnum\" on, \"ss01\" on"
+      },
+      {
+        "role": "Gill Sans MT Pro — detected in extracted data but not described by AI",
+        "sizes": "14px, 16px, 21px, 24px, 32px, 64px",
+        "family": "Gill Sans MT Pro",
+        "weight": "400, 500",
+        "lineHeight": "1, 1.25"
+      }
+    ],
+    "description": "Kobu operates as an editorial travel portfolio: a warm cream canvas, almost zero chromatic noise, and photography as the only color. The massive display wordmark KOBU stretches nearly edge-to-edge — the brand name itself is the visual statement, not a logo mark. Everything else recedes: a humanist Gill Sans sets a literary, guidebook tone while Fira Mono handles small uppercase labels that read as printed museum tags. Cards live on the page edge with hairline borders, no shadows, no fills, and 5px-rounded badges floating in the top-left corner of each photograph. The system is deliberately austere — no CTAs, no accent colors, no gradients — so that the architecture and landscapes in the photography become the only expressive element on screen.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/355d4b38-1a53-4544-911e-0f5073ab836b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Kobu design system\",\"item\":\"https://styles.refero.design/style/355d4b38-1a53-4544-911e-0f5073ab836b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/355d4b38-1a53-4544-911e-0f5073ab836b#style-reference\",\"name\":\"Kobu design system reference\",\"headline\":\"Kobu design system | Refero Styles\",\"description\":\"Explore Kobu's light Other design system: Obsidian #242429, Parchment #f9f5f2 colors, Gill Sans, Fira Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/355d4b38-1a53-4544-911e-0f5073ab836b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/355d4b38-1a53-4544-911e-0f5073ab836b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Kobu\",\"url\":\"https://kobu.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/355d4b38-1a53-4544-911e-0f5073ab836b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/004b6269-8ff4-4148-98de-0db7dd06d6a1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/004b6269-8ff4-4148-98de-0db7dd06d6a1.jpg\",\"caption\":\"Screenshot of Kobu\"},\"image\":\"https://images.refero.design/styles/refero.design/image/004b6269-8ff4-4148-98de-0db7dd06d6a1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Kobu design system\",\"Kobu website design\",\"Kobu colors\",\"Kobu typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Obsidian\",\"Parchment\",\"Gallery White\",\"Ink Black\",\"Gill Sans\",\"Fira Mono\",\"Gill Sans MT Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Kobu design system\"},{\"@type\":\"Thing\",\"name\":\"Kobu website design\"},{\"@type\":\"Thing\",\"name\":\"Kobu colors\"},{\"@type\":\"Thing\",\"name\":\"Kobu typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:24:54.379Z\",\"dateModified\":\"2026-04-30T00:24:54.379Z\"}]}19:T6fd,**Quick Color Reference**\n- text: #242429 (Obsidian)\n- background: #f9f5f2 (Parchment)\n- surface: #ffffff (Gallery White)\n- border: #242429 (Obsidian hairline)\n- muted text: #3e3e3e (Graphite) / #919191 (Ash Gray)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a navigation bar: full-width, no background fill, Parchment canvas (#f9f5f2). Left-aligned links in Fira Mono 12px, uppercase, letter-spacing 0.167em, color Obsidian (#242429). Centered KOBU in Gill Sans 14px weight 500. Right-aligned search icon. Bottom border: 1px solid #242429.\n\n2. Create a property card: full-bleed photograph (no border-radius) as the top element. Below: property name in Gill Sans 21px weight 500, color Obsidian (#242429). Location in Fira Mono 12px uppercase, letter-spacing 0.167em, color Ash Gray (#919191). Price right-aligned in Fira Mono 12px, uppercase, color Obsidian (#242429). No card background, no shadow, no border. 10px gap between name and location.\n\n3. Create a featured badge: Fira Mono 10px weight 500, uppercase, letter-spacing 0.183em. White (#ffffff) background, Obsidian (#242429) text, 5px border-radius, 1px Obsidian hairline border. Padding 5px 10px. Positioned top-left of an image, inset 10px. Prefix with a small dot character.\n\n4. Create a section heading: Gill Sans 33px, line-height 1.20, weight 400, color Obsidian (#242429). Optional supporting paragraph below in Gill Sans 16px, line-height 1.25, color Graphite (#3e3e3e), max-width 480px. 60px space below heading before content begins.\n\n5. Create a footer band: full-width Parchment (#f9f5f2) background. Top border: 1px solid Obsidian (#242429). Content in Fira Mono 12px, weight 400, uppercase, letter-spacing 0.071em, color Obsidian. No buttons, no forms, no decorative elements."
+      },
+      {
+        "title": "Typographic Discipline",
+        "content": "Kobu's typography follows a strict two-family system. Gill Sans carries all editorial voice — its humanist warmth, visible in the curved 'o' and the bracketed serifs of its capitals, sets the literary travel-magazine tone. Fira Mono handles all functional labeling — its geometric monospace forms, set uppercase with aggressive tracking (0.167em–0.183em), read as printed museum tags rather than UI chrome. The 64px display setting (line-height 1.00) is reserved exclusively for the KOBU wordmark. No other element should approach this scale. The transition from display to body passes through 33px → 24px → 21px → 16px, a smooth editorial gradient with no abrupt jumps. Body text never goes below 14px, and micro-labels (badges) cap at 10px."
+      },
+      {
+        "title": "Surface & Border Language",
+        "content": "The surface system is binary: Parchment (#f9f5f2) for the page canvas, Gallery White (#ffffff) for content surfaces. There is no third tier — no modal overlay color, no hover state shade. Borders are exclusively 1px solid Obsidian (#242429), used as hairlines to define structure (navigation bottom, card frames, badge outlines). No element uses border-radius greater than 5px (badges only). No element has a shadow. The result is a flat, print-like surface treatment where depth is implied through typographic scale and whitespace rather than visual effects."
+      }
+    ],
+    "elevationPhilosophy": "Kobu deliberately avoids shadows and elevation effects. Separation between surfaces is achieved through the Parchment (#f9f5f2) vs Gallery White (#ffffff) contrast, hairline 1px borders in Obsidian (#242429), and generous whitespace. The only depth cue is the slight tonal difference between page canvas and card surface — no drop shadows, no glow effects, no layered panels. This flat treatment reinforces the editorial print aesthetic, where content sits on a page rather than floating in a digital interface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#242429",
+          "oklch": {
+            "c": 0.009253972103057631,
+            "h": 285.7447259476799,
+            "l": 0.26239346089250504
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "image",
+            "hero",
+            "badge",
+            "card",
+            "icon",
+            "list",
+            "body",
+            "heading",
+            "footer"
+          ],
+          "frequency": 1648,
+          "confidence": 1,
+          "prominence": 116256610.0671404,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 12,
+            "body/color": 12,
+            "card/color": 14,
+            "hero/color": 1,
+            "icon/color": 11,
+            "link/color": 25,
+            "list/color": 13,
+            "badge/color": 7,
+            "image/color": 7,
+            "other/color": 226,
+            "footer/color": 1,
+            "heading/color": 1,
+            "nav/borderColor": 48,
+            "body/borderColor": 46,
+            "card/borderColor": 56,
+            "hero/borderColor": 4,
+            "icon/borderColor": 44,
+            "link/borderColor": 100,
+            "list/borderColor": 52,
+            "badge/borderColor": 28,
+            "image/borderColor": 28,
+            "other/borderColor": 904,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f9f5f2",
+          "oklch": {
+            "c": 0.005874390885512367,
+            "h": 59.65209115142848,
+            "l": 0.9723947819537256
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "footer"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 40253153.82667628,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 10,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image",
+            "badge",
+            "body"
+          ],
+          "frequency": 236,
+          "confidence": 1,
+          "prominence": 7000470.759072315,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "link/color": 7,
+            "badge/color": 6,
+            "image/color": 7,
+            "other/color": 20,
+            "body/borderColor": 24,
+            "link/borderColor": 28,
+            "badge/borderColor": 24,
+            "image/borderColor": 28,
+            "other/borderColor": 80,
+            "body/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "body",
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 217,
+          "confidence": 1,
+          "prominence": 1099485.5047759518,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "nav/color": 8,
+            "body/color": 5,
+            "icon/color": 4,
+            "link/color": 8,
+            "other/fill": 16,
+            "other/color": 2,
+            "heading/color": 12,
+            "nav/borderColor": 32,
+            "body/borderColor": 22,
+            "icon/borderColor": 16,
+            "link/borderColor": 32,
+            "other/borderColor": 8,
+            "heading/borderColor": 48
+          }
+        },
+        {
+          "hex": "#919191",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6566564452705039
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 213851.36272216053,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#3e3e3e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.36385724846289946
+          },
+          "contexts": [
+            "body",
+            "card",
+            "list",
+            "heading"
+          ],
+          "frequency": 85,
+          "confidence": 1,
+          "prominence": 149012.22713203225,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "card/color": 7,
+            "list/color": 7,
+            "heading/color": 1,
+            "body/borderColor": 8,
+            "card/borderColor": 28,
+            "list/borderColor": 28,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#070707",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.12855780499391534
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 71352.71990740608,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#33373d",
+          "oklch": {
+            "c": 0.011904006475208707,
+            "h": 258.3690727674907,
+            "l": 0.33529521952779107
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "heading"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 3772,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "other/color": 1,
+            "heading/color": 1,
+            "icon/borderColor": 4,
+            "other/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.018844267928162885,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.14,
+          "background": "#ffffff",
+          "foreground": "#070707"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.37,
+          "background": "#f9f5f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.58,
+          "background": "#f9f5f2",
+          "foreground": "#070707"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.45,
+          "background": "#ffffff",
+          "foreground": "#242429"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.25,
+          "background": "#f9f5f2",
+          "foreground": "#242429"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.97,
+          "background": "#ffffff",
+          "foreground": "#33373d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.04,
+          "background": "#f9f5f2",
+          "foreground": "#33373d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.7,
+          "background": "#ffffff",
+          "foreground": "#3e3e3e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.87,
+          "background": "#f9f5f2",
+          "foreground": "#3e3e3e"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.15,
+          "background": "#ffffff",
+          "foreground": "#919191"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.91,
+          "background": "#f9f5f2",
+          "foreground": "#919191"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.08,
+          "background": "#f9f5f2",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 5,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 6
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "badge",
+            "list",
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "marginTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|badge",
+            "marginBottom|badge",
+            "marginTop|list",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "card",
+            "icon"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "badge",
+            "body",
+            "list",
+            "image",
+            "heading"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "marginRight",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|other",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "marginRight|body",
+            "marginBottom|list",
+            "marginBottom|body",
+            "paddingTop|other",
+            "marginBottom|image",
+            "marginBottom|heading",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "nav",
+            "card",
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginTop|card",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "nav",
+            "other",
+            "list"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "badge",
+            "heading",
+            "body"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|badge",
+            "marginTop|heading",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 61,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 110,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginRight",
+            "marginTop",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginTop|other",
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 119,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 216,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 271,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Gill Sans",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 330,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Gill Sans MT Pro",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 54,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Fira Mono",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 53,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Fira Mono",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Fira Mono",
+          "weight": 400,
+          "contexts": [
+            "badge",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.55,
+          "letterSpacing": 0.182,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Fira Mono",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.183,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Fira Mono",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.167,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Fira Mono",
+          "weight": 500,
+          "contexts": [
+            "card",
+            "list",
+            "link"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Fira Mono",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Gill Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "image",
+            "hero",
+            "badge",
+            "card",
+            "list",
+            "body",
+            "footer"
+          ],
+          "frequency": 309,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Gill Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Fira Mono",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.007,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Gill Sans MT Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Fira Mono",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.071,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Gill Sans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Gill Sans MT Pro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Gill Sans MT Pro",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Gill Sans MT Pro",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 33,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Gill Sans MT Pro",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "Gill Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Gill Sans MT Pro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/fb3c56de-cee0-48d5-b325-98ab87348c82.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/004b6269-8ff4-4148-98de-0db7dd06d6a1.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/355d4b38-1a53-4544-911e-0f5073ab836b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Kobu design system\",\"item\":\"https://styles.refero.design/style/355d4b38-1a53-4544-911e-0f5073ab836b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/355d4b38-1a53-4544-911e-0f5073ab836b#style-reference\",\"name\":\"Kobu design system reference\",\"headline\":\"Kobu design system | Refero Styles\",\"description\":\"Explore Kobu's light Other design system: Obsidian #242429, Parchment #f9f5f2 colors, Gill Sans, Fira Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/355d4b38-1a53-4544-911e-0f5073ab836b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/355d4b38-1a53-4544-911e-0f5073ab836b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Kobu\",\"url\":\"https://kobu.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/355d4b38-1a53-4544-911e-0f5073ab836b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/004b6269-8ff4-4148-98de-0db7dd06d6a1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/004b6269-8ff4-4148-98de-0db7dd06d6a1.jpg\",\"caption\":\"Screenshot of Kobu\"},\"image\":\"https://images.refero.design/styles/refero.design/image/004b6269-8ff4-4148-98de-0db7dd06d6a1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Kobu design system\",\"Kobu website design\",\"Kobu colors\",\"Kobu typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Obsidian\",\"Parchment\",\"Gallery White\",\"Ink Black\",\"Gill Sans\",\"Fira Mono\",\"Gill Sans MT Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Kobu design system\"},{\"@type\":\"Thing\",\"name\":\"Kobu website design\"},{\"@type\":\"Thing\",\"name\":\"Kobu colors\"},{\"@type\":\"Thing\",\"name\":\"Kobu typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:24:54.379Z\",\"dateModified\":\"2026-04-30T00:24:54.379Z\"}]}19:T6fd,**Quick Color Reference**\n- text: #242429 (Obsidian)\n- background: #f9f5f2 (Parchment)\n- surface: #ffffff (Gallery White)\n- border: #242429 (Obsidian hairline)\n- muted text: #3e3e3e (Graphite) / #919191 (Ash Gray)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a navigation bar: full-width, no background fill, Parchment canvas (#f9f5f2). Left-aligned links in Fira Mono 12px, uppercase, letter-spacing 0.167em, color Obsidian (#242429). Centered KOBU in Gill Sans 14px weight 500. Right-aligned search icon. Bottom border: 1px solid #242429.\n\n2. Create a property card: full-bleed photograph (no border-radius) as the top element. Below: property name in Gill Sans 21px weight 500, color Obsidian (#242429). Location in Fira Mono 12px uppercase, letter-spacing 0.167em, color Ash Gray (#919191). Price right-aligned in Fira Mono 12px, uppercase, color Obsidian (#242429). No card background, no shadow, no border. 10px gap between name and location.\n\n3. Create a featured badge: Fira Mono 10px weight 500, uppercase, letter-spacing 0.183em. White (#ffffff) background, Obsidian (#242429) text, 5px border-radius, 1px Obsidian hairline border. Padding 5px 10px. Positioned top-left of an image, inset 10px. Prefix with a small dot character.\n\n4. Create a section heading: Gill Sans 33px, line-height 1.20, weight 400, color Obsidian (#242429). Optional supporting paragraph below in Gill Sans 16px, line-height 1.25, color Graphite (#3e3e3e), max-width 480px. 60px space below heading before content begins.\n\n5. Create a footer band: full-width Parchment (#f9f5f2) background. Top border: 1px solid Obsidian (#242429). Content in Fira Mono 12px, weight 400, uppercase, letter-spacing 0.071em, color Obsidian. No buttons, no forms, no decorative elements."
+}

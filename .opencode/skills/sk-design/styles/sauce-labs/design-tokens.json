@@ -1,0 +1,444 @@
+{
+  "color": {
+    "obsidian-shell": {
+      "$value": "#132322",
+      "$type": "color",
+      "$description": "Obsidian Shell — Primary page background, dark navigation, dark card surfaces — the structural canvas that absorbs everything else and makes the green accent feel electric by contrast"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary text on dark surfaces, card content backgrounds, light section canvases — maximum contrast against the obsidian shell"
+    },
+    "mint-frost": {
+      "$value": "#edf7f5",
+      "$type": "color",
+      "$description": "Mint Frost — Light content card surfaces, elevated feature panels — the bright counterpoint that breaks up dark sections and hosts detailed content"
+    },
+    "deep-abyss": {
+      "$value": "#0e1a19",
+      "$type": "color",
+      "$description": "Deep Abyss — Darker surface variant for nested elements, deep card backgrounds, gradient endpoints — pushes further into the void when extra depth is needed"
+    },
+    "charcoal": {
+      "$value": "#070f0f",
+      "$type": "color",
+      "$description": "Charcoal — Darkest surface for overlays, modals, and maximum-contrast panels"
+    },
+    "fog-border": {
+      "$value": "#d0d3d3",
+      "$type": "color",
+      "$description": "Fog Border — Hairline dividers and borders on light surfaces — quiet structural lines that never compete with content"
+    },
+    "stone-border": {
+      "$value": "#b2b6b4",
+      "$type": "color",
+      "$description": "Stone Border — Medium borders on light cards, secondary dividers, subtle frame lines"
+    },
+    "slate-text": {
+      "$value": "#828786",
+      "$type": "color",
+      "$description": "Slate Text — Muted body text, captions on light backgrounds, secondary labels"
+    },
+    "graphite-fill": {
+      "$value": "#424f4f",
+      "$type": "color",
+      "$description": "Graphite Fill — Icon fills, decorative SVG strokes on light sections"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — SVG icon fills, high-contrast decorative strokes — graphic asset workhorse"
+    },
+    "neon-pulse": {
+      "$value": "#3ddc91",
+      "$type": "color",
+      "$description": "Neon Pulse — Green action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "mint-whisper": {
+      "$value": "#97ddbc",
+      "$type": "color",
+      "$description": "Mint Whisper — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "signal-yellow": {
+      "$value": "#ffcd48",
+      "$type": "color",
+      "$description": "Signal Yellow — Accent fills within isometric illustrations and product mockups — a warm punctuation that breaks the green monochrome and adds dimensional interest to graphics"
+    }
+  },
+  "font": {
+    "aeonik": {
+      "$value": "Aeonik",
+      "$type": "fontFamily",
+      "$description": "Body and UI text — the workhorse typeface for paragraphs, button labels, nav items, card content, and form fields. Clean geometric humanist sans at weight 400, tightly tracked at body sizes (-0.08px at 16px)."
+    },
+    "aeonikfono": {
+      "$value": "AeonikFono",
+      "$type": "fontFamily",
+      "$description": "Display, headings, and uppercase eyebrow labels. Weight 500 for the largest display sizes (40–64px) to anchor the hierarchy; weight 400 for 14–32px headings and 9px all-caps labels with 0.05em tracking. The 9px tracked-out caps create the small structural labels that sit above section titles."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "AeonikFono",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "AeonikFono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "AeonikFono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "AeonikFono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "AeonikFono",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "AeonikFono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "AeonikFono",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "AeonikFono",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "AeonikFono",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "AeonikFono",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "AeonikFono",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "AeonikFono",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.04) 1px 0px 9px 2px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#132322",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background — the dark structural plane"
+    },
+    "deep-card": {
+      "$value": "#0e1a19",
+      "$type": "color",
+      "$description": "Surface level 2: Nested dark cards, logo bar tiles, stat containers"
+    },
+    "mint-card": {
+      "$value": "#edf7f5",
+      "$type": "color",
+      "$description": "Surface level 3: Light content cards floating on the dark canvas"
+    },
+    "white-panel": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 4: Product screenshots, dashboard previews, maximum-light surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://saucelabs.com",
+      "siteName": "Sauce Labs",
+      "extractedAt": "2026-06-03T20:01:57.689Z",
+      "variant": "extended"
+    }
+  }
+}

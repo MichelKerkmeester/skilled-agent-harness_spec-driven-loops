@@ -1,0 +1,761 @@
+{
+  "source": "https://styles.refero.design/style/bbfbe753-a417-43ec-9af7-ef6c08a5140d",
+  "uuid": "bbfbe753-a417-43ec-9af7-ef6c08a5140d",
+  "name": "Design",
+  "northStar": "neon green glyph in a dark void",
+  "capturedAt": "2026-07-18T09:06:27.156Z",
+  "meta": {
+    "url": "https://design.cash.app",
+    "siteName": "Design",
+    "extractedAt": "2026-06-03T20:45:31.948Z",
+    "durationMs": 34381,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 448,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #000000 as the page canvas for all primary screens; the dark void is the system's foundation",
+      "Set display type at 86–122px in CashSans 700 with -0.015em tracking and line-height 1.0",
+      "Separate content regions with 1px #e5e7eb hairline dividers — never with cards, shadows, or background fills",
+      "Reserve Cash Green (#00d54b) for the $ logo and singular signature moments; one appearance per screen maximum",
+      "Use 64px vertical padding for section gaps and 20–30px for internal content padding",
+      "Apply 15px border-radius exclusively to images and logo containers; keep all other elements sharp-edged",
+      "Maintain the bimodal type scale: jump from 16px body directly to 86px display with no intermediate heading sizes"
+    ],
+    "donts": [
+      "Do not introduce box-shadows, drop-shadows, or glow effects — depth comes from contrast and scale only",
+      "Do not use Cash Green on text, borders, or large fills — it loses impact at scale and belongs only in the logo",
+      "Do not create medium-weight headings (20–40px range) — the gap between 16px and 86px is the system",
+      "Do not add background colors to cards, buttons, or panels — everything sits flush on #000000",
+      "Do not use border-radius on buttons, tags, or inputs — keep geometry sharp except for the 15px image/logo radius",
+      "Do not exceed three text colors per screen (#ffffff, #b3b3b3, #858585) — the hierarchy is strict",
+      "Do not use light theme surfaces except for rare inverted blocks; the dark canvas is non-negotiable"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Page canvas, inverted surfaces, display type on light blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Snow",
+        "role": "Primary text, high-contrast headings, logo lockup fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Mist",
+        "role": "Hairline dividers, section borders, card outlines, link borders — the only structural separator in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#858585",
+        "name": "Slate",
+        "role": "Muted body text, secondary labels, list items, metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Fog",
+        "role": "Tertiary text, disabled states, icon strokes, subtle UI annotations",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed, edge-to-edge layout with no max-width container. Sections are separated by 64px vertical padding and hairline dividers rather than alternating background bands. The page rhythm is editorial: large white display type on black, generous breathing room, minimal navigation chrome. Content stacks vertically with centered alignment in hero moments. No card grids, no multi-column feature layouts — the system is a single-column editorial canvas. Navigation, when present, sits as a flat top bar with ghost links.",
+    "imagery": "The visual language is almost entirely typographic and flat. The only chromatic element is the Cash Green $ logo mark. Imagery, when present, uses the 15px border-radius and sits directly on the black canvas without frames, captions, or supporting graphics. No photography, no illustration system, no decorative gradients — the void and the type do all the work.",
+    "similar": [
+      {
+        "why": "Dark canvas with strict type-driven hierarchy and minimal chromatic accents",
+        "business": "Linear"
+      },
+      {
+        "why": "Black background, oversized display type, hairline structural dividers, near-zero decoration",
+        "business": "Vercel"
+      },
+      {
+        "why": "Dark void aesthetic with one electric accent color and geometric type at extreme scales",
+        "business": "Arc Browser"
+      },
+      {
+        "why": "Restraint-first system with generous spacing and type as the primary visual element",
+        "business": "Stripe"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "15px",
+        "buttons": "0px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "64px",
+      "cardPadding": "20-30px",
+      "pageMaxWidth": null
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Full-bleed page background; the dark void the entire system sits on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Inverted Block",
+        "level": 2,
+        "purpose": "Inverted content panels (rare) — white blocks on the black canvas for emphasis"
+      }
+    ],
+    "elevation": [],
+    "northStar": "neon green glyph in a dark void",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.15
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading-lg",
+        "size": 86,
+        "lineHeight": 1,
+        "letterSpacing": -1.29
+      },
+      {
+        "role": "display",
+        "size": 117,
+        "lineHeight": 1,
+        "letterSpacing": -1.755
+      },
+      {
+        "role": "display-xl",
+        "size": 122,
+        "lineHeight": 1,
+        "letterSpacing": -1.83
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Heading",
+        "role": "Hero and section titles",
+        "description": "CashSans 700, 86–122px, line-height 1.0, letter-spacing -0.015em. Color: #ffffff. Sets editorial tone with monumental scale; never wraps below two lines. No medium-weight headings exist — this is the heading."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Descriptive content, explanations",
+        "description": "CashSans 400, 16px, line-height 1.5, letter-spacing -0.015em. Color: #ffffff for primary, #b3b3b3 for secondary. Max-width should constrain reading measure; comfortable leading compensates for tight tracking."
+      },
+      {
+        "name": "Micro Label",
+        "role": "Captions, metadata, section indices, footnotes",
+        "description": "CashSans 500, 10–12px, line-height 1.5, letter-spacing -0.015em. Color: #858585. Uppercase optional. The second pole of the bimodal type scale — whisper-quiet against the display monuments."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separation, content boundaries",
+        "description": "1px solid #e5e7eb. Full-width or inset. The only structural element separating regions — no cards, no shadows, no background fills. Dividers carry the entire structural load."
+      },
+      {
+        "name": "Ghost Link",
+        "role": "Inline navigation, cross-references",
+        "description": "CashSans 400, 16px, #ffffff. No underline by default; underline appears on hover. Inherits the flat, borderless language — no chip, no background, no arrow unless the link leaves the site."
+      },
+      {
+        "name": "Muted Link",
+        "role": "Secondary navigation, footer links",
+        "description": "CashSans 400, 12–16px, #858585. Same interaction model as ghost link but de-emphasized. Used for utility navigation where the user is leaving the primary content path."
+      },
+      {
+        "name": "Logo Lockup",
+        "role": "Brand mark, app icon, favicon",
+        "description": "The $ glyph in Cash Green (#00d54b) on the dark canvas, or inverted (#000000) on white inverted blocks. Rounded square container with 15px radius. Typically 48–80px display size. The only element that uses brand green."
+      },
+      {
+        "name": "List Item",
+        "role": "Enumerated content, navigation menus, spec lists",
+        "description": "CashSans 400, 12–16px, #ffffff or #858585. 1px #e5e7eb bottom border on each item. 20–30px vertical padding per item. Minimal hierarchy — no bullets, no icons, no indentation unless nested."
+      },
+      {
+        "name": "Full-Bleed Section",
+        "role": "Page-level content blocks",
+        "description": "100% width, #000000 background, 64px vertical padding (top and bottom). No max-width container — content sits on the raw canvas edge. Type provides internal structure."
+      },
+      {
+        "name": "Rounded Image",
+        "role": "Product visuals, illustrative content",
+        "description": "15px border-radius. No border, no shadow. The only radius in the system — a deliberate single-value choice that keeps the geometric language sharp while softening visual content."
+      },
+      {
+        "name": "Icon",
+        "role": "UI affordances, decorative marks",
+        "description": "CashSans glyphs or custom stroke icons. 1–1.5px stroke weight, #ffffff or #b3b3b3. No fill icons. Sized to match adjacent type (12–16px for inline, up to 24px for standalone)."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All text — Cash App's custom geometric sans. The 400 weight handles body and utility; 500 for sub-labels and nav; 700 reserved for extreme display moments. The type scale is deliberately bimodal: micro (10–16px) for functional UI and monumental (86–122px) for editorial display, with nothing in between.",
+        "sizes": "10px, 12px, 16px, 86px, 117px, 122px",
+        "family": "CashSans",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.00 (display) / 1.50 (body & utility)",
+        "substitute": "Inter, SF Pro Display, or General Sans",
+        "letterSpacing": "-0.015em across all sizes"
+      }
+    ],
+    "description": "Cash App's design system is a dark-mode monolith: near-black canvas, white type that ranges from whisper-quiet 10px labels to 122px display monuments, and exactly one chromatic accent — electric Cash Green — that appears almost never but defines the brand when it does. Depth is communicated through typographic scale and whitespace rather than shadows or layered surfaces; hairline silver borders (#e5e7eb) at sub-1px visual weight separate regions without breaking the void. The type scale is intentionally extreme: no medium headings exist between 16px body and 86px display, forcing dramatic contrast that makes every page feel like an editorial spread. Spacing is generous (64px section gaps, 30px internal padding) and density stays low — this system rewards restraint and punishes decoration.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "**Quick Color Reference**\n- text: #ffffff (primary), #b3b3b3 (secondary), #858585 (muted)\n- background: #000000\n- border: #e5e7eb\n- accent: #00d54b (Cash Green — logo and signature moments only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Create a display heading: CashSans 700, 117px, line-height 1.0, letter-spacing -1.755px, color #ffffff on #000000 background. Full-bleed, 64px vertical padding above and below.\n2. Create a body text block: CashSans 400, 16px, line-height 1.5, letter-spacing -0.24px, color #b3b3b3, max-width 720px, 20px top padding.\n3. Create a micro label: CashSans 500, 10px, line-height 1.5, letter-spacing -0.15px, color #858585, uppercase optional.\n4. Create a hairline divider: 1px solid #e5e7eb, full-width, with 30px vertical margin on each side.\n5. Create a logo lockup: $ symbol in #00d54b on #000000 canvas, 15px border-radius container, 64px display size, centered alignment."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. Depth is achieved exclusively through hairline borders (#e5e7eb at 1px), whitespace, and extreme type-scale contrast. The dark canvas eliminates the need for elevated cards — everything sits flush on the void."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "list",
+            "button",
+            "body",
+            "heading",
+            "link",
+            "image",
+            "card"
+          ],
+          "frequency": 1596,
+          "confidence": 1,
+          "prominence": 86504535.95320807,
+          "properties": [
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "other/stroke": 1,
+            "body/borderColor": 16,
+            "card/borderColor": 40,
+            "icon/borderColor": 76,
+            "link/borderColor": 168,
+            "list/borderColor": 204,
+            "image/borderColor": 48,
+            "other/borderColor": 864,
+            "button/borderColor": 12,
+            "heading/borderColor": 164
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "list",
+            "image",
+            "card"
+          ],
+          "frequency": 226,
+          "confidence": 1,
+          "prominence": 63623953.63721269,
+          "properties": [
+            "color",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "card/color": 10,
+            "icon/color": 2,
+            "list/color": 3,
+            "other/fill": 2,
+            "image/color": 1,
+            "other/color": 200,
+            "other/stroke": 2,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "heading",
+            "list",
+            "link",
+            "image"
+          ],
+          "frequency": 186,
+          "confidence": 1,
+          "prominence": 9780775.220014377,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 24,
+            "icon/color": 9,
+            "link/color": 27,
+            "list/color": 34,
+            "other/fill": 26,
+            "image/color": 11,
+            "other/color": 16,
+            "other/stroke": 3,
+            "heading/color": 36
+          }
+        },
+        {
+          "hex": "#858585",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.616706943829689
+          },
+          "contexts": [
+            "list",
+            "link",
+            "heading",
+            "icon"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 4234173.746106255,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "icon/color": 5,
+            "link/color": 11,
+            "list/color": 14,
+            "heading/color": 5
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7651658759683705
+          },
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "link",
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 160125.1200553848,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "icon/color": 3,
+            "link/color": 4,
+            "button/color": 3,
+            "other/stroke": 3
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.012173200768607706,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#b3b3b3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.69,
+          "background": "#ffffff",
+          "foreground": "#858585"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.1,
+          "background": "#ffffff",
+          "foreground": "#b3b3b3"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 15,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 11
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "heading",
+            "list"
+          ],
+          "frequency": 38,
+          "properties": [
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|button",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingTop|list",
+            "paddingRight|list",
+            "paddingBottom|list",
+            "paddingLeft|list",
+            "paddingTop|heading",
+            "paddingBottom|heading",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingLeft|link",
+            "marginRight|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingRight|heading"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "CashSans",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 398,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "CashSans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "CashSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "CashSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "list",
+            "button",
+            "body",
+            "image",
+            "card"
+          ],
+          "frequency": 142,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "CashSans",
+          "weight": 500,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "CashSans",
+          "weight": 700,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 27,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "CashSans",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link",
+            "heading",
+            "icon"
+          ],
+          "frequency": 32,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 117,
+          "family": "CashSans",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 117,
+          "family": "CashSans",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link",
+            "heading",
+            "image",
+            "icon"
+          ],
+          "frequency": 65,
+          "lineHeight": 1,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 122,
+          "family": "CashSans",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ef9d177a-6273-4281-b263-234f7ba05596.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7d27001a-fe55-42ba-ae47-575f002f0b1d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bbfbe753-a417-43ec-9af7-ef6c08a5140d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Design design system\",\"item\":\"https://styles.refero.design/style/bbfbe753-a417-43ec-9af7-ef6c08a5140d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bbfbe753-a417-43ec-9af7-ef6c08a5140d#style-reference\",\"name\":\"Design design system reference\",\"headline\":\"Design design system | Refero Styles\",\"description\":\"Explore Design's dark Fintech design system: Obsidian #000000, Snow #ffffff colors, CashSans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/bbfbe753-a417-43ec-9af7-ef6c08a5140d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bbfbe753-a417-43ec-9af7-ef6c08a5140d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Design\",\"url\":\"https://design.cash.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bbfbe753-a417-43ec-9af7-ef6c08a5140d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7d27001a-fe55-42ba-ae47-575f002f0b1d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7d27001a-fe55-42ba-ae47-575f002f0b1d.jpg\",\"caption\":\"Screenshot of Design\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7d27001a-fe55-42ba-ae47-575f002f0b1d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Design design system\",\"Design website design\",\"Design colors\",\"Design typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Obsidian\",\"Snow\",\"Mist\",\"Slate\",\"CashSans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Design design system\"},{\"@type\":\"Thing\",\"name\":\"Design website design\"},{\"@type\":\"Thing\",\"name\":\"Design colors\"},{\"@type\":\"Thing\",\"name\":\"Design typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T00:38:05.585Z\",\"dateModified\":\"2026-04-30T00:38:05.585Z\"}]}"
+}

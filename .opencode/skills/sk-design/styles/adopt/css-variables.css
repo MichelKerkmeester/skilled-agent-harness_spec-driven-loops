@@ -1,0 +1,52 @@
+:root {
+  /* Colors */
+  --color-bone: #f4f1ec;
+  --color-carbon: #1e1e1e;
+  --color-ash: #8c8c8c;
+  --color-lampblack: #000000;
+
+  /* Typography — Font Families */
+  --font-itcgaramondstdlightnarrow: 'ITCGaramondStdLightNarrow', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ppneuemontreal: 'PPNeueMontreal', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.4;
+  --tracking-body-sm: 0.01px;
+  --text-heading-sm: 18px;
+  --leading-heading-sm: 1.33;
+  --tracking-heading-sm: 0.01px;
+  --text-display: 80px;
+  --leading-display: 0.92;
+  --tracking-display: -0.02px;
+  --text-display-lg: 130px;
+  --leading-display-lg: 0.9;
+  --tracking-display-lg: -0.02px;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-7: 7px;
+  --spacing-12: 12px;
+  --spacing-23: 23px;
+  --spacing-50: 50px;
+  --spacing-70: 70px;
+  --spacing-80: 80px;
+  --spacing-140: 140px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+
+  /* Named Radii */
+  --radius-tags: 0px;
+  --radius-cards: 0px;
+  --radius-inputs: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-bone: #f4f1ec;
+}

@@ -1,0 +1,1552 @@
+{
+  "source": "https://styles.refero.design/style/d469cba4-c448-4a43-a033-883f8bfcdc42",
+  "uuid": "d469cba4-c448-4a43-a033-883f8bfcdc42",
+  "name": "Anthropic",
+  "northStar": "scientific field journal on warm parchment — quiet ivory surfaces, editorial serif headlines, and a single clay accent that only appears when you must act",
+  "capturedAt": "2026-07-18T07:07:46.038Z",
+  "meta": {
+    "url": "https://anthropic.com",
+    "siteName": "Anthropic",
+    "extractedAt": "2026-07-03T03:04:05.854Z",
+    "durationMs": 271434,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 619,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Anthropic Serif at 20px for all body copy and Anthropic Sans at 12-16px for UI chrome — the serif/sans split defines the system's voice.",
+      "Use #f0eee6 as the page canvas and #faf9f5 for cards; reach for #f5e3c7 only when a card needs to feel like a featured editorial spread.",
+      "Use the bottom-only 8px radius on filled buttons (Filled Ivory Button); this signature corner treatment replaces the generic pill.",
+      "Use #d97757 Clay exclusively for the most consequential single CTA on any given page; never apply it to multiple actions or decorative elements.",
+      "Keep underlines persistent on inline links — editorial print convention, not reveal-on-hover.",
+      "Reach for 24px radius on all card-level surfaces to maintain the paper-stacked feel.",
+      "Use the 61px sans weight 700 paired with the 68px serif weight 400 as the dual display system — sans for declarative statements, serif for editorial reflection."
+    ],
+    "donts": [
+      "Don't introduce cool grays, blues, or any color outside the warm earth-tone family — the palette is ivory/oat/clay, period.",
+      "Don't use box-shadow for elevation — this system elevates through surface tone (#f0eee6 → #faf9f5 → #f5e3c7) and 1px borders only.",
+      "Don't use the Clay accent for decoration, icons, hover states, or non-CTA elements; reserve #d97757 for filled action buttons only.",
+      "Don't set body text in sans-serif — body must be serif at 20px; sans is UI chrome only.",
+      "Don't apply uniform border-radius to buttons; the bottom-only 8px is a signature, not a default that should be rounded everywhere.",
+      "Don't use bright white (#ffffff) as a surface — the system is ivory-tinted throughout (#faf9f5, #f0eee6, #f5e3c7); pure white would feel clinical and break the paper metaphor.",
+      "Don't add gradients, glows, or color washes to backgrounds; surfaces are flat solid fills only."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#141413",
+        "name": "Slate Dark",
+        "role": "Primary text, headings, footer background, hairline borders — near-black with a hint of warmth, never pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0eee6",
+        "name": "Ivory Medium",
+        "role": "Page canvas and large surface fills — the parchment background that sets the entire warm tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#faf9f5",
+        "name": "Ivory Light",
+        "role": "Card surfaces, elevated panels, skip-link buttons — one step brighter than canvas for subtle layering without shadows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b0aea5",
+        "name": "Cloud Medium",
+        "role": "Muted helper text, inactive nav items, secondary labels — the neutral that recedes without disappearing",
+        "group": "neutral"
+      },
+      {
+        "hex": "#87867f",
+        "name": "Cloud Dark",
+        "role": "Outlined button borders, mid-contrast dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccbc8",
+        "name": "Stone",
+        "role": "Hairline borders and dividers between sections — visible but never assertive",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3d3d3a",
+        "name": "Slate Medium",
+        "role": "Dark-on-dark borders inside the footer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e3dacc",
+        "name": "Oat Warm",
+        "role": "Secondary warm surface for grouped panels and feature containers — a deeper paper tone for variety",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5e3c7",
+        "name": "Manilla",
+        "role": "Featured hero card background — vintage paper tone that signals editorial importance without color shouting",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d97757",
+        "name": "Clay",
+        "role": "Filled CTA buttons (e.g. cookie consent accept) — the single chromatic accent in the system, a terracotta warmth that belongs to the earth-tone family rather than typical UI blue",
+        "group": "brand"
+      },
+      {
+        "hex": "#c6613f",
+        "name": "Clay Deep",
+        "role": "Hover/pressed state for Clay CTAs and the canonical accent token — deeper version of the primary accent",
+        "group": "brand"
+      }
+    ],
+    "imagery": "Imagery leans heavily into vintage scientific illustration: the hero feature card contains a dense botanical/zoological collage of butterflies and moths rendered in classic naturalist plate style, evoking 19th-century field guides. Illustrations are warm-toned to harmonize with the parchment background rather than pop against it. No photography, no product screenshots, no abstract gradients. Iconography is minimal — small chevrons for dropdowns and sparse line indicators, always in the same warm-neutral family as text. The visual density is low: large blocks of text and whitespace dominate, with imagery appearing only at hero-feature scale.",
+    "similar": [
+      {
+        "why": "Same warm parchment neutrals and nature-inspired accent palette, editorial type treatment, and rejection of cold tech-blue UI conventions",
+        "business": "Arc Browser"
+      },
+      {
+        "why": "Editorial documentation aesthetic with serif body text paired with sans UI, warm grays instead of cool blues, and section-based max-width reading layout",
+        "business": "Stripe"
+      },
+      {
+        "why": "Type-driven minimal interface where typography carries hierarchy more than color or shadow, generous whitespace, restrained palette",
+        "business": "Notion"
+      },
+      {
+        "why": "Monochrome restraint and the discipline of using a single accent color only at decisive action moments",
+        "business": "Linear"
+      },
+      {
+        "why": "Contemporary AI-product visual language with custom sans + serif type pairing and minimal decorative chrome",
+        "business": "Cursor"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "0px",
+        "cards": "24px",
+        "links": "0px",
+        "badges": "0px",
+        "buttons": "8px (bottom-only on filled variants), 12px (outlined)"
+      },
+      "elementGap": "8px",
+      "sectionGap": "80-120px",
+      "cardPadding": "24-32px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#f0eee6",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page-level background — the parchment that everything sits on"
+      },
+      {
+        "hex": "#faf9f5",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Standard card and elevated panel — one tonal step above canvas"
+      },
+      {
+        "hex": "#f5e3c7",
+        "name": "Warm Feature Surface",
+        "level": 2,
+        "purpose": "Featured hero card and editorial highlights — manilla paper tone for visual emphasis"
+      },
+      {
+        "hex": "#e3dacc",
+        "name": "Deep Warm Surface",
+        "level": 3,
+        "purpose": "Secondary grouped panels and deeper warm containers"
+      },
+      {
+        "hex": "#141413",
+        "name": "Inversion Surface",
+        "level": 4,
+        "purpose": "Footer and dark utility bands — the only dark surface in the system"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — elevated through surface tone shift, not shadow",
+        "element": "Card"
+      },
+      {
+        "style": "none — identity through fill color and bottom-corner radius",
+        "element": "Button"
+      },
+      {
+        "style": "none — flat, relies on tonal difference from page canvas",
+        "element": "Navigation"
+      }
+    ],
+    "northStar": "scientific field journal on warm parchment — quiet ivory surfaces, editorial serif headlines, and a single clay accent that only appears when you must act",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1,
+        "letterSpacing": -0.08
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.05
+      },
+      {
+        "role": "heading",
+        "size": 61,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.12
+      },
+      {
+        "role": "display",
+        "size": 68,
+        "lineHeight": 1.1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Text Link Button",
+        "role": "Primary inline link styled as a button — used for navigation and inline actions",
+        "description": "Transparent background, #141413 text color, no border, 0px radius, padding 22px 12px. Underline appears on hover. No background fill at any state — this is text that happens to be clickable, not a container."
+      },
+      {
+        "name": "Filled Ivory Button",
+        "role": "Primary action button on light surfaces",
+        "description": "Background #faf9f5, text #141413, bottom-only border-radius 8px (top corners sharp), padding 12px 31px. The bottom-only radius is a signature choice — the button reads like a tab or card pulled from a stack, not a generic pill. No border, no shadow."
+      },
+      {
+        "name": "Outlined Dark Button",
+        "role": "Secondary action on dark backgrounds (cookie consent, modal footer)",
+        "description": "Transparent background, #ffffff text, 1px border in #87867f, 12px radius, padding 8px 16px. Compact size, ghost treatment that lets the dark background show through."
+      },
+      {
+        "name": "Clay Filled Button",
+        "role": "The single chromatic CTA — used sparingly for the most consequential actions",
+        "description": "Background #d97757, white text, 8px radius, padding matching Filled Ivory Button proportions. Reserved for moments where acceptance must be visually distinct from the rest of the editorial interface. Deepens to #c6613f on hover."
+      },
+      {
+        "name": "Featured Hero Card",
+        "role": "Large editorial card for announcements and story highlights",
+        "description": "Background #f5e3c7 (manilla), 24px border-radius, no shadow, no border. Generous internal padding (~48-64px) to accommodate large serif display text and editorial illustration. The warm paper tone separates it from ivory cards without using color."
+      },
+      {
+        "name": "Release Card",
+        "role": "Compact card for latest releases grid",
+        "description": "Background #faf9f5, 24px radius, 1px border in #cccbc8 or no border, padding ~24px. Title in Anthropic Sans 24px weight 600 or Anthropic Serif 20px, body in serif 20px. Three-column grid layout."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Sticky site navigation",
+        "description": "Transparent or #f0eee6 background, logo left in Anthropic Sans 12px weight 700 all-caps letter-spaced, nav links right-aligned at 12px sans with #b0aea5 hover-to-#141413 transition. Dropdown indicators as chevrons. The 'Try Claude' button on the right uses Filled Ivory Button styling. No background blur, no shadow."
+      },
+      {
+        "name": "Footer",
+        "role": "Dark closing section with link columns",
+        "description": "Full-bleed #141413 background, #faf9f5 text, multi-column link grid with 8px link gaps. Section headings in sans 12px weight 600, link items in sans 12px at #b0aea5. The dark footer is the only inversion in the system — a final grounded anchor after all the parchment above."
+      },
+      {
+        "name": "Hero Heading Block",
+        "role": "Asymmetric first-screen composition",
+        "description": "Two-column layout: left holds Anthropic Sans 61px weight 700 heading with inline underlined links mid-phrase; right holds supporting serif paragraph at 20px. Generous whitespace around the block. Headings use #141413, supporting text #141413 at reduced visual weight."
+      },
+      {
+        "name": "Inline Underlined Link",
+        "role": "Text link embedded in paragraphs and headings",
+        "description": "No background, text inherits parent color (#141413), 1px underline always visible (not just on hover) in #141413. The persistent underline is editorial — it matches print convention where links are typeset with underlines, not the UI convention of reveal-on-hover."
+      },
+      {
+        "name": "Badge / Inline Label",
+        "role": "Small tag for categories and metadata",
+        "description": "Transparent background, #141413 text, 0px radius, no padding above/below the text baseline. Effectively just bold or weighted text in flow — not a container. Used sparingly."
+      },
+      {
+        "name": "Cookie Consent Bar",
+        "role": "Bottom-pinned consent prompt",
+        "description": "Dark band (#141413 background) or dark overlay containing body text and three action buttons: Filled Ivory Button (Accept), Outlined Dark Button (Customize, Reject). The contrast inversion makes consent legible against the parchment above."
+      },
+      {
+        "name": "Skip Link",
+        "role": "Accessibility utility for keyboard navigation",
+        "description": "Background #faf9f5, text #141413, small padding, visible only on focus. Positioned absolutely at the top edge."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Editorial voice — used for the display heading at 68px, all body copy at 20px, card titles, and supporting paragraphs. The serif carries personality; its presence in body text (unusual for tech sites) signals research-publication DNA. Weight 400 is default, 600 for emphasis.",
+        "sizes": "14px, 18px, 20px, 24px, 68px",
+        "family": "Anthropic Serif",
+        "weight": "400, 600",
+        "lineHeight": "1.10, 1.40, 1.43",
+        "substitute": "Georgia, Source Serif Pro, Charter",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "UI chrome and display sans — nav links, buttons, footers, badges, and the bold sans display heading at 61px weight 700. The 61px sans display sits beside the 68px serif display as a deliberate dual-system: sans shouts declarative statements, serif reads as editorial essay.",
+        "sizes": "12px, 15px, 16px, 20px, 24px, 61px",
+        "family": "Anthropic Sans",
+        "weight": "400, 500, 600, 700",
+        "lineHeight": "1.00, 1.10, 1.25, 1.30, 1.40",
+        "substitute": "Inter, system-ui, Arial",
+        "letterSpacing": "-0.0200em at 12px (tight nav/caption tracking), -0.0050em at 15-16px (subtle UI tightening), -0.0020em at larger sizes"
+      },
+      {
+        "role": "Reserved for code or technical snippets — appears sparingly",
+        "sizes": "16px",
+        "family": "Anthropic Mono",
+        "weight": "400",
+        "lineHeight": "1.40",
+        "substitute": "JetBrains Mono, SF Mono, Menlo"
+      }
+    ],
+    "description": "Anthropic's interface reads like a curated research publication on warm parchment paper. Ivory and oat neutrals replace the typical cool-gray tech palette, giving every surface a paper-like quality that pairs with a custom serif used at unprecedented scale for both body and display text. A single clay-toned accent surfaces only at moments of action; everything else stays quiet and editorial. Components are flat — hairline borders and selective bottom-corner radii replace shadows as the elevation language, sans-serif handles UI chrome, and the serif carries voice.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d469cba4-c448-4a43-a033-883f8bfcdc42#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Anthropic design system\",\"item\":\"https://styles.refero.design/style/d469cba4-c448-4a43-a033-883f8bfcdc42\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d469cba4-c448-4a43-a033-883f8bfcdc42#style-reference\",\"name\":\"Anthropic design system reference\",\"headline\":\"Anthropic design system | Refero Styles\",\"description\":\"Explore Anthropic's light AI design system: Slate Dark #141413, Ivory Medium #f0eee6 colors, Anthropic Serif, Anthropic Sans typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/d469cba4-c448-4a43-a033-883f8bfcdc42\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d469cba4-c448-4a43-a033-883f8bfcdc42\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Anthropic\",\"url\":\"https://anthropic.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d469cba4-c448-4a43-a033-883f8bfcdc42#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2ac53d58-01ff-479c-a321-7409a8b13542.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2ac53d58-01ff-479c-a321-7409a8b13542.jpg\",\"caption\":\"Screenshot of Anthropic\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2ac53d58-01ff-479c-a321-7409a8b13542.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Anthropic design system\",\"Anthropic website design\",\"Anthropic colors\",\"Anthropic typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Slate Dark\",\"Ivory Medium\",\"Ivory Light\",\"Cloud Medium\",\"Anthropic Serif\",\"Anthropic Sans\",\"Anthropic Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Anthropic design system\"},{\"@type\":\"Thing\",\"name\":\"Anthropic website design\"},{\"@type\":\"Thing\",\"name\":\"Anthropic colors\"},{\"@type\":\"Thing\",\"name\":\"Anthropic typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-02-19T10:29:26.000Z\",\"dateModified\":\"2026-02-19T10:29:26.000Z\"}]}19:T525,## Quick Color Reference\n- text: #141413 (Slate Dark)\n- background: #f0eee6 (Ivory Medium)\n- card surface: #faf9f5 (Ivory Light)\n- border: #cccbc8 (Stone)\n- muted text: #b0aea5 (Cloud Medium)\n- primary action: #d97757 (filled action)\n\n## Example Component Prompts\n\n1. **Hero section**: Canvas #f0eee6. Left column: headline at 61px Anthropic Sans weight 700, #141413, letter-spacing -0.12px. Inline links within the headline underlined persistently in #141413. Right column: supporting paragraph at 20px Anthropic Serif weight 400, #141413. Two-column layout, max-width 1280px centered, generous vertical padding (~120px top).\n\n2. Create a Primary Action Button: #d97757 background, #141413 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **Three-column release grid**: Three cards on #f0eee6 canvas, each card #faf9f5 with 24px radius and 24px padding. Card title at 24px Anthropic Sans weight 600, #141413. Card body at 20px Anthropic Serif weight 400, #141413. Inline link at bottom: 'Model details →' in #141413 with persistent underline.\n\n\n5. **Dark footer**: Full-bleed #141413 background, #faf9f5 text, max-width 1280px content centered. Column headings at 12px Anthropic Sans weight 600, #faf9f5. Link items at 12px sans weight 400, #b0aea5 with 8px vertical gaps."
+      }
+    ],
+    "elevationPhilosophy": "The system intentionally avoids shadows. Elevation is communicated exclusively through surface tone steps (#f0eee6 → #faf9f5 → #f5e3c7 → #e3dacc) and 1px hairline borders. This keeps the interface feeling like printed paper rather than digital UI — every element sits on the same plane, distinguished only by warmth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#141413",
+          "oklch": {
+            "c": 0.001982689524060123,
+            "h": 106.58599743180488,
+            "l": 0.19083867777298508
+          },
+          "contexts": [
+            "button",
+            "other",
+            "nav",
+            "heading",
+            "link",
+            "body",
+            "footer"
+          ],
+          "frequency": 99,
+          "confidence": 1,
+          "prominence": 8519855.286656654,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 2,
+            "nav/color": 5,
+            "body/color": 6,
+            "link/color": 2,
+            "other/fill": 10,
+            "other/color": 15,
+            "button/color": 5,
+            "heading/color": 23,
+            "nav/borderColor": 7,
+            "other/borderColor": 16,
+            "nav/backgroundColor": 3,
+            "other/backgroundColor": 4,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f0eee6",
+          "oklch": {
+            "c": 0.010853275022572377,
+            "h": 95.16645390182161,
+            "l": 0.948457363971068
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 7604662.758160112,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f5e3c7",
+          "oklch": {
+            "c": 0.04189542184653474,
+            "h": 78.96032303613988,
+            "l": 0.9230856613146637
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1058599,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e3dacc",
+          "oklch": {
+            "c": 0.021301085996504494,
+            "h": 79.08607898098995,
+            "l": 0.8917166297449098
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 378150,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#cccbc8",
+          "oklch": {
+            "c": 0.004750408087937016,
+            "h": 95.7540709802855,
+            "l": 0.8423979421679271
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 121131.34278379337,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 5
+          }
+        },
+        {
+          "hex": "#faf9f5",
+          "oklch": {
+            "c": 0.005391873657638422,
+            "h": 95.09859092511262,
+            "l": 0.9817746410588627
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 67389.4887377761,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/color": 6,
+            "body/color": 4,
+            "other/fill": 3,
+            "other/color": 4,
+            "button/color": 3,
+            "heading/color": 11,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#87867f",
+          "oklch": {
+            "c": 0.010396516211232063,
+            "h": 100.08819580335044,
+            "l": 0.618793919989538
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 41006.14981865775,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#e8e6dc",
+          "oklch": {
+            "c": 0.013537616647727829,
+            "h": 97.45183955475692,
+            "l": 0.9237363466513747
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 27419,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 1
+          }
+        },
+        {
+          "hex": "#b0aea5",
+          "oklch": {
+            "c": 0.012863402565227255,
+            "h": 96.47769507334482,
+            "l": 0.749862800036365
+          },
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 92,
+          "confidence": 1,
+          "prominence": 21644.61566476758,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/color": 88,
+            "button/color": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 11735.799542770083,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 34
+          }
+        },
+        {
+          "hex": "#70706d",
+          "oklch": {
+            "c": 0.003403307866939484,
+            "h": 98.16376493225975,
+            "l": 0.5434340173968829
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 8657.039414915153,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 5
+          }
+        },
+        {
+          "hex": "#d97757",
+          "oklch": {
+            "c": 0.13084016610885288,
+            "h": 38.755898087748044,
+            "l": 0.672419630107895
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 6336,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3d3d3a",
+          "oklch": {
+            "c": 0.005072877246141697,
+            "h": 106.65242752614358,
+            "l": 0.3589737682977474
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1620,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 1
+          }
+        },
+        {
+          "hex": "#a1a0a0",
+          "oklch": {
+            "c": 0.0011575001906081153,
+            "h": 17.18522961104121,
+            "l": 0.7065851742182873
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 513,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.018478264753545363,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.93,
+          "background": "#faf9f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.08,
+          "background": "#f0eee6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.5,
+          "background": "#faf9f5",
+          "foreground": "#141413"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.78,
+          "background": "#e8e6dc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.69,
+          "background": "#f5e3c7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.87,
+          "background": "#f0eee6",
+          "foreground": "#141413"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.17,
+          "background": "#e3dacc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.73,
+          "background": "#141413",
+          "foreground": "#e8e6dc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.65,
+          "background": "#f5e3c7",
+          "foreground": "#141413"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.31,
+          "background": "#e3dacc",
+          "foreground": "#141413"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.94,
+          "background": "#cccbc8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.36,
+          "background": "#cccbc8",
+          "foreground": "#141413"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.34,
+          "background": "#faf9f5",
+          "foreground": "#3d3d3a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.44,
+          "background": "#b0aea5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.38,
+          "background": "#f0eee6",
+          "foreground": "#3d3d3a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.71,
+          "background": "#e8e6dc",
+          "foreground": "#3d3d3a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.66,
+          "background": "#f5e3c7",
+          "foreground": "#3d3d3a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.29,
+          "background": "#141413",
+          "foreground": "#b0aea5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.05,
+          "background": "#a1a0a0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.87,
+          "background": "#e3dacc",
+          "foreground": "#3d3d3a"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 20
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card",
+            "other",
+            "link",
+            "nav"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 86,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "list",
+            "heading"
+          ],
+          "frequency": 149,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "marginBottom|button",
+            "marginLeft|button",
+            "columnGap|nav",
+            "columnGap|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list",
+            "marginBottom|heading",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "other",
+            "nav",
+            "list"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "columnGap|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|list",
+            "paddingBottom|list",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "body",
+            "button"
+          ],
+          "frequency": 31,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "marginBottom|body",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 31,
+          "contexts": [
+            "button",
+            "other",
+            "list",
+            "nav"
+          ],
+          "frequency": 46,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|list",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 53,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 59,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 61,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 76,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 81,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 91,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 107,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 165,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|badge"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Anthropic Sans",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 449,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Anthropic Serif",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 109,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Anthropic Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Anthropic Sans",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "heading",
+            "other",
+            "nav"
+          ],
+          "frequency": 132,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Anthropic Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Anthropic Sans",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 172,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Anthropic Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Anthropic Sans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Anthropic Serif",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Anthropic Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Anthropic Sans",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Anthropic Sans",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 35,
+          "lineHeight": 1,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Anthropic Sans",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Anthropic Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Anthropic Sans",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "badge",
+            "link"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Anthropic Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Anthropic Serif",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Anthropic Serif",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Anthropic Serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "hero",
+            "card",
+            "body",
+            "list"
+          ],
+          "frequency": 98,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Anthropic Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Anthropic Serif",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Anthropic Sans",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 61,
+          "family": "Anthropic Sans",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 68,
+          "family": "Anthropic Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d0b5b39f-2be5-442b-8c13-2690f3147a2e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2ac53d58-01ff-479c-a321-7409a8b13542.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d469cba4-c448-4a43-a033-883f8bfcdc42#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Anthropic design system\",\"item\":\"https://styles.refero.design/style/d469cba4-c448-4a43-a033-883f8bfcdc42\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d469cba4-c448-4a43-a033-883f8bfcdc42#style-reference\",\"name\":\"Anthropic design system reference\",\"headline\":\"Anthropic design system | Refero Styles\",\"description\":\"Explore Anthropic's light AI design system: Slate Dark #141413, Ivory Medium #f0eee6 colors, Anthropic Serif, Anthropic Sans typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/d469cba4-c448-4a43-a033-883f8bfcdc42\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d469cba4-c448-4a43-a033-883f8bfcdc42\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Anthropic\",\"url\":\"https://anthropic.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d469cba4-c448-4a43-a033-883f8bfcdc42#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2ac53d58-01ff-479c-a321-7409a8b13542.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2ac53d58-01ff-479c-a321-7409a8b13542.jpg\",\"caption\":\"Screenshot of Anthropic\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2ac53d58-01ff-479c-a321-7409a8b13542.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Anthropic design system\",\"Anthropic website design\",\"Anthropic colors\",\"Anthropic typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Slate Dark\",\"Ivory Medium\",\"Ivory Light\",\"Cloud Medium\",\"Anthropic Serif\",\"Anthropic Sans\",\"Anthropic Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Anthropic design system\"},{\"@type\":\"Thing\",\"name\":\"Anthropic website design\"},{\"@type\":\"Thing\",\"name\":\"Anthropic colors\"},{\"@type\":\"Thing\",\"name\":\"Anthropic typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-02-19T10:29:26.000Z\",\"dateModified\":\"2026-02-19T10:29:26.000Z\"}]}19:T525,## Quick Color Reference\n- text: #141413 (Slate Dark)\n- background: #f0eee6 (Ivory Medium)\n- card surface: #faf9f5 (Ivory Light)\n- border: #cccbc8 (Stone)\n- muted text: #b0aea5 (Cloud Medium)\n- primary action: #d97757 (filled action)\n\n## Example Component Prompts\n\n1. **Hero section**: Canvas #f0eee6. Left column: headline at 61px Anthropic Sans weight 700, #141413, letter-spacing -0.12px. Inline links within the headline underlined persistently in #141413. Right column: supporting paragraph at 20px Anthropic Serif weight 400, #141413. Two-column layout, max-width 1280px centered, generous vertical padding (~120px top).\n\n2. Create a Primary Action Button: #d97757 background, #141413 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **Three-column release grid**: Three cards on #f0eee6 canvas, each card #faf9f5 with 24px radius and 24px padding. Card title at 24px Anthropic Sans weight 600, #141413. Card body at 20px Anthropic Serif weight 400, #141413. Inline link at bottom: 'Model details →' in #141413 with persistent underline.\n\n\n5. **Dark footer**: Full-bleed #141413 background, #faf9f5 text, max-width 1280px content centered. Column headings at 12px Anthropic Sans weight 600, #faf9f5. Link items at 12px sans weight 400, #b0aea5 with 8px vertical gaps."
+}

@@ -1,0 +1,225 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Body text, headings, nav links, hairline borders, and link underlines — the single type color across the entire system"
+    },
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Page background, card surfaces, reverse text on dark photographic regions"
+    },
+    "warm-linen": {
+      "$value": "#eee5da",
+      "$type": "color",
+      "$description": "Warm Linen — Soft section background, the first step off pure white — gives a page the warmth of unbleached paper"
+    },
+    "pale-sage": {
+      "$value": "#d8ddc6",
+      "$type": "color",
+      "$description": "Pale Sage — Tinted section panels, the dominant non-white canvas tone"
+    },
+    "driftwood": {
+      "$value": "#d8d0c5",
+      "$type": "color",
+      "$description": "Driftwood — Deeper warm section background, used when a panel needs to recede from Pale Sage"
+    },
+    "olive-stone": {
+      "$value": "#afb371",
+      "$type": "color",
+      "$description": "Olive Stone — Saturated warm section background — the deepest neutral step before any chromatic color enters"
+    },
+    "weathered-taupe": {
+      "$value": "#9c978a",
+      "$type": "color",
+      "$description": "Weathered Taupe — Muted section background, used sparingly as a quieter alternative to Olive Stone"
+    },
+    "soft-pebble": {
+      "$value": "#aaaaa4",
+      "$type": "color",
+      "$description": "Soft Pebble — Light warm-gray section background, the coolest of the earth-tone neutrals"
+    },
+    "garden-green": {
+      "$value": "#259558",
+      "$type": "color",
+      "$description": "Garden Green — Footer background only — the single chromatic accent in the system, used as a deliberate closing beat rather than a brand color spread across the UI"
+    }
+  },
+  "font": {
+    "helvetica": {
+      "$value": "Helvetica",
+      "$type": "fontFamily",
+      "$description": "Primary UI and editorial type — body copy, navigation, links, project captions, category filters, and all functional text. Weight 400 for body and metadata, weight 600 reserved for the wordmark and the few moments that need emphasis. The system stack ensures identical rendering across platforms without depending on a webfont."
+    },
+    "minion-3": {
+      "$value": "minion-3",
+      "$type": "fontFamily",
+      "$description": "Editorial accent serif — used for body paragraphs and select headings where a literary, book-page quality is desired. The contrast between this transitional serif and the geometric Helvetica mirrors the brand's positioning: strategy + craft, editorial + commercial."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "minion-3",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "minion-3",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "minion-3",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "minion-3",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background and any reverse-text surface"
+    },
+    "warm-linen": {
+      "$value": "#eee5da",
+      "$type": "color",
+      "$description": "Surface level 2: First tinted step — section bands, project card surfaces"
+    },
+    "pale-sage": {
+      "$value": "#d8ddc6",
+      "$type": "color",
+      "$description": "Surface level 3: Dominant warm panel tone, used for content sections and category list backgrounds"
+    },
+    "driftwood": {
+      "$value": "#d8d0c5",
+      "$type": "color",
+      "$description": "Surface level 4: Deeper warm panel, used to create gentle tonal rhythm between Sage sections"
+    },
+    "olive-stone": {
+      "$value": "#afb371",
+      "$type": "color",
+      "$description": "Surface level 5: Saturated warm panel — the deepest neutral surface before chromatic color"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://deux-ce.com",
+      "siteName": "Atelier Deux-Cé",
+      "extractedAt": "2026-06-03T20:25:01.824Z",
+      "variant": "extended"
+    }
+  }
+}

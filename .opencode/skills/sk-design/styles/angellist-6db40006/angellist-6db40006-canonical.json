@@ -1,0 +1,1680 @@
+{
+  "source": "https://styles.refero.design/style/6db40006-05ac-4770-b63e-dfd9ebfd534c",
+  "uuid": "6db40006-05ac-4770-b63e-dfd9ebfd534c",
+  "name": "Angellist",
+  "northStar": "Editorial annual on matte paper",
+  "capturedAt": "2026-07-18T08:51:27.704Z",
+  "meta": {
+    "url": "https://www.angellist.com/2024",
+    "siteName": "Angellist",
+    "extractedAt": "2026-06-03T21:34:31.745Z",
+    "durationMs": 35301,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 792,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set display type at 60px minimum when it carries meaning — anything smaller undermines the editorial voice.",
+      "Use 9999px radius on every button, tag, badge, and image card. The pill is the shape language.",
+      "Reach for the Olive→Violet linear-gradient only on display headlines. Never on body type, buttons, or backgrounds.",
+      "Pair the Vellum Lavender highlight with Inkwell Teal text — the contrast is 8:1+, never lose it to a lighter background.",
+      "Use the 550 weight of angellist for labels and button text; reserve 500 for inline emphasis. Never use 700+ — the system speaks in one voice.",
+      "Keep body text at 18px on the canonical reading sections. 16px is the floor for UI chrome only.",
+      "Separate major sections with the horizontal band stack — let the palette breathe as its own composition."
+    ],
+    "donts": [
+      "Don't set display type in pure Paper White on dark — the gradient IS the display color, not a fallback.",
+      "Don't introduce a second accent color. The system is monochrome + lavender; any other hue breaks the annual-report register.",
+      "Don't use 2px or 4px radii on interactive elements — those values are reserved for the lavender text highlight only.",
+      "Don't center-align body copy. The system is asymmetric and editorial, left rail first.",
+      "Don't add drop shadows to cards or buttons. Elevation is handled by surface tone shifts (Sage → Paper White → Bone), never by blur.",
+      "Don't break the 9999px pill on the nav CTA, even at desktop scale. The roundedness scales with the layout.",
+      "Don't use the Olive→Violet gradient at body sizes — it reads muddy below 60px."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#001d21",
+        "name": "Inkwell Teal",
+        "role": "Primary text, heading fill, hero background, card backgrounds for high-contrast panels",
+        "group": "brand"
+      },
+      {
+        "hex": "#bdbbff",
+        "name": "Vellum Lavender",
+        "role": "Signature accent — highlight washes behind text, section badges, decorative strokes, the right-hand terminus of display gradients",
+        "group": "accent"
+      },
+      {
+        "hex": "#ccd5d6",
+        "name": "Sage Mist",
+        "role": "Dominant canvas background, hairline borders, dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Card surfaces, image panels, inverse text on dark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f9f9f7",
+        "name": "Bone",
+        "role": "Warm off-white alt surface, muted body text on dark backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eaebea",
+        "name": "Driftwood",
+        "role": "Subtle banded sections, tertiary surface layer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#647577",
+        "name": "Slate Veil",
+        "role": "Mid-gray supporting text, muted UI labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#43585a",
+        "name": "Pewter Deep",
+        "role": "Dark banded section fills, layered surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#213a3d",
+        "name": "Gunmetal",
+        "role": "Even darker banded fills, image overlay scrim base",
+        "group": "neutral"
+      },
+      {
+        "hex": "#002b31",
+        "name": "Patina",
+        "role": "Deepest teal — link backgrounds, footer anchors",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a7b0b1",
+        "name": "Frost",
+        "role": "Cool mid-gray surface accent",
+        "group": "neutral"
+      },
+      {
+        "hex": "#859394",
+        "name": "Pebble",
+        "role": "Muted surface layer for stacked color bands",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b2bfc1",
+        "name": "Mist",
+        "role": "Secondary border tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#898ee5",
+        "name": "Olive Violet Wash",
+        "role": "Display type gradient — mid-stop of the olive→violet hero fill",
+        "group": "accent",
+        "gradient": "linear-gradient(98.78deg, rgb(127, 120, 51) 6.69%, rgb(137, 142, 229) 40.89%, rgb(137, 142, 229) 83.02%, rgb(134, 123, 54) 100.19%)"
+      }
+    ],
+    "layout": "The page model is full-bleed for the dark hero and the band-stack dividers, then constrained to a ~1280px max-width content rail for the editorial sections. Hero: full-viewport-width dark teal field with monumental display type that bleeds past the edges — no centered headline, no subtitle lockup, just type and a single body subline. Sections alternate: dark hero → white editorial block → three-up image cards → full-bleed color band stack → next section. The editorial blocks use a 60/40 two-column split (heading left, body right) and generous 80–96px vertical padding. Navigation is a minimal top bar (logo left, links center, pill CTA right) on the dark hero. The rhythm is: dramatic opening, quiet reading sections, visual card break, more quiet reading — like turning pages in a print annual.",
+    "imagery": "Imagery is sparse and editorial rather than decorative. The few photographs (e.g. the laptop-on-cushion card) are treated as full-bleed card fills, tightly cropped, and overlaid with Paper White body text. There are no lifestyle contexts, no human subjects, no atmosphere shots — the object or surface is the subject. Color is used in lieu of imagery more often than not: solid Vellum Lavender and Inkwell Teal card panels stand in for photographs, making the layout feel more like a design annual than a product page. Icons are absent from the visible chrome; the wordmark and display type do the brand work alone.",
+    "similar": [
+      {
+        "why": "Same annual-report editorial register, monumental display type on dark, single accent color, pill-shaped controls, and a near-achromatic chrome",
+        "business": "Stripe Press"
+      },
+      {
+        "why": "Light, clean SaaS surface treatment with pill-shaped buttons, restrained palette, and oversized display type — though Angellist's hero is more typographic and less product-photography-driven",
+        "business": "Linear"
+      },
+      {
+        "why": "Editorial microsite language: massive custom display type, flat color band section dividers, restrained palette letting type carry the brand",
+        "business": "Figma Config"
+      },
+      {
+        "why": "Annual-report format with large display headlines, soft pastel accents on a near-white canvas, and a deliberately un-corporate editorial feel",
+        "business": "Notion Year in Review"
+      },
+      {
+        "why": "Pill-shaped nav and CTAs, warm off-white canvas, oversized display headings, and the same kind of confident type-led hierarchy",
+        "business": "Arc browser"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "9999px",
+        "links": "2px",
+        "buttons": "9999px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "80-96px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#ccd5d6",
+        "name": "Sage Mist",
+        "level": 1,
+        "purpose": "Dominant page canvas and section dividers"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 2,
+        "purpose": "Card and image panel surfaces"
+      },
+      {
+        "hex": "#f9f9f7",
+        "name": "Bone",
+        "level": 3,
+        "purpose": "Warm alt-surface for nested content blocks"
+      },
+      {
+        "hex": "#eaebea",
+        "name": "Driftwood",
+        "level": 4,
+        "purpose": "Tertiary section banding"
+      },
+      {
+        "hex": "#001d21",
+        "name": "Inkwell Teal",
+        "level": 5,
+        "purpose": "Dark hero and feature-card backgrounds"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — flat, no shadow",
+        "element": "Feature Image Card"
+      },
+      {
+        "style": "none — the lavender fill against the canvas is sufficient separation",
+        "element": "Section Badge"
+      },
+      {
+        "style": "none — relies on fill, no elevation",
+        "element": "Pill Button"
+      }
+    ],
+    "northStar": "Editorial annual on matte paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.002
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.004
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.6,
+        "letterSpacing": -0.004
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.004
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "heading-lg",
+        "size": 60,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1.05,
+        "letterSpacing": -0.025
+      },
+      {
+        "role": "display-lg",
+        "size": 144,
+        "lineHeight": 1,
+        "letterSpacing": -0.025
+      },
+      {
+        "role": "display-xl",
+        "size": 260,
+        "lineHeight": 0.8,
+        "letterSpacing": -0.025
+      },
+      {
+        "role": "display-2xl",
+        "size": 288,
+        "lineHeight": 0.75,
+        "letterSpacing": -0.025
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button — Filled",
+        "role": "Primary action control",
+        "description": "9999px radius. 4px vertical / 10–12px horizontal padding. Body weight 500 at 14–16px, letter-spacing -0.004em. Filled with Inkwell Teal (#001d21), text Paper White. No border. The pill shape is the signature — never square it."
+      },
+      {
+        "name": "Pill Button — Ghost / Outlined",
+        "role": "Secondary action on dark backgrounds",
+        "description": "9999px radius. 1px Paper White border, transparent fill, Paper White text. Same internal padding as filled variant. Used for the nav 'JOIN US' CTA on the dark bar."
+      },
+      {
+        "name": "Section Badge",
+        "role": "Eyebrow label above section headings",
+        "description": "9999px radius. Vellum Lavender (#bdbbff) fill, Inkwell Teal text. Body weight 500 at 13–14px. Padding 4px top/bottom, 10px sides. Functions as a soft category tag, e.g. '2024 BUILD'."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Full-width, Inkwell Teal (#001d21) background. Logo wordmark left in Paper White, nav links centered in Paper White at 14px/500, ghost pill CTA right. No drop shadow — flat against the dark."
+      },
+      {
+        "name": "Display Headline — Hero",
+        "role": "Page-level monumental type",
+        "description": "angellistDisplay 400 at 144–288px. Line-height 0.75–0.80 (negative leading — letters almost touch). Letter-spacing -0.025em. Fill is the Olive→Violet linear-gradient. Mixed weight variants of characters sit in the same line, creating a duotone letterform effect within a single word."
+      },
+      {
+        "name": "Display Headline — Section",
+        "role": "Sub-hero section opener",
+        "description": "angellistDisplay 400 at 60–80px on white, Inkwell Teal fill. Line-height 1.05–1.10. Letter-spacing -0.02em. Often paired with a lavender text-highlight on a key phrase."
+      },
+      {
+        "name": "Text Highlight",
+        "role": "Inline emphasis on a phrase within a heading",
+        "description": "Vellum Lavender (#bdbbff) rectangle behind one or two words of a heading. Crisp 2px corners, no padding adjustment — it sits flush behind the text baseline. Inkwell Teal text remains on top, contrast is still AAA."
+      },
+      {
+        "name": "Feature Image Card",
+        "role": "Three-up content card with overlay text",
+        "description": "Three equal cards in a row, 9999px radius. Each is a full-bleed image (or solid color block in Vellum Lavender, Inkwell Teal) with Paper White body text bottom-left, 16px, weight 400. No card shadow — the image IS the card."
+      },
+      {
+        "name": "Horizontal Band Stack",
+        "role": "Full-bleed section divider / color catalogue",
+        "description": "Stacked full-width horizontal bands in the surface palette (Sage Mist → Driftwood → Frost → Pewter Deep → Gunmetal → Inkwell Teal). Each band 40–60px tall. No gaps, no text — pure color rhythm. Functions as a typological signature between major content sections."
+      },
+      {
+        "name": "Two-Column Split Section",
+        "role": "Heading-left, body-right editorial layout",
+        "description": "60/40 split. Large display heading (heading-lg / display) left-aligned on left, body copy at 18px/1.6 right-aligned on right. Vertically centered. Sage Mist background, no card containers — text floats on canvas."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Running text",
+        "description": "angellist 400 at 18px, line-height 1.6, letter-spacing -0.004em. Inkwell Teal on Sage Mist. Max width ~50ch. Never center-aligned."
+      },
+      {
+        "name": "Footer Anchor",
+        "role": "Bottom link/CTA",
+        "description": "Pill-shaped link with Patina (#002b31) background, Paper White text. 9999px radius. Same internal padding as nav ghost button."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines — the brand's signature voice. Used from 28px section openers up to 288px hero type. Single weight (400) carries the system; size alone does the shouting. Tabular lining numerals and three stylistic sets (ss01–ss03) make this a purpose-built editorial face, not a system font fallback.",
+        "sizes": "28px, 38px, 60px, 80px, 144px, 260px, 288px",
+        "family": "angellistDisplay",
+        "weight": "400",
+        "lineHeight": "0.75, 0.80, 1.00, 1.05, 1.10, 1.15, 1.25, 1.30",
+        "substitute": "Inter Tight, Söhne Breit, or Suisse Int'l",
+        "letterSpacing": "-0.025em at 80px+ to -0.01em at 28px — tracking tightens as size grows",
+        "fontFeatureSettings": "\"lnum\" on, \"tnum\" on, \"ss01\" on, \"ss02\" on, \"ss03\" on"
+      },
+      {
+        "role": "Body, UI, and supporting type. 400 for body copy, 500/550 for labels, nav, and button text. The 550 weight is a half-step — a quiet way to add emphasis without bolding. Same stylistic sets as the display face keep the two families visually stitched together.",
+        "sizes": "13px, 14px, 16px, 18px, 20px, 144px",
+        "family": "angellist",
+        "weight": "400, 500, 550",
+        "lineHeight": "0.80, 1.00, 1.40, 1.50, 1.60",
+        "substitute": "Inter, Söhne, or Suisse Int'l",
+        "letterSpacing": "-0.004em at 16–20px, -0.002em at 13–14px, tightening to -0.05em only on micro-labels",
+        "fontFeatureSettings": "\"lnum\" on, \"tnum\" on, \"ss01\" on, \"ss02\" on, \"ss03\" on"
+      }
+    ],
+    "description": "Angellist's 2024 Year in Review reads as a printed editorial annual repurposed for the web — enormous display type set in a custom sans, a single chromatic accent, and surfaces that breathe. The system runs light: warm off-white canvases carry deep teal ink, while a soft lavender punctuates highlights, badges, and the signature gradient that floods the hero headlines. Everything rounds to a pill (9999px) — buttons, tags, nav anchors, even section labels — which makes the monumental type feel approachable rather than imposing. The result is confident, restrained, and slightly literary: an annual report, not a product page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6db40006-05ac-4770-b63e-dfd9ebfd534c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Angellist design system\",\"item\":\"https://styles.refero.design/style/6db40006-05ac-4770-b63e-dfd9ebfd534c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6db40006-05ac-4770-b63e-dfd9ebfd534c#style-reference\",\"name\":\"Angellist design system reference\",\"headline\":\"Angellist design system | Refero Styles\",\"description\":\"Explore Angellist's light Fintech design system: Inkwell Teal #001d21, Vellum Lavender #bdbbff colors, angellistDisplay, angellist typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/6db40006-05ac-4770-b63e-dfd9ebfd534c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6db40006-05ac-4770-b63e-dfd9ebfd534c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Angellist\",\"url\":\"https://www.angellist.com/2024\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6db40006-05ac-4770-b63e-dfd9ebfd534c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2a31e6b1-8919-4c5c-adf3-381d63b4cb17.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2a31e6b1-8919-4c5c-adf3-381d63b4cb17.jpg\",\"caption\":\"Screenshot of Angellist\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2a31e6b1-8919-4c5c-adf3-381d63b4cb17.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Angellist design system\",\"Angellist website design\",\"Angellist colors\",\"Angellist typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Inkwell Teal\",\"Vellum Lavender\",\"Sage Mist\",\"Paper White\",\"angellistDisplay\",\"angellist\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Angellist design system\"},{\"@type\":\"Thing\",\"name\":\"Angellist website design\"},{\"@type\":\"Thing\",\"name\":\"Angellist colors\"},{\"@type\":\"Thing\",\"name\":\"Angellist typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-05-08T18:57:03.724Z\",\"dateModified\":\"2026-05-08T18:57:03.724Z\"}]}19:T60f,## Quick Color Reference\n- text: #001d21 (Inkwell Teal)\n- background: #ccd5d6 (Sage Mist) for page, #ffffff (Paper White) for cards\n- border: #ccd5d6 (Sage Mist) hairlines\n- accent: #bdbbff (Vellum Lavender)\n- display gradient: linear-gradient(98.78deg, #7f7833, #898ee5, #898ee5, #867b36)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Hero Headline**: Full-bleed #001d21 background, no max-width. Display type at 260px using angellistDisplay weight 400, line-height 0.80, letter-spacing -0.025em, fill with the Olive→Violet linear-gradient. Subline in angellist 400 at 18px, color #f9f9f7, 1.6 line-height, max-width 50ch.\n\n2. **Section Opener**: #ccd5d6 canvas. Eyebrow badge: #bdbbff fill, #001d21 text, 9999px radius, 4px 10px padding, 14px weight 500. Heading: angellistDisplay 400 at 80px, #001d21, line-height 1.05, letter-spacing -0.02em. Wrap one key phrase in a #bdbbff 2px-radius highlight.\n\n3. **Feature Image Card Grid**: Three equal cards, 9999px radius, no shadow. First card: #001d21 fill, Paper White body text at 16px bottom-left. Second card: #bdbbff fill, #001d21 text. Third card: full-bleed photograph. 32px gap between cards.\n\n4. **Pill Button**: 9999px radius, 4px 12px padding, #001d21 fill, #ffffff text, angellist weight 500 at 14px, letter-spacing -0.004em. Never add a border or shadow.\n\n5. **Horizontal Band Stack**: Full-bleed stack of 5–6 bands, 50px each, in sequence #ccd5d6 → #eaebea → #a7b0b1 → #859394 → #43585a → #213a3d → #001d21. No text, no dividers between bands."
+      },
+      {
+        "title": "Display Type Philosophy",
+        "content": "angellistDisplay exists at one weight (400) but at seven sizes — from 28px section openers to 288px hero type. The system deliberately withholds bold weights; size and tight tracking do the work instead. Line-height collapses to 0.75 at the largest sizes (260–288px), so letterforms nearly touch — this is the page's defining move. The 260–288px sizes appear ONLY in the hero, and they should be reserved for moments that earn them. Sub-hero display ranges from 60–80px with 1.05–1.10 line-height, giving breathing room without losing the editorial register."
+      },
+      {
+        "title": "Gradient Discipline",
+        "content": "Two gradients are defined. The Olive→Violet (rgb 127,120,51 → 137,142,229 → 137,142,229 → 134,123,54) is the primary display gradient and should fill display headlines only. The wider spectrum gradient (violet → pink → coral → peach → lavender → olive → blue → cream) is a single-use atmospheric effect. Never apply gradients to body text, UI controls, or backgrounds — the system stays muted in chrome and dramatic only in editorial type."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is expressed entirely through surface tone, never through drop shadow. The palette contains five discrete surface levels (Sage Mist → Paper White → Bone → Driftwood → Inkwell Teal), and components layer by stepping between them. This keeps the page feeling printed rather than rendered — every element sits on the same plane."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ccd5d6",
+          "oklch": {
+            "c": 0.009521772054380009,
+            "h": 206.89685156794195,
+            "l": 0.8655273961954744
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading",
+            "list",
+            "card",
+            "image",
+            "link",
+            "icon"
+          ],
+          "frequency": 2137,
+          "confidence": 1,
+          "prominence": 29152960.63953313,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 76,
+            "card/borderColor": 20,
+            "icon/borderColor": 4,
+            "link/borderColor": 16,
+            "list/borderColor": 48,
+            "image/borderColor": 48,
+            "other/borderColor": 724,
+            "heading/borderColor": 1196,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#001d21",
+          "oklch": {
+            "c": 0.03621113454939357,
+            "h": 207.4399296125947,
+            "l": 0.21096220111608416
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "heading",
+            "list",
+            "card",
+            "link",
+            "icon",
+            "hero"
+          ],
+          "frequency": 452,
+          "confidence": 1,
+          "prominence": 23253137.317886807,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 12,
+            "card/color": 5,
+            "icon/color": 1,
+            "link/color": 2,
+            "list/color": 12,
+            "other/fill": 6,
+            "other/color": 173,
+            "button/color": 5,
+            "other/stroke": 3,
+            "heading/color": 198,
+            "button/borderColor": 20,
+            "body/backgroundColor": 8,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 5,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "heading",
+            "image",
+            "hero"
+          ],
+          "frequency": 1030,
+          "confidence": 1,
+          "prominence": 18241100.876173634,
+          "properties": [
+            "borderColor",
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "link/color": 2,
+            "other/color": 13,
+            "button/color": 1,
+            "heading/color": 100,
+            "body/borderColor": 448,
+            "hero/borderColor": 4,
+            "link/borderColor": 52,
+            "image/borderColor": 96,
+            "other/borderColor": 212,
+            "button/borderColor": 8,
+            "heading/borderColor": 88,
+            "body/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f9f9f7",
+          "oklch": {
+            "c": 0.002639211395676627,
+            "h": 106.44812568172128,
+            "l": 0.9815617588912264
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "heading",
+            "hero",
+            "card"
+          ],
+          "frequency": 124,
+          "confidence": 1,
+          "prominence": 12693881.05184113,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 57,
+            "hero/color": 1,
+            "link/color": 10,
+            "other/fill": 2,
+            "other/color": 44,
+            "button/color": 1,
+            "heading/color": 1,
+            "body/backgroundColor": 1,
+            "card/backgroundColor": 5,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#bdbbff",
+          "oklch": {
+            "c": 0.09514598985582134,
+            "h": 285.4373179248532,
+            "l": 0.817869170098921
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading",
+            "link",
+            "icon"
+          ],
+          "frequency": 94,
+          "confidence": 1,
+          "prominence": 1593446.2093889797,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 54,
+            "icon/color": 3,
+            "link/color": 3,
+            "other/fill": 3,
+            "icon/stroke": 4,
+            "other/color": 9,
+            "heading/color": 14,
+            "other/backgroundColor": 2,
+            "heading/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#647577",
+          "oklch": {
+            "c": 0.0204445177409676,
+            "h": 205.2326978866034,
+            "l": 0.5491721823615315
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 473250.24542958225,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 5,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#43585a",
+          "oklch": {
+            "c": 0.025837487625338988,
+            "h": 203.5018132553492,
+            "l": 0.4438197273963879
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 353622.8700986541,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#a7b0b1",
+          "oklch": {
+            "c": 0.010241183101634651,
+            "h": 204.8900755557352,
+            "l": 0.7503742082872377
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 353622.8700986541,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#eaebea",
+          "oklch": {
+            "c": 0.001703970869309136,
+            "h": 145.562487991236,
+            "l": 0.9390207324423909
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 256030.7688916535,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#213a3d",
+          "oklch": {
+            "c": 0.03134073650937109,
+            "h": 205.4635145157576,
+            "l": 0.3294821762247002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 211759.84225372743,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#859394",
+          "oklch": {
+            "c": 0.016217184920076025,
+            "h": 201.96305460129105,
+            "l": 0.6523275272993057
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 211759.84225372743,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#848888",
+          "oklch": {
+            "c": 0.004740210450943304,
+            "h": 197.03497288904276,
+            "l": 0.6233938623718861
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 193254,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "heading/color": 1
+          }
+        },
+        {
+          "hex": "#d8dcdc",
+          "oklch": {
+            "c": 0.0045835760147393,
+            "h": 202.15923477906065,
+            "l": 0.8919476248684378
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 136800,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#192d30",
+          "oklch": {
+            "c": 0.026385520498005223,
+            "h": 207.81185126569292,
+            "l": 0.2815349023822122
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 136800,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b2bfc1",
+          "oklch": {
+            "c": 0.014652640383224126,
+            "h": 207.8655933162826,
+            "l": 0.7951909981686847
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 39479.80072203066,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 40
+          }
+        },
+        {
+          "hex": "#002b31",
+          "oklch": {
+            "c": 0.04563088283408837,
+            "h": 209.05392929458563,
+            "l": 0.26464661824910624
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 3200,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#cdeed3",
+          "oklch": {
+            "c": 0.05012360976825937,
+            "h": 150.54552034471328,
+            "l": 0.9180012949858376
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2805.383626276446,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ceddec",
+          "oklch": {
+            "c": 0.026230174195490993,
+            "h": 248.1225349284843,
+            "l": 0.8908042172866939
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2787,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#dbb3c8",
+          "oklch": {
+            "c": 0.053750604016504104,
+            "h": 345.4731690263656,
+            "l": 0.8082545011591875
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2555,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fed6cf",
+          "oklch": {
+            "c": 0.04605219772415134,
+            "h": 29.63773540813786,
+            "l": 0.9080441481096088
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 883,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.032771977041700213,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.53,
+          "background": "#ffffff",
+          "foreground": "#001d21"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.63,
+          "background": "#f9f9f7",
+          "foreground": "#001d21"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.11,
+          "background": "#002b31",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.67,
+          "background": "#eaebea",
+          "foreground": "#001d21"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.39,
+          "background": "#192d30",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.33,
+          "background": "#002b31",
+          "foreground": "#f9f9f7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14,
+          "background": "#cdeed3",
+          "foreground": "#001d21"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.65,
+          "background": "#192d30",
+          "foreground": "#f9f9f7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.14,
+          "background": "#fed6cf",
+          "foreground": "#001d21"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.68,
+          "background": "#d8dcdc",
+          "foreground": "#001d21"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.67,
+          "background": "#ceddec",
+          "foreground": "#001d21"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.64,
+          "background": "#eaebea",
+          "foreground": "#002b31"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.09,
+          "background": "#213a3d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.06,
+          "background": "#cdeed3",
+          "foreground": "#002b31"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.04,
+          "background": "#eaebea",
+          "foreground": "#192d30"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.74,
+          "background": "#ccd5d6",
+          "foreground": "#001d21"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.49,
+          "background": "#cdeed3",
+          "foreground": "#192d30"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.47,
+          "background": "#213a3d",
+          "foreground": "#f9f9f7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.32,
+          "background": "#fed6cf",
+          "foreground": "#002b31"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.93,
+          "background": "#d8dcdc",
+          "foreground": "#002b31"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "other",
+            "card"
+          ],
+          "frequency": 26
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 8
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "other",
+            "image"
+          ],
+          "frequency": 43,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|image"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "body",
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 60,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingBottom|body",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 37,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|list",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "heading",
+            "list"
+          ],
+          "frequency": 79,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|heading",
+            "columnGap|list",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 38,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "heading",
+            "hero"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|heading",
+            "paddingTop|hero",
+            "paddingBottom|hero"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 224,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(98.78deg, rgb(127, 120, 51) 6.69%, rgb(137, 142, 229) 40.89%, rgb(137, 142, 229) 83.02%, rgb(134, 123, 54) 100.19%)",
+        "colors": [
+          "rgb(127, 120, 51)",
+          "rgb(137, 142, 229)",
+          "rgb(137, 142, 229)",
+          "rgb(134, 123, 54)"
+        ],
+        "frequency": 8
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(195.85deg, rgb(98, 88, 255) -121.25%, rgb(224, 106, 178) -69.08%, rgb(251, 133, 105) -36.55%, rgb(255, 177, 177) 12.07%, rgb(205, 203, 255) 59.26%, rgb(126, 111, 74) 126.83%, rgb(50, 96, 127) 172.94%, rgb(253, 232, 181) 277.03%)",
+        "colors": [
+          "rgb(98, 88, 255)",
+          "rgb(224, 106, 178)",
+          "rgb(251, 133, 105)",
+          "rgb(255, 177, 177)",
+          "rgb(205, 203, 255)",
+          "rgb(126, 111, 74)",
+          "rgb(50, 96, 127)",
+          "rgb(253, 232, 181)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "angellist",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            550
+          ],
+          "frequency": 412,
+          "fontFeatureSettings": [
+            "\"lnum\", \"ss01\", \"ss02\", \"ss03\", \"tnum\""
+          ]
+        },
+        {
+          "family": "angellistDisplay",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 363,
+          "fontFeatureSettings": [
+            "\"lnum\", \"ss01\", \"ss02\", \"ss03\", \"tnum\""
+          ]
+        },
+        {
+          "family": "AngelList",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.75
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "angellist",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "angellist",
+          "weight": 550,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "angellist",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 139,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.002,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "angellist",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.002,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "angellist",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "angellist",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "list",
+            "button",
+            "body",
+            "link",
+            "hero"
+          ],
+          "frequency": 246,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "AngelList",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "angellist",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.6,
+          "letterSpacing": -0.002,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "angellist",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.6,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "angellist",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "angellistDisplay",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "angellistDisplay",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "list",
+            "card"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "angellistDisplay",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 133,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "angellistDisplay",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 167,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "angellistDisplay",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "angellistDisplay",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 144,
+          "family": "angellist",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 144,
+          "family": "angellistDisplay",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.75,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 260,
+          "family": "angellistDisplay",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 288,
+          "family": "angellistDisplay",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 17,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/80efafa0-0cdd-4b3d-9868-3209d281ce06.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2a31e6b1-8919-4c5c-adf3-381d63b4cb17.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6db40006-05ac-4770-b63e-dfd9ebfd534c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Angellist design system\",\"item\":\"https://styles.refero.design/style/6db40006-05ac-4770-b63e-dfd9ebfd534c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6db40006-05ac-4770-b63e-dfd9ebfd534c#style-reference\",\"name\":\"Angellist design system reference\",\"headline\":\"Angellist design system | Refero Styles\",\"description\":\"Explore Angellist's light Fintech design system: Inkwell Teal #001d21, Vellum Lavender #bdbbff colors, angellistDisplay, angellist typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/6db40006-05ac-4770-b63e-dfd9ebfd534c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6db40006-05ac-4770-b63e-dfd9ebfd534c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Angellist\",\"url\":\"https://www.angellist.com/2024\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6db40006-05ac-4770-b63e-dfd9ebfd534c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2a31e6b1-8919-4c5c-adf3-381d63b4cb17.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2a31e6b1-8919-4c5c-adf3-381d63b4cb17.jpg\",\"caption\":\"Screenshot of Angellist\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2a31e6b1-8919-4c5c-adf3-381d63b4cb17.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Angellist design system\",\"Angellist website design\",\"Angellist colors\",\"Angellist typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Inkwell Teal\",\"Vellum Lavender\",\"Sage Mist\",\"Paper White\",\"angellistDisplay\",\"angellist\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Angellist design system\"},{\"@type\":\"Thing\",\"name\":\"Angellist website design\"},{\"@type\":\"Thing\",\"name\":\"Angellist colors\"},{\"@type\":\"Thing\",\"name\":\"Angellist typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-05-08T18:57:03.724Z\",\"dateModified\":\"2026-05-08T18:57:03.724Z\"}]}19:T60f,## Quick Color Reference\n- text: #001d21 (Inkwell Teal)\n- background: #ccd5d6 (Sage Mist) for page, #ffffff (Paper White) for cards\n- border: #ccd5d6 (Sage Mist) hairlines\n- accent: #bdbbff (Vellum Lavender)\n- display gradient: linear-gradient(98.78deg, #7f7833, #898ee5, #898ee5, #867b36)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Hero Headline**: Full-bleed #001d21 background, no max-width. Display type at 260px using angellistDisplay weight 400, line-height 0.80, letter-spacing -0.025em, fill with the Olive→Violet linear-gradient. Subline in angellist 400 at 18px, color #f9f9f7, 1.6 line-height, max-width 50ch.\n\n2. **Section Opener**: #ccd5d6 canvas. Eyebrow badge: #bdbbff fill, #001d21 text, 9999px radius, 4px 10px padding, 14px weight 500. Heading: angellistDisplay 400 at 80px, #001d21, line-height 1.05, letter-spacing -0.02em. Wrap one key phrase in a #bdbbff 2px-radius highlight.\n\n3. **Feature Image Card Grid**: Three equal cards, 9999px radius, no shadow. First card: #001d21 fill, Paper White body text at 16px bottom-left. Second card: #bdbbff fill, #001d21 text. Third card: full-bleed photograph. 32px gap between cards.\n\n4. **Pill Button**: 9999px radius, 4px 12px padding, #001d21 fill, #ffffff text, angellist weight 500 at 14px, letter-spacing -0.004em. Never add a border or shadow.\n\n5. **Horizontal Band Stack**: Full-bleed stack of 5–6 bands, 50px each, in sequence #ccd5d6 → #eaebea → #a7b0b1 → #859394 → #43585a → #213a3d → #001d21. No text, no dividers between bands."
+}

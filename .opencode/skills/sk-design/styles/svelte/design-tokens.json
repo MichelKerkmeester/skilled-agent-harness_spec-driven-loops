@@ -1,0 +1,292 @@
+{
+  "color": {
+    "svelte-ember": {
+      "$value": "#d43008",
+      "$type": "color",
+      "$description": "Svelte Ember — Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "ink": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Ink — Primary text, nav items, body copy, button labels — soft black that avoids the harshness of #000 while preserving 15:1 contrast on white"
+    },
+    "carbon": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Carbon — Headlines and display copy — slightly heavier than Ink to give the serif wordmarks visual weight against the white canvas"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces, nav background — the dominant background everywhere"
+    },
+    "fog": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Fog — Subtle surface elevation, button hover wash, search/input field background"
+    },
+    "slate": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Slate — Muted secondary text, helper labels, breadcrumb text"
+    },
+    "ash": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Ash — Deemphasized text, disabled labels, tertiary metadata"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Input field borders, form focus states, text input text"
+    }
+  },
+  "font": {
+    "eb-garamond": {
+      "$value": "EB Garamond",
+      "$type": "fontFamily",
+      "$description": "Body text and section copy — Garamond gives the framework a literary, editorial voice that no sans-serif system font can replicate; 22px at line-height 1.5 is the site's reading rhythm, uncharacteristically large and serif for a devtool site"
+    },
+    "fira-sans": {
+      "$value": "Fira Sans",
+      "$type": "fontFamily",
+      "$description": "All UI chrome — nav links, search input, button labels, the ADJECTIVE tag, section eyebrows. Fira Sans is the workspace font; it keeps interactive elements quiet so the serif voice can lead"
+    },
+    "dm-serif-display": {
+      "$value": "DM Serif Display",
+      "$type": "fontFamily",
+      "$description": "Hero and section display headlines — used sparingly (only 4 occurrences on the page) as a typographic exclamation point; the heavy serif slab at 54px contrasts with the lighter Garamond body to create editorial tension"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "EB Garamond",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Fira Sans",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Fira Sans",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Fira Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Fira Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Fira Sans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Fira Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Fira Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Fira Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Fira Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Fira Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Fira Sans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "EB Garamond",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "DM Serif Display",
+        "fontSize": "54px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "115": {
+      "$value": "115px",
+      "$type": "dimension",
+      "$description": "Spacing 115px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "full": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page canvas and default surface"
+    },
+    "fog": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 2: Input fields, button hover states, subtle dividers"
+    },
+    "slate": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted surface for dark code blocks or footer panels"
+    },
+    "ink": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Surface level 4: Dark code terminal and product screenshot frames"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://svelte.dev",
+      "siteName": "Svelte",
+      "extractedAt": "2026-06-03T16:43:18.388Z",
+      "variant": "extended"
+    }
+  }
+}

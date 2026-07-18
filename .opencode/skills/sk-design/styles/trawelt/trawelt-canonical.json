@@ -1,0 +1,1421 @@
+{
+  "source": "https://styles.refero.design/style/fade1fe1-bbd3-4b1a-ae19-fe88f6744fe0",
+  "uuid": "fade1fe1-bbd3-4b1a-ae19-fe88f6744fe0",
+  "name": "Trawelt",
+  "northStar": "Boarding pass on black marble",
+  "capturedAt": "2026-07-18T08:54:54.791Z",
+  "meta": {
+    "url": "https://www.trawelt.com",
+    "siteName": "Trawelt",
+    "extractedAt": "2026-06-03T21:25:17.078Z",
+    "durationMs": 48318,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 494,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Forest Command (#2d9b4c) as the only chromatic fill in the system — never introduce secondary accent colors",
+      "Lock the persistent Mint Boarding Pass (#d3ffc3) nav pill at the top of every page, both dark and light sections",
+      "Set all body and UI text in Labour Grotesk weight 400 — build hierarchy through size and tracking, never through weight variation",
+      "Use Reckless Neue weight 250 only for editorial headings on light cream sections; never pair it with bold or italic variants",
+      "Communicate elevation by canvas inversion (white card on black page) or 1px black borders — never use box-shadows",
+      "Apply 15.04px radius to all cards and panels, 10.08px to all buttons and small inputs, 9999px to nav pills and tags",
+      "Alternate full-bleed dark and light section bands with 120–187px vertical gaps between them"
+    ],
+    "donts": [
+      "Don't introduce a second or third accent color — green is the only chromatic heartbeat",
+      "Don't use font-weight 600/700 anywhere — the system is intentionally monoline at weight 400",
+      "Don't use box-shadows, drop-shadows, or glow effects on any element",
+      "Don't use the mega-display 435px size for functional text — reserve it for a single decorative moment per page",
+      "Don't place Reckless Neue on dark backgrounds — it is a light-section exclusive",
+      "Don't use pure white (#ffffff) as a page background — light sections should always be Linen Cream (#e4e9dc) or Parchment (#efefe7)",
+      "Don't break the nav pill — it must remain a single continuous mint-green bar across all sections"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#2d9b4c",
+        "name": "Forest Command",
+        "role": "Primary CTA fills, active nav indicators, footer link accents, tag chips — the single chromatic heartbeat of the system; warm green against matte black creates urgency without aggression",
+        "group": "brand"
+      },
+      {
+        "hex": "#d3ffc3",
+        "name": "Mint Boarding Pass",
+        "role": "Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content.",
+        "group": "brand"
+      },
+      {
+        "hex": "#e7d5ba",
+        "name": "Champagne Beige",
+        "role": "Hero illustration backdrop and premium accent panel — warm near-neutral that introduces tonal warmth inside predominantly black/green compositions",
+        "group": "accent"
+      },
+      {
+        "hex": "#e4e9dc",
+        "name": "Linen Cream",
+        "role": "Light-section page background — slightly green-tinted off-white that keeps light pages feeling on-brand rather than clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efefe7",
+        "name": "Parchment",
+        "role": "Card surfaces in light sections, secondary fills, ghost-button borders — warmer than pure white, pairs with linen cream for a two-tier light surface stack",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Dominant dark canvas, 1px structural borders everywhere, button text on green fills, all text on light surfaces — the structural black that carries the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Headline and body text on dark sections, card surfaces elevated above black backgrounds, reverse borders on light sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#020202",
+        "name": "Carbon",
+        "role": "Near-black variant for subtle text/background differentiation where pure #000 would be too flat — imperceptible shift that softens edges in dense text blocks",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Trawelt uses a max-width ~1200px content frame centered on the page, but the canvas itself is full-bleed. The page is structured as alternating dark/light bands: the hero and feature sections sit on a full-bleed Obsidian black canvas, then the blog/editorial section flips to full-bleed Linen Cream. Within the dark canvas, content alternates between centered text stacks (headline + subhead) and full-bleed horizontal-scrolling card rows. Within the light canvas, content is a two-column blog grid (image-left, text-right) with generous gutters. Vertical rhythm is spacious — section gaps of 120–187px between major bands create a slow, scroll-as-flipping-pages cadence. The persistent mint-green nav pill floats over everything, breaking the band structure and acting as a constant brand rail.",
+    "imagery": "Imagery follows a luxury-hospitality editorial logic: tight, well-lit interior and architectural photography of hotels, lounges, and boutique spaces. Treatment is naturalistic with warm tones (leather, wood, natural light) — never duotone, never overlaid with brand color. Images are used at two scales: (1) full-bleed in horizontal service-category cards where the image IS the card, and (2) large 50%-width crops in blog posts. No lifestyle people-photography, no staged scenes, no abstract gradients. Where illustration appears, it's the boarding-pass green card — a flat, two-color, die-cut shape rather than a drawn illustration. Icons are minimal: a single arrow-up badge in the nav and circular arrow buttons for pagination. The visual language is restrained, photographic, and print-magazine in its crop discipline.",
+    "similar": [
+      {
+        "why": "Same dark-canvas + single-accent-color discipline with very tight typographic control; both lock to a constrained weight range and use size alone for hierarchy",
+        "business": "Linear"
+      },
+      {
+        "why": "Editorial serif headings paired with a clean grotesk for body, and the same print-magazine sectioning logic with alternating dark/light bands",
+        "business": "Studio Bergini"
+      },
+      {
+        "why": "Persistent pill navigation, generous whitespace, and the same restraint of using one chromatic accent against an achromatic base",
+        "business": "Resend"
+      },
+      {
+        "why": "Ultra-light serif display weights on large headings and a flat, border-driven (not shadow-driven) elevation philosophy",
+        "business": "Pentagram"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "15.04px",
+        "buttons": "10.08px",
+        "navPill": "9999px"
+      },
+      "elementGap": "15-27px",
+      "sectionGap": "120-187px",
+      "cardPadding": "22-37px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian Canvas",
+        "level": 0,
+        "purpose": "Base dark canvas for hero, feature, and CTA sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper Card",
+        "level": 1,
+        "purpose": "Elevated card surface floating on dark sections"
+      },
+      {
+        "hex": "#e4e9dc",
+        "name": "Linen Page",
+        "level": 2,
+        "purpose": "Light-section page background for blog and editorial content"
+      },
+      {
+        "hex": "#efefe7",
+        "name": "Parchment Card",
+        "level": 3,
+        "purpose": "Card surfaces sitting on linen cream pages"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — elevation conveyed by contrast inversion, not shadow",
+        "element": "White feature card on dark hero"
+      },
+      {
+        "style": "none — flat paper-on-paper",
+        "element": "Blog card on cream section"
+      },
+      {
+        "style": "none — the persistent pill is its own elevation signal",
+        "element": "Navigation pill"
+      }
+    ],
+    "northStar": "Boarding pass on black marble",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.01
+      },
+      {
+        "role": "body-sm",
+        "size": 20,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 23,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "subheading",
+        "size": 28,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 31,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 39,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "heading-lg",
+        "size": 43,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "display",
+        "size": 53,
+        "lineHeight": 1,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "mega-display",
+        "size": 435,
+        "lineHeight": 0.8,
+        "letterSpacing": -0.072
+      }
+    ],
+    "components": [
+      {
+        "name": "Persistent Navigation Pill",
+        "role": "Sticky top navigation bar present on every section",
+        "description": "Mint Boarding Pass (#d3ffc3) background, full-width pill with significant internal padding (~27px horizontal, ~15px vertical). Contains the Trawelt wordmark + circular arrow-up badge on the left, and a horizontal nav link list + black-filled 'Get in touch' pill button on the right. Border-radius approximately 15px. The mint green bar persists across dark and light sections, acting as a constant brand anchor."
+      },
+      {
+        "name": "Forest CTA Button (filled)",
+        "role": "Primary action button",
+        "description": "Forest Command (#2d9b4c) fill, white text, Labour Grotesk 400 at ~16px, padding ~10px 18px, border-radius 10.08px. No shadow. Black 1px border optional. The saturated green against the otherwise black/cream system makes this button feel like a power switch — small, filled, and unmistakable."
+      },
+      {
+        "name": "Black Pill Button",
+        "role": "Secondary action / nav CTA ('Get in touch')",
+        "description": "Black (#000000) fill, white text, Labour Grotesk 400 at ~16px, padding ~10px 22px, border-radius 9999px (full pill). Sits inside the mint navigation bar, creating a high-contrast punch against the pastel green."
+      },
+      {
+        "name": "Ghost Arrow Button",
+        "role": "Carousel/pagination navigation",
+        "description": "Circular 48px button, 1px black border on white fill (inactive) or filled black with white arrow (active/hover). Used for blog post carousel arrows. No background, no shadow — purely outline-driven."
+      },
+      {
+        "name": "Hero Service Card (dark)",
+        "role": "Horizontal-scrolling service category card on dark canvas",
+        "description": "Full-bleed image card with category label overlay in white text, Labour Grotesk 400. The image fills the card with no padding; text sits at the top-left with ~27px padding. Cards are part of a horizontal scroll row — no visible card border, the image is the card."
+      },
+      {
+        "name": "Centered White Feature Card",
+        "role": "Promotional callout floating on dark hero",
+        "description": "White (#ffffff) card with significant padding (~37px), large Labour Grotesk text spanning multiple lines ('Upgrade your Tour operator to first class.'), and a Forest Command CTA button inset at the bottom right. Border-radius 15.04px. Acts as a paper card on the black canvas — the only bright object in the dark hero."
+      },
+      {
+        "name": "Boarding Pass Card",
+        "role": "Branded illustration/promotional asset",
+        "description": "Forest Command green card mimicking a physical boarding pass with perforated/torn edges and rounded corners ~15px. Contains bold Trawelt wordmark, small descriptor text, and a separate card stub for URL display. Black text on green. Used as a decorative/brand moment in the dark section transition."
+      },
+      {
+        "name": "Blog Feature Card",
+        "role": "Editorial blog post preview on light section",
+        "description": "Two-column layout: large image on left (~50% width, full-bleed to card edge), text block on right with title in Reckless Neue 250 weight ~39px in Obsidian black, excerpt in Labour Grotesk 400 ~16px in a muted dark. White card surface on Linen Cream page background. No border, generous ~37px internal padding."
+      },
+      {
+        "name": "Tag/Chip",
+        "role": "Inline metadata label",
+        "description": "Small inline element using Labour Grotesk 400 at 16px, Forest Command text color or 1px black border with black text. No fill. Used for category labels and language tags."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand wordmark in navigation",
+        "description": "Trawelt set in Labour Grotesk 400 at ~23px, black on mint nav background. Accompanied by a circular badge icon with an upward arrow (~40px diameter, black 1px border, white fill). The mark is always locked with the badge — never the wordmark alone in the nav."
+      },
+      {
+        "name": "Section Heading (serif)",
+        "role": "Large editorial heading on light sections",
+        "description": "Reckless Neue at 250 weight, sizes 39–53px, Obsidian black (#000000), line-height 1.10–1.20, letter-spacing -0.01em. Appears only on light cream backgrounds. The ultra-light serif weight is the signature — it gives blog/editorial sections a print-magazine authority that contrasts the grotesk-led functional UI."
+      },
+      {
+        "name": "Section Heading (grotesk)",
+        "role": "Large functional heading on dark sections",
+        "description": "Labour Grotesk 400 at 39–53px, white (#ffffff) on Obsidian black, line-height 1.10–1.20, letter-spacing -0.01em. Used for hero copy and section titles on dark canvases. Single weight across all sizes — hierarchy comes from size alone."
+      },
+      {
+        "name": "Footer Link Group",
+        "role": "Site footer navigation and legal links",
+        "description": "Obsidian black or Linen Cream background, Labour Grotesk 400 at 16px, Forest Command link color for active items, white or black for inactive. Items arranged in a multi-column grid with generous row gaps."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary system font at a single weight — used for navigation, body, buttons, card titles, footer, and the massive 435px hero display. The decision to lock to weight 400 instead of ranging 300–700 is the signature: it forces hierarchy through size and tracking, not weight, producing a uniform, confident, almost monoline voice. The 435px size is a single decorative display moment, not a functional text size.",
+        "sizes": "16px, 20px, 23px, 28px, 31px, 39px, 43px, 53px, 435px",
+        "family": "Labour Grotesk",
+        "weight": "400",
+        "lineHeight": "0.80–1.50",
+        "substitute": "Inter, DM Sans, General Sans",
+        "letterSpacing": "-0.072em at display (435px), -0.01em at 39–53px, +0.01em at small body (16–23px)"
+      },
+      {
+        "role": "Editorial serif at ultra-light 250 weight — appears only on large blog and content headings. The choice of weight 250 (near-hairline) instead of the conventional 400–500 is anti-SaaS: headlines whisper rather than declare authority, creating a magazine-editorial contrast against Labour Grotesk's steady functional voice.",
+        "sizes": "20px, 39px, 43px, 53px",
+        "family": "Reckless Neue",
+        "weight": "250",
+        "lineHeight": "1.10–1.30",
+        "substitute": "PP Editorial New, Cormorant Garamond Light, Source Serif Light",
+        "letterSpacing": "-0.01em"
+      }
+    ],
+    "description": "Trawelt is a high-contrast, editorial luxury system that alternates between dramatic black canvases and warm cream surfaces, stitched together by a single saturated forest-green accent. The typography pairing is deliberate tension: a sharp neo-grotesk (Labour Grotesk) carries all functional text at one voice — weight 400, tight tracking, no italics — while an ultra-light contemporary serif (Reckless Neue at 250) appears only on large display headings to whisper rather than shout. The mint-green pill navigation bar acts as a constant brand anchor, persisting across both dark and light sections like a boarding-pass stub. Surfaces are flat and paper-like; elevation is replaced by border weight (predominantly 1px black) and generous whitespace, giving the system a print-magazine logic rather than a typical app-dashboard logic.",
+    "customSections": [
+      {
+        "title": "Theme Architecture",
+        "content": "The system is dual-theme by design: a 'Dark Mode' (Obsidian canvas + Paper White text + Forest accents) for hero, features, and conversion moments, and a 'Light Mode' (Linen Cream canvas + Obsidian text + Champagne accents) for editorial/blog content. Both modes share the same typography scale, same border-radius tokens, and the same green accent — the inversion is in canvas only. A page may freely alternate between modes section by section. The persistent mint nav bridges both themes unchanged."
+      },
+      {
+        "title": "Radius System",
+        "content": "Two production radii plus one structural radius: 10.08px for buttons and small interactive elements, 15.04px for cards and panels, 9999px for the persistent nav pill and tag chips. The near-identical 10/15 values (instead of the typical 4/8/16) give the system a softer, more rounded feel than most SaaS, but stop short of the squircle/iOS-style 20–24px. The result is a radius that feels editorial — rounded enough to be warm, sharp enough to be confident."
+      },
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fade1fe1-bbd3-4b1a-ae19-fe88f6744fe0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Trawelt design system\",\"item\":\"https://styles.refero.design/style/fade1fe1-bbd3-4b1a-ae19-fe88f6744fe0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fade1fe1-bbd3-4b1a-ae19-fe88f6744fe0#style-reference\",\"name\":\"Trawelt design system reference\",\"headline\":\"Trawelt design system | Refero Styles\",\"description\":\"Explore Trawelt's mixed Agency design system: Forest Command #2d9b4c, Mint Boarding Pass #d3ffc3 colors, Labour Grotesk, Reckless Neue typography, and...\",\"url\":\"https://styles.refero.design/style/fade1fe1-bbd3-4b1a-ae19-fe88f6744fe0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fade1fe1-bbd3-4b1a-ae19-fe88f6744fe0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Trawelt\",\"url\":\"https://www.trawelt.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fade1fe1-bbd3-4b1a-ae19-fe88f6744fe0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0751a1b6-131c-4765-a347-7a65f3dd7a8c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0751a1b6-131c-4765-a347-7a65f3dd7a8c.jpg\",\"caption\":\"Screenshot of Trawelt\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0751a1b6-131c-4765-a347-7a65f3dd7a8c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Trawelt design system\",\"Trawelt website design\",\"Trawelt colors\",\"Trawelt typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Forest Command\",\"Mint Boarding Pass\",\"Champagne Beige\",\"Linen Cream\",\"Labour Grotesk\",\"Reckless Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Trawelt design system\"},{\"@type\":\"Thing\",\"name\":\"Trawelt website design\"},{\"@type\":\"Thing\",\"name\":\"Trawelt colors\"},{\"@type\":\"Thing\",\"name\":\"Trawelt typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:32:15.624Z\",\"dateModified\":\"2026-04-30T00:32:15.624Z\"}]}19:T885,Quick Color Reference:\n- text: #000000 (on light) / #ffffff (on dark)\n- background: #e4e9dc (light sections) / #000000 (dark sections)\n- border: #000000 (dominant 1px structural)\n- accent: #2d9b4c (Forest Command)\n- nav surface: #d3ffc3 (Mint Boarding Pass)\n- primary action: #2d9b4c (filled action)\n\nExample Component Prompts:\n\n1. Build a hero section on a full-bleed Obsidian (#000000) canvas. Headline in Labour Grotesk weight 400, size 53px, color #ffffff, letter-spacing -0.01em, line-height 1.0. Subhead beneath at 23px, same font/weight, color #ffffff. Below, a horizontal scroll row of 4 service cards, each a full-bleed image with a 27px-padded white label in the top-left corner.\n\n2. Create a persistent navigation pill at the top of the page: full-width, height ~70px, background #d3ffc3, border-radius 9999px. Left side: 'Trawelt' wordmark in Labour Grotesk 400 at 23px, color #000000, followed by a 40px circular badge with a 1px black border, white fill, and a black upward arrow. Right side: nav links 'Services', 'About', 'Projects', 'AgentForce', 'Blog' in Labour Grotesk 400 at 16px, color #000000, followed by a black pill button with white text 'Get in touch', padding 10px 22px, border-radius 9999px.\n\n3. Build a blog section on a Linen Cream (#e4e9dc) full-bleed canvas. Section heading in Reckless Neue weight 250, size 39px, color #000000, letter-spacing -0.01em. Below, a two-column blog card: left column a full-bleed image, right column white (#ffffff) card with 37px padding, post title in Reckless Neue 250 at 31px color #000000, excerpt in Labour Grotesk 400 at 16px color #000000.\n\n4. Create a centered white feature card floating on a dark hero: background #ffffff, border-radius 15.04px, padding 37px. Large text in Labour Grotesk 400 at 43px, color #000000, letter-spacing -0.01em, spanning multiple lines. A Forest Command (#2d9b4c) filled button inset at the bottom right, white text at 16px, border-radius 10.08px, padding 10px 18px.\n\n5. Build a ghost arrow pagination button: 48px circle, 1px black border, white fill, black right-pointing arrow centered inside. Used in pairs for carousel navigation. No shadow, no fill on the inactive state."
+      }
+    ],
+    "elevationPhilosophy": "Trawelt deliberately avoids box-shadows across the entire system. Elevation is communicated through three mechanisms only: (1) canvas inversion (white card on black page, or card on cream page), (2) 1px hairline borders in the dominant surface color, and (3) generous whitespace. This is a print-magazine approach, not a Material/iOS approach — the design wants everything to feel like it was laid out in InDesign, not composed of stacked divs."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "icon",
+            "image",
+            "hero",
+            "body",
+            "card",
+            "link"
+          ],
+          "frequency": 611,
+          "confidence": 1,
+          "prominence": 109213283.2257513,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "nav/color": 2,
+            "body/color": 7,
+            "card/color": 3,
+            "hero/color": 2,
+            "icon/color": 2,
+            "link/color": 1,
+            "other/fill": 4,
+            "icon/stroke": 4,
+            "image/color": 15,
+            "other/color": 65,
+            "other/stroke": 4,
+            "heading/color": 22,
+            "nav/borderColor": 8,
+            "body/borderColor": 28,
+            "card/borderColor": 12,
+            "hero/borderColor": 8,
+            "icon/borderColor": 8,
+            "link/borderColor": 4,
+            "image/borderColor": 60,
+            "other/borderColor": 260,
+            "heading/borderColor": 88
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "image",
+            "card",
+            "hero",
+            "body",
+            "link",
+            "button",
+            "footer",
+            "list"
+          ],
+          "frequency": 1543,
+          "confidence": 1,
+          "prominence": 28167525.308245502,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 21,
+            "nav/color": 26,
+            "body/color": 22,
+            "card/color": 36,
+            "link/color": 38,
+            "list/color": 13,
+            "nav/stroke": 18,
+            "other/fill": 40,
+            "image/color": 19,
+            "other/color": 97,
+            "button/color": 2,
+            "footer/color": 1,
+            "other/stroke": 13,
+            "heading/color": 33,
+            "nav/borderColor": 104,
+            "body/borderColor": 88,
+            "card/borderColor": 144,
+            "link/borderColor": 152,
+            "list/borderColor": 52,
+            "image/borderColor": 76,
+            "other/borderColor": 388,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 132,
+            "body/backgroundColor": 6,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#2d9b4c",
+          "oklch": {
+            "c": 0.15192982415237394,
+            "h": 148.73889960104867,
+            "l": 0.6096841767097342
+          },
+          "contexts": [
+            "button",
+            "footer",
+            "body",
+            "other"
+          ],
+          "frequency": 38,
+          "confidence": 1,
+          "prominence": 7174061.42073939,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "other/fill": 6,
+            "body/borderColor": 24,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e4e9dc",
+          "oklch": {
+            "c": 0.018121671047266523,
+            "h": 123.98426819000895,
+            "l": 0.9266304330434373
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 4636104,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 5,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#e7d5ba",
+          "oklch": {
+            "c": 0.04120758363358699,
+            "h": 78.06473955989703,
+            "l": 0.880677419269698
+          },
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3018150,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#efefe7",
+          "oklch": {
+            "c": 0.010616495429822598,
+            "h": 106.59999511413677,
+            "l": 0.9499241263639904
+          },
+          "contexts": [
+            "other",
+            "card",
+            "button",
+            "body"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 544109.1375058445,
+          "properties": [
+            "backgroundColor",
+            "fill",
+            "stroke",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/fill": 3,
+            "button/color": 1,
+            "other/stroke": 3,
+            "body/borderColor": 4,
+            "button/borderColor": 4,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#d3ffc3",
+          "oklch": {
+            "c": 0.0910167507875967,
+            "h": 137.4430060650799,
+            "l": 0.9541723099911699
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 169911.7321995725,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#020202",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.0846725099673314
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5165,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#b79b72",
+          "oklch": {
+            "c": 0.06495202433568976,
+            "h": 76.8683984415473,
+            "l": 0.7045973231002206
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 47,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.007983146115283776,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.75,
+          "background": "#ffffff",
+          "foreground": "#020202"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.86,
+          "background": "#d3ffc3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.64,
+          "background": "#d3ffc3",
+          "foreground": "#020202"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.17,
+          "background": "#efefe7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.95,
+          "background": "#efefe7",
+          "foreground": "#020202"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.99,
+          "background": "#e4e9dc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.78,
+          "background": "#e4e9dc",
+          "foreground": "#020202"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.62,
+          "background": "#e7d5ba",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.45,
+          "background": "#e7d5ba",
+          "foreground": "#020202"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.94,
+          "background": "#b79b72",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.85,
+          "background": "#b79b72",
+          "foreground": "#020202"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.9,
+          "background": "#2d9b4c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.56,
+          "background": "#2d9b4c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.19,
+          "background": "#d3ffc3",
+          "foreground": "#2d9b4c"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.08,
+          "background": "#efefe7",
+          "foreground": "#2d9b4c"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.88,
+          "background": "#e4e9dc",
+          "foreground": "#2d9b4c"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.48,
+          "background": "#e7d5ba",
+          "foreground": "#2d9b4c"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.44,
+          "background": "#e7d5ba",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.24,
+          "background": "#e4e9dc",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 15.04,
+          "contexts": [
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 10.08,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "heading",
+            "button"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "marginBottom|heading",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|card",
+            "columnGap|card",
+            "marginBottom|other",
+            "marginRight|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "nav",
+            "card"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "nav",
+            "card",
+            "link",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginBottom|card",
+            "marginBottom|link",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingRight|body"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "nav",
+            "other",
+            "hero",
+            "card"
+          ],
+          "frequency": 35,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 37,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 47,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 57,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 63,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 73,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 83,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|heading",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 107,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 127,
+          "contexts": [
+            "other",
+            "card",
+            "heading"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|other",
+            "marginBottom|card",
+            "marginTop|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 187,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|heading",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 265,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Labour Grotesk",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 408,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Reckless Neue",
+          "source": "custom",
+          "weights": [
+            250
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.89
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Labour Grotesk",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "image",
+            "hero",
+            "body",
+            "card",
+            "heading",
+            "link",
+            "footer",
+            "list"
+          ],
+          "frequency": 265,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Labour Grotesk",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 20,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Labour Grotesk",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Labour Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Labour Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "card",
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Reckless Neue",
+          "weight": 250,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Labour Grotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Labour Grotesk",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Labour Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "Labour Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "icon",
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 39,
+          "family": "Labour Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "card"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 39,
+          "family": "Reckless Neue",
+          "weight": 250,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "Labour Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "Reckless Neue",
+          "weight": 250,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 53,
+          "family": "Labour Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "button",
+            "other"
+          ],
+          "frequency": 29,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 53,
+          "family": "Reckless Neue",
+          "weight": 250,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 435,
+          "family": "Labour Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.072,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f9c45762-dfe4-4cd9-830c-8044d130e75e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/0751a1b6-131c-4765-a347-7a65f3dd7a8c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fade1fe1-bbd3-4b1a-ae19-fe88f6744fe0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Trawelt design system\",\"item\":\"https://styles.refero.design/style/fade1fe1-bbd3-4b1a-ae19-fe88f6744fe0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fade1fe1-bbd3-4b1a-ae19-fe88f6744fe0#style-reference\",\"name\":\"Trawelt design system reference\",\"headline\":\"Trawelt design system | Refero Styles\",\"description\":\"Explore Trawelt's mixed Agency design system: Forest Command #2d9b4c, Mint Boarding Pass #d3ffc3 colors, Labour Grotesk, Reckless Neue typography, and...\",\"url\":\"https://styles.refero.design/style/fade1fe1-bbd3-4b1a-ae19-fe88f6744fe0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fade1fe1-bbd3-4b1a-ae19-fe88f6744fe0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Trawelt\",\"url\":\"https://www.trawelt.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fade1fe1-bbd3-4b1a-ae19-fe88f6744fe0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0751a1b6-131c-4765-a347-7a65f3dd7a8c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0751a1b6-131c-4765-a347-7a65f3dd7a8c.jpg\",\"caption\":\"Screenshot of Trawelt\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0751a1b6-131c-4765-a347-7a65f3dd7a8c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Trawelt design system\",\"Trawelt website design\",\"Trawelt colors\",\"Trawelt typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Forest Command\",\"Mint Boarding Pass\",\"Champagne Beige\",\"Linen Cream\",\"Labour Grotesk\",\"Reckless Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Trawelt design system\"},{\"@type\":\"Thing\",\"name\":\"Trawelt website design\"},{\"@type\":\"Thing\",\"name\":\"Trawelt colors\"},{\"@type\":\"Thing\",\"name\":\"Trawelt typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:32:15.624Z\",\"dateModified\":\"2026-04-30T00:32:15.624Z\"}]}19:T885,Quick Color Reference:\n- text: #000000 (on light) / #ffffff (on dark)\n- background: #e4e9dc (light sections) / #000000 (dark sections)\n- border: #000000 (dominant 1px structural)\n- accent: #2d9b4c (Forest Command)\n- nav surface: #d3ffc3 (Mint Boarding Pass)\n- primary action: #2d9b4c (filled action)\n\nExample Component Prompts:\n\n1. Build a hero section on a full-bleed Obsidian (#000000) canvas. Headline in Labour Grotesk weight 400, size 53px, color #ffffff, letter-spacing -0.01em, line-height 1.0. Subhead beneath at 23px, same font/weight, color #ffffff. Below, a horizontal scroll row of 4 service cards, each a full-bleed image with a 27px-padded white label in the top-left corner.\n\n2. Create a persistent navigation pill at the top of the page: full-width, height ~70px, background #d3ffc3, border-radius 9999px. Left side: 'Trawelt' wordmark in Labour Grotesk 400 at 23px, color #000000, followed by a 40px circular badge with a 1px black border, white fill, and a black upward arrow. Right side: nav links 'Services', 'About', 'Projects', 'AgentForce', 'Blog' in Labour Grotesk 400 at 16px, color #000000, followed by a black pill button with white text 'Get in touch', padding 10px 22px, border-radius 9999px.\n\n3. Build a blog section on a Linen Cream (#e4e9dc) full-bleed canvas. Section heading in Reckless Neue weight 250, size 39px, color #000000, letter-spacing -0.01em. Below, a two-column blog card: left column a full-bleed image, right column white (#ffffff) card with 37px padding, post title in Reckless Neue 250 at 31px color #000000, excerpt in Labour Grotesk 400 at 16px color #000000.\n\n4. Create a centered white feature card floating on a dark hero: background #ffffff, border-radius 15.04px, padding 37px. Large text in Labour Grotesk 400 at 43px, color #000000, letter-spacing -0.01em, spanning multiple lines. A Forest Command (#2d9b4c) filled button inset at the bottom right, white text at 16px, border-radius 10.08px, padding 10px 18px.\n\n5. Build a ghost arrow pagination button: 48px circle, 1px black border, white fill, black right-pointing arrow centered inside. Used in pairs for carousel navigation. No shadow, no fill on the inactive state."
+}

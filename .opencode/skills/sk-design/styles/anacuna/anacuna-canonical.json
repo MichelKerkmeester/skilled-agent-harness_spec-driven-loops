@@ -1,0 +1,587 @@
+{
+  "source": "https://styles.refero.design/style/bb961b10-d437-4023-9201-a44349fe591f",
+  "uuid": "bb961b10-d437-4023-9201-a44349fe591f",
+  "name": "Anacuna",
+  "northStar": "Oversized broadsheet with blush punctuation — a page where type IS the design and the single pink pill is the only color the eye can find.",
+  "capturedAt": "2026-07-18T07:28:08.967Z",
+  "meta": {
+    "url": "https://anacuna.com",
+    "siteName": "Anacuna",
+    "extractedAt": "2026-06-03T21:04:13.667Z",
+    "durationMs": 30964,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 181,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set every project title in ABC Monument Grotesk Regular at 94px with line-height 1.00 — never introduce a bold or italic weight to create hierarchy.",
+      "Separate every project row with a 1px #000000 hairline, flush against the type with no vertical margin.",
+      "Use the 27px pill radius for every clickable element — nav, tags, brand mark, language toggle.",
+      "Reserve #ffc8c8 exclusively for the ANA CUNA brand seal; it is the only chromatic color permitted on the page.",
+      "Let display text bleed past the right viewport edge — the truncation is intentional editorial framing.",
+      "Set body, nav, tags, and footer text at 15px ABC Monument Grotesk Regular with line-height 1.11.",
+      "Keep the page background pure #ffffff and all text/borders pure #000000 — no intermediate grays."
+    ],
+    "donts": [
+      "Do not add a bold, semibold, or italic weight to the type system — Monument Grotesk Regular at varying sizes is the entire hierarchy.",
+      "Do not introduce card backgrounds, drop shadows, or elevated surfaces — the design is flat ruled paper, not a card system.",
+      "Do not use #ffc8c8 for hover states, secondary CTAs, or decorative washes — it is locked to the brand mark only.",
+      "Do not center-align project titles or constrain them to a max-width container — the full-bleed left alignment is the layout.",
+      "Do not add intermediate neutral grays (#666, #999, etc.) — the system is binary black-on-white.",
+      "Do not use 8px or 12px border-radius on any element — the 27px pill is the only radius in the system.",
+      "Do not add icons, illustrations, or imagery to the index page — the typography alone carries the portfolio."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, all borders, every hairline divider, filled language toggle — the entire structural skeleton of the page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page background, card surfaces, pill interiors, button text on dark fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffc8c8",
+        "name": "Blush Bloom",
+        "role": "Brand mark fill (the ANA CUNA pill in the header) and the sole chromatic accent — a whisper of warmth that marks identity without ever shouting",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed single-column editorial index. The header is a thin bar with the blush brand seal at top-left and nav + language toggle at top-right, separated from content by whitespace. The body is a vertical stack of project rows, each consisting of a 94px title bleeding left-to-right and a small client tag pill anchored at the row's right side. Rows are separated by 1px black hairlines with generous vertical breathing room (48-80px). No max-width container, no centered column, no grid — the layout is a single ruled list that occupies the entire viewport width. Footer is a full-width bar with copyright left and legal links right, capped by a 1px top border.",
+    "imagery": "Zero imagery on the index page — the typography IS the content. The portfolio communicates entirely through oversized project titles and client names in outlined pills; the actual illustration work is presumably reached via the PLAY link or individual project pages. No photography, no icons, no decorative graphics, no color washes.",
+    "similar": [
+      {
+        "why": "Same oversized grotesque display type bleeding past the viewport edge, same ruled-list project index, same near-zero color palette",
+        "business": "Manual (manual.to)"
+      },
+      {
+        "why": "Same single-weight grotesque at extreme size contrast, same editorial broadsheet rhythm, same restraint to one accent color",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Same typographic-led portfolio structure where the title size and a hairline do all the structural work",
+        "business": "Pentagram (pentagram.com)"
+      },
+      {
+        "why": "Same pill-shaped tag system anchoring client attribution to oversized project titles, same monochrome editorial tone",
+        "business": "Raficelli"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "27px",
+        "pills": "27px",
+        "buttons": "27px"
+      },
+      "elementGap": "7px",
+      "sectionGap": "48-80px",
+      "cardPadding": "14px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Page canvas — the entire site is one continuous white surface"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pill Interior",
+        "level": 1,
+        "purpose": "Inside of outlined pills (nav, client tags) — visually identical to the canvas, distinguished only by the 1px black border"
+      },
+      {
+        "hex": "#ffc8c8",
+        "name": "Blush Mark",
+        "level": 2,
+        "purpose": "Sole chromatic surface — the brand seal pill in the header"
+      }
+    ],
+    "northStar": "Oversized broadsheet with blush punctuation — a page where type IS the design and the single pink pill is the only color the eye can find.",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.11
+      },
+      {
+        "role": "heading-sm",
+        "size": 31,
+        "lineHeight": 1.11
+      },
+      {
+        "role": "display",
+        "size": 94,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Brand Seal Pill",
+        "role": "Site identity in the top-left corner — the only chromatic element on the page",
+        "description": "Fully filled pill with #ffc8c8 background, #000000 text, 27px border-radius, approximately 6-8px vertical padding and 14px horizontal padding. Reads 'ANA CUNA' in ABC Monument Grotesk Regular at 15px. Functions as the brand mark, the home link, and the sole visual signature that the page belongs to anyone."
+      },
+      {
+        "name": "Project Title Row",
+        "role": "The dominant unit of the portfolio — one project per row",
+        "description": "Massive 94px ABC Monument Grotesk Regular text (#000000) set at line-height 1.00, left-aligned, bleeding past the right edge of the viewport. A 1px black hairline (#000000) sits above and below each row, creating a ruled-paper rhythm. Project title is truncated by the viewport edge — the bleed is intentional, signalling that the work extends beyond the frame."
+      },
+      {
+        "name": "Client Tag Pill",
+        "role": "Client attribution label nested at the right end of each project row",
+        "description": "Small outlined pill: 1px #000000 border, #ffffff fill, 27px border-radius, 6-8px vertical padding, 14px horizontal padding. Text in ABC Monument Grotesk Regular at 15px, #000000. Examples: 'Google Play', 'The New York Times Kids', 'Foot Locker'. Sits inline with the massive title text — the size contrast between 94px title and 15px tag is the row's entire visual dynamic."
+      },
+      {
+        "name": "Outlined Nav Button",
+        "role": "Primary navigation (PLAY, ABOUT) in the top-right header",
+        "description": "Ghost/outlined pill: 1px #000000 border, transparent or #ffffff fill, 27px border-radius, 6-8px vertical padding, 14px horizontal padding. Text at 15px ABC Monument Grotesk Regular, #000000. Inherits the same pill geometry as the client tags, making the nav feel like part of the editorial system rather than a separate UI layer."
+      },
+      {
+        "name": "Language Toggle",
+        "role": "EN/ES language switcher in the header",
+        "description": "Filled pill with #000000 background, #ffffff text, 27px border-radius. Two states (EN / ES) sit adjacent inside the same pill; the active language appears inverted against the dark fill. The only filled-dark element on the page besides text — a deliberate inversion of the otherwise all-outline pill system."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Horizontal separator between project rows",
+        "description": "1px solid #000000 line spanning the full viewport width. No margin above or below — sits flush against the type. This is the only structural divider on the page; no cards, no boxes, no elevation."
+      },
+      {
+        "name": "Footer Bar",
+        "role": "Persistent copyright and legal links at the page bottom",
+        "description": "Full-width row, 1px #000000 top border, #ffffff background. Left: 'ANA CUNA ILUSTRACIÓN © 2026' at 15px. Right: 'LEGAL | COOKIES' at 15px. The vertical pipe separator carries the only inline typographic glyph in the system besides the pill text."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface for the entire system. One weight — regular — is used at all three sizes: 94px for project titles (display), 31px for secondary headings, 15px for body, nav, tags, and footer. The refusal to introduce a bold or italic weight is a signature editorial choice; hierarchy comes purely from size, not weight.",
+        "sizes": "15px, 31px, 94px",
+        "family": "ABCMonumentGrotesk-Regular",
+        "weight": "400",
+        "lineHeight": "1.00–1.11",
+        "substitute": "Suisse Int'l Regular, or fallback to Inter Regular at matching optical sizes"
+      }
+    ],
+    "description": "Anacuna runs on a typographic monosystem: a single grotesque weight at three sizes does every job on the page, from 94px project headlines down to 15px nav labels. The canvas is pure white and almost every stroke is pure black — the only chromatic note is a single blush-pink (#ffc8c8) used as a soft brand seal, never as decoration. Layout is an editorial index: full-bleed rows separated by hairlines, oversized titles bleeding past the viewport, client names tucked into small outlined pills at the row's right edge. Everything interactive collapses into one shape — a 27px pill — which makes the page feel like a printed broadsheet that happens to be clickable.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bb961b10-d437-4023-9201-a44349fe591f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Anacuna design system\",\"item\":\"https://styles.refero.design/style/bb961b10-d437-4023-9201-a44349fe591f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bb961b10-d437-4023-9201-a44349fe591f#style-reference\",\"name\":\"Anacuna design system reference\",\"headline\":\"Anacuna design system | Refero Styles\",\"description\":\"Explore Anacuna's light Design design system: Ink Black #000000, Paper White #ffffff colors, ABCMonumentGrotesk-Regular typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/bb961b10-d437-4023-9201-a44349fe591f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bb961b10-d437-4023-9201-a44349fe591f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Anacuna\",\"url\":\"https://anacuna.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bb961b10-d437-4023-9201-a44349fe591f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4f106100-4ef3-4da6-b537-1fbd9c5b1934.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4f106100-4ef3-4da6-b537-1fbd9c5b1934.jpg\",\"caption\":\"Screenshot of Anacuna\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4f106100-4ef3-4da6-b537-1fbd9c5b1934.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Anacuna design system\",\"Anacuna website design\",\"Anacuna colors\",\"Anacuna typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink Black\",\"Paper White\",\"Blush Bloom\",\"ABCMonumentGrotesk-Regular\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Anacuna design system\"},{\"@type\":\"Thing\",\"name\":\"Anacuna website design\"},{\"@type\":\"Thing\",\"name\":\"Anacuna colors\"},{\"@type\":\"Thing\",\"name\":\"Anacuna typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:44:03.704Z\",\"dateModified\":\"2026-04-30T01:44:03.704Z\"}]}19:T57b,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px hairlines)\n- accent: #ffc8c8 (brand seal only)\n- primary action: #ffc8c8 (filled action)\n\n**Example Component Prompts**\n\n1. *Project Title Row*: Full-width row on #ffffff background. Title in ABC Monument Grotesk Regular at 94px, line-height 1.00, #000000, left-aligned, allowed to bleed past the right edge. A 1px solid #000000 hairline sits flush above the text. 48-80px of vertical space between rows.\n\n2. *Client Tag Pill*: Outlined pill, 1px #000000 border, #ffffff fill, 27px border-radius, 6-8px vertical padding, 14px horizontal padding. Text in ABC Monument Grotesk Regular at 15px, line-height 1.11, #000000. Anchored to the right end of the project title row.\n\n3. *Brand Seal Pill*: Filled pill, #ffc8c8 background, 27px border-radius, 6-8px vertical padding, 14px horizontal padding. Text 'ANA CUNA' at 15px ABC Monument Grotesk Regular, #000000. Top-left of header.\n\n4. *Language Toggle*: Single pill, #000000 background, 27px border-radius, containing two 15px labels in #ffffff ABC Monument Grotesk Regular. The active language is displayed in #ffffff against the black fill; the inactive language may be dimmed or shown in a lighter tone. Top-right of header.\n\n5. *Hairline Divider*: 1px solid #000000 line spanning 100% viewport width, with zero vertical margin — sits flush against adjacent type."
+      }
+    ],
+    "elevationPhilosophy": "The design has zero elevation. No drop shadows, no border-radius other than the 27px pill, no surface stacking. Hierarchy is established entirely through type scale and 1px hairlines, creating a printed-broadsheet flatness rather than a software-UI depth model."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "icon",
+            "list",
+            "body",
+            "heading",
+            "image",
+            "footer"
+          ],
+          "frequency": 896,
+          "confidence": 1,
+          "prominence": 33226590.977196258,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 27,
+            "icon/color": 1,
+            "link/color": 29,
+            "list/color": 6,
+            "image/color": 25,
+            "other/color": 62,
+            "button/color": 3,
+            "footer/color": 1,
+            "heading/color": 25,
+            "body/borderColor": 108,
+            "icon/borderColor": 4,
+            "link/borderColor": 116,
+            "list/borderColor": 24,
+            "image/borderColor": 100,
+            "other/borderColor": 248,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 100,
+            "link/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "button",
+            "list",
+            "body",
+            "other",
+            "footer"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 845186.4405289202,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1,
+            "body/borderColor": 4,
+            "link/borderColor": 4,
+            "link/backgroundColor": 2,
+            "list/backgroundColor": 1,
+            "other/backgroundColor": 25,
+            "button/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffc8c8",
+          "oklch": {
+            "c": 0.06285457739838803,
+            "h": 18.415930661066785,
+            "l": 0.8813296258034615
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8470,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0001811057955350315,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.35,
+          "background": "#ffc8c8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.46,
+          "background": "#ffc8c8",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 27.4285,
+          "contexts": [
+            "button",
+            "list",
+            "body"
+          ],
+          "frequency": 29
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|list",
+            "paddingRight|list",
+            "paddingBottom|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "link",
+            "list",
+            "other",
+            "body"
+          ],
+          "frequency": 29,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|link",
+            "marginLeft|list",
+            "marginLeft|other",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 25,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "button",
+            "list",
+            "body"
+          ],
+          "frequency": 116,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|list",
+            "paddingBottom|list",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ABCMonumentGrotesk-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 181,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 31,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 15,
+          "family": "ABCMonumentGrotesk-Regular",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "ABCMonumentGrotesk-Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "ABCMonumentGrotesk-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "list",
+            "image",
+            "footer"
+          ],
+          "frequency": 116,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "ABCMonumentGrotesk-Regular",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "list"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 94,
+          "family": "ABCMonumentGrotesk-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 25,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c1c1b67f-dca3-474c-ac1e-cffeefd45478.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4f106100-4ef3-4da6-b537-1fbd9c5b1934.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bb961b10-d437-4023-9201-a44349fe591f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Anacuna design system\",\"item\":\"https://styles.refero.design/style/bb961b10-d437-4023-9201-a44349fe591f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bb961b10-d437-4023-9201-a44349fe591f#style-reference\",\"name\":\"Anacuna design system reference\",\"headline\":\"Anacuna design system | Refero Styles\",\"description\":\"Explore Anacuna's light Design design system: Ink Black #000000, Paper White #ffffff colors, ABCMonumentGrotesk-Regular typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/bb961b10-d437-4023-9201-a44349fe591f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bb961b10-d437-4023-9201-a44349fe591f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Anacuna\",\"url\":\"https://anacuna.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bb961b10-d437-4023-9201-a44349fe591f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4f106100-4ef3-4da6-b537-1fbd9c5b1934.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4f106100-4ef3-4da6-b537-1fbd9c5b1934.jpg\",\"caption\":\"Screenshot of Anacuna\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4f106100-4ef3-4da6-b537-1fbd9c5b1934.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Anacuna design system\",\"Anacuna website design\",\"Anacuna colors\",\"Anacuna typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink Black\",\"Paper White\",\"Blush Bloom\",\"ABCMonumentGrotesk-Regular\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Anacuna design system\"},{\"@type\":\"Thing\",\"name\":\"Anacuna website design\"},{\"@type\":\"Thing\",\"name\":\"Anacuna colors\"},{\"@type\":\"Thing\",\"name\":\"Anacuna typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:44:03.704Z\",\"dateModified\":\"2026-04-30T01:44:03.704Z\"}]}19:T57b,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px hairlines)\n- accent: #ffc8c8 (brand seal only)\n- primary action: #ffc8c8 (filled action)\n\n**Example Component Prompts**\n\n1. *Project Title Row*: Full-width row on #ffffff background. Title in ABC Monument Grotesk Regular at 94px, line-height 1.00, #000000, left-aligned, allowed to bleed past the right edge. A 1px solid #000000 hairline sits flush above the text. 48-80px of vertical space between rows.\n\n2. *Client Tag Pill*: Outlined pill, 1px #000000 border, #ffffff fill, 27px border-radius, 6-8px vertical padding, 14px horizontal padding. Text in ABC Monument Grotesk Regular at 15px, line-height 1.11, #000000. Anchored to the right end of the project title row.\n\n3. *Brand Seal Pill*: Filled pill, #ffc8c8 background, 27px border-radius, 6-8px vertical padding, 14px horizontal padding. Text 'ANA CUNA' at 15px ABC Monument Grotesk Regular, #000000. Top-left of header.\n\n4. *Language Toggle*: Single pill, #000000 background, 27px border-radius, containing two 15px labels in #ffffff ABC Monument Grotesk Regular. The active language is displayed in #ffffff against the black fill; the inactive language may be dimmed or shown in a lighter tone. Top-right of header.\n\n5. *Hairline Divider*: 1px solid #000000 line spanning 100% viewport width, with zero vertical margin — sits flush against adjacent type."
+}

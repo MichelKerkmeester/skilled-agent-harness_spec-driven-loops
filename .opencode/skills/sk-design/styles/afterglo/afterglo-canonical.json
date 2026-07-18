@@ -1,0 +1,1391 @@
+{
+  "source": "https://styles.refero.design/style/b13069df-7475-4b51-a734-621e3da75f8b",
+  "uuid": "b13069df-7475-4b51-a734-621e3da75f8b",
+  "name": "Afterglo",
+  "northStar": "Editorial boudoir printed on cream paper — quiet, tactile, typographic.",
+  "capturedAt": "2026-07-18T07:49:33.957Z",
+  "meta": {
+    "url": "https://myafterglo.com",
+    "siteName": "Afterglo",
+    "extractedAt": "2026-06-03T18:57:44.324Z",
+    "durationMs": 48192,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1584,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Cardinal Fruit serif at 54px+ for editorial display moments and reserve it for those moments — one per section maximum",
+      "Set Aeonik display sizes at tight line-heights: 0.80 for 132px headlines, 1.00 for 50-54px section titles, 1.20 for 22px body",
+      "Apply the 5px radius universally to cards, buttons, badges, and inputs — it is the system's only rounding gesture",
+      "Use the ivory canvas (#f3f2ec) as the default background for every page; let #ffffff appear only inside product photography frames",
+      "Pair Aeonik weight 500 for navigation labels, buttons, and the brand mark; weight 400 for body copy and descriptions",
+      "Let the footer be the only surface that uses #f68e6d — do not introduce the coral accent on buttons, badges, or links",
+      "Build product cards as flat compositions: image on white, text below in ink, no hover elevation, no shadows, no borders around the card itself"
+    ],
+    "donts": [
+      "Do not use the powder blue (#7faad2) as a CTA or filled action — it is decorative only, reserved for soft badges and washes",
+      "Do not apply drop shadows to cards, buttons, or images — the system stays flat; depth comes from type and photography",
+      "Do not introduce border-radius values other than 5px — the system uses one rounding gesture, repeated exactly",
+      "Do not use pure black (#000000) for large body text — reserve it for fine borders and heaviest display moments; use #131313 for readable text and buttons",
+      "Do not place the Cardinal Fruit serif below 33px — it loses its editorial weight at small sizes; switch to Aeonik for anything under 33px",
+      "Do not use gradients, glows, or color tints on buttons or interactive elements — the system is matte and flat",
+      "Do not center-align body copy or product descriptions — the editorial language reads left-aligned with generous left margin"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f3f2ec",
+        "name": "Ivory Paper",
+        "role": "Page canvas, card surfaces, footer wash — the warm off-white that makes every photograph feel printed, not digital",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e3e4df",
+        "name": "Sage Mist",
+        "role": "Hairline borders, input outlines, subtle dividers, secondary card backgrounds — the cool-warm neutral that separates layers without contrast shouting",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cbc9bd",
+        "name": "Bone Gray",
+        "role": "Mid-tone neutrals for input shadows and muted surface fills — the bridge between ivory and ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#131313",
+        "name": "Ink Black",
+        "role": "Primary text, filled buttons, icon strokes, navigation borders — slightly softer than pure black, reads as printer's ink rather than screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Highest-contrast borders, pure ink for heaviest typographic moments and fine dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Snow White",
+        "role": "Product card photography backdrop, badge fills — the cleanest white for product isolation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f68e6d",
+        "name": "Ember Coral",
+        "role": "Footer background, singular warm accent — the one chromatic gesture in the system, used only when the design needs to feel touched, not seen",
+        "group": "brand"
+      },
+      {
+        "hex": "#7faad2",
+        "name": "Powder Blue",
+        "role": "Blue state accent for badges, validation surfaces, and short status labels. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed hero photograph opens the page with no margin or frame, followed by generous vertical breathing room (25-33px section gaps) between editorial spreads. The about/mission section uses a two-zone layout: large serif display type left-aligned on the left half, with a photograph collage on the right. Featured products appear in a horizontal carousel-style grid (3-4 cards visible) on the ivory canvas. Navigation is a single top bar with no sticky behavior implied. The footer is a full-width warm coral band. Overall rhythm: photograph → editorial statement → product grid → editorial statement → product grid → warm footer.",
+    "imagery": "Photography is editorial, intimate, and product-forward — close-up crops of objects on neutral surfaces, often in warm or moody lighting with no lifestyle context. Tiles in the about/mission section are arranged as an overlapping collage with slight rotation, giving a magazine-spread energy. Product images always sit on pure white (#ffffff) to isolate the object against the warm ivory canvas. Color treatment is warm and slightly desaturated, never clinical. No illustrations, no 3D renders, no icon-heavy graphics — icons are minimal line glyphs only.",
+    "similar": [
+      {
+        "why": "Same editorial intimacy-shop language: warm cream canvas, oversized display type, near-monochrome palette with a single warm accent, photography-first product cards",
+        "business": "Maude"
+      },
+      {
+        "why": "Similar product-isolation photography on neutral backgrounds, compact sans-serif UI type, flat components with no decorative shadows",
+        "business": "Dame"
+      },
+      {
+        "why": "Same editorial magazine sensibility — display serif used sparingly for brand statements, sans-serif for utility, warm paper-tone canvas",
+        "business": "Unbound"
+      },
+      {
+        "why": "Restrained palette with one warm accent color, flat product cards on white, hairline borders, compact 5px-radius components",
+        "business": "Nette"
+      },
+      {
+        "why": "Premium wellness-product language: ivory backgrounds, quiet typography, warm coral as a singular accent, no visual noise",
+        "business": "Cuvana"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "5px",
+        "badges": "5px",
+        "inputs": "5px",
+        "buttons": "5px"
+      },
+      "elementGap": "8-17px",
+      "sectionGap": "25-33px",
+      "cardPadding": "17px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f3f2ec",
+        "name": "Ivory Canvas",
+        "level": 0,
+        "purpose": "Base page background — the warm paper tone every other surface sits on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Snow Card",
+        "level": 1,
+        "purpose": "Product photography cards and badge fills — the cleanest white for object isolation"
+      },
+      {
+        "hex": "#e3e4df",
+        "name": "Sage Divider",
+        "level": 2,
+        "purpose": "Hairline borders, input borders, secondary surface fills"
+      },
+      {
+        "hex": "#cbc9bd",
+        "name": "Bone Shadow",
+        "level": 3,
+        "purpose": "Mid-tone surface for input inset shadows and muted fills"
+      },
+      {
+        "hex": "#f68e6d",
+        "name": "Ember Footer",
+        "level": 4,
+        "purpose": "Sole chromatic surface — footer only, never interactive"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Editorial boudoir printed on cream paper — quiet, tactile, typographic.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "body",
+        "size": 22,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "subheading",
+        "size": 42,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading-sm",
+        "size": 50,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading",
+        "size": 54,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading-lg",
+        "size": 132,
+        "lineHeight": 0.8
+      },
+      {
+        "role": "display",
+        "size": 187,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Horizontal bar on ivory canvas (#f3f2ec). Left: brand mark 'Afterglo' in Aeonik 500 at 15px. Center: category links ('New', 'Pleasure', 'Intimate Care', etc.) in Aeonik 400 at 13px with 17px horizontal padding. Right: utility links ('Together', 'Community', 'About Us', '(Vibes)'), locale selector, search/account/cart icons. 1px bottom border in #e3e4df. No background fill — sits directly on the page canvas."
+      },
+      {
+        "name": "Product Card",
+        "role": "Product grid item in featured/listing sections",
+        "description": "Card on ivory canvas (#f3f2ec) with no visible border or shadow. Product photograph on pure white (#ffffff) square background, occupying the full card area. Below: product name in Aeonik 400 at 15px in ink (#131313), price in same weight at 15px with 'CAD' suffix. 5px border-radius on image container. 17px vertical gap between image and text. No hover elevation — flat and still."
+      },
+      {
+        "name": "Out of Stock Badge",
+        "role": "Availability indicator on product cards",
+        "description": "Pill-shaped badge with 5px radius, #000000 background, #ffffff text in Aeonik 500 at 13px. 3-5px vertical and horizontal padding. Positioned top-left or top-right of product image. High-contrast black on white to cut through any product photography."
+      },
+      {
+        "name": "Info Badge",
+        "role": "Decorative or informational tagging",
+        "description": "Soft pill with 5px radius, #7faadd (powder blue) or sage (#e3e4df) background, ink (#131313) text in Aeonik 500 at 13px. 3-5px padding. Used sparingly for editorial tagging, not status."
+      },
+      {
+        "name": "Hero Photography Panel",
+        "role": "Full-bleed opening section",
+        "description": "Edge-to-edge photograph (artistic, sensual product/still-life) with no overlay treatment. Headline overlaid in white Aeonik at 132px, line-height 0.80, positioned top-left with generous left and top padding (29px+). Sub-text in Aeonik 400 at 15px in white, centered or bottom-aligned."
+      },
+      {
+        "name": "Filled Primary Button",
+        "role": "Primary call-to-action (e.g. 'Start Exploring', 'About Us')",
+        "description": "Rectangular button with 5px radius, solid ink (#131313) background, white (#ffffff) text in Aeonik 500 at 15px. 10px vertical padding, 17px horizontal padding. No border, no shadow. Flat and compact — the button is a label, not a widget."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Secondary inline action or link styled as button",
+        "description": "No background or border. Text only in Aeonik 500 at 15px in ink (#131313). 10px vertical padding. Appears beside or below filled buttons as the quieter option."
+      },
+      {
+        "name": "Editorial Display Heading",
+        "role": "Section or page statement",
+        "description": "Cardinal Fruit serif at 187px or 54px, line-height 1.00, in ink (#131313). Always left-aligned with generous left margin. May include an italic Cardinal Fruit accent word in parentheses (e.g. '(BEST)') at 33-42px. The typographic anchor of the editorial spread."
+      },
+      {
+        "name": "Featured Section Header",
+        "role": "Section title for product grids",
+        "description": "Aeonik at 50px, line-height 1.00, weight 500, in ink (#131313). Left-aligned, sits directly above the product grid with 25-33px vertical spacing. Clean sans-serif counterpoint to the serif display type."
+      },
+      {
+        "name": "Image Collage Panel",
+        "role": "Editorial about/mission section visual",
+        "description": "Overlapping or adjacent photographic tiles at slightly varied sizes and rotation, with no visible borders. Tiles sit on ivory canvas (#f3f2ec). Images are product crops or intimate still-lifes with a soft, warm color grade. The collage creates editorial energy without grid rigidity."
+      },
+      {
+        "name": "Category Carousel Arrow",
+        "role": "Horizontal navigation for product carousels",
+        "description": "Small ghost button — 29px square, 1px border in #e3e4df, 5px radius. Left/right arrow icon in Aeonik or system glyph. No fill, no shadow. Sits between section header and product grid."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form input (search, email, etc.)",
+        "description": "Full-width field with 1px border in sage (#e3e4df), 5px radius, ivory (#f3f2ec) background. Inset shadow rgb(243,242,236) 0 0 0 1000px creates a soft inner fill. Placeholder text in Aeonik 400 at 15px, muted gray."
+      },
+      {
+        "name": "Warm Footer",
+        "role": "Site footer with brand accent",
+        "description": "Solid #f68e6d (ember coral) background — the only chromatic surface in the system. Ink (#131313) text in Aeonik 400 at 15px for links and legal copy. No images, no decorations. The coral wash is the closing gesture of the page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Workhorse sans for navigation, body, buttons, product cards, and hero overlays. 500 weight for active nav, labels, and emphasis; 400 for body copy. The 132px display size at 0.80 line-height is the signature — oversized headlines that sit tight and confident over photography.",
+        "sizes": "13, 15, 22, 33, 50, 132",
+        "family": "Aeonik",
+        "weight": "400, 500",
+        "lineHeight": "0.80, 0.90, 1.00, 1.10, 1.20, 1.30",
+        "substitute": "Inter, Satoshi, or General Sans"
+      },
+      {
+        "role": "Display serif reserved for editorial moments: the 'FEEL YOUR SELF' statement, category callouts, and the small italic accent '(BEST)'. At 187px with 1.00 line-height it becomes the visual anchor of the page — a magazine-cover gesture that reframes the whole interface as editorial, not transactional.",
+        "sizes": "33, 42, 54, 187",
+        "family": "Cardinal Fruit",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.10",
+        "substitute": "Playfair Display, Reckless, or DM Serif Display"
+      }
+    ],
+    "description": "Afterglo is an editorial intimacy shop: warm cream canvas, sensual product photography, and typographic drama built from one neo-grotesque (Aeonik) and one high-contrast display serif (Cardinal Fruit). The palette is near-monochrome with paper-warm neutrals (ivory, sage gray, ink black) punctuated by a single warm coral accent in the footer and a dusty powder blue for badges — color is rationed, never decorative. Surfaces stay flat and matte with hairline 5px radii; the depth comes from oversized type and image crops, not shadows. The rhythm alternates between full-bleed photographic hero panels and quiet editorial spreads where the serif display type does the work of an art director, not a CMS.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b13069df-7475-4b51-a734-621e3da75f8b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Afterglo design system\",\"item\":\"https://styles.refero.design/style/b13069df-7475-4b51-a734-621e3da75f8b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b13069df-7475-4b51-a734-621e3da75f8b#style-reference\",\"name\":\"Afterglo design system reference\",\"headline\":\"Afterglo design system | Refero Styles\",\"description\":\"Explore Afterglo's light E-commerce design system: Ivory Paper #f3f2ec, Sage Mist #e3e4df colors, Aeonik, Cardinal Fruit typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/b13069df-7475-4b51-a734-621e3da75f8b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b13069df-7475-4b51-a734-621e3da75f8b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Afterglo\",\"url\":\"https://myafterglo.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b13069df-7475-4b51-a734-621e3da75f8b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4ce1e6e3-107e-4b88-8b1d-3054eda768bc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4ce1e6e3-107e-4b88-8b1d-3054eda768bc.jpg\",\"caption\":\"Screenshot of Afterglo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4ce1e6e3-107e-4b88-8b1d-3054eda768bc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Afterglo design system\",\"Afterglo website design\",\"Afterglo colors\",\"Afterglo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ivory Paper\",\"Sage Mist\",\"Bone Gray\",\"Ink Black\",\"Aeonik\",\"Cardinal Fruit\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Afterglo design system\"},{\"@type\":\"Thing\",\"name\":\"Afterglo website design\"},{\"@type\":\"Thing\",\"name\":\"Afterglo colors\"},{\"@type\":\"Thing\",\"name\":\"Afterglo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:50:16.808Z\",\"dateModified\":\"2026-04-30T03:50:16.808Z\"}]}19:T4d1,## Quick Color Reference\n- text: #131313\n- background: #f3f2ec\n- border: #e3e4df\n- accent: #f68e6d (footer only)\n- badge: #7faad2\n- card surface: #ffffff\n- primary action: #131313 (filled action)\n\n## Example Component Prompts\n\n1. **Editorial Hero**: Full-bleed photograph background. Headline in Aeonik weight 500, 132px, line-height 0.80, white (#ffffff), positioned top-left with 29px padding. Sub-text in Aeonik 400, 15px, white, below the headline. No overlay gradient.\n\n2. **Product Card**: Ivory (#f3f2ec) page background. Product image in a square container with 5px radius, pure white (#ffffff) backdrop, no border. Below: product name in Aeonik 400, 15px, #131313. Price in same style with 'CAD' suffix. 17px gap between image and text.\n\n3. **Display Editorial Heading**: Cardinal Fruit serif, 187px, line-height 1.00, weight 400, color #131313, left-aligned. Optionally pair with a 42px italic Cardinal Fruit accent word in parentheses.\n\n4. **Filled Button**: 5px radius, #131313 background, white text in Aeonik 500 at 15px, 10px vertical and 17px horizontal padding. No border, no shadow.\n\n5. **Warm Footer**: Full-width band with #f68e6d background. Links and legal text in Aeonik 400, 15px, #131313. No images or icons."
+      }
+    ],
+    "northStarDetail": "Picture the front page of a slow-fashion magazine laid on uncoated stock: oversized serif headlines that breathe, one warm coral sticker on the back cover, and the rest is ink and cream.",
+    "elevationPhilosophy": "The system intentionally avoids drop shadows on all components. Depth and visual separation are achieved through: (1) the warm-to-cool neutral progression from ivory canvas to sage borders, (2) photography isolation on pure white card backgrounds, and (3) generous whitespace. The only shadow present is an inset fill on input fields (rgb(243,242,236) 0 0 0 1000px inset) that softens the input interior without creating external elevation. This flat-everywhere approach keeps the editorial mood intact — the page should feel printed, not rendered."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "heading",
+            "list",
+            "hero",
+            "body",
+            "image",
+            "badge",
+            "icon",
+            "footer",
+            "card",
+            "input"
+          ],
+          "frequency": 3535,
+          "confidence": 1,
+          "prominence": 135165524.96906203,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 9,
+            "nav/color": 110,
+            "body/color": 9,
+            "card/color": 2,
+            "hero/color": 2,
+            "icon/color": 6,
+            "list/color": 13,
+            "other/fill": 12,
+            "badge/color": 32,
+            "image/color": 8,
+            "input/color": 1,
+            "other/color": 616,
+            "button/color": 8,
+            "footer/color": 1,
+            "heading/color": 23,
+            "nav/borderColor": 440,
+            "body/borderColor": 36,
+            "card/borderColor": 8,
+            "hero/borderColor": 8,
+            "icon/borderColor": 24,
+            "list/borderColor": 52,
+            "badge/borderColor": 128,
+            "image/borderColor": 32,
+            "input/borderColor": 3,
+            "other/borderColor": 1804,
+            "button/borderColor": 32,
+            "footer/borderColor": 4,
+            "heading/borderColor": 92,
+            "badge/backgroundColor": 20
+          }
+        },
+        {
+          "hex": "#f3f2ec",
+          "oklch": {
+            "c": 0.008029805333655504,
+            "h": 98.8801126968356,
+            "l": 0.9602599648787062
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "icon",
+            "heading",
+            "link",
+            "body",
+            "button",
+            "card",
+            "input"
+          ],
+          "frequency": 552,
+          "confidence": 1,
+          "prominence": 19859105.08589842,
+          "properties": [
+            "backgroundColor",
+            "fill",
+            "color",
+            "borderColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 8,
+            "link/color": 5,
+            "other/fill": 17,
+            "other/color": 71,
+            "button/color": 5,
+            "heading/color": 14,
+            "input/boxShadow": 1,
+            "body/borderColor": 32,
+            "link/borderColor": 20,
+            "other/borderColor": 284,
+            "button/borderColor": 20,
+            "heading/borderColor": 56,
+            "nav/backgroundColor": 10,
+            "card/backgroundColor": 1,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#131313",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18674120159806412
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "icon",
+            "body",
+            "heading",
+            "image"
+          ],
+          "frequency": 2619,
+          "confidence": 1,
+          "prominence": 10490754.663943026,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 34,
+            "nav/color": 210,
+            "body/color": 68,
+            "icon/color": 14,
+            "link/color": 124,
+            "other/fill": 23,
+            "image/color": 3,
+            "other/color": 22,
+            "button/color": 8,
+            "heading/color": 60,
+            "nav/borderColor": 840,
+            "body/borderColor": 272,
+            "icon/borderColor": 56,
+            "link/borderColor": 496,
+            "image/borderColor": 12,
+            "other/borderColor": 100,
+            "button/borderColor": 32,
+            "heading/borderColor": 240,
+            "button/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#cbc9bd",
+          "oklch": {
+            "c": 0.016561732365003298,
+            "h": 99.0386274455337,
+            "l": 0.83414131868658
+          },
+          "contexts": [
+            "body",
+            "other",
+            "input"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 6428699.596410888,
+          "properties": [
+            "boxShadow",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/boxShadow": 3,
+            "input/borderColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#e3e4df",
+          "oklch": {
+            "c": 0.006779643684902882,
+            "h": 115.71414594366458,
+            "l": 0.9166947939829696
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 403,
+          "confidence": 1,
+          "prominence": 1243180.6375394338,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 57,
+            "body/borderColor": 228,
+            "nav/backgroundColor": 10,
+            "other/backgroundColor": 108
+          }
+        },
+        {
+          "hex": "#f68e6d",
+          "oklch": {
+            "c": 0.13483507482449716,
+            "h": 38.34991811477366,
+            "l": 0.7507462320409607
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1225193,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 115,
+          "confidence": 1,
+          "prominence": 12899.862251834962,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "badge/color": 22,
+            "badge/borderColor": 88,
+            "badge/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#7faad2",
+          "oklch": {
+            "c": 0.07477037730835373,
+            "h": 247.0700035186572,
+            "l": 0.7217742985134522
+          },
+          "contexts": [
+            "body",
+            "badge"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 4900,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1,
+            "badge/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00284809927225537,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.72,
+          "background": "#f3f2ec",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.58,
+          "background": "#ffffff",
+          "foreground": "#131313"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.57,
+          "background": "#131313",
+          "foreground": "#f3f2ec"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.43,
+          "background": "#e3e4df",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.54,
+          "background": "#e3e4df",
+          "foreground": "#131313"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#cbc9bd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.17,
+          "background": "#cbc9bd",
+          "foreground": "#131313"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.01,
+          "background": "#f68e6d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.58,
+          "background": "#7faad2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.97,
+          "background": "#f68e6d",
+          "foreground": "#131313"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.59,
+          "background": "#7faad2",
+          "foreground": "#131313"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.45,
+          "background": "#7faad2",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.33,
+          "background": "#f68e6d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.18,
+          "background": "#7faad2",
+          "foreground": "#f3f2ec"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.08,
+          "background": "#f68e6d",
+          "foreground": "#f3f2ec"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.91,
+          "background": "#7faad2",
+          "foreground": "#e3e4df"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.82,
+          "background": "#f68e6d",
+          "foreground": "#e3e4df"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.66,
+          "background": "#cbc9bd",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.48,
+          "background": "#cbc9bd",
+          "foreground": "#f3f2ec"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 5,
+          "contexts": [
+            "link",
+            "button",
+            "other",
+            "badge",
+            "card"
+          ],
+          "frequency": 38
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(243, 242, 236) 0px 0px 0px 1000px inset",
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 43,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "heading",
+            "badge",
+            "body"
+          ],
+          "frequency": 61,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "link",
+            "icon"
+          ],
+          "frequency": 147,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 54,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body",
+            "input"
+          ],
+          "frequency": 117,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other",
+            "paddingLeft|body",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "nav",
+            "list",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginLeft",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "marginRight|list",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "link",
+            "button"
+          ],
+          "frequency": 145,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|heading",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|button",
+            "paddingLeft|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "nav",
+            "heading",
+            "body"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "marginRight|nav",
+            "marginBottom|heading",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "card"
+          ],
+          "frequency": 75,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingTop|hero",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 33,
+          "contexts": [
+            "other",
+            "heading",
+            "list"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other",
+            "marginTop|other",
+            "marginBottom|heading",
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 67,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingRight|heading",
+            "paddingTop|other",
+            "paddingRight|body"
+          ]
+        },
+        {
+          "value": 83,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 216,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 231,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 274,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Aeonik",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 1503,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Cardinal Fruit",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 19,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.89
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Aeonik",
+          "weight": 500,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 27,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "list",
+            "icon",
+            "body",
+            "hero",
+            "image",
+            "badge",
+            "footer",
+            "card"
+          ],
+          "frequency": 981,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Aeonik",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 396,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Aeonik",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav",
+            "input"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Aeonik",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 15,
+          "family": "Aeonik",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "link",
+            "body",
+            "button"
+          ],
+          "frequency": 17,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "icon"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Aeonik",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 33,
+          "family": "Cardinal Fruit",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 33,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "Cardinal Fruit",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 42,
+          "family": "Cardinal Fruit",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 50,
+          "family": "Aeonik",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "Cardinal Fruit",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "Cardinal Fruit",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 132,
+          "family": "Aeonik",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 14,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 187,
+          "family": "Cardinal Fruit",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f0af2b54-1b85-4e50-b1b8-48afd923cca5.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4ce1e6e3-107e-4b88-8b1d-3054eda768bc.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b13069df-7475-4b51-a734-621e3da75f8b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Afterglo design system\",\"item\":\"https://styles.refero.design/style/b13069df-7475-4b51-a734-621e3da75f8b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b13069df-7475-4b51-a734-621e3da75f8b#style-reference\",\"name\":\"Afterglo design system reference\",\"headline\":\"Afterglo design system | Refero Styles\",\"description\":\"Explore Afterglo's light E-commerce design system: Ivory Paper #f3f2ec, Sage Mist #e3e4df colors, Aeonik, Cardinal Fruit typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/b13069df-7475-4b51-a734-621e3da75f8b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b13069df-7475-4b51-a734-621e3da75f8b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Afterglo\",\"url\":\"https://myafterglo.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b13069df-7475-4b51-a734-621e3da75f8b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4ce1e6e3-107e-4b88-8b1d-3054eda768bc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4ce1e6e3-107e-4b88-8b1d-3054eda768bc.jpg\",\"caption\":\"Screenshot of Afterglo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4ce1e6e3-107e-4b88-8b1d-3054eda768bc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Afterglo design system\",\"Afterglo website design\",\"Afterglo colors\",\"Afterglo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ivory Paper\",\"Sage Mist\",\"Bone Gray\",\"Ink Black\",\"Aeonik\",\"Cardinal Fruit\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Afterglo design system\"},{\"@type\":\"Thing\",\"name\":\"Afterglo website design\"},{\"@type\":\"Thing\",\"name\":\"Afterglo colors\"},{\"@type\":\"Thing\",\"name\":\"Afterglo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:50:16.808Z\",\"dateModified\":\"2026-04-30T03:50:16.808Z\"}]}19:T4d1,## Quick Color Reference\n- text: #131313\n- background: #f3f2ec\n- border: #e3e4df\n- accent: #f68e6d (footer only)\n- badge: #7faad2\n- card surface: #ffffff\n- primary action: #131313 (filled action)\n\n## Example Component Prompts\n\n1. **Editorial Hero**: Full-bleed photograph background. Headline in Aeonik weight 500, 132px, line-height 0.80, white (#ffffff), positioned top-left with 29px padding. Sub-text in Aeonik 400, 15px, white, below the headline. No overlay gradient.\n\n2. **Product Card**: Ivory (#f3f2ec) page background. Product image in a square container with 5px radius, pure white (#ffffff) backdrop, no border. Below: product name in Aeonik 400, 15px, #131313. Price in same style with 'CAD' suffix. 17px gap between image and text.\n\n3. **Display Editorial Heading**: Cardinal Fruit serif, 187px, line-height 1.00, weight 400, color #131313, left-aligned. Optionally pair with a 42px italic Cardinal Fruit accent word in parentheses.\n\n4. **Filled Button**: 5px radius, #131313 background, white text in Aeonik 500 at 15px, 10px vertical and 17px horizontal padding. No border, no shadow.\n\n5. **Warm Footer**: Full-width band with #f68e6d background. Links and legal text in Aeonik 400, 15px, #131313. No images or icons."
+}

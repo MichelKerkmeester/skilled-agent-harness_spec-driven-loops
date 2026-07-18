@@ -1,0 +1,67 @@
+:root {
+  /* Colors */
+  --color-obsidian: #000000;
+  --color-ash: #5a5a5a;
+  --color-ghost-white: #ffffff;
+
+  /* Typography — Font Families */
+  --font-polysans: 'PolySans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 1.43;
+  --text-body: 16px;
+  --leading-body: 1.43;
+  --text-subheading: 18px;
+  --leading-subheading: 1.2;
+  --tracking-subheading: -0.36px;
+  --text-heading-sm: 23px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -0.67px;
+  --text-heading: 27px;
+  --leading-heading: 1.2;
+  --tracking-heading: -0.86px;
+  --text-heading-lg: 32px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -1.18px;
+  --text-display: 50px;
+  --leading-display: 1;
+  --tracking-display: -2.2px;
+  --text-display-xl: 77px;
+  --leading-display-xl: 0.9;
+  --tracking-display-xl: -4.31px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-5: 5px;
+  --spacing-6: 6px;
+  --spacing-7: 7px;
+  --spacing-9: 9px;
+  --spacing-14: 14px;
+  --spacing-18: 18px;
+  --spacing-45: 45px;
+  --spacing-54: 54px;
+  --spacing-144: 144px;
+  --spacing-173: 173px;
+  --spacing-216: 216px;
+
+  /* Layout */
+  --section-gap: 144-173px;
+  --card-padding: 18px;
+  --element-gap: 14px;
+
+  /* Border Radius */
+  --radius-md: 4.5px;
+
+  /* Named Radii */
+  --radius-cards: 0px;
+  --radius-badges: 4.5px;
+  --radius-images: 0px;
+  --radius-buttons: 4.5px;
+
+  /* Surfaces */
+  --surface-obsidian-field: #000000;
+  --surface-ash-inset: #5a5a5a;
+}

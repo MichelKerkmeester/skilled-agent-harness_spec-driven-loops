@@ -1,0 +1,1512 @@
+{
+  "source": "https://styles.refero.design/style/6c0b77d3-71f9-469d-98aa-4ce1d6d76ac8",
+  "uuid": "6c0b77d3-71f9-469d-98aa-4ce1d6d76ac8",
+  "name": "Structured",
+  "northStar": "Renaissance gallery on putty paper",
+  "capturedAt": "2026-07-18T08:33:12.408Z",
+  "meta": {
+    "url": "https://structured.money",
+    "siteName": "Structured",
+    "extractedAt": "2026-06-03T16:22:36.077Z",
+    "durationMs": 34206,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 713,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Davinci serif at 52px+ for all section headings and 94px+ for primary display titles — the serif is the brand voice",
+      "Set the hero wordmark to exactly 374px in Davinci weight 500 with -3.37px letter-spacing so it crops at the viewport edges",
+      "Alternate between Putty (#c4c3b6) light sections and Ink (#000000) dark sections — no gradients between them, just hard cuts",
+      "Use the 28.8px pill radius for all filled action buttons and keep padding to 9px 17px for a compact capsule",
+      "Apply circular crops to all feature imagery — the circle is the system's primary image shape after the full-bleed rectangle",
+      "Set all body and utility text in Helvetica Now at 9–16px; the grotesk never exceeds 43px",
+      "Use hexagonal shapes for pagination and decorative indicators — a secondary geometry that complements the circular vignettes and pill buttons"
+    ],
+    "donts": [
+      "Don't introduce any saturated color — the palette is warm grays and black; adding a blue, green, or red CTA would break the gallery aesthetic",
+      "Don't use shadows or gradients — the system is entirely flat; depth comes from alternating light/dark sections, not elevation",
+      "Don't set body text in the serif — Davinci is display-only; using it below 34px breaks the editorial hierarchy",
+      "Don't use standard border-radius values (4px, 8px, 12px) on cards — the system uses 9px for cards and 28.8px for buttons; anything in between is off-system",
+      "Don't use stock photography or modern digital illustrations — all imagery should be classical oil paintings or nothing",
+      "Don't add a visible menu bar or navigation chrome — the header is just a logo mark and a single text link",
+      "Don't set body type below 12px or above 26px in Helvetica Now — the grotesk's range is narrow and intentional"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#c4c3b6",
+        "name": "Putty",
+        "role": "Dominant page canvas — the warm gray-beige that fills hero and most light sections. The single most-used color in the system; sets the gallery-wall tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e7e5e4",
+        "name": "Bone",
+        "role": "Elevated card surfaces and secondary canvas in light sections. Sits one step above Putty for subtle layering without breaking the monochrome warmth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebebeb",
+        "name": "Chalk",
+        "role": "Footers and lightest surface tier. The coolest neutral — used sparingly at section bases to signal a different page zone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dfdcd5",
+        "name": "Vellum",
+        "role": "Hairline borders on body and icon elements. A mid-tone warm gray that reads as a printed page edge, not a UI divider",
+        "group": "neutral"
+      },
+      {
+        "hex": "#595855",
+        "name": "Graphite",
+        "role": "Muted secondary text fills and subtle image backgrounds. The darkest warm gray — used where pure black would be too severe",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Ash",
+        "role": "Image placeholder backgrounds and mid-neutral surfaces. The only truly cool gray in the system, reserved for image containers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Text on dark sections, white icon strokes, and the rare pure-white element. Used only as reverse type or accent fill, never as a large surface",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed sections with no max-width content container — the page breathes edge-to-edge. Hero is a light putty canvas with a tiny centered type cluster (sub-headline, stats, button) floating above a monumental 374px serif wordmark that anchors the lower half. Middle section: full-bleed classical painting with a single dark product card floating dead-center. Feature section: full-width black canvas with centered serif heading, then a 3-column grid of circular image vignettes with hexagonal nav dots below. Navigation is minimal — logo mark top-left, single text link top-right, no visible menu bar. Section rhythm alternates light/dark/light with generous vertical breathing room between blocks.",
+    "imagery": "Classical oil paintings — Renaissance and Baroque landscapes with mountains, architecture, clouds, and still-life studies (rabbit, amphora, butterfly). Treatment is full-bleed canvas-like reproductions and circular crops with no rounded corners or framing on the full images. The paintings carry the entire decorative load: no abstract graphics, no product screenshots, no photography. Dense visual presence on the middle section, near-absent on the hero and dark feature section. The imagery is editorial and atmospheric — it sets mood rather than explaining product.",
+    "similar": [
+      {
+        "why": "Same editorial serif + grotesk pairing with dramatic size contrast and warm neutral canvas",
+        "business": "Framework (framework.so)"
+      },
+      {
+        "why": "Same restrained warm-beige palette with serif display type and a gallery-like product presentation",
+        "business": "Aesop"
+      },
+      {
+        "why": "Same minimal header (logo + single link), oversized wordmark, and alternating light/dark full-bleed sections",
+        "business": "Vercel (older brand identity)"
+      },
+      {
+        "why": "Same use of classical painting as atmospheric full-bleed imagery and serif typography at large display sizes",
+        "business": "Renaissance Art Museum sites (e.g. The Met)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "9px",
+        "links": "2px",
+        "buttons": "28.8px"
+      },
+      "elementGap": "6px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": null
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#c4c3b6",
+        "name": "Putty Canvas",
+        "level": 0,
+        "purpose": "Default page background for light sections"
+      },
+      {
+        "hex": "#e7e5e4",
+        "name": "Bone Card",
+        "level": 1,
+        "purpose": "Elevated cards and secondary light surfaces"
+      },
+      {
+        "hex": "#ebebeb",
+        "name": "Chalk Footer",
+        "level": 2,
+        "purpose": "Lightest tier, used for footer and section bases"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Room",
+        "level": 3,
+        "purpose": "Dark section canvas — feature and explainer blocks"
+      }
+    ],
+    "northStar": "Renaissance gallery on putty paper",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.11
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.13
+      },
+      {
+        "role": "heading",
+        "size": 43,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.215
+      },
+      {
+        "role": "heading-lg",
+        "size": 52,
+        "lineHeight": 1,
+        "letterSpacing": -0.47
+      },
+      {
+        "role": "display",
+        "size": 374,
+        "lineHeight": 0.84,
+        "letterSpacing": -3.37
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Action Button",
+        "role": "Primary CTA — filled black pill with white text",
+        "description": "Background #000000, text #ffffff, font Helvetica Now 12px weight 400, padding 9px 17px, border-radius 28.8px (near-full pill), no border, no shadow. Tight horizontal padding creates a compact capsule. Single accent button per viewport."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Navigation and inline links",
+        "description": "Text only, no background, color #000000, font Helvetica Now 12–16px weight 400, underline on hover only. Sits in the top-right header and inline in body copy. No border or background in default state."
+      },
+      {
+        "name": "Circular Feature Vignette",
+        "role": "Feature card — circular image with caption",
+        "description": "Circular crop of a classical painting (no border, no shadow), diameter ~200px. Davinci serif caption (22–24px) above, hexagonal nav indicator below. Spaced in a 3-column grid on dark background."
+      },
+      {
+        "name": "Notched Product Card",
+        "role": "Floating product showcase with geometric corners",
+        "description": "Dark card (~400px square) with notched/hexagonal corner cuts (not standard border-radius — corner geometry), #000000 background, #ffffff micro-label ('SCROLL' at 9px Helvetica Now) in the lower-left. Floats centered over imagery. 9px radius on the primary edges before the notches."
+      },
+      {
+        "name": "Hero Wordmark",
+        "role": "Brand display — the defining visual element",
+        "description": "Davinci serif at 374px weight 500, color #000000, letter-spacing -3.37px, line-height 0.84. Extends beyond the visible viewport width — intentionally cropped at the edges. This is the signature component; the brand IS this wordmark at this scale."
+      },
+      {
+        "name": "Stat Pair",
+        "role": "Inline data display (TVL, APY)",
+        "description": "Two values side by side, Helvetica Now 16px weight 500, separated by spacing. Label-value pairs in uppercase tracking, e.g. 'TVL: 85 BTC'. Color #000000 on light sections."
+      },
+      {
+        "name": "Hexagonal Nav Indicator",
+        "role": "Pagination or section indicator dots",
+        "description": "Small hexagonal outline shapes (~12px), stroke #000000 on light sections or #ffffff on dark sections, fill transparent. Used in groups of 3 below circular features. The hexagon is a secondary brand shape — distinct from the pill button and circular image crops."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand identity — top-left header mark",
+        "description": "A circled 'S' monogram, ~32px diameter, thin black stroke on transparent or light fill. Minimal, monoline, no decoration. The only graphic mark on the page."
+      },
+      {
+        "name": "Section Header",
+        "role": "Display heading for content sections",
+        "description": "Davinci serif 94px weight 500, color #000000 on light or #ffffff on dark, letter-spacing -0.85px, line-height 0.84, centered alignment. Used for section titles like 'MAX BTC EXPLAINED'. Often paired with small uppercase section labels at 12px in opposite corners."
+      },
+      {
+        "name": "Classical Painting Panel",
+        "role": "Full-bleed atmospheric imagery",
+        "description": "Renaissance/Baroque oil painting reproduction, edge-to-edge with no border or rounded corners, no overlay. The image fills the entire section viewport. Functions as background atmosphere, not as a content asset."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading serif — the brand voice. Drives the 374px hero wordmark, 94px section titles, and 52px sub-headings. Weight 500 is used for emphasis; 400 for body serif moments. The extreme size range (16–374px) and tight negative tracking at large sizes make this the single most distinctive typographic choice — a wordmark that occupies half the viewport.",
+        "sizes": "16, 24, 34, 52, 94, 374px",
+        "family": "Davinci",
+        "weight": "400, 500",
+        "lineHeight": "0.84, 1.00, 1.10, 1.33, 1.50",
+        "substitute": "Canela, Tiempos Headline, GT Super, or Playfair Display",
+        "letterSpacing": "-0.0090em, -0.0050em, -0.0010em"
+      },
+      {
+        "role": "Utility grotesk for body copy, nav labels, button text, stats (TVL, APY), and caption micro-text. Stays at 9–26px — never takes display duty. Weight 500 is reserved for labels and small data callouts.",
+        "sizes": "9, 12, 15, 16, 22, 24, 26, 43px",
+        "family": "Helvetica Now",
+        "weight": "400, 500",
+        "lineHeight": "1.25, 1.50",
+        "substitute": "Inter, Neue Haas Grotesk, Söhne, or Helvetica Neue"
+      }
+    ],
+    "description": "Structured treats finance as a gallery exhibition: a warm putty-beige canvas, stark black accents, and classical oil-painting imagery that reframes Bitcoin yield as high art. Typography is the protagonist — a custom serif at display sizes up to 374px carries the brand voice with dramatic negative tracking, while a neutral grotesk handles utility. Sections alternate between light editorial spreads and pitch-black rooms, with no gradients, no shadows, and almost no color. Every surface is flat, every border is hairline, and the only accent is the warm cream/black contrast that runs through everything. The aesthetic borrows from museum wall labels and Renaissance folios: restrained, authoritative, slightly precious.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6c0b77d3-71f9-469d-98aa-4ce1d6d76ac8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Structured design system\",\"item\":\"https://styles.refero.design/style/6c0b77d3-71f9-469d-98aa-4ce1d6d76ac8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6c0b77d3-71f9-469d-98aa-4ce1d6d76ac8#style-reference\",\"name\":\"Structured design system reference\",\"headline\":\"Structured design system | Refero Styles\",\"description\":\"Explore Structured's mixed Crypto design system: Putty #c4c3b6, Ink #000000 colors, Davinci, Helvetica Now typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6c0b77d3-71f9-469d-98aa-4ce1d6d76ac8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6c0b77d3-71f9-469d-98aa-4ce1d6d76ac8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Structured\",\"url\":\"https://structured.money\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6c0b77d3-71f9-469d-98aa-4ce1d6d76ac8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/efc3c1cd-7577-4599-9753-f53d22ed573d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/efc3c1cd-7577-4599-9753-f53d22ed573d.jpg\",\"caption\":\"Screenshot of Structured\"},\"image\":\"https://images.refero.design/styles/refero.design/image/efc3c1cd-7577-4599-9753-f53d22ed573d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Structured design system\",\"Structured website design\",\"Structured colors\",\"Structured typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Putty\",\"Ink\",\"Bone\",\"Chalk\",\"Davinci\",\"Helvetica Now\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Structured design system\"},{\"@type\":\"Thing\",\"name\":\"Structured website design\"},{\"@type\":\"Thing\",\"name\":\"Structured colors\"},{\"@type\":\"Thing\",\"name\":\"Structured typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T00:18:18.109Z\",\"dateModified\":\"2026-04-30T00:18:18.109Z\"}]}19:T7bf,## Quick Color Reference\n- Background (light): #c4c3b6 (Putty)\n- Background (dark): #000000 (Ink)\n- Card surface: #e7e5e4 (Bone)\n- Text primary: #000000 on light / #ffffff on dark\n- Text muted: #595855 (Graphite)\n- Border: #dfdcd5 (Vellum)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Hero Wordmark Section**: Full-bleed #c4c3b6 background. Top-left: circled 'S' monogram in #000000 stroke. Top-right: 'Structured Points' in Helvetica Now 12px weight 400, #000000. Center cluster: 'REAL YIELD on BITCOIN' in Davinci 52px weight 500, #000000, letter-spacing -0.47px ('on' in italic). Below: 'TVL: 85 BTC    APY: 6%' in Helvetica Now 16px weight 500. Below: filled black pill button, 9px 17px padding, 28.8px radius, 'mint mxBTC' in Helvetica Now 12px weight 400, #ffffff. Then a 374px Davinci weight 500 #000000 wordmark 'Structured' at letter-spacing -3.37px, cropped at viewport edges.\n\n2. **Dark Feature Section**: Full-width #000000 background. Centered heading 'MAX BTC EXPLAINED' in Davinci 94px weight 500, #ffffff, letter-spacing -0.85px. 3-column grid below: each column has a Davinci 22px weight 400 caption in #ffffff, a ~200px circular image crop, and a 12px hexagonal outline indicator in #ffffff stroke. Column gap 28px.\n\n3. **Floating Product Card Over Painting**: Full-bleed classical landscape painting. Centered dark product card, ~400px square, #000000 background with notched/hexagonal corner cuts, 9px primary edge radius. Lower-left corner: 'SCROLL' in Helvetica Now 9px weight 400, #ffffff.\n\n4. **Stat Display Block**: Inline row of two stat pairs on #c4c3b6 background. 'TVL: 85 BTC' and 'APY: 6%' in Helvetica Now 16px weight 500, #000000, separated by 28px gap. No borders, no backgrounds.\n\n5. **Minimal Header**: Full-width #c4c3b6 background row, ~40px tall. Left: 32px circled 'S' monogram, 1.5px #000000 stroke, transparent fill. Right: 'Structured Points' text link in Helvetica Now 12px weight 400, #000000, no underline."
+      },
+      {
+        "title": "Typographic Philosophy",
+        "content": "The system uses size and tracking to create drama, not color or weight contrast. Display type at 94–374px carries letter-spacing between -0.85 and -3.37px — tighter as size increases, so the wordmark reads as a single carved shape rather than separate letters. Body type stays at 9–16px with normal tracking. The serif (Davinci) does all emotional work; the grotesk (Helvetica Now) does all functional work. Never let them compete: serif is for moments, grotesk is for systems. Line-heights compress at display sizes (0.84 at 94–374px) to make headings feel carved rather than set. The 374px hero wordmark is intentionally cropped at the viewport — it should always feel larger than the screen."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "heading",
+            "image",
+            "card",
+            "footer",
+            "hero",
+            "list",
+            "button"
+          ],
+          "frequency": 1063,
+          "confidence": 1,
+          "prominence": 139591623.8224031,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "body/color": 7,
+            "card/color": 1,
+            "icon/color": 2,
+            "link/color": 10,
+            "list/color": 11,
+            "other/fill": 78,
+            "image/color": 19,
+            "other/color": 135,
+            "button/color": 1,
+            "footer/color": 2,
+            "other/stroke": 8,
+            "heading/color": 5,
+            "body/borderColor": 28,
+            "card/borderColor": 4,
+            "icon/borderColor": 8,
+            "link/borderColor": 40,
+            "list/borderColor": 44,
+            "image/borderColor": 76,
+            "other/borderColor": 536,
+            "button/borderColor": 4,
+            "footer/borderColor": 8,
+            "heading/borderColor": 20,
+            "body/backgroundColor": 2,
+            "card/backgroundColor": 2,
+            "hero/backgroundColor": 2,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#dfdcd5",
+          "oklch": {
+            "c": 0.010011766624725875,
+            "h": 87.47566294853272,
+            "l": 0.8948860440332663
+          },
+          "contexts": [
+            "link",
+            "body",
+            "icon",
+            "other",
+            "button"
+          ],
+          "frequency": 134,
+          "confidence": 1,
+          "prominence": 67275138.86722238,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 13,
+            "icon/color": 4,
+            "link/color": 2,
+            "other/fill": 9,
+            "other/color": 3,
+            "button/color": 3,
+            "body/borderColor": 52,
+            "icon/borderColor": 16,
+            "link/borderColor": 8,
+            "other/borderColor": 12,
+            "button/borderColor": 12
+          }
+        },
+        {
+          "hex": "#c4c3b6",
+          "oklch": {
+            "c": 0.017900684550209073,
+            "h": 103.2132481397678,
+            "l": 0.8143451395401371
+          },
+          "contexts": [
+            "other",
+            "card",
+            "heading",
+            "body",
+            "hero",
+            "image"
+          ],
+          "frequency": 1848,
+          "confidence": 1,
+          "prominence": 16240267.784347909,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "card/color": 27,
+            "hero/color": 2,
+            "image/color": 6,
+            "other/color": 306,
+            "heading/color": 18,
+            "body/borderColor": 40,
+            "card/borderColor": 108,
+            "hero/borderColor": 8,
+            "image/borderColor": 24,
+            "other/borderColor": 1224,
+            "heading/borderColor": 72,
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ebebeb",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9400701157803539
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 3434723.101475295,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#595855",
+          "oklch": {
+            "c": 0.004954739036073317,
+            "h": 91.50147938809397,
+            "l": 0.4603288357225102
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 2180351.1959960554,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 30,
+            "other/borderColor": 8,
+            "body/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#e7e5e4",
+          "oklch": {
+            "c": 0.0025626580379085858,
+            "h": 48.716588288360384,
+            "l": 0.9231750366465967
+          },
+          "contexts": [
+            "heading",
+            "card",
+            "other",
+            "body"
+          ],
+          "frequency": 84,
+          "confidence": 1,
+          "prominence": 1061318.2263331697,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "card/color": 1,
+            "other/color": 10,
+            "heading/color": 1,
+            "body/borderColor": 12,
+            "card/borderColor": 4,
+            "other/borderColor": 40,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 467790.61114538094,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 1,
+            "link/color": 2,
+            "other/fill": 4,
+            "other/color": 2,
+            "other/stroke": 4,
+            "body/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 8,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "image"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 285437.8117002069,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "image/backgroundColor": 6
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.02931611974703221,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.62,
+          "background": "#ebebeb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.73,
+          "background": "#e7e5e4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.34,
+          "background": "#000000",
+          "foreground": "#dfdcd5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.83,
+          "background": "#c4c3b6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.11,
+          "background": "#595855",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.97,
+          "background": "#ebebeb",
+          "foreground": "#595855"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.67,
+          "background": "#595855",
+          "foreground": "#e7e5e4"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#808080",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.2,
+          "background": "#595855",
+          "foreground": "#dfdcd5"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.01,
+          "background": "#595855",
+          "foreground": "#c4c3b6"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#808080",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.15,
+          "background": "#808080",
+          "foreground": "#e7e5e4"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.95,
+          "background": "#595855",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.88,
+          "background": "#808080",
+          "foreground": "#dfdcd5"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.22,
+          "background": "#808080",
+          "foreground": "#c4c3b6"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.78,
+          "background": "#c4c3b6",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.49,
+          "background": "#ebebeb",
+          "foreground": "#c4c3b6"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.41,
+          "background": "#e7e5e4",
+          "foreground": "#c4c3b6"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.3,
+          "background": "#c4c3b6",
+          "foreground": "#dfdcd5"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 28.8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 222,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 126,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "body",
+            "hero",
+            "card"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|body",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 33,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|hero"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 12,
+          "properties": [
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "rowGap|other",
+            "columnGap|hero"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "card",
+            "heading"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 33,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "heading",
+            "body",
+            "card",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "marginTop|body",
+            "paddingBottom|card",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 91,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 102,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 130,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 163,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 168,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero"
+          ]
+        },
+        {
+          "value": 213,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Davinci",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 375,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Helvetica Now",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 233,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.83
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "Helvetica Now",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Helvetica Now",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link",
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Helvetica Now",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "icon",
+            "other",
+            "card",
+            "button"
+          ],
+          "frequency": 169,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Helvetica Now",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "card"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Helvetica Now",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Davinci",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "heading",
+            "image",
+            "card",
+            "footer",
+            "hero"
+          ],
+          "frequency": 157,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Now",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Helvetica Now",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Davinci",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Helvetica Now",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Helvetica Now",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Davinci",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 54,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "Helvetica Now",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Davinci",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 44,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 52,
+          "family": "Davinci",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Davinci",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 94,
+          "family": "Davinci",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 41,
+          "lineHeight": 1,
+          "letterSpacing": -0.005,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 94,
+          "family": "Davinci",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "lineHeight": 1,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 374,
+          "family": "Davinci",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 0.84,
+          "letterSpacing": -0.001,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/67df1221-43aa-4761-b5d7-f539d31d1585.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/efc3c1cd-7577-4599-9753-f53d22ed573d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6c0b77d3-71f9-469d-98aa-4ce1d6d76ac8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Structured design system\",\"item\":\"https://styles.refero.design/style/6c0b77d3-71f9-469d-98aa-4ce1d6d76ac8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6c0b77d3-71f9-469d-98aa-4ce1d6d76ac8#style-reference\",\"name\":\"Structured design system reference\",\"headline\":\"Structured design system | Refero Styles\",\"description\":\"Explore Structured's mixed Crypto design system: Putty #c4c3b6, Ink #000000 colors, Davinci, Helvetica Now typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6c0b77d3-71f9-469d-98aa-4ce1d6d76ac8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6c0b77d3-71f9-469d-98aa-4ce1d6d76ac8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Structured\",\"url\":\"https://structured.money\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6c0b77d3-71f9-469d-98aa-4ce1d6d76ac8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/efc3c1cd-7577-4599-9753-f53d22ed573d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/efc3c1cd-7577-4599-9753-f53d22ed573d.jpg\",\"caption\":\"Screenshot of Structured\"},\"image\":\"https://images.refero.design/styles/refero.design/image/efc3c1cd-7577-4599-9753-f53d22ed573d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Structured design system\",\"Structured website design\",\"Structured colors\",\"Structured typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Putty\",\"Ink\",\"Bone\",\"Chalk\",\"Davinci\",\"Helvetica Now\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Structured design system\"},{\"@type\":\"Thing\",\"name\":\"Structured website design\"},{\"@type\":\"Thing\",\"name\":\"Structured colors\"},{\"@type\":\"Thing\",\"name\":\"Structured typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T00:18:18.109Z\",\"dateModified\":\"2026-04-30T00:18:18.109Z\"}]}19:T7bf,## Quick Color Reference\n- Background (light): #c4c3b6 (Putty)\n- Background (dark): #000000 (Ink)\n- Card surface: #e7e5e4 (Bone)\n- Text primary: #000000 on light / #ffffff on dark\n- Text muted: #595855 (Graphite)\n- Border: #dfdcd5 (Vellum)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Hero Wordmark Section**: Full-bleed #c4c3b6 background. Top-left: circled 'S' monogram in #000000 stroke. Top-right: 'Structured Points' in Helvetica Now 12px weight 400, #000000. Center cluster: 'REAL YIELD on BITCOIN' in Davinci 52px weight 500, #000000, letter-spacing -0.47px ('on' in italic). Below: 'TVL: 85 BTC    APY: 6%' in Helvetica Now 16px weight 500. Below: filled black pill button, 9px 17px padding, 28.8px radius, 'mint mxBTC' in Helvetica Now 12px weight 400, #ffffff. Then a 374px Davinci weight 500 #000000 wordmark 'Structured' at letter-spacing -3.37px, cropped at viewport edges.\n\n2. **Dark Feature Section**: Full-width #000000 background. Centered heading 'MAX BTC EXPLAINED' in Davinci 94px weight 500, #ffffff, letter-spacing -0.85px. 3-column grid below: each column has a Davinci 22px weight 400 caption in #ffffff, a ~200px circular image crop, and a 12px hexagonal outline indicator in #ffffff stroke. Column gap 28px.\n\n3. **Floating Product Card Over Painting**: Full-bleed classical landscape painting. Centered dark product card, ~400px square, #000000 background with notched/hexagonal corner cuts, 9px primary edge radius. Lower-left corner: 'SCROLL' in Helvetica Now 9px weight 400, #ffffff.\n\n4. **Stat Display Block**: Inline row of two stat pairs on #c4c3b6 background. 'TVL: 85 BTC' and 'APY: 6%' in Helvetica Now 16px weight 500, #000000, separated by 28px gap. No borders, no backgrounds.\n\n5. **Minimal Header**: Full-width #c4c3b6 background row, ~40px tall. Left: 32px circled 'S' monogram, 1.5px #000000 stroke, transparent fill. Right: 'Structured Points' text link in Helvetica Now 12px weight 400, #000000, no underline."
+}

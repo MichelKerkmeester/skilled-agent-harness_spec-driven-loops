@@ -1,0 +1,1558 @@
+{
+  "source": "https://styles.refero.design/style/957da5c3-7063-4992-9d25-e255752dc9b3",
+  "uuid": "957da5c3-7063-4992-9d25-e255752dc9b3",
+  "name": "Fidèle Editions",
+  "northStar": "Risograph blue ink on warm cream paper. A single fluorescent blue floods headlines, the announcement bar, and a giant asterisk logo, stamped onto a flat cream stock with zero shadows and near-zero rounding — the page reads as a printed broadsheet, not a SaaS interface.",
+  "capturedAt": "2026-07-18T07:45:41.022Z",
+  "meta": {
+    "url": "https://fidele-editions.com",
+    "siteName": "Fidèle Editions",
+    "extractedAt": "2026-06-03T19:47:11.904Z",
+    "durationMs": 41884,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 429,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #f8f7ef as the page canvas on every screen — never substitute #ffffff for the base background.",
+      "Set display type (62px) with line-height 0.92 and letter-spacing -0.049em; characters must nearly touch to feel printed, not rendered.",
+      "Set body and label type (14–16px) with tracking +0.043em to +0.067em — the wide tracking is half the editorial voice.",
+      "Reserve Fidèle Blue (#1664eb) for type, the announcement bar, nav links, the asterisk, and outlined actions — one ink, used with volume.",
+      "Keep all corner radii at 0–4px; the page should read as cut paper, not as rounded UI cards.",
+      "Let the product grid float on Paper White without card backgrounds; the 1px white border around each product image is the only frame.",
+      "Use full-bleed image sections (photo strips, hero) with no rounding, no overlay, no caption — let the photography do the work."
+    ],
+    "donts": [
+      "Don't introduce drop shadows, inner shadows, or glow effects — the system is deliberately flat and reads as paper, not glass.",
+      "Don't use any chromatic color other than Fidèle Blue, Lighter Press Blue, and Link Blue — the cream + blue duotone is the entire palette.",
+      "Don't use filled solid-color buttons for primary actions; the system's primary control is the outlined Fidèle Blue action.",
+      "Don't set display type with generous line-height (1.2–1.5) — the crushed 0.92 leading is a signature, not a default.",
+      "Don't round cards, images, or tags beyond 4px; anything rounder breaks the print-stock metaphor.",
+      "Don't add gradients, textures, or noise — surfaces are flat solids, period.",
+      "Don't use #ffffff as a page background; it must remain the warm Paper White #f8f7ef to keep the editorial warmth."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#1664eb",
+        "name": "Fidèle Blue",
+        "role": "Headlines, nav links, brand asterisk, announcement bar fill, body borders — the single chromatic ink of the system; whenever color appears, this is it",
+        "group": "brand"
+      },
+      {
+        "hex": "#4f89ec",
+        "name": "Lighter Press Blue",
+        "role": "Secondary blue used for subtle borders, icon tints, and decorative strokes where Fidèle Blue would dominate",
+        "group": "brand"
+      },
+      {
+        "hex": "#006ce5",
+        "name": "Link Blue",
+        "role": "Deeper blue for inline hyperlinks within running text, slightly darker than the primary to read as a separate interactive state",
+        "group": "brand"
+      },
+      {
+        "hex": "#f8f7ef",
+        "name": "Paper White",
+        "role": "Page canvas and card surfaces — a warm off-white that gives the entire system its print-stock identity; never use pure #ffffff for page background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2e2df",
+        "name": "Card Cream",
+        "role": "Elevated surface for cards, panels, and product tiles — one step warmer/darker than Paper White for layering without shadows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#121212",
+        "name": "Press Black",
+        "role": "Body text, dark backgrounds, and the rare filled button — near-black rather than pure black, softening contrast on the cream stock",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed editorial layout with no max-width container on outer edges. The top stack is: announcement bar (full-bleed blue) → nav bar (Paper White) → optional headline strip → hero image (edge-to-edge). The product grid sits centered with a left-aligned 37–41px blue heading, 5 columns on desktop, tight 16px gaps. Below the grid, a 1px black rule line separates a full-bleed photo strip (4–6 images, no gaps). The final block is a 50/50 split — giant blue asterisk on the left, shipping photo on the right. The page rhythm is: loud brand bar → image → dense product grid → image band → brand mark + photo. Vertical spacing is compact (64px section gaps), and the layout never alternates light/dark — the cream canvas persists underneath everything except the announcement bar.",
+    "imagery": "Imagery is documentary-style product and studio photography: hands operating a risograph press, stacked publications on a table, cardboard shipping boxes wrapped in branded tape, a person wearing a printed t-shirt. All photography is natural-light, unposed, slightly grainy, and full-bleed — the camera is in the studio, not in a lifestyle set. Product images (book covers, zines, textiles) are shot straight-on with 1px white borders against the cream canvas. No illustrations, no 3D renders, no abstract graphics — the only graphical mark is the solid blue asterisk. The asterisk itself functions as both logo and section divider, and is the only non-photographic visual element on the site.",
+    "similar": [
+      {
+        "why": "Same editorial-print DNA — warm off-white canvas, large display type in a single brand color, full-bleed documentary photography, zero shadows or rounded corners.",
+        "business": "Apartamento Magazine"
+      },
+      {
+        "why": "Independent publishing storefronts with a single bold accent color stamped across headlines and announcement bars, flat layout, and tight product grids.",
+        "business": "Casa Magazines"
+      },
+      {
+        "why": "Shares the risograph-meets-newspaper sensibility: cream paper stock, one chromatic ink, sharp 4px corners, and type that ranges from crushed display to wide-tracked labels.",
+        "business": "The Newsprint (concept / newspaper-style Shopify themes)"
+      },
+      {
+        "why": "Full-bleed photography bands, flat cream canvases, and a 5-column product grid with minimal card chrome — though Fidèle is more aggressive with its single blue.",
+        "business": "MoMA Design Store editorial pages"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "4px",
+        "images": "0px",
+        "buttons": "4px"
+      },
+      "elementGap": "5px",
+      "sectionGap": "64px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f8f7ef",
+        "name": "Paper Stock",
+        "level": 0,
+        "purpose": "The base canvas — every page sits on this warm cream, never white"
+      },
+      {
+        "hex": "#e2e2df",
+        "name": "Card Cream",
+        "level": 1,
+        "purpose": "Product cards, inset panels, and elevated tiles — the only layering step above the canvas"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "level": 2,
+        "purpose": "Image frames and sharp contrast accents on top of the cream layers"
+      },
+      {
+        "hex": "#1664eb",
+        "name": "Fidèle Blue",
+        "level": 3,
+        "purpose": "Brand-color surface for the announcement bar, the giant asterisk, and any section that needs to read as 'inked'"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Risograph blue ink on warm cream paper. A single fluorescent blue floods headlines, the announcement bar, and a giant asterisk logo, stamped onto a flat cream stock with zero shadows and near-zero rounding — the page reads as a printed broadsheet, not a SaaS interface.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.88
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.69
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.5
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.55
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.65
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "heading-lg",
+        "size": 37,
+        "lineHeight": 0.96,
+        "letterSpacing": -0.74
+      },
+      {
+        "role": "display",
+        "size": 62,
+        "lineHeight": 0.92,
+        "letterSpacing": -3
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page promotional strip",
+        "description": "Full-bleed solid Fidèle Blue (#1664eb) background, white text, 1px white internal border. Centered single-line text in BaselGrotesk Book 14px, line-height 1.5, tracking +0.88px. Height ~40px. Acts as the loudest brand-color beat on every page."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Paper White (#f8f7ef) background, no border. Three-column flex: left nav links (Shop, About, Journal) in Fidèle Blue 14px; center wordmark 'Fidèle Editions' where 'Fidèle' is blue and 'Editions' is Press Black; right cluster (language selector, search icon, cart icon) in Fidèle Blue. Nav links have 5px horizontal padding. Height ~56px. No dropdown menus visible — flat, link-only."
+      },
+      {
+        "name": "Hero Image Block",
+        "role": "Full-bleed editorial photograph",
+        "description": "Edge-to-edge image with no rounding and no overlay. Sits directly below the nav and announcement bar. May have a single-line headline in BaselGrotesk 32–37px Fidèle Blue overlaid on the Paper White above the image, left-aligned with 14–24px padding."
+      },
+      {
+        "name": "Product Card",
+        "role": "Grid tile for a book, zine, t-shirt, or blanket",
+        "description": "Square product image, 1px Pure White (#ffffff) border, no rounding, Card Cream (#e2e2df) background behind image for letterboxing. Below image: product title in Press Black 14px, artist name in Press Black 14px, price right-aligned in Press Black 14px. 16px column-gap in the grid. Title and price sit on the Paper White canvas, not in a card surface."
+      },
+      {
+        "name": "Product Grid",
+        "role": "Shop 'What's on: Latest' listing",
+        "description": "5-column grid on desktop, uniform product cards, 16px column-gap, 32px row-gap. Section heading 'What's on: Latest' in BaselGrotesk 37–41px Fidèle Blue above the grid, left-aligned with 24px left margin. No card backgrounds behind individual tiles — the grid floats on Paper White."
+      },
+      {
+        "name": "Outlined Action Button",
+        "role": "Primary interactive control",
+        "description": "1–2px solid Fidèle Blue border, transparent or Paper White fill, Fidèle Blue text in BaselGrotesk Book 14px, padding 12px 24px, 4px corner radius. No fill state — this system uses outlined actions, not filled ones. Hover: invert (blue fill, white text)."
+      },
+      {
+        "name": "Photo Strip Section",
+        "role": "Full-bleed editorial image band",
+        "description": "Edge-to-edge row of 4–6 images, each ~16.6% width, no gaps, no rounding, no captions. Functions as a visual divider between content blocks. Sits on Paper White with no card treatment."
+      },
+      {
+        "name": "Split Feature Section",
+        "role": "Two-column image+content block",
+        "description": "50/50 split: one side holds a single large element (the giant blue asterisk SVG, or a photograph), the other holds supporting content. No background change between columns, no border — separation is purely spatial. The asterisk itself fills ~60% of its column as a 200–300px solid Fidèle Blue shape."
+      },
+      {
+        "name": "Giant Asterisk Mark",
+        "role": "Brand signature / decorative element",
+        "description": "Solid Fidèle Blue SVG of a 6-point asterisk (~200–300px), no stroke, no shadow, no rounding. Functions as a logo, section anchor, and visual punctuation — the system's most identifiable shape. Always rendered on Paper White, never on blue."
+      },
+      {
+        "name": "Product Detail Link",
+        "role": "Title link under a product image",
+        "description": "Press Black 14px BaselGrotesk Book, no underline, hovers to Fidèle Blue. Sits flush-left under the image; price uses the same style, flush-right in a separate flex child."
+      },
+      {
+        "name": "Language Selector",
+        "role": "Top-bar utility",
+        "description": "Fidèle Blue 14px text 'English' with a small downward chevron icon in Fidèle Blue. No dropdown chrome visible — the control is text-only with the caret as the affordance."
+      },
+      {
+        "name": "Icon Button (Search/Cart)",
+        "role": "Top-bar utility",
+        "description": "Fidèle Blue line icon (search lens, cart bag) at 20px, no button background, no border. Tap target extends to ~40px via padding. Icons are stroke-only, 1.5px weight, no fill."
+      },
+      {
+        "name": "Footer Rule Line",
+        "role": "Section divider",
+        "description": "1px solid Press Black or 60% Press Black horizontal line spanning the full content width, used to separate the product grid from the photo strip. 32–64px vertical margin on each side."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "The sole typeface of the system. Book weight (400) for body and most UI; Regular (400) for lists and some headings; Bold (700) for the rarest emphasis. Display sizes (62px) use line-height 0.92 with -0.049em tracking — characters nearly touch. Small labels (14px) use +0.063em tracking — wide, airy, stamped. The contrast between these two tracking regimes is the type signature.",
+        "sizes": "14, 16, 20, 22, 24, 26, 28, 32, 37, 38, 41, 62",
+        "family": "BaselGrotesk",
+        "weight": "400 (Book), 400 (Regular), 700 (Bold)",
+        "lineHeight": "0.92–1.80",
+        "substitute": "Inter, or NB International Pro for a closer geometric match",
+        "letterSpacing": "Display 62px: -0.049em (~-3.0px); 32–41px: -0.020em (~-0.8px); 20–28px: 0.025em (~+0.5px); 14–16px body: 0.043–0.067em (~+0.6 to +1.0px)"
+      },
+      {
+        "role": "Occasional display headlines where a more editorial/serif-leaning voice is wanted. Same 62px display size and tight 0.92 leading as BaselGrotesk display, -0.016em tracking.",
+        "sizes": "62",
+        "family": "OTMagister",
+        "weight": "400",
+        "lineHeight": "0.92",
+        "substitute": "GT Sectra Display, or Editorial Old (Pangram Pangram)",
+        "letterSpacing": "-0.0160em"
+      },
+      {
+        "role": "GTStandard-M — detected in extracted data but not described by AI",
+        "sizes": "14px",
+        "family": "GTStandard-M",
+        "weight": "400",
+        "lineHeight": "1.5"
+      },
+      {
+        "role": "Assistant — detected in extracted data but not described by AI",
+        "sizes": "26px",
+        "family": "Assistant",
+        "weight": "400",
+        "lineHeight": "1.5",
+        "letterSpacing": "0.025"
+      }
+    ],
+    "description": "Fidèle Editions operates as a risograph studio's web storefront: a warm cream paper canvas printed with one aggressive blue ink. The entire system is built on flatness — no shadows, no gradients, near-zero corner rounding, no decorative borders. Typography does the heavy lifting: a custom geometric sans (BaselGrotesk) at extreme size contrast, with display sizes crushed tight at 0.92 line-height and negative tracking, while small labels breathe with wide positive tracking. The vivid blue is used as a printing press uses ink — for type, nav, the announcement bar, and the massive asterisk logo — never as a subtle accent. Content lives in dense, editorial blocks: full-bleed imagery, tight product grids, photo strips. Every element feels stamped onto paper, not rendered on a screen.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/957da5c3-7063-4992-9d25-e255752dc9b3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Fidèle Editions design system\",\"item\":\"https://styles.refero.design/style/957da5c3-7063-4992-9d25-e255752dc9b3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/957da5c3-7063-4992-9d25-e255752dc9b3#style-reference\",\"name\":\"Fidèle Editions design system reference\",\"headline\":\"Fidèle Editions design system | Refero Styles\",\"description\":\"Explore Fidèle Editions's light E-commerce design system: Fidèle Blue #1664eb, Lighter Press Blue #4f89ec colors, Arial, BaselGrotesk typography, and...\",\"url\":\"https://styles.refero.design/style/957da5c3-7063-4992-9d25-e255752dc9b3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/957da5c3-7063-4992-9d25-e255752dc9b3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Fidèle Editions\",\"url\":\"https://fidele-editions.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/957da5c3-7063-4992-9d25-e255752dc9b3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a07eccb4-8574-419a-bca3-633c193cb57d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a07eccb4-8574-419a-bca3-633c193cb57d.jpg\",\"caption\":\"Screenshot of Fidèle Editions\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a07eccb4-8574-419a-bca3-633c193cb57d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Fidèle Editions design system\",\"Fidèle Editions website design\",\"Fidèle Editions colors\",\"Fidèle Editions typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Fidèle Blue\",\"Lighter Press Blue\",\"Link Blue\",\"Paper White\",\"Arial\",\"BaselGrotesk\",\"OTMagister\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Fidèle Editions design system\"},{\"@type\":\"Thing\",\"name\":\"Fidèle Editions website design\"},{\"@type\":\"Thing\",\"name\":\"Fidèle Editions colors\"},{\"@type\":\"Thing\",\"name\":\"Fidèle Editions typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:59:02.814Z\",\"dateModified\":\"2026-04-30T03:59:02.814Z\"}]}19:T515,## Quick Color Reference\n- text: #121212\n- background: #f8f7ef\n- border: #1664eb\n- accent: #1664eb (Fidèle Blue — used for type, announcement bar, asterisk)\n- card surface: #e2e2df\n- primary action: #1664eb (outlined action border)\n\n## 3-5 Example Component Prompts\n1. **Announcement bar**: full-bleed solid #1664eb background, white text, 1px white internal border top and bottom. Single line, centered. BaselGrotesk Book 14px, line-height 1.5, letter-spacing +0.88px. Height ~40px.\n2. **Product card**: square image with 1px #ffffff border, no rounding, #e2e2df letterbox behind. Below image, on #f8f7ef canvas: product title in #121212 BaselGrotesk Book 14px (tracking +0.6px), price right-aligned in same style. 16px column-gap in a 5-column grid.\n3. **Section headline**: 'What's on: Latest' in #1664eb BaselGrotesk 37px, line-height 0.96, letter-spacing -0.74px, left-aligned with 24px left margin, sitting directly on #f8f7ef.\n4. **Outlined action button**: 1px solid #1664eb border, #f8f7ef fill, #1664eb text in BaselGrotesk Book 14px (tracking +0.6px), padding 12px 24px, border-radius 4px. Hover state inverts to #1664eb fill with #ffffff text.\n5. **Giant brand asterisk**: solid #1664eb 6-point asterisk SVG, ~250px, no stroke, no shadow, centered in a 50% column on the #f8f7ef canvas."
+      }
+    ],
+    "elevationPhilosophy": "The system is strictly flat. No drop shadows, no inner glows, no border-based depth tricks. Surface hierarchy is communicated by tonal shifts in the cream palette (Paper White → Card Cream) and by the sudden introduction of Fidèle Blue as an 'inked' layer. Edges are sharp (4px max) so the page reads as paper sheets stacked on a table, not as floating Material cards."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1664eb",
+          "oklch": {
+            "c": 0.21655541991206173,
+            "h": 261.05055823599673,
+            "l": 0.5449580347299376
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "link",
+            "image",
+            "button",
+            "body",
+            "icon",
+            "input",
+            "list"
+          ],
+          "frequency": 790,
+          "confidence": 1,
+          "prominence": 100488280.27983601,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 6,
+            "body/color": 34,
+            "icon/color": 3,
+            "link/color": 7,
+            "list/color": 6,
+            "other/fill": 4,
+            "image/color": 2,
+            "input/color": 1,
+            "other/color": 60,
+            "button/color": 4,
+            "heading/color": 34,
+            "nav/borderColor": 24,
+            "body/borderColor": 136,
+            "icon/borderColor": 12,
+            "link/borderColor": 28,
+            "list/borderColor": 24,
+            "image/borderColor": 8,
+            "input/borderColor": 4,
+            "other/borderColor": 240,
+            "button/borderColor": 16,
+            "heading/borderColor": 136,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "image",
+            "body"
+          ],
+          "frequency": 270,
+          "confidence": 1,
+          "prominence": 24186469.496025726,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "image/color": 8,
+            "other/color": 43,
+            "button/color": 1,
+            "body/borderColor": 8,
+            "image/borderColor": 32,
+            "other/borderColor": 172,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f8f7ef",
+          "oklch": {
+            "c": 0.010611826097481738,
+            "h": 100.82056184487911,
+            "l": 0.9747105905150867
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 11393810.385296224,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#4f89ec",
+          "oklch": {
+            "c": 0.16102466595937523,
+            "h": 260.3239093512684,
+            "l": 0.6379569695931503
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 121,
+          "confidence": 1,
+          "prominence": 702596.5668581001,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 5,
+            "body/color": 2,
+            "icon/color": 1,
+            "other/fill": 1,
+            "other/color": 15,
+            "button/color": 1,
+            "nav/borderColor": 20,
+            "body/borderColor": 8,
+            "icon/borderColor": 4,
+            "other/borderColor": 60,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#e2e2df",
+          "oklch": {
+            "c": 0.00403028630689108,
+            "h": 106.47925033084228,
+            "l": 0.9119438275325067
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 455368.7108350065,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#006ce5",
+          "oklch": {
+            "c": 0.20171670937457536,
+            "h": 257.61887612377063,
+            "l": 0.5539125025270715
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 40399.24244244636,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 2,
+            "link/borderColor": 8
+          }
+        },
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 13824,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.428093563215503,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#121212",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.43,
+          "background": "#f8f7ef",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.43,
+          "background": "#e2e2df",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.46,
+          "background": "#121212",
+          "foreground": "#4f89ec"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.18,
+          "background": "#1664eb",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.82,
+          "background": "#f8f7ef",
+          "foreground": "#1664eb"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.57,
+          "background": "#f8f7ef",
+          "foreground": "#006ce5"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.99,
+          "background": "#e2e2df",
+          "foreground": "#1664eb"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.81,
+          "background": "#121212",
+          "foreground": "#006ce5"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.78,
+          "background": "#e2e2df",
+          "foreground": "#006ce5"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.62,
+          "background": "#121212",
+          "foreground": "#1664eb"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.19,
+          "background": "#f8f7ef",
+          "foreground": "#4f89ec"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.64,
+          "background": "#e2e2df",
+          "foreground": "#4f89ec"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.51,
+          "background": "#1664eb",
+          "foreground": "#4f89ec"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.3,
+          "background": "#e2e2df",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.07,
+          "background": "#f8f7ef",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.05,
+          "background": "#1664eb",
+          "foreground": "#006ce5"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "input",
+            "other",
+            "body"
+          ],
+          "frequency": 38,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|input",
+            "marginRight|input",
+            "marginBottom|input",
+            "marginLeft|input",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|button",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "button",
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|button",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "paddingTop|heading",
+            "paddingBottom|heading",
+            "marginTop|link",
+            "marginTop|body",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "heading",
+            "image"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginTop|image"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 156,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "BaselGrotesk Book",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 211,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "BaselGrotesk Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 201,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "OTMagisterUnlicensedTrial Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "BaselGrotesk Bold",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Assistant",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GTStandard-M",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.94
+      },
+      "steps": [
+        {
+          "size": 2,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image"
+          ],
+          "frequency": 77,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BaselGrotesk Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 195,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GTStandard-M",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 26,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "BaselGrotesk Regular",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "BaselGrotesk Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.023,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.96,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.043,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon",
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "body",
+            "link"
+          ],
+          "frequency": 20,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "BaselGrotesk Bold",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.067,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Assistant",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.063,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.96,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "BaselGrotesk Regular",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.92,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "BaselGrotesk Bold",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.92,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 37,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.96,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 41,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.92,
+          "letterSpacing": -0.049,
+          "textTransform": "none"
+        },
+        {
+          "size": 41,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.92,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.92,
+          "letterSpacing": -0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "OTMagisterUnlicensedTrial Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.92,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "BaselGrotesk Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.92,
+          "letterSpacing": -0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "OTMagisterUnlicensedTrial Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.92,
+          "letterSpacing": -0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "BaselGrotesk Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.92,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c727efc5-49d7-48f1-bc2d-2f1819536e50.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a07eccb4-8574-419a-bca3-633c193cb57d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/957da5c3-7063-4992-9d25-e255752dc9b3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Fidèle Editions design system\",\"item\":\"https://styles.refero.design/style/957da5c3-7063-4992-9d25-e255752dc9b3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/957da5c3-7063-4992-9d25-e255752dc9b3#style-reference\",\"name\":\"Fidèle Editions design system reference\",\"headline\":\"Fidèle Editions design system | Refero Styles\",\"description\":\"Explore Fidèle Editions's light E-commerce design system: Fidèle Blue #1664eb, Lighter Press Blue #4f89ec colors, Arial, BaselGrotesk typography, and...\",\"url\":\"https://styles.refero.design/style/957da5c3-7063-4992-9d25-e255752dc9b3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/957da5c3-7063-4992-9d25-e255752dc9b3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Fidèle Editions\",\"url\":\"https://fidele-editions.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/957da5c3-7063-4992-9d25-e255752dc9b3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a07eccb4-8574-419a-bca3-633c193cb57d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a07eccb4-8574-419a-bca3-633c193cb57d.jpg\",\"caption\":\"Screenshot of Fidèle Editions\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a07eccb4-8574-419a-bca3-633c193cb57d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Fidèle Editions design system\",\"Fidèle Editions website design\",\"Fidèle Editions colors\",\"Fidèle Editions typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Fidèle Blue\",\"Lighter Press Blue\",\"Link Blue\",\"Paper White\",\"Arial\",\"BaselGrotesk\",\"OTMagister\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Fidèle Editions design system\"},{\"@type\":\"Thing\",\"name\":\"Fidèle Editions website design\"},{\"@type\":\"Thing\",\"name\":\"Fidèle Editions colors\"},{\"@type\":\"Thing\",\"name\":\"Fidèle Editions typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:59:02.814Z\",\"dateModified\":\"2026-04-30T03:59:02.814Z\"}]}19:T515,## Quick Color Reference\n- text: #121212\n- background: #f8f7ef\n- border: #1664eb\n- accent: #1664eb (Fidèle Blue — used for type, announcement bar, asterisk)\n- card surface: #e2e2df\n- primary action: #1664eb (outlined action border)\n\n## 3-5 Example Component Prompts\n1. **Announcement bar**: full-bleed solid #1664eb background, white text, 1px white internal border top and bottom. Single line, centered. BaselGrotesk Book 14px, line-height 1.5, letter-spacing +0.88px. Height ~40px.\n2. **Product card**: square image with 1px #ffffff border, no rounding, #e2e2df letterbox behind. Below image, on #f8f7ef canvas: product title in #121212 BaselGrotesk Book 14px (tracking +0.6px), price right-aligned in same style. 16px column-gap in a 5-column grid.\n3. **Section headline**: 'What's on: Latest' in #1664eb BaselGrotesk 37px, line-height 0.96, letter-spacing -0.74px, left-aligned with 24px left margin, sitting directly on #f8f7ef.\n4. **Outlined action button**: 1px solid #1664eb border, #f8f7ef fill, #1664eb text in BaselGrotesk Book 14px (tracking +0.6px), padding 12px 24px, border-radius 4px. Hover state inverts to #1664eb fill with #ffffff text.\n5. **Giant brand asterisk**: solid #1664eb 6-point asterisk SVG, ~250px, no stroke, no shadow, centered in a 50% column on the #f8f7ef canvas."
+}

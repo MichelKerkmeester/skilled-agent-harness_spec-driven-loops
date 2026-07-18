@@ -1,0 +1,46 @@
+@theme {
+  /* Colors */
+  --color-obsidian-ink: #212123;
+  --color-bone: #ffffff;
+  --color-carbon: #000000;
+  --color-ash: #999999;
+  --color-pebble: #a6a6a7;
+
+  /* Typography */
+  --font-sequel100wide: 'Sequel100Wide', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1;
+  --tracking-caption: 1.5px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.2;
+  --tracking-body-sm: 0.4px;
+  --text-body: 16px;
+  --leading-body: 1.3;
+  --tracking-body: 0.2px;
+  --text-heading: 18px;
+  --leading-heading: 1.5;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-9: 9px;
+  --spacing-11: 11px;
+  --spacing-14: 14px;
+  --spacing-18: 18px;
+  --spacing-23: 23px;
+  --spacing-34: 34px;
+  --spacing-36: 36px;
+  --spacing-38: 38px;
+  --spacing-43: 43px;
+  --spacing-63: 63px;
+  --spacing-72: 72px;
+  --spacing-144: 144px;
+  --spacing-146: 146px;
+
+  /* Border Radius */
+  --radius-lg: 7.8768px;
+  --radius-lg-2: 10px;
+  --radius-full: 50.4px;
+}

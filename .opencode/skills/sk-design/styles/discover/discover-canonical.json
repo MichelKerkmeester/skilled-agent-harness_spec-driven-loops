@@ -1,0 +1,927 @@
+{
+  "source": "https://styles.refero.design/style/86de6781-d22b-4879-90df-44acb1fe20f3",
+  "uuid": "86de6781-d22b-4879-90df-44acb1fe20f3",
+  "name": "Discover",
+  "northStar": "Type museum on white marble — a near-black wordmark, a whisper of coral, and everything else recedes.",
+  "capturedAt": "2026-07-18T09:02:50.777Z",
+  "meta": {
+    "url": "https://fonts.ninja",
+    "siteName": "Discover",
+    "extractedAt": "2026-06-03T20:57:16.917Z",
+    "durationMs": 46412,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 858,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Signal Coral (#ee585a) exclusively for filled CTAs, inline text links, notification dots, and the floating filter pill — never as a background wash, never on large surface areas",
+      "Set all type in Aeonik (or Inter/Satoshi substitute) at -0.011em letter-spacing regardless of size — the consistent tight tracking is part of the brand voice",
+      "Apply 32px border-radius to all cards, buttons, and containers — this large radius is signature and defines the soft, modern feel",
+      "Use Ink (#121212) for all text and borders instead of pure #000000 — the warmth keeps the near-monochrome palette from feeling harsh",
+      "Limit shadows to the single token rgba(72,72,74,0.16) 0px 2px 32px 0px, applied only to cards and floating elements",
+      "Maintain 10px element gaps and 24px card padding as the base rhythm — jump to 48px for section separation",
+      "Let the wordmark or display heading carry visual weight; keep supporting UI quiet and monochrome"
+    ],
+    "donts": [
+      "Don't introduce additional accent colors — the 1% colorfulness is deliberate; Signal Coral is the only chromatic note allowed",
+      "Don't use sharp corners (0-4px radius) on any container — the 32px radius defines the system",
+      "Don't apply drop shadows to text, nav, or inline elements — shadows are reserved for cards and floating pills only",
+      "Don't use pure #000000 for body text — always use #121212 to maintain the soft contrast ratio (18.7:1)",
+      "Don't set display type at loose or normal letter-spacing — the -0.011em tight tracking is non-negotiable",
+      "Don't fill large background areas with Signal Coral — it loses impact at scale and should remain a small functional accent",
+      "Don't add gradients, textures, or decorative imagery — the system is deliberately flat and typographic"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#121212",
+        "name": "Ink",
+        "role": "Primary text, card borders, icon strokes, hairline dividers. A warm near-black chosen over #000 to soften contrast against white without losing authority",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dbdada",
+        "name": "Fog",
+        "role": "Ambient shadow tint, muted background washes, subtle surface elevation. Carries the 0.16-alpha shadow that lifts cards off the canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8e8e93",
+        "name": "Slate",
+        "role": "Secondary body text, de-emphasized metadata, inactive nav borders, helper copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ee585a",
+        "name": "Signal Coral",
+        "role": "Filled CTA backgrounds (action buttons, filter pills), inline text links, notification dot, hover/focus glow. The sole chromatic accent — one warm red against matte white creates urgency without aggression",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed layout with the wordmark stretching nearly edge-to-edge in the hero, establishing maximum typographic impact immediately. Below the hero, a 3-column responsive grid of font preview cards with generous 24-32px gutters. Content max-width approximately 1320px centered on the canvas. Section rhythm: the hero is a single expansive band, followed by a tighter grid section. Navigation is a minimal top bar with right-aligned utility cluster. No sidebar, no mega-menu, no sticky elements beyond the floating filter pill. The page reads top-to-bottom as: monumental wordmark → short descriptive paragraph → dense specimen grid. Asymmetric only in the hero's near-full-bleed scale; the grid below is symmetric and evenly spaced.",
+    "imagery": "No photography, no illustration, no abstract graphics. The only visual content beyond UI chrome is typographic specimens — oversized 'Aa' glyphs rendered directly in the interface as the product itself. Icons are minimal outlined glyphs (search, profile, hamburger, ninja mark) drawn in Ink at 24px with thin consistent stroke weight, monoline style. The wordmark functions as the hero image. Visual density is extremely low — text and specimens dominate, the rest is whitespace.",
+    "similar": [
+      {
+        "why": "Same near-monochrome gallery treatment for type specimens, oversized 'Aa' previews, and large border-radius on specimen cards",
+        "business": "Pangram Pangram"
+      },
+      {
+        "why": "Editorial type-foundry presentation with white canvas, single-weight typography, and type specimens as the primary visual",
+        "business": "Klim Type Foundry"
+      },
+      {
+        "why": "Near-monochrome minimalist interface with quiet chrome and a single accent color reserved for interactive elements",
+        "business": "Are.na"
+      },
+      {
+        "why": "Compact dense UI with generous border-radius, near-black text on white, and a single restrained accent palette",
+        "business": "Linear"
+      },
+      {
+        "why": "Type-specimen-first layout with specimen cards on white, minimal chrome, and no decorative imagery",
+        "business": "Velvetyne Type Foundry"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "32px",
+        "links": "16px",
+        "pills": "9999px",
+        "buttons": "32px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "48px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1320px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Base page background, full-bleed"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Font preview tiles, content panels — same hex as canvas but separated by shadow"
+      },
+      {
+        "hex": "#dbdada",
+        "name": "Shadow Tint",
+        "level": 2,
+        "purpose": "Ambient gray carried in card shadows at 0.16 alpha"
+      },
+      {
+        "hex": "#ee585a",
+        "name": "Action Surface",
+        "level": 3,
+        "purpose": "Filled CTAs, floating filter button, notification dot"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(72, 72, 74, 0.16) 0px 2px 32px 0px",
+        "element": "Font Preview Card"
+      }
+    ],
+    "northStar": "Type museum on white marble — a near-black wordmark, a whisper of coral, and everything else recedes.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.13
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.15
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.26
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.14,
+        "letterSpacing": -0.35
+      },
+      {
+        "role": "heading",
+        "size": 44,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "display",
+        "size": 120,
+        "lineHeight": 1,
+        "letterSpacing": -1.32
+      }
+    ],
+    "components": [
+      {
+        "name": "Font Preview Card",
+        "role": "Grid tile displaying a single typeface specimen",
+        "description": "White surface (#ffffff) on Canvas, 32px border-radius, ambient shadow rgba(72,72,74,0.16) 0px 2px 32px 0px. Centered specimen at ~120px Aeonik weight 700 in Ink (#121212) dominates the card. Below: font name in 16px weight 500 Ink, foundry and style count/price in 12-14px Slate (#8e8e93). Internal padding 24px, specimen area ~60% of card height."
+      },
+      {
+        "name": "Primary CTA Button (Filled)",
+        "role": "Action trigger — filter, submit, navigate",
+        "description": "Signal Coral (#ee585a) background, white (#ffffff) text, Aeonik 500 at 14-16px, 32px border-radius, 16px vertical × 24px horizontal padding. No border. Sits at full saturation against the monochrome canvas — the coral is the only chromatic voice in the room."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Inline navigation and secondary affordances",
+        "description": "Signal Coral (#ee585a) text in Aeonik 500 at 16px with an external-arrow glyph (↗). No underline, no background, no border. Inline within body copy or as standalone link. 16px border-radius on any container."
+      },
+      {
+        "name": "Floating Filter Pill",
+        "role": "Sticky filter trigger for typeface grid",
+        "description": "Signal Coral (#ee585a) filled pill, white text reading 'Filter typefaces' with a dropdown caret icon, 9999px border-radius (full pill), 10-12px vertical × 20px horizontal padding. Floats over grid content at fixed position."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Transparent/Canvas background, 56px horizontal padding. Left: small ninja mark icon. Right cluster: 'Fonts' (active, weight 500 Ink), 'Bookmarks' (weight 400 Slate), search icon, profile icon, hamburger — all 24px outlined icons in Ink with 24-32px gap between items."
+      },
+      {
+        "name": "Hero Wordmark",
+        "role": "Brand statement and page identity",
+        "description": "Full-bleed 'FONTS NINJA' set in Aeonik 700 at ~120px, Ink (#121212), tracking -1.32px, line-height 1.0. Near-edge-to-edge horizontal span. A 12px Signal Coral notification dot sits at the top-right of the final 'A' — a single pop of color that says 'new' without a badge or banner."
+      },
+      {
+        "name": "Notification Dot",
+        "role": "Status indicator on wordmark and possibly nav elements",
+        "description": "12px diameter circle, Signal Coral (#ee585a), no border, no shadow. Positioned as a superscript overlay."
+      },
+      {
+        "name": "Metadata Label",
+        "role": "Supporting text — foundry name, style count, price",
+        "description": "Aeonik 400 at 12-14px, Slate (#8e8e93). Two-column layout within cards: left-aligned descriptor, right-aligned price/style count. 10px gap between label and value."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Hero subtext and descriptive copy",
+        "description": "Aeonik 400 at 16-24px, Ink (#121212), line-height 1.5, max-width constrained to ~50-60ch. Inline links adopt Ghost Text Link styling."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across all UI. 700 for the monumental wordmark and large display headings, 500 for medium-emphasis labels and nav, 400 for body and metadata. Tight -0.011em tracking across all sizes tightens the geometric forms and gives the wordmark its dense, packed look.",
+        "sizes": "12, 14, 16, 24, 32, 44px",
+        "family": "Aeonik",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.00–1.50",
+        "substitute": "Inter, Satoshi, or General Sans",
+        "letterSpacing": "-0.011em (consistent across all sizes, roughly -0.13px at 12px through -0.48px at 44px)"
+      }
+    ],
+    "description": "Fonts Ninja is a near-monochrome gallery for letterforms, where the only chromatic note is a single warm coral that punctuates action. The canvas is near-white and stays quiet; type is the protagonist, presented at extreme scale and paired with generous negative space. Cards are soft-cornered white panels floating on a barely-there shadow, and every interactive element earns its color — most UI is ink-on-paper, and the coral appears only when something wants to be clicked. Density is compact but the layout breathes because margins are large and rhythm is measured in 10px and 24px increments rather than tight 4-8px stacks.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/86de6781-d22b-4879-90df-44acb1fe20f3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Discover design system\",\"item\":\"https://styles.refero.design/style/86de6781-d22b-4879-90df-44acb1fe20f3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/86de6781-d22b-4879-90df-44acb1fe20f3#style-reference\",\"name\":\"Discover design system reference\",\"headline\":\"Discover design system | Refero Styles\",\"description\":\"Explore Discover's light Design design system: Ink #121212, Canvas #ffffff colors, Aeonik typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/86de6781-d22b-4879-90df-44acb1fe20f3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/86de6781-d22b-4879-90df-44acb1fe20f3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Discover\",\"url\":\"https://fonts.ninja\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/86de6781-d22b-4879-90df-44acb1fe20f3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d3d9c818-cfe0-4b65-aeda-57a874284d22.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d3d9c818-cfe0-4b65-aeda-57a874284d22.jpg\",\"caption\":\"Screenshot of Discover\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d3d9c818-cfe0-4b65-aeda-57a874284d22.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Discover design system\",\"Discover website design\",\"Discover colors\",\"Discover typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink\",\"Canvas\",\"Fog\",\"Slate\",\"Aeonik\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Discover design system\"},{\"@type\":\"Thing\",\"name\":\"Discover website design\"},{\"@type\":\"Thing\",\"name\":\"Discover colors\"},{\"@type\":\"Thing\",\"name\":\"Discover typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-05-07T18:58:29.657Z\",\"dateModified\":\"2026-05-07T18:58:29.657Z\"}]}19:T702,**Quick Color Reference**\n- text: #121212 (Ink)\n- background: #ffffff (Canvas)\n- border: #121212 (Ink) at 1px\n- accent: #ee585a (Signal Coral)\n- primary action: #ee585a (filled action)\n- muted: #8e8e93 (Slate)\n\n**3-5 Example Component Prompts**\n\n1. *Hero wordmark section*: Full-bleed white canvas. Set 'FONTS NINJA' in Aeonik weight 700 at 120px, color #121212, letter-spacing -1.32px, line-height 1.0, stretching nearly edge-to-edge. Place a 12px diameter #ee585a circle at the top-right corner of the final letter as a notification dot. Below at 48px gap, add a body paragraph: Aeonik 400 at 24px, #121212, line-height 1.5, max-width 60ch. Inline the phrase 'Browse our library' as #ee585a Aeonik 500 with an external-arrow glyph (↗).\n\n2. *Font preview card*: White (#ffffff) surface, 32px border-radius, shadow rgba(72,72,74,0.16) 0px 2px 32px 0px. Centered specimen of 'Aa' at 120px Aeonik weight 700 in #121212 occupying the top 60% of the card. Bottom section with 24px internal padding: font name in Aeonik 500 16px #121212 on the left, style count in Aeonik 400 14px #8e8e93 on the right. Second row: foundry name in Aeonik 400 12px #8e8e93.\n\n3. Create a Primary Action Button: #ee585a background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n4. *Top navigation bar*: White transparent background, 56px horizontal padding. Left: 24px outlined ninja mark icon in #121212. Right cluster with 32px gaps: 'Fonts' (Aeonik 500 16px #121212), 'Bookmarks' (Aeonik 400 16px #8e8e93), search icon, profile icon, hamburger icon — all 24px outlined in #121212.\n\n5. *Typography grid section*: 3-column CSS grid with 24px gap, cards as described above. Section padding 48px top/bottom. Each card 32px border-radius with the single shadow token."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is reserved exclusively for font preview cards. Everything else — buttons, nav, links, the wordmark — sits flat on the canvas. The single shadow token is a soft, wide-spread (32px blur) ambient haze with low alpha (0.16), which lifts cards just enough to read as physical objects without adding visual weight. The shadow color is a desaturated cool gray, not a warm or branded tint, keeping the system feeling neutral and editorial."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "heading",
+            "card",
+            "badge",
+            "body",
+            "footer"
+          ],
+          "frequency": 3301,
+          "confidence": 1,
+          "prominence": 62597014.55697124,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 14,
+            "body/color": 135,
+            "card/color": 291,
+            "icon/color": 1,
+            "link/color": 15,
+            "other/fill": 1,
+            "badge/color": 24,
+            "other/color": 177,
+            "footer/color": 1,
+            "heading/color": 1,
+            "nav/borderColor": 56,
+            "body/borderColor": 540,
+            "card/borderColor": 1164,
+            "icon/borderColor": 4,
+            "link/borderColor": 60,
+            "badge/borderColor": 96,
+            "other/borderColor": 708,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4,
+            "nav/backgroundColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "card",
+            "body",
+            "button"
+          ],
+          "frequency": 733,
+          "confidence": 1,
+          "prominence": 1292319.1802322248,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 26,
+            "other/color": 68,
+            "button/color": 25,
+            "body/borderColor": 104,
+            "other/borderColor": 272,
+            "button/borderColor": 100,
+            "body/backgroundColor": 93,
+            "card/backgroundColor": 24,
+            "other/backgroundColor": 21
+          }
+        },
+        {
+          "hex": "#ee585a",
+          "oklch": {
+            "c": 0.18527573625094723,
+            "h": 22.95435020540943,
+            "l": 0.6597128733534205
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 79,
+          "confidence": 1,
+          "prominence": 118491.89828247383,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/color": 1,
+            "link/borderColor": 4,
+            "other/borderColor": 4,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 43,
+            "button/backgroundColor": 25
+          }
+        },
+        {
+          "hex": "#dbdada",
+          "oklch": {
+            "c": 0.00100915098633156,
+            "h": 351.76355930737395,
+            "l": 0.8896072909913973
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 47,
+          "confidence": 1,
+          "prominence": 64254.9935707969,
+          "properties": [
+            "boxShadow",
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/boxShadow": 21,
+            "other/borderColor": 4,
+            "other/backgroundColor": 21
+          }
+        },
+        {
+          "hex": "#8e8e93",
+          "oklch": {
+            "c": 0.007345764238523581,
+            "h": 286.1929927112283,
+            "l": 0.6483088310143137
+          },
+          "contexts": [
+            "nav",
+            "body",
+            "other"
+          ],
+          "frequency": 95,
+          "confidence": 1,
+          "prominence": 30185.46810330578,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "body/color": 15,
+            "other/color": 1,
+            "nav/borderColor": 12,
+            "body/borderColor": 60,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 8837.69912969122,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 5,
+            "button/color": 4,
+            "nav/borderColor": 20,
+            "button/borderColor": 16
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.009668171503986269,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#ffffff",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.05,
+          "background": "#dbdada",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.43,
+          "background": "#dbdada",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.18,
+          "background": "#ee585a",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.75,
+          "background": "#121212",
+          "foreground": "#8e8e93"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.51,
+          "background": "#ee585a",
+          "foreground": "#121212"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.4,
+          "background": "#ee585a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.26,
+          "background": "#ffffff",
+          "foreground": "#8e8e93"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.44,
+          "background": "#dbdada",
+          "foreground": "#ee585a"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.34,
+          "background": "#dbdada",
+          "foreground": "#8e8e93"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.4,
+          "background": "#dbdada",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#121212",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.04,
+          "background": "#ee585a",
+          "foreground": "#8e8e93"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 32,
+          "corners": [
+            0,
+            32,
+            32,
+            0
+          ],
+          "contexts": [
+            "card",
+            "button",
+            "other"
+          ],
+          "frequency": 69,
+          "asymmetric": true
+        },
+        {
+          "value": 69,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(72, 72, 74, 0.16) 0px 2px 32px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 48,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 67,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 271,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "card",
+            "button",
+            "other"
+          ],
+          "frequency": 142,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginBottom|card",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "card",
+            "footer"
+          ],
+          "frequency": 27,
+          "properties": [
+            "marginRight",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "paddingBottom|card",
+            "marginTop|footer",
+            "marginBottom|footer"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 48,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other",
+            "card",
+            "footer"
+          ],
+          "frequency": 54,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 66,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "aeonikFont",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 803,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "aeonikFont",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "aeonikFont",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "aeonikFont",
+          "weight": 700,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "aeonikFont",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 72,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "aeonikFont",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "button",
+            "card",
+            "image",
+            "badge",
+            "body",
+            "footer"
+          ],
+          "frequency": 640,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "aeonikFont",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "aeonikFont",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "aeonikFont",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 44,
+          "family": "aeonikFont",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/19e830b6-fc9a-4c44-95bc-f22a194c0dcc.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d3d9c818-cfe0-4b65-aeda-57a874284d22.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/86de6781-d22b-4879-90df-44acb1fe20f3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Discover design system\",\"item\":\"https://styles.refero.design/style/86de6781-d22b-4879-90df-44acb1fe20f3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/86de6781-d22b-4879-90df-44acb1fe20f3#style-reference\",\"name\":\"Discover design system reference\",\"headline\":\"Discover design system | Refero Styles\",\"description\":\"Explore Discover's light Design design system: Ink #121212, Canvas #ffffff colors, Aeonik typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/86de6781-d22b-4879-90df-44acb1fe20f3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/86de6781-d22b-4879-90df-44acb1fe20f3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Discover\",\"url\":\"https://fonts.ninja\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/86de6781-d22b-4879-90df-44acb1fe20f3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d3d9c818-cfe0-4b65-aeda-57a874284d22.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d3d9c818-cfe0-4b65-aeda-57a874284d22.jpg\",\"caption\":\"Screenshot of Discover\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d3d9c818-cfe0-4b65-aeda-57a874284d22.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Discover design system\",\"Discover website design\",\"Discover colors\",\"Discover typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink\",\"Canvas\",\"Fog\",\"Slate\",\"Aeonik\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Discover design system\"},{\"@type\":\"Thing\",\"name\":\"Discover website design\"},{\"@type\":\"Thing\",\"name\":\"Discover colors\"},{\"@type\":\"Thing\",\"name\":\"Discover typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-05-07T18:58:29.657Z\",\"dateModified\":\"2026-05-07T18:58:29.657Z\"}]}19:T702,**Quick Color Reference**\n- text: #121212 (Ink)\n- background: #ffffff (Canvas)\n- border: #121212 (Ink) at 1px\n- accent: #ee585a (Signal Coral)\n- primary action: #ee585a (filled action)\n- muted: #8e8e93 (Slate)\n\n**3-5 Example Component Prompts**\n\n1. *Hero wordmark section*: Full-bleed white canvas. Set 'FONTS NINJA' in Aeonik weight 700 at 120px, color #121212, letter-spacing -1.32px, line-height 1.0, stretching nearly edge-to-edge. Place a 12px diameter #ee585a circle at the top-right corner of the final letter as a notification dot. Below at 48px gap, add a body paragraph: Aeonik 400 at 24px, #121212, line-height 1.5, max-width 60ch. Inline the phrase 'Browse our library' as #ee585a Aeonik 500 with an external-arrow glyph (↗).\n\n2. *Font preview card*: White (#ffffff) surface, 32px border-radius, shadow rgba(72,72,74,0.16) 0px 2px 32px 0px. Centered specimen of 'Aa' at 120px Aeonik weight 700 in #121212 occupying the top 60% of the card. Bottom section with 24px internal padding: font name in Aeonik 500 16px #121212 on the left, style count in Aeonik 400 14px #8e8e93 on the right. Second row: foundry name in Aeonik 400 12px #8e8e93.\n\n3. Create a Primary Action Button: #ee585a background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n4. *Top navigation bar*: White transparent background, 56px horizontal padding. Left: 24px outlined ninja mark icon in #121212. Right cluster with 32px gaps: 'Fonts' (Aeonik 500 16px #121212), 'Bookmarks' (Aeonik 400 16px #8e8e93), search icon, profile icon, hamburger icon — all 24px outlined in #121212.\n\n5. *Typography grid section*: 3-column CSS grid with 24px gap, cards as described above. Section padding 48px top/bottom. Each card 32px border-radius with the single shadow token."
+}

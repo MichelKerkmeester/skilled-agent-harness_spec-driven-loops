@@ -1,0 +1,757 @@
+{
+  "source": "https://styles.refero.design/style/e48b2dd0-328a-42ab-ad0f-ed24901bac4c",
+  "uuid": "e48b2dd0-328a-42ab-ad0f-ed24901bac4c",
+  "name": "Adcker",
+  "northStar": "Giant brutalist poster on warm museum paper",
+  "capturedAt": "2026-07-18T07:44:35.882Z",
+  "meta": {
+    "url": "https://adcker.com",
+    "siteName": "Adcker",
+    "extractedAt": "2026-06-03T19:41:03.010Z",
+    "durationMs": 28565,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 213,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use display sizes exclusively at 173px or 185px — anything between 70px and 170px breaks the typographic extremes the system is built on",
+      "Maintain line-height 0.78-0.80 for display type to keep the massive headlines from drifting apart vertically",
+      "Set letter-spacing to -0.05em on all display text (nhm and Kumbh Sans tiers) to compensate for the wide counters at extreme sizes",
+      "Use the full 200px section gap between major content blocks — compact spacing here would undermine the editorial gravitas",
+      "Embed photographs inline within display text lockups rather than placing them as separate elements beside the text",
+      "Keep all text weight 400 unless explicitly calling for the nhm 700 weight — the system derives hierarchy from scale, not weight",
+      "Let the Bone Canvas (#efedea) serve as both background and surface — the monochromatic discipline is the point"
+    ],
+    "donts": [
+      "Never introduce chromatic colors, brand accents, or semantic state colors — the 0% colorfulness is the system",
+      "Never apply border-radius to any element — all corners are sharp (0px) to preserve the brutalist editorial feel",
+      "Never use shadows, glows, or elevation effects — the system is completely flat",
+      "Never use body text larger than 21px or smaller than 16px — the gap between body and display is intentional and vast",
+      "Never use a centered CTA button with a colored fill — interactive elements are text links with underlines, not buttons",
+      "Never set display type at line-height above 0.85 — the tight leading is what makes 185px text feel like a single sculptural object",
+      "Never overlay text on dark backgrounds to create contrast — invert by using Ink Black (#191919) as a full surface, not as a treatment"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#191919",
+        "name": "Ink Black",
+        "role": "All text, headlines, borders, link colors — the sole foreground color in the entire system. Near-black rather than pure black adds warmth that harmonizes with the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efedea",
+        "name": "Bone Canvas",
+        "role": "Page background, card surfaces, nav bar — the warm off-white ground that makes the near-black ink read with high contrast (15.1:1 AAA) without feeling harsh or clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e3e1de",
+        "name": "Stone Veil",
+        "role": "Subtle surface variation against Bone Canvas — used sparingly for secondary panels or section backgrounds to create depth without introducing color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page model is full-bleed with centered content alignment. The hero is a massive centered typographic statement ('THE ART * ( ) OF HACKING SOCIAL') that fills the viewport vertically, with a small photograph embedded inline within the text. Navigation is a minimal top bar — logo left, 'Menu' right — sitting directly on the cream canvas with no container or border. The hero bleeds edge-to-edge with generous breathing room (200px) between sections. No visible grid structure, no card layouts, no sidebars. The content rhythm is: oversized editorial display → quiet metadata → embedded media → massive whitespace → repeat. The layout reads as a scrolling poster, not a traditional web page.",
+    "imagery": "Photography is used sparingly but with high impact — one candid human portrait visible, cropped tightly and embedded directly within a display headline as inline content. The treatment is raw: natural color, warm skin tones, no filter or grading that would clash with the cream canvas. Images carry no border, no radius, no shadow — they sit flush against the Bone Canvas. The role of imagery is punctuation, not decoration: a single photograph interrupting a wall of text creates more impact than a gallery grid. No illustrations, no icons visible, no abstract graphics. The system communicates through type alone, with photography as the sole non-textual element.",
+    "similar": [
+      {
+        "why": "Same oversized editorial display type and monochromatic discipline with photography embedded in headlines",
+        "business": "Buck (buck.co)"
+      },
+      {
+        "why": "Extreme typographic scale, 0% colorfulness, and the same editorial poster-page treatment",
+        "business": "Gunner (gunnercooke.com style work)"
+      },
+      {
+        "why": "Bold creative agency aesthetic with massive display headlines and near-zero chromatic color",
+        "business": "Resn (resn.co.nz)"
+      },
+      {
+        "why": "Typography-as-architecture approach with flat surfaces and warm off-white canvases",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Brutalist creative agency layouts with extreme type sizes and embedded media in text lockups",
+        "business": "Ueno (ueno.co)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "200px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#efedea",
+        "name": "Bone Canvas",
+        "level": 1,
+        "purpose": "Primary page background and dominant surface"
+      },
+      {
+        "hex": "#e3e1de",
+        "name": "Stone Veil",
+        "level": 2,
+        "purpose": "Secondary surface for subtle layering"
+      },
+      {
+        "hex": "#191919",
+        "name": "Ink Black",
+        "level": 3,
+        "purpose": "Inverted surface for dark sections or contrast blocks"
+      }
+    ],
+    "northStar": "Giant brutalist poster on warm museum paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "body",
+        "size": 21,
+        "lineHeight": 1,
+        "letterSpacing": -1.05
+      },
+      {
+        "role": "subheading",
+        "size": 34,
+        "lineHeight": 1,
+        "letterSpacing": -0.51
+      },
+      {
+        "role": "heading",
+        "size": 69,
+        "lineHeight": 1,
+        "letterSpacing": -1.035
+      },
+      {
+        "role": "display",
+        "size": 173,
+        "lineHeight": 0.78,
+        "letterSpacing": -8.65
+      },
+      {
+        "role": "display-lg",
+        "size": 185,
+        "lineHeight": 0.8,
+        "letterSpacing": -9.25
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal site header",
+        "description": "Fixed-position bar with logo (Adcker) left-aligned and 'Menu' text right-aligned. No background fill or border — sits directly on Bone Canvas. All text at 16px nhm 400 in Ink Black. The absence of a visible container reinforces the editorial, borderless aesthetic."
+      },
+      {
+        "name": "Editorial Display Headline",
+        "role": "Hero typographic lockup",
+        "description": "Centered text at 173-185px nhm 400, line-height 0.78-0.80, letter-spacing -0.05em. Text fills the viewport width. Photographs and media elements are embedded inline within the text flow (not overlaid), cropped to the shape of the characters they replace. No background, no border, no shadow — pure typographic presence on Bone Canvas."
+      },
+      {
+        "name": "Metadata Label",
+        "role": "Small editorial annotation",
+        "description": "Tiny text annotations like 'Showreel' or 'We're built for' at 16-21px nhm 400 in Ink Black. Positioned with generous whitespace adjacent to the dominant display element. These act as quiet directional cues rather than interactive elements."
+      },
+      {
+        "name": "Showreel Player",
+        "role": "Video showcase container",
+        "description": "Full-bleed or large contained video frame on Bone Canvas, referenced by the 'Showreel' metadata label. No visible chrome, controls, or border — the video IS the component. 0px radius, no shadow."
+      },
+      {
+        "name": "Case Study Card",
+        "role": "Project portfolio entry",
+        "description": "Flat card on Bone Canvas with no border or shadow. Internal spacing: 32px padding. Contains a project title at heading size (69px) and metadata at caption size (16px). Images are flush, 0px radius, extending to card edges."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline navigation",
+        "description": "Underlined link with 2px padding-bottom and 20px padding-right spacing. Uses Ink Black color with a border-bottom in the same color. No fill, no background, no interactive state color change — the underline IS the interactive affordance."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Visual section break",
+        "description": "No visible divider element — sections are separated by the 200px vertical gap alone. The cream canvas flows seamlessly between content blocks, with the massive scale of display type providing implicit section boundaries."
+      },
+      {
+        "name": "Full-Bleed Image Block",
+        "role": "Photography showcase",
+        "description": "Edge-to-edge images at 0px radius, no border, no shadow. Photography is candid and human — warm skin tones, natural expressions, no studio staging. Images may be embedded within text lockups or stand alone as full-viewport sections."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary type system spanning body (16-21px) to extreme display (173-185px). Weight 400 carries both the whisper-quiet metadata and the 185px display headlines — the system trusts the scale to create hierarchy rather than reaching for bold weights. Letter-spacing tightens aggressively to -0.05em at display sizes to prevent the large counters from feeling airy.",
+        "sizes": "16, 21, 173, 185",
+        "family": "nhm",
+        "weight": "400, 700",
+        "lineHeight": "0.78, 1.00, 1.10, 1.20",
+        "substitute": "Neue Haas Grotesk, Inter, Helvetica Neue",
+        "letterSpacing": "-0.8px at 16px, -1.05px at 21px, -8.65px at 173px, -9.25px at 185px",
+        "fontFeatureSettings": ""
+      },
+      {
+        "role": "Mid-scale display for subheadings and section titles. Sits between body text and the extreme display tier, carrying -0.015em tracking for controlled density at smaller display sizes.",
+        "sizes": "34, 69",
+        "family": "psl",
+        "weight": "400",
+        "lineHeight": "1.00, 1.20",
+        "substitute": "Inter, Söhne",
+        "letterSpacing": "-0.51px at 34px, -1.035px at 69px",
+        "fontFeatureSettings": ""
+      },
+      {
+        "role": "Body text alternative at 21px with normal tracking — used for longer-form passages where the tighter nhm spacing would feel constrained.",
+        "sizes": "21",
+        "family": "psr",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Inter, system-ui",
+        "letterSpacing": "normal",
+        "fontFeatureSettings": ""
+      },
+      {
+        "role": "Alternate display family at extreme sizes, sharing the same -0.05em tracking and tight 0.78-0.80 line-height as nhm. Provides a geometric counterpoint to nhm's neo-grotesque character for typographic variation within display lockups.",
+        "sizes": "173, 185",
+        "family": "Kumbh Sans",
+        "weight": "400",
+        "lineHeight": "0.78, 0.80",
+        "substitute": "Kumbh Sans (Google Fonts)",
+        "letterSpacing": "-8.65px at 173px, -9.25px at 185px",
+        "fontFeatureSettings": ""
+      }
+    ],
+    "description": "Adcker operates as a typographic monolith: one warm cream canvas, one near-black ink, and display type so large it becomes architecture. The entire interface runs on the tension between oversized editorial headlines and whisper-quiet metadata, with no chromatic accents to soften the impact. Every visual decision is editorial — this reads like the opening spread of a print magazine, not a software product. The 0% colorfulness is deliberate: chromatic color would dilute the authority that sheer typographic scale already provides. The only non-text element that breaks the monochrome spell is a single candid photograph literally embedded inside the headline, treating the image as punctuation rather than decoration.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e48b2dd0-328a-42ab-ad0f-ed24901bac4c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Adcker design system\",\"item\":\"https://styles.refero.design/style/e48b2dd0-328a-42ab-ad0f-ed24901bac4c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e48b2dd0-328a-42ab-ad0f-ed24901bac4c#style-reference\",\"name\":\"Adcker design system reference\",\"headline\":\"Adcker design system | Refero Styles\",\"description\":\"Explore Adcker's light Agency design system: Ink Black #191919, Bone Canvas #efedea colors, nhm, psl typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e48b2dd0-328a-42ab-ad0f-ed24901bac4c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e48b2dd0-328a-42ab-ad0f-ed24901bac4c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Adcker\",\"url\":\"https://adcker.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e48b2dd0-328a-42ab-ad0f-ed24901bac4c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6e7e4e72-64b6-4054-8845-069f8e73b6ee.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6e7e4e72-64b6-4054-8845-069f8e73b6ee.jpg\",\"caption\":\"Screenshot of Adcker\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6e7e4e72-64b6-4054-8845-069f8e73b6ee.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Adcker design system\",\"Adcker website design\",\"Adcker colors\",\"Adcker typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Bone Canvas\",\"Stone Veil\",\"nhm\",\"psl\",\"psr\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Adcker design system\"},{\"@type\":\"Thing\",\"name\":\"Adcker website design\"},{\"@type\":\"Thing\",\"name\":\"Adcker colors\"},{\"@type\":\"Thing\",\"name\":\"Adcker typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-10T22:02:11.645Z\",\"dateModified\":\"2026-05-10T22:02:11.645Z\"}]}19:T504,Quick Color Reference:\n- Canvas/background: #efedea (Bone Canvas)\n- Text/headlines: #191919 (Ink Black)\n- Borders/dividers: #191919 (Ink Black)\n- Accent: none (monochromatic system)\n- primary action: no distinct CTA color\n- Surface variation: #e3e1de (Stone Veil)\n\nExample Component Prompts:\n\n1. Editorial Display Headline: Center the text 'BUILD SOMETHING' at 185px using nhm 400, color #191919, letter-spacing -9.25px, line-height 0.80, on a #efedea background. Text fills the viewport width.\n\n2. Top Navigation Bar: Place 'Adcker' in nhm 700 at 16px in the top-left corner and 'Menu' in nhm 400 at 16px in the top-right corner. Both in #191919. No background, no border, no padding beyond 4px vertical.\n\n3. Metadata Label: Position a small text label 'Showreel' at 16px nhm 400 in #191919, with 15px padding from the nearest display text element. No background, no border.\n\n4. Case Study Card: Create a section with a project title at 69px psl 400 in #191919 (letter-spacing -1.035px), 32px padding, on a #efedea background. Below it, a caption at 16px nhm 400 in #191919.\n\n5. Full-Bleed Photography: Place a candid portrait photograph edge-to-edge at 0px radius with no border, no shadow, directly on the #efedea canvas. The image should feel warm-toned and natural, not filtered."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "This system has zero elevation. No shadows, no glows, no overlays, no z-axis depth. Depth is communicated exclusively through typographic scale, whitespace, and the contrast between the cream canvas and black ink. Elements that would traditionally be 'elevated' (cards, modals, popovers) sit flush on the same plane as everything else, distinguished only by content density and proximity. This flatness is not a constraint — it is the design language. Introducing even a single shadow would break the editorial poster metaphor that defines the entire visual identity."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#191919",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.21342250711191385
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "image",
+            "link"
+          ],
+          "frequency": 698,
+          "confidence": 1,
+          "prominence": 75344213.54534648,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 19,
+            "link/color": 4,
+            "other/fill": 1,
+            "image/color": 8,
+            "other/color": 96,
+            "heading/color": 13,
+            "body/borderColor": 76,
+            "link/borderColor": 16,
+            "image/borderColor": 32,
+            "other/borderColor": 380,
+            "heading/borderColor": 52,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#efedea",
+          "oklch": {
+            "c": 0.004558410385960904,
+            "h": 78.29752075080516,
+            "l": 0.9468094378162711
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "heading"
+          ],
+          "frequency": 277,
+          "confidence": 1,
+          "prominence": 45389825.03163769,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 18,
+            "link/color": 11,
+            "other/fill": 17,
+            "other/color": 21,
+            "heading/color": 1,
+            "body/borderColor": 72,
+            "link/borderColor": 44,
+            "other/borderColor": 84,
+            "heading/borderColor": 4,
+            "body/backgroundColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e3e1de",
+          "oklch": {
+            "c": 0.004602973349699856,
+            "h": 78.29673033560616,
+            "l": 0.9104586578880373
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 118403.48308607025,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 9
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0035819227561482885,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.05,
+          "background": "#efedea",
+          "foreground": "#191919"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.47,
+          "background": "#e3e1de",
+          "foreground": "#191919"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#e3e1de",
+          "foreground": "#efedea"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 41,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|body",
+            "columnGap|body",
+            "columnGap|other",
+            "paddingTop|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 31,
+          "properties": [
+            "rowGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|heading",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|heading",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|heading",
+            "paddingBottom|heading",
+            "columnGap|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "nhm",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 171,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "psr",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Kumbh Sans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 9,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "psl",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Augmented Fourth",
+        "ratio": 1.414,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "nhm",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "heading",
+            "image"
+          ],
+          "frequency": 125,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "nhm",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "psr",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "nhm",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "psl",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 69,
+          "family": "psl",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 173,
+          "family": "Kumbh Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.78,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 173,
+          "family": "nhm",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading",
+            "image"
+          ],
+          "frequency": 18,
+          "lineHeight": 0.78,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 185,
+          "family": "Kumbh Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 185,
+          "family": "nhm",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.78,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/0b933da1-b9b2-4f69-9893-2eedc42d9afe.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6e7e4e72-64b6-4054-8845-069f8e73b6ee.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e48b2dd0-328a-42ab-ad0f-ed24901bac4c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Adcker design system\",\"item\":\"https://styles.refero.design/style/e48b2dd0-328a-42ab-ad0f-ed24901bac4c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e48b2dd0-328a-42ab-ad0f-ed24901bac4c#style-reference\",\"name\":\"Adcker design system reference\",\"headline\":\"Adcker design system | Refero Styles\",\"description\":\"Explore Adcker's light Agency design system: Ink Black #191919, Bone Canvas #efedea colors, nhm, psl typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e48b2dd0-328a-42ab-ad0f-ed24901bac4c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e48b2dd0-328a-42ab-ad0f-ed24901bac4c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Adcker\",\"url\":\"https://adcker.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e48b2dd0-328a-42ab-ad0f-ed24901bac4c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6e7e4e72-64b6-4054-8845-069f8e73b6ee.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6e7e4e72-64b6-4054-8845-069f8e73b6ee.jpg\",\"caption\":\"Screenshot of Adcker\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6e7e4e72-64b6-4054-8845-069f8e73b6ee.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Adcker design system\",\"Adcker website design\",\"Adcker colors\",\"Adcker typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Bone Canvas\",\"Stone Veil\",\"nhm\",\"psl\",\"psr\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Adcker design system\"},{\"@type\":\"Thing\",\"name\":\"Adcker website design\"},{\"@type\":\"Thing\",\"name\":\"Adcker colors\"},{\"@type\":\"Thing\",\"name\":\"Adcker typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-10T22:02:11.645Z\",\"dateModified\":\"2026-05-10T22:02:11.645Z\"}]}19:T504,Quick Color Reference:\n- Canvas/background: #efedea (Bone Canvas)\n- Text/headlines: #191919 (Ink Black)\n- Borders/dividers: #191919 (Ink Black)\n- Accent: none (monochromatic system)\n- primary action: no distinct CTA color\n- Surface variation: #e3e1de (Stone Veil)\n\nExample Component Prompts:\n\n1. Editorial Display Headline: Center the text 'BUILD SOMETHING' at 185px using nhm 400, color #191919, letter-spacing -9.25px, line-height 0.80, on a #efedea background. Text fills the viewport width.\n\n2. Top Navigation Bar: Place 'Adcker' in nhm 700 at 16px in the top-left corner and 'Menu' in nhm 400 at 16px in the top-right corner. Both in #191919. No background, no border, no padding beyond 4px vertical.\n\n3. Metadata Label: Position a small text label 'Showreel' at 16px nhm 400 in #191919, with 15px padding from the nearest display text element. No background, no border.\n\n4. Case Study Card: Create a section with a project title at 69px psl 400 in #191919 (letter-spacing -1.035px), 32px padding, on a #efedea background. Below it, a caption at 16px nhm 400 in #191919.\n\n5. Full-Bleed Photography: Place a candid portrait photograph edge-to-edge at 0px radius with no border, no shadow, directly on the #efedea canvas. The image should feel warm-toned and natural, not filtered."
+}

@@ -1,0 +1,304 @@
+{
+  "color": {
+    "ember-gradient": {
+      "$value": "#f42919",
+      "$type": "color",
+      "$description": "Ember Gradient — Brand mark, Poly logo, the sole chromatic accent — warm orange fading to signal red, used only on identity, never on body UI"
+    },
+    "porcelain": {
+      "$value": "#f4f4f4",
+      "$type": "color",
+      "$description": "Porcelain — Page canvas, card surfaces, inverted text on dark photo backgrounds"
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "graphite": {
+      "$value": "#292930",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, hairline borders, icon fills, the slight warmth that keeps near-black from feeling clinical"
+    },
+    "ash": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Ash — Shadow tone used in the soft-etched link treatment, muted dividers"
+    }
+  },
+  "font": {
+    "haffer-variable": {
+      "$value": "Haffer Variable",
+      "$type": "fontFamily",
+      "$description": "Primary display serif for headlines at 30–53px. Weight 450 is anti-convention — most product sites push display to 600–700, but Haffer at 450 keeps headlines warm and editorial rather than commanding. Activating liga and ss04 unlocks the alternative g and stylised letterforms that give the wordmark its personality."
+    },
+    "bogue": {
+      "$value": "Bogue",
+      "$type": "fontFamily",
+      "$description": "Companion serif at regular weight, used for badge labels and secondary serif moments where Haffer 450 would feel too heavy. Tighter tracking at -0.03em distinguishes it from Haffer."
+    },
+    "haffer": {
+      "$value": "Haffer",
+      "$type": "fontFamily",
+      "$description": "Static fallback for small serif text — 15px badges, 24px sub-serial moments"
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "All UI, body, nav, button labels, helper text. Inter at 400 handles body, 600 carries subheadings and button text. The -0.02em tracking matches the serif family, keeping the type system visually unified."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Haffer",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Haffer Variable",
+        "fontSize": "24px",
+        "fontWeight": 450,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Bogue",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Bogue",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "Haffer",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Haffer Variable",
+        "fontSize": "30px",
+        "fontWeight": 450,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Bogue",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 45px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Haffer Variable",
+        "fontSize": "45px",
+        "fontWeight": 450,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 45px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Bogue",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Haffer Variable",
+        "fontSize": "53px",
+        "fontWeight": 450,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 53px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Bogue",
+        "fontSize": "53px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 53px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "33": {
+      "$value": "33px",
+      "$type": "dimension",
+      "$description": "Spacing 33px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "69": {
+      "$value": "69px",
+      "$type": "dimension",
+      "$description": "Spacing 69px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.2) 2px 2px 5px 0px, rgba(0, 0, 0, 0.15) -2px -2px 4px 0px inset, rgba(255, 255, 255, 0.15) 2px 2px 4px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "porcelain-canvas": {
+      "$value": "#f4f4f4",
+      "$type": "color",
+      "$description": "Surface level 0: Page background across all content sections"
+    },
+    "ink-panel": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Photo overlays, dark feature bands, button fills"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://poly.app",
+      "siteName": "Poly",
+      "extractedAt": "2026-06-03T19:29:44.088Z",
+      "variant": "extended"
+    }
+  }
+}

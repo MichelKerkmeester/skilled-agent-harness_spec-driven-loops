@@ -1,0 +1,107 @@
+:root {
+  /* Colors */
+  --color-royal-plum: #6a2f8d;
+  --color-plum-mist: #eee8fd;
+  --color-lilac-outline: #da9efd;
+  --color-forest-mark: #2f8d6e;
+  --color-obsidian: #1d161d;
+  --color-graphite: #2a232a;
+  --color-smoke: #574e57;
+  --color-warm-gray: #786c78;
+  --color-mist-gray: #a89ea8;
+  --color-hairline: #d9d9d9;
+  --color-parchment: #f8f6f8;
+  --color-paper: #ffffff;
+  --color-carbon: #000000;
+
+  /* Typography — Font Families */
+  --font-sans-serif: 'sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-roobert: 'Roobert', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-haas-grot-text-web-55-roman-65-medium: 'Haas Grot Text Web (55 Roman + 65 Medium)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-dm-mono: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-haas-grot-text-web-65-medium: 'Haas Grot Text Web 65 Medium', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-neue-haas-grotesk-text: 'Neue Haas Grotesk Text', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.2;
+  --tracking-caption: 0.1px;
+  --text-label-mono: 12px;
+  --leading-label-mono: 1.2;
+  --tracking-label-mono: 0.77px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --tracking-body-sm: -0.14px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: -0.16px;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.56;
+  --tracking-body-lg: -0.18px;
+  --text-heading-sm: 28px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.84px;
+  --text-heading: 40px;
+  --leading-heading: 1.15;
+  --tracking-heading: -1.2px;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.13;
+  --tracking-heading-lg: -1.44px;
+  --text-display: 64px;
+  --leading-display: 1;
+  --tracking-display: -2.56px;
+  --text-display-lg: 72px;
+  --leading-display-lg: 1;
+  --tracking-display-lg: -2.88px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-13: 13px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-128: 128px;
+  --spacing-160: 160px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 20px;
+  --element-gap: 10px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+
+  /* Named Radii */
+  --radius-tags: 2px;
+  --radius-cards: 2px;
+  --radius-images: 2px;
+  --radius-inputs: 2px;
+  --radius-buttons: 2px;
+
+  /* Shadows */
+  --shadow-md: rgba(0, 0, 0, 0.5) 0px 0px 12px 0px inset;
+
+  /* Surfaces */
+  --surface-parchment: #f8f6f8;
+  --surface-paper: #ffffff;
+  --surface-plum-mist: #eee8fd;
+  --surface-royal-plum: #6a2f8d;
+}

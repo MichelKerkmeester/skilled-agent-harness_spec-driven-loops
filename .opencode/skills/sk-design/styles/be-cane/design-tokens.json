@@ -1,0 +1,157 @@
+{
+  "color": {
+    "bone-white": {
+      "$value": "#f6f6f6",
+      "$type": "color",
+      "$description": "Bone White — Page canvas, large background blocks"
+    },
+    "divider-grey": {
+      "$value": "#e6e6e6",
+      "$type": "color",
+      "$description": "Divider Grey — Hairline borders between nav rows, section dividers"
+    },
+    "off-black": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Off-Black — Headlines, body text, nav labels, button strokes"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, nav bar backgrounds, elevated panels"
+    },
+    "muted-grey": {
+      "$value": "#b2b2b2",
+      "$type": "color",
+      "$description": "Muted Grey — Tertiary helper text, inactive labels"
+    },
+    "signal-red": {
+      "$value": "#ff0000",
+      "$type": "color",
+      "$description": "Signal Red — Accent panel fills — rotating display block, category highlight surface"
+    }
+  },
+  "font": {
+    "eurostile-becane": {
+      "$value": "Eurostile Becane",
+      "$type": "fontFamily",
+      "$description": "Custom Eurostile variant is the sole typeface across all scales. Used uppercase at 8px with 0.04em tracking for nav, buttons, labels, and micro-copy — the high tracking and small size force labels to read as gallery placards rather than UI. Bold 30px anchors the hero 'COLLECTION' wordmark. Substitutes: Eurostile, 'Helvetica Neue', Arial — the geometric warmth of Eurostile is the closest system match; fallback to Helvetica Neue retains the uppercase utility feel."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Eurostile Becane",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Eurostile Becane",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 8px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Eurostile Becane",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Eurostile Becane",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Eurostile Becane",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    }
+  },
+  "spacing": {
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f6f6f6",
+      "$type": "color",
+      "$description": "Surface level 1: Full-page background, base stage for all content"
+    },
+    "surface-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Nav bar, elevated panels, occasional surface breaks"
+    },
+    "accent-block": {
+      "$value": "#ff0000",
+      "$type": "color",
+      "$description": "Surface level 3: Sole chromatic punctuation — rotating display surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.becaneparis.com",
+      "siteName": "Bécane",
+      "extractedAt": "2026-07-03T15:37:39.565Z",
+      "variant": "extended"
+    }
+  }
+}

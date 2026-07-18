@@ -1,0 +1,84 @@
+:root {
+  /* Colors */
+  --color-obsidian: #000000;
+  --color-paper-white: #ffffff;
+  --color-concrete: #f5f5f5;
+  --color-graphite: #2e2e2e;
+  --color-mist: #e0e0e0;
+  --color-ash: #cdcdcd;
+  --color-smoke: #bfbfbf;
+  --color-slate: #737373;
+  --color-charcoal: #5f5f5f;
+
+  /* Typography — Font Families */
+  --font-aktiv-grotesk: 'aktiv-grotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 13px;
+  --leading-caption: 1.3;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.5;
+  --text-subheading: 21px;
+  --leading-subheading: 1.3;
+  --text-heading-sm: 32px;
+  --leading-heading-sm: 1.2;
+  --text-heading: 40px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.2;
+  --text-display: 64px;
+  --leading-display: 1;
+  --text-display-lg: 96px;
+  --leading-display-lg: 1;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-80: 80px;
+  --spacing-112: 112px;
+  --spacing-160: 160px;
+  --spacing-224: 224px;
+
+  /* Layout */
+  --page-max-width: 1440px;
+  --section-gap: 80px;
+  --card-padding: 48px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-lg: 10px;
+  --radius-2xl: 20px;
+  --radius-full: 60px;
+  --radius-full-2: 80px;
+  --radius-full-3: 9999px;
+
+  /* Named Radii */
+  --radius-nav: 20px;
+  --radius-cards: 20px;
+  --radius-pills: 9999px;
+  --radius-small: 10px;
+  --radius-buttons: 80px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(0, 0, 0, 0.627) 0px 0px 3px 0px inset, rgb(0, 0, 0) 0px 0px 3px 0px;
+  --shadow-lg: rgba(0, 0, 0, 0.25) 0px 0px 24px 0px;
+
+  /* Surfaces */
+  --surface-canvas: #f5f5f5;
+  --surface-card: #ffffff;
+  --surface-border: #e0e0e0;
+  --surface-dark-surface: #2e2e2;
+  --surface-void: #000000;
+}

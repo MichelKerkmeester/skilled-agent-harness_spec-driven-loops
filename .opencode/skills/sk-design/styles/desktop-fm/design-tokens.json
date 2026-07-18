@@ -1,0 +1,172 @@
+{
+  "color": {
+    "canvas-mist": {
+      "$value": "#f1f2f3",
+      "$type": "color",
+      "$description": "Canvas Mist — Page background, dominant surface across hero and surrounding space"
+    },
+    "carbon-black": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Carbon Black — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Elevated card surface (app window mockup), inverse text on dark buttons"
+    },
+    "graphite": {
+      "$value": "#2d2d2d",
+      "$type": "color",
+      "$description": "Graphite — Secondary dark surfaces, icon strokes, muted dark UI elements"
+    },
+    "pale-stone": {
+      "$value": "#dddddd",
+      "$type": "color",
+      "$description": "Pale Stone — Hairline borders, dividers, secondary card backgrounds"
+    },
+    "silver-mist": {
+      "$value": "#b4b4b4",
+      "$type": "color",
+      "$description": "Silver Mist — Muted backgrounds, disabled states, low-emphasis surfaces"
+    }
+  },
+  "font": {
+    "apple-system-blinkmacsystemfont-segoe-ui-system-ui-sans-serif": {
+      "$value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif",
+      "$type": "fontFamily",
+      "$description": "Primary interface typeface — used for everything from the 28px bold brand wordmark to the 12px 800-weight button label and meta tags. The exclusive use of weights 700 and 800 (plus 500 for the smallest tag) is the signature: no thin or regular weights appear anywhere. Combined with -0.036em tracking on the 28px size, headlines feel mechanically precise rather than elegant."
+    },
+    "ui-monospace-sf-mono-menlo-monospace": {
+      "$value": "ui-monospace, 'SF Mono', Menlo, monospace",
+      "$type": "fontFamily",
+      "$description": "Reserved for single-character or ultra-short technical labels (e.g. the leading icon glyph in the waiting-list card). Monospace at weight 800 at 12px reads as a stamped serial number rather than body text."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "monospace",
+        "fontSize": "12px",
+        "fontWeight": 800,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "28px",
+        "fontWeight": 800,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1.5px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "xl": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#f1f2f3",
+      "$type": "color",
+      "$description": "Surface level 0: Dominant background for the entire viewport — the cool light gray stage on which the disc floats"
+    },
+    "app-window-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated white card containing the brand name and CTA — the only surface above the canvas"
+    },
+    "primary-action": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Surface level 2: Black button surface — sits on top of the white card, creating the page's only stacked contrast moment"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://desktop.fm",
+      "siteName": "Desktop.fm",
+      "extractedAt": "2026-06-03T17:16:42.795Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,412 @@
+{
+  "source": "https://styles.refero.design/style/4040f97b-42cf-49ef-ab2d-a77c00fe8285",
+  "uuid": "4040f97b-42cf-49ef-ab2d-a77c00fe8285",
+  "name": "mostlikely",
+  "northStar": "Inked archways on bone-white vellum",
+  "capturedAt": "2026-07-18T08:31:47.672Z",
+  "meta": {
+    "url": "https://mostlikely.at",
+    "siteName": "mostlikely",
+    "extractedAt": "2026-06-03T16:26:05.354Z",
+    "durationMs": 23539,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 107,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #000000 and #ffffff. The two-color constraint is the design — any chromatic addition breaks the system.",
+      "Use border-radius equal to 50% of element width to create the arch shape. This is the system's only decorative vocabulary.",
+      "Set all borders to 1px solid #000000. No thicker rules, no dotted, no dashed.",
+      "Apply Rondelle at weight 400 only. Do not introduce 500, 600, or 700 — the flat weight is signature.",
+      "Use 55-70px top padding to separate sections. Whitespace is the only section divider.",
+      "Let arch shapes bleed off the bottom of the viewport to create implied monumentality.",
+      "Maintain 10px column gap between navigation links and 20px horizontal padding on the nav bar."
+    ],
+    "donts": [
+      "Do not introduce any color other than #000000 and #ffffff. No grays, no accents, no semantic state colors.",
+      "Do not use font-weight values other than 400. Bold, medium, and semibold are absent from the system.",
+      "Do not add box-shadow, text-shadow, or drop-shadow. The system is completely flat.",
+      "Do not use border-radius on cards, buttons, tags, or images. All non-arch elements are sharp-cornered (0px).",
+      "Do not add gradients of any kind. Solid fills only.",
+      "Do not use multiple font families. Rondelle (or its substitute) is the only face.",
+      "Do not add icons, emoji, or decorative glyphs. The arch shape and typography are the only graphic elements."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Page text, all border rules, signature arch fills — the entire graphical language. The 21:1 contrast against white is the system's only expressive tool",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Canvas, card surfaces, and all negative space — the field against which ink shapes register as architecture",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page with no max-width container — the arch shapes require unconstrained horizontal space to maintain their monumental proportion. Navigation is a single horizontal rule across the top with four widely-spaced text links (Mostlikely, Architecture, Design, Research). Below the nav, content begins directly on the white canvas. The first viewport is typically dominated by one or two tall arch pillars centered or slightly offset, with their tops reaching into the upper third of the screen. Sections are separated by 55-70px of vertical whitespace, not by dividers or alternating background colors. Text blocks are narrow and left-aligned, sitting in generous right-side white space. The overall rhythm is: whitespace → arch → whitespace → text → whitespace → image frame → whitespace.",
+    "imagery": "Photography appears only inside 1px hairline-bordered frames, reading as archival plates or fine-art prints. The primary visual content is not photography but the arch shape itself — large-scale solid-black geometric forms that function as both composition and content. When photography is present, it is documentary and architectural: buildings, materials, spatial details. No lifestyle imagery, no people-centric photography, no stock imagery. The arch is the hero; everything else is supporting documentation.",
+    "similar": [
+      {
+        "why": "Same single-weight typography discipline and arch/architectural geometric vocabulary on stark white.",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Identical restraint — single typeface, generous whitespace, no color beyond black and white, hairline dividers.",
+        "business": "Aesop"
+      },
+      {
+        "why": "Same editorial-architect feel with large-scale geometric forms and minimal text on white.",
+        "business": "Perron-Roettinger"
+      },
+      {
+        "why": "Monochrome palette with monumental geometric shapes functioning as both composition and identity.",
+        "business": "NORM Architects"
+      },
+      {
+        "why": "Same typographic confidence — one weight, two sizes, hierarchy through scale alone, on pure white.",
+        "business": "AnOther Magazine"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "arches": "50% (full semicircle on tall vertical forms)",
+        "buttons": "0px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "55-70px",
+      "cardPadding": "20px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Bone White Canvas",
+        "level": 0,
+        "purpose": "Full-page background; the field that receives all ink."
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black Surface",
+        "level": 1,
+        "purpose": "Arch pillars, solid graphic elements — the only non-white surface in the system."
+      }
+    ],
+    "northStar": "Inked archways on bone-white vellum",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 19.6,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 42,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Hairline Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Full-width 1px solid #000000 border-bottom, white background. 5px top/bottom padding, 20px horizontal padding. Links are Rondelle 400 at 14px, #000000, 10px column gap between items. No background, no underline, no active state indicator — selected page is implicit through context or position. The nav floats on white like a single drawn rule across the top of the page."
+      },
+      {
+        "name": "Arch Pillar (Signature Shape)",
+        "role": "Hero visual element and section divider",
+        "description": "Tall vertical rectangle filled solid #000000 with the top edge rounded to a full semicircle (border-top-left-radius and border-top-right-radius equal to 50% of the element's width). The shape extends downward off the visible viewport or to the section floor — its height is never fully revealed at once, giving it a monumental, architectural presence. Width is typically 15-25% of the viewport. No border, no shadow, no gradient. This is the single most identifiable element of the system."
+      },
+      {
+        "name": "Arch Cluster",
+        "role": "Compositional grouping of signature shapes",
+        "description": "Two or more Arch Pillars placed side by side with generous white space between them, creating a rhythm of black portals against white field. Even number (usually two) for symmetry. Total width of the cluster occupies the center 50-60% of the viewport; outer margins are wide and white."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline and navigation hyperlinks",
+        "description": "Rondelle 400 at 14px, #000000, no underline by default. No hover state changes color or weight — the link is already the same as surrounding text; context (position in nav, surrounding punctuation) signals interactivity. No focus ring beyond the browser default."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Top-level page or section title",
+        "description": "Rondelle 400 at 30px, #000000, line-height 42px. No bold, no italic, no decoration. Sits in generous white space (55-70px top padding above). The single weight and size make it read as a quiet declaration rather than a shout — the 2.14× size jump from 14px body is the only hierarchy signal."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Paragraphs and descriptive copy",
+        "description": "Rondelle 400 at 14px, #000000, line-height 19.6px. No paragraph spacing beyond 1em. Left-aligned. Maximum measure implied at ~70-80 characters though no hard container is observed."
+      },
+      {
+        "name": "Full-Bleed White Section",
+        "role": "Primary canvas for content",
+        "description": "#ffffff background, no borders, no internal padding constraint. Content sits within generous white margins (70px left/right). Sections are separated by whitespace rather than dividers — the transition from one section to the next is marked by a 55px top padding and a new visual element (arch, text, image)."
+      },
+      {
+        "name": "Image Frame",
+        "role": "Photographic or illustrative content container",
+        "description": "1px solid #000000 border around rectangular image containers. No border-radius (0px). Images sit flush within the frame; the hairline border makes them read as printed plates or archival photographs rather than digital content."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface for navigation links, body copy, and headings. Used at exactly one weight (400) across the entire site — the flat weight is deliberate; hierarchy is created by jumping from 14px to 30px (a 2.14× ratio) rather than by weight contrast. The custom face has architectural proportions: tall x-height, geometric construction, even stroke — it reads as drawn rather than typed. Substitute with a geometric humanist sans like 'Söhne' or 'Inter' if Rondelle is unavailable.",
+        "sizes": "14px, 30px",
+        "family": "Rondelle",
+        "weight": "400",
+        "lineHeight": "1.40",
+        "substitute": "Söhne, Inter, Untitled Sans",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "A strict two-color monochrome system — pure ink black and bone white with zero chromatic accent. The signature is the monumental arch: tall vertical forms capped with full semicircular rounding that read as cathedral portals, mausoleum doorways, or architect's drafting silhouettes. Typography is a single custom display face (Rondelle) used at exactly one weight (400) and only two sizes, so hierarchy comes from scale and whitespace rather than weight, color, or decoration. Navigation is a whisper-thin hairline rule across the top with widely-spaced text links. The system is brutally restrained: no shadows, no gradients, no borders other than 1px hairlines, no color punctuation — the arch shape itself does all the emotional work.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4040f97b-42cf-49ef-ab2d-a77c00fe8285#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"mostlikely design system\",\"item\":\"https://styles.refero.design/style/4040f97b-42cf-49ef-ab2d-a77c00fe8285\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4040f97b-42cf-49ef-ab2d-a77c00fe8285#style-reference\",\"name\":\"mostlikely design system reference\",\"headline\":\"mostlikely design system | Refero Styles\",\"description\":\"Explore mostlikely's light Agency design system: Ink Black #000000, Bone White #ffffff colors, Rondelle typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/4040f97b-42cf-49ef-ab2d-a77c00fe8285\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4040f97b-42cf-49ef-ab2d-a77c00fe8285\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"mostlikely\",\"url\":\"https://mostlikely.at\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4040f97b-42cf-49ef-ab2d-a77c00fe8285#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ffa721cf-5ca3-47c8-b95b-77e237145d1a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ffa721cf-5ca3-47c8-b95b-77e237145d1a.jpg\",\"caption\":\"Screenshot of mostlikely\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ffa721cf-5ca3-47c8-b95b-77e237145d1a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"mostlikely design system\",\"mostlikely website design\",\"mostlikely colors\",\"mostlikely typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Bone White\",\"Rondelle\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"mostlikely design system\"},{\"@type\":\"Thing\",\"name\":\"mostlikely website design\"},{\"@type\":\"Thing\",\"name\":\"mostlikely colors\"},{\"@type\":\"Thing\",\"name\":\"mostlikely typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:11:53.605Z\",\"dateModified\":\"2026-04-30T02:11:53.605Z\"}]}19:T5d4,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px hairline)\n- accent: #000000 (arch fills are the only accent)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Build the top navigation**: Full-width white bar with 1px solid #000000 border-bottom. 5px top/bottom padding, 20px left/right padding. Four text links ('Mostlikely', 'Architecture', 'Design', 'Research') in Rondelle 400, 14px, #000000, 10px gap between items. No underlines, no active states, no background changes.\n\n2. **Build the signature arch pillar**: A tall vertical rectangle, 20% of viewport width, filled solid #000000. Set border-top-left-radius and border-top-right-radius to 50% so the top edge forms a full semicircle. No border, no shadow. The element extends below the visible viewport — give it height: 120vh or overflow the parent container.\n\n3. **Build a section heading**: Rondelle 400 at 30px, #000000, line-height 42px. Left-aligned. No bold, no italic. Sit it with 55px padding-top above and generous white space to the right.\n\n4. **Build an image frame**: 1px solid #000000 border around a rectangular image container. border-radius 0px. Image fills the frame edge-to-edge. No caption inside the frame; text lives outside in the surrounding white space.\n\n5. **Build a body text block**: Rondelle 400 at 14px, #000000, line-height 19.6px. Left-aligned. No paragraph indent. One blank line (1em) between paragraphs. Max measure ~70 characters."
+      }
+    ],
+    "elevationPhilosophy": "The system uses zero elevation. No shadows, no layered surfaces, no floating panels. Depth is created entirely through the silhouette of the arch shape against white space — the 2D contrast between black fill and white field does the perceptual work that shadows do in other systems."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "heading",
+            "icon",
+            "image"
+          ],
+          "frequency": 323,
+          "confidence": 1,
+          "prominence": 24539491.562787827,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 15,
+            "icon/color": 1,
+            "link/color": 1,
+            "image/color": 15,
+            "other/color": 28,
+            "heading/color": 1,
+            "nav/borderColor": 60,
+            "icon/borderColor": 4,
+            "link/borderColor": 4,
+            "image/borderColor": 60,
+            "other/borderColor": 112,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 18
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "icon",
+            "image"
+          ],
+          "frequency": 247,
+          "confidence": 1,
+          "prominence": 23218664.923049565,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 9,
+            "icon/color": 1,
+            "image/color": 15,
+            "other/color": 20,
+            "heading/color": 1,
+            "nav/borderColor": 36,
+            "icon/borderColor": 4,
+            "image/borderColor": 60,
+            "other/borderColor": 80,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 17
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 55,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Rondelle",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 107,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 14,
+          "family": "Rondelle",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image"
+          ],
+          "frequency": 76,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Rondelle",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "icon"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/0ebd5433-eb1c-4c14-83bf-a18500dc37d8.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ffa721cf-5ca3-47c8-b95b-77e237145d1a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4040f97b-42cf-49ef-ab2d-a77c00fe8285#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"mostlikely design system\",\"item\":\"https://styles.refero.design/style/4040f97b-42cf-49ef-ab2d-a77c00fe8285\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4040f97b-42cf-49ef-ab2d-a77c00fe8285#style-reference\",\"name\":\"mostlikely design system reference\",\"headline\":\"mostlikely design system | Refero Styles\",\"description\":\"Explore mostlikely's light Agency design system: Ink Black #000000, Bone White #ffffff colors, Rondelle typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/4040f97b-42cf-49ef-ab2d-a77c00fe8285\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4040f97b-42cf-49ef-ab2d-a77c00fe8285\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"mostlikely\",\"url\":\"https://mostlikely.at\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4040f97b-42cf-49ef-ab2d-a77c00fe8285#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ffa721cf-5ca3-47c8-b95b-77e237145d1a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ffa721cf-5ca3-47c8-b95b-77e237145d1a.jpg\",\"caption\":\"Screenshot of mostlikely\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ffa721cf-5ca3-47c8-b95b-77e237145d1a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"mostlikely design system\",\"mostlikely website design\",\"mostlikely colors\",\"mostlikely typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Bone White\",\"Rondelle\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"mostlikely design system\"},{\"@type\":\"Thing\",\"name\":\"mostlikely website design\"},{\"@type\":\"Thing\",\"name\":\"mostlikely colors\"},{\"@type\":\"Thing\",\"name\":\"mostlikely typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:11:53.605Z\",\"dateModified\":\"2026-04-30T02:11:53.605Z\"}]}19:T5d4,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px hairline)\n- accent: #000000 (arch fills are the only accent)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Build the top navigation**: Full-width white bar with 1px solid #000000 border-bottom. 5px top/bottom padding, 20px left/right padding. Four text links ('Mostlikely', 'Architecture', 'Design', 'Research') in Rondelle 400, 14px, #000000, 10px gap between items. No underlines, no active states, no background changes.\n\n2. **Build the signature arch pillar**: A tall vertical rectangle, 20% of viewport width, filled solid #000000. Set border-top-left-radius and border-top-right-radius to 50% so the top edge forms a full semicircle. No border, no shadow. The element extends below the visible viewport — give it height: 120vh or overflow the parent container.\n\n3. **Build a section heading**: Rondelle 400 at 30px, #000000, line-height 42px. Left-aligned. No bold, no italic. Sit it with 55px padding-top above and generous white space to the right.\n\n4. **Build an image frame**: 1px solid #000000 border around a rectangular image container. border-radius 0px. Image fills the frame edge-to-edge. No caption inside the frame; text lives outside in the surrounding white space.\n\n5. **Build a body text block**: Rondelle 400 at 14px, #000000, line-height 19.6px. Left-aligned. No paragraph indent. One blank line (1em) between paragraphs. Max measure ~70 characters."
+}

@@ -1,0 +1,437 @@
+{
+  "color": {
+    "electric-iris": {
+      "$value": "#2727e6",
+      "$type": "color",
+      "$description": "Electric Iris — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "ink-black": {
+      "$value": "#111118",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, dark secondary buttons, icon strokes, hairline borders — warmer than pure black, reads as ink rather than void"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, elevated panels, button text on dark fills, page sections that need to lift off the pale-blue canvas"
+    },
+    "chalk-blue": {
+      "$value": "#f0f6ff",
+      "$type": "color",
+      "$description": "Chalk Blue — Dominant page canvas — a barely-there blue tint that prevents the page from feeling clinical and ties the scattered blue shapes to the background"
+    },
+    "frost-blue": {
+      "$value": "#e1edff",
+      "$type": "color",
+      "$description": "Frost Blue — Secondary surface wash, input field backgrounds, footer tint — a step deeper than the canvas to create soft layering without shadows"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "marker-red": {
+      "$value": "#ff4141",
+      "$type": "color",
+      "$description": "Marker Red — Decorative shape fill — the large red semicircle, star bursts, and accent blobs scattered through the decorative layer"
+    },
+    "hi-yellow": {
+      "$value": "#ffda00",
+      "$type": "color",
+      "$description": "Hi-Yellow — Decorative shape fill — the yellow pentagon and sunny accents in the cutout composition; also used as a section wash behind featured content"
+    },
+    "powder-sky": {
+      "$value": "#91d8ec",
+      "$type": "color",
+      "$description": "Powder Sky — Decorative shape fill — soft powder-blue circles and cloud forms in the scattered cutout scene"
+    },
+    "bubblegum-pink": {
+      "$value": "#ffbac4",
+      "$type": "color",
+      "$description": "Bubblegum Pink — Red supporting accent for decorative details and low-frequency emphasis."
+    },
+    "jelly-green": {
+      "$value": "#16ab59",
+      "$type": "color",
+      "$description": "Jelly Green — Decorative shape fill — green triangle accents in the scattered cutout scene"
+    },
+    "sunbeam": {
+      "$value": "#ffe54d",
+      "$type": "color",
+      "$description": "Sunbeam — Decorative shape fill — a slightly warmer yellow variant for layering against Hi-Yellow in the cutout composition"
+    }
+  },
+  "font": {
+    "haas-grot-disp": {
+      "$value": "Haas Grot Disp",
+      "$type": "fontFamily",
+      "$description": "Display and headings only — the geometric grotesque has a sturdy, slightly condensed skeleton that holds 92px hero lines without losing legibility; weight stays at 400 because the tight letter-spacing (-0.03em at the largest sizes) does the heavy-lifting, not bold weight"
+    },
+    "haas-grot-text": {
+      "$value": "Haas Grot Text",
+      "$type": "fontFamily",
+      "$description": "Body, navigation, buttons, and smaller UI text — the text cut of the same family tuned for readability at small sizes with looser tracking than the display companion"
+    },
+    "martian-mono": {
+      "$value": "Martian Mono",
+      "$type": "fontFamily",
+      "$description": "Promotional ticker text, tag labels, and code-flavored micro-copy — a monospaced voice used sparingly for editorial texture, not for entire paragraphs"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Martian Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Martian Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Martian Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Haas Grot Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Haas Grot Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Haas Grot Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Haas Grot Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Haas Grot Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Martian Mono",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Haas Grot Text",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Haas Grot Text",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Haas Grot Text",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Haas Grot Text",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Haas Grot Text",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp",
+        "fontSize": "35px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 35px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 62px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Haas Grot Disp",
+        "fontSize": "92px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 92px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "500px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "800px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "5000px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    }
+  },
+  "surface": {
+    "chalk-blue-canvas": {
+      "$value": "#f0f6ff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the default stage for the scattered cutout shapes"
+    },
+    "paper-white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, elevated content blocks, button fills"
+    },
+    "frost-blue-wash": {
+      "$value": "#e1edff",
+      "$type": "color",
+      "$description": "Surface level 2: Soft section background and input field rest state"
+    },
+    "bubblegum-section": {
+      "$value": "#ffbac4",
+      "$type": "color",
+      "$description": "Surface level 3: Featured content section wash (e.g. 'Most popular')"
+    },
+    "hi-yellow-section": {
+      "$value": "#ffda00",
+      "$type": "color",
+      "$description": "Surface level 4: Promotional section wash for high-attention blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://superhi.com",
+      "siteName": "SuperHi",
+      "extractedAt": "2026-06-03T17:49:35.630Z",
+      "variant": "extended"
+    }
+  }
+}

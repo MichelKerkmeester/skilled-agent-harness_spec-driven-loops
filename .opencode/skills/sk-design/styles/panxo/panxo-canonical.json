@@ -1,0 +1,1859 @@
+{
+  "source": "https://styles.refero.design/style/8b5cfe6d-a2bd-4edb-854e-9185cec46c09",
+  "uuid": "8b5cfe6d-a2bd-4edb-854e-9185cec46c09",
+  "name": "Panxo",
+  "northStar": "Data terminal in warm ink — every surface echoes ledger paper, every accent reads like a highlighted cell.",
+  "capturedAt": "2026-07-18T10:15:04.149Z",
+  "meta": {
+    "url": "https://panxo.com",
+    "siteName": "Panxo",
+    "extractedAt": "2026-04-12T10:44:29.583Z",
+    "durationMs": 140997,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1490,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Mona Sans weight 700 with letter-spacing -0.04em for all headlines 40px and above — the compressed tracking is the headline signature.",
+      "Keep the #ff6020 orange exclusively for CTAs and promotional links; never use it for data labels or classification UI — that role belongs to #777eff and #731fff.",
+      "Use 48px border-radius on filled primary buttons and 999px on outlined/ghost buttons — the asymmetry between the two types is intentional.",
+      "Apply the teal→violet→amber gradient (linear-gradient(90deg, #10b981 0%, #a855f7 50%, #f59e0b 100%)) only to large atmospheric panels or product visualization backdrops, never to text or small UI elements.",
+      "Build data metric cells using Mona Sans 700 for the numeral and Inter 400 for the label — mixing the two families creates the 'terminal readout' hierarchy inside a single card.",
+      "Use #fafafa (not #ffffff) as the default card background — the barely-off-white matches the page-level warmth and prevents cards from visually floating off the page.",
+      "Use Inter font-feature-settings '\"cv03\", \"cv04\", \"cv09\", \"cv11\"' consistently — these OpenType alternates are active site-wide and affect character recognition."
+    ],
+    "donts": [
+      "Never use pure #ffffff as a section background — #fafafa or #f7f3eb are the correct warm-neutral surfaces; pure white only appears in card interiors or overlays.",
+      "Don't apply box-shadows heavier than rgba(43,43,48,0.1) 0px 1px 4px — deeper shadows break the flat data-surface aesthetic.",
+      "Never use #777eff or #731fff for interactive controls or CTA buttons — these violets are semantic data-classification colors, not brand action colors.",
+      "Don't use Mona Sans below 24px — it is exclusively a display/heading face; Inter handles all body and UI text at 18px and below.",
+      "Avoid card border-radius above 20px — the system uses 8-12px for badges, 10px for cards, and reserves large radii (48-999px) only for button pills.",
+      "Don't add colored backgrounds to category badges — they use #fafafa fill with no border; adding color or borders would break the taxonomy hierarchy.",
+      "Never use the spectrum gradient as a text color or button background — it exists only as a contained atmospheric panel element."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#1c1a17",
+        "name": "Coal Ink",
+        "role": "Primary text, filled CTA button background, dark card surface — warmer than pure black, prevents the page from reading as cold despite high contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Ledger White",
+        "role": "Page background, card surfaces, badge fills — the dominant surface; slightly warmer than #ffffff, giving the page a matte paper quality",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f3eb",
+        "name": "Parchment",
+        "role": "Hero section background wash — the warmest surface tone, used for large atmospheric areas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1f1f1",
+        "name": "Ash",
+        "role": "Borders, divider lines, ghost button borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7e7d7b",
+        "name": "Slate Mid",
+        "role": "Secondary body text, metadata labels, muted headings",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5a5957",
+        "name": "Graphite",
+        "role": "Tertiary text, icon strokes, nav link default state",
+        "group": "neutral"
+      },
+      {
+        "hex": "#969594",
+        "name": "Stone",
+        "role": "Placeholder text, disabled states",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bab9b8",
+        "name": "Fossil",
+        "role": "Hairline borders, subtle dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ff6020",
+        "name": "Smolder",
+        "role": "Primary CTA buttons, announcement bar link, high-emphasis interactive triggers — warm orange against near-black creates urgency without aggression",
+        "group": "brand"
+      },
+      {
+        "hex": "#777eff",
+        "name": "Signal Violet",
+        "role": "Data classification labels, AI confidence highlights, link color inside product demos — signals machine intelligence rather than human action",
+        "group": "accent"
+      },
+      {
+        "hex": "#731fff",
+        "name": "Deep Violet",
+        "role": "Secondary violet accent, gradient midpoint stop, deeper classification markers",
+        "group": "accent"
+      },
+      {
+        "hex": "#a855f7",
+        "name": "Spectrum Gradient",
+        "role": "Hero demo background gradient — teal-to-violet-to-amber sweep used as atmospheric backdrop for the product visualization",
+        "group": "accent",
+        "gradient": "linear-gradient(90deg, rgb(16, 185, 129) 0%, rgb(168, 85, 247) 50%, rgb(245, 158, 11) 100%)"
+      },
+      {
+        "hex": "#05933b",
+        "name": "Mint Pulse",
+        "role": "AI Traffic 'High' indicator badges, positive signal states",
+        "group": "semantic"
+      },
+      {
+        "hex": "#10b981",
+        "name": "Emerald Tag",
+        "role": "Semantic success backgrounds, gradient anchor (green end of the spectrum gradient)",
+        "group": "semantic"
+      },
+      {
+        "hex": "#bdd8ff",
+        "name": "Sky Blush",
+        "role": "Hero section vertical gradient background (top stop, blue-white)",
+        "group": "accent",
+        "gradient": "linear-gradient(rgb(189, 216, 255) 0%, rgb(255, 234, 214) 100%)"
+      }
+    ],
+    "layout": "Max-width ~1200px centered on a white-to-near-white page. Navigation is a sticky top bar: left-anchored wordmark + 'AI' badge, center nav links with a chevron dropdown, right-anchored 'Sign In' text link and filled 'Get Started' pill CTA. Above the main nav sits a full-bleed black announcement bar with centered event copy and an orange 'Schedule a meeting' text link. Hero is a two-column asymmetric split — left column holds the label + headline + CTA buttons, right column holds the body paragraph. Below the fold a full-width card-panel contains the product demo UI. Stats section uses a 4-column grid (1 dark card + 3 metric cards) with equal column width. Publisher directory uses a 3-column card grid. Sections alternate between white and near-white (#fafafa) bands without hard dividers — seamless flow. Vertical rhythm is generous (80-120px between sections) despite the compact base unit.",
+    "imagery": "The hero section uses a contained product demo UI as the primary visual — a card-within-card interface showing AI traffic classification in real time, floating over a warm pastel gradient (sky blue bleeding into peach). No photography anywhere on the page. The gradient background behind the demo is decorative atmosphere, not informational. Publisher directory cards use small favicon-scale brand logos as the only iconography — circular, isolated, stamp-like. Stat/metric blocks are typography-as-imagery: oversized numerals ($0M+, 0M+) functioning as hero graphics. Icon usage is minimal outlined style, monocolor, low stroke weight, used sparingly in the demo UI tabs (search, person, chart icons). Trust logos (Business Insider, Yahoo Finance, Investing.com) appear in a horizontal grayscale strip — desaturated, equal weight, no special treatment. The page is heavily text-dominant; imagery occupies less than 20% of visual space.",
+    "similar": [
+      {
+        "why": "Same warm-neutral palette with near-black primary and single orange CTA on a data intelligence platform",
+        "business": "Clearbit"
+      },
+      {
+        "why": "Mona-Sans-adjacent compressed headline treatment with Inter body on a light SaaS data product",
+        "business": "Segment"
+      },
+      {
+        "why": "Publisher-facing adtech with flat card grids, metric-display typography at display scale, and low-shadow surfaces",
+        "business": "Primer.io"
+      },
+      {
+        "why": "Real-time audience data UI with warm off-white backgrounds, monochrome logo strips, and stat-as-hero visual pattern",
+        "business": "Chartbeat"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "10px",
+        "badges": "6-8px",
+        "images": "8px",
+        "buttons": "48px (filled primary), 999px (outlined/ghost), 20px (filter chips)",
+        "demoPanels": "12-20px",
+        "inputFields": "12px"
+      },
+      "elementGap": "8-12px",
+      "sectionGap": "80-120px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#f7f3eb",
+        "name": "Page Base",
+        "level": 0,
+        "purpose": "Hero section and large atmospheric backgrounds — warmest surface"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "App Surface",
+        "level": 1,
+        "purpose": "Default page background and card fills"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Elevated Card",
+        "level": 2,
+        "purpose": "Interactive cards and demo UI panels with micro-shadow"
+      },
+      {
+        "hex": "#1c1a17",
+        "name": "Inverse Surface",
+        "level": 3,
+        "purpose": "Dark stat card and primary CTA button fill"
+      }
+    ],
+    "northStar": "Data terminal in warm ink — every surface echoes ledger paper, every accent reads like a highlighted cell.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.5
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.13,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1,
+        "letterSpacing": -1.44
+      },
+      {
+        "role": "display",
+        "size": 56,
+        "lineHeight": 1,
+        "letterSpacing": -2.24
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Button Group (Primary + Ghost + Filter Pills)",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Stat Metric Cards Grid",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Publisher Directory Card",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary Filled CTA Button",
+        "role": "Highest-priority action: 'Get Started', 'Try Free'",
+        "description": "Background #1c1a17, text white (#ffffff), border-radius 48px, padding 7px 12px. At nav scale: compact pill. The near-black fill distinguishes it from the orange (#ff6020) used for announcement CTAs — nav primary action is authoritative, not urgent."
+      },
+      {
+        "name": "Outlined Ghost Button",
+        "role": "Secondary actions: 'Explore Marketplace', 'Sign In'",
+        "description": "Background transparent, text #1c1a17 at 72% opacity, border 1px solid rgba(0,0,0,0.12), border-radius 20px, padding 8px 16px. The semi-transparent text color against the near-white background reads as intentionally recessive — draws eye to the filled CTA without disappearing."
+      },
+      {
+        "name": "White Card Button / Chip",
+        "role": "Clickable panel triggers, demo tab selectors",
+        "description": "Background #ffffff, text uses accent colors (#777eff), border 1px solid #f1f1f1, border-radius 12px, padding 24px. These double as both filter pills and interactive card surfaces in the product demo UI."
+      },
+      {
+        "name": "Filter Pill",
+        "role": "Publisher directory category filters: 'All 1291', 'Arts & Entertainment'",
+        "description": "Background transparent, border 1px solid rgba(0,0,0,0.12), border-radius 999px, padding 7px 12px, text Inter 400 14px #1c1a17 at 72% opacity. Active state not fully specified but implied by filled #1c1a17 background."
+      },
+      {
+        "name": "Content Card (Light)",
+        "role": "Publisher directory listing cards, feature explanation cards",
+        "description": "Background #fafafa, border-radius 10px, no shadow, no border. Inner content uses Inter 400 14px body text at #5a5957, bold publisher name at #1c1a17 Inter 600 15px. Bottom row shows colored metric badges (Mint Pulse green for 'High AI Traffic', orange for revenue)."
+      },
+      {
+        "name": "Dark Stat Card",
+        "role": "Trust/social proof hero metric, 'Trusted by publishers' card",
+        "description": "Background radial-gradient(81% 66% at 1.8% 1.1%, #545454 0%, #1c1a17 100%), border-radius 10px, white text. Headline Inter 700 at display size, sub-label Inter 400 14px white at 70% opacity. This single dark card anchors the 4-column stats grid."
+      },
+      {
+        "name": "Metric Stat Cell",
+        "role": "Numerical KPI display: '$0M+ Paid to Publishers', '0M+ AI Reach'",
+        "description": "Background #fafafa, border-radius 10px, no shadow. Label Inter 400 14px #7e7d7b at top, numeral Mona Sans 700 40-48px #1c1a17 with -0.03em tracking. Compact padding 24px inside the cell."
+      },
+      {
+        "name": "Category Badge",
+        "role": "Taxonomy tags on publisher cards: 'Internet & Telecom', 'en', 'Arts & Entertainment'",
+        "description": "Background #fafafa, text Inter 400 12px #52525b, border-radius 6px, padding 4px 10px. Stack horizontally with 4px gap. No border — the background/surface contrast provides definition."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page event promotion strip",
+        "description": "Full-bleed background #000000, centered Inter 400 14px white body text, orange (#ff6020) 'Schedule a meeting' text link at right. Fixed height ~36px. The only full-bleed black element on an otherwise light page — immediately commands attention."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Sticky site navigation",
+        "description": "Background #ffffff, border-bottom 1px solid #f1f1f1, height ~60px. Left: Mona Sans wordmark 'panxo' + Inter 500 11px 'AI' label. Center: Inter 500 14px nav links at #5a5957 with chevron dropdowns. Right: 'Sign In' ghost text, 'Get Started' pill #1c1a17 48px radius. 'Early Access' badge uses #10b981 green with Inter 600 10px uppercase tracking."
+      },
+      {
+        "name": "Product Demo UI Card",
+        "role": "Hero section interactive visualization of AI traffic classification",
+        "description": "White background card with 12-20px radius, shadow: rgba(95,99,106,0.08) 0 0 0 1px + rgba(43,43,48,0.1) 0 1px 4px. Interior tabs use the White Card Button / Chip pattern. Body text shows inline color-coded classifications: #777eff for AI source tags, #731fff for segment labels, #ff6020 for CPM values, #05933b for confidence percentages."
+      },
+      {
+        "name": "Spectrum Gradient Panel",
+        "role": "Hero visualization backdrop, atmospheric visual section divider",
+        "description": "linear-gradient(90deg, #10b981 0%, #a855f7 50%, #f59e0b 100%) applied to large contained panels, border-radius 15px or full-bleed. This is the site's single high-chroma element — all other color is data-functional."
+      },
+      {
+        "name": "Trust Logo Strip",
+        "role": "Social proof publisher logos: Business Insider, Yahoo Finance, Investing.com",
+        "description": "Full-width horizontal scroll on a white background. Logos rendered in grayscale (#000000 or desaturated), Inter-weight-matched, no borders or cards. Equal visual weight across brands — no featured positioning."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All display and section headings. The custom GitHub-adjacent variable font at weight 700 with -0.04em tracking at large sizes compresses headlines into dense data labels — they read as precision output rather than marketing copy. Weight 500 at 24-32px handles subheadings.",
+        "sizes": "24px, 32px, 40px, 48px, 56px",
+        "family": "Mona Sans",
+        "weight": "500, 700",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Plus Jakarta Sans or Geist",
+        "letterSpacing": "-0.04em at 56px, -0.03em at 48–40px, -0.01em at 32–24px",
+        "fontFeatureSettings": "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+      },
+      {
+        "role": "All body copy, UI labels, badges, nav links, button text, card metadata. The wide weight range (400 body, 600 stat labels, 700 metric numerals) creates internal hierarchy within data-dense components without switching families.",
+        "sizes": "8px, 9px, 10px, 11px, 12px, 13px, 14px, 15px, 16px, 18px",
+        "family": "Inter",
+        "weight": "400, 500, 600, 700",
+        "lineHeight": "1.20–1.67",
+        "substitute": "Inter (freely available on Google Fonts)",
+        "letterSpacing": "-0.03em at UI labels, +0.02em to +0.05em at badge/caption sizes",
+        "fontFeatureSettings": "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+      },
+      {
+        "role": "System fallback for non-critical UI chrome. Not a designed choice — browser default in edge cases.",
+        "sizes": "12px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Inter"
+      }
+    ],
+    "description": "Panxo reads like a financial data terminal wearing a startup's wardrobe — numbers and metrics front and center, but the palette stays warm cream and near-black rather than cold blue. The base surface is #fafafa pushing toward #f7f3eb (a barely-warm off-white), while the primary text mass is the rich near-black #1c1a17 — warmer than pure black, almost coffee. The hero visualization uses a candy-colored gradient (teal → violet → amber) as its only splash of chromatic energy against otherwise achromatic structure. Mona Sans at weight 700 and aggressive negative tracking (-0.04em at 56px) makes headlines feel compressed and purposeful — data labels rather than declarations. Interactive elements use a single deep orange (#ff6020) for CTAs, distinct from the violet data-highlight colors (#777eff, #731fff) used for semantic classification signals inside UI demos.",
+    "customSections": [
+      {
+        "title": "Gradient System",
+        "content": "Three gradient types, each with a distinct role:\n\n1. **Spectrum Gradient** (hero/demo backdrop): linear-gradient(90deg, #10b981 0%, #a855f7 50%, #f59e0b 100%) — the site's only full-chroma element, used at panel scale.\n\n2. **Warm Blush** (hero section background): linear-gradient(#bdd8ff 0%, #ffeaD6 100%) — sky blue to warm peach, used as the hero frame behind the product demo card.\n\n3. **Dark Card Gradient** (stat card): radial-gradient(81% 66% at 1.8% 1.1%, #545454 0%, #1c1a17 100%) — adds dimensionality to the single dark surface without leaving the near-black family.\n\nRadial spot gradients appear as soft colored glows inside the Spectrum panel: yellow (#ffbf41), pink (#f34fdd), and orange (#ff6020) circles fading to transparent — used as ambient light sources within the visualization backdrop."
+      },
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      }
+    ],
+    "elevationPhilosophy": "Panxo uses near-zero elevation — the vast majority of cards have boxShadow: none, relying on background-color contrast (#fafafa card vs #ffffff or #f7f3eb page) for depth. Where shadow appears, it's ultra-subtle: rgba(95,99,106,0.08) 0px 0px 0px 1px (border-substitute ring) + rgba(43,43,48,0.1) 0px 1px 4px (micro lift). This keeps the UI reading as flat data surfaces rather than layered physical objects."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "image",
+            "list",
+            "hero",
+            "heading",
+            "body"
+          ],
+          "frequency": 3099,
+          "confidence": 1,
+          "prominence": 180537187.2981255,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#fafafa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9851036517304731
+          },
+          "contexts": [
+            "other",
+            "card",
+            "badge",
+            "body",
+            "button",
+            "heading"
+          ],
+          "frequency": 589,
+          "confidence": 1,
+          "prominence": 143279863.98105076,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#f7f3eb",
+          "oklch": {
+            "c": 0.011448118259161729,
+            "h": 84.57840548389676,
+            "l": 0.9650444328580979
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2188555.8450582903,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#1c1a17",
+          "oklch": {
+            "c": 0.006526202149989381,
+            "h": 78.18463688747538,
+            "l": 0.21891405401355893
+          },
+          "contexts": [
+            "button",
+            "body",
+            "heading",
+            "other",
+            "card"
+          ],
+          "frequency": 1045,
+          "confidence": 1,
+          "prominence": 635543.0697526062,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#7e7d7b",
+          "oklch": {
+            "c": 0.002874703910060457,
+            "h": 78.29729529924947,
+            "l": 0.5886629635736831
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "other",
+            "card"
+          ],
+          "frequency": 435,
+          "confidence": 1,
+          "prominence": 454542.6753964359,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#f1f1f1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9581468870268093
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 406164.83031075756,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#5a5957",
+          "oklch": {
+            "c": 0.0039199315361189944,
+            "h": 78.28502843789853,
+            "l": 0.4636087901156564
+          },
+          "contexts": [
+            "body",
+            "button",
+            "icon",
+            "card",
+            "link",
+            "other",
+            "heading"
+          ],
+          "frequency": 693,
+          "confidence": 1,
+          "prominence": 352576.63086120837,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#777eff",
+          "oklch": {
+            "c": 0.18802828181647294,
+            "h": 277.4783842609451,
+            "l": 0.6514517066888181
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 131910.07684089174,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#10100f",
+          "oklch": {
+            "c": 0.0020321604388687103,
+            "h": 106.61059230250936,
+            "l": 0.17262030046897378
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 50175.546526577695,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#52525b",
+          "oklch": {
+            "c": 0.014616969820035847,
+            "h": 285.78635980765876,
+            "l": 0.44186101147913764
+          },
+          "contexts": [
+            "card",
+            "icon",
+            "badge"
+          ],
+          "frequency": 48,
+          "confidence": 1,
+          "prominence": 16877.817791410318,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#731fff",
+          "oklch": {
+            "c": 0.28355289809461287,
+            "h": 288.8643656138616,
+            "l": 0.5274542418246247
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 11909.887930170047,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ff6020",
+          "oklch": {
+            "c": 0.20575991965543391,
+            "h": 39.23413101623377,
+            "l": 0.6893769998545896
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 8887.279828279217,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#a855f7",
+          "oklch": {
+            "c": 0.23254184578235393,
+            "h": 303.9004330900565,
+            "l": 0.6268459182747176
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 6911.1038529896905,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#05933b",
+          "oklch": {
+            "c": 0.1654332253895099,
+            "h": 148.17852557351807,
+            "l": 0.5790486772921277
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 6482.9748533262955,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#d4d4d8",
+          "oklch": {
+            "c": 0.005451465155339808,
+            "h": 286.285927138332,
+            "l": 0.8711079072212741
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 6406.199613794232,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#bab9b8",
+          "oklch": {
+            "c": 0.0013858720882850607,
+            "h": 78.30708123894266,
+            "l": 0.7861011546293164
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 5345.702451491351,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#969594",
+          "oklch": {
+            "c": 0.00223661958638397,
+            "h": 78.30226016153416,
+            "l": 0.6708376465262943
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 3400,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#4170ff",
+          "oklch": {
+            "c": 0.21885618489707584,
+            "h": 266.0276078149879,
+            "l": 0.5961650279864343
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 400,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ff5e8d",
+          "oklch": {
+            "c": 0.1981579395224324,
+            "h": 5.8265875346512095,
+            "l": 0.7037264812722628
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 400,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#a1a09f",
+          "oklch": {
+            "c": 0.0019621960059575797,
+            "h": 78.30400322442756,
+            "l": 0.7073547176570639
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 392.4058480359642,
+          "properties": [
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#10b981",
+          "oklch": {
+            "c": 0.14907409550888495,
+            "h": 162.47961246618206,
+            "l": 0.6958730755134862
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 101.06477719407376,
+          "properties": [
+            "backgroundColor"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.01584955352233149,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.12,
+          "background": "#fafafa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.97,
+          "background": "#f7f3eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.59,
+          "background": "#f1f1f1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.24,
+          "background": "#fafafa",
+          "foreground": "#10100f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.2,
+          "background": "#f7f3eb",
+          "foreground": "#10100f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.86,
+          "background": "#f1f1f1",
+          "foreground": "#10100f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.63,
+          "background": "#1c1a17",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.69,
+          "background": "#f7f3eb",
+          "foreground": "#1c1a17"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.37,
+          "background": "#f1f1f1",
+          "foreground": "#1c1a17"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.21,
+          "background": "#d4d4d8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.88,
+          "background": "#d4d4d8",
+          "foreground": "#10100f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.75,
+          "background": "#d4d4d8",
+          "foreground": "#1c1a17"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.72,
+          "background": "#000000",
+          "foreground": "#bab9b8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.72,
+          "background": "#bab9b8",
+          "foreground": "#10100f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.86,
+          "background": "#1c1a17",
+          "foreground": "#bab9b8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.28,
+          "background": "#10b981",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.04,
+          "background": "#a1a09f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.51,
+          "background": "#10b981",
+          "foreground": "#10100f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.41,
+          "background": "#fafafa",
+          "foreground": "#52525b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.29,
+          "background": "#a1a09f",
+          "foreground": "#10100f"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "badge",
+            "image",
+            "card"
+          ],
+          "frequency": 55
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 29.5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 55,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 699.3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 856.29,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 999,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 10
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(95, 99, 106, 0.08) 0px 0px 0px 1px, rgba(43, 43, 48, 0.1) 0px 1px 1px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": "rgba(95, 99, 106, 0.12) 0px 0px 0px 1px, rgba(43, 43, 48, 0.1) 0px 1px 4px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 2,
+          "frequency": 30,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 3,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 113,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 5,
+          "frequency": 62,
+          "properties": [
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 77,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 7,
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 229,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 9,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 112,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 96,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 13,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 52,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 94,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 18,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 52,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 68,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 50,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 56,
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 30,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 88,
+          "frequency": 19,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 96,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 100,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 120,
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(16, 185, 129) 0%, rgb(168, 85, 247) 50%, rgb(245, 158, 11) 100%)",
+        "colors": [
+          "rgb(16, 185, 129)",
+          "rgb(168, 85, 247)",
+          "rgb(245, 158, 11)"
+        ],
+        "frequency": 6
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(81% 66% at 1.8% 1.1%, rgb(84, 84, 84) 0%, rgb(28, 26, 23) 100%)",
+        "colors": [
+          "rgb(84, 84, 84)",
+          "rgb(28, 26, 23)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(189, 216, 255) 0%, rgb(255, 234, 214) 100%)",
+        "colors": [
+          "rgb(189, 216, 255)",
+          "rgb(255, 234, 214)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle, rgb(255, 191, 65) 0%, rgb(255, 191, 65) 22%, rgba(0, 0, 0, 0) 60%)",
+        "colors": [
+          "rgb(255, 191, 65)",
+          "rgb(255, 191, 65)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle at 54.5466% 30.5237%, rgb(243, 79, 221) 0%, rgb(243, 79, 221) 22%, rgba(0, 0, 0, 0) 60%)",
+        "colors": [
+          "rgb(243, 79, 221)",
+          "rgb(243, 79, 221)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle at 64.5937% 63.6757%, rgb(255, 96, 32) 0%, rgb(255, 96, 32) 22%, rgba(0, 0, 0, 0) 60%)",
+        "colors": [
+          "rgb(255, 96, 32)",
+          "rgb(255, 96, 32)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(89, 89, 89) 0%, rgb(28, 28, 28) 100%)",
+        "colors": [
+          "rgb(89, 89, 89)",
+          "rgb(28, 28, 28)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(135deg, rgb(13, 148, 136), rgb(14, 165, 233))",
+        "colors": [
+          "rgb(13, 148, 136)",
+          "rgb(14, 165, 233)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 701,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 517,
+          "fontFeatureSettings": [
+            "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+          ]
+        },
+        {
+          "family": "Mona Sans",
+          "source": "custom",
+          "weights": [
+            500,
+            700
+          ],
+          "frequency": 217,
+          "fontFeatureSettings": [
+            "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+          ]
+        },
+        {
+          "family": "Karla",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 9,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "badge"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "image",
+            "link",
+            "icon",
+            "list",
+            "hero"
+          ],
+          "frequency": 701,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 39,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Karla",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.93,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "button",
+            "card",
+            "badge"
+          ],
+          "frequency": 85,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.67,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 65,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 33,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "card",
+            "icon"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 149,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Mona Sans",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 56,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Mona Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Mona Sans",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 63,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Mona Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Mona Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Mona Sans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Mona Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 42,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Mona Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/24cf39f9-9f6b-47e0-bf8c-0cea968c8810.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3a25a83a-83f7-4c8e-9a5c-02698e06bdaa.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8b5cfe6d-a2bd-4edb-854e-9185cec46c09#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Panxo design system\",\"item\":\"https://styles.refero.design/style/8b5cfe6d-a2bd-4edb-854e-9185cec46c09\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8b5cfe6d-a2bd-4edb-854e-9185cec46c09#style-reference\",\"name\":\"Panxo design system reference\",\"headline\":\"Panxo design system | Refero Styles\",\"description\":\"Explore Panxo's light Other design system: Coal Ink #1c1a17, Ledger White #fafafa colors, Mona Sans, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8b5cfe6d-a2bd-4edb-854e-9185cec46c09\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8b5cfe6d-a2bd-4edb-854e-9185cec46c09\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Panxo\",\"url\":\"https://panxo.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8b5cfe6d-a2bd-4edb-854e-9185cec46c09#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3a25a83a-83f7-4c8e-9a5c-02698e06bdaa.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3a25a83a-83f7-4c8e-9a5c-02698e06bdaa.jpg\",\"caption\":\"Screenshot of Panxo\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3a25a83a-83f7-4c8e-9a5c-02698e06bdaa.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Panxo design system\",\"Panxo website design\",\"Panxo colors\",\"Panxo typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Coal Ink\",\"Ledger White\",\"Parchment\",\"Ash\",\"Mona Sans\",\"Inter\",\"sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Panxo design system\"},{\"@type\":\"Thing\",\"name\":\"Panxo website design\"},{\"@type\":\"Thing\",\"name\":\"Panxo colors\"},{\"@type\":\"Thing\",\"name\":\"Panxo typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-03-30T09:16:57.000Z\",\"dateModified\":\"2026-03-30T09:16:57.000Z\"}]}19:T1272,<div style=\"--color-coal-ink:#1c1a17;--color-ledger-white:#fafafa;--color-parchment:#f7f3eb;--color-ash:#f1f1f1;--color-slate-mid:#7e7d7b;--color-graphite:#5a5957;--color-stone:#969594;--color-fossil:#bab9b8;--color-smolder:#ff6020;--color-signal-violet:#777eff;--color-deep-violet:#731fff;--color-mint-pulse:#05933b;--font-mona-sans:'Plus Jakarta Sans',sans-serif;--font-inter:Inter,sans-serif;--spacing-4:4px;--spacing-8:8px;--spacing-12:12px;--spacing-16:16px;--spacing-24:24px;--spacing-32:32px;--spacing-40:40px;padding:40px;background:var(--color-ledger-white);font-family:var(--font-inter);max-width:600px;\"><div style=\"margin-bottom:var(--spacing-32);\"><p style=\"font-family:var(--font-inter);font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--color-slate-mid);margin:0 0 var(--spacing-12) 0;\">Primary Actions</p><div style=\"display:flex;gap:var(--spacing-12);flex-wrap:wrap;align-items:center;\"><a href=\"#\" style=\"display:inline-flex;align-items:center;justify-content:center;background:var(--color-coal-ink);color:#ffffff;font-family:var(--font-inter);font-size:14px;font-weight:500;padding:10px 20px;border-radius:48px;text-decoration:none;border:none;letter-spacing:-0.01em;\">Get Started</a><a href=\"#\" style=\"display:inline-flex;align-items:center;justify-content:center;background:transparent;color:rgba(28,26,23,0.72);font-family:var(--font-inter);font-size:14px;font-weight:500;padding:9px 19px;border-radius:20px;text-decoration:none;border:1px solid rgba(0,0,0,0.12);letter-spacing:-0.01em;\">Explore Marketplace</a><a href=\"#\" style=\"display:inline-flex;align-items:center;justify-content:center;background:transparent;color:rgba(28,26,23,0.72);font-family:var(--font-inter);font-size:14px;font-weight:500;padding:9px 19px;border-radius:999px;text-decoration:none;border:1px solid rgba(0,0,0,0.12);letter-spacing:-0.01em;\">Sign in</a></div></div><div><p style=\"font-family:var(--font-inter);font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--color-slate-mid);margin:0 0 var(--spacing-12) 0;\">Publisher Directory</p><div style=\"display:flex;gap:var(--spacing-8);flex-wrap:wrap;align-items:center;\"><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:6px;background:var(--color-coal-ink);color:#ffffff;font-family:var(--font-inter);font-size:14px;font-weight:500;padding:7px 14px;border-radius:999px;text-decoration:none;border:none;\">All <span style=\"font-weight:400;opacity:0.7;\">1291</span></a><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:6px;background:transparent;color:rgba(28,26,23,0.72);font-family:var(--font-inter);font-size:14px;font-weight:400;padding:7px 14px;border-radius:999px;text-decoration:none;border:1px solid rgba(0,0,0,0.12);\">Arts &amp; Entertainment <span style=\"color:var(--color-slate-mid);\">529</span></a><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:6px;background:transparent;color:rgba(28,26,23,0.72);font-family:var(--font-inter);font-size:14px;font-weight:400;padding:7px 14px;border-radius:999px;text-decoration:none;border:1px solid rgba(0,0,0,0.12);\">Books &amp; Literature <span style=\"color:var(--color-slate-mid);\">211</span></a><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:6px;background:transparent;color:rgba(28,26,23,0.72);font-family:var(--font-inter);font-size:14px;font-weight:400;padding:7px 14px;border-radius:999px;text-decoration:none;border:1px solid rgba(0,0,0,0.12);\">Music <span style=\"color:var(--color-slate-mid);\">193</span></a><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:6px;background:transparent;color:rgba(28,26,23,0.72);font-family:var(--font-inter);font-size:14px;font-weight:400;padding:7px 14px;border-radius:999px;text-decoration:none;border:1px solid rgba(0,0,0,0.12);\">Celebrity <span style=\"color:var(--color-slate-mid);\">58</span></a><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:6px;background:transparent;color:rgba(28,26,23,0.72);font-family:var(--font-inter);font-size:14px;font-weight:400;padding:7px 14px;border-radius:999px;text-decoration:none;border:1px solid rgba(0,0,0,0.12);\">Movies <span style=\"color:var(--color-slate-mid);\">40</span></a><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:6px;background:transparent;color:rgba(28,26,23,0.72);font-family:var(--font-inter);font-size:14px;font-weight:400;padding:7px 14px;border-radius:999px;text-decoration:none;border:1px solid rgba(0,0,0,0.12);\">AI Traffic <svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" fill=\"none\" style=\"margin-left:2px;\"><path d=\"M3 4.5L6 7.5L9 4.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a></div></div></div>1a:Ta56,<div style=\"--color-coal-ink:#1c1a17;--color-ledger-white:#fafafa;--color-parchment:#f7f3eb;--color-ash:#f1f1f1;--color-slate-mid:#7e7d7b;--color-graphite:#5a5957;--font-mona-sans:'Plus Jakarta Sans',sans-serif;--font-inter:Inter,sans-serif;--spacing-24:24px;--spacing-16:16px;--spacing-12:12px;padding:40px;background:#ffffff;font-family:var(--font-inter);max-width:600px;\"><div style=\"display:grid;grid-template-columns:1fr 1fr;gap:16px;\"><div style=\"background:radial-gradient(81% 66% at 1.8% 1.1%, #545454 0%, #1c1a17 100%);border-radius:10px;padding:var(--spacing-24);display:flex;flex-direction:column;justify-content:flex-end;min-height:220px;\"><p style=\"font-family:var(--font-mona-sans);font-size:24px;font-weight:700;color:#ffffff;margin:0;line-height:1.2;letter-spacing:-0.01em;\">Trusted by publishers monetizing AI</p><p style=\"font-family:var(--font-mona-sans);font-size:24px;font-weight:700;margin:0;line-height:1.2;letter-spacing:-0.01em;\"><span style=\"background:linear-gradient(90deg, #10b981 0%, #a855f7 50%, #f59e0b 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;\">audiences at scale</span></p></div><div style=\"background:var(--color-ledger-white);border-radius:10px;padding:var(--spacing-24);display:flex;flex-direction:column;justify-content:space-between;min-height:220px;\"><p style=\"font-family:var(--font-inter);font-size:14px;font-weight:400;color:var(--color-slate-mid);margin:0;line-height:1.5;\">Paid to Publishers</p><p style=\"font-family:var(--font-mona-sans);font-size:48px;font-weight:700;color:var(--color-coal-ink);margin:0;line-height:1;letter-spacing:-1.44px;\">$4.2M+</p></div><div style=\"background:var(--color-ledger-white);border-radius:10px;padding:var(--spacing-24);display:flex;flex-direction:column;justify-content:space-between;min-height:220px;\"><p style=\"font-family:var(--font-inter);font-size:14px;font-weight:400;color:var(--color-slate-mid);margin:0;line-height:1.5;\">AI Reach</p><p style=\"font-family:var(--font-mona-sans);font-size:48px;font-weight:700;color:var(--color-coal-ink);margin:0;line-height:1;letter-spacing:-1.44px;\">850M+</p></div><div style=\"background:var(--color-ledger-white);border-radius:10px;padding:var(--spacing-24);display:flex;flex-direction:column;justify-content:space-between;min-height:220px;\"><p style=\"font-family:var(--font-inter);font-size:14px;font-weight:400;color:var(--color-slate-mid);margin:0;line-height:1.5;\">Active Publishers</p><p style=\"font-family:var(--font-mona-sans);font-size:48px;font-weight:700;color:var(--color-coal-ink);margin:0;line-height:1;letter-spacing:-1.44px;\">1,290+</p></div></div></div>1b:T1ece,<div style=\"--color-coal-ink:#1c1a17;--color-ledger-white:#fafafa;--color-parchment:#f7f3eb;--color-ash:#f1f1f1;--color-slate-mid:#7e7d7b;--color-graphite:#5a5957;--color-stone:#969594;--color-fossil:#bab9b8;--color-signal-violet:#777eff;--color-mint-pulse:#05933b;--color-smolder:#ff6020;--font-mona-sans:'Plus Jakarta Sans',sans-serif;--font-inter:Inter,sans-serif;--spacing-4:4px;--spacing-8:8px;--spacing-12:12px;--spacing-16:16px;--spacing-24:24px;padding:40px;background:#ffffff;font-family:var(--font-inter);max-width:600px;\"><div style=\"display:grid;grid-template-columns:1fr 1fr;gap:16px;\"><div style=\"background:var(--color-ledger-white);border-radius:10px;padding:var(--spacing-24);display:flex;flex-direction:column;gap:var(--spacing-16);\"><div style=\"display:flex;justify-content:space-between;align-items:flex-start;\"><div style=\"display:flex;align-items:center;gap:var(--spacing-12);\"><div style=\"width:40px;height:40px;background:#ff4500;border-radius:50%;display:flex;align-items:center;justify-content:center;\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\"><circle cx=\"10\" cy=\"10\" r=\"8\" fill=\"white\"/><circle cx=\"7\" cy=\"9\" r=\"1.5\" fill=\"#ff4500\"/><circle cx=\"13\" cy=\"9\" r=\"1.5\" fill=\"#ff4500\"/><path d=\"M7 13c1.5 1.5 4.5 1.5 6 0\" stroke=\"#ff4500\" stroke-width=\"1.2\" stroke-linecap=\"round\"/></svg></div><div><p style=\"font-family:var(--font-inter);font-size:15px;font-weight:600;color:var(--color-coal-ink);margin:0;line-height:1.3;\">reddit.com</p><p style=\"font-family:var(--font-inter);font-size:13px;font-weight:400;color:var(--color-slate-mid);margin:0;line-height:1.4;\">Reddit, Inc.</p></div></div><div style=\"width:20px;height:14px;background:linear-gradient(180deg,#b22234 0%,#b22234 15%,#fff 15%,#fff 23%,#b22234 23%,#b22234 38%,#fff 38%,#fff 46%,#b22234 46%,#b22234 61%,#fff 61%,#fff 69%,#b22234 69%,#b22234 84%,#fff 84%);border-radius:2px;position:relative;overflow:hidden;\"><div style=\"position:absolute;top:0;left:0;width:40%;height:53%;background:#3c3b6e;\"></div></div></div><p style=\"font-family:var(--font-inter);font-size:14px;font-weight:400;color:var(--color-graphite);margin:0;line-height:1.5;\">Reddit is a social media platform where users share news and engage in discussions acros...</p><div style=\"display:flex;gap:var(--spacing-4);flex-wrap:wrap;\"><span style=\"font-family:var(--font-inter);font-size:12px;font-weight:400;color:#52525b;background:var(--color-ledger-white);border:1px solid var(--color-ash);border-radius:6px;padding:4px 10px;\">Internet & Telecom</span><span style=\"font-family:var(--font-inter);font-size:12px;font-weight:400;color:#52525b;background:var(--color-ledger-white);border:1px solid var(--color-ash);border-radius:6px;padding:4px 10px;\">en</span></div><div style=\"display:flex;gap:var(--spacing-24);align-items:flex-end;margin-top:auto;padding-top:var(--spacing-8);\"><div style=\"display:flex;flex-direction:column;gap:2px;\"><div style=\"display:flex;align-items:center;gap:4px;\"><span style=\"width:6px;height:6px;border-radius:50%;background:var(--color-mint-pulse);display:inline-block;\"></span><span style=\"font-family:var(--font-inter);font-size:14px;font-weight:600;color:var(--color-coal-ink);line-height:1;\">High</span></div><span style=\"font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--color-slate-mid);\">AI TRAFFIC</span></div><div style=\"display:flex;flex-direction:column;gap:2px;\"><span style=\"font-family:var(--font-inter);font-size:14px;font-weight:600;color:var(--color-signal-violet);line-height:1;\">$100K+</span><span style=\"font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--color-slate-mid);\">REVENUE EST.</span></div><div style=\"display:flex;flex-direction:column;gap:2px;\"><span style=\"font-family:var(--font-inter);font-size:14px;font-weight:700;color:var(--color-coal-ink);line-height:1;\">100</span><span style=\"font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--color-slate-mid);\">FIT SCORE</span><div style=\"width:100%;height:3px;background:var(--color-ash);border-radius:2px;margin-top:2px;\"><div style=\"width:100%;height:100%;background:var(--color-mint-pulse);border-radius:2px;\"></div></div></div></div></div><div style=\"background:var(--color-ledger-white);border-radius:10px;padding:var(--spacing-24);display:flex;flex-direction:column;gap:var(--spacing-16);\"><div style=\"display:flex;justify-content:space-between;align-items:flex-start;\"><div style=\"display:flex;align-items:center;gap:var(--spacing-12);\"><div style=\"width:40px;height:40px;background:#f5c518;border-radius:8px;display:flex;align-items:center;justify-content:center;\"><span style=\"font-family:var(--font-inter);font-size:11px;font-weight:900;color:var(--color-coal-ink);letter-spacing:-0.5px;\">IMDb</span></div><div><p style=\"font-family:var(--font-inter);font-size:15px;font-weight:600;color:var(--color-coal-ink);margin:0;line-height:1.3;\">imdb.com</p><p style=\"font-family:var(--font-inter);font-size:13px;font-weight:400;color:var(--color-slate-mid);margin:0;line-height:1.4;\">IMDb.com, Inc.</p></div></div><div style=\"width:20px;height:14px;background:linear-gradient(180deg,#b22234 0%,#b22234 15%,#fff 15%,#fff 23%,#b22234 23%,#b22234 38%,#fff 38%,#fff 46%,#b22234 46%,#b22234 61%,#fff 61%,#fff 69%,#b22234 69%,#b22234 84%,#fff 84%);border-radius:2px;position:relative;overflow:hidden;\"><div style=\"position:absolute;top:0;left:0;width:40%;height:53%;background:#3c3b6e;\"></div></div></div><p style=\"font-family:var(--font-inter);font-size:14px;font-weight:400;color:var(--color-graphite);margin:0;line-height:1.5;\">IMDb is the world's most popular and authoritative source for movie, TV, and...</p><div style=\"display:flex;gap:var(--spacing-4);flex-wrap:wrap;\"><span style=\"font-family:var(--font-inter);font-size:12px;font-weight:400;color:#52525b;background:var(--color-ledger-white);border:1px solid var(--color-ash);border-radius:6px;padding:4px 10px;\">Arts & Entertainment</span><span style=\"font-family:var(--font-inter);font-size:12px;font-weight:400;color:#52525b;background:var(--color-ledger-white);border:1px solid var(--color-ash);border-radius:6px;padding:4px 10px;\">en</span></div><div style=\"display:flex;gap:var(--spacing-24);align-items:flex-end;margin-top:auto;padding-top:var(--spacing-8);\"><div style=\"display:flex;flex-direction:column;gap:2px;\"><div style=\"display:flex;align-items:center;gap:4px;\"><span style=\"width:6px;height:6px;border-radius:50%;background:var(--color-mint-pulse);display:inline-block;\"></span><span style=\"font-family:var(--font-inter);font-size:14px;font-weight:600;color:var(--color-coal-ink);line-height:1;\">High</span></div><span style=\"font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--color-slate-mid);\">AI TRAFFIC</span></div><div style=\"display:flex;flex-direction:column;gap:2px;\"><span style=\"font-family:var(--font-inter);font-size:14px;font-weight:600;color:var(--color-signal-violet);line-height:1;\">$100K+</span><span style=\"font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--color-slate-mid);\">REVENUE EST.</span></div><div style=\"display:flex;flex-direction:column;gap:2px;\"><span style=\"font-family:var(--font-inter);font-size:14px;font-weight:700;color:var(--color-coal-ink);line-height:1;\">42</span><span style=\"font-family:var(--font-inter);font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--color-slate-mid);\">FIT SCORE</span><div style=\"width:100%;height:3px;background:var(--color-ash);border-radius:2px;margin-top:2px;\"><div style=\"width:42%;height:100%;background:var(--color-smolder);border-radius:2px;\"></div></div></div></div></div></div></div>1c:T828,**Quick Color Reference:**\n- Primary text: #1c1a17\n- Page background: #fafafa\n- Warm hero surface: #f7f3eb\n- Primary CTA: #ff6020 (orange) or #1c1a17 (filled pill)\n- Data/accent links: #777eff (violet)\n- Border/divider: #f1f1f1\n- Success/AI signal: #05933b\n\n**Example Component Prompts:**\n\n1. **Hero Section:** White/parchment (#f7f3eb) background. Left column: eyebrow label 'AI AUDIENCE INTELLIGENCE' in Inter 500 12px #5a5957 tracking +0.05em uppercase. Headline 'Where conversations become revenue.' in Mona Sans 700 56px #1c1a17, letter-spacing -2.24px, line-height 1.0. Row of two buttons: filled (#1c1a17 bg, white text, 48px radius, 7px 12px padding) + ghost (transparent bg, #1c1a17 text 72%, border rgba(0,0,0,0.12), 20px radius, 8px 16px padding). Right column: Inter 400 16px #7e7d7b body text.\n\n2. **Publisher Directory Card:** Background #fafafa, border-radius 10px, no shadow, padding 24px. Top row: 40px circular favicon logo + Inter 600 15px #1c1a17 domain name + Inter 400 13px #7e7d7b parent company. Body: Inter 400 14px #5a5957 two-line description. Tag row: category badges (#fafafa bg, #52525b text, 6px radius, 4px 10px padding). Bottom row: three metric columns each with a colored dot indicator, Inter 600 11px uppercase label at #7e7d7b, and Inter 700 13px value in brand color (#05933b for 'High', #ff6020 for '$100K+').\n\n3. **Stat Metric Cell:** Background #fafafa, border-radius 10px, padding 24px, no shadow. Label: Inter 400 14px #7e7d7b. Numeral: Mona Sans 700 48px #1c1a17, letter-spacing -1.44px. Unit suffix attached directly with no gap.\n\n4. **Dark Trust Card:** radial-gradient(81% 66% at 1.8% 1.1%, #545454 0%, #1c1a17 100%) background, border-radius 10px, padding 24px. Headline: Mona Sans 700 32px #ffffff, line-height 1.13. Subtext: Inter 400 14px rgba(255,255,255,0.7). Inline text highlight: Inter 700 14px #10b981.\n\n5. **Announcement Bar:** Full-bleed #000000 background, height 36px, vertically centered. Body text: Inter 400 14px #ffffff. Bullet separator • at #5a5957. CTA text link: Inter 600 14px #ff6020, no underline, hover underline."
+}

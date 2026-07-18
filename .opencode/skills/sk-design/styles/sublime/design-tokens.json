@@ -1,0 +1,287 @@
+{
+  "color": {
+    "moss-green": {
+      "$value": "#38744d",
+      "$type": "color",
+      "$description": "Moss Green — Green outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    },
+    "signal-cyan": {
+      "$value": "#00aaff",
+      "$type": "color",
+      "$description": "Signal Cyan — Blue outline accent for tags, dividers, and focused UI edges."
+    },
+    "ice-wash": {
+      "$value": "#e0f5ff",
+      "$type": "color",
+      "$description": "Ice Wash — Cool surface tint — content card backgrounds, highlight washes; a barely-there blue that hints at a Polaroid shadow without actually adding one"
+    },
+    "mint-whisper": {
+      "$value": "#cbffa6",
+      "$type": "color",
+      "$description": "Mint Whisper — Warm surface tint — secondary highlight washes, soft card fills; a pale chartreuse that pairs with Moss Green as a lighter sibling"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Primary text, structural borders, icon strokes — the dominant workhorse (870 uses); never softened to gray, always full ink"
+    },
+    "graphite": {
+      "$value": "#181816",
+      "$type": "color",
+      "$description": "Graphite — Heading text and icon fills — a near-black with the faintest warm shift, used where Pure Black would feel too clinical (display headings, filled icons)"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces, text on dark fills — the gallery wall itself"
+    },
+    "bone": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Bone — Elevated surface, button backgrounds, subtle dividers — the off-white that lets buttons and cards sit forward without using shadow"
+    },
+    "stone": {
+      "$value": "#908f8e",
+      "$type": "color",
+      "$description": "Stone — Button borders, secondary borders — medium gray for outlined controls that need definition without weight"
+    },
+    "fog": {
+      "$value": "#a29e9c",
+      "$type": "color",
+      "$description": "Fog — Body borders, nav borders, muted body text — the most-used border gray (275 instances); creates the hairline-grid that organizes the page without drawing attention"
+    },
+    "slate": {
+      "$value": "#6a6967",
+      "$type": "color",
+      "$description": "Slate — Heading borders, link text, secondary headings — darker than Fog for moments that need more presence than a border but less than a heading"
+    }
+  },
+  "font": {
+    "control-upright": {
+      "$value": "Control Upright",
+      "$type": "fontFamily",
+      "$description": "Primary interface sans — headlines, nav, buttons, body, icons. A single-weight geometric sans that does all structural work. Signature choice: it carries the 142px display headline at weight 400 only, so the extreme size creates weight rather than the font face. The custom stylistic sets ss12 and ss09 are active — these likely adjust letterforms (apertures, terminals) to keep the geometric structure readable at small sizes and dramatic at large."
+    },
+    "times-new-roman": {
+      "$value": "Times New Roman",
+      "$type": "fontFamily",
+      "$description": "Literary counterpoint — body paragraphs, quotes, editorial text. The intentional clash: a contemporary geometric sans for headlines, a 1930s book serif for body. The serif makes long reads feel like a printed catalog page rather than a SaaS dashboard. ss12 is active, likely for old-style figures and ligatures."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Control Upright",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Control Upright",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Times New Roman",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times New Roman",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Times New Roman",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Control Upright",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Control Upright",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.39
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Times New Roman",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.39
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Control Upright",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Control Upright",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Control Upright",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Control Upright",
+        "fontSize": "142px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 142px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the gallery wall"
+    },
+    "bone": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card surfaces, button fills, subtle separation"
+    },
+    "ice-wash": {
+      "$value": "#e0f5ff",
+      "$type": "color",
+      "$description": "Surface level 2: Cool content card wash — quotes, text notes, reference cards"
+    },
+    "mint-whisper": {
+      "$value": "#cbffa6",
+      "$type": "color",
+      "$description": "Surface level 3: Warm highlight wash — accent card surfaces, emphasis zones"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://sublime.app",
+      "siteName": "Sublime",
+      "extractedAt": "2026-06-03T22:02:57.107Z",
+      "variant": "extended"
+    }
+  }
+}

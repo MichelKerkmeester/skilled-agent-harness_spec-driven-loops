@@ -1,0 +1,1149 @@
+{
+  "source": "https://styles.refero.design/style/50aa2b8e-4760-4379-a3c1-59b65d8576a7",
+  "uuid": "50aa2b8e-4760-4379-a3c1-59b65d8576a7",
+  "name": "v0 by Vercel",
+  "northStar": "A Machinist's Blueprint. Precision and function are paramount, with every element serving a clear purpose on a clean, technical surface.",
+  "capturedAt": "2026-07-18T08:17:35.571Z",
+  "meta": {
+    "url": "https://v0.dev",
+    "siteName": "v0 by Vercel",
+    "extractedAt": "2026-04-11T17:39:37.040Z",
+    "durationMs": 71545,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1176,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use GeistSans for all text, without exception.",
+      "Apply aggressive negative letter-spacing to headings 24px and larger.",
+      "Adhere strictly to the achromatic palette; all color comes from content, not chrome.",
+      "Use 8px radius for buttons and 12px for cards and inputs.",
+      "Use 1px solid #eaeaea for all visual dividers.",
+      "Differentiate action hierarchy using fills and borders: solid for primary, bordered for secondary, text-only for tertiary.",
+      "Maintain generous whitespace (min. 96px) between content sections."
+    ],
+    "tags": [
+      "minimalist",
+      "monochrome",
+      "developer-tool",
+      "utility",
+      "functional",
+      "spacious",
+      "typography-driven",
+      "light-ui",
+      "schematic",
+      "high-contrast"
+    ],
+    "donts": [
+      "Do not introduce any saturated colors to the UI chrome.",
+      "Do not use system fonts or other brand fonts.",
+      "Do not use shadows on interactive elements like buttons or inputs; reserve them for cards.",
+      "Do not use any border-radius values other than 6px, 8px, 12px, or 9999px (for pills).",
+      "Do not use gradients or background images.",
+      "Do not use bold (700+) font weights; rely on 600 weight and size for emphasis.",
+      "Do not create dense layouts; prioritize clarity and space."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Text on dark buttons, pill button backgrounds.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Canvas",
+        "role": "Primary page background.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eaeaea",
+        "name": "Line",
+        "role": "Borders for headers, ghost buttons, and dividers.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Subtext",
+        "role": "Secondary text, navigation links, placeholder text.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7d7d7d",
+        "name": "Icon",
+        "role": "Inactive icons and tertiary UI elements.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#171717",
+        "name": "Ink",
+        "role": "Primary text, headlines, and primary button backgrounds.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Onyx",
+        "role": "Logo, icons, highest contrast text.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The layout is clean and centered within a generous max-width container (approx. 1440px). The header is full-width with a 1px bottom border. The hero area is a simple centered stack comprising a headline, a large input field, and suggestion chips. Body sections are separated by large vertical whitespace (~96px) on the Canvas (#fafafa) background, creating a spacious rhythm. Content grids, such as the 3-column template gallery, are the primary structure for displaying information.",
+    "imagery": "This design uses no decorative imagery. Visuals are strictly confined to user-generated content previews within the Template Cards. These thumbnails are presented as raw, unstyled content inside a 12px rounded container. The page is UI-dominant, with imagery serving only to showcase product output, not to build atmosphere.",
+    "similar": [
+      {
+        "why": "Shares the high-contrast, black/white/gray palette and surgically precise typography.",
+        "business": "Linear"
+      },
+      {
+        "why": "Similar utilitarian, developer-centric aesthetic with a focus on functional components over decoration.",
+        "business": "GitHub"
+      },
+      {
+        "why": "Extreme typography-first approach on a minimal, monochrome canvas.",
+        "business": "Read.cv"
+      },
+      {
+        "why": "Clean, high-contrast UI with a similar approach to minimal buttons and inputs.",
+        "business": "Height"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "12px",
+        "pills": "9999px",
+        "inputs": "12px",
+        "buttons": "8px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "96px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1440px"
+    },
+    "category": "ai",
+    "elevation": [
+      {
+        "style": "0px 0px 0px 1px rgba(0, 0, 0, 0.08), 0px 2px 1px 0px rgba(0, 0, 0, 0.04)",
+        "element": "Template Card"
+      },
+      {
+        "style": "0px 25px 50px -12px rgba(0, 0, 0, 0.25)",
+        "element": "Modal / Popover"
+      }
+    ],
+    "northStar": "A Machinist's Blueprint. Precision and function are paramount, with every element serving a clear purpose on a clean, technical surface.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.56
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-lg",
+        "size": 32,
+        "lineHeight": 1.17,
+        "letterSpacing": -1.28
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1,
+        "letterSpacing": -2.88
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Main Prompt Input",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Template Filter Pills",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Button Group — Action Hierarchy",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary CTA Button",
+        "role": "The main action on a page, like 'Sign Up'.",
+        "description": "Solid Ink (#171717) background with Paper White (#ffffff) text. Font is 14px GeistSans at 500 weight. Padding is ~8px vertically and 12px horizontally, with an 8px border radius."
+      },
+      {
+        "name": "Ghost Navigation Link",
+        "role": "Secondary navigation actions like 'Sign In'.",
+        "description": "Transparent background with Subtext (#666666) text. No border in its default state. Font is 14px GeistSans at 400 weight."
+      },
+      {
+        "name": "Prompt Suggestion Chip",
+        "role": "Clickable suggestions below the main input.",
+        "description": "Transparent background with a 1px Line (#eaeaea) border. Text is Subtext (#666666) at ~13px. Padding is 4px vertically and 8px horizontally, with a 6px border radius."
+      },
+      {
+        "name": "Filter Pill Button",
+        "role": "Filtering content categories like 'Landing Pages'.",
+        "description": "A pill-shaped button (9999px radius) with a Paper White (#ffffff) background and Ink (#171717) text. Features a faint 1px border of `rgba(0, 0, 0, 0.08)`."
+      },
+      {
+        "name": "Main Prompt Input",
+        "role": "The primary interaction point for user queries.",
+        "description": "A large input field with a 12px border radius and a subtle 1px Line (#eaeaea) border. Placeholder text is Subtext (#666666). On focus, it gets a subtle outer glow."
+      },
+      {
+        "name": "Header Divider",
+        "role": "Separates the sticky header from page content.",
+        "description": "A full-width 1px solid border using the Line color (#eaeaea)."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The universal font for all UI text, from body copy to display headings. Weight 600 is used for major headlines, 500 for buttons, and 400 for body text. Its signature is the aggressive negative letter-spacing at large sizes, creating dense, block-like headlines.",
+        "sizes": "13px, 14px, 15px, 16px, 18px, 20px, 24px, 32px, 48px",
+        "family": "GeistSans",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.00, 1.17, 1.25, 1.30, 1.33, 1.43, 1.50, 1.56",
+        "substitute": "Inter",
+        "letterSpacing": "Ranges from -2.88px at 48px to normal at 16px. The progressively tighter tracking on larger sizes is a key brand identifier.",
+        "fontFeatureSettings": "\"zero\", \"ss09\", \"ss05\""
+      },
+      {
+        "role": "Used for small, technical annotations or user statistics where tabular alignment is beneficial.",
+        "sizes": "10px",
+        "family": "GeistMono",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "IBM Plex Mono",
+        "fontFeatureSettings": "\"zero\""
+      }
+    ],
+    "description": "The design feels like a functional schematic on a stark white drafting table. Its nearly monochrome palette — #FFFFFF, #FAFAFA, #EAEAEA, #171717 — creates a utility-first atmosphere where user input is the only source of color. Typography is the main architectural element; a custom sans-serif is used everywhere, with tight negative letter-spacing at large sizes creating dense, impactful headlines. The UI is built from simple primitives: solid black CTAs with an 8px radius and subtly bordered white chips, distinguishing primary commands from secondary suggestions.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "### Quick Color Reference\n- **Page Background**: `#fafafa` (Canvas)\n- **Primary Text**: `#171717` (Ink)\n- **Subtle Text**: `#666666` (Subtext)\n- **Border**: `#eaeaea` (Line)\n- **CTA Background**: `#171717` (Ink)\n- **CTA Text**: `#ffffff` (Paper White)\n\n### Example Component Prompts\n1. **Primary Button:** `Create a button with 'Get Started' text. It needs a #171717 background, #FFFFFF text, 8px corner radius, and font size 14px.`\n2. **Display Headline:** `Generate a headline 'Start with a template'. Use GeistSans 32px weight 600, color #171717, and letter-spacing of -1.28px.`\n3. **Template Card:** `Design a card container with a 12px border-radius, a white background, and a box-shadow of '0px 0px 0px 1px rgba(0,0,0,0.08), 0px 2px 1px 0px rgba(0,0,0,0.04)'.`"
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#eaeaea",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.937
+          },
+          "contexts": [
+            "other",
+            "list",
+            "icon",
+            "body",
+            "nav",
+            "button",
+            "heading",
+            "input",
+            "hero",
+            "image",
+            "link",
+            "footer"
+          ],
+          "frequency": 3649,
+          "confidence": 1,
+          "prominence": 77976500.9147631,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#171717",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.205
+          },
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "icon",
+            "body",
+            "nav",
+            "heading",
+            "button",
+            "input",
+            "hero",
+            "image",
+            "footer"
+          ],
+          "frequency": 736,
+          "confidence": 1,
+          "prominence": 62883068.53999023,
+          "properties": [
+            "color",
+            "fill",
+            "backgroundColor",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1
+          },
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 123,
+          "confidence": 1,
+          "prominence": 45908377.29408613,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#fafafa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.985
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 6537534.778688556,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "icon",
+            "other"
+          ],
+          "frequency": 151,
+          "confidence": 1,
+          "prominence": 584472.8746840907,
+          "properties": [
+            "fill",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.51
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "icon",
+            "other",
+            "link"
+          ],
+          "frequency": 347,
+          "confidence": 1,
+          "prominence": 198071.45441261117,
+          "properties": [
+            "color",
+            "stroke",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#b9b9ba",
+          "oklch": {
+            "c": 0.0010471477135865857,
+            "h": 286.3755212587807,
+            "l": 0.7867752142266792
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 113579.96543660655,
+          "properties": [
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#7d7d7d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.59
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 33580.75802447125,
+          "properties": [
+            "color",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#a8a8a8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.732
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 9845.393711656017,
+          "properties": [
+            "stroke"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.000003329563477222848,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.12,
+          "background": "#fafafa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.93,
+          "background": "#ffffff",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.46,
+          "background": "#eaeaea",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.18,
+          "background": "#fafafa",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.9,
+          "background": "#eaeaea",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.71,
+          "background": "#b9b9ba",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.14,
+          "background": "#b9b9ba",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.83,
+          "background": "#a8a8a8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.54,
+          "background": "#a8a8a8",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.5,
+          "background": "#fafafa",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.77,
+          "background": "#eaeaea",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.36,
+          "background": "#171717",
+          "foreground": "#7d7d7d"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.12,
+          "background": "#ffffff",
+          "foreground": "#7d7d7d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.94,
+          "background": "#fafafa",
+          "foreground": "#7d7d7d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.42,
+          "background": "#eaeaea",
+          "foreground": "#7d7d7d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.12,
+          "background": "#171717",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.2,
+          "background": "#eaeaea",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.04,
+          "background": "#fafafa",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "nav"
+          ],
+          "frequency": 32
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.08) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 2px 1px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 60
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.08) 0px 0px 0px 1px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.25) 0px 25px 50px -12px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.04) 0px 2px 2px 0px, rgba(0, 0, 0, 0.04) 0px 8px 8px -8px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 2,
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 73,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 218,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 92,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 4,
+          "properties": [
+            "rowGap"
+          ]
+        },
+        {
+          "value": 11,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 118,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 34,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 56,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 36,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 50,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "marginBottom",
+            "paddingTop",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 72,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 96,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 108,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 128,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 224,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "GeistSans",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 929,
+          "fontFeatureSettings": [
+            "\"zero\"",
+            "\"ss09\"",
+            "\"ss05\""
+          ]
+        },
+        {
+          "family": "GeistMono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": [
+            "\"zero\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "GeistMono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "GeistSans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "GeistSans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 91,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GeistSans",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "icon",
+            "body",
+            "button",
+            "nav",
+            "other",
+            "heading"
+          ],
+          "frequency": 56,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GeistSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 139,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GeistSans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "GeistSans",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GeistSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "nav",
+            "hero",
+            "body",
+            "icon",
+            "image",
+            "link",
+            "footer"
+          ],
+          "frequency": 597,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GeistSans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GeistSans",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GeistSans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "GeistSans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "GeistSans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "GeistSans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "GeistSans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.06,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e4e584e7-154b-4dda-80cd-1107ae74d063.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/cb5daf2f-b862-4a25-b9ad-117aa3d02a53.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/50aa2b8e-4760-4379-a3c1-59b65d8576a7#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"v0 by Vercel design system\",\"item\":\"https://styles.refero.design/style/50aa2b8e-4760-4379-a3c1-59b65d8576a7\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/50aa2b8e-4760-4379-a3c1-59b65d8576a7#style-reference\",\"name\":\"v0 by Vercel design system reference\",\"headline\":\"v0 by Vercel design system | Refero Styles\",\"description\":\"Explore v0 by Vercel's light AI design system: Paper White #ffffff, Canvas #fafafa colors, GeistSans, GeistMono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/50aa2b8e-4760-4379-a3c1-59b65d8576a7\",\"mainEntityOfPage\":\"https://styles.refero.design/style/50aa2b8e-4760-4379-a3c1-59b65d8576a7\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"v0 by Vercel\",\"url\":\"https://v0.dev\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/50aa2b8e-4760-4379-a3c1-59b65d8576a7#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/cb5daf2f-b862-4a25-b9ad-117aa3d02a53.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/cb5daf2f-b862-4a25-b9ad-117aa3d02a53.jpg\",\"caption\":\"Screenshot of v0 by Vercel\"},\"image\":\"https://images.refero.design/styles/refero.design/image/cb5daf2f-b862-4a25-b9ad-117aa3d02a53.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"v0 by Vercel design system\",\"v0 by Vercel website design\",\"v0 by Vercel colors\",\"v0 by Vercel typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Paper White\",\"Canvas\",\"Line\",\"Subtext\",\"GeistSans\",\"GeistMono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"v0 by Vercel design system\"},{\"@type\":\"Thing\",\"name\":\"v0 by Vercel website design\"},{\"@type\":\"Thing\",\"name\":\"v0 by Vercel colors\"},{\"@type\":\"Thing\",\"name\":\"v0 by Vercel typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-03-02T14:07:22.000Z\",\"dateModified\":\"2026-03-02T14:07:22.000Z\"}]}19:T1363,<div style=\"--color-paper-white:#ffffff;--color-canvas:#fafafa;--color-line:#eaeaea;--color-subtext:#666666;--color-icon:#7d7d7d;--color-ink:#171717;--color-onyx:#000000;--font-geistsans:'Inter',sans-serif;--font-geistmono:'IBM Plex Mono',monospace; background:var(--color-canvas);padding:48px 32px;display:flex;flex-direction:column;align-items:center;gap:24px;font-family:var(--font-geistsans);box-sizing:border-box;width:600px;\"><h1 style=\"font-family:var(--font-geistsans);font-size:32px;font-weight:600;color:var(--color-ink);letter-spacing:-1.28px;line-height:1.17;margin:0;text-align:center;\">What do you want to create?</h1><div style=\"width:100%;background:var(--color-paper-white);border:1px solid var(--color-line);border-radius:12px;padding:16px;box-sizing:border-box;display:flex;flex-direction:column;gap:24px;\"><textarea placeholder=\"Ask v0 to build…\" style=\"font-family:var(--font-geistsans);font-size:16px;font-weight:400;color:var(--color-ink);background:transparent;border:none;outline:none;resize:none;width:100%;min-height:60px;line-height:1.5;color:var(--color-subtext);box-sizing:border-box;\">Ask v0 to build…</textarea><div style=\"display:flex;align-items:center;justify-content:space-between;\"><div style=\"display:flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--color-line);border-radius:9999px;cursor:pointer;\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--color-icon)\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/></svg><span style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-ink);\">v0 Max</span><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--color-icon)\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"6 9 12 15 18 9\"/></svg></div><button style=\"background:var(--color-ink);border:none;border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--color-paper-white)\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z\"/><path d=\"M19 10v2a7 7 0 0 1-14 0v-2\"/><line x1=\"12\" y1=\"19\" x2=\"12\" y2=\"22\"/></svg></button></div></div><div style=\"display:flex;flex-wrap:wrap;gap:8px;justify-content:center;\"><button style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-subtext);background:transparent;border:1px solid var(--color-line);border-radius:6px;padding:4px 10px;cursor:pointer;display:flex;align-items:center;gap:6px;\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--color-icon)\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><line x1=\"9\" y1=\"3\" x2=\"9\" y2=\"21\"/></svg>Contact Form</button><button style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-subtext);background:transparent;border:1px solid var(--color-line);border-radius:6px;padding:4px 10px;cursor:pointer;display:flex;align-items:center;gap:6px;\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--color-icon)\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"8.5\" cy=\"8.5\" r=\"1.5\"/><polyline points=\"21 15 16 10 5 21\"/></svg>Image Editor</button><button style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-subtext);background:transparent;border:1px solid var(--color-line);border-radius:6px;padding:4px 10px;cursor:pointer;display:flex;align-items:center;gap:6px;\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--color-icon)\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"5 3 19 12 5 21 5 3\"/></svg>Mini Game</button><button style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-subtext);background:transparent;border:1px solid var(--color-line);border-radius:6px;padding:4px 10px;cursor:pointer;display:flex;align-items:center;gap:6px;\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--color-icon)\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"22 12 18 12 15 21 9 3 6 12 2 12\"/></svg>Finance Calculator</button><button style=\"background:transparent;border:1px solid var(--color-line);border-radius:6px;padding:4px 8px;cursor:pointer;display:flex;align-items:center;justify-content:center;\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--color-icon)\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"23 4 23 10 17 10\"/><path d=\"M20.49 15a9 9 0 1 1-2.12-9.36L23 10\"/></svg></button></div></div>1a:T17a9,<div style=\"--color-paper-white:#ffffff;--color-canvas:#fafafa;--color-line:#eaeaea;--color-subtext:#666666;--color-icon:#7d7d7d;--color-ink:#171717;--color-onyx:#000000;--font-geistsans:'Inter',sans-serif; background:var(--color-canvas);padding:40px 32px;font-family:var(--font-geistsans);box-sizing:border-box;width:600px;\"><div style=\"display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;\"><h2 style=\"font-family:var(--font-geistsans);font-size:20px;font-weight:600;color:var(--color-ink);letter-spacing:-0.2px;line-height:1.25;margin:0;\">Start with a template</h2><div style=\"display:flex;align-items:center;gap:8px;flex-wrap:wrap;\"><button style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-ink);background:var(--color-paper-white);border:1px solid rgba(0,0,0,0.08);border-radius:9999px;padding:6px 14px;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap;\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"7\" width=\"20\" height=\"14\" rx=\"2\"/><path d=\"M16 3H8l-2 4h12l-2-4z\"/></svg>Apps and Games</button><button style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-ink);background:var(--color-paper-white);border:1px solid rgba(0,0,0,0.08);border-radius:9999px;padding:6px 14px;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap;\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><line x1=\"3\" y1=\"9\" x2=\"21\" y2=\"9\"/></svg>Landing Pages</button><button style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-ink);background:var(--color-paper-white);border:1px solid rgba(0,0,0,0.08);border-radius:9999px;padding:6px 14px;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap;\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"7\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\"/></svg>Components</button><button style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-ink);background:var(--color-paper-white);border:1px solid rgba(0,0,0,0.08);border-radius:9999px;padding:6px 14px;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap;\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"22 12 18 12 15 21 9 3 6 12 2 12\"/></svg>Dashboards</button><a href=\"#\" style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:500;color:var(--color-ink);text-decoration:none;display:flex;align-items:center;gap:4px;padding:6px 4px;white-space:nowrap;\">Browse all<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"9 18 15 12 9 6\"/></svg></a></div></div><div style=\"display:grid;grid-template-columns:1fr 1fr;gap:12px;\"><div style=\"background:var(--color-paper-white);border-radius:12px;overflow:hidden;box-shadow:0px 0px 0px 1px rgba(0,0,0,0.08),0px 2px 1px 0px rgba(0,0,0,0.04);cursor:pointer;\"><div style=\"width:100%;height:140px;background:#111111;display:flex;align-items:center;justify-content:center;\"><div style=\"width:40px;height:22px;border:2px solid #ffffff;border-radius:4px;position:relative;\"><div style=\"position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:16px;height:8px;border:2px solid #ffffff;border-radius:2px;\"></div></div></div><div style=\"padding:12px;\"><div style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:500;color:var(--color-ink);margin-bottom:6px;\">Nano Banana Pro Playground</div><div style=\"display:flex;align-items:center;justify-content:space-between;\"><div style=\"display:flex;align-items:center;gap:8px;\"><span style=\"font-family:var(--font-geistmono),'IBM Plex Mono',monospace;font-size:10px;color:var(--color-subtext);\">👥 5.3K</span><span style=\"font-size:10px;color:var(--color-icon);\">•</span><span style=\"font-family:var(--font-geistmono),'IBM Plex Mono',monospace;font-size:10px;color:var(--color-subtext);\">♡ 617</span></div><span style=\"font-family:var(--font-geistsans);font-size:11px;color:var(--color-subtext);\">Free</span></div></div></div><div style=\"background:var(--color-paper-white);border-radius:12px;overflow:hidden;box-shadow:0px 0px 0px 1px rgba(0,0,0,0.08),0px 2px 1px 0px rgba(0,0,0,0.04);cursor:pointer;\"><div style=\"width:100%;height:140px;background:#f5f4f0;display:flex;align-items:center;justify-content:center;\"><div style=\"text-align:center;padding:8px;\"><div style=\"font-size:11px;font-weight:600;color:#111;font-family:serif;letter-spacing:-0.3px;\">Effortless custom contract</div><div style=\"font-size:11px;font-weight:600;color:#111;font-family:serif;letter-spacing:-0.3px;\">billing by Brillance</div></div></div><div style=\"padding:12px;\"><div style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:500;color:var(--color-ink);margin-bottom:6px;\">Brillance SaaS Landing Page</div><div style=\"display:flex;align-items:center;justify-content:space-between;\"><div style=\"display:flex;align-items:center;gap:8px;\"><span style=\"font-family:var(--font-geistmono),'IBM Plex Mono',monospace;font-size:10px;color:var(--color-subtext);\">👥 12.3K</span><span style=\"font-size:10px;color:var(--color-icon);\">•</span><span style=\"font-family:var(--font-geistmono),'IBM Plex Mono',monospace;font-size:10px;color:var(--color-subtext);\">♡ 1.8K</span></div><span style=\"font-family:var(--font-geistsans);font-size:11px;color:var(--color-subtext);\">Free</span></div></div></div></div></div>1b:T1470,<div style=\"--color-paper-white:#ffffff;--color-canvas:#fafafa;--color-line:#eaeaea;--color-subtext:#666666;--color-icon:#7d7d7d;--color-ink:#171717;--color-onyx:#000000;--font-geistsans:'Inter',sans-serif; background:var(--color-canvas);padding:48px 32px;font-family:var(--font-geistsans);box-sizing:border-box;width:600px;display:flex;flex-direction:column;gap:32px;\"><div style=\"display:flex;flex-direction:column;gap:8px;\"><span style=\"font-size:11px;font-weight:500;color:var(--color-icon);letter-spacing:0.5px;text-transform:uppercase;\">Primary Action</span><div style=\"display:flex;gap:8px;flex-wrap:wrap;\"><button style=\"font-family:var(--font-geistsans);font-size:14px;font-weight:500;color:var(--color-paper-white);background:var(--color-ink);border:none;border-radius:8px;padding:8px 16px;cursor:pointer;\">Sign Up</button><button style=\"font-family:var(--font-geistsans);font-size:14px;font-weight:500;color:var(--color-paper-white);background:var(--color-ink);border:none;border-radius:8px;padding:8px 16px;cursor:pointer;display:flex;align-items:center;gap:6px;\">Get Started<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"5\" y1=\"12\" x2=\"19\" y2=\"12\"/><polyline points=\"12 5 19 12 12 19\"/></svg></button></div></div><div style=\"height:1px;background:var(--color-line);\"></div><div style=\"display:flex;flex-direction:column;gap:8px;\"><span style=\"font-size:11px;font-weight:500;color:var(--color-icon);letter-spacing:0.5px;text-transform:uppercase;\">Secondary / Ghost</span><div style=\"display:flex;gap:8px;flex-wrap:wrap;\"><button style=\"font-family:var(--font-geistsans);font-size:14px;font-weight:400;color:var(--color-ink);background:var(--color-paper-white);border:1px solid var(--color-line);border-radius:8px;padding:8px 16px;cursor:pointer;\">Sign In</button><button style=\"font-family:var(--font-geistsans);font-size:14px;font-weight:400;color:var(--color-ink);background:var(--color-paper-white);border:1px solid var(--color-line);border-radius:8px;padding:8px 16px;cursor:pointer;display:flex;align-items:center;gap:6px;\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"16\"/><line x1=\"8\" y1=\"12\" x2=\"16\" y2=\"12\"/></svg>New Project</button><button style=\"font-family:var(--font-geistsans);font-size:14px;font-weight:400;color:var(--color-subtext);background:transparent;border:none;border-radius:8px;padding:8px 12px;cursor:pointer;\">Learn more</button></div></div><div style=\"height:1px;background:var(--color-line);\"></div><div style=\"display:flex;flex-direction:column;gap:8px;\"><span style=\"font-size:11px;font-weight:500;color:var(--color-icon);letter-spacing:0.5px;text-transform:uppercase;\">Filter Pills</span><div style=\"display:flex;gap:8px;flex-wrap:wrap;\"><button style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-ink);background:var(--color-paper-white);border:1px solid rgba(0,0,0,0.08);border-radius:9999px;padding:6px 14px;cursor:pointer;\">All</button><button style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-ink);background:var(--color-paper-white);border:1px solid rgba(0,0,0,0.08);border-radius:9999px;padding:6px 14px;cursor:pointer;\">Landing Pages</button><button style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-ink);background:var(--color-paper-white);border:1px solid rgba(0,0,0,0.08);border-radius:9999px;padding:6px 14px;cursor:pointer;\">Components</button><button style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-ink);background:var(--color-paper-white);border:1px solid rgba(0,0,0,0.08);border-radius:9999px;padding:6px 14px;cursor:pointer;\">Dashboards</button></div></div><div style=\"height:1px;background:var(--color-line);\"></div><div style=\"display:flex;flex-direction:column;gap:8px;\"><span style=\"font-size:11px;font-weight:500;color:var(--color-icon);letter-spacing:0.5px;text-transform:uppercase;\">Suggestion Chips</span><div style=\"display:flex;gap:8px;flex-wrap:wrap;\"><button style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-subtext);background:transparent;border:1px solid var(--color-line);border-radius:6px;padding:4px 10px;cursor:pointer;\">Contact Form</button><button style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-subtext);background:transparent;border:1px solid var(--color-line);border-radius:6px;padding:4px 10px;cursor:pointer;\">Image Editor</button><button style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-subtext);background:transparent;border:1px solid var(--color-line);border-radius:6px;padding:4px 10px;cursor:pointer;\">Mini Game</button><button style=\"font-family:var(--font-geistsans);font-size:13px;font-weight:400;color:var(--color-subtext);background:transparent;border:1px solid var(--color-line);border-radius:6px;padding:4px 10px;cursor:pointer;\">Finance Calculator</button></div></div></div>"
+}

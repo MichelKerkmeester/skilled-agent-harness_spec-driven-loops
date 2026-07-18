@@ -1,0 +1,1442 @@
+{
+  "source": "https://styles.refero.design/style/fe8cdcf9-c850-4d52-be07-5ad269bf9ebf",
+  "uuid": "fe8cdcf9-c850-4d52-be07-5ad269bf9ebf",
+  "name": "Caldera",
+  "northStar": "forge fire on warm limestone. The canvas is raw warm plaster, and every orange element reads as glowing embers pressed into the surface.",
+  "capturedAt": "2026-07-18T07:05:36.118Z",
+  "meta": {
+    "url": "https://caldera.xyz",
+    "siteName": "Caldera",
+    "extractedAt": "2026-07-03T03:13:33.116Z",
+    "durationMs": 111246,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1160,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use PP Neue Corp Compact at 48px or larger for any heading that needs to feel structural — below 40px the ultrabold weight overwhelms and loses its industrial character",
+      "Apply 40px border-radius to all cards, content blocks, and non-pill buttons as the default surface radius",
+      "Use 800px border-radius (full pill) for all buttons, tags, nav containers, and small interactive elements",
+      "Set primary CTAs to Ember (#fc5000) with Obsidian (#070607) text, sized at 12px/24px padding — never rectangular, always pill-shaped",
+      "Keep body text at DM Sans 500 (Medium) — never drop to Regular weight, which reads as anemic against the ultrabold display type",
+      "Use the halftone dot pattern (orange dots on violet) as the hero/signature visual treatment — it is the system’s most recognizable motif",
+      "Layer surfaces using color contrast (Pumice canvas → Limestone cards → Ember features) rather than shadows or borders"
+    ],
+    "donts": [
+      "Do not add drop shadows to any element — the system is intentionally flat; shadows would undermine the paper-like warmth",
+      "Do not use rectangular (low-radius) buttons — the pill/40px-radius treatment is non-negotiable",
+      "Do not introduce additional accent colors beyond Ember, Plasma Violet, and Sulfur — the palette is deliberately constrained to three chromatic tones",
+      "Do not use Regular or Bold weights of DM Sans for body — Medium (500) is the only correct weight",
+      "Do not set headings below 26px or above 189px — the display type only works at architectural scale",
+      "Do not use Plasma Violet for buttons or controls — it is reserved for the hero halftone and a single accent card",
+      "Do not apply negative letter-spacing to PP Neue Corp Compact — the +0.02em positive tracking is intentional at display sizes to prevent stroke collision"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fc5000",
+        "name": "Ember",
+        "role": "Primary action buttons, featured stat cards, key visual highlights — the only aggressive chromatic accent; its vivid saturation against warm grays creates urgency without needing supporting decorative weight",
+        "group": "brand"
+      },
+      {
+        "hex": "#524ae9",
+        "name": "Plasma Violet",
+        "role": "Hero halftone gradient base, single secondary card surface — appears almost exclusively in the hero dot pattern and one standout card; never used for controls",
+        "group": "brand"
+      },
+      {
+        "hex": "#f5f28e",
+        "name": "Sulfur",
+        "role": "Tag and category badge backgrounds, small highlight washes — the soft yellow that labels blog post categories and program announcements",
+        "group": "accent"
+      },
+      {
+        "hex": "#f7f6f2",
+        "name": "Limestone",
+        "role": "Card surfaces, content block backgrounds, secondary button fills — the lighter warm off-white that lifts elements off the page canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2e2df",
+        "name": "Pumice",
+        "role": "Page canvas, dominant background — the warm medium-gray that grounds every section; slightly darker than card surfaces to create subtle figure/ground separation without shadows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#070607",
+        "name": "Obsidian",
+        "role": "Primary text, headings, link text, button borders — near-black with a barely-warm cast matching the canvas warmth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Chalk",
+        "role": "Dark-section text, input text on dark backgrounds, high-contrast overlays — pure white used only where maximum contrast against dark surfaces is required",
+        "group": "neutral"
+      }
+    ],
+    "imagery": "Imagery is minimal and deliberate. The hero uses an abstract halftone dot pattern (orange dots on a violet-to-orange gradient) rather than photography — it functions as brand artwork, not decoration. Product and announcement cards use either solid Ember blocks or the Plasma Violet halftone as image-area fills, keeping a consistent graphic system. Partner/integration logos are rendered as monochrome marks on light backgrounds. No photography, no 3D renders, no lifestyle imagery anywhere. Icons are small, monochrome, and minimal — Discord, X, and Telegram sit in the nav as simple glyphs. The visual language is graphic and editorial, not photographic: think poster design, not stock imagery.",
+    "similar": [
+      {
+        "why": "Similar crypto/web3 site language with warm off-white canvas, massive condensed display type, and a single bold accent color dominating featured surfaces",
+        "business": "Berachain"
+      },
+      {
+        "why": "Matching approach of ultrabold compressed headlines at near-architectural scale, flat no-shadow surfaces, and pill-shaped controls with aggressive border-radius",
+        "business": "Monad"
+      },
+      {
+        "why": "Shared visual DNA of warm neutral canvas, single vivid accent color for CTAs and stat cards, and condensed industrial display typography",
+        "business": "Dymension"
+      },
+      {
+        "why": "Same flat-design philosophy on warm background, pill buttons in one dominant accent color, and oversized compressed headlines as structural anchors",
+        "business": "Blast"
+      },
+      {
+        "why": "Comparable crypto ecosystem site pattern with generous 40px surface radii, warm light canvas, and medium-weight body sans against heavy display type",
+        "business": "Arbitrum"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "40px",
+        "pills": "800px",
+        "small": "16px",
+        "inputs": "100px",
+        "medium": "20px",
+        "buttons": "40px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "40px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#e2e2df",
+        "name": "Pumice Canvas",
+        "level": 0,
+        "purpose": "Page background — warm medium-gray that grounds all content"
+      },
+      {
+        "hex": "#f7f6f2",
+        "name": "Limestone Surface",
+        "level": 1,
+        "purpose": "Cards, content blocks, secondary buttons — lighter warm off-white"
+      },
+      {
+        "hex": "#fc5000",
+        "name": "Ember Feature",
+        "level": 2,
+        "purpose": "Featured stat cards and emphasis surfaces — the only chromatic surface elevation"
+      },
+      {
+        "hex": "#524ae9",
+        "name": "Plasma Hero",
+        "level": 3,
+        "purpose": "Hero halftone block — reserved for the homepage hero gradient overlay"
+      }
+    ],
+    "northStar": "forge fire on warm limestone. The canvas is raw warm plaster, and every orange element reads as glowing embers pressed into the surface.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.55
+      },
+      {
+        "role": "subheading",
+        "size": 26,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1,
+        "letterSpacing": 0.64
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading-2xl",
+        "size": 80,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading-3xl",
+        "size": 96,
+        "lineHeight": 0.95
+      },
+      {
+        "role": "display",
+        "size": 189,
+        "lineHeight": 0.94
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "Main conversion action",
+        "description": "Filled Ember (#fc5000) with Obsidian (#070607) text. 800px border-radius (full pill). Padding 12px vertical, 24px horizontal. DM Sans 500 weight at 16px. No shadow. The pill shape is the most distinctive control shape in the system — never rectangular."
+      },
+      {
+        "name": "Secondary Pill Button",
+        "role": "Alternative action or paired CTA",
+        "description": "Transparent background, 1.5px Obsidian (#070607) border, Obsidian text. 40px border-radius. Padding 16px all sides. DM Sans 500 at 16px. Border style is solid here, not dotted. Sits beside the primary CTA as the quieter counterpart."
+      },
+      {
+        "name": "Outlined Ghost Link",
+        "role": "Low-emphasis text link or nav item",
+        "description": "Transparent background, no visible border, Obsidian text. 800px pill radius. Padding 0 vertical, 12px horizontal. DM Sans 500 at 16px. Used for nav items and inline links — relies on color and position rather than container weight."
+      },
+      {
+        "name": "Stat Feature Card",
+        "role": "Highlight key metrics (TVL, transactions, etc.)",
+        "description": "Ember (#fc5000) solid background, Chalk (#ffffff) text. 40px border-radius. Padding 40px on all sides. No shadow. The large metric number uses PP Neue Corp Compact at 80px+; the label above uses DM Sans 500 at 14–16px. These cards are the system’s most visually dominant elements after the hero."
+      },
+      {
+        "name": "Content Card",
+        "role": "Blog posts, announcements, program entries",
+        "description": "Limestone (#f7f6f2) background, no border, no shadow. 40px border-radius. Padding 40px all sides. Contains a category tag, headline (PP Neue Corp Compact 26–32px in Obsidian), and date metadata. The image area at the top can be a halftone or solid Ember block."
+      },
+      {
+        "name": "Plasma Hero Card",
+        "role": "Single standout content surface",
+        "description": "Plasma Violet (#524ae9) background with white halftone dot pattern overlay. 40px border-radius. Used sparingly — appears once as a signature visual anchor. No shadow."
+      },
+      {
+        "name": "Category Tag Badge",
+        "role": "Label blog posts and announcements",
+        "description": "Sulfur (#f5f28e) background, Obsidian (#070607) text. Pill shape (800px radius). DM Sans 500 at 12–14px. Padding approximately 3–4px vertical, 8–10px horizontal. Small, bright, and functionally pure — the only yellow element in the system."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Pumice (#e2e2df) page background continues through. Nav items are Obsidian text in DM Sans 500 at 16px, separated by 9px gaps. The entire nav row can sit inside a Limestone (#f7f6f2) pill container with 800px radius — a signature element. Logo lockup (mountain icon + wordmark) sits left, social icons and CTA right."
+      },
+      {
+        "name": "Hero Halftone Block",
+        "role": "Hero section visual centerpiece",
+        "description": "Large rounded rectangle filled with a Plasma Violet (#524ae9) to Ember (#fc5000) gradient overlaid with an orange halftone dot pattern. 40px border-radius. Dimensions are hero-scale (roughly 50% of viewport width). The halftone effect is the system’s most distinctive visual signature — pixel-art-like, high-density dot grid that fades to solid orange at the top right."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form input on dark sections",
+        "description": "Transparent background, 1.5px Chalk (#ffffff) border. 100px border-radius (pill). Padding 24px vertical, 32px left, 64px right. Chalk text. DM Sans 500. Used in dark/contrast sections only."
+      },
+      {
+        "name": "Partner Logo Strip",
+        "role": "Display ecosystem partners or integrations",
+        "description": "Limestone (#f7f6f2) background card, 40px radius, 40px padding. Logos arranged in a single row with consistent height, separated by vertical 1.5px Obsidian dotted dividers. No individual logo containers — flat inline treatment."
+      },
+      {
+        "name": "Dotted Divider",
+        "role": "Section separator and decorative detail",
+        "description": "1.5px dotted line in Obsidian (#070607). Used as vertical dividers in nav and partner strips, and occasionally as horizontal section breaks. The dotted (not dashed, not solid) style is a small but consistent signature detail."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All headings and display text. A custom condensed ultrabold face that gives headlines an industrial, sign-painted weight. The 189px display size in the hero is the signature — compressed, almost structural rather than typographic. Feature settings \"ss06\" and \"ss10\" activate alternate letterforms and spacing for a more aggressive condensed rhythm. Positive tracking (+0.02em) is unusual for display sizes and keeps the heavy strokes from feeling claustrophobic at 80–189px.",
+        "sizes": "26px, 32px, 40px, 48px, 56px, 64px, 80px, 96px, 189px",
+        "family": "PP Neue Corp Compact",
+        "weight": "400 (Ultrabold cut)",
+        "lineHeight": "0.94–1.20",
+        "substitute": "Bebas Neue, Anton, Druk Wide Bold",
+        "letterSpacing": "0.64px at 32px (0.02em), scaling proportionally to ~3.78px at display 189px",
+        "fontFeatureSettings": "\"ss06\", \"ss10\""
+      },
+      {
+        "role": "Body copy, nav links, button labels, supporting headings up to 30px. Medium weight throughout is deliberate — Regular would feel too thin against the ultrabold display type, and Bold would compete with it. DM Sans provides a humanist, slightly geometric counterpoint to the industrial display face.",
+        "sizes": "14px, 16px, 18px, 30px",
+        "family": "DM Sans",
+        "weight": "500 (Medium only — never Regular or Bold)",
+        "lineHeight": "1.20–1.55",
+        "substitute": "Inter, Manrope"
+      },
+      {
+        "role": "Captions, meta text, dates, micro-labels. Only used at 12px where weight and brand presence matter less than size economy.",
+        "sizes": "12px",
+        "family": "System sans-serif",
+        "weight": "400",
+        "lineHeight": "1.20"
+      }
+    ],
+    "description": "Caldera runs on a warm limestone canvas flooded with molten orange. The interface is flat and unshadowed, letting ultrabold compressed type at near-architectural scale (up to 189px) carry all structural weight. A single vivid orange (#fc5000) acts as the only aggressive chromatic accent against monochrome warm grays, with a violet plasma reserved for the hero halftone and a sulfur yellow for tags. The visual language is volcanic: condensed heavy letterforms, halftone dot patterns, 40px radii on cards and buttons, and 800px pill controls — heat contained within a soft, paper-like surface.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fe8cdcf9-c850-4d52-be07-5ad269bf9ebf#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Caldera design system\",\"item\":\"https://styles.refero.design/style/fe8cdcf9-c850-4d52-be07-5ad269bf9ebf\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fe8cdcf9-c850-4d52-be07-5ad269bf9ebf#style-reference\",\"name\":\"Caldera design system reference\",\"headline\":\"Caldera design system | Refero Styles\",\"description\":\"Explore Caldera's light Crypto design system: Ember #fc5000, Plasma Violet #524ae9 colors, PP Neue Corp Compact, DM Sans typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/fe8cdcf9-c850-4d52-be07-5ad269bf9ebf\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fe8cdcf9-c850-4d52-be07-5ad269bf9ebf\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Caldera\",\"url\":\"https://caldera.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fe8cdcf9-c850-4d52-be07-5ad269bf9ebf#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a7811524-4868-4a36-b303-566e1e5db2bf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a7811524-4868-4a36-b303-566e1e5db2bf.jpg\",\"caption\":\"Screenshot of Caldera\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a7811524-4868-4a36-b303-566e1e5db2bf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Caldera design system\",\"Caldera website design\",\"Caldera colors\",\"Caldera typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Ember\",\"Plasma Violet\",\"Sulfur\",\"Limestone\",\"PP Neue Corp Compact\",\"DM Sans\",\"System sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Caldera design system\"},{\"@type\":\"Thing\",\"name\":\"Caldera website design\"},{\"@type\":\"Thing\",\"name\":\"Caldera colors\"},{\"@type\":\"Thing\",\"name\":\"Caldera typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-07T18:18:51.410Z\",\"dateModified\":\"2026-05-07T18:18:51.410Z\"}]}19:T4df,## Quick Color Reference\n- Page background: #e2e2df (Pumice)\n- Card/content surface: #f7f6f2 (Limestone)\n- Primary text/headings: #070607 (Obsidian)\n- primary action: #fc5000 (filled action)\n- Accent: #524ae9 (Plasma Violet) — hero halftone only\n- Tag/badge: #f5f28e (Sulfur)\n- Input border (dark sections): #ffffff (Chalk)\n\n## 3-5 Example Component Prompts\n1. Create a Primary Action Button: #fc5000 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **Stat Row**: Four Ember (#fc5000) cards in a row, each 40px radius, 40px padding. Label in DM Sans 500 at 14px, Chalk (#ffffff) text. Metric value in PP Neue Corp Compact at 80px weight 400, Chalk text, line-height 1.1.\n\n3. **Content Card**: Limestone (#f7f6f2) background, 40px radius, 40px padding. Sulfur (#f5f28e) pill tag at top with DM Sans 500 12px Obsidian text, 800px radius. Headline at 32px PP Neue Corp Compact, Obsidian, letter-spacing 0.64px. Date at 12px system sans-serif, Obsidian.\n\n\n5. **Dark Input Section**: Obsidian (#070607) background. Chalk (#ffffff) pill input with 100px radius, 24px/32px padding, 1.5px Chalk border. DM Sans 500 16px Chalk text. Submit button: Ember fill, 800px radius, 12px/24px padding."
+      },
+      {
+        "title": "Signature Motifs",
+        "content": "Three visual signatures define Caldera’s identity and should be reused across new pages: (1) The halftone dot pattern — orange dots on a violet-to-orange gradient, always at hero scale with 40px radius, is the most recognizable motif. (2) The 189px display headline — ultrabold compressed type at near-architectural scale, with tight 0.94 line-height, signals the page is a Caldera page. (3) The triple-radius system — 100px for inputs, 40px for cards and rectangular buttons, 800px for pills — creates a consistent roundness without monotony."
+      }
+    ],
+    "elevationPhilosophy": "Deliberately shadowless. The design relies on color contrast (warm gray vs lighter off-white vs vivid orange) and generous 40px corner radii to create surface hierarchy. No element casts a shadow anywhere in the system — the flatness keeps the heavy type and bold orange from feeling overwrought."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e2e2df",
+          "oklch": {
+            "c": 0.00403028630689108,
+            "h": 106.47925033084228,
+            "l": 0.9119438275325067
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 36422565,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f7f6f2",
+          "oklch": {
+            "c": 0.005404140979004006,
+            "h": 95.09932490621028,
+            "l": 0.9728023049681371
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "card",
+            "button",
+            "other"
+          ],
+          "frequency": 153,
+          "confidence": 1,
+          "prominence": 1845836.449201912,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "other/fill": 109,
+            "heading/color": 7,
+            "card/backgroundColor": 4,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 22
+          }
+        },
+        {
+          "hex": "#524ae9",
+          "oklch": {
+            "c": 0.23001498632028652,
+            "h": 277.0755260605191,
+            "l": 0.5221011159439369
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 334195,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "input",
+            "icon",
+            "other"
+          ],
+          "frequency": 58,
+          "confidence": 1,
+          "prominence": 308768.1683749043,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "other/fill": 51,
+            "input/color": 1,
+            "input/borderColor": 4
+          }
+        },
+        {
+          "hex": "#070607",
+          "oklch": {
+            "c": 0.003641662727565719,
+            "h": 325.79361406549583,
+            "l": 0.12443501341991262
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 219,
+          "confidence": 1,
+          "prominence": 286533.0087311186,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 37,
+            "link/color": 7,
+            "other/fill": 5,
+            "other/stroke": 1,
+            "heading/color": 162,
+            "other/borderColor": 4,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#fc5000",
+          "oklch": {
+            "c": 0.2185180462684943,
+            "h": 37.87802378903935,
+            "l": 0.6657457327375913
+          },
+          "contexts": [
+            "button",
+            "card",
+            "other",
+            "link"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 260962.31065354604,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 6,
+            "card/backgroundColor": 4,
+            "link/backgroundColor": 7,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 15048.527541072242,
+          "properties": [
+            "fill",
+            "color"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "body/color": 1,
+            "other/fill": 2,
+            "button/color": 3
+          }
+        },
+        {
+          "hex": "#f5f28e",
+          "oklch": {
+            "c": 0.12244223514047956,
+            "h": 107.02743530981164,
+            "l": 0.9423172985090004
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 9622.039351935582,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 11
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.046290032232329664,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.23,
+          "background": "#070607",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.42,
+          "background": "#f7f6f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.71,
+          "background": "#070607",
+          "foreground": "#f7f6f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.97,
+          "background": "#f5f28e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.31,
+          "background": "#f5f28e",
+          "foreground": "#070607"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.18,
+          "background": "#e2e2df",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.58,
+          "background": "#e2e2df",
+          "foreground": "#070607"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.29,
+          "background": "#fc5000",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.06,
+          "background": "#fc5000",
+          "foreground": "#070607"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.97,
+          "background": "#524ae9",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.52,
+          "background": "#524ae9",
+          "foreground": "#f7f6f2"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.51,
+          "background": "#524ae9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.39,
+          "background": "#524ae9",
+          "foreground": "#070607"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.34,
+          "background": "#fc5000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.09,
+          "background": "#fc5000",
+          "foreground": "#f7f6f2"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.3,
+          "background": "#e2e2df",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.2,
+          "background": "#e2e2df",
+          "foreground": "#f7f6f2"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.17,
+          "background": "#f5f28e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.08,
+          "background": "#f5f28e",
+          "foreground": "#f7f6f2"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card",
+            "button"
+          ],
+          "frequency": 37
+        },
+        {
+          "value": 800,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 53,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 292,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "list",
+            "button"
+          ],
+          "frequency": 133,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card",
+            "other",
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "input"
+          ],
+          "frequency": 79,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 32,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card",
+            "button"
+          ],
+          "frequency": 92,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 17,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|input"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 92,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 232,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 713,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PP Neue Corp Compact Ultrabold",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 204,
+          "fontFeatureSettings": [
+            "\"ss06\", \"ss10\"",
+            "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\", \"ss06\", \"ss10\"",
+            "\"ss06\""
+          ]
+        },
+        {
+          "family": "DM Sans",
+          "source": "google",
+          "weights": [
+            500
+          ],
+          "frequency": 62,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.93
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "icon",
+            "button",
+            "card",
+            "hero",
+            "list"
+          ],
+          "frequency": 713,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "PP Neue Corp Compact Ultrabold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "DM Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "PP Neue Corp Compact Ultrabold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "PP Neue Corp Compact Ultrabold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "PP Neue Corp Compact Ultrabold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "PP Neue Corp Compact Ultrabold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "PP Neue Corp Compact Ultrabold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "PP Neue Corp Compact Ultrabold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 117,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "PP Neue Corp Compact Ultrabold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "PP Neue Corp Compact Ultrabold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 25,
+          "lineHeight": 0.95,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 189,
+          "family": "PP Neue Corp Compact Ultrabold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 31,
+          "lineHeight": 0.94,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/15ffb826-2cd3-43c1-bcf3-ea40d65b3d8f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a7811524-4868-4a36-b303-566e1e5db2bf.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fe8cdcf9-c850-4d52-be07-5ad269bf9ebf#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Caldera design system\",\"item\":\"https://styles.refero.design/style/fe8cdcf9-c850-4d52-be07-5ad269bf9ebf\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fe8cdcf9-c850-4d52-be07-5ad269bf9ebf#style-reference\",\"name\":\"Caldera design system reference\",\"headline\":\"Caldera design system | Refero Styles\",\"description\":\"Explore Caldera's light Crypto design system: Ember #fc5000, Plasma Violet #524ae9 colors, PP Neue Corp Compact, DM Sans typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/fe8cdcf9-c850-4d52-be07-5ad269bf9ebf\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fe8cdcf9-c850-4d52-be07-5ad269bf9ebf\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Caldera\",\"url\":\"https://caldera.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fe8cdcf9-c850-4d52-be07-5ad269bf9ebf#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a7811524-4868-4a36-b303-566e1e5db2bf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a7811524-4868-4a36-b303-566e1e5db2bf.jpg\",\"caption\":\"Screenshot of Caldera\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a7811524-4868-4a36-b303-566e1e5db2bf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Caldera design system\",\"Caldera website design\",\"Caldera colors\",\"Caldera typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Ember\",\"Plasma Violet\",\"Sulfur\",\"Limestone\",\"PP Neue Corp Compact\",\"DM Sans\",\"System sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Caldera design system\"},{\"@type\":\"Thing\",\"name\":\"Caldera website design\"},{\"@type\":\"Thing\",\"name\":\"Caldera colors\"},{\"@type\":\"Thing\",\"name\":\"Caldera typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-07T18:18:51.410Z\",\"dateModified\":\"2026-05-07T18:18:51.410Z\"}]}19:T4df,## Quick Color Reference\n- Page background: #e2e2df (Pumice)\n- Card/content surface: #f7f6f2 (Limestone)\n- Primary text/headings: #070607 (Obsidian)\n- primary action: #fc5000 (filled action)\n- Accent: #524ae9 (Plasma Violet) — hero halftone only\n- Tag/badge: #f5f28e (Sulfur)\n- Input border (dark sections): #ffffff (Chalk)\n\n## 3-5 Example Component Prompts\n1. Create a Primary Action Button: #fc5000 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **Stat Row**: Four Ember (#fc5000) cards in a row, each 40px radius, 40px padding. Label in DM Sans 500 at 14px, Chalk (#ffffff) text. Metric value in PP Neue Corp Compact at 80px weight 400, Chalk text, line-height 1.1.\n\n3. **Content Card**: Limestone (#f7f6f2) background, 40px radius, 40px padding. Sulfur (#f5f28e) pill tag at top with DM Sans 500 12px Obsidian text, 800px radius. Headline at 32px PP Neue Corp Compact, Obsidian, letter-spacing 0.64px. Date at 12px system sans-serif, Obsidian.\n\n\n5. **Dark Input Section**: Obsidian (#070607) background. Chalk (#ffffff) pill input with 100px radius, 24px/32px padding, 1.5px Chalk border. DM Sans 500 16px Chalk text. Submit button: Ember fill, 800px radius, 12px/24px padding."
+}

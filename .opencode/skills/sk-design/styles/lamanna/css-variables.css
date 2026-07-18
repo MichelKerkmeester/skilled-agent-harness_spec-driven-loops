@@ -1,0 +1,72 @@
+:root {
+  /* Colors */
+  --color-anger-orange: #ff4100;
+  --color-sun-yellow: #ffc700;
+  --color-royal-blue: #1573dd;
+  --color-charcoal: #292a2c;
+  --color-obsidian: #000000;
+  --color-blush-peach: #fdbeba;
+  --color-cream: #fee3c1;
+  --color-lemon-cream: #f6e653;
+
+  /* Typography — Font Families */
+  --font-rightgrotesk-spatialblack-webfont: 'rightgrotesk-spatialblack-webfont', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-nimbus-sans-extended-bold: 'nimbus-sans-extended-bold', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-nimbus-sans-extended-regular: 'nimbus-sans-extended-regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-open-sans: 'Open Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-obviously-condensed-semibold: 'obviously-condensed-semibold', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body-sm: 18px;
+  --leading-body-sm: 1;
+  --tracking-body-sm: -0.36px;
+  --text-subheading: 24px;
+  --leading-subheading: 1;
+  --tracking-subheading: -0.26px;
+  --text-heading-sm: 30px;
+  --leading-heading-sm: 1;
+  --tracking-heading-sm: -0.27px;
+  --text-heading-lg: 36px;
+  --leading-heading-lg: 0.89;
+  --tracking-heading-lg: -0.32px;
+  --text-display: 54px;
+  --leading-display: 0.89;
+  --tracking-display: -0.49px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-6: 6px;
+  --spacing-10: 10px;
+  --spacing-15: 15px;
+  --spacing-20: 20px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-42: 42px;
+  --spacing-43: 43px;
+  --spacing-50: 50px;
+  --spacing-55: 55px;
+  --spacing-60: 60px;
+  --spacing-100: 100px;
+  --spacing-105: 105px;
+  --spacing-120: 120px;
+  --spacing-130: 130px;
+  --spacing-160: 160px;
+
+  /* Layout */
+  --section-gap: 60-100px;
+  --element-gap: 10-20px;
+
+  /* Named Radii */
+  --radius-cards: 0px;
+  --radius-badges: 0px;
+  --radius-images: 0px;
+  --radius-buttons: 0px;
+  --radius-starbursts: 0px;
+
+  /* Surfaces */
+  --surface-anger-orange-canvas: #ff4100;
+  --surface-blush-peach-band: #fdbeba;
+  --surface-cream-accent: #fee3c1;
+}

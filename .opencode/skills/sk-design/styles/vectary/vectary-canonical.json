@@ -1,0 +1,739 @@
+{
+  "source": "https://styles.refero.design/style/dfe5faa4-a108-45a8-a68c-ed19be2db766",
+  "uuid": "dfe5faa4-a108-45a8-a68c-ed19be2db766",
+  "name": "Vectary",
+  "northStar": "Graphite blueprint with violet signal",
+  "capturedAt": "2026-07-18T07:28:27.927Z",
+  "meta": {
+    "url": "https://vectary.com",
+    "siteName": "Vectary",
+    "extractedAt": "2026-06-03T21:00:39.373Z",
+    "durationMs": 27915,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 144,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Inter exclusively across the entire interface; never substitute a second typeface family",
+      "Set border-radius to 8px on every rounded element — buttons, cards, nav containers, tags all share the same radius for a unified geometric language",
+      "Reserve the violet gradient (linear-gradient(129deg, #6100ff, #9d50ff)) for the single primary CTA per screen; never duplicate it",
+      "Use weight 900 only at the display size (83px); weights 400 and 700 cover everything else",
+      "Apply negative letter-spacing at every size: -0.17px at 14px scaling to -3.24px at 83px",
+      "Build vertical rhythm from the 6px base unit: 30px for card padding, 60px for section gaps, 20px between inline elements",
+      "Keep the page background pure #ffffff; the system has no tinted canvas variants"
+    ],
+    "donts": [
+      "Do not introduce a second chromatic accent — the system is monochromatic plus one violet, and adding red/green/blue/yellow breaks the drafting-tool identity",
+      "Do not use weight 900 for body, labels, or section headings; it is loud and will flatten the hierarchy",
+      "Do not add drop shadows, glows, or blur effects — the design language is flat; elevation comes from background tone, not shadow",
+      "Do not use #6100ff on decorative icons, tags, illustrations, or non-action UI — the violet earns its place by being scarce",
+      "Do not use #313131 as a page or card background; it is a nav-level surface only",
+      "Do not set letter-spacing to 0 or positive values — the system always tightens, even at 14px body size",
+      "Do not place violet text on a violet gradient background; the gradient already carries the brand and needs white text for contrast"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#252525",
+        "name": "Graphite",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#313131",
+        "name": "Charcoal",
+        "role": "Secondary dark surface, nav panel background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#595959",
+        "name": "Slate",
+        "role": "Body text, secondary headings — the readable gray for paragraph copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#949494",
+        "name": "Fog",
+        "role": "Muted helper text, captions, links at rest",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page background, text on dark fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6100ff",
+        "name": "Electric Violet",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#9d50ff",
+        "name": "Soft Violet",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "brand"
+      }
+    ],
+    "imagery": "This page is text-only — no photography, illustration, or product imagery appears on content/legal surfaces. The Vectary brand identity is built for a 3D design tool, so marketing and product pages likely feature rendered 3D models and product screenshots as the primary visual content, treated as contained compositions on the white canvas. Iconography is minimal and geometric, using thin stroke weights in #595959 or #252525. The overall imagery philosophy is 'the canvas is white, the product fills it' — imagery earns its place by demonstrating capability, not by decorating the page.",
+    "similar": [
+      {
+        "why": "Same white-canvas + single-accent philosophy; both use Inter (or a near-identical geometric sans) and rely on weight contrast rather than color to build hierarchy",
+        "business": "Figma"
+      },
+      {
+        "why": "Shares the restrained monochromatic palette with one vivid accent, though Linear goes dark-mode-first where Vectary stays light",
+        "business": "Linear"
+      },
+      {
+        "why": "Clean light surface, tight Inter-style typography, and a single gradient CTA as the only chromatic moment on the page",
+        "business": "Framer"
+      },
+      {
+        "why": "Design-tool identity built on a quiet, near-monochrome interface where the product (not chrome) is the visual focus",
+        "business": "Sketch"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "8px",
+        "tags": "8px",
+        "cards": "8px",
+        "buttons": "8px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "60px",
+      "cardPadding": "30px",
+      "pageMaxWidth": "800px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Page canvas — the default background for all content pages"
+      },
+      {
+        "hex": "#313131",
+        "name": "Nav Panel",
+        "level": 2,
+        "purpose": "Dark navigation surface (used on sections of the site that flip to a dark header)"
+      },
+      {
+        "hex": "#252525",
+        "name": "Graphite Fill",
+        "level": 3,
+        "purpose": "Secondary dark surface for filled buttons and inverted UI moments"
+      }
+    ],
+    "northStar": "Graphite blueprint with violet signal",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.69,
+        "letterSpacing": -0.17
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.3
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.45
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.66
+      },
+      {
+        "role": "heading",
+        "size": 26,
+        "lineHeight": 1.09,
+        "letterSpacing": -0.88
+      },
+      {
+        "role": "display",
+        "size": 83,
+        "lineHeight": 1,
+        "letterSpacing": -3.24
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "Single conversion action on the page",
+        "description": "Sign Up button: linear-gradient(129deg, #6100ff, #9d50ff) background, 14px Inter weight 700 in #ffffff, 8px border-radius, padding 12px 24px. No border, no shadow. The gradient is the only place chromatic color appears in the interface."
+      },
+      {
+        "name": "Secondary Filled Button",
+        "role": "Lower-emphasis dark action paired with the primary CTA",
+        "description": "Login button: #252525 solid background, 14px Inter weight 700 in #ffffff, 8px border-radius, padding 12px 24px. Sits left of the violet CTA to create a clear primary/secondary pairing without introducing a second accent color."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent site header",
+        "description": "White background, 60px vertical padding, logo at far left, four center-aligned text links (Product, Solutions, Enterprise, Resources, Pricing) at 14px Inter weight 400 in #252525 with chevron dropdowns, action buttons at far right. No visible border-bottom — the nav floats on white."
+      },
+      {
+        "name": "Nav Dropdown Link",
+        "role": "Center-section menu items with sub-navigation",
+        "description": "14px Inter weight 400 in #252525 with a 6px-down chevron icon in #595959. Hover state shifts to #6100ff text — the only moment violet touches the nav, signaling that the accent color can also function as an interactive indicator."
+      },
+      {
+        "name": "Display Heading",
+        "role": "Hero-level headline (homepage/marketing only)",
+        "description": "83px Inter weight 900 in #252525, line-height 1.00, letter-spacing -3.24px. Extreme weight plus extreme size plus tight tracking — this is the loudest element in the system and should appear at most once per page."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Page-title and sub-section labels",
+        "description": "26px Inter weight 700 in #252525, line-height 1.09, letter-spacing -0.88px. Used for the main page title (\"Acceptable Use Policy\") and numbered section labels (\"1. Intended Purpose of AI Features\"). The high weight at moderate size reads as confident and structural rather than dramatic."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Paragraph copy and legal prose",
+        "description": "18px Inter weight 400 in #595959, line-height 1.40, letter-spacing -0.45px. Generous line-height for readability; the slate gray (#595959) on pure white keeps body text present without competing with headings."
+      },
+      {
+        "name": "Bulleted List",
+        "role": "Enumerated constraints and requirements",
+        "description": "18px Inter weight 400 in #595959, 6px vertical gap between items, bullet markers rendered as small dots in #949494. Indent ~24px from the left edge. Matches body text exactly — the list is purely structural, not visually distinct."
+      },
+      {
+        "name": "Inline Text Link",
+        "role": "Reference links within body copy",
+        "description": "Same size and weight as surrounding body text (18px / 400) but in #6100ff — violet is permitted inside body copy when it's functioning as a navigation affordance, though on this AUP page no inline links appear."
+      },
+      {
+        "name": "Date/Metadata Label",
+        "role": "Secondary status line under page title",
+        "description": "\"Last Updated:\" prefix in 18px Inter weight 400 #595959, followed by the date in same weight/color. Sits between the H1 and the intro paragraph, creating a small typographic bridge."
+      },
+      {
+        "name": "Brand Logo",
+        "role": "Wordmark in nav",
+        "description": "Stylized 'V' mark in #252525 followed by 'VECTARY' wordmark in tracked-out 14px Inter weight 700, all caps. Logo + wordmark lockup sits at the nav's left edge with no padding beyond the container margin."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family system: weight 400 for body and UI labels, weight 700 for section headings and button text, weight 900 reserved for display headlines (83px). The dramatic jump from 26px to 83px creates a two-tier hierarchy — page-heading-class copy lives at 22–26px, and only true hero moments reach 83px. Negative letter-spacing tightens with size: -0.012em at 14px scaling linearly to -0.039em at 83px, so display text optically squares up while small text stays crisp.",
+        "sizes": "14, 16, 18, 22, 26, 83px",
+        "family": "Inter",
+        "weight": "400, 700, 900",
+        "lineHeight": "1.00–1.69",
+        "substitute": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+        "letterSpacing": "-0.17px at 14px, -0.30px at 16px, -0.45px at 18px, -0.66px at 22px, -0.88px at 26px, -3.24px at 83px",
+        "fontFeatureSettings": "\"ss01\" on, \"cv11\" on"
+      }
+    ],
+    "description": "Vectary operates on a near-monochromatic canvas: white surfaces, graphite-scale text from #252525 down to #949494, and zero chromatic noise until action is required. Visual hierarchy is built from weight and size, not color — Inter at weight 900 reserves itself for display moments, weight 700 for section headings, weight 400 for everything else. A single vivid violet (#6100ff) functions as the system's only color, appearing exclusively on the gradient CTA to signal the one thing the user can do. Components stay flat with hairline restraint, and the overall feeling is that of a precise drafting instrument rather than a decorated product.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "Quick Color Reference:\n- text: #252525\n- background: #ffffff\n- muted text: #595959 / #949494\n- primary action: no distinct CTA color\n- dark surface: #252525\n\nExample Component Prompts:\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n2. Create a secondary dark button: #252525 background, 14px Inter weight 700, white text, 8px border-radius, padding 12px 24px.\n3. Create a display heading: 83px Inter weight 900, #252525, line-height 1.0, letter-spacing -3.24px. Use once per page maximum.\n4. Create a section heading: 26px Inter weight 700, #252525, line-height 1.09, letter-spacing -0.88px.\n5. Create a body text block: 18px Inter weight 400, #595959, line-height 1.40, letter-spacing -0.45px, on #ffffff background."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally flat. No drop shadows, no glow effects, no blur. Hierarchy is achieved through type weight, size, and background tone — a dark filled button (#252525) sits visually above body text not because it casts a shadow, but because its solid fill is darker than the white canvas. When separation is needed between stacked elements, use a 1px hairline border in a light neutral rather than introducing shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#252525",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2644796726260613
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "hero",
+            "body",
+            "button"
+          ],
+          "frequency": 285,
+          "confidence": 1,
+          "prominence": 24431862.44327234,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#949494",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6665481264667662
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 295,
+          "confidence": 1,
+          "prominence": 7217956.635395112,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#595959",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.464002143159062
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 2654484.8615201036,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 20869.95234854645,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6100ff",
+          "oklch": {
+            "c": 0.294173990925208,
+            "h": 283.74747003417804,
+            "l": 0.49923160986907233
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 7720.410915500479,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#313131",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.31316712939792546
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2807,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0048927067097747695,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.33,
+          "background": "#252525",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.01,
+          "background": "#313131",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.11,
+          "background": "#ffffff",
+          "foreground": "#6100ff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7,
+          "background": "#ffffff",
+          "foreground": "#595959"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.05,
+          "background": "#252525",
+          "foreground": "#949494"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.29,
+          "background": "#313131",
+          "foreground": "#949494"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.19,
+          "background": "#252525",
+          "foreground": "#595959"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.86,
+          "background": "#313131",
+          "foreground": "#595959"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.18,
+          "background": "#313131",
+          "foreground": "#252525"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 43,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 53,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(129deg, rgb(97, 0, 255), rgb(157, 80, 255))",
+        "colors": [
+          "rgb(97, 0, 255)",
+          "rgb(157, 80, 255)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            700,
+            900
+          ],
+          "frequency": 144,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 71,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.039,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.69,
+          "letterSpacing": -0.034,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.69,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.09,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Inter",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.019,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.019,
+          "textTransform": "none"
+        },
+        {
+          "size": 83,
+          "family": "Inter",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 83,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ba867a4e-03d9-48d6-b3cc-767ca5bb46bc.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ad63cac6-91be-411e-9be0-3ae15999bd9e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/dfe5faa4-a108-45a8-a68c-ed19be2db766#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Vectary design system\",\"item\":\"https://styles.refero.design/style/dfe5faa4-a108-45a8-a68c-ed19be2db766\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/dfe5faa4-a108-45a8-a68c-ed19be2db766#style-reference\",\"name\":\"Vectary design system reference\",\"headline\":\"Vectary design system | Refero Styles\",\"description\":\"Explore Vectary's light Design design system: Graphite #252525, Charcoal #313131 colors, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/dfe5faa4-a108-45a8-a68c-ed19be2db766\",\"mainEntityOfPage\":\"https://styles.refero.design/style/dfe5faa4-a108-45a8-a68c-ed19be2db766\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Vectary\",\"url\":\"https://vectary.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/dfe5faa4-a108-45a8-a68c-ed19be2db766#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ad63cac6-91be-411e-9be0-3ae15999bd9e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ad63cac6-91be-411e-9be0-3ae15999bd9e.jpg\",\"caption\":\"Screenshot of Vectary\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ad63cac6-91be-411e-9be0-3ae15999bd9e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Vectary design system\",\"Vectary website design\",\"Vectary colors\",\"Vectary typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Graphite\",\"Charcoal\",\"Slate\",\"Fog\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Vectary design system\"},{\"@type\":\"Thing\",\"name\":\"Vectary website design\"},{\"@type\":\"Thing\",\"name\":\"Vectary colors\"},{\"@type\":\"Thing\",\"name\":\"Vectary typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-03-18T10:36:25.000Z\",\"dateModified\":\"2026-03-18T10:36:25.000Z\"}]}"
+}

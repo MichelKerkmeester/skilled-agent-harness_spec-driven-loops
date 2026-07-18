@@ -1,0 +1,83 @@
+:root {
+  /* Colors */
+  --color-void-black: #000000;
+  --color-obsidian: #171718;
+  --color-graphite: #2c2c2e;
+  --color-ash: #888888;
+  --color-smoke: #e9e9e9;
+  --color-bone: #f3f3f3;
+  --color-paper: #ffffff;
+  --color-platinum: #dddddd;
+  --color-sprint-violet: #6a48f2;
+  --gradient-sprint-violet: linear-gradient(7deg, rgb(106, 72, 242) 20%, rgb(252, 206, 238));
+
+  /* Typography — Font Families */
+  --font-neue-montreal: 'Neue Montreal', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.5px;
+  --text-body: 16px;
+  --leading-body: 1.55;
+  --text-subheading: 19px;
+  --leading-subheading: 1.43;
+  --tracking-subheading: -0.19px;
+  --text-heading: 22px;
+  --leading-heading: 1.43;
+  --tracking-heading: -0.22px;
+  --text-heading-lg: 40px;
+  --leading-heading-lg: 1.2;
+  --tracking-heading-lg: -0.4px;
+  --text-display: 72px;
+  --leading-display: 1.1;
+  --tracking-display: -1.44px;
+  --text-display-xl: 104px;
+  --leading-display-xl: 1;
+  --tracking-display-xl: -2.08px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-200: 200px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 20px;
+  --element-gap: 20px;
+
+  /* Border Radius */
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-full: 50px;
+
+  /* Named Radii */
+  --radius-nav: 6px;
+  --radius-tags: 6px;
+  --radius-cards: 10px;
+  --radius-inputs: 6px;
+  --radius-buttons: 50px;
+
+  /* Shadows */
+  --shadow-md: rgb(255, 219, 0) 0px 0px 16px 0px;
+
+  /* Surfaces */
+  --surface-void: #000000;
+  --surface-obsidian: #171718;
+  --surface-graphite: #2c2c2;
+  --surface-sprint-violet: #6a48f2;
+}

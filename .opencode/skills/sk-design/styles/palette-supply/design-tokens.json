@@ -1,0 +1,377 @@
+{
+  "color": {
+    "studio-cream": {
+      "$value": "#f2f0e9",
+      "$type": "color",
+      "$description": "Studio Cream — Page canvas — warm off-white ground that warms every color placed on it, the single largest surface in the system"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Elevated card and surface layer, used when a swatch or content block needs to sit above the canvas"
+    },
+    "ink-black": {
+      "$value": "#141212",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, heading strokes, and hairline borders — slightly warmer than pure black, pairs cleanly with the cream canvas"
+    },
+    "pencil-gray": {
+      "$value": "#a1a0a0",
+      "$type": "color",
+      "$description": "Pencil Gray — Muted secondary text and inactive borders, the only mid-gray in the neutral scale"
+    },
+    "sage-wash": {
+      "$value": "#dde5d8",
+      "$type": "color",
+      "$description": "Sage Wash — Soft tinted surface for tags, list rows, and secondary buttons — a barely-green neutral that adds warmth without committing to color"
+    },
+    "studio-ivory": {
+      "$value": "#d7d7c8",
+      "$type": "color",
+      "$description": "Studio Ivory — Swatch surface — the neutral anchor card color used to display palette sets; warm, slightly green-tinged, reads as unpainted canvas"
+    },
+    "cobalt-command": {
+      "$value": "#3051a8",
+      "$type": "color",
+      "$description": "Cobalt Command — Primary action fill, active link color, and icon accents — the only saturated chromatic in the UI, used sparingly to make clicks feel decisive"
+    },
+    "forest-ink": {
+      "$value": "#3f593d",
+      "$type": "color",
+      "$description": "Forest Ink — Dark accent for premium swatches and select button variants — muted, almost black, recedes like aged leather"
+    },
+    "marigold": {
+      "$value": "#f89c35",
+      "$type": "color",
+      "$description": "Marigold — Warm chromatic swatch accent — vivid orange that pops against the cream canvas, used as a featured palette member"
+    },
+    "buttercup": {
+      "$value": "#f6dc2e",
+      "$type": "color",
+      "$description": "Buttercup — Bright chromatic swatch — primary yellow, the most luminous accent in the palette set, draws the eye like a highlighter"
+    },
+    "cobalt-pop": {
+      "$value": "#0159bd",
+      "$type": "color",
+      "$description": "Cobalt Pop — Secondary blue swatch — brighter and more cyan than Cobalt Command, used as a palette swatch rather than UI action"
+    },
+    "terracotta": {
+      "$value": "#863a29",
+      "$type": "color",
+      "$description": "Terracotta — Earth-red swatch accent — the deep burnt-orange that grounds warm palettes"
+    },
+    "rose-clay": {
+      "$value": "#ed93af",
+      "$type": "color",
+      "$description": "Rose Clay — Soft pink swatch — dusty rose that reads as warm, not saccharine"
+    },
+    "rust": {
+      "$value": "#a0674f",
+      "$type": "color",
+      "$description": "Rust — Warm brown swatch — mid-tone earthy orange, a bridge between terracotta and tan"
+    },
+    "wheat": {
+      "$value": "#b99572",
+      "$type": "color",
+      "$description": "Wheat — Muted tan swatch — soft warm neutral that sits between cream and brown"
+    },
+    "saffron": {
+      "$value": "#d8c660",
+      "$type": "color",
+      "$description": "Saffron — Olive-yellow swatch — slightly green-shifted yellow, more sophisticated than pure butter"
+    },
+    "olive-stone": {
+      "$value": "#a9ab72",
+      "$type": "color",
+      "$description": "Olive Stone — Muted yellow-green swatch — the sage-olive that ties natural palettes together"
+    },
+    "linen-blush": {
+      "$value": "#dcc5bd",
+      "$type": "color",
+      "$description": "Linen Blush — Soft pink-beige swatch — the lightest warm neutral in the chromatic range, like raw silk"
+    },
+    "stone": {
+      "$value": "#c7b8ab",
+      "$type": "color",
+      "$description": "Stone — Warm gray swatch — taupe with pink undertones, the bridge between cream and brown"
+    }
+  },
+  "font": {
+    "ui-sans-serif": {
+      "$value": "ui-sans-serif",
+      "$type": "fontFamily",
+      "$description": "ui-sans-serif — detected in extracted data but not described by AI"
+    },
+    "esbuild": {
+      "$value": "esbuild",
+      "$type": "fontFamily",
+      "$description": "Display and hero heading — used at a single oversized 64px size with negative tracking (-0.03em) and aggressive 0.94 line-height. The extremely tight leading and condensed letterforms make one word command the page. If unavailable, substitute with 'PP Editorial New' or 'Söhne Breit' for similar geometric presence."
+    },
+    "ppsupply": {
+      "$value": "ppsupply",
+      "$type": "fontFamily",
+      "$description": "Body, UI, buttons, links, list items, inputs — the workhorse typeface at four sizes. The whisper-light weight 100 and 300 are the signature: text doesn't shout, it sits lightly on the cream surface. Weight 400 appears in interactive elements and emphasis. The -0.04em tracking at smaller sizes tightens the airy feel. Substitute with 'Inter' or 'Söhne' at matching weights."
+    },
+    "ppsupplymonolight": {
+      "$value": "PPSupplyMonoLight",
+      "$type": "fontFamily",
+      "$description": "Monospaced annotation and metadata — for hex codes, technical labels, and codespell-grade detail. Reserved for moments that need machine-precise alignment."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "PPSupplyMonoLight",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "ppsupply",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ppsupply",
+        "fontSize": "15px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ppsupply",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ppsupply",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ppsupply",
+        "fontSize": "16px",
+        "fontWeight": 100,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "ppsupply",
+        "fontSize": "16px",
+        "fontWeight": 100,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "ppsupply",
+        "fontSize": "16px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ppsupply",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "esbuild",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "90": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Spacing 90px"
+    },
+    "101": {
+      "$value": "101px",
+      "$type": "dimension",
+      "$description": "Spacing 101px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "214": {
+      "$value": "214px",
+      "$type": "dimension",
+      "$description": "Spacing 214px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f2f0e9",
+      "$type": "color",
+      "$description": "Surface level 0: The full-bleed page background; warm cream ground"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: White cards and elevated content blocks"
+    },
+    "studio-ivory": {
+      "$value": "#d7d7c8",
+      "$type": "color",
+      "$description": "Surface level 2: Neutral swatch surface — the standard card body for palette displays"
+    },
+    "sage-wash": {
+      "$value": "#dde5d8",
+      "$type": "color",
+      "$description": "Surface level 3: Tinted surface for tags, list items, and secondary buttons"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://palette.supply",
+      "siteName": "Palette Supply",
+      "extractedAt": "2026-06-03T15:14:58.926Z",
+      "variant": "extended"
+    }
+  }
+}

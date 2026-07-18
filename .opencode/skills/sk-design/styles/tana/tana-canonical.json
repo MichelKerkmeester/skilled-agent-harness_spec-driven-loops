@@ -1,0 +1,1322 @@
+{
+  "source": "https://styles.refero.design/style/f7bf0618-817c-4b7d-9568-cbd9c476c599",
+  "uuid": "f7bf0618-817c-4b7d-9568-cbd9c476c599",
+  "name": "Tana",
+  "northStar": "Midnight gallery, single lime beacon — a dark editorial spread where one pale-green button is the only color on the entire page.",
+  "capturedAt": "2026-07-18T08:48:19.792Z",
+  "meta": {
+    "url": "https://tana.inc",
+    "siteName": "Tana",
+    "extractedAt": "2026-06-03T21:42:17.328Z",
+    "durationMs": 34769,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 79,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #e1f0bd (Lime Signal) only for the single most important action per screen — never for links, icons, tags, or decoration",
+      "Set hero headlines at 84px tanaClassic 400 with -3.78px letter-spacing — the negative tracking is what makes the serif feel editorial rather than default",
+      "Use weight 300 SF Pro for subheadings (24–29px) to let them recede behind the serif display — the hierarchy is serif > light-sans > regular-sans",
+      "Orbit Pentagon Category Tags around imagery with 15px margins, pointing their pointed edge leftward toward the visual they describe",
+      "Set body text line-height to 1.75 for prose and 1.50 for UI — the generous leading compensates for the dark background",
+      "Keep the entire page at 0% colorfulness outside the one lime CTA — resist adding accent colors, gradients, or colored illustrations",
+      "Use 10px border-radius for buttons and images only — tags, cards, and sections stay sharp (0px) to maintain the editorial precision"
+    ],
+    "donts": [
+      "Never use a second accent color — the system's identity depends on lime being the only chromatic note",
+      "Never use box-shadows, glows, or blur effects — depth comes from surface tone shifts, not elevation effects",
+      "Never set serif headlines at normal or positive letter-spacing — the negative tracking is signature-defining",
+      "Never use weight 500+ for SF Pro subheadings — the light weight (300) is what makes the serif the dominant voice",
+      "Never apply the lime accent to backgrounds other than the primary CTA button — no lime cards, tags, borders, or highlights",
+      "Never use pure white #ffffff for text — use #f0eded (Bone) for warmth against the black canvas",
+      "Never use generic border-radius values like 4px or 8px — the system commits to 10px for buttons/images and 0px for everything else"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Page canvas, section backgrounds, card surfaces — pure black, not near-black, makes the off-white type and the lime accent feel luminous",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0e0e0e",
+        "name": "Charcoal",
+        "role": "Elevated surface layer, subtle borders, secondary backgrounds — one step off the void for depth without breaking the dark mode",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0eded",
+        "name": "Bone",
+        "role": "Primary text, pentagon tag fills, announcement bar background — slightly warm off-white, softer than pure white against deep black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Ash",
+        "role": "Secondary body text, muted helper copy, list dividers — the dominant mid-gray for all non-primary prose",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Smoke",
+        "role": "Tertiary text, subtle metadata, low-priority borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#606060",
+        "name": "Graphite",
+        "role": "Faintest visible borders, disabled text — the lower edge of the readable gray scale",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e1f0bd",
+        "name": "Lime Signal",
+        "role": "Primary CTA fill only — a muted pale lime used exclusively for the early-access button, never for links, icons, or decoration. The one chromatic moment on the entire page",
+        "group": "brand"
+      }
+    ],
+    "layout": "Centered single-column layout, max-width ~1040px. The page is organized as a vertical sequence of centered blocks separated by generous whitespace (40–80px gaps). The hero occupies the full viewport height with the headline, subhead, and CTA stacked vertically and center-aligned. Below the hero, a section pairs a centered photograph with floating Pentagon Tags in the surrounding space — an editorial spread, not a grid. Subsequent sections are centered text blocks: section heading + body prose, followed by a series of AI testimonial quotes stacked vertically with wide margins. Navigation is minimal: a small wordmark top-left and a single icon top-right, floating on the black canvas. The entire page reads top-to-bottom as a single column — no multi-column layouts, no sidebar, no grid systems. Density is comfortable, almost sparse — whitespace is a primary design element.",
+    "imagery": "Extremely sparse. The page uses a single editorial photograph — a man working at a table with warm lamp light and plants — as the only visual element. The image is contained (~350px wide), has 10px border-radius, and is surrounded by Pentagon Category Tags that orbit it like printed annotations. No illustrations, no abstract graphics, no product screenshots, no icon systems beyond a single small nav icon. The void of the black canvas is itself the dominant visual — the photograph and its tags are the single moment of warmth and complexity in an otherwise typographic page.",
+    "similar": [
+      {
+        "why": "Same dark-mode editorial sensibility with restrained color palettes and tight typographic hierarchy, though Linear uses purple accents where Tana uses lime",
+        "business": "Linear"
+      },
+      {
+        "why": "Both position AI as ambient intelligence with minimal interfaces, but Tana commits harder to pure black + single accent whereas Notion uses lighter surfaces",
+        "business": "Notion AI"
+      },
+      {
+        "why": "Shared editorial typographic confidence — large display headlines, generous whitespace, and the willingness to let one image or one accent color carry the entire page",
+        "business": "Arc Browser"
+      },
+      {
+        "why": "Both use high-contrast serif headlines over dark canvases with single-color accent systems, treating landing pages as editorial spreads rather than SaaS templates",
+        "business": "Pitch"
+      },
+      {
+        "why": "Dark canvas, monochrome UI, and a single accent color for CTAs — though Vercel uses geometric sans display type where Tana uses a custom editorial serif",
+        "business": "Vercel"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px (pentagon clip-path, no radius)",
+        "cards": "0px",
+        "images": "10px",
+        "buttons": "10px"
+      },
+      "elementGap": "6-8px",
+      "sectionGap": "32-40px",
+      "cardPadding": "16-24px",
+      "pageMaxWidth": "1040px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 1,
+        "purpose": "Page canvas, all section backgrounds"
+      },
+      {
+        "hex": "#0e0e0",
+        "name": "Charcoal",
+        "level": 2,
+        "purpose": "Elevated cards, subtle surface lift"
+      },
+      {
+        "hex": "#f0eded",
+        "name": "Bone",
+        "level": 3,
+        "purpose": "Pentagon tag fills, announcement bar — the only light surface in the system"
+      },
+      {
+        "hex": "#e1f0bd",
+        "name": "Lime Signal",
+        "level": 4,
+        "purpose": "CTA button — the single colored surface"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — flat fill, no shadow",
+        "element": "Pentagon tag"
+      },
+      {
+        "style": "none — flat lime fill, no shadow or border",
+        "element": "CTA button"
+      },
+      {
+        "style": "none — pure black surfaces, depth comes from surface tone shifts, not shadows",
+        "element": "Page cards and sections"
+      }
+    ],
+    "northStar": "Midnight gallery, single lime beacon — a dark editorial spread where one pale-green button is the only color on the entire page.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.13
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.16
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.18
+      },
+      {
+        "role": "body-lg",
+        "size": 21,
+        "lineHeight": 1.75,
+        "letterSpacing": 0.21
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.24
+      },
+      {
+        "role": "heading-sm",
+        "size": 29,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.29
+      },
+      {
+        "role": "heading",
+        "size": 38,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.14
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.25,
+        "letterSpacing": -1.44
+      },
+      {
+        "role": "display",
+        "size": 84,
+        "lineHeight": 1.1,
+        "letterSpacing": -3.78
+      }
+    ],
+    "components": [
+      {
+        "name": "Pentagon Category Tag",
+        "role": "Feature/output label orbiting around hero imagery",
+        "description": "Pentagon-shaped tag with a pointed left edge (CSS clip-path polygon), flat right edge. Fill: #f0eded (Bone). Text: #000000, 13–15px SF Pro 400, 0.01em tracking. No border, no radius, no padding beyond ~8px vertical × 12px horizontal on the flat side. These tags float in the layout like printed marginalia pointing at the central image. Used for labels like 'Prototypes', 'Storyboards', 'Slide decks', 'PRs', 'Filed Bugs'."
+      },
+      {
+        "name": "Lime CTA Button",
+        "role": "Primary action — the only colored button in the system",
+        "description": "Filled pill button. Background: #e1f0bd (Lime Signal). Text: #000000, 15px SF Pro 400, 0.01em tracking. No border, no shadow. Border-radius: 10px. Padding: 6px vertical × 12px horizontal. Reserved exclusively for the single most important action per page. The muted lime against pure black creates urgency without aggression — it glows rather than shouts."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Secondary action or contextual link below a CTA",
+        "description": "No background, no border. Text: #b3b3b3 (Ash) or #808080 (Smoke), 13–15px SF Pro 400. Hover brightens to #f0eded. No underline by default. Used for 'Ask your agents about it' and similar micro-CTA patterns."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "Site-wide notice at the very top of the page",
+        "description": "Full-width strip with #f0eded (Bone) background and #000000 text. Single line of body text with an inline link. No padding excess — tight 6–8px vertical. Sits above the main nav, visually distinct from the dark page below."
+      },
+      {
+        "name": "Navigation Header",
+        "role": "Minimal top nav on a dark page",
+        "description": "Transparent over the #000000 canvas. Left: wordmark 'tana' in #f0eded, small SF Pro. Right: minimal icon (appears to be a T-shaped or tree icon in #f0eded). No nav links, no hamburger — extreme minimalism."
+      },
+      {
+        "name": "Hero Headline Block",
+        "role": "Centered display title with subhead and CTA stack",
+        "description": "Vertically centered in the upper viewport. Display title: 84px tanaClassic 400, #f0eded, -3.78px tracking. Subhead: 18–21px SF Pro 400, #b3b3b3, 1.50–1.75 line-height. CTA stack below: Lime CTA Button + Ghost Text Link, 8px gap. Generous vertical space — the hero breathes."
+      },
+      {
+        "name": "Editorial Image with Orbiting Tags",
+        "role": "Feature showcase with category labels around a photo",
+        "description": "Centered photographic image (~300–350px wide, 10px border-radius) with Pentagon Category Tags scattered in the surrounding dark space. The image introduces a warm, human focal point into the void. Tags point leftward toward the image, creating a sense of annotations or printed captions."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Mid-page section title",
+        "description": "38–48px tanaClassic 400, #f0eded, -1.14 to -1.44px tracking. Left-aligned or centered. Followed by body text at 18–21px SF Pro 400, #b3b3b3. 24–32px gap between heading and body."
+      },
+      {
+        "name": "AI Testimonial Block",
+        "role": "Quote from an AI model presented as editorial pull-quote",
+        "description": "Centered block on #000000. Quote text: 18–21px tanaClassic or SF Pro 400, #f0eded, italic, 1.50–1.75 line-height. Attribution: 13–15px SF Pro 400, #808080, right-aligned or centered below quote. Wide margin between consecutive quotes (32–40px). No quotation marks — the formatting and attribution carry the quote structure."
+      },
+      {
+        "name": "Body Prose Block",
+        "role": "Long-form explanatory text",
+        "description": "17–19px SF Pro 400, #b3b3b3, 1.75 line-height. Max-width ~640px for readable line length. Paragraph spacing: 16–24px. No bold, no links, no images — pure typographic content."
+      },
+      {
+        "name": "Utility Icon Button",
+        "role": "Small icon-only interactive in the nav or toolbar",
+        "description": "No background, no border. Icon: #f0eded, 16–20px. 8px padding click target. Used for the nav-right T-shaped icon and similar minimal controls."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body, UI, subheadings, and button text. Weight 300 is used for mid-size headings (24–29px) — an anti-convention choice that makes subheadings recede rather than compete with the serif display. Weight 400 for body, buttons, and dense text at 1.50–1.75 line-height for breathing room",
+        "sizes": "13px, 15px, 16px, 17px, 18px, 19px, 20px, 21px, 24px, 26px, 29px",
+        "family": "SF Pro",
+        "weight": "300, 400",
+        "lineHeight": "1.20, 1.40, 1.50, 1.75",
+        "substitute": "Inter, -apple-system, system-ui",
+        "letterSpacing": "0.01em across all sizes"
+      },
+      {
+        "role": "Display and heading serif. High-contrast, editorial, used at 84px for hero headlines and 38–48px for section headings. Negative tracking (-0.045em at display, -0.030em at mid-headings) tightens the serif into a dense magazine block. The weight 350–400 range is lighter than typical headline serifs, giving the type a whisper of authority rather than shouting",
+        "sizes": "17px, 19px, 38px, 42px, 48px, 84px",
+        "family": "tanaClassic",
+        "weight": "350, 400",
+        "lineHeight": "1.10, 1.20, 1.25, 1.75",
+        "substitute": "Playfair Display, Cormorant Garamond, or DM Serif Display",
+        "letterSpacing": "-0.045em at 84px (≈ -3.78px), -0.030em at 38–48px (≈ -1.14 to -1.44px)"
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "17px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Tana is a midnight editorial: pure black canvas, one pale-lime signal, nothing else. The entire interface is monochrome — warm off-white type, a quiet scale of grays for hairlines and secondary text — with a single chromatic accent (#e1f0bd) reserved exclusively for the primary action. Headlines come from a custom high-contrast serif (tanaClassic) set tight at negative tracking, which creates a magazine-spread authority against the void. Category labels are pentagon-shaped tags (pointed left edge, flat right) that orbit around imagery like marginalia, turning product features into a printed index. Layout is centered and generous, with editorial photography used sparingly as a single warm focal point in an otherwise typographic page. Everything else is restraint.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f7bf0618-817c-4b7d-9568-cbd9c476c599#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Tana design system\",\"item\":\"https://styles.refero.design/style/f7bf0618-817c-4b7d-9568-cbd9c476c599\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f7bf0618-817c-4b7d-9568-cbd9c476c599#style-reference\",\"name\":\"Tana design system reference\",\"headline\":\"Tana design system | Refero Styles\",\"description\":\"Explore Tana's dark Productivity design system: Void #000000, Charcoal #0e0e0e colors, SF Pro, tanaClassic typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f7bf0618-817c-4b7d-9568-cbd9c476c599\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f7bf0618-817c-4b7d-9568-cbd9c476c599\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Tana\",\"url\":\"https://tana.inc\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f7bf0618-817c-4b7d-9568-cbd9c476c599#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/892564f2-b43e-4255-81cb-bbf7cfd8f7ab.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/892564f2-b43e-4255-81cb-bbf7cfd8f7ab.jpg\",\"caption\":\"Screenshot of Tana\"},\"image\":\"https://images.refero.design/styles/refero.design/image/892564f2-b43e-4255-81cb-bbf7cfd8f7ab.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Tana design system\",\"Tana website design\",\"Tana colors\",\"Tana typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Void\",\"Charcoal\",\"Bone\",\"Ash\",\"SF Pro\",\"tanaClassic\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Tana design system\"},{\"@type\":\"Thing\",\"name\":\"Tana website design\"},{\"@type\":\"Thing\",\"name\":\"Tana colors\"},{\"@type\":\"Thing\",\"name\":\"Tana typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-05-07T18:20:16.984Z\",\"dateModified\":\"2026-05-07T18:20:16.984Z\"}]}19:T5d3,**Quick Color Reference**\n- Canvas: #000000 (Void)\n- Elevated surface: #0e0e0e (Charcoal)\n- Primary text: #f0eded (Bone)\n- Secondary text: #b3b3b3 (Ash)\n- Muted text: #808080 (Smoke)\n- primary action: #e1f0bd (filled action)\n\n**Example Component Prompts**\n\n1. **Lime CTA Button**: Create a filled pill button. Background: #e1f0bd. Text: 'Get early access' in #000000, 15px SF Pro weight 400, letter-spacing 0.01em. Border-radius: 10px. Padding: 6px vertical, 12px horizontal. No border, no shadow.\n\n2. **Pentagon Category Tag**: Create a left-pointing pentagon label. Shape via clip-path: polygon(0 50%, 12px 0, 100% 0, 100% 100%, 12px 100%). Fill: #f0eded. Text: 'Prototypes' in #000000, 13px SF Pro weight 400, letter-spacing 0.01em. Padding: 8px 12px 8px 16px. No border, no radius.\n\n3. Create a Primary Action Button: #e1f0bd background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n4. **Section Heading + Body**: Create a left-aligned text block. Heading: '30,000 hrs in meetings' at 48px tanaClassic weight 400, #f0eded, letter-spacing -1.44px. Body below: 19px SF Pro weight 400, #b3b3b3, line-height 1.75, max-width 640px. 32px gap between heading and body.\n\n5. **AI Testimonial Block**: Create a centered quote block on #000000. Quote text: 19px tanaClassic weight 400, #f0eded, italic, line-height 1.75, max-width 600px. Attribution below: 13px SF Pro weight 400, #808080, centered. 40px vertical space between consecutive quotes."
+      }
+    ],
+    "elevationPhilosophy": "The design system is entirely shadowless. Depth and hierarchy come from surface tone shifts (#000000 → #0e0e0e) and from the stark contrast between the void and the single lime accent. No box-shadows, no glows, no blur effects. This keeps the interface feeling like printed editorial rather than software UI."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f0eded",
+          "oklch": {
+            "c": 0.00323073375595503,
+            "h": 17.21429758249047,
+            "l": 0.9484210047640995
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "icon",
+            "hero",
+            "heading",
+            "body",
+            "footer"
+          ],
+          "frequency": 159,
+          "confidence": 1,
+          "prominence": 55845473.15663253,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "hero/color": 2,
+            "icon/color": 1,
+            "link/color": 2,
+            "other/fill": 3,
+            "other/color": 14,
+            "button/color": 2,
+            "heading/color": 4,
+            "body/borderColor": 16,
+            "hero/borderColor": 8,
+            "icon/borderColor": 4,
+            "link/borderColor": 8,
+            "other/borderColor": 56,
+            "button/borderColor": 8,
+            "heading/borderColor": 16,
+            "body/backgroundColor": 9,
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "footer",
+            "link"
+          ],
+          "frequency": 86,
+          "confidence": 1,
+          "prominence": 49141322.25613661,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 9,
+            "link/color": 5,
+            "button/color": 2,
+            "footer/color": 1,
+            "body/borderColor": 36,
+            "link/borderColor": 20,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7667552121346497
+          },
+          "contexts": [
+            "body",
+            "other",
+            "heading",
+            "list"
+          ],
+          "frequency": 105,
+          "confidence": 1,
+          "prominence": 3870942.6731352094,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "list/color": 11,
+            "other/color": 2,
+            "heading/color": 1,
+            "body/borderColor": 28,
+            "list/borderColor": 44,
+            "other/borderColor": 8,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#0e0e0e",
+          "oklch": {
+            "c": 0.00029976945461447613,
+            "h": 17.188161216385513,
+            "l": 0.16500006943183457
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 2386587.803749248,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1,
+            "other/color": 1,
+            "body/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 13316,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "body/borderColor": 12
+          }
+        },
+        {
+          "hex": "#e1f0bd",
+          "oklch": {
+            "c": 0.06861469748197684,
+            "h": 121.05239589710804,
+            "l": 0.931166575881658
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10853.823204938477,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#606060",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4890564485258221
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 6601.994226841833,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.00456751444298297,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.04,
+          "background": "#000000",
+          "foreground": "#f0eded"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#e1f0bd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.58,
+          "background": "#0e0e0e",
+          "foreground": "#f0eded"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16,
+          "background": "#e1f0bd",
+          "foreground": "#0e0e0e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#000000",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.21,
+          "background": "#0e0e0e",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.4,
+          "background": "#f0eded",
+          "foreground": "#606060"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#000000",
+          "foreground": "#808080"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.21,
+          "background": "#e1f0bd",
+          "foreground": "#606060"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.89,
+          "background": "#0e0e0e",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.39,
+          "background": "#f0eded",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.34,
+          "background": "#000000",
+          "foreground": "#606060"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.27,
+          "background": "#e1f0bd",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.07,
+          "background": "#0e0e0e",
+          "foreground": "#606060"
+        },
+        {
+          "level": "fail",
+          "ratio": 3,
+          "background": "#b3b3b3",
+          "foreground": "#606060"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.8,
+          "background": "#f0eded",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.74,
+          "background": "#e1f0bd",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#0e0e0e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.04,
+          "background": "#e1f0bd",
+          "foreground": "#f0eded"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "image"
+          ],
+          "frequency": 5
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "body",
+            "list"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginRight|hero",
+            "marginLeft|hero"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "hero",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button",
+            "rowGap|hero",
+            "columnGap|hero",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "hero",
+            "other",
+            "list",
+            "footer"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|list",
+            "columnGap|list",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "button",
+            "hero"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|button",
+            "paddingTop|hero",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "hero",
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "marginTop|footer"
+          ]
+        },
+        {
+          "value": 143,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 265,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 315,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "SF Pro",
+          "source": "system",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 61,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "tanaClassic",
+          "source": "custom",
+          "weights": [
+            350,
+            400
+          ],
+          "frequency": 14,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.93
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "SF Pro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "SF Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SF Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "hero",
+            "image",
+            "footer"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "tanaClassic",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "SF Pro",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "SF Pro",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "SF Pro",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "list"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "SF Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "list"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "tanaClassic",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "SF Pro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "SF Pro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "SF Pro",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "SF Pro",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "SF Pro",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "tanaClassic",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "tanaClassic",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "tanaClassic",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 84,
+          "family": "tanaClassic",
+          "weight": 350,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/79c339f1-39e6-4b06-be92-e8e3a9a4ebde.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/892564f2-b43e-4255-81cb-bbf7cfd8f7ab.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f7bf0618-817c-4b7d-9568-cbd9c476c599#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Tana design system\",\"item\":\"https://styles.refero.design/style/f7bf0618-817c-4b7d-9568-cbd9c476c599\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f7bf0618-817c-4b7d-9568-cbd9c476c599#style-reference\",\"name\":\"Tana design system reference\",\"headline\":\"Tana design system | Refero Styles\",\"description\":\"Explore Tana's dark Productivity design system: Void #000000, Charcoal #0e0e0e colors, SF Pro, tanaClassic typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f7bf0618-817c-4b7d-9568-cbd9c476c599\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f7bf0618-817c-4b7d-9568-cbd9c476c599\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Tana\",\"url\":\"https://tana.inc\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f7bf0618-817c-4b7d-9568-cbd9c476c599#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/892564f2-b43e-4255-81cb-bbf7cfd8f7ab.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/892564f2-b43e-4255-81cb-bbf7cfd8f7ab.jpg\",\"caption\":\"Screenshot of Tana\"},\"image\":\"https://images.refero.design/styles/refero.design/image/892564f2-b43e-4255-81cb-bbf7cfd8f7ab.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Tana design system\",\"Tana website design\",\"Tana colors\",\"Tana typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Void\",\"Charcoal\",\"Bone\",\"Ash\",\"SF Pro\",\"tanaClassic\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Tana design system\"},{\"@type\":\"Thing\",\"name\":\"Tana website design\"},{\"@type\":\"Thing\",\"name\":\"Tana colors\"},{\"@type\":\"Thing\",\"name\":\"Tana typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-05-07T18:20:16.984Z\",\"dateModified\":\"2026-05-07T18:20:16.984Z\"}]}19:T5d3,**Quick Color Reference**\n- Canvas: #000000 (Void)\n- Elevated surface: #0e0e0e (Charcoal)\n- Primary text: #f0eded (Bone)\n- Secondary text: #b3b3b3 (Ash)\n- Muted text: #808080 (Smoke)\n- primary action: #e1f0bd (filled action)\n\n**Example Component Prompts**\n\n1. **Lime CTA Button**: Create a filled pill button. Background: #e1f0bd. Text: 'Get early access' in #000000, 15px SF Pro weight 400, letter-spacing 0.01em. Border-radius: 10px. Padding: 6px vertical, 12px horizontal. No border, no shadow.\n\n2. **Pentagon Category Tag**: Create a left-pointing pentagon label. Shape via clip-path: polygon(0 50%, 12px 0, 100% 0, 100% 100%, 12px 100%). Fill: #f0eded. Text: 'Prototypes' in #000000, 13px SF Pro weight 400, letter-spacing 0.01em. Padding: 8px 12px 8px 16px. No border, no radius.\n\n3. Create a Primary Action Button: #e1f0bd background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n4. **Section Heading + Body**: Create a left-aligned text block. Heading: '30,000 hrs in meetings' at 48px tanaClassic weight 400, #f0eded, letter-spacing -1.44px. Body below: 19px SF Pro weight 400, #b3b3b3, line-height 1.75, max-width 640px. 32px gap between heading and body.\n\n5. **AI Testimonial Block**: Create a centered quote block on #000000. Quote text: 19px tanaClassic weight 400, #f0eded, italic, line-height 1.75, max-width 600px. Attribution below: 13px SF Pro weight 400, #808080, centered. 40px vertical space between consecutive quotes."
+}

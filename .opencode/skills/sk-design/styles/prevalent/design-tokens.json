@@ -1,0 +1,342 @@
+{
+  "color": {
+    "iris-voltage": {
+      "$value": "#6360d8",
+      "$type": "color",
+      "$description": "Iris Voltage — Brand accent for primary CTAs, link color, accent words inside serif headlines, and the thin violet underlines/arrows on navigation and article links"
+    },
+    "midnight-vault": {
+      "$value": "#060b25",
+      "$type": "color",
+      "$description": "Midnight Vault — Hero and footer canvas — the deep navy that frames the largest serif headlines and the top of the page"
+    },
+    "pure-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Ink — Primary text, default hairlines, and the 1px borders that separate every card, section, and image"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, button text on violet, and inverse text on the dark hero"
+    },
+    "graphite-slate": {
+      "$value": "#383c51",
+      "$type": "color",
+      "$description": "Graphite Slate — Cool desaturated border and secondary text — sits between Pure Ink and Midnight Vault when a softer line or muted label is needed"
+    },
+    "lavender-mist": {
+      "$value": "#dad9ed",
+      "$type": "color",
+      "$description": "Lavender Mist — Light neutral action fill for buttons on dark surfaces."
+    }
+  },
+  "font": {
+    "tiempos-headline": {
+      "$value": "Tiempos Headline",
+      "$type": "fontFamily",
+      "$description": "Serif used exclusively for headlines and section titles. The single weight (400) plus aggressive negative tracking gives headings a literary, almost newspaper-editorial quality that contrasts with the cyber-security subject matter. Letter-spacing tightens to -0.02em at every size, pulling the serifs into a dense, confident block."
+    },
+    "matter": {
+      "$value": "Matter",
+      "$type": "fontFamily",
+      "$description": "Workhorse sans for body copy, navigation, buttons, captions, and card meta. Weight 400 is default; 500 is used sparingly for emphasis in labels and small UI text. Generous line-heights (1.4–1.6) keep body copy breathable on a spacious canvas. Letter-spacing -0.01em at body sizes gives it a tighter, more engineered feel than a typical system sans."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Tiempos Headline",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Tiempos Headline",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Tiempos Headline",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Tiempos Headline",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Tiempos Headline",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 50px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Tiempos Headline",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page canvas for content sections, article cards, and feature cards"
+    },
+    "lavender-mist": {
+      "$value": "#dad9ed",
+      "$type": "color",
+      "$description": "Surface level 1: Pill badges, gentle section tints, and decorative surface washes"
+    },
+    "midnight-vault": {
+      "$value": "#060b25",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed hero and footer backgrounds — the only dark surface in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://prevalent.ai",
+      "siteName": "Prevalent",
+      "extractedAt": "2026-06-03T21:39:59.568Z",
+      "variant": "extended"
+    }
+  }
+}

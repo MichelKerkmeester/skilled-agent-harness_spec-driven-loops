@@ -1,0 +1,537 @@
+{
+  "color": {
+    "dribbble-pink": {
+      "$value": "#ea4c89",
+      "$type": "color",
+      "$description": "Dribbble Pink — Brand signature accent — search submit button, PRO badge, logo mark, active heart, hover pulses — one vivid magenta against the monochrome canvas makes the brand unmistakable at any size"
+    },
+    "midnight-ink": {
+      "$value": "#0d0c22",
+      "$type": "color",
+      "$description": "Midnight Ink — Primary text, filled primary buttons, dark surface fills, icon strokes — a near-black with a cool blue undertone that reads warmer than pure black against white"
+    },
+    "deep-plum": {
+      "$value": "#060318",
+      "$type": "color",
+      "$description": "Deep Plum — Navigation bar fill, darkest text tokens, logo wordmark — slightly cooler and deeper than Midnight Ink for the fixed header band"
+    },
+    "charcoal-plum": {
+      "$value": "#3d3d4e",
+      "$type": "color",
+      "$description": "Charcoal Plum — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "smoke": {
+      "$value": "#6e6d7a",
+      "$type": "color",
+      "$description": "Smoke — Secondary/muted body text, helper labels, view-count and heart-count numbers — carries the dense meta layer beneath thumbnails"
+    },
+    "fog": {
+      "$value": "#9e9ea7",
+      "$type": "color",
+      "$description": "Fog — Tertiary text, placeholder text, disabled icons, checkbox idle state — the lightest readable neutral"
+    },
+    "mist": {
+      "$value": "#f3f3f6",
+      "$type": "color",
+      "$description": "Mist — Soft surface fill, input field backgrounds, hover wells, secondary panels — the only off-white surface that sits above the page canvas"
+    },
+    "frost-border": {
+      "$value": "#e2e8f2",
+      "$type": "color",
+      "$description": "Frost Border — Hairline borders, divider lines, input outlines, card edges on hover — a cool-tinted off-white that reads as a boundary, not a fill"
+    },
+    "muted-plum": {
+      "$value": "#524b63",
+      "$type": "color",
+      "$description": "Muted Plum — Lower-emphasis dark text, link hover in dense lists, designer name secondary line — a washed dark for tertiary copy on white"
+    },
+    "slate-edge": {
+      "$value": "#3a3546",
+      "$type": "color",
+      "$description": "Slate Edge — Faint dark surfaces, tag backgrounds, low-key dark UI wells — bridges the gap between the deep nav black and the lighter grays"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces, button text on dark fills, input text — the dominant surface of the entire product"
+    }
+  },
+  "font": {
+    "mona-sans": {
+      "$value": "Mona Sans",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the product — Mona Sans is a custom geometric humanist sans drawn by GitHub, used for everything from 9px meta labels to 48px hero headlines. Its openness keeps dense 4-column grids readable, and the 450/500 mid-weights carry the designer's brand without shouting"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "9px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "9px",
+        "fontWeight": 800,
+        "lineHeight": 2.22
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 9px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 2.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 2.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 2.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 13px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 2.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "sm-13": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-13 at 14px"
+    },
+    "sm-14": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-14 at 14px"
+    },
+    "sm-15": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-15 at 14px"
+    },
+    "sm-16": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-16 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "16px",
+        "fontWeight": 450,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Mona Sans",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "220": {
+      "$value": "220px",
+      "$type": "dimension",
+      "$description": "Spacing 220px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, thumbnail wells, dominant product surface"
+    },
+    "soft-surface": {
+      "$value": "#f3f3f6",
+      "$type": "color",
+      "$description": "Surface level 1: Input fields, hover wells, search bar fill, subtle panel separation"
+    },
+    "hairline-edge": {
+      "$value": "#e2e8f2",
+      "$type": "color",
+      "$description": "Surface level 2: Borders and dividers that read as boundaries, not as fills"
+    },
+    "mid-dark": {
+      "$value": "#3d3d4",
+      "$type": "color",
+      "$description": "Surface level 3: Secondary button fills, dark meta badges"
+    },
+    "top-bar": {
+      "$value": "#060318",
+      "$type": "color",
+      "$description": "Surface level 4: Fixed navigation band, primary dark CTA fills, deepest surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://dribbble.com",
+      "siteName": "Dribbble",
+      "extractedAt": "2026-06-03T18:49:40.779Z",
+      "variant": "extended"
+    }
+  }
+}

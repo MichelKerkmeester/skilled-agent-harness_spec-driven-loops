@@ -1,0 +1,60 @@
+:root {
+  /* Colors */
+  --color-highlighter-mint: #e2ffcc;
+  --color-sage-stone: #84907f;
+  --color-carbon-ink: #161b13;
+  --color-forest-charcoal: #2d3329;
+  --color-topo-gray: #dde2e4;
+  --color-pure-black: #000000;
+
+  /* Typography — Font Families */
+  --font-f37stout: 'F37stout', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-times: 'Times', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.2;
+  --tracking-caption: -0.01px;
+  --text-body: 16px;
+  --leading-body: 1.2;
+  --tracking-body: -0.01px;
+  --text-subheading: 40px;
+  --leading-subheading: 0.9;
+  --text-heading: 48px;
+  --leading-heading: 0.9;
+  --text-display: 366px;
+  --leading-display: 0.9;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 6px;
+  --spacing-5: 5px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-40: 40px;
+  --spacing-67: 67px;
+  --spacing-70: 70px;
+  --spacing-190: 190px;
+
+  /* Layout */
+  --section-gap: 67px;
+  --card-padding: 16px;
+  --element-gap: 24px;
+
+  /* Named Radii */
+  --radius-tags: 0px;
+  --radius-cards: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-topo-gray: #dde2e4;
+  --surface-highlighter-mint: #e2ffcc;
+  --surface-sage-stone: #84907f;
+  --surface-forest-charcoal: #2d3329;
+  --surface-carbon-ink: #161b13;
+}

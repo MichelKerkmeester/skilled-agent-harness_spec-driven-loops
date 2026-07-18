@@ -1,0 +1,519 @@
+{
+  "color": {
+    "deep-indigo": {
+      "$value": "#0a0449",
+      "$type": "color",
+      "$description": "Deep Indigo — Primary brand color, all display headlines, logo, dominant borders — the gravitational center of the system; Dark-to-light gradient — midnight indigo dissolving into vivid violet for dramatic panels"
+    },
+    "vivid-violet": {
+      "$value": "#6b5ee0",
+      "$type": "color",
+      "$description": "Vivid Violet — Accent fills, gradient endpoints, decorative highlights, secondary text emphasis; Signature hero gradient — translucent violet dissolving into pure white"
+    },
+    "midnight-iris": {
+      "$value": "#0a0163",
+      "$type": "color",
+      "$description": "Midnight Iris — Darkest accent, gradient start, heavy emphasis text and fills in dark contexts"
+    },
+    "slate-lavender": {
+      "$value": "#706e87",
+      "$type": "color",
+      "$description": "Slate Lavender — Body text, muted UI labels, secondary navigation, link borders, ghost button strokes — near-gray with a violet cast"
+    },
+    "soft-mauve": {
+      "$value": "#a89fc7",
+      "$type": "color",
+      "$description": "Soft Mauve — Shadow tint, filled surface accents, decorative washes — bridges neutral and brand"
+    },
+    "dusty-rose": {
+      "$value": "#a085a6",
+      "$type": "color",
+      "$description": "Dusty Rose — Secondary muted text, subtle decorative strokes, soft border accents"
+    },
+    "blush-petal": {
+      "$value": "#efb9fd",
+      "$type": "color",
+      "$description": "Blush Petal — Decorative highlight, soft glow accents, illustration fills"
+    },
+    "lavender-mist": {
+      "$value": "#f7f6fd",
+      "$type": "color",
+      "$description": "Lavender Mist — Card and elevated surface backgrounds — the quietest off-white with a violet undertone"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary page canvas, card surfaces, inverse text on dark backgrounds"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Hairline borders, high-frequency structural lines, icon strokes"
+    },
+    "pale-wisteria": {
+      "$value": "#e2e0f9",
+      "$type": "color",
+      "$description": "Pale Wisteria — Gradient surface tone, soft glow backgrounds; Atmospheric gradient — soft lilac into deeper morning-lilac for depth panels"
+    },
+    "morning-lilac": {
+      "$value": "#cfccf5",
+      "$type": "color",
+      "$description": "Morning Lilac — Gradient surface tone, atmospheric depth washes"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "geist": {
+      "$value": "Geist",
+      "$type": "fontFamily",
+      "$description": "Primary typeface across the entire system. Geist Bold (weight 600) carries all display and heading sizes from 36-88px with aggressive -0.04em tracking; Geist SemiBold handles subheadings and card titles at 14-36px; Geist Regular flows body and caption text at 10-24px. The geometric precision of Geist pairs with the deep indigo to create a research-terminal feel — the letterforms feel measured and exact, which suits an AI research product. The extreme size range (10px to 88px) is a signature: display headlines at 88px are nearly 9x the smallest text, creating dramatic scale contrast."
+    },
+    "geist-regular": {
+      "$value": "Geist Regular",
+      "$type": "fontFamily",
+      "$description": "Geist Regular — detected in extracted data but not described by AI"
+    },
+    "geist-semibold": {
+      "$value": "Geist SemiBold",
+      "$type": "fontFamily",
+      "$description": "Geist SemiBold — detected in extracted data but not described by AI"
+    },
+    "geist-bold": {
+      "$value": "Geist Bold",
+      "$type": "fontFamily",
+      "$description": "Geist Bold — detected in extracted data but not described by AI"
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Inter — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Geist Regular",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Geist Medium",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Geist Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Geist Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Geist Medium",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "Geist Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Geist Medium",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Geist Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Geist SemiBold",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Geist Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Geist SemiBold",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Geist Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Geist SemiBold",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Geist Regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Geist SemiBold",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Geist SemiBold",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Geist Bold",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Geist Bold",
+        "fontSize": "68px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 68px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Geist Bold",
+        "fontSize": "88px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 88px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "124": {
+      "$value": "124px",
+      "$type": "dimension",
+      "$description": "Spacing 124px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "2000px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(10, 1, 99, 0.4) 0px 8px 16px -10px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "subtle": {
+      "$value": "rgba(10, 1, 99, 0.08) 0px 0px 0px 4px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "sm": {
+      "$value": "rgba(4, 0, 41, 0.1) 0px 1px 8px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "sm-2": {
+      "$value": "rgba(11, 1, 101, 0.14) 1px 0px 8px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-2"
+    }
+  },
+  "surface": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background — the starting surface for all content"
+    },
+    "lavender-mist": {
+      "$value": "#f7f6fd",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated card surface — the quietest off-white for separating content from the canvas"
+    },
+    "gradient-wash": {
+      "$value": "#cfccf5",
+      "$type": "color",
+      "$description": "Surface level 3: Atmospheric section backgrounds — lavender gradient creating visual depth bands"
+    },
+    "vivid-violet": {
+      "$value": "#6b5ee0",
+      "$type": "color",
+      "$description": "Surface level 4: Accent surface for highlights, gradient endpoints, and interactive emphasis"
+    },
+    "deep-indigo": {
+      "$value": "#0a0449",
+      "$type": "color",
+      "$description": "Surface level 5: Dark surface for inverted panels and maximum-emphasis containers"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.genway.ai",
+      "siteName": "Genway",
+      "extractedAt": "2026-06-03T19:13:40.204Z",
+      "variant": "extended"
+    }
+  }
+}

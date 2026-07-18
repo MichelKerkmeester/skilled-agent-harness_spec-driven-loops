@@ -1,0 +1,337 @@
+{
+  "color": {
+    "jet-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Jet Black — Headings, body text, top navigation bar, footer background, filled controls, sticky bottom bar, location pin icons — the achromatic anchor that gives the white canvas its structure"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page background, card surfaces, text on dark bars, input fields — the dominant canvas that every other element sits on"
+    },
+    "mist-gray": {
+      "$value": "#f6f6f6",
+      "$type": "color",
+      "$description": "Mist Gray — Suggestion card backgrounds, subtle section washes, input field fills, nav hover states — a single step off white that creates depth without contrast"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal — Secondary headings, footer column titles, darker body text variant — used when pure black feels too heavy on dense surfaces"
+    },
+    "iron-gray": {
+      "$value": "#767676",
+      "$type": "color",
+      "$description": "Iron Gray — Input field borders, divider lines, placeholder-adjacent borders — the workhorse hairline color"
+    },
+    "ash-gray": {
+      "$value": "#afafaf",
+      "$type": "color",
+      "$description": "Ash Gray — Muted helper text, disabled-link text, secondary metadata in body copy — disappears by design"
+    },
+    "slate": {
+      "$value": "#5e5e5e",
+      "$type": "color",
+      "$description": "Slate — Body text on light surfaces where full black would feel aggressive, secondary paragraph copy"
+    },
+    "graphite": {
+      "$value": "#4b4b4b",
+      "$type": "color",
+      "$description": "Graphite — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "faded-teal": {
+      "$value": "#9dcdd6",
+      "$type": "color",
+      "$description": "Faded Teal — Blue supporting accent for decorative details and low-frequency emphasis."
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "ubermove": {
+      "$value": "UberMove",
+      "$type": "fontFamily",
+      "$description": "Headlines, hero copy, display text. At 52px with 1.22 line-height and weight 400, it is the brand's voice — geometric, calm, never bold-display-loud. Weight 700 reserved for nav brand mark and emphasized headings"
+    },
+    "ubermovetext": {
+      "$value": "UberMoveText",
+      "$type": "fontFamily",
+      "$description": "Body copy, button labels, nav links, input text, helper text, footer links. The workhorse family at 14–18px / weight 400. Weight 500 is rare — used only for emphasis in nav or button labels that need to carry slightly more weight than surrounding text"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "UberMoveText",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "UberMoveText",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "UberMoveText",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "UberMoveText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "UberMoveText",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "UberMoveText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "UberMoveText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "UberMoveText",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "UberMoveText",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "UberMove",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "UberMove",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 4.67
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "UberMoveText",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "UberMove",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "UberMove",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "UberMove",
+        "fontSize": "52px",
+        "fontWeight": 700,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — every section defaults to pure white"
+    },
+    "mist-gray": {
+      "$value": "#f6f6f6",
+      "$type": "color",
+      "$description": "Surface level 1: Suggestion cards, input fills, subtle section differentiation"
+    },
+    "jet-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Top navigation bar, footer, sticky bottom bar — the structural black bands that frame the white content"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://uber.com",
+      "siteName": "Uber",
+      "extractedAt": "2026-06-03T16:14:29.443Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,91 @@
+:root {
+  /* Colors */
+  --color-royal-violet: #5423e7;
+  --color-electric-iris: #7047eb;
+  --color-lemon-zest: #ffc233;
+  --color-orchid: #cf75ff;
+  --color-lilac-mist: #e5b5fe;
+  --color-blush: #fcc7f3;
+  --color-cobalt: #0075ad;
+  --color-emerald: #1e874c;
+  --color-magenta: #db0bb9;
+  --color-crimson: #d50b3e;
+  --color-ember: #eb3a00;
+  --color-obsidian: #121217;
+  --color-paper: #ffffff;
+  --color-fog: #f7f7f8;
+  --color-slate: #6c6c89;
+  --color-ash: #d1d1db;
+
+  /* Typography — Font Families */
+  --font-circularpro-book: 'Circularpro Book', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 1.29;
+  --tracking-caption: 2px;
+  --text-body: 16px;
+  --leading-body: 1.7;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.6;
+  --tracking-body-lg: -0.18px;
+  --text-subheading: 26px;
+  --leading-subheading: 1.25;
+  --tracking-subheading: -0.78px;
+  --text-heading-sm: 38px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -1.52px;
+  --text-heading: 48px;
+  --leading-heading: 1.14;
+  --tracking-heading: -1.92px;
+  --text-heading-lg: 56px;
+  --leading-heading-lg: 1.13;
+  --tracking-heading-lg: -2.24px;
+  --text-display: 80px;
+  --leading-display: 1;
+  --tracking-display: -3.2px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+  --spacing-160: 160px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 40px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-2xl: 20px;
+  --radius-3xl: 32px;
+  --radius-3xl-2: 40px;
+  --radius-full: 48px;
+
+  /* Named Radii */
+  --radius-cards: 48px;
+  --radius-input: 8px;
+  --radius-buttons: 8px;
+  --radius-largecta: 32px;
+  --radius-navpills: 40px;
+
+  /* Surfaces */
+  --surface-fog: #f7f7f8;
+  --surface-paper: #ffffff;
+  --surface-royal-violet: #5423e7;
+}

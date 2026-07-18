@@ -1,0 +1,424 @@
+{
+  "color": {
+    "iris-violet": {
+      "$value": "#7451f2",
+      "$type": "color",
+      "$description": "Iris Violet — Primary filled CTA buttons, active tab indicator, the single chromatic accent across the whole system. One vivid purple against a near-achromatic canvas creates brand presence without color noise"
+    },
+    "deep-iris": {
+      "$value": "#5952a1",
+      "$type": "color",
+      "$description": "Deep Iris — Outlined/ghost action border, secondary violet for secondary buttons and stroke accents. Darker tone of the primary — keeps the brand family intact when a softer surface is needed"
+    },
+    "cobalt-info": {
+      "$value": "#0072c6",
+      "$type": "color",
+      "$description": "Cobalt Info — Blue state accent for badges, validation surfaces, and short status labels. Do not promote it to the primary CTA color"
+    },
+    "powder-blue": {
+      "$value": "#d6e5ff",
+      "$type": "color",
+      "$description": "Powder Blue — Neutral form states, badge text, and quiet UI feedback where color should stay understated."
+    },
+    "graphite-ink": {
+      "$value": "#272727",
+      "$type": "color",
+      "$description": "Graphite Ink — Primary text color, heading strokes, icon fills, footer text — the dominant near-black that gives the white canvas its voice"
+    },
+    "slate": {
+      "$value": "#5d5d5d",
+      "$type": "color",
+      "$description": "Slate — Body text and the workhorse border tone — paragraphs, helper copy, and the hairline rules that separate sections"
+    },
+    "ash": {
+      "$value": "#4f4f4f",
+      "$type": "color",
+      "$description": "Ash — Secondary text, nav metadata, slightly darker than Slate for emphasis without going to black"
+    },
+    "mauve-dust": {
+      "$value": "#a69ea7",
+      "$type": "color",
+      "$description": "Mauve Dust — Muted dividers, disabled-ish rules, tertiary borders — the quietest border tone that still reads on white"
+    },
+    "fog": {
+      "$value": "#858585",
+      "$type": "color",
+      "$description": "Fog — Placeholder text, low-emphasis captions, the most recessive neutral for de-emphasized meta"
+    },
+    "charcoal-hairline": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal Hairline — Link text and image borders where a slightly softer black than #272727 is needed"
+    },
+    "mist": {
+      "$value": "#e0e0e0",
+      "$type": "color",
+      "$description": "Mist — Light borders, button outline borders, table dividers, card edges — the bright hairline tone"
+    },
+    "soft-snow": {
+      "$value": "#f6f6f6",
+      "$type": "color",
+      "$description": "Soft Snow — Subtle surface elevation for cards and section bands sitting on the white canvas — just enough contrast to define a panel without darkening the page"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, button text on violet fill, card surfaces, footer background — the dominant background color"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Maximum-contrast text, decorative SVG fills, and the deepest borders where full opacity is required"
+    }
+  },
+  "font": {
+    "lustria": {
+      "$value": "Lustria",
+      "$type": "fontFamily",
+      "$description": "Display and headline serif — the only serif in the system. Used for hero headlines, section titles, and feature headings at 32–52px. The aggressive negative tracking (-0.05em at 52px) tightens the wide Lustria letterforms so they feel contemporary rather than editorial. Signature choice: a warm rounded serif against a minimalist white layout gives the enterprise product a humanist, almost editorial voice."
+    },
+    "dm-sans": {
+      "$value": "DM Sans",
+      "$type": "fontFamily",
+      "$description": "Body and UI workhorse — paragraphs, buttons, nav links, captions, helper text, icons-aligned labels. The geometric humanist sans handles the entire functional layer from 9px micro-tags up to 16px body. Light positive tracking at small sizes (0.02em) keeps tiny badge text legible; slight negative tracking at 16px gives body copy a tighter feel."
+    },
+    "martian-mono": {
+      "$value": "Martian Mono",
+      "$type": "fontFamily",
+      "$description": "Meta-label and build-log voice — section eyebrows (\"YOUR NEXT HIRE\", \"TRUSTED BY\", \"INTEGRATIONS\", \"SECURITY\"), persona names (\"EVAN\"), status pills (\"COMING SOON\"), and uppercase micro-tags. Positive tracking (~0.02em) reinforces the all-caps treatment. Switching from DM Sans to Martian Mono for these labels is the system's signature typographic move: it gives the page a 'developer changelog' voice layered on top of the friendly claymation aesthetic."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Martian Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Martian Mono",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Martian Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Martian Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 11px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Martian Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 11px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Martian Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Lustria",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Lustria",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Lustria",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Lustria",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Lustria",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.2) 0px 2px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base canvas for the entire page — the stage on which everything sits."
+    },
+    "soft-snow": {
+      "$value": "#f6f6f6",
+      "$type": "color",
+      "$description": "Surface level 1: First elevation step for cards, banner panels, and alternating section bands."
+    },
+    "powder-blue": {
+      "$value": "#d6e5ff",
+      "$type": "color",
+      "$description": "Surface level 2: Info-state surface — tinted background for status badges and highlight wash."
+    },
+    "iris-violet": {
+      "$value": "#7451f2",
+      "$type": "color",
+      "$description": "Surface level 3: Brand surface — filled CTA, the highest-attention UI layer."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.obviously.ai",
+      "siteName": "Obviously",
+      "extractedAt": "2026-06-03T21:43:51.344Z",
+      "variant": "extended"
+    }
+  }
+}

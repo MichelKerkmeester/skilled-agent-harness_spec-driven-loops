@@ -1,0 +1,190 @@
+{
+  "color": {
+    "bone-paper": {
+      "$value": "#edeae4",
+      "$type": "color",
+      "$description": "Bone Paper — Page background, all canvas surfaces — warm off-white that reads as unbleached paper rather than digital white"
+    },
+    "stone-gray": {
+      "$value": "#c9c7c4",
+      "$type": "color",
+      "$description": "Stone Gray — Secondary surface and muted contextual neutral — appears in contrast pairings as a slightly deeper layer below the canvas"
+    },
+    "ink-black": {
+      "$value": "#28282a",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, all borders, hairline rules, icon strokes, and the only chromatic anchor in the system — near-black with a hint of warmth so it sits comfortably on the bone background instead of vibrating"
+    }
+  },
+  "font": {
+    "waka-sans": {
+      "$value": "Waka Sans",
+      "$type": "fontFamily",
+      "$description": "Single custom grotesk used for everything from 10px captions to 560px display — tight tracking scales with size (-0.09em at display, -0.02em at body) so the enormous type locks into a dense block while body text stays readable. The 0.80–0.83 line-height at display size is the signature: letterforms stack into an almost solid mass of ink"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Waka Sans",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Waka Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Waka Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Waka Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Waka Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Waka Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Waka Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Waka Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Waka Sans",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Waka Sans",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Waka Sans",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Waka Sans",
+        "fontSize": "560px",
+        "fontWeight": 700,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 560px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    }
+  },
+  "surface": {
+    "bone-paper": {
+      "$value": "#edeae4",
+      "$type": "color",
+      "$description": "Surface level 1: Base canvas — the entire page surface"
+    },
+    "stone-gray": {
+      "$value": "#c9c7c4",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary contextual surface appearing in contrast relationships, slightly deeper than the canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://wakawaka.world",
+      "siteName": "Waka Waka",
+      "extractedAt": "2026-06-03T21:57:37.582Z",
+      "variant": "extended"
+    }
+  }
+}

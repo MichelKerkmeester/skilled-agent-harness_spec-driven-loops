@@ -1,0 +1,1178 @@
+{
+  "source": "https://styles.refero.design/style/2112d018-bf95-4a87-a1f3-6e948330b207",
+  "uuid": "2112d018-bf95-4a87-a1f3-6e948330b207",
+  "name": "TinyFaces NFT",
+  "northStar": "Printed collector's catalog on warm paper. Imagine a heavyweight art-book spread where vivid vinyl-toy photography sits beside oversized editorial serifs and pastel-tinted feature panels — the interface is the binding, the characters are the exhibition.",
+  "capturedAt": "2026-07-18T09:13:12.519Z",
+  "meta": {
+    "url": "https://nft.tinyfac.es",
+    "siteName": "TinyFaces NFT",
+    "extractedAt": "2026-06-03T20:26:03.918Z",
+    "durationMs": 45324,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 935,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Migra 500 at 50–187px for all editorial display moments, with line-height locked at 1.0–1.1 so oversized serifs form compositional blocks",
+      "Reserve Vermillion Mark (#ed4a29) for the wordmark, thin outlined borders, and decorative flourishes — never fill a button with it",
+      "Set all buttons to 23px pill radius — pill shape is non-negotiable for any action control",
+      "Use 10px radius for all content cards and 2px only for hairline borders/dividers",
+      "Lay out the character gallery as a horizontal-scroll row with 8px gaps, no card borders, no shadows",
+      "Apply pastel card backgrounds (#8d9876, #a0b1cd, #e5cce0) as full fills for feature sections — never as tints or overlays on white",
+      "Keep body text in Inter 400 at 16–20px with generous line-height (1.5–2.25) to match editorial reading rhythm"
+    ],
+    "donts": [
+      "Don't use drop shadows for elevation — hierarchy comes from canvas-to-pastel surface transitions, not shadows",
+      "Don't fill buttons with Vermillion Mark — the orange-red is editorial punctuation, not an action color",
+      "Don't use squared corners on buttons or action controls — 23px pill is the only button form",
+      "Don't place 3D character renders on the bone canvas without their own colored backdrop — every portrait needs its tinted scene",
+      "Don't break the two-font discipline: Migra for display, Inter for everything else — no other serif or sans should enter the system",
+      "Don't use white or gray as a feature card fill — feature cards must be one of the three pastels (sage, periwinkle, blush)",
+      "Don't use large bold weights on Migra — 500 medium is the only weight; bold/heavy serifs break the printed-ink quality"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#212529",
+        "name": "Charcoal Press",
+        "role": "Primary text, body copy, filled buttons, hairline borders — the dominant ink of the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f4f4f2",
+        "name": "Bone White",
+        "role": "Page canvas, secondary surface fill behind content sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Card surfaces, white-space inside pastel cards, icon contrast against dark fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d4d5d4",
+        "name": "Silver Rule",
+        "role": "Hairline dividers, subtle structural borders between dense sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ed4a29",
+        "name": "Vermillion Mark",
+        "role": "Orange accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#8d9876",
+        "name": "Sage Panel",
+        "role": "Feature card background — muted olive-green panel for storytelling sections like environmental impact",
+        "group": "accent"
+      },
+      {
+        "hex": "#a0b1cd",
+        "name": "Periwinkle Panel",
+        "role": "Feature card background — dusty blue panel for collection-overview sections",
+        "group": "accent"
+      },
+      {
+        "hex": "#e5cce0",
+        "name": "Blush Panel",
+        "role": "Feature card background — soft lilac-pink panel for rarity/utility sections",
+        "group": "accent"
+      },
+      {
+        "hex": "#f4ddbe",
+        "name": "Peach Headline",
+        "role": "Accent on display headlines, decorative borders within heading contexts — warm cream tint that sits between the ink and the pastel cards",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page reads as a long-form editorial scroll, not a product dashboard. The grid structure is max-width 1200px centered on a bone canvas. The first viewport is a full-bleed horizontal character gallery (overflow-x scroll, 8px gaps) that sets the playful tone immediately. Below the gallery, a narrow ticker bar runs edge-to-edge. The main body alternates between: (1) large editorial section openers in oversized Migra serif with body copy beside, (2) 2-column pastel feature cards that pair a Migra headline + Inter description on the left with a large 3D character render on the right. Section gaps are 64–128px, creating a paced magazine rhythm. Cards stack into a 2-up grid on desktop. The navigation is a thin top bar with logo left, nav center, actions right, and a 2px hairline bottom border. No sidebar, no mega-menu, no floating elements — the page is vertical-scroll linear narrative from gallery → storytelling → impact.",
+    "imagery": "Imagery is the centerpiece of the entire system: stylized 3D character renders in a toy-figurine aesthetic — smooth, rounded, soft-lit, with pastel color blocking. Each character is shot in a studio-style portrait against its own muted backdrop (sage, periwinkle, blush, cream, terracotta). The 3D style is deliberately tactile and collectible, not photorealistic — closer to vinyl art toys than CGI. Lighting is soft and even with gentle highlights, no harsh shadows, giving each figure a 'fresh from the box' quality. Characters wear whimsical accessories (hats, glasses, masks, scarves) in coordinated pastel palettes. There is no photography, no illustration, no abstract graphics — the 3D renders carry 100% of the visual weight outside the editorial typography. The renders are always full-bleed inside their frames, never cropped, never overlaid with text, always treated as the hero of their container.",
+    "similar": [
+      {
+        "why": "Same grid-of-portraits structure for a generative NFT collection, with each character presented as an individual collectible card",
+        "business": "CryptoPunks / Larva Labs"
+      },
+      {
+        "why": "NFT gallery-first layout with a horizontal character row above editorial storytelling sections, and a prominent filled commerce button",
+        "business": "BAYC (Bored Ape Yacht Club)"
+      },
+      {
+        "why": "Oversized serif display type, pastel feature cards, and magazine-spread pacing — the same editorial-meets-digital aesthetic",
+        "business": "Awwwards / Site Inspire editorial features"
+      },
+      {
+        "why": "Custom serif headlines with italic emphasis on key nouns, generous line-height body copy, and muted pastel feature panels — the print-catalog rhythm",
+        "business": "The New York Times Style section"
+      },
+      {
+        "why": "Pastel-tinted feature panels paired with bold serif typography and a restrained dark neutral chrome",
+        "business": "Coolors / editorial design portfolios"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "10px",
+        "buttons": "23px",
+        "hairlines": "2px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#f4f4f2",
+        "name": "Bone Canvas",
+        "level": 0,
+        "purpose": "Page background — warm off-white that feels like paper stock"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper Card",
+        "level": 1,
+        "purpose": "White surface inside pastel panels for readable text"
+      },
+      {
+        "hex": "#e5cce0",
+        "name": "Pastel Feature Card",
+        "level": 2,
+        "purpose": "Blush/lilac tinted card for feature storytelling"
+      },
+      {
+        "hex": "#a0b1cd",
+        "name": "Pastel Feature Card Alt",
+        "level": 2,
+        "purpose": "Periwinkle tinted card for collection overview"
+      },
+      {
+        "hex": "#8d9876",
+        "name": "Pastel Feature Card Alt 2",
+        "level": 2,
+        "purpose": "Sage tinted card for mission/impact sections"
+      }
+    ],
+    "northStar": "Printed collector's catalog on warm paper. Imagine a heavyweight art-book spread where vivid vinyl-toy photography sits beside oversized editorial serifs and pastel-tinted feature panels — the interface is the binding, the characters are the exhibition.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 2.25
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 2.88
+      },
+      {
+        "role": "heading",
+        "size": 50,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading-lg",
+        "size": 64,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "display",
+        "size": 187,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled CTA Button (Buy / Primary)",
+        "role": "Primary commerce action",
+        "description": "Charcoal Press fill (#212529), white text, 23px pill radius, Inter 500 at 16px, ~20px vertical padding, ~32px horizontal padding. The pill shape is the signature button form — no squared edges on any action control. Sits as a dark anchor against the cream canvas."
+      },
+      {
+        "name": "Outlined Wallet Button",
+        "role": "Secondary connect action",
+        "description": "Transparent fill, 1px Charcoal Press border (#212529), charcoal text, 23px pill radius, Inter 400 at 16px, ~20px vertical padding, ~32px horizontal padding. Pairs next to the filled Buy button as a ghost alternative."
+      },
+      {
+        "name": "Wordmark / Brand Lockup",
+        "role": "Site identity in header and footer",
+        "description": "Custom TinyFaces wordmark in Vermillion Mark (#ed4a29), tight letter-spacing, stacked two-line treatment. Functions as the only saturated color in the chrome — everything else is restrained to let this red mark carry brand recognition."
+      },
+      {
+        "name": "Character Portrait Card",
+        "role": "Primary content unit for the NFT collection grid",
+        "description": "10px radius frame containing a full-bleed 3D character render on its own colored backdrop. Cards sit in a horizontal-scroll row with 8px gaps. No border, no shadow — the character artwork is the entire surface. Ticker/label below shows collection status in Inter 400."
+      },
+      {
+        "name": "Pastel Feature Card",
+        "role": "Editorial content block (collection stats, rarity, impact)",
+        "description": "10px radius, solid pastel fill (Sage / Periwinkle / Blush), ~48px internal padding. Contains a starburst/asterisk icon (8-point), Migra 500 serif heading at ~50px with selective italic emphasis (e.g. 'unique', 'rare', 'matters'), Inter 400 body at 16–20px in Charcoal Press. A single 3D character render occupies one half of the card at large scale."
+      },
+      {
+        "name": "Editorial Section Heading",
+        "role": "Section openers in the long-form scroll",
+        "description": "Migra 500 at 64px, Charcoal Press, line-height 1.1. Italic swash on one or two key words creates editorial rhythm. Sits above body text with ~32px gap. No underlines, no rules — the serif weight is the hierarchy."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Bone Canvas (#f4f4f2) background, 2px hairline Charcoal Press border at the bottom for structure. Logo left, nav links centered or right in Inter 400 at 16px, action buttons right-aligned. ~64px vertical padding, max-width 1200px centered."
+      },
+      {
+        "name": "Ticker / Collection Status Bar",
+        "role": "Horizontal status strip below the character grid",
+        "description": "Narrow strip showing repeated status text ('4000/4000 • COLLECTION SOLD OUT') in Inter 400 at 14px, Charcoal Press, separated by bullet points. No background fill — sits directly on the bone canvas like a newspaper ticker."
+      },
+      {
+        "name": "Starburst Icon Marker",
+        "role": "Decorative section marker inside feature cards",
+        "description": "8-point asterisk/burst glyph in Charcoal Press at ~24px, positioned top-left of each pastel feature card. Functions as an editorial dingbat — never functional UI, always decorative."
+      },
+      {
+        "name": "Social Icon Group",
+        "role": "External social links in the header",
+        "description": "Row of three monochrome icon glyphs (Twitter/X, Instagram, Discord) in Charcoal Press, 16px, separated by 8px gaps. Minimal, no labels, no containers."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and editorial headlines only. The custom serif brings fashion-magazine authority: weight 500 (medium) avoids the heavy black-serif cliché and keeps the type feeling like ink on paper rather than poster art. Used at 64px for section openers and stretched to 187px for hero statements with line-height 1.0 — the tight setting lets oversized serifs lock into compositional blocks. Italic within upright passages (e.g. 'blockchain', 'rare', 'matters') creates editorial cadence without leaving the family.",
+        "sizes": "50px, 64px, 187px",
+        "family": "Migra",
+        "weight": "500",
+        "lineHeight": "1.00–1.30",
+        "substitute": "Playfair Display, DM Serif Display, or Source Serif Pro"
+      },
+      {
+        "role": "All running text: body copy at 16px/400, card descriptions at 14px, sub-headings and emphasized text at 20–24px. Light weight 300 used for de-emphasized text, medium 500 for inline emphasis and button labels. The letter-spacing of ~0.079em (relative) adds breathing room that complements the dense spacing grid without feeling loose. Inter's geometric neutrality keeps the focus on the serif display moments.",
+        "sizes": "14px, 16px, 20px, 24px",
+        "family": "Inter",
+        "weight": "300, 400, 500",
+        "lineHeight": "1.50–2.88",
+        "substitute": "Inter (already Google-available), or fallback to system-ui",
+        "letterSpacing": "0.0790em"
+      },
+      {
+        "role": "System fallback for icon-adjacent micro-labels and button secondary text where a sans-serif system reference is acceptable",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "system-ui"
+      }
+    ],
+    "description": "TinyFaces presents a curated editorial aesthetic for an NFT collection: cream-paper canvas, oversized serif display type in Migra, and pastel-saturated feature cards that feel lifted from a printed collector's catalog. The 3D character renders are the stars — each one a tactile, toy-like portrait shot against muted, painterly backdrops (sage, periwinkle, blush, cream). The chrome stays disciplined and dark — charcoal text, hairline borders, pill buttons — so the colorful artwork and pastel cards can carry the energy. Accent orange-red (#ed4a29) is reserved for the wordmark, decorative borders, and as a thin callout underline, never as a dominant button fill. Headlines lean on italic emphasis within otherwise upright serif to add cadence without shouting. Spacing is compact and dense like a magazine spread, with 10px card radii that feel like printed page edges rather than glassmorphic panels.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2112d018-bf95-4a87-a1f3-6e948330b207#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"TinyFaces NFT design system\",\"item\":\"https://styles.refero.design/style/2112d018-bf95-4a87-a1f3-6e948330b207\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2112d018-bf95-4a87-a1f3-6e948330b207#style-reference\",\"name\":\"TinyFaces NFT design system reference\",\"headline\":\"TinyFaces NFT design system | Refero Styles\",\"description\":\"Explore TinyFaces NFT's light Crypto design system: Charcoal Press #212529, Bone White #f4f4f2 colors, Migra, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2112d018-bf95-4a87-a1f3-6e948330b207\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2112d018-bf95-4a87-a1f3-6e948330b207\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"TinyFaces NFT\",\"url\":\"https://nft.tinyfac.es\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2112d018-bf95-4a87-a1f3-6e948330b207#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f79f9cf8-c9ae-48e2-a743-3b5d78d97fc3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f79f9cf8-c9ae-48e2-a743-3b5d78d97fc3.jpg\",\"caption\":\"Screenshot of TinyFaces NFT\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f79f9cf8-c9ae-48e2-a743-3b5d78d97fc3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"TinyFaces NFT design system\",\"TinyFaces NFT website design\",\"TinyFaces NFT colors\",\"TinyFaces NFT typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Charcoal Press\",\"Bone White\",\"Paper White\",\"Silver Rule\",\"Migra\",\"Inter\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"TinyFaces NFT design system\"},{\"@type\":\"Thing\",\"name\":\"TinyFaces NFT website design\"},{\"@type\":\"Thing\",\"name\":\"TinyFaces NFT colors\"},{\"@type\":\"Thing\",\"name\":\"TinyFaces NFT typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T02:07:14.959Z\",\"dateModified\":\"2026-04-30T02:07:14.959Z\"}]}19:T485,**Quick Color Reference**\n- text: #212529\n- background: #f4f4f2\n- border: #d4d5d4\n- accent (wordmark & decorative borders): #ed4a29\n- pastel cards: #8d9876 / #a0b1cd / #e5cce0\n- primary action: #212529 (filled action)\n\n**3 Example Component Prompts**\n\n1. *Build an editorial section opener*: Bone Canvas (#f4f4f2) background. Headline in Migra 500 at 64px, color #212529, line-height 1.1, with the word 'collection' set in italic swash. Body copy beside in Inter 400 at 20px, line-height 2.25, also #212529. 32px gap between headline and body.\n\n2. *Build a pastel feature card with character*: 10px radius, solid blush fill (#e5cce0), 48px padding. Starburst icon top-left in #212529 at 24px. Migra 500 heading at 50px, #212529, with one word in italic. Inter 400 body at 16px, #212529, below. Right half of the card shows a 3D character render at 100% width, contained within the card's padding.\n\n3. *Build the primary buy button*: 23px pill radius, #212529 fill, white (#ffffff) Inter 500 at 16px label, 20px vertical padding, 32px horizontal padding. No border, no shadow. Pairs next to a ghost Wallet button with 1px #212529 border and transparent fill."
+      }
+    ],
+    "elevationPhilosophy": "The system avoids drop shadows almost entirely — visual hierarchy comes from the warm canvas-to-pastel-card surface transitions and from generous internal padding, not from elevation. This keeps the aesthetic flat and editorial, like a printed page, and lets the 3D character renders be the only dimensional element on screen."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#212529",
+          "oklch": {
+            "c": 0.009493466733044721,
+            "h": 248.18975403208174,
+            "l": 0.2620927620695693
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "button",
+            "body",
+            "heading",
+            "card"
+          ],
+          "frequency": 3566,
+          "confidence": 1,
+          "prominence": 85315930.399005,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 107,
+            "card/color": 3,
+            "icon/color": 10,
+            "link/color": 9,
+            "other/fill": 12,
+            "other/color": 541,
+            "button/color": 5,
+            "heading/color": 17,
+            "body/borderColor": 428,
+            "card/borderColor": 12,
+            "icon/borderColor": 40,
+            "link/borderColor": 36,
+            "other/borderColor": 2159,
+            "button/borderColor": 20,
+            "heading/borderColor": 68,
+            "other/backgroundColor": 97,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#142855",
+          "oklch": {
+            "c": 0.08581851308785199,
+            "h": 263.8297528937354,
+            "l": 0.288615976416411
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1439250,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ed4a29",
+          "oklch": {
+            "c": 0.20486011108395272,
+            "h": 33.22139958719427,
+            "l": 0.6365707255847479
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 47,
+          "confidence": 1,
+          "prominence": 732188.5838445436,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/fill": 2,
+            "other/color": 8,
+            "link/borderColor": 4,
+            "other/borderColor": 32
+          }
+        },
+        {
+          "hex": "#c7b19c",
+          "oklch": {
+            "c": 0.03862357086732789,
+            "h": 65.88664130298892,
+            "l": 0.7736181524248146
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 706689,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8d9876",
+          "oklch": {
+            "c": 0.05011432657506309,
+            "h": 122.33331464810577,
+            "l": 0.6615035400351628
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 631567,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a0b1cd",
+          "oklch": {
+            "c": 0.04460226330193317,
+            "h": 260.4027311829651,
+            "l": 0.7566115442405213
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 444324,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e5cce0",
+          "oklch": {
+            "c": 0.03848463023507644,
+            "h": 332.6460670031681,
+            "l": 0.8718667595683793
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 444324,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f4ddbe",
+          "oklch": {
+            "c": 0.048185929659639776,
+            "h": 75.29911022534488,
+            "l": 0.9084388708969695
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 292576,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 3,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#d4d5d4",
+          "oklch": {
+            "c": 0.0017358150419136214,
+            "h": 145.56115737690104,
+            "l": 0.871952488571508
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 183801.1736512771,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 5
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading",
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 144595.6213456486,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 2,
+            "other/fill": 2,
+            "button/color": 2,
+            "heading/color": 1,
+            "icon/borderColor": 8,
+            "button/borderColor": 8,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f4f4f2",
+          "oklch": {
+            "c": 0.002649329350068742,
+            "h": 106.44906384063029,
+            "l": 0.9665953320789811
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 37,
+          "confidence": 1,
+          "prominence": 40472.01698367693,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 2,
+            "other/fill": 2,
+            "other/color": 3,
+            "button/color": 2,
+            "icon/borderColor": 8,
+            "other/borderColor": 12,
+            "button/borderColor": 8
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.03253848474973879,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.43,
+          "background": "#212529",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.34,
+          "background": "#142855",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.01,
+          "background": "#212529",
+          "foreground": "#f4f4f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.02,
+          "background": "#142855",
+          "foreground": "#f4f4f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.7,
+          "background": "#212529",
+          "foreground": "#f4ddbe"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.88,
+          "background": "#142855",
+          "foreground": "#f4ddbe"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.48,
+          "background": "#d4d5d4",
+          "foreground": "#212529"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.32,
+          "background": "#e5cce0",
+          "foreground": "#212529"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.74,
+          "background": "#d4d5d4",
+          "foreground": "#142855"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.59,
+          "background": "#e5cce0",
+          "foreground": "#142855"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.49,
+          "background": "#c7b19c",
+          "foreground": "#212529"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.1,
+          "background": "#a0b1cd",
+          "foreground": "#212529"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.96,
+          "background": "#c7b19c",
+          "foreground": "#142855"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.6,
+          "background": "#a0b1cd",
+          "foreground": "#142855"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.06,
+          "background": "#8d9876",
+          "foreground": "#212529"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.12,
+          "background": "#212529",
+          "foreground": "#ed4a29"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.83,
+          "background": "#142855",
+          "foreground": "#ed4a29"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.05,
+          "background": "#8d9876",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.77,
+          "background": "#8d9876",
+          "foreground": "#f4f4f2"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.5,
+          "background": "#e5cce0",
+          "foreground": "#ed4a29"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 201
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 96
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 6
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "card",
+            "heading",
+            "link"
+          ],
+          "frequency": 397,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|heading",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "other",
+            "card",
+            "heading",
+            "body"
+          ],
+          "frequency": 113,
+          "properties": [
+            "marginRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|card",
+            "marginTop|heading",
+            "marginTop|body",
+            "paddingTop|other",
+            "marginTop|other",
+            "paddingRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "link"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|heading",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 897,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Migra",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 16,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.88
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 96,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.079,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "image",
+            "card",
+            "button",
+            "body"
+          ],
+          "frequency": 771,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 300,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 2.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 2.88,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Migra",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Migra",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Migra",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Migra",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 187,
+          "family": "Migra",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d2212a06-167e-4dc5-87cd-07dc25b1be82.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f79f9cf8-c9ae-48e2-a743-3b5d78d97fc3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2112d018-bf95-4a87-a1f3-6e948330b207#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"TinyFaces NFT design system\",\"item\":\"https://styles.refero.design/style/2112d018-bf95-4a87-a1f3-6e948330b207\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2112d018-bf95-4a87-a1f3-6e948330b207#style-reference\",\"name\":\"TinyFaces NFT design system reference\",\"headline\":\"TinyFaces NFT design system | Refero Styles\",\"description\":\"Explore TinyFaces NFT's light Crypto design system: Charcoal Press #212529, Bone White #f4f4f2 colors, Migra, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2112d018-bf95-4a87-a1f3-6e948330b207\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2112d018-bf95-4a87-a1f3-6e948330b207\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"TinyFaces NFT\",\"url\":\"https://nft.tinyfac.es\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2112d018-bf95-4a87-a1f3-6e948330b207#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f79f9cf8-c9ae-48e2-a743-3b5d78d97fc3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f79f9cf8-c9ae-48e2-a743-3b5d78d97fc3.jpg\",\"caption\":\"Screenshot of TinyFaces NFT\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f79f9cf8-c9ae-48e2-a743-3b5d78d97fc3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"TinyFaces NFT design system\",\"TinyFaces NFT website design\",\"TinyFaces NFT colors\",\"TinyFaces NFT typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Charcoal Press\",\"Bone White\",\"Paper White\",\"Silver Rule\",\"Migra\",\"Inter\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"TinyFaces NFT design system\"},{\"@type\":\"Thing\",\"name\":\"TinyFaces NFT website design\"},{\"@type\":\"Thing\",\"name\":\"TinyFaces NFT colors\"},{\"@type\":\"Thing\",\"name\":\"TinyFaces NFT typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T02:07:14.959Z\",\"dateModified\":\"2026-04-30T02:07:14.959Z\"}]}19:T485,**Quick Color Reference**\n- text: #212529\n- background: #f4f4f2\n- border: #d4d5d4\n- accent (wordmark & decorative borders): #ed4a29\n- pastel cards: #8d9876 / #a0b1cd / #e5cce0\n- primary action: #212529 (filled action)\n\n**3 Example Component Prompts**\n\n1. *Build an editorial section opener*: Bone Canvas (#f4f4f2) background. Headline in Migra 500 at 64px, color #212529, line-height 1.1, with the word 'collection' set in italic swash. Body copy beside in Inter 400 at 20px, line-height 2.25, also #212529. 32px gap between headline and body.\n\n2. *Build a pastel feature card with character*: 10px radius, solid blush fill (#e5cce0), 48px padding. Starburst icon top-left in #212529 at 24px. Migra 500 heading at 50px, #212529, with one word in italic. Inter 400 body at 16px, #212529, below. Right half of the card shows a 3D character render at 100% width, contained within the card's padding.\n\n3. *Build the primary buy button*: 23px pill radius, #212529 fill, white (#ffffff) Inter 500 at 16px label, 20px vertical padding, 32px horizontal padding. No border, no shadow. Pairs next to a ghost Wallet button with 1px #212529 border and transparent fill."
+}

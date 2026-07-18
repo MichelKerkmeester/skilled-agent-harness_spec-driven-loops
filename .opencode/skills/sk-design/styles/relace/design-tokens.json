@@ -1,0 +1,372 @@
+{
+  "color": {
+    "page-cream": {
+      "$value": "#fffef2",
+      "$type": "color",
+      "$description": "Page Cream — Universal page background and card surface — the warm, almost unbleached paper that defines the entire visual temperature"
+    },
+    "ink-black": {
+      "$value": "#191918",
+      "$type": "color",
+      "$description": "Ink Black — Primary text color, dark surface fills, and code-window backgrounds — warm near-black, never pure optical black"
+    },
+    "rule-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Rule Black — Structural hairlines and borders — 1px lines that define cards, separate sections, and replace shadow as the elevation language"
+    },
+    "warm-stone": {
+      "$value": "#75756f",
+      "$type": "color",
+      "$description": "Warm Stone — Muted body text, secondary borders, and inactive link states — a warm gray that recedes without going cool"
+    },
+    "linen-beige": {
+      "$value": "#edece0",
+      "$type": "color",
+      "$description": "Linen Beige — Secondary elevated surface — warm light beige for tags, subtle background panels, and hover washes that lift off the cream canvas"
+    },
+    "ash-gray": {
+      "$value": "#bab9b0",
+      "$type": "color",
+      "$description": "Ash Gray — Tertiary dividers and inactive UI elements — a mid-warm gray for the lightest structural lines"
+    },
+    "amber-signal": {
+      "$value": "#fcaa2d",
+      "$type": "color",
+      "$description": "Amber Signal — Yellow outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "parabole-trial": {
+      "$value": "Parabole Trial",
+      "$type": "fontFamily",
+      "$description": "Primary typeface across all display, heading, and body contexts. Regular weight 400 carries body and display; Medium 500 handles subheadings (20px) and emphasis captions (14px). The aggressively tight tracking at large sizes (-0.05em at 64px) is a signature choice — display headlines compress into a confident block rather than spreading airy. Substitute: 'Instrument Sans' or 'Space Grotesk' from Google Fonts for the closest free match to Parabole's geometric character"
+    },
+    "decima-mono-pro": {
+      "$value": "Decima Mono Pro",
+      "$type": "fontFamily",
+      "$description": "Monospace for all UI chrome: version labels, timeline ticks, navigation micro-text, code blocks, badge labels, and tag metadata. The slight positive tracking (0.03–0.04em) at small sizes is anti-default — monospace usually tightens at small sizes, but this opens up to read clearly as inline UI text. Substitute: 'JetBrains Mono' or 'IBM Plex Mono'"
+    },
+    "parabole-trial-regular-text": {
+      "$value": "Parabole Trial Regular Text",
+      "$type": "fontFamily",
+      "$description": "Parabole Trial Regular Text — detected in extracted data but not described by AI"
+    },
+    "parabole-trial-regular-display": {
+      "$value": "Parabole Trial Regular Display",
+      "$type": "fontFamily",
+      "$description": "Parabole Trial Regular Display — detected in extracted data but not described by AI"
+    },
+    "karla": {
+      "$value": "Karla",
+      "$type": "fontFamily",
+      "$description": "Karla — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Decima Mono Pro Regular",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Parabole Trial Regular Text",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Parabole Trial Regular Text",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Karla",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Decima Mono Pro Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Parabole Trial Medium Text",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Parabole Trial Regular Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Decima Mono Pro Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Parabole Trial Regular Text",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Parabole Trial Medium Text",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Parabole Trial Regular Text",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Parabole Trial Regular Display",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Parabole Trial Regular Text",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Parabole Trial Regular Display",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Parabole Trial Regular Text",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Parabole Trial Regular Display",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Parabole Trial Regular Text",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Parabole Trial Regular Display",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "full": {
+      "$value": "800px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#fffef2",
+      "$type": "color",
+      "$description": "Surface level 1: Page-wide background — the warm paper field everything sits on"
+    },
+    "linen": {
+      "$value": "#edece0",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle elevated wash for tags, secondary panels, and quiet hover states"
+    },
+    "ink": {
+      "$value": "#191918",
+      "$type": "color",
+      "$description": "Surface level 3: Code windows, dark feature blocks, and high-contrast content surfaces"
+    },
+    "amber": {
+      "$value": "#fcaa2d",
+      "$type": "color",
+      "$description": "Surface level 4: Accent surface for filled CTAs, active indicators, and brand-colored highlights"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://relace.ai",
+      "siteName": "Relace",
+      "extractedAt": "2026-06-03T20:56:46.633Z",
+      "variant": "extended"
+    }
+  }
+}

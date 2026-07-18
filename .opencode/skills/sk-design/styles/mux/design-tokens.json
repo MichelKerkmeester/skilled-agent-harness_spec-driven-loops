@@ -1,0 +1,412 @@
+{
+  "color": {
+    "olive-drafting": {
+      "$value": "#e2e4dd",
+      "$type": "color",
+      "$description": "Olive Drafting — Page canvas, hero backgrounds, the warm sage paper that everything sits on — the dominant surface tone of the entire site"
+    },
+    "snow-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Snow Card — Card surfaces, navigation bar, elevated panels — the only surface that floats above the olive canvas"
+    },
+    "inkstone": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Inkstone — Primary text, heading strokes, nav text, icon strokes — maximum contrast on light surfaces, always pure black"
+    },
+    "forge-dark": {
+      "$value": "#242628",
+      "$type": "color",
+      "$description": "Forge Dark — Dark inset surfaces — product mockups, transcript panels, video player chrome, footer; provides the only dark layer in the system"
+    },
+    "mist-surface": {
+      "$value": "#f4f6f4",
+      "$type": "color",
+      "$description": "Mist Surface — Subtle secondary surface, quiet dividers between sections, gentle wash backgrounds"
+    },
+    "linen-border": {
+      "$value": "#d0d2c8",
+      "$type": "color",
+      "$description": "Linen Border — Hairline section dividers, card borders, warm gray rules that separate content bands"
+    },
+    "steel": {
+      "$value": "#828c97",
+      "$type": "color",
+      "$description": "Steel — Muted text, secondary button borders, disabled states, low-emphasis borders"
+    },
+    "pewter": {
+      "$value": "#adb9c6",
+      "$type": "color",
+      "$description": "Pewter — Outlined button borders, subtle outlines on tags and chips, medium-weight hairlines"
+    },
+    "graphite": {
+      "$value": "#565e67",
+      "$type": "color",
+      "$description": "Graphite — Secondary text on light surfaces, helper copy, metadata labels"
+    },
+    "ember-orange": {
+      "$value": "#ff6100",
+      "$type": "color",
+      "$description": "Ember Orange — Orange outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    },
+    "amber-signal": {
+      "$value": "#ffb200",
+      "$type": "color",
+      "$description": "Amber Signal — Hairline section dividers, feature underlines, AI badges, small punctuation strokes — a warm goldenrod that runs through the page like a highlighter mark"
+    },
+    "marigold-deep": {
+      "$value": "#bd8209",
+      "$type": "color",
+      "$description": "Marigold Deep — Darker amber tone used for emphasized amber strokes and secondary accent borders"
+    },
+    "signal-blue": {
+      "$value": "#0091ff",
+      "$type": "color",
+      "$description": "Signal Blue — Inline text links, interactive link underlines — the only cool chromatic accent, reserved exclusively for hyperlink treatment"
+    },
+    "sprout-green": {
+      "$value": "#00be43",
+      "$type": "color",
+      "$description": "Sprout Green — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Use as a supporting accent, not as a status color"
+    }
+  },
+  "font": {
+    "aeonik": {
+      "$value": "Aeonik",
+      "$type": "fontFamily",
+      "$description": "Primary workhorse — body copy, nav, buttons, cards, headings up to 50px; weight 400 for body, weight 700 for headings and emphasis. The geometric neo-grotesque forms give the page a clean engineering tone."
+    },
+    "rotonto": {
+      "$value": "Rotonto",
+      "$type": "fontFamily",
+      "$description": "Display face reserved for the hero headline only — chunky, slightly retro geometric forms that feel hand-lettered. Its presence is a signature: the biggest text on the page is visually distinct from everything else, creating a single moment of typographic drama per page."
+    },
+    "jetbrains-mono": {
+      "$value": "JetBrains Mono",
+      "$type": "fontFamily",
+      "$description": "Code samples, technical metadata, tab labels, AI badge text, inline monospaced data — appears wherever the page needs to read as 'this is a developer surface'"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "JetBrainsMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "JetBrainsMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "JetBrainsMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "JetBrainsMono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "21px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "21px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Rotonto",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "50px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Rotonto",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 50px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Rotonto",
+        "fontSize": "66px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 66px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "84": {
+      "$value": "84px",
+      "$type": "dimension",
+      "$description": "Spacing 84px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "olive-canvas": {
+      "$value": "#e2e4dd",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, hero sections — the warm sage base layer"
+    },
+    "snow-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated cards, nav bar, feature panels floating above canvas"
+    },
+    "mist": {
+      "$value": "#f4f6f4",
+      "$type": "color",
+      "$description": "Surface level 2: Quiet inset wash, secondary surface tone"
+    },
+    "blue-highlight": {
+      "$value": "#cde6ff",
+      "$type": "color",
+      "$description": "Surface level 3: Light blue accent surface for special callouts"
+    },
+    "forge-dark": {
+      "$value": "#242628",
+      "$type": "color",
+      "$description": "Surface level 4: Dark product UI panels — transcript, video player, code chrome"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.mux.com",
+      "siteName": "Mux",
+      "extractedAt": "2026-06-03T19:42:57.983Z",
+      "variant": "extended"
+    }
+  }
+}

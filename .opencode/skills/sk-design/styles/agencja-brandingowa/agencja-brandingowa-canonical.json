@@ -1,0 +1,1572 @@
+{
+  "source": "https://styles.refero.design/style/c43237e3-dae2-4fc6-a917-519b25c870e5",
+  "uuid": "c43237e3-dae2-4fc6-a917-519b25c870e5",
+  "name": "Agencja brandingowa",
+  "northStar": "Editorial white gallery with black ink typography",
+  "capturedAt": "2026-07-18T08:20:08.786Z",
+  "meta": {
+    "url": "https://247studio.co",
+    "siteName": "Agencja brandingowa",
+    "extractedAt": "2026-06-03T17:35:02.637Z",
+    "durationMs": 27502,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 704,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #000000 for all primary text and structural elements — no off-black substitutes",
+      "Apply the 'ss01' font feature setting on all 247 grotesk instances to preserve the alternate glyph forms",
+      "Set display headlines at weight 400, never bold — let the 73px size carry the impact",
+      "Maintain a minimum 80px section gap between major content blocks",
+      "Use 0.0190em letter-spacing on all uppercase labels and Ntbau body text",
+      "Separate rows and sections with 1px #e6e6e6 or #cccccc hairlines, never with shadow or color blocks",
+      "Italicize the second line of multi-line display headlines in #999999 to create a typographic echo"
+    ],
+    "donts": [
+      "Never introduce chromatic color — the system is 100% achromatic by design",
+      "Never add box-shadow, glow, or blur effects to any element",
+      "Never use weight 600+ for headlines — the system caps at 500 for emphasis",
+      "Never reduce display headline below 48px or use 247 grotesk for body paragraphs",
+      "Never center body text — always flush-left for the editorial alignment",
+      "Never use square or small radii — the system commits to 33-43px rounded corners on all containers",
+      "Never place CTAs in filled colored buttons — use text links with arrows or brackets only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page background, card surface, inverted text on dark blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, headings, logo mark, all stroke and border weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Obsidian",
+        "role": "Dark section backgrounds, deep surface elevation, footer bands",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Graphite Wash",
+        "role": "Elevated dark surfaces, overlay panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Slate",
+        "role": "Muted body copy, secondary text, supporting meta",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Steel",
+        "role": "Tertiary text, captions, decorative strokes, logo placeholder tints",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Fog",
+        "role": "Subtle text, placeholder labels, inactive indicators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Pale Mist",
+        "role": "Hairline borders, dividers, subtle outlines, disabled link state",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e6e6e6",
+        "name": "Vapor",
+        "role": "Card backgrounds, input fields, soft container fill",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Ash",
+        "role": "Section background, alternating band fill, image placeholder fill",
+        "group": "neutral"
+      }
+    ],
+    "imagery": "Photography and project renders are presented in contained cards with generous 33.76px rounded corners, never full-bleed. Image treatment is neutral — grayscale or desaturated — to maintain the monochrome system discipline. A consistent placeholder system uses a centered image-icon glyph in a 1:1 frame with no decorative framing. Project imagery functions as portfolio evidence rather than lifestyle atmosphere; the studio's craft is the subject, not the setting. Iconography is minimal: small line-weight glyphs (16-24px) used only for functional cues like the language switcher arrow, the contact directional, and scroll indicators.",
+    "similar": [
+      {
+        "why": "Same editorial restraint, generous whitespace, and text-driven hero composition with no decorative imagery",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Identical commitment to absolute monochrome with a custom grotesk display face and italic second-line treatment",
+        "business": "Werkstatt (Berlin)"
+      },
+      {
+        "why": "Shared numbered-grid client index pattern and hairline-bordered layout structure",
+        "business": "Manual Studio"
+      },
+      {
+        "why": "Same flat surfaces, no-shadow elevation, and architectural-portfolio information density",
+        "business": "Locomotive MTL"
+      },
+      {
+        "why": "Custom typeface as brand anchor and ruthless typographic discipline across all UI scales",
+        "business": "Studio Dumbar"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "33.76px",
+        "cards": "33.76px",
+        "buttons": "42.96px",
+        "imagePlaceholders": "33.76px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "24-40px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Pure Canvas",
+        "level": 0,
+        "purpose": "Page base, primary background"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Ash Band",
+        "level": 1,
+        "purpose": "Section separators, image placeholders, light card fill"
+      },
+      {
+        "hex": "#e6e6e6",
+        "name": "Vapor Card",
+        "level": 2,
+        "purpose": "Soft card containers, input fields"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Hairline",
+        "level": 3,
+        "purpose": "Divider lines, subtle structural edges"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Obsidian Block",
+        "level": 4,
+        "purpose": "Dark feature sections, inverted content blocks"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "level": 5,
+        "purpose": "Maximum contrast, logo lockup, documentary label"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Editorial white gallery with black ink typography",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.14
+      },
+      {
+        "role": "heading",
+        "size": 35,
+        "lineHeight": 1.14
+      },
+      {
+        "role": "heading-lg",
+        "size": 52,
+        "lineHeight": 1
+      },
+      {
+        "role": "display",
+        "size": 73,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "247 Logo Mark",
+        "role": "Brand wordmark, top-left anchor of every page",
+        "description": "Custom \"247\" typeset in 247 grotesk, bold weight, with distinctive slash/dot punctuation integrated into the numerals. Rendered in #000000 on light backgrounds, #ffffff on dark. Fixed size, not scaled. The 'ss01' alternate is essential to its character."
+      },
+      {
+        "name": "Primary Navigation Link",
+        "role": "Top-bar site navigation",
+        "description": "Uppercase 247 grotesk, weight 500, 11px, letter-spacing 0.0190em, #000000. Grouped in a multi-line block aligned left. Leading arrow (▸) on the active link. No underlines, no color shifts — emphasis comes purely from weight and the directional indicator."
+      },
+      {
+        "name": "Language Toggle",
+        "role": "PL / EN switcher in header",
+        "description": "Two stacked items (POLSKI, ENGLISH) in 247 grotesk 11px weight 500, #000000. Active language in 500, inactive in 400. Vertical stack with 5px row gap. Right-aligned to the header edge."
+      },
+      {
+        "name": "Contact Link",
+        "role": "Persistent call-to-action in header",
+        "description": "\"KONTAKT\" followed by a right arrow (→), 247 grotesk 11px weight 500, #000000. Positioned at the far right of the header. Functions as a text-only CTA — no button chrome."
+      },
+      {
+        "name": "Office Info Card",
+        "role": "Header address and contact block",
+        "description": "White card with 33.76px border-radius, 1px #cccccc border, containing a 1:1 image placeholder (top) and a text block below. Padding 24px. Label \"BIURO\" in 247 grotesk 11px weight 500, address lines in Ntbau 11px, email underlined."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero text, section openers",
+        "description": "247 grotesk weight 400, 73px, line-height 1.0, #000000. Multi-line construction where the second line is italicized in #999999. Sets 52px+ variants for secondary sections. The use of 400 (not bold) for a 73px headline is a signature choice — the system relies on size and silence, not weight."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Supporting description copy",
+        "description": "Ntbau 14px, line-height 1.89, #000000. Generous line-height creates air between sentences. Used in narrow column widths (250-400px) beside large headlines for a magazine-spread feel."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Bottom-left directional cue",
+        "description": "\"[ PRZEWIŃ W DÓŁ ]\" in 247 grotesk 10px, #999999, bracketed in #cccccc. Bracket chars in hairline gray, text in muted gray — a typographic gesture rather than an icon."
+      },
+      {
+        "name": "Client Logo Grid Item",
+        "role": "Index of brand clients",
+        "description": "2-column wide cell containing a 01–12 number label (Ntbau 10px, #999999, top-left) and a centered grayscale client logo. 1px #e6e6e6 bottom border separates rows. No card chrome — logos float on white. The numbered label is a deliberate editorial device, not pagination."
+      },
+      {
+        "name": "Brand Project Card",
+        "role": "Featured case study tile",
+        "description": "Two-up grid of project showcases. Each card: a 1:1 or 16:9 image area with 33.76px radius, a project title in 247 grotesk 21px weight 400, and a category label below. White card background, no shadow, 1px #e6e6e6 border optional."
+      },
+      {
+        "name": "Documentary Sidebar Label",
+        "role": "Vertical context marker on right edge",
+        "description": "Rotated 90° text \"DOKUMENTARIUSZ\" in 247 grotesk 10px weight 500, letter-spacing 0.0190em, #000000. Positioned absolute on the right viewport edge, runs vertically. Anchors the page to its content category — an editorial masthead device."
+      },
+      {
+        "name": "Section Header (All-Caps Eyebrow)",
+        "role": "Small uppercase label preceding section content",
+        "description": "247 grotesk 11px weight 500, #000000, all-caps, letter-spacing 0.0190em. Two-line max. Sits flush-left with a 24-40px gap before the headline or content below."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The singular brand typeface — carries the logo, 73px display headlines, navigation labels, and all UI micro-copy in one voice. The 'ss01' stylistic alternate is critical: it reshapes select glyphs into a distinctive editorial form. Medium weight (500) is reserved for emphasis; the system trusts 400 for even the largest display sizes, giving headlines a quiet, authoritative restraint rather than visual shouting.",
+        "sizes": "10, 11, 14, 16, 19, 21, 28, 31, 35, 48, 52, 55, 73",
+        "family": "247 grotesk",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.14, 1.20, 1.25, 1.30, 1.89",
+        "substitute": "Inter, Neue Haas Grotesk, Söhne",
+        "fontFeatureSettings": "\"ss01\""
+      },
+      {
+        "role": "Secondary workhorse for body paragraphs, supporting descriptions, and small annotations. The slight positive tracking (0.0190em) makes it readable at small sizes and gives it a measured, documentary feel that contrasts the tighter grotesk display. Weight 700 appears in fine print and legal micro-copy.",
+        "sizes": "10, 11, 12, 14, 18",
+        "family": "Ntbau",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.00, 1.14, 1.20, 1.30",
+        "substitute": "Söhne, Inter, Untitled Sans",
+        "letterSpacing": "0.0190em"
+      }
+    ],
+    "description": "A stark editorial identity system built on absolute monochrome — white canvas, black ink, gray echoes. The design reads like a printed architecture monograph: every element earns its space through generous whitespace, precise typographic control, and a refusal to use color for anything but information. Type does all the emotional work; a single custom grotesk carries both 73px display lines and 10px meta labels, unified by a stylistic alternate ('ss01') that gives the letterforms a distinctive editorial edge. Components stay flat, borders stay hairlines, radii stay generously rounded, and the entire surface stack moves from pure white through cool grays to ink black without any chromatic interruption.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c43237e3-dae2-4fc6-a917-519b25c870e5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Agencja brandingowa design system\",\"item\":\"https://styles.refero.design/style/c43237e3-dae2-4fc6-a917-519b25c870e5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c43237e3-dae2-4fc6-a917-519b25c870e5#style-reference\",\"name\":\"Agencja brandingowa design system reference\",\"headline\":\"Agencja brandingowa design system | Refero Styles\",\"description\":\"Explore Agencja brandingowa's light Agency design system: Pure White #ffffff, Ink Black #000000 colors, 247 grotesk, Ntbau typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/c43237e3-dae2-4fc6-a917-519b25c870e5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c43237e3-dae2-4fc6-a917-519b25c870e5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Agencja brandingowa\",\"url\":\"https://247studio.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c43237e3-dae2-4fc6-a917-519b25c870e5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4f93f62b-83a4-4b90-a324-f50b66089309.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4f93f62b-83a4-4b90-a324-f50b66089309.jpg\",\"caption\":\"Screenshot of Agencja brandingowa\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4f93f62b-83a4-4b90-a324-f50b66089309.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Agencja brandingowa design system\",\"Agencja brandingowa website design\",\"Agencja brandingowa colors\",\"Agencja brandingowa typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pure White\",\"Ink Black\",\"Obsidian\",\"Graphite Wash\",\"247 grotesk\",\"Ntbau\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Agencja brandingowa design system\"},{\"@type\":\"Thing\",\"name\":\"Agencja brandingowa website design\"},{\"@type\":\"Thing\",\"name\":\"Agencja brandingowa colors\"},{\"@type\":\"Thing\",\"name\":\"Agencja brandingowa typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-01-29T13:12:56.000Z\",\"dateModified\":\"2026-01-29T13:12:56.000Z\"}]}19:T655,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #cccccc / #e6e6e6\n- muted text: #999999 / #808080\n- dark surface: #1f1f1f\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero Display Headline**: Two-line flush-left headline. First line: 247 grotesk weight 400, 73px, line-height 1.0, #000000. Second line: same family, weight 400, 73px, italic, color #999999. Max-width container 1200px, 120px left margin. Below headline: body text in narrow 350px column, Ntbau 14px, line-height 1.89, #000000.\n\n2. **Client Logo Grid Cell**: 2-column cell with 80px height. Top-left number \"03\" in Ntbau 10px, #999999. Centered grayscale client logo at 60% opacity, 32px height, #808080. 1px #e6e6e6 bottom border, no side borders. White background, no padding.\n\n3. **Office Info Card**: 280px wide card, 33.76px border-radius, 1px #cccccc border, white fill, 24px padding. Top: 1:1 image placeholder at 100% width with #f2f2f2 fill and centered image-icon glyph. Below: \"BIURO\" label in 247 grotesk 11px weight 500, then 4 address lines in Ntbau 11px line-height 1.30, email line underlined.\n\n4. **Documentary Sidebar Label**: Absolutely positioned at right: 0, top: 40%. Text \"DOKUMENTARIUSZ\" in 247 grotesk 10px weight 500, letter-spacing 0.0190em, #000000, transform: rotate(90deg), transform-origin: right top. 1px #cccccc hairline beneath the rotated text.\n\n5. **Section Header Eyebrow**: Flush-left, 247 grotesk 11px weight 500, all-caps, #000000, letter-spacing 0.0190em, two lines max. 40px margin-bottom before headline. 120px left margin to align with hero content edge."
+      },
+      {
+        "title": "Typographic System Logic",
+        "content": "The type system is intentionally bipolar: one display family (247 grotesk with 'ss01') and one text family (Ntbau with 0.0190em tracking). 247 grotesk handles everything from 10px nav labels to 73px display lines in a single voice, trusting the 'ss01' alternate and weight contrast (400 vs 500) to create hierarchy rather than swapping to a serif or condensed cut. Ntbau is reserved for body copy and small annotations where its wider tracking and gentler proportions support long-read readability. The italic-on-second-line display pattern is the system's most recognizable signature — it creates a typographic conversation between the first statement and the second, quieter echo."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids shadow elevation entirely. Depth and separation are achieved through surface tone shifts (#ffffff → #f2f2f2 → #e6e6e6), generous spacing, and hairline borders. The flatness is a core brand decision — it makes the interface feel like printed editorial matter rather than screen UI, reinforcing the studio's positioning as a craft brand-design agency."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "icon",
+            "body",
+            "heading",
+            "hero",
+            "button",
+            "card"
+          ],
+          "frequency": 2573,
+          "confidence": 1,
+          "prominence": 155415042.3854075,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "body",
+            "link",
+            "other",
+            "heading",
+            "button",
+            "card"
+          ],
+          "frequency": 186,
+          "confidence": 1,
+          "prominence": 27772730.09717016,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1f1f1f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23929237775790413
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 6091769.874710855,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 1701111,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 512,
+          "confidence": 1,
+          "prominence": 1332632.6898702185,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 29,
+          "confidence": 1,
+          "prominence": 1234529.5118397428,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 66,
+          "confidence": 1,
+          "prominence": 715197.9816441617,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 70,
+          "confidence": 1,
+          "prominence": 469803.7814474407,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e6e6e6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9249395393966913
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 378846,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 148893.84004153858,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4d4d4d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.42023714570450815
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 6409,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.83,
+          "background": "#e6e6e6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.48,
+          "background": "#1f1f1f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.72,
+          "background": "#f2f2f2",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.21,
+          "background": "#e6e6e6",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#333333",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.29,
+          "background": "#f2f2f2",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.26,
+          "background": "#cccccc",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.12,
+          "background": "#e6e6e6",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.45,
+          "background": "#ffffff",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.87,
+          "background": "#cccccc",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.55,
+          "background": "#f2f2f2",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.37,
+          "background": "#000000",
+          "foreground": "#999999"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.77,
+          "background": "#e6e6e6",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.79,
+          "background": "#1f1f1f",
+          "foreground": "#999999"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#000000",
+          "foreground": "#808080"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.26,
+          "background": "#cccccc",
+          "foreground": "#4d4d4d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 33.76,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 42.96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 36,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 72,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 17,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 19,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 21,
+          "properties": [
+            "rowGap",
+            "marginRight",
+            "paddingTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 34,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 37,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 43,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 40,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 52,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 55,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 61,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 112,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 128,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 131,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 182,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 184,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "247 grotesk",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 457,
+          "fontFeatureSettings": [
+            "\"ss01\""
+          ]
+        },
+        {
+          "family": "Ntbau",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 203,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "247 Grotesk",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 20,
+          "fontFeatureSettings": [
+            "\"ss01\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Ntbau",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.019,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Ntbau",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Ntbau",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Ntbau",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.019,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Ntbau",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.019,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Ntbau",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 39,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.019,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "247 grotesk",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Ntbau",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Ntbau",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Ntbau",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "247 grotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.89,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Ntbau",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 19,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Ntbau",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Ntbau",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Ntbau",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "247 Grotesk",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Ntbau",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Ntbau",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Ntbau",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "247 grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "icon",
+            "card",
+            "button"
+          ],
+          "frequency": 358,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "247 grotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "247 grotesk",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "247 grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "247 grotesk",
+          "weight": 400,
+          "contexts": [
+            "hero",
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Ntbau",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "247 Grotesk",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 21,
+          "family": "247 grotesk",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "247 Grotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "247 grotesk",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 28,
+          "family": "247 Grotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 31,
+          "family": "247 Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "247 grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "247 Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "247 Grotesk",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 55,
+          "family": "247 Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 73,
+          "family": "247 Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/22aafc51-be27-4458-9763-96c2b5e17d25.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4f93f62b-83a4-4b90-a324-f50b66089309.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c43237e3-dae2-4fc6-a917-519b25c870e5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Agencja brandingowa design system\",\"item\":\"https://styles.refero.design/style/c43237e3-dae2-4fc6-a917-519b25c870e5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c43237e3-dae2-4fc6-a917-519b25c870e5#style-reference\",\"name\":\"Agencja brandingowa design system reference\",\"headline\":\"Agencja brandingowa design system | Refero Styles\",\"description\":\"Explore Agencja brandingowa's light Agency design system: Pure White #ffffff, Ink Black #000000 colors, 247 grotesk, Ntbau typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/c43237e3-dae2-4fc6-a917-519b25c870e5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c43237e3-dae2-4fc6-a917-519b25c870e5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Agencja brandingowa\",\"url\":\"https://247studio.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c43237e3-dae2-4fc6-a917-519b25c870e5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4f93f62b-83a4-4b90-a324-f50b66089309.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4f93f62b-83a4-4b90-a324-f50b66089309.jpg\",\"caption\":\"Screenshot of Agencja brandingowa\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4f93f62b-83a4-4b90-a324-f50b66089309.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Agencja brandingowa design system\",\"Agencja brandingowa website design\",\"Agencja brandingowa colors\",\"Agencja brandingowa typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pure White\",\"Ink Black\",\"Obsidian\",\"Graphite Wash\",\"247 grotesk\",\"Ntbau\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Agencja brandingowa design system\"},{\"@type\":\"Thing\",\"name\":\"Agencja brandingowa website design\"},{\"@type\":\"Thing\",\"name\":\"Agencja brandingowa colors\"},{\"@type\":\"Thing\",\"name\":\"Agencja brandingowa typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-01-29T13:12:56.000Z\",\"dateModified\":\"2026-01-29T13:12:56.000Z\"}]}19:T655,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #cccccc / #e6e6e6\n- muted text: #999999 / #808080\n- dark surface: #1f1f1f\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero Display Headline**: Two-line flush-left headline. First line: 247 grotesk weight 400, 73px, line-height 1.0, #000000. Second line: same family, weight 400, 73px, italic, color #999999. Max-width container 1200px, 120px left margin. Below headline: body text in narrow 350px column, Ntbau 14px, line-height 1.89, #000000.\n\n2. **Client Logo Grid Cell**: 2-column cell with 80px height. Top-left number \"03\" in Ntbau 10px, #999999. Centered grayscale client logo at 60% opacity, 32px height, #808080. 1px #e6e6e6 bottom border, no side borders. White background, no padding.\n\n3. **Office Info Card**: 280px wide card, 33.76px border-radius, 1px #cccccc border, white fill, 24px padding. Top: 1:1 image placeholder at 100% width with #f2f2f2 fill and centered image-icon glyph. Below: \"BIURO\" label in 247 grotesk 11px weight 500, then 4 address lines in Ntbau 11px line-height 1.30, email line underlined.\n\n4. **Documentary Sidebar Label**: Absolutely positioned at right: 0, top: 40%. Text \"DOKUMENTARIUSZ\" in 247 grotesk 10px weight 500, letter-spacing 0.0190em, #000000, transform: rotate(90deg), transform-origin: right top. 1px #cccccc hairline beneath the rotated text.\n\n5. **Section Header Eyebrow**: Flush-left, 247 grotesk 11px weight 500, all-caps, #000000, letter-spacing 0.0190em, two lines max. 40px margin-bottom before headline. 120px left margin to align with hero content edge."
+}

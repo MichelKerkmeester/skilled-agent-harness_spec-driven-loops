@@ -1,0 +1,167 @@
+{
+  "color": {
+    "canvas-mist": {
+      "$value": "#f3f5fa",
+      "$type": "color",
+      "$description": "Canvas Mist — Page background, the base surface everything sits on. Cool off-white with a faint blue cast — distinct from pure white so the white cards read as elevated without needing shadows"
+    },
+    "card-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Card White — Card surfaces, specimen containers, navigation background. Creates the canvas → card elevation step through surface contrast alone"
+    },
+    "press-black": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Press Black — Primary text, structural borders, card frames, button outlines. Near-black (not pure #000) so it reads as ink rather than void against the cool canvas"
+    },
+    "hairline-char": {
+      "$value": "#2d2d2d",
+      "$type": "color",
+      "$description": "Hairline Char — Secondary borders, nav dividers, subtle structural lines. One shade softer than Press Black for hierarchy between primary and secondary framing"
+    },
+    "mute-slate": {
+      "$value": "#888888",
+      "$type": "color",
+      "$description": "Mute Slate — Secondary text — style counts, descriptive labels, helper copy. Creates a tertiary information layer below the primary font names"
+    },
+    "new-mint": {
+      "$value": "#39d17f",
+      "$type": "color",
+      "$description": "New Mint — Green outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "nuckle": {
+      "$value": "Nuckle",
+      "$type": "fontFamily",
+      "$description": "All UI chrome — navigation, card labels, weight lists, section headers, style counts. The single custom sans carries every text element outside the featured typefaces themselves. The extreme size restraint (just two sizes) is deliberate: the fewer decisions the UI typeface makes, the more visual space the product typefaces can occupy. Weight 500 for labels and emphasis, weight 400 for secondary information."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Nuckle website",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Nuckle website",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Nuckle website",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Nuckle website",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Nuckle website",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f3f5fa",
+      "$type": "color",
+      "$description": "Surface level 1: Page background — the gallery wall"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Specimen cards, navigation bar — the mounted objects"
+    },
+    "ink": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted surface for dark specimens or potential dark-mode treatment"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://heavyweight-type.com",
+      "siteName": "Heavyweight",
+      "extractedAt": "2026-06-03T21:02:00.456Z",
+      "variant": "extended"
+    }
+  }
+}

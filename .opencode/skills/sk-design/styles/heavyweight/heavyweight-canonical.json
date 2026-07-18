@@ -1,0 +1,769 @@
+{
+  "source": "https://styles.refero.design/style/d991c31d-2ffa-4a94-ab37-7f7d8f7d6a0c",
+  "uuid": "d991c31d-2ffa-4a94-ab37-7f7d8f7d6a0c",
+  "name": "Heavyweight",
+  "northStar": "Paper specimen archive. A wall of photographed letterforms printed on textured stock, hung on a cool off-white gallery wall with hairline frames.",
+  "capturedAt": "2026-07-18T09:01:34.857Z",
+  "meta": {
+    "url": "https://heavyweight-type.com",
+    "siteName": "Heavyweight",
+    "extractedAt": "2026-06-03T21:02:00.456Z",
+    "durationMs": 36569,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 123,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #f3f5fa as the page canvas and #ffffff for card surfaces — the subtle contrast between the two is the foundation of the system's spatial hierarchy",
+      "Use Nuckle 16px/1.25 weight 500 for card titles and 14px/1.14 weight 400 for secondary information",
+      "Use 11px border-radius on all cards, buttons, and tags — this radius is the system's signature and distinguishes it from standard 4px or 8px SaaS conventions",
+      "Use #39d17f exclusively for 'New' tags — never for actions, links, or decorative accents",
+      "Use 1px #222222 or #2d2d2d borders for separation — never use shadows or background-color changes alone",
+      "Let specimen images fill cards edge-to-edge — the type is the product, not the chrome",
+      "Use 12px gaps between elements and 12px card padding — comfortable density without excess breathing room"
+    ],
+    "donts": [
+      "Don't introduce additional chromatic colors — the near-monochrome palette is the system's identity and any second accent would dilute the 'New' tag's signal",
+      "Don't use shadows or elevation effects — separation is achieved through hairline borders and surface contrast only",
+      "Don't use border-radius values other than 11px — standard 4px or 8px would break the editorial feel",
+      "Don't display the 'New' tag in any color other than #39d17f, and don't give it a background fill or pill shape",
+      "Don't use more than two type sizes in the UI (14px and 16px) — the restraint lets featured typefaces dominate the visual field",
+      "Don't add decorative gradients, patterns, or background imagery to the chrome — the canvas is always flat #f3f5fa",
+      "Don't use filled chromatic buttons — the system has no distinct CTA color; all actions are ghost/outlined with #f3f5fa fill and #222222 border"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f3f5fa",
+        "name": "Canvas Mist",
+        "role": "Page background, the base surface everything sits on. Cool off-white with a faint blue cast — distinct from pure white so the white cards read as elevated without needing shadows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card White",
+        "role": "Card surfaces, specimen containers, navigation background. Creates the canvas → card elevation step through surface contrast alone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Press Black",
+        "role": "Primary text, structural borders, card frames, button outlines. Near-black (not pure #000) so it reads as ink rather than void against the cool canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2d2d2d",
+        "name": "Hairline Char",
+        "role": "Secondary borders, nav dividers, subtle structural lines. One shade softer than Press Black for hierarchy between primary and secondary framing",
+        "group": "neutral"
+      },
+      {
+        "hex": "#888888",
+        "name": "Mute Slate",
+        "role": "Secondary text — style counts, descriptive labels, helper copy. Creates a tertiary information layer below the primary font names",
+        "group": "neutral"
+      },
+      {
+        "hex": "#39d17f",
+        "name": "New Mint",
+        "role": "Green outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-width 3-column card grid on a #f3f5fa canvas. Each card is roughly equal width with 12px gaps between cards. Cards are arranged alphabetically by typeface name. A thin top navigation bar (white background, 1px #2d2d2d bottom border) spans the full viewport width. No sidebar, no mega-menu, no secondary navigation. The first section shows the beginning of the font grid; subsequent sections continue the grid with more typefaces. Section rhythm is established by the card grid itself rather than alternating bands or dividers. The page breathes with comfortable 12px element gaps and 64px section padding, but the dense specimen coverage keeps the page visually full at every scroll position.",
+    "imagery": "Each card features a full-bleed photographic specimen of type set in physical space — printed on paper, embossed on cardboard, painted on walls. The specimens are art-directed photographs, not digital renders: visible paper texture, print dot patterns, and dimensional letterforms catching light. The 'Atlantic' specimen shows type embossed on brown cardboard stock; the 'Animo' specimen shows white type on a dark printed surface; the 'Cigars' specimen is a tight close-crop of a single serif letter in gray. These are the product — the surrounding UI dissolves to let them dominate. No illustrations, no decorative photography. The only icons are simple geometric marks in the navigation. The visual language is editorial-print: photographed artifacts on a gallery wall, not screen-native graphics.",
+    "similar": [
+      {
+        "why": "Same specimen-card grid approach with monochromatic chrome and type treated as photographed artifact",
+        "business": "Klim Type Foundry"
+      },
+      {
+        "why": "Minimal UI with type specimens as the visual product and similar card-based grid structure",
+        "business": "Pangram Pangram"
+      },
+      {
+        "why": "Editorial specimen presentation with large type photography and restrained UI chrome",
+        "business": "Commercial Type"
+      },
+      {
+        "why": "Cool off-white canvas, hairline borders, type-forward layout with no decorative chrome",
+        "business": "Ohno Type"
+      },
+      {
+        "why": "Specimen grid with photographed type, minimal navigation, monochromatic palette with selective accent",
+        "business": "Dinamo"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "11px",
+        "tags": "11px",
+        "cards": "11px",
+        "buttons": "11px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "64px",
+      "cardPadding": "12px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#f3f5fa",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page background — the gallery wall"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 2,
+        "purpose": "Specimen cards, navigation bar — the mounted objects"
+      },
+      {
+        "hex": "#222222",
+        "name": "Ink",
+        "level": 3,
+        "purpose": "Inverted surface for dark specimens or potential dark-mode treatment"
+      }
+    ],
+    "northStar": "Paper specimen archive. A wall of photographed letterforms printed on textured stock, hung on a cool off-white gallery wall with hairline frames.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.14,
+        "letterSpacing": 0.18
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.25,
+        "letterSpacing": 0.22
+      }
+    ],
+    "components": [
+      {
+        "name": "Font Specimen Card",
+        "role": "Primary content unit — displays a typeface with a full-bleed photographic specimen",
+        "description": "White (#ffffff) surface on #f3f5fa canvas. 1px #222222 border, 11px border-radius. Large specimen image fills the card top edge-to-edge, clipped to the 11px radius. Below the image: 12px padding all sides. Font name in Nuckle 16px/1.25 weight 500 #222222, followed by style count in 16px weight 400 #888888 (format: 'Name (N styles)'). Weight list below in 14px/1.14, with available weights in weight 500 and unavailable in weight 400 #888888."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide header with logo, section links, and account/cart",
+        "description": "Full-width, white (#ffffff) background, 1px #2d2d2d bottom border, 8px vertical padding. Left: 14px Nuckle weight 500 #222222 'Heavyweight' + weight 400 #888888 'Digital Type Foundry'. Center: 14px Nuckle weight 400 #222222 links 'Fonts | In Use | Projects | Stuff | Information' separated by 2px right margins. Right: 14px Nuckle weight 400 #222222 'Account | Cart 0'."
+      },
+      {
+        "name": "New Release Tag",
+        "role": "Marks newly released typefaces in the specimen grid",
+        "description": "14px Nuckle weight 500 #39d17f text reading 'New', optionally preceded by a 4px #39d17f dot. No background, no border, no padding. Positioned inline next to the font name in specimen card headers. The #39d17f is the only chromatic color in the system — its scarcity makes new releases instantly recognizable without needing a pill shape or background fill."
+      },
+      {
+        "name": "Ghost Button",
+        "role": "Interactive controls for weight filters and selection",
+        "description": "#f3f5fa background, 1px #222222 border, 11px border-radius. 14px Nuckle weight 400 #222222 text. 7px vertical padding, 10–18px horizontal padding. On hover/active: inverts to #222222 background with #ffffff text. No shadow, no transition complexity — the inversion is instantaneous."
+      },
+      {
+        "name": "Section Header Label",
+        "role": "Small text label introducing a grid section (e.g., 'Fonts')",
+        "description": "14px Nuckle weight 500 #222222, left-aligned. 5px padding top/bottom, 8px padding left. Sits above the card grid with a subtle visual weight that doesn't compete with the specimens below it."
+      },
+      {
+        "name": "Weight Label List",
+        "role": "Lists all available weights/widths for a typeface below the specimen image",
+        "description": "14px Nuckle, weight 400 #222222 for available weights, weight 500 for the currently selected or emphasized weight. Horizontal flow with natural wrapping. 4px margin-bottom between lines. The weight names are the product's own vocabulary (Condensed, SemiBold, etc.) displayed in the typeface's own design."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Separates content sections and frames elements",
+        "description": "1px solid #2d2d2d (subtle) or #222222 (structural). Used as card borders, nav bottom border, and section dividers. No shadow, no gap — the line itself is the separator. The system relies on these hairlines for all visual structure."
+      },
+      {
+        "name": "Style Count Indicator",
+        "role": "Shows the number of styles in a typeface family",
+        "description": "14px Nuckle weight 400 #888888, inline with the font name. Format: '(N styles)' in parentheses. The muted gray creates a secondary information layer that doesn't compete with the primary font name."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand identifier in the top-left of the navigation",
+        "description": "Small geometric icon (appears as a circular/abstract mark) followed by 'Heavyweight' wordmark in 14px Nuckle weight 500 #222222. The mark is a simple geometric shape — no complex illustration, no color, no embellishment."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI chrome — navigation, card labels, weight lists, section headers, style counts. The single custom sans carries every text element outside the featured typefaces themselves. The extreme size restraint (just two sizes) is deliberate: the fewer decisions the UI typeface makes, the more visual space the product typefaces can occupy. Weight 500 for labels and emphasis, weight 400 for secondary information.",
+        "sizes": "14px, 16px",
+        "family": "Nuckle",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.14, 1.25",
+        "substitute": "Inter, or similar geometric humanist sans at matched weights",
+        "letterSpacing": "0.0130em at 14px, 0.0140em at 16px — slightly positive tracking, the only typographic 'decision' the UI makes beyond size and weight. Counterintuitively positive for a near-monochrome UI; the tracking opens the letterforms enough to feel editorial rather than compressed."
+      }
+    ],
+    "description": "Heavyweight treats its typefaces as museum objects: each card presents a photographic specimen of large type set in physical space, filling the card edge-to-edge. The surrounding chrome dissolves into a thin navigation bar, hairline borders, and a single custom sans (Nuckle) at just 14–16px — letting the specimens carry every visual decision. The palette is near-monochrome: cool off-white canvas (#f3f5fa), white card surfaces, near-black ink (#222222), with a single vivid mint green (#39d17f) reserved exclusively for new-release tags. An unusual 11px card radius sits between editorial and soft-modern, and the 3-column grid breathes with comfortable 12px gaps while the dense specimen coverage keeps the page visually full.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d991c31d-2ffa-4a94-ab37-7f7d8f7d6a0c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Heavyweight design system\",\"item\":\"https://styles.refero.design/style/d991c31d-2ffa-4a94-ab37-7f7d8f7d6a0c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d991c31d-2ffa-4a94-ab37-7f7d8f7d6a0c#style-reference\",\"name\":\"Heavyweight design system reference\",\"headline\":\"Heavyweight design system | Refero Styles\",\"description\":\"Explore Heavyweight's light Design design system: Canvas Mist #f3f5fa, Card White #ffffff colors, Nuckle typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d991c31d-2ffa-4a94-ab37-7f7d8f7d6a0c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d991c31d-2ffa-4a94-ab37-7f7d8f7d6a0c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Heavyweight\",\"url\":\"https://heavyweight-type.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d991c31d-2ffa-4a94-ab37-7f7d8f7d6a0c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7b90f841-abe7-46a8-ad72-3af9803cbbe3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7b90f841-abe7-46a8-ad72-3af9803cbbe3.jpg\",\"caption\":\"Screenshot of Heavyweight\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7b90f841-abe7-46a8-ad72-3af9803cbbe3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Heavyweight design system\",\"Heavyweight website design\",\"Heavyweight colors\",\"Heavyweight typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Canvas Mist\",\"Card White\",\"Press Black\",\"Hairline Char\",\"Nuckle\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Heavyweight design system\"},{\"@type\":\"Thing\",\"name\":\"Heavyweight website design\"},{\"@type\":\"Thing\",\"name\":\"Heavyweight colors\"},{\"@type\":\"Thing\",\"name\":\"Heavyweight typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:21:49.235Z\",\"dateModified\":\"2026-04-30T02:21:49.235Z\"}]}19:T618,Quick Color Reference:\n- ink: #222222\n- canvas: #f3f5fa\n- surface: #ffffff\n- border: #2d2d2d\n- mute: #888888\n- new tag: #39d17f\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a font specimen card: white (#ffffff) surface, 1px #222222 border, 11px border-radius. Large specimen image fills the card top edge-to-edge. Below the image, 12px padding. Font name in Nuckle 16px/1.25 weight 500 #222222, followed by '(N styles)' in 16px weight 400 #888888. Weight list below in 14px/1.14 — available weights in weight 500, unavailable in weight 400 #888888.\n\n2. Build the top navigation bar: full-width, white (#ffffff) background, 1px #2d2d2d bottom border, 8px vertical padding. Left: 14px Nuckle weight 500 #222222 'Heavyweight' + weight 400 #888888 'Digital Type Foundry'. Center: 14px Nuckle weight 400 #222222 links separated by pipes. Right: 14px Nuckle weight 400 #222222 'Account | Cart 0'.\n\n3. Design a new-release tag: 14px Nuckle weight 500 #39d17f text reading 'New', preceded by a 4px #39d17f dot. No background, no border, no padding. Positioned inline next to the font name in specimen card headers.\n\n4. Create a ghost button: #f3f5fa background, 1px #222222 border, 11px border-radius. 14px Nuckle weight 400 #222222 text. 7px vertical padding, 18px horizontal padding. On hover: invert to #222222 background with #ffffff text.\n\n5. Create a 3-column card grid section: #f3f5fa canvas background, 12px gap between cards. Each card is a font specimen as described above. 64px vertical padding above and below the grid."
+      }
+    ],
+    "elevationPhilosophy": "The system avoids shadows entirely. Spatial hierarchy is created through surface contrast (cool off-white canvas → white cards) and 1px hairline borders (#222222 or #2d2d2d). Cards sit close to the surface — the way museum labels sit beside objects rather than floating above them. When depth is needed, the system inverts: a #222222 surface with #f3f5fa text replaces the typical shadow + lift pattern. This editorial-print approach keeps the chrome invisible and lets the type specimens dominate."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "heading",
+            "nav",
+            "hero",
+            "card",
+            "button",
+            "image",
+            "body"
+          ],
+          "frequency": 555,
+          "confidence": 1,
+          "prominence": 22110331.66138978,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 18,
+            "body/color": 1,
+            "card/color": 41,
+            "hero/color": 1,
+            "icon/color": 1,
+            "link/color": 1,
+            "image/color": 15,
+            "other/color": 16,
+            "button/color": 8,
+            "heading/color": 10,
+            "nav/borderColor": 72,
+            "body/borderColor": 4,
+            "card/borderColor": 164,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 4,
+            "image/borderColor": 60,
+            "other/borderColor": 58,
+            "button/borderColor": 32,
+            "heading/borderColor": 40,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f3f5fa",
+          "oklch": {
+            "c": 0.0070010118601802765,
+            "h": 268.54791325876533,
+            "l": 0.9700527743480126
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 872826,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 135609.39156170213,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 1,
+            "button/borderColor": 4,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2d2d2d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2971629660895966
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 128340,
+          "properties": [
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/borderColor": 6
+          }
+        },
+        {
+          "hex": "#888888",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6267535410065036
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 8225.350677294718,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 7,
+            "other/borderColor": 28
+          }
+        },
+        {
+          "hex": "#39d17f",
+          "oklch": {
+            "c": 0.17192106693185685,
+            "h": 154.5492361127842,
+            "l": 0.7633253084197964
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1967.1564630487999,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 1,
+            "card/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.003980079800606886,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#ffffff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.59,
+          "background": "#f3f5fa",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.77,
+          "background": "#ffffff",
+          "foreground": "#2d2d2d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#f3f5fa",
+          "foreground": "#2d2d2d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.03,
+          "background": "#222222",
+          "foreground": "#39d17f"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.95,
+          "background": "#39d17f",
+          "foreground": "#2d2d2d"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.49,
+          "background": "#222222",
+          "foreground": "#888888"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.54,
+          "background": "#ffffff",
+          "foreground": "#888888"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.25,
+          "background": "#f3f5fa",
+          "foreground": "#888888"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.98,
+          "background": "#ffffff",
+          "foreground": "#39d17f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.82,
+          "background": "#f3f5fa",
+          "foreground": "#39d17f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#f3f5fa",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 11,
+          "contexts": [
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 18
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "card",
+            "image"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|card",
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "nav",
+            "heading"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|heading",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "image"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginLeft|nav",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "marginBottom|image",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "icon",
+            "button"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|icon",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "card"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|card",
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 166,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Nuckle website",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 121,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 14,
+          "family": "Nuckle website",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.14,
+          "letterSpacing": 0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Nuckle website",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "heading",
+            "nav",
+            "hero",
+            "card",
+            "image"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Nuckle website",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "card",
+            "other",
+            "image"
+          ],
+          "frequency": 63,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Nuckle website",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "card"
+          ],
+          "frequency": 15,
+          "lineHeight": 1,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Nuckle website",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f241dd13-bda8-4d19-b632-5c9c013f762e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7b90f841-abe7-46a8-ad72-3af9803cbbe3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d991c31d-2ffa-4a94-ab37-7f7d8f7d6a0c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Heavyweight design system\",\"item\":\"https://styles.refero.design/style/d991c31d-2ffa-4a94-ab37-7f7d8f7d6a0c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d991c31d-2ffa-4a94-ab37-7f7d8f7d6a0c#style-reference\",\"name\":\"Heavyweight design system reference\",\"headline\":\"Heavyweight design system | Refero Styles\",\"description\":\"Explore Heavyweight's light Design design system: Canvas Mist #f3f5fa, Card White #ffffff colors, Nuckle typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d991c31d-2ffa-4a94-ab37-7f7d8f7d6a0c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d991c31d-2ffa-4a94-ab37-7f7d8f7d6a0c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Heavyweight\",\"url\":\"https://heavyweight-type.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d991c31d-2ffa-4a94-ab37-7f7d8f7d6a0c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7b90f841-abe7-46a8-ad72-3af9803cbbe3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7b90f841-abe7-46a8-ad72-3af9803cbbe3.jpg\",\"caption\":\"Screenshot of Heavyweight\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7b90f841-abe7-46a8-ad72-3af9803cbbe3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Heavyweight design system\",\"Heavyweight website design\",\"Heavyweight colors\",\"Heavyweight typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Canvas Mist\",\"Card White\",\"Press Black\",\"Hairline Char\",\"Nuckle\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Heavyweight design system\"},{\"@type\":\"Thing\",\"name\":\"Heavyweight website design\"},{\"@type\":\"Thing\",\"name\":\"Heavyweight colors\"},{\"@type\":\"Thing\",\"name\":\"Heavyweight typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:21:49.235Z\",\"dateModified\":\"2026-04-30T02:21:49.235Z\"}]}19:T618,Quick Color Reference:\n- ink: #222222\n- canvas: #f3f5fa\n- surface: #ffffff\n- border: #2d2d2d\n- mute: #888888\n- new tag: #39d17f\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a font specimen card: white (#ffffff) surface, 1px #222222 border, 11px border-radius. Large specimen image fills the card top edge-to-edge. Below the image, 12px padding. Font name in Nuckle 16px/1.25 weight 500 #222222, followed by '(N styles)' in 16px weight 400 #888888. Weight list below in 14px/1.14 — available weights in weight 500, unavailable in weight 400 #888888.\n\n2. Build the top navigation bar: full-width, white (#ffffff) background, 1px #2d2d2d bottom border, 8px vertical padding. Left: 14px Nuckle weight 500 #222222 'Heavyweight' + weight 400 #888888 'Digital Type Foundry'. Center: 14px Nuckle weight 400 #222222 links separated by pipes. Right: 14px Nuckle weight 400 #222222 'Account | Cart 0'.\n\n3. Design a new-release tag: 14px Nuckle weight 500 #39d17f text reading 'New', preceded by a 4px #39d17f dot. No background, no border, no padding. Positioned inline next to the font name in specimen card headers.\n\n4. Create a ghost button: #f3f5fa background, 1px #222222 border, 11px border-radius. 14px Nuckle weight 400 #222222 text. 7px vertical padding, 18px horizontal padding. On hover: invert to #222222 background with #ffffff text.\n\n5. Create a 3-column card grid section: #f3f5fa canvas background, 12px gap between cards. Each card is a font specimen as described above. 64px vertical padding above and below the grid."
+}

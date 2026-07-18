@@ -1,0 +1,294 @@
+{
+  "color": {
+    "midnight-ink": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Midnight Ink — Primary text, headings, filled CTA buttons, nav items, icon strokes — the single chromatic workhorse of an achromatic system"
+    },
+    "pure-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure Canvas — Page background, card surfaces, button text on dark fills"
+    },
+    "graphite": {
+      "$value": "#707070",
+      "$type": "color",
+      "$description": "Graphite — Body copy, secondary links, descriptive text"
+    },
+    "ash": {
+      "$value": "#adadad",
+      "$type": "color",
+      "$description": "Ash — Tertiary text, disabled/muted button borders, placeholder icons"
+    },
+    "fog": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Fog — Dividers, subtle borders, card outlines"
+    },
+    "mist": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Mist — Nav background tint, input fields, inner surface elevation"
+    },
+    "silver": {
+      "$value": "#c2c2c2",
+      "$type": "color",
+      "$description": "Silver — Skeleton loaders, inactive UI fills"
+    },
+    "slate-shadow": {
+      "$value": "#e0e0e0",
+      "$type": "color",
+      "$description": "Slate Shadow — Inset button shadow ring (rgba(64,64,64,0.16) 0px 0px 0px 1px)"
+    }
+  },
+  "font": {
+    "saans": {
+      "$value": "saans",
+      "$type": "fontFamily",
+      "$description": "Every text element on the site. Fractional weights (440, 456, 652) are the signature — they occupy visual mass between Regular and Semibold that no variable-axis font exposes as named stops. Display headlines at 80px/56px run weight 600–652 at lineHeight 1.00–1.13 with negative letter-spacing (-0.011em at large sizes). Body runs 14–16px at weight 400 with tracking +0.013–0.017em for small-size legibility."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "saans",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "saans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "saans",
+        "fontSize": "14px",
+        "fontWeight": 456,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "saans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "saans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "saans",
+        "fontSize": "16px",
+        "fontWeight": 456,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "saans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "saans",
+        "fontSize": "20px",
+        "fontWeight": 440,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "saans",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "saans",
+        "fontSize": "32px",
+        "fontWeight": 652,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "saans",
+        "fontSize": "56px",
+        "fontWeight": 652,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "saans",
+        "fontSize": "80px",
+        "fontWeight": 652,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(64, 64, 64, 0.16) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.04) 0px 8px 40px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "page": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Root page background"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Gallery cards, testimonial cards — differentiated from page by 1px #ededed border, not background change"
+    },
+    "input-chip": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 2: Search bars, nav tint, inner UI fills"
+    },
+    "overlay-dropdown": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Category mega-menu, floating panels — elevated via rgba(0,0,0,0.04) 0px 8px 40px shadow"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://mobbin.com",
+      "siteName": "Mobbin",
+      "extractedAt": "2026-04-11T20:15:52.900Z",
+      "variant": "extended"
+    }
+  }
+}

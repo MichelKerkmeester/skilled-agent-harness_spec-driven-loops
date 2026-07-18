@@ -1,0 +1,177 @@
+{
+  "color": {
+    "studio-white": {
+      "$value": "#f8f8f8",
+      "$type": "color",
+      "$description": "Studio White — Primary text, ghost-button borders, image-frame outlines, nav icon strokes — the single light voice in a dark room"
+    },
+    "void-black": {
+      "$value": "#080808",
+      "$type": "color",
+      "$description": "Void Black — Page canvas, behind-everything background, image frame fills between photographs"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — SVG icon fills, deepest surface layer for inline graphics and decorative marks"
+    },
+    "bone-white": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Bone White — Soft secondary text and supporting hairline strokes when pure white feels too clinical"
+    },
+    "pewter-border": {
+      "$value": "#2a2a2a",
+      "$type": "color",
+      "$description": "Pewter Border — Low-contrast dividers and inactive frame edges that recede against the void"
+    }
+  },
+  "font": {
+    "cabinet-grotesk": {
+      "$value": "Cabinet Grotesk",
+      "$type": "fontFamily",
+      "$description": "Brand display and logo wordmark — the 96px headline weight 400 is anti-convention; no bold, no display tricks, just a single weight carried to monumental size that feels confident through restraint. Also used at 24px for short subheadings and 16px for nav labels. This custom typeface carries the entire brand identity."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Body text and supporting copy at 16px and 20px, both at weight 400 — no bold variant in use, the system keeps a single weight even for emphasis, letting size and color do the hierarchy work"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Cabinet Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Cabinet Grotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Cabinet Grotesk",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Cabinet Grotesk",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 96px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#080808",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page background; the base layer everything floats on"
+    },
+    "deep-surface": {
+      "$value": "#061c32",
+      "$type": "color",
+      "$description": "Surface level 1: Rarely surfaced dark-navy panel for content that needs slight lift from the void (detected in contrast pairs)"
+    },
+    "mid-surface": {
+      "$value": "#1d2d44",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated card or modal surface for layered content blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.keepgrading.com",
+      "siteName": "KeepGrading",
+      "extractedAt": "2026-06-03T20:43:23.352Z",
+      "variant": "extended"
+    }
+  }
+}

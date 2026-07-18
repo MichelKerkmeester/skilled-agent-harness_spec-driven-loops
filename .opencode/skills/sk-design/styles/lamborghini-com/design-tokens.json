@@ -1,0 +1,345 @@
+{
+  "color": {
+    "giallo-vivo": {
+      "$value": "#ffc000",
+      "$type": "color",
+      "$description": "Giallo Vivo — Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "giallo-ombra": {
+      "$value": "#917300",
+      "$type": "color",
+      "$description": "Giallo Ombra — Hover or secondary yellow state, list markers with brand accent — darker mustard variant of the primary"
+    },
+    "carbony-black": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Carbony Black — Primary text, dark hero canvases, navigation bar — the workhorse near-black used at 1400+ occurrences"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Body copy, footer ink, icon strokes on light surfaces — maximum contrast text and absolute dark"
+    },
+    "carbon-deep": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Carbon Deep — Headline color on light surfaces, dark surface variant, link ink — slightly warmer alternative to pure black"
+    },
+    "pearl-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pearl White — Page canvas, light card surface, button text on dark, hero text overlay — dominant light surface"
+    },
+    "marble-gray": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Marble Gray — Alternate section background, body container fill, badge surface — the off-white that breaks up the white-white rhythm"
+    },
+    "graphite-border": {
+      "$value": "#494949",
+      "$type": "color",
+      "$description": "Graphite Border — Section dividers, link ink on light backgrounds, mid-weight borders"
+    },
+    "steel-mid": {
+      "$value": "#7d7d7d",
+      "$type": "color",
+      "$description": "Steel Mid — Button border outlines, secondary link text, muted UI chrome"
+    },
+    "ash-border": {
+      "$value": "#969696",
+      "$type": "color",
+      "$description": "Ash Border — Light borders, disabled states, tertiary dividers on white surfaces"
+    },
+    "anvil": {
+      "$value": "#313131",
+      "$type": "color",
+      "$description": "Anvil — Body copy variant, dark border accent — sits between Carbony Black and deeper neutrals"
+    }
+  },
+  "font": {
+    "lambotype": {
+      "$value": "LamboType",
+      "$type": "fontFamily",
+      "$description": "Exclusive brand typeface used at all hierarchy levels. Renders always in UPPERCASE for editorial weight, with a consistent 0.0230em letter-spacing across all sizes — the spacing is wide enough to feel engineered, not cramped. Display sizes reach 120px with tight 0.92–1.00 line-height so headlines stack into monolithic typographic blocks. The single weight (400) at radically different sizes (10px labels → 120px display) is the signature: the system achieves voice through scale contrast, never weight contrast."
+    },
+    "open-sans": {
+      "$value": "Open Sans",
+      "$type": "fontFamily",
+      "$description": "Rare fallback or supplementary body text at 16px, normal letter-spacing — only used in 3 occurrences, effectively vestigial; do not introduce for new pages"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.83
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.83
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "LamboType",
+        "fontSize": "120px",
+        "fontWeight": 400,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 120px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background for editorial and content sections"
+    },
+    "marble": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Surface level 1: Alternate section background, subtle band separator from white canvas"
+    },
+    "carbony": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Surface level 2: Dark stage for full-bleed heroes, video backgrounds, and product showcase sections"
+    },
+    "carbon-deep": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Surface level 3: Navigation bar, footer, and slightly darker surface for layering above Carbony"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 4: Terminal contrast surface, body ink, deepest text"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://lamborghini.com",
+      "siteName": "Lamborghini.com",
+      "extractedAt": "2026-06-03T16:36:06.256Z",
+      "variant": "extended"
+    }
+  }
+}

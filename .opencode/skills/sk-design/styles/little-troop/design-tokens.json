@@ -1,0 +1,147 @@
+{
+  "color": {
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — All text, all borders, the nav mark, section dividers, filter indicators. The structural ink of the entire system — every line, frame, and glyph is black on white"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas and inverse text. The only surface; cards do not introduce a separate fill — they borrow the page and let imagery do the work"
+    }
+  },
+  "font": {
+    "arial-narrow": {
+      "$value": "Arial Narrow",
+      "$type": "fontFamily",
+      "$description": "The functional voice of the entire interface — navigation, body, metadata, project captions, filter labels, footer copy. Narrow letterforms in a generous white field create a typesetter's galley feel; everything reads as a running label rather than as UI chrome."
+    },
+    "times-now": {
+      "$value": "Times Now",
+      "$type": "fontFamily",
+      "$description": "The single display voice, reserved for the hero headline curved around the orb. Weight 250 is anti-convention — most studios reach for 600-800 bold serifs. This whisper-weight, paired with a sculptural -0.066em tracking and 0.79 line-height, makes the text feel like a ribbon on the surface rather than a title above it. When the system needs authority, it gets it through restraint, not volume."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial Narrow",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 0.86
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Arial Narrow",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Arial Narrow",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Arial Narrow",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Arial Narrow",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Times Now",
+        "fontSize": "76px",
+        "fontWeight": 250,
+        "lineHeight": 0.79
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 76px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "gallery-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Single flat canvas. No card surface, no panel surface — the page is the surface."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://littletroop.com",
+      "siteName": "Little Troop",
+      "extractedAt": "2026-06-03T21:12:53.990Z",
+      "variant": "extended"
+    }
+  }
+}

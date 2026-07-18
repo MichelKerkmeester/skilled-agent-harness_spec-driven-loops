@@ -1,0 +1,1852 @@
+{
+  "source": "https://styles.refero.design/style/8cf4a580-bfb6-4090-a899-f734ffe62370",
+  "uuid": "8cf4a580-bfb6-4090-a899-f734ffe62370",
+  "name": "Duna",
+  "northStar": "Sunset watercolor on warm marble — a single painted landscape over a quiet, editorial compliance document.",
+  "capturedAt": "2026-07-18T09:57:06.770Z",
+  "meta": {
+    "url": "https://duna.com",
+    "siteName": "Duna",
+    "extractedAt": "2026-06-03T17:17:21.465Z",
+    "durationMs": 40481,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1017,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "skipped",
+        "attempts": 1
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Espresso (#160f0c) as the only filled button color — never introduce blue, green, or saturated brand colors for actions",
+      "Set display headlines at 72-80px with letter-spacing -0.06em — the compressed tracking at scale is the system's editorial signature",
+      "Use Linen (#f7f7f5) as the page canvas, not pure white — the warm off-white atmosphere is load-bearing for the system's mood",
+      "Apply 999px radius to all interactive buttons and tags — pill-shaped controls are non-negotiable",
+      "Enable GT America font features (\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\") when the custom font is available — they define the typeface's character",
+      "Keep the entire interface 99% achromatic — let the hero illustration be the single moment of color saturation",
+      "Use 16-24px radius on all cards and images — soft, generous rounding is structural, not decorative"
+    ],
+    "donts": [
+      "Don't introduce a blue or green accent — the warm aubergine-black replaces conventional fintech blue",
+      "Don't add drop shadows beyond the 1px inset ring — elevation is built from borders and background tint, not shadows",
+      "Don't use sharp corners on buttons or cards — anything below 8px radius breaks the system's softness",
+      "Don't use the hero illustration's sunset colors as UI accent colors — those colors belong only to the artwork",
+      "Don't use display-size tracking on body text — letter-spacing -0.06em only works at 44px+",
+      "Don't fill the page with multiple colored sections — Duna is monochromatic with warm neutrals, not multi-colored",
+      "Don't use icon libraries with rounded, friendly iconography — use thin-stroke, geometric line icons that match GT America's tone"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#1b0624",
+        "name": "Aubergine Ink",
+        "role": "Primary text, heading borders, and brand character — the slight warm-purple undertone replaces conventional near-black, giving Duna a distinctive almost-black that is neither pure black nor navy",
+        "group": "brand"
+      },
+      {
+        "hex": "#160f0c",
+        "name": "Espresso",
+        "role": "Primary action fill — filled buttons (Get started, Schedule a demo). Slightly warmer and darker than Aubergine Ink, used exclusively for interactive surfaces that need to feel pressed-into the page",
+        "group": "brand"
+      },
+      {
+        "hex": "#766a7c",
+        "name": "Warm Ash",
+        "role": "Muted secondary text and subtle borders — a desaturated warm gray that softens long-form copy without competing with the primary text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#444444",
+        "name": "Graphite",
+        "role": "Body text variant, icon strokes, input borders — the workhorse neutral for non-heading content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#898683",
+        "name": "Stone",
+        "role": "Tertiary text and dividers — a lighter warm gray for labels, metadata, and less important copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0d0d0d",
+        "name": "Onyx",
+        "role": "Icon fills and select text instances — the deepest near-black in the scale, reserved for graphic emphasis",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1816",
+        "name": "Smoke",
+        "role": "Icon borders, card edge cases, and dark UI elements — a warm-tinted dark for graphical components",
+        "group": "neutral"
+      },
+      {
+        "hex": "#292421",
+        "name": "Charcoal",
+        "role": "Heading borders and dark decorative fills — a warm brown-black for borders on headings and subtle structural elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Primary surface — cards, buttons, and the dominant page background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f7f5",
+        "name": "Linen",
+        "role": "Warm canvas background — the off-white page tint that gives the entire system its warm, paper-like atmosphere instead of clinical pure white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#edece7",
+        "name": "Bone",
+        "role": "Card surfaces and subtle elevated panels — a barely-warm cream for cards sitting on the Linen canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Mist",
+        "role": "Input field background — the only functional surface tint that signals a fillable area",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page uses a max-width 1200px centered column on a full-bleed Linen canvas. The hero breaks the container entirely with a full-viewport illustrated landscape that fades to white, containing a centered headline stack (announcement pill, 72px headline, subtext, CTA). Below the fold, sections alternate between white card surfaces on the Linen canvas and pure Linen sections with no container. A customer logo bar sits as a horizontal strip. A stats section uses a three-column row of oversized metrics. Feature cards appear in a three-column grid. Navigation is a flat top bar (not sticky in the data shown). Vertical rhythm is generous: 80-120px between major sections, creating a document-like, unhurried reading pace. No sidebar, no mega-menu, no dark sections.",
+    "imagery": "Imagery is dominated by a single full-bleed watercolor illustration in the hero: a warm sunset landscape with distant mountains, a reflective water body, green meadow foreground, and pink-orange sky. This is the only color in the system and should never be repeated as UI accents. Below the hero, imagery is product-screenshot-free and icon-driven — thin-stroke geometric line icons in Charcoal sit atop white cards. Customer logos appear as grayscale monochrome strips. There is no photography, no 3D renders, no stock imagery. The visual language is: one painted landscape moment, then pure editorial UI.",
+    "similar": [
+      {
+        "why": "Same near-black text on warm off-white canvas with pill-shaped buttons and aggressively tight letter-spacing on large display headlines",
+        "business": "Linear"
+      },
+      {
+        "why": "Same warm-cream canvas, pill buttons, and absence of saturated accent colors — both fintech brands that use nearly-monochromatic editorial systems",
+        "business": "Mercury"
+      },
+      {
+        "why": "Same document-like restraint, 24px+ card radii, and the confidence to leave the interface nearly colorless with one illustration moment",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same GT America-adjacent geometric sans-serif and the convention of using near-black with a warm cast rather than navy or blue for a fintech brand",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same compliance/fintech space, same editorial confidence, and similar restraint in avoiding decorative color on core UI surfaces",
+        "business": "Plaid"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "badges": "999px",
+        "images": "24px",
+        "inputs": "8px",
+        "buttons": "999px",
+        "large-buttons": "60px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "24-32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#f7f7f5",
+        "name": "Linen Canvas",
+        "level": 1,
+        "purpose": "Primary page background — the warm off-white that gives the entire system its paper-like atmosphere"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper Card",
+        "level": 2,
+        "purpose": "Card surfaces, elevated panels, and button fills"
+      },
+      {
+        "hex": "#edece7",
+        "name": "Bone Panel",
+        "level": 3,
+        "purpose": "Subtle surface variation for nested cards or sectioned panels"
+      }
+    ],
+    "northStar": "Sunset watercolor on warm marble — a single painted landscape over a quiet, editorial compliance document.",
+    "typeScale": [
+      {
+        "role": "micro",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-lg",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "heading-lg",
+        "size": 44,
+        "lineHeight": 1.1,
+        "letterSpacing": -2.2
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -4.32
+      }
+    ],
+    "components": [
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "White background, 64-72px tall, logo (asterisk mark + DUNA wordmark) on the left, centered text links (Product, Customers, Company, Resources) at 14-16px in Charcoal, and a dark filled pill CTA ('Schedule a demo') on the right. No border, no shadow — sits directly on the Linen canvas."
+      },
+      {
+        "name": "Hero Illustrated Landscape",
+        "role": "Full-bleed hero artwork",
+        "description": "A painted watercolor sunset scene (warm oranges, pinks, greens, distant mountains, water reflection) that fills the viewport and bleeds into the white section below. The illustration is the only color saturation in the system — it functions as the brand's emotional moment and should never be replicated as a UI accent."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Primary page headline",
+        "description": "72-80px GT America weight 400 in Aubergine Ink, centered, with letter-spacing -0.06em and line-height 1.00. The extreme negative tracking at this size is signature — the letters almost touch, creating a compressed, authoritative block of text."
+      },
+      {
+        "name": "Announcement Pill",
+        "role": "Editorial tag above hero",
+        "description": "Small dark pill (999px radius) with white text at 12-14px, sitting centered above the hero headline. Used for news, funding announcements, or feature launches."
+      },
+      {
+        "name": "Primary Filled Button",
+        "role": "Main call-to-action",
+        "description": "Espresso (#160f0c) background, white text at 14-16px GT America weight 400, 999px pill radius, 10-12px vertical padding with 18-24px horizontal padding. No shadow, no border. Used for 'Get started' and 'Schedule a demo'."
+      },
+      {
+        "name": "Large Pill Button",
+        "role": "Hero-scale primary action",
+        "description": "Variant of the primary button with 60px border-radius (deeply rounded rectangle rather than full pill), 20-24px vertical padding. Used for the most prominent hero CTA where a full pill would feel too small."
+      },
+      {
+        "name": "Ghost/Outlined Button",
+        "role": "Secondary action or dismiss",
+        "description": "White or transparent background, 1px border in Graphite or Stone, dark text, 999px radius, matching padding to filled variant. Used for the cookie 'Okay' button and other low-emphasis dismissals."
+      },
+      {
+        "name": "Customer Logo Bar",
+        "role": "Social proof strip",
+        "description": "Horizontal row of 6-7 grayscale customer logos (Plaid, Svea, Mews, Moss, CCV, Fiserv) at uniform height, evenly spaced, rendered in Stone or Graphite monochrome — never in their original brand colors."
+      },
+      {
+        "name": "Stat Display",
+        "role": "Large metric with label",
+        "description": "Oversized number (6.2x, 22%, 2.8x) at 72-80px GT America weight 400 in Aubergine Ink with tight tracking, paired with a small caption label (14px, Stone) below. Three-up layout in a row."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Product capability block",
+        "description": "White card on Linen canvas, 16px radius, 24-32px internal padding, small line-icon at top, bold heading, description text. Separated from neighboring cards by white space alone — no shadow, no visible border."
+      },
+      {
+        "name": "Cookie Banner",
+        "role": "Compliance/consent notice",
+        "description": "Small floating panel, bottom-right, white background, subtle border, 12-16px radius, short text + ghost 'Okay' button. Minimal footprint — never full-width or modal."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form input",
+        "description": "Mist (#eeeeee) background, 8px radius, 1px border in Graphite or Stone, 16px text in Aubergine Ink. No focus glow — focus state is a border color shift to Espresso. No shadow at any state."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand identifier",
+        "description": "Asterisk/star glyph (✱) followed by 'DUNA' wordmark in GT America weight 500, Aubergine Ink. The asterisk is the distinctive brand mark — simple, geometric, non-decorative."
+      }
+    ],
+    "typography": [
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Primary typeface across all UI — body at 400, emphasis at 500, display at 400 with aggressive negative tracking. The compressed, geometric forms at large sizes give headlines an editorial, almost legal-document authority rather than the typical rounded SaaS friendliness.",
+        "sizes": "12, 14, 16, 18, 20, 24, 32, 40, 44, 72, 80",
+        "family": "GT America",
+        "weight": "400, 500",
+        "lineHeight": "1.00–1.76",
+        "substitute": "Inter, Söhne, or Suisse Int'l",
+        "letterSpacing": "-0.06em at 72-80px display, -0.05em at 44px, -0.03em at 32px, -0.02em at 24px, -0.01em at 20px, normal below 18px",
+        "fontFeatureSettings": "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\", \"tnum\", \"zero\""
+      },
+      {
+        "role": "GT America Regular — detected in extracted data but not described by AI",
+        "sizes": "12px, 14px, 16px, 18px, 20px, 24px, 32px, 40px, 44px, 72px",
+        "family": "GT America Regular",
+        "weight": "400",
+        "lineHeight": "1, 1.1, 1.2, 1.3, 1.4, 1.5",
+        "letterSpacing": "-0.06, -0.05, -0.03, -0.02, -0.01, -0.006, 0.02",
+        "fontFeatureSettings": "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+      },
+      {
+        "role": "GT America Trial Rg — detected in extracted data but not described by AI",
+        "sizes": "14px, 16px",
+        "family": "GT America Trial Rg",
+        "weight": "400",
+        "lineHeight": "1.5, 1.6, 1.71"
+      },
+      {
+        "role": "GT America Trial Md — detected in extracted data but not described by AI",
+        "sizes": "17px, 80px",
+        "family": "GT America Trial Md",
+        "weight": "400, 500",
+        "lineHeight": "1, 1.76",
+        "letterSpacing": "-0.012",
+        "fontFeatureSettings": "\"tnum\", \"zero\""
+      },
+      {
+        "role": "Inter — detected in extracted data but not described by AI",
+        "sizes": "12px, 14px",
+        "family": "Inter",
+        "weight": "400",
+        "lineHeight": "1.2, 1.5"
+      }
+    ],
+    "description": "Duna is a monochromatic editorial canvas warmed by a single illustrated sunset landscape — the interface stays nearly 99% achromatic, with a deep aubergine-black as both text and primary action color, replacing the blue/green convention of fintech. Components are soft and pillowy: heavily rounded corners (24px on cards and images, 999px on buttons), generous breathing room, and almost no shadow — elevation is built from hairline borders and contrast alone. The hero watercolor is the only moment of color saturation in the system, a deliberate artistic peak that frames an otherwise quiet, confident, document-like surface. Typography is GT America at restrained weights with aggressive negative tracking on display sizes, giving headlines a compressed, editorial feel rather than the wide, friendly SaaS look.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8cf4a580-bfb6-4090-a899-f734ffe62370#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Duna design system\",\"item\":\"https://styles.refero.design/style/8cf4a580-bfb6-4090-a899-f734ffe62370\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8cf4a580-bfb6-4090-a899-f734ffe62370#style-reference\",\"name\":\"Duna design system reference\",\"headline\":\"Duna design system | Refero Styles\",\"description\":\"Explore Duna's light Fintech design system: Aubergine Ink #1b0624, Espresso #160f0c colors, sans-serif, GT America typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8cf4a580-bfb6-4090-a899-f734ffe62370\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8cf4a580-bfb6-4090-a899-f734ffe62370\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Duna\",\"url\":\"https://duna.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8cf4a580-bfb6-4090-a899-f734ffe62370#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/044979a4-f574-4b5e-aed3-a81e0d26538c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/044979a4-f574-4b5e-aed3-a81e0d26538c.jpg\",\"caption\":\"Screenshot of Duna\"},\"image\":\"https://images.refero.design/styles/refero.design/image/044979a4-f574-4b5e-aed3-a81e0d26538c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Duna design system\",\"Duna website design\",\"Duna colors\",\"Duna typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Aubergine Ink\",\"Espresso\",\"Warm Ash\",\"Graphite\",\"sans-serif\",\"GT America\",\"GT America Regular\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Duna design system\"},{\"@type\":\"Thing\",\"name\":\"Duna website design\"},{\"@type\":\"Thing\",\"name\":\"Duna colors\"},{\"@type\":\"Thing\",\"name\":\"Duna typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T00:28:27.782Z\",\"dateModified\":\"2026-04-30T00:28:27.782Z\"}]}19:T6d8,**Quick Color Reference**\n- Text/heading: #1b0624 (Aubergine Ink)\n- Background canvas: #f7f7f5 (Linen)\n- Card surface: #ffffff (Paper White)\n- Border: #444444 (Graphite) or #898683 (Stone)\n- primary action: #160f0c (filled action)\n- Create a Primary Action Button: #160f0c background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n**Example Component Prompts**\n\n1. *Hero Section*: Full-bleed watercolor sunset illustration as background. Centered stack: announcement pill (Espresso #160f0c bg, white 12px text, 999px radius, 6px 12px padding), then 72px GT America weight 400 headline in Aubergine Ink with letter-spacing -4.32px, then 18px body subtext in Stone, then a 60px-radius Espresso filled button ('Get started', white text, 20px 28px padding).\n\n2. *Stat Block*: Three-column row on Linen canvas. Each stat: 72px GT America weight 400 number in Aubergine Ink with -4.32px tracking, 14px caption in Stone below. No dividers, no card containers.\n\n3. *Feature Card*: White (#ffffff) card on Linen canvas, 16px radius, 32px internal padding. 24px thin-stroke line icon in Charcoal at top-left. 24px GT America weight 500 heading in Aubergine Ink. 16px body text in Graphite below. No shadow, no border.\n\n4. *Navigation Bar*: White background, 72px tall. Asterisk mark + 'DUNA' wordmark (GT America 500, Aubergine Ink) on the left. Centered nav links at 14px GT America 400 in Charcoal. Right-aligned: Espresso filled pill button ('Schedule a demo', 999px radius, 10px 18px padding, white text).\n\n5. *Cookie Banner*: Fixed bottom-right, white background, 12px radius, 1px Graphite border, 16px text in Graphite, ghost 'Okay' button (1px Graphite border, 999px radius, 10px 16px padding, dark text)."
+      }
+    ],
+    "elevationPhilosophy": "Duna uses almost no shadow. The single detected elevation is a 1px inset ring at rgba(0,0,0,0.05) on cards — this hairline border IS the elevation system. Components are separated by white space, borders, and background tint shifts rather than drop shadows. This keeps the interface feeling flat, editorial, and document-like."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "button",
+            "image",
+            "list",
+            "heading",
+            "body",
+            "card"
+          ],
+          "frequency": 2763,
+          "confidence": 1,
+          "prominence": 155945210.51836333,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 18,
+            "body/color": 6,
+            "card/color": 5,
+            "icon/color": 8,
+            "list/color": 9,
+            "other/fill": 90,
+            "image/color": 29,
+            "other/color": 466,
+            "button/color": 3,
+            "heading/color": 5,
+            "body/borderColor": 24,
+            "card/borderColor": 20,
+            "icon/borderColor": 32,
+            "list/borderColor": 36,
+            "image/borderColor": 116,
+            "other/borderColor": 1864,
+            "button/borderColor": 12,
+            "heading/borderColor": 20
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "heading",
+            "button",
+            "link",
+            "card"
+          ],
+          "frequency": 296,
+          "confidence": 1,
+          "prominence": 112047148.89475186,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 34,
+            "icon/color": 1,
+            "link/color": 21,
+            "other/fill": 2,
+            "heading/color": 1,
+            "body/borderColor": 136,
+            "icon/borderColor": 4,
+            "link/borderColor": 84,
+            "heading/borderColor": 4,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f7f7f5",
+          "oklch": {
+            "c": 0.0026432307455810924,
+            "h": 106.44849664143693,
+            "l": 0.9755820813085108
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 1961830.1519224509,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#292421",
+          "oklch": {
+            "c": 0.009353848827608958,
+            "h": 53.074354660221736,
+            "l": 0.26478915864606817
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 296,
+          "confidence": 1,
+          "prominence": 966595.3595828678,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 23,
+            "other/fill": 26,
+            "heading/color": 31,
+            "body/borderColor": 92,
+            "heading/borderColor": 124
+          }
+        },
+        {
+          "hex": "#46838c",
+          "oklch": {
+            "c": 0.06460288221096537,
+            "h": 207.901417103124,
+            "l": 0.5725642745661043
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 914282,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1b0624",
+          "oklch": {
+            "c": 0.0637072636357642,
+            "h": 314.38294441162367,
+            "l": 0.17785097943722591
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 62,
+          "confidence": 1,
+          "prominence": 370292.49126081984,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "other/stroke": 7,
+            "heading/color": 4,
+            "body/borderColor": 28,
+            "heading/borderColor": 16
+          }
+        },
+        {
+          "hex": "#898683",
+          "oklch": {
+            "c": 0.00573901831031051,
+            "h": 67.72003340686199,
+            "l": 0.6217233988215409
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 277950.677852543,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "body/borderColor": 28
+          }
+        },
+        {
+          "hex": "#edece7",
+          "oklch": {
+            "c": 0.006753907220294918,
+            "h": 97.35502970367598,
+            "l": 0.9424678363212965
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 133594.45486743926,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#766a7c",
+          "oklch": {
+            "c": 0.03145944850531062,
+            "h": 315.8144728752795,
+            "l": 0.5408516513866668
+          },
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 118681.99205400016,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "body/borderColor": 20,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1a1816",
+          "oklch": {
+            "c": 0.00500945190879843,
+            "h": 67.55092008959797,
+            "l": 0.210551532147541
+          },
+          "contexts": [
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 215,
+          "confidence": 1,
+          "prominence": 92500.29812580584,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 30,
+            "body/color": 16,
+            "icon/color": 15,
+            "other/fill": 30,
+            "body/borderColor": 64,
+            "icon/borderColor": 60
+          }
+        },
+        {
+          "hex": "#444444",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3866543310206897
+          },
+          "contexts": [
+            "body",
+            "other",
+            "input"
+          ],
+          "frequency": 76,
+          "confidence": 1,
+          "prominence": 65093.11179819794,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 13,
+            "other/fill": 6,
+            "input/color": 1,
+            "body/borderColor": 52,
+            "input/borderColor": 4
+          }
+        },
+        {
+          "hex": "#160f0c",
+          "oklch": {
+            "c": 0.013420087658059373,
+            "h": 44.36839925001154,
+            "l": 0.17647340121670324
+          },
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 28901.037337248257,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "body/borderColor": 16,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#b2afae",
+          "oklch": {
+            "c": 0.0037182866130543234,
+            "h": 39.475539502255266,
+            "l": 0.7561771136042683
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 33,
+          "confidence": 1,
+          "prominence": 21932.052308630213,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 33
+          }
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 15930.748659022192,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4
+          }
+        },
+        {
+          "hex": "#0d0d0d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.15906639920862536
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 7929.677912025658,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 1,
+            "icon/color": 1,
+            "other/fill": 4,
+            "body/borderColor": 4,
+            "icon/borderColor": 4
+          }
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1791,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "input/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#aeec1d",
+          "oklch": {
+            "c": 0.21762532907344076,
+            "h": 126.73118116110687,
+            "l": 0.8689272583960979
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 64,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.006697182148377053,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.58,
+          "background": "#f7f7f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.44,
+          "background": "#ffffff",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.12,
+          "background": "#ffffff",
+          "foreground": "#1b0624"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.96,
+          "background": "#160f0c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.12,
+          "background": "#f7f7f5",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.83,
+          "background": "#f7f7f5",
+          "foreground": "#1b0624"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.75,
+          "background": "#edece7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.7,
+          "background": "#ffffff",
+          "foreground": "#1a1816"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.67,
+          "background": "#f7f7f5",
+          "foreground": "#160f0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.75,
+          "background": "#eeeeee",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.51,
+          "background": "#f7f7f5",
+          "foreground": "#1a1816"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.48,
+          "background": "#eeeeee",
+          "foreground": "#1b0624"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.43,
+          "background": "#edece7",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.34,
+          "background": "#eeeeee",
+          "foreground": "#160f0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.17,
+          "background": "#edece7",
+          "foreground": "#1b0624"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.03,
+          "background": "#edece7",
+          "foreground": "#160f0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.34,
+          "background": "#ffffff",
+          "foreground": "#292421"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.26,
+          "background": "#eeeeee",
+          "foreground": "#1a1816"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 76
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 20
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "image",
+            "card"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 999,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 799,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 99,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 959,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px inset",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 56,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 59,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|button",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "button",
+            "input"
+          ],
+          "frequency": 104,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|input",
+            "paddingRight|input",
+            "paddingBottom|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 49,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 96,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 140,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 240,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 618,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GT America Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 155,
+          "fontFeatureSettings": [
+            "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+          ]
+        },
+        {
+          "family": "GT America Trial Md",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": [
+            "\"tnum\", \"zero\""
+          ]
+        },
+        {
+          "family": "GT America Trial Rg",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GT America Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": [
+            "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+          ]
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "button",
+            "image",
+            "list",
+            "card"
+          ],
+          "frequency": 617,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "GT America Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GT America Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GT America Trial Rg",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT America Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 70,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT America Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT America Trial Rg",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GT America Trial Rg",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "GT America Trial Md",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.76,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GT America Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GT America Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "GT America Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "GT America Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "GT America Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "GT America Medium",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "GT America Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "GT America Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "GT America Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "GT America Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "GT America Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "GT America Trial Md",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/5897f13a-d5f6-404c-ba62-9ab5f9e0f74c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/044979a4-f574-4b5e-aed3-a81e0d26538c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8cf4a580-bfb6-4090-a899-f734ffe62370#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Duna design system\",\"item\":\"https://styles.refero.design/style/8cf4a580-bfb6-4090-a899-f734ffe62370\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8cf4a580-bfb6-4090-a899-f734ffe62370#style-reference\",\"name\":\"Duna design system reference\",\"headline\":\"Duna design system | Refero Styles\",\"description\":\"Explore Duna's light Fintech design system: Aubergine Ink #1b0624, Espresso #160f0c colors, sans-serif, GT America typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8cf4a580-bfb6-4090-a899-f734ffe62370\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8cf4a580-bfb6-4090-a899-f734ffe62370\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Duna\",\"url\":\"https://duna.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8cf4a580-bfb6-4090-a899-f734ffe62370#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/044979a4-f574-4b5e-aed3-a81e0d26538c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/044979a4-f574-4b5e-aed3-a81e0d26538c.jpg\",\"caption\":\"Screenshot of Duna\"},\"image\":\"https://images.refero.design/styles/refero.design/image/044979a4-f574-4b5e-aed3-a81e0d26538c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Duna design system\",\"Duna website design\",\"Duna colors\",\"Duna typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Aubergine Ink\",\"Espresso\",\"Warm Ash\",\"Graphite\",\"sans-serif\",\"GT America\",\"GT America Regular\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Duna design system\"},{\"@type\":\"Thing\",\"name\":\"Duna website design\"},{\"@type\":\"Thing\",\"name\":\"Duna colors\"},{\"@type\":\"Thing\",\"name\":\"Duna typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T00:28:27.782Z\",\"dateModified\":\"2026-04-30T00:28:27.782Z\"}]}19:T6d8,**Quick Color Reference**\n- Text/heading: #1b0624 (Aubergine Ink)\n- Background canvas: #f7f7f5 (Linen)\n- Card surface: #ffffff (Paper White)\n- Border: #444444 (Graphite) or #898683 (Stone)\n- primary action: #160f0c (filled action)\n- Create a Primary Action Button: #160f0c background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n**Example Component Prompts**\n\n1. *Hero Section*: Full-bleed watercolor sunset illustration as background. Centered stack: announcement pill (Espresso #160f0c bg, white 12px text, 999px radius, 6px 12px padding), then 72px GT America weight 400 headline in Aubergine Ink with letter-spacing -4.32px, then 18px body subtext in Stone, then a 60px-radius Espresso filled button ('Get started', white text, 20px 28px padding).\n\n2. *Stat Block*: Three-column row on Linen canvas. Each stat: 72px GT America weight 400 number in Aubergine Ink with -4.32px tracking, 14px caption in Stone below. No dividers, no card containers.\n\n3. *Feature Card*: White (#ffffff) card on Linen canvas, 16px radius, 32px internal padding. 24px thin-stroke line icon in Charcoal at top-left. 24px GT America weight 500 heading in Aubergine Ink. 16px body text in Graphite below. No shadow, no border.\n\n4. *Navigation Bar*: White background, 72px tall. Asterisk mark + 'DUNA' wordmark (GT America 500, Aubergine Ink) on the left. Centered nav links at 14px GT America 400 in Charcoal. Right-aligned: Espresso filled pill button ('Schedule a demo', 999px radius, 10px 18px padding, white text).\n\n5. *Cookie Banner*: Fixed bottom-right, white background, 12px radius, 1px Graphite border, 16px text in Graphite, ghost 'Okay' button (1px Graphite border, 999px radius, 10px 16px padding, dark text)."
+}

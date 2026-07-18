@@ -1,0 +1,76 @@
+:root {
+  /* Colors */
+  --color-lipstick-magenta: #db3c8a;
+  --color-forest-ink: #00522d;
+  --color-blush-cream: #fce5df;
+  --color-warm-chalk: #fff8f6;
+  --color-charcoal-black: #000000;
+  --color-lilac-mist: #d1cfe4;
+  --color-bubblegum: #f29ebd;
+  --color-cotton-pink: #e878b2;
+
+  /* Typography — Font Families */
+  --font-beni: 'Beni', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-clash-grotesk: 'Clash Grotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-micro: 10px;
+  --leading-micro: 12;
+  --text-label: 12px;
+  --leading-label: 14;
+  --text-caption: 14px;
+  --leading-caption: 17;
+  --text-body-sm: 16px;
+  --leading-body-sm: 19;
+  --text-body: 20px;
+  --leading-body: 24;
+  --text-subheading: 46px;
+  --leading-subheading: 32;
+  --text-heading-sm: 80px;
+  --leading-heading-sm: 56;
+  --text-heading: 94px;
+  --leading-heading: 66;
+  --text-heading-lg: 130px;
+  --leading-heading-lg: 91;
+  --text-display: 230px;
+  --leading-display: 161;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-20: 20px;
+  --spacing-60: 60px;
+  --spacing-120: 120px;
+  --spacing-140: 140px;
+
+  /* Layout */
+  --page-max-width: 1440px;
+  --section-gap: 120px;
+  --card-padding: 30px;
+  --element-gap: 15-20px;
+
+  /* Border Radius */
+  --radius-lg: 10px;
+  --radius-2xl: 20px;
+  --radius-3xl: 25px;
+
+  /* Named Radii */
+  --radius-tags: 9999px;
+  --radius-cards: 20px;
+  --radius-badges: 10px;
+  --radius-buttons: 10px;
+  --radius-elevated: 25px;
+  --radius-iconbuttons: 9999px;
+
+  /* Surfaces */
+  --surface-warm-chalk: #fff8f6;
+  --surface-blush-cream: #fce5df;
+  --surface-cotton-pink: #e878b2;
+}

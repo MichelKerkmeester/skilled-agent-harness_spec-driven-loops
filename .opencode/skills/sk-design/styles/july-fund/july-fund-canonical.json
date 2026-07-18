@@ -1,0 +1,1539 @@
+{
+  "source": "https://styles.refero.design/style/adc127f5-c6ec-4892-984d-5445c2b6104e",
+  "uuid": "adc127f5-c6ec-4892-984d-5445c2b6104e",
+  "name": "July Fund",
+  "northStar": "dark gallery monograph with chromatic chapter cards",
+  "capturedAt": "2026-07-18T07:41:45.480Z",
+  "meta": {
+    "url": "https://july.fund",
+    "siteName": "July Fund",
+    "extractedAt": "2026-06-03T19:55:33.083Z",
+    "durationMs": 34478,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 692,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Portrait 400 at 30–96px for every heading — never substitute a sans-serif headline.",
+      "Set all uppercase labels (badges, buttons, metadata) at 8–10px with 0.20–0.25em letter-spacing and weight 700.",
+      "Let each card pick exactly one chromatic field (Forest Floor, Twilight Violet, Olive Depth, Solar Yellow, or Charcoal) as its background — no gradients, no images-as-backgrounds inside cards.",
+      "Use 20px radius for cards, 24px for buttons (full pill), 8px for badges, 12px for images.",
+      "Pair Mint Chip (#56d270) badges only with dark or neutral cards; reserve Solar Yellow (#fde440) for the single loudest thesis card in any grid.",
+      "Keep 40px card padding on the dominant axis and 20px on the minor axis; 45px column gap between paired text columns.",
+      "Separate sections with 80px of Obsidian void — never use a divider line between cards, the radius and the gap are the separator."
+    ],
+    "donts": [
+      "Don't add box-shadow, glow, or blur to any element — the system is flat by design.",
+      "Don't use bold weights for Portrait headlines; authority comes from size, not weight.",
+      "Don't mix two chromatic fills inside a single card — pick one field and commit.",
+      "Don't place body copy in a chromatic color other than Stone Gray (#898989), Paper White, or Coffee Bean — no accent text.",
+      "Don't use buttons with square or 8px corners; the 24px pill is non-negotiable.",
+      "Don't set background gradients on text-forward cards — gradients are reserved for the radial accent washes in hero/empty states.",
+      "Don't center body paragraphs or labels; left-align everything except the wordmark."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Page canvas, deepest card base, and the void between sections — the room the cards hang in",
+        "group": "neutral"
+      },
+      {
+        "hex": "#433e3c",
+        "name": "Coffee Bean",
+        "role": "Dominant border color across cards, badges, and dividers — the hairline that frames every chromatic block",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0e7e4",
+        "name": "Cream Paper",
+        "role": "Light card surface for the hero/about panel and inverted buttons — a warm off-white that reads as printed paper on the dark canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2b2b2b",
+        "name": "Charcoal",
+        "role": "Secondary surface and elevated card base for monochrome content blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#221f1e",
+        "name": "Espresso",
+        "role": "Button background for primary text controls on dark surfaces — one shade deeper than the card it sits in",
+        "group": "neutral"
+      },
+      {
+        "hex": "#898989",
+        "name": "Stone Gray",
+        "role": "Muted body copy, list markers, and supporting metadata — the whisper tier below primary text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Headline color on dark cards, badge text on chromatic fills, and link highlights",
+        "group": "neutral"
+      },
+      {
+        "hex": "#113619",
+        "name": "Forest Floor",
+        "role": "Themed card surface for nature/climate/sustainability chapters — the deepest chromatic field, reads as moss or deep canopy",
+        "group": "brand"
+      },
+      {
+        "hex": "#322b66",
+        "name": "Twilight Violet",
+        "role": "Themed card surface for space, frontier, and science verticals — saturated enough to dominate a grid cell, dark enough to hold white type",
+        "group": "brand"
+      },
+      {
+        "hex": "#2e2909",
+        "#hex": "#2e2909",
+        "name": "Olive Depth",
+        "role": "Themed card surface for energy and industry chapters — a near-black ochre that glows against the canvas",
+        "group": "brand"
+      },
+      {
+        "hex": "#fde440",
+        "name": "Solar Yellow",
+        "role": "High-impact accent card fill for transformation and thesis verticals — the loudest single block in the system, used sparingly to punctuate the grid",
+        "group": "brand"
+      },
+      {
+        "hex": "#56d270",
+        "name": "Mint Chip",
+        "role": "Small uppercase tag/badge fill for news and announcement labels — the only saturated green used at small scale",
+        "group": "accent"
+      },
+      {
+        "hex": "#c6bffa",
+        "name": "Lavender Mist",
+        "role": "Soft accent for secondary badges and highlight borders on the violet card family",
+        "group": "accent"
+      },
+      {
+        "hex": "#b9534a",
+        "name": "Ember Red",
+        "role": "Reserved research and analytical-content badge fill — used almost never; its rarity makes it register as a category marker",
+        "group": "semantic"
+      }
+    ],
+    "layout": "The page is an asymmetric, masonry-flavored grid of themed cards on an Obsidian canvas. The hero is a single full-width Cream Paper panel (one card spanning the grid) containing the Portrait wordmark and a two-column meta block beneath. Below the hero, the layout breaks into a responsive 3-column card grid that itself becomes the navigation: each card is a destination, and the chromatic fills form a color-coded index. Cards are not uniform in height — a tall Cream Panel sits next to a shorter Charcoal card next to a full-bleed Solar Yellow thesis block. Column gaps are ~20px, row gaps are ~25–40px, and the outer page is centered within a 1280px max-width container. Section breaks are achieved with 80px of empty Obsidian space, never with a divider line.",
+    "imagery": "Imagery is used as documentary evidence, not decoration. Article cards carry full-color editorial photography (copper mines, oil rigs, glacial fields, aerial urban shots) clipped to 12px-radius tiles. Some cards use flat geometric illustrations (a constellation diagram for the Berlin card, a wind-turbine sketch for the Sakana AI card) — these are monochrome line art in Coffee Bean on a chromatic fill. Icons are line-only, ~1.5px stroke, and sit inside Location cards. There are no full-bleed hero photographs, no overlapping layers, no masked edges — every image lives inside a 12px-radius rectangle inside a 20px-radius card. The visual language is closer to a printed annual report than a SaaS landing page.",
+    "similar": [
+      {
+        "why": "Same dark canvas with thematic color-coded content cards and a single oversized serif wordmark anchoring the hero.",
+        "business": "Andreessen Horowitz (a16z)"
+      },
+      {
+        "why": "Same editorial card-grid-as-index pattern, where each card's background color signals a different fund vertical or post type.",
+        "business": "Cyan Banister's blog / Future Fund"
+      },
+      {
+        "why": "Similar tight card grid with chromatic fills per publication, pill-shaped read buttons, and uppercase 0.25em metadata labels.",
+        "business": "Substack's publication directory"
+      },
+      {
+        "why": "Same monograph-on-dark approach — quiet body typography, oversized serif headlines, and cards that function as chapters rather than widgets.",
+        "business": "Pitchbook / Crunchbase editorial"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "20px",
+        "badges": "8px",
+        "images": "12px",
+        "buttons": "24px",
+        "smallControls": "5px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "40px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian Canvas",
+        "level": 0,
+        "purpose": "The void between every grid cell and the outer page background."
+      },
+      {
+        "hex": "#2b2b2b",
+        "name": "Charcoal Card",
+        "level": 1,
+        "purpose": "Default monochrome card surface for text-forward content."
+      },
+      {
+        "hex": "#f0e7e4",
+        "name": "Cream Panel",
+        "level": 2,
+        "purpose": "Inverted hero/about card — the only light surface in the system, acts as a full-bleed opener."
+      },
+      {
+        "hex": "#113619",
+        "name": "Themed Chromatic Field",
+        "level": 3,
+        "purpose": "Category cards that substitute the neutral surface for a saturated chapter color (also #322b66, #2e2909, #fde440)."
+      }
+    ],
+    "northStar": "dark gallery monograph with chromatic chapter cards",
+    "typeScale": [
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 35,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 96,
+        "lineHeight": 1.05
+      }
+    ],
+    "components": [
+      {
+        "name": "Themed Category Card",
+        "role": "Primary content unit — each card carries a single saturated background and acts as a chapter in the grid.",
+        "description": "Background is one of the chromatic fields (Forest Floor #113619, Twilight Violet #322b66, Olive Depth #2e2909, Solar Yellow #fde440, or Charcoal #2b2b2b). Border-radius 20px. Inner padding 40px on the dominant axis. Headline set in Portrait 30–35px, white (#ffffff) on dark fields, Coffee Bean (#433e3c) on Solar Yellow. No shadow. Contains a 12px-radius image block anchored top or center, a 9px-padded uppercase badge near the headline, and supporting body copy in Helvetica Neue 15px at Stone Gray (#898989)."
+      },
+      {
+        "name": "Cream Hero Panel",
+        "role": "Light inverted opening section that introduces the fund before the dark grid begins.",
+        "description": "Full-bleed Cream Paper (#f0e7e4) surface against the Obsidian canvas. 20px radius. 40px padding. Wordmark 'July Fund' set in Portrait 96px at Coffee Bean (#433e3c) — the single largest type on the site. Mint Chip (#56d270) tag pill sits above the wordmark. A two-column footer block (label + paragraph) lives beneath the headline with 45px column gap."
+      },
+      {
+        "name": "Portfolio Founder Card",
+        "role": "Monochrome card introducing an individual team member.",
+        "description": "Charcoal (#2b2b2b) background, 20px radius, 40px padding. Mint Chip (#56d270) uppercase label badge at the top. Portrait 30px name headline in white. Body description in Helvetica Neue 15px, Stone Gray. Single pill ghost button (See LinkedIn) at the bottom."
+      },
+      {
+        "name": "News Article Card",
+        "role": "Editorial post preview with a photographic image, date, excerpt, and read-more control.",
+        "description": "Cream Paper (#f0e7e4) or Charcoal background, 20px radius. 12px-radius image block at the top. Mint Chip tag badge. Portrait 30–35px headline. Date stamp in Helvetica Neue 8–10px, 0.25em letter-spacing, Stone Gray. Ghost pill button at the bottom (Read More)."
+      },
+      {
+        "name": "Category Tag Badge",
+        "role": "Uppercase label that classifies a card's content vertical.",
+        "description": "8px border-radius (softly rounded rectangle). 9px vertical padding, 16px horizontal padding. Background is the badge's semantic color: Mint Chip (#56d270) for news, Lavender Mist (#c6bffa) for cosmic/frontier, Ember Red (#b9534a) for research, Solar Yellow (#fde440) for theses. Text is Helvetica Neue 8–10px weight 700, letter-spacing 0.25em, set in Coffee Bean or Obsidian depending on background luminance."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Default text control for navigation, read-more, and secondary actions.",
+        "description": "24px border-radius (full pill). 5px vertical padding, 22px horizontal padding. Transparent background. 1px Coffee Bean (#433e3c) border on dark surfaces, or 1px Cream Paper (#f0e7e4) border on light surfaces. Label in Helvetica Neue 8–10px weight 700, 0.25em letter-spacing, uppercase."
+      },
+      {
+        "name": "Filled Pill Button",
+        "role": "Rare primary action — used only where a strong CTA is needed.",
+        "description": "24px border-radius. Espresso (#221f1e) or Cream Paper (#f0e7e4) background. No border. 5/22px padding. Helvetica Neue 8–10px weight 700, 0.25em letter-spacing, uppercase. Inverted text color against the fill."
+      },
+      {
+        "name": "Location Card",
+        "role": "Compact monochrome card displaying a city and weather metadata.",
+        "description": "Charcoal (#2b2b2b) or Obsidian background, 20px radius. Small outlined weather icon (1.5px stroke, Coffee Bean or Cream). City name in Portrait 30–35px. Weather condition in Helvetica Neue 8–10px uppercase, 0.25em letter-spacing, Stone Gray."
+      },
+      {
+        "name": "Image Tile",
+        "role": "Inset photographic or illustrative block within a card.",
+        "description": "12px border-radius. Sits at the top or center of a card. Full-width of the card's inner padding. No caption — the image stands alone as visual evidence."
+      },
+      {
+        "name": "Map Tile",
+        "role": "Light-surface map preview for location-based content.",
+        "description": "Cream Paper or white background, 12px radius. Full-bleed street map render. No border. Functions as a content image inside a larger card."
+      },
+      {
+        "name": "Fund Thesis Statement Block",
+        "role": "Long-form text card on a solid chromatic field that explains a fund vertical.",
+        "description": "Solar Yellow (#fde440), Lavender Mist (#c6bffa), or Charcoal background. 20px radius. 40px padding. Headline in Portrait 30–35px. Body paragraph in Helvetica Neue 15px. Optional 'Core Theme' or 'Rent' badge at the top."
+      },
+      {
+        "name": "Footer Link Block",
+        "role": "Closing navigation and contact region on the dark canvas.",
+        "description": "Obsidian background, no panel. Coffee Bean 1px hairline divider above. Helvetica Neue 10–15px, 0.20em letter-spacing, uppercase labels in Stone Gray, links in Cream Paper."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading serif used for the wordmark, section titles, and card headlines. Portrait is a high-contrast didone-style serif; its hairline strokes and sharp serifs give the site its monograph feel. A single weight (400) is used — no bold headlines, authority comes from size and contrast alone.",
+        "sizes": "18px, 30px, 34px, 35px, 40px",
+        "family": "Portrait",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "DM Serif Display, Playfair Display, or Cormorant Garamond",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Body, UI, badges, buttons, and metadata. Tight 400 for body, 700 for emphasis. The wide letter-spacing at small sizes (0.20–0.25em) is the defining micro-typography move: even 8px labels read as intentional, not afterthoughts.",
+        "sizes": "8px, 10px, 15px, 16px, 18px",
+        "family": "Helvetica Neue",
+        "weight": "400, 700",
+        "lineHeight": "1.15, 1.20, 1.30",
+        "substitute": "Inter, Neue Haas Grotesk, or system-ui sans",
+        "letterSpacing": "0.20em at 10px, 0.25em at 8px"
+      }
+    ],
+    "description": "July Fund is an editorial venture-capital mosaic rendered in a dark, museum-like gallery space. The base is near-black (#000000 and #433e3c warm charcoals), and content is built from individual themed cards — each one a saturated color field acting as a chapter in a visual index. Typography is deliberately split: a high-contrast custom serif (Portrait) sets headlines that feel like gallery wall text, while compact Helvetica Neue runs the labels, metadata, and body copy underneath in a quiet, typewriter-precise voice. The system reads as a printed monograph made interactive — generous padding inside cards, pill-shaped controls, uppercase letter-spaced badges, and zero decorative shadow. Color is not decoration here; it is categorization. Each chromatic card (forest green, twilight violet, olive, solar yellow, ember red) signals a different fund vertical or post type, so the grid itself becomes a navigation system.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/adc127f5-c6ec-4892-984d-5445c2b6104e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"July Fund design system\",\"item\":\"https://styles.refero.design/style/adc127f5-c6ec-4892-984d-5445c2b6104e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/adc127f5-c6ec-4892-984d-5445c2b6104e#style-reference\",\"name\":\"July Fund design system reference\",\"headline\":\"July Fund design system | Refero Styles\",\"description\":\"Explore July Fund's dark Fintech design system: Obsidian #000000, Coffee Bean #433e3c colors, Portrait, Helvetica Neue typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/adc127f5-c6ec-4892-984d-5445c2b6104e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/adc127f5-c6ec-4892-984d-5445c2b6104e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"July Fund\",\"url\":\"https://july.fund\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/adc127f5-c6ec-4892-984d-5445c2b6104e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4542efcf-9a61-4721-8239-0eccdf22a576.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4542efcf-9a61-4721-8239-0eccdf22a576.jpg\",\"caption\":\"Screenshot of July Fund\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4542efcf-9a61-4721-8239-0eccdf22a576.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"July Fund design system\",\"July Fund website design\",\"July Fund colors\",\"July Fund typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Obsidian\",\"Coffee Bean\",\"Cream Paper\",\"Charcoal\",\"Portrait\",\"Helvetica Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"July Fund design system\"},{\"@type\":\"Thing\",\"name\":\"July Fund website design\"},{\"@type\":\"Thing\",\"name\":\"July Fund colors\"},{\"@type\":\"Thing\",\"name\":\"July Fund typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T01:40:13.405Z\",\"dateModified\":\"2026-04-30T01:40:13.405Z\"}]}19:Tad2,## Quick Color Reference\n- text: #433e3c (Coffee Bean) on light cards, #ffffff (Paper White) on dark cards, #898989 (Stone Gray) for muted body\n- background: #000000 (Obsidian) for page canvas, #f0e7e4 (Cream Paper) for hero panel, #2b2b2b (Charcoal) for monochrome cards\n- border: #433e3c (Coffee Bean) hairlines at 1px on dark, #f0e7e4 (Cream Paper) hairlines on light\n- accent: #56d270 (Mint Chip) for news badges, #c6bffa (Lavender Mist) for secondary tags\n- primary action: no distinct CTA color\n- thematic fields (one per card, never combined): #113619 Forest Floor, #322b66 Twilight Violet, #2e2909 Olive Depth, #fde440 Solar Yellow\n\n## Example Component Prompts\n\n1. **Themed Category Card** — Create a card on an Obsidian (#000000) page. Card background: Twilight Violet (#322b66), 20px radius, 40px padding. Mint Chip (#56d270) badge at top: 8px radius, 9px/16px padding, Helvetica Neue 8px weight 700, 0.25em letter-spacing, uppercase, text color #113619. Headline in Portrait 34px, line-height 1.20, color #ffffff. Body in Helvetica Neue 15px, line-height 1.30, color #898989. Bottom: Ghost Pill Button (24px radius, 5/22px padding, 1px #f0e7e4 border, label 'READ MORE' in Helvetica Neue 8px weight 700, 0.25em letter-spacing, #f0e7e4).\n\n2. **Cream Hero Panel** — Full-width panel, background #f0e7e4 (Cream Paper), 20px radius, 40px padding. Center a Mint Chip (#56d270) badge at top center, 8px radius, '2026' label in Helvetica Neue 8px weight 700, 0.25em, color #113619. Below: 'July Fund' wordmark in Portrait 96px, line-height 1.05, color #433e3c, left-aligned. Beneath the wordmark, a two-column row with 45px column gap: left column 'About' in Portrait 30px #433e3c, right column paragraph in Helvetica Neue 15px #898989.\n\n3. **News Article Card** — Card on Obsidian canvas, background #2b2b2b (Charcoal), 20px radius, 40px padding. 12px-radius image tile at top, full inner width. Mint Chip badge below image: 'NEWS', 8px radius, Helvetica Neue 8px weight 700, 0.25em, #113619. Headline in Portrait 30px, #ffffff. Date in Helvetica Neue 8px, 0.25em, #898989. Body excerpt in Helvetica Neue 15px, #898989. Ghost Pill Button at bottom: 'READ MORE', 24px radius, 1px #f0e7e4 border, #f0e7e4 text.\n\n4. **Location Card** — Compact card, background #2b2b2b, 20px radius, 40px padding. Centered line-art sun icon (1.5px stroke, #f0e7e4) at top. City name in Portrait 30px, #ffffff, centered. Weather label in Helvetica Neue 8px weight 700, 0.25em, uppercase, #898989, centered.\n\n5. **Solar Thesis Card** — Loud accent card, background #fde440 (Solar Yellow), 20px radius, 40px padding. Charcoal (#433e3c) badge at top: 'CORE THEME', 8px radius. Headline in Portrait 34px, line-height 1.20, #433e3c. Body paragraph in Helvetica Neue 15px, #433e3c."
+      }
+    ],
+    "elevationPhilosophy": "The system is entirely flat. No box-shadows, no glows, no blurs. Depth is communicated exclusively through chromatic contrast — a Solar Yellow card sitting next to a Forest Floor card next to an Obsidian void creates the sense of layered paper without any rendered shadow. The single visual exception is the occasional radial-gradient wash in empty hero states, which simulates spotlight on a gallery wall rather than a UI drop shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "card",
+            "badge",
+            "body",
+            "link",
+            "footer"
+          ],
+          "frequency": 297,
+          "confidence": 1,
+          "prominence": 96836690.08523482,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "card/color": 6,
+            "link/color": 1,
+            "badge/color": 2,
+            "other/color": 47,
+            "footer/color": 1,
+            "body/borderColor": 8,
+            "card/borderColor": 24,
+            "link/borderColor": 4,
+            "badge/borderColor": 8,
+            "other/borderColor": 188,
+            "footer/borderColor": 4,
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f0e7e4",
+          "oklch": {
+            "c": 0.010622241110602794,
+            "h": 39.437099790424924,
+            "l": 0.9342008621512111
+          },
+          "contexts": [
+            "card",
+            "badge",
+            "other",
+            "heading",
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 597,
+          "confidence": 1,
+          "prominence": 8506927.784045944,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "card/color": 16,
+            "link/color": 9,
+            "badge/color": 8,
+            "other/color": 61,
+            "button/color": 9,
+            "heading/color": 8,
+            "body/borderColor": 32,
+            "card/borderColor": 64,
+            "link/borderColor": 36,
+            "badge/borderColor": 32,
+            "other/borderColor": 244,
+            "button/borderColor": 36,
+            "heading/borderColor": 32,
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#898989",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6300934477406146
+          },
+          "contexts": [
+            "body",
+            "card",
+            "other",
+            "list",
+            "link",
+            "badge"
+          ],
+          "frequency": 265,
+          "confidence": 1,
+          "prominence": 3643726.4568746076,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 16,
+            "card/color": 1,
+            "link/color": 5,
+            "list/color": 21,
+            "badge/color": 1,
+            "other/color": 9,
+            "body/borderColor": 64,
+            "card/borderColor": 4,
+            "link/borderColor": 20,
+            "list/borderColor": 84,
+            "badge/borderColor": 4,
+            "other/borderColor": 36
+          }
+        },
+        {
+          "hex": "#433e3c",
+          "oklch": {
+            "c": 0.007718114787751571,
+            "h": 43.210911769945255,
+            "l": 0.36819428135478166
+          },
+          "contexts": [
+            "other",
+            "card",
+            "badge",
+            "heading",
+            "image",
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 1442,
+          "confidence": 1,
+          "prominence": 3637139.1307836077,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 45,
+            "card/color": 34,
+            "link/color": 17,
+            "other/fill": 6,
+            "badge/color": 17,
+            "image/color": 14,
+            "other/color": 126,
+            "button/color": 17,
+            "heading/color": 17,
+            "body/borderColor": 180,
+            "card/borderColor": 136,
+            "link/borderColor": 68,
+            "badge/borderColor": 68,
+            "image/borderColor": 56,
+            "other/borderColor": 504,
+            "button/borderColor": 68,
+            "heading/borderColor": 68,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "card",
+            "heading",
+            "body",
+            "button",
+            "badge",
+            "link",
+            "image"
+          ],
+          "frequency": 251,
+          "confidence": 1,
+          "prominence": 1964301.476522849,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "card/color": 10,
+            "link/color": 2,
+            "other/fill": 2,
+            "badge/color": 2,
+            "image/color": 1,
+            "other/color": 24,
+            "button/color": 3,
+            "heading/color": 4,
+            "body/borderColor": 12,
+            "card/borderColor": 40,
+            "link/borderColor": 8,
+            "badge/borderColor": 8,
+            "image/borderColor": 4,
+            "other/borderColor": 96,
+            "button/borderColor": 12,
+            "heading/borderColor": 16,
+            "badge/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#113619",
+          "oklch": {
+            "c": 0.06659660221189857,
+            "h": 148.1295509043313,
+            "l": 0.29753815549480395
+          },
+          "contexts": [
+            "badge",
+            "body",
+            "card",
+            "other",
+            "image",
+            "heading"
+          ],
+          "frequency": 286,
+          "confidence": 1,
+          "prominence": 1885015.7323477627,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 25,
+            "card/color": 2,
+            "badge/color": 24,
+            "image/color": 1,
+            "other/color": 4,
+            "heading/color": 1,
+            "body/borderColor": 100,
+            "card/borderColor": 8,
+            "badge/borderColor": 96,
+            "image/borderColor": 4,
+            "other/borderColor": 16,
+            "heading/borderColor": 4,
+            "badge/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2b2b2b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.28908005129278536
+          },
+          "contexts": [
+            "other",
+            "card",
+            "image",
+            "button",
+            "body",
+            "badge",
+            "heading"
+          ],
+          "frequency": 143,
+          "confidence": 1,
+          "prominence": 1630871.1408280684,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "card/color": 3,
+            "badge/color": 1,
+            "image/color": 2,
+            "other/color": 16,
+            "button/color": 2,
+            "heading/color": 2,
+            "body/borderColor": 8,
+            "card/borderColor": 12,
+            "badge/borderColor": 4,
+            "image/borderColor": 8,
+            "other/borderColor": 64,
+            "button/borderColor": 8,
+            "heading/borderColor": 8,
+            "body/backgroundColor": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#322b66",
+          "oklch": {
+            "c": 0.09994195261888468,
+            "h": 284.9377577562925,
+            "l": 0.33118842381348523
+          },
+          "contexts": [
+            "card",
+            "other",
+            "image",
+            "badge",
+            "heading",
+            "body"
+          ],
+          "frequency": 81,
+          "confidence": 1,
+          "prominence": 1589133.6990743363,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "card/color": 2,
+            "badge/color": 4,
+            "image/color": 1,
+            "other/color": 4,
+            "heading/color": 1,
+            "body/borderColor": 16,
+            "card/borderColor": 8,
+            "badge/borderColor": 16,
+            "image/borderColor": 4,
+            "other/borderColor": 16,
+            "heading/borderColor": 4,
+            "badge/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2e2909",
+          "oklch": {
+            "c": 0.04834605703418804,
+            "h": 100.36160974486974,
+            "l": 0.2787821576615946
+          },
+          "contexts": [
+            "card",
+            "other",
+            "image",
+            "badge",
+            "heading",
+            "body"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 1507150.6579587595,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "card/color": 2,
+            "badge/color": 1,
+            "image/color": 1,
+            "other/color": 4,
+            "heading/color": 1,
+            "body/borderColor": 4,
+            "card/borderColor": 8,
+            "badge/borderColor": 4,
+            "image/borderColor": 4,
+            "other/borderColor": 16,
+            "heading/borderColor": 4,
+            "badge/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#56d270",
+          "oklch": {
+            "c": 0.1760288278200475,
+            "h": 147.85496317733418,
+            "l": 0.7709401909667426
+          },
+          "contexts": [
+            "badge",
+            "body"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 20399.158558390132,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "badge/color": 1,
+            "body/borderColor": 4,
+            "badge/borderColor": 4,
+            "badge/backgroundColor": 24
+          }
+        },
+        {
+          "hex": "#c6bffa",
+          "oklch": {
+            "c": 0.08225010472702651,
+            "h": 289.918589509243,
+            "l": 0.8305225954685465
+          },
+          "contexts": [
+            "badge",
+            "body"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 11631.46928688598,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "badge/color": 1,
+            "body/borderColor": 4,
+            "badge/borderColor": 4,
+            "badge/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#fde440",
+          "oklch": {
+            "c": 0.1724974402480868,
+            "h": 100.1937645224623,
+            "l": 0.9128349750893433
+          },
+          "contexts": [
+            "badge",
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 10316.02508677642,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "badge/color": 1,
+            "body/borderColor": 4,
+            "badge/borderColor": 4
+          }
+        },
+        {
+          "hex": "#b9534a",
+          "oklch": {
+            "c": 0.13402315528962458,
+            "h": 27.19354205660194,
+            "l": 0.5694161019646911
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2448,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "badge/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#221f1e",
+          "oklch": {
+            "c": 0.00428057815642601,
+            "h": 43.23665911991231,
+            "l": 0.2416850915303925
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1099,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.04358893107306618,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.26,
+          "background": "#f0e7e4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.37,
+          "background": "#221f1e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.35,
+          "background": "#000000",
+          "foreground": "#fde440"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.61,
+          "background": "#2e2909",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.16,
+          "background": "#2b2b2b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.45,
+          "background": "#221f1e",
+          "foreground": "#f0e7e4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.41,
+          "background": "#113619",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.74,
+          "background": "#221f1e",
+          "foreground": "#fde440"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.55,
+          "background": "#322b66",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.23,
+          "background": "#c6bffa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.01,
+          "background": "#2e2909",
+          "foreground": "#f0e7e4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.63,
+          "background": "#2b2b2b",
+          "foreground": "#f0e7e4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.37,
+          "background": "#2e2909",
+          "foreground": "#fde440"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.02,
+          "background": "#113619",
+          "foreground": "#f0e7e4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.02,
+          "background": "#2b2b2b",
+          "foreground": "#fde440"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.85,
+          "background": "#56d270",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.54,
+          "background": "#ffffff",
+          "foreground": "#433e3c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.44,
+          "background": "#113619",
+          "foreground": "#fde440"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.31,
+          "background": "#322b66",
+          "foreground": "#f0e7e4"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 32
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 27
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "image",
+            "card"
+          ],
+          "frequency": 22
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 60,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "paddingBottom|badge"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "paddingBottom|badge"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "badge",
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|badge",
+            "marginBottom|heading",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 60,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "heading",
+            "card",
+            "image",
+            "body",
+            "button"
+          ],
+          "frequency": 137,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "marginBottom|heading",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|image",
+            "marginBottom|body",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "badge",
+            "button"
+          ],
+          "frequency": 58,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 29,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 29,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|badge"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 78,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 35,
+          "properties": [
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|card",
+            "marginBottom|card",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card",
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 110,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 210,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle at 54.348% 30.4783%, rgb(19, 20, 21) 0%, rgb(7, 27, 55) 100%)",
+        "colors": [
+          "rgb(19, 20, 21)",
+          "rgb(7, 27, 55)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle at 48.9074% 69.9701%, rgb(19, 20, 21) 0%, rgb(7, 27, 55) 100%)",
+        "colors": [
+          "rgb(19, 20, 21)",
+          "rgb(7, 27, 55)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica Neue",
+          "source": "system",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 633,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Portrait",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 51,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "badge",
+            "body"
+          ],
+          "frequency": 61,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.25,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Helvetica Neue",
+          "weight": 700,
+          "contexts": [
+            "badge",
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 180,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.2,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "body"
+          ],
+          "frequency": 70,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "image",
+            "badge",
+            "link",
+            "button",
+            "body",
+            "footer"
+          ],
+          "frequency": 266,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Helvetica Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "body",
+            "link",
+            "badge"
+          ],
+          "frequency": 49,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Portrait",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Portrait",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Portrait",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 41,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Portrait",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Portrait",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/870feb59-a356-4821-801e-a862aaf95fa7.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4542efcf-9a61-4721-8239-0eccdf22a576.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/adc127f5-c6ec-4892-984d-5445c2b6104e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"July Fund design system\",\"item\":\"https://styles.refero.design/style/adc127f5-c6ec-4892-984d-5445c2b6104e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/adc127f5-c6ec-4892-984d-5445c2b6104e#style-reference\",\"name\":\"July Fund design system reference\",\"headline\":\"July Fund design system | Refero Styles\",\"description\":\"Explore July Fund's dark Fintech design system: Obsidian #000000, Coffee Bean #433e3c colors, Portrait, Helvetica Neue typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/adc127f5-c6ec-4892-984d-5445c2b6104e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/adc127f5-c6ec-4892-984d-5445c2b6104e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"July Fund\",\"url\":\"https://july.fund\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/adc127f5-c6ec-4892-984d-5445c2b6104e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4542efcf-9a61-4721-8239-0eccdf22a576.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4542efcf-9a61-4721-8239-0eccdf22a576.jpg\",\"caption\":\"Screenshot of July Fund\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4542efcf-9a61-4721-8239-0eccdf22a576.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"July Fund design system\",\"July Fund website design\",\"July Fund colors\",\"July Fund typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Obsidian\",\"Coffee Bean\",\"Cream Paper\",\"Charcoal\",\"Portrait\",\"Helvetica Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"July Fund design system\"},{\"@type\":\"Thing\",\"name\":\"July Fund website design\"},{\"@type\":\"Thing\",\"name\":\"July Fund colors\"},{\"@type\":\"Thing\",\"name\":\"July Fund typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T01:40:13.405Z\",\"dateModified\":\"2026-04-30T01:40:13.405Z\"}]}19:Tad2,## Quick Color Reference\n- text: #433e3c (Coffee Bean) on light cards, #ffffff (Paper White) on dark cards, #898989 (Stone Gray) for muted body\n- background: #000000 (Obsidian) for page canvas, #f0e7e4 (Cream Paper) for hero panel, #2b2b2b (Charcoal) for monochrome cards\n- border: #433e3c (Coffee Bean) hairlines at 1px on dark, #f0e7e4 (Cream Paper) hairlines on light\n- accent: #56d270 (Mint Chip) for news badges, #c6bffa (Lavender Mist) for secondary tags\n- primary action: no distinct CTA color\n- thematic fields (one per card, never combined): #113619 Forest Floor, #322b66 Twilight Violet, #2e2909 Olive Depth, #fde440 Solar Yellow\n\n## Example Component Prompts\n\n1. **Themed Category Card** — Create a card on an Obsidian (#000000) page. Card background: Twilight Violet (#322b66), 20px radius, 40px padding. Mint Chip (#56d270) badge at top: 8px radius, 9px/16px padding, Helvetica Neue 8px weight 700, 0.25em letter-spacing, uppercase, text color #113619. Headline in Portrait 34px, line-height 1.20, color #ffffff. Body in Helvetica Neue 15px, line-height 1.30, color #898989. Bottom: Ghost Pill Button (24px radius, 5/22px padding, 1px #f0e7e4 border, label 'READ MORE' in Helvetica Neue 8px weight 700, 0.25em letter-spacing, #f0e7e4).\n\n2. **Cream Hero Panel** — Full-width panel, background #f0e7e4 (Cream Paper), 20px radius, 40px padding. Center a Mint Chip (#56d270) badge at top center, 8px radius, '2026' label in Helvetica Neue 8px weight 700, 0.25em, color #113619. Below: 'July Fund' wordmark in Portrait 96px, line-height 1.05, color #433e3c, left-aligned. Beneath the wordmark, a two-column row with 45px column gap: left column 'About' in Portrait 30px #433e3c, right column paragraph in Helvetica Neue 15px #898989.\n\n3. **News Article Card** — Card on Obsidian canvas, background #2b2b2b (Charcoal), 20px radius, 40px padding. 12px-radius image tile at top, full inner width. Mint Chip badge below image: 'NEWS', 8px radius, Helvetica Neue 8px weight 700, 0.25em, #113619. Headline in Portrait 30px, #ffffff. Date in Helvetica Neue 8px, 0.25em, #898989. Body excerpt in Helvetica Neue 15px, #898989. Ghost Pill Button at bottom: 'READ MORE', 24px radius, 1px #f0e7e4 border, #f0e7e4 text.\n\n4. **Location Card** — Compact card, background #2b2b2b, 20px radius, 40px padding. Centered line-art sun icon (1.5px stroke, #f0e7e4) at top. City name in Portrait 30px, #ffffff, centered. Weather label in Helvetica Neue 8px weight 700, 0.25em, uppercase, #898989, centered.\n\n5. **Solar Thesis Card** — Loud accent card, background #fde440 (Solar Yellow), 20px radius, 40px padding. Charcoal (#433e3c) badge at top: 'CORE THEME', 8px radius. Headline in Portrait 34px, line-height 1.20, #433e3c. Body paragraph in Helvetica Neue 15px, #433e3c."
+}

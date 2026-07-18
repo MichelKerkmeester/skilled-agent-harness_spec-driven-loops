@@ -1,0 +1,800 @@
+{
+  "source": "https://styles.refero.design/style/2f0a053b-0596-4212-a4f4-8a7b580acb90",
+  "uuid": "2f0a053b-0596-4212-a4f4-8a7b580acb90",
+  "name": "KeepGrading",
+  "northStar": "Polaroids scattered in a darkroom",
+  "capturedAt": "2026-07-18T07:31:44.772Z",
+  "meta": {
+    "url": "https://www.keepgrading.com",
+    "siteName": "KeepGrading",
+    "extractedAt": "2026-06-03T20:43:23.352Z",
+    "durationMs": 23490,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 121,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #f8f8f8 for all text, borders, and icon strokes on the #080808 canvas — never introduce a chromatic accent for emphasis.",
+      "Set display headlines in Cabinet Grotesk 96px weight 400, line-height 1.0; the single weight at monumental size is the signature.",
+      "Use 9999px border-radius for all buttons, tags, and the nav toggle to maintain the pill/circle-only shape vocabulary.",
+      "Use 160px border-radius for image frames to keep corners soft but distinct from the fully pill-shaped controls.",
+      "Maintain 48px minimum vertical gap between content bands; let whitespace separate sections rather than dividers or shadows.",
+      "Keep all UI chrome at weight 400 across both Cabinet Grotesk and Inter; hierarchy comes from size, not weight.",
+      "Position image frames as scattered floating elements with varying offsets and sizes rather than aligning them to a strict grid."
+    ],
+    "donts": [
+      "Do not introduce any chromatic brand color, accent, or gradient — the monochrome void is the brand.",
+      "Do not add drop shadows, glows, or any elevation effects — depth comes from layering and contrast alone.",
+      "Do not use bold (600+) or semibold weights for emphasis; switch size or color instead.",
+      "Do not use sharp corners (0–8px radius) on any visible element — all surfaces must be pill-rounded or softly curved.",
+      "Do not apply background fills to buttons; the ghost outlined style is the only button treatment.",
+      "Do not constrain the page to a max-width column; the full-bleed black canvas is essential to the darkroom feel.",
+      "Do not add icons, badges, or decorative graphics to the UI chrome — type, borders, and photographs are the only visual elements."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#f8f8f8",
+        "name": "Studio White",
+        "role": "Primary text, ghost-button borders, image-frame outlines, nav icon strokes — the single light voice in a dark room",
+        "group": "neutral"
+      },
+      {
+        "hex": "#080808",
+        "name": "Void Black",
+        "role": "Page canvas, behind-everything background, image frame fills between photographs",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "SVG icon fills, deepest surface layer for inline graphics and decorative marks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0f0f0",
+        "name": "Bone White",
+        "role": "Soft secondary text and supporting hairline strokes when pure white feels too clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2a2a2a",
+        "name": "Pewter Border",
+        "role": "Low-contrast dividers and inactive frame edges that recede against the void",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with no max-width constraint; content extends to viewport edges. The hero is the page itself — there is no centered headline or CTA block. Instead, a large wordmark logo sits in the top-left corner (potentially cropping past the viewport), a circular nav toggle in the top-right, and the rest of the viewport is populated by scattered image frames at varying positions and sizes. A single ghost pill button (‘Show me more’) appears centered in the lower portion. Navigation is minimal — a top bar with logo and hamburger only, no horizontal menu. Content flows as a vertical scroll through more scattered image clusters separated by 48px gaps. There is no traditional section structure; the page reads as one continuous darkroom surface with photographs pinned to it at editorial offsets.",
+    "imagery": "Photography is the primary visual content. Large full-color photographs of people, vehicles, and lifestyle scenes are presented as floating frames scattered across a black canvas at varying scales and positions. Treatment is documentary/candid rather than staged commercial — poolside social moments, a blue sedan on a coastal road, interior lifestyle scenes. Frames are tightly cropped with 1px white borders and 160px corner radius; no captions or text overlays on the images themselves. The layout reads as a photo-editorial spread rather than a product gallery — images are positioned off-grid, partially overlapping the viewport edges, and at different sizes to create visual rhythm across the page.",
+    "similar": [
+      {
+        "why": "Same darkroom full-bleed canvas with scattered image frames and minimal monochrome type treatment",
+        "business": "Vincent Moschetti portfolio sites"
+      },
+      {
+        "why": "Editorial photo-first layout with floating frames on black void and single-weight display typography",
+        "business": "Studio Bruch"
+      },
+      {
+        "why": "Large-scale custom display type on near-black canvas with photography as the only chromatic content",
+        "business": "Forma editorial"
+      },
+      {
+        "why": "Wordmark-dominant top-left branding with circular nav toggle and minimal chrome around showcased work",
+        "business": "Pentagram case studies"
+      },
+      {
+        "why": "Full-bleed dark surfaces with scattered editorial imagery and ghost pill controls",
+        "business": "Locomotive Mtl"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "9999px",
+        "cards": "160px",
+        "buttons": "9999px"
+      },
+      "elementGap": "15px",
+      "sectionGap": "48px",
+      "cardPadding": "24px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#080808",
+        "name": "Void Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background; the base layer everything floats on"
+      },
+      {
+        "hex": "#061c32",
+        "name": "Deep Surface",
+        "level": 1,
+        "purpose": "Rarely surfaced dark-navy panel for content that needs slight lift from the void (detected in contrast pairs)"
+      },
+      {
+        "hex": "#1d2d44",
+        "name": "Mid Surface",
+        "level": 2,
+        "purpose": "Elevated card or modal surface for layered content blocks"
+      }
+    ],
+    "northStar": "Polaroids scattered in a darkroom",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-lg",
+        "size": 24,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "display",
+        "size": 96,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Pill Button",
+        "role": "Primary navigation/action control",
+        "description": "Outlined pill with 1px solid #f8f8f8 border, 9999px border-radius, transparent fill revealing the dark canvas behind. Label in Inter 16px weight 400, #f8f8f8. Internal padding 12px 24px. Trailing arrow icon in #f8f8f8 stroke 1px. No fill state, no hover glow — the button communicates interactivity purely through its outline."
+      },
+      {
+        "name": "Circular Nav Toggle",
+        "role": "Menu trigger in top-right corner",
+        "description": "160px diameter circle with 1px solid #f8f8f8 border, transparent fill. Centered minus or hamburger glyph in #f8f8f8 at 1px stroke. Sits flush with the canvas edge with no background or shadow."
+      },
+      {
+        "name": "Wordmark Logo",
+        "role": "Brand identity in top-left",
+        "description": "‘KEEPGRADING’ set in Cabinet Grotesk 96px / 1.0 line-height, weight 400, #f8f8f8. Tight horizontal kerning; the wordmark may visually crop or extend past the viewport edge to create editorial tension. No tagline, no symbol — type alone carries the brand."
+      },
+      {
+        "name": "Floating Image Frame",
+        "role": "Photo card scattered across the canvas",
+        "description": "Photograph wrapped in 1px solid #f8f8f8 border, border-radius 160px (very soft corners, not quite a circle). No fill, no shadow, no padding — the image sits directly inside the border edge. Multiple frames positioned at varying offsets and sizes across the viewport; the scattered placement is the layout pattern, not a grid."
+      },
+      {
+        "name": "Canvas Layer",
+        "role": "Base surface for the entire page",
+        "description": "Solid #080808 fill covering the full viewport. No texture, no gradient, no noise. All other elements — text, frames, controls — float on this surface with 48px vertical breathing room between bands."
+      },
+      {
+        "name": "Section Spacer",
+        "role": "Vertical rhythm between content bands",
+        "description": "Empty 48px vertical gap in #080808 canvas between content clusters. No visible divider line; separation is achieved through whitespace alone, maintaining the dark-room atmosphere."
+      },
+      {
+        "name": "Nav Label",
+        "role": "Secondary navigation text",
+        "description": "Cabinet Grotesk 16px weight 400, #f8f8f8, paired with the circular nav toggle. All-caps treatment with generous letter-spacing for editorial pacing."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Brand display and logo wordmark — the 96px headline weight 400 is anti-convention; no bold, no display tricks, just a single weight carried to monumental size that feels confident through restraint. Also used at 24px for short subheadings and 16px for nav labels. This custom typeface carries the entire brand identity.",
+        "sizes": "16px, 20px, 24px, 96px",
+        "family": "Cabinet Grotesk",
+        "weight": "400",
+        "lineHeight": "1.0–1.5",
+        "substitute": "General Sans, Migra, Söhne"
+      },
+      {
+        "role": "Body text and supporting copy at 16px and 20px, both at weight 400 — no bold variant in use, the system keeps a single weight even for emphasis, letting size and color do the hierarchy work",
+        "sizes": "16px, 20px",
+        "family": "Inter",
+        "weight": "400",
+        "lineHeight": "1.4–1.5",
+        "substitute": "system-ui, -apple-system, Helvetica Neue"
+      }
+    ],
+    "description": "KeepGrading is a black-room editorial portfolio: a near-total monochrome canvas where photographs float as scattered frames in deep void. The UI is deliberately quiet so imagery does the talking — only the Cabinet Grotesk display type, white hairline borders, and one pill-shaped ghost control surface as interface elements. No chromatic accents, no gradients, no shadows; the entire visual hierarchy is carried by contrast, scale, and whitespace between photographs. Density is comfortable but vertical rhythm is loose, with 48px breathing room between bands and frames held in place by a single 1px white border. Components are skeletal — a circular nav toggle, a wordmark logo, floating image cards with soft 160px corners, and pill buttons with 9999px radius — letting the photography dominate the experience.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2f0a053b-0596-4212-a4f4-8a7b580acb90#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"KeepGrading design system\",\"item\":\"https://styles.refero.design/style/2f0a053b-0596-4212-a4f4-8a7b580acb90\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2f0a053b-0596-4212-a4f4-8a7b580acb90#style-reference\",\"name\":\"KeepGrading design system reference\",\"headline\":\"KeepGrading design system | Refero Styles\",\"description\":\"Explore KeepGrading's dark Agency design system: Studio White #f8f8f8, Void Black #080808 colors, Cabinet Grotesk, Inter typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/2f0a053b-0596-4212-a4f4-8a7b580acb90\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2f0a053b-0596-4212-a4f4-8a7b580acb90\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"KeepGrading\",\"url\":\"https://www.keepgrading.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2f0a053b-0596-4212-a4f4-8a7b580acb90#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0a98a634-9b8f-495c-8c83-09ee347d0858.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0a98a634-9b8f-495c-8c83-09ee347d0858.jpg\",\"caption\":\"Screenshot of KeepGrading\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0a98a634-9b8f-495c-8c83-09ee347d0858.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"KeepGrading design system\",\"KeepGrading website design\",\"KeepGrading colors\",\"KeepGrading typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Studio White\",\"Void Black\",\"Pure Black\",\"Bone White\",\"Cabinet Grotesk\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"KeepGrading design system\"},{\"@type\":\"Thing\",\"name\":\"KeepGrading website design\"},{\"@type\":\"Thing\",\"name\":\"KeepGrading colors\"},{\"@type\":\"Thing\",\"name\":\"KeepGrading typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:09:47.925Z\",\"dateModified\":\"2026-04-30T02:09:47.925Z\"}]}19:T541,Quick Color Reference:\n- text: #f8f8f8\n- background: #080808\n- border: #f8f8f8 (1px)\n- muted border: #2a2a2a\n- accent: none (monochrome system)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Create a hero section: full-bleed #080808 canvas. Top-left wordmark ‘KEEPGRADING’ in Cabinet Grotesk 96px weight 400, #f8f8f8, line-height 1.0, allowed to crop at viewport edge. Top-right circular nav button: 160px diameter, 1px solid #f8f8f8 border, transparent fill, centered hamburger glyph in #f8f8f8 1px stroke.\n2. Create a floating image card: photograph with 1px solid #f8f8f8 border, border-radius 160px, no fill, no shadow, no padding — image fills the frame edge to edge. Position at non-grid offset on the canvas.\n3. Create a ghost pill button: transparent background, 1px solid #f8f8f8 border, 9999px border-radius, padding 12px 24px. Label in Inter 16px weight 400 #f8f8f8, followed by a right-arrow stroke icon in #f8f8f8 1px.\n4. Create a scattered photo grid: 3–5 image frames at varying sizes (300px–600px wide), positioned with editorial offsets (not aligned to a grid), separated by at least 48px vertical gap, each with 160px corner radius and 1px #f8f8f8 border, on #080808 canvas.\n5. Create a section spacer: 48px tall empty #080808 band between content clusters, no visible divider line, no shadow."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. No glows. No drop-shadow effects on any element. Depth and separation are achieved exclusively through 1px #f8f8f8 borders, vertical whitespace (48px gaps), and z-ordering of scattered image frames. The darkroom metaphor demands that nothing cast a shadow — the void is flat and infinite."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f8f8f8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9791293560100793
+          },
+          "contexts": [
+            "other",
+            "image",
+            "nav",
+            "link"
+          ],
+          "frequency": 369,
+          "confidence": 1,
+          "prominence": 22451951.275826175,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "link/color": 7,
+            "image/color": 8,
+            "other/color": 50,
+            "nav/borderColor": 32,
+            "link/borderColor": 28,
+            "image/borderColor": 32,
+            "other/borderColor": 200,
+            "nav/backgroundColor": 2,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#080808",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.13440923139492972
+          },
+          "contexts": [
+            "other",
+            "image",
+            "icon",
+            "list",
+            "link"
+          ],
+          "frequency": 154,
+          "confidence": 1,
+          "prominence": 19148503.836116157,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/color": 3,
+            "link/color": 6,
+            "list/color": 1,
+            "other/color": 20,
+            "icon/borderColor": 12,
+            "link/borderColor": 24,
+            "list/borderColor": 4,
+            "other/borderColor": 80,
+            "image/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "nav"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 2550638.2452248204,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "icon/fill": 6,
+            "other/fill": 21
+          }
+        },
+        {
+          "hex": "#1c6d8a",
+          "oklch": {
+            "c": 0.08703690033338238,
+            "h": 227.12464884573652,
+            "l": 0.5012110493056797
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 140850,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#693619",
+          "oklch": {
+            "c": 0.08362474765301561,
+            "h": 48.163354647650245,
+            "l": 0.39265491784252593
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 133724.87114834465,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#1c4369",
+          "oklch": {
+            "c": 0.07895786559569964,
+            "h": 250.23601537998155,
+            "l": 0.37465502523392774
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 116458,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#026946",
+          "oklch": {
+            "c": 0.10083750579326642,
+            "h": 161.65919752928323,
+            "l": 0.4604709167012097
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 109195,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1d2d44",
+          "oklch": {
+            "c": 0.04739051681486471,
+            "h": 257.4448464164615,
+            "l": 0.2947467592035904
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 90496,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#061c32",
+          "oklch": {
+            "c": 0.05147847227078195,
+            "h": 250.82014077953863,
+            "l": 0.2222316864561209
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 52263,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8ed6ff",
+          "oklch": {
+            "c": 0.09202088966569517,
+            "h": 234.36464295910395,
+            "l": 0.843387623244807
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 10
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.006890278107022182,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.77,
+          "background": "#f8f8f8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.86,
+          "background": "#080808",
+          "foreground": "#f8f8f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.21,
+          "background": "#061c32",
+          "foreground": "#f8f8f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.21,
+          "background": "#8ed6ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.09,
+          "background": "#1d2d44",
+          "foreground": "#f8f8f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.6,
+          "background": "#8ed6ff",
+          "foreground": "#080808"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.83,
+          "background": "#8ed6ff",
+          "foreground": "#061c32"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.62,
+          "background": "#1c4369",
+          "foreground": "#f8f8f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.23,
+          "background": "#693619",
+          "foreground": "#f8f8f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.74,
+          "background": "#8ed6ff",
+          "foreground": "#1d2d44"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.43,
+          "background": "#8ed6ff",
+          "foreground": "#1c4369"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.35,
+          "background": "#026946",
+          "foreground": "#f8f8f8"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.17,
+          "background": "#8ed6ff",
+          "foreground": "#693619"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.49,
+          "background": "#1c6d8a",
+          "foreground": "#f8f8f8"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.25,
+          "background": "#8ed6ff",
+          "foreground": "#026946"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.44,
+          "background": "#1c6d8a",
+          "foreground": "#080808"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.97,
+          "background": "#026946",
+          "foreground": "#080808"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.04,
+          "background": "#693619",
+          "foreground": "#080808"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.96,
+          "background": "#1c4369",
+          "foreground": "#080808"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.5,
+          "background": "#8ed6ff",
+          "foreground": "#f8f8f8"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|nav"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 89,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Cabinet Grotesk",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 14,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "icon",
+            "nav",
+            "link"
+          ],
+          "frequency": 73,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 16,
+          "family": "Cabinet Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Cabinet Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Cabinet Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 96,
+          "family": "Cabinet Grotesk",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "other",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1005f133-10b7-4be8-88bb-60de98d588a5.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/0a98a634-9b8f-495c-8c83-09ee347d0858.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2f0a053b-0596-4212-a4f4-8a7b580acb90#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"KeepGrading design system\",\"item\":\"https://styles.refero.design/style/2f0a053b-0596-4212-a4f4-8a7b580acb90\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2f0a053b-0596-4212-a4f4-8a7b580acb90#style-reference\",\"name\":\"KeepGrading design system reference\",\"headline\":\"KeepGrading design system | Refero Styles\",\"description\":\"Explore KeepGrading's dark Agency design system: Studio White #f8f8f8, Void Black #080808 colors, Cabinet Grotesk, Inter typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/2f0a053b-0596-4212-a4f4-8a7b580acb90\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2f0a053b-0596-4212-a4f4-8a7b580acb90\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"KeepGrading\",\"url\":\"https://www.keepgrading.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2f0a053b-0596-4212-a4f4-8a7b580acb90#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0a98a634-9b8f-495c-8c83-09ee347d0858.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0a98a634-9b8f-495c-8c83-09ee347d0858.jpg\",\"caption\":\"Screenshot of KeepGrading\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0a98a634-9b8f-495c-8c83-09ee347d0858.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"KeepGrading design system\",\"KeepGrading website design\",\"KeepGrading colors\",\"KeepGrading typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Studio White\",\"Void Black\",\"Pure Black\",\"Bone White\",\"Cabinet Grotesk\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"KeepGrading design system\"},{\"@type\":\"Thing\",\"name\":\"KeepGrading website design\"},{\"@type\":\"Thing\",\"name\":\"KeepGrading colors\"},{\"@type\":\"Thing\",\"name\":\"KeepGrading typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:09:47.925Z\",\"dateModified\":\"2026-04-30T02:09:47.925Z\"}]}19:T541,Quick Color Reference:\n- text: #f8f8f8\n- background: #080808\n- border: #f8f8f8 (1px)\n- muted border: #2a2a2a\n- accent: none (monochrome system)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Create a hero section: full-bleed #080808 canvas. Top-left wordmark ‘KEEPGRADING’ in Cabinet Grotesk 96px weight 400, #f8f8f8, line-height 1.0, allowed to crop at viewport edge. Top-right circular nav button: 160px diameter, 1px solid #f8f8f8 border, transparent fill, centered hamburger glyph in #f8f8f8 1px stroke.\n2. Create a floating image card: photograph with 1px solid #f8f8f8 border, border-radius 160px, no fill, no shadow, no padding — image fills the frame edge to edge. Position at non-grid offset on the canvas.\n3. Create a ghost pill button: transparent background, 1px solid #f8f8f8 border, 9999px border-radius, padding 12px 24px. Label in Inter 16px weight 400 #f8f8f8, followed by a right-arrow stroke icon in #f8f8f8 1px.\n4. Create a scattered photo grid: 3–5 image frames at varying sizes (300px–600px wide), positioned with editorial offsets (not aligned to a grid), separated by at least 48px vertical gap, each with 160px corner radius and 1px #f8f8f8 border, on #080808 canvas.\n5. Create a section spacer: 48px tall empty #080808 band between content clusters, no visible divider line, no shadow."
+}

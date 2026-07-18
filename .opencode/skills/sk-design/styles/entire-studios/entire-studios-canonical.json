@@ -1,0 +1,392 @@
+{
+  "source": "https://styles.refero.design/style/cef25151-078c-4631-8f02-4f204f071b8b",
+  "uuid": "cef25151-078c-4631-8f02-4f204f071b8b",
+  "name": "entire studios",
+  "northStar": "Concrete-walled fashion zine — an editorial runway printed on warm cream paper, where photography is the only luxury.",
+  "capturedAt": "2026-07-18T08:28:30.387Z",
+  "meta": {
+    "url": "https://entirestudios.com",
+    "siteName": "entire studios",
+    "extractedAt": "2026-06-03T17:03:33.246Z",
+    "durationMs": 19533,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 97,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #e7ecea for the page canvas — never substitute cold grays (#f5f5f5, #fafafa) that would make the system feel like a SaaS template.",
+      "Use only Space Mono at weight 400, at 12px or 16px — no bold variants, no italic, no second typeface, no size outside this two-step scale.",
+      "Let imagery run edge-to-edge at 0px radius — full-bleed plates are the primary content surface, not framed cards.",
+      "Keep all padding values drawn from the 6px base: 6, 12, 16, 18, 20 — never introduce 24, 32, 40px, which would break the compact rhythm.",
+      "Place the announcement bar above the nav as permanent black chrome (#000000 bg, #ffffff text), not as a dismissible cookie-style banner.",
+      "For the co-brand lockup, pair the Adidas mark with 'entire studios' at 16px Space Mono separated by a 1px vertical hairline — never enclose them in a card or plate.",
+      "Switch text color between #000000 and #ffffff based on the underlying surface luminance, not based on a theme toggle — the site is one continuous warm-light world with reverse text over photography."
+    ],
+    "donts": [
+      "Do not introduce any chromatic color — no red, no blue, no green, no accent system. The 0% colorfulness is the identity.",
+      "Do not add a type scale beyond 12px and 16px — no 18px, 24px, 48px headlines, no display sizes. Hierarchy is spatial, not typographic.",
+      "Do not use border-radius on cards, buttons, images, or tags — every edge is a sharp 0px. Curves would betray the editorial/zine intent.",
+      "Do not add shadows, gradients, or glow effects. Elevation is achieved by switching to a full-bleed image, not by drop-shadow.",
+      "Do not wrap imagery in rounded cards, decorative frames, or background plates — the photograph sits naked on the bone canvas.",
+      "Do not use bold or semibold weights; Space Mono 400 is the only weight. Emphasis comes from uppercase + 12px caption treatment, not from weight.",
+      "Do not introduce a secondary font for body text or headings — Space Mono is the system voice; pairing it with a humanist sans would dilute the technical-editorial tone."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e7ecea",
+        "name": "Bone",
+        "role": "Page canvas, card surfaces, image gutters — warm off-white that reads as heavy cream paper or raw plaster, not digital gray",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Reverse text on dark announcement bar, reverse logo overlays on photography",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is a full-bleed editorial sequence rather than a standard e-commerce grid. The hero is a single full-viewport-width image with no max-width container — photography breaks past any 1200px limit. Navigation is a three-zone overlay floating on the hero (left link, centered wordmark, right utilities) with no background. Content sections below follow the same 100vw width, separated only by the bone canvas and image cuts, not by cards or boxed modules. The rhythm is: black announcement bar → transparent nav → 100vw hero image → likely additional 100vw image plates or text strips on bone canvas. Density is sparse and image-dominant; the design breathes through large photographic areas, not through whitespace within structured components.",
+    "imagery": "Full-bleed editorial fashion photography is the sole visual medium. Images are tightly cropped, often showing two figures in athletic/contemporary poses against textured concrete or plaster walls. Treatment is raw and naturalistic — no filters, no duotones, no overlays. Imagery fills 100vw edge-to-edge with no border-radius, no frame, and no surrounding UI chrome. The photograph carries all mood; the bone canvas and Space Mono labels sit quietly around it. Iconography is absent — no UI icons, only the Adidas three-stripe performance logo as the only mark besides the wordmark.",
+    "similar": [
+      {
+        "why": "Same restraint-by-omission approach — near-zero UI chrome, full-bleed photography, and a single serif/sans voice carrying all hierarchy",
+        "business": "Aesop"
+      },
+      {
+        "why": "Editorial fashion grid with full-bleed imagery, minimal navigation, and monochrome canvas replacing typical e-commerce templates",
+        "business": "COS (cosstores.com)"
+      },
+      {
+        "why": "Extreme typographic minimalism and full-viewport editorial imagery over a near-white canvas",
+        "business": "ssense"
+      },
+      {
+        "why": "Warm off-white canvas, single-weight sans/mono voice, and brutalist product presentation without cards or decorative frames",
+        "business": "Our Legacy"
+      },
+      {
+        "why": "Adidas-affiliated sub-brand co-marketing treatment with the three-stripe mark paired against a fashion-editorial wordmark, shared by the current site",
+        "business": "Adidas Confirmed / Y-3"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "",
+      "cardPadding": "6px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#e7ecea",
+        "name": "Bone Canvas",
+        "level": 1,
+        "purpose": "Full-page base — everything sits on this warm off-white"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Band",
+        "level": 2,
+        "purpose": "Announcement bar and any reverse-mode surfaces"
+      }
+    ],
+    "northStar": "Concrete-walled fashion zine — an editorial runway printed on warm cream paper, where photography is the only luxury.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page promotional strip",
+        "description": "Full-width black (#000000) band, 12px Space Mono 400, white (#ffffff) text, centered, 6px vertical padding. Carries launch news ('adidas x entire studios drop 2 - online now'). No background image, no close button — it is permanent chrome."
+      },
+      {
+        "name": "Primary Navigation",
+        "role": "Site header overlaying the hero image",
+        "description": "Three-zone horizontal layout with no visible background: left edge holds a single 12px Space Mono link ('shop'); center holds the 16px Space Mono wordmark 'entire studios'; right edge holds utility links ('search', 'info', 'eur', 'bag (0)') at 12px. Text color is #ffffff over the dark hero, switching to #000000 on light sections. Zero padding between zones — gaps are managed by the page edges and the monospaced character widths."
+      },
+      {
+        "name": "Hero Image Plate",
+        "role": "Full-bleed editorial photography",
+        "description": "Edge-to-edge photograph at 100vw, no border-radius, no overlay tint. Aspect ratio roughly 3:2, filling the viewport below the nav. Imagery is the design — no captioning, no cards, no decorative chrome around it."
+      },
+      {
+        "name": "Brand Overlay Lockup",
+        "role": "Co-branded mark on hero imagery",
+        "description": "Centered, mid-image. Left half: Adidas three-stripe performance logo (white #ffffff), approximately 60px tall. Vertical hairline divider (1px #ffffff) separates it from the right half: 'entire studios' wordmark at 16px Space Mono 400, #ffffff. No background plate, no shadow — the lockup sits directly on the photograph."
+      },
+      {
+        "name": "Image Caption Tag",
+        "role": "Tiny editorial label on hero",
+        "description": "Top-right corner of the hero image, 12px Space Mono 400, #ffffff, fully uppercase ('ADIDAS x ENTIRE STUDIOS'). 16px from the top and right edges. Acts as a credit line, not a CTA."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline and navigation links",
+        "description": "12px Space Mono 400, #000000 on light surfaces, #ffffff on dark/photo. No underline, no hover color shift visible in data — the monospaced kerning carries the typographic weight. 6px horizontal padding when used as a clickable utility."
+      },
+      {
+        "name": "Button (filled black)",
+        "role": "Primary action",
+        "description": "#000000 background, #ffffff text, 12px Space Mono 400, 6px vertical / 12px horizontal padding, 0px radius. Inverts to #ffffff bg / #000000 text on hover if state is needed. No shadow, no gradient — a flat black rectangle that reads as utilitarian rather than decorative."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Implicit or hairline separation between content blocks",
+        "description": "No decorative divider is used — sections flow into each other through full-bleed imagery and the bone canvas. If a line is needed, it is 1px solid #000000, full container width, no padding around it."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface for nav, links, body, labels, and logo lockup. Monospace at weight 400 — the only font — creates a technical, editorial voice; the rigid monospaced rhythm signals fashion-zine rather than commerce.",
+        "sizes": "12px, 16px",
+        "family": "Space Mono",
+        "weight": "400",
+        "lineHeight": "1.33–1.50",
+        "substitute": "JetBrains Mono, IBM Plex Mono, DM Mono",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "A brutally reductive editorial fashion system: two colors (warm off-white canvas, pure black ink), one monospaced voice, compact spacing, and full-bleed photography that does every emotional job. The warm off-white #e7ecea replaces cold SaaS gray, giving every surface a paper-like, gallery-wall warmth rather than digital sterility. Space Mono at 12–16px and weight 400 refuses typographic hierarchy — distinction comes from position, whitespace, and the sheer scale of a single image, not from a type scale. Components are stripped to their skeleton: announcement bars, centered wordmarks, hairline-adjacent text links, and logo overlays that float over photography without chrome. The system reads like a fashion zine printed on heavy cream stock, not a typical e-commerce template.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cef25151-078c-4631-8f02-4f204f071b8b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"entire studios design system\",\"item\":\"https://styles.refero.design/style/cef25151-078c-4631-8f02-4f204f071b8b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cef25151-078c-4631-8f02-4f204f071b8b#style-reference\",\"name\":\"entire studios design system reference\",\"headline\":\"entire studios design system | Refero Styles\",\"description\":\"Explore entire studios's light E-commerce design system: Bone #e7ecea, Ink #000000 colors, Space Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/cef25151-078c-4631-8f02-4f204f071b8b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cef25151-078c-4631-8f02-4f204f071b8b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"entire studios\",\"url\":\"https://entirestudios.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cef25151-078c-4631-8f02-4f204f071b8b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d36ad893-b667-4763-86c3-d35d2fa21406.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d36ad893-b667-4763-86c3-d35d2fa21406.jpg\",\"caption\":\"Screenshot of entire studios\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d36ad893-b667-4763-86c3-d35d2fa21406.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"entire studios design system\",\"entire studios website design\",\"entire studios colors\",\"entire studios typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone\",\"Ink\",\"Paper White\",\"Space Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"entire studios design system\"},{\"@type\":\"Thing\",\"name\":\"entire studios website design\"},{\"@type\":\"Thing\",\"name\":\"entire studios colors\"},{\"@type\":\"Thing\",\"name\":\"entire studios typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-02-17T16:22:48.000Z\",\"dateModified\":\"2026-02-17T16:22:48.000Z\"}]}19:T452,**Quick Color Reference**\n- Canvas: #e7ecea\n- Text / dark surfaces: #000000\n- Reverse text: #ffffff\n- Borders: 1px #000000 (hairlines only)\n- Accent: none (system is fully achromatic)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. *Announcement bar:* Full-width #000000 band, 12px Space Mono 400, #ffffff text, centered, 6px padding top and bottom. No close button.\n2. *Primary nav:* Three-zone horizontal row over a full-bleed photo. Left edge: 'shop' at 12px Space Mono 400 #ffffff. Center: 'entire studios' at 16px Space Mono 400 #ffffff. Right edge: 'search | info | eur | bag (0)' at 12px Space Mono 400 #ffffff, separated by spaces. No background, no border.\n3. *Hero image plate:* Edge-to-edge photograph at 100vw, 0px radius, no border, no overlay. Below the nav.\n4. *Co-brand lockup:* Centered on the hero. Left: Adidas three-stripe logo in #ffffff, ~60px tall. 1px vertical #ffffff hairline divider. Right: 'entire studios' at 16px Space Mono 400 #ffffff.\n5. *Image caption tag:* Top-right of hero, 16px from top and right edges, 12px Space Mono 400 #ffffff, uppercase."
+      }
+    ],
+    "elevationPhilosophy": "The system has no shadow vocabulary — elevation is expressed through full-bleed photography replacing flat surfaces, and through the black announcement bar as the only dark inversion of the bone canvas. Zero box-shadows are used; every surface is a flat plane."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 278,
+          "confidence": 1,
+          "prominence": 10528861.220130626,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e7ecea",
+          "oklch": {
+            "c": 0.005961141866216328,
+            "h": 170.44109862197894,
+            "l": 0.9387191190704571
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 524571.588866205,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0.00004979863382744551,
+            "h": 23.78842605119702,
+            "l": 0.999994
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 4564.692002076929,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0016532929399391664,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.58,
+          "background": "#e7ecea",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.19,
+          "background": "#ffffff",
+          "foreground": "#e7ecea"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Space Mono",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 57,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 12,
+          "family": "Space Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Space Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "image"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7239c662-3857-4bca-b6a0-ac857c7b2d41.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d36ad893-b667-4763-86c3-d35d2fa21406.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cef25151-078c-4631-8f02-4f204f071b8b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"entire studios design system\",\"item\":\"https://styles.refero.design/style/cef25151-078c-4631-8f02-4f204f071b8b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cef25151-078c-4631-8f02-4f204f071b8b#style-reference\",\"name\":\"entire studios design system reference\",\"headline\":\"entire studios design system | Refero Styles\",\"description\":\"Explore entire studios's light E-commerce design system: Bone #e7ecea, Ink #000000 colors, Space Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/cef25151-078c-4631-8f02-4f204f071b8b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cef25151-078c-4631-8f02-4f204f071b8b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"entire studios\",\"url\":\"https://entirestudios.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cef25151-078c-4631-8f02-4f204f071b8b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d36ad893-b667-4763-86c3-d35d2fa21406.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d36ad893-b667-4763-86c3-d35d2fa21406.jpg\",\"caption\":\"Screenshot of entire studios\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d36ad893-b667-4763-86c3-d35d2fa21406.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"entire studios design system\",\"entire studios website design\",\"entire studios colors\",\"entire studios typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone\",\"Ink\",\"Paper White\",\"Space Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"entire studios design system\"},{\"@type\":\"Thing\",\"name\":\"entire studios website design\"},{\"@type\":\"Thing\",\"name\":\"entire studios colors\"},{\"@type\":\"Thing\",\"name\":\"entire studios typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-02-17T16:22:48.000Z\",\"dateModified\":\"2026-02-17T16:22:48.000Z\"}]}19:T452,**Quick Color Reference**\n- Canvas: #e7ecea\n- Text / dark surfaces: #000000\n- Reverse text: #ffffff\n- Borders: 1px #000000 (hairlines only)\n- Accent: none (system is fully achromatic)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. *Announcement bar:* Full-width #000000 band, 12px Space Mono 400, #ffffff text, centered, 6px padding top and bottom. No close button.\n2. *Primary nav:* Three-zone horizontal row over a full-bleed photo. Left edge: 'shop' at 12px Space Mono 400 #ffffff. Center: 'entire studios' at 16px Space Mono 400 #ffffff. Right edge: 'search | info | eur | bag (0)' at 12px Space Mono 400 #ffffff, separated by spaces. No background, no border.\n3. *Hero image plate:* Edge-to-edge photograph at 100vw, 0px radius, no border, no overlay. Below the nav.\n4. *Co-brand lockup:* Centered on the hero. Left: Adidas three-stripe logo in #ffffff, ~60px tall. 1px vertical #ffffff hairline divider. Right: 'entire studios' at 16px Space Mono 400 #ffffff.\n5. *Image caption tag:* Top-right of hero, 16px from top and right edges, 12px Space Mono 400 #ffffff, uppercase."
+}

@@ -1,0 +1,1365 @@
+{
+  "source": "https://styles.refero.design/style/227ff379-9b46-44fc-8ff1-37e0472239a6",
+  "uuid": "227ff379-9b46-44fc-8ff1-37e0472239a6",
+  "name": "Altius",
+  "northStar": "Molten embers on obsidian. A blockchain command center lit from within by coral fire, where dark surfaces breathe warm light through hairline gaps and inset glows.",
+  "capturedAt": "2026-07-18T08:49:15.951Z",
+  "meta": {
+    "url": "https://www.altiuslabs.xyz",
+    "siteName": "Altius",
+    "extractedAt": "2026-06-03T21:39:22.697Z",
+    "durationMs": 37738,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 931,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Obsidian Ember (#190501) as the default canvas for all primary content sections",
+      "Apply 60px Matter weight 700 with -2.58px letter-spacing for display headlines",
+      "Use the Flare Orange (#fa5838) sparingly as functional punctuation — links, accents, single highlight elements per section",
+      "Include the 20px inset ember-glow shadow (rgb(99,19,3)) on all filled primary buttons",
+      "Alternate between dark and Vapor Peach (#feeae6) sections to create thermal rhythm across the page",
+      "Set all buttons to 4px radius and cards to 8px radius — sharp enough to feel technical, soft enough to feel crafted",
+      "Use Fabrikatmono 14px uppercase in Flare Orange for all section tags and technical labels"
+    ],
+    "donts": [
+      "Don't add drop shadows to cards or panels — the system uses hairline borders and surface differentiation only",
+      "Don't use blue or cool tones — the entire palette is warm, from Vapor Peach through Molten Core",
+      "Don't create filled buttons with Flare Orange (#fa5838) background — Flare Orange is for accents, not button fills",
+      "Don't use display sizes below 48px or above 60px — the type scale is compressed and confident",
+      "Don't let dark sections run more than 2-3 before introducing a Vapor Peach break — the thermal alternation is structural",
+      "Don't use generic sans-serif fallbacks as the primary face — Matter's tight tracking is part of the voice",
+      "Don't apply color to body text — keep body text in Linen (#f7f6ff) on dark or Obsidian Ember (#190501) on light"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#190501",
+        "name": "Obsidian Ember",
+        "role": "Primary dark canvas — page background in dark sections, card surface, deepest borders. The black-with-warmth that defines the brand atmosphere",
+        "group": "neutral"
+      },
+      {
+        "hex": "#340a01",
+        "name": "Dark Cocoa",
+        "role": "Secondary dark surface, deep link borders, icon outlines — one step lifted from obsidian for layering depth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#631303",
+        "name": "Molten Core",
+        "role": "Inset glow shadow source, deep red-brown accents — the pressed-ember tone that gives buttons their internal fire",
+        "group": "brand"
+      },
+      {
+        "hex": "#951c04",
+        "name": "Signal Red",
+        "role": "Outlined/ghost action border, nav borders, icon strokes, interactive outlines — the chromatic action color used for outlined buttons and active control edges",
+        "group": "brand"
+      },
+      {
+        "hex": "#fa5838",
+        "name": "Flare Orange",
+        "role": "Primary brand accent — links, decorative borders, the hero gradient spectrum, highlight washes. The single hottest color in the system; used sparingly as functional punctuation",
+        "group": "brand"
+      },
+      {
+        "hex": "#fcac9c",
+        "name": "Warm Blush",
+        "role": "Soft surface wash, secondary peach background, decorative highlight fields — the diffused ember tone for breathing sections",
+        "group": "accent"
+      },
+      {
+        "hex": "#feeae6",
+        "name": "Vapor Peach",
+        "role": "Light section background, light-mode card surface, body text on dark, ghost button text — the warm off-white that breaks the dark rhythm",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f6ff",
+        "name": "Linen",
+        "role": "Primary text on dark, crisp borders on dark sections, inverse text. The near-white that carries most typography on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#baadab",
+        "name": "Warm Ash",
+        "role": "Muted button borders on light sections, tertiary text, subtle dividers — a warm gray that softens edges without going cold",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Decorative SVG fills, icon line art, graphical accents — high-contrast details that read as deep-ink on the warm canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Mist",
+        "role": "Input field borders on light backgrounds — the only cool-neutral in the system, used minimally for form controls",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed section design with no horizontal page borders. Each section spans 100% width with its own background color. Content within sections is contained to a max-width of ~1200px, centered. Hero is centered-stack: large headline over subtext over dual CTAs, with decorative gradient bars below. Middle sections use 2-column split (text left / visual right) for the problem statement, then 3-column card grid for solutions features. Section rhythm: dark hero → dark investor band → light peach problem section → dark solutions section. Vertical spacing between sections is generous (80-120px). Navigation is a simple top bar, not sticky. The page reads as 3-4 full-viewport bands rather than a scrolling content stream.",
+    "imagery": "Imagery is minimal and treatment-specific. The hero uses abstract decorative elements: 11-13 vertical gradient bars in Flare Orange that read as a thermal spectrum or audio visualizer — this is the signature visual. The problem section features a single wireframe/3D illustration of a radar or grid dome (rendered in coral on light). The solutions section has subtle background line art (technical schematics) at very low opacity. No photography is used. Icons are minimal — line-art style in Flare Orange or Linen, ~1px stroke weight, used sparingly. The visual language is closer to a Bloomberg terminal meets volcanic data-viz: technical, warm, confident, with color doing structural work rather than decorative work.",
+    "similar": [
+      {
+        "why": "Same dark-mode crypto UI with warm coral-purple accent palette and tight display typography",
+        "business": "Phantom Wallet"
+      },
+      {
+        "why": "Same developer-infrastructure audience with dark background, tight letter-spacing on headlines, and technical monospace tags above editorial headings",
+        "business": "Helius (Solana RPC)"
+      },
+      {
+        "why": "Same blockchain-infra dark aesthetic with single warm accent color and compressed display type",
+        "business": "Monad"
+      },
+      {
+        "why": "Same thermal-orange-on-dark palette treatment and similar hairline-bordered card style",
+        "business": "Eclipse (L2)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "8px",
+        "inputs": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#feeae6",
+        "name": "Vapor Peach",
+        "level": 1,
+        "purpose": "Light section background — problem statement, alternating breathing space"
+      },
+      {
+        "hex": "#190501",
+        "name": "Obsidian Ember",
+        "level": 2,
+        "purpose": "Primary dark canvas — hero, investor logos, solutions, footer"
+      },
+      {
+        "hex": "#340a01",
+        "name": "Dark Cocoa",
+        "level": 3,
+        "purpose": "Elevated card surface on dark — slightly lifted from canvas for card depth"
+      },
+      {
+        "hex": "#631303",
+        "name": "Molten Core",
+        "level": 4,
+        "purpose": "Accent surface — button fills with inset glow, emphasis panels"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgb(99, 19, 3) 0px 0px 20px 0px inset",
+        "element": "Filled Primary Button"
+      }
+    ],
+    "northStar": "Molten embers on obsidian. A blockchain command center lit from within by coral fire, where dark surfaces breathe warm light through hairline gaps and inset glows.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 21,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 24,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 25,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 28,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 54,
+        "letterSpacing": -1.92
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 65,
+        "letterSpacing": -2.58
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide header",
+        "description": "Dark Obsidian Ember (#190501) background, full-width. Logo (Altius mark in Flare Orange #fa5838) left-aligned, nav links right-aligned in Linen (#f7f6ff) at 16px Matter weight 500, followed by 2 icon-only social buttons. No visible border-bottom — separation comes from background change only. Height ~64px."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Landing page hero",
+        "description": "Full-viewport Obsidian Ember background with centered text stack: 60px display headline in Linen, 16px body subtext at 60% opacity, dual CTAs. Below the text block, 11-13 vertical gradient bars in Flare Orange (#fa5838) with peak-to-zero fade — creating a thermal spectrum / sound-wave visual that is the brand's signature motif. No gradient in CSS, but visual gradient via opacity-faded rectangles."
+      },
+      {
+        "name": "Filled Primary Button",
+        "role": "Primary action",
+        "description": "Background: Dark Cocoa (#340a01) to Molten Core (#631303). Text: Linen (#f7f6ff) at 16px Matter weight 500. Padding: 8px 20px. Radius: 4px. Inset shadow: rgb(99,19,3) 0px 0px 20px 0px — creates the internal ember glow. No border. Slight letter-spacing: 0 or -0.01em."
+      },
+      {
+        "name": "Outlined Ghost Button",
+        "role": "Secondary action",
+        "description": "Transparent background. Border: 1px solid Linen (#f7f6ff) or Signal Red (#951c04) depending on context. Text: matching border color at 16px Matter weight 500. Padding: 8px 20px. Radius: 4px. No shadow. The 'Read Documentation' style in the hero uses Linen border on dark."
+      },
+      {
+        "name": "Investor Logo Grid",
+        "role": "Social proof band",
+        "description": "4-column grid (responsive to 2-3 on smaller screens) on Obsidian Ember background. Logos rendered in Linen (#f7f6ff) or white at uniform opacity ~70%. Centered eyebrow label 'TRUSTED BY LEADING INVESTORS AND BUILDERS' in Flare Orange (#fa5838) Fabrikatmono 14px uppercase, letter-spacing tracked."
+      },
+      {
+        "name": "Section Header (Tag + Heading)",
+        "role": "Section introduction",
+        "description": "Vertical stack: small Fabrikatmono tag in Flare Orange (#fa5838) at 14px uppercase (e.g. 'THE PROBLEM', 'SOLUTIONS') with optional square bracket icon, followed by 48px heading in Linen (#f7f6ff) or Obsidian Ember (#190501) depending on section background. Tag-to-heading gap: 16px."
+      },
+      {
+        "name": "Problem Statement Card",
+        "role": "Light-section content card",
+        "description": "White/Linen (#f7f6ff) background card on Vapor Peach (#feeae6) section. Padding: 40px. Radius: 8px. Contains wireframe/3D illustration on left or top. Border: 1px solid Warm Ash (#baadab) subtle. Content body text in Obsidian Ember at 16px."
+      },
+      {
+        "name": "Solutions Feature Card",
+        "role": "Feature highlight (dark variant)",
+        "description": "Background: Dark Cocoa (#340a01). Border: 1px solid Signal Red (#951c04) or Dark Cocoa — hairline coral edge. Padding: 32px. Radius: 8px. Contains: numbered label (01/02/03) in Flare Orange Fabrikatmono, small icon in Flare Orange top-right, 24px heading in Linen, 14-16px body text in Linen at 80% opacity. No drop shadow."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form control",
+        "description": "Background: transparent or Vapor Peach. Border: 1px solid Mist (#cccccc) on light or Signal Red (#951c04) on dark. Padding: 10px 12px. Radius: 4px. Text: 16px Matter weight 400. Placeholder: 60% opacity."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer",
+        "description": "Obsidian Ember background. Social icon links (X, LinkedIn) as outlined squares with Flare Orange (#fa5838) or Linen borders, 32x32px, 1px border, 4px radius. Minimal text, generous vertical padding (64px+)."
+      },
+      {
+        "name": "Hero Gradient Bar",
+        "role": "Decorative hero element",
+        "description": "Vertical rectangles (40-80px wide, 200-300px tall) in Flare Orange (#fa5838) arranged in a row spanning the hero width. Each bar fades from full opacity at center to transparent at top and bottom, creating a thermal-spectrum visual. 11-13 bars in total, varying widths."
+      },
+      {
+        "name": "Eyebrow Tag Label",
+        "role": "Section category indicator",
+        "description": "Fabrikatmono 14px uppercase, letter-spacing -0.05em, color Flare Orange (#fa5838) on dark backgrounds or Signal Red (#951c04) on light. Often preceded by a small square outline icon. Provides technical-utility voice above editorial headings."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface — body, display, headings, buttons, navigation, icons. Weight 700 carries display headlines; 500 for emphasis in body; 400 for regular text. Tight tracking across all sizes creates a compressed, confident read.",
+        "sizes": "14, 16, 20, 24, 48, 60",
+        "family": "Matter",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.08 (60px), 1.13 (48px), 1.16 (24px), 1.25 (20px), 1.40-1.50 (16px), 1.50 (14px)",
+        "substitute": "Inter, Söhne, or Geist Sans",
+        "letterSpacing": "-0.0430em, -0.0420em, -0.0400em, -0.0330em, -0.0100em"
+      },
+      {
+        "role": "Monospace accent — section labels, tags, technical metadata, trust signals. Used in uppercase for eyebrow labels like 'THE PROBLEM' and 'SOLUTIONS'. The technical-utility voice that contrasts Matter's editorial confidence.",
+        "sizes": "14, 16, 20",
+        "family": "Fabrikatmono",
+        "weight": "400, 500",
+        "lineHeight": "1.50-1.75",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Berkeley Mono",
+        "letterSpacing": "-0.0500em, -0.0400em"
+      }
+    ],
+    "description": "Altius operates in a volcanic-ember register: deep obsidian-brown surfaces warmed by coral and flare-orange highlights, like a blockchain control room rendered in molten glass and cooled lava. The page rhythm alternates between heavy dark sections and light peach breathing spaces, creating a thermal oscillation rather than the typical dark-mode-everywhere crypto UI. Typography is tight-tracked and weight-confident — Matter (sans) at weight 700 for display, with Fabrikatmono (monospace) as a technical accent for tags and labels. Components feel pressed-in rather than floating: buttons carry an inner ember-glow shadow, cards use hairline coral borders on dark, and the hero's vertical gradient bars suggest a sound wave or thermal spectrum. Color is the brand's primary voice — expect a dark, warm, confident system that treats coral-orange as functional punctuation across a near-black canvas.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/227ff379-9b46-44fc-8ff1-37e0472239a6#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Altius design system\",\"item\":\"https://styles.refero.design/style/227ff379-9b46-44fc-8ff1-37e0472239a6\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/227ff379-9b46-44fc-8ff1-37e0472239a6#style-reference\",\"name\":\"Altius design system reference\",\"headline\":\"Altius design system | Refero Styles\",\"description\":\"Explore Altius's dark Crypto design system: Obsidian Ember #190501, Dark Cocoa #340a01 colors, Matter, Fabrikatmono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/227ff379-9b46-44fc-8ff1-37e0472239a6\",\"mainEntityOfPage\":\"https://styles.refero.design/style/227ff379-9b46-44fc-8ff1-37e0472239a6\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Altius\",\"url\":\"https://www.altiuslabs.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/227ff379-9b46-44fc-8ff1-37e0472239a6#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/55487e97-e6ab-4bea-b45d-b379ec337bb2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/55487e97-e6ab-4bea-b45d-b379ec337bb2.jpg\",\"caption\":\"Screenshot of Altius\"},\"image\":\"https://images.refero.design/styles/refero.design/image/55487e97-e6ab-4bea-b45d-b379ec337bb2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Altius design system\",\"Altius website design\",\"Altius colors\",\"Altius typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Obsidian Ember\",\"Dark Cocoa\",\"Molten Core\",\"Signal Red\",\"Matter\",\"Fabrikatmono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Altius design system\"},{\"@type\":\"Thing\",\"name\":\"Altius website design\"},{\"@type\":\"Thing\",\"name\":\"Altius colors\"},{\"@type\":\"Thing\",\"name\":\"Altius typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-10T23:13:58.887Z\",\"dateModified\":\"2026-05-10T23:13:58.887Z\"}]}19:T8ce,primary action: #951c04 (outlined action border)\nCreate an Outlined Primary Action: Transparent background, #951c04 border and text, 9999px radius, compact pill padding. Use it for the main CTA instead of a filled button.\nQuick Color Reference:\n- text: #f7f6ff (on dark) / #190501 (on light)\n- background: #190501 (dark sections) / #feeae6 (light sections)\n- border: #190501 (hairline on dark) / #baadab (on light)\n- accent: #fa5838 (links, highlights, single-color punctuation)\n- outlined action: #951c04 (ghost/outlined button border)\n\nExample Component Prompts:\n\n1. Create a hero section: Obsidian Ember (#190501) full-width background. Centered 60px Matter weight 700 headline in Linen (#f7f6ff), letter-spacing -2.58px. 16px subtext in Linen at 70% opacity. Two CTAs: filled button with Dark Cocoa (#340a01) background, Linen text, 4px radius, 8px 20px padding, inset shadow rgb(99,19,3) 0px 0px 20px; outlined button with 1px Linen border, transparent fill, Linen text, same radius and padding. Below text, 12 vertical Flare Orange (#fa5838) bars (40-80px wide, 240px tall) with center-to-edge opacity fade.\n\n2. Create a solutions feature card: Dark Cocoa (#340a01) background, 8px radius, 32px padding, 1px border in Signal Red (#951c04). Top-left: '01' in Fabrikatmono 14px Flare Orange (#fa5838). Top-right: small line-art icon in Flare Orange. Center: 24px Matter weight 700 heading in Linen (#f7f6ff), letter-spacing -0.8px. Body: 16px Matter weight 400 Linen at 80% opacity.\n\n3. Create a section header: Fabrikatmono 14px uppercase tag in Flare Orange (#fa5838) with letter-spacing -0.05em, preceded by a 12x12px outlined square icon. 16px gap. Followed by 48px Matter weight 700 headline in Linen (#f7f6ff), letter-spacing -1.92px.\n\n4. Create a light problem-statement card: Linen (#f7f6ff) background on Vapor Peach (#feeae6) section. 40px padding, 8px radius, 1px Warm Ash (#baadab) border. Contains a coral wireframe illustration on the left half and 16px body text in Obsidian Ember (#190501) on the right half.\n\n5. Create a footer: Obsidian Ember (#190501) background, 64px vertical padding. Two 32x32px outlined social icons (X, LinkedIn) with 1px Flare Orange (#fa5838) border, 4px radius, Flare Orange line-art icons centered inside."
+      },
+      {
+        "title": "Thermal Section Rhythm",
+        "content": "The page alternates between dark molten sections and light peach breathing sections — this is not optional. A page built with this system should have a section sequence that shifts surface temperature at least every 2-3 dark blocks. Dark sections use Obsidian Ember (#190501) canvas with Linen (#f7f6ff) text; light sections use Vapor Peach (#feeae6) canvas with Obsidian Ember (#190501) text. Flare Orange (#fa5838) crosses both modes as the single accent, shifting in role from highlight-on-dark to action-on-light."
+      }
+    ],
+    "elevationPhilosophy": "The system rejects external drop shadows in favor of inset glows and surface differentiation. The single shadow pattern is a 20px inset ember-glow in rgb(99,19,3) on filled buttons — creating a pressed-in, internally-lit effect as if the button contains heat. Cards separate via hairline borders rather than shadows. The result is a flat, dense, thermal visual language where depth is communicated through color temperature shifts and border weight, not float-and-blur."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f7f6ff",
+          "oklch": {
+            "c": 0.011964794763487878,
+            "h": 291.29283250372623,
+            "l": 0.9764800027203518
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 520,
+          "confidence": 1,
+          "prominence": 63398933.98369608,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "link/color": 3,
+            "other/fill": 3,
+            "other/color": 100,
+            "heading/color": 3,
+            "link/borderColor": 12,
+            "other/borderColor": 387,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#190501",
+          "oklch": {
+            "c": 0.040741584053826774,
+            "h": 41.005794225932114,
+            "l": 0.15116288899132727
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "heading",
+            "button",
+            "footer"
+          ],
+          "frequency": 340,
+          "confidence": 1,
+          "prominence": 59398395.83527799,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "hero/color": 1,
+            "other/fill": 6,
+            "other/color": 59,
+            "button/color": 1,
+            "footer/color": 1,
+            "heading/color": 2,
+            "nav/borderColor": 8,
+            "hero/borderColor": 4,
+            "other/borderColor": 236,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "icon"
+          ],
+          "frequency": 510,
+          "confidence": 1,
+          "prominence": 16325409.159699757,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 4,
+            "icon/fill": 4,
+            "other/fill": 502
+          }
+        },
+        {
+          "hex": "#feeae6",
+          "oklch": {
+            "c": 0.02255240844557986,
+            "h": 31.102536877678958,
+            "l": 0.9519305477870721
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "image",
+            "icon",
+            "other",
+            "heading",
+            "input"
+          ],
+          "frequency": 235,
+          "confidence": 1,
+          "prominence": 6986780.666801868,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "nav/color": 8,
+            "icon/color": 3,
+            "other/fill": 2,
+            "image/color": 11,
+            "other/color": 6,
+            "button/color": 1,
+            "other/stroke": 70,
+            "heading/color": 3,
+            "nav/borderColor": 32,
+            "icon/borderColor": 12,
+            "image/borderColor": 44,
+            "other/borderColor": 24,
+            "button/borderColor": 4,
+            "heading/borderColor": 12,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fa5838",
+          "oklch": {
+            "c": 0.20328466399289905,
+            "h": 33.121133845072364,
+            "l": 0.6739775161204947
+          },
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 301,
+          "confidence": 1,
+          "prominence": 1229038.1726314726,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/color": 5,
+            "link/color": 1,
+            "other/fill": 26,
+            "other/color": 38,
+            "button/color": 3,
+            "other/stroke": 32,
+            "icon/borderColor": 20,
+            "link/borderColor": 4,
+            "other/borderColor": 164,
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#631303",
+          "oklch": {
+            "c": 0.1155232146508293,
+            "h": 33.325678839559345,
+            "l": 0.32827941866819255
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 58,
+          "confidence": 1,
+          "prominence": 777926.5994906593,
+          "properties": [
+            "boxShadow",
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 10,
+            "other/color": 2,
+            "other/stroke": 35,
+            "button/boxShadow": 3,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#340a01",
+          "oklch": {
+            "c": 0.07039218079250326,
+            "h": 36.98840026257273,
+            "l": 0.21950104142736912
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 31,
+          "confidence": 1,
+          "prominence": 515640,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "nav/borderColor": 8,
+            "link/borderColor": 16,
+            "other/borderColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#baadab",
+          "oklch": {
+            "c": 0.015296589648976436,
+            "h": 28.04558511149965,
+            "l": 0.757976706081173
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 310800,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "button/color": 2,
+            "other/borderColor": 4,
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#fcac9c",
+          "oklch": {
+            "c": 0.09761503624467611,
+            "h": 31.74437477197661,
+            "l": 0.8176273584207061
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 38,
+          "confidence": 1,
+          "prominence": 198308.29125171158,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/stroke": 1,
+            "other/borderColor": 4,
+            "other/backgroundColor": 32
+          }
+        },
+        {
+          "hex": "#951c04",
+          "oklch": {
+            "c": 0.1592392520536962,
+            "h": 32.46798408157638,
+            "l": 0.4351195097798521
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "input",
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 123,
+          "confidence": 1,
+          "prominence": 84563.0271343044,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 2,
+            "nav/color": 6,
+            "icon/color": 4,
+            "link/color": 8,
+            "other/fill": 4,
+            "input/color": 1,
+            "other/color": 4,
+            "button/color": 2,
+            "other/stroke": 12,
+            "nav/borderColor": 16,
+            "icon/borderColor": 16,
+            "link/borderColor": 16,
+            "other/borderColor": 16,
+            "button/borderColor": 16
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 28234.645633830325,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ec6542",
+          "oklch": {
+            "c": 0.17490028356003479,
+            "h": 35.58077844055258,
+            "l": 0.6695785130829615
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 66,
+          "confidence": 1,
+          "prominence": 552.0141163316573,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 66
+          }
+        },
+        {
+          "hex": "#fb836b",
+          "oklch": {
+            "c": 0.15131315169390727,
+            "h": 32.583038269584755,
+            "l": 0.7395985019055553
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 165.437600046154,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/stroke": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.15796258628465404,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.58,
+          "background": "#f7f6ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.41,
+          "background": "#190501",
+          "foreground": "#f7f6ff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.13,
+          "background": "#feeae6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.04,
+          "background": "#feeae6",
+          "foreground": "#190501"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.46,
+          "background": "#340a01",
+          "foreground": "#f7f6ff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.23,
+          "background": "#340a01",
+          "foreground": "#feeae6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.3,
+          "background": "#cccccc",
+          "foreground": "#190501"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.05,
+          "background": "#f7f6ff",
+          "foreground": "#631303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.52,
+          "background": "#fcac9c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.15,
+          "background": "#feeae6",
+          "foreground": "#631303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.99,
+          "background": "#cccccc",
+          "foreground": "#340a01"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.83,
+          "background": "#fcac9c",
+          "foreground": "#190501"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.68,
+          "background": "#340a01",
+          "foreground": "#fcac9c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.65,
+          "background": "#baadab",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.08,
+          "background": "#190501",
+          "foreground": "#baadab"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.56,
+          "background": "#fb836b",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.11,
+          "background": "#340a01",
+          "foreground": "#baadab"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.05,
+          "background": "#fb836b",
+          "foreground": "#190501"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.05,
+          "background": "#cccccc",
+          "foreground": "#631303"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": [
+        {
+          "value": "rgb(99, 19, 3) 0px 0px 20px 0px inset",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "input",
+            "link"
+          ],
+          "frequency": 49,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "columnGap|button",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav",
+            "button"
+          ],
+          "frequency": 35,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 39,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "rowGap",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 115,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 223,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Matter",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 254,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Fabrikatmono",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 28,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Matter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.043,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Fabrikatmono",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.75,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Matter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "hero",
+            "image",
+            "icon",
+            "footer"
+          ],
+          "frequency": 209,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Matter",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Fabrikatmono",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Matter",
+          "weight": 500,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Fabrikatmono",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.75,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Matter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Fabrikatmono",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Matter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.16,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Matter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.16,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Matter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Matter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.08,
+          "letterSpacing": -0.042,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/27b643c5-afe9-4bb4-aed5-5c7dcde86385.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/55487e97-e6ab-4bea-b45d-b379ec337bb2.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/227ff379-9b46-44fc-8ff1-37e0472239a6#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Altius design system\",\"item\":\"https://styles.refero.design/style/227ff379-9b46-44fc-8ff1-37e0472239a6\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/227ff379-9b46-44fc-8ff1-37e0472239a6#style-reference\",\"name\":\"Altius design system reference\",\"headline\":\"Altius design system | Refero Styles\",\"description\":\"Explore Altius's dark Crypto design system: Obsidian Ember #190501, Dark Cocoa #340a01 colors, Matter, Fabrikatmono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/227ff379-9b46-44fc-8ff1-37e0472239a6\",\"mainEntityOfPage\":\"https://styles.refero.design/style/227ff379-9b46-44fc-8ff1-37e0472239a6\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Altius\",\"url\":\"https://www.altiuslabs.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/227ff379-9b46-44fc-8ff1-37e0472239a6#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/55487e97-e6ab-4bea-b45d-b379ec337bb2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/55487e97-e6ab-4bea-b45d-b379ec337bb2.jpg\",\"caption\":\"Screenshot of Altius\"},\"image\":\"https://images.refero.design/styles/refero.design/image/55487e97-e6ab-4bea-b45d-b379ec337bb2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Altius design system\",\"Altius website design\",\"Altius colors\",\"Altius typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Obsidian Ember\",\"Dark Cocoa\",\"Molten Core\",\"Signal Red\",\"Matter\",\"Fabrikatmono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Altius design system\"},{\"@type\":\"Thing\",\"name\":\"Altius website design\"},{\"@type\":\"Thing\",\"name\":\"Altius colors\"},{\"@type\":\"Thing\",\"name\":\"Altius typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-10T23:13:58.887Z\",\"dateModified\":\"2026-05-10T23:13:58.887Z\"}]}19:T8ce,primary action: #951c04 (outlined action border)\nCreate an Outlined Primary Action: Transparent background, #951c04 border and text, 9999px radius, compact pill padding. Use it for the main CTA instead of a filled button.\nQuick Color Reference:\n- text: #f7f6ff (on dark) / #190501 (on light)\n- background: #190501 (dark sections) / #feeae6 (light sections)\n- border: #190501 (hairline on dark) / #baadab (on light)\n- accent: #fa5838 (links, highlights, single-color punctuation)\n- outlined action: #951c04 (ghost/outlined button border)\n\nExample Component Prompts:\n\n1. Create a hero section: Obsidian Ember (#190501) full-width background. Centered 60px Matter weight 700 headline in Linen (#f7f6ff), letter-spacing -2.58px. 16px subtext in Linen at 70% opacity. Two CTAs: filled button with Dark Cocoa (#340a01) background, Linen text, 4px radius, 8px 20px padding, inset shadow rgb(99,19,3) 0px 0px 20px; outlined button with 1px Linen border, transparent fill, Linen text, same radius and padding. Below text, 12 vertical Flare Orange (#fa5838) bars (40-80px wide, 240px tall) with center-to-edge opacity fade.\n\n2. Create a solutions feature card: Dark Cocoa (#340a01) background, 8px radius, 32px padding, 1px border in Signal Red (#951c04). Top-left: '01' in Fabrikatmono 14px Flare Orange (#fa5838). Top-right: small line-art icon in Flare Orange. Center: 24px Matter weight 700 heading in Linen (#f7f6ff), letter-spacing -0.8px. Body: 16px Matter weight 400 Linen at 80% opacity.\n\n3. Create a section header: Fabrikatmono 14px uppercase tag in Flare Orange (#fa5838) with letter-spacing -0.05em, preceded by a 12x12px outlined square icon. 16px gap. Followed by 48px Matter weight 700 headline in Linen (#f7f6ff), letter-spacing -1.92px.\n\n4. Create a light problem-statement card: Linen (#f7f6ff) background on Vapor Peach (#feeae6) section. 40px padding, 8px radius, 1px Warm Ash (#baadab) border. Contains a coral wireframe illustration on the left half and 16px body text in Obsidian Ember (#190501) on the right half.\n\n5. Create a footer: Obsidian Ember (#190501) background, 64px vertical padding. Two 32x32px outlined social icons (X, LinkedIn) with 1px Flare Orange (#fa5838) border, 4px radius, Flare Orange line-art icons centered inside."
+}

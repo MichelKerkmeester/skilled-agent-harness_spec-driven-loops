@@ -1,0 +1,1163 @@
+{
+  "source": "https://styles.refero.design/style/8d1b6c70-e045-4ce6-891d-aba5d5c00e0d",
+  "uuid": "8d1b6c70-e045-4ce6-891d-aba5d5c00e0d",
+  "name": "Daniel Sun",
+  "northStar": "Solar monolith on a white gallery wall — one yellow beam, one obsidian name, all the breathing room in the world.",
+  "capturedAt": "2026-07-18T07:44:26.281Z",
+  "meta": {
+    "url": "https://danielsun.space",
+    "siteName": "Daniel Sun",
+    "extractedAt": "2026-06-03T19:43:36.477Z",
+    "durationMs": 24434,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 574,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Reddit Sans Condensed 900 at 88-246px for every display-level headline; the condensed geometry is the brand.",
+      "Set the name/hero display at exactly 246px with letter-spacing -6.89px — this scale is the signature, not optional.",
+      "Place exactly one yellow gradient beam per hero; it is the only chromatic element in the system.",
+      "Use Caveat 700 at 28px for personal timestamps above section titles, colored Graphite (#808080) so it recedes behind the display face.",
+      "Use the nav capsule (110px radius, #1f1f1f background) for all top-level navigation — never replace it with a flat horizontal bar.",
+      "Round portfolio cards and images at 14px; round buttons at 32px (pill); round the nav at 110px (fully rounded). These three radii are the system's geometry.",
+      "Keep body text in Inter 500 at 18-20px with line-height 1.30; never use weight 400 — the medium weight is non-negotiable for readability against the massive display type."
+    ],
+    "donts": [
+      "Do not add chromatic colors beyond #ffd500 — the system is monochrome with one solar accent; introducing a second hue breaks the gallery metaphor.",
+      "Do not set the display name below 88px or above 246px — the extreme scale is the point; intermediate sizes lose impact.",
+      "Do not use shadows on buttons, nav elements, or text blocks; the single shadow pattern is reserved for portfolio cards only.",
+      "Do not replace Reddit Sans Condensed with a non-condensed display face; the compressed letterforms are what make the 246px headline read as a single mass.",
+      "Do not use Caveat for anything longer than a date range or one-line aside; the script loses intimacy when it carries real content.",
+      "Do not add gradients other than the single yellow beam; the system is flat surfaces and one light source — multi-color gradients destroy the restraint.",
+      "Do not use weight 700+ for body or subheading text; the 500 weight is the system's voice — bolding it creates visual noise against the 900-weight display face."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffd500",
+        "name": "Solar Beam",
+        "role": "The system's only chromatic color — hero gradient beam, handwritten underline accent, and the pill-shaped highlight button inside the dark nav capsule. This is the single note of warmth in an otherwise achromatic composition; its presence transforms monochrome blocks into a sunlit moment",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Primary text, display headlines, nav capsule background, and dominant typographic mass. Sets the highest-contrast tone for the condensed display name and grounds the floating nav pill",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Card surfaces, portfolio thumbnails, and the base of the white canvas. Provides the surface that the yellow beam and obsidian type play against",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Concrete",
+        "role": "Page canvas and the lightest card/section background. Warmer than pure white, creates the gallery-wall feel beneath the hero",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Graphite",
+        "role": "Body text, secondary metadata, and muted UI labels. The mid-neutral that bridges the obsidian headlines and the lighter ash tones",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a6a6a6",
+        "name": "Ash",
+        "role": "Muted helper text, tertiary body copy, and the soft end of the text scale. Sits beneath Graphite for non-essential information",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Fog",
+        "role": "Subdued heading and label color. Slightly cooler than Ash; used for section labels that need to recede behind the primary type",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b8b8b8",
+        "name": "Silver",
+        "role": "Subtle shadow tint and the softest hairline border. Carries the single shadow pattern that gives portfolio cards their barely-there lift",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cfcfcf",
+        "name": "Soft Shadow",
+        "role": "Drop shadow and elevation wash. The companion to Silver for the card shadow rgba(0,0,0,0.12) — never seen directly, only felt as depth",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed layout with a floating centered nav capsule at the top. The hero is unconstrained — the 246px display name stretches to the viewport edges, with no max-width container. Content sections below use a 1200px max-width and center their text. Section rhythm is spacious: 80-120px vertical gaps between major sections, alternating between centered text blocks and full-width portfolio cards. The portfolio section breaks the centered text pattern by introducing a wide card that spans the full content width. Navigation is a single floating pill — no sidebar, no sticky header banner, no mega-menu. The page reads top-to-bottom as: nav → hero (name + beam) → work intro → portfolio grid → next section. The composition is asymmetric in the hero (text-left, beam-right) and centered in all subsequent sections.",
+    "imagery": "Imagery is sparse and intentional. The hero features no photography — only a diagonal yellow gradient beam as an abstract light effect. Portfolio sections display product screenshots inside 14px-radius frames, presented as evidence of work rather than lifestyle context. The visual language is: no people, no environments, no mood photography. When images appear, they are tight product crops on pure surfaces — the work itself is the hero, not the designer. Icons are minimal and outline-style (the small glyph in the nav capsule). The overall density is text-dominant: typography occupies more visual space than any image.",
+    "similar": [
+      {
+        "why": "Same designer-portfolio structure: oversized condensed display type, monochrome canvas, single accent moment, and generous negative space that lets the name function as architecture.",
+        "business": "Tobias van Schneider"
+      },
+      {
+        "why": "Same flat-surface gallery aesthetic — white canvas, bold display headings at extreme scale, minimal shadows, and a single chromatic element used as punctuation rather than decoration.",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same typographic-first philosophy where a condensed display face carries the visual weight and the rest of the page is quiet monochrome; the designer's name IS the hero.",
+        "business": "Rauno Freiberg"
+      },
+      {
+        "why": "Same dark-pill navigation capsule floating over a light canvas, with a single colored highlight button embedded inside — the nav-as-object approach is a shared signature.",
+        "business": "Locomotive (locomotive.ca)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "14px",
+        "images": "14px",
+        "buttons": "32px",
+        "navCapsule": "110px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "32-40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f5f5f5",
+        "name": "Gallery Canvas",
+        "level": 0,
+        "purpose": "The base page background — a warm near-white that reads as concrete or gallery wall beneath the hero."
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper Surface",
+        "level": 1,
+        "purpose": "Cards, portfolio thumbnails, and elevated content blocks. Pure white creates the strongest contrast against the canvas."
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Nav Capsule",
+        "level": 2,
+        "purpose": "The floating pill navigation — a near-black that anchors the top of every page and frames the yellow highlight button."
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian Mass",
+        "level": 3,
+        "purpose": "The display headline color — reads as a solid mass at 246px, not merely text. The typographic surface."
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.12) -2px 3px 3px 0px",
+        "element": "Portfolio Card"
+      }
+    ],
+    "northStar": "Solar monolith on a white gallery wall — one yellow beam, one obsidian name, all the breathing room in the world.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading-lg",
+        "size": 36,
+        "lineHeight": 0.96,
+        "letterSpacing": -2.63
+      },
+      {
+        "role": "display",
+        "size": 88,
+        "lineHeight": 0.9,
+        "letterSpacing": -2.99
+      },
+      {
+        "role": "display-xl",
+        "size": 246,
+        "lineHeight": 1,
+        "letterSpacing": -6.89
+      }
+    ],
+    "components": [
+      {
+        "name": "Nav Capsule",
+        "role": "Primary navigation container",
+        "description": "Floating pill at the top center of every page. Background #1f1f1f (near-black), radius 110px (fully rounded), padding roughly 8px vertical. Contains a small icon glyph, four text nav links (Work, Story, Process, Connect) in Inter 500 14px #ffffff, and a yellow highlight button on the right. Sits above content with no border and no shadow — its dark mass is enough to separate it from the white canvas."
+      },
+      {
+        "name": "Nav Highlight Button",
+        "role": "Primary call-to-action within the nav capsule",
+        "description": "Pill-shaped button embedded in the right side of the nav capsule. Background #ffd500 (Solar Beam), text in Obsidian (#000000), radius 32px, padding 8px 20px. Font is Inter 500 at 14px. The only yellow surface in the entire system — its job is to read as a switch turned on against the dark capsule."
+      },
+      {
+        "name": "Display Name",
+        "role": "Hero identity — the designer's name as architecture",
+        "description": "Set in Reddit Sans Condensed 900 at 246px, line-height 1.0, letter-spacing -6.89px. Color Obsidian (#000000). Stretches nearly edge-to-edge of the viewport. This is not a headline — it is a typographic mass that functions as the page's structural element. The extreme tracking (-6.89px) is essential: at 246px, default spacing would make the letterforms feel disconnected."
+      },
+      {
+        "name": "Hero Gradient Beam",
+        "role": "Signature visual element — the single chromatic accent",
+        "description": "A diagonal yellow gradient beam that cuts from upper-right to lower-left across the hero. Background uses a soft yellow-to-transparent gradient anchored on #ffd500. It is not a shape but a wash of light — edges feather into the white canvas with no hard border. Only one such beam exists per page; it is the solar metaphor that gives the monochrome system its warmth."
+      },
+      {
+        "name": "Section Title",
+        "role": "Section-level display heading",
+        "description": "Set in Reddit Sans Condensed 900 at 88px, line-height 0.90, letter-spacing -2.99px. Centered horizontally. Color Obsidian. Used for major section openers like 'MY LATEST WORK.' The same condensed display face as the hero name, scaled down — maintains typographic continuity from page-level to section-level."
+      },
+      {
+        "name": "Handwritten Annotation",
+        "role": "Personal timestamp or intimate label",
+        "description": "Set in Caveat 700 at 28px, line-height 0.96, letter-spacing -1.01px. Color Graphite (#808080) or Ash (#a6a6a6). Sits above section titles as a date range or personal note ('From 2020 til today'). The script weight and grey color make it feel like a handwritten margin note — it humanizes the architectural type system."
+      },
+      {
+        "name": "Portfolio Card",
+        "role": "Project/work showcase container",
+        "description": "White surface (#ffffff) on the Concrete canvas (#f5f5f5). Radius 14px. Subtle shadow: rgba(0, 0, 0, 0.12) -2px 3px 3px 0px — the only shadow in the system. Padding 32-40px inside. Contains a large preview image (border-radius 14px to match), a project label, and metadata. The 14px radius is the signature curve — softer than sharp, sharper than a pill."
+      },
+      {
+        "name": "Lead Paragraph",
+        "role": "Introductory body text below display headlines",
+        "description": "Set in Inter Display 500 at 18-20px, line-height 1.30. Color Graphite (#808080). Two lines maximum — functions as a subtitle to the display headline, not a paragraph. The medium weight (not regular) gives the intro enough presence to sit beneath a 246px headline without disappearing."
+      },
+      {
+        "name": "Portfolio Preview Frame",
+        "role": "Image container within a portfolio card",
+        "description": "Screenshot or product image, radius 14px, displayed edge-to-edge within the card padding. Images are not cropped to square — they maintain their natural aspect ratio. The 14px radius mirrors the card, creating visual harmony between the frame and its contents."
+      }
+    ],
+    "typography": [
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Display headlines — the name 'DANIEL SUN' at 246px and section titles like 'MY LATEST WORK' at 88px. Ultra-condensed, ultra-black; the type is the architecture. Tracking tightens as size grows (-6.9px at 246px) to keep the massive letterforms visually unified. Substitute: Bebas Neue or Anton for the condensed impact, though no free font fully matches the geometry.",
+        "sizes": "36px, 88px, 246px",
+        "family": "Reddit Sans Condensed",
+        "weight": "900",
+        "lineHeight": "0.90–1.00",
+        "substitute": "Bebas Neue, Anton, Oswald",
+        "letterSpacing": "-2.63px at 36px, -2.99px at 88px, -6.89px at 246px",
+        "fontFeatureSettings": "\"cpsp\", \"liga\" 0"
+      },
+      {
+        "role": "Section headings and larger body text. The medium weight (not bold) is deliberate — Inter Display 500 sits between the whisper of system text and the shout of the display face, creating a quiet middle register. Used for the 26–30px subheadings and the 18–20px lead paragraphs.",
+        "sizes": "18px, 20px, 26px, 30px",
+        "family": "Inter Display",
+        "weight": "500",
+        "lineHeight": "1.10–1.35",
+        "substitute": "Inter (Google Fonts), Söhne"
+      },
+      {
+        "role": "Body copy, navigation labels, and inline text. The 14px body-sm and 20px subheading sizes are the everyday workhorses; the 128px outlier is a decorative/typographic moment. Consistent 500 weight keeps the text system cohesive without ever feeling bold.",
+        "sizes": "14px, 20px, 128px",
+        "family": "Inter",
+        "weight": "500",
+        "lineHeight": "1.20",
+        "substitute": "Inter (Google Fonts)",
+        "letterSpacing": "-0.50px at 14px, -0.32px at 20px"
+      },
+      {
+        "role": "Handwritten personal asides — 'From 2020 til today,' date stamps, signature-style annotations. The only script in the system; its presence signals intimacy and breaks the architectural severity of the condensed display type. Use sparingly — one or two instances per section maximum.",
+        "sizes": "18px, 28px",
+        "family": "Caveat",
+        "weight": "700",
+        "lineHeight": "0.96–1.20",
+        "substitute": "Caveat (Google Fonts), Patrick Hand",
+        "letterSpacing": "-0.65px at 18px, -1.01px at 28px"
+      },
+      {
+        "role": "Smallest UI text — copyright lines, micro-labels, and inline metadata. Stays quiet and never competes with the display system.",
+        "sizes": "",
+        "family": "System Sans",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "system-ui, -apple-system, Segoe UI"
+      }
+    ],
+    "description": "Daniel Sun's portfolio is a typographic monolith: an almost entirely achromatic canvas where a single yellow light beam cuts diagonally across the hero, and the designer's name is set at 246px in an ultra-condensed 900-weight display face that nearly spans the viewport. The system is a designer's gallery — white paper, concrete gray, obsidian type, with one solar accent that doubles as the only chromatic element. Reddit Sans Condensed 900 carries every load-bearing headline at a near-architectural scale, Inter Display 500 handles secondary headings and body, and Caveat 700 injects handwritten intimacy for personal asides like 'From 2020 til today.' Surfaces are flat, shadows are almost absent, and the navigation lives inside a single dark pill capsule that floats at the top of every page. Everything is generous, quiet, and typographically assertive — the page reads as a single confident statement rather than a grid of components.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8d1b6c70-e045-4ce6-891d-aba5d5c00e0d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Daniel Sun design system\",\"item\":\"https://styles.refero.design/style/8d1b6c70-e045-4ce6-891d-aba5d5c00e0d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8d1b6c70-e045-4ce6-891d-aba5d5c00e0d#style-reference\",\"name\":\"Daniel Sun design system reference\",\"headline\":\"Daniel Sun design system | Refero Styles\",\"description\":\"Explore Daniel Sun's light Agency design system: Solar Beam #ffd500, Obsidian #000000 colors, sans-serif, Reddit Sans Condensed typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/8d1b6c70-e045-4ce6-891d-aba5d5c00e0d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8d1b6c70-e045-4ce6-891d-aba5d5c00e0d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Daniel Sun\",\"url\":\"https://danielsun.space\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8d1b6c70-e045-4ce6-891d-aba5d5c00e0d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e0e5a976-169f-4abe-93e0-e716820c9516.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e0e5a976-169f-4abe-93e0-e716820c9516.jpg\",\"caption\":\"Screenshot of Daniel Sun\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e0e5a976-169f-4abe-93e0-e716820c9516.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Daniel Sun design system\",\"Daniel Sun website design\",\"Daniel Sun colors\",\"Daniel Sun typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Solar Beam\",\"Obsidian\",\"Paper White\",\"Concrete\",\"sans-serif\",\"Reddit Sans Condensed\",\"Inter Display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Daniel Sun design system\"},{\"@type\":\"Thing\",\"name\":\"Daniel Sun website design\"},{\"@type\":\"Thing\",\"name\":\"Daniel Sun colors\"},{\"@type\":\"Thing\",\"name\":\"Daniel Sun typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-20T14:29:47.000Z\",\"dateModified\":\"2026-02-20T14:29:47.000Z\"}]}19:T750,## Quick Color Reference\n\n- Text (primary): #000000 (Obsidian)\n- Text (body/muted): #808080 (Graphite)\n- Background (canvas): #f5f5f5 (Concrete)\n- Surface (cards): #ffffff (Paper White)\n- Border/shadow: #b8b8b8 (Silver)\n- Accent: #ffd500 (Solar Beam)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n**1. Hero Section:** White canvas (#f5f5f5). Diagonal yellow gradient beam (anchored on #ffd500) cutting from upper-right to lower-left. Lead paragraph: Inter Display 500, 18px, #808080, two lines max. Display name below: Reddit Sans Condensed 900 at 246px, #000000, letter-spacing -6.89px, line-height 1.0. Name stretches nearly full viewport width.\n\n**2. Section Title Block:** Centered on canvas. Handwritten timestamp above in Caveat 700, 28px, #808080, letter-spacing -1.01px. Section title below in Reddit Sans Condensed 900, 88px, #000000, letter-spacing -2.99px, line-height 0.90. Minimum 80px vertical gap above and below.\n\n**3. Portfolio Card:** White surface (#ffffff) on canvas (#f5f5f5). Border-radius 14px. Shadow: rgba(0,0,0,0.12) -2px 3px 3px 0px. Internal padding 32-40px. Preview image at top with border-radius 14px, natural aspect ratio. Project label in Inter 500, 14px, #000000. Metadata in Inter 500, 12px, #a6a6a6.\n\n**4. Floating Nav Capsule:** Horizontal pill, background #1f1f1f, border-radius 110px. Padding 8px vertical, ~40px horizontal. Contains: small outline icon (12px, #ffffff) + four nav links (Inter 500, 14px, #ffffff) + yellow highlight button on the right (#ffd500 background, #000000 text, border-radius 32px, padding 8px 20px). Positioned centered at top of page, floating above content with no shadow.\n\n**5. Body Text Block:** Max-width 1200px, centered. Inter Display 500, 20px, #808080, line-height 1.30. Two to three lines maximum. Functions as a subtitle to a display headline, not as standalone content."
+      },
+      {
+        "title": "Typographic Scale Philosophy",
+        "content": "The type system operates on extreme contrast: 246px condensed display against 14px Inter body. There is no middle ground at 60-80px — the jump from heading (30px) to display (88px) to display-xl (246px) is deliberately discontinuous. This is a portfolio system, not a content system: the name and section titles are the page, and everything else is footnote. Inter Display 500 is the quiet voice between the display shout and the system text whisper. Caveat 700 is the human signature — its presence signals that the designer is speaking personally, not presenting work. Never use more than two typefaces per page section: the condensed display + the handwritten annotation, or the condensed display + Inter body."
+      }
+    ],
+    "elevationPhilosophy": "The system is deliberately flat. The single shadow pattern (rgba(0,0,0,0.12) at -2px/3px) exists only to lift portfolio cards from the canvas — it is a whisper, not a declaration. No buttons, nav elements, or text blocks carry shadows. Depth is created by surface color contrast (Concrete → Paper White → Obsidian Nav) rather than drop shadows. This restraint makes the yellow beam the only dimensional element on the page."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "image",
+            "heading",
+            "body",
+            "icon"
+          ],
+          "frequency": 2366,
+          "confidence": 1,
+          "prominence": 159748982.58046126,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "boxShadow",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 71892947.12001441,
+          "properties": [
+            "backgroundColor",
+            "boxShadow",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f5f5f5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9701507725365187
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 10583238,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b8b8b8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7826037156503541
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 412980,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 105,
+          "confidence": 1,
+          "prominence": 374731.713478261,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cfcfcf",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8545136555239683
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 327278.9067739115,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1f1f1f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23929237775790413
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 164519,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a6a6a6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7243514367613542
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 142965.53979402588,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 97736,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#404040",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.37054239459212773
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 22173,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffd500",
+          "oklch": {
+            "c": 0.1811093063865286,
+            "h": 94.46040774719097,
+            "l": 0.8828212466001389
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 7341.293502048084,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0009586459299950699,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.26,
+          "background": "#f5f5f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.48,
+          "background": "#1f1f1f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.12,
+          "background": "#f5f5f5",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.77,
+          "background": "#000000",
+          "foreground": "#ffd500"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.48,
+          "background": "#cfcfcf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.59,
+          "background": "#1f1f1f",
+          "foreground": "#ffd500"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.59,
+          "background": "#b8b8b8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.58,
+          "background": "#cfcfcf",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.37,
+          "background": "#404040",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.51,
+          "background": "#f5f5f5",
+          "foreground": "#404040"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.63,
+          "background": "#000000",
+          "foreground": "#a6a6a6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.31,
+          "background": "#b8b8b8",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.37,
+          "background": "#000000",
+          "foreground": "#999999"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.29,
+          "background": "#404040",
+          "foreground": "#ffd500"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.77,
+          "background": "#1f1f1f",
+          "foreground": "#a6a6a6"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.66,
+          "background": "#cfcfcf",
+          "foreground": "#404040"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.79,
+          "background": "#1f1f1f",
+          "foreground": "#999999"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#000000",
+          "foreground": "#808080"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.23,
+          "background": "#b8b8b8",
+          "foreground": "#404040"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 30
+        },
+        {
+          "value": 110,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.12) -2px 3px 3px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 26,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 52,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 71,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 19,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(230, 230, 230) 0%, rgb(166, 166, 166) 100%)",
+        "colors": [
+          "rgb(230, 230, 230)",
+          "rgb(166, 166, 166)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 414,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Reddit Sans Condensed",
+          "source": "custom",
+          "weights": [
+            900
+          ],
+          "frequency": 84,
+          "fontFeatureSettings": [
+            "\"cpsp\"",
+            "\"liga\" 0"
+          ]
+        },
+        {
+          "family": "Inter Display",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 36,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            500
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Caveat",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.82
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "icon",
+            "link",
+            "button"
+          ],
+          "frequency": 414,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter Display",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Caveat",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter Display",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter Display",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Inter Display",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.77,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Caveat",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.96,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Inter Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Reddit Sans Condensed",
+          "weight": 900,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.028,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 88,
+          "family": "Reddit Sans Condensed",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 81,
+          "lineHeight": 0.96,
+          "letterSpacing": -0.034,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 128,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 246,
+          "family": "Reddit Sans Condensed",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.073,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/fe822214-d2cf-449f-85ca-d28f0e1a5aac.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e0e5a976-169f-4abe-93e0-e716820c9516.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8d1b6c70-e045-4ce6-891d-aba5d5c00e0d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Daniel Sun design system\",\"item\":\"https://styles.refero.design/style/8d1b6c70-e045-4ce6-891d-aba5d5c00e0d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8d1b6c70-e045-4ce6-891d-aba5d5c00e0d#style-reference\",\"name\":\"Daniel Sun design system reference\",\"headline\":\"Daniel Sun design system | Refero Styles\",\"description\":\"Explore Daniel Sun's light Agency design system: Solar Beam #ffd500, Obsidian #000000 colors, sans-serif, Reddit Sans Condensed typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/8d1b6c70-e045-4ce6-891d-aba5d5c00e0d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8d1b6c70-e045-4ce6-891d-aba5d5c00e0d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Daniel Sun\",\"url\":\"https://danielsun.space\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8d1b6c70-e045-4ce6-891d-aba5d5c00e0d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e0e5a976-169f-4abe-93e0-e716820c9516.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e0e5a976-169f-4abe-93e0-e716820c9516.jpg\",\"caption\":\"Screenshot of Daniel Sun\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e0e5a976-169f-4abe-93e0-e716820c9516.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Daniel Sun design system\",\"Daniel Sun website design\",\"Daniel Sun colors\",\"Daniel Sun typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Solar Beam\",\"Obsidian\",\"Paper White\",\"Concrete\",\"sans-serif\",\"Reddit Sans Condensed\",\"Inter Display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Daniel Sun design system\"},{\"@type\":\"Thing\",\"name\":\"Daniel Sun website design\"},{\"@type\":\"Thing\",\"name\":\"Daniel Sun colors\"},{\"@type\":\"Thing\",\"name\":\"Daniel Sun typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-20T14:29:47.000Z\",\"dateModified\":\"2026-02-20T14:29:47.000Z\"}]}19:T750,## Quick Color Reference\n\n- Text (primary): #000000 (Obsidian)\n- Text (body/muted): #808080 (Graphite)\n- Background (canvas): #f5f5f5 (Concrete)\n- Surface (cards): #ffffff (Paper White)\n- Border/shadow: #b8b8b8 (Silver)\n- Accent: #ffd500 (Solar Beam)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n**1. Hero Section:** White canvas (#f5f5f5). Diagonal yellow gradient beam (anchored on #ffd500) cutting from upper-right to lower-left. Lead paragraph: Inter Display 500, 18px, #808080, two lines max. Display name below: Reddit Sans Condensed 900 at 246px, #000000, letter-spacing -6.89px, line-height 1.0. Name stretches nearly full viewport width.\n\n**2. Section Title Block:** Centered on canvas. Handwritten timestamp above in Caveat 700, 28px, #808080, letter-spacing -1.01px. Section title below in Reddit Sans Condensed 900, 88px, #000000, letter-spacing -2.99px, line-height 0.90. Minimum 80px vertical gap above and below.\n\n**3. Portfolio Card:** White surface (#ffffff) on canvas (#f5f5f5). Border-radius 14px. Shadow: rgba(0,0,0,0.12) -2px 3px 3px 0px. Internal padding 32-40px. Preview image at top with border-radius 14px, natural aspect ratio. Project label in Inter 500, 14px, #000000. Metadata in Inter 500, 12px, #a6a6a6.\n\n**4. Floating Nav Capsule:** Horizontal pill, background #1f1f1f, border-radius 110px. Padding 8px vertical, ~40px horizontal. Contains: small outline icon (12px, #ffffff) + four nav links (Inter 500, 14px, #ffffff) + yellow highlight button on the right (#ffd500 background, #000000 text, border-radius 32px, padding 8px 20px). Positioned centered at top of page, floating above content with no shadow.\n\n**5. Body Text Block:** Max-width 1200px, centered. Inter Display 500, 20px, #808080, line-height 1.30. Two to three lines maximum. Functions as a subtitle to a display headline, not as standalone content."
+}

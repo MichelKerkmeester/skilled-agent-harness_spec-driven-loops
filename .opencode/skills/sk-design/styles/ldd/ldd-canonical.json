@@ -1,0 +1,492 @@
+{
+  "source": "https://styles.refero.design/style/e186e08f-e7ce-4b48-bd65-68bc300d2193",
+  "uuid": "e186e08f-e7ce-4b48-bd65-68bc300d2193",
+  "name": "ldd",
+  "northStar": "Dot-matrix broadsheet on cream paper — a single sheet of warm stock, overprinted once with massive black type and nothing else.",
+  "capturedAt": "2026-07-18T10:00:17.139Z",
+  "meta": {
+    "url": "https://lorenzodaldosso.it",
+    "siteName": "ldd",
+    "extractedAt": "2026-06-03T16:54:51.128Z",
+    "durationMs": 25124,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 107,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only three colors: #fffcf0 (canvas), #000310 (text/borders), and #000000 (sparingly for accents). No accent color exists.",
+      "Set display headings to LDD at 135px with line-height 1.00 and activate the 'ss01' font feature for dot-matrix character alternates.",
+      "Use NeueMontreal at 12px or 16px with line-height 1.00 for all non-display type. Never set body text above 16px.",
+      "Separate sections with 200px vertical gaps and/or a 1px Midnight Ink rule — never use cards, panels, or backgrounds to create separation.",
+      "Use the labeled scroll progress bar (Scroll / To / Discover) as the primary interaction model. No buttons, no CTAs, no cards.",
+      "Allow large type and section numbers to bleed to the viewport edges. This is full-bleed editorial, not a constrained card grid.",
+      "Keep every radius at 0px. No rounded corners on any element, ever."
+    ],
+    "donts": [
+      "Don't add a brand accent color, a secondary palette, or any chromatic highlight. The system is monochromatic by design.",
+      "Don't introduce shadows, blur, glow, or any depth effect. Flatness is the aesthetic.",
+      "Don't use buttons, cards, or pill-shaped components. The scroll progress bar replaces all interactive affordances.",
+      "Don't set body type above 16px or use a line-height above 1.0. The tight leading is a signature, not a bug.",
+      "Don't use a constrained max-width content container. Let the cream paper breathe to the edges.",
+      "Don't substitute the LDD display face with a standard sans-serif. The dot-matrix character treatment is the entire identity.",
+      "Don't add icons, illustrations, or photography. The system is type-only — visuals would compete with the display type and lose."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fffcf0",
+        "name": "Cream Paper",
+        "role": "Page canvas, card surfaces, section backgrounds — a warm off-white that reads as paper, not screen, and prevents pure-white harshness while giving the near-black type a slight warm push",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000310",
+        "name": "Midnight Ink",
+        "role": "Primary text, borders, section rules, dark-section backgrounds — near-black with a barely-perceptible blue undertone that distinguishes it from flat #000000 and keeps the palette from feeling like a photocopy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Press",
+        "role": "Secondary text, nav labels, fine details — true black used sparingly for maximum contrast accents against the midnight ink",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed editorial — no max-width constraint, content lives at the edges. The page is a vertical stack of full-viewport-width sections separated by 200px gaps or 1px hairline rules. The hero is a centered massive LDD display name. Below it, a labeled scroll-progress bar with section numbering (01…04) flanks left and right at the section edges. A marquee keyword strip ('Security · Support · Network') runs full-bleed at large size, allowed to clip at both sides. Navigation is a minimal top bar with three items (Menu left, mode-toggle center, Contact right) and zero chrome. All layout decisions prioritize the relationship between the 135px display type and the cream canvas — nothing else exists to compete.",
+    "imagery": "Zero imagery. No photography, no illustration, no product shots, no icons, no avatars. The site is type-only — the LDD display face and the NeueMontreal body face carry 100% of the visual weight. The only graphic element is the 1px hairline rule. This is a radical content decision: the site works because there is nothing to look at except how the type sits on cream paper.",
+    "similar": [
+      {
+        "why": "Same editorial portfolio approach — single-color palette, oversized display type, zero decoration, tight body line-height, and the work itself is the design system",
+        "business": "Rauno Freiberg (raunofreiberg.com)"
+      },
+      {
+        "why": "Same broadsheet sensibility — cream paper canvas, massive display type, hairline rules as the only structural element, and a refusal to use card-based UI",
+        "business": "Pentagram partner sites (e.g. michaelbjornes.com)"
+      },
+      {
+        "why": "Same dot-matrix / terminal-typeface character treatment in display headings, and the same monochromatic near-black-on-warm-white palette with zero accent color",
+        "business": "Studio Dumbar portfolio archives"
+      },
+      {
+        "why": "Same full-bleed editorial layout — content allowed to break viewport edges, oversized numeric section markers, and a near-absence of traditional UI components like buttons and cards",
+        "business": "Cobe (cobe.com)"
+      },
+      {
+        "why": "Same two-tone cream-and-ink palette, massive custom display face, generous section gaps, and a scroll-progress interaction that replaces conventional CTAs",
+        "business": "Tobias van Schneider (vanschneider.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "35px",
+      "sectionGap": "200px",
+      "cardPadding": "30px",
+      "pageMaxWidth": null
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#fffcf0",
+        "name": "Cream Paper",
+        "level": 1,
+        "purpose": "Base canvas for the entire page — the single surface"
+      },
+      {
+        "hex": "#000310",
+        "name": "Midnight Ink",
+        "level": 2,
+        "purpose": "Inverted surface for dark sections (rare, used only when a band of reversed type appears)"
+      }
+    ],
+    "northStar": "Dot-matrix broadsheet on cream paper — a single sheet of warm stock, overprinted once with massive black type and nothing else.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 135,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal three-item header — Menu (left), mode-toggle (center), Contact (right)",
+        "description": "Sits at the very top edge of the page with no background, no border, no padding above. Three labels in NeueMontreal 12px / line-height 1.0 / Midnight Ink (#000310). No logo, no hamburger icon, no dropdown. Space-between layout across the full viewport width."
+      },
+      {
+        "name": "Display Heading (LDD 135px)",
+        "role": "Primary heading for hero and section titles — the dominant type element on any page",
+        "description": "LDD custom face at 135px, weight 400, line-height 1.00, color Midnight Ink (#000310). Renders as a single line. Dot-matrix character alternates (plus-sign o, pixel-cut a) should be activated via font feature 'ss01' on. Full-width — the heading is allowed to break the viewport edge and scroll-clip, or sit centered with 200px vertical breathing room above and below."
+      },
+      {
+        "name": "Body Paragraph (NeueMontreal 16px)",
+        "role": "All descriptive copy, intros, and supporting text",
+        "description": "NeueMontreal 16px, weight 400, line-height 1.00, color Midnight Ink (#000310). The 1.0 line-height at 16px means lines nearly touch — this is a signature of the system, not a bug. Never set body text above 16px. Max content width follows the section container but text should be left-aligned and short enough to read in 8–12 word lines."
+      },
+      {
+        "name": "Nav Label (NeueMontreal 12px)",
+        "role": "Navigation, captions, metadata, footer text",
+        "description": "NeueMontreal 12px, weight 400, line-height 1.00, color Midnight Ink (#000310). Used for all small-print elements. The 12px / 1.0 combination is the second-most-important type element behind the display heading."
+      },
+      {
+        "name": "Scroll Progress Bar",
+        "role": "Replaces traditional CTAs and navigation — a labeled horizontal progress indicator",
+        "description": "Full-width horizontal bar. Container: 1px hairline border in Midnight Ink (#000310), 30px vertical padding, 58px horizontal padding. Fill: solid Midnight Ink block that grows left-to-right as the user scrolls. Three labels beneath the bar in NeueMontreal 12px: 'Scroll' (left), 'To' (center), 'Discover' (right) — evenly distributed across the bar's width with space-between. This is the only interactive progress element in the system."
+      },
+      {
+        "name": "Section Number Marker",
+        "role": "Oversized numeric section indicators (01, 02, 03, 04…) flanking section content",
+        "description": "NeueMontreal at very large size (rendered as 0 + 1, 0 + 4 etc. in the markup, visually around 60–80px), weight 400, line-height 1.00, color Midnight Ink (#000310). Positioned at the left and right edges of a section to bookend content. Functions as a typographic structural element, not decoration."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Horizontal rule separating page sections",
+        "description": "1px solid line in Midnight Ink (#000310) spanning the full viewport width. No margin above or below — sections butt directly against the rule. This is the only border style in the system."
+      },
+      {
+        "name": "Marquee / Scrolling Text Strip",
+        "role": "Full-bleed horizontal keyword ticker (e.g. 'Security · Support · Network')",
+        "description": "NeueMontreal at large display size (~80–100px, between caption and display), weight 400, line-height 1.00, Midnight Ink (#000310) on cream (#fffcf0) background. Items separated by a bullet point (·). The strip spans the entire viewport with no side padding — text is allowed to bleed off both edges."
+      },
+      {
+        "name": "Dark Inverted Section",
+        "role": "Rare full-bleed dark band for reversed-type content",
+        "description": "Background: Midnight Ink (#000310). Text: Cream Paper (#fffcf0). All other rules unchanged — still no shadows, no radius, 1.0 line-height, 200px vertical padding. Used sparingly; the page should be 90%+ cream."
+      },
+      {
+        "name": "Text Link",
+        "role": "All inline links and nav items — 'Contact', 'White Version', 'Menu'",
+        "description": "NeueMontreal 12px, weight 400, line-height 1.00, color Midnight Ink (#000310). No underline by default. No hover color change, no underline-on-hover, no arrow icons. The link is distinguished only by its position in the nav. Restraint is the rule."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines and section names — a custom face with dot-matrix / plus-sign character treatments (visible in the 'o' and 'a' glyphs) that reference early digital terminals and ticket printers. The 135px size at line-height 1.0 makes every heading a single tight line of ink. No substitute captures the pixel-cut character details; closest fallback is 'PP NeueBit' or 'VT323' for the terminal reference, but with reduced fidelity.",
+        "sizes": "135px",
+        "family": "LDD",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "PP NeueBit, VT323, Space Mono Bold",
+        "fontFeatureSettings": "\"ss01\" on (to activate the dot-matrix plus-sign alternates on o, a, and related rounded glyphs)"
+      },
+      {
+        "role": "Body copy, navigation labels, captions, and all secondary type — a neutral neo-grotesque at unusually small sizes (12–16px) with tight 1.0 line-height. The whisper-quiet body face is deliberately undersized so the display type dominates. Line-height 1.0 on 12–16px text means almost no vertical air between lines — a printed-typesetting choice, not a web one.",
+        "sizes": "12px, 16px",
+        "family": "NeueMontreal",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Inter, Manrope, or any neo-grotesque geometric sans at 12–16px"
+      }
+    ],
+    "description": "A two-color broadsheet: warm cream canvas (#fffcf0), near-black ink (#000310) with a faint blue undertone, and zero decoration. Drama is generated entirely by scale — a custom 135px display face (LDD) with dot-matrix character treatments fights against a tiny neo-grotesque body face (NeueMontreal at 12–16px, line-height 1.0) for the screen's attention. The interface behaves less like a website and more like a printed zine: horizontal rules divide the page, oversized section numbers (01, 04) punctuate the rhythm, and a labeled scroll-progress bar (Scroll / To / Discover) replaces all conventional CTAs. 200px margins between sections create gallery-hung breathing room. No shadows, no gradients, no rounded corners, no color punctuation — every accent a designer might be tempted to add has been removed on purpose.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e186e08f-e7ce-4b48-bd65-68bc300d2193#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ldd design system\",\"item\":\"https://styles.refero.design/style/e186e08f-e7ce-4b48-bd65-68bc300d2193\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e186e08f-e7ce-4b48-bd65-68bc300d2193#style-reference\",\"name\":\"ldd design system reference\",\"headline\":\"ldd design system | Refero Styles\",\"description\":\"Explore ldd's light Other design system: Cream Paper #fffcf0, Midnight Ink #000310 colors, LDD, NeueMontreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e186e08f-e7ce-4b48-bd65-68bc300d2193\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e186e08f-e7ce-4b48-bd65-68bc300d2193\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ldd\",\"url\":\"https://lorenzodaldosso.it\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e186e08f-e7ce-4b48-bd65-68bc300d2193#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/54deb415-306e-42c4-a8ea-35d5bb819199.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/54deb415-306e-42c4-a8ea-35d5bb819199.jpg\",\"caption\":\"Screenshot of ldd\"},\"image\":\"https://images.refero.design/styles/refero.design/image/54deb415-306e-42c4-a8ea-35d5bb819199.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ldd design system\",\"ldd website design\",\"ldd colors\",\"ldd typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Cream Paper\",\"Midnight Ink\",\"Pure Press\",\"LDD\",\"NeueMontreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ldd design system\"},{\"@type\":\"Thing\",\"name\":\"ldd website design\"},{\"@type\":\"Thing\",\"name\":\"ldd colors\"},{\"@type\":\"Thing\",\"name\":\"ldd typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-03-03T12:12:51.000Z\",\"dateModified\":\"2026-03-03T12:12:51.000Z\"}]}19:T71b,**Quick Color Reference**\n- text: #000310\n- background: #fffcf0\n- border: #000310\n- accent: none (monochromatic by design)\n- primary action: no distinct CTA color\n\n**Example Component Prompts:**\n\n1. Create a full-bleed hero section: cream paper background (#fffcf0), 200px top padding. Center-aligned display heading 'Lorenzo Dal Dosso' in LDD custom face at 135px, weight 400, line-height 1.00, color #000310, with the 'ss01' font feature enabled. No other elements in this section.\n\n2. Create the scroll progress component: a full-width container with 1px hairline border in #000310, 30px vertical padding and 58px horizontal padding. Inside, a solid #000310 progress fill that grows from left to right. Below the bar, three NeueMontreal 12px / line-height 1.00 / #000310 labels — 'Scroll' left, 'To' center, 'Discover' right — using space-between distribution.\n\n3. Create a full-bleed keyword marquee strip: cream (#fffcf0) background, no horizontal padding. A single line of NeueMontreal at ~80px, weight 400, line-height 1.00, color #000310, containing 'Security · Support · Network' in a horizontal sequence. The text is allowed to extend beyond both viewport edges.\n\n4. Create a section with numeric bookends: full-width cream background, 200px vertical padding. Large '01' set in NeueMontreal at ~60px, weight 400, line-height 1.00, #000310, flush to the left edge. A short body paragraph (max 8–12 words per line) in NeueMontreal 16px / line-height 1.00 / #000310, centered. Large '04' set in NeueMontreal at ~60px, flush to the right edge.\n\n5. Create the top navigation bar: no background, no border, no vertical padding. Three NeueMontreal 12px / line-height 1.00 / #000310 labels distributed across the full viewport width with space-between — 'Menu' left, 'White Version' center, 'Contact' right."
+      }
+    ],
+    "elevationPhilosophy": "Zero elevation. No shadows, no glows, no borders-with-blur. The design system intentionally rejects all depth cues. When an element needs separation, it gets a 1px hairline rule in Midnight Ink (#000310) or a 200px gap of cream paper. Flatness is the aesthetic."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "nav"
+          ],
+          "frequency": 206,
+          "confidence": 1,
+          "prominence": 9970759.096919125,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000310",
+          "oklch": {
+            "c": 0.03880750716932828,
+            "h": 258.5384332857848,
+            "l": 0.10231931277157061
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 256,
+          "confidence": 1,
+          "prominence": 3068171.6197276525,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fffcf0",
+          "oklch": {
+            "c": 0.016075529943288244,
+            "h": 95.21932217145154,
+            "l": 0.9901226317173315
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 80,
+          "confidence": 1,
+          "prominence": 2738815.2012461578,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.055952748732477804,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.43,
+          "background": "#fffcf0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.02,
+          "background": "#fffcf0",
+          "foreground": "#000310"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.02,
+          "background": "#000310",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 35,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 58,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 200,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "NeueMontreal-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 64,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "LDD",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 43,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Augmented Fourth",
+        "ratio": 1.414,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "NeueMontreal-Regular",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "NeueMontreal-Regular",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 16,
+          "family": "NeueMontreal-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 42,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 135,
+          "family": "LDD",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 135,
+          "family": "LDD",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 135,
+          "family": "LDD",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 24,
+          "lineHeight": 2.22,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6b4ac45e-0b0e-4b12-8451-95dfaa1bc988.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/54deb415-306e-42c4-a8ea-35d5bb819199.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e186e08f-e7ce-4b48-bd65-68bc300d2193#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ldd design system\",\"item\":\"https://styles.refero.design/style/e186e08f-e7ce-4b48-bd65-68bc300d2193\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e186e08f-e7ce-4b48-bd65-68bc300d2193#style-reference\",\"name\":\"ldd design system reference\",\"headline\":\"ldd design system | Refero Styles\",\"description\":\"Explore ldd's light Other design system: Cream Paper #fffcf0, Midnight Ink #000310 colors, LDD, NeueMontreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e186e08f-e7ce-4b48-bd65-68bc300d2193\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e186e08f-e7ce-4b48-bd65-68bc300d2193\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ldd\",\"url\":\"https://lorenzodaldosso.it\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e186e08f-e7ce-4b48-bd65-68bc300d2193#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/54deb415-306e-42c4-a8ea-35d5bb819199.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/54deb415-306e-42c4-a8ea-35d5bb819199.jpg\",\"caption\":\"Screenshot of ldd\"},\"image\":\"https://images.refero.design/styles/refero.design/image/54deb415-306e-42c4-a8ea-35d5bb819199.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ldd design system\",\"ldd website design\",\"ldd colors\",\"ldd typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Cream Paper\",\"Midnight Ink\",\"Pure Press\",\"LDD\",\"NeueMontreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ldd design system\"},{\"@type\":\"Thing\",\"name\":\"ldd website design\"},{\"@type\":\"Thing\",\"name\":\"ldd colors\"},{\"@type\":\"Thing\",\"name\":\"ldd typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-03-03T12:12:51.000Z\",\"dateModified\":\"2026-03-03T12:12:51.000Z\"}]}19:T71b,**Quick Color Reference**\n- text: #000310\n- background: #fffcf0\n- border: #000310\n- accent: none (monochromatic by design)\n- primary action: no distinct CTA color\n\n**Example Component Prompts:**\n\n1. Create a full-bleed hero section: cream paper background (#fffcf0), 200px top padding. Center-aligned display heading 'Lorenzo Dal Dosso' in LDD custom face at 135px, weight 400, line-height 1.00, color #000310, with the 'ss01' font feature enabled. No other elements in this section.\n\n2. Create the scroll progress component: a full-width container with 1px hairline border in #000310, 30px vertical padding and 58px horizontal padding. Inside, a solid #000310 progress fill that grows from left to right. Below the bar, three NeueMontreal 12px / line-height 1.00 / #000310 labels — 'Scroll' left, 'To' center, 'Discover' right — using space-between distribution.\n\n3. Create a full-bleed keyword marquee strip: cream (#fffcf0) background, no horizontal padding. A single line of NeueMontreal at ~80px, weight 400, line-height 1.00, color #000310, containing 'Security · Support · Network' in a horizontal sequence. The text is allowed to extend beyond both viewport edges.\n\n4. Create a section with numeric bookends: full-width cream background, 200px vertical padding. Large '01' set in NeueMontreal at ~60px, weight 400, line-height 1.00, #000310, flush to the left edge. A short body paragraph (max 8–12 words per line) in NeueMontreal 16px / line-height 1.00 / #000310, centered. Large '04' set in NeueMontreal at ~60px, flush to the right edge.\n\n5. Create the top navigation bar: no background, no border, no vertical padding. Three NeueMontreal 12px / line-height 1.00 / #000310 labels distributed across the full viewport width with space-between — 'Menu' left, 'White Version' center, 'Contact' right."
+}

@@ -1,0 +1,200 @@
+{
+  "color": {
+    "onyx": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Onyx — Primary text, hairline borders, full-bleed dark surface bands — the near-black ink of the system"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Secondary text fills, deepest borders, and image overlays where maximum contrast against white is required"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, surface backgrounds, inverse text on dark bands"
+    },
+    "concrete": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Concrete — Secondary descriptive text, muted link borders, subdued meta-information — the gray of footnotes and captions"
+    }
+  },
+  "font": {
+    "twk-everett": {
+      "$value": "TWK Everett",
+      "$type": "fontFamily",
+      "$description": "All interface and display type — a neo-grotesque with tall x-height and geometric openness. The sole weight (400) across the entire range from 11px captions to 62px display creates a monolithic typographic voice. At 62px it receives aggressive negative tracking (-0.05em) that pulls the letterforms into a continuous architectural band; at 11px it switches to slight positive tracking (+0.04em) for utilitarian legibility in timestamps and labels."
+    },
+    "twk-everett-mono": {
+      "$value": "TWK Everett Mono",
+      "$type": "fontFamily",
+      "$description": "Monospaced companion for data and technical annotations — used sparingly in body contexts where tabular alignment or code-like precision is needed. Single size at 21px with -0.01em tracking."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Suisse Works Regular",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "TWK Everett Regular",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "TWK Everett Regular",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "TWK Everett Regular",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "TWK Everett Mono Regular",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "TWK Everett Regular",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "TWK Everett Regular",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 21px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "TWK Everett Regular",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "TWK Everett Regular",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 62px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "53": {
+      "$value": "53px",
+      "$type": "dimension",
+      "$description": "Spacing 53px"
+    },
+    "59": {
+      "$value": "59px",
+      "$type": "dimension",
+      "$description": "Spacing 59px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "150": {
+      "$value": "150px",
+      "$type": "dimension",
+      "$description": "Spacing 150px"
+    },
+    "188": {
+      "$value": "188px",
+      "$type": "dimension",
+      "$description": "Spacing 188px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary canvas — the page itself"
+    },
+    "onyx-black": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed dark bands for project showcases and section breaks — image or video containers, not decorative"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ncda.biz",
+      "siteName": "NCDA",
+      "extractedAt": "2026-06-03T19:39:26.456Z",
+      "variant": "extended"
+    }
+  }
+}

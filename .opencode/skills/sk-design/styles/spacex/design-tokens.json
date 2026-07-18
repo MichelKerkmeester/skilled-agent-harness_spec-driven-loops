@@ -1,0 +1,237 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void Black — Page canvas, all section backgrounds — the unbroken dark that makes the photography luminous"
+    },
+    "star-white": {
+      "$value": "#f0f0fa",
+      "$type": "color",
+      "$description": "Star White — All body text, headings, icons, nav labels, button text, button borders — the sole foreground color; the cool tint reads as artificial light against black, not paper"
+    },
+    "dim-steel": {
+      "$value": "#545457",
+      "$type": "color",
+      "$description": "Dim Steel — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "dark-gunmetal": {
+      "$value": "#404040",
+      "$type": "color",
+      "$description": "Dark Gunmetal — Subtle nav separators and low-emphasis dividers — barely visible against black, used only when structural separation is needed"
+    }
+  },
+  "font": {
+    "d-din": {
+      "$value": "D-DIN",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for navigation, body, labels, buttons. The tracked-out uppercase (0.09–0.10em) at 10-13px turns every nav item and label into an instrument-panel abbreviation. D-DIN is an industrial geometric sans — its sharp terminals and even stroke weight read as engineered hardware typography, not editorial."
+    },
+    "d-din-bold": {
+      "$value": "D-DIN-Bold",
+      "$type": "fontFamily",
+      "$description": "Section headlines — set in ALL CAPS at 48px with 0.02em tracking. The bold weight is reserved exclusively for headlines; the minimal tracking (compared to the 0.10em on nav) tightens the headline mass and lets it feel solid, not scattered. This is the loudest element on any screen."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "D-DIN",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "D-DIN",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "D-DIN",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "D-DIN",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "D-DIN",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "D-DIN",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "D-DIN",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "D-DIN",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "D-DIN",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "D-DIN-Bold",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "D-DIN-Bold",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "3xl": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Base canvas — every section sits directly on black; there is no elevated card layer above the page"
+    },
+    "image-bleed": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed photography composites with black letterboxing or fades; the image edge dissolves back into Void Black"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://spacex.com",
+      "siteName": "SpaceX",
+      "extractedAt": "2026-06-03T16:10:15.905Z",
+      "variant": "extended"
+    }
+  }
+}

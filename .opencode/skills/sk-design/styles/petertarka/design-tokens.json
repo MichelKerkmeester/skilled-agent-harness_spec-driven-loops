@@ -1,0 +1,150 @@
+{
+  "color": {
+    "warm-concrete": {
+      "$value": "#eaeaea",
+      "$type": "color",
+      "$description": "Warm Concrete — Page canvas — the warm light gray that makes the whole gallery feel architectural rather than digital"
+    },
+    "bone": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Bone — Card surface — barely distinguishable from the canvas, creating the illusion of cards floating in space"
+    },
+    "hairline": {
+      "$value": "#d8d8d8",
+      "$type": "color",
+      "$description": "Hairline — 1px card borders and dividers — structural, never decorative"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — All text, heading borders, and the top/bottom hairline rules that frame the page"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Nav text and link borders — appears in the hamburger menu area and link underlines"
+    }
+  },
+  "font": {
+    "gt-america": {
+      "$value": "GT America",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across all contexts — nav, body, cards, headings, links. Weight 200 for display headlines is the signature anti-convention: most sites use 600-700 for headlines, this whisper-weight gains authority through restraint. Weight 300 for body and UI text, weight 400 reserved for occasional emphasis."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "GT America",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "GT America",
+        "fontSize": "21px",
+        "fontWeight": 300,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "GT America",
+        "fontSize": "21px",
+        "fontWeight": 300,
+        "lineHeight": 2.37
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "GT America",
+        "fontSize": "21px",
+        "fontWeight": 200,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "GT America",
+        "fontSize": "21px",
+        "fontWeight": 200,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 21px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "GT America",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "warm-concrete": {
+      "$value": "#eaeaea",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the warm gray backdrop for the entire gallery"
+    },
+    "bone": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Surface level 1: Card surface — subtle lift from canvas via 1px hairline border rather than contrast shift"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://petertarka.com",
+      "siteName": "Petertarka",
+      "extractedAt": "2026-06-03T21:25:42.998Z",
+      "variant": "extended"
+    }
+  }
+}

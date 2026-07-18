@@ -1,0 +1,240 @@
+{
+  "color": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page backgrounds, nav bar, card surfaces, image backgrounds"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — All text, nav links, display headings, footer background, card titles"
+    },
+    "hairline-grey": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Hairline Grey — 1px borders, dividers, card outlines, link underlines — the structural skeleton of the layout"
+    },
+    "ash-grey": {
+      "$value": "#a9a9a9",
+      "$type": "color",
+      "$description": "Ash Grey — Muted surface fills, image placeholder backgrounds, secondary tonal blocks"
+    },
+    "bone-blush": {
+      "$value": "#fff5fa",
+      "$type": "color",
+      "$description": "Bone Blush — Subtle warm-tinted card surface — near-white with a hint of warmth, used sparingly"
+    }
+  },
+  "font": {
+    "din": {
+      "$value": "DIN",
+      "$type": "fontFamily",
+      "$description": "Display and section headings — used at 90–100px for the wordmark and feature titles, 36–52px for card titles, 25px for secondary headlines. Line-height collapses to 0.75–0.80 at the largest sizes, stacking lines into near-solid blocks. Tracking tightens proportionally: -0.004em at small sizes up to -0.008em at display. This single weight at extreme sizes carries the entire visual authority of the brand — no bold weight exists, scale alone creates hierarchy."
+    },
+    "cochin": {
+      "$value": "Cochin",
+      "$type": "fontFamily",
+      "$description": "Editorial body text and article descriptions. At 16px/1.50 it provides readable long-form copy with generous breathing room. At 46px it functions as an oversized serif lead — warm, literary counterpoint to the industrial DIN display type. The only serif in the system; its presence signals 'this is editorial content, not UI chrome'."
+    },
+    "forma-djr-display": {
+      "$value": "forma-djr-display",
+      "$type": "fontFamily",
+      "$description": "Navigation labels, micro-UI, category tags, footer links. Always rendered all-caps at 13px with 0.062em letter-spacing — the tracking is the signature: generous, almost luxurious spacing at tiny size creates a deliberate tension against the compressed DIN display type. This is the typographic glue that holds the system together at the functional level."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "forma-djr-display",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Cochin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Cochin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "DIN",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "DIN",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "DIN",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "DIN",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Cochin",
+        "fontSize": "46px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "DIN",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "DIN",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 52px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "DIN",
+        "fontSize": "90px",
+        "fontWeight": 400,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 90px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "DIN",
+        "fontSize": "100px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 100px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, nav bar surface, content card background"
+    },
+    "bone-blush": {
+      "$value": "#fff5fa",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle warm card surface — used on rare editorial cards to break the pure-white field"
+    },
+    "ash-grey": {
+      "$value": "#a9a9a9",
+      "$type": "color",
+      "$description": "Surface level 2: Image placeholder fills, muted tonal blocks behind absent photography"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Footer background, inverted text contexts — the only non-white surface in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://exhibition-magazine.com",
+      "siteName": "Exhibition Magazine",
+      "extractedAt": "2026-06-03T19:07:44.425Z",
+      "variant": "extended"
+    }
+  }
+}

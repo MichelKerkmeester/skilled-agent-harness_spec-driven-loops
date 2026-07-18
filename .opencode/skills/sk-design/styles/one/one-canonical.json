@@ -1,0 +1,524 @@
+{
+  "source": "https://styles.refero.design/style/71745af1-2e53-4925-992e-82773e55ccd6",
+  "uuid": "71745af1-2e53-4925-992e-82773e55ccd6",
+  "name": "ONE",
+  "northStar": "art monograph on warm paper",
+  "capturedAt": "2026-07-18T07:36:37.118Z",
+  "meta": {
+    "url": "https://one-is.com",
+    "siteName": "ONE",
+    "extractedAt": "2026-06-03T20:19:46.835Z",
+    "durationMs": 29911,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 275,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #000000 for text, borders, and outline strokes; #fbfbfa for any filled surface; #bec0c5 only for muted/secondary text and list dividers",
+      "Set every button radius to 999px and every card/video frame radius to 12px",
+      "Restrict type to 18px, 20px, and 24px at weight 500 or 600 with -0.01em letter-spacing",
+      "Give video plates and section breaks at least 96px vertical breathing room",
+      "Let the wordmark and Ghost Pill Button sit at the page edges with no centered nav or breadcrumbs",
+      "Carry dark video content inside a 12px-radius frame rather than bleeding full-bleed against the Paper canvas",
+      "Treat the manifesto list as a single column with weight/color as the only state indicator — no checkmarks, arrows, or icons"
+    ],
+    "donts": [
+      "Do not introduce accent colors, brand hues, or saturated fills — the palette is strictly ink/paper/ash",
+      "Do not add box-shadows, gradients, or background blurs to any surface",
+      "Do not scale type above 24px or below 18px — both would break the label-scale system",
+      "Do not use weight 400 or 700; the system is bound to 500 and 600 only",
+      "Do not use square or 4px radii on buttons; pill is the only allowed control shape",
+      "Do not add a filled/solid button variant; the Ghost Pill Button is the sole interactive pattern",
+      "Do not add icons, badges, or secondary navigation in the header — the chrome is exactly two elements"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, hairline borders, video frame outlines, pill button stroke — the only chromatic event in the UI",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fbfbfa",
+        "name": "Paper",
+        "role": "Soft icon strokes, subtle dividers, and low-emphasis decorative details. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bec0c5",
+        "name": "Ash",
+        "role": "Muted text in the cycling manifesto, list dividers, inactive link tone — desaturated gray stays quiet next to ink",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Page is max-width ~1200px centered on a Paper canvas, but content within each section is independently centered rather than grid-aligned. The hero is a full-bleed dark video plate with no headline overlay. Sections alternate between single video+caption blocks and a three-column layout: small project thumbnail on the left, centered manifesto text stack in the middle column. Section gaps are 96px, section padding is 32px horizontal. Navigation is a single thin top bar — wordmark left, ghost pill right — with no center nav and no menu icon. The rhythm is vertical and reading-oriented: scroll down to encounter one video, one caption, one manifesto block, repeat.",
+    "imagery": "Imagery is exclusively dark, cinematic video: handheld natural-light footage of forests, water, and sunlit interiors, with deep teal, cyan, and warm amber color grades. Videos are contained inside 12px-radius frames on the Paper canvas — they never bleed full-bleed. No photography, no illustration, no 3D renders, no abstract graphics outside the video content. Icons are absent except for a single play triangle on a dark circular overlay. The visual density is extremely low — one video plate and one caption per section.",
+    "similar": [
+      {
+        "why": "Same single-column Paper-canvas rhythm with a tiny wordmark, ghost contact button top-right, and full-bleed cinematic video as the primary content type",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Dark immersive video plates framed inside a minimal, type-only interface with no navigation chrome beyond a wordmark and a single CTA",
+        "business": "Active Theory"
+      },
+      {
+        "why": "Creative-studio site that lets a cycling manifesto / 'is' list function as the main content block, with monochrome type and a paper-warm background",
+        "business": "Resn"
+      },
+      {
+        "why": "Same restrained approach — warm off-white canvas, hairline type, pill button, and dark editorial photography/video as the only color",
+        "business": "Manual"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "12px",
+        "buttons": "999px",
+        "videoFrames": "12px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "96px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#fbfbfa",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Page canvas — warm off-white reads as physical paper"
+      },
+      {
+        "hex": "#000000",
+        "name": "Video Frame",
+        "level": 2,
+        "purpose": "Interior of the cinematic video plate — true black holds the dark footage"
+      },
+      {
+        "hex": "#000000",
+        "name": "Play Overlay",
+        "level": 3,
+        "purpose": "Semi-transparent dark circle that hosts the play glyph over video"
+      }
+    ],
+    "northStar": "art monograph on warm paper",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1,
+        "letterSpacing": -0.24
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Pill Button",
+        "role": "Primary navigation CTA (Contact)",
+        "description": "999px radius, 1px Ink border on Paper fill, horizontal padding 19px, height ~36–40px. Text 18px weight 500 in Ink. The only button variant on the site — no filled, no link-style alternatives. Rests top-right of every screen."
+      },
+      {
+        "name": "Wordmark",
+        "role": "Brand identity, top-left anchor",
+        "description": "Plain text 'ONE' at 20px, weight 600, Ink on Paper. No logo glyph, no lockup — the brand name alone is the mark. Sits flush with the page edge with ~16px outer padding."
+      },
+      {
+        "name": "Cinematic Video Plate",
+        "role": "Primary content surface",
+        "description": "Full-bleed dark video embedded in a Paper canvas, 12px corner radius, ~720px max width centered, 16:9 aspect. Carries its own internal color (deep teal, amber sun) but lives inside the monochrome frame system. A circular play/pause control floats at center on a semi-transparent dark surface."
+      },
+      {
+        "name": "Caption Block",
+        "role": "Annotation under video plates",
+        "description": "Single short sentence at 18px weight 500, Ink on Paper, centered beneath the video. Generous 96px margin separates it from the video above — caption is treated as its own paragraph, not a subtitle."
+      },
+      {
+        "name": "Cycling Manifesto List",
+        "role": "Repetitive, rhythmic brand expression",
+        "description": "Vertical stack of 'ONE is X' statements, 18–20px weight 500, ~4px line spacing between items. Default items in Ash (#bec0c5); the active item flips to Ink at weight 600. No bullets, no numbers, no dividers — the type change is the only indicator. One item visible at a time emphasizes the active state, the rest dissolve into the background."
+      },
+      {
+        "name": "Project Thumbnail",
+        "role": "Companion still alongside the manifesto",
+        "description": "Small landscape image (~140×80px), 8–12px radius, Ink or soft color from the video plate. Sits to the left of the manifesto text, vertically aligned to the active item. Acts as visual ear to the text column."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent page chrome",
+        "description": "Full-bleed Paper background, transparent to the page, ~60–72px tall. Wordmark left, Ghost Pill Button right, both vertically centered. No center nav, no menu icon, no secondary links."
+      },
+      {
+        "name": "Centered Play Control",
+        "role": "Video interaction state",
+        "description": "48px circular surface, dark semi-transparent fill, white triangle glyph centered. Overlaid on the video plate at exact center — the only icon-sized element that breaks the Paper canvas."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family system: body text and micro-headlines both sit in the 18–24px range at medium weight, with weight 600 reserved for the active manifesto item and button labels. The tight -0.01em tracking and modest size range mean type never breaks 24px — the page treats every word as a label, not a headline.",
+        "sizes": "18px, 20px, 24px",
+        "family": "MagicUiPro",
+        "weight": "500, 600",
+        "lineHeight": "1.0–1.4",
+        "substitute": "Söhne, Inter, General Sans",
+        "letterSpacing": "-0.01em across all sizes"
+      }
+    ],
+    "description": "ONE is an editorial gallery: warm paper-white canvas, hairline-thin type, and black ink that does all the work. The interface disappears so that dark cinematic video plates and a slowly cycling manifesto can carry the page. Almost everything is monochrome — a single warm off-white background, true black for text and rules, and one soft gray for muted states. Pill-shaped ghost controls float at the edges, the wordmark sits top-left as a quiet signature, and the right edge holds a single contact affordance. Components are thin: 1px borders, generous padding, 999px buttons, and no shadows or gradients. The mood is curated, unhurried, book-like — the type does not shout, it annotates.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/71745af1-2e53-4925-992e-82773e55ccd6#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ONE design system\",\"item\":\"https://styles.refero.design/style/71745af1-2e53-4925-992e-82773e55ccd6\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/71745af1-2e53-4925-992e-82773e55ccd6#style-reference\",\"name\":\"ONE design system reference\",\"headline\":\"ONE design system | Refero Styles\",\"description\":\"Explore ONE's light Agency design system: Ink #000000, Paper #fbfbfa colors, MagicUiPro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/71745af1-2e53-4925-992e-82773e55ccd6\",\"mainEntityOfPage\":\"https://styles.refero.design/style/71745af1-2e53-4925-992e-82773e55ccd6\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ONE\",\"url\":\"https://one-is.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/71745af1-2e53-4925-992e-82773e55ccd6#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/af9d4b75-6554-4062-b695-ec5538632369.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/af9d4b75-6554-4062-b695-ec5538632369.jpg\",\"caption\":\"Screenshot of ONE\"},\"image\":\"https://images.refero.design/styles/refero.design/image/af9d4b75-6554-4062-b695-ec5538632369.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ONE design system\",\"ONE website design\",\"ONE colors\",\"ONE typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Paper\",\"Ash\",\"MagicUiPro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ONE design system\"},{\"@type\":\"Thing\",\"name\":\"ONE website design\"},{\"@type\":\"Thing\",\"name\":\"ONE colors\"},{\"@type\":\"Thing\",\"name\":\"ONE typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:32:28.246Z\",\"dateModified\":\"2026-04-30T02:32:28.246Z\"}]}19:T4d6,## Quick Color Reference\n- text: #000000\n- background: #fbfbfa\n- border: #000000\n- muted: #bec0c5\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Ghost Pill Button**: 999px radius, 1px #000000 border, #fbfbfa fill, 19px horizontal padding, height ~36px. Label at 18px, weight 500, color #000000, letter-spacing -0.18px. The only button on the page — do not introduce a filled variant.\n\n2. **Wordmark**: Plain text 'ONE' at 20px, weight 600, color #000000, sitting flush left at the page edge. No icon, no logo glyph, no background.\n\n3. **Cinematic Video Plate**: 12px radius, ~720px max width centered, 16:9 aspect, #000000 interior to hold dark video. A 48px circular dark overlay at exact center holds a white play triangle.\n\n4. **Cycling Manifesto List**: Vertical stack of single short lines at 18px weight 500, color #bec0c5, ~4px line gap. The active line flips to #000000 at weight 600 — color and weight together mark state. No bullets, no arrows, no dividers.\n\n5. **Section Layout**: Center the video plate, then 96px of space, then a single 18px caption sentence centered below. No side-by-side hero, no grid, no images flanking the text — every section reads top-to-bottom like a printed page."
+      }
+    ],
+    "elevationPhilosophy": "The system has no elevation. All depth comes from inset video plates against the flat Paper canvas and from the weight/saturation change between Ink and Ash in the manifesto list. Shadows would break the printed-page metaphor."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "button",
+            "body",
+            "card",
+            "hero",
+            "list"
+          ],
+          "frequency": 401,
+          "confidence": 1,
+          "prominence": 96693470.8832871,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 14,
+            "card/color": 1,
+            "hero/color": 2,
+            "list/color": 7,
+            "other/color": 47,
+            "button/color": 8,
+            "heading/color": 1,
+            "body/borderColor": 56,
+            "card/borderColor": 4,
+            "hero/borderColor": 8,
+            "list/borderColor": 28,
+            "other/borderColor": 188,
+            "button/borderColor": 32,
+            "heading/borderColor": 4,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#bec0c5",
+          "oklch": {
+            "c": 0.007333072132694077,
+            "h": 268.53451197215156,
+            "l": 0.8077008877358965
+          },
+          "contexts": [
+            "other",
+            "body",
+            "list"
+          ],
+          "frequency": 950,
+          "confidence": 1,
+          "prominence": 12863399.263344806,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 123,
+            "list/color": 60,
+            "other/color": 7,
+            "body/borderColor": 492,
+            "list/borderColor": 240,
+            "other/borderColor": 28
+          }
+        },
+        {
+          "hex": "#fbfbfa",
+          "oklch": {
+            "c": 0.0013180194128032717,
+            "h": 106.42370950339529,
+            "l": 0.9878092094733638
+          },
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 17671.378455925314,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 1,
+            "icon/color": 1,
+            "other/fill": 1,
+            "button/color": 1,
+            "body/borderColor": 4,
+            "icon/borderColor": 4,
+            "button/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0138000570064751,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.28,
+          "background": "#000000",
+          "foreground": "#fbfbfa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.54,
+          "background": "#000000",
+          "foreground": "#bec0c5"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 999,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|list",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "hero",
+            "body",
+            "button"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "paddingBottom",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingBottom|hero",
+            "marginTop|body",
+            "paddingTop|hero",
+            "paddingTop|other",
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "MagicUiPro",
+          "source": "custom",
+          "weights": [
+            500,
+            600
+          ],
+          "frequency": 273,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 24,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 18,
+          "family": "MagicUiPro",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "MagicUiPro",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "MagicUiPro",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "card",
+            "hero",
+            "body",
+            "list"
+          ],
+          "frequency": 253,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "MagicUiPro",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3bda2d27-3098-4a68-b7ff-7a6063870ca3.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/af9d4b75-6554-4062-b695-ec5538632369.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/71745af1-2e53-4925-992e-82773e55ccd6#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ONE design system\",\"item\":\"https://styles.refero.design/style/71745af1-2e53-4925-992e-82773e55ccd6\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/71745af1-2e53-4925-992e-82773e55ccd6#style-reference\",\"name\":\"ONE design system reference\",\"headline\":\"ONE design system | Refero Styles\",\"description\":\"Explore ONE's light Agency design system: Ink #000000, Paper #fbfbfa colors, MagicUiPro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/71745af1-2e53-4925-992e-82773e55ccd6\",\"mainEntityOfPage\":\"https://styles.refero.design/style/71745af1-2e53-4925-992e-82773e55ccd6\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ONE\",\"url\":\"https://one-is.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/71745af1-2e53-4925-992e-82773e55ccd6#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/af9d4b75-6554-4062-b695-ec5538632369.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/af9d4b75-6554-4062-b695-ec5538632369.jpg\",\"caption\":\"Screenshot of ONE\"},\"image\":\"https://images.refero.design/styles/refero.design/image/af9d4b75-6554-4062-b695-ec5538632369.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ONE design system\",\"ONE website design\",\"ONE colors\",\"ONE typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink\",\"Paper\",\"Ash\",\"MagicUiPro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ONE design system\"},{\"@type\":\"Thing\",\"name\":\"ONE website design\"},{\"@type\":\"Thing\",\"name\":\"ONE colors\"},{\"@type\":\"Thing\",\"name\":\"ONE typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:32:28.246Z\",\"dateModified\":\"2026-04-30T02:32:28.246Z\"}]}19:T4d6,## Quick Color Reference\n- text: #000000\n- background: #fbfbfa\n- border: #000000\n- muted: #bec0c5\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Ghost Pill Button**: 999px radius, 1px #000000 border, #fbfbfa fill, 19px horizontal padding, height ~36px. Label at 18px, weight 500, color #000000, letter-spacing -0.18px. The only button on the page — do not introduce a filled variant.\n\n2. **Wordmark**: Plain text 'ONE' at 20px, weight 600, color #000000, sitting flush left at the page edge. No icon, no logo glyph, no background.\n\n3. **Cinematic Video Plate**: 12px radius, ~720px max width centered, 16:9 aspect, #000000 interior to hold dark video. A 48px circular dark overlay at exact center holds a white play triangle.\n\n4. **Cycling Manifesto List**: Vertical stack of single short lines at 18px weight 500, color #bec0c5, ~4px line gap. The active line flips to #000000 at weight 600 — color and weight together mark state. No bullets, no arrows, no dividers.\n\n5. **Section Layout**: Center the video plate, then 96px of space, then a single 18px caption sentence centered below. No side-by-side hero, no grid, no images flanking the text — every section reads top-to-bottom like a printed page."
+}

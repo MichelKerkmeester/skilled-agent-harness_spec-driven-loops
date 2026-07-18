@@ -1,0 +1,227 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas, deep surface — the void everything floats on"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Primary type, nav pill borders, active state fill, hairlines, iconography"
+    },
+    "ash-gray": {
+      "$value": "#838383",
+      "$type": "color",
+      "$description": "Ash Gray — Muted secondary text, inactive nav labels, tertiary metadata"
+    },
+    "alarm-red": {
+      "$value": "#ed1c24",
+      "$type": "color",
+      "$description": "Alarm Red — Hero detonation block — the only chromatic moment, used as full-bleed surface against black. Makes monochrome feel like a held breath before a shout"
+    }
+  },
+  "font": {
+    "brasparz-variable": {
+      "$value": "Brasparz Variable",
+      "$type": "fontFamily",
+      "$description": "Signature display face for hero detonations and the wordmark. Used at extreme viewport-bleeding sizes with line-height crushed to 0.70 so letterforms overlap vertically. The aggressive negative tracking (down to -0.079em at 360px) tightens characters into a single sculptural mass. Custom stylistic sets ss01 and ss02 are explicitly DISABLED (set to 0) — the raw geometric forms are the brand, no alternates allowed"
+    },
+    "neuehaas": {
+      "$value": "NeueHaas",
+      "$type": "fontFamily",
+      "$description": "Body, navigation, UI labels. The 40px weight 700 serves as mid-scale editorial heading. Weight 400 at 19-20px carries paragraph and caption duties. Features calt, case, liga, ss01, ss02 all active — the only font allowed to flex stylistic alternates"
+    },
+    "trajan-style-serif-editorial-credits-not-in-extracted-data-but-visible": {
+      "$value": "Trajan-style serif (editorial credits, not in extracted data but visible)",
+      "$type": "fontFamily",
+      "$description": "Small-caps credit lines under the display block — classical serif at tiny size creates editorial gravitas against the brutalist type"
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "NeueHaas",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "NeueHaas",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "NeueHaas",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Brasparz Variable",
+        "fontSize": "145px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 145px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Brasparz Variable",
+        "fontSize": "360px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 360px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Brasparz Variable",
+        "fontSize": "360px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 360px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Brasparz Variable",
+        "fontSize": "360px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 360px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Brasparz Variable",
+        "fontSize": "360px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 360px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Brasparz Variable",
+        "fontSize": "360px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 360px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Brasparz Variable",
+        "fontSize": "360px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 360px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "Brasparz Variable",
+        "fontSize": "360px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 360px"
+    }
+  },
+  "spacing": {
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "59": {
+      "$value": "59px",
+      "$type": "dimension",
+      "$description": "Spacing 59px"
+    },
+    "127": {
+      "$value": "127px",
+      "$type": "dimension",
+      "$description": "Spacing 127px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "obsidian-void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the baseline that all white type and red detonations sit on"
+    },
+    "alarm-red": {
+      "$value": "#ed1c24",
+      "$type": "color",
+      "$description": "Surface level 1: Sole chromatic surface — full-bleed hero blocks, the system's one emotional release valve"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://charlielemaignan.com",
+      "siteName": "Charlie",
+      "extractedAt": "2026-06-03T17:23:27.749Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,474 @@
+{
+  "color": {
+    "lime-spark": {
+      "$value": "#bfff5a",
+      "$type": "color",
+      "$description": "Lime Spark — Primary action fill — CTA buttons, active tab pill, high-visibility highlights. Chartreuse against near-white creates immediate focus without the aggression of red or blue"
+    },
+    "cobalt-signal": {
+      "$value": "#1a67fd",
+      "$type": "color",
+      "$description": "Cobalt Signal — Link color, brand logo mark, nav active indicator. The only saturated blue in the system; used sparingly to mark interactivity in text and icon contexts"
+    },
+    "forest-depth": {
+      "$value": "#0b3d28",
+      "$type": "color",
+      "$description": "Forest Depth — Subdued heading and accent text on tinted surfaces — a darkened shade of the lime family used when the lime itself would be too loud"
+    },
+    "paper-white": {
+      "$value": "#fcfcfd",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surface base, input background, button text on lime. The system neutral; everything else floats on this"
+    },
+    "midnight-ink": {
+      "$value": "#1d2130",
+      "$type": "color",
+      "$description": "Midnight Ink — Primary text and nav text, dominant border tone, icon strokes. A warm-tinted near-black that reads softer than pure #000 at body sizes"
+    },
+    "carbon": {
+      "$value": "#151720",
+      "$type": "color",
+      "$description": "Carbon — Body text color, dense list text. Slightly darker than Midnight Ink; the workhorse reading color"
+    },
+    "obsidian": {
+      "$value": "#0a0d16",
+      "$type": "color",
+      "$description": "Obsidian — Headline text and high-contrast fills. Reserved for display type and dark-section backgrounds where maximum ink weight is required"
+    },
+    "mist-gray": {
+      "$value": "#ebeef7",
+      "$type": "color",
+      "$description": "Mist Gray — Light dividers, list separators, subtle fill washes. The hairline-border neutral — appears on almost every section boundary"
+    },
+    "slate-edge": {
+      "$value": "#d5d9e8",
+      "$type": "color",
+      "$description": "Slate Edge — Card borders, shadow contributor, icon strokes on white. Sits one step darker than Mist Gray to give cards a defined perimeter without weight"
+    },
+    "silver-wash": {
+      "$value": "#d6d6d7",
+      "$type": "color",
+      "$description": "Silver Wash — Subtle fill on dark-mode elements and muted card backgrounds. Cool-tinted neutral for non-white surface variations"
+    },
+    "pewter": {
+      "$value": "#6b6d72",
+      "$type": "color",
+      "$description": "Pewter — Subdued helper text, secondary labels, muted borders on darker sections"
+    },
+    "graphite": {
+      "$value": "#474950",
+      "$type": "color",
+      "$description": "Graphite — Secondary body text where Midnight Ink would be too heavy; caption-tier reading text"
+    },
+    "cyan-beam": {
+      "$value": "#46d8ff",
+      "$type": "color",
+      "$description": "Cyan Beam — Decorative gradient accent on feature cards and colored card glow shadows. Part of the multicolor stroke palette that traces the curved card top edges"
+    },
+    "mint-pulse": {
+      "$value": "#19f79a",
+      "$type": "color",
+      "$description": "Mint Pulse — Decorative gradient accent on feature cards and the card-glow color variant that pairs with green-themed cards"
+    },
+    "citron-wave": {
+      "$value": "#e5ed38",
+      "$type": "color",
+      "$description": "Citron Wave — Decorative gradient accent on feature cards — the yellow-green stroke that runs across pipeline and environment cards"
+    },
+    "orchid-glaze": {
+      "$value": "#ff9dec",
+      "$type": "color",
+      "$description": "Orchid Glaze — Decorative gradient accent on feature cards — the pink-magenta stroke on visual-review cards"
+    },
+    "amber-glow": {
+      "$value": "#ffc650",
+      "$type": "color",
+      "$description": "Amber Glow — Decorative gradient fill for testimonial cards and warm accent stroke on tunnel/domain cards"
+    },
+    "mint-tint": {
+      "$value": "#d8fbed",
+      "$type": "color",
+      "$description": "Mint Tint — Soft surface highlight wash — pale mint-tinted fills for highlighted zones and subtle background washes near lime accents"
+    }
+  },
+  "font": {
+    "ibm-plex-sans": {
+      "$value": "IBM Plex Sans",
+      "$type": "fontFamily",
+      "$description": "The single workhorse family. 400 for body and reading text, 500 for navigation and medium-emphasis labels, 600 for buttons and subheadings, 700 for the large display headline. The geometric humanist construction gives engineering copy a slightly industrial feel; the aggressive negative tracking on 48px and 80px sizes tightens headline metrics into dense, blocky statements that read as data, not as poetry."
+    },
+    "ibm-plex-mono": {
+      "$value": "IBM Plex Mono",
+      "$type": "fontFamily",
+      "$description": "Eyebrow labels and section-overline text (e.g. 'TRUSTED BY THE WORLD'S LEADING ENGINEERING TEAMS'). Wide tracking transforms short technical labels into stamp-like marks above headlines. Always uppercase, always 500 weight."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.85
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.85
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 2.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "17px",
+        "fontWeight": 600,
+        "lineHeight": 1.88
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Sans",
+        "fontSize": "80px",
+        "fontWeight": 700,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "78px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(29, 33, 48, 0.04) 0px 3px 3px -1px, rgba(29, 33, 48, 0.04) 0px 6px 6px -3px, rgba(29, 33, 48, 0.04) 0px 12px 12px -6px, rgba(29, 33, 48, 0.04) 0px 24px 24px -12px, rgba(29, 33, 48, 0.04) 0px 32px 32px -16px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(255, 255, 255, 0.72) 0px 1px 0px 0px inset, rgba(29, 33, 48, 0.12) 0px -2px 0px 0px inset, rgba(29, 33, 48, 0.04) 0px 1px 1px -1px, rgba(29, 33, 48, 0.04) 0px 4px 4px -2px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgba(255, 255, 255, 0.72) 0px 0px 0px 1px inset, rgb(213, 217, 232) 0px 0px 0px 1px, rgba(29, 33, 48, 0.03) 0px 1px 1px -1px, rgba(29, 33, 48, 0.05) 0px 3px 3px -2px, rgba(29, 33, 48, 0.03) 0px 5px 5px -3px, rgba(213, 217, 232, 0.22) 0px 5px 5px -2px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    },
+    "subtle-4": {
+      "$value": "rgba(29, 33, 48, 0.08) 0px 0px 0px 1px, rgba(29, 33, 48, 0.04) 0px 1px 1px -1px, rgba(29, 33, 48, 0.04) 0px 2px 2px -1px, rgba(29, 33, 48, 0.04) 0px 3px 3px -1.5px, rgba(29, 33, 48, 0.04) 0px 5px 5px -2.5px, rgba(70, 216, 255, 0.08) 0px 10px 10px -5px, rgba(70, 216, 255, 0.08) 0px 24px 24px -8px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-4"
+    },
+    "subtle-5": {
+      "$value": "rgba(29, 33, 48, 0.08) 0px 0px 0px 1px, rgba(29, 33, 48, 0.04) 0px 1px 1px -1px, rgba(29, 33, 48, 0.04) 0px 2px 2px -1px, rgba(29, 33, 48, 0.04) 0px 3px 3px -1.5px, rgba(29, 33, 48, 0.04) 0px 5px 5px -2.5px, rgba(183, 255, 90, 0.08) 0px 10px 10px -5px, rgba(183, 255, 90, 0.08) 0px 24px 24px -8px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-5"
+    },
+    "subtle-6": {
+      "$value": "rgba(29, 33, 48, 0.08) 0px 0px 0px 1px, rgba(29, 33, 48, 0.04) 0px 1px 1px -1px, rgba(29, 33, 48, 0.04) 0px 2px 2px -1px, rgba(29, 33, 48, 0.04) 0px 3px 3px -1.5px, rgba(29, 33, 48, 0.04) 0px 5px 5px -2.5px, rgba(25, 247, 154, 0.08) 0px 10px 10px -5px, rgba(25, 247, 154, 0.08) 0px 24px 24px -8px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-6"
+    },
+    "subtle-7": {
+      "$value": "rgba(29, 33, 48, 0.08) 0px 0px 0px 1px, rgba(29, 33, 48, 0.04) 0px 1px 1px -1px, rgba(29, 33, 48, 0.04) 0px 2px 2px -1px, rgba(29, 33, 48, 0.04) 0px 3px 3px -1.5px, rgba(29, 33, 48, 0.04) 0px 5px 5px -2.5px, rgba(193, 154, 255, 0.08) 0px 10px 10px -5px, rgba(193, 154, 255, 0.08) 0px 24px 24px -8px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-7"
+    },
+    "subtle-8": {
+      "$value": "rgba(29, 33, 48, 0.08) 0px 0px 0px 1px, rgba(29, 33, 48, 0.04) 0px 1px 1px -1px, rgba(29, 33, 48, 0.04) 0px 2px 2px -1px, rgba(29, 33, 48, 0.04) 0px 3px 3px -1.5px, rgba(29, 33, 48, 0.04) 0px 5px 5px -2.5px, rgba(229, 237, 56, 0.08) 0px 10px 10px -5px, rgba(229, 237, 56, 0.08) 0px 24px 24px -8px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-8"
+    },
+    "subtle-9": {
+      "$value": "rgba(29, 33, 48, 0.08) 0px 0px 0px 1px, rgba(29, 33, 48, 0.04) 0px 1px 1px -1px, rgba(29, 33, 48, 0.04) 0px 2px 2px -1px, rgba(29, 33, 48, 0.04) 0px 3px 3px -1.5px, rgba(29, 33, 48, 0.04) 0px 5px 5px -2.5px, rgba(255, 160, 48, 0.08) 0px 10px 10px -5px, rgba(255, 160, 48, 0.08) 0px 24px 24px -8px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-9"
+    },
+    "subtle-10": {
+      "$value": "rgba(29, 33, 48, 0.08) 0px 0px 0px 1px, rgba(29, 33, 48, 0.04) 0px 1px 1px -1px, rgba(29, 33, 48, 0.04) 0px 2px 2px -1px, rgba(29, 33, 48, 0.04) 0px 3px 3px -1.5px, rgba(29, 33, 48, 0.04) 0px 5px 5px -2.5px, rgba(255, 128, 110, 0.08) 0px 10px 10px -5px, rgba(255, 128, 110, 0.08) 0px 24px 24px -8px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-10"
+    },
+    "subtle-11": {
+      "$value": "rgba(17, 17, 17, 0.16) 0px 0px 0px 1px inset, rgba(29, 33, 48, 0.04) 0px 3px 3px -1px, rgba(29, 33, 48, 0.04) 0px 6px 6px -3px, rgba(29, 33, 48, 0.04) 0px 12px 12px -6px, rgba(29, 33, 48, 0.04) 0px 24px 24px -12px, rgba(255, 198, 80, 0.08) 0px 26px 32px -16px, rgba(255, 198, 80, 0.08) 0px 20px 44px -16px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-11"
+    },
+    "subtle-12": {
+      "$value": "rgba(17, 17, 17, 0.16) 0px 0px 0px 1px inset, rgba(29, 33, 48, 0.04) 0px 3px 3px -1px, rgba(29, 33, 48, 0.04) 0px 6px 6px -3px, rgba(29, 33, 48, 0.04) 0px 12px 12px -6px, rgba(29, 33, 48, 0.04) 0px 24px 24px -12px, rgba(255, 157, 236, 0.08) 0px 26px 32px -16px, rgba(255, 157, 236, 0.08) 0px 20px 44px -16px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-12"
+    },
+    "subtle-13": {
+      "$value": "rgba(17, 17, 17, 0.16) 0px 0px 0px 1px inset, rgba(29, 33, 48, 0.04) 0px 3px 3px -1px, rgba(29, 33, 48, 0.04) 0px 6px 6px -3px, rgba(29, 33, 48, 0.04) 0px 12px 12px -6px, rgba(29, 33, 48, 0.04) 0px 24px 24px -12px, rgba(229, 237, 56, 0.08) 0px 26px 32px -16px, rgba(229, 237, 56, 0.08) 0px 20px 44px -16px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-13"
+    },
+    "subtle-14": {
+      "$value": "rgba(17, 17, 17, 0.16) 0px 0px 0px 1px inset, rgba(29, 33, 48, 0.04) 0px 3px 3px -1px, rgba(29, 33, 48, 0.04) 0px 6px 6px -3px, rgba(29, 33, 48, 0.04) 0px 12px 12px -6px, rgba(29, 33, 48, 0.04) 0px 24px 24px -12px, rgba(25, 247, 154, 0.08) 0px 26px 32px -16px, rgba(25, 247, 154, 0.08) 0px 20px 44px -16px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-14"
+    },
+    "subtle-15": {
+      "$value": "rgba(17, 17, 17, 0.16) 0px 0px 0px 1px inset, rgba(29, 33, 48, 0.04) 0px 3px 3px -1px, rgba(29, 33, 48, 0.04) 0px 6px 6px -3px, rgba(29, 33, 48, 0.04) 0px 12px 12px -6px, rgba(29, 33, 48, 0.04) 0px 24px 24px -12px, rgba(70, 216, 255, 0.08) 0px 26px 32px -16px, rgba(70, 216, 255, 0.08) 0px 20px 44px -16px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-15"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#fcfcfd",
+      "$type": "color",
+      "$description": "Surface level 0: Page background across all light sections. Always carries the subtle blueprint grid overlay."
+    },
+    "card": {
+      "$value": "#fcfcfd",
+      "$type": "color",
+      "$description": "Surface level 1: Product screenshot cards and feature cards float one level above the canvas via shadow, not via color change."
+    },
+    "dark-section": {
+      "$value": "#0a0d16",
+      "$type": "color",
+      "$description": "Surface level 2: Testimonial and logo-wall bands invert to near-black with white text."
+    },
+    "amber-card": {
+      "$value": "#ffd888",
+      "$type": "color",
+      "$description": "Surface level 3: Testimonial cards sit on dark sections with a warm radial gradient, creating the only warm-colored surface in the system."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://buddy.works",
+      "siteName": "Buddy",
+      "extractedAt": "2026-06-03T16:32:49.718Z",
+      "variant": "extended"
+    }
+  }
+}

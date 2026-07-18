@@ -1,0 +1,349 @@
+{
+  "color": {
+    "buttercream": {
+      "$value": "#fff6d2",
+      "$type": "color",
+      "$description": "Buttercream — Page canvas, card surfaces, and warm backgrounds — the dominant neutral that gives the entire UI its sun-warmed temperature"
+    },
+    "marigold": {
+      "$value": "#ffd801",
+      "$type": "color",
+      "$description": "Marigold — Primary CTA fill, brand accent — school-bus yellow that carries the only chromatic voice in the system, reserved exclusively for action surfaces"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, borders, icon strokes, and structural outlines — near-universal use, defines the high-contrast ledger feel"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Reversed text on dark fills, surface inversion, and contrast pairings against black"
+    },
+    "char": {
+      "$value": "#666664",
+      "$type": "color",
+      "$description": "Char — Secondary surfaces and muted structural fills where warm cream is too light to carry a block"
+    },
+    "oat": {
+      "$value": "#cccbc7",
+      "$type": "color",
+      "$description": "Oat — Neutral button borders and subtle dividers where pure black would be too heavy"
+    },
+    "fawn": {
+      "$value": "#dcdce6",
+      "$type": "color",
+      "$description": "Fawn — Faint cool-tinted neutral for secondary surface layers and quiet dividers"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "champ": {
+      "$value": "Champ",
+      "$type": "fontFamily",
+      "$description": "Display and headline typeface — chunky slab serif at weight 800 for hero and large headings, weight 500 for sub-display sizes. The tight lineHeight (1.01 at 72px) and +0.01em tracking let lines stack aggressively. This is the brand's voice carrier; headlines should feel carved, not typeset"
+    },
+    "dm-sans": {
+      "$value": "DM Sans",
+      "$type": "fontFamily",
+      "$description": "Body, UI labels, buttons, and small interface text — the workhorse neutral grotesque. 400 for body copy, 500 for labels, 700 for emphasized UI text. Negative tracking (-0.02em) at 20px tightens small headings, positive tracking (0.016em) at 10px adds air to micro labels"
+    },
+    "dm-mono": {
+      "$value": "DM Mono",
+      "$type": "fontFamily",
+      "$description": "Monospaced accent for ledger-style numerical data, prices, and technical callouts where monospaced alignment reinforces the financial-document feel"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 2.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "DM Mono",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Champ",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Champ",
+        "fontSize": "38px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Champ",
+        "fontSize": "54px",
+        "fontWeight": 800,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Champ",
+        "fontSize": "72px",
+        "fontWeight": 800,
+        "lineHeight": 1.01
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "132": {
+      "$value": "132px",
+      "$type": "dimension",
+      "$description": "Spacing 132px"
+    },
+    "236": {
+      "$value": "236px",
+      "$type": "dimension",
+      "$description": "Spacing 236px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(70, 58, 0, 0.1) 0px 4px 12px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#fff6d2",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — the warm buttercream that defines the entire aesthetic"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: White surface for elevated content cards against the cream canvas"
+    },
+    "oat": {
+      "$value": "#cccbc7",
+      "$type": "color",
+      "$description": "Surface level 2: Quiet neutral blocks for muted UI sections"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted dark surface for footer, inverted sections, or high-contrast blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://getapron.com",
+      "siteName": "Automate Supplier Payments",
+      "extractedAt": "2026-06-03T17:14:05.621Z",
+      "variant": "extended"
+    }
+  }
+}

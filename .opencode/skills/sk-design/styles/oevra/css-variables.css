@@ -1,0 +1,71 @@
+:root {
+  /* Colors */
+  --color-eucalyptus: #778643;
+  --gradient-eucalyptus: radial-gradient(ellipse at 50% 50%, rgba(119,134,67,0.35) 0%, rgba(119,134,67,0.08) 50%, #ffffff 100%);
+  --color-ink-black: #000000;
+  --color-pure-canvas: #ffffff;
+  --color-graphite: #4e4e4e;
+  --color-mist: #c8c8c8;
+
+  /* Typography — Font Families */
+  --font-space-regular: 'space-regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-suisse-intl: 'Suisse Int'l', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-space-grotesk: 'Space Grotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-system-sans: 'System Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ui-sans-serif: 'ui-sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-suisse-light: 'suisse-light', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-suisse-regular: 'suisse-regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 15px;
+  --leading-body: 1.3;
+  --text-subheading: 34px;
+  --leading-subheading: 1.1;
+  --text-heading-sm: 45px;
+  --leading-heading-sm: 1.1;
+  --text-heading: 75px;
+  --leading-heading: 1;
+  --text-display: 90px;
+  --leading-display: 1;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-11: 11px;
+  --spacing-12: 12px;
+  --spacing-15: 15px;
+  --spacing-19: 19px;
+  --spacing-23: 23px;
+  --spacing-30: 30px;
+  --spacing-38: 38px;
+  --spacing-45: 45px;
+  --spacing-60: 60px;
+  --spacing-83: 83px;
+  --spacing-120: 120px;
+  --spacing-135: 135px;
+  --spacing-180: 180px;
+  --spacing-218: 218px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 75px;
+  --card-padding: 30px;
+  --element-gap: 23px;
+
+  /* Border Radius */
+  --radius-xl: 15px;
+  --radius-2xl: 22.5px;
+
+  /* Named Radii */
+  --radius-cards: 15px;
+  --radius-images: 15px;
+  --radius-buttons: 22.5px;
+
+  /* Surfaces */
+  --surface-canvas: #ffffff;
+  --surface-sage-mist: #778643;
+  --surface-mist-panel: #c8c8c8;
+}

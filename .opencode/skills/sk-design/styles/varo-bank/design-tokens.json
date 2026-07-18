@@ -1,0 +1,532 @@
+{
+  "color": {
+    "varo-violet": {
+      "$value": "#8c58d0",
+      "$type": "color",
+      "$description": "Varo Violet — Primary action buttons, active nav, brand logo — the single saturated mid-violet that powers all interactive states"
+    },
+    "deep-plum": {
+      "$value": "#42185f",
+      "$type": "color",
+      "$description": "Deep Plum — Dark accent surfaces, bold text on light cards, full-bleed dark band backgrounds — almost-black with violet undertone"
+    },
+    "lilac-mist": {
+      "$value": "#cdb0fa",
+      "$type": "color",
+      "$description": "Lilac Mist — Soft violet fill for selected/secondary surface states, tag backgrounds"
+    },
+    "coral-ember": {
+      "$value": "#ed6c52",
+      "$type": "color",
+      "$description": "Coral Ember — Decorative section fills, icon highlights, dotted ticker text — warm chromatic punctuation that breaks up the violet dominance"
+    },
+    "salmon-wash": {
+      "$value": "#f2a295",
+      "$type": "color",
+      "$description": "Salmon Wash — Soft warm section background, muted coral — large-area color band that reads warm without screaming"
+    },
+    "butter-cream": {
+      "$value": "#faefdc",
+      "$type": "color",
+      "$description": "Butter Cream — Pale cream surface band — the gentlest warm neutral, used as an alternate section background to white"
+    },
+    "lemon-zest": {
+      "$value": "#fdf0af",
+      "$type": "color",
+      "$description": "Lemon Zest — High-saturation yellow accent for card borders, feature callouts, ticker text — never a fill, always an outline or text"
+    },
+    "lime-pulse": {
+      "$value": "#d4e84b",
+      "$type": "color",
+      "$description": "Lime Pulse — Vivid lime used in feature card backgrounds and outlined graphic elements — the most attention-grabbing decorative color"
+    },
+    "forest-ink": {
+      "$value": "#183428",
+      "$type": "color",
+      "$description": "Forest Ink — Deep green for dark feature card backgrounds and high-contrast text — rare but anchors green-themed cards"
+    },
+    "mustard-shadow": {
+      "$value": "#4a4216",
+      "$type": "color",
+      "$description": "Mustard Shadow — Muted olive text and border accent on yellow/cream surfaces — never used as a fill"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Primary text, hairline borders, icon strokes — the dominant structural color"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, button text on colored fills, inverted text on dark bands"
+    },
+    "soft-ash": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Soft Ash — Near-black secondary text and borders — barely distinguishable from Carbon but used for slightly softer contrast"
+    },
+    "concrete": {
+      "$value": "#939393",
+      "$type": "color",
+      "$description": "Concrete — Muted helper text, disabled states, secondary metadata"
+    },
+    "fog": {
+      "$value": "#eff2f5",
+      "$type": "color",
+      "$description": "Fog — Cool light-gray surface, pressed-button background, input field fill on dark sections"
+    }
+  },
+  "font": {
+    "neue-haas-grotesk-display": {
+      "$value": "Neue Haas Grotesk Display",
+      "$type": "fontFamily",
+      "$description": "Body, subheads, small labels, button text, nav, form copy — the workhorse neo-grot at 12–72px. Weight 450 is the signature mid-weight for body copy; 500 for nav and labels; 400 for de-emphasized body. Letter-spacing tightens from 0.0200em at 12px to -0.0200em at 72px. Substitute: Inter, Söhne, or Neue Haas Grotesk Text Pro."
+    },
+    "national-2-compressed": {
+      "$value": "National 2 Compressed",
+      "$type": "fontFamily",
+      "$description": "Display headlines only — used at 56–147px with line-height 0.80–0.95, the ultra-condensed proportions make type behave as a graphic block; weight 450 for default, 700 for maximum-impact stat callouts. Substitute: Oswald (700/600) or Antonio Bold. Letter-spacing: -0.0100em across the scale."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Times — detected in extracted data but not described by AI"
+    },
+    "metropolis": {
+      "$value": "Metropolis",
+      "$type": "fontFamily",
+      "$description": "Metropolis — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "12px",
+        "fontWeight": 450,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Metropolis",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "22px",
+        "fontWeight": 450,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "National 2 Compressed",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "44px",
+        "fontWeight": 500,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "National 2 Compressed",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Display",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "National 2 Compressed",
+        "fontSize": "76px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 76px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "National 2 Compressed",
+        "fontSize": "76px",
+        "fontWeight": 700,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 76px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "National 2 Compressed",
+        "fontSize": "96px",
+        "fontWeight": 700,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 96px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "National 2 Compressed",
+        "fontSize": "115px",
+        "fontWeight": 700,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 115px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "National 2 Compressed",
+        "fontSize": "147px",
+        "fontWeight": 700,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 147px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "National 2 Compressed",
+        "fontSize": "147px",
+        "fontWeight": 450,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 147px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page canvas, hero backgrounds"
+    },
+    "cool-fog": {
+      "$value": "#eff2f5",
+      "$type": "color",
+      "$description": "Surface level 1: Pressed-state button, input on dark sections"
+    },
+    "butter-cream": {
+      "$value": "#faefdc",
+      "$type": "color",
+      "$description": "Surface level 2: Warm alternate section background"
+    },
+    "salmon-wash": {
+      "$value": "#f2a295",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed colored section band"
+    },
+    "deep-plum": {
+      "$value": "#42185f",
+      "$type": "color",
+      "$description": "Surface level 4: Dark inverted section band"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.varomoney.com",
+      "siteName": "Varo Bank",
+      "extractedAt": "2026-06-03T20:22:56.658Z",
+      "variant": "extended"
+    }
+  }
+}

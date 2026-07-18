@@ -1,0 +1,1467 @@
+{
+  "source": "https://styles.refero.design/style/d75a643b-a518-4550-b430-679cd989a447",
+  "uuid": "d75a643b-a518-4550-b430-679cd989a447",
+  "name": "Freitag",
+  "northStar": "Swiss industrial catalog — a printed manifest of truck tarpaulins laid flat on poured concrete, where the only color is the recycled product itself.",
+  "capturedAt": "2026-07-18T08:00:05.994Z",
+  "meta": {
+    "url": "https://freitag.ch/en_ID",
+    "siteName": "Freitag",
+    "extractedAt": "2026-06-03T18:51:44.979Z",
+    "durationMs": 52213,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 822,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Akkurat Standard (or Inter / Aktiv Grotesk as substitute) for ALL text — no other typefaces, no decorative scripts, no display serifs",
+      "Set display headlines at 48px with line-height 0.97 and letter-spacing −0.48px for the compressed industrial poster effect",
+      "Use the 9999px pill radius for every button, badge, and pill-shaped control — rectangular buttons do not exist in this system",
+      "Apply 0.04–0.05em letter-spacing on all text 11px and smaller to make labels read as stamped serial numbers",
+      "Keep the product grid on a strict 1px Concrete Gray (#cacaca) ruled lattice — no card shadows, no rounded card containers around individual SKUs",
+      "Reserve #ffdd00 (Caution Yellow) for 'NEW' dot accents only — never as a wash, background, or large surface",
+      "Let product photography carry all color — the UI chrome must remain achromatic so the recycled tarpaulin goods read as the only chromatic element"
+    ],
+    "donts": [
+      "Do not introduce color fills, gradients, or brand chromatic washes — the system is intentionally 0% colorful in the UI layer",
+      "Do not use bold (600+) or semibold (500) weights — the entire system is weight 400, and emphasis comes from size, case, and tracking",
+      "Do not add drop shadows to product cells or category cards — shadow is reserved for floating primary buttons only",
+      "Do not center-align body text or section headings — everything is left-aligned with a hard left margin",
+      "Do not use a separate 'primary action' color — buttons are pure Carbon Black on white or white on Carbon Black, nothing in between",
+      "Do not add rounded card containers around products inside the catalog matrix — the ruled grid IS the container",
+      "Do not let line-height exceed 1.5 on body text or drop below 0.74 on display — those are the system's tight compression bounds"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Carbon Black",
+        "role": "Primary text, logo plate, pill-button fills, hairline borders, icon strokes — the dominant ink that carries every label, heading, and outline",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, product image backdrops, button text on dark fills, inverted text on category overlays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cacaca",
+        "name": "Concrete Gray",
+        "role": "Card borders, thumbnail dividers, secondary dividers between product cells — the structural neutral that frames the grid",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1f1f1",
+        "name": "Mist Gray",
+        "role": "Subtle surface tint for inactive button states and soft fill washes, never a page background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#404040",
+        "name": "Iron Gray",
+        "role": "Deep shadow tone and heavier border treatment for elevated containers and section breaks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#616161",
+        "name": "Ash Gray",
+        "role": "Muted secondary text, body helpers, tertiary borders — the gray that whispers beneath the ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1b1e",
+        "name": "Ink",
+        "role": "Rare near-black accent for solid button fills that need a touch of warmth without drifting to pure carbon",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffdd00",
+        "name": "Caution Yellow",
+        "role": "Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content.",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed hero alternates with max-width 1440px centered content bands. The hero is a strict 50/50 vertical split with no margin between the two image panels — the seam between images is the layout. After the hero, content flows through left-aligned section blocks with 64–80px vertical padding, each capped by an uppercase Akkurat heading. The catalog itself uses a 6-column grid of equal-width product cells separated by 1px Concrete Gray rules (no gutters — the borders touch), creating a continuous ruled sheet. Category entry uses a 3-column row of square aspect-ratio image cards. Navigation is a single sticky white bar with a centered black logo plate — logo-on-black is the only inverted surface in the header. The footer (partially visible) continues the flat white treatment with sparse uppercase links. There is no sidebar, no mega-menu, no modal overlay chrome — every interaction either navigates or opens a minimal lightbox.",
+    "imagery": "Photography is product-first and brutally direct — no lifestyle, no models-in-context, no environmental shots. Bags are shot dead-center on pure white, cropped at the handle, occupying the full cell of the catalog grid. Hero photography uses two complementary editorial shots side-by-side: one on a saturated brand-colored backdrop (green, blue) and one on neutral gray, so the tarpaulin colors pop against the solid color while the second shot anchors it to the monochrome system. The 'Made in Europe' category card shows a hand at work — leather, thread, industrial textile — as documentary proof of the manufacturing process rather than aspirational lifestyle. No illustrations, no 3D renders, no abstract graphics. Icons are line-only, single-weight, and confined to the nav (cart, account, search). The visual density is overwhelmingly product-driven: the catalog grid takes roughly 70% of any catalog page's vertical real estate.",
+    "similar": [
+      {
+        "why": "Same industrial-utility catalog language — monochrome UI serving as a neutral stage for colorful product photography, and uppercase eyebrow labels leading every section",
+        "business": "Patagonia"
+      },
+      {
+        "why": "Same workwear-rooted monochrome system: black logo plate, pill-shaped CTAs, ruled grid of product cells, and a complete absence of decorative gradients or color washes",
+        "business": "Carhartt WIP"
+      },
+      {
+        "why": "Same Swiss-eco-brand approach — zero colorfulness in the UI layer so the recycled/organic products carry all the chromatic weight, with strict 1px-bordered grid cells",
+        "business": "VEJA"
+      },
+      {
+        "why": "Same editorial-cycling aesthetic with full-bleed photography, oversized Akkurat-style neo-grotesque headlines, and a flat white catalog grid",
+        "business": "Café du Cycliste"
+      },
+      {
+        "why": "Same Swiss-apothecary catalog restraint: typographic hierarchy doing the work that color usually does, with dense product matrices and hairline grid rules",
+        "business": "Aesop"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "badges": "9999px",
+        "images": "12px",
+        "buttons": "9999px",
+        "inline-links": "4px",
+        "nav-elements": "16px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "64-80px",
+      "cardPadding": "12px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Default page background and product photo backdrop"
+      },
+      {
+        "hex": "#f1f1f1",
+        "name": "Muted Surface",
+        "level": 1,
+        "purpose": "Inactive button fills and subtle tonal washes"
+      },
+      {
+        "hex": "#cacaca",
+        "name": "Ruled Cell",
+        "level": 2,
+        "purpose": "1px borders that form the catalog grid lattice"
+      },
+      {
+        "hex": "#000000",
+        "name": "Logo Plate",
+        "level": 3,
+        "purpose": "Inverted black surface for the centered FREITAG wordmark and the only primary button fill"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.12) 2px 2px 10px 0px",
+        "element": "Primary Pill Button"
+      },
+      {
+        "style": "rgb(64, 64, 64) 0px -1px 0px 0px",
+        "element": "Section Divider"
+      }
+    ],
+    "northStar": "Swiss industrial catalog — a printed manifest of truck tarpaulins laid flat on poured concrete, where the only color is the recycled product itself.",
+    "typeScale": [
+      {
+        "role": "label-sm",
+        "size": 11,
+        "lineHeight": 1.15,
+        "letterSpacing": 0.44
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.32
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.28,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 0.97,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 0.97,
+        "letterSpacing": -0.48
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Pill Button",
+        "role": "Highest-priority action — hero CTAs, category entry, product discovery",
+        "description": "Solid Carbon Black (#000000) fill, Paper White (#ffffff) text, 9999px border-radius (fully rounded pill), padding 12px 22px, Akkurat 10–11px weight 400 uppercase with +0.5px tracking. Subtle drop shadow rgba(0,0,0,0.12) 2px 2px 10px. The pill shape is the signature — never rectangular buttons exist in this system."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Secondary action — 'DISCOVER ONE-OFF ITEMS', 'ABOUT PRODUCTION' on category cards",
+        "description": "Paper White (#ffffff) fill, 1px Carbon Black border, Carbon Black text, 9999px radius, 12px 22px padding. Sits over photographic category backdrops where the white fill makes the CTA legible without competing with the image."
+      },
+      {
+        "name": "Category Card (3-Column)",
+        "role": "Top-level product category entry — Shoulder Bags, Laptop Sleeves, Made in Europe",
+        "description": "Square aspect ratio, full-bleed product photography (not contained — the image IS the card), Concrete Gray (#cacaca) optional 1px border. Heading overlays bottom-left in Paper White, 32–48px Akkurat weight 400 uppercase. Ghost pill button positioned directly beneath the heading. Three cards in a horizontal row, separated by 1px white gutters rather than margins."
+      },
+      {
+        "name": "Product Cell (6-Column Grid)",
+        "role": "Individual SKU display in catalog matrix",
+        "description": "White surface with 1px Concrete Gray (#cacaca) border on all sides — the cells form a continuous ruled grid. Top: product photo on white background, 12px corner radius. Below: FRg 10px model code (e.g. 'F141 CLARK'), price in Akkurat 11px (e.g. '175.75 CHF'). No card shadow — the grid lines provide all separation. Status badges float bottom-right of the photo."
+      },
+      {
+        "name": "Status Badge (NEW / BESTSELLER)",
+        "role": "Product highlight indicator",
+        "description": "Pill shape (9999px radius), Paper White fill, 1px Carbon Black border, 8px Akkurat uppercase text. Positioned absolute bottom-right of product image. The 'NEW' variant sometimes uses Caution Yellow (#ffdd00) dot accent next to the white pill. Restrained — never more than 5% of catalog cells carry a badge."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent site chrome",
+        "description": "White background, 1px bottom border in Concrete Gray. Left: 'FREITAG' eyebrow label and 'PRODUCTS' / 'MISSION' links in Akkurat 10px uppercase. Center: black rectangular logo plate (Carbon Black fill, white 'FREITAG' wordmark, 16px corner radius). Right: language switcher (LANGUAGE (EN), DELIVER TO (CH)), cart icon, account icon. Height approximately 56–64px. Sticky on scroll."
+      },
+      {
+        "name": "Language & Region Switcher",
+        "role": "Top-right utility — locale and shipping destination",
+        "description": "Two inline pill containers (16px radius), each with eyebrow label in muted gray + active value in Carbon Black uppercase, separated by 8px gap. Reads as a labeled control rather than a dropdown when collapsed."
+      },
+      {
+        "name": "Hero Section (50/50 Split)",
+        "role": "Above-the-fold editorial / campaign module",
+        "description": "Full-bleed, two equal vertical panels — left image on green backdrop, right image on neutral backdrop. Display headline (48px Akkurat weight 400) overlays bottom-left of the first panel in Paper White, followed by a primary pill button. Below the panels: eyebrow label ('WE THINK AND ACT IN CYCLES') in 10px uppercase, then a 48–56px display heading that often truncates mid-phrase — the truncation IS the layout, not an error."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Introduces a new content band (e.g. 'FRESHLY UPLOADED')",
+        "description": "Left-aligned Akkurat 32px weight 400 uppercase, Paper White surface, no decoration. Followed by an optional 16px body paragraph in Iron Gray (#404040). 64–80px vertical padding separates from the grid below."
+      },
+      {
+        "name": "Scroll-to-Top Indicator",
+        "role": "Bottom-center affordance on long catalog pages",
+        "description": "Minimal arrow glyph (↑) in Carbon Black on white, positioned at the bottom edge of the product matrix above the footer. No button chrome — just the typographic mark."
+      },
+      {
+        "name": "Chat Bubble (Bottom-Right)",
+        "role": "Customer service entry",
+        "description": "Black circular icon (44px) in the fixed bottom-right corner with a white speech-bubble glyph. The only persistently floating element on the page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "ui-sans-serif — detected in extracted data but not described by AI",
+        "sizes": "11px, 16px",
+        "family": "ui-sans-serif",
+        "weight": "400",
+        "lineHeight": "1.15, 1.5",
+        "letterSpacing": "0.02"
+      },
+      {
+        "role": "Sole brand typeface. The neo-grotesque Swiss workhorse used for everything from display headlines down to 8px eyebrow labels. Weight stays at 400 — no bold weight exists in the system; emphasis is achieved through size, uppercase, and tracking. The 0.74 line-height on display sizes is anti-conventional and creates a compressed, industrial poster effect. Wide tracking on small sizes (0.04–0.05em) gives labels the spacing of machine-stamped serial numbers.",
+        "sizes": "8px, 10px, 11px, 16px, 24px, 32px, 48px",
+        "family": "AkkStdRg (Akkurat Standard)",
+        "weight": "400",
+        "lineHeight": "0.74 / 0.97 / 1.10 / 1.15 / 1.28 / 1.50",
+        "substitute": "Inter, Helvetica Neue, Aktiv Grotesk",
+        "letterSpacing": "−0.48px at 48px, −0.16px at 32px, +0.32px at 16px, +0.44px at 11px, +0.50px at 10px, +0.40px at 8px",
+        "fontFeatureSettings": "\"tnum\" on, \"ss01\" on"
+      },
+      {
+        "role": "Reserved for product model codes (F141 CLARK, F531 ARCHER) — a secondary condensed-mark treatment that makes the SKU read as a stamped part number on a shipping crate",
+        "sizes": "10px",
+        "family": "FRg (Freitag Regular)",
+        "weight": "400",
+        "lineHeight": "0.74",
+        "substitute": "Akkurat Standard Small Caps",
+        "letterSpacing": "+0.50px"
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "10px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1"
+      },
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Freitag operates as a Swiss industrial catalog in monochrome: an almost color-zero system where the only chromatic surface is the product itself (truck tarpaulin bags bleeding red, yellow, blue, green). The UI is a grid of black, white, and concrete gray, serving as a neutral stage for the circular-economy merchandise. Typography is compressed and uppercase-driven (Akkurat Standard), line-heights tight as machinery, letterspacing wide on labels, and interactive elements shaped as horizontal pills with hard-edged 1px outlines. Layout follows a strict modular grid — full-bleed 50/50 hero, then 3-column category blocks, then 6-column product matrices. The signature trick: the site reads as a technical specification sheet or shipping manifest, not a fashion storefront. Components feel like they're stamped on the page rather than designed — pill buttons, thin rules, hairline grids, and almost no shadow depth.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d75a643b-a518-4550-b430-679cd989a447#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Freitag design system\",\"item\":\"https://styles.refero.design/style/d75a643b-a518-4550-b430-679cd989a447\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d75a643b-a518-4550-b430-679cd989a447#style-reference\",\"name\":\"Freitag design system reference\",\"headline\":\"Freitag design system | Refero Styles\",\"description\":\"Explore Freitag's light E-commerce design system: Carbon Black #000000, Paper White #ffffff colors, ui-sans-serif, AkkStdRg (Akkurat Standard) typography,...\",\"url\":\"https://styles.refero.design/style/d75a643b-a518-4550-b430-679cd989a447\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d75a643b-a518-4550-b430-679cd989a447\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Freitag\",\"url\":\"https://freitag.ch/en_ID\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d75a643b-a518-4550-b430-679cd989a447#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b4b64bb3-99e2-4f9d-bb80-9053d5631fcb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b4b64bb3-99e2-4f9d-bb80-9053d5631fcb.jpg\",\"caption\":\"Screenshot of Freitag\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b4b64bb3-99e2-4f9d-bb80-9053d5631fcb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Freitag design system\",\"Freitag website design\",\"Freitag colors\",\"Freitag typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Carbon Black\",\"Paper White\",\"Concrete Gray\",\"Mist Gray\",\"ui-sans-serif\",\"AkkStdRg (Akkurat Standard)\",\"FRg (Freitag Regular)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Freitag design system\"},{\"@type\":\"Thing\",\"name\":\"Freitag website design\"},{\"@type\":\"Thing\",\"name\":\"Freitag colors\"},{\"@type\":\"Thing\",\"name\":\"Freitag typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:19:50.235Z\",\"dateModified\":\"2026-04-30T00:19:50.235Z\"}]}19:T794,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #cacaca\n- muted text: #616161\n- accent (NEW tag dot only): #ffdd00\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. *Category card row*: Three equal square cells in a horizontal row on white, each with a full-bleed product photograph (no border, no padding around the image). Paper White heading 'SHOULDER BAGS' in 48px Akkurat weight 400 uppercase, positioned bottom-left. Ghost pill button 'DISCOVER ONE-OFF ITEMS' below: white fill, 1px Carbon Black border, black text, 9999px radius. 1px Concrete Gray (#cacaca) vertical rules between the three cells.\n\n3. *Product catalog cell*: White surface, 1px Concrete Gray (#cacaca) border on all four sides. Product photograph centered on white with 12px corner radius. Below the image: FRg 10px uppercase model code 'F141 CLARK' with +0.5px tracking, then '175.75 CHF' in Akkurat 11px weight 400. Optional 'BESTSELLER' pill badge absolute bottom-right of the photo: 9999px radius, white fill, 1px black border, 8px Akkurat uppercase.\n\n4. *Navigation bar*: White background, 1px Concrete Gray bottom border. Left side: 'FREITAG' eyebrow + 'PRODUCTS' / 'MISSION' links in Akkurat 10px uppercase. Center: Carbon Black rectangular logo plate 16px corner radius, white 'FREITAG' wordmark inside. Right side: 'LANGUAGE (EN)' and 'DELIVER TO (CH)' as inline 16px-radius pills, then cart icon and account icon as line-only glyphs. Total height 56px, sticky.\n\n5. *Section heading block*: Left-aligned on white canvas, 64px top padding. 'FRESHLY UPLOADED' in Akkurat 32px weight 400 uppercase, letter-spacing −0.16px, line-height 0.97. Optional subhead below in 16px Akkurat weight 400, Iron Gray (#404040), line-height 1.5. No underline, no accent rule, no decoration."
+      }
+    ],
+    "elevationPhilosophy": "The system intentionally uses almost no elevation depth. Product cells and category cards are flat, separated only by 1px hairlines, so the page reads as a printed sheet of stamps rather than a layered interface. Shadow is reserved for one purpose: lifting the primary pill button off the page just enough to make it feel tappable without breaking the flat-document metaphor."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "body",
+            "link",
+            "icon",
+            "card",
+            "heading",
+            "image",
+            "footer"
+          ],
+          "frequency": 2944,
+          "confidence": 1,
+          "prominence": 67700428.47525503,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 10,
+            "body/color": 77,
+            "card/color": 6,
+            "icon/color": 5,
+            "link/color": 11,
+            "other/fill": 25,
+            "icon/stroke": 2,
+            "image/color": 24,
+            "other/color": 437,
+            "button/color": 21,
+            "footer/color": 1,
+            "other/stroke": 55,
+            "heading/color": 4,
+            "nav/borderColor": 40,
+            "body/borderColor": 308,
+            "icon/borderColor": 20,
+            "link/borderColor": 44,
+            "image/borderColor": 96,
+            "other/borderColor": 1648,
+            "button/borderColor": 84,
+            "footer/borderColor": 4,
+            "heading/borderColor": 16,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#cacaca",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8390137901083995
+          },
+          "contexts": [
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 90,
+          "confidence": 1,
+          "prominence": 37158225.35999044,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 24,
+            "link/borderColor": 4,
+            "other/borderColor": 56,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "body",
+            "link",
+            "list",
+            "icon"
+          ],
+          "frequency": 525,
+          "confidence": 1,
+          "prominence": 11592413.603767378,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 43,
+            "link/color": 32,
+            "list/color": 8,
+            "other/fill": 1,
+            "other/color": 9,
+            "button/color": 1,
+            "heading/color": 7,
+            "body/borderColor": 172,
+            "link/borderColor": 124,
+            "list/borderColor": 32,
+            "other/borderColor": 36,
+            "button/borderColor": 4,
+            "heading/borderColor": 28,
+            "other/backgroundColor": 13,
+            "button/backgroundColor": 13
+          }
+        },
+        {
+          "hex": "#404040",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3714949460297332
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 46,
+          "confidence": 1,
+          "prominence": 1931030.595930324,
+          "properties": [
+            "borderColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 2,
+            "other/borderColor": 44
+          }
+        },
+        {
+          "hex": "#f1f1f1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9581468870268093
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 12771.918088177363,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 24,
+            "nav/backgroundColor": 2,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#616161",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4926091942525259
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 6625.4692654912615,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "body/borderColor": 28,
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#d7d7d7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8776328326691044
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 3651.7536016615436,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#1a1b1e",
+          "oklch": {
+            "c": 0.006012717775781599,
+            "h": 271.1392735408755,
+            "l": 0.2223215245555405
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3136,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#969696",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6731222170290512
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3136,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "button/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#ffdd00",
+          "oklch": {
+            "c": 0.18566742548473,
+            "h": 97.8573187843196,
+            "l": 0.898693573404494
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2650,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00041304618527890634,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.59,
+          "background": "#f1f1f1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.22,
+          "background": "#1a1b1e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.59,
+          "background": "#ffdd00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.25,
+          "background": "#f1f1f1",
+          "foreground": "#1a1b1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.59,
+          "background": "#d7d7d7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.81,
+          "background": "#cacaca",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.79,
+          "background": "#ffdd00",
+          "foreground": "#1a1b1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.97,
+          "background": "#d7d7d7",
+          "foreground": "#1a1b1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.51,
+          "background": "#cacaca",
+          "foreground": "#1a1b1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.37,
+          "background": "#ffffff",
+          "foreground": "#404040"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.18,
+          "background": "#f1f1f1",
+          "foreground": "#404040"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.7,
+          "background": "#ffdd00",
+          "foreground": "#404040"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.2,
+          "background": "#d7d7d7",
+          "foreground": "#404040"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.33,
+          "background": "#cacaca",
+          "foreground": "#404040"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.19,
+          "background": "#616161",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.48,
+          "background": "#f1f1f1",
+          "foreground": "#616161"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.6,
+          "background": "#ffdd00",
+          "foreground": "#616161"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.3,
+          "background": "#d7d7d7",
+          "foreground": "#616161"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.78,
+          "background": "#cacaca",
+          "foreground": "#616161"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 18
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.12) 2px 2px 10px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": "rgb(64, 64, 64) 0px -1px 0px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": "rgba(45, 45, 45, 0.5) 2px 2px 5px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 77,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginRight|body",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "button",
+            "card",
+            "body",
+            "list"
+          ],
+          "frequency": 217,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginRight|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginLeft|other",
+            "marginBottom|heading",
+            "marginTop|button",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingLeft|body",
+            "marginBottom|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 24,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginTop|link",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "card",
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 67,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 230,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "AkkStdMn",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 438,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ui-sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 207,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "AkkStdRg",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 41,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "FRg",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 20,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "AkkStdMn",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.27,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 8,
+          "family": "AkkStdRg",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.28,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "AkkStdRg",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.74,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "FRg",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 20,
+          "lineHeight": 0.74,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "AkkStdRg",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "AkkStdRg",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "AkkStdMn",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "AkkStdMn",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "image",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 372,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "AkkStdMn",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "ui-sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "button",
+            "icon",
+            "card",
+            "link",
+            "image",
+            "footer"
+          ],
+          "frequency": 202,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "AkkStdRg",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link",
+            "image"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "AkkStdRg",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.97,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "AkkStdRg",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "AkkStdRg",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.97,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 48,
+          "family": "AkkStdRg",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.97,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 48,
+          "family": "AkkStdRg",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.97,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/753f1a2e-bf91-4e1b-a9a7-27d26b040d91.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b4b64bb3-99e2-4f9d-bb80-9053d5631fcb.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d75a643b-a518-4550-b430-679cd989a447#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Freitag design system\",\"item\":\"https://styles.refero.design/style/d75a643b-a518-4550-b430-679cd989a447\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d75a643b-a518-4550-b430-679cd989a447#style-reference\",\"name\":\"Freitag design system reference\",\"headline\":\"Freitag design system | Refero Styles\",\"description\":\"Explore Freitag's light E-commerce design system: Carbon Black #000000, Paper White #ffffff colors, ui-sans-serif, AkkStdRg (Akkurat Standard) typography,...\",\"url\":\"https://styles.refero.design/style/d75a643b-a518-4550-b430-679cd989a447\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d75a643b-a518-4550-b430-679cd989a447\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Freitag\",\"url\":\"https://freitag.ch/en_ID\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d75a643b-a518-4550-b430-679cd989a447#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b4b64bb3-99e2-4f9d-bb80-9053d5631fcb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b4b64bb3-99e2-4f9d-bb80-9053d5631fcb.jpg\",\"caption\":\"Screenshot of Freitag\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b4b64bb3-99e2-4f9d-bb80-9053d5631fcb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Freitag design system\",\"Freitag website design\",\"Freitag colors\",\"Freitag typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Carbon Black\",\"Paper White\",\"Concrete Gray\",\"Mist Gray\",\"ui-sans-serif\",\"AkkStdRg (Akkurat Standard)\",\"FRg (Freitag Regular)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Freitag design system\"},{\"@type\":\"Thing\",\"name\":\"Freitag website design\"},{\"@type\":\"Thing\",\"name\":\"Freitag colors\"},{\"@type\":\"Thing\",\"name\":\"Freitag typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:19:50.235Z\",\"dateModified\":\"2026-04-30T00:19:50.235Z\"}]}19:T794,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #cacaca\n- muted text: #616161\n- accent (NEW tag dot only): #ffdd00\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. *Category card row*: Three equal square cells in a horizontal row on white, each with a full-bleed product photograph (no border, no padding around the image). Paper White heading 'SHOULDER BAGS' in 48px Akkurat weight 400 uppercase, positioned bottom-left. Ghost pill button 'DISCOVER ONE-OFF ITEMS' below: white fill, 1px Carbon Black border, black text, 9999px radius. 1px Concrete Gray (#cacaca) vertical rules between the three cells.\n\n3. *Product catalog cell*: White surface, 1px Concrete Gray (#cacaca) border on all four sides. Product photograph centered on white with 12px corner radius. Below the image: FRg 10px uppercase model code 'F141 CLARK' with +0.5px tracking, then '175.75 CHF' in Akkurat 11px weight 400. Optional 'BESTSELLER' pill badge absolute bottom-right of the photo: 9999px radius, white fill, 1px black border, 8px Akkurat uppercase.\n\n4. *Navigation bar*: White background, 1px Concrete Gray bottom border. Left side: 'FREITAG' eyebrow + 'PRODUCTS' / 'MISSION' links in Akkurat 10px uppercase. Center: Carbon Black rectangular logo plate 16px corner radius, white 'FREITAG' wordmark inside. Right side: 'LANGUAGE (EN)' and 'DELIVER TO (CH)' as inline 16px-radius pills, then cart icon and account icon as line-only glyphs. Total height 56px, sticky.\n\n5. *Section heading block*: Left-aligned on white canvas, 64px top padding. 'FRESHLY UPLOADED' in Akkurat 32px weight 400 uppercase, letter-spacing −0.16px, line-height 0.97. Optional subhead below in 16px Akkurat weight 400, Iron Gray (#404040), line-height 1.5. No underline, no accent rule, no decoration."
+}

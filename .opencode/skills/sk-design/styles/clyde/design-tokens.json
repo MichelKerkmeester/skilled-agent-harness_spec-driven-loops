@@ -1,0 +1,307 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "bone": {
+      "$value": "#f6f6f4",
+      "$type": "color",
+      "$description": "Bone — Primary text on dark surfaces, hairline borders, light section backgrounds, ghost-button outlines, nav links — the warm cream that defines the entire light/dark polarity"
+    },
+    "slate": {
+      "$value": "#7d7d7d",
+      "$type": "color",
+      "$description": "Slate — Mid-gray surface accent, secondary UI fill, muted element backgrounds — sits between bone and obsidian for tonal layering"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Inner product-image containers, pure-white card panels, maximum-contrast text — the brightest surface in the stack"
+    },
+    "char": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Char — Near-black hairline borders, subtle dark surface differentiation from the true-black canvas"
+    },
+    "solstice-gradient": {
+      "$value": "#ff8400",
+      "$type": "color",
+      "$description": "Solstice Gradient — Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "recoleta": {
+      "$value": "Recoleta",
+      "$type": "fontFamily",
+      "$description": "All display and heading text from 36px to 125px. The single weight (400) and dramatic size range create an editorial magazine-cover scale. Line-height tightens to 1.00 at 80px+ for a luxurious, sculpted feel. Negative letter-spacing increases with size: -0.36px at 36px up to -3.75px at 125px."
+    },
+    "oldschool-grotesk": {
+      "$value": "Oldschool Grotesk",
+      "$type": "fontFamily",
+      "$description": "All UI, body copy, sub-labels, button text, nav, and supporting content. Weight 300 for secondary descriptions adds quietness; weight 400 for primary body and interactive elements. The slightly negative tracking at body size tightens the grotesque to feel engineered rather than casual."
+    },
+    "times-system-fallback": {
+      "$value": "Times (system fallback)",
+      "$type": "fontFamily",
+      "$description": "System-fallback serif for secondary annotations; rarely surfaces as the primary typeface when Recoleta is unavailable."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Oldschool Grotesk Compact",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Oldschool Grotesk",
+        "fontSize": "15px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Oldschool Grotesk",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Oldschool Grotesk",
+        "fontSize": "15px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Oldschool Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Oldschool Grotesk",
+        "fontSize": "21px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Recoleta",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Recoleta",
+        "fontSize": "47px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 47px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Recoleta",
+        "fontSize": "61px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 61px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Recoleta",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Oldschool Grotesk",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Recoleta",
+        "fontSize": "125px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 125px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Oldschool Grotesk",
+        "fontSize": "138px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 138px"
+    }
+  },
+  "spacing": {
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "92": {
+      "$value": "92px",
+      "$type": "dimension",
+      "$description": "Spacing 92px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Default page and section background"
+    },
+    "bone-section": {
+      "$value": "#f6f6f4",
+      "$type": "color",
+      "$description": "Surface level 1: Light-alternating section background, announcement bar, oversized surface contrast"
+    },
+    "slate-surface": {
+      "$value": "#7d7d7d",
+      "$type": "color",
+      "$description": "Surface level 2: Mid-tone UI panels and secondary backgrounds"
+    },
+    "paper-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Product image containers and highest-contrast card panels"
+    },
+    "char-edge": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 4: Subtle dark surface separation above the canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://joinclyde.com",
+      "siteName": "Clyde",
+      "extractedAt": "2026-06-03T17:39:47.209Z",
+      "variant": "extended"
+    }
+  }
+}

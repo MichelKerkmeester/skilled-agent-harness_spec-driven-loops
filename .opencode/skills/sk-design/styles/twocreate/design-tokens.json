@@ -1,0 +1,195 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#0c0c0c",
+      "$type": "color",
+      "$description": "Ink — All text, links, nav items, body copy, client names, list items, and icon strokes. The near-black rather than pure black keeps type from feeling harsh against the warm canvas"
+    },
+    "paper": {
+      "$value": "#f9f7f4",
+      "$type": "color",
+      "$description": "Paper — Page background and primary canvas. A warm off-white with a faint yellow-pink cast — replaces the coldness of #fff with the tactility of uncoated stock"
+    },
+    "stone": {
+      "$value": "#e3e1dd",
+      "$type": "color",
+      "$description": "Stone — Secondary surface tone, subtle dividers, and any banded section that needs a half-step away from the canvas without introducing a true contrast color"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Reserved for the highest-weight text moments where pure black is needed — typically the display headline and nav lockups. Slightly heavier than Ink for typographic emphasis rather than color contrast"
+    }
+  },
+  "font": {
+    "pp-neue-montreal": {
+      "$value": "PP Neue Montreal",
+      "$type": "fontFamily",
+      "$description": "The single typeface carrying all text — nav, body, list items, section headers, and the 111px display headline. The fact that only weight 400 is used is the signature: no bold cuts exist, so hierarchy is built entirely through scale jumps (10→22→33→44→67→111) and the single tight line-height range. This produces a typeface system that reads as confident restraint rather than typographic volume. PP Neue Montreal's geometric-but-warm character pairs with the warm Paper canvas to feel editorial rather than corporate."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "33px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 33px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.02
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.02
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "67px",
+        "fontWeight": 400,
+        "lineHeight": 1.02
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 67px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "111px",
+        "fontWeight": 400,
+        "lineHeight": 1.02
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 111px"
+    }
+  },
+  "spacing": {
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "67": {
+      "$value": "67px",
+      "$type": "dimension",
+      "$description": "Spacing 67px"
+    },
+    "139": {
+      "$value": "139px",
+      "$type": "dimension",
+      "$description": "Spacing 139px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#f9f7f4",
+      "$type": "color",
+      "$description": "Surface level 1: Base canvas for the entire site. The warm white carries all content."
+    },
+    "stone": {
+      "$value": "#e3e1dd",
+      "$type": "color",
+      "$description": "Surface level 2: Inset bands or subtle section shifts that need a tonal step without breaking the monochrome discipline."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://twocreate.com",
+      "siteName": "Twocreate",
+      "extractedAt": "2026-06-03T18:04:20.123Z",
+      "variant": "extended"
+    }
+  }
+}

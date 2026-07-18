@@ -1,0 +1,1638 @@
+{
+  "source": "https://styles.refero.design/style/cdc4a162-cefa-49a1-81e7-4857e421ae24",
+  "uuid": "cdc4a162-cefa-49a1-81e7-4857e421ae24",
+  "name": "Adam Lippes",
+  "northStar": "Monochrome editorial atelier on cream paper — a Vogue spread where the layout grid, not the color palette, is the only decoration.",
+  "capturedAt": "2026-07-18T09:09:27.634Z",
+  "meta": {
+    "url": "https://adamlippes.com",
+    "siteName": "Adam Lippes",
+    "extractedAt": "2026-06-03T20:35:20.727Z",
+    "durationMs": 46331,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 855,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Onyx Black (#000000) as the only fill for primary action buttons; pair with Press White text and 12px Optima uppercase at 0.0640em tracking.",
+      "Set page background to Bone Canvas (#fefcf8), never pure white — the warm off-white is the system's identity.",
+      "Use 0px corner radius on all product cards, buttons, and section dividers; the only rounded elements are badges (40px) and the legacy pill button (1000px).",
+      "Render nav and button labels in uppercase Optima at 11–12px with letter-spacing 0.0640em; this tracking is what makes the interface read as editorial rather than utilitarian.",
+      "Use 1px Onyx Black hairlines as the primary structural divider in place of cards or boxes.",
+      "Maintain a 5-column product grid with 10px element gap and 16px card padding; keep product names lowercase in Optima 14px.",
+      "Keep all UI chrome flat and monochrome; let photography provide every color and visual interest."
+    ],
+    "donts": [
+      "Do not introduce any chromatic color, gradient, or accent hue — the system is intentionally 0% colorful.",
+      "Do not use rounded corners on product cards, category banners, or section dividers — sharp edges are non-negotiable.",
+      "Do not add drop shadows to product cards, buttons, or images; shadows are reserved for the nav and one promo card.",
+      "Do not use a sans-serif replacement font for body or nav; Optima (or Avenir Next as substitute) is the brand voice.",
+      "Do not break the cream-on-black inversion; dark sections must be full-bleed photography, never solid color blocks.",
+      "Do not use color, weight, or size alone to indicate state; pair with an underline, border, or tracking change.",
+      "Do not use emoji, icons with color, or decorative illustrations — the only iconography is monochrome line glyphs (account, cart, search, arrows)."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fefcf8",
+        "name": "Bone Canvas",
+        "role": "Primary page background — warm off-white, the entire site sits on this paper-like canvas rather than pure white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Press White",
+        "role": "Alternate surface for product cards, input fields, and crisp overlays that need to separate from Bone Canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Onyx Black",
+        "role": "Primary text, hairline rules, filled action buttons, icon strokes, and nav borders. The structural ink of the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#403f3e",
+        "name": "Graphite",
+        "role": "Secondary text and icon color — a softened black for less critical copy and outline button borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#121212",
+        "name": "Carbon",
+        "role": "Deep alt-black for button borders, dark badges, and high-contrast text on white surfaces where pure black feels too harsh",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1d1d1d",
+        "name": "Iron",
+        "role": "Button border accent — a near-black used for refined button outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2f2f2f",
+        "name": "Slate",
+        "role": "Badge and secondary text — sits between Graphite and Carbon for mid-emphasis labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4c4c4a",
+        "name": "Stone",
+        "role": "Body text secondary and subtle borders — warm-leaning gray that pairs with the cream canvas without going cold",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b2b0ae",
+        "name": "Ash",
+        "role": "Light neutral action fill for buttons on dark surfaces.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed editorial layout with no fixed background containers. Navigation is a single fixed white bar at the top with a hairline bottom border. The hero is a full-viewport split: large model photograph right, text overlay block left over a separate concrete-textured panel. Below, a 5-column product grid spans the full page width with no gutters between cards — just hairline rules and product metadata. Two-column category banners follow (Spring Knitwear, Seasonal Dresses) at full width, each a single photo with left-aligned text overlay. The footer is a single full-width hairline-bordered strip with the email signup. Content max-width is ~1440px but hero, category banners, and product grid are all edge-to-edge. Vertical rhythm is compact: 48px between major sections, 10px between metadata rows, no dramatic whitespace.",
+    "imagery": "Editorial fashion photography dominates every screen. Hero and category banners use full-bleed models photographed against concrete, plaster, or warm neutral architectural backdrops — high-key lighting, editorial crop, tight framing on garments. Product grid images are clean white-seamless studio shots with no model, no shadow, no props — the object alone on a white field. All photography is desaturated toward warm gray, matching the cream canvas. Iconography is minimal: monochrome line icons for account, cart, search, and carousel arrows, no color fills.",
+    "similar": [
+      {
+        "why": "Same monochrome editorial restraint — cream canvas, uppercase tracked nav, product photography as the only color, sharp-cornered product cards.",
+        "business": "The Row"
+      },
+      {
+        "why": "Same luxury-fashion 5-column product grid, dense hairline dividers, and stark black CTA buttons on warm off-white backgrounds.",
+        "business": "Khaite"
+      },
+      {
+        "why": "Same quiet-luxury approach: minimal nav chrome, serif-adjacent display typography, full-bleed editorial imagery with monochrome product grids.",
+        "business": "Toteme"
+      },
+      {
+        "why": "Same minimalist fashion house identity — uppercase tracked wordmark, product-first layout, zero decorative UI elements, photography carries the brand.",
+        "business": "Jil Sander"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "pills": "1000px",
+        "badges": "40px",
+        "buttons": "0px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "48px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#fefcf8",
+        "name": "Bone Canvas",
+        "level": 0,
+        "purpose": "Primary page background — the entire site rests on this warm off-white."
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Press White",
+        "level": 1,
+        "purpose": "Product card backgrounds, input fields, and overlays that need a slightly brighter separation from the canvas."
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.05) 0px 4px 5px 0px",
+        "element": "Top navigation bar"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.15) 0px -8px 24px 0px",
+        "element": "Promo card"
+      }
+    ],
+    "northStar": "Monochrome editorial atelier on cream paper — a Vogue spread where the layout grid, not the color palette, is the only decoration.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.31
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.43
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.74
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide navigation with centered wordmark",
+        "description": "Full-width, white background, 1px Onyx Black hairline bottom border, subtle rgba(0,0,0,0.05) 0 4px 5px shadow. Left side: 5 uppercase nav links in Optima 11px, weight 400, letter-spacing 0.0640em, color Onyx Black. Center: ADAM LIPPES wordmark in Optima, uppercase, tracking 0.0640em, 2-line stacked. Right: SEARCH label, account icon, cart icon with circular count badge. Total height ~60px, z-index fixed."
+      },
+      {
+        "name": "Filled Action Button — Onyx",
+        "role": "Primary CTA (Shop Now, View All)",
+        "description": "Solid Onyx Black (#000000) background, Press White (#ffffff) text, Optima 12px uppercase, letter-spacing 0.0640em, weight 400. Padding 12px 20px. Radius 0px (sharp corners — editorial). No shadow. Hover: invert to white bg / black border / black text."
+      },
+      {
+        "name": "Ghost Button",
+        "role": "Secondary or low-emphasis action",
+        "description": "Transparent or Bone Canvas background, 1px Onyx Black border, Onyx Black text, Optima 12px uppercase, letter-spacing 0.0640em. Same padding and sharp corners as filled variant."
+      },
+      {
+        "name": "Hero Overlay Text Block",
+        "role": "Headline + subtext + CTA on full-bleed editorial imagery",
+        "description": "Sits in the left third of a full-bleed image. Heading in Optima 24px, weight 400, Onyx Black, letter-spacing ~0.74px. Subtext in Optima 14px, Stone (#4c4c4a). CTA is a filled Onyx button. Left-aligned, vertically centered to the model or composition."
+      },
+      {
+        "name": "Product Card",
+        "role": "Individual SKU in the 5-column product grid",
+        "description": "White or transparent background, no border, 0px radius. Product image on white seamless background, no frame. Below image: product name (e.g. 'anais top') in Optima 14px Onyx Black lowercase, price right-aligned ('€1.470,95') in Optima 14px. Below: small horizontal color swatches (8×8px squares with 1px Onyx Black border, 5px gap). Optional hairline underline indicator for promotional items. Card padding 16px. No hover lift — only subtle image zoom or text underline."
+      },
+      {
+        "name": "Category Banner Card",
+        "role": "Editorial section promo (Spring Knitwear, Seasonal Dresses)",
+        "description": "Two-column layout, each card full-bleed cropped model photo, text overlay in left third. Heading in Optima 24px Onyx Black. Subtext in Optima 14px Stone. CTA is filled Onyx button. No card border or background — the photo is the card."
+      },
+      {
+        "name": "Circular Carousel Arrow",
+        "role": "Pagination control on product grid",
+        "description": "24×24px circle, Stone (#b2b0ae) fill, small black arrow icon centered. No border, no shadow. Sits at the vertical midpoint of the product row."
+      },
+      {
+        "name": "Cart Count Badge",
+        "role": "Numeric indicator on the cart icon in nav",
+        "description": "Small circular badge, Onyx Black background, white numeral inside, ~16px diameter. Top-right corner of the cart icon."
+      },
+      {
+        "name": "Color Swatch",
+        "role": "Product variant color indicator",
+        "description": "8×8px square, no radius, 1px Onyx Black border. Sits in a horizontal row under the product card with 5px gaps. Active swatch gets a slightly heavier border or filled interior."
+      },
+      {
+        "name": "Email Signup Bar",
+        "role": "Footer promotional strip",
+        "description": "Full-width, Bone Canvas background, 1px Onyx Black hairline top border. Single line: 'Sign up for emails and save 10% on your first purchase' in Optima 12–14px Onyx Black left-aligned, with a + icon (expand) on the far right. Padding 16px vertical."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline navigation or action link",
+        "description": "Optima 16px Onyx Black, no underline by default, underline on hover. Lowercase. Used for product names, footer links."
+      },
+      {
+        "name": "Promo Hairline Rule",
+        "role": "Section divider and emphasis marker",
+        "description": "1px Onyx Black horizontal line, used to separate product cards, section headers, and the nav. The system's primary structural divider — replaces cards and boxes."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface across all UI — nav, buttons, body, headings. Optima's humanist flares and geometric curves carry the brand's editorial luxury; its narrow proportions let dense 5-column product grids breathe without feeling cramped. Nav and button text is uppercase at 11–12px with wide tracking (0.0640em); body sits at 14px, larger body/links at 16px, subheadings at 24px.",
+        "sizes": "10, 11, 12, 13, 14, 16, 24px",
+        "family": "Optima",
+        "weight": "400",
+        "lineHeight": "1.20–1.50 depending on size",
+        "substitute": "Avenir Next, Futura PT, or ITC Avant Garde Gothic",
+        "letterSpacing": "0.0310em at body sizes, 0.0640em on uppercase nav and button labels"
+      },
+      {
+        "role": "System fallback used sparingly for button and icon labels when Optima is unavailable — do not introduce as a primary face.",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Helvetica, Inter",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "GTStandard-M — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "GTStandard-M",
+        "weight": "400",
+        "lineHeight": "1.5"
+      }
+    ],
+    "description": "Adam Lippes is a monochrome editorial atelier built on cream paper (#fefcf8) with Optima typography and full-bleed fashion photography. The interface is deliberately restrained: zero chromatic accents, zero decorative gradients, near-zero corner radii — the photographic plate IS the design. Product imagery carries all visual weight inside a dense five-column grid; UI chrome recedes behind hairline rules and uppercase tracked nav. Buttons are stark black fills or ghost outlines against the warm canvas, and the only tonal shifts between pages come from the photography itself, never from UI chroma.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cdc4a162-cefa-49a1-81e7-4857e421ae24#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Adam Lippes design system\",\"item\":\"https://styles.refero.design/style/cdc4a162-cefa-49a1-81e7-4857e421ae24\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cdc4a162-cefa-49a1-81e7-4857e421ae24#style-reference\",\"name\":\"Adam Lippes design system reference\",\"headline\":\"Adam Lippes design system | Refero Styles\",\"description\":\"Explore Adam Lippes's light E-commerce design system: Bone Canvas #fefcf8, Press White #ffffff colors, Optima, Arial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/cdc4a162-cefa-49a1-81e7-4857e421ae24\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cdc4a162-cefa-49a1-81e7-4857e421ae24\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Adam Lippes\",\"url\":\"https://adamlippes.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cdc4a162-cefa-49a1-81e7-4857e421ae24#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e1f3d78b-0888-4a6c-b00f-d5f0d1f196a6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e1f3d78b-0888-4a6c-b00f-d5f0d1f196a6.jpg\",\"caption\":\"Screenshot of Adam Lippes\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e1f3d78b-0888-4a6c-b00f-d5f0d1f196a6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Adam Lippes design system\",\"Adam Lippes website design\",\"Adam Lippes colors\",\"Adam Lippes typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone Canvas\",\"Press White\",\"Onyx Black\",\"Graphite\",\"Optima\",\"Arial\",\"GTStandard-M\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Adam Lippes design system\"},{\"@type\":\"Thing\",\"name\":\"Adam Lippes website design\"},{\"@type\":\"Thing\",\"name\":\"Adam Lippes colors\"},{\"@type\":\"Thing\",\"name\":\"Adam Lippes typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-05-10T22:01:40.480Z\",\"dateModified\":\"2026-05-10T22:01:40.480Z\"}]}19:T684,**Quick Color Reference**\n- text: #000000 (Onyx Black)\n- background: #fefcf8 (Bone Canvas)\n- surface: #ffffff (Press White)\n- border: #000000 (Onyx Black, 1px hairline)\n- accent: none (no chromatic accent in the system)\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n1. *Create a product card*: white seamless background image at full card width, no border, 0px radius. Below: product name in Optima 14px lowercase #000000 left-aligned, price in Optima 14px #000000 right-aligned, 10px row gap. Underneath: row of 8×8px color swatches with 1px #000000 border, 5px gap. Total card padding 16px. No shadow, no hover lift.\n2. *Create a filled action button*: #000000 background, #ffffff text, Optima 12px uppercase, letter-spacing 0.0640em, weight 400. Padding 12px 20px. Radius 0px. No shadow.\n3. *Create a hero overlay block*: left third of a full-bleed editorial image. Heading in Optima 24px #000000 letter-spacing 0.74px. Subtext in Optima 14px #4c4c4a. Filled #000000 button with white uppercase text, 0px radius, 12px 20px padding. Vertically centered.\n4. *Create a category banner card*: full-bleed cropped model photo, no border or background. Text overlay in left third: heading Optima 24px #000000, subtext Optima 14px #4c4c4a, filled #000000 button below. Text vertically centered.\n5. *Create a top nav bar*: full width, #ffffff background, 1px #000000 bottom border, subtle rgba(0,0,0,0.05) 0 4px 5px shadow. Left: 5 uppercase Optima 11px nav links at 0.0640em tracking, #000000. Center: stacked 'ADAM' / 'LIPPES' wordmark in Optima uppercase. Right: 'SEARCH' label, account icon, cart icon with small #000000 circular count badge."
+      },
+      {
+        "title": "Photography Direction",
+        "content": "Photography is a design token. Hero and category imagery is shot against concrete, plaster, and warm architectural surfaces with high-key directional lighting. Models are framed tight to the garment — often waist-up — with neutral expressions. Product-only images use a white seamless background with no props, no shadow, and a straight-on or three-quarter view. The overall photographic palette desaturates toward warm gray, so it harmonizes with Bone Canvas (#fefcf8) and never introduces competing chroma. Any page built with this system must commission or select photography in this register; the layout cannot save the system from off-brand imagery."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is a whisper, not a shout. Shadows are used only where strictly necessary — a barely-there drop under the nav, a single soft card lift — because the design philosophy treats photography as the only element allowed to project off the page. UI chrome stays flat against the cream canvas."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "heading",
+            "link",
+            "body",
+            "input",
+            "icon",
+            "hero",
+            "image",
+            "card",
+            "list",
+            "badge",
+            "footer"
+          ],
+          "frequency": 3228,
+          "confidence": 1,
+          "prominence": 90198611.97968622,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 5,
+            "icon/fill": 14,
+            "nav/color": 66,
+            "body/color": 52,
+            "card/color": 155,
+            "hero/color": 2,
+            "icon/color": 7,
+            "link/color": 40,
+            "list/color": 39,
+            "other/fill": 17,
+            "badge/color": 4,
+            "image/color": 6,
+            "input/color": 3,
+            "other/color": 239,
+            "button/color": 10,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 28,
+            "nav/borderColor": 260,
+            "body/borderColor": 208,
+            "card/borderColor": 540,
+            "hero/borderColor": 8,
+            "icon/borderColor": 28,
+            "link/borderColor": 160,
+            "list/borderColor": 156,
+            "badge/borderColor": 16,
+            "image/borderColor": 24,
+            "input/borderColor": 12,
+            "other/borderColor": 949,
+            "button/borderColor": 40,
+            "footer/borderColor": 4,
+            "heading/borderColor": 112,
+            "other/backgroundColor": 13,
+            "button/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#fefcf8",
+          "oklch": {
+            "c": 0.005697072726123529,
+            "h": 84.56581658660171,
+            "l": 0.9914908768229325
+          },
+          "contexts": [
+            "button",
+            "other",
+            "nav",
+            "input",
+            "body",
+            "card",
+            "footer"
+          ],
+          "frequency": 111,
+          "confidence": 1,
+          "prominence": 8590990.829315448,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "other/color": 1,
+            "button/color": 8,
+            "body/borderColor": 24,
+            "other/borderColor": 4,
+            "button/borderColor": 32,
+            "nav/backgroundColor": 2,
+            "card/backgroundColor": 21,
+            "input/backgroundColor": 2,
+            "other/backgroundColor": 9,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "input",
+            "button"
+          ],
+          "frequency": 206,
+          "confidence": 1,
+          "prominence": 737389.9509284804,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "button/color": 1,
+            "heading/color": 2,
+            "other/borderColor": 188,
+            "heading/borderColor": 8,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#4c4c4a",
+          "oklch": {
+            "c": 0.0021250248366125805,
+            "h": 84.56432563182554,
+            "l": 0.41521499685445173
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 34867.61128424532,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 1,
+            "body/borderColor": 4,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 31183.3166103966,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 2,
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#403f3e",
+          "oklch": {
+            "c": 0.001825428950196515,
+            "h": 84.56395216279907,
+            "l": 0.3678153891572563
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 54,
+          "confidence": 1,
+          "prominence": 8793.448124271008,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 4,
+            "other/fill": 4,
+            "other/color": 2,
+            "button/color": 4,
+            "icon/borderColor": 16,
+            "other/borderColor": 8,
+            "button/borderColor": 16
+          }
+        },
+        {
+          "hex": "#1d1d1d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23075046833254287
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 6503.7205937795015,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#2f2f2f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.305191278401601
+          },
+          "contexts": [
+            "badge",
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 4721.741229487167,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "badge/color": 2,
+            "body/borderColor": 8,
+            "badge/borderColor": 8
+          }
+        },
+        {
+          "hex": "#b2b0ae",
+          "oklch": {
+            "c": 0.004263911472384178,
+            "h": 84.5655188125565,
+            "l": 0.7587971084647561
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3531.652632323678,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#f2f1e5",
+          "oklch": {
+            "c": 0.01591389651756569,
+            "h": 102.8311026648356,
+            "l": 0.9556463364599459
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 478.35764566378015,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#53131d",
+          "oklch": {
+            "c": 0.09394880491167489,
+            "h": 16.124674376347212,
+            "l": 0.2999715975471638
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 456.46920020769295,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#c6e5f7",
+          "oklch": {
+            "c": 0.04096355589687944,
+            "h": 233.36835617479454,
+            "l": 0.905054387444081
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 334.35764566378015,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#6b5b2f",
+          "oklch": {
+            "c": 0.06526950751982541,
+            "h": 89.85421715740195,
+            "l": 0.47658411251433613
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 334.35764566378015,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#05054e",
+          "oklch": {
+            "c": 0.12457440454338149,
+            "h": 267.9355843792368,
+            "l": 0.20364058542241184
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 228.23460010384647,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#c3b091",
+          "oklch": {
+            "c": 0.047697157313326424,
+            "h": 79.96130396870016,
+            "l": 0.7653755964052529
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 144,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#aa5c3f",
+          "oklch": {
+            "c": 0.11045200016119881,
+            "h": 40.802695206925655,
+            "l": 0.5601024136962411
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 144,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.001835352658843031,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.49,
+          "background": "#fefcf8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#ffffff",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.49,
+          "background": "#f2f1e5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.45,
+          "background": "#05054e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.28,
+          "background": "#fefcf8",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.01,
+          "background": "#05054e",
+          "foreground": "#fefcf8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.86,
+          "background": "#ffffff",
+          "foreground": "#1d1d1d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.49,
+          "background": "#f2f1e5",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.45,
+          "background": "#fefcf8",
+          "foreground": "#1d1d1d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.24,
+          "background": "#f2f1e5",
+          "foreground": "#05054e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.95,
+          "background": "#c6e5f7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.84,
+          "background": "#f2f1e5",
+          "foreground": "#1d1d1d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.23,
+          "background": "#c6e5f7",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.2,
+          "background": "#53131d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.02,
+          "background": "#c6e5f7",
+          "foreground": "#05054e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.86,
+          "background": "#53131d",
+          "foreground": "#fefcf8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.39,
+          "background": "#ffffff",
+          "foreground": "#2f2f2f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.07,
+          "background": "#fefcf8",
+          "foreground": "#2f2f2f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.81,
+          "background": "#c6e5f7",
+          "foreground": "#1d1d1d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 1000,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 16,
+          "corners": [
+            16,
+            16,
+            0,
+            0
+          ],
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.05) 0px 4px 5px 0px",
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.15) 0px -8px 24px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "card",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button",
+            "list",
+            "other"
+          ],
+          "frequency": 35,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|button",
+            "paddingTop|list",
+            "paddingBottom|list",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 43,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "badge",
+            "list",
+            "link"
+          ],
+          "frequency": 58,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|badge",
+            "paddingRight|badge",
+            "paddingBottom|badge",
+            "paddingLeft|badge",
+            "rowGap|list",
+            "columnGap|list",
+            "marginBottom|link",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "card",
+            "heading",
+            "badge",
+            "button"
+          ],
+          "frequency": 110,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|card",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingRight|heading",
+            "rowGap|badge",
+            "marginTop|button",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "nav",
+            "list",
+            "other",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "paddingBottom",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginLeft|list",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "card",
+            "body",
+            "input",
+            "heading"
+          ],
+          "frequency": 54,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "columnGap|other",
+            "marginTop|card",
+            "paddingTop|card",
+            "marginTop|other",
+            "marginTop|body",
+            "marginBottom|body",
+            "paddingLeft|input",
+            "paddingBottom|heading",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "button",
+            "card",
+            "other"
+          ],
+          "frequency": 37,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "nav",
+            "footer"
+          ],
+          "frequency": 33,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|footer",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|button"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Optima",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 812,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GTStandard-M",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Optima",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Optima",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.7,
+          "letterSpacing": 0.064,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Optima",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "heading",
+            "link"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Optima",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "badge"
+          ],
+          "frequency": 24,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Optima",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "body",
+            "link",
+            "other",
+            "heading",
+            "button"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Optima",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Optima",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Optima",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Optima",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "body",
+            "button"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Optima",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Optima",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "hero",
+            "image",
+            "link",
+            "card",
+            "list",
+            "badge",
+            "footer"
+          ],
+          "frequency": 487,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Optima",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Optima",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "button",
+            "icon",
+            "list"
+          ],
+          "frequency": 136,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Optima",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GTStandard-M",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Optima",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Optima",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e551c472-d545-40c7-a675-dfc5f99feec6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e1f3d78b-0888-4a6c-b00f-d5f0d1f196a6.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cdc4a162-cefa-49a1-81e7-4857e421ae24#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Adam Lippes design system\",\"item\":\"https://styles.refero.design/style/cdc4a162-cefa-49a1-81e7-4857e421ae24\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cdc4a162-cefa-49a1-81e7-4857e421ae24#style-reference\",\"name\":\"Adam Lippes design system reference\",\"headline\":\"Adam Lippes design system | Refero Styles\",\"description\":\"Explore Adam Lippes's light E-commerce design system: Bone Canvas #fefcf8, Press White #ffffff colors, Optima, Arial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/cdc4a162-cefa-49a1-81e7-4857e421ae24\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cdc4a162-cefa-49a1-81e7-4857e421ae24\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Adam Lippes\",\"url\":\"https://adamlippes.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cdc4a162-cefa-49a1-81e7-4857e421ae24#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e1f3d78b-0888-4a6c-b00f-d5f0d1f196a6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e1f3d78b-0888-4a6c-b00f-d5f0d1f196a6.jpg\",\"caption\":\"Screenshot of Adam Lippes\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e1f3d78b-0888-4a6c-b00f-d5f0d1f196a6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Adam Lippes design system\",\"Adam Lippes website design\",\"Adam Lippes colors\",\"Adam Lippes typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone Canvas\",\"Press White\",\"Onyx Black\",\"Graphite\",\"Optima\",\"Arial\",\"GTStandard-M\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Adam Lippes design system\"},{\"@type\":\"Thing\",\"name\":\"Adam Lippes website design\"},{\"@type\":\"Thing\",\"name\":\"Adam Lippes colors\"},{\"@type\":\"Thing\",\"name\":\"Adam Lippes typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-05-10T22:01:40.480Z\",\"dateModified\":\"2026-05-10T22:01:40.480Z\"}]}19:T684,**Quick Color Reference**\n- text: #000000 (Onyx Black)\n- background: #fefcf8 (Bone Canvas)\n- surface: #ffffff (Press White)\n- border: #000000 (Onyx Black, 1px hairline)\n- accent: none (no chromatic accent in the system)\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n1. *Create a product card*: white seamless background image at full card width, no border, 0px radius. Below: product name in Optima 14px lowercase #000000 left-aligned, price in Optima 14px #000000 right-aligned, 10px row gap. Underneath: row of 8×8px color swatches with 1px #000000 border, 5px gap. Total card padding 16px. No shadow, no hover lift.\n2. *Create a filled action button*: #000000 background, #ffffff text, Optima 12px uppercase, letter-spacing 0.0640em, weight 400. Padding 12px 20px. Radius 0px. No shadow.\n3. *Create a hero overlay block*: left third of a full-bleed editorial image. Heading in Optima 24px #000000 letter-spacing 0.74px. Subtext in Optima 14px #4c4c4a. Filled #000000 button with white uppercase text, 0px radius, 12px 20px padding. Vertically centered.\n4. *Create a category banner card*: full-bleed cropped model photo, no border or background. Text overlay in left third: heading Optima 24px #000000, subtext Optima 14px #4c4c4a, filled #000000 button below. Text vertically centered.\n5. *Create a top nav bar*: full width, #ffffff background, 1px #000000 bottom border, subtle rgba(0,0,0,0.05) 0 4px 5px shadow. Left: 5 uppercase Optima 11px nav links at 0.0640em tracking, #000000. Center: stacked 'ADAM' / 'LIPPES' wordmark in Optima uppercase. Right: 'SEARCH' label, account icon, cart icon with small #000000 circular count badge."
+}

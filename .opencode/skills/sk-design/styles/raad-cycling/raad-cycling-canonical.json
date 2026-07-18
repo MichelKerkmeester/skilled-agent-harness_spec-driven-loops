@@ -1,0 +1,797 @@
+{
+  "source": "https://styles.refero.design/style/a59e7f31-1fca-46c1-a6b0-8d1294b33a7c",
+  "uuid": "a59e7f31-1fca-46c1-a6b0-8d1294b33a7c",
+  "name": "Raad Cycling",
+  "northStar": "Ink and ivory gallery runway",
+  "capturedAt": "2026-07-18T07:24:30.432Z",
+  "meta": {
+    "url": "https://www.raad.cc",
+    "siteName": "Raad Cycling",
+    "extractedAt": "2026-06-03T21:15:08.063Z",
+    "durationMs": 29093,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 295,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #000000 and #ffffff as the foundation — every section must resolve to one of these two surfaces, creating hard editorial breaks",
+      "Apply 0.1em letter-spacing to every piece of text set in the custom brand face, at every size, without exception",
+      "Render all photography edge-to-edge with zero border-radius, zero padding, zero shadow — let images bleed to the viewport edges",
+      "Use the 100px border-radius exclusively for ghost outline buttons — every interactive element should be a transparent pill with a 1px border",
+      "Set the hero headline at maximum display scale (the 50-54px token, scaled to fill the viewport width) to make typography function as the visual hero instead of imagery",
+      "Maintain 120px vertical padding above and below major sections to create the breathing room of a gallery wall",
+      "Use uppercase for all headings, button labels, and navigation items — sentence case appears nowhere in the system"
+    ],
+    "donts": [
+      "Never introduce a chromatic color, gradient, or accent — the system is 0% colorful by design, and any hue would break the gallery aesthetic",
+      "Never use a filled or solid-background button — ghost outlines are the only button pattern permitted",
+      "Never apply box-shadow, drop-shadow, or blur to any element — depth comes from black/white alternation, not elevation",
+      "Never use border-radius on images or cards — the only rounded element is the pill button at 100px",
+      "Never use bold or semibold weights — the custom font exists at weight 400 only, and introducing weight contrast would destroy the system",
+      "Never set body text tighter than 1.4 line-height — the generous leading is what keeps small white-on-black text legible",
+      "Never add decorative UI elements (badges, tags, pills, chips, tooltips) — the system is intentionally stripped to typography, photography, and hairline borders"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary canvas for dark sections, product photography backgrounds, all body text on light surfaces, divider lines, and the dominant border color throughout the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Ivory White",
+        "role": "Primary canvas for light sections, text on dark backgrounds, ghost-button fills and borders, the base surface against which all product photography is staged",
+        "group": "neutral"
+      },
+      {
+        "hex": "#181818",
+        "name": "Charcoal Edge",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Graphite",
+        "role": "Secondary border tone for subtle UI structure, divider lines between content blocks, and depth separation on otherwise flat surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Stone Gray",
+        "role": "Muted helper text, secondary metadata, and the only step down in the type hierarchy where pure black would feel too heavy — the softest voice in the system",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page model with no max-width container — content stretches edge-to-edge at all viewport sizes. The page is organized as alternating full-width bands: a black hero band with centered display text, a split-image product category band (50/50 columns), a dark editorial band (50/50 text + image), and likely continues with full-bleed detail shots. Section rhythm is defined by 120px vertical gaps and hard color transitions between black and white bands — no gradients, no soft dividers. Navigation is a single minimal bar at the very top with no sticky behavior, no background fill, and no shadow. The grid system is binary: either 50/50 splits or full-width single-column stacks. There is no 3-column or 4-column card grid. Content density is extremely low — the page is a slow scroll through large-format editorial compositions, not a compact product listing.",
+    "imagery": "Photography is the sole visual medium — no illustration, no icon-driven graphics, no abstract shapes. All imagery is full-bleed editorial photography shot in a studio or on location with available light. Subjects are tightly cropped: jersey details, fabric texture, helmets, partial faces, bikes in motion. The color palette of the photography itself is the only color in the system — vivid jersey prints (red, orange, magenta, electric blue) appear at full saturation against the monochrome UI, creating a deliberate contrast where the product provides all chromatic energy. There are no lifestyle scenes with environmental context, no group shots, no posed studio portraits with full bodies visible. Every photograph functions as a flat art print, not as a marketing image.",
+    "similar": [
+      {
+        "why": "Same monochrome product photography approach with full-bleed model shots and zero-color UI that lets the garment prints carry all visual energy",
+        "business": "Bandit Cycling"
+      },
+      {
+        "why": "Same high-contrast black/white interface with minimal ghost-button interactions and large-scale editorial typography for hero sections",
+        "business": "MAAP Cycling"
+      },
+      {
+        "why": "Same gallery-catalogue presentation of cycling products — full-bleed art-direction photography, tight crops, no decorative UI chrome, typography as the primary visual element",
+        "business": "Passoni"
+      },
+      {
+        "why": "Same editorial-magazine page rhythm with alternating dark and light full-width bands and large display headlines that function as section markers",
+        "business": "ASSOS of Switzerland"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "100px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "120px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Ivory Canvas",
+        "level": 1,
+        "purpose": "Base page background for light sections — product category cards, body content areas"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Backdrop",
+        "level": 2,
+        "purpose": "Full-bleed dark sections — hero banner, editorial story blocks, section dividers that create visual pauses"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Ink and ivory gallery runway",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": 1.2
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": 1.6
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": 1.8
+      },
+      {
+        "role": "heading",
+        "size": 50,
+        "lineHeight": 1,
+        "letterSpacing": 5
+      },
+      {
+        "role": "display",
+        "size": 54,
+        "lineHeight": 1,
+        "letterSpacing": 5.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Outline Button",
+        "role": "Primary call-to-action across the system",
+        "description": "Transparent fill with a 1px white or black border, fully rounded at 100px radius. Padding approximately 12px vertical by 30px horizontal. Text is uppercase, 12-13px, 0.1em letter-spacing, in the inverse color of the border. On dark sections the border is white and text is white; on light sections the border is black and text is black. No fill state, no shadow, no hover transition beyond subtle opacity. These are the only interactive elements in the system — there is never a filled or solid-color button."
+      },
+      {
+        "name": "Minimal Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Split layout on a single horizontal line. Left: two text links (Collection, About) in 13-16px uppercase with 0.1em tracking, in the current section's text color. Center: the wordmark 'raad' in the custom face at approximately 24-30px, lowercase. Right: a profile icon and a bag icon (the bag shows a count badge) in the same icon color as the text. No background fill — the nav floats over whatever section is behind it. No border, no shadow, no sticky transform visible in the static state."
+      },
+      {
+        "name": "Hero Display Banner",
+        "role": "Full-viewport editorial header",
+        "description": "Black canvas with a single display headline ('LIQUID LOVE') in white, uppercase, at the custom font's maximum weight and scale. The headline stretches to occupy the full width of the viewport. Below it, a small-caps subtitle in 12-13px with 0.1em letter-spacing, centered. Approximately 120px of vertical padding top and bottom. The hero contains no imagery — the typographic scale is the hero. No border, no radius."
+      },
+      {
+        "name": "Product Category Split Card",
+        "role": "Jersey collection entry point (Women's / Men's)",
+        "description": "Full-bleed photograph split into two equal-width columns (50/50 layout). Each half shows a model wearing the product, shot tight against a neutral studio backdrop. The product title ('Women's Pro Jersey' / 'Men's Pro Jersey') is overlaid in white, 30-40px, at the vertical center of each image. Below the title, a ghost outline button (white border, white text). No card background, no border around the image, zero radius. The photograph bleeds to all four edges of the viewport."
+      },
+      {
+        "name": "Editorial Dark Section",
+        "role": "Brand story / craft explanation block",
+        "description": "Black background section with a 50/50 split. Left column: a heading in the custom face at 36-50px, white, followed by two paragraphs of body text in 16-18px, white, at 1.4-1.6 line-height. The heading uses the standard 0.1em tracking. Right column: a large detail-crop photograph of the product (zipper, fabric texture) filling the full column height, no border, no radius. This is the only section that uses a dark background to create a pause in the page rhythm."
+      },
+      {
+        "name": "Full-Bleed Product Photograph",
+        "role": "Visual showcase of garments and cycling details",
+        "description": "Photography is always edge-to-edge, no padding, no border, no rounded corners, no shadow. Subjects are tightly cropped — faces often partially out of frame, focus on the garment, helmet, or body in motion. Lighting is high-key studio for product shots, natural available light for lifestyle shots. Color treatment is unfiltered: the jerseys' actual colors (red, orange, magenta, blue) appear at full saturation against the otherwise monochrome system, which is why the UI itself stays achromatic — the product provides the color."
+      },
+      {
+        "name": "Footer",
+        "role": "Site-bottom information block",
+        "description": "Minimal — likely follows the same black-on-white or white-on-black pattern as the preceding section. Small text only (12-13px), 0.1em letter-spacing. Contains legal links, social icons, and brand mark. No elaborate footer columns or newsletter forms."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Fallback system font for micro-text and edge-case rendering — appears so rarely it functions as a safety net rather than a design choice",
+        "sizes": "10px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "system-ui, sans-serif",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "The sole brand typeface used for everything from uppercase product category labels to the massive hero display 'LIQUID LOVE'. The custom face is a clean geometric sans with tall x-height and wide letterforms that hold up at extreme scale. It is used at weight 400 only — no bold, no light variations. The 0.1em positive letter-spacing is applied uniformly across all sizes, creating a slightly aired-out feel even at body text. This single-font, single-weight discipline is the most opinionated choice in the system: Raad removes the typographic hierarchy tools (weight contrast, family contrast) that most sites rely on, forcing scale and letter-spacing to do all the structural work instead.",
+        "sizes": "12px, 13px, 16px, 18px, 50px, 54px",
+        "family": "Raad Display (custom geometric sans-serif)",
+        "weight": "400",
+        "lineHeight": "1.00–1.40 (tight at display sizes, generous at body)",
+        "substitute": "Space Grotesk, NB Architekt, or Inter at weight 400 with 0.1em tracking",
+        "letterSpacing": "0.1em across all sizes"
+      },
+      {
+        "role": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2 — detected in extracted data but not described by AI",
+        "sizes": "12px, 13px, 16px, 18px, 50px, 54px",
+        "family": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+        "weight": "400",
+        "lineHeight": "1, 1.2, 1.4, 2.5",
+        "letterSpacing": "0.1"
+      }
+    ],
+    "description": "Raad Cycling operates as a monochrome editorial gallery where cycling apparel is presented as wearable sculpture. The entire visual system is built on the tension between pure black and pure white — no chromatic accent, no decorative gradient, no warm undertone. Typography carries all the personality: a single geometric sans-serif rendered at extreme scale for headlines (filling nearly the full viewport width) and shrunken to whisper-thin captions for product labels. Photography is treated as gallery art — full-bleed, tightly cropped, no rounded corners, no drop shadows, no decorative framing. The aesthetic borrows from high-fashion lookbooks and contemporary art catalogues, not from sports retail. Every surface is either ink or ivory. Every interaction is a hairline border, never a filled button. The result is a brand that feels curated, expensive, and silent — the product must do the talking.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a59e7f31-1fca-46c1-a6b0-8d1294b33a7c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Raad Cycling design system\",\"item\":\"https://styles.refero.design/style/a59e7f31-1fca-46c1-a6b0-8d1294b33a7c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a59e7f31-1fca-46c1-a6b0-8d1294b33a7c#style-reference\",\"name\":\"Raad Cycling design system reference\",\"headline\":\"Raad Cycling design system | Refero Styles\",\"description\":\"Explore Raad Cycling's light E-commerce design system: Ink Black #000000, Ivory White #ffffff colors, Arial, Raad Display (custom geometric sans-serif)...\",\"url\":\"https://styles.refero.design/style/a59e7f31-1fca-46c1-a6b0-8d1294b33a7c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a59e7f31-1fca-46c1-a6b0-8d1294b33a7c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Raad Cycling\",\"url\":\"https://www.raad.cc\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a59e7f31-1fca-46c1-a6b0-8d1294b33a7c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/71ee7b27-feed-4d9a-8948-b58e65e87e1b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/71ee7b27-feed-4d9a-8948-b58e65e87e1b.jpg\",\"caption\":\"Screenshot of Raad Cycling\"},\"image\":\"https://images.refero.design/styles/refero.design/image/71ee7b27-feed-4d9a-8948-b58e65e87e1b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Raad Cycling design system\",\"Raad Cycling website design\",\"Raad Cycling colors\",\"Raad Cycling typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink Black\",\"Ivory White\",\"Charcoal Edge\",\"Graphite\",\"Arial\",\"Raad Display (custom geometric sans-serif)\",\"wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Raad Cycling design system\"},{\"@type\":\"Thing\",\"name\":\"Raad Cycling website design\"},{\"@type\":\"Thing\",\"name\":\"Raad Cycling colors\"},{\"@type\":\"Thing\",\"name\":\"Raad Cycling typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:01:38.694Z\",\"dateModified\":\"2026-04-30T03:01:38.694Z\"}]}19:T833,## Quick Color Reference\n- text: #000000 on light surfaces, #ffffff on dark surfaces\n- background: #ffffff (light sections) or #000000 (dark sections)\n- border: #000000 on light surfaces, #ffffff on dark surfaces (1px hairline)\n- accent: none — the system is fully achromatic\n- primary action: no distinct CTA color\n\n## 5 Example Component Prompts\n1. **Hero Display Banner**: Full-viewport black (#000000) section, 120px top/bottom padding. Centered headline in the custom geometric sans at maximum display scale, weight 400, uppercase, white (#ffffff), 0.1em letter-spacing. Below it, a small-caps subtitle in 12px, white, 0.1em letter-spacing, centered. No imagery, no border, no radius.\n\n2. **Ghost Outline Button**: Transparent fill, 1px border in #000000 (on light backgrounds) or #ffffff (on dark backgrounds). Fully rounded at 100px radius. Padding 12px vertical, 30px horizontal. Text: 12-13px, uppercase, 0.1em letter-spacing, in the border color. No shadow, no fill state, no hover transform.\n\n3. **Product Category Split Card**: Full-bleed two-column 50/50 layout with no gap between columns. Each half is a photograph bleeding to all edges (no border-radius, no padding). Overlaid at vertical center: product title in 30-40px white (#ffffff) with 0.1em letter-spacing, followed by a ghost outline button with white border and white text.\n\n4. **Editorial Dark Section**: Black (#000000) full-width section. Left 50% column: heading in 36-50px white (#ffffff) with 0.1em letter-spacing, followed by two body paragraphs in 16-18px white, 1.4-1.6 line-height. Right 50% column: a single large photograph filling the full column height, edge-to-edge, no border, no radius.\n\n5. **Minimal Navigation Bar**: Single horizontal row with three groups — left-aligned (two text links in 13-16px uppercase, 0.1em tracking, surface-inverse color), center-aligned (wordmark in the custom face at ~24-30px lowercase), right-aligned (profile icon and bag icon with count badge, surface-inverse color). No background, no border, no shadow, no sticky behavior. Floats over the section content behind it."
+      }
+    ],
+    "elevationPhilosophy": "Zero elevation. The system uses no box-shadows, no drop-shadows, no inner shadows, no blur effects, no gradient overlays. Depth is created entirely through section-to-section contrast (black band to white band) and through full-bleed photography that sits flush against adjacent content. This is a defining constraint: even interactive elements like buttons are flat outlines, never raised. The flatness is what makes the system feel like a printed catalogue rather than a software interface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "icon",
+            "hero",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 800,
+          "confidence": 1,
+          "prominence": 101752446.27547522,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "nav/color": 4,
+            "body/color": 6,
+            "hero/color": 1,
+            "other/fill": 10,
+            "image/color": 12,
+            "other/color": 152,
+            "footer/color": 1,
+            "nav/borderColor": 16,
+            "body/borderColor": 24,
+            "hero/borderColor": 4,
+            "image/borderColor": 48,
+            "other/borderColor": 515,
+            "footer/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "icon",
+            "body",
+            "heading",
+            "link"
+          ],
+          "frequency": 298,
+          "confidence": 1,
+          "prominence": 10608164.431553157,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "nav/color": 2,
+            "body/color": 23,
+            "icon/color": 1,
+            "link/color": 4,
+            "other/fill": 18,
+            "other/color": 4,
+            "button/color": 2,
+            "heading/color": 12,
+            "nav/borderColor": 8,
+            "body/borderColor": 92,
+            "icon/borderColor": 4,
+            "link/borderColor": 32,
+            "other/borderColor": 32,
+            "button/borderColor": 8,
+            "heading/borderColor": 48,
+            "link/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 528913.2871829428,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 17
+          }
+        },
+        {
+          "hex": "#181818",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20903608651870992
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 32506.993328423072,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 24
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 20390.05206452921,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "body/borderColor": 8,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#5e97ff",
+          "oklch": {
+            "c": 0.16510777687766987,
+            "h": 261.4286842350674,
+            "l": 0.6861403772002236
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 18724.028157171688,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0015374237202567206,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.76,
+          "background": "#ffffff",
+          "foreground": "#181818"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.66,
+          "background": "#000000",
+          "foreground": "#666666"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 204,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 64,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "icon",
+            "hero",
+            "image",
+            "footer"
+          ],
+          "frequency": 204,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f4a61677-5f40-4b3e-8908-83e2aee85c5f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/71ee7b27-feed-4d9a-8948-b58e65e87e1b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a59e7f31-1fca-46c1-a6b0-8d1294b33a7c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Raad Cycling design system\",\"item\":\"https://styles.refero.design/style/a59e7f31-1fca-46c1-a6b0-8d1294b33a7c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a59e7f31-1fca-46c1-a6b0-8d1294b33a7c#style-reference\",\"name\":\"Raad Cycling design system reference\",\"headline\":\"Raad Cycling design system | Refero Styles\",\"description\":\"Explore Raad Cycling's light E-commerce design system: Ink Black #000000, Ivory White #ffffff colors, Arial, Raad Display (custom geometric sans-serif)...\",\"url\":\"https://styles.refero.design/style/a59e7f31-1fca-46c1-a6b0-8d1294b33a7c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a59e7f31-1fca-46c1-a6b0-8d1294b33a7c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Raad Cycling\",\"url\":\"https://www.raad.cc\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a59e7f31-1fca-46c1-a6b0-8d1294b33a7c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/71ee7b27-feed-4d9a-8948-b58e65e87e1b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/71ee7b27-feed-4d9a-8948-b58e65e87e1b.jpg\",\"caption\":\"Screenshot of Raad Cycling\"},\"image\":\"https://images.refero.design/styles/refero.design/image/71ee7b27-feed-4d9a-8948-b58e65e87e1b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Raad Cycling design system\",\"Raad Cycling website design\",\"Raad Cycling colors\",\"Raad Cycling typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink Black\",\"Ivory White\",\"Charcoal Edge\",\"Graphite\",\"Arial\",\"Raad Display (custom geometric sans-serif)\",\"wfont_8b8bfe_cd7287b5071a4785a78bba57128a74e2\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Raad Cycling design system\"},{\"@type\":\"Thing\",\"name\":\"Raad Cycling website design\"},{\"@type\":\"Thing\",\"name\":\"Raad Cycling colors\"},{\"@type\":\"Thing\",\"name\":\"Raad Cycling typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:01:38.694Z\",\"dateModified\":\"2026-04-30T03:01:38.694Z\"}]}19:T833,## Quick Color Reference\n- text: #000000 on light surfaces, #ffffff on dark surfaces\n- background: #ffffff (light sections) or #000000 (dark sections)\n- border: #000000 on light surfaces, #ffffff on dark surfaces (1px hairline)\n- accent: none — the system is fully achromatic\n- primary action: no distinct CTA color\n\n## 5 Example Component Prompts\n1. **Hero Display Banner**: Full-viewport black (#000000) section, 120px top/bottom padding. Centered headline in the custom geometric sans at maximum display scale, weight 400, uppercase, white (#ffffff), 0.1em letter-spacing. Below it, a small-caps subtitle in 12px, white, 0.1em letter-spacing, centered. No imagery, no border, no radius.\n\n2. **Ghost Outline Button**: Transparent fill, 1px border in #000000 (on light backgrounds) or #ffffff (on dark backgrounds). Fully rounded at 100px radius. Padding 12px vertical, 30px horizontal. Text: 12-13px, uppercase, 0.1em letter-spacing, in the border color. No shadow, no fill state, no hover transform.\n\n3. **Product Category Split Card**: Full-bleed two-column 50/50 layout with no gap between columns. Each half is a photograph bleeding to all edges (no border-radius, no padding). Overlaid at vertical center: product title in 30-40px white (#ffffff) with 0.1em letter-spacing, followed by a ghost outline button with white border and white text.\n\n4. **Editorial Dark Section**: Black (#000000) full-width section. Left 50% column: heading in 36-50px white (#ffffff) with 0.1em letter-spacing, followed by two body paragraphs in 16-18px white, 1.4-1.6 line-height. Right 50% column: a single large photograph filling the full column height, edge-to-edge, no border, no radius.\n\n5. **Minimal Navigation Bar**: Single horizontal row with three groups — left-aligned (two text links in 13-16px uppercase, 0.1em tracking, surface-inverse color), center-aligned (wordmark in the custom face at ~24-30px lowercase), right-aligned (profile icon and bag icon with count badge, surface-inverse color). No background, no border, no shadow, no sticky behavior. Floats over the section content behind it."
+}

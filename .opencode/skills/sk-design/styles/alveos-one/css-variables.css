@@ -1,0 +1,107 @@
+:root {
+  /* Colors */
+  --color-linen-canvas: #fcf9f7;
+  --color-bone-white: #ffffff;
+  --color-graphite-ink: #000000;
+  --color-nightshade-black: #05060b;
+  --color-deep-harbor: #030f1c;
+  --color-charcoal-slate: #1d1d1d;
+  --color-iron-grey: #262628;
+  --color-obsidian: #111112;
+  --color-stone-grey: #575757;
+  --color-ash: #717171;
+  --color-pebble: #989695;
+  --color-concrete: #a5a5a5;
+  --color-dove: #bababa;
+  --color-clay-shadow: #d1cfcd;
+  --color-haze: #ecedef;
+  --color-spotlight-gradient: #a89c8a;
+  --gradient-spotlight-gradient: radial-gradient(50% 95% at 50% 108.6%, rgb(252, 249, 247) 0%, rgb(168, 156, 138) 100%);
+
+  /* Typography — Font Families */
+  --font-sans-serif: 'sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-hanken-grotesk: 'Hanken Grotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-system-sans: 'System Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sf-mono: 'SF Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-apple-system: '-apple-system', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-micro: 10px;
+  --leading-micro: 1.2;
+  --tracking-micro: 4.44px;
+  --text-caption: 12px;
+  --leading-caption: 1.3;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.6;
+  --text-body: 18px;
+  --leading-body: 1.5;
+  --text-body-lg: 20px;
+  --leading-body-lg: 1.5;
+  --text-subheading: 24px;
+  --leading-subheading: 1.4;
+  --text-heading-sm: 28px;
+  --leading-heading-sm: 1.4;
+  --text-heading: 36px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 38px;
+  --leading-heading-lg: 1.2;
+  --text-display: 52px;
+  --leading-display: 1.1;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-5: 5px;
+  --spacing-7: 7px;
+  --spacing-8: 8px;
+  --spacing-9: 9px;
+  --spacing-10: 10px;
+  --spacing-14: 14px;
+  --spacing-15: 15px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-25: 25px;
+  --spacing-26: 26px;
+  --spacing-30: 30px;
+  --spacing-32: 32px;
+  --spacing-50: 50px;
+  --spacing-80: 80px;
+  --spacing-150: 150px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 10px;
+
+  /* Border Radius */
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 25px;
+  --radius-full: 100px;
+
+  /* Named Radii */
+  --radius-cards: 25px;
+  --radius-icons: 25px;
+  --radius-pills: 100px;
+  --radius-images: 25px;
+  --radius-buttons: 12px;
+
+  /* Shadows */
+  --shadow-sm: rgba(0, 0, 0, 0.06) 0px 1px 5px 0px;
+  --shadow-xl: rgba(0, 0, 0, 0.08) 0px 8px 30px 0px, rgba(0, 0, 0, 0.05) 0px 2px 8px 0px;
+  --shadow-md: rgba(0, 0, 0, 0.05) 0px 2px 10px 0px;
+
+  /* Surfaces */
+  --surface-linen-canvas: #fcf9f7;
+  --surface-bone-white: #ffffff;
+  --surface-clay-shadow: #d1cfcd;
+  --surface-charcoal-slate: #1d1d1d;
+  --surface-nightshade-black: #05060b;
+}

@@ -1,0 +1,88 @@
+:root {
+  /* Colors */
+  --color-ink: #181717;
+  --color-bone: #eeebea;
+  --color-paper: #ffffff;
+  --color-graphite: #2e2d2d;
+  --color-charcoal: #575555;
+  --color-ash: #706e6d;
+  --color-linen: #f7f5f4;
+  --color-mist: #d5d3d2;
+  --color-signal-red: #d04841;
+  --color-network-blue: #5a82de;
+  --gradient-network-blue: linear-gradient(in oklab, #5a82de 0px, #324994 100%);
+
+  /* Typography — Font Families */
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mdio: 'MDIO', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.6px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 20px;
+  --leading-subheading: 1.5;
+  --tracking-subheading: -0.2px;
+  --text-heading: 32px;
+  --leading-heading: 1.2;
+  --tracking-heading: -0.64px;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.2;
+  --tracking-heading-lg: -0.96px;
+  --text-display: 64px;
+  --leading-display: 1.2;
+  --tracking-display: -1.92px;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-84: 84px;
+  --spacing-168: 168px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80-96px;
+  --card-padding: 24-32px;
+  --element-gap: 12-16px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-2xl: 16px;
+  --radius-3xl: 32px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-nav: 16px;
+  --radius-pill: 9999px;
+  --radius-cards: 16px;
+  --radius-images: 16px;
+  --radius-buttons: 8px;
+  --radius-hero-cards: 32px;
+
+  /* Shadows */
+  --shadow-sm: rgba(24, 23, 23, 0.02) 0px 4px 8px 0px;
+  --shadow-md: rgba(24, 23, 23, 0.16) 0px 4px 16px 0px;
+
+  /* Surfaces */
+  --surface-canvas: #eeebea;
+  --surface-surface: #ffffff;
+  --surface-elevated: #f7f5f4;
+}

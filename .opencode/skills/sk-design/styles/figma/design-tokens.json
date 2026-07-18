@@ -1,0 +1,394 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, icon strokes, high-contrast borders — the default for all body, heading, and UI stroke color"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, button fills for ghost/outlined controls — the dominant surface tone"
+    },
+    "soft-mist": {
+      "$value": "#e2e2e2",
+      "$type": "color",
+      "$description": "Soft Mist — Subtle card surface, secondary panel backgrounds — sits one step above pure white"
+    },
+    "graphite": {
+      "$value": "#595959",
+      "$type": "color",
+      "$description": "Graphite — Muted helper text, secondary labels, de-emphasized metadata"
+    },
+    "electric-indigo": {
+      "$value": "#4d49fc",
+      "$type": "color",
+      "$description": "Electric Indigo — Primary CTA buttons, active nav indicators, brand focal points — the only saturated fill the system uses for action"
+    },
+    "figma-cyan": {
+      "$value": "#00b6ff",
+      "$type": "color",
+      "$description": "Figma Cyan — Figma logo accent, decorative icon highlight — one of the four brand-marker colors in the mark"
+    },
+    "figma-green": {
+      "$value": "#24cb71",
+      "$type": "color",
+      "$description": "Figma Green — Figma logo accent, decorative icon highlight — second brand-marker in the four-color mark"
+    },
+    "figma-orange": {
+      "$value": "#ff7237",
+      "$type": "color",
+      "$description": "Figma Orange — Figma logo accent, decorative icon highlight — third brand-marker in the four-color mark"
+    },
+    "lime-wash": {
+      "$value": "#e4ff97",
+      "$type": "color",
+      "$description": "Lime Wash — Decorative illustration fill, playful community-card tint — pastel accent for expressive backgrounds"
+    },
+    "lilac": {
+      "$value": "#c4baff",
+      "$type": "color",
+      "$description": "Lilac — Decorative illustration fill, pastel accent for expressive backgrounds and tags"
+    },
+    "blush": {
+      "$value": "#ffc9c1",
+      "$type": "color",
+      "$description": "Blush — Decorative illustration fill, pastel accent for expressive backgrounds"
+    },
+    "aqua-mist": {
+      "$value": "#c7f8fb",
+      "$type": "color",
+      "$description": "Aqua Mist — Decorative illustration fill, pastel accent for expressive backgrounds"
+    },
+    "earworm-teal": {
+      "$value": "#33dfdf",
+      "$type": "color",
+      "$description": "Earworm Teal — Ring stroke, radial highlight accents on decorative graphics — high-energy neon teal"
+    },
+    "mustard": {
+      "$value": "#b98e01",
+      "$type": "color",
+      "$description": "Mustard — Ring stroke, radial highlight accents on decorative graphics — warm gold companion to teal"
+    }
+  },
+  "font": {
+    "figmasans": {
+      "$value": "figmaSans",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all UI. The variable axis spanning 320–700 enables ultra-light display weights for hero headlines (creating whispered authority) up to 700 for bold labels. The custom 'kern' feature and tight negative tracking (-0.02em at 72px) give it a precision-instrument feel. All body, headings, buttons, navigation, and cards use this family."
+    },
+    "figmamono": {
+      "$value": "figmaMono",
+      "$type": "fontFamily",
+      "$description": "Monospace companion for code snippets, technical labels, and UI annotations. Positive tracking (+0.03em to +0.05em) is deliberate — monospace text breathes wider to read as annotation, not body copy."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "figmaMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "16px",
+        "fontWeight": 330,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "figmaMono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "16px",
+        "fontWeight": 320,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "16px",
+        "fontWeight": 320,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "18px",
+        "fontWeight": 330,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "18px",
+        "fontWeight": 330,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "18px",
+        "fontWeight": 480,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "18px",
+        "fontWeight": 340,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "18px",
+        "fontWeight": 450,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "24px",
+        "fontWeight": 340,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "24px",
+        "fontWeight": 520,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "figmaSans",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 24px 70px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page background — the dominant surface, almost gallery-white"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Inset cards on the canvas (hero floating card, community cards) — visually identical to canvas, separated only by shadow or border"
+    },
+    "soft-panel": {
+      "$value": "#e2e2e2",
+      "$type": "color",
+      "$description": "Surface level 3: Secondary panel backgrounds, muted surface for less-prominent blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.figma.com",
+      "siteName": "Figma",
+      "extractedAt": "2026-06-03T21:57:53.742Z",
+      "variant": "extended"
+    }
+  }
+}

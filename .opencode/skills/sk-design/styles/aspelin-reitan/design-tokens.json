@@ -1,0 +1,212 @@
+{
+  "color": {
+    "warm-parchment": {
+      "$value": "#ffebd0",
+      "$type": "color",
+      "$description": "Warm Parchment — Gray accent for outlined action borders, linked labels, and lightweight interactive emphasis."
+    },
+    "candlelight": {
+      "$value": "#fff8e9",
+      "$type": "color",
+      "$description": "Candlelight — Lighter cream for elevated surfaces and secondary text on dark — a half-step above Parchment for subtle layering"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Structural borders, section dividers, image edge treatments — used as a hairline, never as a fill"
+    },
+    "walnut-shell": {
+      "$value": "#2f2116",
+      "$type": "color",
+      "$description": "Walnut Shell — Dark canvas behind full-bleed photographs, footer backgrounds, and dark editorial sections — the deep brown that makes white type glow warm"
+    },
+    "aged-bronze": {
+      "$value": "#4f3622",
+      "$type": "color",
+      "$description": "Aged Bronze — Secondary dark surface and border on dark sections — a half-step lighter than Walnut for subtle layering on dark"
+    },
+    "amber-glow": {
+      "$value": "#fee197",
+      "$type": "color",
+      "$description": "Amber Glow — Navigation borders, active state accents, warning/attention states, and the single chromatic punctuation in an otherwise warm-neutral system"
+    },
+    "muted-gold": {
+      "$value": "#987f61",
+      "$type": "color",
+      "$description": "Muted Gold — Link borders and heading underlines on dark sections — a desaturated brass for typographic detail without breaking the monochrome feel"
+    }
+  },
+  "font": {
+    "modernera": {
+      "$value": "ModernEra",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for body, navigation, buttons, links, headings, and overlay captions — a custom humanist sans that sits at 400 for body and 500 for emphasis. The entire type scale tops out at 40px, which is anti-SaaS: no 56px or 72px display sizes, no dramatic weight jumps. Authority comes from restraint, not volume."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "ModernEra",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ModernEra",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ModernEra",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ModernEra",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ModernEra",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "ModernEra",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "ModernEra",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "walnut-shell": {
+      "$value": "#2f2116",
+      "$type": "color",
+      "$description": "Surface level 0: Dark full-bleed sections, photo overlays, footer canvas"
+    },
+    "warm-parchment": {
+      "$value": "#ffebd0",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page canvas where text, cards, and project grids live"
+    },
+    "candlelight": {
+      "$value": "#fff8e9",
+      "$type": "color",
+      "$description": "Surface level 2: Lighter cream for elevated content blocks and secondary surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.aspelineiendom.no",
+      "siteName": "Aspelin Reitan",
+      "extractedAt": "2026-06-03T21:33:24.654Z",
+      "variant": "extended"
+    }
+  }
+}

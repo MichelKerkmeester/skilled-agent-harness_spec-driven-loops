@@ -1,0 +1,77 @@
+:root {
+  /* Colors */
+  --color-buttercream: #fef9e6;
+  --color-ink: #000000;
+  --color-carbon: #060606;
+  --color-driftwood: #c7c3b4;
+  --color-stone: #8d8b80;
+  --color-amber-pulse: #fdc331;
+  --color-ember-glow: #fe5722;
+  --color-signal-red: #f0353c;
+  --color-merlot-depth: #b4213d;
+  --color-plum-shadow: #671c3b;
+
+  /* Typography — Font Families */
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-neue-machina: 'Neue Machina', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-system85: 'System85', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-pixel-m-plus-10: 'Pixel M Plus 10', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-system85-mono: 'System85 Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1;
+  --text-body: 16px;
+  --leading-body: 1.2;
+  --text-subheading: 18px;
+  --leading-subheading: 1.2;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.2;
+  --text-heading: 32px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 40px;
+  --leading-heading-lg: 1.2;
+  --text-display: 64px;
+  --leading-display: 1;
+  --text-hero: 120px;
+  --leading-hero: 0.75;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-80: 80px;
+
+  /* Layout */
+  --section-gap: 32px;
+  --card-padding: 27px;
+  --element-gap: 24px;
+
+  /* Border Radius */
+  --radius-xl: 14px;
+  --radius-3xl: 28px;
+
+  /* Named Radii */
+  --radius-nav: 14px;
+  --radius-body: 14px;
+  --radius-cards: 14px;
+  --radius-buttons: 28px;
+
+  /* Surfaces */
+  --surface-canvas: #fef9e6;
+  --surface-category-band: #fdc331;
+  --surface-dark-card: #060606;
+  --surface-light-card: #fef9e6;
+}

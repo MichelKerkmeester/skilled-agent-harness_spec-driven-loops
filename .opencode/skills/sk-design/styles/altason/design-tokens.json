@@ -1,0 +1,205 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, hairline borders, structural rules, image borders, heading fills — the dominant ink that draws the entire page"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, reverse text on dark blocks — the surface that lets the black type speak"
+    },
+    "charcoal-plate": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Charcoal Plate — Dark surface blocks and image backgrounds where white reverse type sits — a softer alternative to pure black for large dark areas"
+    },
+    "silver-hairline": {
+      "$value": "#b0b0b0",
+      "$type": "color",
+      "$description": "Silver Hairline — Subtle dividers and muted secondary links — a quiet mid-gray that recedes behind the black ink without disappearing"
+    }
+  },
+  "font": {
+    "haas-grotesk-ds-pro": {
+      "$value": "Haas Grotesk DS Pro",
+      "$type": "fontFamily",
+      "$description": "Display and section wordmarks — used at 48–288px with extremely tight leading (0.77–0.80) so multi-line display type nearly touches. The DS variant's compressed proportions are what let 288px headlines fit within a single viewport without breaking rhythm. Substitute: Neue Haas Grotesk Display, or Akzidenz-Grotesk Pro Medium"
+    },
+    "haas-grotesk-tx-pro": {
+      "$value": "Haas Grotesk TX Pro",
+      "$type": "fontFamily",
+      "$description": "Body copy, captions, image labels, navigation links, UI text. Weight 400 for body, weight 500 for navigation labels and emphasis. The 36px size at line-height 0.90 creates a tight subheading that bridges body and display scales. Substitute: Neue Haas Grotesk Text, or Inter"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "haas-grotesk-tx-pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "haas-grotesk-tx-pro",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "haas-grotesk-tx-pro",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "haas-grotesk-tx-pro",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "haas-grotesk-tx-pro",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "haas-grotesk-tx-pro",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "haas-grotesk-ds-pro",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "haas-grotesk-ds-pro",
+        "fontSize": "106px",
+        "fontWeight": 500,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 106px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "haas-grotesk-ds-pro",
+        "fontSize": "230px",
+        "fontWeight": 500,
+        "lineHeight": 0.77
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 230px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "haas-grotesk-ds-pro",
+        "fontSize": "288px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 288px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background — the default surface for all content"
+    },
+    "charcoal-plate": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Surface level 2: Dark accent surface for image panels and reverse-type blocks"
+    },
+    "ink-ground": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Full-black surfaces used sparingly for maximum contrast moments"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://atlason.com",
+      "siteName": "Altason",
+      "extractedAt": "2026-06-03T21:20:41.927Z",
+      "variant": "extended"
+    }
+  }
+}

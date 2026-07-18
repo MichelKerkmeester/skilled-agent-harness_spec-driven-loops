@@ -1,0 +1,322 @@
+{
+  "color": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Page background, card surfaces, inverted text on dark washes. The neutral ground everything else is mounted on"
+    },
+    "soft-ash": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Soft Ash — Light neutral action fill for buttons on dark surfaces."
+    },
+    "mist-sage": {
+      "$value": "#d5e4e8",
+      "$type": "color",
+      "$description": "Mist Sage — Announcement bar and quiet informational washes — a desaturated teal that reads as utility, never as decoration"
+    },
+    "graphite": {
+      "$value": "#474747",
+      "$type": "color",
+      "$description": "Graphite — Primary body text, default borders, the dominant hairline tone. The structural neutral of the system"
+    },
+    "charcoal": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Charcoal — Headings, list item dividers, emphasis borders — the darkening step when hierarchy needs weight"
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Body text where maximum contrast is required, SVG icon fills, the occasional heavy border"
+    },
+    "slate": {
+      "$value": "#2b2b2b",
+      "$type": "color",
+      "$description": "Slate — Navigation border accents and nav text — sits between Graphite and Onyx, reserved for chrome"
+    },
+    "fog": {
+      "$value": "#7b7b7b",
+      "$type": "color",
+      "$description": "Fog — Medium-contrast borders, control outlines, and structural separators. Do not promote it to the primary CTA color"
+    },
+    "indigo-pulse": {
+      "$value": "#574cd5",
+      "$type": "color",
+      "$description": "Indigo Pulse — Filled CTA button background, the single chromatic moment in the system. Used sparingly so the action reads as switched-on against an otherwise monochrome page"
+    }
+  },
+  "font": {
+    "neuehaasunicaw1g": {
+      "$value": "NeueHaasUnicaW1G",
+      "$type": "fontFamily",
+      "$description": "The workhorse grotesque for navigation, body copy, list items, footers, buttons, and links. The 900 weight is reserved for the logo wordmark and heaviest display moments; 500 carries sub-emphasis; 400 is the default body voice."
+    },
+    "instrument-sans": {
+      "$value": "Instrument Sans",
+      "$type": "fontFamily",
+      "$description": "Secondary sans for nav, search input, and section headings. Slightly warmer and more humanist than NeueHaas — used where the page needs a softer informational register without leaving the neutral palette."
+    },
+    "accessibly": {
+      "$value": "accessibly",
+      "$type": "fontFamily",
+      "$description": "The display/brand voice. Used for the 'graf lantz' wordmark, the 'SHOP COASTERS' pill CTA, and the hero heading. The 1.0 line-height and slightly humanist geometry make it sit above the system rather than inside it."
+    },
+    "source-sans-pro": {
+      "$value": "Source Sans Pro",
+      "$type": "fontFamily",
+      "$description": "Minor fallback — appears once, treat as legacy/utility and do not introduce into new screens."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "NeueHaasUnicaW1G",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "NeueHaasUnicaW1G",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "NeueHaasUnicaW1G",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "NeueHaasUnicaW1G",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "NeueHaasUnicaW1G",
+        "fontSize": "14px",
+        "fontWeight": 900,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Instrument Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "NeueHaasUnicaW1G",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "accessibly",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Instrument Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "NeueHaasUnicaW1G",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "NeueHaasUnicaW1G",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "NeueHaasUnicaW1G",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "NeueHaasUnicaW1G",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "NeueHaasUnicaW1G",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 3.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Source Sans Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Instrument Sans",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "accessibly",
+        "fontSize": "35px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 35px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page background, product page surrounds, the default floor."
+    },
+    "soft-ash-surface": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Surface level 2: Input fills, ghost button resting state, secondary surface where white-on-white would disappear."
+    },
+    "sage-wash": {
+      "$value": "#d5e4e8",
+      "$type": "color",
+      "$description": "Surface level 3: Announcement bar and gentle informational bands — the only chromatic non-action surface."
+    },
+    "indigo-action": {
+      "$value": "#574cd5",
+      "$type": "color",
+      "$description": "Surface level 4: The brand action surface — filled CTA only, never used as background for cards or panels."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://glob.land",
+      "siteName": "Graf Lantz",
+      "extractedAt": "2026-06-03T21:30:57.226Z",
+      "variant": "extended"
+    }
+  }
+}

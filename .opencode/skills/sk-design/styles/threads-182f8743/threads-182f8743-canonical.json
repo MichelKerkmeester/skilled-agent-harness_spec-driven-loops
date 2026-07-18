@@ -1,0 +1,1135 @@
+{
+  "source": "https://styles.refero.design/style/182f8743-fe22-45d3-98bc-9fd29d058602",
+  "uuid": "182f8743-fe22-45d3-98bc-9fd29d058602",
+  "name": "Threads",
+  "northStar": "Quiet monochrome paper feed",
+  "capturedAt": "2026-07-18T07:57:47.571Z",
+  "meta": {
+    "url": "https://threads.net",
+    "siteName": "Threads",
+    "extractedAt": "2026-06-03T18:55:01.524Z",
+    "durationMs": 37648,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1396,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #fafafa as the page canvas and #ffffff for card surfaces — never invert this relationship",
+      "Use 1px solid #d5d5d5 borders for all separation; never use shadows on cards or navigation",
+      "Use 1000px border-radius for all buttons, avatars, and tags — pills are the default, not the exception",
+      "Use system-ui at 15px/400 for all post bodies, 13px/600 for usernames, 12px/700 for metadata — weight drives hierarchy, not size",
+      "Use #385898 only for verified badges, inline links, and hover-state icon tints — this indigo is the interface's only chromatic signature",
+      "Use #0095f6 outlined buttons (not filled) for follow and other primary actions — filled actions should be the black Log in button only",
+      "Use 18px radius for post cards and 8px radius for media thumbnails — two radius values carry the entire visual language"
+    ],
+    "donts": [
+      "Don't add shadows to post cards, the top bar, or the sidebar — the system is intentionally flat",
+      "Don't use color on resting-state action icons — black outlined icons only; color is a hover signal",
+      "Don't use multiple font families or sizes below 12px — the system is typographically monotone",
+      "Don't fill buttons with brand color — the follow button is outlined, only Log in is filled (and it fills with black, not blue)",
+      "Don't add gradients, illustrations, or decorative imagery — Threads shows no brand art anywhere",
+      "Don't use more than two border-radius values in a single view — 18px for cards, 8px for media, 1000px for everything round",
+      "Don't add card padding beyond 16px horizontal / 12px vertical — the system is compact and information-dense"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, icon strokes, hairline borders, Log in button — the structural black that carries almost all interface weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Paper",
+        "role": "Page canvas, card surface background — the off-white that makes the whole feed feel like printed paper",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d5d5d5",
+        "name": "Concrete",
+        "role": "Dividers and separator borders between feed sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#969696",
+        "name": "Graphite",
+        "role": "Muted helper text, inactive icons, disabled state borders, timestamp labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#424242",
+        "name": "Charcoal",
+        "role": "Secondary body text, icon detail strokes, post metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Hover Mist",
+        "role": "Soft section background, alternate surface, and quiet card fill. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#385898",
+        "name": "Verified Indigo",
+        "role": "Verified badges, inline links, outlined hover state on action buttons — the only chromatic brand color, used as a quiet signature rather than a loud accent",
+        "group": "brand"
+      },
+      {
+        "hex": "#0095f6",
+        "name": "Signal Blue",
+        "role": "Follow button, primary outlined action color, clickable link emphasis — vivid blue reserved for moments that must demand a tap",
+        "group": "accent"
+      }
+    ],
+    "layout": "Fixed three-column desktop layout: ~80px left sidebar (icon-only nav, Threads logo at top), centered feed column max-width ~600px, large empty right margin. The feed is the page — no hero, no marketing content, no navigation beyond the sidebar. Vertical scroll is a single column of post cards separated by hairline dividers. The top bar (56px) spans full width with centered 'Home' title and a right-aligned Log in button. Mobile collapses to a single full-width feed with a bottom tab bar. Density is compact: 12px gaps between post elements, 16px card padding, posts are tight rectangles — the system optimizes for scroll length and information density over breathing room.",
+    "imagery": "User-generated content dominates — selfies, screenshots, short vertical video, food photos. No brand illustration, no stock photography, no decorative graphics. Avatars are real user photos at 32–40px. Post media is full-width-of-card, 8px radius, uncropped portrait or landscape. Reels/video use a thin progress bar. The interface itself is icon-only: outlined 24px glyphs (heart, bubble, repeat, paper-plane, search, plus, home) in monochrome black, no filled variants in resting state. No icons are colored — even the verified badge is a tiny inline element rather than a visual feature.",
+    "similar": [
+      {
+        "why": "Same monochrome feed-first aesthetic, outlined action icons, hairline borders, system font, minimal elevation",
+        "business": "Twitter/X (post-rebrand)"
+      },
+      {
+        "why": "Same near-white canvas, centered single-column feed, pill buttons, monochrome icons, verified-badge-as-only-accent approach",
+        "business": "Mastodon web client"
+      },
+      {
+        "why": "Same paper-white background, black-on-white text, outlined icon action bar, compact post card rhythm with hairline dividers",
+        "business": "Bluesky"
+      },
+      {
+        "why": "Same 18px-radius post cards, 1px gray dividers between posts, avatar-plus-username-plus-timestamp header pattern",
+        "business": "LinkedIn feed"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "1000px",
+        "cards": "18px",
+        "media": "8px",
+        "inputs": "8px",
+        "avatars": "1000px",
+        "buttons": "1000px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "",
+      "cardPadding": "16px",
+      "pageMaxWidth": "600px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#fafafa",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, feed container"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Post card surface, sidebar background"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Hover Wash",
+        "level": 2,
+        "purpose": "Subtle hover and pressed state on interactive rows"
+      },
+      {
+        "hex": "#000000",
+        "name": "Inverse",
+        "level": 3,
+        "purpose": "Log in button, dark icons, text on light"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — 1px solid #d5d5d5 bottom border instead of shadow",
+        "element": "Post Card"
+      },
+      {
+        "style": "none — 1px solid #d5d5d5 bottom border",
+        "element": "Top Bar"
+      },
+      {
+        "style": "none — right border 1px solid #d5d5d5",
+        "element": "Sidebar"
+      },
+      {
+        "style": "none — filled black on white without elevation",
+        "element": "Log In Button"
+      }
+    ],
+    "northStar": "Quiet monochrome paper feed",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body-sm",
+        "size": 13,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Post Card",
+        "role": "Primary content container for each feed item",
+        "description": "White surface (#ffffff) on canvas (#fafafa), 18px border-radius, 1px solid #d5d5d5 bottom border between stacked posts, 16px horizontal padding, 12px vertical padding. Contains avatar (32px, 1000px radius), username row, post body, optional media (8px radius), and action bar. No shadow — separation is purely through hairline dividers and whitespace."
+      },
+      {
+        "name": "Sidebar Nav Icon Button",
+        "role": "Persistent left-rail navigation",
+        "description": "24px outlined icon in #000000, no background, no border. Hover state shifts to #efefef wash. 9999px radius hit target with generous padding. Compose/create button is a slightly larger outlined square with a + glyph."
+      },
+      {
+        "name": "Post Action Button",
+        "role": "Like, comment, repost, share — inline below each post",
+        "description": "24px outlined icon (heart, bubble, repeat, paper-plane) in #000000 stroke, no fill, no background. Counts sit to the right in 13px/400 #424242. Hover state: icon shifts to #385898 indigo. 8px gap between icon and count."
+      },
+      {
+        "name": "Verified Badge",
+        "role": "Trust indicator next to usernames",
+        "description": "Small filled indigo check (#385898) icon, ~14px, sits inline after display name. One of the only saturated color uses in the entire interface."
+      },
+      {
+        "name": "Log In Button (Top Right)",
+        "role": "Primary authentication CTA",
+        "description": "Black (#000000) filled pill, 1000px radius, 12px 16px padding, white text at 13px/600. The only filled button in the system — inverted from everything else around it."
+      },
+      {
+        "name": "Media Thumbnail",
+        "role": "Attached images and video previews in posts",
+        "description": "8px border-radius, 1px solid #d5d5d5 border, full-width of post card minus padding. Reel/video overlays get a small carousel-dot indicator at bottom."
+      },
+      {
+        "name": "Avatar",
+        "role": "User identity mark throughout the feed",
+        "description": "Circular (1000px radius), 32px–40px depending on context, 1px solid #d5d5d5 border. Never receives shadow or elevation. Verified accounts get the indigo check adjacent."
+      },
+      {
+        "name": "Follow Button",
+        "role": "Primary outlined action on user profiles and suggestions",
+        "description": "Outlined pill, 1000px radius, 1px solid #0095f6 border, #0095f6 text at 13px/600, transparent background. On press fills to #0095f6 with white text. No shadow."
+      },
+      {
+        "name": "Username Row",
+        "role": "Identity line at the top of every post",
+        "description": "13px/600 username in #000000, dot separator, 13px/400 timestamp in #969696, verified badge inline if applicable. 4px gap between avatar and text block."
+      },
+      {
+        "name": "Top Bar",
+        "role": "Persistent page header",
+        "description": "White (#ffffff) background, 1px bottom border #d5d5d5, 56px height, centered page title ('Home') at 15px/600, Log in button anchored right. No logo — the Threads glyph lives in the sidebar."
+      },
+      {
+        "name": "Sidebar",
+        "role": "Left navigation rail",
+        "description": "~80px wide, white background, icons stacked vertically with 24px gaps. Threads logo at top, then Home, Search, Compose (+), Activity (heart), Profile. Active item gets a 4px left border in #000000."
+      },
+      {
+        "name": "Empty State / Divider",
+        "role": "Visual breaks between post groups",
+        "description": "1px solid #d5d5d5 horizontal line, no label, no icon. The system relies on whitespace and hairlines rather than cards-with-shadows to create rhythm."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All text rendering — post bodies at 15px/400, usernames and timestamps at 13px/600, caption-sized metadata at 12px/700. System font stack keeps the feed platform-native and weight-driven hierarchy rather than size-driven hierarchy.",
+        "sizes": "12px, 13px, 15px",
+        "family": "system-ui",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.33–1.40",
+        "substitute": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Threads reads as a monochrome whisper — a near-white canvas (#fafafa) holding a single narrow feed column framed by a sparse icon-only sidebar. Almost every surface, border, and icon is rendered in black-to-gray neutrals, with color appearing only as functional punctuation: the indigo-blue (#385898) for verified badges, links, and hover states, and a brighter blue (#0095f6) for the primary follow action. Components are flat, hairline-bordered, and generously rounded — 18px on post cards, fully pill-shaped (1000px) on buttons and tags, 8px on media thumbnails. The system avoids elevation entirely; cards sit on the canvas with 1px borders rather than shadows, giving the interface a printed-on-paper feel rather than a stacked-product feel. Typography is system-ui at small compact sizes (12–15px), with bold 600 used for usernames and post bodies remain at 400, creating a text-first social reader where avatars and short replies are the visual content.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/182f8743-fe22-45d3-98bc-9fd29d058602#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Threads design system\",\"item\":\"https://styles.refero.design/style/182f8743-fe22-45d3-98bc-9fd29d058602\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/182f8743-fe22-45d3-98bc-9fd29d058602#style-reference\",\"name\":\"Threads design system reference\",\"headline\":\"Threads design system | Refero Styles\",\"description\":\"Explore Threads's light Media design system: Ink #000000, Paper #fafafa colors, system-ui typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/182f8743-fe22-45d3-98bc-9fd29d058602\",\"mainEntityOfPage\":\"https://styles.refero.design/style/182f8743-fe22-45d3-98bc-9fd29d058602\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Threads\",\"url\":\"https://threads.net\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/182f8743-fe22-45d3-98bc-9fd29d058602#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d4f8242f-0e55-402d-b7e4-9e807c001b38.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d4f8242f-0e55-402d-b7e4-9e807c001b38.jpg\",\"caption\":\"Screenshot of Threads\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d4f8242f-0e55-402d-b7e4-9e807c001b38.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Threads design system\",\"Threads website design\",\"Threads colors\",\"Threads typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Ink\",\"Paper\",\"Concrete\",\"Graphite\",\"system-ui\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Threads design system\"},{\"@type\":\"Thing\",\"name\":\"Threads website design\"},{\"@type\":\"Thing\",\"name\":\"Threads colors\"},{\"@type\":\"Thing\",\"name\":\"Threads typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T01:19:58.066Z\",\"dateModified\":\"2026-04-30T01:19:58.066Z\"}]}19:T622,**Quick Color Reference**\n- background: #fafafa\n- card: #ffffff\n- border: #d5d5d5\n- text: #000000\n- muted text: #969696\n- accent (verified, links, hover): #385898\n- primary action: #385898 (outlined action border)\n\n**3-5 Example Component Prompts**\n\n1. Create a post card: white #ffffff surface, 18px radius, 1px solid #d5d5d5 bottom border, 16px horizontal padding, 12px vertical padding. Top row: 32px circular avatar (1000px radius) with 4px gap to a 13px/600 username in #000000, a dot separator, and 13px/400 timestamp in #969696. Optional verified badge (#385898) inline after username. Body text: 15px/400 #000000, line-height 21px. No shadow.\n\n2. Create a post action bar: 24px outlined icons (heart, bubble, repeat, paper-plane) in #000000 stroke, no fill, 8px gap between icon and count. Counts in 13px/400 #424242. Hover state: icon color shifts to #385898. Icons aligned left, share icon aligned right. 8px vertical padding above and below.\n\n3. Create a Log in button: filled #000000 pill, 1000px border-radius, 12px vertical and 16px horizontal padding, white text at 13px/600 system-ui. No border, no shadow.\n\n4. Create a follow button (outlined action): transparent background, 1px solid #0095f6 border, 1000px border-radius, 8px vertical and 16px horizontal padding, text in #0095f6 at 13px/600. On press: background fills to #0095f6, text to #ffffff.\n\n5. Create a top bar: white #ffffff background, 1px solid #d5d5d5 bottom border, 56px height, centered 'Home' title at 15px/600 #000000, Log in button anchored 16px from right edge. Full viewport width."
+      }
+    ],
+    "elevationPhilosophy": "Threads deliberately avoids shadows as an elevation signal. The entire interface reads as flat printed material — cards sit on the canvas separated only by 1px hairline borders (#d5d5d5) and whitespace. The only shadow detected in the raw data is a near-invisible 0.04 alpha wash used in rare modal/popover contexts. This no-shadow choice is structural: it makes the feed feel like a continuous stream of posts on a single sheet rather than a stack of floating cards, reinforcing the text-first reading experience."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "button",
+            "heading",
+            "body",
+            "link",
+            "image",
+            "footer",
+            "list"
+          ],
+          "frequency": 3658,
+          "confidence": 1,
+          "prominence": 65618331.898720495,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "body/color": 93,
+            "icon/color": 8,
+            "link/color": 14,
+            "list/color": 6,
+            "other/fill": 4,
+            "image/color": 2,
+            "other/color": 594,
+            "button/color": 73,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 1,
+            "body/borderColor": 372,
+            "icon/borderColor": 32,
+            "link/borderColor": 56,
+            "list/borderColor": 24,
+            "image/borderColor": 8,
+            "other/borderColor": 2340,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fafafa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9851036517304731
+          },
+          "contexts": [
+            "other",
+            "image",
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 66,
+          "confidence": 1,
+          "prominence": 33021569.364208404,
+          "properties": [
+            "backgroundColor",
+            "boxShadow",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 6,
+            "body/color": 2,
+            "icon/color": 3,
+            "other/fill": 3,
+            "other/color": 1,
+            "button/color": 1,
+            "other/boxShadow": 2,
+            "body/borderColor": 8,
+            "icon/borderColor": 12,
+            "other/borderColor": 4,
+            "image/backgroundColor": 2,
+            "other/backgroundColor": 22
+          }
+        },
+        {
+          "hex": "#d5d5d5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8730212912752836
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 9836315.82895529,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 16
+          }
+        },
+        {
+          "hex": "#969696",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6731222170290512
+          },
+          "contexts": [
+            "link",
+            "button",
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 924,
+          "confidence": 1,
+          "prominence": 1161892.409463646,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill",
+            "stroke",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 30,
+            "body/color": 48,
+            "icon/color": 16,
+            "link/color": 16,
+            "other/fill": 47,
+            "other/color": 27,
+            "other/stroke": 2,
+            "body/borderColor": 192,
+            "icon/borderColor": 64,
+            "link/borderColor": 88,
+            "other/borderColor": 108,
+            "button/borderColor": 284,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#385898",
+          "oklch": {
+            "c": 0.11070924625164932,
+            "h": 262.8138894170231,
+            "l": 0.4685210698936081
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "image"
+          ],
+          "frequency": 303,
+          "confidence": 1,
+          "prominence": 972587.3644577541,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/color": 16,
+            "link/color": 19,
+            "image/color": 2,
+            "other/color": 30,
+            "icon/borderColor": 64,
+            "link/borderColor": 52,
+            "image/borderColor": 8,
+            "other/borderColor": 112
+          }
+        },
+        {
+          "hex": "#0095f6",
+          "oklch": {
+            "c": 0.17714973816176358,
+            "h": 248.21931205561484,
+            "l": 0.6546239126225867
+          },
+          "contexts": [
+            "icon",
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 58,
+          "confidence": 1,
+          "prominence": 16018.437023412294,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 12,
+            "body/color": 4,
+            "link/color": 4,
+            "other/fill": 6,
+            "body/borderColor": 16,
+            "link/borderColor": 16
+          }
+        },
+        {
+          "hex": "#424242",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.37909358396702786
+          },
+          "contexts": [
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 1077,
+          "confidence": 1,
+          "prominence": 6749.674780044179,
+          "properties": [
+            "color",
+            "stroke",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 26,
+            "body/color": 83,
+            "icon/color": 52,
+            "other/fill": 26,
+            "icon/stroke": 78,
+            "other/color": 44,
+            "other/stroke": 52,
+            "body/borderColor": 332,
+            "icon/borderColor": 208,
+            "other/borderColor": 176
+          }
+        },
+        {
+          "hex": "#efefef",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9521308451894797
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 4934.331978986655,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 13
+          }
+        },
+        {
+          "hex": "#b8b8b8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7826037156503541
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 4616.35471525047,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "icon/color": 5,
+            "other/fill": 4,
+            "other/stroke": 3,
+            "icon/borderColor": 20
+          }
+        },
+        {
+          "hex": "#bcc0c4",
+          "oklch": {
+            "c": 0.007175684987559936,
+            "h": 247.91467922903144,
+            "l": 0.8058280800072436
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.01926027779064803,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.12,
+          "background": "#fafafa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#efefef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.31,
+          "background": "#d5d5d5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.48,
+          "background": "#bcc0c4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.59,
+          "background": "#000000",
+          "foreground": "#b8b8b8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.63,
+          "background": "#fafafa",
+          "foreground": "#424242"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.74,
+          "background": "#efefef",
+          "foreground": "#424242"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.1,
+          "background": "#969696",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.85,
+          "background": "#d5d5d5",
+          "foreground": "#424242"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.67,
+          "background": "#fafafa",
+          "foreground": "#385898"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.63,
+          "background": "#000000",
+          "foreground": "#0095f6"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.05,
+          "background": "#efefef",
+          "foreground": "#385898"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.49,
+          "background": "#bcc0c4",
+          "foreground": "#424242"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.07,
+          "background": "#b8b8b8",
+          "foreground": "#424242"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.74,
+          "background": "#d5d5d5",
+          "foreground": "#385898"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.8,
+          "background": "#bcc0c4",
+          "foreground": "#385898"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.51,
+          "background": "#b8b8b8",
+          "foreground": "#385898"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.4,
+          "background": "#969696",
+          "foreground": "#424242"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.03,
+          "background": "#fafafa",
+          "foreground": "#0095f6"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.02,
+          "background": "#000000",
+          "foreground": "#385898"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 1000,
+          "contexts": [
+            "other",
+            "icon",
+            "button"
+          ],
+          "frequency": 104
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 26
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "button"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.04) 0px 0px 12px 0px, rgb(250, 250, 250) 0px 0px 0px 48px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.04) 0px 0px 12px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 82,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "marginLeft",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingTop|other",
+            "marginLeft|body",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginRight|body",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 42,
+          "properties": [
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingLeft",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingRight|other",
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 118,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other",
+            "footer"
+          ],
+          "frequency": 36,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "system-ui",
+          "source": "system",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 1165,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "system-ui",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 127,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "button",
+            "body",
+            "image",
+            "footer",
+            "list"
+          ],
+          "frequency": 924,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "system-ui",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 65,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/02d19efb-1414-4b0d-bcc8-b4987e7afa6d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d4f8242f-0e55-402d-b7e4-9e807c001b38.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/182f8743-fe22-45d3-98bc-9fd29d058602#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Threads design system\",\"item\":\"https://styles.refero.design/style/182f8743-fe22-45d3-98bc-9fd29d058602\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/182f8743-fe22-45d3-98bc-9fd29d058602#style-reference\",\"name\":\"Threads design system reference\",\"headline\":\"Threads design system | Refero Styles\",\"description\":\"Explore Threads's light Media design system: Ink #000000, Paper #fafafa colors, system-ui typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/182f8743-fe22-45d3-98bc-9fd29d058602\",\"mainEntityOfPage\":\"https://styles.refero.design/style/182f8743-fe22-45d3-98bc-9fd29d058602\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Threads\",\"url\":\"https://threads.net\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/182f8743-fe22-45d3-98bc-9fd29d058602#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d4f8242f-0e55-402d-b7e4-9e807c001b38.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d4f8242f-0e55-402d-b7e4-9e807c001b38.jpg\",\"caption\":\"Screenshot of Threads\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d4f8242f-0e55-402d-b7e4-9e807c001b38.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Threads design system\",\"Threads website design\",\"Threads colors\",\"Threads typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Ink\",\"Paper\",\"Concrete\",\"Graphite\",\"system-ui\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Threads design system\"},{\"@type\":\"Thing\",\"name\":\"Threads website design\"},{\"@type\":\"Thing\",\"name\":\"Threads colors\"},{\"@type\":\"Thing\",\"name\":\"Threads typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T01:19:58.066Z\",\"dateModified\":\"2026-04-30T01:19:58.066Z\"}]}19:T622,**Quick Color Reference**\n- background: #fafafa\n- card: #ffffff\n- border: #d5d5d5\n- text: #000000\n- muted text: #969696\n- accent (verified, links, hover): #385898\n- primary action: #385898 (outlined action border)\n\n**3-5 Example Component Prompts**\n\n1. Create a post card: white #ffffff surface, 18px radius, 1px solid #d5d5d5 bottom border, 16px horizontal padding, 12px vertical padding. Top row: 32px circular avatar (1000px radius) with 4px gap to a 13px/600 username in #000000, a dot separator, and 13px/400 timestamp in #969696. Optional verified badge (#385898) inline after username. Body text: 15px/400 #000000, line-height 21px. No shadow.\n\n2. Create a post action bar: 24px outlined icons (heart, bubble, repeat, paper-plane) in #000000 stroke, no fill, 8px gap between icon and count. Counts in 13px/400 #424242. Hover state: icon color shifts to #385898. Icons aligned left, share icon aligned right. 8px vertical padding above and below.\n\n3. Create a Log in button: filled #000000 pill, 1000px border-radius, 12px vertical and 16px horizontal padding, white text at 13px/600 system-ui. No border, no shadow.\n\n4. Create a follow button (outlined action): transparent background, 1px solid #0095f6 border, 1000px border-radius, 8px vertical and 16px horizontal padding, text in #0095f6 at 13px/600. On press: background fills to #0095f6, text to #ffffff.\n\n5. Create a top bar: white #ffffff background, 1px solid #d5d5d5 bottom border, 56px height, centered 'Home' title at 15px/600 #000000, Log in button anchored 16px from right edge. Full viewport width."
+}

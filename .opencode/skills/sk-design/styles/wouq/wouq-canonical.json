@@ -1,0 +1,573 @@
+{
+  "source": "https://styles.refero.design/style/4fc87190-9783-4a85-bdc1-35800a2ec690",
+  "uuid": "4fc87190-9783-4a85-bdc1-35800a2ec690",
+  "name": "WOUQ",
+  "northStar": "Monochrome gallery wall, museum label typography",
+  "capturedAt": "2026-07-18T08:52:24.398Z",
+  "meta": {
+    "url": "https://wearewouq.com",
+    "siteName": "WOUQ",
+    "extractedAt": "2026-06-03T21:32:24.334Z",
+    "durationMs": 34288,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 149,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #000000 for all text, borders, and outlined interactive elements on #ffffff or #efefef surfaces",
+      "Set headlines at 45px ESAllianz with line-height 1.11 for editorial display impact",
+      "Apply 10px border-radius to all image-containing cards and thumbnails",
+      "Keep card padding at 25px top/right/left and 10px bottom for overlay labels",
+      "Overlay category labels (18px) and project names (27px) in the top-left corner of project tiles, stacked vertically",
+      "Use a max content width of 1200px, centered, with generous 48px section gaps",
+      "Keep the palette strictly to #000000, #ffffff, and #efefef — no accent colors, no gradients"
+    ],
+    "donts": [
+      "Do not introduce any color beyond #000000, #ffffff, and #efefef — no brand accent, no semantic colors",
+      "Do not add drop shadows, glows, or any elevation to cards — surfaces are flat by design",
+      "Do not add visible CTA buttons with fills or large rounded radii — the interface is buttonless",
+      "Do not use font weights other than 400 (ESAllianz Light and Regular are both 400, distinguished by face not number)",
+      "Do not apply letter-spacing modifications — all text uses normal tracking",
+      "Do not add hover lifts, transforms, or scale animations to cards — tiles are static gallery objects",
+      "Do not use fully justified or centered text in body blocks — left-align all paragraphs and headlines"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Carbon Black",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Gallery White",
+        "role": "Page canvas, card surfaces, and heading backgrounds — the dominant surface across all sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Plaster Gray",
+        "role": "Subtle surface variation against white — used at near-imperceptible contrast for stacked layers",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered on a #ffffff canvas. The page opens with a minimal nav bar, followed by a large left-aligned editorial tagline (45px display) that acts as the hero — no supporting visual, no CTA. Below the tagline, a full-width hero image card introduces the work. The main body is a masonry-style grid of project tiles: one full-width banner, then paired two-column rows, then another full-bleed image strip, repeating. Each tile follows the same overlay-label pattern (category + project name in top-left corner). No sidebar, no footer chrome, no alternating background bands — the entire page reads as a continuous white gallery wall. Navigation is a single flat text row at the top with no sticky behavior implied.",
+    "imagery": "Image-forward, photographic and 3D-rendered. Two distinct treatment modes appear: (1) abstract 3D renders with warm metallic surfaces — copper, chrome, polished black — used as hero and feature tiles, treated as full-bleed gallery objects with no cropping; (2) editorial still-life photography (interior objects, instruments, stationery, plants) used in the grid tiles, also uncropped and edge-to-edge. All images are contained within 10px-radius rectangles. There is no lifestyle photography, no people, no candid shots. The visual density is high: imagery occupies roughly 70% of the page area, with text acting as a thin labeling layer rather than competing for attention. No icons, no illustrations, no decorative graphics — the work itself is the only visual content.",
+    "similar": [
+      {
+        "why": "Same monochrome editorial approach with large neo-grotesque type and image-driven project grids",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Gallery-style portfolio layout with full-bleed imagery, flat surfaces, and minimal UI chrome",
+        "business": "Resn"
+      },
+      {
+        "why": "Museum-label typography overlaid on project thumbnails, zero accent color, text as the only structural element",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Spacious image grid with hairline-thin UI and neo-grotesque custom typeface at display sizes",
+        "business": "Manual"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "10px",
+        "images": "10px",
+        "buttons": "0px"
+      },
+      "elementGap": "30px",
+      "sectionGap": "48px",
+      "cardPadding": "25px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page background"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Recessed",
+        "level": 2,
+        "purpose": "Near-white surface tint for secondary layers"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 3,
+        "purpose": "Project thumbnail backgrounds, same as canvas — cards are defined by their image content, not a fill"
+      }
+    ],
+    "northStar": "Monochrome gallery wall, museum label typography",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 18,
+        "lineHeight": 1.67
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.67
+      },
+      {
+        "role": "heading",
+        "size": 27,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "display",
+        "size": 45,
+        "lineHeight": 1.11
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent site header with brand mark and section links",
+        "description": "Minimal horizontal bar with #000000 WOUQ wordmark left-aligned and three text links (Work, About, Dreams) right-aligned. 18px ESAllianz at weight 400, normal letter-spacing. No background fill, no border, no shadow. Links use #000000 with no underline; hover state inherits text-decoration: underline. Sits directly on the #ffffff canvas with no padding separation."
+      },
+      {
+        "name": "Tagline Headline Block",
+        "role": "Opening editorial statement that replaces a traditional hero",
+        "description": "Large 45px ESAllianz display text in #000000, line-height 1.11, left-aligned, set directly under the nav with 25px top padding. Functions as the primary value proposition — a full declarative sentence, not a marketing slogan. No background, no CTA button, no supporting visual."
+      },
+      {
+        "name": "Project Thumbnail Card",
+        "role": "Gallery tile for a portfolio piece",
+        "description": "Image-first card on #ffffff background, 10px border-radius, no border, no shadow. An image fills the card edge-to-edge. Two lines of overlaid text sit in the top-left or bottom-left corner: a 18px category label in #000000 and a 27px project name in #000000 weight 400. No hover state lifts the card — the tile is a static gallery object."
+      },
+      {
+        "name": "Wide Hero Banner Card",
+        "role": "Full-width featured project image",
+        "description": "Spans the full content width (approximately 1200px), 10px border-radius. The same overlay-label pattern applies (category + project name) in the top-left corner. Functions as a visual lead-in to the grid below."
+      },
+      {
+        "name": "Two-Column Grid Pair",
+        "role": "Side-by-side project tiles of equal width",
+        "description": "Two project thumbnail cards placed adjacent with 5–10px gap between them. Both share the 10px radius and overlaid label treatment. Heights are equal, creating a magazine-spread rhythm."
+      },
+      {
+        "name": "Full-Width Editorial Image",
+        "role": "Atmospheric photography strip",
+        "description": "Bleeds edge-to-edge across the content area (1200px max), 10px border-radius on corners, no overlay text. Acts as a visual breath between grid sections — a single uncaptioned image, like a magazine double-page spread."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary brand typeface for navigation links, body copy, and display headlines. The custom face is a neo-grotesque with restrained geometry — its near-monolinear strokes and generous counters give the editorial feel. At 45px it functions as display; at 27px as section headings; at 18px as body and nav. Two weights (Light, Regular) both used at 400 — the visual difference is in the eye, not the number.",
+        "sizes": "18px, 27px, 45px",
+        "family": "ESAllianz",
+        "weight": "400",
+        "lineHeight": "1.11–1.50",
+        "substitute": "Inter, Neue Haas Grotesk, Manrope",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Secondary face for general body text and link rendering — serves as a web-safe fallback and the default for text blocks where the custom face is unavailable",
+        "sizes": "18px, 22px",
+        "family": "Open Sans",
+        "weight": "400",
+        "lineHeight": "1.00–1.67",
+        "substitute": "system-ui, -apple-system, Segoe UI"
+      }
+    ],
+    "description": "WOUQ operates as a monochrome editorial portfolio: a near-total absence of color, with black text and hairline rules carrying all functional weight on a white canvas. The page is image-forward — large photography and 3D-rendered artwork dominate, treated as gallery objects with a single shared 10px corner radius and minimal chrome. Typography is the only expressive instrument: a custom neo-grotesque face (ESAllianz) is deployed at near-display sizes (45px) for the tagline and category labels, with a tight 1.11 line-height that lets the text stack into editorial blocks rather than breathing room. The interface deliberately removes every non-essential signal — no buttons, no badges, no gradients, no shadows, no accent color — so that the work itself carries the visual identity. Navigation is a plain text row, and project tiles are flat rectangles with two stacked text lines overlaid in a corner, mimicking museum wall labels rather than card UI patterns.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4fc87190-9783-4a85-bdc1-35800a2ec690#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"WOUQ design system\",\"item\":\"https://styles.refero.design/style/4fc87190-9783-4a85-bdc1-35800a2ec690\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4fc87190-9783-4a85-bdc1-35800a2ec690#style-reference\",\"name\":\"WOUQ design system reference\",\"headline\":\"WOUQ design system | Refero Styles\",\"description\":\"Explore WOUQ's light Agency design system: Carbon Black #000000, Gallery White #ffffff colors, ESAllianz, Open Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/4fc87190-9783-4a85-bdc1-35800a2ec690\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4fc87190-9783-4a85-bdc1-35800a2ec690\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"WOUQ\",\"url\":\"https://wearewouq.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4fc87190-9783-4a85-bdc1-35800a2ec690#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/da60878b-b469-4252-a217-5fb6c0cb4a9f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/da60878b-b469-4252-a217-5fb6c0cb4a9f.jpg\",\"caption\":\"Screenshot of WOUQ\"},\"image\":\"https://images.refero.design/styles/refero.design/image/da60878b-b469-4252-a217-5fb6c0cb4a9f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"WOUQ design system\",\"WOUQ website design\",\"WOUQ colors\",\"WOUQ typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Carbon Black\",\"Gallery White\",\"Plaster Gray\",\"ESAllianz\",\"Open Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"WOUQ design system\"},{\"@type\":\"Thing\",\"name\":\"WOUQ website design\"},{\"@type\":\"Thing\",\"name\":\"WOUQ colors\"},{\"@type\":\"Thing\",\"name\":\"WOUQ typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:59:05.558Z\",\"dateModified\":\"2026-04-30T01:59:05.558Z\"}]}19:T4c7,## Quick Color Reference\n- Text: #000000\n- Background: #ffffff\n- Border: #000000\n- Surface tint: #efefef\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Editorial Tagline Block**: 45px ESAllianz weight 400 in #000000, line-height 1.11, left-aligned on #ffffff, 25px top padding. Full declarative sentence. No button, no visual.\n\n2. **Project Thumbnail Card**: #ffffff background, 10px border-radius, image filling the card edge-to-edge. Overlay in top-left corner: 18px ESAllianz category label in #000000, 27px ESAllianz project name in #000000 weight 400 directly below. No border, no shadow, no hover effect.\n\n3. **Wide Hero Banner**: 1200px max-width, 10px border-radius, full-bleed abstract 3D render (warm copper/chrome surfaces). Category label (18px) and project name (27px) in #000000 overlaid top-left. No other UI elements.\n\n4. **Two-Column Grid Pair**: Two equal-width project tiles side by side, 5px gap between them, each with the 10px radius and overlay-label treatment described above.\n\n5. **Full-Width Editorial Image Strip**: Single uncaptioned photograph bleeding to the 1200px content width, 10px border-radius, no overlay text. Separates grid sections like a magazine spread."
+      }
+    ],
+    "elevationPhilosophy": "The design eliminates elevation entirely. No drop shadows, no border-based depth, no z-axis differentiation between cards and canvas. Surfaces are defined by content boundaries (images, text) rather than depth cues. The 10px border-radius provides the only geometric softening; the #efefef surface is used so sparingly it barely registers as a separate layer. This flatness is intentional — it forces the imagery and typography to carry all visual weight, preventing the interface from competing with the portfolio work."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "heading",
+            "hero",
+            "image",
+            "body"
+          ],
+          "frequency": 653,
+          "confidence": 1,
+          "prominence": 48861306.67374326,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 11,
+            "body/color": 7,
+            "hero/color": 1,
+            "link/color": 14,
+            "other/fill": 6,
+            "image/color": 7,
+            "other/color": 88,
+            "heading/color": 2,
+            "nav/borderColor": 41,
+            "body/borderColor": 28,
+            "hero/borderColor": 4,
+            "link/borderColor": 56,
+            "image/borderColor": 28,
+            "other/borderColor": 352,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 72,
+          "confidence": 1,
+          "prominence": 32335952.986817155,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 7,
+            "heading/color": 7,
+            "other/borderColor": 28,
+            "heading/borderColor": 28,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#efefef",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9521308451894797
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1365,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#efefef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.15,
+          "background": "#efefef",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 37,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|heading"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 38,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Open Sans",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 102,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ESAllianz-Light",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 35,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ESAllianz-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 18,
+          "family": "Open Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 53,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Open Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ESAllianz-Light",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ESAllianz-Light",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ESAllianz-Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Open Sans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "ESAllianz-Light",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "ESAllianz-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "ESAllianz-Light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "ESAllianz-Light",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c0263aec-78cf-4ec1-a8f4-6cd204a03675.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/da60878b-b469-4252-a217-5fb6c0cb4a9f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4fc87190-9783-4a85-bdc1-35800a2ec690#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"WOUQ design system\",\"item\":\"https://styles.refero.design/style/4fc87190-9783-4a85-bdc1-35800a2ec690\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4fc87190-9783-4a85-bdc1-35800a2ec690#style-reference\",\"name\":\"WOUQ design system reference\",\"headline\":\"WOUQ design system | Refero Styles\",\"description\":\"Explore WOUQ's light Agency design system: Carbon Black #000000, Gallery White #ffffff colors, ESAllianz, Open Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/4fc87190-9783-4a85-bdc1-35800a2ec690\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4fc87190-9783-4a85-bdc1-35800a2ec690\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"WOUQ\",\"url\":\"https://wearewouq.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4fc87190-9783-4a85-bdc1-35800a2ec690#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/da60878b-b469-4252-a217-5fb6c0cb4a9f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/da60878b-b469-4252-a217-5fb6c0cb4a9f.jpg\",\"caption\":\"Screenshot of WOUQ\"},\"image\":\"https://images.refero.design/styles/refero.design/image/da60878b-b469-4252-a217-5fb6c0cb4a9f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"WOUQ design system\",\"WOUQ website design\",\"WOUQ colors\",\"WOUQ typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Carbon Black\",\"Gallery White\",\"Plaster Gray\",\"ESAllianz\",\"Open Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"WOUQ design system\"},{\"@type\":\"Thing\",\"name\":\"WOUQ website design\"},{\"@type\":\"Thing\",\"name\":\"WOUQ colors\"},{\"@type\":\"Thing\",\"name\":\"WOUQ typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:59:05.558Z\",\"dateModified\":\"2026-04-30T01:59:05.558Z\"}]}19:T4c7,## Quick Color Reference\n- Text: #000000\n- Background: #ffffff\n- Border: #000000\n- Surface tint: #efefef\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Editorial Tagline Block**: 45px ESAllianz weight 400 in #000000, line-height 1.11, left-aligned on #ffffff, 25px top padding. Full declarative sentence. No button, no visual.\n\n2. **Project Thumbnail Card**: #ffffff background, 10px border-radius, image filling the card edge-to-edge. Overlay in top-left corner: 18px ESAllianz category label in #000000, 27px ESAllianz project name in #000000 weight 400 directly below. No border, no shadow, no hover effect.\n\n3. **Wide Hero Banner**: 1200px max-width, 10px border-radius, full-bleed abstract 3D render (warm copper/chrome surfaces). Category label (18px) and project name (27px) in #000000 overlaid top-left. No other UI elements.\n\n4. **Two-Column Grid Pair**: Two equal-width project tiles side by side, 5px gap between them, each with the 10px radius and overlay-label treatment described above.\n\n5. **Full-Width Editorial Image Strip**: Single uncaptioned photograph bleeding to the 1200px content width, 10px border-radius, no overlay text. Separates grid sections like a magazine spread."
+}

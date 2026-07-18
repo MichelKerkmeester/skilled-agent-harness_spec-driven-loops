@@ -1,0 +1,54 @@
+@theme {
+  /* Colors */
+  --color-studio-charcoal: #101c19;
+  --color-gallery-black: #000000;
+  --color-charcoal-surface: #1c1c1c;
+  --color-slate-mist: #3c585f;
+  --color-graphite: #555555;
+  --color-steel: #646464;
+  --color-fog: #7f7f7f;
+  --color-ash: #939393;
+  --color-marble: #f9f9f9;
+  --color-bone: #ffffff;
+  --color-flare-orange: #d33c03;
+  --color-signal-red: #e90702;
+  --color-electric-blue: #24a7f2;
+  --color-mint-pulse: #93ffe6;
+  --color-canary: #ffff79;
+  --color-blush: #ffe6d9;
+
+  /* Typography */
+  --font-soehne: 'SOEHNE', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-shne: 'Söhne', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-shne-ikon: 'Söhne Ikon', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-soehneikon: 'SOEHNE_IKON', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 18px;
+  --leading-subheading: 1.4;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.3;
+  --text-heading: 36px;
+  --leading-heading: 1.19;
+  --text-display: 56px;
+  --leading-display: 1.1;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-5: 5px;
+  --spacing-7: 7px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-20: 20px;
+  --spacing-30: 30px;
+  --spacing-34: 34px;
+  --spacing-69: 69px;
+  --spacing-137: 137px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+}

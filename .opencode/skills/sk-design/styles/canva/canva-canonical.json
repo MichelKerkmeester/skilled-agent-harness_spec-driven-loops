@@ -1,0 +1,1900 @@
+{
+  "source": "https://styles.refero.design/style/17d0a00e-5de6-48c7-9f3b-25b04f7dab4c",
+  "uuid": "17d0a00e-5de6-48c7-9f3b-25b04f7dab4c",
+  "name": "Canva",
+  "northStar": "playful artist's studio bathed in violet dawn — a clean white workspace where every accent, icon, and gradient wash arrives pre-tuned for creative work.",
+  "capturedAt": "2026-07-18T08:44:33.621Z",
+  "meta": {
+    "url": "https://www.canva.com",
+    "siteName": "Canva",
+    "extractedAt": "2026-06-03T21:53:09.561Z",
+    "durationMs": 42345,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1345,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": "$undefined"
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set body type in Canva Sans 400, 16px, line-height 1.4–1.5, color #0f1015",
+      "Apply letter-spacing -0.018em to all display text 36px and above; use 0 or -0.01em for body",
+      "Use 8px corner radius for cards and standard buttons, 9999px for pills and category chips",
+      "Default to a white page background and reserve color/gradient for hero bands, feature cards, and decorative tags",
+      "Pair every violet-filled action with white text and no drop shadow — the color does the work",
+      "Activate font features \"ss02\" and \"ss03\" globally on Canva Sans to preserve the custom letterforms",
+      "Use 12px element gaps inside cards, 80px between major sections, and a 1200px max content width"
+    ],
+    "donts": [
+      "Don't substitute Canva Sans with Times, Arial, or any serif — the geometric humanist voice is core to the brand",
+      "Don't apply drop shadows to violet or gradient feature cards — they read as flat color fields by design",
+      "Don't use the accent oranges, pinks, and reds for buttons or interactive CTAs — reserve them for tags, icons, and gradient co-stops",
+      "Don't reduce display headline tracking to normal or positive — the negative letter-spacing is what makes 56–84px type feel poster-like",
+      "Don't add heavy borders or 2px+ strokes to cards; the system relies on the gradient fill plus 8px radius for definition",
+      "Don't use #000000 as the primary text color — #0f1015 is the brand's chosen near-black for a slightly softer read",
+      "Don't mix more than three accent colors in a single section; pick one violet, one warm accent, and let the gradient do the rest"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#8b3dff",
+        "name": "Canva Violet",
+        "role": "Primary brand color — filled buttons, active navigation, link text, gradient anchors, brand icons, tag fills",
+        "group": "brand"
+      },
+      {
+        "hex": "#9729ff",
+        "name": "Deep Violet",
+        "role": "Secondary violet for decorative elements, secondary icon accents, gradient stop",
+        "group": "brand"
+      },
+      {
+        "hex": "#a370fc",
+        "name": "Lavender Mist",
+        "role": "Tertiary violet tint — outlined/ghost action borders, muted brand accents, image overlays",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff6105",
+        "name": "Coral Ember",
+        "role": "Vivid orange — decorative icon accent, category tag, gradient co-stop alongside violet",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff3d4d",
+        "name": "Magenta Pop",
+        "role": "Vivid red-pink — decorative icon accent, category tag, energetic gradient endpoint",
+        "group": "accent"
+      },
+      {
+        "hex": "#e950f7",
+        "name": "Fuchsia Bloom",
+        "role": "Vivid magenta — decorative icon accent, category tag, playful gradient endpoint",
+        "group": "accent"
+      },
+      {
+        "hex": "#0f1015",
+        "name": "Midnight Ink",
+        "role": "Primary text, heading, navigation, button labels, card surface dark mode accent",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page background, card surface, inverse text on dark/violet fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#575a5f",
+        "name": "Slate Gray",
+        "role": "Secondary text, muted helper copy, nav dividers, disabled chrome",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d7d9de",
+        "name": "Pale Mist",
+        "role": "Subtle button shadow tint, very light dividers, off-white surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Pure black for maximum-contrast text, sharp icons, decorative dots",
+        "group": "neutral"
+      },
+      {
+        "hex": "#00c4cc",
+        "name": "Teal Aurora",
+        "role": "Signature gradient starting point — teal-to-violet hero washes",
+        "group": "brand",
+        "gradient": "linear-gradient(135deg, rgb(0, 196, 204), rgb(125, 42, 232))"
+      }
+    ],
+    "layout": "Full-width gradient hero band, then max-width 1200px centered content for the rest of the page. Hero: centered headline + subtitle + single white pill CTA over a teal-to-violet gradient, with a large floating white prompt card below the fold. Section rhythm: each major section is separated by ~80px of whitespace on a white canvas. Content arrangement: section headings are centered, followed by either a 2-column or 3-column card grid, with cards equal width and 16–24px gaps. The 'Unlock Canva's creative ecosystem' section uses an asymmetric 2-up grid (one wide card, one narrow). Navigation: minimal top bar, white background, logo left, centered text links, right-aligned 'Sign up' (violet) + 'Log in' (ghost). No sidebar. The overall density is comfortable to spacious — the page breathes between sections and never stacks more than two visual elements vertically without a divider or whitespace break.",
+    "imagery": "Imagery is dominated by full-bleed gradient washes (teal-to-violet, purple-to-coral) used as both hero backgrounds and feature card fills — there is little traditional photography. The visual content is mostly product mockups: screenshot-style previews of design templates, AI-generated imagery, and template thumbnails arranged in a horizontal scroll or grid. Icons are flat, geometric, and carry their own vivid color (orange, pink, magenta, violet) — no outlined monochrome iconography. The design system uses color-coded category icons embedded in pill tabs to communicate tool types (AI, Presentations, Social, Video, Print Shop). Image treatment: bright, saturated, gradient-heavy, no duotone or desaturation. The visual density is moderate — the page is text-driven for headlines and CTAs, but the hero card and feature cards carry enough visual mass to feel rich.",
+    "similar": [
+      {
+        "why": "Same white-canvas-plus-vivid-accent approach, similar custom humanist sans-serif, generous card grids with soft 8px corners",
+        "business": "Figma"
+      },
+      {
+        "why": "Same monochrome ink-black-and-white UI chrome with sparing color, tight letter-spacing on display headings, pill-shaped tab navigation",
+        "business": "Notion"
+      },
+      {
+        "why": "Same gradient-loving hero treatment and confident tight-tracked display typography, though Canva leans more playful with its accent palette",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same restraint in chrome (white surfaces, subtle shadows, 8px radii) contrasting with bold headline type and purple brand accent",
+        "business": "Linear"
+      },
+      {
+        "why": "Same creative-tool aesthetic with vivid gradient hero bands, colorful category icons, and humanist sans-serif type",
+        "business": "Pitch"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "pills": "9999px",
+        "buttons": "8px",
+        "largeButtons": "16px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page background, default working surface"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 2,
+        "purpose": "Floating panels, prompt card, feature cards on light backgrounds"
+      },
+      {
+        "hex": "#7d2ae8",
+        "name": "Gradient Hero Field",
+        "level": 3,
+        "purpose": "Full-bleed hero background — teal-to-violet gradient, behind headline"
+      },
+      {
+        "hex": "#0f1015",
+        "name": "Dark Surface",
+        "level": 4,
+        "purpose": "Rarely used dark surface for inverse sections or dark-mode cards"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(64, 79, 109, 0.06) 0px 0px 0px 0.5px, rgba(24, 44, 89, 0.137) 0px 2px 4px 0px, rgba(24, 44, 89, 0.07) 0px 6px 12px 0px",
+        "element": "Floating Panel (prompt card, modal)"
+      },
+      {
+        "style": "rgba(53, 65, 90, 0.2) 0px 0px 0px 1px inset",
+        "element": "White Pill CTA"
+      },
+      {
+        "style": "rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset",
+        "element": "Selected Category Pill"
+      }
+    ],
+    "northStar": "playful artist's studio bathed in violet dawn — a clean white workspace where every accent, icon, and gradient wash arrives pre-tuned for creative work.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.018
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.018
+      },
+      {
+        "role": "display",
+        "size": 84,
+        "lineHeight": 1.06,
+        "letterSpacing": -0.018
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Headline",
+        "role": "Primary hero text",
+        "description": "Centered Canva Sans weight 600, 56–84px, line-height ~1.06, letter-spacing -0.018em, color #0f1015 on white or #ffffff on gradient. Sits over a teal-to-violet full-bleed gradient with generous vertical padding (80–120px above and below)."
+      },
+      {
+        "name": "Hero Subtitle",
+        "role": "Supporting hero copy",
+        "description": "Canva Sans weight 400, 18–21px, line-height 1.4, color #0f1015 (or #ffffff on dark gradient), centered, max-width ~640px."
+      },
+      {
+        "name": "White Pill CTA",
+        "role": "Primary action button on gradient hero",
+        "description": "White background (#ffffff), #0f1015 text, Canva Sans weight 500, 16px, 16px horizontal / 12px vertical padding, 8px radius, subtle 1px inset shadow rgba(53,65,90,0.2) for definition. Used as the singular hero CTA like 'Start designing'."
+      },
+      {
+        "name": "Violet Filled Button",
+        "role": "Primary action button on light surfaces",
+        "description": "#8b3dff background, #ffffff text, Canva Sans weight 500, 16px, 12px 20px padding, 8px radius, no shadow. Used for 'Sign up', submit actions, and prompt-card send buttons."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Secondary action in header",
+        "description": "Transparent background, #0f1015 text, Canva Sans weight 500, 16px, used for 'Log in' alongside filled 'Sign up'. No border."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide navigation",
+        "description": "White background, Canva Sans weight 500 at 16px for nav links in #0f1015. Logo (wordmark) sits left, links centered, actions right. 12px horizontal padding on link items, 4–8px gaps between links."
+      },
+      {
+        "name": "Category Pill Tabs",
+        "role": "Tab/pill filter row",
+        "description": "Pill-shaped, 9999px radius, each tab has a distinct vivid background — one violet (#8b3dff), one orange (#ff6105), one red (#ff3d4d), one pink (#e950f7), one purple (#a370fc). White text, 16px Canva Sans weight 500, 12px 16px padding. The selected tab gets a subtle shadow; inactive tabs have no shadow."
+      },
+      {
+        "name": "AI Prompt Card",
+        "role": "Hero feature: prompt input panel",
+        "description": "White rounded panel, 8px radius, generous internal padding (24–32px), 1px hairline border, sits over a light gradient. Contains a large input field, a violet circular submit button (48px, #8b3dff fill, white arrow icon), and a row of small action chips below (Design, Image, Doc, Code, Video clip) with 8px radius and 1px border. This card is the visual signature of the page."
+      },
+      {
+        "name": "Gradient Feature Card",
+        "role": "Large feature card in content grid",
+        "description": "Rounded card, 8–16px radius, 24px internal padding, filled with a full-bleed gradient (violet-to-coral, teal-to-violet, etc.). White Canva Sans 600 headline (24–28px) and 500 CTA pill on top. Dimensions roughly 2:1 or 3:2 aspect ratio, no shadow — the gradient IS the elevation."
+      },
+      {
+        "name": "Category Tag / Action Chip",
+        "role": "Small interactive label",
+        "description": "8px radius, small 1px border or filled with category color, 12px padding, Canva Sans weight 500 at 13–14px. Often carries a tiny icon prefix. Used inside the AI prompt card and elsewhere."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Mid-page section title",
+        "description": "Canva Sans weight 600, 36–56px, line-height 1.1, #0f1015, centered above content. Always preceded by generous vertical spacing (80px sectionGap) and followed by a tab row or card grid."
+      },
+      {
+        "name": "Card Grid (2-column)",
+        "role": "Feature content arrangement",
+        "description": "Two large cards per row, equal width within a 1200px container, 16–24px gap. Top row uses vivid gradients; bottom row uses a solid color card (green) and a gradient card. Each card contains a headline, a white pill CTA, and a content preview area."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Times — detected in extracted data but not described by AI",
+        "sizes": "10px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Primary brand typeface. Weight 400 for body and UI labels, 500 for emphasized subheadings and button text, 600 for section headings. Headlines 56–84px use weight 600 with tight tracking for poster-like presence. Font features \"ss02\" and \"ss03\" enable brand-specific alternates (likely single-story g/a, geometric g/cuts) that give the type its warm, custom-cut character — never substitute these off in body text.",
+        "sizes": "14, 16, 18, 21, 24, 28, 32, 36, 56, 64, 84",
+        "family": "Canva Sans",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.06–1.57",
+        "substitute": "Inter, DM Sans, or General Sans",
+        "letterSpacing": "-0.018em at large display sizes, -0.01em at body sizes, 0 at small UI text",
+        "fontFeatureSettings": "\"ss02\" on, \"ss03\" on"
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Canva speaks in a friendly, creative-atelier language: a near-white canvas where every surface is generous and every accent is vivid. The brand color is a saturated violet (#8b3dff) that recurs across navigation, tags, icons, and gradient washes, anchored by a near-black ink (#0f1015) for all primary type. The visual personality is gradient-loving and slightly playful — backgrounds dissolve from teal into violet, from magenta into coral — yet the UI chrome itself stays calm and monochrome so that user-generated creativity doesn't fight the frame. Type is set in the custom Canva Sans with tight tracking and optical alternates (ss02, ss03) for a warm, humanist feel; headlines run large (56–84px) at ultra-tight leading, giving the page a poster-like gravity. Surfaces are soft, 8px corners, with the brand's most distinctive move being a single floating prompt card that dominates the hero — a calm, rounded white panel set against a full-bleed gradient field.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/17d0a00e-5de6-48c7-9f3b-25b04f7dab4c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Canva design system\",\"item\":\"https://styles.refero.design/style/17d0a00e-5de6-48c7-9f3b-25b04f7dab4c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/17d0a00e-5de6-48c7-9f3b-25b04f7dab4c#style-reference\",\"name\":\"Canva design system reference\",\"headline\":\"Canva design system | Refero Styles\",\"description\":\"Explore Canva's light Design design system: Canva Violet #8b3dff, Deep Violet #9729ff colors, Times, Canva Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/17d0a00e-5de6-48c7-9f3b-25b04f7dab4c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/17d0a00e-5de6-48c7-9f3b-25b04f7dab4c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Canva\",\"url\":\"https://www.canva.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/17d0a00e-5de6-48c7-9f3b-25b04f7dab4c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3383a181-d29e-4ad6-9edc-691bf82525c9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3383a181-d29e-4ad6-9edc-691bf82525c9.jpg\",\"caption\":\"Screenshot of Canva\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3383a181-d29e-4ad6-9edc-691bf82525c9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Canva design system\",\"Canva website design\",\"Canva colors\",\"Canva typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Canva Violet\",\"Deep Violet\",\"Lavender Mist\",\"Coral Ember\",\"Times\",\"Canva Sans\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Canva design system\"},{\"@type\":\"Thing\",\"name\":\"Canva website design\"},{\"@type\":\"Thing\",\"name\":\"Canva colors\"},{\"@type\":\"Thing\",\"name\":\"Canva typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-29T00:42:44.652Z\",\"dateModified\":\"2026-04-29T00:42:44.652Z\"}]}19:T616,## Quick Color Reference\n- text: #0f1015\n- background: #ffffff\n- border: #d7d9de\n- accent: #8b3dff (Canva Violet)\n- secondary accent: #a370fc (Lavender Mist)\n- decorative accent: #ff6105 (Coral Ember), #ff3d4d (Magenta Pop), #e950f7 (Fuchsia Bloom)\n- primary action: #8b3dff (filled action)\n\n## Example Component Prompts\n1. Create a Primary Action Button: #8b3dff background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **AI Prompt Card**: White rounded panel, 8px radius, 32px internal padding, 1px solid #d7d9de border, subtle elevation shadow. Contains a large text input (16px Canva Sans 400, placeholder #575a5f), a circular 48px submit button in #8b3dff with a white right-arrow icon, and a row of five small category chips below the input (8px radius, 12px 16px padding, 1px solid #d7d9de border, 14px Canva Sans 500 text in #0f1015, each with a tiny colored icon prefix).\n\n3. **Category Pill Tabs**: Horizontal row of 5 pill-shaped tabs, 9999px radius, 12px 20px padding, each filled with a different brand color: #8b3dff, #ff6105, #ff3d4d, #e950f7, #a370fc. All text in white at 16px Canva Sans 500, with a small white icon to the left of each label. The active tab gets a subtle inset white shadow; inactive tabs are flat.\n\n\n5. **Section Heading + Tab Row**: Centered section title in Canva Sans 600, 36px, #0f1015, letter-spacing -0.018em. Below it, the category pill tab row centered horizontally with 8px gap between pills. 80px vertical spacing above the heading from the previous section."
+      },
+      {
+        "title": "Gradient System",
+        "content": "Gradients are a first-class design token, not decoration. The signature gradient is `linear-gradient(135deg, #00c4cc, #7d2ae8)` — teal dissolving into deep violet — used for the hero band. Secondary gradients pair violet with warm accents (`#ff3d4d → #ff6105 → #ffb7b1`) or violet with cool blues (`#7301dd → #2a4de1 → #7cb3f5 → #b5e4f6`). Always apply gradients to full-bleed surfaces (hero bands, feature card fills) rather than to text or small UI elements. Gradients should not have flat endings — dissolve to white at 60–100% for content cards, or go full saturation for the hero. Never use gradients on standard buttons or form inputs."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "nav",
+            "heading",
+            "icon",
+            "button",
+            "card",
+            "footer",
+            "image"
+          ],
+          "frequency": 4261,
+          "confidence": 1,
+          "prominence": 138947652.63952643,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 10,
+            "icon/fill": 6,
+            "nav/color": 88,
+            "body/color": 123,
+            "card/color": 55,
+            "image/color": 1,
+            "other/color": 573,
+            "button/color": 6,
+            "footer/color": 1,
+            "heading/color": 2,
+            "nav/borderColor": 352,
+            "body/borderColor": 492,
+            "card/borderColor": 220,
+            "image/borderColor": 4,
+            "other/borderColor": 2292,
+            "button/borderColor": 24,
+            "footer/borderColor": 4,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "body",
+            "heading",
+            "icon"
+          ],
+          "frequency": 325,
+          "confidence": 1,
+          "prominence": 96210158.83838813,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "boxShadow",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 6,
+            "body/color": 10,
+            "icon/color": 2,
+            "other/fill": 3,
+            "button/color": 10,
+            "heading/color": 29,
+            "nav/borderColor": 24,
+            "body/borderColor": 40,
+            "button/boxShadow": 1,
+            "icon/borderColor": 8,
+            "button/borderColor": 40,
+            "heading/borderColor": 116,
+            "other/backgroundColor": 7,
+            "button/backgroundColor": 29
+          }
+        },
+        {
+          "hex": "#0f1015",
+          "oklch": {
+            "c": 0.010469619660320862,
+            "h": 276.3528005159052,
+            "l": 0.1742977999808795
+          },
+          "contexts": [
+            "body",
+            "button",
+            "heading",
+            "card",
+            "icon",
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 1793,
+          "confidence": 1,
+          "prominence": 3583268.9046633095,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 5,
+            "nav/color": 137,
+            "body/color": 109,
+            "icon/color": 11,
+            "link/color": 9,
+            "other/fill": 10,
+            "other/color": 3,
+            "button/color": 36,
+            "heading/color": 42,
+            "nav/borderColor": 548,
+            "body/borderColor": 436,
+            "icon/borderColor": 44,
+            "link/borderColor": 36,
+            "other/borderColor": 12,
+            "button/borderColor": 132,
+            "heading/borderColor": 168,
+            "card/backgroundColor": 55
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7651658759683705
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 604655,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 604655,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#8b3dff",
+          "oklch": {
+            "c": 0.2628705969703749,
+            "h": 294.9011566127529,
+            "l": 0.5752272792489086
+          },
+          "contexts": [
+            "link",
+            "body",
+            "button"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 43038.31987196524,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "link/color": 5,
+            "body/borderColor": 20,
+            "link/borderColor": 20,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#575a5f",
+          "oklch": {
+            "c": 0.009369457352983779,
+            "h": 269.47597101481006,
+            "l": 0.46612680189393657
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "body"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 41154.1665706475,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "body/color": 1,
+            "nav/borderColor": 28,
+            "body/borderColor": 4,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a370fc",
+          "oklch": {
+            "c": 0.20092466144247464,
+            "h": 297.43163486717486,
+            "l": 0.6621521774375587
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body",
+            "image"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 14279.935863712637,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1,
+            "image/color": 1,
+            "other/color": 2,
+            "body/borderColor": 4,
+            "link/borderColor": 4,
+            "image/borderColor": 4,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#d7d9de",
+          "oklch": {
+            "c": 0.007316007284264098,
+            "h": 265.3102950256531,
+            "l": 0.8849000100182147
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 13938,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "button/boxShadow": 3
+          }
+        },
+        {
+          "hex": "#9729ff",
+          "oklch": {
+            "c": 0.27980038298670634,
+            "h": 300.14932318392107,
+            "l": 0.5723199741904252
+          },
+          "contexts": [
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 6671.880002307699,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 1,
+            "other/fill": 2,
+            "other/color": 1,
+            "body/borderColor": 4,
+            "icon/borderColor": 4,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ff6105",
+          "oklch": {
+            "c": 0.20777684878039507,
+            "h": 41.728317131279006,
+            "l": 0.6897144236898523
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 6539.940546000543,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "icon/color": 1,
+            "other/fill": 1,
+            "body/borderColor": 8,
+            "icon/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ff3d4d",
+          "oklch": {
+            "c": 0.22771071212483676,
+            "h": 22.17852432816293,
+            "l": 0.6590817927990982
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 6539.940546000543,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "icon/color": 1,
+            "other/fill": 1,
+            "body/borderColor": 8,
+            "icon/borderColor": 4
+          }
+        },
+        {
+          "hex": "#e950f7",
+          "oklch": {
+            "c": 0.26119398865820337,
+            "h": 324.29960803755057,
+            "l": 0.7017161546230833
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 6539.940546000543,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "icon/color": 1,
+            "other/fill": 1,
+            "body/borderColor": 8,
+            "icon/borderColor": 4
+          }
+        },
+        {
+          "hex": "#231f20",
+          "oklch": {
+            "c": 0.006380422797871483,
+            "h": 0.5935423003805331,
+            "l": 0.24418954591201783
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 324,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.02202557938439876,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19,
+          "background": "#0f1015",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.3,
+          "background": "#ffffff",
+          "foreground": "#231f20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.87,
+          "background": "#d7d9de",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.45,
+          "background": "#d7d9de",
+          "foreground": "#0f1015"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.83,
+          "background": "#cccccc",
+          "foreground": "#0f1015"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.54,
+          "background": "#d7d9de",
+          "foreground": "#231f20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.15,
+          "background": "#cccccc",
+          "foreground": "#231f20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#b3b3b3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.06,
+          "background": "#b3b3b3",
+          "foreground": "#0f1015"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.77,
+          "background": "#b3b3b3",
+          "foreground": "#231f20"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.96,
+          "background": "#e950f7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.92,
+          "background": "#575a5f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.3,
+          "background": "#0f1015",
+          "foreground": "#ff6105"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.29,
+          "background": "#0f1015",
+          "foreground": "#e950f7"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.68,
+          "background": "#0f1015",
+          "foreground": "#a370fc"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.45,
+          "background": "#0f1015",
+          "foreground": "#ff3d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.4,
+          "background": "#e950f7",
+          "foreground": "#231f20"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.15,
+          "background": "#ffffff",
+          "foreground": "#9729ff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button",
+            "card",
+            "nav",
+            "link"
+          ],
+          "frequency": 165
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 28
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(64, 79, 109, 0.06) 0px 0px 0px 0.5px, rgba(24, 44, 89, 0.137) 0px 2px 4px 0px, rgba(24, 44, 89, 0.07) 0px 6px 12px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": "rgba(53, 65, 90, 0.2) 0px 0px 0px 1px inset",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": "rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 163,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "marginRight|body",
+            "marginTop|body",
+            "marginBottom|body",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "link"
+          ],
+          "frequency": 65,
+          "properties": [
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginLeft|body",
+            "marginTop|other",
+            "marginLeft|other",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 60,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "other",
+            "nav"
+          ],
+          "frequency": 157,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "marginLeft|other",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "body",
+            "other",
+            "button",
+            "nav"
+          ],
+          "frequency": 108,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginLeft",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingRight|body",
+            "paddingBottom|body",
+            "paddingLeft|body",
+            "marginTop|other",
+            "marginLeft|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "columnGap|nav",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 56,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 85,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 37,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 54,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 69,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 256,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 291,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(135deg, rgb(0, 196, 204), rgb(125, 42, 232))",
+        "colors": [
+          "rgb(0, 196, 204)",
+          "rgb(125, 42, 232)"
+        ],
+        "frequency": 3
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(153, 43, 255), rgb(90, 50, 250) 222px, rgb(19, 163, 181) 375px, rgb(147, 232, 246) 60%, rgb(255, 255, 255))",
+        "colors": [
+          "rgb(153, 43, 255)",
+          "rgb(90, 50, 250)",
+          "rgb(19, 163, 181)",
+          "rgb(147, 232, 246)",
+          "rgb(255, 255, 255)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(98deg, rgb(0, 196, 204) -9%, rgb(90, 50, 250) 78%, rgb(118, 48, 215) 158%)",
+        "colors": [
+          "rgb(0, 196, 204)",
+          "rgb(90, 50, 250)",
+          "rgb(118, 48, 215)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(115, 1, 221) 0%, rgb(42, 77, 225) 34%, rgb(124, 179, 245) 68%, rgb(181, 228, 246) 100%)",
+        "colors": [
+          "rgb(115, 1, 221)",
+          "rgb(42, 77, 225)",
+          "rgb(124, 179, 245)",
+          "rgb(181, 228, 246)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 51, 99) 0%, rgb(255, 129, 65) 50%, rgb(255, 183, 177) 100%)",
+        "colors": [
+          "rgb(255, 51, 99)",
+          "rgb(255, 129, 65)",
+          "rgb(255, 183, 177)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(10, 135, 204) 0%, rgb(43, 171, 201) 50%, rgb(151, 225, 238) 100%)",
+        "colors": [
+          "rgb(10, 135, 204)",
+          "rgb(43, 171, 201)",
+          "rgb(151, 225, 238)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 0, 197) 0%, rgb(214, 54, 229) 39.29%, rgb(237, 213, 255) 100%)",
+        "colors": [
+          "rgb(204, 0, 197)",
+          "rgb(214, 54, 229)",
+          "rgb(237, 213, 255)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(242, 94, 7) 0%, rgb(217, 114, 24) 28%, rgb(255, 201, 79) 100%)",
+        "colors": [
+          "rgb(242, 94, 7)",
+          "rgb(217, 114, 24)",
+          "rgb(255, 201, 79)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(235, 33, 57) 9.93%, rgb(255, 105, 122) 31.21%, rgb(255, 184, 192) 64.54%)",
+        "colors": [
+          "rgb(235, 33, 57)",
+          "rgb(255, 105, 122)",
+          "rgb(255, 184, 192)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(189, 24, 255) 0%, rgb(238, 60, 255) 40%, rgb(251, 213, 255) 100%)",
+        "colors": [
+          "rgb(189, 24, 255)",
+          "rgb(238, 60, 255)",
+          "rgb(251, 213, 255)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(90, 10, 175) 0%, rgb(116, 40, 222) 35%, rgb(188, 151, 252) 100%)",
+        "colors": [
+          "rgb(90, 10, 175)",
+          "rgb(116, 40, 222)",
+          "rgb(188, 151, 252)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(153, 43, 255) 0%, rgb(90, 50, 250) 15%, rgb(19, 163, 181) 48.33%, rgb(147, 232, 246) 73.33%, rgb(255, 255, 255) 166.67%)",
+        "colors": [
+          "rgb(153, 43, 255)",
+          "rgb(90, 50, 250)",
+          "rgb(19, 163, 181)",
+          "rgb(147, 232, 246)",
+          "rgb(255, 255, 255)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(254, 193, 156) 0%, rgb(255, 97, 8) 98.39%)",
+        "colors": [
+          "rgb(254, 193, 156)",
+          "rgb(255, 97, 8)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(43, 0, 99) -9.65%, rgb(153, 43, 255) 19.73%, rgb(238, 219, 255) 102%)",
+        "colors": [
+          "rgb(43, 0, 99)",
+          "rgb(153, 43, 255)",
+          "rgb(238, 219, 255)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(51, 36, 176) -5.67%, rgb(74, 83, 250) 59.38%, rgb(255, 255, 255) 123.23%)",
+        "colors": [
+          "rgb(51, 36, 176)",
+          "rgb(74, 83, 250)",
+          "rgb(255, 255, 255)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(0, 134, 54) 11.79%, rgb(122, 204, 0) 78.11%, rgb(255, 255, 255) 110.22%)",
+        "colors": [
+          "rgb(0, 134, 54)",
+          "rgb(122, 204, 0)",
+          "rgb(255, 255, 255)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 58, 75) 11.85%, rgb(255, 98, 18) 51.57%, rgb(255, 255, 255) 109.75%)",
+        "colors": [
+          "rgb(255, 58, 75)",
+          "rgb(255, 98, 18)",
+          "rgb(255, 255, 255)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(0, 196, 204), rgb(90, 50, 250), rgb(125, 42, 232))",
+        "colors": [
+          "rgb(0, 196, 204)",
+          "rgb(90, 50, 250)",
+          "rgb(125, 42, 232)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 920,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Canva Sans",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 346,
+          "fontFeatureSettings": [
+            "\"ss02\", \"ss03\""
+          ]
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 47,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image",
+            "nav",
+            "card",
+            "button",
+            "footer"
+          ],
+          "frequency": 920,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 47,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Canva Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Canva Sans",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Canva Sans",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "other",
+            "link"
+          ],
+          "frequency": 137,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Canva Sans",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Canva Sans",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Canva Sans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Canva Sans",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 91,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Canva Sans",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Canva Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Canva Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Canva Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Canva Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Canva Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Canva Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Canva Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Canva Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 84,
+          "family": "Canva Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.06,
+          "letterSpacing": -0.018,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1f1f605d-5819-4f97-8d68-3e763ca40afc.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3383a181-d29e-4ad6-9edc-691bf82525c9.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/17d0a00e-5de6-48c7-9f3b-25b04f7dab4c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Canva design system\",\"item\":\"https://styles.refero.design/style/17d0a00e-5de6-48c7-9f3b-25b04f7dab4c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/17d0a00e-5de6-48c7-9f3b-25b04f7dab4c#style-reference\",\"name\":\"Canva design system reference\",\"headline\":\"Canva design system | Refero Styles\",\"description\":\"Explore Canva's light Design design system: Canva Violet #8b3dff, Deep Violet #9729ff colors, Times, Canva Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/17d0a00e-5de6-48c7-9f3b-25b04f7dab4c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/17d0a00e-5de6-48c7-9f3b-25b04f7dab4c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Canva\",\"url\":\"https://www.canva.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/17d0a00e-5de6-48c7-9f3b-25b04f7dab4c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3383a181-d29e-4ad6-9edc-691bf82525c9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3383a181-d29e-4ad6-9edc-691bf82525c9.jpg\",\"caption\":\"Screenshot of Canva\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3383a181-d29e-4ad6-9edc-691bf82525c9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Canva design system\",\"Canva website design\",\"Canva colors\",\"Canva typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Canva Violet\",\"Deep Violet\",\"Lavender Mist\",\"Coral Ember\",\"Times\",\"Canva Sans\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Canva design system\"},{\"@type\":\"Thing\",\"name\":\"Canva website design\"},{\"@type\":\"Thing\",\"name\":\"Canva colors\"},{\"@type\":\"Thing\",\"name\":\"Canva typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-29T00:42:44.652Z\",\"dateModified\":\"2026-04-29T00:42:44.652Z\"}]}19:T616,## Quick Color Reference\n- text: #0f1015\n- background: #ffffff\n- border: #d7d9de\n- accent: #8b3dff (Canva Violet)\n- secondary accent: #a370fc (Lavender Mist)\n- decorative accent: #ff6105 (Coral Ember), #ff3d4d (Magenta Pop), #e950f7 (Fuchsia Bloom)\n- primary action: #8b3dff (filled action)\n\n## Example Component Prompts\n1. Create a Primary Action Button: #8b3dff background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **AI Prompt Card**: White rounded panel, 8px radius, 32px internal padding, 1px solid #d7d9de border, subtle elevation shadow. Contains a large text input (16px Canva Sans 400, placeholder #575a5f), a circular 48px submit button in #8b3dff with a white right-arrow icon, and a row of five small category chips below the input (8px radius, 12px 16px padding, 1px solid #d7d9de border, 14px Canva Sans 500 text in #0f1015, each with a tiny colored icon prefix).\n\n3. **Category Pill Tabs**: Horizontal row of 5 pill-shaped tabs, 9999px radius, 12px 20px padding, each filled with a different brand color: #8b3dff, #ff6105, #ff3d4d, #e950f7, #a370fc. All text in white at 16px Canva Sans 500, with a small white icon to the left of each label. The active tab gets a subtle inset white shadow; inactive tabs are flat.\n\n\n5. **Section Heading + Tab Row**: Centered section title in Canva Sans 600, 36px, #0f1015, letter-spacing -0.018em. Below it, the category pill tab row centered horizontally with 8px gap between pills. 80px vertical spacing above the heading from the previous section."
+}

@@ -1,0 +1,544 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#0e1311",
+      "$type": "color",
+      "$description": "Obsidian — Primary canvas — page backgrounds, hero sections, card surfaces. The near-black with a faint green undertone makes white type glow without feeling sterile"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Deepest surface, borders, and type. Used for maximum-contrast outlines, product box photography backgrounds, and the darkest UI strokes"
+    },
+    "ash-charcoal": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Ash Charcoal — Secondary surface and border tone — slightly lifted from black for subtle layering on nav, dividers, and outlined button edges"
+    },
+    "graphite": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Graphite — Mid-neutral for secondary text, input borders, and card outlines where pure black is too heavy"
+    },
+    "stone-gray": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Stone Gray — Image placeholder and muted background tone — holds space where product photography is loading or absent"
+    },
+    "silver": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Silver — De-emphasized borders and helper text on light surfaces"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — Primary text on dark canvases, price-chip fills, inverted button surfaces. The brightest accent in an otherwise low-key palette"
+    },
+    "linen": {
+      "$value": "#f6f7f2",
+      "$type": "color",
+      "$description": "Linen — Warm off-white surface for inverted sections, price pill backgrounds, and soft button fills. Sits between bone and the khaki family"
+    },
+    "sand-khaki": {
+      "$value": "#dfdbca",
+      "$type": "color",
+      "$description": "Sand Khaki — Hairline borders, dividers, input outlines, and card edges on light surfaces."
+    },
+    "lichen-green": {
+      "$value": "#cadcac",
+      "$type": "color",
+      "$description": "Lichen Green — Green state accent for badges, validation surfaces, and short status labels."
+    },
+    "citron": {
+      "$value": "#faf080",
+      "$type": "color",
+      "$description": "Citron — Yellow state accent for badges, validation surfaces, and short status labels."
+    },
+    "antique-gold": {
+      "$value": "#cfa53b",
+      "$type": "color",
+      "$description": "Antique Gold — Accent stroke and border for promotional or limited-availability badges. Reads as aged brass — never neon"
+    },
+    "olive-bark": {
+      "$value": "#4d4a31",
+      "$type": "color",
+      "$description": "Olive Bark — Dark olive link/announcement background — the deep green-brown of the top bar, grounded and earthy"
+    }
+  },
+  "font": {
+    "gt-america-standard": {
+      "$value": "GT America Standard",
+      "$type": "fontFamily",
+      "$description": "The UI workhorse: navigation labels, body copy, button text, metadata, footer text, cart count, form fields. Weight 400 for body, 500 for nav items, 600 sparingly for tiny uppercase labels like 'FEATURED'. At 11–14px it carries the entire structural layer."
+    },
+    "id00-serif": {
+      "$value": "ID00 Serif",
+      "$type": "fontFamily",
+      "$description": "The editorial voice: product names, section headings, the 'Shop Now' and 'Limited Time Offer' labels in the hero, the 'Independent specialty coffee roaster…' manifesto copy. Almost always set in italic — this is the signature move. The italic serif against a black canvas is what makes the site read as a curated coffee journal rather than a store."
+    },
+    "helvetica": {
+      "$value": "Helvetica",
+      "$type": "fontFamily",
+      "$description": "Fallback / system substitute for small tertiary text and icons where GT America is not loaded."
+    },
+    "reviewsio-font": {
+      "$value": "reviewsio-font",
+      "$type": "fontFamily",
+      "$description": "reviewsio-font — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "reviewsio-font",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ID00 Serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "reviewsio-font",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ID00 Serif",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "reviewsio-font",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "reviewsio-font",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ID00 Serif",
+        "fontSize": "30px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "ID00 Serif",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "ID00 Serif",
+        "fontSize": "42px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 42px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "GT America Standard",
+        "fontSize": "42px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 42px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "md-2": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Border radius md-2"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 2.5px 10px -4px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#0e1311",
+      "$type": "color",
+      "$description": "Surface level 0: Page and section background — the default dark surface"
+    },
+    "lifted-black": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle elevation on nav, outlined controls, and card borders"
+    },
+    "warm-card": {
+      "$value": "#dfdbca",
+      "$type": "color",
+      "$description": "Surface level 2: Product card border and hairline dividers — the khaki undertone that warms the dark UI"
+    },
+    "linen-invert": {
+      "$value": "#f6f7f2",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted light surface for price chips, soft button fills, and occasional light-on-light sections"
+    },
+    "bone-overlay": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 4: Highest-elevation surface — full-invert buttons, modal backgrounds, and badge fills"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://assemblycoffee.co.uk",
+      "siteName": "Assembly Coffee London",
+      "extractedAt": "2026-06-03T18:15:44.656Z",
+      "variant": "extended"
+    }
+  }
+}

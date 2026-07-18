@@ -1,0 +1,44 @@
+:root {
+  /* Colors */
+  --color-grid-line: #e5e7eb;
+  --color-body-text: #d4d4d4;
+  --color-muted-text: #737373;
+  --color-subtle-divider: #171717;
+
+  /* Typography — Font Families */
+  --font-commit-mono: 'Commit Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.43;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --text-body: 16px;
+  --leading-body: 1.5;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-80: 80px;
+
+  /* Layout */
+  --page-max-width: 1080px;
+  --section-gap: 80px;
+  --card-padding: 0px;
+  --element-gap: 16px;
+
+  /* Named Radii */
+  --radius-all: 0px;
+  --radius-media: 0px;
+  --radius-tiles: 0px;
+
+  /* Surfaces */
+  --surface-void: #0a0a0a;
+  --surface-tile-canvas: #0a0a0a;
+}

@@ -1,0 +1,1221 @@
+{
+  "source": "https://styles.refero.design/style/faec4b0c-cf93-4150-97de-0a8e7eed1840",
+  "uuid": "faec4b0c-cf93-4150-97de-0a8e7eed1840",
+  "name": "Discord",
+  "northStar": "Game world behind a chat bubble — every section is a self-contained environment with its own lighting and cast of characters.",
+  "capturedAt": "2026-07-18T10:16:10.460Z",
+  "meta": {
+    "url": "https://discord.com",
+    "siteName": "Discord",
+    "extractedAt": "2026-04-11T18:08:26.644Z",
+    "durationMs": 131708,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 352,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use ABC Ginto Nord 800 in all-caps for all section headlines; letter-spacing must be -0.01em to maintain the compressed rectangular silhouette.",
+      "Keep #5865F2 (Blurple) exclusively on primary CTA buttons and interactive focus states — it is the only saturated color with a guaranteed role on every page.",
+      "Set feature section cards with their own gradient or solid background color (purple-magenta, green, etc.) to differentiate sections, since the global page background never changes.",
+      "Pair the blurple CTA button with a white filled secondary button using padding 15px 24px and radius 12px — never use blurple for both primary and secondary in the same CTA cluster.",
+      "Position 3D characters and mascot assets at card edges, overlapping between sections — the overlap is what creates the immersive environment, not isolated placement.",
+      "Apply 12px border-radius to standard buttons and 16px to the Log In/header button to maintain the subtle size hierarchy between interaction contexts.",
+      "Use the Fog color (#BABCD9) for body text in dark sections where full white (#FFFFFF) would overpower headlines — reserve pure white for headlines and critical UI labels."
+    ],
+    "tags": [
+      "dark-mode",
+      "gaming",
+      "3D-characters",
+      "bold-typography",
+      "all-caps-headings",
+      "immersive",
+      "blurple",
+      "community",
+      "vibrant-accents",
+      "product-marketing"
+    ],
+    "donts": [
+      "Never use a white or light-gray page background — the deep blue-black environment is non-negotiable for the brand atmosphere; even light-themed sections should be contained within cards.",
+      "Never apply ABC Ginto Nord headlines at mixed-case — the all-caps + tight tracking combination is inseparable from the visual identity.",
+      "Never place Blurple as a background color on large areas (sections, cards) — at scale it overwhelms the controlled accent role and collapses contrast with Blurple text.",
+      "Never use gradient text on headlines — the weight and mass of the black-filled letterforms is the visual statement; gradients would undermine the stamped-metal quality.",
+      "Never add drop shadows to feature cards — section identity comes from contrasting card backgrounds, not elevation shadow depth.",
+      "Never reduce button border-radius below 12px — anything sharper breaks the rounded-corner system that softens the otherwise heavy typographic tone.",
+      "Never use Greyple (#99AAB5) or Dim Grey (#50555F) as primary text colors — they are reserved for disabled, muted, and placeholder states only."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#5865f2",
+        "name": "Blurple",
+        "role": "Primary CTA buttons, brand icon, active states — the single chromatic anchor in a near-monochrome blue-black space, creating instant recognition as the only saturated element in the layout",
+        "group": "brand"
+      },
+      {
+        "hex": "#3442d9",
+        "name": "Dark Blurple",
+        "role": "Hover state for primary buttons, pressed states",
+        "group": "brand"
+      },
+      {
+        "hex": "#8891f2",
+        "name": "Hover Blurple",
+        "role": "Button hover tint, elevated blurple interactions",
+        "group": "brand"
+      },
+      {
+        "hex": "#57f287",
+        "name": "Spring Green",
+        "role": "Online status indicators, success states",
+        "group": "semantic"
+      },
+      {
+        "hex": "#eb459",
+        "name": "Fuchsia",
+        "role": "Nitro gradient accents, special event highlights",
+        "group": "accent"
+      },
+      {
+        "hex": "#00b0f4",
+        "name": "Vivid Cerulean",
+        "role": "Voice/video channel indicators, info states",
+        "group": "accent"
+      },
+      {
+        "hex": "#fda220",
+        "name": "Ember Orange",
+        "role": "Quest indicators, achievement highlights",
+        "group": "accent"
+      },
+      {
+        "hex": "#de2761",
+        "name": "Ekko Red",
+        "role": "Destructive actions, critical alerts",
+        "group": "semantic"
+      },
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Text on light surfaces, icon fills, overlay backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Snow",
+        "role": "Primary text on dark backgrounds, button text, nav links, card backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#23272a",
+        "name": "Not Quite Black",
+        "role": "Secondary button text and borders, dark UI surface color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2c2f33",
+        "name": "Dark Charcoal",
+        "role": "App UI chrome surfaces, elevated dark panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Graphite",
+        "role": "Tertiary text on light surfaces, image overlays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#babcd9",
+        "name": "Fog",
+        "role": "Subdued headings and body text on dark backgrounds — a lavender-tinted neutral that stays on-brand while reducing contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#99aab5",
+        "name": "Greyple",
+        "role": "Disabled states, placeholder text, muted metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#50555f",
+        "name": "Dim Grey",
+        "role": "Input borders, dividers, secondary icon fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f6f6f6",
+        "name": "Off White",
+        "role": "Light section backgrounds, card surfaces in light contexts",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed at the page level with no explicit max-width container visible — the deep blue background extends edge-to-edge. Hero is a split composition: text block flush-left with 3D product composite filling the right half, both contained within viewport height. Feature sections below the hero use large-radius cards (~24px) that span 80-90% of the viewport width, each card being a self-contained stage. Within cards, layout is 50/50 split — product screenshot left, headline + body right (or reversed). No alternating light/dark band rhythm — all sections share the same dark background; differentiation comes from card background colors. Navigation is a fixed-top full-width bar with centered link groups. Footer uses a 4-5 column link grid. The page is extremely long (7300px+), with generous inter-section gaps of 80-120px giving each feature room to breathe.",
+    "imagery": "Entirely 3D illustration and product screenshots — no photography. Characters are rendered in a cartoon-realistic 3D style with soft subsurface lighting, purple-blue-tinted shadows, and saturated clothing colors (orange, lavender, pink hoodie). They're posed mid-gesture and placed off-axis against the page, creating dynamism without a static layout grid. Product screenshots are composited into device frames (monitor bezel, phone outline) rendered in the same 3D style, making the 'product demo' feel like part of the illustration world rather than a flat screen-grab. Feature cards use full-bleed gradient backgrounds (purple-to-magenta, deep green) as the canvas for these screenshot composites — the gradient IS the scene lighting. Floating 3D props (a peach, a crystal, a robot mascot in lime green) appear at section boundaries as scene accessories. Zero photography — the visual world is entirely constructed, reinforcing that Discord is a space you build rather than a place that exists.",
+    "similar": [
+      {
+        "why": "Same all-caps heavy display type + 3D character mascots as primary visual storytelling, placed loosely against colored environments",
+        "business": "Roblox"
+      },
+      {
+        "why": "Deep purple-dominant dark theme with a single vivid brand accent color reserved for CTAs, gaming-community audience",
+        "business": "Twitch"
+      },
+      {
+        "why": "Full-bleed dark environments, product screenshot composites inside illustrated frames, large-type section headers in white on near-black",
+        "business": "Epic Games Store"
+      },
+      {
+        "why": "Saturated gradient card backgrounds as section differentiators within an otherwise monochromatic dark page structure",
+        "business": "Spotify (gaming campaigns)"
+      },
+      {
+        "why": "3D cartoon characters with subsurface-lit rendering, posed dynamically at section edges, overlapping layout containers",
+        "business": "Supercell"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "pills": "104px",
+        "buttons": "12px",
+        "buttonsLarge": "16px",
+        "featurePanels": "24px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "32-48px",
+      "pageMaxWidth": "1200px"
+    },
+    "category": "technology",
+    "surfaces": [
+      {
+        "hex": "#0e0f2d",
+        "name": "Cosmic Page",
+        "level": 0,
+        "purpose": "Global page background — deep indigo-navy environment that all sections sit within"
+      },
+      {
+        "hex": "#23272a",
+        "name": "App Chrome",
+        "level": 1,
+        "purpose": "Product UI sidebar and panel backgrounds shown in mock-ups"
+      },
+      {
+        "hex": "#2c2f33",
+        "name": "App Surface",
+        "level": 2,
+        "purpose": "Main content area inside product screenshots"
+      },
+      {
+        "hex": "#5865f2",
+        "name": "Feature Card",
+        "level": 3,
+        "purpose": "Feature section card backgrounds — each card uses its own themed gradient/solid (not always blurple), but this represents the brand-colored variant"
+      }
+    ],
+    "northStar": "Game world behind a chat bubble — every section is a self-contained environment with its own lighting and cast of characters.",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-lg",
+        "size": 20,
+        "lineHeight": 1.38
+      },
+      {
+        "role": "heading-sm",
+        "size": 36,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 0.93,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 0.86,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "display",
+        "size": 61,
+        "lineHeight": 0.86,
+        "letterSpacing": -0.61
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "CTA Button Group",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Feature Showcase Card — Make Your Group Chats More Fun",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Feature Showcase Card — Always Have Something To Do Together",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary CTA Button (Blurple Filled)",
+        "role": "Main call-to-action, e.g. 'Open Discord in your browser'",
+        "description": "backgroundColor #5865F2, color #FFFFFF, borderRadius 12px, padding 19.5px 24px. No border visible — the blurple fill is self-contained. Hover shifts to #3442D9. The 19.5px vertical padding makes this the tallest button variant on the page — physically dominant in the CTA pair."
+      },
+      {
+        "name": "Secondary CTA Button (White Filled)",
+        "role": "Download prompt, paired with primary CTA",
+        "description": "backgroundColor #FFFFFF, color #23272A, borderRadius 12px, padding 15px 24px. A clean white pill against the dark background — high contrast without blurple. Border is #23272A at 1px. The softer padding (vs primary) visually subordinates it as the secondary choice."
+      },
+      {
+        "name": "Ghost Navigation Button (Transparent Outlined)",
+        "role": "Nav dropdown triggers and secondary navigation actions",
+        "description": "backgroundColor transparent, color #FFFFFF, border 1px solid #FFFFFF, borderRadius 12px, padding 10px 16px. Used for nav menu items with dropdown arrows. The all-white outline on dark keeps it visible without competing with blurple."
+      },
+      {
+        "name": "Log In Button (White Outlined)",
+        "role": "Top-right header authentication action",
+        "description": "backgroundColor #FFFFFF, color #000000, border 1px solid #000000, borderRadius 16px, padding 10px 16px. Uses a larger 16px radius than other buttons — matches the pill-like header style. Appears on the light/frosted header strip, making the filled white surface legible against the nav background."
+      },
+      {
+        "name": "Feature Showcase Card",
+        "role": "Full-bleed section content containers holding product screenshots and feature copy",
+        "description": "Large rounded containers with 24px+ radius, set against the page's deep blue background. Each card uses its own gradient or solid background (purple-to-magenta for 'Group Chats', green for 'Watch Together') — section identity is expressed through the card background color, not the page background. Content splits 50/50: product screenshot left, text right. Cards span full viewport width on mobile, max ~1100px on desktop."
+      },
+      {
+        "name": "3D Character Float",
+        "role": "Decorative mascot and character illustrations scattered at section edges",
+        "description": "Not interactive UI — these are 3D-rendered PNG/WebP assets positioned absolutely at section boundaries, overlapping card edges. Sizes range from ~100px to ~300px. They exit and enter sections unpredictably, creating the 'world' atmosphere. No background, no border, no radius — raw edge compositing into the page."
+      },
+      {
+        "name": "Product Screen Mock-up",
+        "role": "Embedded Discord UI screenshots within feature cards",
+        "description": "Screenshots of the actual Discord app rendered inside feature cards with 12-16px radius. They float slightly off-center with a subtle drop shadow. Mobile frames shown as phone outlines. Desktop frames shown as monitor bezels. The mock-ups use the real Discord dark UI (#2C2F33 surface, #23272A sidebar), grounding marketing claims in the actual product."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Global top navigation",
+        "description": "Fixed header spanning full viewport width. Background is semi-transparent over the hero image — appears near-white/frosted. Contains Discord wordmark left, text nav links center (16px ABC Ginto, #FFFFFF or #000000 depending on scroll state), and 'Log In' button far right. Dropdown triggers use the ghost outlined button variant. No visible shadow — floats as a flat strip."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Full-viewport landing block",
+        "description": "Full-bleed dark indigo background (#0E0F2D to near-black gradient implied). Headline in ABC Ginto Nord 800 at 56-61px, color #FFFFFF, all-caps, line-height 0.86, crammed into the left 50% of the viewport. Body copy at 16px ABC Ginto 400, color #FFFFFF, max-width ~380px. CTA pair (white + blurple buttons) sits below body. Right 50% holds the product mock-up composite with 3D characters overlapping both halves."
+      },
+      {
+        "name": "Footer Navigation",
+        "role": "Site-wide footer link groups",
+        "description": "Dark background (#23272A or #000000). Multi-column link grid with group headings in 16px ABC Ginto 500 + positive letter-spacing. Link text at 16px/1.5 weight 400, color #BABCD9 (Fog) on dark. Discord wordmark and social icons top-left. No dividers — columns separated by gap only."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All display headlines and section headings. Weight 800 is the signature move — combined with all-caps styling and -0.01em tracking, headlines compress into dense rectangular blocks. No other font or weight creates this stamped-label effect. Used at 56–61px for hero, 48px for section leads, 36px for subsections.",
+        "sizes": "36px, 48px, 56px, 61px",
+        "family": "ABC Ginto Nord Discord",
+        "weight": "700, 800",
+        "lineHeight": "0.86–1.20",
+        "substitute": "Nunito Black, Poppins 800, or Rounded Mplus 1c 800",
+        "letterSpacing": "-0.01em (approx -0.56px at 56px, -0.61px at 61px)"
+      },
+      {
+        "role": "Navigation labels, body copy, button text, UI labels. Letter-spacing at 0.013–0.016em adds subtle openness at small sizes — compensating for the condensed feel of the Nord headline font above. Weight 500 for buttons and nav emphasis, 400 for body and metadata.",
+        "sizes": "16px, 20px",
+        "family": "ABC Ginto Discord",
+        "weight": "400, 500",
+        "lineHeight": "1.20–1.50",
+        "substitute": "Inter, DM Sans, or Nunito 400/500",
+        "letterSpacing": "0.013–0.016em"
+      },
+      {
+        "role": "Discord's proprietary UI font used inside product UI mock-ups and app interface screenshots embedded in marketing sections. Appears at 16px/1.5 exclusively — mirrors the in-product typeface to keep screenshots authentic.",
+        "sizes": "16px",
+        "family": "GG Sans",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "Inter 400"
+      },
+      {
+        "role": "Long-form paragraph body text in feature sections, link lists in footer. Functionally identical metrics to ABC Ginto Discord but a separate optical variant for extended reading.",
+        "sizes": "16px",
+        "family": "ABC Ginto Normal",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "Inter 400"
+      }
+    ],
+    "description": "Deep cosmic blue fills every section like a starfield at 2am — not a background choice but a total environment. The hero plunges into a rich indigo-to-navy gradient populated with 3D characters, product screens, and floating mascots, making the UI feel like a game world rather than a marketing page. Blurple (#5865F2) — Discord's owned hue — appears only on primary CTAs, creating a controlled pop against the blue-black atmosphere. Typography does the heavy lifting: ABC Ginto Nord at weight 800 with tight -0.01em tracking slams headlines into all-caps blocks that feel like stamped metal, while body copy at 16px/1.5 stays conversational. The overall effect is a gaming-native space where every section is its own immersive stage, not a content column.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      },
+      {
+        "title": "Brand Color System",
+        "content": "Discord's color palette is a deliberate two-tier system: a near-monochromatic dark environment (indigo-black page, white text, charcoal UI) plus a single owned hue — Blurple (#5865F2). Every other color (Spring Green for online, Fuchsia for Nitro, Cerulean for voice) appears only in contextual UI states or seasonal campaigns. This means new page designs should default to white text on dark backgrounds with Blurple as the ONLY chromatic element in the layout chrome. The extended palette (Fuchsia, Yellow, Orange, Green) is available for in-product UI mock-ups, illustration coloring, and special campaign moments — not for general page components."
+      }
+    ],
+    "elevationPhilosophy": "Discord marketing pages use no traditional box-shadow elevation. Depth is created entirely through color contrast between section backgrounds and floating card surfaces. 3D rendered characters establish z-depth through artistic perspective and overlap, not CSS shadows. The only elevation cue is scale — larger elements read as closer."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "list",
+            "button",
+            "image",
+            "icon",
+            "link",
+            "nav"
+          ],
+          "frequency": 980,
+          "confidence": 1,
+          "prominence": 112456464.94051252,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "other",
+            "icon",
+            "heading",
+            "nav"
+          ],
+          "frequency": 659,
+          "confidence": 1,
+          "prominence": 3772361.2023652163,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#5865f2",
+          "oklch": {
+            "c": 0.2090896732780479,
+            "h": 273.85036224828,
+            "l": 0.5774363808320988
+          },
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 100603.90977077466,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#23272a",
+          "oklch": {
+            "c": 0.008035026389228756,
+            "h": 240.15763713099727,
+            "l": 0.2699332541526219
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 64839.254322641,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#babcd9",
+          "oklch": {
+            "c": 0.04092632644569246,
+            "h": 282.63096452705247,
+            "l": 0.8034768569935733
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 26257.240445050436,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 23360,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.01061720857972423,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.05,
+          "background": "#ffffff",
+          "foreground": "#23272a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.28,
+          "background": "#000000",
+          "foreground": "#babcd9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.09,
+          "background": "#babcd9",
+          "foreground": "#23272a"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.79,
+          "background": "#babcd9",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.61,
+          "background": "#5865f2",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.56,
+          "background": "#5865f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.27,
+          "background": "#5865f2",
+          "foreground": "#23272a"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.74,
+          "background": "#5865f2",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.48,
+          "background": "#5865f2",
+          "foreground": "#babcd9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.86,
+          "background": "#ffffff",
+          "foreground": "#babcd9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.66,
+          "background": "#000000",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.4,
+          "background": "#000000",
+          "foreground": "#23272a"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 104,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 15,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ]
+        },
+        {
+          "value": 5,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 7,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 15,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 26,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 11,
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 26,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ]
+        },
+        {
+          "value": 15,
+          "frequency": 3,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 33,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 18,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 23,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginRight",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 28,
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingRight"
+          ]
+        },
+        {
+          "value": 29,
+          "frequency": 5,
+          "properties": [
+            "marginRight"
+          ]
+        },
+        {
+          "value": 35,
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 36,
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 42,
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 50,
+          "frequency": 3,
+          "properties": [
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 52,
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ]
+        },
+        {
+          "value": 53,
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 56,
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 3,
+          "properties": [
+            "marginLeft",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 95,
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 112,
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 118,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 136,
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 144,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 151,
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 175,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 176,
+          "frequency": 3,
+          "properties": [
+            "marginLeft",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 190,
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 201,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 214,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Ggsans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 200,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Abcgintodiscord",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 93,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Abcgintodiscordnord",
+          "source": "custom",
+          "weights": [
+            700,
+            800
+          ],
+          "frequency": 25,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ABC Ginto Normal",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 24,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Ggsans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "icon",
+            "link",
+            "nav"
+          ],
+          "frequency": 200,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Ginto Normal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "list"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Abcgintodiscord",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Abcgintodiscord",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 48,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Abcgintodiscord",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Abcgintodiscord",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Abcgintodiscord",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "nav"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Abcgintodiscord",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Abcgintodiscord",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Abcgintodiscord",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Abcgintodiscordnord",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.93,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 48,
+          "family": "Abcgintodiscordnord",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 56,
+          "family": "Abcgintodiscordnord",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.86,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 61,
+          "family": "Abcgintodiscordnord",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 0.41,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/042a4589-4f5c-4d77-9212-3aeb5f7032c2.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a0f82af0-31e5-45c0-ae58-312778e03574.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/faec4b0c-cf93-4150-97de-0a8e7eed1840#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Discord design system\",\"item\":\"https://styles.refero.design/style/faec4b0c-cf93-4150-97de-0a8e7eed1840\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/faec4b0c-cf93-4150-97de-0a8e7eed1840#style-reference\",\"name\":\"Discord design system reference\",\"headline\":\"Discord design system | Refero Styles\",\"description\":\"Explore Discord's dark Productivity design system: Blurple #5865f2, Dark Blurple #3442d9 colors, ABC Ginto Nord Discord, ABC Ginto Discord typography, and...\",\"url\":\"https://styles.refero.design/style/faec4b0c-cf93-4150-97de-0a8e7eed1840\",\"mainEntityOfPage\":\"https://styles.refero.design/style/faec4b0c-cf93-4150-97de-0a8e7eed1840\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Discord\",\"url\":\"https://discord.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/faec4b0c-cf93-4150-97de-0a8e7eed1840#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a0f82af0-31e5-45c0-ae58-312778e03574.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a0f82af0-31e5-45c0-ae58-312778e03574.jpg\",\"caption\":\"Screenshot of Discord\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a0f82af0-31e5-45c0-ae58-312778e03574.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Discord design system\",\"Discord website design\",\"Discord colors\",\"Discord typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Blurple\",\"Dark Blurple\",\"Hover Blurple\",\"Spring Green\",\"ABC Ginto Nord Discord\",\"ABC Ginto Discord\",\"GG Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Discord design system\"},{\"@type\":\"Thing\",\"name\":\"Discord website design\"},{\"@type\":\"Thing\",\"name\":\"Discord colors\"},{\"@type\":\"Thing\",\"name\":\"Discord typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-03-25T20:34:48.000Z\",\"dateModified\":\"2026-03-25T20:34:48.000Z\"}]}19:T886,<style>:root{--color-blurple:#5865f2;--color-dark-blurple:#3442d9;--color-snow:#ffffff;--color-not-quite-black:#23272a;--font-abc-ginto-nord-discord:'Nunito',sans-serif;--font-abc-ginto-discord:'Inter',sans-serif;}*{box-sizing:border-box;margin:0;padding:0;}</style><div style=\"background:linear-gradient(135deg,#0e0f2d 0%,#1a1d5e 50%,#0a0b1e 100%);padding:60px 40px;display:flex;flex-direction:column;align-items:center;gap:32px;font-family:var(--font-abc-ginto-discord);min-height:220px;justify-content:center;\"><p style=\"color:var(--color-snow);font-family:var(--font-abc-ginto-nord-discord);font-size:28px;font-weight:800;letter-spacing:-0.01em;text-transform:uppercase;text-align:center;line-height:1.1;margin-bottom:4px;\">YOUR PLACE TO TALK</p><p style=\"color:rgba(186,188,217,0.9);font-family:var(--font-abc-ginto-discord);font-size:16px;font-weight:400;line-height:1.5;text-align:center;max-width:360px;\">Whether you're part of a school club, gaming group, or worldwide community — Discord is your place to talk.</p><div style=\"display:flex;gap:16px;flex-wrap:wrap;justify-content:center;\"><a href=\"#\" style=\"display:inline-flex;align-items:center;gap:10px;background:var(--color-snow);color:var(--color-not-quite-black);font-family:var(--font-abc-ginto-discord);font-size:16px;font-weight:500;letter-spacing:0.013em;text-decoration:none;padding:15px 24px;border-radius:12px;border:1px solid var(--color-not-quite-black);white-space:nowrap;transition:background 0.2s;\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L12 16M12 16L7 11M12 16L17 11\" stroke=\"#23272a\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M4 20H20\" stroke=\"#23272a\" stroke-width=\"2.5\" stroke-linecap=\"round\"/></svg>Download for Mac</a><a href=\"#\" style=\"display:inline-flex;align-items:center;background:var(--color-blurple);color:var(--color-snow);font-family:var(--font-abc-ginto-discord);font-size:16px;font-weight:500;letter-spacing:0.013em;text-decoration:none;padding:19.5px 24px;border-radius:12px;border:none;white-space:nowrap;transition:background 0.2s;\">Open Discord in your browser</a></div></div>1a:Tf6d,<style>:root{--color-snow:#ffffff;--color-fog:#babcd9;--color-blurple:#5865f2;--font-abc-ginto-nord-discord:'Nunito',sans-serif;--font-abc-ginto-discord:'Inter',sans-serif;}*{box-sizing:border-box;margin:0;padding:0;}</style><div style=\"background:linear-gradient(160deg,#0e0f2d 0%,#1a1060 100%);padding:32px 24px;font-family:var(--font-abc-ginto-discord);\"><div style=\"background:linear-gradient(135deg,#5a1a5a 0%,#8b1a8b 30%,#d91aaa 60%,#e020c0 100%);border-radius:24px;padding:40px 32px;display:flex;flex-direction:column;gap:32px;position:relative;overflow:hidden;\"><div style=\"background:rgba(255,255,255,0.08);border-radius:16px;padding:20px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.12);\"><div style=\"display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.15);\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M15 19l-7-7 7-7\" stroke=\"rgba(255,255,255,0.7)\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg><span style=\"color:rgba(255,255,255,0.85);font-size:13px;font-weight:500;\"># main-chat</span><svg style=\"margin-left:auto\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\"><circle cx=\"11\" cy=\"11\" r=\"7\" stroke=\"rgba(255,255,255,0.7)\" stroke-width=\"2\"/><path d=\"M20 20l-3-3\" stroke=\"rgba(255,255,255,0.7)\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></div><div style=\"display:flex;flex-direction:column;gap:8px;\"><div style=\"height:10px;background:rgba(255,255,255,0.2);border-radius:6px;width:75%;\"></div><div style=\"height:10px;background:rgba(255,255,255,0.13);border-radius:6px;width:90%;\"></div><div style=\"height:10px;background:rgba(255,255,255,0.17);border-radius:6px;width:60%;\"></div><div style=\"height:10px;background:rgba(255,255,255,0.1);border-radius:6px;width:80%;\"></div></div><div style=\"display:flex;gap:8px;margin-top:16px;\"><div style=\"background:rgba(255,255,255,0.18);border-radius:8px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,0.8);\">Send</div><div style=\"background:rgba(255,255,255,0.1);border-radius:8px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,0.6);\">GIFs</div><div style=\"background:rgba(255,255,255,0.1);border-radius:8px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,0.6);\">Stickers</div></div><div style=\"margin-top:12px;background:rgba(255,255,255,0.08);border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px;\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\"><circle cx=\"11\" cy=\"11\" r=\"7\" stroke=\"rgba(255,255,255,0.5)\" stroke-width=\"2\"/><path d=\"M20 20l-3-3\" stroke=\"rgba(255,255,255,0.5)\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg><span style=\"font-size:12px;color:rgba(255,255,255,0.45);\">Find an emoji...</span></div><div style=\"margin-top:10px;\"><p style=\"font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:6px;\">Frequently Used</p><div style=\"display:flex;gap:8px;\"><div style=\"width:28px;height:28px;background:rgba(255,255,255,0.12);border-radius:6px;\"></div><div style=\"width:28px;height:28px;background:rgba(255,255,255,0.12);border-radius:6px;\"></div><div style=\"width:28px;height:28px;background:rgba(255,255,255,0.12);border-radius:6px;\"></div><div style=\"width:28px;height:28px;background:rgba(255,255,255,0.12);border-radius:6px;\"></div></div></div></div><div style=\"display:flex;flex-direction:column;gap:12px;\"><h2 style=\"font-family:var(--font-abc-ginto-nord-discord);font-size:36px;font-weight:800;color:var(--color-snow);text-transform:uppercase;letter-spacing:-0.01em;line-height:1.1;\">MAKE YOUR GROUP CHATS MORE FUN</h2><p style=\"font-family:var(--font-abc-ginto-discord);font-size:16px;font-weight:400;color:var(--color-snow);line-height:1.55;opacity:0.92;\">Use custom emoji, stickers, soundboard effects and more to add your personality to your voice, video, or text chat. Set your avatar and a custom status, and write your own profile to show up in chat your way.</p></div></div></div>1b:T1830,<style>:root{--color-snow:#ffffff;--color-fog:#babcd9;--color-blurple:#5865f2;--font-abc-ginto-nord-discord:'Nunito',sans-serif;--font-abc-ginto-discord:'Inter',sans-serif;}*{box-sizing:border-box;margin:0;padding:0;}</style><div style=\"background:linear-gradient(160deg,#0e0f2d 0%,#1a1060 100%);padding:32px 24px;font-family:var(--font-abc-ginto-discord);\"><div style=\"background:linear-gradient(145deg,#0d3320 0%,#0f4a28 40%,#155e30 70%,#1a7a3a 100%);border-radius:24px;padding:36px 28px;display:flex;flex-direction:column;gap:28px;\"><div style=\"background:rgba(0,0,0,0.25);border-radius:16px;padding:16px;border:1px solid rgba(255,255,255,0.1);\"><div style=\"display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.12);\"><div style=\"display:flex;align-items:center;gap:6px;\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M6 9l6 6 6-6\" stroke=\"rgba(255,255,255,0.7)\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg><span style=\"color:rgba(255,255,255,0.85);font-size:13px;font-weight:600;\">The Lounge</span><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M6 9l6 6 6-6\" stroke=\"rgba(255,255,255,0.6)\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></div><div style=\"display:flex;gap:8px;\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5\" stroke=\"rgba(255,255,255,0.6)\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\"><circle cx=\"12\" cy=\"12\" r=\"9\" stroke=\"rgba(255,255,255,0.6)\" stroke-width=\"2\"/><path d=\"M15.5 12a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0z\" fill=\"rgba(255,255,255,0.6)\"/></svg></div></div><div style=\"display:grid;grid-template-columns:1fr 1fr;gap:6px;\"><div style=\"background:rgba(60,60,80,0.7);border-radius:10px;height:90px;position:relative;overflow:hidden;\"><div style=\"position:absolute;bottom:6px;left:6px;background:rgba(0,0,0,0.5);border-radius:4px;padding:2px 6px;font-size:11px;color:white;\">z_lot</div></div><div style=\"background:rgba(80,40,80,0.7);border-radius:10px;height:90px;position:relative;overflow:hidden;\"><div style=\"position:absolute;bottom:6px;left:6px;background:rgba(0,0,0,0.5);border-radius:4px;padding:2px 6px;font-size:11px;color:white;\">Olive</div></div><div style=\"background:rgba(40,40,60,0.7);border-radius:10px;height:90px;position:relative;overflow:hidden;\"><div style=\"background:#2a9d3c;border-radius:6px;padding:8px;margin:12px auto;width:calc(100% - 24px);display:flex;align-items:center;gap:6px;\"><div style=\"width:18px;height:14px;background:#ff0000;border-radius:3px;display:flex;align-items:center;justify-content:center;\"><svg width=\"8\" height=\"8\" viewBox=\"0 0 12 12\"><polygon points=\"4,2 10,6 4,10\" fill=\"white\"/></svg></div><span style=\"font-size:10px;font-weight:700;color:white;\">YouTube</span></div><div style=\"position:absolute;bottom:6px;left:6px;background:rgba(0,0,0,0.5);border-radius:4px;padding:2px 6px;font-size:11px;color:white;display:flex;align-items:center;gap:3px;\"><svg width=\"8\" height=\"8\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2\" stroke=\"white\" stroke-width=\"2\"/><circle cx=\"9\" cy=\"7\" r=\"4\" stroke=\"white\" stroke-width=\"2\"/></svg>1-16</div></div><div style=\"background:rgba(50,30,70,0.7);border-radius:10px;height:90px;position:relative;overflow:hidden;\"><div style=\"position:absolute;inset:0;display:flex;align-items:center;justify-content:center;\"><div style=\"background:rgba(255,255,255,0.9);border-radius:8px;padding:5px 9px;display:flex;align-items:center;gap:5px;\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"3\" stroke=\"#333\" stroke-width=\"2\"/><path d=\"M9 9h6M9 15h6\" stroke=\"#333\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg><span style=\"font-size:10px;font-weight:600;color:#23272a;\">Share your screen</span></div></div><div style=\"position:absolute;bottom:6px;left:6px;background:rgba(0,0,0,0.5);border-radius:4px;padding:2px 6px;font-size:11px;color:white;\">moongirl</div></div></div><div style=\"display:flex;justify-content:center;gap:12px;margin-top:8px;\"><div style=\"width:36px;height:36px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M15.5 8.5a4 4 0 010 7M19 5a9 9 0 010 14\" stroke=\"white\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></div><div style=\"width:36px;height:36px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\"><line x1=\"1\" y1=\"1\" x2=\"23\" y2=\"23\" stroke=\"white\" stroke-width=\"2\"/><path d=\"M9 9v3a3 3 0 005.12 2.12M15 9.34V4a3 3 0 00-5.94-.6\" stroke=\"white\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></div><div style=\"width:36px;height:36px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z\" stroke=\"white\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></div><div style=\"width:36px;height:36px;background:#ed4245;border-radius:50%;display:flex;align-items:center;justify-content:center;\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M6.5 6.5l11 11M17.5 6.5l-11 11\" stroke=\"white\" stroke-width=\"2.5\" stroke-linecap=\"round\"/></svg></div></div></div><div style=\"display:flex;flex-direction:column;gap:12px;\"><h2 style=\"font-family:var(--font-abc-ginto-nord-discord);font-size:34px;font-weight:800;color:var(--color-snow);text-transform:uppercase;letter-spacing:-0.01em;line-height:1.1;\">ALWAYS HAVE SOMETHING TO DO TOGETHER</h2><p style=\"font-family:var(--font-abc-ginto-discord);font-size:16px;font-weight:400;color:var(--color-snow);line-height:1.55;opacity:0.9;\">Watch videos, play built-in games, listen to music, or just scroll together and spam memes. Seamlessly text, call, video chat, and play games, all in one group chat.</p></div></div></div>1c:T824,**Quick Color Reference**\n- Page background: #0E0F2D (deep indigo)\n- Primary headline text: #FFFFFF\n- Body text on dark: #BABCD9 (Fog)\n- Primary CTA: #5865F2 (Blurple), white text\n- Secondary CTA: #FFFFFF background, #23272A text\n- Nav links: #FFFFFF\n- Border / UI outlines: #FFFFFF (on dark) or #23272A (on light)\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-bleed background #0E0F2D. Left 50%: headline 'GROUP CHAT THAT'S ALL FUN & GAMES' in ABC Ginto Nord 800, 56px, #FFFFFF, all-caps, letter-spacing -0.56px, line-height 0.86. Subtext 16px ABC Ginto 400, #FFFFFF, max-width 380px, line-height 1.5. Below: two buttons — white filled (#FFFFFF bg, #23272A text, 12px radius, 15px 24px padding) + blurple filled (#5865F2 bg, #FFFFFF text, 12px radius, 19.5px 24px padding), gap 16px. Right 50%: product screen composite with 3D character overlaps.\n\n2. **Feature Section Card** (purple variant): Card background linear-gradient from #8B31A0 to #E040A0, border-radius 24px, width 90vw centered, padding 48px. Left: Discord app screenshot in phone/desktop frame. Right: headline 'MAKE YOUR GROUP CHATS MORE FUN' in ABC Ginto Nord 800, 48px, #FFFFFF, all-caps, letter-spacing -0.48px. Body text 16px ABC Ginto 400, #FFFFFF, line-height 1.5, max-width 360px.\n\n3. **Navigation Bar**: Full-width fixed bar, semi-transparent background. Left: Discord logo + wordmark. Center: text links in ABC Ginto 400 16px, #FFFFFF, gap 4-8px. Dropdown triggers as ghost buttons (transparent bg, #FFFFFF border 1px, 12px radius, 10px 16px padding). Far right: 'Log In' button (#FFFFFF bg, #000000 text, 16px radius, 10px 16px padding).\n\n4. **Primary CTA Button**: backgroundColor #5865F2, color #FFFFFF, border none, borderRadius 12px, padding 19.5px 24px, font ABC Ginto 500 16px, letter-spacing 0.016em. Hover state: backgroundColor #3442D9.\n\n5. **Footer Link Column**: Dark background #23272A. Column heading: ABC Ginto 500, 16px, #FFFFFF, letter-spacing 0.013em. Links: ABC Ginto 400, 16px, #BABCD9, line-height 1.5, gap 8px between items. 4-5 columns in a row, gap 32px between columns."
+}

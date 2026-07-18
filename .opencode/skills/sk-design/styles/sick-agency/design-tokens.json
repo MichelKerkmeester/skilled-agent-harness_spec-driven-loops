@@ -1,0 +1,242 @@
+{
+  "color": {
+    "voltage-yellow": {
+      "$value": "#ffc700",
+      "$type": "color",
+      "$description": "Voltage Yellow — Primary section background and dominant display text color. Headings, borders, and full-bleed canvas bands. Carries the highest visual weight on the page"
+    },
+    "radioactive-orange": {
+      "$value": "#ff4e27",
+      "$type": "color",
+      "$description": "Radioactive Orange — Secondary section background and accent border color. Outlined action borders, dividers, icon strokes, and full-bleed canvas bands that create contrast with the yellow"
+    },
+    "electric-cobalt": {
+      "$value": "#0029ff",
+      "$type": "color",
+      "$description": "Electric Cobalt — Primary action background and tertiary section background. The only filled button color in the system; also used for full-bleed canvas bands and decorative sticker badges"
+    },
+    "burnt-sienna": {
+      "$value": "#4d170c",
+      "$type": "color",
+      "$description": "Burnt Sienna — Error and warning state. Input border in invalid state. Reads as a deep brick-red against the lighter orange, preserving the system’s warm-color vocabulary"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Body text on light/yellow backgrounds, and the dominant border color across all surface bands. Functions as a hairline outline and text color wherever contrast is needed against yellow or white"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Body text and button text on cobalt and orange surfaces. The inverse of Ink Black — the two together carry all foreground-to-background contrast in the system"
+    }
+  },
+  "font": {
+    "morganite": {
+      "$value": "Morganite",
+      "$type": "fontFamily",
+      "$description": "Hero display face for the single largest typographic statement per page. The extreme 0.70 line-height stacks letterforms with no air between lines — type is treated as a solid block, not a paragraph. This face defines the agency’s shock-value identity."
+    },
+    "thunder": {
+      "$value": "Thunder",
+      "$type": "fontFamily",
+      "$description": "Secondary display face used at near-hero scale. The light weight is anti-convention for a 122px headline — most agencies use 700-900 here. Thunder’s 300 whispers while still occupying monumental space, creating tension between volume and restraint. Substituted by ITC Avant Garde Gothic, Futura, or any geometric humanist sans."
+    },
+    "sentient": {
+      "$value": "Sentient",
+      "$type": "fontFamily",
+      "$description": "Workhorse text face for body copy, buttons, inputs, links, and small labels. Carries tight negative tracking (-0.0100em to -0.0200em) even at body sizes, which is a serif’s signature in a sans-dominated layout. Substituted by any transitional serif."
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Fine-print and micro-label face for legal text, tiny annotations, and icon-adjacent micro-copy. Its system-serif feel is a deliberate contrast to the custom display faces, creating a visual fossil-record effect."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Sentient",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Sentient",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Sentient",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Sentient",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Sentient",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Sentient",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "Sentient",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 2.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 24px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "Sentient",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Thunder",
+        "fontSize": "122px",
+        "fontWeight": 300,
+        "lineHeight": 0.65
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 122px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Morganite",
+        "fontSize": "229px",
+        "fontWeight": 900,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 229px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "172": {
+      "$value": "172px",
+      "$type": "dimension",
+      "$description": "Spacing 172px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "cobalt-field": {
+      "$value": "#0029ff",
+      "$type": "color",
+      "$description": "Surface level 0: Darkest full-bleed band; used for primary action surface and dramatic section backgrounds"
+    },
+    "orange-field": {
+      "$value": "#ff4e27",
+      "$type": "color",
+      "$description": "Surface level 1: Mid-warmth full-bleed band; provides transition between the cobalt and yellow extremes"
+    },
+    "yellow-field": {
+      "$value": "#ffc700",
+      "$type": "color",
+      "$description": "Surface level 2: Lightest full-bleed band; the dominant canvas color, carries display headings in black"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://sick.agency",
+      "siteName": "SICK AGENCY",
+      "extractedAt": "2026-06-03T19:49:00.352Z",
+      "variant": "extended"
+    }
+  }
+}

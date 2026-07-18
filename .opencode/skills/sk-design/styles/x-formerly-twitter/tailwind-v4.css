@@ -1,0 +1,44 @@
+@theme {
+  /* Colors */
+  --color-x-blue: #1d9bf0;
+  --color-ink-black: #0f1419;
+  --color-graphite: #536471;
+  --color-fog-gray: #829aab;
+  --color-paper-white: #ffffff;
+  --color-mist-gray: #eff3f4;
+  --color-hairline-gray: #cfd9de;
+  --color-shadow-dust: #e0e4e7;
+  --color-charcoal: #4b4f53;
+
+  /* Typography */
+  --font-twitterchirp: 'TwitterChirp', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-times: 'Times', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.22;
+  --text-body: 15px;
+  --leading-body: 1.33;
+  --text-subheading: 20px;
+  --leading-subheading: 1.2;
+  --text-heading: 23px;
+  --leading-heading: 1.09;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-40: 40px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(0, 0, 0, 0.03) 0px 0px 2px 0px inset;
+  --shadow-sm: rgba(101, 119, 134, 0.2) 0px 0px 8px 0px, rgba(101, 119, 134, 0.25) 0px 1px 3px 1px;
+}

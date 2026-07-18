@@ -1,0 +1,187 @@
+{
+  "color": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Page canvas, primary surface, heading text on light zones — the dominant black that absorbs all surrounding elements"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — Inverse text on dark surfaces, hairline borders on dark zones, contrast punctuation against the black canvas"
+    },
+    "charcoal": {
+      "$value": "#252525",
+      "$type": "color",
+      "$description": "Charcoal — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "basis-grotesque-pro": {
+      "$value": "Basis Grotesque Pro",
+      "$type": "fontFamily",
+      "$description": "All functional copy: body text, metadata annotations, labels, nav, buttons, lists. The 350 weight (light) handles editorial captioning at 12px — the small annotations like 'EST 2006', 'BC, CA', '12:32 EDT' — while 400 handles body and interactive text at 16px. Slight -0.01em tracking tightens the grotesque into a precise, measured voice. This font does the quiet work; the serif does the talking."
+    },
+    "pp-eiko": {
+      "$value": "PP Eiko",
+      "$type": "fontFamily",
+      "$description": "Display headings only — the 88px ultra-light serif is the signature element. Weight 240 (near-hairline) is a dramatic anti-convention choice: most agencies use 400-500 serifs for authority; Metalab's whisper-weight communicates confidence through restraint, not volume. Tight 0.80 line-height and -0.02em tracking let letters nearly touch, creating a sculptural block of text."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "12px",
+        "fontWeight": 350,
+        "lineHeight": 1.76
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "12px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "16px",
+        "fontWeight": 350,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "16px",
+        "fontWeight": 350,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Basis Grotesque Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PP Eiko",
+        "fontSize": "88px",
+        "fontWeight": 240,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 88px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas — the entire site lives on black"
+    },
+    "charcoal": {
+      "$value": "#252525",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated panel, the single step of depth above the canvas"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Inverse surface for high-contrast zones and typographic inversion"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://metalab.com",
+      "siteName": "Metalab",
+      "extractedAt": "2026-06-03T20:13:14.715Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "color": {
+    "void": {
+      "$value": "#0d100d",
+      "$type": "color",
+      "$description": "Void — Page canvas — the near-black ground on which everything floats"
+    },
+    "midnight-surface": {
+      "$value": "#08102b",
+      "$type": "color",
+      "$description": "Midnight Surface — Elevated message cards and content surfaces — a slightly bluer lift off the Void"
+    },
+    "halo": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Halo — Primary text, heading strokes, and reverse-mode accents"
+    },
+    "hairline": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Hairline — Hairline borders, dividers, and card outlines — 1px strokes that architect the void"
+    }
+  },
+  "font": {
+    "tiktok-sans-variable": {
+      "$value": "TikTok Sans Variable",
+      "$type": "fontFamily",
+      "$description": "Headlines (32px) and body copy (24px) — the only voice on the page. Slight positive tracking (0.0150em) and the cv04 alternate glyph set soften the geometric grotesque into something more human. Variable weight axis available for whisper-to-emphasis range."
+    },
+    "system-ui-sans-serif": {
+      "$value": "system-ui sans-serif",
+      "$type": "fontFamily",
+      "$description": "Micro-labels, nav chrome, and small supporting text. 12px is the floor — nothing smaller."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "TikTok Sans Variable",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "TikTok Sans Variable",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    }
+  },
+  "spacing": {
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#0d100d",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the deep-space ground"
+    },
+    "midnight-surface": {
+      "$value": "#08102b",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card surface carrying the primary message"
+    },
+    "halo": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Reverse text and highlight moments"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://rally.space",
+      "siteName": "Rally",
+      "extractedAt": "2026-06-03T22:10:03.790Z",
+      "variant": "extended"
+    }
+  }
+}

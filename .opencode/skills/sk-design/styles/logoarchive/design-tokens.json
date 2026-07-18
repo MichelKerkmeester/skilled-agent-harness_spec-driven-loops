@@ -1,0 +1,322 @@
+{
+  "color": {
+    "canvas-charcoal": {
+      "$value": "#27272a",
+      "$type": "color",
+      "$description": "Canvas Charcoal — Page background, primary canvas surface"
+    },
+    "elevated-ink": {
+      "$value": "#18181b",
+      "$type": "color",
+      "$description": "Elevated Ink — Card surfaces, product window backgrounds, logo tiles — one step deeper than canvas for contrast"
+    },
+    "slate-surface": {
+      "$value": "#343538",
+      "$type": "color",
+      "$description": "Slate Surface — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "deep-void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Deep Void — Nav fills, deepest surface tone, pure black accents"
+    },
+    "near-black": {
+      "$value": "#0c0c0e",
+      "$type": "color",
+      "$description": "Near Black — List borders, hairline dividers, subtle structural edges"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary text, icons, borders, high-contrast elements — the dominant interface color"
+    },
+    "fog-gray": {
+      "$value": "#a8afb7",
+      "$type": "color",
+      "$description": "Fog Gray — Muted body text, secondary headings, subtle borders — readable but recessive"
+    },
+    "mist-gray": {
+      "$value": "#dadee4",
+      "$type": "color",
+      "$description": "Mist Gray — Light borders, disabled-state text, very subtle dividers"
+    },
+    "dim-stone": {
+      "$value": "#8c8c8d",
+      "$type": "color",
+      "$description": "Dim Stone — Placeholder/disabled surfaces, inactive list backgrounds"
+    },
+    "signal-yellow": {
+      "$value": "#fde533",
+      "$type": "color",
+      "$description": "Signal Yellow — Yellow outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "suisse-international": {
+      "$value": "Suisse International",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all UI text, body, navigation, buttons, and most headings"
+    },
+    "suisse-works-book": {
+      "$value": "Suisse Works Book",
+      "$type": "fontFamily",
+      "$description": "Italic display emphasis in hero and section headlines"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Suisse International",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Suisse International",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Suisse International",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Suisse International",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Suisse International",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Suisse International",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Suisse International",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Suisse International",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Suisse International",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Suisse International",
+        "fontSize": "65px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 65px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Suisse Works Book",
+        "fontSize": "65px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 65px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Suisse International",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 96px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Suisse Works Book",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 96px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "deep-void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Nav bar, deepest layered surfaces"
+    },
+    "near-black": {
+      "$value": "#0c0c0",
+      "$type": "color",
+      "$description": "Surface level 1: Structural borders and dividers"
+    },
+    "elevated-ink": {
+      "$value": "#18181b",
+      "$type": "color",
+      "$description": "Surface level 2: Logo tiles, product window interiors"
+    },
+    "canvas-charcoal": {
+      "$value": "#27272a",
+      "$type": "color",
+      "$description": "Surface level 3: Main page canvas, default surface"
+    },
+    "slate-surface": {
+      "$value": "#343538",
+      "$type": "color",
+      "$description": "Surface level 4: Ghost buttons, secondary cards, subtle elevation"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.logo-archive.org",
+      "siteName": "LogoArchive",
+      "extractedAt": "2026-06-03T22:05:16.175Z",
+      "variant": "extended"
+    }
+  }
+}

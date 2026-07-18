@@ -1,0 +1,347 @@
+{
+  "color": {
+    "signal-pink": {
+      "$value": "#ff0169",
+      "$type": "color",
+      "$description": "Signal Pink — Gradient origin — Instagram brand gradient start point, the chromatic anchor in the system"
+    },
+    "plasma-magenta": {
+      "$value": "#d300c5",
+      "$type": "color",
+      "$description": "Plasma Magenta — Gradient midpoint — bridges hot pink into ultraviolet, used in the brand gradient only"
+    },
+    "ultraviolet": {
+      "$value": "#7638fa",
+      "$type": "color",
+      "$description": "Ultraviolet — Gradient terminus — deep violet end of the Instagram brand gradient, the cool counterweight"
+    },
+    "hot-magenta": {
+      "$value": "#f689ff",
+      "$type": "color",
+      "$description": "Hot Magenta — Full-bleed color panel — left half of the hero split, the loudest single surface in the system"
+    },
+    "lavender-mist": {
+      "$value": "#c4a4f7",
+      "$type": "color",
+      "$description": "Lavender Mist — Full-bleed accent band — right half of the hero split and secondary color sections, softens the magenta"
+    },
+    "graphite": {
+      "$value": "#1c1e21",
+      "$type": "color",
+      "$description": "Graphite — Body text, button borders, list dividers, nav borders — the primary near-black for all text and hairline rules"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Specimen letterforms, Instagram camera icon outlines, high-contrast graphic moments — flat black with no warmth"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Content canvas, text on color panels, button text, input backgrounds — the neutral ground that lets color panels pop"
+    },
+    "hairline-gray": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Hairline Gray — Subtle button borders and disabled-state rules"
+    },
+    "link-indigo": {
+      "$value": "#385898",
+      "$type": "color",
+      "$description": "Link Indigo — Violet accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "instagram-sans": {
+      "$value": "Instagram Sans",
+      "$type": "fontFamily",
+      "$description": "The brand's custom geometric sans. Used for everything from 12px captions to 389px specimen hero letterforms. Single weight 400 across the entire scale — the typeface achieves personality through geometry and tight negative tracking rather than weight contrast. Letter-spacing tightens as size grows: -0.02em at body, -0.03em at 32–46px, -0.035em at 62px and above."
+    },
+    "instagram-sans-headline": {
+      "$value": "Instagram Sans Headline",
+      "$type": "fontFamily",
+      "$description": "Distinct variant for the 468px mega-specimen display — looser tracking (-0.006em) than the base family because at 468px the tight tracking would close letter apertures. Used only for the largest type specimen on the page."
+    },
+    "helvetica": {
+      "$value": "Helvetica",
+      "$type": "fontFamily",
+      "$description": "System fallback appearing at 12px (likely OS-rendered small text) and 224px (possible secondary specimen). Treat as fallback only — Instagram Sans is the intended primary at all sizes."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Instagram Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Instagram Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Instagram Sans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Instagram Sans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Instagram Sans",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Instagram Sans",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Instagram Sans",
+        "fontSize": "46px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Instagram Sans",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 62px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Instagram Sans",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Instagram Sans",
+        "fontSize": "121px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 121px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Instagram Sans",
+        "fontSize": "205px",
+        "fontWeight": 400,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 205px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "224px",
+        "fontWeight": 400,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 224px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Instagram Sans",
+        "fontSize": "224px",
+        "fontWeight": 400,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 224px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Instagram Sans",
+        "fontSize": "389px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 389px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "Instagram Sans Headline",
+        "fontSize": "468px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 468px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "36.3636px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary content canvas — body text, inline specimen captions, white-space ground between color panels"
+    },
+    "lavender-mist": {
+      "$value": "#c4a4f7",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed accent band — carries black icon specimens, second-most prominent color surface"
+    },
+    "hot-magenta": {
+      "$value": "#f689ff",
+      "$type": "color",
+      "$description": "Surface level 2: Hero color panel — the loudest surface, occupies the left half of the opening split"
+    },
+    "graphite": {
+      "$value": "#1c1e21",
+      "$type": "color",
+      "$description": "Surface level 3: Text and rule surface — appears as text color and border color, not a fill surface"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 4: Specimen and icon surface — large black letterforms and camera icon occupy their own visual plane"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://about.instagram.com/brand/type",
+      "siteName": "Instagram Sans Typeface",
+      "extractedAt": "2026-06-03T19:49:08.194Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,960 @@
+{
+  "source": "https://styles.refero.design/style/f9221afc-f5cb-4de8-89cd-40172e765124",
+  "uuid": "f9221afc-f5cb-4de8-89cd-40172e765124",
+  "name": "Home",
+  "northStar": "Sunlit eucalyptus grove on warm parchment — the design rests on a cream page where ink-black type and a single electric yellow accent do all the talking.",
+  "capturedAt": "2026-07-18T07:27:20.527Z",
+  "meta": {
+    "url": "https://www.airtree.vc",
+    "siteName": "Home",
+    "extractedAt": "2026-06-03T21:07:46.701Z",
+    "durationMs": 27208,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 933,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #ffff48 only for filled primary CTAs — it's the system's only saturated color and its power comes from scarcity.",
+      "Set hero headlines in Prody at 131px with line-height 1.15; let the size do the work, never bold the weight.",
+      "Apply 37px border-radius to all content cards; 18px to buttons; 8px to inputs and nav — this three-tier radius is the system.",
+      "Build all text-heavy pages on the #f7f6e3 canvas with #262d29 type; never invert the page background within a light-mode page.",
+      "Use SuisseIntl Book at 13px for nav, links, and input text; reserve SuisseIntl 500/600 for emphasized body and card titles.",
+      "Space sections with 75–112px vertical gaps to let the cream breathe; dense blocks fight the editorial language.",
+      "Render all portfolio company logos in monochrome #262d29 — color logos break the system's two-tone discipline."
+    ],
+    "donts": [
+      "Never introduce a second saturated color; if something needs emphasis, use the yellow or a weight change, not a new hue.",
+      "Never use #ffff48 for body text, icons, or decorative fills — it is a button color only.",
+      "Never set display type under 80px; Prody at 33px or below loses its editorial character and reads as body text.",
+      "Don't add box-shadow to cards or buttons; the system relies on border-radius and background contrast, not elevation.",
+      "Don't place photography on a white background — always carry the #f7f6e3 warmth behind images to maintain the paper feel.",
+      "Don't use gradients on buttons, cards, or page backgrounds; the only gradient in the system is the hero's subtle sky-to-cream wash.",
+      "Don't bold Prody at 131px — its 400 weight is the brand voice; adding weight flattens the contrast with the body grotesque."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f7f6e3",
+        "name": "Parchment Cream",
+        "role": "Page canvas, card surfaces, bordered containers — near-gray cream that warms the entire interface and gives the whole site its paper-like calm; Outlined/ghost action borders, pill outlines, and interactive rings that echo the canvas tone — only visible against darker overlays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#262d29",
+        "name": "Ink Black",
+        "role": "Primary text, navigation, body copy, card borders, icon strokes — the only structural color, used for hairline definition and all readable content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffff48",
+        "name": "Electric Lemon",
+        "role": "Filled CTA buttons, active states, standout badges — a single saturated yellow that breaks the cream/ink calm to signal action; the ratio against #262d29 is 13.2:1 AAA",
+        "group": "brand"
+      }
+    ],
+    "layout": "Max-width 1280px centered, with sections using 75–112px vertical gaps to create editorial breathing room. The hero is a full-bleed atmospheric band (subtle blue-to-cream wash) with a centered Prody headline at 131px, then a horizontally scrollable card carousel. The portfolio section alternates between a full-width image carousel with edge-clipped photos and a monochrome logo strip centered beneath. Program/promotional cards are single-column text blocks stacked vertically with generous internal padding (37px). The testimonial section is a single centered text column, max-width ~720px, with carousel arrows directly below. Navigation is a minimal top bar with a left-aligned wordmark, centered link group, and right-aligned pill CTA — no sidebar, no mega-menu, no sticky shadow.",
+    "imagery": "Photography is documentary and naturalistic: candid founder walks in botanical settings, team groups in real environments, no studio lighting or lifestyle staging. Images are contained within 37px-rounded cards, edge-to-edge, with no text overlays competing. The hero uses a subtle sky-to-cream atmospheric wash with scattered organic dot decorations. No illustrations, no 3D renders, no abstract graphics — all visual energy comes from real photography and the oversized Prody type. Logos are wordmark-only, monochrome, sized to read as a calm horizontal strip rather than a wall of partners.",
+    "similar": [
+      {
+        "why": "Same cream-paper canvas, oversized editorial display type, and monochrome two-tone palette with a single saturated accent",
+        "business": "Blackbird VC"
+      },
+      {
+        "why": "Spacious editorial layout with large display serifs, photographic content cards, and a restrained cream-and-ink palette",
+        "business": "Index Ventures"
+      },
+      {
+        "why": "Generous whitespace, large border-radius cards, and a confident single-accent approach to CTA buttons",
+        "business": "Accel"
+      },
+      {
+        "why": "Editorial typography with oversized display heads, cream/ink color discipline, and a minimal nav bar with wordmark + link columns",
+        "business": "Crane Venture Partners"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "8px",
+        "cards": "37px",
+        "pills": "9999px",
+        "buttons": "18px"
+      },
+      "elementGap": "9-20px",
+      "sectionGap": "75-112px",
+      "cardPadding": "37px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#f7f6e3",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, section fills, card surfaces"
+      },
+      {
+        "hex": "#f7f6e3",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Portfolio cards, program cards, testimonial blocks — same tone as canvas, defined by radius and padding"
+      },
+      {
+        "hex": "#262d29",
+        "name": "Ink Surface",
+        "level": 2,
+        "purpose": "Dark mode blocks, navigation bars, footer on dark sections — used sparingly as a full-bleed invert"
+      },
+      {
+        "hex": "#ffff48",
+        "name": "Accent Surface",
+        "level": 3,
+        "purpose": "Filled CTA buttons only — never as a section or card background"
+      }
+    ],
+    "northStar": "Sunlit eucalyptus grove on warm parchment — the design rests on a cream page where ink-black type and a single electric yellow accent do all the talking.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "heading-sm",
+        "size": 21,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "heading",
+        "size": 33,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "heading-lg",
+        "size": 42,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "display",
+        "size": 131,
+        "lineHeight": 1.15
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Statement",
+        "role": "Page-opening headline block",
+        "description": "Cream canvas with a centered Prody display headline at 131px, line-height 1.15, in #262d29. Optional subtext at 19px SuisseIntl 400. Sits inside a max-width ~960px container with generous top/bottom padding (~112px). No background fill — the cream is the hero."
+      },
+      {
+        "name": "Pill CTA — Filled",
+        "role": "Primary action button",
+        "description": "Background #ffff48, text #262d29, border-radius 9999px (pill). Padding 8px 18px. SuisseIntl 400 at 14px. The only filled button in the system — reserved for highest-priority actions. Contrast 13.2:1 against the yellow fill."
+      },
+      {
+        "name": "Pill CTA — Ghost",
+        "role": "Secondary action button",
+        "description": "Transparent background, 1px border in #f7f6e3 or #262d29 at low opacity, border-radius 9999px, padding 8px 18px, SuisseIntl Book 400 at 13px, text in #262d29. Used for navigation-adjacent actions like 'Get in touch'."
+      },
+      {
+        "name": "Portfolio Card",
+        "role": "Image-first content card in a horizontal carousel",
+        "description": "Border-radius 37px, no visible border, cream background or image fill. Image fills the card edge-to-edge with the same 37px clip. Overlay label bottom-left in SuisseIntl 400 at 14px #f7f6e3 (over photography) or #262d29 (over solid). Cards sit in a horizontally scrollable row with arrow controls."
+      },
+      {
+        "name": "Carousel Arrow Button",
+        "role": "Navigation control for card carousels",
+        "description": "40×40px square button, border-radius 8px, 1px border in #262d29, transparent fill. Arrow icon centered, stroke 1.5px. Hover: background #262d29, arrow inverts to #f7f6e3."
+      },
+      {
+        "name": "Logo Strip",
+        "role": "Portfolio company wordmarks",
+        "description": "Single horizontal row of grayscale company logos in #262d29 at uniform visual weight. Logos sit at roughly 40px cap height with ~75px horizontal spacing. No lockups, no color logos — all rendered in the single ink tone."
+      },
+      {
+        "name": "Testimonial Block",
+        "role": "Founder quote with attribution",
+        "description": "Centered text block, max-width ~720px. Attribution line at 13px SuisseIntl 400 #262d29, space, then the quote at 28px SuisseIntl Book 400 #262d29 with curly typographic quotes. Company name + heart icon below at 14px. Two carousel arrows centered beneath."
+      },
+      {
+        "name": "Top Navigation",
+        "role": "Site-wide primary nav",
+        "description": "Fixed top bar, cream background, no border or shadow. Logo 'airtree' at far left in SuisseIntl 400 ~21px #262d29. Three-column link group centered or right-aligned at 13px SuisseIntl Book 400, 9px gap, each link a small circle bullet + label. CTA button at far right."
+      },
+      {
+        "name": "Nav Link Item",
+        "role": "Individual navigation entry",
+        "description": "SuisseIntl Book 400 at 13px #262d29, preceded by a 4px circle outline dot in #262d29. No underline, no hover background change beyond subtle opacity. Padding 8px vertical."
+      },
+      {
+        "name": "Portfolio Program Card",
+        "role": "Text-and-button promotional card",
+        "description": "Cream background, 37px border-radius, padding 37px. Headline at SuisseIntl 600 21-33px #262d29. Yellow pill CTA below. No image — this is a textual card variant for programs/initiatives."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer with links and legal",
+        "description": "Cream background, 37px padding, single row of text links in 13px SuisseIntl Book 400 #262d29 separated by spacing. No dividers, no social icons beyond a simple wordmark repetition."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines — the signature voice. Used at 131px for the hero statement and 42px for secondary display; the heavy serif counters against the flat grotesque body to create editorial tension. Weight stays at 400; size alone carries the authority.",
+        "sizes": "42px, 131px",
+        "family": "Prody",
+        "weight": "400",
+        "lineHeight": "1.15",
+        "substitute": "GT Sectra Display, Tiempos Headline, Canela, Playfair Display"
+      },
+      {
+        "role": "Body copy, card titles, subheadings, UI labels — the working typeface. Weight 500 for emphasized text, 600 for card titles, 400 default. Sizes step 13→14→16→19→21→33→42 covering caption through heading.",
+        "sizes": "13px, 14px, 16px, 19px, 21px, 33px, 42px",
+        "family": "SuisseIntl",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.15",
+        "substitute": "Inter, Söhne, Neue Haas Grotesk, Switzer"
+      },
+      {
+        "role": "Navigation links, form input text, small button labels — a lighter cut of the same family for quieter interactive surfaces",
+        "sizes": "13px, 28px",
+        "family": "SuisseIntl Book",
+        "weight": "400",
+        "lineHeight": "1.15",
+        "substitute": "Inter, Söhne, Neue Haas Grotesk"
+      }
+    ],
+    "description": "Airtree's design language reads as a sunlit editorial spread on warm parchment: a cream canvas (#f7f6e3) carries confident charcoal type, with a single electric yellow accent that punctuates rather than decorates. Prody's oversized display serif at 131px is the brand's loudest voice — everything else is deliberate whitespace and a clean grotesque. Components stay light and paper-like: 37px-rounded cards, outlined ghost controls, pill-shaped yellow CTAs, and hairline borders that define structure without weight. The system avoids heavy elevation, gradients, or saturated color fields; it relies on generous spacing, large radii, and a calm two-tone palette to let photography and quoted founders carry the emotional weight. Color is rationed: a cream page, ink-black type, and one jolt of yellow — no decorative gradients, no multi-hue branding.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f9221afc-f5cb-4de8-89cd-40172e765124#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Home design system\",\"item\":\"https://styles.refero.design/style/f9221afc-f5cb-4de8-89cd-40172e765124\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f9221afc-f5cb-4de8-89cd-40172e765124#style-reference\",\"name\":\"Home design system reference\",\"headline\":\"Home design system | Refero Styles\",\"description\":\"Explore Home's light Fintech design system: Parchment Cream #f7f6e3, Ink Black #262d29 colors, Prody, SuisseIntl typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f9221afc-f5cb-4de8-89cd-40172e765124\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f9221afc-f5cb-4de8-89cd-40172e765124\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Home\",\"url\":\"https://www.airtree.vc\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f9221afc-f5cb-4de8-89cd-40172e765124#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c704a6c2-c9e1-43e9-b5cc-8974bf521350.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c704a6c2-c9e1-43e9-b5cc-8974bf521350.jpg\",\"caption\":\"Screenshot of Home\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c704a6c2-c9e1-43e9-b5cc-8974bf521350.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Home design system\",\"Home website design\",\"Home colors\",\"Home typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Parchment Cream\",\"Ink Black\",\"Electric Lemon\",\"Prody\",\"SuisseIntl\",\"SuisseIntl Book\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Home design system\"},{\"@type\":\"Thing\",\"name\":\"Home website design\"},{\"@type\":\"Thing\",\"name\":\"Home colors\"},{\"@type\":\"Thing\",\"name\":\"Home typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-05-10T22:32:03.940Z\",\"dateModified\":\"2026-05-10T22:32:03.940Z\"}]}19:T56f,## Quick Color Reference\n- Canvas / page background: #f7f6e3\n- Primary text / ink: #262d29\n- Card / content borders: #f7f6e3 (on cream) or #262d29 (on dark)\n- Accent: #ffff48 (sparingly)\n- primary action: #ffff48 (filled action)\n\n## Example Component Prompts\n1. **Hero Statement** — Cream canvas (#f7f6e3) with optional sky-to-cream wash overlay. Centered headline: Prody 400 at 131px, line-height 1.15, color #262d29. Optional subtext: SuisseIntl 400 at 19px, #262d29. Max-width 960px, vertical padding 112px top/bottom.\n\n2. **Portfolio Card** — Image fills the card edge-to-edge, border-radius 37px, no border. Bottom-left label overlay: SuisseIntl 400 at 14px, #f7f6e3 text with subtle shadow over photography. Cards sit in a horizontal scroll row, 28px gap.\n\n3. **Pill CTA (filled)** — Background #ffff48, text #262d29, border-radius 9999px, padding 8px 18px, font SuisseIntl 400 at 14px. One per section maximum.\n\n4. **Testimonial Block** — Centered, max-width 720px. Attribution line: SuisseIntl 400 at 13px #262d29. Quote: SuisseIntl Book 400 at 28px #262d29 with curly typographic quotes. Company name + 12px heart icon below in #262d29. Two 40×40px ghost arrow buttons (8px radius, 1px #262d29 border) centered 37px below.\n\n5. Create a Primary Action Button: #ffff48 background, #262d29 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA."
+      },
+      {
+        "title": "Decorative Dot System",
+        "content": "Scattered organic dots appear across the hero and section transitions as an ambient decorative layer. They float at varying sizes (4–12px diameter) in a single warm accent hue, distributed asymmetrically to create visual rhythm without pattern. The dots are purely atmospheric — they carry no data, no link, no interaction. On the cream canvas they read as confetti or pollen caught in light; their randomness is the point. Treat them as a page-layer decoration, not a component, and never replicate the pattern on every page — restrict them to hero and transitional sections."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#262d29",
+          "oklch": {
+            "c": 0.012162827571241541,
+            "h": 160.5307131856439,
+            "l": 0.2888975982043393
+          },
+          "contexts": [
+            "other",
+            "badge",
+            "nav",
+            "icon",
+            "image",
+            "heading",
+            "hero",
+            "button",
+            "card",
+            "link"
+          ],
+          "frequency": 2731,
+          "confidence": 1,
+          "prominence": 98308247.0257359,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 7,
+            "nav/color": 39,
+            "card/color": 1,
+            "hero/color": 1,
+            "icon/color": 10,
+            "link/color": 2,
+            "other/fill": 4,
+            "badge/color": 9,
+            "image/color": 57,
+            "other/color": 412,
+            "button/color": 5,
+            "heading/color": 3,
+            "nav/borderColor": 156,
+            "card/borderColor": 4,
+            "hero/borderColor": 4,
+            "icon/borderColor": 40,
+            "link/borderColor": 8,
+            "badge/borderColor": 36,
+            "image/borderColor": 228,
+            "other/borderColor": 1640,
+            "button/borderColor": 16,
+            "heading/borderColor": 12,
+            "card/backgroundColor": 34,
+            "link/backgroundColor": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f7f6e3",
+          "oklch": {
+            "c": 0.024986028514874227,
+            "h": 104.40461933967048,
+            "l": 0.9688436146554155
+          },
+          "contexts": [
+            "other",
+            "card",
+            "image",
+            "link",
+            "icon",
+            "input",
+            "button",
+            "badge"
+          ],
+          "frequency": 1933,
+          "confidence": 1,
+          "prominence": 94016467.17713387,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 118,
+            "icon/color": 2,
+            "link/color": 21,
+            "badge/color": 3,
+            "image/color": 41,
+            "input/color": 1,
+            "other/color": 197,
+            "card/borderColor": 472,
+            "icon/borderColor": 8,
+            "link/borderColor": 84,
+            "badge/borderColor": 12,
+            "image/borderColor": 164,
+            "input/borderColor": 4,
+            "other/borderColor": 796,
+            "button/borderColor": 4,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#ffff48",
+          "oklch": {
+            "c": 0.1908752840425674,
+            "h": 109.48618349520092,
+            "l": 0.9701017495664811
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 12104,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.047537512418093814,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 13.19,
+          "background": "#ffff48",
+          "foreground": "#262d29"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.92,
+          "background": "#f7f6e3",
+          "foreground": "#262d29"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.02,
+          "background": "#ffff48",
+          "foreground": "#f7f6e3"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 37.44,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 30
+        },
+        {
+          "value": 18.72,
+          "contexts": [
+            "button",
+            "card",
+            "link"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 8.424,
+          "contexts": [
+            "nav",
+            "link",
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 9
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "link",
+            "input"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "nav",
+            "other",
+            "link",
+            "card"
+          ],
+          "frequency": 91,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "link",
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 57,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "columnGap",
+            "rowGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "columnGap|other",
+            "rowGap|other",
+            "marginTop|other",
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "rowGap|card",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 37,
+          "contexts": [
+            "card",
+            "other",
+            "badge"
+          ],
+          "frequency": 177,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other",
+            "marginTop|badge"
+          ]
+        },
+        {
+          "value": 75,
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|badge",
+            "columnGap|badge",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 185,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Suisseintl",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 874,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Prody",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 31,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Suisseintl Book",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 17,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Suisseintl Book",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "link",
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Suisseintl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Suisseintl",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Suisseintl",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Suisseintl",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Suisseintl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "badge",
+            "nav",
+            "icon",
+            "image",
+            "hero",
+            "button",
+            "card",
+            "link"
+          ],
+          "frequency": 830,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Suisseintl",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Suisseintl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Suisseintl Book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "Suisseintl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Prody",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Suisseintl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 131,
+          "family": "Prody",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/69ac74d5-0420-4a6a-8343-9d65d7a68adb.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c704a6c2-c9e1-43e9-b5cc-8974bf521350.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f9221afc-f5cb-4de8-89cd-40172e765124#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Home design system\",\"item\":\"https://styles.refero.design/style/f9221afc-f5cb-4de8-89cd-40172e765124\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f9221afc-f5cb-4de8-89cd-40172e765124#style-reference\",\"name\":\"Home design system reference\",\"headline\":\"Home design system | Refero Styles\",\"description\":\"Explore Home's light Fintech design system: Parchment Cream #f7f6e3, Ink Black #262d29 colors, Prody, SuisseIntl typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f9221afc-f5cb-4de8-89cd-40172e765124\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f9221afc-f5cb-4de8-89cd-40172e765124\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Home\",\"url\":\"https://www.airtree.vc\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f9221afc-f5cb-4de8-89cd-40172e765124#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c704a6c2-c9e1-43e9-b5cc-8974bf521350.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c704a6c2-c9e1-43e9-b5cc-8974bf521350.jpg\",\"caption\":\"Screenshot of Home\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c704a6c2-c9e1-43e9-b5cc-8974bf521350.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Home design system\",\"Home website design\",\"Home colors\",\"Home typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Parchment Cream\",\"Ink Black\",\"Electric Lemon\",\"Prody\",\"SuisseIntl\",\"SuisseIntl Book\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Home design system\"},{\"@type\":\"Thing\",\"name\":\"Home website design\"},{\"@type\":\"Thing\",\"name\":\"Home colors\"},{\"@type\":\"Thing\",\"name\":\"Home typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-05-10T22:32:03.940Z\",\"dateModified\":\"2026-05-10T22:32:03.940Z\"}]}19:T56f,## Quick Color Reference\n- Canvas / page background: #f7f6e3\n- Primary text / ink: #262d29\n- Card / content borders: #f7f6e3 (on cream) or #262d29 (on dark)\n- Accent: #ffff48 (sparingly)\n- primary action: #ffff48 (filled action)\n\n## Example Component Prompts\n1. **Hero Statement** — Cream canvas (#f7f6e3) with optional sky-to-cream wash overlay. Centered headline: Prody 400 at 131px, line-height 1.15, color #262d29. Optional subtext: SuisseIntl 400 at 19px, #262d29. Max-width 960px, vertical padding 112px top/bottom.\n\n2. **Portfolio Card** — Image fills the card edge-to-edge, border-radius 37px, no border. Bottom-left label overlay: SuisseIntl 400 at 14px, #f7f6e3 text with subtle shadow over photography. Cards sit in a horizontal scroll row, 28px gap.\n\n3. **Pill CTA (filled)** — Background #ffff48, text #262d29, border-radius 9999px, padding 8px 18px, font SuisseIntl 400 at 14px. One per section maximum.\n\n4. **Testimonial Block** — Centered, max-width 720px. Attribution line: SuisseIntl 400 at 13px #262d29. Quote: SuisseIntl Book 400 at 28px #262d29 with curly typographic quotes. Company name + 12px heart icon below in #262d29. Two 40×40px ghost arrow buttons (8px radius, 1px #262d29 border) centered 37px below.\n\n5. Create a Primary Action Button: #ffff48 background, #262d29 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA."
+}

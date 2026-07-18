@@ -1,0 +1,489 @@
+{
+  "color": {
+    "jade-cta": {
+      "$value": "#00c27a",
+      "$type": "color",
+      "$description": "Jade CTA — Primary CTA buttons, active links, key interactive highlights — jade against black in the hero and against white in body sections maintains equal visual force without changing hue"
+    },
+    "mint-surface": {
+      "$value": "#b4f5c8",
+      "$type": "color",
+      "$description": "Mint Surface — Card backgrounds, feature highlight areas — pastel counterpoint to jade that reads as 'selected' or 'active' without the full saturation of CTA jade"
+    },
+    "forest": {
+      "$value": "#00843f",
+      "$type": "color",
+      "$description": "Forest — Card accent backgrounds, deep green surface variant"
+    },
+    "badge-leaf": {
+      "$value": "#d5f8e0",
+      "$type": "color",
+      "$description": "Badge Leaf — Blog/category badge backgrounds — near-white green tint that signals categorization without demanding attention"
+    },
+    "badge-text": {
+      "$value": "#007b3b",
+      "$type": "color",
+      "$description": "Badge Text — Badge text and border on leaf background — dark enough on #d5f8e0 to pass contrast without going full black"
+    },
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Hero background, primary text, button borders, icon fills — the dominant surface and text color simultaneously; this dual role is the system's core tension"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Section backgrounds, card surfaces, nav background"
+    },
+    "fog": {
+      "$value": "#f3f3f3",
+      "$type": "color",
+      "$description": "Fog — Secondary button fill, subtle input backgrounds"
+    },
+    "ash": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Ash — Card background variant, divider surfaces"
+    },
+    "cool-grey": {
+      "$value": "#dce1e5",
+      "$type": "color",
+      "$description": "Cool Grey — Borders, nav dividers, separator lines"
+    },
+    "slate": {
+      "$value": "#8c8c8c",
+      "$type": "color",
+      "$description": "Slate — Subheadings, secondary headings, muted heading text"
+    },
+    "stone": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Stone — Body secondary text, muted links"
+    },
+    "graphite": {
+      "$value": "#4f5457",
+      "$type": "color",
+      "$description": "Graphite — Input border color (dark variant)"
+    },
+    "ink": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Ink — Link text, image overlay text"
+    },
+    "charcoal": {
+      "$value": "#626262",
+      "$type": "color",
+      "$description": "Charcoal — Nav secondary elements, supplementary UI chrome"
+    }
+  },
+  "font": {
+    "stk-bureau": {
+      "$value": "STK Bureau",
+      "$type": "fontFamily",
+      "$description": "All display and hero headlines exclusively. Weight 300 at 70-100px with -0.04 to -0.05em tracking is the signature voice — letters crowd each other at scale, creating mass through density rather than weight. Nothing else in the system uses this font."
+    },
+    "abc-social": {
+      "$value": "ABC Social",
+      "$type": "fontFamily",
+      "$description": "Everything else: nav (14px/500), body copy (16-18px/400), buttons (14-16px/500-600), badges (12px/500), eyebrow labels (11px/500 at +0.175em tracking). The +0.175-0.25em tracking on small caps/eyebrows is the only place the system opens up letter-spacing — everywhere else it's tight or default."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "11px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "22px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "STK Bureau",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "STK Bureau",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "ABC Social",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "STK Bureau",
+        "fontSize": "54px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "STK Bureau",
+        "fontSize": "70px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 70px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "STK Bureau",
+        "fontSize": "80px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "STK Bureau",
+        "fontSize": "100px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 100px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "192": {
+      "$value": "192px",
+      "$type": "dimension",
+      "$description": "Spacing 192px"
+    },
+    "208": {
+      "$value": "208px",
+      "$type": "dimension",
+      "$description": "Spacing 208px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "26.4px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.08) 0px 4px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "subtle": {
+      "$value": "rgba(11, 41, 70, 0.32) 0px 0px 1px 0px, rgba(42, 82, 121, 0.08) 0px 24px 20px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "hero-void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed hero section background, the page's dramatic opening"
+    },
+    "page-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page and section background after hero"
+    },
+    "ash-surface": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Surface level 2: Card and tile backgrounds for grouping without elevation"
+    },
+    "elevated-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Content cards with 4px shadow — only layer using drop shadows for grouping"
+    },
+    "overlay-float": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 4: AI chat widget and product UI cards floating over sections with blue-tinted composite shadow"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://mural.co",
+      "siteName": "Mural",
+      "extractedAt": "2026-04-11T19:05:34.543Z",
+      "variant": "extended"
+    }
+  }
+}

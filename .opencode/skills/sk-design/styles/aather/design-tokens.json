@@ -1,0 +1,317 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Neutral form states, badge text, and quiet UI feedback where color should stay understated."
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page background, card surfaces, reversed text on dark — the default canvas. Never tinted, never warmed; warmth arrives only through photography"
+    },
+    "mist": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Mist — Alternate canvas band, subtle section wash — used to separate content blocks without introducing a visible border line"
+    },
+    "ash": {
+      "$value": "#e8e8e8",
+      "$type": "color",
+      "$description": "Ash — Footer and secondary dividers — the lightest perceptible rule, reserved for structural seams that must recede"
+    },
+    "graphite": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Graphite — Muted secondary text, low-emphasis borders, tertiary metadata. Pairs with body and link borders at lower visual weight than Ink"
+    },
+    "warm-sand": {
+      "$value": "#dec39d",
+      "$type": "color",
+      "$description": "Warm Sand — Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "gestura-text-extra-light": {
+      "$value": "Gestura Text Extra Light",
+      "$type": "fontFamily",
+      "$description": "Gestura Text Extra Light — detected in extracted data but not described by AI"
+    },
+    "gestura-text": {
+      "$value": "Gestura Text",
+      "$type": "fontFamily",
+      "$description": "Primary editorial face for body copy, links, nav, cards, and the 35px display overlay heading. The use of Extra Light (100) and Thin (200) weights throughout is a signature anti-convention — most luxury e-commerce uses 300–400 minimum. Here the type is intentionally thin enough to feel like it could disappear, forcing the photography to lead."
+    },
+    "untitled-sans": {
+      "$value": "Untitled Sans",
+      "$type": "fontFamily",
+      "$description": "Workhorse sans for buttons, inputs, list items, and supporting UI chrome. The generous tracking (up to 0.056em) transforms a clean geometric sans into something that reads as typeset and intentional — labels feel engraved rather than typed. The 0.78 line-height at 9px is display micro-copy collapsed to its tightest possible rhythm."
+    },
+    "gestura-text-light": {
+      "$value": "Gestura Text Light",
+      "$type": "fontFamily",
+      "$description": "Gestura Text Light — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Untitled Sans Light",
+        "fontSize": "9px",
+        "fontWeight": 100,
+        "lineHeight": 0.78
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Untitled Sans Regular",
+        "fontSize": "11px",
+        "fontWeight": 200,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Untitled Sans Regular",
+        "fontSize": "11px",
+        "fontWeight": 200,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Untitled Sans Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Untitled Sans Light",
+        "fontSize": "13px",
+        "fontWeight": 100,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Gestura Text Extra Light",
+        "fontSize": "14px",
+        "fontWeight": 200,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Untitled Sans Light",
+        "fontSize": "14px",
+        "fontWeight": 200,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Untitled Sans Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Untitled Sans Light",
+        "fontSize": "14px",
+        "fontWeight": 200,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Untitled Sans Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Gestura Text Extra Light",
+        "fontSize": "16px",
+        "fontWeight": 100,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Gestura Text Light",
+        "fontSize": "16px",
+        "fontWeight": 200,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Untitled Sans Light",
+        "fontSize": "16px",
+        "fontWeight": 200,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Untitled Sans Light",
+        "fontSize": "18px",
+        "fontWeight": 200,
+        "lineHeight": 1.39
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Untitled Sans Light",
+        "fontSize": "18px",
+        "fontWeight": 200,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Gestura Text Extra Light",
+        "fontSize": "20px",
+        "fontWeight": 100,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Untitled Sans Light",
+        "fontSize": "20px",
+        "fontWeight": 200,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Untitled Sans Light",
+        "fontSize": "24px",
+        "fontWeight": 200,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Gestura Text Thin",
+        "fontSize": "35px",
+        "fontWeight": 200,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 35px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page canvas and product backgrounds — the base on which everything else floats."
+    },
+    "mist": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Surface level 1: Alternate section wash for content blocks that need separation without a visible border."
+    },
+    "warm-sand": {
+      "$value": "#dec39d",
+      "$type": "color",
+      "$description": "Surface level 2: Editorial accent surface — appears within hero and product photography, never as a UI fill."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://aather.com",
+      "siteName": "AATHER",
+      "extractedAt": "2026-06-03T17:05:48.371Z",
+      "variant": "extended"
+    }
+  }
+}

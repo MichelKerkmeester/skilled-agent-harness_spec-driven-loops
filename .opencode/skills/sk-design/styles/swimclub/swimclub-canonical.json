@@ -1,0 +1,1300 @@
+{
+  "source": "https://styles.refero.design/style/d7a73e16-4b3e-4b9d-aef2-2c31a9db7457",
+  "uuid": "d7a73e16-4b3e-4b9d-aef2-2c31a9db7457",
+  "name": "SwimClub",
+  "northStar": "Clinical dossier behind pixelated LCD readouts",
+  "capturedAt": "2026-07-18T09:04:25.715Z",
+  "meta": {
+    "url": "https://swimclub.co",
+    "siteName": "SwimClub",
+    "extractedAt": "2026-06-03T20:51:41.003Z",
+    "durationMs": 38273,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 631,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #ff9e00 only as a full-bleed panel background for the announcement bar and statistic sections — never as a button fill, icon tint, or border.",
+      "Reserve the Swimclub pixel font for the wordmark and statistic numerals at 90px or larger; it loses its character below that scale.",
+      "Set Px Grotesk headlines tight — line-height 1.05 at 52–74px so multi-line stacks read as a solid block, not airy type.",
+      "Use Apercu Mono Pro for every uppercase label, navigation item, and small data string; reserve Px Grotesk for body and headings.",
+      "Keep all corners at 0px radius — sharp edges are the system's identity. Use 1px black or #cccccc dashed borders to separate sections.",
+      "Alternate surface levels deliberately: white → #d2dce1 → #ff9e00 → #020507 to create the editorial rhythm.",
+      "Use 120px vertical padding between major sections and 32px inside cards."
+    ],
+    "donts": [
+      "Don't round corners on cards, buttons, tags, or images — radius is 0px across the system.",
+      "Don't use orange for buttons, links, or icons — it belongs only on full-bleed section backgrounds.",
+      "Don't set the Swimclub pixel font below 90px or use it for body copy — it will become illegible.",
+      "Don't use shadows or elevation effects — the system relies on flat surfaces and hairline borders, not depth.",
+      "Don't mix the monospace and pixel fonts in the same size range — Apercu Mono is for micro-labels (12–17px), Swimclub is for giant readouts (90px+).",
+      "Don't fill CTA buttons with color — keep them outlined (black border on light, white border on dark) with a transparent interior.",
+      "Don't introduce new chromatic colors — the system is intentionally monochrome plus one orange."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#ff9e00",
+        "name": "Tabloid Orange",
+        "role": "Full-bleed section backgrounds (announcement bar, statistic panels) — the only chromatic brand color, used at maximum saturation to break the otherwise monochrome flow",
+        "group": "brand"
+      },
+      {
+        "hex": "#020507",
+        "name": "Deep Capsule Navy",
+        "role": "Hero gradient terminal color and product photograph backgrounds — near-black with a blue undertone, not a pure black",
+        "group": "brand",
+        "gradient": "linear-gradient(rgb(106, 144, 176), rgb(65, 115, 158) 30%, rgb(18, 58, 92) 97%, rgb(2, 5, 7) 139%)"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, hairline borders, navigation dividers, card outlines, button text — the dominant structural color across the entire interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page background, card surfaces, product image overlays, button fills, and text on dark or orange panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d2dce1",
+        "name": "Cool Gray",
+        "role": "Muted UI surface for disabled controls, low-emphasis panels, and placeholder blocks.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Iron Gray",
+        "role": "Secondary body text and low-emphasis borders — the mid-tone of the neutral scale",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Ash",
+        "role": "Tertiary borders, disabled state outlines, muted icon strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Smoke",
+        "role": "Dividers, dashed-border accent on feature cards, subtle separator lines",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Page is a vertical stack of full-bleed bands rather than a max-width container flow. The hero is full-bleed dark; subsequent sections alternate between max-width-1200px centered content (white or #d2dce1) and edge-to-edge accent panels (orange, black). The nav is a thin typographic strip — no background bar, no shadow, no border. Hero is a 50/50 split: left text block, right product photograph on a gradient. Below the fold, the pattern is: centered headline band → 4-column media bar → centered headline band → 4-column orange stat panel → 2-column feature list with dark product image in the middle. Section gaps are 120px; card padding is 32px. Navigation is minimal top-only with no sticky behavior evident.",
+    "imagery": "Photography is reserved for the product: golden-amber capsules and softgel pills shot against dark blue-to-black gradient backgrounds with dramatic studio lighting. Treatment is high-contrast, moody, and product-only — no lifestyle imagery, no people, no context. The pills are the heroes, always isolated, always glowing. Imagery occupies roughly 50% of the hero block and the dedicated product photograph bands; the rest of the page is text and data.",
+    "similar": [
+      {
+        "why": "Same clinical-supplement editorial language: monochrome canvas, single full-bleed accent color, monospace data labels, oversized statistic numerals as the visual hero",
+        "business": "Athletic Greens / AG1"
+      },
+      {
+        "why": "Same minimal monochrome palette with one warm accent, hairline borders, monospace ingredient lists, and product photography that dominates the dark hero",
+        "business": "Ritual Vitamins"
+      },
+      {
+        "why": "Same pixel/digital display treatment for statistics and a clean grotesque body — the contrast between clinical sans-serif and retro-bitmap numerals is a shared signature",
+        "business": "Brilliant (brilliant.org)"
+      },
+      {
+        "why": "Same dark full-bleed hero with centered white headline, achromatic body, and a single saturated accent (orange for SwimClub, red for WHOOP) used as a section punctuation rather than button color",
+        "business": "WHOOP"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "4px",
+      "sectionGap": "120px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#d2dce1",
+        "name": "Canvas Gray",
+        "level": 0,
+        "purpose": "Outermost page background between major sections, footer band — cool blue-gray that sets a clinical mood"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Primary content surface — product cards, media bar, feature blocks, body sections"
+      },
+      {
+        "hex": "#ff9e00",
+        "name": "Orange Panel",
+        "level": 2,
+        "purpose": "Full-bleed accent surface for announcement bar and statistic panel — interrupts the monochrome flow"
+      },
+      {
+        "hex": "#020507",
+        "name": "Capsule Black",
+        "level": 3,
+        "purpose": "Hero and product photograph background — high-contrast stage for golden capsule imagery"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Clinical dossier behind pixelated LCD readouts",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.7
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-sm",
+        "size": 31,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading",
+        "size": 37,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading-lg",
+        "size": 52,
+        "lineHeight": 1.05
+      },
+      {
+        "role": "display",
+        "size": 74,
+        "lineHeight": 1.05
+      },
+      {
+        "role": "stat-numeral",
+        "size": 105,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Site-wide top strip",
+        "description": "Full-bleed #ff9e00 bar, ~32px tall, centered uppercase Apercu Mono Pro at 12px, black text. The single dose of orange at the very top — always present, always the first thing the eye lands on."
+      },
+      {
+        "name": "Top Navigation",
+        "role": "Primary site nav",
+        "description": "Three-zone layout on white: SHOP and ABOUT US left, Swimclub pixel wordmark center, ACCOUNT and CART (0) right. All links in Apercu Mono Pro 12–15px uppercase, letter-spacing 0.02em, black. No background, no border — the nav is just typographic restraint floating on white."
+      },
+      {
+        "name": "Hero Block",
+        "role": "Above-the-fold introduction",
+        "description": "Full-bleed dark gradient (#6a90b0 → #020507, top-left to bottom-right) with golden capsule product photography on the right and a text block on the left. Headline at 74px Px Grotesk weight 700, white, line-height 1.05. Subtext at 16–17px Px Grotesk weight 400, white. 64px left padding, generous breathing room from the nav."
+      },
+      {
+        "name": "Outlined CTA Button (Hero)",
+        "role": "Primary call-to-action on dark backgrounds",
+        "description": "White border 1px, white text, no fill, 0px radius, ~32px tall, Apercu Mono Pro 15px uppercase with 0.02em letter-spacing. The 'GET STARTED' button sits on the dark hero — outlined white is the only viable shape here. Sits inside a black-bordered white rectangle, giving it a stamped, printed feel."
+      },
+      {
+        "name": "Outlined CTA Button (Light surface)",
+        "role": "Primary call-to-action on light backgrounds",
+        "description": "Black border 1px, black text, no fill, 0px radius, 32px padding (16px horizontal, 8px vertical). Apercu Mono Pro 15px uppercase. The ghost/outlined pattern is consistent — buttons never fill with color."
+      },
+      {
+        "name": "Media Credibility Bar",
+        "role": "Social proof strip",
+        "description": "Horizontal row of four press/clinical logos (GQ, Stanford clinician, Clinicians' Choice badge, clinician count) on a white background separated by thin black vertical dividers. Each cell contains a small image or icon plus a short body-text caption. No card backgrounds — just dividers and type."
+      },
+      {
+        "name": "Centered Headline Band",
+        "role": "Section opener",
+        "description": "White or #d2dce1 band, centered headline at 31–37px Px Grotesk weight 700, followed by a single-line subtext at 15–17px weight 400. Tight centered alignment, 120px vertical padding above and below. Acts as a breathing pause between dense blocks."
+      },
+      {
+        "name": "Orange Statistic Panel",
+        "role": "Data showcase",
+        "description": "Full-bleed #ff9e00 band, divided into 2–4 equal columns by thin white vertical lines. Each column carries a tiny uppercase Apercu Mono Pro label (e.g. 'THE STATE OF MEN'S REPRODUCTIVE HEALTH') and a giant Swimclub pixel numeral at 96–105px in black. The pixel font on saturated orange is the site's most distinctive visual moment."
+      },
+      {
+        "name": "Dashed-Border Feature Card",
+        "role": "Product benefit listing",
+        "description": "White card with 1px dashed #cccccc border, 0px radius, 32px padding. Left side: small icon (sperm, molecule, DNA glyph) in black. Center: bold Px Grotesk 21px heading with a 15px weight 400 sub-label below. Right side: a small black minus/dash icon acting as a collapse indicator. The dashed border signals 'diagram entry' rather than 'product card'."
+      },
+      {
+        "name": "Product Image Block",
+        "role": "Full-bleed product photography",
+        "description": "Pure black (#020507) block, full container width, variable height, with white uppercase Apercu Mono Pro caption overlaid (e.g. 'OPTIMAL COUNT'). No text, no UI — just the dark canvas and the product, creating a cinematic pause."
+      },
+      {
+        "name": "Ingredient Tag List",
+        "role": "Composed supplement ingredients",
+        "description": "Inline run of uppercase Apercu Mono Pro tokens (COQ10, LYCOPENE, VITAMIN D3, VITAMIN E, OMEGA-3S, NAC, L-CARNITINE) separated by spaces, set at 15px. Introduced by a small uppercase label 'TARGETED WITH'. Reads as a specimen label."
+      },
+      {
+        "name": "Icon Set",
+        "role": "Functional glyphs",
+        "description": "Single-color black icons drawn at a consistent hairline stroke weight. Style is geometric/technical (diamond molecules, simplified sperm forms, DNA strands) — never decorative. Always paired with a short label, never floating alone."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary workhorse — body copy at 15–17px/400, subheadings at 21–31px/700, display headlines at 52–74px/700. Geometric grotesque with squared terminals gives a clinical, diagram-like feel. The 74px hero weight is set very tight (1.05) so multi-line headlines stack into a solid block.",
+        "sizes": "12, 15, 16, 17, 21, 31, 37, 52, 74",
+        "family": "Px Grotesk",
+        "weight": "400, 700",
+        "lineHeight": "1.05, 1.10, 1.30, 1.70",
+        "substitute": "Inter, Space Grotesk, or DM Sans"
+      },
+      {
+        "role": "Monospace micro-copy — navigation links, section labels, input placeholders, ingredient lists, and small data captions. Set at small sizes (15–17px) with a 0.02em positive letter-spacing so uppercase strings read as printed stamps or specimen labels rather than running text.",
+        "sizes": "15, 17",
+        "family": "Apercu Mono Pro",
+        "weight": "400",
+        "lineHeight": "1.10, 1.20",
+        "substitute": "IBM Plex Mono, JetBrains Mono, or Space Mono",
+        "letterSpacing": "0.02em"
+      },
+      {
+        "role": "Signature display face used exclusively for the wordmark and the three giant statistic numerals (60%, 50%, 1/4). The blocky, pixelated construction makes numbers look like LCD or 7-segment readouts — a deliberate retro-digital contrast against the clean grotesque body. Never set below 90px; its identity depends on scale.",
+        "sizes": "96, 105",
+        "family": "Swimclub (custom pixel/bitmap face)",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "VT323, Press Start 2P, or a custom bitmap font"
+      }
+    ],
+    "description": "SwimClub runs a clinical-journal visual system: almost entirely achromatic (white, black, cool gray) with a single vivid orange (#ff9e00) used as full-bleed punctuation rather than button color. Typography does the heavy lifting — a geometric grotesque (Px Grotesk) for body and headlines, a monospace (Apercu Mono) for data labels and navigation micro-copy, and a custom pixelated display face (Swimclub) reserved for the logo and oversized statistic numbers that read like LCD readouts. Surfaces alternate between a cool off-white canvas, stark white product cards, deep navy-black hero blocks with photographic product shots, and saturated orange stat panels. The interface feels like a medical dossier viewed through a retro arcade screen: clinical, editorial, slightly playful, with sharp 0px corners and hairline dashed borders that keep everything reading as diagram rather than decoration.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d7a73e16-4b3e-4b9d-aef2-2c31a9db7457#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"SwimClub design system\",\"item\":\"https://styles.refero.design/style/d7a73e16-4b3e-4b9d-aef2-2c31a9db7457\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d7a73e16-4b3e-4b9d-aef2-2c31a9db7457#style-reference\",\"name\":\"SwimClub design system reference\",\"headline\":\"SwimClub design system | Refero Styles\",\"description\":\"Explore SwimClub's mixed E-commerce design system: Tabloid Orange #ff9e00, Deep Capsule Navy #020507 colors, Px Grotesk, Apercu Mono Pro typography, and...\",\"url\":\"https://styles.refero.design/style/d7a73e16-4b3e-4b9d-aef2-2c31a9db7457\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d7a73e16-4b3e-4b9d-aef2-2c31a9db7457\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"SwimClub\",\"url\":\"https://swimclub.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d7a73e16-4b3e-4b9d-aef2-2c31a9db7457#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/51eaadba-f437-4cdd-9432-23d313860fd7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/51eaadba-f437-4cdd-9432-23d313860fd7.jpg\",\"caption\":\"Screenshot of SwimClub\"},\"image\":\"https://images.refero.design/styles/refero.design/image/51eaadba-f437-4cdd-9432-23d313860fd7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"SwimClub design system\",\"SwimClub website design\",\"SwimClub colors\",\"SwimClub typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Tabloid Orange\",\"Deep Capsule Navy\",\"Ink Black\",\"Paper White\",\"Px Grotesk\",\"Apercu Mono Pro\",\"Swimclub (custom pixel/bitmap face)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"SwimClub design system\"},{\"@type\":\"Thing\",\"name\":\"SwimClub website design\"},{\"@type\":\"Thing\",\"name\":\"SwimClub colors\"},{\"@type\":\"Thing\",\"name\":\"SwimClub typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:29:44.954Z\",\"dateModified\":\"2026-04-30T00:29:44.954Z\"}]}19:T5ad,Quick Color Reference:\n- text: #000000\n- background: #ffffff\n- section wash: #d2dce1\n- dark surface: #020507\n- accent panel: #ff9e00\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Create the orange statistic panel: full-bleed #ff9e00 background, divided into three equal columns by 1px white vertical lines. Each column: uppercase Apercu Mono Pro 12px label at top in black, then a Swimclub pixel-font numeral at 105px in black, then a short body caption in Px Grotesk 15px weight 400 below.\n\n3. Create a dashed-border feature card: #ffffff background, 1px dashed #cccccc border, 0px radius, 32px padding. Left: small black geometric icon. Center: Px Grotesk 21px weight 700 heading with 15px weight 400 sub-label beneath. Right: small black minus/dash collapse icon.\n\n4. Create the centered headline band: #d2dce1 background, 120px padding top and bottom, centered Px Grotesk 37px weight 700 heading in #000000, followed by a 16px weight 400 subtext in #000000, max-width 720px.\n\n5. Create the top nav: #ffffff background, 32px vertical padding, three flex zones. Left: SHOP and ABOUT US in Apercu Mono Pro 12px uppercase, #000000, letter-spacing 0.02em. Center: Swimclub pixel wordmark at 21px. Right: ACCOUNT and CART (0) in the same monospace style. No borders, no background bar, no shadow."
+      }
+    ],
+    "elevationPhilosophy": "The design is deliberately shadowless. Hierarchy is created through surface contrast (white → #d2dce1 → orange → black), hairline 1px borders, and whitespace, never through drop shadows or blur. This keeps the interface reading as a flat printed document or clinical diagram rather than a skeuomorphic app."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "link",
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "image",
+            "body",
+            "icon",
+            "footer",
+            "input"
+          ],
+          "frequency": 1770,
+          "confidence": 1,
+          "prominence": 110371539.7984842,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 38,
+            "body/color": 48,
+            "icon/color": 6,
+            "link/color": 10,
+            "other/fill": 128,
+            "image/color": 5,
+            "input/color": 1,
+            "other/color": 188,
+            "button/color": 7,
+            "footer/color": 1,
+            "heading/color": 20,
+            "nav/borderColor": 152,
+            "body/borderColor": 192,
+            "icon/borderColor": 24,
+            "link/borderColor": 40,
+            "image/borderColor": 20,
+            "input/borderColor": 4,
+            "other/borderColor": 752,
+            "button/borderColor": 28,
+            "footer/borderColor": 4,
+            "heading/borderColor": 80,
+            "nav/backgroundColor": 4,
+            "body/backgroundColor": 8,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "image",
+            "heading",
+            "body",
+            "link",
+            "icon",
+            "input"
+          ],
+          "frequency": 706,
+          "confidence": 1,
+          "prominence": 11617335.753349101,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 44,
+            "icon/color": 2,
+            "link/color": 1,
+            "other/fill": 2,
+            "image/color": 3,
+            "other/color": 78,
+            "heading/color": 6,
+            "body/borderColor": 176,
+            "icon/borderColor": 8,
+            "link/borderColor": 4,
+            "image/borderColor": 12,
+            "other/borderColor": 312,
+            "heading/borderColor": 24,
+            "nav/backgroundColor": 3,
+            "body/backgroundColor": 18,
+            "link/backgroundColor": 1,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 9,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#d2dce1",
+          "oklch": {
+            "c": 0.012832913814812549,
+            "h": 228.9436010129175,
+            "l": 0.8883384898002519
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1902606.4563754636,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6a90b0",
+          "oklch": {
+            "c": 0.06413788305753021,
+            "h": 244.44878795317754,
+            "l": 0.6373215941216109
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 618784,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff9e00",
+          "oklch": {
+            "c": 0.1723950984813124,
+            "h": 67.07331192591946,
+            "l": 0.7804850429330881
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 354347.14561703283,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading",
+            "link"
+          ],
+          "frequency": 190,
+          "confidence": 1,
+          "prominence": 308643.8310235521,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 25,
+            "link/color": 1,
+            "other/color": 11,
+            "heading/color": 1,
+            "body/borderColor": 100,
+            "link/borderColor": 4,
+            "other/borderColor": 44,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7651658759683705
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 4497.733040925451,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 1,
+            "button/color": 1,
+            "other/stroke": 2,
+            "body/borderColor": 4,
+            "icon/borderColor": 4,
+            "button/borderColor": 4,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 4184.301001903852,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0011514175712773046,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.06,
+          "background": "#d2dce1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.14,
+          "background": "#ff9e00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#b3b3b3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.23,
+          "background": "#6a90b0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.12,
+          "background": "#d2dce1",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.66,
+          "background": "#000000",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.58,
+          "background": "#cccccc",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.37,
+          "background": "#6a90b0",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.77,
+          "background": "#ff9e00",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.74,
+          "background": "#b3b3b3",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.1,
+          "background": "#b3b3b3",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.07,
+          "background": "#ff9e00",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.7,
+          "background": "#6a90b0",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.61,
+          "background": "#cccccc",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.61,
+          "background": "#6a90b0",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.5,
+          "background": "#d2dce1",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.39,
+          "background": "#d2dce1",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 47,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|body",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 130,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body",
+            "rowGap|body",
+            "columnGap|body",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|body",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "input"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "marginBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "rowGap|other",
+            "marginBottom|heading",
+            "columnGap|other",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 35,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|body",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 156,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 140,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 251,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 277,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 283,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 308,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(106, 144, 176), rgb(65, 115, 158) 30%, rgb(18, 58, 92) 97.122%, rgb(2, 5, 7) 138.89%)",
+        "colors": [
+          "rgb(106, 144, 176)",
+          "rgb(65, 115, 158)",
+          "rgb(18, 58, 92)",
+          "rgb(2, 5, 7)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(255, 255, 255), rgb(210, 220, 224) 100%)",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(210, 220, 224)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Px Grotesk",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 385,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Apercu Mono Pro",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 108,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Swimclub",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Px Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Apercu Mono Pro",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Px Grotesk",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Px Grotesk",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Px Grotesk",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Px Grotesk",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "image",
+            "body",
+            "button",
+            "icon",
+            "footer",
+            "nav"
+          ],
+          "frequency": 272,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Apercu Mono Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "button"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Apercu Mono Pro",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 87,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 17,
+          "family": "Px Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Px Grotesk",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Px Grotesk",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "Px Grotesk",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 37,
+          "family": "Px Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Px Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 74,
+          "family": "Px Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "Swimclub",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 105,
+          "family": "Swimclub",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8ea1601e-a969-42be-a547-db30ce4389ba.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/51eaadba-f437-4cdd-9432-23d313860fd7.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d7a73e16-4b3e-4b9d-aef2-2c31a9db7457#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"SwimClub design system\",\"item\":\"https://styles.refero.design/style/d7a73e16-4b3e-4b9d-aef2-2c31a9db7457\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d7a73e16-4b3e-4b9d-aef2-2c31a9db7457#style-reference\",\"name\":\"SwimClub design system reference\",\"headline\":\"SwimClub design system | Refero Styles\",\"description\":\"Explore SwimClub's mixed E-commerce design system: Tabloid Orange #ff9e00, Deep Capsule Navy #020507 colors, Px Grotesk, Apercu Mono Pro typography, and...\",\"url\":\"https://styles.refero.design/style/d7a73e16-4b3e-4b9d-aef2-2c31a9db7457\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d7a73e16-4b3e-4b9d-aef2-2c31a9db7457\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"SwimClub\",\"url\":\"https://swimclub.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d7a73e16-4b3e-4b9d-aef2-2c31a9db7457#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/51eaadba-f437-4cdd-9432-23d313860fd7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/51eaadba-f437-4cdd-9432-23d313860fd7.jpg\",\"caption\":\"Screenshot of SwimClub\"},\"image\":\"https://images.refero.design/styles/refero.design/image/51eaadba-f437-4cdd-9432-23d313860fd7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"SwimClub design system\",\"SwimClub website design\",\"SwimClub colors\",\"SwimClub typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Tabloid Orange\",\"Deep Capsule Navy\",\"Ink Black\",\"Paper White\",\"Px Grotesk\",\"Apercu Mono Pro\",\"Swimclub (custom pixel/bitmap face)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"SwimClub design system\"},{\"@type\":\"Thing\",\"name\":\"SwimClub website design\"},{\"@type\":\"Thing\",\"name\":\"SwimClub colors\"},{\"@type\":\"Thing\",\"name\":\"SwimClub typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:29:44.954Z\",\"dateModified\":\"2026-04-30T00:29:44.954Z\"}]}19:T5ad,Quick Color Reference:\n- text: #000000\n- background: #ffffff\n- section wash: #d2dce1\n- dark surface: #020507\n- accent panel: #ff9e00\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Create the orange statistic panel: full-bleed #ff9e00 background, divided into three equal columns by 1px white vertical lines. Each column: uppercase Apercu Mono Pro 12px label at top in black, then a Swimclub pixel-font numeral at 105px in black, then a short body caption in Px Grotesk 15px weight 400 below.\n\n3. Create a dashed-border feature card: #ffffff background, 1px dashed #cccccc border, 0px radius, 32px padding. Left: small black geometric icon. Center: Px Grotesk 21px weight 700 heading with 15px weight 400 sub-label beneath. Right: small black minus/dash collapse icon.\n\n4. Create the centered headline band: #d2dce1 background, 120px padding top and bottom, centered Px Grotesk 37px weight 700 heading in #000000, followed by a 16px weight 400 subtext in #000000, max-width 720px.\n\n5. Create the top nav: #ffffff background, 32px vertical padding, three flex zones. Left: SHOP and ABOUT US in Apercu Mono Pro 12px uppercase, #000000, letter-spacing 0.02em. Center: Swimclub pixel wordmark at 21px. Right: ACCOUNT and CART (0) in the same monospace style. No borders, no background bar, no shadow."
+}

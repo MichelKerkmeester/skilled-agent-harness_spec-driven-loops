@@ -1,0 +1,1286 @@
+{
+  "source": "https://styles.refero.design/style/604af0f7-b4c3-4921-93af-9da03df81493",
+  "uuid": "604af0f7-b4c3-4921-93af-9da03df81493",
+  "name": "Home",
+  "northStar": "Neon-lit gaming arena at midnight — black floor, one electric lime, and tournament-scale typography screaming from the walls.",
+  "capturedAt": "2026-07-18T09:04:53.497Z",
+  "meta": {
+    "url": "https://www.swoosh.nike",
+    "siteName": "Home",
+    "extractedAt": "2026-06-03T20:50:19.014Z",
+    "durationMs": 32433,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 130,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #b7ff2c only for filled CTA buttons, ghost action borders, and active/checked states — never for body text, decorative backgrounds, or large surfaces",
+      "Apply 6px border-radius to every container — buttons, cards, nav, modals, images — for uniform sharpness",
+      "Set display headlines to 110px Roobert 700 with line-height 0.85; the sub-1.0 leading is the signature compression",
+      "Use #111111 as the default page background and #1f1f21 as a one-step elevation for cards and modals",
+      "Pair full-bleed dark photography with Pure White (#ffffff) floating cards to create poster-style layering",
+      "Use #e5e5e5 borders only in inverted (white surface) contexts; on dark surfaces, use #28282a or #707072 instead",
+      "Set body text to 16px Roobert 400, line-height 1.50, Pure White on dark surfaces"
+    ],
+    "donts": [
+      "Don't introduce any second chromatic color — the system is monochrome plus one lime; adding blue, red, or any hue breaks the signal",
+      "Don't use 0px or 12px+ border-radius — the 6px radius is the system's sharp-but-not-harsh identity",
+      "Don't set display headlines to line-height 1.2 or higher — the 0.85-1.00 compression is what makes the type feel like signage",
+      "Don't use drop shadows beyond the nav bar's 2px blur — the flatness is intentional",
+      "Don't apply lime (#b7ff2c) to headings, subheadings, or body text — it is action-only",
+      "Don't use #e5e5e5 for borders on dark surfaces — it's too bright; reserve it for white-card contexts",
+      "Don't place buttons or cards directly on photography without a surface container — floating cards need their white or charcoal background to read"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#b7ff2c",
+        "name": "Lime Pulse",
+        "role": "Green action color for filled buttons, selected navigation states, and focused conversion moments",
+        "group": "brand"
+      },
+      {
+        "hex": "#111111",
+        "name": "Midnight Canvas",
+        "role": "Page background, hero canvas, nav surface, body base — the structural floor everything else sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1f1f21",
+        "name": "Card Charcoal",
+        "role": "Elevated card surface, modal background, panel base — one step above Midnight Canvas for layered containers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#28282a",
+        "name": "Card Border Ink",
+        "role": "Card perimeter borders — a barely-visible outline that defines containers without breaking the monochrome",
+        "group": "neutral"
+      },
+      {
+        "hex": "#39393b",
+        "name": "Footer Rule",
+        "role": "Footer top border, structural dividers between page regions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#707072",
+        "name": "Steel Border",
+        "role": "Card outline borders, image frame edges — medium-contrast neutral for visible-but-quiet separation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Fog Border",
+        "role": "Light-mode hairline borders, text/heading underline rules, icon strokes — appears in inverted contexts (white cards, light surfaces)",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Light text on dark surfaces, inverse labels, and high-contrast captions. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon Black",
+        "role": "Primary headings, body text, and icon fills on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark layout with no persistent max-width container — sections span edge to edge at 1440px viewport reference. Hero opens with a full-bleed photographic image and a left-aligned display headline overlaid at the bottom-left, with a lime CTA below it. Navigation is a fixed top bar with logo left, text links center, ghost CTA right. The page rhythm alternates between full-bleed dark image sections, centered marquee text sections (massive headlines on pure black), and split layouts where a White Floating Card sits on a dark photograph. Section gaps are generous (48-64px) to let the display type breathe. Content is predominantly centered or left-aligned — no asymmetric or grid-heavy compositions. A modal (cookie settings) anchors top-right and is the only non-full-width overlay.",
+    "imagery": "Photography is full-bleed, high-contrast, and moody — hands gripping game controllers, people in motion, arena environments, close crops of sneakers and game gear. Treatment is dark, slightly desaturated, with deep blacks that merge into the #111111 canvas. No lifestyle softness; subjects are staged with editorial intent, cropped tight so the object or gesture fills the frame. White text and white floating cards overlay directly on the photography without scrims, creating a magazine-cover or arena-poster layering. Iconography is minimal — the swoosh logo and small UI icons in Pure White. No illustrations, no 3D renders, no decorative graphics; the photography does all the atmospheric work.",
+    "similar": [
+      {
+        "why": "Same dark-mode + single neon accent pattern; both use drop announcements and full-bleed product photography with overlaid type",
+        "business": "Adidas Confirmed"
+      },
+      {
+        "why": "Dark gaming-platform aesthetic with bold compressed display type and full-bleed hero photography, though Swoosh is more restrained with a single lime vs PlayStation's blue gradients",
+        "business": "PlayStation Store"
+      },
+      {
+        "why": "Editorial poster layout with massive compressed headlines floating over full-bleed photography on dark backgrounds",
+        "business": "Gucci Garden / Vault"
+      },
+      {
+        "why": "Oversized compressed sans-serif headlines, quotation-mark typographic motifs, and high-contrast black-white-lime color logic in fashion/gaming crossover",
+        "business": "Off-White / Virgil Abloh archive"
+      },
+      {
+        "why": "Dark gaming-platform UI with prominent full-bleed imagery and display-scale typography, though Swoosh is more monochromatic with one accent",
+        "business": "Apple Arcade"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "6px",
+        "cards": "6px",
+        "images": "6px",
+        "modals": "6px",
+        "buttons": "6px"
+      },
+      "elementGap": "16-20px",
+      "sectionGap": "48-64px",
+      "cardPadding": "20-24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#111111",
+        "name": "Midnight Canvas",
+        "level": 0,
+        "purpose": "Page base, hero backgrounds, full-bleed sections"
+      },
+      {
+        "hex": "#1f1f21",
+        "name": "Card Charcoal",
+        "level": 1,
+        "purpose": "Elevated cards, modals, content panels sitting on the canvas"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Inverted White",
+        "level": 2,
+        "purpose": "Floating white cards on dark photography, inverted text panels"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0px 2px 6px 0px rgba(17, 17, 17, 0.125)",
+        "element": "Navigation bar"
+      }
+    ],
+    "northStar": "Neon-lit gaming arena at midnight — black floor, one electric lime, and tournament-scale typography screaming from the walls.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 64,
+        "lineHeight": 1
+      },
+      {
+        "role": "display",
+        "size": 110,
+        "lineHeight": 0.85
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "Filled action trigger",
+        "description": "Lime Pulse (#b7ff2c) background, Carbon Black (#000000) text, 6px border-radius, 16px vertical / 20px horizontal padding, Font Roobert 500 at 16px, line-height 1.20. Border 1px solid #b7ff2c matching the fill. The single most saturated element on any page — it must feel electrically switched on."
+      },
+      {
+        "name": "Ghost Navigation Button",
+        "role": "Outlined action in nav",
+        "description": "1px Lime Pulse border, #b7ff2c text, 6px radius, compact 8px vertical / 20px horizontal padding, Font Roobert 500 at 14px. Used for SIGN IN — the border-only treatment lets it coexist with filled CTAs in the same nav without competing."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Full-width Midnight Canvas (#111111) bar, 6px container radius, 6px/24px padding, contains swoosh logo mark, text nav links in Pure White (16px Roobert 500), and the Ghost Navigation Button on the right. Subtle 0px 2px 6px rgba(17,17,17,0.125) shadow anchors it without a hard divider."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Full-bleed opening display",
+        "description": "Font Roobert 700 at 110px, line-height 0.85, Pure White (#ffffff), left-aligned, overlaid on a full-bleed dark photograph. The extreme compression stacks the type into a block of visual mass that reads as event signage. A 20px subhead in Roobert 400 at 20px line-height 1.40 follows below."
+      },
+      {
+        "name": "White Floating Card",
+        "role": "Inverted text container over imagery",
+        "description": "Pure White (#ffffff) background, 6px radius, 20-24px padding, contains a heading-sm (24px / 1.20) in Carbon Black and body (16px / 1.50) in Carbon Black. Floats over full-bleed dark photography to create a magazine-cover layering effect."
+      },
+      {
+        "name": "Dark Card",
+        "role": "Elevated content panel",
+        "description": "Card Charcoal (#1f1f21) background, 1px Card Border Ink (#28282a) border, 6px radius, 20px padding. Sits one step above the Midnight Canvas — subtle enough to feel like the same surface, defined enough to contain content blocks."
+      },
+      {
+        "name": "Cookie Settings Modal",
+        "role": "Overlay preference panel",
+        "description": "Card Charcoal (#1f1f21) background, 6px radius, 24px padding, 1px Card Border Ink border. Heading in Pure White, body copy in Pure White at 16px / 1.50, checkbox controls with Lime Pulse check state, and a Primary CTA Button anchored at the bottom."
+      },
+      {
+        "name": "Marquee Display Section",
+        "role": "Scrolling oversized headline",
+        "description": "Center-aligned Font Roobert 700 at 64-110px, line-height 1.00-0.85, Pure White on Midnight Canvas. Used for statements like '.SWOOSH IS NIKE'S HOME FOR GAMING' — the massive scale and compressed leading create a billboard rhythm as the text moves."
+      },
+      {
+        "name": "Section Heading Pair",
+        "role": "Scrolling editorial headline + caption",
+        "description": "Large Pure White display line (64-110px Roobert 700) centered, with a small uppercase or sentence-case caption above or below at 14-16px Roobert 500. Creates a tournament-announcement rhythm across the page."
+      },
+      {
+        "name": "Image Card",
+        "role": "Photo or render container",
+        "description": "6px radius, full-bleed within its container, 1px Steel Border (#707072) or no border depending on context. Frequently overlapped by White Floating Cards or paired with overlay text. Photography is moody, high-contrast, and cropped tight — the object or person IS the content."
+      },
+      {
+        "name": "Footer",
+        "role": "Bottom structural region",
+        "description": "Midnight Canvas background, 1px Footer Rule (#39393b) top border, small-text links in Pure White at 14px / 1.50, generous vertical padding (48-64px). Minimal — no heavy card treatments or imagery."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary brand typeface across all contexts — nav, body, headings, display. The custom font's compressed, geometric construction at 110px / 0.85 line-height creates the poster-scale headlines; its 400/500/700 range covers body through display without needing a second family. The extreme compression in display weights is signature — line-height under 1.0 makes headlines overlap slightly, producing a stacked, aggressive tournament-poster feel that system sans-serifs cannot replicate.",
+        "sizes": "14, 16, 20, 24, 64, 110",
+        "family": "Font Roobert",
+        "weight": "400, 500, 700",
+        "lineHeight": "0.85 (display), 1.00 (heading-lg), 1.20 (heading-sm), 1.40 (subheading), 1.50 (body, body-sm)",
+        "substitute": "Inter (close), Satoshi, General Sans, Neue Haas Grotesk Display"
+      },
+      {
+        "role": "System fallback for generic UI elements where custom font loading isn't needed — secondary links, inline labels, small helper copy. Same weight range as Roobert to ensure graceful degradation.",
+        "sizes": "14, 16",
+        "family": "ui-sans-serif",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.20, 1.50",
+        "substitute": "system-ui, -apple-system, Segoe UI, Roboto"
+      }
+    ],
+    "description": "Swoosh operates as a midnight arena console: nearly all-black canvas (#111111), a single electric lime accent (#b7ff2c) that carries every interaction, and oversized compressed display type (110px at 0.85 line-height) that functions like tournament signage rather than web copy. The system is intentionally austere — only one chromatic hue exists, and it appears exclusively on filled CTA buttons and as thin chromatic action borders, so lime reads as 'switched on' against the dark. Photography is full-bleed and moody, often overlaid with white or near-white cards that float on the image, creating a poster-like layering where editorial typography and photography alternate. The custom Font Roobert carries the voice at every scale — its compressed display weights are signature, while a 6px radius across buttons, cards, nav, and image containers gives the system a uniform sharpness that feels engineered, not soft.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/604af0f7-b4c3-4921-93af-9da03df81493#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Home design system\",\"item\":\"https://styles.refero.design/style/604af0f7-b4c3-4921-93af-9da03df81493\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/604af0f7-b4c3-4921-93af-9da03df81493#style-reference\",\"name\":\"Home design system reference\",\"headline\":\"Home design system | Refero Styles\",\"description\":\"Explore Home's dark E-commerce design system: Lime Pulse #b7ff2c, Midnight Canvas #111111 colors, Font Roobert, ui-sans-serif typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/604af0f7-b4c3-4921-93af-9da03df81493\",\"mainEntityOfPage\":\"https://styles.refero.design/style/604af0f7-b4c3-4921-93af-9da03df81493\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Home\",\"url\":\"https://www.swoosh.nike\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/604af0f7-b4c3-4921-93af-9da03df81493#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9deaca3e-bd36-4fe9-9d97-14cee7d620e4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9deaca3e-bd36-4fe9-9d97-14cee7d620e4.jpg\",\"caption\":\"Screenshot of Home\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9deaca3e-bd36-4fe9-9d97-14cee7d620e4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Home design system\",\"Home website design\",\"Home colors\",\"Home typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Lime Pulse\",\"Midnight Canvas\",\"Card Charcoal\",\"Card Border Ink\",\"Font Roobert\",\"ui-sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Home design system\"},{\"@type\":\"Thing\",\"name\":\"Home website design\"},{\"@type\":\"Thing\",\"name\":\"Home colors\"},{\"@type\":\"Thing\",\"name\":\"Home typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:37:24.391Z\",\"dateModified\":\"2026-04-30T01:37:24.391Z\"}]}19:T59d,**Quick Color Reference**\n- text: #ffffff\n- background: #111111\n- border (on dark): #28282a / #707072\n- border (on white): #e5e5e5\n- accent: #b7ff2c\n- primary action: #b7ff2c (filled action)\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #b7ff2c background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. *Primary CTA button*: 6px border-radius, 16px vertical padding, 20px horizontal padding, background #b7ff2c, 1px solid #b7ff2c border, text #000000 in Font Roobert 500 at 16px, line-height 1.20. No shadow. Single saturated element on the page — it must be the visual focal point.\n\n3. *White floating card on dark photo*: Background #ffffff, 6px border-radius, 24px padding. Heading in Font Roobert 700 at 24px, line-height 1.20, color #000000. Body in Roobert 400 at 16px, line-height 1.50, color #000000. Floats over a full-bleed dark image with no scrim.\n\n4. *Marquee display section*: Background #111111, centered headline in Font Roobert 700 at 110px, line-height 0.85, color #ffffff. No buttons, no images — just the type filling the viewport height.\n\n5. *Navigation bar*: Full-width background #111111, 6px container radius, 16px/24px padding, subtle 0px 2px 6px rgba(17,17,17,0.125) shadow. Swoosh logo left, nav links in Roobert 500 at 16px color #ffffff, ghost SIGN IN button right (1px #b7ff2c border, #b7ff2c text, 6px radius, 8px/20px padding)."
+      },
+      {
+        "title": "Gradient System",
+        "content": "No gradients are used in the system. All color transitions are flat — surface value shifts (#111111 → #1f1f21 → #ffffff) and the single chromatic accent (#b7ff2c) provide all visual variation. Do not introduce linear or radial gradients; they would break the poster-flat aesthetic."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is intentionally minimal — the system relies on surface value shifts (#111111 → #1f1f21 → #ffffff) and 1px borders rather than drop shadows. The only shadow used site-wide is a barely-perceptible 2px blur on the nav bar, keeping the visual language flat and poster-like."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e5e5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9219060167761346
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "heading",
+            "link",
+            "body",
+            "image",
+            "card",
+            "icon"
+          ],
+          "frequency": 452,
+          "confidence": 1,
+          "prominence": 65589197.42489565,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 48,
+            "body/borderColor": 32,
+            "card/borderColor": 4,
+            "hero/borderColor": 8,
+            "icon/borderColor": 8,
+            "link/borderColor": 36,
+            "image/borderColor": 16,
+            "other/borderColor": 216,
+            "button/borderColor": 32,
+            "heading/borderColor": 52
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "link",
+            "card",
+            "footer"
+          ],
+          "frequency": 49,
+          "confidence": 1,
+          "prominence": 41954050.85132941,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "nav/color": 7,
+            "card/color": 1,
+            "hero/color": 2,
+            "link/color": 1,
+            "other/color": 33,
+            "button/color": 3,
+            "footer/color": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "heading",
+            "icon",
+            "card",
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 63,
+          "confidence": 1,
+          "prominence": 7776000,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 2,
+            "nav/color": 5,
+            "body/color": 1,
+            "card/color": 1,
+            "icon/color": 1,
+            "link/color": 8,
+            "other/fill": 7,
+            "other/color": 21,
+            "button/color": 3,
+            "heading/color": 10,
+            "card/backgroundColor": 3,
+            "icon/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "card",
+            "heading",
+            "icon",
+            "footer",
+            "other"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 6018437.621948043,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "card/color": 3,
+            "icon/color": 1,
+            "button/color": 3,
+            "other/stroke": 1,
+            "heading/color": 3,
+            "nav/backgroundColor": 2,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#39393b",
+          "oklch": {
+            "c": 0.0034382964408146304,
+            "h": 286.2182336833879,
+            "l": 0.34532245702570985
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 906596.8246487706,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "footer/borderColor": 4
+          }
+        },
+        {
+          "hex": "#28282a",
+          "oklch": {
+            "c": 0.003633739558507327,
+            "h": 286.1606251356827,
+            "l": 0.277632662803872
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 826970.9444907983,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 4
+          }
+        },
+        {
+          "hex": "#707072",
+          "oklch": {
+            "c": 0.0030631390435779567,
+            "h": 286.29771377766497,
+            "l": 0.545822711813413
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 644520.3874675066,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 12
+          }
+        },
+        {
+          "hex": "#1f1f21",
+          "oklch": {
+            "c": 0.003770311696660999,
+            "h": 286.1123258358447,
+            "l": 0.24010966293382438
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 356157,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b7ff2c",
+          "oklch": {
+            "c": 0.22973627225308016,
+            "h": 128.02413034815157,
+            "l": 0.918605658924186
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 46661.29602123083,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4,
+            "button/backgroundColor": 4
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.008352123624519363,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#111111",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.35,
+          "background": "#b7ff2c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#e5e5e5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.45,
+          "background": "#1f1f21",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.6,
+          "background": "#b7ff2c",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.99,
+          "background": "#e5e5e5",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.71,
+          "background": "#ffffff",
+          "foreground": "#28282a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.6,
+          "background": "#b7ff2c",
+          "foreground": "#1f1f21"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.06,
+          "background": "#e5e5e5",
+          "foreground": "#1f1f21"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.16,
+          "background": "#b7ff2c",
+          "foreground": "#28282a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.68,
+          "background": "#e5e5e5",
+          "foreground": "#28282a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.52,
+          "background": "#ffffff",
+          "foreground": "#39393b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.52,
+          "background": "#b7ff2c",
+          "foreground": "#39393b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.15,
+          "background": "#e5e5e5",
+          "foreground": "#39393b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.28,
+          "background": "#1f1f21",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.21,
+          "background": "#b7ff2c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.15,
+          "background": "#1f1f21",
+          "foreground": "#111111"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#111111",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "image",
+            "card"
+          ],
+          "frequency": 15
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(17, 17, 17, 0.125) 0px 2px 6px 0px",
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "rowGap|heading",
+            "columnGap|heading",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingBottom|other",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "card",
+            "heading",
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginBottom|heading",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "heading"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingBottom",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|nav",
+            "paddingBottom|other",
+            "marginRight|image",
+            "marginBottom|heading",
+            "marginLeft|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "link",
+            "body",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingRight|body",
+            "paddingRight|button"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|card"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 288,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ui-sans-serif",
+          "source": "system",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 62,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Font Roobert",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 57,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Font Roobert",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Font Roobert",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Font Roobert",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Font Roobert",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "ui-sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "link",
+            "image",
+            "card",
+            "button"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Font Roobert",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "footer"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Font Roobert",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Font Roobert",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Font Roobert",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Font Roobert",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Font Roobert",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 64,
+          "family": "Font Roobert",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 110,
+          "family": "Font Roobert",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c3513ce3-6d9b-429b-b30e-7f934b5c6714.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/9deaca3e-bd36-4fe9-9d97-14cee7d620e4.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/604af0f7-b4c3-4921-93af-9da03df81493#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Home design system\",\"item\":\"https://styles.refero.design/style/604af0f7-b4c3-4921-93af-9da03df81493\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/604af0f7-b4c3-4921-93af-9da03df81493#style-reference\",\"name\":\"Home design system reference\",\"headline\":\"Home design system | Refero Styles\",\"description\":\"Explore Home's dark E-commerce design system: Lime Pulse #b7ff2c, Midnight Canvas #111111 colors, Font Roobert, ui-sans-serif typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/604af0f7-b4c3-4921-93af-9da03df81493\",\"mainEntityOfPage\":\"https://styles.refero.design/style/604af0f7-b4c3-4921-93af-9da03df81493\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Home\",\"url\":\"https://www.swoosh.nike\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/604af0f7-b4c3-4921-93af-9da03df81493#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9deaca3e-bd36-4fe9-9d97-14cee7d620e4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9deaca3e-bd36-4fe9-9d97-14cee7d620e4.jpg\",\"caption\":\"Screenshot of Home\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9deaca3e-bd36-4fe9-9d97-14cee7d620e4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Home design system\",\"Home website design\",\"Home colors\",\"Home typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Lime Pulse\",\"Midnight Canvas\",\"Card Charcoal\",\"Card Border Ink\",\"Font Roobert\",\"ui-sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Home design system\"},{\"@type\":\"Thing\",\"name\":\"Home website design\"},{\"@type\":\"Thing\",\"name\":\"Home colors\"},{\"@type\":\"Thing\",\"name\":\"Home typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:37:24.391Z\",\"dateModified\":\"2026-04-30T01:37:24.391Z\"}]}19:T59d,**Quick Color Reference**\n- text: #ffffff\n- background: #111111\n- border (on dark): #28282a / #707072\n- border (on white): #e5e5e5\n- accent: #b7ff2c\n- primary action: #b7ff2c (filled action)\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #b7ff2c background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. *Primary CTA button*: 6px border-radius, 16px vertical padding, 20px horizontal padding, background #b7ff2c, 1px solid #b7ff2c border, text #000000 in Font Roobert 500 at 16px, line-height 1.20. No shadow. Single saturated element on the page — it must be the visual focal point.\n\n3. *White floating card on dark photo*: Background #ffffff, 6px border-radius, 24px padding. Heading in Font Roobert 700 at 24px, line-height 1.20, color #000000. Body in Roobert 400 at 16px, line-height 1.50, color #000000. Floats over a full-bleed dark image with no scrim.\n\n4. *Marquee display section*: Background #111111, centered headline in Font Roobert 700 at 110px, line-height 0.85, color #ffffff. No buttons, no images — just the type filling the viewport height.\n\n5. *Navigation bar*: Full-width background #111111, 6px container radius, 16px/24px padding, subtle 0px 2px 6px rgba(17,17,17,0.125) shadow. Swoosh logo left, nav links in Roobert 500 at 16px color #ffffff, ghost SIGN IN button right (1px #b7ff2c border, #b7ff2c text, 6px radius, 8px/20px padding)."
+}

@@ -1,0 +1,557 @@
+{
+  "color": {
+    "signal-yellow": {
+      "$value": "#ffc500",
+      "$type": "color",
+      "$description": "Signal Yellow — Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "folio-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Folio Black — Primary text, headlines, nav items, icons, and 1px hairline rules — the ink of the page"
+    },
+    "newsprint-cream": {
+      "$value": "#fdfcf3",
+      "$type": "color",
+      "$description": "Newsprint Cream — Page canvas — the warm off-white that keeps the interface from feeling clinical and signals print provenance"
+    },
+    "broadsheet-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Broadsheet White — Card surfaces, feature panels, and inverted text on dark or yellow blocks"
+    },
+    "margin-white": {
+      "$value": "#fdfbe4",
+      "$type": "color",
+      "$description": "Margin White — Subtle secondary surface — a slightly warmer yellow-tinted off-white used for featured/elevated blocks like the radio card"
+    },
+    "pull-quote-gray": {
+      "$value": "#e7e7e7",
+      "$type": "color",
+      "$description": "Pull Quote Gray — Card backgrounds and muted panel fills where content needs to recede from the page cream"
+    },
+    "rule-gray": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Rule Gray — Borders, dividers between columns and sections, input outlines — the structural skeleton of the layout"
+    },
+    "caption-gray": {
+      "$value": "#6e6e6e",
+      "$type": "color",
+      "$description": "Caption Gray — Secondary text, metadata, read-time labels, byline captions, and muted UI labels"
+    },
+    "mute-gray": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Mute Gray — Tertiary text, disabled UI states, and low-emphasis nav accents"
+    },
+    "charcoal": {
+      "$value": "#211d1c",
+      "$type": "color",
+      "$description": "Charcoal — Near-black warm border for buttons and decorative outlines where pure black feels too cold"
+    },
+    "desk-blue": {
+      "$value": "#64d5ff",
+      "$type": "color",
+      "$description": "Desk Blue — Decorative illustration accent — appears inside editorial artwork, not in interface controls"
+    }
+  },
+  "font": {
+    "plantin": {
+      "$value": "Plantin",
+      "$type": "fontFamily",
+      "$description": "Brand serif used for the MONOCLE wordmark, all article headlines, body copy, card titles, and bylines. The only typeface that carries editorial voice. Subtle negative tracking at 32–40px pulls headlines tight like a magazine title, while 0.05–0.075em positive tracking on 13–16px sizes creates the tracked uppercase eyebrow labels (POLITICS, OPINION, AFFAIRS)."
+    },
+    "helvetica-neue": {
+      "$value": "Helvetica Neue",
+      "$type": "fontFamily",
+      "$description": "Utility sans for UI chrome: top utility bar (MAGAZINE / RADIO / SHOP), the SUBSCRIBE button label, small icons-adjacent labels, and the primary nav row (AFFAIRS | BUSINESS | CULTURE | DESIGN | FASHION | TRAVEL | CITY GUIDES). Kept narrow and functional — never used for editorial content."
+    },
+    "chanel": {
+      "$value": "Chanel",
+      "$type": "fontFamily",
+      "$description": "Chanel — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Chanel",
+        "fontSize": "9px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "base-12": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-12 at 16px"
+    },
+    "base-13": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-13 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 20px"
+    },
+    "xl-7": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-7 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 34px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Plantin",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "newsprint-cream": {
+      "$value": "#fdfcf3",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the warm off-white that grounds the entire interface and signals print quality."
+    },
+    "broadsheet-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Utility bar, sponsored modules, and card surfaces that need to pop above the cream canvas."
+    },
+    "margin-white": {
+      "$value": "#fdfbe4",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated/featured surface — used on the Monocle Radio card and opinion portrait backgrounds to add warmth without full contrast."
+    },
+    "pull-quote-gray": {
+      "$value": "#e7e7e7",
+      "$type": "color",
+      "$description": "Surface level 3: Recessed surface for opinion card portrait circles and muted panels."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://monocle.com",
+      "siteName": "Monocle",
+      "extractedAt": "2026-06-03T16:11:34.936Z",
+      "variant": "extended"
+    }
+  }
+}

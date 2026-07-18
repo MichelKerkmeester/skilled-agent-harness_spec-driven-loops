@@ -1,0 +1,210 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, all borders, outline strokes, link underlines, background type fill"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surface, filled button background"
+    }
+  },
+  "font": {
+    "maison-neue": {
+      "$value": "Maison Neue",
+      "$type": "fontFamily",
+      "$description": "Primary UI and headline typeface — used for nav links, body copy, button text, and bold all-caps hero statements. The 65px weight 500 is the signature headline voice: tight leading (1.11), all-caps, commanding without decorative weight. Substitute: Inter, Helvetica Neue, Neue Haas Grotesk"
+    },
+    "basebloom": {
+      "$value": "BASEBLOOM",
+      "$type": "fontFamily",
+      "$description": "Architectural display layer — rendered as massive outlined characters (864px, line-height 0.83) that sit behind body content as visual scaffolding, never carrying readable information. Substitute: a custom ultra-condensed display face or CSS stroke text"
+    },
+    "unzyale": {
+      "$value": "Unzyale",
+      "$type": "fontFamily",
+      "$description": "Rare secondary display use — appears in link context at 58px as a typographic accent. Substitute: a condensed or script contrast face"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 4.09
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 2.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 2.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "43px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 43px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "43px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 43px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "43px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Unzyale",
+        "fontSize": "58px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Maison Neue",
+        "fontSize": "65px",
+        "fontWeight": 500,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 65px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "BASEBLOOM",
+        "fontSize": "864px",
+        "fontWeight": 400,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 864px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Single uniform surface — the page canvas and all content sits directly on it with no elevation layers"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://wemakethings.de",
+      "siteName": "Wemakethings",
+      "extractedAt": "2026-06-03T21:56:26.799Z",
+      "variant": "extended"
+    }
+  }
+}

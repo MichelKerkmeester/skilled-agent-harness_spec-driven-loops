@@ -1,0 +1,262 @@
+{
+  "color": {
+    "ice-cyan": {
+      "$value": "#d7f3f5",
+      "$type": "color",
+      "$description": "Ice Cyan — All foreground text, underlined link strokes, hairline borders, and the full-bleed inverted surface at the page foot — the only chromatic element in the system, used to make every readable word and every interactive affordance feel like it shares one voice"
+    },
+    "void": {
+      "$value": "#020203",
+      "$type": "color",
+      "$description": "Void — Page background and deepest canvas layer — near-pure black with a barely-perceptible cool tint that makes Ice Cyan read slightly blue"
+    },
+    "carbon": {
+      "$value": "#111314",
+      "$type": "color",
+      "$description": "Carbon — Elevated card surface, section backdrop, and subtle horizontal divider band — one step lighter than Void to lift project cards and content blocks without breaking the dark mood"
+    }
+  },
+  "font": {
+    "suisseintl": {
+      "$value": "SuisseIntl",
+      "$type": "fontFamily",
+      "$description": "SuisseIntl — detected in extracted data but not described by AI"
+    },
+    "suisse-intl": {
+      "$value": "Suisse Int'l",
+      "$type": "fontFamily",
+      "$description": "Single-family Swiss grotesque used everywhere — 300 weight drives the 50px hero and 40px section headlines (anti-convention; most agencies use 600–700), which creates editorial authority through restraint rather than volume; 400 is the body and nav workhorse; 500 appears in inline emphasis and the 'Play heart.' display lockup at 134px"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "30px",
+        "fontWeight": 300,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "50px",
+        "fontWeight": 300,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "134px",
+        "fontWeight": 300,
+        "lineHeight": 0.86
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 134px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#020203",
+      "$type": "color",
+      "$description": "Surface level 0: Deepest page background, sets the mood for all content"
+    },
+    "carbon": {
+      "$value": "#111314",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card surface and subtle section banding — one step above Void to define project cards, video frames, and content blocks"
+    },
+    "ice-cyan-inversion": {
+      "$value": "#d7f3f5",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed light panel that inverts the entire palette for the closing call to action — dark text on ice-cyan ground"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://lamalama.nl",
+      "siteName": "Lama Lama",
+      "extractedAt": "2026-06-03T21:36:18.823Z",
+      "variant": "extended"
+    }
+  }
+}

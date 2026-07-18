@@ -1,0 +1,262 @@
+{
+  "color": {
+    "forest-ink": {
+      "$value": "#003f2e",
+      "$type": "color",
+      "$description": "Forest Ink — Primary brand color, headlines, logo mark, body emphasis, heavy borders, dark surface blocks — deep emerald reads as ink-stamp rather than digital green, anchoring every page with editorial weight"
+    },
+    "vivid-emerald": {
+      "$value": "#039861",
+      "$type": "color",
+      "$description": "Vivid Emerald — Outlined/ghost link borders, thin section rules, and occasional icon accents — the only chromatic accent in the system, used sparingly so it reads as a signal rather than decoration"
+    },
+    "cream-canvas": {
+      "$value": "#fdf9f7",
+      "$type": "color",
+      "$description": "Cream Canvas — Page background, document body — warm off-white gives the entire site a paper-like, non-screen feel"
+    },
+    "pure-paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure Paper — Card and elevated surfaces layered above the cream canvas"
+    },
+    "ink-black": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Ink Black — Primary body and link text on light surfaces — softened pure black to feel printed rather than digital"
+    },
+    "faded-pencil": {
+      "$value": "#6e7673",
+      "$type": "color",
+      "$description": "Faded Pencil — Muted body text, secondary metadata, helper copy"
+    },
+    "hairline-gray": {
+      "$value": "#d6d6d6",
+      "$type": "color",
+      "$description": "Hairline Gray — Light borders, dividers, accordion separators, subtle structural rules"
+    },
+    "mid-gray": {
+      "$value": "#a6a6a6",
+      "$type": "color",
+      "$description": "Mid Gray — Medium-weight borders, icon strokes, secondary dividers"
+    }
+  },
+  "font": {
+    "pp-mori": {
+      "$value": "PP Mori",
+      "$type": "fontFamily",
+      "$description": "All headings and display text — the custom geometric face gives headlines a distinctive modern character unavailable in system fonts; tight line-heights (0.95–1.00) make large display sizes stack into compact, poster-like blocks"
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Body text, subheadings, UI labels, and smaller headings — the -0.03em tracking tightens Inter enough to read as editorial body copy rather than default system text"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "23px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 23px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "52px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "64px",
+        "fontWeight": 600,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "PP Mori",
+        "fontSize": "66px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 66px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "800px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#fdf9f7",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — warm paper tone"
+    },
+    "pure-paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Cards, elevated content blocks, logo cells"
+    },
+    "forest-ink-surface": {
+      "$value": "#003f2",
+      "$type": "color",
+      "$description": "Surface level 2: Dark inverted sections, footer, brand blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.getclockwise.com",
+      "siteName": "Getclockwise",
+      "extractedAt": "2026-06-03T21:55:48.810Z",
+      "variant": "extended"
+    }
+  }
+}

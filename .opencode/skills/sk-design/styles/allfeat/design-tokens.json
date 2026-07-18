@@ -1,0 +1,304 @@
+{
+  "color": {
+    "charcoal-stage": {
+      "$value": "#151515",
+      "$type": "color",
+      "$description": "Charcoal Stage — Page canvas, primary surface, all dark backgrounds — the base layer every other color sits on"
+    },
+    "warm-cream": {
+      "$value": "#fffbeb",
+      "$type": "color",
+      "$description": "Warm Cream — Primary text, nav links, heading copy, hairline borders on dark surfaces — never pure white, always slightly buttered"
+    },
+    "card-edge": {
+      "$value": "#383835",
+      "$type": "color",
+      "$description": "Card Edge — Inset 1px card borders, card ambient shadow, subtle separator lines on elevated surfaces"
+    },
+    "mute-cream": {
+      "$value": "#b8b8b8",
+      "$type": "color",
+      "$description": "Mute Cream — Secondary body text, subdued descriptions, muted helper copy"
+    },
+    "ash-gray": {
+      "$value": "#a6a6a6",
+      "$type": "color",
+      "$description": "Ash Gray — Subdued heading text, list separators, inactive link borders"
+    },
+    "bronze-veil": {
+      "$value": "#504f4a",
+      "$type": "color",
+      "$description": "Bronze Veil — Badge borders, card hairline accents, low-emphasis outline treatments"
+    },
+    "signal-teal": {
+      "$value": "#00b18c",
+      "$type": "color",
+      "$description": "Signal Teal — Teal action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "ember-coral": {
+      "$value": "#ff4a5f",
+      "$type": "color",
+      "$description": "Ember Coral — Red action color for filled buttons, selected navigation states, and focused conversion moments"
+    }
+  },
+  "font": {
+    "tasa-orbiter": {
+      "$value": "TASA Orbiter",
+      "$type": "fontFamily",
+      "$description": "Single typeface across the entire system. Weight 600 for hero and section headlines, weight 500 for subheadings and emphasized body runs, weight 400 for body and metadata. The tight -0.02em tracking on display sizes (54-56px) collapses the headline into a confident slab; the 0.02em loosening on badge/eyebrow text (13-14px) makes labels feel like printed marks."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "TASA Orbiter",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "TASA Orbiter",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "TASA Orbiter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "TASA Orbiter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "TASA Orbiter",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "TASA Orbiter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "TASA Orbiter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "TASA Orbiter",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "TASA Orbiter",
+        "fontSize": "19px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "TASA Orbiter",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "TASA Orbiter",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "TASA Orbiter",
+        "fontSize": "25px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "TASA Orbiter",
+        "fontSize": "40px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "TASA Orbiter",
+        "fontSize": "54px",
+        "fontWeight": 600,
+        "lineHeight": 0.87
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "TASA Orbiter",
+        "fontSize": "54px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 54px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "TASA Orbiter",
+        "fontSize": "56px",
+        "fontWeight": 600,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 56px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "900px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(56, 56, 53) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(255, 251, 235, 0.25) 0px 0px 0px 2px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "charcoal-canvas": {
+      "$value": "#151515",
+      "$type": "color",
+      "$description": "Surface level 0: Page base, hero background beneath the teal radial wash"
+    },
+    "card-surface": {
+      "$value": "#151515",
+      "$type": "color",
+      "$description": "Surface level 1: Card interior — same color as canvas, distinguished only by the 1px inset border in #383835"
+    },
+    "teal-wash": {
+      "$value": "#00b18c",
+      "$type": "color",
+      "$description": "Surface level 2: Hero radial gradient overlay creating atmospheric depth, not a true surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://allfeat.org",
+      "siteName": "Allfeat",
+      "extractedAt": "2026-06-03T21:51:30.352Z",
+      "variant": "extended"
+    }
+  }
+}

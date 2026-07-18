@@ -1,0 +1,1072 @@
+{
+  "source": "https://styles.refero.design/style/80b2cc74-62c5-4898-bc2b-12aa94ed2943",
+  "uuid": "80b2cc74-62c5-4898-bc2b-12aa94ed2943",
+  "name": "Design Full-Time",
+  "northStar": "black-box cinema with a single warm spotlight",
+  "capturedAt": "2026-07-18T07:22:25.848Z",
+  "meta": {
+    "url": "https://designfulltime.com",
+    "siteName": "Design Full-Time",
+    "extractedAt": "2026-06-03T21:30:15.398Z",
+    "durationMs": 34769,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 88,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #000000 as the page canvas and keep all non-promo content achromatic — let the warm gradient banner be the only chromatic event on the page.",
+      "Apply the linear-gradient(90deg, #ff8a00, #fa3a19) exclusively to the promo CTA button; never use it for nav, icons, or course cards.",
+      "Use Inter 700/800 for all headings and Inter 400/600 for body — never mix in a second typeface family.",
+      "Define card edges with 1px #343434 borders on #111111 surfaces; skip shadows and rely on flat color steps for hierarchy.",
+      "Set video card padding to 16px and maintain an 8px gap between thumbnail, title, and category label inside each card.",
+      "Keep the type scale capped at 24px — let video thumbnails and the gradient banner carry visual scale instead of oversized headlines.",
+      "Use #ffffff for interactive text and headings, #a0a0a0 / #888888 for metadata and secondary copy."
+    ],
+    "donts": [
+      "Don't introduce any blue, green, or purple accent — the brand is a two-tone system (monochrome + warm gradient) and extra hues will dilute the spotlight effect.",
+      "Don't apply the warm gradient to body text, icons, or borders — reserve it for the promo banner surface and its CTA button only.",
+      "Don't use shadows or heavy rounded corners (>=12px); the system is intentionally flat with 4-6px radii and hairline borders.",
+      "Don't set headings above 24px; oversized display type breaks the compact, instructor-led feel.",
+      "Don't use #111111 as a button background for primary actions — that role belongs exclusively to the warm gradient CTA.",
+      "Don't introduce a second typeface, custom display face, or serif — Inter alone carries the brand at every weight.",
+      "Don't place the gradient banner inside cards or repeated lists; it must remain a singular full-width conversion event."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Page canvas, dominant background — absorbs everything so content and the warm gradient banner can command attention",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111111",
+        "name": "Surface Black",
+        "role": "Card backgrounds, elevated panels, filled neutral button surface — one step off the canvas creates depth without gray noise",
+        "group": "neutral"
+      },
+      {
+        "hex": "#252525",
+        "name": "Lifted Charcoal",
+        "role": "Mid-elevation surfaces, hover states, and subtle card depth — bridges the page black and border tones",
+        "group": "neutral"
+      },
+      {
+        "hex": "#343434",
+        "name": "Border Gray",
+        "role": "Hairline dividers, card outlines, table rules — defines structural edges in a flat world",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4d4d4d",
+        "name": "Edge Gray",
+        "role": "Heavier borders on outlined buttons and grouped control frames",
+        "group": "neutral"
+      },
+      {
+        "hex": "#888888",
+        "name": "Muted Text",
+        "role": "Secondary body text, metadata, timestamps, supporting copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a0a0a0",
+        "name": "Helper Gray",
+        "role": "Body text borders and subtle helper text where full white feels too loud",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Primary headings, nav text, button text, logo fill — the only color allowed to compete with the gradient banner",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffc840",
+        "name": "Amber Glow",
+        "role": "Promotional banner start — the cool-yellow origin of the warm spotlight gradient (also gradient)",
+        "group": "accent",
+        "gradient": "linear-gradient(90deg, #ffc84 0%, #fa3a19 100%)"
+      },
+      {
+        "hex": "#ff8a00",
+        "name": "Ember Orange",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "accent",
+        "gradient": "linear-gradient(90deg, #ff8a00 0%, #fa3a19 100%)"
+      },
+      {
+        "hex": "#fa3a19",
+        "name": "Crimson Heat",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "accent",
+        "gradient": "linear-gradient(90deg, #ff8a00 0%, #fa3a19 100%)"
+      }
+    ],
+    "layout": "Full-bleed dark layout with no decorative side margins — content is centered within a 1200px max-width container. The hero is a centered stack: nav bar → centered logo → single subtitle line → full-width promo banner → section heading → 4-column thumbnail row. Sections stack vertically with 48px gaps and no alternating light/dark bands (the page is uniformly #000000). The video grid is a 4-column equal-width row on desktop, collapsing to 2-1 columns on smaller widths. Content arrangement is strictly left-aligned within cards and sections; only the logo and subtitle are center-aligned. Navigation is a flat top bar with a single dropdown (Courses → Jobs and Events / Coming Soon) and a right-aligned login button. No sidebar, no sticky header, no mega-menu.",
+    "imagery": "Imagery is dominated by 16:9 video thumbnails showing the instructor (bearded, beanie-wearing) in his studio with board-of-design and tools visible behind him. Thumbnails are treated as rectangular crops with no rounded corners or color treatment — they read as direct screencaps. A few thumbnails use a slide/UI overlay on the left half (e.g., a 'modern way to build for the web' slide) composited against the instructor on the right. No illustration, no abstract graphics, no photography beyond the instructor videos. Icon usage is minimal (chevrons in nav dropdowns). The promo banner introduces the only non-photographic color via gradient. Visual density is medium: the page mixes 4-column thumbnail rows with text-led sections, so thumbnails occupy roughly 40-50% of above-the-fold visual real estate.",
+    "similar": [
+      {
+        "why": "Same dark monochrome course-platform canvas with instructor-led video thumbnails and minimal type-driven hierarchy",
+        "business": "Maven"
+      },
+      {
+        "why": "Black-canvas content site that lets a single warm accent color or gradient own the only chromatic moment on the page",
+        "business": "Refind"
+      },
+      {
+        "why": "Pure black background with hairline gray borders, flat rectangular cards, and zero decorative shadow — content-first density",
+        "business": "Levels.fyi"
+      },
+      {
+        "why": "Design-education brand using a black-canvas layout with bold centered wordmark and conversion-focused promo strips",
+        "business": "Design Buddies"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "6px",
+        "badges": "4px",
+        "banner": "4px",
+        "buttons": "6px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "48px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page-wide background; absorbs visual noise so video thumbnails and the gradient banner read first"
+      },
+      {
+        "hex": "#111111",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Video lesson cards and grouped content blocks; one step off canvas to define edges without gray noise"
+      },
+      {
+        "hex": "#252525",
+        "name": "Elevated",
+        "level": 2,
+        "purpose": "Subtle elevation for hover states, tooltips, or higher-tier promotional panels"
+      }
+    ],
+    "northStar": "black-box cinema with a single warm spotlight",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 15,
+        "lineHeight": 21
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 28
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 28
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 32
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Full-width #000000 bar with 16px vertical padding, 32px horizontal padding. Left-aligned nav links in Inter 600/16px white, right-aligned 'Student Login' outlined button. 1px #343434 bottom border separates from page canvas."
+      },
+      {
+        "name": "Brand Wordmark",
+        "role": "Logo / identity",
+        "description": "Centered 'DESIGN FULL-TIME' in white, Inter 800, set in two stacked lines with a slight arc/swoosh framing — only chromatic-free brand mark, the gradient lives elsewhere."
+      },
+      {
+        "name": "Promo Banner (Gradient Strip)",
+        "role": "Conversion / offer highlight",
+        "description": "Full-width 64-72px tall bar with warm gradient wash (amber 12% opacity → red 10% opacity) on a #000000 base. 1px subtle border, 4px radius. Contains three zones: left 'Save 60%' in gradient text (amber → crimson), center 'Get all 5 courses for $399!' in white, right gradient-filled CTA button. This is the ONLY component allowed to introduce warm color."
+      },
+      {
+        "name": "Promo Gradient Button",
+        "role": "Primary conversion CTA on banner",
+        "description": "Filled button with linear-gradient(90deg, #ff8a00, #fa3a19) background, white Inter 700 text, 6px radius, 8px 16px padding. Sits right-aligned inside the promo banner."
+      },
+      {
+        "name": "Outlined Nav Button",
+        "role": "Secondary account action",
+        "description": "Transparent background, 1px #343434 border, 6px radius, 8px 16px padding, white Inter 600/15px label. Used for 'Student Login' and similar account-level actions."
+      },
+      {
+        "name": "Video Lesson Card",
+        "role": "Course / free lesson entry point",
+        "description": "#111111 background, 1px #343434 border, 6px radius, 16px internal padding. Composed of 16:9 video thumbnail on top, then 8px gap to title (Inter 700/16px white) and 4px gap to category label (Inter 400/15px #a0a0a0). Clickable as a unit."
+      },
+      {
+        "name": "Video Duration Badge",
+        "role": "Thumbnail metadata overlay",
+        "description": "Absolute-positioned bottom-right of video thumbnail. #000000 80% opacity background, 4px radius, 4px 8px padding, Inter 600/13px white text. Reports runtime (e.g., '21:35', '1:16')."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Section title",
+        "description": "Left-aligned Inter 700/24px white, 16px bottom margin, 0 letter-spacing. Used for 'Try these FREE video lessons' style headers. No accent color, no underline, no decoration — type weight alone does the work."
+      },
+      {
+        "name": "Video Title",
+        "role": "Lesson card primary label",
+        "description": "Inter 700/16px white, 1.4 line-height, max two lines. Sets the card's voice."
+      },
+      {
+        "name": "Category Label",
+        "role": "Lesson card metadata",
+        "description": "Inter 400/15px #a0a0a0, single line, below video title. Identifies the source course (e.g., 'Standout Web Designer', 'That Portfolio Course')."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface. Inter 700/800 for the wordmark and section headlines (confident, instructor-led); 600 for video titles and nav labels; 400 for body copy and metadata. No display-size font in the system — the brand keeps type compact (capped at 24px) and lets the gradient banner and video thumbnails carry visual weight instead.",
+        "sizes": "15, 16, 18, 20, 24",
+        "family": "Inter",
+        "weight": "400, 600, 700, 800",
+        "lineHeight": "1.00, 1.33, 1.40, 1.50, 1.56",
+        "substitute": "Inter (Google Fonts) or system-ui as fallback"
+      }
+    ],
+    "description": "Design Full-Time runs a black-box cinema: pure #000000 canvas, white type, and one concentrated warm gradient (amber → ember → red) reserved for conversion surfaces and savings moments. The page is almost entirely achromatic — video thumbnails, course metadata, and navigation live in monochrome gray scale, letting the single gradient banner function as a stage spotlight. Components are flat and rectangular with hairline borders, minimal rounding, and zero shadows; hierarchy comes from type weight, whitespace, and the rare chromatic punctuation. Inter at 700/800 carries the brand's confident, instructor-led voice while body text stays at 400/600 in muted grays.",
+    "customSections": [
+      {
+        "title": "Gradient System",
+        "content": "The brand runs a single warm gradient family with three operational variants: (1) Text gradient — linear-gradient(90deg, #ffc840, #fa3a19) applied to the 'Save 60%' wordmark on the promo banner; (2) Button gradient — linear-gradient(90deg, #ff8a00, #fa3a19) applied to the promo CTA fill; (3) Wash gradient — the same hues at 10-12% opacity used as a soft background tint behind the promo banner text. Never extend this family to other UI surfaces."
+      },
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/80b2cc74-62c5-4898-bc2b-12aa94ed2943#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Design Full-Time design system\",\"item\":\"https://styles.refero.design/style/80b2cc74-62c5-4898-bc2b-12aa94ed2943\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/80b2cc74-62c5-4898-bc2b-12aa94ed2943#style-reference\",\"name\":\"Design Full-Time design system reference\",\"headline\":\"Design Full-Time design system | Refero Styles\",\"description\":\"Explore Design Full-Time's dark Other design system: Pure Black #000000, Surface Black #111111 colors, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/80b2cc74-62c5-4898-bc2b-12aa94ed2943\",\"mainEntityOfPage\":\"https://styles.refero.design/style/80b2cc74-62c5-4898-bc2b-12aa94ed2943\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Design Full-Time\",\"url\":\"https://designfulltime.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/80b2cc74-62c5-4898-bc2b-12aa94ed2943#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4b3bf7c6-5452-4360-9852-03eab05d3d0f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4b3bf7c6-5452-4360-9852-03eab05d3d0f.jpg\",\"caption\":\"Screenshot of Design Full-Time\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4b3bf7c6-5452-4360-9852-03eab05d3d0f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Design Full-Time design system\",\"Design Full-Time website design\",\"Design Full-Time colors\",\"Design Full-Time typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Pure Black\",\"Surface Black\",\"Lifted Charcoal\",\"Border Gray\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Design Full-Time design system\"},{\"@type\":\"Thing\",\"name\":\"Design Full-Time website design\"},{\"@type\":\"Thing\",\"name\":\"Design Full-Time colors\"},{\"@type\":\"Thing\",\"name\":\"Design Full-Time typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T03:16:16.400Z\",\"dateModified\":\"2026-04-30T03:16:16.400Z\"}]}19:T54d,primary action: #111111 (filled action)\nCreate a Primary Action Button: #111111 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\nExample Component Prompts:\n\n1. Promo banner: full-width bar, 4px radius, 1px subtle border, soft amber→crimson wash background (12%→10% opacity). Left zone: 'Save 60%' in gradient text (amber #ffc840 → crimson #fa3a19, Inter 700/20px). Center zone: white Inter 600/16px text. Right zone: gradient-filled button (90deg, #ff8a00 → #fa3a19), white Inter 700/15px label, 6px radius, 8px 16px padding.\n\n2. Video lesson card: #111111 surface, 1px #343434 border, 6px radius, 16px padding. Thumbnail (16:9) fills top, bottom-right duration badge (#000000 80% opacity, 4px radius, Inter 600/13px white). 8px gap to title (Inter 700/16px #ffffff), 4px gap to category (Inter 400/15px #a0a0a0).\n\n3. Outlined nav button: transparent background, 1px #343434 border, 6px radius, 8px 16px padding, Inter 600/15px white label. Used for 'Student Login'.\n\n4. Section heading: left-aligned Inter 700/24px #ffffff, 16px bottom margin, no decoration. Followed by a 4-column equal-width video grid with 16px gaps.\n\n5. Page canvas: #000000 full-bleed background, 1200px max-width centered content container, 48px vertical gap between major sections, no shadows, no alternating bands."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "body",
+            "image",
+            "button"
+          ],
+          "frequency": 270,
+          "confidence": 1,
+          "prominence": 13956877.290086048,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "body/color": 5,
+            "link/color": 2,
+            "image/color": 5,
+            "other/color": 37,
+            "button/color": 1,
+            "nav/borderColor": 16,
+            "body/borderColor": 20,
+            "link/borderColor": 8,
+            "image/borderColor": 20,
+            "other/borderColor": 144,
+            "button/borderColor": 4,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#252525",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2644796726260613
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 582295,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#343434",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3250368614874385
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 396269,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "heading"
+          ],
+          "frequency": 98,
+          "confidence": 1,
+          "prominence": 275144.8171597841,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "nav/color": 5,
+            "body/color": 7,
+            "button/color": 2,
+            "heading/color": 7,
+            "nav/borderColor": 16,
+            "body/borderColor": 28,
+            "button/borderColor": 4,
+            "heading/borderColor": 28
+          }
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "button",
+            "other",
+            "nav"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 185289.8619720115,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#888888",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6267535410065036
+          },
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 107280.0028340806,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "body/color": 2,
+            "body/borderColor": 8
+          }
+        },
+        {
+          "hex": "#0b0b0b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1498161531020172
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 78938,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#a0a0a0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7051080588991019
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 33871.368608924706,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "body/borderColor": 20
+          }
+        },
+        {
+          "hex": "#2c3e50",
+          "oklch": {
+            "c": 0.03909746106498092,
+            "h": 248.9745127043408,
+            "l": 0.35641276799052135
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 18066.30291754016,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#4d4d4d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.41838944017064783
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 13866.554582667328,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f4f4f4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.967153298496294
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 895,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0012549740343127983,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.68,
+          "background": "#ffffff",
+          "foreground": "#0b0b0b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.09,
+          "background": "#f4f4f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#111111",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.9,
+          "background": "#f4f4f4",
+          "foreground": "#0b0b0b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.17,
+          "background": "#f4f4f4",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.33,
+          "background": "#252525",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.94,
+          "background": "#f4f4f4",
+          "foreground": "#252525"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.45,
+          "background": "#ffffff",
+          "foreground": "#343434"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.32,
+          "background": "#f4f4f4",
+          "foreground": "#343434"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.98,
+          "background": "#ffffff",
+          "foreground": "#2c3e50"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.99,
+          "background": "#f4f4f4",
+          "foreground": "#2c3e50"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.45,
+          "background": "#ffffff",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.03,
+          "background": "#000000",
+          "foreground": "#a0a0a0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.69,
+          "background": "#f4f4f4",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.53,
+          "background": "#a0a0a0",
+          "foreground": "#0b0b0b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.22,
+          "background": "#111111",
+          "foreground": "#a0a0a0"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.92,
+          "background": "#000000",
+          "foreground": "#888888"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.86,
+          "background": "#252525",
+          "foreground": "#a0a0a0"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.33,
+          "background": "#111111",
+          "foreground": "#888888"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "marginTop|heading",
+            "marginTop|body",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|body",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginLeft|nav",
+            "columnGap|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|other",
+            "marginTop|body",
+            "rowGap|other",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right, rgba(255, 200, 78, 0.12) 9.64%, rgba(250, 58, 25, 0.1) 90.67%)",
+        "colors": [
+          "rgba(255, 200, 78, 0.12)",
+          "rgba(250, 58, 25, 0.1)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(255, 138, 0) 0%, rgb(250, 58, 25) 100%)",
+        "colors": [
+          "rgb(255, 138, 0)",
+          "rgb(250, 58, 25)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(255, 200, 78) 0%, rgb(250, 58, 25) 100%)",
+        "colors": [
+          "rgb(255, 200, 78)",
+          "rgb(250, 58, 25)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            600,
+            700,
+            800
+          ],
+          "frequency": 84,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "body",
+            "image"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 800,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 800,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/82b46981-6640-4f6f-99a1-3c98d125dedd.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4b3bf7c6-5452-4360-9852-03eab05d3d0f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/80b2cc74-62c5-4898-bc2b-12aa94ed2943#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Design Full-Time design system\",\"item\":\"https://styles.refero.design/style/80b2cc74-62c5-4898-bc2b-12aa94ed2943\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/80b2cc74-62c5-4898-bc2b-12aa94ed2943#style-reference\",\"name\":\"Design Full-Time design system reference\",\"headline\":\"Design Full-Time design system | Refero Styles\",\"description\":\"Explore Design Full-Time's dark Other design system: Pure Black #000000, Surface Black #111111 colors, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/80b2cc74-62c5-4898-bc2b-12aa94ed2943\",\"mainEntityOfPage\":\"https://styles.refero.design/style/80b2cc74-62c5-4898-bc2b-12aa94ed2943\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Design Full-Time\",\"url\":\"https://designfulltime.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/80b2cc74-62c5-4898-bc2b-12aa94ed2943#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4b3bf7c6-5452-4360-9852-03eab05d3d0f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4b3bf7c6-5452-4360-9852-03eab05d3d0f.jpg\",\"caption\":\"Screenshot of Design Full-Time\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4b3bf7c6-5452-4360-9852-03eab05d3d0f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Design Full-Time design system\",\"Design Full-Time website design\",\"Design Full-Time colors\",\"Design Full-Time typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Pure Black\",\"Surface Black\",\"Lifted Charcoal\",\"Border Gray\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Design Full-Time design system\"},{\"@type\":\"Thing\",\"name\":\"Design Full-Time website design\"},{\"@type\":\"Thing\",\"name\":\"Design Full-Time colors\"},{\"@type\":\"Thing\",\"name\":\"Design Full-Time typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T03:16:16.400Z\",\"dateModified\":\"2026-04-30T03:16:16.400Z\"}]}19:T54d,primary action: #111111 (filled action)\nCreate a Primary Action Button: #111111 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\nExample Component Prompts:\n\n1. Promo banner: full-width bar, 4px radius, 1px subtle border, soft amber→crimson wash background (12%→10% opacity). Left zone: 'Save 60%' in gradient text (amber #ffc840 → crimson #fa3a19, Inter 700/20px). Center zone: white Inter 600/16px text. Right zone: gradient-filled button (90deg, #ff8a00 → #fa3a19), white Inter 700/15px label, 6px radius, 8px 16px padding.\n\n2. Video lesson card: #111111 surface, 1px #343434 border, 6px radius, 16px padding. Thumbnail (16:9) fills top, bottom-right duration badge (#000000 80% opacity, 4px radius, Inter 600/13px white). 8px gap to title (Inter 700/16px #ffffff), 4px gap to category (Inter 400/15px #a0a0a0).\n\n3. Outlined nav button: transparent background, 1px #343434 border, 6px radius, 8px 16px padding, Inter 600/15px white label. Used for 'Student Login'.\n\n4. Section heading: left-aligned Inter 700/24px #ffffff, 16px bottom margin, no decoration. Followed by a 4-column equal-width video grid with 16px gaps.\n\n5. Page canvas: #000000 full-bleed background, 1200px max-width centered content container, 48px vertical gap between major sections, no shadows, no alternating bands."
+}

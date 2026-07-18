@@ -1,0 +1,347 @@
+{
+  "color": {
+    "cosmic-ink": {
+      "$value": "#15252d",
+      "$type": "color",
+      "$description": "Cosmic Ink — Hero background, testimonial card surface, headline text on light surfaces, footer, and the entire dark-mode layer"
+    },
+    "cinder": {
+      "$value": "#254250",
+      "$type": "color",
+      "$description": "Cinder — Secondary dark surface for testimonial and profile cards — a slightly lifted step above Cosmic Ink so cards read as separate panels without leaving the dark family"
+    },
+    "fog": {
+      "$value": "#9fb2bc",
+      "$type": "color",
+      "$description": "Fog — Muted dividers, dashed card separators, secondary icon strokes on dark surfaces"
+    },
+    "mist": {
+      "$value": "#e2e8f0",
+      "$type": "color",
+      "$description": "Mist — Hairline borders, section dividers, subtle outline controls on light surfaces"
+    },
+    "cloud": {
+      "$value": "#f8f8f8",
+      "$type": "color",
+      "$description": "Cloud — Page canvas, card surface, input fill — the default light ground"
+    },
+    "ash": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Ash — Alternate section background that breaks Cloud bands without introducing a different color"
+    },
+    "signal-orange": {
+      "$value": "#e75e15",
+      "$type": "color",
+      "$description": "Signal Orange — Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "All interface and editorial type. Weight 400 for body and nav, 500 for UI labels, 600 for subheadings and small headlines, 700 for section headings, 900 reserved for the hero headline — the only place Apollo uses the heaviest weight, creating a clear 'stage voice'"
+    },
+    "fira-code": {
+      "$value": "Fira Code",
+      "$type": "fontFamily",
+      "$description": "Reserved for code-as-heading treatments and developer-facing copy blocks — the monospace signal tells the reader 'this is code or technical content' even when displayed at heading size. Tracking is widened to 0.08em to keep monospace headings legible"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 900,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Fira Code Font",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "38px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "50px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "50px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#f8f8f8",
+      "$type": "color",
+      "$description": "Surface level 0: Default body background between sections"
+    },
+    "alt-band": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle section variation, breaks monochrome rhythm without adding a new hue"
+    },
+    "card-surface": {
+      "$value": "#f8f8f8",
+      "$type": "color",
+      "$description": "Surface level 2: Light cards sit on Ash bands with 24–32px radii"
+    },
+    "cosmic-panel": {
+      "$value": "#15252d",
+      "$type": "color",
+      "$description": "Surface level 3: Hero, feature showcase panels, video containers — the dark stage"
+    },
+    "cinder-card": {
+      "$value": "#254250",
+      "$type": "color",
+      "$description": "Surface level 4: Lifted dark card surface for testimonials and profile blocks — distinguishable from the Cosmic panel behind them"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://apollographql.com",
+      "siteName": "Apollographql",
+      "extractedAt": "2026-06-03T21:06:43.089Z",
+      "variant": "extended"
+    }
+  }
+}

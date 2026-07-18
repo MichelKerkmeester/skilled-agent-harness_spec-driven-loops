@@ -1,0 +1,394 @@
+{
+  "color": {
+    "sunset-gradient": {
+      "$value": "#ea2804",
+      "$type": "color",
+      "$description": "Sunset Gradient — Hero background wash, section border frames, brand-mark dot grid — the only chromatic surface treatment in the system. Always at full saturation; never desaturated or muted; The single non-gradient accent — appears in the logo mark and the warm shadow tint. Never used for buttons, links, or text; its job is to anchor the gradient's red midpoint"
+    },
+    "forest-signal": {
+      "$value": "#2b9a66",
+      "$type": "color",
+      "$description": "Forest Signal — Green supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Page canvas, card surfaces, code editor background. The base layer everything sits on"
+    },
+    "ink": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Ink — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "graphite": {
+      "$value": "#646464",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, metadata, run counts, helper labels. Provides a quiet middle step between Ink and the silver border tones"
+    },
+    "silver": {
+      "$value": "#bfbfbf",
+      "$type": "color",
+      "$description": "Silver — Avatar ring borders, decorative shadow tint, inactive dividers"
+    },
+    "smoke": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Smoke — Hairline borders on cards, model tiles, and input fields. The primary structural divider color"
+    },
+    "fog": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Fog — Subtle surface step (alt card backgrounds, section bands), input field default state"
+    },
+    "vellum": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Vellum — Warm-white off-state surface used for the secondary surface tier (e.g. model card backgrounds behind thumbnails)"
+    },
+    "cream-paper": {
+      "$value": "#fefce9",
+      "$type": "color",
+      "$description": "Cream Paper — Rare warm-tinted surface used inside editor cards and callout blocks — a very subtle nod to the gradient's yellow endpoint"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — True black for the logo wordmark, high-contrast icon strokes, and maximum-impact filled buttons when Ink is insufficient"
+    }
+  },
+  "font": {
+    "rb-freigeist-neue": {
+      "$value": "RB Freigeist Neue",
+      "$type": "fontFamily",
+      "$description": "Display and editorial headlines. The high-contrast geometric face carries all the visual drama — 128px hero ('Run AI with an API.'), 48–72px section openers, 30px sub-headers. The 1.0 line-height at display sizes is a signature: letters almost touch, creating a dense monumental block. Tracking tightens to -0.025em at every size."
+    },
+    "basier-square": {
+      "$value": "Basier Square",
+      "$type": "fontFamily",
+      "$description": "All functional UI: body copy, navigation, buttons, labels, badges, metadata, table cells, footer. The geometric humanist counterpoint to Freigeist — quiet enough to disappear, warm enough to read at 12px captions. 14px body, 16px default, 20–24px for sub-headings, 29px for the largest non-display heading tier."
+    },
+    "jetbrains-mono": {
+      "$value": "JetBrains Mono",
+      "$type": "fontFamily",
+      "$description": "Code blocks, API tokens, version strings, inline code, keyboard shortcuts (e.g. the '⌘+K' chip inside the search input). Lives exclusively inside editor cards and technical micro-labels."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "jetbrains-mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "jetbrains-mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "basier-square",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "basier-square",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "basier-square",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "basier-square",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "jetbrains-mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "basier-square",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "basier-square",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "basier-square",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "jetbrains-mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "basier-square",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "rb-freigeist-neue",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "basier-square",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "basier-square",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "basier-square",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "basier-square",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "basier-square",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "rb-freigeist-neue",
+        "fontSize": "30px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "rb-freigeist-neue",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "rb-freigeist-neue",
+        "fontSize": "72px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "rb-freigeist-neue",
+        "fontSize": "128px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 128px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(228, 199, 103) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Model cards, code editor, content tiles — same as canvas but with 1px Smoke border"
+    },
+    "recessed": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle tier for model tile backgrounds behind thumbnails"
+    },
+    "accent-surface": {
+      "$value": "#fefce9",
+      "$type": "color",
+      "$description": "Surface level 3: Warm-tinted callout/editor interior — echoes the gradient's yellow stop"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://replicate.com",
+      "siteName": "Replicate",
+      "extractedAt": "2026-06-03T18:10:30.093Z",
+      "variant": "extended"
+    }
+  }
+}

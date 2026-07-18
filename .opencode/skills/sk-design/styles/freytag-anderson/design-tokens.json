@@ -1,0 +1,237 @@
+{
+  "color": {
+    "paper": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Paper — Page canvas, base surface behind text — off-white, never pure white, to soften photographic edges"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, hairline borders, link underlines — the only chromatic accent in the system is its absence of color"
+    },
+    "charcoal": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Charcoal — Dark content surface for text-only sections — warm-leaning black that softens contrast against pure ink"
+    },
+    "midnight-soil": {
+      "$value": "#141109",
+      "$type": "color",
+      "$description": "Midnight Soil — Deepest dark surface, used for the most recessed bands — barely distinguishable from charcoal but warmer"
+    },
+    "ash": {
+      "$value": "#dcdcdc",
+      "$type": "color",
+      "$description": "Ash — Hairline borders, disabled borders, subtle dividers — a neutral gray that whispers structure without drawing the eye"
+    },
+    "driftwood": {
+      "$value": "#c2b5ae",
+      "$type": "color",
+      "$description": "Driftwood — Warm taupe accent surface, used sparingly as a tonal break in dark sections — the only non-achromatic hint in the palette"
+    }
+  },
+  "font": {
+    "favorit": {
+      "$value": "FAVORIT",
+      "$type": "fontFamily",
+      "$description": "The single typeface for everything: hero titles at 41px weight 400, body at 17px weight 400, captions at 15px weight 300. Weight 300 is the signature choice for secondary text — it creates hierarchy through restraint rather than bold contrast. Slight negative tracking (-0.02em to -0.022em) tightens the grotesque's default rhythm. The same family voices headlines, navigation, buttons, and body, which is unusual — most systems differentiate roles through typefaces. Here, FAVORIT's dual weight and tight letterforms carry the entire hierarchy alone."
+    },
+    "clarkson": {
+      "$value": "Clarkson",
+      "$type": "fontFamily",
+      "$description": "Reserved for micro-copy or supporting text in specific contexts — appears at low frequency and never headlines. Could be a FAVORIT alternate cut rather than a true second family."
+    },
+    "halyard-display": {
+      "$value": "halyard-display",
+      "$type": "fontFamily",
+      "$description": "Rare accent — appears in button or micro-label contexts. Functions as a display-only voice when FAVORIT needs to step aside."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "halyard-display",
+        "fontSize": "15px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "FAVORIT",
+        "fontSize": "15px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "halyard-display",
+        "fontSize": "17px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "FAVORIT",
+        "fontSize": "17px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "FAVORIT",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "FAVORIT",
+        "fontSize": "17px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 17px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Clarkson",
+        "fontSize": "17px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 17px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "Clarkson",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 17px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "FAVORIT",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 17px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "FAVORIT",
+        "fontSize": "41px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 41px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "43": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Spacing 43px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "300px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 1: Base canvas, the default page surface behind text-only blocks"
+    },
+    "driftwood": {
+      "$value": "#c2b5ae",
+      "$type": "color",
+      "$description": "Surface level 2: Warm tonal break surface — used as an accent band, not a default"
+    },
+    "ash": {
+      "$value": "#dcdcdc",
+      "$type": "color",
+      "$description": "Surface level 3: Divider lines, disabled borders, subtle structural gray"
+    },
+    "midnight-soil": {
+      "$value": "#141109",
+      "$type": "color",
+      "$description": "Surface level 4: Deepest dark band — used sparingly for the most recessed sections"
+    },
+    "charcoal": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Surface level 5: Dark content surface for intertitle-style text sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.freytaganderson.com",
+      "siteName": "Freytag Anderson",
+      "extractedAt": "2026-06-03T19:39:45.491Z",
+      "variant": "extended"
+    }
+  }
+}

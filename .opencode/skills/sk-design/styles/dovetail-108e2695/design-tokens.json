@@ -1,0 +1,307 @@
+{
+  "color": {
+    "soft-indigo": {
+      "$value": "#6798ff",
+      "$type": "color",
+      "$description": "Soft Indigo — Brand accent — iconography, stat markers, chart series, link states; the single chromatic note in an otherwise achromatic system"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Deepest surface — modal backdrops, full-bleed image fills, inline SVG fills"
+    },
+    "carbon": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Carbon — Page canvas — the primary background; near-black with no warmth"
+    },
+    "graphite": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Graphite — Card surface — one step above the canvas to delineate content blocks"
+    },
+    "iron": {
+      "$value": "#1e1e1e",
+      "$type": "color",
+      "$description": "Iron — Elevated surface and border — secondary cards, table rows, subtle dividers"
+    },
+    "slate-edge": {
+      "$value": "#313131",
+      "$type": "color",
+      "$description": "Slate Edge — Hairline borders on imagery and nested elements — visible but recessive"
+    },
+    "smoke": {
+      "$value": "#454545",
+      "$type": "color",
+      "$description": "Smoke — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "mist": {
+      "$value": "#7c7c7c",
+      "$type": "color",
+      "$description": "Mist — Disabled or low-emphasis button text"
+    },
+    "ash": {
+      "$value": "#a7a7a7",
+      "$type": "color",
+      "$description": "Ash — Secondary text — captions, metadata, helper text, muted labels"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — Primary text, icons, filled CTA background, card surface inverts; the dominant light element in the dark system"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for headings, body, navigation, and buttons. Used at 64px/56px for display headlines with tight tracking, 40px for section headings, 24px/20px for subheadings, 16px for body and nav, 14px for captions. Weight 400 is the reading default; 500–600 for labels and emphasis. Negative letter-spacing tightens at scale (–0.036em at 64px tapering to –0.012em at 20px) — the optical correction keeps large display type from feeling airy."
+    },
+    "jetbrains-mono": {
+      "$value": "JetBrains Mono",
+      "$type": "fontFamily",
+      "$description": "All-caps category labels, section eyebrows (e.g. \"HOW IT WORKS\"), beta tags, and micro-text. Wide tracking (+0.071em to +0.083em) gives the type a stamped, technical feel — it reads as metadata, not copy. Sets it apart from Inter's proportional rhythm and signals the product's data/analytics domain."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "56px",
+        "fontWeight": 500,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "66px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page background; the field on which all content sits"
+    },
+    "card": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Surface level 1: Content blocks, dashboard previews, feature cards"
+    },
+    "elevated": {
+      "$value": "#1e1e1",
+      "$type": "color",
+      "$description": "Surface level 2: Hover states, popovers, nested cards, table headers"
+    },
+    "border": {
+      "$value": "#313131",
+      "$type": "color",
+      "$description": "Surface level 3: Hairline dividers, image outlines, field borders"
+    },
+    "inverted": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 4: Filled CTA buttons, inverted text blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://dovetail.com",
+      "siteName": "Dovetail",
+      "extractedAt": "2026-06-03T16:24:24.796Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "color": {
+    "voltage-magenta": {
+      "$value": "#cc62d5",
+      "$type": "color",
+      "$description": "Voltage Magenta — Filled buttons, link borders, brand accents — the single saturated current that makes the otherwise quiet page feel switched on"
+    },
+    "plasma-gradient": {
+      "$value": "#a732d6",
+      "$type": "color",
+      "$description": "Plasma Gradient — Logo fill, decorative gradient washes — the spectrum from deep purple to hot pink that anchors brand identity"
+    },
+    "ember-orange": {
+      "$value": "#ec660d",
+      "$type": "color",
+      "$description": "Ember Orange — NEW badges, lightning-bolt icons, warm accent punctuation — used sparingly as energy, not as a second brand"
+    },
+    "signal-red": {
+      "$value": "#e83b47",
+      "$type": "color",
+      "$description": "Signal Red — Red wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Use as a supporting accent, not as a status color"
+    },
+    "ink-black": {
+      "$value": "#131517",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, all borders and dividers, dark button surface, icon strokes — the structural neutral that carries 800+ usages"
+    },
+    "porcelain": {
+      "$value": "#f4f5f6",
+      "$type": "color",
+      "$description": "Porcelain — Page background, feature card surfaces, phone-mockup panels — the off-white that lets white cards lift off the canvas"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color"
+    },
+    "graphite": {
+      "$value": "#333537",
+      "$type": "color",
+      "$description": "Graphite — Dark filled-button variant, high-contrast surfaces, secondary button backgrounds"
+    },
+    "stone": {
+      "$value": "#737577",
+      "$type": "color",
+      "$description": "Stone — Body text, icon strokes, supporting metadata — the readable gray for non-headline copy"
+    },
+    "mist": {
+      "$value": "#b3b5b7",
+      "$type": "color",
+      "$description": "Mist — Light borders, link underlines, disabled dividers, subtle separators"
+    }
+  },
+  "font": {
+    "roobert": {
+      "$value": "Roobert",
+      "$type": "fontFamily",
+      "$description": "All UI text — headlines at 700/56px, section headings at 700/40px, body at 400/16px, caption labels at 500/12px tracked out"
+    },
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "Fallback / system rendering"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "56px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "porcelain-canvas": {
+      "$value": "#f4f5f6",
+      "$type": "color",
+      "$description": "Surface level 0: Page background; the off-white floor beneath all content"
+    },
+    "pure-white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, phone-mockup screens, button fills — the lifted top layer"
+    },
+    "ink-surface": {
+      "$value": "#131517",
+      "$type": "color",
+      "$description": "Surface level 2: Dark filled buttons, inverted surface moments"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://glow.app",
+      "siteName": "Glow",
+      "extractedAt": "2026-06-03T17:37:15.370Z",
+      "variant": "extended"
+    }
+  }
+}

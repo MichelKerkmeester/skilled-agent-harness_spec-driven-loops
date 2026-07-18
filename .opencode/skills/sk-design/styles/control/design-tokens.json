@@ -1,0 +1,352 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, structural borders, and outline contours that define all surface edges"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, inverted text on dark surfaces, and button labels on green fills"
+    },
+    "gridline": {
+      "$value": "#d2d2d2",
+      "$type": "color",
+      "$description": "Gridline — Subtle dividers and light borders on secondary surfaces"
+    },
+    "slate": {
+      "$value": "#3d3d3d",
+      "$type": "color",
+      "$description": "Slate — Secondary text and muted UI elements"
+    },
+    "smoke": {
+      "$value": "#c6c6c0",
+      "$type": "color",
+      "$description": "Smoke — Mid-tier borders and inactive form strokes"
+    },
+    "fog": {
+      "$value": "#babab9",
+      "$type": "color",
+      "$description": "Fog — Hairline borders and tertiary dividers"
+    },
+    "ash": {
+      "$value": "#acaca6",
+      "$type": "color",
+      "$description": "Ash — Faint outlines and placeholder chrome"
+    },
+    "graphite": {
+      "$value": "#606060",
+      "$type": "color",
+      "$description": "Graphite — Deemphasized body text and metadata"
+    },
+    "stone": {
+      "$value": "#828282",
+      "$type": "color",
+      "$description": "Stone — Tertiary captions and disabled states"
+    },
+    "concrete": {
+      "$value": "#7a7a7a",
+      "$type": "color",
+      "$description": "Concrete — Disabled button surfaces"
+    },
+    "bone": {
+      "$value": "#f5f5f4",
+      "$type": "color",
+      "$description": "Bone — Card surfaces and elevated panel backgrounds — one shade off white"
+    },
+    "voltage-green": {
+      "$value": "#01ea40",
+      "$type": "color",
+      "$description": "Voltage Green — Primary action buttons, active states, and live UI feedback — saturated green on black-and-white canvas reads as switched-on electricity"
+    },
+    "ember-orange": {
+      "$value": "#ff5c02",
+      "$type": "color",
+      "$description": "Ember Orange — Orange action color for filled buttons, selected navigation states, and focused conversion moments"
+    },
+    "highlighter-yellow": {
+      "$value": "#ffdb4d",
+      "$type": "color",
+      "$description": "Highlighter Yellow — Decorative borders, selection marks, and editorial accent strokes — never used as fill"
+    }
+  },
+  "font": {
+    "melange": {
+      "$value": "Melange",
+      "$type": "fontFamily",
+      "$description": "Display and headline type. Set at extreme sizes (71–146px) with aggressive negative tracking (-0.05 to -0.058em). The medium weight is deliberate — heavy enough to anchor, not so heavy it shouts. Brings editorial magazine energy; no system sans substitutes this"
+    },
+    "favorit-mono": {
+      "$value": "Favorit Mono",
+      "$type": "fontFamily",
+      "$description": "Micro-labels, UI chrome, and metadata. Tiny uppercase tracking at -0.03 to -0.037em creates Swiss editorial caption feel. Line-heights stretch to 2.4 for dense vertical stacks. Always set small — this is a caption font, never a body font"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Fallback system body text. Likely a detection artifact; real product body is handled by the headline and mono systems. Treat as last-resort stack"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Favorit Mono",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Favorit Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Favorit Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 2.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Favorit Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 10px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Favorit Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 10px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Favorit Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 2.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 10px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Favorit Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 2.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 10px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Favorit Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 10px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Melange",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 2.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Favorit Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Melange",
+        "fontSize": "25px",
+        "fontWeight": 500,
+        "lineHeight": 1.52
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Melange",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Melange",
+        "fontSize": "71px",
+        "fontWeight": 500,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 71px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Melange",
+        "fontSize": "71px",
+        "fontWeight": 500,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 71px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Melange",
+        "fontSize": "71px",
+        "fontWeight": 500,
+        "lineHeight": 1.01
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 71px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Melange",
+        "fontSize": "146px",
+        "fontWeight": 500,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 146px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Melange",
+        "fontSize": "146px",
+        "fontWeight": 500,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 146px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Melange",
+        "fontSize": "146px",
+        "fontWeight": 500,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 146px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Melange",
+        "fontSize": "146px",
+        "fontWeight": 500,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 146px"
+    }
+  },
+  "spacing": {
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "273px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page canvas"
+    },
+    "bone": {
+      "$value": "#f5f5f4",
+      "$type": "color",
+      "$description": "Surface level 1: Card and elevated panel backgrounds"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Inverted surfaces (toolbars, status pills)"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://cntrl.site",
+      "siteName": "Control",
+      "extractedAt": "2026-06-03T21:15:16.959Z",
+      "variant": "extended"
+    }
+  }
+}

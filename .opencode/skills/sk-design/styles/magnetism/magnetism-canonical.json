@@ -1,0 +1,1056 @@
+{
+  "source": "https://styles.refero.design/style/a8a1e9e6-d252-49c7-b201-91b3055487df",
+  "uuid": "a8a1e9e6-d252-49c7-b201-91b3055487df",
+  "name": "Magnetism",
+  "northStar": "White linen gallery wall",
+  "capturedAt": "2026-07-18T08:54:45.454Z",
+  "meta": {
+    "url": "https://www.magnetism.fr/en",
+    "siteName": "Magnetism",
+    "extractedAt": "2026-06-03T21:25:28.863Z",
+    "durationMs": 35386,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 372,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use TT Hoves Pro Trial weight 300 for any display-scale typography — the whisper-weight wordmark is the brand's identity and should never be rendered bold or medium",
+      "Apply 0.22em letter-spacing to all micro-labels at 8–10px, and 0.10em at 14–16px — tracking is the signature that makes text read as editorial rather than utilitarian",
+      "Separate navigation items with middle-dot bullet characters (•) and generous 32–64px horizontal padding — never use pipes, slashes, or vertical dividers",
+      "Render photographs full-bleed with 0px padding and 0px border-radius — any chrome around the imagery dilutes the gallery effect",
+      "Keep all UI chrome achromatic — the only color on the page should come from campaign photography, never from buttons, borders, or accents",
+      "Anchor every page with a tiny eyebrow label in the format '• LABEL — YEAR •' using bullet separators and an em-dash",
+      "Place a large light-gray 'M' character on the left margin of the page as a running watermark — it is the brand's quiet continuous presence"
+    ],
+    "donts": [
+      "Never introduce a chromatic brand color, CTA button, or accent fill — this system is monochrome by design and color would break the editorial contract",
+      "Never apply border-radius to images, cards, or containers — everything sits sharp-edged on the linen canvas",
+      "Never render the wordmark at weight 500+ or in a condensed/extended variant — the ultra-light 300 stretched across the viewport is non-negotiable",
+      "Never use sentence-case body copy under 14px without the wide 0.22em tracking — small text needs the spacing to read as deliberate rather than cramped",
+      "Never place text overlays on top of campaign photography — labels always sit in a dedicated row below the image",
+      "Never use box-shadow, drop-shadow, or elevation effects — depth is communicated through whitespace and hairline rules, never through blur",
+      "Never separate nav items with visual elements (dividers, backgrounds, borders) — the bullet character IS the separator"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e5e7eb",
+        "name": "Bone White",
+        "role": "Page canvas, card surfaces, border-on-hover washes — the warm off-white ground that the entire site sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Graphite Ink",
+        "role": "Primary text, wordmark fill, body copy — near-black with a touch of warmth, softer than pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#343434",
+        "name": "Charcoal",
+        "role": "Navigation text, secondary headings, muted body — the darker of the two navigation grays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#aaaaaa",
+        "name": "Ash",
+        "role": "Tertiary text, inactive nav items, page number indicator — sits behind primary content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Silver",
+        "role": "Hairline dividers, section separators, subtle card backgrounds — the structural border color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dbdbdb",
+        "name": "Pale Mist",
+        "role": "Decorative stroke work, SVG compass/field-line graphics, ultra-faint border accents",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "SVG illustration fills, maximum-contrast moments — used sparingly where the ink needs to be absolute",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed throughout — the wordmark and hero photographs extend to viewport edges with no max-width container. Below the header, the works grid is a clean 2-column split with a 16–24px vertical gap between rows, each image filling its 50% column edge-to-edge. No centered text columns, no asymmetric compositions, no card chrome. The page rhythm is: massive wordmark header → hero campaign banner (full-width) → 2-column campaign grid with label rows below each image. Navigation floats at the very top in a single horizontal line spanning the full width, anchored left (logo) and distributed right (nav items). Vertical spacing between major sections is generous (64–80px), creating the breathing room of a print spread. The 'M' watermark repeats on the left margin at every scroll position, anchoring the brand identity without interrupting the imagery.",
+    "imagery": "The site is dominated by full-bleed luxury campaign photography — product shots, portraiture, and lifestyle imagery from brands like Richard Mille, Louis Vuitton, and Hennessy. Treatment is editorial: images extend to viewport edges with no padding, no rounded corners, no masks. The photography carries the full color spectrum (vivid blue oceans, pastel skincare tones, warm amber spirits, high-contrast B&W sports) while the surrounding UI remains rigorously achromatic — a high-key gallery approach where each photograph is the art and the page is the wall. No illustration, no abstract graphics, no icons. The only non-photographic visual elements are the typographic wordmark, the 'M' watermark, and the faint circular field-line graphics. Image density is high — 50%+ of every viewport is photographic content.",
+    "similar": [
+      {
+        "why": "Same editorial monochrome canvas, oversized light-weight display type, and full-bleed campaign photography with tiny tracked-out labels",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Similar gallery-quiet layout, hairline rules as the only structural divider, and extreme typographic restraint in nav",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Print-magazine page rhythm, wordmark-as-hero header pattern, and the philosophy that the work should dominate while the chrome disappears",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Near-monochrome identity system where typographic weight and tracking carry the brand instead of color",
+        "business": "Studio Dumbar"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#e5e7eb",
+        "name": "Bone White",
+        "level": 1,
+        "purpose": "Full-bleed page canvas — the entire site is one continuous off-white field"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Silver",
+        "level": 2,
+        "purpose": "Subtle background tint for selected info blocks, nav hover washes"
+      }
+    ],
+    "elevation": [],
+    "northStar": "White linen gallery wall",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 1.4
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 1.6
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 140,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Wordmark Display",
+        "role": "Brand identifier stretched across the full viewport top of every page",
+        "description": "All-caps TT Hoves Pro Trial at weight 300, ~140px size, tracking 0, color #222222, stretching edge-to-edge. The trademark 'TM' sits as a small superscript at the top right. The wordmark is the hero — no tagline, no supporting mark, no logo lockup. It IS the page header."
+      },
+      {
+        "name": "Bullet-Separated Nav",
+        "role": "Primary navigation across the top of the page",
+        "description": "Inline horizontal list: • WORKS •  • ABOUT •  • BOUTIQUE •  • COB •. Each item is 12–14px TT Hoves Pro Trial weight 400, letter-spacing 0.10em (#1.4px), color #343434. Items are separated by middle-dot bullet characters with 32–64px horizontal padding. The logo sits flush left in the same treatment. No background, no border, no underline — pure typographic separation."
+      },
+      {
+        "name": "Hero Campaign Banner",
+        "role": "Full-bleed editorial photograph for featured work",
+        "description": "Single image spanning the full viewport width with 0px padding, no radius. No text overlay — the image carries the brand voice. Below the image, a single hairline divider in #cccccc separates the image from its label row."
+      },
+      {
+        "name": "Campaign Grid Cell",
+        "role": "2-column case study tile in the works grid",
+        "description": "Full-bleed photograph filling its 50% column, no border, no radius, no shadow. Below the image sits a label row: 'CAMPAIGN' aligned left, client name (e.g. 'RICHARD MILLE', 'LOUIS VUITTON') aligned right, both at 8–10px weight 400 with 0.22em tracking in #222222. The label row is separated from the image by 16px vertical space and a #cccccc hairline."
+      },
+      {
+        "name": "M Side Watermark",
+        "role": "Repeating brand mark on the left margin",
+        "description": "A large 'M' character rendered at ~80–120px in #cccccc, positioned vertically centered on the left page margin. Acts as a quiet running mark — visible but never demanding attention. Repeats on every scroll position."
+      },
+      {
+        "name": "Magnetic Field Graphic",
+        "role": "Subtle decorative line illustration",
+        "description": "Thin concentric or radiating circular lines in #dbdbdb, 1px stroke, partially visible at large scale. References the 'magnetism' concept without literal magnetism iconography. Used behind the wordmark and section headers as ambient texture."
+      },
+      {
+        "name": "Section Eyebrow Label",
+        "role": "Tiny tracked-out label introducing a section or page",
+        "description": "Format: '• SELECTED WORKS 2019 — 2026 •'. 8–10px TT Hoves Pro Trial weight 400, letter-spacing 0.22em (#2.2px), color #222222, centered or left-aligned. Uses bullet separators and em-dashes as typographic punctuation."
+      },
+      {
+        "name": "Page Indicator",
+        "role": "Small navigation state indicator",
+        "description": "'1/2' or arrow marks positioned in the top-right area, 8–10px, 0.22em tracking, #aaaaaa. No container, no button — just characters at the right margin."
+      },
+      {
+        "name": "About Block",
+        "role": "Long-form descriptive text on the home/about page",
+        "description": "Narrow column (~154px or constrained width), 10–11px TT Hoves Pro Trial weight 400, line-height 1.5, color #222222 with 0.10–0.22em tracking depending on length. All-caps or sentence case. Sits below the wordmark in the upper-left quadrant."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface for wordmark, nav, labels, body, and metadata. The ultra-light 300 carries the enormous wordmark — a neogrotesque at whisper weight reads as confident editorial restraint rather than display shouting. 400 runs all body and nav copy; 500 is reserved for the rare emphasis moment.",
+        "sizes": "8, 10, 11, 14, 16, 20, 24px (plus ~140px display wordmark)",
+        "family": "TT Hoves Pro Trial",
+        "weight": "300, 400, 500",
+        "lineHeight": "1.00, 1.50, 2.00, 2.50",
+        "substitute": "Neue Haas Grotesk, Inter, Aktiv Grotesk, Helvetica Now",
+        "letterSpacing": "0.10em at 14–16px body, scaling to 0.22em at 8–10px micro-labels"
+      },
+      {
+        "role": "Rare secondary face for body paragraphs in the about/descriptive blocks — a warmer geometric that softens the Hoves rigidity in long-form reading",
+        "sizes": "24px",
+        "family": "NeueMontreal",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "Inter, DM Sans, Switzer",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Magnetism operates as a luxury editorial canvas where the wordmark itself is the architecture. The site is almost entirely achromatic — one warm off-white surface, one near-black ink, a single mid-gray for secondary text — with all chromatic content arriving through full-bleed campaign photography. The signature is an enormous weight-300 wordmark stretched edge-to-edge at the top of every page, paired with a bullet-separated navigation that floats in extremely wide tracking. The mood is gallery-quiet: tiny tracked-out labels, hairline rules, subtle circular field-line graphics, and a repeating 'M' watermark on the left margin. Nothing competes with the photographs. The interface is a frame, not a surface.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a8a1e9e6-d252-49c7-b201-91b3055487df#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Magnetism design system\",\"item\":\"https://styles.refero.design/style/a8a1e9e6-d252-49c7-b201-91b3055487df\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a8a1e9e6-d252-49c7-b201-91b3055487df#style-reference\",\"name\":\"Magnetism design system reference\",\"headline\":\"Magnetism design system | Refero Styles\",\"description\":\"Explore Magnetism's light Agency design system: Bone White #e5e7eb, Graphite Ink #222222 colors, TT Hoves Pro Trial, NeueMontreal typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/a8a1e9e6-d252-49c7-b201-91b3055487df\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a8a1e9e6-d252-49c7-b201-91b3055487df\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Magnetism\",\"url\":\"https://www.magnetism.fr/en\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a8a1e9e6-d252-49c7-b201-91b3055487df#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a0d9d068-067a-4513-81ee-9ef1674d9de9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a0d9d068-067a-4513-81ee-9ef1674d9de9.jpg\",\"caption\":\"Screenshot of Magnetism\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a0d9d068-067a-4513-81ee-9ef1674d9de9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Magnetism design system\",\"Magnetism website design\",\"Magnetism colors\",\"Magnetism typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone White\",\"Graphite Ink\",\"Charcoal\",\"Ash\",\"TT Hoves Pro Trial\",\"NeueMontreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Magnetism design system\"},{\"@type\":\"Thing\",\"name\":\"Magnetism website design\"},{\"@type\":\"Thing\",\"name\":\"Magnetism colors\"},{\"@type\":\"Thing\",\"name\":\"Magnetism typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:29:50.013Z\",\"dateModified\":\"2026-04-30T02:29:50.013Z\"}]}19:T7f0,**Quick Color Reference**\n- text: #222222\n- background: #e5e7eb\n- border: #cccccc\n- secondary text / nav: #343434\n- muted text: #aaaaaa\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Create the brand wordmark header:* Edge-to-edge display. Text 'MAGNETISM' in TT Hoves Pro Trial (sub: Inter), weight 300, ~140px size, color #222222, letter-spacing 0, line-height 1.0. Add a tiny 'TM' superscript at the top right in weight 400 at 10px. Below the wordmark, place a narrow left-aligned description block: 10px weight 400, 0.22em letter-spacing, #222222, line-height 1.5, max-width ~250px.\n\n2. *Create the bullet-separated nav:* Single horizontal row at the top of the page. Items: '• WORKS •', '• ABOUT •', '• BOUTIQUE •', '• COB •'. Each item: 14px TT Hoves Pro Trial weight 400, 0.10em letter-spacing, #343434. 64px horizontal padding between items. The logo word 'MAGNETISM' in weight 500 at 12px flush left. No background, no border, no underline.\n\n3. *Create a campaign grid cell:* Full-width 2-column row. Left cell: a full-bleed photograph filling 50% of the viewport width, 0px padding, 0px radius. Below the image, 16px vertical space, then a label row: 'CAMPAIGN' flush left, client name flush right, both 8px weight 400, 0.22em letter-spacing, #222222. A 1px #cccccc hairline divider above the label row. Right cell mirrors the structure with a different client name.\n\n4. *Create the eyebrow section label:* Centered or left-aligned text: '• SELECTED WORKS 2019 — 2026 •'. 10px TT Hoves Pro Trial weight 400, 0.22em letter-spacing (#2.2px), #222222. The bullet and em-dash characters are part of the visual identity — do not replace them with dashes or pipes.\n\n5. *Create the M side watermark:* A large 'M' character positioned absolutely on the left margin, vertically centered in the viewport. Render at ~100px, TT Hoves Pro Trial weight 300, color #cccccc. It should be visible but never compete with the content — it is a background presence, not a logo placement."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "Magnetism treats tracking as a structural material, not a finishing touch. The 0.22em letter-spacing on 8–10px labels transforms tiny text into visual ornament — the wide tracking makes the letters feel like printed gallery placards rather than UI text. The 0.10em on 14–16px body maintains editorial breathing room without pushing into display territory. The wordmark at 140px weight 300 is the counterweight: the same typeface at opposite extremes of size and weight creates the entire visual identity. Never use italic, never use a secondary sans for emphasis, never go below weight 300 in the display context."
+      },
+      {
+        "title": "Monochrome Contract",
+        "content": "This system is 99% achromatic by design. The page is a frame; the photography is the art. Any chromatic UI element — a colored button, a blue link, a red badge — would break the editorial contract that makes the site feel like a luxury print publication rather than a software product. When color is needed (status, emphasis, interaction feedback), use variations of the existing neutral scale: #222222 for strong emphasis, #343434 for medium, #aaaaaa for de-emphasis. Never introduce hue."
+      }
+    ],
+    "elevationPhilosophy": "Magnetism uses no shadows. Depth is constructed entirely through whitespace, full-bleed imagery, and 1px hairline rules in #cccccc and #dbdbdb. Cards and sections exist on the same surface plane — what separates them is the white space around them, not a shadow. This is intentional: shadows would imply a digital product surface, which contradicts the editorial print-magazine identity."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "heading",
+            "link",
+            "nav",
+            "hero",
+            "body",
+            "list",
+            "card",
+            "image",
+            "footer"
+          ],
+          "frequency": 1256,
+          "confidence": 1,
+          "prominence": 145559717.66066,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 80,
+            "body/borderColor": 84,
+            "card/borderColor": 64,
+            "hero/borderColor": 8,
+            "icon/borderColor": 12,
+            "link/borderColor": 120,
+            "list/borderColor": 85,
+            "image/borderColor": 68,
+            "other/borderColor": 660,
+            "footer/borderColor": 4,
+            "heading/borderColor": 68,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "body",
+            "list",
+            "card",
+            "image",
+            "heading",
+            "link",
+            "footer",
+            "icon"
+          ],
+          "frequency": 347,
+          "confidence": 1,
+          "prominence": 119364806.97153658,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 20,
+            "card/color": 16,
+            "hero/color": 2,
+            "icon/color": 1,
+            "link/color": 28,
+            "list/color": 28,
+            "other/fill": 15,
+            "image/color": 17,
+            "other/color": 155,
+            "footer/color": 1,
+            "heading/color": 17,
+            "list/borderColor": 27,
+            "other/borderColor": 20
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 7092253.829203021,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "other/fill": 19
+          }
+        },
+        {
+          "hex": "#dbdbdb",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8914313457035393
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 5138527.795504611,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/stroke": 8
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 4876120.290638579,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 8,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#343434",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3250368614874385
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "nav",
+            "body"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 1441718.8703482356,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 10,
+            "body/color": 1,
+            "icon/color": 2,
+            "link/color": 1,
+            "other/color": 10,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#aaaaaa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7380186709485949
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "nav"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 685105.7493681815,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 10,
+            "link/color": 1,
+            "other/color": 6,
+            "heading/color": 1
+          }
+        },
+        {
+          "hex": "#b9b0b0",
+          "oklch": {
+            "c": 0.010307523676925199,
+            "h": 17.381892187881295,
+            "l": 0.7646727694494666
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 8534,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        },
+        {
+          "hex": "#ff0027",
+          "oklch": {
+            "c": 0.2556893946927624,
+            "h": 25.694222038027156,
+            "l": 0.6296200595590561
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 42,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.012057170162306112,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.17,
+          "background": "#dbdbdb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.85,
+          "background": "#e5e7eb",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.49,
+          "background": "#dbdbdb",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.06,
+          "background": "#e5e7eb",
+          "foreground": "#343434"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.91,
+          "background": "#cccccc",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.9,
+          "background": "#b9b0b0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.04,
+          "background": "#aaaaaa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.99,
+          "background": "#343434",
+          "foreground": "#dbdbdb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.75,
+          "background": "#cccccc",
+          "foreground": "#343434"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.5,
+          "background": "#b9b0b0",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.85,
+          "background": "#aaaaaa",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.87,
+          "background": "#b9b0b0",
+          "foreground": "#343434"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.36,
+          "background": "#343434",
+          "foreground": "#aaaaaa"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.88,
+          "background": "#e5e7eb",
+          "foreground": "#aaaaaa"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.45,
+          "background": "#cccccc",
+          "foreground": "#aaaaaa"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.28,
+          "background": "#343434",
+          "foreground": "#222222"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.16,
+          "background": "#cccccc",
+          "foreground": "#dbdbdb"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#e5e7eb",
+          "foreground": "#dbdbdb"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 7,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "marginLeft|other",
+            "paddingRight|link"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav",
+            "link"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|nav",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 154,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "TT Hoves Pro Trial",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 324,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "NeueMontreal",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 10,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "TT Hoves Pro Trial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.22,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 8,
+          "family": "TT Hoves Pro Trial",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0.22,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "TT Hoves Pro Trial",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "list",
+            "other",
+            "link",
+            "image"
+          ],
+          "frequency": 53,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.22,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "TT Hoves Pro Trial",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 98,
+          "lineHeight": 1,
+          "letterSpacing": 0.22,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "TT Hoves Pro Trial",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1,
+          "letterSpacing": 0.22,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "TT Hoves Pro Trial",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.22,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "TT Hoves Pro Trial",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 2.5,
+          "letterSpacing": 0.22,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "TT Hoves Pro Trial",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TT Hoves Pro Trial",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TT Hoves Pro Trial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "heading",
+            "link",
+            "nav",
+            "hero",
+            "list",
+            "card",
+            "image",
+            "footer"
+          ],
+          "frequency": 131,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "TT Hoves Pro Trial",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "NeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/05ebd76c-e587-4bfe-9f9b-cbd070a5a9ef.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a0d9d068-067a-4513-81ee-9ef1674d9de9.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a8a1e9e6-d252-49c7-b201-91b3055487df#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Magnetism design system\",\"item\":\"https://styles.refero.design/style/a8a1e9e6-d252-49c7-b201-91b3055487df\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a8a1e9e6-d252-49c7-b201-91b3055487df#style-reference\",\"name\":\"Magnetism design system reference\",\"headline\":\"Magnetism design system | Refero Styles\",\"description\":\"Explore Magnetism's light Agency design system: Bone White #e5e7eb, Graphite Ink #222222 colors, TT Hoves Pro Trial, NeueMontreal typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/a8a1e9e6-d252-49c7-b201-91b3055487df\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a8a1e9e6-d252-49c7-b201-91b3055487df\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Magnetism\",\"url\":\"https://www.magnetism.fr/en\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a8a1e9e6-d252-49c7-b201-91b3055487df#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a0d9d068-067a-4513-81ee-9ef1674d9de9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a0d9d068-067a-4513-81ee-9ef1674d9de9.jpg\",\"caption\":\"Screenshot of Magnetism\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a0d9d068-067a-4513-81ee-9ef1674d9de9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Magnetism design system\",\"Magnetism website design\",\"Magnetism colors\",\"Magnetism typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone White\",\"Graphite Ink\",\"Charcoal\",\"Ash\",\"TT Hoves Pro Trial\",\"NeueMontreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Magnetism design system\"},{\"@type\":\"Thing\",\"name\":\"Magnetism website design\"},{\"@type\":\"Thing\",\"name\":\"Magnetism colors\"},{\"@type\":\"Thing\",\"name\":\"Magnetism typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:29:50.013Z\",\"dateModified\":\"2026-04-30T02:29:50.013Z\"}]}19:T7f0,**Quick Color Reference**\n- text: #222222\n- background: #e5e7eb\n- border: #cccccc\n- secondary text / nav: #343434\n- muted text: #aaaaaa\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Create the brand wordmark header:* Edge-to-edge display. Text 'MAGNETISM' in TT Hoves Pro Trial (sub: Inter), weight 300, ~140px size, color #222222, letter-spacing 0, line-height 1.0. Add a tiny 'TM' superscript at the top right in weight 400 at 10px. Below the wordmark, place a narrow left-aligned description block: 10px weight 400, 0.22em letter-spacing, #222222, line-height 1.5, max-width ~250px.\n\n2. *Create the bullet-separated nav:* Single horizontal row at the top of the page. Items: '• WORKS •', '• ABOUT •', '• BOUTIQUE •', '• COB •'. Each item: 14px TT Hoves Pro Trial weight 400, 0.10em letter-spacing, #343434. 64px horizontal padding between items. The logo word 'MAGNETISM' in weight 500 at 12px flush left. No background, no border, no underline.\n\n3. *Create a campaign grid cell:* Full-width 2-column row. Left cell: a full-bleed photograph filling 50% of the viewport width, 0px padding, 0px radius. Below the image, 16px vertical space, then a label row: 'CAMPAIGN' flush left, client name flush right, both 8px weight 400, 0.22em letter-spacing, #222222. A 1px #cccccc hairline divider above the label row. Right cell mirrors the structure with a different client name.\n\n4. *Create the eyebrow section label:* Centered or left-aligned text: '• SELECTED WORKS 2019 — 2026 •'. 10px TT Hoves Pro Trial weight 400, 0.22em letter-spacing (#2.2px), #222222. The bullet and em-dash characters are part of the visual identity — do not replace them with dashes or pipes.\n\n5. *Create the M side watermark:* A large 'M' character positioned absolutely on the left margin, vertically centered in the viewport. Render at ~100px, TT Hoves Pro Trial weight 300, color #cccccc. It should be visible but never compete with the content — it is a background presence, not a logo placement."
+}

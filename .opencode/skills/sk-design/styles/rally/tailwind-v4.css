@@ -1,0 +1,31 @@
+@theme {
+  /* Colors */
+  --color-void: #0d100d;
+  --color-midnight-surface: #08102b;
+  --color-halo: #ffffff;
+  --color-hairline: #000000;
+
+  /* Typography */
+  --font-tiktok-sans-variable: 'TikTok Sans Variable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-system-ui-sans-serif: 'system-ui sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --text-body: 24px;
+  --leading-body: 1.4;
+  --tracking-body: 0.36px;
+  --text-heading: 32px;
+  --leading-heading: 1.1;
+  --tracking-heading: 0.48px;
+
+  /* Spacing */
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+
+  /* Border Radius */
+  --radius-3xl: 24px;
+}

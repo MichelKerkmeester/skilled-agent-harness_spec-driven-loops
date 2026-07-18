@@ -1,0 +1,207 @@
+{
+  "color": {
+    "dropbox-blue": {
+      "$value": "#0061fe",
+      "$type": "color",
+      "$description": "Dropbox Blue — Primary text, link borders, icon strokes, heading type, outlined action borders — the single most defining chromatic element, used wherever the brand needs to speak"
+    },
+    "dropbox-light": {
+      "$value": "#5f9dff",
+      "$type": "color",
+      "$description": "Dropbox Light — Soft surface washes, decorative icon accents, and secondary blue fields — a desaturated companion to Dropbox Blue for large background panels"
+    },
+    "sun-yellow": {
+      "$value": "#fad24b",
+      "$type": "color",
+      "$description": "Sun Yellow — Brand palette swatch, large color block panels, decorative fills"
+    },
+    "tangerine": {
+      "$value": "#ff8c19",
+      "$type": "color",
+      "$description": "Tangerine — Brand palette swatch, full-bleed color block panels, accent fills"
+    },
+    "sky-cyan": {
+      "$value": "#3dd3ee",
+      "$type": "color",
+      "$description": "Sky Cyan — Brand palette swatch, full-bleed color block panels, illustration accent"
+    },
+    "lime": {
+      "$value": "#b4dc19",
+      "$type": "color",
+      "$description": "Lime — Brand palette swatch, large color block panels, accent fills"
+    },
+    "coral": {
+      "$value": "#ffafa5",
+      "$type": "color",
+      "$description": "Coral — Brand palette swatch, warm color block panels, accent surfaces"
+    },
+    "lavender": {
+      "$value": "#c8aff0",
+      "$type": "color",
+      "$description": "Lavender — Brand palette swatch, soft color block panels, illustration accent"
+    },
+    "magenta": {
+      "$value": "#892055",
+      "$type": "color",
+      "$description": "Magenta — Brand palette swatch, deep accent panels, editorial accent"
+    },
+    "slate-navy": {
+      "$value": "#283750",
+      "$type": "color",
+      "$description": "Slate Navy — Brand palette swatch, dark accent panels, editorial contrast"
+    },
+    "ink": {
+      "$value": "#1e1919",
+      "$type": "color",
+      "$description": "Ink — Primary body text, hairline borders, structural dividers, nav type — the near-black workhorse of the grid system"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces, reverse text on color blocks, background beneath the visible grid"
+    },
+    "graphite": {
+      "$value": "#736c64",
+      "$type": "color",
+      "$description": "Graphite — Muted secondary text, subtle helper labels, low-emphasis borders"
+    }
+  },
+  "font": {
+    "dbsharpgroteskvariable-vf": {
+      "$value": "Dbsharpgroteskvariable Vf",
+      "$type": "fontFamily",
+      "$description": "Display and heading type — tight-tracked, geometric grotesque at heavy weights. The 0.80 line-height at 34px is a compression device for editorial taglines where lines almost touch, creating a block-of-text effect. Free substitute: Inter at 700, or Space Grotesk Bold."
+    },
+    "atlasgrotesk-web": {
+      "$value": "Atlasgrotesk Web",
+      "$type": "fontFamily",
+      "$description": "Body copy, navigation labels, link text, button labels, and all utility type. Neutral grotesque at compact sizes — 14px at line-height 1.67 gives breathing room for readable paragraphs while 12px at 1.43 keeps metadata tight. Free substitute: Inter or Atlas Grotesk via Adobe Fonts."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Atlasgrotesk Web",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Atlasgrotesk Web",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Atlasgrotesk Web",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Dbsharpgroteskvariable Vf",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Dbsharpgroteskvariable Vf",
+        "fontSize": "34px",
+        "fontWeight": 500,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 34px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Dbsharpgroteskvariable Vf",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "paper-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background with visible grid lines printed on top"
+    },
+    "color-block-panels": {
+      "$value": "#0061fe",
+      "$type": "color",
+      "$description": "Surface level 1: Full-saturation color panels sitting on the grid as content blocks"
+    },
+    "elevated-grid-cells": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: White cells within the grid for reverse-type headlines"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://brand.dropbox.com",
+      "siteName": "Brand",
+      "extractedAt": "2026-06-03T21:51:22.051Z",
+      "variant": "extended"
+    }
+  }
+}

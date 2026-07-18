@@ -1,0 +1,1059 @@
+{
+  "color": {
+    "forest-ink": {
+      "$value": "#004737",
+      "$type": "color",
+      "$description": "Forest Ink — Dominant brand surface — hero panels, section backgrounds, thick structural borders, nav header, footer blocks. Deep teal absorbs the page and makes cream text glow"
+    },
+    "mint-pulse": {
+      "$value": "#56f09f",
+      "$type": "color",
+      "$description": "Mint Pulse — Green outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    },
+    "mint-mist": {
+      "$value": "#d4ffe8",
+      "$type": "color",
+      "$description": "Mint Mist — Green accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    },
+    "cream-canvas": {
+      "$value": "#fffbec",
+      "$type": "color",
+      "$description": "Cream Canvas — Page background — warm off-white replaces pure white. Border-color on teal sections, card fills on light areas, heading text on dark surfaces"
+    },
+    "deep-loam": {
+      "$value": "#032019",
+      "$type": "color",
+      "$description": "Deep Loam — Text color on cream surfaces, subtle dark borders. Near-black with a green undertone that harmonizes with the Forest Ink brand color"
+    },
+    "sage-whisper": {
+      "$value": "#99b5af",
+      "$type": "color",
+      "$description": "Sage Whisper — Muted body text and secondary borders — desaturated green-gray that recedes on cream while staying tonally consistent with the brand palette"
+    },
+    "stone-mist": {
+      "$value": "#ccdad7",
+      "$type": "color",
+      "$description": "Stone Mist — Hairline dividers, icon borders, subtle background tints on cards within light sections"
+    },
+    "bone": {
+      "$value": "#faf2d5",
+      "$type": "color",
+      "$description": "Bone — Soft warm card background — slightly warmer and more saturated than cream canvas, used to lift specific content blocks without breaking the tonal family"
+    },
+    "charcoal": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Charcoal — Body text and standard button borders in neutral contexts. Used when chromatic text is not appropriate"
+    },
+    "iris-spark": {
+      "$value": "#8f37ff",
+      "$type": "color",
+      "$description": "Iris Spark — Violet outline accent for tags, dividers, and focused UI edges."
+    }
+  },
+  "font": {
+    "aeonik": {
+      "$value": "Aeonik",
+      "$type": "fontFamily",
+      "$description": "Universal typeface — headings, body, UI labels, buttons. Single weight 400 across the entire system; contrast is achieved through size and negative letter-spacing, not weight. This is the signature choice: a monoweight geometric sans where display headlines at 56–74px tighten to -0.043em while body text at 14–16px sits at normal or slightly positive tracking. Tabular numerals ('tnum') are enabled for all instances."
+    },
+    "roobert": {
+      "$value": "roobert",
+      "$type": "fontFamily",
+      "$description": "Secondary body face — used for longer descriptive copy, list items, and hero subtext. Warmer and more humanist than Aeonik, providing tonal variety in long-form text while staying in the same single-weight, geometric family."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 8px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 2.88
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 8px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 2.79
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 8px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 9px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 9px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 9px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 9px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 9px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 9px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 9px"
+    },
+    "xs-12": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-12 at 9px"
+    },
+    "xs-13": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-13 at 10px"
+    },
+    "xs-14": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-14 at 10px"
+    },
+    "xs-15": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-15 at 10px"
+    },
+    "xs-16": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-16 at 10px"
+    },
+    "xs-17": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-17 at 11px"
+    },
+    "xs-18": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-18 at 11px"
+    },
+    "xs-19": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-19 at 11px"
+    },
+    "xs-20": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 2.12
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-20 at 11px"
+    },
+    "xs-21": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-21 at 11px"
+    },
+    "xs-22": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 2.09
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-22 at 11px"
+    },
+    "xs-23": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 2.03
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-23 at 11px"
+    },
+    "xs-24": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-24 at 12px"
+    },
+    "xs-25": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-25 at 12px"
+    },
+    "xs-26": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.94
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-26 at 12px"
+    },
+    "xs-27": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-27 at 12px"
+    },
+    "xs-28": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-28 at 12px"
+    },
+    "xs-29": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-29 at 12px"
+    },
+    "xs-30": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-30 at 12px"
+    },
+    "xs-31": {
+      "$value": {
+        "fontFamily": "roobert-regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.87
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-31 at 12px"
+    },
+    "xs-32": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.92
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-32 at 12px"
+    },
+    "xs-33": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.86
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-33 at 12px"
+    },
+    "xs-34": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-34 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 13px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 13px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 13px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "sm-13": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-13 at 14px"
+    },
+    "sm-14": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-14 at 14px"
+    },
+    "sm-15": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-15 at 14px"
+    },
+    "sm-16": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-16 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.46
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "roobert-regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "base-12": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-12 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "33px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 33px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "66px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 66px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "aeonik",
+        "fontSize": "74px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 74px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "3.36px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "md-2": {
+      "$value": "5.76px",
+      "$type": "dimension",
+      "$description": "Border radius md-2"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "14.4px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "25.4118px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "28.8px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "37px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "3xl-4": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-4"
+    },
+    "3xl-5": {
+      "$value": "46px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-5"
+    },
+    "full": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.04) 0px 3px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#fffbec",
+      "$type": "color",
+      "$description": "Surface level 0: Base background for all light sections — warm cream replaces pure white"
+    },
+    "card-lift": {
+      "$value": "#faf2d5",
+      "$type": "color",
+      "$description": "Surface level 1: Slightly warmer card surface within cream pages — subtle separation without hard borders"
+    },
+    "tinted-highlight": {
+      "$value": "#d4ffe8",
+      "$type": "color",
+      "$description": "Surface level 2: Mint-tinted surface for selected cards, tag backgrounds, pill highlights"
+    },
+    "dark-hero-panel": {
+      "$value": "#004737",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed dark teal sections — hero, footer blocks, feature panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://flecto.io",
+      "siteName": "Flecto",
+      "extractedAt": "2026-06-03T21:22:21.255Z",
+      "variant": "extended"
+    }
+  }
+}

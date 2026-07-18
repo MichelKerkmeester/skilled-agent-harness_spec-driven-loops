@@ -1,0 +1,810 @@
+{
+  "source": "https://styles.refero.design/style/12b20c12-27f8-4938-89ba-569404d36fe8",
+  "uuid": "12b20c12-27f8-4938-89ba-569404d36fe8",
+  "name": "Sing-sing",
+  "northStar": "butter-paper broadsheet at golden hour — a warm saffron canvas with sea-glass ink.",
+  "capturedAt": "2026-07-18T07:18:19.848Z",
+  "meta": {
+    "url": "https://sing-sing.co",
+    "siteName": "Sing-sing",
+    "extractedAt": "2026-06-03T21:52:11.199Z",
+    "durationMs": 38065,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 250,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #fcd579 as the only page background — never introduce white or gray canvases",
+      "Let display type reach 147px with -0.025em tracking; restraint at small sizes is the contrast that makes the scale work",
+      "Place teal (#81d6b9) only as thin horizontal lines, single underlines, and gradient strokes — never as fills or blocks",
+      "Use the teal-to-yellow linear-gradient(90deg, #81d6b9 40%, #efcb75 100%) for any divider that needs to feel structural",
+      "Keep all radii at 0px — sharp edges are part of the editorial language",
+      "Let photography fill its container edge-to-edge with raw crops, no rounding or masking",
+      "Activate \"kern\" on all untitledsans and signifier text to handle the extreme type range"
+    ],
+    "donts": [
+      "Do not introduce shadows, cards, or elevated surfaces — the system is flat by design",
+      "Do not add white, gray, or off-white backgrounds; marigold is the only canvas",
+      "Do not use teal (#81d6b9) as a button fill or large color block — it is a line/stroke accent only",
+      "Do not create rounded corners on any element; the aesthetic is architectural and sharp",
+      "Do not use multiple accent colors; the system is two chromatic notes (teal + yellow) on black ink",
+      "Do not add decorative borders, boxes, or containers around text or images",
+      "Do not use a traditional grid card system — layout is art-directed, not modular"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fcd579",
+        "name": "Marigold",
+        "role": "Page canvas, full-bleed backgrounds, the base layer every other element sits on",
+        "group": "brand"
+      },
+      {
+        "hex": "#81d6b9",
+        "name": "Sea Glass",
+        "role": "Decorative stroke accent — horizontal stripe pattern, top page divider, wordmark underline, gradient terminus",
+        "group": "brand"
+      },
+      {
+        "hex": "#171717",
+        "name": "Inkstone",
+        "role": "Primary text, nav labels, headings, logo wordmark, and all interface borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efcb75",
+        "name": "Marigold Gradient",
+        "role": "Right terminus of the signature horizontal gradient (teal → warm gold) used for stripe fades and section dividers",
+        "group": "brand",
+        "gradient": "linear-gradient(90deg, #81d6b9 40%, #efcb75 100%)"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width container — the marigold canvas extends to all viewport edges. The page reads as a vertical sequence of editorial spreads rather than a traditional web layout. Hero is the striped header band, not a centered headline. Sections alternate between typographic statements (the repeated 'Sing' wordmark at 147px spanning the full width), full-bleed photographic plates, and small rotated caption text. Navigation is a single 'Index' link in the top-right — no menu bar, no sidebar, no sticky header. The footer is a large wordmark. Vertical rhythm uses 35px section padding and 5-7px micro-gaps in nav. The overall density is compact but spacious — the large display type breathes while the nav and captions are tightly tracked.",
+    "imagery": "Imagery is photographic, editorial, and full-bleed. The visible example is a color photograph of window blinds backlit by a circular yellow light source, cropped tight to fill its container with no padding. Photographs have saturated, warm-leaning color grading that harmonizes with the marigold canvas. No illustrations, no 3D renders, no abstract graphics — the only 'graphic' element is the teal stripe pattern itself. Imagery is content, not decoration: it is treated as a magazine plate, not a product card.",
+    "similar": [
+      {
+        "why": "Same editorial-zine layout with full-bleed color backgrounds, massive display type, and photography treated as magazine plates",
+        "business": "It's Nice That"
+      },
+      {
+        "why": "Bold typographic identity, flat color canvases, art-directed sections instead of card grids, and confidence in near-poster scale type",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Warm dominant background colors paired with high-contrast black type and accent stripes — similar editorial confidence",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Custom typefaces at extreme sizes, warm palette, and a flat no-shadow surface treatment",
+        "business": "Mucca"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "5-7px",
+      "sectionGap": "35px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#fcd579",
+        "name": "Marigold Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background — the only surface in the system"
+      }
+    ],
+    "northStar": "butter-paper broadsheet at golden hour — a warm saffron canvas with sea-glass ink.",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.22,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-md",
+        "size": 23,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.46
+      },
+      {
+        "role": "display",
+        "size": 147,
+        "lineHeight": 1,
+        "letterSpacing": -3.675
+      }
+    ],
+    "components": [
+      {
+        "name": "Striped Header Band",
+        "role": "Signature top-of-page element",
+        "description": "Full-bleed #81d6b9 horizontal lines (~1px) spaced at ~14px intervals across the top 250-400px of the page on the #fcd579 canvas. Lines function as both decoration and wayfinding. The band has 5px top padding and acts as the page's 'masthead zone'. No shadow, no border-radius."
+      },
+      {
+        "name": "Index Label",
+        "role": "Top-right navigation indicator",
+        "description": "Single word ('Index') in untitledsans 16px weight 400, #171717, positioned in the upper right margin. Functions as a minimal nav toggle — the entire navigation is one text link, no menu bar."
+      },
+      {
+        "name": "Display Wordmark",
+        "role": "Brand identity and section openers",
+        "description": "The word 'Sing' repeated at 147px / line-height 1.0 / letter-spacing -0.025em in untitledsans weight 400, #171717. Renders at viewport scale, often appearing twice across a spread. A single teal-to-yellow gradient line underlines the wordmark at its baseline. No background, no border — the type IS the component."
+      },
+      {
+        "name": "Editorial Image Block",
+        "role": "Full-bleed photography placement",
+        "description": "Large rectangular image containers with 0px radius, no border, no shadow, no padding. Photography bleeds to its container edge with raw crops — no rounded corners or masks. Captions use signifier 20-21px at -90° rotation placed in the gutter beside the image."
+      },
+      {
+        "name": "Rotated Caption",
+        "role": "Editorial annotation beside imagery",
+        "description": "signifier 21px weight 400 at normal letter-spacing, rotated -90°, #171717, placed in the narrow margin between image and page edge. Functions as a magazine-style figure caption. Line-height 1.15 keeps the rotated text block tight."
+      },
+      {
+        "name": "Gradient Stripe Divider",
+        "role": "Section separator and rhythm device",
+        "description": "A single horizontal line using linear-gradient(90deg, #81d6b9 40%, #efcb75 100%), 1-2px height, full container width. Replaces traditional spacing gaps and section backgrounds — the gradient fades from teal into the marigold canvas, creating seamless flow between sections."
+      },
+      {
+        "name": "Footer Wordmark",
+        "role": "Page-bottom brand anchor",
+        "description": "untitledsans weight 400, large size (matching display scale), #171717, left-aligned. No border, no background, no social icons. The footer IS the wordmark — nothing else is needed."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface across all contexts — body copy, nav, footer, links, and the colossal display wordmark. The 147px size at tight tracking (-0.025em) is the identity: the word 'Sing' becomes a spatial event, not a heading. Weight 400 carries body and nav; weight 700 anchors headings and footer emphasis. Kern feature is active throughout to manage the extreme size range.",
+        "sizes": "16px, 23px, 24px, 147px",
+        "family": "untitledsans",
+        "weight": "400, 700",
+        "lineHeight": "1.00–1.22",
+        "substitute": "Inter, Söhne, or Neue Haas Grotesk",
+        "letterSpacing": "-0.025em at 147px, -0.020em at 23-24px, normal at 16px",
+        "fontFeatureSettings": "\"kern\" on"
+      },
+      {
+        "role": "Secondary editorial typeface — used for rotated/vertical captions beside photography and occasional body annotations. Its serif presence contrasts the grotesk wordmark to introduce a magazine-like voice. Normal letter-spacing; the small size keeps it as whisper copy, never a headline.",
+        "sizes": "20px, 21px",
+        "family": "signifier",
+        "weight": "400",
+        "lineHeight": "1.15–1.30",
+        "substitute": "Source Serif Pro, Lyon Text, or Tiempos Text",
+        "fontFeatureSettings": "\"kern\" on"
+      }
+    ],
+    "description": "Sing-sing is a sunlit editorial system where the page itself is a warm saffron canvas and the interface sits on top like ink printed on butter paper. Color is structural, not decorative: teal sea-glass lines stripe the top of the page, bleed through a gradient, and underline the wordmark — the rest of the system is austere black type on yellow with no shadows, no cards, and no traditional UI chrome. Typography is the protagonist: a grotesk at near-poster scale (147px) with heavy negative tracking carries identity, while a smaller serif (signifier) plays a supporting role for editorial captions. Layout is art-directed, not gridded — each section behaves like a magazine spread, alternating between full-bleed photography, typographic statements, and the signature striped zone.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/12b20c12-27f8-4938-89ba-569404d36fe8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sing-sing design system\",\"item\":\"https://styles.refero.design/style/12b20c12-27f8-4938-89ba-569404d36fe8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/12b20c12-27f8-4938-89ba-569404d36fe8#style-reference\",\"name\":\"Sing-sing design system reference\",\"headline\":\"Sing-sing design system | Refero Styles\",\"description\":\"Explore Sing-sing's light Agency design system: Marigold #fcd579, Sea Glass #81d6b9 colors, untitledsans, signifier typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/12b20c12-27f8-4938-89ba-569404d36fe8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/12b20c12-27f8-4938-89ba-569404d36fe8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Sing-sing\",\"url\":\"https://sing-sing.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/12b20c12-27f8-4938-89ba-569404d36fe8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/38d552d7-2e2a-4090-93de-905d743c31bc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/38d552d7-2e2a-4090-93de-905d743c31bc.jpg\",\"caption\":\"Screenshot of Sing-sing\"},\"image\":\"https://images.refero.design/styles/refero.design/image/38d552d7-2e2a-4090-93de-905d743c31bc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Sing-sing design system\",\"Sing-sing website design\",\"Sing-sing colors\",\"Sing-sing typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Marigold\",\"Sea Glass\",\"Inkstone\",\"Marigold Gradient\",\"untitledsans\",\"signifier\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Sing-sing design system\"},{\"@type\":\"Thing\",\"name\":\"Sing-sing website design\"},{\"@type\":\"Thing\",\"name\":\"Sing-sing colors\"},{\"@type\":\"Thing\",\"name\":\"Sing-sing typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:51:20.805Z\",\"dateModified\":\"2026-04-30T03:51:20.805Z\"}]}19:T482,**Quick Color Reference**\n- text: #171717\n- background: #fcd579 (marigold canvas — the only surface)\n- border/accent: #81d6b9 (teal — stroke only, never fill)\n- gradient: linear-gradient(90deg, #81d6b9 40%, #efcb75 100%)\n- nav link: #171717 on #fcd579\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. *Striped header band*: Full-bleed #fcd579 background. Overlay 1px #81d6b9 horizontal lines spaced 14px apart, occupying the top 300px of the viewport. 5px padding-top.\n\n2. *Display wordmark with underline*: untitledsans weight 400, 147px, #171717, letter-spacing -0.025em, line-height 1.0. Below baseline, a 2px line using linear-gradient(90deg, #81d6b9 40%, #efcb75 100%) spanning full width.\n\n3. *Editorial image block with rotated caption*: Full-width #fcd579 background. Left 60% holds a photograph with 0px radius, raw crop to edges, no border. Right 40% contains signifier 21px weight 400, #171717, rotated -90°, vertically centered in the gutter.\n\n4. *Index nav link*: untitledsans 16px weight 400, #171717, positioned absolute top-right with 5px padding. Single word, no underline, no background. On #fcd579 canvas."
+      },
+      {
+        "title": "Gradient System",
+        "content": "A single gradient defines all section transitions: linear-gradient(90deg, #81d6b9 40%, #efcb75 100%). It is used exclusively as thin horizontal lines (1-2px) that fade from teal into the marigold canvas. The gradient creates a 'dissolving' effect where the accent color melts into the background — this is the system's only transitional device. Never use this gradient as a fill, background, or large area. The ~40% teal stop is consistent across all uses, meaning the gradient always begins in sea-glass and fades warm."
+      }
+    ],
+    "elevationPhilosophy": "The system is deliberately shadowless. There is no elevation, no depth, no card-on-canvas layering — everything sits flat on the marigold surface. Visual separation comes from whitespace, the stripe pattern, and the gradient dividers, not from shadows. A dropped shadow would break the printed-on-paper metaphor."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#171717",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20462653095774938
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "link",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 425,
+          "confidence": 1,
+          "prominence": 30811932.757216007,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 57,
+            "body/color": 4,
+            "link/color": 3,
+            "image/color": 4,
+            "other/color": 15,
+            "footer/color": 1,
+            "heading/color": 1,
+            "nav/borderColor": 228,
+            "body/borderColor": 16,
+            "link/borderColor": 12,
+            "image/borderColor": 16,
+            "other/borderColor": 60,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#81d6b9",
+          "oklch": {
+            "c": 0.09325083806163152,
+            "h": 170.0863868174373,
+            "l": 0.8137926414196196
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 825,
+          "confidence": 1,
+          "prominence": 12531880.576477341,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 165,
+            "nav/borderColor": 660
+          }
+        },
+        {
+          "hex": "#fcd579",
+          "oklch": {
+            "c": 0.11937023680819159,
+            "h": 86.96323919841139,
+            "l": 0.8875328831716242
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2580762.7406742442,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.16658898599961658,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 12.75,
+          "background": "#fcd579",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.46,
+          "background": "#81d6b9",
+          "foreground": "#171717"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.22,
+          "background": "#fcd579",
+          "foreground": "#81d6b9"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 132,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 55,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "nav",
+            "heading",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginRight|nav",
+            "marginLeft|nav",
+            "marginRight|heading",
+            "marginLeft|heading",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 53,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 6
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 39.9999%, rgb(239, 203, 117) 99.9999%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 31
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 39.9988%, rgb(239, 203, 117) 99.9988%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 39.8196%, rgb(239, 203, 117) 99.8196%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 37.0858%, rgb(239, 203, 117) 97.0858%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 34.3519%, rgb(239, 203, 117) 94.3519%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 31.6181%, rgb(239, 203, 117) 91.6181%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 28.8842%, rgb(239, 203, 117) 88.8842%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 26.1504%, rgb(239, 203, 117) 86.1504%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 23.4166%, rgb(239, 203, 117) 83.4166%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 20.6841%, rgb(239, 203, 117) 80.6841%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 17.9615%, rgb(239, 203, 117) 77.9615%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 15.34%, rgb(239, 203, 117) 75.34%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 13.8495%, rgb(239, 203, 117) 73.8495%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 16.5834%, rgb(239, 203, 117) 76.5834%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 19.3172%, rgb(239, 203, 117) 79.3172%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 22.0511%, rgb(239, 203, 117) 82.0511%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 24.7847%, rgb(239, 203, 117) 84.7847%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 27.5179%, rgb(239, 203, 117) 87.5179%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 30.2467%, rgb(239, 203, 117) 90.2467%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 32.9566%, rgb(239, 203, 117) 92.9566%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 35.6342%, rgb(239, 203, 117) 95.6342%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(129, 214, 185) 37.8878%, rgb(239, 203, 117) 97.8878%)",
+        "colors": [
+          "rgb(129, 214, 185)",
+          "rgb(239, 203, 117)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "untitledsans",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 240,
+          "fontFeatureSettings": [
+            "\"kern\""
+          ]
+        },
+        {
+          "family": "signifier",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": [
+            "\"kern\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 7,
+          "family": "untitledsans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 7,
+          "family": "untitledsans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 106,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "untitledsans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "signifier",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "signifier",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "signifier",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "signifier",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "untitledsans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "untitledsans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.22,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "untitledsans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "untitledsans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 111,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 147,
+          "family": "untitledsans",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "link",
+            "image"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3c57d3d1-98eb-4838-9a6f-0bf0c5c7dc11.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/38d552d7-2e2a-4090-93de-905d743c31bc.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/12b20c12-27f8-4938-89ba-569404d36fe8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sing-sing design system\",\"item\":\"https://styles.refero.design/style/12b20c12-27f8-4938-89ba-569404d36fe8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/12b20c12-27f8-4938-89ba-569404d36fe8#style-reference\",\"name\":\"Sing-sing design system reference\",\"headline\":\"Sing-sing design system | Refero Styles\",\"description\":\"Explore Sing-sing's light Agency design system: Marigold #fcd579, Sea Glass #81d6b9 colors, untitledsans, signifier typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/12b20c12-27f8-4938-89ba-569404d36fe8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/12b20c12-27f8-4938-89ba-569404d36fe8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Sing-sing\",\"url\":\"https://sing-sing.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/12b20c12-27f8-4938-89ba-569404d36fe8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/38d552d7-2e2a-4090-93de-905d743c31bc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/38d552d7-2e2a-4090-93de-905d743c31bc.jpg\",\"caption\":\"Screenshot of Sing-sing\"},\"image\":\"https://images.refero.design/styles/refero.design/image/38d552d7-2e2a-4090-93de-905d743c31bc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Sing-sing design system\",\"Sing-sing website design\",\"Sing-sing colors\",\"Sing-sing typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Marigold\",\"Sea Glass\",\"Inkstone\",\"Marigold Gradient\",\"untitledsans\",\"signifier\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Sing-sing design system\"},{\"@type\":\"Thing\",\"name\":\"Sing-sing website design\"},{\"@type\":\"Thing\",\"name\":\"Sing-sing colors\"},{\"@type\":\"Thing\",\"name\":\"Sing-sing typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:51:20.805Z\",\"dateModified\":\"2026-04-30T03:51:20.805Z\"}]}19:T482,**Quick Color Reference**\n- text: #171717\n- background: #fcd579 (marigold canvas — the only surface)\n- border/accent: #81d6b9 (teal — stroke only, never fill)\n- gradient: linear-gradient(90deg, #81d6b9 40%, #efcb75 100%)\n- nav link: #171717 on #fcd579\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. *Striped header band*: Full-bleed #fcd579 background. Overlay 1px #81d6b9 horizontal lines spaced 14px apart, occupying the top 300px of the viewport. 5px padding-top.\n\n2. *Display wordmark with underline*: untitledsans weight 400, 147px, #171717, letter-spacing -0.025em, line-height 1.0. Below baseline, a 2px line using linear-gradient(90deg, #81d6b9 40%, #efcb75 100%) spanning full width.\n\n3. *Editorial image block with rotated caption*: Full-width #fcd579 background. Left 60% holds a photograph with 0px radius, raw crop to edges, no border. Right 40% contains signifier 21px weight 400, #171717, rotated -90°, vertically centered in the gutter.\n\n4. *Index nav link*: untitledsans 16px weight 400, #171717, positioned absolute top-right with 5px padding. Single word, no underline, no background. On #fcd579 canvas."
+}

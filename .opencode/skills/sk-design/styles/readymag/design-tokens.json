@@ -1,0 +1,447 @@
+{
+  "color": {
+    "electric-violet": {
+      "$value": "#8800ff",
+      "$type": "color",
+      "$description": "Electric Violet — Headline accents, decorative strokes, feature callouts — vivid violet against the white canvas makes typographic moments feel electric and editorial rather than corporate"
+    },
+    "deep-violet": {
+      "$value": "#2c0fb1",
+      "$type": "color",
+      "$description": "Deep Violet — Secondary violet accent, decorative borders and outlines paired with the primary violet for layered brand moments"
+    },
+    "ember-orange": {
+      "$value": "#ff5000",
+      "$type": "color",
+      "$description": "Ember Orange — Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "burnt-orange": {
+      "$value": "#ec520b",
+      "$type": "color",
+      "$description": "Burnt Orange — Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "signal-yellow": {
+      "$value": "#ffcc00",
+      "$type": "color",
+      "$description": "Signal Yellow — Decorative full-bleed accent bands and section dividers — appears in few places but dominates attention where it does"
+    },
+    "cobalt-blue": {
+      "$value": "#1551ff",
+      "$type": "color",
+      "$description": "Cobalt Blue — Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Pure black for solid feature card backgrounds and the strongest typographic moments — makes colored cards feel printed, not screen-painted"
+    },
+    "graphite": {
+      "$value": "#282828",
+      "$type": "color",
+      "$description": "Graphite — Primary text color for body copy, links, and most UI text — the workhorse near-black that keeps reading comfortable without going full contrast"
+    },
+    "carbon": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Carbon — Slightly deeper text tone used in specific body and border contexts for a richer near-black"
+    },
+    "near-black": {
+      "$value": "#0f0e0e",
+      "$type": "color",
+      "$description": "Near Black — Heading text color — pushed darker than body for stronger hierarchy against the white canvas"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "fog-gray": {
+      "$value": "#f4f4f4",
+      "$type": "color",
+      "$description": "Fog Gray — Subtle surface elevation for inputs, inactive controls, and the softest card backgrounds"
+    },
+    "mist-gray": {
+      "$value": "#e7e7e7",
+      "$type": "color",
+      "$description": "Mist Gray — Hairline borders, dividers, placeholder fills — the minimum-contrast separator"
+    },
+    "steel-gray": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Steel Gray — Muted helper text, icon stroke, and secondary metadata — sits between body text and true gray for ambient labels"
+    }
+  },
+  "font": {
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "-apple-system — detected in extracted data but not described by AI"
+    },
+    "readymag-display-custom": {
+      "$value": "Readymag Display (custom)",
+      "$type": "fontFamily",
+      "$description": "Headlines, display copy, and large feature titles. The signature choice: a geometric sans pushed to 80px with -0.067em tracking, which makes letters visually touch and creates a tightly-set editorial title block. The 0.88 line-height on the 16px bold variant ('xgnl') is anti-conventional and creates stacked, compressed display moments in feature panels. Use for anything that needs to feel like magazine cover type."
+    },
+    "graphik": {
+      "$value": "Graphik",
+      "$type": "fontFamily",
+      "$description": "Secondary body and link face for utilitarian contexts where the system stack would feel too generic but full display weight would be wasteful. Its near-zero tracking keeps body paragraphs tight and modern."
+    },
+    "system-ui": {
+      "$value": "System UI",
+      "$type": "fontFamily",
+      "$description": "Default body and UI text fallback — quietly supports the custom faces rather than competing. Tiny negative tracking (-0.006em) keeps it from feeling like a default browser font."
+    },
+    "custom37866": {
+      "$value": "custom_37866",
+      "$type": "fontFamily",
+      "$description": "custom_37866 — detected in extracted data but not described by AI"
+    },
+    "xgnl": {
+      "$value": "xgnl",
+      "$type": "fontFamily",
+      "$description": "xgnl — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 2.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "xgnl",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.83
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.83
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.83
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 6.67
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 2.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 30px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.44
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "custom_37866",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "86": {
+      "$value": "86px",
+      "$type": "dimension",
+      "$description": "Spacing 86px"
+    },
+    "201": {
+      "$value": "201px",
+      "$type": "dimension",
+      "$description": "Spacing 201px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "102px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default page canvas and card surface"
+    },
+    "fog-gray": {
+      "$value": "#f4f4f4",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle elevation for inputs and inactive controls"
+    },
+    "mist-gray": {
+      "$value": "#e7e7e7",
+      "$type": "color",
+      "$description": "Surface level 3: Borders, dividers, and soft card backgrounds"
+    },
+    "solid-color-panels": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 4: Feature card backgrounds and full-bleed dark sections that break the white canvas"
+    },
+    "saturated-brand-panels": {
+      "$value": "#ff5000",
+      "$type": "color",
+      "$description": "Surface level 5: Full-bleed ember orange feature blocks"
+    },
+    "interactive-canvas": {
+      "$value": "#1551ff",
+      "$type": "color",
+      "$description": "Surface level 6: Cobalt blue interactive demo surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://readymag.com",
+      "siteName": "Readymag",
+      "extractedAt": "2026-06-03T19:02:23.700Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,599 @@
+{
+  "color": {
+    "charcoal": {
+      "$value": "#131313",
+      "$type": "color",
+      "$description": "Charcoal — Page canvas, primary background, inverted sections"
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Deepest darks, shadows, text on light surfaces"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Primary text, inverted surfaces, light icons"
+    },
+    "iron": {
+      "$value": "#313131",
+      "$type": "color",
+      "$description": "Iron — Elevated card surface, image-adjacent panels"
+    },
+    "graphite": {
+      "$value": "#272727",
+      "$type": "color",
+      "$description": "Graphite — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "fog": {
+      "$value": "#949494",
+      "$type": "color",
+      "$description": "Fog — Supporting neutral for secondary UI, dividers, and muted labels"
+    },
+    "mist": {
+      "$value": "#e9e9e9",
+      "$type": "color",
+      "$description": "Mist — Light hairline borders, high-contrast meta text on dark"
+    },
+    "silver": {
+      "$value": "#c9c9c9",
+      "$type": "color",
+      "$description": "Silver — Tertiary text, subdued metadata"
+    },
+    "signal-mint": {
+      "$value": "#3cffd0",
+      "$type": "color",
+      "$description": "Signal Mint — Teal supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "ultraviolet": {
+      "$value": "#5200ff",
+      "$type": "color",
+      "$description": "Ultraviolet — Most Popular section card background, ranked-list emphasis"
+    },
+    "heat-red": {
+      "$value": "#ff3d00",
+      "$type": "color",
+      "$description": "Heat Red — Podcasts section card background, audio content emphasis"
+    },
+    "forest": {
+      "$value": "#309875",
+      "$type": "color",
+      "$description": "Forest — Secondary green accent for category labels and subdued highlights"
+    }
+  },
+  "font": {
+    "manuka": {
+      "$value": "Manuka",
+      "$type": "fontFamily",
+      "$description": "Display headlines for hero and feature stories — ultra-heavy, near-zero leading creates editorial impact at the largest scale"
+    },
+    "poly-sans": {
+      "$value": "Poly Sans",
+      "$type": "fontFamily",
+      "$description": "Primary UI font — nav, section headers, list items, card titles; tracks wide at small sizes (0.06–0.15em) for ALL-CAPS labels and tight at body sizes"
+    },
+    "fk-roman-standard": {
+      "$value": "Fk Roman Standard",
+      "$type": "fontFamily",
+      "$description": "Article body text — serif distinguishes reading mode from navigation; slight negative tracking tightens running text"
+    },
+    "poly-sans-mono": {
+      "$value": "Poly Sans Mono",
+      "$type": "fontFamily",
+      "$description": "Metadata, category tags, timestamps — monospaced feel with wide letter-spacing (0.10–0.125em) for technical/journalistic texture"
+    },
+    "ui-sans-serif": {
+      "$value": "ui-sans-serif",
+      "$type": "fontFamily",
+      "$description": "System fallback for non-critical UI copy"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Poly Sans Mono",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Poly Sans Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 11px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 11px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 11px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Poly Sans Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 11px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Poly Sans Mono",
+        "fontSize": "11px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 11px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 12px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "Poly Sans Mono",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 12px"
+    },
+    "xs-12": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-12 at 12px"
+    },
+    "xs-13": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-13 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Fk Roman Standard",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "19px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Fk Roman Standard",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Fk Roman Standard",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Poly Sans",
+        "fontSize": "34px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Manuka",
+        "fontSize": "60px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Manuka",
+        "fontSize": "90px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 90px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Manuka",
+        "fontSize": "107px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 107px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(60, 255, 208) 0px -1px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgb(0, 0, 0) 0px -1px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#131313",
+      "$type": "color",
+      "$description": "Surface level 1: Page background, primary dark surface"
+    },
+    "card": {
+      "$value": "#272727",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated panels, button surfaces"
+    },
+    "image-card": {
+      "$value": "#313131",
+      "$type": "color",
+      "$description": "Surface level 3: Image-adjacent panels, list-item dividers"
+    },
+    "colored-section": {
+      "$value": "#ff3d00",
+      "$type": "color",
+      "$description": "Surface level 5: Podcasts section card fill"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://theverge.com",
+      "siteName": "The Verge",
+      "extractedAt": "2026-06-03T18:39:56.188Z",
+      "variant": "extended"
+    }
+  }
+}

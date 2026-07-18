@@ -1,0 +1,654 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#14181c",
+      "$type": "color",
+      "$description": "Void Black — Page canvas, app background"
+    },
+    "carbon": {
+      "$value": "#202830",
+      "$type": "color",
+      "$description": "Carbon — Elevated surface — cards, modals, popovers"
+    },
+    "slate": {
+      "$value": "#2c3440",
+      "$type": "color",
+      "$description": "Slate — Borders, dividers, subtle separators"
+    },
+    "graphite": {
+      "$value": "#445566",
+      "$type": "color",
+      "$description": "Graphite — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "steel": {
+      "$value": "#586370",
+      "$type": "color",
+      "$description": "Steel — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "fog": {
+      "$value": "#667788",
+      "$type": "color",
+      "$description": "Fog — Secondary body text, inactive icon strokes"
+    },
+    "silver-mist": {
+      "$value": "#778899",
+      "$type": "color",
+      "$description": "Silver Mist — Tertiary body text, meta information, timestamps"
+    },
+    "ash": {
+      "$value": "#8899aa",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, placeholder copy"
+    },
+    "pewter": {
+      "$value": "#99aabb",
+      "$type": "color",
+      "$description": "Pewter — Primary body text, navigation links, dominant interface text"
+    },
+    "ice": {
+      "$value": "#aabbcc",
+      "$type": "color",
+      "$description": "Ice — Headings, emphasis text, strong links"
+    },
+    "glacier": {
+      "$value": "#ddeeff",
+      "$type": "color",
+      "$description": "Glacier — Bright accent text, active link states, highlight labels"
+    },
+    "bone": {
+      "$value": "#d8e0e8",
+      "$type": "color",
+      "$description": "Bone — Navigation hover states, light iconography"
+    },
+    "chalk": {
+      "$value": "#c8d4e0",
+      "$type": "color",
+      "$description": "Chalk — Button labels, inverted text on dark fills"
+    },
+    "absolute-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Absolute White — Maximum contrast text, inverse fills, poster borders"
+    },
+    "true-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "True Black — Shadow base, icon glyphs, deepest contrast"
+    },
+    "acid-green": {
+      "$value": "#00e054",
+      "$type": "color",
+      "$description": "Acid Green — Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "pro-green": {
+      "$value": "#00c030",
+      "$type": "color",
+      "$description": "Pro Green — Green supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    }
+  },
+  "font": {
+    "object-fit-cover": {
+      "$value": "object-fit: cover;",
+      "$type": "fontFamily",
+      "$description": "object-fit: cover; — detected in extracted data but not described by AI"
+    },
+    "graphik": {
+      "$value": "Graphik",
+      "$type": "fontFamily",
+      "$description": "Primary UI sans-serif — navigation, buttons, labels, metadata, tags, form controls, and all small-size interface text. The wide letter-spacing at 0.075–0.083em is reserved for uppercase eyebrows and nav labels, giving the chrome a deliberate, almost printed feel. Weight 400 carries body and metadata, 700 for emphasis and buttons."
+    },
+    "tiempos-text": {
+      "$value": "Tiempos Text",
+      "$type": "fontFamily",
+      "$description": "Editorial serif for body copy in reviews, log entries, and long-form text. The 15px/1.67 pairing creates generous line height for comfortable reading. Switches the interface from product UI into magazine mode wherever prose appears."
+    },
+    "tiempos-headline": {
+      "$value": "Tiempos Headline",
+      "$type": "fontFamily",
+      "$description": "Display serif for hero headlines and major page titles. A single use at 36px — the only size where this voice speaks, making it feel ceremonial and rare."
+    },
+    "masonry": {
+      "$value": "masonry",
+      "$type": "fontFamily",
+      "$description": "masonry — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 13px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 13px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 13px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "TiemposTextWeb",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "object-fit: cover;",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "masonry",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "TiemposTextWeb",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "TiemposTextWeb",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "GraphikWeb",
+        "fontSize": "26px",
+        "fontWeight": 300,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "TiemposHeadlineWeb",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "xl-2": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl-2"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(221, 238, 255, 0.25) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.25) 0px 1px 5px 0px, rgba(0, 0, 0, 0.35) 0px 1px 10px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "subtle-2": {
+      "$value": "rgba(20, 24, 28, 0.125) 0px 0px 1px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "sm-2": {
+      "$value": "rgb(0, 0, 0) 2px 0px 7px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-2"
+    },
+    "subtle-3": {
+      "$value": "rgba(255, 255, 255, 0.1) 0px 1px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    }
+  },
+  "surface": {
+    "void-black": {
+      "$value": "#14181c",
+      "$type": "color",
+      "$description": "Surface level 1: Base page canvas behind all content"
+    },
+    "carbon": {
+      "$value": "#202830",
+      "$type": "color",
+      "$description": "Surface level 2: Card surfaces, review blocks, elevated content panels"
+    },
+    "slate": {
+      "$value": "#2c3440",
+      "$type": "color",
+      "$description": "Surface level 3: Hover states, input fields, inset surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://letterboxd.com",
+      "siteName": "Letterboxd",
+      "extractedAt": "2026-06-03T18:53:40.862Z",
+      "variant": "extended"
+    }
+  }
+}

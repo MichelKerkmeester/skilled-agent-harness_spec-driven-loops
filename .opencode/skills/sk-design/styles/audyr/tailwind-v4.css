@@ -1,0 +1,73 @@
+@theme {
+  /* Colors */
+  --color-ink: #262626;
+  --color-pure-paper: #ffffff;
+  --color-soft-mist: #ededed;
+  --color-charcoal: #171717;
+  --color-ash: #686868;
+  --color-slate: #515151;
+  --color-muted: #737373;
+  --color-fog: #929292;
+  --color-chalk: #cbcbcb;
+  --color-mint-whisper: #ecfdf5;
+
+  /* Typography */
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --tracking-caption: -0.3px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --tracking-body-sm: -0.35px;
+  --text-body: 16px;
+  --leading-body: 1.56;
+  --tracking-body: -0.4px;
+  --text-subheading: 18px;
+  --leading-subheading: 1.63;
+  --tracking-subheading: -0.45px;
+  --text-heading-sm: 20px;
+  --leading-heading-sm: 1.5;
+  --tracking-heading-sm: -0.5px;
+  --text-heading: 24px;
+  --leading-heading: 1.4;
+  --tracking-heading: -0.6px;
+  --text-heading-lg: 30px;
+  --leading-heading-lg: 1.38;
+  --tracking-heading-lg: -0.75px;
+  --text-display: 48px;
+  --leading-display: 1.11;
+  --tracking-display: -1.2px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-128: 128px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 14px;
+  --radius-2xl: 18px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(0, 0, 0, 0.04) 0px 1px 3px 0px;
+  --shadow-subtle-2: lab(0 0 0 / 0.05) 0px 1px 2px 0px;
+  --shadow-subtle-3: oklab(0.999994 0.0000455678 0.0000200868 / 0.16) 0px 1px 0px 0px inset, oklab(0.268999 -0.00000260025 0.00000627339 / 0.24) 0px 1px 2px 0px;
+  --shadow-subtle-4: lab(0 0 0 / 0.05) 0px 1px 3px 0px, lab(0 0 0 / 0.05) 0px 1px 2px -1px;
+  --shadow-xl: lab(0 0 0 / 0.1) 0px 25px 50px -12px;
+  --shadow-md: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px;
+}

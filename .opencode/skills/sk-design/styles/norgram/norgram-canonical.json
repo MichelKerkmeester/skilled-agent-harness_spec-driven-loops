@@ -1,0 +1,1274 @@
+{
+  "source": "https://styles.refero.design/style/17e5ff99-38c1-4ad6-8910-648f5798b3a5",
+  "uuid": "17e5ff99-38c1-4ad6-8910-648f5798b3a5",
+  "name": "Norgram",
+  "northStar": "white-walled art gallery",
+  "capturedAt": "2026-07-18T09:25:25.100Z",
+  "meta": {
+    "url": "https://www.norgram.co",
+    "siteName": "Norgram",
+    "extractedAt": "2026-06-03T19:47:11.765Z",
+    "durationMs": 76034,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1407,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Helvetica Now Display 400 at 87px for display headlines with letter-spacing -0.02em — this is the only acceptable display size",
+      "Keep all UI strictly monochrome: use only #000, #141414, #777, #efefef, and #fff",
+      "Set border-radius to 4px on cards, 7px on buttons, 10px on tag/toast surfaces",
+      "Maintain 8px element gap and 68px section gap as the spatial rhythm",
+      "Place full-bleed product photography on the white canvas with no border, overlay, or shadow",
+      "Use Times 14–16px for any prose longer than a single line (footer, card descriptions, credits)",
+      "Anchor every section with the top-left 'Norgram®' wordmark and a bottom metadata strip"
+    ],
+    "donts": [
+      "Do not introduce any chromatic color — no blue, green, red, or brand hue in the interface",
+      "Do not use shadows on cards, images, or buttons; reserve the drop shadow for the system toast only",
+      "Do not use weights above 500 in Helvetica Now Display — 400 carries the voice",
+      "Do not exceed 4px radius on cards or fall below 7px on buttons; the flatness is intentional",
+      "Do not use bordered buttons — all actions are ghost text links or underline-on-hover",
+      "Do not add background fills behind text blocks; let type sit directly on the canvas",
+      "Do not mix the serif Times into headlines or navigation — confine it to editorial body copy"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Primary text, dominant border ink, iconography, link default",
+        "group": "neutral"
+      },
+      {
+        "hex": "#141414",
+        "name": "Charcoal",
+        "role": "Body text, card surface, dark UI block on white canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surface, inverse text on dark blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Bone",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cecece",
+        "name": "Smoke",
+        "role": "Light dividers, secondary borders on cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b2b2b2",
+        "name": "Ash",
+        "role": "Disabled button fill, inactive controls",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Pewter",
+        "role": "Muted link surface, inactive background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#777777",
+        "name": "Iron",
+        "role": "Secondary body text, metadata, muted links, supporting borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5e5e5e",
+        "name": "Graphite",
+        "role": "Tertiary text, micro-copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Onyx",
+        "role": "Dark mode surface (project case blocks), inverse hero panel",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page model with content anchored to a 1440px max-width column. Each section is an alternating image plate: a large photograph on one side, a tight text block on the other, with the museum placard strip running the full width below. The dark Onyx hero block breaks the white rhythm and houses the case study's display headline in 87px type. Navigation is minimized to a top-left wordmark and right-aligned section text links — no menu bar, no sidebar, no footer chrome. Vertical rhythm is established by 68px section gaps and 8px micro-gaps between text lines, creating the tight editorial density of a printed catalog.",
+    "imagery": "Photography is the system's only color. Full-bleed, high-resolution, product-focused crops — eyewear, pianos, wood grain, paint swatches — treated like museum objects on a white wall. No lifestyle staging, no people, no decorative gradients. Images are unmasked, sharp-cornered, and touch each other directly in the grid with no gutter styling. The dark Onyx block introduces the only 3D-rendered object: a glossy red-and-black camera icon that breaks the photographic rule to act as a brand signature. Iconography elsewhere is line-art monochrome in #000 or #fff.",
+    "similar": [
+      {
+        "why": "Same wordmark-in-corner identity, black-on-white editorial layout, and zero-chromatic restraint for a design agency",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Identical Swiss-grid approach: full-bleed monochrome photography, hairline metadata strips, and Helvetica display at extreme sizes",
+        "business": "Manual (manualcreative.com)"
+      },
+      {
+        "why": "Same flat, borderless, image-first composition with type doing all the structural work",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Editorial design agency aesthetic with white canvas, single-serif voice, and project plates that hang like gallery prints",
+        "business": "Bureau Cool"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "10px",
+        "cards": "4px",
+        "large": "26px",
+        "buttons": "7px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "68px",
+      "cardPadding": "12px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Default page canvas and most section backgrounds"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Bone",
+        "level": 1,
+        "purpose": "Secondary surface wash, subtle differentiation within light sections"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Onyx",
+        "level": 2,
+        "purpose": "Dark hero block for project statements and credited context"
+      },
+      {
+        "hex": "#141414",
+        "name": "Charcoal",
+        "level": 3,
+        "purpose": "Card surface, dense text block background"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 8px 24px rgba(0,0,0,0.12)",
+        "element": "Toast"
+      }
+    ],
+    "northStar": "white-walled art gallery",
+    "typeScale": [
+      {
+        "role": "micro",
+        "size": 10,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.17,
+        "letterSpacing": -0.006
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 36,
+        "lineHeight": 1.17,
+        "letterSpacing": -0.008
+      },
+      {
+        "role": "display",
+        "size": 87,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.02
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Display Headline",
+        "role": "Page-defining typographic statement",
+        "description": "Helvetica Now Display 400 at 87px, line-height 1.10, letter-spacing -0.02em, color #141414. Left-aligned, sits directly on white canvas with no decorative chrome."
+      },
+      {
+        "name": "Project Image Plate",
+        "role": "Full-bleed case study image",
+        "description": "Large photographic surface with no border and no radius. Bleeds to canvas edges, 1:1 or generous aspect ratio. No overlay, no caption inside the image."
+      },
+      {
+        "name": "Museum Placard",
+        "role": "Section metadata strip",
+        "description": "Compact bar below each image: 12px Helvetica Now Display, 1.17 line-height, color #141414 for project name, #777777 for category. Padded 8px top/bottom, no border above, a thin 1px #000 divider in some contexts."
+      },
+      {
+        "name": "Dark Info Block",
+        "role": "Inverse panel for project intro and crediting",
+        "description": "Background #1f1f1f, padding ~40–60px. Text in #ffffff (Helvetica Now Display 36–87px) for statement, 12px #777 or #efefef for credits. Includes a 3D-styled camera icon rendered in #ff2a2a red/black in the corner — the only chromatic moment."
+      },
+      {
+        "name": "Top-left Brand Mark",
+        "role": "Persistent identity anchor",
+        "description": "'Norgram®' in Helvetica Now Display 400, 12–14px, #ffffff on dark blocks / #141414 on light. Top-left of every section, never repeated elsewhere."
+      },
+      {
+        "name": "Secondary Text Button",
+        "role": "Quiet action control",
+        "description": "12px Helvetica Now Display Medium, 1.67 line-height, 7px horizontal padding, 5px vertical padding. Color #000 with no background, underline on hover only."
+      },
+      {
+        "name": "Link Row",
+        "role": "Inline text navigation between sections",
+        "description": "12px Helvetica Now Display, 8–12px row gap, color #141414 default / #777 muted. No bullets, no separators — just stacked text rows."
+      },
+      {
+        "name": "Case Study Card",
+        "role": "Index entry for projects",
+        "description": "Flat tile with 4px radius. Image area is borderless and full-bleed. Below the image: project name in 12px Helvetica Now Display Medium, year right-aligned in same weight."
+      },
+      {
+        "name": "Footer Colophon",
+        "role": "Bottom-of-page attribution",
+        "description": "Times 14–16px, 1.43–1.50 line-height, color #141414. Centered or left-aligned, generous breathing room above."
+      },
+      {
+        "name": "Push Notification Toast",
+        "role": "System overlay for product updates",
+        "description": "Dark rounded surface (#000 or #1f1f1f), ~10px radius, white text in Helvetica Now Display 12px. 2-line layout: timestamp + headline / body. Sits top-right with minimal padding."
+      },
+      {
+        "name": "Index Grid",
+        "role": "Multi-project overview",
+        "description": "Two-column asymmetric grid mixing tall and short project plates. 8–12px gutter, 68px vertical section gap. No card chrome around images — they touch directly."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and primary voice — used at all scales from 10px micro-labels through 87px hero headlines. The custom geometric sans is the entire typographic identity.",
+        "sizes": "10, 12, 36, 87",
+        "family": "Helvetica Now Display",
+        "weight": "400, 500",
+        "lineHeight": "1.00–1.17",
+        "substitute": "Inter (variable), Neue Haas Grotesk Display, Helvetica Neue",
+        "letterSpacing": "-0.0200em at 87px, -0.0080em at 36px, -0.0050em at 12px, -0.0060em at 12px (Medium)",
+        "fontFeatureSettings": "No detected font-feature-settings; rely on tight default tracking"
+      },
+      {
+        "role": "Secondary serif for card descriptions, footer text, editorial body copy — a deliberate contrast voice to the sans display",
+        "sizes": "14, 16",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.43–1.50",
+        "substitute": "Times New Roman, EB Garamond, Source Serif Pro"
+      }
+    ],
+    "description": "Norgram operates as an editorial design studio: a pristine white canvas, zero chromatic color, and typography as the sole protagonist. The system is ruthlessly monochrome — every screen reads as a black-on-white publication layout, with imagery providing the only relief. Helvetica Now Display carries the entire voice: whisper-tight tracking at headline sizes (87px at -0.02em), compact 12px metadata, and generous line-height restraint (1.0–1.17). Components are flat, borderless or hairline-bordered, and reduced to their typographic skeleton. There are no fills, no accents, no shadows of consequence — the discipline is in what is omitted. Page rhythm comes from alternating hero-sized image plates against dense text columns, and a persistent bottom info bar that anchors every section like a museum placard.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/17e5ff99-38c1-4ad6-8910-648f5798b3a5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Norgram design system\",\"item\":\"https://styles.refero.design/style/17e5ff99-38c1-4ad6-8910-648f5798b3a5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/17e5ff99-38c1-4ad6-8910-648f5798b3a5#style-reference\",\"name\":\"Norgram design system reference\",\"headline\":\"Norgram design system | Refero Styles\",\"description\":\"Explore Norgram's light Agency design system: Obsidian #000000, Charcoal #141414 colors, Helvetica Now Display, Times typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/17e5ff99-38c1-4ad6-8910-648f5798b3a5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/17e5ff99-38c1-4ad6-8910-648f5798b3a5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Norgram\",\"url\":\"https://www.norgram.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/17e5ff99-38c1-4ad6-8910-648f5798b3a5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/864b92ff-bab2-42c2-a605-f566a518fc8d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/864b92ff-bab2-42c2-a605-f566a518fc8d.jpg\",\"caption\":\"Screenshot of Norgram\"},\"image\":\"https://images.refero.design/styles/refero.design/image/864b92ff-bab2-42c2-a605-f566a518fc8d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Norgram design system\",\"Norgram website design\",\"Norgram colors\",\"Norgram typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Charcoal\",\"Paper White\",\"Bone\",\"Helvetica Now Display\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Norgram design system\"},{\"@type\":\"Thing\",\"name\":\"Norgram website design\"},{\"@type\":\"Thing\",\"name\":\"Norgram colors\"},{\"@type\":\"Thing\",\"name\":\"Norgram typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:01:24.516Z\",\"dateModified\":\"2026-04-30T03:01:24.516Z\"}]}19:T506,**Quick Color Reference**\n- text: #141414\n- background: #ffffff\n- border: #000000\n- muted text: #777777\n- surface wash: #efefef\n- dark block: #1f1f1f\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a hero section: white (#ffffff) canvas. Display headline at 87px Helvetica Now Display weight 400, color #141414, letter-spacing -0.02em, line-height 1.10. No background, no border, no button — type only.\n\n2. Create a project image plate: full-bleed photograph with 0px radius and no border. Below, a 12px Helvetica Now Display Medium placard strip with project name in #141414 left-aligned and year in #777777 right-aligned, 8px top/bottom padding.\n\n3. Create a dark intro block: background #1f1f1f, padding 60px. 36px Helvetica Now Display 400 headline in #ffffff, letter-spacing -0.008em. Below at 12px: credit line in #efefef, line-height 1.17.\n\n4. Create a case study index card: 4px radius, no shadow, no border. Image fills the card with no padding. Caption below in 12px Helvetica Now Display Medium #141414 with 12px padding around it.\n\n5. Create a ghost navigation link: 12px Helvetica Now Display Medium #000, 7px horizontal padding, 5px vertical padding, no background, underline appears on hover. Inline with 12px row gap between siblings."
+      },
+      {
+        "title": "Chromatic Punctuation",
+        "content": "The only color in the entire system is the glossy red-and-black 3D camera icon used in the corner of the dark Onyx block. Treat it as a brand mark, not a UI element — do not replicate its red elsewhere, and do not use it as a button fill or accent. It is a signature object, not a palette."
+      },
+      {
+        "title": "Editorial Density",
+        "content": "Norgram reads like a printed art catalog: compact line-height (1.0 at display, 1.43–1.50 at body), tight tracking on all sans-serif sizes, and 8px gaps between metadata rows. Resist the urge to add breathing room — the density is the discipline."
+      }
+    ],
+    "northStarSentence": "Imagine a contemporary art gallery with pure white walls, where every project hangs as a single oversized photograph and the only typography is the small serif caption beside it.",
+    "elevationPhilosophy": "Elevation is suppressed almost entirely — pages are flat compositions of type and photography. The single exception is the system toast, which uses a soft black drop shadow to lift it off the canvas. Cards and images sit directly on the page with no shadow, no border, no rounding beyond 4px."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "image",
+            "icon",
+            "body",
+            "button",
+            "card",
+            "link",
+            "footer"
+          ],
+          "frequency": 6010,
+          "confidence": 1,
+          "prominence": 104732035.67865182,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 104,
+            "card/color": 3,
+            "icon/color": 36,
+            "link/color": 3,
+            "image/color": 43,
+            "other/color": 994,
+            "button/color": 18,
+            "footer/color": 1,
+            "body/borderColor": 416,
+            "card/borderColor": 12,
+            "icon/borderColor": 144,
+            "link/borderColor": 12,
+            "image/borderColor": 172,
+            "other/borderColor": 3976,
+            "button/borderColor": 72,
+            "footer/borderColor": 4
+          }
+        },
+        {
+          "hex": "#141414",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1912512996316179
+          },
+          "contexts": [
+            "card",
+            "body"
+          ],
+          "frequency": 53,
+          "confidence": 1,
+          "prominence": 7801981.555108044,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "body/borderColor": 40,
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 5297351.84226044,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "body/borderColor": 12,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#efefef",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9521308451894797
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "heading",
+            "icon",
+            "link"
+          ],
+          "frequency": 237,
+          "confidence": 1,
+          "prominence": 2920340.4595541884,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 22,
+            "icon/color": 3,
+            "link/color": 1,
+            "other/fill": 12,
+            "other/color": 11,
+            "button/color": 3,
+            "heading/color": 4,
+            "body/borderColor": 88,
+            "icon/borderColor": 12,
+            "link/borderColor": 4,
+            "other/borderColor": 44,
+            "button/borderColor": 12,
+            "heading/borderColor": 16,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#777777",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5692624033839502
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 261,
+          "confidence": 1,
+          "prominence": 224461.8720859579,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 40,
+            "link/color": 10,
+            "other/fill": 1,
+            "other/color": 1,
+            "body/borderColor": 160,
+            "link/borderColor": 40,
+            "other/borderColor": 4,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#5e5e5e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4819314937343141
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 189732.52712416256,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 2,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#1f1f1f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23929237775790413
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 84,
+          "confidence": 1,
+          "prominence": 71374.97746482944,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 36,
+            "body/backgroundColor": 36,
+            "other/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 47806,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#cecece",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8514193414111833
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 33356.603757834826,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "body/borderColor": 24
+          }
+        },
+        {
+          "hex": "#555555",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4495331968941366
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 10590,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#e9e9e9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9340252444454716
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 54,
+          "confidence": 1,
+          "prominence": 2705.6763459295407,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 36,
+            "other/backgroundColor": 18
+          }
+        },
+        {
+          "hex": "#232323",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.25615330860684143
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 2618.1449230045882,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 5,
+            "other/borderColor": 20
+          }
+        },
+        {
+          "hex": "#b2b2b2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7642118780794807
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1574,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 3
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#ffffff",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#efefef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.3,
+          "background": "#e9e9e9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.48,
+          "background": "#1f1f1f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.02,
+          "background": "#efefef",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.72,
+          "background": "#ffffff",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.17,
+          "background": "#e9e9e9",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.33,
+          "background": "#1f1f1f",
+          "foreground": "#efefef"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.67,
+          "background": "#efefef",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.58,
+          "background": "#e9e9e9",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.34,
+          "background": "#cecece",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.95,
+          "background": "#e9e9e9",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.71,
+          "background": "#141414",
+          "foreground": "#cecece"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.47,
+          "background": "#1f1f1f",
+          "foreground": "#cecece"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.99,
+          "background": "#cecece",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.9,
+          "background": "#b2b2b2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.69,
+          "background": "#b2b2b2",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.77,
+          "background": "#b2b2b2",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.46,
+          "background": "#555555",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4.0678,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 270
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "footer"
+          ],
+          "frequency": 292,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|link",
+            "columnGap|link",
+            "marginLeft|body",
+            "marginBottom|footer",
+            "columnGap|footer"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "footer"
+          ],
+          "frequency": 119,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|body",
+            "marginTop|link",
+            "marginTop|body",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 68,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|footer"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica Now Display - Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1180,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 106,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Helvetica Now Display - Medium",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 37,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Helvetica Now Display - Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Helvetica Now Display - Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "icon",
+            "body",
+            "button",
+            "link"
+          ],
+          "frequency": 1160,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Helvetica Now Display - Medium",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "image"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Helvetica Now Display - Medium",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Helvetica Now Display - Medium",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.67,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "image",
+            "footer"
+          ],
+          "frequency": 101,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Helvetica Now Display - Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 87,
+          "family": "Helvetica Now Display - Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4b652f0a-705d-42d2-b5ad-3534aa462ebe.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/864b92ff-bab2-42c2-a605-f566a518fc8d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/17e5ff99-38c1-4ad6-8910-648f5798b3a5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Norgram design system\",\"item\":\"https://styles.refero.design/style/17e5ff99-38c1-4ad6-8910-648f5798b3a5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/17e5ff99-38c1-4ad6-8910-648f5798b3a5#style-reference\",\"name\":\"Norgram design system reference\",\"headline\":\"Norgram design system | Refero Styles\",\"description\":\"Explore Norgram's light Agency design system: Obsidian #000000, Charcoal #141414 colors, Helvetica Now Display, Times typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/17e5ff99-38c1-4ad6-8910-648f5798b3a5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/17e5ff99-38c1-4ad6-8910-648f5798b3a5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Norgram\",\"url\":\"https://www.norgram.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/17e5ff99-38c1-4ad6-8910-648f5798b3a5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/864b92ff-bab2-42c2-a605-f566a518fc8d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/864b92ff-bab2-42c2-a605-f566a518fc8d.jpg\",\"caption\":\"Screenshot of Norgram\"},\"image\":\"https://images.refero.design/styles/refero.design/image/864b92ff-bab2-42c2-a605-f566a518fc8d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Norgram design system\",\"Norgram website design\",\"Norgram colors\",\"Norgram typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Charcoal\",\"Paper White\",\"Bone\",\"Helvetica Now Display\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Norgram design system\"},{\"@type\":\"Thing\",\"name\":\"Norgram website design\"},{\"@type\":\"Thing\",\"name\":\"Norgram colors\"},{\"@type\":\"Thing\",\"name\":\"Norgram typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:01:24.516Z\",\"dateModified\":\"2026-04-30T03:01:24.516Z\"}]}19:T506,**Quick Color Reference**\n- text: #141414\n- background: #ffffff\n- border: #000000\n- muted text: #777777\n- surface wash: #efefef\n- dark block: #1f1f1f\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a hero section: white (#ffffff) canvas. Display headline at 87px Helvetica Now Display weight 400, color #141414, letter-spacing -0.02em, line-height 1.10. No background, no border, no button — type only.\n\n2. Create a project image plate: full-bleed photograph with 0px radius and no border. Below, a 12px Helvetica Now Display Medium placard strip with project name in #141414 left-aligned and year in #777777 right-aligned, 8px top/bottom padding.\n\n3. Create a dark intro block: background #1f1f1f, padding 60px. 36px Helvetica Now Display 400 headline in #ffffff, letter-spacing -0.008em. Below at 12px: credit line in #efefef, line-height 1.17.\n\n4. Create a case study index card: 4px radius, no shadow, no border. Image fills the card with no padding. Caption below in 12px Helvetica Now Display Medium #141414 with 12px padding around it.\n\n5. Create a ghost navigation link: 12px Helvetica Now Display Medium #000, 7px horizontal padding, 5px vertical padding, no background, underline appears on hover. Inline with 12px row gap between siblings."
+}

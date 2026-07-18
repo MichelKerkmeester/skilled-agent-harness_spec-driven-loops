@@ -1,0 +1,1395 @@
+{
+  "source": "https://styles.refero.design/style/3172cd4d-118a-4a16-a259-6b634d32322e",
+  "uuid": "3172cd4d-118a-4a16-a259-6b634d32322e",
+  "name": "Mercury",
+  "northStar": "Alpine banking at blue hour",
+  "capturedAt": "2026-07-18T07:11:11.459Z",
+  "meta": {
+    "url": "https://mercury.com",
+    "siteName": "Mercury",
+    "extractedAt": "2026-07-03T02:46:39.901Z",
+    "durationMs": 303548,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1120,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Cobalt #5266eb exclusively for the single primary action per page — never as a decorative accent, icon fill, or secondary button",
+      "Set all cards to #1e1e2a with 12px radius and 32px padding — rely on the one-step value lift from the canvas, not shadows, for separation",
+      "Apply arcadiaDisplay weight 480 (not 600/700) for all headings — the intermediate weight is Mercury's signature restraint",
+      "Use 32px or 40px pill radius for all interactive controls (buttons, inputs, nav items) — sharp 4px corners are reserved for structural elements only",
+      "Set body text at 16px arcadia weight 400 with 1.5 line-height — this is the density baseline for all content",
+      "Maintain 72px vertical rhythm between major sections — spacious density is part of the premium feel",
+      "Use ivory #ededf3 on ghost/outline buttons for both border and text — never use a chromatic color for secondary actions"
+    ],
+    "donts": [
+      "Do not use multiple bright accent colors — Cobalt is the only chromatic note; introducing greens, reds, or oranges breaks the monochrome discipline",
+      "Do not add drop shadows to cards or components — separation comes from the graphite-on-onyx value difference alone",
+      "Do not use bold weights (700+) for headings — arcadiaDisplay at 480 is the ceiling",
+      "Do not use sharp corners (0–4px) on buttons, inputs, or nav items — the pill shape is non-negotiable",
+      "Do not use #ffffff for body text — always #ededf3 Ivory; pure white on dark creates harsh, cold contrast",
+      "Do not place Cobalt-filled elements next to each other without at least 32px gap — the vivid color creates visual competition when clustered",
+      "Do not use bright or saturated backgrounds for sections — every surface is either #171721 (canvas) or #1e1e2a (card); no mid-gray or colored bands"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#171721",
+        "name": "Onyx Canvas",
+        "role": "Dominant page background, hero overlay base, footer and section canvases",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1e1e2a",
+        "name": "Graphite Card",
+        "role": "Elevated card and section surfaces — one step lighter than the canvas to create quiet separation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#272735",
+        "name": "Obsidian Button",
+        "role": "Secondary button fills, inline form backgrounds, subtle interactive surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#70707d",
+        "name": "Slate Border",
+        "role": "Medium-weight dividers and structural borders between content blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2e3ed",
+        "name": "Mist Border",
+        "role": "Light hairline borders, ghost-button outlines, input edges — light-on-dark border",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c3c3cc",
+        "name": "Ash Text",
+        "role": "Muted body copy, helper text, secondary labels — reduced hierarchy without losing legibility",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ededf3",
+        "name": "Ivory Text",
+        "role": "Primary text, icons, nav items, ghost-button strokes and text — the dominant foreground color across the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5266eb",
+        "name": "Cobalt",
+        "role": "Violet action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Text and icon fills on cobalt primary buttons for maximum contrast",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark canvas throughout. Hero is 100vw full-bleed photographic with centered headline + subtext + email-capture form stack (max-width ~640px). Below hero, content flows in 1200px max-width sections with 72px vertical padding, alternating between text-left/image-right 2-column splits and 3-column card grids for product features. Navigation is a transparent top bar overlaid on the hero, transitioning to a frosted-glass (backdrop-blur) solid dark fill on scroll. Footer is dark with disclaimer text. Vertical rhythm is generous — spacious density with large breathing room between sections. No sidebar navigation; all navigation lives in the top bar.",
+    "imagery": "Cinematic full-bleed photography dominates the hero — atmospheric, aspirational landscapes (misty mountains, isolated desks in nature) that position banking as a contemplative, elevated experience. Photography is high-quality, slightly desaturated with cool tones, and treated with a subtle dark overlay to maintain text legibility. Below the hero, imagery shifts to product UI screenshots and abstract atmospheric backgrounds. No illustrations, no icons-as-art — visuals are photographic or purely functional. Icon style throughout the UI is minimal line/glyph style in Ivory, appearing in nav, buttons, and form elements.",
+    "similar": [
+      {
+        "why": "Same dark-canvas + single-accent-color approach to fintech, with pill-shaped controls and flat card surfaces",
+        "business": "Wise"
+      },
+      {
+        "why": "Similar graphite-on-dark card system with minimalist borderless components and a restrained primary accent",
+        "business": "Ramp"
+      },
+      {
+        "why": "Dark-mode fintech aesthetic with comparable flat card elevation and confident intermediate-weight typography",
+        "business": "Brex"
+      },
+      {
+        "why": "Same whisper-weight typography philosophy and dark monochrome canvas with a single chromatic action color",
+        "business": "Linear"
+      },
+      {
+        "why": "Shared approach to generous spacing, intermediate-weight display type, and letting one accent color carry the brand",
+        "business": "Stripe"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "40px",
+        "tags": "40px",
+        "cards": "12px",
+        "inputs": "32px",
+        "buttons": "32px",
+        "default": "4px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "72px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#171721",
+        "name": "Onyx Canvas",
+        "level": 0,
+        "purpose": "Base page background — hero overlay, section canvases, footer"
+      },
+      {
+        "hex": "#1e1e2a",
+        "name": "Graphite Card",
+        "level": 1,
+        "purpose": "Elevated content surface — product cards, feature blocks, form containers"
+      },
+      {
+        "hex": "#272735",
+        "name": "Obsidian Button",
+        "level": 2,
+        "purpose": "Interactive surface — secondary button fills, inline form attachments"
+      }
+    ],
+    "northStar": "Alpine banking at blue hour",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1,
+        "letterSpacing": 0.12
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1,
+        "letterSpacing": 0.07
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.35
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 1.35
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.42
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.15,
+        "letterSpacing": 0.48
+      },
+      {
+        "role": "heading-lg",
+        "size": 42,
+        "lineHeight": 1.15,
+        "letterSpacing": 0.42
+      },
+      {
+        "role": "display",
+        "size": 65,
+        "lineHeight": 1.1
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button (Cobalt)",
+        "role": "The sole chromatic action in the system — reserved for the most important conversion",
+        "description": "Filled with #5266eb Cobalt, white text at 16px arcadia weight 400, 32px border-radius (pill), 0px vertical padding with 20px horizontal padding for inline contexts, 40px vertical padding when standalone. No border, no shadow. The vivid blue against the dark canvas makes this button the gravitational center of any page."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary or tertiary action on dark backgrounds",
+        "description": "Transparent background, 1px solid #ededf3 Ivory border, Ivory text at 16px arcadia weight 400, 40px border-radius (pill). Zero padding top/bottom with 20px horizontal padding. Used for navigation links and secondary CTAs where a filled button would overpower the layout."
+      },
+      {
+        "name": "Navigation Pill Link",
+        "role": "Top-bar navigation items with optional dropdown caret",
+        "description": "Transparent background, no border, Ivory text at 16px arcadia weight 400, 40px border-radius, 0px vertical / 20px horizontal padding. Floats over the hero image and transitions to a solid dark fill on scroll via backdrop-blur."
+      },
+      {
+        "name": "Graphite Card",
+        "role": "Content grouping surface — product features, feature blocks, and section containers",
+        "description": "Background #1e1e2a, 12px border-radius, 32px padding on all sides, no shadow, no border. The one-step lift from the #171721 canvas creates separation through subtle value contrast rather than elevation. Cards sit flat on the dark plane."
+      },
+      {
+        "name": "Email Capture Input (Pill, Left-Half)",
+        "role": "Hero email input with attached submit button",
+        "description": "Transparent background, 1px solid #ededf3 Ivory border on left side only, Ivory text at 16px arcadia weight 400, border-radius 32px 0px 0px 32px (left-side pill, flat right edge where it meets the button), 20px left padding. Placeholder text in #c3c3cc Ash."
+      },
+      {
+        "name": "Full-Bleed Hero Section",
+        "role": "Above-the-fold brand statement with photographic atmosphere",
+        "description": "100vw × ~100vh, no padding constraints, centered content stack. Headline in arcadiaDisplay at 65px weight 480, subtext in arcadia at 18px weight 480. A full-bleed photographic background (atmospheric landscape) sits behind a subtle dark overlay. Content max-width ~640px centered vertically and horizontally."
+      },
+      {
+        "name": "Transparent Top Navigation Bar",
+        "role": "Primary site navigation overlaid on hero",
+        "description": "Full-width, fixed or sticky, transparent background over the hero image. Brand mark (Mercury logo with concentric-circle icon) on the left, nav links centered (Products, Solutions, Resources, About, Pricing), Log in text link and Cobalt 'Open account' pill button on the right. Uses backdrop-blur(8px or 20px) on scroll to create frosted-glass separation."
+      },
+      {
+        "name": "Disclaimer Banner",
+        "role": "Legal/regulatory footnote strip at page bottom",
+        "description": "Dark background (matches canvas or slightly lighter), small text at 12px arcadia weight 480 with 0.01em letter-spacing, centered or left-aligned, subtle Ivory or Ash text color. Minimal visual weight — present but never distracting."
+      },
+      {
+        "name": "Section Container",
+        "role": "Horizontal content wrapper between hero and footer",
+        "description": "Full-width dark canvas (#171721) with inner content constrained to 1200px max-width, 72px vertical padding. Contains 2- or 3-column grids of Graphite Cards or text+image splits."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body and UI typeface — handles navigation, body copy, buttons, inputs, labels, and supporting text at weight 400 for body and 480 for emphasis. The intermediate weight scale (360, 420, 480) instead of standard (300/400/600) gives Mercury's text a distinctly calibrated feel — never bold, never thin, always measured",
+        "sizes": "12px, 14px, 16px, 18px, 21px",
+        "family": "arcadia",
+        "weight": "360, 400, 420, 480",
+        "lineHeight": "1.00–1.50",
+        "substitute": "Inter",
+        "letterSpacing": "0.005em at 14px, 0.01em at 12px"
+      },
+      {
+        "role": "Headline and display typeface — used at weight 480 for all heading sizes from 28px through 65px, with 530 reserved for the largest display moments. Tight line-heights (1.1–1.2) and positive letter-spacing (0.01–0.02em) give display copy a wide-set, architectural quality rather than compressed editorial tightness",
+        "sizes": "21px, 24px, 28px, 32px, 42px, 49px, 65px",
+        "family": "arcadiaDisplay",
+        "weight": "360, 480, 530",
+        "lineHeight": "1.10–1.20",
+        "substitute": "Söhne Breit",
+        "letterSpacing": "0.01em at 42px, 0.015em at 32px, 0.02em at 24px"
+      }
+    ],
+    "description": "Mercury operates in an alpine banking aesthetic: a near-black canvas (#171721) sets a cinematic, observatory-like atmosphere where content surfaces float as subtly lighter graphite cards. The interface is overwhelmingly monochromatic — ivory text on onyx, with a single vivid cobalt (#5266eb) acting as the only chromatic punctuation, reserved exclusively for the primary 'Open account' action. Typography carries the weight of expression: a custom display face at intermediate weight 480 (neither bold nor light) paired with a refined body face at weight 400, creating a voice that is confident but never loud. Components are flat and borderless, relying on the 12px-radius graphite card lift and pill-shaped controls to define structure rather than shadows. The full-bleed photographic hero — misty mountains with a solitary desk — establishes aspiration before the product UI takes over, and every subsequent surface maintains that hushed, premium darkness.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3172cd4d-118a-4a16-a259-6b634d32322e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Mercury design system\",\"item\":\"https://styles.refero.design/style/3172cd4d-118a-4a16-a259-6b634d32322e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3172cd4d-118a-4a16-a259-6b634d32322e#style-reference\",\"name\":\"Mercury design system reference\",\"headline\":\"Mercury design system | Refero Styles\",\"description\":\"Explore Mercury's dark Fintech design system: Onyx Canvas #171721, Graphite Card #1e1e2a colors, arcadia, arcadiaDisplay typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/3172cd4d-118a-4a16-a259-6b634d32322e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3172cd4d-118a-4a16-a259-6b634d32322e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Mercury\",\"url\":\"https://mercury.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3172cd4d-118a-4a16-a259-6b634d32322e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bf6a14ca-affd-4681-9b8a-a98f680fd7d1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bf6a14ca-affd-4681-9b8a-a98f680fd7d1.jpg\",\"caption\":\"Screenshot of Mercury\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bf6a14ca-affd-4681-9b8a-a98f680fd7d1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Mercury design system\",\"Mercury website design\",\"Mercury colors\",\"Mercury typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Onyx Canvas\",\"Graphite Card\",\"Obsidian Button\",\"Slate Border\",\"arcadia\",\"arcadiaDisplay\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Mercury design system\"},{\"@type\":\"Thing\",\"name\":\"Mercury website design\"},{\"@type\":\"Thing\",\"name\":\"Mercury colors\"},{\"@type\":\"Thing\",\"name\":\"Mercury typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-02-25T13:19:15.000Z\",\"dateModified\":\"2026-02-25T13:19:15.000Z\"}]}19:T6a1,**Quick Color Reference**\n- Background (canvas): #171721 Onyx\n- Card surface: #1e1e2a Graphite\n- Primary text: #ededf3 Ivory\n- Muted text: #c3c3cc Ash\n- Border: #e2e3ed Mist\n- primary action: #5266eb (filled action)\n\n**Example Component Prompts**\n\n1. Create a product feature card: background #1e1e2a Graphite, 12px border-radius, 32px padding all sides, no shadow. Heading at 28px arcadiaDisplay weight 480, letter-spacing 0.015em, color #ededf3 Ivory. Body text at 16px arcadia weight 400, line-height 1.5, color #ededf3 Ivory.\n\n2. Create a primary CTA button: background #5266eb Cobalt, white text at 16px arcadia weight 400, 32px border-radius (pill), no border, no shadow, 12px vertical / 24px horizontal padding. Text is 'Open account' or equivalent action label.\n\n3. Create a ghost/outline button: transparent background, 1px solid #ededf3 Ivory border, #ededf3 text at 16px arcadia weight 400, 40px border-radius, 10px vertical / 20px horizontal padding.\n\n4. Create a hero section: full-bleed (100vw), full-viewport height, photographic landscape background with dark overlay. Headline at 65px arcadiaDisplay weight 480, line-height 1.1, color #ffffff, centered. Subtext at 18px arcadia weight 480, color #ededf3 Ivory, centered, max-width 520px.\n\n5. Create an inline email capture form: flex row, no gap. Input — transparent background, 1px solid #ededf3 Ivory border (left + top + bottom only), #ededf3 text at 16px arcadia weight 400, placeholder in #c3c3cc Ash, border-radius 32px 0 0 32px, 14px vertical / 20px horizontal padding. Button — #5266eb Cobalt fill, white text at 16px arcadia weight 400, border-radius 0 32px 32px 0, 14px vertical / 24px horizontal padding, no border."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "Mercury's type system uses two custom faces — arcadia for UI/body and arcadiaDisplay for headlines — both built on an intermediate weight axis (360, 420, 480, 530) that avoids the conventional bold/light binary. Heading weight 480 is the signature: it is heavier than regular but distinctly lighter than semibold, creating a voice that asserts without shouting. Display sizes use tight line-heights (1.1–1.15) with positive letter-spacing (0.01–0.02em), giving large text an architectural, wide-set quality. Body text stays at 16px weight 400 with generous 1.5 line-height. The overall effect is a voice that is measured, premium, and digitally native — never editorial, never corporate."
+      }
+    ],
+    "elevationPhilosophy": "Mercury deliberately avoids shadows. All elevation is communicated through value contrast alone — the graphite card (#1e1e2a) sits one step lighter than the onyx canvas (#171721), creating perceptible separation without any drop shadow. This flat aesthetic keeps the interface feeling modern, digital, and weightless, letting the photographic hero imagery and cobalt accent do the emotional work."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#171721",
+          "oklch": {
+            "c": 0.019688279064908096,
+            "h": 284.5732846694572,
+            "l": 0.2094594121902404
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 48355717.1876392,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#ededf3",
+          "oklch": {
+            "c": 0.008010864681028433,
+            "h": 286.2458219453953,
+            "l": 0.947822181656889
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "heading",
+            "body",
+            "input",
+            "other",
+            "link"
+          ],
+          "frequency": 366,
+          "confidence": 1,
+          "prominence": 820270.5784237445,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 2,
+            "nav/color": 2,
+            "body/color": 88,
+            "nav/stroke": 8,
+            "other/fill": 220,
+            "input/color": 1,
+            "other/color": 1,
+            "button/color": 8,
+            "other/stroke": 1,
+            "heading/color": 18,
+            "other/borderColor": 3,
+            "body/backgroundColor": 6,
+            "link/backgroundColor": 3,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#c3c3cc",
+          "oklch": {
+            "c": 0.01247974373239791,
+            "h": 286.12123310577755,
+            "l": 0.8198958669882014
+          },
+          "contexts": [
+            "button",
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 49,
+          "confidence": 1,
+          "prominence": 494954.90013086377,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 44,
+            "button/color": 1,
+            "heading/color": 3,
+            "other/borderColor": 1
+          }
+        },
+        {
+          "hex": "#1e1e2a",
+          "oklch": {
+            "c": 0.02282086583629165,
+            "h": 284.5557914033273,
+            "l": 0.24064053116140574
+          },
+          "contexts": [
+            "other",
+            "body",
+            "card"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 422163,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1,
+            "card/backgroundColor": 5,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#70707d",
+          "oklch": {
+            "c": 0.020003162494623153,
+            "h": 285.7232544202591,
+            "l": 0.5496486084121547
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 231846.842202598,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#e2e3ed",
+          "oklch": {
+            "c": 0.013657079253552506,
+            "h": 281.2243128473424,
+            "l": 0.9187932673487775
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 147137.89974466647,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 14,
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "icon",
+            "button"
+          ],
+          "frequency": 47,
+          "confidence": 1,
+          "prominence": 100948.1972005349,
+          "properties": [
+            "fill",
+            "color"
+          ],
+          "usageCounts": {
+            "nav/fill": 16,
+            "icon/fill": 14,
+            "other/color": 1,
+            "button/color": 16
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 14941.083254168283,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "other/color": 2,
+            "button/color": 2
+          }
+        },
+        {
+          "hex": "#5266eb",
+          "oklch": {
+            "c": 0.2003201987565203,
+            "h": 271.9807941423711,
+            "l": 0.5703483061002315
+          },
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 11560,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#272735",
+          "oklch": {
+            "c": 0.025655174988298488,
+            "h": 284.615923595688,
+            "l": 0.27901784972001087
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 400,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cdddff",
+          "oklch": {
+            "c": 0.04994522258340625,
+            "h": 265.3906058553312,
+            "l": 0.8963753527747267
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 128,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.026227698666835882,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.01,
+          "background": "#ededf3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.78,
+          "background": "#171721",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.48,
+          "background": "#1e1e2a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.44,
+          "background": "#e2e3ed",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.38,
+          "background": "#cdddff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.25,
+          "background": "#171721",
+          "foreground": "#ededf3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.71,
+          "background": "#272735",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.13,
+          "background": "#1e1e2a",
+          "foreground": "#ededf3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.92,
+          "background": "#e2e3ed",
+          "foreground": "#171721"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.03,
+          "background": "#cdddff",
+          "foreground": "#171721"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.9,
+          "background": "#e2e3ed",
+          "foreground": "#1e1e2a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.61,
+          "background": "#272735",
+          "foreground": "#ededf3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.07,
+          "background": "#cdddff",
+          "foreground": "#1e1e2a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12,
+          "background": "#c3c3cc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.52,
+          "background": "#e2e3ed",
+          "foreground": "#272735"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.77,
+          "background": "#cdddff",
+          "foreground": "#272735"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.16,
+          "background": "#171721",
+          "foreground": "#c3c3cc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.42,
+          "background": "#1e1e2a",
+          "foreground": "#c3c3cc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.4,
+          "background": "#272735",
+          "foreground": "#c3c3cc"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "button",
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 89
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 27
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 5
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "link",
+            "heading",
+            "button",
+            "icon"
+          ],
+          "frequency": 24,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "columnGap",
+            "paddingLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "columnGap|other",
+            "paddingLeft|other",
+            "paddingTop|body",
+            "paddingRight|body",
+            "paddingBottom|body",
+            "paddingLeft|body",
+            "marginTop|link",
+            "marginBottom|heading",
+            "marginRight|button",
+            "marginLeft|icon",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 78,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "columnGap|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "nav",
+            "input",
+            "body"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingLeft|input",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "heading",
+            "card"
+          ],
+          "frequency": 174,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|body",
+            "rowGap|other",
+            "marginBottom|heading",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 43,
+          "properties": [
+            "marginTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 206,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "arcadia",
+          "source": "custom",
+          "weights": [
+            360,
+            400,
+            420,
+            480
+          ],
+          "frequency": 846,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "arcadiaDisplay",
+          "source": "custom",
+          "weights": [
+            360,
+            480,
+            530
+          ],
+          "frequency": 50,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "arcadia",
+          "weight": 480,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "arcadia",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "heading",
+            "link",
+            "list"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "arcadia",
+          "weight": 480,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "arcadia",
+          "weight": 420,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "arcadia",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "icon",
+            "heading",
+            "button",
+            "list",
+            "body",
+            "card",
+            "link"
+          ],
+          "frequency": 514,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "arcadia",
+          "weight": 420,
+          "contexts": [
+            "button",
+            "nav",
+            "input",
+            "body",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 150,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "arcadia",
+          "weight": 480,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "arcadia",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "footer"
+          ],
+          "frequency": 49,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "arcadia",
+          "weight": 480,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "arcadia",
+          "weight": 360,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "arcadia",
+          "weight": 360,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "arcadiaDisplay",
+          "weight": 480,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "arcadia",
+          "weight": 480,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "arcadiaDisplay",
+          "weight": 480,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "arcadiaDisplay",
+          "weight": 480,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "arcadiaDisplay",
+          "weight": 360,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "arcadiaDisplay",
+          "weight": 480,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "arcadiaDisplay",
+          "weight": 480,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "arcadiaDisplay",
+          "weight": 530,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 49,
+          "family": "arcadiaDisplay",
+          "weight": 480,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 65,
+          "family": "arcadiaDisplay",
+          "weight": 480,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f5e7b964-aab6-4d9c-b1f6-96565ddde880.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/bf6a14ca-affd-4681-9b8a-a98f680fd7d1.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3172cd4d-118a-4a16-a259-6b634d32322e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Mercury design system\",\"item\":\"https://styles.refero.design/style/3172cd4d-118a-4a16-a259-6b634d32322e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3172cd4d-118a-4a16-a259-6b634d32322e#style-reference\",\"name\":\"Mercury design system reference\",\"headline\":\"Mercury design system | Refero Styles\",\"description\":\"Explore Mercury's dark Fintech design system: Onyx Canvas #171721, Graphite Card #1e1e2a colors, arcadia, arcadiaDisplay typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/3172cd4d-118a-4a16-a259-6b634d32322e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3172cd4d-118a-4a16-a259-6b634d32322e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Mercury\",\"url\":\"https://mercury.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3172cd4d-118a-4a16-a259-6b634d32322e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bf6a14ca-affd-4681-9b8a-a98f680fd7d1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bf6a14ca-affd-4681-9b8a-a98f680fd7d1.jpg\",\"caption\":\"Screenshot of Mercury\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bf6a14ca-affd-4681-9b8a-a98f680fd7d1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Mercury design system\",\"Mercury website design\",\"Mercury colors\",\"Mercury typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Onyx Canvas\",\"Graphite Card\",\"Obsidian Button\",\"Slate Border\",\"arcadia\",\"arcadiaDisplay\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Mercury design system\"},{\"@type\":\"Thing\",\"name\":\"Mercury website design\"},{\"@type\":\"Thing\",\"name\":\"Mercury colors\"},{\"@type\":\"Thing\",\"name\":\"Mercury typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-02-25T13:19:15.000Z\",\"dateModified\":\"2026-02-25T13:19:15.000Z\"}]}19:T6a1,**Quick Color Reference**\n- Background (canvas): #171721 Onyx\n- Card surface: #1e1e2a Graphite\n- Primary text: #ededf3 Ivory\n- Muted text: #c3c3cc Ash\n- Border: #e2e3ed Mist\n- primary action: #5266eb (filled action)\n\n**Example Component Prompts**\n\n1. Create a product feature card: background #1e1e2a Graphite, 12px border-radius, 32px padding all sides, no shadow. Heading at 28px arcadiaDisplay weight 480, letter-spacing 0.015em, color #ededf3 Ivory. Body text at 16px arcadia weight 400, line-height 1.5, color #ededf3 Ivory.\n\n2. Create a primary CTA button: background #5266eb Cobalt, white text at 16px arcadia weight 400, 32px border-radius (pill), no border, no shadow, 12px vertical / 24px horizontal padding. Text is 'Open account' or equivalent action label.\n\n3. Create a ghost/outline button: transparent background, 1px solid #ededf3 Ivory border, #ededf3 text at 16px arcadia weight 400, 40px border-radius, 10px vertical / 20px horizontal padding.\n\n4. Create a hero section: full-bleed (100vw), full-viewport height, photographic landscape background with dark overlay. Headline at 65px arcadiaDisplay weight 480, line-height 1.1, color #ffffff, centered. Subtext at 18px arcadia weight 480, color #ededf3 Ivory, centered, max-width 520px.\n\n5. Create an inline email capture form: flex row, no gap. Input — transparent background, 1px solid #ededf3 Ivory border (left + top + bottom only), #ededf3 text at 16px arcadia weight 400, placeholder in #c3c3cc Ash, border-radius 32px 0 0 32px, 14px vertical / 20px horizontal padding. Button — #5266eb Cobalt fill, white text at 16px arcadia weight 400, border-radius 0 32px 32px 0, 14px vertical / 24px horizontal padding, no border."
+}

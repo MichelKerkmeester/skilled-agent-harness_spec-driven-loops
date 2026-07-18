@@ -1,0 +1,367 @@
+{
+  "color": {
+    "obsidian-ground": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian Ground — Page background — the absolute black base all gradients and glows emerge from"
+    },
+    "deep-charcoal": {
+      "$value": "#19191c",
+      "$type": "color",
+      "$description": "Deep Charcoal — Nav bar background, footer, elevated surface one step above absolute black"
+    },
+    "graphite": {
+      "$value": "#343434",
+      "$type": "color",
+      "$description": "Graphite — Most-used color on site; borders, dividers, muted icon strokes, body text secondary contexts"
+    },
+    "iron": {
+      "$value": "#474749",
+      "$type": "color",
+      "$description": "Iron — Subtle borders, inactive state outlines"
+    },
+    "ash": {
+      "$value": "#757577",
+      "$type": "color",
+      "$description": "Ash — Card borders, inactive dividers"
+    },
+    "slate": {
+      "$value": "#8c8c8",
+      "$type": "color",
+      "$description": "Slate — Secondary body text, muted icon fills"
+    },
+    "silver": {
+      "$value": "#a3a3a4",
+      "$type": "color",
+      "$description": "Silver — Tertiary icons, ghost button labels, disabled states"
+    },
+    "fog": {
+      "$value": "#bababb",
+      "$type": "color",
+      "$description": "Fog — Body text on dark backgrounds, list items, secondary link labels"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary headings, button labels on dark, high-emphasis body text"
+    },
+    "electric-blue": {
+      "$value": "#18a3fa",
+      "$type": "color",
+      "$description": "Electric Blue — Primary link color, info badges, active state highlights — the most-used chromatic color site-wide, giving the dark UI its cool electric temperature"
+    },
+    "violet-pulse": {
+      "$value": "#7b61ff",
+      "$type": "color",
+      "$description": "Violet Pulse — Button borders, badge backgrounds, primary CTA outlines — the core violet brand hue from the JetBrains logo"
+    },
+    "iris": {
+      "$value": "#6b57ff",
+      "$type": "color",
+      "$description": "Iris — Badge fills, body accent — slightly darker violet variant for surfaces needing more saturation"
+    },
+    "amethyst": {
+      "$value": "#8473ff",
+      "$type": "color",
+      "$description": "Amethyst — Heading accent color, primary dark-theme color token (--rs-color-primary-dark-theme)"
+    },
+    "deep-violet": {
+      "$value": "#2e106a",
+      "$type": "color",
+      "$description": "Deep Violet — CTA button background — deep space purple that pairs with Electric Blue (#18a3fa) text for a neon-on-void feel"
+    },
+    "neon-pink": {
+      "$value": "#f31199",
+      "$type": "color",
+      "$description": "Neon Pink — Category labels ('For businesses', 'For developers'), brand highlight moments — the signature hot-pink neon that fires sparingly against black like a neon sign (--main-page-pink)"
+    },
+    "magenta-glow": {
+      "$value": "#5a1fd0",
+      "$type": "color",
+      "$description": "Magenta Glow — Gradient start color for violet nebula gradient, card border accents"
+    },
+    "nebula-violet": {
+      "$value": "#5a1fd0",
+      "$type": "color",
+      "$description": "Nebula Violet — Hero gradient bloom origin"
+    },
+    "aurora-teal": {
+      "$value": "#08deaa",
+      "$type": "color",
+      "$description": "Aurora Teal — Section accent headings, icon fills, gradient stop — teal-to-blue gradient used on feature callouts"
+    },
+    "hero-blue-glow": {
+      "$value": "#0047fd",
+      "$type": "color",
+      "$description": "Hero Blue Glow — Radial glow behind hero content — the deep blue spotlight effect that dominates the first viewport"
+    },
+    "danger-red": {
+      "$value": "#f45c4a",
+      "$type": "color",
+      "$description": "Danger Red — Error states, destructive actions (--rs-color-danger)"
+    },
+    "success-green": {
+      "$value": "#4dbb5f",
+      "$type": "color",
+      "$description": "Success Green — Success states (--rs-color-success)"
+    },
+    "warning-amber": {
+      "$value": "#f3c033",
+      "$type": "color",
+      "$description": "Warning Amber — Warning states (--rs-color-warning)"
+    }
+  },
+  "font": {
+    "jetbrains-sans": {
+      "$value": "JetBrains Sans",
+      "$type": "fontFamily",
+      "$description": "The single typeface for the entire site at all sizes and weights. 600 at 72-79px for hero headlines — unusual that even at this weight the custom letterSpacing tightening (-0.005em to -0.001em) keeps the large type dense and technical rather than editorial. Weight 300 appears at mid-sizes giving subheadings a lighter counterpoint to bold display text. JetBrains Sans is custom-designed — it carries optical metrics tuned for code-adjacent contexts, slightly wider than Inter at body sizes, with liga/calt features active that echo the IDE typographic environment."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "JetBrains Sans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "JetBrains Sans",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "JetBrains Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "JetBrains Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "JetBrains Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "JetBrains Sans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "JetBrains Sans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "JetBrains Sans",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "JetBrains Sans",
+        "fontSize": "29px",
+        "fontWeight": 300,
+        "lineHeight": 1.34
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "JetBrains Sans",
+        "fontSize": "35px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 35px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "JetBrains Sans",
+        "fontSize": "43px",
+        "fontWeight": 600,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "JetBrains Sans",
+        "fontSize": "72px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "JetBrains Sans",
+        "fontSize": "79px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 79px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Absolute page background — the black base from which all gradients emerge"
+    },
+    "deep-charcoal": {
+      "$value": "#19191c",
+      "$type": "color",
+      "$description": "Surface level 1: Navigation bar, footer — surfaces that need to sit above the background but below content cards"
+    },
+    "violet-glass": {
+      "$value": "#2e106a",
+      "$type": "color",
+      "$description": "Surface level 2: Translucent violet card fills (rgba(90,31,208,0.3)) — feature announcement cards, business section panels"
+    },
+    "pink-glass": {
+      "$value": "#45173a",
+      "$type": "color",
+      "$description": "Surface level 3: Translucent pink card fills (rgba(243,17,180,0.2)) — highlight feature cards for specific products"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://jetbrains.com",
+      "siteName": "JetBrains",
+      "extractedAt": "2026-04-11T19:10:37.048Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "color": {
+    "midnight-carbon": {
+      "$value": "#12130f",
+      "$type": "color",
+      "$description": "Midnight Carbon — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "bone-glow": {
+      "$value": "#e4dfda",
+      "$type": "color",
+      "$description": "Bone Glow — Primary text, headings, button text, all body copy. Warm off-white used at every size from 12px telemetry to 80px displays. The only color that does real work"
+    },
+    "charcoal-vein": {
+      "$value": "#3c3c38",
+      "$type": "color",
+      "$description": "Charcoal Vein — Secondary borders, dividers, subdued UI chrome. Warm mid-gray that registers on the dark canvas without competing with bone-white text"
+    },
+    "rose-quartz-bloom": {
+      "$value": "#f5c2c8",
+      "$type": "color",
+      "$description": "Rose Quartz Bloom — Accent glow on 3D rendered objects, ambient lighting bleed from the hero artifact. Never used on UI chrome — appears only as the soft pink edge-light on cubes"
+    }
+  },
+  "font": {
+    "arbeit-technik": {
+      "$value": "Arbeit Technik",
+      "$type": "fontFamily",
+      "$description": "Telemetry and label text — timestamps, location, status indicators, small caps annotations. 12px only, monospaced, with aggressive -0.6px letter-spacing that makes each character feel stamped. The 'HUD font' for all meta-information."
+    },
+    "inline-vf": {
+      "$value": "Inline VF",
+      "$type": "fontFamily",
+      "$description": "Hero display — the time readout and masthead block-letter wordmark. Ultra-condensed vertical metrics (0.70) compress the type into dense rectangular shapes. The signature voice: blocky, digital, unapologetic."
+    },
+    "arbeit-contrast": {
+      "$value": "Arbeit Contrast",
+      "$type": "fontFamily",
+      "$description": "Readable prose at 16px (body, links), section headings at 30px, and secondary display at 80px. Contrast cuts in the strokes give it authority at every size without increasing weight. The workhorse typeface."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Arbeit Technik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Arbeit Technik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Arbeit Technik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Arbeit Contrast",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Arbeit Contrast",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Arbeit Contrast",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Inline VF",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Inline VF",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#12130f",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed page background, all sections"
+    },
+    "recessed": {
+      "$value": "#12130f",
+      "$type": "color",
+      "$description": "Surface level 2: Cards and content blocks sit flush with the canvas — no elevation differentiation, only spacing and border treatment separate regions"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://yinger.dev",
+      "siteName": "Max Yinger",
+      "extractedAt": "2026-06-03T18:42:44.802Z",
+      "variant": "extended"
+    }
+  }
+}

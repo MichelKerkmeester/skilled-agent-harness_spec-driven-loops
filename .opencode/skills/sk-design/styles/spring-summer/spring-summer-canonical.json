@@ -1,0 +1,894 @@
+{
+  "source": "https://styles.refero.design/style/d56508d7-c307-47f7-ad30-052e5a69f01f",
+  "uuid": "d56508d7-c307-47f7-ad30-052e5a69f01f",
+  "name": "Spring/Summer",
+  "northStar": "Scandinavian design annual on celadon paper",
+  "capturedAt": "2026-07-18T08:15:22.554Z",
+  "meta": {
+    "url": "https://springsummer.dk",
+    "siteName": "Spring/Summer",
+    "extractedAt": "2026-06-03T17:47:28.357Z",
+    "durationMs": 27558,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1388,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set the hero display in Grotesk weight 400 at 170–386px, line-height 0.75 — never in a bold weight, never with looser leading",
+      "Use Plum Ink (#44394c) for all text and icons; reserve Sage Paper (#e5ebda) exclusively as the page canvas",
+      "Keep the entire palette at five colors: sage, plum, white, stone border, ash border",
+      "Apply Montreal at weight 400 only, with +0.02em to +0.023em letter-spacing on sizes 12–18px",
+      "Use 4px radius on every rectangular element — cards, inputs, overlays, buttons",
+      "Build elevation by switching from Sage Paper to Paper White, never with drop shadows",
+      "Let project images fill their cards edge-to-edge; add the overlay panel as a small caption strip, not a panel"
+    ],
+    "donts": [
+      "Do not add a sixth color or use accent hues for buttons, badges, or links — the system is intentionally monochrome",
+      "Do not use Grotesk for body copy, nav, or any size under 40px",
+      "Do not use Montreal for display sizes above 43px — display is Grotesk's job",
+      "Do not apply drop shadows, glows, or blur to any element — elevation comes from surface contrast only",
+      "Do not round corners beyond 4px — softer radii will make the design feel like a product UI rather than an editorial spread",
+      "Do not introduce gradients, textures, or patterned backgrounds onto the sage canvas",
+      "Do not place CTA buttons with colored fills — the system has no primary action color; affordances are typographic arrows and inline links in Plum Ink"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e5ebda",
+        "name": "Sage Paper",
+        "role": "Page canvas — the only background the site uses. A pale desaturated celadon that warms the page without ever reading as a color choice, so the plum ink and photography do all the talking",
+        "group": "neutral"
+      },
+      {
+        "hex": "#44394c",
+        "name": "Plum Ink",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Card surfaces, image backgrounds, and the white overlay panels sitting on top of project photographs. The only non-canvas surface color in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c0c3b6",
+        "name": "Stone Border",
+        "role": "Hairline dividers and structural borders. A warm gray that disappears against the sage canvas but keeps the grid legible",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b0b2a9",
+        "name": "Ash Border",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width contained at roughly 1440px, centered, with a 20px outer margin. The hero is flush-left, text-dominant: a small descriptor sits in the upper-left grid column, a massive Grotesk display headline fills the left two-thirds, and a single product card sits in the right third overlapping into the first scroll position. Below the hero, a horizontal project carousel scrolls left-to-right, with arrow controls floating above the row. Long-form sections follow as single-column 720px text blocks, left-aligned, on the same sage canvas. The page never alternates dark/light bands — Sage Paper is the only background, and Paper White appears only as card surfaces.",
+    "imagery": "Imagery is editorial photography treated as full-bleed cards: large landscape crops of work (environmental shots, product stills, campaign imagery) with no rounded masks, no duotone treatment, no overlays beyond a small white caption strip. Photography occupies the majority of the visual space below the hero — the page is image-heavy in the work sections, text-only above and between them. There are no illustrations, no 3D renders, no icon sets beyond the monogram and a small clock dot. Icons are not used as a system; navigation and interaction are communicated through type and arrow glyphs.",
+    "similar": [
+      {
+        "why": "Same editorial-discipline approach: monochrome palette, oversized display type, and a portfolio presented as large image cards with minimal chrome",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same quiet, near-monochrome agency aesthetic with massive compressed display type and a single muted canvas color",
+        "business": "Manual (manual.co)"
+      },
+      {
+        "why": "Same typographic-led portfolio structure where oversized display headlines and image-led project cards carry the page",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Same annual-report sensibility: pale paper-toned backgrounds, single dark ink color, and oversized sans-serif display type",
+        "business": "Holt Renfrew (editorial spreads)"
+      },
+      {
+        "why": "Same restrained agency-portfolio language: muted background, one near-black ink, and display type that does the entire visual job through scale alone",
+        "business": "Bureau Cool"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "4px",
+        "cards": "4px",
+        "inputs": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "64-96px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#e5ebda",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background, sole surface for the entire site"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Image cards, project overlays, and the only elevated surface above the canvas"
+      }
+    ],
+    "northStar": "Scandinavian design annual on celadon paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.24
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.32
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.36
+      },
+      {
+        "role": "heading-sm",
+        "size": 40,
+        "lineHeight": 0.76,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 43,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.86
+      },
+      {
+        "role": "display",
+        "size": 170,
+        "lineHeight": 0.75,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display-lg",
+        "size": 386,
+        "lineHeight": 0.75,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent header with brand mark, primary links, and live status",
+        "description": "Full-width, no background fill, sits directly on the sage canvas. Left: small circular monogram + 'Spring/Summer*' wordmark in Montreal 14px Plum Ink. Center: three nav labels (What we do, Our work, About us) in Montreal 14px, 12px gap between items. Right: live clock '18:35:18' in Montreal 13px and 'Copenhagen' location label. No border, no shadow, no fill — the nav is a thin horizontal band of type on the canvas."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "The signature typographic moment that defines the brand",
+        "description": "Massive Grotesk at 170–386px, weight 400, line-height 0.75, Plum Ink (#44394c), flush left. Sets the editorial tone — no background, no decoration, no CTA beside it. Letters nearly collide vertically; the sheer scale carries the page. The 386px size is reserved for the first-fold hero word (e.g. 'NEW WORK'); 170px is used for subsequent display words in the same line."
+      },
+      {
+        "name": "Agency Descriptor",
+        "role": "Small editorial label sitting above the hero display",
+        "description": "Montreal 14px, Plum Ink, positioned in the upper-left grid column. Reads as a typeset caption, not a tagline. Single line, normal sentence case."
+      },
+      {
+        "name": "Project Card",
+        "role": "Portfolio tile in the horizontal project carousel",
+        "description": "White (#ffffff) surface, 4px radius, no border, no shadow. Full-bleed project image fills the card; a small white overlay panel sits bottom-left of the image containing project title and client in Montreal 14px Plum Ink. Cards are large (roughly 480–640px wide, 600–800px tall) and arranged in a horizontal row that scrolls off-screen. 12–20px gap between cards. The image does the work — the card chrome is invisible."
+      },
+      {
+        "name": "Project Overlay Panel",
+        "role": "Small white label floating on top of project photography",
+        "description": "White background, 4px radius, 12–20px padding, no border. Contains a one- to three-line description in Montreal 14px Plum Ink. Sits flush to the bottom-left of the card with a 20px inset. Functions as a caption strip, not a callout — small relative to the image."
+      },
+      {
+        "name": "Horizontal Project Carousel",
+        "role": "Scrollable row of project cards",
+        "description": "Cards arranged left-to-right with 12–20px gaps. The row extends past the right viewport edge and scrolls horizontally. Two small arrow controls (← →) in Montreal 14px Plum Ink sit above the row, right-aligned, 20px apart. No scrollbar styling — the arrows are the only affordance."
+      },
+      {
+        "name": "Carousel Arrow Control",
+        "role": "Minimal scroll indicator for the project row",
+        "description": "Plain typographic arrows (← →) in Montreal 14px Plum Ink, no button background, no border, no padding. Two arrows sit 20px apart, separated by a thin space. The control is the text itself, not a button."
+      },
+      {
+        "name": "Live Status Indicator",
+        "role": "Real-time clock and location chip in the nav",
+        "description": "Montreal 13px Plum Ink, preceded by a small dot/circle icon. Reads as '◐ 18:35:18    Copenhagen'. No background, no border — pure inline type with a 20px gap between the clock and the location."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form input for the 'Send us your thoughts' contact block",
+        "description": "No visible background fill (sits on sage canvas), 1px solid #b0b2a9 bottom border only, 4px radius on the border corners. Placeholder text in Montreal 14px Plum Ink. Padding 12px vertical. Underline-only styling — no boxed input."
+      },
+      {
+        "name": "Section Paragraph",
+        "role": "Long-form editorial body text below the hero",
+        "description": "Montreal 18px or 14px Plum Ink, line-height 1.40–1.50, max-width roughly 720px, flush left. Sentence case, no drop cap, no first-line indent. Reads as a magazine column."
+      },
+      {
+        "name": "Brand Wordmark",
+        "role": "Top-left brand lockup",
+        "description": "Small filled circle monogram in Plum Ink followed by 'Spring/Summer*' in Montreal 14px Plum Ink. The asterisk after 'Summer' is a permanent part of the wordmark — not a footnote symbol, a brand device."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All interface, navigation, body, caption, and mid-size editorial text. Used at a single weight 400 with a slight positive tracking (0.02–0.023em) that gives labels a quiet, typeset quality. The 43px size carries agency descriptors and large taglines. Freely available substitute: Inter or Söhne.",
+        "sizes": "12px, 13px, 14px, 18px, 43px",
+        "family": "Montreal",
+        "weight": "400",
+        "lineHeight": "1.10–1.50",
+        "substitute": "Inter",
+        "letterSpacing": "0.0200em at 12-18px, 0.0230em at 14px body"
+      },
+      {
+        "role": "The signature display face. Weight 400 only, but used at 170–386px with crushed 0.75–0.76 line-height so letters nearly touch and the type feels carved rather than set. The entire visual identity depends on this single face being enormous — there is no bold weight, no italic, no alternative. Substitute: Druk, Söhne Breit, or NB Architekt — any compressed, geometric grotesque that holds up at 300+ pixels.",
+        "sizes": "40px, 170px, 386px",
+        "family": "Grotesk",
+        "weight": "400",
+        "lineHeight": "0.75, 0.76",
+        "substitute": "Druk Wide or NB Architekt"
+      }
+    ],
+    "description": "Spring/Summer is an editorial agency annual printed on celadon paper: a single pale sage canvas, massive compressed display type in deep plum, and a near-monochrome palette where the only color decisions are paper, ink, and image. The design is calm and confident — pages breathe with generous whitespace, navigation stays in a whisper-thin top bar, and the display face does all the heavy lifting by being absurdly large rather than by adding weight, gradient, or decoration. Projects are presented as oversized image cards with small white overlay labels, like spreads in a printed portfolio. Color never decorates; it only separates ink from paper.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d56508d7-c307-47f7-ad30-052e5a69f01f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Spring/Summer design system\",\"item\":\"https://styles.refero.design/style/d56508d7-c307-47f7-ad30-052e5a69f01f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d56508d7-c307-47f7-ad30-052e5a69f01f#style-reference\",\"name\":\"Spring/Summer design system reference\",\"headline\":\"Spring/Summer design system | Refero Styles\",\"description\":\"Explore Spring/Summer's light Agency design system: Sage Paper #e5ebda, Plum Ink #44394c colors, Montreal, Grotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d56508d7-c307-47f7-ad30-052e5a69f01f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d56508d7-c307-47f7-ad30-052e5a69f01f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Spring/Summer\",\"url\":\"https://springsummer.dk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d56508d7-c307-47f7-ad30-052e5a69f01f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fb19446e-7b7c-47fe-8a0e-6247e27da1af.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fb19446e-7b7c-47fe-8a0e-6247e27da1af.jpg\",\"caption\":\"Screenshot of Spring/Summer\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fb19446e-7b7c-47fe-8a0e-6247e27da1af.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Spring/Summer design system\",\"Spring/Summer website design\",\"Spring/Summer colors\",\"Spring/Summer typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Sage Paper\",\"Plum Ink\",\"Paper White\",\"Stone Border\",\"Montreal\",\"Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Spring/Summer design system\"},{\"@type\":\"Thing\",\"name\":\"Spring/Summer website design\"},{\"@type\":\"Thing\",\"name\":\"Spring/Summer colors\"},{\"@type\":\"Thing\",\"name\":\"Spring/Summer typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-01-24T12:29:47.000Z\",\"dateModified\":\"2026-01-24T12:29:47.000Z\"}]}19:T633,Quick Color Reference\n- text: #44394c (Plum Ink)\n- background: #e5ebda (Sage Paper)\n- surface: #ffffff (Paper White)\n- border: #c0c3b6 (Stone Border)\n- input border: #b0b2a9 (Ash Border)\n- primary action: no distinct CTA color\n\nExample Component Prompts\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Top navigation: No background, no border, sits directly on the sage canvas. Left: a 16px Plum Ink filled circle followed by 'Spring/Summer*' in Montreal 14px Plum Ink. Center: three labels (What we do, Our work, About us) in Montreal 14px Plum Ink with 12px gaps. Right: a small dot icon, '18:35:18' in Montreal 13px Plum Ink, then 'Copenhagen' in Montreal 13px Plum Ink 20px to the right.\n\n3. Project card: Paper White (#ffffff) surface, 4px radius, no border, no shadow. A full-bleed landscape image fills the card. Bottom-left, with a 20px inset, a small white overlay panel (12px padding, 4px radius) containing a one- to three-line caption in Montreal 14px Plum Ink.\n\n4. Project carousel: A horizontal row of 480–640px wide project cards on the sage canvas, 20px gap between cards, extending past the right viewport edge. Above the row, right-aligned, two inline typographic arrows (← →) in Montreal 14px Plum Ink with a 20px gap between them — no button background.\n\n5. Contact input: No background fill, 1px solid #b0b2a9 bottom border only, 4px radius, 12px vertical padding, placeholder in Montreal 14px Plum Ink. Sits directly on the sage canvas with no surrounding form chrome."
+      }
+    ],
+    "elevationPhilosophy": "The design uses no shadows. Elevation is created entirely through the sage-to-white surface step, not through drop shadows or blur. All corners are 4px — sharp enough to feel editorial, never soft enough to feel like a product UI."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#44394c",
+          "oklch": {
+            "c": 0.03515244321263109,
+            "h": 310.76148044813766,
+            "l": 0.36379788861457135
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "link",
+            "icon",
+            "nav",
+            "button",
+            "hero",
+            "input",
+            "footer",
+            "list"
+          ],
+          "frequency": 2022,
+          "confidence": 1,
+          "prominence": 65804869.92410064,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "badge",
+            "link",
+            "image"
+          ],
+          "frequency": 3003,
+          "confidence": 1,
+          "prominence": 4457678.239959564,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c0c3b6",
+          "oklch": {
+            "c": 0.018270221634560692,
+            "h": 118.73364736972691,
+            "l": 0.8120846478477399
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 123599.81227699433,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b0b2a9",
+          "oklch": {
+            "c": 0.01272883066482781,
+            "h": 114.88141714519375,
+            "l": 0.7599977192564601
+          },
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 86424.8352393232,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e5ebda",
+          "oklch": {
+            "c": 0.023110521181541912,
+            "h": 121.89398514718472,
+            "l": 0.9312305056701646
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "body",
+            "link"
+          ],
+          "frequency": 355,
+          "confidence": 1,
+          "prominence": 36242.23615081232,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 28,
+          "confidence": 1,
+          "prominence": 1607.9917093872264,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.03965043368205819,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.23,
+          "background": "#e5ebda",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.72,
+          "background": "#c0c3b6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.85,
+          "background": "#44394c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.79,
+          "background": "#b0b2a9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.9,
+          "background": "#44394c",
+          "foreground": "#e5ebda"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.06,
+          "background": "#c0c3b6",
+          "foreground": "#44394c"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.06,
+          "background": "#b0b2a9",
+          "foreground": "#44394c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "link",
+            "body",
+            "other",
+            "input"
+          ],
+          "frequency": 100
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 41,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 64,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 38,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 172,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 218,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 36,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 90,
+          "properties": [
+            "rowGap",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 54,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 100,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 150,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Montreal",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 859,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Supply",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 126,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Grotesk",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 14,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.78
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Supply",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "badge",
+            "other",
+            "input"
+          ],
+          "frequency": 116,
+          "lineHeight": 1.26,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "nav",
+            "button",
+            "footer",
+            "list"
+          ],
+          "frequency": 126,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.023,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Supply",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.023,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Supply",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Montreal",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "hero",
+            "badge",
+            "link",
+            "image"
+          ],
+          "frequency": 702,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Montreal",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Montreal",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Montreal",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 0.75,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 43,
+          "family": "Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 170,
+          "family": "Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.76,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 386,
+          "family": "Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.75,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6f4e5baf-0da1-4c34-85b8-c2d472c5cd52.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/fb19446e-7b7c-47fe-8a0e-6247e27da1af.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d56508d7-c307-47f7-ad30-052e5a69f01f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Spring/Summer design system\",\"item\":\"https://styles.refero.design/style/d56508d7-c307-47f7-ad30-052e5a69f01f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d56508d7-c307-47f7-ad30-052e5a69f01f#style-reference\",\"name\":\"Spring/Summer design system reference\",\"headline\":\"Spring/Summer design system | Refero Styles\",\"description\":\"Explore Spring/Summer's light Agency design system: Sage Paper #e5ebda, Plum Ink #44394c colors, Montreal, Grotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d56508d7-c307-47f7-ad30-052e5a69f01f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d56508d7-c307-47f7-ad30-052e5a69f01f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Spring/Summer\",\"url\":\"https://springsummer.dk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d56508d7-c307-47f7-ad30-052e5a69f01f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fb19446e-7b7c-47fe-8a0e-6247e27da1af.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fb19446e-7b7c-47fe-8a0e-6247e27da1af.jpg\",\"caption\":\"Screenshot of Spring/Summer\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fb19446e-7b7c-47fe-8a0e-6247e27da1af.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Spring/Summer design system\",\"Spring/Summer website design\",\"Spring/Summer colors\",\"Spring/Summer typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Sage Paper\",\"Plum Ink\",\"Paper White\",\"Stone Border\",\"Montreal\",\"Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Spring/Summer design system\"},{\"@type\":\"Thing\",\"name\":\"Spring/Summer website design\"},{\"@type\":\"Thing\",\"name\":\"Spring/Summer colors\"},{\"@type\":\"Thing\",\"name\":\"Spring/Summer typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-01-24T12:29:47.000Z\",\"dateModified\":\"2026-01-24T12:29:47.000Z\"}]}19:T633,Quick Color Reference\n- text: #44394c (Plum Ink)\n- background: #e5ebda (Sage Paper)\n- surface: #ffffff (Paper White)\n- border: #c0c3b6 (Stone Border)\n- input border: #b0b2a9 (Ash Border)\n- primary action: no distinct CTA color\n\nExample Component Prompts\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Top navigation: No background, no border, sits directly on the sage canvas. Left: a 16px Plum Ink filled circle followed by 'Spring/Summer*' in Montreal 14px Plum Ink. Center: three labels (What we do, Our work, About us) in Montreal 14px Plum Ink with 12px gaps. Right: a small dot icon, '18:35:18' in Montreal 13px Plum Ink, then 'Copenhagen' in Montreal 13px Plum Ink 20px to the right.\n\n3. Project card: Paper White (#ffffff) surface, 4px radius, no border, no shadow. A full-bleed landscape image fills the card. Bottom-left, with a 20px inset, a small white overlay panel (12px padding, 4px radius) containing a one- to three-line caption in Montreal 14px Plum Ink.\n\n4. Project carousel: A horizontal row of 480–640px wide project cards on the sage canvas, 20px gap between cards, extending past the right viewport edge. Above the row, right-aligned, two inline typographic arrows (← →) in Montreal 14px Plum Ink with a 20px gap between them — no button background.\n\n5. Contact input: No background fill, 1px solid #b0b2a9 bottom border only, 4px radius, 12px vertical padding, placeholder in Montreal 14px Plum Ink. Sits directly on the sage canvas with no surrounding form chrome."
+}

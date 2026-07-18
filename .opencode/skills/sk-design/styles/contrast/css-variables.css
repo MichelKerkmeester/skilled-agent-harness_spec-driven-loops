@@ -1,0 +1,91 @@
+:root {
+  /* Colors */
+  --color-signal-coral: #ff5065;
+  --color-ember-wash: #ff7a59;
+  --color-persimmon: #ff5c35;
+  --color-coral-mist: #ffe9eb;
+  --color-carbon-ink: #0e0f10;
+  --color-pure-white: #ffffff;
+  --color-fog: #f4f4f8;
+  --color-graphite: #2f3133;
+  --color-slate: #7a7b7c;
+  --color-smoke: #666666;
+
+  /* Typography — Font Families */
+  --font-gilroy: 'Gilroy', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 1.43;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.5;
+  --text-body: 18px;
+  --leading-body: 1.56;
+  --text-subheading: 20px;
+  --leading-subheading: 1.6;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.33;
+  --text-heading: 48px;
+  --leading-heading: 1.11;
+  --text-display: 56px;
+  --leading-display: 0.8;
+
+  /* Typography — Weights */
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-72: 72px;
+  --spacing-80: 80px;
+  --spacing-88: 88px;
+  --spacing-112: 112px;
+  --spacing-120: 120px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 32px;
+  --radius-3xl-3: 40px;
+  --radius-full: 100px;
+  --radius-full-2: 120px;
+
+  /* Named Radii */
+  --radius-nav: 4px;
+  --radius-cards: 24px;
+  --radius-badges: 100px;
+  --radius-images: 100px;
+  --radius-buttons: 100px;
+  --radius-largecards: 40px;
+  --radius-smallcards: 16px;
+  --radius-extralargecards: 120px;
+
+  /* Shadows */
+  --shadow-xl: rgba(38, 42, 62, 0.06) 0px 5px 25px 0px;
+
+  /* Surfaces */
+  --surface-canvas: #ffffff;
+  --surface-fog: #f4f4f8;
+  --surface-card: #ffffff;
+  --surface-accent-wash: #ffe9eb;
+  --surface-dark-surface: #0e0f10;
+}

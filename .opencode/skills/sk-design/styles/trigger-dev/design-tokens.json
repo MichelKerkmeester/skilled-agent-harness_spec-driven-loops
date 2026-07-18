@@ -1,0 +1,457 @@
+{
+  "color": {
+    "slate-canvas": {
+      "$value": "#1c1e21",
+      "$type": "color",
+      "$description": "Slate Canvas — Primary page background, hero canvas, card surface base — the workspace floor everything sits on"
+    },
+    "ink-well": {
+      "$value": "#121317",
+      "$type": "color",
+      "$description": "Ink Well — Deepest surface — code block backgrounds, terminal panes, inset containers that need to feel recessed below the canvas"
+    },
+    "graphite-hairline": {
+      "$value": "#3b3e45",
+      "$type": "color",
+      "$description": "Graphite Hairline — Subtle borders, divider lines, card edges — barely visible separators that let density carry the visual structure"
+    },
+    "steel-border": {
+      "$value": "#272a2e",
+      "$type": "color",
+      "$description": "Steel Border — Slightly darker hairline for nested containers and secondary borders where Graphite feels too bright"
+    },
+    "ash-text": {
+      "$value": "#b5b8c0",
+      "$type": "color",
+      "$description": "Ash Text — Tertiary text, captions, muted helper copy — text that should be readable but not competing with headlines"
+    },
+    "fog-text": {
+      "$value": "#878c99",
+      "$type": "color",
+      "$description": "Fog Text — Secondary body text, metadata, icon strokes — the most-used neutral text color, reading as a soft graphite on slate"
+    },
+    "cloud-text": {
+      "$value": "#d7d9dd",
+      "$type": "color",
+      "$description": "Cloud Text — Secondary headings, button text, emphasized body — one step below full white, used where pure white would feel harsh"
+    },
+    "bone-text": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Bone Text — Primary text, headlines, high-contrast labels — the dominant foreground color against the slate canvas"
+    },
+    "signal-lime": {
+      "$value": "#a8ff53",
+      "$type": "color",
+      "$description": "Signal Lime — Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "syntax-violet": {
+      "$value": "#9c9af2",
+      "$type": "color",
+      "$description": "Syntax Violet — Code syntax highlighting (functions, keywords), media generation feature icon — the most-used chromatic color after lime, giving the code blocks their editor feel"
+    },
+    "syntax-pink": {
+      "$value": "#fa3abf",
+      "$type": "color",
+      "$description": "Syntax Pink — Code syntax (strings, special tokens), media processing feature icon — hot accent used sparingly for code punctuation"
+    },
+    "event-violet": {
+      "$value": "#7655fd",
+      "$type": "color",
+      "$description": "Event Violet — Headline highlight words, streaming feature icon, decorative gradient accent — slightly deeper violet for larger surfaces"
+    },
+    "loop-green": {
+      "$value": "#afec73",
+      "$type": "color",
+      "$description": "Loop Green — Code syntax (types, booleans), inline emphasis text — softer green that sits between Signal Lime and Ash, used inside code contexts"
+    },
+    "key-lime": {
+      "$value": "#d9f07c",
+      "$type": "color",
+      "$description": "Key Lime — Code syntax (variables, parameters) — the lightest green, reads almost yellow against dark, used for code identifiers"
+    },
+    "tag-magenta": {
+      "$value": "#e888f8",
+      "$type": "color",
+      "$description": "Tag Magenta — Code syntax (property names, tags) — gentle pink for object keys and JSX attributes"
+    },
+    "mute-red": {
+      "$value": "#f43f5e",
+      "$type": "color",
+      "$description": "Mute Red — Red supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    }
+  },
+  "font": {
+    "satoshi": {
+      "$value": "Satoshi",
+      "$type": "fontFamily",
+      "$description": "Display and heading — Satoshi carries every headline from 16px sub-labels up to the 60px hero. Weight 500 is the default for most headings; 600 appears on the hero. Letter-spacing pushes open at 0.05em on the largest sizes, giving headlines a spaced-out editorial feel that contrasts Geist's tightness. This is the brand's voice at scale."
+    },
+    "geist": {
+      "$value": "Geist",
+      "$type": "fontFamily",
+      "$description": "Body, navigation, buttons, links, UI labels — Geist is the workhorse that keeps the interface legible. Weight 400 for body, 500 for buttons and active nav, 300 for the lightest body or large paragraph copy. Normal letter-spacing. Its grotesque neutrality is intentional — it lets Satoshi speak at display scale and code syntax speak in the editor."
+    },
+    "geist-mono": {
+      "$value": "Geist Mono",
+      "$type": "fontFamily",
+      "$description": "Code blocks, inline code, terminal output, log lines — Geist Mono is locked at 14px, the code face that appears in the embedded TypeScript examples and any monospaced UI text. Its presence signals 'this is real, runnable code' and bridges the marketing site to the developer product."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Geist-Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Geist-Regular",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "GeistMono-Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Geist-Regular",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "GeistMono-Regular",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Geist-Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Geist-Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Geist-Regular",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Satoshi-Variable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Geist-Regular",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Satoshi-Variable",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Satoshi-Variable",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Satoshi-Variable",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Geist-Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Satoshi-Variable",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Geist-Regular",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Satoshi-Variable",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Satoshi-Variable",
+        "fontSize": "30px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Satoshi-Variable",
+        "fontSize": "30px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Satoshi-Variable",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Satoshi-Variable",
+        "fontSize": "36px",
+        "fontWeight": 600,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Satoshi-Variable",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Satoshi-Variable",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Satoshi-Variable",
+        "fontSize": "60px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 60px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "192": {
+      "$value": "192px",
+      "$type": "dimension",
+      "$description": "Spacing 192px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#1c1e21",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the dominant dark surface"
+    },
+    "inset": {
+      "$value": "#121317",
+      "$type": "color",
+      "$description": "Surface level 1: Code blocks, terminal panes, recessed containers"
+    },
+    "card": {
+      "$value": "#1c1e21",
+      "$type": "color",
+      "$description": "Surface level 2: Testimonial cards, feature cards — sit on the canvas with hairline borders for definition"
+    },
+    "accent": {
+      "$value": "#a8ff53",
+      "$type": "color",
+      "$description": "Surface level 3: Primary CTA surface, active indicators, logo mark"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://trigger.dev",
+      "siteName": "Trigger.dev",
+      "extractedAt": "2026-06-03T18:23:10.089Z",
+      "variant": "extended"
+    }
+  }
+}

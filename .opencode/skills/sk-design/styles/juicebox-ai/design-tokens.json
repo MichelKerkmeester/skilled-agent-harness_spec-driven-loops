@@ -1,0 +1,534 @@
+{
+  "color": {
+    "royal-plum": {
+      "$value": "#6a2f8d",
+      "$type": "color",
+      "$description": "Royal Plum — Primary brand color — hero washes, product frames, active nav indicator, link accents, and decorative section bands. Carries 100% of the chromatic brand weight; the system is monochrome until this color appears"
+    },
+    "plum-mist": {
+      "$value": "#eee8fd",
+      "$type": "color",
+      "$description": "Plum Mist — Tinted lilac surface used for soft product/section backgrounds and as the lightest stop in purple gradient washes. Pairs with Royal Plum to create a two-stop purple atmosphere without needing darker midtones"
+    },
+    "lilac-outline": {
+      "$value": "#da9efd",
+      "$type": "color",
+      "$description": "Lilac Outline — Decorative stroke accent — used sparingly on illustration outlines, diagram borders, and ornamental SVG marks that sit over plum surfaces"
+    },
+    "forest-mark": {
+      "$value": "#2f8d6e",
+      "$type": "color",
+      "$description": "Forest Mark — Green outline accent for tags, dividers, and focused UI edges"
+    },
+    "obsidian": {
+      "$value": "#1d161d",
+      "$type": "color",
+      "$description": "Obsidian — Primary text and heading color. Slightly warm-tinted near-black that reads softer than pure #000 on cream backgrounds; the canonical ink for all reading content"
+    },
+    "graphite": {
+      "$value": "#2a232a",
+      "$type": "color",
+      "$description": "Graphite — Primary action button background (dark filled CTA) and deep border color. The non-chromatic counterpart to Royal Plum — same near-black temperature, used wherever a button needs to feel grounded and serious"
+    },
+    "smoke": {
+      "$value": "#574e57",
+      "$type": "color",
+      "$description": "Smoke — Secondary text, input borders, form labels, and muted UI chrome. The mid-neutral that carries the majority of metadata and helper copy"
+    },
+    "warm-gray": {
+      "$value": "#786c78",
+      "$type": "color",
+      "$description": "Warm Gray — Muted body text, tag labels, and tertiary borders. Reads as a soft taupe on cream — used for de-emphasized prose and quiet UI labels"
+    },
+    "mist-gray": {
+      "$value": "#a89ea8",
+      "$type": "color",
+      "$description": "Mist Gray — Disabled text, placeholder copy, and the lightest readable neutral. Used where content must recede but remain legible"
+    },
+    "hairline": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Hairline — Default border color for cards, dividers, input fields, and table rows. The single hairline that draws almost every structural line on the site"
+    },
+    "parchment": {
+      "$value": "#f8f6f8",
+      "$type": "color",
+      "$description": "Parchment — Page background canvas — a warm near-white with a barely-perceptible violet cast that ties the neutral surface to the Royal Plum accent without competing with it"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card and elevated surface background. Sits one step brighter than Parchment to create a subtle two-tier surface stack without using shadows"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Pure black reserved for SVG strokes, icon fills, and the deepest image borders. Not used for text or buttons — those live in the warmer Obsidian/Graphite family"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "roobert": {
+      "$value": "Roobert",
+      "$type": "fontFamily",
+      "$description": "Display and heading face — used exclusively for h1/h2 and section titles. Carries aggressive negative tracking (-0.04em at 64–72px) that tightens large headlines into compact, confident blocks. Its single weight (400) and neo-grotesque proportions give the system an editorial, not-marketing posture."
+    },
+    "haas-grot-text-web-55-roman-65-medium": {
+      "$value": "Haas Grot Text Web (55 Roman + 65 Medium)",
+      "$type": "fontFamily",
+      "$description": "Body and UI text face — paragraph copy, button labels, nav items, captions, form fields. The 55 Roman at weight 400 handles body; 65 Medium at 500 covers labels and meta; 700 Bold appears in inline emphasis. Slightly negative tracking (-0.01em to -0.02em) keeps dense UI text feeling engineered rather than soft."
+    },
+    "dm-mono": {
+      "$value": "DM Mono",
+      "$type": "fontFamily",
+      "$description": "Technical/label face — section index tags ([01] FEATURES), tab labels (SEARCH (PEOPLEGPT), INSIGHTS, ENGAGEMENT), and uppercase chip labels. Wide positive tracking (up to 0.077em) makes it read as a monospaced code label, not body copy. Used to mark engineering provenance on interface elements."
+    },
+    "haas-grot-text-web-65-medium": {
+      "$value": "Haas Grot Text Web 65 Medium",
+      "$type": "fontFamily",
+      "$description": "Haas Grot Text Web 65 Medium — detected in extracted data but not described by AI"
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Inter — detected in extracted data but not described by AI"
+    },
+    "neue-haas-grotesk-text": {
+      "$value": "Neue Haas Grotesk Text",
+      "$type": "fontFamily",
+      "$description": "Neue Haas Grotesk Text — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "DM Mono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "DM Mono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "DM Mono",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 65 Medium",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Haas Grot Text Web 55 Roman",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Roobert Medium",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Roobert Medium",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Roobert Medium",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Roobert Medium",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Roobert Medium",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.5) 0px 0px 12px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "parchment": {
+      "$value": "#f8f6f8",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas — the warmest neutral in the stack, carries a faint violet cast that connects to the brand purple"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card and elevated surface — sits one step brighter than the canvas, creates the primary surface distinction"
+    },
+    "plum-mist": {
+      "$value": "#eee8fd",
+      "$type": "color",
+      "$description": "Surface level 2: Tinted lilac accent surface for feature blocks and product frame interiors; the lightest stop in the purple gradient family"
+    },
+    "royal-plum": {
+      "$value": "#6a2f8d",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed brand surface for hero washes, announcement banner, and product frame backgrounds"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://juicebox.ai",
+      "siteName": "Juicebox.ai",
+      "extractedAt": "2026-06-03T22:07:16.826Z",
+      "variant": "extended"
+    }
+  }
+}

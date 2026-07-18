@@ -1,0 +1,1240 @@
+{
+  "source": "https://styles.refero.design/style/6eb5fc89-d0db-4293-8bff-13c5aa530a28",
+  "uuid": "6eb5fc89-d0db-4293-8bff-13c5aa530a28",
+  "name": "Motto®",
+  "northStar": "Typographic monolith on paper — a single confident voice announcing itself on bone-white stock.",
+  "capturedAt": "2026-07-18T08:33:50.186Z",
+  "meta": {
+    "url": "https://wearemotto.com",
+    "siteName": "Motto®",
+    "extractedAt": "2026-06-03T16:17:14.466Z",
+    "durationMs": 29959,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 500,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 3
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use weight 500 — never 400, 600, 700, or 800 — for every typographic element in the system",
+      "Set the display face at 99px or larger for hero statements; the system is designed to be read at architectural scale",
+      "Use 9999px border-radius for every pill button, tag, and avatar — the system has exactly one radius for interactive elements",
+      "Underline text links with a 1px Motto Ink rule — do not change link color to communicate affordance",
+      "Place white cards directly on the Parchment (#f2f2f2) canvas with zero shadow and zero border — contrast is the elevation",
+      "Pair the ® mark and the asterisk-burst with display headlines to create brand moments; they are type, not icons",
+      "Use 19–24px for element gaps and 67–77px for section gaps to preserve the spacious editorial rhythm"
+    ],
+    "donts": [
+      "Do not introduce any chromatic color — no blues, no greens, no reds; the system is intentionally monochrome",
+      "Do not apply box-shadow to cards, buttons, or any component — the canvas/card contrast is the only depth device",
+      "Do not use bold (700+) or light (300-) weights — the system is calibrated entirely to medium (500)",
+      "Do not round card corners — cards, panels, and surfaces are square-edged; only pills get the 9999px radius",
+      "Do not color text links differently from surrounding body text — the underline is the affordance, not the hue",
+      "Do not set the display face below 61px — it loses its editorial presence and competes with the sans",
+      "Do not use the ® mark or asterisk as a separate icon asset — they are typographic characters and must be set in type"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Motto Ink",
+        "role": "Primary text, headlines, logo wordmark, borders, decorative marks — the only ink in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1b1b1c",
+        "name": "Soft Carbon",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone Paper",
+        "role": "Card surfaces, testimonial panels, text on dark fills, inverted nav state",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Parchment",
+        "role": "Page canvas — the default background; sections sit on this without a card wrapper",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d8d8d8",
+        "name": "Ash Rule",
+        "role": "Hairline dividers between sections, subtle separators, secondary surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#717476",
+        "name": "Slate",
+        "role": "Body secondary text, helper copy, muted annotations",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4d5153",
+        "name": "Graphite",
+        "role": "Body text on inverted or elevated surfaces, slightly stronger than Slate",
+        "group": "neutral"
+      },
+      {
+        "hex": "#848484",
+        "name": "Smoke",
+        "role": "Disabled nav items, list bullets, low-priority metadata, scroll cues",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c8cacd",
+        "name": "Fog Border",
+        "role": "Input field borders, form control edges",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Pewter",
+        "role": "Tertiary text, footnote-level annotations",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is full-width, running edge to edge on a Parchment canvas with no centered max-width container. The hero is a free-typographic statement: a massive display headline centered in the viewport, with a small body paragraph tucked at the upper-left and a scroll indicator at the lower-left. Sections flow in alternating left-aligned display headings and supporting body copy, separated by hairline rules. The testimonial grid is a 3-column card layout with white panels on the gray canvas. The footer is a full-bleed dark band. Vertical rhythm is generous — 67–77px between sections — creating an editorial-spread pacing rather than a product-page density.",
+    "imagery": "The site is essentially imageless. There is no photography, no product imagery, no abstract graphics, no illustration. The only visual content is typography, the ® mark, the asterisk-burst glyph, and a single downward arrow. The strategy: let the display type and the canvas contrast carry every screen, with white-on-gray card panels introducing the only compositional rhythm.",
+    "similar": [
+      {
+        "why": "Same monochrome editorial approach — light gray canvas, massive serif/grotesque display headlines, pill buttons, zero color accents",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Same typographic-first agency site: display weight 500 headlines, underlined links, no shadows, editorial spacing",
+        "business": "Manual (manuallab.com)"
+      },
+      {
+        "why": "Same monochrome restraint and confidence in letting oversized type do all the work; similar grid discipline",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same flat-light, no-shadow aesthetic with pill buttons and typographic hero statements",
+        "business": "Guts & Glory"
+      },
+      {
+        "why": "Same editorial-spread pacing with black display type on near-white canvas and square-edged white card surfaces",
+        "business": "DIA Studio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "0px",
+        "pills": "9999px",
+        "inputs": "0px",
+        "avatars": "9999px",
+        "buttons": "9999px"
+      },
+      "elementGap": "19px",
+      "sectionGap": "77px",
+      "cardPadding": "29px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f2f2f2",
+        "name": "Parchment",
+        "level": 0,
+        "purpose": "Page canvas — the default light gray field every section sits on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone Paper",
+        "level": 1,
+        "purpose": "Card and testimonial surfaces — the only elevated layer in the system"
+      },
+      {
+        "hex": "#d8d8d8",
+        "name": "Ash Rule",
+        "level": 2,
+        "purpose": "Secondary surface, dividers, rule lines"
+      },
+      {
+        "hex": "#1b1b1c",
+        "name": "Soft Carbon",
+        "level": 3,
+        "purpose": "Inverted surface for footer and dark sections"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Typographic monolith on paper — a single confident voice announcing itself on bone-white stock.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-sm",
+        "size": 25,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading",
+        "size": 34,
+        "lineHeight": 1.26
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.14
+      },
+      {
+        "role": "display-sm",
+        "size": 61,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "display",
+        "size": 99,
+        "lineHeight": 1
+      },
+      {
+        "role": "display-lg",
+        "size": 154,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Headline",
+        "role": "Hero and section-defining statements",
+        "description": "Set in disp at 99–154px, weight 500, line-height 1.0–1.1. Color: Motto Ink (#000000). The ® mark and asterisk-burst symbol sit inline at the same size — they are typographic marks, not icons."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Mid-page section titles (e.g. 'PRAISE FROM CLIENTS')",
+        "description": "Set in disp at 61–99px, weight 500, line-height 1.1. Color: Motto Ink. Left-aligned, no underline, no ornament."
+      },
+      {
+        "name": "Pill Button (primary)",
+        "role": "Primary call-to-action",
+        "description": "9999px border-radius. Fill: Soft Carbon (#1b1b1c). Text: Bone Paper (#ffffff), sans 500 at 15–17px. Padding: 19px horizontal, 15px vertical. No border, no shadow, no hover lift — color may shift to pure black on interaction."
+      },
+      {
+        "name": "Pill Button (outlined/ghost)",
+        "role": "Secondary action",
+        "description": "9999px border-radius. Fill: transparent. Border: 1px Motto Ink (#000000). Text: Motto Ink, sans 500 at 15–17px. Same padding as primary pill."
+      },
+      {
+        "name": "Underlined Text Link",
+        "role": "In-content navigation (e.g. 'Work with us', 'Here's how we can help')",
+        "description": "No color change from surrounding text — always Motto Ink. A 1px solid underline sits at the baseline. Font: sans 500 at 17–18px. This is the system's universal link treatment; the underline is the affordance, not the color."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Full-width, transparent over Parchment (#f2f2f2). Logo wordmark 'Motto®' left, nav items centered, 'Work with us' right — all in sans 500. Nav items are spaced ~38–70px apart. Inverted/scrolled state: items dim to Smoke (#848484) when inactive."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "Client quote panel",
+        "description": "Fill: Bone Paper (#ffffff), sitting on the Parchment canvas. No border, no shadow, no radius. Padding: ~29px on all sides. Layout: circular avatar (9999px) at top-left, name in sans 500, company in Slate (#717476) below, then quote in sans 500 body text. Cards are placed in a 3-column grid with ~23–24px gap."
+      },
+      {
+        "name": "Avatar Circle",
+        "role": "Client or person identifier",
+        "description": "9999px border-radius. Diameter ~34–48px. Fill: Ash Rule (#d8d8d8) or similar neutral. Single letter or initial centered in Motto Ink. No border."
+      },
+      {
+        "name": "Service Tag Cluster",
+        "role": "Capability label groupings (e.g. 'BUSINESS STRATEGY • BRAND POSITIONING')",
+        "description": "Sans 500 at 14–15px, uppercase, letters spaced slightly. Separators are bullet points (•) in Motto Ink. No background, no border — just typographic strings centered on the canvas."
+      },
+      {
+        "name": "Hero Scroll Indicator",
+        "role": "Inviting the reader down the page",
+        "description": "A simple downward arrow (↓) in Motto Ink, displayed at 34–48px. Paired with a small underlined text link ('(SCROLL)') in sans 500 in Smoke (#848484) on the right. Sits in the lower hero region."
+      },
+      {
+        "name": "Asterisk Mark",
+        "role": "Decorative typographic punctuation",
+        "description": "A six-pointed asterisk/burst character set inline with display text, at the same size. Functions as a visual exclamation, a logo sub-mark, and a brand signature."
+      },
+      {
+        "name": "Registered Mark (®)",
+        "role": "Brand device woven into headlines and logo",
+        "description": "A circled-R glyph at 25–30% of the surrounding display type size, set as a superscript after key words ('Motto®', 'IDEAS WORTH RALLYING AROUND®'). Drawn or rendered as a thin-stroked circle with an R inside — not the default typographic glyph. Functions as the system's only consistent brand emblem."
+      },
+      {
+        "name": "Footer",
+        "role": "Page footer / dark surface",
+        "description": "Fill: Soft Carbon (#1b1b1c) or Motto Ink (#000000). Text: Bone Paper, sans 500. Contains site links, legal copy, and the Motto® wordmark."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Reserved exclusively for hero statements and display headlines. The display face operates at 61–154px with line-height locked near 1.0–1.1, so lines almost touch and the type forms a wall. Weight 500 here is anti-convention — most display faces use 700–900; this medium weight gives the headlines editorial gravity without the shouting, which is the signature move of the system.",
+        "sizes": "61px, 99px, 138px, 139px, 154px",
+        "family": "disp (custom display face)",
+        "weight": "500",
+        "lineHeight": "1.00–1.10",
+        "substitute": "Bricolage Grotesque",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Used for all body copy, navigation, buttons, labels, captions, card content, and footers. A single weight — 500 — runs through the entire secondary type system, so visual hierarchy comes from size and leading, never from bold or light. This creates an evenness that lets the display font dominate without competition.",
+        "sizes": "9px, 14px, 15px, 17px, 18px, 20px, 25px, 34px, 48px",
+        "family": "sans (custom sans face)",
+        "weight": "500",
+        "lineHeight": "1.14–1.60",
+        "substitute": "Inter",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Motto® speaks in pure typographic voice: a light gray canvas, no chromatic accents, no shadows, and no decorative graphics — only two typefaces, generous whitespace, and the confidence to let a 154px headline carry an entire screen. Weight 500 is used everywhere; nothing is bold, nothing is light, so hierarchy comes from size, tracking, and whitespace rather than visual weight. Interaction is reduced to underlined text and pill-shaped controls (9999px radius), and the ® mark and asterisk-burst function as the only brand motifs. The result is a site that reads like an editorial spread rather than a product page — monochrome, declarative, and structurally disciplined.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6eb5fc89-d0db-4293-8bff-13c5aa530a28#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Motto® design system\",\"item\":\"https://styles.refero.design/style/6eb5fc89-d0db-4293-8bff-13c5aa530a28\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6eb5fc89-d0db-4293-8bff-13c5aa530a28#style-reference\",\"name\":\"Motto® design system reference\",\"headline\":\"Motto® design system | Refero Styles\",\"description\":\"Explore Motto®'s light Agency design system: Motto Ink #000000, Soft Carbon #1b1b1c colors, disp (custom display face), sans (custom sans face) typography,...\",\"url\":\"https://styles.refero.design/style/6eb5fc89-d0db-4293-8bff-13c5aa530a28\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6eb5fc89-d0db-4293-8bff-13c5aa530a28\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Motto®\",\"url\":\"https://wearemotto.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6eb5fc89-d0db-4293-8bff-13c5aa530a28#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/193bb36a-7731-418f-a34c-ec1672a0381f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/193bb36a-7731-418f-a34c-ec1672a0381f.jpg\",\"caption\":\"Screenshot of Motto®\"},\"image\":\"https://images.refero.design/styles/refero.design/image/193bb36a-7731-418f-a34c-ec1672a0381f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Motto® design system\",\"Motto® website design\",\"Motto® colors\",\"Motto® typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Motto Ink\",\"Soft Carbon\",\"Bone Paper\",\"Parchment\",\"disp (custom display face)\",\"sans (custom sans face)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Motto® design system\"},{\"@type\":\"Thing\",\"name\":\"Motto® website design\"},{\"@type\":\"Thing\",\"name\":\"Motto® colors\"},{\"@type\":\"Thing\",\"name\":\"Motto® typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-12T20:51:19.000Z\",\"dateModified\":\"2026-02-12T20:51:19.000Z\"}]}19:T5ee,Quick Color Reference\n- Background: #f2f2f2 (Parchment canvas)\n- Card surface: #ffffff (Bone Paper)\n- Text: #000000 (Motto Ink)\n- Muted text: #717476 (Slate) / #848484 (Smoke)\n- Border: #d8d8d8 (Ash Rule) / #c8cacd (Fog Border)\n- Inverted surface: #1b1b1c (Soft Carbon)\n- primary action: no distinct CTA color\n\nExample Component Prompts\n1. Build a display headline block: canvas #f2f2f2, text in Bricolage Grotesque weight 500 at 120px, color #000000, line-height 1.0, centered. Add an inline ® superscript at 35% size with a 1px-stroked circle around an R, and a six-point asterisk glyph at the same size as a visual prefix.\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n3. Build a testimonial card: fill #ffffff, padding 29px on all sides, no border, no shadow, sitting on a #f2f2f2 canvas. 40px circular avatar top-left (9999px radius, #d8d8d8 fill, black initial). Name in Inter 500 17px #000000, company below in Inter 500 15px #717476. Quote body in Inter 500 17px #000000 with 1.5 line-height.\n4. Build a top navigation bar: full-width, transparent over #f2f2f2. Left: 'Motto®' wordmark in Inter 500 18px #000000. Center: nav items in Inter 500 15px #000000, spaced 60px apart. Right: 'Work with us' underlined link in Inter 500 15px #000000 with a 1px underline.\n5. Build a text link inside a paragraph: Inter 500 17px #000000, with a 1px solid #000000 underline — do not change the text color from the surrounding body."
+      },
+      {
+        "title": "Signature Devices",
+        "content": "Two motifs are non-negotiable: (1) The registered trademark ® — drawn as a thin-stroked circle with a serif R, set as a superscript, appears after 'Motto' and after selected display phrases. (2) The asterisk-burst — a six-pointed star character, set inline with display text, functions as visual exclamation and brand signature. Both are set as type, never as image assets, and they belong in display-size contexts only."
+      }
+    ],
+    "elevationPhilosophy": "The system intentionally uses zero shadows. Cards are distinguished from the canvas by a white fill against the light gray background, not by elevation. This is a deliberate flatness — the discipline mirrors the editorial confidence of the typography: nothing decorative stands between the reader and the message."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "button",
+            "hero",
+            "link",
+            "image",
+            "card",
+            "nav"
+          ],
+          "frequency": 1779,
+          "confidence": 1,
+          "prominence": 197770605.5695675,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "nav",
+            "footer",
+            "link",
+            "image",
+            "body",
+            "input",
+            "list",
+            "icon"
+          ],
+          "frequency": 370,
+          "confidence": 1,
+          "prominence": 16115001.069002775,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1b1b1c",
+          "oklch": {
+            "c": 0.0019181200503713533,
+            "h": 286.2427570910719,
+            "l": 0.22253994443018874
+          },
+          "contexts": [
+            "button",
+            "other",
+            "footer"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 8540697.580447575,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 6775238.413640165,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d8d8d8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8822383241093221
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 1962790.9357361163,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4d5153",
+          "oklch": {
+            "c": 0.006147612067971114,
+            "h": 228.94058345383388,
+            "l": 0.4319985570516371
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 457253.42066353734,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#848484",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6133489976491056
+          },
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 195,
+          "confidence": 1,
+          "prominence": 447684.02115522133,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c8cacd",
+          "oklch": {
+            "c": 0.004710308144120198,
+            "h": 258.3269925405013,
+            "l": 0.8383210719964325
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 112279.15495637328,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 71006.33493230943,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#717476",
+          "oklch": {
+            "c": 0.004795493797136388,
+            "h": 236.55892212959515,
+            "l": 0.5570261043098514
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 25106.154563565837,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9c98ef",
+          "oklch": {
+            "c": 0.12517062399936207,
+            "h": 284.88086408162576,
+            "l": 0.7179965729495896
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3078,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6980ff",
+          "oklch": {
+            "c": 0.18884479949960264,
+            "h": 272.3424654595001,
+            "l": 0.6462863152835921
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2910,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#beee98",
+          "oklch": {
+            "c": 0.12279514533468733,
+            "h": 132.16557851047517,
+            "l": 0.8953900257643952
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2901,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0009435638109035079,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.21,
+          "background": "#1b1b1c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.87,
+          "background": "#beee98",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.37,
+          "background": "#f2f2f2",
+          "foreground": "#1b1b1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.73,
+          "background": "#d8d8d8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.01,
+          "background": "#beee98",
+          "foreground": "#1b1b1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.79,
+          "background": "#c8cacd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.08,
+          "background": "#d8d8d8",
+          "foreground": "#1b1b1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.48,
+          "background": "#c8cacd",
+          "foreground": "#1b1b1c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.15,
+          "background": "#9c98ef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.02,
+          "background": "#ffffff",
+          "foreground": "#4d5153"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.17,
+          "background": "#f2f2f2",
+          "foreground": "#4d5153"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.68,
+          "background": "#9c98ef",
+          "foreground": "#1b1b1c"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.13,
+          "background": "#6980ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.06,
+          "background": "#beee98",
+          "foreground": "#4d5153"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.63,
+          "background": "#d8d8d8",
+          "foreground": "#4d5153"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.13,
+          "background": "#f2f2f2",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.03,
+          "background": "#6980ff",
+          "foreground": "#1b1b1c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 19
+        },
+        {
+          "value": 8.64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 19,
+          "contexts": [],
+          "frequency": 34,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 21,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 23,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 29,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginBottom",
+            "rowGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 38,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 58,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 67,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 70,
+          "contexts": [],
+          "frequency": 28,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 77,
+          "contexts": [],
+          "frequency": 52,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 158,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 414,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "disp",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 66,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.79
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "button",
+            "list",
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "body",
+            "link",
+            "image",
+            "card",
+            "footer",
+            "list"
+          ],
+          "frequency": 312,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.26,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "sans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 61,
+          "family": "disp",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 99,
+          "family": "disp",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 138,
+          "family": "disp",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 139,
+          "family": "disp",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 154,
+          "family": "disp",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 38,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/aafb4670-9baf-44db-880f-5e502674f675.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/193bb36a-7731-418f-a34c-ec1672a0381f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6eb5fc89-d0db-4293-8bff-13c5aa530a28#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Motto® design system\",\"item\":\"https://styles.refero.design/style/6eb5fc89-d0db-4293-8bff-13c5aa530a28\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6eb5fc89-d0db-4293-8bff-13c5aa530a28#style-reference\",\"name\":\"Motto® design system reference\",\"headline\":\"Motto® design system | Refero Styles\",\"description\":\"Explore Motto®'s light Agency design system: Motto Ink #000000, Soft Carbon #1b1b1c colors, disp (custom display face), sans (custom sans face) typography,...\",\"url\":\"https://styles.refero.design/style/6eb5fc89-d0db-4293-8bff-13c5aa530a28\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6eb5fc89-d0db-4293-8bff-13c5aa530a28\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Motto®\",\"url\":\"https://wearemotto.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6eb5fc89-d0db-4293-8bff-13c5aa530a28#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/193bb36a-7731-418f-a34c-ec1672a0381f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/193bb36a-7731-418f-a34c-ec1672a0381f.jpg\",\"caption\":\"Screenshot of Motto®\"},\"image\":\"https://images.refero.design/styles/refero.design/image/193bb36a-7731-418f-a34c-ec1672a0381f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Motto® design system\",\"Motto® website design\",\"Motto® colors\",\"Motto® typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Motto Ink\",\"Soft Carbon\",\"Bone Paper\",\"Parchment\",\"disp (custom display face)\",\"sans (custom sans face)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Motto® design system\"},{\"@type\":\"Thing\",\"name\":\"Motto® website design\"},{\"@type\":\"Thing\",\"name\":\"Motto® colors\"},{\"@type\":\"Thing\",\"name\":\"Motto® typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-12T20:51:19.000Z\",\"dateModified\":\"2026-02-12T20:51:19.000Z\"}]}19:T5ee,Quick Color Reference\n- Background: #f2f2f2 (Parchment canvas)\n- Card surface: #ffffff (Bone Paper)\n- Text: #000000 (Motto Ink)\n- Muted text: #717476 (Slate) / #848484 (Smoke)\n- Border: #d8d8d8 (Ash Rule) / #c8cacd (Fog Border)\n- Inverted surface: #1b1b1c (Soft Carbon)\n- primary action: no distinct CTA color\n\nExample Component Prompts\n1. Build a display headline block: canvas #f2f2f2, text in Bricolage Grotesque weight 500 at 120px, color #000000, line-height 1.0, centered. Add an inline ® superscript at 35% size with a 1px-stroked circle around an R, and a six-point asterisk glyph at the same size as a visual prefix.\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n3. Build a testimonial card: fill #ffffff, padding 29px on all sides, no border, no shadow, sitting on a #f2f2f2 canvas. 40px circular avatar top-left (9999px radius, #d8d8d8 fill, black initial). Name in Inter 500 17px #000000, company below in Inter 500 15px #717476. Quote body in Inter 500 17px #000000 with 1.5 line-height.\n4. Build a top navigation bar: full-width, transparent over #f2f2f2. Left: 'Motto®' wordmark in Inter 500 18px #000000. Center: nav items in Inter 500 15px #000000, spaced 60px apart. Right: 'Work with us' underlined link in Inter 500 15px #000000 with a 1px underline.\n5. Build a text link inside a paragraph: Inter 500 17px #000000, with a 1px solid #000000 underline — do not change the text color from the surrounding body."
+}

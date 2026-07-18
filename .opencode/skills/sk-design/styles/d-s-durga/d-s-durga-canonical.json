@@ -1,0 +1,954 @@
+{
+  "source": "https://styles.refero.design/style/391bd401-06d7-4444-8243-8573e96eab24",
+  "uuid": "391bd401-06d7-4444-8243-8573e96eab24",
+  "name": "D.S. & DURGA",
+  "northStar": "indie perfumery broadsheet on bone-white paper — a single warm cream canvas where black ink and oversized type do all the talking.",
+  "capturedAt": "2026-07-18T08:04:30.260Z",
+  "meta": {
+    "url": "https://www.dsanddurga.com",
+    "siteName": "D.S. & DURGA",
+    "extractedAt": "2026-06-03T18:30:59.294Z",
+    "durationMs": 45003,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 838,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only three colors: Ink Black (#000000), Bone White (#f2e9de), and Dusty Rose (#ddc9c0). Never introduce a chromatic accent — the system is intentionally achromatic-warm.",
+      "Push Sofia Pro to its extremes: weight 800 at 60-120px for display, weight 400 at 12-16px for body. The size contrast between 12px and 120px is the signature rhythm.",
+      "Use 0px border-radius on every component, image, and surface. Sharp corners reinforce the printed/broadsheet aesthetic.",
+      "Set nav items and utility labels in uppercase with 0.05em letter-spacing. Reserve -0.05em tracking exclusively for large display type at 60px+ to tighten the heavy weight.",
+      "Let product photography bleed edge-to-edge with no card chrome, no padding frames, no drop shadows. The bone canvas IS the container.",
+      "Use the ghost text button as the sole interactive style — uppercase tracked text in black, no background fill, no border, no radius.",
+      "Maintain the 10px element gap and 20px component padding as the baseline spatial rhythm; let the section-level whitespace (50-60px) create the editorial breathing room."
+    ],
+    "donts": [
+      "Never add a chromatic accent color — no blue links, no red sale tags, no green success states. The system is monochrome by design discipline, not by limitation.",
+      "Never use border-radius above 0px on any UI element. No pill buttons, no rounded cards, no circular avatars — the aesthetic is printed page, not app interface.",
+      "Never use drop shadows, box-shadows, or gradients. Depth comes only from the surface shift between #f2e9de and #ddc9c0, and from the contrast of black photography against the cream canvas.",
+      "Never fill a button with a solid color background. The ghost text style (uppercase, tracked, underline-on-hover) is the only acceptable interactive treatment.",
+      "Never use more than one typeface. Sofia Pro across all weights and sizes is the entire typographic system — introducing a second family breaks the editorial discipline.",
+      "Never set body text below 12px or use a line-height looser than 1.43 at small sizes. Tight, compact typography maintains the catalog/zine density.",
+      "Never place imagery inside a bordered card or framed container. Images sit raw on the bone canvas — the whitespace gap and adjacent surface tone are the only separators."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "High-contrast neutral action fill for primary buttons on light surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2e9de",
+        "name": "Bone White",
+        "role": "Page canvas, announcement bar, card surfaces, product label backgrounds, button fills — warm cream that makes the entire site feel like aged paper",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ddc9c0",
+        "name": "Dusty Rose",
+        "role": "Secondary surface band, subtle tonal shift between cream sections — barely-distinguishable warm blush that creates the only depth in an otherwise flat system",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed editorial layout with a centered max-width of ~1440px. Navigation is a single horizontal bar at the top: centered wordmark, uppercase nav items left-aligned, utility icons (account, search, cart, currency) right-aligned, with a thin cream announcement bar above. Hero is a split composition — left side holds a caption block in white space, right side holds a large full-bleed product image. Below the hero, content flows in an asymmetric editorial grid: a 2-column or 3-column image grid where one cell is oversized, with large display type overlaid directly on imagery. Section dividers are minimal — just whitespace and a shift to the dusty rose surface. A right-pointing arrow on the right edge of grids indicates horizontal scroll/carousel pagination. Vertical text labels run sideways along the left edge of grid sections. The overall rhythm is magazine-spread: dramatic size jumps between sections, no consistent card or container chrome.",
+    "imagery": "Photography dominates the visual language and is the actual product. Full-bleed product shots on dark/black backdrops with dramatic lighting — perfume bottles as still-life subjects, isolated on torn paper or moody dark surfaces. Editorial collage treatment: torn pink/red paper edges frame the bottles, creating a handmade zine aesthetic. Overhead object crops (scissors on gray paper, glass vessels) fill large grid cells. No lifestyle photography, no models, no people — the objects themselves are the heroes. Images sit directly on the bone canvas with zero padding or border, often bleeding edge-to-edge. Black-and-white and desaturated treatments are common; color appears only in the product packaging itself.",
+    "similar": [
+      {
+        "why": "Same restrained warm-neutral palette (cream/ivory with black type) and editorial product photography as the primary visual content — both treat the product as still-life art rather than merchandise",
+        "business": "Aesop"
+      },
+      {
+        "why": "Shared indie-perfumery sensibility with a single display typeface pushed to extreme sizes and a minimal interface that lets product photography dominate — both feel more like zine than storefront",
+        "business": "Le Labo"
+      },
+      {
+        "why": "Similar use of oversized serif/sans display type as hero element with a near-achromatic warm palette and product-as-hero photography approach",
+        "business": "Byredo"
+      },
+      {
+        "why": "Same bone-white canvas with black ink typography and minimal UI chrome — both use type size contrast and whitespace as their primary design tools, with no decorative color or effects",
+        "business": "Mansur Gavriel"
+      },
+      {
+        "why": "Editorial broadsheet layout with asymmetric grids, oversized type overlaid on imagery, and a near-total absence of conventional e-commerce interface patterns",
+        "business": "Maison Margiela (replica site)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "50-60px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f2e9de",
+        "name": "Bone White Canvas",
+        "level": 1,
+        "purpose": "Page background and dominant surface — every section sits on this warm cream"
+      },
+      {
+        "hex": "#ddc9c0",
+        "name": "Dusty Rose Band",
+        "level": 2,
+        "purpose": "Secondary tonal surface that breaks up cream sections — barely a shade shift, creates subtle depth"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black Overlay",
+        "level": 3,
+        "purpose": "Dark photography backdrops and product label surfaces — used for dramatic full-bleed product imagery"
+      }
+    ],
+    "northStar": "indie perfumery broadsheet on bone-white paper — a single warm cream canvas where black ink and oversized type do all the talking.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.43,
+        "letterSpacing": 0.05
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0.05
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.27,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.22,
+        "letterSpacing": -0.05
+      },
+      {
+        "role": "heading",
+        "size": 60,
+        "lineHeight": 0.92,
+        "letterSpacing": -0.05
+      },
+      {
+        "role": "display",
+        "size": 120,
+        "lineHeight": 0.83,
+        "letterSpacing": -0.05
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Announcement Bar",
+        "role": "Promotional message strip above main nav",
+        "description": "Full-width bone white (#f2e9de) band, 10px vertical padding, single line of centered uppercase text at 12px weight 400 with 0.05em tracking in black. Thin hairline border below in #000000."
+      },
+      {
+        "name": "Main Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Full-width bar on bone canvas. Centered brand wordmark 'DS&D URGA' at large display size (30-60px) weight 800. Left-side nav items in uppercase 12-14px weight 400 with 0.05em tracking and 30px horizontal padding. Right-side utility cluster: currency selector (boxed label '$ USD'), account icon, search icon, cart icon — all stroke-only at 1px black. 10px vertical padding. Thin 1px black border-bottom."
+      },
+      {
+        "name": "Editorial Caption Block",
+        "role": "Hero or section caption anchored to left margin",
+        "description": "Left-aligned text block sitting in white space beside full-bleed imagery. Two-line headline at 30-60px weight 800 in black, tightly tracked at -0.05em. Below, a small uppercase link/CTA at 12px weight 400 with 0.05em tracking, often underlined or in a subtle button style. No background, no border, no card container."
+      },
+      {
+        "name": "Product Image Tile",
+        "role": "Grid cell in product/editorial grid",
+        "description": "Large product photograph at full grid cell size, no padding or margin around image. Bone white (#f2e9de) gap between tiles. Images have 0px border-radius (sharp corners). No overlay text on product shots — let the product label do the talking."
+      },
+      {
+        "name": "Display Type Overlay Block",
+        "role": "Oversized editorial headline laid over imagery",
+        "description": "Display-size Sofia Pro weight 800 at 60-120px, line-height 0.83-0.92, letter-spacing -0.05em, in black. Sits directly on top of a large grayscale or muted product photo (glass vessels, scissors, abstract objects). The type becomes the section's primary visual; the imagery is a textural backdrop. No background or text-shadow."
+      },
+      {
+        "name": "Carousel Section with Arrow",
+        "role": "Horizontally scrolling product/editorial row",
+        "description": "A row of product tiles (3-4 visible) with a thin 1px black hairline border separating it from adjacent sections. A simple '>' chevron icon at the right edge in black stroke, indicating more content. No pagination dots, no progress bar — the arrow is the only affordance."
+      },
+      {
+        "name": "Vertical Side Label",
+        "role": "Rotated text running along section edge",
+        "description": "Uppercase Sofia Pro weight 400 at 12-14px with 0.05em tracking, rotated 90° to run vertically along the left or right edge of a grid section. Functions as a section identifier or product name, in pure black."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Minimal text-only interactive element",
+        "description": "Uppercase text at 12-14px weight 400 with 0.05em tracking in black. No background fill, no border, no padding beyond inline text rhythm. On hover: underline or color shift. Examples: 'MOTHER'S DAY GIFT GUIDE', 'SHOP NOW', 'VIEW ALL'. This is the only button style in the system — there are no filled buttons, no rounded pills, no color backgrounds."
+      },
+      {
+        "name": "Product Label Typography (Bottle)",
+        "role": "Type on physical product packaging as shown in photography",
+        "description": "Cream (#f2e9de) label background on black/glass bottle. Product name in large Sofia Pro weight 600-800 at 16-24px, tracked -0.05em. Below: 'fragrance / enhancer' or category descriptor at 10-12px weight 400. Bottom: 'D.S. & DURGA / eau de parfum 50 ml' at 8-10px. Sharp 0px corners on the label itself."
+      },
+      {
+        "name": "Currency Selector Box",
+        "role": "Region/currency picker in nav utility cluster",
+        "description": "Small bordered rectangle in the nav: 1px black border, bone white fill, text '$ USD' at 12px weight 400 uppercase with 0.05em tracking. Approximately 25px horizontal padding, 5-7px vertical padding. No dropdown chevron visible — the box itself is the trigger."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Only typeface in the system. Weight 800 at 120px with 0.83 line-height and -0.05em tracking for editorial display headlines — the face is pushed to extreme sizes to feel like magazine cover type. Weight 400 at 12-16px for body and utility labels, all-caps with 0.05em tracking for nav items. Weight 600 used sparingly for emphasis in product copy.",
+        "sizes": "12px, 14px, 16px, 18px, 30px, 60px, 120px",
+        "family": "Sofia Pro",
+        "weight": "400, 600, 800",
+        "lineHeight": "0.83 (display), 0.92, 1.17, 1.22, 1.25, 1.27, 1.43",
+        "substitute": "Manrope or Söhne for body; Founders Grotesk Condensed for display",
+        "letterSpacing": "-0.05em for display (tightens the heavy weight 800 at 120px), 0.05em for uppercase nav and labels (opens up small caps for readability)"
+      }
+    ],
+    "description": "$19",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1a"
+      },
+      {
+        "title": "Typographic Scale Philosophy",
+        "content": "The type scale is deliberately bimodal: a tight cluster of small sizes (12, 14, 16, 18px) for all utility, body, and label work, and a dramatic leap to 30, 60, and 120px for editorial display. The gap between 18px and 30px is intentional — there are no 20-24px intermediate sizes because the system wants to jump from 'reading' to 'announcing' without middle ground. Line-height tightens aggressively as size increases: 1.43 at 12px → 1.27 at 16px → 0.92 at 60px → 0.83 at 120px. This compression at large sizes is what makes the 800-weight display feel like a magazine cover rather than a web headline."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids all shadow-based elevation. Depth and hierarchy are achieved through three mechanisms only: (1) surface tone shifts between Bone White and Dusty Rose bands, (2) dramatic typographic size contrast from 12px utility text to 120px display headlines, and (3) full-bleed black product photography that reads as its own 'dark surface' against the cream canvas. There are no card elevations, no modal overlays with shadows, no hover lift effects. The flatness is intentional — the site should feel like a printed page, not a software interface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "heading",
+            "body",
+            "image",
+            "icon",
+            "list",
+            "footer",
+            "input"
+          ],
+          "frequency": 3823,
+          "confidence": 1,
+          "prominence": 69192567.88921109,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 39,
+            "icon/fill": 32,
+            "nav/color": 66,
+            "body/color": 98,
+            "icon/color": 20,
+            "link/color": 52,
+            "list/color": 258,
+            "nav/stroke": 8,
+            "other/fill": 34,
+            "image/color": 37,
+            "input/color": 1,
+            "other/color": 172,
+            "button/color": 24,
+            "footer/color": 1,
+            "heading/color": 12,
+            "nav/borderColor": 264,
+            "body/borderColor": 392,
+            "icon/borderColor": 80,
+            "link/borderColor": 208,
+            "list/borderColor": 1032,
+            "image/borderColor": 148,
+            "input/borderColor": 4,
+            "other/borderColor": 688,
+            "button/borderColor": 96,
+            "footer/borderColor": 4,
+            "heading/borderColor": 48,
+            "link/backgroundColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f2e9de",
+          "oklch": {
+            "c": 0.017650175415313253,
+            "h": 73.0719513834724,
+            "l": 0.9380934408431323
+          },
+          "contexts": [
+            "link",
+            "other",
+            "nav",
+            "heading",
+            "body",
+            "button"
+          ],
+          "frequency": 90,
+          "confidence": 1,
+          "prominence": 1291302.643686786,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 4,
+            "other/color": 6,
+            "heading/color": 1,
+            "body/borderColor": 4,
+            "link/borderColor": 16,
+            "other/borderColor": 24,
+            "heading/borderColor": 4,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 13,
+            "button/backgroundColor": 16
+          }
+        },
+        {
+          "hex": "#ddc9c0",
+          "oklch": {
+            "c": 0.025770059647062162,
+            "h": 45.836738612725284,
+            "l": 0.8499664720022505
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 71250,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0011146997244992024,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.49,
+          "background": "#f2e9de",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.19,
+          "background": "#ddc9c0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.33,
+          "background": "#ddc9c0",
+          "foreground": "#f2e9de"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 26,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|icon",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 259,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginRight|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginBottom|body",
+            "marginLeft|body",
+            "paddingRight|list",
+            "marginTop|body",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "icon",
+            "list",
+            "input",
+            "heading"
+          ],
+          "frequency": 39,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|icon",
+            "marginLeft|icon",
+            "paddingRight|list",
+            "paddingLeft|list",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|icon",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 58,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 33,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|list",
+            "paddingBottom|list"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Sofia Pro",
+          "source": "custom",
+          "weights": [
+            400,
+            600,
+            800
+          ],
+          "frequency": 753,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Sofia Pro",
+          "weight": 800,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Sofia Pro",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 47,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Sofia Pro",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Sofia Pro",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Sofia Pro",
+          "weight": 800,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 180,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Sofia Pro",
+          "weight": 800,
+          "contexts": [
+            "body",
+            "heading",
+            "link",
+            "other"
+          ],
+          "frequency": 39,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Sofia Pro",
+          "weight": 600,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 4.25,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Sofia Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "heading",
+            "image",
+            "list",
+            "body",
+            "icon",
+            "footer"
+          ],
+          "frequency": 420,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Sofia Pro",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.22,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Sofia Pro",
+          "weight": 800,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.22,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Sofia Pro",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 3.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Sofia Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.27,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Sofia Pro",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.92,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Sofia Pro",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.92,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "Sofia Pro",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.83,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/71a588ab-e8cd-418b-8d97-de2d6561758e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c9495803-3a0d-4e38-be95-c4849788bda4.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/391bd401-06d7-4444-8243-8573e96eab24#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"D.S. & DURGA design system\",\"item\":\"https://styles.refero.design/style/391bd401-06d7-4444-8243-8573e96eab24\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/391bd401-06d7-4444-8243-8573e96eab24#style-reference\",\"name\":\"D.S. & DURGA design system reference\",\"headline\":\"D.S. & DURGA design system | Refero Styles\",\"description\":\"Explore D.S. & DURGA's light E-commerce design system: Ink Black #000000, Bone White #f2e9de colors, Sofia Pro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/391bd401-06d7-4444-8243-8573e96eab24\",\"mainEntityOfPage\":\"https://styles.refero.design/style/391bd401-06d7-4444-8243-8573e96eab24\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"D.S. & DURGA\",\"url\":\"https://www.dsanddurga.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/391bd401-06d7-4444-8243-8573e96eab24#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c9495803-3a0d-4e38-be95-c4849788bda4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c9495803-3a0d-4e38-be95-c4849788bda4.jpg\",\"caption\":\"Screenshot of D.S. & DURGA\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c9495803-3a0d-4e38-be95-c4849788bda4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"D.S. & DURGA design system\",\"D.S. & DURGA website design\",\"D.S. & DURGA colors\",\"D.S. & DURGA typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink Black\",\"Bone White\",\"Dusty Rose\",\"Sofia Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"D.S. & DURGA design system\"},{\"@type\":\"Thing\",\"name\":\"D.S. & DURGA website design\"},{\"@type\":\"Thing\",\"name\":\"D.S. & DURGA colors\"},{\"@type\":\"Thing\",\"name\":\"D.S. & DURGA typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:34:18.216Z\",\"dateModified\":\"2026-04-30T01:34:18.216Z\"}]}19:T41a,D.S. & Durga reads as an indie perfumery broadsheet printed on bone-white paper. The entire system is monochrome-warm: a single warm cream canvas, black ink for all type and rules, and a dusty rose secondary surface that only appears as quiet tonal shifts between bands. Typography does the heavy lifting — Sofia Pro is pushed to its extremes, with a chunky weight-800 display face at 120px serving as editorial hero headlines and a whisper-thin weight-400 for utility labels, creating dramatic size contrast that feels like a fashion magazine spread. Photography is the dominant visual element: full-bleed product shots on dark moody backdrops, torn-paper collages, and oversized object crops sit directly on the cream canvas with no card chrome or borders. Components are stripped to absolute minimum — no buttons with backgrounds, no rounded containers, no shadows; the only interactive affordance is a thin black arrow and uppercase tracked text. The site feels more like an art object or printed catalog than a typical e-commerce experience.1a:T6d2,**Quick Color Reference**\n- text: #000000\n- background: #f2e9de\n- secondary surface: #ddc9c0\n- border: #000000\n- accent: no distinct accent color (system is monochromatic-warm)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. Create the top announcement bar: full-width #f2e9de background, centered uppercase text at 12px Sofia Pro weight 400, 0.05em letter-spacing, #000000, 10px vertical padding, 1px solid #000000 border-bottom.\n\n2. Create the main navigation: full-width #f2e9de background, centered wordmark 'DS&D URGA' at 30px Sofia Pro weight 800 with -0.05em tracking in #000000. Left side: uppercase nav items (PERFUME, CANDLES, SKIN, AUTO, GIFTS) at 14px weight 400 with 0.05em tracking, 30px horizontal padding. Right side: '$ USD' in a 1px black-bordered box, then account/search/cart icons as 1px black strokes. 10px vertical padding, 1px solid #000000 border-bottom.\n\n3. Create an editorial hero caption block: left-aligned in white space, no container. Headline 'For Your Mom' at 60px Sofia Pro weight 800, -0.05em tracking, line-height 0.92, #000000. Below: ghost text link 'MOTHER\\u2019S DAY GIFT GUIDE' at 12px weight 400, 0.05em tracking, uppercase, #000000, underlined.\n\n4. Create a product image grid cell: full-bleed product photograph at 100% width and height of its grid cell, 0px border-radius, no padding, no border, no shadow. The bone canvas (#f2e9de) gap between cells is the only separator.\n\n5. Create a carousel section: horizontal row of 3 product tiles with a 1px solid #000000 border separating the section from adjacent content. At the right edge, a '>' chevron icon in 1px black stroke at 40px size, vertically centered. No dots, no progress bar, no background — just the arrow."
+}

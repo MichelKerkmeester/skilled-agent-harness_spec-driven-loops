@@ -1,0 +1,889 @@
+{
+  "source": "https://styles.refero.design/style/a6771960-b826-49bc-9ee7-7f7a5e29642b",
+  "uuid": "a6771960-b826-49bc-9ee7-7f7a5e29642b",
+  "name": "PlanetScale",
+  "northStar": "Terminal man-page in daylight",
+  "capturedAt": "2026-07-18T08:06:15.175Z",
+  "meta": {
+    "url": "https://planetscale.com",
+    "siteName": "PlanetScale",
+    "extractedAt": "2026-06-03T18:23:26.707Z",
+    "durationMs": 19384,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 333,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set border-radius to 9999px on all buttons and tags; 0px on cards, inputs, tabs, and panels",
+      "Use #f35815 exclusively as a filled button background — never as text color, border, or decorative fill",
+      "Write all UI text in ui-monospace at weight 400 for body and 500–600 for headings; never use a proportional font",
+      "Anchor section headlines with a 2px #f35815 left bar before the text starts",
+      "Default link color to #0b6ec5; do not style links as buttons or add backgrounds to inline links",
+      "Keep page content within a 960px max-width centered column; let the canvas breathe with 56px section gaps",
+      "Use the announcement banner pattern (#111111 band with #f2b600 inline highlight) for top-of-page promotions"
+    ],
+    "donts": [
+      "Do not introduce proportional fonts (Inter, Helvetica, etc.) — the monospace-only identity is load-bearing",
+      "Do not use #0b6ec5 as a filled button or CTA background — it is link color only",
+      "Do not add drop shadows, glows, or elevation effects — surfaces must remain flat",
+      "Do not use #f2b600 as a background for cards, buttons, or large surfaces — it is an inline accent marker only",
+      "Do not round card corners, input fields, or tab panels — keep them sharp (0px radius)",
+      "Do not stack more than one chromatic color in a single component — the system is monochromatic plus one accent",
+      "Do not use color to indicate state (hover, active, disabled) — rely on weight changes, underlines, and background inversions"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#414141",
+        "name": "Charcoal",
+        "role": "Primary body text, icon strokes, footer copy, nav labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Headings, strong emphasis, logo mark, maximum-contrast text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#737373",
+        "name": "Graphite",
+        "role": "Muted body text, captions, secondary metadata, image alt text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c1c1c1",
+        "name": "Fog",
+        "role": "Hairline borders, table dividers, nav separators, disabled strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Off-White",
+        "role": "Page canvas, card surfaces, input backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111111",
+        "name": "Obsidian",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f35815",
+        "name": "Ember",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#0b6ec5",
+        "name": "Signal Blue",
+        "role": "Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#f2b600",
+        "name": "Amber",
+        "role": "Announcement banner highlight, feature tag accent, promotional inline marker",
+        "group": "accent"
+      }
+    ],
+    "imagery": "The site is nearly imageless by design. The primary visual content is text itself, rendered in monospace to carry visual weight. The only repeated imagery is the customer logo grid, which displays partner brand logos in their native colors — a deliberate exception to the monochrome palette, since recognizability matters more than consistency in social proof. There is no photography, no illustration, no product screenshots, and no abstract graphics. Where a diagram would appear (e.g., the VTGate architecture block), a simple labeled rectangle in a neutral fill stands in for a real illustration.",
+    "similar": [
+      {
+        "why": "Same developer-targeted monospace-only interface with a near-monochrome palette and a single warm accent color for CTAs",
+        "business": "Fly.io"
+      },
+      {
+        "why": "Text-dense, documentation-flavored layout with minimal imagery, sharp corners, and hairline-bordered grid cells",
+        "business": "Tailscale"
+      },
+      {
+        "why": "Terminal-inspired type system with orange brand accent, flat surfaces, and code-block-centric content sections",
+        "business": "Cloudflare Workers"
+      },
+      {
+        "why": "Monospace-forward developer brand with a single emerald accent and generous whitespace between text sections",
+        "business": "Supabase"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tabs": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "9999px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "56px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "960px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#fafafa",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, default surface for all content"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Card Cell",
+        "level": 1,
+        "purpose": "Logo grid cells and content panels — same as canvas, defined by hairline borders"
+      },
+      {
+        "hex": "#f2b600",
+        "name": "Accent Banner",
+        "level": 2,
+        "purpose": "Announcement highlight pill — inline emphasis, not a full surface"
+      },
+      {
+        "hex": "#111111",
+        "name": "Inverse Band",
+        "level": 3,
+        "purpose": "Dark announcement strip, active tab background, high-contrast panels"
+      }
+    ],
+    "northStar": "Terminal man-page in daylight",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 21,
+        "letterSpacing": -0.084
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 24,
+        "letterSpacing": -0.096
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 27,
+        "letterSpacing": -0.108
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 32,
+        "letterSpacing": -0.144
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 40,
+        "letterSpacing": -0.192
+      }
+    ],
+    "components": [
+      {
+        "name": "Ember CTA Button",
+        "role": "Primary action trigger — highest-priority conversion element",
+        "description": "Filled pill button: #f35815 background, #fafafa text, 9999px border-radius, ui-monospace weight 600, ~14px size. Padding 8px 16px. No border. The only chromatic fill in the entire system — its orange warmth is deliberately the loudest thing on screen."
+      },
+      {
+        "name": "Ghost Nav Button",
+        "role": "Secondary action in navigation bar",
+        "description": "Text-only button: #414141 text, transparent background, no border. ui-monospace weight 500, 14px. Sits beside the Ember CTA as the quieter \"Get started\" path."
+      },
+      {
+        "name": "Announcement Banner",
+        "role": "Top-of-page promotional strip",
+        "description": "Full-width dark band (#111111 or #000000 background), #fafafa text at 14px ui-monospace. A specific phrase is highlighted with #f2b600 background and #111111 text, creating an inline amber pill. Padding 8px vertical, centered content."
+      },
+      {
+        "name": "Inline Link",
+        "role": "Hyperlink within body copy and navigation",
+        "description": "#0b6ec5 text, no underline by default, ui-monospace inherits body size and weight. On hover, underline may appear. This is the only blue element in the system — it carries all navigational and reference linking."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "#fafafa background, no shadow or border. Logo (left), menu items (center, 14px ui-monospace #414141, separated by ~24px gaps with small dropdown carets), auth/CTA cluster (right: \"Log in\" ghost text, \"Get started\" ghost, \"Get in touch\" Ember CTA). Height ~56px."
+      },
+      {
+        "name": "Customer Logo Grid",
+        "role": "Social proof — displaying companies using the product",
+        "description": "Multi-row grid (5 columns, 4+ rows). Each cell has a thin #c1c1c1 or #e5e5e5 border, #fafafa fill, ~80px height, padding 16px. Logos are displayed at native brand colors (not monochrome) to preserve recognizability — this grid is the most colorful area of the entire site."
+      },
+      {
+        "name": "Testimonial Quote",
+        "role": "Single-customer endorsement with attribution",
+        "description": "#414141 quote text at 16px ui-monospace, indented with em-dash attribution line in #737373 at 14px. No card chrome, no background — sits directly on canvas. The quote may be wrapped in quotation marks or left bare."
+      },
+      {
+        "name": "Tabbed Content Panel",
+        "role": "Switchable product sections (Vitess / Postgres / Nekil)",
+        "description": "Horizontal tab bar: active tab has #111111 background with #fafafa text; inactive tabs have transparent background with #414141 text. No border-radius on tabs. Below the tabs, a content area with #fafafa background, body text, and optional code/diagram block. Tabs separated by hairline #c1c1c1 borders."
+      },
+      {
+        "name": "Code or Data Block",
+        "role": "Terminal output, SQL, or architecture diagram placeholder",
+        "description": "Light gray panel (#f2b600 or #e5e5e5 background variant), monospace text centered, represents system architecture or query output. No syntax highlighting complexity — simple monospaced label like \"VTGate\" on a neutral band."
+      },
+      {
+        "name": "Headline Block",
+        "role": "Section-level heading with supporting paragraph",
+        "description": "Heading at 24–32px ui-monospace weight 600, #000000. A vertical accent bar (2px #f35815) sits to the left of the headline — a signature decorative mark. Body copy follows at 16px weight 400, #414141, max-width constrained to reading measure."
+      },
+      {
+        "name": "Accent Bar",
+        "role": "Visual prefix marking a notable headline or callout",
+        "description": "2px wide, ~24px tall vertical bar in #f35815 (orange), positioned flush-left to a headline. Functions as the system's only decorative element — replaces the need for icons, badges, or colored headings."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Universal type family — used for ALL text including headings, body, nav, buttons, and tabs. The monospace-only choice is the system's signature: it forces uniform character widths across the entire interface, giving the page the rhythm of a code editor or man page rather than a traditional marketing site. Weight 500–600 for headings, 400 for body, 700 sparingly for emphasis. Negative letter-spacing (-0.006em) tightens glyphs just enough to avoid the loose feel of raw terminal output.",
+        "sizes": "16px",
+        "family": "ui-monospace",
+        "weight": "400, 500, 600, 700",
+        "lineHeight": "1.00, 1.25, 1.50",
+        "substitute": "SF Mono, Menlo, Consolas, \"Liberation Mono\", monospace",
+        "letterSpacing": "-0.006em"
+      }
+    ],
+    "description": "PlanetScale's design system is a developer-first, terminal-flavored monospace UI: the entire interface speaks in fixed-width type, giving every screen the texture of a well-formatted README. The palette is overwhelmingly achromatic — deep charcoal text on near-white canvas, with a vivid orange as the sole action accent and a restrained blue for links. Surfaces are flat and borderless; hierarchy is built through type weight, spacing, and the occasional hairline rule rather than shadow or elevation. Components feel lightweight and utilitarian: pill-shaped buttons, plain text links, raw grid tables, and no decorative chrome. The result reads like a developer tool's reference page, not a marketing brochure — confidence comes from typographic discipline and generous whitespace, not from color or illustration.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a6771960-b826-49bc-9ee7-7f7a5e29642b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"PlanetScale design system\",\"item\":\"https://styles.refero.design/style/a6771960-b826-49bc-9ee7-7f7a5e29642b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a6771960-b826-49bc-9ee7-7f7a5e29642b#style-reference\",\"name\":\"PlanetScale design system reference\",\"headline\":\"PlanetScale design system | Refero Styles\",\"description\":\"Explore PlanetScale's light Dev Tools design system: Charcoal #414141, Ink Black #000000 colors, ui-monospace typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a6771960-b826-49bc-9ee7-7f7a5e29642b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a6771960-b826-49bc-9ee7-7f7a5e29642b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"PlanetScale\",\"url\":\"https://planetscale.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a6771960-b826-49bc-9ee7-7f7a5e29642b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3b654e63-7890-4ded-985c-e97d6bd88b04.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3b654e63-7890-4ded-985c-e97d6bd88b04.jpg\",\"caption\":\"Screenshot of PlanetScale\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3b654e63-7890-4ded-985c-e97d6bd88b04.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"PlanetScale design system\",\"PlanetScale website design\",\"PlanetScale colors\",\"PlanetScale typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Charcoal\",\"Ink Black\",\"Graphite\",\"Fog\",\"ui-monospace\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"PlanetScale design system\"},{\"@type\":\"Thing\",\"name\":\"PlanetScale website design\"},{\"@type\":\"Thing\",\"name\":\"PlanetScale colors\"},{\"@type\":\"Thing\",\"name\":\"PlanetScale typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-02-07T18:01:22.000Z\",\"dateModified\":\"2026-02-07T18:01:22.000Z\"}]}19:T448,**Quick Color Reference**\n- text: #414141\n- background: #fafafa\n- border: #c1c1c1\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- link: #0b6ec5 (Signal Blue)\n- primary action: no distinct CTA color\n\n**3–5 Example Component Prompts**\n1. **Headline with accent bar**: Left-aligned 24px ui-monospace weight 600, #000000, preceded by a 2px-wide 24px-tall #f35815 vertical bar with 8px right gap. Body copy below at 16px weight 400, #414141, line-height 1.5.\n\n\n3. **Inline link**: #0b6ec5 text, ui-monospace inheriting body size/weight, no underline at rest. Sits flush within body copy at #414141.\n\n4. **Customer logo grid cell**: 960px container divided into 5 equal columns, each cell with 1px #c1c1c1 border, #fafafa fill, 16px padding, ~80px min-height. Logos rendered at native brand color.\n\n5. **Tabbed section header**: 3 equal-width tabs in a row. Active tab: #111111 background, #fafafa text. Inactive: transparent background, #414141 text. Tabs separated by 1px #c1c1c1 bottom border. No border-radius."
+      }
+    ],
+    "elevationPhilosophy": "The system is deliberately flat: no drop shadows, no glows, no z-axis layering. Depth is communicated through hairline borders, background color inversions, and typographic weight changes. Components sit directly on the canvas — borders separate regions, shadows do not."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#414141",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.37529907288004455
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "body",
+            "link",
+            "nav",
+            "button",
+            "hero",
+            "heading",
+            "image",
+            "list",
+            "footer"
+          ],
+          "frequency": 1238,
+          "confidence": 1,
+          "prominence": 69812910.67914516,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 97,
+          "confidence": 1,
+          "prominence": 3330976.0509109395,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#737373",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5555267576690717
+          },
+          "contexts": [
+            "body",
+            "image",
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 1192386.1580912494,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fafafa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9851036517304731
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1007142,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c1c1c1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8109314104129781
+          },
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 39,
+          "confidence": 1,
+          "prominence": 416898.55924109643,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0b6ec5",
+          "oklch": {
+            "c": 0.15775126845278242,
+            "h": 252.4102110225451,
+            "l": 0.5358469504852273
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 43,
+          "confidence": 1,
+          "prominence": 250762.61310724833,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 114000,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f35815",
+          "oklch": {
+            "c": 0.20209588955284263,
+            "h": 39.35317105348066,
+            "l": 0.660593458132854
+          },
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 68491.16641910776,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f2b600",
+          "oklch": {
+            "c": 0.1659839282014766,
+            "h": 84.55209119891582,
+            "l": 0.8093784318416819
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2543,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#22a652",
+          "oklch": {
+            "c": 0.1640474290471708,
+            "h": 150.0565135083429,
+            "l": 0.6381611844321835
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 25,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.015257997010841809,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.12,
+          "background": "#fafafa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.09,
+          "background": "#111111",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.67,
+          "background": "#c1c1c1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.47,
+          "background": "#f2b600",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.49,
+          "background": "#111111",
+          "foreground": "#c1c1c1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.31,
+          "background": "#f2b600",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.78,
+          "background": "#fafafa",
+          "foreground": "#414141"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.22,
+          "background": "#f35815",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.67,
+          "background": "#c1c1c1",
+          "foreground": "#414141"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.59,
+          "background": "#f35815",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.57,
+          "background": "#f2b600",
+          "foreground": "#414141"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.97,
+          "background": "#fafafa",
+          "foreground": "#0b6ec5"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.54,
+          "background": "#fafafa",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.98,
+          "background": "#111111",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.64,
+          "background": "#111111",
+          "foreground": "#0b6ec5"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.24,
+          "background": "#f35815",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.02,
+          "background": "#f35815",
+          "foreground": "#414141"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.83,
+          "background": "#f2b600",
+          "foreground": "#0b6ec5"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.59,
+          "background": "#f2b600",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.88,
+          "background": "#f35815",
+          "foreground": "#c1c1c1"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 71,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 73,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ui-monospace",
+          "source": "system",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 269,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 16,
+          "family": "ui-monospace",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-monospace",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-monospace",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-monospace",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "icon",
+            "nav",
+            "hero",
+            "button",
+            "image",
+            "list",
+            "footer"
+          ],
+          "frequency": 234,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-monospace",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "button",
+            "nav",
+            "other",
+            "heading"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-monospace",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-monospace",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-monospace",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e43b0188-3f69-49a5-bbc6-c6038d7f0cc8.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3b654e63-7890-4ded-985c-e97d6bd88b04.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a6771960-b826-49bc-9ee7-7f7a5e29642b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"PlanetScale design system\",\"item\":\"https://styles.refero.design/style/a6771960-b826-49bc-9ee7-7f7a5e29642b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a6771960-b826-49bc-9ee7-7f7a5e29642b#style-reference\",\"name\":\"PlanetScale design system reference\",\"headline\":\"PlanetScale design system | Refero Styles\",\"description\":\"Explore PlanetScale's light Dev Tools design system: Charcoal #414141, Ink Black #000000 colors, ui-monospace typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a6771960-b826-49bc-9ee7-7f7a5e29642b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a6771960-b826-49bc-9ee7-7f7a5e29642b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"PlanetScale\",\"url\":\"https://planetscale.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a6771960-b826-49bc-9ee7-7f7a5e29642b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3b654e63-7890-4ded-985c-e97d6bd88b04.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3b654e63-7890-4ded-985c-e97d6bd88b04.jpg\",\"caption\":\"Screenshot of PlanetScale\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3b654e63-7890-4ded-985c-e97d6bd88b04.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"PlanetScale design system\",\"PlanetScale website design\",\"PlanetScale colors\",\"PlanetScale typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Charcoal\",\"Ink Black\",\"Graphite\",\"Fog\",\"ui-monospace\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"PlanetScale design system\"},{\"@type\":\"Thing\",\"name\":\"PlanetScale website design\"},{\"@type\":\"Thing\",\"name\":\"PlanetScale colors\"},{\"@type\":\"Thing\",\"name\":\"PlanetScale typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-02-07T18:01:22.000Z\",\"dateModified\":\"2026-02-07T18:01:22.000Z\"}]}19:T448,**Quick Color Reference**\n- text: #414141\n- background: #fafafa\n- border: #c1c1c1\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- link: #0b6ec5 (Signal Blue)\n- primary action: no distinct CTA color\n\n**3–5 Example Component Prompts**\n1. **Headline with accent bar**: Left-aligned 24px ui-monospace weight 600, #000000, preceded by a 2px-wide 24px-tall #f35815 vertical bar with 8px right gap. Body copy below at 16px weight 400, #414141, line-height 1.5.\n\n\n3. **Inline link**: #0b6ec5 text, ui-monospace inheriting body size/weight, no underline at rest. Sits flush within body copy at #414141.\n\n4. **Customer logo grid cell**: 960px container divided into 5 equal columns, each cell with 1px #c1c1c1 border, #fafafa fill, 16px padding, ~80px min-height. Logos rendered at native brand color.\n\n5. **Tabbed section header**: 3 equal-width tabs in a row. Active tab: #111111 background, #fafafa text. Inactive: transparent background, #414141 text. Tabs separated by 1px #c1c1c1 bottom border. No border-radius."
+}

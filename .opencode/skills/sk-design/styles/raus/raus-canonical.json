@@ -1,0 +1,1212 @@
+{
+  "source": "https://styles.refero.design/style/d28732de-1b7a-4d37-b7aa-edfa7caf428b",
+  "uuid": "d28732de-1b7a-4d37-b7aa-edfa7caf428b",
+  "name": "Raus",
+  "northStar": "Warm cabin journal on cream paper — every page a postcard from the woods.",
+  "capturedAt": "2026-07-18T08:30:22.878Z",
+  "meta": {
+    "url": "https://www.raus.life",
+    "siteName": "Raus",
+    "extractedAt": "2026-06-03T16:50:55.593Z",
+    "durationMs": 34843,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 292,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all headlines at weight 300 with negative letter-spacing — -0.8px at 40px, tapering to -0.07px at 12px. This is the voice; do not bold it up.",
+      "Use Pine green (#006434) only for the wordmark, primary headlines on the hero, and inline text links. Never as a button fill, badge background, or decorative shape.",
+      "Keep the cream Paper (#f7f0e1) as the dominant canvas across every page. Only the Marigold search bar, Morning Sky announcement strip, and Snow image overlays are allowed to break it.",
+      "Round every interactive element generously: 20px for buttons and cards, 40px for hero cards, 99px for pill-style nav. The system should feel soft, never angular.",
+      "Compose hero sections as asymmetric 2-column image pairs (one taller, one shorter) rather than centered stacks. Photography sits beside copy, not beneath it.",
+      "Use Marigold (#fcbd1c) as a surface, not a stroke or text color. It belongs on the search bar, accent blocks, and tag fills — nowhere else.",
+      "Label content with small uppercase meta tags (IDEA 32, PERSPECTIVES) in 12px weight 400 Charcoal before any descriptive copy. The category is the headline."
+    ],
+    "donts": [
+      "Never use a drop shadow on any component. Depth comes from cream-on-cream layering and radius, not elevation.",
+      "Never center body copy or headlines. Everything reads left-aligned against the cream canvas.",
+      "Never apply Marigold, Ember, or Morning Sky to body text. They are surface and accent colors only — Charcoal is the only text color.",
+      "Never use a sharp corner (0–8px radius) on any visible element. Even chips and inline tags use 12px minimum; cards never go below 20px.",
+      "Never use Pine green as a button background. If a brand-color action is needed, use Charcoal fill with Pine text on a Snow pill — the green earns its weight by being rare.",
+      "Never set display text at line-height above 1.05. The tight 0.95–1.0 range is what makes 40px weight 300 feel sculptural instead of airy.",
+      "Never place photography inside a frame, border, or card with a visible stroke. Images sit directly on the cream canvas with only a radius to define their edge."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#23212c",
+        "name": "Charcoal",
+        "role": "Body text, headings, dark surfaces, icon strokes, hairline borders. Anchors the entire system — almost-black but slightly warm, never pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f0e1",
+        "name": "Paper",
+        "role": "Primary page background and card canvas — warm cream that gives the entire site its printed, hand-made feel. Not white, not beige; paper",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Snow",
+        "role": "Search bar text, button labels on dark fills, image overlays, and any surface that needs to sit forward of the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#006434",
+        "name": "Pine",
+        "role": "Brand wordmark, primary headings on hero, link text, and the only chromatic authority — deep forest green used sparingly to mark identity, never decoration",
+        "group": "brand"
+      },
+      {
+        "hex": "#fcbd1c",
+        "name": "Marigold",
+        "role": "Search bar surface, accent blocks, tag fills, the single bright punctuation on an otherwise muted page. Makes the booking flow unmistakable",
+        "group": "accent"
+      },
+      {
+        "hex": "#a6dfff",
+        "name": "Morning Sky",
+        "role": "Top announcement bar background and soft accent surfaces. Cool counterpoint to the warm canvas — signals timely, transient messaging",
+        "group": "accent"
+      },
+      {
+        "hex": "#dd5000",
+        "name": "Ember",
+        "role": "Gift voucher CTA on the announcement bar and warm interactive accent. Reads as firelight against the cream — chosen for urgency in promotional contexts, not for the primary booking flow",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed cream canvas with content max-width 1280px centered. Hero is a left-aligned headline over an asymmetric 2-column image pair (one image roughly 60% width, the other 40% with a 32px gap), with the Marigold search bar floating across the bottom of the hero. Section rhythm is open: 80–120px vertical gaps between bands, no divider lines, no alternating dark/light inversion. Content blocks are always 2- or 3-column grids of editorial photo cards with IDEA captions. The journal section is a strict 3-column grid with no card chrome — images carry the structure. Navigation is a single transparent header bar, not sticky. Footer continues the cream canvas without inversion. Overall density is generous and editorial — this is a reading experience that happens to take bookings, not a dashboard.",
+    "imagery": "Photography is the product: large, full-bleed editorial shots of cabins in forests and meadows, shot in soft natural light with warm greens and muted earth tones. Images are treated as content objects, not decoration — they sit directly on the cream canvas with a 20–40px radius and no frames, borders, or overlays other than the white caption panel on journal cards. No illustration, no abstract graphics, no icons-heavy visual style. The aesthetic is hand-printed travel journal: one or two photographs per section, generously sized, captioned with a small IDEA number and a single descriptive sentence. Lifestyle photography of guests (people with dogs, reading on terraces) appears only in the journal grid. No 3D renders, no stock-style product cutouts.",
+    "similar": [
+      {
+        "why": "Same generous whitespace, photography-first hero, and single calm brand color supporting rather than dominating the layout",
+        "business": "Airbnb (Stays category, editorial mode)"
+      },
+      {
+        "why": "Same cabin-in-nature photography, large rounded image cards, and a quiet near-monochrome palette that lets the imagery carry the brand",
+        "business": "Getaway"
+      },
+      {
+        "why": "Same cream-paper aesthetic, editorial IDEA-style captions beneath photography, and a single saturated accent (yellow/orange) reserved for the booking action",
+        "business": "Camping Cabins (Various European indie operators)"
+      },
+      {
+        "why": "Same editorial-journal treatment of outdoor/travel content — serif-free neo-grotesque at light weights, warm backgrounds, photography as primary content unit",
+        "business": "Field Mag"
+      },
+      {
+        "why": "Same neo-grotesque typography at weight 300 with tight tracking, pill-shaped inputs in a single bright accent color for the search/booking flow",
+        "business": "Suiteness"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "20px",
+        "buttons": "20px",
+        "nav-pills": "99px",
+        "hero-cards": "40px",
+        "small-chips": "12px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80-120px",
+      "cardPadding": "20-24px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#f7f0e1",
+        "name": "Paper Canvas",
+        "level": 0,
+        "purpose": "Base page background — warm cream that defines the entire mood"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Snow Surface",
+        "level": 1,
+        "purpose": "Image overlays, search button fill, elevated card surfaces"
+      },
+      {
+        "hex": "#a6dfff",
+        "name": "Morning Sky Band",
+        "level": 2,
+        "purpose": "Top announcement strip, floating utility surfaces"
+      },
+      {
+        "hex": "#fcbd1c",
+        "name": "Marigold Bar",
+        "level": 3,
+        "purpose": "Search bar and accent blocks — the one surface that is allowed to shout"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Warm cabin journal on cream paper — every page a postcard from the woods.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.18,
+        "letterSpacing": -0.06
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.07
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.29,
+        "letterSpacing": -0.08
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.22,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.33
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.07,
+        "letterSpacing": -0.42
+      },
+      {
+        "role": "heading-lg",
+        "size": 36,
+        "lineHeight": 1,
+        "letterSpacing": -0.72
+      },
+      {
+        "role": "display",
+        "size": 40,
+        "lineHeight": 0.95,
+        "letterSpacing": -0.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page time-sensitive messaging",
+        "description": "Full-bleed strip, Morning Sky (#a6dfff) background, 40px height, centered message in Charcoal 14px. Houses an Ember (#dd5000) text-link CTA with an arrow glyph. Dismissible with a small × at the far right. No padding on the message itself — it floats centered."
+      },
+      {
+        "name": "Primary Navigation",
+        "role": "Site-wide header",
+        "description": "Transparent over cream canvas. Left: RAUS wordmark in Pine green, 40px weight 300, letter-spacing -0.8px — the brand's visual anchor. Right: 5 nav items in Charcoal 16px weight 400, 20px horizontal spacing, language toggle (EN ▾) in a pill border (99px radius, 1px Charcoal border, 12px 16px padding)."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Opening pitch on landing pages",
+        "description": "Set in neue-haas-unica weight 300, 36–40px, Charcoal, letter-spacing -0.72 to -0.8px. Max 2 lines. The line-height of 0.95–1.0 lets lines pull tight — the headline reads as a single shape. Always sits flush left, never centered."
+      },
+      {
+        "name": "Marigold Search Bar",
+        "role": "Primary booking widget",
+        "description": "The signature component. Marigold (#fcbd1c) background, 40px radius pill spanning nearly the full content width. Inside, 4 horizontally distributed fields separated by hairline Charcoal dividers: REGION (dropdown), ARRIVAL & DEPARTURE (two date inputs with → arrow between), GUESTS (counter), and a Charcoal (#23212c) pill button labeled 'Search' in Snow white, 16px weight 400, 12px 24px padding, 20px radius. Field labels are 10px uppercase Charcoal, values are 16px Charcoal with underline-only inputs (no boxes)."
+      },
+      {
+        "name": "Editorial Photo Card",
+        "role": "Content imagery with IDEA caption",
+        "description": "Full-bleed image with 20px radius, paired with a small caption block below. Caption starts with a category label (IDEA 32) in 12px weight 400 Charcoal, followed by a sentence in 18px weight 300 Charcoal. Image-to-caption gap: 16px. No card chrome — the image IS the card."
+      },
+      {
+        "name": "Journal Article Card",
+        "role": "Blog/perspective grid item",
+        "description": "Image-first card in a 3-column grid. Image fills the card with 20px radius. A Snow (#ffffff) overlay panel sits at the bottom-left of the image, 20px padding, 12px radius on outer corners. Inside: category label 'PERSPECTIVES' in 10px weight 400 Charcoal, headline in 22px weight 300 Charcoal. No visible card border or shadow — the image is the card, the panel is the label."
+      },
+      {
+        "name": "Pill Link Button",
+        "role": "Inline navigation or section entry",
+        "description": "Ghost-style link in a 99px radius pill, 1px Charcoal border, 10px 20px padding. Label in 14px weight 400 Charcoal. Example usage: 'View all articles →'. Subtle hover: border thickens to 1.5px or fill flips to Charcoal with Snow text."
+      },
+      {
+        "name": "CTA Button (Filled Dark)",
+        "role": "Primary action in any flow",
+        "description": "Charcoal (#23212c) fill, Snow (#ffffff) text, 20px radius, 14px 24px padding, 16px weight 400. Used for the Search submit and any flow-critical action. No shadow. Hover: fill remains Charcoal; a 2px Pine green underline appears below for active/pressed states."
+      },
+      {
+        "name": "Language Toggle",
+        "role": "Locale switcher in nav",
+        "description": "99px radius pill, 1px Charcoal border, 12px 16px padding, 14px weight 400 Charcoal text. Small ▾ caret beside the language code."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer",
+        "description": "Cream canvas continues — no dark footer inversion. Columns of links in 14px weight 400 Charcoal, generous 24–32px vertical spacing. Brand wordmark appears small at top-left. No social icon row by default; instead a quiet, editorial link list."
+      },
+      {
+        "name": "Date Input Pair",
+        "role": "Search bar date selection",
+        "description": "Two side-by-side date fields with a → arrow between. Each field is 14px Charcoal underlined text (no box). Arrow is 14px Charcoal, 6px horizontal padding. The pairing reads as a single flow, not two inputs."
+      },
+      {
+        "name": "Dropdown Selector",
+        "role": "Region/guests selection",
+        "description": "Label-first pattern: 10px uppercase category label in Charcoal sits above a 16px underlined value. ▾ caret at the far right. No border, no box — just a typographic contract that opens a panel on click."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single typeface for everything from 12px captions to 40px display headlines. Weight 300 is the signature — headings whisper rather than shout, creating authority through restraint. Weight 400 reserves itself for meta labels (IDEA 32, PERSPECTIVES, navigation items) and body copy where 300 would feel too fragile.",
+        "sizes": "12px, 14px, 16px, 18px, 22px, 36px, 40px",
+        "family": "neue-haas-unica",
+        "weight": "300, 400",
+        "lineHeight": "0.95–1.33 depending on size",
+        "substitute": "Neue Haas Grotesk Display, Inter (weight 300), National 2, Untitled Sans",
+        "letterSpacing": "Consistently negative across all sizes: -0.02em at display, tapering to -0.005em at caption. The tight tracking is a defining voice — letters pull close, creating density without weight.",
+        "fontFeatureSettings": "\"ss01\" on (stylistic alternates), \"tnum\" on (tabular numerals for prices and dates in the search bar)"
+      },
+      {
+        "role": "fonts — detected in extracted data but not described by AI",
+        "sizes": "22px, 28px, 36px, 40px",
+        "family": "fonts",
+        "weight": "300",
+        "lineHeight": "0.95, 1, 1.07, 1.18",
+        "letterSpacing": "-0.02, -0.015, -0.01"
+      }
+    ],
+    "description": "Raus is an editorial cabin-booking platform rendered as a warm, hand-printed travel journal: cream paper backgrounds, generous generous breathing room, and photography that sits beside text rather than beneath it. The brand uses a deep forest green as a calm, non-shouting identity color — present in the wordmark and key links but never screaming — while a bright marigold yellow search bar acts as the single visual exclamation point on each page, anchoring the booking flow. Typography does the heavy lifting: a single neo-grotesque face set at weight 300 with tight negative tracking creates an airy, almost whispered voice that contrasts with the confident, rounded geometry of the components. Surfaces are warm and matte, corners are generously rounded (20px is the default, 40px for hero cards), and shadows are absent — depth comes from layering cream on cream, not elevation.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d28732de-1b7a-4d37-b7aa-edfa7caf428b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Raus design system\",\"item\":\"https://styles.refero.design/style/d28732de-1b7a-4d37-b7aa-edfa7caf428b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d28732de-1b7a-4d37-b7aa-edfa7caf428b#style-reference\",\"name\":\"Raus design system reference\",\"headline\":\"Raus design system | Refero Styles\",\"description\":\"Explore Raus's light Other design system: Charcoal #23212c, Paper #f7f0e1 colors, neue-haas-unica, fonts typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d28732de-1b7a-4d37-b7aa-edfa7caf428b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d28732de-1b7a-4d37-b7aa-edfa7caf428b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Raus\",\"url\":\"https://www.raus.life\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d28732de-1b7a-4d37-b7aa-edfa7caf428b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ac7da367-412c-4e45-bcce-bc1f0de61e2f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ac7da367-412c-4e45-bcce-bc1f0de61e2f.jpg\",\"caption\":\"Screenshot of Raus\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ac7da367-412c-4e45-bcce-bc1f0de61e2f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Raus design system\",\"Raus website design\",\"Raus colors\",\"Raus typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Charcoal\",\"Paper\",\"Snow\",\"Pine\",\"neue-haas-unica\",\"fonts\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Raus design system\"},{\"@type\":\"Thing\",\"name\":\"Raus website design\"},{\"@type\":\"Thing\",\"name\":\"Raus colors\"},{\"@type\":\"Thing\",\"name\":\"Raus typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T02:39:37.518Z\",\"dateModified\":\"2026-04-30T02:39:37.518Z\"}]}19:T836,## Quick Color Reference\n- text: #23212c (Charcoal)\n- background: #f7f0e1 (Paper cream)\n- border: #23212c at 1px for ghost buttons; 2px for active states\n- accent: #fcbd1c (Marigold — search bar and accent surfaces only)\n- brand: #006434 (Pine — wordmark and links only)\n- primary action: #23212c (filled action)\n\n## Example Component Prompts\n\n1. **Marigold Search Bar** — Build a 40px-radius pill spanning 900px width, Marigold (#fcbd1c) background. Inside, four horizontally distributed fields: 'REGION' (10px uppercase label, 16px underlined value 'All Regions'), 'ARRIVAL & DEPARTURE' (two 16px date values with a 14px → arrow between), 'GUESTS' (16px value '2 Guests'), and a Charcoal (#23212c) 20px-radius button labeled 'Search' in Snow (#ffffff) 16px weight 400. Separate fields with 1px Charcoal vertical dividers. No box borders on the fields themselves — just underlines.\n\n2. **Hero Headline Block** — Cream (#f7f0e1) canvas. Headline at 40px neue-haas-unica weight 300, Charcoal (#23212c), letter-spacing -0.8px, line-height 0.95. Max-width 600px, left-aligned. Below: 18px weight 300 Charcoal subhead at 1.22 line-height, max 2 lines. Headline sits in the top-left quadrant of a 2-column image grid below it.\n\n3. **Editorial Photo Card** — Full-bleed image with 20px radius. Below the image, a 16px gap, then a caption block: first line 'IDEA 32' in 12px weight 400 Charcoal, second line the description in 18px weight 300 Charcoal. No card background, no border — the image sits on cream and the caption sits on cream.\n\n4. **Journal Article Card** — Image filling the card at 20px radius. Overlaid at bottom-left, a Snow (#ffffff) panel with 20px padding, 12px outer radius. Inside the panel: 'PERSPECTIVES' in 10px uppercase weight 400 Charcoal, 4px gap, then a 22px weight 300 Charcoal headline, 1.15 line-height, max 2 lines.\n\n5. **Pill Link Button** — 99px radius, 1px Charcoal border, transparent fill, 10px 20px padding, label in 14px weight 400 Charcoal followed by a → arrow. Example: 'View all articles →'. Hover: fill becomes Charcoal, text becomes Snow."
+      }
+    ],
+    "elevationPhilosophy": "Shadows are deliberately absent. Depth is built through three quiet techniques: (1) warm cream layering slightly off-cream cards, (2) the 20px radius creating soft edge transitions, and (3) the 40px radius on hero cards producing a poster-like lift. Where a clickable affordance is needed, a dark Charcoal fill or a 2px Charcoal border does the work — never a drop shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#23212c",
+          "oklch": {
+            "c": 0.020674012014927287,
+            "h": 293.2112421327776,
+            "l": 0.2548393919088209
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "heading",
+            "body",
+            "button",
+            "card",
+            "icon",
+            "footer",
+            "list",
+            "link"
+          ],
+          "frequency": 1098,
+          "confidence": 1,
+          "prominence": 67995933.55027841,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "icon/fill": 8,
+            "nav/color": 15,
+            "body/color": 9,
+            "card/color": 4,
+            "hero/color": 2,
+            "icon/color": 6,
+            "link/color": 31,
+            "list/color": 43,
+            "other/fill": 4,
+            "image/color": 5,
+            "other/color": 79,
+            "button/color": 3,
+            "footer/color": 1,
+            "heading/color": 17,
+            "nav/borderColor": 60,
+            "body/borderColor": 36,
+            "card/borderColor": 16,
+            "hero/borderColor": 8,
+            "icon/borderColor": 24,
+            "link/borderColor": 124,
+            "list/borderColor": 172,
+            "image/borderColor": 20,
+            "other/borderColor": 316,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 68,
+            "link/backgroundColor": 5,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#006434",
+          "oklch": {
+            "c": 0.11219218790185741,
+            "h": 153.62098330142194,
+            "l": 0.4414339308304026
+          },
+          "contexts": [
+            "link",
+            "other",
+            "heading"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 708682.6979849498,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/fill": 6,
+            "other/color": 2,
+            "heading/color": 1,
+            "link/borderColor": 4,
+            "other/borderColor": 8,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "card",
+            "link",
+            "other"
+          ],
+          "frequency": 132,
+          "confidence": 1,
+          "prominence": 422188.1009403912,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 16,
+            "body/color": 4,
+            "icon/color": 8,
+            "link/color": 5,
+            "other/fill": 8,
+            "button/color": 4,
+            "body/borderColor": 16,
+            "icon/borderColor": 32,
+            "link/borderColor": 20,
+            "button/borderColor": 16,
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#fcbd1c",
+          "oklch": {
+            "c": 0.1664965849780871,
+            "h": 83.4009008615418,
+            "l": 0.833843491530781
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 128000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a6dfff",
+          "oklch": {
+            "c": 0.07320460947540505,
+            "h": 233.28183403942364,
+            "l": 0.8755004043090867
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 108411.43504932708,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#dd5000",
+          "oklch": {
+            "c": 0.18918922522631057,
+            "h": 41.029250749363136,
+            "l": 0.6153274362921118
+          },
+          "contexts": [
+            "body",
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 37,
+          "confidence": 1,
+          "prominence": 70479.66650554734,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "body/color": 2,
+            "icon/color": 2,
+            "other/fill": 2,
+            "button/color": 2,
+            "body/borderColor": 8,
+            "icon/borderColor": 8,
+            "button/borderColor": 8,
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.06867277530685029,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.84,
+          "background": "#ffffff",
+          "foreground": "#23212c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.03,
+          "background": "#a6dfff",
+          "foreground": "#23212c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.38,
+          "background": "#fcbd1c",
+          "foreground": "#23212c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.31,
+          "background": "#ffffff",
+          "foreground": "#006434"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.09,
+          "background": "#a6dfff",
+          "foreground": "#006434"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.33,
+          "background": "#fcbd1c",
+          "foreground": "#006434"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.02,
+          "background": "#dd5000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.94,
+          "background": "#dd5000",
+          "foreground": "#23212c"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.8,
+          "background": "#a6dfff",
+          "foreground": "#dd5000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.38,
+          "background": "#fcbd1c",
+          "foreground": "#dd5000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.17,
+          "background": "#23212c",
+          "foreground": "#006434"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.82,
+          "background": "#dd5000",
+          "foreground": "#006434"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.69,
+          "background": "#fcbd1c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.44,
+          "background": "#a6dfff",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "button",
+            "card"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 72,
+          "corners": [
+            72,
+            4,
+            4,
+            4
+          ],
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "asymmetric": true
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 99,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "body",
+            "nav",
+            "list"
+          ],
+          "frequency": 29,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginTop|nav",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "heading",
+            "other",
+            "icon"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|icon"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "icon",
+            "nav",
+            "other",
+            "heading"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginLeft",
+            "paddingLeft",
+            "paddingRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|icon",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "nav",
+            "icon",
+            "heading",
+            "list"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|nav",
+            "marginLeft|icon",
+            "marginTop|icon",
+            "paddingRight|icon",
+            "paddingLeft|icon",
+            "marginBottom|heading",
+            "marginRight|list",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "body",
+            "other",
+            "nav",
+            "hero",
+            "heading",
+            "footer"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|nav",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "marginBottom|other",
+            "paddingRight|heading",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "list"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "marginRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "paddingRight|nav",
+            "marginRight|button",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "card",
+            "body"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginRight|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "hero",
+            "footer",
+            "list"
+          ],
+          "frequency": 15,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "marginBottom",
+            "marginRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|hero",
+            "marginBottom|other",
+            "marginRight|other",
+            "paddingBottom|footer",
+            "paddingBottom|other",
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 192,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|hero",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "neue-haas-unica",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 251,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "fonts",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "neue-haas-unica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.005,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "neue-haas-unica",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.29,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "neue-haas-unica",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.29,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "neue-haas-unica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "image",
+            "card",
+            "button",
+            "icon",
+            "footer",
+            "list",
+            "body"
+          ],
+          "frequency": 122,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "neue-haas-unica",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "button",
+            "icon",
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 75,
+          "lineHeight": 1.22,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "neue-haas-unica",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.18,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "fonts",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.18,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "fonts",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.07,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "neue-haas-unica",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "fonts",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "fonts",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "neue-haas-unica",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/387bf985-ac5e-4fde-81ff-3cfe69748cf6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ac7da367-412c-4e45-bcce-bc1f0de61e2f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d28732de-1b7a-4d37-b7aa-edfa7caf428b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Raus design system\",\"item\":\"https://styles.refero.design/style/d28732de-1b7a-4d37-b7aa-edfa7caf428b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d28732de-1b7a-4d37-b7aa-edfa7caf428b#style-reference\",\"name\":\"Raus design system reference\",\"headline\":\"Raus design system | Refero Styles\",\"description\":\"Explore Raus's light Other design system: Charcoal #23212c, Paper #f7f0e1 colors, neue-haas-unica, fonts typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d28732de-1b7a-4d37-b7aa-edfa7caf428b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d28732de-1b7a-4d37-b7aa-edfa7caf428b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Raus\",\"url\":\"https://www.raus.life\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d28732de-1b7a-4d37-b7aa-edfa7caf428b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ac7da367-412c-4e45-bcce-bc1f0de61e2f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ac7da367-412c-4e45-bcce-bc1f0de61e2f.jpg\",\"caption\":\"Screenshot of Raus\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ac7da367-412c-4e45-bcce-bc1f0de61e2f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Raus design system\",\"Raus website design\",\"Raus colors\",\"Raus typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Charcoal\",\"Paper\",\"Snow\",\"Pine\",\"neue-haas-unica\",\"fonts\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Raus design system\"},{\"@type\":\"Thing\",\"name\":\"Raus website design\"},{\"@type\":\"Thing\",\"name\":\"Raus colors\"},{\"@type\":\"Thing\",\"name\":\"Raus typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T02:39:37.518Z\",\"dateModified\":\"2026-04-30T02:39:37.518Z\"}]}19:T836,## Quick Color Reference\n- text: #23212c (Charcoal)\n- background: #f7f0e1 (Paper cream)\n- border: #23212c at 1px for ghost buttons; 2px for active states\n- accent: #fcbd1c (Marigold — search bar and accent surfaces only)\n- brand: #006434 (Pine — wordmark and links only)\n- primary action: #23212c (filled action)\n\n## Example Component Prompts\n\n1. **Marigold Search Bar** — Build a 40px-radius pill spanning 900px width, Marigold (#fcbd1c) background. Inside, four horizontally distributed fields: 'REGION' (10px uppercase label, 16px underlined value 'All Regions'), 'ARRIVAL & DEPARTURE' (two 16px date values with a 14px → arrow between), 'GUESTS' (16px value '2 Guests'), and a Charcoal (#23212c) 20px-radius button labeled 'Search' in Snow (#ffffff) 16px weight 400. Separate fields with 1px Charcoal vertical dividers. No box borders on the fields themselves — just underlines.\n\n2. **Hero Headline Block** — Cream (#f7f0e1) canvas. Headline at 40px neue-haas-unica weight 300, Charcoal (#23212c), letter-spacing -0.8px, line-height 0.95. Max-width 600px, left-aligned. Below: 18px weight 300 Charcoal subhead at 1.22 line-height, max 2 lines. Headline sits in the top-left quadrant of a 2-column image grid below it.\n\n3. **Editorial Photo Card** — Full-bleed image with 20px radius. Below the image, a 16px gap, then a caption block: first line 'IDEA 32' in 12px weight 400 Charcoal, second line the description in 18px weight 300 Charcoal. No card background, no border — the image sits on cream and the caption sits on cream.\n\n4. **Journal Article Card** — Image filling the card at 20px radius. Overlaid at bottom-left, a Snow (#ffffff) panel with 20px padding, 12px outer radius. Inside the panel: 'PERSPECTIVES' in 10px uppercase weight 400 Charcoal, 4px gap, then a 22px weight 300 Charcoal headline, 1.15 line-height, max 2 lines.\n\n5. **Pill Link Button** — 99px radius, 1px Charcoal border, transparent fill, 10px 20px padding, label in 14px weight 400 Charcoal followed by a → arrow. Example: 'View all articles →'. Hover: fill becomes Charcoal, text becomes Snow."
+}

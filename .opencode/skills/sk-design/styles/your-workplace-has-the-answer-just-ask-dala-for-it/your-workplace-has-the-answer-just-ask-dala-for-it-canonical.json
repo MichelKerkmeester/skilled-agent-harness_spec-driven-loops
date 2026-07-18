@@ -1,0 +1,1155 @@
+{
+  "source": "https://styles.refero.design/style/e5f5f8cf-e68d-4ed1-bbf5-6b67569af648",
+  "uuid": "e5f5f8cf-e68d-4ed1-bbf5-6b67569af648",
+  "name": "Your workplace has the answer. Just ask Dala for it.",
+  "northStar": "constellation floating on black velvet",
+  "capturedAt": "2026-07-18T07:11:02.352Z",
+  "meta": {
+    "url": "https://dala.craftedbygc.com",
+    "siteName": "Your workplace has the answer. Just ask Dala for it.",
+    "extractedAt": "2026-07-03T02:42:43.049Z",
+    "durationMs": 66668,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 539,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #8052ff (Electric Iris) exclusively for filled action buttons — no other saturated color should appear as a button background",
+      "Set every headline at weight 400, never bold — Dala achieves hierarchy through scale (78–113px) and tracking (-0.04em), not font weight",
+      "Use PPNeueMontreal weight 200 for 18px body text — the ultra-light weight is a signature, do not substitute weight 400",
+      "Maintain pure #000000 black as every section background — never use dark gray panels or card surfaces; the void is the design",
+      "Apply -0.04em letter-spacing on all display sizes 42px and above, converting to approximately -4.52px at 113px",
+      "Use 24px border-radius for buttons, cards, and nav elements as the consistent radius token — pill shapes only at very small sizes",
+      "Let the particle constellation be the only hero imagery — do not introduce photography, illustrations, or product screenshots into the hero region"
+    ],
+    "donts": [
+      "Do not use filled violet (#8052ff) for large background blocks or full sections — it is a button and accent color, not a surface",
+      "Do not set body text at weight 400 — Dala's signature ultra-light (200) body copy is what distinguishes the reading experience",
+      "Do not introduce card containers with borders, shadows, or background fills — elements float on black with whitespace alone",
+      "Do not use color #0000ee (default browser link blue) — never specify it; use #ffb829 amber or #ffffff for links",
+      "Do not add gradients to UI components — Dala's palette is flat; gradients belong only in the logo and the particle visualization",
+      "Do not use system fonts as substitutes when PPNeueMontreal-equivalent geometry matters — use Inter as fallback but preserve the weight 200 body and weight 400 headline convention",
+      "Do not place multiple filled buttons in proximity — the violet pill is reserved for singular primary actions per view"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Page canvas, section backgrounds, negative space — pure black is the dominant surface, not dark gray, creating the void that lets chromatic accents float",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Headlines, body text, icon fills, nav active state — the only typographic color, carrying maximum hierarchy on black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9a9a9a",
+        "name": "Ash Gray",
+        "role": "Muted nav text, ghost link color, secondary labels — recedes behind primary text without going invisible",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bdbdbd",
+        "name": "Silver Mist",
+        "role": "Tertiary body text, caption-level information — the quietest readable gray, for supporting context",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8052ff",
+        "name": "Electric Iris",
+        "role": "Primary action buttons, logo mark, brand accents — the single saturated violet that signals interactivity and brand identity against the black void",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffb829",
+        "name": "Saffron Spark",
+        "role": "Highlight emphasis text, accent links, attention punctuation — warm yellow against violet creates the brand's chromatic tension",
+        "group": "accent"
+      },
+      {
+        "hex": "#15846e",
+        "name": "Deep Verdant",
+        "role": "Secondary surface tint, logo gradient stop — appears as the deeper end of the brand gradient and in subtle accent washes",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed sections on pure black canvas, max content width ~1280px centered. Hero is a two-column asymmetric split: oversized left-aligned headline (113px) with body copy and CTA on the left half, particle brain visualization occupying the right half at massive scale. Subsequent sections alternate the two-column composition (visual-left/text-right, then text-left/visual-right) creating a zigzag reading rhythm. Section gaps are generous (60–120px vertical). No card grids, no pricing tables, no multi-column feature blocks — content lives in spacious two-column text+visual arrangements. Navigation is a minimal transparent top bar, no sidebar, no mega-menu. Density is extremely spacious — one or two elements per viewport, never information-dense.",
+    "imagery": "Imagery is entirely procedural and abstract — no photography except team portraits. The signature visual is a dense cloud of thousands of tiny outlined triangular particles in a full vivid spectrum (violets, ambers, teals, magentas, blues) forming an organic brain/neural shape. This particle field is animated and acts as both hero art and brand identity. Surrounding ambient particles drift at lower density across the page background. Triangles are outlined, 1–2px stroke, sharp-edged, in saturated chromatic colors — never grayscale. Team portraits appear as large rounded-rectangle crops (24px radius) without frames or overlays. No product screenshots, no lifestyle photography, no 3D renders — the particle system IS the visual brand.",
+    "similar": [
+      {
+        "why": "Same dark-void aesthetic with oversized weight-400 display type, generous whitespace, and a single saturated accent (violet/blue) reserved for action — both treat black as an active design material rather than a fallback",
+        "business": "Linear"
+      },
+      {
+        "why": "Identical pattern: pure black canvas, geometric minimalism, single brand color, weight-400 typography at massive display sizes with aggressive negative tracking — both make black the hero",
+        "business": "Vercel"
+      },
+      {
+        "why": "Dark mode-first philosophy with serif-free geometric sans, restrained color palette where one accent dominates, and a typographic system that trusts scale over weight for hierarchy",
+        "business": "Anthropic"
+      },
+      {
+        "why": "Dark void aesthetic with particle/constellation-style generative visuals as brand identity, combined with ultra-light body type and single vivid accent color for CTAs",
+        "business": "Runway"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "24px",
+        "tags": "9999px",
+        "cards": "24px",
+        "buttons": "24px"
+      },
+      "elementGap": "6-18px",
+      "sectionGap": "60-120px",
+      "cardPadding": "24-38px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void Canvas",
+        "level": 0,
+        "purpose": "Full-page background, all section backgrounds, the base void"
+      },
+      {
+        "hex": "#15846",
+        "name": "Deep Verdant Tint",
+        "level": 1,
+        "purpose": "Subtle accent surface for brand gradient and logo depth"
+      },
+      {
+        "hex": "#8052ff",
+        "name": "Electric Iris",
+        "level": 2,
+        "purpose": "Highest surface — filled buttons, active interactive elements only"
+      }
+    ],
+    "northStar": "constellation floating on black velvet",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "nav-label",
+        "size": 14,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.35
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading-2xs",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-xs",
+        "size": 27,
+        "lineHeight": 1
+      },
+      {
+        "role": "subheading",
+        "size": 36,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 42,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.68
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.68
+      },
+      {
+        "role": "heading-lg",
+        "size": 78,
+        "lineHeight": 1.1,
+        "letterSpacing": -3.12
+      },
+      {
+        "role": "display",
+        "size": 113,
+        "lineHeight": 1.1,
+        "letterSpacing": -4.52
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Action Button",
+        "role": "Filled violet pill, the sole interactive CTA",
+        "description": "Background #8052ff (Electric Iris), white text, 22.5px border-radius (pill), 14.4px vertical padding × 15.96px horizontal padding. PPNeueMontreal 14px weight 400 or 600, uppercase with 0.025em tracking. The high radius (22.5px on ~45px height) creates a full pill shape — soft, friendly, unmistakable as the primary action."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Underlined or bare text link, secondary action",
+        "description": "No background, no border, color #ffffff or #9a9a9a. PPNeueMontreal 14px weight 400. Used for nav items and inline links. The absence of any container means visual hierarchy comes entirely from type weight and tracking."
+      },
+      {
+        "name": "Logo Lockup",
+        "role": "Brand mark + wordmark in header",
+        "description": "Small triangular icon in #8052ff (violet) with a gradient fade through #15846 (teal), paired with 'Dala' wordmark in white. The icon is a stylized angular fragment — geometric, sharp-edged, echoing the triangular particles in the hero visualization."
+      },
+      {
+        "name": "Team Member Card",
+        "role": "Portrait + name + role display",
+        "description": "No background, no border, no shadow. Large rounded-rectangle portrait photo (~24px corner radius) with role label in 12px uppercase #8052ff and name in large white display type below. Social icons (Twitter, LinkedIn) appear as small inline glyphs. Cards float on the black canvas with only whitespace separation."
+      },
+      {
+        "name": "Carousel Navigation Dot",
+        "role": "Indicator for slide position in team/investor carousels",
+        "description": "Small filled circle ~8px diameter, #8052ff violet for active state. Inactive dots are dimmer or omitted. Padding is minimal — sits directly in the content flow without a container."
+      },
+      {
+        "name": "Hero Constellation Visualization",
+        "role": "Signature brand imagery — brain-shape particle cloud",
+        "description": "Thousands of tiny triangular glyphs (outlined, 1-2px) in a full spectrum of vivid colors (violet, amber, teal, magenta, blue) forming an organic brain or cloud shape against pure black. Individual particles are scattered/ambient across the surrounding space as well. This is the site's defining visual — not a static image but an animated field of point-lights."
+      },
+      {
+        "name": "Section Headline Block",
+        "role": "Oversized left-aligned headline + supporting copy",
+        "description": "Two-column asymmetric layout: headline at 78–113px weight 400 PPNeueMontreal in white with -0.04em tracking, occupying left half. Body copy at 18px weight 200 (ultra-light) in white or silver, with a small uppercase label (#ffb829 amber) above the body. No boxes, no borders — pure typographic composition on black."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-aligned site navigation",
+        "description": "Transparent background sitting directly on black canvas. Logo left, nav links center/right (Manifesto, Team, Blog) in 14px uppercase PPNeueMontreal with 0.025em tracking. Active or hover state: white. Inactive: #9a9a9a. Request Access button (filled violet pill) anchors the right edge. No border, no backdrop blur on the nav itself."
+      },
+      {
+        "name": "Ambient Particle Field",
+        "role": "Decorative scattered triangle glyphs",
+        "description": "Small outlined triangles in various chromatic colors (#8052ff violet, #ffb829 amber, #15846 teal, plus assorted purples and blues) scattered at low opacity across the background outside the main constellation. Creates atmospheric depth without competing with the central visualization."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single typeface across all UI contexts. Display sizes (78–113px) carry headlines at weight 400 with -0.04em tracking — the same weight as body text but massive scale creates hierarchy. Weight 200 (ultra-light) is reserved for 18px body copy, a signature choice: most AI/SaaS sites use 400 for body, but Dala strips weight to make paragraphs feel airy and non-aggressive. Weight 600 at 14px with 0.025em tracking and uppercase serves nav and small labels. The number 400 doing both 113px display and 15px body is unusual — it means the brand trusts scale, not weight, for hierarchy.",
+        "sizes": "12, 14, 15, 18, 24, 27, 36, 42, 48, 78, 113px",
+        "family": "PPNeueMontreal",
+        "weight": "200, 400, 600, 700",
+        "lineHeight": "0.81, 0.90, 1.00, 1.10, 1.20, 1.25, 1.30, 1.50",
+        "substitute": "Inter",
+        "letterSpacing": "-4.52px at 113px, -3.12px at 78px, -1.68px at 42px, -0.48px at 24px, normal at 18px body; 0.025em at 14px uppercase nav",
+        "fontFeatureSettings": "\"ss01\" on"
+      }
+    ],
+    "description": "Dala operates as a dark-stage environment where black voids meet a single vivid violet accent, punctuated by amber sparks. Typography is monolithic and weightless — PPNeueMontreal at weight 400 dominates every heading at outsized scales (78–113px) with aggressive negative tracking, so headlines feel sculptural rather than informational. The visual centerpiece is a constellation of tiny multicolored triangular particles forming an organic brain shape, which acts as the brand's signature gesture: knowledge visualized as distributed intelligence rather than hierarchical data. Layout follows a spacious two-column rhythm — oversized left-aligned headlines paired with generous body copy, floating on pure black with no panels, borders, or cards. Components are intentionally reduced to their most essential form: one violet pill button, ghost text links, and large-format text blocks.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$2a"
+      }
+    ],
+    "elevationPhilosophy": "Dala uses no shadows or elevation. All hierarchy is achieved through scale, color contrast, and whitespace on a flat black canvas. The absence of cards-with-shadows is deliberate — the void is the design, and any shadow would break the floating-in-space quality of the typography and particle constellation."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading",
+            "nav",
+            "other",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 135,
+          "confidence": 1,
+          "prominence": 1464780.1203268901,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 14,
+            "nav/color": 1,
+            "body/color": 8,
+            "other/fill": 12,
+            "other/color": 94,
+            "button/color": 2,
+            "heading/color": 4
+          }
+        },
+        {
+          "hex": "#8052ff",
+          "oklch": {
+            "c": 0.24123960985597226,
+            "h": 288.97416299778854,
+            "l": 0.5886454395259976
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 48,
+          "confidence": 1,
+          "prominence": 35939.75771218145,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 43,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffb829",
+          "oklch": {
+            "c": 0.1628005113800884,
+            "h": 78.73044704645423,
+            "l": 0.8281591644079298
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 14040.69918978388,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "link/color": 2,
+            "other/color": 2
+          }
+        },
+        {
+          "hex": "#15846e",
+          "oklch": {
+            "c": 0.09890091839210273,
+            "h": 174.83441480532522,
+            "l": 0.5499409186160232
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 12802,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 9153,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "button/color": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#9a9a9a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6862225908810762
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 48,
+          "confidence": 1,
+          "prominence": 8012.190947552403,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 17,
+            "other/color": 29,
+            "button/color": 2
+          }
+        },
+        {
+          "hex": "#bdbdbd",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7983723787523576
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 7588.0610140919,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/color": 2
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.13597531828702192,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.14,
+          "background": "#000000",
+          "foreground": "#ffb829"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.18,
+          "background": "#000000",
+          "foreground": "#bdbdbd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.46,
+          "background": "#000000",
+          "foreground": "#9a9a9a"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.61,
+          "background": "#15846e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.6,
+          "background": "#8052ff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.57,
+          "background": "#000000",
+          "foreground": "#8052ff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.56,
+          "background": "#15846e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.66,
+          "background": "#8052ff",
+          "foreground": "#ffb829"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.66,
+          "background": "#15846e",
+          "foreground": "#ffb829"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.45,
+          "background": "#8052ff",
+          "foreground": "#bdbdbd"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.45,
+          "background": "#15846e",
+          "foreground": "#bdbdbd"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.64,
+          "background": "#15846e",
+          "foreground": "#9a9a9a"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.63,
+          "background": "#8052ff",
+          "foreground": "#9a9a9a"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "button",
+            "card"
+          ],
+          "frequency": 21
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button",
+            "list"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "other"
+          ],
+          "frequency": 56,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|nav",
+            "paddingTop|nav",
+            "marginRight|button",
+            "marginLeft|button",
+            "marginLeft|body",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|body",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "button",
+            "link"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|heading",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "heading",
+            "list",
+            "card",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingTop|list",
+            "marginBottom|card",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "other",
+            "list"
+          ],
+          "frequency": 15,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 115,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|card"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 268,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "PPNeueMontreal",
+          "source": "custom",
+          "weights": [
+            200,
+            400,
+            600,
+            700
+          ],
+          "frequency": 520,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "PPNeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "list",
+            "card",
+            "link",
+            "body",
+            "icon",
+            "button"
+          ],
+          "frequency": 166,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "PPNeueMontreal",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "PPNeueMontreal",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 55,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "PPNeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "PPNeueMontreal",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 34,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "PPNeueMontreal",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "PPNeueMontreal",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.81,
+          "letterSpacing": 0.021,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "PPNeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "PPNeueMontreal",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "PPNeueMontreal",
+          "weight": 200,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 61,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "PPNeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "PPNeueMontreal",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "PPNeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "PPNeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "PPNeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "PPNeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 60,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "PPNeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 78,
+          "family": "PPNeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 78,
+          "family": "PPNeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 113,
+          "family": "PPNeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/92d5991f-c189-4760-a24d-5266931e59f1.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f61d97ce-ac56-401b-b13e-f717b3e0a005.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e5f5f8cf-e68d-4ed1-bbf5-6b67569af648#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Your workplace has the answer. Just ask Dala for it. design system\",\"item\":\"https://styles.refero.design/style/e5f5f8cf-e68d-4ed1-bbf5-6b67569af648\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e5f5f8cf-e68d-4ed1-bbf5-6b67569af648#style-reference\",\"name\":\"Your workplace has the answer. Just ask Dala for it. design system reference\",\"headline\":\"Your workplace has the answer. design system | Refero Styles\",\"description\":\"Explore Your workplace has the answer. Just ask Dala for it.'s dark AI design system: Void #000000, Bone White #ffffff colors, PPNeueMontreal typography,...\",\"url\":\"https://styles.refero.design/style/e5f5f8cf-e68d-4ed1-bbf5-6b67569af648\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e5f5f8cf-e68d-4ed1-bbf5-6b67569af648\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Your workplace has the answer. Just ask Dala for it.\",\"url\":\"https://dala.craftedbygc.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e5f5f8cf-e68d-4ed1-bbf5-6b67569af648#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f61d97ce-ac56-401b-b13e-f717b3e0a005.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f61d97ce-ac56-401b-b13e-f717b3e0a005.jpg\",\"caption\":\"Screenshot of Your workplace has the answer. Just ask Dala for it.\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f61d97ce-ac56-401b-b13e-f717b3e0a005.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Your workplace has the answer. Just ask Dala for it. design system\",\"Your workplace has the answer. Just ask Dala for it. website design\",\"Your workplace has the answer. Just ask Dala for it. colors\",\"Your workplace has the answer. Just ask Dala for it. typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Void\",\"Bone White\",\"Ash Gray\",\"Silver Mist\",\"PPNeueMontreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Your workplace has the answer. Just ask Dala for it. design system\"},{\"@type\":\"Thing\",\"name\":\"Your workplace has the answer. Just ask Dala for it. website design\"},{\"@type\":\"Thing\",\"name\":\"Your workplace has the answer. Just ask Dala for it. colors\"},{\"@type\":\"Thing\",\"name\":\"Your workplace has the answer. Just ask Dala for it. typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-30T02:33:57.026Z\",\"dateModified\":\"2026-04-30T02:33:57.026Z\"}]}"
+}

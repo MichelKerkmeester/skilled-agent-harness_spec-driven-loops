@@ -1,0 +1,64 @@
+@theme {
+  /* Colors */
+  --color-varo-violet: #8c58d0;
+  --color-deep-plum: #42185f;
+  --color-lilac-mist: #cdb0fa;
+  --color-coral-ember: #ed6c52;
+  --color-salmon-wash: #f2a295;
+  --color-butter-cream: #faefdc;
+  --color-lemon-zest: #fdf0af;
+  --color-lime-pulse: #d4e84b;
+  --color-forest-ink: #183428;
+  --color-mustard-shadow: #4a4216;
+  --color-carbon: #000000;
+  --color-paper-white: #ffffff;
+  --color-soft-ash: #1c1c1c;
+  --color-concrete: #939393;
+  --color-fog: #eff2f5;
+
+  /* Typography */
+  --font-neue-haas-grotesk-display: 'Neue Haas Grotesk Display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-national-2-compressed: 'National 2 Compressed', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-times: 'Times', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-metropolis: 'Metropolis', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.33;
+  --tracking-caption: 0.24px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.2;
+  --tracking-body-sm: -0.004px;
+  --text-body: 16px;
+  --leading-body: 1.4;
+  --text-subheading: 20px;
+  --leading-subheading: 1.28;
+  --text-heading-sm: 28px;
+  --leading-heading-sm: 1.2;
+  --text-heading: 36px;
+  --leading-heading: 1.17;
+  --text-heading-lg: 52px;
+  --leading-heading-lg: 1.11;
+  --tracking-heading-lg: -0.676px;
+  --text-display: 96px;
+  --leading-display: 0.95;
+  --tracking-display: -0.96px;
+  --text-display-xl: 147px;
+  --leading-display-xl: 0.8;
+  --tracking-display-xl: -1.47px;
+
+  /* Spacing */
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+}

@@ -1,0 +1,644 @@
+{
+  "color": {
+    "parchment": {
+      "$value": "#e2dedb",
+      "$type": "color",
+      "$description": "Parchment — Page background, image matte areas — the warm stock everything else is printed on"
+    },
+    "bone-cream": {
+      "$value": "#cdc6be",
+      "$type": "color",
+      "$description": "Bone Cream — Card surfaces, secondary panels, subtle inset backgrounds slightly darker than parchment"
+    },
+    "ink-black": {
+      "$value": "#1d1d1b",
+      "$type": "color",
+      "$description": "Ink Black — Body text, nav links, borders, large display banner fills, icon strokes — the near-black that carries every contrast-critical role"
+    },
+    "charcoal": {
+      "$value": "#69645f",
+      "$type": "color",
+      "$description": "Charcoal — Muted secondary text, subdued borders, quiet typographic accents"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Card outline emphasis, deepest fills, highest-contrast border work on cream surfaces"
+    },
+    "ember-orange": {
+      "$value": "#c03f13",
+      "$type": "color",
+      "$description": "Ember Orange — Stamp illustrations, star icon accent, occasional seal/sticker color — the single chromatic punctuation in an otherwise monochrome system"
+    }
+  },
+  "font": {
+    "editorial-new": {
+      "$value": "Editorial New",
+      "$type": "fontFamily",
+      "$description": "Body text, nav, links, card descriptions, smaller headings — the workhorse serif"
+    },
+    "canopee": {
+      "$value": "Canopee",
+      "$type": "fontFamily",
+      "$description": "Display headlines and section titles — the signature font for oversize banners (MIRANDA, WEBSITE, INTERACTIVE ARTIST!)"
+    },
+    "domaine-display": {
+      "$value": "Domaine Display",
+      "$type": "fontFamily",
+      "$description": "Mid-weight display headings, body emphasis, secondary hero text — bridges Editorial New's restraint and Canopee's drama"
+    },
+    "germgoth": {
+      "$value": "Germgoth",
+      "$type": "fontFamily",
+      "$description": "Rare gothic/blackletter accent — used for occasional impact moments that need medieval or poster-poster weight"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "17px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "19px",
+        "fontWeight": 300,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Domaine Display",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 0.93
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Domaine Display",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 0.81
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "29px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "31px",
+        "fontWeight": 300,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 31px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.91
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 32px"
+    },
+    "3xl-5": {
+      "$value": {
+        "fontFamily": "Domaine Display",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 0.91
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-5 at 32px"
+    },
+    "3xl-6": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-6 at 32px"
+    },
+    "3xl-7": {
+      "$value": {
+        "fontFamily": "Domaine Display",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 0.91
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-7 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "37px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 37px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "43px",
+        "fontWeight": 400,
+        "lineHeight": 0.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "65px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 65px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "65px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 65px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Domaine Display",
+        "fontSize": "65px",
+        "fontWeight": 500,
+        "lineHeight": 0.67
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 65px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 72px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Domaine Display",
+        "fontSize": "72px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 72px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "86px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 86px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Domaine Display",
+        "fontSize": "86px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 86px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "86px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 86px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "86px",
+        "fontWeight": 400,
+        "lineHeight": 0.67
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 86px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "109px",
+        "fontWeight": 400,
+        "lineHeight": 0.79
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 109px"
+    },
+    "5xl-11": {
+      "$value": {
+        "fontFamily": "Domaine Display",
+        "fontSize": "109px",
+        "fontWeight": 500,
+        "lineHeight": 0.79
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-11 at 109px"
+    },
+    "5xl-12": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "112px",
+        "fontWeight": 400,
+        "lineHeight": 0.77
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-12 at 112px"
+    },
+    "5xl-13": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "118px",
+        "fontWeight": 400,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-13 at 118px"
+    },
+    "5xl-14": {
+      "$value": {
+        "fontFamily": "Domaine Display",
+        "fontSize": "118px",
+        "fontWeight": 500,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-14 at 118px"
+    },
+    "5xl-15": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "122px",
+        "fontWeight": 400,
+        "lineHeight": 0.78
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-15 at 122px"
+    },
+    "5xl-16": {
+      "$value": {
+        "fontFamily": "Domaine Display",
+        "fontSize": "122px",
+        "fontWeight": 500,
+        "lineHeight": 0.78
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-16 at 122px"
+    },
+    "5xl-17": {
+      "$value": {
+        "fontFamily": "Germgoth",
+        "fontSize": "158px",
+        "fontWeight": 400,
+        "lineHeight": 0.55
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-17 at 158px"
+    },
+    "5xl-18": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "202px",
+        "fontWeight": 400,
+        "lineHeight": 0.71
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-18 at 202px"
+    },
+    "5xl-19": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "212px",
+        "fontWeight": 400,
+        "lineHeight": 0.68
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-19 at 212px"
+    },
+    "5xl-20": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "366px",
+        "fontWeight": 400,
+        "lineHeight": 0.79
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-20 at 366px"
+    },
+    "5xl-21": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "432px",
+        "fontWeight": 400,
+        "lineHeight": 0.67
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-21 at 432px"
+    },
+    "5xl-22": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "446px",
+        "fontWeight": 400,
+        "lineHeight": 0.65
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-22 at 446px"
+    },
+    "5xl-23": {
+      "$value": {
+        "fontFamily": "Domaine Display",
+        "fontSize": "446px",
+        "fontWeight": 500,
+        "lineHeight": 0.65
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-23 at 446px"
+    },
+    "5xl-24": {
+      "$value": {
+        "fontFamily": "Canopee",
+        "fontSize": "533px",
+        "fontWeight": 400,
+        "lineHeight": 0.65
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-24 at 533px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "43": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Spacing 43px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "65": {
+      "$value": "65px",
+      "$type": "dimension",
+      "$description": "Spacing 65px"
+    },
+    "115": {
+      "$value": "115px",
+      "$type": "dimension",
+      "$description": "Spacing 115px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2.88px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "7.2px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "11.52px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(29, 29, 27, 0.2) -4px 4px 6px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "sm-2": {
+      "$value": "rgba(29, 29, 27, 0.2) -5px 3px 6px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-2"
+    }
+  },
+  "surface": {
+    "parchment": {
+      "$value": "#e2dedb",
+      "$type": "color",
+      "$description": "Surface level 0: Page background"
+    },
+    "bone-cream": {
+      "$value": "#cdc6be",
+      "$type": "color",
+      "$description": "Surface level 1: Card and panel surface"
+    },
+    "ink-black": {
+      "$value": "#1d1d1b",
+      "$type": "color",
+      "$description": "Surface level 2: Full-width display banner fill"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Deepest card border emphasis"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.niccolomiranda.com",
+      "siteName": "Miranda",
+      "extractedAt": "2026-06-03T19:16:57.231Z",
+      "variant": "extended"
+    }
+  }
+}

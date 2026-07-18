@@ -1,0 +1,367 @@
+{
+  "color": {
+    "cream-paper": {
+      "$value": "#fbf8f6",
+      "$type": "color",
+      "$description": "Cream Paper — Page canvas, hero backgrounds, warm base layer beneath white cards"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, search field background, raised panels, inverted text on dark buttons"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal — Secondary text, form field borders, body copy, inactive link text"
+    },
+    "smoke": {
+      "$value": "#6c6a6a",
+      "$type": "color",
+      "$description": "Smoke — Muted helper text, tertiary metadata, low-emphasis labels"
+    },
+    "ash": {
+      "$value": "#dadada",
+      "$type": "color",
+      "$description": "Ash — Divider lines, input borders, inactive card outlines, subtle separators between rows"
+    },
+    "butter-highlight": {
+      "$value": "#f1f29f",
+      "$type": "color",
+      "$description": "Butter Highlight — Yellow outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "graphik": {
+      "$value": "Graphik",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body sans-serif. Weight 100 at 22–30px carries display and feature headlines with an almost wireframe-thin feel — the opposite of SaaS-bold; this is editorial restraint. Weight 400 handles body, nav, buttons, and dense metadata."
+    },
+    "nantes": {
+      "$value": "Nantes",
+      "$type": "fontFamily",
+      "$description": "Editorial serif for hero and section headlines. Tight leading (1.23 at 52px) lets the serifs do the work of personality. The contrast between a humanist serif headline and a near-weightless sans body is the site's most recognizable typographic gesture."
+    },
+    "graphik-fix-variant": {
+      "$value": "Graphik (fix variant)",
+      "$type": "fontFamily",
+      "$description": "Corrected variant of Graphik used inside inputs, small buttons, and form elements where kerning fidelity matters most"
+    },
+    "graphikfix": {
+      "$value": "Graphik_fix",
+      "$type": "fontFamily",
+      "$description": "Graphik_fix — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "graphik",
+        "fontSize": "14px",
+        "fontWeight": 200,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Graphik_fix",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "graphik",
+        "fontSize": "14px",
+        "fontWeight": 200,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "graphik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "graphik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Graphik_fix",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "graphik",
+        "fontSize": "16px",
+        "fontWeight": 200,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "graphik",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "graphik",
+        "fontSize": "18px",
+        "fontWeight": 200,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "graphik",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "graphik",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "nantes",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "nantes",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "30px",
+        "fontWeight": 100,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "nantes",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "nantes",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#fbf8f6",
+      "$type": "color",
+      "$description": "Surface level 0: Warm cream background across the entire page; primary canvas tone"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: White product cards, elevated panels, search input field, pill chips"
+    },
+    "elevated-overlay": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Modals, dropdowns, sticky header bar; same white as cards but visually stacked via thin 1px borders"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.faire.com",
+      "siteName": "Faire ES",
+      "extractedAt": "2026-06-03T16:34:36.808Z",
+      "variant": "extended"
+    }
+  }
+}

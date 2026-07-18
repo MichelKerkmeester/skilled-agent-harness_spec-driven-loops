@@ -1,0 +1,265 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#030303",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, hairlines, ghost button borders, product card outlines, icon strokes — the dominant structural color; sets all copy and dividers against white and cream surfaces"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, product card backgrounds, inverse text on black buttons and dark imagery"
+    },
+    "parchment-cream": {
+      "$value": "#f6eada",
+      "$type": "color",
+      "$description": "Parchment Cream — Warm accent surface, hairline borders, subtle highlight washes — the only chromatic note in the system; appears sparingly as tint, never as bold fill, to echo natural ingredient warmth without competing with photography"
+    },
+    "ash-gray": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Ash Gray — Disabled/placeholder surfaces, secondary background panels behind product imagery"
+    },
+    "stone-gray": {
+      "$value": "#dad9d5",
+      "$type": "color",
+      "$description": "Stone Gray — Soft secondary surface, muted card backgrounds for non-primary content blocks"
+    },
+    "pencil-gray": {
+      "$value": "#807e81",
+      "$type": "color",
+      "$description": "Pencil Gray — Medium-contrast borders, control outlines, and structural separators. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "founders-grotesk": {
+      "$value": "Founders Grotesk",
+      "$type": "fontFamily",
+      "$description": "Primary display and body family. Weight 300 carries all headlines and large editorial copy — the ultra-light cut is the signature voice: most fragrance sites use 600–700, this whisper-weight gives headlines a typeset, almost printed feel. Weight 500 handles body text, descriptions, and navigation labels where more presence is needed. Letter-spacing opens slightly (+0.01 to +0.02em) at display sizes for an airy editorial cadence."
+    },
+    "founders-grotesk-mono": {
+      "$value": "Founders Grotesk Mono",
+      "$type": "fontFamily",
+      "$description": "Functional monospaced voice for every UI element: buttons, nav labels, announcement bar copy, tags, section titles, input fields, and link text. Always set uppercase with positive tracking (+0.03em) — this monospaced uppercase is what makes the interface read as a typeset label system rather than a typical web UI. At 28px it becomes a section heading style with tight line-height (0.92), creating a distinctive compressed mono display."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Founders Grotesk Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Founders Grotesk Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Founders Grotesk Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Founders Grotesk Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "13px",
+        "fontWeight": 300,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Founders Grotesk Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Founders Grotesk Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "15px",
+        "fontWeight": 300,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Founders Grotesk Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Founders Grotesk Mono",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas — product detail pages, editorial sections, and the dominant surface for all non-hero content."
+    },
+    "stone-gray": {
+      "$value": "#dad9d5",
+      "$type": "color",
+      "$description": "Surface level 1: Recessed background panels for product carousels and grouping blocks."
+    },
+    "parchment-cream": {
+      "$value": "#f6eada",
+      "$type": "color",
+      "$description": "Surface level 2: Warm accent surface — the only chromatic elevation tier, used for featured panels and hairline borders."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://abelfragrance.com",
+      "siteName": "Abel",
+      "extractedAt": "2026-06-03T21:54:29.098Z",
+      "variant": "extended"
+    }
+  }
+}

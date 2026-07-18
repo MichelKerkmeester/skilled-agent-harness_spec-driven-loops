@@ -1,0 +1,227 @@
+{
+  "color": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Page canvas, hero background, all primary surface area. Sets the dark-stage tone for every screen"
+    },
+    "bone": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Bone — Hairline borders, dividers, and muted secondary text. The workhorse neutral that defines edges without adding visual weight"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Primary headings, body text, nav links, and icon strokes. Maximum contrast against Void for clear information hierarchy"
+    },
+    "graphite": {
+      "$value": "#4d4d4d",
+      "$type": "color",
+      "$description": "Graphite — Subtle nav borders and disabled/inactive state lines. Sits between Void and Bone for low-emphasis structural lines"
+    },
+    "spectrum-wash": {
+      "$value": "#1b66f8",
+      "$type": "color",
+      "$description": "Spectrum Wash — Hero accent gradient — applied to a single headline word and the floating torus visual. Cool blue midpoint of the signature violet→blue→teal→lavender ramp"
+    },
+    "deep-field": {
+      "$value": "#1e233c",
+      "$type": "color",
+      "$description": "Deep Field — Footer band gradient origin — near-black indigo transitioning into brand blue. Defines the bottom-of-page atmospheric shift"
+    },
+    "atmospheric-fade": {
+      "$value": "#1951a2",
+      "$type": "color",
+      "$description": "Atmospheric Fade — Secondary gradient — blue-to-mint wash used in supporting visuals and transitional bands. Cooler, more subdued than the hero spectrum"
+    }
+  },
+  "font": {
+    "valo": {
+      "$value": "Valo",
+      "$type": "fontFamily",
+      "$description": "Exclusive typeface across all UI: nav links, body copy, section labels, and display headlines. Weight 300 carries headlines and body — the anti-convention whisper-weight creates scientific authority through restraint. Weight 700 is reserved for micro-labels and the few moments that need to anchor a page. The custom cut of this single family is the brand voice."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Valo",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Valo",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Valo",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Valo",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Valo",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Valo",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Valo",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Valo",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Valo",
+        "fontSize": "30px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Valo",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Valo",
+        "fontSize": "60px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Valo",
+        "fontSize": "100px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 100px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "108": {
+      "$value": "108px",
+      "$type": "dimension",
+      "$description": "Spacing 108px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed page background — the dominant surface for hero, content, and mid-page sections."
+    },
+    "gradient-footer-band": {
+      "$value": "#1b66f8",
+      "$type": "color",
+      "$description": "Surface level 2: Atmospheric full-width wash at the page foot, blending teal, blue, and violet to close the visual story."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.valohealth.com",
+      "siteName": "Valo",
+      "extractedAt": "2026-06-03T20:45:04.791Z",
+      "variant": "extended"
+    }
+  }
+}

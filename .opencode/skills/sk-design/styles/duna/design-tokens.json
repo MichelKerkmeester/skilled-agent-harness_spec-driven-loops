@@ -1,0 +1,499 @@
+{
+  "color": {
+    "aubergine-ink": {
+      "$value": "#1b0624",
+      "$type": "color",
+      "$description": "Aubergine Ink — Primary text, heading borders, and brand character — the slight warm-purple undertone replaces conventional near-black, giving Duna a distinctive almost-black that is neither pure black nor navy"
+    },
+    "espresso": {
+      "$value": "#160f0c",
+      "$type": "color",
+      "$description": "Espresso — Primary action fill — filled buttons (Get started, Schedule a demo). Slightly warmer and darker than Aubergine Ink, used exclusively for interactive surfaces that need to feel pressed-into the page"
+    },
+    "warm-ash": {
+      "$value": "#766a7c",
+      "$type": "color",
+      "$description": "Warm Ash — Muted secondary text and subtle borders — a desaturated warm gray that softens long-form copy without competing with the primary text"
+    },
+    "graphite": {
+      "$value": "#444444",
+      "$type": "color",
+      "$description": "Graphite — Body text variant, icon strokes, input borders — the workhorse neutral for non-heading content"
+    },
+    "stone": {
+      "$value": "#898683",
+      "$type": "color",
+      "$description": "Stone — Tertiary text and dividers — a lighter warm gray for labels, metadata, and less important copy"
+    },
+    "onyx": {
+      "$value": "#0d0d0d",
+      "$type": "color",
+      "$description": "Onyx — Icon fills and select text instances — the deepest near-black in the scale, reserved for graphic emphasis"
+    },
+    "smoke": {
+      "$value": "#1a1816",
+      "$type": "color",
+      "$description": "Smoke — Icon borders, card edge cases, and dark UI elements — a warm-tinted dark for graphical components"
+    },
+    "charcoal": {
+      "$value": "#292421",
+      "$type": "color",
+      "$description": "Charcoal — Heading borders and dark decorative fills — a warm brown-black for borders on headings and subtle structural elements"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary surface — cards, buttons, and the dominant page background"
+    },
+    "linen": {
+      "$value": "#f7f7f5",
+      "$type": "color",
+      "$description": "Linen — Warm canvas background — the off-white page tint that gives the entire system its warm, paper-like atmosphere instead of clinical pure white"
+    },
+    "bone": {
+      "$value": "#edece7",
+      "$type": "color",
+      "$description": "Bone — Card surfaces and subtle elevated panels — a barely-warm cream for cards sitting on the Linen canvas"
+    },
+    "mist": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Mist — Input field background — the only functional surface tint that signals a fillable area"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "gt-america": {
+      "$value": "GT America",
+      "$type": "fontFamily",
+      "$description": "Primary typeface across all UI — body at 400, emphasis at 500, display at 400 with aggressive negative tracking. The compressed, geometric forms at large sizes give headlines an editorial, almost legal-document authority rather than the typical rounded SaaS friendliness."
+    },
+    "gt-america-regular": {
+      "$value": "GT America Regular",
+      "$type": "fontFamily",
+      "$description": "GT America Regular — detected in extracted data but not described by AI"
+    },
+    "gt-america-trial-rg": {
+      "$value": "GT America Trial Rg",
+      "$type": "fontFamily",
+      "$description": "GT America Trial Rg — detected in extracted data but not described by AI"
+    },
+    "gt-america-trial-md": {
+      "$value": "GT America Trial Md",
+      "$type": "fontFamily",
+      "$description": "GT America Trial Md — detected in extracted data but not described by AI"
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Inter — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "GT America Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "GT America Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "GT America Trial Rg",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "GT America Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "GT America Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "GT America Trial Rg",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "GT America Trial Rg",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "GT America Trial Md",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.76
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "GT America Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "GT America Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "GT America Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "GT America Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "GT America Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "GT America Medium",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "GT America Regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "GT America Regular",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "GT America Regular",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "GT America Regular",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "GT America Regular",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "GT America Trial Md",
+        "fontSize": "80px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "799px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "959px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    },
+    "full-5": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full-5"
+    },
+    "full-6": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-6"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "linen-canvas": {
+      "$value": "#f7f7f5",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background — the warm off-white that gives the entire system its paper-like atmosphere"
+    },
+    "paper-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Card surfaces, elevated panels, and button fills"
+    },
+    "bone-panel": {
+      "$value": "#edece7",
+      "$type": "color",
+      "$description": "Surface level 3: Subtle surface variation for nested cards or sectioned panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://duna.com",
+      "siteName": "Duna",
+      "extractedAt": "2026-06-03T17:17:21.465Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,377 @@
+{
+  "color": {
+    "abyss-teal": {
+      "$value": "#75b6b5",
+      "$type": "color",
+      "$description": "Abyss Teal — Teal text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "mint-beacon": {
+      "$value": "#0be291",
+      "$type": "color",
+      "$description": "Mint Beacon — Green text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "coral-ember": {
+      "$value": "#f4706b",
+      "$type": "color",
+      "$description": "Coral Ember — Decorative icon accent — used sparingly in nav icons and the hero illustration's mountain highlights. Warm counterpoint to the cool teal/mint palette"
+    },
+    "lavender-mist": {
+      "$value": "#e4cbf2",
+      "$type": "color",
+      "$description": "Lavender Mist — Hero atmosphere — the soft lavender backdrop of the hero section and mountain illustration sky. Only used in the hero band; never in component surfaces or UI chrome"
+    },
+    "void": {
+      "$value": "#101e1e",
+      "$type": "color",
+      "$description": "Void — Page canvas and primary action background — the base layer of the dark theme and the fill of filled CTA buttons (Enter Studio, Discord). Slightly green-tinted black rather than pure neutral"
+    },
+    "carbon": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Carbon — Deep surface — code block backgrounds, terminal interiors, darkest elevated layers. One step below void for maximum contrast terminal aesthetic"
+    },
+    "slate": {
+      "$value": "#162929",
+      "$type": "color",
+      "$description": "Slate — Mid surface and hairline borders — card backgrounds, button borders, dividers. Bridges between void and the lighter elevated steps"
+    },
+    "graphite": {
+      "$value": "#3b4949",
+      "$type": "color",
+      "$description": "Graphite — Elevated card surface and hover-state fills — the topmost card tier, used for testimonial cards and hover backgrounds"
+    },
+    "fog": {
+      "$value": "#718b8b",
+      "$type": "color",
+      "$description": "Fog — Muted text and inactive nav icons — body helper text, inactive nav glyphs, secondary metadata. The de-emphasized reading layer"
+    },
+    "ash": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Ash — Hairline borders and dividers — the universal 1px border color used across nav, cards, icons, and structural separators. Primary border token"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Primary text and icon fill — all high-emphasis body copy, headings, and filled icon shapes. The top of the text contrast scale"
+    }
+  },
+  "font": {
+    "poppins": {
+      "$value": "Poppins",
+      "$type": "fontFamily",
+      "$description": "All UI and display copy. Weight 300 dominates display and hero headings, creating an unusually quiet headline voice — the database speaks softly. Weight 400 for body and nav, 500 for button labels and emphasized metadata, 700 reserved for rare structural emphasis."
+    },
+    "monospace": {
+      "$value": "monospace",
+      "$type": "fontFamily",
+      "$description": "Code snippets, terminal output, SQL examples, and inline technical tokens. System monospace at a single small size — functional, not decorative."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "monospace",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.78
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "22px",
+        "fontWeight": 300,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#101e1",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the base dark layer across all interior sections"
+    },
+    "mid-surface": {
+      "$value": "#162929",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle card backgrounds and structural borders — bridges void and elevated"
+    },
+    "elevated-card": {
+      "$value": "#3b4949",
+      "$type": "color",
+      "$description": "Surface level 2: Testimonial and elevated content cards"
+    },
+    "terminal": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 3: Code blocks and deepest UI elements — the darkest tier for maximum contrast"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://tableland.xyz",
+      "siteName": "Tableland",
+      "extractedAt": "2026-06-03T22:01:16.268Z",
+      "variant": "extended"
+    }
+  }
+}

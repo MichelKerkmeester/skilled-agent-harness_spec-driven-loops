@@ -1,0 +1,1406 @@
+{
+  "source": "https://styles.refero.design/style/1b13360a-cdca-4798-969d-57ebb20a3b30",
+  "uuid": "1b13360a-cdca-4798-969d-57ebb20a3b30",
+  "name": "Dyotanya",
+  "northStar": "Editorial sketchbook on warm paper — oversized serif confessions floating between hand-drawn squiggles",
+  "capturedAt": "2026-07-18T09:53:00.642Z",
+  "meta": {
+    "url": "https://dyotanya.com/en",
+    "siteName": "Dyotanya",
+    "extractedAt": "2026-06-03T17:38:38.584Z",
+    "durationMs": 29551,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1516,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Simeiz weight 300 for all display headlines at 46–80px with line-height 1.0 — the thin serif at large size is the site's identity.",
+      "Apply 3000px border-radius to pill buttons and decorative elements to create the organic capsule silhouette.",
+      "Add 5px -5px 0px 0px #333333 hard offset shadows to every card and 4px -4px 0px 0px to every button — this pasted-paper effect is the elevation system.",
+      "Mix roman and italic Simeiz within the same headline to create emotional rhythm (e.g. 'as unique as they are' all italic).",
+      "Use #ff8562 exclusively for inline link text and never for backgrounds or borders.",
+      "Set 1.5px #81aed9 borders on cards and inputs — the dusty blue is the only decorative chromatic border in the system.",
+      "Layer 1.5px #000000 hand-drawn SVG squiggles as connective tissue between text and card elements."
+    ],
+    "donts": [
+      "Never use soft drop-shadows, blur, or opacity-based elevation — the hard offset border is the only acceptable depth technique.",
+      "Never use #ff8562 as a button background or border — it is link text only.",
+      "Never use Manrope for headlines or large display text — Simeiz owns everything above 20px.",
+      "Never set border-radius below 20px on interactive elements — the system requires soft, generous rounding.",
+      "Never use pure white (#ffffff) as the page background — #f5f5f3 is the warm paper that grounds the entire system.",
+      "Never use multiple chromatic colors on the same element — the palette is intentionally desaturated, so a dusty blue border with a coral link is already the maximum color load.",
+      "Never align text in rigid left-justified blocks for hero content — the layout relies on mixed centering and scattered positioning for its editorial feel."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f5f5f3",
+        "name": "Warm Paper",
+        "role": "Page background, card surfaces, text on dark elements — the warm off-white that replaces pure white and gives the entire site its analog, paper-like quality",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, hairline borders, decorative line illustrations, icon strokes — the dominant neutral that carries nearly all UI information",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Charcoal",
+        "role": "Offset hard-shadow borders on cards and buttons, secondary text, surface backgrounds for inverted elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Elevated card surfaces, button text on dark fills, subtle highlights",
+        "group": "neutral"
+      },
+      {
+        "hex": "#81aed9",
+        "name": "Dusty Sky",
+        "role": "Decorative card borders, input borders, link borders, blue brand stroke — muted and desaturated so it reads as ink wash rather than digital blue",
+        "group": "brand"
+      },
+      {
+        "hex": "#55a1ea",
+        "name": "Cobalt Wash",
+        "role": "Brighter blue accent for interactive borders and link states when more chromatic presence is needed than the dusty default",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff8562",
+        "name": "Coral Link",
+        "role": "Inline link text color — the single warm chromatic note in the entire system, used sparingly to mark navigable text",
+        "group": "accent"
+      }
+    ],
+    "layout": "The layout is editorial and asymmetric rather than grid-locked. The hero is a full-bleed warm-paper canvas with a large flowing serif headline that wraps around inline elements (portrait avatar, hand-drawn lines) — text and image share the same horizontal flow rather than splitting into a two-column grid. The portfolio section uses a staggered, overlapping card layout where client cards are positioned at varying heights and sizes (some large, some small) with connecting SVG lines between them, rather than a uniform 3-column grid. Section padding is generous (80px+) and section rhythm flows seamlessly — no hard dividers, no alternating dark/light bands. The page is contained to roughly 1200px max-width but the hand-drawn lines and oversized type frequently break containment. Navigation is minimal: a single circular hamburger trigger in the top-right corner. The overall density is low — lots of breathing room lets the oversized 80px Simeiz headlines and scattered decorative lines carry the visual weight.",
+    "imagery": "Imagery is sparse and intentional: a single small circular portrait of the designer sits inline with the hero text, and client project images are cropped into perfect circles (120px radius) at the top of showcase cards. The project images are photographic (black-and-white tattoo artistry, warm interior design) but always desaturated or muted to match the paper-and-ink palette. There are no full-bleed hero images, no lifestyle photography, no product mockups — the only photographs are circular headshots and circular project thumbnails. The dominant visual element is actually the hand-drawn 1.5px black line illustrations (SVG squiggles) that weave across the layout like a designer's pen marks on tracing paper. Icons are minimal (hamburger, trophy emoji); the system relies on type and line work rather than iconography.",
+    "similar": [
+      {
+        "why": "Same editorial-sketchbook approach: warm off-white canvas, oversized mixed-roman-and-italic serif headlines, hand-drawn SVG line illustrations weaving through layouts, and a desaturated dusty-blue accent.",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Same oversized serif at display scale paired with hand-drawn squiggle decorations, and a similar reliance on a single warm accent color against an off-white paper background.",
+        "business": "Rauno Freiberg (raunofreiberg.com)"
+      },
+      {
+        "why": "Same editorial-meets-illustration sensibility with circular image crops, serif headlines, and a collage-like layout that breaks grid conventions.",
+        "business": "Studio Job (studiojob.be)"
+      },
+      {
+        "why": "Same offset hard-shadow card treatment and editorial typography hierarchy where oversized serif headlines carry the page weight with minimal UI chrome.",
+        "business": "Pentagram (pentagram.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "body": "1.5px",
+        "cards": "20-30px",
+        "pills": "3000px",
+        "images": "120px",
+        "inputs": "30px",
+        "buttons": "30px"
+      },
+      "elementGap": "10-20px",
+      "sectionGap": "80px",
+      "cardPadding": "48px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f5f5f3",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Base page canvas — warm off-white that absorbs all content like a sketchbook page"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 2,
+        "purpose": "Elevated card surfaces for client showcases, appearing as white paper pasted onto the warm canvas"
+      },
+      {
+        "hex": "#333333",
+        "name": "Inverted",
+        "level": 3,
+        "purpose": "Dark surface for high-contrast sections or inverted UI moments"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "5px -5px 0px 0px #333333",
+        "element": "Cards"
+      },
+      {
+        "style": "4px -4px 0px 0px #333333",
+        "element": "Buttons"
+      }
+    ],
+    "northStar": "Editorial sketchbook on warm paper — oversized serif confessions floating between hand-drawn squiggles",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.56
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.55
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.35
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Serif Statement",
+        "role": "Landing page headline block",
+        "description": "Full-width section with 80px Simeiz weight 300, line-height 1.0. Text flows across the page mixing roman and italic: 'Hey there! I'm Tanya. And I help brands to appear on the web as unique as they are.' Words like 'unique' and 'they are' switch to italic weight 400 for emotional emphasis. Thin 1.5px black curved lines weave between text fragments as hand-drawn doodles. A small circular portrait (120px radius) of the designer sits inline with the text."
+      },
+      {
+        "name": "Pill CTA Button",
+        "role": "Primary call-to-action",
+        "description": "Massive 3000px border-radius capsule with 1.5px black border, 48px vertical padding, full width of container or auto-width centered. Text in Manrope weight 500, 14px, uppercase letter-spaced, #000000. Hard offset shadow: 4px -4px 0px 0px #333333. Background #ffffff. The extreme radius makes buttons look like soft organic pills rather than geometric shapes."
+      },
+      {
+        "name": "Client Showcase Card",
+        "role": "Portfolio item card",
+        "description": "White (#ffffff) card with 30px border-radius, 1.5px dusty-sky (#81aed9) border, 48px padding. Hard offset shadow 5px -5px 0px 0px #333333 creates the pasted-paper effect. Contains a circular 120px-radius image at top, a trophy emoji badge floating bottom-right of image, a 01/02 numeric index in Simeiz, a heading in Simeiz 30px, and a short description in Manrope 14px. Cards overlap and stagger in layout rather than forming a rigid grid."
+      },
+      {
+        "name": "Circular Portrait Avatar",
+        "role": "Designer headshot inline with hero text",
+        "description": "Image cropped to 120px border-radius (perfect circle), 1.5px black border. Small enough to sit inside flowing headline text as an inline element, reinforcing the conversational, personal tone of the hero."
+      },
+      {
+        "name": "Hamburger Menu Trigger",
+        "role": "Site navigation toggle",
+        "description": "Top-right circular button, 1.5px black border, ~40px diameter. Contains three short horizontal lines forming a hamburger glyph in Manrope weight 500. Same hard offset shadow as buttons. Opens full-screen overlay navigation."
+      },
+      {
+        "name": "Trophy Badge",
+        "role": "Project achievement indicator",
+        "description": "Small white circle (30px) with 1.5px black border, positioned absolutely bottom-right of client card images. Contains a 🏆 emoji centered. Acts as a micro-credential signal for portfolio pieces."
+      },
+      {
+        "name": "Hand-Drawn Line Decoration",
+        "role": "Atmospheric connective element",
+        "description": "SVG paths at 1.5px stroke #000000, no fill, freely curving and looping across sections. These squiggles connect cards, underline text, and weave through layouts — the signature decorative motif that gives the site its hand-drawn sketchbook character. Renders as inline SVG, never rasterized."
+      },
+      {
+        "name": "Section Index Marker",
+        "role": "Section number label",
+        "description": "Small Simeiz weight 300 numeric (01, 02) in #000000, positioned at the left edge of section headers. Acts as an editorial table-of-contents marker, reinforcing the magazine-like structure."
+      },
+      {
+        "name": "Parenthetical Caption",
+        "role": "Supporting descriptive text",
+        "description": "Short Manrope 14px weight 400 text wrapped in typographic parentheses ( ), positioned adjacent to headlines. Used for sub-descriptions like '(Empathic web designer with a creative approach to work)'. The parentheses are literal characters, not decorative elements."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form input",
+        "description": "30px border-radius, 1.5px dusty-sky (#81aed9) border, 20px horizontal padding, Manrope 16px placeholder text in #828282. No visible focus ring change — the dusty-blue border is already distinctive enough to signal interactivity."
+      }
+    ],
+    "typography": [
+      {
+        "role": "System serif fallback at body size — appears as a safety net for Simeiz when custom font fails to load",
+        "sizes": "16",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Times New Roman"
+      },
+      {
+        "role": "Display and heading serif — the signature typeface. Used at 80px for hero statements, 46–48px for section titles, 24–30px for sub-headings, 16–18px for emphasis in body. Weight 300 creates thin elegant strokes; weight 400 for italic emphasis on emotional words like 'unique' and 'they are'. Free substitute: Playfair Display or DM Serif Display for the italic play, though Simeiz's high contrast is distinctive.",
+        "sizes": "16, 18, 24, 30, 46, 48, 80",
+        "family": "Simeiz",
+        "weight": "300, 400",
+        "lineHeight": "1.00–1.56",
+        "substitute": "Playfair Display",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Body, UI labels, button text, captions — handles everything functional. Tighter letter-spacing at -0.036em is the only tracked value in the system and gives a contemporary geometric counterpoint to the editorial serif headlines.",
+        "sizes": "12, 13, 14, 16, 18",
+        "family": "Manrope",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.20–1.58",
+        "substitute": "Inter or DM Sans",
+        "letterSpacing": "-0.0360em"
+      },
+      {
+        "role": "Suisse Intl — detected in extracted data but not described by AI",
+        "sizes": "14px",
+        "family": "Suisse Intl",
+        "weight": "450",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Dyotanya is an editorial sketchbook brought to life: a warm off-white paper canvas scattered with hand-drawn thin black lines, oversized serif headlines that mix roman and italic for emotional rhythm, and dusty blue accents that feel like risograph ink. The interface avoids conventional elevation in favor of offset hard-shadow borders (5px down-and-left solid #333333) that make every card and button feel pasted onto the page like a collage element. Typography does the heavy lifting — Simeiz serif at 80px whispers and shouts in the same paragraph, while Manrope handles everything functional at a much smaller scale. The single coral-orange link color and dusty-blue borders provide the only chromatic punctuation in an otherwise achromatic world.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1b13360a-cdca-4798-969d-57ebb20a3b30#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dyotanya design system\",\"item\":\"https://styles.refero.design/style/1b13360a-cdca-4798-969d-57ebb20a3b30\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1b13360a-cdca-4798-969d-57ebb20a3b30#style-reference\",\"name\":\"Dyotanya design system reference\",\"headline\":\"Dyotanya design system | Refero Styles\",\"description\":\"Explore Dyotanya's light Agency design system: Warm Paper #f5f5f3, Ink Black #000000 colors, Times, Simeiz typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/1b13360a-cdca-4798-969d-57ebb20a3b30\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1b13360a-cdca-4798-969d-57ebb20a3b30\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dyotanya\",\"url\":\"https://dyotanya.com/en\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1b13360a-cdca-4798-969d-57ebb20a3b30#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4db19c19-5896-4ed8-a303-b79309dd43c2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4db19c19-5896-4ed8-a303-b79309dd43c2.jpg\",\"caption\":\"Screenshot of Dyotanya\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4db19c19-5896-4ed8-a303-b79309dd43c2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dyotanya design system\",\"Dyotanya website design\",\"Dyotanya colors\",\"Dyotanya typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Warm Paper\",\"Ink Black\",\"Charcoal\",\"Pure White\",\"Times\",\"Simeiz\",\"Manrope\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dyotanya design system\"},{\"@type\":\"Thing\",\"name\":\"Dyotanya website design\"},{\"@type\":\"Thing\",\"name\":\"Dyotanya colors\"},{\"@type\":\"Thing\",\"name\":\"Dyotanya typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:34:50.731Z\",\"dateModified\":\"2026-04-30T01:34:50.731Z\"}]}19:T573,**Quick Color Reference**\n- text: #000000\n- background: #f5f5f3\n- card surface: #ffffff\n- border (decorative): #81aed9\n- border (functional): #000000\n- link: #ff8562\n- offset shadow: #333333\n- primary action: #81aed9 (filled action)\n\n**3 Example Component Prompts**\n\n1. **Hero Section**: Warm paper #f5f5f3 background. Display headline 'I help brands appear as unique as they are' in Simeiz weight 300, 80px, line-height 1.0, #000000. Set 'unique' and 'they are' in italic Simeiz weight 400. A 120px-radius circular portrait sits inline with the text. Thin 1.5px #000000 SVG squiggle lines weave through the text blocks.\n\n2. **Client Project Card**: White #ffffff background, 30px border-radius, 1.5px #81aed9 border, 48px padding. Hard offset shadow 5px -5px 0px 0px #333333. Circular 120px-radius grayscale project image at top. A 30px white trophy badge with 1.5px black border positioned bottom-right of the image. Simeiz 30px project name below image. Manrope 14px description in #333333. Simeiz 300 weight numeric '01' floating to the left of the card.\n\n3. **Pill Navigation Button**: 3000px border-radius capsule, 1.5px #000000 border, #ffffff background, 48px vertical padding, 40px horizontal padding. Manrope 14px weight 500, uppercase, letter-spaced, #000000 text reading 'SEE PORTFOLIO'. Hard offset shadow 4px -4px 0px 0px #333333. Centered in its container, full width up to 600px."
+      },
+      {
+        "title": "Signature Decorative Motif",
+        "content": "The single most recognizable visual element is the hand-drawn 1.5px black SVG line that appears across all sections — looping, curving, and connecting text fragments, images, and card edges. These are not decorative afterthoughts; they are structural connective tissue. Render them as inline SVG with stroke #000000, stroke-width 1.5, fill none, using cubic-bezier curves for organic flow. They should appear to be drawn with a steady but human hand — slight imperfections in curvature are desirable, perfectly geometric arcs are not."
+      },
+      {
+        "title": "Typography Voice Rules",
+        "content": "Headlines in Simeiz are not simply large text — they are conversations. The system alternates roman and italic within the same headline to create natural speech rhythm: declarative statements in roman, emotional or emphasized words in italic. A headline like 'And I help brands to appear on the web as unique as they are' should set 'unique' and 'they are' in italic, leaving the rest in roman. This is not decoration — it is how the designer 'speaks' through type. Never set an entire headline in italic; never set an entire headline in roman. Always mix."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids soft drop-shadows and blur. Elevation is communicated through hard-edged offset solid borders — the card or button appears to be physically pasted onto the paper below, shifted down-and-left by 4–5px. This collage aesthetic replaces conventional depth cues and is the single most distinctive structural decision in the design."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "card",
+            "image",
+            "body"
+          ],
+          "frequency": 4879,
+          "confidence": 1,
+          "prominence": 165015712.35122752,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 12,
+            "body/color": 435,
+            "card/color": 35,
+            "icon/color": 7,
+            "image/color": 18,
+            "other/color": 624,
+            "body/borderColor": 1740,
+            "icon/borderColor": 28,
+            "image/borderColor": 72,
+            "other/borderColor": 1908
+          }
+        },
+        {
+          "hex": "#f5f5f3",
+          "oklch": {
+            "c": 0.0026472871000554356,
+            "h": 106.44887331750627,
+            "l": 0.9695932270308744
+          },
+          "contexts": [
+            "other",
+            "card",
+            "link",
+            "body"
+          ],
+          "frequency": 274,
+          "confidence": 1,
+          "prominence": 34892003.697255984,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 9,
+            "link/color": 1,
+            "other/color": 39,
+            "body/borderColor": 36,
+            "link/borderColor": 4,
+            "other/borderColor": 104,
+            "card/backgroundColor": 35,
+            "link/backgroundColor": 18,
+            "other/backgroundColor": 28
+          }
+        },
+        {
+          "hex": "#81aed9",
+          "oklch": {
+            "c": 0.0791829436159466,
+            "h": 247.811326752917,
+            "l": 0.7345474519488784
+          },
+          "contexts": [
+            "other",
+            "card",
+            "link",
+            "input",
+            "button"
+          ],
+          "frequency": 199,
+          "confidence": 1,
+          "prominence": 34103828.77629891,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 7,
+            "other/stroke": 6,
+            "card/borderColor": 28,
+            "link/borderColor": 24,
+            "input/borderColor": 16,
+            "other/borderColor": 92,
+            "card/backgroundColor": 9,
+            "other/backgroundColor": 16,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff8562",
+          "oklch": {
+            "c": 0.15669089110890494,
+            "h": 36.8736589254908,
+            "l": 0.7465120830437746
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 2281752.9168765275,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "link/color": 21
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body",
+            "input",
+            "card"
+          ],
+          "frequency": 1494,
+          "confidence": 1,
+          "prominence": 1847963.2734368462,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "boxShadow",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "card/color": 9,
+            "icon/color": 6,
+            "link/color": 7,
+            "other/fill": 1,
+            "input/color": 4,
+            "other/color": 229,
+            "other/stroke": 2,
+            "card/boxShadow": 9,
+            "other/boxShadow": 9,
+            "card/borderColor": 36,
+            "icon/borderColor": 24,
+            "link/borderColor": 76,
+            "other/borderColor": 628,
+            "body/backgroundColor": 424,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 29
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 870905.8508786904,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 3,
+            "button/color": 1,
+            "other/borderColor": 8,
+            "button/borderColor": 4,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#55a1ea",
+          "oklch": {
+            "c": 0.13194538201621367,
+            "h": 249.43884249009437,
+            "l": 0.6920943838441409
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 189386.46105478806,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/color": 5,
+            "link/borderColor": 4,
+            "other/borderColor": 12,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#828282",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6066192601913603
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 15656.61840031526,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 2,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#4f4f4f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4276078121301855
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 114,
+          "confidence": 1,
+          "prominence": 11301.904074109163,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/color": 29,
+            "other/stroke": 9,
+            "other/borderColor": 76
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.008771098980390593,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.24,
+          "background": "#f5f5f3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.57,
+          "background": "#333333",
+          "foreground": "#f5f5f3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.99,
+          "background": "#81aed9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.78,
+          "background": "#ff8562",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.19,
+          "background": "#ffffff",
+          "foreground": "#4f4f4f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.67,
+          "background": "#55a1ea",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.5,
+          "background": "#f5f5f3",
+          "foreground": "#4f4f4f"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.41,
+          "background": "#81aed9",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.28,
+          "background": "#333333",
+          "foreground": "#ff8562"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.62,
+          "background": "#55a1ea",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.84,
+          "background": "#ffffff",
+          "foreground": "#828282"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.52,
+          "background": "#f5f5f3",
+          "foreground": "#828282"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.51,
+          "background": "#81aed9",
+          "foreground": "#4f4f4f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.43,
+          "background": "#ff8562",
+          "foreground": "#4f4f4f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.29,
+          "background": "#333333",
+          "foreground": "#828282"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.99,
+          "background": "#55a1ea",
+          "foreground": "#4f4f4f"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.74,
+          "background": "#55a1ea",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.51,
+          "background": "#55a1ea",
+          "foreground": "#f5f5f3"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 1.5,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 424
+        },
+        {
+          "value": 3000,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 43
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 28
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "card",
+            "link",
+            "other",
+            "input"
+          ],
+          "frequency": 28
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 1000,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 91,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "card",
+            "link"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(51, 51, 51) 5px -5px 0px 0px",
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": "rgb(51, 51, 51) 4px -4px 0px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 424,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 58,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "paddingTop|input",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 15,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 36,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 1242,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Manrope",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 121,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Simeiz",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 118,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Suisse Intl",
+          "source": "custom",
+          "weights": [
+            450
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.42,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.58,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Manrope",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 34,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.29,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Manrope",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.57,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.36,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Suisse Intl",
+          "weight": 450,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "card",
+            "image",
+            "link",
+            "body"
+          ],
+          "frequency": 1242,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Manrope",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Simeiz",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Manrope",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Simeiz",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Manrope",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Simeiz",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Simeiz",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Simeiz",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "Simeiz",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "Simeiz",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "Simeiz",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "Simeiz",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Simeiz",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Simeiz",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.54,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Simeiz",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Simeiz",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/cd48f933-2e31-4c60-b158-5f5f3756ccc0.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4db19c19-5896-4ed8-a303-b79309dd43c2.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1b13360a-cdca-4798-969d-57ebb20a3b30#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dyotanya design system\",\"item\":\"https://styles.refero.design/style/1b13360a-cdca-4798-969d-57ebb20a3b30\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1b13360a-cdca-4798-969d-57ebb20a3b30#style-reference\",\"name\":\"Dyotanya design system reference\",\"headline\":\"Dyotanya design system | Refero Styles\",\"description\":\"Explore Dyotanya's light Agency design system: Warm Paper #f5f5f3, Ink Black #000000 colors, Times, Simeiz typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/1b13360a-cdca-4798-969d-57ebb20a3b30\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1b13360a-cdca-4798-969d-57ebb20a3b30\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dyotanya\",\"url\":\"https://dyotanya.com/en\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1b13360a-cdca-4798-969d-57ebb20a3b30#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4db19c19-5896-4ed8-a303-b79309dd43c2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4db19c19-5896-4ed8-a303-b79309dd43c2.jpg\",\"caption\":\"Screenshot of Dyotanya\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4db19c19-5896-4ed8-a303-b79309dd43c2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dyotanya design system\",\"Dyotanya website design\",\"Dyotanya colors\",\"Dyotanya typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Warm Paper\",\"Ink Black\",\"Charcoal\",\"Pure White\",\"Times\",\"Simeiz\",\"Manrope\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dyotanya design system\"},{\"@type\":\"Thing\",\"name\":\"Dyotanya website design\"},{\"@type\":\"Thing\",\"name\":\"Dyotanya colors\"},{\"@type\":\"Thing\",\"name\":\"Dyotanya typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:34:50.731Z\",\"dateModified\":\"2026-04-30T01:34:50.731Z\"}]}19:T573,**Quick Color Reference**\n- text: #000000\n- background: #f5f5f3\n- card surface: #ffffff\n- border (decorative): #81aed9\n- border (functional): #000000\n- link: #ff8562\n- offset shadow: #333333\n- primary action: #81aed9 (filled action)\n\n**3 Example Component Prompts**\n\n1. **Hero Section**: Warm paper #f5f5f3 background. Display headline 'I help brands appear as unique as they are' in Simeiz weight 300, 80px, line-height 1.0, #000000. Set 'unique' and 'they are' in italic Simeiz weight 400. A 120px-radius circular portrait sits inline with the text. Thin 1.5px #000000 SVG squiggle lines weave through the text blocks.\n\n2. **Client Project Card**: White #ffffff background, 30px border-radius, 1.5px #81aed9 border, 48px padding. Hard offset shadow 5px -5px 0px 0px #333333. Circular 120px-radius grayscale project image at top. A 30px white trophy badge with 1.5px black border positioned bottom-right of the image. Simeiz 30px project name below image. Manrope 14px description in #333333. Simeiz 300 weight numeric '01' floating to the left of the card.\n\n3. **Pill Navigation Button**: 3000px border-radius capsule, 1.5px #000000 border, #ffffff background, 48px vertical padding, 40px horizontal padding. Manrope 14px weight 500, uppercase, letter-spaced, #000000 text reading 'SEE PORTFOLIO'. Hard offset shadow 4px -4px 0px 0px #333333. Centered in its container, full width up to 600px."
+}

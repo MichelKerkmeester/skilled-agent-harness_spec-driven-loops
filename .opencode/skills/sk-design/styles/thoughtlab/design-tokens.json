@@ -1,0 +1,342 @@
+{
+  "color": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Page background, canvas — the absolute base on which all other elements float"
+    },
+    "ash": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Ash — Body and link text, default copy tone on the black canvas — chosen over pure white to soften optical glare"
+    },
+    "frost": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Frost — Display headings, button text, input field text and rules — the brightest tier, reserved for content that must lead"
+    },
+    "graphite": {
+      "$value": "#4c4c4c",
+      "$type": "color",
+      "$description": "Graphite — Copyright, meta, tertiary helper text — deliberately muted so it never competes with the body tier"
+    },
+    "crimson-signal": {
+      "$value": "#fc1c46",
+      "$type": "color",
+      "$description": "Crimson Signal — Primary action fill — the single red accent; appears on the Contact Us pill, in the brand logo mark, and nowhere else. Its rarity is the design"
+    }
+  },
+  "font": {
+    "sui": {
+      "$value": "sui",
+      "$type": "fontFamily",
+      "$description": "The sole typeface. Sui is a custom geometric sans used for everything from 198px display down to 10px caption. Weight 700 is reserved for monumental display and large headings; weight 400 carries the rest of the system. The bold/regular contrast is the type system — no second family is needed."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 2.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 27px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "27px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 27px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "91px",
+        "fontWeight": 700,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 91px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "sui",
+        "fontSize": "198px",
+        "fontWeight": 700,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 198px"
+    }
+  },
+  "spacing": {
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "43": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Spacing 43px"
+    },
+    "65": {
+      "$value": "65px",
+      "$type": "dimension",
+      "$description": "Spacing 65px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "86": {
+      "$value": "86px",
+      "$type": "dimension",
+      "$description": "Spacing 86px"
+    },
+    "108": {
+      "$value": "108px",
+      "$type": "dimension",
+      "$description": "Spacing 108px"
+    },
+    "126": {
+      "$value": "126px",
+      "$type": "dimension",
+      "$description": "Spacing 126px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "198": {
+      "$value": "198px",
+      "$type": "dimension",
+      "$description": "Spacing 198px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, full-bleed"
+    },
+    "transparent-card": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Project/work items float directly on the canvas with zero surface fill or border"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.thoughtlab.com",
+      "siteName": "ThoughtLab",
+      "extractedAt": "2026-07-03T03:42:08.490Z",
+      "variant": "extended"
+    }
+  }
+}

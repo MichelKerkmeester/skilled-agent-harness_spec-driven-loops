@@ -1,0 +1,1762 @@
+{
+  "source": "https://styles.refero.design/style/d2e327b2-1181-4203-82a6-2dc15a72078a",
+  "uuid": "d2e327b2-1181-4203-82a6-2dc15a72078a",
+  "name": "Munro Partners",
+  "northStar": "Editorial parchment under alpine light — a warm cream canvas holding generous whitespace, a whisper-weight grotesque, and full-bleed mountain photography where the landscape does the talking and the interface stays nearly invisible.",
+  "capturedAt": "2026-07-18T08:01:12.533Z",
+  "meta": {
+    "url": "https://www.munropartners.com.au",
+    "siteName": "Munro Partners",
+    "extractedAt": "2026-06-03T18:44:58.103Z",
+    "durationMs": 37325,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 823,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set body text in Neue Haas Grotesk Display 14px/1.43 in Bark Brown (#3f322a) on Cream Parchment (#fff9ee) — never invert this pairing",
+      "Use 2px border-radius for all buttons, badges, inputs, and accent-border cards — the near-square edge is a signature",
+      "Use 15px border-radius exclusively for image containers and decorative links",
+      "Reserve Deep Teal (#004e4e) for the single primary action per view — filled buttons in any other chromatic color are forbidden",
+      "Set display headlines at 68px weight 400 with letter-spacing 0.54px — the whisper-weight is the defining typographic choice",
+      "Separate content blocks with 1px Stone (#c5bdb3) hairlines, not card containers or background fills",
+      "Use full-bleed landscape photography as section heroes with white text overlays — let imagery carry emotional weight",
+      "Set section labels in 12px weight 700 uppercase with letter-spacing 0.017em — the casing and weight do the hierarchy work"
+    ],
+    "donts": [
+      "Never use #000000 for body text, headings, or borders — Bark Brown (#3f322a) replaces black throughout the system",
+      "Never use pure white (#ffffff) as the page canvas — Cream Parchment (#fff9ee) is the only acceptable base",
+      "Never use border-radius greater than 2px on buttons, badges, or inputs — large radii break the editorial register",
+      "Never stack multiple chromatic accent colors within a single component — one accent per container",
+      "Never use weight 700 for editorial body copy or long-form text — reserve 700 for labels and wordmarks",
+      "Never apply box-shadows or drop-shadows to cards or surfaces — the system is flat, separated only by hairlines",
+      "Never use gradients of any kind — the system is entirely flat color",
+      "Never use #feed5a or #c67700 for primary CTAs — these are one-off editorial accents, not system action colors",
+      "Never set body text larger than 16px or smaller than 14px — the editorial scale stays tight"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fff9ee",
+        "name": "Cream Parchment",
+        "role": "Page canvas, section backgrounds, card surfaces, nav bar fill — the warm off-white that defines the entire mood and replaces what would normally be pure white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Elevated card surfaces, video embed containers, contrast panels against the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3f322a",
+        "name": "Bark Brown",
+        "role": "Primary text, all borders, nav links, body copy, headings — replaces black throughout the system, giving every line a warm ink-like quality",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9f968c",
+        "name": "Warm Gray",
+        "role": "Secondary text, subtle borders, nav dividers — the mid-tone that bridges Bark Brown headings and lighter dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c5bdb3",
+        "name": "Stone",
+        "role": "Hairline dividers, image borders, subtle separators between sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3aea7",
+        "name": "Driftwood",
+        "role": "Input field borders, form element outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#796e65",
+        "name": "Earth",
+        "role": "Secondary headings, muted label text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Light Stone",
+        "role": "Lightest border tone, disabled states, subtle structure lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Input text color, high-contrast form text — the only context where true black appears",
+        "group": "neutral"
+      },
+      {
+        "hex": "#004e4e",
+        "name": "Deep Teal",
+        "role": "Primary action buttons, filled CTAs — the single chromatic fill color permitted for interactive moments, creating quiet authority against the cream",
+        "group": "brand"
+      },
+      {
+        "hex": "#560e4b",
+        "name": "Aubergine",
+        "role": "Decorative card borders, heading accent strokes, editorial highlight containers",
+        "group": "accent"
+      },
+      {
+        "hex": "#a56eff",
+        "name": "Iris",
+        "role": "Decorative card borders, accent strokes on data containers",
+        "group": "accent"
+      },
+      {
+        "hex": "#3074f9",
+        "name": "Cobalt",
+        "role": "Link accents, decorative borders on blue-themed content blocks",
+        "group": "accent"
+      },
+      {
+        "hex": "#bfebfe",
+        "name": "Ice Blue",
+        "role": "Input field backgrounds, soft highlight washes on data rows, subtle surface tint",
+        "group": "accent"
+      },
+      {
+        "hex": "#feed5a",
+        "name": "Saffron",
+        "role": "Occasional button accent for editorial highlight CTAs",
+        "group": "accent"
+      },
+      {
+        "hex": "#c67700",
+        "name": "Amber",
+        "role": "Occasional button accent for warm-themed CTAs",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed hero photography at the top of the page, then a transition to a max-width 1280px centered content area on Cream Parchment. The hero is a full-viewport-width image with overlaid text at bottom-left and a large vertical wordmark at the right edge. Below the hero, content flows in a single editorial column or a two-column split (video left, data table right) with generous vertical spacing (64px between sections). Section rhythm is consistent: hairline divider, then a section label in small-caps, then content. No alternating dark/light bands — the entire body is cream. Navigation is a minimal slim bar at the top with hamburger menu left and wordmark right. Grid usage is minimal — mostly single-column editorial flow with occasional 2-column splits. The overall density is spacious, magazine-like, and unhurried.",
+    "imagery": "Full-bleed landscape photography dominates the visual language — Scottish Highland mountains, winding single-lane roads through green valleys, open terrain under overcast skies. Treatment is naturalistic, high-resolution, and unfiltered; no duotone, no color grading overlays, no vignettes. Images are always full-bleed (no rounded corners when used as heroes) but use 15px radius when inset as content images. Photography is the primary visual content; illustration and abstract graphics are absent. Icon style is minimal line icons (hamburger menu visible in nav) with thin strokes. Density is image-heavy at section openings, text-dominant in body sections. The imagery role is emotional atmosphere and brand storytelling — nature as metaphor for long-term investing.",
+    "similar": [
+      {
+        "why": "Same warm cream canvas and restrained editorial typography approach to investment management branding",
+        "business": "Stewart Investors"
+      },
+      {
+        "why": "Same full-bleed landscape photography + whisper-weight grotesque headline pattern, treating investing as a long journey",
+        "business": "Orbis"
+      },
+      {
+        "why": "Same cream parchment background, minimal chrome, and editorial restraint in financial communications",
+        "business": "Walter Scott Investment Partners"
+      },
+      {
+        "why": "Same warm off-white palette and premium grotesque typography in Australian investment management context",
+        "business": "First Sentier Investors"
+      },
+      {
+        "why": "Same editorial publication feel with landscape photography and generous whitespace as brand differentiator",
+        "business": "Magellan Asset Management"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "2px",
+        "links": "15px",
+        "badges": "2px",
+        "images": "15px",
+        "inputs": "2px",
+        "buttons": "2px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "64px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#fff9ee",
+        "name": "Cream Parchment",
+        "level": 0,
+        "purpose": "Page canvas and section backgrounds — the base warm tone"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 1,
+        "purpose": "Elevated card and video embed surfaces sitting above the cream"
+      },
+      {
+        "hex": "#bfebfe",
+        "name": "Ice Blue Wash",
+        "level": 2,
+        "purpose": "Tinted surface for input fields and data row highlights"
+      }
+    ],
+    "northStar": "Editorial parchment under alpine light — a warm cream canvas holding generous whitespace, a whisper-weight grotesque, and full-bleed mountain photography where the landscape does the talking and the interface stays nearly invisible.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.8,
+        "letterSpacing": 0.18
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0.24
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.33
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.13,
+        "letterSpacing": 0.39
+      },
+      {
+        "role": "heading-lg",
+        "size": 43,
+        "lineHeight": 1.09,
+        "letterSpacing": 0.39
+      },
+      {
+        "role": "display",
+        "size": 68,
+        "lineHeight": 1.05,
+        "letterSpacing": 0.54
+      }
+    ],
+    "components": [
+      {
+        "name": "Full-Bleed Hero Image",
+        "role": "Section opening visual that fills the entire viewport width",
+        "description": "Full-bleed landscape photograph (mountains, winding roads, open terrain) spanning 100% viewport width and 60–80vh height. No border-radius. Text overlay sits at bottom-left in white (#ffffff) using display weight 400 at 68px. A large vertical wordmark in white at 100–200px weight 700 anchors the right edge."
+      },
+      {
+        "name": "Editorial Wordmark",
+        "role": "Brand identity mark used as both logo and decorative element",
+        "description": "The text 'MUNRO' set in Neue Haas Grotesk Display weight 700, all uppercase, letter-spacing 0.09em. Functions as nav logo at 16px (top-right) and as oversized decorative element at 100–200px (right edge of hero). White on dark photography, Bark Brown (#3f322a) on cream."
+      },
+      {
+        "name": "Slim Navigation Bar",
+        "role": "Persistent top header",
+        "description": "Full-width bar on Cream Parchment (#fff9ee) background, 48–56px height. Left: hamburger menu icon + 'MENU' label in Neue Haas Grotesk Text 12px weight 500, letter-spacing 0.018em, color Bark Brown. Right: 'MUNRO' wordmark. No background fill change on scroll, no shadow — the bar is flat and barely visible."
+      },
+      {
+        "name": "Filled Teal CTA Button",
+        "role": "Primary action trigger — the only filled chromatic button in the system",
+        "description": "Background Deep Teal (#004e4e), text white, Neue Haas Grotesk Display 12px weight 600, letter-spacing 0.018em, uppercase. Padding 10px vertical, 20px horizontal. Border-radius 2px. No shadow. This is the system sole filled action color — use it for exactly one primary action per view."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Secondary action or link-style trigger",
+        "description": "No background, no border. Text only in Bark Brown (#3f322a), Neue Haas Grotesk Display 12px weight 600, uppercase, letter-spacing 0.018em. Padding 10px vertical, 12px horizontal. Underline on hover."
+      },
+      {
+        "name": "Section Label",
+        "role": "Small-caps heading introducing a content block",
+        "description": "Neue Haas Grotesk Display 12px weight 700, uppercase, letter-spacing 0.017em, color Bark Brown (#3f322a). No accent line or decorative element — the typography weight and casing does all the work. Examples: 'OUR GLOBAL GROWTH FUNDS'."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero or section-opening statement",
+        "description": "Neue Haas Grotesk Display 68px weight 400, line-height 1.05, letter-spacing 0.54px. White when overlaid on photography, Bark Brown (#3f322a) on cream. The weight-400 choice is the signature — it whispers rather than shouts, creating authority through restraint."
+      },
+      {
+        "name": "Video Embed Card",
+        "role": "Embedded media container (YouTube, etc.)",
+        "description": "16:9 aspect ratio container with Paper White (#ffffff) background, 2px border-radius. Video thumbnail fills the container. Title overlaid top-left in white Neue Haas Grotesk Display 22px weight 400 with a subtitle at 12px. Play button centered."
+      },
+      {
+        "name": "Financial Data Table",
+        "role": "Stacked data rows showing metrics with right-aligned values",
+        "description": "Full-width rows separated by 1px Stone (#c5bdb3) hairline borders. Left column: label in Neue Haas Grotesk Display 14px weight 400, color Earth (#796e65). Right column: value in same size, color Bark Brown (#3f322a), right-aligned. No table header, no alternating row colors — pure hairlines and typography do the work."
+      },
+      {
+        "name": "Editorial Body Paragraph",
+        "role": "Long-form descriptive text",
+        "description": "Neue Haas Grotesk Display 16px weight 400, line-height 1.41, color Bark Brown (#3f322a) on Cream Parchment (#fff9ee). Max-width 680px for readability. Generous margin-bottom (24–32px) between paragraphs."
+      },
+      {
+        "name": "Underlined Input Field",
+        "role": "Form input — text entry",
+        "description": "No visible box, no background fill. Bottom border 1px in Ink (#000000) or Driftwood (#b3aea7). Placeholder text in Warm Gray (#9f968c) at 14px. On focus: bottom border thickens to 2px in Deep Teal (#004e4e). No border-radius — sharp bottom edge only."
+      },
+      {
+        "name": "Accent Border Card",
+        "role": "Content card with thin chromatic border",
+        "description": "Cream Parchment (#fff9ee) background, 1px border in a chromatic accent (Aubergine #560e4b, Iris #a56eff, Cobalt #3074f9, or Ice Blue #bfebfe). Border-radius 2px. Padding 20px. No shadow, no fill change. The colored border is the differentiator — multiple cards on a page may use different accent colors."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separator",
+        "description": "1px horizontal line in Stone (#c5bdb3), full container width, 1px height. No margin — sits flush within section spacing rhythm."
+      },
+      {
+        "name": "Image Container",
+        "role": "Photograph or illustration frame",
+        "description": "Images sit in containers with 15px border-radius. No border. Full-bleed within container. Used for editorial photography, team portraits, and landscape shots."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface for all headings, body copy, nav, and UI text — the premium editorial grotesque that carries the entire interface. Weight 400 for display headlines creates a whisper rather than a shout; weight 600 for subheadings and emphasis; weight 700 reserved for section labels and small-caps headers",
+        "sizes": "12, 13, 14, 16, 22, 24, 30, 43, 68",
+        "family": "Neue Haas Grotesk Display",
+        "weight": "400, 600, 700",
+        "lineHeight": "0.75, 0.81, 1.00, 1.05, 1.09, 1.10, 1.13, 1.17, 1.20, 1.30, 1.41, 1.43, 1.50",
+        "substitute": "Inter, Helvetica Neue, Neue Haas Grotesk Text Pro (closest free alternative: Inter at matched tracking)",
+        "letterSpacing": "0.008em at 68px (0.54px), 0.009em at 43px (0.39px), 0.013em at 30px (0.39px), 0.015em at 22px (0.33px), 0.017em at 16px (0.27px)",
+        "fontFeatureSettings": "\"ss01\" on, \"tnum\" on"
+      },
+      {
+        "role": "Secondary typeface for small utility text, nav micro-copy, fine print — slightly more compact than the Display variant for 10–12px sizes",
+        "sizes": "10, 11, 12",
+        "family": "Neue Haas Grotesk Text",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.50, 1.80",
+        "substitute": "Inter, Helvetica Neue",
+        "letterSpacing": "0.018em at 12px (0.22px)",
+        "fontFeatureSettings": "\"tnum\" on"
+      },
+      {
+        "role": "Font Awesome 5 Brands — detected in extracted data but not described by AI",
+        "sizes": "18px",
+        "family": "Font Awesome 5 Brands",
+        "weight": "400",
+        "lineHeight": "1"
+      }
+    ],
+    "description": "Munro Partners operates in a quiet, editorial register: a warm cream canvas (#fff9ee) holds generous whitespace, with every interface element trimmed in a single warm dark brown (#3f322a) that reads as ink rather than black. The Neue Haas Grotesk typography is set tight and small, with a 68px display headline at weight 400 that whispers against full-bleed mountain photography rather than shouting. A single deep teal (#004e4e) is reserved for the most important interactive moments, while muted violets, aubergine, and ice blue appear as thin accent borders on cards and data treatments. The system feels less like a financial product and more like a printed annual report — calm, spacious, and confident enough to let landscape imagery carry the emotional weight.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d2e327b2-1181-4203-82a6-2dc15a72078a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Munro Partners design system\",\"item\":\"https://styles.refero.design/style/d2e327b2-1181-4203-82a6-2dc15a72078a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d2e327b2-1181-4203-82a6-2dc15a72078a#style-reference\",\"name\":\"Munro Partners design system reference\",\"headline\":\"Munro Partners design system | Refero Styles\",\"description\":\"Explore Munro Partners's light Fintech design system: Cream Parchment #fff9ee, Paper White #ffffff colors, Neue Haas Grotesk Display, Neue Haas Grotesk Text...\",\"url\":\"https://styles.refero.design/style/d2e327b2-1181-4203-82a6-2dc15a72078a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d2e327b2-1181-4203-82a6-2dc15a72078a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Munro Partners\",\"url\":\"https://www.munropartners.com.au\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d2e327b2-1181-4203-82a6-2dc15a72078a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a87bd114-ac8c-4846-a29e-debd55f78053.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a87bd114-ac8c-4846-a29e-debd55f78053.jpg\",\"caption\":\"Screenshot of Munro Partners\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a87bd114-ac8c-4846-a29e-debd55f78053.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Munro Partners design system\",\"Munro Partners website design\",\"Munro Partners colors\",\"Munro Partners typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Cream Parchment\",\"Paper White\",\"Bark Brown\",\"Warm Gray\",\"Neue Haas Grotesk Display\",\"Neue Haas Grotesk Text\",\"Font Awesome 5 Brands\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Munro Partners design system\"},{\"@type\":\"Thing\",\"name\":\"Munro Partners website design\"},{\"@type\":\"Thing\",\"name\":\"Munro Partners colors\"},{\"@type\":\"Thing\",\"name\":\"Munro Partners typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T02:44:37.751Z\",\"dateModified\":\"2026-04-30T02:44:37.751Z\"}]}19:T5d8,**Quick Color Reference**\n- Text: #3f322a (Bark Brown)\n- Background: #fff9ee (Cream Parchment)\n- Border: #c5bdb3 (Stone) for hairlines, #3f322a for structure\n- Accent: #004e4e (Deep Teal) for primary action\n- primary action: #a56eff (filled action)\n\n**Example Component Prompts**\n\n1. **Hero section**: Full-bleed landscape photograph filling 100vw × 70vh. Headline 'Invest in the journey' overlaid bottom-left in white, Neue Haas Grotesk Display 68px weight 400, letter-spacing 0.54px. Vertical 'MUNRO' wordmark on right edge in white, weight 700, 120px size, letter-spacing 0.09em. No border-radius on the image.\n\n2. **Section label + body**: Section label 'OUR GLOBAL GROWTH FUNDS' in Neue Haas Grotesk Display 12px weight 700, uppercase, letter-spacing 0.017em, color #3f322a. Below it, body paragraph in 16px weight 400, line-height 1.41, color #3f322a, max-width 680px. 1px #c5bdb3 hairline divider above the label.\n\n3. **Data table**: Stacked rows, each separated by 1px #c5bdb3 border. Left column label in 14px weight 400, color #796e65. Right column value in 14px weight 400, color #3f322a, right-aligned. No header row, no alternating fills.\n\n4. Create a Primary Action Button: #a56eff background, #3f322a text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n5. **Accent border card**: Background #fff9ee, 1px border in #560e4b (Aubergine), border-radius 2px, padding 20px. Content inside in 14px weight 400, color #3f322a. No fill change, no shadow."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "This system intentionally avoids shadows as a design principle. All surface separation is achieved through three mechanisms: (1) hairline 1px borders in Stone (#c5bdb3) or Bark Brown (#3f322a), (2) contrast between Cream Parchment (#fff9ee) and Paper White (#ffffff) surfaces, and (3) the visual edge where full-bleed photography meets the cream canvas. Never apply box-shadow, drop-shadow, or any blur-based elevation — it would break the flat editorial register."
+      },
+      {
+        "title": "Border-Radius System",
+        "content": "The system uses exactly two border-radius values to create a deliberate tension: 2px for all interactive and structural elements (buttons, badges, inputs, accent-border cards) — this near-square edge reads as editorial, typeset, printed. 15px for all image containers and decorative links — this generous rounding softens photography and gives visual assets warmth. Never mix these radii on the same element type. The contrast between the two is part of the identity: the page feels both sharply editorial and warmly human."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#3f322a",
+          "oklch": {
+            "c": 0.02334570818291605,
+            "h": 53.28212528986461,
+            "l": 0.32893547312442534
+          },
+          "contexts": [
+            "button",
+            "other",
+            "heading",
+            "link",
+            "image",
+            "body",
+            "icon",
+            "nav",
+            "input",
+            "card",
+            "badge",
+            "footer",
+            "hero",
+            "list"
+          ],
+          "frequency": 3422,
+          "confidence": 1,
+          "prominence": 66282299.9071269,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 68,
+            "body/color": 66,
+            "card/color": 1,
+            "hero/color": 1,
+            "icon/color": 5,
+            "link/color": 14,
+            "list/color": 10,
+            "badge/color": 7,
+            "image/color": 6,
+            "input/color": 3,
+            "other/color": 495,
+            "button/color": 12,
+            "footer/color": 1,
+            "heading/color": 21,
+            "nav/borderColor": 245,
+            "body/borderColor": 264,
+            "card/borderColor": 4,
+            "hero/borderColor": 4,
+            "icon/borderColor": 20,
+            "link/borderColor": 49,
+            "list/borderColor": 40,
+            "badge/borderColor": 28,
+            "image/borderColor": 20,
+            "other/borderColor": 1913,
+            "button/borderColor": 36,
+            "footer/borderColor": 4,
+            "heading/borderColor": 84,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fff9ee",
+          "oklch": {
+            "c": 0.015857596782386792,
+            "h": 82.79230004839819,
+            "l": 0.9837646097087767
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "body",
+            "button",
+            "nav",
+            "link",
+            "input"
+          ],
+          "frequency": 89,
+          "confidence": 1,
+          "prominence": 30434054.006011177,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "body/color": 5,
+            "link/color": 2,
+            "other/color": 1,
+            "button/color": 1,
+            "heading/color": 3,
+            "nav/borderColor": 16,
+            "body/borderColor": 20,
+            "link/borderColor": 8,
+            "other/borderColor": 8,
+            "button/borderColor": 4,
+            "heading/borderColor": 12,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#c5bdb3",
+          "oklch": {
+            "c": 0.016736216835952136,
+            "h": 73.5805588693016,
+            "l": 0.8030900253629786
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "image"
+          ],
+          "frequency": 38,
+          "confidence": 1,
+          "prominence": 5607055.941695549,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 7,
+            "image/borderColor": 4,
+            "other/borderColor": 19,
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "nav",
+            "link",
+            "icon"
+          ],
+          "frequency": 125,
+          "confidence": 1,
+          "prominence": 3513241.850760219,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 6,
+            "icon/color": 1,
+            "link/color": 1,
+            "other/color": 19,
+            "nav/borderColor": 21,
+            "icon/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 68,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#004e4e",
+          "oklch": {
+            "c": 0.0655178480640997,
+            "h": 194.7689598979819,
+            "l": 0.38382271447795596
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1007052,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#a56eff",
+          "oklch": {
+            "c": 0.20753868174035342,
+            "h": 298.001453555922,
+            "l": 0.6629719770116882
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading",
+            "button"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 478586.89207413327,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/color": 3,
+            "heading/color": 1,
+            "body/borderColor": 8,
+            "other/borderColor": 12,
+            "heading/borderColor": 4,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#560e4b",
+          "oklch": {
+            "c": 0.12473762997486122,
+            "h": 335.2937883771461,
+            "l": 0.3202693299649159
+          },
+          "contexts": [
+            "button",
+            "body",
+            "heading"
+          ],
+          "frequency": 31,
+          "confidence": 1,
+          "prominence": 474375,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "heading/color": 2,
+            "body/borderColor": 16,
+            "heading/borderColor": 8,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3074f9",
+          "oklch": {
+            "c": 0.21076696246714122,
+            "h": 261.92344292390106,
+            "l": 0.5934618566975209
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 423088.5748182136,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "other/borderColor": 16,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e5e5e5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9219060167761346
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 319766.18452049326,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#b3aea7",
+          "oklch": {
+            "c": 0.011868913475053134,
+            "h": 82.79240981787032,
+            "l": 0.7530125360390364
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 194953.0088100353,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 4,
+            "other/borderColor": 16
+          }
+        },
+        {
+          "hex": "#bfebfe",
+          "oklch": {
+            "c": 0.05233184425006438,
+            "h": 226.00048511636743,
+            "l": 0.915197497383335
+          },
+          "contexts": [
+            "input",
+            "body",
+            "heading"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 184178.57817638238,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "heading/color": 2,
+            "body/borderColor": 16,
+            "input/borderColor": 4,
+            "heading/borderColor": 8,
+            "input/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 44,
+          "confidence": 1,
+          "prominence": 164755.59288989025,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "input/color": 8,
+            "input/borderColor": 36
+          }
+        },
+        {
+          "hex": "#796e65",
+          "oklch": {
+            "c": 0.01930005090257973,
+            "h": 61.653042326205,
+            "l": 0.5445628975817395
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 96061.8664584015,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "heading/color": 3,
+            "body/borderColor": 12,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#c67700",
+          "oklch": {
+            "c": 0.1432215491153413,
+            "h": 65.43485050359536,
+            "l": 0.640536445952152
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 94875,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#feed5a",
+          "oklch": {
+            "c": 0.16351209823591686,
+            "h": 102.69208485656158,
+            "l": 0.9337295315712745
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 94875,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#9f968c",
+          "oklch": {
+            "c": 0.01776548547079384,
+            "h": 67.52095965175747,
+            "l": 0.676893235213334
+          },
+          "contexts": [
+            "body",
+            "other",
+            "nav"
+          ],
+          "frequency": 155,
+          "confidence": 1,
+          "prominence": 88189.79385932752,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 18,
+            "body/color": 4,
+            "other/color": 9,
+            "nav/borderColor": 72,
+            "body/borderColor": 16,
+            "other/borderColor": 36
+          }
+        },
+        {
+          "hex": "#ccc7be",
+          "oklch": {
+            "c": 0.013231015119261468,
+            "h": 82.79236630062465,
+            "l": 0.8316749345774076
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 1460,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 3,
+            "other/borderColor": 12
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.06838031962527097,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.04,
+          "background": "#fff9ee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.48,
+          "background": "#feed5a",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#e5e5e5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.53,
+          "background": "#bfebfe",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.46,
+          "background": "#560e4b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.84,
+          "background": "#560e4b",
+          "foreground": "#fff9ee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.48,
+          "background": "#ccc7be",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.35,
+          "background": "#ffffff",
+          "foreground": "#3f322a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.78,
+          "background": "#fff9ee",
+          "foreground": "#3f322a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.3,
+          "background": "#c5bdb3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.2,
+          "background": "#feed5a",
+          "foreground": "#560e4b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.69,
+          "background": "#e5e5e5",
+          "foreground": "#560e4b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.6,
+          "background": "#bfebfe",
+          "foreground": "#560e4b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.27,
+          "background": "#feed5a",
+          "foreground": "#3f322a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.8,
+          "background": "#e5e5e5",
+          "foreground": "#3f322a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.72,
+          "background": "#bfebfe",
+          "foreground": "#3f322a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.55,
+          "background": "#004e4e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.53,
+          "background": "#b3aea7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.11,
+          "background": "#004e4e",
+          "foreground": "#fff9ee"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "link",
+            "image"
+          ],
+          "frequency": 20
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "badge",
+            "button",
+            "input"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|list",
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "icon",
+            "image",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|icon",
+            "paddingLeft|icon",
+            "paddingRight|image",
+            "paddingLeft|image",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "list",
+            "input"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|other",
+            "paddingTop|list",
+            "paddingBottom|list",
+            "marginRight|input"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "badge",
+            "input"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link",
+            "badge",
+            "button",
+            "input"
+          ],
+          "frequency": 44,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingLeft|other",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginLeft|other",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "other",
+            "heading",
+            "body",
+            "nav"
+          ],
+          "frequency": 104,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|heading",
+            "marginTop|body",
+            "marginBottom|body",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "input"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "button",
+            "input",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "input",
+            "heading",
+            "button"
+          ],
+          "frequency": 306,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginTop",
+            "marginBottom",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "marginRight|other",
+            "paddingBottom|other",
+            "paddingTop|body",
+            "paddingRight|body",
+            "paddingBottom|body",
+            "paddingLeft|body",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingLeft|nav",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingTop|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingRight|heading",
+            "marginBottom|body",
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "marginTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "marginTop|other",
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "neue-haas-grotesk-display",
+          "source": "custom",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 789,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "neue-haas-grotesk-text",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 27,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Font Awesome 5 Brands",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "neue-haas-grotesk-text",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 21,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "neue-haas-grotesk-text",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "neue-haas-grotesk-text",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.018,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "neue-haas-grotesk-text",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "neue-haas-grotesk-display",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "link",
+            "body",
+            "heading",
+            "nav",
+            "card",
+            "badge",
+            "image",
+            "icon",
+            "footer",
+            "hero",
+            "list",
+            "input"
+          ],
+          "frequency": 605,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 55,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "neue-haas-grotesk-display",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.81,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Font Awesome 5 Brands",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.09,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.41,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.41,
+          "letterSpacing": 0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 68,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/56c051bc-06f1-4010-b9ce-6b269828736e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a87bd114-ac8c-4846-a29e-debd55f78053.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d2e327b2-1181-4203-82a6-2dc15a72078a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Munro Partners design system\",\"item\":\"https://styles.refero.design/style/d2e327b2-1181-4203-82a6-2dc15a72078a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d2e327b2-1181-4203-82a6-2dc15a72078a#style-reference\",\"name\":\"Munro Partners design system reference\",\"headline\":\"Munro Partners design system | Refero Styles\",\"description\":\"Explore Munro Partners's light Fintech design system: Cream Parchment #fff9ee, Paper White #ffffff colors, Neue Haas Grotesk Display, Neue Haas Grotesk Text...\",\"url\":\"https://styles.refero.design/style/d2e327b2-1181-4203-82a6-2dc15a72078a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d2e327b2-1181-4203-82a6-2dc15a72078a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Munro Partners\",\"url\":\"https://www.munropartners.com.au\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d2e327b2-1181-4203-82a6-2dc15a72078a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a87bd114-ac8c-4846-a29e-debd55f78053.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a87bd114-ac8c-4846-a29e-debd55f78053.jpg\",\"caption\":\"Screenshot of Munro Partners\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a87bd114-ac8c-4846-a29e-debd55f78053.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Munro Partners design system\",\"Munro Partners website design\",\"Munro Partners colors\",\"Munro Partners typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Cream Parchment\",\"Paper White\",\"Bark Brown\",\"Warm Gray\",\"Neue Haas Grotesk Display\",\"Neue Haas Grotesk Text\",\"Font Awesome 5 Brands\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Munro Partners design system\"},{\"@type\":\"Thing\",\"name\":\"Munro Partners website design\"},{\"@type\":\"Thing\",\"name\":\"Munro Partners colors\"},{\"@type\":\"Thing\",\"name\":\"Munro Partners typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T02:44:37.751Z\",\"dateModified\":\"2026-04-30T02:44:37.751Z\"}]}19:T5d8,**Quick Color Reference**\n- Text: #3f322a (Bark Brown)\n- Background: #fff9ee (Cream Parchment)\n- Border: #c5bdb3 (Stone) for hairlines, #3f322a for structure\n- Accent: #004e4e (Deep Teal) for primary action\n- primary action: #a56eff (filled action)\n\n**Example Component Prompts**\n\n1. **Hero section**: Full-bleed landscape photograph filling 100vw × 70vh. Headline 'Invest in the journey' overlaid bottom-left in white, Neue Haas Grotesk Display 68px weight 400, letter-spacing 0.54px. Vertical 'MUNRO' wordmark on right edge in white, weight 700, 120px size, letter-spacing 0.09em. No border-radius on the image.\n\n2. **Section label + body**: Section label 'OUR GLOBAL GROWTH FUNDS' in Neue Haas Grotesk Display 12px weight 700, uppercase, letter-spacing 0.017em, color #3f322a. Below it, body paragraph in 16px weight 400, line-height 1.41, color #3f322a, max-width 680px. 1px #c5bdb3 hairline divider above the label.\n\n3. **Data table**: Stacked rows, each separated by 1px #c5bdb3 border. Left column label in 14px weight 400, color #796e65. Right column value in 14px weight 400, color #3f322a, right-aligned. No header row, no alternating fills.\n\n4. Create a Primary Action Button: #a56eff background, #3f322a text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n5. **Accent border card**: Background #fff9ee, 1px border in #560e4b (Aubergine), border-radius 2px, padding 20px. Content inside in 14px weight 400, color #3f322a. No fill change, no shadow."
+}

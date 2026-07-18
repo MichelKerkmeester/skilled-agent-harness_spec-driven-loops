@@ -1,0 +1,57 @@
+:root {
+  /* Colors */
+  --color-obsidian: #000000;
+  --color-paper: #ffffff;
+  --color-terracotta: #a9553c;
+  --color-lilac-veil: #ddbdea;
+
+  /* Typography — Font Families */
+  --font-theinhardt: 'Theinhardt', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-theinhardt-medium: 'Theinhardt Medium', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 15px;
+  --leading-caption: 1.33;
+  --tracking-caption: 0.15px;
+  --text-body: 18px;
+  --leading-body: 1.3;
+  --tracking-body: 0.29px;
+  --text-subheading: 23px;
+  --leading-subheading: 1.17;
+  --tracking-subheading: 0.46px;
+  --text-display: 35px;
+  --leading-display: 1.17;
+  --tracking-display: 0.84px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 6px;
+  --spacing-5: 5px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-20: 20px;
+  --spacing-25: 25px;
+  --spacing-30: 30px;
+  --spacing-50: 50px;
+
+  /* Layout */
+  --card-padding: 25px;
+  --element-gap: 20px;
+
+  /* Border Radius */
+  --radius-md: 5px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-tags: 9999px;
+  --radius-cards: 0px;
+  --radius-buttons: 5px;
+
+  /* Surfaces */
+  --surface-paper: #ffffff;
+  --surface-lilac-veil: #ddbdea;
+  --surface-terracotta: #a9553c;
+}

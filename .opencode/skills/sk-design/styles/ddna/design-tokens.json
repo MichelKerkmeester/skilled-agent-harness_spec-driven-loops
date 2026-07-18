@@ -1,0 +1,200 @@
+{
+  "color": {
+    "stone-charcoal": {
+      "$value": "#444242",
+      "$type": "color",
+      "$description": "Stone Charcoal — Primary text, navigation links, hairline borders, footer anchors — dark warm gray carries the same temperature as the cream surfaces it sits on, never pure black"
+    },
+    "linen-cream": {
+      "$value": "#efe3dc",
+      "$type": "color",
+      "$description": "Linen Cream — Heading text, footer surface, and the lighter plane in the surface stack — sits one step above the canvas"
+    },
+    "warm-sand": {
+      "$value": "#dacabf",
+      "$type": "color",
+      "$description": "Warm Sand — Page canvas — the dominant field every section and hero lives on"
+    },
+    "dust": {
+      "$value": "#938a83",
+      "$type": "color",
+      "$description": "Dust — Secondary borders and dividers when Stone Charcoal would be too heavy"
+    },
+    "mortar": {
+      "$value": "#595552",
+      "$type": "color",
+      "$description": "Mortar — Muted body text and subdued borders — the quietest readable neutral"
+    }
+  },
+  "font": {
+    "basis": {
+      "$value": "Basis",
+      "$type": "fontFamily",
+      "$description": "Body, nav, labels, captions — the only text family used for everything below display. The 0.066–0.099em tracking on 10–14px is the signature: it makes small text feel like a printed catalogue label rather than screen UI."
+    },
+    "favorit": {
+      "$value": "Favorit",
+      "$type": "fontFamily",
+      "$description": "Display and heading — set at a single 30px size, weight 400 only. The narrow, slightly quirky character shapes (open apertures, subtle inktraps) carry all the personality the system allows. No bold weight exists."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    }
+  },
+  "spacing": {
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "33": {
+      "$value": "33px",
+      "$type": "dimension",
+      "$description": "Spacing 33px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "135": {
+      "$value": "135px",
+      "$type": "dimension",
+      "$description": "Spacing 135px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "warm-sand": {
+      "$value": "#dacabf",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas — every section sits on this warm beige field"
+    },
+    "linen-cream": {
+      "$value": "#efe3dc",
+      "$type": "color",
+      "$description": "Surface level 2: Footer and lighter text-grounding surface, one step lighter than canvas"
+    },
+    "stone-charcoal": {
+      "$value": "#444242",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted dark surface for contrast moments — anchors the tonal stack"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://d-d-n-a.com",
+      "siteName": "ddna",
+      "extractedAt": "2026-06-03T20:02:18.675Z",
+      "variant": "extended"
+    }
+  }
+}

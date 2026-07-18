@@ -1,0 +1,399 @@
+{
+  "color": {
+    "cerulean-surge": {
+      "$value": "#60CDFF",
+      "$type": "color",
+      "$description": "Cerulean Surge — Hero backgrounds, section backgrounds, badge borders — the dominant attention color that establishes PayPal's sky-blue identity across the first viewport and accent panels"
+    },
+    "cobalt-vault": {
+      "$value": "#002991",
+      "$type": "color",
+      "$description": "Cobalt Vault — Deep-section backgrounds, card fills, navy sections — counterpoint to Cerulean Surge, appearing in feature sections to create the hot/cold alternating rhythm"
+    },
+    "ice-mist": {
+      "$value": "#B8E9FF",
+      "$type": "color",
+      "$description": "Ice Mist — Subtle background tints in transitional or secondary panels within the blue range"
+    },
+    "cobalt-fade": {
+      "$value": "#002991",
+      "$type": "color",
+      "$description": "Cobalt Fade — Gradient overlay used to bleed navy into transparent sections — see linear-gradient underline/band effect on interactive elements"
+    },
+    "midnight": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Midnight — Page text, button borders (black variant), nav items, headings on light/sky backgrounds"
+    },
+    "snow": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$description": "Snow — Page backgrounds, card surfaces, button borders (white variant on dark/colored fields), body text on dark sections"
+    },
+    "parchment": {
+      "$value": "#F1EFEA",
+      "$type": "color",
+      "$description": "Parchment — Warm off-white panel backgrounds — appears in transitional content sections"
+    },
+    "ash": {
+      "$value": "#B3B3B3",
+      "$type": "color",
+      "$description": "Ash — Inactive/ghost card backgrounds, dimmed UI state fills"
+    },
+    "fog": {
+      "$value": "#CCCCCC",
+      "$type": "color",
+      "$description": "Fog — Dividers, subdued body text on light backgrounds"
+    }
+  },
+  "font": {
+    "plain": {
+      "$value": "Plain",
+      "$type": "fontFamily",
+      "$description": "All UI text: nav labels, body copy, footer, links, button labels, captions. At 16-18px with weight 400 it handles running text; at 22-26px weight 500 it becomes section subheadings. The -0.02em tracking is applied universally, tightening all sizes slightly against system defaults."
+    },
+    "paypal-pro": {
+      "$value": "PayPal Pro",
+      "$type": "fontFamily",
+      "$description": "Display headlines and hero text. Weight 900 at 67–181px is the signature move — at these sizes with -0.03em tracking, individual letters fill nearly the full viewport width, functioning as graphic architecture not just type. Weight 400 handles nav and smaller headings. The extreme scale range (16px to 181px) within one family indicates it carries ALL heading duties across the page."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 2.08
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "PayPal Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "PayPal Pro",
+        "fontSize": "16px",
+        "fontWeight": 900,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "PayPal Pro",
+        "fontSize": "18px",
+        "fontWeight": 900,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "PayPal Pro",
+        "fontSize": "18px",
+        "fontWeight": 900,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "PayPal Pro",
+        "fontSize": "22px",
+        "fontWeight": 900,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Plain",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "PayPal Pro",
+        "fontSize": "45px",
+        "fontWeight": 900,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PayPal Pro",
+        "fontSize": "55px",
+        "fontWeight": 900,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 55px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "PayPal Pro",
+        "fontSize": "67px",
+        "fontWeight": 900,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 67px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "PayPal Pro",
+        "fontSize": "99px",
+        "fontWeight": 900,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 99px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "PayPal Pro",
+        "fontSize": "121px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 121px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "PayPal Pro",
+        "fontSize": "181px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 181px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "29.9952px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "68.5714px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.08) 0px 24px 48px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "page-base": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$description": "Surface level 1: Primary content sections, navigation bar, footer"
+    },
+    "sky-section": {
+      "$value": "#60CDFF",
+      "$type": "color",
+      "$description": "Surface level 2: Hero and accent band backgrounds"
+    },
+    "navy-section": {
+      "$value": "#002991",
+      "$type": "color",
+      "$description": "Surface level 3: Deep feature sections, high-contrast content panels"
+    },
+    "frosted-overlay": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 4: rgba(0,0,0,0.30) glass card over photography — app preview overlays"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://paypal.com",
+      "siteName": "Enviar Dinero",
+      "extractedAt": "2026-04-11T19:14:39.744Z",
+      "variant": "extended"
+    }
+  }
+}

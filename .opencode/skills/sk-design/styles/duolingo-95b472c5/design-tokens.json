@@ -1,0 +1,302 @@
+{
+  "color": {
+    "ecto-green": {
+      "$value": "#58cc02",
+      "$type": "color",
+      "$description": "Ecto Green — Green outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    },
+    "lingot-lime": {
+      "$value": "#a5ed6e",
+      "$type": "color",
+      "$description": "Lingot Lime — Outlined-action border and link accent — used as the chromatic border on link and button elements in 256+ instances. The lighter green outline gives interactive elements a glowing, highlighter-pen quality against white backgrounds"
+    },
+    "eel-light": {
+      "$value": "#d7ffb8",
+      "$type": "color",
+      "$description": "Eel Light — Soft highlight and pale border — lightest green used for card outlines, soft surface washes, and the bottom shadow border on filled green buttons to create a 3D pressable effect"
+    },
+    "macaw-blue": {
+      "$value": "#1cb0f6",
+      "$type": "color",
+      "$description": "Macaw Blue — Secondary action accent — body borders, link text, and outlined button borders for secondary actions like language-specific CTAs. The cyan-blue sibling to the green system, signaling alternative or complementary actions"
+    },
+    "eel-dark-blue": {
+      "$value": "#042c60",
+      "$type": "color",
+      "$description": "Eel Dark Blue — Deep heading text and border — navy blue used for emphasis headings and key border treatments, providing weight and contrast without competing with the green primary"
+    },
+    "midnight": {
+      "$value": "#000437",
+      "$type": "color",
+      "$description": "Midnight — Dark surface and button text — near-black violet used for dark-surface sections and as button label text on green fills"
+    },
+    "graphite": {
+      "$value": "#3c3c3c",
+      "$type": "color",
+      "$description": "Graphite — Dominant neutral border — the workhorse gray used for hundreds of list and card borders throughout navigation, lists, and structural dividers. Not a background, a border system"
+    },
+    "ash": {
+      "$value": "#777777",
+      "$type": "color",
+      "$description": "Ash — Secondary text and nav borders — medium gray for navigation chrome, secondary text labels, and subtle structural borders"
+    },
+    "charcoal": {
+      "$value": "#4b4b4b",
+      "$type": "color",
+      "$description": "Charcoal — Body text and icon borders — darker gray for body copy and icon outlines, sitting between the lighter Ash and the darker structural Graphite"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page and card surface — the white canvas on which all content sits. Also used as text on dark surfaces and as border color for ghost buttons"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Pure black for SVG illustration fills and maximum-contrast text where needed"
+    }
+  },
+  "font": {
+    "din-round": {
+      "$value": "din-round",
+      "$type": "fontFamily",
+      "$description": "Primary UI typeface — used for body text, navigation, buttons, links, lists, and smaller headings. The rounded terminals and friendly weight create an approachable, educational tone. Weight 500 for body, weight 700 for emphasis and button labels. The +0.053em letter-spacing is wider than typical, giving text a breezy, open feel."
+    },
+    "feather": {
+      "$value": "feather",
+      "$type": "fontFamily",
+      "$description": "Display face for large feature headlines — bold, heavy, and tight (letter-spacing: -0.02em). Reserved exclusively for oversized section headlines. The extreme weight contrast against the lighter din-round body creates a shout/whisper rhythm: feather headlines announce, din-round explains."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "din-round",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "din-round",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "din-round",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "din-round",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "din-round",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "din-round",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "din-round",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "din-round",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "din-round",
+        "fontSize": "17px",
+        "fontWeight": 700,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "din-round",
+        "fontSize": "17px",
+        "fontWeight": 700,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 17px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "din-round",
+        "fontSize": "19px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 19px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "din-round",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "feather",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "feather",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas and all card surfaces — the entire site sits on pure white"
+    },
+    "ecto-green-surface": {
+      "$value": "#58cc02",
+      "$type": "color",
+      "$description": "Surface level 1: Primary CTA fill and large heading emphasis blocks"
+    },
+    "midnight-surface": {
+      "$value": "#100f3",
+      "$type": "color",
+      "$description": "Surface level 2: Dark mode sections and inverted hero panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.duolingo.com",
+      "siteName": "Duolingo",
+      "extractedAt": "2026-06-03T21:58:26.322Z",
+      "variant": "extended"
+    }
+  }
+}

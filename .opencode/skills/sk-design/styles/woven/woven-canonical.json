@@ -1,0 +1,1432 @@
+{
+  "source": "https://styles.refero.design/style/76483bd1-37d3-4fb9-889b-aecf27b08b83",
+  "uuid": "76483bd1-37d3-4fb9-889b-aecf27b08b83",
+  "name": "Woven",
+  "northStar": "Ink on cream parchment. A distiller's editorial spread where warm cream canvases, a single dark ink color, and wide-tracked uppercase type create the only visual structure; product photography provides all the color.",
+  "capturedAt": "2026-07-18T07:31:26.454Z",
+  "meta": {
+    "url": "https://wovenwhisky.com",
+    "siteName": "Woven",
+    "extractedAt": "2026-06-03T20:46:50.721Z",
+    "durationMs": 33035,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 300,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Parchment Cream (#eeede5) as the page canvas for every primary section; alternate to pure white (#ffffff) only for product card surfaces and one or two contrast bands",
+      "Set all body and UI text in Spezia Semi-Mono, 14–15px, with letter-spacing of 0.063–0.094em for uppercase labels and 0.121–0.167em for nav and tag text",
+      "Use 1px #232323 hairlines for every border — cards, product frames, footer rules, link underlines — never use any other color for borders",
+      "Keep corner radius at 0px for all cards, buttons, tags, inputs, and images; the system relies on sharp edges, not curves",
+      "Center section headings in uppercase Spezia Semi-Mono 14px and let 40–60px of vertical space do the visual separation work",
+      "Use Spezia Medium at 32px+ for all display headlines and the wordmark; this is the only proportional (non-mono) face in the system",
+      "Break multi-word links into one-word-per-line stacked columns to create the editorial columnar rhythm in header and footer areas",
+      "Let product photography provide all color in the system; never introduce chromatic accents, gradients, or brand colors"
+    ],
+    "donts": [
+      "Never add a chromatic accent color, gradient, or brand fill — the system is 0% colorful by design",
+      "Never use rounded corners on cards, buttons, inputs, or images — 0px radius is intentional and defines the editorial print look",
+      "Never apply box-shadow, drop-shadow, or blur effects — surfaces separate through color and hairline borders only",
+      "Never use bold (700) weight for body paragraphs; reserve 700 for short emphasized spans within mono text blocks",
+      "Never set headings left-aligned with body copy; section titles are always centered with generous vertical space above and below",
+      "Never introduce an icon system with fills, duotones, or color — icons are single-weight 1.5–2px #232323 line work only",
+      "Never place text directly on a product photograph without a cream or white surface underneath; readability requires a solid layer",
+      "Never use display sizes below 32px for the wordmark or section openers; the type scale's authority comes from its restraint at small sizes and generosity at large ones"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#eeede5",
+        "name": "Parchment Cream",
+        "role": "Page canvas, footer surface, and dominant background — the warm off-white that gives the entire site its editorial, paper-like feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#232323",
+        "name": "Ink Black",
+        "role": "Primary text, all hairline borders, footer ink, and the near-black that forms every structural line on the page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Product card surfaces, alternating section backgrounds, and high-contrast text on dark or photographic surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4a4a4a",
+        "name": "Iron Gray",
+        "role": "Secondary body text, subdued borders, and the muted text layer that sits between primary ink and background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ddddda",
+        "name": "Soft Stone",
+        "role": "Subtle surface differentiation beneath cards and secondary panels — barely warmer than the cream canvas",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Layouts are max-width contained (centered, ~1200–1280px) and overwhelmingly centered/symmetric rather than asymmetric. The hero is a full-bleed photographic background with a centered oversized wordmark overlay and a 80–100px cream letterhead band beneath. Below the fold, sections stack vertically with 120–160px of vertical breathing space between them, each section introduced by a single centered uppercase label. Content within sections tends toward two-column symmetry: split text-link columns pushed to far edges, paired product cards, or the centered circular seal. Card grids are consistently 2-column on desktop, with generous 20–26px gutters and 1px borders. Navigation is a single minimal header bar — hamburger, centered wordmark, cart icon — with no mega-menu, no sidebar, and no sticky behavior beyond a tonal shift. The overall rhythm is that of a luxury magazine spread: whitespace, centered type, paired imagery, no visual clutter.",
+    "imagery": "The visual language is dominated by product photography of whisky bottles — amber and olive-green glass, foil caps, paper labels, liquid catches the light. Photographs are set against clean neutral studio backgrounds (light gray, off-white) and displayed edge-to-edge inside sharp-cornered product cards with no internal padding or border-radius. There is no lifestyle photography, no human subjects, no environmental context — the bottle IS the hero. Decorative graphics are limited to the circular typographic seal. Photography is the only source of color in an otherwise strictly monochrome system, so the warmer the bottle photography, the more visual energy any given page carries.",
+    "similar": [
+      {
+        "why": "Same editorial restraint with cream-on-ink typographic system, no chromatic accent, and product photography as the only source of color",
+        "business": "Aesop"
+      },
+      {
+        "why": "Same warm cream canvas, hairline 1px borders, sharp 0px corners, and generously tracked uppercase micro-copy for navigation",
+        "business": "Aēsop / Le Labo style apothecary sites"
+      },
+      {
+        "why": "Same monochrome editorial mood with amber-bottle photography as the sole color source and circular typographic seal as a brand mark",
+        "business": "Hendrick's Gin"
+      },
+      {
+        "why": "Same luxury whisky-editorial language: restrained cream backgrounds, centered single-line section labels, and product cards with hairline borders and no decoration",
+        "business": "The Macallan"
+      },
+      {
+        "why": "Same warm-neutral monochrome layout philosophy with sharp-cornered product cards, wide-tracked uppercase labels, and whitespace-driven hierarchy",
+        "business": "Aram (design store)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "120-160px",
+      "cardPadding": "26px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#eeede5",
+        "name": "Parchment Canvas",
+        "level": 0,
+        "purpose": "Dominant page background, footer surface, hero letterhead band"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White Card",
+        "level": 1,
+        "purpose": "Product card surfaces, alternating section backgrounds, contrast bands"
+      },
+      {
+        "hex": "#ddddda",
+        "name": "Soft Stone",
+        "level": 2,
+        "purpose": "Subtle panel differentiation beneath elevated sections"
+      },
+      {
+        "hex": "#232323",
+        "name": "Ink Black",
+        "level": 3,
+        "purpose": "Inverted dark surface for footer ink or night-mode treatment"
+      }
+    ],
+    "northStar": "Ink on cream parchment. A distiller's editorial spread where warm cream canvases, a single dark ink color, and wide-tracked uppercase type create the only visual structure; product photography provides all the color.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.63,
+        "letterSpacing": 1
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.71,
+        "letterSpacing": 1.17
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": 1.26
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.13,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Minimal Header Bar",
+        "role": "Site-wide navigation",
+        "description": "Three-element header: hamburger icon (left, 2px stroke), centered WW wordmark in Spezia Medium 16px, and a thin-line cart icon (right). Sticky transparent overlay on hero, solid #eeede5 on scroll. No background fill, no border — just 40px vertical breathing space with items justified to the edges."
+      },
+      {
+        "name": "Hero Overlay Wordmark",
+        "role": "Full-viewport brand statement",
+        "description": "The word 'WOVEN' set enormous (estimated 180–220px) in Spezia Medium, #ffffff at ~60% opacity over a photographic hero, centered both axes. A subtle circular vignette/shadow appears behind the letter O. No CTA, no subhead — the wordmark IS the hero. Below the viewport, a 80–100px band of Parchment Cream (#eeede5) with the label 'EXPERIENCE WHISKY' centered in uppercase 12px Figtree."
+      },
+      {
+        "name": "Split Footer-Letterhead Bar",
+        "role": "Brand seal and category navigation",
+        "description": "Circular typographic seal (160px diameter) centered in a cream band, containing stacked uppercase text 'WOVEN / WHISKY MAKERS / THE WORLDWIDE'. Below it, two narrow text-link columns pushed to far left and far right edges: 'WORLDWIDE / WHISKY / MAKERS' and 'BLENDING / BEYOND / BORDERS' — each word on its own line in 12px uppercase, underlined, tracking 0.167em."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Subsection label",
+        "description": "Single-line uppercase label in Spezia Semi-Mono, 14px, letter-spacing ~1.17px, centered above a section. 40–60px space below before content begins. No decorative rules, no emoji, no subhead — just the label floating in white space on Parchment Cream."
+      },
+      {
+        "name": "Latest Releases Dual Card",
+        "role": "Side-by-side product showcase",
+        "description": "Two large product cards side by side, each ~45% page width with 20–26px gap. White (#ffffff) background, 1px #232323 hairline border, 0px radius. Product photo fills the upper 75% of the card edge-to-edge. Below: 20–26px padding with product name (Spezia Semi-Mono 14px uppercase centered) and price (Figtree 12px below). No shadow, no rounded corners."
+      },
+      {
+        "name": "Product Range Card",
+        "role": "E-commerce product tile",
+        "description": "Larger card variant for the 'Discover Our Range' section. Full-width product photo (bottle) centered in a #ffffff card with 1px #232323 border, 0px radius. Card name 'HOMEMADE' or 'SUPERBLEND' in 14px uppercase below image, price in £ format (14px) 10px below name. Two cards in a row, 8px gap. Photography fills card edge to edge, no internal padding around the image."
+      },
+      {
+        "name": "Underlined Text Link",
+        "role": "Navigation and category links",
+        "description": "Plain text in Spezia Semi-Mono, 12–14px, uppercase, with 1px #232323 underline. No color change, no background — the underline is the entire interactive affordance. Links often break into 2–3 stacked lines for a column-like reading rhythm."
+      },
+      {
+        "name": "Ghost Icon Button",
+        "role": "Cart and menu triggers",
+        "description": "24px line-icon buttons in the header — hamburger (2px stroke) and shopping cart. Pure #232323 stroke, no fill, no border-radius, no background. The icon's line weight IS the design."
+      },
+      {
+        "name": "Circular Brand Seal",
+        "role": "Decorative wordmark medallion",
+        "description": "~160px diameter circle, 1px #232323 border, no fill. Contains text set on a circular path and stacked horizontal lines reading 'WOVEN / WHISKY MAKERS / THE WORLDWIDE'. Appears centered at the top of secondary pages. Pure typographic — no illustration, no ornament."
+      },
+      {
+        "name": "Image Container",
+        "role": "Product photography frame",
+        "description": "Photographs of amber glass bottles set against neutral studio backgrounds. Displayed edge-to-edge inside cards with no internal padding, no border-radius. Photography is the only source of color in the system — the warmer the light on the bottle, the more visual energy the page carries."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The workhorse typeface for body copy, navigation links, card text, list items, and most UI labels. Semi-mono construction gives it a precise, typeset quality that reinforces the editorial identity. 700 weight is used sparingly for emphasis within mono-spaced blocks.",
+        "sizes": "12px, 14px, 15px, 16px, 18px, 20px",
+        "family": "Spezia Semi-Mono",
+        "weight": "400, 700",
+        "lineHeight": "1.20, 1.50, 1.63, 2.40",
+        "substitute": "IBM Plex Mono or JetBrains Mono",
+        "letterSpacing": "0.063em–0.167em",
+        "fontFeatureSettings": "\"ss01\" on, \"tnum\" on"
+      },
+      {
+        "role": "Headline and display font — the proportional companion to the Semi-Mono, used for the hero wordmark 'WOVEN' and section titles. Single weight keeps the type system disciplined; contrast comes from size and tracking, not weight.",
+        "sizes": "16px, 20px, 24px, 32px",
+        "family": "Spezia Medium",
+        "weight": "400",
+        "lineHeight": "1.00, 1.13, 1.20, 1.23, 1.50, 1.63, 1.71, 2.40",
+        "substitute": "Söhne or Inter Display"
+      },
+      {
+        "role": "Small UI utility font for buttons, icon labels, and tight navigation tags. Rounds out the system where a humanist sans feels warmer than the mono family.",
+        "sizes": "12px, 14px",
+        "family": "Figtree",
+        "weight": "400, 700",
+        "lineHeight": "1.63, 1.71",
+        "substitute": "Inter or DM Sans",
+        "letterSpacing": "0.083em, 0.167em"
+      },
+      {
+        "role": "Lighter voice for inputs, helper text, and link descriptions — a whisper-weight variation that creates hierarchy without bold.",
+        "sizes": "14px, 15px, 20px",
+        "family": "Spezia Semi-Mono Light",
+        "weight": "400",
+        "lineHeight": "1.63, 1.71",
+        "substitute": "IBM Plex Mono Light or Space Mono Regular"
+      }
+    ],
+    "description": "Woven is an editorial whisky label with a parchment-on-press feel: warm cream canvases, a single dark ink color for every text and hairline border, and generous tracking that lets type breathe like a luxury magazine masthead. The entire interface is monochrome — zero chromatic accent — so product photography (amber bottles, foil caps, liquid) becomes the only color the eye ever sees. Layouts are spacious and centered, with uppercase navigational micro-copy stacked in narrow columns and section headings set far apart from their content. Components stay flat and quiet: white product cards with hairline borders, underlined text links, ghost controls, and no shadows or gradients — the cream surface is the elevation.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/76483bd1-37d3-4fb9-889b-aecf27b08b83#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Woven design system\",\"item\":\"https://styles.refero.design/style/76483bd1-37d3-4fb9-889b-aecf27b08b83\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/76483bd1-37d3-4fb9-889b-aecf27b08b83#style-reference\",\"name\":\"Woven design system reference\",\"headline\":\"Woven design system | Refero Styles\",\"description\":\"Explore Woven's light E-commerce design system: Parchment Cream #eeede5, Ink Black #232323 colors, Spezia Semi-Mono, Spezia Medium typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/76483bd1-37d3-4fb9-889b-aecf27b08b83\",\"mainEntityOfPage\":\"https://styles.refero.design/style/76483bd1-37d3-4fb9-889b-aecf27b08b83\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Woven\",\"url\":\"https://wovenwhisky.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/76483bd1-37d3-4fb9-889b-aecf27b08b83#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/adc6497b-b4aa-48a5-b954-f093278008e7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/adc6497b-b4aa-48a5-b954-f093278008e7.jpg\",\"caption\":\"Screenshot of Woven\"},\"image\":\"https://images.refero.design/styles/refero.design/image/adc6497b-b4aa-48a5-b954-f093278008e7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Woven design system\",\"Woven website design\",\"Woven colors\",\"Woven typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Parchment Cream\",\"Ink Black\",\"Pure White\",\"Iron Gray\",\"Spezia Semi-Mono\",\"Spezia Medium\",\"Figtree\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Woven design system\"},{\"@type\":\"Thing\",\"name\":\"Woven website design\"},{\"@type\":\"Thing\",\"name\":\"Woven colors\"},{\"@type\":\"Thing\",\"name\":\"Woven typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:15:35.734Z\",\"dateModified\":\"2026-04-30T03:15:35.734Z\"}]}19:T839,**Quick Color Reference**\n- Canvas: #eeede5 (Parchment Cream)\n- Card surface: #ffffff (Pure White)\n- Primary text/border: #232323 (Ink Black)\n- Secondary text: #4a4a4a (Iron Gray)\n- Subtle surface: #ddddda (Soft Stone)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Hero section*: Full-bleed photograph of an amber whisky bottle as background. Overlaid centered wordmark 'WOVEN' in Spezia Medium, ~200px, #ffffff at 60% opacity. Below the hero viewport, a 90px-tall Parchment Cream (#eeede5) band with the centered uppercase label 'EXPERIENCE WHISKY' in Figtree 12px, letter-spacing 0.167em, #232323.\n\n2. *Product range card*: White (#ffffff) card, 0px radius, 1px #232323 hairline border, ~45% page width. Bottle photograph fills the upper 75% edge-to-edge with no padding. Below, 26px card padding containing the product name 'HOMEMADE' centered in Spezia Semi-Mono 14px uppercase, letter-spacing 0.094em, and the price '£45' 10px below in Figtree 14px, #232323. No shadow.\n\n3. *Split footer-letterhead bar*: Parchment Cream (#eeede5) band, 160px tall. Centered circular seal (160px diameter, 1px #232323 border) containing stacked uppercase text 'WOVEN / WHISKY MAKERS / THE WORLDWIDE'. Below at the band edges: left-aligned three-line link 'WORLDWIDE / WHISKY / MAKERS' and right-aligned 'BLENDING / BEYOND / BORDERS', each word underlined with a 1px #232323 rule, 12px uppercase, Spezia Semi-Mono.\n\n4. *Section heading with product grid*: Parchment Cream (#eeede5) canvas. Centered uppercase label 'DISCOVER OUR RANGE' in Spezia Semi-Mono 14px, letter-spacing 1.17px, #232323, with 50px space below. Two product cards side by side, 8px gap, 0px radius, 1px #232323 border, white fill, edge-to-edge bottle photos above centered name + price.\n\n5. *Underlined stacked text link*: Narrow left-aligned column, each word on its own line: 'WORLDWIDE' / 'WHISKY' / 'MAKERS'. Spezia Semi-Mono 12px, uppercase, #232323, letter-spacing 0.167em, 1px #232323 underline beneath each word. No color change on hover, no background — the underline is the entire interactive affordance."
+      }
+    ],
+    "elevationPhilosophy": "The design system deliberately avoids all shadow, blur, and glow effects. Surface hierarchy is communicated entirely through flat color layering — Parchment Cream for canvas, Pure White for cards, and 1px Ink Black hairlines for boundaries. This produces a print-editorial feel where depth comes from typographic scale and whitespace, not from elevation effects."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#232323",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.25615330860684143
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "link",
+            "icon",
+            "body",
+            "card",
+            "image",
+            "footer",
+            "list",
+            "input"
+          ],
+          "frequency": 1286,
+          "confidence": 1,
+          "prominence": 130106739.20164247,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 14,
+            "icon/fill": 10,
+            "nav/color": 33,
+            "body/color": 18,
+            "card/color": 28,
+            "icon/color": 5,
+            "link/color": 25,
+            "list/color": 14,
+            "other/fill": 8,
+            "image/color": 3,
+            "input/color": 1,
+            "other/color": 106,
+            "button/color": 4,
+            "footer/color": 1,
+            "heading/color": 12,
+            "nav/borderColor": 132,
+            "body/borderColor": 72,
+            "card/borderColor": 112,
+            "icon/borderColor": 20,
+            "link/borderColor": 100,
+            "list/borderColor": 56,
+            "image/borderColor": 12,
+            "input/borderColor": 4,
+            "other/borderColor": 423,
+            "button/borderColor": 20,
+            "footer/borderColor": 4,
+            "heading/borderColor": 48,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#eeede5",
+          "oklch": {
+            "c": 0.010693537312566937,
+            "h": 100.82711973420571,
+            "l": 0.9446678028869084
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 33428090.254644483,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1,
+            "other/backgroundColor": 4,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "image",
+            "card",
+            "other",
+            "button"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 9488505.338513251,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/fill": 1,
+            "image/color": 1,
+            "button/color": 1,
+            "link/borderColor": 4,
+            "image/borderColor": 4,
+            "nav/backgroundColor": 3,
+            "card/backgroundColor": 8,
+            "link/backgroundColor": 4,
+            "image/backgroundColor": 3,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ddddda",
+          "oklch": {
+            "c": 0.004047199288954718,
+            "h": 106.48093867570768,
+            "l": 0.8966968557782116
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1961280,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#4a4a4a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4091200040105989
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 1527757.9381561996,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "other/color": 5,
+            "body/borderColor": 28,
+            "other/borderColor": 20
+          }
+        },
+        {
+          "hex": "#eb4f47",
+          "oklch": {
+            "c": 0.1935654252807637,
+            "h": 26.94625948204729,
+            "l": 0.6418184497473696
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.002014457611448911,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.72,
+          "background": "#ffffff",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.38,
+          "background": "#eeede5",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.55,
+          "background": "#ddddda",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.86,
+          "background": "#ffffff",
+          "foreground": "#4a4a4a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.55,
+          "background": "#eeede5",
+          "foreground": "#4a4a4a"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.51,
+          "background": "#ddddda",
+          "foreground": "#4a4a4a"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.3,
+          "background": "#232323",
+          "foreground": "#eb4f47"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.66,
+          "background": "#ffffff",
+          "foreground": "#eb4f47"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.11,
+          "background": "#eeede5",
+          "foreground": "#eb4f47"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.69,
+          "background": "#ddddda",
+          "foreground": "#eb4f47"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.77,
+          "background": "#232323",
+          "foreground": "#4a4a4a"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.36,
+          "background": "#ddddda",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.17,
+          "background": "#eeede5",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "icon"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingTop|icon",
+            "paddingRight|icon",
+            "paddingBottom|icon",
+            "paddingLeft|icon"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "heading",
+            "other",
+            "list",
+            "input"
+          ],
+          "frequency": 44,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginRight|nav",
+            "paddingTop|heading",
+            "paddingBottom|heading",
+            "paddingRight|other",
+            "marginRight|list",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "marginTop|button",
+            "marginTop|other",
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "card",
+            "link",
+            "body",
+            "list"
+          ],
+          "frequency": 76,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|nav",
+            "marginBottom|heading",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingLeft|card",
+            "marginBottom|link",
+            "marginBottom|body",
+            "marginTop|list",
+            "paddingRight|list"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "link",
+            "footer",
+            "body",
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingBottom|footer",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "marginBottom|body",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginBottom|other",
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginBottom|nav",
+            "marginBottom|other",
+            "marginBottom|card",
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 104,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 110,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "heading",
+            "link",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginTop|link",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 210,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 230,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Spezia Semi-Mono Regular",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 206,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Spezia Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 31,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Figtree",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 21,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Spezia Semi-Mono Light",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 16,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Figtree",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "nav",
+            "icon",
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 4.17,
+          "letterSpacing": 0.167,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Spezia Semi-Mono Regular",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 4.17,
+          "letterSpacing": 0.167,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Figtree",
+          "weight": 700,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.63,
+          "letterSpacing": 0.083,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Figtree",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Spezia Semi-Mono Regular",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.63,
+          "letterSpacing": 0.121,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Spezia Semi-Mono Light",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Spezia Semi-Mono Light",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Spezia Semi-Mono Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Spezia Semi-Mono Regular",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 2.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Spezia Semi-Mono Light",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Spezia Semi-Mono Regular",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "nav",
+            "body",
+            "card",
+            "image",
+            "footer",
+            "list",
+            "icon"
+          ],
+          "frequency": 171,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Spezia Medium",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Spezia Medium",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Spezia Medium",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Spezia Semi-Mono Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.63,
+          "letterSpacing": 0.063,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Spezia Semi-Mono Regular",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.63,
+          "letterSpacing": 0.094,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Spezia Medium",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Spezia Semi-Mono Regular",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.63,
+          "letterSpacing": 0.063,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Spezia Semi-Mono Regular",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Spezia Semi-Mono Regular",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Spezia Medium",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 2.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Spezia Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Spezia Semi-Mono Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Spezia Semi-Mono Light",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Spezia Semi-Mono Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Spezia Medium",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Spezia Medium",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Spezia Medium",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link",
+            "image"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Spezia Medium",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Spezia Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/aa4d7328-959d-4387-8f54-55a929bd5559.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/adc6497b-b4aa-48a5-b954-f093278008e7.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/76483bd1-37d3-4fb9-889b-aecf27b08b83#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Woven design system\",\"item\":\"https://styles.refero.design/style/76483bd1-37d3-4fb9-889b-aecf27b08b83\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/76483bd1-37d3-4fb9-889b-aecf27b08b83#style-reference\",\"name\":\"Woven design system reference\",\"headline\":\"Woven design system | Refero Styles\",\"description\":\"Explore Woven's light E-commerce design system: Parchment Cream #eeede5, Ink Black #232323 colors, Spezia Semi-Mono, Spezia Medium typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/76483bd1-37d3-4fb9-889b-aecf27b08b83\",\"mainEntityOfPage\":\"https://styles.refero.design/style/76483bd1-37d3-4fb9-889b-aecf27b08b83\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Woven\",\"url\":\"https://wovenwhisky.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/76483bd1-37d3-4fb9-889b-aecf27b08b83#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/adc6497b-b4aa-48a5-b954-f093278008e7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/adc6497b-b4aa-48a5-b954-f093278008e7.jpg\",\"caption\":\"Screenshot of Woven\"},\"image\":\"https://images.refero.design/styles/refero.design/image/adc6497b-b4aa-48a5-b954-f093278008e7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Woven design system\",\"Woven website design\",\"Woven colors\",\"Woven typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Parchment Cream\",\"Ink Black\",\"Pure White\",\"Iron Gray\",\"Spezia Semi-Mono\",\"Spezia Medium\",\"Figtree\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Woven design system\"},{\"@type\":\"Thing\",\"name\":\"Woven website design\"},{\"@type\":\"Thing\",\"name\":\"Woven colors\"},{\"@type\":\"Thing\",\"name\":\"Woven typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:15:35.734Z\",\"dateModified\":\"2026-04-30T03:15:35.734Z\"}]}19:T839,**Quick Color Reference**\n- Canvas: #eeede5 (Parchment Cream)\n- Card surface: #ffffff (Pure White)\n- Primary text/border: #232323 (Ink Black)\n- Secondary text: #4a4a4a (Iron Gray)\n- Subtle surface: #ddddda (Soft Stone)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Hero section*: Full-bleed photograph of an amber whisky bottle as background. Overlaid centered wordmark 'WOVEN' in Spezia Medium, ~200px, #ffffff at 60% opacity. Below the hero viewport, a 90px-tall Parchment Cream (#eeede5) band with the centered uppercase label 'EXPERIENCE WHISKY' in Figtree 12px, letter-spacing 0.167em, #232323.\n\n2. *Product range card*: White (#ffffff) card, 0px radius, 1px #232323 hairline border, ~45% page width. Bottle photograph fills the upper 75% edge-to-edge with no padding. Below, 26px card padding containing the product name 'HOMEMADE' centered in Spezia Semi-Mono 14px uppercase, letter-spacing 0.094em, and the price '£45' 10px below in Figtree 14px, #232323. No shadow.\n\n3. *Split footer-letterhead bar*: Parchment Cream (#eeede5) band, 160px tall. Centered circular seal (160px diameter, 1px #232323 border) containing stacked uppercase text 'WOVEN / WHISKY MAKERS / THE WORLDWIDE'. Below at the band edges: left-aligned three-line link 'WORLDWIDE / WHISKY / MAKERS' and right-aligned 'BLENDING / BEYOND / BORDERS', each word underlined with a 1px #232323 rule, 12px uppercase, Spezia Semi-Mono.\n\n4. *Section heading with product grid*: Parchment Cream (#eeede5) canvas. Centered uppercase label 'DISCOVER OUR RANGE' in Spezia Semi-Mono 14px, letter-spacing 1.17px, #232323, with 50px space below. Two product cards side by side, 8px gap, 0px radius, 1px #232323 border, white fill, edge-to-edge bottle photos above centered name + price.\n\n5. *Underlined stacked text link*: Narrow left-aligned column, each word on its own line: 'WORLDWIDE' / 'WHISKY' / 'MAKERS'. Spezia Semi-Mono 12px, uppercase, #232323, letter-spacing 0.167em, 1px #232323 underline beneath each word. No color change on hover, no background — the underline is the entire interactive affordance."
+}

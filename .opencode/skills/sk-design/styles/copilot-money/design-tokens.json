@@ -1,0 +1,614 @@
+{
+  "color": {
+    "midnight-canvas": {
+      "$value": "#000814",
+      "$type": "color",
+      "$description": "Midnight Canvas — Page background, hero canvas, base layer of the dark plane"
+    },
+    "deep-surface": {
+      "$value": "#010d1e",
+      "$type": "color",
+      "$description": "Deep Surface — First elevated surface tier above the canvas — cards, panels, nav wells"
+    },
+    "indigo-surface": {
+      "$value": "#001533",
+      "$type": "color",
+      "$description": "Indigo Surface — Second elevated surface — deeper blue tint for nested containers and highlighted panels"
+    },
+    "cobalt-surface": {
+      "$value": "#00215e",
+      "$type": "color",
+      "$description": "Cobalt Surface — Glow-tier surface for featured blocks, highlighted links, and deep elevation wells"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary headings, body text, icon strokes, ghost-button borders, logo glyph"
+    },
+    "fog": {
+      "$value": "#ccced0",
+      "$type": "color",
+      "$description": "Fog — Muted secondary text, subtle hairline borders on quiet surfaces"
+    },
+    "mist": {
+      "$value": "#999ca1",
+      "$type": "color",
+      "$description": "Mist — Helper text, tertiary captions, low-emphasis metadata"
+    },
+    "steel-border": {
+      "$value": "#11263b",
+      "$type": "color",
+      "$description": "Steel Border — Hairline border tone — divides dark surfaces at low contrast"
+    },
+    "signal-blue": {
+      "$value": "#1c6cff",
+      "$type": "color",
+      "$description": "Signal Blue — Filled primary action buttons, active nav, brand mark tint — the one chromatic accent on a dark page"
+    },
+    "tag-coral": {
+      "$value": "#ff4433",
+      "$type": "color",
+      "$description": "Tag Coral — Category tag fill — groceries, food, lifestyle tags in the floating constellation"
+    },
+    "tag-lime": {
+      "$value": "#00cc4b",
+      "$type": "color",
+      "$description": "Tag Lime — Category tag fill — green budget / income / positive-flow labels"
+    },
+    "tag-tangerine": {
+      "$value": "#ff8833",
+      "$type": "color",
+      "$description": "Tag Tangerine — Category tag fill — home, utilities, warm-life-event tags"
+    },
+    "tag-hot-pink": {
+      "$value": "#ff33aa",
+      "$type": "color",
+      "$description": "Tag Hot Pink — Category tag fill — personal, family, baby, gift tags"
+    },
+    "tag-violet": {
+      "$value": "#9019e6",
+      "$type": "color",
+      "$description": "Tag Violet — Category tag fill — entertainment, nightlife, going-out tags"
+    },
+    "tag-sunflower": {
+      "$value": "#ffcc02",
+      "$type": "color",
+      "$description": "Tag Sunflower — Category tag fill — savings, goals, highlight tags"
+    },
+    "tag-sky": {
+      "$value": "#00acfe",
+      "$type": "color",
+      "$description": "Tag Sky — Category tag fill — travel, subscription, digital tags"
+    },
+    "tag-ember": {
+      "$value": "#ea687c",
+      "$type": "color",
+      "$description": "Tag Ember — Category tag fill — warm pink-red for fashion, health, personal care"
+    },
+    "tag-olive": {
+      "$value": "#94ae43",
+      "$type": "color",
+      "$description": "Tag Olive — Category tag fill — organic, grocery-adjacent, eco tags"
+    },
+    "tag-slate": {
+      "$value": "#5c6f8a",
+      "$type": "color",
+      "$description": "Tag Slate — Category tag fill — neutral-toned category tags (transit, bills, misc)"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "jokker": {
+      "$value": "Jokker",
+      "$type": "fontFamily",
+      "$description": "Display headings only. The 148px Jokker Semibold (line-height 0.90, tracking -0.02em) is the hero — a custom condensed display face whose tight verticals and sharp terminals give the dark page its editorial weight. Using a display face (not a body sans) for the headline is the signature: headlines announce rather than describe. Substitute: ABC Monument Grotesk, Söhne Breit, or Space Grotesk Bold."
+    },
+    "matter-variable-thin": {
+      "$value": "Matter Variable Thin",
+      "$type": "fontFamily",
+      "$description": "All body copy, subheadings, and supporting text. Weight 100 across the entire body scale is anti-convention — most dark UIs use weight 400-500 to fight low contrast, but Matter Thin lets the page feel printed on dark vellum. The 38px and 56px sizes act as secondary display tiers, still at weight 100, reinforcing the 'whisper, don't shout' voice. Substitute: Inter Thin, Söhne Leicht, or IBM Plex Sans Thin."
+    },
+    "matter-trial-semibold": {
+      "$value": "Matter-TRIAL SemiBold",
+      "$type": "fontFamily",
+      "$description": "All-caps eyebrow labels and section markers. The 0.04em tracking is the key — it forces the all-caps treatment to read as signage, not shouting. Appears above section content as a small 'kicker' line."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Matter Variable Thin",
+        "fontSize": "11px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Jokker Medium",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Matter Variable Thin",
+        "fontSize": "12px",
+        "fontWeight": 100,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Matter Variable Thin",
+        "fontSize": "13px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Matter Variable Thin",
+        "fontSize": "13px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Matter Variable Thin",
+        "fontSize": "13px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Jokker Regular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Jokker Medium",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Matter Variable Thin",
+        "fontSize": "14px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Matter Variable Thin",
+        "fontSize": "14px",
+        "fontWeight": 100,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Matter Variable Thin",
+        "fontSize": "15px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Matter Variable Thin",
+        "fontSize": "15px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Jokker Medium",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Matter Variable Thin",
+        "fontSize": "16px",
+        "fontWeight": 100,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Jokker Medium",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Jokker Medium",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Matter Variable Thin",
+        "fontSize": "18px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Matter Variable Thin",
+        "fontSize": "18px",
+        "fontWeight": 100,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Matter Variable Thin",
+        "fontSize": "22px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Jokker Medium",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Jokker Medium",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Jokker Semibold",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Jokker Regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Matter-TRIAL SemiBold",
+        "fontSize": "28px",
+        "fontWeight": 670,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Jokker Medium",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Matter Variable Thin",
+        "fontSize": "38px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Matter Variable Thin",
+        "fontSize": "56px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Jokker Medium",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Jokker Semibold",
+        "fontSize": "64px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Jokker Semibold",
+        "fontSize": "148px",
+        "fontWeight": 600,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 148px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(255, 255, 255, 0.16) 4px 4px 16px -4px inset, rgba(0, 0, 0, 0.2) -4px -4px 16px -4px inset, rgba(255, 255, 255, 0.08) 4px 4px 8px 0px inset, rgba(255, 255, 255, 0.4) 1px 1px 1px -0.5px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "md-2": {
+      "$value": "rgba(38, 113, 217, 0.08) 0px 0px 12px 0px inset, rgba(0, 0, 0, 0.32) 0px -4px 8px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation md-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#000814",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page background — the midnight plane everything else sits inside"
+    },
+    "deep-surface": {
+      "$value": "#010d1",
+      "$type": "color",
+      "$description": "Surface level 1: Cards, nav wells, first elevation step off the canvas"
+    },
+    "indigo-surface": {
+      "$value": "#001533",
+      "$type": "color",
+      "$description": "Surface level 2: Nested panels, expanded menu backgrounds"
+    },
+    "cobalt-surface": {
+      "$value": "#00215",
+      "$type": "color",
+      "$description": "Surface level 3: Featured blocks, highlighted link backgrounds, deep wells"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://copilot.money",
+      "siteName": "Copilot Money",
+      "extractedAt": "2026-06-03T22:39:04.016Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+@theme {
+  /* Colors */
+  --color-parchment: #faf9f7;
+  --color-paper: #ffffff;
+  --color-mist: #f1efef;
+  --color-stone-200: #e7e5e4;
+  --color-stone-300: #d6d3d1;
+  --color-stone-400: #a8a29e;
+  --color-stone-500: #78716c;
+  --color-stone-600: #57534e;
+  --color-stone-700: #44403c;
+  --color-warm-ink: #1c1917;
+  --color-charcoal: #292524;
+  --color-ember: #f97316;
+
+  /* Typography */
+  --font-sans-serif: 'sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-newsreader: 'Newsreader', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ui-monospace: 'ui-monospace', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-ui-sans-serif: 'ui-sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-iowan-old-style: 'Iowan Old Style', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.3;
+  --tracking-caption: 0.96px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.4;
+  --text-body-lg: 17px;
+  --leading-body-lg: 1.6;
+  --text-subheading: 20px;
+  --leading-subheading: 1.45;
+  --text-heading: 28px;
+  --leading-heading: 1.25;
+  --tracking-heading: -0.56px;
+  --text-heading-lg: 34px;
+  --leading-heading-lg: 1.2;
+  --tracking-heading-lg: -1.02px;
+  --text-display: 80px;
+  --leading-display: 1;
+  --tracking-display: -3.2px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-108: 108px;
+  --spacing-140: 140px;
+  --spacing-180: 180px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 999px;
+
+  /* Shadows */
+  --shadow-sm: rgba(0, 0, 0, 0.05) 0px 1px 4px 0px, rgba(0, 0, 0, 0.03) 0px 0px 0px 0.5px;
+  --shadow-subtle: rgba(255, 255, 255, 0.07) 0px 1px 0px 0px inset, rgba(255, 255, 255, 0.06) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.25) 0px 1px 2px 0px, rgba(0, 0, 0, 0.15) 0px 2px 6px 0px;
+  --shadow-subtle-2: rgb(214, 211, 209) 0px 0px 0px 1px inset;
+  --shadow-subtle-3: rgb(231, 229, 228) 0px 0px 0px 1px inset;
+  --shadow-subtle-4: rgba(0, 0, 0, 0.04) 0px 1px 2px 0px, rgba(0, 0, 0, 0.03) 0px 1px 4px 0px;
+}

@@ -1,0 +1,354 @@
+{
+  "color": {
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Primary text, hairlines, filled primary buttons, dark section backgrounds, and card surfaces on dark bands — the structural default that carries the entire system"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, button text on dark fills, form input fills — the negative space that frames everything"
+    },
+    "warm-gray": {
+      "$value": "#736f7c",
+      "$type": "color",
+      "$description": "Warm Gray — Body text on light surfaces, subtle borders, muted helper text — a near-gray that warms the neutral palette slightly"
+    },
+    "mist": {
+      "$value": "#dedede",
+      "$type": "color",
+      "$description": "Mist — Hairline dividers, input borders, disabled states — the lightest structural line in the system"
+    },
+    "fog": {
+      "$value": "#bdbdbd",
+      "$type": "color",
+      "$description": "Fog — Placeholder text, inactive borders, secondary dividers"
+    },
+    "slate": {
+      "$value": "#7f7f7f",
+      "$type": "color",
+      "$description": "Slate — Inactive nav text, subtle metadata"
+    },
+    "iris-shadow": {
+      "$value": "#8b8893",
+      "$type": "color",
+      "$description": "Iris Shadow — Rare shadow tint and muted border accent"
+    },
+    "neon-pulse": {
+      "$value": "#ff17e9",
+      "$type": "color",
+      "$description": "Neon Pulse — Brand accent — logo mark, active nav underline, highlighted section labels, badge borders, decorative emphasis on key words — one vivid pink against the monochrome system"
+    }
+  },
+  "font": {
+    "helvetica-neue": {
+      "$value": "Helvetica Neue",
+      "$type": "fontFamily",
+      "$description": "Single-family system used for everything from 12px captions to 200px stat numerals. The extreme range (16× scale) is the signature — the same weight carries caption text and hero headlines, letting scale and tracking do the differentiation. Positive letter-spacing (+0.08em) on the smallest sizes signals uppercase labels; aggressive negative tracking (-0.05em) on display sizes tightens large type to a poster-like density."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.78
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "200px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 200px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.15) 0px 12px 60px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background — the white gallery wall"
+    },
+    "card-light": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Form inputs, light product cards on white sections"
+    },
+    "band-dark": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Full-width dark section for feature cards, creates tonal break"
+    },
+    "card-dark": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Feature cards on the dark band, no visible card edge"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://sundayapp.com",
+      "siteName": "sunday",
+      "extractedAt": "2026-06-03T17:23:01.116Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,1100 @@
+{
+  "source": "https://styles.refero.design/style/a865ac1d-a4c2-425b-90db-2a7ec6d461a3",
+  "uuid": "a865ac1d-a4c2-425b-90db-2a7ec6d461a3",
+  "name": "Superlocal",
+  "northStar": "Cream risograph poster under cobalt sky — a single sheet of eggshell paper, one bolt of electric blue, and a sharp geometric face that feels printed not designed.",
+  "capturedAt": "2026-07-18T09:45:20.194Z",
+  "meta": {
+    "url": "https://superlocaldesign.com",
+    "siteName": "Superlocal",
+    "extractedAt": "2026-06-03T18:15:58.107Z",
+    "durationMs": 23913,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1518,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #fbf5e7 as the default canvas for every body section. Pure white is a violation of the paper-warm system.",
+      "Reserve #1673ff for full-bleed hero bands and the single moment that needs to detonate. Never use it as a small button fill or chip.",
+      "Set buttons and tags to 99px radius. The pill silhouette is the system's recurring punctuation mark.",
+      "Use -0.05em or tighter tracking on any display size 64px and above. Positive tracking belongs only on 10-12px eyebrow and caption text.",
+      "Use the 6-column hairline grid for any partner, sponsor, or logo wall. Zero cell gap, 1px black dividers, no card shadows.",
+      "Anchor every section with either cream or coffee-brown as the surface. Do not introduce a third dark or light tone.",
+      "Pair the sunburst illustration with a 12-32px cream or black circular badge when it appears at small sizes (e.g., inside the Reservar button)."
+    ],
+    "donts": [
+      "Don't drop shadows anywhere. The system reads as flat-printed matter, not as a layered UI.",
+      "Don't use #1673ff as a link color, icon tint, or text accent. It is a wall, not a highlight.",
+      "Don't set body text larger than 17px in RST Reactor. The face is designed for tension between tiny tracked labels and massive display — body should stay in the 14-17px window.",
+      "Don't use 0px radius for buttons. The pill is the system's recurring motif; squared buttons break the rhythm.",
+      "Don't introduce a new accent hue. The brand's chromatic vocabulary is exactly three: Cobalt, Coffee, Tangerine.",
+      "Don't set line-height above 1.0 on the 64px and 172px display sizes. The near-touching lines are intentional.",
+      "Don't place a colored button on a surface of the same hue. The Reservar button is cream on cobalt — contrast is structural."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#1673ff",
+        "name": "Electric Cobalt",
+        "role": "Full-bleed hero backgrounds, section anchors — the single saturated chord of the system, reserved for the opening band and any screen that needs to shout over the cream",
+        "group": "brand"
+      },
+      {
+        "hex": "#3d2800",
+        "name": "Coffee Bean",
+        "role": "Dark schedule bands, body text on cream, logo lockup wordmark — a warm near-black that reads as ink, not charcoal",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff7b02",
+        "name": "Tangerine Burn",
+        "role": "Sunburst illustration accent, flower petal rays — the warm counterweight to cobalt, appears only inside the hero graphic",
+        "group": "brand"
+      },
+      {
+        "hex": "#fbf5e7",
+        "name": "Eggshell Cream",
+        "role": "Page canvas, card surfaces, sponsor grid background, section fills — the warm default that replaces white everywhere",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary body text, logo monogram strokes, illustration line work, hairline dividers, iconography",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c4c4c4",
+        "name": "Pale Ash",
+        "role": "Secondary surface tint, disabled or inactive background fills, tertiary section background when cream needs a sibling",
+        "group": "neutral"
+      },
+      {
+        "hex": "#604106",
+        "name": "Mocha",
+        "role": "Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page model is full-bleed with no max-width container — every section paints its own color edge to edge. The hero is a single 100vh cobalt band with the illustration centered and floating type at the four corners. Below the hero, content lives in cream sections that alternate with one dark coffee-brown band for the schedule. Vertical rhythm is 57-78px between sections. The sponsor wall is a 6-column × 2-row grid with zero cell gap and no card radius — the cell borders compose the grid lines. Text sections use a single wide column rather than multi-column body text. Navigation is a transparent top bar with logo left and four links right; no sticky behavior, no hamburger, no sidebar. The overall feel is closer to a printed broadsheet than a SaaS dashboard — sections stack vertically like pages of a program.",
+    "imagery": "Imagery is graphic, not photographic. The entire visual identity rests on a single flat-vector sunburst/flower illustration in the hero — eight cream petals, tangerine rays, black-and-white optical center. No photography appears anywhere on the site. Sponsor marks are the only secondary visual content, presented as monochrome black wordmarks on cream cells. Icons are minimal: a tiny circular tangerine sunburst, a right-arrow glyph, and clean geometric utility marks. The aesthetic is risograph-printed-poster — bold flat shapes, tight ink coverage, and a single saturated burst of color as the visual exclamation point.",
+    "similar": [
+      {
+        "why": "Same editorial full-bleed band structure — one saturated color detonates the hero, then a quiet cream/dark rhythm carries the program, with type that swings from tracked uppercase nav to massive geometric display",
+        "business": "Awwwards Conference sites"
+      },
+      {
+        "why": "Single full-bleed color hero, a centered graphic as the visual anchor, and a near-monochrome content body below — Superlocal adopts the same architectural restraint but swaps Apple's glass-blue for electric cobalt and white for cream",
+        "business": "Apple Keynote event pages"
+      },
+      {
+        "why": "Cream-canvas editorial surfaces, hairline-bordered grid walls for partners, and a custom geometric face used at extreme size contrast — both treat the page as a printed sheet",
+        "business": "It's Nice That features"
+      },
+      {
+        "why": "Festival-style schedule band in a deep brand color, massive stacked heading pairs ('Cronograma / 2025' mirrors 'Design / Open'), and the editorial use of negative space as the primary layout device",
+        "business": "Dropbox Design Open"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "30px",
+        "cards": "0px",
+        "pills": "99px",
+        "buttons": "50px"
+      },
+      "elementGap": "10-16px",
+      "sectionGap": "57-78px",
+      "cardPadding": "16-24px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#1673ff",
+        "name": "Hero Cobalt",
+        "level": 0,
+        "purpose": "Full-bleed first screen, sets the brand's electric register"
+      },
+      {
+        "hex": "#fbf5e7",
+        "name": "Eggshell Canvas",
+        "level": 1,
+        "purpose": "Default body surface across all content sections"
+      },
+      {
+        "hex": "#c4c4c4",
+        "name": "Ash Tint",
+        "level": 2,
+        "purpose": "Subtle alternation within cream content blocks"
+      },
+      {
+        "hex": "#3d2800",
+        "name": "Coffee Band",
+        "level": 3,
+        "purpose": "Dark schedule and footer band, inverted type surface"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Cream risograph poster under cobalt sky — a single sheet of eggshell paper, one bolt of electric blue, and a sharp geometric face that feels printed not designed.",
+    "typeScale": [
+      {
+        "role": "micro",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.5
+      },
+      {
+        "role": "eyebrow",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.264
+      },
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.41,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.6,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "heading",
+        "size": 64,
+        "lineHeight": 0.9,
+        "letterSpacing": -3.2
+      },
+      {
+        "role": "display",
+        "size": 172,
+        "lineHeight": 1,
+        "letterSpacing": -10.32
+      }
+    ],
+    "components": [
+      {
+        "name": "Cobalt Hero Band",
+        "role": "Opening screen — the system's signature moment",
+        "description": "Full-viewport #1673ff band. Logo wordmark 'superlocal' in Eggshell Cream at top-left (RST Reactor 17px, -0.02em). Nav links (INICIO, LINEUP, CRONOGRAMA, CONTACTO) in cream at 12px tracked +0.264px, top-right. Centered illustration occupies the full visual field. Bottom-left carries a 12px cream caption (LA CONFERENCIA DE DISEÑO / INTERNACIONAL DEL URUGUAY). No padding from viewport edges — graphic bleeds to all four sides."
+      },
+      {
+        "name": "Reservar Pill Button",
+        "role": "Primary floating action on the hero",
+        "description": "Eggshell Cream (#fbf5e7) pill, 99px radius, sits at bottom-right of the hero. Contains a 32×32 circular white inset with a miniature tangerine sunburst icon, the label 'RESERVAR ACTIVIDADES' in Coffee Bean at 12px tracked +0.264px, and a right-arrow glyph. Padding 8px vertical, 16px horizontal. No shadow — flat against the cobalt."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal global navigation",
+        "description": "Transparent, no background. Logo at top-left, nav cluster at top-right. Items are 12px RST Reactor, tracked +0.264px, uppercase, Ink Black on cream sections and Eggshell Cream on the cobalt hero. Spacing between items: 24px. No underline, no active state decoration beyond color shift."
+      },
+      {
+        "name": "Eggshell Content Section",
+        "role": "Default body surface",
+        "description": "Full-bleed #fbf5e7 background. No border, no shadow, no radius. Internal content uses generous edge padding (48-78px vertical, fluid horizontal). Headlines sit at 64-172px in Coffee Bean. Body in Ink Black at 17px. The cream itself provides the warmth — no decorative treatment needed."
+      },
+      {
+        "name": "Sponsor Grid Cell",
+        "role": "Single sponsor brand slot in the 6-column grid",
+        "description": "Zero radius, Eggshell Cream background, bordered on all four sides by a 1px Ink Black hairline. Sponsor logo centered both axes, 60% of cell width. Cell aspect roughly 1:1.5 portrait. No padding override — logo floats in the negative space."
+      },
+      {
+        "name": "Sponsor Grid",
+        "role": "6-column × 2-row partner wall",
+        "description": "Six equal columns, two rows, gap 0. The grid IS the divider system — each cell's borders compose the full grid lines. Background is Eggshell Cream. The grid sits inside a content section with edge padding equal to one cell width on each side, so the outermost borders align with the section's content edge."
+      },
+      {
+        "name": "Coffee Schedule Band",
+        "role": "Dark inverted band for schedule / timeline content",
+        "description": "Full-bleed #3d2800 background. Headlines 'Cronograma 2025' sit at 64px RST Reactor Medium, Eggshell Cream, -3.2px tracking, line-height 0.90 (the line-height <1 is a deliberate editorial squeeze — the descenders kiss the next line). Body explanation text in Eggshell Cream at 14px. Spacing between heading pair and body: 48px. Schedule rows below use 12px cream text on 0px gap (tight rows)."
+      },
+      {
+        "name": "Schedule Row",
+        "role": "Single time slot in the cronograma",
+        "description": "Three-column flex within the Coffee Band: date stamp (left, 12px cream, +0.264px tracking), title block (center, 17px Eggshell Cream, -0.68px tracking), meta line (right, 12px cream). Row height ~32px, separated by a 1px #604106 hairline. No hover state — static editorial table."
+      },
+      {
+        "name": "Section Caption",
+        "role": "Eyebrow / small context label",
+        "description": "10-12px RST Reactor, uppercase, +0.5px or +0.264px tracking, Coffee Bean on cream sections, Eggshell Cream on the cobalt hero. Single line, sits 32px above the headline it labels."
+      },
+      {
+        "name": "Sunburst Illustration",
+        "role": "Hero centerpiece graphic",
+        "description": "Large stylized flower/sonnenblume: eight Eggshell Cream rounded petals around a black-and-white optical-ring center with a Tangerine Burn sunburst burst between the center and petals. Pure flat shapes, no gradients, no shadows. Centered on the cobalt band, scale ~60% of viewport height. Functions as a logo-as-poster, not a decorative flourish."
+      },
+      {
+        "name": "Footer Wordmark",
+        "role": "Closing identity lockup",
+        "description": "Abbreviated 'splcl' wordmark in Coffee Bean at 14px, top-left of an Eggshell section, acting as a recurring signpost. No rules, no background — just type breathing on the cream."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary display and body face across the entire system. Drives the 172px hero headline, 64px section headings, 14-17px body, and 10-12px tracked eyebrows. Its brutal tracking swing — from -0.06em on display to +0.05em on micro text — IS the brand's typographic signature. Use for everything except rare utility contexts.",
+        "sizes": "10px, 12px, 14px, 16px, 17px, 64px, 172px",
+        "family": "RST Reactor",
+        "weight": "400, 500 (Medium variant used for select headings at 64px)",
+        "lineHeight": "0.90 (64px heading), 1.00 (172px display), 1.20 (10-12px), 1.30 (16px), 1.41 (17px), 1.50 (17px body)",
+        "substitute": "Space Grotesk (closest free geometric grotesque with similar optical qualities) or Sora",
+        "letterSpacing": "-0.06em at 172px, -0.05em at 64px, -0.04em at 17px, -0.02em at 14-16px, +0.022em at 12px, +0.05em at 10px",
+        "fontFeatureSettings": "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+      },
+      {
+        "role": "Long-form body fallback. Used for extended paragraphs where RST Reactor's geometric character would compete with readability. Quiet, neutral, disappears into the page.",
+        "sizes": "16px",
+        "family": "Inter",
+        "weight": "400",
+        "lineHeight": "1.60",
+        "substitute": "Inter (Google Font) or IBM Plex Sans",
+        "letterSpacing": "-0.02em",
+        "fontFeatureSettings": "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+      },
+      {
+        "role": "Micro utility text — timestamps, badges, and any element too small for RST Reactor to retain character",
+        "sizes": "12px",
+        "family": "System sans-serif",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Any platform system stack (-apple-system, Segoe UI, sans-serif)",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Superlocal reads as a printed festival poster translated to the web. The canvas is a warm eggshell cream (#fbf5e7), never clinical white — every default surface carries that risograph paper warmth. A single full-bleed electric cobalt band (#1673ff) detonates the first screen and acts as the brand's signature anchor, while a deep coffee-brown band (#3d2800) carries schedule content. Typography is dominated by a custom geometric display face (RST Reactor) that swings from a massive 172px headline with brutally tight -0.06em tracking down to 14-17px body, then jumps to positively-tracked uppercase eyebrows for the nav and captions. Controls are flat pill shapes (99px radius), the sponsor system is a sharp-cornered 6-column grid divided by hairlines, and color is rationed: most screens stay cream and monochrome, letting blue and orange erupt only on the hero and the single sunburst illustration.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a865ac1d-a4c2-425b-90db-2a7ec6d461a3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Superlocal design system\",\"item\":\"https://styles.refero.design/style/a865ac1d-a4c2-425b-90db-2a7ec6d461a3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a865ac1d-a4c2-425b-90db-2a7ec6d461a3#style-reference\",\"name\":\"Superlocal design system reference\",\"headline\":\"Superlocal design system | Refero Styles\",\"description\":\"Explore Superlocal's light Agency design system: Electric Cobalt #1673ff, Coffee Bean #3d2800 colors, RST Reactor, Inter typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/a865ac1d-a4c2-425b-90db-2a7ec6d461a3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a865ac1d-a4c2-425b-90db-2a7ec6d461a3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Superlocal\",\"url\":\"https://superlocaldesign.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a865ac1d-a4c2-425b-90db-2a7ec6d461a3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d20065f5-5e71-435c-8e30-9158f7dd2467.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d20065f5-5e71-435c-8e30-9158f7dd2467.jpg\",\"caption\":\"Screenshot of Superlocal\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d20065f5-5e71-435c-8e30-9158f7dd2467.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Superlocal design system\",\"Superlocal website design\",\"Superlocal colors\",\"Superlocal typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Electric Cobalt\",\"Coffee Bean\",\"Tangerine Burn\",\"Eggshell Cream\",\"RST Reactor\",\"Inter\",\"System sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Superlocal design system\"},{\"@type\":\"Thing\",\"name\":\"Superlocal website design\"},{\"@type\":\"Thing\",\"name\":\"Superlocal colors\"},{\"@type\":\"Thing\",\"name\":\"Superlocal typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-03-22T11:47:04.000Z\",\"dateModified\":\"2026-03-22T11:47:04.000Z\"}]}19:T7f3,**Quick Color Reference**\n- canvas: #fbf5e7 (Eggshell Cream)\n- surface dark: #3d2800 (Coffee Bean)\n- hero band: #1673ff (Electric Cobalt)\n- text primary: #000000 (Ink Black)\n- text on dark: #fbf5e7 (Eggshell Cream)\n- accent illustration: #ff7b02 (Tangerine Burn)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. Build a full-bleed hero band: #1673ff background, no padding from viewport. Center a flat sunburst illustration (eight #fbf5e7 rounded petals, #ff7b02 ray burst, #000000-and-#fbf5e7 optical center, 60% of viewport height). 'superlocal' wordmark top-left in #fbf5e7 at 17px RST Reactor tracking -0.02em. Four uppercase nav links (INICIO, LINEUP, CRONOGRAMA, CONTACTO) top-right at 12px RST Reactor tracking +0.264px, color #fbf5e7. Bottom-left eyebrow caption at 12px #fbf5e7 tracking +0.264px.\n2. Build a sponsor grid: #fbf5e7 background, 6 equal columns × 2 rows, gap 0, 1px #000000 hairline borders on every cell, zero radius. Each cell holds one monochrome black wordmark centered at 60% cell width. Outer section padding equal to one cell width on left/right so the outer borders align flush with the content edge.\n3. Build a dark schedule band: full-bleed #3d2800 background. Heading 'Cronograma 2025' in #fbf5e7 RST Reactor at 64px, tracking -3.2px, line-height 0.90. Body description in #fbf5e7 at 14px. Below: schedule rows, each with 12px #fbf5e7 uppercase date stamp (tracking +0.264px), 17px #fbf5e7 title (tracking -0.68px), 12px #fbf5e7 meta line — row height 32px, separated by 1px #604106 hairlines.\n4. Build a pill floating action: 99px radius, #fbf5e7 background, padding 8px 16px. Contains a 32×32 white circle holding a miniature tangerine sunburst icon, the label 'RESERVAR ACTIVIDADES' in #3d2800 at 12px tracking +0.264px, and a right-arrow glyph. No shadow. Sits at bottom-right of the hero with 32px edge inset.\n5. Build a footer wordmark: abbreviated 'splcl' in #3d2800 RST Reactor at 14px, top-left of an #fbf5e7 section, 48px top padding, no background, no rules."
+      }
+    ],
+    "elevationPhilosophy": "The system is deliberately flat. No drop shadows, no glows, no raised surfaces. Hierarchy comes from color contrast (cream → coffee → cobalt), type scale, and the negative space of full-bleed bands — never from z-axis elevation. A pill button on the cobalt hero is the same flat plane as the surface behind it, distinguished only by its 99px radius and inverted fill."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "image",
+            "list",
+            "button",
+            "icon"
+          ],
+          "frequency": 4435,
+          "confidence": 1,
+          "prominence": 249007397.7166542,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3d2800",
+          "oklch": {
+            "c": 0.06141158453537995,
+            "h": 78.30956808315148,
+            "l": 0.294928547488717
+          },
+          "contexts": [
+            "body",
+            "other",
+            "heading",
+            "button"
+          ],
+          "frequency": 1232,
+          "confidence": 1,
+          "prominence": 55711039.57607201,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fbf5e7",
+          "oklch": {
+            "c": 0.01955184246595916,
+            "h": 87.51229643204911,
+            "l": 0.971023041373692
+          },
+          "contexts": [
+            "body",
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 1392,
+          "confidence": 1,
+          "prominence": 29358068.270170294,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 20553570,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1673ff",
+          "oklch": {
+            "c": 0.22397741278668706,
+            "h": 259.81364501405017,
+            "l": 0.5906796840202769
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 5601218.810974022,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff7b02",
+          "oklch": {
+            "c": 0.18882797642249347,
+            "h": 50.84387490733661,
+            "l": 0.7245078139878294
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2248247.870339719,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c4c4c4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.820318833734093
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1167746,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#604106",
+          "oklch": {
+            "c": 0.08055447946121863,
+            "h": 76.67976690909711,
+            "l": 0.40053740463952514
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 26886.702540049075,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffae45",
+          "oklch": {
+            "c": 0.14985451433916724,
+            "h": 69.36662865917758,
+            "l": 0.8116088101672359
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 17830.828133113006,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e045ff",
+          "oklch": {
+            "c": 0.2755899075000309,
+            "h": 320.32160483742143,
+            "l": 0.6849180639123451
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 11250,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.04166569901638878,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.32,
+          "background": "#fbf5e7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.98,
+          "background": "#ffffff",
+          "foreground": "#3d2800"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.86,
+          "background": "#fbf5e7",
+          "foreground": "#3d2800"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.04,
+          "background": "#c4c4c4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.39,
+          "background": "#ffae45",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.31,
+          "background": "#ffffff",
+          "foreground": "#604106"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.56,
+          "background": "#604106",
+          "foreground": "#fbf5e7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.09,
+          "background": "#ff7b02",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.02,
+          "background": "#c4c4c4",
+          "foreground": "#3d2800"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.59,
+          "background": "#ffae45",
+          "foreground": "#3d2800"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.46,
+          "background": "#e045ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.38,
+          "background": "#ff7b02",
+          "foreground": "#3d2800"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.34,
+          "background": "#c4c4c4",
+          "foreground": "#604106"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.05,
+          "background": "#ffae45",
+          "foreground": "#604106"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.93,
+          "background": "#1673ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.3,
+          "background": "#e045ff",
+          "foreground": "#3d2800"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.26,
+          "background": "#ffffff",
+          "foreground": "#1673ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.92,
+          "background": "#1673ff",
+          "foreground": "#fbf5e7"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.58,
+          "background": "#ff7b02",
+          "foreground": "#604106"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 99,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 73,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 196,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 159,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 17,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 23,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 44,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 57,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 78,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 104,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 112,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 128,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 200,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 950,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "RST Reactor Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 370,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "RST Reactor Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 144,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": [
+            "\"blwf\", \"cv03\", \"cv04\", \"cv09\", \"cv11\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.86
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "RST Reactor Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "button",
+            "list",
+            "icon"
+          ],
+          "frequency": 950,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "RST Reactor Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "RST Reactor Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "RST Reactor Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "RST Reactor Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "RST Reactor Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "RST Reactor Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "RST Reactor Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 223,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "RST Reactor Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 17,
+          "family": "RST Reactor Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.41,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "RST Reactor Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.41,
+          "letterSpacing": 0.022,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "RST Reactor Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 78,
+          "lineHeight": 1,
+          "letterSpacing": -0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "RST Reactor Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 144,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 172,
+          "family": "RST Reactor Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c6a7aaca-bbfb-4a64-bbad-f1df90d46e86.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d20065f5-5e71-435c-8e30-9158f7dd2467.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a865ac1d-a4c2-425b-90db-2a7ec6d461a3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Superlocal design system\",\"item\":\"https://styles.refero.design/style/a865ac1d-a4c2-425b-90db-2a7ec6d461a3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a865ac1d-a4c2-425b-90db-2a7ec6d461a3#style-reference\",\"name\":\"Superlocal design system reference\",\"headline\":\"Superlocal design system | Refero Styles\",\"description\":\"Explore Superlocal's light Agency design system: Electric Cobalt #1673ff, Coffee Bean #3d2800 colors, RST Reactor, Inter typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/a865ac1d-a4c2-425b-90db-2a7ec6d461a3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a865ac1d-a4c2-425b-90db-2a7ec6d461a3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Superlocal\",\"url\":\"https://superlocaldesign.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a865ac1d-a4c2-425b-90db-2a7ec6d461a3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d20065f5-5e71-435c-8e30-9158f7dd2467.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d20065f5-5e71-435c-8e30-9158f7dd2467.jpg\",\"caption\":\"Screenshot of Superlocal\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d20065f5-5e71-435c-8e30-9158f7dd2467.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Superlocal design system\",\"Superlocal website design\",\"Superlocal colors\",\"Superlocal typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Electric Cobalt\",\"Coffee Bean\",\"Tangerine Burn\",\"Eggshell Cream\",\"RST Reactor\",\"Inter\",\"System sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Superlocal design system\"},{\"@type\":\"Thing\",\"name\":\"Superlocal website design\"},{\"@type\":\"Thing\",\"name\":\"Superlocal colors\"},{\"@type\":\"Thing\",\"name\":\"Superlocal typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-03-22T11:47:04.000Z\",\"dateModified\":\"2026-03-22T11:47:04.000Z\"}]}19:T7f3,**Quick Color Reference**\n- canvas: #fbf5e7 (Eggshell Cream)\n- surface dark: #3d2800 (Coffee Bean)\n- hero band: #1673ff (Electric Cobalt)\n- text primary: #000000 (Ink Black)\n- text on dark: #fbf5e7 (Eggshell Cream)\n- accent illustration: #ff7b02 (Tangerine Burn)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. Build a full-bleed hero band: #1673ff background, no padding from viewport. Center a flat sunburst illustration (eight #fbf5e7 rounded petals, #ff7b02 ray burst, #000000-and-#fbf5e7 optical center, 60% of viewport height). 'superlocal' wordmark top-left in #fbf5e7 at 17px RST Reactor tracking -0.02em. Four uppercase nav links (INICIO, LINEUP, CRONOGRAMA, CONTACTO) top-right at 12px RST Reactor tracking +0.264px, color #fbf5e7. Bottom-left eyebrow caption at 12px #fbf5e7 tracking +0.264px.\n2. Build a sponsor grid: #fbf5e7 background, 6 equal columns × 2 rows, gap 0, 1px #000000 hairline borders on every cell, zero radius. Each cell holds one monochrome black wordmark centered at 60% cell width. Outer section padding equal to one cell width on left/right so the outer borders align flush with the content edge.\n3. Build a dark schedule band: full-bleed #3d2800 background. Heading 'Cronograma 2025' in #fbf5e7 RST Reactor at 64px, tracking -3.2px, line-height 0.90. Body description in #fbf5e7 at 14px. Below: schedule rows, each with 12px #fbf5e7 uppercase date stamp (tracking +0.264px), 17px #fbf5e7 title (tracking -0.68px), 12px #fbf5e7 meta line — row height 32px, separated by 1px #604106 hairlines.\n4. Build a pill floating action: 99px radius, #fbf5e7 background, padding 8px 16px. Contains a 32×32 white circle holding a miniature tangerine sunburst icon, the label 'RESERVAR ACTIVIDADES' in #3d2800 at 12px tracking +0.264px, and a right-arrow glyph. No shadow. Sits at bottom-right of the hero with 32px edge inset.\n5. Build a footer wordmark: abbreviated 'splcl' in #3d2800 RST Reactor at 14px, top-left of an #fbf5e7 section, 48px top padding, no background, no rules."
+}

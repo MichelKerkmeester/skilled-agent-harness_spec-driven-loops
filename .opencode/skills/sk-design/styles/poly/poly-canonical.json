@@ -1,0 +1,938 @@
+{
+  "source": "https://styles.refero.design/style/d8e01e43-d260-4fa3-8f42-ae39e5c6ac84",
+  "uuid": "d8e01e43-d260-4fa3-8f42-ae39e5c6ac84",
+  "name": "Poly",
+  "northStar": "Ember on porcelain — one warm gradient ember floating on an otherwise pure white editorial page, surrounded by quiet serif headlines and full-bleed photography.",
+  "capturedAt": "2026-07-18T07:48:46.786Z",
+  "meta": {
+    "url": "https://poly.app",
+    "siteName": "Poly",
+    "extractedAt": "2026-06-03T19:29:44.088Z",
+    "durationMs": 67177,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 353,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the Ember Gradient (#f4824d → #f42919) only on the brand mark and logo — never on body UI, illustrations, or button fills",
+      "Set every border-radius to 8px, including cards, buttons, tags, and image containers",
+      "Use Haffer Variable at weight 450 for every display headline at 30–53px, with font-feature-settings: 'liga' on, 'ss04' on",
+      "Separate regions with hairline Graphite (#292930) borders, not with drop shadows",
+      "Apply -0.02em letter-spacing across the entire type system to unify serif and sans families",
+      "Keep section gaps in the 48–69px range to preserve the editorial breathing rhythm",
+      "Use full-bleed warm photography (natural light, natural materials) for hero and section breaks"
+    ],
+    "donts": [
+      "Don't introduce any chromatic color outside the Ember Gradient — the palette is monochrome by design",
+      "Don't use drop shadows for card or surface elevation — borders carry separation",
+      "Don't set display type in Inter; display belongs to Haffer at 450, never below 30px",
+      "Don't use border-radius values other than 8px — no pills, no sharp corners, no 12px or 16px variants",
+      "Don't apply the Ember Gradient to buttons, backgrounds, or hover states — it is brand-identity only",
+      "Don't lighten Onyx text below #292930 for body copy — contrast must stay above 9:1 on Porcelain",
+      "Don't break the photo/Porcelain alternation — every content section should sit on Porcelain, never on a tinted background"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f42919",
+        "name": "Ember Gradient",
+        "role": "Brand mark, Poly logo, the sole chromatic accent — warm orange fading to signal red, used only on identity, never on body UI",
+        "group": "brand",
+        "gradient": "linear-gradient(134.77deg, #f4824d 25.1%, #f42919 74.9%)"
+      },
+      {
+        "hex": "#f4f4f4",
+        "name": "Porcelain",
+        "role": "Page canvas, card surfaces, inverted text on dark photo backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Onyx",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#292930",
+        "name": "Graphite",
+        "role": "Secondary text, hairline borders, icon fills, the slight warmth that keeps near-black from feeling clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Ash",
+        "role": "Shadow tone used in the soft-etched link treatment, muted dividers",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed hero with centered text stack; max-width 1200px container for all content sections; 48–69px vertical rhythm between sections. Navigation is a single transparent or Porcelain top bar — no sidebar, no mega-menu. Content sections alternate between full-bleed photograph bands and Porcelain card grids, producing a magazine-spread cadence. Feature blocks are single-column or two-column (text-left/image-right) with no overlapping shapes or asymmetric grids. The grid is quiet and orthogonal; all the energy comes from typography and photography.",
+    "imagery": "Editorial photography only — no illustration, no abstract graphics, no product screenshots in marketing surfaces. Warm desk scenes: ceramic mugs, potted plants, wood grain, brass instruments, leather notebooks, paper sticky notes, studio headphones. High-key with directional natural light, slight desaturation, and a film-grain warmth. Full-bleed with no rounded corners or masks — the photograph runs edge to edge. A dark overlay multiplier (roughly 40–50% Onyx) sits behind text to guarantee Porcelain-type contrast. The imagery does the atmospheric work that color and decoration would do in a more conventional product site.",
+    "similar": [
+      {
+        "why": "Same full-bleed editorial photography on the hero, single warm accent against monochrome UI, serif-leaning type personality",
+        "business": "Arc Browser"
+      },
+      {
+        "why": "Centered hero with restrained monochrome palette and one quiet accent, Inter as the workhorse UI family",
+        "business": "Notion"
+      },
+      {
+        "why": "Editorial serif display type paired with clean sans body, warm minimal aesthetic, hairline-border cards",
+        "business": "Pitch"
+      },
+      {
+        "why": "Creative-tool landing pages with warm lifestyle photography, dark overlay hero, minimal chrome",
+        "business": "Frame.io"
+      },
+      {
+        "why": "Near-zero colorfulness outside a single brand moment, Inter for UI, hairline borders in place of heavy shadows",
+        "business": "Linear"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "8px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "48-69px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#f4f4f4",
+        "name": "Porcelain Canvas",
+        "level": 0,
+        "purpose": "Page background across all content sections"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Panel",
+        "level": 1,
+        "purpose": "Photo overlays, dark feature bands, button fills"
+      }
+    ],
+    "northStar": "Ember on porcelain — one warm gradient ember floating on an otherwise pure white editorial page, surrounded by quiet serif headlines and full-bleed photography.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.3
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading-lg",
+        "size": 45,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.9
+      },
+      {
+        "role": "display",
+        "size": 53,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.06
+      }
+    ],
+    "components": [
+      {
+        "name": "Gradient Brand Mark",
+        "role": "The Poly logo wordmark and cube icon",
+        "description": "8px-radius cube filled with the Ember Gradient (134.77deg, #f4824d → #f42919). The gradient is reserved exclusively for brand identity — it never appears on UI controls, illustrations, or backgrounds. Paired with the wordmark in Onyx or Porcelain depending on surface."
+      },
+      {
+        "name": "Primary Dark Filled Button",
+        "role": "Main conversion action (Join waitlist, Watch Video)",
+        "description": "Onyx (#000000) background, Porcelain (#f4f4f4) text in Inter 600 at 15px, 8px border radius, 12px 24px padding. No border. Used on both light and dark surfaces because the fill is the heaviest value in the palette."
+      },
+      {
+        "name": "Ghost Outlined Button",
+        "role": "Secondary action on dark photo backgrounds (Download Poly)",
+        "description": "Transparent background, 1.5px Porcelain (#f4f4f4) border, Porcelain text in Inter 600 at 15px, 8px radius, 12px 24px padding. Sits on top of full-bleed photography — the outline reads as light catching an edge."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent header across all pages",
+        "description": "Transparent or Porcelain background, 24px vertical padding, brand mark left-aligned, utility actions right-aligned. On photo hero the nav is transparent so the gradient logo and Porcelain Login/Join waitlist float over the image."
+      },
+      {
+        "name": "Hero Photo Section",
+        "role": "First-screen brand statement",
+        "description": "Full-bleed editorial photograph (warm desk/studio scenes, natural light) with a dark overlay multiplier to push contrast. Centered headline stack: Haffer 450 at 45–53px, -0.02em tracking, Porcelain text. Inter 400 subtext at 15–24px below. Two-button CTA row (ghost + filled) centered beneath."
+      },
+      {
+        "name": "Section Headline",
+        "role": "In-page heading at 30–45px",
+        "description": "Haffer Variable 450 in Onyx (#000000) on Porcelain surfaces, tracking -0.02em. Used to introduce each content section. No decorative underline or eyebrow — the serif weight does the work."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Product feature or use-case block",
+        "description": "Porcelain surface, 1px Graphite (#292930) hairline border, 8px radius, 24px padding. No shadow. Headline in Haffer 450 at 24–30px, body in Inter 400 at 15px, optional small icon in Graphite."
+      },
+      {
+        "name": "Photo Content Band",
+        "role": "Mid-page editorial break",
+        "description": "Full-bleed photograph alternating with Porcelain content sections. Creates the magazine-spread rhythm — dark photo, light text block, dark photo, light text block."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline navigation and footer links",
+        "description": "Inter 400 in Graphite (#292930), no underline by default. The rare soft-etched shadow (outer rgba(0,0,0,0.2) 2px 2px 5px + inset highlights) applies only to standalone link buttons, giving them a subtle embossed presence."
+      },
+      {
+        "name": "Badge / Tag",
+        "role": "Status labels, category markers",
+        "description": "Bogue or Haffer 400 at 12–15px in Graphite text on Porcelain, 8px radius, 6–12px padding. No background fill — typography alone carries the label."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Long-form description and paragraph copy",
+        "description": "Inter 400 at 15px, line-height 1.5, Graphite (#292930) on Porcelain. Max-width constrained to ~680px for readability. Tracking -0.02em matches the display scale."
+      },
+      {
+        "name": "Footer",
+        "role": "Site-wide links and legal",
+        "description": "Onyx or Porcelain background, Graphite hairline border-top, Inter 400 at 12–15px. Minimal link columns, brand mark repeated in Ember Gradient."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary display serif for headlines at 30–53px. Weight 450 is anti-convention — most product sites push display to 600–700, but Haffer at 450 keeps headlines warm and editorial rather than commanding. Activating liga and ss04 unlocks the alternative g and stylised letterforms that give the wordmark its personality.",
+        "sizes": "24px, 30px, 45px, 53px",
+        "family": "Haffer Variable",
+        "weight": "450",
+        "lineHeight": "1.10",
+        "substitute": "Source Serif 4, Newsreader, or DM Serif Display",
+        "letterSpacing": "-0.02em",
+        "fontFeatureSettings": "\"liga\" on, \"ss04\" on"
+      },
+      {
+        "role": "Companion serif at regular weight, used for badge labels and secondary serif moments where Haffer 450 would feel too heavy. Tighter tracking at -0.03em distinguishes it from Haffer.",
+        "sizes": "24px, 30px, 45px, 53px",
+        "family": "Bogue",
+        "weight": "400",
+        "lineHeight": "1.10",
+        "substitute": "Source Serif 4, Cormorant Garamond",
+        "letterSpacing": "-0.03em"
+      },
+      {
+        "role": "Static fallback for small serif text — 15px badges, 24px sub-serial moments",
+        "sizes": "15px, 24px",
+        "family": "Haffer",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Source Serif 4",
+        "letterSpacing": "-0.02em",
+        "fontFeatureSettings": "\"liga\" on, \"ss04\" on"
+      },
+      {
+        "role": "All UI, body, nav, button labels, helper text. Inter at 400 handles body, 600 carries subheadings and button text. The -0.02em tracking matches the serif family, keeping the type system visually unified.",
+        "sizes": "12px, 15px, 24px, 30px, 45px",
+        "family": "Inter",
+        "weight": "400, 600",
+        "lineHeight": "1.10, 1.20, 1.50",
+        "letterSpacing": "-0.02em"
+      }
+    ],
+    "description": "Poly is editorial software: a warm off-white canvas (#f4f4f4), near-black ink for text and UI, and a single ember-orange-to-red gradient reserved for the brand mark. Photography does the heavy atmospheric lifting — full-bleed desk scenes with natural materials and warm directional light replace illustration and decoration. Display type is a humanist serif (Haffer at 450, with liga and ss04 features) pulled tight at -0.02em, paired with Inter for UI. The system feels restrained the way a magazine spread feels restrained: one chromatic moment, hairline borders instead of shadows, 8px radii everywhere, and a column grid that lets the photography breathe.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d8e01e43-d260-4fa3-8f42-ae39e5c6ac84#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Poly design system\",\"item\":\"https://styles.refero.design/style/d8e01e43-d260-4fa3-8f42-ae39e5c6ac84\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d8e01e43-d260-4fa3-8f42-ae39e5c6ac84#style-reference\",\"name\":\"Poly design system reference\",\"headline\":\"Poly design system | Refero Styles\",\"description\":\"Explore Poly's light SaaS design system: Ember Gradient #f42919, Porcelain #f4f4f4 colors, Haffer Variable, Bogue typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d8e01e43-d260-4fa3-8f42-ae39e5c6ac84\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d8e01e43-d260-4fa3-8f42-ae39e5c6ac84\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Poly\",\"url\":\"https://poly.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d8e01e43-d260-4fa3-8f42-ae39e5c6ac84#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c2c4dce1-52a4-4479-bc89-b49e92937af8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c2c4dce1-52a4-4479-bc89-b49e92937af8.jpg\",\"caption\":\"Screenshot of Poly\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c2c4dce1-52a4-4479-bc89-b49e92937af8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Poly design system\",\"Poly website design\",\"Poly colors\",\"Poly typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Ember Gradient\",\"Porcelain\",\"Onyx\",\"Graphite\",\"Haffer Variable\",\"Bogue\",\"Haffer\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Poly design system\"},{\"@type\":\"Thing\",\"name\":\"Poly website design\"},{\"@type\":\"Thing\",\"name\":\"Poly colors\"},{\"@type\":\"Thing\",\"name\":\"Poly typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T00:14:55.399Z\",\"dateModified\":\"2026-04-30T00:14:55.399Z\"}]}19:T5f9,**Quick Color Reference**\n- text: #292930 (Graphite) or #000000 (Onyx)\n- background: #f4f4f4 (Porcelain)\n- border: #292930 (Graphite), 1px\n- accent: Ember Gradient (#f4824d → #f42919) — logo only\n- primary action: no distinct CTA color\n\n**3–5 Example Component Prompts**\n1. *Hero section*: Full-bleed warm desk photograph with a 45% Onyx overlay. Centered Haffer Variable 450 headline at 53px in Porcelain, letter-spacing -1.06px, line-height 1.1. Inter 400 subtext at 15px in Porcelain below. Two buttons side by side, gap 12px: ghost outlined (1.5px Porcelain border, 8px radius, Inter 600 15px) and filled dark (Onyx background, Porcelain text, 8px radius, Inter 600 15px, padding 12px 24px). Top nav floats over the image: gradient brand mark left, Login (Inter 400 Graphite) + Onyx filled Join waitlist button right.\n\n2. *Feature card*: Porcelain surface (#f4f4f4), 1px Graphite border, 8px radius, 24px padding. Headline in Haffer Variable 450 at 30px Onyx, tracking -0.6px. Body in Inter 400 at 15px Graphite, line-height 1.5, max-width 680px.\n\n3. *Section band*: Full-bleed photograph edge to edge, no border-radius. Optional 24px section padding inside for a max-width 1200px text block in Porcelain over the dark overlay.\n\n4. *Footer*: Porcelain background, 1px Graphite border-top, three columns of Inter 400 at 15px Graphite links, brand mark in Ember Gradient on the left.\n\n5. *Badge/Tag*: No fill, Bogue or Haffer 400 at 12px Graphite text, 8px radius, 6px 12px padding, optional 1px Graphite hairline border."
+      },
+      {
+        "title": "Gradient System",
+        "content": "A single gradient defines the brand: linear-gradient(134.77deg, #f4824d 25.1%, #f42919 74.9%) — a warm orange sliding into a saturated signal red. It is identity-locked: it paints the Poly cube and wordmark accent, and never appears on UI controls, hover states, illustrations, or background washes. The diagonal angle (134.77deg) is steeper than a standard 135deg — keep this exact value to preserve the mark's identity."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids elevation. Separation comes from hairline borders in Graphite (#292930) and from full-bleed photographic bands, not from drop shadows. The single detected shadow stack (a soft outer + inner highlight/neumorphic effect) appears only on interactive link elements — it reads as a tactile emboss, not as card lift."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "image",
+            "icon",
+            "footer"
+          ],
+          "frequency": 223,
+          "confidence": 1,
+          "prominence": 430001002.6292134,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 14,
+            "body/color": 1,
+            "icon/color": 1,
+            "link/color": 1,
+            "other/fill": 13,
+            "image/color": 2,
+            "other/color": 33,
+            "footer/color": 1,
+            "body/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 4,
+            "image/borderColor": 8,
+            "other/borderColor": 132,
+            "footer/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#292930",
+          "oklch": {
+            "c": 0.012722269360946802,
+            "h": 285.5611784632889,
+            "l": 0.2838274451957624
+          },
+          "contexts": [
+            "link",
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 211,
+          "confidence": 1,
+          "prominence": 60092309.45468343,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 7,
+            "link/color": 1,
+            "other/color": 38,
+            "body/borderColor": 4,
+            "icon/borderColor": 28,
+            "link/borderColor": 4,
+            "other/borderColor": 128
+          }
+        },
+        {
+          "hex": "#f4f4f4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.967153298496294
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image",
+            "heading",
+            "icon",
+            "badge"
+          ],
+          "frequency": 1273,
+          "confidence": 1,
+          "prominence": 28437629.525193147,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 22,
+            "icon/color": 6,
+            "link/color": 10,
+            "badge/color": 2,
+            "image/color": 36,
+            "other/color": 167,
+            "heading/color": 6,
+            "body/borderColor": 88,
+            "icon/borderColor": 24,
+            "link/borderColor": 40,
+            "badge/borderColor": 8,
+            "image/borderColor": 144,
+            "other/borderColor": 692,
+            "heading/borderColor": 24,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 14013.081716409388,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "link/boxShadow": 5
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.004237810740022377,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.09,
+          "background": "#f4f4f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.13,
+          "background": "#f4f4f4",
+          "foreground": "#292930"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.99,
+          "background": "#cccccc",
+          "foreground": "#292930"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.45,
+          "background": "#000000",
+          "foreground": "#292930"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 11
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.2) 2px 2px 5px 0px, rgba(0, 0, 0, 0.15) -2px -2px 4px 0px inset, rgba(255, 255, 255, 0.15) 2px 2px 4px 0px inset",
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 34,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|body",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 33,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 69,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(134.77deg, rgb(244, 130, 77) 25.1%, rgb(244, 41, 25) 74.9%)",
+        "colors": [
+          "rgb(244, 130, 77)",
+          "rgb(244, 41, 25)"
+        ],
+        "frequency": 2
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 218,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Haffer Variable",
+          "source": "custom",
+          "weights": [
+            450
+          ],
+          "frequency": 77,
+          "fontFeatureSettings": [
+            "\"liga\", \"ss04\""
+          ]
+        },
+        {
+          "family": "Bogue",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 38,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Haffer",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": [
+            "\"liga\", \"ss04\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "image",
+            "icon",
+            "footer"
+          ],
+          "frequency": 154,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 29,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Haffer",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Haffer Variable",
+          "weight": 450,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 56,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Bogue",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Bogue",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Haffer",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Haffer Variable",
+          "weight": 450,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Bogue",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Haffer Variable",
+          "weight": 450,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Bogue",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 53,
+          "family": "Haffer Variable",
+          "weight": 450,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 53,
+          "family": "Bogue",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3deae076-3d6f-4227-8f0a-2bfea4c3414d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c2c4dce1-52a4-4479-bc89-b49e92937af8.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d8e01e43-d260-4fa3-8f42-ae39e5c6ac84#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Poly design system\",\"item\":\"https://styles.refero.design/style/d8e01e43-d260-4fa3-8f42-ae39e5c6ac84\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d8e01e43-d260-4fa3-8f42-ae39e5c6ac84#style-reference\",\"name\":\"Poly design system reference\",\"headline\":\"Poly design system | Refero Styles\",\"description\":\"Explore Poly's light SaaS design system: Ember Gradient #f42919, Porcelain #f4f4f4 colors, Haffer Variable, Bogue typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d8e01e43-d260-4fa3-8f42-ae39e5c6ac84\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d8e01e43-d260-4fa3-8f42-ae39e5c6ac84\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Poly\",\"url\":\"https://poly.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d8e01e43-d260-4fa3-8f42-ae39e5c6ac84#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c2c4dce1-52a4-4479-bc89-b49e92937af8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c2c4dce1-52a4-4479-bc89-b49e92937af8.jpg\",\"caption\":\"Screenshot of Poly\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c2c4dce1-52a4-4479-bc89-b49e92937af8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Poly design system\",\"Poly website design\",\"Poly colors\",\"Poly typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Ember Gradient\",\"Porcelain\",\"Onyx\",\"Graphite\",\"Haffer Variable\",\"Bogue\",\"Haffer\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Poly design system\"},{\"@type\":\"Thing\",\"name\":\"Poly website design\"},{\"@type\":\"Thing\",\"name\":\"Poly colors\"},{\"@type\":\"Thing\",\"name\":\"Poly typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T00:14:55.399Z\",\"dateModified\":\"2026-04-30T00:14:55.399Z\"}]}19:T5f9,**Quick Color Reference**\n- text: #292930 (Graphite) or #000000 (Onyx)\n- background: #f4f4f4 (Porcelain)\n- border: #292930 (Graphite), 1px\n- accent: Ember Gradient (#f4824d → #f42919) — logo only\n- primary action: no distinct CTA color\n\n**3–5 Example Component Prompts**\n1. *Hero section*: Full-bleed warm desk photograph with a 45% Onyx overlay. Centered Haffer Variable 450 headline at 53px in Porcelain, letter-spacing -1.06px, line-height 1.1. Inter 400 subtext at 15px in Porcelain below. Two buttons side by side, gap 12px: ghost outlined (1.5px Porcelain border, 8px radius, Inter 600 15px) and filled dark (Onyx background, Porcelain text, 8px radius, Inter 600 15px, padding 12px 24px). Top nav floats over the image: gradient brand mark left, Login (Inter 400 Graphite) + Onyx filled Join waitlist button right.\n\n2. *Feature card*: Porcelain surface (#f4f4f4), 1px Graphite border, 8px radius, 24px padding. Headline in Haffer Variable 450 at 30px Onyx, tracking -0.6px. Body in Inter 400 at 15px Graphite, line-height 1.5, max-width 680px.\n\n3. *Section band*: Full-bleed photograph edge to edge, no border-radius. Optional 24px section padding inside for a max-width 1200px text block in Porcelain over the dark overlay.\n\n4. *Footer*: Porcelain background, 1px Graphite border-top, three columns of Inter 400 at 15px Graphite links, brand mark in Ember Gradient on the left.\n\n5. *Badge/Tag*: No fill, Bogue or Haffer 400 at 12px Graphite text, 8px radius, 6px 12px padding, optional 1px Graphite hairline border."
+}

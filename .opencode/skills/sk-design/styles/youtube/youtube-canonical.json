@@ -1,0 +1,950 @@
+{
+  "source": "https://styles.refero.design/style/8fc58a26-47be-406e-8429-37925551c0ec",
+  "uuid": "8fc58a26-47be-406e-8429-37925551c0ec",
+  "name": "YouTube",
+  "northStar": "minimalist broadcast console",
+  "capturedAt": "2026-07-18T08:13:00.465Z",
+  "meta": {
+    "url": "https://youtube.com",
+    "siteName": "YouTube",
+    "extractedAt": "2026-06-03T17:56:13.770Z",
+    "durationMs": 30722,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 335,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #0f0f0f for all primary text and icon strokes — never pure #000000, the slight warmth defines the brand",
+      "Use #065fd4 exclusively for links, outlined-button borders/text, and active nav states",
+      "Use 18px border-radius for all buttons and search inputs (pill shape)",
+      "Use Roboto at 14px for nav items and 13px for body copy — never exceed 16px outside the wordmark",
+      "Separate content sections with whitespace, not dividers — let the grid breathe",
+      "Keep the sidebar at exactly 240px wide and fixed-position",
+      "Use 1px borders in #c6c6c6 or #d3d3d3 for card definition, never shadows"
+    ],
+    "donts": [
+      "Never use #000000 — YouTube's text black is #0f0f0f",
+      "Never apply drop shadows to cards, modals, or buttons — the system is intentionally flat",
+      "Never use #065fd4 as a filled button background — it is an outlined-action and link color only",
+      "Never use YouTube Sans outside the wordmark — it is not a heading face",
+      "Never use #ff0000 outside the logo play triangle — it is a locked brand mark, not a functional accent",
+      "Never add gradients — the system is flat by design",
+      "Never exceed 20px font size outside the wordmark — the type scale tops out small"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "role": "Page background, sidebar background, card surfaces, input fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0f0f0f",
+        "name": "YouTube Ink",
+        "role": "Primary text, icon strokes, logo wordmark, button text — the near-black that defines the entire interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#606060",
+        "name": "Graphite",
+        "role": "Secondary text, metadata, timestamps, muted descriptions, nav secondary labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#909090",
+        "name": "Ash",
+        "role": "Tertiary text, disabled states, inactive icon strokes, micro-copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c6c6c6",
+        "name": "Mist",
+        "role": "Hairline borders, inactive toggle tracks, subtle dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d3d3d3",
+        "name": "Silver",
+        "role": "Button borders, input field outlines, card outlines — the structural divider",
+        "group": "neutral"
+      },
+      {
+        "hex": "#065fd4",
+        "name": "Signal Blue",
+        "role": "Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff0000",
+        "name": "Play Red",
+        "role": "Logo play triangle exclusively — the locked brand mark, never used as a functional UI color",
+        "group": "brand"
+      }
+    ],
+    "layout": "Fixed left sidebar at 240px contains all navigation and never scrolls. Header is a 56px sticky top bar spanning the full viewport width. Main content area fills the remaining width with no max-width constraint. Content is arranged in a single vertical flow: notification cards, then future video grid. The sidebar+header chrome is permanent; the content area is the only region that changes. Vertical rhythm uses 24px section gaps and 12px element gaps. No centering tricks, no asymmetric layouts — everything is left-aligned and utilitarian.",
+    "imagery": "The interface itself contains no decorative imagery. The brand mark is a flat red triangle paired with 'YouTube' in YouTube Sans. Icons are monochromatic line drawings (2px stroke) in #0f0f0f or #606060. Channel thumbnails in the sidebar are 24px circular crops. The system is designed to frame video content — all visual real estate is reserved for thumbnails, not interface decoration.",
+    "similar": [
+      {
+        "why": "Same flat white-canvas utility aesthetic with permanent left sidebar, minimal header, and zero elevation",
+        "business": "Gmail"
+      },
+      {
+        "why": "Same content-first philosophy — near-monochrome interface that refuses to compete with the content it presents",
+        "business": "Wikipedia"
+      },
+      {
+        "why": "Same restrained palette, Roboto-based type system, and bordered pill-shaped search input",
+        "business": "Google Search"
+      },
+      {
+        "why": "Same flat-surfaces-with-hairline-borders approach and single-color interactive accent philosophy",
+        "business": "Notion"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "10px",
+        "icons": "10px",
+        "inputs": "18px",
+        "buttons": "18px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "24px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 1,
+        "purpose": "Entire page background including sidebar and main content area — single flat layer"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Notification Card",
+        "level": 2,
+        "purpose": "Alert/notification surfaces distinguished only by a hairline border, never by fill or shadow"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "No shadow — the #f8f8f8 fill creates visual separation from the left input section",
+        "element": "Search input right section"
+      }
+    ],
+    "northStar": "minimalist broadcast console",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-lg",
+        "size": 14,
+        "lineHeight": 1.38
+      },
+      {
+        "role": "heading",
+        "size": 20,
+        "lineHeight": 1.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Sidebar Navigation",
+        "role": "Primary left-rail navigation with icon+label items",
+        "description": "Fixed left column, 240px wide, #ffffff background. Items are 40px tall with 12px gap between groups. Active item uses #0f0f0f icon + text on a very light gray hover fill. Inactive items use #606060 for icon and text. Contains sections separated by 16px-24px vertical gaps: Main (Home, Shorts, Subscriptions, You, History), Explore (Music, Movies, Live, Show more), More from YouTube (channel links with 24px circular avatars), Footer (About, Press, Copyright)."
+      },
+      {
+        "name": "Outlined Sign In Button",
+        "role": "Outlined action button for account authentication",
+        "description": "1px border in #065fd4, text in #065fd4, #ffffff fill, 18px border-radius (pill-shaped), padding 8px 16px. Font: Roboto 14px weight 500. An outlined chromatic action — not a filled CTA."
+      },
+      {
+        "name": "Neutral Pill Button",
+        "role": "Secondary action button with no brand color",
+        "description": "#ffffff fill with #d3d3d3 1px border, #0f0f0f text at Roboto 14px weight 500, 18px border-radius, padding 8px 16px. Used for 'Update setting' and other non-emphasis actions."
+      },
+      {
+        "name": "Search Input",
+        "role": "Pill-shaped search field in the header",
+        "description": "Border 1px #d3d3d3 on left side, 18px border-radius, height ~40px. Left section: 1px right border separator. Right section: search icon button with #f8f8f8 background, 0px left radius, 18px right radius. Placeholder text in #909090."
+      },
+      {
+        "name": "Notification Alert Card",
+        "role": "Dismissable notification about user settings",
+        "description": "#ffffff background, 1px border in #c6c6c6 or #d3d3d3, 10px-12px border-radius, padding 24px. Title: Roboto 16px weight 500, #0f0f0f, centered. Body: Roboto 14px weight 400, #606060, centered. Embedded pill button at bottom."
+      },
+      {
+        "name": "Nav Item",
+        "role": "Individual sidebar navigation entry",
+        "description": "24px icon + 16px text label, horizontal layout, 40px height, 12px horizontal padding. Icon stroke 2px in #606060 (inactive) or #0f0f0f (active). Text: Roboto 14px weight 400. Active state: #0f0f0f fill on text and icon, light gray hover background."
+      },
+      {
+        "name": "Channel Link Item",
+        "role": "Sidebar link to a YouTube channel",
+        "description": "24px circular avatar thumbnail (channel icon) + 14px channel name in #0f0f0f. 40px height, 12px gap. Part of 'More from YouTube' section."
+      },
+      {
+        "name": "Expandable Section Toggle",
+        "role": "'Show more' disclosure for sidebar section expansion",
+        "description": "Down-chevron icon in #606060 + 'Show more' text in #606060, Roboto 14px weight 400. Same row height as nav items. No background change on hover."
+      },
+      {
+        "name": "Icon Button",
+        "role": "Square tap target for utility actions (hamburger menu, more options)",
+        "description": "40px × 40px, #ffffff background, 24px icon centered. Icons drawn in #0f0f0f at 2px stroke. No border, no fill change on default state."
+      },
+      {
+        "name": "Header Bar",
+        "role": "Top-level persistent navigation",
+        "description": "56px height, #ffffff background, full viewport width. Three regions: left (hamburger + logo, 16px gap), center (search input, max-width ~640px), right (icon buttons + Sign in button, 12px gap). Bottom border: none — separated by whitespace."
+      },
+      {
+        "name": "Footer Link Row",
+        "role": "Bottom-of-sidebar text links",
+        "description": "Inline list: 'About', 'Press', 'Copyright' in Roboto 13px weight 400, #606060. 24px horizontal padding. No separators between items — whitespace only."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary interface font — nav labels, body copy, links, button text, metadata, timestamps. The 2.57 line-height on small sizes creates generous vertical breathing room for sidebar items.",
+        "sizes": "10px, 12px, 13px, 14px, 16px",
+        "family": "Roboto",
+        "weight": "400, 500, 700, 900",
+        "lineHeight": "1.20, 1.38, 1.43, 1.50, 2.57",
+        "substitute": "Inter, system-ui, -apple-system, sans-serif"
+      },
+      {
+        "role": "Wordmark only — the logo's custom typeface that makes 'YouTube' instantly recognizable. Never used for headings, body, or nav.",
+        "sizes": "20px",
+        "family": "YouTube Sans",
+        "weight": "600",
+        "lineHeight": "1.40"
+      },
+      {
+        "role": "System fallback for legacy components and button labels in older UI fragments",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.20"
+      }
+    ],
+    "description": "YouTube's interface is a content-first utility: a near-monochrome white canvas with a permanent left sidebar, minimal header chrome, and one blue accent that marks every interactive link. The design language is deliberately restrained — it doesn't compete with video thumbnails, it just gets out of the way. Typography is Roboto at compact functional sizes, with YouTube Sans reserved exclusively for the wordmark. Components are flat and utilitarian — pill-shaped buttons, hairline borders, and zero elevation. The signature black is #0f0f0f, not pure #000000, giving the entire interface a slightly softer, less aggressive feel while maintaining maximum contrast against white.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8fc58a26-47be-406e-8429-37925551c0ec#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"YouTube design system\",\"item\":\"https://styles.refero.design/style/8fc58a26-47be-406e-8429-37925551c0ec\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8fc58a26-47be-406e-8429-37925551c0ec#style-reference\",\"name\":\"YouTube design system reference\",\"headline\":\"YouTube design system | Refero Styles\",\"description\":\"Explore YouTube's light Media design system: Canvas White #ffffff, YouTube Ink #0f0f0f colors, Roboto, YouTube Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8fc58a26-47be-406e-8429-37925551c0ec\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8fc58a26-47be-406e-8429-37925551c0ec\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"YouTube\",\"url\":\"https://youtube.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8fc58a26-47be-406e-8429-37925551c0ec#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/347aecae-6fc2-432a-9f5f-3c77fc40110f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/347aecae-6fc2-432a-9f5f-3c77fc40110f.jpg\",\"caption\":\"Screenshot of YouTube\"},\"image\":\"https://images.refero.design/styles/refero.design/image/347aecae-6fc2-432a-9f5f-3c77fc40110f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"YouTube design system\",\"YouTube website design\",\"YouTube colors\",\"YouTube typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Canvas White\",\"YouTube Ink\",\"Graphite\",\"Ash\",\"Roboto\",\"YouTube Sans\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"YouTube design system\"},{\"@type\":\"Thing\",\"name\":\"YouTube website design\"},{\"@type\":\"Thing\",\"name\":\"YouTube colors\"},{\"@type\":\"Thing\",\"name\":\"YouTube typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-07T19:23:10.000Z\",\"dateModified\":\"2026-04-07T19:23:10.000Z\"}]}19:T4f2,**Quick Color Reference**\n- Canvas: #ffffff\n- Primary text: #0f0f0f\n- Secondary text: #606060\n- Border: #d3d3d3\n- Link/outlined action: #065fd4\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. *Sidebar nav item:* 240px-wide left rail item, 40px height, 24px line icon in #606060 + 14px Roboto label in #0f0f0f, 12px horizontal padding, 12px gap between items. No fill by default; hover adds #f2f2f2 background.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n3. *Search input:* pill-shaped (18px radius), 1px #d3d3d3 border, 40px height, split into left input area and right #f8f8f8 search button. Placeholder in #909090.\n\n4. *Notification card:* #ffffff background, 1px #c6c6c6 border, 12px radius, 24px padding. Centered title in Roboto 16px weight 500 #0f0f0f, body in Roboto 14px weight 400 #606060, embedded neutral pill button at bottom.\n\n5. *Header bar:* 56px tall, full-width #ffffff, three regions — left (hamburger icon 24px in #0f0f0f + YouTube logo with red #ff0000 play triangle and 'YouTube' in YouTube Sans 20px weight 600 #0f0f0f, 16px gap), center (search input ~640px max), right (icon buttons + outlined Sign in button with 12px gap)."
+      }
+    ],
+    "elevationPhilosophy": "YouTube's interface uses zero elevation. There are no drop shadows on cards, buttons, modals, or popovers. Surface distinction is achieved exclusively through 1px hairline borders and subtle background fills (#f8f8f8 vs #ffffff). This flatness is deliberate — the interface is a shelf for content, and shadows would compete with video thumbnails and imagery."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "nav",
+            "heading",
+            "button"
+          ],
+          "frequency": 517,
+          "confidence": 1,
+          "prominence": 11564056.628958007,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 5130000,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#606060",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4890564485258221
+          },
+          "contexts": [
+            "body",
+            "nav",
+            "other"
+          ],
+          "frequency": 80,
+          "confidence": 1,
+          "prominence": 312427.8081421543,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0f0f0f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.16841612499987832
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon",
+            "link",
+            "input",
+            "nav",
+            "heading"
+          ],
+          "frequency": 714,
+          "confidence": 1,
+          "prominence": 262456.208268508,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#909090",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.653350950340412
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 65280,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c6c6c6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8265622095662102
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 47040,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 23520,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#065fd4",
+          "oklch": {
+            "c": 0.19513896285567156,
+            "h": 259.00312432041335,
+            "l": 0.5139723973073366
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body",
+            "icon",
+            "nav"
+          ],
+          "frequency": 93,
+          "confidence": 1,
+          "prominence": 23268.79042345561,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d3d3d3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8668630753134526
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 5944.135922911647,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff0033",
+          "oklch": {
+            "c": 0.254871716797995,
+            "h": 23.614473779292663,
+            "l": 0.6306694621167912
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1346.71829503467,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#212121",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24775871011467596
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 613.3804877790874,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.03577611320884246,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.17,
+          "background": "#0f0f0f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.52,
+          "background": "#eeeeee",
+          "foreground": "#0f0f0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.1,
+          "background": "#ffffff",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.03,
+          "background": "#d3d3d3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.88,
+          "background": "#eeeeee",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.8,
+          "background": "#d3d3d3",
+          "foreground": "#0f0f0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.29,
+          "background": "#c6c6c6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.22,
+          "background": "#c6c6c6",
+          "foreground": "#0f0f0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.76,
+          "background": "#d3d3d3",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.43,
+          "background": "#c6c6c6",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.29,
+          "background": "#ffffff",
+          "foreground": "#606060"
+        },
+        {
+          "level": "AA",
+          "ratio": 6,
+          "background": "#0f0f0f",
+          "foreground": "#909090"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.84,
+          "background": "#ffffff",
+          "foreground": "#065fd4"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.42,
+          "background": "#eeeeee",
+          "foreground": "#606060"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.2,
+          "background": "#d3d3d3",
+          "foreground": "#606060"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.68,
+          "background": "#c6c6c6",
+          "foreground": "#606060"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.28,
+          "background": "#0f0f0f",
+          "foreground": "#065fd4"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.19,
+          "background": "#ffffff",
+          "foreground": "#909090"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 28
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "nav"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 51,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 42,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 240,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Roboto",
+          "source": "system",
+          "weights": [
+            400,
+            500,
+            700,
+            900
+          ],
+          "frequency": 260,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 15,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "YouTube Sans",
+          "source": "custom",
+          "weights": [
+            600
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 10,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Roboto",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "button"
+          ],
+          "frequency": 123,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Roboto",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Roboto",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Roboto",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "link",
+            "nav"
+          ],
+          "frequency": 16,
+          "lineHeight": 2.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Roboto",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Roboto",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 65,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "YouTube Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/465b279a-d349-4f08-8836-165feee9b0b0.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/347aecae-6fc2-432a-9f5f-3c77fc40110f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8fc58a26-47be-406e-8429-37925551c0ec#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"YouTube design system\",\"item\":\"https://styles.refero.design/style/8fc58a26-47be-406e-8429-37925551c0ec\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8fc58a26-47be-406e-8429-37925551c0ec#style-reference\",\"name\":\"YouTube design system reference\",\"headline\":\"YouTube design system | Refero Styles\",\"description\":\"Explore YouTube's light Media design system: Canvas White #ffffff, YouTube Ink #0f0f0f colors, Roboto, YouTube Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8fc58a26-47be-406e-8429-37925551c0ec\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8fc58a26-47be-406e-8429-37925551c0ec\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"YouTube\",\"url\":\"https://youtube.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8fc58a26-47be-406e-8429-37925551c0ec#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/347aecae-6fc2-432a-9f5f-3c77fc40110f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/347aecae-6fc2-432a-9f5f-3c77fc40110f.jpg\",\"caption\":\"Screenshot of YouTube\"},\"image\":\"https://images.refero.design/styles/refero.design/image/347aecae-6fc2-432a-9f5f-3c77fc40110f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"YouTube design system\",\"YouTube website design\",\"YouTube colors\",\"YouTube typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Canvas White\",\"YouTube Ink\",\"Graphite\",\"Ash\",\"Roboto\",\"YouTube Sans\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"YouTube design system\"},{\"@type\":\"Thing\",\"name\":\"YouTube website design\"},{\"@type\":\"Thing\",\"name\":\"YouTube colors\"},{\"@type\":\"Thing\",\"name\":\"YouTube typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-07T19:23:10.000Z\",\"dateModified\":\"2026-04-07T19:23:10.000Z\"}]}19:T4f2,**Quick Color Reference**\n- Canvas: #ffffff\n- Primary text: #0f0f0f\n- Secondary text: #606060\n- Border: #d3d3d3\n- Link/outlined action: #065fd4\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. *Sidebar nav item:* 240px-wide left rail item, 40px height, 24px line icon in #606060 + 14px Roboto label in #0f0f0f, 12px horizontal padding, 12px gap between items. No fill by default; hover adds #f2f2f2 background.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n3. *Search input:* pill-shaped (18px radius), 1px #d3d3d3 border, 40px height, split into left input area and right #f8f8f8 search button. Placeholder in #909090.\n\n4. *Notification card:* #ffffff background, 1px #c6c6c6 border, 12px radius, 24px padding. Centered title in Roboto 16px weight 500 #0f0f0f, body in Roboto 14px weight 400 #606060, embedded neutral pill button at bottom.\n\n5. *Header bar:* 56px tall, full-width #ffffff, three regions — left (hamburger icon 24px in #0f0f0f + YouTube logo with red #ff0000 play triangle and 'YouTube' in YouTube Sans 20px weight 600 #0f0f0f, 16px gap), center (search input ~640px max), right (icon buttons + outlined Sign in button with 12px gap)."
+}

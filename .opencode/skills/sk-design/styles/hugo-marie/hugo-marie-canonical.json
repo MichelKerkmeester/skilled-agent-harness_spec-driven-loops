@@ -1,0 +1,925 @@
+{
+  "source": "https://styles.refero.design/style/58a36cba-3fc4-48fa-a7d9-7f14592b7857",
+  "uuid": "58a36cba-3fc4-48fa-a7d9-7f14592b7857",
+  "name": "Hugo & Marie",
+  "northStar": "Monochrome gallery catalog — editorial photography mounted on infinite white, framed by whisper-thin serif.",
+  "capturedAt": "2026-07-18T07:26:23.117Z",
+  "meta": {
+    "url": "https://www.hugoandmarie.com",
+    "siteName": "Hugo & Marie",
+    "extractedAt": "2026-06-03T21:21:13.226Z",
+    "durationMs": 36037,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 449,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use soehne weight 300 as the default for all navigation and section headings — never default to 400 or higher for UI chrome",
+      "Use saol-display weight 100 at 100px with 0.95 line-height for ceremonial display moments; never use it below 48px",
+      "Render all buttons and links as text-with-arrow (→), never as filled rectangles — the system has no filled buttons",
+      "Apply 9999px radius exclusively to badges; keep all other elements (cards, images, inputs) at 0px radius",
+      "Separate content sections with 1px solid #0a0a0a hairlines, not whitespace gaps or shadows",
+      "Use white (#ffffff) as the only surface color for cards and content blocks — never introduce tints, off-whites, or gray fills for grouping",
+      "Place imagery edge-to-edge with no border, padding, or radius when used as a section anchor"
+    ],
+    "donts": [
+      "Never introduce a chromatic accent color, brand color, or decorative gradient — the system is strictly achromatic and adding color breaks the editorial contract",
+      "Never apply box-shadow, drop-shadow, or any elevation effect — depth is communicated through image bleed and hairline rules, not shadows",
+      "Never use soehne-mono for body copy or navigation — reserve it exclusively for badge labels and small metadata",
+      "Never use saol-display at body sizes (14–22px) — it is a display face only; body work belongs to soehne",
+      "Never add border-radius to cards, images, or inputs — 0px radius is the system default for all non-badge elements",
+      "Never use filled background colors for buttons or interactive elements — text links and hairline buttons are the only interactive pattern",
+      "Never use a font weight above 400 in soehne for UI text — heavier weights break the restrained editorial tone"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page background, card surfaces, badge fills, nav dividers, input fields — the dominant surface that recedes to let imagery speak",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, dense border structure, dark image overlays — the structural anchor for rules and headings",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Soft Ink",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#767676",
+        "name": "Graphite",
+        "role": "Input field borders — the only place a mid-gray border appears, marking form-field edges without competing with imagery",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Smoke",
+        "role": "Muted icon strokes, separators, and secondary graphic details. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Ash",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed editorial layout. The hero is a full-viewport image with centered overlay text. Below, content lives in a borderless three-column structure where columns are defined by 1px vertical hairlines, not by card containers. Section transitions are hairline horizontal rules spanning the full width. Artist portfolios use a multi-row horizontal thumbnail grid with no captions, no gaps wider than the natural image spacing. The nav is a single hairline-bordered white bar with logo left, links centered, 'Info' right. Overall density is sparse and curated — long vertical breathing room, large images, short text blocks. The system behaves like a printed art catalog translated to the web.",
+    "imagery": "Imagery is the sole carrier of color and atmosphere. The site features high-fashion editorial photography — extreme close-up portraits with iridescent/oil-slick color treatments, studio-lit product shots, and artist self-portraits. Images are always full-bleed or thumbnail-grid, never contained in rounded cards or frames. Treatment is dramatic and high-contrast, often with the subject's face filling the frame. Color appears only inside the photography itself — the UI stays pure monochrome so the images feel exhibited rather than decorated.",
+    "similar": [
+      {
+        "why": "Same full-bleed editorial photography, no UI chrome, typographic restraint, and a layout that behaves like a printed publication translated to the web",
+        "business": "Apartamento Magazine"
+      },
+      {
+        "why": "Identical use of an ultralight serif display face (weight 100) for ceremonial titles over full-bleed images, with a strictly monochrome interface",
+        "business": "Systemic Films"
+      },
+      {
+        "why": "Same editorial-fashion full-bleed hero photography, whisper-weight typography, and refusal of decorative UI elements — the images carry the entire experience",
+        "business": "Saint Laurent (ysl.com)"
+      },
+      {
+        "why": "Three-column hairline-bordered content sections, zero-radius everything, text-link navigation with arrows, and a curatorial gallery-like white canvas",
+        "business": "Bureau Cool"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "9999px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "5px",
+      "sectionGap": "90px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Base canvas — the entire site sits on pure white, making all imagery and ink feel mounted"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Ash Fill",
+        "level": 1,
+        "purpose": "Soft badge surface — appears only as a 1px border tone, never as a large fill"
+      }
+    ],
+    "northStar": "Monochrome gallery catalog — editorial photography mounted on infinite white, framed by whisper-thin serif.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.8,
+        "letterSpacing": 0.16
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.64,
+        "letterSpacing": 0.13
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.44,
+        "letterSpacing": 0.44
+      },
+      {
+        "role": "display",
+        "size": 100,
+        "lineHeight": 0.95,
+        "letterSpacing": -1
+      }
+    ],
+    "components": [
+      {
+        "name": "Editorial Text Link",
+        "role": "Primary navigation and inline CTAs",
+        "description": "Plain text in soehne 16px weight 300, color #0a0a0a, with a 5px right margin before a → arrow character. No background, no border, no underline on default state. Sits directly in a horizontal nav row with 30px left/right padding between items."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separator",
+        "description": "A 1px solid line in #0a0a0a spanning the full content width, used between major content blocks. Zero vertical margin; the line itself is the transition."
+      },
+      {
+        "name": "Display Headline (Overlay)",
+        "role": "Hero text over full-bleed photography",
+        "description": "saol-display 100px weight 100, color #ffffff, line-height 0.95, letter-spacing -0.01em, centered over a dark image. Followed by a small decorative line ornament beneath. Two-line maximum."
+      },
+      {
+        "name": "Pill Badge",
+        "role": "Filter and category tags",
+        "description": "soehne-mono 13px weight 400, text color #0a0a0a on #ffffff fill with 1px #cccccc border, 9999px radius, 6px top / 8px bottom / 24px horizontal padding. Functions as a toggleable filter."
+      },
+      {
+        "name": "Three-Column Service Block",
+        "role": "Agency/Studio/Contact overview grid",
+        "description": "Three equal columns separated by hairline #0a0a0a vertical borders. Each column: bold soehne heading at 16–20px, 'Explore →' text link below, then a 2–3 sentence body paragraph in 16px weight 400. No card chrome — just ruled columns on white."
+      },
+      {
+        "name": "Image Grid Thumbnail",
+        "role": "Artist portfolio grid items",
+        "description": "Square or portrait image thumbnails, 0px radius, placed in a multi-row horizontal grid with minimal gaps. No caption, no border, no hover chrome — the image is the content."
+      },
+      {
+        "name": "Full-Bleed Editorial Hero",
+        "role": "Page-opening image section",
+        "description": "Edge-to-edge image covering the entire viewport, no border, no radius, with overlaid display headline. Images carry their own atmosphere; the UI contributes nothing."
+      },
+      {
+        "name": "Section Header Row",
+        "role": "Content section titles with secondary action",
+        "description": "Left-aligned: section name in soehne weight 400 + sub-action like 'Watch Reel →' below. Right-aligned: filter pills (Latest / Femme & Childlike). Separated from content by a hairline divider."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Full-width white bar, logo on far left (Hugo & Marie wordmark in soehne weight 300), nav links centered (Creative Agency / Artist Bureau / Helium →) in 16px weight 300 with 30px horizontal padding, 'Info' link on far right. 1px hairline border-bottom in #0a0a0a."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Ceremonial headlines and editorial titles — ultralight serif at 100px with 0.95 line-height creates near-touching baselines that feel like fashion-magazine coverlines. This is the only place dramatic typography appears; everything else defers to sans-serif.",
+        "sizes": "100px",
+        "family": "saol-display",
+        "weight": "100",
+        "lineHeight": "0.95",
+        "substitute": "Playfair Display, Cormorant, Tenor Sans",
+        "letterSpacing": "-0.01em"
+      },
+      {
+        "role": "All interface text — nav links at 16px weight 300, section headings at 20–22px weight 300, body at 16px weight 400 with comfortable 1.64 leading, supporting copy at 14px. The weight-300 default for nav and headings is a signature choice: it makes the UI feel editorial and unpressured rather than assertive.",
+        "sizes": "14px, 16px, 20px, 22px",
+        "family": "soehne",
+        "weight": "300, 400",
+        "lineHeight": "1.00, 1.15, 1.20, 1.40, 1.44, 1.64, 1.80",
+        "substitute": "Inter, Söhne (if available), Neue Haas Grotesk, Helvetica Neue",
+        "letterSpacing": "0.008em, 0.02em"
+      },
+      {
+        "role": "Badge labels and small metadata — monospace at 13px marks categorically different content (tags, IDs, status) from the proportional body text",
+        "sizes": "13px",
+        "family": "soehne-mono",
+        "weight": "400",
+        "lineHeight": "1.31",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Space Mono",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Hugo & Marie operates as a curatorial monochrome canvas: pure white negative space frames dramatic full-bleed editorial photography, with content living in the tension between near-black ink and paper. Typography carries all the personality — an ultralight serif display (weight 100, 100px) sets ceremonial headlines that feel like gallery wall text, while a restrained neo-grotesque sans (soehne, weights 300/400) handles everything from navigation to body copy. The interface refuses decorative chrome: no filled buttons, no color accents, no shadows — navigation is text-with-arrow, badges are hairline pills, and section dividers are single-pixel rules. This is a portfolio-first system where the artists' imagery is the only chromatic event, and the UI must vanish around it.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/58a36cba-3fc4-48fa-a7d9-7f14592b7857#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Hugo & Marie design system\",\"item\":\"https://styles.refero.design/style/58a36cba-3fc4-48fa-a7d9-7f14592b7857\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/58a36cba-3fc4-48fa-a7d9-7f14592b7857#style-reference\",\"name\":\"Hugo & Marie design system reference\",\"headline\":\"Hugo & Marie design system | Refero Styles\",\"description\":\"Explore Hugo & Marie's light Agency design system: Paper White #ffffff, Ink Black #000000 colors, saol-display, soehne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/58a36cba-3fc4-48fa-a7d9-7f14592b7857\",\"mainEntityOfPage\":\"https://styles.refero.design/style/58a36cba-3fc4-48fa-a7d9-7f14592b7857\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Hugo & Marie\",\"url\":\"https://www.hugoandmarie.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/58a36cba-3fc4-48fa-a7d9-7f14592b7857#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f56be637-7d87-46ec-a4ce-e9b73132b101.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f56be637-7d87-46ec-a4ce-e9b73132b101.jpg\",\"caption\":\"Screenshot of Hugo & Marie\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f56be637-7d87-46ec-a4ce-e9b73132b101.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Hugo & Marie design system\",\"Hugo & Marie website design\",\"Hugo & Marie colors\",\"Hugo & Marie typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper White\",\"Ink Black\",\"Soft Ink\",\"Graphite\",\"saol-display\",\"soehne\",\"soehne-mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Hugo & Marie design system\"},{\"@type\":\"Thing\",\"name\":\"Hugo & Marie website design\"},{\"@type\":\"Thing\",\"name\":\"Hugo & Marie colors\"},{\"@type\":\"Thing\",\"name\":\"Hugo & Marie typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:58:00.853Z\",\"dateModified\":\"2026-04-30T02:58:00.853Z\"}]}19:T680,**Quick Color Reference**\n- text: #0a0a0a\n- background: #ffffff\n- border: #0a0a0a\n- accent: none (system is strictly achromatic)\n- muted text/icons: #b3b3b3\n- input border: #767676\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Full-bleed editorial hero**: Edge-to-edge image filling 100vw and 100vh. Centered overlay text in saol-display 100px weight 100, color #ffffff, line-height 0.95, letter-spacing -1px. No border, no padding, no chrome. A thin white decorative line sits below the text.\n\n2. **Three-column service overview**: White background, three equal columns spanning full width. Each column separated by a 1px solid #0a0a0a vertical border. Column heading in soehne 20px weight 300, 'Explore →' in 14px weight 300 below, body copy in soehne 16px weight 400 with 1.64 line-height. No card backgrounds, no padding, no radius.\n\n3. **Artist portfolio grid**: White background, multi-row horizontal grid of square portrait image thumbnails. Images have 0px radius, no border, no gap larger than 8px. No captions, no hover effects. A section header above: 'Artist Bureau' in soehne 16px weight 400, 'Watch Reel →' below in 14px weight 300, with pill badges ('Latest', 'Femme & Childlike') aligned right. Separated from grid by a 1px solid #0a0a0a horizontal rule.\n\n4. **Navigation bar**: Full-width white bar, 1px solid #0a0a0a border-bottom. Logo 'Hugo & Marie' in soehne 14px weight 300 on the far left. Center: three nav links (Creative Agency / Artist Bureau / Helium →) in soehne 16px weight 300, #0a0a0a, with 30px horizontal padding between each. 'Info' on the far right. No background fill, no buttons, no icons."
+      },
+      {
+        "title": "Signature Visual Logic",
+        "content": "This design system's defining trait is what it *refuses*: no color, no shadows, no filled buttons, no rounded corners, no decorative gradients, no icons-as-illustration. Every visible element is either a hairline rule, a text label, or a photograph. The interface behaves as a mounting surface — a white wall in a gallery where the work is hung. The ultralight serif display face (weight 100 at 100px) is the one moment of typographic drama, reserved exclusively for editorial headlines that introduce featured artists. Everything else in the system whispers in soehne weight 300. An agent building new pages should treat the white canvas as sacred: it should never be tinted, textured, or overlaid with decorative panels, because doing so collapses the entire design intent."
+      }
+    ],
+    "elevationPhilosophy": "The system has zero elevation. No shadows, no blurs, no z-axis depth. Dimensionality is achieved through full-bleed photography bleeding to viewport edges and 1px hairline rules that organize content into columns and sections."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0a0a0a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1447879553888796
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 70,
+          "confidence": 1,
+          "prominence": 19980872.777109403,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 14,
+            "other/borderColor": 56
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "nav",
+            "image",
+            "heading",
+            "button",
+            "badge",
+            "body",
+            "input"
+          ],
+          "frequency": 561,
+          "confidence": 1,
+          "prominence": 12339696.51598645,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "icon/fill": 6,
+            "nav/color": 18,
+            "body/color": 10,
+            "icon/color": 4,
+            "link/color": 9,
+            "other/fill": 3,
+            "badge/color": 1,
+            "image/color": 10,
+            "input/color": 1,
+            "other/color": 44,
+            "button/color": 9,
+            "heading/color": 4,
+            "nav/borderColor": 72,
+            "body/borderColor": 40,
+            "icon/borderColor": 16,
+            "link/borderColor": 36,
+            "image/borderColor": 40,
+            "input/borderColor": 4,
+            "other/borderColor": 176,
+            "button/borderColor": 36,
+            "heading/borderColor": 16,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "image",
+            "input"
+          ],
+          "frequency": 380,
+          "confidence": 1,
+          "prominence": 11582139.985584728,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "link/color": 3,
+            "input/color": 1,
+            "other/color": 61,
+            "body/borderColor": 20,
+            "link/borderColor": 12,
+            "other/borderColor": 242,
+            "image/backgroundColor": 32,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 15471.332975459456,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "badge/color": 1,
+            "badge/borderColor": 4,
+            "badge/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7651658759683705
+          },
+          "contexts": [
+            "link",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 77,
+          "confidence": 1,
+          "prominence": 11514.85686495564,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "body/color": 5,
+            "icon/color": 4,
+            "link/color": 4,
+            "other/fill": 4,
+            "body/borderColor": 20,
+            "icon/borderColor": 16,
+            "link/borderColor": 16
+          }
+        },
+        {
+          "hex": "#767676",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5658363307995767
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 8105.850979251782,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.8,
+          "background": "#ffffff",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.33,
+          "background": "#cccccc",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#000000",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.44,
+          "background": "#b3b3b3",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.1,
+          "background": "#ffffff",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.61,
+          "background": "#cccccc",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.31,
+          "background": "#cccccc",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.06,
+          "background": "#000000",
+          "foreground": "#0a0a0a"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button",
+            "heading"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "marginLeft|button",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|badge"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 64,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "link"
+          ],
+          "frequency": 31,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginLeft|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|image",
+            "paddingLeft|image",
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "soehne",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 428,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "saol-display",
+          "source": "custom",
+          "weights": [
+            100
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "soehne-mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "soehne-mono",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.31,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "soehne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "nav",
+            "body",
+            "heading",
+            "input"
+          ],
+          "frequency": 72,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "soehne",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "icon"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "soehne",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.8,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "soehne",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "soehne",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "image"
+          ],
+          "frequency": 122,
+          "lineHeight": 1.44,
+          "letterSpacing": 0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "soehne",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "soehne",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "soehne",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.64,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 100,
+          "family": "saol-display",
+          "weight": 100,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1541ced5-3fb2-4772-a0cd-70ea8827c7f3.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f56be637-7d87-46ec-a4ce-e9b73132b101.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/58a36cba-3fc4-48fa-a7d9-7f14592b7857#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Hugo & Marie design system\",\"item\":\"https://styles.refero.design/style/58a36cba-3fc4-48fa-a7d9-7f14592b7857\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/58a36cba-3fc4-48fa-a7d9-7f14592b7857#style-reference\",\"name\":\"Hugo & Marie design system reference\",\"headline\":\"Hugo & Marie design system | Refero Styles\",\"description\":\"Explore Hugo & Marie's light Agency design system: Paper White #ffffff, Ink Black #000000 colors, saol-display, soehne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/58a36cba-3fc4-48fa-a7d9-7f14592b7857\",\"mainEntityOfPage\":\"https://styles.refero.design/style/58a36cba-3fc4-48fa-a7d9-7f14592b7857\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Hugo & Marie\",\"url\":\"https://www.hugoandmarie.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/58a36cba-3fc4-48fa-a7d9-7f14592b7857#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f56be637-7d87-46ec-a4ce-e9b73132b101.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f56be637-7d87-46ec-a4ce-e9b73132b101.jpg\",\"caption\":\"Screenshot of Hugo & Marie\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f56be637-7d87-46ec-a4ce-e9b73132b101.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Hugo & Marie design system\",\"Hugo & Marie website design\",\"Hugo & Marie colors\",\"Hugo & Marie typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper White\",\"Ink Black\",\"Soft Ink\",\"Graphite\",\"saol-display\",\"soehne\",\"soehne-mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Hugo & Marie design system\"},{\"@type\":\"Thing\",\"name\":\"Hugo & Marie website design\"},{\"@type\":\"Thing\",\"name\":\"Hugo & Marie colors\"},{\"@type\":\"Thing\",\"name\":\"Hugo & Marie typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:58:00.853Z\",\"dateModified\":\"2026-04-30T02:58:00.853Z\"}]}19:T680,**Quick Color Reference**\n- text: #0a0a0a\n- background: #ffffff\n- border: #0a0a0a\n- accent: none (system is strictly achromatic)\n- muted text/icons: #b3b3b3\n- input border: #767676\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Full-bleed editorial hero**: Edge-to-edge image filling 100vw and 100vh. Centered overlay text in saol-display 100px weight 100, color #ffffff, line-height 0.95, letter-spacing -1px. No border, no padding, no chrome. A thin white decorative line sits below the text.\n\n2. **Three-column service overview**: White background, three equal columns spanning full width. Each column separated by a 1px solid #0a0a0a vertical border. Column heading in soehne 20px weight 300, 'Explore →' in 14px weight 300 below, body copy in soehne 16px weight 400 with 1.64 line-height. No card backgrounds, no padding, no radius.\n\n3. **Artist portfolio grid**: White background, multi-row horizontal grid of square portrait image thumbnails. Images have 0px radius, no border, no gap larger than 8px. No captions, no hover effects. A section header above: 'Artist Bureau' in soehne 16px weight 400, 'Watch Reel →' below in 14px weight 300, with pill badges ('Latest', 'Femme & Childlike') aligned right. Separated from grid by a 1px solid #0a0a0a horizontal rule.\n\n4. **Navigation bar**: Full-width white bar, 1px solid #0a0a0a border-bottom. Logo 'Hugo & Marie' in soehne 14px weight 300 on the far left. Center: three nav links (Creative Agency / Artist Bureau / Helium →) in soehne 16px weight 300, #0a0a0a, with 30px horizontal padding between each. 'Info' on the far right. No background fill, no buttons, no icons."
+}

@@ -1,0 +1,697 @@
+{
+  "color": {
+    "electric-indigo": {
+      "$value": "#1f00ff",
+      "$type": "color",
+      "$description": "Electric Indigo — Full-bleed hero canvas, section backgrounds, heading text on light surfaces, all primary borders and dividers — the single chromatic color that defines the entire system"
+    },
+    "patch-orange": {
+      "$value": "#ff622b",
+      "$type": "color",
+      "$description": "Patch Orange — Filled CTA buttons and active nav markers — the only warm color, reserved exclusively for conversion moments"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, hero reverse text, card surfaces, icon fills — the neutral that makes the indigo vibrate"
+    },
+    "fog-gray": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Fog Gray — Secondary card surfaces, subtle elevation between cards and canvas"
+    },
+    "bone": {
+      "$value": "#f8f8f8",
+      "$type": "color",
+      "$description": "Bone — Tertiary card backgrounds, muted surface layer"
+    },
+    "mist": {
+      "$value": "#ececec",
+      "$type": "color",
+      "$description": "Mist — Input backgrounds, hairline borders on light sections, disabled states"
+    },
+    "gridline": {
+      "$value": "#d3d3d3",
+      "$type": "color",
+      "$description": "Gridline — Major section dividers, muted heading accents, structural borders on the blue canvas"
+    },
+    "ink": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Ink — Primary body text, dark card backgrounds, button borders — near-black with a slight warmth"
+    }
+  },
+  "font": {
+    "pp-right": {
+      "$value": "PP Right",
+      "$type": "fontFamily",
+      "$description": "All display headings, hero text, section titles, and the bold '01' section markers. The tight sub-1.0 line height at 800-weight is the signature — headlines stack like concrete blocks, not flowing prose. Substitute: Bebas Neue for similar industrial condensed feel, or Anton for heavier display weight"
+    },
+    "archivo": {
+      "$value": "Archivo",
+      "$type": "fontFamily",
+      "$description": "Body copy, navigation, buttons, footer text, captions, form inputs. Weight 300 for subtle secondary text, 400 for body, 600 for small uppercase labels and nav. The low x-height and geometric forms keep it quiet against PP Right's display dominance"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.85
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "13px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "17px",
+        "fontWeight": 600,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 17px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 19px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 19px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 19px"
+    },
+    "lg-8": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-8 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 2.32
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 3.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 24px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 24px"
+    },
+    "2xl-7": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-7 at 29px"
+    },
+    "2xl-8": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-8 at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "33px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 33px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 38px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 62px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "67px",
+        "fontWeight": 400,
+        "lineHeight": 0.86
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 67px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "90px",
+        "fontWeight": 400,
+        "lineHeight": 0.79
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 90px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "90px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 90px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "95px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 95px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "133px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 133px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "133px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 133px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "133px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 133px"
+    },
+    "5xl-11": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "152px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-11 at 152px"
+    },
+    "5xl-12": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "152px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-12 at 152px"
+    },
+    "5xl-13": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "200px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-13 at 200px"
+    },
+    "5xl-14": {
+      "$value": {
+        "fontFamily": "Archivo",
+        "fontSize": "333px",
+        "fontWeight": 300,
+        "lineHeight": 0.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-14 at 333px"
+    },
+    "5xl-15": {
+      "$value": {
+        "fontFamily": "PP Right",
+        "fontSize": "524px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-15 at 524px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "33": {
+      "$value": "33px",
+      "$type": "dimension",
+      "$description": "Spacing 33px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "90": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Spacing 90px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4.7619px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "9.52381px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background on light sections"
+    },
+    "bone-card": {
+      "$value": "#f8f8f8",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle card elevation on light sections"
+    },
+    "fog-card": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary card surface, pricing tier containers"
+    },
+    "indigo-field": {
+      "$value": "#1f00ff",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed hero, alternating dark sections, blueprint canvas"
+    },
+    "ink-plate": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Surface level 4: Dark-mode cards or inverted sections if introduced"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://thepatchsystem.com",
+      "siteName": "Patch",
+      "extractedAt": "2026-06-03T21:15:15.868Z",
+      "variant": "extended"
+    }
+  }
+}

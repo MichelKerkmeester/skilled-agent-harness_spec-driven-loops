@@ -1,0 +1,1497 @@
+{
+  "source": "https://styles.refero.design/style/8d4b0738-c302-45c6-98c9-b3cd36e04613",
+  "uuid": "8d4b0738-c302-45c6-98c9-b3cd36e04613",
+  "name": "Podcorn",
+  "northStar": "Indie magazine spread on warm blush paper. A cream canvas carrying deep-indigo editorial typography, hand-drawn illustrations framed in hairline rectangles, and a single coral button as the only warm mark on the page.",
+  "capturedAt": "2026-07-18T07:37:06.799Z",
+  "meta": {
+    "url": "https://podcorn.com",
+    "siteName": "Podcorn",
+    "extractedAt": "2026-06-03T20:17:13.707Z",
+    "durationMs": 29871,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 950,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Georgia 40px weight 700 in Ink Violet for all major headlines — the serif/sans pairing is the site's identity",
+      "Reserve #fc736c Coral for exactly one element per view: the primary CTA. Never use it for backgrounds, text, or decoration",
+      "Apply -0.187em letter-spacing to all Gilroy text to match the compact geometric rhythm",
+      "Frame every hand-drawn illustration with a 1.5-2px Ink Violet #090335 border and 0px radius — the rectangular frame is structural, not optional",
+      "Stack surfaces as Blush Cream canvas → White card → Coral CTA → Ink Violet filled button for depth without shadows",
+      "Use 6px radius for all buttons and 8px for cards — keep corners gentle, never pill-shaped (9999px) on UI controls",
+      "Maintain 80px section gaps and 20-27px internal padding to preserve the airy editorial rhythm"
+    ],
+    "donts": [
+      "Never use drop shadows, blurs, or glow effects — depth comes from surface color shifts only",
+      "Never use the Coral accent on text, borders, or icon fills — it is a button-only color",
+      "Never apply Georgia to body text, nav, or buttons — reserve it for headings and hero copy only",
+      "Never round illustration frames — the 0px rectangular border is essential to the editorial frame metaphor",
+      "Never use pure black #000000 for primary text — Ink Violet #090335 is the text standard",
+      "Never place photography or product screenshots inside the cream sections — illustrations only",
+      "Never use emoji, gradient fills, or neon accents — the palette is deliberately limited to cream, white, ink-violet, and coral"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fff4f2",
+        "name": "Blush Cream",
+        "role": "Page canvas — warm off-white that sets the editorial tone and makes the deep-indigo text read like printed ink on heavy paper",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces, nav background, button fills on light backgrounds — stacked above the cream canvas to create depth without shadow",
+        "group": "neutral"
+      },
+      {
+        "hex": "#090335",
+        "name": "Ink Violet",
+        "role": "Primary text, headings, filled CTA buttons, nav links, hairline borders — the single dominant color of the entire interface; near-black with a violet undertone gives headings personality without abandoning readability",
+        "group": "brand"
+      },
+      {
+        "hex": "#fc736c",
+        "name": "Coral Flame",
+        "role": "Red wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffb0a1",
+        "name": "Peach Whisper",
+        "role": "Orange decorative accent for icons, marks, and small graphic details. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#132645",
+        "name": "Deep Navy",
+        "role": "Illustration detail fill (SVG artwork) — cooler sibling of Ink Violet used inside drawings to add tonal range to the editorial illustrations",
+        "group": "brand"
+      },
+      {
+        "hex": "#434352",
+        "name": "Graphite",
+        "role": "Secondary nav text and nav borders — a softer alternative to Ink Violet for tertiary labels and dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8993a2",
+        "name": "Silver Mist",
+        "role": "Muted nav borders and inactive control outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d8d8d8",
+        "name": "Hairline",
+        "role": "Hairline link underlines and subtle dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#71717d",
+        "name": "Zinc Mute",
+        "role": "Helper text and tertiary metadata",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered, generous outer padding of ~80px on desktop. Page is a vertical scroll of horizontal sections, each section using the Blush Cream canvas as background. The top nav is a sticky white bar with hairline bottom border. Hero is a two-column split: text-left (Georgia display headline + Gilroy body + Ink Filled CTA) and framed-illustration-right, vertically centered. Feature sections alternate between two-column text+illustration rows and full-width centered text stacks. Brand logo strip is a single horizontal band. No sidebar, no mega-menu, no full-bleed images. Section rhythm is defined by whitespace and subtle background shifts rather than dividers or colored bands — the cream canvas flows continuously beneath all content.",
+    "imagery": "Custom hand-drawn line illustrations dominate the visual identity: single-stroke navy and coral artwork depicting podcasters, headphones, music notes, megaphones, and abstract organic shapes. Each illustration is housed inside a thin rectangular ink-violet frame with no fill, evoking a comic panel or art print. Illustrations are decorative and atmospheric rather than explanatory — they set tone and brand personality, not product mechanics. No photography, no product screenshots, no 3D renders. The illustration style is loose, slightly wobbly, and human — a deliberate counterweight to the precise geometric UI. Below the hero, a grayscale brand-logo strip provides the only 'real-world' visual content, and even that is stripped of color.",
+    "similar": [
+      {
+        "why": "Same serif-headline-plus-sans-body editorial pairing and warm off-white canvas, though Substack leans more newspaper than indie-magazine",
+        "business": "Substack"
+      },
+      {
+        "why": "Podcasting-platform category neighbor with similar coral accent usage and cream-toned marketing surfaces, though Podcorn's hand-drawn illustrations are more editorial",
+        "business": "Anchor (Spotify)"
+      },
+      {
+        "why": "Same minimalist restraint and surface-color-as-depth philosophy, but Notion is pure UI with no illustration personality",
+        "business": "Notion"
+      },
+      {
+        "why": "Comparable use of hand-drawn illustration as brand personality and warm cream canvas, though Mailchimp's palette is broader and more playful",
+        "business": "Mailchimp"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "buttons": "6px",
+        "nav-pill": "6px",
+        "illustration-frames": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "20-27px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#fff4f2",
+        "name": "Blush Cream Canvas",
+        "level": 0,
+        "purpose": "Page background, hero backdrop, editorial sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "level": 1,
+        "purpose": "Cards, nav bar, brand logo strip, dialog surfaces"
+      },
+      {
+        "hex": "#fc736c",
+        "name": "Coral Accent",
+        "level": 2,
+        "purpose": "Primary CTA fill — single use surface"
+      },
+      {
+        "hex": "#090335",
+        "name": "Ink Violet",
+        "level": 3,
+        "purpose": "Filled button surface, deepest UI layer"
+      }
+    ],
+    "northStar": "Indie magazine spread on warm blush paper. A cream canvas carrying deep-indigo editorial typography, hand-drawn illustrations framed in hairline rectangles, and a single coral button as the only warm mark on the page.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.57,
+        "letterSpacing": -0.187
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.7,
+        "letterSpacing": -0.187
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.88,
+        "letterSpacing": -0.187
+      },
+      {
+        "role": "body-lg",
+        "size": 20,
+        "lineHeight": 1.67,
+        "letterSpacing": -0.187
+      },
+      {
+        "role": "nav-label",
+        "size": 22,
+        "lineHeight": 1.13,
+        "letterSpacing": -0.187
+      },
+      {
+        "role": "heading-sm",
+        "size": 25,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.187
+      },
+      {
+        "role": "heading",
+        "size": 27,
+        "lineHeight": 1.44,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 40,
+        "lineHeight": 1.44,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Coral CTA Button (Nav)",
+        "role": "Primary call-to-action in top nav",
+        "description": "Filled coral #fc736c background, white text at 15px Gilroy weight 500, 18px vertical and 20px horizontal padding, 6px corner radius. Single instance of the accent color — appears once in the nav, nowhere else."
+      },
+      {
+        "name": "Ink Filled Button",
+        "role": "Primary action on hero and feature blocks",
+        "description": "Filled Ink Violet #090335 background, white text at 16-18px Gilroy weight 500-600, 18px vertical and 20-27px horizontal padding, 6px radius. Used for 'For Podcasters' and 'For Brands' actions."
+      },
+      {
+        "name": "Ghost Outlined Button",
+        "role": "Secondary action",
+        "description": "Transparent fill, 1-2px Ink Violet #090335 border, Ink Violet text at matching size, 6px radius. Appears as the 'Log In' nav control."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site header with brand, links, and dual CTAs",
+        "description": "White background, 1px hairline border bottom in #d8d8d8, ~64px height. Logo left (Creator Lab badge), center links in Gilroy 15-16px weight 500 #090335, right cluster of Ghost Outlined 'Log In' + Coral CTA 'Sign Up'."
+      },
+      {
+        "name": "Hero Text Block",
+        "role": "First-fold headline and supporting copy",
+        "description": "Display-size Georgia 40px weight 700 in Ink Violet, line-height 1.44, sitting on Blush Cream canvas. No gradient, no overlay — the cream is the hero background."
+      },
+      {
+        "name": "Illustration Frame",
+        "role": "Hand-drawn artwork container",
+        "description": "Thin 1.5-2px Ink Violet #090335 rectangular border, NO fill, NO border-radius, housing hand-drawn line illustrations. The border is structural, not decorative — it visually quotes a picture frame or comic panel and separates editorial art from UI."
+      },
+      {
+        "name": "Feature Card (Two-Column Row)",
+        "role": "Side-by-side feature explanation blocks",
+        "description": "Two equal-width columns on cream canvas. Left: Gilroy 18-20px body text in Ink Violet with a Georgia 25-27px subheading. Right: Illustration Frame with custom artwork. 40-60px column gap, no card background or border — content sits directly on the cream surface."
+      },
+      {
+        "name": "Brand Logo Strip",
+        "role": "Social proof band showing partner brands",
+        "description": "Row of grayscale brand logos (Amazon, Sonix, etc.) on white background, evenly spaced with generous horizontal padding. Logos rendered in near-black #000000 for clean recognition."
+      },
+      {
+        "name": "Cookie Consent Dialog",
+        "role": "Privacy compliance overlay",
+        "description": "White #ffffff surface, 8px corner radius, sits fixed bottom-left. Bold 'Customize Your Cookie Choices' title in Ink Violet, dense body text in Gilroy 14-15px, three stacked ghost-style buttons (Accept All, Reject All, Cookie Settings) with 1px Ink Violet border and Ink Violet text."
+      },
+      {
+        "name": "Sign Up Badge",
+        "role": "Small label indicating available action",
+        "description": "Compact pill or rectangular tag in Gilroy 14px, Ink Violet background with white text, used inline near the Creator Lab logo."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary interface typeface — body text, navigation, buttons, card labels, footer. Geometric sans with tight tracking gives UI elements a confident, contemporary voice.",
+        "sizes": "14, 15, 16, 18, 20, 22, 25",
+        "family": "Gilroy",
+        "weight": "400, 500, 600, 700",
+        "lineHeight": "1.57, 1.67, 1.70, 1.88",
+        "substitute": "Inter, Manrope, or DM Sans at matching weights",
+        "letterSpacing": "-0.187em (applied across sizes, tightens geometric forms for a modern, compact feel)"
+      },
+      {
+        "role": "Headline and hero typeface — a classical serif reserved for editorial moments. The serif/sans pairing is the site's most distinctive typographic decision: Georgia carries warmth and craft, Gilroy carries clarity and UI density. Mixing these creates an indie-magazine feel that distinguishes Podcorn from generic SaaS layouts.",
+        "sizes": "21, 27, 40",
+        "family": "Georgia",
+        "weight": "400, 700",
+        "lineHeight": "1.44",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Podcorn Creator Lab uses a warm editorial-creative language: a peach-cream canvas (#fff4f2) beneath pure white card surfaces, deep indigo (#090335) ink for nearly all typography, and a single coral (#fc736c) accent reserved exclusively for the primary call-to-action. The signature contrast is serif Georgia headings against geometric Gilroy body text — an editorial pairing that says 'crafted content platform' rather than 'SaaS dashboard'. Illustrations are hand-drawn, one-stroke linework with flat coral and navy fills, placed inside thin rectangular frames on the cream canvas. Everything sits generous and airy; borders are hairline-thin, corners are gently rounded but not pill-shaped, and elevation is achieved through whitespace and surface shifts rather than drop shadows.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8d4b0738-c302-45c6-98c9-b3cd36e04613#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Podcorn design system\",\"item\":\"https://styles.refero.design/style/8d4b0738-c302-45c6-98c9-b3cd36e04613\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8d4b0738-c302-45c6-98c9-b3cd36e04613#style-reference\",\"name\":\"Podcorn design system reference\",\"headline\":\"Podcorn design system | Refero Styles\",\"description\":\"Explore Podcorn's light Media design system: Blush Cream #fff4f2, Pure White #ffffff colors, Gilroy, Georgia typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8d4b0738-c302-45c6-98c9-b3cd36e04613\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8d4b0738-c302-45c6-98c9-b3cd36e04613\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Podcorn\",\"url\":\"https://podcorn.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8d4b0738-c302-45c6-98c9-b3cd36e04613#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1a7977eb-a1be-407b-88d9-f4c3430cc16f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1a7977eb-a1be-407b-88d9-f4c3430cc16f.jpg\",\"caption\":\"Screenshot of Podcorn\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1a7977eb-a1be-407b-88d9-f4c3430cc16f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Podcorn design system\",\"Podcorn website design\",\"Podcorn colors\",\"Podcorn typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Blush Cream\",\"Pure White\",\"Ink Violet\",\"Coral Flame\",\"Gilroy\",\"Georgia\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Podcorn design system\"},{\"@type\":\"Thing\",\"name\":\"Podcorn website design\"},{\"@type\":\"Thing\",\"name\":\"Podcorn colors\"},{\"@type\":\"Thing\",\"name\":\"Podcorn typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T03:37:04.738Z\",\"dateModified\":\"2026-04-30T03:37:04.738Z\"}]}19:T856,**Quick Color Reference**\n- text: #090335 (Ink Violet)\n- background: #fff4f2 (Blush Cream)\n- surface/card: #ffffff (Pure White)\n- border: #d8d8d8 (Hairline) or #090335 (Ink Violet for emphasis)\n- accent/illustration: #fc736c (Coral) and #ffb0a1 (Peach Whisper)\n- primary action: #090335 (filled action)\n\n**3-5 Example Component Prompts**\n1. Create a hero section: Blush Cream #fff4f2 background, 1200px max width. Left column holds a Georgia 40px weight 700 Ink Violet headline with line-height 1.44, followed by Gilroy 18px weight 400 body text in Ink Violet, then an Ink Filled Button (#090335 bg, white text, 18px/27px padding, 6px radius). Right column holds an Illustration Frame: 2px Ink Violet border, 0px radius, containing a hand-drawn line illustration using #132645 strokes and #fc736c + #ffb0a1 fills.\n\n2. Build a top navigation bar: white #ffffff background, 64px height, 1px #d8d8d8 bottom border. Left: brand logo with 'Creator Lab' badge. Center: Gilroy 15px weight 500 Ink Violet links. Right: Ghost Outlined 'Log In' button (1px #090335 border, transparent fill, 6px radius, 18px/20px padding) followed by Coral CTA 'Sign Up' (#fc736c fill, white text, 6px radius, 18px/20px padding).\n\n3. Construct a feature row: Blush Cream background, two equal columns with 60px gap. Left column: Georgia 25px weight 700 Ink Violet subheading, Gilroy 18px weight 400 Ink Violet body text. Right column: Illustration Frame with 2px #090335 border, 0px radius, containing custom artwork with #132645 linework and #fc736c fills. No card backgrounds, no shadows.\n\n4. Design a cookie consent dialog: white #ffffff background, 8px radius, fixed bottom-left, 24px padding. Title 'Customize Your Cookie Choices' in Gilroy 16px weight 700 Ink Violet. Body text Gilroy 14px weight 400 in #434352. Three stacked ghost buttons: 1px #090335 border, transparent fill, Ink Violet text, 6px radius, 18px/20px padding.\n\n5. Create a brand logo strip: white #ffffff background band, horizontal flex row of 6-8 grayscale partner logos rendered in #000000, evenly spaced with 40px gap, 40px vertical padding. Logos are monochrome, no color treatment."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is achieved entirely through surface color shifts (cream → white → coral → ink) and hairline borders. No drop shadows, no blur effects, no glow. The design trusts background-color changes and 1-2px borders to communicate depth, producing a flat editorial print aesthetic rather than a skeuomorphic digital one."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#090335",
+          "oklch": {
+            "c": 0.09240890503180677,
+            "h": 276.7581728127351,
+            "l": 0.16653820632535113
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "hero",
+            "heading",
+            "button",
+            "icon",
+            "card",
+            "body",
+            "footer"
+          ],
+          "frequency": 729,
+          "confidence": 1,
+          "prominence": 81453998.47981614,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 13,
+            "body/color": 10,
+            "card/color": 3,
+            "hero/color": 1,
+            "icon/color": 1,
+            "link/color": 4,
+            "image/color": 20,
+            "other/color": 84,
+            "button/color": 1,
+            "heading/color": 14,
+            "nav/borderColor": 50,
+            "body/borderColor": 40,
+            "card/borderColor": 12,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 8,
+            "image/borderColor": 80,
+            "other/borderColor": 316,
+            "button/borderColor": 4,
+            "heading/borderColor": 56,
+            "button/backgroundColor": 3,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fff4f2",
+          "oklch": {
+            "c": 0.01217384319536509,
+            "h": 29.868366872530174,
+            "l": 0.9751696330128304
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 6784870.53509485,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 16,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "footer",
+            "body",
+            "link"
+          ],
+          "frequency": 243,
+          "confidence": 1,
+          "prominence": 4726386.362219303,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 33,
+            "body/color": 1,
+            "link/color": 1,
+            "other/fill": 32,
+            "other/color": 6,
+            "button/color": 3,
+            "footer/color": 1,
+            "nav/borderColor": 128,
+            "body/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 24,
+            "footer/borderColor": 4,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d8d8d8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8822383241093221
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 4460065.983481095,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 8,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 1571014.83071481,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 26
+          }
+        },
+        {
+          "hex": "#132645",
+          "oklch": {
+            "c": 0.06308945376202123,
+            "h": 259.7143867293846,
+            "l": 0.27058536196302746
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 481,
+          "confidence": 1,
+          "prominence": 520102.74432636314,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 481
+          }
+        },
+        {
+          "hex": "#ffb0a1",
+          "oklch": {
+            "c": 0.095732010241473,
+            "h": 31.111246134108193,
+            "l": 0.8289950652298622
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 265131.04745446186,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 21
+          }
+        },
+        {
+          "hex": "#003ec9",
+          "oklch": {
+            "c": 0.2204701390618685,
+            "h": 262.9360753389554,
+            "l": 0.4402862039711807
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 105,
+          "confidence": 1,
+          "prominence": 75231.6065229257,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 105
+          }
+        },
+        {
+          "hex": "#fc736c",
+          "oklch": {
+            "c": 0.16900997024504588,
+            "h": 25.163884776562746,
+            "l": 0.7180607648837484
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 65452.44884369602,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 50,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#434352",
+          "oklch": {
+            "c": 0.025257842800469,
+            "h": 285.16550762681464,
+            "l": 0.3887969460035811
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 29819.442983245008,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "nav/borderColor": 16
+          }
+        },
+        {
+          "hex": "#ffd03b",
+          "oklch": {
+            "c": 0.16277700844379583,
+            "h": 90.19954386326737,
+            "l": 0.87477327491423
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 19046.09737641729,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 40
+          }
+        },
+        {
+          "hex": "#8993a2",
+          "oklch": {
+            "c": 0.025544853894326633,
+            "h": 260.24143942562745,
+            "l": 0.6590415558926712
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 10281.497604161239,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 4
+          }
+        },
+        {
+          "hex": "#71717d",
+          "oklch": {
+            "c": 0.019675236645775942,
+            "h": 285.73711736656844,
+            "l": 0.5516455638348455
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4428,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.2143155036508631,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.52,
+          "background": "#ffffff",
+          "foreground": "#090335"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.47,
+          "background": "#fff4f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#fff4f2",
+          "foreground": "#090335"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.1,
+          "background": "#ffffff",
+          "foreground": "#132645"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.73,
+          "background": "#d8d8d8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.34,
+          "background": "#ffd03b",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14,
+          "background": "#fff4f2",
+          "foreground": "#132645"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.69,
+          "background": "#d8d8d8",
+          "foreground": "#090335"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.32,
+          "background": "#ffd03b",
+          "foreground": "#090335"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.98,
+          "background": "#ffb0a1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.13,
+          "background": "#ffb0a1",
+          "foreground": "#090335"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.59,
+          "background": "#d8d8d8",
+          "foreground": "#132645"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.31,
+          "background": "#ffd03b",
+          "foreground": "#132645"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.71,
+          "background": "#ffffff",
+          "foreground": "#434352"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9,
+          "background": "#fff4f2",
+          "foreground": "#434352"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.61,
+          "background": "#ffb0a1",
+          "foreground": "#132645"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.29,
+          "background": "#ffffff",
+          "foreground": "#003ec9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.81,
+          "background": "#fc736c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.69,
+          "background": "#fff4f2",
+          "foreground": "#003ec9"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|icon",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "nav",
+            "other",
+            "heading"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "body"
+          ],
+          "frequency": 59,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "marginBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|heading",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body"
+          ]
+        },
+        {
+          "value": 41,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 47,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 51,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 55,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 75,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 84,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero"
+          ]
+        },
+        {
+          "value": 85,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 166,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 168,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 170,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Gilroy",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 183,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Georgia",
+          "source": "system",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 17,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Gilroy",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Gilroy",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Gilroy",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Gilroy",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "card",
+            "body",
+            "link",
+            "footer"
+          ],
+          "frequency": 91,
+          "lineHeight": 1.88,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Gilroy",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.06,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Gilroy",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.187,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Gilroy",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Gilroy",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Gilroy",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Gilroy",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Gilroy",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "body"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Gilroy",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.88,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Georgia",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Gilroy",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "image"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.58,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Gilroy",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "image"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Gilroy",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "Georgia",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Georgia",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/39f267c8-b10f-4956-854c-c8c59d7d21c5.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1a7977eb-a1be-407b-88d9-f4c3430cc16f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8d4b0738-c302-45c6-98c9-b3cd36e04613#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Podcorn design system\",\"item\":\"https://styles.refero.design/style/8d4b0738-c302-45c6-98c9-b3cd36e04613\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8d4b0738-c302-45c6-98c9-b3cd36e04613#style-reference\",\"name\":\"Podcorn design system reference\",\"headline\":\"Podcorn design system | Refero Styles\",\"description\":\"Explore Podcorn's light Media design system: Blush Cream #fff4f2, Pure White #ffffff colors, Gilroy, Georgia typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8d4b0738-c302-45c6-98c9-b3cd36e04613\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8d4b0738-c302-45c6-98c9-b3cd36e04613\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Podcorn\",\"url\":\"https://podcorn.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8d4b0738-c302-45c6-98c9-b3cd36e04613#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1a7977eb-a1be-407b-88d9-f4c3430cc16f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1a7977eb-a1be-407b-88d9-f4c3430cc16f.jpg\",\"caption\":\"Screenshot of Podcorn\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1a7977eb-a1be-407b-88d9-f4c3430cc16f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Podcorn design system\",\"Podcorn website design\",\"Podcorn colors\",\"Podcorn typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Blush Cream\",\"Pure White\",\"Ink Violet\",\"Coral Flame\",\"Gilroy\",\"Georgia\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Podcorn design system\"},{\"@type\":\"Thing\",\"name\":\"Podcorn website design\"},{\"@type\":\"Thing\",\"name\":\"Podcorn colors\"},{\"@type\":\"Thing\",\"name\":\"Podcorn typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T03:37:04.738Z\",\"dateModified\":\"2026-04-30T03:37:04.738Z\"}]}19:T856,**Quick Color Reference**\n- text: #090335 (Ink Violet)\n- background: #fff4f2 (Blush Cream)\n- surface/card: #ffffff (Pure White)\n- border: #d8d8d8 (Hairline) or #090335 (Ink Violet for emphasis)\n- accent/illustration: #fc736c (Coral) and #ffb0a1 (Peach Whisper)\n- primary action: #090335 (filled action)\n\n**3-5 Example Component Prompts**\n1. Create a hero section: Blush Cream #fff4f2 background, 1200px max width. Left column holds a Georgia 40px weight 700 Ink Violet headline with line-height 1.44, followed by Gilroy 18px weight 400 body text in Ink Violet, then an Ink Filled Button (#090335 bg, white text, 18px/27px padding, 6px radius). Right column holds an Illustration Frame: 2px Ink Violet border, 0px radius, containing a hand-drawn line illustration using #132645 strokes and #fc736c + #ffb0a1 fills.\n\n2. Build a top navigation bar: white #ffffff background, 64px height, 1px #d8d8d8 bottom border. Left: brand logo with 'Creator Lab' badge. Center: Gilroy 15px weight 500 Ink Violet links. Right: Ghost Outlined 'Log In' button (1px #090335 border, transparent fill, 6px radius, 18px/20px padding) followed by Coral CTA 'Sign Up' (#fc736c fill, white text, 6px radius, 18px/20px padding).\n\n3. Construct a feature row: Blush Cream background, two equal columns with 60px gap. Left column: Georgia 25px weight 700 Ink Violet subheading, Gilroy 18px weight 400 Ink Violet body text. Right column: Illustration Frame with 2px #090335 border, 0px radius, containing custom artwork with #132645 linework and #fc736c fills. No card backgrounds, no shadows.\n\n4. Design a cookie consent dialog: white #ffffff background, 8px radius, fixed bottom-left, 24px padding. Title 'Customize Your Cookie Choices' in Gilroy 16px weight 700 Ink Violet. Body text Gilroy 14px weight 400 in #434352. Three stacked ghost buttons: 1px #090335 border, transparent fill, Ink Violet text, 6px radius, 18px/20px padding.\n\n5. Create a brand logo strip: white #ffffff background band, horizontal flex row of 6-8 grayscale partner logos rendered in #000000, evenly spaced with 40px gap, 40px vertical padding. Logos are monochrome, no color treatment."
+}

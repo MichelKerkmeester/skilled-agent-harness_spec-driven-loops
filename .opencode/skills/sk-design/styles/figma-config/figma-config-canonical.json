@@ -1,0 +1,751 @@
+{
+  "source": "https://styles.refero.design/style/8caa5004-a8cc-4c7e-a2bb-00ff60618729",
+  "uuid": "8caa5004-a8cc-4c7e-a2bb-00ff60618729",
+  "name": "Figma Config",
+  "northStar": "modernist poster on black velvet",
+  "capturedAt": "2026-07-18T09:49:11.090Z",
+  "meta": {
+    "url": "https://config.figma.com/events/figma-config-2022",
+    "siteName": "Figma Config",
+    "extractedAt": "2026-06-03T18:01:59.688Z",
+    "durationMs": 27844,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 128,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Obsidian (#000000) as the only canvas; every other color in the system is a foreground stroke or text against it",
+      "Set body copy to figmaSans 18px/1.25 with -0.02em tracking; do not introduce a second weight",
+      "Reserve 80px / line-height 0.95 for true display moments — one per screen maximum",
+      "Build CTAs as ghost buttons (Chalk border, transparent fill) or inverted buttons (Paper fill, Obsidian text); never use a chromatic brand color for actions",
+      "Keep all radii at 0px — the system has no rounded corners anywhere",
+      "Use 160px vertical padding for hero sections and 40px for stacked utility rows",
+      "Let large display type bleed off the viewport edge in the footer rather than constraining it to a safe area"
+    ],
+    "donts": [
+      "Do not introduce a brand accent color into the UI — the event-illustration squares are decoration, not tokens",
+      "Do not add card surfaces, drop shadows, or elevated panels; the canvas is flat",
+      "Do not use a second type family for body copy; figmaMono only appears inline with buttons or icons",
+      "Do not set line-height above 1.30 on body or above 1.10 on the 32px heading — loose leading breaks the poster feel",
+      "Do not round button corners or add padding beyond 12px — the geometric rigor depends on tight, square elements",
+      "Do not use color for state communication (hover, active, error); if a state is needed, swap the border between Chalk and Graphite",
+      "Do not break tracking on the 80px display — -0.03em is what lets the headline read as a single block"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Page canvas, all surface backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2e2e2",
+        "name": "Chalk",
+        "role": "Primary text, nav links, ghost-button borders, hairline rules, footer text — the only foreground color in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3d3d3d",
+        "name": "Graphite",
+        "role": "Subtle button borders and secondary dividers that recede against the canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Inverted button surface (ghost buttons flipped to filled) and rare high-contrast accents",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width ~1200px centered, with display type and footer wordmarks allowed to bleed full-bleed past the container. The hero pattern on the 404 is a two-column split: left column holds the eyebrow, the 80px display headline (three lines, left-aligned), and a single inverted CTA; right column carries the event illustration block. Section rhythm is defined by 160px vertical padding between hero-level bands and 40px between stacked rows — no alternating light/dark bands because there is only one surface color. Navigation is a single fixed top bar: logo flush left, three text links flush right with 23px gaps, 6px vertical padding inside the rail, 12px horizontal padding on each link. The footer is a single oversized wordmark cropped against the bottom viewport edge. Density reads as compact because element gaps are 12px and text sits close to its containers, even though section gaps are very generous.",
+    "imagery": "Event illustration is the only imagery: large flat-colored geometric squares (green, cyan, orange, yellow) with white abstract shapes layered on top, used to fill negative space on error and empty states. The illustration is decorative atmosphere, not explanatory content — it never carries UI information. There is no photography, no product screenshots, no 3D. Iconography is absent; the wordmark and headline typography are the only graphics besides the event shapes.",
+    "similar": [
+      {
+        "why": "Same poster-on-black visual logic — oversized display type, hard edges, zero chrome, and a single inverted CTA per screen",
+        "business": "Apple Events"
+      },
+      {
+        "why": "Pure-black canvas with near-white text, no card surfaces, and a single custom geometric sans doing all the work",
+        "business": "Linear changelog"
+      },
+      {
+        "why": "Dark-mode minimalism that lets oversized type and a single ghost/outline button carry the entire composition",
+        "business": "Vercel marketing"
+      },
+      {
+        "why": "Brutalist wordmark treatment, flat surfaces, and dot-matrix-style small text labels on a black canvas",
+        "business": "Nothing.tech"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "160px",
+      "cardPadding": "12px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — the dominant surface across all screens"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Inverted Card",
+        "level": 1,
+        "purpose": "Rare inverted surface for the cookie consent dialog; functions as a sheet lifted off the black canvas"
+      }
+    ],
+    "northStar": "modernist poster on black velvet",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 0.95,
+        "letterSpacing": -2.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Navigation Button",
+        "role": "Top-bar CTA (e.g. REGISTER) in event header",
+        "description": "Transparent background, 1px Chalk (#e2e2e2) border, figmaSans 16px/1.30, -0.02em tracking, Chalk text. Padding 12px top/bottom and left/right. No radius. The border is the button."
+      },
+      {
+        "name": "Nav Text Link",
+        "role": "Plain text links in the header (SPEAKERS, FAQ)",
+        "description": "No border, no background, figmaSans 16px/1.30 uppercase, Chalk color. Spacing 23px between links, 6px vertical padding inside the nav rail."
+      },
+      {
+        "name": "Inverted CTA Button",
+        "role": "Primary action button (GO TO HOMEPAGE on the 404, main event CTAs)",
+        "description": "Paper (#ffffff) background, Obsidian (#000000) text, figmaSans 16px/1.30. Padding 12px vertical, 12px horizontal. 0px radius. No shadow. The inversion against the black canvas makes the action the only filled object on the page."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand identifier in the top-left",
+        "description": "figmaSans 16px custom logotype 'config' in Chalk. Compact, sits at the same baseline as nav links. No icon mark — the wordmark is the logo."
+      },
+      {
+        "name": "Error Headline",
+        "role": "Display-level copy on the 404 screen",
+        "description": "figmaSans 80px / line-height 0.95 / -0.03em tracking, Chalk color. Up to three lines, left-aligned. The 0.95 line-height is the system signature — lines nearly overlap."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Small uppercase label above a display headline (e.g. '404 error')",
+        "description": "figmaSans 16px/1.30, Chalk, no weight change. Acts as a typographic stand-in for a section badge — there are no pill badges in this system."
+      },
+      {
+        "name": "Cookie Consent Dialog",
+        "role": "Bottom-right overlay with policy text and two actions",
+        "description": "Paper (#ffffff) background, Obsidian text, figmaSans 16px/1.30. Two stacked actions: 'ALLOW ALL COOKIES' as a filled Obsidian button with Chalk text (full-width, 0px radius, 12px padding), and 'DO NOT ALLOW COOKIES' as a text link. A small × close icon top-right."
+      },
+      {
+        "name": "Page Footer Wordmark",
+        "role": "Oversized brand mark anchored to the page bottom",
+        "description": "figmaSans 80px or larger, Chalk, leading cropped to the viewport — the letters bleed off the bottom edge of the screen as a deliberate poster-style motif."
+      },
+      {
+        "name": "Section Spacer",
+        "role": "Vertical breathing rhythm between event content blocks",
+        "description": "160px top and bottom padding on hero-level sections, 40px between stacked utility sections. Compact 12px gaps inside nav rails and button groups."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The single typeface carrying every UI surface — body, nav, button, hero, footer. Only weight 400 is used; hierarchy is built through size alone, not weight contrast. The 80px display weight uses line-height 0.95, letting lines nearly touch — this near-zero leading is the signature move and only works because figmaSans is a custom geometric sans with no visible ascender/descender collision. Tight letter-spacing (-0.03em at display, -0.02em at body) tightens optical color across the page.",
+        "sizes": "16px, 18px, 20px, 32px, 80px",
+        "family": "figmaSans",
+        "weight": "400",
+        "lineHeight": "1.30 (16px), 1.25 (18px), 1.25 (20px), 1.10 (32px), 0.95 (80px)",
+        "substitute": "Inter",
+        "letterSpacing": "-0.03em at 32–80px, -0.02em at 16–20px",
+        "fontFeatureSettings": "\"kern\""
+      },
+      {
+        "role": "Sparingly used for inline button labels and icon-adjacent text where a monospaced voice is needed. Letter-spacing is normal — monospaced faces should not be artificially tracked.",
+        "sizes": "16px",
+        "family": "figmaMono",
+        "weight": "400",
+        "lineHeight": "1.30",
+        "substitute": "IBM Plex Mono"
+      }
+    ],
+    "description": "Figma Config operates in a stark typographic gallery mode: pure black canvas, one near-white text color, and a single ultra-tight custom sans-serif that does all the visual work. There is no decorative chrome, no soft cards, no color coding — hierarchy comes from scale jumps (16px to 80px) and extremely tight tracking, not from fills or elevation. Navigation is reduced to a logo and three ghost-bordered text links, and CTAs are inverted-outline buttons rather than filled pills, so the user feels they are walking through a modernist poster exhibit rather than using a product UI. The colored squares and abstract shapes that appear in error/empty states are event-specific illustration, not interface tokens — the system itself is almost entirely achromatic. Density is compact and edges are hard: borders are hairline, corners are sharp, and the only texture is the rhythm of oversized type sitting on void.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8caa5004-a8cc-4c7e-a2bb-00ff60618729#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Figma Config design system\",\"item\":\"https://styles.refero.design/style/8caa5004-a8cc-4c7e-a2bb-00ff60618729\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8caa5004-a8cc-4c7e-a2bb-00ff60618729#style-reference\",\"name\":\"Figma Config design system reference\",\"headline\":\"Figma Config design system | Refero Styles\",\"description\":\"Explore Figma Config's dark Design design system: Obsidian #000000, Chalk #e2e2e2 colors, figmaSans, figmaMono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8caa5004-a8cc-4c7e-a2bb-00ff60618729\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8caa5004-a8cc-4c7e-a2bb-00ff60618729\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Figma Config\",\"url\":\"https://config.figma.com/events/figma-config-2022\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8caa5004-a8cc-4c7e-a2bb-00ff60618729#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/129dce59-1b19-4c87-a24d-e3a32173c2a4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/129dce59-1b19-4c87-a24d-e3a32173c2a4.jpg\",\"caption\":\"Screenshot of Figma Config\"},\"image\":\"https://images.refero.design/styles/refero.design/image/129dce59-1b19-4c87-a24d-e3a32173c2a4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Figma Config design system\",\"Figma Config website design\",\"Figma Config colors\",\"Figma Config typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Obsidian\",\"Chalk\",\"Graphite\",\"Paper\",\"figmaSans\",\"figmaMono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Figma Config design system\"},{\"@type\":\"Thing\",\"name\":\"Figma Config website design\"},{\"@type\":\"Thing\",\"name\":\"Figma Config colors\"},{\"@type\":\"Thing\",\"name\":\"Figma Config typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:51:17.511Z\",\"dateModified\":\"2026-04-30T01:51:17.511Z\"}]}19:T88f,Quick Color Reference\n- text: #e2e2e2 (Chalk)\n- background: #000000 (Obsidian)\n- border / hairline: #e2e2e2 (Chalk)\n- subtle border: #3d3d3d (Graphite)\n- inverted surface: #ffffff (Paper)\n- primary action: #000000 (filled action)\n\nExample Component Prompts\n1. Build the 404 hero: Obsidian (#000000) canvas, two-column 1200px max-width. Left column: eyebrow '404 error' in figmaSans 16px/1.30 Chalk, then display headline 'We couldn't find the page you requested.' in figmaSans 80px, line-height 0.95, letter-spacing -0.03em, Chalk, three lines left-aligned. Below it, a 'GO TO HOMEPAGE' button — Paper (#ffffff) background, Obsidian (#000000) text, figmaSans 16px/1.30, 12px padding all sides, 0px radius, no shadow. Right column: a 400×300 block of overlapping flat-color squares (green, cyan, orange, yellow) with white abstract shapes on top, hard edges, 0px radius, slight rotation overlap.\n2. Build the top nav: 1200px max-width row, 6px vertical padding, Chalk hairline bottom border 1px. Left: 'config' wordmark in figmaSans 16px Chalk. Right: three nav items 'SPEAKERS', 'FAQ', 'REGISTER' in figmaSans 16px/1.30 Chalk, 23px gap between items, all-caps, no background. The 'REGISTER' item is a ghost button: 1px Chalk border, 12px padding, 0px radius, Chalk text.\n3. Build the footer: full-bleed Obsidian canvas, 160px top padding. A single 'config' wordmark in figmaSans 80px Chalk, left-aligned, allowed to bleed past the right edge of the viewport — do not constrain to max-width. 0px radius, no border.\n4. Build a content section: 1200px max-width, 160px top and bottom padding, Obsidian background. A 32px figmaSans heading in Chalk with -0.03em tracking, line-height 1.10, followed by 18px body copy in Chalk, line-height 1.25, -0.02em tracking. 40px gap between heading and body block.\n5. Build the cookie consent: fixed bottom-right, Paper (#ffffff) background, ~360px wide, 12px padding. Body text in figmaSans 16px/1.30 Obsidian. Two stacked actions: 'ALLOW ALL COOKIES' as a full-width filled button (Obsidian background, Chalk text, 12px padding, 0px radius) and 'DO NOT ALLOW COOKIES' as a centered text link below. × close icon in the top-right corner in Obsidian."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally flat — no shadows, no glow, no elevation. Depth is implied by typographic scale and by the inversion of foreground/background (Paper surface on Obsidian canvas), never by z-axis effects. Any drop shadow would undermine the poster aesthetic."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e2e2e2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9127904142191143
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "nav",
+            "hero",
+            "heading",
+            "icon",
+            "footer",
+            "body"
+          ],
+          "frequency": 547,
+          "confidence": 1,
+          "prominence": 20358420.74517453,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 47,
+            "body/color": 4,
+            "hero/color": 1,
+            "icon/color": 3,
+            "link/color": 3,
+            "other/fill": 12,
+            "other/color": 41,
+            "button/color": 4,
+            "footer/color": 1,
+            "heading/color": 5,
+            "nav/borderColor": 188,
+            "body/borderColor": 16,
+            "hero/borderColor": 4,
+            "icon/borderColor": 12,
+            "link/borderColor": 12,
+            "other/borderColor": 163,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 20,
+            "nav/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "nav"
+          ],
+          "frequency": 38,
+          "confidence": 1,
+          "prominence": 11827001.839288145,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "body/color": 2,
+            "button/color": 2,
+            "nav/borderColor": 8,
+            "body/borderColor": 8,
+            "button/borderColor": 8,
+            "other/backgroundColor": 5,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#3d3d3d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.36079095815406936
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 4109845.463260159,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1,
+            "button/borderColor": 12
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2237673,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.21,
+          "background": "#000000",
+          "foreground": "#e2e2e2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.86,
+          "background": "#ffffff",
+          "foreground": "#3d3d3d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.38,
+          "background": "#e2e2e2",
+          "foreground": "#3d3d3d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.3,
+          "background": "#ffffff",
+          "foreground": "#e2e2e2"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "nav",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "footer",
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|footer",
+            "paddingBottom|other",
+            "rowGap|nav"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 157,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "figmaSans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 110,
+          "fontFeatureSettings": [
+            "\"kern\""
+          ]
+        },
+        {
+          "family": "figmaMono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "figmaSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "footer",
+            "image"
+          ],
+          "frequency": 47,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "figmaMono",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "figmaSans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "figmaSans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "figmaSans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "figmaSans",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "figmaSans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "figmaSans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1e478043-e192-4f29-a84a-81a0945e5236.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/129dce59-1b19-4c87-a24d-e3a32173c2a4.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8caa5004-a8cc-4c7e-a2bb-00ff60618729#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Figma Config design system\",\"item\":\"https://styles.refero.design/style/8caa5004-a8cc-4c7e-a2bb-00ff60618729\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8caa5004-a8cc-4c7e-a2bb-00ff60618729#style-reference\",\"name\":\"Figma Config design system reference\",\"headline\":\"Figma Config design system | Refero Styles\",\"description\":\"Explore Figma Config's dark Design design system: Obsidian #000000, Chalk #e2e2e2 colors, figmaSans, figmaMono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8caa5004-a8cc-4c7e-a2bb-00ff60618729\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8caa5004-a8cc-4c7e-a2bb-00ff60618729\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Figma Config\",\"url\":\"https://config.figma.com/events/figma-config-2022\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8caa5004-a8cc-4c7e-a2bb-00ff60618729#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/129dce59-1b19-4c87-a24d-e3a32173c2a4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/129dce59-1b19-4c87-a24d-e3a32173c2a4.jpg\",\"caption\":\"Screenshot of Figma Config\"},\"image\":\"https://images.refero.design/styles/refero.design/image/129dce59-1b19-4c87-a24d-e3a32173c2a4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Figma Config design system\",\"Figma Config website design\",\"Figma Config colors\",\"Figma Config typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Obsidian\",\"Chalk\",\"Graphite\",\"Paper\",\"figmaSans\",\"figmaMono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Figma Config design system\"},{\"@type\":\"Thing\",\"name\":\"Figma Config website design\"},{\"@type\":\"Thing\",\"name\":\"Figma Config colors\"},{\"@type\":\"Thing\",\"name\":\"Figma Config typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:51:17.511Z\",\"dateModified\":\"2026-04-30T01:51:17.511Z\"}]}19:T88f,Quick Color Reference\n- text: #e2e2e2 (Chalk)\n- background: #000000 (Obsidian)\n- border / hairline: #e2e2e2 (Chalk)\n- subtle border: #3d3d3d (Graphite)\n- inverted surface: #ffffff (Paper)\n- primary action: #000000 (filled action)\n\nExample Component Prompts\n1. Build the 404 hero: Obsidian (#000000) canvas, two-column 1200px max-width. Left column: eyebrow '404 error' in figmaSans 16px/1.30 Chalk, then display headline 'We couldn't find the page you requested.' in figmaSans 80px, line-height 0.95, letter-spacing -0.03em, Chalk, three lines left-aligned. Below it, a 'GO TO HOMEPAGE' button — Paper (#ffffff) background, Obsidian (#000000) text, figmaSans 16px/1.30, 12px padding all sides, 0px radius, no shadow. Right column: a 400×300 block of overlapping flat-color squares (green, cyan, orange, yellow) with white abstract shapes on top, hard edges, 0px radius, slight rotation overlap.\n2. Build the top nav: 1200px max-width row, 6px vertical padding, Chalk hairline bottom border 1px. Left: 'config' wordmark in figmaSans 16px Chalk. Right: three nav items 'SPEAKERS', 'FAQ', 'REGISTER' in figmaSans 16px/1.30 Chalk, 23px gap between items, all-caps, no background. The 'REGISTER' item is a ghost button: 1px Chalk border, 12px padding, 0px radius, Chalk text.\n3. Build the footer: full-bleed Obsidian canvas, 160px top padding. A single 'config' wordmark in figmaSans 80px Chalk, left-aligned, allowed to bleed past the right edge of the viewport — do not constrain to max-width. 0px radius, no border.\n4. Build a content section: 1200px max-width, 160px top and bottom padding, Obsidian background. A 32px figmaSans heading in Chalk with -0.03em tracking, line-height 1.10, followed by 18px body copy in Chalk, line-height 1.25, -0.02em tracking. 40px gap between heading and body block.\n5. Build the cookie consent: fixed bottom-right, Paper (#ffffff) background, ~360px wide, 12px padding. Body text in figmaSans 16px/1.30 Obsidian. Two stacked actions: 'ALLOW ALL COOKIES' as a full-width filled button (Obsidian background, Chalk text, 12px padding, 0px radius) and 'DO NOT ALLOW COOKIES' as a centered text link below. × close icon in the top-right corner in Obsidian."
+}

@@ -1,0 +1,237 @@
+{
+  "color": {
+    "espresso": {
+      "$value": "#1d1610",
+      "$type": "color",
+      "$description": "Espresso — Hero and dark section background — warm-tinted near-black reads as architectural, not as raw #000, giving the oversized display type a gallery-wall feel"
+    },
+    "graphite": {
+      "$value": "#282828",
+      "$type": "color",
+      "$description": "Graphite — Primary body text, structural borders, section dividers — the workhorse neutral that draws the hairline rules and most interface lines"
+    },
+    "slate": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Slate — Secondary body and heading text — slightly lighter than Graphite, used for headings and emphasized body copy where Graphite is reserved for borders"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Display headings on light sections and pure-black accents — used sparingly for maximum impact on the white About and Latest sections"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Content section surfaces and inverted text on dark hero — the bright surface that the warm espresso sections cut against"
+    },
+    "bone": {
+      "$value": "#fff5f2",
+      "$type": "color",
+      "$description": "Bone — Warm off-white page canvas — subtle pink-ivory tint replaces plain white as the base, keeping the entire palette on the warm side of neutral"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Primary body and UI text. The 18px body size with 1.78 line-height creates a generous, editorial reading rhythm that contrasts the compact, tight display type. The 0.89 line-height variant handles single-line labels and metadata where vertical density matters."
+    },
+    "wtqc": {
+      "$value": "wtqc",
+      "$type": "fontFamily",
+      "$description": "Signature display and heading face. The massive 197px/72px/28px scale at weight 300 with tight tracking (-0.033em → -0.014em) creates the poster-art identity. At 300 weight, headlines whisper rather than shout — authority through scale and restraint, not boldness. The lighter weight prevents the enormous letterforms from feeling heavy or aggressive."
+    },
+    "system-ui-apple-system": {
+      "$value": "System UI (-apple-system)",
+      "$type": "fontFamily",
+      "$description": "Tertiary fallback for cards, metadata blocks, and system-level UI that doesn't carry brand typographic weight"
+    },
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "-apple-system — detected in extracted data but not described by AI"
+    },
+    "roboto": {
+      "$value": "Roboto",
+      "$type": "fontFamily",
+      "$description": "Roboto — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "wtqc",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "wtqc",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Roboto",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 11.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 0.89
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "wtqc",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "wtqc",
+        "fontSize": "28px",
+        "fontWeight": 300,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "wtqc",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "wtqc",
+        "fontSize": "197px",
+        "fontWeight": 400,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 197px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "wtqc",
+        "fontSize": "197px",
+        "fontWeight": 300,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 197px"
+    }
+  },
+  "spacing": {
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#fff5f2",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — warm off-white tints the entire site away from clinical white"
+    },
+    "paper-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Content cards, image containers, and structural sections that need to lift off the bone canvas"
+    },
+    "espresso-field": {
+      "$value": "#1d1610",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed dark hero and section breaks — the warm dark that carries the massive display type"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Accent-only black, used for pure display headings on light sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://dougalves.work",
+      "siteName": "Doug–Alves",
+      "extractedAt": "2026-06-03T20:40:45.362Z",
+      "variant": "extended"
+    }
+  }
+}

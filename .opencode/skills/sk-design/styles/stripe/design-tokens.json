@@ -1,0 +1,327 @@
+{
+  "color": {
+    "indigo-ink": {
+      "$value": "#533afd",
+      "$type": "color",
+      "$description": "Indigo Ink — Violet action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "indigo-hover": {
+      "$value": "#7389ff",
+      "$type": "color",
+      "$description": "Indigo Hover — Violet text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "midnight-ink": {
+      "$value": "#061b31",
+      "$type": "color",
+      "$description": "Midnight Ink — Primary heading and body text — deep near-black with a cool blue undertone that anchors the entire type system"
+    },
+    "slate": {
+      "$value": "#64748d",
+      "$type": "color",
+      "$description": "Slate — Gray text accent for links, tags, and emphasized short phrases."
+    },
+    "steel": {
+      "$value": "#50617a",
+      "$type": "color",
+      "$description": "Steel — Tertiary body text and helper copy — sits between slate and the muted violet tints used on sub-labels"
+    },
+    "smoke": {
+      "$value": "#839bc8",
+      "$type": "color",
+      "$description": "Smoke — Muted violet-tinted text for large decorative headings and supporting copy — never for body paragraphs"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas and elevated card surfaces; the default background against which everything else is measured"
+    },
+    "mist": {
+      "$value": "#f8fafd",
+      "$type": "color",
+      "$description": "Mist — Footer background and section banding — a barely-perceptible cool tint that separates regions without a visible line"
+    },
+    "frost": {
+      "$value": "#e5edf5",
+      "$type": "color",
+      "$description": "Frost — Primary border color, subtle surface tint, and button hover backgrounds; the workhorse neutral that divides content"
+    },
+    "lavender-border": {
+      "$value": "#b9b9f9",
+      "$type": "color",
+      "$description": "Lavender Border — Hairline outline button border (1px) — the violet companion to indigo fills; pairs with white text for ghost CTAs"
+    },
+    "lilac-border": {
+      "$value": "#d6d9fc",
+      "$type": "color",
+      "$description": "Lilac Border — Secondary outline button border and softer dividers; a paler sibling of lavender for tertiary ghost actions"
+    },
+    "periwinkle-wash": {
+      "$value": "#e8e9ff",
+      "$type": "color",
+      "$description": "Periwinkle Wash — Lightest violet surface — soft tinted backgrounds for highlighted cards, tag pills, and subtle emphasis blocks"
+    },
+    "deep-violet": {
+      "$value": "#182659",
+      "$type": "color",
+      "$description": "Deep Violet — Heaviest accent stroke — rare use for emphasized borders or graphic frames; reads almost as a navy"
+    },
+    "amethyst-edge": {
+      "$value": "#7f71e6",
+      "$type": "color",
+      "$description": "Amethyst Edge — Mid-violet outline border for developer-facing buttons; sits between indigo ink and lavender border"
+    }
+  },
+  "font": {
+    "sohne-var": {
+      "$value": "sohne-var",
+      "$type": "fontFamily",
+      "$description": "Sole type family across the entire interface — headings, body, navigation, buttons, and labels. Weight 300 dominates even at 56px display size, which is the signature: headlines whisper instead of shout, earning authority through restraint rather than volume. Weight 400 appears only at 14–16px for navigation and button text where small-size readability needs the extra stroke."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sohne-var",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "sohne-var",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "sohne-var",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "sohne-var",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "sohne-var",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "sohne-var",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "sohne-var",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "sohne-var",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "sohne-var",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "sohne-var",
+        "fontSize": "22px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "sohne-var",
+        "fontSize": "26px",
+        "fontWeight": 300,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "sohne-var",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "sohne-var",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "sohne-var",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "sohne-var",
+        "fontSize": "56px",
+        "fontWeight": 300,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 56px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background for hero and most content sections"
+    },
+    "band": {
+      "$value": "#f8fafd",
+      "$type": "color",
+      "$description": "Surface level 1: Footer band and quiet section separators; a barely-there cool wash"
+    },
+    "frosted-card": {
+      "$value": "#e5edf5",
+      "$type": "color",
+      "$description": "Surface level 2: Borders, dividers, hover backgrounds; creates depth without shadow"
+    },
+    "lavender-card": {
+      "$value": "#e8e9ff",
+      "$type": "color",
+      "$description": "Surface level 3: Tinted surface for highlighted content blocks and emphasized cards"
+    },
+    "indigo-surface": {
+      "$value": "#533afd",
+      "$type": "color",
+      "$description": "Surface level 4: Brand accent surface for dark-mode feature cards or dramatic highlight panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://stripe.com",
+      "siteName": "Stripe",
+      "extractedAt": "2026-07-03T02:51:26.285Z",
+      "variant": "extended"
+    }
+  }
+}

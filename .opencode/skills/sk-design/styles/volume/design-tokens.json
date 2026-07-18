@@ -1,0 +1,237 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#272727",
+      "$type": "color",
+      "$description": "Ink — Primary text, nav, footer text, dark pill tags (funded, successful) — the workhorse near-black that grounds every layout"
+    },
+    "graphite": {
+      "$value": "#717171",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, hairline borders on cards, images, and inputs — the quiet structural neutral"
+    },
+    "ash": {
+      "$value": "#949494",
+      "$type": "color",
+      "$description": "Ash — Tertiary text, subtle borders, disabled or muted states"
+    },
+    "fog": {
+      "$value": "#cdcccc",
+      "$type": "color",
+      "$description": "Fog — Light placeholder text, decorative dividers on dark surfaces"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces, text on dark/image overlays — the dominant background across all sections"
+    },
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Occasional deep surface for emphasis blocks, SVG fills"
+    },
+    "ember": {
+      "$value": "#e75a00",
+      "$type": "color",
+      "$description": "Ember — Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "signal-red": {
+      "$value": "#c52910",
+      "$type": "color",
+      "$description": "Signal Red — Accent — alert and availability tags, sits between Ember and Brick in the warm surface stack"
+    },
+    "brick": {
+      "$value": "#962921",
+      "$type": "color",
+      "$description": "Brick — Red wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    }
+  },
+  "font": {
+    "messina-sans": {
+      "$value": "Messina Sans",
+      "$type": "fontFamily",
+      "$description": "Single-family system covering nav, body, display, and UI. The signature choice is using weight 300/350 everywhere — headlines whisper rather than shout, creating editorial restraint. 50px and 80px display sizes with tight tracking (-0.02em) float over full-bleed campaign imagery; 14–20px handles body and UI; 0.07em wide tracking is used for eyebrow labels and tag text."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Messina Sans",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Messina Sans",
+        "fontSize": "18px",
+        "fontWeight": 350,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Messina Sans",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Messina Sans",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Messina Sans",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Messina Sans",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Messina Sans",
+        "fontSize": "50px",
+        "fontWeight": 300,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Messina Sans",
+        "fontSize": "80px",
+        "fontWeight": 300,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas, body backgrounds, editorial text sections"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Bordered content cards on Paper, defined by hairline Graphite border rather than fill"
+    },
+    "overlay": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Text on photographic backgrounds relies on image contrast, not a scrim"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://vol.co",
+      "siteName": "Volume",
+      "extractedAt": "2026-06-03T17:20:14.125Z",
+      "variant": "extended"
+    }
+  }
+}

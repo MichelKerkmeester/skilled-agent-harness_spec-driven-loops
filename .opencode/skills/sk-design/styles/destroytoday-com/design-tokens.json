@@ -1,0 +1,180 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, nav text, body copy, image borders, dominant foreground on white canvas"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page background, image backgrounds, the base surface every section sits on"
+    },
+    "stone-border": {
+      "$value": "#d8d4cf",
+      "$type": "color",
+      "$description": "Stone Border — Warm hairline dividers, image borders, subtle structural lines — the only neutral that carries a paper-warm tint"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Icon fills, absolute contrast moments in illustration shadows"
+    },
+    "stamp-blue": {
+      "$value": "#0000ff",
+      "$type": "color",
+      "$description": "Stamp Blue — DT logo badge fill and link/nav border — a pure, unmoderated blue that acts as the only brand mark, used sparingly as a square stamp in the header"
+    },
+    "indigo-link": {
+      "$value": "#555abf",
+      "$type": "color",
+      "$description": "Indigo Link — Underlined link text and link borders throughout body copy and project entries — the workhorse interactive color"
+    },
+    "navy-deep": {
+      "$value": "#000080",
+      "$type": "color",
+      "$description": "Navy Deep — Drop shadow tone beneath illustration blocks — the darkest blue in the gradient stack"
+    },
+    "cobalt-mid": {
+      "$value": "#276baa",
+      "$type": "color",
+      "$description": "Cobalt Mid — Mid-tone blue in the Stripe illustration gradient stack"
+    },
+    "sky-bright": {
+      "$value": "#2181c2",
+      "$type": "color",
+      "$description": "Sky Bright — Brighter blue in the Stripe illustration gradient, adjacent to the mid-tone"
+    },
+    "amber-flow": {
+      "$value": "#fcd669",
+      "$type": "color",
+      "$description": "Amber Flow — Yellow stroke for the flowing curved arrows in the Stripe illustration"
+    },
+    "tangerine-arc": {
+      "$value": "#f79a59",
+      "$type": "color",
+      "$description": "Tangerine Arc — Orange stroke for the secondary flowing arrows in the Stripe illustration"
+    },
+    "ember-link": {
+      "$value": "#eb5e28",
+      "$type": "color",
+      "$description": "Ember Link — Rare warm-orange link variant for cross-section references"
+    }
+  },
+  "font": {
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "Entire site — system stack used unapologetically as the brand voice. Body text at 400, section headings at 700 large, inline emphasis at 600. The refusal to load a webfont is the signature: the portfolio reads like a native document, not a designed artifact."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "135": {
+      "$value": "135px",
+      "$type": "dimension",
+      "$description": "Spacing 135px"
+    },
+    "225": {
+      "$value": "225px",
+      "$type": "dimension",
+      "$description": "Spacing 225px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the single base surface every section shares"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://destroytoday.com",
+      "siteName": "destroytoday.com",
+      "extractedAt": "2026-06-03T18:52:26.754Z",
+      "variant": "extended"
+    }
+  }
+}

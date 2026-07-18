@@ -1,0 +1,1415 @@
+{
+  "source": "https://styles.refero.design/style/e9001d5a-504d-47ed-aef0-d0d35fa86418",
+  "uuid": "e9001d5a-504d-47ed-aef0-d0d35fa86418",
+  "name": "Ditto",
+  "northStar": "Sunlit wildflower compliance atelier. Warm cream surfaces, vivid yellow primary action, deep navy ink, organic color shapes blooming behind the product.",
+  "capturedAt": "2026-07-18T09:47:00.810Z",
+  "meta": {
+    "url": "https://trustditto.com",
+    "siteName": "Ditto",
+    "extractedAt": "2026-06-03T18:10:42.858Z",
+    "durationMs": 37818,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1044,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the 1440px pill radius on every button, input, nav link, tag, and icon container — the pill shape is the brand's signature geometry",
+      "Pair the yellow CTA #ffe228 with the dark pill #130e30 for button hierarchy; never use two yellow buttons side by side",
+      "Use Hedvig Letters Serif exclusively for headings ≥22px and Inter for everything below; never use Inter for headings or Hedvig for body copy",
+      "Set body text to #130e30 (not pure black) for warmth; reserve #000000 for the logo mark, input borders, and high-contrast fine details",
+      "Build the surface stack as Canvas #f9fbf2 → Soft Meadow #eff2e5 cards; the slight green tint is intentional and should be preserved",
+      "Use the decorative organic blobs (green #59e25d, fuchsia #e261e5, yellow #ffe228, violet #130e30) only as background atmosphere behind hero/product visuals — never as UI fills or icon colors",
+      "Tighten letter-spacing to -0.01em on all headings and -0.02em on small caps labels for the warm, literary headline feel"
+    ],
+    "donts": [
+      "Do not use sharp corners (<16px) on buttons, inputs, or nav items — the pill is non-negotiable",
+      "Do not introduce additional accent colors into the UI; green, pink, and fuchsia are decoration-only and must not appear in buttons, badges, or status indicators",
+      "Do not use pure white #ffffff for card surfaces when Soft Meadow #eff2e5 is the designated card layer",
+      "Do not place two primary yellow CTAs in the same viewport; alternate with the dark pill for hierarchy",
+      "Do not use Inter for display headlines or Hedvig Letters Serif for UI labels — the font-role boundary is strict",
+      "Do not add drop shadows to cards or buttons; surface differentiation comes from the green-tinted #eff2e5 layer, not elevation",
+      "Do not use the nav Slate #5f5c6 for primary body text — it is reserved for muted copy and helper text only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#130e30",
+        "name": "Deep Ink",
+        "role": "Primary text color, heading ink, card borders, secondary button fills — near-black violet that adds warmth over pure black",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffe228",
+        "name": "Hi-Yellow",
+        "role": "Primary action fill (filled CTA buttons), hero pill backgrounds, accent highlights — bright highlighter yellow with near-black text for maximum contrast",
+        "group": "brand"
+      },
+      {
+        "hex": "#59e25d",
+        "name": "Moss Green",
+        "role": "Decorative organic shape fill behind hero — warm leaf green used in background blobs, not UI controls",
+        "group": "accent"
+      },
+      {
+        "hex": "#e261e5",
+        "name": "Fuchsia",
+        "role": "Decorative organic shape fill behind hero — vivid pink used in background blobs, not UI controls",
+        "group": "accent"
+      },
+      {
+        "hex": "#5f5c6e",
+        "name": "Slate",
+        "role": "Body text, helper copy, muted icons, subtle borders — cool desaturated gray for secondary information",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f9fbf2",
+        "name": "Canvas",
+        "role": "Page background, button ghost fills, lightest surface — near-white with slight green-warmth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eff2e5",
+        "name": "Soft Meadow",
+        "role": "Card surfaces, nav background, elevated panels, hero backdrop — green-tinted off-white for soft surface separation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Charcoal",
+        "role": "Secondary dark button text and borders, nav dividers — softer than pure black for dark UI elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Onyx",
+        "role": "Logo mark, nav text, input borders, fine stroke details — true black for highest-contrast elements",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered container with generous side padding. Hero is a two-column split: left column holds the headline, subtext, email input with CTA, and Trustpilot badge; right column holds the product mockup card with organic blob backdrop. Below the hero, a customer logo trust strip sits on Soft Meadow. Sections alternate between white canvas and Soft Meadow bands, separated by 48-80px vertical gaps. Feature grids use 3 equal columns. Testimonials are a horizontal carousel with 3 cards visible. Navigation is a simple top bar, not sticky. The layout breathes — no information-dense blocks, every section has whitespace margins.",
+    "imagery": "Product UI screenshots are the primary visual asset — shown inside a white card floating above organic colored blob shapes in green, fuchsia, yellow, and violet. The blobs are flat, irregular, and overlapping, creating a garden-meadow feel that softens the compliance/B2B context. Photography appears in section dividers (urban outdoor scenes with trees and architecture, high-saturation). Customer logos are monochrome in a horizontal trust strip. Iconography is minimal and line-style, not colorful. No 3D renders or illustrations of people — the visual identity is abstract, organic, and product-forward.",
+    "similar": [
+      {
+        "why": "Same warm cream canvas, organic decorative blob shapes behind product UI, serif headline + sans body pairing, and pill-shaped yellow/dark CTA pair",
+        "business": "Sweep (sweep.net)"
+      },
+      {
+        "why": "Sustainability/compliance domain with light surfaces, soft organic accents, and a single bright highlight color for CTAs",
+        "business": "Watershed (watershed.com)"
+      },
+      {
+        "why": "CSR-adjacent SaaS with cream backgrounds, serif display type, pill buttons, and nature-inspired decorative elements",
+        "business": "Klim (klim.co)"
+      },
+      {
+        "why": "Light off-white canvas, Inter for body type, pill-shaped buttons, and minimal card elevation — shares the approachable, not-corporate base layer",
+        "business": "Notion"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "1440px",
+        "tags": "1440px",
+        "cards": "24px",
+        "icons": "1440px",
+        "images": "24-48px",
+        "buttons": "1440px"
+      },
+      "elementGap": "12-16px",
+      "sectionGap": "48-80px",
+      "cardPadding": "24-48px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#f9fbf2",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, outermost layer"
+      },
+      {
+        "hex": "#eff2e5",
+        "name": "Soft Meadow",
+        "level": 1,
+        "purpose": "Card surface, nav bar, hero backdrop, elevated panels"
+      },
+      {
+        "hex": "#ffe228",
+        "name": "Hi-Yellow Accent",
+        "level": 2,
+        "purpose": "Primary action surface — CTA buttons and highlight pills"
+      },
+      {
+        "hex": "#130e30",
+        "name": "Deep Ink",
+        "level": 3,
+        "purpose": "Dark mode/contrast surface — not used as full page but available for dark sections or inverted components"
+      }
+    ],
+    "northStar": "Sunlit wildflower compliance atelier. Warm cream surfaces, vivid yellow primary action, deep navy ink, organic color shapes blooming behind the product.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.22
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1,
+        "letterSpacing": -0.64
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button (Filled Yellow)",
+        "role": "Main action trigger — 'Get Started', 'Log In', 'Read More'",
+        "description": "Background #ffe228, text #130e30 in Inter 500 at 16px. Full pill radius 1440px. Padding 12px 24px. No shadow. Black text on yellow achieves 16.2:1 contrast. The yellow is so bright it functions as a highlighter; one per viewport maximum."
+      },
+      {
+        "name": "Secondary Button (Dark Pill)",
+        "role": "Alternative action — used for 'Log In' alongside primary CTA",
+        "description": "Background #130e30, text #ffffff in Inter 500 at 16px. Full pill radius 1440px. Padding 12px 22px. Creates a dark/light button pair with the yellow primary for visual hierarchy."
+      },
+      {
+        "name": "Email Input Field",
+        "role": "Hero email capture form",
+        "description": "White background #ffffff, border 1px solid #000000, text #130e30 in Inter 400 at 16px. Placeholder text in Slate #5f5c6e. Pill radius 1440px — the input and its adjacent button share the same radius creating a continuous capsule. Padding 12px 22px."
+      },
+      {
+        "name": "Logo Lockup",
+        "role": "Brand identity in nav and footer",
+        "description": "Mark + wordmark 'ditto' in #130e30. The mark uses a leaf/petal shape echoing the organic decorative blobs. Always paired with a nav layout, never standalone."
+      },
+      {
+        "name": "Nav Bar",
+        "role": "Top-level site navigation",
+        "description": "Background #eff2e5, horizontal layout with logo left, nav links center (Inter 500 16px in #130e30), CTA pair right. Nav items separated by chevron-down indicators for dropdowns. Globe icon for language. No shadow, sits flush on canvas."
+      },
+      {
+        "name": "Hero Card / Product Mockup Container",
+        "role": "Showcases the product UI with decorative blob backdrop",
+        "description": "White product card sits on top of organic colored shapes (green, pink, yellow, violet). The card has subtle border-radius 24px. Behind it, SVG-style organic blobs in #59e25d, #e261e5, #ffe228, and #130e30 create a garden-like atmosphere without illustration."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Content cards in 'Get compliant four times faster' grid",
+        "description": "Background #eff2e5, padding 24-48px, border-radius 24px. Contains a small logo mark at top, a Hedvig Letters Serif heading at 22-32px in #130e30, and body text in Inter 16px #5f5c6e. No shadow or border — the surface contrast alone defines the card."
+      },
+      {
+        "name": "Customer Logo Card",
+        "role": "Client showcase row",
+        "description": "Logo centered on #eff2e5 surface, padding 24px, radius 24px. Below each logo, a small-caps 'CASE STUDY' link in Inter 500 10px with chevron. Logos displayed in monochrome #130e30."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "Customer quote carousel",
+        "description": "Background #eff2e5, padding 32px, radius 24px. Large quote text in Hedvig Letters Serif 22-32px or Inter 18px in #130e30. Avatar + name (Inter 500 14px #130e30) + title (Inter 400 12px #5f5c6e) at bottom. Horizontal carousel with arrow controls."
+      },
+      {
+        "name": "Pagination Dot",
+        "role": "Carousel/slider position indicator",
+        "description": "Inactive: small line/rectangle in #5f5c6e. Active: Hi-Yellow #ffe228 pill. Centered below the carousel."
+      },
+      {
+        "name": "Small Caps Label",
+        "role": "Micro-copy above sections, case study tags, nav eyebrows",
+        "description": "Inter 500 at 10-12px, letter-spacing -0.02em, color #5f5c6 or #130e30. All uppercase. Used sparingly as taxonomic labels rather than decoration."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Primary page title — 'Get the CSR recognition you deserve'",
+        "description": "Hedvig Letters Serif weight 700 at 48-64px, line-height 1.0-1.1, letter-spacing -0.01em, color #130e30. Fills the left column of a two-column hero with the product mockup on the right."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading serif — all hero/section headlines, used at large sizes with tight letter-spacing. The warm humanist serif is the brand's voice; it gives the compliance product a literary, trustworthy quality instead of a sterile SaaS feel. The 700 weight carries the headlines, while 400 appears in larger pull-quote contexts.",
+        "sizes": "22px, 32px, 48px, 64px",
+        "family": "Hedvig Letters Serif",
+        "weight": "400, 700",
+        "lineHeight": "1.00–1.25",
+        "substitute": "DM Serif Display, Source Serif 4, Libre Caslon Text",
+        "letterSpacing": "-0.0100em"
+      },
+      {
+        "role": "All UI and body text — nav links, button labels, form fields, card copy, footer text, small caps labels. Inter handles the functional layer with neutral efficiency, letting the serif carry the personality. Weight 500 for nav and labels, 400 for body, 600 for emphasis.",
+        "sizes": "10px, 14px, 16px, 18px, 22px",
+        "family": "Inter",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.20–1.50",
+        "substitute": "Inter is freely available via Google Fonts; no substitute needed",
+        "letterSpacing": "-0.01em body, -0.02em small caps labels",
+        "fontFeatureSettings": "\"ss01\" on, \"cv11\" on"
+      }
+    ],
+    "description": "Ditto uses a sunlit, garden-inspired SaaS language: a warm cream canvas, organic decorative blobs in vivid greens, pinks, and yellows, and a confident pairing of a warm serif (Hedvig Letters) for headlines with a clean grotesque (Inter) for everything else. The deep navy-violet #130e30 carries all structural text and borders, while a single bright yellow #ffe228 powers every primary action — the contrast is so high it reads almost like a highlighter. Components stay lightweight: pill-shaped buttons (1440px radius), generously padded cards on a slightly green-tinted surface (#eff2e5), and minimal elevation. The mood is optimistic and approachable, not corporate or clinical — the floral backdrop shapes, serif headlines, and warm neutrals keep it human.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e9001d5a-504d-47ed-aef0-d0d35fa86418#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ditto design system\",\"item\":\"https://styles.refero.design/style/e9001d5a-504d-47ed-aef0-d0d35fa86418\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e9001d5a-504d-47ed-aef0-d0d35fa86418#style-reference\",\"name\":\"Ditto design system reference\",\"headline\":\"Ditto design system | Refero Styles\",\"description\":\"Explore Ditto's light SaaS design system: Deep Ink #130e30, Hi-Yellow #ffe228 colors, Hedvig Letters Serif, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e9001d5a-504d-47ed-aef0-d0d35fa86418\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e9001d5a-504d-47ed-aef0-d0d35fa86418\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ditto\",\"url\":\"https://trustditto.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e9001d5a-504d-47ed-aef0-d0d35fa86418#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/61aac043-da9c-4f4c-9f86-b33324ee410b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/61aac043-da9c-4f4c-9f86-b33324ee410b.jpg\",\"caption\":\"Screenshot of Ditto\"},\"image\":\"https://images.refero.design/styles/refero.design/image/61aac043-da9c-4f4c-9f86-b33324ee410b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ditto design system\",\"Ditto website design\",\"Ditto colors\",\"Ditto typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Deep Ink\",\"Hi-Yellow\",\"Moss Green\",\"Fuchsia\",\"Hedvig Letters Serif\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ditto design system\"},{\"@type\":\"Thing\",\"name\":\"Ditto website design\"},{\"@type\":\"Thing\",\"name\":\"Ditto colors\"},{\"@type\":\"Thing\",\"name\":\"Ditto typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T22:56:45.971Z\",\"dateModified\":\"2026-05-07T22:56:45.971Z\"}]}19:T5b2,**Quick Color Reference**\n- text (primary): #130e30\n- text (muted): #5f5c6e\n- background (page): #f9fbf2\n- background (card): #eff2e5\n- border: #130e30\n- accent (decorative blobs only): #ffe228, #59e25d, #e261e5\n- primary action: #ffe228 (filled action)\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #ffe228 background, #222222 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **Feature Grid Card**: Background #eff2e5, 24px border-radius, 32px padding. Small partner logo (40px) at top-left. Heading in Hedvig Letters Serif 700 22px #130e30, line-height 1.25. Body in Inter 400 16px #5f5c6e.\n\n3. **Top Navigation Bar**: Background #eff2e5, horizontal flex with logo left, nav links center (Inter 500 16px #130e30 with chevron-down icons), right side has dark pill button #130e30 bg / white text 'Log In' and yellow filled button #ffe228 / #130e30 text 'Get Started', both pill radius 1440px, 12px 22px padding.\n\n4. **Testimonial Carousel Card**: Background #eff2e5, 24px radius, 32px padding. Quote in Inter 400 18px #130e30, line-height 1.5. Author block at bottom: 40px circular avatar + name in Inter 500 14px #130e30 + title in Inter 400 12px #5f5c6e.\n\n5. **Customer Logo Trust Strip**: Full-width Soft Meadow #eff2e5 band, 48px vertical padding. Horizontal row of 8 monochrome client logos in #130e30, each above a small-caps 'CASE STUDY' link in Inter 500 10px #5f5c6e with right chevron."
+      },
+      {
+        "title": "Decoration vs Interface Color Boundary",
+        "content": "The colors #59e25d (moss green) and #e261e5 (fuchsia) exist exclusively in the organic blob shapes behind the hero product card. They must never appear in buttons, badges, tags, icons, or any functional UI element. The single exception is #ffe228 yellow, which functions as both a decorative blob color AND the primary CTA fill — it is the bridge between decoration and interface. This dual role is deliberate: the yellow appears in the atmosphere before the user interacts, then becomes the action color they click."
+      },
+      {
+        "title": "Surface Temperature",
+        "content": "The off-white tones are not neutral white — #f9fbf2 has a faint warm-green cast and #eff2e5 is a clearly green-tinted meadow surface. This warm canvas is core to the brand's organic, garden-influenced feel. Do not substitute pure #ffffff or neutral grays. The two surface tones create enough separation for cards without needing borders or shadows."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#130e30",
+          "oklch": {
+            "c": 0.0650194992362238,
+            "h": 285.31152898484714,
+            "l": 0.19392914246695847
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "heading",
+            "body",
+            "input",
+            "link",
+            "icon",
+            "image",
+            "card",
+            "button",
+            "footer"
+          ],
+          "frequency": 4532,
+          "confidence": 1,
+          "prominence": 186398970.7864122,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/color": 71,
+            "body/color": 50,
+            "card/color": 102,
+            "hero/color": 1,
+            "icon/color": 25,
+            "link/color": 20,
+            "other/fill": 5,
+            "image/color": 19,
+            "input/color": 2,
+            "other/color": 537,
+            "button/color": 8,
+            "footer/color": 1,
+            "heading/color": 75,
+            "nav/borderColor": 280,
+            "body/borderColor": 200,
+            "card/borderColor": 408,
+            "hero/borderColor": 4,
+            "icon/borderColor": 100,
+            "link/borderColor": 80,
+            "image/borderColor": 76,
+            "other/borderColor": 2148,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 300,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#eff2e5",
+          "oklch": {
+            "c": 0.017476254444935776,
+            "h": 117.29348636817595,
+            "l": 0.9553213752834551
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "card",
+            "link"
+          ],
+          "frequency": 90,
+          "confidence": 1,
+          "prominence": 11202517.693638036,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "other/color": 4,
+            "button/color": 3,
+            "nav/borderColor": 4,
+            "other/borderColor": 12,
+            "card/backgroundColor": 48,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 16
+          }
+        },
+        {
+          "hex": "#f9fbf2",
+          "oklch": {
+            "c": 0.012010978207665017,
+            "h": 116.8013391107925,
+            "l": 0.9841112847629127
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2923766,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffe228",
+          "oklch": {
+            "c": 0.1813101732669938,
+            "h": 99.33695379333777,
+            "l": 0.9094988034323843
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 43,
+          "confidence": 1,
+          "prominence": 537491.9617180792,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5,
+            "nav/borderColor": 4,
+            "button/borderColor": 24,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#59e25d",
+          "oklch": {
+            "c": 0.21145231270995166,
+            "h": 143.76813633427204,
+            "l": 0.8096012639958451
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 142878,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        },
+        {
+          "hex": "#e261e5",
+          "oklch": {
+            "c": 0.22141661340469213,
+            "h": 326.7262362295109,
+            "l": 0.7004994048233215
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 100342.12262055736,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4
+          }
+        },
+        {
+          "hex": "#3a93ff",
+          "oklch": {
+            "c": 0.18090673069976115,
+            "h": 255.4106042894245,
+            "l": 0.6643988960015852
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 80744.32963673858,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "input",
+            "other",
+            "button"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 66967.91906923348,
+          "properties": [
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/stroke": 6,
+            "nav/borderColor": 4,
+            "input/borderColor": 8,
+            "other/borderColor": 4,
+            "button/borderColor": 12
+          }
+        },
+        {
+          "hex": "#5f5c6e",
+          "oklch": {
+            "c": 0.02877145213081634,
+            "h": 292.93692022686037,
+            "l": 0.4841538366444652
+          },
+          "contexts": [
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 318,
+          "confidence": 1,
+          "prominence": 55843.10828881733,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 22,
+            "icon/color": 8,
+            "other/fill": 8,
+            "other/color": 32,
+            "body/borderColor": 88,
+            "icon/borderColor": 32,
+            "other/borderColor": 128
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 125,
+          "confidence": 1,
+          "prominence": 52210.985667549874,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 20,
+            "button/color": 5,
+            "nav/borderColor": 80,
+            "button/borderColor": 20
+          }
+        },
+        {
+          "hex": "#171b26",
+          "oklch": {
+            "c": 0.022399104305726076,
+            "h": 269.0312601038801,
+            "l": 0.22331330479597383
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 39,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.16521727085158347,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.11,
+          "background": "#f9fbf2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.5,
+          "background": "#eff2e5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.75,
+          "background": "#f9fbf2",
+          "foreground": "#130e30"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.47,
+          "background": "#f9fbf2",
+          "foreground": "#171b26"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.33,
+          "background": "#eff2e5",
+          "foreground": "#130e30"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.16,
+          "background": "#ffe228",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.23,
+          "background": "#f9fbf2",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.15,
+          "background": "#eff2e5",
+          "foreground": "#171b26"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.26,
+          "background": "#ffe228",
+          "foreground": "#130e30"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.02,
+          "background": "#eff2e5",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.23,
+          "background": "#ffe228",
+          "foreground": "#171b26"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.46,
+          "background": "#59e25d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.24,
+          "background": "#ffe228",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11,
+          "background": "#59e25d",
+          "foreground": "#130e30"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.2,
+          "background": "#59e25d",
+          "foreground": "#171b26"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.44,
+          "background": "#59e25d",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.08,
+          "background": "#e261e5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.24,
+          "background": "#e261e5",
+          "foreground": "#130e30"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.2,
+          "background": "#f9fbf2",
+          "foreground": "#5f5c6e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.79,
+          "background": "#e261e5",
+          "foreground": "#171b26"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 1440,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "image",
+            "icon",
+            "link"
+          ],
+          "frequency": 85
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "card",
+            "image"
+          ],
+          "frequency": 57
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 45,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "other"
+          ],
+          "frequency": 58,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 85,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|button",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "input",
+            "body"
+          ],
+          "frequency": 58,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 174,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "card",
+            "nav"
+          ],
+          "frequency": 226,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "marginRight|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 109,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 191,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 225,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 281,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 944,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Hedvig Letters Serif",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 63,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "icon",
+            "image",
+            "link",
+            "card",
+            "footer"
+          ],
+          "frequency": 728,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "input",
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 96,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Hedvig Letters Serif",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Hedvig Letters Serif",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 52,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Hedvig Letters Serif",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Hedvig Letters Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Hedvig Letters Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Hedvig Letters Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/309849f2-fdbf-4e31-b79f-f75fb5f7c014.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/61aac043-da9c-4f4c-9f86-b33324ee410b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e9001d5a-504d-47ed-aef0-d0d35fa86418#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ditto design system\",\"item\":\"https://styles.refero.design/style/e9001d5a-504d-47ed-aef0-d0d35fa86418\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e9001d5a-504d-47ed-aef0-d0d35fa86418#style-reference\",\"name\":\"Ditto design system reference\",\"headline\":\"Ditto design system | Refero Styles\",\"description\":\"Explore Ditto's light SaaS design system: Deep Ink #130e30, Hi-Yellow #ffe228 colors, Hedvig Letters Serif, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e9001d5a-504d-47ed-aef0-d0d35fa86418\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e9001d5a-504d-47ed-aef0-d0d35fa86418\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ditto\",\"url\":\"https://trustditto.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e9001d5a-504d-47ed-aef0-d0d35fa86418#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/61aac043-da9c-4f4c-9f86-b33324ee410b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/61aac043-da9c-4f4c-9f86-b33324ee410b.jpg\",\"caption\":\"Screenshot of Ditto\"},\"image\":\"https://images.refero.design/styles/refero.design/image/61aac043-da9c-4f4c-9f86-b33324ee410b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ditto design system\",\"Ditto website design\",\"Ditto colors\",\"Ditto typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Deep Ink\",\"Hi-Yellow\",\"Moss Green\",\"Fuchsia\",\"Hedvig Letters Serif\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ditto design system\"},{\"@type\":\"Thing\",\"name\":\"Ditto website design\"},{\"@type\":\"Thing\",\"name\":\"Ditto colors\"},{\"@type\":\"Thing\",\"name\":\"Ditto typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T22:56:45.971Z\",\"dateModified\":\"2026-05-07T22:56:45.971Z\"}]}19:T5b2,**Quick Color Reference**\n- text (primary): #130e30\n- text (muted): #5f5c6e\n- background (page): #f9fbf2\n- background (card): #eff2e5\n- border: #130e30\n- accent (decorative blobs only): #ffe228, #59e25d, #e261e5\n- primary action: #ffe228 (filled action)\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #ffe228 background, #222222 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **Feature Grid Card**: Background #eff2e5, 24px border-radius, 32px padding. Small partner logo (40px) at top-left. Heading in Hedvig Letters Serif 700 22px #130e30, line-height 1.25. Body in Inter 400 16px #5f5c6e.\n\n3. **Top Navigation Bar**: Background #eff2e5, horizontal flex with logo left, nav links center (Inter 500 16px #130e30 with chevron-down icons), right side has dark pill button #130e30 bg / white text 'Log In' and yellow filled button #ffe228 / #130e30 text 'Get Started', both pill radius 1440px, 12px 22px padding.\n\n4. **Testimonial Carousel Card**: Background #eff2e5, 24px radius, 32px padding. Quote in Inter 400 18px #130e30, line-height 1.5. Author block at bottom: 40px circular avatar + name in Inter 500 14px #130e30 + title in Inter 400 12px #5f5c6e.\n\n5. **Customer Logo Trust Strip**: Full-width Soft Meadow #eff2e5 band, 48px vertical padding. Horizontal row of 8 monochrome client logos in #130e30, each above a small-caps 'CASE STUDY' link in Inter 500 10px #5f5c6e with right chevron."
+}

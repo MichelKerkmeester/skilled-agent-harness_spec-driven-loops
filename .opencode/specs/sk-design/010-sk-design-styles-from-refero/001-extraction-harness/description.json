@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/010-sk-design-styles-from-refero/001-extraction-harness",
+  "description": "Resumable Node harness capturing Refero style tabs via chrome-devtools-mcp into the cursor Extended-only template; self-test byte-matches cursor.",
+  "keywords": [
+    "resumable",
+    "node",
+    "harness",
+    "capturing",
+    "refero",
+    "style",
+    "tabs",
+    "via",
+    "chrome-devtools-mcp",
+    "cursor",
+    "extended-only",
+    "template",
+    "self-test",
+    "byte-matches"
+  ],
+  "lastUpdated": "2026-07-18T06:54:23.176Z",
+  "specId": "001",
+  "folderSlug": "extraction-harness",
+  "parentChain": [
+    "sk-design",
+    "010-sk-design-styles-from-refero"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

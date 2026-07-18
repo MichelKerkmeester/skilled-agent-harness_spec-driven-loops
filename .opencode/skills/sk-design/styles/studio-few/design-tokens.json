@@ -1,0 +1,572 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Body text, button fills, hairline borders, slider tracks, active states — the single dominant tone that gives every specimen its anchor"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, input fills, button text on dark fills"
+    },
+    "foam-gray": {
+      "$value": "#ebedee",
+      "$type": "color",
+      "$description": "Foam Gray — Subtle surface lift and low-contrast dividers when a row needs to separate from pure white without using ink"
+    },
+    "concrete-gray": {
+      "$value": "#b7b7b7",
+      "$type": "color",
+      "$description": "Concrete Gray — Medium-contrast borders, control outlines, and structural separators."
+    },
+    "graphite": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Graphite — Secondary surfaces and darker neutral blocks when a row needs more weight than white but less than pure black"
+    },
+    "mid-ink": {
+      "$value": "#18181d",
+      "$type": "color",
+      "$description": "Mid Ink — Near-black with a barely-perceptible cool cast — used where pure #000000 would feel flat against the slightly warm page"
+    },
+    "ash": {
+      "$value": "#858585",
+      "$type": "color",
+      "$description": "Ash — Quiet link text and low-emphasis labels"
+    }
+  },
+  "font": {
+    "sterlingvf": {
+      "$value": "SterlingVF",
+      "$type": "fontFamily",
+      "$description": "Workhorse for all UI chrome: navigation, labels, slider values, button text, font metadata, links. The weight 300 is reserved for quiet labels; 400 reads as the default body voice; 500 only appears on active or selected states. A barely-positive tracking (0.017em) at 12–14px gives small caps a calm, typeset quality rather than a screen-reading feel."
+    },
+    "sterling": {
+      "$value": "Sterling",
+      "$type": "fontFamily",
+      "$description": "Static fallback face for the same UI roles as SterlingVF, used where variable axes aren't needed (icons, simple buttons). Carries a slightly wider tracking than the variable sibling to stay legible at very small sizes."
+    },
+    "formative": {
+      "$value": "Formative",
+      "$type": "fontFamily",
+      "$description": "Showcase serif. Drawn at 158px as the hero specimen, its tight -0.02em tracking and unit line-height let the letterforms touch shoulder-to-shoulder — a wall of type, not a line of type."
+    },
+    "voyager": {
+      "$value": "Voyager",
+      "$type": "fontFamily",
+      "$description": "Showcase display face. The -0.10em tracking is the design's most extreme optical choice — letters collapse into each other at 158px to form a continuous black bar, a deliberate counterpoint to the breathable Sterling UI text."
+    },
+    "blokvf": {
+      "$value": "BlokVF",
+      "$type": "fontFamily",
+      "$description": "Geometric display specimen. Uses normal letter-spacing — the only showcase face that doesn't pull tight — because its blocky geometry already has built-in density."
+    },
+    "arbeitprocontrastvf": {
+      "$value": "ArbeitProContrastVF",
+      "$type": "fontFamily",
+      "$description": "High-contrast serif specimen, shown in the hero photograph as a printed type-on-monitor mockup — the only showcase face presented through photography rather than as raw type on the page."
+    },
+    "anthrovf": {
+      "$value": "AnthroVF",
+      "$type": "fontFamily",
+      "$description": "Humanist sans specimen at display scale, pairing weight 400 and tight tracking to show a softer counterpoint to Blok's geometry."
+    },
+    "apexvf": {
+      "$value": "ApexVF",
+      "$type": "fontFamily",
+      "$description": "Display specimen with the loosest line-height of the showcase set, letting ascenders and descenders breathe vertically."
+    },
+    "arbeittechnikvf": {
+      "$value": "Arbeittechnikvf",
+      "$type": "fontFamily",
+      "$description": "Technical/industrial specimen, tight tracking and unit line-height so its monoline forms read as a structural element."
+    },
+    "work-sans": {
+      "$value": "Work Sans",
+      "$type": "fontFamily",
+      "$description": "Failsafe for any environment where the custom Sterling face cannot load — never the primary voice, but the only Google face in the system."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Sterling",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Sterling",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 2.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Sterling",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Sterling",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 12px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Sterling",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.86
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.86
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Sterling",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Formative",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "Voyager",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "AnthroVF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "sm-13": {
+      "$value": {
+        "fontFamily": "BlokVF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-13 at 14px"
+    },
+    "sm-14": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-14 at 14px"
+    },
+    "sm-15": {
+      "$value": {
+        "fontFamily": "ArbeitProContrastVF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-15 at 14px"
+    },
+    "sm-16": {
+      "$value": {
+        "fontFamily": "Arbeittechnikvf",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-16 at 14px"
+    },
+    "sm-17": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-17 at 14px"
+    },
+    "sm-18": {
+      "$value": {
+        "fontFamily": "ApexVF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-18 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Sterling",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Work Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "BlokVF",
+        "fontSize": "115px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 115px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Formative",
+        "fontSize": "158px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 158px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Voyager",
+        "fontSize": "158px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 158px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "AnthroVF",
+        "fontSize": "158px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 158px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "ArbeitProContrastVF",
+        "fontSize": "158px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 158px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Arbeittechnikvf",
+        "fontSize": "158px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 158px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "SterlingVF",
+        "fontSize": "158px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 158px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "ApexVF",
+        "fontSize": "158px",
+        "fontWeight": 400,
+        "lineHeight": 0.65
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 158px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "136": {
+      "$value": "136px",
+      "$type": "dimension",
+      "$description": "Spacing 136px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page canvas and every specimen row's background"
+    },
+    "foam": {
+      "$value": "#ebedee",
+      "$type": "color",
+      "$description": "Surface level 1: Imperceptible lift for input fields and soft dividers"
+    },
+    "graphite-block": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Surface level 2: Dark secondary surface when a section needs a tonal counterweight to the page"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Heaviest surface — solid buttons, selected states, photographic specimen backdrop"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://studiofew.com",
+      "siteName": "Studio Few",
+      "extractedAt": "2026-06-03T17:46:03.719Z",
+      "variant": "extended"
+    }
+  }
+}

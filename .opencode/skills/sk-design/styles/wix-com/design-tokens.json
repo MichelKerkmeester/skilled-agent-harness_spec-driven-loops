@@ -1,0 +1,814 @@
+{
+  "color": {
+    "pure-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure Canvas — Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color"
+    },
+    "slate-mist": {
+      "$value": "#f1f5f9",
+      "$type": "color",
+      "$description": "Slate Mist — Elevated surface tier, input backgrounds, subtle section panels"
+    },
+    "carbon-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Ink — Primary text, icon strokes, borders, dark button fills — the typographic and structural black"
+    },
+    "graphite": {
+      "$value": "#1c1d21",
+      "$type": "color",
+      "$description": "Graphite — Headline text alternative — slightly softened black for display type where pure black feels too clinical"
+    },
+    "ash-border": {
+      "$value": "#d0d0d0",
+      "$type": "color",
+      "$description": "Ash Border — Hairline dividers, card borders, structural separators"
+    },
+    "fog-border": {
+      "$value": "#e8e6e6",
+      "$type": "color",
+      "$description": "Fog Border — Subtle borders on less prominent elements"
+    },
+    "electric-blue": {
+      "$value": "#166aea",
+      "$type": "color",
+      "$description": "Electric Blue — Primary action button fill, selected nav indicator, link accents — the only saturated action color in the system"
+    },
+    "deep-violet": {
+      "$value": "#101585",
+      "$type": "color",
+      "$description": "Deep Violet — Brand violet for headings, link underlines, decorative accent — anchors the identity when blue is too functional"
+    },
+    "indigo-pulse": {
+      "$value": "#2c34af",
+      "$type": "color",
+      "$description": "Indigo Pulse — Gradient endpoint, section heading accent — lighter companion to Deep Violet for layered brand moments"
+    },
+    "lime-highlight": {
+      "$value": "#dff994",
+      "$type": "color",
+      "$description": "Lime Highlight — Surface wash, background tints, decorative highlight zones — injects energy into otherwise monochrome sections"
+    },
+    "lemon-note": {
+      "$value": "#fdf4a1",
+      "$type": "color",
+      "$description": "Lemon Note — Subtle highlight wash on text and borders, callout markers — warm counterpoint to cool brand colors"
+    },
+    "lavender-mist": {
+      "$value": "#bfc8e8",
+      "$type": "color",
+      "$description": "Lavender Mist — Soft section background gradient start, card shadow tint — atmospheric color for gradient washes"
+    },
+    "input-blue": {
+      "$value": "#538ab6",
+      "$type": "color",
+      "$description": "Input Blue — Input border on focus/active state — cool desaturated blue for form interactivity"
+    }
+  },
+  "font": {
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback for icon labels, micro-UI tags, and utility text at 10–13px. Functions as the safety net for extremely small UI where custom fonts may not load."
+    },
+    "madefor-display": {
+      "$value": "madefor-display",
+      "$type": "fontFamily",
+      "$description": "All display headlines from 21px sub-headings up to 184px hero text. Geometric, slightly condensed sans-serif with wide apertures. The negative letter-spacing (-0.01em to -0.03em) tightens as size grows, creating a distinctive compressed display look at 82–184px. Substantial line-height range (0.85 at 184px) lets oversized type sit close together — a signature of editorial display use."
+    },
+    "madefor-text": {
+      "$value": "madefor-text",
+      "$type": "fontFamily",
+      "$description": "Body text, nav links, list items, input fields, descriptions. Slightly looser than display at -0.01em. Generous line-heights (1.5–1.71) give body copy an airy, readable cadence. Pairs with display variant to create typographic contrast without switching families."
+    },
+    "madefor-text-mediumbold": {
+      "$value": "madefor-text-mediumbold",
+      "$type": "fontFamily",
+      "$description": "Semi-emphasis body and small headings (12–24px). Functions as the medium weight for nav, subheadings, and labeled sections where extra weight is needed without going to a full bold."
+    },
+    "wix-madefor-display-v2": {
+      "$value": "wix-madefor-display-v2",
+      "$type": "fontFamily",
+      "$description": "Alternate display variant for section headings at 53px and body emphasis at 20–21px. Provides a slightly different geometry for variety within sections."
+    },
+    "wix-madefor-text-v2": {
+      "$value": "wix-madefor-text-v2",
+      "$type": "fontFamily",
+      "$description": "Secondary text body for links and supporting copy where the primary text variant is too dense."
+    },
+    "madefor-text-bold": {
+      "$value": "madefor-text-bold",
+      "$type": "fontFamily",
+      "$description": "madefor-text-bold — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Madefor-Display",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "madefor-text",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "madefor-text-mediumbold",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Madefor-Display",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "madefor-display",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "madefor-display",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "madefor-text",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "madefor-display",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.48
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "madefor-text",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "madefor-text",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "Madefor-Text",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "Madefor-Text-MediumBold",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "Madefor-Text",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "Madefor-Text",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "wix-madefor-text-v2",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "wix-madefor-text-v2",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "madefor-text-mediumbold",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "madefor-text",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "madefor-text",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "madefor-text-bold",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 15px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "madefor-text",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 15px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Madefor-Display",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Madefor-Display",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "madefor-text-mediumbold",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "madefor-text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "base-12": {
+      "$value": {
+        "fontFamily": "Madefor-Text-MediumBold",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-12 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "madefor-text",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "madefor-text-mediumbold",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "madefor-text-mediumbold",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "wix-madefor-display-v2",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "wix-madefor-text-v2",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "wix-madefor-display-v2",
+        "fontSize": "21px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 21px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "madefor-display",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 21px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "madefor-text",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 21px"
+    },
+    "xl-7": {
+      "$value": {
+        "fontFamily": "madefor-text-mediumbold",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-7 at 21px"
+    },
+    "xl-8": {
+      "$value": {
+        "fontFamily": "madefor-text-mediumbold",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-8 at 23px"
+    },
+    "xl-9": {
+      "$value": {
+        "fontFamily": "madefor-text-mediumbold",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-9 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "madefor-display",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "madefor-text-mediumbold",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "madefor-text",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 25px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "madefor-display",
+        "fontSize": "31px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 31px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "madefor-display",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "madefor-display",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "madefor-display",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 48px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "wix-madefor-display-v2",
+        "fontSize": "53px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 53px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "madefor-display",
+        "fontSize": "82px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 82px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "madefor-display",
+        "fontSize": "89px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 89px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "madefor-display",
+        "fontSize": "104px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 104px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "madefor-display",
+        "fontSize": "184px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 184px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "84": {
+      "$value": "84px",
+      "$type": "dimension",
+      "$description": "Spacing 84px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8.90625px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "lg-2": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Border radius lg-2"
+    },
+    "xl": {
+      "$value": "14.4px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "22.2656px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24.4922px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "29.6875px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "33px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "3xl-4": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-4"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "59.375px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "89.0625px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    },
+    "full-5": {
+      "$value": "667.969px",
+      "$type": "dimension",
+      "$description": "Border radius full-5"
+    },
+    "full-6": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full-6"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px -1px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background, default state for all sections"
+    },
+    "mist": {
+      "$value": "#f1f5f9",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated panels, input fields, subtle section differentiation"
+    },
+    "lime-wash": {
+      "$value": "#dff994",
+      "$type": "color",
+      "$description": "Surface level 2: Accent surface for highlight sections, feature callouts"
+    },
+    "lavender-fade": {
+      "$value": "#bfc8e8",
+      "$type": "color",
+      "$description": "Surface level 3: Gradient section backgrounds, atmospheric color zones"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.wix.com",
+      "siteName": "wix.com",
+      "extractedAt": "2026-06-03T21:18:56.559Z",
+      "variant": "extended"
+    }
+  }
+}

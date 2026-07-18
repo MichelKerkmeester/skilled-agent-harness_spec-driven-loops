@@ -1,0 +1,374 @@
+{
+  "color": {
+    "ivory-paper": {
+      "$value": "#f3f2ec",
+      "$type": "color",
+      "$description": "Ivory Paper — Page canvas, card surfaces, footer wash — the warm off-white that makes every photograph feel printed, not digital"
+    },
+    "sage-mist": {
+      "$value": "#e3e4df",
+      "$type": "color",
+      "$description": "Sage Mist — Hairline borders, input outlines, subtle dividers, secondary card backgrounds — the cool-warm neutral that separates layers without contrast shouting"
+    },
+    "bone-gray": {
+      "$value": "#cbc9bd",
+      "$type": "color",
+      "$description": "Bone Gray — Mid-tone neutrals for input shadows and muted surface fills — the bridge between ivory and ink"
+    },
+    "ink-black": {
+      "$value": "#131313",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, filled buttons, icon strokes, navigation borders — slightly softer than pure black, reads as printer's ink rather than screen"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Highest-contrast borders, pure ink for heaviest typographic moments and fine dividers"
+    },
+    "snow-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Snow White — Product card photography backdrop, badge fills — the cleanest white for product isolation"
+    },
+    "ember-coral": {
+      "$value": "#f68e6d",
+      "$type": "color",
+      "$description": "Ember Coral — Footer background, singular warm accent — the one chromatic gesture in the system, used only when the design needs to feel touched, not seen"
+    },
+    "powder-blue": {
+      "$value": "#7faad2",
+      "$type": "color",
+      "$description": "Powder Blue — Blue state accent for badges, validation surfaces, and short status labels. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "aeonik": {
+      "$value": "Aeonik",
+      "$type": "fontFamily",
+      "$description": "Workhorse sans for navigation, body, buttons, product cards, and hero overlays. 500 weight for active nav, labels, and emphasis; 400 for body copy. The 132px display size at 0.80 line-height is the signature — oversized headlines that sit tight and confident over photography."
+    },
+    "cardinal-fruit": {
+      "$value": "Cardinal Fruit",
+      "$type": "fontFamily",
+      "$description": "Display serif reserved for editorial moments: the 'FEEL YOUR SELF' statement, category callouts, and the small italic accent '(BEST)'. At 187px with 1.00 line-height it becomes the visual anchor of the page — a magazine-cover gesture that reframes the whole interface as editorial, not transactional."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 15px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 15px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Cardinal Fruit",
+        "fontSize": "33px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 33px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "33px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 33px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Cardinal Fruit",
+        "fontSize": "33px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 33px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Cardinal Fruit",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "50px",
+        "fontWeight": 500,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Cardinal Fruit",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 54px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Cardinal Fruit",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 54px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "132px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 132px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Cardinal Fruit",
+        "fontSize": "187px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 187px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "33": {
+      "$value": "33px",
+      "$type": "dimension",
+      "$description": "Spacing 33px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "67": {
+      "$value": "67px",
+      "$type": "dimension",
+      "$description": "Spacing 67px"
+    },
+    "83": {
+      "$value": "83px",
+      "$type": "dimension",
+      "$description": "Spacing 83px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    },
+    "231": {
+      "$value": "231px",
+      "$type": "dimension",
+      "$description": "Spacing 231px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(243, 242, 236) 0px 0px 0px 1000px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "ivory-canvas": {
+      "$value": "#f3f2ec",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — the warm paper tone every other surface sits on"
+    },
+    "snow-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Product photography cards and badge fills — the cleanest white for object isolation"
+    },
+    "sage-divider": {
+      "$value": "#e3e4df",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline borders, input borders, secondary surface fills"
+    },
+    "bone-shadow": {
+      "$value": "#cbc9bd",
+      "$type": "color",
+      "$description": "Surface level 3: Mid-tone surface for input inset shadows and muted fills"
+    },
+    "ember-footer": {
+      "$value": "#f68e6d",
+      "$type": "color",
+      "$description": "Surface level 4: Sole chromatic surface — footer only, never interactive"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://myafterglo.com",
+      "siteName": "Afterglo",
+      "extractedAt": "2026-06-03T18:57:44.324Z",
+      "variant": "extended"
+    }
+  }
+}

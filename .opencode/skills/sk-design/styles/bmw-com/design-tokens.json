@@ -1,0 +1,185 @@
+{
+  "color": {
+    "carbon": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Carbon — Body text, footer background, heading text on light surfaces — the near-black structural anchor"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, header background, inverted text on dark footer"
+    },
+    "concrete": {
+      "$value": "#bbbbbb",
+      "$type": "color",
+      "$description": "Concrete — Muted helper text and secondary dividers on white surfaces, secondary text on dark footer"
+    },
+    "fog": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Fog — Alternate surface band, subtle card background where a step up from pure white is needed"
+    }
+  },
+  "font": {
+    "bmwtypenextlatin": {
+      "$value": "BMWTypeNextLatin",
+      "$type": "fontFamily",
+      "$description": "Workhorse type family — 400 for body copy and nav links, 700 for inline emphasis and section labels, 900 reserved for brand wordmarks. Compact leading (1.20–1.30) on headings, generous (1.60+) on body. Custom typeface with squared geometric forms; substitute with Inter or Neue Haas Grotesk for close fidelity."
+    },
+    "bmwtypenextlatin-light": {
+      "$value": "BMWTypeNextLatin Light",
+      "$type": "fontFamily",
+      "$description": "Display heading only — the 300 weight at 60px is the brand's anti-convention signature; it whispers rather than shouts, signaling premium through restraint. Used exclusively for the largest section title per page. Do not reuse for anything below 40px."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "BMWTypeNextLatin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "BMWTypeNextLatin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "BMWTypeNextLatin",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "BMWTypeNextLatin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "BMWTypeNextLatin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "BMWTypeNextLatin",
+        "fontSize": "18px",
+        "fontWeight": 900,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "BMWTypeNextLatin Light",
+        "fontSize": "60px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background, header bar"
+    },
+    "subtle-band": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Surface level 1: Alternate section background for quiet visual separation"
+    },
+    "footer": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Surface level 2: Dark footer band — the only strong contrast surface on the page"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://bmw.com",
+      "siteName": "BMW.com",
+      "extractedAt": "2026-06-03T15:25:48.551Z",
+      "variant": "extended"
+    }
+  }
+}

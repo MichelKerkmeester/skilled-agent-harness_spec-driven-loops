@@ -1,0 +1,389 @@
+{
+  "color": {
+    "electric-iris": {
+      "$value": "#3139fb",
+      "$type": "color",
+      "$description": "Electric Iris — Full-bleed section backgrounds, brand atmosphere, sidebar chrome inside the browser mockup — a single high-saturation violet floods entire bands so the page reads as editorial color blocking, not UI state"
+    },
+    "deep-violet": {
+      "$value": "#2702c2",
+      "$type": "color",
+      "$description": "Deep Violet — Darker accent layer within violet sections, pressed or active states inside the brand color, secondary headings on violet — deepens the iris without shifting hue"
+    },
+    "oat": {
+      "$value": "#fffadd",
+      "$type": "color",
+      "$description": "Oat — Primary page canvas and hero gradient base — warm cream that reads as paper rather than screen white, the default surface everything else sits on"
+    },
+    "linen": {
+      "$value": "#fffcec",
+      "$type": "color",
+      "$description": "Linen — Secondary warm surface for cards, nav backgrounds, and footer — a half-step warmer than Oat, used when a layer needs to lift off the canvas without going white"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Pure white for browser-mockup card interiors, text on dark surfaces, and the scalloped divider ridges that separate colored bands"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "granite": {
+      "$value": "#696969",
+      "$type": "color",
+      "$description": "Granite — Muted body copy, secondary descriptions, and helper text — mid-gray that recedes against Oat without disappearing"
+    },
+    "olive-stone": {
+      "$value": "#595853",
+      "$type": "color",
+      "$description": "Olive Stone — Subtle secondary text and warm-leaning gray for fine print — slightly olive-shifted to harmonize with the cream canvas instead of fighting it"
+    }
+  },
+  "font": {
+    "marlin-soft-sq": {
+      "$value": "Marlin Soft SQ",
+      "$type": "fontFamily",
+      "$description": "Softer variant of Marlin for nav, subheadings, and secondary display sizes (28–40px) — the rounded terminals feel friendly against Marlin's sharper display cuts"
+    },
+    "marlin": {
+      "$value": "Marlin",
+      "$type": "fontFamily",
+      "$description": "Primary display serif for hero headlines and large editorial pull-quotes at 46px; weight 400 for body 16px — the contrast between hairline serif body and heavy serif display is the site's typographic signature"
+    },
+    "intervariable": {
+      "$value": "InterVariable",
+      "$type": "fontFamily",
+      "$description": "UI text, labels, and interface annotations — the workhorse sans for everything inside the browser mockup and supporting copy around the page"
+    },
+    "abc-favorit-mono": {
+      "$value": "ABC Favorit Mono",
+      "$type": "fontFamily",
+      "$description": "Micro-labels, tags, and category markers at 12px with wide tracking (up to 0.15em) — the monospaced rhythm breaks the serif/sans pattern and signals 'metadata'"
+    },
+    "abc-oracle": {
+      "$value": "ABC Oracle",
+      "$type": "fontFamily",
+      "$description": "Secondary serif body at 20–24px for longer descriptive paragraphs that sit between the Marlin display headlines — bridges display and UI without switching families"
+    },
+    "exposure-var": {
+      "$value": "Exposure VAR",
+      "$type": "fontFamily",
+      "$description": "Tight display headline at 36px with 1.0 line-height — used sparingly for emphasis where a more compressed cut is needed than Marlin provides"
+    },
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "-apple-system — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ABC Favorit Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ABC Favorit Mono",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "ABC Favorit Mono",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Marlin Soft SQ",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 2.07
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Marlin",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Marlin Soft SQ",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Marlin",
+        "fontSize": "16px",
+        "fontWeight": 800,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "17px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ABC Oracle",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Marlin Soft SQ",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Marlin Soft SQ",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Exposure VAR",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Marlin Soft SQ",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Marlin Soft SQ",
+        "fontSize": "46px",
+        "fontWeight": 700,
+        "lineHeight": 0.93
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 46px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Marlin",
+        "fontSize": "46px",
+        "fontWeight": 700,
+        "lineHeight": 0.93
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 46px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 5px 5px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "sm-2": {
+      "$value": "rgba(0, 0, 0, 0.25) 0px 2px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-2"
+    }
+  },
+  "surface": {
+    "oat-canvas": {
+      "$value": "#fffadd",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background; warm cream reads as paper"
+    },
+    "linen-card": {
+      "$value": "#fffcec",
+      "$type": "color",
+      "$description": "Surface level 1: Secondary surface that lifts off the canvas with a half-step warmer tone"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Pure white for browser-mockup card interiors and scalloped divider ridges"
+    },
+    "electric-iris-band": {
+      "$value": "#3139fb",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed brand section background — atmospheric color blocking"
+    },
+    "deep-violet-layer": {
+      "$value": "#2702c2",
+      "$type": "color",
+      "$description": "Surface level 4: Deeper accent within violet sections for hierarchy"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://arc.net",
+      "siteName": "Arc",
+      "extractedAt": "2026-06-03T18:55:59.053Z",
+      "variant": "extended"
+    }
+  }
+}

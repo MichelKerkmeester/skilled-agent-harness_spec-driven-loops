@@ -1,0 +1,61 @@
+:root {
+  /* Colors */
+  --color-paper-gray: #e5e7eb;
+  --color-editorial-black: #000000;
+  --color-charcoal-ink: #232323;
+  --color-soft-graphite: #a7a7a7;
+  --color-faded-pencil: #c8c8c8;
+  --color-pure-white: #ffffff;
+  --color-sapphire-beam: #00c8fb;
+  --gradient-sapphire-beam: linear-gradient(#00c8fb, #1a2ff7);
+  --color-ember-sunset: #ef3313;
+  --gradient-ember-sunset: linear-gradient(to right bottom, #a4341, #ef3313, #f4a41b);
+
+  /* Typography — Font Families */
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 1.43;
+  --text-body-relaxed: 16px;
+  --leading-body-relaxed: 1.8;
+  --text-heading: 40px;
+  --leading-heading: 1.5;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+
+  /* Layout */
+  --page-max-width: 720px;
+  --section-gap: 80px;
+  --card-padding: 32px;
+  --element-gap: 10px;
+
+  /* Border Radius */
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-cards: 16px;
+  --radius-badges: 9999px;
+  --radius-buttons: 9999px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(0, 0, 0, 0.06) 0px 1px 1px -0.5px, rgba(0, 0, 0, 0.06) 0px 3px 3px -1.5px, rgba(0, 0, 0, 0.06) 0px 6px 6px -3px, rgba(0, 0, 0, 0.06) 0px 12px 12px -6px, rgba(0, 0, 0, 0.06) 0px 24px 24px -12px;
+
+  /* Surfaces */
+  --surface-page-canvas: #e5e7eb;
+  --surface-pure-surface: #ffffff;
+}

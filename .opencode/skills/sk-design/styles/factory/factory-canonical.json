@@ -1,0 +1,1412 @@
+{
+  "source": "https://styles.refero.design/style/13d6fc89-eba2-4724-ac37-20f4f2e5efec",
+  "uuid": "13d6fc89-eba2-4724-ac37-20f4f2e5efec",
+  "name": "Factory",
+  "northStar": "Terminal war room at midnight. Factory is a stark black control surface where a single white card lands like a flashlit dispatch — the only object in the room is the work itself.",
+  "capturedAt": "2026-07-18T07:04:20.565Z",
+  "meta": {
+    "url": "https://factory.ai",
+    "siteName": "Factory",
+    "extractedAt": "2026-07-03T03:18:23.580Z",
+    "durationMs": 108307,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1089,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Keep the canvas #101010 on every section. Light cards (#eeeeee) are the only objects allowed to be bright.",
+      "Use Geist 400 for everything. Reach for weight 500 only when a label must dominate a dense surface (footer headings, key CTAs).",
+      "Apply negative letter-spacing proportionally to size: -0.04em at 72px, -0.025em at 44px, -0.02em at 12px. Display type earns its weight through tightness, not boldness.",
+      "Reserve #ee6018 for live status, build-state indicators, and accent strokes in data charts. Never use it as a button fill.",
+      "Set border-radius to 3px on buttons and nav elements, 10px on cards, 20px on the largest panels. Do not round corners more than this — the system is not soft.",
+      "Build depth through #eeeeee-on-#101010 contrast and 96px+ section gaps. Do not introduce drop shadows or blur to fake elevation.",
+      "Use Geist Mono 12px uppercase for eyebrows, status labels, and column headers. This is the system's secondary voice and the fastest way to signal 'instrument, not marketing'."
+    ],
+    "donts": [
+      "Do not introduce additional accent colors. The palette is two neutrals (#101010, #eeeeee), one warm gray for muted text (#8a8380), and two functional accents (#ee6018, #a0ca92). Anything else is noise.",
+      "Do not use weight 600+ or bold for headings. The system speaks at weight 400 with tight tracking — bolding breaks the voice.",
+      "Do not put #ee6018 or #a0ca92 on button backgrounds, card surfaces, or large text fills. They are data-voice colors, not chrome colors.",
+      "Do not use line-height above 1.5. Display sizes use lh=1; body sits at 1.5. Anything looser makes the page feel editorial rather than technical.",
+      "Do not add drop shadows, glows, or blurs to cards, buttons, or modals. The system's elevation is contrast, not depth-of-field.",
+      "Do not mix in serif typefaces or display fonts. Geist and Geist Mono only.",
+      "Do not fill buttons with brand color. The primary action is a neutral dark fill (#1f1d1c) or a neutral light fill (#fafafa) — chromatic CTAs would break the monochrome chrome."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#101010",
+        "name": "Obsidian Canvas",
+        "role": "Page background, footer base — the void everything else is measured against",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1d1a18",
+        "name": "Carbon Lift",
+        "role": "Raised dark surfaces, nav wells, button fills — one step up from canvas for interactive depth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3d3a39",
+        "name": "Ash Stroke",
+        "role": "Hairline borders, ghost button outlines, separator lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4d4947",
+        "name": "Graphite Mid",
+        "role": "Mid-tone fills for chart bodies, secondary surfaces, neutral data visualization",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8a8380",
+        "name": "Warm Granite",
+        "role": "Muted body text, secondary copy, inactive labels — warm gray to soften the black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b8b3b0",
+        "name": "Pale Stone",
+        "role": "Tertiary text, section eyebrows, subdued supporting copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Bone",
+        "role": "Primary text, light card surfaces, the single bright figure on dark ground",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Chalk",
+        "role": "High-emphasis light button fill, log-in button, elevated neutral surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ee6018",
+        "name": "Signal Orange",
+        "role": "Orange decorative accent for icons, marks, and small graphic details",
+        "group": "accent"
+      },
+      {
+        "hex": "#a0ca92",
+        "name": "Metric Green",
+        "role": "Green decorative accent for icons, marks, and small graphic details",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed #101010 canvas at all times — no light body background. Max content width ~1200px, centered. Hero is a 2-column split: left third holds the headline + supporting copy + button row, right two-thirds holds the dashboard screenshot at near-1:1 scale. Section rhythm: dark band → logo strip → dark band with feature cards → dark band with CTA card. Vertical spacing between sections is 96px+ — the page breathes. Cards in grid layouts are separated by 24px gaps, never touching. Navigation is a single sticky top bar, no sidebar, no mega-menu — the surface stays uncluttered.",
+    "imagery": "Imagery is minimal and product-led. The dominant visual is a photorealistic macOS dashboard screenshot serving as the hero — a real-feeling terminal panel with traffic-light chrome, monospaced column headers, and live sparklines in orange and green. There is no lifestyle photography, no people, no abstract gradients. Decorative texture on light cards is a subtle film-grain noise overlay, not an illustration. Logos in the trust bar are rendered as monochrome wordmarks, not as color photos. The brand relies on UI-in-UI: showing the product is the imagery.",
+    "similar": [
+      {
+        "why": "Same monochrome-dark canvas, weight-400 display type with tight negative tracking, and one restrained accent (Linear's purple vs Factory's orange) reserved for state and status, never decoration.",
+        "business": "Linear"
+      },
+      {
+        "why": "Identical figure/ground strategy: pitch-black canvas, one bright card or screenshot as hero, Geist-family type at flat weight, no drop shadows — depth earned through contrast.",
+        "business": "Vercel"
+      },
+      {
+        "why": "Shares the terminal-warm aesthetic — warm grays (#8a8380 class) instead of cold, Geist Mono labels, minimal radii (3–10px), and chromatic accents used only as functional signal in product UI.",
+        "business": "Resend"
+      },
+      {
+        "why": "Developer-tool dark surface with Geist-weight typography, dashboard hero pattern showing the product in a windowed UI, and a single warm accent for active states.",
+        "business": "Cursor"
+      },
+      {
+        "why": "Same instrument-panel sensibility — dark canvas, monospaced eyebrows, metric tiles with live data, and an anti-decorative stance that treats color as data not chrome.",
+        "business": "Railway"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "3px",
+        "cards": "10px",
+        "buttons": "3px",
+        "largePanels": "20px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "96px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#101010",
+        "name": "Obsidian Canvas",
+        "level": 0,
+        "purpose": "Page base, hero, all non-card sections"
+      },
+      {
+        "hex": "#1d1a18",
+        "name": "Carbon Lift",
+        "level": 1,
+        "purpose": "Nav well, inline buttons, subtle panel elevation"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Bone Card",
+        "level": 2,
+        "purpose": "Light cards on dark ground — the signature figure/ground move"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Chalk Elevated",
+        "level": 3,
+        "purpose": "Light button fill, top of the light surface stack"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Terminal war room at midnight. Factory is a stark black control surface where a single white card lands like a flashlit dispatch — the only object in the room is the work itself.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.12
+      },
+      {
+        "role": "heading-lg",
+        "size": 44,
+        "lineHeight": 1.12,
+        "letterSpacing": -1.1
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -2.88
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent header across all pages",
+        "description": "Transparent over #101010 canvas. Height ~64px. Left-aligned wordmark 'FACTORY' in #eeeeee, 12px Geist Mono uppercase, letter-spacing wide. Nav links (Product, Enterprise, Pricing, News, Company, Careers) in #eeeeee at 14px Geist weight 400, uppercase. Log In = #fafafa fill, 3px radius, #101010 text, 0 14px padding. Contact Sales = ghost text link with arrow, transparent fill, 1px #3d3a39 border, 0px radius, 24px vertical padding."
+      },
+      {
+        "name": "Dark Filled Button",
+        "role": "Primary interactive control in dark contexts",
+        "description": "Background #1f1d1c, text #eeeeee, 3px border-radius, 0 14px padding, Geist 14px weight 400. No border. Used for actions that commit within a dark surface."
+      },
+      {
+        "name": "Light Filled Button (Log In)",
+        "role": "High-emphasis auth trigger",
+        "description": "Background #fafafa, text #eeeeee (note: on the light fill, text is inverted to dark in practice — #101010), 3px border-radius, 0 14px padding. The only chromatic-contrast button in the system; appears once in the nav."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Secondary navigation, in-text links, 'Read More' affordances",
+        "description": "Transparent background, 1px #3d3a39 border, 0px radius (flat), 24px vertical padding, #eeeeee text. Behaves like a typographic button — no fill ever appears on hover, only text/border color shift to #fafafa."
+      },
+      {
+        "name": "Light Surface Card",
+        "role": "Featured content panels, CTAs, case studies — the figure on dark ground",
+        "description": "Background #eeeeee, 10px border-radius, 24px padding all sides, no shadow. Contains dark text (#101010 or #060505) inside. Often carries a subtle grain/noise texture overlay. This is the system's primary way to create visual hierarchy on dark pages."
+      },
+      {
+        "name": "Dashboard Frame",
+        "role": "Product hero — the live software factory preview",
+        "description": "macOS window chrome (traffic-light dots) on a #0d0d0d panel with 10px radius. Internal content is a dark grid of metric tiles with 1px #1d1a18 dividers. Header bar: dark fill, Geist Mono 12px uppercase for window title, status dot in #ee6018."
+      },
+      {
+        "name": "Metric Tile",
+        "role": "Individual data cell inside the dashboard",
+        "description": "No background, 1px #1d1a18 hairline divider, 20px padding. Label: Geist Mono 12px uppercase #b8b3b0, tracking -0.24px. Value: Geist 36px weight 400, #eeeeee, tracking -1.12px. Sparkline below: 40px tall, 1px stroke in #ee6018 or #a0ca92."
+      },
+      {
+        "name": "CTA Section Card",
+        "role": "Conversion closer at page bottom",
+        "description": "Light card (#eeeeee) ~480px wide, 10px radius, 24px padding, optional grain texture. Eyebrow: Geist Mono 12px uppercase, #ee6018 dot + #101010 text. Headline: Geist 36px weight 400, #101010. CTA: dark filled button using #101010 fill, #eeeeee text, 3px radius."
+      },
+      {
+        "name": "Status Pulse",
+        "role": "Inline 'live' indicator on logos, avatars, section headers",
+        "description": "6px filled circle in #ee6018 with optional 1px stroke. Sits immediately before label text. No animation required, but pairs with marquee/animation in the marquee logo strip."
+      },
+      {
+        "name": "Logo Strip (Trust Bar)",
+        "role": "Social proof band beneath hero",
+        "description": "Single row of partner wordmarks on #101010 canvas, all rendered in #8a8380 at consistent visual weight. No card backgrounds, no dividers — just the wordmarks floating in negative space. Separated from surrounding sections by 96px vertical breathing room."
+      },
+      {
+        "name": "Feature Card Row",
+        "role": "Multi-card sections explaining product capabilities",
+        "description": "Dark cards (transparent on #101010) with 1px #1d1a18 hairline border, 10px radius, 20px padding. 'Read More →' ghost link in footer. No card background fill — the card is implied by the border, not the surface."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer with link columns and brand mark",
+        "description": "Background #101010, 96px+ vertical padding. Headings: Geist Mono 12px uppercase #eeeeee. Links: 14px Geist weight 400 #8a8380. No dividers between columns — generous column gap (24–36px) does the separation."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All interface text — body, headings, buttons, nav, hero. Used at weight 400 almost universally; weight 500 is reserved for emphasis (e.g. footer heading). The flat 400-only treatment is a signature: authority is implied by size and tracking, not by bold weight.",
+        "sizes": "12, 14, 16, 36, 44, 72",
+        "family": "Geist",
+        "weight": "400, 500",
+        "lineHeight": "1.0–1.5",
+        "substitute": "Inter, system-ui",
+        "letterSpacing": "-0.0400em, -0.0310em, -0.0250em"
+      },
+      {
+        "role": "Captions, labels, status tags, metric units — always uppercase 12px with tight tracking. Carries the 'terminal' voice that distinguishes engineering surfaces from marketing surfaces.",
+        "sizes": "12, 14, 16",
+        "family": "Geist Mono",
+        "weight": "400",
+        "lineHeight": "1.0–1.2",
+        "substitute": "JetBrains Mono, IBM Plex Mono, ui-monospace",
+        "letterSpacing": "-0.0200em"
+      }
+    ],
+    "description": "Factory operates as a terminal war room: deep black canvas, weight-400 Geist type pressed tight with negative tracking, and generous negative space that lets two functional accents — signal orange and metric green — speak above the noise. The signature move is the light card floating on near-black ground (#eeeeee panels on #101010 canvas), creating stark figure/ground contrast rather than soft elevation. Almost all interaction is carried by monochrome surfaces; chromatic color is reserved for live data states and status pulses, never decoration. Components sit flat with minimal radii, thin 1px borders, and zero shadow dependency — the design earns its depth through contrast and spacing rhythm, not blur or glow.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/13d6fc89-eba2-4724-ac37-20f4f2e5efec#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Factory design system\",\"item\":\"https://styles.refero.design/style/13d6fc89-eba2-4724-ac37-20f4f2e5efec\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/13d6fc89-eba2-4724-ac37-20f4f2e5efec#style-reference\",\"name\":\"Factory design system reference\",\"headline\":\"Factory design system | Refero Styles\",\"description\":\"Explore Factory's dark AI design system: Obsidian Canvas #101010, Carbon Lift #1d1a18 colors, Geist, Geist Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/13d6fc89-eba2-4724-ac37-20f4f2e5efec\",\"mainEntityOfPage\":\"https://styles.refero.design/style/13d6fc89-eba2-4724-ac37-20f4f2e5efec\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Factory\",\"url\":\"https://factory.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/13d6fc89-eba2-4724-ac37-20f4f2e5efec#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/96331452-119f-45a3-8364-45207541948e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/96331452-119f-45a3-8364-45207541948e.jpg\",\"caption\":\"Screenshot of Factory\"},\"image\":\"https://images.refero.design/styles/refero.design/image/96331452-119f-45a3-8364-45207541948e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Factory design system\",\"Factory website design\",\"Factory colors\",\"Factory typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Obsidian Canvas\",\"Carbon Lift\",\"Ash Stroke\",\"Graphite Mid\",\"Geist\",\"Geist Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Factory design system\"},{\"@type\":\"Thing\",\"name\":\"Factory website design\"},{\"@type\":\"Thing\",\"name\":\"Factory colors\"},{\"@type\":\"Thing\",\"name\":\"Factory typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-02T09:25:14.000Z\",\"dateModified\":\"2026-04-02T09:25:14.000Z\"}]}19:T662,**Quick Color Reference**\n- canvas: #101010\n- text: #eeeeee\n- muted text: #8a8380\n- card surface: #eeeeee\n- accent (live status / data signal): #ee6018\n- accent (positive metric / trend): #a0ca92\n- primary action: #1d1a18 (filled action)\n\n**Example Component Prompts**\n1. *Hero section*: Full-bleed #101010 background, max-width 1200px centered. Headline at 72px Geist weight 400, #eeeeee, letter-spacing -2.88px, line-height 1. Supporting copy at 16px Geist weight 400, #8a8380. Two buttons inline: a dark filled button (#1f1d1c, #eeeeee text, 3px radius, 0 14px padding) followed by a ghost link with arrow (transparent, 1px #3d3a39 border, 0px radius, 24px vertical padding).\n2. Create a Primary Action Button: #1d1a18 background, #eeeeee text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n3. *Dashboard metric tile*: no background, 1px #1d1a18 bottom border, 20px padding. Label: Geist Mono 12px uppercase #b8b3b0. Value: Geist 36px weight 400, #eeeeee, letter-spacing -1.12px. Sparkline: 40px tall, 1px stroke, color #ee6018 (negative trend) or #a0ca92 (positive trend).\n4. *Trust logo strip*: full-width #101010 band, 96px vertical padding, single row of 8 partner wordmarks rendered in #8a8380, evenly distributed with 24px+ gaps. No card backgrounds, no dividers.\n5. *Top nav bar*: transparent on #101010, ~64px tall. Wordmark left: 'FACTORY' Geist Mono 12px uppercase #eeeeee. Nav center/right: Product, Enterprise, Pricing, News, Company, Careers in Geist 14px weight 400 #eeeeee uppercase. Log In button: #fafafa fill, #101010 text, 3px radius. Contact Sales: ghost text link with arrow."
+      },
+      {
+        "title": "Motion Philosophy",
+        "content": "Transitions are short and mechanical: 0.15s–0.2s with cubic-bezier(0.4, 0, 0.2, 1) easing — the feel of a CLI tool, not a marketing site. Color, background-color, border-color, and stroke all transition together so state changes feel like a single switch flipping, not a layered animation. Named motion (marquee-scroll, sfDashboardFrameIn) appears sparingly: a slow logo marquee and a single dashboard entrance. Avoid spring physics, parallax, or scroll-driven effects — the surface should feel still and precise."
+      },
+      {
+        "title": "Voice & Type Treatment",
+        "content": "Two voices, one family. Geist 400 carries all marketing and body copy — flat, calm, undecorated. Geist Mono 12px uppercase carries all instrument labels: column headers, status tags, 'BUILD WITH US', nav items. This split is structural: when a user sees Mono, they know they are looking at a system surface, not a page surface. Maintain this discipline even when extending the product."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. Depth is built through figure/ground contrast — a #eeeeee card landing on a #101010 canvas does the work a drop shadow would do in other systems. The only box-shadow token observed is a 1px hairline at near-black, never a diffuse glow. This keeps the interface flat and instrument-like."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 131,
+          "confidence": 1,
+          "prominence": 3052244.394794466,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 131
+          }
+        },
+        {
+          "hex": "#101010",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17304230872217735
+          },
+          "contexts": [
+            "heading",
+            "footer",
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 2152878.823617306,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 10,
+            "heading/color": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "body",
+            "button",
+            "nav",
+            "heading",
+            "icon",
+            "card",
+            "link",
+            "other"
+          ],
+          "frequency": 74,
+          "confidence": 1,
+          "prominence": 1883594.7720059543,
+          "properties": [
+            "color",
+            "stroke",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "body/color": 7,
+            "link/color": 3,
+            "nav/stroke": 9,
+            "other/fill": 8,
+            "icon/stroke": 4,
+            "button/color": 6,
+            "other/stroke": 4,
+            "heading/color": 24,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#010101",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.0648853430524032
+          },
+          "contexts": [
+            "nav",
+            "body",
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 1299861,
+          "properties": [
+            "color",
+            "fill",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "body/color": 1,
+            "other/fill": 4,
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#060505",
+          "oklch": {
+            "c": 0.002619019495470508,
+            "h": 17.53350875040132,
+            "l": 0.11683331105112132
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 686737.3071999646,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#1d1a18",
+          "oklch": {
+            "c": 0.006094446269061425,
+            "h": 56.05291676803906,
+            "l": 0.22046165419192612
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 342896,
+          "properties": [
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 12,
+            "nav/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#8a8380",
+          "oklch": {
+            "c": 0.00961362548224025,
+            "h": 44.82637597306205,
+            "l": 0.615204238430852
+          },
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 137180.55523549166,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 14,
+            "other/fill": 24
+          }
+        },
+        {
+          "hex": "#a0ca92",
+          "oklch": {
+            "c": 0.08905674266128444,
+            "h": 137.9952544575407,
+            "l": 0.794414171677234
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 127,
+          "confidence": 1,
+          "prominence": 103544,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 108,
+            "other/stroke": 19
+          }
+        },
+        {
+          "hex": "#ee6018",
+          "oklch": {
+            "c": 0.19040298303785536,
+            "h": 42.13069001674068,
+            "l": 0.6627644315728003
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 61,
+          "confidence": 1,
+          "prominence": 93141.49288338188,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 43,
+            "other/stroke": 18
+          }
+        },
+        {
+          "hex": "#4d4947",
+          "oklch": {
+            "c": 0.006316578462729041,
+            "h": 48.56527281960847,
+            "l": 0.40859968514460143
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 256,
+          "confidence": 1,
+          "prominence": 48161.83728795037,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 256
+          }
+        },
+        {
+          "hex": "#b8b3b0",
+          "oklch": {
+            "c": 0.007116352934952517,
+            "h": 53.41586489763716,
+            "l": 0.7699757385128951
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 28046.163413254173,
+          "properties": [
+            "color",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/fill": 48,
+            "other/stroke": 2
+          }
+        },
+        {
+          "hex": "#fafafa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9851036517304731
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 12033.490604640998,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 14,
+            "nav/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3a3a3a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.347143085768537
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 5965.798852714432,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/stroke": 7
+          }
+        },
+        {
+          "hex": "#b3541d",
+          "oklch": {
+            "c": 0.13956203758129956,
+            "h": 46.46818758977013,
+            "l": 0.556294968153627
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 5003.016103835334,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 39,
+            "other/stroke": 3
+          }
+        },
+        {
+          "hex": "#80756f",
+          "oklch": {
+            "c": 0.016453913933206613,
+            "h": 50.63610563822053,
+            "l": 0.5705863802440098
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 1573.8509652398375,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 32
+          }
+        },
+        {
+          "hex": "#26211f",
+          "oklch": {
+            "c": 0.008529345094661694,
+            "h": 43.117479045464606,
+            "l": 0.2526518969056013
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1465.1366278739256,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 4
+          }
+        },
+        {
+          "hex": "#e4e2e1",
+          "oklch": {
+            "c": 0.002569059905812792,
+            "h": 48.716157976859996,
+            "l": 0.9140626864024629
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 881.2391504009628,
+          "properties": [
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#ff5f57",
+          "oklch": {
+            "c": 0.19637691805734278,
+            "h": 26.364397152439953,
+            "l": 0.6936014078270613
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 47,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#ffbd2e",
+          "oklch": {
+            "c": 0.1618254400739136,
+            "h": 81.06463157010958,
+            "l": 0.8377226308531867
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 47,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#28c840",
+          "oklch": {
+            "c": 0.21733980186431423,
+            "h": 144.71159282761,
+            "l": 0.7280324506441637
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 47,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.09905377348567707,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.12,
+          "background": "#fafafa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20,
+          "background": "#fafafa",
+          "foreground": "#010101"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.5,
+          "background": "#fafafa",
+          "foreground": "#060505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.23,
+          "background": "#fafafa",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.99,
+          "background": "#eeeeee",
+          "foreground": "#010101"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.54,
+          "background": "#eeeeee",
+          "foreground": "#060505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.58,
+          "background": "#fafafa",
+          "foreground": "#1d1a18"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.4,
+          "background": "#eeeeee",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.26,
+          "background": "#e4e2e1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.17,
+          "background": "#e4e2e1",
+          "foreground": "#010101"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.77,
+          "background": "#e4e2e1",
+          "foreground": "#060505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.24,
+          "background": "#fafafa",
+          "foreground": "#26211f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.92,
+          "background": "#1d1a18",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.74,
+          "background": "#e4e2e1",
+          "foreground": "#101010"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.71,
+          "background": "#eeeeee",
+          "foreground": "#26211f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.41,
+          "background": "#e4e2e1",
+          "foreground": "#1d1a18"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.57,
+          "background": "#ffbd2e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.49,
+          "background": "#ffbd2e",
+          "foreground": "#010101"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.32,
+          "background": "#e4e2e1",
+          "foreground": "#26211f"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "card",
+            "footer"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body",
+            "list"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|body",
+            "columnGap|body",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 7,
+          "properties": [
+            "columnGap",
+            "rowGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "rowGap|other",
+            "paddingRight|other",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "hero",
+            "other",
+            "footer",
+            "list"
+          ],
+          "frequency": 147,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|hero",
+            "columnGap|hero",
+            "rowGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|footer",
+            "paddingRight|list"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginRight",
+            "rowGap",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "rowGap|other",
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "footer"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "marginRight|footer",
+            "marginLeft|footer"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "footer",
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|footer",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginTop|footer"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero",
+            "marginBottom|hero",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Geist",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 304,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Geist Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 17,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Geist Mono",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Geist Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Geist",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 21,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "button",
+            "hero",
+            "icon",
+            "image",
+            "card",
+            "footer",
+            "list"
+          ],
+          "frequency": 248,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "icon"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Geist Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.12,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 25,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/184848aa-3d4b-45af-a7e4-d5083c86e11d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/96331452-119f-45a3-8364-45207541948e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/13d6fc89-eba2-4724-ac37-20f4f2e5efec#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Factory design system\",\"item\":\"https://styles.refero.design/style/13d6fc89-eba2-4724-ac37-20f4f2e5efec\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/13d6fc89-eba2-4724-ac37-20f4f2e5efec#style-reference\",\"name\":\"Factory design system reference\",\"headline\":\"Factory design system | Refero Styles\",\"description\":\"Explore Factory's dark AI design system: Obsidian Canvas #101010, Carbon Lift #1d1a18 colors, Geist, Geist Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/13d6fc89-eba2-4724-ac37-20f4f2e5efec\",\"mainEntityOfPage\":\"https://styles.refero.design/style/13d6fc89-eba2-4724-ac37-20f4f2e5efec\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Factory\",\"url\":\"https://factory.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/13d6fc89-eba2-4724-ac37-20f4f2e5efec#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/96331452-119f-45a3-8364-45207541948e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/96331452-119f-45a3-8364-45207541948e.jpg\",\"caption\":\"Screenshot of Factory\"},\"image\":\"https://images.refero.design/styles/refero.design/image/96331452-119f-45a3-8364-45207541948e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Factory design system\",\"Factory website design\",\"Factory colors\",\"Factory typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Obsidian Canvas\",\"Carbon Lift\",\"Ash Stroke\",\"Graphite Mid\",\"Geist\",\"Geist Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Factory design system\"},{\"@type\":\"Thing\",\"name\":\"Factory website design\"},{\"@type\":\"Thing\",\"name\":\"Factory colors\"},{\"@type\":\"Thing\",\"name\":\"Factory typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-02T09:25:14.000Z\",\"dateModified\":\"2026-04-02T09:25:14.000Z\"}]}19:T662,**Quick Color Reference**\n- canvas: #101010\n- text: #eeeeee\n- muted text: #8a8380\n- card surface: #eeeeee\n- accent (live status / data signal): #ee6018\n- accent (positive metric / trend): #a0ca92\n- primary action: #1d1a18 (filled action)\n\n**Example Component Prompts**\n1. *Hero section*: Full-bleed #101010 background, max-width 1200px centered. Headline at 72px Geist weight 400, #eeeeee, letter-spacing -2.88px, line-height 1. Supporting copy at 16px Geist weight 400, #8a8380. Two buttons inline: a dark filled button (#1f1d1c, #eeeeee text, 3px radius, 0 14px padding) followed by a ghost link with arrow (transparent, 1px #3d3a39 border, 0px radius, 24px vertical padding).\n2. Create a Primary Action Button: #1d1a18 background, #eeeeee text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n3. *Dashboard metric tile*: no background, 1px #1d1a18 bottom border, 20px padding. Label: Geist Mono 12px uppercase #b8b3b0. Value: Geist 36px weight 400, #eeeeee, letter-spacing -1.12px. Sparkline: 40px tall, 1px stroke, color #ee6018 (negative trend) or #a0ca92 (positive trend).\n4. *Trust logo strip*: full-width #101010 band, 96px vertical padding, single row of 8 partner wordmarks rendered in #8a8380, evenly distributed with 24px+ gaps. No card backgrounds, no dividers.\n5. *Top nav bar*: transparent on #101010, ~64px tall. Wordmark left: 'FACTORY' Geist Mono 12px uppercase #eeeeee. Nav center/right: Product, Enterprise, Pricing, News, Company, Careers in Geist 14px weight 400 #eeeeee uppercase. Log In button: #fafafa fill, #101010 text, 3px radius. Contact Sales: ghost text link with arrow."
+}

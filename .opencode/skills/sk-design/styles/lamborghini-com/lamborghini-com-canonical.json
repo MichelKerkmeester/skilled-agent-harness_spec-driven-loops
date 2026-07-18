@@ -1,0 +1,1204 @@
+{
+  "source": "https://styles.refero.design/style/c9c5be5a-aaa1-4338-9681-8378d2e24fbd",
+  "uuid": "c9c5be5a-aaa1-4338-9681-8378d2e24fbd",
+  "name": "Lamborghini.com",
+  "northStar": "Showroom black with one yellow car under spotlights",
+  "capturedAt": "2026-07-18T08:32:06.651Z",
+  "meta": {
+    "url": "https://lamborghini.com",
+    "siteName": "Lamborghini.com",
+    "extractedAt": "2026-06-03T16:36:06.256Z",
+    "durationMs": 26311,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 677,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Render every heading in UPPERCASE LamboType at 0.0230em letter-spacing — no exceptions, this is the typographic voice",
+      "Use #ffc000 Giallo Vivo for exactly one element per screen, almost always the primary action button",
+      "Alternate between full-bleed #202020 dark surfaces and #ffffff/#f5f5f5 light surfaces section by section to create cinematic pacing",
+      "Scale display type aggressively: 80–120px for hero statements, 40–54px for section openers, 16–18px for body",
+      "Keep all radius values at 0px — hard edges are non-negotiable, from buttons to images to cards",
+      "Use 8px-base spacing multiples (8, 16, 24, 32, 40, 48, 64, 80px) — never break the grid with arbitrary values",
+      "Separate components with surface color contrast and whitespace, never with shadows or borders"
+    ],
+    "donts": [
+      "Do not use rounded corners on any element — buttons, images, cards, and badges all sit at 0px radius",
+      "Do not introduce additional colors beyond #ffc000 and its #917300 variant — the 0% colorfulness is the brand",
+      "Do not add drop shadows, soft glows, or elevation effects — separation comes from surface color only",
+      "Do not use more than one weight of LamboType — it ships at 400 only; hierarchy comes from size and uppercase treatment",
+      "Do not place the Giallo yellow on more than one element per screen — it loses urgency as a signal",
+      "Do not use lowercase or sentence case for any display or heading text — UPPERCASE is mandatory at 16px and above",
+      "Do not apply letter-spacing values other than 0.0230em — the uniform tracking is what makes the type system feel engineered"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#ffc000",
+        "name": "Giallo Vivo",
+        "role": "Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#917300",
+        "name": "Giallo Ombra",
+        "role": "Hover or secondary yellow state, list markers with brand accent — darker mustard variant of the primary",
+        "group": "brand"
+      },
+      {
+        "hex": "#202020",
+        "name": "Carbony Black",
+        "role": "Primary text, dark hero canvases, navigation bar — the workhorse near-black used at 1400+ occurrences",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Body copy, footer ink, icon strokes on light surfaces — maximum contrast text and absolute dark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#181818",
+        "name": "Carbon Deep",
+        "role": "Headline color on light surfaces, dark surface variant, link ink — slightly warmer alternative to pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pearl White",
+        "role": "Page canvas, light card surface, button text on dark, hero text overlay — dominant light surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Marble Gray",
+        "role": "Alternate section background, body container fill, badge surface — the off-white that breaks up the white-white rhythm",
+        "group": "neutral"
+      },
+      {
+        "hex": "#494949",
+        "name": "Graphite Border",
+        "role": "Section dividers, link ink on light backgrounds, mid-weight borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7d7d7d",
+        "name": "Steel Mid",
+        "role": "Button border outlines, secondary link text, muted UI chrome",
+        "group": "neutral"
+      },
+      {
+        "hex": "#969696",
+        "name": "Ash Border",
+        "role": "Light borders, disabled states, tertiary dividers on white surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#313131",
+        "name": "Anvil",
+        "role": "Body copy variant, dark border accent — sits between Carbony Black and deeper neutrals",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page model alternates between full-bleed dark stages and max-width (1440px) contained light sections. The hero is full-viewport with a centered or left-aligned text block sitting over a video/photographic background. Subsequent sections use a centered max-width container with left-aligned text in two-column rows (heading left, link right). Feature and story sections deploy 3-column image grids with 24px gap. Navigation is a fixed dark top bar (64px) with centered logo. Footer is full-width dark. Vertical rhythm uses 80px section gaps with 24px internal element spacing. The overall flow is: dark cinematic hero → light editorial band → dark product showcase → light story grid → dark footer. Sections rarely use visible dividers — surface color contrast alone defines the boundaries.",
+    "imagery": "Photography is the primary visual language and dominates the interface. Treatment is full-bleed and edge-to-edge with 0px radius — images are never cropped to rounded frames. The hero uses cinematic video and atmospheric photography (tunnels, headlights, road motion) on dark canvases. Product photography is tight, macro-grade detail: leather stitching, embroidered bull logos, body panel curves. Car lineup photography uses track and landscape backgrounds (Imola circuit, open road). Lifestyle and editorial imagery is high-contrast, low-key, often shot at dawn/dusk or in studio lighting. No illustration, no abstract graphics, no icons-as-decoration. Icons are minimal and white-on-dark line icons. The image-to-text ratio is high in heroes, balanced in editorial sections.",
+    "similar": [
+      {
+        "why": "Same automotive-theater approach: dark cinematic hero with full-bleed video, monospace-tinged uppercase display type, single Rosso Corsa red accent against black-and-white palette, and 0px-radius hard edges throughout",
+        "business": "Ferrari.com"
+      },
+      {
+        "why": "Shares the alternating dark hero / light editorial section rhythm, uppercase condensed-style display headlines at 80–120px scale, and a monochromatic palette punctuated by a single brand color (red for Porsche) on CTAs only",
+        "business": "Porsche.com"
+      },
+      {
+        "why": "Both lean into full-bleed dark product photography, uppercase custom sans-serif headlines with uniform letter-spacing, and a minimal component vocabulary — 0px radius buttons, hairline borders, no shadows",
+        "business": "Ducati.com"
+      },
+      {
+        "why": "Luxury automotive restraint: dark cinematic surfaces, uppercase editorial display type, a single accent color (British Racing Green or Aston Martin Green) used only on action elements, generous 80px section spacing",
+        "business": "Aston Martin"
+      },
+      {
+        "why": "Industrial engineering aesthetic: dark full-bleed hero stages, uppercase condensed display sans-serif, single vibrant accent (Papaya Orange) as the lone chromatic element, 0px-radius hard-edged component system",
+        "business": "McLaren Automotive"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "level": 0,
+        "purpose": "Default page background for editorial and content sections"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Marble",
+        "level": 1,
+        "purpose": "Alternate section background, subtle band separator from white canvas"
+      },
+      {
+        "hex": "#202020",
+        "name": "Carbony",
+        "level": 2,
+        "purpose": "Dark stage for full-bleed heroes, video backgrounds, and product showcase sections"
+      },
+      {
+        "hex": "#181818",
+        "name": "Carbon Deep",
+        "level": 3,
+        "purpose": "Navigation bar, footer, and slightly darker surface for layering above Carbony"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "level": 4,
+        "purpose": "Terminal contrast surface, body ink, deepest text"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Showroom black with one yellow car under spotlights",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.23
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.37
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.41
+      },
+      {
+        "role": "heading-sm",
+        "size": 27,
+        "lineHeight": 1.37,
+        "letterSpacing": 0.62
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.38,
+        "letterSpacing": 0.74
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.19,
+        "letterSpacing": 0.92
+      },
+      {
+        "role": "display",
+        "size": 54,
+        "lineHeight": 1.13,
+        "letterSpacing": 1.24
+      },
+      {
+        "role": "display-lg",
+        "size": 80,
+        "lineHeight": 1,
+        "letterSpacing": 1.84
+      },
+      {
+        "role": "hero",
+        "size": 120,
+        "lineHeight": 0.92,
+        "letterSpacing": 2.76
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Stage",
+        "role": "Full-bleed cinematic opener with video or photographic background",
+        "description": "Full-viewport dark canvas (#202020 or #000000) with overlaid white LamboType headline at 80–120px, uppercase, line-height ~0.92, letter-spacing 0.0230em. Eyebrow label at 12–16px sits above headline in same uppercase treatment. Yellow CTA button anchored bottom-left, pause/video control anchored bottom-right. Content sits in a left-aligned column, max 50% of viewport width."
+      },
+      {
+        "name": "Giallo Action Button",
+        "role": "Primary call-to-action",
+        "description": "Solid #ffc000 background, no border, 0px radius, padding 16px 24px. LamboType 12–16px uppercase white text (#ffffff) with arrow icon (→) in 16px to the right of the label. Letter-spacing 0.0230em. No shadow. Sits as a hard rectangular block of yellow against dark or white surfaces — the only color in the interface, so it must dominate."
+      },
+      {
+        "name": "Ghost Link Button",
+        "role": "Secondary action or text-link CTA",
+        "description": "No fill, no border. LamboType 12–16px uppercase text in #202020 or #ffffff depending on surface, with right-arrow icon. Letter-spacing 0.0230em. Used for less critical actions (model listings, editorial links). The arrow is the only visual anchor."
+      },
+      {
+        "name": "Outlined Nav Button",
+        "role": "Tertiary button with border",
+        "description": "Transparent fill, 1px border in #7d7d7d or #969696, 0px radius, 12–16px LamboType uppercase text. Used sparingly in navigation or filter contexts where a middle-weight button is needed between Giallo solid and Ghost link."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Fixed top bar at full width, #202020 background, ~64px height. Left: hamburger menu icon + 'MENU' label in white LamboType 12px. Center: bull logo in white. Right: camera icon + search icon. No visible border-bottom — the dark surface meets the hero directly."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Editorial section title with linked descriptor",
+        "description": "Two-column row: left side holds section name in LamboType 40–54px uppercase #202020 (#000000 on #f5f5f5), right side holds 'descubrir [topic]' link in LamboType 12px uppercase #202020 with right-arrow. Vertically centered, separated by generous whitespace. This is the signature section opener pattern."
+      },
+      {
+        "name": "Product Image Tile",
+        "role": "Full-bleed product photograph",
+        "description": "0px radius, no border, no shadow — photographs run edge-to-edge within their grid cell. Caption sits below in LamboType 12–16px uppercase #202020 with a date stamp at 10–12px above the title. No rounded corners, no overlay UI."
+      },
+      {
+        "name": "Three-Column Story Grid",
+        "role": "Editorial story or news grid",
+        "description": "Three equal-width columns with 24px gap. Each cell: date label (10–12px LamboType uppercase) above headline (16–27px LamboType uppercase), then a full-bleed image below at 0px radius. No card chrome — the image and text float directly on the white canvas with whitespace as the only separator."
+      },
+      {
+        "name": "Carousel Navigation Pips",
+        "role": "Hero slide indicator and pause control",
+        "description": "Bottom-right of hero: two horizontal short lines (active + inactive) at ~40px width, 1–2px height, #ffffff, with a hexagonal pause button outlined in #ffffff. LamboType is not used here — these are pure iconographic elements. Spacing between pips: 24px."
+      },
+      {
+        "name": "Full-Bleed Editorial Image",
+        "role": "Large product or lifestyle photograph",
+        "description": "100% width, 0px radius, no caption overlay. Photograph extends edge to edge of viewport. Used for car close-ups (leather stitching, badges) and lifestyle shots (circuit, landscape). The image does the talking — no frame, no shadow, no rounded corner."
+      },
+      {
+        "name": "Event Banner",
+        "role": "Promotional or event announcement band",
+        "description": "Lighter photographic background with overlay text block at left. Headline at 54–80px LamboType uppercase white, supporting body at 16–18px uppercase white, then a Giallo CTA button below. Right side: implicit photographic content. Padding: 40px top/bottom."
+      },
+      {
+        "name": "Date Stamped Card",
+        "role": "News or article entry",
+        "description": "White surface, 0px radius, no border. Date in LamboType 10–12px uppercase #7d7d7d or #969696. Headline in LamboType 16–18px uppercase #202020, 0.0230em letter-spacing. Followed by a 4:3 or 16:9 image at 0px radius. Padding: 24px."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Exclusive brand typeface used at all hierarchy levels. Renders always in UPPERCASE for editorial weight, with a consistent 0.0230em letter-spacing across all sizes — the spacing is wide enough to feel engineered, not cramped. Display sizes reach 120px with tight 0.92–1.00 line-height so headlines stack into monolithic typographic blocks. The single weight (400) at radically different sizes (10px labels → 120px display) is the signature: the system achieves voice through scale contrast, never weight contrast.",
+        "sizes": "10px, 12px, 16px, 18px, 27px, 32px, 40px, 54px, 80px, 120px",
+        "family": "LamboType",
+        "weight": "400",
+        "lineHeight": "0.92, 1.00, 1.13, 1.15, 1.19, 1.37, 1.38, 1.50, 1.56, 1.63, 1.83, 2.00",
+        "substitute": "Barlow Condensed (closest open equivalent for the tall industrial feel); Rajdhani as a fallback; Bebas Neue for display-only contexts",
+        "letterSpacing": "0.0230em across all sizes — applied uniformly to labels (12px), body (16px), and display (120px) alike, giving every text node an engineered, spaced-out rhythm"
+      },
+      {
+        "role": "Rare fallback or supplementary body text at 16px, normal letter-spacing — only used in 3 occurrences, effectively vestigial; do not introduce for new pages",
+        "sizes": "16px",
+        "family": "Open Sans",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "system-ui"
+      }
+    ],
+    "description": "Lamborghini's design language is automotive theater: a cinematic dark stage where Giallo yellow punctuates an otherwise black-and-white world. The interface alternates between full-bleed dark hero canvases (where video and product photography dominate) and quiet light-gray content surfaces (where editorial storytelling takes over). Typography is the loudest element — an industrial custom sans-serif (LamboType) spoken only in UPPERCASE, scaled aggressively to 80–120px for hero statements. Components are minimal and structural: no rounded cards, no soft shadows, no decorative gradients — just hard-edged surfaces, hairline rules, and one vivid yellow action button. The overall feeling is gallery-grade restraint interrupted by a single confident color hit, the way a matte black showroom is broken by one yellow car under a spotlight.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c9c5be5a-aaa1-4338-9681-8378d2e24fbd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Lamborghini.com design system\",\"item\":\"https://styles.refero.design/style/c9c5be5a-aaa1-4338-9681-8378d2e24fbd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c9c5be5a-aaa1-4338-9681-8378d2e24fbd#style-reference\",\"name\":\"Lamborghini.com design system reference\",\"headline\":\"Lamborghini.com design system | Refero Styles\",\"description\":\"Explore Lamborghini.com's mixed E-commerce design system: Giallo Vivo #ffc000, Giallo Ombra #917300 colors, LamboType, Open Sans typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/c9c5be5a-aaa1-4338-9681-8378d2e24fbd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c9c5be5a-aaa1-4338-9681-8378d2e24fbd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Lamborghini.com\",\"url\":\"https://lamborghini.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c9c5be5a-aaa1-4338-9681-8378d2e24fbd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/34d7e311-71b0-449e-b2f4-590a7155e05c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/34d7e311-71b0-449e-b2f4-590a7155e05c.jpg\",\"caption\":\"Screenshot of Lamborghini.com\"},\"image\":\"https://images.refero.design/styles/refero.design/image/34d7e311-71b0-449e-b2f4-590a7155e05c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Lamborghini.com design system\",\"Lamborghini.com website design\",\"Lamborghini.com colors\",\"Lamborghini.com typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Giallo Vivo\",\"Giallo Ombra\",\"Carbony Black\",\"Pure Black\",\"LamboType\",\"Open Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Lamborghini.com design system\"},{\"@type\":\"Thing\",\"name\":\"Lamborghini.com website design\"},{\"@type\":\"Thing\",\"name\":\"Lamborghini.com colors\"},{\"@type\":\"Thing\",\"name\":\"Lamborghini.com typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-01-31T17:19:57.000Z\",\"dateModified\":\"2026-01-31T17:19:57.000Z\"}]}19:T546,Quick Color Reference:\n- text: #202020 (primary on light), #ffffff (primary on dark)\n- background: #ffffff (light canvas), #202020 (dark stage)\n- border: #969696 (light hairlines), #494949 (darker dividers)\n- accent: #ffc000 (Giallo Vivo — single hit per screen)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Create a section heading block: two-column row on #ffffff background. Left: section name at 54px LamboType weight 400, uppercase, #202020, letter-spacing 0.0230em. Right: discovery link at 12px LamboType weight 400, uppercase, #202020 with right-arrow icon. 80px padding top and bottom. No borders, no shadows.\n\n3. Create a three-column story grid: three equal columns with 24px gap on #ffffff. Each cell: date label at 10px LamboType weight 400, uppercase, #7d7d7d, then headline at 16px LamboType weight 400, uppercase, #202020, then a full-bleed photograph below at 0px radius. 64px section gap above the grid.\n\n\n5. Create a product image tile: full-bleed photograph at 0px radius, no border, no shadow. Below the image: caption in 12px LamboType weight 400, uppercase, #202020, letter-spacing 0.0230em. 24px padding around the tile content. Sits on #ffffff or #f5f5f5 surface."
+      }
+    ],
+    "elevationPhilosophy": "Lamborghini deliberately avoids drop shadows. All visual separation comes from surface color contrast (white → #f5f5f5 → #202020 → #000000) and hairline 1px borders. Components sit flat against the canvas like automotive body panels — no floating cards, no soft glows. This is a hard-edged, industrial aesthetic where shadow would feel decorative and weak."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#202020",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24353474225450714
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "list",
+            "hero",
+            "body",
+            "image",
+            "button",
+            "card",
+            "link",
+            "badge"
+          ],
+          "frequency": 1404,
+          "confidence": 1,
+          "prominence": 100654467.4220579,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "icon",
+            "body",
+            "link",
+            "heading",
+            "list"
+          ],
+          "frequency": 838,
+          "confidence": 1,
+          "prominence": 24691836.87982715,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f5f5f5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9701507725365187
+          },
+          "contexts": [
+            "other",
+            "body",
+            "image",
+            "heading",
+            "footer",
+            "nav",
+            "badge",
+            "list"
+          ],
+          "frequency": 298,
+          "confidence": 1,
+          "prominence": 11203096.936666323,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "other",
+            "link",
+            "list",
+            "footer"
+          ],
+          "frequency": 228,
+          "confidence": 1,
+          "prominence": 10678908.325112334,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#181818",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20903608651870992
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 92,
+          "confidence": 1,
+          "prominence": 8587177.576635389,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#494949",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.40539754419683494
+          },
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 29,
+          "confidence": 1,
+          "prominence": 582938.602758292,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#424242",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.37909358396702786
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 493200,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7d7d7d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5897123335661424
+          },
+          "contexts": [
+            "button",
+            "link",
+            "list"
+          ],
+          "frequency": 31,
+          "confidence": 1,
+          "prominence": 101920,
+          "properties": [
+            "borderColor",
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#313131",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.31316712939792546
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 130,
+          "confidence": 1,
+          "prominence": 64165.918043026155,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#917300",
+          "oklch": {
+            "c": 0.11618447077634081,
+            "h": 90.49762811844195,
+            "l": 0.5684620054032786
+          },
+          "contexts": [
+            "button",
+            "list"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 49900.733739573916,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffc000",
+          "oklch": {
+            "c": 0.172705003404782,
+            "h": 84.5753169952635,
+            "l": 0.8421808558205548
+          },
+          "contexts": [
+            "button",
+            "list"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 38228,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#969696",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6731222170290512
+          },
+          "contexts": [
+            "button",
+            "list",
+            "link"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 36097.40976817766,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#525252",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.43860476002652315
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0010649751418589327,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.26,
+          "background": "#000000",
+          "foreground": "#f5f5f5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.76,
+          "background": "#181818",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.29,
+          "background": "#ffffff",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.29,
+          "background": "#181818",
+          "foreground": "#f5f5f5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.94,
+          "background": "#f5f5f5",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.01,
+          "background": "#ffffff",
+          "foreground": "#313131"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.79,
+          "background": "#ffc000",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.93,
+          "background": "#f5f5f5",
+          "foreground": "#313131"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.82,
+          "background": "#ffc000",
+          "foreground": "#181818"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.05,
+          "background": "#424242",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.92,
+          "background": "#ffc000",
+          "foreground": "#202020"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.22,
+          "background": "#424242",
+          "foreground": "#f5f5f5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9,
+          "background": "#ffffff",
+          "foreground": "#494949"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.26,
+          "background": "#f5f5f5",
+          "foreground": "#494949"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.92,
+          "background": "#ffc000",
+          "foreground": "#313131"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.81,
+          "background": "#525252",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.17,
+          "background": "#525252",
+          "foreground": "#f5f5f5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.1,
+          "background": "#969696",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.12,
+          "background": "#ffc000",
+          "foreground": "#424242"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 34,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 149,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 78,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 73,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 269,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 19,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 53,
+          "contexts": [],
+          "frequency": 36,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "LamboType",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 612,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Open Sans",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 24,
+          "lineHeight": 2,
+          "letterSpacing": 0.023,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0.023,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link",
+            "body",
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.83,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.83,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "list",
+            "hero",
+            "body",
+            "image",
+            "icon",
+            "link",
+            "card",
+            "badge",
+            "footer"
+          ],
+          "frequency": 397,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Open Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "nav"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "icon",
+            "link"
+          ],
+          "frequency": 43,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.37,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 54,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.19,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 80,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 120,
+          "family": "LamboType",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 0.92,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/fd767818-e45d-44b8-a34a-d9907d14217e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/34d7e311-71b0-449e-b2f4-590a7155e05c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c9c5be5a-aaa1-4338-9681-8378d2e24fbd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Lamborghini.com design system\",\"item\":\"https://styles.refero.design/style/c9c5be5a-aaa1-4338-9681-8378d2e24fbd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c9c5be5a-aaa1-4338-9681-8378d2e24fbd#style-reference\",\"name\":\"Lamborghini.com design system reference\",\"headline\":\"Lamborghini.com design system | Refero Styles\",\"description\":\"Explore Lamborghini.com's mixed E-commerce design system: Giallo Vivo #ffc000, Giallo Ombra #917300 colors, LamboType, Open Sans typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/c9c5be5a-aaa1-4338-9681-8378d2e24fbd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c9c5be5a-aaa1-4338-9681-8378d2e24fbd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Lamborghini.com\",\"url\":\"https://lamborghini.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c9c5be5a-aaa1-4338-9681-8378d2e24fbd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/34d7e311-71b0-449e-b2f4-590a7155e05c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/34d7e311-71b0-449e-b2f4-590a7155e05c.jpg\",\"caption\":\"Screenshot of Lamborghini.com\"},\"image\":\"https://images.refero.design/styles/refero.design/image/34d7e311-71b0-449e-b2f4-590a7155e05c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Lamborghini.com design system\",\"Lamborghini.com website design\",\"Lamborghini.com colors\",\"Lamborghini.com typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Giallo Vivo\",\"Giallo Ombra\",\"Carbony Black\",\"Pure Black\",\"LamboType\",\"Open Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Lamborghini.com design system\"},{\"@type\":\"Thing\",\"name\":\"Lamborghini.com website design\"},{\"@type\":\"Thing\",\"name\":\"Lamborghini.com colors\"},{\"@type\":\"Thing\",\"name\":\"Lamborghini.com typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-01-31T17:19:57.000Z\",\"dateModified\":\"2026-01-31T17:19:57.000Z\"}]}19:T546,Quick Color Reference:\n- text: #202020 (primary on light), #ffffff (primary on dark)\n- background: #ffffff (light canvas), #202020 (dark stage)\n- border: #969696 (light hairlines), #494949 (darker dividers)\n- accent: #ffc000 (Giallo Vivo — single hit per screen)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Create a section heading block: two-column row on #ffffff background. Left: section name at 54px LamboType weight 400, uppercase, #202020, letter-spacing 0.0230em. Right: discovery link at 12px LamboType weight 400, uppercase, #202020 with right-arrow icon. 80px padding top and bottom. No borders, no shadows.\n\n3. Create a three-column story grid: three equal columns with 24px gap on #ffffff. Each cell: date label at 10px LamboType weight 400, uppercase, #7d7d7d, then headline at 16px LamboType weight 400, uppercase, #202020, then a full-bleed photograph below at 0px radius. 64px section gap above the grid.\n\n\n5. Create a product image tile: full-bleed photograph at 0px radius, no border, no shadow. Below the image: caption in 12px LamboType weight 400, uppercase, #202020, letter-spacing 0.0230em. 24px padding around the tile content. Sits on #ffffff or #f5f5f5 surface."
+}

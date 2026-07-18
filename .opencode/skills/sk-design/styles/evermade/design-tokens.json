@@ -1,0 +1,317 @@
+{
+  "color": {
+    "wine-maroon": {
+      "$value": "#2d070b",
+      "$type": "color",
+      "$description": "Wine Maroon — Dark section background, heading text on cream, card borders, footer surface — near-black with a blood-red undertone, sets the dramatic contrast against the cream canvas"
+    },
+    "hot-pink": {
+      "$value": "#ff0389",
+      "$type": "color",
+      "$description": "Hot Pink — Outlined action borders, link underlines, tag labels, decorative brand accent — the visual signature; appears as border-color and text, never as filled background"
+    },
+    "cream-paper": {
+      "$value": "#fef0e6",
+      "$type": "color",
+      "$description": "Cream Paper — Primary page canvas, section background, card surface for hero product mockups — warm off-white that reads as paper rather than screen"
+    },
+    "blush-card": {
+      "$value": "#ffdce2",
+      "$type": "color",
+      "$description": "Blush Card — Secondary card surface, subtle highlight wash, tag pill backgrounds — one step warmer and pinker than the cream, creates gentle figure-ground separation"
+    },
+    "soft-pink": {
+      "$value": "#ffc7de",
+      "$type": "color",
+      "$description": "Soft Pink — Muted pink accent for secondary links and tag borders — desaturated cousin of Hot Pink used where less visual weight is needed"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Card borders on cream, dark text fallback, high-contrast borders — used sparingly, Wine Maroon usually takes the dark role"
+    }
+  },
+  "font": {
+    "instrument-serif": {
+      "$value": "Instrument Serif",
+      "$type": "fontFamily",
+      "$description": "Display and heading serif — the editorial voice. Used for hero wordmarks, section headlines, and large statements. At 128px it becomes a background watermark. Classic transitional serif with high contrast strokes creates magazine gravitas"
+    },
+    "dm-mono": {
+      "$value": "DM Mono",
+      "$type": "fontFamily",
+      "$description": "UI labels, tag text, button text, eyebrows, metadata — monospace gives the interface a technical/editorial datestamp quality. The 0.04em tracking on labels creates typewriter-style uppercase headers"
+    },
+    "manrope": {
+      "$value": "Manrope",
+      "$type": "fontFamily",
+      "$description": "Body text and secondary copy — geometric sans that stays neutral so the serif can carry the brand voice. Used for paragraphs, descriptions, and long-form reading"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "DM Mono",
+        "fontSize": "11px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "DM Mono",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "DM Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "DM Mono",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "DM Mono",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "DM Mono",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Instrument Serif",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "DM Mono",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Instrument Serif",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Instrument Serif",
+        "fontSize": "128px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 128px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#fef0e6",
+      "$type": "color",
+      "$description": "Surface level 1: Default page background for content sections"
+    },
+    "blush-card": {
+      "$value": "#ffdce2",
+      "$type": "color",
+      "$description": "Surface level 2: Blog post cards, tag pill backgrounds, subtle panel lifts"
+    },
+    "white-insert": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Product mockup frames, image containers on cream"
+    },
+    "maroon-stage": {
+      "$value": "#2d070b",
+      "$type": "color",
+      "$description": "Surface level 4: Hero section, footer, dramatic dark bands"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://evermade.fi",
+      "siteName": "Evermade",
+      "extractedAt": "2026-06-03T20:52:02.286Z",
+      "variant": "extended"
+    }
+  }
+}

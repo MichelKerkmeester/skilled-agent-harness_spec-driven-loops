@@ -1,0 +1,1965 @@
+{
+  "source": "https://styles.refero.design/style/e352ec32-830a-4650-b7c2-d32a5f559f7e",
+  "uuid": "e352ec32-830a-4650-b7c2-d32a5f559f7e",
+  "name": "aave.com",
+  "northStar": "neon violet threading twilight — a light lavender noon collapses into a midnight product surface, and one electric violet is the only color that survives the transition.",
+  "capturedAt": "2026-07-18T08:16:39.050Z",
+  "meta": {
+    "url": "https://aave.com",
+    "siteName": "aave.com",
+    "extractedAt": "2026-06-03T17:49:28.188Z",
+    "durationMs": 45014,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 622,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 1584px border-radius for any filled CTA — the pill shape is non-negotiable and defines the brand's button language",
+      "Reserve #998eff for actions and accents only; never use it for body text, borders on cards, or large background washes beyond the hero lavender gradient",
+      "Set display text at 72px / weight 500 / letter-spacing -3.6px — the aggressive negative tracking at large sizes is what makes headlines feel custom rather than templated",
+      "Hold the type system to weights 400–500; escalate hierarchy through size and tracking before reaching for bolder weights",
+      "Apply the 20px radius as the default for cards, inputs, and secondary buttons; 8px is reserved for badges and nav items",
+      "Use the lavender hero wash (#ffffff fading to ~#ece6ff) only at the top of marketing pages; product sections must start on a #221d1d surface",
+      "Pair every dark-section CTA group as a filled white pill + a ghost outlined pill; never use two filled buttons in the same pair"
+    ],
+    "donts": [
+      "Don't introduce a second chromatic accent — the entire interface is monochrome plus #998eff, and adding another hue will break the dual-surface system",
+      "Don't use shadows on cards or buttons; the only sanctioned shadow is the soft 6px-blur recipe on floating nav elements",
+      "Don't set body text larger than 18px or smaller than 14px; the scale is deliberate and the gaps between sizes carry the rhythm",
+      "Don't break the light → dark page sequence; every page must transition through a hard surface change between the marketing hero and any product detail",
+      "Don't apply bold (600+) weights; the 400–500 spread is the signature, and a heavier weight reads as off-brand at any size",
+      "Don't use #998eff as a background fill for anything larger than a button or a small badge — at scale it overwhelms the dark surfaces and loses its CTA clarity",
+      "Don't use color alone to signal state in the dark sections; pair violet emphasis with a weight or size change so the meaning survives in monochrome"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#998eff",
+        "name": "Aave Violet",
+        "role": "Primary CTA fill, outlined action borders, category label accent, decorative icon strokes — the single chromatic thread across light and dark sections; warm enough to feel alive against matte black without becoming aggressive",
+        "group": "brand"
+      },
+      {
+        "hex": "#221d1d",
+        "name": "Obsidian",
+        "role": "Dominant dark surface, body text in light sections, primary nav text — the near-black that anchors the Pro and Markets bands",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0f0f10",
+        "name": "Inkwell",
+        "role": "High-contrast neutral action fill for primary buttons on light surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Charcoal",
+        "role": "Pure-black fallbacks for fills, strokes, and high-contrast borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#636161",
+        "name": "Iron",
+        "role": "Body text, muted paragraph copy, secondary nav text — carries the bulk of reading weight in light sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#858387",
+        "name": "Graphite",
+        "role": "Medium-neutral helper text, secondary borders, placeholder fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8f8e8e",
+        "name": "Pewter",
+        "role": "Icon strokes, tertiary borders, disabled-state outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bcbbbb",
+        "name": "Ash",
+        "role": "Hairline dividers, subtle fills, low-emphasis SVG strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f6f7f4",
+        "name": "Bone",
+        "role": "Off-white card surface, light icon borders, tinted secondary background — the warm neutral behind badges and product pills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, card surfaces, light button fills, text in dark sections",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Centered max-width 1200px container with generous outer gutters. The hero is a full-bleed lavender wash with a centered headline, subhead, CTA pair, and a fanned phone cluster below. The page then hard-cuts to a full-bleed black Pro band: centered badge, display heading, white/dark button pair, and a centered browser-mockup screenshot. The Markets band continues the dark surface with a two-column section header (title left, ghost CTA right) and a three-column feature card grid below. Vertical rhythm is wide — 64–96px between bands — and content is always centered, never asymmetric. Navigation is a flat top bar that swaps its color from dark-on-light to light-on-dark as the user scrolls past the hero.",
+    "imagery": "Imagery is product-surface driven, not lifestyle. The hero anchors on three iOS device renders arranged in a tight fanned cluster, each showing a different stat highlight (interest rate, weekly balance, projected yield) on pure-white screens. The Pro section uses a full browser chrome with dashboard UI — nav, search bar, and a markets table — rendered as a flat dark-mode screenshot. No photography, no illustration, no decorative 3D: every visual is either a real product capture or a UI mockup. Icons are line-based, ~1.5px stroke, monochrome (#998eff for accents, #636161 or #ffffff for neutral). The restraint is deliberate — the interface is the visual.",
+    "similar": [
+      {
+        "why": "Same dual light-and-dark section architecture with a single chromatic accent, pill-shaped CTAs, and tight-tracked custom or near-custom display type on a DeFi product surface",
+        "business": "Lido Finance"
+      },
+      {
+        "why": "Shared DeFi-product visual grammar: nearly flat dark product surfaces, white pill CTAs inside dark bands, and a single restrained accent color used sparingly for actions",
+        "business": "Compound Labs"
+      },
+      {
+        "why": "Same tight 400–500 weight type, aggressive negative tracking at large sizes, and a 'one accent does everything' philosophy across mixed light/dark marketing layouts",
+        "business": "Linear"
+      },
+      {
+        "why": "Shared pink-as-accent restraint on otherwise monochrome surfaces, soft-cornered (20px-range) cards, and a clear light-to-dark band rhythm across product and protocol pages",
+        "business": "Uniswap"
+      },
+      {
+        "why": "Same violet-leaning accent, pill buttons, and a hero phone-mockup trio that mirrors Aave's app marketing band almost beat for beat",
+        "business": "Phantom Wallet"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "20px",
+        "badges": "8px",
+        "inputs": "20px",
+        "buttons": "1584px (full pill)",
+        "nav-items": "8px",
+        "cards-featured": "24px",
+        "buttons-secondary": "50px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64-96px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Base light-section background, hero top wash"
+      },
+      {
+        "hex": "#ece6ff",
+        "name": "Lavender Wash",
+        "level": 1,
+        "purpose": "Hero backdrop — soft violet gradient blooming downward into the phone mockup band"
+      },
+      {
+        "hex": "#f6f7f4",
+        "name": "Warm Card",
+        "level": 2,
+        "purpose": "Light-section secondary surface, product badge backgrounds"
+      },
+      {
+        "hex": "#221d1d",
+        "name": "Midnight",
+        "level": 3,
+        "purpose": "Dark-section primary surface, feature card fill"
+      },
+      {
+        "hex": "#0f0f10",
+        "name": "Abyss",
+        "level": 4,
+        "purpose": "Inverted button fill, deepest surface for high-contrast CTAs"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.05) 0px 6px 20px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",
+        "element": "Floating Nav / Dropdown"
+      }
+    ],
+    "northStar": "neon violet threading twilight — a light lavender noon collapses into a midnight product surface, and one electric violet is the only color that survives the transition.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.13
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.05,
+        "letterSpacing": -1.24
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -3.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Violet Pill Button",
+        "role": "Hero CTA and any single dominant action on a section",
+        "description": "Filled #998eff background, #ffffff text, 1584px border-radius (fully pill), 14px 24px padding, 14–16px Aave Repro weight 500, leading icon optional. Used for 'Download on iOS' and equivalent download/launch actions."
+      },
+      {
+        "name": "Dark Inverted Pill Button",
+        "role": "Primary action inside a light section (mirror to violet pill on dark sections)",
+        "description": "Filled #0f0f10 background, #ffffff text, 1584px border-radius, 14px 24px padding, Aave Repro 14–16px weight 500. The 'Use Aave' nav button and any dark-mode equivalent of the violet CTA."
+      },
+      {
+        "name": "Light Pill Button",
+        "role": "Primary action on a dark section",
+        "description": "Filled #ffffff background, #221d1d text, 50px border-radius, 14px 24px padding, Aave Repro 16px weight 500. The 'Get Started' CTA on the Aave Pro dark band."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action alongside a primary CTA",
+        "description": "Transparent background, 1px border (#ffffff on dark, #221d1d on light), text matching the border, 50px border-radius, 14px 24px padding. The 'Learn More' pairing button."
+      },
+      {
+        "name": "Outlined Violet Button",
+        "role": "Tertiary action with chromatic emphasis",
+        "description": "Transparent background, 1px #998eff border, #998eff text, 50px border-radius, 14px 24px padding. Used when an action needs to feel on-brand but secondary to the filled violet CTA."
+      },
+      {
+        "name": "Adaptive Navigation Bar",
+        "role": "Top-level site navigation across light and dark sections",
+        "description": "Horizontal bar with logo at left (Aave mark + wordmark in #221d1d or #ffffff depending on section), centered link group (Products, Resources, Developers, About) in 14px Aave Repro 450, and a dark pill CTA at right. Nav item padding 8px 6px, link color tracks the section: #221d1d in light, #ffffff in dark."
+      },
+      {
+        "name": "Product Badge",
+        "role": "Section label that introduces a product band",
+        "description": "Pill containing a small violet icon (16–20px) + label text ('Aave App', 'Aave Pro'). Background #f6f7f4, text #221d1d, 8px border-radius, 8px 12px padding, 14px Aave Repro 450. Floats centered above section headlines."
+      },
+      {
+        "name": "Feature Card (Dark)",
+        "role": "Three-column feature card on the Markets / Pro sections",
+        "description": "Background #221d1d (sits on the midnight band), 20px border-radius, 24px padding, no border, no shadow. Contains a violet category label in 14px Aave Repro 500 ('General purpose', 'Predictable', 'Strategy-specific'), a white title in 20px weight 500, and a body paragraph in 14px Iron (#636161 inverted to #bcbbbb on dark)."
+      },
+      {
+        "name": "App Screen Card (Light)",
+        "role": "Phone mockup container or app preview surface",
+        "description": "White #ffffff surface, 20px border-radius, sits on the lavender hero wash. Houses the iOS device render; no internal padding concern since the device art is the content."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form input across the Pro dashboard and any form context",
+        "description": "Background #ffffff, 1px border #bcbbbb, 20px border-radius, 12px 16px padding, 14px Aave Repro 400 placeholder text in #858387, focus state thickens border to #998eff."
+      },
+      {
+        "name": "Stat Highlight",
+        "role": "Large numeric display inside app and dashboard screens",
+        "description": "Display-weight numeral (40–72px Aave Repro 500) in #221d1d or #ffffff, paired with a small violet delta or label (e.g. '6.50% APY' in 14px weight 500 #998eff). The visual hook of every phone and dashboard mockup."
+      },
+      {
+        "name": "Section Divider Header",
+        "role": "Title-plus-CTA row that introduces a content section",
+        "description": "Two-column row inside a 1200px container: left side holds a display-size heading (40px Aave Repro 500) and a one-sentence subhead in 18px Iron; right side holds a single ghost or outlined action button. Used to open the Markets band."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole brand typeface across headlines, body, UI, and nav — the 400→450→500 spread is deliberately narrow, so hierarchy is created through size and tight tracking rather than weight contrast",
+        "sizes": "13px, 14px, 15px, 16px, 17px, 18px, 20px, 24px, 32px, 40px, 72px",
+        "family": "Aave Repro",
+        "weight": "400, 450, 500",
+        "lineHeight": "1.0–1.5",
+        "substitute": "Inter (close in x-height and neutrality) or General Sans for the same calm, geometric feel",
+        "letterSpacing": "-3.6px at 72px, -1.24px at 40px, -0.96px at 32px, -0.6px at 24px, -0.4px at 20px, -0.16px at 16px, -0.084px at 14px, 0.13px at 13px",
+        "fontFeatureSettings": "\"ss07\""
+      },
+      {
+        "role": "Reserve typeface for compact nav utility labels where Aave Repro is not loaded — appears as a fallback rather than a stylistic counterpoint",
+        "sizes": "10px, 14px",
+        "family": "Inter",
+        "weight": "400, 700",
+        "lineHeight": "0.8, 1.5",
+        "substitute": "Inter",
+        "letterSpacing": "-0.0060em",
+        "fontFeatureSettings": "\"ss07\""
+      }
+    ],
+    "description": "Aave operates as a dual-mood system: a sunlit lavender hero dissolves into a near-black product surface, with vivid violet (#998eff) threading both halves as the sole chromatic accent. Typography runs on a custom display family (Aave Repro) held in a narrow 400–500 weight range — hierarchy comes from generous size jumps and aggressive negative tracking, not from going bold. Components are soft and pill-shaped by default: 20px is the workhorse corner radius, 1584px marks the full-pill CTA, and elevation is essentially absent — a single soft shadow recipe appears on floating elements only. The result reads as a fintech app that absorbed crypto's electric energy and SaaS's editorial restraint simultaneously, presenting dense DeFi mechanics through a calm, high-contrast canvas.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e352ec32-830a-4650-b7c2-d32a5f559f7e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"aave.com design system\",\"item\":\"https://styles.refero.design/style/e352ec32-830a-4650-b7c2-d32a5f559f7e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e352ec32-830a-4650-b7c2-d32a5f559f7e#style-reference\",\"name\":\"aave.com design system reference\",\"headline\":\"aave.com design system | Refero Styles\",\"description\":\"Explore aave.com's mixed Crypto design system: Aave Violet #998eff, Obsidian #221d1d colors, Aave Repro, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e352ec32-830a-4650-b7c2-d32a5f559f7e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e352ec32-830a-4650-b7c2-d32a5f559f7e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"aave.com\",\"url\":\"https://aave.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e352ec32-830a-4650-b7c2-d32a5f559f7e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0615e335-778e-40c4-9385-aab7f9d97368.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0615e335-778e-40c4-9385-aab7f9d97368.jpg\",\"caption\":\"Screenshot of aave.com\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0615e335-778e-40c4-9385-aab7f9d97368.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"aave.com design system\",\"aave.com website design\",\"aave.com colors\",\"aave.com typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Aave Violet\",\"Obsidian\",\"Inkwell\",\"Charcoal\",\"Aave Repro\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"aave.com design system\"},{\"@type\":\"Thing\",\"name\":\"aave.com website design\"},{\"@type\":\"Thing\",\"name\":\"aave.com colors\"},{\"@type\":\"Thing\",\"name\":\"aave.com typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T00:35:18.129Z\",\"dateModified\":\"2026-04-30T00:35:18.129Z\"}]}19:T47e,**Quick Color Reference**\n- text-primary-light: #221d1d\n- text-primary-dark: #ffffff\n- text-muted: #636161\n- border-default: #bcbbbb\n- accent: #998eff (Aave Violet)\n- surface-light: #ffffff\n- surface-dark: #221d1d\n- primary action: #998eff (filled action)\n\n**Example Component Prompts**\n1. Create a Primary Action Button: #998eff background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n\n3. **Three-column feature card grid**: 3 cards in a row, each 20px radius, #221d1d background, 24px padding, no border or shadow. Card content: violet category label in 14px Aave Repro weight 500 #998eff, white title in 20px weight 500 #ffffff, body in 14px #bcbbbb. 24px gap between cards.\n\n4. **Input field**: White #ffffff background, 1px #bcbbbb border, 20px radius, 12px 16px padding. Placeholder text 14px Aave Repro weight 400 in #858387. On focus, border becomes #998eff.\n\n5. **Stats display inside a phone screen**: 40–56px Aave Repro weight 500 numeral in #221d1d, with a 14px Aave Repro weight 500 violet label ('6.50% APY') directly above. Sits inside a white phone screen on a lavender hero wash."
+      },
+      {
+        "title": "Dual-Surface Architecture",
+        "content": "Aave deliberately runs two parallel color systems: a light canvas (#ffffff, #f6f7f4, #221d1d text) for marketing/hero surfaces, and a dark canvas (#221d1d, #0f0f10, #ffffff text) for product surfaces. The bridge is #998eff — it is the only color that is correct in both contexts, used as the CTA fill, the outlined-action border, the category label, and the stat delta. When extending the system, never introduce a second accent; instead, reuse violet at varying weights (fill, stroke, text) across both surfaces. This is the system."
+      },
+      {
+        "title": "Weight Restraint",
+        "content": "The custom typeface (Aave Repro) is held in a narrow 400/450/500 weight spread. This is a signature choice: instead of jumping to 700 for emphasis, Aave leans on size jumps and tight letter-spacing (down to -0.05em at 72px) to create hierarchy. The result is a system that feels editorial rather than aggressive — appropriate for a financial product where shouting undermines trust."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is rationed. The entire shadow vocabulary is a single 1px-hairline-plus-soft-20px-blur recipe used only on floating surfaces like nav dropdowns; cards and CTAs rest on flat contrast alone. This keeps the dense DeFi data legible without competing with the violet accent for visual weight."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#221d1d",
+          "oklch": {
+            "c": 0.0078109261039950835,
+            "h": 16.399908988221924,
+            "l": 0.23579417129124464
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "heading",
+            "card",
+            "body",
+            "button",
+            "input",
+            "footer",
+            "icon"
+          ],
+          "frequency": 1263,
+          "confidence": 1,
+          "prominence": 106883848.20273934,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 14,
+            "nav/color": 93,
+            "body/color": 2,
+            "card/color": 37,
+            "hero/color": 2,
+            "link/color": 1,
+            "other/fill": 21,
+            "input/color": 1,
+            "other/color": 78,
+            "button/color": 6,
+            "footer/color": 1,
+            "heading/color": 25,
+            "nav/borderColor": 372,
+            "body/borderColor": 8,
+            "card/borderColor": 148,
+            "hero/borderColor": 8,
+            "link/borderColor": 4,
+            "input/borderColor": 4,
+            "other/borderColor": 308,
+            "button/borderColor": 24,
+            "footer/borderColor": 4,
+            "heading/borderColor": 100,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#858387",
+          "oklch": {
+            "c": 0.00563484447664373,
+            "h": 314.7821473067859,
+            "l": 0.613791777289641
+          },
+          "contexts": [
+            "nav",
+            "card"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 2070685.0953040419,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "nav/borderColor": 8,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 7.216449660063518e-16,
+            "h": 180,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "icon",
+            "heading",
+            "body",
+            "card",
+            "input"
+          ],
+          "frequency": 178,
+          "confidence": 1,
+          "prominence": 869275.1377923525,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 12,
+            "body/color": 2,
+            "card/color": 6,
+            "icon/color": 3,
+            "nav/stroke": 9,
+            "other/fill": 14,
+            "other/color": 1,
+            "button/color": 7,
+            "other/stroke": 1,
+            "heading/color": 7,
+            "body/borderColor": 8,
+            "card/borderColor": 24,
+            "icon/borderColor": 12,
+            "other/borderColor": 4,
+            "button/borderColor": 28,
+            "heading/borderColor": 28,
+            "nav/backgroundColor": 2,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#636161",
+          "oklch": {
+            "c": 0.0032114709850297385,
+            "h": 15.996167109842984,
+            "l": 0.4946309803820322
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "card",
+            "icon",
+            "body",
+            "other"
+          ],
+          "frequency": 239,
+          "confidence": 1,
+          "prominence": 769688.3581389156,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 19,
+            "body/color": 5,
+            "card/color": 12,
+            "icon/color": 6,
+            "nav/stroke": 3,
+            "button/color": 4,
+            "other/stroke": 6,
+            "nav/borderColor": 76,
+            "body/borderColor": 20,
+            "card/borderColor": 48,
+            "icon/borderColor": 24,
+            "button/borderColor": 16
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "other",
+            "nav"
+          ],
+          "frequency": 57,
+          "confidence": 1,
+          "prominence": 362163.817042767,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "other/fill": 16,
+            "other/color": 4,
+            "button/color": 4,
+            "other/borderColor": 16,
+            "button/borderColor": 16
+          }
+        },
+        {
+          "hex": "#f6f7f4",
+          "oklch": {
+            "c": 0.004093892484091509,
+            "h": 121.56044292368418,
+            "l": 0.9745443420895925
+          },
+          "contexts": [
+            "card",
+            "icon",
+            "other",
+            "nav"
+          ],
+          "frequency": 81,
+          "confidence": 1,
+          "prominence": 331552.6945928377,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "card/color": 6,
+            "icon/color": 6,
+            "nav/stroke": 11,
+            "other/fill": 1,
+            "other/stroke": 3,
+            "card/borderColor": 24,
+            "icon/borderColor": 24,
+            "card/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#bcbbbb",
+          "oklch": {
+            "c": 0.001424218986910255,
+            "h": 15.92712673738707,
+            "l": 0.792966843480591
+          },
+          "contexts": [
+            "body",
+            "nav",
+            "other"
+          ],
+          "frequency": 28,
+          "confidence": 1,
+          "prominence": 254057.83210218663,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 13,
+            "body/color": 1,
+            "other/fill": 6,
+            "other/stroke": 4,
+            "body/borderColor": 4
+          }
+        },
+        {
+          "hex": "#8f8e8e",
+          "oklch": {
+            "c": 0.0014981099418459865,
+            "h": 15.934696411707446,
+            "l": 0.6476671251638221
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "body",
+            "card",
+            "nav"
+          ],
+          "frequency": 77,
+          "confidence": 1,
+          "prominence": 198342.15241841713,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 12,
+            "body/color": 2,
+            "card/color": 6,
+            "icon/color": 2,
+            "nav/stroke": 1,
+            "other/fill": 8,
+            "other/color": 1,
+            "other/stroke": 1,
+            "body/borderColor": 8,
+            "card/borderColor": 24,
+            "icon/borderColor": 8,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#e2e0ff",
+          "oklch": {
+            "c": 0.04585839433110326,
+            "h": 288.8947196893836,
+            "l": 0.9188782236404115
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 75913.3639345405,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#998eff",
+          "oklch": {
+            "c": 0.17252998151798288,
+            "h": 285.363244098804,
+            "l": 0.7091601379570106
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "card",
+            "other"
+          ],
+          "frequency": 109,
+          "confidence": 1,
+          "prominence": 69820.8796104499,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "card/color": 3,
+            "other/fill": 19,
+            "other/color": 1,
+            "button/color": 3,
+            "other/stroke": 16,
+            "nav/borderColor": 28,
+            "card/borderColor": 12,
+            "other/borderColor": 4,
+            "button/borderColor": 12,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#bdbbff",
+          "oklch": {
+            "c": 0.10275323789586528,
+            "h": 285.47153907457925,
+            "l": 0.8203381370396242
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 57966.83353887484,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#ffcfb2",
+          "oklch": {
+            "c": 0.07578184093057941,
+            "h": 48.190504577944,
+            "l": 0.8970538598862858
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 47896,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#c7e6ff",
+          "oklch": {
+            "c": 0.05022202646174529,
+            "h": 245.57492597308763,
+            "l": 0.9112440623141512
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 47896,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#fff2c7",
+          "oklch": {
+            "c": 0.058044044818873285,
+            "h": 91.02790226531722,
+            "l": 0.963876463653805
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 47896,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#0f0f10",
+          "oklch": {
+            "c": 0.002056923867247685,
+            "h": 286.1773390629385,
+            "l": 0.16885954804040623
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 44316.27212483618,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/color": 3,
+            "button/borderColor": 12,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff7d3d",
+          "oklch": {
+            "c": 0.1901852473276016,
+            "h": 42.36867384008622,
+            "l": 0.7492017858684329
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 36573,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#59b6ff",
+          "oklch": {
+            "c": 0.1390624544110668,
+            "h": 245.18142625202398,
+            "l": 0.7513384992922358
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 36573,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#ffd255",
+          "oklch": {
+            "c": 0.15089577937459817,
+            "h": 85.32988010647539,
+            "l": 0.8886406649272073
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 36573,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.04047085788603012,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.53,
+          "background": "#f6f7f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.16,
+          "background": "#0f0f10",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.78,
+          "background": "#fff2c7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.82,
+          "background": "#0f0f10",
+          "foreground": "#f6f7f4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.13,
+          "background": "#fff2c7",
+          "foreground": "#0f0f10"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.65,
+          "background": "#ffffff",
+          "foreground": "#221d1d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.34,
+          "background": "#e2e0ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.19,
+          "background": "#c7e6ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.48,
+          "background": "#f6f7f4",
+          "foreground": "#221d1d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.91,
+          "background": "#e2e0ff",
+          "foreground": "#0f0f10"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.89,
+          "background": "#fff2c7",
+          "foreground": "#221d1d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.82,
+          "background": "#ffcfb2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.77,
+          "background": "#c7e6ff",
+          "foreground": "#0f0f10"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.6,
+          "background": "#ffd255",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.52,
+          "background": "#ffcfb2",
+          "foreground": "#0f0f10"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.32,
+          "background": "#ffd255",
+          "foreground": "#0f0f10"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.95,
+          "background": "#e2e0ff",
+          "foreground": "#221d1d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.83,
+          "background": "#c7e6ff",
+          "foreground": "#221d1d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.75,
+          "background": "#ffcfb2",
+          "foreground": "#221d1d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 24
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "card",
+            "input"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 1584,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "card"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.05) 0px 6px 20px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "card",
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginTop|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "nav",
+            "button",
+            "card",
+            "input"
+          ],
+          "frequency": 107,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "columnGap|nav",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|input",
+            "columnGap|input",
+            "rowGap|nav"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "card",
+            "input"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "button"
+          ],
+          "frequency": 31,
+          "properties": [
+            "columnGap",
+            "rowGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "input"
+          ],
+          "frequency": 66,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "columnGap|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|heading",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "rowGap|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link",
+            "button",
+            "nav"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|button",
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 96,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "card",
+            "other",
+            "body"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "hero",
+            "nav"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav"
+          ]
+        },
+        {
+          "value": 51,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 119,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 176,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 203,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Aave Repro",
+          "source": "custom",
+          "weights": [
+            400,
+            450,
+            500
+          ],
+          "frequency": 454,
+          "fontFeatureSettings": [
+            "\"ss07\""
+          ]
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 9,
+          "fontFeatureSettings": [
+            "\"ss07\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Aave Repro",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Aave Repro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.36,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Aave Repro",
+          "weight": 450,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Aave Repro",
+          "weight": 450,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Aave Repro",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Aave Repro",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Aave Repro",
+          "weight": 500,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Aave Repro",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 29,
+          "lineHeight": 1.03,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Aave Repro",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Aave Repro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "image",
+            "card",
+            "button",
+            "icon",
+            "footer",
+            "body"
+          ],
+          "frequency": 259,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Aave Repro",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Aave Repro",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "input"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Aave Repro",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Aave Repro",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 21,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Aave Repro",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Aave Repro",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "card"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.36,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Aave Repro",
+          "weight": 450,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.36,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Aave Repro",
+          "weight": 450,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Aave Repro",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Aave Repro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.36,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Aave Repro",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Aave Repro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Aave Repro",
+          "weight": 450,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Aave Repro",
+          "weight": 500,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Aave Repro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Aave Repro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Aave Repro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3a5a8036-2feb-45a1-ac41-b9ce77960f9d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/0615e335-778e-40c4-9385-aab7f9d97368.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e352ec32-830a-4650-b7c2-d32a5f559f7e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"aave.com design system\",\"item\":\"https://styles.refero.design/style/e352ec32-830a-4650-b7c2-d32a5f559f7e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e352ec32-830a-4650-b7c2-d32a5f559f7e#style-reference\",\"name\":\"aave.com design system reference\",\"headline\":\"aave.com design system | Refero Styles\",\"description\":\"Explore aave.com's mixed Crypto design system: Aave Violet #998eff, Obsidian #221d1d colors, Aave Repro, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e352ec32-830a-4650-b7c2-d32a5f559f7e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e352ec32-830a-4650-b7c2-d32a5f559f7e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"aave.com\",\"url\":\"https://aave.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e352ec32-830a-4650-b7c2-d32a5f559f7e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0615e335-778e-40c4-9385-aab7f9d97368.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0615e335-778e-40c4-9385-aab7f9d97368.jpg\",\"caption\":\"Screenshot of aave.com\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0615e335-778e-40c4-9385-aab7f9d97368.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"aave.com design system\",\"aave.com website design\",\"aave.com colors\",\"aave.com typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Aave Violet\",\"Obsidian\",\"Inkwell\",\"Charcoal\",\"Aave Repro\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"aave.com design system\"},{\"@type\":\"Thing\",\"name\":\"aave.com website design\"},{\"@type\":\"Thing\",\"name\":\"aave.com colors\"},{\"@type\":\"Thing\",\"name\":\"aave.com typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T00:35:18.129Z\",\"dateModified\":\"2026-04-30T00:35:18.129Z\"}]}19:T47e,**Quick Color Reference**\n- text-primary-light: #221d1d\n- text-primary-dark: #ffffff\n- text-muted: #636161\n- border-default: #bcbbbb\n- accent: #998eff (Aave Violet)\n- surface-light: #ffffff\n- surface-dark: #221d1d\n- primary action: #998eff (filled action)\n\n**Example Component Prompts**\n1. Create a Primary Action Button: #998eff background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n\n3. **Three-column feature card grid**: 3 cards in a row, each 20px radius, #221d1d background, 24px padding, no border or shadow. Card content: violet category label in 14px Aave Repro weight 500 #998eff, white title in 20px weight 500 #ffffff, body in 14px #bcbbbb. 24px gap between cards.\n\n4. **Input field**: White #ffffff background, 1px #bcbbbb border, 20px radius, 12px 16px padding. Placeholder text 14px Aave Repro weight 400 in #858387. On focus, border becomes #998eff.\n\n5. **Stats display inside a phone screen**: 40–56px Aave Repro weight 500 numeral in #221d1d, with a 14px Aave Repro weight 500 violet label ('6.50% APY') directly above. Sits inside a white phone screen on a lavender hero wash."
+}

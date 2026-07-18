@@ -1,0 +1,91 @@
+:root {
+  /* Colors */
+  --color-electric-cobalt: #3e7ff0;
+  --color-signal-blue: #006be6;
+  --color-ink: #222222;
+  --color-slate: #282b3b;
+  --color-graphite: #444444;
+  --color-stone: #334155;
+  --color-steel: #4b5563;
+  --color-fog: #969faf;
+  --color-ash: #909090;
+  --color-pure-black: #000000;
+  --color-paper: #ffffff;
+  --color-cloud: #f6f6f7;
+  --color-chalk: #f0f0f0;
+  --color-pebble: #e5e7eb;
+  --color-mist: #cfd9de;
+
+  /* Typography — Font Families */
+  --font-ui-sans-serif-inter-system-ui: 'ui-sans-serif (Inter / system-ui)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ui-monospace-jetbrains-mono-sf-mono: 'ui-monospace (JetBrains Mono / SF Mono)', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-menlo: 'Menlo', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-firsttimewriting-custom-handwriting: 'FirstTimeWriting (custom handwriting)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-monospace: 'monospace', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.2;
+  --text-body: 14px;
+  --leading-body: 1.42;
+  --text-heading-sm: 18px;
+  --leading-heading-sm: 1.5;
+  --text-heading: 20px;
+  --leading-heading: 1.5;
+  --text-heading-lg: 32px;
+  --leading-heading-lg: 1.2;
+  --text-display: 40px;
+  --leading-display: 1.17;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-160: 160px;
+  --spacing-200: 200px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 64px;
+  --card-padding: 16-24px;
+  --element-gap: 8-12px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-md: 5px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 20px;
+  --radius-3xl: 40px;
+
+  /* Named Radii */
+  --radius-cards: 8px;
+  --radius-pills: 20px;
+  --radius-badges: 2px;
+  --radius-inputs: 8px;
+  --radius-buttons: 8px;
+  --radius-smallchips: 5px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 1px 2px 0px, rgba(0, 0, 0, 0.075) 0px 2px 4px 0px;
+  --shadow-subtle-2: rgb(205, 205, 230) 0px -2px 0px 0px inset, rgb(255, 255, 255) 0px 0px 1px 1px inset, rgba(30, 35, 90, 0.4) 0px 1px 2px 1px;
+
+  /* Surfaces */
+  --surface-canvas: #f6f6f7;
+  --surface-card: #ffffff;
+  --surface-inset: #f0f0f0;
+}

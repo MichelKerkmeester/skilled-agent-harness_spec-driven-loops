@@ -1,0 +1,48 @@
+@theme {
+  /* Colors */
+  --color-schematic-blue: #0d6ea5;
+  --color-signal-orange: #fb631b;
+  --color-ink-black: #181818;
+  --color-graphite: #434343;
+  --color-slate: #858483;
+  --color-ash-gray: #666666;
+  --color-hairline: #e5e5e5;
+  --color-cream-paper: #f5f4f1;
+  --color-pure-white: #ffffff;
+  --color-fog: #eeeeee;
+  --color-mortar: #dedede;
+  --color-concrete: #cbcbcb;
+
+  /* Typography */
+  --font-gerstnerprogramm: 'gerstnerProgramm', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ftsystemmono: 'ftSystemMono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.015px;
+  --text-heading-sm: 26px;
+  --leading-heading-sm: 1.23;
+  --tracking-heading-sm: 0.012px;
+  --text-heading: 36px;
+  --leading-heading: 1.11;
+  --tracking-heading: 0.012px;
+
+  /* Spacing */
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-48: 48px;
+  --spacing-80: 80px;
+  --spacing-160: 160px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-lg: 8px;
+  --radius-full: 14385.6px;
+
+  /* Shadows */
+  --shadow-subtle: rgb(229, 229, 229) 0px 0px 0px 0.5px;
+  --shadow-subtle-2: rgb(229, 229, 229) 0px 0.5px 0px 0px;
+  --shadow-sm: rgba(0, 0, 0, 0.02) 0px 13px 8px 0px, rgba(0, 0, 0, 0.03) 0px 6px 6px 0px, rgba(0, 0, 0, 0.04) 0px 1px 3px 0px;
+}

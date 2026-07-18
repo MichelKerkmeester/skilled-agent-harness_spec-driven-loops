@@ -1,0 +1,307 @@
+{
+  "color": {
+    "peach-paper": {
+      "$value": "#f6e0db",
+      "$type": "color",
+      "$description": "Peach Paper — Page canvas — the warm pastel ground that makes every black border and colored accent pop"
+    },
+    "charcoal-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Charcoal Ink — Primary text, hairlines, card borders, nav outlines — the structural skeleton at 1400+ border occurrences"
+    },
+    "snow": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Snow — Primary page canvas and white card surfaces. Do not promote it to the primary CTA color"
+    },
+    "ember-orange": {
+      "$value": "#ef724f",
+      "$type": "color",
+      "$description": "Ember Orange — Decorative accent and warm card surfaces — a crayon-orange that carries the most frequency of any chromatic color across the UI"
+    },
+    "magenta-pop": {
+      "$value": "#981082",
+      "$type": "color",
+      "$description": "Magenta Pop — Decorative accent, nav highlight, and vivid card fills — a saturated fuchsia used as bold punctuation on the peach canvas"
+    },
+    "sunbeam-yellow": {
+      "$value": "#e7db4c",
+      "$type": "color",
+      "$description": "Sunbeam Yellow — Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "mint-wash": {
+      "$value": "#ace2df",
+      "$type": "color",
+      "$description": "Mint Wash — Decorative accent and soft card surface — a desaturated teal that cools the warm palette without breaking its energy"
+    },
+    "powder-blue": {
+      "$value": "#84bfff",
+      "$type": "color",
+      "$description": "Powder Blue — Decorative accent and card surface — a mid-saturation sky blue appearing in the largest non-black count (60 fills), used for illustration washes"
+    },
+    "lilac-tint": {
+      "$value": "#e69dff",
+      "$type": "color",
+      "$description": "Lilac Tint — Decorative accent and card surface — a soft pastel pink-violet that lightens the magenta without competing"
+    },
+    "lime-zest": {
+      "$value": "#6ed311",
+      "$type": "color",
+      "$description": "Lime Zest — Decorative accent — high-chroma green used sparingly as playful punctuation among illustrations"
+    },
+    "cobalt-spark": {
+      "$value": "#5196ff",
+      "$type": "color",
+      "$description": "Cobalt Spark — Decorative accent — a single vivid blue dot in the illustration palette"
+    }
+  },
+  "font": {
+    "alfa-slab-one": {
+      "$value": "Alfa Slab One",
+      "$type": "fontFamily",
+      "$description": "Display and editorial headlines — a single-weight chunky slab serif that carries the entire brand voice; the 46px size with tight 1.09 leading is the signature 'shouting headline' treatment, while 16px serves emphasized inline text"
+    },
+    "manrope": {
+      "$value": "Manrope",
+      "$type": "fontFamily",
+      "$description": "UI text, navigation, body copy, and large display alternates — geometric sans used for everything that isn't an Alfa Slab headline; weight 500 for nav labels, 700-800 for emphasized UI text, 400 for body; the 120px extreme is a secondary display tier"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Alfa Slab One",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "25px",
+        "fontWeight": 800,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "25px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 25px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "34px",
+        "fontWeight": 800,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Alfa Slab One",
+        "fontSize": "35px",
+        "fontWeight": 400,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 35px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Alfa Slab One",
+        "fontSize": "46px",
+        "fontWeight": 400,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "50px",
+        "fontWeight": 800,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "120px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 120px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "46": {
+      "$value": "46px",
+      "$type": "dimension",
+      "$description": "Spacing 46px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "47px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    }
+  },
+  "surface": {
+    "peach-canvas": {
+      "$value": "#f6e0db",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page background — warm pastel base for all sections"
+    },
+    "snow-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary card and button fill, outlined by black borders"
+    },
+    "color-card": {
+      "$value": "#ef724f",
+      "$type": "color",
+      "$description": "Surface level 2: Vivid flat card surface in orange — same color as accent, used as a bold panel"
+    },
+    "mint-card": {
+      "$value": "#ace2df",
+      "$type": "color",
+      "$description": "Surface level 3: Soft teal card surface for variety within content sections"
+    },
+    "lilac-card": {
+      "$value": "#e69dff",
+      "$type": "color",
+      "$description": "Surface level 4: Pastel pink-violet card surface for softer content panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://lpalo.com",
+      "siteName": "Lpalo",
+      "extractedAt": "2026-06-03T16:55:13.807Z",
+      "variant": "extended"
+    }
+  }
+}

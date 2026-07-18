@@ -1,0 +1,130 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Body text, headings, footer text, inverted section backgrounds, cards, borders, nav — the universal structural color"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces on dark sections, text on inverted black backgrounds"
+    }
+  },
+  "font": {
+    "helveticanowdisplay": {
+      "$value": "HelveticaNowDisplay",
+      "$type": "fontFamily",
+      "$description": "Workhorse for everything non-display: body copy at 15px, section sub-headings and card titles at 26px. The choice to stay at a single weight 400 — no bold, no light — forces hierarchy through size and space rather than stroke contrast. Substitute: Neue Haas Grotesk Display Pro or Inter at 400."
+    },
+    "locomotivenew": {
+      "$value": "LocomotiveNew",
+      "$type": "fontFamily",
+      "$description": "Signature display face for hero headlines and feature titles. At 110px it commands the viewport; the tight 1.0–1.1 line-height and zero tracking make the letterforms feel architectural and monolithic. Custom and ownable — no direct substitute, but Migra or Söhne Breit at 400 come close in feel. Do not substitute with a bold weight; the whisper-thin strokes at scale are the point."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "LocomotiveNew",
+        "fontSize": "70px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 70px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "LocomotiveNew",
+        "fontSize": "110px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 110px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page canvas — body, article lists, centered image compositions"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Inverted section panels, footer, full-bleed hero overlays, project feature blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://locomotive.ca",
+      "siteName": "Locomotive",
+      "extractedAt": "2026-06-03T19:14:07.711Z",
+      "variant": "extended"
+    }
+  }
+}

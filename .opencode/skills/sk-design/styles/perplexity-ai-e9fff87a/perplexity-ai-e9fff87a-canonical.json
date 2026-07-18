@@ -1,0 +1,897 @@
+{
+  "source": "https://styles.refero.design/style/e9fff87a-63ce-4c19-840f-98233db62f58",
+  "uuid": "e9fff87a-63ce-4c19-840f-98233db62f58",
+  "name": "Perplexity AI",
+  "northStar": "Warm research terminal. A cream-toned search bar floats on aged-paper canvas, surrounded by quiet monochrome controls — the calm of a library reading desk distilled into a single input field.",
+  "capturedAt": "2026-07-18T07:15:17.857Z",
+  "meta": {
+    "url": "https://www.perplexity.ai",
+    "siteName": "Perplexity AI",
+    "extractedAt": "2026-06-03T22:04:09.750Z",
+    "durationMs": 45614,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 278,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": "$undefined"
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 9999px border-radius for all interactive controls (buttons, nav items, toggle chips, tags)",
+      "Maintain the narrow type scale: 12px caption, 14px body-sm, 16px body — do not introduce sizes outside this set",
+      "Set all card and input backgrounds to #ffffff on the #faf8f5 canvas to create the paper-on-paper layering effect",
+      "Use 1px #d1d1cd borders for all container separation — avoid shadows except the single whisper-soft card shadow",
+      "Use #016a71 teal only for active/selected state indicators — it should appear on fewer than 5% of elements",
+      "Keep the main content column at 640px max-width centered — the search bar is the focal point, not a wide canvas",
+      "Use pplxSans weight 500 exclusively for emphasis and active states; weight 400 for all default and body text"
+    ],
+    "donts": [
+      "Do not introduce new colors — the palette is deliberately minimal: cream, black, warm grays, and one teal",
+      "Do not use bold weights (600+) — the system maxes at weight 500",
+      "Do not use 0px or 4px border-radius on interactive elements — always pill (9999px) or 12px minimum",
+      "Do not apply heavy shadows or multiple shadow layers — the design is intentionally flat",
+      "Do not use pure white (#ffffff) as a page background — the warm #faf8f5 canvas is a signature choice",
+      "Do not center-align body text — left-align all labels, descriptions, and input text",
+      "Do not use the teal accent decoratively — it signals a functional state (active, selected, live)"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#faf8f5",
+        "name": "Aged Paper",
+        "role": "Page canvas and card surfaces — warm off-white replaces sterile pure white, giving the interface a document-like, paper-textured quality",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, icon strokes, and the dominant fill across navigation and body copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#27251e",
+        "name": "Charcoal",
+        "role": "Primary action button background and high-emphasis text — warm near-black that pairs with the cream canvas for a softer than pure-black contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#72706b",
+        "name": "Ash Gray",
+        "role": "Secondary text, muted icons, and inactive nav fills — carries the warm tint of the palette",
+        "group": "neutral"
+      },
+      {
+        "hex": "#92918b",
+        "name": "Stone",
+        "role": "Tertiary/placeholder text and low-emphasis labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d1d1cd",
+        "name": "Pebble",
+        "role": "Hairline borders on cards and input containers — warm gray that recedes against the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#016a71",
+        "name": "Deep Teal",
+        "role": "Sole chromatic accent — active nav indicator and selected state fill, provides the only color punctuation in the interface",
+        "group": "brand"
+      }
+    ],
+    "layout": "Centered single-column layout at 640px max-width. Left sidebar (220px) contains primary navigation (New, Computer, Spaces, Customize, History) with a Sign In button pinned at the bottom. Top header bar (56px) holds horizontal category links (Discover, Finance, Health, Academic, Patents) right-aligned. The main content area is dominated by the centered 'perplexity' wordmark and the search input — the hero is literally a search bar, not a visual. Below the search, a status card and skeleton placeholders extend the column. The layout is deliberately minimal: no multi-column grids, no hero imagery, no card carousels on the primary screen. Navigation is a compact sidebar + thin top bar. Section rhythm is defined by generous vertical breathing room (32px+) rather than visual dividers.",
+    "imagery": "No photography, illustration, or decorative graphics. The visual language is pure UI — typography, whitespace, and a single teal accent do all the work. Icons are minimal line-style at 16-20px, rendered in #27251 or #72706b. The brand wordmark 'perplexity' is the only typographic identity element. There are no product screenshots, hero images, or marketing visuals on the primary search interface.",
+    "similar": [
+      {
+        "why": "Same warm off-white canvas, monochrome text system, and single accent color approach — both feel like documents rather than dashboards",
+        "business": "Notion AI"
+      },
+      {
+        "why": "Developer-focused search interface with centered input hero, minimal chrome, and teal/dark dual-tone palette",
+        "business": "Phind"
+      },
+      {
+        "why": "Search-first AI interface with compact sidebar nav, centered query input as the page hero, and restrained accent usage",
+        "business": "You.com"
+      },
+      {
+        "why": "Same flat elevation philosophy, hairline borders instead of shadows, narrow type scale, and pill-shaped interactive controls",
+        "business": "Linear"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "16px",
+        "input": "12px",
+        "buttons": "9999px",
+        "nav-items": "9999px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "32px",
+      "cardPadding": "12px",
+      "pageMaxWidth": "640px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#faf8f5",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — warm off-white that reads as paper or aged cream"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Elevated container surfaces — input fields, status cards, content blocks"
+      },
+      {
+        "hex": "#e8e6e1",
+        "name": "Subtle Fill",
+        "level": 2,
+        "purpose": "Active nav item backgrounds, hover states — a barely-visible warm gray"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.08) 0px 1px 2px 0px",
+        "element": "Status Card"
+      }
+    ],
+    "northStar": "Warm research terminal. A cream-toned search bar floats on aged-paper canvas, surrounded by quiet monochrome controls — the calm of a library reading desk distilled into a single input field.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.43
+      }
+    ],
+    "components": [
+      {
+        "name": "Search Input",
+        "role": "Central input field — the primary action surface of the product",
+        "description": "Full-width within 640px max-width container. White (#ffffff) background with 1px border in #d1d1cd, 12px border-radius. 16px pplxSans weight 400 placeholder text in #92918b. 16px vertical padding. Contains an inline '+' icon, a 'Computer' mode toggle chip, a 'Model' dropdown, a microphone icon, and a dark submit button (#27251, 9999px radius, white up-arrow icon)."
+      },
+      {
+        "name": "Primary Submit Button",
+        "role": "Search submission — the only filled dark button in the interface",
+        "description": "28×28px circle, #27251 background, 9999px radius, white (#ffffff) up-arrow icon at 14px. Sits inline at the right edge of the search input."
+      },
+      {
+        "name": "Sidebar Nav Item",
+        "role": "Left rail navigation links",
+        "description": "36px height, 8px horizontal padding, 9999px radius. pplxSans 14px weight 400 in #27251e. Active state: #e8e6e1 background fill. Leading icon 16px in #27251e. Full-width within 220px sidebar."
+      },
+      {
+        "name": "Top Nav Link",
+        "role": "Horizontal category links in the header",
+        "description": "Inline 14px pplxSans weight 400 in #27251e. No background by default. Active/category indicator uses #016a71 teal fill as an underline or pill background."
+      },
+      {
+        "name": "Mode Toggle Chip",
+        "role": "Inline capability selector within the search input",
+        "description": "Compact pill with 6px radius, 4px 8px padding, #faf8f5 background, 12px pplxSans weight 500 label in #27251, with a small icon prefix and '+' suffix for adding more modes."
+      },
+      {
+        "name": "Status Card",
+        "role": "System/connection status notification below the search",
+        "description": "Full-width 640px, #ffffff background, 16px radius, 1px #d1d1cd border, 12px padding. 14px pplxSans weight 500 label in #27251 with a small status icon. Contains 3-4 skeleton placeholder blocks (rounded 9999px, #f0eeea fill) indicating loading state."
+      },
+      {
+        "name": "Skeleton Placeholder",
+        "role": "Loading state for content cards",
+        "description": "Rounded 9999px bar, 8px height, #f0eeea fill, animated with a subtle shimmer. Arranged in rows with 8px gap."
+      },
+      {
+        "name": "Sign In Button",
+        "role": "Authentication entry at sidebar bottom",
+        "description": "28px height, 8px 12px padding, 9999px radius, pplxSans 14px weight 500 in #27251e. Circular avatar/icon prefix."
+      },
+      {
+        "name": "Model Selector",
+        "role": "Dropdown trigger for AI model selection",
+        "description": "Inline text button, 14px pplxSans weight 400 in #27251, trailing chevron-down icon at 12px. No border or background."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All interface text — the deliberately narrow scale (3 sizes, 2 weights) makes the system feel document-like. Weight 400 handles body, labels, and input text; weight 500 is reserved for active/selected states and emphasis. The custom typeface is geometric and humanist, tighter and more distinctive than a system sans like Inter. Normal letter-spacing throughout.",
+        "sizes": "12px, 14px, 16px",
+        "family": "pplxSans",
+        "weight": "400, 500",
+        "lineHeight": "1.25, 1.33, 1.43, 1.50, 2.00",
+        "substitute": "Inter (system fallback) — closest in geometric proportions; alternatively DM Sans for similar warmth"
+      }
+    ],
+    "description": "Perplexity's interface operates like a quiet research terminal: a warm off-white canvas (#faf8f5) that reads more like aged paper than sterile app-white, a single monochrome typographic voice, and one restrained teal accent (#016a71) that appears only as functional punctuation. The entire visual system compresses to a search bar as the hero — every surrounding control (sidebar, top nav, model selector, voice button) is a subordinate satellite. Density is compact but not cramped: 8px is the workhorse gap, 12–16px the padding standard, with 9999px pill rounding on all interactive controls. There is almost no elevation — the design is deliberately flat, using a barely-there 1px border at #d1d1cd and a single whisper-soft shadow to separate the card layer from the canvas. Typography is custom (pplxSans) at exactly two weights (400, 500) and three sizes (12, 14, 16) — the scale is intentionally narrow, making the interface feel like a document rather than a dashboard.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e9fff87a-63ce-4c19-840f-98233db62f58#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Perplexity AI design system\",\"item\":\"https://styles.refero.design/style/e9fff87a-63ce-4c19-840f-98233db62f58\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e9fff87a-63ce-4c19-840f-98233db62f58#style-reference\",\"name\":\"Perplexity AI design system reference\",\"headline\":\"Perplexity AI design system | Refero Styles\",\"description\":\"Explore Perplexity AI's light AI design system: Aged Paper #faf8f5, Ink Black #000000 colors, pplxSans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e9fff87a-63ce-4c19-840f-98233db62f58\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e9fff87a-63ce-4c19-840f-98233db62f58\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Perplexity AI\",\"url\":\"https://www.perplexity.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e9fff87a-63ce-4c19-840f-98233db62f58#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3e55ca04-3965-43f1-99ff-29aa51e6a3e6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3e55ca04-3965-43f1-99ff-29aa51e6a3e6.jpg\",\"caption\":\"Screenshot of Perplexity AI\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3e55ca04-3965-43f1-99ff-29aa51e6a3e6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Perplexity AI design system\",\"Perplexity AI website design\",\"Perplexity AI colors\",\"Perplexity AI typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Aged Paper\",\"Ink Black\",\"Charcoal\",\"Ash Gray\",\"pplxSans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Perplexity AI design system\"},{\"@type\":\"Thing\",\"name\":\"Perplexity AI website design\"},{\"@type\":\"Thing\",\"name\":\"Perplexity AI colors\"},{\"@type\":\"Thing\",\"name\":\"Perplexity AI typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-29T00:14:05.186Z\",\"dateModified\":\"2026-04-29T00:14:05.186Z\"}]}19:T6ad,## Quick Color Reference\n- canvas: #faf8f5\n- card/surface: #ffffff\n- text primary: #000000\n- text secondary: #72706b\n- text placeholder: #92918b\n- border: #d1d1cd\n- active fill: #e8e6e1\n- accent (selected/active only): #016a71\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Search Input with Submit**: Create a 640px-wide search bar on #faf8f5 canvas. Input: white (#ffffff) background, 1px #d1d1cd border, 12px radius, 16px padding. Placeholder 'Ask anything…' in 16px pplxSans weight 400, #92918b. Inside: a '+' icon (#27251e), a mode chip ('Computer') with #faf8f5 background, 6px radius, 12px pplxSans weight 500, and a dark submit circle (28px, #27251e fill, 9999px radius, white arrow icon).\n\n2. **Sidebar Nav Item**: 36px tall, 8px horizontal padding, 9999px radius. 14px pplxSans weight 400, #27251e text. 16px leading icon in #27251e. Active state: #e8e6e1 background fill. Full width within a 220px left sidebar with #faf8f5 background.\n\n3. **Status Notification Card**: 640px wide, white (#ffffff) background, 16px radius, 1px #d1d1cd border, 12px padding, subtle shadow (rgba(0,0,0,0.08) 0px 1px 2px). 14px pplxSans weight 500 label in #27251e with a 12px status icon. Below: 3-4 skeleton bars (9999px radius, #f0eeea fill, 8px height) with 8px gap.\n\n4. **Teal Active Nav Indicator**: Horizontal 14px pplxSans weight 500 text in #27251e with a #016a71 teal underline bar (2px height, 8px width) or teal pill background. This is the only place teal should appear in the interface.\n\n5. **Top Header Category Link**: Inline 14px pplxSans weight 400, #27251e, no background. Spacing: 16px gap between links, right-aligned in a 56px-tall header bar on #faf8f5 background."
+      }
+    ],
+    "elevationPhilosophy": "The design is almost entirely flat. A single 1px hairline border at #d1d1cd does the work of spatial separation, with one whisper-soft 2px shadow reserved for the status card. Elevation is communicated through background color layering (canvas → card → subtle fill) rather than shadow depth. This restraint is a signature choice — the interface never feels 'raised' or floating, it feels printed."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link",
+            "card",
+            "body",
+            "icon"
+          ],
+          "frequency": 160,
+          "confidence": 1,
+          "prominence": 9500868.274036543,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "nav/color": 71,
+            "body/color": 4,
+            "card/color": 3,
+            "icon/color": 2,
+            "link/color": 5,
+            "other/fill": 5,
+            "other/color": 63,
+            "button/color": 3
+          }
+        },
+        {
+          "hex": "#faf8f5",
+          "oklch": {
+            "c": 0.004519804631342726,
+            "h": 78.29918599117865,
+            "l": 0.9798268197042467
+          },
+          "contexts": [
+            "other",
+            "card",
+            "nav",
+            "button",
+            "icon"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 5601218.810974022,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "icon/fill": 2,
+            "nav/color": 1,
+            "icon/color": 1,
+            "other/fill": 1,
+            "other/color": 2,
+            "button/color": 1,
+            "card/backgroundColor": 3,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#d1d1cd",
+          "oklch": {
+            "c": 0.005213355200373005,
+            "h": 101.63310861645874,
+            "l": 0.8599254181562179
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 175352.0097258936,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 4
+          }
+        },
+        {
+          "hex": "#27251e",
+          "oklch": {
+            "c": 0.013,
+            "h": 93.9,
+            "l": 0.2642
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "icon",
+            "body",
+            "button"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 146337.1962521811,
+          "properties": [
+            "color",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/color": 7,
+            "body/color": 1,
+            "icon/color": 1,
+            "other/color": 6,
+            "other/stroke": 4,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#92918b",
+          "oklch": {
+            "c": 0.007387727978629563,
+            "h": 97.40876487457837,
+            "l": 0.6543373910396226
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 72720,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "other/color": 2
+          }
+        },
+        {
+          "hex": "#72706b",
+          "oklch": {
+            "c": 0.008684170549065095,
+            "h": 96.01652726522367,
+            "l": 0.5454309750480643
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 98,
+          "confidence": 1,
+          "prominence": 19762.112084457316,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 27,
+            "icon/fill": 12,
+            "nav/color": 26,
+            "body/color": 1,
+            "icon/color": 6,
+            "other/fill": 6,
+            "other/color": 12,
+            "button/color": 8
+          }
+        },
+        {
+          "hex": "#016a71",
+          "oklch": {
+            "c": 0.0810845028090293,
+            "h": 202.80377822907033,
+            "l": 0.47767250681315526
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 3072,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/color": 3,
+            "nav/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.01595481017764459,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.81,
+          "background": "#faf8f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.46,
+          "background": "#27251e",
+          "foreground": "#faf8f5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.71,
+          "background": "#d1d1cd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.01,
+          "background": "#d1d1cd",
+          "foreground": "#27251e"
+        },
+        {
+          "level": "AA",
+          "ratio": 6,
+          "background": "#016a71",
+          "foreground": "#faf8f5"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.85,
+          "background": "#27251e",
+          "foreground": "#92918b"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.67,
+          "background": "#faf8f5",
+          "foreground": "#72706b"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.15,
+          "background": "#d1d1cd",
+          "foreground": "#016a71"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.3,
+          "background": "#016a71",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.1,
+          "background": "#27251e",
+          "foreground": "#72706b"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.98,
+          "background": "#faf8f5",
+          "foreground": "#92918b"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.41,
+          "background": "#016a71",
+          "foreground": "#27251e"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.01,
+          "background": "#016a71",
+          "foreground": "#92918b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.37,
+          "background": "#27251e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.29,
+          "background": "#016a71",
+          "foreground": "#72706b"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.08) 0px 1px 2px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginRight",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginTop|other",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 57,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingBottom|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "button"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "marginRight",
+            "marginLeft",
+            "paddingBottom",
+            "paddingTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "marginRight|nav",
+            "marginLeft|nav",
+            "paddingBottom|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "pplxSans",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 230,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "pplxSans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "pplxSans",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "pplxSans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "pplxSans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "pplxSans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "pplxSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link",
+            "icon",
+            "card",
+            "body"
+          ],
+          "frequency": 192,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f61f3fbb-3892-49fc-afce-b599ec5347f9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3e55ca04-3965-43f1-99ff-29aa51e6a3e6.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e9fff87a-63ce-4c19-840f-98233db62f58#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Perplexity AI design system\",\"item\":\"https://styles.refero.design/style/e9fff87a-63ce-4c19-840f-98233db62f58\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e9fff87a-63ce-4c19-840f-98233db62f58#style-reference\",\"name\":\"Perplexity AI design system reference\",\"headline\":\"Perplexity AI design system | Refero Styles\",\"description\":\"Explore Perplexity AI's light AI design system: Aged Paper #faf8f5, Ink Black #000000 colors, pplxSans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e9fff87a-63ce-4c19-840f-98233db62f58\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e9fff87a-63ce-4c19-840f-98233db62f58\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Perplexity AI\",\"url\":\"https://www.perplexity.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e9fff87a-63ce-4c19-840f-98233db62f58#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3e55ca04-3965-43f1-99ff-29aa51e6a3e6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3e55ca04-3965-43f1-99ff-29aa51e6a3e6.jpg\",\"caption\":\"Screenshot of Perplexity AI\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3e55ca04-3965-43f1-99ff-29aa51e6a3e6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Perplexity AI design system\",\"Perplexity AI website design\",\"Perplexity AI colors\",\"Perplexity AI typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Aged Paper\",\"Ink Black\",\"Charcoal\",\"Ash Gray\",\"pplxSans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Perplexity AI design system\"},{\"@type\":\"Thing\",\"name\":\"Perplexity AI website design\"},{\"@type\":\"Thing\",\"name\":\"Perplexity AI colors\"},{\"@type\":\"Thing\",\"name\":\"Perplexity AI typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-29T00:14:05.186Z\",\"dateModified\":\"2026-04-29T00:14:05.186Z\"}]}19:T6ad,## Quick Color Reference\n- canvas: #faf8f5\n- card/surface: #ffffff\n- text primary: #000000\n- text secondary: #72706b\n- text placeholder: #92918b\n- border: #d1d1cd\n- active fill: #e8e6e1\n- accent (selected/active only): #016a71\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Search Input with Submit**: Create a 640px-wide search bar on #faf8f5 canvas. Input: white (#ffffff) background, 1px #d1d1cd border, 12px radius, 16px padding. Placeholder 'Ask anything…' in 16px pplxSans weight 400, #92918b. Inside: a '+' icon (#27251e), a mode chip ('Computer') with #faf8f5 background, 6px radius, 12px pplxSans weight 500, and a dark submit circle (28px, #27251e fill, 9999px radius, white arrow icon).\n\n2. **Sidebar Nav Item**: 36px tall, 8px horizontal padding, 9999px radius. 14px pplxSans weight 400, #27251e text. 16px leading icon in #27251e. Active state: #e8e6e1 background fill. Full width within a 220px left sidebar with #faf8f5 background.\n\n3. **Status Notification Card**: 640px wide, white (#ffffff) background, 16px radius, 1px #d1d1cd border, 12px padding, subtle shadow (rgba(0,0,0,0.08) 0px 1px 2px). 14px pplxSans weight 500 label in #27251e with a 12px status icon. Below: 3-4 skeleton bars (9999px radius, #f0eeea fill, 8px height) with 8px gap.\n\n4. **Teal Active Nav Indicator**: Horizontal 14px pplxSans weight 500 text in #27251e with a #016a71 teal underline bar (2px height, 8px width) or teal pill background. This is the only place teal should appear in the interface.\n\n5. **Top Header Category Link**: Inline 14px pplxSans weight 400, #27251e, no background. Spacing: 16px gap between links, right-aligned in a 56px-tall header bar on #faf8f5 background."
+}

@@ -1,0 +1,88 @@
+:root {
+  /* Colors */
+  --color-indigo-frame: #160572;
+  --color-cream-paper: #f2ebe6;
+  --color-pure-white: #ffffff;
+  --color-obsidian-hairline: #000000;
+  --color-slate-ink: #2c2c2c;
+  --color-fog-wash: #eef4fb;
+  --color-buttermilk: #fef9ee;
+  --color-crimson-spotlight: #ea0706;
+  --color-vermillion: #d64e2e;
+  --color-apricot-whisper: #e29675;
+  --color-peach-blush: #eea883;
+  --color-tangerine-pop: #ff7701;
+  --color-cobalt-stage: #2544a0;
+  --color-plum-velvet: #4b0f4d;
+  --color-rose-petal: #d98199;
+  --color-electric-teal: #24e3dc;
+  --color-acid-green: #24e34c;
+  --color-daffodil: #f9e44d;
+  --color-highlighter-yellow: #ffff00;
+
+  /* Typography — Font Families */
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-millik: 'Millik', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-klarheit-grotesk: 'Klarheit Grotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.36;
+  --text-body: 16px;
+  --leading-body: 1.36;
+  --text-subheading: 22px;
+  --leading-subheading: 1.28;
+  --text-heading: 32px;
+  --leading-heading: 1.1;
+  --text-heading-lg: 54px;
+  --leading-heading-lg: 1;
+  --text-display: 88px;
+  --leading-display: 0.95;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-15: 15px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-38: 38px;
+  --spacing-40: 40px;
+  --spacing-60: 60px;
+  --spacing-80: 80px;
+  --spacing-86: 86px;
+  --spacing-215: 215px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 64-80px;
+  --card-padding: 20-24px;
+  --element-gap: 20px;
+
+  /* Border Radius */
+  --radius-lg: 10px;
+  --radius-3xl: 30px;
+
+  /* Named Radii */
+  --radius-nav: 0px;
+  --radius-cards: 10px;
+  --radius-buttons: 30px;
+  --radius-projectcards: 0px;
+
+  /* Surfaces */
+  --surface-cream-paper: #f2ebe6;
+  --surface-pure-white: #ffffff;
+  --surface-indigo-band: #160572;
+  --surface-obsidian: #000000;
+}

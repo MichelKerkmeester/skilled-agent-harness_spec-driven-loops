@@ -1,0 +1,205 @@
+{
+  "color": {
+    "marigold": {
+      "$value": "#fcd579",
+      "$type": "color",
+      "$description": "Marigold — Page canvas, full-bleed backgrounds, the base layer every other element sits on"
+    },
+    "sea-glass": {
+      "$value": "#81d6b9",
+      "$type": "color",
+      "$description": "Sea Glass — Decorative stroke accent — horizontal stripe pattern, top page divider, wordmark underline, gradient terminus"
+    },
+    "inkstone": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Inkstone — Primary text, nav labels, headings, logo wordmark, and all interface borders"
+    },
+    "marigold-gradient": {
+      "$value": "#efcb75",
+      "$type": "color",
+      "$description": "Marigold Gradient — Right terminus of the signature horizontal gradient (teal → warm gold) used for stripe fades and section dividers"
+    }
+  },
+  "font": {
+    "untitledsans": {
+      "$value": "untitledsans",
+      "$type": "fontFamily",
+      "$description": "Primary typeface across all contexts — body copy, nav, footer, links, and the colossal display wordmark. The 147px size at tight tracking (-0.025em) is the identity: the word 'Sing' becomes a spatial event, not a heading. Weight 400 carries body and nav; weight 700 anchors headings and footer emphasis. Kern feature is active throughout to manage the extreme size range."
+    },
+    "signifier": {
+      "$value": "signifier",
+      "$type": "fontFamily",
+      "$description": "Secondary editorial typeface — used for rotated/vertical captions beside photography and occasional body annotations. Its serif presence contrasts the grotesk wordmark to introduce a magazine-like voice. Normal letter-spacing; the small size keeps it as whisper copy, never a headline."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "untitledsans",
+        "fontSize": "7px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 7px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "untitledsans",
+        "fontSize": "7px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 7px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "untitledsans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "signifier",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "signifier",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "signifier",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "signifier",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 21px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "untitledsans",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 23px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "untitledsans",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "untitledsans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "untitledsans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "untitledsans",
+        "fontSize": "147px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 147px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "53": {
+      "$value": "53px",
+      "$type": "dimension",
+      "$description": "Spacing 53px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "marigold-canvas": {
+      "$value": "#fcd579",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page background — the only surface in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://sing-sing.co",
+      "siteName": "Sing-sing",
+      "extractedAt": "2026-06-03T21:52:11.199Z",
+      "variant": "extended"
+    }
+  }
+}

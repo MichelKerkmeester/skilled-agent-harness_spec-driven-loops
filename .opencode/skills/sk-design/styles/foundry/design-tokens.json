@@ -1,0 +1,447 @@
+{
+  "color": {
+    "ember-orange": {
+      "$value": "#ff4d00",
+      "$type": "color",
+      "$description": "Ember Orange — Orange accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    },
+    "foundry-black": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Foundry Black — Page background, section canvas, main surface — the dominant ground that lets white type and orange accents read as luminous"
+    },
+    "chalk-white": {
+      "$value": "#e2e8f0",
+      "$type": "color",
+      "$description": "Chalk White — Hairline borders, nav rules, link underlines, tag outlines — the wireframe color that constructs the entire UI scaffold"
+    },
+    "bone-white": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Bone White — Primary body and UI text, icon strokes, button text, secondary surface fills — the readable text color and the inverse fill used for emphasized controls"
+    },
+    "soot": {
+      "$value": "#3a3a3a",
+      "$type": "color",
+      "$description": "Soot — Low-contrast structural borders, subtle dividers between stacked sections — the quietest rule line, only visible against the bone-white inverted surfaces"
+    },
+    "ash": {
+      "$value": "#747474",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, inactive labels, secondary metadata — recedes so the monospace chrome can carry hierarchy without competing with display type"
+    }
+  },
+  "font": {
+    "jetbrains-mono": {
+      "$value": "JetBrains Mono",
+      "$type": "fontFamily",
+      "$description": "The operating-system font: drives the sidebar navigation, font-spec labels, button text, metadata strips, and body copy. Treated as a UI element itself — uppercase, tracked-out (0.04–0.06em) for labels, tight (-0.02em) for body. Its monospaced geometry is the visual signature of every chrome component."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Secondary text voice for longer-form copy blocks and supporting paragraphs that need a less technical rhythm than the monospace. Appears sparingly so the monospace remains the dominant signal."
+    },
+    "basement-grotesque-ffflauta-b-mecha-bunker-caniche-carpenter-curia-adhesion-trovador-xer0-blob": {
+      "$value": "Basement Grotesque, FFFLAUTA, B-Mecha, Bunker, Caniche, Carpenter, Curia, Adhesion, Trovador, XER0, Blob",
+      "$type": "fontFamily",
+      "$description": "Display specimens — the products. Each fills a full-width section at monumental size, set tight (0.95–1.10 leading) with a hair of positive tracking. An AI agent should treat these as content blocks to be authored, not as system fonts to be re-created; substitute with the user's own display typefaces at proportional sizes."
+    },
+    "ffflauta-400": {
+      "$value": "FFFLAUTA 400",
+      "$type": "fontFamily",
+      "$description": "FFFLAUTA 400 — detected in extracted data but not described by AI"
+    },
+    "basement-grotesque-black-expanded": {
+      "$value": "Basement Grotesque Black Expanded",
+      "$type": "fontFamily",
+      "$description": "Basement Grotesque Black Expanded — detected in extracted data but not described by AI"
+    },
+    "mecha-regular": {
+      "$value": "Mecha Regular",
+      "$type": "fontFamily",
+      "$description": "Mecha Regular — detected in extracted data but not described by AI"
+    },
+    "curia-regular": {
+      "$value": "Curia Regular",
+      "$type": "fontFamily",
+      "$description": "Curia Regular — detected in extracted data but not described by AI"
+    },
+    "adhesion-regular": {
+      "$value": "Adhesion Regular",
+      "$type": "fontFamily",
+      "$description": "Adhesion Regular — detected in extracted data but not described by AI"
+    },
+    "carpenter-regular": {
+      "$value": "Carpenter Regular",
+      "$type": "fontFamily",
+      "$description": "Carpenter Regular — detected in extracted data but not described by AI"
+    },
+    "bunker-regular": {
+      "$value": "Bunker Regular",
+      "$type": "fontFamily",
+      "$description": "Bunker Regular — detected in extracted data but not described by AI"
+    },
+    "trovador-regular": {
+      "$value": "Trovador Regular",
+      "$type": "fontFamily",
+      "$description": "Trovador Regular — detected in extracted data but not described by AI"
+    },
+    "xer0-regular": {
+      "$value": "XER0 Regular",
+      "$type": "fontFamily",
+      "$description": "XER0 Regular — detected in extracted data but not described by AI"
+    },
+    "caniche-regular": {
+      "$value": "Caniche Regular",
+      "$type": "fontFamily",
+      "$description": "Caniche Regular — detected in extracted data but not described by AI"
+    },
+    "blob-regular": {
+      "$value": "Blob Regular",
+      "$type": "fontFamily",
+      "$description": "Blob Regular — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "FFFLAUTA 400",
+        "fontSize": "90px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 90px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Basement Grotesque Black Expanded",
+        "fontSize": "120px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 120px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Mecha Regular",
+        "fontSize": "120px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 120px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Curia Regular",
+        "fontSize": "156px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 156px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Adhesion Regular",
+        "fontSize": "164px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 164px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Carpenter Regular",
+        "fontSize": "169px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 169px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Bunker Regular",
+        "fontSize": "185px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 185px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "Trovador Regular",
+        "fontSize": "198px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 198px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "XER0 Regular",
+        "fontSize": "198px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 198px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "Caniche Regular",
+        "fontSize": "203px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 203px"
+    },
+    "5xl-11": {
+      "$value": {
+        "fontFamily": "Blob Regular",
+        "fontSize": "234px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-11 at 234px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2.8px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page background — the dark room the type hangs in"
+    },
+    "inverted-surface": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 1: Bone-white panels used for featured inversions and emphasized controls; rare but high-contrast"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://foundry.basement.studio",
+      "siteName": "Foundry",
+      "extractedAt": "2026-06-03T17:52:01.302Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "color": {
+    "cream-paper": {
+      "$value": "#fffcf0",
+      "$type": "color",
+      "$description": "Cream Paper — Page canvas, card surfaces, section backgrounds — a warm off-white that reads as paper, not screen, and prevents pure-white harshness while giving the near-black type a slight warm push"
+    },
+    "midnight-ink": {
+      "$value": "#000310",
+      "$type": "color",
+      "$description": "Midnight Ink — Primary text, borders, section rules, dark-section backgrounds — near-black with a barely-perceptible blue undertone that distinguishes it from flat #000000 and keeps the palette from feeling like a photocopy"
+    },
+    "pure-press": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Press — Secondary text, nav labels, fine details — true black used sparingly for maximum contrast accents against the midnight ink"
+    }
+  },
+  "font": {
+    "ldd": {
+      "$value": "LDD",
+      "$type": "fontFamily",
+      "$description": "Display headlines and section names — a custom face with dot-matrix / plus-sign character treatments (visible in the 'o' and 'a' glyphs) that reference early digital terminals and ticket printers. The 135px size at line-height 1.0 makes every heading a single tight line of ink. No substitute captures the pixel-cut character details; closest fallback is 'PP NeueBit' or 'VT323' for the terminal reference, but with reduced fidelity."
+    },
+    "neuemontreal": {
+      "$value": "NeueMontreal",
+      "$type": "fontFamily",
+      "$description": "Body copy, navigation labels, captions, and all secondary type — a neutral neo-grotesque at unusually small sizes (12–16px) with tight 1.0 line-height. The whisper-quiet body face is deliberately undersized so the display type dominates. Line-height 1.0 on 12–16px text means almost no vertical air between lines — a printed-typesetting choice, not a web one."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "NeueMontreal-Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "NeueMontreal-Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "NeueMontreal-Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "LDD",
+        "fontSize": "135px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 135px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "LDD",
+        "fontSize": "135px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 135px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "LDD",
+        "fontSize": "135px",
+        "fontWeight": 400,
+        "lineHeight": 2.22
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 135px"
+    }
+  },
+  "spacing": {
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    }
+  },
+  "surface": {
+    "cream-paper": {
+      "$value": "#fffcf0",
+      "$type": "color",
+      "$description": "Surface level 1: Base canvas for the entire page — the single surface"
+    },
+    "midnight-ink": {
+      "$value": "#000310",
+      "$type": "color",
+      "$description": "Surface level 2: Inverted surface for dark sections (rare, used only when a band of reversed type appears)"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://lorenzodaldosso.it",
+      "siteName": "ldd",
+      "extractedAt": "2026-06-03T16:54:51.128Z",
+      "variant": "extended"
+    }
+  }
+}

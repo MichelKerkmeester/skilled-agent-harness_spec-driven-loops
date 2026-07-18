@@ -1,0 +1,619 @@
+{
+  "color": {
+    "forest-ink": {
+      "$value": "#09352e",
+      "$type": "color",
+      "$description": "Forest Ink — Primary text, icons, and chart strokes — the load-bearing dark color. Reads near-black but carries a cool green undertone that ties the monochrome system together"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Card surfaces, data point fills, and reverse text on dark blocks"
+    },
+    "sage-paper": {
+      "$value": "#e0e0e0",
+      "$type": "color",
+      "$description": "Sage Paper — Page canvas and large background fields. A green-tinted light gray that gives the whole surface its herbarium character"
+    },
+    "ash-gray": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Ash Gray — Alternate surface tone for nested blocks, inset panels, and subtle differentiation beneath cards"
+    },
+    "muted-sage": {
+      "$value": "#77aa83",
+      "$type": "color",
+      "$description": "Muted Sage — Soft fill washes, scatter plot halos, and decorative surface tints that sit behind darker data marks"
+    },
+    "lichen": {
+      "$value": "#cad3d2",
+      "$type": "color",
+      "$description": "Lichen — Hairline borders, dotted gridlines, and chart axes. The structural line color when a neutral needs to be present without competing with text"
+    },
+    "slate-smoke": {
+      "$value": "#6c7a79",
+      "$type": "color",
+      "$description": "Slate Smoke — Secondary metadata, icon strokes, and caption text where the body tone is too heavy"
+    },
+    "charcoal-bark": {
+      "$value": "#29211e",
+      "$type": "color",
+      "$description": "Charcoal Bark — Deep text, heavy borders, and dark surface blocks. Slightly warm-neutral, used for the rare dark panel and strong dividers"
+    },
+    "moss": {
+      "$value": "#85c093",
+      "$type": "color",
+      "$description": "Moss — The single filled action color — primary buttons, active state fills, and the rare chromatic surface. A soft, slightly desaturated mint that does not shout against the sage canvas"
+    },
+    "deep-fern": {
+      "$value": "#007010",
+      "$type": "color",
+      "$description": "Deep Fern — Green text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "pine": {
+      "$value": "#117025",
+      "$type": "color",
+      "$description": "Pine — Green text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "emerald": {
+      "$value": "#008023",
+      "$type": "color",
+      "$description": "Emerald — Alternate data-mark fill and emphasis backgrounds, used on scatter plot points and callout chips"
+    },
+    "indigo-accent": {
+      "$value": "#433787",
+      "$type": "color",
+      "$description": "Indigo Accent — A single chromatic exception — used on one special link or annotation to break the green-only system. Employ rarely; treat as a punctuation mark, not a palette member"
+    }
+  },
+  "font": {
+    "denim": {
+      "$value": "denim",
+      "$type": "fontFamily",
+      "$description": "Primary workhorse — body copy, headings, and UI text. Weight 500 is used for headings and emphasis; weight 400 carries all body. Tracking sits at a slightly open +0.012em at body sizes, making the face feel like a working tool rather than a display face."
+    },
+    "muoto": {
+      "$value": "muoto",
+      "$type": "fontFamily",
+      "$description": "Compact UI sans for tags, labels, captions, axis tick text, and micro-copy. Tight negative tracking (-0.009 to -0.012em) at 11–13px makes it dense and instrument-like rather than friendly. Weight 500 is reserved for uppercase labels."
+    },
+    "cinetype": {
+      "$value": "cinetype",
+      "$type": "fontFamily",
+      "$description": "Decorative tracking-heavy display face used only on ALL-CAPS labels, axis titles, and stamp-like badges. Tracking swings from a tight -0.008em to an extreme +0.30em, which is the visual signature of the system — it produces the 'specimen label' feel on tags and section markers."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "muoto",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "muoto",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "muoto",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "muoto",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "muoto",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.62
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "muoto",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.46
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "muoto",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.46
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "muoto",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "muoto",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 13px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "muoto",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 13px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "cinetype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "cinetype",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "cinetype",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "cinetype",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "cinetype",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "cinetype",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "denim",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(9, 53, 45, 0.05) 0px 5px 6px -4px, rgba(174, 202, 197, 0.08) 0px 1px 1px 0.5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "subtle": {
+      "$value": "rgb(202, 211, 210) 0px 0px 0px 0.5px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgb(64, 68, 66) 0px 0px 0px 0.5px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgb(224, 229, 229) 0px -0.5px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    },
+    "md": {
+      "$value": "rgba(8, 18, 17, 0.01) 0px 0px 16px -1px, rgba(8, 18, 17, 0.04) 0px 0px 5.5px -0.5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "sm-2": {
+      "$value": "rgba(0, 0, 0, 0.25) 0px 5px 5px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-2"
+    },
+    "sm-3": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 5px 7.5px -5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-3"
+    },
+    "md-2": {
+      "$value": "rgba(8, 18, 17, 0.01) 0px 0px 16px -1px, rgba(8, 18, 17, 0.04) 0px 0px 5.5px -0.5px, rgb(224, 229, 229) 0px 0px 0px 0.5px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation md-2"
+    }
+  },
+  "surface": {
+    "sage-paper-canvas": {
+      "$value": "#e0e0e0",
+      "$type": "color",
+      "$description": "Surface level 1: The page field — where the entire layout sits, evoking graph paper or herbarium sheet."
+    },
+    "ash-block": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Surface level 2: Slightly recessed surface used beneath or around cards to create a shallow stepped hierarchy."
+    },
+    "bone-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Card and panel surface — the only place where true white enters the system, giving cards a quiet lift off the green-gray canvas."
+    },
+    "charcoal-block": {
+      "$value": "#29211",
+      "$type": "color",
+      "$description": "Surface level 4: Rare dark surface for inverse sections, callout panels, or terminal-feeling blocks."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://operate.so",
+      "siteName": "Operate",
+      "extractedAt": "2026-06-03T20:31:11.239Z",
+      "variant": "extended"
+    }
+  }
+}

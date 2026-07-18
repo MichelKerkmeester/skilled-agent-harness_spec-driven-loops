@@ -1,0 +1,81 @@
+:root {
+  /* Colors */
+  --color-tiger-gold: #faae33;
+  --color-ember-rust: #823513;
+  --color-saffron-glow: #9f531b;
+  --color-dark-spice: #402011;
+  --color-charred-clove: #281006;
+  --color-cardamom-brown: #6b2e12;
+  --color-chili-red: #d1255c;
+
+  /* Typography — Font Families */
+  --font-salmond: 'Salmond', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-graphikx: 'Graphikx', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.2;
+  --tracking-caption: 0.02px;
+  --text-subheading: 18px;
+  --leading-subheading: 1.2;
+  --tracking-subheading: 0.01px;
+  --text-heading-sm: 29px;
+  --leading-heading-sm: 1.1;
+  --tracking-heading-sm: -0.005px;
+  --text-heading: 65px;
+  --leading-heading: 0.95;
+  --tracking-heading: -0.01px;
+  --text-heading-lg: 101px;
+  --leading-heading-lg: 0.9;
+  --tracking-heading-lg: -0.016px;
+  --text-display: 195px;
+  --leading-display: 0.8;
+  --tracking-display: -0.02px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-9: 9px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-17: 17px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-26: 26px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-42: 42px;
+  --spacing-192: 192px;
+
+  /* Layout */
+  --page-max-width: 1440px;
+  --section-gap: 80-120px;
+  --card-padding: 12-16px;
+  --element-gap: 10px;
+
+  /* Border Radius */
+  --radius-md: 6px;
+  --radius-full: 1080px;
+  --radius-full-2: 1152px;
+  --radius-full-3: 1224px;
+  --radius-full-4: 1296px;
+
+  /* Named Radii */
+  --radius-cards: 6px;
+  --radius-badges: 9999px;
+  --radius-inputs: 9999px;
+  --radius-buttons: 9999px;
+
+  /* Surfaces */
+  --surface-tandoor-canvas: #823513;
+  --surface-spice-card: #402011;
+  --surface-charred-core: #281006;
+}

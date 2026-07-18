@@ -1,0 +1,2063 @@
+{
+  "source": "https://styles.refero.design/style/5c32375f-6ef1-4345-9418-ebbb7e887343",
+  "uuid": "5c32375f-6ef1-4345-9418-ebbb7e887343",
+  "name": "Railway",
+  "northStar": "Cosmic Midnight Express. A calm, powerful journey through a dark, starlit environment, guided by clear signals.",
+  "capturedAt": "2026-07-18T10:17:56.916Z",
+  "meta": {
+    "url": "https://railway.app",
+    "siteName": "Railway",
+    "extractedAt": "2026-04-11T17:36:56.930Z",
+    "durationMs": 83618,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 3573,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 3
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use IBM Plex Serif exclusively for display-level headlines to create a sophisticated, literary feel.",
+      "Rely on surface color shifts (`Deep Space` page, `Surface` cards) and 1px `Crater` borders for elevation.",
+      "Reserve the `Cosmic Lilac` color for primary, high-value calls to action.",
+      "Incorporate the atmospheric, painterly illustration style for hero sections to set the mood.",
+      "Maintain generous vertical spacing (96px+) between content sections for a calm, spacious rhythm.",
+      "Use a subtle grid pattern on the background of key container cards like testimonials.",
+      "Ensure all interactive elements have a clear focus state, typically using `Supernova` (#a05fcf) as a highlight border or ring."
+    ],
+    "tags": [
+      "dark-mode",
+      "serif-headings",
+      "illustrative",
+      "single-accent-color",
+      "minimalist-ui",
+      "developer-focused",
+      "atmospheric",
+      "high-contrast"
+    ],
+    "donts": [
+      "Don't use traditional box-shadows. The system's depth comes from color and borders.",
+      "Don't use serif fonts for body copy, buttons, or any UI controls.",
+      "Don't use the brand purples for large blocks of text.",
+      "Don't make layouts feel dense or rushed. Prioritize breathing room.",
+      "Don't use bright, saturated colors outside the defined purple accent and semantic palette.",
+      "Don't use photography, especially lifestyle photos. The visual language is illustrative and product-focused.",
+      "Don't create buttons or cards with sharp corners; use the established `8px` and `12px` radii."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#13111c",
+        "name": "Deep Space",
+        "role": "Primary page background.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a191f",
+        "name": "Surface",
+        "role": "Card backgrounds, secondary surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#33323",
+        "name": "Crater",
+        "role": "Borders, UI dividers, subtle background elements.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0d0c14",
+        "name": "Black Hole",
+        "role": "Darkest UI components, code blocks.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f7f8",
+        "name": "Starlight",
+        "role": "Primary text, active navigation, icons.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d0cfd2",
+        "name": "Starlight Dim",
+        "role": "Subheadings, less prominent text.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a1a0ab",
+        "name": "Comet",
+        "role": "Body copy, placeholder text, inactive-state UI.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#868593",
+        "name": "Asteroid",
+        "role": "Helper text, metadata, disabled states.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#553f83",
+        "name": "Cosmic Lilac",
+        "role": "Primary CTA buttons — a calm but distinct call to action against the dark backdrop.",
+        "group": "brand"
+      },
+      {
+        "hex": "#a05fcf",
+        "name": "Supernova",
+        "role": "Focus rings, active state borders, UI highlights — a brighter violet for interactive feedback.",
+        "group": "accent"
+      },
+      {
+        "hex": "#bf92ec",
+        "name": "Nebula Haze",
+        "role": "Decorative highlights, accent text.",
+        "group": "accent"
+      },
+      {
+        "hex": "#a05fcf",
+        "name": "Warp Drive Glow",
+        "role": "Decorative background effect — adds a powerful, futuristic energy.",
+        "group": "brand",
+        "gradient": "radial-gradient(73.46% 138.39% at 50.21% 0%, rgb(170, 10, 170) 50%, rgb(109, 29, 189) 75.47%, rgb(56, 29, 189) 100%)"
+      },
+      {
+        "hex": "#42946",
+        "name": "Success",
+        "role": "Success indicators, confirmation messages.",
+        "group": "semantic"
+      },
+      {
+        "hex": "#d82c20",
+        "name": "Error",
+        "role": "Error messages and destructive action states.",
+        "group": "semantic"
+      }
+    ],
+    "layout": "The layout is governed by a centered, max-width container of 1280px. It opens with an immersive, full-bleed hero featuring a large atmospheric illustration that sets a calm, imaginative tone. Subsequent content sections are contained within the max-width, separated by generous vertical spacing (96px+), creating a spacious, unhurried rhythm. The structure is largely composed of centered headline stacks, followed by multi-column grids for testimonials (3-column) and partner logos. This creates a clear, hierarchical flow from broad statements to specific proof points.",
+    "imagery": "The visual language is defined by a dichotomy. Atmospheric, painterly illustrations with a lofi, dreamy quality dominate the hero and background elements, establishing a unique, non-corporate mood. These are juxtaposed with clean, unadorned product UI screenshots which anchor the site in its technical reality. Customer logos are presented simply on contained cards. There is no lifestyle photography; the focus is on the abstract mood and the concrete product. Icons are minimal, likely line-based, and used for functional UI rather than decoration.",
+    "similar": [
+      {
+        "why": "Shares the high-contrast dark mode, minimalist UI, and use of a single accent color for a developer audience.",
+        "business": "Vercel"
+      },
+      {
+        "why": "Similar layered dark surfaces, subtle gradients, and precise, border-defined UI components.",
+        "business": "Linear"
+      },
+      {
+        "why": "Also combines a dark, refined aesthetic with an elegant serif font for headlines.",
+        "business": "PlanetScale"
+      },
+      {
+        "why": "Another dev-tool with a strong dark-mode identity and a clean, grid-based layout structure.",
+        "business": "Supabase"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "12px",
+        "inputs": "6px",
+        "buttons": "8px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "96-160px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1280px"
+    },
+    "category": "dev-tools",
+    "northStar": "Cosmic Midnight Express. A calm, powerful journey through a dark, starlit environment, guided by clear signals.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.12
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.6,
+        "letterSpacing": -0.1
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.09
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.72
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 54,
+        "lineHeight": 1.12,
+        "letterSpacing": -1.94
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "CTA Button Group",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Deployment Success Toast + Tab Bar",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Testimonial Cards",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary CTA Button",
+        "role": "The main call-to-action, like 'Deploy →'.",
+        "description": "Solid `Cosmic Lilac` (#553f83) background with `Starlight` (#f7f7f8) text. Padding is `12px 24px` with an `8px` border radius. Border is a subtle `rgba(255, 255, 255, 0.15)`. Font is Inter 500."
+      },
+      {
+        "name": "Secondary Button",
+        "role": "Secondary actions, like 'Demo'.",
+        "description": "Transparent background with `Starlight` (#f7f7f8) text and a `1px` solid border of `Crater` (#33323e). Padding is `12px 24px` with an `8px` border radius. Font is Inter 500."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Header and footer navigation items.",
+        "description": "Transparent background with `Comet` (#a1a0ab) text. On hover, text changes to `Starlight` (#f7f7f8). Padding is minimal, typically around `6px 12px`."
+      },
+      {
+        "name": "Logo Grid Card",
+        "role": "Container for customer logos in the 'Trusted by' section.",
+        "description": "`Surface` (#1a191f) background with a `12px` border radius and `24px` padding. A `1px` `Crater` (#33323e) border defines the card. Displays a grayscale partner logo at its center."
+      },
+      {
+        "name": "Product UI Tab",
+        "role": "Navigation within the product UI demo.",
+        "description": "Text label in `Asteroid` (#868593). The active tab has `Starlight` (#f7f7f8) text and a `2px` bottom border of `Supernova` (#a05fcf), providing a clear visual indicator."
+      },
+      {
+        "name": "Success Toast",
+        "role": "A small notification for successful operations.",
+        "description": "Dark green background (`#15231d`) with `Success` (#42946e) text and a `4px` border radius. A `1px` border of muted green (`#26543f`) provides subtle definition."
+      },
+      {
+        "name": "Log Line Item",
+        "role": "A single line in the product's log viewer.",
+        "description": "Uses `ui-monospace` font at 16px. Background is `Black Hole` (#0d0c14). Text color varies by log level, but defaults to `Comet` (#a1a0ab)."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines (54px) and large section titles (36-40px). The serif choice is a signature move, lending a classic, literary authority to a technical product. The tight negative letter-spacing is essential.",
+        "sizes": "36px, 40px, 54px",
+        "family": "IBM Plex Serif",
+        "weight": "400, 500",
+        "weights": [
+          "400",
+          "500"
+        ],
+        "lineHeight": "1.12, 1.20, 1.33",
+        "substitute": "Georgia, Times New Roman",
+        "letterSpacing": "-1.94px at 54px, -0.72px at 36px."
+      },
+      {
+        "role": "The workhorse font for all UI text, body copy, and subtitles. Its neutrality and readability provide a clean canvas that allows the serif headlines to stand out.",
+        "sizes": "12px, 14px, 16px, 18px, 20px, 24px",
+        "family": "Inter",
+        "weight": "400, 500, 600, 700",
+        "weights": [
+          "400",
+          "500",
+          "600",
+          "700"
+        ],
+        "lineHeight": "1.25, 1.33, 1.40, 1.43, 1.50, 1.56, 1.60, 1.63, 1.75",
+        "substitute": "system-ui, -apple-system",
+        "letterSpacing": "Slightly tightened at all sizes (e.g., -0.1px at 16px)."
+      },
+      {
+        "role": "Used for some medium-to-large headings, offering a slightly more condensed feel than Inter for specific layouts.",
+        "sizes": "32px, 40px",
+        "family": "Inter Tight",
+        "weight": "400, 600",
+        "weights": [
+          "400",
+          "600"
+        ],
+        "lineHeight": "1.20, 1.38",
+        "substitute": "Inter",
+        "letterSpacing": "-0.6px at 40px, -0.48px at 32px."
+      },
+      {
+        "role": "Code snippets and log outputs in product demonstrations, providing a familiar terminal aesthetic.",
+        "sizes": "16px, 40px",
+        "family": "ui-monospace",
+        "weight": "400",
+        "weights": [
+          "400"
+        ],
+        "lineHeight": "1.40, 1.63",
+        "substitute": "Menlo, Monaco, Consolas"
+      }
+    ],
+    "description": "The design system feels like a tranquil night journey on a futuristic train. It operates in a deep, near-black space (#13111c), punctuated by a single, focused accent of cosmic lilac (#553f83) for primary actions, creating a calm yet confident mood. Large, elegant serif headlines (IBM Plex Serif) provide a literary, almost classic authority that contrasts with the clean, utilitarian sans-serif (Inter) used for the UI. Elevation is achieved through subtle surface shifts and fine borders (#33323e) rather than shadows, reinforcing a flat, technical aesthetic. The signature element is the painterly, atmospheric hero illustration, which establishes a peaceful, imaginative tone that subverts typical dev-tool intensity.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      }
+    ],
+    "elevationPhilosophy": "Elevation is achieved primarily through layered surfaces using distinct background colors and fine 1px borders, not traditional drop shadows. The system uses a progression like Deep Space (#13111c) for the page, Surface (#1a191f) for cards, and an inset white highlight (`rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset`) on interactive elements. This creates a flat, technical, yet deep interface where layers are defined by light and color, not shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#33323e",
+          "oklch": {
+            "c": 0.02115027860156573,
+            "h": 288.97613222999536,
+            "l": 0.3230925626879459
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body",
+            "nav",
+            "button",
+            "hero",
+            "image",
+            "heading",
+            "list",
+            "footer"
+          ],
+          "frequency": 8603,
+          "confidence": 1,
+          "prominence": 227370475.4703751,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#f7f7f8",
+          "oklch": {
+            "c": 0.0013228271034216744,
+            "h": 286.37508939782913,
+            "l": 0.9764191730181891
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "button",
+            "link",
+            "icon",
+            "body",
+            "nav",
+            "hero",
+            "image",
+            "list",
+            "footer"
+          ],
+          "frequency": 2579,
+          "confidence": 1,
+          "prominence": 197143750.59681177,
+          "properties": [
+            "color",
+            "stroke",
+            "fill",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#13111c",
+          "oklch": {
+            "c": 0.022340941231629136,
+            "h": 292.4198346237581,
+            "l": 0.18565570315406726
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 44,
+          "confidence": 1,
+          "prominence": 95532487.08511455,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill",
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#424149",
+          "oklch": {
+            "c": 0.014955919236535659,
+            "h": 294.01530917183703,
+            "l": 0.37866632704941366
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 10912210.751716351,
+          "properties": [
+            "boxShadow",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#0d0c14",
+          "oklch": {
+            "c": 0.01684103822240733,
+            "h": 290.0798670324597,
+            "l": 0.15974000131656105
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 703,
+          "confidence": 1,
+          "prominence": 9026246.40709342,
+          "properties": [
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#1b2132",
+          "oklch": {
+            "c": 0.03360210901262014,
+            "h": 268.9730286576849,
+            "l": 0.2503015641467595
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 7961741.469362724,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#1f2b2e",
+          "oklch": {
+            "c": 0.01732509856342195,
+            "h": 214.73457585928978,
+            "l": 0.27926191248994536
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 6841633.431896342,
+          "properties": [
+            "backgroundColor",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#251823",
+          "oklch": {
+            "c": 0.028553798515926897,
+            "h": 331.9022782756673,
+            "l": 0.23037918422535625
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 4518472.072650807,
+          "properties": [
+            "boxShadow",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#868593",
+          "oklch": {
+            "c": 0.020873459030549952,
+            "h": 289.05910419623007,
+            "l": 0.6222076999526298
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 276,
+          "confidence": 1,
+          "prominence": 980277.9872755648,
+          "properties": [
+            "color",
+            "stroke",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#a1a0ab",
+          "oklch": {
+            "c": 0.015849489994843913,
+            "h": 290.17189034046214,
+            "l": 0.7100471883017139
+          },
+          "contexts": [
+            "nav",
+            "body",
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 108,
+          "confidence": 1,
+          "prominence": 234991.35975625488,
+          "properties": [
+            "color",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#acacb0",
+          "oklch": {
+            "c": 0.005501934766755912,
+            "h": 294.6176784485382,
+            "l": 0.745205630562655
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 173909.5654334769,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#102e96",
+          "oklch": {
+            "c": 0.17246716812269872,
+            "h": 265.227115359397,
+            "l": 0.361835329286571
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 120984,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#183367",
+          "oklch": {
+            "c": 0.09725151772104597,
+            "h": 261.9329454487012,
+            "l": 0.33163792324218944
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 120984,
+          "properties": [
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#6b7280",
+          "oklch": {
+            "c": 0.02336091733217706,
+            "h": 264.36374727266286,
+            "l": 0.5510191075146065
+          },
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 900,
+          "confidence": 1,
+          "prominence": 29367.626821074104,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#42946e",
+          "oklch": {
+            "c": 0.09992017733855488,
+            "h": 161.09030759919926,
+            "l": 0.604667952204457
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 23222.312333032238,
+          "properties": [
+            "color",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#15231d",
+          "oklch": {
+            "c": 0.022557117665365844,
+            "h": 166.01548145844083,
+            "l": 0.24104013930308338
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 22091.207335051473,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#26543f",
+          "oklch": {
+            "c": 0.06245710115335786,
+            "h": 162.01354936694753,
+            "l": 0.4066832174161329
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 21745.68550989426,
+          "properties": [
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#a05fcf",
+          "oklch": {
+            "c": 0.17282174518880453,
+            "h": 308.93704425611696,
+            "l": 0.6060119935865897
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 19374.16802374015,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#d0cfd2",
+          "oklch": {
+            "c": 0.0030342010793534646,
+            "h": 294.6890304456508,
+            "l": 0.8567051760976623
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 18436.28380838849,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#545260",
+          "oklch": {
+            "c": 0.022799195222101713,
+            "h": 292.00214433106385,
+            "l": 0.44566416456851715
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 54,
+          "confidence": 1,
+          "prominence": 16812.19404692971,
+          "properties": [
+            "color",
+            "stroke",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#c4c4ca",
+          "oklch": {
+            "c": 0.00830432533523337,
+            "h": 286.2155805342806,
+            "l": 0.8221032248958967
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 16543.7600046154,
+          "properties": [
+            "color",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#4e4d55",
+          "oklch": {
+            "c": 0.013630567215559802,
+            "h": 294.15254989731227,
+            "l": 0.42280912767826023
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 14154.47366643336,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#1d4596",
+          "oklch": {
+            "c": 0.14083793969411973,
+            "h": 262.31815582879057,
+            "l": 0.41243642041350176
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 8972,
+          "properties": [
+            "fill",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#3b1742",
+          "oklch": {
+            "c": 0.08698343831108007,
+            "h": 321.152654599402,
+            "l": 0.27926687881375484
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8344,
+          "properties": [
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#28184d",
+          "oklch": {
+            "c": 0.09353692884902104,
+            "h": 292.86010891052814,
+            "l": 0.2622742331559027
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8344,
+          "properties": [
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#553f83",
+          "oklch": {
+            "c": 0.11035361095592891,
+            "h": 296.3239810167412,
+            "l": 0.4251281616082664
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8078,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#3d2259",
+          "oklch": {
+            "c": 0.09679629142944411,
+            "h": 304.0465884638264,
+            "l": 0.31643732314294604
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 7620.568007420323,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#bf92ec",
+          "oklch": {
+            "c": 0.13444223191881993,
+            "h": 306.35480187146436,
+            "l": 0.7359312818938284
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 5412.911476510101,
+          "properties": [
+            "color",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#2e241b",
+          "oklch": {
+            "c": 0.02268900671098861,
+            "h": 63.12783913161597,
+            "l": 0.26947064803244486
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4561,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#eab38a",
+          "oklch": {
+            "c": 0.08429488083574614,
+            "h": 57.90835795892529,
+            "l": 0.8074583832050855
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4021,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#f9a8d4",
+          "oklch": {
+            "c": 0.10950475316590812,
+            "h": 346.01834310275206,
+            "l": 0.8228403396144282
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 3989.0740161560975,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#dcdce0",
+          "oklch": {
+            "c": 0.005413441593269126,
+            "h": 286.28983059720343,
+            "l": 0.8956462684224745
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3911.048263591109,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#291839",
+          "oklch": {
+            "c": 0.0633893227842781,
+            "h": 306.11117110092107,
+            "l": 0.24898459122847777
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3282,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#0f1b33",
+          "oklch": {
+            "c": 0.04997231270346979,
+            "h": 262.9306558792493,
+            "l": 0.22530573816239352
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1352,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#609f89",
+          "oklch": {
+            "c": 0.07359372359991448,
+            "h": 169.69642942440413,
+            "l": 0.6533180570985752
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 1122.9419688230416,
+          "properties": [
+            "color",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#c67839",
+          "oklch": {
+            "c": 0.12457267076292997,
+            "h": 56.79718733210809,
+            "l": 0.6454159495047187
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1033.9850002884625,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#5e8eed",
+          "oklch": {
+            "c": 0.15134259180689338,
+            "h": 262.7066172508845,
+            "l": 0.6569240279204102
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 843.200050383655,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#853bce",
+          "oklch": {
+            "c": 0.21432835776170733,
+            "h": 302.51821707581144,
+            "l": 0.5268956234110047
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 718.6828600467467,
+          "properties": [
+            "color",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#72c09c",
+          "oklch": {
+            "c": 0.0941423117720687,
+            "h": 163.0327362533877,
+            "l": 0.7471316835148449
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 688,
+          "properties": [
+            "fill",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#a41e11",
+          "oklch": {
+            "c": 0.17099423445992878,
+            "h": 30.15238042174957,
+            "l": 0.4660672289650898
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 497.67822522644303,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#336791",
+          "oklch": {
+            "c": 0.08751809780799238,
+            "h": 245.2467972767318,
+            "l": 0.4973113982206656
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 477.07371271706796,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#d82c20",
+          "oklch": {
+            "c": 0.20856615307805962,
+            "h": 29.325871783409646,
+            "l": 0.573318303030757
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 423.9105932306982,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#1c424d",
+          "oklch": {
+            "c": 0.04690874253726762,
+            "h": 219.40624139227378,
+            "l": 0.3564701700756273
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 256,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#37c2fd",
+          "oklch": {
+            "c": 0.14128366339349627,
+            "h": 231.74688159577852,
+            "l": 0.7670952603039314
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 206,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#4faa41",
+          "oklch": {
+            "c": 0.16716772078028022,
+            "h": 141.09509617201473,
+            "l": 0.6593193404214771
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 84,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#509ee3",
+          "oklch": {
+            "c": 0.12827567255977382,
+            "h": 247.64100480472953,
+            "l": 0.6798740236564628
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 22.617809780285064,
+          "properties": [
+            "fill"
+          ]
+        },
+        {
+          "hex": "#7a0c00",
+          "oklch": {
+            "c": 0.14359392399305648,
+            "h": 31.147251038596888,
+            "l": 0.37006100534887887
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 7.92481250360578,
+          "properties": [
+            "fill"
+          ]
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.049056185715924405,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.16,
+          "background": "#0d0c14",
+          "foreground": "#f7f7f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.44,
+          "background": "#13111c",
+          "foreground": "#f7f7f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.01,
+          "background": "#f7f7f8",
+          "foreground": "#0f1b33"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.9,
+          "background": "#251823",
+          "foreground": "#f7f7f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.28,
+          "background": "#291839",
+          "foreground": "#f7f7f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.2,
+          "background": "#f7f7f8",
+          "foreground": "#15231d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.97,
+          "background": "#1b2132",
+          "foreground": "#f7f7f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.77,
+          "background": "#f7f7f8",
+          "foreground": "#28184d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.22,
+          "background": "#0d0c14",
+          "foreground": "#dcdce0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.17,
+          "background": "#2e241b",
+          "foreground": "#f7f7f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.14,
+          "background": "#f7f7f8",
+          "foreground": "#3b1742"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.65,
+          "background": "#13111c",
+          "foreground": "#dcdce0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.59,
+          "background": "#1f2b2e",
+          "foreground": "#f7f7f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.54,
+          "background": "#0d0c14",
+          "foreground": "#d0cfd2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.54,
+          "background": "#dcdce0",
+          "foreground": "#0f1b33"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.48,
+          "background": "#3d2259",
+          "foreground": "#f7f7f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.45,
+          "background": "#251823",
+          "foreground": "#dcdce0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.04,
+          "background": "#13111c",
+          "foreground": "#d0cfd2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.96,
+          "background": "#291839",
+          "foreground": "#dcdce0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.9,
+          "background": "#dcdce0",
+          "foreground": "#15231d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "list",
+            "button",
+            "link"
+          ],
+          "frequency": 1008
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 30
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 16
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 29,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 27,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 97,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 84,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginRight",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 91,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 47,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "rowGap",
+            "marginBottom",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 20,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 19,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 76,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 12,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "paddingTop",
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 96,
+          "frequency": 12,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "paddingTop",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 104,
+          "frequency": 14,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 120,
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 128,
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "paddingBottom",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 136,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 159,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 174,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 235,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "radial",
+        "value": "radial-gradient(73.46% 138.39% at 50.21% 0%, rgb(170, 10, 170) 50%, rgb(109, 29, 189) 75.47%, rgb(56, 29, 189) 100%)",
+        "colors": [
+          "rgb(170, 10, 170)",
+          "rgb(109, 29, 189)",
+          "rgb(56, 29, 189)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ui-monospace",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 2164,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 667,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "IBM Plex Serif",
+          "source": "google",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter Tight",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button",
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 61,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "button",
+            "hero",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 428,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.75,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-monospace",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 565,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "icon"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.6,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Inter Tight",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "IBM Plex Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "IBM Plex Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "ui-monospace",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 470,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "ui-monospace",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1128,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "Inter Tight",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "IBM Plex Serif",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.12,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/5e1a7deb-e51a-4f41-b32c-38cd0355ed2c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ad37dd5b-eb03-4135-bc6a-cb1922227f12.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5c32375f-6ef1-4345-9418-ebbb7e887343#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Railway design system\",\"item\":\"https://styles.refero.design/style/5c32375f-6ef1-4345-9418-ebbb7e887343\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5c32375f-6ef1-4345-9418-ebbb7e887343#style-reference\",\"name\":\"Railway design system reference\",\"headline\":\"Railway design system | Refero Styles\",\"description\":\"Explore Railway's dark Dev Tools design system: Deep Space #13111c, Surface #1a191f colors, IBM Plex Serif, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5c32375f-6ef1-4345-9418-ebbb7e887343\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5c32375f-6ef1-4345-9418-ebbb7e887343\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Railway\",\"url\":\"https://railway.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5c32375f-6ef1-4345-9418-ebbb7e887343#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ad37dd5b-eb03-4135-bc6a-cb1922227f12.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ad37dd5b-eb03-4135-bc6a-cb1922227f12.jpg\",\"caption\":\"Screenshot of Railway\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ad37dd5b-eb03-4135-bc6a-cb1922227f12.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Railway design system\",\"Railway website design\",\"Railway colors\",\"Railway typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Deep Space\",\"Surface\",\"Crater\",\"Black Hole\",\"IBM Plex Serif\",\"Inter\",\"Inter Tight\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Railway design system\"},{\"@type\":\"Thing\",\"name\":\"Railway website design\"},{\"@type\":\"Thing\",\"name\":\"Railway colors\"},{\"@type\":\"Thing\",\"name\":\"Railway typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-03-12T11:41:59.000Z\",\"dateModified\":\"2026-03-12T11:41:59.000Z\"}]}19:Tc2e,<style>\n  :root {\n    --color-deep-space: #13111c;\n    --color-surface: #1a191f;\n    --color-crater: #33323e;\n    --color-black-hole: #0d0c14;\n    --color-starlight: #f7f7f8;\n    --color-starlight-dim: #d0cfd2;\n    --color-comet: #a1a0ab;\n    --color-asteroid: #868593;\n    --color-cosmic-lilac: #553f83;\n    --color-supernova: #a05fcf;\n    --color-nebula-haze: #bf92ec;\n    --font-ibm-plex-serif: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;\n    --font-inter: 'Inter', system-ui, -apple-system, sans-serif;\n  }\n\n  .rw-cta-wrapper {\n    background: var(--color-deep-space);\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    padding: 64px 32px;\n    font-family: var(--font-inter);\n    min-height: 260px;\n  }\n\n  .rw-headline {\n    font-family: var(--font-ibm-plex-serif);\n    font-size: 54px;\n    font-weight: 400;\n    line-height: 1.12;\n    letter-spacing: -1.94px;\n    color: var(--color-starlight);\n    text-align: center;\n    margin: 0 0 16px 0;\n  }\n\n  .rw-subline {\n    font-family: var(--font-inter);\n    font-size: 18px;\n    font-weight: 400;\n    line-height: 1.5;\n    letter-spacing: -0.09px;\n    color: var(--color-comet);\n    text-align: center;\n    margin: 0 0 40px 0;\n  }\n\n  .rw-subline u {\n    color: var(--color-starlight-dim);\n    text-underline-offset: 3px;\n  }\n\n  .rw-btn-group {\n    display: flex;\n    gap: 12px;\n    align-items: center;\n    flex-wrap: wrap;\n    justify-content: center;\n  }\n\n  .rw-btn-primary {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    background: var(--color-cosmic-lilac);\n    color: var(--color-starlight);\n    font-family: var(--font-inter);\n    font-size: 16px;\n    font-weight: 500;\n    line-height: 1.5;\n    letter-spacing: -0.1px;\n    padding: 12px 24px;\n    border-radius: 8px;\n    border: 1px solid rgba(255, 255, 255, 0.15);\n    text-decoration: none;\n    cursor: pointer;\n    transition: background 0.15s ease;\n  }\n\n  .rw-btn-primary:hover {\n    background: #6b52a0;\n  }\n\n  .rw-btn-secondary {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    background: transparent;\n    color: var(--color-starlight);\n    font-family: var(--font-inter);\n    font-size: 16px;\n    font-weight: 500;\n    line-height: 1.5;\n    letter-spacing: -0.1px;\n    padding: 12px 24px;\n    border-radius: 8px;\n    border: 1px solid var(--color-crater);\n    text-decoration: none;\n    cursor: pointer;\n    transition: border-color 0.15s ease;\n  }\n\n  .rw-btn-secondary:hover {\n    border-color: var(--color-asteroid);\n  }\n</style>\n\n<div class=\"rw-cta-wrapper\">\n  <h1 class=\"rw-headline\">Ship software peacefully</h1>\n  <p class=\"rw-subline\">With the all-in-one <u>intelligent</u> cloud provider</p>\n  <div class=\"rw-btn-group\">\n    <a href=\"#\" class=\"rw-btn-primary\">\n      Deploy\n      <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M3 8h10M9 4l4 4-4 4\" stroke=\"#f7f7f8\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>\n    </a>\n    <a href=\"#\" class=\"rw-btn-secondary\">Demo</a>\n  </div>\n</div>1a:T1688,<style>\n  :root {\n    --color-deep-space: #13111c;\n    --color-surface: #1a191f;\n    --color-crater: #33323e;\n    --color-black-hole: #0d0c14;\n    --color-starlight: #f7f7f8;\n    --color-starlight-dim: #d0cfd2;\n    --color-comet: #a1a0ab;\n    --color-asteroid: #868593;\n    --color-cosmic-lilac: #553f83;\n    --color-supernova: #a05fcf;\n    --color-success: #42946e;\n    --font-inter: 'Inter', system-ui, -apple-system, sans-serif;\n    --font-ui-monospace: ui-monospace, Menlo, Monaco, Consolas, monospace;\n  }\n\n  .rw-demo-wrapper {\n    background: var(--color-deep-space);\n    padding: 40px 32px;\n    font-family: var(--font-inter);\n    display: flex;\n    flex-direction: column;\n    gap: 32px;\n    align-items: center;\n  }\n\n  /* Toast */\n  .rw-toast {\n    display: flex;\n    align-items: flex-start;\n    gap: 12px;\n    background: #15231d;\n    border: 1px solid #26543f;\n    border-radius: 8px;\n    padding: 14px 16px;\n    width: 100%;\n    max-width: 360px;\n    box-sizing: border-box;\n    position: relative;\n  }\n\n  .rw-toast-icon {\n    flex-shrink: 0;\n    width: 20px;\n    height: 20px;\n    background: var(--color-success);\n    border-radius: 50%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-top: 1px;\n  }\n\n  .rw-toast-body {\n    flex: 1;\n    min-width: 0;\n  }\n\n  .rw-toast-title {\n    font-size: 14px;\n    font-weight: 600;\n    color: var(--color-starlight);\n    line-height: 1.4;\n    letter-spacing: -0.14px;\n    margin: 0 0 2px 0;\n  }\n\n  .rw-toast-desc {\n    font-size: 12px;\n    font-weight: 400;\n    color: var(--color-comet);\n    line-height: 1.5;\n    letter-spacing: -0.12px;\n    margin: 0;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n\n  .rw-toast-close {\n    background: none;\n    border: none;\n    color: var(--color-asteroid);\n    cursor: pointer;\n    padding: 0;\n    font-size: 16px;\n    line-height: 1;\n    flex-shrink: 0;\n    margin-top: -1px;\n  }\n\n  /* Tab Bar */\n  .rw-tab-bar {\n    background: rgba(13, 12, 20, 0.7);\n    border: 1px solid var(--color-crater);\n    border-radius: 9999px;\n    padding: 6px 8px;\n    display: flex;\n    align-items: center;\n    gap: 2px;\n    width: 100%;\n    max-width: 520px;\n    box-sizing: border-box;\n    backdrop-filter: blur(12px);\n  }\n\n  .rw-tab-item {\n    display: inline-flex;\n    align-items: center;\n    gap: 7px;\n    padding: 8px 16px;\n    border-radius: 9999px;\n    font-size: 14px;\n    font-weight: 500;\n    letter-spacing: -0.14px;\n    line-height: 1.4;\n    color: var(--color-asteroid);\n    cursor: pointer;\n    border: none;\n    background: transparent;\n    text-decoration: none;\n    transition: color 0.15s ease;\n    white-space: nowrap;\n  }\n\n  .rw-tab-item.active {\n    background: var(--color-cosmic-lilac);\n    color: var(--color-starlight);\n  }\n\n  .rw-tab-item:not(.active):hover {\n    color: var(--color-starlight-dim);\n  }\n\n  .rw-tab-sep {\n    width: 1px;\n    height: 16px;\n    background: var(--color-crater);\n    flex-shrink: 0;\n  }\n</style>\n\n<div class=\"rw-demo-wrapper\">\n  <!-- Toast Notification -->\n  <div class=\"rw-toast\">\n    <div class=\"rw-toast-icon\">\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M2 6l3 3 5-5\" stroke=\"#fff\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>\n    </div>\n    <div class=\"rw-toast-body\">\n      <p class=\"rw-toast-title\">Deployment Successful!</p>\n      <p class=\"rw-toast-desc\">backend was deployed successfully...</p>\n    </div>\n    <button class=\"rw-toast-close\" aria-label=\"Close\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M2 2l10 10M12 2L2 12\" stroke=\"#868593\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>\n      </svg>\n    </button>\n  </div>\n\n  <!-- Tab Bar -->\n  <div class=\"rw-tab-bar\">\n    <a href=\"#\" class=\"rw-tab-item active\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <rect x=\"1\" y=\"4\" width=\"12\" height=\"8\" rx=\"1.5\" stroke=\"currentColor\" stroke-width=\"1.3\"/>\n        <path d=\"M4 4V3a3 3 0 016 0v1\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\"/>\n      </svg>\n      Deploy\n    </a>\n    <div class=\"rw-tab-sep\"></div>\n    <a href=\"#\" class=\"rw-tab-item\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <circle cx=\"4\" cy=\"7\" r=\"2\" stroke=\"currentColor\" stroke-width=\"1.3\"/>\n        <circle cx=\"10\" cy=\"7\" r=\"2\" stroke=\"currentColor\" stroke-width=\"1.3\"/>\n        <path d=\"M6 7h2\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\"/>\n      </svg>\n      Network\n    </a>\n    <div class=\"rw-tab-sep\"></div>\n    <a href=\"#\" class=\"rw-tab-item\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M2 10V7m3 3V5m3 5V3m3 7V6\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linecap=\"round\"/>\n      </svg>\n      Scale\n    </a>\n    <div class=\"rw-tab-sep\"></div>\n    <a href=\"#\" class=\"rw-tab-item\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <circle cx=\"7\" cy=\"7\" r=\"5.5\" stroke=\"currentColor\" stroke-width=\"1.3\"/>\n        <circle cx=\"7\" cy=\"7\" r=\"2\" stroke=\"currentColor\" stroke-width=\"1.3\"/>\n      </svg>\n      Monitor\n    </a>\n    <div class=\"rw-tab-sep\"></div>\n    <a href=\"#\" class=\"rw-tab-item\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M7 1l1.5 4H13l-3.5 2.5 1.5 4L7 9l-4 2.5 1.5-4L1 5h4.5L7 1z\" stroke=\"currentColor\" stroke-width=\"1.3\" stroke-linejoin=\"round\"/>\n      </svg>\n      Evolve\n    </a>\n  </div>\n</div>1b:T1a72,<style>\n  :root {\n    --color-deep-space: #13111c;\n    --color-surface: #1a191f;\n    --color-crater: #33323e;\n    --color-starlight: #f7f7f8;\n    --color-starlight-dim: #d0cfd2;\n    --color-comet: #a1a0ab;\n    --color-asteroid: #868593;\n    --color-cosmic-lilac: #553f83;\n    --font-ibm-plex-serif: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;\n    --font-inter: 'Inter', system-ui, -apple-system, sans-serif;\n  }\n\n  .rw-testimonials-section {\n    background: var(--color-deep-space);\n    padding: 64px 32px;\n    font-family: var(--font-inter);\n    box-sizing: border-box;\n    width: 100%;\n  }\n\n  .rw-testimonials-header {\n    text-align: center;\n    margin-bottom: 48px;\n  }\n\n  .rw-testimonials-title {\n    font-family: var(--font-ibm-plex-serif);\n    font-size: 36px;\n    font-weight: 400;\n    line-height: 1.2;\n    letter-spacing: -0.72px;\n    color: var(--color-starlight);\n    margin: 0 0 12px 0;\n  }\n\n  .rw-testimonials-sub {\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 1.6;\n    letter-spacing: -0.1px;\n    color: var(--color-comet);\n    margin: 0 0 24px 0;\n    max-width: 480px;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n  .rw-btn-ghost {\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    background: transparent;\n    color: var(--color-starlight);\n    font-family: var(--font-inter);\n    font-size: 15px;\n    font-weight: 500;\n    padding: 10px 20px;\n    border-radius: 8px;\n    border: 1px solid var(--color-crater);\n    text-decoration: none;\n    cursor: pointer;\n  }\n\n  .rw-cards-grid {\n    display: flex;\n    flex-direction: column;\n    gap: 16px;\n  }\n\n  .rw-testimonial-card {\n    background: var(--color-surface);\n    border: 1px solid var(--color-crater);\n    border-radius: 12px;\n    padding: 32px;\n    box-sizing: border-box;\n    position: relative;\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n    gap: 0;\n  }\n\n  .rw-testimonial-card::before {\n    content: '';\n    position: absolute;\n    inset: 0;\n    background-image:\n      linear-gradient(var(--color-crater) 1px, transparent 1px),\n      linear-gradient(90deg, var(--color-crater) 1px, transparent 1px);\n    background-size: 32px 32px;\n    opacity: 0.25;\n    pointer-events: none;\n  }\n\n  .rw-card-logo {\n    margin-bottom: 24px;\n    position: relative;\n    z-index: 1;\n  }\n\n  .rw-logo-text {\n    font-size: 22px;\n    font-weight: 700;\n    color: var(--color-starlight);\n    letter-spacing: -0.5px;\n    font-family: var(--font-inter);\n  }\n\n  .rw-card-quote {\n    font-size: 15px;\n    font-weight: 400;\n    line-height: 1.65;\n    letter-spacing: -0.1px;\n    color: var(--color-starlight-dim);\n    margin: 0 0 32px 0;\n    flex: 1;\n    position: relative;\n    z-index: 1;\n  }\n\n  .rw-card-author {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    padding-top: 24px;\n    border-top: 1px solid var(--color-crater);\n    position: relative;\n    z-index: 1;\n  }\n\n  .rw-author-avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 50%;\n    flex-shrink: 0;\n    overflow: hidden;\n  }\n\n  .rw-author-avatar-placeholder {\n    width: 100%;\n    height: 100%;\n    border-radius: 50%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 16px;\n    font-weight: 600;\n    color: var(--color-starlight);\n  }\n\n  .rw-author-name {\n    font-size: 14px;\n    font-weight: 600;\n    color: var(--color-starlight);\n    line-height: 1.4;\n    letter-spacing: -0.14px;\n    margin: 0 0 2px 0;\n  }\n\n  .rw-author-role {\n    font-size: 13px;\n    font-weight: 400;\n    color: var(--color-asteroid);\n    line-height: 1.4;\n    letter-spacing: -0.13px;\n    margin: 0;\n  }\n</style>\n\n<div class=\"rw-testimonials-section\">\n  <div class=\"rw-testimonials-header\">\n    <h2 class=\"rw-testimonials-title\">Trusted by the best in business</h2>\n    <p class=\"rw-testimonials-sub\">Railway supports great software teams wherever they are. Hear from some of the teams building their products on Railway.</p>\n    <a href=\"#\" class=\"rw-btn-ghost\">\n      Read customer stories\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M2 7h10M8 3l4 4-4 4\" stroke=\"#f7f7f8\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>\n    </a>\n  </div>\n\n  <div class=\"rw-cards-grid\">\n    <!-- Card 1 -->\n    <div class=\"rw-testimonial-card\">\n      <div class=\"rw-card-logo\">\n        <span class=\"rw-logo-text\">BILT ⊞</span>\n      </div>\n      <p class=\"rw-card-quote\">\"On our previous rent day, we saw traffic of 1,500+ requests per second that were all being fulfilled in under 50 milliseconds, which is really great. Our technical team is really impressed with scale like that.\"</p>\n      <div class=\"rw-card-author\">\n        <div class=\"rw-author-avatar\">\n          <div class=\"rw-author-avatar-placeholder\" style=\"background: linear-gradient(135deg, #3a5a8a, #2a4a7a);\">K</div>\n        </div>\n        <div>\n          <p class=\"rw-author-name\">Kartik Aggarwal</p>\n          <p class=\"rw-author-role\">Tech Lead at Bilt</p>\n        </div>\n      </div>\n    </div>\n\n    <!-- Card 2 -->\n    <div class=\"rw-testimonial-card\">\n      <div class=\"rw-card-logo\">\n        <span class=\"rw-logo-text\" style=\"font-size:26px; letter-spacing: -1px;\">G2X</span>\n      </div>\n      <p class=\"rw-card-quote\">\"Services that took 1 week to configure elsewhere take 1 day to spin up in Railway. Messy networking like on other cloud platforms doesn't exist on Railway. If you understand basic TCP, you're all set.\"</p>\n      <div class=\"rw-card-author\">\n        <div class=\"rw-author-avatar\">\n          <div class=\"rw-author-avatar-placeholder\" style=\"background: linear-gradient(135deg, #4a6a5a, #3a5a4a);\">D</div>\n        </div>\n        <div>\n          <p class=\"rw-author-name\">Daniel Lobaton</p>\n          <p class=\"rw-author-role\">CTO at G2X</p>\n        </div>\n      </div>\n    </div>\n\n    <!-- Card 3 -->\n    <div class=\"rw-testimonial-card\">\n      <div class=\"rw-card-logo\">\n        <span class=\"rw-logo-text\">◆ Mappa</span>\n      </div>\n      <p class=\"rw-card-quote\">\"Railway streamlines and accelerates our entire operation. It gives us instant observability into our services and makes spinning up self-hosted third-party tools almost effortless. This reduces friction in experimentation and shortens our deployment cycles significantly.\"</p>\n      <div class=\"rw-card-author\">\n        <div class=\"rw-author-avatar\">\n          <div class=\"rw-author-avatar-placeholder\" style=\"background: linear-gradient(135deg, #8a6a2a, #7a5a1a);\">D</div>\n        </div>\n        <div>\n          <p class=\"rw-author-name\">Daniel Moretti</p>\n          <p class=\"rw-author-role\">Co-Founder &amp; CTO at Mappa</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>1c:T501,### Quick Color Reference\n- **Page Background**: `Deep Space` (#13111c)\n- **Card Background**: `Surface` (#1a191f)\n- **Primary Text**: `Starlight` (#f7f7f8)\n- **Body Text**: `Comet` (#a1a0ab)\n- **Border**: `Crater` (#33323e)\n- **CTA / Accent**: `Cosmic Lilac` (#553f83)\n- **Focus Accent**: `Supernova` (#a05fcf)\n\n### Example Component Prompts\n1.  **Hero Section:** Create a full-bleed hero section with the painterly night sky illustration as the background. Add a centered headline 'Ship software peacefully' in 54px `IBM Plex Serif` font, `Starlight` (#f7f7f8) color, with -1.94px letter-spacing. Below it, create a Primary CTA Button with text 'Deploy →' and a Secondary Button with text 'Demo'.\n\n2.  **Primary CTA Button:** Create a button with text 'Deploy →'. Use a `Cosmic Lilac` (#553f83) background, `Starlight` (#f7f7f8) text, 8px border radius, and `12px 24px` padding. The font should be 16px Inter at weight 500.\n\n3.  **Testimonial Card:** Create a card with a `Surface` (#1a191f) background, a 1px solid `Crater` (#33323e) border, and a 12px border radius. Padding should be 32px. Add a subtle 1px grid background pattern inside the card. Place a quote inside using `Starlight` (#f7f7f8) text at 18px and an attribution below it in `Comet` (#a1a0ab) text at 14px."
+}

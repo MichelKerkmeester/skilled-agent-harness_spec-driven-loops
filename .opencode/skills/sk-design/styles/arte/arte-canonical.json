@@ -1,0 +1,1511 @@
+{
+  "source": "https://styles.refero.design/style/2f94c1f0-cd23-4bf1-95f3-0e531174c4f4",
+  "uuid": "2f94c1f0-cd23-4bf1-95f3-0e531174c4f4",
+  "name": "arte*",
+  "northStar": "Golden hour harvest editorial — a cream canvas where sun-dappled forest photos meet oversized rounded display type, electric chartreuse logo, and warm copper text that feels printed rather than rendered.",
+  "capturedAt": "2026-07-18T09:29:15.199Z",
+  "meta": {
+    "url": "https://www.makearte.ca",
+    "siteName": "arte*",
+    "extractedAt": "2026-06-03T19:27:50.712Z",
+    "durationMs": 36059,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 369,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Parafina (or Bricolage Grotesque substitute) at weight 500 for all display and heading text — never go above 500 or below 500, the single-weight treatment is signature",
+      "Apply Citron Beam (#e8e359) as the hero overlay text color against full-bleed nature photography — the chartreuse against forest green is the brand's most recognizable visual moment",
+      "Set display type at line-height 0.80–0.90 — the crushed leading is essential; never let display headlines breathe with 1.2+ line-height",
+      "Use Morning Glory (#7997ff) for inline text highlights within Harvest Copper body copy — color is the emphasis, not weight or style changes",
+      "Default all body and list text to Harvest Copper (#ab5700) — this is the brand's ink color, not black or gray",
+      "Apply 31px border-radius to all interactive elements (buttons, links, menu triggers) — not 9999px, not 8px; the 31px soft-pill is the system radius",
+      "Place full-bleed editorial photography as a surface layer with display type directly overlaid — never put text in a box on top of photos"
+    ],
+    "donts": [
+      "Do not use Arial, Helvetica, or any system font for headings — Parafina at extreme sizes is the brand's primary identity",
+      "Do not use black (#000000) or dark gray for body text — Harvest Copper (#ab5700) is the default ink",
+      "Do not apply drop shadows, blurs, or elevation to cards or buttons — depth comes from photography and whitespace, not shadow",
+      "Do not use tight 12-column card grids for content — editorial sections flow as single-column blocks with large display type",
+      "Do not exceed 500 weight in Parafina — no bolding, no black weight; the display is always at one weight",
+      "Do not use blue or gray for the page background — Wheat Cream (#e5dccd) is the only canvas",
+      "Do not add gradient overlays, vignette effects, or text-background boxes on hero photography — Citron Beam type sits directly on the image"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e5dccd",
+        "name": "Wheat Cream",
+        "role": "Page canvas, card surfaces, section backgrounds — the warm off-white that holds every screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ab5700",
+        "name": "Harvest Copper",
+        "role": "Primary text, body copy, list borders, card borders, decorative strokes — the default ink color across all editorial content",
+        "group": "brand"
+      },
+      {
+        "hex": "#e8e359",
+        "name": "Citron Beam",
+        "role": "Logotype color, hero text overlays, accent borders, icon highlights — the electric chartreuse that makes the brand pop against forest greens and cream",
+        "group": "brand"
+      },
+      {
+        "hex": "#7997ff",
+        "name": "Morning Glory",
+        "role": "Inline text highlights, links, secondary icon accents, input focus — a cool periwinkle that cools the otherwise warm palette when it enters body copy",
+        "group": "accent"
+      },
+      {
+        "hex": "#d99623",
+        "name": "Amber Glow",
+        "role": "List borders, secondary heading accents, warm decorative strokes",
+        "group": "accent"
+      },
+      {
+        "hex": "#214534",
+        "name": "Forest Floor",
+        "role": "Button borders, body text on light accents, deep decorative strokes — a grounded dark green for contrast moments",
+        "group": "brand"
+      },
+      {
+        "hex": "#103d26",
+        "name": "Deep Moss",
+        "role": "Darkest accent, background fills for contrasted blocks, depth shadows",
+        "group": "brand"
+      },
+      {
+        "hex": "#568037",
+        "name": "Olive Branch",
+        "role": "List borders, tag accents, organic decorative strokes",
+        "group": "accent"
+      },
+      {
+        "hex": "#3d549c",
+        "name": "Slate Bloom",
+        "role": "Heading borders, muted decorative strokes, cool-tone secondary",
+        "group": "accent"
+      },
+      {
+        "hex": "#e99686",
+        "name": "Coral Petal",
+        "role": "Soft fill washes, list surface tints, warm secondary backgrounds",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed hero with overlaid centered display type, then transitions to a centered single-column editorial flow on the Wheat Cream canvas. Sections are separated by generous 80–120px vertical gaps rather than dividers or alternating background bands. Below the hero, content follows an image-then-text or text-then-image pattern: large display headline, generous breathing room, a full-width or large-format photograph, then a left-aligned body paragraph below. No sidebar navigation, no card grids, no multi-column feature matrices. Navigation is minimal: a single ghost 'MENU' button in the top-right corner of the hero. The overall page rhythm is: loud (full-bleed photo + huge type) → quiet (cream canvas + centered headline) → warm (photo + editorial body text) → quiet, repeating. Page max-width is approximately 1200px for text and image blocks, though hero photography breaks this to full viewport width.",
+    "imagery": "Full-bleed golden-hour lifestyle photography is central to the visual identity. Imagery includes: sun-dappled forest canopies with light streaming through leaves (hero), overhead and angled shots of people gathered around dining tables with colorful food, and warm-toned portraits of diverse groups. Photography is high-key, warm-saturated, and naturalistic — no studio product shots, no stock-photo flatness. Images are treated as surfaces, not illustrations: they span edge-to-edge with display type overlaid directly, sometimes with the image bleeding under the next section. No icon system beyond small accent dots and arrows; no illustrations, no abstract graphics, no 3D renders. The photography IS the visual system alongside the display type.",
+    "similar": [
+      {
+        "why": "Same warm cream canvas with oversized playful display type and full-bleed lifestyle photography; both use a single bold accent color against earth tones and rely on editorial poster-style typography rather than UI chrome",
+        "business": "Oatly"
+      },
+      {
+        "why": "Full-bleed nature and food photography with large centered display headlines overlaid, warm earth-tone palette, and minimal ghost-pill navigation buttons",
+        "business": "Yolélé"
+      },
+      {
+        "why": "Farm-to-table brand language with warm cream surfaces, lifestyle photography as the primary visual element, and minimal UI components — though arte* leans more editorial and less grid-based",
+        "business": "Sweetgreen"
+      },
+      {
+        "why": "Warm botanical brand palette with cream backgrounds, organic rounded display type, and a single bright accent color (chartreuse in arte*, green in Farmacy) used against natural photography",
+        "business": "Farmacy"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "20px",
+        "other": "64px",
+        "buttons": "31px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "80-120px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#e5dccd",
+        "name": "Wheat Cream Canvas",
+        "level": 0,
+        "purpose": "Default page background — warm off-white that receives all editorial content"
+      },
+      {
+        "hex": "#1a3a1a",
+        "name": "Photographic Full-Bleed",
+        "level": 1,
+        "purpose": "Hero and feature sections use full-bleed photography as the surface itself; type overlays directly"
+      },
+      {
+        "hex": "#e5dccd",
+        "name": "Card Surface",
+        "level": 2,
+        "purpose": "Cards sit on the same cream canvas, distinguished by 20px radius and hairline Harvest Copper borders"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Golden hour harvest editorial — a cream canvas where sun-dappled forest photos meet oversized rounded display type, electric chartreuse logo, and warm copper text that feels printed rather than rendered.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 0.9
+      },
+      {
+        "role": "heading",
+        "size": 56,
+        "lineHeight": 0.9
+      },
+      {
+        "role": "heading-lg",
+        "size": 70,
+        "lineHeight": 0.85
+      },
+      {
+        "role": "display",
+        "size": 104,
+        "lineHeight": 0.85
+      },
+      {
+        "role": "display-xl",
+        "size": 173,
+        "lineHeight": 0.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Menu Button",
+        "role": "Navigation trigger in the hero overlay",
+        "description": "Transparent background, 1px Citron Beam (#e8e359) border, Citron Beam text in Poppins 12–13px weight 500 uppercase, 31px border-radius (pill shape), 6px vertical / 24px horizontal padding. Floats over photographic hero with no background fill — the text and border alone define it."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "First-screen brand statement overlaid on photography",
+        "description": "Parafina at 104–173px weight 500, line-height 0.80–0.85, Citron Beam (#e8e359) color. Sits directly over full-bleed nature photography with no text background or gradient — the color alone provides contrast against greens. The logotype 'arte*' itself is part of this treatment at the same scale."
+      },
+      {
+        "name": "Editorial Subheadline",
+        "role": "Secondary hero text — the 'tagline' under the display",
+        "description": "Parafina at 20–30px weight 500, line-height 0.90–1.00, Citron Beam color. Centrally aligned, sits 24–40px below the display headline. Uses the same display font at a smaller scale rather than switching to Poppins — this keeps the hero purely in the display voice."
+      },
+      {
+        "name": "Section Display Headline",
+        "role": "Large editorial headline on cream sections",
+        "description": "Parafina at 56–70px weight 500, line-height 0.85–0.90, Morning Glory (#7997ff) or Harvest Copper (#ab5700) color. Centered or left-aligned on the Wheat Cream canvas, with generous 80–120px top/bottom margin to create editorial breathing room. This is where the periwinkle blue enters the type system."
+      },
+      {
+        "name": "Body Paragraph Block",
+        "role": "Long-form editorial copy in feature sections",
+        "description": "Poppins 16px weight 400, line-height 1.40, Harvest Copper (#ab5700) as default text color. Maximum line length around 60–70 characters. Inline emphasis uses Morning Glory (#7997ff) color to highlight phrases like 'environment front-of-mind' without changing weight or style."
+      },
+      {
+        "name": "Image-Text Editorial Block",
+        "role": "Full-width lifestyle photo with text beneath",
+        "description": "Full-bleed or max-width image (rounded or sharp corners, generous sizing) followed by a body paragraph below with 40px gap. Image is treated as editorial illustration — people, food, nature — rather than product photography. Text block is left-aligned, max-width ~600px."
+      },
+      {
+        "name": "Text-Link CTA",
+        "role": "Navigation to more content (e.g. 'MORE ON US')",
+        "description": "Poppins 12–13px weight 500 uppercase, Harvest Copper or Morning Glory color, 31px border-radius pill border, 6px vertical / 24px horizontal padding, 1px border. No fill — the pill is an outline only. Often preceded by a small dot or arrow icon in the same color."
+      },
+      {
+        "name": "Card",
+        "role": "Content cards on the cream canvas",
+        "description": "20px border-radius, 1px Harvest Copper (#ab5700) border, 24px padding, Wheat Cream (#e5dccd) fill (same as canvas — the border defines the card). No shadows. Used sparingly — most content flows as editorial blocks rather than card grids."
+      },
+      {
+        "name": "Pill Button",
+        "role": "Interactive controls throughout",
+        "description": "31px border-radius (nearly full pill), 6px vertical / 24px horizontal padding, Poppins 12–13px weight 500 uppercase. Available in ghost (transparent fill, colored border + text in Citron Beam or Harvest Copper) or filled (Citron Beam #e8e359 fill with dark text). The 31px radius — not a full 9999px pill — is distinctive; it gives a soft, friendly shape without becoming a full stadium."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Subtle prompt below hero to scroll",
+        "description": "Small monospace or Poppins text '[scroll down]' in Citron Beam, centered, positioned at the bottom edge of the hero. Minimal, 12px, no animation implied — just quiet typographic signage."
+      },
+      {
+        "name": "Inline Color Highlight",
+        "role": "Emphasized phrases within body copy",
+        "description": "A technique rather than a component: select phrases within Harvest Copper body text switch to Morning Glory (#7997ff) color while keeping the same Poppins 16px weight 400 — the color change alone draws the eye without bolding, italicizing, or underlining. This is how links and emphasis integrate naturally into editorial prose."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body text, UI labels, navigation, buttons, list items, footer copy, input fields — a neutral geometric sans that stays quiet and functional at 12–16px. The 1.4 line-height with weight 400/500 gives body copy a slightly airy, readable feel without competing with the display headlines.",
+        "sizes": "12px, 13px, 16px",
+        "family": "Poppins",
+        "weight": "400, 500",
+        "lineHeight": "1.40",
+        "substitute": "Inter, DM Sans, or Manrope at 400/500"
+      },
+      {
+        "role": "Display and headings — a custom rounded retro display sans used at extreme sizes (up to 173px) with crushed line-heights (0.80–0.90). The weight-500 single-weight treatment at oversized scales is signature: the type feels playful, warm, and printed-poster rather than corporate. Appears in hero, section headlines, and the logotype itself.",
+        "sizes": "20px, 30px, 56px, 70px, 104px, 173px",
+        "family": "Parafina",
+        "weight": "500",
+        "lineHeight": "0.80, 0.90, 1.00",
+        "substitute": "Bricolage Grotesque, Cabinet Grotesk, or Familjen Grotesk at weight 500 with optical sizing"
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "ExposureTrial — detected in extracted data but not described by AI",
+        "sizes": "56px",
+        "family": "ExposureTrial",
+        "weight": "500",
+        "lineHeight": "0.9"
+      },
+      {
+        "role": "GTStandard-M — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "GTStandard-M",
+        "weight": "500",
+        "lineHeight": "1.5"
+      },
+      {
+        "role": "ITC_Avant_Garde_Gothic_Medium — detected in extracted data but not described by AI",
+        "sizes": "26px",
+        "family": "ITC_Avant_Garde_Gothic_Medium",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "arte* is a sunlit harvest editorial: a warm cream canvas (#e5dccd) hosts oversized display headlines in Parafina — a soft, slightly retro rounded sans at extreme sizes (70–173px) with crushed line-heights near 0.8–0.9 — while Poppins handles all secondary copy at a tight 1.4. The palette is farm-garden: burnt harvest copper (#ab5700) for primary text, a shocking chartreuse (#e8e359) for the logo and hero overlays, and a periwinkle (#7997ff) that acts as a cool counterweight for inline highlights. Imagery is the other half of the system — full-bleed golden-hour photography of forests, food, and faces, layered with display type rather than separated from it. Components are few and soft: pill buttons at 31px radius, 20px card radii, hairline borders, almost no shadows. The overall impression is a printed cookbook or farmers' market poster digitized — confident display type, earth-toned with one electric yellow accent, and the brand name itself ends in an asterisk that signals playful editorial mischief.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2f94c1f0-cd23-4bf1-95f3-0e531174c4f4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"arte* design system\",\"item\":\"https://styles.refero.design/style/2f94c1f0-cd23-4bf1-95f3-0e531174c4f4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2f94c1f0-cd23-4bf1-95f3-0e531174c4f4#style-reference\",\"name\":\"arte* design system reference\",\"headline\":\"arte* design system | Refero Styles\",\"description\":\"Explore arte*'s light E-commerce design system: Wheat Cream #e5dccd, Harvest Copper #ab5700 colors, Poppins, Parafina typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2f94c1f0-cd23-4bf1-95f3-0e531174c4f4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2f94c1f0-cd23-4bf1-95f3-0e531174c4f4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"arte*\",\"url\":\"https://www.makearte.ca\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2f94c1f0-cd23-4bf1-95f3-0e531174c4f4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6495c42c-ac18-479d-9def-a44de738786e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6495c42c-ac18-479d-9def-a44de738786e.jpg\",\"caption\":\"Screenshot of arte*\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6495c42c-ac18-479d-9def-a44de738786e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"arte* design system\",\"arte* website design\",\"arte* colors\",\"arte* typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Wheat Cream\",\"Harvest Copper\",\"Citron Beam\",\"Morning Glory\",\"Poppins\",\"Parafina\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"arte* design system\"},{\"@type\":\"Thing\",\"name\":\"arte* website design\"},{\"@type\":\"Thing\",\"name\":\"arte* colors\"},{\"@type\":\"Thing\",\"name\":\"arte* typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-05-10T23:55:23.017Z\",\"dateModified\":\"2026-05-10T23:55:23.017Z\"}]}19:T6f5,**Quick Color Reference**\n- text: #ab5700 (Harvest Copper)\n- background: #e5dccd (Wheat Cream)\n- border: #ab5700 (Harvest Copper, 1px hairline)\n- accent: #e8e359 (Citron Beam)\n- secondary accent: #7997ff (Morning Glory)\n- primary action: #e8e359 (filled action)\n\n**Example Component Prompts:**\n1. **Hero Section**: Full-bleed forest canopy photograph as background. Overlaid centered display type in Parafina (or Bricolage Grotesque substitute) weight 500, 120px, line-height 0.85, color #e8e359, reading 'arte*'. Below it, a 24px gap, then subheadline at 28px Parafina weight 500, line-height 1.0, also #e8e359. Top-right: ghost 'MENU' pill button — transparent fill, 1px #e8e359 border, 31px radius, 6px 24px padding, Poppins 13px weight 500 uppercase #e8e359 text.\n\n2. **Section Headline**: Centered on Wheat Cream (#e5dccd) canvas. Parafina 64px weight 500, line-height 0.90, color #7997ff. 80px top padding, 80px bottom padding, max-width 800px centered.\n\n3. **Editorial Image-Text Block**: Full-width photograph (people at a table, 1200px max-width, no border-radius or 20px if contained). 40px gap below. Body paragraph: Poppins 16px weight 400, line-height 1.40, color #ab5700, max-width 620px, left-aligned. One phrase within the paragraph switches to #7997ff color for emphasis.\n\n4. **Ghost Pill Link Button**: Transparent background, 1px Harvest Copper (#ab5700) border, 31px border-radius, 6px vertical / 24px horizontal padding, Poppins 13px weight 500 uppercase #ab5700 text. Preceded by a small 8px dot in the same color.\n\n5. **Card on Cream Canvas**: 20px border-radius, 1px #ab5700 border, 24px padding, #e5dccd fill. Poppins 16px weight 400 #ab5700 body text. No shadow, no fill change — the border alone defines the card edge against the same-colored canvas."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. The design system deliberately avoids drop shadows, blurs, and elevation stacks. Depth is created through full-bleed photography, generous whitespace, and 1px hairline borders in Harvest Copper. Surfaces are flat — the cream canvas is the only surface, and cards are defined by their outline, not by floating above the page."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ab5700",
+          "oklch": {
+            "c": 0.13557591352398693,
+            "h": 55.06828538250895,
+            "l": 0.5480009676300756
+          },
+          "contexts": [
+            "other",
+            "button",
+            "hero",
+            "image",
+            "heading",
+            "list",
+            "card",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 686,
+          "confidence": 1,
+          "prominence": 194776388.2090506,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 6,
+            "card/color": 24,
+            "hero/color": 2,
+            "icon/color": 1,
+            "link/color": 5,
+            "list/color": 29,
+            "other/fill": 2,
+            "image/color": 5,
+            "other/color": 53,
+            "heading/color": 11,
+            "body/borderColor": 24,
+            "card/borderColor": 96,
+            "hero/borderColor": 8,
+            "icon/borderColor": 4,
+            "link/borderColor": 20,
+            "list/borderColor": 116,
+            "image/borderColor": 20,
+            "other/borderColor": 212,
+            "heading/borderColor": 44,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e5dccd",
+          "oklch": {
+            "c": 0.022446982498380386,
+            "h": 80.68181138265176,
+            "l": 0.8975691971857922
+          },
+          "contexts": [
+            "button",
+            "other",
+            "list",
+            "heading",
+            "image",
+            "footer",
+            "input",
+            "icon",
+            "link",
+            "body"
+          ],
+          "frequency": 339,
+          "confidence": 1,
+          "prominence": 11629363.5443667,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 4,
+            "icon/color": 1,
+            "link/color": 9,
+            "list/color": 14,
+            "other/fill": 24,
+            "image/color": 5,
+            "input/color": 1,
+            "other/color": 18,
+            "button/color": 2,
+            "footer/color": 1,
+            "heading/color": 6,
+            "body/borderColor": 16,
+            "icon/borderColor": 4,
+            "link/borderColor": 36,
+            "list/borderColor": 56,
+            "image/borderColor": 20,
+            "input/borderColor": 4,
+            "other/borderColor": 72,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 24,
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#7997ff",
+          "oklch": {
+            "c": 0.15610730921416607,
+            "h": 269.8886198851412,
+            "l": 0.7004344599722377
+          },
+          "contexts": [
+            "link",
+            "icon",
+            "other",
+            "heading",
+            "body",
+            "footer",
+            "input"
+          ],
+          "frequency": 113,
+          "confidence": 1,
+          "prominence": 9287537.422853284,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 1,
+            "icon/color": 1,
+            "link/color": 2,
+            "other/fill": 58,
+            "other/color": 5,
+            "heading/color": 1,
+            "body/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 8,
+            "other/borderColor": 20,
+            "heading/borderColor": 4,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e8e359",
+          "oklch": {
+            "c": 0.15688054130482776,
+            "h": 107.20514720529668,
+            "l": 0.8945174917317766
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "list"
+          ],
+          "frequency": 149,
+          "confidence": 1,
+          "prominence": 9270959.970560966,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "list/color": 4,
+            "other/fill": 12,
+            "other/color": 21,
+            "heading/color": 2,
+            "list/borderColor": 16,
+            "other/borderColor": 84,
+            "heading/borderColor": 8,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#d99623",
+          "oklch": {
+            "c": 0.14298267436242248,
+            "h": 74.6595866715297,
+            "l": 0.7218261550830776
+          },
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 105,
+          "confidence": 1,
+          "prominence": 8628557.982977303,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "list/color": 12,
+            "other/color": 9,
+            "list/borderColor": 48,
+            "other/borderColor": 36
+          }
+        },
+        {
+          "hex": "#568037",
+          "oklch": {
+            "c": 0.11303920753573722,
+            "h": 133.71012728925137,
+            "l": 0.5517606917298068
+          },
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 6630428.814349765,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "list/color": 4,
+            "other/color": 3,
+            "list/borderColor": 16,
+            "other/borderColor": 12
+          }
+        },
+        {
+          "hex": "#3d549c",
+          "oklch": {
+            "c": 0.11985717044398336,
+            "h": 268.17690751779776,
+            "l": 0.46512190197503606
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "list"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 6575543.436516864,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "heading/color": 1,
+            "other/borderColor": 16,
+            "heading/borderColor": 4,
+            "list/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#103d26",
+          "oklch": {
+            "c": 0.06402865745163355,
+            "h": 157.21483256235007,
+            "l": 0.3222854878505292
+          },
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 4436721.050902334,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "other/color": 1,
+            "other/stroke": 1,
+            "other/borderColor": 4,
+            "list/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e99686",
+          "oklch": {
+            "c": 0.10358765733848783,
+            "h": 31.498852880620344,
+            "l": 0.7531766843129014
+          },
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 4260372.781693042,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "other/color": 1,
+            "other/borderColor": 4,
+            "list/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#214534",
+          "oklch": {
+            "c": 0.05167644970283661,
+            "h": 161.71099986380054,
+            "l": 0.3578104128177391
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 3935629.946549254,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "button/color": 2,
+            "body/borderColor": 4,
+            "button/borderColor": 8,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#5e335d",
+          "oklch": {
+            "c": 0.08707632889435464,
+            "h": 327.9121739708298,
+            "l": 0.39194198513504114
+          },
+          "contexts": [
+            "list"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "list/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c42331",
+          "oklch": {
+            "c": 0.19430612337836795,
+            "h": 23.223720009903044,
+            "l": 0.5325360400633302
+          },
+          "contexts": [
+            "list"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "list/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.3018257772201263,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 9.06,
+          "background": "#103d26",
+          "foreground": "#e8e359"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9,
+          "background": "#103d26",
+          "foreground": "#e5dccd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.92,
+          "background": "#214534",
+          "foreground": "#e8e359"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.86,
+          "background": "#214534",
+          "foreground": "#e5dccd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.38,
+          "background": "#5e335d",
+          "foreground": "#e8e359"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.33,
+          "background": "#5e335d",
+          "foreground": "#e5dccd"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.34,
+          "background": "#e99686",
+          "foreground": "#103d26"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.28,
+          "background": "#3d549c",
+          "foreground": "#e8e359"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.24,
+          "background": "#3d549c",
+          "foreground": "#e5dccd"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.85,
+          "background": "#103d26",
+          "foreground": "#d99623"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.67,
+          "background": "#214534",
+          "foreground": "#e99686"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.47,
+          "background": "#103d26",
+          "foreground": "#7997ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.35,
+          "background": "#5e335d",
+          "foreground": "#e99686"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.29,
+          "background": "#c42331",
+          "foreground": "#e8e359"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.25,
+          "background": "#c42331",
+          "foreground": "#e5dccd"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.24,
+          "background": "#214534",
+          "foreground": "#d99623"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.96,
+          "background": "#5e335d",
+          "foreground": "#d99623"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.91,
+          "background": "#214534",
+          "foreground": "#7997ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.8,
+          "background": "#e8e359",
+          "foreground": "#ab5700"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.77,
+          "background": "#e5dccd",
+          "foreground": "#ab5700"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 31,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 64,
+          "corners": [
+            0,
+            0,
+            64,
+            64
+          ],
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button",
+            "input",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|input",
+            "marginRight|input",
+            "marginBottom|input",
+            "marginLeft|input",
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "list"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "icon",
+            "list"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|icon",
+            "marginBottom|list",
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "other",
+            "list",
+            "heading"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "marginBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|list",
+            "paddingBottom|list",
+            "columnGap|list",
+            "columnGap|other",
+            "marginBottom|heading",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|link",
+            "marginBottom|heading",
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 41,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 114,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 140,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 143,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 305,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Poppins",
+          "source": "google",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 226,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Parafina",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 39,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ExposureTrial",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ITC_Avant_Garde_Gothic_Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GTStandard-M",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.8
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "list",
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "list",
+            "card",
+            "link",
+            "body",
+            "footer"
+          ],
+          "frequency": 170,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "link",
+            "icon",
+            "other",
+            "card",
+            "list"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 16,
+          "family": "GTStandard-M",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Parafina",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 26,
+          "family": "ITC_Avant_Garde_Gothic_Medium",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Parafina",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 56,
+          "family": "ExposureTrial",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 56,
+          "family": "Parafina",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 70,
+          "family": "Parafina",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 104,
+          "family": "Parafina",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 173,
+          "family": "Parafina",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/42b9e932-4749-44bb-876e-1387373bde82.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6495c42c-ac18-479d-9def-a44de738786e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2f94c1f0-cd23-4bf1-95f3-0e531174c4f4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"arte* design system\",\"item\":\"https://styles.refero.design/style/2f94c1f0-cd23-4bf1-95f3-0e531174c4f4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2f94c1f0-cd23-4bf1-95f3-0e531174c4f4#style-reference\",\"name\":\"arte* design system reference\",\"headline\":\"arte* design system | Refero Styles\",\"description\":\"Explore arte*'s light E-commerce design system: Wheat Cream #e5dccd, Harvest Copper #ab5700 colors, Poppins, Parafina typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2f94c1f0-cd23-4bf1-95f3-0e531174c4f4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2f94c1f0-cd23-4bf1-95f3-0e531174c4f4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"arte*\",\"url\":\"https://www.makearte.ca\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2f94c1f0-cd23-4bf1-95f3-0e531174c4f4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6495c42c-ac18-479d-9def-a44de738786e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6495c42c-ac18-479d-9def-a44de738786e.jpg\",\"caption\":\"Screenshot of arte*\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6495c42c-ac18-479d-9def-a44de738786e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"arte* design system\",\"arte* website design\",\"arte* colors\",\"arte* typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Wheat Cream\",\"Harvest Copper\",\"Citron Beam\",\"Morning Glory\",\"Poppins\",\"Parafina\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"arte* design system\"},{\"@type\":\"Thing\",\"name\":\"arte* website design\"},{\"@type\":\"Thing\",\"name\":\"arte* colors\"},{\"@type\":\"Thing\",\"name\":\"arte* typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-05-10T23:55:23.017Z\",\"dateModified\":\"2026-05-10T23:55:23.017Z\"}]}19:T6f5,**Quick Color Reference**\n- text: #ab5700 (Harvest Copper)\n- background: #e5dccd (Wheat Cream)\n- border: #ab5700 (Harvest Copper, 1px hairline)\n- accent: #e8e359 (Citron Beam)\n- secondary accent: #7997ff (Morning Glory)\n- primary action: #e8e359 (filled action)\n\n**Example Component Prompts:**\n1. **Hero Section**: Full-bleed forest canopy photograph as background. Overlaid centered display type in Parafina (or Bricolage Grotesque substitute) weight 500, 120px, line-height 0.85, color #e8e359, reading 'arte*'. Below it, a 24px gap, then subheadline at 28px Parafina weight 500, line-height 1.0, also #e8e359. Top-right: ghost 'MENU' pill button — transparent fill, 1px #e8e359 border, 31px radius, 6px 24px padding, Poppins 13px weight 500 uppercase #e8e359 text.\n\n2. **Section Headline**: Centered on Wheat Cream (#e5dccd) canvas. Parafina 64px weight 500, line-height 0.90, color #7997ff. 80px top padding, 80px bottom padding, max-width 800px centered.\n\n3. **Editorial Image-Text Block**: Full-width photograph (people at a table, 1200px max-width, no border-radius or 20px if contained). 40px gap below. Body paragraph: Poppins 16px weight 400, line-height 1.40, color #ab5700, max-width 620px, left-aligned. One phrase within the paragraph switches to #7997ff color for emphasis.\n\n4. **Ghost Pill Link Button**: Transparent background, 1px Harvest Copper (#ab5700) border, 31px border-radius, 6px vertical / 24px horizontal padding, Poppins 13px weight 500 uppercase #ab5700 text. Preceded by a small 8px dot in the same color.\n\n5. **Card on Cream Canvas**: 20px border-radius, 1px #ab5700 border, 24px padding, #e5dccd fill. Poppins 16px weight 400 #ab5700 body text. No shadow, no fill change — the border alone defines the card edge against the same-colored canvas."
+}

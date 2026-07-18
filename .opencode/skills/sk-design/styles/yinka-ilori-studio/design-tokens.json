@@ -1,0 +1,165 @@
+{
+  "color": {
+    "blush-paper": {
+      "$value": "#f5e5e5",
+      "$type": "color",
+      "$description": "Blush Paper — Page canvas, breathing space between pattern sections, card surfaces on quiet pages"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Body text, navigation links, hairline borders, structural grid lines, icon strokes"
+    },
+    "rose": {
+      "$value": "#d9698c",
+      "$type": "color",
+      "$description": "Rose — Wavy stripe fill in hero/pattern compositions, deeper pink surface variant"
+    }
+  },
+  "font": {
+    "haas-grotesk-display-r-web": {
+      "$value": "Haas Grotesk Display R Web",
+      "$type": "fontFamily",
+      "$description": "All UI text: navigation links, body copy, footer, labels. The 14px weight 400 is the default for everything clickable; 20px weight 500 for subheadings and journal titles. This is the working typeface — small, neutral, Swiss-grid functional."
+    },
+    "yinka-sans-ultra": {
+      "$value": "Yinka Sans Ultra",
+      "$type": "fontFamily",
+      "$description": "Exclusive to the studio wordmark and oversized display moments. The +0.04em tracking at 120px is critical — it gives the dense letterforms air without losing the custom geometric character. Custom face only used at this display scale; never below 80px."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Haas Grotesk Display R Web",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Haas Grotesk Display R Web",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Haas Grotesk Display R Web",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Haas Grotesk Display R Web",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Haas Grotesk Display R Web",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Yinka Sans Ultra",
+        "fontSize": "120px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 120px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Yinka Sans Ultra",
+        "fontSize": "120px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 120px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Haas Grotesk Display R Web",
+        "fontSize": "120px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 120px"
+    }
+  },
+  "spacing": {
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "136": {
+      "$value": "136px",
+      "$type": "dimension",
+      "$description": "Spacing 136px"
+    },
+    "175": {
+      "$value": "175px",
+      "$type": "dimension",
+      "$description": "Spacing 175px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "blush-canvas": {
+      "$value": "#f5e5e5",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background and breathing space between pattern sections"
+    },
+    "pattern-surface": {
+      "$value": "#d9698c",
+      "$type": "color",
+      "$description": "Surface level 2: Deeper rose within SVG pattern compositions; not used as UI surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://yinkailori.com",
+      "siteName": "Yinka Ilori Studio",
+      "extractedAt": "2026-06-03T20:23:10.494Z",
+      "variant": "extended"
+    }
+  }
+}

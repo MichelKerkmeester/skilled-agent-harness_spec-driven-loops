@@ -1,0 +1,552 @@
+{
+  "color": {
+    "deep-teal": {
+      "$value": "#1c5d5f",
+      "$type": "color",
+      "$description": "Deep Teal — Primary action button fill, filled CTA — a desaturated dark teal reads as confident and scholarly rather than aggressive or corporate"
+    },
+    "pine-shadow": {
+      "$value": "#0e4749",
+      "$type": "color",
+      "$description": "Pine Shadow — Outlined/ghost action borders, secondary link underlines — same hue family as the primary, one step deeper for quiet secondary actions"
+    },
+    "sage": {
+      "$value": "#65b8a2",
+      "$type": "color",
+      "$description": "Sage — Outlined action borders, decorative illustrations, and soft accent strokes — the mid-tone teal for secondary interactive elements"
+    },
+    "lake-teal": {
+      "$value": "#2a7779",
+      "$type": "color",
+      "$description": "Lake Teal — Mid-saturation teal for decorative illustration fills and accent borders"
+    },
+    "forest-floor": {
+      "$value": "#156152",
+      "$type": "color",
+      "$description": "Forest Floor — Dark variant of the brand teal used for filled button hover and selected states"
+    },
+    "ink-navy": {
+      "$value": "#16325a",
+      "$type": "color",
+      "$description": "Ink Navy — Blue action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "dusty-rose": {
+      "$value": "#d6aec1",
+      "$type": "color",
+      "$description": "Dusty Rose — Outlined/ghost action borders for accent buttons, decorative illustration tints — soft warm contrast to the cool teal primary"
+    },
+    "mint-mist": {
+      "$value": "#a2cbcd",
+      "$type": "color",
+      "$description": "Mint Mist — Outlined action borders, soft illustration washes — pale teal for ghost buttons and decorative panels"
+    },
+    "sea-foam": {
+      "$value": "#cae1e2",
+      "$type": "color",
+      "$description": "Sea Foam — Soft highlight washes and decorative illustration backgrounds — the lightest cool accent"
+    },
+    "paper-white": {
+      "$value": "#f2f8f7",
+      "$type": "color",
+      "$description": "Paper White — Page canvas — a warm near-white with a barely-perceptible mint tint instead of pure white, giving the whole site a printed-on-paper warmth"
+    },
+    "card-mint": {
+      "$value": "#e4f0f1",
+      "$type": "color",
+      "$description": "Card Mint — Card and panel surfaces — a slightly deeper mint that lifts cards off the canvas without contrast shock"
+    },
+    "blush-sand": {
+      "$value": "#f2e8e2",
+      "$type": "color",
+      "$description": "Blush Sand — Warm-toned panel surface for alternating sections and illustration backgrounds — breaks the cool palette with a warm counter-rhythm"
+    },
+    "charcoal-navy": {
+      "$value": "#283338",
+      "$type": "color",
+      "$description": "Charcoal Navy — Primary navigation text and nav borders — the darkest neutral, slightly blue-shifted to harmonize with the teal palette"
+    },
+    "slate": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Slate — Body text fallback and secondary headings"
+    },
+    "soft-black": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Soft Black — Link text and image fallback borders — the true near-black for text contrast"
+    },
+    "illustration-ink": {
+      "$value": "#231e21",
+      "$type": "color",
+      "$description": "Illustration Ink — Hand-drawn illustration outlines and fill — a warm near-black that feels inked rather than digital"
+    }
+  },
+  "font": {
+    "sofia-pro": {
+      "$value": "Sofia Pro",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body sans — a geometric humanist sans with slight warmth. Handles body copy at 16–18px, subheadings at 20–24px, nav at 14px, and small UI at 12–13px. Tight tracking (-0.01em) at larger sizes keeps headlines crisp; slightly looser (0.043em) at small UI gives breathing room for labels."
+    },
+    "p22-mackinac-pro": {
+      "$value": "P22 Mackinac Pro",
+      "$type": "fontFamily",
+      "$description": "Display and heading serif — a literary, slab-influenced serif that brings editorial credibility to section headlines. Used at 64px (display) and 44–50px (section headings) with generous line-height. The serif choice is the signature typographic decision: most SaaS products stay all-sans, but Mackinac makes the brand feel like a research publication, not a dashboard."
+    },
+    "p22-mackinac-pro-italic": {
+      "$value": "P22 Mackinac Pro Italic",
+      "$type": "fontFamily",
+      "$description": "Italic accent headline — used for emphasis within serif headings; the bold italic weight creates editorial pull-quote energy"
+    },
+    "ibm-plex-mono": {
+      "$value": "IBM Plex Mono",
+      "$type": "fontFamily",
+      "$description": "Section eyebrows, product labels, and category tags — always uppercase with wide tracking (0.038–0.059em). Functions as the 'system annotation' voice, marking product names, section IDs, and stat labels. This mono-with-tracking treatment is the system's structural punctuation."
+    },
+    "p-22-mackinac-italic": {
+      "$value": "P 22 Mackinac italic",
+      "$type": "fontFamily",
+      "$description": "P 22 Mackinac italic — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.69
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.46
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 2.76
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "17px",
+        "fontWeight": 600,
+        "lineHeight": 2.24
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "sofia-pro",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "p22-mackinac-pro",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "P 22 Mackinac italic",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "P 22 Mackinac italic",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "p22-mackinac-pro",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "p22-mackinac-pro",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "P 22 Mackinac italic",
+        "fontSize": "50px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "p22-mackinac-pro",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#f2f8f7",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background, never pure white — the mint-tinted warm white"
+    },
+    "card-mint": {
+      "$value": "#e4f0f1",
+      "$type": "color",
+      "$description": "Surface level 2: Standard card and feature panel surfaces"
+    },
+    "blush-sand": {
+      "$value": "#f2e8e2",
+      "$type": "color",
+      "$description": "Surface level 3: Warm alternating section backgrounds and illustration washes"
+    },
+    "sea-foam-wash": {
+      "$value": "#cae1e2",
+      "$type": "color",
+      "$description": "Surface level 4: Decorative highlight and light accent backgrounds"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.userinterviews.com",
+      "siteName": "User Interviews",
+      "extractedAt": "2026-06-03T16:12:39.782Z",
+      "variant": "extended"
+    }
+  }
+}

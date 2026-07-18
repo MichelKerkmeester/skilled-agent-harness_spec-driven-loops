@@ -1,0 +1,440 @@
+{
+  "source": "https://styles.refero.design/style/a69de146-6ff1-4ea8-b4a4-9d182ca2de31",
+  "uuid": "a69de146-6ff1-4ea8-b4a4-9d182ca2de31",
+  "name": "EVOKE",
+  "northStar": "Saturated flat tiles swallowed by a massive black wordmark",
+  "capturedAt": "2026-07-18T08:22:47.817Z",
+  "meta": {
+    "url": "https://studioevoke.co.uk",
+    "siteName": "EVOKE",
+    "extractedAt": "2026-06-03T17:24:23.665Z",
+    "durationMs": 46281,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 148,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [],
+    "donts": [],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ff5a46",
+        "name": "Ember Coral",
+        "role": "Full-bleed section panels, project tile backgrounds — warm coral against flat illustration reads as editorial heat",
+        "group": "brand"
+      },
+      {
+        "hex": "#00ffff",
+        "name": "Electric Cyan",
+        "role": "Full-bleed section panels, project tile backgrounds — synthetic cyan reads as digital, screen-native energy",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffe100",
+        "name": "Solar Yellow",
+        "role": "Full-bleed section panels, project tile backgrounds — saturated yellow as high-attention section marker",
+        "group": "brand"
+      },
+      {
+        "hex": "#ebebf5",
+        "name": "Lavender Mist",
+        "role": "Full-bleed section panels, soft transitions between louder panels — cool lavender for quieter moments",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Void Black",
+        "role": "Text, display wordmark, hairline borders — compressed near-black carries the entire typographic system and grounds every color panel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Base canvas, text on color panels — the white ground that separates saturated panels and gives the wordmark its field",
+        "group": "neutral"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0",
+        "cards": "0",
+        "inputs": "0",
+        "buttons": "0"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "",
+      "pageMaxWidth": null
+    },
+    "industry": "other",
+    "northStar": "Saturated flat tiles swallowed by a massive black wordmark",
+    "typeScale": [
+      {
+        "role": "heading",
+        "size": 31,
+        "lineHeight": 37.2,
+        "letterSpacing": -0.465
+      }
+    ],
+    "components": [
+      {
+        "name": "Work Tile",
+        "role": "Project showcase in a 3-column grid",
+        "description": "Full-bleed image at column width. 0 padding, 0 border-radius, 0 border. Image fills the tile edge-to-edge with no framing, no overlay, no caption. Gutter between tiles is 20px. The tile is a pure image container — no chrome, no metadata, no hover treatment beyond the image itself."
+      },
+      {
+        "name": "Color Block Section",
+        "role": "Full-width saturated background panel",
+        "description": "One of four brand colors (#ff5a46, #00ffff, #ffe100, #ebebf5) fills the full viewport width as an unmodulated field. No gradient, no noise, no texture, no border. Content sits directly on the saturated surface. These panels function as section dividers and visual punctuation between work grids."
+      },
+      {
+        "name": "Display Wordmark",
+        "role": "Brand identity anchor and page divider",
+        "description": "TT Norms Pro ExtraBlack (900), #000000, set at display scale (~200–300px, inferred from screenshot), letter-spacing -0.015em. The wordmark spans the full page width and functions as a section transition, not just a logo placement. It is the largest element on every page it appears on."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Content heading for project names, section titles",
+        "description": "31px TT Norms Pro Normal (400), #000000, letter-spacing -0.465px, line-height 1.20 (37.2px). Tight, compressed, confident — the Normal weight is heavy"
+      }
+    ],
+    "typography": [
+      {
+        "role": "tt_norms_proextrablack — detected in extracted data but not described by AI",
+        "sizes": "31px",
+        "family": "tt_norms_proextrablack",
+        "weight": "400",
+        "lineHeight": "1.2",
+        "letterSpacing": "-0.015"
+      },
+      {
+        "role": "Sole typeface. Normal weight (400) sets all content headings; ExtraBlack (900) is reserved exclusively for the EVOKE wordmark and any display-scale identity moments. The two-weight binary creates a deliberate whisper/shout split: compressed grotesk for information, ExtraBlack slab for brand presence. The tight -0.015em tracking is signature — it makes the Normal weight feel set in concrete, and makes the ExtraBlack wordmark read as a single architectural mass rather than a word.",
+        "sizes": "31px (detected); display scale ~200–300px (wordmark, inferred from screenshot)",
+        "family": "TT Norms Pro",
+        "weight": "400 (Normal), 900 (ExtraBlack)",
+        "lineHeight": "1.20",
+        "substitute": "Inter (for Normal weight), Space Grotesk Bold or Inter Black (for ExtraBlack)",
+        "letterSpacing": "-0.015em across all sizes — at 31px = -0.465px; tight tracking is a defining choice"
+      }
+    ],
+    "description": "EVOKE is a design studio site that speaks in full-bleed saturated color panels — coral, cyan, yellow, lavender — each one a flat, unmodulated field that doubles as a section anchor. The work lives in a tight 3-column grid of oversized tiles where lifestyle photography, flat vector illustration, and licensed cartoon character art share equal billing at full bleed with no framing or padding. Type is deliberately compressed: TT Norms Pro sets everything, with the Normal weight for content headings and ExtraBlack reserved for the brand wordmark itself, which becomes architecture — a slab of near-black display type at massive scale that anchors the lower half of the page. The system rejects depth entirely: no shadows, no gradients, no rounded softness, no card chrome. Visual hierarchy comes from scale, color contrast, and full-bleed composition rather than z-axis separation. Every surface is a declaration; every wordmark is a wall.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "primary action: no distinct CTA color"
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "heading"
+          ],
+          "frequency": 636,
+          "confidence": 1,
+          "prominence": 12072433.832684165,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "link/color": 22,
+            "other/fill": 6,
+            "image/color": 17,
+            "other/color": 72,
+            "heading/color": 15,
+            "link/borderColor": 88,
+            "image/borderColor": 68,
+            "other/borderColor": 288,
+            "heading/borderColor": 60
+          }
+        },
+        {
+          "hex": "#ff5a46",
+          "oklch": {
+            "c": 0.20395503398231973,
+            "h": 30.033906313635796,
+            "l": 0.6856016422777662
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 297935,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ebebf5",
+          "oklch": {
+            "c": 0.013386842725019988,
+            "h": 286.1401724468886,
+            "l": 0.9429651211599819
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 297935,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#00ffff",
+          "oklch": {
+            "c": 0.1545500236044062,
+            "h": 194.7689598979818,
+            "l": 0.9053992360133608
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 297935,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffe100",
+          "oklch": {
+            "c": 0.1881846398909251,
+            "h": 99.47088443483864,
+            "l": 0.9066996454625428
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 297935,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 90,
+          "confidence": 1,
+          "prominence": 25041.993775484585,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 12,
+            "heading/color": 6,
+            "other/borderColor": 48,
+            "heading/borderColor": 24
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0020735895601727916,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.73,
+          "background": "#ebebf5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.75,
+          "background": "#00ffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.02,
+          "background": "#ffe100",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.8,
+          "background": "#ff5a46",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.09,
+          "background": "#ff5a46",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.31,
+          "background": "#ffe100",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.25,
+          "background": "#00ffff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.18,
+          "background": "#ebebf5",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "tt_norms_pronormal",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 123,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "tt_norms_proextrablack",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 21,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 31,
+          "family": "tt_norms_pronormal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "tt_norms_proextrablack",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.015,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3c738566-1226-490f-be6f-dc1e9bbe072e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/fbf7a980-794b-4106-98b1-b375c624ba5b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a69de146-6ff1-4ea8-b4a4-9d182ca2de31#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"EVOKE design system\",\"item\":\"https://styles.refero.design/style/a69de146-6ff1-4ea8-b4a4-9d182ca2de31\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a69de146-6ff1-4ea8-b4a4-9d182ca2de31#style-reference\",\"name\":\"EVOKE design system reference\",\"headline\":\"EVOKE design system | Refero Styles\",\"description\":\"Explore EVOKE's light Other design system: Ember Coral #ff5a46, Electric Cyan #00ffff colors, tt_norms_proextrablack, TT Norms Pro typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/a69de146-6ff1-4ea8-b4a4-9d182ca2de31\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a69de146-6ff1-4ea8-b4a4-9d182ca2de31\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"EVOKE\",\"url\":\"https://studioevoke.co.uk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a69de146-6ff1-4ea8-b4a4-9d182ca2de31#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fbf7a980-794b-4106-98b1-b375c624ba5b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fbf7a980-794b-4106-98b1-b375c624ba5b.jpg\",\"caption\":\"Screenshot of EVOKE\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fbf7a980-794b-4106-98b1-b375c624ba5b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"EVOKE design system\",\"EVOKE website design\",\"EVOKE colors\",\"EVOKE typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Ember Coral\",\"Electric Cyan\",\"Solar Yellow\",\"Lavender Mist\",\"tt_norms_proextrablack\",\"TT Norms Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"EVOKE design system\"},{\"@type\":\"Thing\",\"name\":\"EVOKE website design\"},{\"@type\":\"Thing\",\"name\":\"EVOKE colors\"},{\"@type\":\"Thing\",\"name\":\"EVOKE typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:33:31.093Z\",\"dateModified\":\"2026-04-30T01:33:31.093Z\"}]}"
+}

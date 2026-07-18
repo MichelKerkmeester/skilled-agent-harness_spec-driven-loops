@@ -1,0 +1,192 @@
+{
+  "color": {
+    "sidebar-mist": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Sidebar Mist — Sidebar and secondary surface backgrounds — page chrome recedes behind the conversation"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Main canvas and elevated surface — primary reading area, elevated panels, inverted text backgrounds"
+    },
+    "graphite-ink": {
+      "$value": "#0d0d0d",
+      "$type": "color",
+      "$description": "Graphite Ink — Primary headings, body text, and icon fills on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "mid-ash": {
+      "$value": "#5d5d5d",
+      "$type": "color",
+      "$description": "Mid Ash — Secondary text and icons — supporting labels, metadata"
+    },
+    "hollow": {
+      "$value": "#8f8f8f",
+      "$type": "color",
+      "$description": "Hollow — Tertiary text, disabled states, muted helper copy"
+    },
+    "hairline": {
+      "$value": "#0000001a",
+      "$type": "color",
+      "$description": "Hairline — 1px borders and dividers — rgba black at ~10% opacity, the sole structural separator"
+    },
+    "hover-veil": {
+      "$value": "#0000000d",
+      "$type": "color",
+      "$description": "Hover Veil — Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color"
+    },
+    "ink-press": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Press — Pressed/inverted surface fill, tooltips, scrim — true black for max contrast moments"
+    },
+    "deep-charcoal": {
+      "$value": "#00000080",
+      "$type": "color",
+      "$description": "Deep Charcoal — Modal scrim overlay — 50% black behind dialogs and drawers"
+    },
+    "edge-gray": {
+      "$value": "#e6e6e6",
+      "$type": "color",
+      "$description": "Edge Gray — Stronger divider or inactive surface — used sparingly as a higher-contrast border alternative"
+    }
+  },
+  "font": {
+    "apple-system-body": {
+      "$value": "-apple-system-body",
+      "$type": "fontFamily",
+      "$description": "System UI font — the entire interface renders in -apple-system / BlinkMacSystemFont / Segoe UI, inheriting the OS typeface rather than shipping a custom face. This is a deliberate utility choice: zero font load, native rendering, automatic dark-mode adaptation on macOS/iOS. Body copy sits at 16px/1.5, fine print at 14px/1.43. The 24px/600 step is the sole display tier, reserved for welcome headings — never stretched for marketing drama."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "-apple-system-body",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "-apple-system-body",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "-apple-system-body",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "-apple-system-body",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system-body",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "-apple-system-body",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "sidebar-canvas": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Surface level 0: Left rail background, sets off the main conversation area"
+    },
+    "conversation-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Main reading and writing surface where the chat thread lives"
+    },
+    "elevated-panel": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Popovers, menus, and floating UI — same white but bordered with hairline to lift above the canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://chatgpt.com",
+      "siteName": "ChatGPT",
+      "extractedAt": "2026-07-03T03:39:32.068Z",
+      "variant": "extended"
+    }
+  }
+}

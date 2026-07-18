@@ -1,0 +1,387 @@
+{
+  "color": {
+    "iris-violet": {
+      "$value": "#7373ff",
+      "$type": "color",
+      "$description": "Iris Violet — Violet accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    },
+    "deep-iris": {
+      "$value": "#23234d",
+      "$type": "color",
+      "$description": "Deep Iris — Decorative SVG fill for large geometric shapes and map elements — a darker register of the brand violet used for tonal depth inside illustrations, not for UI"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, hairline borders on neutral actions and nav dividers, and the fill for the monumental hero shapes that overlap the headline"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, button text, and input backgrounds. The base layer everything else sits on"
+    },
+    "ash-gray": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Ash Gray — Subtle surface fill for link backgrounds, list rows, and secondary button states — a quiet wash that distinguishes hover/focus from pure white without introducing chroma"
+    },
+    "mist-gray": {
+      "$value": "#e7e7e7",
+      "$type": "color",
+      "$description": "Mist Gray — Nav panel background and low-emphasis surface tone — sits one step below Ash Gray for the overlapping side panel"
+    }
+  },
+  "font": {
+    "abcmonumentgrotesk": {
+      "$value": "ABCMonumentGrotesk",
+      "$type": "fontFamily",
+      "$description": "Primary grotesque used for nav, headings, event cards, buttons, and most UI labels. The geometric construction and tight tracking give the site its editorial, catalog-like authority. Weight 400 carries body and nav; 700 is reserved for section headings and emphasis. Line-heights collapse to near-1.0 at display sizes — the type sits as flat architectural mass on the page."
+    },
+    "bradfordll": {
+      "$value": "BradfordLL",
+      "$type": "fontFamily",
+      "$description": "Transitional serif used for long-form body copy, about-section paragraphs, and venue descriptions. Pairs with the grotesque to create a printed-publication rhythm — grotesque for chrome and headlines, serif for reading. The contrast between angular sans and humanist serif is the system's typographic signature."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.02
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "BradfordLLSub",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.02
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "BradfordLLSub",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 23px"
+    },
+    "xl-7": {
+      "$value": {
+        "fontFamily": "BradfordLLSub",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-7 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "BradfordLLSub",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "ABCMonumentGroteskWeb",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "3xl": {
+      "$value": "28.6839px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "44.129px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base canvas and content card background"
+    },
+    "ash-gray": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle wash for list rows, link hovers, and soft button states"
+    },
+    "mist-gray": {
+      "$value": "#e7e7e7",
+      "$type": "color",
+      "$description": "Surface level 2: Overlapping side-panel surface, one step recessed from content"
+    },
+    "iris-violet": {
+      "$value": "#7373ff",
+      "$type": "color",
+      "$description": "Surface level 3: Section-background canvas for date/title blocks and event overlays"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 4: Hero shape fills and full-bleed dark bands"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://12.berlinbiennale.de",
+      "siteName": "12th Berlin Biennale for Contemporary Art",
+      "extractedAt": "2026-06-03T21:35:51.547Z",
+      "variant": "extended"
+    }
+  }
+}

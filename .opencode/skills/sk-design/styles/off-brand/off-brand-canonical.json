@@ -1,0 +1,946 @@
+{
+  "source": "https://styles.refero.design/style/6b667ffc-5158-4000-9252-3a107d5161ee",
+  "uuid": "6b667ffc-5158-4000-9252-3a107d5161ee",
+  "name": "OFF+BRAND.",
+  "northStar": "Iridescent sphere on warm parchment",
+  "capturedAt": "2026-07-18T08:32:15.935Z",
+  "meta": {
+    "url": "https://www.itsoffbrand.com",
+    "siteName": "OFF+BRAND.",
+    "extractedAt": "2026-06-03T16:31:18.477Z",
+    "durationMs": 46370,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1507,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #e5e4e0 as the exclusive page canvas — never substitute pure #ffffff or gray at the page level",
+      "Set display headlines at 70–103px in Ataero Retina OB weight 400 with line-height 0.80 to create stacked typographic blocks",
+      "Apply the iridescent sphere gradient (255deg, yellow → pink → blue → white) as a hero anchor, never as a button fill, border, or small accent",
+      "Use 10px border-radius on all interactive elements (links, buttons, inputs) — 0px radius on all card surfaces",
+      "Set section labels at 11px with letter-spacing 0.05em and all-caps — this tracking is a brand signature, not a style choice",
+      "Separate sections with 76–119px vertical margins and use Ash (#bfbebe) 1px hairlines for structural dividers, never colored lines",
+      "Maintain the monochrome discipline: if a screen needs more than the parchment/ink/white/ash palette, reassess the design before adding color"
+    ],
+    "donts": [
+      "Do not introduce a second typeface family — Ataero Retina OB is the sole voice",
+      "Do not use colored fills on buttons, cards, or backgrounds — all interactive surfaces stay ghost or white",
+      "Do not add drop shadows, box-shadows, or elevation effects — the system is flat by design philosophy",
+      "Do not use the gradient outside the hero sphere context — it is a single signature moment, not a recurring accent",
+      "Do not set body text below 15px or above 18px — the 15/18 pair is the readable range in this system",
+      "Do not center-align body paragraphs — body copy reads left-aligned, always",
+      "Do not round card or image containers — cards are sharp-cornered (0px); only interactive elements get 10px radius"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e5e4e0",
+        "name": "Parchment",
+        "role": "Page canvas, section backgrounds — warm off-white that replaces pure white, making the page feel like printed stock rather than a screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1d1d1d",
+        "name": "Ink",
+        "role": "Primary text, heading strokes, link borders, all dark UI elements — near-black with zero blue cast, reading as editorial print",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Elevated card surfaces, logo container backgrounds, project card canvases — pure white to lift content above the warm parchment",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bfbebe",
+        "name": "Ash",
+        "role": "Hairline borders, subtle dividers, structural outlines that need to recede against the parchment",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cdcdc9",
+        "name": "Stone",
+        "role": "Mid-tone surface between parchment and white — secondary panel background when a layer needs quiet separation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#facb00",
+        "name": "Iridescent Sphere",
+        "role": "Signature gradient object in the hero — the only chromatic element, flowing from saturated yellow through hot pink to cool blue before dissolving to white. Functions as a brand beacon, not a UI color",
+        "group": "accent",
+        "gradient": "linear-gradient(255deg, rgb(250, 203, 14), rgb(240, 107, 168) 30%, rgb(120, 186, 230) 65%, rgb(255, 255, 255))"
+      }
+    ],
+    "layout": "Full-viewport hero with centered/left-aligned display text overlapping a large gradient sphere positioned right-of-center. Generous vertical breathing room: 76–119px between sections. Content blocks are left-aligned with asymmetric weight — large text left, supporting copy right. Client logos arranged in a strict 2×5 grid with hairline dividers. Project cards appear as large rectangular tiles with grid-pattern backgrounds. The page rhythm is: full-bleed hero → text-forward intro section → logo grid → featured work grid. No sidebar, no sticky navigation, no footer-heavy structure — navigation is minimal top-bar or absent, and the scroll indicator is the primary affordance. The concentric circle ornaments repeat across sections to create spatial continuity without section dividers.",
+    "imagery": "Imagery is restrained and product-focused. The hero features one large iridescent gradient sphere (not photography, not illustration — a pure CSS gradient form). Below the fold, project cards use product renders and screenshots on white backgrounds with grid-paper overlays. Client logos are flat monochrome marks in their own brand colors, contained within white cells. There is no lifestyle photography, no abstract illustration, no stock imagery. The visual language is: one gradient object as hero, then sharp product visuals on white for case studies.",
+    "similar": [
+      {
+        "why": "Same iridescent gradient hero sphere anchored to large display typography on a warm neutral canvas",
+        "business": "Active Theory"
+      },
+      {
+        "why": "Monochrome editorial layout with oversized custom sans-serif display type and near-zero color palette",
+        "business": "Resn"
+      },
+      {
+        "why": "Warm off-white canvas with sharp 0px-radius cards, grid-line decorative patterns, and typographic-first hierarchy",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Achromatic agency site using one large chromatic object (gradient or illustration) as the sole color moment against warm white",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Editorial print sensibility applied to web — large display type, hairline dividers, grid-paper project cards, ghost navigation links",
+        "business": "Pentagram"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "links": "10px",
+        "inputs": "10px",
+        "buttons": "10px"
+      },
+      "elementGap": "19px",
+      "sectionGap": "76-119px",
+      "cardPadding": "30px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#e5e4e0",
+        "name": "Parchment Canvas",
+        "level": 0,
+        "purpose": "Base page background — warm off-white, sets the editorial print tone"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Elevated card and logo container surfaces — pure white against the warm canvas"
+      },
+      {
+        "hex": "#cdcdc9",
+        "name": "Stone Panel",
+        "level": 2,
+        "purpose": "Mid-tone secondary surface for sections needing quiet structural separation"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Iridescent sphere on warm parchment",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.55
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.15
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.23
+      },
+      {
+        "role": "subheading",
+        "size": 34,
+        "lineHeight": 1,
+        "letterSpacing": 0.44
+      },
+      {
+        "role": "heading-sm",
+        "size": 46,
+        "lineHeight": 1,
+        "letterSpacing": 0.6
+      },
+      {
+        "role": "heading",
+        "size": 70,
+        "lineHeight": 0.8,
+        "letterSpacing": 0.91
+      },
+      {
+        "role": "heading-lg",
+        "size": 76,
+        "lineHeight": 0.8,
+        "letterSpacing": 0.99
+      },
+      {
+        "role": "display",
+        "size": 103,
+        "lineHeight": 0.8,
+        "letterSpacing": 1.34
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Gradient Sphere",
+        "role": "Signature brand visual — the only chromatic element on the site",
+        "description": "Large circular form (roughly 50% of viewport height) positioned slightly right-of-center, filled with the iridescent gradient (yellow → pink → blue → white at 255deg). Sits behind display text, partially overlapping. Functions as brand beacon and atmospheric anchor. No border, no shadow, no interaction state."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Primary typographic statement — the page's main expressive element",
+        "description": "Ataero Retina OB, weight 400, 70–103px, line-height 0.80, letter-spacing ~0.013em. Ink (#1d1d1d) on Parchment (#e5e4e0). All caps. Lines stack tightly to form a single typographic block. Can span full viewport width. No text shadow, no gradient, no decoration."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Primary interactive element — replaces the conventional button",
+        "description": "Ataero Retina OB, 15px, weight 400, Ink (#1d1d1d) text. No background fill. 10px border-radius on the hit area. Often accompanied by a small arrow glyph (→). Padding 5px vertical, 0 horizontal. Underline or arrow reveals affordance on hover. This is the only clickable element style in the system."
+      },
+      {
+        "name": "Section Label",
+        "role": "Micro-typography for section identification — museum-signage style",
+        "description": "Ataero Retina OB, 11px, weight 400, Ink (#1d1d1d), all caps, letter-spacing 0.05em. Aligned left, sits above section content with generous vertical space. Functions as a quiet navigational cue, not a heading."
+      },
+      {
+        "name": "Client Logo Cell",
+        "role": "Logo grid unit within the 'Trusted by Leaders' section",
+        "description": "Pure white (#ffffff) rectangular cell, no border, no shadow, no padding inside. Logos sit centered at ~60% width in Ink (#1d1d1d) or their own brand color. Arranged in a 2-row × 5-column grid with thin Ash (#bfbebe) hairline dividers (1px) between cells. The grid itself is the design — cells are austere."
+      },
+      {
+        "name": "Featured Work Card",
+        "role": "Project showcase tile with grid-paper background",
+        "description": "White (#ffffff) surface with a subtle dot-grid or line-grid pattern overlay (light gray, ~#e5e4e0 lines on white). Large project title in Ataero Retina OB 46px weight 400 Ink. No border, no shadow, no radius. Image or render sits below title. Functions as a printable editorial layout tile."
+      },
+      {
+        "name": "Concentric Circle Ornament",
+        "role": "Decorative structural element — subtle page-level geometry",
+        "description": "Thin Ash (#bfbebe) or Ink-at-20%-opacity circular outlines, 1px stroke, positioned as background elements. Often 2–3 concentric rings at different radii, anchored to a focal point (sphere, headline, or viewport center). Never filled, never animated. Adds architectural depth without color."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Bottom-right navigation prompt on the hero",
+        "description": "Ataero Retina OB, 11px, weight 400, all caps, letter-spacing 0.05em, Ink. Text reads 'SCROLL' with a downward arrow. Fixed position, bottom-right with 30px inset. Minimal, editorial, disappears once user scrolls."
+      },
+      {
+        "name": "Founder Intro Block",
+        "role": "Two-column intro section with label + body copy",
+        "description": "Left column: Section label ('WE ARE A FOUNDER-LED...') in 15px uppercase, weight 400, Ink, with 'ABOUT US →' ghost link below. Right column: body copy in 18px, line-height 1.40, weight 400, Ink. Column gap 19px. Sits on Parchment canvas with generous 76px vertical padding above and below."
+      },
+      {
+        "name": "All Work Filter Button",
+        "role": "Secondary navigation element for portfolio filtering",
+        "description": "Pill-shaped ghost button: Ink border 1px, 10px radius, padding 8px 19px. Ataero Retina OB 11px, weight 400, all caps, letter-spacing 0.05em, Ink text. Arrow glyph (→) at right. Hover: fill becomes Ink, text becomes Parchment. This is the only state-change button in the system."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across the entire system. A custom geometric sans-serif with tall x-height and generous counters. Weight 400 serves body and display alike; weight 700 is reserved for small labels and navigation. Display sizes (70–103px) use 0.80 line-height to stack headline lines into a single typographic block. The font's distinctive openness and slight humanist warmth is the brand's primary identity signal — no fallback font family should appear on a production page",
+        "sizes": "11, 15, 18, 34, 46, 70, 76, 103",
+        "family": "Ataero Retina OB Edition",
+        "weight": "400, 700",
+        "lineHeight": "0.80, 1.00, 1.40",
+        "substitute": "Neue Haas Grotesk Display, Inter (tight tracking), or Suisse Int'l — none match exactly; the custom font is non-negotiable for brand recognition",
+        "letterSpacing": "0.0060em, 0.0130em, 0.0170em, 0.0500em"
+      }
+    ],
+    "description": "OFF+BRAND. operates as a typographic architecture on warm parchment: a near-monochrome canvas (#e5e4e0) where a single custom geometric sans-serif (Ataero Retina OB) carries nearly all the expressive weight. Headlines are monumentally large (up to 103px) with tight line-height (0.80) and whisper-wide tracking, while a singular iridescent gradient sphere — yellow bleeding into pink, then blue, then dissolving into white — anchors the hero as the only chromatic event on an otherwise achromatic page. Interfaces should feel like an editorial spread: thin concentric circle ornaments, a precise 2×5 client logo grid, grid-paper project cards, and label text that tracks wide like museum signage. There are no shadows, no fills, no buttons heavier than a ghost link with a 10px radius — restraint is the entire design language.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6b667ffc-5158-4000-9252-3a107d5161ee#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"OFF+BRAND. design system\",\"item\":\"https://styles.refero.design/style/6b667ffc-5158-4000-9252-3a107d5161ee\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6b667ffc-5158-4000-9252-3a107d5161ee#style-reference\",\"name\":\"OFF+BRAND. design system reference\",\"headline\":\"OFF+BRAND. design system | Refero Styles\",\"description\":\"Explore OFF+BRAND.'s light Agency design system: Parchment #e5e4e0, Ink #1d1d1d colors, Ataero Retina OB Edition typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6b667ffc-5158-4000-9252-3a107d5161ee\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6b667ffc-5158-4000-9252-3a107d5161ee\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"OFF+BRAND.\",\"url\":\"https://www.itsoffbrand.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6b667ffc-5158-4000-9252-3a107d5161ee#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a3f49392-1193-4378-a8c0-65bdf0d656ce.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a3f49392-1193-4378-a8c0-65bdf0d656ce.jpg\",\"caption\":\"Screenshot of OFF+BRAND.\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a3f49392-1193-4378-a8c0-65bdf0d656ce.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"OFF+BRAND. design system\",\"OFF+BRAND. website design\",\"OFF+BRAND. colors\",\"OFF+BRAND. typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Parchment\",\"Ink\",\"Paper\",\"Ash\",\"Ataero Retina OB Edition\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"OFF+BRAND. design system\"},{\"@type\":\"Thing\",\"name\":\"OFF+BRAND. website design\"},{\"@type\":\"Thing\",\"name\":\"OFF+BRAND. colors\"},{\"@type\":\"Thing\",\"name\":\"OFF+BRAND. typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:38:53.364Z\",\"dateModified\":\"2026-04-30T00:38:53.364Z\"}]}19:T4fe,**Quick Color Reference**\n- Text: #1d1d1d\n- Background: #e5e4e0 (Parchment)\n- Elevated surface: #ffffff\n- Border: #bfbebe\n- Accent: iridescent gradient sphere only (linear-gradient(255deg, rgb(250, 203, 14), rgb(240, 107, 168) 30%, rgb(120, 186, 230) 65%, rgb(255, 255, 255)))\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. **Display Headline**: 103px Ataero Retina OB weight 400, line-height 0.80, letter-spacing 1.34px, #1d1d1d on #e5e4e0 canvas. All caps. Stacks into a 3-line typographic block.\n\n2. **Ghost Text Link**: 15px Ataero Retina OB weight 400, #1d1d1d, no fill, 10px border-radius on hit area, trailing → arrow. 5px vertical padding. Underline on hover.\n\n3. **Section Label**: 11px Ataero Retina OB weight 400, #1d1d1d, all caps, letter-spacing 0.55px, left-aligned. 76px space below before body content begins.\n\n4. **Client Logo Cell**: White (#ffffff) rectangle, 0px radius, no border, no shadow. Logo centered at 60% width in #1d1d1d. Arranged in 2 rows × 5 columns with 1px #bfbebe hairlines between cells.\n\n5. **Hero Gradient Sphere**: 600px circle, linear-gradient(255deg, #facb00, #f06ba8 30%, #78bae6 65%, #ffffff), positioned right-of-center, partially behind display headline. No border, no shadow, sits as background layer."
+      },
+      {
+        "title": "Gradient System",
+        "content": "The iridescent sphere gradient is a singleton, not a system. It appears exactly once on any given page — in the hero — and never repeats as a smaller accent, button gradient, or section background. The 255deg angle is fixed: yellow (rgb 250,203,14) at the top-right, pink (rgb 240,107,168) at 30%, blue (rgb 120,186,230) at 65%, dissolving to white at the end. This is the only color event in an otherwise achromatic system; treating it as a reusable token would dilute its impact."
+      },
+      {
+        "title": "Typography Voice",
+        "content": "Ataero Retina OB Edition is a custom font — not available on Google Fonts or Adobe Fonts. For prototypes and mockups, the closest open substitute is Inter at tight tracking, but production pages must license the original. The font's character: tall x-height, geometric construction with subtle humanist warmth in the terminals, generous counters. At display sizes (70–103px) it reads as architectural; at body sizes (15–18px) it reads as editorial print. The 0.80 line-height on display sizes is unconventional — most systems use 1.0–1.2 — but here it allows headlines to stack into a single visual mass rather than airy separate lines."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally shadowless. Depth is communicated through surface color shifts (Parchment → Paper → Stone) and through the layered placement of decorative elements (concentric circles, gradient sphere) behind text. A shadow appearing on any element would break the editorial print metaphor — the design is flat, like ink on paper."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1d1d1d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23075046833254287
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 1737,
+          "confidence": 1,
+          "prominence": 162744248.48257834,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 13,
+            "hero/color": 2,
+            "link/color": 12,
+            "other/color": 314,
+            "heading/color": 8,
+            "body/borderColor": 52,
+            "hero/borderColor": 8,
+            "link/borderColor": 48,
+            "other/borderColor": 1248,
+            "heading/borderColor": 32
+          }
+        },
+        {
+          "hex": "#e5e4e0",
+          "oklch": {
+            "c": 0.005481457270158562,
+            "h": 95.10410371058283,
+            "l": 0.91852244972748
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 5339,
+          "confidence": 1,
+          "prominence": 24325912.552686956,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 194,
+            "icon/color": 40,
+            "link/color": 14,
+            "other/fill": 32,
+            "other/color": 775,
+            "heading/color": 35,
+            "body/borderColor": 776,
+            "icon/borderColor": 160,
+            "link/borderColor": 56,
+            "other/borderColor": 3100,
+            "heading/borderColor": 140,
+            "other/backgroundColor": 17
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 301,
+          "confidence": 1,
+          "prominence": 10676972.542165302,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/color": 8,
+            "other/color": 52,
+            "icon/borderColor": 32,
+            "other/borderColor": 208,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#bfbebe",
+          "oklch": {
+            "c": 0.0011210902893975428,
+            "h": 17.181278425548754,
+            "l": 0.8023186530380957
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 4283519.654448996,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#cdcdc9",
+          "oklch": {
+            "c": 0.004476305674061409,
+            "h": 95.09620132043685,
+            "l": 0.8467974087661849
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 4857.962626680293,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 17
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.010716813674956655,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 16.86,
+          "background": "#ffffff",
+          "foreground": "#1d1d1d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.25,
+          "background": "#e5e4e0",
+          "foreground": "#1d1d1d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.57,
+          "background": "#cdcdc9",
+          "foreground": "#1d1d1d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.09,
+          "background": "#bfbebe",
+          "foreground": "#1d1d1d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.59,
+          "background": "#cdcdc9",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.27,
+          "background": "#ffffff",
+          "foreground": "#e5e4e0"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.25,
+          "background": "#cdcdc9",
+          "foreground": "#e5e4e0"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9.52381,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 144
+        },
+        {
+          "value": 6.47619,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 30.4762,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 47,
+          "properties": [
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|link",
+            "columnGap|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 52,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 36,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 76,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 119,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(255deg, rgb(250, 203, 14), rgb(240, 107, 168) 30%, rgb(120, 186, 230) 65%, rgb(255, 255, 255))",
+        "colors": [
+          "rgb(250, 203, 14)",
+          "rgb(240, 107, 168)",
+          "rgb(120, 186, 230)",
+          "rgb(255, 255, 255)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Ataero Retina OB Edition",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 1467,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Ataero Retina OB Edition",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 74,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Ataero Retina OB Edition",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 399,
+          "lineHeight": 1,
+          "letterSpacing": 0.017,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Ataero Retina OB Edition",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "icon"
+          ],
+          "frequency": 439,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Ataero Retina OB Edition",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Ataero Retina OB Edition",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Ataero Retina OB Edition",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 76,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.013,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Ataero Retina OB Edition",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 70,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Ataero Retina OB Edition",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 140,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Ataero Retina OB Edition",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Ataero Retina OB Edition",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Ataero Retina OB Edition",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 84,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Ataero Retina OB Edition",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0.013,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Ataero Retina OB Edition",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 34,
+          "family": "Ataero Retina OB Edition",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.006,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 46,
+          "family": "Ataero Retina OB Edition",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 55,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 70,
+          "family": "Ataero Retina OB Edition",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 76,
+          "family": "Ataero Retina OB Edition",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 103,
+          "family": "Ataero Retina OB Edition",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 51,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ae9c9548-7397-4881-9d69-5ebf660d650d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a3f49392-1193-4378-a8c0-65bdf0d656ce.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6b667ffc-5158-4000-9252-3a107d5161ee#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"OFF+BRAND. design system\",\"item\":\"https://styles.refero.design/style/6b667ffc-5158-4000-9252-3a107d5161ee\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6b667ffc-5158-4000-9252-3a107d5161ee#style-reference\",\"name\":\"OFF+BRAND. design system reference\",\"headline\":\"OFF+BRAND. design system | Refero Styles\",\"description\":\"Explore OFF+BRAND.'s light Agency design system: Parchment #e5e4e0, Ink #1d1d1d colors, Ataero Retina OB Edition typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/6b667ffc-5158-4000-9252-3a107d5161ee\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6b667ffc-5158-4000-9252-3a107d5161ee\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"OFF+BRAND.\",\"url\":\"https://www.itsoffbrand.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6b667ffc-5158-4000-9252-3a107d5161ee#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a3f49392-1193-4378-a8c0-65bdf0d656ce.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a3f49392-1193-4378-a8c0-65bdf0d656ce.jpg\",\"caption\":\"Screenshot of OFF+BRAND.\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a3f49392-1193-4378-a8c0-65bdf0d656ce.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"OFF+BRAND. design system\",\"OFF+BRAND. website design\",\"OFF+BRAND. colors\",\"OFF+BRAND. typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Parchment\",\"Ink\",\"Paper\",\"Ash\",\"Ataero Retina OB Edition\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"OFF+BRAND. design system\"},{\"@type\":\"Thing\",\"name\":\"OFF+BRAND. website design\"},{\"@type\":\"Thing\",\"name\":\"OFF+BRAND. colors\"},{\"@type\":\"Thing\",\"name\":\"OFF+BRAND. typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:38:53.364Z\",\"dateModified\":\"2026-04-30T00:38:53.364Z\"}]}19:T4fe,**Quick Color Reference**\n- Text: #1d1d1d\n- Background: #e5e4e0 (Parchment)\n- Elevated surface: #ffffff\n- Border: #bfbebe\n- Accent: iridescent gradient sphere only (linear-gradient(255deg, rgb(250, 203, 14), rgb(240, 107, 168) 30%, rgb(120, 186, 230) 65%, rgb(255, 255, 255)))\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. **Display Headline**: 103px Ataero Retina OB weight 400, line-height 0.80, letter-spacing 1.34px, #1d1d1d on #e5e4e0 canvas. All caps. Stacks into a 3-line typographic block.\n\n2. **Ghost Text Link**: 15px Ataero Retina OB weight 400, #1d1d1d, no fill, 10px border-radius on hit area, trailing → arrow. 5px vertical padding. Underline on hover.\n\n3. **Section Label**: 11px Ataero Retina OB weight 400, #1d1d1d, all caps, letter-spacing 0.55px, left-aligned. 76px space below before body content begins.\n\n4. **Client Logo Cell**: White (#ffffff) rectangle, 0px radius, no border, no shadow. Logo centered at 60% width in #1d1d1d. Arranged in 2 rows × 5 columns with 1px #bfbebe hairlines between cells.\n\n5. **Hero Gradient Sphere**: 600px circle, linear-gradient(255deg, #facb00, #f06ba8 30%, #78bae6 65%, #ffffff), positioned right-of-center, partially behind display headline. No border, no shadow, sits as background layer."
+}

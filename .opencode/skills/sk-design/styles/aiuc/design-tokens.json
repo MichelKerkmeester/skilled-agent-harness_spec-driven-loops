@@ -1,0 +1,312 @@
+{
+  "color": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas — Page background, card surfaces, primary surface for all content blocks"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Hairline borders, icon strokes, fine dividers — the linework that structures the page"
+    },
+    "obsidian": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, heading text, filled CTA buttons, dark feature cards"
+    },
+    "graphite": {
+      "$value": "#323232",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, link text, default link borders — slightly softer than Obsidian for body copy"
+    },
+    "smoke": {
+      "$value": "#5f5f5f",
+      "$type": "color",
+      "$description": "Smoke — Tertiary text, muted helper copy"
+    },
+    "ash": {
+      "$value": "#707070",
+      "$type": "color",
+      "$description": "Ash — Mid-gray borders and subdued supporting text"
+    },
+    "fog": {
+      "$value": "#8d8d8d",
+      "$type": "color",
+      "$description": "Fog — Lighter borders, inactive dividers"
+    },
+    "mist": {
+      "$value": "#979595",
+      "$type": "color",
+      "$description": "Mist — Subtle surface tint, muted block backgrounds, very light washes"
+    },
+    "glacier-tint": {
+      "$value": "#d3dfeb",
+      "$type": "color",
+      "$description": "Glacier Tint — Hero photograph cool wash, decorative ice-blue accent — appears only as a near-gray atmospheric tint, not a saturated brand color"
+    }
+  },
+  "font": {
+    "almarai": {
+      "$value": "Almarai",
+      "$type": "fontFamily",
+      "$description": "Display and heading — the only font that carries headlines. Weight 300 is anti-convention: most enterprise brands use 600-700 for authority, Almarai Light achieves authority through restraint. Combined with -0.02em tracking it reads like editorial print, not SaaS. Originated as an Arabic typeface, its Latin glyphs have a distinctive humanist geometry that no system font replicates exactly."
+    },
+    "abc-diatype": {
+      "$value": "ABC Diatype",
+      "$type": "fontFamily",
+      "$description": "Body and running text. The workhorse — paragraphs, descriptions, card content. Neutral humanist sans that steps back to let the Almarai headlines lead."
+    },
+    "abc-diatype-semi-mono": {
+      "$value": "ABC Diatype Semi-Mono",
+      "$type": "fontFamily",
+      "$description": "Technical labels, nav items, tag text, links, caption-style metadata. The monospaced variant of Diatype gives the UI a quiet engineering voice — used to mark functional elements that should read as system, not editorial."
+    },
+    "system-sans-serif": {
+      "$value": "System sans-serif",
+      "$type": "fontFamily",
+      "$description": "Smallest utility text, browser-default contexts, fallback"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype Semi-Mono Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "ABC Diatype Semi-Mono Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ABC Diatype Semi-Mono Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABC Diatype Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype Semi-Mono Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABC Diatype Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype Semi-Mono Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABC Diatype Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Almarai",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Almarai",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "42": {
+      "$value": "42px",
+      "$type": "dimension",
+      "$description": "Spacing 42px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "full": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background"
+    },
+    "glacier-wash": {
+      "$value": "#d3dfeb",
+      "$type": "color",
+      "$description": "Surface level 1: Hero atmospheric overlay and decorative cool surface"
+    },
+    "obsidian-plate": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 2: Dark feature cards, filled CTA buttons"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://aiuc.com",
+      "siteName": "AIUC",
+      "extractedAt": "2026-06-03T21:37:47.982Z",
+      "variant": "extended"
+    }
+  }
+}

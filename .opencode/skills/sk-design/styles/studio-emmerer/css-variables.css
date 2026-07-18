@@ -1,0 +1,44 @@
+:root {
+  /* Colors */
+  --color-pure-black: #000000;
+  --color-drafting-white: #ffffff;
+  --color-index-gray: #999999;
+
+  /* Typography — Font Families */
+  --font-nhaasgrotesk: 'NHaasGrotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 15px;
+  --leading-caption: 17.4;
+  --tracking-caption: -0.08px;
+  --text-subheading: 20px;
+  --leading-subheading: 23.2;
+  --tracking-subheading: -0.2px;
+  --text-display: 30px;
+  --leading-display: 27;
+  --tracking-display: -0.33px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 6px;
+  --spacing-4: 4px;
+  --spacing-5: 5px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-30: 30px;
+
+  /* Layout */
+  --section-gap: 32px;
+  --element-gap: 5px;
+
+  /* Named Radii */
+  --radius-tags: 0px;
+  --radius-cards: 0px;
+  --radius-inputs: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-drafting-white: #ffffff;
+}

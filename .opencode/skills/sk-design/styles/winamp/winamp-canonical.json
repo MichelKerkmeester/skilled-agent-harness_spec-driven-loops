@@ -1,0 +1,1196 @@
+{
+  "source": "https://styles.refero.design/style/bc4b4dee-8b32-494c-9a2d-d56fcd450b79",
+  "uuid": "bc4b4dee-8b32-494c-9a2d-d56fcd450b79",
+  "name": "Winamp",
+  "northStar": "Tilted phone cards fanning across bone paper",
+  "capturedAt": "2026-07-18T09:18:31.282Z",
+  "meta": {
+    "url": "https://www.winamp.com",
+    "siteName": "Winamp",
+    "extractedAt": "2026-06-03T20:08:26.124Z",
+    "durationMs": 27034,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 342,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Poppins for all text — system-ui fallback is only for 12px utility labels",
+      "Set the hero headline to exactly 69px weight 500 with letter-spacing -1.52px; never bold the display",
+      "Use Carbon (#18181b) fills with white text for the only filled button variant; every other interactive element should be ghost or text-only",
+      "Apply 16px radius to cards and device mockups, 8px to buttons and nav controls — never use pill (9999px) shapes",
+      "Maintain the bone canvas (#f7f7f7) as the page background and use #ffffff only for raised cards",
+      "Limit Ember Orange to the logo and brand mark; do not use it for buttons, links, or decorative accents",
+      "Keep section gaps at 40px and element gaps at 10px to preserve the comfortable, breathing rhythm"
+    ],
+    "donts": [
+      "Do not introduce chromatic colors outside the Ember Orange logo accent — the system is monochrome",
+      "Do not add box-shadows or drop-shadows to cards, buttons, or mockups — use surface lightness or rotation instead",
+      "Do not use gradient fills — none exist in the current system and the bone-and-ink aesthetic would collapse under them",
+      "Do not set the display headline above 69px or below 34px — those are the system's floor and ceiling",
+      "Do not apply border-radius above 16px — anything rounder breaks the rectilinear, paper-craft feel",
+      "Do not use Slate (#71717a) for primary headings or body emphasis; reserve it for secondary and helper text",
+      "Do not place text directly on photographic backgrounds without a Paper White card surface behind it"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f7f7f7",
+        "name": "Bone White",
+        "role": "Page canvas and section backgrounds — warmer than pure white, makes the ink-black type feel printed rather than digital",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Card surfaces, raised panels, and inset blocks — the one step brighter than the canvas for subtle layering without shadows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#09090b",
+        "name": "Ink Black",
+        "role": "Primary text, headlines, and key borders — near-black with a faint cool cast that feels editorial rather than utilitarian",
+        "group": "neutral"
+      },
+      {
+        "hex": "#18181b",
+        "name": "Carbon",
+        "role": "Filled action buttons and dark accent surfaces — one step lighter than Ink Black, reads as solid graphite against the white canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "SVG icon fills, fine borders, and structural rules — the absolute dark for highest-contrast iconography",
+        "group": "neutral"
+      },
+      {
+        "hex": "#71717a",
+        "name": "Slate",
+        "role": "Secondary nav text, helper text, and subtle UI marks — mid-gray that stays legible without competing with Ink Black headings",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a1a1aa",
+        "name": "Ash",
+        "role": "Muted body text, placeholder, and de-emphasized links — the quietest readable gray for tertiary information",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d4d4d8",
+        "name": "Mist",
+        "role": "Hairline nav borders and the lightest dividers — barely-there structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e95420",
+        "name": "Ember Orange",
+        "role": "Logo lightning bolt and the single brand accent — appears almost exclusively as the Winamp mark, making it feel like a power indicator rather than a decoration",
+        "group": "brand"
+      }
+    ],
+    "layout": "Page model is max-width 1200px centered with generous lateral padding. The hero is a 50/50 split: text stack left-aligned in the left half (max-width ~480px), layered tilted device cards occupying the right half. No full-bleed sections, no dark bands. Vertical rhythm is uniform — every section separated by 40px of bone canvas. Content arrangement is single-column or two-column alternating (text-left/image-right or text-right/image-left). No card grids in the hero, but secondary sections can use a 3-column card grid with 24px gutters. Navigation is a single top bar, non-sticky. The scroll indicator at the foot of the hero is the only dynamic UI element visible at rest.",
+    "imagery": "Imagery is warm-toned, human-centered photography presented exclusively inside tilted device mockups. Photos feature young adults in candid, joyful moments (smiling, embracing) with golden-hour lighting and amber-orange color grading that visually rhymes with the Ember Orange logo accent. Treatment is contained — never full-bleed — always clipped to a 16px-rounded card frame and rotated 8–12 degrees. No illustrations, no abstract graphics, no 3D renders. Iconography is monochrome outlined, ~1.5px stroke weight, Pure Black on light surfaces. The visual density is low: one hero composite per page, no decorative imagery elsewhere.",
+    "similar": [
+      {
+        "why": "Shares the monochrome-first approach with one chromatic accent reserved for the brand mark, plus generous whitespace and rectilinear cards with modest rounding",
+        "business": "Linear"
+      },
+      {
+        "why": "Same bone-canvas-plus-paper-white surface stacking without shadows, comfortable density, and a geometric sans (Poppins-adjacent) carrying all typographic weight",
+        "business": "Notion"
+      },
+      {
+        "why": "Extreme color restraint with near-black text on warm off-white, tight letter-spacing on large display type, and 8–16px radius discipline",
+        "business": "Vercel"
+      },
+      {
+        "why": "Soft grayscale palette with photographic imagery contained in rounded device frames, and a signature accent color used almost exclusively as a brand mark",
+        "business": "Things 3 (Cultured Code)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "buttons": "8px",
+        "navElements": "8px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "40px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#f7f7f7",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page-wide background, never painted over — cards float on this"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Raised content blocks and device mockup frames"
+      },
+      {
+        "hex": "#18181b",
+        "name": "Ink Surface",
+        "level": 2,
+        "purpose": "Dark CTA buttons and inverse accent blocks"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Tilted phone cards fanning across bone paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.264
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.6,
+        "letterSpacing": -0.33
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.418
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.528
+      },
+      {
+        "role": "heading",
+        "size": 34,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.748
+      },
+      {
+        "role": "display",
+        "size": 69,
+        "lineHeight": 1.13,
+        "letterSpacing": -1.518
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Horizontal bar on #f7f7f7 canvas, transparent background, ~64px tall. Logo at far left (24px tall, Ember Orange lightning bolt + Ink Black wordmark). Nav links in Poppins 15px/500, Ink Black with 24px horizontal spacing between items. Right side holds a text link ('Log in to Creators') with 1px Ink Black underline, a filled Carbon button ('Contact us'), and a ghost icon button for the language selector. No bottom border — spacing alone separates nav from content."
+      },
+      {
+        "name": "Filled Dark Button",
+        "role": "Primary action — the single high-emphasis CTA",
+        "description": "Carbon (#18181b) background, Paper White (#ffffff) text in Poppins 15px/500. 8px border-radius. Horizontal padding 20px, vertical padding ~10px. No border, no shadow. The dark fill against the bone canvas creates the system's only true visual anchor — it reads as a solid slab, not a soft pill."
+      },
+      {
+        "name": "Ghost Icon Button",
+        "role": "Utility controls like the language/region selector",
+        "description": "8px radius, transparent background on the bone canvas, 1px Slate or Mist border at low contrast. Contains a single monochrome icon (flag glyph) in Pure Black or Ink Black at ~20px. No hover fill — the border darkens from Mist to Ink Black on interaction."
+      },
+      {
+        "name": "Underlined Text Link",
+        "role": "Secondary actions and nav-adjacent links",
+        "description": "Poppins 15px/500 in Ink Black with a 1px Ink Black underline offset ~2px below the baseline. No background, no padding. The underline is structural, not decorative — it's the link affordance."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Page-level title — the largest type in the system",
+        "description": "Poppins 69px/500, Ink Black, letter-spacing -1.52px, line-height 1.13. Left-aligned. No gradient, no accent color. The weight 500 (not 700) is a deliberate choice: it lets the sheer size carry authority rather than the stroke weight, keeping the hero calm rather than aggressive."
+      },
+      {
+        "name": "Hero Body Text",
+        "role": "Supporting paragraph under the display headline",
+        "description": "Poppins 19px/400, Slate (#71717a), line-height 1.5. Max-width ~480px to keep paragraph measure readable. No link styling within hero body."
+      },
+      {
+        "name": "Tilted Device Card",
+        "role": "Hero visual element — phone mockup with photographic content",
+        "description": "Portrait-oriented card, ~280×560px, Paper White (#ffffff) surface with a 16px border-radius. Contains a full-bleed photo (warm-toned portrait) inside. Multiple cards are stacked with slight rotation (±8 to ±12 degrees) and horizontal offset, creating a fanned cascade. The tilt is the depth — no shadows, no gradients, no z-axis blur. Images maintain rounded corners clipped to the card radius."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Bottom-of-hero prompt to continue scrolling",
+        "description": "Centered micro-component: 'Scroll' in Poppins 12px/500 Ash, a small downward chevron icon in Ink Black, then 'down' in 12px/500 Ash. 8px gap between elements. Sits ~40px below the hero content. The most delicate UI element — it disappears as you scroll."
+      },
+      {
+        "name": "Subtle Card Surface",
+        "role": "Content cards used in secondary sections",
+        "description": "Paper White (#ffffff) background on the bone canvas, 16px radius, 24px internal padding, no border, no shadow. The contrast between #ffffff and #f7f7f7 is the only elevation signal. Content uses Ink Black headings (19px/600) and Slate body (15px/400)."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Rubik — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "Rubik",
+        "weight": "400",
+        "lineHeight": "1.5"
+      },
+      {
+        "role": "Primary typeface across all UI — geometric humanist sans with rounded terminals. The 69px hero weight uses 500/600 to avoid feeling shouty; the 24px subhead at 700 is the heaviest moment in the system. Rounded geometry softens the strict monochrome grid.",
+        "sizes": "12px, 13px, 15px, 19px, 24px, 34px, 69px",
+        "family": "Poppins",
+        "weight": "400, 500, 600, 700",
+        "lineHeight": "1.13, 1.18, 1.25, 1.33, 1.50, 1.60, 1.62",
+        "substitute": "DM Sans or Nunito Sans",
+        "letterSpacing": "-0.022em applied across the scale, converting to roughly -0.26px at 12px up to -1.52px at the 69px display size"
+      },
+      {
+        "role": "Fallback for tiny utility labels and icon-adjacent microcopy where loading Poppins would be wasted weight",
+        "sizes": "12px",
+        "family": "system-ui sans-serif",
+        "weight": "400",
+        "lineHeight": "1.20"
+      },
+      {
+        "role": "Inter — detected in extracted data but not described by AI",
+        "sizes": "24px",
+        "family": "Inter",
+        "weight": "700",
+        "lineHeight": "1.33"
+      }
+    ],
+    "description": "Winamp's visual system is an exercise in near-total color restraint — a bone-white canvas, ink-black type, and thin neutral hairlines carry every screen. The Poppins geometric sans does the heavy lifting, scaling from a whisper-thin 12px caption up to a 69px display headline that anchors the hero. The only chromatic moment is a small ember-orange lightning bolt reserved for the logo, making the brand mark feel like a switch being thrown against an otherwise monochrome room. Form language is rectilinear and modest: 8px on controls, 16px on cards, no shadows, no gradients. The signature move is the layered, slightly tilted device mockups in the hero — flat rectangles rotated a few degrees to create depth without resorting to elevation, giving the page a playful, almost paper-craft dimensionality.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bc4b4dee-8b32-494c-9a2d-d56fcd450b79#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Winamp design system\",\"item\":\"https://styles.refero.design/style/bc4b4dee-8b32-494c-9a2d-d56fcd450b79\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bc4b4dee-8b32-494c-9a2d-d56fcd450b79#style-reference\",\"name\":\"Winamp design system reference\",\"headline\":\"Winamp design system | Refero Styles\",\"description\":\"Explore Winamp's light Media design system: Bone White #f7f7f7, Paper White #ffffff colors, Rubik, Poppins typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/bc4b4dee-8b32-494c-9a2d-d56fcd450b79\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bc4b4dee-8b32-494c-9a2d-d56fcd450b79\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Winamp\",\"url\":\"https://www.winamp.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bc4b4dee-8b32-494c-9a2d-d56fcd450b79#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7e453c36-be22-4bbf-9c55-4ba652ccdca4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7e453c36-be22-4bbf-9c55-4ba652ccdca4.jpg\",\"caption\":\"Screenshot of Winamp\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7e453c36-be22-4bbf-9c55-4ba652ccdca4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Winamp design system\",\"Winamp website design\",\"Winamp colors\",\"Winamp typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Bone White\",\"Paper White\",\"Ink Black\",\"Carbon\",\"Rubik\",\"Poppins\",\"system-ui sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Winamp design system\"},{\"@type\":\"Thing\",\"name\":\"Winamp website design\"},{\"@type\":\"Thing\",\"name\":\"Winamp colors\"},{\"@type\":\"Thing\",\"name\":\"Winamp typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T02:30:18.402Z\",\"dateModified\":\"2026-04-30T02:30:18.402Z\"}]}19:T513,**Quick Color Reference**\n- text (primary): #09090b\n- text (secondary): #71717a\n- background (canvas): #f7f7f7\n- background (card): #ffffff\n- border: #09090b or #d4d4d8\n- primary action: no distinct CTA color\n- brand accent: #e95420 (Ember Orange — logo only)\n\n**Example Component Prompts**\n1. Hero headline: 'Winamp' at 69px Poppins weight 500, #09090b, letter-spacing -1.52px, line-height 1.13, left-aligned on #f7f7f7 canvas. No background, no accent color.\n2. Filled action button: Carbon (#18181b) background, #ffffff text in Poppins 15px/500, 8px border-radius, 20px horizontal padding, 10px vertical padding. No border, no shadow. White-space above and below the text is the button's total height.\n3. Tilted device card: 280×560px #ffffff surface with 16px radius, containing a full-bleed warm-toned photograph clipped to the same radius. Rotate -10 degrees, offset 40px from the next card in the stack.\n4. Content card (secondary section): #ffffff background, 16px radius, 24px padding, no border. Heading in Poppins 19px/600 #09090b, body in Poppins 15px/400 #71717a. The 1-step lightness difference from the #f7f7f7 canvas is the only elevation.\n5. Ghost nav icon button: 8px radius, transparent background, 1px #d4d4d8 border, 20px Pure Black icon centered inside, 32×32px total size."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids box-shadows and drop-shadows. Depth is communicated through three mechanisms only: (1) surface lightness contrast between #f7f7f7 canvas and #ffffff cards, (2) rotation/tilt on hero imagery, and (3) the dark fill of the Carbon button acting as a visual weight. This keeps the interface feeling flat, printed, and editorial — closer to a magazine spread than a glass-morphism app."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "nav",
+            "image",
+            "hero",
+            "card"
+          ],
+          "frequency": 810,
+          "confidence": 1,
+          "prominence": 12523971.303065587,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 2,
+            "icon/fill": 18,
+            "nav/color": 17,
+            "card/color": 3,
+            "hero/color": 2,
+            "icon/color": 3,
+            "other/fill": 13,
+            "image/color": 1,
+            "other/color": 129,
+            "other/stroke": 2,
+            "nav/borderColor": 68,
+            "card/borderColor": 12,
+            "hero/borderColor": 8,
+            "icon/borderColor": 12,
+            "image/borderColor": 4,
+            "other/borderColor": 516
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "heading",
+            "body",
+            "button"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 6751451.56185512,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "heading/color": 3,
+            "body/borderColor": 12,
+            "heading/borderColor": 12,
+            "hero/backgroundColor": 2,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#18181b",
+          "oklch": {
+            "c": 0.005860382494179248,
+            "h": 285.8851326887739,
+            "l": 0.21033093087281887
+          },
+          "contexts": [
+            "card",
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 3293600.0239776694,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 3,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f7f7f7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.976138790665567
+          },
+          "contexts": [
+            "nav",
+            "card"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2346408,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1,
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#71717a",
+          "oklch": {
+            "c": 0.01380764592250087,
+            "h": 285.9384471523302,
+            "l": 0.5516643079251032
+          },
+          "contexts": [
+            "body",
+            "nav",
+            "heading",
+            "other"
+          ],
+          "frequency": 97,
+          "confidence": 1,
+          "prominence": 519631.7612241584,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 6,
+            "nav/color": 11,
+            "body/color": 5,
+            "nav/stroke": 1,
+            "other/color": 1,
+            "heading/color": 1,
+            "nav/borderColor": 44,
+            "body/borderColor": 20,
+            "other/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#09090b",
+          "oklch": {
+            "c": 0.0043859037049756066,
+            "h": 285.8228513598597,
+            "l": 0.1407653343343911
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 65,
+          "confidence": 1,
+          "prominence": 516390.72279915074,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 6,
+            "body/color": 5,
+            "other/fill": 3,
+            "other/stroke": 1,
+            "heading/color": 2,
+            "nav/borderColor": 20,
+            "body/borderColor": 20,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#a1a1aa",
+          "oklch": {
+            "c": 0.012937072897089737,
+            "h": 286.06647178762273,
+            "l": 0.711814792347715
+          },
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 97,
+          "confidence": 1,
+          "prominence": 19586.155848425133,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 9,
+            "link/color": 9,
+            "other/fill": 7,
+            "body/borderColor": 36,
+            "link/borderColor": 36
+          }
+        },
+        {
+          "hex": "#d4d4d8",
+          "oklch": {
+            "c": 0.005451465155339808,
+            "h": 286.285927138332,
+            "l": 0.8711079072212741
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3343.5764566378016,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.007098316544771401,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.9,
+          "background": "#ffffff",
+          "foreground": "#09090b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.6,
+          "background": "#f7f7f7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.57,
+          "background": "#f7f7f7",
+          "foreground": "#09090b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.72,
+          "background": "#18181b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.54,
+          "background": "#f7f7f7",
+          "foreground": "#18181b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.21,
+          "background": "#d4d4d8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.46,
+          "background": "#d4d4d8",
+          "foreground": "#09090b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.99,
+          "background": "#d4d4d8",
+          "foreground": "#18181b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.19,
+          "background": "#a1a1aa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.76,
+          "background": "#a1a1aa",
+          "foreground": "#09090b"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.91,
+          "background": "#18181b",
+          "foreground": "#a1a1aa"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.83,
+          "background": "#ffffff",
+          "foreground": "#71717a"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.51,
+          "background": "#f7f7f7",
+          "foreground": "#71717a"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.67,
+          "background": "#18181b",
+          "foreground": "#71717a"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.56,
+          "background": "#ffffff",
+          "foreground": "#a1a1aa"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.39,
+          "background": "#f7f7f7",
+          "foreground": "#a1a1aa"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.19,
+          "background": "#18181b",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#18181b",
+          "foreground": "#09090b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.07,
+          "background": "#f7f7f7",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "card",
+            "other",
+            "link"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "link",
+            "card",
+            "button"
+          ],
+          "frequency": 66,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "card"
+          ],
+          "frequency": 25,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|nav",
+            "paddingTop|hero",
+            "paddingRight|hero",
+            "paddingBottom|hero",
+            "paddingLeft|hero",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 244,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Poppins",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 53,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Rubik",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            700
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Rubik",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "image",
+            "nav",
+            "hero",
+            "card",
+            "button"
+          ],
+          "frequency": 244,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Poppins",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.62,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Poppins",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.62,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.26,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Poppins",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 69,
+          "family": "Poppins",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.022,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8f1c93ed-452d-4c24-ae1e-b52c9b9f9a68.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7e453c36-be22-4bbf-9c55-4ba652ccdca4.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bc4b4dee-8b32-494c-9a2d-d56fcd450b79#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Winamp design system\",\"item\":\"https://styles.refero.design/style/bc4b4dee-8b32-494c-9a2d-d56fcd450b79\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bc4b4dee-8b32-494c-9a2d-d56fcd450b79#style-reference\",\"name\":\"Winamp design system reference\",\"headline\":\"Winamp design system | Refero Styles\",\"description\":\"Explore Winamp's light Media design system: Bone White #f7f7f7, Paper White #ffffff colors, Rubik, Poppins typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/bc4b4dee-8b32-494c-9a2d-d56fcd450b79\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bc4b4dee-8b32-494c-9a2d-d56fcd450b79\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Winamp\",\"url\":\"https://www.winamp.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bc4b4dee-8b32-494c-9a2d-d56fcd450b79#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7e453c36-be22-4bbf-9c55-4ba652ccdca4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7e453c36-be22-4bbf-9c55-4ba652ccdca4.jpg\",\"caption\":\"Screenshot of Winamp\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7e453c36-be22-4bbf-9c55-4ba652ccdca4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Winamp design system\",\"Winamp website design\",\"Winamp colors\",\"Winamp typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Bone White\",\"Paper White\",\"Ink Black\",\"Carbon\",\"Rubik\",\"Poppins\",\"system-ui sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Winamp design system\"},{\"@type\":\"Thing\",\"name\":\"Winamp website design\"},{\"@type\":\"Thing\",\"name\":\"Winamp colors\"},{\"@type\":\"Thing\",\"name\":\"Winamp typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T02:30:18.402Z\",\"dateModified\":\"2026-04-30T02:30:18.402Z\"}]}19:T513,**Quick Color Reference**\n- text (primary): #09090b\n- text (secondary): #71717a\n- background (canvas): #f7f7f7\n- background (card): #ffffff\n- border: #09090b or #d4d4d8\n- primary action: no distinct CTA color\n- brand accent: #e95420 (Ember Orange — logo only)\n\n**Example Component Prompts**\n1. Hero headline: 'Winamp' at 69px Poppins weight 500, #09090b, letter-spacing -1.52px, line-height 1.13, left-aligned on #f7f7f7 canvas. No background, no accent color.\n2. Filled action button: Carbon (#18181b) background, #ffffff text in Poppins 15px/500, 8px border-radius, 20px horizontal padding, 10px vertical padding. No border, no shadow. White-space above and below the text is the button's total height.\n3. Tilted device card: 280×560px #ffffff surface with 16px radius, containing a full-bleed warm-toned photograph clipped to the same radius. Rotate -10 degrees, offset 40px from the next card in the stack.\n4. Content card (secondary section): #ffffff background, 16px radius, 24px padding, no border. Heading in Poppins 19px/600 #09090b, body in Poppins 15px/400 #71717a. The 1-step lightness difference from the #f7f7f7 canvas is the only elevation.\n5. Ghost nav icon button: 8px radius, transparent background, 1px #d4d4d8 border, 20px Pure Black icon centered inside, 32×32px total size."
+}

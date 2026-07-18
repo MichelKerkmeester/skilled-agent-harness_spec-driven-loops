@@ -1,0 +1,49 @@
+@theme {
+  /* Colors */
+  --color-charcoal-stage: #151515;
+  --color-warm-cream: #fffbeb;
+  --color-card-edge: #383835;
+  --color-mute-cream: #b8b8b8;
+  --color-ash-gray: #a6a6a6;
+  --color-bronze-veil: #504f4a;
+  --color-signal-teal: #00b18c;
+  --color-ember-coral: #ff4a5f;
+
+  /* Typography */
+  --font-tasa-orbiter: 'TASA Orbiter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 13px;
+  --leading-caption: 1.1;
+  --tracking-caption: 0.2px;
+  --text-body: 16px;
+  --leading-body: 1.2;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.2;
+  --text-subheading: 20px;
+  --leading-subheading: 1.2;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.1;
+  --text-heading-lg: 40px;
+  --leading-heading-lg: 1;
+  --text-display: 56px;
+  --leading-display: 0.95;
+  --tracking-display: -1.12px;
+
+  /* Spacing */
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-88: 88px;
+
+  /* Border Radius */
+  --radius-xl: 12px;
+  --radius-full: 900px;
+
+  /* Shadows */
+  --shadow-subtle: rgb(56, 56, 53) 0px 0px 0px 1px inset;
+  --shadow-subtle-2: rgba(255, 251, 235, 0.25) 0px 0px 0px 2px inset;
+}

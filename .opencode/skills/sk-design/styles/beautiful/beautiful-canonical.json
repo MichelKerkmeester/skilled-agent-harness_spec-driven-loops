@@ -1,0 +1,1577 @@
+{
+  "source": "https://styles.refero.design/style/8e1c35bf-f0e8-4889-b869-d9883bb76767",
+  "uuid": "8e1c35bf-f0e8-4889-b869-d9883bb76767",
+  "name": "Beautiful™",
+  "northStar": "Warm kitchen on a Sunday morning",
+  "capturedAt": "2026-07-18T08:06:42.903Z",
+  "meta": {
+    "url": "https://cookwithbeautiful.com",
+    "siteName": "Beautiful™",
+    "extractedAt": "2026-06-03T18:28:06.179Z",
+    "durationMs": 39934,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 258,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #fff5e6 (Cream Linen) as the page canvas for every section — never pure white as a background.",
+      "Reserve #fa7864 (Coral Pop) for filled primary action buttons and the single coral banner strip — one coral moment per viewport maximum.",
+      "Use 1px solid #000000 borders on all interactive containers (nav buttons, category circles, carousel arrows) — the thin black line is the system's structural language.",
+      "Set button radius to 999px — every button is a full pill, no exceptions.",
+      "Pair GascogneTS serif headlines with Basis Grotesque Pro body — the serif/sans contrast is the voice of the brand.",
+      "Use the uppercase mono eyebrow label (#fa7864, 0.056em tracking, BasisGrotesquePro-Mono) above hero and section headlines to mark newness or category.",
+      "Maintain positive letter-spacing (0.019–0.031em) on all Basis Grotesque Pro body text — never set body type tight, the openness is intentional."
+    ],
+    "donts": [
+      "Don't use shadows for elevation — Beautiful is a flat, bordered system. Depth comes from the cream-to-white surface transition and the coral accent, not from drop shadows.",
+      "Don't introduce a second vivid color — the system is monochromatic warm with one coral. No teals, no greens, no blues as accents.",
+      "Don't use sharp corners (0–8px radius) on buttons or interactive elements — the pill is sacred. Cards and images may be square, but anything clickable rounds fully.",
+      "Don't set body type at bold weights — Basis Grotesque Pro stays at 400. Emphasis comes from the serif, the color, or the size jump, not from weight.",
+      "Don't place the logo flush-left — it must be centered in the header, flanked by nav on the left and search on the right.",
+      "Don't use auto-width or fluid sizing on buttons — pills are content-sized with ~6px vertical and 19px horizontal padding.",
+      "Don't apply the #fa7864 coral to large background areas outside the single banner strip — coral is a foreground accent, not a surface."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fa7864",
+        "name": "Coral Pop",
+        "role": "Orange action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "brand"
+      },
+      {
+        "hex": "#dc8264",
+        "name": "Terracotta Whisper",
+        "role": "Orange accent for outlined action borders, linked labels, and lightweight interactive emphasis.",
+        "group": "accent"
+      },
+      {
+        "hex": "#fff5e6",
+        "name": "Cream Linen",
+        "role": "Primary page canvas — every section background. The signature surface: warm, not white, immediately domestic. Used for the hero band, the about/letter section, the category circles area, and footer transitions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, logo, all hairline borders on nav buttons/cards/circles/icons, and the thin rules that define almost every component — the structural skeleton of the entire interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#282828",
+        "name": "Charcoal",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#707070",
+        "name": "Stone",
+        "role": "Subtle dividers and rules that recede — used where a border needs to exist for spatial structure without competing with the primary black borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e8e8e1",
+        "name": "Bone",
+        "role": "Warm gray for footer borders, input field backgrounds, and the faintest surface separation — the slightly cooler cousin of Cream Linen for creating quiet contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces and button text — the only true white in the system, reserved for elevated elements that need to pop above the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Mist",
+        "role": "Card borders where a soft outline is needed without the weight of black — quieter than #707070, used on the product card grid in the New Arrivals section",
+        "group": "neutral"
+      }
+    ],
+    "layout": "$19",
+    "imagery": "$1a",
+    "similar": [
+      {
+        "why": "Warm cream-toned ecommerce with a single vivid accent color (terracotta/coral), serif display headlines paired with a clean sans-serif, thin black borders on pill buttons, and product-forward lifestyle photography on wooden surfaces",
+        "business": "Our Place"
+      },
+      {
+        "why": "Same warm-neutral canvas approach with a single muted accent color, serif-and-sans typographic pairing, pill-shaped interactive elements, and flat borderless product cards in a centered grid",
+        "business": "Caraway Home"
+      },
+      {
+        "why": "Directly shares the domestic Drew Barrymore brand DNA — warm cream backgrounds, coral/terracotta accents, serif display type, and the same homey-but-editorial visual language for kitchen and home goods",
+        "business": "Drew Barrymore's Flower Home (Walmart)"
+      },
+      {
+        "why": "Warm cream canvas, hand-crafted domestic brand aesthetic, serif display headings, pill-shaped UI elements with thin borders, and a single warm accent color used sparingly",
+        "business": "Molly Mahon"
+      },
+      {
+        "why": "Editorial serif headlines, generous letter-spacing on body text, cream/off-white backgrounds, pill-shaped buttons with thin black borders, and a rationed single accent color approach",
+        "business": "Sézane"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "20px",
+        "cards": "0px",
+        "buttons": "999px",
+        "circles": "999px",
+        "buttons-alt": "50px"
+      },
+      "elementGap": "15px",
+      "sectionGap": "64px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#fff5e6",
+        "name": "Cream Linen Canvas",
+        "level": 0,
+        "purpose": "Base page background — every section, every band sits on this warm cream"
+      },
+      {
+        "hex": "#e8e8e1",
+        "name": "Bone Divider",
+        "level": 1,
+        "purpose": "Faintest separation — footer rules, input field backgrounds, the barely-there contrast layer"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White Card",
+        "level": 2,
+        "purpose": "Product card surfaces and button text — the only true white, used to lift content above the cream"
+      },
+      {
+        "hex": "#fa7864",
+        "name": "Coral Accent Surface",
+        "level": 3,
+        "purpose": "The single coral banner strip — a full-bleed accent surface that functions as a section divider"
+      }
+    ],
+    "northStar": "Warm kitchen on a Sunday morning",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.19
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.45
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.52
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.65
+      },
+      {
+        "role": "heading-sm",
+        "size": 25,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-lg",
+        "size": 39,
+        "lineHeight": 1.1,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 52,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Coral Pill Button (Primary Action)",
+        "role": "Filled CTA — 'Shop Now' in the hero",
+        "description": "Fully rounded pill (999px radius), #fa7864 background, white text in Basis Grotesque Pro 16px weight 400 with ~0.045em letter-spacing. Padding approximately 6px vertical, 19px horizontal. No border. The only filled button in the system — use sparingly, one per viewport maximum."
+      },
+      {
+        "name": "Outlined Coral Button (Secondary Action)",
+        "role": "Ghost/outline CTA — 'Discover Beautiful' in the about section",
+        "description": "Fully rounded pill (999px radius), transparent background, 1px solid #dc8264 border, #dc8264 text in Basis Grotesque Pro 16px. Same dimensions as the filled variant. The terracotta tone is one step quieter than the primary coral — this is the \"you can act, but we won't push\" button."
+      },
+      {
+        "name": "Nav Pill Button",
+        "role": "Top navigation items — 'Collections ▼', 'Recipes', 'Our Story'",
+        "description": "Fully rounded pill (999px radius), transparent fill, 1px solid #000000 border, black text in Basis Grotesque Pro 14px. Padding ~6px vertical, 19px horizontal. The dropdown arrow on 'Collections' sits inline. These are the quietest interactive elements — black border on cream, no fill until hover."
+      },
+      {
+        "name": "Category Circle",
+        "role": "Navigation categories — Appliances, Cookware, Home, etc.",
+        "description": "Perfectly round (999px radius), ~120px diameter. White or cream fill, 1px solid #000 border, product image contained inside. Label sits below in Basis Grotesque Pro 14px black. The circles float on the cream canvas in a horizontal row — no card container, just the circle and its label."
+      },
+      {
+        "name": "Hero Banner Card",
+        "role": "Full-width hero image + text composition",
+        "description": "No border, no radius on the image (it bleeds to container edge). Left ~60% is the product photography, right ~40% holds the copy stack: 'NEW' label in coral uppercase mono at 14px with 0.056em tracking, then GascogneTS 39px headline in black, then body text in Basis Grotesque Pro 16px in #282828, then the coral pill button. Generous whitespace between each text element (~15–20px)."
+      },
+      {
+        "name": "New Arrivals Product Card",
+        "role": "Product grid items in the 3-column arrivals section",
+        "description": "No border-radius, no shadow. White or cream product photo fills the card top, product title in Basis Grotesque Pro 14px below. Cards sit edge-to-edge in a 3-column grid with 20px gaps. No visible card border — the grid structure implies containment, the photography IS the card."
+      },
+      {
+        "name": "Coral Banner Strip",
+        "role": "Full-width section divider — 'Be part of something Beautiful'",
+        "description": "Full-bleed #fa7864 background band, ~120px tall. Centered white serif text (GascogneTS 30px weight 500). No padding containers — text floats centered. The only large coral surface in the system; it acts as a visual exclamation point between the category grid and the footer images."
+      },
+      {
+        "name": "Signature Mark",
+        "role": "Personal signature — 'Drew♡' in the about section",
+        "description": "Handwritten/script-style signature in #000, ~30px size, placed below body text as a personal sign-off. Functions as a brand-humanizing element, not a component to replicate broadly."
+      },
+      {
+        "name": "Uppercase Eyebrow Label",
+        "role": "'NEW' label above hero headline",
+        "description": "BasisGrotesquePro-Mono 14px, weight 400, #fa7864 color, 0.056em letter-spacing (the widest in the system), uppercase. Sits ~10–15px above its headline. The tracked-out mono uppercase is a signature micro-typographic moment — it stamps a small editorial mark above hero copy."
+      },
+      {
+        "name": "Carousel Arrow Button",
+        "role": "Image carousel navigation — left/right arrows on the hero",
+        "description": "Small ~32px circle, #fff5e6 (cream) fill matching canvas, 1px solid #000 border, black arrow icon inside. Sits at the vertical center of the image edge. Blends into the cream background; the black border is the only visual signal."
+      },
+      {
+        "name": "Search Icon",
+        "role": "Top-right search trigger",
+        "description": "Plain black magnifying-glass icon, ~20px, no button container, no border. Sits at the far right of the nav row, aligned to the baseline of the logo."
+      },
+      {
+        "name": "Centered Logo Lockup",
+        "role": "Brand wordmark in the header",
+        "description": "'Beautiful' set in GascogneTS 32px weight 500, black, with a small ® superscript in Basis Grotesque Pro 10px. Centered above the nav row, flanked by nav buttons on the left and the search icon on the right. The serif logo is the visual anchor of every page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading serif — used for hero headlines like \"Buttercream, whipped to perfection.\" and section titles like \"New Arrivals\". This old-style serif is the editorial voice of the brand; it carries the warmth that the sans-serif cannot. Weight 500 for emphasis without going bold. The 1.0–1.2 line-height on 39–52px sizes is tight, creating a confident, magazine-display feel rather than airy editorial",
+        "sizes": "25px, 28px, 30px, 32px, 39px, 43px, 52px",
+        "family": "GascogneTS",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.20",
+        "substitute": "Playfair Display, DM Serif Display, or Cormorant Garamond",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Primary body and UI sans-serif — nav labels, button text, body copy, product descriptions, and the \"NEW\" label. The consistently positive letter-spacing (0.019–0.031em) is distinctive: most grotesques tighten tracking at body sizes, but this one opens it, creating a calm, unhurried reading rhythm that matches the domestic warmth. Weight stays at 400 — no bold/medium variations, keeping the voice quiet and conversational",
+        "sizes": "10px, 13px, 14px, 16px, 18px, 21px",
+        "family": "Basis Grotesque Pro",
+        "weight": "400",
+        "lineHeight": "1.20, 1.30",
+        "substitute": "Inter, Söhne, or Neue Haas Grotesk",
+        "letterSpacing": "0.019–0.031em (wider as size increases: 0.19px at 10px, 0.45px at 16px, 0.65px at 21px)"
+      },
+      {
+        "role": "Monospace variant used for input fields, code-like UI elements, and the uppercase \"NEW\" label (at 0.056em — the widest tracking in the system, giving small labels a stamped, editorial feel). The wider 0.056em at the label sizes creates the signature tracked-out uppercase micro-text that appears in coral above hero headlines",
+        "sizes": "14px, 16px, 18px, 19px",
+        "family": "BasisGrotesquePro-Mono",
+        "weight": "400",
+        "lineHeight": "1.30, 1.42",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Space Mono",
+        "letterSpacing": "0.021–0.056em"
+      }
+    ],
+    "description": "Beautiful's design system is a warm, domestic tableau: a cream-ivory canvas (#fff5e6) replaces the typical white product background, immediately signaling \"home\" rather than \"software.\" A single vivid coral accent (#fa7864) punctuates the interface — appearing only on filled action buttons, the serif editorial headings, and one coral CTA banner — while everything else stays restrained: thin black 1px borders, white card surfaces, and an elegant GascogneTS serif paired with the practical Basis Grotesque Pro sans. Components lean generous and pill-shaped, always outlined in black rather than elevated with shadow, always warm-toned rather than cool-neutral. The system reads like a lifestyle magazine spread, not a product catalog: serif hero headlines whisper authority, the coral accent is rationed like saffron, and the cream canvas does the heavy lifting of mood.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1b"
+      },
+      {
+        "title": "Typography Voice",
+        "content": "The system uses a two-voice typographic structure: GascogneTS (old-style serif) speaks for editorial moments — hero headlines, section titles, the logo — while Basis Grotesque Pro (clean grotesque) handles all functional text — nav, buttons, body, labels. The serif never appears in UI controls; the sans never appears in display. A monospace variant (BasisGrotesquePro-Mono) exists only for the uppercase eyebrow label pattern. The 0.019–0.031em positive letter-spacing on all Basis Grotesque Pro text is the most distinctive typographic choice: most grotesque typefaces tighten tracking at small sizes, but this one opens it, creating a calm, spacious reading rhythm that matches the domestic warmth. The eyebrow label at 0.056em is the widest tracking in the system, used sparingly to stamp a small editorial mark above headlines."
+      }
+    ],
+    "northStarContext": "A cream-ivory room with a single coral KitchenAid on a wooden counter, editorial serif type on a hand-written grocery list, every surface bordered in a thin black line.",
+    "elevationPhilosophy": "Beautiful uses a flat, borderless-from-shadow design philosophy. Components do not float — they sit on the cream canvas and are defined by 1px black borders (for interactive elements) or by content-only edges (for product cards and images). The only depth cue is the cream-to-white surface transition (Cream Linen canvas → White card). No drop shadows, no glow, no blur effects. The thin black line carries all structural weight."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "link",
+            "other",
+            "nav",
+            "image",
+            "icon",
+            "body",
+            "hero",
+            "heading",
+            "card",
+            "footer",
+            "button",
+            "list"
+          ],
+          "frequency": 1060,
+          "confidence": 1,
+          "prominence": 61555432.87418927,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 6,
+            "nav/color": 7,
+            "body/color": 24,
+            "card/color": 8,
+            "hero/color": 2,
+            "icon/color": 1,
+            "link/color": 23,
+            "list/color": 3,
+            "image/color": 22,
+            "other/color": 126,
+            "button/color": 1,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 4,
+            "nav/borderColor": 16,
+            "body/borderColor": 96,
+            "hero/borderColor": 8,
+            "icon/borderColor": 4,
+            "link/borderColor": 92,
+            "list/borderColor": 12,
+            "image/borderColor": 88,
+            "other/borderColor": 492,
+            "button/borderColor": 4,
+            "footer/borderColor": 3,
+            "heading/borderColor": 16
+          }
+        },
+        {
+          "hex": "#dc8264",
+          "oklch": {
+            "c": 0.1194858899583216,
+            "h": 39.14622784826075,
+            "l": 0.6966565751154864
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 5646280.450463088,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/color": 2,
+            "other/fill": 2,
+            "button/color": 2,
+            "icon/borderColor": 8,
+            "button/borderColor": 8,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fff5e6",
+          "oklch": {
+            "c": 0.022517217374210575,
+            "h": 78.221502722785,
+            "l": 0.9739288306577499
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "footer"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 2889409.26505936,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "link/borderColor": 4,
+            "other/backgroundColor": 5,
+            "button/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e8e8e1",
+          "oklch": {
+            "c": 0.009344461904032396,
+            "h": 106.5800984244516,
+            "l": 0.9290534417639863
+          },
+          "contexts": [
+            "footer",
+            "input",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1517804,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "footer/borderColor": 1,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#707070",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5451691259068346
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 598982.7762960623,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 12
+          }
+        },
+        {
+          "hex": "#fa7864",
+          "oklch": {
+            "c": 0.16307079775590147,
+            "h": 30.47404339990043,
+            "l": 0.7208711318628233
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "button"
+          ],
+          "frequency": 89,
+          "confidence": 1,
+          "prominence": 375456.32382622676,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "heading/color": 5,
+            "body/borderColor": 32,
+            "button/borderColor": 16,
+            "heading/borderColor": 20,
+            "button/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "card",
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 43,
+          "confidence": 1,
+          "prominence": 315746.2276638881,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 1,
+            "button/color": 8,
+            "heading/color": 1,
+            "body/borderColor": 4,
+            "other/borderColor": 4,
+            "button/borderColor": 12,
+            "heading/borderColor": 4,
+            "card/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 129136.4894555764,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 32
+          }
+        },
+        {
+          "hex": "#282828",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.276848202684105
+          },
+          "contexts": [
+            "nav",
+            "input"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 41978.634989519756,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "input/color": 1,
+            "nav/borderColor": 12,
+            "input/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.03677983783970685,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.46,
+          "background": "#fff5e6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.06,
+          "background": "#e8e8e1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.74,
+          "background": "#ffffff",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.66,
+          "background": "#fff5e6",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.98,
+          "background": "#e8e8e1",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.18,
+          "background": "#cccccc",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.94,
+          "background": "#fa7864",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.42,
+          "background": "#dc8264",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.57,
+          "background": "#fa7864",
+          "foreground": "#282828"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.21,
+          "background": "#dc8264",
+          "foreground": "#282828"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.83,
+          "background": "#ffffff",
+          "foreground": "#dc8264"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.65,
+          "background": "#ffffff",
+          "foreground": "#fa7864"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.62,
+          "background": "#fff5e6",
+          "foreground": "#dc8264"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.45,
+          "background": "#fa7864",
+          "foreground": "#fff5e6"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.3,
+          "background": "#e8e8e1",
+          "foreground": "#dc8264"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.15,
+          "background": "#e8e8e1",
+          "foreground": "#fa7864"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.23,
+          "background": "#e8e8e1",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.14,
+          "background": "#e8e8e1",
+          "foreground": "#fff5e6"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 50,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 999,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|button",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "link",
+            "body"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button",
+            "paddingBottom|link",
+            "paddingTop|body",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "heading",
+            "link",
+            "button",
+            "card",
+            "other",
+            "input"
+          ],
+          "frequency": 61,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginRight|nav",
+            "marginTop|heading",
+            "marginBottom|heading",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginRight|button",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginBottom|other",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "body",
+            "card"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "heading",
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginTop|button",
+            "marginBottom|body",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "body"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|nav",
+            "paddingRight|nav",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "hero",
+            "body",
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero",
+            "marginBottom|body",
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|other",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "hero",
+            "other",
+            "footer"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingRight|other",
+            "paddingTop|footer",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 75,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 81,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Basis Grotesque Pro",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 211,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "BasisGrotesquePro-Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 22,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GascogneTS",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 19,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Basis Grotesque Pro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.3,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Basis Grotesque Pro",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 13,
+          "family": "Basis Grotesque Pro",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.2,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 13,
+          "family": "Basis Grotesque Pro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Basis Grotesque Pro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Basis Grotesque Pro",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.028,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Basis Grotesque Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "list"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.029,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BasisGrotesquePro-Mono",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BasisGrotesquePro-Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.029,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basis Grotesque Pro",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "card",
+            "body",
+            "footer"
+          ],
+          "frequency": 149,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BasisGrotesquePro-Mono",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basis Grotesque Pro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Basis Grotesque Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "image"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.023,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "BasisGrotesquePro-Mono",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.42,
+          "letterSpacing": 0.056,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 19,
+          "family": "BasisGrotesquePro-Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Basis Grotesque Pro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.019,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "GascogneTS",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "GascogneTS",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "GascogneTS",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link",
+            "image"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "GascogneTS",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 39,
+          "family": "GascogneTS",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "GascogneTS",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "GascogneTS",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3a2e86f5-efea-44e2-815c-9f672a36cc2a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ffd747e1-1f44-4261-bdae-4103fcfea31f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8e1c35bf-f0e8-4889-b869-d9883bb76767#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Beautiful™ design system\",\"item\":\"https://styles.refero.design/style/8e1c35bf-f0e8-4889-b869-d9883bb76767\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8e1c35bf-f0e8-4889-b869-d9883bb76767#style-reference\",\"name\":\"Beautiful™ design system reference\",\"headline\":\"Beautiful™ design system | Refero Styles\",\"description\":\"Explore Beautiful™'s light E-commerce design system: Coral Pop #fa7864, Terracotta Whisper #dc8264 colors, GascogneTS, Basis Grotesque Pro typography, and...\",\"url\":\"https://styles.refero.design/style/8e1c35bf-f0e8-4889-b869-d9883bb76767\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8e1c35bf-f0e8-4889-b869-d9883bb76767\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Beautiful™\",\"url\":\"https://cookwithbeautiful.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8e1c35bf-f0e8-4889-b869-d9883bb76767#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ffd747e1-1f44-4261-bdae-4103fcfea31f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ffd747e1-1f44-4261-bdae-4103fcfea31f.jpg\",\"caption\":\"Screenshot of Beautiful™\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ffd747e1-1f44-4261-bdae-4103fcfea31f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Beautiful™ design system\",\"Beautiful™ website design\",\"Beautiful™ colors\",\"Beautiful™ typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Coral Pop\",\"Terracotta Whisper\",\"Cream Linen\",\"Ink Black\",\"GascogneTS\",\"Basis Grotesque Pro\",\"BasisGrotesquePro-Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Beautiful™ design system\"},{\"@type\":\"Thing\",\"name\":\"Beautiful™ website design\"},{\"@type\":\"Thing\",\"name\":\"Beautiful™ colors\"},{\"@type\":\"Thing\",\"name\":\"Beautiful™ typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:08:46.503Z\",\"dateModified\":\"2026-04-30T03:08:46.503Z\"}]}19:T4ec,Beautiful uses a max-width ~1200px centered layout on a warm cream canvas. The header is a three-zone row: nav pills (left), centered serif logo, search icon (right) — a symmetrical lockup where the logo always sits dead center. The hero is an asymmetric two-column composition: large product image on the left (~60% width), text stack on the right (~40%) with eyebrow label, serif headline, body, and pill CTA stacked vertically with generous gaps. Carousel arrows float at the vertical midline of the image edge. Below the hero, the about section reverses: text block on the left, portrait image on the right — a mirror of the hero composition. The New Arrivals section is a 3-column product image grid with no card chrome. The category navigation is a horizontal row of 7–8 circular icons evenly spaced across the full content width, with a second row of 1–2 circles centered below. The coral banner strip is full-bleed (edge-to-edge) and breaks out of the max-width container to span the viewport. Sections are separated by generous 64px vertical gaps on the cream canvas — no alternating background bands, no dividers, the whitespace itself is the separator. Navigation is minimal: three pill buttons and a search icon, no mega-menu, no sidebar.1a:T40c,Beautiful's visual language is warm, product-forward lifestyle photography with a hand-crafted, domestic feel. Product shots are staged on wooden countertops or against soft neutral backgrounds with natural directional lighting — never sterile white-cyc. Props include linen textiles, scattered ingredients (sprinkles, citrus), ceramic vessels, and fresh botanicals (eucalyptus sprigs). The hero image is a tight product portrait (the cream KitchenAid mixer with a sprinkle-frosted cake) that occupies ~60% of the hero width. Secondary images in the about and New Arrivals sections show people-in-context (a woman in a floral dress seated on a white sofa) and product-only crops. The category circles use isolated product cutouts on white. The footer image strip shows a horizontal row of lifestyle moments (vanity mirrors, brownstone windows, bedroom scenes). Photography is high-key, slightly desaturated, and warm-toned to match the cream canvas. No video, no 3D renders, no illustrations — photography is the only visual medium.1b:T728,**Quick Color Reference**\n- primary action: #fa7864 (filled action)\n- Accent: #dc8264 (Terracotta Whisper) — outlined ghost buttons, icon strokes\n- Text: #000000 (primary), #282828 (secondary)\n- Background: #fff5e6 (Cream Linen canvas)\n- Surface: #ffffff (cards), #e8e8e1 (dividers)\n- Border: #000000 (interactive), #cccccc (product card outlines), #707070 (subtle dividers)\n\n**Example Component Prompts**\n1. **Hero Section**: Cream Linen (#fff5e6) full-width background. Left 60%: large product photograph. Right 40%: 'NEW' eyebrow label in #fa7864 uppercase BasisGrotesquePro-Mono 14px with 0.056em letter-spacing, 15px below it a GascogneTS 39px weight 500 black headline, 15px below that Basis Grotesque Pro 16px #282828 body copy, 20px below that a coral pill button (999px radius, #fa7864 fill, white text, 6px 19px padding).\n\n2. **Category Circle Row**: On Cream Linen background, 7 circles in a horizontal row, each 120px diameter with 999px radius, 1px solid #000000 border, white fill, product image centered inside. Label below each in Basis Grotesque Pro 14px black. Evenly distributed across the 1200px content width.\n\n3. **Coral Banner Strip**: Full-bleed #fa7864 band, 120px tall, spanning the entire viewport width. Centered white text in GascogneTS 30px weight 500. No padding container — text sits dead center.\n\n4. **Product Card Grid**: 3-column grid on Cream Linen, 20px gaps. Each card is a white-background product photograph with no border, no radius. Product name in Basis Grotesque Pro 14px black below the image. No card border, no shadow, no chrome — the photo IS the card.\n\n5. **Nav Pill Button**: Transparent background, 1px solid #000000 border, 999px radius, Basis Grotesque Pro 14px black text, 6px vertical / 19px horizontal padding. Place in a horizontal row to the left of the centered logo."
+}

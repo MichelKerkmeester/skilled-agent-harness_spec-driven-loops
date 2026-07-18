@@ -1,0 +1,292 @@
+{
+  "color": {
+    "the-green": {
+      "$value": "#027b49",
+      "$type": "color",
+      "$description": "The Green — Full-bleed identity block for The Green property and any place or section it owns — deep forest green reads as architectural paint, not decoration"
+    },
+    "the-pink": {
+      "$value": "#f19ec8",
+      "$type": "color",
+      "$description": "The Pink — Red wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "the-red": {
+      "$value": "#fa4d43",
+      "$type": "color",
+      "$description": "The Red — Full-bleed identity block and dramatic section background — vermillion red carries the most visual weight and anchors expanded menu states and signature moments"
+    },
+    "the-yellow": {
+      "$value": "#fbb833",
+      "$type": "color",
+      "$description": "The Yellow — Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "concrete": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Concrete — Page canvas and primary surface — the light gray ground every screen sits on, treated as a material (concrete, drywall) rather than a neutral"
+    },
+    "iron": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Iron — Primary text, pill button fills, and most structural borders — near-black rather than pure black, softer on the concrete canvas while keeping max contrast"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Hairline borders, icon strokes, and occasional deep accents where maximum bite is needed against the colored blocks"
+    }
+  },
+  "font": {
+    "kh-teka": {
+      "$value": "KH Teka",
+      "$type": "fontFamily",
+      "$description": "Primary display and heading face — the entire brand voice. Custom condensed sans set at 215px for the hero with letter-spacing -0.06em and line-height 0.70 so descenders kiss the next line and the word reads as a single architectural mass. Same family drops to 60px and 26px for sub-moments and 15–18px for in-line labels, always retaining negative tracking. This single family does every visible word on the site."
+    },
+    "system-sans-serif": {
+      "$value": "System sans-serif",
+      "$type": "fontFamily",
+      "$description": "Utility micro-copy only — availability text, small annotations, fine print. Used sparingly so KH Teka remains the brand voice."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "KH Teka Regular",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "KH Teka Medium",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "KH Teka Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "KH Teka Regular",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "KH Teka Medium",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "KH Teka Regular",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "KH Teka Regular",
+        "fontSize": "215px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 215px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "KH Teka Regular",
+        "fontSize": "215px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 215px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "KH Teka Regular",
+        "fontSize": "215px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 215px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "KH Teka Regular",
+        "fontSize": "215px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 215px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "130": {
+      "$value": "130px",
+      "$type": "dimension",
+      "$description": "Spacing 130px"
+    },
+    "170": {
+      "$value": "170px",
+      "$type": "dimension",
+      "$description": "Spacing 170px"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "5000px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "surface": {
+    "concrete-canvas": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background; the gray floor every section sits on"
+    },
+    "paint-block": {
+      "$value": "#027b49",
+      "$type": "color",
+      "$description": "Surface level 4: Fourth chromatic layer — completes the four-color identity set"
+    },
+    "iron-surface": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Surface level 5: Dark interactive surface for pill buttons, inverted text on light grounds"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://the1.amsterdam",
+      "siteName": "The1",
+      "extractedAt": "2026-06-03T19:28:42.221Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,404 @@
+{
+  "color": {
+    "butter-highlight": {
+      "$value": "#fbda5f",
+      "$type": "color",
+      "$description": "Butter Highlight — Yellow accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    },
+    "signal-blue": {
+      "$value": "#006aff",
+      "$type": "color",
+      "$description": "Signal Blue — Link and icon accent for secondary navigation and store-badge fills — cool counterpoint to the warm yellow, never used for primary CTAs"
+    },
+    "ink": {
+      "$value": "#0d0d0d",
+      "$type": "color",
+      "$description": "Ink — Body text, heading text, card borders, hairline dividers — the dominant near-black that carries almost all typography and outlines"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Hard-edge borders on feature band cards, icon fills, and the inverted footer band where it provides maximum contrast against yellow text"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card backgrounds, and the negative space inside inverted black bands — the surface everything else sits on"
+    },
+    "fog": {
+      "$value": "#edeef0",
+      "$type": "color",
+      "$description": "Fog — Soft feature-band surface (alternates with Butter Highlight and Pure Black), subtle card backgrounds, neutral pill borders and text"
+    },
+    "stone": {
+      "$value": "#e5e4e3",
+      "$type": "color",
+      "$description": "Stone — Warm-leaning neutral for card surfaces and background variation where Fog feels too cool"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal — Deep surface fill used inside the dark footer band and as an elevated neutral surface"
+    },
+    "mist": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Mist — Muted helper text, list dividers, and secondary metadata where Ink would carry too much weight"
+    },
+    "silver": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Silver — Hairline borders, low-emphasis dividers, and the single drop shadow tint used on elevated cards"
+    }
+  },
+  "font": {
+    "phudu": {
+      "$value": "Phudu",
+      "$type": "fontFamily",
+      "$description": "Display and heading typeface — used for every oversized headline, feature-band title, and section header. The extreme weight contrast (400 vs 700) and ultra-tight 0.90 line-height give SaveDay its poster identity. Letterspacing runs from -0.04em at 112px down to -0.02em at 24px, pulling glyphs into a dense, almost monoline block."
+    },
+    "interdisplay": {
+      "$value": "InterDisplay",
+      "$type": "fontFamily",
+      "$description": "UI, body, and small-heading workhorse — paragraphs, button labels, nav links, FAQ text, badge text, card subtext. The slight negative tracking (-0.018em to -0.024em) keeps the grotesque crisp at small sizes without feeling mechanical. Always paired with a relaxed 1.50 line-height for body and 1.20 for UI labels."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Interdisplay",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Interdisplay",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Interdisplay",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Interdisplay",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Interdisplay",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Interdisplay",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Interdisplay",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Interdisplay",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Interdisplay",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Interdisplay",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Interdisplay",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Interdisplay",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Interdisplay",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Phudu",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Interdisplay",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Interdisplay",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Interdisplay",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Phudu",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Phudu",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Phudu",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Phudu",
+        "fontSize": "112px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 112px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1600px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "lg": {
+      "$value": "rgba(0, 0, 0, 0.2) 0px 0px 20px -16px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the baseline every section sits on"
+    },
+    "fog": {
+      "$value": "#edeef0",
+      "$type": "color",
+      "$description": "Surface level 1: Soft feature band for the first content section"
+    },
+    "butter-highlight": {
+      "$value": "#fbda5f",
+      "$type": "color",
+      "$description": "Surface level 2: Brand-painted section band — the chromatic punctuation between neutral bands"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted band for the closing CTA — yellow text on black delivers the final pitch"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Surface level 4: Deep footer surface layered above Pure Black"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.save.day",
+      "siteName": "SaveDay",
+      "extractedAt": "2026-06-03T21:48:18.485Z",
+      "variant": "extended"
+    }
+  }
+}

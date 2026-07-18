@@ -1,0 +1,402 @@
+{
+  "color": {
+    "deep-ink": {
+      "$value": "#000d10",
+      "$type": "color",
+      "$description": "Deep Ink — Primary text, footer background, filled action buttons, icon strokes — the structural near-black carries the entire brand voice in type and CTAs"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, button text on dark, nav backdrop — the quiet field against which everything else reads"
+    },
+    "cool-ash": {
+      "$value": "#8e8e95",
+      "$type": "color",
+      "$description": "Cool Ash — Secondary body text, nav items, muted helper labels — the only neutral that recedes deliberately behind primary copy"
+    },
+    "pebble": {
+      "$value": "#d5d3d4",
+      "$type": "color",
+      "$description": "Pebble — Hairline borders, dividers, subtle surface alternation between dark sections — visible only at edges"
+    },
+    "midnight-hull": {
+      "$value": "#0f0f1c",
+      "$type": "color",
+      "$description": "Midnight Hull — Dark section backgrounds (Travel Support area) — slightly bluer than Deep Ink to differentiate stacked dark bands"
+    },
+    "charcoal-deck": {
+      "$value": "#151623",
+      "$type": "color",
+      "$description": "Charcoal Deck — Elevated dark panels and deep section backgrounds — the top of the dark surface stack with a faint indigo cast"
+    },
+    "clay-ember": {
+      "$value": "#bc7155",
+      "$type": "color",
+      "$description": "Clay Ember — Featured solution card background, decorative fills — the single warm note in an otherwise cold system, used sparingly to make one offering feel chosen"
+    }
+  },
+  "font": {
+    "helveticanowdisplay": {
+      "$value": "HelveticaNowDisplay",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the system. The weight 700 at 187px with -0.02em tracking is the signature: it sets the wordmark and hero at near-architectural scale, turning headlines into physical objects. Weight 400 at 18px with 1.61 line-height handles all body copy, creating the most spacious text block in the type system."
+    },
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "17px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "17px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.61
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "23px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 23px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "23px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 23px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.61
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "37px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 37px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "52px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "60px",
+        "fontWeight": 700,
+        "lineHeight": 0.91
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "63px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 63px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "131px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 131px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "HelveticaNowDisplay",
+        "fontSize": "187px",
+        "fontWeight": 700,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 187px"
+    }
+  },
+  "spacing": {
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "31": {
+      "$value": "31px",
+      "$type": "dimension",
+      "$description": "Spacing 31px"
+    },
+    "34": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Spacing 34px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "53": {
+      "$value": "53px",
+      "$type": "dimension",
+      "$description": "Spacing 53px"
+    },
+    "59": {
+      "$value": "59px",
+      "$type": "dimension",
+      "$description": "Spacing 59px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "119": {
+      "$value": "119px",
+      "$type": "dimension",
+      "$description": "Spacing 119px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background across all content sections"
+    },
+    "card-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Feature cards and content blocks sitting on canvas"
+    },
+    "featured-clay": {
+      "$value": "#bc7155",
+      "$type": "color",
+      "$description": "Surface level 2: Highlighted solution card that breaks the monochrome rhythm"
+    },
+    "dark-slate": {
+      "$value": "#151623",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed dark content sections (Travel Support)"
+    },
+    "footer-ink": {
+      "$value": "#000d10",
+      "$type": "color",
+      "$description": "Surface level 4: Terminal dark band at the base of every page"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.flyhyer.com",
+      "siteName": "Hyer Aviation",
+      "extractedAt": "2026-07-03T03:14:39.142Z",
+      "variant": "extended"
+    }
+  }
+}

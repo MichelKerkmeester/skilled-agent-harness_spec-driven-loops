@@ -1,0 +1,1373 @@
+{
+  "source": "https://styles.refero.design/style/53538d2d-d5a1-4719-9c7a-d7ab1f3a8c8a",
+  "uuid": "53538d2d-d5a1-4719-9c7a-d7ab1f3a8c8a",
+  "name": "Repeat",
+  "northStar": "Highlighter swipe on warm notebook paper — Repeat's lime washes act like marker strokes across cream stock, with near-black ink and pill-rounded cards floating flat above.",
+  "capturedAt": "2026-07-18T08:40:55.797Z",
+  "meta": {
+    "url": "https://www.getrepeat.io",
+    "siteName": "Repeat",
+    "extractedAt": "2026-06-03T22:04:27.043Z",
+    "durationMs": 40742,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 411,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Highlight Lime (#f5ff7d) only as a full-bleed section background — never as text, border, or button fill",
+      "Set all section titles in uppercase Poppins 600 at 29–37px with 1.20 line-height for the editorial headline stack",
+      "Round all content cards at 25px — the 25px radius is the system fingerprint",
+      "Pair the filled black pill CTA (Ink background, 100px radius) with the white CTA card on lime as the primary action pattern",
+      "Use 1px Ink borders instead of shadows to separate cards from the canvas",
+      "Switch section background colors (lime → cream → white → lavender) to create visual rhythm between content blocks",
+      "Set body copy in Montserrat 400 at 17px with 1.50 leading — never below 15px",
+      "Underline text links in Ink with no other decoration"
+    ],
+    "donts": [
+      "Do not use Highlight Lime for text, borders, icons, or button fills — it is a surface color only",
+      "Do not introduce colored buttons (blue, green, red) — actions are Ink-filled or Paper-outlined only",
+      "Do not use shadows heavier than rgba(0,0,0,0.01) — the system is intentionally flat",
+      "Do not mix in a third typeface — the system is strictly Poppins + Montserrat",
+      "Do not use sharp corners on cards or images — 20–25px is the minimum radius for surfaces",
+      "Do not place the primary CTA button directly on the lime background — wrap it in a white card first",
+      "Do not use line-height looser than 1.30 on headings — the tight editorial stack is the signature",
+      "Do not use gradients — Repeat is a flat-color system; the only tonal shifts are solid surface swaps"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#171717",
+        "name": "Ink",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ede7e2",
+        "name": "Notebook Cream",
+        "role": "Page canvas for body sections, feature row backgrounds — warm off-white that softens white cards and reads as paper stock",
+        "group": "neutral"
+      },
+      {
+        "hex": "#37352f",
+        "name": "Olive Ink",
+        "role": "Secondary near-black surface — warmer than Ink, used as a fill on the logo grid tiles and nav background accent",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5ff7d",
+        "name": "Highlight Lime",
+        "role": "Hero section background, full-bleed color punctuation — the single saturated surface color; never use for text, borders, or buttons",
+        "group": "brand"
+      },
+      {
+        "hex": "#e2d8ff",
+        "name": "Lavender Wash",
+        "role": "Accent section background — soft violet surface for variety beats between white and lime sections",
+        "group": "accent"
+      },
+      {
+        "hex": "#c3d5fc",
+        "name": "Periwinkle Wash",
+        "role": "Accent section background — cool blue surface paired with Lavender Wash for tonal variety in content sections",
+        "group": "accent"
+      }
+    ],
+    "layout": "Page structure is full-bleed bands stacked vertically, each band owning one background color. The hero is a full-bleed lime band with a centered white CTA card. Below it, a white band holds a 3-column brand showcase grid. A second white band holds a 3-column testimonial grid, followed by a 4-up dark logo strip. Feature rows alternate on Notebook Cream with 2-column text-left/image-right splits. Section vertical rhythm is 40px internal padding with full-bleed color changes doing the work of section dividers. The grid system is a 3-column card grid for showcases and testimonials, and a 4-column grid for the logo strip. Navigation is a simple top bar — no sticky header, no sidebar, no mega-menu. Content density is compact but breathable; cards never touch, always separated by the canvas color.",
+    "imagery": "Imagery is product-first photography shot against solid colored studio backgrounds — teal, pink, cream — with no lifestyle context or human models. The product IS the hero, framed inside 25px-radius cards. Product crops are tight, well-lit, high-key. No illustrations, no 3D renders, no abstract graphics. Iconography is minimal and outlined; brand logos in the customer strip are white wordmarks on dark tiles. The overall image-to-text ratio is image-light — photography serves as proof of customer success, not as decorative atmosphere. Color variety in imagery comes from the colored backdrops, not from filters or color grading.",
+    "similar": [
+      {
+        "why": "Same warm-neutral canvas (cream/white) with a single bold accent surface, flat components, thin borders instead of shadows, and uppercase headings carrying authority",
+        "business": "Notion"
+      },
+      {
+        "why": "Editorial typography attitude — uppercase bold Poppins/Inter titles at tight line-height paired with calm body copy; monochromatic system with one accent color doing the work",
+        "business": "Linear"
+      },
+      {
+        "why": "Notebook-paper warmth (cream canvas), near-black ink typography, and a single saturated color (their red, Repeat's lime) used as full-bleed section punctuation",
+        "business": "Substack"
+      },
+      {
+        "why": "Bold pill CTAs (black filled), generous 25px+ card radii, flat elevation philosophy, and confident uppercase headlines over warm product photography",
+        "business": "Gumroad"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "8px",
+        "cards": "25px",
+        "icons": "3px",
+        "images": "20px",
+        "buttons": "100px",
+        "heroCard": "25px"
+      },
+      "elementGap": "4px",
+      "sectionGap": "40px",
+      "cardPadding": "15px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#ede7e2",
+        "name": "Notebook Cream",
+        "level": 0,
+        "purpose": "Page canvas for feature rows and body content"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Card surfaces, hero CTA card, inverted sections"
+      },
+      {
+        "hex": "#f5ff7d",
+        "name": "Highlight Lime",
+        "level": 2,
+        "purpose": "Hero full-bleed, section punctuation"
+      },
+      {
+        "hex": "#e2d8ff",
+        "name": "Lavender Wash",
+        "level": 3,
+        "purpose": "Soft accent section background"
+      },
+      {
+        "hex": "#c3d5fc",
+        "name": "Periwinkle Wash",
+        "level": 4,
+        "purpose": "Soft accent section background"
+      }
+    ],
+    "northStar": "Highlighter swipe on warm notebook paper — Repeat's lime washes act like marker strokes across cream stock, with near-black ink and pill-rounded cards floating flat above.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "body",
+        "size": 17,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 29,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 34,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 37,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global site navigation",
+        "description": "Horizontal bar with Repeat wordmark left, product/blog links center, and a black 100px-radius pill CTA on the right. White or transparent background, sits above all hero sections. Nav links at 15px Montserrat 500, CTA at 15px Montserrat 600 white on Ink (#171717)."
+      },
+      {
+        "name": "Primary Filled CTA Button",
+        "role": "Primary action — demo request, signup",
+        "description": "Black pill button at 100px border-radius, Ink (#171717) background, Paper (#ffffff) text, 15px Montserrat 600, ~12px 20px padding. Sits on white or cream surfaces only — never directly on the lime. The "
+      },
+      {
+        "name": "Hero Lime Section",
+        "role": "Above-the-fold hero block",
+        "description": "Full-bleed Highlight Lime (#f5ff7d) background. Headline at 37px Poppins 600 uppercase in Ink, tight 1.20 leading. Subhead at 17px Montserrat 400 in Ink. The white CTA card sits centered below, creating a card-on-color composition."
+      },
+      {
+        "name": "Hero White CTA Card",
+        "role": "Primary action surface on the lime hero",
+        "description": "Paper (#ffffff) rounded card, 25px radius, thin Ink (#171717) border at ~1px, generous internal padding (~40px vertical). Contains an arrow glyph and "
+      },
+      {
+        "name": "Secondary Text Link",
+        "role": "Tertiary action — low-commitment next step",
+        "description": "Underlined Montserrat 15px 400 in Ink, no background or border. Always paired below the primary CTA card. Example pattern: "
+      },
+      {
+        "name": "Section Heading (Uppercase Poppins)",
+        "role": "Page section title",
+        "description": "29–37px Poppins 600 uppercase in Ink, line-height 1.20, left-aligned. Optional Ink underline divider below. The signature editorial title style — uppercase + tight leading is what makes the design feel like a printed spread."
+      },
+      {
+        "name": "Brand Product Card",
+        "role": "Customer showcase in social-proof section",
+        "description": "25px-radius card containing a full-bleed product photograph on a solid colored background (teal, pink, cream). 20px image radius via overflow:hidden. No border, no shadow. Three-up grid. Image does the talking; the card is just a frame."
+      },
+      {
+        "name": "Testimonial Stat Card",
+        "role": "Customer proof with metric headline",
+        "description": "25px-radius white card with thin Ink border, 15px internal padding. Structure: product image on top (rounded), then stat in 17–20px Poppins 600 (e.g. ",
+        "then attribution": "then underlined \"Read more\" link. Three-up grid.\"",
+        "Increased 90-day repeat orders by 10%\")": "then italic quote in 15px Montserrat 400"
+      },
+      {
+        "name": "Logo Grid Tile",
+        "role": "Customer logo in social-proof strip",
+        "description": "Olive Ink (#37352f) rounded square, 25–50px radius, 1:1 aspect ratio, containing the customer brand wordmark in Paper (#ffffff) at ~17px Montserrat 600 centered. Four-up row. No border, no shadow — the fill is the frame."
+      },
+      {
+        "name": "Feature Row",
+        "role": "Product capability explanation with screenshot",
+        "description": "Two-column layout on Notebook Cream (#ede7e2) background: text block left (headline + body + bullet list in 17px Montserrat), product screenshot right in a 20px-radius frame. Generous 40px vertical padding. Headline can be Poppins 600 uppercase or sentence-case at 24px."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer",
+        "description": "Paper or Notebook Cream background, multi-column link grid in 15px Montserrat 400 Ink, logo and copyright at bottom. Minimal — no heavy social icon blocks, no newsletter modal."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and section headings — used uppercase at 600 weight, tight 1.20 line-height creates an editorial stack; substitute: Montserrat or Inter at the same weights",
+        "sizes": "17px, 20px, 24px, 29px, 37px",
+        "family": "Poppins",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.00–1.30",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Body, navigation, links, card text, captions, footer — the workhorse; 17px at 400 weight is the default reading size with comfortable 1.50 leading; substitute: Inter or DM Sans",
+        "sizes": "13px, 15px, 17px, 34px",
+        "family": "Montserrat",
+        "weight": "400, 500, 600",
+        "lineHeight": "0.75–2.00",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Repeat uses an editorial highlighter-on-paper language: a vivid lime wash dominates the canvas like a marker swipe, a warm cream ground reads as notebook stock, and a single near-black ink carries every word of authority. Typography is assertive and uppercase — Poppins at heavy weight sets section titles in tight 1.2 line-height stacks, while Montserrat runs the body in a calm 17px — the contrast between shouting headlines and conversational body is the visual rhythm. Components are flat, generously rounded at 25px, and rely on thin black borders rather than shadows; even the CTA is a near-flat white card with a hairline border sitting on the lime. The single lime accent should be used sparingly as full-bleed section punctuation, never as a button fill or text color — color here is atmosphere, not chrome.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "**Quick Color Reference**\\n- text: #171717 (Ink)\\n- background: #ffffff (Paper) for cards, #ede7e2 (Notebook Cream) for canvas\\n- border: #171717 (Ink) at 1px\\n- accent surface: #f5ff7d (Highlight Lime) for full-bleed sections only\\n- primary action: no distinct CTA color"
+      }
+    ],
+    "elevationPhilosophy": "Repeat uses near-invisible shadows (rgba(0,0,0,0.01)) to create the faintest sense of card lift without visual noise. The system deliberately avoids heavy elevation: depth comes from full-bleed color section changes (white → lime → cream → lavender) rather than drop shadows. Cards separate from the canvas via 1px Ink borders or color contrast, never via shadow stacks. Do not introduce elevation levels beyond this whisper shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#171717",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20462653095774938
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "body",
+            "heading",
+            "link",
+            "icon",
+            "footer"
+          ],
+          "frequency": 1681,
+          "confidence": 1,
+          "prominence": 85931159.89235012,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 15,
+            "body/color": 49,
+            "card/color": 102,
+            "icon/color": 13,
+            "link/color": 13,
+            "other/color": 125,
+            "heading/color": 19,
+            "nav/borderColor": 60,
+            "body/borderColor": 196,
+            "card/borderColor": 408,
+            "icon/borderColor": 52,
+            "link/borderColor": 52,
+            "other/borderColor": 500,
+            "heading/borderColor": 76,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "card",
+            "other",
+            "footer",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 180,
+          "confidence": 1,
+          "prominence": 12629245.48401957,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "nav/color": 1,
+            "body/color": 7,
+            "icon/color": 4,
+            "link/color": 11,
+            "other/fill": 4,
+            "other/color": 4,
+            "footer/color": 1,
+            "nav/borderColor": 4,
+            "body/borderColor": 28,
+            "icon/borderColor": 16,
+            "link/borderColor": 44,
+            "other/borderColor": 16,
+            "footer/borderColor": 4,
+            "card/backgroundColor": 22,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#ede7e2",
+          "oklch": {
+            "c": 0.009377801032120357,
+            "h": 62.58007363049508,
+            "l": 0.9312668538088472
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3174228.9529652866,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#f5ff7d",
+          "oklch": {
+            "c": 0.1538192323961995,
+            "h": 112.8835538640132,
+            "l": 0.9668682821359547
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 85500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c3d5fc",
+          "oklch": {
+            "c": 0.05762470660528142,
+            "h": 265.65211010398923,
+            "l": 0.8722577710635527
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 6034,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#37352f",
+          "oklch": {
+            "c": 0.010678375839622271,
+            "h": 91.65870014106616,
+            "l": 0.32894227310496776
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 6010,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e2d8ff",
+          "oklch": {
+            "c": 0.05382912797295965,
+            "h": 297.0486194309827,
+            "l": 0.9023865133785653
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3497.454263475724,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 5
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0009283294732179398,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.93,
+          "background": "#ffffff",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.63,
+          "background": "#f5ff7d",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.62,
+          "background": "#ede7e2",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.23,
+          "background": "#e2d8ff",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.26,
+          "background": "#37352f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.16,
+          "background": "#c3d5fc",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.38,
+          "background": "#f5ff7d",
+          "foreground": "#37352f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10,
+          "background": "#ede7e2",
+          "foreground": "#37352f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.05,
+          "background": "#e2d8ff",
+          "foreground": "#37352f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.32,
+          "background": "#c3d5fc",
+          "foreground": "#37352f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.47,
+          "background": "#c3d5fc",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.46,
+          "background": "#37352f",
+          "foreground": "#171717"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.35,
+          "background": "#e2d8ff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.23,
+          "background": "#ede7e2",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.08,
+          "background": "#f5ff7d",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 25,
+          "contexts": [
+            "card",
+            "body"
+          ],
+          "frequency": 28
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "icon",
+            "body",
+            "link"
+          ],
+          "frequency": 22
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.01) 0px 4px 8px -2px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 20
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 28,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginTop|link",
+            "marginBottom|link",
+            "paddingTop|body",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 112,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "marginTop|heading",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 60,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingBottom|heading",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "link",
+            "body"
+          ],
+          "frequency": 156,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginBottom",
+            "paddingRight",
+            "marginRight",
+            "marginTop",
+            "paddingTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingBottom|other",
+            "rowGap|card",
+            "columnGap|card",
+            "marginBottom|card",
+            "paddingRight|link",
+            "marginRight|body",
+            "marginTop|body",
+            "marginBottom|body",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 44,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 64,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginBottom|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card",
+            "marginTop|card",
+            "marginBottom|card",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|link",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "marginTop",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 62,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 83,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "card",
+            "other",
+            "footer"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 113,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Montserrat",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 352,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Poppins",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 51,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 17,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Montserrat",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Montserrat",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 69,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Montserrat",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Montserrat",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Montserrat",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Montserrat",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Montserrat",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "body",
+            "link",
+            "footer"
+          ],
+          "frequency": 176,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Montserrat",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "image"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Montserrat",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Montserrat",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Poppins",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 29,
+          "family": "Poppins",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 29,
+          "family": "Poppins",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 34,
+          "family": "Montserrat",
+          "weight": 600,
+          "contexts": [
+            "card",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 34,
+          "family": "Montserrat",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.75,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 37,
+          "family": "Poppins",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1fb5cc1b-ca63-4ab1-80f3-6b31bba947cb.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3e892169-1a0f-49cc-8ed5-446fdba94ab7.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/53538d2d-d5a1-4719-9c7a-d7ab1f3a8c8a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Repeat design system\",\"item\":\"https://styles.refero.design/style/53538d2d-d5a1-4719-9c7a-d7ab1f3a8c8a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/53538d2d-d5a1-4719-9c7a-d7ab1f3a8c8a#style-reference\",\"name\":\"Repeat design system reference\",\"headline\":\"Repeat design system | Refero Styles\",\"description\":\"Explore Repeat's light SaaS design system: Ink #171717, Paper #ffffff colors, Poppins, Montserrat typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/53538d2d-d5a1-4719-9c7a-d7ab1f3a8c8a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/53538d2d-d5a1-4719-9c7a-d7ab1f3a8c8a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Repeat\",\"url\":\"https://www.getrepeat.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/53538d2d-d5a1-4719-9c7a-d7ab1f3a8c8a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3e892169-1a0f-49cc-8ed5-446fdba94ab7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3e892169-1a0f-49cc-8ed5-446fdba94ab7.jpg\",\"caption\":\"Screenshot of Repeat\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3e892169-1a0f-49cc-8ed5-446fdba94ab7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Repeat design system\",\"Repeat website design\",\"Repeat colors\",\"Repeat typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Ink\",\"Paper\",\"Notebook Cream\",\"Olive Ink\",\"Poppins\",\"Montserrat\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Repeat design system\"},{\"@type\":\"Thing\",\"name\":\"Repeat website design\"},{\"@type\":\"Thing\",\"name\":\"Repeat colors\"},{\"@type\":\"Thing\",\"name\":\"Repeat typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-05-07T18:05:21.984Z\",\"dateModified\":\"2026-05-07T18:05:21.984Z\"}]}"
+}

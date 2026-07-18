@@ -1,0 +1,1556 @@
+{
+  "source": "https://styles.refero.design/style/d5931dff-2ae3-44c7-b76f-9e5936f90611",
+  "uuid": "d5931dff-2ae3-44c7-b76f-9e5936f90611",
+  "name": "Studio Few",
+  "northStar": "monochrome letterform sanctuary — a white gallery where black ink is the only ornament",
+  "capturedAt": "2026-07-18T08:16:01.096Z",
+  "meta": {
+    "url": "https://studiofew.com",
+    "siteName": "Studio Few",
+    "extractedAt": "2026-06-03T17:46:03.719Z",
+    "durationMs": 37253,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 309,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #000000 as the only ink and #ffffff as the only paper — no chromatic accents, no gradients, no color tints on any UI element.",
+      "Set all UI text in SterlingVF at 12–14px with the 0.017em positive tracking the face ships with; the tracking is part of the foundry's identity, not a setting to override.",
+      "Render every showcase face at 115–158px, line-height 1.0, letter-spacing -0.02em (or -0.10em for Voyager) so the letterforms collapse into a single typographic mass.",
+      "Use 6px radius for all buttons and 2px for everything else; the radius vocabulary is exactly two values, never three.",
+      "Separate specimen rows with a 1px #ebedee or #b7b7b7 hairline, never with background color changes, shadows, or cards.",
+      "Pair an outlined Trial button (transparent fill, 1px ink border) with a filled View button (ink fill, paper text) as the only button pattern in the system.",
+      "Use 16px for row/column gaps inside a specimen row and 24px for button padding — the 4px base unit makes these the only spacing values that should ever appear."
+    ],
+    "donts": [
+      "Do not introduce any chromatic color — no blue links, no green success states, no red warnings; the page is 0% colorful and must stay that way.",
+      "Do not use shadows, glows, or any elevation effects; depth in this system comes from hairline borders and surface tone changes only.",
+      "Do not set showcase type below 115px or above 158px — the specimen is a fixed scale, not a responsive fluid range.",
+      "Do not add borders to images, avatars, or icons; the system uses 2px radius on a single element type and 0 on everything else.",
+      "Do not use rounded pills (9999px radius) for buttons; the 6px radius is the foundry's signature geometric proportion.",
+      "Do not wrap UI controls in cards, panels, or containers — sliders and buttons sit directly on the row background.",
+      "Do not use Work Sans or any Google fallback as a visible UI face; Sterling is the only voice, and Work Sans is a silent failsafe."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Body text, button fills, hairline borders, slider tracks, active states — the single dominant tone that gives every specimen its anchor",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, input fills, button text on dark fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebedee",
+        "name": "Foam Gray",
+        "role": "Subtle surface lift and low-contrast dividers when a row needs to separate from pure white without using ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b7b7b7",
+        "name": "Concrete Gray",
+        "role": "Medium-contrast borders, control outlines, and structural separators.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Graphite",
+        "role": "Secondary surfaces and darker neutral blocks when a row needs more weight than white but less than pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#18181d",
+        "name": "Mid Ink",
+        "role": "Near-black with a barely-perceptible cool cast — used where pure #000000 would feel flat against the slightly warm page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#858585",
+        "name": "Ash",
+        "role": "Quiet link text and low-emphasis labels",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is a single vertical column with full-bleed sections stacked edge-to-edge. The hero is a full-viewport-width photograph with no internal padding. Below it, the page becomes a repeating pattern: a thin control strip (font label, sliders, Trial/View buttons) followed immediately by a giant specimen set in the showcase face. Each row is separated by a single 1px hairline, and rows run from the left edge of the viewport to the right edge — there is no max-width container and no centered column. The top bar is the only horizontally-padded element on the page, with the 'Fe' logomark flush left and the nav links flush right. Vertical rhythm is generous: roughly 80–120px of breathing room between specimen rows so each typeface gets its own silent room. The grid inside each row is a 3-zone flex: left cluster (label + play), center cluster (two sliders), right cluster (two buttons) — no card wraps them, they sit on the white paper directly.",
+    "imagery": "Imagery is scarce and entirely functional. The only photograph is the hero specimen: a moody, low-key product shot of a monitor displaying a type specimen, set on a dark stone or concrete plinth. It is desaturated to near-monochrome, full-bleed, and unframed — no rounded corners, no drop shadow, no overlay. Everything else on the site is pure typography: no icons beyond thin line glyphs (play, cart), no illustrations, no decorative graphics. The visual language is the type itself, and the photograph exists only to prove the type looks as good in physical space as it does on screen.",
+    "similar": [
+      {
+        "why": "Same monochrome-only specimen presentation where custom type is the only visual element and the surrounding UI is reduced to a single hairline and two buttons per face",
+        "business": "Production Type"
+      },
+      {
+        "why": "Same typographic-gallery aesthetic with large-scale display specimens and a near-absence of color, relying on letter-tracking decisions (tight on display, positive on labels) to carry the brand",
+        "business": "Grilli Type"
+      },
+      {
+        "why": "Same architectural restraint: full-width sections, one typeface per row, sliders for live type testing, and a typographic system that treats chrome as invisible",
+        "business": "Klim Type Foundry"
+      },
+      {
+        "why": "Same specimen-as-page-unit approach with neutral UI scaffolding, large display sizes, and slider controls for live weight and size adjustments",
+        "business": "Commercial Type"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "images": "2px",
+        "buttons": "6px",
+        "controls": "2px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "24px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Full-page canvas and every specimen row's background"
+      },
+      {
+        "hex": "#ebedee",
+        "name": "Foam",
+        "level": 1,
+        "purpose": "Imperceptible lift for input fields and soft dividers"
+      },
+      {
+        "hex": "#333333",
+        "name": "Graphite Block",
+        "level": 2,
+        "purpose": "Dark secondary surface when a section needs a tonal counterweight to the page"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "level": 3,
+        "purpose": "Heaviest surface — solid buttons, selected states, photographic specimen backdrop"
+      }
+    ],
+    "northStar": "monochrome letterform sanctuary — a white gallery where black ink is the only ornament",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.204
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0.196
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 115,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display-lg",
+        "size": 158,
+        "lineHeight": 1,
+        "letterSpacing": -3.16
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Full-bleed white bar, 12px right padding for the nav cluster, left-aligned 'Fe' logomark in #000000, right-aligned text links (Fonts, Mockups, Branding) in SterlingVF 14px weight 400 #000000, followed by a cart icon with a numeric count in SterlingVF 12px. Hairline 1px #000000 bottom border at low opacity, no background fill change on scroll."
+      },
+      {
+        "name": "Logomark",
+        "role": "Brand mark",
+        "description": "Two-letter mark 'Fe' rendered in SterlingVF weight 500, 16px, #000000, 0 letter-spacing. Always left-aligned, always at the same baseline as the nav links — no logo lockup, no tagline."
+      },
+      {
+        "name": "Font Specimen Row",
+        "role": "Core content unit — one row per typeface",
+        "description": "Full-width white row separated from the next by a 1px #ebedee hairline. Internal grid: left cluster (font name in SterlingVF 12px weight 400 uppercase tracking 0.017em #000000, plus a small play icon in a 6px-radius circular button), center cluster (SIZE slider at 1/3 width, WEIGHT slider at 1/3 width, each with a 1px #000000 track and a 12px #000000 thumb), right cluster (Trial outlined button + View filled button). Below the controls, the specimen itself runs edge-to-edge in the showcase face at 115–158px, #000000, line-height 1.0, padding 24px top, 24px bottom."
+      },
+      {
+        "name": "Hero Specimen Image",
+        "role": "Full-bleed photographic type mockup",
+        "description": "Edge-to-edge photograph showing a physical type-on-screen composition — a monitor displaying a type specimen, set on a dark stone or concrete surface. The image carries the page's only tonal variation. 0 border-radius, 0 padding, full viewport width."
+      },
+      {
+        "name": "Play / Preview Button",
+        "role": "Specimen interaction trigger",
+        "description": "24×24px circular button, 6px radius, 1px #000000 border, transparent background. Contains a small triangle play glyph in #000000 at 10px. Sits to the right of the font name label."
+      },
+      {
+        "name": "Size Slider",
+        "role": "Live-resize control for the specimen",
+        "description": "1px #000000 hairline track spanning the column width, with a 12px circular #000000 thumb. Label 'SIZE' in SterlingVF 12px uppercase, current value displayed on the left in SterlingVF 12px weight 400. Min/max labels omitted — the current value is the only readout."
+      },
+      {
+        "name": "Weight Slider",
+        "role": "Live-weight control for the specimen",
+        "description": "Identical construction to the Size Slider. Label 'WEIGHT' with current value. The weight value rendered next to the label updates in real time as the thumb moves, giving the visitor immediate feedback on the typeface's weight range."
+      },
+      {
+        "name": "Trial Button",
+        "role": "Outlined secondary action",
+        "description": "SterlingVF 14px weight 400 #000000, 1px #000000 border, transparent background, 6px radius, 24px horizontal padding, 12px vertical padding. No hover fill — the button remains a wireframe at all times, its outline is its only identity."
+      },
+      {
+        "name": "View Button",
+        "role": "Primary neutral action",
+        "description": "SterlingVF 14px weight 500 #ffffff text on a #000000 fill, 6px radius, 24px horizontal padding, 12px vertical padding, 1px #000000 border. The page's only solid button — the filled counterpart to the outlined Trial, used wherever a committed action is needed (open specimen, add to cart)."
+      },
+      {
+        "name": "Display Type Specimen",
+        "role": "The foundry's product, shown at full scale",
+        "description": "A single word or short phrase set in the showcase face at 115–158px, #000000, line-height 1.0, letter-spacing -0.02em (or -0.10em for Voyager). Always full-width of its container, with 24px vertical padding above and below. The specimen word is chosen to show the face's character set — mixed caps, descenders, and punctuation."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Vertical separation between specimen rows",
+        "description": "A single 1px #ebedee or #b7b7b7 hairline running the full content width. The only structural divider in the system — no boxes, no cards, no shadows. Each row breathes into the next."
+      },
+      {
+        "name": "Cart Indicator",
+        "role": "Top-right shopping cart state",
+        "description": "Small line-drawn shopping bag icon in SterlingVF 16px #000000, followed by a numeric count in SterlingVF 12px weight 400. Always paired with the nav links, never a separate widget."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Workhorse for all UI chrome: navigation, labels, slider values, button text, font metadata, links. The weight 300 is reserved for quiet labels; 400 reads as the default body voice; 500 only appears on active or selected states. A barely-positive tracking (0.017em) at 12–14px gives small caps a calm, typeset quality rather than a screen-reading feel.",
+        "sizes": "12, 14, 16px",
+        "family": "SterlingVF",
+        "weight": "300, 400, 500",
+        "lineHeight": "1.33 – 1.71",
+        "substitute": "Inter, Söhne, Neue Haas Grotesk",
+        "letterSpacing": "0.196 – 0.238px at body sizes; -0.28px at 14px for tight labels"
+      },
+      {
+        "role": "Static fallback face for the same UI roles as SterlingVF, used where variable axes aren't needed (icons, simple buttons). Carries a slightly wider tracking than the variable sibling to stay legible at very small sizes.",
+        "sizes": "12, 14, 16px",
+        "family": "Sterling",
+        "weight": "400, 500",
+        "lineHeight": "1.33 – 2.17",
+        "substitute": "Inter",
+        "letterSpacing": "0.204px at 12px"
+      },
+      {
+        "role": "Showcase serif. Drawn at 158px as the hero specimen, its tight -0.02em tracking and unit line-height let the letterforms touch shoulder-to-shoulder — a wall of type, not a line of type.",
+        "sizes": "158px",
+        "family": "Formative",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Tiempos Headline, GT Sectra Display",
+        "letterSpacing": "-3.16px"
+      },
+      {
+        "role": "Showcase display face. The -0.10em tracking is the design's most extreme optical choice — letters collapse into each other at 158px to form a continuous black bar, a deliberate counterpoint to the breathable Sterling UI text.",
+        "sizes": "158px",
+        "family": "Voyager",
+        "weight": "400",
+        "lineHeight": "0.70 – 1.00",
+        "substitute": "Druk, Compressed",
+        "letterSpacing": "-15.8px"
+      },
+      {
+        "role": "Geometric display specimen. Uses normal letter-spacing — the only showcase face that doesn't pull tight — because its blocky geometry already has built-in density.",
+        "sizes": "115px",
+        "family": "BlokVF",
+        "weight": "400",
+        "lineHeight": "1.20 – 1.71",
+        "substitute": "GT America Mono, ABC Diatype Mono"
+      },
+      {
+        "role": "High-contrast serif specimen, shown in the hero photograph as a printed type-on-monitor mockup — the only showcase face presented through photography rather than as raw type on the page.",
+        "sizes": "158px",
+        "family": "ArbeitProContrastVF",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "GT Sectra, Lyon Display",
+        "letterSpacing": "-3.16px"
+      },
+      {
+        "role": "Humanist sans specimen at display scale, pairing weight 400 and tight tracking to show a softer counterpoint to Blok's geometry.",
+        "sizes": "158px",
+        "family": "AnthroVF",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "GT Walsheim, Söhne Breit",
+        "letterSpacing": "-3.16px"
+      },
+      {
+        "role": "Display specimen with the loosest line-height of the showcase set, letting ascenders and descenders breathe vertically.",
+        "sizes": "158px",
+        "family": "ApexVF",
+        "weight": "400",
+        "lineHeight": "1.71",
+        "substitute": "Druk Wide, Reckless"
+      },
+      {
+        "role": "Technical/industrial specimen, tight tracking and unit line-height so its monoline forms read as a structural element.",
+        "sizes": "158px",
+        "family": "Arbeittechnikvf",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "GT America Mono, Aktiv Grotesk",
+        "letterSpacing": "-3.16px"
+      },
+      {
+        "role": "Failsafe for any environment where the custom Sterling face cannot load — never the primary voice, but the only Google face in the system.",
+        "sizes": "16px",
+        "family": "Work Sans",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "Inter, Source Sans 3"
+      }
+    ],
+    "description": "Studio Few is a type foundry where the product is the alphabet, so the design recedes entirely. The interface is pure achromatic: white canvas, black ink, a single mid-gray for inactive controls, and almost no decorative chrome. Every screen is a vertical sequence of full-width specimen rows — a tiny label, two thin slider tracks for size and weight, an outlined Trial button, a solid black View button, and then enormous custom type rendered at 115–158px as the hero. The custom Sterling family carries all UI text at 12–14px, while the specimen displays use the foundry's own faces (Formative, Voyager, Anthro, Blok, ArbeitPro, Apex), each shown solo with no surrounding art. The result feels like a gallery wall: the only thing with visual weight is the letterform itself.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d5931dff-2ae3-44c7-b76f-9e5936f90611#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Studio Few design system\",\"item\":\"https://styles.refero.design/style/d5931dff-2ae3-44c7-b76f-9e5936f90611\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d5931dff-2ae3-44c7-b76f-9e5936f90611#style-reference\",\"name\":\"Studio Few design system reference\",\"headline\":\"Studio Few design system | Refero Styles\",\"description\":\"Explore Studio Few's light Design design system: Ink Black #000000, Paper White #ffffff colors, SterlingVF, Sterling typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d5931dff-2ae3-44c7-b76f-9e5936f90611\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d5931dff-2ae3-44c7-b76f-9e5936f90611\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Studio Few\",\"url\":\"https://studiofew.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d5931dff-2ae3-44c7-b76f-9e5936f90611#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e9216ad4-2c23-4a7f-a275-da9ff0f21332.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e9216ad4-2c23-4a7f-a275-da9ff0f21332.jpg\",\"caption\":\"Screenshot of Studio Few\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e9216ad4-2c23-4a7f-a275-da9ff0f21332.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Studio Few design system\",\"Studio Few website design\",\"Studio Few colors\",\"Studio Few typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink Black\",\"Paper White\",\"Foam Gray\",\"Concrete Gray\",\"SterlingVF\",\"Sterling\",\"Formative\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Studio Few design system\"},{\"@type\":\"Thing\",\"name\":\"Studio Few website design\"},{\"@type\":\"Thing\",\"name\":\"Studio Few colors\"},{\"@type\":\"Thing\",\"name\":\"Studio Few typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:43:26.497Z\",\"dateModified\":\"2026-04-30T02:43:26.497Z\"}]}19:T758,Quick Color Reference\n- text: #000000\n- background: #ffffff\n- border / hairline: #b7b7b7 (soft) or #000000 (active)\n- surface lift: #ebedee\n- primary action: #000000 (filled action)\n- muted / inactive: #858585\n\nExample Component Prompts\n1. Specimen Row: full-width white row, 1px #ebedee bottom hairline. Left cluster: font name in SterlingVF 12px weight 400 uppercase, letter-spacing 0.204px, #000000, followed by a 24×24px play button with 1px #000000 border, 6px radius. Center cluster: Size slider and Weight slider, each a 1px #000000 track with a 12px circular #000000 thumb, current value in SterlingVF 12px next to the label. Right cluster: outlined Trial button (SterlingVF 14px #000000, 1px border, transparent fill, 6px radius, 24px / 12px padding) and filled View button (SterlingVF 14px weight 500 #ffffff on #000000 fill, 6px radius, 24px / 12px padding). Below the controls, render a specimen word in a showcase face at 158px, #000000, line-height 1.0, letter-spacing -3.16px, 24px vertical padding.\n2. Top Navigation Bar: full-width white bar, 1px #b7b7b7 bottom border. Left: 'Fe' logomark in SterlingVF 16px weight 500 #000000. Right: 'Fonts', 'Mockups', 'Branding' in SterlingVF 14px weight 400 #000000, 12px right padding each, followed by a line-drawn cart icon in #000000 with a count in SterlingVF 12px.\n3. Hero Specimen Image: full-bleed photograph of a monitor displaying a type specimen on a dark stone surface. No border, no radius, no overlay, no padding.\n4. Weight Slider: 1px #000000 hairline track, 12px circular #000000 thumb, 'WEIGHT' label in SterlingVF 12px uppercase #000000 with current numeric value to its left, all on a transparent background.\n5. Display Specimen Word: a single word in a custom serif at 158px, #000000, line-height 1.0, letter-spacing -3.16px, no container, no background, full row width with 24px top and bottom padding."
+      },
+      {
+        "title": "Type Specimen Philosophy",
+        "content": "Every showcase face is shown at a single canonical display size (115px for Blok, 158px for all others) with a fixed letter-spacing. This is deliberate: the foundry wants visitors to read the face at its intended scale, not at a responsive shrunken size. A specimen at 158px is a specimen; a specimen at 48px is a logo. The system enforces this by treating the display size as a design token, not a CSS value to be interpolated."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "image",
+            "nav",
+            "body",
+            "input",
+            "button",
+            "link"
+          ],
+          "frequency": 1321,
+          "confidence": 1,
+          "prominence": 9711412.733016104,
+          "properties": [
+            "borderColor",
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "body/color": 16,
+            "link/color": 15,
+            "image/color": 2,
+            "input/color": 16,
+            "other/color": 202,
+            "nav/borderColor": 12,
+            "body/borderColor": 64,
+            "link/borderColor": 60,
+            "image/borderColor": 8,
+            "input/borderColor": 64,
+            "other/borderColor": 819,
+            "button/borderColor": 32,
+            "button/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "icon",
+            "input"
+          ],
+          "frequency": 72,
+          "confidence": 1,
+          "prominence": 3969224.998381811,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "icon/color": 2,
+            "other/color": 8,
+            "button/color": 9,
+            "nav/borderColor": 4,
+            "icon/borderColor": 8,
+            "other/borderColor": 20,
+            "button/borderColor": 4,
+            "input/backgroundColor": 16
+          }
+        },
+        {
+          "hex": "#ebedee",
+          "oklch": {
+            "c": 0.002541622465815412,
+            "h": 228.78567698678742,
+            "l": 0.9448594687280721
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 318644.0310699827,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 2
+          }
+        },
+        {
+          "hex": "#b7b7b7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7794404798137914
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 192,
+          "confidence": 1,
+          "prominence": 31015.18699724011,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 16,
+            "other/color": 16,
+            "body/borderColor": 64,
+            "other/borderColor": 64,
+            "other/backgroundColor": 32
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 9132.915954969185,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "link/borderColor": 4,
+            "other/backgroundColor": 16
+          }
+        },
+        {
+          "hex": "#18181d",
+          "oklch": {
+            "c": 0.009785532094360663,
+            "h": 285.5322143673618,
+            "l": 0.21126209781732677
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3308.747535214491,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 3
+          }
+        },
+        {
+          "hex": "#858585",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.616706943829689
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2908.0828133113005,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "link/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0000739196264505064,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.88,
+          "background": "#ebedee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.69,
+          "background": "#ffffff",
+          "foreground": "#18181d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.06,
+          "background": "#ebedee",
+          "foreground": "#18181d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#333333",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.76,
+          "background": "#ebedee",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.47,
+          "background": "#b7b7b7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.82,
+          "background": "#b7b7b7",
+          "foreground": "#18181d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.3,
+          "background": "#333333",
+          "foreground": "#b7b7b7"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.69,
+          "background": "#000000",
+          "foreground": "#858585"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.69,
+          "background": "#ffffff",
+          "foreground": "#858585"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.42,
+          "background": "#333333",
+          "foreground": "#858585"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.01,
+          "background": "#b7b7b7",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.84,
+          "background": "#b7b7b7",
+          "foreground": "#858585"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.66,
+          "background": "#333333",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.4,
+          "background": "#333333",
+          "foreground": "#18181d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.19,
+          "background": "#000000",
+          "foreground": "#18181d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 16
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "paddingTop|image"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginTop|icon",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other",
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "button",
+            "link"
+          ],
+          "frequency": 38,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 52,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 98,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 53,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 130,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 131,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 136,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 175,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "SterlingVF",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 235,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Sterling",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 52,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Formative",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Voyager",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "AnthroVF",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "BlokVF",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ArbeitProContrastVF",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arbeittechnikvf",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ApexVF",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Work Sans",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Perfect Fourth",
+        "ratio": 1.333,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Sterling",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Sterling",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "image",
+            "button",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 2.17,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "SterlingVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.017,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Sterling",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.017,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "SterlingVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0.017,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "SterlingVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.017,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "SterlingVF",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 48,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.017,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "SterlingVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 2,
+          "letterSpacing": 0.017,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Sterling",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 6,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "SterlingVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "SterlingVF",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.75,
+          "letterSpacing": 0.017,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Sterling",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SterlingVF",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.86,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SterlingVF",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.86,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SterlingVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Sterling",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SterlingVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Formative",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SterlingVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 84,
+          "lineHeight": 1,
+          "letterSpacing": 0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SterlingVF",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SterlingVF",
+          "weight": 300,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Voyager",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "AnthroVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "BlokVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SterlingVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.71,
+          "letterSpacing": 0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ArbeitProContrastVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arbeittechnikvf",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SterlingVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ApexVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Sterling",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Work Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 115,
+          "family": "BlokVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 158,
+          "family": "Formative",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 158,
+          "family": "Voyager",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.7,
+          "letterSpacing": -0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 158,
+          "family": "AnthroVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 158,
+          "family": "ArbeitProContrastVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 158,
+          "family": "Arbeittechnikvf",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 158,
+          "family": "SterlingVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 158,
+          "family": "ApexVF",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.65,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/38444e22-15e5-4a66-be20-db27fa4efa44.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e9216ad4-2c23-4a7f-a275-da9ff0f21332.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d5931dff-2ae3-44c7-b76f-9e5936f90611#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Studio Few design system\",\"item\":\"https://styles.refero.design/style/d5931dff-2ae3-44c7-b76f-9e5936f90611\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d5931dff-2ae3-44c7-b76f-9e5936f90611#style-reference\",\"name\":\"Studio Few design system reference\",\"headline\":\"Studio Few design system | Refero Styles\",\"description\":\"Explore Studio Few's light Design design system: Ink Black #000000, Paper White #ffffff colors, SterlingVF, Sterling typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d5931dff-2ae3-44c7-b76f-9e5936f90611\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d5931dff-2ae3-44c7-b76f-9e5936f90611\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Studio Few\",\"url\":\"https://studiofew.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d5931dff-2ae3-44c7-b76f-9e5936f90611#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e9216ad4-2c23-4a7f-a275-da9ff0f21332.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e9216ad4-2c23-4a7f-a275-da9ff0f21332.jpg\",\"caption\":\"Screenshot of Studio Few\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e9216ad4-2c23-4a7f-a275-da9ff0f21332.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Studio Few design system\",\"Studio Few website design\",\"Studio Few colors\",\"Studio Few typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink Black\",\"Paper White\",\"Foam Gray\",\"Concrete Gray\",\"SterlingVF\",\"Sterling\",\"Formative\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Studio Few design system\"},{\"@type\":\"Thing\",\"name\":\"Studio Few website design\"},{\"@type\":\"Thing\",\"name\":\"Studio Few colors\"},{\"@type\":\"Thing\",\"name\":\"Studio Few typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:43:26.497Z\",\"dateModified\":\"2026-04-30T02:43:26.497Z\"}]}19:T758,Quick Color Reference\n- text: #000000\n- background: #ffffff\n- border / hairline: #b7b7b7 (soft) or #000000 (active)\n- surface lift: #ebedee\n- primary action: #000000 (filled action)\n- muted / inactive: #858585\n\nExample Component Prompts\n1. Specimen Row: full-width white row, 1px #ebedee bottom hairline. Left cluster: font name in SterlingVF 12px weight 400 uppercase, letter-spacing 0.204px, #000000, followed by a 24×24px play button with 1px #000000 border, 6px radius. Center cluster: Size slider and Weight slider, each a 1px #000000 track with a 12px circular #000000 thumb, current value in SterlingVF 12px next to the label. Right cluster: outlined Trial button (SterlingVF 14px #000000, 1px border, transparent fill, 6px radius, 24px / 12px padding) and filled View button (SterlingVF 14px weight 500 #ffffff on #000000 fill, 6px radius, 24px / 12px padding). Below the controls, render a specimen word in a showcase face at 158px, #000000, line-height 1.0, letter-spacing -3.16px, 24px vertical padding.\n2. Top Navigation Bar: full-width white bar, 1px #b7b7b7 bottom border. Left: 'Fe' logomark in SterlingVF 16px weight 500 #000000. Right: 'Fonts', 'Mockups', 'Branding' in SterlingVF 14px weight 400 #000000, 12px right padding each, followed by a line-drawn cart icon in #000000 with a count in SterlingVF 12px.\n3. Hero Specimen Image: full-bleed photograph of a monitor displaying a type specimen on a dark stone surface. No border, no radius, no overlay, no padding.\n4. Weight Slider: 1px #000000 hairline track, 12px circular #000000 thumb, 'WEIGHT' label in SterlingVF 12px uppercase #000000 with current numeric value to its left, all on a transparent background.\n5. Display Specimen Word: a single word in a custom serif at 158px, #000000, line-height 1.0, letter-spacing -3.16px, no container, no background, full row width with 24px top and bottom padding."
+}

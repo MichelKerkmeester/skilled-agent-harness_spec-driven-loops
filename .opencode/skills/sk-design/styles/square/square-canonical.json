@@ -1,0 +1,1320 @@
+{
+  "source": "https://styles.refero.design/style/86a6814d-2485-4fad-b6fd-56c2d0a23620",
+  "uuid": "86a6814d-2485-4fad-b6fd-56c2d0a23620",
+  "name": "Square",
+  "northStar": "blue signal on white steel.",
+  "capturedAt": "2026-07-18T09:42:09.732Z",
+  "meta": {
+    "url": "https://squareup.com",
+    "siteName": "Square",
+    "extractedAt": "2026-06-03T18:30:24.831Z",
+    "durationMs": 29283,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 706,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Signal Blue (#006aff) as the only chromatic element in the system — never introduce a second brand color, secondary accent, or decorative gradient.",
+      "Set headlines in Square Sans Display at 400 weight with -0.012em tracking; use 50–86px sizes with line-heights between 1.0 and 1.19 so type feels architectural, not bulky.",
+      "Give all editorial and card imagery a 24px corner radius; let hero photographs bleed edge-to-edge only on full-bleed sections.",
+      "Pair every filled primary button with a ghost outlined variant of the same label, separated by a 10px gap, on a shared baseline.",
+      "Use 4px radius for all buttons, inputs, and nav elements; reserve 20px exclusively for pill-shaped button variants and 32px for icon containers.",
+      "Let cards lift off the page through the #ffffff on #f2f2f2 surface contrast — never add a drop shadow to a card or panel.",
+      "Use Cash Sans 18px medium for every button label so actions read as a distinct typographic register from body copy."
+    ],
+    "donts": [
+      "Don't use Carbon (#1a1a1a) for button backgrounds — buttons are always Signal Blue filled, ghost blue outlined, or white-on-dark in the footer.",
+      "Don't add drop shadows to cards, feature panels, or images — the only shadow allowed is the 1px 16% black on filled buttons.",
+      "Don't use 600 or 700 weight on display headlines; the system relies on 400 weight at large sizes with negative tracking for its visual voice.",
+      "Don't introduce semantic colors (green for success, red for error) into the neutral-by-default interface — accent is blue only.",
+      "Don't break the white canvas with decorative gradients, colored section bands, or pattern fills — let the dark Obsidian footer be the single chromatic inversion.",
+      "Don't use border-radius values outside the four-token set (4, 20, 24, 32) — inconsistent radii fragment the geometric discipline.",
+      "Don't use letter-spacing on body copy; tracking adjustments are reserved for display sizes 24px and above."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#006aff",
+        "name": "Signal Blue",
+        "role": "Primary CTAs, link text, active nav, submit buttons, icon accents — the sole chromatic voice in an otherwise achromatic system",
+        "group": "brand"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Carbon",
+        "role": "Primary text, heading fills, dark icon strokes, nav labels — near-black that reads softer than pure black on white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#737373",
+        "name": "Slate Gray",
+        "role": "Secondary text, helper copy, muted nav, input placeholder tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d9d9d9",
+        "name": "Platinum",
+        "role": "Hairline borders, input outlines, subtle dividers between sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Ash",
+        "role": "Disabled text, tertiary metadata, very subtle structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Cloud",
+        "role": "Page canvas beneath white cards, soft section background, muted surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#030303",
+        "name": "Obsidian",
+        "role": "Dark footer section background, inverted surfaces — the only break from white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "True Black",
+        "role": "Icon fills, monochrome graphic elements, SVG illustration strokes",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width ~1200px centered container with generous horizontal padding. Hero is a two-column split: left-aligned headline + dual-button stack on roughly 45% width, right-aligned 24px-radius editorial photograph on 55%. Below the hero, a three-column equal-width feature card grid with ~24px gutters, each card stacking image → headline → body → blue link vertically. The page ends with a full-bleed dark footer band that spans edge to edge, breaking the centered grid. Vertical rhythm is comfortable and unhurried — roughly 96px between major sections, 10–15px between elements within a block. Navigation is a single white top bar, not sticky, not shadowed. No sidebar, no mega-menu — links are flat horizontal text.",
+    "imagery": "Photography-led visual language: warm, naturalistic editorial scenes of merchants and customers interacting with phones and card readers. High-key lighting, candid hands-and-objects framing (fries on green paper, wooden tables, counter tops), no staged studio polish. Images are tightly cropped to human moments and devices, never wide environmental shots. No illustration, no 3D renders, no abstract graphics. Images sit in 24px-radius frames inside feature cards and bleed sharp-edged into the hero. The photography is the only source of warmth and color in the system — the UI itself is intentionally cold and minimal so the imagery feels like sunlight in a steel room.",
+    "similar": [
+      {
+        "why": "Same single-accent-on-white approach with one bold blue and a custom geometric display face at large sizes for headlines",
+        "business": "Stripe"
+      },
+      {
+        "why": "Shares the restrained typographic voice — weight 400 at display sizes, tight tracking, one accent color doing all the work on a clean light canvas",
+        "business": "Linear"
+      },
+      {
+        "why": "Same fintech editorial photography (hands, devices, real merchants) paired with minimal white UI and a single chromatic link/accent color",
+        "business": "Plaid"
+      },
+      {
+        "why": "Similar near-black text (#1a1a1a) on white, minimal shadow discipline, and feature cards with soft surface tints instead of elevation",
+        "business": "Notion"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "icons": "32px",
+        "images": "24px",
+        "inputs": "4px",
+        "buttons": "4px",
+        "pillButtons": "20px"
+      },
+      "elementGap": "10-15px",
+      "sectionGap": "96px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#f2f2f2",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Subtle off-white base that lets pure white cards lift off the page"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Primary content surface for hero, feature cards, inputs, nav"
+      },
+      {
+        "hex": "#030303",
+        "name": "Inverted Footer",
+        "level": 2,
+        "purpose": "Full-bleed dark band at page bottom for email capture and social"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.16) 0px 1px 4px 0px",
+        "element": "Primary Filled Button"
+      }
+    ],
+    "northStar": "blue signal on white steel.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.29
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.19,
+        "letterSpacing": -0.38
+      },
+      {
+        "role": "heading-lg",
+        "size": 50,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "display",
+        "size": 62,
+        "lineHeight": 1,
+        "letterSpacing": -0.74
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Filled Button",
+        "role": "Main CTA across hero, feature cards, footer form",
+        "description": "Solid Signal Blue (#006aff) background, white text in Cash Sans 18px medium, 4px corner radius, 10px vertical × 15px horizontal padding. Carries a single subtle shadow rgba(0,0,0,0.16) 0 1px 4px — the only elevation the system grants any component. No hover state color shift, no border."
+      },
+      {
+        "name": "Ghost Outlined Button",
+        "role": "Secondary action alongside the primary",
+        "description": "Transparent fill, 1px Signal Blue (#006aff) border, Signal Blue text in Cash Sans 18px, 4px radius, 10px × 15px padding. Always pairs horizontally with a filled primary button on the same baseline."
+      },
+      {
+        "name": "Header Nav",
+        "role": "Top-level site navigation",
+        "description": "White background, logo left (Carbon mark + Square wordmark), nav links in Square Sans Text 14px Carbon, right-aligned secondary actions. No visible bottom border; sits on white and reads through whitespace rather than a divider line."
+      },
+      {
+        "name": "Hero Headline Block",
+        "role": "Primary above-the-fold message",
+        "description": "Square Sans Display 62px / 1.0 line-height, Carbon (#1a1a1a), tracking -0.012em. Sub-copy at Square Sans Text 16px Slate Gray (#737373) sits ~18px below. Two-button row at 10px gap. Left-aligned, paired with a 24px-radius editorial photograph on the right."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Three-column solution overview",
+        "description": "White card with a very light blue (Signal Blue at ~8% opacity) background fill, 24px image radius for the leading visual, 24px internal padding, 20px gap between image and headline. Title in Square Sans Display 24px Carbon, body in Square Sans Text 16px Carbon/Slate, bottom link in Signal Blue 16px with → arrow."
+      },
+      {
+        "name": "Inverted Footer Section",
+        "role": "Email capture and contact band at page bottom",
+        "description": "Full-bleed Obsidian (#030303) background, white headline in Square Sans Display 50px, Signal Blue link row directly beneath. Email input is 4px radius white field with Carbon text and a Signal Blue filled 'Enviar' button attached. White icon trio (mail, paper plane, smiley) at 32px render size on the right."
+      },
+      {
+        "name": "Email Input with Attached Submit",
+        "role": "Newsletter capture inside the dark footer",
+        "description": "White Paper (#ffffff) input field, 4px radius, Carbon text at Square Sans Text 16px, Slate Gray placeholder, no visible border. Signal Blue submit button flush against the right edge of the field, same 4px radius, white 'Enviar' label in Cash Sans 18px."
+      },
+      {
+        "name": "Section Heading with Link",
+        "role": "Subsection introductions (e.g. 'Empieza a vender al instante')",
+        "description": "Square Sans Display 50px / 1.10 Carbon, with a Signal Blue 16px link directly below prefixed by a small arrow or '→'. Heading and link share the same left-alignment axis; no decorative rules."
+      },
+      {
+        "name": "Lifestyle Photography Block",
+        "role": "Hero image and card imagery",
+        "description": "Full-bleed editorial photography with 24px corner radius on card contexts, sharp edges on hero. Warm, naturalistic, real-customer scenes — hands, devices, food, retail counters. No duotone, no overlay tint, no graphic treatment."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Headlines and large display copy at 32–86px; the display weight (regular 400) at display sizes is a signature choice — most fintechs push 600–700 at this scale, Square uses the lighter weight with negative tracking to feel architectural rather than aggressive. System substitute: Inter Tight or Manrope at matching tracking.",
+        "sizes": "16, 20, 24, 32, 50, 62, 86",
+        "family": "Square Sans Display VF",
+        "weight": "400, 500",
+        "lineHeight": "0.97, 1.10, 1.12, 1.19, 1.25, 1.30, 1.33, 1.42, 1.50",
+        "substitute": "Inter Tight",
+        "letterSpacing": "-0.0120em",
+        "fontFeatureSettings": "\"ss01\" on"
+      },
+      {
+        "role": "Body copy, nav labels, footer text, card descriptions at 12–16px with relaxed 1.5–1.75 line-height for legibility. The same family as the display face keeps the text voice continuous — the only difference is size and tracking. System substitute: Inter or Söhne.",
+        "sizes": "12, 14, 16",
+        "family": "Square Sans Text VF",
+        "weight": "400, 500",
+        "lineHeight": "1.38, 1.43, 1.50, 1.71, 1.75, 2.00, 2.63",
+        "substitute": "Inter"
+      },
+      {
+        "role": "Button labels and in-line CTA microcopy at 18px medium — a distinct text face for actions so they read as tappable artifacts separate from body copy. Substitute: same family as text at 500 weight, or DM Sans Medium.",
+        "sizes": "18",
+        "family": "Cash Sans",
+        "weight": "500",
+        "lineHeight": "1.00, 1.50",
+        "substitute": "DM Sans Medium"
+      }
+    ],
+    "description": "Square's design system is a confident, white-canvas fintech language that lets one vivid blue do all the talking. The interface stays nearly monochrome: white surfaces, a soft gray page background, near-black text, and a single Signal Blue (#006aff) that punctuates CTAs, links, and the subscription form. Headlines lean on a geometric custom display face at near-display sizes (50–86px) with tight line-heights and negative tracking, creating a weight-of-restraint authority rather than shouting. Components are flat and minimal — a 4px-cornered filled button, a ghost variant, light-blue tinted feature cards with 24px image radii, and a single hard-edged dark footer band that flips the palette to black with white type and the same blue for the send button. Elevation is essentially absent: a 1px 16% black shadow on buttons is the only depth the system allows.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/86a6814d-2485-4fad-b6fd-56c2d0a23620#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Square design system\",\"item\":\"https://styles.refero.design/style/86a6814d-2485-4fad-b6fd-56c2d0a23620\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/86a6814d-2485-4fad-b6fd-56c2d0a23620#style-reference\",\"name\":\"Square design system reference\",\"headline\":\"Square design system | Refero Styles\",\"description\":\"Explore Square's mixed Fintech design system: Signal Blue #006aff, Carbon #1a1a1a colors, Square Sans Display VF, Square Sans Text VF typography, and...\",\"url\":\"https://styles.refero.design/style/86a6814d-2485-4fad-b6fd-56c2d0a23620\",\"mainEntityOfPage\":\"https://styles.refero.design/style/86a6814d-2485-4fad-b6fd-56c2d0a23620\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Square\",\"url\":\"https://squareup.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/86a6814d-2485-4fad-b6fd-56c2d0a23620#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/be6c4874-1fdc-404e-916d-1a494cb6e56c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/be6c4874-1fdc-404e-916d-1a494cb6e56c.jpg\",\"caption\":\"Screenshot of Square\"},\"image\":\"https://images.refero.design/styles/refero.design/image/be6c4874-1fdc-404e-916d-1a494cb6e56c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Square design system\",\"Square website design\",\"Square colors\",\"Square typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Signal Blue\",\"Carbon\",\"Slate Gray\",\"Platinum\",\"Square Sans Display VF\",\"Square Sans Text VF\",\"Cash Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Square design system\"},{\"@type\":\"Thing\",\"name\":\"Square website design\"},{\"@type\":\"Thing\",\"name\":\"Square colors\"},{\"@type\":\"Thing\",\"name\":\"Square typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-03-04T17:28:39.000Z\",\"dateModified\":\"2026-03-04T17:28:39.000Z\"}]}19:T6ab,Quick Color Reference:\n- text: #1a1a1a (Carbon)\n- background: #ffffff (Paper) over #f2f2f2 (Cloud) canvas\n- border: #d9d9d9 (Platinum) hairlines\n- accent: #006aff (Signal Blue) for links and icons\n- primary action: no distinct CTA color\n- dark surface: #030303 (Obsidian) for inverted footer band\n\nExample Component Prompts:\n1. Create a hero section: white #ffffff background, 1200px max-width centered. Left column holds a headline in Square Sans Display 62px weight 400, color #1a1a1a, line-height 1.0, letter-spacing -0.74px. Below at 18px gap, sub-copy in Square Sans Text 16px #737373. Then a button row: filled #006aff button (4px radius, 10px 15px padding, white Cash Sans 18px label 'Get started') next to a ghost button (1px #006aff border, transparent fill, #006aff text) with 10px gap. Right column holds a 24px-radius editorial photograph of a person using a phone at a table.\n\n2. Create a three-column feature card grid: each card is #ffffff with a very light blue (~8% opacity of #006aff) background fill, 24px internal padding, a 24px-radius product image at the top, then a 20px gap, then a Square Sans Display 24px #1a1a1a title, then Square Sans Text 16px #1a1a1a body, then a #006aff 16px link with a → arrow. 24px gutter between cards, no shadows.\n\n3. Create the dark footer band: full-bleed #030303 background, white headline in Square Sans Display 50px weight 400. Below, a Signal Blue (#006aff) link row at 16px. Email input: 4px radius white field, #1a1a1a text, #737373 placeholder, attached to a #006aff filled submit button (4px radius, white Cash Sans 18px label). To the right, three white icons (mail, paper plane, smiley) at 32px render size with no fill, stroke-only style."
+      },
+      {
+        "title": "Blue Accent Discipline",
+        "content": "Signal Blue is rationed, not splashed. It appears as: filled CTA buttons, ghost button borders, inline text links, the submit button, icon accents inside cards, and the subhead link arrow. It never appears as a card background tint at full saturation, never as a section background, never as a decorative shape, never as a gradient stop. The system treats blue as a vocabulary of ~3 functions (act, navigate, emphasize) and nothing else — this scarcity is what gives the single color its power."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids shadow-based depth. Cards sit on the page through color contrast (white on Cloud) rather than drop shadows; the only shadow in the entire system is a faint 1px black at 16% opacity on filled buttons, which functions as a press affordance rather than elevation. This flat approach keeps the interface feeling like a printed editorial layout rather than a 3D app surface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "hero",
+            "image",
+            "heading",
+            "body",
+            "card",
+            "icon",
+            "input"
+          ],
+          "frequency": 1601,
+          "confidence": 1,
+          "prominence": 93777296.40699379,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#737373",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5555267576690717
+          },
+          "contexts": [
+            "input",
+            "other",
+            "body",
+            "footer",
+            "nav"
+          ],
+          "frequency": 584,
+          "confidence": 1,
+          "prominence": 18218177.55212117,
+          "properties": [
+            "boxShadow",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "nav",
+            "hero",
+            "heading",
+            "body",
+            "list",
+            "card",
+            "input",
+            "image"
+          ],
+          "frequency": 712,
+          "confidence": 1,
+          "prominence": 12417010.137791734,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#030303",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.09692582811234322
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 5123129.425291757,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 2391787.7876552613,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "list",
+            "button",
+            "body",
+            "link",
+            "icon",
+            "nav"
+          ],
+          "frequency": 238,
+          "confidence": 1,
+          "prominence": 810628.9344988248,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 276033.17271131393,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d9d9d9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8853053140427017
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 270539.195116922,
+          "properties": [
+            "boxShadow",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#006aff",
+          "oklch": {
+            "c": 0.23622161770625483,
+            "h": 260.2559049221577,
+            "l": 0.5710342879389019
+          },
+          "contexts": [
+            "button",
+            "link",
+            "other",
+            "body",
+            "nav",
+            "icon",
+            "image"
+          ],
+          "frequency": 333,
+          "confidence": 1,
+          "prominence": 198626.72209729525,
+          "properties": [
+            "borderColor",
+            "color",
+            "backgroundColor",
+            "boxShadow",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7667552121346497
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 167505.57004673092,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.060725351595438265,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.62,
+          "background": "#030303",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#f2f2f2",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#ffffff",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.55,
+          "background": "#f2f2f2",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.88,
+          "background": "#d9d9d9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.61,
+          "background": "#d9d9d9",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.84,
+          "background": "#cccccc",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.33,
+          "background": "#d9d9d9",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.84,
+          "background": "#cccccc",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#b3b3b3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.84,
+          "background": "#030303",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.3,
+          "background": "#b3b3b3",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.74,
+          "background": "#ffffff",
+          "foreground": "#737373"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.66,
+          "background": "#006aff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.51,
+          "background": "#006aff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.43,
+          "background": "#030303",
+          "foreground": "#006aff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.35,
+          "background": "#030303",
+          "foreground": "#737373"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "image",
+            "other"
+          ],
+          "frequency": 18
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link",
+            "button",
+            "nav",
+            "input"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.16) 0px 1px 4px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 41,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 205,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 147,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 17,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 71,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 71,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 21,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 22,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 69,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 33,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 47,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 83,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 113,
+          "contexts": [],
+          "frequency": 29,
+          "properties": [
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Square Sans Text VF",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 600,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Square Sans Display VF",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 72,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Cash Sans",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 17,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Square Sans Text VF",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Square Sans Text VF",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "image"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Square Sans Text VF",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Square Sans Text VF",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "nav",
+            "body"
+          ],
+          "frequency": 97,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Square Sans Text VF",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 64,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Square Sans Text VF",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Square Sans Text VF",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Square Sans Text VF",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "nav",
+            "hero",
+            "image",
+            "card",
+            "body",
+            "button",
+            "icon"
+          ],
+          "frequency": 361,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Square Sans Text VF",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "link",
+            "other",
+            "body",
+            "image"
+          ],
+          "frequency": 29,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Square Sans Text VF",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Square Sans Display VF",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Square Sans Text VF",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "link",
+            "body",
+            "nav"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Square Sans Text VF",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 2.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Square Sans Text VF",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Cash Sans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Cash Sans",
+          "weight": 500,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Square Sans Display VF",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body",
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Square Sans Display VF",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "list"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Square Sans Display VF",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Square Sans Display VF",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Square Sans Display VF",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.42,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Square Sans Display VF",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.19,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Square Sans Display VF",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.12,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "Square Sans Display VF",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "Square Sans Display VF",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.97,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/5428c536-e654-4c86-ab73-e209e2cb6162.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/be6c4874-1fdc-404e-916d-1a494cb6e56c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/86a6814d-2485-4fad-b6fd-56c2d0a23620#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Square design system\",\"item\":\"https://styles.refero.design/style/86a6814d-2485-4fad-b6fd-56c2d0a23620\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/86a6814d-2485-4fad-b6fd-56c2d0a23620#style-reference\",\"name\":\"Square design system reference\",\"headline\":\"Square design system | Refero Styles\",\"description\":\"Explore Square's mixed Fintech design system: Signal Blue #006aff, Carbon #1a1a1a colors, Square Sans Display VF, Square Sans Text VF typography, and...\",\"url\":\"https://styles.refero.design/style/86a6814d-2485-4fad-b6fd-56c2d0a23620\",\"mainEntityOfPage\":\"https://styles.refero.design/style/86a6814d-2485-4fad-b6fd-56c2d0a23620\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Square\",\"url\":\"https://squareup.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/86a6814d-2485-4fad-b6fd-56c2d0a23620#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/be6c4874-1fdc-404e-916d-1a494cb6e56c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/be6c4874-1fdc-404e-916d-1a494cb6e56c.jpg\",\"caption\":\"Screenshot of Square\"},\"image\":\"https://images.refero.design/styles/refero.design/image/be6c4874-1fdc-404e-916d-1a494cb6e56c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Square design system\",\"Square website design\",\"Square colors\",\"Square typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Signal Blue\",\"Carbon\",\"Slate Gray\",\"Platinum\",\"Square Sans Display VF\",\"Square Sans Text VF\",\"Cash Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Square design system\"},{\"@type\":\"Thing\",\"name\":\"Square website design\"},{\"@type\":\"Thing\",\"name\":\"Square colors\"},{\"@type\":\"Thing\",\"name\":\"Square typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-03-04T17:28:39.000Z\",\"dateModified\":\"2026-03-04T17:28:39.000Z\"}]}19:T6ab,Quick Color Reference:\n- text: #1a1a1a (Carbon)\n- background: #ffffff (Paper) over #f2f2f2 (Cloud) canvas\n- border: #d9d9d9 (Platinum) hairlines\n- accent: #006aff (Signal Blue) for links and icons\n- primary action: no distinct CTA color\n- dark surface: #030303 (Obsidian) for inverted footer band\n\nExample Component Prompts:\n1. Create a hero section: white #ffffff background, 1200px max-width centered. Left column holds a headline in Square Sans Display 62px weight 400, color #1a1a1a, line-height 1.0, letter-spacing -0.74px. Below at 18px gap, sub-copy in Square Sans Text 16px #737373. Then a button row: filled #006aff button (4px radius, 10px 15px padding, white Cash Sans 18px label 'Get started') next to a ghost button (1px #006aff border, transparent fill, #006aff text) with 10px gap. Right column holds a 24px-radius editorial photograph of a person using a phone at a table.\n\n2. Create a three-column feature card grid: each card is #ffffff with a very light blue (~8% opacity of #006aff) background fill, 24px internal padding, a 24px-radius product image at the top, then a 20px gap, then a Square Sans Display 24px #1a1a1a title, then Square Sans Text 16px #1a1a1a body, then a #006aff 16px link with a → arrow. 24px gutter between cards, no shadows.\n\n3. Create the dark footer band: full-bleed #030303 background, white headline in Square Sans Display 50px weight 400. Below, a Signal Blue (#006aff) link row at 16px. Email input: 4px radius white field, #1a1a1a text, #737373 placeholder, attached to a #006aff filled submit button (4px radius, white Cash Sans 18px label). To the right, three white icons (mail, paper plane, smiley) at 32px render size with no fill, stroke-only style."
+}

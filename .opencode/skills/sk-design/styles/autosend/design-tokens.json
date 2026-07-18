@@ -1,0 +1,449 @@
+{
+  "color": {
+    "warm-bone": {
+      "$value": "#fafaf9",
+      "$type": "color",
+      "$description": "Warm Bone — Page canvas, button secondary fills, section backgrounds — the warm off-white that prevents the page from feeling clinical"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, elevated panels, primary button text, input fills — layered above Warm Bone for subtle separation"
+    },
+    "stone-mist": {
+      "$value": "#e7e5e4",
+      "$type": "color",
+      "$description": "Stone Mist — Hairline borders, dividers, button outlines, list separators — the structural linework that holds the layout together"
+    },
+    "bark-grey": {
+      "$value": "#79716b",
+      "$type": "color",
+      "$description": "Bark Grey — Muted body text, secondary labels, icon strokes, placeholder copy — warm rather than cool grey"
+    },
+    "charcoal": {
+      "$value": "#292524",
+      "$type": "color",
+      "$description": "Charcoal — Primary text, headings, active nav, dominant border color — the near-black that carries every important word"
+    },
+    "obsidian": {
+      "$value": "#0c0a09",
+      "$type": "color",
+      "$description": "Obsidian — Deepest text and edge cases requiring maximum contrast"
+    },
+    "pebble": {
+      "$value": "#a6a09b",
+      "$type": "color",
+      "$description": "Pebble — Tertiary text, disabled states, subtle icon tints"
+    },
+    "electric-indigo": {
+      "$value": "#615fff",
+      "$type": "color",
+      "$description": "Electric Indigo — Primary CTA fill, active links, brand marks — the singular chromatic accent that makes the sign-up button feel switched on"
+    },
+    "deep-violet": {
+      "$value": "#4f39f6",
+      "$type": "color",
+      "$description": "Deep Violet — Hover and pressed states for Electric Indigo, decorative borders, illustration strokes"
+    },
+    "terracotta": {
+      "$value": "#d97757",
+      "$type": "color",
+      "$description": "Terracotta — Secondary accent — warm orange used sparingly on card borders, decorative icons, and highlight strokes to soften the indigo/grey palette"
+    },
+    "lichen-green": {
+      "$value": "#5ea500",
+      "$type": "color",
+      "$description": "Lichen Green — Green outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color"
+    },
+    "tide-teal": {
+      "$value": "#22b8cd",
+      "$type": "color",
+      "$description": "Tide Teal — Teal decorative accent for icons, marks, and small graphic details. Use as a supporting accent, not as a status color"
+    },
+    "alarm-red": {
+      "$value": "#ff0000",
+      "$type": "color",
+      "$description": "Alarm Red — Red accent for outlined action borders, linked labels, and lightweight interactive emphasis. Use as a supporting accent, not as a status color"
+    },
+    "sapphire-link": {
+      "$value": "#007ebb",
+      "$type": "color",
+      "$description": "Sapphire Link — Standard text links within body copy — the one blue that behaves like a link"
+    }
+  },
+  "font": {
+    "geist": {
+      "$value": "Geist",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body font — nav items, buttons, card copy, subheadings; weight 400 for body, 600 for emphasis and button labels; the 40px weight 600 carries the largest non-display heading tier"
+    },
+    "cooper-ltbt": {
+      "$value": "Cooper LtBT",
+      "$type": "fontFamily",
+      "$description": "Display headlines and hero copy only — the warm book-weight serif with italic for emphasis words is the signature voice of the brand; substitutes for body would dilute the effect"
+    },
+    "geist-mono": {
+      "$value": "Geist Mono",
+      "$type": "fontFamily",
+      "$description": "Code, API labels, uppercase section tags (e.g. 'EMAILS SENT BY BIG AND SMALL COMPANIES ALIKE!'), button micro-labels — tracked out at 0.04–0.10em to read as tag/label type rather than body"
+    },
+    "datatype": {
+      "$value": "dataType",
+      "$type": "fontFamily",
+      "$description": "Numeric stat values in the metrics bar (755,470 / 96.82% / 1.87s / 3.10%) — a dedicated monospaced-figure family so digits align"
+    },
+    "ui-sans-serif": {
+      "$value": "ui-sans-serif",
+      "$type": "fontFamily",
+      "$description": "ui-sans-serif — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "cooperLtBT",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "dataType",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "cooperLtBT",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "warm-bone-canvas": {
+      "$value": "#fafaf9",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — warm off-white that gives the entire site its calm, paper-like atmosphere"
+    },
+    "paper-white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card and panel surfaces, input fills, button text on dark fills"
+    },
+    "stone-mist-border": {
+      "$value": "#e7e5e4",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline dividers between sections and around cards — separation by line, not fill"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://autosend.com",
+      "siteName": "AutoSend",
+      "extractedAt": "2026-06-03T15:03:06.173Z",
+      "variant": "extended"
+    }
+  }
+}

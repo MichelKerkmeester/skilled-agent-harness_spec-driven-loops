@@ -1,0 +1,342 @@
+{
+  "color": {
+    "black-void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Black Void — Page canvas behind full-bleed imagery, button borders on inverted elements, deepest surface layer"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary text, navigation labels, ghost-button borders, hairline rules, every UI stroke above imagery"
+    },
+    "smoke": {
+      "$value": "#4d4d4d",
+      "$type": "color",
+      "$description": "Smoke — Muted secondary borders and dividers used when full white feels too hot against the photographic background"
+    },
+    "crimson-heat": {
+      "$value": "#b62b1a",
+      "$type": "color",
+      "$description": "Crimson Heat — Dominant brand atmosphere from full-bleed editorial photography — the only chromatic note in the system, always carried by the image rather than applied to UI chrome"
+    }
+  },
+  "font": {
+    "saans": {
+      "$value": "Saans",
+      "$type": "fontFamily",
+      "$description": "The only typeface. Saans' four-weight ladder runs from 300 whispers to 790 black shouts, with 380 as the confident default and 570 as the editorial mid-voice. Custom by Displaay — a geometric sans with a distinctly contemporary editorial posture."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "12px",
+        "fontWeight": 380,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "14px",
+        "fontWeight": 380,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "14px",
+        "fontWeight": 380,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "14px",
+        "fontWeight": 380,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "14px",
+        "fontWeight": 380,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "14px",
+        "fontWeight": 380,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "14px",
+        "fontWeight": 380,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "14px",
+        "fontWeight": 790,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "16px",
+        "fontWeight": 380,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "16px",
+        "fontWeight": 570,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "18px",
+        "fontWeight": 380,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "47px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 47px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "47px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 47px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "79px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 79px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "106px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 106px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "130px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 130px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "136px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 136px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "245px",
+        "fontWeight": 380,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 245px"
+    }
+  },
+  "spacing": {
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "63": {
+      "$value": "63px",
+      "$type": "dimension",
+      "$description": "Spacing 63px"
+    },
+    "108": {
+      "$value": "108px",
+      "$type": "dimension",
+      "$description": "Spacing 108px"
+    },
+    "150": {
+      "$value": "150px",
+      "$type": "dimension",
+      "$description": "Spacing 150px"
+    },
+    "172": {
+      "$value": "172px",
+      "$type": "dimension",
+      "$description": "Spacing 172px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "594px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: True black base beneath all photography; visible only at the very top of the viewport and during transitions"
+    },
+    "hairline-rule": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: The single 1px white line that separates the nav from the hero — the only structural element of the UI"
+    },
+    "photographic-surface": {
+      "$value": "#b62b1a",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed crimson editorial imagery that functions as the actual page background where content lives"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://21tsi.com",
+      "siteName": "21 TSI",
+      "extractedAt": "2026-06-03T19:02:16.068Z",
+      "variant": "extended"
+    }
+  }
+}

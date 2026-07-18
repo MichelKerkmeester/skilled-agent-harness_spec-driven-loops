@@ -1,0 +1,879 @@
+{
+  "source": "https://styles.refero.design/style/41af8353-6a8f-416d-947b-57932f591497",
+  "uuid": "41af8353-6a8f-416d-947b-57932f591497",
+  "name": "Programa",
+  "northStar": "Swiss design studio at high noon. A white gallery wall lit by a single yellow desk lamp — everything is grayscale until a button, badge, or highlight demands attention, and then that one yellow note carries the whole room.",
+  "capturedAt": "2026-07-18T07:44:54.484Z",
+  "meta": {
+    "url": "https://programa.design",
+    "siteName": "Programa",
+    "extractedAt": "2026-06-03T19:59:55.786Z",
+    "durationMs": 43516,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 206,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #fbff2b fill with 1px #1a1a1a border exclusively for the single primary action per screen — never use the yellow as a background for large surfaces or decorative blocks.",
+      "Set all text at -0.03em letter-spacing using the Neue Haas Grotesk Text scale (14/16/17/20/24/42px) — do not introduce a second typeface or loosen tracking at display sizes.",
+      "Apply 10px border-radius to buttons, nav elements, and inputs; reserve 16px for larger card surfaces and info banners.",
+      "Build vertical rhythm on the 6px base unit: 8px between list items, 12px for element gaps, 16px for card padding, 48-96px for section separation.",
+      "Use #f4f4f4 as the only mid-surface between white and the yellow accent — never introduce additional gray tints or gradient washes.",
+      "Keep page layout centered with a 1200px max-width and 111px left margin for content blocks; let white space carry the visual weight.",
+      "Communicate hierarchy through weight (400 vs 500), not color or size variation — the system has exactly two weights and a tight type scale."
+    ],
+    "donts": [
+      "Don't introduce drop shadows, glow effects, or blur — elevation is flat and border-defined.",
+      "Don't use #fbff2b on more than one element per viewport — its power comes from scarcity.",
+      "Don't add a second accent color; the palette is monochrome + one yellow-green signal.",
+      "Don't use Ash Gray (#a3a3a3) for body copy — it's a 2.5:1 contrast fail on white; reserve it for placeholders and inactive metadata only.",
+      "Don't increase border-radius above 16px — the slightly squared geometry is part of the identity.",
+      "Don't break the 6px spacing grid with arbitrary pixel values; every gap should be a multiple of 6.",
+      "Don't add a subtitle or eyebrow text above page headings — the 42px heading stands alone."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#1a1a1a",
+        "name": "Ink Black",
+        "role": "Primary text, all borders, icon strokes, logo, divider lines, button outlines — the structural ink that defines every shape on the page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, text on dark fills, input fields",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f4f4f4",
+        "name": "Fog Gray",
+        "role": "Soft section background, alternate surface, and quiet card fill",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a3a3a3",
+        "name": "Ash Gray",
+        "role": "Muted secondary text, inactive links, placeholder copy, tertiary metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fbff2b",
+        "name": "Highlighter Yellow",
+        "role": "Primary action background, focus highlights, tag fills — the single chromatic accent that makes interactive elements feel switched on against the monochrome system",
+        "group": "brand"
+      }
+    ],
+    "layout": "Centered max-width layout (~1200px) with generous side margins (111px+). The header is a flat white bar with no border, logo left, centered nav cluster, auth actions right. Content pages lead with a single large 42px left-aligned heading, followed by a full-width Fog Gray info banner, then a vertically stacked numbered content list that uses bold lead-in labels + paragraphs. Section separation is 48-96px vertical padding. No alternating bands, no sidebar, no grid cards on content pages — the rhythm is a single column of breathing white space punctuated by sparse structural elements.",
+    "imagery": "Pure UI with no photography or illustration on this page — the visual language is typographic and structural. Logo is the only graphic mark, rendered as two solid Ink Black geometric shapes (diamond/parallelogram forms). The highlighter-yellow CTA is itself a visual element: a stamped sticker on the white canvas. No icons, no avatars, no product screenshots on the Acceptable Use Policy page. When imagery does appear elsewhere, expect it to be contained within sharp or slightly rounded crops, full-bleed product photography on pure white, and monochromatic or single-accent treatment consistent with the palette.",
+    "similar": [
+      {
+        "why": "Same near-monochrome palette with a single saturated accent (Linear's purple), tight typographic system, and minimal-border component geometry",
+        "business": "Linear"
+      },
+      {
+        "why": "Same Swiss-design restraint with hairline borders, generous white space, and a single chromatic accent used sparingly for primary actions",
+        "business": "Figma Config"
+      },
+      {
+        "why": "Similar flat-no-shadow component language, 10px-ish radii, and a neutral-first palette where one accent color carries the brand",
+        "business": "Notion"
+      },
+      {
+        "why": "Same editorial minimalism with monochrome canvas, tight tracking on a neo-grotesque typeface, and accent color rationed to CTAs only",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same white-canvas-plus-muted-neutral aesthetic with type-driven hierarchy and zero decorative chrome",
+        "business": "Are.na"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "10px",
+        "cards": "16px",
+        "inputs": "10px",
+        "buttons": "10px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "96px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — the dominant surface"
+      },
+      {
+        "hex": "#f4f4f4",
+        "name": "Fog Card",
+        "level": 1,
+        "purpose": "Soft info banners and elevated callouts that recede without a border"
+      },
+      {
+        "hex": "#fbff2b",
+        "name": "Accent Fill",
+        "level": 2,
+        "purpose": "Highlight wash on primary action surfaces"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Swiss design studio at high noon. A white gallery wall lit by a single yellow desk lamp — everything is grayscale until a button, badge, or highlight demands attention, and then that one yellow note carries the whole room.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.42
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.72
+      },
+      {
+        "role": "heading",
+        "size": 42,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.26
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Sticky-style header anchoring page identity and primary destinations",
+        "description": "White background, no border-bottom. Left: geometric two-diamond logo (Ink Black) + 'Programa' wordmark at 16-20px weight 400. Center: nav links (Product, Customers, Pricing, Learn) at 16px weight 400, Ink Black, 24px horizontal spacing. Right: 'Log in' as a text link in Ink Black, then a Primary CTA Button. Height feels ~64px with generous horizontal padding."
+      },
+      {
+        "name": "Primary CTA Button",
+        "role": "The single high-emphasis action on any screen",
+        "description": "Highlighter Yellow (#fbff2b) fill, 1px Ink Black (#1a1a1a) border, 10px border-radius, 8px vertical / 12px horizontal padding. Label in Neue Haas Grotesk Text 16px weight 400, Ink Black. 12px gap between sibling buttons. The 1px black outline around a yellow fill gives the button a hand-stamped, sticker-like quality — it's the only place a border reinforces rather than contains."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Secondary, low-emphasis action paired with the primary CTA",
+        "description": "No fill, no border. Label in Neue Haas Grotesk Text 16px weight 400, Ink Black. Sits to the left of the Primary CTA. Vertically aligned to the same baseline as the CTA."
+      },
+      {
+        "name": "Page Heading",
+        "role": "Hero heading for content pages",
+        "description": "Neue Haas Grotesk Text 42px weight 500, Ink Black, line-height 1.10, letter-spacing -1.26px. Left-aligned with 111px left margin. No subtitle, no eyebrow — the heading stands alone."
+      },
+      {
+        "name": "Info Banner",
+        "role": "Metadata callout (e.g. 'Last Updated') below the page heading",
+        "description": "Fog Gray (#f4f4f4) fill, no border, 16px border-radius. Padding ~12px vertical / 16px horizontal. Content is a label-value pair: bold label ('Last Updated:') in Ink Black weight 500, followed by value in Ink Black weight 400, both at 16px."
+      },
+      {
+        "name": "Numbered Section Block",
+        "role": "Ordered content list with bold lead-in label",
+        "description": "Decimal number (1., 2., …) flush left at 16px Ink Black weight 400. Indented label (e.g. 'Purpose and Scope') in 16px weight 500 Ink Black. Body paragraphs in 16-17px weight 400 Ink Black at line-height 1.4. Vertical gap between sections: 8px. The bold label + paragraph pattern is a signature — it's the page's only typographic hierarchy device."
+      },
+      {
+        "name": "Logo Lockup",
+        "role": "Brand mark + wordmark for header and footer",
+        "description": "Two stacked diamond/parallelogram shapes in Ink Black, approximately 24x24px, followed by 'Programa' wordmark in Neue Haas Grotesk Text 20px weight 400, Ink Black, letter-spacing -0.6px. 8px gap between icon and wordmark."
+      },
+      {
+        "name": "Form Input",
+        "role": "Text entry field",
+        "description": "1px Ink Black border, 10px border-radius, 6px vertical / 12px horizontal padding. Placeholder text in Ash Gray (#a3a3a3) at 16px. White fill. On focus: border remains Ink Black (no color shift) — the focus state is communicated through weight or ring, not hue."
+      },
+      {
+        "name": "Nav Link",
+        "role": "Top-level navigation destination",
+        "description": "Neue Haas Grotesk Text 16px weight 400, Ink Black, no underline, no color shift on hover visible in data. 24px horizontal spacing between links. 4px column gap from the wordmark."
+      },
+      {
+        "name": "Footer Link",
+        "role": "Secondary navigation in footer",
+        "description": "Neue Haas Grotesk Text 14-16px weight 400, Ink Black, muted compared to nav. Typically arranged in columns with 8-12px vertical gap between links."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The single typeface carries every voice on the site — nav, body, headings, buttons, inputs. Weight 400 is the default for body and nav; weight 500 is reserved for emphasized inline labels (e.g. 'Last Updated:') and section opens. The choice of a neo-grotesque with consistent -0.03em tracking at every size creates optical tightness even at 42px, avoiding the airy looseness most sans-serifs default to. This is a Swiss-tool typeface, not a personality typeface — restraint is the signature.",
+        "sizes": "14px, 16px, 17px, 20px, 24px, 42px",
+        "family": "Neue Haas Grotesk Text",
+        "weight": "400, 500",
+        "lineHeight": "1.10 (display), 1.20 (headings), 1.40 (body)",
+        "substitute": "Inter, Neue Haas Grotesk Display Pro (if available), or Helvetica Neue",
+        "letterSpacing": "-0.03em at all sizes (approximately -0.42px at 14px, -0.48px at 16px, -0.51px at 17px, -0.6px at 20px, -0.72px at 24px, -1.26px at 42px)"
+      },
+      {
+        "role": "neue-haas-grotesk-text — detected in extracted data but not described by AI",
+        "sizes": "20px",
+        "family": "neue-haas-grotesk-text",
+        "weight": "400",
+        "lineHeight": "1.4"
+      }
+    ],
+    "description": "Programa operates in a Swiss-design vocabulary: near-pure white canvas, architectural sans-serif type at tightly tracked small-to-medium sizes, hairline borders, and a single saturated yellow-green accent that functions as a highlighter pen across an otherwise austere page. The entire palette is essentially four grays plus one chromatic signal — chromatic real estate is rationed, not distributed, so when yellow appears it reads as a switch flipped on. Components are slim and confident: 10px radii, thin 1px borders, generous white space, and zero shadow noise. The aesthetic is editorial-portfolio meets productivity tool — restrained enough to feel serious, bold enough to feel like a designer's tool.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/41af8353-6a8f-416d-947b-57932f591497#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Programa design system\",\"item\":\"https://styles.refero.design/style/41af8353-6a8f-416d-947b-57932f591497\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/41af8353-6a8f-416d-947b-57932f591497#style-reference\",\"name\":\"Programa design system reference\",\"headline\":\"Programa design system | Refero Styles\",\"description\":\"Explore Programa's light Design design system: Ink Black #1a1a1a, Paper White #ffffff colors, Neue Haas Grotesk Text, neue-haas-grotesk-text typography, and...\",\"url\":\"https://styles.refero.design/style/41af8353-6a8f-416d-947b-57932f591497\",\"mainEntityOfPage\":\"https://styles.refero.design/style/41af8353-6a8f-416d-947b-57932f591497\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Programa\",\"url\":\"https://programa.design\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/41af8353-6a8f-416d-947b-57932f591497#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5554e88d-22bf-48dc-892a-030f56dc34b3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5554e88d-22bf-48dc-892a-030f56dc34b3.jpg\",\"caption\":\"Screenshot of Programa\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5554e88d-22bf-48dc-892a-030f56dc34b3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Programa design system\",\"Programa website design\",\"Programa colors\",\"Programa typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink Black\",\"Paper White\",\"Fog Gray\",\"Ash Gray\",\"Neue Haas Grotesk Text\",\"neue-haas-grotesk-text\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Programa design system\"},{\"@type\":\"Thing\",\"name\":\"Programa website design\"},{\"@type\":\"Thing\",\"name\":\"Programa colors\"},{\"@type\":\"Thing\",\"name\":\"Programa typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T00:43:24.577Z\",\"dateModified\":\"2026-04-30T00:43:24.577Z\"}]}19:T553,Quick Color Reference:\n- text: #1a1a1a\n- background: #ffffff\n- surface: #f4f4f4\n- border: #1a1a1a\n- muted text: #a3a3a3\n- primary action: #fbff2b (filled action)\n\nExample Component Prompts:\n\n1. Create a Primary Action Button: #fbff2b background, #1a1a1a text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Create a page heading block: 42px Neue Haas Grotesk Text weight 500 #1a1a1a, line-height 1.10, letter-spacing -1.26px, left-aligned with 111px left margin. Below it, an info banner: #f4f4f4 fill, 16px radius, 12px 16px padding, containing 'Last Updated:' in 16px weight 500 #1a1a1a followed by 'January 1, 2026' in 16px weight 400 #1a1a1a.\n\n3. Create a numbered content section: decimal number '1.' in 16px weight 400 #1a1a1a flush left, then a bold lead-in label in 16px weight 500 #1a1a1a, then a body paragraph in 17px weight 400 #1a1a1a at line-height 1.40. 8px vertical gap to the next section.\n\n4. Create a form input: 1px #1a1a1a border, 10px radius, #ffffff fill, 6px 12px padding. Placeholder 'Enter your email' in 16px #a3a3a3. Label above in 14px weight 500 #1a1a1a with 8px bottom margin.\n\n5. Create a secondary card surface: #f4f4f4 fill, 16px border-radius, 24px padding, no border, no shadow. Heading inside in 20px weight 500 #1a1a1a, body in 16px weight 400 #1a1a1a, 12px gap between heading and body."
+      }
+    ],
+    "elevationPhilosophy": "Programa deliberately avoids box-shadows. Elevation is communicated through surface color shifts (white → fog gray) and the 1px ink-black border, not through drop shadows. This keeps the system flat and architectural — the Swiss-design tradition where lines define form, not light."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "body",
+            "list",
+            "link",
+            "footer",
+            "input"
+          ],
+          "frequency": 859,
+          "confidence": 1,
+          "prominence": 71932304.9648346,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 18,
+            "body/color": 2,
+            "link/color": 29,
+            "list/color": 60,
+            "other/fill": 1,
+            "input/color": 1,
+            "other/color": 56,
+            "button/color": 3,
+            "footer/color": 1,
+            "heading/color": 5,
+            "nav/borderColor": 68,
+            "body/borderColor": 8,
+            "link/borderColor": 116,
+            "list/borderColor": 240,
+            "input/borderColor": 4,
+            "other/borderColor": 218,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 20,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "input",
+            "footer",
+            "button"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 6809465.965745159,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "input/color": 1,
+            "other/color": 8,
+            "button/color": 1,
+            "heading/color": 1,
+            "input/borderColor": 4,
+            "other/borderColor": 28,
+            "heading/borderColor": 4,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a3a3a3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7167665657735776
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 75,
+          "confidence": 1,
+          "prominence": 85752.8051220132,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 14,
+            "other/color": 1,
+            "link/borderColor": 56,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f4f4f4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.967153298496294
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 49109,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fbff2b",
+          "oklch": {
+            "c": 0.20420541867385622,
+            "h": 110.86757605053849,
+            "l": 0.9655815971578194
+          },
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 15698.900685376055,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 4,
+            "button/borderColor": 4,
+            "nav/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.005541230290726588,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#ffffff",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.11,
+          "background": "#fbff2b",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.82,
+          "background": "#f4f4f4",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.9,
+          "background": "#1a1a1a",
+          "foreground": "#a3a3a3"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.52,
+          "background": "#ffffff",
+          "foreground": "#a3a3a3"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.34,
+          "background": "#fbff2b",
+          "foreground": "#a3a3a3"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.29,
+          "background": "#f4f4f4",
+          "foreground": "#a3a3a3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#f4f4f4",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.08,
+          "background": "#fbff2b",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "nav",
+            "input"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "heading",
+            "list"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginBottom|heading",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "button",
+            "list",
+            "input",
+            "other"
+          ],
+          "frequency": 58,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "columnGap|nav",
+            "paddingLeft|list",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 111,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 236,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "neueHaasGroteskText",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 203,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "neue-haas-grotesk-text",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "neueHaasGroteskText",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "footer",
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 130,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "neueHaasGroteskText",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "neueHaasGroteskText",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "neueHaasGroteskText",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "neueHaasGroteskText",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "neue-haas-grotesk-text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "neueHaasGroteskText",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "list",
+            "link",
+            "image"
+          ],
+          "frequency": 48,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "neueHaasGroteskText",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "neueHaasGroteskText",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "neueHaasGroteskText",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "neueHaasGroteskText",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/83d9596e-d916-43d5-a6c6-f6546499bf95.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5554e88d-22bf-48dc-892a-030f56dc34b3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/41af8353-6a8f-416d-947b-57932f591497#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Programa design system\",\"item\":\"https://styles.refero.design/style/41af8353-6a8f-416d-947b-57932f591497\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/41af8353-6a8f-416d-947b-57932f591497#style-reference\",\"name\":\"Programa design system reference\",\"headline\":\"Programa design system | Refero Styles\",\"description\":\"Explore Programa's light Design design system: Ink Black #1a1a1a, Paper White #ffffff colors, Neue Haas Grotesk Text, neue-haas-grotesk-text typography, and...\",\"url\":\"https://styles.refero.design/style/41af8353-6a8f-416d-947b-57932f591497\",\"mainEntityOfPage\":\"https://styles.refero.design/style/41af8353-6a8f-416d-947b-57932f591497\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Programa\",\"url\":\"https://programa.design\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/41af8353-6a8f-416d-947b-57932f591497#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5554e88d-22bf-48dc-892a-030f56dc34b3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5554e88d-22bf-48dc-892a-030f56dc34b3.jpg\",\"caption\":\"Screenshot of Programa\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5554e88d-22bf-48dc-892a-030f56dc34b3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Programa design system\",\"Programa website design\",\"Programa colors\",\"Programa typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink Black\",\"Paper White\",\"Fog Gray\",\"Ash Gray\",\"Neue Haas Grotesk Text\",\"neue-haas-grotesk-text\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Programa design system\"},{\"@type\":\"Thing\",\"name\":\"Programa website design\"},{\"@type\":\"Thing\",\"name\":\"Programa colors\"},{\"@type\":\"Thing\",\"name\":\"Programa typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T00:43:24.577Z\",\"dateModified\":\"2026-04-30T00:43:24.577Z\"}]}19:T553,Quick Color Reference:\n- text: #1a1a1a\n- background: #ffffff\n- surface: #f4f4f4\n- border: #1a1a1a\n- muted text: #a3a3a3\n- primary action: #fbff2b (filled action)\n\nExample Component Prompts:\n\n1. Create a Primary Action Button: #fbff2b background, #1a1a1a text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Create a page heading block: 42px Neue Haas Grotesk Text weight 500 #1a1a1a, line-height 1.10, letter-spacing -1.26px, left-aligned with 111px left margin. Below it, an info banner: #f4f4f4 fill, 16px radius, 12px 16px padding, containing 'Last Updated:' in 16px weight 500 #1a1a1a followed by 'January 1, 2026' in 16px weight 400 #1a1a1a.\n\n3. Create a numbered content section: decimal number '1.' in 16px weight 400 #1a1a1a flush left, then a bold lead-in label in 16px weight 500 #1a1a1a, then a body paragraph in 17px weight 400 #1a1a1a at line-height 1.40. 8px vertical gap to the next section.\n\n4. Create a form input: 1px #1a1a1a border, 10px radius, #ffffff fill, 6px 12px padding. Placeholder 'Enter your email' in 16px #a3a3a3. Label above in 14px weight 500 #1a1a1a with 8px bottom margin.\n\n5. Create a secondary card surface: #f4f4f4 fill, 16px border-radius, 24px padding, no border, no shadow. Heading inside in 20px weight 500 #1a1a1a, body in 16px weight 400 #1a1a1a, 12px gap between heading and body."
+}

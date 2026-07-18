@@ -1,0 +1,1321 @@
+{
+  "source": "https://styles.refero.design/style/156462ab-7b11-4029-be45-c2dba853e894",
+  "uuid": "156462ab-7b11-4029-be45-c2dba853e894",
+  "name": "Ghia",
+  "northStar": "Mediterranean sunset on a vintage aperitivo label",
+  "capturedAt": "2026-07-18T09:38:14.625Z",
+  "meta": {
+    "url": "https://drinkghia.com",
+    "siteName": "Ghia",
+    "extractedAt": "2026-06-03T18:46:21.791Z",
+    "durationMs": 40864,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 758,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set headlines in FHA Condensed all-caps with leading 1.0–1.15 — never in mixed case or with generous line-height",
+      "Use 9999px radius on all buttons, tags, and product image frames",
+      "Pair Coral CTA (#ef6079) fills with Bone White (#fef6ee) text at 14px Vivey 400",
+      "Alternate full-bleed cream and burgundy sections to create editorial rhythm",
+      "Crop product bottles into 9999px circular frames for grid items",
+      "Use Limoncello Yellow (#f0e87b) only for promotional sticker overlays, not large surfaces",
+      "Maintain 64–80px section padding and 24px card padding for breathing room"
+    ],
+    "donts": [
+      "Don't use Olive Grove (#3e4938) or Rivira Blue (#abd2eb) as primary CTA fills — coral is the singular action color",
+      "Don't set FHA Condensed below 24px — the condensed letterforms lose legibility at small sizes",
+      "Don't use sharp 0px or 4px corner radii on interactive elements — the system is built on pill shapes",
+      "Don't add drop shadows to cards or buttons — depth comes from color contrast and photography, not elevation",
+      "Don't use gradients — the palette is strictly flat and Mediterranean",
+      "Don't introduce new chromatic colors outside the burgundy/coral/cream system — Rivira Blue and Limoncello Yellow are accents, not foundations",
+      "Don't mix serif and sans for the same hierarchy level — Vivey reads body, FHA Condensed reads display, never overlap"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#651c32",
+        "name": "Ghia Burgundy",
+        "role": "Primary brand color, header bar, statement sections, marquee bands, footer — the deep wine that grounds the whole system",
+        "group": "brand"
+      },
+      {
+        "hex": "#ef6079",
+        "name": "Coral CTA",
+        "role": "Filled pill buttons (Shop Bestsellers, Add to Cart, Our Story), active tab indicators, small accent dots",
+        "group": "brand"
+      },
+      {
+        "hex": "#f2e2d5",
+        "name": "Aperitivo Cream",
+        "role": "Primary page canvas and warm card surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fef6ee",
+        "name": "Bone White",
+        "role": "Lightest surface, header text on dark, soft secondary card backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Smoke Gray",
+        "role": "Hairline borders, dividers, subtle structural separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Charcoal",
+        "role": "Icons, fine details, logo strokes on light surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3e4938",
+        "name": "Olive Grove",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dfcac8",
+        "name": "Dusty Rose",
+        "role": "Soft accent border, tag backgrounds, muted product label echo",
+        "group": "accent"
+      },
+      {
+        "hex": "#abd2eb",
+        "name": "Riviera Blue",
+        "role": "Blue supporting accent for decorative details and low-frequency emphasis",
+        "group": "accent"
+      },
+      {
+        "hex": "#f0e87b",
+        "name": "Limoncello Yellow",
+        "role": "Highlight tags, sticker accents, energetic punctuation — the spark of citrus in the system",
+        "group": "accent"
+      },
+      {
+        "hex": "#b6cfd0",
+        "name": "Sage Mist",
+        "role": "Muted surface accent, cool-toned badge or chip background",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed sections alternating between Aperitivo Cream and Ghia Burgundy — no rounded section containers, the color bands extend edge-to-edge. Hero is two-column (text left ~40%, product photography right ~60%) on desktop, stacking on mobile. Product grids are 3-column on desktop, 2-column on tablet, 1-column on mobile, with generous 40–64px gutters. The brand-story block is a strict 50/50 split: dark statement left, photo right. Section rhythm is confident and editorial — large vertical gaps (80–120px) between bands, no decorative dividers, just color shifts. Navigation is a single sticky burgundy top bar. No sidebar, no mega-menu — the Shop dropdown is the only expanded nav element.",
+    "imagery": "Product photography dominates the visual language. Bottles and cocktail glasses are shot on neutral backdrops (dark studio or bright white) with soft natural light, styled with fresh botanicals (citrus, berries, ice). The hero composition is editorial — multiple bottles artfully arranged with a pour mid-action. Lifestyle shots feature close-up glassware with garnishes, no people, no lifestyle context. Circular product crops (9999px radius) are a signature device — bottles framed like cameo portraits. The supporting 'texture' backgrounds behind product grids appear to be rich red/burgundy liquid or textured material, adding depth without competing. There is no illustration — every visual is photographic.",
+    "similar": [
+      {
+        "why": "Same Mediterranean aperitivo palette: bright orange-coral CTAs against cream and deep brand colors, pill buttons, condensed display headlines in all caps",
+        "business": "Aperol"
+      },
+      {
+        "why": "Vintage spirits-label typography pairing of humanist serif body with condensed display caps, warm cream and burgundy editorial sections",
+        "business": "Cipriani (Harry's Bar)"
+      },
+      {
+        "why": "Same premium beverage e-commerce pattern: full-bleed alternating color bands, pill CTA buttons, circular product crops, serif-script logo treatment",
+        "business": "Recess"
+      },
+      {
+        "why": "Editorial product-page layout with large product photography, condensed sans-serif display type, and warm-toned cream surfaces with dark accent sections",
+        "business": "Casa Dragones"
+      },
+      {
+        "why": "Same warm cream + deep berry brand pairing, pill buttons, humanist serif body type, and bold condensed display headlines in statement blocks",
+        "business": "Omsom"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "16px",
+        "buttons": "9999px",
+        "productFrames": "9999px",
+        "largeContainers": "24px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f2e2d5",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Default page background, warm cream ground"
+      },
+      {
+        "hex": "#fef6ee",
+        "name": "Light Card",
+        "level": 1,
+        "purpose": "Elevated card or section on cream canvas, bone-white"
+      },
+      {
+        "hex": "#651c32",
+        "name": "Dark Statement",
+        "level": 2,
+        "purpose": "Header bar, brand-story block, marquee — full-bleed burgundy bands"
+      },
+      {
+        "hex": "#3e4938",
+        "name": "Deep Accent",
+        "level": 3,
+        "purpose": "Olive-toned dark surface for select CTA or footer blocks"
+      }
+    ],
+    "northStar": "Mediterranean sunset on a vintage aperitivo label",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.56
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 44,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "heading-xl",
+        "size": 52,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Coral Pill Button (Primary)",
+        "role": "Main call-to-action",
+        "description": "Filled coral-pink (#ef6079) pill with white Vivey text, 9999px radius, 12px 24px padding, 14px Vivey 400. Used for Shop Bestsellers, Add to Cart, Our Story, Save 30%. The coral against cream is the highest-energy moment in the interface."
+      },
+      {
+        "name": "Outline Pill Button (Secondary)",
+        "role": "Secondary action",
+        "description": "1px Smoke Gray border (#e5e7eb) on cream background, Vivey 14px 400 text in dark, 9999px radius, 12px 24px padding. Used for Shop All, navigation CTAs, less prominent actions."
+      },
+      {
+        "name": "Top Announcement Bar",
+        "role": "Promotional header",
+        "description": "Full-width Coral CTA (#ef6079) strip at very top of page, centered Vivey 12px white text. Always one short line — shipping, promo, or announcement."
+      },
+      {
+        "name": "Navigation Header",
+        "role": "Primary site nav",
+        "description": "Full-width Ghia Burgundy (#651c32) bar, ~64px tall. Script-serif white Ghia logo left, Vivey 14px white nav links center (Shop ▾, Build Your Own Bundle, Recipes, Subscription, Find In Store), search/user/cart icons right with 0 badge dot in coral."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Above-the-fold statement",
+        "description": "Aperitivo Cream (#f2e2d5) full-bleed canvas, two-column on desktop. Left: FHA Condensed 72px Ghia Burgundy headline stacked on two lines with tight 1.0 leading, Vivey 16px muted body line, Coral Pill Button below. Right: product photography (bottles + glass) filling the frame, no rounded container — the imagery bleeds to the edges."
+      },
+      {
+        "name": "Trust Marquee Bar",
+        "role": "Credibility strip",
+        "description": "Ghia Burgundy (#651c32) full-width band, Vivey 14px 700 all-caps white text separated by bullet dots — 0% ALCOHOL • NO ARTIFICIAL FLAVORS • NO CAFFEINE • NO ADDED SUGAR • VEGAN. Repeating horizontally."
+      },
+      {
+        "name": "Circular Product Card",
+        "role": "Product grid item",
+        "description": "9999px-radius circular product image (bottle in dark setting) centered in frame, Vivey 16px 700 product name below, Vivey 12px price in muted brown. Sits on cream canvas. 'Save 30%' or 'Bestseller' yellow tag (#f0e87b) can overlay top-right."
+      },
+      {
+        "name": "Brand Story Split Block",
+        "role": "Editorial about section",
+        "description": "Two-column 50/50: left half Ghia Burgundy (#651c32) with FHA Condensed 32–44px cream text, Vivey 16px body, Coral Pill Button; right half is full-bleed lifestyle photography of cocktail glass + bottle. The dark block is the page's voice — it speaks louder than the cream sections."
+      },
+      {
+        "name": "Product Detail Card (Shop Grid)",
+        "role": "E-commerce product card",
+        "description": "Vertical card, 16px radius, cream interior, square product photo on top half, Vivey 18px 700 name (e.g. APÉRITIF), Vivey 14px body description (2 lines), Coral Pill Button 'Add to Cart — $38' at bottom. Sits on a dark burgundy textured background section."
+      },
+      {
+        "name": "Category Filter Pill",
+        "role": "Product line switcher",
+        "description": "Small pill tag, 9999px radius, 8px 16px padding. Inactive: cream fill, Vivey 12px 700 Ghia Burgundy text. Active: Rivira Blue (#abd2eb) fill or Coral CTA fill. Groups products by line — Apéritif, Le Spritz, Le Fizz."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer",
+        "description": "Ghia Burgundy (#651c32) full-width, multi-column Vivey 14px cream text, Ghia script logo repeated. Newsletter signup, social icons, legal links. Padding ~48–64px vertical."
+      },
+      {
+        "name": "Highlight Sticker Tag",
+        "role": "Promotional badge on product",
+        "description": "Limoncello Yellow (#f0e87b) rectangle, slight rotation (-5deg), Vivey 11px 700 dark text 'SAVE 30%' or 'BESTSELLER'. Applied as overlay sticker on product images — gives the tactile, hand-applied label feeling."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary text face — body copy, nav links, buttons, product cards, footer. The humanist serif carries warmth and editorial feel; its italic-influenced curves feel handwritten and aperitivo-friendly rather than corporate.",
+        "sizes": "10, 12, 13, 14, 15, 16, 18px",
+        "family": "Vivey 22 Positive",
+        "weight": "400, 700",
+        "lineHeight": "1.0–1.56",
+        "substitute": "Playfair Display, DM Serif Display, or Lora"
+      },
+      {
+        "role": "Display headlines, section titles, large statements — always set in all-caps with tight leading. The condensed proportions create editorial authority and reference classic spirits-label typography.",
+        "sizes": "24, 30, 32, 38, 44, 48, 52, 72px",
+        "family": "FHA Condensed French NC",
+        "weight": "400",
+        "lineHeight": "1.0–1.33",
+        "substitute": "Oswald, Bebas Neue, or Antonio"
+      }
+    ],
+    "description": "Ghia expresses itself as a Mediterranean aperitivo label in digital form: warm cream canvases, deep wine-burgundy sections, and coral-pink CTAs that feel like vintage packaging. The type system pairs a humanist transitional serif (Vivey) for warmth and readability with a condensed display sans (FHA Condensed) for editorial all-caps headlines — the same contrast you'd find on an Italian spirits label. Components are rounded and tactile: pill buttons, circular product frames, and full-bleed product photography. The page alternates between sun-warmed cream surfaces and dark burgundy statement blocks, with color used sparingly to make the pink CTAs and blue accent moments pop. Density is relaxed and editorial — generous margins, large display headlines, and product photography that takes visual priority over text.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/156462ab-7b11-4029-be45-c2dba853e894#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ghia design system\",\"item\":\"https://styles.refero.design/style/156462ab-7b11-4029-be45-c2dba853e894\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/156462ab-7b11-4029-be45-c2dba853e894#style-reference\",\"name\":\"Ghia design system reference\",\"headline\":\"Ghia design system | Refero Styles\",\"description\":\"Explore Ghia's light E-commerce design system: Ghia Burgundy #651c32, Coral CTA #ef6079 colors, Vivey 22 Positive, FHA Condensed French NC typography, and...\",\"url\":\"https://styles.refero.design/style/156462ab-7b11-4029-be45-c2dba853e894\",\"mainEntityOfPage\":\"https://styles.refero.design/style/156462ab-7b11-4029-be45-c2dba853e894\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ghia\",\"url\":\"https://drinkghia.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/156462ab-7b11-4029-be45-c2dba853e894#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c619bae4-58ce-4e8a-952b-abff62a12e43.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c619bae4-58ce-4e8a-952b-abff62a12e43.jpg\",\"caption\":\"Screenshot of Ghia\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c619bae4-58ce-4e8a-952b-abff62a12e43.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ghia design system\",\"Ghia website design\",\"Ghia colors\",\"Ghia typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ghia Burgundy\",\"Coral CTA\",\"Aperitivo Cream\",\"Bone White\",\"Vivey 22 Positive\",\"FHA Condensed French NC\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ghia design system\"},{\"@type\":\"Thing\",\"name\":\"Ghia website design\"},{\"@type\":\"Thing\",\"name\":\"Ghia colors\"},{\"@type\":\"Thing\",\"name\":\"Ghia typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-02-13T20:13:34.000Z\",\"dateModified\":\"2026-02-13T20:13:34.000Z\"}]}19:T5ec,**Quick Color Reference**\n- Background: #f2e2d5 (Aperitivo Cream)\n- Text on light: #651c32 (Ghia Burgundy)\n- Border: #e5e7eb (Smoke Gray)\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- Dark surface: #651c32 (Ghia Burgundy)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. **Hero Section**: Aperitivo Cream (#f2e2d5) full-bleed background, two-column layout. Left: FHA Condensed 72px all-caps Ghia Burgundy (#651c32) headline with line-height 1.0, Vivey 16px body in burgundy, Coral Pill Button (#ef6079 fill, #fef6ee text, 9999px radius, 12px 24px padding) below. Right: product photography of bottles, no container border, bleeding to frame edge.\n\n2. **Circular Product Card**: 9999px radius product image centered, Vivey 16px 700 product name in #651c32 below, Vivey 12px price in muted #651c32. Optional Limoncello Yellow (#f0e87b) sticker tag rotated -5deg on top-right reading 'BESTSELLER' in Vivey 11px 700.\n\n3. **Brand Story Split**: 50/50 columns. Left: Ghia Burgundy (#651c32) background, FHA Condensed 38px all-caps Bone White (#fef6ee) text, Vivey 16px body in cream, Coral Pill Button. Right: full-bleed cocktail lifestyle photography, no border or radius.\n\n4. **Product Detail Card**: 16px radius, cream (#fef6ee) interior, square product photo top, Vivey 18px 700 name in #651c32, Vivey 14px description in #651c32, Coral Pill Button 'Add to Cart — $38' at bottom with 9999px radius."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body",
+            "icon",
+            "button",
+            "hero",
+            "image",
+            "heading",
+            "card",
+            "footer",
+            "input"
+          ],
+          "frequency": 2337,
+          "confidence": 1,
+          "prominence": 98741692.27156386,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#651c32",
+          "oklch": {
+            "c": 0.10568919478209259,
+            "h": 6.140966739294901,
+            "l": 0.3506641324941925
+          },
+          "contexts": [
+            "link",
+            "other",
+            "hero",
+            "image",
+            "heading",
+            "body",
+            "card",
+            "button",
+            "icon",
+            "footer"
+          ],
+          "frequency": 398,
+          "confidence": 1,
+          "prominence": 76235179.37744279,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#abd2eb",
+          "oklch": {
+            "c": 0.05408548417191541,
+            "h": 236.40425805508687,
+            "l": 0.84400558150907
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "input",
+            "button",
+            "link",
+            "icon"
+          ],
+          "frequency": 76,
+          "confidence": 1,
+          "prominence": 6340170.611086438,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fef6ee",
+          "oklch": {
+            "c": 0.013663997460964208,
+            "h": 67.66633457974235,
+            "l": 0.9771618858903713
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "button",
+            "heading",
+            "image"
+          ],
+          "frequency": 196,
+          "confidence": 1,
+          "prominence": 5681286.874927296,
+          "properties": [
+            "color",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#3e4938",
+          "oklch": {
+            "c": 0.03140200243280576,
+            "h": 134.60143314882365,
+            "l": 0.3901670227929858
+          },
+          "contexts": [
+            "button",
+            "footer",
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 4288292.381102077,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading",
+            "button",
+            "image"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 3371749.992995996,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b2aca7",
+          "oklch": {
+            "c": 0.010225667081694562,
+            "h": 67.66992359636711,
+            "l": 0.7480712290375457
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1132396,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dfcac8",
+          "oklch": {
+            "c": 0.02381183182808023,
+            "h": 24.164808452263795,
+            "l": 0.8570509851884199
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 978047.9062030542,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 37,
+          "confidence": 1,
+          "prominence": 402668.23017901287,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ef6079",
+          "oklch": {
+            "c": 0.17662539994355236,
+            "h": 12.51944649008133,
+            "l": 0.677235975067133
+          },
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "icon"
+          ],
+          "frequency": 135,
+          "confidence": 1,
+          "prominence": 242391.2291707616,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f2e2d5",
+          "oklch": {
+            "c": 0.024774009001762402,
+            "h": 61.63370973931407,
+            "l": 0.9220888030493047
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 205988,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b6cfd0",
+          "oklch": {
+            "c": 0.026919660544364996,
+            "h": 199.59312367782917,
+            "l": 0.8362226696025353
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 27744.74344849925,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f0e87b",
+          "oklch": {
+            "c": 0.13142271118647464,
+            "h": 104.94346106299791,
+            "l": 0.9151898616540087
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 9935.487608726318,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.07363802455625083,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.63,
+          "background": "#fef6ee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.61,
+          "background": "#f2e2d5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.53,
+          "background": "#f0e87b",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.42,
+          "background": "#dfcac8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.15,
+          "background": "#abd2eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.82,
+          "background": "#b6cfd0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.89,
+          "background": "#651c32",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.12,
+          "background": "#fef6ee",
+          "foreground": "#651c32"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.61,
+          "background": "#e5e7eb",
+          "foreground": "#651c32"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.48,
+          "background": "#3e4938",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.41,
+          "background": "#f2e2d5",
+          "foreground": "#651c32"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.36,
+          "background": "#f0e87b",
+          "foreground": "#651c32"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.35,
+          "background": "#b2aca7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.86,
+          "background": "#3e4938",
+          "foreground": "#fef6ee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.66,
+          "background": "#e5e7eb",
+          "foreground": "#3e4938"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.6,
+          "background": "#dfcac8",
+          "foreground": "#651c32"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.5,
+          "background": "#f2e2d5",
+          "foreground": "#3e4938"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.46,
+          "background": "#f0e87b",
+          "foreground": "#3e4938"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 53,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "columnGap",
+            "rowGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 27,
+          "properties": [
+            "marginBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 51,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 58,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 17,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 32,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 54,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 19,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 73,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 200,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Vivey 22 Positive",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 560,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "FHA Condensed French NC",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 44,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Vivey 22 Positive",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Vivey 22 Positive",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Vivey 22 Positive",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "input",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Vivey 22 Positive",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "body"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Vivey 22 Positive",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Vivey 22 Positive",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Vivey 22 Positive",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Vivey 22 Positive",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "icon",
+            "body",
+            "hero",
+            "image",
+            "card",
+            "footer"
+          ],
+          "frequency": 382,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Vivey 22 Positive",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "image",
+            "body",
+            "icon"
+          ],
+          "frequency": 70,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Vivey 22 Positive",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Vivey 22 Positive",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Vivey 22 Positive",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "FHA Condensed French NC",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "FHA Condensed French NC",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "FHA Condensed French NC",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 38,
+          "family": "FHA Condensed French NC",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 44,
+          "family": "FHA Condensed French NC",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 48,
+          "family": "FHA Condensed French NC",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 52,
+          "family": "FHA Condensed French NC",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 72,
+          "family": "FHA Condensed French NC",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8a03bbb6-aade-4bd0-90f2-53622e3bd8a2.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c619bae4-58ce-4e8a-952b-abff62a12e43.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/156462ab-7b11-4029-be45-c2dba853e894#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ghia design system\",\"item\":\"https://styles.refero.design/style/156462ab-7b11-4029-be45-c2dba853e894\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/156462ab-7b11-4029-be45-c2dba853e894#style-reference\",\"name\":\"Ghia design system reference\",\"headline\":\"Ghia design system | Refero Styles\",\"description\":\"Explore Ghia's light E-commerce design system: Ghia Burgundy #651c32, Coral CTA #ef6079 colors, Vivey 22 Positive, FHA Condensed French NC typography, and...\",\"url\":\"https://styles.refero.design/style/156462ab-7b11-4029-be45-c2dba853e894\",\"mainEntityOfPage\":\"https://styles.refero.design/style/156462ab-7b11-4029-be45-c2dba853e894\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ghia\",\"url\":\"https://drinkghia.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/156462ab-7b11-4029-be45-c2dba853e894#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c619bae4-58ce-4e8a-952b-abff62a12e43.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c619bae4-58ce-4e8a-952b-abff62a12e43.jpg\",\"caption\":\"Screenshot of Ghia\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c619bae4-58ce-4e8a-952b-abff62a12e43.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ghia design system\",\"Ghia website design\",\"Ghia colors\",\"Ghia typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ghia Burgundy\",\"Coral CTA\",\"Aperitivo Cream\",\"Bone White\",\"Vivey 22 Positive\",\"FHA Condensed French NC\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ghia design system\"},{\"@type\":\"Thing\",\"name\":\"Ghia website design\"},{\"@type\":\"Thing\",\"name\":\"Ghia colors\"},{\"@type\":\"Thing\",\"name\":\"Ghia typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-02-13T20:13:34.000Z\",\"dateModified\":\"2026-02-13T20:13:34.000Z\"}]}19:T5ec,**Quick Color Reference**\n- Background: #f2e2d5 (Aperitivo Cream)\n- Text on light: #651c32 (Ghia Burgundy)\n- Border: #e5e7eb (Smoke Gray)\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- Dark surface: #651c32 (Ghia Burgundy)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. **Hero Section**: Aperitivo Cream (#f2e2d5) full-bleed background, two-column layout. Left: FHA Condensed 72px all-caps Ghia Burgundy (#651c32) headline with line-height 1.0, Vivey 16px body in burgundy, Coral Pill Button (#ef6079 fill, #fef6ee text, 9999px radius, 12px 24px padding) below. Right: product photography of bottles, no container border, bleeding to frame edge.\n\n2. **Circular Product Card**: 9999px radius product image centered, Vivey 16px 700 product name in #651c32 below, Vivey 12px price in muted #651c32. Optional Limoncello Yellow (#f0e87b) sticker tag rotated -5deg on top-right reading 'BESTSELLER' in Vivey 11px 700.\n\n3. **Brand Story Split**: 50/50 columns. Left: Ghia Burgundy (#651c32) background, FHA Condensed 38px all-caps Bone White (#fef6ee) text, Vivey 16px body in cream, Coral Pill Button. Right: full-bleed cocktail lifestyle photography, no border or radius.\n\n4. **Product Detail Card**: 16px radius, cream (#fef6ee) interior, square product photo top, Vivey 18px 700 name in #651c32, Vivey 14px description in #651c32, Coral Pill Button 'Add to Cart — $38' at bottom with 9999px radius."
+}

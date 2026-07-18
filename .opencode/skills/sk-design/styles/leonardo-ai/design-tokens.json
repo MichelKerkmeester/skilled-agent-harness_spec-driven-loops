@@ -1,0 +1,622 @@
+{
+  "color": {
+    "midnight-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Midnight Canvas — Primary page background, hero canvas, footer base"
+    },
+    "obsidian-surface": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Obsidian Surface — Elevated surface, nav backdrop, deep overlay wash"
+    },
+    "charcoal-card": {
+      "$value": "#353535",
+      "$type": "color",
+      "$description": "Charcoal Card — Card surface, image card background, raised panel"
+    },
+    "fog": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Fog — Light surface inversion, subtle highlight wash"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Primary text, filled primary action background, high-contrast iconography"
+    },
+    "mist": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Mist — Hairline borders, dividers, subtle structural lines across all surfaces"
+    },
+    "ash-text": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Ash Text — Muted body text, list items, secondary link color"
+    },
+    "charcoal-mute": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Charcoal Mute — De-emphasized text, disabled states, tertiary metadata"
+    },
+    "ink-black": {
+      "$value": "#030303",
+      "$type": "color",
+      "$description": "Ink Black — SVG decorative fills, near-black accent inside dark composition"
+    },
+    "leonardo-violet": {
+      "$value": "#6e60ee",
+      "$type": "color",
+      "$description": "Leonardo Violet — Brand identity color — logo mark, active tab indicator, brand surface highlights, signature wordmark"
+    },
+    "toxic-lime": {
+      "$value": "#03e65b",
+      "$type": "color",
+      "$description": "Toxic Lime — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "voltage-yellow": {
+      "$value": "#ffc533",
+      "$type": "color",
+      "$description": "Voltage Yellow — Warm accent for category tags, feature highlight chips, energy-coded badges"
+    },
+    "shock-pink": {
+      "$value": "#ff3386",
+      "$type": "color",
+      "$description": "Shock Pink — Hot accent for tag chips, creator-type badges, vibrant category markers"
+    },
+    "ember-coral": {
+      "$value": "#ff5d4b",
+      "$type": "color",
+      "$description": "Ember Coral — Warm accent for tag chips, plan indicators, red-orange category coding"
+    },
+    "plasma-pink": {
+      "$value": "#d25fff",
+      "$type": "color",
+      "$description": "Plasma Pink — Magenta-violet accent for card backgrounds, secondary brand surface treatment"
+    },
+    "arc-blue": {
+      "$value": "#33d0ff",
+      "$type": "color",
+      "$description": "Arc Blue — Cool accent for tag chips, informational category markers, data-state indicators"
+    }
+  },
+  "font": {
+    "leosans": {
+      "$value": "leoSans",
+      "$type": "fontFamily",
+      "$description": "Display and editorial headlines. The signature font — used at massive scale (up to 165px) for brand wordmarks, section heroes, and sculptural typography. Weights 800–900 create the compressed, almost-condensed poster feel; the extremely tight line-heights (0.80–0.90) let words stack into blocks. Letter-spacing tightens to -0.02em on the largest sizes to optically close the gaps between heavy strokes."
+    },
+    "canvasans": {
+      "$value": "canvaSans",
+      "$type": "fontFamily",
+      "$description": "UI and body text — navigation, buttons, tab labels, captions, list items, card metadata. Clean geometric sans across 10–19px. Weight 500 carries the most UI presence; 700 is reserved for emphasis in tabs and active states. The narrow 10–19px range keeps the type system disciplined and UI-focused."
+    },
+    "ufficiodisplay": {
+      "$value": "ufficioDisplay",
+      "$type": "fontFamily",
+      "$description": "Specialty editorial accent — used sparingly for a single mid-scale heading where a different personality is needed"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "canvaSans",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "canvaSans",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "canvaSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "canvaSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "canvaSans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "canvaSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "14px",
+        "fontWeight": 900,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "canvaSans",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "canvaSans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "canvaSans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "canvaSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "canvaSans",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "canvaSans",
+        "fontSize": "19px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ufficioDisplay",
+        "fontSize": "34px",
+        "fontWeight": 500,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "34px",
+        "fontWeight": 800,
+        "lineHeight": 0.93
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 34px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "34px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 34px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "35px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 35px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "39px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 39px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "44px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "45px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "48px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "50px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "51px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 51px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "59px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 59px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "65px",
+        "fontWeight": 900,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 65px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "66px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 66px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "68px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 68px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "75px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 75px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "76px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 76px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "78px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 78px"
+    },
+    "5xl-11": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "79px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-11 at 79px"
+    },
+    "5xl-12": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "85px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-12 at 85px"
+    },
+    "5xl-13": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "86px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-13 at 86px"
+    },
+    "5xl-14": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "90px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-14 at 90px"
+    },
+    "5xl-15": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "98px",
+        "fontWeight": 900,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-15 at 98px"
+    },
+    "5xl-16": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "165px",
+        "fontWeight": 800,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-16 at 165px"
+    },
+    "5xl-17": {
+      "$value": {
+        "fontFamily": "leoSans",
+        "fontSize": "165px",
+        "fontWeight": 900,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-17 at 165px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    },
+    "34": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Spacing 34px"
+    },
+    "41": {
+      "$value": "41px",
+      "$type": "dimension",
+      "$description": "Spacing 41px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "47": {
+      "$value": "47px",
+      "$type": "dimension",
+      "$description": "Spacing 47px"
+    },
+    "54": {
+      "$value": "54px",
+      "$type": "dimension",
+      "$description": "Spacing 54px"
+    },
+    "61": {
+      "$value": "61px",
+      "$type": "dimension",
+      "$description": "Spacing 61px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "135": {
+      "$value": "135px",
+      "$type": "dimension",
+      "$description": "Spacing 135px"
+    },
+    "203": {
+      "$value": "203px",
+      "$type": "dimension",
+      "$description": "Spacing 203px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8.4375px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16.4375px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20.4375px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "full": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "270px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "midnight-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background, hero immersion field, footer plane"
+    },
+    "obsidian-surface": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Surface level 1: Navigation bar, sticky overlays, slightly lifted dark zones"
+    },
+    "charcoal-card": {
+      "$value": "#353535",
+      "$type": "color",
+      "$description": "Surface level 2: Image card panels, content blocks, gallery items"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://leonardo.ai",
+      "siteName": "Leonardo.ai",
+      "extractedAt": "2026-06-03T15:13:21.475Z",
+      "variant": "extended"
+    }
+  }
+}

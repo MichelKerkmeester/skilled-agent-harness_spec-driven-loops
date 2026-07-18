@@ -1,0 +1,1164 @@
+{
+  "source": "https://styles.refero.design/style/44a6d2a5-16ef-42cd-a69c-33a7af16638d",
+  "uuid": "44a6d2a5-16ef-42cd-a69c-33a7af16638d",
+  "name": "Maisonmargiela",
+  "northStar": "Gallery wall with a whisper",
+  "capturedAt": "2026-07-18T08:14:16.005Z",
+  "meta": {
+    "url": "https://maisonmargiela.com",
+    "siteName": "Maisonmargiela",
+    "extractedAt": "2026-06-03T17:51:49.332Z",
+    "durationMs": 29877,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 388,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Margiela Sans for all UI, navigation, buttons, labels, and captions — the system has no second sans family",
+      "Apply uppercase + letter-spacing 0.067-0.125em to all text at 12px and below to create the engraved-label feel",
+      "Build hierarchy through size, tracking, and weight — never through color, borders, or shadows, which are absent from the system",
+      "Let full-bleed photography carry the visual weight; the UI must remain a thin whisper around it",
+      "Use only ghost text-links as actions — there is no filled or outlined button variant in this system",
+      "Reach for Margiela Serif 14-20px only at moments that demand an editorial register: the wordmark, product name captions, pull-quotes",
+      "Use the three-surface stack (#ffffff → #f7f7f2 → #eaeae6) to create depth instead of shadows or borders"
+    ],
+    "donts": [
+      "Do not introduce any chromatic color — the palette is 100% achromatic; adding accent hues breaks the gallery-wall discipline",
+      "Do not use border-radius on any component other than pill inputs (9999px); cards, images, buttons, and tiles must have 0px radius",
+      "Do not apply box-shadow to any element; depth comes from surface color and whitespace alone",
+      "Do not create a filled or outlined button variant — all actions are ghost text-links in Ink",
+      "Do not set body text below 13px or above 16px without moving to the Serif family; the sans scale is tightly bounded",
+      "Do not use bold (weight 700) for long-form text; reserve heavier weights for short uppercase labels where tracking does the work",
+      "Do not use pure #000000 for body text or links — Ink #121212 is the text color throughout; pure black is reserved for SVG icon fills"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#121212",
+        "name": "Ink",
+        "role": "Primary text, nav links, button labels, footer copy — the near-black (not pure) gives the page a slightly warmer, printed feel rather than a screen feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, input fills, button text on dark — the clean base against which warm off-white sections layer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f7f2",
+        "name": "Atelier White",
+        "role": "Light supporting surface for subtle backgrounds and section separation.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eaeae6",
+        "name": "Linen",
+        "role": "Deeper warm neutral for tertiary sections, input borders, subtle dividers — sits one step below Atelier White in the surface stack",
+        "group": "neutral"
+      },
+      {
+        "hex": "#898989",
+        "name": "Stone",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#484847",
+        "name": "Graphite",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bababa",
+        "name": "Pebble",
+        "role": "Input field borders, form field outlines, subtle structural dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#818181",
+        "name": "Smoke",
+        "role": "Disabled button text and inactive state labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Charcoal",
+        "role": "Long-form body text in editorial blocks where the slightly lighter tone than Ink reduces visual weight over long reads",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "SVG icon fills, logo lockup, strict black-tone elements where maximum contrast is required",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed, edge-to-edge layout with no max-width container — photography and sections span the full viewport. The nav is a single horizontal row with a centered wordmark and flanking link clusters. Hero is a single full-viewport image plate with a small bottom caption block. Below the fold, sections alternate between full-bleed photography plates and narrow centered text blocks (Margiela Serif captions and ghost CTAs). No card grids, no multi-column product tables, no sidebar layouts — the page is a vertical scroll of image + caption + link, one section at a time. Vertical rhythm is generous (80-120px section gaps) to mimic a printed lookbook rather than a catalog.",
+    "imagery": "Imagery is editorial fashion photography: full-bleed, no crops, no rounded corners, no frames. Subjects are products (a black patent Tabi pump on translucent vinyl) and models in conceptual styling (denim jacket against draped industrial sheeting) with desaturated, cool, slightly muted color grading. The photography carries slight coolness and grain that complements the warm off-white surfaces. Logos, badges, illustrations, and icons-only screens are absent — the system does not draw, it photographs. Image density is high in the hero, then gives way to near-text-only editorial sections.",
+    "similar": [
+      {
+        "why": "Same editorial restraint — near-invisible UI, achromatic palette, uppercase tracked nav, full-bleed photography as the primary visual element",
+        "business": "The Row"
+      },
+      {
+        "why": "Custom serif wordmark, warm off-white surfaces, no chromatic accent, ghost text-link actions, and a literary tone that treats the page as editorial",
+        "business": "Aesop"
+      },
+      {
+        "why": "Full-bleed high-fashion imagery, centered wordmark, uppercase tracked nav, warm neutral canvas — the same 'the product is the only color' philosophy",
+        "business": "Bottega Veneta"
+      },
+      {
+        "why": "Achromatic palette, generous whitespace, sans-serif micro-labels, and the same reductive design discipline that strips UI to its essential surfaces",
+        "business": "Jil Sander"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "9999px",
+        "buttons": "0px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "16-24px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page base, announcement bar, full-bleed image plates behind white-text overlays"
+      },
+      {
+        "hex": "#f7f7f2",
+        "name": "Atelier White",
+        "level": 2,
+        "purpose": "Warm off-white for secondary sections, product detail backgrounds, cart drawer, editorial blocks"
+      },
+      {
+        "hex": "#eaeae6",
+        "name": "Linen",
+        "level": 3,
+        "purpose": "Tertiary surface for nested elements, input fills, subtle banded sections"
+      }
+    ],
+    "northStar": "Gallery wall with a whisper",
+    "typeScale": [
+      {
+        "role": "caption-xs",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.91
+      },
+      {
+        "role": "eyebrow",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.8
+      },
+      {
+        "role": "serif-body",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.06
+      },
+      {
+        "role": "serif-heading-sm",
+        "size": 18,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.07
+      },
+      {
+        "role": "serif-heading",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.08
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Site-wide top strip",
+        "description": "Full-bleed horizontal band, Atelier White (#f7f7f2) background, Ink (#121212) text. Content is a single line of Margiela Sans 12px, weight 400, letter-spacing 0.8px, centered or left-aligned with a close (×) icon flush right. Height ≈ 40px. No border, no shadow."
+      },
+      {
+        "name": "Primary Navigation",
+        "role": "Main site navigation",
+        "description": "White background, no border, no shadow. Three-zone layout: left cluster (category links), center (wordmark logo), right cluster (utility links + icons). Links are Margiela Sans 12-13px, weight 400, letter-spacing 0.8-0.85px, uppercase, Ink color with no underline. Vertical padding 16-20px. The wordmark is Margiela Serif 14-18px centered."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Inline and standalone text action",
+        "description": "Ink (#121212) Margiela Sans 12px, weight 500-600, letter-spacing 0.8px, uppercase. No background, no border, no underline at rest. Underline appears on hover, 1px from baseline. Padding 0. This is the primary CTA pattern — there is no filled button anywhere in the system."
+      },
+      {
+        "name": "Hero Image Plate",
+        "role": "Full-bleed editorial hero",
+        "description": "Full-viewport-width image with no border, no radius, no overlay. Caption block (product name in Margiela Serif 18-20px + ghost CTA 'DESCUBRA MÁS' in uppercase sans) sits bottom-center or bottom-left, white text on the image, 32-48px above bottom edge. Aspect ratio follows image source, not a fixed ratio."
+      },
+      {
+        "name": "Pill Input Field",
+        "role": "Form input, search field",
+        "description": "Fully rounded (9999px radius), 1px border in Pebble (#bababa) or Linen (#eaeae6), background Paper (#ffffff) or transparent. Text in Margiela Sans 13-14px Ink, placeholder in Stone (#898989). Padding 12px 20px. Focus state: border darkens to Ink (#121212), no glow ring."
+      },
+      {
+        "name": "Tab Pair Link",
+        "role": "Binary navigation between paired destinations",
+        "description": "Two ghost text links side by side, separated by 24-32px gap, same uppercase Margiela Sans 12px style. Example: MUJER / HOMBRE. Active state: Ink color and optional 1px underline; inactive: Stone (#898989). No background fill, no pill, no border."
+      },
+      {
+        "name": "Utility Icon Button",
+        "role": "Search, account, wishlist, cart in nav",
+        "description": "Icon-only, 16-20px SVG in Ink (#121212) or Pure Black (#000000), no background, no border, no padding beyond the icon hit area. Label appears as uppercase Margiela Sans 12px text to the left of icon for nav text-links; icons are naked in the right cluster."
+      },
+      {
+        "name": "Editorial Caption Block",
+        "role": "Image caption / product name label",
+        "description": "Centered or left-aligned text overlay on imagery. Product name in Margiela Serif 18-20px weight 400, letter-spacing -0.08px, white. Followed by ghost text CTA in Margiela Sans 12px uppercase, white, 16px below. No background, no backdrop blur."
+      },
+      {
+        "name": "Product Tile (implied)",
+        "role": "Product listing cell",
+        "description": "Square or portrait image flush to grid, no card chrome. Product name and price in Margiela Sans 13-14px, Ink, 12-16px below image, left-aligned. No border, no radius, no shadow. Grid cells butt directly against neighbors or sit on Linen background with 16-20px gutters."
+      },
+      {
+        "name": "Section Divider (implicit)",
+        "role": "Vertical rhythm between editorial sections",
+        "description": "No visible divider line. Sections are separated by 80-120px vertical whitespace and/or a surface color shift from Paper to Atelier White. The page reads as a continuous scroll, not a series of boxed blocks."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer",
+        "description": "Atelier White (#f7f7f2) or Paper background, flush to viewport edges. Columns of Margiela Sans 12-13px uppercase links in Ink, 24-32px between columns, 16px between links within a column. Wordmark repeated at top in Margiela Serif. No background blocks, no social icon backgrounds, no newsletter card."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI text, navigation, buttons, labels, captions. The custom sans is the structural voice of the system. Weights 375-500 handle body and nav; 600-700 appear in micro-labels at the upper edge. The extreme letter-spacing (0.067-0.125em) applied to the smaller sizes is a signature choice — uppercase micro-text at 8-12px breathes like engraved metalwork rather than digital UI. The narrow weight range (no display-weight condensation) means type never yells; hierarchy comes from tracking and size, not boldness.",
+        "sizes": "8, 10, 11, 12, 13, 14, 15, 16",
+        "family": "Margiela Sans",
+        "weight": "375, 400, 475, 500, 600, 700",
+        "lineHeight": "1.00, 1.20, 1.40, 1.50, 1.60",
+        "substitute": "Inter or Neue Haas Grotesk with letter-spacing adjusted per size",
+        "letterSpacing": "0.0070em, 0.0100em, 0.0670em, 0.0770em, 0.0910em, 0.1250em"
+      },
+      {
+        "role": "The wordmark 'Maison Margiela Paris', editorial pull-quotes, product name captions, and serif body in select sections. Single weight (400) only, with hairline negative tracking (-0.004 to -0.002em) that makes the serif feel drawn rather than typeset. It appears sparingly — when it does, it signals a shift from UI to editorial register.",
+        "sizes": "14, 18, 20",
+        "family": "Margiela Serif",
+        "weight": "400",
+        "lineHeight": "1.30, 1.40",
+        "substitute": "Cormorant Garamond or Adobe Caslon Pro at weight 400 with negative tracking",
+        "letterSpacing": "-0.0040em, -0.0020em"
+      }
+    ],
+    "description": "Maison Margiela operates on a radical editorial restraint: the interface is nearly invisible so that photography and product carry the entire experience. The palette is 100% achromatic — no chromatic accent exists anywhere in the system — using a near-black ink (#121212) against warm off-whites (#f7f7f2, #eaeae6) and pure white (#ffffff) to evoke gallery walls and atelier surfaces. Typography is custom and whispered, never shouted: Margiela Sans at low weights with extreme letter-spacing on small uppercase labels, and Margiela Serif with hairline negative tracking for the wordmark and editorial captions. Surfaces are flat, shadowless, and borderless; hierarchy is created by typographic scale and whitespace, not chrome. Components feel like printed matter — announcement strips, centered nav, full-bleed image plates, and tiny ghost text-links — not software.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/44a6d2a5-16ef-42cd-a69c-33a7af16638d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Maisonmargiela design system\",\"item\":\"https://styles.refero.design/style/44a6d2a5-16ef-42cd-a69c-33a7af16638d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/44a6d2a5-16ef-42cd-a69c-33a7af16638d#style-reference\",\"name\":\"Maisonmargiela design system reference\",\"headline\":\"Maisonmargiela design system | Refero Styles\",\"description\":\"Explore Maisonmargiela's light E-commerce design system: Ink #121212, Paper #ffffff colors, Margiela Sans, Margiela Serif typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/44a6d2a5-16ef-42cd-a69c-33a7af16638d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/44a6d2a5-16ef-42cd-a69c-33a7af16638d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Maisonmargiela\",\"url\":\"https://maisonmargiela.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/44a6d2a5-16ef-42cd-a69c-33a7af16638d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/39b70066-f783-47e9-b45f-85ee8063a187.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/39b70066-f783-47e9-b45f-85ee8063a187.jpg\",\"caption\":\"Screenshot of Maisonmargiela\"},\"image\":\"https://images.refero.design/styles/refero.design/image/39b70066-f783-47e9-b45f-85ee8063a187.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Maisonmargiela design system\",\"Maisonmargiela website design\",\"Maisonmargiela colors\",\"Maisonmargiela typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink\",\"Paper\",\"Atelier White\",\"Linen\",\"Margiela Sans\",\"Margiela Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Maisonmargiela design system\"},{\"@type\":\"Thing\",\"name\":\"Maisonmargiela website design\"},{\"@type\":\"Thing\",\"name\":\"Maisonmargiela colors\"},{\"@type\":\"Thing\",\"name\":\"Maisonmargiela typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-03-20T14:19:32.000Z\",\"dateModified\":\"2026-03-20T14:19:32.000Z\"}]}19:T787,Quick Color Reference:\n- text: #121212 (Ink)\n- background: #ffffff (Paper)\n- secondary background: #f7f7f2 (Atelier White)\n- border: #bababa (Pebble) or #eaeae6 (Linen)\n- muted text: #898989 (Stone)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Create a top navigation bar: white (#ffffff) background, no border, no shadow, vertical padding 18px. Three zones — left links (Mujer, Hombre, Unisex, Sobre nosotros, Residencias), center wordmark in Margiela Serif 18px, right links (Buscar, Cuenta, Lista de deseos, Cesta). All links in Margiela Sans 12px weight 400, letter-spacing 0.8px, uppercase, #121212. Hit area includes 12px horizontal padding around text.\n\n2. Create a full-bleed hero image plate: viewport-width image with no border and no radius, aspect ratio determined by source. Bottom-center caption block, 48px above bottom edge: product name in Margiela Serif 20px #ffffff, letter-spacing -0.08px; below it 16px gap, a ghost text-link 'DESCUBRA MÁS' in Margiela Sans 12px weight 500, uppercase, #ffffff, letter-spacing 0.8px, with no background or border.\n\n3. Create a tab pair: two ghost text-links 'MUJER' and 'HOMBRE' side by side, 24px gap, both in Margiela Sans 12px weight 600 uppercase, letter-spacing 0.8px. Active tab in #121212 with 1px underline; inactive tab in #898989 with no underline. No background fill, no border, no pill shape.\n\n4. Create a pill search input: 9999px border-radius, 1px border in #bababa, background #ffffff, padding 12px 20px, Margiela Sans 14px #121212 text, placeholder in #898989. On focus, border becomes #121212; no box-shadow or glow ring.\n\n5. Create a footer: background #f7f7f2, flush to viewport edges, no border, no shadow. Top row: Margiela Serif 18px wordmark centered. Below: 3-4 columns of Margiela Sans 12px weight 400 uppercase #121212 links, 24-32px between columns, 16px between rows. No newsletter card, no social icon backgrounds."
+      },
+      {
+        "title": "Type Behavior Notes",
+        "content": "The Margiela Sans letter-spacing pattern is size-dependent and inverts the usual web convention: smaller sizes get wider tracking, larger sizes get tighter (or normal) tracking. Micro text at 8px carries 0.125em (1px) tracking because at that size the letters would otherwise merge. Body text at 14px carries only 0.01em — a hair of breathing room. This means the system never looks 'stamped' at body sizes, but reads as engraved metalwork at caption sizes. The Serif runs the opposite direction with -0.002 to -0.004em, pulling the wordmark and editorial captions into a tight, drawn quality."
+      },
+      {
+        "title": "Editorial Tone",
+        "content": "The entire system is an exercise in restraint as luxury signal. There is no accent color, no gradient, no drop shadow, no rounded card, no filled button, no icon badge, no progress indicator chrome, no celebratory animation language. The interface earns trust by disappearing. Every page should feel like turning a page in a printed lookbook — generous whitespace, a single image or sentence, a whispered invitation to 'DESCUBRA MÁS' (discover more). An AI agent building new pages should resist the urge to add UI density; the system's confidence comes from how little it shows."
+      }
+    ],
+    "elevationPhilosophy": "Shadows are absent from this system. Depth and separation are achieved through surface color shifts (white → f7f7f2 → eaeae6) and the natural contrast of full-bleed photography. Components never float — they sit flush on the page like prints on paper."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "nav",
+            "heading",
+            "image",
+            "list",
+            "footer",
+            "input"
+          ],
+          "frequency": 1647,
+          "confidence": 1,
+          "prominence": 62753407.320232145,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "input"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 16165898.848942624,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f7f7f2",
+          "oklch": {
+            "c": 0.006601611192429787,
+            "h": 106.52144027618007,
+            "l": 0.9747571565757396
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 760617.0635424402,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eaeae6",
+          "oklch": {
+            "c": 0.005336935261428865,
+            "h": 106.50226913219308,
+            "l": 0.9359300813367208
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 68016,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#898989",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6284240490842994
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 60672,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636325
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 55439.690752966635,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#bababa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7898670715515196
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 35219.00534325151,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "input"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 28537.38553691539,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c6c6c6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8269364365779138
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 5736.031789100245,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#484847",
+          "oklch": {
+            "c": 0.001649578901369818,
+            "h": 106.47369800635249,
+            "l": 0.4013198481415979
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1835.323375512021,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#818181",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6034160972517628
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 1653.6083137086282,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0006057151536372127,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.54,
+          "background": "#f7f7f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#ffffff",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.43,
+          "background": "#f7f7f2",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.41,
+          "background": "#eaeae6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.53,
+          "background": "#eaeae6",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.29,
+          "background": "#c6c6c6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.76,
+          "background": "#f7f7f2",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.97,
+          "background": "#c6c6c6",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.82,
+          "background": "#bababa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.47,
+          "background": "#eaeae6",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.65,
+          "background": "#bababa",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.16,
+          "background": "#ffffff",
+          "foreground": "#484847"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.52,
+          "background": "#f7f7f2",
+          "foreground": "#484847"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.59,
+          "background": "#eaeae6",
+          "foreground": "#484847"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.4,
+          "background": "#c6c6c6",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.51,
+          "background": "#bababa",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.36,
+          "background": "#c6c6c6",
+          "foreground": "#484847"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.72,
+          "background": "#bababa",
+          "foreground": "#484847"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 30,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 37,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 44,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 17,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 35,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 98,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 156,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 178,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Margiela Sans",
+          "source": "custom",
+          "weights": [
+            375,
+            400,
+            475,
+            500,
+            600,
+            700
+          ],
+          "frequency": 359,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Margiela Serif",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "Margiela Sans",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.125,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Margiela Sans",
+          "weight": 375,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Margiela Sans",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Margiela Sans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Margiela Sans",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 32,
+          "lineHeight": 1,
+          "letterSpacing": 0.091,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Margiela Sans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 15,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Margiela Sans",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Margiela Sans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Margiela Sans",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Margiela Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.077,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Margiela Sans",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": 0.077,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Margiela Sans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "nav",
+            "input",
+            "link"
+          ],
+          "frequency": 21,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Margiela Serif",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Margiela Sans",
+          "weight": 475,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Margiela Sans",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0.067,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Margiela Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "heading",
+            "image",
+            "list",
+            "footer",
+            "input"
+          ],
+          "frequency": 253,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Margiela Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Margiela Serif",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Margiela Serif",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/dcb8b930-6707-47eb-95a4-7615ef43ff1e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/39b70066-f783-47e9-b45f-85ee8063a187.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/44a6d2a5-16ef-42cd-a69c-33a7af16638d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Maisonmargiela design system\",\"item\":\"https://styles.refero.design/style/44a6d2a5-16ef-42cd-a69c-33a7af16638d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/44a6d2a5-16ef-42cd-a69c-33a7af16638d#style-reference\",\"name\":\"Maisonmargiela design system reference\",\"headline\":\"Maisonmargiela design system | Refero Styles\",\"description\":\"Explore Maisonmargiela's light E-commerce design system: Ink #121212, Paper #ffffff colors, Margiela Sans, Margiela Serif typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/44a6d2a5-16ef-42cd-a69c-33a7af16638d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/44a6d2a5-16ef-42cd-a69c-33a7af16638d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Maisonmargiela\",\"url\":\"https://maisonmargiela.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/44a6d2a5-16ef-42cd-a69c-33a7af16638d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/39b70066-f783-47e9-b45f-85ee8063a187.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/39b70066-f783-47e9-b45f-85ee8063a187.jpg\",\"caption\":\"Screenshot of Maisonmargiela\"},\"image\":\"https://images.refero.design/styles/refero.design/image/39b70066-f783-47e9-b45f-85ee8063a187.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Maisonmargiela design system\",\"Maisonmargiela website design\",\"Maisonmargiela colors\",\"Maisonmargiela typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink\",\"Paper\",\"Atelier White\",\"Linen\",\"Margiela Sans\",\"Margiela Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Maisonmargiela design system\"},{\"@type\":\"Thing\",\"name\":\"Maisonmargiela website design\"},{\"@type\":\"Thing\",\"name\":\"Maisonmargiela colors\"},{\"@type\":\"Thing\",\"name\":\"Maisonmargiela typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-03-20T14:19:32.000Z\",\"dateModified\":\"2026-03-20T14:19:32.000Z\"}]}19:T787,Quick Color Reference:\n- text: #121212 (Ink)\n- background: #ffffff (Paper)\n- secondary background: #f7f7f2 (Atelier White)\n- border: #bababa (Pebble) or #eaeae6 (Linen)\n- muted text: #898989 (Stone)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Create a top navigation bar: white (#ffffff) background, no border, no shadow, vertical padding 18px. Three zones — left links (Mujer, Hombre, Unisex, Sobre nosotros, Residencias), center wordmark in Margiela Serif 18px, right links (Buscar, Cuenta, Lista de deseos, Cesta). All links in Margiela Sans 12px weight 400, letter-spacing 0.8px, uppercase, #121212. Hit area includes 12px horizontal padding around text.\n\n2. Create a full-bleed hero image plate: viewport-width image with no border and no radius, aspect ratio determined by source. Bottom-center caption block, 48px above bottom edge: product name in Margiela Serif 20px #ffffff, letter-spacing -0.08px; below it 16px gap, a ghost text-link 'DESCUBRA MÁS' in Margiela Sans 12px weight 500, uppercase, #ffffff, letter-spacing 0.8px, with no background or border.\n\n3. Create a tab pair: two ghost text-links 'MUJER' and 'HOMBRE' side by side, 24px gap, both in Margiela Sans 12px weight 600 uppercase, letter-spacing 0.8px. Active tab in #121212 with 1px underline; inactive tab in #898989 with no underline. No background fill, no border, no pill shape.\n\n4. Create a pill search input: 9999px border-radius, 1px border in #bababa, background #ffffff, padding 12px 20px, Margiela Sans 14px #121212 text, placeholder in #898989. On focus, border becomes #121212; no box-shadow or glow ring.\n\n5. Create a footer: background #f7f7f2, flush to viewport edges, no border, no shadow. Top row: Margiela Serif 18px wordmark centered. Below: 3-4 columns of Margiela Sans 12px weight 400 uppercase #121212 links, 24-32px between columns, 16px between rows. No newsletter card, no social icon backgrounds."
+}

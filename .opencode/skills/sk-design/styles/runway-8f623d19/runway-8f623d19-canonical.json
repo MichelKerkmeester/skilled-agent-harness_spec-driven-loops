@@ -1,0 +1,1345 @@
+{
+  "source": "https://styles.refero.design/style/8f623d19-51f6-4da2-bc45-05573cc98283",
+  "uuid": "8f623d19-51f6-4da2-bc45-05573cc98283",
+  "name": "Runway",
+  "northStar": "monochrome research studio — a printer's tray of cinematic stills on cold white paper",
+  "capturedAt": "2026-07-18T07:59:20.475Z",
+  "meta": {
+    "url": "https://runwayml.com",
+    "siteName": "Runway",
+    "extractedAt": "2026-06-03T18:48:28.392Z",
+    "durationMs": 31880,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 822,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the neo-grotesque sans at weight 400-450 for headlines — the light weight is the signature; never bold up to 600-700 for display copy",
+      "Maintain the 8px radius for all buttons and the 4px radius for tags — keep corners subtly soft but never pill-shaped",
+      "Reserve #2b22fa Cobalt Signal exclusively for the announcement bar and one or two promotional moments per page — it must remain scarce to carry weight",
+      "Use 1px #e5e7eb hairlines or white space to separate sections — never reach for drop shadows or elevation",
+      "Left-align all body copy and headlines; the design is editorial, not centered-marketing",
+      "Set letter-spacing to -0.025em at 48px and scale linearly down — tight tracking is part of the typographic identity",
+      "Keep the page at 1% colorfulness: monochrome first, accent only as punctuation"
+    ],
+    "donts": [
+      "Do not introduce drop shadows, glow effects, or any elevation system — the flat print-like surface is the look",
+      "Do not add gradients — the design is purely flat color",
+      "Do not use the Cobalt Signal blue for buttons, links, or icons outside the announcement bar — it will lose its scarcity",
+      "Do not center body text or long-form copy — left-alignment is structural, not stylistic",
+      "Do not add secondary accent colors (green, purple, red) — there is no room in a 1% colorfulness system for a second chromatic voice",
+      "Do not use rounded corners larger than 8px on buttons or 12px on any container — the sharp/minimal geometry defines the feel",
+      "Do not increase body weight above 500 — the interface is calibrated for airy 400-450 text; heavier weights break the editorial register"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0c0c0c",
+        "name": "Ink Black",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Carbon",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2a2a2a",
+        "name": "Graphite",
+        "role": "Secondary dark surface, button hover states",
+        "group": "neutral"
+      },
+      {
+        "hex": "#404040",
+        "name": "Slate",
+        "role": "Body text, secondary headings, dense paragraph copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6b7280",
+        "name": "Steel",
+        "role": "Muted helper text, tertiary metadata, subdued links",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Silver",
+        "role": "Disabled states, placeholder text, low-priority captions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Bone",
+        "role": "Hairline borders, divider lines, card outlines, structural separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eef1f5",
+        "name": "Cloud",
+        "role": "Subtle background wash, hover state for neutral surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page canvas, card surfaces, button text on dark fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2b22fa",
+        "name": "Cobalt Signal",
+        "role": "Promotional announcement bar, brand accent — the only chromatic moment in the system, used sparingly to signal news or offers without competing with the research content",
+        "group": "brand"
+      }
+    ],
+    "layout": "Max-width 1200px centered content column with full-bleed bands for the announcement bar and hero media. The hero is a near-empty white canvas with a single 'Get Started >' ghost link — deliberate restraint before the logo strip. Below the trust strip, a large editorial headline (left-aligned, ~900px) introduces a 2-column image card grid showcasing research projects. Deeper sections use alternating left-right image+text rows at 50/50 split, with ~80-120px vertical rhythm between rows. No sticky sidebar, no mega-menu — navigation is a simple centered top bar. Density is compact but the overall page is long-form editorial: you scroll through research stories like a magazine. Section transitions are marked by 1px hairlines or simply by white space, never by contrasting background bands.",
+    "imagery": "Imagery is the centerpiece of every page: the AI-generated video stills and research keyframes ARE the visual content. Images are full-bleed within their containers, sharp-cornered (no border-radius), high-resolution, and often cinematic in framing — wide aspect ratios, dramatic lighting, surreal or hyperreal subject matter. The product page leads with a video or still frame; research pages alternate text blocks with generated imagery. No stock photography, no lifestyle shots, no decorative illustrations — the visual language is 'our AI made this, look at it.' Photography treatment is unfiltered: true colors, full saturation, no duotone or color grading overlay. The only branded visual treatment is the monochromatic logo strip, which uses grayscale to signal partner ecosystem without competing with the product imagery.",
+    "similar": [
+      {
+        "why": "Same monochrome research-publication aesthetic — white canvas, single bold headline, image-led research showcase, no decorative elevation or gradients",
+        "business": "Stability AI"
+      },
+      {
+        "why": "Editorial AI research presentation with full-bleed AI-generated imagery as primary content, minimal UI chrome, neo-grotesque typography with tight tracking",
+        "business": "Midjourney"
+      },
+      {
+        "why": "Restrained monochromatic interface with editorial weight — large left-aligned headlines, ghost navigation, research-forward content blocks alternating with imagery",
+        "business": "Anthropic"
+      },
+      {
+        "why": "Large-scale editorial layout language — generous section gaps, alternating image+text rows, single brand accent reserved for announcements, flat surfaces without shadows",
+        "business": "Figma Config"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "8px",
+        "buttons": "8px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "16-24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Base background for the entire site"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Research project cards, feature blocks — sit flat against the page, distinguished by content not elevation"
+      },
+      {
+        "hex": "#eef1f5",
+        "name": "Soft Wash",
+        "level": 2,
+        "purpose": "Subtle section backgrounds, hover states for neutral elements"
+      },
+      {
+        "hex": "#2b22fa",
+        "name": "Announcement Bar",
+        "level": 3,
+        "purpose": "Promotional banner — the only chromatic surface, signals news/offers above the fold"
+      }
+    ],
+    "northStar": "monochrome research studio — a printer's tray of cinematic stills on cold white paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.43,
+        "letterSpacing": 0.28
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.1
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.12
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1,
+        "letterSpacing": -1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Promotional Announcement Bar",
+        "role": "Top-of-page promotional strip",
+        "description": "Full-bleed bar at the very top of the page. Background #2b22fa (Cobalt Signal), text #ffffff, centered, 11-13px weight 400-500, 0.025em positive tracking. Contains a short promotional message with an underlined link and a small ghost-style 'Try Now' button on the right."
+      },
+      {
+        "name": "Primary Navigation Bar",
+        "role": "Site-wide top navigation",
+        "description": "White background, 1px #e5e7eb bottom border. Logo (Runway wordmark, #0c0c0c) flush left. Center nav items in a horizontal row: RESEARCH, PRODUCT, RESOURCES, SOLUTIONS, COMPANY — 13px weight 500, #0c0c0c, uppercase. Right cluster: 'Enterprise Sales' and 'Log in' as ghost text links, then 'Try Runway' as a filled dark button (#0c0c0c bg, #ffffff text, 8px radius, ~10px 20px padding)."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Low-emphasis navigation or action",
+        "description": "No background, no border. Text #0c0c0c, 13-14px weight 500. Used for 'Log in', 'Enterprise Sales', and inline links. Hover state: text color shifts to #404040 or underline appears."
+      },
+      {
+        "name": "Primary Dark Button (Filled)",
+        "role": "Main call-to-action",
+        "description": "Background #0c0c0c, text #ffffff, 8px border-radius, padding 10px 20px. Font: 14px weight 500. No border. Used for 'Try Runway' in the nav. Sits with high contrast against the white canvas; the only filled button style in the system."
+      },
+      {
+        "name": "Ghost Button with Arrow",
+        "role": "Secondary action or section entry point",
+        "description": "No background, no border. Text #0c0c0c, 14px weight 500. Followed by a chevron arrow (→). Padding 8px 0. Used for 'Get Started >' in the hero. The arrow gives directional momentum without requiring visual weight."
+      },
+      {
+        "name": "Learn More Pill Button",
+        "role": "Research feature call-to-action",
+        "description": "Background #0c0c0c or #1a1a1a, text #ffffff, 8px radius (approaching pill), padding 10px 18px. Font: 14px weight 500. Used to drive traffic from research feature blocks to detail pages. Rounded but not fully pill — sits between sharp and soft."
+      },
+      {
+        "name": "Logo Trust Strip",
+        "role": "Social proof via partner/brand logos",
+        "description": "Horizontal row of company logos (CBS, NVIDIA, Adobe, Allstate, GUT, Legendary, Lionsgate) in grayscale. Rendered in #404040 or #999999 to blend with the page. No logos in full color — the monochromatic treatment signals 'this is a system' not 'these are ads'. Vertically centered, equal spacing."
+      },
+      {
+        "name": "Editorial Display Headline",
+        "role": "Section or page title",
+        "description": "Font 48px weight 400-450, line-height 1.00, letter-spacing -0.025em. Color #0c0c0c. Left-aligned, max-width ~900px. Reads as a research statement, not a marketing slogan. The tight tracking and light weight are anti-convention — most sites would use 600-700 here."
+      },
+      {
+        "name": "Research Image Card",
+        "role": "Showcase of a research project or product",
+        "description": "Image at top (full-bleed within card, no radius — sharp corners), project title below in 20px weight 500 #0c0c0c, short description in 14px weight 400 #404040. No card border, no shadow. Arranged in a 2-column grid with ~24px gap. The image IS the visual treatment."
+      },
+      {
+        "name": "Alternating Feature Row",
+        "role": "Research or product detail section",
+        "description": "Two-column layout, alternating image-left/text-right and image-right/text-left. Image takes ~50% width, no radius. Text column: heading 36px weight 400, body 16px weight 400 #404040, then a 'Learn more' pill button. ~80-120px vertical padding between rows. The alternation creates reading rhythm."
+      },
+      {
+        "name": "Image-Only Feature Block",
+        "role": "Full-width research visual",
+        "description": "Single image spanning the content width, no border, no overlay. Sometimes followed by a text block, sometimes standalone. Used for hero product shots or keyframe stills from AI-generated video. The image is the message."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separator",
+        "description": "1px solid #e5e7eb line, full content width. Used between major sections where white space alone isn't enough. No double lines, no dashes — always a single hairline."
+      },
+      {
+        "name": "Inline Underlined Link",
+        "role": "Mid-emphasis link in body copy",
+        "description": "Text inherits body color (#0c0c0c or #404040), 1px underline, no color change. Underline offset ~2px. Hover: underline thickens or color shifts to Cobalt Signal #2b22fa for the rare colored link."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across the entire interface — navigation, body, buttons, and display headlines. Weight 450 (a half-step) and 500 carry most UI text; 600 is reserved for emphasis. The tight tracking on large sizes (-0.025em at 48px) prevents headlines from feeling airy, keeping them grounded as editorial statements rather than marketing shouts. The positive tracking at 11px (+0.025em) compensates for small-size readability. Weight 400 for body keeps long research paragraphs light on the eye.",
+        "sizes": "11, 13, 14, 16, 20, 24, 36, 40, 48",
+        "family": "abcNormal",
+        "weight": "400, 450, 500, 600",
+        "lineHeight": "1.00–1.50",
+        "substitute": "Söhne",
+        "letterSpacing": "-1.2px at 48px (display), -0.96px at 40px, -0.60px at 36px, -0.12px at 20px, -0.10px at 16px, -0.07px at 14px, +0.28px at 11px (caption)"
+      }
+    ],
+    "description": "Runway operates as a precision research lab on white canvas — almost entirely monochrome, with a single deep cobalt accent reserved for promotional banners and the occasional highlight. Typography does the heavy lifting: a neo-grotesque sans with tightly tracked headlines carries editorial weight, reading as research statements rather than marketing copy. Components are deliberately minimal — ghost buttons, hairline dividers, image cards that sit flat against the page, no decorative elevation. The page breathes like a long-form magazine spread where AI-generated research output is the visual content itself. Every interface decision is in service of letting the work speak: no gradients, no shadows, no ornament.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8f623d19-51f6-4da2-bc45-05573cc98283#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Runway design system\",\"item\":\"https://styles.refero.design/style/8f623d19-51f6-4da2-bc45-05573cc98283\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8f623d19-51f6-4da2-bc45-05573cc98283#style-reference\",\"name\":\"Runway design system reference\",\"headline\":\"Runway design system | Refero Styles\",\"description\":\"Explore Runway's light AI design system: Ink Black #0c0c0c, Carbon #1a1a1a colors, abcNormal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8f623d19-51f6-4da2-bc45-05573cc98283\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8f623d19-51f6-4da2-bc45-05573cc98283\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Runway\",\"url\":\"https://runwayml.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8f623d19-51f6-4da2-bc45-05573cc98283#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/54ee1764-0a3f-4dce-bc5e-f404a6932584.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/54ee1764-0a3f-4dce-bc5e-f404a6932584.jpg\",\"caption\":\"Screenshot of Runway\"},\"image\":\"https://images.refero.design/styles/refero.design/image/54ee1764-0a3f-4dce-bc5e-f404a6932584.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Runway design system\",\"Runway website design\",\"Runway colors\",\"Runway typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Ink Black\",\"Carbon\",\"Graphite\",\"Slate\",\"abcNormal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Runway design system\"},{\"@type\":\"Thing\",\"name\":\"Runway website design\"},{\"@type\":\"Thing\",\"name\":\"Runway colors\"},{\"@type\":\"Thing\",\"name\":\"Runway typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-02-01T09:33:10.000Z\",\"dateModified\":\"2026-02-01T09:33:10.000Z\"}]}19:T713,**Quick Color Reference**\n- text: #0c0c0c\n- background: #ffffff\n- border: #e5e7eb\n- muted text: #404040\n- accent (promotional only): #2b22fa\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a top announcement bar: full-bleed #2b22fa background, centered 13px weight 500 #ffffff text reading 'New release available. Get 50% off with code EXAMPLE. Terms apply.', followed by a small ghost 'Try Now' button (#ffffff text, 1px #ffffff border, 4px radius, 8px 14px padding).\n\n2. Create a primary navigation bar: white background, 1px #e5e7eb bottom border, 1200px max-width centered. Left: 'Runway' wordmark logo in #0c0c0c at 20px weight 500. Center: nav items 'RESEARCH, PRODUCT, RESOURCES, SOLUTIONS, COMPANY' in 13px weight 500 #0c0c0c, uppercase, 32px gap. Right: 'Enterprise Sales' and 'Log in' as ghost text links in #0c0c0c, then 'Try Runway' as a filled button (#0c0c0c bg, #ffffff text, 8px radius, 10px 20px padding).\n\n3. Create an editorial headline section: 80px top padding, 1200px max-width, headline 'AI is changing how stories are told, how scientific progress is made and how the next frontiers of humanity are reached.' in 48px weight 400 #0c0c0c, letter-spacing -1.2px, line-height 1.0, left-aligned, max-width 900px.\n\n4. Create a research feature row: two-column layout, 50/50 split, 24px gap. Left: product image (full-bleed, no radius). Right: text column with heading 'Introducing GWM-1' in 36px weight 400 #0c0c0c, body paragraph in 16px weight 400 #404040, then a 'Learn more' button (#1a1a1a bg, #ffffff text, 8px radius, 10px 18px padding).\n\n5. Create a logo trust strip: horizontal row of 7 partner logos in #999999 grayscale, equal 48px gap, vertically centered, no background, no border, sitting between two sections separated by 1px #e5e7eb hairlines."
+      },
+      {
+        "title": "Editorial Proportions",
+        "content": "The page follows a strict 1.00–1.10 line-height for display sizes (48px, 40px, 36px) — headlines stack tightly, almost touching, as if typeset. Body copy opens up to 1.43–1.50. This compression-to-expansion ratio is what makes the page read as editorial print rather than screen UI. Never normalize line-heights to 1.5 across the board — the typographic contrast is the point."
+      }
+    ],
+    "elevationPhilosophy": "The design deliberately avoids shadows. Cards and content blocks are separated from the page by hairlines (1px #e5e7eb borders) or by white space alone, never by drop shadows or elevation. This flat, print-like treatment keeps the page reading as editorial rather than app-like, and ensures that the AI-generated imagery and research content remain the only sources of visual depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "image",
+            "hero",
+            "heading",
+            "body",
+            "icon",
+            "footer",
+            "list"
+          ],
+          "frequency": 1928,
+          "confidence": 1,
+          "prominence": 88878938.85931827,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#404040",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3714949460297332
+          },
+          "contexts": [
+            "other",
+            "image",
+            "hero",
+            "link",
+            "heading",
+            "footer"
+          ],
+          "frequency": 128,
+          "confidence": 1,
+          "prominence": 57098326.994260624,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "link",
+            "hero",
+            "heading",
+            "body",
+            "icon",
+            "list"
+          ],
+          "frequency": 250,
+          "confidence": 1,
+          "prominence": 9473780.936692795,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "stroke",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0c0c0c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1543399938085494
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 33,
+          "confidence": 1,
+          "prominence": 4064781.060902196,
+          "properties": [
+            "color",
+            "stroke",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 975040,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2a2a2a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.285017403997646
+          },
+          "contexts": [
+            "button",
+            "link",
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 238115.80584152613,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6b7280",
+          "oklch": {
+            "c": 0.02336091733217706,
+            "h": 264.36374727266286,
+            "l": 0.5510191075146065
+          },
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 71684.87847250057,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2b22fa",
+          "oklch": {
+            "c": 0.2902316405495469,
+            "h": 268.95033815090477,
+            "l": 0.4723315576780842
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 68400,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 38525.3315953965,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 378,
+          "confidence": 1,
+          "prominence": 27831.109570017878,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "button",
+            "link",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 20644.136025382108,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eef1f5",
+          "oklch": {
+            "c": 0.006255667207861823,
+            "h": 255.4754734072618,
+            "l": 0.9570046071036279
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 6160.749240303134,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.011490565917786381,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.56,
+          "background": "#0c0c0c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.54,
+          "background": "#eef1f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#ffffff",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.27,
+          "background": "#eef1f5",
+          "foreground": "#0c0c0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.8,
+          "background": "#e5e7eb",
+          "foreground": "#0c0c0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.36,
+          "background": "#eef1f5",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.35,
+          "background": "#2a2a2a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.06,
+          "background": "#e5e7eb",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.67,
+          "background": "#eef1f5",
+          "foreground": "#2a2a2a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.18,
+          "background": "#cccccc",
+          "foreground": "#0c0c0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.59,
+          "background": "#e5e7eb",
+          "foreground": "#2a2a2a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.84,
+          "background": "#cccccc",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.37,
+          "background": "#ffffff",
+          "foreground": "#404040"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.15,
+          "background": "#eef1f5",
+          "foreground": "#404040"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.94,
+          "background": "#cccccc",
+          "foreground": "#2a2a2a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.37,
+          "background": "#e5e7eb",
+          "foreground": "#404040"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.74,
+          "background": "#2b22fa",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 25
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 76,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 129,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 19,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 48,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 29,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 57,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 69,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 70,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 73,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 87,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 139,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 176,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 240,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "abcNormal",
+          "source": "custom",
+          "weights": [
+            400,
+            450,
+            500,
+            600
+          ],
+          "frequency": 483,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "abcNormal",
+          "weight": 450,
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "abcNormal",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 47,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "abcNormal",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "abcNormal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "image",
+            "hero",
+            "icon",
+            "footer",
+            "list"
+          ],
+          "frequency": 272,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "abcNormal",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "abcNormal",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 80,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "abcNormal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/aa4b8eb8-1121-4a48-99a6-aaad361c9068.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/54ee1764-0a3f-4dce-bc5e-f404a6932584.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8f623d19-51f6-4da2-bc45-05573cc98283#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Runway design system\",\"item\":\"https://styles.refero.design/style/8f623d19-51f6-4da2-bc45-05573cc98283\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8f623d19-51f6-4da2-bc45-05573cc98283#style-reference\",\"name\":\"Runway design system reference\",\"headline\":\"Runway design system | Refero Styles\",\"description\":\"Explore Runway's light AI design system: Ink Black #0c0c0c, Carbon #1a1a1a colors, abcNormal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8f623d19-51f6-4da2-bc45-05573cc98283\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8f623d19-51f6-4da2-bc45-05573cc98283\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Runway\",\"url\":\"https://runwayml.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8f623d19-51f6-4da2-bc45-05573cc98283#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/54ee1764-0a3f-4dce-bc5e-f404a6932584.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/54ee1764-0a3f-4dce-bc5e-f404a6932584.jpg\",\"caption\":\"Screenshot of Runway\"},\"image\":\"https://images.refero.design/styles/refero.design/image/54ee1764-0a3f-4dce-bc5e-f404a6932584.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Runway design system\",\"Runway website design\",\"Runway colors\",\"Runway typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Ink Black\",\"Carbon\",\"Graphite\",\"Slate\",\"abcNormal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Runway design system\"},{\"@type\":\"Thing\",\"name\":\"Runway website design\"},{\"@type\":\"Thing\",\"name\":\"Runway colors\"},{\"@type\":\"Thing\",\"name\":\"Runway typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-02-01T09:33:10.000Z\",\"dateModified\":\"2026-02-01T09:33:10.000Z\"}]}19:T713,**Quick Color Reference**\n- text: #0c0c0c\n- background: #ffffff\n- border: #e5e7eb\n- muted text: #404040\n- accent (promotional only): #2b22fa\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a top announcement bar: full-bleed #2b22fa background, centered 13px weight 500 #ffffff text reading 'New release available. Get 50% off with code EXAMPLE. Terms apply.', followed by a small ghost 'Try Now' button (#ffffff text, 1px #ffffff border, 4px radius, 8px 14px padding).\n\n2. Create a primary navigation bar: white background, 1px #e5e7eb bottom border, 1200px max-width centered. Left: 'Runway' wordmark logo in #0c0c0c at 20px weight 500. Center: nav items 'RESEARCH, PRODUCT, RESOURCES, SOLUTIONS, COMPANY' in 13px weight 500 #0c0c0c, uppercase, 32px gap. Right: 'Enterprise Sales' and 'Log in' as ghost text links in #0c0c0c, then 'Try Runway' as a filled button (#0c0c0c bg, #ffffff text, 8px radius, 10px 20px padding).\n\n3. Create an editorial headline section: 80px top padding, 1200px max-width, headline 'AI is changing how stories are told, how scientific progress is made and how the next frontiers of humanity are reached.' in 48px weight 400 #0c0c0c, letter-spacing -1.2px, line-height 1.0, left-aligned, max-width 900px.\n\n4. Create a research feature row: two-column layout, 50/50 split, 24px gap. Left: product image (full-bleed, no radius). Right: text column with heading 'Introducing GWM-1' in 36px weight 400 #0c0c0c, body paragraph in 16px weight 400 #404040, then a 'Learn more' button (#1a1a1a bg, #ffffff text, 8px radius, 10px 18px padding).\n\n5. Create a logo trust strip: horizontal row of 7 partner logos in #999999 grayscale, equal 48px gap, vertically centered, no background, no border, sitting between two sections separated by 1px #e5e7eb hairlines."
+}

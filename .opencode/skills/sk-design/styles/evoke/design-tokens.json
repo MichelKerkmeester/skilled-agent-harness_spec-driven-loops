@@ -1,0 +1,93 @@
+{
+  "color": {
+    "ember-coral": {
+      "$value": "#ff5a46",
+      "$type": "color",
+      "$description": "Ember Coral — Full-bleed section panels, project tile backgrounds — warm coral against flat illustration reads as editorial heat"
+    },
+    "electric-cyan": {
+      "$value": "#00ffff",
+      "$type": "color",
+      "$description": "Electric Cyan — Full-bleed section panels, project tile backgrounds — synthetic cyan reads as digital, screen-native energy"
+    },
+    "solar-yellow": {
+      "$value": "#ffe100",
+      "$type": "color",
+      "$description": "Solar Yellow — Full-bleed section panels, project tile backgrounds — saturated yellow as high-attention section marker"
+    },
+    "lavender-mist": {
+      "$value": "#ebebf5",
+      "$type": "color",
+      "$description": "Lavender Mist — Full-bleed section panels, soft transitions between louder panels — cool lavender for quieter moments"
+    },
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void Black — Text, display wordmark, hairline borders — compressed near-black carries the entire typographic system and grounds every color panel"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Base canvas, text on color panels — the white ground that separates saturated panels and gives the wordmark its field"
+    }
+  },
+  "font": {
+    "ttnormsproextrablack": {
+      "$value": "tt_norms_proextrablack",
+      "$type": "fontFamily",
+      "$description": "tt_norms_proextrablack — detected in extracted data but not described by AI"
+    },
+    "tt-norms-pro": {
+      "$value": "TT Norms Pro",
+      "$type": "fontFamily",
+      "$description": "Sole typeface. Normal weight (400) sets all content headings; ExtraBlack (900) is reserved exclusively for the EVOKE wordmark and any display-scale identity moments. The two-weight binary creates a deliberate whisper/shout split: compressed grotesk for information, ExtraBlack slab for brand presence. The tight -0.015em tracking is signature — it makes the Normal weight feel set in concrete, and makes the ExtraBlack wordmark read as a single architectural mass rather than a word."
+    }
+  },
+  "typography": {
+    "3xl": {
+      "$value": {
+        "fontFamily": "tt_norms_pronormal",
+        "fontSize": "31px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 31px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "tt_norms_proextrablack",
+        "fontSize": "31px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 31px"
+    }
+  },
+  "spacing": {
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://studioevoke.co.uk",
+      "siteName": "EVOKE",
+      "extractedAt": "2026-06-03T17:24:23.665Z",
+      "variant": "extended"
+    }
+  }
+}

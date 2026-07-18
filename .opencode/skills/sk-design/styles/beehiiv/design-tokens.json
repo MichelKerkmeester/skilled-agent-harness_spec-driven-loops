@@ -1,0 +1,464 @@
+{
+  "color": {
+    "abyss-ink": {
+      "$value": "#060419",
+      "$type": "color",
+      "$description": "Abyss Ink — Page background, deepest surface — the void that everything floats on"
+    },
+    "deep-violet": {
+      "$value": "#0d0b28",
+      "$type": "color",
+      "$description": "Deep Violet — Card and panel surfaces — one step lifted from the canvas; Atmospheric gradient overlay — blends canvas into indigo accent"
+    },
+    "twilight-plum": {
+      "$value": "#141230",
+      "$type": "color",
+      "$description": "Twilight Plum — Elevated surfaces, active nav backgrounds, deeper card variants"
+    },
+    "dark-plum": {
+      "$value": "#1b0e27",
+      "$type": "color",
+      "$description": "Dark Plum — Hover states, inset surface, tooltip backgrounds"
+    },
+    "periwinkle": {
+      "$value": "#acb0e3",
+      "$type": "color",
+      "$description": "Periwinkle — Hairline borders with violet glow, decorative dividers"
+    },
+    "slate-violet": {
+      "$value": "#4e4e6c",
+      "$type": "color",
+      "$description": "Slate Violet — Muted borders, subdued dividers between sections"
+    },
+    "silver-lilac": {
+      "$value": "#b8b8c8",
+      "$type": "color",
+      "$description": "Silver Lilac — Secondary text, icon strokes, subdued labels"
+    },
+    "lavender-mist": {
+      "$value": "#c4c2d6",
+      "$type": "color",
+      "$description": "Lavender Mist — Body text on dark surfaces, link text, standard icons"
+    },
+    "ghost-white": {
+      "$value": "#f7f5ff",
+      "$type": "color",
+      "$description": "Ghost White — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "electric-indigo": {
+      "$value": "#2f39ba",
+      "$type": "color",
+      "$description": "Electric Indigo — Brand accent — highlight testimonial card, gradient origin, decorative icon strokes; Signature gradient on hero text, highlight overlays, and brand energy"
+    },
+    "hot-magenta": {
+      "$value": "#ff5ec4",
+      "$type": "color",
+      "$description": "Hot Magenta — Brand accent — gradient terminus, star icons, playful tag fills"
+    },
+    "orchid-pink": {
+      "$value": "#f092dd",
+      "$type": "color",
+      "$description": "Orchid Pink — Medium pink — decorative chip backgrounds, gradient midtones"
+    },
+    "cotton-candy": {
+      "$value": "#ffc8eb",
+      "$type": "color",
+      "$description": "Cotton Candy — Soft pink wash — subtle accent surfaces, decorative tags"
+    }
+  },
+  "font": {
+    "clash-grotesk": {
+      "$value": "Clash Grotesk",
+      "$type": "fontFamily",
+      "$description": "Display and hero headlines — geometric and tight; 72px hero with line-height 1.00 creates near-architectural blocks. Free alternative: Space Grotesk or Migra."
+    },
+    "satoshi": {
+      "$value": "Satoshi",
+      "$type": "fontFamily",
+      "$description": "Body, UI, buttons, navigation, subheadings, and section headings up to 48px. The 0.045em tracking gives it a slightly airy, contemporary feel at smaller sizes. Free alternative: Inter or General Sans."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ClashGroteskFont",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "ClashGroteskFont",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ClashGroteskFont",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "SatoshiFont",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "ClashGroteskFont",
+        "fontSize": "60px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 60px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "ClashGroteskFont",
+        "fontSize": "60px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 60px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "ClashGroteskFont",
+        "fontSize": "60px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 60px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "ClashGroteskFont",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 60px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "ClashGroteskFont",
+        "fontSize": "72px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 72px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "abyss-canvas": {
+      "$value": "#060419",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the dark void beneath everything"
+    },
+    "deep-violet-panel": {
+      "$value": "#0d0b28",
+      "$type": "color",
+      "$description": "Surface level 1: Card and feature panel surfaces"
+    },
+    "twilight-plum-surface": {
+      "$value": "#141230",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated cards, active states, inset panels"
+    },
+    "plasma-accent": {
+      "$value": "#2f39ba",
+      "$type": "color",
+      "$description": "Surface level 3: Highlight surface — featured testimonial card, accent CTAs"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://beehiiv.com",
+      "siteName": "beehiiv",
+      "extractedAt": "2026-06-03T17:32:00.026Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,322 @@
+{
+  "color": {
+    "parchment": {
+      "$value": "#e5e4e0",
+      "$type": "color",
+      "$description": "Parchment — Page canvas, section backgrounds — warm off-white that replaces pure white, making the page feel like printed stock rather than a screen"
+    },
+    "ink": {
+      "$value": "#1d1d1d",
+      "$type": "color",
+      "$description": "Ink — Primary text, heading strokes, link borders, all dark UI elements — near-black with zero blue cast, reading as editorial print"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Elevated card surfaces, logo container backgrounds, project card canvases — pure white to lift content above the warm parchment"
+    },
+    "ash": {
+      "$value": "#bfbebe",
+      "$type": "color",
+      "$description": "Ash — Hairline borders, subtle dividers, structural outlines that need to recede against the parchment"
+    },
+    "stone": {
+      "$value": "#cdcdc9",
+      "$type": "color",
+      "$description": "Stone — Mid-tone surface between parchment and white — secondary panel background when a layer needs quiet separation"
+    },
+    "iridescent-sphere": {
+      "$value": "#facb00",
+      "$type": "color",
+      "$description": "Iridescent Sphere — Signature gradient object in the hero — the only chromatic element, flowing from saturated yellow through hot pink to cool blue before dissolving to white. Functions as a brand beacon, not a UI color"
+    }
+  },
+  "font": {
+    "ataero-retina-ob-edition": {
+      "$value": "Ataero Retina OB Edition",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire system. A custom geometric sans-serif with tall x-height and generous counters. Weight 400 serves body and display alike; weight 700 is reserved for small labels and navigation. Display sizes (70–103px) use 0.80 line-height to stack headline lines into a single typographic block. The font's distinctive openness and slight humanist warmth is the brand's primary identity signal — no fallback font family should appear on a production page"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 15px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 15px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 15px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 15px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "46px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "70px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 70px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "76px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 76px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Ataero Retina OB Edition",
+        "fontSize": "103px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 103px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "46": {
+      "$value": "46px",
+      "$type": "dimension",
+      "$description": "Spacing 46px"
+    },
+    "76": {
+      "$value": "76px",
+      "$type": "dimension",
+      "$description": "Spacing 76px"
+    },
+    "119": {
+      "$value": "119px",
+      "$type": "dimension",
+      "$description": "Spacing 119px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6.47619px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "9.52381px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "30.4762px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#e5e4e0",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — warm off-white, sets the editorial print tone"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card and logo container surfaces — pure white against the warm canvas"
+    },
+    "stone-panel": {
+      "$value": "#cdcdc9",
+      "$type": "color",
+      "$description": "Surface level 2: Mid-tone secondary surface for sections needing quiet structural separation"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.itsoffbrand.com",
+      "siteName": "OFF+BRAND.",
+      "extractedAt": "2026-06-03T16:31:18.477Z",
+      "variant": "extended"
+    }
+  }
+}

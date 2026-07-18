@@ -1,0 +1,1122 @@
+{
+  "source": "https://styles.refero.design/style/b43fdb3c-85e9-4282-9262-1d3deb4b679d",
+  "uuid": "b43fdb3c-85e9-4282-9262-1d3deb4b679d",
+  "name": "Stykka",
+  "northStar": "Scandi atelier under white light — a quiet, hand-built showroom where the only voice is the photograph",
+  "capturedAt": "2026-07-18T08:15:03.354Z",
+  "meta": {
+    "url": "https://stykka.com",
+    "siteName": "Stykka",
+    "extractedAt": "2026-06-03T17:53:57.777Z",
+    "durationMs": 27956,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 591,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #000000 for every text element and every 1px border — never introduce a second ink color, the system is intentionally monochromatic",
+      "Set display headlines at Inter weight 400 (not 700) with tracking between -1.2px and -1.93px — the tight setting is the signature, not the weight",
+      "Use the 14px uppercase tracked label (ls +0.29px) as the opener of every section — it is the only repeated UI motif and it carries the editorial voice",
+      "Use the outlined CTA (1px #000 border, 8px radius, transparent fill) for every action — there is no filled or ghost variant, this is the only button",
+      "Let photography fill the entire viewport for hero and feature sections — 0px corner radius on all image containers, the photo bleeds to the grid line",
+      "Hold element gaps to 10px and section gaps to 60-80px — the compact density is what makes the white space feel intentional rather than empty",
+      "Use 16px card radius (not 12px, not 8px) on any card surface that contains text — the extra softness separates editorial content from the harder 8px button geometry"
+    ],
+    "donts": [
+      "Never introduce an accent color, brand color, or chromatic highlight — the system has none by design, the photography provides all warmth",
+      "Never use a drop-shadow, box-shadow, or elevation token to group content — use a 1px border or whitespace instead, this is a flat system",
+      "Never set a display headline at weight 500+ — the headline must whisper at 400 to preserve the editorial register",
+      "Never use positive letter-spacing on sizes above 16px — the positive tracking is reserved for the 11-14px small-caps label tier only",
+      "Never use a filled or solid button — the outlined 1px border is the only button geometry in the system",
+      "Never apply the 16px card radius to images — images are always hard-edged (0px), the 16px is for text-bearing surfaces only",
+      "Never place body text directly on a full-color photograph without a tonal treatment — the hero overlay uses #ffffff text, and any text on a photograph must be either pure white or pure black to survive the contrast"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Press Black",
+        "role": "Primary text, 1px hairlines, icon strokes, outlined button borders. The structural ink of the entire system — every border, every label, every headline resolves to this single value",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Gallery White",
+        "role": "Page canvas, card surfaces, button text on dark surfaces, inverse overlay backgrounds. The unbroken ground on which every photograph sits",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b8b8b8",
+        "name": "Plate Gray",
+        "role": "Subtle disabled state, placeholder fill, secondary metadata. Reads as 10.6:1 on black (safe for muted labels) but only 2.0:1 on white — never use as body text on the default canvas",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed max-width ~1280px centered container. Hero is a single 100vw × ~100vh photograph with a text overlay in the lower-left third — no split layout, no card hero, no video. Below the fold, the rhythm alternates: a centered 4-column feature grid, then a full-bleed 2- or 3-column image grid, then a black footer band. Sections are separated by 60-80px vertical whitespace, never by dividers. Navigation is a transparent bar absolutely positioned over the hero, becoming part of the page flow as the user scrolls. The layout reads as a long-scroll editorial spread — closer to a print catalog than a typical product page.",
+    "imagery": "Photography is the entire visual system. The site uses no illustrations, no icons beyond simple line glyphs (globe, chevron, arrows), no abstract graphics, and no 3D renders. All imagery is warm, natural-light, editorial interior photography: timber kitchens, natural materials, daylight, human scale. Treatments are full-bleed with hard 0px corners — no rounded masking, no drop-shadow on photos, no duotone or color grading. Images occupy roughly 60% of the page area across the site, dominating the visual hierarchy over every UI element. The system is image-heavy in the sense that the few images shown are large, but the overall density is restrained — usually one full-bleed photograph per screen.",
+    "similar": [
+      {
+        "why": "Same Scandinavian furniture-brand restraint, transparent nav over full-bleed interior photography, Inter at tight tracking, and an exclusively black/white interface that lets the product imagery carry all warmth",
+        "business": "Menu (space.menu)"
+      },
+      {
+        "why": "Editorial Scandi furniture catalog with the same uppercased tracked label openers, hard-edged full-bleed product photography, and a gallery-white canvas with hairline structural borders",
+        "business": "Hem"
+      },
+      {
+        "why": "Modular furniture brand that uses a near-identical monospace label + Inter headline pairing, 0px image corners, and a 4-column feature grid layout for product attributes",
+        "business": "USM"
+      },
+      {
+        "why": "Same museum-catalog posture: large confident display headlines at weight 400 (not bold), 1px black rules instead of shadows, and full-bleed interior photography that does the brand's emotional work",
+        "business": "Vitra"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "8px",
+        "cards": "16px",
+        "buttons": "8px",
+        "imageContainers": "0px (photography is hard-edged to the grid line)"
+      },
+      "elementGap": "10px",
+      "sectionGap": "60-80px",
+      "cardPadding": "",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Default page background and image-negative space between sections"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "level": 2,
+        "purpose": "Reserved as a contrast surface for inverse buttons, footer block, or full-bleed black sections — not used as page background"
+      }
+    ],
+    "northStar": "Scandi atelier under white light — a quiet, hand-built showroom where the only voice is the photograph",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.23
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.25,
+        "letterSpacing": 0.29
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.37
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.79
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.89
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "display",
+        "size": 46,
+        "lineHeight": 1.05,
+        "letterSpacing": -1.93
+      }
+    ],
+    "components": [
+      {
+        "name": "Transparent Top Nav",
+        "role": "Primary navigation that sits over full-bleed hero photography",
+        "description": "Full-width, position-absolute over hero, no background fill. Left cluster: nav links (About, Journal, Inspiration, Design) in Inter 16px weight 400 #000 with 20px horizontal spacing. Center: wordmark 'Stykka' in Inter 22-24px weight 500 #000. Right cluster: language selector and 'Start building' outlined button. 20px vertical padding. No border, no shadow, no background."
+      },
+      {
+        "name": "Outlined CTA Button",
+        "role": "The only button variant on the site — used for every actionable element",
+        "description": "Inter 16px weight 500 #000, 1px solid #000000 border, 8px radius, padding 10px 18px (approx). Transparent fill so it sits cleanly over photography. Hover inverts: fill becomes #000000, text becomes #ffffff. No drop-shadow, no scale transform. The 8px radius is deliberately soft but not pill — it reads as pressed metal, not a tag."
+      },
+      {
+        "name": "Hero Section (Full-Bleed)",
+        "role": "First-screen brand statement",
+        "description": "100vw × ~100vh image, no overlay, no gradient. Text block sits in the lower-left third, aligned to the 10px grid, padded from the viewport edge. Contains a tracked uppercase label, a display headline, and a single CTA. The hero is a photograph first and a layout second — no fake device frames, no illustration, no animation chrome."
+      },
+      {
+        "name": "Hero Overlay Label",
+        "role": "Tracked small-caps category tag above headlines",
+        "description": "Inter 14px weight 500 #ffffff (sits over photography), letter-spacing +0.29px, uppercase. Used in the hero and as the opener of every editorial section — it is the system's only repeated chrome. Color flips to #000000 on white backgrounds."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Primary editorial statement on hero and section openers",
+        "description": "Inter 46px weight 400 #ffffff on hero / #000000 on white sections, line-height 1.05, letter-spacing -1.93px. Weight 400 (not 700) is the signature — the headline never shouts. It is set tight enough to feel architectural, not typeset."
+      },
+      {
+        "name": "Feature Grid Card",
+        "role": "4-column editorial card for product attributes",
+        "description": "Image on top (full-bleed, hard 0px corners, 4:3 or 3:4 aspect), 10px row gap to title, title in Inter 14-16px weight 500 uppercase #000 letter-spacing +0.29px, 10px gap to body, body in Inter 16px weight 400 #000 line-height 1.50. No card surface, no border, no shadow — the image edge IS the card edge. 4 columns on desktop, collapses to 2 then 1."
+      },
+      {
+        "name": "Language Selector",
+        "role": "Locale switcher in nav",
+        "description": "Globe icon (16px stroke, 1px #000) + 'English' in Inter 16px weight 400 + small chevron. No background, no border. Sits inline with other nav elements with 20px gap."
+      },
+      {
+        "name": "Section Header Block",
+        "role": "Editorial opener for a content section",
+        "description": "Stack: tracked uppercase label (14px) → display or heading headline (30-46px) → optional supporting paragraph (16px, max-width ~60ch). Vertically centered or left-aligned to the 10px grid. Generous 60-80px section gap before and after. The header does most of the brand voice work — no decorative graphics."
+      },
+      {
+        "name": "Image Grid (Multi-Column)",
+        "role": "Full-bleed photography showcase below the fold",
+        "description": "2- or 3-column grid of hard-edged images, 10-15px gutters, no captions, no borders. Each image bleeds to the edge of its cell. This is the system's only way of communicating product warmth — by showing it, not by styling it."
+      },
+      {
+        "name": "Inline Text Link",
+        "role": "Links within body copy",
+        "description": "Inter 16px weight 400 #000, 1px underline offset 3px, underline color #000. No color shift, no bold — the link is identified by the underline alone, which keeps the editorial line unbroken."
+      },
+      {
+        "name": "Footer Block",
+        "role": "Closing black band",
+        "description": "Full-width #000000 background, text in #ffffff. Inter 14-16px weight 400. Same 20px internal padding rhythm as the nav. Minimal: a wordmark, a link list, and a copyright line in system-ui 12px. No social icons, no newsletter form — the system stays austere to the end."
+      },
+      {
+        "name": "Monospace Spec Callout",
+        "role": "Editorial accent line for a material or dimension",
+        "description": "Azeret Mono 18px weight 400 #000, line-height 1.00, letter-spacing -0.18px. Single line, full-bleed across the content column. Breaks the Inter rhythm deliberately — use for a quote, a dimension, or a builder's note. Never more than one per page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Primary typeface for everything visible. Weight 400 carries body and nav; weight 500 lifts labels, button text, and the uppercase section openers. Display sizes (30–46px) use aggressive negative tracking (around -0.04em) that pulls letters together so headlines feel set in metal, not typeset. Sub-16px sizes flip to positive tracking (0.021em) for the small-caps label treatment that recurs across hero overlays and section headers",
+        "sizes": "11px, 14px, 16px, 22px, 24px, 30px, 46px",
+        "family": "Inter",
+        "weight": "400, 500",
+        "lineHeight": "1.20, 1.25, 1.50",
+        "substitute": "system-ui, -apple-system, Segoe UI, Roboto",
+        "letterSpacing": "-1.93px at 46px / display, -1.20px at 30px / heading, -0.89px at 24px / heading-sm, -0.79px at 22px / subheading, -0.37px at 16px / body, +0.29px at 14px and +0.23px at 11px / small-caps labels and caption",
+        "fontFeatureSettings": "\"ss01\" on for alternate single-storey 'a' if available, \"tnum\" for tabular numbers in any data row"
+      },
+      {
+        "role": "Reserved for a single editorial moment in the body — a 18px monospace line that breaks the Inter rhythm. Use sparingly, never more than once per page, to mark a hand-set caption, specification, or builder's note",
+        "sizes": "18px",
+        "family": "Azeret Mono",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "IBM Plex Mono, JetBrains Mono, ui-monospace",
+        "letterSpacing": "-0.0100em"
+      },
+      {
+        "role": "Invisible utility tier for the smallest chrome elements — copyright lines, version stamps, decorative micro-labels. Inter is the show; system-ui is the scaffolding you never notice",
+        "sizes": "12px",
+        "family": "system-ui (sans-serif)",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "system-ui, -apple-system, Segoe UI"
+      }
+    ],
+    "description": "Stykka is a Scandinavian kitchen brand that treats the interface like a museum catalog: pure white canvas, black hairline borders, and full-bleed photography that carries every ounce of warmth, color, and craft. The UI is deliberately invisible — there is no accent color, no decoration, no shadow stack — so that the kitchens in the imagery feel like the only subject on screen. Typography does the talking: Inter at tight negative tracking on large display sizes, uppercase tracked labels for section openers, and a system fallback for the tiniest metadata. Spacing is compact and editorial, with 10px gaps between elements and generous white space at the section level. Everything from the nav to the feature grid to the outlined CTA assumes a black-and-white photograph will do the emotional heavy lifting — the system stays out of the way.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b43fdb3c-85e9-4282-9262-1d3deb4b679d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Stykka design system\",\"item\":\"https://styles.refero.design/style/b43fdb3c-85e9-4282-9262-1d3deb4b679d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b43fdb3c-85e9-4282-9262-1d3deb4b679d#style-reference\",\"name\":\"Stykka design system reference\",\"headline\":\"Stykka design system | Refero Styles\",\"description\":\"Explore Stykka's light E-commerce design system: Press Black #000000, Gallery White #ffffff colors, sans-serif, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/b43fdb3c-85e9-4282-9262-1d3deb4b679d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b43fdb3c-85e9-4282-9262-1d3deb4b679d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Stykka\",\"url\":\"https://stykka.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b43fdb3c-85e9-4282-9262-1d3deb4b679d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/eed50dbd-f640-442a-8195-2acbd630b090.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/eed50dbd-f640-442a-8195-2acbd630b090.jpg\",\"caption\":\"Screenshot of Stykka\"},\"image\":\"https://images.refero.design/styles/refero.design/image/eed50dbd-f640-442a-8195-2acbd630b090.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Stykka design system\",\"Stykka website design\",\"Stykka colors\",\"Stykka typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Press Black\",\"Gallery White\",\"Plate Gray\",\"sans-serif\",\"Inter\",\"Azeret Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Stykka design system\"},{\"@type\":\"Thing\",\"name\":\"Stykka website design\"},{\"@type\":\"Thing\",\"name\":\"Stykka colors\"},{\"@type\":\"Thing\",\"name\":\"Stykka typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:22:24.772Z\",\"dateModified\":\"2026-04-30T02:22:24.772Z\"}]}19:T776,QUICK COLOR REFERENCE\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px hairlines only)\n- accent: no distinct accent color (achromatic system — warmth comes from photography)\n- primary action: no distinct CTA color\n\n3-5 EXAMPLE COMPONENT PROMPTS\n\n1. HERO SECTION\nFull-viewport image (100vw × 100vh) with no overlay or gradient. Lower-left text block on a 10px grid, padded 40px from the viewport edge. Small-caps label: Inter 14px weight 500, #ffffff, uppercase, letter-spacing +0.29px, content 'EXPLORE KITCHENS'. Display headline below: Inter 46px weight 400, #ffffff, line-height 1.05, letter-spacing -1.93px, content 'Built to last'. Outlined button below: Inter 16px weight 500, 1px solid #000000 border (visible as a cutout or re-tinted to #ffffff when over dark photography), 8px radius, padding 10px 18px, label 'Start building'.\n\n2. FEATURE GRID CARD\nImage (4:3 aspect, 0px corner radius) on top. 10px row gap. Title: Inter 14px weight 500, #000000, uppercase, letter-spacing +0.29px. 10px gap. Body: Inter 16px weight 400, #000000, line-height 1.50, max-width 32ch. No card surface, no border, no shadow. Arranged in a 4-column grid with 20px column gaps, 40px row gaps.\n\n3. TRANSPARENT TOP NAV\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n4. SECTION HEADER\nStack on a centered 10px grid. Tracked label: Inter 14px weight 500, #000000, uppercase, letter-spacing +0.29px. 20px gap. Headline: Inter 30px weight 400, #000000, line-height 1.10, letter-spacing -1.20px. 20px gap. Optional supporting paragraph: Inter 16px weight 400, #000000, line-height 1.50, max-width 60ch.\n\n5. FOOTER BLOCK\nFull-width #000000 background. 20px internal padding. Inter 14-16px weight 400, #ffffff. Single wordmark left, link list center, copyright in system-ui 12px, #ffffff right. No social icons, no newsletter form."
+      }
+    ],
+    "elevationPhilosophy": "Zero shadow vocabulary. Structure is communicated entirely through 1px hairline borders in #000000 and whitespace. Cards, sections, and feature blocks float by adjacency, not by depth. Adding a drop-shadow breaks the editorial flatness of the system — if you need to group something, draw a border instead."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "heading",
+            "body",
+            "icon",
+            "card",
+            "list",
+            "footer"
+          ],
+          "frequency": 2069,
+          "confidence": 1,
+          "prominence": 51048374.4685789,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 2,
+            "icon/fill": 8,
+            "nav/color": 19,
+            "body/color": 24,
+            "card/color": 6,
+            "hero/color": 2,
+            "icon/color": 6,
+            "list/color": 6,
+            "other/fill": 9,
+            "image/color": 54,
+            "other/color": 288,
+            "footer/color": 1,
+            "heading/color": 1,
+            "nav/borderColor": 76,
+            "body/borderColor": 96,
+            "card/borderColor": 24,
+            "hero/borderColor": 8,
+            "icon/borderColor": 24,
+            "list/borderColor": 24,
+            "image/borderColor": 216,
+            "other/borderColor": 1152,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 14
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "heading",
+            "footer"
+          ],
+          "frequency": 283,
+          "confidence": 1,
+          "prominence": 37768104.1342656,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/color": 11,
+            "body/color": 25,
+            "nav/stroke": 1,
+            "other/fill": 2,
+            "heading/color": 16,
+            "nav/borderColor": 44,
+            "body/borderColor": 100,
+            "heading/borderColor": 64,
+            "nav/backgroundColor": 5,
+            "other/backgroundColor": 11,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b8b8b8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7826037156503541
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 17551.582972704142,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.59,
+          "background": "#000000",
+          "foreground": "#b8b8b8"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.98,
+          "background": "#ffffff",
+          "foreground": "#b8b8b8"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "other",
+            "nav"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingBottom|other",
+            "paddingRight|link"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 32,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "hero",
+            "other",
+            "button",
+            "link",
+            "list",
+            "footer"
+          ],
+          "frequency": 118,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "rowGap|hero",
+            "columnGap|hero",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|list",
+            "columnGap|list",
+            "rowGap|footer",
+            "columnGap|footer"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "footer"
+          ],
+          "frequency": 42,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "card"
+          ],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|hero",
+            "columnGap|hero",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 31,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 33,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "other",
+            "footer"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "nav",
+            "hero"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|hero",
+            "paddingLeft|hero"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 493,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 76,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Azeret Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "button",
+            "link",
+            "icon",
+            "card",
+            "list",
+            "footer"
+          ],
+          "frequency": 493,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.021,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.037,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Azeret Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.023,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.042,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.042,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/74c5717c-7b3c-4e5b-b03b-1db6c5ec0804.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/eed50dbd-f640-442a-8195-2acbd630b090.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b43fdb3c-85e9-4282-9262-1d3deb4b679d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Stykka design system\",\"item\":\"https://styles.refero.design/style/b43fdb3c-85e9-4282-9262-1d3deb4b679d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b43fdb3c-85e9-4282-9262-1d3deb4b679d#style-reference\",\"name\":\"Stykka design system reference\",\"headline\":\"Stykka design system | Refero Styles\",\"description\":\"Explore Stykka's light E-commerce design system: Press Black #000000, Gallery White #ffffff colors, sans-serif, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/b43fdb3c-85e9-4282-9262-1d3deb4b679d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b43fdb3c-85e9-4282-9262-1d3deb4b679d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Stykka\",\"url\":\"https://stykka.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b43fdb3c-85e9-4282-9262-1d3deb4b679d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/eed50dbd-f640-442a-8195-2acbd630b090.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/eed50dbd-f640-442a-8195-2acbd630b090.jpg\",\"caption\":\"Screenshot of Stykka\"},\"image\":\"https://images.refero.design/styles/refero.design/image/eed50dbd-f640-442a-8195-2acbd630b090.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Stykka design system\",\"Stykka website design\",\"Stykka colors\",\"Stykka typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Press Black\",\"Gallery White\",\"Plate Gray\",\"sans-serif\",\"Inter\",\"Azeret Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Stykka design system\"},{\"@type\":\"Thing\",\"name\":\"Stykka website design\"},{\"@type\":\"Thing\",\"name\":\"Stykka colors\"},{\"@type\":\"Thing\",\"name\":\"Stykka typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:22:24.772Z\",\"dateModified\":\"2026-04-30T02:22:24.772Z\"}]}19:T776,QUICK COLOR REFERENCE\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px hairlines only)\n- accent: no distinct accent color (achromatic system — warmth comes from photography)\n- primary action: no distinct CTA color\n\n3-5 EXAMPLE COMPONENT PROMPTS\n\n1. HERO SECTION\nFull-viewport image (100vw × 100vh) with no overlay or gradient. Lower-left text block on a 10px grid, padded 40px from the viewport edge. Small-caps label: Inter 14px weight 500, #ffffff, uppercase, letter-spacing +0.29px, content 'EXPLORE KITCHENS'. Display headline below: Inter 46px weight 400, #ffffff, line-height 1.05, letter-spacing -1.93px, content 'Built to last'. Outlined button below: Inter 16px weight 500, 1px solid #000000 border (visible as a cutout or re-tinted to #ffffff when over dark photography), 8px radius, padding 10px 18px, label 'Start building'.\n\n2. FEATURE GRID CARD\nImage (4:3 aspect, 0px corner radius) on top. 10px row gap. Title: Inter 14px weight 500, #000000, uppercase, letter-spacing +0.29px. 10px gap. Body: Inter 16px weight 400, #000000, line-height 1.50, max-width 32ch. No card surface, no border, no shadow. Arranged in a 4-column grid with 20px column gaps, 40px row gaps.\n\n3. TRANSPARENT TOP NAV\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n4. SECTION HEADER\nStack on a centered 10px grid. Tracked label: Inter 14px weight 500, #000000, uppercase, letter-spacing +0.29px. 20px gap. Headline: Inter 30px weight 400, #000000, line-height 1.10, letter-spacing -1.20px. 20px gap. Optional supporting paragraph: Inter 16px weight 400, #000000, line-height 1.50, max-width 60ch.\n\n5. FOOTER BLOCK\nFull-width #000000 background. 20px internal padding. Inter 14-16px weight 400, #ffffff. Single wordmark left, link list center, copyright in system-ui 12px, #ffffff right. No social icons, no newsletter form."
+}

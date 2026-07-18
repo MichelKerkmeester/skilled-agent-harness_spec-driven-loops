@@ -1,0 +1,327 @@
+{
+  "color": {
+    "soot": {
+      "$value": "#24241f",
+      "$type": "color",
+      "$description": "Soot — Primary text, all icon strokes, hairline borders, nav links, footer text — the single dark voice of the system"
+    },
+    "limestone": {
+      "$value": "#d1d3cf",
+      "$type": "color",
+      "$description": "Limestone — Page canvas, announcement bar, nav background — the warm-tinted near-gray that replaces white as the system's base tone"
+    },
+    "chalk": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Chalk — Secondary surface, subtle borders, product photo backgrounds — a slightly cooler neutral for layering atop Limestone"
+    },
+    "graphite": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Graphite — Dark button fill — the only filled surface in the system, used sparingly for a single tonal shift from the Soot text"
+    }
+  },
+  "font": {
+    "gp": {
+      "$value": "GP",
+      "$type": "fontFamily",
+      "$description": "Universal typeface — used for nav, body, headings, buttons, and footer at weight 400 only. The single-weight constraint is the signature: no bold, no light, no medium. Hierarchy comes from size (13→48px) and tracking (0.0110em body, 0.0390em display), not weight contrast. The slight positive tracking gives the type an editorial, architectural quality."
+    },
+    "gtstandard-m": {
+      "$value": "GTStandard-M",
+      "$type": "fontFamily",
+      "$description": "GTStandard-M — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 13px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 13px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 13px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 13px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.77
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "GTStandard-M",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "GP",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 0.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "143": {
+      "$value": "143px",
+      "$type": "dimension",
+      "$description": "Spacing 143px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    }
+  },
+  "surface": {
+    "limestone-canvas": {
+      "$value": "#d1d3cf",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, nav, announcement bar — the base warm gray that defines the entire tonal range"
+    },
+    "chalk-surface": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Surface level 1: Product photography backgrounds, subtle dividers — cooler neutral for the white plinths in product shots"
+    },
+    "graphite-button": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Surface level 2: Rare dark button fill — the only tonal step down from text, used for single-purpose dark actions"
+    },
+    "soot-text": {
+      "$value": "#24241f",
+      "$type": "color",
+      "$description": "Surface level 3: Text, icon strokes, hairline borders — functions as the darkest surface in the tonal stack"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.uy-studio.com",
+      "siteName": "UY Studio",
+      "extractedAt": "2026-06-03T19:24:56.148Z",
+      "variant": "extended"
+    }
+  }
+}

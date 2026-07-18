@@ -1,0 +1,88 @@
+:root {
+  /* Colors */
+  --color-forest-ink: #0b392f;
+  --color-iris: #6f52d3;
+  --color-deep-iris: #6043ba;
+  --color-soft-iris: #7f6de1;
+  --color-lime-spark: #abf625;
+  --color-mint-pulse: #0cea9e;
+  --color-deep-moss: #0b704e;
+  --color-warm-stone: #e7e5e4;
+  --color-mist: #f6f7f7;
+  --color-pure: #ffffff;
+  --color-charcoal: #171c1b;
+  --color-sage-gray: #9caca6;
+  --color-lichen: #778a83;
+  --color-slate-dark: #333c39;
+  --color-onyx: #000000;
+
+  /* Typography — Font Families */
+  --font-planar: 'Planar', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.4;
+  --tracking-caption: 0.18px;
+  --text-body: 14px;
+  --leading-body: 1.5;
+  --text-heading-sm: 22px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -0.55px;
+  --text-heading: 26px;
+  --leading-heading: 1.15;
+  --tracking-heading: -0.65px;
+  --text-heading-lg: 32px;
+  --leading-heading-lg: 1.15;
+  --tracking-heading-lg: -0.8px;
+  --text-display: 36px;
+  --leading-display: 1;
+  --tracking-display: -0.9px;
+
+  /* Typography — Weights */
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-5: 5px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-13: 13px;
+  --spacing-15: 15px;
+  --spacing-20: 20px;
+  --spacing-25: 25px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-61: 61px;
+  --spacing-100: 100px;
+  --spacing-134: 134px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 40px;
+  --card-padding: 20px;
+  --element-gap: 8-10px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-cards: 12px;
+  --radius-pills: 9999px;
+  --radius-small: 4px;
+  --radius-images: 8px;
+  --radius-buttons: 8px;
+
+  /* Shadows */
+  --shadow-md: rgba(0, 0, 0, 0.25) 0px 0px 15px 0px;
+  --shadow-subtle: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;
+
+  /* Surfaces */
+  --surface-warm-stone-canvas: #e7e5e4;
+  --surface-mist: #f6f7f7;
+  --surface-pure: #ffffff;
+  --surface-slate-dark: #333c39;
+}

@@ -1,0 +1,1215 @@
+{
+  "source": "https://styles.refero.design/style/91939ad3-9e22-4256-a396-a1716a064ac4",
+  "uuid": "91939ad3-9e22-4256-a396-a1716a064ac4",
+  "name": "Transform",
+  "northStar": "stage poster pinned to warm blush paper",
+  "capturedAt": "2026-07-18T07:37:16.850Z",
+  "meta": {
+    "url": "https://transformfestival.org",
+    "siteName": "Transform",
+    "extractedAt": "2026-06-03T20:15:39.938Z",
+    "durationMs": 32217,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 189,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Walsheim 700–900 for all headings and display text — never below 700, the heavy weight is the brand's voice",
+      "Use 50px border-radius only on pill chips and link tags, and 0px on everything else — the radius dichotomy is intentional",
+      "Use -0.02em tracking across every size; do not relax it on display headlines",
+      "Anchor the page on the Blush Cardstock (#f4ede9) canvas; let dark sections earn their place as full-bleed bands",
+      "Reserve Spotlight Magenta (#fb00c2) for primary CTAs and editorial emphasis; never use it as a passive background",
+      "Keep the palette to three chromatic accents plus the cream/black/white neutrals; resist adding more colors",
+      "Use full-bleed photographs as section backgrounds with no gradient overlay or border"
+    ],
+    "donts": [
+      "Do not introduce shadows, glows, or blur effects — depth is built through flat color, not elevation",
+      "Do not use thin or light weights (under 700) for headings or display text",
+      "Do not round cards, buttons, or images — only pills get radius",
+      "Do not use Curtain Orange (#ff1e00) for buttons or CTAs — it is a decorative editorial accent only",
+      "Do not place content directly on Spotlight Magenta or Festival Violet without testing contrast; always use Paper White for text on these surfaces",
+      "Do not stack more than two chromatic accents in one component — the palette relies on restraint",
+      "Do not use gradients — no gradient tokens exist and the system is deliberately flat"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f4ede9",
+        "name": "Blush Cardstock",
+        "role": "Page background, nav surface, dominant canvas — the warm paper everything sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, section headings, hairline borders, icon strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Card surface, dark-section text, button labels on chromatic fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d9d9d9",
+        "name": "Ash Gray",
+        "role": "Alternate card surface when a quieter neutral block is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#767676",
+        "name": "Steel Gray",
+        "role": "Muted input borders, secondary helper strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#340068",
+        "name": "Festival Violet",
+        "role": "Full-bleed section bands, secondary filled CTA, footer background — heavy, immersive, sets the serious stage",
+        "group": "brand"
+      },
+      {
+        "hex": "#fb00c2",
+        "name": "Spotlight Magenta",
+        "role": "Primary filled CTA (DONATE), pull-quote text, heading borders, interactive emphasis — the loudest ink, reserved for moments that demand attention",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff1e00",
+        "name": "Curtain Orange",
+        "role": "Pull-quote attribution, decorative heading borders — the warm third color that gives the palette a poster-like three-ink depth",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed sections stacked vertically with no container constraint at the section level — each band fills the viewport width. Within bands, content is max-width 1200px centered. The page opens with a full-viewport dark photo hero with left-aligned display headline, then alternates between Blush Cardstock and Festival Violet full-bleed bands. Editorial rhythm: hero → cream grid → violet quote band → cream news grid → violet footer. Card grids use 4 columns at desktop collapsing to 2 then 1. Vertical rhythm is generous: 48–80px between sections, 16px between elements within a card. Navigation is a single top bar with a wordmark, inline links, and a right-aligned magenta CTA plus outlined social icons.",
+    "imagery": "Photography is the dominant visual language: large, atmospheric performance shots captured during live shows — stage lighting, audience silhouettes, dancers mid-motion. Images are treated full-bleed with no border, no rounding, and no overlay gradient; the raw photograph is the section. Subjects are stage-focused, high-contrast, often darker and warmer than the page, creating natural visual contrast against the blush canvas. There is no illustration system; the only graphic elements are outlined social icons.",
+    "similar": [
+      {
+        "why": "Performing arts venue using oversized geometric sans-serif headlines, flat color blocking, and dark photographic hero panels with no gradient overlays",
+        "business": "Barbican Centre"
+      },
+      {
+        "why": "Contemporary arts institution combining a warm cream canvas with bold magenta-pink accents and heavy display type",
+        "business": "ICA London"
+      },
+      {
+        "why": "Editorial publication with a blush cream background, saturated three-color accent palette, and flat unshadowed components",
+        "business": "Bold Italic"
+      },
+      {
+        "why": "Cultural venue using heavy display typography on warm neutral surfaces with full-bleed photographic sections",
+        "business": "Haus der Kunst"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "50px",
+        "cards": "0px",
+        "links": "50px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#f4ede9",
+        "name": "Blush Cardstock",
+        "level": 1,
+        "purpose": "Default page canvas and nav surface"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 2,
+        "purpose": "Card body, button labels on chromatic fills"
+      },
+      {
+        "hex": "#d9d9d9",
+        "name": "Ash Gray",
+        "level": 3,
+        "purpose": "Alternate card surface for quieter content blocks"
+      },
+      {
+        "hex": "#ff1e00",
+        "name": "Curtain Orange",
+        "level": 4,
+        "purpose": "Section-band accent (rare, used decoratively)"
+      },
+      {
+        "hex": "#fb00c2",
+        "name": "Spotlight Magenta",
+        "level": 5,
+        "purpose": "Section-band accent for editorial emphasis"
+      },
+      {
+        "hex": "#340068",
+        "name": "Festival Violet",
+        "level": 6,
+        "purpose": "Full-bleed dark bands, footer, immersive sections"
+      }
+    ],
+    "northStar": "stage poster pinned to warm blush paper",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.45,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.45,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.38,
+        "letterSpacing": -0.44
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.38,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.12
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1,
+        "letterSpacing": -1.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Magenta CTA",
+        "role": "Donate and other high-priority filled action buttons",
+        "description": "Filled rectangle in Spotlight Magenta (#fb00c2), white (#ffffff) label, no radius (0px), 8px vertical / 16px horizontal padding, Walsheim 700–800 uppercase at 16–18px. Sits on cream or dark sections; the saturated fill against neutral surroundings is the primary visual trigger."
+      },
+      {
+        "name": "Secondary Violet CTA",
+        "role": "Lower-priority filled action, event recaps, dark-band call-to-action",
+        "description": "Filled rectangle in Festival Violet (#340068), white label, 0px radius, 8px / 16px padding, Walsheim 700–800 uppercase. Used when the page context is already light and a second weighty action is needed without repeating the magenta voice."
+      },
+      {
+        "name": "Ghost Navigation Link",
+        "role": "Primary nav items, inline text links",
+        "description": "Black (#000000) text on cream, Walsheim 700 at 16–18px, no underline by default, 50px border-radius reserved for chip/tag treatment. When used as a chip/badge, wraps in a hairline border with the same 50px pill radius."
+      },
+      {
+        "name": "Header Bar",
+        "role": "Persistent top navigation across all pages",
+        "description": "Full-bleed Blush Cardstock (#f4ede9) bar, wordmark 'TRANSFORM' left in Walsheim 800–900 uppercase, nav items inline, DONATE button and outlined social icons right. Vertical padding 8–16px, no shadow, no border."
+      },
+      {
+        "name": "Hero Stage Panel",
+        "role": "Above-the-fold performance introduction",
+        "description": "Full-bleed dark stage photograph as background, left-aligned display headline at 56–80px Walsheim 800–900 in Paper White, sub-line in smaller white body weight, dark violet secondary CTA anchored bottom-left. No gradient overlay; the photograph itself provides the tonal floor."
+      },
+      {
+        "name": "Pull-Quote Band",
+        "role": "Editorial testimonials, press quotes, voice-of-the-festival moments",
+        "description": "Full-bleed Festival Violet (#340068) section, left-aligned display-size pull quote in Spotlight Magenta (#fb00c2) at 40–56px Walsheim 700, attribution on a new line in Curtain Orange (#ff1e00) at 22–24px. Carousel pagination dots below in magenta/white."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Introduces news, archive, programme, and content grids",
+        "description": "Centered display heading in Ink Black, Walsheim 800–900 at 40–56px, single line where possible. Sits on Blush Cardstock with 48–80px vertical breathing room above and below. No underline, no decoration — the weight and size carry the emphasis."
+      },
+      {
+        "name": "News Card",
+        "role": "Editorial card in content grids (news, opportunities, archive)",
+        "description": "Top-anchored photograph fills the card, title and meta sit on Paper White (#ffffff) or Ash Gray (#d9d9d9) below the image, 0px radius, no border, no shadow. Grid: 4 columns on desktop, 2 on tablet, 1 on mobile, 16px column gap."
+      },
+      {
+        "name": "Input Field",
+        "role": "Newsletter, search, and form fields",
+        "description": "Ink Black (#000000) text on Paper White, 1px solid Steel Gray (#767676) border, 0px radius, 1px vertical / 2px horizontal padding shown in raw data but typical 12–16px effective padding, Walsheim 400 at 16px. Focus state thickens border to 2px in Ink Black."
+      },
+      {
+        "name": "Outlined Social Icon",
+        "role": "Instagram, Facebook, ticket-link icons in header and footer",
+        "description": "Square or circular outlined glyph in Ink Black (header) or Paper White (footer), ~20–24px box, 1.5–2px stroke, no fill. Sits inline with nav items."
+      },
+      {
+        "name": "Page Footer",
+        "role": "Site-wide closing band",
+        "description": "Full-bleed Festival Violet (#340068) background, Paper White text and links, generous 48–80px vertical padding, multi-column layout for addresses, social, and legal. The dark band visually seals the page against the warm cream body."
+      },
+      {
+        "name": "Pill Link Chip",
+        "role": "Tag, category, or filterable inline link",
+        "description": "50px border-radius pill, Ink Black 1px border on Blush Cardstock fill, Walsheim 700 at 16px, 8px vertical / 16px horizontal padding. The only place 50px radius appears — it signals 'clickable' without needing color."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family type system used for everything from nav to display; the broad weight range (400–900) carries the entire tonal system so color never has to shout alone",
+        "sizes": "16px, 18px, 22px, 24px, 40px, 56px, 80px",
+        "family": "Walsheim",
+        "weight": "400, 700, 800, 900",
+        "lineHeight": "1.00–1.45 (tight on display, generous on body)",
+        "substitute": "Plus Jakarta Sans or Inter for the closest freely available geometric sans with comparable weight range; DM Sans as a fallback",
+        "letterSpacing": "-0.02em across all sizes — tight tracking prevents the heavy weights from feeling slab-like and keeps body text compact"
+      }
+    ],
+    "description": "Transform uses a theatrical broadside language: a warm blush cream canvas carries the entire site while oversized geometric headlines shout in heavy Walsheim weights. The palette is intentionally limited to three loud accents — spotlight magenta, festival violet, and stage orange — deployed like a punk poster printer's ink set, each one earning its place on a flat, unshadowed surface. Depth comes from full-bleed color blocking, not elevation, so sections read like clipped broadsheets stacked on warm paper. Components are weighty and rectangular; only links and a few interactive chips receive the 50px pill radius, making them feel like stickers pressed onto the page. Typography does the emotional work: weight 700–900 at 56–80px carries theatrical volume, while tight -0.02em tracking keeps the heavy forms from sprawling.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/91939ad3-9e22-4256-a396-a1716a064ac4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Transform design system\",\"item\":\"https://styles.refero.design/style/91939ad3-9e22-4256-a396-a1716a064ac4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/91939ad3-9e22-4256-a396-a1716a064ac4#style-reference\",\"name\":\"Transform design system reference\",\"headline\":\"Transform design system | Refero Styles\",\"description\":\"Explore Transform's light Media design system: Blush Cardstock #f4ede9, Ink Black #000000 colors, Walsheim typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/91939ad3-9e22-4256-a396-a1716a064ac4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/91939ad3-9e22-4256-a396-a1716a064ac4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Transform\",\"url\":\"https://transformfestival.org\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/91939ad3-9e22-4256-a396-a1716a064ac4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4fe01a99-39e0-4edd-8a4a-71982125cc11.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4fe01a99-39e0-4edd-8a4a-71982125cc11.jpg\",\"caption\":\"Screenshot of Transform\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4fe01a99-39e0-4edd-8a4a-71982125cc11.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Transform design system\",\"Transform website design\",\"Transform colors\",\"Transform typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Blush Cardstock\",\"Ink Black\",\"Paper White\",\"Ash Gray\",\"Walsheim\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Transform design system\"},{\"@type\":\"Thing\",\"name\":\"Transform website design\"},{\"@type\":\"Thing\",\"name\":\"Transform colors\"},{\"@type\":\"Thing\",\"name\":\"Transform typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T02:41:43.996Z\",\"dateModified\":\"2026-04-30T02:41:43.996Z\"}]}19:T531,Quick Color Reference:\n- text: #000000\n- background: #f4ede9\n- border: #000000\n- accent: #fb00c2\n- primary action: #fb00c2 (filled action)\n- dark band: #340068\n- editorial accent: #ff1e00\n\nExample Component Prompts:\n1. Create a primary donate button: filled Spotlight Magenta (#fb00c2) background, Paper White (#ffffff) label, Walsheim 800 uppercase at 18px, 8px vertical padding, 16px horizontal padding, 0px border-radius.\n2. Create a pull-quote band: full-bleed Festival Violet (#340068) background, left-aligned display quote in Spotlight Magenta (#fb00c2) at 56px Walsheim 700 with -1.12px tracking, attribution below in Curtain Orange (#ff1e00) at 24px Walsheim 700, 80px vertical padding.\n3. Create a news card: top-anchored full-bleed photograph, 0px border-radius, Paper White (#ffffff) body below, title in Ink Black (#000000) at 22px Walsheim 700 with -0.44px tracking, 16px internal padding.\n4. Create a header bar: Blush Cardstock (#f4ede9) background, wordmark 'TRANSFORM' in Walsheim 900 at 24px uppercase in Ink Black, nav links inline in Walsheim 700 at 18px, magenta DONATE button right-aligned, outlined social icons after it.\n5. Create a section heading: centered Ink Black (#000000) text in Walsheim 900 at 56px with -1.12px tracking, 80px vertical breathing room above and below, single line, no decoration."
+      },
+      {
+        "title": "Color Pairing Rules",
+        "content": "The three chromatic accents are designed to work as a three-ink poster set, not as independent UI states. Use them in this hierarchy: Festival Violet for full-bleed immersive bands (footer, quote, feature sections), Spotlight Magenta for the single loudest moment per page (one CTA, one pull-quote, one emphasis), Curtain Orange as a decorative third — almost always a single word or attribution, never a full component. Never combine all three in the same component; two maximum, and only when one is acting as a foreground accent against the other as background."
+      }
+    ],
+    "elevationPhilosophy": "No shadows detected and no elevation token is used. Depth is built entirely through flat color blocking — full-bleed sections, contrasted band backgrounds, and saturated fills against the warm cream canvas. Components sit on the surface like clipped paper, never floating."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "card",
+            "body",
+            "link",
+            "icon",
+            "input",
+            "nav",
+            "button"
+          ],
+          "frequency": 338,
+          "confidence": 1,
+          "prominence": 25873647.827670164,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 12,
+            "body/color": 9,
+            "card/color": 12,
+            "hero/color": 1,
+            "icon/color": 6,
+            "link/color": 4,
+            "icon/stroke": 8,
+            "image/color": 4,
+            "input/color": 5,
+            "other/color": 11,
+            "button/color": 1,
+            "other/stroke": 8,
+            "nav/borderColor": 48,
+            "body/borderColor": 36,
+            "card/borderColor": 48,
+            "hero/borderColor": 4,
+            "icon/borderColor": 24,
+            "link/borderColor": 16,
+            "image/borderColor": 16,
+            "input/borderColor": 16,
+            "other/borderColor": 44,
+            "button/borderColor": 4,
+            "image/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f4ede9",
+          "oklch": {
+            "c": 0.009297678880418488,
+            "h": 52.098933831284974,
+            "l": 0.9504446168025896
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "heading",
+            "button",
+            "footer",
+            "input"
+          ],
+          "frequency": 293,
+          "confidence": 1,
+          "prominence": 16294356.084969442,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 11,
+            "nav/color": 24,
+            "body/color": 2,
+            "link/color": 3,
+            "other/fill": 22,
+            "other/color": 17,
+            "footer/color": 1,
+            "heading/color": 3,
+            "nav/borderColor": 96,
+            "body/borderColor": 8,
+            "link/borderColor": 12,
+            "other/borderColor": 68,
+            "footer/borderColor": 4,
+            "heading/borderColor": 12,
+            "link/backgroundColor": 4,
+            "input/backgroundColor": 3,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#340068",
+          "oklch": {
+            "c": 0.15191941009312618,
+            "h": 296.6894172489184,
+            "l": 0.27934923947113843
+          },
+          "contexts": [
+            "button",
+            "other",
+            "footer"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 3974392,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fb00c2",
+          "oklch": {
+            "c": 0.28542671816271703,
+            "h": 342.16301154460774,
+            "l": 0.6632738162206683
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "button",
+            "link"
+          ],
+          "frequency": 94,
+          "confidence": 1,
+          "prominence": 3973015.0614484074,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 2,
+            "other/color": 8,
+            "button/color": 4,
+            "heading/color": 4,
+            "link/borderColor": 8,
+            "other/borderColor": 32,
+            "button/borderColor": 16,
+            "heading/borderColor": 16,
+            "nav/backgroundColor": 1,
+            "link/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "card",
+            "input",
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 451272.41352589655,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "body/color": 1,
+            "link/color": 1,
+            "other/color": 1,
+            "button/color": 2,
+            "nav/borderColor": 4,
+            "body/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 4,
+            "button/borderColor": 8,
+            "card/backgroundColor": 4,
+            "input/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d9d9d9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8853053140427017
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 262526.4781203447,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ff1e00",
+          "oklch": {
+            "c": 0.25078330007924293,
+            "h": 30.544207582520052,
+            "l": 0.6352958142141273
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 168947.516385279,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "heading/color": 6,
+            "other/borderColor": 16,
+            "heading/borderColor": 24
+          }
+        },
+        {
+          "hex": "#767676",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5658363307995767
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 14159.117522623135,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.1400706279537135,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.14,
+          "background": "#f4ede9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.6,
+          "background": "#340068",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.88,
+          "background": "#d9d9d9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.48,
+          "background": "#340068",
+          "foreground": "#f4ede9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.05,
+          "background": "#d9d9d9",
+          "foreground": "#340068"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.88,
+          "background": "#fb00c2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.44,
+          "background": "#000000",
+          "foreground": "#ff1e00"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.37,
+          "background": "#340068",
+          "foreground": "#fb00c2"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.04,
+          "background": "#340068",
+          "foreground": "#ff1e00"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.86,
+          "background": "#ffffff",
+          "foreground": "#ff1e00"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.57,
+          "background": "#ffffff",
+          "foreground": "#fb00c2"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.34,
+          "background": "#f4ede9",
+          "foreground": "#ff1e00"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.08,
+          "background": "#fb00c2",
+          "foreground": "#f4ede9"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.74,
+          "background": "#d9d9d9",
+          "foreground": "#ff1e00"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.53,
+          "background": "#d9d9d9",
+          "foreground": "#fb00c2"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.41,
+          "background": "#d9d9d9",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.35,
+          "background": "#340068",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.22,
+          "background": "#d9d9d9",
+          "foreground": "#f4ede9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.16,
+          "background": "#ffffff",
+          "foreground": "#f4ede9"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 50,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|input",
+            "marginRight|input",
+            "marginBottom|input"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 36,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "marginTop|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "marginTop|link",
+            "marginTop|body",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "card",
+            "heading",
+            "body",
+            "input"
+          ],
+          "frequency": 68,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "rowGap",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginLeft|nav",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginBottom|heading",
+            "marginBottom|body",
+            "paddingTop|input",
+            "paddingRight|input",
+            "paddingBottom|input",
+            "paddingLeft|input",
+            "marginBottom|input",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Walsheim",
+          "source": "custom",
+          "weights": [
+            400,
+            700,
+            800,
+            900
+          ],
+          "frequency": 149,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Walsheim",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Walsheim",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "nav",
+            "button",
+            "other",
+            "icon",
+            "image"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Walsheim",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "hero",
+            "image",
+            "button",
+            "card",
+            "footer",
+            "input"
+          ],
+          "frequency": 56,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Walsheim",
+          "weight": 700,
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Walsheim",
+          "weight": 800,
+          "contexts": [
+            "nav",
+            "link",
+            "body",
+            "icon",
+            "button"
+          ],
+          "frequency": 15,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Walsheim",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Walsheim",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Walsheim",
+          "weight": 800,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "Walsheim",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Walsheim",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Walsheim",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Walsheim",
+          "weight": 800,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Walsheim",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Walsheim",
+          "weight": 800,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Walsheim",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8800b1f0-8bce-454d-ad72-cd41b8bea61f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4fe01a99-39e0-4edd-8a4a-71982125cc11.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/91939ad3-9e22-4256-a396-a1716a064ac4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Transform design system\",\"item\":\"https://styles.refero.design/style/91939ad3-9e22-4256-a396-a1716a064ac4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/91939ad3-9e22-4256-a396-a1716a064ac4#style-reference\",\"name\":\"Transform design system reference\",\"headline\":\"Transform design system | Refero Styles\",\"description\":\"Explore Transform's light Media design system: Blush Cardstock #f4ede9, Ink Black #000000 colors, Walsheim typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/91939ad3-9e22-4256-a396-a1716a064ac4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/91939ad3-9e22-4256-a396-a1716a064ac4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Transform\",\"url\":\"https://transformfestival.org\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/91939ad3-9e22-4256-a396-a1716a064ac4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4fe01a99-39e0-4edd-8a4a-71982125cc11.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4fe01a99-39e0-4edd-8a4a-71982125cc11.jpg\",\"caption\":\"Screenshot of Transform\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4fe01a99-39e0-4edd-8a4a-71982125cc11.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Transform design system\",\"Transform website design\",\"Transform colors\",\"Transform typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Blush Cardstock\",\"Ink Black\",\"Paper White\",\"Ash Gray\",\"Walsheim\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Transform design system\"},{\"@type\":\"Thing\",\"name\":\"Transform website design\"},{\"@type\":\"Thing\",\"name\":\"Transform colors\"},{\"@type\":\"Thing\",\"name\":\"Transform typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T02:41:43.996Z\",\"dateModified\":\"2026-04-30T02:41:43.996Z\"}]}19:T531,Quick Color Reference:\n- text: #000000\n- background: #f4ede9\n- border: #000000\n- accent: #fb00c2\n- primary action: #fb00c2 (filled action)\n- dark band: #340068\n- editorial accent: #ff1e00\n\nExample Component Prompts:\n1. Create a primary donate button: filled Spotlight Magenta (#fb00c2) background, Paper White (#ffffff) label, Walsheim 800 uppercase at 18px, 8px vertical padding, 16px horizontal padding, 0px border-radius.\n2. Create a pull-quote band: full-bleed Festival Violet (#340068) background, left-aligned display quote in Spotlight Magenta (#fb00c2) at 56px Walsheim 700 with -1.12px tracking, attribution below in Curtain Orange (#ff1e00) at 24px Walsheim 700, 80px vertical padding.\n3. Create a news card: top-anchored full-bleed photograph, 0px border-radius, Paper White (#ffffff) body below, title in Ink Black (#000000) at 22px Walsheim 700 with -0.44px tracking, 16px internal padding.\n4. Create a header bar: Blush Cardstock (#f4ede9) background, wordmark 'TRANSFORM' in Walsheim 900 at 24px uppercase in Ink Black, nav links inline in Walsheim 700 at 18px, magenta DONATE button right-aligned, outlined social icons after it.\n5. Create a section heading: centered Ink Black (#000000) text in Walsheim 900 at 56px with -1.12px tracking, 80px vertical breathing room above and below, single line, no decoration."
+}

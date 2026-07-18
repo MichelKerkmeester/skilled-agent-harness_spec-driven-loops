@@ -1,0 +1,407 @@
+{
+  "color": {
+    "canvas": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Canvas — Page background, default surface — sets the off-white, paper-like base for the entire system"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Product UI panels, card surfaces, elevated content blocks — keeps content crisp against the off-white canvas"
+    },
+    "ink": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Ink — Primary headings and body text — softened black that reads warm rather than harsh"
+    },
+    "graphite": {
+      "$value": "#757577",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, captions, nav labels, muted borders — the everyday gray for supporting copy"
+    },
+    "ash": {
+      "$value": "#aeaeaf",
+      "$type": "color",
+      "$description": "Ash — Tertiary text, disabled labels, faint dividers — the quietest gray in the system"
+    },
+    "outline": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Outline — Hairline borders, icon strokes, divider lines at thin weights — provides structural edges without tonal noise"
+    },
+    "shadow": {
+      "$value": "#cdcdcd",
+      "$type": "color",
+      "$description": "Shadow — Rare single-layer drop-shadow tone used for floating panels and the AI chat popover"
+    },
+    "signal-blue": {
+      "$value": "#008ae8",
+      "$type": "color",
+      "$description": "Signal Blue — Blue outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    },
+    "sky-tint": {
+      "$value": "#e0f2fe",
+      "$type": "color",
+      "$description": "Sky Tint — Notification pill background, subtle blue wash on interactive surfaces — the muted echo of Signal Blue used for non-action highlights"
+    },
+    "blush": {
+      "$value": "#fbcfe8",
+      "$type": "color",
+      "$description": "Blush — Decorative card surface — warm pink wash that frames product screenshots and feature blocks"
+    },
+    "lavender-mist": {
+      "$value": "#e6dafd",
+      "$type": "color",
+      "$description": "Lavender Mist — Decorative card surface — soft purple wash for variety blocks and callout cards"
+    },
+    "mint-foam": {
+      "$value": "#b6edee",
+      "$type": "color",
+      "$description": "Mint Foam — Decorative card surface — cool teal wash for product mockup containers and accent cards"
+    },
+    "powder-blue": {
+      "$value": "#afe4ff",
+      "$type": "color",
+      "$description": "Powder Blue — Decorative card surface — light blue wash used alongside the other pastels for tonal rhythm"
+    },
+    "butter": {
+      "$value": "#ffe77a",
+      "$type": "color",
+      "$description": "Butter — Decorative card surface — warm yellow wash, the highest-contrast pastel used sparingly for emphasis cards"
+    }
+  },
+  "font": {
+    "system-ui": {
+      "$value": "system-ui",
+      "$type": "fontFamily",
+      "$description": "All UI and editorial copy — body at 16/400, subheadings at 18–20/500, section headings at 24–44/600, hero display at 56–64/600. The stack is system-ui (San Francisco / Segoe UI / Inter fallback) so the brand inherits the OS-native feel without licensing a webfont."
+    },
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "Caption-level fallback / metadata text at 12px"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "44px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "56px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "64px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "64px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 0: Page-level background, the off-white desk surface"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Product UI panels, white cards, and elevated content blocks"
+    },
+    "pastel-wash": {
+      "$value": "#fbcfe8",
+      "$type": "color",
+      "$description": "Surface level 2: Decorative product-mockup card frames and feature highlight blocks"
+    },
+    "pastel-wash-alt": {
+      "$value": "#e0f2fe",
+      "$type": "color",
+      "$description": "Surface level 2: Notification pill and soft interactive highlight backgrounds"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://aboardhr.com",
+      "siteName": "Aboard",
+      "extractedAt": "2026-06-03T18:06:00.772Z",
+      "variant": "extended"
+    }
+  }
+}

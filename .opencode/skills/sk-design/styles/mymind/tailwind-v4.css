@@ -1,0 +1,86 @@
+@theme {
+  /* Colors */
+  --color-ember-orange: #ff5924;
+  --color-cobalt-link: #1573dd;
+  --color-midnight-ink: #000000;
+  --color-canvas-white: #f9fafc;
+  --color-pure-white: #ffffff;
+  --color-blush-tint: #fff1f1;
+  --color-mist: #e2e2e2;
+  --color-slate-blue-card: #e5eaf2;
+  --color-parchment-card: #f3f0e7;
+  --color-sage-card: #dde9d3;
+  --color-deep-slate: #3a475a;
+  --color-storm: #4a5465;
+  --color-steel: #717286;
+  --color-slate: #748297;
+  --color-graphite-nav: #24272d;
+  --color-ash: #afb5c1;
+  --color-chalk: #a6a8aa;
+
+  /* Typography */
+  --font-open-sans: 'Open Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-louize-regular-205tf: 'Louize-Regular-205TF', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-louize-italic-205tf: 'Louize-Italic-205TF', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-nunito-semibold-nunito-regular: 'Nunito-SemiBold / Nunito-Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-avenir-lt-w0145-book1475508: 'Avenir LT W01_45 Book1475508', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter-medium-inter-regular: 'Inter-Medium / Inter-Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-neue-haas-grotesk-display: 'neue-haas-grotesk-display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-louize-bold-205tf: 'Louize-Bold-205TF', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-louize-medium-205tf: 'Louize-Medium-205TF', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mymindai-regular: 'mymindai-Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 15px;
+  --leading-caption: 1.33;
+  --tracking-caption: 2px;
+  --text-body: 18px;
+  --leading-body: 1.67;
+  --tracking-body: -0.36px;
+  --text-subheading: 22px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.44px;
+  --text-heading-sm: 32px;
+  --leading-heading-sm: 1.19;
+  --tracking-heading-sm: -1.92px;
+  --text-heading: 52px;
+  --leading-heading: 1;
+  --tracking-heading: -2.08px;
+  --text-heading-lg: 80px;
+  --leading-heading-lg: 0.88;
+  --tracking-heading-lg: -4.96px;
+  --text-display: 140px;
+  --leading-display: 0.85;
+  --tracking-display: -8.68px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-5: 5px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-11: 11px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-50: 50px;
+  --spacing-60: 60px;
+  --spacing-70: 70px;
+  --spacing-100: 100px;
+
+  /* Border Radius */
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 30px;
+  --radius-3xl-2: 36px;
+  --radius-full: 100px;
+  --radius-full-2: 120px;
+
+  /* Shadows */
+  --shadow-xl: rgba(255, 167, 129, 0.44) 0px 57px 60px -54px, rgba(255, 128, 36, 0.27) 0px -27px 50px -40px;
+  --shadow-sm: rgba(140, 142, 151, 0.32) 0px 4px 7px -4px;
+}

@@ -1,0 +1,294 @@
+{
+  "color": {
+    "page-parchment": {
+      "$value": "#dbd5d2",
+      "$type": "color",
+      "$description": "Page Parchment — Primary border color for all containers, cards, nav, body, and links — warm taupe that reads as paper edge, not digital gray"
+    },
+    "ink-black": {
+      "$value": "#271f1b",
+      "$type": "color",
+      "$description": "Ink Black — All text, icons, and heading strokes — warm near-black with brown undertone, never pure #000"
+    },
+    "sheet-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Sheet White — Primary page canvas and white card surfaces. Do not promote it to the primary CTA color"
+    },
+    "felt-gray": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Felt Gray — Secondary surface for badges, subtle panel backgrounds, and inactive card states"
+    },
+    "margin-gray": {
+      "$value": "#888786",
+      "$type": "color",
+      "$description": "Margin Gray — Muted helper text, secondary metadata, and inactive nav items"
+    },
+    "periwinkle-action": {
+      "$value": "#4a83f5",
+      "$type": "color",
+      "$description": "Periwinkle Action — Violet wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "cornflower-wash": {
+      "$value": "#b1cafb",
+      "$type": "color",
+      "$description": "Cornflower Wash — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "dusk-periwinkle": {
+      "$value": "#cedaf3",
+      "$type": "color",
+      "$description": "Dusk Periwinkle — Inset border and subtle blue-tinted edge on elevated or focused elements"
+    }
+  },
+  "font": {
+    "ivyora": {
+      "$value": "IvyOra",
+      "$type": "fontFamily",
+      "$description": "Display and heading serif — used at 64px for hero headlines, 24px for section titles, and 18px for card titles. Weight stays at 400 across all sizes: the serif's contrast and tight tracking (-0.03em at display) do the visual work, not boldness."
+    },
+    "google-sans-flex": {
+      "$value": "Google Sans Flex",
+      "$type": "fontFamily",
+      "$description": "Body, navigation, buttons, and utility text. Stays compact (14-18px) and invisible — its job is legibility, not personality. Weight 500 for nav active states, 400 for body, 600 reserved for button labels."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Google Sans Flex",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Google Sans Flex",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Google Sans Flex",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Google Sans Flex",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Google Sans Flex",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Google Sans Flex",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Google Sans Flex",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "IvyOra",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "IvyOra",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "IvyOra",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px, rgba(0, 0, 0, 0.02) 0px 0px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(61, 122, 245, 0.4) 0px 0px 0px 1px inset, rgba(207, 222, 252, 0.3) 0px 1px 0px 0px inset, rgba(10, 71, 194, 0.2) 0px -1px 0px 0px inset, rgba(13, 89, 242, 0.15) 0px 0px 16px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    },
+    "subtle-4": {
+      "$value": "rgba(219, 213, 210, 0.5) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.8) 1px 1px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-4"
+    },
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the sheet"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Content cards on the same white sheet, defined by 1px warm-taupe borders"
+    },
+    "recessed": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Surface level 2: Badge and inactive panel backgrounds"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://mirror.xyz",
+      "siteName": "Paragraph",
+      "extractedAt": "2026-06-03T20:33:31.523Z",
+      "variant": "extended"
+    }
+  }
+}

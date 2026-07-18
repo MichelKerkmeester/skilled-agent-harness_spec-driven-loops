@@ -1,0 +1,1094 @@
+{
+  "source": "https://styles.refero.design/style/c6d8490d-e3f2-45c8-aebf-fe5f11daf116",
+  "uuid": "c6d8490d-e3f2-45c8-aebf-fe5f11daf116",
+  "name": "Savee",
+  "northStar": "Black canvas for visual curators",
+  "capturedAt": "2026-07-18T07:24:59.424Z",
+  "meta": {
+    "url": "https://savee.it",
+    "siteName": "Savee",
+    "extractedAt": "2026-06-03T21:12:56.364Z",
+    "durationMs": 26142,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 240,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #1500ff Electric Indigo exclusively for the single primary CTA on any given screen — never for secondary actions, links, icons, or decorative elements",
+      "Set display headlines at 96px with line-height 0.96 and letter-spacing -0.04em so the type compresses into a confident sculptural block rather than stretching",
+      "Apply 9999px border-radius to every button, tag, and pill — the pill shape is the system's only control geometry",
+      "Use 14px radius for card and product preview surfaces, and nothing else — keep the shape vocabulary to exactly two radii",
+      "Let the Obsidian canvas (#050505) be the separator between sections — add 64-80px of empty space rather than lines, color shifts, or gradient transitions",
+      "Set body prose at 36px when it needs to carry editorial weight; drop to 18px for functional descriptions. Never use 14-16px for primary page copy",
+      "Keep all text in the neutral palette (#fdfdfd, #d4d4d4, #a3a3a3) — the only chromatic color is the CTA indigo"
+    ],
+    "donts": [
+      "Never use #1500ff for anything other than the primary CTA fill — not for links, not for icons, not for hover states, not for badges",
+      "Never add drop shadows or elevation glows to cards — the system uses surface color shifts (#050505 → #151515 → #1e1e1e) for hierarchy, not shadows",
+      "Never set body text below 16px for primary content — captions and metadata can go to 13-14px, but main copy stays large",
+      "Never introduce additional accent colors, even in illustrations or partner logos — the partner strip stays grayscale to preserve the indigo's dominance",
+      "Never use border-radius values between 0px and 9999px for buttons — the system is binary: fully rounded pills or 14px card corners, nothing in between",
+      "Never apply gradients to backgrounds, buttons, or text — the system is flat monochrome with one solid color exception",
+      "Never use line-height above 1.50 for any text size — the tight line-heights (0.96-1.38) are the system's editorial signature"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#1500ff",
+        "name": "Electric Indigo",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#050505",
+        "name": "Obsidian",
+        "role": "Page canvas, deepest background — the void that all content sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#151515",
+        "name": "Charcoal",
+        "role": "Elevated surface, product preview frames, secondary panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1e1e1e",
+        "name": "Graphite",
+        "role": "Deeper overlay surface, hover states on dark cards, input fields",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fdfdfd",
+        "name": "Paper",
+        "role": "Primary text, inverted surface, button text, high-contrast foreground",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Silver",
+        "role": "Hairline borders, dividers, subtle structural edges",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d4d4d4",
+        "name": "Pearl",
+        "role": "Secondary text, subdued headings, placeholder body copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2f2f2f",
+        "name": "Slate",
+        "role": "Footer borders, low-contrast dividers between dark zones",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a3a3a3",
+        "name": "Ash",
+        "role": "Muted helper text, inactive icons, de-emphasized metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#737373",
+        "name": "Stone",
+        "role": "Tertiary text, timestamps, supplementary labels",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is centered single-column with a max content width around 1200px. The hero opens with a centered display headline, subtext, and single CTA — no split layout, no side imagery. Below the hero, a large product preview frame (Charcoal rectangle) occupies the full content width. A partner logo strip follows as a single horizontal row. Then large left-aligned editorial body text at 36px. Navigation is a floating text-only bar with no background fill. Sections are separated by 64-80px of pure Obsidian canvas — no dividers, no color bands. The rhythm is: massive centered type → large dark product frame → quiet logo strip → oversized prose → void.",
+    "imagery": "Imagery is product-first and user-curated. The hero shows a large product preview frame in Charcoal (#151515) suggesting a dark-mode app interface. Partner logos are rendered in flat grayscale — no color, no depth, no backgrounds. The overall visual density is text-dominant: the 96px headline and 36px body copy occupy far more visual space than any imagery. When user content appears (bookmarks, mood boards), it is presented as raw crops on the Obsidian canvas without decorative frames or treatments.",
+    "similar": [
+      {
+        "why": "Same near-black canvas, oversized editorial typography, single-color or minimal palette, text-dominant hero with no decorative imagery",
+        "business": "Are.na"
+      },
+      {
+        "why": "Same dark-mode product UI with one vivid accent color (Linear uses #5e6ad2 indigo, Savee uses #1500ff), pill-shaped controls, tight line-heights, and surface color stepping instead of shadows",
+        "business": "Linear"
+      },
+      {
+        "why": "Same confident use of large-scale display type (90px+) with tight tracking on dark backgrounds, minimal color, and generous vertical breathing room between sections",
+        "business": "Pitch"
+      },
+      {
+        "why": "Same dark gallery aesthetic for creative tools, pill-shaped CTAs, and the strategy of reserving color exclusively for the single most important action",
+        "business": "VSCO"
+      },
+      {
+        "why": "Same near-black background, pure white type, single blue accent for primary action, pill controls, and the philosophy that restraint in color creates confidence in the product",
+        "business": "Things 3 (Cultured Code)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "14px",
+        "pills": "9999px",
+        "inputs": "9999px",
+        "buttons": "9999px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#050505",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-page background, the void surface"
+      },
+      {
+        "hex": "#151515",
+        "name": "Elevated Panel",
+        "level": 1,
+        "purpose": "Product preview frames, image containers, card surfaces"
+      },
+      {
+        "hex": "#1e1e1",
+        "name": "Deep Overlay",
+        "level": 2,
+        "purpose": "Input fields, nested interactive elements, hover states"
+      }
+    ],
+    "northStar": "Black canvas for visual curators",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.195
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.16
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.38,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 1.33,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.29,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.3
+      },
+      {
+        "role": "heading-lg",
+        "size": 36,
+        "lineHeight": 1.13,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "display-lg",
+        "size": 96,
+        "lineHeight": 0.96,
+        "letterSpacing": -3.84
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Pill Button",
+        "role": "The sole filled action in the system",
+        "description": "Electric Indigo (#1500ff) background, Paper (#fdfdfd) text at 14-16px weight 500, fully rounded 9999px radius, 12px 24px padding. This is the only place the brand color lives — every other interactive element defers to it. Appears once per viewport maximum to preserve its impact."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Secondary action that doesn't compete with the primary",
+        "description": "Transparent background, 1px Paper (#fdfdfd) border at ~30% opacity or full opacity, Paper text at 14px weight 500, 9999px radius, 10px 20px padding. Used for 'Sign up' and 'Join over 1M users' — the outlined variant lets the primary indigo button own the hierarchy."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Minimal top-level site navigation",
+        "description": "Transparent background floating on the Obsidian canvas. Logo at left in Paper white, text-only nav links (Features, Marketplace, What's new, Reviews) centered in Pearl (#d4d4d4) at 14px, auth actions (Log in, Sign up) at right. No background fill, no shadow, no border — the nav exists purely as type on the void."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero-level typography that defines the page",
+        "description": "96px Savee Font weight 500, Paper (#fdfdfd), line-height 0.96, letter-spacing -0.04em. The extreme tightness and massive scale make it read as a single sculptural block. Centered horizontally with generous top/bottom breathing room (64-80px). The hero is centered single-column — no split layout, no side imagery."
+      },
+      {
+        "name": "Editorial Body Block",
+        "role": "Long-form persuasive text at unusual scale",
+        "description": "36px Savee Font weight 400, Paper (#fdfdfd), line-height 1.13, letter-spacing -0.01em. This is body copy at headline scale — 36px is massive for prose, creating a magazine-like reading experience. Left-aligned, max-width ~800px, sits below the hero with 48-64px separation."
+      },
+      {
+        "name": "Partner Logo Strip",
+        "role": "Social proof band",
+        "description": "Single horizontal row of grayscale brand logos (Apple, Google, Nike, Adobe, Pentagram, Airbnb, MWS) in Ash (#a3a3a3) or Pearl (#d4d4d4), evenly distributed across the full content width. Preceded by a small caption in Stone (#737373) at 13px. No logos colored, no hover effects — the strip is quiet authority."
+      },
+      {
+        "name": "Product Preview Frame",
+        "role": "Large product screenshot or video container below the hero",
+        "description": "Charcoal (#151515) background surface filling most of the viewport width, 14px border-radius, no border, no shadow. The subtle lift from canvas (#050505) to surface (#151515) is the only elevation cue — no drop shadows are used anywhere in the system."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline navigation within body copy",
+        "description": "Inherits body color (Paper or Pearl) with underline on hover only. No chromatic links — even interactive text stays in the neutral palette, reserving Electric Indigo exclusively for the primary CTA."
+      },
+      {
+        "name": "Subhead Caption",
+        "role": "Descriptive subtext under headlines",
+        "description": "16-18px Savee Font weight 400, Pearl (#d4d4d4), centered, line-height 1.50. Sits 16-24px below the display headline. The muted color creates a clear visual step-down from the headline without using a different size or weight."
+      },
+      {
+        "name": "Full-Width Section Spacer",
+        "role": "Vertical rhythm between page sections",
+        "description": "64-80px of pure Obsidian canvas with no visual element. Sections breathe into the void — no dividers, no background color shifts, no gradient transitions. The darkness itself is the separator."
+      },
+      {
+        "name": "Footer Divider",
+        "role": "Low-contrast structural edge",
+        "description": "1px horizontal line in Slate (#2f2f2f) or Silver (#e5e5e5) at ~10% opacity, spanning the content width. The only structural border in the entire system — used to separate the footer from the page body."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole typeface — a custom geometric sans used at every scale. Weight 400 carries the editorial body and nav; weight 500 appears on buttons and emphasized labels. The 96px display at 0.96 line-height with -0.04em tracking is the system's signature: it compresses into a dense confident block rather than stretching vertically, making the headline feel sculptural.",
+        "sizes": "13, 14, 16, 18, 21, 24, 30, 36, 60, 96",
+        "family": "Savee Font",
+        "weight": "400, 500",
+        "lineHeight": "0.96, 1.00, 1.11, 1.13, 1.23, 1.25, 1.29, 1.33, 1.38, 1.50",
+        "substitute": "Inter, DM Sans, or Satoshi (geometric sans-serifs with similar x-height proportions and tight default tracking)",
+        "letterSpacing": "-0.04em at 96px, -0.02em at 60px, -0.01em at 36-30px, normal at 24-18px, +0.01em at 16px, +0.015em at 14-13px"
+      }
+    ],
+    "description": "Savee operates in near-total darkness: an almost pure black canvas (#050505) where the only chromatic element is a single electric indigo (#1500ff) that punctuates the interface like a neon gallery light. Typography does all the heavy lifting — a single custom sans-serif used at every level, from 96px display headlines with 0.96 line-height and -0.04em tracking down to 13px captions, creating a confident editorial rhythm that feels more like a museum wall than a SaaS dashboard. Surfaces are barely distinguishable: the page canvas, elevated cards (#151515), and deeper overlays (#1e1e1e) form a near-invisible hierarchy that lets imagery and type carry the experience. The lone violet accent on the primary CTA is the only visual noise the system permits — everything else is white type on black, pill-shaped controls, and generous 64px section breathing room.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "**Quick Color Reference**\n- text: #fdfdfd\n- background: #050505\n- border: #e5e5e5\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n\n2. Create an editorial body section: #050505 background. Left-aligned prose at 36px Savee Font weight 400, #fdfdfd, line-height 1.13, letter-spacing -0.36px. Max-width 800px. No drop shadows, no card backgrounds — text sits directly on the void.\n\n3. Create a product preview frame: #151515 background, 14px border-radius, full content width (max 1200px), no border, no shadow. Suggests a dark app interface screenshot.\n\n\n5. Create a partner logo strip: single horizontal row of 8 grayscale logos in #a3a3a3, evenly spaced across full content width. Preceded by a caption at 13px #737373 reading 'Used by leading design studios and teams'. No colored logos, no hover effects."
+      },
+      {
+        "title": "Radius Philosophy",
+        "content": "The system uses exactly two radius values: 9999px for all interactive elements (buttons, tags, pills, inputs) creating a soft pill shape, and 14px for all passive surfaces (cards, product frames, preview containers). No 4px, no 8px, no 16px. The pill controls and the softly rounded cards together define the system's tactile language — buttons feel like physical pills you press, surfaces feel like slightly rounded frames. This binary radius vocabulary is as important as the color palette to the system's identity."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids drop shadows entirely. Hierarchy is expressed through surface color steps (#050505 canvas → #151515 elevated panel → #1e1e1 deep overlay) and through type scale alone. The absence of shadows is a signature choice — it keeps the interface feeling like a flat gallery wall rather than a layered software product."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e5e5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9219060167761346
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "heading",
+            "icon",
+            "list"
+          ],
+          "frequency": 776,
+          "confidence": 1,
+          "prominence": 60370711.35419879,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d4d4d4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8699435455856324
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 46,
+          "confidence": 1,
+          "prominence": 34924233.00301367,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#050505",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1149182763483161
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "heading"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 18520368,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fdfdfd",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9940481626903693
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "heading",
+            "footer",
+            "icon",
+            "list"
+          ],
+          "frequency": 118,
+          "confidence": 1,
+          "prominence": 8162361.060914476,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2f2f2f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.305191278401601
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1895912.3376779035,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#151515",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.19573496075691943
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 1712472.7339041731,
+          "properties": [
+            "color",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a3a3a3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7154735289549714
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 58,
+          "confidence": 1,
+          "prominence": 844241.6345861154,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#737373",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5555267576690717
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 9342.509241045138,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1500ff",
+          "oklch": {
+            "c": 0.3106486681424872,
+            "h": 265.65443659149526,
+            "l": 0.45540127070538156
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8313,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1e1e1e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23503112514957922
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 7970.530449340333,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#525252",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.43860476002652315
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3528,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0007996104714092334,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.04,
+          "background": "#fdfdfd",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.95,
+          "background": "#151515",
+          "foreground": "#fdfdfd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.39,
+          "background": "#1e1e1e",
+          "foreground": "#fdfdfd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.18,
+          "background": "#e5e5e5",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.5,
+          "background": "#e5e5e5",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.75,
+          "background": "#050505",
+          "foreground": "#d4d4d4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.23,
+          "background": "#e5e5e5",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.16,
+          "background": "#fdfdfd",
+          "foreground": "#2f2f2f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.32,
+          "background": "#151515",
+          "foreground": "#d4d4d4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.25,
+          "background": "#1e1e1e",
+          "foreground": "#d4d4d4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.63,
+          "background": "#e5e5e5",
+          "foreground": "#2f2f2f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.03,
+          "background": "#d4d4d4",
+          "foreground": "#2f2f2f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.34,
+          "background": "#1500ff",
+          "foreground": "#fdfdfd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.08,
+          "background": "#050505",
+          "foreground": "#a3a3a3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.68,
+          "background": "#fdfdfd",
+          "foreground": "#525252"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.24,
+          "background": "#151515",
+          "foreground": "#a3a3a3"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.73,
+          "background": "#e5e5e5",
+          "foreground": "#1500ff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.61,
+          "background": "#1e1e1e",
+          "foreground": "#a3a3a3"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.2,
+          "background": "#e5e5e5",
+          "foreground": "#525252"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.72,
+          "background": "#1500ff",
+          "foreground": "#d4d4d4"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 19,
+          "properties": [
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 27,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 74,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 110,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 128,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 201,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Savee Font",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 196,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Savee Font",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.23,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Savee Font",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Savee Font",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.29,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Savee Font",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "footer",
+            "list"
+          ],
+          "frequency": 123,
+          "lineHeight": 1.38,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Savee Font",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.38,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Savee Font",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Savee Font",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Savee Font",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.29,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Savee Font",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Savee Font",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Savee Font",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Savee Font",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Savee Font",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Savee Font",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "Savee Font",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.96,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/def3511f-cf11-4a92-9e41-7cbc6927a883.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/61a4ba43-58a0-43dd-929d-5b6965b55096.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c6d8490d-e3f2-45c8-aebf-fe5f11daf116#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Savee design system\",\"item\":\"https://styles.refero.design/style/c6d8490d-e3f2-45c8-aebf-fe5f11daf116\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c6d8490d-e3f2-45c8-aebf-fe5f11daf116#style-reference\",\"name\":\"Savee design system reference\",\"headline\":\"Savee design system | Refero Styles\",\"description\":\"Explore Savee's dark Design design system: Electric Indigo #1500ff, Obsidian #050505 colors, Savee Font typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c6d8490d-e3f2-45c8-aebf-fe5f11daf116\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c6d8490d-e3f2-45c8-aebf-fe5f11daf116\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Savee\",\"url\":\"https://savee.it\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c6d8490d-e3f2-45c8-aebf-fe5f11daf116#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/61a4ba43-58a0-43dd-929d-5b6965b55096.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/61a4ba43-58a0-43dd-929d-5b6965b55096.jpg\",\"caption\":\"Screenshot of Savee\"},\"image\":\"https://images.refero.design/styles/refero.design/image/61a4ba43-58a0-43dd-929d-5b6965b55096.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Savee design system\",\"Savee website design\",\"Savee colors\",\"Savee typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Electric Indigo\",\"Obsidian\",\"Charcoal\",\"Graphite\",\"Savee Font\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Savee design system\"},{\"@type\":\"Thing\",\"name\":\"Savee website design\"},{\"@type\":\"Thing\",\"name\":\"Savee colors\"},{\"@type\":\"Thing\",\"name\":\"Savee typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-01-22T15:00:06.000Z\",\"dateModified\":\"2026-01-22T15:00:06.000Z\"}]}"
+}

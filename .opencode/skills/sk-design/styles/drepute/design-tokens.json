@@ -1,0 +1,247 @@
+{
+  "color": {
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary text on dark hero, input fills, light surfaces"
+    },
+    "deep-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Deep Ink — Dominant text and border color across body, nav, and dividers"
+    },
+    "obsidian": {
+      "$value": "#161616",
+      "$type": "color",
+      "$description": "Obsidian — Dark canvas and hero surface — the page's atmospheric base"
+    },
+    "ash-gray": {
+      "$value": "#bfbfbf",
+      "$type": "color",
+      "$description": "Ash Gray — Subtle input borders, ghost box-shadows, disabled hairlines"
+    },
+    "fog": {
+      "$value": "#a9a9a9",
+      "$type": "color",
+      "$description": "Fog — Secondary body text, muted borders, low-emphasis dividers"
+    },
+    "steel": {
+      "$value": "#7f8080",
+      "$type": "color",
+      "$description": "Steel — Navigation and link borders, tertiary text on light surfaces"
+    },
+    "slate-blue": {
+      "$value": "#8995a9",
+      "$type": "color",
+      "$description": "Slate Blue — Outlined ghost-button border — the only chromatic interactive treatment"
+    },
+    "lagoon-teal": {
+      "$value": "#00a4a6",
+      "$type": "color",
+      "$description": "Lagoon Teal — Sole accent — link border, indicating the single interactive edge in the system"
+    }
+  },
+  "font": {
+    "source-sans-pro": {
+      "$value": "Source Sans Pro",
+      "$type": "fontFamily",
+      "$description": "Workhorse sans for body, buttons, nav, inputs, and all UI microcopy; weight 700 reserved for emphasis"
+    },
+    "playfair-display": {
+      "$value": "Playfair Display",
+      "$type": "fontFamily",
+      "$description": "Display serif for hero headlines ('Launching Soon') — the single expressive type voice; weight 400 italic-leaning elegance rather than bold"
+    },
+    "montserrat": {
+      "$value": "Montserrat",
+      "$type": "fontFamily",
+      "$description": "Wordmark only — 'DREPUTE' set wide at 0.154em to function as a typographic constellation above the hero"
+    },
+    "gd-sherpa": {
+      "$value": "GD Sherpa",
+      "$type": "fontFamily",
+      "$description": "Custom brand secondary; deployed alongside Source Sans Pro for select links and image overlays"
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Times — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "GD Sherpa",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Source Sans Pro",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Source Sans Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Source Sans Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "GD Sherpa",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Playfair Display",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Source Sans Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Montserrat",
+        "fontSize": "26px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Playfair Display",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Playfair Display",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 62px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "hero-canvas": {
+      "$value": "#161616",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed dark surface hosting the photographic hero and headline"
+    },
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Light surface below the fold for form sections and footer"
+    },
+    "input-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Form field fills against the dark background"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://drepute.xyz",
+      "siteName": "Drepute",
+      "extractedAt": "2026-06-03T20:35:36.073Z",
+      "variant": "extended"
+    }
+  }
+}

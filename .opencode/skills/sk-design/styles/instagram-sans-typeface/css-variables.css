@@ -1,0 +1,86 @@
+:root {
+  /* Colors */
+  --color-signal-pink: #ff0169;
+  --color-plasma-magenta: #d300c5;
+  --color-ultraviolet: #7638fa;
+  --color-hot-magenta: #f689ff;
+  --color-lavender-mist: #c4a4f7;
+  --color-graphite: #1c1e21;
+  --color-pure-black: #000000;
+  --color-paper-white: #ffffff;
+  --color-hairline-gray: #cccccc;
+  --color-link-indigo: #385898;
+
+  /* Typography — Font Families */
+  --font-instagram-sans: 'Instagram Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-instagram-sans-headline: 'Instagram Sans Headline', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-helvetica: 'Helvetica', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.34;
+  --text-body: 16px;
+  --leading-body: 1.34;
+  --tracking-body: -0.32px;
+  --text-subheading: 24px;
+  --leading-subheading: 1.2;
+  --tracking-subheading: -0.48px;
+  --text-heading-sm: 32px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -0.96px;
+  --text-heading: 40px;
+  --leading-heading: 1.2;
+  --tracking-heading: -1.2px;
+  --text-display: 62px;
+  --leading-display: 1.05;
+  --tracking-display: -2.17px;
+  --text-display-lg: 72px;
+  --leading-display-lg: 1.05;
+  --tracking-display-lg: -2.52px;
+  --text-display-xl: 121px;
+  --leading-display-xl: 1.05;
+  --tracking-display-xl: -4.24px;
+  --text-specimen: 224px;
+  --leading-specimen: 1;
+  --tracking-specimen: -7.84px;
+  --text-specimen-mega: 389px;
+  --leading-specimen-mega: 1;
+  --tracking-specimen-mega: -13.62px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-88: 88px;
+  --spacing-104: 104px;
+  --spacing-160: 160px;
+
+  /* Layout */
+  --section-gap: 64px;
+  --card-padding: 24px;
+  --element-gap: 24px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius-2xl: 16px;
+  --radius-3xl: 36.3636px;
+
+  /* Named Radii */
+  --radius-cards: 16px;
+  --radius-buttons: 3px;
+  --radius-specimen-panels: 0px;
+
+  /* Surfaces */
+  --surface-paper-white: #ffffff;
+  --surface-lavender-mist: #c4a4f7;
+  --surface-hot-magenta: #f689ff;
+  --surface-graphite: #1c1e21;
+  --surface-pure-black: #000000;
+}

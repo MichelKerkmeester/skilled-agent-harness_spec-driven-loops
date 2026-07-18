@@ -1,0 +1,1368 @@
+{
+  "source": "https://styles.refero.design/style/7ad5549e-9baa-4fda-ac43-79d568a86b98",
+  "uuid": "7ad5549e-9baa-4fda-ac43-79d568a86b98",
+  "name": "Scheduling",
+  "northStar": "Editorial ink on cream paper",
+  "capturedAt": "2026-07-18T06:32:15.671Z",
+  "meta": {
+    "url": "https://glossgenius.com",
+    "siteName": "Scheduling",
+    "extractedAt": "2026-07-03T03:27:47.776Z",
+    "durationMs": 114576,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1581,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Basel Classic Book only at 96px+; reserve it for the single biggest statement on a page",
+      "Set all heading line-height to 1.0 or below; the tight stacking is signature and not optional",
+      "Apply -0.03em letter-spacing on any text 40px or larger; 0 tracking at body sizes",
+      "Alternate section backgrounds between #ffffff and #f0f7f6 to create the magazine-spread cadence",
+      "Use #cccc25 (Solar Yellow) for exactly one element per view — hero CTA, a single stat chip, or a gradient wash — never as a general accent",
+      "Set border-radius to 1440px on every button and 8px on every standard card; mixing the two within a component family breaks the system",
+      "Use 1.5px borders (not 1px) for all dividers and ghost elements — the slightly heavier line reads as intentional ink rather than CSS default"
+    ],
+    "donts": [
+      "Don't introduce drop shadows on standard cards; the system is flat by design and shadows undermine the editorial feel",
+      "Don't use #000000 for text or fills — always warm it to #17150 to preserve the printed-ink quality",
+      "Don't pair Basel Classic with anything below 96px; the contrast in voice collapses at smaller sizes",
+      "Don't place yellow buttons on yellow gradient backgrounds — the CTA loses all emphasis",
+      "Don't add a third display weight (e.g. 600) to either font; the system only uses 400 and 500",
+      "Don't use the decorative illustration colors (Coral, Apricot, Lavender) for UI states, text, or borders — they are gradient art only",
+      "Don't add hover shadows to buttons; use background-color or border-color transitions exclusively"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#17150e",
+        "name": "Gloss Black",
+        "role": "Primary text, dark card surfaces, footer background, pill button fill — a warm near-black that reads softer than pure #000 and makes the large display type feel printed rather than digital; 1.5px borders and dividers — uses the same warm-black as text to keep all structural lines tonally unified",
+        "group": "brand"
+      },
+      {
+        "hex": "#f0f7f6",
+        "name": "Gloss White",
+        "role": "Page tint sections, card surfaces, badge fills, button text on dark — a barely-green-tinted off-white that warms the interface and creates gentle contrast bands against pure white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Primary page canvas, card surface, dark-button text, nav link color — used wherever maximum contrast is needed without any color temperature",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccc25",
+        "name": "Solar Yellow",
+        "role": "Yellow action color for filled buttons, selected navigation states, and focused conversion moments; Soft yellow-to-pale-yellow gradient used as decorative wash behind hero copy and section transitions",
+        "group": "brand",
+        "gradient": "linear-gradient(180deg, #cccc25, #cacd78)"
+      },
+      {
+        "hex": "#272b30",
+        "name": "Soft Charcoal",
+        "role": "Secondary dark surface, deep section backgrounds — cooler alternative to Gloss Black for variant cards and panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#949494",
+        "name": "Mid Grey",
+        "role": "Muted helper text, secondary labels — reserved for non-essential copy where readability is still required",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ff7780",
+        "name": "Light Coral",
+        "role": "Accent tint for decorative illustrations and marketing gradient washes — never used for UI states",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffe5d6",
+        "name": "Apricot",
+        "role": "Soft accent fill for illustration blocks and feature card backgrounds in the marketing surface",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffb36a",
+        "name": "Apricot Glow",
+        "role": "Warm illustration accent — pairs with Light Coral in editorial gradient compositions",
+        "group": "accent"
+      },
+      {
+        "hex": "#c0c8f6",
+        "name": "Lavender Mist",
+        "role": "Cool illustration accent balancing the warm Coral/Apricot pair in product showcase gradients",
+        "group": "accent"
+      },
+      {
+        "hex": "#9fa6ff",
+        "name": "Periwinkle Fade",
+        "role": "Periwinkle-to-lavender gradient used in product feature illustrations and decorative dividers",
+        "group": "accent",
+        "gradient": "linear-gradient(180deg, #9fa6ff, #b3bae8)"
+      }
+    ],
+    "layout": "Max-width 1200px centered content frame, with full-bleed sections (photo hero, dark cards, gradient washes) breaking out to viewport edges. The page model is a vertical stack of sections that alternate between white and mint-tint backgrounds, creating the cadence of a printed spread. The hero is a full-bleed dark photograph with left-aligned white headline overlay (not centered) and a single yellow CTA + ghost button stack positioned in the lower-left. Feature sections use a two-column pattern: large left-aligned heading with a 3-column card grid or single product mockup on the right. The stats band is a 3-column horizontal grid on a mint background with oversized numbers dominating. Navigation is a minimal top bar — text links left, three-button cluster right (ghost login, ghost demo, dark pill start trial) — with no sticky behavior on the hero. Section gaps are 80–120px, generous enough to feel editorial rather than dense.",
+    "imagery": "Imagery alternates between two modes: editorial photography and product screenshot capture. The hero is a full-bleed documentary-style photograph of people working at a salon (warm, slightly desaturated, natural lighting, no staged poses) overlaid with white headline type — the photo sets lifestyle context without dominating. Product visuals are tight screen captures of the actual interface (calendar, analytics dashboard, payment flow) presented inside mint-tinted cards with no device frames or mockup chrome. Decorative gradient washes (yellow, periwinkle, green-fade) appear as full-bleed section backgrounds to break the rhythm between content blocks. Icons are minimal — mostly line-weight UI icons in product screenshots rather than illustrative iconography. No 3D renders, no abstract geometric art, no stock photography in feature sections.",
+    "similar": [
+      {
+        "why": "Same editorial-magazine approach to product UI: oversized display typography, near-monochrome palette with a single saturated accent, flat surfaces with no shadows, and tight letter-spacing on large sizes",
+        "business": "Linear"
+      },
+      {
+        "why": "Shares the warm-near-black text (#17150 territory) against white, custom display serif/sans pairing, and confidence to let photography and typography do all the work without chrome",
+        "business": "Arc Browser"
+      },
+      {
+        "why": "Same publisher-spread sensibility: large editorial headlines, tight line-heights, minimal UI chrome, and a restrained palette that treats the page as a reading surface",
+        "business": "Substack"
+      },
+      {
+        "why": "Pill-shaped buttons at extreme border-radius, gentle alternating surface tints, and flat card system with no shadows — though GlossGenius is far more typographically assertive",
+        "business": "Notion"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "badges": "8px",
+        "inputs": "12px",
+        "buttons": "1440px",
+        "containers": "24px",
+        "largeCards": "16px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Primary page background for header, content sections, and footer interior"
+      },
+      {
+        "hex": "#f0f7f6",
+        "name": "Tint",
+        "level": 1,
+        "purpose": "Alternating section bands, card surfaces, badge fills — creates the second visual register"
+      },
+      {
+        "hex": "#17150",
+        "name": "Ink",
+        "level": 2,
+        "purpose": "Dark cards, footer, announcement bar, primary buttons — highest-contrast surface for elevation"
+      },
+      {
+        "hex": "#cccc25",
+        "name": "Highlight",
+        "level": 3,
+        "purpose": "Accent surface for CTAs, metric chips, gradient washes — functional, never decorative chrome"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — flat surfaces only, separation achieved through tint alternation and 1.5px hairlines",
+        "element": "Card"
+      },
+      {
+        "style": "0 4px 12px rgba(23, 21, 14, 0.15) — the only consistently elevated element, used to mark it as out-of-flow UI",
+        "element": "Chat Widget"
+      }
+    ],
+    "northStar": "Editorial ink on cream paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.44
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 72,
+        "lineHeight": 0.97,
+        "letterSpacing": -2.16
+      },
+      {
+        "role": "display",
+        "size": 96,
+        "lineHeight": 0.95,
+        "letterSpacing": -2.88
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Pill Button (Dark)",
+        "role": "Highest-emphasis action — trial sign-up, primary conversion",
+        "description": "1440px border-radius (full pill), 12px 24px padding, #17150 fill, #f0f7f6 text, Basel Grotesk 16px weight 500. No border, no shadow. Sits as the rightmost header action on white backgrounds."
+      },
+      {
+        "name": "Primary Pill Button (Yellow Accent)",
+        "role": "Hero CTA — demo request, primary conversion on dark hero photo",
+        "description": "1440px radius, 12px 24px padding, #cccc25 fill, #17150 text, Basel Grotesk 16px weight 500. Used sparingly — appears once per page max, in the hero overlay."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action over imagery or dark surfaces",
+        "description": "1440px radius, 12px 24px padding, transparent fill, 1.5px solid #ffffff border, #ffffff text. Used on the dark hero photo overlay for the secondary 'Start free trial' action."
+      },
+      {
+        "name": "Text Nav Link",
+        "role": "Top navigation items",
+        "description": "No background, #17150 text, Basel Grotesk 16px weight 500, 8px horizontal padding, no underline. Hover transitions color only."
+      },
+      {
+        "name": "Feature Card (Mint)",
+        "role": "Product screenshot showcase blocks on white sections",
+        "description": "#f0f7f6 fill, 8px radius, 16px–24px padding, no shadow, no border. Contains inline product mockup imagery at 100% width with no additional chrome."
+      },
+      {
+        "name": "Dark Feature Card",
+        "role": "High-contrast product showcase or testimonial blocks",
+        "description": "#17150 fill, 16px radius, generous padding (32–48px), white/mint text, no shadow. Creates a visual pause between lighter sections."
+      },
+      {
+        "name": "Stat Block",
+        "role": "Hero metrics in the social-proof band — 26%, 75%, 40hrs",
+        "description": "No card chrome. Display number in Basel Classic 96–144px weight 400, #17150, line-height 0.8–0.95, letter-spacing -0.03em. Small superscript '+' in the same style. Caption beneath in Basel Grotesk 16px weight 500, #17150e."
+      },
+      {
+        "name": "Filled Badge",
+        "role": "Status tags, count indicators, notification pills",
+        "description": "#f0f7f6 fill, #17150 text, 8px radius, 12px padding, Basel Grotesk 16px weight 500. Inline with adjacent content."
+      },
+      {
+        "name": "Ghost Badge",
+        "role": "Section labels, filter tags, eyebrow text",
+        "description": "Transparent fill, 1.5px solid #17150 border, #17150 text, 8px radius, 12px padding, Basel Grotesk 16px weight 500. Optionally with 0.063em letter-spacing for label variation."
+      },
+      {
+        "name": "Carousel Arrow Control",
+        "role": "Section navigation between feature cards or testimonials",
+        "description": "40×40px square, 1.5px solid #17150 border, no fill, 8px radius, #17150 arrow icon. Sits flush-right of section heading."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page promotional strip",
+        "description": "Full-width, #17150 fill, #f0f7f6 text, 12px vertical padding, Basel Grotesk 14px weight 500. Contains a single text link with optional chevron."
+      },
+      {
+        "name": "Chat Widget",
+        "role": "Persistent customer support trigger",
+        "description": "56px circle, #17150 fill, white chat icon, bottom-right fixed position. Subtle drop shadow to lift from page content."
+      },
+      {
+        "name": "Metric Chip (Yellow)",
+        "role": "Inline AI suggestion or highlight within product UI",
+        "description": "#cccc25 fill, #17150 text, 8px radius, 8px 12px padding, Basel Grotesk 14px weight 500. Appears inside the product screenshot to mark actionable items."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Workhorse for all UI: nav, body, buttons, badges, card copy, h2–h6 headings, and the 72px section headlines. Weight 500 is the default (heavier than typical body text) which gives the interface a confident, almost magazine-pull-quote density. The slight geometric warmth keeps it from feeling clinical.",
+        "sizes": "14, 16, 22, 32, 40, 72",
+        "family": "Basel Grotesk Book",
+        "weight": "400, 500",
+        "lineHeight": "1.40–1.50 at body, 1.20 at subhead, 1.10 at h3, 1.00 at h2, 0.97 at h1",
+        "substitute": "Inter, Manrope, or Söhne",
+        "letterSpacing": "-0.04em at h5/h6, -0.03em at h1/h2/h3, -0.02em at h4, 0 at body"
+      },
+      {
+        "role": "Reserved exclusively for display/editorial statements at 96px+ and the 40px h1 variant. Its sharper, slightly more serifed terminals distinguish hero-level copy from section headlines — a deliberate two-voice system that signals \"this is the big idea\" vs \"this is the next thought.\" Weight stays at 400 even at 144px because the tight 0.8 line-height and -0.03em tracking already create visual mass.",
+        "sizes": "40, 96, 144",
+        "family": "Basel Classic Book",
+        "weight": "400, 500",
+        "lineHeight": "0.80–0.97",
+        "substitute": "Tiempos Headline, GT Sectra Display, or Canela",
+        "letterSpacing": "-0.03em at all sizes"
+      }
+    ],
+    "description": "GlossGenius operates in a near-monochrome editorial register: a warm-black ink (#17150e) stamped onto white and a faint mint-cream (#f0f7f6) canvas, with a single chartreuse-yellow (#cccc25) that functions like a highlighter pen — appearing sparingly on primary CTAs, metric callouts, and decorative washes. The typography is the brand's loudest element: a custom Basel pairing where the grotesque Grotesk handles UI and body while Classic — a sharper, slightly serifed display face — drops in only at 96–144px for editorial statements, tightened to 0.8–0.95 line-height so letterforms stack like vinyl. Components are deliberately lightweight: flat 8px-radius cards, no shadows, pill-shaped buttons at 1440px, and 1.5px hairline dividers. Sections breathe generously (80–120px gaps) and alternate between pure white and the mint tint, creating the cadence of a magazine spread rather than a product dashboard.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7ad5549e-9baa-4fda-ac43-79d568a86b98#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Scheduling design system\",\"item\":\"https://styles.refero.design/style/7ad5549e-9baa-4fda-ac43-79d568a86b98\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7ad5549e-9baa-4fda-ac43-79d568a86b98#style-reference\",\"name\":\"Scheduling design system reference\",\"headline\":\"Scheduling design system | Refero Styles\",\"description\":\"Explore Scheduling's light SaaS design system: Gloss Black #17150e, Gloss White #f0f7f6 colors, Basel Grotesk Book, Basel Classic Book typography, and...\",\"url\":\"https://styles.refero.design/style/7ad5549e-9baa-4fda-ac43-79d568a86b98\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7ad5549e-9baa-4fda-ac43-79d568a86b98\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Scheduling\",\"url\":\"https://glossgenius.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7ad5549e-9baa-4fda-ac43-79d568a86b98#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ea735e7e-1143-41de-8f21-c7216b4d0b6b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ea735e7e-1143-41de-8f21-c7216b4d0b6b.jpg\",\"caption\":\"Screenshot of Scheduling\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ea735e7e-1143-41de-8f21-c7216b4d0b6b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Scheduling design system\",\"Scheduling website design\",\"Scheduling colors\",\"Scheduling typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Gloss Black\",\"Gloss White\",\"Pure White\",\"Solar Yellow\",\"Basel Grotesk Book\",\"Basel Classic Book\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Scheduling design system\"},{\"@type\":\"Thing\",\"name\":\"Scheduling website design\"},{\"@type\":\"Thing\",\"name\":\"Scheduling colors\"},{\"@type\":\"Thing\",\"name\":\"Scheduling typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-03-18T16:21:18.000Z\",\"dateModified\":\"2026-03-18T16:21:18.000Z\"}]}19:T5b2,**Quick Color Reference**\n- text: #17150e (warm near-black)\n- background: #ffffff (canvas) / #f0f7f6 (tint sections)\n- border: 1.5px solid #17150e\n- accent: #cccc25 (Solar Yellow) — charts, metric chips, gradient washes\n- card surface: #f0f7f6 with 8px radius, no shadow\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Stat band**: Mint #f0f7f6 section background, 80px vertical padding. Three columns. Each column: display number at 96px Basel Classic weight 400, #17150e, line-height 0.95, letter-spacing -2.88px, with a superscript '+' in the same style. Caption beneath in Basel Grotesk 16px weight 500, #17150e.\n\n3. **Feature card with product mockup**: White section background. Card: #f0f7f6 fill, 8px radius, 24px padding, no shadow, no border. Contains a product screenshot filling 100% card width with 8px radius clip. Heading above card at 40px Basel Classic weight 400, #17150e.\n\n4. **Ghost badge / eyebrow label**: Transparent fill, 1.5px solid #17150e border, 8px radius, 12px padding. Text in Basel Grotesk 16px weight 500, #17150e, letter-spacing 0.063em, uppercase optional.\n\n5. **Carousel navigation**: Two 40×40px square buttons flush-right of section heading. Transparent fill, 1.5px solid #17150e border, 8px radius, #17150e arrow glyph centered. Gap of 4px between arrows."
+      },
+      {
+        "title": "Editorial Cadence",
+        "content": "The system's defining structural choice is the alternation of #ffffff and #f0f7f6 between sections — never two mint sections adjacent, never two white sections adjacent. This two-tone rhythm does the work that shadows, dividers, or vertical lines would do in a conventional product UI. When designing a new page, sketch the section backgrounds first as a binary pattern before placing any content. Dark (#17150e) sections should appear no more than once per full page scroll-depth and only for emphasis — the announcement bar, the footer, or a single dark feature card."
+      },
+      {
+        "title": "Yellow Restraint",
+        "content": "Solar Yellow (#cccc25) is rationed. It appears as: (1) exactly one filled pill button in the hero, (2) inline metric chips inside product UI screenshots, (3) full-bleed gradient washes as section transitions, and (4) superscript '+' marks beside stat numbers. It should never appear as a link color, never as a heading color, never on a dark background, and never more than twice in a single viewport. The discipline is what makes it read as 'switched on' rather than decorative."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is intentionally suppressed across the entire system. The GlossGenius aesthetic treats depth as a typographic and chromatic problem, not a z-axis problem — cards rest on alternating tints, sections are separated by vertical rhythm and background shifts, and the lone exception (the chat widget) earns its shadow by being the only element that should feel like it belongs to a different plane than the page content. Adding shadows to cards or buttons breaks the editorial-ink metaphor that defines the brand."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "link",
+            "body"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 104366318.55529524,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "body/color": 7,
+            "other/fill": 11,
+            "other/color": 2,
+            "button/color": 3,
+            "other/borderColor": 4,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 15
+          }
+        },
+        {
+          "hex": "#f0f7f6",
+          "oklch": {
+            "c": 0.007529397222722201,
+            "h": 186.89390472601536,
+            "l": 0.9705943334330154
+          },
+          "contexts": [
+            "link",
+            "button",
+            "body",
+            "hero",
+            "heading",
+            "other",
+            "badge",
+            "card",
+            "list"
+          ],
+          "frequency": 162,
+          "confidence": 1,
+          "prominence": 29946302.387792576,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 25,
+            "link/color": 34,
+            "list/color": 7,
+            "other/fill": 17,
+            "other/color": 12,
+            "button/color": 1,
+            "heading/color": 14,
+            "link/borderColor": 4,
+            "card/backgroundColor": 39,
+            "hero/backgroundColor": 1,
+            "link/backgroundColor": 1,
+            "badge/backgroundColor": 4,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#17150e",
+          "oklch": {
+            "c": 0.013738683065977784,
+            "h": 94.00900866732506,
+            "l": 0.1955715151611211
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "heading",
+            "link",
+            "card",
+            "footer"
+          ],
+          "frequency": 360,
+          "confidence": 1,
+          "prominence": 14768344.79323797,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 291,
+            "other/fill": 2,
+            "other/color": 26,
+            "heading/color": 21,
+            "link/borderColor": 8,
+            "card/backgroundColor": 7,
+            "link/backgroundColor": 2,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 20346.981678344444,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 21,
+            "other/stroke": 1
+          }
+        },
+        {
+          "hex": "#cccc25",
+          "oklch": {
+            "c": 0.17013261880562972,
+            "h": 109.63357629765156,
+            "l": 0.8190077066025717
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 6907,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0287795633551607,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.34,
+          "background": "#f0f7f6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#17150e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.82,
+          "background": "#17150e",
+          "foreground": "#f0f7f6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.23,
+          "background": "#cccc25",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.64,
+          "background": "#cccc25",
+          "foreground": "#17150e"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.72,
+          "background": "#cccc25",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.58,
+          "background": "#cccc25",
+          "foreground": "#f0f7f6"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#f0f7f6",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "badge",
+            "other",
+            "card"
+          ],
+          "frequency": 54
+        },
+        {
+          "value": 1440,
+          "contexts": [
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 24
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "card",
+            "other",
+            "link"
+          ],
+          "frequency": 276,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card",
+            "marginTop|other",
+            "rowGap|link",
+            "columnGap|link",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "nav",
+            "other",
+            "heading",
+            "list"
+          ],
+          "frequency": 180,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link",
+            "marginBottom|other",
+            "marginBottom|heading",
+            "rowGap|heading",
+            "columnGap|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 114,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "badge"
+          ],
+          "frequency": 57,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "paddingTop|badge",
+            "paddingRight|badge",
+            "paddingBottom|badge",
+            "paddingLeft|badge",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "heading",
+            "other",
+            "card",
+            "list"
+          ],
+          "frequency": 293,
+          "properties": [
+            "marginLeft",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "marginBottom|heading",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|heading",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 44,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "hero",
+            "heading",
+            "card",
+            "list"
+          ],
+          "frequency": 155,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|hero",
+            "marginBottom|heading",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 41,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 47,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 73,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 113,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 228,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 268,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(204, 204, 37), rgb(202, 205, 120))",
+        "colors": [
+          "rgb(204, 204, 37)",
+          "rgb(202, 205, 120)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(240, 247, 246), rgb(199, 207, 209))",
+        "colors": [
+          "rgb(240, 247, 246)",
+          "rgb(199, 207, 209)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(128, 122, 159), rgb(163, 164, 184))",
+        "colors": [
+          "rgb(128, 122, 159)",
+          "rgb(163, 164, 184)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(159, 166, 255), rgb(179, 186, 232))",
+        "colors": [
+          "rgb(159, 166, 255)",
+          "rgb(179, 186, 232)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(108, 136, 83), rgb(153, 171, 145))",
+        "colors": [
+          "rgb(108, 136, 83)",
+          "rgb(153, 171, 145)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(104, 131, 161), rgb(151, 169, 185))",
+        "colors": [
+          "rgb(104, 131, 161)",
+          "rgb(151, 169, 185)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(154, 193, 150), rgb(174, 199, 176))",
+        "colors": [
+          "rgb(154, 193, 150)",
+          "rgb(174, 199, 176)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Basel Grotesk Book",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 1262,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Basel Classic Book",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 34,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.88
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Basel Grotesk Book",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 43,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basel Grotesk Book",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "body",
+            "badge",
+            "image",
+            "card",
+            "icon",
+            "list",
+            "link",
+            "footer"
+          ],
+          "frequency": 1094,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basel Grotesk Book",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.063,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basel Grotesk Book",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basel Grotesk Book",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basel Grotesk Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basel Grotesk Book",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basel Grotesk Book",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Basel Grotesk Book",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Basel Grotesk Book",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Basel Classic Book",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Basel Grotesk Book",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Basel Classic Book",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.97,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Basel Grotesk Book",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.97,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "Basel Classic Book",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "heading"
+          ],
+          "frequency": 22,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 144,
+          "family": "Basel Classic Book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f8c705eb-8d2a-4a9b-870f-d2588e21f535.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ea735e7e-1143-41de-8f21-c7216b4d0b6b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7ad5549e-9baa-4fda-ac43-79d568a86b98#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Scheduling design system\",\"item\":\"https://styles.refero.design/style/7ad5549e-9baa-4fda-ac43-79d568a86b98\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7ad5549e-9baa-4fda-ac43-79d568a86b98#style-reference\",\"name\":\"Scheduling design system reference\",\"headline\":\"Scheduling design system | Refero Styles\",\"description\":\"Explore Scheduling's light SaaS design system: Gloss Black #17150e, Gloss White #f0f7f6 colors, Basel Grotesk Book, Basel Classic Book typography, and...\",\"url\":\"https://styles.refero.design/style/7ad5549e-9baa-4fda-ac43-79d568a86b98\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7ad5549e-9baa-4fda-ac43-79d568a86b98\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Scheduling\",\"url\":\"https://glossgenius.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7ad5549e-9baa-4fda-ac43-79d568a86b98#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ea735e7e-1143-41de-8f21-c7216b4d0b6b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ea735e7e-1143-41de-8f21-c7216b4d0b6b.jpg\",\"caption\":\"Screenshot of Scheduling\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ea735e7e-1143-41de-8f21-c7216b4d0b6b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Scheduling design system\",\"Scheduling website design\",\"Scheduling colors\",\"Scheduling typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Gloss Black\",\"Gloss White\",\"Pure White\",\"Solar Yellow\",\"Basel Grotesk Book\",\"Basel Classic Book\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Scheduling design system\"},{\"@type\":\"Thing\",\"name\":\"Scheduling website design\"},{\"@type\":\"Thing\",\"name\":\"Scheduling colors\"},{\"@type\":\"Thing\",\"name\":\"Scheduling typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-03-18T16:21:18.000Z\",\"dateModified\":\"2026-03-18T16:21:18.000Z\"}]}19:T5b2,**Quick Color Reference**\n- text: #17150e (warm near-black)\n- background: #ffffff (canvas) / #f0f7f6 (tint sections)\n- border: 1.5px solid #17150e\n- accent: #cccc25 (Solar Yellow) — charts, metric chips, gradient washes\n- card surface: #f0f7f6 with 8px radius, no shadow\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Stat band**: Mint #f0f7f6 section background, 80px vertical padding. Three columns. Each column: display number at 96px Basel Classic weight 400, #17150e, line-height 0.95, letter-spacing -2.88px, with a superscript '+' in the same style. Caption beneath in Basel Grotesk 16px weight 500, #17150e.\n\n3. **Feature card with product mockup**: White section background. Card: #f0f7f6 fill, 8px radius, 24px padding, no shadow, no border. Contains a product screenshot filling 100% card width with 8px radius clip. Heading above card at 40px Basel Classic weight 400, #17150e.\n\n4. **Ghost badge / eyebrow label**: Transparent fill, 1.5px solid #17150e border, 8px radius, 12px padding. Text in Basel Grotesk 16px weight 500, #17150e, letter-spacing 0.063em, uppercase optional.\n\n5. **Carousel navigation**: Two 40×40px square buttons flush-right of section heading. Transparent fill, 1.5px solid #17150e border, 8px radius, #17150e arrow glyph centered. Gap of 4px between arrows."
+}

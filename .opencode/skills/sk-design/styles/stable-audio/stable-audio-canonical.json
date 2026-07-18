@@ -1,0 +1,1237 @@
+{
+  "source": "https://styles.refero.design/style/c363a216-873c-4112-b960-8e823db76f74",
+  "uuid": "c363a216-873c-4112-b960-8e823db76f74",
+  "name": "Stable Audio",
+  "northStar": "Sunlit studio on warm paper.",
+  "capturedAt": "2026-07-18T07:52:15.482Z",
+  "meta": {
+    "url": "https://stableaudio.com",
+    "siteName": "Stable Audio",
+    "extractedAt": "2026-06-03T19:17:24.601Z",
+    "durationMs": 25688,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 419,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #f4f1ec Warm Canvas as the page background for every section — never replace it with pure white",
+      "Give every button, tag, and toggle a 9999px border-radius; the pill shape is the system's most recognizable trait",
+      "Use #f9a916 Amber Pulse as the sole fill for primary action buttons (Try now, Sign up, Generate)",
+      "Render headlines at Inter weight 700 with negative tracking (-0.84px at 40px) — do not use weight 500 or 600 for display copy",
+      "Build feature sections as full-bleed colored panels (lavender, mustard, sage, khaki) behind white product mockup cards",
+      "Use the half-circle lime-green (#a0f32f) arc graphic in every track-artwork and music-related visual",
+      "Keep card surface radius at 4px — the contrast between round controls and angular cards is intentional"
+    ],
+    "donts": [
+      "Do not use #ffffff as a full page or section background — it breaks the warm-paper feeling",
+      "Do not add drop shadows to cards or panels — depth comes from surface color contrast only",
+      "Do not introduce additional button accent colors — amber is the single action color",
+      "Do not use weight 500 or 600 for headlines — the system commits to 700 bold or 400 regular",
+      "Do not use photography, lifestyle imagery, or people in section visuals — product mockups and geometric graphics only",
+      "Do not use square radii on buttons or tags — the 9999px pill is non-negotiable",
+      "Do not use the vivid lime green (#a0f32f) for non-audio UI — reserve it for active sound and waveform elements"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f9a916",
+        "name": "Amber Pulse",
+        "role": "Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#a0f32f",
+        "name": "Lime Signal",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis.",
+        "group": "brand"
+      },
+      {
+        "hex": "#c4bae3",
+        "name": "Lavender Wash",
+        "role": "Text-to-audio feature panel background — large full-bleed section tint",
+        "group": "accent"
+      },
+      {
+        "hex": "#e1ca46",
+        "name": "Mustard Field",
+        "role": "Audio-to-audio feature panel background — full-bleed section tint",
+        "group": "accent"
+      },
+      {
+        "hex": "#9fc2c7",
+        "name": "Sage Mist",
+        "role": "Sound effects feature panel background — full-bleed section tint",
+        "group": "accent"
+      },
+      {
+        "hex": "#e5dfc8",
+        "name": "Khaki Paper",
+        "role": "Secondary panel tint, hero left-column background — warm beige sitting one step darker than the main cream canvas",
+        "group": "accent"
+      },
+      {
+        "hex": "#f4f1ec",
+        "name": "Warm Canvas",
+        "role": "Page background, dominant cream surface — every section and most cards sit on this tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Paper",
+        "role": "Card surfaces, track cards, elevated panels — the only true white in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2e2e7",
+        "name": "Pale Mist",
+        "role": "Cool light-gray structural tone for subtle UI layers beneath the warm cream",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d2d1db",
+        "name": "Hairline",
+        "role": "Borders, dividers, subtle separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#27262b",
+        "name": "Ink Stone",
+        "role": "Secondary text, dark app-interface surfaces, filled toggle states — near-black with a slight warm cast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Charcoal",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#737170",
+        "name": "Ash",
+        "role": "Muted body text, helper text, metadata — mid-gray for tertiary information",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed colored sections with centered max-width content (1280px). Hero is a 2-column split: headline left, product card right, both on the warm cream canvas. Feature sections alternate as full-bleed colored panels (lavender, mustard, sage) each with a 2-column text-left / product-mockup-right structure. Intro sections on white have centered headlines. Vertical rhythm is generous: 80px between sections. Navigation is a transparent bar with no background fill, logo top-left, action buttons top-right. The overall page reads top-to-bottom as: cream hero → centered white intro → lavender feature → mustard feature → sage feature → white CTA, a colorful vertical progression.",
+    "imagery": "No photography, no people, no lifestyle imagery. The visual system is pure UI: product mockups (screenshots of the Stable Audio app) and geometric graphic motifs. The signature visual is a half-circle lime-green arc inside a muted square — a flat 'sun' shape that recurs in every track artwork. Audio waveforms are rendered as thin dark bars on white. All imagery is flat, sharp-cornered, and product-focused: the app IS the hero.",
+    "similar": [
+      {
+        "why": "Same music-generation product category with bold black headlines and product-mockup-driven marketing pages",
+        "business": "Suno AI"
+      },
+      {
+        "why": "Same flat, poster-like aesthetic with full-bleed colored section panels behind product showcases",
+        "business": "Luma AI"
+      },
+      {
+        "why": "Same commitment to pill-shaped controls, bold display type, and feature-section-as-product-demo layout",
+        "business": "Runway"
+      },
+      {
+        "why": "Parent brand sibling with a similar warm, confident typographic voice and clean light-mode interface",
+        "business": "Stability AI"
+      },
+      {
+        "why": "Same anti-corporate, opinionated visual identity with strong black headlines and minimal chrome",
+        "business": "Midjourney"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "4px",
+        "images": "4px",
+        "buttons": "9999px",
+        "toggles": "9999px",
+        "trackCards": "4px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#f4f1ec",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, dominant warm cream surface"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Elevated card surfaces (track cards, nav, product cards)"
+      },
+      {
+        "hex": "#c4bae3",
+        "name": "Feature Panel",
+        "level": 2,
+        "purpose": "Full-bleed colored section backgrounds (lavender, mustard, sage, khaki variants)"
+      },
+      {
+        "hex": "#27262b",
+        "name": "Dark Surface",
+        "level": 3,
+        "purpose": "Dark app-interface surfaces, active toggle states"
+      }
+    ],
+    "northStar": "Sunlit studio on warm paper.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 18,
+        "letterSpacing": -0.07
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 20,
+        "letterSpacing": -0.09
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 25,
+        "letterSpacing": -0.1
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 28,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 30,
+        "letterSpacing": -0.3
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 40,
+        "letterSpacing": -0.51
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 46,
+        "letterSpacing": -0.84
+      }
+    ],
+    "components": [
+      {
+        "name": "Amber CTA Button",
+        "role": "Primary call-to-action (Sign up, Try now, Generate)",
+        "description": "Filled pill, #f9a916 background, #000000 bold text, 9999px border-radius, padding 12px 24px, Inter weight 700 at 14-16px. Often paired with a → arrow icon at the right."
+      },
+      {
+        "name": "Ghost Nav Button",
+        "role": "Secondary nav action (Log in)",
+        "description": "White fill, #000000 1px border, 9999px border-radius, #000000 bold text at 14px, padding 8px 20px. Sits inline with the amber CTA in the header."
+      },
+      {
+        "name": "Active Toggle Pill",
+        "role": "Selected state in text-to-audio / audio-to-audio toggle group",
+        "description": "Filled pill, #27262b background, #ffffff bold text, 9999px border-radius, padding 8px 20px, Inter weight 700 at 14-16px."
+      },
+      {
+        "name": "Inactive Toggle Pill",
+        "role": "Unselected state in toggle groups",
+        "description": "Transparent fill, #000000 1px border, #000000 bold text, 9999px border-radius, same padding as active state."
+      },
+      {
+        "name": "Track Card",
+        "role": "Display a generated music track with artwork, title, description, and player",
+        "description": "White #ffffff surface, 4px border-radius, padding 24px. Contains a square half-circle lime-green (#a0f32f) artwork block at top, track title in Inter 700 16px, description in Inter 400 14px #737170, and a 'Try prompt' dark button."
+      },
+      {
+        "name": "Try Prompt Dark Button",
+        "role": "Action inside track cards to reuse the generation prompt",
+        "description": "Filled pill, #27262b background, #ffffff bold text, 9999px border-radius, padding 6px 16px, Inter weight 700 at 12-14px."
+      },
+      {
+        "name": "Lavender Feature Panel",
+        "role": "Text-to-audio feature showcase section",
+        "description": "Full-bleed #c4bae3 background section, 2-column layout: left column has bold #000000 heading at 30-40px and body copy; right column holds a white product mockup card. Padding 48-64px vertical."
+      },
+      {
+        "name": "Mustard Feature Panel",
+        "role": "Audio-to-audio feature showcase section",
+        "description": "Full-bleed #e1ca46 background, same 2-column structure as the lavender panel, with yellow-toned product mockup card on the right."
+      },
+      {
+        "name": "Half-Circle Art Graphic",
+        "role": "Signature track-artwork element",
+        "description": "A semi-circular arc shape in #a0f32f filling the top half of a square frame, set against a muted panel color. This 'sun' motif recurs in every track card and product mockup — it is the visual shorthand for 'audio' across the system."
+      },
+      {
+        "name": "Audio Waveform Player",
+        "role": "In-card playback control with timeline and playhead",
+        "description": "Horizontal waveform visualization spanning the card width, time labels (0:00 / 3:00) in Inter 400 12px #737170 at each end, circular play button on the left, draggable playhead. Waveform rendered in #27262b against the white card."
+      },
+      {
+        "name": "Product Mockup Card",
+        "role": "Full app interface preview embedded in feature sections",
+        "description": "Large white card (#ffffff) with 4px radius, containing a realistic screenshot of the Stable Audio app — prompt input textarea, model selector, duration slider, generate button, and history list. Often set against a colored feature panel."
+      },
+      {
+        "name": "Header Bar",
+        "role": "Site-wide navigation",
+        "description": "Transparent bar on the cream canvas, logo 'Stable Audio' with sun-burst icon at top-left in #000000, Sign up (amber) and Log in (ghost) buttons at top-right. Minimal, no background fill."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All text — headlines commit to weight 700 (bold), never 500 or 600; the two-weight commitment is a signature choice that gives the interface a confident, opinionated voice without needing a display face",
+        "sizes": "12, 14, 16, 18, 20, 30, 40",
+        "family": "Inter",
+        "weight": "400, 700",
+        "lineHeight": "1.00, 1.15, 1.33, 1.50, 1.71, 1.78",
+        "substitute": "DM Sans, Manrope",
+        "letterSpacing": "-0.0210em, -0.0170em, -0.0150em, -0.0140em, -0.0110em, -0.0060em"
+      }
+    ],
+    "description": "Stable Audio uses a warm-paper studio language: the canvas is cream (#f4f1ec) rather than clinical white, letting bold black headlines and a single amber CTA sit on a surface that feels analog and approachable, like a record sleeve. Full-bleed colored panels — lavender, mustard, sage, khaki — function as oversized section backgrounds behind product mockups, giving the page rhythm the way paint-chip swatches might behind a mixing console. Every interactive element is pill-shaped (9999px) and every card surface is a near-sharp 4px, creating a deliberate contrast between round controls and angular content blocks. A signature half-circle \"sun\" graphic recurs in every track artwork, and a vivid neon green (#a0f32f) marks every audio-active element, making sound visible across the interface. Product screenshots do the explanatory work; illustration and lifestyle photography are deliberately absent.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c363a216-873c-4112-b960-8e823db76f74#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Stable Audio design system\",\"item\":\"https://styles.refero.design/style/c363a216-873c-4112-b960-8e823db76f74\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c363a216-873c-4112-b960-8e823db76f74#style-reference\",\"name\":\"Stable Audio design system reference\",\"headline\":\"Stable Audio design system | Refero Styles\",\"description\":\"Explore Stable Audio's light AI design system: Amber Pulse #f9a916, Lime Signal #a0f32f colors, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c363a216-873c-4112-b960-8e823db76f74\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c363a216-873c-4112-b960-8e823db76f74\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Stable Audio\",\"url\":\"https://stableaudio.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c363a216-873c-4112-b960-8e823db76f74#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/039431f3-908c-4a18-a222-7b6aeacbbc42.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/039431f3-908c-4a18-a222-7b6aeacbbc42.jpg\",\"caption\":\"Screenshot of Stable Audio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/039431f3-908c-4a18-a222-7b6aeacbbc42.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Stable Audio design system\",\"Stable Audio website design\",\"Stable Audio colors\",\"Stable Audio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Amber Pulse\",\"Lime Signal\",\"Lavender Wash\",\"Mustard Field\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Stable Audio design system\"},{\"@type\":\"Thing\",\"name\":\"Stable Audio website design\"},{\"@type\":\"Thing\",\"name\":\"Stable Audio colors\"},{\"@type\":\"Thing\",\"name\":\"Stable Audio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-06T10:24:47.000Z\",\"dateModified\":\"2026-04-06T10:24:47.000Z\"}]}19:T576,## Quick Color Reference\n- Text: #000000 (primary) / #27262b (secondary) / #737170 (muted)\n- Background: #f4f1ec (canvas) / #ffffff (card)\n- Border: #d2d1db\n- Accent: #a0f32f (lime green, audio/sound-active only)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Feature Section Panel**: Full-bleed #c4bae3 lavender background, 80px vertical padding, two columns. Left: bold heading Inter 700 30px #000000, body copy Inter 400 16px #27262b, ghost outline button (white fill, #000000 border, 9999px radius). Right: white product mockup card (#ffffff, 4px radius) containing app UI preview.\n\n3. **Toggle Group**: Two pills side by side, 9999px radius, 8px 20px padding, Inter 700 14px. Active: #27262b fill, #ffffff text. Inactive: transparent fill, #000000 1px border, #000000 text.\n\n4. **Header Bar**: Transparent on cream canvas. Logo 'Stable Audio' + sun-burst icon (#000000) at top-left. Top-right: amber 'Sign up' pill (#f9a916, #000000 bold text, 9999px radius) and ghost 'Log in' button (white fill, #000000 border, 9999px radius).\n\n5. **Track Artwork Block**: Square 1:1 frame with 4px radius. Top half: filled #a0f32f lime-green half-circle. Bottom half: muted panel color (e.g. #e5dfc8 khaki). No text inside the art block itself."
+      },
+      {
+        "title": "Color Panel System",
+        "content": "Colored panels are structural, not decorative. Each major feature section gets a full-bleed background tint from a fixed palette: #c4bae3 (lavender) for text-to-audio, #e1ca46 (mustard) for audio-to-audio, #9fc2c7 (sage) for sound effects. These panels extend edge-to-edge with no border or shadow — the color itself defines the section boundary. Product mockup cards (white, 4px radius) always sit on the right side of these panels, creating a consistent 2-column template that can be reused for any feature."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. Depth is created entirely by surface color contrast — warm cream canvas behind white cards behind full-bleed colored feature panels. The absence of drop shadows keeps the design flat and poster-like, like printed album art."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e2e2e7",
+          "oklch": {
+            "c": 0.006734395685530175,
+            "h": 286.26568613889935,
+            "l": 0.9142312875797679
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "image",
+            "button",
+            "heading",
+            "hero",
+            "footer",
+            "list"
+          ],
+          "frequency": 1309,
+          "confidence": 1,
+          "prominence": 93369810.16759765,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "heading",
+            "body",
+            "icon",
+            "hero",
+            "footer"
+          ],
+          "frequency": 284,
+          "confidence": 1,
+          "prominence": 73528537.2464446,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#27262b",
+          "oklch": {
+            "c": 0.00924437098273728,
+            "h": 294.9489629459289,
+            "l": 0.271712271687205
+          },
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "other",
+            "heading",
+            "footer"
+          ],
+          "frequency": 106,
+          "confidence": 1,
+          "prominence": 4829708.295463537,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f4f1ec",
+          "oklch": {
+            "c": 0.007400290874241426,
+            "h": 80.72091797482689,
+            "l": 0.959073673989867
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 2338146.804678102,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c4bae3",
+          "oklch": {
+            "c": 0.058043049651796116,
+            "h": 296.2573830109349,
+            "l": 0.8105368723611057
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1478898,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e1ca46",
+          "oklch": {
+            "c": 0.14883517824942444,
+            "h": 99.19285435548241,
+            "l": 0.835114305065172
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1478898,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9fc2c7",
+          "oklch": {
+            "c": 0.03816096420962144,
+            "h": 207.04402061071244,
+            "l": 0.7900765484627433
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1478898,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 95,
+          "confidence": 1,
+          "prominence": 779804.4292604007,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c9d19c",
+          "oklch": {
+            "c": 0.07089657597627132,
+            "h": 114.92027235778853,
+            "l": 0.8413206742625492
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 594864,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e5dfc8",
+          "oklch": {
+            "c": 0.031332097668224555,
+            "h": 94.91411204726816,
+            "l": 0.9022693545324885
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 423354.82761271787,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d4c9b4",
+          "oklch": {
+            "c": 0.031033345646595413,
+            "h": 83.6246868203343,
+            "l": 0.8392068852449825
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 342414,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a0f32f",
+          "oklch": {
+            "c": 0.22632633663460486,
+            "h": 130.9812621198113,
+            "l": 0.8778862822110562
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 147456,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f9a916",
+          "oklch": {
+            "c": 0.16420903076167967,
+            "h": 74.09714790432092,
+            "l": 0.7932517784369029
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 52379.84072383276,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7c7986",
+          "oklch": {
+            "c": 0.01992665160979457,
+            "h": 296.34558018115246,
+            "l": 0.583096390641159
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 11016,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#737170",
+          "oklch": {
+            "c": 0.0033547814159162995,
+            "h": 33.06874289321741,
+            "l": 0.5500539668015476
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 2021.295543881475,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d2d1db",
+          "oklch": {
+            "c": 0.013706832896434514,
+            "h": 290.7136067842971,
+            "l": 0.8644445251627698
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 597.126337666587,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.016979911205124057,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.64,
+          "background": "#f4f1ec",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.27,
+          "background": "#e2e2e7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.72,
+          "background": "#e5dfc8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.36,
+          "background": "#a0f32f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.02,
+          "background": "#ffffff",
+          "foreground": "#27262b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.88,
+          "background": "#d2d1db",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.33,
+          "background": "#f4f1ec",
+          "foreground": "#27262b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#c9d19c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.81,
+          "background": "#d4c9b4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.74,
+          "background": "#e1ca46",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.63,
+          "background": "#27262b",
+          "foreground": "#e2e2e7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.48,
+          "background": "#c4bae3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.24,
+          "background": "#e5dfc8",
+          "foreground": "#27262b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.02,
+          "background": "#9fc2c7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.98,
+          "background": "#a0f32f",
+          "foreground": "#27262b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.71,
+          "background": "#f9a916",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.93,
+          "background": "#d2d1db",
+          "foreground": "#27262b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.36,
+          "background": "#c9d19c",
+          "foreground": "#27262b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.16,
+          "background": "#d4c9b4",
+          "foreground": "#27262b"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 27
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 23
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 30,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 48,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 53,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 85,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 83,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 128,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 134,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 355,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 83,
+          "lineHeight": 1.71,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.71,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "button",
+            "body",
+            "icon",
+            "hero",
+            "footer"
+          ],
+          "frequency": 206,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.78,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/927197db-84cf-4b23-8cdf-c0081ed1f979.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/039431f3-908c-4a18-a222-7b6aeacbbc42.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c363a216-873c-4112-b960-8e823db76f74#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Stable Audio design system\",\"item\":\"https://styles.refero.design/style/c363a216-873c-4112-b960-8e823db76f74\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c363a216-873c-4112-b960-8e823db76f74#style-reference\",\"name\":\"Stable Audio design system reference\",\"headline\":\"Stable Audio design system | Refero Styles\",\"description\":\"Explore Stable Audio's light AI design system: Amber Pulse #f9a916, Lime Signal #a0f32f colors, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c363a216-873c-4112-b960-8e823db76f74\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c363a216-873c-4112-b960-8e823db76f74\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Stable Audio\",\"url\":\"https://stableaudio.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c363a216-873c-4112-b960-8e823db76f74#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/039431f3-908c-4a18-a222-7b6aeacbbc42.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/039431f3-908c-4a18-a222-7b6aeacbbc42.jpg\",\"caption\":\"Screenshot of Stable Audio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/039431f3-908c-4a18-a222-7b6aeacbbc42.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Stable Audio design system\",\"Stable Audio website design\",\"Stable Audio colors\",\"Stable Audio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Amber Pulse\",\"Lime Signal\",\"Lavender Wash\",\"Mustard Field\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Stable Audio design system\"},{\"@type\":\"Thing\",\"name\":\"Stable Audio website design\"},{\"@type\":\"Thing\",\"name\":\"Stable Audio colors\"},{\"@type\":\"Thing\",\"name\":\"Stable Audio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-06T10:24:47.000Z\",\"dateModified\":\"2026-04-06T10:24:47.000Z\"}]}19:T576,## Quick Color Reference\n- Text: #000000 (primary) / #27262b (secondary) / #737170 (muted)\n- Background: #f4f1ec (canvas) / #ffffff (card)\n- Border: #d2d1db\n- Accent: #a0f32f (lime green, audio/sound-active only)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Feature Section Panel**: Full-bleed #c4bae3 lavender background, 80px vertical padding, two columns. Left: bold heading Inter 700 30px #000000, body copy Inter 400 16px #27262b, ghost outline button (white fill, #000000 border, 9999px radius). Right: white product mockup card (#ffffff, 4px radius) containing app UI preview.\n\n3. **Toggle Group**: Two pills side by side, 9999px radius, 8px 20px padding, Inter 700 14px. Active: #27262b fill, #ffffff text. Inactive: transparent fill, #000000 1px border, #000000 text.\n\n4. **Header Bar**: Transparent on cream canvas. Logo 'Stable Audio' + sun-burst icon (#000000) at top-left. Top-right: amber 'Sign up' pill (#f9a916, #000000 bold text, 9999px radius) and ghost 'Log in' button (white fill, #000000 border, 9999px radius).\n\n5. **Track Artwork Block**: Square 1:1 frame with 4px radius. Top half: filled #a0f32f lime-green half-circle. Bottom half: muted panel color (e.g. #e5dfc8 khaki). No text inside the art block itself."
+}

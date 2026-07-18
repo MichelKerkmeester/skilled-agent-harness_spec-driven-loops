@@ -1,0 +1,1076 @@
+{
+  "source": "https://styles.refero.design/style/7f70ee10-123b-43cc-bd04-498cfc5b5ac0",
+  "uuid": "7f70ee10-123b-43cc-bd04-498cfc5b5ac0",
+  "name": "Moxie",
+  "northStar": "Editorial darkroom with a single periwinkle flare — serif headlines float on a black void while a vivid blue accent punctuates the silence.",
+  "capturedAt": "2026-07-18T08:51:37.389Z",
+  "meta": {
+    "url": "https://moxiegrouppr.com",
+    "siteName": "Moxie",
+    "extractedAt": "2026-06-03T21:33:53.994Z",
+    "durationMs": 27023,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 391,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use IBM Plex Serif weight 300 at 43-55px for all section and hero headlines — the whisper-light weight is non-negotiable for the editorial voice",
+      "Apply the italic-periwinkle accent pattern: set one key phrase per headline in IBM Plex Serif italic, color #84acfb, to create typographic rhythm",
+      "Use 1000px border-radius (full pill) for all buttons and interactive tags",
+      "Set card borders to 1px #f4efd4 with no fill or shadow — structure is created by lines and spacing, never by elevation",
+      "Maintain black (#000000) as the sole page background — never lighten it with gray washes or subtle gradients",
+      "Use IBM Plex Sans weight 300 for secondary body text and weight 500 for button labels and attributions to create clear text hierarchy",
+      "Space sections with 80-120px vertical gaps to let the dark canvas and serif type breathe"
+    ],
+    "donts": [
+      "Don't use drop shadows on any element — the system is intentionally shadowless and relies on borders and spacing for structure",
+      "Don't use #84acfb for large background areas or decorative blocks — it is a surgical accent, not a surface color",
+      "Don't set headlines in IBM Plex Sans — the serif/sans split is a load-bearing system choice; headlines must always be Plex Serif",
+      "Don't use weight 600-700 for headlines — the whisper-light 300 weight is the signature; heavier weights would break the editorial tone",
+      "Don't introduce additional accent colors — the system is monochromatic plus one periwinkle; adding a second chromatic would dilute the signal",
+      "Don't add gradients, glows, or blur effects to any element — the flatness is the point",
+      "Don't use square or small-radius buttons for primary actions — all interactive elements should be pill-shaped (1000px radius)"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#84acfb",
+        "name": "Periwinkle Flare",
+        "role": "Primary action background, italic emphasis text, active nav state, heading accent — the lone chromatic signal in an otherwise achromatic system, used surgically to make interactions feel switched on",
+        "group": "brand"
+      },
+      {
+        "hex": "#f4efd4",
+        "name": "Warm Cream",
+        "role": "Primary text, card borders, hairline dividers, card surfaces — a warm off-white that softens the black void and carries the editorial tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#626055",
+        "name": "Warm Ash",
+        "role": "Secondary card borders, muted text, button borders — a mid-tone warm gray for layering depth between cream borders and the black canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Charcoal Veil",
+        "role": "Subtle borders, low-emphasis dividers, body text borders — the deepest visible neutral for near-invisible structural lines",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-width dark sections separated by generous vertical rhythm (80-120px). Hero is centered text-only with a large serif statement floating on black void. Content sections use a max-width ~1200px centered container. Case study tiles appear in a 2-column grid with one large featured tile and a grid of smaller thumbnails. Testimonials use a 3-column horizontal card row with carousel navigation. The brand logo strip is a single full-width centered row. Navigation is minimal: hamburger left, wordmark center, single pill CTA right — no mega-menu, no sidebar.",
+    "imagery": "Imagery is photo-driven and editorial: full-bleed campaign stills (Liquid Death portrait), product close-ups (Oura ring macro shot), and video call screenshots fill case study tiles. Treatment is raw and uncropped — images sit in their card containers with cream hairline borders rather than masked or shaped. Photography is high-contrast and dramatic, matching the dark canvas. No illustrations, no abstract graphics, no 3D renders. Icons are minimal — only the '+' overlay button and carousel arrows. The visual language is 'show the work at full fidelity' rather than stylized or decorative.",
+    "similar": [
+      {
+        "why": "Same editorial dark canvas with serif headlines and generous whitespace — both treat the homepage as a typographic composition rather than a product surface",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Agency-site convention of large centered serif statements on dark backgrounds with a single accent color for emphasis and CTAs",
+        "business": "Giant Spoon"
+      },
+      {
+        "why": "Dark-mode agency aesthetic mixing serif and sans typography with pill-shaped navigation CTAs and a single vivid accent color",
+        "business": "Anomaly"
+      },
+      {
+        "why": "Brand-agency pattern of warm cream typography on black with strategic color accents and editorial serif headlines",
+        "business": "Red Antler"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "1000px",
+        "cards": "8-14px",
+        "buttons": "1000px"
+      },
+      "elementGap": "17-21px",
+      "sectionGap": "80-120px",
+      "cardPadding": "19-35px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void Canvas",
+        "level": 0,
+        "purpose": "Page background — the deep black that everything sits on, creating maximum contrast for cream typography"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Elevated card backgrounds for testimonials, case study tiles, and content blocks"
+      },
+      {
+        "hex": "#f4efd4",
+        "name": "Cream Border",
+        "level": 2,
+        "purpose": "Hairline card borders that define structure without elevation — the primary border color"
+      }
+    ],
+    "northStar": "Editorial darkroom with a single periwinkle flare — serif headlines float on a black void while a vivid blue accent punctuates the silence.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-lg",
+        "size": 17,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 43,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "display",
+        "size": 55,
+        "lineHeight": 1.1
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Navigation Button",
+        "role": "Primary CTA in nav bar",
+        "description": "Fully rounded pill (1000px radius) filled with #84acfb periwinkle blue, cream text (#f4efd4) in IBM Plex Sans weight 500, 7px vertical / 21px horizontal padding. The single chromatic element in the header, making it the obvious action target."
+      },
+      {
+        "name": "Outlined Pill Button",
+        "role": "Secondary action button",
+        "description": "Pill shape (1000px radius) with warm ash (#626055) border, transparent fill, cream text (#f4efd4) in IBM Plex Sans 14-16px weight 400. Used for secondary CTAs like 'Meet the team'."
+      },
+      {
+        "name": "Hero Serif Statement",
+        "role": "Section-opening editorial headline",
+        "description": "Centered IBM Plex Serif weight 300 at 55px, warm cream (#f4efd4) color, line-height 1.10. Key words in italic periwinkle (#84acfb) for emphasis — the italic-periwinkle combination is the signature accent pattern."
+      },
+      {
+        "name": "Brand Logo Strip",
+        "role": "Client/brand showcase row",
+        "description": "Horizontal row of client brand wordmarks in cream (#f4efd4) on black canvas, centered, evenly spaced with ~35px gaps. Each logo is a different typographic identity (serif, sans, script) at uniform visual weight."
+      },
+      {
+        "name": "Case Study Card",
+        "role": "Portfolio work tile",
+        "description": "Rounded card (~8-14px radius) with cream (#f4efd4) hairline border, no fill, contains a full-bleed image with cream border, and a small circular '+' button overlay in the top-right corner. 17-21px internal padding."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "Client quote card",
+        "description": "Card with ~14px radius, cream (#f4efd4) border, slightly elevated dark surface. Opens with a large periwinkle (#84acfb) opening quotation mark. Quote text in IBM Plex Sans 14-16px cream, attribution name in weight 500, title in lighter weight."
+      },
+      {
+        "name": "Carousel Navigation Arrows",
+        "role": "Horizontal scroll controls",
+        "description": "Small circular buttons with cream (#f4efd4) border and arrow icons, positioned at the top-right of carousels. Minimal, functional, ghost-style."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Subsection title",
+        "description": "IBM Plex Serif weight 300 at 43px, cream (#f4efd4), left-aligned, with generous top spacing (~80-100px) from previous section. Establishes the editorial section rhythm."
+      },
+      {
+        "name": "Italic Accent Phrase",
+        "role": "Inline emphasis within serif headlines",
+        "description": "Words or short phrases set in IBM Plex Serif italic, periwinkle blue (#84acfb) color, embedded within cream serif statements. The signature visual move — 'builds category leaders', 'venture' — turns ordinary headlines into typographic compositions."
+      },
+      {
+        "name": "Hamburger Menu Icon",
+        "role": "Mobile/simplified nav trigger",
+        "description": "Three thin horizontal lines in cream (#f4efd4), minimal weight, positioned top-left. No background, no border — pure typographic icon."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading typeface — weight 300 at 55px creates a whisper-light editorial presence; this serif choice signals PR-agency sophistication and gives the brand a magazine-editorial voice that distinguishes it from typical sans-serif tech sites",
+        "sizes": "17px, 22px, 26px, 28px, 43px, 55px",
+        "family": "IBM Plex Serif",
+        "weight": "300, 400, 500",
+        "lineHeight": "1.10, 1.20",
+        "substitute": "EB Garamond, Cormorant Garamond, Source Serif Pro"
+      },
+      {
+        "role": "Body, UI, navigation, buttons, captions — the functional workhorse at 16-17px weight 400; weight 300 is used for secondary text creating a light, airy body voice; weight 500 for emphasis and button labels",
+        "sizes": "10px, 12px, 14px, 16px, 17px, 24px",
+        "family": "IBM Plex Sans",
+        "weight": "300, 400, 500",
+        "lineHeight": "1.00, 1.20, 1.50",
+        "substitute": "Inter, Source Sans Pro, system-ui"
+      }
+    ],
+    "description": "$19",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1a"
+      }
+    ],
+    "elevationPhilosophy": "No shadows. Hierarchy is created through generous spacing, hairline cream borders, and card-on-card tonal layering — never drop shadows. This deliberate shadowlessness keeps the design flat, editorial, and fast."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f4efd4",
+          "oklch": {
+            "c": 0.03586574888038144,
+            "h": 98.41226419224157,
+            "l": 0.9489646824897867
+          },
+          "contexts": [
+            "other",
+            "button",
+            "hero",
+            "heading",
+            "image",
+            "card",
+            "icon",
+            "body",
+            "footer",
+            "link"
+          ],
+          "frequency": 1752,
+          "confidence": 1,
+          "prominence": 131430452.6383428,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 23,
+            "card/color": 80,
+            "hero/color": 1,
+            "icon/color": 13,
+            "link/color": 3,
+            "other/fill": 11,
+            "image/color": 44,
+            "other/color": 178,
+            "button/color": 5,
+            "footer/color": 1,
+            "heading/color": 9,
+            "body/borderColor": 92,
+            "card/borderColor": 292,
+            "hero/borderColor": 4,
+            "icon/borderColor": 52,
+            "link/borderColor": 12,
+            "image/borderColor": 176,
+            "other/borderColor": 712,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 36
+          }
+        },
+        {
+          "hex": "#84acfb",
+          "oklch": {
+            "c": 0.1228664264620376,
+            "h": 263.2130638222534,
+            "l": 0.7473966194165356
+          },
+          "contexts": [
+            "button",
+            "heading",
+            "other"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 193591.12817272774,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4,
+            "heading/color": 11,
+            "heading/borderColor": 44,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#626055",
+          "oklch": {
+            "c": 0.01698173033548478,
+            "h": 98.37847277057377,
+            "l": 0.4861148341665292
+          },
+          "contexts": [
+            "card",
+            "button"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 22003.46608296647,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 28,
+            "button/borderColor": 12
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 13967.138076039344,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "link/color": 2,
+            "other/color": 4,
+            "body/borderColor": 8,
+            "link/borderColor": 8,
+            "other/borderColor": 16
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.10126285189356311,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 10.92,
+          "background": "#f4efd4",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.58,
+          "background": "#84acfb",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.46,
+          "background": "#f4efd4",
+          "foreground": "#626055"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.79,
+          "background": "#84acfb",
+          "foreground": "#626055"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.96,
+          "background": "#84acfb",
+          "foreground": "#f4efd4"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 1000,
+          "contexts": [
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 8.65108,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 13.8417,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 8
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button",
+            "other",
+            "card"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "card",
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "button",
+            "card",
+            "other"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 31,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 55,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 76,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 78,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 87,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 93,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 107,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 147,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 190,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "IBM Plex Sans",
+          "source": "google",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 356,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "IBM Plex Serif",
+          "source": "google",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 20,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "IBM Plex Sans",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "IBM Plex Sans",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Sans",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "hero",
+            "image",
+            "card",
+            "icon",
+            "button",
+            "footer"
+          ],
+          "frequency": 310,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "IBM Plex Sans",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "IBM Plex Serif",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "IBM Plex Serif",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "IBM Plex Sans",
+          "weight": 300,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "IBM Plex Serif",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "IBM Plex Serif",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "IBM Plex Serif",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 55,
+          "family": "IBM Plex Serif",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 55,
+          "family": "IBM Plex Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 55,
+          "family": "IBM Plex Serif",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d5f516fa-4210-4e50-8ce4-61914f22cd79.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/233f222d-db44-49ff-a310-153fdfb27648.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7f70ee10-123b-43cc-bd04-498cfc5b5ac0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Moxie design system\",\"item\":\"https://styles.refero.design/style/7f70ee10-123b-43cc-bd04-498cfc5b5ac0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7f70ee10-123b-43cc-bd04-498cfc5b5ac0#style-reference\",\"name\":\"Moxie design system reference\",\"headline\":\"Moxie design system | Refero Styles\",\"description\":\"Explore Moxie's dark Agency design system: Periwinkle Flare #84acfb, Warm Cream #f4efd4 colors, IBM Plex Serif, IBM Plex Sans typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/7f70ee10-123b-43cc-bd04-498cfc5b5ac0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7f70ee10-123b-43cc-bd04-498cfc5b5ac0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Moxie\",\"url\":\"https://moxiegrouppr.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7f70ee10-123b-43cc-bd04-498cfc5b5ac0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/233f222d-db44-49ff-a310-153fdfb27648.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/233f222d-db44-49ff-a310-153fdfb27648.jpg\",\"caption\":\"Screenshot of Moxie\"},\"image\":\"https://images.refero.design/styles/refero.design/image/233f222d-db44-49ff-a310-153fdfb27648.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Moxie design system\",\"Moxie website design\",\"Moxie colors\",\"Moxie typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Periwinkle Flare\",\"Warm Cream\",\"Warm Ash\",\"Charcoal Veil\",\"IBM Plex Serif\",\"IBM Plex Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Moxie design system\"},{\"@type\":\"Thing\",\"name\":\"Moxie website design\"},{\"@type\":\"Thing\",\"name\":\"Moxie colors\"},{\"@type\":\"Thing\",\"name\":\"Moxie typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:52:24.540Z\",\"dateModified\":\"2026-04-30T02:52:24.540Z\"}]}19:T40c,Moxie's design system operates as an editorial PR-agency darkroom: deep black canvas, warm cream typography, and a single vivid periwinkle accent that lights up interactions like a stage spotlight. The pairing of IBM Plex Serif (for headlines) with IBM Plex Sans (for everything else) creates a magazine-meets-product tension — the serif whispers authority and editorial polish, while the sans keeps functional UI grounded and modern. Layout breathes generously with large centered serif hero statements, asymmetric card grids for work showcases, and horizontal scrolling case-study carousels. Color is used sparingly: the cream (#f4efd4) does the heavy lifting for text and hairline borders on cards, the periwinkle blue (#84acfb) acts as a singular accent for italic emphasis, active states, and the sole filled CTA, and deeper warm grays layer card-on-card depth. There are no shadows, no gradients, no decorative chrome — the system relies on generous spacing, type contrast, and selective color punctuation to create hierarchy.1a:T538,**Quick Color Reference**\n- background: #000000 (page canvas)\n- text: #f4efd4 (warm cream)\n- border: #f4efd4 (hairline card borders)\n- accent: #84acfb (periwinkle — italic emphasis, active states)\n- primary action: #84acfb (filled action)\n\n**Example Component Prompts**\n1. *Hero editorial statement*: Center on black canvas. Headline in IBM Plex Serif weight 300, 55px, color #f4efd4, line-height 1.10. Embed one italic phrase in IBM Plex Serif italic, color #84acfb, same size. No background image, no decorative elements.\n\n2. Create a Primary Action Button: #84acfb background, #333333 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. *Case study card*: 14px border-radius, 1px border #f4efd4, no fill, padding 19px. Contains a full-bleed image filling the card interior. Small 32px circular '+' button in top-right corner with 1px #f4efd4 border, transparent fill, cream '+' icon.\n\n4. *Testimonial card*: 14px border-radius, 1px border #f4efd4, surface #1a1a1a, padding 31-35px. Opening: large '#84acfb' quotation mark (serif, 40px). Body: IBM Plex Sans 14px #f4efd4, line-height 1.50. Attribution: name in weight 500, title in weight 300.\n\n5. *Section heading with italic accent*: IBM Plex Serif weight 300, 43px, #f4efd4, left-aligned, 80-100px top margin. Second word in italic #84acfb."
+}

@@ -1,0 +1,409 @@
+{
+  "color": {
+    "parchment": {
+      "$value": "#f6f3f1",
+      "$type": "color",
+      "$description": "Parchment — Page canvas and the majority of surface fills — this warm off-white IS the brand's signature surface, immediately distinguishing the site from pure-white SaaS templates"
+    },
+    "lake-blue": {
+      "$value": "#2b59d1",
+      "$type": "color",
+      "$description": "Lake Blue — Violet wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "periwinkle-mist": {
+      "$value": "#cfdaf5",
+      "$type": "color",
+      "$description": "Periwinkle Mist — Muted UI surface for disabled controls, low-emphasis panels, and placeholder blocks."
+    },
+    "sky-blue": {
+      "$value": "#a0b5eb",
+      "$type": "color",
+      "$description": "Sky Blue — Decorative gradient stop — appears in atmospheric washes and the pipeline diagram's flow lines, never as a UI fill"
+    },
+    "mint": {
+      "$value": "#a7fccd",
+      "$type": "color",
+      "$description": "Mint — Supporting palette color for small decorative accents when the core palette needs contrast."
+    },
+    "coral": {
+      "$value": "#ff9473",
+      "$type": "color",
+      "$description": "Coral — Supporting palette color for small decorative accents when the core palette needs contrast."
+    },
+    "gold": {
+      "$value": "#ecda98",
+      "$type": "color",
+      "$description": "Gold — Decorative gradient stop — warm accent in gradient washes, never used in functional UI"
+    },
+    "crimson": {
+      "$value": "#f37a0a",
+      "$type": "color",
+      "$description": "Crimson — Decorative gradient stop — deep warm tone in gradient washes alongside gold and coral"
+    },
+    "off-black": {
+      "$value": "#242424",
+      "$type": "color",
+      "$description": "Off-Black — High-contrast neutral action fill for primary buttons on light surfaces."
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Announcement bar surface and certain heading fills — the black band at the top of the page and select heading contexts"
+    },
+    "graphite": {
+      "$value": "#4e4d4d",
+      "$type": "color",
+      "$description": "Graphite — Secondary text — body copy and sub-headings that need less weight than primary headlines"
+    },
+    "smoke": {
+      "$value": "#797776",
+      "$type": "color",
+      "$description": "Smoke — Muted helper text and tertiary links"
+    },
+    "ash": {
+      "$value": "#cecac8",
+      "$type": "color",
+      "$description": "Ash — Hairline borders — 1px solid lines separating sections, outlining pipeline diagram nodes, and defining card edges"
+    }
+  },
+  "font": {
+    "abc-diatype-mono": {
+      "$value": "ABC Diatype Mono",
+      "$type": "fontFamily",
+      "$description": "Body text, navigation, buttons, badges, tags, and ALL UI strings. The monospace choice across every functional element gives the interface its technical-manual character — body copy at 16-20px reads as data, not marketing. Nav labels and badges use 18px uppercase with tighter tracking; small print and meta text use 12px uppercase. Weight 500 is reserved for emphasized UI labels."
+    },
+    "untitled-serif": {
+      "$value": "Untitled Serif",
+      "$type": "fontFamily",
+      "$description": "Display and heading type only — used at 80px (hero), 48px (section), 40px and 32px (sub-section), 24px (feature card titles). Weight is locked at 400 across all sizes; the serif's natural contrast and the -0.02em letter-spacing do the heavy lifting instead of bold weight. This is the editorial confidence signature: headlines whisper through typographic refinement rather than shout through weight."
+    },
+    "untitled-sans": {
+      "$value": "Untitled Sans",
+      "$type": "fontFamily",
+      "$description": "Untitled Sans — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ABC Diatype Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "ABC Diatype Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype Mono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABC Diatype Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ABC Diatype Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Untitled Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ABC Diatype Mono",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "ABC Diatype Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABC Diatype Mono",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABC Diatype Mono",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype Mono",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "ABC Diatype Mono",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "ABC Diatype Mono",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Untitled Serif",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype Mono",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Untitled Serif",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Untitled Serif",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Untitled Serif",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Untitled Serif",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "2000px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 0px 10px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "parchment": {
+      "$value": "#f6f3f1",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas — the base warm off-white that fills the entire viewport"
+    },
+    "periwinkle-mist": {
+      "$value": "#cfdaf5",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated card surface — the one colored card that breaks the monochrome to draw the eye"
+    },
+    "off-black": {
+      "$value": "#242424",
+      "$type": "color",
+      "$description": "Surface level 3: Dark surface for secondary buttons and inverted UI contexts"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 4: Announcement bar — the darkest surface, used for the top notification strip"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.monad.com",
+      "siteName": "Monad",
+      "extractedAt": "2026-07-03T03:11:40.065Z",
+      "variant": "extended"
+    }
+  }
+}

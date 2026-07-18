@@ -1,0 +1,881 @@
+{
+  "source": "https://styles.refero.design/style/859f6be7-9d2d-4da6-a9b7-baa658172696",
+  "uuid": "859f6be7-9d2d-4da6-a9b7-baa658172696",
+  "name": "mono",
+  "northStar": "White-walled gallery grid. A page organized like a museum contact sheet — stark white cells, thin black rules, and type that floats without shadow or ornament.",
+  "capturedAt": "2026-07-18T06:26:07.341Z",
+  "meta": {
+    "url": "https://mono.frm.fm/en",
+    "siteName": "mono",
+    "extractedAt": "2026-07-03T03:42:01.498Z",
+    "durationMs": 61546,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 167,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 2px solid #292929 borders as the primary separator and container system instead of shadows or background fills",
+      "Set all border-radius to 0px — no rounded corners anywhere",
+      "Use NH weight 100–300 at 32–43px for headlines with -0.02em letter-spacing",
+      "Set S-Condensed labels at 12–14px uppercase with +0.1em to +0.2em letter-spacing for all nav, tags, and metadata",
+      "Let the grid go edge-to-edge (no max-width container) — sections butt directly against each other via shared borders",
+      "Use 8px as the base spacing unit, stepping in multiples (8, 12, 20, 43, 45)",
+      "Pair white (#ffffff) surfaces with #292929 ink for all text and borders — never introduce accent color"
+    ],
+    "donts": [
+      "Don't add box-shadow, drop-shadow, or any elevation — the system is intentionally flat",
+      "Don't round any corner — cards, buttons, inputs, images all stay 0px",
+      "Don't use bold weights (600+) — the system's voice comes from weight 100/300/400/500",
+      "Don't introduce a brand accent color — the palette is strictly black/white/ink",
+      "Don't use gradients — fills are always flat solids",
+      "Don't use lowercase body text in S-Condensed — that face is always uppercase",
+      "Don't center-align body paragraphs — copy flows left-aligned in editorial register"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#292929",
+        "name": "Ink",
+        "role": "Primary text, heading color, link color, border strokes, surface blocks — the structural dark that replaces shadow everywhere in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, card surface, input fill, inverse text — the dominant white ground",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "SVG illustration fills and input text — appears in decorative line-art and form value color",
+        "group": "neutral"
+      }
+    ],
+    "imagery": "Product photography dominates: a single hardware device (the Mono X7 display) rendered straight-on against white, treated as an object in a museum rather than a lifestyle product. Black-and-white decorative SVG line-art appears in editorial rotations and rotating circular typographic ornaments. The page is text-and-product dominant, not image-heavy — imagery occupies roughly 30% of total visual real estate and is always contained inside bordered cells with 0px radius, no masks or vignettes.",
+    "similar": [
+      {
+        "why": "Same editorial-grid approach with hard-bordered modular cells, uppercase condensed labels for metadata, and flat surfaces without shadows",
+        "business": "Bloomberg Businessweek"
+      },
+      {
+        "why": "Same whisper-weight serif/sans typography at large sizes with tight tracking, pure white backgrounds, and zero-radius frames around imagery",
+        "business": "Kinfolk Magazine"
+      },
+      {
+        "why": "Same brutalist flat aesthetic with technical product photography, uppercase tracked labels, and 2px black rules as the dominant visual element",
+        "business": "Teenage Engineering"
+      },
+      {
+        "why": "Same gallery-as-grid layout with rotated vertical sidebar text, editorial weight-100 type, and raw product/object imagery without masks",
+        "business": "Hito Steyerl / Rhizome art sites"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "",
+      "cardPadding": "20px",
+      "pageMaxWidth": null
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Page canvas, dominant cell fill, input ground"
+      },
+      {
+        "hex": "#292929",
+        "name": "Ink Block",
+        "level": 2,
+        "purpose": "Inverse dark surface used sparingly for contrast panels and product overlay labels"
+      }
+    ],
+    "northStar": "White-walled gallery grid. A page organized like a museum contact sheet — stark white cells, thin black rules, and type that floats without shadow or ornament.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.34,
+        "letterSpacing": 0.12
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 0.9,
+        "letterSpacing": 0.14
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.34,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "subheading",
+        "size": 25,
+        "lineHeight": 1.27,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.34,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "display",
+        "size": 43,
+        "lineHeight": 1.34,
+        "letterSpacing": -0.86
+      }
+    ],
+    "components": [
+      {
+        "name": "Bordered Cell",
+        "role": "Fundamental layout unit — replaces cards/sections with hard-edged grid cells",
+        "description": "White (#ffffff) background, 2px solid #292929 border on all sides, 0px radius, variable internal padding (commonly 43px top/bottom and 45px left/right for heading cells, 20px for content cells). This is the dominant container — every section, card, and panel uses this pattern instead of shadows or fill colors."
+      },
+      {
+        "name": "Outline Button",
+        "role": "Primary interactive — text-style outlined action",
+        "description": "Transparent background, 1–2px #292929 border, 0px radius, padding 0px 20px vertically centered (text-baseline alignment), text in #292929 at 12–14px S-Condensed weight 500 uppercase with +0.1em tracking. Buttons sit on grid lines and inherit the rectilinear grid rather than floating above it."
+      },
+      {
+        "name": "Text Link",
+        "role": "In-flow navigation and reference link",
+        "description": "No border, no background, #292929 text at 12px S-Condensed weight 300 uppercase, +0.2em tracking, 20px horizontal padding. Examples: EN/JP language toggle, ABOUT tag, Pre-order label."
+      },
+      {
+        "name": "Inverse Text Button",
+        "role": "Highlighted action — white text on dark surface",
+        "description": "#292929 or #000000 background, #ffffff text, 0px radius, no border, 12px S-Condensed uppercase. Used for active/selected nav states and inverse actions on dark cells (e.g., the 'MONO X7' label on the product image cell)."
+      },
+      {
+        "name": "Underline Input",
+        "role": "Single-line form field — brutalist minimal",
+        "description": "White (#ffffff) background, 1px #000000 bottom border only (no full border), 0px radius, padding 8px 0, #000000 text. The hairline-bottom-only treatment replaces boxed inputs — text sits directly on the page grid."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero and section-defining copy",
+        "description": "NH weight 300 at 43px, lineHeight 1.34, letter-spacing -0.02em (-0.86px), #292929. Large size with whisper-weight and tight tracking is the system's signature — anti-bolding, editorial register."
+      },
+      {
+        "name": "Uppercase Label",
+        "role": "Section/metadata tag (e.g., ABOUT, services)",
+        "description": "S-Condensed weight 400–500 at 12px, lineHeight 1.34, uppercase, letter-spacing +0.1em (+0.12px), #292929 on white or #ffffff on #292929 inverse. Functions like museum plaque text — identifies what each cell contains."
+      },
+      {
+        "name": "Editorial Caption",
+        "role": "Rotated/aspirational taglines wrapped around imagery",
+        "description": "S-Condensed or NH at 12–16px, #292929, often rotated or wrapped in a circle as decorative SVG text. The 'Digital canvas that elevates a space with the ease of...' treatment is a signature pattern."
+      },
+      {
+        "name": "Vertical Sidebar Label",
+        "role": "Page-edge rotated text — brand/category markers",
+        "description": "S-Condensed weight 300 at 12px, rotated 90° on the right edge of the page, #292929, uppercase, tracking +0.2em. Marks vertical navigation categories (Illustration, Creative Coding, Web Experiments, etc.)."
+      },
+      {
+        "name": "Product Hero Image",
+        "role": "Full-bleed product photograph as centerpiece",
+        "description": "Renders without frame/border inside its grid cell, 0px radius, sits on pure white background, no shadow or mask — the product is shown raw within the bordered cell, not lifted off it."
+      },
+      {
+        "name": "Footer Bar",
+        "role": "Copyright and utility nav row",
+        "description": "Single horizontal row across page width, 2px top border #292929, 12px S-Condensed uppercase content with +0.2em tracking, 20px vertical padding, white background. Examples: '© FRM Inc. 2026  SHOP  CONTACT  PRESS  CORPORATE'."
+      },
+      {
+        "name": "Dark Inverse Cell",
+        "role": "Occasional dark surface for contrast",
+        "description": "#292929 fill, #ffffff text and borders, 0px radius, 2px #292929 outer border (visually seamless to adjacent cells). Used sparingly for inverse panels and product overlay labels."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary type family for body copy, hero text, headings, and interactive labels",
+        "sizes": "16px, 18px, 25px, 32px, 40px, 43px",
+        "family": "NH",
+        "weight": "100, 300, 400",
+        "lineHeight": "1.20, 1.25, 1.27, 1.34, 1.50",
+        "substitute": "Inter, Helvetica Neue, Arial",
+        "description": "Custom display+text face used at whisper-thin weights (100, 300) for headlines — the light weight at 40–43px with -0.02em tracking is the system's defining voice, creating editorial calm rather than marketing volume",
+        "letterSpacing": "-0.0200em"
+      },
+      {
+        "role": "Utility face for uppercase labels, nav, tags, captions, and condensed body",
+        "sizes": "12px, 14px, 40px",
+        "family": "S-Condensed",
+        "weight": "300, 400, 500",
+        "lineHeight": "0.90, 1.18, 1.20, 1.34",
+        "substitute": "Roboto Condensed, Barlow Condensed, Univers Condensed",
+        "description": "Condensed sans used at small sizes always uppercase with wide +0.1em to +0.2em tracking — functions as architectural labeling (EN/JP toggle, ABOUT tag, nav items), giving the page a museum-plaque quality",
+        "letterSpacing": "0.1000em, 0.2000em"
+      },
+      {
+        "role": "Special display accent",
+        "sizes": "28px",
+        "family": "EV",
+        "weight": "100",
+        "lineHeight": "0.90",
+        "substitute": "Times New Roman, serif",
+        "description": "Single-use serif/script-style face at weight 100, uppercase, -0.05em tracking — provides typographic contrast against the NH/S-Condensed system, used sparingly as editorial accent",
+        "letterSpacing": "-0.0500em"
+      },
+      {
+        "role": "Reserved display heading",
+        "sizes": "40px",
+        "family": "S-Works",
+        "weight": "350",
+        "lineHeight": "1.34",
+        "substitute": "Söhne, GT America",
+        "description": "Single-use display weight at 40px with normal tracking — reserved for accent headings, bringing a neutral modern sans contrast to the otherwise NH-driven system",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Mono X7 operates as a Brutalist editorial canvas: pure white surface, dark ink type, hard 2px rules dividing the page into modular cells. NH and S-Condensed do all the talking — weight 100/300 at large sizes with negative tracking creates breathy headlines that sit beside S-Condensed uppercase labels tracking wide at +0.1em. No shadows, no gradients, no color accent; the system is deliberately monastic, treating typography and grid as the entire visual language. Every component is rectilinear, zero radius, and bound by visible borders rather than elevation.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/859f6be7-9d2d-4da6-a9b7-baa658172696#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"mono design system\",\"item\":\"https://styles.refero.design/style/859f6be7-9d2d-4da6-a9b7-baa658172696\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/859f6be7-9d2d-4da6-a9b7-baa658172696#style-reference\",\"name\":\"mono design system reference\",\"headline\":\"mono design system | Refero Styles\",\"description\":\"Explore mono's light Other design system: Ink #292929, Paper #ffffff colors, NH, S-Condensed typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/859f6be7-9d2d-4da6-a9b7-baa658172696\",\"mainEntityOfPage\":\"https://styles.refero.design/style/859f6be7-9d2d-4da6-a9b7-baa658172696\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"mono\",\"url\":\"https://mono.frm.fm/en\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/859f6be7-9d2d-4da6-a9b7-baa658172696#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e541b572-72a6-4ae1-95fb-dbef4e839591.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e541b572-72a6-4ae1-95fb-dbef4e839591.jpg\",\"caption\":\"Screenshot of mono\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e541b572-72a6-4ae1-95fb-dbef4e839591.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"mono design system\",\"mono website design\",\"mono colors\",\"mono typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Ink\",\"Paper\",\"Carbon\",\"NH\",\"S-Condensed\",\"EV\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"mono design system\"},{\"@type\":\"Thing\",\"name\":\"mono website design\"},{\"@type\":\"Thing\",\"name\":\"mono colors\"},{\"@type\":\"Thing\",\"name\":\"mono typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T02:42:12.427Z\",\"dateModified\":\"2026-04-30T02:42:12.427Z\"}]}19:T5af,**Quick Color Reference**\n- text: #292929\n- background: #ffffff\n- border: #292929\n- inverse surface: #292929\n- decorative fill: #000000\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. Create a hero headline cell: white (#ffffff) background, 2px solid #292929 border, 0px radius, 43px top/bottom padding. Text inside: 'made for art lovers' in NH weight 300, 43px, #292929, letter-spacing -0.02em, line-height 1.34. No shadow, no rounded corners.\n\n2. Create an outlined navigation button: transparent background, 1px solid #292929 border, 0px radius, padding 0px 20px. Text: 'PRE-ORDER' in S-Condensed weight 500, 12px, uppercase, #292929, letter-spacing +0.1em. The button sits flush on the grid, not floating above it.\n\n3. Create a bordered product showcase cell: white (#ffffff) background, 2px solid #292929 border, 0px radius, full-width inside a grid. Product image renders inside with 0px radius, no border, no shadow — shown raw on the white ground.\n\n4. Create a vertical sidebar label: S-Condensed weight 300, 12px, uppercase, #292929, letter-spacing +0.2em, rotated 90° on the right edge of the page, 20px from the edge. Content: 'Illustration, Creative Coding, Web Experiments'.\n\n5. Create a footer bar: 2px solid #292929 top border, white background, 12px S-Condensed uppercase content with +0.2em tracking, separated by wide horizontal padding. Content: '© FRM Inc. 2026   SHOP   CONTACT   PRESS   CORPORATE'."
+      },
+      {
+        "title": "Border System",
+        "content": "The 2px solid #292929 border is the system's most-used visual element (51 occurrences in raw data, far exceeding any other pattern). It replaces every function that shadows, fills, or radii would normally serve — containers, dividers, button outlines, and card frames all share the same stroke. 1px borders appear only for subtle inline elements like the bottom edge of inputs. Maintain 2px as the standard; never mix border widths on adjacent cells."
+      },
+      {
+        "title": "Animation Philosophy",
+        "content": "Motion is minimal and functional: 0.6s ease for height/width transitions (likely product image scaling), 0.3s for state changes. No bounce, no spring, no decorative entrance animations — the system animates only when geometry changes. cubic-bezier(0.455, 0.03, 0.515, 0.955) appears for the rare eased transitions (classic ease-in-out feel)."
+      }
+    ],
+    "elevationPhilosophy": "The system intentionally uses no shadows or elevation. Visual hierarchy is created entirely through 2px hard borders, stark white/dark inversions, and typographic scale. This is a deliberate Brutalist/editorial choice — surfaces are flat planes, not lifted cards."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#292929",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2809402269547256
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "button",
+            "input",
+            "body"
+          ],
+          "frequency": 86,
+          "confidence": 1,
+          "prominence": 1703643.1191723207,
+          "properties": [
+            "borderColor",
+            "color",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 7,
+            "other/color": 5,
+            "button/color": 3,
+            "other/stroke": 2,
+            "heading/color": 14,
+            "link/borderColor": 3,
+            "input/borderColor": 1,
+            "other/borderColor": 44,
+            "button/borderColor": 4,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 1196120.2524205954,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/color": 11,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 936334.8457883544,
+          "properties": [
+            "fill",
+            "color"
+          ],
+          "usageCounts": {
+            "other/fill": 10,
+            "input/color": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.55,
+          "background": "#ffffff",
+          "foreground": "#292929"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.44,
+          "background": "#292929",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "input",
+            "list"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "marginLeft|list",
+            "paddingRight|list"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|body",
+            "paddingRight|link"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingRight|heading",
+            "paddingBottom|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "NH",
+          "source": "custom",
+          "weights": [
+            100,
+            300,
+            400
+          ],
+          "frequency": 113,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "S-Condensed",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 40,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "EV",
+          "source": "custom",
+          "weights": [
+            100
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "S-Works",
+          "source": "custom",
+          "weights": [
+            350
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "S-Condensed",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "S-Condensed",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "S-Condensed",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "S-Condensed",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "S-Condensed",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.9,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "S-Condensed",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.18,
+          "letterSpacing": 0.2,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "S-Condensed",
+          "weight": 300,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "NH",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "hero",
+            "image"
+          ],
+          "frequency": 80,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "NH",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "NH",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "NH",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "NH",
+          "weight": 300,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "EV",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "NH",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "S-Condensed",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "NH",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "S-Works",
+          "weight": 350,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "NH",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/5015efcd-49bf-4c44-b613-0429499b293c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e541b572-72a6-4ae1-95fb-dbef4e839591.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/859f6be7-9d2d-4da6-a9b7-baa658172696#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"mono design system\",\"item\":\"https://styles.refero.design/style/859f6be7-9d2d-4da6-a9b7-baa658172696\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/859f6be7-9d2d-4da6-a9b7-baa658172696#style-reference\",\"name\":\"mono design system reference\",\"headline\":\"mono design system | Refero Styles\",\"description\":\"Explore mono's light Other design system: Ink #292929, Paper #ffffff colors, NH, S-Condensed typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/859f6be7-9d2d-4da6-a9b7-baa658172696\",\"mainEntityOfPage\":\"https://styles.refero.design/style/859f6be7-9d2d-4da6-a9b7-baa658172696\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"mono\",\"url\":\"https://mono.frm.fm/en\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/859f6be7-9d2d-4da6-a9b7-baa658172696#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e541b572-72a6-4ae1-95fb-dbef4e839591.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e541b572-72a6-4ae1-95fb-dbef4e839591.jpg\",\"caption\":\"Screenshot of mono\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e541b572-72a6-4ae1-95fb-dbef4e839591.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"mono design system\",\"mono website design\",\"mono colors\",\"mono typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Ink\",\"Paper\",\"Carbon\",\"NH\",\"S-Condensed\",\"EV\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"mono design system\"},{\"@type\":\"Thing\",\"name\":\"mono website design\"},{\"@type\":\"Thing\",\"name\":\"mono colors\"},{\"@type\":\"Thing\",\"name\":\"mono typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T02:42:12.427Z\",\"dateModified\":\"2026-04-30T02:42:12.427Z\"}]}19:T5af,**Quick Color Reference**\n- text: #292929\n- background: #ffffff\n- border: #292929\n- inverse surface: #292929\n- decorative fill: #000000\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. Create a hero headline cell: white (#ffffff) background, 2px solid #292929 border, 0px radius, 43px top/bottom padding. Text inside: 'made for art lovers' in NH weight 300, 43px, #292929, letter-spacing -0.02em, line-height 1.34. No shadow, no rounded corners.\n\n2. Create an outlined navigation button: transparent background, 1px solid #292929 border, 0px radius, padding 0px 20px. Text: 'PRE-ORDER' in S-Condensed weight 500, 12px, uppercase, #292929, letter-spacing +0.1em. The button sits flush on the grid, not floating above it.\n\n3. Create a bordered product showcase cell: white (#ffffff) background, 2px solid #292929 border, 0px radius, full-width inside a grid. Product image renders inside with 0px radius, no border, no shadow — shown raw on the white ground.\n\n4. Create a vertical sidebar label: S-Condensed weight 300, 12px, uppercase, #292929, letter-spacing +0.2em, rotated 90° on the right edge of the page, 20px from the edge. Content: 'Illustration, Creative Coding, Web Experiments'.\n\n5. Create a footer bar: 2px solid #292929 top border, white background, 12px S-Condensed uppercase content with +0.2em tracking, separated by wide horizontal padding. Content: '© FRM Inc. 2026   SHOP   CONTACT   PRESS   CORPORATE'."
+}

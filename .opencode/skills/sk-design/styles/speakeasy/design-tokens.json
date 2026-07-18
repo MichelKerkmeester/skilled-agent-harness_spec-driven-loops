@@ -1,0 +1,689 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page and card surfaces, button text on dark fills, inverse text on black"
+    },
+    "ash-gray": {
+      "$value": "#dbdbdb",
+      "$type": "color",
+      "$description": "Ash Gray — Default hairline borders, dividers between sections, the most-used neutral border"
+    },
+    "carbon": {
+      "$value": "#242424",
+      "$type": "color",
+      "$description": "Carbon — Navigation borders, deep surface tone, alt black for softer contrast"
+    },
+    "graphite": {
+      "$value": "#545454",
+      "$type": "color",
+      "$description": "Graphite — Body text, icon strokes, secondary text, muted UI labels"
+    },
+    "smoke": {
+      "$value": "#969696",
+      "$type": "color",
+      "$description": "Smoke — Tertiary text, placeholder labels, disabled icon outlines, decorative dot fields"
+    },
+    "slate": {
+      "$value": "#7a7a7a",
+      "$type": "color",
+      "$description": "Slate — Muted helper text, subtle borders, supporting metadata"
+    },
+    "bone": {
+      "$value": "#e7e7e7",
+      "$type": "color",
+      "$description": "Bone — Light borders, subtle surface separators, ghost button outlines"
+    },
+    "iron": {
+      "$value": "#414141",
+      "$type": "color",
+      "$description": "Iron — Icon strokes, dark borders, button shadows, dense text"
+    },
+    "obsidian": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Obsidian — Filled button background — the system’s only CTA fill, paired with white text"
+    },
+    "mist": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Mist — Subtle elevated surfaces, off-white section bands, card hover wash"
+    },
+    "cinder": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Cinder — Deepest text and badge backgrounds, near-black accent"
+    },
+    "signal-green": {
+      "$value": "#009966",
+      "$type": "color",
+      "$description": "Signal Green — Green outline accent for tags, dividers, and focused UI edges"
+    },
+    "spring-mint": {
+      "$value": "#00bc7d",
+      "$type": "color",
+      "$description": "Spring Mint — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "fern": {
+      "$value": "#00d492",
+      "$type": "color",
+      "$description": "Fern — Soft badge backgrounds, callout fills, gradient end-stop"
+    },
+    "ember-orange": {
+      "$value": "#e17100",
+      "$type": "color",
+      "$description": "Ember Orange — Icon strokes and feature-card illustrations — the warmest functional accent in iconography"
+    },
+    "marigold": {
+      "$value": "#fe9a00",
+      "$type": "color",
+      "$description": "Marigold — Vivid icon fills, alert-tinged highlights, gradient mid-stop; The signature top-of-page gradient hairline — 9-stop spectrum from maroon through amber, green, indigo, to sky"
+    },
+    "amber": {
+      "$value": "#ffb900",
+      "$type": "color",
+      "$description": "Amber — Tag/badge backgrounds, warm highlight washes, featured callout fills"
+    },
+    "coral": {
+      "$value": "#ff6467",
+      "$type": "color",
+      "$description": "Coral — Red outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color"
+    },
+    "iris-blue": {
+      "$value": "#155dfc",
+      "$type": "color",
+      "$description": "Iris Blue — Link and icon accent — the only saturated blue, used sparingly for emphasis strokes"
+    }
+  },
+  "font": {
+    "ui-sans-serif-system": {
+      "$value": "ui-sans-serif (system)",
+      "$type": "fontFamily",
+      "$description": "UI chrome — nav labels, buttons, badges, table data, form fields. Renders as a system font (San Francisco / Segoe UI / Roboto fallback). Small sizes (9–13px) handle the dense secondary UI; 16–18px for button text. Wide tracking (0.05em) on uppercase micro-labels like “THE PROBLEM”."
+    },
+    "tobias": {
+      "$value": "Tobias",
+      "$type": "fontFamily",
+      "$description": "Display and headline serif — used at massive sizes (up to 140px) for hero statements, section openers, and oversized editorial moments. The weight-100 thinness is the brand’s single most distinctive choice; it makes headlines feel engraved rather than printed. No system font replicates this — substitute with a hairline serif (e.g. “Tobias”, “GT Super”, or “Fraunces 100”)."
+    },
+    "diatype": {
+      "$value": "Diatype",
+      "$type": "fontFamily",
+      "$description": "Primary body and subheading sans — compact, neutral, engineered for reading. Weight 300 for lighter pull-quotes, 400 for body, 500 for subhead emphasis. The slight contrast with Tobias gives the editorial pairing its rhythm. Substitute with Inter, Söhne, or Geist."
+    },
+    "speakeasyascii": {
+      "$value": "speakeasyAscii",
+      "$type": "fontFamily",
+      "$description": "speakeasyAscii — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "diatypeMono",
+        "fontSize": "7px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 7px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 9px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "10px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 10px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 10px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 10px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 10px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "diatypeMono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 10px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 11px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "diatypeMono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 11px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 11px"
+    },
+    "xs-12": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-12 at 11px"
+    },
+    "xs-13": {
+      "$value": {
+        "fontFamily": "diatypeMono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-13 at 12px"
+    },
+    "xs-14": {
+      "$value": {
+        "fontFamily": "diatypeMono",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.66
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-14 at 12px"
+    },
+    "xs-15": {
+      "$value": {
+        "fontFamily": "diatypeMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-15 at 12px"
+    },
+    "xs-16": {
+      "$value": {
+        "fontFamily": "diatypeMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-16 at 12px"
+    },
+    "xs-17": {
+      "$value": {
+        "fontFamily": "diatypeMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-17 at 12px"
+    },
+    "xs-18": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-18 at 12px"
+    },
+    "xs-19": {
+      "$value": {
+        "fontFamily": "diatypeMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-19 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "diatype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "diatype",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "diatype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "diatypeMono",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "speakeasyAscii",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "diatype",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "diatype",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "diatype",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "tobias",
+        "fontSize": "20px",
+        "fontWeight": 100,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "diatype",
+        "fontSize": "23px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "diatype",
+        "fontSize": "26px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "tobias",
+        "fontSize": "38px",
+        "fontWeight": 100,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "tobias",
+        "fontSize": "51px",
+        "fontWeight": 100,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 51px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "tobias",
+        "fontSize": "67px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 67px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "tobias",
+        "fontSize": "140px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 140px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgb(65, 65, 65) 0px 2px 1px 0px inset, rgba(0, 0, 0, 0.05) 0px -2px 1px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgb(255, 255, 255) 0px 2px 1px 0px inset, rgba(0, 0, 0, 0.1) 0px -2px 1px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    },
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background — pure white, no off-white tint"
+    },
+    "raised": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle elevated sections, card hover wash, secondary background bands"
+    },
+    "divider": {
+      "$value": "#dbdbdb",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline border tone that also reads as a subtle gray band in some sections"
+    },
+    "accent-wash": {
+      "$value": "#ffb900",
+      "$type": "color",
+      "$description": "Surface level 3: Highlight backgrounds, tag fills, callout panels"
+    },
+    "inverse": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Surface level 4: CTA button surface — the only dark fill in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.speakeasy.com",
+      "siteName": "Speakeasy",
+      "extractedAt": "2026-06-03T16:20:24.899Z",
+      "variant": "extended"
+    }
+  }
+}

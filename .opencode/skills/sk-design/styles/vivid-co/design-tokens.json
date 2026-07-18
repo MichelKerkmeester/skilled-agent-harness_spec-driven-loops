@@ -1,0 +1,307 @@
+{
+  "color": {
+    "bone-white": {
+      "$value": "#fffdf9",
+      "$type": "color",
+      "$description": "Bone White — Primary text, nav labels, link color, heading fill — the near-white that occupies every typographic surface across the dark canvas"
+    },
+    "obsidian": {
+      "$value": "#101010",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas, background fill for hero and section bands — the deep black the prism artifact sits inside"
+    },
+    "graphite-veil": {
+      "$value": "#495764",
+      "$type": "color",
+      "$description": "Graphite Veil — Dominant surface behind headings and content blocks — a cool dark slate that gives the canvas depth without flat black"
+    },
+    "ash-border": {
+      "$value": "#403f3f",
+      "$type": "color",
+      "$description": "Ash Border — Hairline divider and card outline — barely visible, used at 1px to separate rows without competing with type"
+    },
+    "fog-blue": {
+      "$value": "#6f879c",
+      "$type": "color",
+      "$description": "Fog Blue — Muted secondary text and ghost-button labels (3.7:1 contrast) — service-category labels like Strategy, Creative, Communications + marketing read as de-emphasized metadata"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Decorative SVG icon and illustration fill — used in the prism artwork and icon glyphs; not a background"
+    },
+    "prism-red": {
+      "$value": "#ff2a2a",
+      "$type": "color",
+      "$description": "Prism Red — Chromatic dispersion accent — one channel of the RGB-split prism hero artifact; appears only inside the brand illustration, not as a UI token"
+    },
+    "prism-cyan": {
+      "$value": "#2a7fff",
+      "$type": "color",
+      "$description": "Prism Cyan — Chromatic dispersion accent — blue channel of the RGB-split prism, paired with red and green to create the signature caustics effect"
+    },
+    "prism-lime": {
+      "$value": "#2aff2a",
+      "$type": "color",
+      "$description": "Prism Lime — Chromatic dispersion accent — green channel of the RGB-split prism artifact"
+    }
+  },
+  "font": {
+    "neue-montreal": {
+      "$value": "Neue Montreal",
+      "$type": "fontFamily",
+      "$description": "Exclusive typeface across all UI — heading, body, nav, button, link, footer. Weight 400 is the default; weight 700 is reserved for 36px subheadings only. Display headlines at 105px and 136px carry line-height 1.00–1.01 with -0.02em tracking, producing cinematic stacked headlines that read as sculptural rather than typographic."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.01
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "33px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 33px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "105px",
+        "fontWeight": 400,
+        "lineHeight": 1.01
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 105px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "136px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 136px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "108": {
+      "$value": "108px",
+      "$type": "dimension",
+      "$description": "Spacing 108px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#101010",
+      "$type": "color",
+      "$description": "Surface level 0: Deepest page background — hero void, full-bleed sections"
+    },
+    "graphite-veil": {
+      "$value": "#495764",
+      "$type": "color",
+      "$description": "Surface level 1: Primary content surface — content bands sit on this slightly lighter slate"
+    },
+    "bone-card": {
+      "$value": "#fffdf9",
+      "$type": "color",
+      "$description": "Surface level 2: Rare inverted cards (when used) — near-white surface that flips the type to dark"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://vividand.co",
+      "siteName": "Vivid+Co",
+      "extractedAt": "2026-07-03T03:09:37.717Z",
+      "variant": "extended"
+    }
+  }
+}

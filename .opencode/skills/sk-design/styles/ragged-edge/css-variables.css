@@ -1,0 +1,79 @@
+:root {
+  /* Colors */
+  --color-obsidian-ink: #181f1f;
+  --color-paper-white: #ffffff;
+  --color-fog: #d1d2d2;
+  --color-ash: #a3a5a5;
+  --color-graphite: #374151;
+  --color-true-black: #000000;
+  --color-mint-wash: #eaf7f3;
+  --color-deep-teal: #1f3233;
+  --color-iris-voltage: #516fea;
+  --color-solar-bloom: #ffc240;
+  --gradient-solar-bloom: linear-gradient(0deg, rgba(255, 194, 64, 0), rgb(255, 194, 64) 25%, rgb(255, 196, 244) 50%, rgb(150, 235, 235) 75%, rgba(150, 235, 235, 0) 100%);
+
+  /* Typography — Font Families */
+  --font-abcdiatypeexpanded-bold: 'ABCDiatypeExpanded-Bold', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-grit-regular: 'Grit-Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.2;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 20px;
+  --leading-subheading: 1.25;
+  --text-heading: 30px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 40px;
+  --leading-heading-lg: 1.15;
+  --tracking-heading-lg: -0.4px;
+  --text-display: 56px;
+  --leading-display: 1.25;
+  --tracking-display: -0.56px;
+  --text-hero: 80px;
+  --leading-hero: 1.1;
+  --tracking-hero: -1.6px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-180: 180px;
+  --spacing-200: 200px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 180px;
+  --card-padding: 32px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-3xl: 40px;
+  --radius-full: 54px;
+  --radius-full-2: 64px;
+
+  /* Named Radii */
+  --radius-nav: 64px;
+  --radius-cards: 40px;
+  --radius-inputs: 54px;
+  --radius-buttons: 64px;
+  --radius-body-blocks: 40px;
+
+  /* Surfaces */
+  --surface-paper-white: #ffffff;
+  --surface-mint-wash: #eaf7f3;
+  --surface-deep-teal: #1f3233;
+  --surface-obsidian-ink: #181f1f;
+}

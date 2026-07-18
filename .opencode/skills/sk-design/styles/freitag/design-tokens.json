@@ -1,0 +1,389 @@
+{
+  "color": {
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Primary text, logo plate, pill-button fills, hairline borders, icon strokes — the dominant ink that carries every label, heading, and outline"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, product image backdrops, button text on dark fills, inverted text on category overlays"
+    },
+    "concrete-gray": {
+      "$value": "#cacaca",
+      "$type": "color",
+      "$description": "Concrete Gray — Card borders, thumbnail dividers, secondary dividers between product cells — the structural neutral that frames the grid"
+    },
+    "mist-gray": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Mist Gray — Subtle surface tint for inactive button states and soft fill washes, never a page background"
+    },
+    "iron-gray": {
+      "$value": "#404040",
+      "$type": "color",
+      "$description": "Iron Gray — Deep shadow tone and heavier border treatment for elevated containers and section breaks"
+    },
+    "ash-gray": {
+      "$value": "#616161",
+      "$type": "color",
+      "$description": "Ash Gray — Muted secondary text, body helpers, tertiary borders — the gray that whispers beneath the ink"
+    },
+    "ink": {
+      "$value": "#1a1b1e",
+      "$type": "color",
+      "$description": "Ink — Rare near-black accent for solid button fills that need a touch of warmth without drifting to pure carbon"
+    },
+    "caution-yellow": {
+      "$value": "#ffdd00",
+      "$type": "color",
+      "$description": "Caution Yellow — Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content."
+    }
+  },
+  "font": {
+    "ui-sans-serif": {
+      "$value": "ui-sans-serif",
+      "$type": "fontFamily",
+      "$description": "ui-sans-serif — detected in extracted data but not described by AI"
+    },
+    "akkstdrg-akkurat-standard": {
+      "$value": "AkkStdRg (Akkurat Standard)",
+      "$type": "fontFamily",
+      "$description": "Sole brand typeface. The neo-grotesque Swiss workhorse used for everything from display headlines down to 8px eyebrow labels. Weight stays at 400 — no bold weight exists in the system; emphasis is achieved through size, uppercase, and tracking. The 0.74 line-height on display sizes is anti-conventional and creates a compressed, industrial poster effect. Wide tracking on small sizes (0.04–0.05em) gives labels the spacing of machine-stamped serial numbers."
+    },
+    "frg-freitag-regular": {
+      "$value": "FRg (Freitag Regular)",
+      "$type": "fontFamily",
+      "$description": "Reserved for product model codes (F141 CLARK, F531 ARCHER) — a secondary condensed-mark treatment that makes the SKU read as a stamped part number on a shipping crate"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    },
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "AkkStdMn",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "AkkStdRg",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 8px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "AkkStdRg",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 0.74
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 10px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "FRg",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 0.74
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 10px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "AkkStdRg",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 11px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "AkkStdRg",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 11px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "AkkStdMn",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 11px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "AkkStdMn",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 11px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "AkkStdMn",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 11px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 11px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "AkkStdRg",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "AkkStdRg",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 0.97
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "AkkStdRg",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "AkkStdRg",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.97
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "AkkStdRg",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 0.97
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "AkkStdRg",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 0.97
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.12) 2px 2px 10px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "subtle": {
+      "$value": "rgb(64, 64, 64) 0px -1px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "sm": {
+      "$value": "rgba(45, 45, 45, 0.5) 2px 2px 5px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background and product photo backdrop"
+    },
+    "muted-surface": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Surface level 1: Inactive button fills and subtle tonal washes"
+    },
+    "ruled-cell": {
+      "$value": "#cacaca",
+      "$type": "color",
+      "$description": "Surface level 2: 1px borders that form the catalog grid lattice"
+    },
+    "logo-plate": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted black surface for the centered FREITAG wordmark and the only primary button fill"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://freitag.ch/en_ID",
+      "siteName": "Freitag",
+      "extractedAt": "2026-06-03T18:51:44.979Z",
+      "variant": "extended"
+    }
+  }
+}

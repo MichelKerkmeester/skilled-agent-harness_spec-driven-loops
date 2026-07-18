@@ -1,0 +1,1312 @@
+{
+  "source": "https://styles.refero.design/style/9623a699-230d-4ee2-a174-8209e1e9ef16",
+  "uuid": "9623a699-230d-4ee2-a174-8209e1e9ef16",
+  "name": "Relace",
+  "northStar": "Warm paper notebook with amber ink — an editor's desk, not a dashboard.",
+  "capturedAt": "2026-07-18T09:03:00.313Z",
+  "meta": {
+    "url": "https://relace.ai",
+    "siteName": "Relace",
+    "extractedAt": "2026-06-03T20:56:46.633Z",
+    "durationMs": 33563,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 475,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #fffef2 for every page and card background — never #ffffff or any cool neutral",
+      "Set display heading tracking to -0.05em (-3.2px at 64px) to compress headlines into confident blocks",
+      "Use #fcaa2d exclusively for filled CTAs, single inline accent words in headlines, and left-border list indicators",
+      "Apply 2px border-radius to all rectangular components — buttons, cards, inputs, code windows",
+      "Use Decima Mono (or JetBrains Mono substitute) for all UI chrome: version labels, timestamps, metadata tags, and code",
+      "Separate sections with 1px #000000 hairlines rather than background color shifts or shadows",
+      "Left-align all headlines and body text — the editorial left-flow is a brand-defining layout choice"
+    ],
+    "donts": [
+      "Never use #ffffff as a background — the warm cream canvas is the brand's visual temperature",
+      "Do not round corners beyond 2px on rectangular components; reserve 800px only for badges and icon containers",
+      "Do not use #fcaa2d for body text, large background areas, or decorative fills — it is rationed for action and single-word emphasis only",
+      "Never add drop shadows or box-shadows — the design uses lines, not depth, for separation",
+      "Do not use cool grays, blues, or any non-warm neutrals — the entire palette is warm-toned",
+      "Do not center headlines or use centered text blocks — left-alignment is non-negotiable",
+      "Do not use system sans-serif (Arial, Helvetica) for headlines — always use Parabole or a geometric sans substitute at tight tracking"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fffef2",
+        "name": "Page Cream",
+        "role": "Universal page background and card surface — the warm, almost unbleached paper that defines the entire visual temperature",
+        "group": "neutral"
+      },
+      {
+        "hex": "#191918",
+        "name": "Ink Black",
+        "role": "Primary text color, dark surface fills, and code-window backgrounds — warm near-black, never pure optical black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Rule Black",
+        "role": "Structural hairlines and borders — 1px lines that define cards, separate sections, and replace shadow as the elevation language",
+        "group": "neutral"
+      },
+      {
+        "hex": "#75756f",
+        "name": "Warm Stone",
+        "role": "Muted body text, secondary borders, and inactive link states — a warm gray that recedes without going cool",
+        "group": "neutral"
+      },
+      {
+        "hex": "#edece0",
+        "name": "Linen Beige",
+        "role": "Secondary elevated surface — warm light beige for tags, subtle background panels, and hover washes that lift off the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bab9b0",
+        "name": "Ash Gray",
+        "role": "Tertiary dividers and inactive UI elements — a mid-warm gray for the lightest structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fcaa2d",
+        "name": "Amber Signal",
+        "role": "Yellow outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color",
+        "group": "brand"
+      }
+    ],
+    "layout": "Max-width 1200px centered content with generous left/right padding (~40px). Header is full-width sticky with bottom border. Hero is a two-column split: left 60% headline, right 40% body text + CTA pair, no hero image. Sections are left-aligned stacks — never centered text blocks. Content rhythm alternates between text-only sections and full-bleed image bands, creating a breathing pattern of compressed text and wide visual resets. FAQ and feature lists use full-width single-column rows. No card grids, no masonry, no multi-column feature matrices — the layout stays in 1-2 column editorial flows.",
+    "imagery": "Photography appears as full-bleed landscape bands — warm-toned outdoor scenes (grasslands, mountains at golden hour) that break the monochrome text rhythm at major section transitions. Images always carry a dark code-window or UI element overlaid on top, creating a 'nature interrupted by interface' juxtaposition. Treatment is unfiltered, natural-color, no duotone or color grading. Product screenshots are absent — all visual storytelling is done through code overlays and abstract diagrams (concentric circles, timeline strips) rather than product UI captures. Icons are minimal: a small square logo glyph, ↗ arrows on CTUs, and a few line-style indicators. No illustration or 3D rendering.",
+    "similar": [
+      {
+        "why": "Same warm cream backgrounds, editorial left-aligned headlines, and rationed single-color accent strategy against a muted neutral canvas",
+        "business": "Anthropic"
+      },
+      {
+        "why": "Same sharp 2px radii, hairline-border separation, and monochrome-first approach with a single vivid accent reserved for action",
+        "business": "Linear"
+      },
+      {
+        "why": "Same geometric sans typography with tight tracking at display sizes, monospace for UI chrome, and flat no-shadow design language",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same left-aligned editorial layout flow, generous whitespace between sections, and confident typographic hierarchy as the primary visual tool",
+        "business": "Stripe"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "2px",
+        "icons": "800px",
+        "badges": "800px",
+        "inputs": "2px",
+        "buttons": "2px"
+      },
+      "elementGap": "8-20px",
+      "sectionGap": "40-60px",
+      "cardPadding": "20-40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#fffef2",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page-wide background — the warm paper field everything sits on"
+      },
+      {
+        "hex": "#edece0",
+        "name": "Linen",
+        "level": 2,
+        "purpose": "Subtle elevated wash for tags, secondary panels, and quiet hover states"
+      },
+      {
+        "hex": "#191918",
+        "name": "Ink",
+        "level": 3,
+        "purpose": "Code windows, dark feature blocks, and high-contrast content surfaces"
+      },
+      {
+        "hex": "#fcaa2d",
+        "name": "Amber",
+        "level": 4,
+        "purpose": "Accent surface for filled CTAs, active indicators, and brand-colored highlights"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Warm paper notebook with amber ink — an editor's desk, not a dashboard.",
+    "typeScale": [
+      {
+        "role": "mono-xs",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.4
+      },
+      {
+        "role": "mono-sm",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.36
+      },
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.42
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.72
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.06,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.8
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.6
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1.1,
+        "letterSpacing": -3.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Amber CTA Button",
+        "role": "Primary action trigger — the only filled button in the system",
+        "description": "Filled #fcaa2d background, #191918 or #000000 text, 2px border-radius, 10px 20px padding. Label in Decima Mono at 12px (0.04em tracking) or Parabole Medium at 14px. Often paired with a small ↗ arrow icon. No hover state elevation — the design trusts color to communicate action, not depth."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action paired with the amber CTA",
+        "description": "Transparent or #fffef2 background, 1px #000000 border, #191918 text, 2px border-radius, 10px 20px padding. Same label typography as the amber button. Functions as the 'lighter weight sibling' in button pairs — never standalone."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Sticky top header across all pages",
+        "description": "Full-width #fffef2 background, ~60-80px height, 1px #000000 bottom border. Logo lockup left (small square icon + 'Relace' wordmark in Parabole), nav links in Parabole 16px left-of-center, amber CTA button + 'APP' text link far right. Generous horizontal padding (~40px) keeps the bar breathing."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Above-the-fold display headline",
+        "description": "64px Parabole Regular, #191918, tracking -3.2px, line-height 1.10, left-aligned. Sits beside a ~400px right-column of body text and CTA pair. Never centered — the editorial left-align is a brand-defining choice that separates Relace from typical SaaS hero conventions."
+      },
+      {
+        "name": "Section Header with Inline Accent",
+        "role": "Mid-page section titles with a single amber word",
+        "description": "Display or heading-lg Parabole, left-aligned, where one word switches to #fcaa2d color mid-sentence (e.g. 'Get started in minutes'). The amber word is the same size and weight as the surrounding text — it earns attention purely through color, not size or weight change."
+      },
+      {
+        "name": "Code Window with Image Overlay",
+        "role": "Product showcase — code floating over a landscape photograph",
+        "description": "Dark #191918 window with 3 traffic-light dots top-left, 12px Decima Mono code with syntax highlighting (keywords amber/white, strings green-tinted, comments muted), positioned over a full-bleed warm landscape image. The code window has 2px radius and no shadow — it sits ON the image as a flat overlay, not floating above it."
+      },
+      {
+        "name": "Horizontal Timeline Strip",
+        "role": "Version or milestone visualization",
+        "description": "Full-width band with dense vertical tick marks (hundreds of small 1px lines), short amber tick markers at key positions, version labels in 10px Decima Mono at corners (e.g. 'v3.001', 'v3.851'). The density of tick marks is the visual hook — it looks like a ruler or printer's registration mark, not a typical progress bar."
+      },
+      {
+        "name": "Concentric Circles Diagram",
+        "role": "Feature or capability explanation graphic",
+        "description": "Three nested circles with thin #000000 borders, innermost solid #75756f, outer two #edece0 and transparent fills. Labels in 12px Parabole sit outside each ring. A small stylized logo glyph sits in the center. 2px radius on any hard edges."
+      },
+      {
+        "name": "FAQ Accordion Item",
+        "role": "Expandable Q&A list",
+        "description": "Full-width row, 20px 40px padding, 1px #000000 bottom border separating items, question text in 16-18px Parabole left-aligned, '+' icon in 20px right-aligned. Expanded state reveals answer text below at 16px body. No background change on hover — the border IS the interaction affordance."
+      },
+      {
+        "name": "Brand Trust Strip",
+        "role": "Social proof row of customer/partner logos",
+        "description": "Horizontal row of grayscale brand logos (desaturated, ~60% opacity), preceded by a small mono label 'Trusted by the best leading brands' in 12px Decima Mono. Logos sit on the cream canvas with generous spacing (~40-60px gaps), no dividers between them."
+      },
+      {
+        "name": "List Item with Left Accent Border",
+        "role": "Feature list or navigation list item",
+        "description": "Left-aligned text with a 2px #fcaa2d vertical bar on the left edge (8-20px tall), 20px 40px padding, 16-18px Parabole text. The amber bar replaces traditional bullet points or icons — it is the only chromatic element in the list."
+      },
+      {
+        "name": "Pill Badge",
+        "role": "Tags, status indicators, and category labels",
+        "description": "800px (fully rounded) border-radius, #edece0 or #fcaa2d background, 10px 16px padding, 10-12px Decima Mono text at 0.04em tracking. Used sparingly — only for genuine metadata labels, not decorative chips."
+      }
+    ],
+    "typography": [
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Primary typeface across all display, heading, and body contexts. Regular weight 400 carries body and display; Medium 500 handles subheadings (20px) and emphasis captions (14px). The aggressively tight tracking at large sizes (-0.05em at 64px) is a signature choice — display headlines compress into a confident block rather than spreading airy. Substitute: 'Instrument Sans' or 'Space Grotesk' from Google Fonts for the closest free match to Parabole's geometric character",
+        "sizes": "14px, 20px",
+        "family": "Parabole Trial",
+        "weight": "400, 500",
+        "lineHeight": "1.06–1.50",
+        "substitute": "Instrument Sans",
+        "letterSpacing": "-0.0500em at 64px → -0.0400em at 40px → -0.0500em at 36px → -0.0300em at 20px → -0.0400em at 18px → -0.0400em at 16px → -0.0300em at 14px"
+      },
+      {
+        "role": "Monospace for all UI chrome: version labels, timeline ticks, navigation micro-text, code blocks, badge labels, and tag metadata. The slight positive tracking (0.03–0.04em) at small sizes is anti-default — monospace usually tightens at small sizes, but this opens up to read clearly as inline UI text. Substitute: 'JetBrains Mono' or 'IBM Plex Mono'",
+        "sizes": "10px, 12px, 16px",
+        "family": "Decima Mono Pro",
+        "weight": "400",
+        "lineHeight": "1.10–1.20",
+        "substitute": "JetBrains Mono",
+        "letterSpacing": "0.0400em at 10px → 0.0300em at 12px → 0.0300em at 16px"
+      },
+      {
+        "role": "Parabole Trial Regular Text — detected in extracted data but not described by AI",
+        "sizes": "10px, 12px, 16px, 18px, 36px, 40px, 64px",
+        "family": "Parabole Trial Regular Text",
+        "weight": "400",
+        "lineHeight": "1.1, 1.2, 1.5",
+        "letterSpacing": "-0.05, -0.04, 0.04"
+      },
+      {
+        "role": "Parabole Trial Regular Display — detected in extracted data but not described by AI",
+        "sizes": "36px, 40px, 64px",
+        "family": "Parabole Trial Regular Display",
+        "weight": "400",
+        "lineHeight": "1.1",
+        "letterSpacing": "-0.05, -0.04"
+      },
+      {
+        "role": "Karla — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "Karla",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Relace operates as a warm-paper devtool: a cream canvas (#fffef2) rather than cold white, with a single rationed amber accent (#fcaa2d) that punctuates CTAs and inline highlights. Typography carries the entire personality — a distinctive geometric sans (Parabole Trial) with aggressively tight tracking at display sizes produces editorial-weight, left-aligned headlines, while a monospace (Decima Mono Pro) handles all UI chrome, version labels, and code. The system is radically sharp: 2px radii dominate, hairlines replace shadows, and structural black borders (#000000) define separation rather than elevation. Landscape photography with code overlays breaks the monochrome rhythm, and the single warm accent is reserved for moments that must land — never decorative.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9623a699-230d-4ee2-a174-8209e1e9ef16#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Relace design system\",\"item\":\"https://styles.refero.design/style/9623a699-230d-4ee2-a174-8209e1e9ef16\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9623a699-230d-4ee2-a174-8209e1e9ef16#style-reference\",\"name\":\"Relace design system reference\",\"headline\":\"Relace design system | Refero Styles\",\"description\":\"Explore Relace's light AI design system: Page Cream #fffef2, Ink Black #191918 colors, sans-serif, Parabole Trial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/9623a699-230d-4ee2-a174-8209e1e9ef16\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9623a699-230d-4ee2-a174-8209e1e9ef16\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Relace\",\"url\":\"https://relace.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9623a699-230d-4ee2-a174-8209e1e9ef16#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/80d02580-c5aa-433c-add9-f3d9bf376784.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/80d02580-c5aa-433c-add9-f3d9bf376784.jpg\",\"caption\":\"Screenshot of Relace\"},\"image\":\"https://images.refero.design/styles/refero.design/image/80d02580-c5aa-433c-add9-f3d9bf376784.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Relace design system\",\"Relace website design\",\"Relace colors\",\"Relace typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Page Cream\",\"Ink Black\",\"Rule Black\",\"Warm Stone\",\"sans-serif\",\"Parabole Trial\",\"Decima Mono Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Relace design system\"},{\"@type\":\"Thing\",\"name\":\"Relace website design\"},{\"@type\":\"Thing\",\"name\":\"Relace colors\"},{\"@type\":\"Thing\",\"name\":\"Relace typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-07T22:38:15.805Z\",\"dateModified\":\"2026-05-07T22:38:15.805Z\"}]}19:T562,**Quick Color Reference**\n- text: #191918\n- background: #fffef2\n- border: #000000\n- accent: #fcaa2d\n- muted text: #75756f\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Code window over image**: Full-bleed warm landscape photograph. Overlaid code window with #191918 background, 2px radius, positioned center-left. Three small traffic-light dots (8px) in top-left. Code in 12px JetBrains Mono, keywords in #fcaa2d, strings in #edece0, comments in #75756f. No shadow on the window — it sits flat on the image.\n\n3. **FAQ accordion row**: Full-width row on #fffef2 background, 20px 40px padding, 1px #000000 bottom border. Question text left-aligned in 18px Parabole #191918. '+' icon right-aligned in 20px #191918. No background change on hover.\n\n4. **Feature list item**: Text left-aligned in 18px Parabole #191918, with a 2px-wide #fcaa2d vertical bar on the left edge running the full height of the text. 20px 40px padding. 1px #000000 bottom border separating items in the list.\n\n5. **Section header with accent word**: Display headline at 40px Parabole #191918 left-aligned, where one word is colored #fcaa2d. Same size and weight — the color switch alone creates the emphasis. Subtext below at 18px #75756f."
+      }
+    ],
+    "elevationPhilosophy": "Relace uses 1px #000000 hairline borders as its sole separation language. There are no drop shadows, no layered surfaces, and no z-axis elevation — the design is deliberately flat. Structure comes from line weight, not from shadow depth. This is an intentional choice: the editorial paper aesthetic would be broken by any sense of digital depth or floating panels."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "list",
+            "image",
+            "heading",
+            "icon",
+            "body",
+            "badge"
+          ],
+          "frequency": 1575,
+          "confidence": 1,
+          "prominence": 109857094.47752465,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 12,
+            "body/color": 6,
+            "hero/color": 2,
+            "icon/color": 2,
+            "list/color": 16,
+            "badge/color": 1,
+            "image/color": 13,
+            "other/color": 262,
+            "heading/color": 1,
+            "nav/borderColor": 48,
+            "body/borderColor": 24,
+            "hero/borderColor": 8,
+            "icon/borderColor": 8,
+            "list/borderColor": 64,
+            "badge/borderColor": 4,
+            "image/borderColor": 52,
+            "other/borderColor": 1048,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#fffef2",
+          "oklch": {
+            "c": 0.01576065673548466,
+            "h": 102.81822331541875,
+            "l": 0.9945442771140781
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 24014218.573367354,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#191918",
+          "oklch": {
+            "c": 0.0019297287405978844,
+            "h": 106.56229052657982,
+            "l": 0.21302007454820687
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 283,
+          "confidence": 1,
+          "prominence": 573725.8977188906,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 6,
+            "body/color": 30,
+            "other/color": 6,
+            "heading/color": 7,
+            "nav/borderColor": 24,
+            "body/borderColor": 120,
+            "other/borderColor": 24,
+            "heading/borderColor": 28,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 37
+          }
+        },
+        {
+          "hex": "#edece0",
+          "oklch": {
+            "c": 0.014925724432315839,
+            "h": 102.54353997527531,
+            "l": 0.9395849224020819
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 518271.2885145281,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 10
+          }
+        },
+        {
+          "hex": "#75756f",
+          "oklch": {
+            "c": 0.008187866201445293,
+            "h": 103.22696800971565,
+            "l": 0.5596939816868215
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 120,
+          "confidence": 1,
+          "prominence": 470261.29651107965,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 21,
+            "link/color": 3,
+            "body/borderColor": 84,
+            "link/borderColor": 12
+          }
+        },
+        {
+          "hex": "#fcaa2d",
+          "oklch": {
+            "c": 0.15921506075272976,
+            "h": 71.63567478124021,
+            "l": 0.799394073305182
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 90945.44760647872,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "other/color": 1,
+            "heading/color": 1,
+            "body/borderColor": 20,
+            "other/borderColor": 4,
+            "heading/borderColor": 4,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#8c8c85",
+          "oklch": {
+            "c": 0.009542780998996648,
+            "h": 103.10089538027773,
+            "l": 0.6368827974909405
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 2874.7314401869867,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#bab9b0",
+          "oklch": {
+            "c": 0.012567809245279565,
+            "h": 101.5378821689017,
+            "l": 0.7839928337509192
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 64,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.011867905112048225,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.71,
+          "background": "#fffef2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.68,
+          "background": "#edece0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.35,
+          "background": "#fffef2",
+          "foreground": "#191918"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.81,
+          "background": "#edece0",
+          "foreground": "#191918"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.93,
+          "background": "#fcaa2d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.65,
+          "background": "#bab9b0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.15,
+          "background": "#fcaa2d",
+          "foreground": "#191918"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.93,
+          "background": "#bab9b0",
+          "foreground": "#191918"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.21,
+          "background": "#8c8c85",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.2,
+          "background": "#8c8c85",
+          "foreground": "#191918"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.57,
+          "background": "#fffef2",
+          "foreground": "#75756f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.9,
+          "background": "#edece0",
+          "foreground": "#75756f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.8,
+          "background": "#191918",
+          "foreground": "#75756f"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.41,
+          "background": "#fcaa2d",
+          "foreground": "#75756f"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.35,
+          "background": "#bab9b0",
+          "foreground": "#75756f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.9,
+          "background": "#fffef2",
+          "foreground": "#fcaa2d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.76,
+          "background": "#8c8c85",
+          "foreground": "#fcaa2d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.62,
+          "background": "#edece0",
+          "foreground": "#fcaa2d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.37,
+          "background": "#8c8c85",
+          "foreground": "#75756f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.19,
+          "background": "#191918",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 800,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "link",
+            "other"
+          ],
+          "frequency": 110,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "hero",
+            "other",
+            "badge"
+          ],
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|hero",
+            "columnGap|hero",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 42,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 109,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "other",
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "hero",
+            "other",
+            "badge"
+          ],
+          "frequency": 36,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|badge"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 384,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Parabole Trial Regular Text",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 49,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Decima Mono Pro Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 21,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Parabole Trial Medium Text",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Parabole Trial Regular Display",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Karla",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Decima Mono Pro Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Parabole Trial Regular Text",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "link",
+            "list",
+            "image",
+            "icon",
+            "badge"
+          ],
+          "frequency": 384,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Parabole Trial Regular Text",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Karla",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Decima Mono Pro Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Parabole Trial Medium Text",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Parabole Trial Regular Text",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Decima Mono Pro Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Parabole Trial Regular Text",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Parabole Trial Medium Text",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.06,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Parabole Trial Regular Text",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Parabole Trial Regular Display",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Parabole Trial Regular Text",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Parabole Trial Regular Display",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Parabole Trial Regular Text",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Parabole Trial Regular Display",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Parabole Trial Regular Text",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Parabole Trial Regular Display",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/11d3bbe5-834f-44d6-9149-6cd4095bb98a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/80d02580-c5aa-433c-add9-f3d9bf376784.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9623a699-230d-4ee2-a174-8209e1e9ef16#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Relace design system\",\"item\":\"https://styles.refero.design/style/9623a699-230d-4ee2-a174-8209e1e9ef16\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9623a699-230d-4ee2-a174-8209e1e9ef16#style-reference\",\"name\":\"Relace design system reference\",\"headline\":\"Relace design system | Refero Styles\",\"description\":\"Explore Relace's light AI design system: Page Cream #fffef2, Ink Black #191918 colors, sans-serif, Parabole Trial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/9623a699-230d-4ee2-a174-8209e1e9ef16\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9623a699-230d-4ee2-a174-8209e1e9ef16\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Relace\",\"url\":\"https://relace.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9623a699-230d-4ee2-a174-8209e1e9ef16#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/80d02580-c5aa-433c-add9-f3d9bf376784.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/80d02580-c5aa-433c-add9-f3d9bf376784.jpg\",\"caption\":\"Screenshot of Relace\"},\"image\":\"https://images.refero.design/styles/refero.design/image/80d02580-c5aa-433c-add9-f3d9bf376784.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Relace design system\",\"Relace website design\",\"Relace colors\",\"Relace typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Page Cream\",\"Ink Black\",\"Rule Black\",\"Warm Stone\",\"sans-serif\",\"Parabole Trial\",\"Decima Mono Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Relace design system\"},{\"@type\":\"Thing\",\"name\":\"Relace website design\"},{\"@type\":\"Thing\",\"name\":\"Relace colors\"},{\"@type\":\"Thing\",\"name\":\"Relace typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-07T22:38:15.805Z\",\"dateModified\":\"2026-05-07T22:38:15.805Z\"}]}19:T562,**Quick Color Reference**\n- text: #191918\n- background: #fffef2\n- border: #000000\n- accent: #fcaa2d\n- muted text: #75756f\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Code window over image**: Full-bleed warm landscape photograph. Overlaid code window with #191918 background, 2px radius, positioned center-left. Three small traffic-light dots (8px) in top-left. Code in 12px JetBrains Mono, keywords in #fcaa2d, strings in #edece0, comments in #75756f. No shadow on the window — it sits flat on the image.\n\n3. **FAQ accordion row**: Full-width row on #fffef2 background, 20px 40px padding, 1px #000000 bottom border. Question text left-aligned in 18px Parabole #191918. '+' icon right-aligned in 20px #191918. No background change on hover.\n\n4. **Feature list item**: Text left-aligned in 18px Parabole #191918, with a 2px-wide #fcaa2d vertical bar on the left edge running the full height of the text. 20px 40px padding. 1px #000000 bottom border separating items in the list.\n\n5. **Section header with accent word**: Display headline at 40px Parabole #191918 left-aligned, where one word is colored #fcaa2d. Same size and weight — the color switch alone creates the emphasis. Subtext below at 18px #75756f."
+}

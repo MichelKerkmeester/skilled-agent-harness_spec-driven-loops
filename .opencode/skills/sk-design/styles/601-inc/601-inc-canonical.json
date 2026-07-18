@@ -1,0 +1,606 @@
+{
+  "source": "https://styles.refero.design/style/1cb31aee-608e-4dec-a44d-5745e4fd6bab",
+  "uuid": "1cb31aee-608e-4dec-a44d-5745e4fd6bab",
+  "name": "601 Inc.",
+  "northStar": "warm film marquee in darkness",
+  "capturedAt": "2026-07-18T07:59:38.633Z",
+  "meta": {
+    "url": "https://www.rokumaruichi.tokyo",
+    "siteName": "601 Inc.",
+    "extractedAt": "2026-06-03T18:52:40.408Z",
+    "durationMs": 49594,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 231,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #ece4b4 and the two blacks; introducing a third color breaks the celluloid projection logic",
+      "Set changeling-neo to exactly 230px or 280px for any branded moment — the giant scale is the brand",
+      "Keep all borders at exactly 1px solid Celluloid Cream — never thicker, never with a fill behind them",
+      "Render images full-bleed with 0px padding, 0px radius, and no frame; the photograph meets the viewport edge",
+      "Separate nav and footer items with the bullet glyph (•) and 21px horizontal padding, not with dividers or spacing alone",
+      "Use the 12px radius token only for incidental UI elements (a small chip, a notification), never for the primary content surface",
+      "Anchor all text to viewport edges — left or right — never center within a constrained column"
+    ],
+    "donts": [
+      "Do not add drop shadows, glows, blurs, or any other elevation effect",
+      "Do not introduce a second typeface; the system is one font, one weight, three sizes",
+      "Do not use a filled button — the only action pattern is the 1px outlined link",
+      "Do not constrain the layout to a max-width; full-bleed is required to preserve the cinematic frame",
+      "Do not use a color of any kind on UI elements — all color must come from photography",
+      "Do not set body or paragraph text below 42px; if it is not a label or a display moment, it does not belong on this site",
+      "Do not apply gradient fills, noise textures, or film-grain overlays to UI surfaces; the only grain in the system is in the photography"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#ece4b4",
+        "name": "Celluloid Cream",
+        "role": "Primary text, all icon strokes, 1px hairline borders, and the only outlined-link action border in the system — a warm off-white that reads as aged film stock against black",
+        "group": "brand"
+      },
+      {
+        "hex": "#4f4d3c",
+        "name": "Darkroom Shadow",
+        "role": "Atmospheric mid-surface visible around and between film stills — a desaturated warm olive-black that softens the page from pure void into projection-room dimness",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Projection Black",
+        "role": "Deep canvas void used for the darkest recesses of the page and behind embedded media; the floor beneath everything",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed, no max-width container, no centered column. The page is a vertical scroll through a single dark projection room. Top band carries the wordmark left, minimal nav right, and one small contextual line of cream text. Subsequent bands alternate between oversized type (wordmark, date numerals) and full-bleed film stills, separated by 120px gaps and the occasional 1px hairline. Text is anchored to viewport edges, not to a content column. No card grids, no feature rows, no pricing tables — this is a portfolio, not a product surface. Navigation is a fixed thin top bar, nothing else is sticky.",
+    "imagery": "Cinematic film stills, full-bleed, shot on location or in studio with controlled lighting. The example shows a wide group portrait in a desaturated blue environment — the photography is the only place saturated color appears in the entire design system, and it is always a single still per screen rather than a collage or grid. No illustration, no iconography beyond stroke-only marks, no decorative graphics. Captures are wide, production-quality, and the subject is always people or architecture in defined space — never abstract.",
+    "similar": [
+      {
+        "why": "Same single-tone cream-on-black aesthetic with full-bleed stills and oversized type — both sites treat the web as a screening room rather than a product page",
+        "business": "A24 Films"
+      },
+      {
+        "why": "Editorial film/photography studio site with the same dark canvas, warm accent, and the discipline of letting one photograph carry a whole screen",
+        "business": "Mansour Martin"
+      },
+      {
+        "why": "Same commitment to a single warm neutral on black with minimal chrome and oversized custom type as the primary brand element",
+        "business": "Acne Studios"
+      },
+      {
+        "why": "Portfolio-grade agency site where photography is full-bleed and the only structure is type at extreme scale against a dark ground",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Creative studio identity built on near-monochrome dark palette with a single warm accent and typography doing all the compositional work",
+        "business": "Playdate Studio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "ui": "12px",
+        "nav": "0px",
+        "images": "0px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "120px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Projection Black",
+        "level": 1,
+        "purpose": "Deepest canvas — embedded media backgrounds and absolute void"
+      },
+      {
+        "hex": "#4f4d3c",
+        "name": "Darkroom Shadow",
+        "level": 2,
+        "purpose": "Primary page background — warm-tinted near-black that prevents the page from reading as a flat #000 UI and instead as a dimly lit room"
+      }
+    ],
+    "northStar": "warm film marquee in darkness",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 42,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "body-sm",
+        "size": 230,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "body",
+        "size": 280,
+        "lineHeight": 1.3
+      }
+    ],
+    "components": [
+      {
+        "name": "Wordmark \"601\"",
+        "role": "Primary brand identity rendered as a single oversized lockup",
+        "description": "changeling-neo weight 400 at 230-280px, Celluloid Cream, letter-spacing -0.04em. Sits top-left, anchored to the page edge with no padding. The only moment on the site that large numbers are used as logo; no symbol or icon accompanies it."
+      },
+      {
+        "name": "Floating Date Numeral",
+        "role": "Editorial display element marking screenings or releases",
+        "description": "changeling-neo weight 400 at 280px, Celluloid Cream, letter-spacing -0.04em. Positioned mid-canvas with absolute coordinates so it floats in the negative space beside a film still rather than reading as a label. Acts as typographic wallpaper."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal site chrome",
+        "description": "Right-aligned, changeling-neo weight 400 at 42px, Celluloid Cream, with 21px horizontal padding and bullet glyphs (•) as separators between items. No background, no border, no hover treatment beyond opacity shift. ABOUT • ARCHIVE is the entire structure."
+      },
+      {
+        "name": "Outlined Link",
+        "role": "The system's only interactive element pattern",
+        "description": "1px solid Celluloid Cream border, changeling-neo 42px Celluloid Cream text, 12px vertical / 21px horizontal padding, no background fill, 0px radius. The 1px border is the button — there is no fill state, no shadow, no filled variant. Used for EXPLORE and similar editorial actions."
+      },
+      {
+        "name": "Film Still Frame",
+        "role": "Primary content surface carrying all chromatic information",
+        "description": "Full-bleed photograph with no container chrome — no border, no padding, no radius, no shadow. The image touches the page edges. Caption (if present) sits below in changeling-neo 42px Celluloid Cream with 28px bottom padding. The still is the card."
+      },
+      {
+        "name": "Email Footer Label",
+        "role": "Contact affordance, bottom-left",
+        "description": "changeling-neo 42px Celluloid Cream, no border, no background. A bare text link — the design commits to cream-on-black legibility at 42px so no underline or weight change is needed."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Subtle scroll cue, right edge",
+        "description": "A single cream dot or short 1px line in Celluloid Cream, positioned at the right viewport margin near the bottom. Minimal to the point of being ambient — discoverable but never demanding."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Structural separator between sections",
+        "description": "1px solid Celluloid Cream, full-width or constrained to content width. This is the only structural element on the site — there are no backgrounds behind cards, no shaded sections, no panels. Sections divide by 120px gap plus optional 1px rule."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface — used for both the smallest nav label and the 280px display numerals. Weight 400 across every role is a deliberate anti-convention: no bold ever appears, so hierarchy is built purely through scale and tracking. The very tight -4% letter-spacing at 230-280px is what makes the giant wordmark feel carved rather than typeset.",
+        "sizes": "42px, 230px, 280px",
+        "family": "changeling-neo",
+        "weight": "400",
+        "lineHeight": "normal",
+        "substitute": "Space Grotesk (Google Fonts) at the same tight tracking — closest free match for the geometric humanist geometry; Manrope is a secondary fallback",
+        "letterSpacing": "-0.0400em at all sizes",
+        "fontFeatureSettings": "\"ss01\" on, \"cv11\" on"
+      }
+    ],
+    "description": "601 is a Tokyo film studio whose visual system reduces the web to the ingredients of cinema itself: a near-black void, one warm cream tone pulled from aged celluloid, and a single custom typeface rendered at architectural scale. The entire palette is functional — cream for everything that addresses the viewer, black for the screen behind it — which forces every compositional decision to be about scale, photography, and silence rather than chrome or ornament. Borders are 1px hairlines, elevation is absent, and the only structure is the photograph itself and the oversized numerals that float beside it like a screening schedule. Every page behaves like a single reel unspooling: a wordmark, a date, a still, and room to breathe.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1cb31aee-608e-4dec-a44d-5745e4fd6bab#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"601 Inc. design system\",\"item\":\"https://styles.refero.design/style/1cb31aee-608e-4dec-a44d-5745e4fd6bab\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1cb31aee-608e-4dec-a44d-5745e4fd6bab#style-reference\",\"name\":\"601 Inc. design system reference\",\"headline\":\"601 Inc. design system | Refero Styles\",\"description\":\"Explore 601 Inc.'s dark Media design system: Celluloid Cream #ece4b4, Darkroom Shadow #4f4d3c colors, changeling-neo typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/1cb31aee-608e-4dec-a44d-5745e4fd6bab\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1cb31aee-608e-4dec-a44d-5745e4fd6bab\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"601 Inc.\",\"url\":\"https://www.rokumaruichi.tokyo\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1cb31aee-608e-4dec-a44d-5745e4fd6bab#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a882b3a9-eb47-48fc-bbe6-a5ae20242752.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a882b3a9-eb47-48fc-bbe6-a5ae20242752.jpg\",\"caption\":\"Screenshot of 601 Inc.\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a882b3a9-eb47-48fc-bbe6-a5ae20242752.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"601 Inc. design system\",\"601 Inc. website design\",\"601 Inc. colors\",\"601 Inc. typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Celluloid Cream\",\"Darkroom Shadow\",\"Projection Black\",\"changeling-neo\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"601 Inc. design system\"},{\"@type\":\"Thing\",\"name\":\"601 Inc. website design\"},{\"@type\":\"Thing\",\"name\":\"601 Inc. colors\"},{\"@type\":\"Thing\",\"name\":\"601 Inc. typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T01:41:07.596Z\",\"dateModified\":\"2026-04-30T01:41:07.596Z\"}]}19:T658,## Quick Color Reference\n\n- text: #ece4b4 (Celluloid Cream)\n- background: #4f4d3c (Darkroom Shadow, dominant page) / #000000 (deep void)\n- border: 1px solid #ece4b4 (the only border treatment)\n- accent: #ece4b4 (same as text — the system has no separate accent)\n- primary action: #ece4b4 (outlined action border)\n\n## 3-5 Example Component Prompts\n\n1. **Outlined Link Button**: Render a 1px solid #ece4b4 border, 12px vertical padding, 21px horizontal padding, 0px radius. Text: changeling-neo weight 400, 42px, color #ece4b4, letter-spacing -1.68px. No background fill in any state. Place against a #4f4d3c canvas.\n\n2. **Display Date Numeral**: Set a date string (e.g. \"2/6\") in changeling-neo weight 400, 280px, color #ece4b4, letter-spacing -11.2px, line-height normal. Position absolutely at roughly 60% across and 30% down the viewport, floating in negative space beside a film still.\n\n3. **Top Navigation Bar**: Right-align a row of links at the top of the viewport, changeling-neo weight 400, 42px, color #ece4b4, letter-spacing -1.68px, 21px horizontal padding per item, separated by the bullet glyph (•) in #ece4b4. No background, no border, no sticky behavior unless specified.\n\n4. **Film Still Section**: Place a single full-bleed photographic still at 100vw width, preserving native aspect ratio. No border, no padding, no radius, no shadow. Optional caption 28px below the image in changeling-neo 42px #ece4b4.\n\n5. **Wordmark Lockup**: Render \"601\" top-left in changeling-neo weight 400, 230px, color #ece4b4, letter-spacing -9.2px, anchored to the top-left viewport edge with no margin beyond design intent."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. Depth is created entirely by three forces: the cream/black contrast boundary (1px border lines that act as the only edge definition), the scale difference between 42px labels and 280px display type, and the full-bleed photograph itself which breaks the dark plane. Adding any drop shadow, glow, or blur would shatter the projection-room stillness the system is built around."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ece4b4",
+          "oklch": {
+            "c": 0.06305398067720606,
+            "h": 99.62110516387347,
+            "l": 0.9133771305668289
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "nav",
+            "icon",
+            "list",
+            "body"
+          ],
+          "frequency": 913,
+          "confidence": 1,
+          "prominence": 12747521.260155259,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 2,
+            "nav/color": 24,
+            "body/color": 6,
+            "icon/color": 14,
+            "link/color": 26,
+            "list/color": 3,
+            "nav/stroke": 4,
+            "other/fill": 7,
+            "other/color": 87,
+            "other/stroke": 26,
+            "heading/color": 14,
+            "nav/borderColor": 96,
+            "body/borderColor": 24,
+            "icon/borderColor": 56,
+            "link/borderColor": 104,
+            "list/borderColor": 12,
+            "other/borderColor": 348,
+            "heading/borderColor": 56,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#4f4d3c",
+          "oklch": {
+            "c": 0.02713138480310928,
+            "h": 101.91534208716983,
+            "l": 0.417001486671872
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 15525,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "icon"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 958.5394192757268,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 8,
+            "icon/fill": 28
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.1632879227974412,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 16.32,
+          "background": "#ece4b4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.64,
+          "background": "#4f4d3c",
+          "foreground": "#ece4b4"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 11.9952,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "link",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "nav",
+            "link",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|link",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "diagramm",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 145,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "changeling-neo",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 29,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.5
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "diagramm",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "list"
+          ],
+          "frequency": 58,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "diagramm",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "diagramm",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 53,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "diagramm",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "other",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 26,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 42,
+          "family": "changeling-neo",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.49,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 230,
+          "family": "changeling-neo",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.49,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 230,
+          "family": "changeling-neo",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 0.49,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 280,
+          "family": "changeling-neo",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.49,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/12ee12d4-e9c5-496a-a8b5-ec56fd4ede85.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a882b3a9-eb47-48fc-bbe6-a5ae20242752.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1cb31aee-608e-4dec-a44d-5745e4fd6bab#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"601 Inc. design system\",\"item\":\"https://styles.refero.design/style/1cb31aee-608e-4dec-a44d-5745e4fd6bab\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1cb31aee-608e-4dec-a44d-5745e4fd6bab#style-reference\",\"name\":\"601 Inc. design system reference\",\"headline\":\"601 Inc. design system | Refero Styles\",\"description\":\"Explore 601 Inc.'s dark Media design system: Celluloid Cream #ece4b4, Darkroom Shadow #4f4d3c colors, changeling-neo typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/1cb31aee-608e-4dec-a44d-5745e4fd6bab\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1cb31aee-608e-4dec-a44d-5745e4fd6bab\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"601 Inc.\",\"url\":\"https://www.rokumaruichi.tokyo\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1cb31aee-608e-4dec-a44d-5745e4fd6bab#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a882b3a9-eb47-48fc-bbe6-a5ae20242752.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a882b3a9-eb47-48fc-bbe6-a5ae20242752.jpg\",\"caption\":\"Screenshot of 601 Inc.\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a882b3a9-eb47-48fc-bbe6-a5ae20242752.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"601 Inc. design system\",\"601 Inc. website design\",\"601 Inc. colors\",\"601 Inc. typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Celluloid Cream\",\"Darkroom Shadow\",\"Projection Black\",\"changeling-neo\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"601 Inc. design system\"},{\"@type\":\"Thing\",\"name\":\"601 Inc. website design\"},{\"@type\":\"Thing\",\"name\":\"601 Inc. colors\"},{\"@type\":\"Thing\",\"name\":\"601 Inc. typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T01:41:07.596Z\",\"dateModified\":\"2026-04-30T01:41:07.596Z\"}]}19:T658,## Quick Color Reference\n\n- text: #ece4b4 (Celluloid Cream)\n- background: #4f4d3c (Darkroom Shadow, dominant page) / #000000 (deep void)\n- border: 1px solid #ece4b4 (the only border treatment)\n- accent: #ece4b4 (same as text — the system has no separate accent)\n- primary action: #ece4b4 (outlined action border)\n\n## 3-5 Example Component Prompts\n\n1. **Outlined Link Button**: Render a 1px solid #ece4b4 border, 12px vertical padding, 21px horizontal padding, 0px radius. Text: changeling-neo weight 400, 42px, color #ece4b4, letter-spacing -1.68px. No background fill in any state. Place against a #4f4d3c canvas.\n\n2. **Display Date Numeral**: Set a date string (e.g. \"2/6\") in changeling-neo weight 400, 280px, color #ece4b4, letter-spacing -11.2px, line-height normal. Position absolutely at roughly 60% across and 30% down the viewport, floating in negative space beside a film still.\n\n3. **Top Navigation Bar**: Right-align a row of links at the top of the viewport, changeling-neo weight 400, 42px, color #ece4b4, letter-spacing -1.68px, 21px horizontal padding per item, separated by the bullet glyph (•) in #ece4b4. No background, no border, no sticky behavior unless specified.\n\n4. **Film Still Section**: Place a single full-bleed photographic still at 100vw width, preserving native aspect ratio. No border, no padding, no radius, no shadow. Optional caption 28px below the image in changeling-neo 42px #ece4b4.\n\n5. **Wordmark Lockup**: Render \"601\" top-left in changeling-neo weight 400, 230px, color #ece4b4, letter-spacing -9.2px, anchored to the top-left viewport edge with no margin beyond design intent."
+}

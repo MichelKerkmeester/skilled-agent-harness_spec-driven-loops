@@ -1,0 +1,264 @@
+{
+  "color": {
+    "abyss": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Abyss — Page canvas and primary background — the entire site lives on this near-black surface so the mint accent reads as a live signal against pure darkness"
+    },
+    "carbon": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Carbon — Elevated card and panel surface — used for stat cards, security badges, and announcement containers that need to lift off the canvas without introducing color"
+    },
+    "graphite": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Graphite — Hairline borders, dividers, and the highest-frequency structural color in the system. Carries 356 borderColor uses — it is the wireframe that defines every container"
+    },
+    "ash": {
+      "$value": "#9b9b9b",
+      "$type": "color",
+      "$description": "Ash — Muted secondary text, helper labels, and de-emphasized nav items. The only non-white text color — reserves #ffffff for content that must be read first"
+    },
+    "chalk": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Chalk — Primary text, icons, and the Connect Wallet button fill. Maximum contrast against Abyss (19.8:1) ensures legibility on the darkest possible surface"
+    },
+    "signal-mint": {
+      "$value": "#3fe280",
+      "$type": "color",
+      "$description": "Signal Mint — Sole chromatic accent — active nav underline, primary CTA fills (Start Earning), and the highlight border on the TVL stat card. Appears sparingly so each instance reads as a live, money-moving action rather than decoration"
+    }
+  },
+  "font": {
+    "aeonik": {
+      "$value": "Aeonik",
+      "$type": "fontFamily",
+      "$description": "Display headlines (hero). Used exactly once on the page at 72px — custom face with tight tracking makes the financial-app statement feel engineered rather than templated. The 400 weight at this size is the signature choice: other finance sites use 600-800 bold; Sandclock whispers authority instead."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "All UI text — body, buttons, nav, card content, subheadings, and section headings. The positive 0.05em tracking on Inter is unusual for body copy and gives labels a slightly technical, instrument-panel quality rather than editorial warmth. Weight 500 is reserved for emphasis (CTA labels, section titles); 400 carries everything else."
+    },
+    "dm-sans": {
+      "$value": "DM Sans",
+      "$type": "fontFamily",
+      "$description": "Minimal secondary usage — likely a single element or fallback. Not a primary type voice."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "DM Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(24, 39, 75, 0.08) 0px 2px 3px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "abyss": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page canvas"
+    },
+    "carbon": {
+      "$value": "#171717",
+      "$type": "color",
+      "$description": "Surface level 1: Cards, stat panels, and announcement containers"
+    },
+    "graphite": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline borders and divider lines"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.sandclock.org",
+      "siteName": "Sandclock",
+      "extractedAt": "2026-06-03T19:24:02.480Z",
+      "variant": "extended"
+    }
+  }
+}

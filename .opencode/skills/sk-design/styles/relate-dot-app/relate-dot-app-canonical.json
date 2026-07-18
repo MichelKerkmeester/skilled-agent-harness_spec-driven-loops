@@ -1,0 +1,1308 @@
+{
+  "source": "https://styles.refero.design/style/6bc9448b-5d39-4aba-9007-25c7a2aedbad",
+  "uuid": "6bc9448b-5d39-4aba-9007-25c7a2aedbad",
+  "name": "Relate dot App",
+  "northStar": "Diversity mosaic behind frosted notes. A wall of color-blocked portraits carries every visual mood the system needs; every UI element is a clean white card or a flat colored chip floating above it.",
+  "capturedAt": "2026-07-18T08:39:40.549Z",
+  "meta": {
+    "url": "https://relate.app",
+    "siteName": "Relate dot App",
+    "extractedAt": "2026-06-03T22:09:31.766Z",
+    "durationMs": 24281,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 101,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Proxima Nova Caps 46px 800 uppercase for the primary domain-name lockup — it is the product, not a heading.",
+      "Keep the Price Badge and the Buy Now! chip as a pair: filled Signal Blue #2484f2 price on the left, outlined Signal Blue Buy Now! on the right, both at 2px radius.",
+      "Use Lime Pulse #7bd428 exclusively for 'Available!' status pills and 'Learn more' supplemental links — never for purchase actions.",
+      "Let the photo mosaic carry color; keep all chrome on white Paper #ffffff with no drop shadows and no rounded corners.",
+      "Set body copy in Proxima 17–20px weight 400 Graphite #444444 with 1.41 line-height for the floating card paragraphs.",
+      "Map link intent to color: Signal Blue for the buy action, Lime Pulse for learn-more, and never the reverse.",
+      "Use Roboto 14px for footer, fine print, and GoDaddy-style trust copy — keep it as the supporting voice beneath Proxima."
+    ],
+    "donts": [
+      "Don't introduce a filled wide-width Signal Blue button — the only filled blue surface is the compact price chip, and the only action is an outlined chip next to it.",
+      "Don't round corners on cards, panels, or the photo grid — the 0px radius on cards and the sharp tile edges on the mosaic are signature.",
+      "Don't add drop shadows to floating cards; the photo grid already provides depth through layering, and shadows would muddy the mosaic.",
+      "Don't use Lime Pulse for 'Buy Now' or any purchase action — green here means available/learn-more, never checkout.",
+      "Don't use Georgia outside editorial pull quotes and italic-feel passages; mixing it into navigation or labels breaks the system.",
+      "Don't use #000000 for body text — reserve pure black for borders, underlines, and icon fills; body text stays at Graphite #444444 or Carbon #222222.",
+      "Don't place the domain lockup anywhere except the center of a white floating card over the photo grid — the mosaic-to-card-to-lockup stack is the page's core composition."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#7bd428",
+        "name": "Lime Pulse",
+        "role": "Green outline accent for tags, dividers, and focused UI edges",
+        "group": "brand"
+      },
+      {
+        "hex": "#2484f2",
+        "name": "Signal Blue",
+        "role": "Blue accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#2374c4",
+        "name": "Deep Signal",
+        "role": "Hover/pressed state for Signal Blue links and outlined actions, visited-link fallback — one step darker so the interactive state has a clear visual step",
+        "group": "brand"
+      },
+      {
+        "hex": "#222222",
+        "name": "Carbon",
+        "role": "Headline text, dark section headers, strong emphasis",
+        "group": "neutral"
+      },
+      {
+        "hex": "#444444",
+        "name": "Graphite",
+        "role": "Body text, default copy, long-form paragraphs, footer text — the working text color for the entire interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Heavy borders, heading underlines, icon fills, structural dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Mist",
+        "role": "Hairline borders, input outlines, ghost button borders, neutral chip backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page background, floating information cards, content panels, price badge surface",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed edge-to-edge layout. The photo mosaic runs the full width and height of the page as a background layer. White floating cards are centered horizontally on a 1200px max-width rail and stack vertically down the page — the domain lockup card, the description paragraphs, the trust badge — each with 20px internal padding and 36px between cards. The top bar is a left-aligned TOPDOMAINS wordmark with a tagline, sitting on a white or near-white band with 36px of vertical padding. The hero is essentially the lockup card centered over the mosaic. Below the hero, content cards continue to float over the mosaic in a single centered column rather than a multi-column grid. Navigation is minimal — no sidebar, no mega-menu, just the top bar. The composition is one of stark contrast: a maximally colorful background against maximally clean white information surfaces, with the user's eye forced from the faces down to the domain name and price.",
+    "imagery": "The imagery is the page. A full-bleed photo mosaic of diverse human portraits — men and women of varied ethnicities and ages — each cropped to a square or near-square tile and set against a flat saturated color block (coral pink, lime, sky blue, orange, teal, yellow, purple). The portraits are tightly cropped, smiling, high-key studio photography. The tiles butt against each other with no gap and no radius, creating a quilt of color and faces that functions as the brand canvas. There is no product photography, no illustration, no abstract graphics — human diversity IS the visual identity. UI chrome (white cards, price chip, trust badge) floats above this grid as crisp opaque or near-opaque white panels, creating a two-layer system: colorful photographic atmosphere below, clinical white information above.",
+    "similar": [
+      {
+        "why": "Same single-domain product card composition — one centered white panel over a photographic or colorful backdrop, oversized domain lockup, prominent price chip, and a 'Buy Now' outlined link as the action.",
+        "business": "Squadhelp (domain marketplace)"
+      },
+      {
+        "why": "Identical marketplace hierarchy — large domain name in heavy display weight, paired price-and-buy chip, white card surface, monochrome body text with a single blue link accent.",
+        "business": "Dan.com"
+      },
+      {
+        "why": "Same 'domain name as product' treatment: a strong typographic lockup, a price in a colored chip, and a buy-side action link, all on a clean white surface.",
+        "business": "Afternic"
+      },
+      {
+        "why": "Same premium domain portfolio feel — minimal chrome, oversized domain name, bold color accent on the price, and editorial body copy beneath.",
+        "business": "Efty"
+      },
+      {
+        "why": "Similar product-as-hero pattern: one named asset front-and-center with a single saturated action color, a clean white information layer, and minimal supporting navigation.",
+        "business": "Brandbucket"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "2px",
+        "buttons": "0px",
+        "priceChip": "2px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "36px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Photo Mosaic Canvas",
+        "level": 0,
+        "purpose": "Base page background — white under the portrait grid; the portrait grid itself acts as the visual floor"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Floating Info Card",
+        "level": 1,
+        "purpose": "White semi-translucent panel that holds the brand lockup, price, description, and trust badges over the mosaic"
+      },
+      {
+        "hex": "#2484f2",
+        "name": "Price Badge",
+        "level": 2,
+        "purpose": "Filled Signal Blue chip carrying the dollar amount — the most saturated surface in the UI"
+      }
+    ],
+    "northStar": "Diversity mosaic behind frosted notes. A wall of color-blocked portraits carries every visual mood the system needs; every UI element is a clean white card or a flat colored chip floating above it.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.31
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-lg",
+        "size": 20,
+        "lineHeight": 1.21
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 31,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 33,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 46,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Brand Lockup Display",
+        "role": "Domain-name headline",
+        "description": "All-caps Proxima Nova 46px, weight 800, color Carbon #222222, letter-spacing normal, rendered as 'RELATE.APP' with a period. Sits inside a white floating card with 20px padding. The single loudest element on the page."
+      },
+      {
+        "name": "Availability Pill",
+        "role": "Status indicator",
+        "description": "Inline label reading 'Available!' in Lime Pulse #7bd428, Proxima 500/600, paired with a small green check or dot. 2px radius, no background fill — color alone carries the signal. Sits flush left of the domain lockup."
+      },
+      {
+        "name": "Price Badge",
+        "role": "Primary price chip",
+        "description": "Filled Signal Blue #2484f2 background, white #ffffff text, Proxima 700 22–24px, 2px radius, 15px horizontal padding, ~10px vertical padding. Contains '$34,999'. This is the only filled chromatic surface in the system."
+      },
+      {
+        "name": "Buy Now! Outlined Action",
+        "role": "Primary call to action",
+        "description": "Outlined chip: 1px border in Signal Blue #2484f2, transparent or white fill, Signal Blue text, 2px radius, 15px horizontal padding. Sits to the right of the price badge as a paired action. On hover, border deepens to Deep Signal #2374c4."
+      },
+      {
+        "name": "Floating Info Card",
+        "role": "Content panel over the photo grid",
+        "description": "White #ffffff surface, 20px padding all sides, no radius (0px), no border, no shadow. Sits semi-translucent over the portrait mosaic. Acts as the readable canvas for the domain name, price, and descriptive paragraphs."
+      },
+      {
+        "name": "Description Paragraph Block",
+        "role": "Long-form domain pitch",
+        "description": "Proxima 17–20px weight 400, Graphite #444444, line-height 1.41, sitting on the white floating card. Inline 'Buy Now!' link is Signal Blue, inline 'Learn more' link is Lime Pulse — the two chromatic link colors map to two distinct intent levels."
+      },
+      {
+        "name": "Trust Badge (GoDaddy Secure Transaction)",
+        "role": "Third-party trust signal",
+        "description": "Compact white card with a thin Ink #000000 hairline border, ~10px padding, containing the GoDaddy lockup plus the phrase 'Secure transaction with' in Roboto 14px Graphite, and 'Learn more' as a Lime Pulse link."
+      },
+      {
+        "name": "Top Bar / Logo Lockup",
+        "role": "Site identity",
+        "description": "TOPDOMAINS wordmark in Proxima 800 uppercase ~22px, Carbon #222222, with the tagline 'Domain names that define your brand™' in Roboto 14px Graphite directly below. Left-aligned on a 36px-padded band above the mosaic."
+      },
+      {
+        "name": "Inline Link (Primary)",
+        "role": "In-prose link to the purchase action",
+        "description": "Roboto or Proxima 400, Signal Blue #2484f2, underline on hover only or always underlined. Color alone differentiates it from body — no weight change."
+      },
+      {
+        "name": "Inline Link (Secondary)",
+        "role": "In-prose 'Learn more' link",
+        "description": "Roboto or Proxima 400, Lime Pulse #7bd428, underlined. Used exclusively for supplemental information links, never for purchase actions."
+      },
+      {
+        "name": "Photo Mosaic Grid",
+        "role": "Page background / brand canvas",
+        "description": "Edge-to-edge grid of portrait photographs, each portrait set on a flat saturated color block (pinks, greens, blues, oranges, teals, yellows, etc.). No radius on the portrait cells — they tile as hard rectangles. Acts as the entire visual atmosphere; the UI is built ON TOP of this grid, not around it."
+      },
+      {
+        "name": "Installment Pricing Block",
+        "role": "Alternative payment breakdown",
+        "description": "Inline text block in Proxima 17px Graphite, embedding bold emphasis on '36 installments at $1167/month' — the bold weight draws the eye to the monthly figure without changing color."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Secondary body, footer copy, link runs, button labels, small print — the workhorse text family that fills in around Proxima without competing with it",
+        "sizes": "14px, 16px, 18px",
+        "family": "roboto",
+        "weight": "400, 700",
+        "lineHeight": "1.20–1.31",
+        "substitute": "Roboto",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Display lockup for the domain name itself (e.g. RELATE.APP). The all-caps heavy treatment at 46px is the single loudest element on the page — it IS the product. Substitute: Montserrat 800 uppercase, or League Gothic.",
+        "sizes": "46px",
+        "family": "proximacapsbold",
+        "weight": "400 (rendered as heavy/800 caps variant)",
+        "lineHeight": "1.20",
+        "substitute": "Montserrat 800 uppercase",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Primary UI and content family — section headings (31–33px), subheadings (22px), and larger body copy (20–21px). The 300/400 spread lets a subhead whisper while a label shouts without changing family. Substitute: Montserrat or Gotham.",
+        "sizes": "17px, 20px, 21px, 22px, 31px, 33px",
+        "family": "proxima",
+        "weight": "300, 400, 500, 800",
+        "lineHeight": "1.20–1.41",
+        "substitute": "Montserrat",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Italic-feel body passages and editorial pull quotes — Georgia's serif forms give a small block of text a magazine tone amid the otherwise sans-serif chrome",
+        "sizes": "16px",
+        "family": "Georgia",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Georgia",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Fallback body for system-rendered blocks, older browser fallback, and any third-party widget copy that ships in Arial",
+        "sizes": "14px, 18px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.33–1.67",
+        "substitute": "Arial",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "sourcesanspro — detected in extracted data but not described by AI",
+        "sizes": "18px",
+        "family": "sourcesanspro",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "A domain-marketplace surface that turns a wall of human portraits into the brand canvas: a dense color-coded photo mosaic of diverse faces on saturated background blocks, with crisp white information cards floating on top like sticky notes. Typography is the loud element — oversized all-caps display lockup sits above utilitarian sans body text in a calm neutral scale. Chromatic accents are functional, not decorative: a single blue drives links and the Buy Now affordance, while a vivid green signals availability and supplementary actions. The overall impression is a premium product card that breathes through whitespace inside each panel rather than through gaps between them, letting the portrait grid supply all the energy the chrome refuses to.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6bc9448b-5d39-4aba-9007-25c7a2aedbad#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Relate dot App design system\",\"item\":\"https://styles.refero.design/style/6bc9448b-5d39-4aba-9007-25c7a2aedbad\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6bc9448b-5d39-4aba-9007-25c7a2aedbad#style-reference\",\"name\":\"Relate dot App design system reference\",\"headline\":\"Relate dot App design system | Refero Styles\",\"description\":\"Explore Relate dot App's light Other design system: Lime Pulse #7bd428, Signal Blue #2484f2 colors, roboto, proximacapsbold typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/6bc9448b-5d39-4aba-9007-25c7a2aedbad\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6bc9448b-5d39-4aba-9007-25c7a2aedbad\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Relate dot App\",\"url\":\"https://relate.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6bc9448b-5d39-4aba-9007-25c7a2aedbad#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d1f9265c-199e-4a17-bb24-bd054f2b09e3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d1f9265c-199e-4a17-bb24-bd054f2b09e3.jpg\",\"caption\":\"Screenshot of Relate dot App\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d1f9265c-199e-4a17-bb24-bd054f2b09e3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Relate dot App design system\",\"Relate dot App website design\",\"Relate dot App colors\",\"Relate dot App typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Lime Pulse\",\"Signal Blue\",\"Deep Signal\",\"Carbon\",\"roboto\",\"proximacapsbold\",\"proxima\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Relate dot App design system\"},{\"@type\":\"Thing\",\"name\":\"Relate dot App website design\"},{\"@type\":\"Thing\",\"name\":\"Relate dot App colors\"},{\"@type\":\"Thing\",\"name\":\"Relate dot App typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T03:34:55.107Z\",\"dateModified\":\"2026-04-30T03:34:55.107Z\"}]}19:T824,Quick Color Reference:\n- text: #444444 (Graphite body) / #222222 (Carbon headings)\n- background: #ffffff (Paper)\n- border: #000000 (Ink heavy) / #eeeeee (Mist hairline)\n- accent: #7bd428 (Lime Pulse — availability/learn-more only)\n- action border: #2484f2 (Signal Blue — outlined Buy Now! link, not a filled button)\n- primary action: #2484f2 (outlined action border)\n\nExample Component Prompts:\n1. Create a domain-listing hero: white #ffffff floating card centered on a 1200px rail over a full-bleed photo mosaic. The card has 20px padding, 0px radius, no shadow. Inside, render the domain name in proximacapsbold 46px uppercase, color #222222, as 'RELATE.APP'. Directly to its left, a small 'Available!' label in proxima 500, color #7bd428, no background.\n2. Create the price-and-action row: a filled price chip with background #2484f2, color #ffffff, proxima 700 22px, 2px radius, 15px horizontal padding, reading '$34,999'. Immediately to its right, an outlined Buy Now! link: transparent or white background, 1px border #2484f2, color #2484f2, 2px radius, 15px horizontal padding, 10px vertical, proxima 500 16px.\n3. Create a description card: white #ffffff surface, 20px padding, 0px radius, no border, no shadow, 1200px max-width centered. Body text in proxima 17px weight 400, color #444444, line-height 1.41. Embed one inline 'Buy Now!' link in #2484f2 underlined, and one inline 'Learn more' link in #7bd428 underlined.\n4. Create a trust badge block: white #ffffff card with a 1px border in #000000, ~10px padding. Inside, a small GoDaddy lockup (rendered as text 'GoDaddy' in proxima 700 14px #222222), followed by the phrase 'Secure transaction with' in roboto 14px #444444, then a 'Learn more' link in #7bd428 underlined.\n5. Create a photo mosaic background: a 6-column CSS grid of square tiles filling the full viewport, each tile containing a portrait photo with `object-fit: cover` and a flat saturated color block behind it (use a palette of #ff6b9d, #7bd428, #2484f2, #ff8c42, #2ec4b6, #ffd166, #9b5de5). No gap, no radius, tiles butt directly against each other."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#444444",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3866543310206897
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "footer"
+          ],
+          "frequency": 249,
+          "confidence": 1,
+          "prominence": 11946764.638764812,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 12,
+            "link/color": 1,
+            "other/fill": 4,
+            "other/color": 35,
+            "footer/color": 1,
+            "body/borderColor": 48,
+            "link/borderColor": 4,
+            "other/borderColor": 140,
+            "footer/borderColor": 4
+          }
+        },
+        {
+          "hex": "#2d3284",
+          "oklch": {
+            "c": 0.13531456980872966,
+            "h": 274.84644595220664,
+            "l": 0.36597516653640394
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1499760,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 28,
+          "confidence": 1,
+          "prominence": 699549.2632983703,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 2,
+            "heading/color": 2,
+            "body/borderColor": 4,
+            "other/borderColor": 4,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 6,
+            "heading/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "icon"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 689578.3601084619,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "other/fill": 6,
+            "other/color": 2,
+            "heading/color": 1,
+            "other/borderColor": 8,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 178924.41473693473,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 6,
+            "heading/color": 5,
+            "body/borderColor": 4,
+            "other/borderColor": 24,
+            "heading/borderColor": 20
+          }
+        },
+        {
+          "hex": "#7bd428",
+          "oklch": {
+            "c": 0.21207410852690417,
+            "h": 134.09474225340676,
+            "l": 0.7838094990564205
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 108720.94286237731,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/fill": 1,
+            "other/color": 2,
+            "body/borderColor": 8,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 75,
+          "confidence": 1,
+          "prominence": 97617.61947004257,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "icon/color": 1,
+            "link/color": 3,
+            "other/color": 8,
+            "button/color": 1,
+            "body/borderColor": 8,
+            "icon/borderColor": 4,
+            "link/borderColor": 12,
+            "other/borderColor": 32,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#579db5",
+          "oklch": {
+            "c": 0.07895859266153464,
+            "h": 222.444476747465,
+            "l": 0.659380052463472
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 15046.094054870107,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#2ed1ab",
+          "oklch": {
+            "c": 0.1397429841063859,
+            "h": 172.3323808120422,
+            "l": 0.7714633804361838
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10270.557004673092,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 2
+          }
+        },
+        {
+          "hex": "#0f61db",
+          "oklch": {
+            "c": 0.2007904458687524,
+            "h": 259.8052768310859,
+            "l": 0.524765080616332
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 7476,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#800080",
+          "oklch": {
+            "c": 0.19345292860070346,
+            "h": 328.36341517499017,
+            "l": 0.42091366314336226
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 7475.711552085583,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4
+          }
+        },
+        {
+          "hex": "#2484f2",
+          "oklch": {
+            "c": 0.18610817317322836,
+            "h": 255.37912802293874,
+            "l": 0.6186373938037708
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3401.8106509490412,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "link/borderColor": 4
+          }
+        },
+        {
+          "hex": "#2374c4",
+          "oklch": {
+            "c": 0.14559751209322644,
+            "h": 252.1564892076088,
+            "l": 0.5528636799425232
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3045.085825849522,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "link/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.04519987983375936,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#ffffff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.71,
+          "background": "#eeeeee",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.29,
+          "background": "#7bd428",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.05,
+          "background": "#2d3284",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.82,
+          "background": "#2ed1ab",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.74,
+          "background": "#ffffff",
+          "foreground": "#444444"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.52,
+          "background": "#2d3284",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.42,
+          "background": "#ffffff",
+          "foreground": "#800080"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.55,
+          "background": "#7bd428",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.39,
+          "background": "#eeeeee",
+          "foreground": "#444444"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.2,
+          "background": "#2ed1ab",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.12,
+          "background": "#eeeeee",
+          "foreground": "#800080"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.94,
+          "background": "#2d3284",
+          "foreground": "#7bd428"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.69,
+          "background": "#2ed1ab",
+          "foreground": "#2d3284"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.6,
+          "background": "#0f61db",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.24,
+          "background": "#7bd428",
+          "foreground": "#444444"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.06,
+          "background": "#7bd428",
+          "foreground": "#800080"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.02,
+          "background": "#2ed1ab",
+          "foreground": "#444444"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|heading",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingTop|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginLeft|heading",
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "roboto",
+          "source": "system",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 31,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Georgia",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 28,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "proxima",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            800
+          ],
+          "frequency": 18,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "proximacapsbold",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "sourcesanspro",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "roboto",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "roboto",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Georgia",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "roboto",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "roboto",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.31,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "roboto",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.31,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "roboto",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "proxima",
+          "weight": 800,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.41,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "proxima",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.41,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "roboto",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "roboto",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "sourcesanspro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "proxima",
+          "weight": 800,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "proxima",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.21,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "proxima",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "proxima",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "proxima",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "proxima",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "proxima",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "proxima",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "proxima",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "proximacapsbold",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/b88128ed-ebb1-4898-bc1b-c288418bdad9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d1f9265c-199e-4a17-bb24-bd054f2b09e3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6bc9448b-5d39-4aba-9007-25c7a2aedbad#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Relate dot App design system\",\"item\":\"https://styles.refero.design/style/6bc9448b-5d39-4aba-9007-25c7a2aedbad\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6bc9448b-5d39-4aba-9007-25c7a2aedbad#style-reference\",\"name\":\"Relate dot App design system reference\",\"headline\":\"Relate dot App design system | Refero Styles\",\"description\":\"Explore Relate dot App's light Other design system: Lime Pulse #7bd428, Signal Blue #2484f2 colors, roboto, proximacapsbold typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/6bc9448b-5d39-4aba-9007-25c7a2aedbad\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6bc9448b-5d39-4aba-9007-25c7a2aedbad\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Relate dot App\",\"url\":\"https://relate.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6bc9448b-5d39-4aba-9007-25c7a2aedbad#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d1f9265c-199e-4a17-bb24-bd054f2b09e3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d1f9265c-199e-4a17-bb24-bd054f2b09e3.jpg\",\"caption\":\"Screenshot of Relate dot App\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d1f9265c-199e-4a17-bb24-bd054f2b09e3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Relate dot App design system\",\"Relate dot App website design\",\"Relate dot App colors\",\"Relate dot App typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Lime Pulse\",\"Signal Blue\",\"Deep Signal\",\"Carbon\",\"roboto\",\"proximacapsbold\",\"proxima\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Relate dot App design system\"},{\"@type\":\"Thing\",\"name\":\"Relate dot App website design\"},{\"@type\":\"Thing\",\"name\":\"Relate dot App colors\"},{\"@type\":\"Thing\",\"name\":\"Relate dot App typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T03:34:55.107Z\",\"dateModified\":\"2026-04-30T03:34:55.107Z\"}]}19:T824,Quick Color Reference:\n- text: #444444 (Graphite body) / #222222 (Carbon headings)\n- background: #ffffff (Paper)\n- border: #000000 (Ink heavy) / #eeeeee (Mist hairline)\n- accent: #7bd428 (Lime Pulse — availability/learn-more only)\n- action border: #2484f2 (Signal Blue — outlined Buy Now! link, not a filled button)\n- primary action: #2484f2 (outlined action border)\n\nExample Component Prompts:\n1. Create a domain-listing hero: white #ffffff floating card centered on a 1200px rail over a full-bleed photo mosaic. The card has 20px padding, 0px radius, no shadow. Inside, render the domain name in proximacapsbold 46px uppercase, color #222222, as 'RELATE.APP'. Directly to its left, a small 'Available!' label in proxima 500, color #7bd428, no background.\n2. Create the price-and-action row: a filled price chip with background #2484f2, color #ffffff, proxima 700 22px, 2px radius, 15px horizontal padding, reading '$34,999'. Immediately to its right, an outlined Buy Now! link: transparent or white background, 1px border #2484f2, color #2484f2, 2px radius, 15px horizontal padding, 10px vertical, proxima 500 16px.\n3. Create a description card: white #ffffff surface, 20px padding, 0px radius, no border, no shadow, 1200px max-width centered. Body text in proxima 17px weight 400, color #444444, line-height 1.41. Embed one inline 'Buy Now!' link in #2484f2 underlined, and one inline 'Learn more' link in #7bd428 underlined.\n4. Create a trust badge block: white #ffffff card with a 1px border in #000000, ~10px padding. Inside, a small GoDaddy lockup (rendered as text 'GoDaddy' in proxima 700 14px #222222), followed by the phrase 'Secure transaction with' in roboto 14px #444444, then a 'Learn more' link in #7bd428 underlined.\n5. Create a photo mosaic background: a 6-column CSS grid of square tiles filling the full viewport, each tile containing a portrait photo with `object-fit: cover` and a flat saturated color block behind it (use a palette of #ff6b9d, #7bd428, #2484f2, #ff8c42, #2ec4b6, #ffd166, #9b5de5). No gap, no radius, tiles butt directly against each other."
+}

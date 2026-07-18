@@ -1,0 +1,756 @@
+{
+  "source": "https://styles.refero.design/style/1ff3bd9c-827d-450a-a382-300839768d66",
+  "uuid": "1ff3bd9c-827d-450a-a382-300839768d66",
+  "name": "Agence K72",
+  "northStar": "theater marquee at midnight — a single electric spark cutting through cinematic black",
+  "capturedAt": "2026-07-18T09:09:18.242Z",
+  "meta": {
+    "url": "https://k72.ca",
+    "siteName": "Agence K72",
+    "extractedAt": "2026-06-03T20:36:00.675Z",
+    "durationMs": 24538,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 107,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #d3fd50 exclusively as a hand-drawn stroke or ring encircling exactly one word in a display headline — never as a fill, background, or border on any element",
+      "Set display headlines in Lausanne 300 at 94-137px with line-height compressed to 0.70-0.87 so letterforms stack and nearly touch across lines",
+      "Render every interactive element (nav links, buttons, menu triggers) as a fully pill-shaped stadium form using 9999px border-radius with a 1px Paper White border and transparent fill",
+      "Let the page background be Pure Black or full-bleed dark photography — never use a card, panel, or elevated surface to group content",
+      "Maintain a binary palette: Paper White text on Pure Black, or Pure Black text on Paper White — #4d4d4d is the only permitted intermediate neutral, used sparingly for muted meta",
+      "Use the single Lausanne family across all sizes from 11px to 137px; let the weight jump (300 vs 400) and the size jump carry all hierarchy",
+      "Place small body copy (14-16px) as a quiet counterweight in the lower-right of a viewport dominated by massive type — the asymmetry is the composition"
+    ],
+    "donts": [
+      "Do not introduce a second accent color, a gradient, or any chromatic fill — the system is binary plus one spark",
+      "Do not use shadows, glows, blurs, or any multi-layer box-shadow stacks — depth is typographic, not spatial",
+      "Do not use rounded but non-pill radii (8px, 12px, 16px) on any element — either fully pill (9999px) or sharp (0px), nothing between",
+      "Do not set body or button text at 400 weight where a 300 option would be legible — the whisper-light weight at small sizes is the signature",
+      "Do not place display type over a light background — all monumental type lives on Pure Black or dark photography",
+      "Do not add letter-spacing, text-transform justification, or font-feature-settings — the type is raw, all caps where used, tracked normally",
+      "Do not create contained cards, panels, or boxed content groups — content either spans the full viewport or floats freely on the dark surface"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Page canvas, full-bleed photography backgrounds, nav bar surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Primary text, navigation borders, pill button borders and labels, icon strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4d4d4d",
+        "name": "Iron Gray",
+        "role": "Muted secondary text and low-emphasis nav borders — the only intermediate neutral permitted in the scale",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d3fd50",
+        "name": "Spark Lime",
+        "role": "Sole accent — appears exclusively as a hand-drawn stroke or ring marking a single word in a headline; never as fill, never as background",
+        "group": "accent"
+      }
+    ],
+    "imagery": "Full-bleed cinematic photography, typically dark and moody, covering the entire viewport as the background for type. Imagery is not illustrated — it is photographed, often showing hands at work, studio environments, or close-cropped production moments. No icons beyond minimal white-stroke glyphs (globe, hamburger lines). No product screenshots, no 3D renders, no abstract graphics. The photography carries its own lighting and the white type sits directly on it without overlays or scrims.",
+    "similar": [
+      {
+        "why": "Montreal creative agency with full-bleed dark photography, massive type, and pill-shaped navigation — shares the cinematic-black-canvas + bold-display-type approach",
+        "business": "Locomotive Mtl"
+      },
+      {
+        "why": "Agency site using full-bleed dark imagery with oversized type and minimal color palette — same commitment to one font family stretched across extreme sizes",
+        "business": "Ueno"
+      },
+      {
+        "why": "Design studio with near-monochrome palette, single accent mark, and pill-shaped interactive elements on dark photographic backgrounds",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Agency portfolio using massive display type on dark imagery with near-zero chromatic palette and precision accent marks",
+        "business": "Pentagram"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px (no cards in this system — surfaces are full-bleed)",
+        "buttons": "9999px (fully pill-shaped stadium)",
+        "nav-items": "9999px (fully pill-shaped stadium)"
+      },
+      "elementGap": "10px",
+      "sectionGap": "40px",
+      "cardPadding": "28px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 1,
+        "purpose": "Full-bleed canvas — either solid black or dark photographic imagery covering the entire viewport"
+      },
+      {
+        "hex": "#000000",
+        "name": "Nav Bar",
+        "level": 2,
+        "purpose": "Transparent-to-black nav strip at the top of the page, sitting over photography with thin white hairline border"
+      }
+    ],
+    "northStar": "theater marquee at midnight — a single electric spark cutting through cinematic black",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading",
+        "size": 35,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 94,
+        "lineHeight": 0.87
+      },
+      {
+        "role": "display",
+        "size": 137,
+        "lineHeight": 0.7
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Navigation Button",
+        "role": "Primary navigation link for section entry (e.g. PROJETS, AGENCE)",
+        "description": "Fully pill-shaped stadium form with 9999px border-radius, transparent fill, 1px Paper White border, white text in Lausanne 400 at ~20px, ~10px vertical padding and ~28px horizontal padding. Sits in a row at the page bottom with ~3px gap between pills."
+      },
+      {
+        "name": "Stadium Hamburger Trigger",
+        "role": "Menu toggle in the top-right corner",
+        "description": "Two short horizontal white lines forming a hamburger glyph, enclosed in the same fully pill-shaped stadium form as nav buttons but smaller, ~20px tall. Paper White stroke on transparent fill."
+      },
+      {
+        "name": "Wordmark Logo Lockup",
+        "role": "Brand identifier in the top-left nav position",
+        "description": "\"K72\" set in Lausanne 400 at ~20px in Paper White. No container, no border — sits flush left with 3px left padding. Minimal, almost vestigial."
+      },
+      {
+        "name": "Display Headline Block",
+        "role": "Hero text dominating the first viewport",
+        "description": "Lausanne 300 at 94-137px, Paper White, line-height 0.70-0.87, all caps, no letter-spacing adjustment. The text bleeds across nearly the full viewport width. One word in the block is encircled by a hand-drawn Spark Lime (#d3fd50) stroke ring — this ring is the only accent moment in the entire system."
+      },
+      {
+        "name": "Spark Lime Accent Ring",
+        "role": "Precision mark highlighting a single word within a display headline",
+        "description": "An imperfect oval or ring shape drawn in Spark Lime (#d3fd50) at ~2-3px stroke weight, encircling one word. Functions as a visual lasso — it says 'this word is the point' without any other annotation. Never appears as a fill, never on a background, never on body text."
+      },
+      {
+        "name": "Body Description Block",
+        "role": "Small contextual paragraph on the hero and section openers",
+        "description": "Right-aligned or bottom-right placement, Lausanne 300-400 at 14-16px, Paper White, line-height 1.30-1.50. The text is unadorned — no background, no border. It floats over the dark photographic canvas. Functions as a quiet counterweight to the massive display headline."
+      },
+      {
+        "name": "Location Time Stamp",
+        "role": "Persistent meta-information showing the agency's local time and city",
+        "description": "Bottom-left of the viewport. A small globe icon (Paper White stroke) followed by \"MONTREAL_\" and a live-updating time in Lausanne 300 at ~11px, Paper White. This component signals 'we are a real studio, right now, in this city' — a humanizing live-data detail."
+      },
+      {
+        "name": "Full-Bleed Hero Surface",
+        "role": "The first viewport and section backgrounds",
+        "description": "Edge-to-edge dark photography or video at full viewport size, Pure Black (#000000) as fallback. No overlay, no gradient — the photography carries its own light and the white type sits directly on it."
+      },
+      {
+        "name": "Thin Nav Hairline",
+        "role": "Border separating the nav strip from the content below",
+        "description": "1px Paper White (#ffffff) bottom border on the nav element. Not a shadow, not a fill — a single hairline that defines the nav's lower edge against the photographic void below."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Exclusive typeface for all UI. Weight 300 for display and large headings to create a whisper-light monumental effect against dark photography; weight 400 for body, buttons, and small UI. The dramatic size range (11px meta text up to 137px display) with matching line-height compression (0.70 at 137px) turns the single family into both signage and paragraph text. Substitute: Inter or Neue Haas Grotesk for closest geometric neutrality.",
+        "sizes": "11, 14, 16, 20, 35, 94, 115, 137",
+        "family": "Lausanne",
+        "weight": "300, 400",
+        "lineHeight": "0.70, 0.75, 0.87, 1.20, 1.30, 1.50",
+        "substitute": "Inter, Neue Haas Grotesk, or Suisse Int'l",
+        "letterSpacing": "normal at all sizes — the tight tracking is achieved through compressed line-height, not letter-spacing",
+        "fontFeatureSettings": "Disabled — no ligatures or tabular numerals in evidence; the type speaks through weight contrast and size jumps alone"
+      }
+    ],
+    "description": "Agence K72 runs on radical binary minimalism: a near-black photographic void overlaid with white display type, and exactly one chartreuse spark used as precision mark — never decoration. The system is essentially a two-color engine (white-on-black, black-on-white) with #d3fd50 appearing only as stroke or ring, turning that single hue into a loaded gesture. Typography carries the entire identity: a single custom sans-serif stretched to 137px headlines with line-heights compressed to 0.70, making letterforms behave like architecture rather than reading material. Every interactive surface is a fully pill-shaped stadium form, and the French-first voice signals a confident creative agency that treats restraint as posture.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1ff3bd9c-827d-450a-a382-300839768d66#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Agence K72 design system\",\"item\":\"https://styles.refero.design/style/1ff3bd9c-827d-450a-a382-300839768d66\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1ff3bd9c-827d-450a-a382-300839768d66#style-reference\",\"name\":\"Agence K72 design system reference\",\"headline\":\"Agence K72 design system | Refero Styles\",\"description\":\"Explore Agence K72's dark Agency design system: Pure Black #000000, Paper White #ffffff colors, Lausanne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/1ff3bd9c-827d-450a-a382-300839768d66\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1ff3bd9c-827d-450a-a382-300839768d66\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Agence K72\",\"url\":\"https://k72.ca\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1ff3bd9c-827d-450a-a382-300839768d66#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ce07c1a5-d05a-444d-96d1-689df66292c4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ce07c1a5-d05a-444d-96d1-689df66292c4.jpg\",\"caption\":\"Screenshot of Agence K72\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ce07c1a5-d05a-444d-96d1-689df66292c4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Agence K72 design system\",\"Agence K72 website design\",\"Agence K72 colors\",\"Agence K72 typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pure Black\",\"Paper White\",\"Iron Gray\",\"Spark Lime\",\"Lausanne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Agence K72 design system\"},{\"@type\":\"Thing\",\"name\":\"Agence K72 website design\"},{\"@type\":\"Thing\",\"name\":\"Agence K72 colors\"},{\"@type\":\"Thing\",\"name\":\"Agence K72 typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:44:46.452Z\",\"dateModified\":\"2026-04-30T02:44:46.452Z\"}]}19:T74a,**Quick Color Reference**\n- text: #ffffff (Paper White)\n- background: #000000 (Pure Black)\n- border: #ffffff (Paper White, 1px hairlines and pill outlines)\n- muted: #4d4d4d (Iron Gray — secondary text and low-emphasis borders only)\n- accent: #d3fd50 (Spark Lime — stroke/ring only, never fill)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Display Headline with Spark Ring*: Create a hero headline in Lausanne 300 at 115px, Paper White (#ffffff), line-height 0.75, all caps, spanning nearly the full viewport width on a Pure Black (#000000) background. Draw an imperfect oval ring in Spark Lime (#d3fd50) at 3px stroke, encircling exactly one word in the headline. No other accent elements.\n\n2. *Pill Navigation Row*: Create a horizontal row of two pill-shaped navigation buttons at the bottom of the viewport. Each button: 9999px border-radius, 1px Paper White (#ffffff) border, transparent fill, Lausanne 400 at 20px Paper White text, 10px vertical padding, 28px horizontal padding. 3px gap between pills.\n\n3. *Location Time Stamp*: Bottom-left of the viewport. A small Paper White (#ffffff) globe icon (simple line drawing), followed by \"MONTREAL_\" and a time string, all in Lausanne 300 at 11px Paper White, separated by underscores. No background, no border.\n\n4. *Body Description Block*: A 4-line paragraph in Lausanne 300 at 14px Paper White, line-height 1.30, right-aligned, floating in the lower-right quadrant of the viewport over full-bleed dark photography. No background, no card, no border.\n\n5. *Top Nav Strip*: Full-width bar at top, Pure Black (#000000) or transparent over photography, with a 1px Paper White (#ffffff) bottom border. Left: \"K72\" wordmark in Lausanne 400 at 20px Paper White. Right: a pill-shaped hamburger trigger, 9999px radius, 1px Paper White border, two short white horizontal lines inside."
+      },
+      {
+        "title": "The One Accent Rule",
+        "content": "The Spark Lime (#d3fd50) is the most loaded pixel in the system. It appears at most once per viewport, always as a stroke or ring, always circling a single word. This restraint is what gives the accent its power — it is a visual lasso, not a brand color. If you use it as a fill, a background, a button color, or on more than one element per screen, you break the system. The lime exists to say: 'this word, right here, is the point.' Everything else stays in the black-and-white binary."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is rejected. The system has no shadows, no glows, no blur stacks. Depth is created exclusively through the contrast between full-bleed dark photography and flat white type, and through the weight contrast of type at different sizes. Elements sit on the same Z-plane — differentiation is typographic and chromatic, not spatial."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "button",
+            "nav",
+            "heading",
+            "body",
+            "icon"
+          ],
+          "frequency": 491,
+          "confidence": 1,
+          "prominence": 11468774.853097575,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 6,
+            "icon/fill": 2,
+            "nav/color": 51,
+            "body/color": 3,
+            "icon/color": 1,
+            "link/color": 3,
+            "list/color": 6,
+            "nav/stroke": 3,
+            "other/fill": 7,
+            "other/color": 17,
+            "button/color": 5,
+            "other/stroke": 3,
+            "heading/color": 8,
+            "nav/borderColor": 204,
+            "body/borderColor": 12,
+            "icon/borderColor": 4,
+            "link/borderColor": 12,
+            "list/borderColor": 24,
+            "other/borderColor": 68,
+            "button/borderColor": 20,
+            "heading/borderColor": 32
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 987657.3023505379,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#d3fd50",
+          "oklch": {
+            "c": 0.19748353891316184,
+            "h": 122.19622332926608,
+            "l": 0.9337497933438855
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 180348,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 3
+          }
+        },
+        {
+          "hex": "#4d4d4d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.41838944017064783
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 788.4135627199526,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "nav/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0031770196092851003,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.94,
+          "background": "#d3fd50",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.45,
+          "background": "#ffffff",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.22,
+          "background": "#d3fd50",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.48,
+          "background": "#000000",
+          "foreground": "#4d4d4d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 34965,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 93506.4,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "link",
+            "button",
+            "nav",
+            "other",
+            "list"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginRight|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "icon"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginRight|icon"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|heading"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Lausanne",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 95,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.88
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "nav"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 12,
+          "lineHeight": 0.7,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 94,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.7,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 115,
+          "family": "Lausanne",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.75,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 137,
+          "family": "Lausanne",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 0.87,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/bae370c1-1f4e-46f3-a4ae-cdad66964c7d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ce07c1a5-d05a-444d-96d1-689df66292c4.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1ff3bd9c-827d-450a-a382-300839768d66#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Agence K72 design system\",\"item\":\"https://styles.refero.design/style/1ff3bd9c-827d-450a-a382-300839768d66\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1ff3bd9c-827d-450a-a382-300839768d66#style-reference\",\"name\":\"Agence K72 design system reference\",\"headline\":\"Agence K72 design system | Refero Styles\",\"description\":\"Explore Agence K72's dark Agency design system: Pure Black #000000, Paper White #ffffff colors, Lausanne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/1ff3bd9c-827d-450a-a382-300839768d66\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1ff3bd9c-827d-450a-a382-300839768d66\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Agence K72\",\"url\":\"https://k72.ca\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1ff3bd9c-827d-450a-a382-300839768d66#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ce07c1a5-d05a-444d-96d1-689df66292c4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ce07c1a5-d05a-444d-96d1-689df66292c4.jpg\",\"caption\":\"Screenshot of Agence K72\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ce07c1a5-d05a-444d-96d1-689df66292c4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Agence K72 design system\",\"Agence K72 website design\",\"Agence K72 colors\",\"Agence K72 typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pure Black\",\"Paper White\",\"Iron Gray\",\"Spark Lime\",\"Lausanne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Agence K72 design system\"},{\"@type\":\"Thing\",\"name\":\"Agence K72 website design\"},{\"@type\":\"Thing\",\"name\":\"Agence K72 colors\"},{\"@type\":\"Thing\",\"name\":\"Agence K72 typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:44:46.452Z\",\"dateModified\":\"2026-04-30T02:44:46.452Z\"}]}19:T74a,**Quick Color Reference**\n- text: #ffffff (Paper White)\n- background: #000000 (Pure Black)\n- border: #ffffff (Paper White, 1px hairlines and pill outlines)\n- muted: #4d4d4d (Iron Gray — secondary text and low-emphasis borders only)\n- accent: #d3fd50 (Spark Lime — stroke/ring only, never fill)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Display Headline with Spark Ring*: Create a hero headline in Lausanne 300 at 115px, Paper White (#ffffff), line-height 0.75, all caps, spanning nearly the full viewport width on a Pure Black (#000000) background. Draw an imperfect oval ring in Spark Lime (#d3fd50) at 3px stroke, encircling exactly one word in the headline. No other accent elements.\n\n2. *Pill Navigation Row*: Create a horizontal row of two pill-shaped navigation buttons at the bottom of the viewport. Each button: 9999px border-radius, 1px Paper White (#ffffff) border, transparent fill, Lausanne 400 at 20px Paper White text, 10px vertical padding, 28px horizontal padding. 3px gap between pills.\n\n3. *Location Time Stamp*: Bottom-left of the viewport. A small Paper White (#ffffff) globe icon (simple line drawing), followed by \"MONTREAL_\" and a time string, all in Lausanne 300 at 11px Paper White, separated by underscores. No background, no border.\n\n4. *Body Description Block*: A 4-line paragraph in Lausanne 300 at 14px Paper White, line-height 1.30, right-aligned, floating in the lower-right quadrant of the viewport over full-bleed dark photography. No background, no card, no border.\n\n5. *Top Nav Strip*: Full-width bar at top, Pure Black (#000000) or transparent over photography, with a 1px Paper White (#ffffff) bottom border. Left: \"K72\" wordmark in Lausanne 400 at 20px Paper White. Right: a pill-shaped hamburger trigger, 9999px radius, 1px Paper White border, two short white horizontal lines inside."
+}

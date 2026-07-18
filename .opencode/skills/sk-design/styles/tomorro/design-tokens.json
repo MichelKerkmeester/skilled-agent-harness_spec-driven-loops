@@ -1,0 +1,567 @@
+{
+  "color": {
+    "forest-depths": {
+      "$value": "#122314",
+      "$type": "color",
+      "$description": "Forest Depths — Dark elevated surface for cards, headers, and contained panels. Do not promote it to the primary CTA color"
+    },
+    "moss-shadow": {
+      "$value": "#273f2b",
+      "$type": "color",
+      "$description": "Moss Shadow — Gray action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "lichen-sage": {
+      "$value": "#7e8371",
+      "$type": "color",
+      "$description": "Lichen Sage — Secondary muted text, link underline on dark, and badge border color — sits between Moss Shadow and Pure White as the off-tone voice"
+    },
+    "pale-fern": {
+      "$value": "#b7bda5",
+      "$type": "color",
+      "$description": "Pale Fern — Medium-contrast borders, control outlines, and structural separators."
+    },
+    "electric-sprout": {
+      "$value": "#68ef3f",
+      "$type": "color",
+      "$description": "Electric Sprout — Green action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "deep-verdant": {
+      "$value": "#26a200",
+      "$type": "color",
+      "$description": "Deep Verdant — Secondary accent for link borders, icon strokes, and hover-active states — a quieter green that supports Sprout without competing"
+    },
+    "sprout-wash": {
+      "$value": "#e7f9dd",
+      "$type": "color",
+      "$description": "Sprout Wash — Light green badge background and success-tint surface — the diluted form of Electric Sprout for soft status chips"
+    },
+    "mist-green": {
+      "$value": "#d9deca",
+      "$type": "color",
+      "$description": "Mist Green — Light sage link border and chip outline on bone surfaces — a low-contrast divider that reads as green without demanding attention"
+    },
+    "onyx-olive": {
+      "$value": "#30322a",
+      "$type": "color",
+      "$description": "Onyx Olive — Primary achromatic dark — body copy on white, borders on light cards, and the dominant hairline color across the whole system"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Light-section page background, text on dark surfaces, and inverted badge fills — the greenhouse bench"
+    },
+    "bone-white": {
+      "$value": "#f2f5eb",
+      "$type": "color",
+      "$description": "Bone White — Card surface on light sections — warm off-white that prevents the page from reading sterile, never pure #fff when elevated"
+    },
+    "soft-mist": {
+      "$value": "#dcdfe3",
+      "$type": "color",
+      "$description": "Soft Mist — Cool-tinted heading rule and quiet secondary border — the only neutral that isn't green-tinted"
+    },
+    "cool-stone": {
+      "$value": "#d6d6d6",
+      "$type": "color",
+      "$description": "Cool Stone — Muted UI surface for disabled controls, low-emphasis panels, and placeholder blocks."
+    },
+    "carbon": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Carbon — Link text and border on light surfaces — darker than Onyx Olive, used only where the link must read as a typographic accent rather than a button"
+    }
+  },
+  "font": {
+    "ozik": {
+      "$value": "Ozik",
+      "$type": "fontFamily",
+      "$description": "Hero and section display only — used for two or three words maximum per line. The ultra-tight 0.86 line-height stacks letterforms like glasshouse beams; the heavy weight on a near-black canvas is the system's signature."
+    },
+    "aeonik": {
+      "$value": "Aeonik",
+      "$type": "fontFamily",
+      "$description": "Workhorse for every UI surface — nav, body, buttons, cards, inputs, headings up to 40px. 400 for body and labels, 500 for sub-labels, 600 for sub-headings, 700 for section titles and button labels. The negative letter-spacing tightens as size grows, giving headlines a compressed, technical feel without becoming a display face."
+    },
+    "instrument-serif": {
+      "$value": "Instrument Serif",
+      "$type": "fontFamily",
+      "$description": "Editorial accent only — drops into badges, small pull quotes, and the occasional 32px sub-heading to break Aeonik's geometric monotony. The serif's organic stroke and slight +0.063em tracking at small sizes are the only warmth this system permits."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Instrument Serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Instrument Serif",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Instrument Serif",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Instrument Serif",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Aeonik",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Ozik",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 0.86
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Ozik",
+        "fontSize": "80px",
+        "fontWeight": 700,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "168": {
+      "$value": "168px",
+      "$type": "dimension",
+      "$description": "Spacing 168px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "3xl-4": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-4"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    }
+  },
+  "surface": {
+    "forest-depths-canvas": {
+      "$value": "#122314",
+      "$type": "color",
+      "$description": "Surface level 0: Dark hero and footer stage"
+    },
+    "pure-white-page": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Light content bands, logo grid sections"
+    },
+    "bone-white-card": {
+      "$value": "#f2f5eb",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated card on light bands"
+    },
+    "sprout-wash-chip": {
+      "$value": "#e7f9dd",
+      "$type": "color",
+      "$description": "Surface level 3: Soft green status surface"
+    },
+    "electric-sprout-accent": {
+      "$value": "#68ef3f",
+      "$type": "color",
+      "$description": "Surface level 4: Action button fill, active highlight"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.gotomorro.com",
+      "siteName": "Tomorro",
+      "extractedAt": "2026-06-03T18:23:12.893Z",
+      "variant": "extended"
+    }
+  }
+}

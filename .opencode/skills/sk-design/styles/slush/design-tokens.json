@@ -1,0 +1,427 @@
+{
+  "color": {
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Primary text, card borders, filled CTA background, logo mark — creates the hand-cut sticker outline effect against pastel surfaces"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, outlined button fills, text on dark fills"
+    },
+    "sky-wash": {
+      "$value": "#dceeff",
+      "$type": "color",
+      "$description": "Sky Wash — Hero section background, light blue pastel ground"
+    },
+    "concrete-gray": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Concrete Gray — Secondary section background, neutral interlude surface"
+    },
+    "soft-mist": {
+      "$value": "#e9e9e9",
+      "$type": "color",
+      "$description": "Soft Mist — Subtle button and surface tints, disabled states"
+    },
+    "electric-blue": {
+      "$value": "#4da2ff",
+      "$type": "color",
+      "$description": "Electric Blue — Dominant brand color — 3D ribbon sculptures, body backgrounds, card washes, the visual signature that anchors every screen"
+    },
+    "mint-pop": {
+      "$value": "#55db9c",
+      "$type": "color",
+      "$description": "Mint Pop — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "lavender": {
+      "$value": "#e9ccff",
+      "$type": "color",
+      "$description": "Lavender — Soft accent wash for cards, tags, sticker fills — the gentlest color in the palette"
+    },
+    "ember": {
+      "$value": "#fb4903",
+      "$type": "color",
+      "$description": "Ember — Hot accent for sticker icons, badge fills, rocket body — warmest hit in the rainbow"
+    },
+    "sunburst": {
+      "$value": "#ffd731",
+      "$type": "color",
+      "$description": "Sunburst — Sticker coin fills, highlight accents, yellow sticker decorations — never used for text backgrounds"
+    },
+    "voltage-violet": {
+      "$value": "#5c4ade",
+      "$type": "color",
+      "$description": "Voltage Violet — Deep accent for wallet stickers, QR download cards, secondary CTAs — the anchor purple in the sticker set"
+    }
+  },
+  "font": {
+    "lateral": {
+      "$value": "Lateral",
+      "$type": "fontFamily",
+      "$description": "Display headlines only — the wordmark 'SLUSH' and section banners like 'ALL THINGS SUI' sit at 200–640px with crushed 0.75–0.80 line-height so the letters stack into sculptural blocks. This is anti-convention display: no other site pairs an 800-weight display face with line-height under 0.85, and the effect makes text behave like a physical object that wraps behind 3D ribbons."
+    },
+    "aeonik-pro": {
+      "$value": "Aeonik Pro",
+      "$type": "fontFamily",
+      "$description": "All UI, body, nav, buttons, subheads. Weight 500 for body and metadata (12–16px), weight 700 for subheads and nav labels (24–30px), and a 64px 700-weight step for large supporting headlines. Tight letter-spacing (-0.010em) tightens the 14–16px body; slight opening (0.030–0.032em) on nav/button labels gives pill controls breathing room."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Aeonik Pro",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Aeonik Pro",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Aeonik Pro",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.39
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Aeonik Pro",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Aeonik Pro",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Aeonik Pro",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Aeonik Pro",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Aeonik Pro",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Aeonik Pro",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Aeonik Pro",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Aeonik Pro",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Aeonik Pro",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Aeonik Pro",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Aeonik Pro",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "70px",
+        "fontWeight": 800,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 70px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "110px",
+        "fontWeight": 800,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 110px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "160px",
+        "fontWeight": 800,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 160px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "200px",
+        "fontWeight": 800,
+        "lineHeight": 0.76
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 200px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "281px",
+        "fontWeight": 800,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 281px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Lateral",
+        "fontSize": "640px",
+        "fontWeight": 800,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 640px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "224": {
+      "$value": "224px",
+      "$type": "dimension",
+      "$description": "Spacing 224px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1500px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "1600px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "surface": {
+    "sky-wash": {
+      "$value": "#dceeff",
+      "$type": "color",
+      "$description": "Surface level 1: Hero and primary section background — pale blue pastel"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Card surfaces, nav, outlined button fills"
+    },
+    "concrete-gray": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Surface level 3: Secondary section interlude, neutral breathing band"
+    },
+    "sticker-surfaces": {
+      "$value": "#e9ccff",
+      "$type": "color",
+      "$description": "Surface level 4: Accent card fills — lavender pastel"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://slush.app",
+      "siteName": "Slush",
+      "extractedAt": "2026-06-03T19:22:20.717Z",
+      "variant": "extended"
+    }
+  }
+}

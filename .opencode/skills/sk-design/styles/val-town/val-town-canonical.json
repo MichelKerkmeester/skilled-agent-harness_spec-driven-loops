@@ -1,0 +1,1679 @@
+{
+  "source": "https://styles.refero.design/style/4d0a5051-1c4c-4338-8406-2babdc97915c",
+  "uuid": "4d0a5051-1c4c-4338-8406-2babdc97915c",
+  "name": "Val Town",
+  "northStar": "daylight IDE with cyan sparks. White-washed IDE where chrome recedes, code glows in syntax colors, and one electric cyan button reads as 'run'.",
+  "capturedAt": "2026-07-18T10:08:05.468Z",
+  "meta": {
+    "url": "https://val.town",
+    "siteName": "Val Town",
+    "extractedAt": "2026-06-03T15:35:13.618Z",
+    "durationMs": 36637,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 431,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Cyan Pulse #00bcff for exactly one filled button per viewport — the primary action — and pair it with a Ghost Button as the secondary",
+      "Set all body and display type in IBM Plex Sans 400 with letter-spacing -0.025em; tighten further as size grows",
+      "Reserve Plasma Violet #8e51ff and Signal Magenta #e12afb for one word inside a headline or sentence, never for full elements",
+      "Render all code, file names, and technical labels in iA Writer Mono; never set Plex Mono or a system mono as a substitute",
+      "Layer surfaces as Canvas (#e2e8f0) → Paper (#ffffff) → Mist (#f1f5f9); use hairline #e2e8f0 borders rather than shadows to separate cards",
+      "Place the only soft 20px shadow on the hero code-editor card; keep all other components flat",
+      "Use 8px radius for buttons and auth controls, 12px for cards and the code editor, 4px for the small date pill"
+    ],
+    "donts": [
+      "Do not introduce a second saturated CTA color; Cyan Pulse is the only filled action fill in the system",
+      "Do not apply Plasma Violet or Signal Magenta to background fills, borders, or full sentences — they are word-level accents only",
+      "Do not add drop shadows to template cards, testimonial cards, or logo bars; those surfaces stay flat",
+      "Do not set body or display type in any font other than IBM Plex Sans, or substitute Plex Sans for the iA Writer Mono code block",
+      "Do not use the 128px display size for headings outside the hero code-output flourish — it is reserved for that one moment",
+      "Do not use Carbon #314158 for both text and dark surfaces; use Graphite #1d293d when you need a dark fill",
+      "Do not add gradients to any surface — the system is flat by design, and the cyan/violet/magenta palette does the work that gradients usually do"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#00bcff",
+        "name": "Cyan Pulse",
+        "role": "Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#53eafd",
+        "name": "Voltage Cyan",
+        "role": "Announcement bar border, decorative code-editor highlights — brighter, more electric than Cyan Pulse, used for outline accents only",
+        "group": "brand"
+      },
+      {
+        "hex": "#8e51ff",
+        "name": "Plasma Violet",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis.",
+        "group": "brand"
+      },
+      {
+        "hex": "#e12afb",
+        "name": "Signal Magenta",
+        "role": "Hiring nav link, emphasis words inside testimonial bodies — a second accent reserved for editorial moments, not chrome",
+        "group": "brand"
+      },
+      {
+        "hex": "#74d4ff",
+        "name": "Halftone Blue",
+        "role": "Soft highlight wash behind cards and decorative code blocks — desaturated cyan used as a tint, never as text or border",
+        "group": "accent"
+      },
+      {
+        "hex": "#104e64",
+        "name": "Deep Teal",
+        "role": "Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#ed6aff",
+        "name": "Ember Pink",
+        "role": "Inline code-editor decoration, soft illustration tint — decorative, not a state color",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff2056",
+        "name": "Alarm Red",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis",
+        "group": "accent"
+      },
+      {
+        "hex": "#314158",
+        "name": "Carbon",
+        "role": "Primary body text, icon strokes, heading default — the dominant dark neutral across the entire UI",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1d293d",
+        "name": "Graphite",
+        "role": "Dark surface fill (testimonial cards, inverse blocks), strongest emphasis text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#45556c",
+        "name": "Slate",
+        "role": "Mid-tone text, secondary icon strokes, muted body copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#62748e",
+        "name": "Iron",
+        "role": "Helper text, tertiary icon strokes, button label color in dark contexts",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6a7282",
+        "name": "Fog",
+        "role": "Button label on light surfaces, icon default, disabled-adjacent text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#99a1af",
+        "name": "Ash",
+        "role": "Captions, timestamps, lowest-priority metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cad5e2",
+        "name": "Mist",
+        "role": "Hairline borders, input outlines, divider lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2e8f0",
+        "name": "Porcelain",
+        "role": "Page canvas, default border color, subtle surface separation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1f5f9",
+        "name": "Paper",
+        "role": "Card surface, elevated panel, code editor body fill",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure",
+        "role": "Inset cards on light gray canvas, button text on cyan fill, modal surfaces",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Layout is max-width 1200px centered on a #e2e8f0 canvas, with white paper cards creating the primary content surface. The hero is a split composition: headline + subhead + dual-button cluster on the left (50%), floating code editor card on the right (50%) with intentional negative space. Below the hero, content flows in alternating 4-column card grids (templates), single-row logo bars (social proof), and 3-column dark-card grids (testimonials). Vertical rhythm is generous: 64-96px between major sections, 8-16px between elements within a card. Pull quotes break the grid with oversized quotation marks and centered single-column text. The navigation is a single horizontal bar — no sidebar, no mega-menu, no sticky secondary nav.",
+    "imagery": "Visuals are dominated by product UI rather than photography or illustration. The hero is a literal code editor mockup rendering the platform's output ('Hello!') — the product screenshot IS the hero image. Secondary visuals are flat brand-logo strips on a Mist-tinted tile inside template cards, and grayscale company wordmarks in the social-proof bar. Iconography is line-based and 1.5px stroke, monochrome Carbon, no fill variants. No photography, no 3D, no abstract gradients — the only illustrative moments are the syntax-color words inside the code editor, which function as decoration that doubles as documentation.",
+    "similar": [
+      {
+        "why": "Same light-canvas, code-editor-as-hero layout, and developer-tool warmth; Replit leans slightly more orange, Val Town stays in cyan-violet-magenta accent territory",
+        "business": "Replit"
+      },
+      {
+        "why": "Similar restrained achromatic base with a single vivid accent color and IBM Plex-style sans typography; both use flat cards on a near-white canvas",
+        "business": "Vercel"
+      },
+      {
+        "why": "Identical surface stack (gray canvas, white cards, hairline borders, generous 64-96px section gaps) and a single saturated action color used sparingly",
+        "business": "Plausible Analytics"
+      },
+      {
+        "why": "Same dark-card testimonial pattern, code-first hero, and 8-12px component radii; both feel like an IDE rendered as a marketing site",
+        "business": "Railway"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "12px",
+        "pills": "12px",
+        "badges": "4px",
+        "buttons": "8px",
+        "codeEditor": "12px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "64-96px",
+      "cardPadding": "24-32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#e2e8f0",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, band separators between sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Inset cards, hero code editor, primary content containers on the gray canvas"
+      },
+      {
+        "hex": "#f1f5f9",
+        "name": "Mist",
+        "level": 2,
+        "purpose": "Sub-surface inside cards, icon tile backgrounds, secondary panel fill"
+      },
+      {
+        "hex": "#cefafe",
+        "name": "Halftone",
+        "level": 3,
+        "purpose": "Cyan-tinted highlight wash behind decorative elements and code blocks"
+      },
+      {
+        "hex": "#1d293d",
+        "name": "Inverse",
+        "level": 4,
+        "purpose": "Dark testimonial cards, inverse sections"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)",
+        "element": "Code Editor Hero Card"
+      },
+      {
+        "style": "none — uses 1px #53eafd border instead of shadow",
+        "element": "Announcement Bar"
+      },
+      {
+        "style": "none — flat on canvas, separated by 1px #e2e8f0 border",
+        "element": "Template Cards"
+      },
+      {
+        "style": "none — flat dark fill (#1d293d) on canvas",
+        "element": "Testimonial Cards"
+      }
+    ],
+    "northStar": "daylight IDE with cyan sparks. White-washed IDE where chrome recedes, code glows in syntax colors, and one electric cyan button reads as 'run'.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.6,
+        "letterSpacing": 1
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.35
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.56,
+        "letterSpacing": -0.45
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.9
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.14,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1.11,
+        "letterSpacing": -1.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "Hero and section-level conversion",
+        "description": "Cyan Pulse #00bcff fill, white text, IBM Plex Sans 700 16px, 8px radius, 12px 24px padding, no border. Sits at the highest visual weight on the page — every screen has exactly one. Pairs with a Ghost Button as the secondary action."
+      },
+      {
+        "name": "Ghost Button",
+        "role": "Secondary action beside the primary CTA",
+        "description": "Transparent fill, 1px Carbon #314158 border, Carbon text, 8px radius, 12px 24px padding, IBM Plex Sans 700 16px. Mirrors the primary button's height and radius so the two feel like a matched pair."
+      },
+      {
+        "name": "Auth Button — Sign Up",
+        "role": "Top-right account creation",
+        "description": "1px Carbon border, Carbon text on white, 8px radius, smaller padding (~8px 16px), 700 weight. Less visually loud than the hero CTA so it doesn't compete."
+      },
+      {
+        "name": "Auth Button — Log In",
+        "role": "Top-right account access",
+        "description": "Plain text link in Carbon, no border, no fill. Lives to the left of Sign up with no visual weight."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "Site-wide news strip below the nav",
+        "description": "Full-width container with 1px #53eafd border, #cefafe interior fill, 16px vertical padding, 12px radius. Contains a date pill, body copy in Carbon, and a 'Read more →' inline link."
+      },
+      {
+        "name": "Date Pill",
+        "role": "Leading element inside the announcement bar",
+        "description": "White fill, Carbon text, IBM Plex Sans 700 10px, +0.1em tracking, 4px 8px padding, 4px radius. The only place the small-caps tracked treatment appears."
+      },
+      {
+        "name": "Top Navigation",
+        "role": "Primary site navigation",
+        "description": "White background, 64px tall, IBM Plex Sans 400 14px links in Carbon, with one link rendered in Signal Magenta #e12afb ('We're hiring!') to recruit attention. Logo wordmark left, links center-left, search icon + auth right."
+      },
+      {
+        "name": "Hero Code Editor Card",
+        "role": "Hero visual — shows the product in action",
+        "description": "12px radius, white fill, soft 20px shadow lifting it off canvas, header bar with 'main.tsx' label in iA Writer Mono and a 'Run' button (Carbon fill, white text, 4px radius). Code body uses iA Writer Mono 14px with syntax-color words (Plasma Violet for 'async function', Halftone Blue for strings, Signal Magenta for return). The 'Hello!' output card overlays the bottom-right with #1d293d fill, white IBM Plex Sans 700 60px text, 8px radius, 20px shadow."
+      },
+      {
+        "name": "Template Card",
+        "role": "Use-case gallery tile in the 4-column grid",
+        "description": "White fill, 1px #e2e8f0 border, 12px radius, 16px padding. Header is a 120px icon strip on #f1f5f9 with three brand-logos arranged horizontally. Title is IBM Plex Sans 700 16px Carbon; body is IBM Plex Sans 400 14px Slate #45556c."
+      },
+      {
+        "name": "Logo Bar",
+        "role": "Social proof — 'Loved by engineers at'",
+        "description": "Single horizontal row, grayscale brand wordmarks, ~40px tall, even spacing. No background change from canvas — the logos are the content."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "Customer quote in 3-column grid",
+        "description": "#1d293d dark fill, no border, 12px radius, 24-32px padding. Quote body in IBM Plex Sans 400 16px white with inline emphasis words colored Plasma Violet or Signal Magenta. Footer row: avatar + name (700 14px white) + role (400 12px Iron) on the left, company wordmark on the right. The only dark surface in the system."
+      },
+      {
+        "name": "Pull Quote Block",
+        "role": "Featured large quote between sections",
+        "description": "No container — text sits directly on canvas. A oversized Halftone Blue #74d4ff quotation mark glyph (60–80px) sits to the left, IBM Plex Sans 400 24px Carbon to the right with -0.6px tracking. Generous left/right margins."
+      },
+      {
+        "name": "Search Icon Button",
+        "role": "Top-nav utility",
+        "description": "Plain 16px Carbon icon, no border, no fill, 8px hit area. Text-less by design."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary interface and display typeface. Weight 400 carries body, button labels, nav, and helper text; weight 700 is reserved for headings, large numerics, and the single word inside a headline that needs to be brand-colored. The geometric-but-humanist Plex forms give the UI a terminal-instrument feel without the coldness of a pure grotesque. The 128px step is used for the oversized code-output flourish in the hero.",
+        "sizes": "10, 12, 14, 16, 18, 24, 36, 48, 60, 128",
+        "family": "IBM Plex Sans",
+        "weight": "400, 700",
+        "lineHeight": "1.0–1.6",
+        "substitute": "Inter, system-ui",
+        "letterSpacing": "-0.025em across body and display sizes, tightening as size grows; +0.1em tracked labels at 10–12px (uppercase eyebrows)"
+      },
+      {
+        "role": "All code, file names, inline technical labels, the 'Hello!' output render, and monospaced UI affordances. Its slightly humanized monospace proportions pair cleanly with Plex Sans at the same sizes — they look like they were drawn for each other. Weight 700 is used for keywords inside the code editor mockup.",
+        "sizes": "14, 16, 20, 24, 60",
+        "family": "iA Writer Mono",
+        "weight": "400, 700",
+        "lineHeight": "1.0–1.5",
+        "substitute": "JetBrains Mono, IBM Plex Mono"
+      }
+    ],
+    "description": "Val Town uses a daylight-IDE visual language: a near-white canvas with a single vivid cyan as the \"run\" button accent, playful magenta and violet used sparingly to energize specific words inside otherwise neutral type, and the hero is always a real code editor mock rather than abstract illustration. Typography carries the brand more than color does — IBM Plex Sans at 400 for body, 700 for headings, and iA Writer Mono for all code, giving every screen the feel of a well-typeset terminal. Components are flat and low-elevation, relying on hairline borders and a cool light-gray card surface (#f1f5f9) to separate layers; depth only appears in the code editor mock where a soft 20px shadow lifts the card off the page. Color is rationed like a developer's cursor: it only appears where state changes, where code is highlighted, or where a single word deserves emphasis — the rest of the UI stays monochrome and quiet.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4d0a5051-1c4c-4338-8406-2babdc97915c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Val Town design system\",\"item\":\"https://styles.refero.design/style/4d0a5051-1c4c-4338-8406-2babdc97915c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4d0a5051-1c4c-4338-8406-2babdc97915c#style-reference\",\"name\":\"Val Town design system reference\",\"headline\":\"Val Town design system | Refero Styles\",\"description\":\"Explore Val Town's light Dev Tools design system: Cyan Pulse #00bcff, Voltage Cyan #53eafd colors, IBM Plex Sans, iA Writer Mono typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/4d0a5051-1c4c-4338-8406-2babdc97915c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4d0a5051-1c4c-4338-8406-2babdc97915c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Val Town\",\"url\":\"https://val.town\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4d0a5051-1c4c-4338-8406-2babdc97915c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bd15cfc4-ff5b-4685-9c57-c25c9536c73e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bd15cfc4-ff5b-4685-9c57-c25c9536c73e.jpg\",\"caption\":\"Screenshot of Val Town\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bd15cfc4-ff5b-4685-9c57-c25c9536c73e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Val Town design system\",\"Val Town website design\",\"Val Town colors\",\"Val Town typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Cyan Pulse\",\"Voltage Cyan\",\"Plasma Violet\",\"Signal Magenta\",\"IBM Plex Sans\",\"iA Writer Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Val Town design system\"},{\"@type\":\"Thing\",\"name\":\"Val Town website design\"},{\"@type\":\"Thing\",\"name\":\"Val Town colors\"},{\"@type\":\"Thing\",\"name\":\"Val Town typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-02-08T19:50:07.000Z\",\"dateModified\":\"2026-02-08T19:50:07.000Z\"}]}19:T5ae,Quick Color Reference\n- text: #314158 (Carbon)\n- background: #e2e8f0 (Porcelain canvas) / #ffffff (Paper card)\n- border: #e2e8f0 hairline / #53eafd (announcement accent)\n- accent: #8e51ff (Plasma Violet) for headline word-emphasis\n- primary action: no distinct CTA color\n\nExample Component Prompts\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Create a template card: white fill, 1px #e2e8f0 border, 12px radius, 16px padding. Top half is a 120px-tall #f1f5f9 icon strip holding three 24px brand logos. Title is IBM Plex Sans 700 16px #314158, body is IBM Plex Sans 400 14px #45556c.\n\n3. Create a testimonial card: #1d293d fill, 12px radius, 24px padding, no border, no shadow. Quote body in IBM Plex Sans 400 16px white with one emphasis word in #8e51ff. Footer: 32px avatar + IBM Plex Sans 700 14px white name + 400 12px #62748e role, company wordmark right-aligned.\n\n4. Create an announcement bar: full-width, 1px #53eafd border, #cefafe fill, 12px radius, 16px vertical padding. Leading 4px-radius white date pill (IBM Plex Sans 700 10px #314158, +0.1em tracking), body copy in IBM Plex Sans 400 14px #314158, trailing 'Read more →' inline link.\n\n5. Create a pull quote: no container, sits on canvas. A 60px #74d4ff quotation glyph on the left, IBM Plex Sans 400 24px #314158 quote text on the right with -0.6px tracking, single column, generous left margin."
+      },
+      {
+        "title": "Color Rationing",
+        "content": "Color is rationed like developer attention. The page is 95% achromatic; chromatic pixels appear only at three levels of priority. Tier 1 (Cyan Pulse #00bcff): exactly one filled button per viewport. Tier 2 (Plasma Violet #8e51ff, Signal Magenta #e12afb): one word inside a headline or sentence — these are emphasis, not chrome. Tier 3 (Voltage Cyan #53eafd, Halftone Blue #74d4ff, Deep Teal #104e64): syntax-style decoration inside code blocks and the announcement bar. Never use a chromatic color as a full surface fill, a border, or a long block of text — if you need a colored region, the dark testimonial card (#1d293d) is the only place a surface is allowed to step away from grayscale."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e2e8f0",
+          "oklch": {
+            "c": 0.013,
+            "h": 255.508,
+            "l": 0.929
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "icon",
+            "body",
+            "heading",
+            "hero",
+            "image"
+          ],
+          "frequency": 1245,
+          "confidence": 1,
+          "prominence": 10960743.875488283,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "icon",
+            "heading",
+            "body",
+            "hero",
+            "image"
+          ],
+          "frequency": 261,
+          "confidence": 1,
+          "prominence": 8562825.577338768,
+          "properties": [
+            "color",
+            "fill",
+            "stroke",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#314158",
+          "oklch": {
+            "c": 0.044,
+            "h": 257.287,
+            "l": 0.372
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "icon"
+          ],
+          "frequency": 281,
+          "confidence": 1,
+          "prominence": 7894379.926113189,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "image",
+            "heading",
+            "button"
+          ],
+          "frequency": 153,
+          "confidence": 1,
+          "prominence": 7047903.66330263,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1d293d",
+          "oklch": {
+            "c": 0.041,
+            "h": 260.031,
+            "l": 0.279
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 349515.19226720487,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#53eafd",
+          "oklch": {
+            "c": 0.127,
+            "h": 207.078,
+            "l": 0.865
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 284836.7809296004,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#104e64",
+          "oklch": {
+            "c": 0.07,
+            "h": 227.392,
+            "l": 0.398
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 252257.6838764081,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f1f5f9",
+          "oklch": {
+            "c": 0.007,
+            "h": 247.896,
+            "l": 0.968
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 115836,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cefafe",
+          "oklch": {
+            "c": 0.045,
+            "h": 203.388,
+            "l": 0.956
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 89856,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#45556c",
+          "oklch": {
+            "c": 0.043,
+            "h": 257.281,
+            "l": 0.446
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 66837.50598434744,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ed6aff",
+          "oklch": {
+            "c": 0.238,
+            "h": 322.16,
+            "l": 0.74
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 59932.355579220006,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#74d4ff",
+          "oklch": {
+            "c": 0.111,
+            "h": 230.318,
+            "l": 0.828
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 38042.46990663454,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#00bcff",
+          "oklch": {
+            "c": 0.16,
+            "h": 232.661,
+            "l": 0.746
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 33596.450127786346,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#62748e",
+          "oklch": {
+            "c": 0.046,
+            "h": 257.417,
+            "l": 0.554
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 30998.69658910437,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cad5e2",
+          "oklch": {
+            "c": 0.022,
+            "h": 252.894,
+            "l": 0.869
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 28780.298736128854,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8e51ff",
+          "oklch": {
+            "c": 0.25,
+            "h": 292.717,
+            "l": 0.606
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 27552,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#00c950",
+          "oklch": {
+            "c": 0.219,
+            "h": 149.579,
+            "l": 0.723
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 21953.315597488734,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e12afb",
+          "oklch": {
+            "c": 0.295,
+            "h": 322.15,
+            "l": 0.667
+          },
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 20404.807234284162,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0f172b",
+          "oklch": {
+            "c": 0.042,
+            "h": 265.755,
+            "l": 0.208
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 16112,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#00a6f4",
+          "oklch": {
+            "c": 0.169,
+            "h": 237.323,
+            "l": 0.685
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 14327,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f6339a",
+          "oklch": {
+            "c": 0.241,
+            "h": 354.308,
+            "l": 0.656
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 12050,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#99a1af",
+          "oklch": {
+            "c": 0.022,
+            "h": 261.325,
+            "l": 0.707
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 9510.617476658635,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#052f4a",
+          "oklch": {
+            "c": 0.066,
+            "h": 243.157,
+            "l": 0.293
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 9218,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0069a8",
+          "oklch": {
+            "c": 0.134,
+            "h": 242.749,
+            "l": 0.5
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 6413,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6a7282",
+          "oklch": {
+            "c": 0.027,
+            "h": 264.364,
+            "l": 0.551
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 4851.10930531554,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff2056",
+          "oklch": {
+            "c": 0.246,
+            "h": 16.439,
+            "l": 0.645
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 3489.542168117602,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#005f78",
+          "oklch": {
+            "c": 0.085,
+            "h": 224.283,
+            "l": 0.45
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2295,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a2f4fd",
+          "oklch": {
+            "c": 0.08,
+            "h": 205.041,
+            "l": 0.917
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2295,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#008236",
+          "oklch": {
+            "c": 0.154,
+            "h": 150.069,
+            "l": 0.527
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1243,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.049873269123022354,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.17,
+          "background": "#f1f5f9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#cefafe",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.83,
+          "background": "#0f172b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.03,
+          "background": "#e2e8f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.89,
+          "background": "#a2f4fd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.28,
+          "background": "#f1f5f9",
+          "foreground": "#0f172b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.9,
+          "background": "#cefafe",
+          "foreground": "#0f172b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.62,
+          "background": "#1d293d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.56,
+          "background": "#53eafd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.46,
+          "background": "#e2e8f0",
+          "foreground": "#0f172b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.35,
+          "background": "#a2f4fd",
+          "foreground": "#0f172b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.13,
+          "background": "#cad5e2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.89,
+          "background": "#ffffff",
+          "foreground": "#052f4a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.34,
+          "background": "#f1f5f9",
+          "foreground": "#1d293d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.04,
+          "background": "#cefafe",
+          "foreground": "#1d293d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.68,
+          "background": "#f1f5f9",
+          "foreground": "#052f4a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.6,
+          "background": "#74d4ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.39,
+          "background": "#cefafe",
+          "foreground": "#052f4a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.36,
+          "background": "#53eafd",
+          "foreground": "#0f172b"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "button",
+            "nav",
+            "other"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 62,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 85,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginLeft",
+            "marginTop",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 30,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 49,
+          "properties": [
+            "paddingLeft",
+            "paddingBottom",
+            "paddingRight",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 25,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 26,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 42,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 27,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 89,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 113,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 128,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "IBM Plex Sans",
+          "source": "google",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 354,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "iA Writer Mono",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 32,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "IBM Plex Sans",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Sans",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "nav",
+            "link",
+            "icon",
+            "other",
+            "body"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "iA Writer Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "body",
+            "hero",
+            "icon",
+            "image",
+            "button"
+          ],
+          "frequency": 191,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "IBM Plex Sans",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "iA Writer Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "iA Writer Mono",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "IBM Plex Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "iA Writer Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "iA Writer Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "IBM Plex Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "IBM Plex Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "IBM Plex Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "IBM Plex Sans",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "IBM Plex Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "iA Writer Mono",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 128,
+          "family": "IBM Plex Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/11eec79e-191c-4cc1-91ec-6b21eec2f667.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/bd15cfc4-ff5b-4685-9c57-c25c9536c73e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4d0a5051-1c4c-4338-8406-2babdc97915c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Val Town design system\",\"item\":\"https://styles.refero.design/style/4d0a5051-1c4c-4338-8406-2babdc97915c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4d0a5051-1c4c-4338-8406-2babdc97915c#style-reference\",\"name\":\"Val Town design system reference\",\"headline\":\"Val Town design system | Refero Styles\",\"description\":\"Explore Val Town's light Dev Tools design system: Cyan Pulse #00bcff, Voltage Cyan #53eafd colors, IBM Plex Sans, iA Writer Mono typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/4d0a5051-1c4c-4338-8406-2babdc97915c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4d0a5051-1c4c-4338-8406-2babdc97915c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Val Town\",\"url\":\"https://val.town\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4d0a5051-1c4c-4338-8406-2babdc97915c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bd15cfc4-ff5b-4685-9c57-c25c9536c73e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bd15cfc4-ff5b-4685-9c57-c25c9536c73e.jpg\",\"caption\":\"Screenshot of Val Town\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bd15cfc4-ff5b-4685-9c57-c25c9536c73e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Val Town design system\",\"Val Town website design\",\"Val Town colors\",\"Val Town typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Cyan Pulse\",\"Voltage Cyan\",\"Plasma Violet\",\"Signal Magenta\",\"IBM Plex Sans\",\"iA Writer Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Val Town design system\"},{\"@type\":\"Thing\",\"name\":\"Val Town website design\"},{\"@type\":\"Thing\",\"name\":\"Val Town colors\"},{\"@type\":\"Thing\",\"name\":\"Val Town typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-02-08T19:50:07.000Z\",\"dateModified\":\"2026-02-08T19:50:07.000Z\"}]}19:T5ae,Quick Color Reference\n- text: #314158 (Carbon)\n- background: #e2e8f0 (Porcelain canvas) / #ffffff (Paper card)\n- border: #e2e8f0 hairline / #53eafd (announcement accent)\n- accent: #8e51ff (Plasma Violet) for headline word-emphasis\n- primary action: no distinct CTA color\n\nExample Component Prompts\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Create a template card: white fill, 1px #e2e8f0 border, 12px radius, 16px padding. Top half is a 120px-tall #f1f5f9 icon strip holding three 24px brand logos. Title is IBM Plex Sans 700 16px #314158, body is IBM Plex Sans 400 14px #45556c.\n\n3. Create a testimonial card: #1d293d fill, 12px radius, 24px padding, no border, no shadow. Quote body in IBM Plex Sans 400 16px white with one emphasis word in #8e51ff. Footer: 32px avatar + IBM Plex Sans 700 14px white name + 400 12px #62748e role, company wordmark right-aligned.\n\n4. Create an announcement bar: full-width, 1px #53eafd border, #cefafe fill, 12px radius, 16px vertical padding. Leading 4px-radius white date pill (IBM Plex Sans 700 10px #314158, +0.1em tracking), body copy in IBM Plex Sans 400 14px #314158, trailing 'Read more →' inline link.\n\n5. Create a pull quote: no container, sits on canvas. A 60px #74d4ff quotation glyph on the left, IBM Plex Sans 400 24px #314158 quote text on the right with -0.6px tracking, single column, generous left margin."
+}

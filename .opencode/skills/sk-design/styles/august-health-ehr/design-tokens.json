@@ -1,0 +1,364 @@
+{
+  "color": {
+    "primary-indigo": {
+      "$value": "#4865ff",
+      "$type": "color",
+      "$description": "Primary Indigo — Primary action buttons, active nav state, icon accents — the single saturated focal color that makes CTAs unmistakably interactive"
+    },
+    "deep-ink": {
+      "$value": "#080331",
+      "$type": "color",
+      "$description": "Deep Ink — Headlines, body text, primary borders — near-black violet that pairs warmth with the serif typeface"
+    },
+    "midnight-violet": {
+      "$value": "#1b1463",
+      "$type": "color",
+      "$description": "Midnight Violet — Navigation borders, secondary surfaces, gradient terminus — darker sibling to Primary Indigo for layered depth"
+    },
+    "forest": {
+      "$value": "#328a3b",
+      "$type": "color",
+      "$description": "Forest — Green action color for filled buttons, selected navigation states, and focused conversion moments"
+    },
+    "ember": {
+      "$value": "#ff6d39",
+      "$type": "color",
+      "$description": "Ember — Tinted card surfaces, portrait frame backgrounds — warm orange that signals energy and human warmth"
+    },
+    "blossom": {
+      "$value": "#f098d7",
+      "$type": "color",
+      "$description": "Blossom — Tinted feature card backgrounds, hero photo frame — mid-pink for category-coded surfaces"
+    },
+    "petal": {
+      "$value": "#ffaefe",
+      "$type": "color",
+      "$description": "Petal — Light pink surface washes and button backgrounds — lightest tint in the pink family for soft fills"
+    },
+    "meadow": {
+      "$value": "#114e0b",
+      "$type": "color",
+      "$description": "Meadow — Dark green button background variant — deep saturated green for contrasting pill buttons"
+    },
+    "lavender-mist": {
+      "$value": "#a2baff",
+      "$type": "color",
+      "$description": "Lavender Mist — Outlined/ghost button borders, subtle violet washes — soft tint version of Primary Indigo"
+    },
+    "cream": {
+      "$value": "#f8f3eb",
+      "$type": "color",
+      "$description": "Cream — Page canvas, section backgrounds, link surfaces — the warm off-white base layer that defines the entire mood"
+    },
+    "stone": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Stone — Link and icon text — slightly lighter than pure black for secondary text"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, button text, inverted elements — the clean surface that sits on top of cream"
+    },
+    "true-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "True Black — Primary text, maximum-contrast borders, heading strokes"
+    },
+    "info-blue": {
+      "$value": "#dce4fb",
+      "$type": "color",
+      "$description": "Info Blue — Badge backgrounds for informational tags — near-gray blue for low-emphasis status indicators"
+    }
+  },
+  "font": {
+    "reckless-neue": {
+      "$value": "Reckless Neue",
+      "$type": "fontFamily",
+      "$description": "All headings and display text. A contemporary editorial serif used exclusively at weight 400 (regular) — no bold. This is anti-convention: most healthtech brands use sans-serif or bold serifs; the regular-weight serif at large sizes creates a literary, trustworthy quality without shouting. Largest sizes (48-64px) anchor section headlines, while 24-32px serves subheadings."
+    },
+    "saans": {
+      "$value": "Saans",
+      "$type": "fontFamily",
+      "$description": "Body text, UI controls, navigation, buttons, cards, labels, and everything non-headline. Weight 400 for body and descriptions, weight 500 for buttons and nav links where slight emphasis is needed. The geometric humanist sans provides clarity and warmth at small sizes, contrasting the editorial serif headings."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Reckless Neue",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Reckless Neue",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Reckless Neue",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Reckless Neue",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "1600px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "3200px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    }
+  },
+  "shadow": {
+    "lg": {
+      "$value": "rgba(75, 68, 57, 0.1) 0px 12px 24px 0px, rgba(75, 68, 57, 0.1) 0px 48px 48px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    },
+    "sm": {
+      "$value": "rgba(75, 68, 57, 0.05) 0px 4px 4px 0px, rgba(75, 68, 57, 0.08) 0px 32px 16px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "md": {
+      "$value": "rgba(99, 91, 79, 0.08) 0px 8px 16px 0px, rgba(99, 91, 79, 0.04) 0px 32px 32px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "xl": {
+      "$value": "rgba(75, 68, 57, 0.1) 0px 48px 48px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#f8f3eb",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background and section bands"
+    },
+    "white-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, product UI mockups, elevated content blocks"
+    },
+    "tinted-card": {
+      "$value": "#f098d7",
+      "$type": "color",
+      "$description": "Surface level 2: Category-coded feature cards with pink wash"
+    },
+    "accent-surface": {
+      "$value": "#ffaefe",
+      "$type": "color",
+      "$description": "Surface level 3: Lightest accent fill for soft callouts and pill buttons"
+    },
+    "vibrant-accent": {
+      "$value": "#ff6d39",
+      "$type": "color",
+      "$description": "Surface level 4: Bold accent surface for portrait frames and high-energy cards"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.augusthealth.com",
+      "siteName": "August Health EHR",
+      "extractedAt": "2026-06-03T17:18:13.434Z",
+      "variant": "extended"
+    }
+  }
+}

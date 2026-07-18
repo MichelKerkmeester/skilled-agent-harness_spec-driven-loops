@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/010-sk-design-styles-from-refero/003-full-set",
+  "spec_folder": "sk-design/010-sk-design-styles-from-refero/003-full-set",
+  "parent_id": "sk-design/010-sk-design-styles-from-refero",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "refero full set extraction",
+      "all 1290 styles",
+      "complete styles library",
+      "refero full set plan",
+      "all styles extraction plan",
+      "complete library plan",
+      "refero full set tasks",
+      "all styles tasks",
+      "complete library tasks",
+      "refero full set summary",
+      "complete library status",
+      "1290 styles done"
+    ],
+    "key_topics": [
+      "refero",
+      "full",
+      "set",
+      "extraction",
+      "styles",
+      "complete",
+      "library",
+      "plan",
+      "tasks",
+      "summary",
+      "status",
+      "done"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".opencode/skills/sk-design/styles/README.md",
+      ".opencode/skills/sk-design/styles/_manifest.json",
+      ".opencode/skills/sk-design/styles/cursor/cursor-canonical.json",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/styles/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "_manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/styles/_manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "cursor-canonical.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/styles/cursor/cursor-canonical.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The pilot proved the harness on 50 styles and recorded GO",
+    "created_at": "2026-07-18T10:25:46.940Z",
+    "last_save_at": "2026-07-18T10:25:46.940Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:873a51625680e7b00e5650baffe6384fd71923ca469711889db69e43e1512af2",
+    "source_doc_hashes": {
+      "spec.md": "3a8a6b57bede463db0318cd61b6bb9d410dd7f8f0f58b208380081c902d13b19",
+      "plan.md": "f8a536086d0add94a19b7b9a71e6fce2e5aaf351f123407a4c182690f49dd4de",
+      "tasks.md": "6d7d126b42aba1ced21970990789c56f10ab900b9ea97ceebbbfda2012e7568d",
+      "implementation-summary.md": "93606ca1fd7372c323733590da3782a785e81e6eceb9ddfe747fe3922a666764"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

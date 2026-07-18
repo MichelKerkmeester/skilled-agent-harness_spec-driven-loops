@@ -1,0 +1,1632 @@
+{
+  "source": "https://styles.refero.design/style/7e21f6e1-deec-4bc4-a30e-f2c9d3320314",
+  "uuid": "7e21f6e1-deec-4bc4-a30e-f2c9d3320314",
+  "name": "Home",
+  "northStar": "Primary-color toy aisle — the brightness of a freshly opened set box on a white table.",
+  "capturedAt": "2026-07-18T10:15:42.460Z",
+  "meta": {
+    "url": "https://lego.com",
+    "siteName": "Home",
+    "extractedAt": "2026-04-11T19:15:24.282Z",
+    "durationMs": 136986,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1273,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 999px border-radius for all interactive buttons — CTA, secondary, and icon-only circular controls without exception.",
+      "Place #FFD502 badges with 0px border-radius and padding 4px 12px on product imagery — never round the badge corners.",
+      "Use #F47D20 exclusively for primary purchase CTA buttons; reserve #005AD2 for secondary/informational pill buttons.",
+      "Set Cera Pro 700 with letter-spacing -0.02em for all headings at 24px and above.",
+      "Keep product cards border-radius 8px with split construction: image area top-rounded, content area bottom-rounded, white fill, no box-shadow — rely on #F6F6F6 page background for contrast.",
+      "Use #141414 as the default text color on all light surfaces; never substitute with pure #000000 for body text.",
+      "Maintain the yellow (#FFD502) header bar and square LEGO logo block as the only chromatic navigation surface — never introduce colored top nav backgrounds."
+    ],
+    "tags": [
+      "bold color",
+      "pill buttons",
+      "product-first",
+      "icon-heavy",
+      "family-friendly",
+      "bright",
+      "white-dominant",
+      "category-grid",
+      "branded-yellow",
+      "orange-CTA"
+    ],
+    "donts": [
+      "Never use border-radius on badge/label elements — 0px sharp corners are the sticker/price-tag signature for status labels.",
+      "Never apply box-shadow to product cards — elevation through background color contrast only (#FFFFFF card on #F6F6F6 base).",
+      "Never use more than one CTA button color per page section — all purchase CTAs are #F47D20, all secondary CTAs are outlined or #005AD2.",
+      "Never set Cera Pro at weight 300 — the site uses only 400, 500, and 700; sub-regular weights are off-brand.",
+      "Never place text-heavy content over hero imagery without a sufficient semi-transparent scrim or white card overlay — the hero text block uses a white background panel, not text-over-image.",
+      "Never use rounded inputs — search and form fields are 0px radius to visually distinguish data-entry from interactive controls.",
+      "Never use the LEGO Navy (#201D48) as a section background mid-page — it belongs exclusively to the footer anchor."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#FFD502",
+        "name": "LEGO Yellow",
+        "role": "Logo background, badges, active nav indicators, brand accent — the single chromatic constant that appears regardless of page section, making every badge feel like a price sticker on a toy box.",
+        "group": "brand"
+      },
+      {
+        "hex": "#F47D20",
+        "name": "Brick Orange",
+        "role": "Primary CTA buttons ('Buy now', 'Add to Bag', 'Become a member') — warm against white product backgrounds, the only pill button fill color for purchase actions.",
+        "group": "brand"
+      },
+      {
+        "hex": "#E96F14",
+        "name": "Ember Dark",
+        "role": "Orange hover/pressed state for CTA buttons — 1 step darker than Brick Orange.",
+        "group": "brand"
+      },
+      {
+        "hex": "#201D48",
+        "name": "LEGO Navy",
+        "role": "Footer background, deep brand surface — the only dark chromatic surface, anchoring the page bottom with brand identity.",
+        "group": "brand"
+      },
+      {
+        "hex": "#006DB7",
+        "name": "Link Blue",
+        "role": "Body copy links, inline hyperlinks within editorial text — vivid blue on white for maximum contrast.",
+        "group": "accent"
+      },
+      {
+        "hex": "#005AD2",
+        "name": "Action Blue",
+        "role": "Secondary action buttons ('Become a member', 'Learn more'), interactive link emphasis — the outlined pill button border and text color.",
+        "group": "accent"
+      },
+      {
+        "hex": "#D0021B",
+        "name": "Flag Red",
+        "role": "'New' nav badge text — used sparingly to flag newness in navigation.",
+        "group": "semantic"
+      },
+      {
+        "hex": "#141414",
+        "name": "Off Black",
+        "role": "Primary text, card titles, prices, icon fills — the dominant foreground color across all light surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2C2C2C",
+        "name": "Graphite",
+        "role": "Secondary text, badge labels, footer body text, nav items.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pitch",
+        "role": "Button label text on orange CTAs, heavy borders on ghost buttons.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "Snow",
+        "role": "Page background, card surfaces, input backgrounds, text on dark surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#F2F2F2",
+        "name": "Fog",
+        "role": "Secondary button fill (icon-only circular buttons, wishlist/cart controls), subtle surface backgrounds.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#F6F6F6",
+        "name": "Pebble",
+        "role": "Page section backgrounds, list row fills — one step warmer than pure white.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#757575",
+        "name": "Steel",
+        "role": "Disabled state text, muted borders, helper text.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#E0E0E0",
+        "name": "Silver",
+        "role": "Input borders in default state.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width ~1280px centered on page, but hero and announcement bar are full-bleed. Navigation bar is sticky, 3-zone: yellow LEGO logo square left, horizontal nav links center, utility icons (search, wishlist, cart) right. Hero is full-viewport-height image composite with overlaid text and pill button CTAs centered-left over the imagery. Below hero: tab navigation row (3 tabs) followed by an 8-column category tile grid, full-width. Product card section uses a 5-column card grid on white/fog background with horizontal scroll carousel controls. Membership section is a 2-column layout (text-left, 3-column benefit tiles right). Footer is a 5-column link grid on #201D48. Section rhythm alternates: dark announcement bar → yellow nav → full-bleed hero → dark secondary nav strip → white category grid → white product grid → light gray membership → white → navy footer. Vertical section spacing 48-64px. Comfortable density — significant white space between product cards.",
+    "imagery": "Product photography is the dominant visual medium — tight shots of assembled LEGO sets on clean gradient or white backgrounds, presented at a slight 3/4 angle to show depth. Hero section uses full-bleed composite photography blending physical models with illustrated sky backgrounds, creating a staged narrative around licensed products (PAN AM Airliner floating against a blue sky). Category tiles use full-bleed character art and product compositions. Minifigure photography appears as lifestyle elements in the hero — arranged like a cast photo. Icons are filled mono-color glyphs (shopping bag, heart, star, minifigure) at 16-20px, brand-colored (#141414 on light, #FFFFFF on dark). No lifestyle photography of humans — products and characters are always the subject. Image density is very high in the hero and category grid, then drops to white-background product isolation in the product card grid.",
+    "similar": [
+      {
+        "why": "Same product-photography-first card grid with orange/yellow accent CTA buttons and white dominant background",
+        "business": "Hasbro Shop"
+      },
+      {
+        "why": "Identical pill-button + hero-composite-image pattern with licensed character product art",
+        "business": "Mattel Shop"
+      },
+      {
+        "why": "Branded yellow/red primary color system with category tile grid and full-bleed hero imagery",
+        "business": "Nintendo Store"
+      },
+      {
+        "why": "Same red/orange CTA pill button on white product card grid with sticky utility nav",
+        "business": "Target"
+      },
+      {
+        "why": "Character-forward product photography in category tile browsing grid with bright accent badges",
+        "business": "Funko"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "8px",
+        "badges": "0px",
+        "inputs": "0px",
+        "buttons": "999px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "48-64px",
+      "cardPadding": "",
+      "pageMaxWidth": "1280px"
+    },
+    "category": "e-commerce",
+    "surfaces": [
+      {
+        "hex": "#F6F6F6",
+        "name": "Page Base",
+        "level": 0,
+        "purpose": "Overall page background, section fills between content blocks"
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Product card backgrounds, content panels, input fields"
+      },
+      {
+        "hex": "#FFD502",
+        "name": "Header Bar",
+        "level": 2,
+        "purpose": "Primary navigation bar, brand stripe"
+      },
+      {
+        "hex": "#141414",
+        "name": "Dark Tray",
+        "level": 3,
+        "purpose": "Promotional announcement bar at top of page"
+      },
+      {
+        "hex": "#201D48",
+        "name": "Footer Well",
+        "level": 4,
+        "purpose": "Site footer, deep brand anchor surface"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.54) 0px 2px 4px 0px",
+        "element": "Primary CTA Button (pressed/hover state)"
+      }
+    ],
+    "northStar": "Primary-color toy aisle — the brightness of a freshly opened set box on a white table.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.58,
+        "letterSpacing": 0.12
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.56
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.36
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.35
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.19,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-lg",
+        "size": 30,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.3
+      },
+      {
+        "role": "display",
+        "size": 37,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.74
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Product Card — LEGO Set",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Tab Navigation + Category Tiles",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "LEGO Insiders Membership Banner",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary CTA Pill Button",
+        "role": "Purchase actions: 'Add to Bag', 'Buy now', 'Become a member'",
+        "description": "Background #F47D20, text #000000, font Cera Pro 700 16px, border-radius 999px, padding 10px 16px. No border. Hover/pressed state adds rgba(0,0,0,0.54) 0px 2px 4px shadow and shifts to #E96F14 background. Icon (shopping bag) inline-left at 12px gap. The orange-on-white contrast ratio is visually loud — deliberate for a toy retail context."
+      },
+      {
+        "name": "Outlined Pill Button",
+        "role": "Secondary actions: 'Learn more', 'Shop all new', 'Join LEGO® Insiders'",
+        "description": "Background transparent, text #141414, border 1px solid rgba(0,0,0,0.67), border-radius 999px, padding 10px 16px. Font Cera Pro 500 16px. Trailing chevron icon in 14px. On dark hero surfaces this border reads clearly against the image background."
+      },
+      {
+        "name": "Circular Icon Button",
+        "role": "Wishlist, cart, carousel controls",
+        "description": "Background #F2F2F2, border-radius 999px, 40×40px fixed size (padding 0). Icon centered in #141414. No border, no shadow. Used for wishlist hearts on product cards and prev/next carousel arrows."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Inline navigation actions, tab underlines",
+        "description": "Background transparent, text #000000, border-radius 0px, no padding. Font Cera Pro 400 16px. Bottom-border underline style for active tab states (3px solid #141414). Zero radius signals this is a flat navigation control, not a CTA."
+      },
+      {
+        "name": "New/Exclusives Badge",
+        "role": "Product card status labels, hero content tags",
+        "description": "Background #FFD502, text #141414, border-radius 0px, padding 4px 12px. Font Cera Pro 700 12px, letter-spacing +0.01em. Sharp corners are intentional — the badge reads like a price sticker, reinforcing the physical retail metaphor. Appears top-left of product card images."
+      },
+      {
+        "name": "Category Navigation Tile",
+        "role": "Theme/category browsing grid below hero tabs",
+        "description": "Square tile with full-bleed product photography, category label in Cera Pro 700 16px white text overlaid top-center. No border-radius (0px). Hover state not visible in static data but tile grid is 8-column at desktop. Tiles for licensed categories (Pokémon, TMNT) use character art backgrounds."
+      },
+      {
+        "name": "Search Input",
+        "role": "Global site search in header",
+        "description": "Background #FFFFFF, border 1px solid #E0E0E0, border-radius 0px (sharp), padding 18px 20px. Font Cera Pro 400 16px #141414. Search icon (magnifier) at left edge. Full-width within header search zone. The sharp radius contrasts with all the 999px pill buttons — search is a field, not an action."
+      },
+      {
+        "name": "Tab Navigation",
+        "role": "Section content switcher ('What's new / Gifting / Themes', 'Featured / Formula 1®')",
+        "description": "Underline tab pattern: active tab has 3px bottom border #141414, inactive tabs #757575 text, no border. Font Cera Pro 500 16px. Padding 0 0 12px 0. Row gap 16px between tabs. No background fill on any state — pure text + underline system."
+      },
+      {
+        "name": "Announcement Banner",
+        "role": "Promotional message bar at top of page",
+        "description": "Background #141414, text #FFFFFF, Cera Pro 400 14px. Left: 'PLAY ZONE' in yellow pill tag (#FFD502, 0px radius). Center: offer copy with inline 'Shop now' link in #FFFFFF underlined. Prev/next arrow controls in #FFFFFF. Full-bleed width, ~40px height."
+      },
+      {
+        "name": "Insiders Membership Card Row",
+        "role": "Benefit showcase in membership section",
+        "description": "3-column row of benefit tiles: each tile has a full-bleed colored image (red, yellow, green backgrounds with product photography), 16px label Cera Pro 700 below, 14px description Cera Pro 400 #2C2C2C. No card border or shadow — tiles are visually separated by 16px gap on white section background."
+      },
+      {
+        "name": "Site Footer",
+        "role": "Global navigation footer",
+        "description": "Background #201D48, text #FFFFFF, Cera Pro 400 14px. 5-column link grid: section headers in Cera Pro 700 12px uppercase letter-spacing +0.01em, links at 400 14px. LEGO logo in white on yellow (#FFD502) square badge at top-left. Footer sits in strong visual contrast to the white page body — the navy is the only dark chromatic surface on the page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The only typeface on the site. Weight 700 at 24–37px for headings with -0.02em tracking — the negative spacing compensates for the geometric roundness of Cera Pro at large sizes, preventing letters from floating apart. Weight 500 for subheadings and labels. Weight 400 for body, nav links, and badge text. The custom geometric rounded sans directly mirrors LEGO brick corner geometry — a system font would read as generic where Cera Pro reads as branded.",
+        "sizes": "12px, 14px, 16px, 18px, 19px, 20px, 24px, 30px, 37px",
+        "family": "Cera Pro",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.15–1.62 (display: 1.15, body: 1.50–1.58)",
+        "substitute": "Nunito, Poppins",
+        "letterSpacing": "-0.02em at display/heading sizes, -0.01em at mid sizes, +0.01em at caption sizes",
+        "fontFeatureSettings": "normal"
+      },
+      {
+        "role": "Caption-level italic, used for fine-print disclaimers and legal copy only.",
+        "sizes": "12px",
+        "family": "Cera Pro Italic",
+        "weight": "400",
+        "lineHeight": "1.58",
+        "substitute": "Nunito Italic",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "LEGO's digital storefront feels like a toy aisle rendered in pixels — primary colors deployed with zero restraint, product photography doing all the emotional lifting against white and near-black surfaces. The yellow (#FFD502) is the brand's pulse: it appears on badges, nav highlights, and the logo bar, a single chromatic constant amid a white/off-black neutral scaffold. The orange CTA (#F47D20) on 999px pill buttons is the only call to action color — warm, rounded, immediately readable against product whites. The dark footer (#201D48) anchors the page in LEGO's classic deep navy, grounding a page that otherwise lives in bright daylight. Type is entirely Cera Pro, a custom geometric rounded sans that echoes brick curves — weight 700 for headings at tight tracking, weight 400 for body, nothing else.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      },
+      {
+        "title": "Badge System",
+        "content": "LEGO uses exactly two badge shapes: (1) Status stickers — 0px radius, #FFD502 background, #141414 text, Cera Pro 700 12px, padding 4px 12px. Used for 'New', 'Exclusives', 'Offers' on product cards and hero overlays. (2) Tab underline indicators — no background, 3px bottom border #141414, active state only. The 0px radius is non-negotiable — rounded badges undermine the sticker metaphor that ties digital badges to physical LEGO price tags."
+      }
+    ],
+    "elevationPhilosophy": "LEGO.com deliberately avoids card elevation — product cards use 0px shadow, relying on the 8px border-radius and white surface against #F6F6F6 background to define edges. Only interactive buttons in pressed states receive the rgba(0,0,0,0.54) 2px drop shadow. Depth is created through background color contrast, not shadow stacking."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#2c2c2c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.29312847409143017
+          },
+          "contexts": [
+            "other",
+            "body",
+            "nav",
+            "button",
+            "badge",
+            "list",
+            "heading",
+            "card",
+            "footer"
+          ],
+          "frequency": 668,
+          "confidence": 1,
+          "prominence": 72894211.57454343,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#141414",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1912512996316179
+          },
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "nav",
+            "input",
+            "badge",
+            "heading",
+            "card",
+            "link",
+            "list",
+            "image"
+          ],
+          "frequency": 2827,
+          "confidence": 1,
+          "prominence": 10382081.845121317,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "body",
+            "button",
+            "other",
+            "list",
+            "card",
+            "heading",
+            "image",
+            "link",
+            "input",
+            "icon"
+          ],
+          "frequency": 844,
+          "confidence": 1,
+          "prominence": 9651743.530924229,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#006db7",
+          "oklch": {
+            "c": 0.14241921949341957,
+            "h": 248.46588431400647,
+            "l": 0.5231361941490219
+          },
+          "contexts": [
+            "link",
+            "nav",
+            "image",
+            "other",
+            "card",
+            "list"
+          ],
+          "frequency": 1495,
+          "confidence": 1,
+          "prominence": 9568142.654010065,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#f6f6f6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9731459330353415
+          },
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 2542062.6892780825,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#201d48",
+          "oklch": {
+            "c": 0.07763754566580319,
+            "h": 282.7407352594145,
+            "l": 0.2608956547367934
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 2052000,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 846964.3363228678,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#bddcfd",
+          "oklch": {
+            "c": 0.05642727860164499,
+            "h": 250.0957731914122,
+            "l": 0.8826981837987298
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 634570,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#242424",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2603248134180716
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 489265,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffd502",
+          "oklch": {
+            "c": 0.1808823677197908,
+            "h": 94.43717761387998,
+            "l": 0.8828452723652024
+          },
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 483455.68405359326,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 232,
+          "confidence": 1,
+          "prominence": 134776.42214708508,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#005ad2",
+          "oklch": {
+            "c": 0.19916277254334772,
+            "h": 259.49173932559046,
+            "l": 0.5014369623143549
+          },
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 39332.42941789621,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#545454",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.44644361479320455
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 28,
+          "confidence": 1,
+          "prominence": 31367.983285538732,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#f47d20",
+          "oklch": {
+            "c": 0.1733990326232842,
+            "h": 51.79609189678723,
+            "l": 0.7130465709724936
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 26362.689171518123,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#e0e0e0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9067006916295425
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 25759.470284680396,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#757575",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5624050641913382
+          },
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 16580,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 16389,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#b1b1b1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7603929027071104
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 14344,
+          "properties": [
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#d0021b",
+          "oklch": {
+            "c": 0.21901029513648243,
+            "h": 26.27935262297282,
+            "l": 0.540230468267092
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 9108.683451872004,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#e96f14",
+          "oklch": {
+            "c": 0.17479265671043134,
+            "h": 49.22950835220241,
+            "l": 0.6759782283546133
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 7134.496501990391,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#18152d",
+          "oklch": {
+            "c": 0.04637184521640183,
+            "h": 287.5183002251097,
+            "l": 0.21307116726564992
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3756,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#abd9ff",
+          "oklch": {
+            "c": 0.07155681760462489,
+            "h": 243.63371966675265,
+            "l": 0.8658453719741648
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2052,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#a4b4de",
+          "oklch": {
+            "c": 0.06327826465139026,
+            "h": 268.4136000942394,
+            "l": 0.7726285671536841
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2052,
+          "properties": [
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#fac400",
+          "oklch": {
+            "c": 0.1726235965177659,
+            "h": 88.47782174036051,
+            "l": 0.8446558652035329
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 1400.3047027435055,
+          "properties": [
+            "backgroundColor"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.10033999179122713,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.43,
+          "background": "#f6f6f6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#ffffff",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.74,
+          "background": "#18152d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.05,
+          "background": "#f6f6f6",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.46,
+          "background": "#f2f2f2",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.41,
+          "background": "#f6f6f6",
+          "foreground": "#18152d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#e0e0e0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.84,
+          "background": "#f2f2f2",
+          "foreground": "#18152d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.78,
+          "background": "#201d48",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.52,
+          "background": "#242424",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.82,
+          "background": "#bddcfd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.77,
+          "background": "#ffd502",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.6,
+          "background": "#f6f6f6",
+          "foreground": "#201d48"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.36,
+          "background": "#f6f6f6",
+          "foreground": "#242424"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.1,
+          "background": "#abd9ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.1,
+          "background": "#f2f2f2",
+          "foreground": "#201d48"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.97,
+          "background": "#ffffff",
+          "foreground": "#2c2c2c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.96,
+          "background": "#e0e0e0",
+          "foreground": "#141414"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "card",
+            "image"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 999,
+          "contexts": [
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 61
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.54) 0px 2px 4px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "frequency": 39,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 123,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 5,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 7,
+          "frequency": 19,
+          "properties": [
+            "marginTop"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 188,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 81,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 11,
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 172,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 15,
+          "frequency": 60,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 109,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 18,
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 51,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 30,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 25,
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 30,
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 33,
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 26,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 50,
+          "frequency": 3,
+          "properties": [
+            "marginRight"
+          ]
+        },
+        {
+          "value": 192,
+          "frequency": 19,
+          "properties": [
+            "marginLeft"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(36, 36, 36) 90%, rgb(255, 255, 255) 10%)",
+        "colors": [
+          "rgb(36, 36, 36)",
+          "rgb(255, 255, 255)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Cera Pro",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 1270,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Cera Pro Italic",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Cera Pro",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 39,
+          "lineHeight": 1.58,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Cera Pro",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.08,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Cera Pro Italic",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.58,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Cera Pro",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.58,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Cera Pro",
+          "weight": 500,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.62,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cera Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "card"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cera Pro",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 121,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cera Pro",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cera Pro",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cera Pro",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cera Pro",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Cera Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "nav",
+            "link",
+            "image",
+            "badge",
+            "list",
+            "card",
+            "footer",
+            "icon"
+          ],
+          "frequency": 808,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Cera Pro",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.19,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Cera Pro",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Cera Pro",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Cera Pro",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "link",
+            "body",
+            "heading"
+          ],
+          "frequency": 101,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Cera Pro",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Cera Pro",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Cera Pro",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Cera Pro",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Cera Pro",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Cera Pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Cera Pro",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "heading",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Cera Pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Cera Pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 37,
+          "family": "Cera Pro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/58f38146-6089-452d-99ad-161d5a60c9d0.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/aa0246d9-ba9a-4824-89e0-0eff4e6b575e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7e21f6e1-deec-4bc4-a30e-f2c9d3320314#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Lego design system\",\"item\":\"https://styles.refero.design/style/7e21f6e1-deec-4bc4-a30e-f2c9d3320314\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7e21f6e1-deec-4bc4-a30e-f2c9d3320314#style-reference\",\"name\":\"Lego design system reference\",\"headline\":\"Lego design system | Refero Styles\",\"description\":\"Explore Lego's light E-commerce design system: LEGO Yellow #FFD502, Brick Orange #F47D20 colors, Cera Pro, Cera Pro Italic typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/7e21f6e1-deec-4bc4-a30e-f2c9d3320314\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7e21f6e1-deec-4bc4-a30e-f2c9d3320314\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Lego\",\"url\":\"https://lego.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7e21f6e1-deec-4bc4-a30e-f2c9d3320314#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/aa0246d9-ba9a-4824-89e0-0eff4e6b575e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/aa0246d9-ba9a-4824-89e0-0eff4e6b575e.jpg\",\"caption\":\"Screenshot of Lego\"},\"image\":\"https://images.refero.design/styles/refero.design/image/aa0246d9-ba9a-4824-89e0-0eff4e6b575e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Lego design system\",\"Lego website design\",\"Lego colors\",\"Lego typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"LEGO Yellow\",\"Brick Orange\",\"Ember Dark\",\"LEGO Navy\",\"Cera Pro\",\"Cera Pro Italic\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Lego design system\"},{\"@type\":\"Thing\",\"name\":\"Lego website design\"},{\"@type\":\"Thing\",\"name\":\"Lego colors\"},{\"@type\":\"Thing\",\"name\":\"Lego typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-03-27T19:15:39.000Z\",\"dateModified\":\"2026-03-27T19:15:39.000Z\"}]}19:T2365,<style>\n  :root {\n    --color-lego-yellow: #FFD502;\n    --color-brick-orange: #F47D20;\n    --color-ember-dark: #E96F14;\n    --color-lego-navy: #201D48;\n    --color-link-blue: #006DB7;\n    --color-action-blue: #005AD2;\n    --color-flag-red: #D0021B;\n    --color-off-black: #141414;\n    --color-graphite: #2C2C2C;\n    --color-pitch: #000000;\n    --color-snow: #FFFFFF;\n    --color-fog: #F2F2F2;\n    --color-pebble: #F6F6F6;\n    --color-steel: #757575;\n    --color-silver: #E0E0E0;\n    --font-cera-pro: 'Nunito', 'Poppins', sans-serif;\n    --shadow-sm: rgba(0,0,0,0.54) 0px 2px 4px 0px;\n  }\n  * { box-sizing: border-box; margin: 0; padding: 0; }\n  body { background: var(--color-pebble); }\n  .card-grid {\n    display: flex;\n    gap: 16px;\n    padding: 32px 24px;\n    background: var(--color-pebble);\n    font-family: var(--font-cera-pro);\n    justify-content: center;\n    flex-wrap: wrap;\n  }\n  .card {\n    background: var(--color-snow);\n    border-radius: 8px;\n    width: 172px;\n    flex-shrink: 0;\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n  }\n  .card-image-wrap {\n    position: relative;\n    width: 100%;\n    height: 160px;\n    background: var(--color-fog);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n  .card-badge {\n    position: absolute;\n    top: 0;\n    right: 0;\n    background: var(--color-lego-yellow);\n    color: var(--color-off-black);\n    font-family: var(--font-cera-pro);\n    font-size: 12px;\n    font-weight: 700;\n    letter-spacing: 0.01em;\n    padding: 4px 12px;\n    border-radius: 0;\n    line-height: 1.4;\n  }\n  .card-img-placeholder {\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n  .card-body {\n    padding: 12px 12px 16px 12px;\n    display: flex;\n    flex-direction: column;\n    gap: 4px;\n    flex: 1;\n  }\n  .card-meta {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    font-size: 12px;\n    color: var(--color-graphite);\n    font-family: var(--font-cera-pro);\n    font-weight: 400;\n    margin-bottom: 4px;\n    flex-wrap: wrap;\n  }\n  .card-meta-item {\n    display: flex;\n    align-items: center;\n    gap: 3px;\n  }\n  .card-title {\n    font-family: var(--font-cera-pro);\n    font-size: 14px;\n    font-weight: 700;\n    color: var(--color-off-black);\n    line-height: 1.35;\n    margin-bottom: 4px;\n  }\n  .card-price {\n    font-family: var(--font-cera-pro);\n    font-size: 16px;\n    font-weight: 700;\n    color: var(--color-off-black);\n    margin-bottom: 10px;\n    line-height: 1.2;\n  }\n  .card-actions {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    margin-top: auto;\n  }\n  .btn-add {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    background: var(--color-brick-orange);\n    color: var(--color-pitch);\n    font-family: var(--font-cera-pro);\n    font-size: 13px;\n    font-weight: 700;\n    border: none;\n    border-radius: 999px;\n    padding: 8px 14px;\n    cursor: pointer;\n    flex: 1;\n    white-space: nowrap;\n    justify-content: center;\n    line-height: 1;\n  }\n  .btn-add:hover {\n    background: var(--color-ember-dark);\n    box-shadow: var(--shadow-sm);\n  }\n  .btn-wish {\n    background: var(--color-fog);\n    border: none;\n    border-radius: 999px;\n    width: 36px;\n    height: 36px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    cursor: pointer;\n    flex-shrink: 0;\n  }\n  .star-icon { color: #F5A623; font-size: 11px; }\n</style>\n<div class=\"card-grid\">\n  <!-- Card 1 -->\n  <div class=\"card\">\n    <div class=\"card-image-wrap\">\n      <div class=\"card-img-placeholder\">\n        <div style=\"width:130px;height:110px;background:linear-gradient(135deg,#e8e8e8 0%,#d0d0d0 100%);border-radius:6px;display:flex;align-items:center;justify-content:center;\">\n          <svg width=\"60\" height=\"40\" viewBox=\"0 0 60 40\" fill=\"none\"><rect x=\"2\" y=\"18\" width=\"56\" height=\"16\" rx=\"3\" fill=\"#b0b8c8\"/><rect x=\"8\" y=\"10\" width=\"32\" height=\"14\" rx=\"2\" fill=\"#c8d4e0\"/><ellipse cx=\"14\" cy=\"36\" rx=\"5\" ry=\"5\" fill=\"#888\"/><ellipse cx=\"44\" cy=\"36\" rx=\"5\" ry=\"5\" fill=\"#888\"/><rect x=\"36\" y=\"6\" width=\"18\" height=\"10\" rx=\"1\" fill=\"#a0afc0\"/></svg>\n        </div>\n      </div>\n      <span class=\"card-badge\">New</span>\n    </div>\n    <div class=\"card-body\">\n      <div class=\"card-meta\">\n        <span class=\"card-meta-item\">🧑 18+</span>\n        <span class=\"card-meta-item\">🧱 1903</span>\n        <span class=\"card-meta-item\" style=\"color:#F5A623;\">★ 4.8</span>\n      </div>\n      <div class=\"card-title\">Douglas™ DC-3™ PAN AM® Airliner</div>\n      <div class=\"card-price\">219,99 €</div>\n      <div class=\"card-actions\">\n        <button class=\"btn-add\">\n          <svg width=\"14\" height=\"14\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M6 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM1 2h2l2.6 9.4a1 1 0 0 0 1 .6H15a1 1 0 0 0 1-.76L18 6H4\"/><path d=\"M1 2h2l2.6 9.4a1 1 0 0 0 1 .6H15a1 1 0 0 0 1-.76L18 6H4\" stroke=\"currentColor\" stroke-width=\"1.5\" fill=\"none\"/></svg>\n          Add to Bag\n        </button>\n        <button class=\"btn-wish\">\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#141414\" stroke-width=\"2\"><path d=\"M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z\"/></svg>\n        </button>\n      </div>\n    </div>\n  </div>\n  <!-- Card 2 -->\n  <div class=\"card\">\n    <div class=\"card-image-wrap\">\n      <div class=\"card-img-placeholder\">\n        <div style=\"width:110px;height:120px;background:linear-gradient(160deg,#f5e8d0 0%,#e8c890 100%);border-radius:6px;display:flex;align-items:center;justify-content:center;\">\n          <svg width=\"55\" height=\"65\" viewBox=\"0 0 55 65\" fill=\"none\"><ellipse cx=\"27\" cy=\"45\" rx=\"20\" ry=\"18\" fill=\"#c8944a\"/><ellipse cx=\"27\" cy=\"28\" rx=\"12\" ry=\"14\" fill=\"#d4a055\"/><ellipse cx=\"20\" cy=\"20\" rx=\"5\" ry=\"10\" fill=\"#b87830\" transform=\"rotate(-20 20 20)\"/><ellipse cx=\"34\" cy=\"20\" rx=\"5\" ry=\"10\" fill=\"#b87830\" transform=\"rotate(20 34 20)\"/><circle cx=\"23\" cy=\"32\" r=\"2.5\" fill=\"#141414\"/><circle cx=\"31\" cy=\"32\" r=\"2.5\" fill=\"#141414\"/><path d=\"M23 38 Q27 42 31 38\" stroke=\"#141414\" stroke-width=\"1.5\" fill=\"none\"/></svg>\n        </div>\n      </div>\n      <span class=\"card-badge\">New</span>\n    </div>\n    <div class=\"card-body\">\n      <div class=\"card-meta\">\n        <span class=\"card-meta-item\">🧑 18+</span>\n        <span class=\"card-meta-item\">🧱 587</span>\n        <span class=\"card-meta-item\" style=\"color:#F5A623;\">★ 4.8</span>\n      </div>\n      <div class=\"card-title\">Eevee</div>\n      <div class=\"card-price\">59,99 €</div>\n      <div class=\"card-actions\">\n        <button class=\"btn-add\">\n          <svg width=\"14\" height=\"14\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M1 2h2l2.6 9.4a1 1 0 0 0 1 .6H15a1 1 0 0 0 1-.76L18 6H4\"/><circle cx=\"6\" cy=\"18\" r=\"2\"/><circle cx=\"16\" cy=\"18\" r=\"2\"/></svg>\n          Add to Bag\n        </button>\n        <button class=\"btn-wish\">\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#141414\" stroke-width=\"2\"><path d=\"M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z\"/></svg>\n        </button>\n      </div>\n    </div>\n  </div>\n  <!-- Card 3 -->\n  <div class=\"card\">\n    <div class=\"card-image-wrap\">\n      <div class=\"card-img-placeholder\">\n        <div style=\"width:130px;height:110px;background:linear-gradient(135deg,#d8f0d8 0%,#90c870 100%);border-radius:6px;display:flex;align-items:center;justify-content:center;gap:4px;\">\n          <div style=\"width:32px;height:50px;background:#3a8c3a;border-radius:4px;\"></div>\n          <div style=\"width:32px;height:50px;background:#e07020;border-radius:4px;\"></div>\n          <div style=\"width:32px;height:50px;background:#6050a0;border-radius:4px;\"></div>\n        </div>\n      </div>\n      <span class=\"card-badge\">New</span>\n    </div>\n    <div class=\"card-body\">\n      <div class=\"card-meta\">\n        <span class=\"card-meta-item\">🧑 10+</span>\n        <span class=\"card-meta-item\">🧱 567</span>\n        <span class=\"card-meta-item\" style=\"color:#F5A623;\">★ 5.0</span>\n      </div>\n      <div class=\"card-title\">Teenage Mutant Ninja Turtles Figures</div>\n      <div class=\"card-price\">39,99 €</div>\n      <div class=\"card-actions\">\n        <button class=\"btn-add\">\n          <svg width=\"14\" height=\"14\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M1 2h2l2.6 9.4a1 1 0 0 0 1 .6H15a1 1 0 0 0 1-.76L18 6H4\"/><circle cx=\"6\" cy=\"18\" r=\"2\"/><circle cx=\"16\" cy=\"18\" r=\"2\"/></svg>\n          Add to Bag\n        </button>\n        <button class=\"btn-wish\">\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#141414\" stroke-width=\"2\"><path d=\"M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z\"/></svg>\n        </button>\n      </div>\n    </div>\n  </div>\n</div>1a:T160c,<style>\n  :root {\n    --color-lego-yellow: #FFD502;\n    --color-brick-orange: #F47D20;\n    --color-off-black: #141414;\n    --color-graphite: #2C2C2C;\n    --color-snow: #FFFFFF;\n    --color-fog: #F2F2F2;\n    --color-pebble: #F6F6F6;\n    --color-steel: #757575;\n    --font-cera-pro: 'Nunito', 'Poppins', sans-serif;\n  }\n  * { box-sizing: border-box; margin: 0; padding: 0; }\n  .section {\n    background: var(--color-off-black);\n    font-family: var(--font-cera-pro);\n    padding: 0;\n    width: 600px;\n  }\n  .tab-row {\n    display: flex;\n    gap: 0;\n    padding: 0 24px;\n    background: var(--color-off-black);\n    border-bottom: none;\n  }\n  .tab {\n    font-family: var(--font-cera-pro);\n    font-size: 16px;\n    font-weight: 500;\n    color: var(--color-snow);\n    padding: 16px 20px 14px 20px;\n    cursor: pointer;\n    border: none;\n    background: transparent;\n    border-bottom: 3px solid transparent;\n    opacity: 0.6;\n    text-decoration: none;\n    display: inline-block;\n    line-height: 1;\n  }\n  .tab.active {\n    color: var(--color-snow);\n    border-bottom: 3px solid var(--color-snow);\n    opacity: 1;\n    font-weight: 700;\n  }\n  .tiles-grid {\n    display: grid;\n    grid-template-columns: repeat(4, 1fr);\n    gap: 0;\n    width: 100%;\n  }\n  .tile {\n    position: relative;\n    height: 130px;\n    overflow: hidden;\n    cursor: pointer;\n    display: flex;\n    align-items: flex-start;\n    justify-content: center;\n    padding-top: 12px;\n  }\n  .tile-label {\n    position: relative;\n    z-index: 2;\n    font-family: var(--font-cera-pro);\n    font-size: 14px;\n    font-weight: 700;\n    color: var(--color-snow);\n    text-align: center;\n    line-height: 1.2;\n    text-shadow: 0 1px 3px rgba(0,0,0,0.4);\n    padding: 0 4px;\n  }\n  .tile-bg {\n    position: absolute;\n    inset: 0;\n    width: 100%;\n    height: 100%;\n  }\n  .tile-1 .tile-bg { background: linear-gradient(160deg, #1a9ad4 0%, #0d6fa0 100%); }\n  .tile-2 .tile-bg { background: linear-gradient(160deg, #1a2b5a 0%, #0d1a40 100%); }\n  .tile-3 .tile-bg { background: linear-gradient(160deg, #8b3dbf 0%, #5a1a8f 100%); }\n  .tile-4 .tile-bg { background: linear-gradient(160deg, #222222 0%, #111111 100%); }\n  .tile-5 .tile-bg { background: linear-gradient(160deg, #f5f5f5 0%, #e0e0e0 100%); }\n  .tile-5 .tile-label { color: var(--color-off-black); }\n  .tile-6 .tile-bg { background: linear-gradient(160deg, #1a7ad4 0%, #0d4fa0 100%); }\n  .tile-7 .tile-bg { background: linear-gradient(160deg, #e05a10 0%, #b03c00 100%); }\n  .tile-8 .tile-bg { background: linear-gradient(160deg, #888 0%, #555 100%); }\n  .tile-decoration {\n    position: absolute;\n    bottom: 8px;\n    left: 0;\n    right: 0;\n    display: flex;\n    align-items: flex-end;\n    justify-content: center;\n    z-index: 1;\n  }\n  /* Minifig silhouette for visual interest */\n  .mini-fig {\n    width: 28px;\n    height: 45px;\n    background: rgba(255,255,255,0.15);\n    border-radius: 4px 4px 0 0;\n  }\n  .brick-stack {\n    display: flex;\n    flex-direction: column;\n    gap: 2px;\n    align-items: center;\n  }\n  .brick {\n    height: 10px;\n    border-radius: 2px;\n    background: rgba(255,255,255,0.2);\n  }\n</style>\n<div class=\"section\">\n  <div class=\"tab-row\">\n    <a class=\"tab active\" href=\"#\">What's new</a>\n    <a class=\"tab\" href=\"#\">Gifting</a>\n    <a class=\"tab\" href=\"#\">Themes</a>\n  </div>\n  <div class=\"tiles-grid\">\n    <div class=\"tile tile-1\">\n      <div class=\"tile-bg\"></div>\n      <div class=\"tile-decoration\">\n        <div style=\"width:50px;height:55px;background:rgba(255,255,255,0.12);border-radius:3px;\"></div>\n      </div>\n      <span class=\"tile-label\">All new sets</span>\n    </div>\n    <div class=\"tile tile-2\">\n      <div class=\"tile-bg\"></div>\n      <div class=\"tile-decoration\">\n        <div class=\"brick-stack\"><div class=\"brick\" style=\"width:44px;\"></div><div class=\"brick\" style=\"width:40px;\"></div><div class=\"brick\" style=\"width:36px;\"></div></div>\n      </div>\n      <span class=\"tile-label\">Exclusives</span>\n    </div>\n    <div class=\"tile tile-3\">\n      <div class=\"tile-bg\"></div>\n      <div class=\"tile-decoration\">\n        <div style=\"width:42px;height:42px;background:rgba(255,255,255,0.18);border-radius:50%;\"></div>\n      </div>\n      <span class=\"tile-label\">Offers</span>\n    </div>\n    <div class=\"tile tile-4\">\n      <div class=\"tile-bg\"></div>\n      <div class=\"tile-decoration\">\n        <div style=\"width:44px;height:36px;background:rgba(255,255,255,0.12);border-radius:50% 50% 0 0;\"></div>\n      </div>\n      <span class=\"tile-label\">Icons</span>\n    </div>\n    <div class=\"tile tile-5\">\n      <div class=\"tile-bg\"></div>\n      <div class=\"tile-decoration\">\n        <div style=\"width:44px;height:48px;background:rgba(0,0,0,0.06);border-radius:4px;\"></div>\n      </div>\n      <span class=\"tile-label\">LEGO® Editions</span>\n    </div>\n    <div class=\"tile tile-6\">\n      <div class=\"tile-bg\"></div>\n      <div class=\"tile-decoration\">\n        <div style=\"width:46px;height:52px;background:rgba(255,255,255,0.14);border-radius:4px 4px 0 0;\"></div>\n      </div>\n      <span class=\"tile-label\">LEGO® ONE PIECE</span>\n    </div>\n    <div class=\"tile tile-7\">\n      <div class=\"tile-bg\"></div>\n      <div class=\"tile-decoration\">\n        <div style=\"width:36px;height:36px;background:rgba(255,220,0,0.3);border-radius:50%;\"></div>\n      </div>\n      <span class=\"tile-label\">Pokémon</span>\n    </div>\n    <div class=\"tile tile-8\">\n      <div class=\"tile-bg\"></div>\n      <div class=\"tile-decoration\">\n        <div style=\"width:48px;height:38px;background:rgba(255,255,255,0.1);border-radius:3px;\"></div>\n      </div>\n      <span class=\"tile-label\">18+ years</span>\n    </div>\n  </div>\n</div>1b:T1c3a,<style>\n  :root {\n    --color-lego-yellow: #FFD502;\n    --color-brick-orange: #F47D20;\n    --color-ember-dark: #E96F14;\n    --color-action-blue: #005AD2;\n    --color-off-black: #141414;\n    --color-graphite: #2C2C2C;\n    --color-snow: #FFFFFF;\n    --color-fog: #F2F2F2;\n    --color-pebble: #F6F6F6;\n    --color-silver: #E0E0E0;\n    --shadow-sm: rgba(0,0,0,0.54) 0px 2px 4px 0px;\n    --font-cera-pro: 'Nunito', 'Poppins', sans-serif;\n  }\n  * { box-sizing: border-box; margin: 0; padding: 0; }\n  .insiders-section {\n    background: var(--color-pebble);\n    font-family: var(--font-cera-pro);\n    padding: 40px 24px;\n    width: 600px;\n  }\n  .insiders-inner {\n    display: flex;\n    gap: 20px;\n    align-items: flex-start;\n  }\n  .insiders-left {\n    flex: 0 0 180px;\n    display: flex;\n    flex-direction: column;\n    gap: 16px;\n  }\n  .insiders-logo {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    margin-bottom: 4px;\n  }\n  .logo-badge {\n    width: 44px;\n    height: 44px;\n    background: var(--color-flag-red, #D0021B);\n    border-radius: 6px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n    background: #D0021B;\n  }\n  .logo-text {\n    font-family: var(--font-cera-pro);\n    font-size: 20px;\n    font-weight: 700;\n    color: var(--color-off-black);\n    letter-spacing: -0.01em;\n  }\n  .insiders-heading {\n    font-family: var(--font-cera-pro);\n    font-size: 24px;\n    font-weight: 700;\n    color: var(--color-off-black);\n    line-height: 1.19;\n    letter-spacing: -0.48px;\n  }\n  .insiders-body {\n    font-family: var(--font-cera-pro);\n    font-size: 14px;\n    font-weight: 700;\n    color: var(--color-off-black);\n    line-height: 1.5;\n  }\n  .insiders-btns {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    margin-top: 4px;\n  }\n  .btn-primary-blue {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    background: var(--color-action-blue);\n    color: var(--color-snow);\n    font-family: var(--font-cera-pro);\n    font-size: 14px;\n    font-weight: 700;\n    border: none;\n    border-radius: 999px;\n    padding: 10px 18px;\n    cursor: pointer;\n    text-decoration: none;\n    width: fit-content;\n    line-height: 1;\n  }\n  .btn-primary-blue:hover { opacity: 0.9; }\n  .btn-outline {\n    display: inline-flex;\n    align-items: center;\n    gap: 6px;\n    background: transparent;\n    color: var(--color-off-black);\n    font-family: var(--font-cera-pro);\n    font-size: 14px;\n    font-weight: 500;\n    border: 1.5px solid rgba(0,0,0,0.67);\n    border-radius: 999px;\n    padding: 9px 18px;\n    cursor: pointer;\n    text-decoration: none;\n    width: fit-content;\n    line-height: 1;\n  }\n  .insiders-right {\n    flex: 1;\n    display: flex;\n    flex-direction: column;\n    gap: 12px;\n  }\n  .benefit-card {\n    background: var(--color-snow);\n    border-radius: 8px;\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n  }\n  .benefit-img {\n    width: 100%;\n    height: 80px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n  }\n  .benefit-img-red { background: #D0021B; }\n  .benefit-img-yellow { background: #FFD502; }\n  .benefit-img-green { background: #2D8B2D; }\n  .benefit-content {\n    padding: 12px 14px 14px 14px;\n    text-align: center;\n  }\n  .benefit-title {\n    font-family: var(--font-cera-pro);\n    font-size: 14px;\n    font-weight: 700;\n    color: var(--color-off-black);\n    margin-bottom: 4px;\n    line-height: 1.3;\n  }\n  .benefit-desc {\n    font-family: var(--font-cera-pro);\n    font-size: 12px;\n    font-weight: 400;\n    color: var(--color-graphite);\n    line-height: 1.5;\n  }\n  .benefit-row {\n    display: flex;\n    gap: 10px;\n  }\n  .benefit-card { flex: 1; }\n</style>\n<div class=\"insiders-section\">\n  <div class=\"insiders-inner\">\n    <div class=\"insiders-left\">\n      <div class=\"insiders-logo\">\n        <div class=\"logo-badge\">\n          <svg width=\"28\" height=\"20\" viewBox=\"0 0 28 20\" fill=\"none\">\n            <rect width=\"28\" height=\"20\" rx=\"2\" fill=\"#D0021B\"/>\n            <text x=\"14\" y=\"15\" text-anchor=\"middle\" font-family=\"Arial\" font-weight=\"900\" font-size=\"11\" fill=\"#FFD502\">LEGO</text>\n          </svg>\n        </div>\n        <span class=\"logo-text\">insiders</span>\n      </div>\n      <h2 class=\"insiders-heading\">Join and earn points</h2>\n      <p class=\"insiders-body\">Collect points with your purchases and access exclusive member benefits.</p>\n      <div class=\"insiders-btns\">\n        <a href=\"#\" class=\"btn-primary-blue\">\n          Become a member\n          <svg width=\"14\" height=\"14\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M7 10h10M13 6l4 4-4 4\"/></svg>\n        </a>\n        <a href=\"#\" class=\"btn-outline\">\n          Learn more\n          <svg width=\"14\" height=\"14\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M7 10h10M13 6l4 4-4 4\"/></svg>\n        </a>\n      </div>\n    </div>\n    <div class=\"insiders-right\">\n      <div class=\"benefit-row\">\n        <div class=\"benefit-card\">\n          <div class=\"benefit-img benefit-img-red\">\n            <svg width=\"40\" height=\"50\" viewBox=\"0 0 40 50\" fill=\"none\">\n              <rect x=\"8\" y=\"2\" width=\"24\" height=\"32\" rx=\"3\" fill=\"rgba(255,255,255,0.2)\" stroke=\"white\" stroke-width=\"2\"/>\n              <circle cx=\"20\" cy=\"16\" r=\"8\" fill=\"rgba(255,255,255,0.3)\"/>\n              <line x1=\"20\" y1=\"34\" x2=\"20\" y2=\"48\" stroke=\"white\" stroke-width=\"2\"/>\n              <text x=\"20\" y=\"24\" text-anchor=\"middle\" font-size=\"10\" fill=\"white\" font-weight=\"bold\">%</text>\n            </svg>\n          </div>\n          <div class=\"benefit-content\">\n            <div class=\"benefit-title\">Loyalty Points</div>\n            <div class=\"benefit-desc\">Earn redeemable points when you buy or register set you own.</div>\n          </div>\n        </div>\n        <div class=\"benefit-card\">\n          <div class=\"benefit-img benefit-img-yellow\">\n            <svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\">\n              <rect x=\"8\" y=\"14\" width=\"32\" height=\"26\" rx=\"4\" fill=\"rgba(0,0,0,0.15)\"/>\n              <rect x=\"14\" y=\"8\" width=\"20\" height=\"10\" rx=\"3\" fill=\"rgba(0,0,0,0.12)\"/>\n              <rect x=\"18\" y=\"22\" width=\"12\" height=\"8\" rx=\"2\" fill=\"rgba(0,0,0,0.1)\"/>\n            </svg>\n          </div>\n          <div class=\"benefit-content\">\n            <div class=\"benefit-title\">Member-only rewards</div>\n            <div class=\"benefit-desc\">LEGO gear, special discounts, LEGOLAND tickets and more.</div>\n          </div>\n        </div>\n        <div class=\"benefit-card\">\n          <div class=\"benefit-img benefit-img-green\">\n            <svg width=\"48\" height=\"50\" viewBox=\"0 0 48 50\" fill=\"none\">\n              <ellipse cx=\"24\" cy=\"28\" rx=\"14\" ry=\"16\" fill=\"rgba(255,255,255,0.25)\"/>\n              <polygon points=\"24,6 28,18 40,18 31,26 34,38 24,31 14,38 17,26 8,18 20,18\" fill=\"rgba(255,255,255,0.5)\"/>\n            </svg>\n          </div>\n          <div class=\"benefit-content\">\n            <div class=\"benefit-title\">Limited-time gifts</div>\n            <div class=\"benefit-desc\">Get more of what you love — gifts available with selected sets.</div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>1c:T7f3,**Quick Color Reference**\n- Page background: #F6F6F6\n- Card surface: #FFFFFF\n- Primary text: #141414\n- CTA button fill: #F47D20\n- Brand badge / nav bar: #FFD502\n- Links / secondary action: #005AD2\n- Footer background: #201D48\n- Border (input): #E0E0E0\n\n**Example Component Prompts**\n\n1. **Product Card**: White card (border-radius 8px 8px 0 0 image area, 0 0 8px 8px content area) on #F6F6F6. Image full-width, no padding. Overlay #FFD502 badge (0px radius, padding 4px 12px, Cera Pro 700 12px #141414) top-left. Content area: padding 24px 16px. Product name Cera Pro 500 16px #141414. Price Cera Pro 700 16px #141414. Metadata (age/pieces/rating) Cera Pro 400 12px #757575. 'Add to Bag' pill button (#F47D20, #000000 text, 999px radius, padding 10px 16px, Cera Pro 700 14px) full-width. Wishlist icon (circular #F2F2F2 40×40px, 999px radius) right of button.\n\n2. **Hero Section**: Full-bleed composite product photography background. Centered-left overlay: #FFD502 + outlined pill badges ('New', 'Exclusives', 0px radius, Cera Pro 700 12px). Headline Cera Pro 700 37px #141414 letter-spacing -0.74px. Subtext Cera Pro 400 16px #141414. Two pill buttons row: 'Buy now' (#F47D20 fill, #000000, 999px radius, 10px 16px) + 'Shop all new' (transparent, #000000 border rgba(0,0,0,0.67), 999px radius, 10px 16px).\n\n3. **Category Tile Grid**: 8-column grid, no gap or 2px gap. Each tile: full-bleed image, category label Cera Pro 700 16px #FFFFFF centered-top overlay. 0px border-radius. Hover state: slight image scale (1.03).\n\n4. **Announcement Banner**: Full-bleed #141414 bar ~40px. Left: 'PLAY ZONE' tag #FFD502 0px radius Cera Pro 700 12px #141414 padding 4px 8px. Center: Cera Pro 400 14px #FFFFFF offer text + 'Shop now' #FFFFFF underline link. Prev/next #FFFFFF chevron arrows flanking center text.\n\n5. **Footer**: #201D48 background. LEGO logo: #FFD502 square 48×48px with white logo SVG. 5-column link grid, Cera Pro 700 12px #FFFFFF uppercase letter-spacing +0.01em section headers, Cera Pro 400 14px #FFFFFF links, 8px row gap."
+}

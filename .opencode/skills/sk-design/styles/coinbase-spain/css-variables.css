@@ -1,0 +1,68 @@
+:root {
+  /* Colors */
+  --color-coinbase-blue: #0052ff;
+  --color-interactive-blue: #578bfa;
+  --color-pure-white: #ffffff;
+  --color-midnight: #0a0b0d;
+  --color-slate: #5b616;
+  --color-ash: #8a919;
+  --color-frost: #f7f8f9;
+  --color-cloud: #eef0f3;
+  --color-pewter: #dedfe2;
+  --color-charcoal: #141519;
+  --color-positive-green: #27ad75;
+  --color-negative-red: #f0616d;
+
+  /* Typography — Font Families */
+  --font-coinbasedisplay: 'CoinbaseDisplay', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-coinbasesans: 'CoinbaseSans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-coinbasetext: 'CoinbaseText', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 13px;
+  --leading-caption: 1.54;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 18px;
+  --leading-subheading: 1.56;
+  --text-heading-sm: 28px;
+  --leading-heading-sm: 1.25;
+  --text-heading: 44px;
+  --leading-heading: 1.09;
+  --text-heading-lg: 64px;
+  --leading-heading-lg: 1;
+  --text-display: 80px;
+  --leading-display: 1;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --card-padding: 24px;
+
+  /* Border Radius */
+  --radius-xl: 12px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 40px;
+  --radius-full: 56px;
+  --radius-full-2: 100000px;
+
+  /* Named Radii */
+  --radius-tags: 100000px;
+  --radius-cards: 24px;
+  --radius-inputs: 8px;
+  --radius-buttons: 56px;
+}

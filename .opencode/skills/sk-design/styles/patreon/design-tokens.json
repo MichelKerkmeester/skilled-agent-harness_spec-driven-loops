@@ -1,0 +1,332 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, hairline borders, subtle dividers — used at very-high frequency (1452 instances) across body, list, card, and input borders. The near-black rather than pure #000 keeps the UI from feeling harsh while preserving the monochromatic authority"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces, button text on dark fills, input fields. The base layer everything else floats on"
+    },
+    "stage-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Stage Black — High-contrast neutral action fill for primary buttons on light surfaces."
+    },
+    "concrete": {
+      "$value": "#959595",
+      "$type": "color",
+      "$description": "Concrete — Mid-tone neutral for secondary text, muted metadata, disabled states. Bridges the gap between #1a1a1a and white for hierarchical de-emphasis"
+    },
+    "stone": {
+      "$value": "#90867a",
+      "$type": "color",
+      "$description": "Stone — Warm-tinted neutral appearing in hero overlays and photographic edges. Subtly breaks the otherwise cool monochrome with an organic warmth pulled from creator imagery"
+    },
+    "sky-tint": {
+      "$value": "#94bbff",
+      "$type": "color",
+      "$description": "Sky Tint — Soft blue-washed section background visible behind the creator-photo carousel. Functions as a breathing tonal band between the pure-white canvas and photographic blocks — never used on UI controls"
+    },
+    "deep-sky": {
+      "$value": "#71a0ff",
+      "$type": "color",
+      "$description": "Deep Sky — Violet wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "brand-blue": {
+      "$value": "#002a57",
+      "$type": "color",
+      "$description": "Brand Blue — Deep navy from the logo wordmark and highest-contrast brand moments. The darkest chromatic in the system, reserved for brand identity and the cookie banner link text"
+    }
+  },
+  "font": {
+    "oracle": {
+      "$value": "Oracle",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across all contexts — body, heading, button, link, input, card. The 250–300 weights for display and headings are anti-convention: most platforms shout with 700–800 weights; Oracle whispers, creating editorial authority through restraint. The 500 weight appears only in UI controls and nav. Negative letter-spacing scales with size: -0.06em at 188px down to -0.018em at 22px, pulling the wide display headlines into a tight, monolithic block."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "14px",
+        "fontWeight": 350,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "14px",
+        "fontWeight": 350,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "14px",
+        "fontWeight": 350,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "22px",
+        "fontWeight": 350,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 27px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "39px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 39px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "54px",
+        "fontWeight": 250,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "128px",
+        "fontWeight": 250,
+        "lineHeight": 0.87
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 128px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "128px",
+        "fontWeight": 250,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 128px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Oracle",
+        "fontSize": "188px",
+        "fontWeight": 250,
+        "lineHeight": 0.98
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 188px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "37.5px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas — the dominant background across all sections"
+    },
+    "stage": {
+      "$value": "#94bbff",
+      "$type": "color",
+      "$description": "Surface level 2: Tinted section band appearing behind the creator-photo carousel — a soft blue atmospheric break"
+    },
+    "overlay": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 3: Dark text overlay on hero photography — semi-transparent or full-opacity for caption legibility"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.patreon.com",
+      "siteName": "Patreon",
+      "extractedAt": "2026-06-03T19:53:40.401Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+:root {
+  /* Colors */
+  --color-aged-paper: #faf8f5;
+  --color-ink-black: #000000;
+  --color-charcoal: #27251e;
+  --color-ash-gray: #72706b;
+  --color-stone: #92918b;
+  --color-pebble: #d1d1cd;
+  --color-deep-teal: #016a71;
+
+  /* Typography — Font Families */
+  --font-pplxsans: 'pplxSans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.43;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --text-body: 16px;
+  --leading-body: 1.43;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-32: 32px;
+
+  /* Layout */
+  --page-max-width: 640px;
+  --section-gap: 32px;
+  --card-padding: 12px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-md: 6px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-tags: 9999px;
+  --radius-cards: 16px;
+  --radius-input: 12px;
+  --radius-buttons: 9999px;
+  --radius-nav-items: 9999px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(0, 0, 0, 0.08) 0px 1px 2px 0px;
+
+  /* Surfaces */
+  --surface-canvas: #faf8f5;
+  --surface-card: #ffffff;
+  --surface-subtle-fill: #e8e6e1;
+}

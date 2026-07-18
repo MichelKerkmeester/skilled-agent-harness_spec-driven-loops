@@ -1,0 +1,399 @@
+{
+  "color": {
+    "mint-wash": {
+      "$value": "#f2ffe3",
+      "$type": "color",
+      "$description": "Mint Wash — Page canvas, section backgrounds, hero wash — the dominant surface tone"
+    },
+    "vivid-lime": {
+      "$value": "#a3fda7",
+      "$type": "color",
+      "$description": "Vivid Lime — Primary action button fill, accent highlights, gradient mid-stop, active tag backgrounds; Display text treatment — vivid lime-to-citrus gradient on hero headlines"
+    },
+    "forest-depth": {
+      "$value": "#0d5b3b",
+      "$type": "color",
+      "$description": "Forest Depth — Deep green card backgrounds, contrast surfaces, gradient anchor"
+    },
+    "pine-shadow": {
+      "$value": "#083a26",
+      "$type": "color",
+      "$description": "Pine Shadow — Darkest green for emphasis cards, gradient endpoints, high-contrast text on light surfaces"
+    },
+    "spring-gradient-start": {
+      "$value": "#82ff87",
+      "$type": "color",
+      "$description": "Spring Gradient Start — Gradient anchor for display type and decorative washes"
+    },
+    "citrus-gradient-end": {
+      "$value": "#deff82",
+      "$type": "color",
+      "$description": "Citrus Gradient End — Gradient endpoint for display type — yellow-green warmth in hero text"
+    },
+    "charcoal-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Charcoal Ink — Primary text, hairline borders, dark action buttons, icon strokes"
+    },
+    "cream-paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Cream Paper — Card surfaces, button text on dark fills, input backgrounds, elevated overlays"
+    },
+    "stone-charcoal": {
+      "$value": "#2d3637",
+      "$type": "color",
+      "$description": "Stone Charcoal — Secondary dark surface, icon fills, dark borders, muted dark mode text"
+    },
+    "warm-mist": {
+      "$value": "#e9e7e2",
+      "$type": "color",
+      "$description": "Warm Mist — Alternate section backgrounds, disabled states, cream-toned surfaces"
+    },
+    "silver-border": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Silver Border — Light dividers, inactive borders, subtle separators"
+    },
+    "sage-gray": {
+      "$value": "#838676",
+      "$type": "color",
+      "$description": "Sage Gray — Muted accent card backgrounds, secondary decorative surfaces"
+    },
+    "eucalyptus": {
+      "$value": "#9cb0a8",
+      "$type": "color",
+      "$description": "Eucalyptus — Muted sage for outlined secondary action borders, subtle green-tinted UI"
+    }
+  },
+  "font": {
+    "mainfont": {
+      "$value": "mainFont",
+      "$type": "fontFamily",
+      "$description": "mainFont — detected in extracted data but not described by AI"
+    },
+    "custom-editorial-serif-swap-serif": {
+      "$value": "Custom Editorial Serif (swap-serif)",
+      "$type": "fontFamily",
+      "$description": "Display and headline serif — used exclusively for hero/headline contexts at 72–120px. Weight 100 for maximum impact headlines, weight 300 for sub-headlines. Negative letter-spacing (-0.017em) tightens the high-contrast strokes for fashion-editorial density. This ultra-thin serif against pale mint is the signature combination — it borrows from luxury print typography (Bodoni/Didone lineage) to make a commerce platform feel like a magazine spread."
+    },
+    "custom-ui-sans-swap-sans": {
+      "$value": "Custom UI Sans (swap-sans)",
+      "$type": "fontFamily",
+      "$description": "Primary interface and body typeface — 16px for body, 15px for compact UI, 18px for lead paragraphs, 24px and 30px for section sub-headings. Weight 400 is default, 500 for emphasis, 700 for labels and small caps eyebrow text. Slight negative tracking (-0.01em) tightens the geometric forms for a precise, modern feel. The sans is functional and quiet — it never competes with the display serif."
+    },
+    "secondaryfont": {
+      "$value": "secondaryFont",
+      "$type": "fontFamily",
+      "$description": "secondaryFont — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "mainFont",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "mainFont",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "mainFont",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "mainFont",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "mainFont",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "mainFont",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "mainFont",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "mainFont",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "mainFont",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "mainFont",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "mainFont",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "mainFont",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "mainFont",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "secondaryFont",
+        "fontSize": "72px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "secondaryFont",
+        "fontSize": "80px",
+        "fontWeight": 300,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "secondaryFont",
+        "fontSize": "120px",
+        "fontWeight": 100,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 120px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.09) 0px 0px 28px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "mint-canvas": {
+      "$value": "#f2ffe3",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background and hero wash"
+    },
+    "white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, input fields, elevated content blocks"
+    },
+    "warm-mist": {
+      "$value": "#e9e7e2",
+      "$type": "color",
+      "$description": "Surface level 2: Alternate section background, disabled state fill"
+    },
+    "vivid-lime-surface": {
+      "$value": "#a3fda7",
+      "$type": "color",
+      "$description": "Surface level 3: Active tag, highlight wash, primary CTA fill"
+    },
+    "forest-surface": {
+      "$value": "#0d5b3b",
+      "$type": "color",
+      "$description": "Surface level 4: Dark contrast card, emphasis surface for inverted content"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.swap-commerce.com",
+      "siteName": "Swap",
+      "extractedAt": "2026-06-03T20:10:10.783Z",
+      "variant": "extended"
+    }
+  }
+}

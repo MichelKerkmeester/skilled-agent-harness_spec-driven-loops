@@ -1,0 +1,1450 @@
+{
+  "source": "https://styles.refero.design/style/0e4d933c-aa07-4787-9884-40a0e6c338e4",
+  "uuid": "0e4d933c-aa07-4787-9884-40a0e6c338e4",
+  "name": "Netflix Spain",
+  "northStar": "A black cinema lobby with one red exit sign.",
+  "capturedAt": "2026-07-18T07:14:00.559Z",
+  "meta": {
+    "url": "https://www.netflix.com",
+    "siteName": "Netflix Spain",
+    "extractedAt": "2026-06-03T22:05:43.990Z",
+    "durationMs": 41419,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 440,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": "$undefined"
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #e50914 exclusively for the single primary action per view — never decorate, never use it for icons, tags, or secondary links",
+      "Keep all surfaces in the pure black to charcoal range (#000000–#2d2d2d) — the darkness is the brand",
+      "Let content artwork fill 80%+ of the visual real estate; UI chrome should recede",
+      "Use Netflix Sans weight 900 at 56–100px for hero/display headlines to create a marquee-title impact",
+      "Apply 8px border-radius consistently to cards, buttons, and inputs — the system has exactly two radii (2px for links, 8px for containers)",
+      "Layer content posters at slight rotations in hero/collage contexts to create a sense of depth and abundance",
+      "Use #b3b3b3 for all secondary and metadata text — never use a chromatic gray"
+    ],
+    "donts": [
+      "Do not introduce any chromatic color other than #e50914 into the system — no blues, greens, or purples as UI accents (gradients on feature cards are the sole exception and are decorative only)",
+      "Do not use drop shadows or box-shadows for elevation — depth comes from surface tone shifts only",
+      "Do not add borders to cards — use tonal contrast between the card surface (#232323) and the page (#000000) instead",
+      "Do not use rounded corners above 16px — the system is rectilinear with subtle softening, never pill-shaped except for tag/badge contexts",
+      "Do not use Netflix Sans weight 400 for headings — reserve it for body copy; headings should be 700 or 900",
+      "Do not place UI text directly on poster artwork without a dark scrim overlay — always protect legibility",
+      "Do not introduce additional accent colors for states (hover, focus) — use #393939 (hover surface) and keep the red button as the only action signal"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#e50914",
+        "name": "Netflix Red",
+        "role": "Primary CTAs, brand logo, active states, and the single chromatic accent in the entire system — the only warm color allowed to break the black void",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Dominant page canvas and deepest surface — the cinematic background that swallows everything non-essential",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0f0f0f",
+        "name": "Obsidian",
+        "role": "Elevated surface tone, barely distinguishable from black — used for subtle layering and section dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#232323",
+        "name": "Carbon",
+        "role": "Card and button surface background — the primary elevated layer above pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2d2d2d",
+        "name": "Charcoal",
+        "role": "Deeper card surface and input field background — secondary surface level for nested elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#323232",
+        "name": "Graphite",
+        "role": "Rounded card backgrounds and tertiary surface treatment",
+        "group": "neutral"
+      },
+      {
+        "hex": "#393939",
+        "name": "Slate",
+        "role": "Hover states and pressed button backgrounds — a step lighter than carbon for interaction feedback",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5a5a5a",
+        "name": "Ash",
+        "role": "Hairline borders and subtle dividers on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Steel",
+        "role": "Muted body text and inactive helper copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Fog",
+        "role": "Secondary body text, metadata, footer links, and de-emphasized descriptions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Primary headings, body text, input text, and icon fills — the sole text color that carries information weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#192247",
+        "name": "Cinema Indigo",
+        "role": "Feature card gradient origin — deep blue-violet used as the cool terminus in card background gradients",
+        "group": "accent",
+        "gradient": "linear-gradient(149deg, #192247 0%, #210e17 96.86%)"
+      },
+      {
+        "hex": "#461518",
+        "name": "Bordeaux Glow",
+        "role": "Radial highlight origin on feature cards — a warm deep red that adds atmospheric luminosity to card edges",
+        "group": "accent",
+        "gradient": "radial-gradient(11% 56% at 17% 50%, #461518 0%, rgba(0,0,0,0) 100%)"
+      },
+      {
+        "hex": "#6f181d",
+        "name": "Ember Arc",
+        "role": "Horizontal light beam across card midlines — a thin warm glow that bisects feature cards with a soft red line",
+        "group": "accent",
+        "gradient": "linear-gradient(0deg, rgba(0,0,0,0) 0%, #6f181d 50%, rgba(0,0,0,0) 100%)"
+      }
+    ],
+    "layout": "The page is full-bleed with a max content width of ~1200px centered. The hero occupies the full viewport with a poster-collage background and a centered headline + email capture composite. Below the hero, a glowing red divider separates the content area. Content sections stack vertically: 'Trending Now' as a horizontal row of 5–10 numbered cards, then 'More Reasons to Join' as a 4-column feature card grid. All content sits on a pure black canvas with generous 64px section gaps. Navigation is a single top bar with the red Netflix wordmark left, language selector and red Sign-In button right. No sticky header, no sidebar, no mega-menu. The rhythm is: full-bleed atmospheric hero → repeating horizontal content rows → structured card grids → footer.",
+    "imagery": "The visual system is overwhelmingly photographic. Movie posters, show stills, and content thumbnails are the primary visual content. The hero uses a chaotic, multi-rotation collage of poster artwork at various angles to create a sense of abundance and discovery. Content rows display portrait-aspect poster tiles in clean horizontal strips. Feature card icons are flat, simplified vector shapes (TV, download arrow, megaphone, user profile) rendered in warm reds and oranges. The overall treatment is: let the content artwork do the heavy lifting, keep all UI chrome and icons minimal and monochromatic or single-accent red. No lifestyle photography, no human subjects in UI — the content IS the imagery.",
+    "similar": [
+      {
+        "why": "Same dark-cinema aesthetic with a single chromatic brand color (purple) and content-artwork-driven hero treatment",
+        "business": "HBO Max"
+      },
+      {
+        "why": "Full-bleed black canvas with brand-color CTAs and portrait-aspect poster rows; identical content-grid rhythm",
+        "business": "Disney+"
+      },
+      {
+        "why": "Dark UI with green single-accent CTAs and poster-collage hero, similar surface tonal layering",
+        "business": "Hulu"
+      },
+      {
+        "why": "Near-black background with minimal chrome, letting video/poster artwork dominate; clean typographic hierarchy",
+        "business": "Apple TV+"
+      },
+      {
+        "why": "Dark-mode-first interface where the brand color is used sparingly as a single warm signal against monochrome depth",
+        "business": "Spotify"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "links": "2px",
+        "tiles": "16px",
+        "inputs": "4px",
+        "buttons": "8px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "64px",
+      "cardPadding": "12px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "level": 0,
+        "purpose": "Page canvas — the infinite black background"
+      },
+      {
+        "hex": "#0f0f0f",
+        "name": "Obsidian",
+        "level": 1,
+        "purpose": "Near-black elevated section background"
+      },
+      {
+        "hex": "#232323",
+        "name": "Carbon",
+        "level": 2,
+        "purpose": "Card and button surface"
+      },
+      {
+        "hex": "#2d2d2d",
+        "name": "Charcoal",
+        "level": 3,
+        "purpose": "Input fields and nested card surfaces"
+      },
+      {
+        "hex": "#323232",
+        "name": "Graphite",
+        "level": 4,
+        "purpose": "Rounded feature card background"
+      }
+    ],
+    "northStar": "A black cinema lobby with one red exit sign.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.17
+      },
+      {
+        "role": "heading",
+        "size": 56,
+        "lineHeight": 1
+      },
+      {
+        "role": "display",
+        "size": 100,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button (Red Filled)",
+        "role": "The single most important interaction element — sign-up, get started, submit",
+        "description": "Background: #e50914. Text: #ffffff, Netflix Sans weight 500, 16px. Border-radius: 8px. Padding: 12px 24px. No border, no shadow. May include a trailing chevron icon (›) for forward-action semantics."
+      },
+      {
+        "name": "Header Sign-In Button",
+        "role": "Navigation authentication entry point",
+        "description": "Background: #e50914. Text: #ffffff, Netflix Sans weight 500, 14px. Border-radius: 8px. Padding: 8px 16px. Compact variant of the primary CTA sized for the header bar."
+      },
+      {
+        "name": "Email Input Field",
+        "role": "Email capture for membership registration",
+        "description": "Background: transparent with a dark inner fill. Border: none, relies on a dark pill container. Text: #ffffff, 16px. Placeholder: #b3b3b3. Border-radius: 4px (inner) inside an 8px outer container. No visible focus ring — the red CTA beside it provides the action anchor."
+      },
+      {
+        "name": "Email Capture Composite",
+        "role": "Hero email-to-CTA pattern — the membership conversion unit",
+        "description": "A horizontal pair: dark email input on the left (flexible width) + red Get Started button on the right (fixed). Container has no visible border. The red button's 8px radius matches the input's 4px inner radius for a unified pill shape when joined."
+      },
+      {
+        "name": "Hero Background Collage",
+        "role": "Cinematic atmosphere generator for the landing page",
+        "description": "Full-bleed background composed of overlapping movie/show poster thumbnails at various rotations and scales. A dark gradient overlay (black at 60–80% opacity) sits on top to ensure text contrast. A radial vignette darkens edges. This is not a component per se but a signature layout pattern."
+      },
+      {
+        "name": "Trending Rank Card",
+        "role": "Numbered content tile showing top-10/popular content with rank overlay",
+        "description": "Square aspect ratio poster image. Large white rank number (1, 2, 3…) overlaid on the left side, Netflix Sans weight 900, ~100px, with a subtle black outline/drop for legibility. Small red Netflix N-logo badge in top-left corner of the poster. Cards are displayed in a horizontal row with 8px gaps."
+      },
+      {
+        "name": "Feature Reason Card",
+        "role": "Marketing card explaining a membership benefit",
+        "description": "Background: dark gradient (Cinema Indigo to Bordeaux, with radial glow). Border-radius: 16px. Padding: 12px. Contains: heading (Netflix Sans 700, 20–24px, #ffffff), description body (400, 16px, #ffffff), and a decorative icon (TV, download arrow, megaphone, or profile shapes) in the lower portion. The icon is rendered in warm reds/oranges against the dark card, creating a single warm focal point per card."
+      },
+      {
+        "name": "Content Row Section",
+        "role": "Horizontally scrollable strip of content thumbnails",
+        "description": "Section heading (Netflix Sans 700, 24px, #ffffff) above a horizontal row of portrait-aspect poster cards. Cards have 8px radius. A right-pointing chevron button appears on hover for carousel scrolling. Section gap: 64px between rows."
+      },
+      {
+        "name": "Language Selector",
+        "role": "Locale switcher in the header",
+        "description": "Dark background with a globe icon and 'English' label in Netflix Sans 400, 14px, #ffffff. Dropdown caret on the right. Border-radius: 8px. Sits beside the red Sign-In button in the header."
+      },
+      {
+        "name": "Pricing Banner",
+        "role": "Promotional strip advertising the ad-supported tier",
+        "description": "Horizontal banner at the page bottom. Dark background. Contains: small Netflix icon on the left, headline text (Netflix Sans 500, 16px, #ffffff), and a secondary action link/button on the right. Sits above the footer area."
+      },
+      {
+        "name": "Horizontal Divider with Glow",
+        "role": "Section separator that doubles as a atmospheric light line",
+        "description": "A thin horizontal gradient line (transparent → #6f181d → transparent) that separates the hero from the content sections. Functions as both divider and atmospheric accent, recalling a cinema marquee light strip."
+      },
+      {
+        "name": "Footer Link List",
+        "role": "Site navigation links in the footer",
+        "description": "Multi-column grid of text links in Netflix Sans 400, 13–14px, #b3b3b3. Links have a 2px bottom border or underline on hover. No background, no card container — floats directly on the black page canvas."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Netflix Sans is a custom geometric sans optimized for on-screen readability across devices. The wide weight range (400–900) creates a dramatic hierarchy where 900-weight headlines at 56–100px feel like movie marquee titles. Body text stays at 400/500 with tight tracking. The extreme size jump from 24px to 56px signals a sharp two-tier heading system: section titles, then hero displays.",
+        "sizes": "10px, 12px, 13px, 14px, 16px, 20px, 24px, 56px, 100px",
+        "family": "Netflix Sans",
+        "weight": "400, 500, 700, 900",
+        "lineHeight": "1.0–1.6",
+        "substitute": "Inter or Helvetica Neue"
+      }
+    ],
+    "description": "Netflix operates in cinematic darkness: a pure black void where vibrant content artwork becomes the visual hero. The interface strips itself down to typography and a single, unambiguous signal of action — Netflix Red. Every surface is some shade of near-black, creating a theatrical environment that makes movie posters, thumbnails, and show artwork explode off the screen. The system is intentionally minimal at the chrome level and maximal at the content level, with the red accent acting as the only warm temperature in an otherwise cold, immersive black space. Cards and feature tiles carry subtle dark-to-dark gradients (deep indigo, burgundy, charcoal) that add atmospheric depth without competing with the photographic content they frame.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0e4d933c-aa07-4787-9884-40a0e6c338e4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Netflix Spain design system\",\"item\":\"https://styles.refero.design/style/0e4d933c-aa07-4787-9884-40a0e6c338e4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0e4d933c-aa07-4787-9884-40a0e6c338e4#style-reference\",\"name\":\"Netflix Spain design system reference\",\"headline\":\"Netflix Spain design system | Refero Styles\",\"description\":\"Explore Netflix Spain's dark Media design system: Netflix Red #e50914, Pure Black #000000 colors, Netflix Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/0e4d933c-aa07-4787-9884-40a0e6c338e4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0e4d933c-aa07-4787-9884-40a0e6c338e4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Netflix Spain\",\"url\":\"https://www.netflix.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0e4d933c-aa07-4787-9884-40a0e6c338e4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b750ebb4-8104-48c9-86d5-923d6417fc2d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b750ebb4-8104-48c9-86d5-923d6417fc2d.jpg\",\"caption\":\"Screenshot of Netflix Spain\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b750ebb4-8104-48c9-86d5-923d6417fc2d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Netflix Spain design system\",\"Netflix Spain website design\",\"Netflix Spain colors\",\"Netflix Spain typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Netflix Red\",\"Pure Black\",\"Obsidian\",\"Carbon\",\"Netflix Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Netflix Spain design system\"},{\"@type\":\"Thing\",\"name\":\"Netflix Spain website design\"},{\"@type\":\"Thing\",\"name\":\"Netflix Spain colors\"},{\"@type\":\"Thing\",\"name\":\"Netflix Spain typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-29T00:47:24.716Z\",\"dateModified\":\"2026-04-29T00:47:24.716Z\"}]}19:T6db,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- border: #5a5a5a\n- accent: #e50914\n- primary action: #e50914 (filled action)\n\n**Example Component Prompts**\n\n1. *Hero with email capture:* Full-bleed black (#000000) background with a centered content block. Headline at 56px Netflix Sans weight 900, #ffffff, line-height 1.0. Subtext at 16px weight 400, #b3b3b3. Email input with dark fill (#2d2d2d), white text, 4px inner radius. Red Get Started button (#e50914, white text, weight 500, 8px radius, 12px 24px padding) with trailing › chevron.\n\n2. *Feature reason card:* 16px border-radius card with a Cinema Indigo to Bordeaux gradient background. Heading at 20px weight 700, #ffffff. Description at 16px weight 400, #ffffff. Decorative icon in warm red/orange in the lower-right quadrant. 12px internal padding.\n\n3. *Trending rank row:* Black background section. 'Trending Now' heading at 24px weight 700, #ffffff, with 64px top margin from previous section. Horizontal row of 5 square poster tiles with 8px gaps. Each tile has a large white rank number (100px, weight 900) overlaid on the left edge with a subtle dark outline for legibility, and a small red N-badge in the top-left corner.\n\n4. *Header navigation bar:* Black background bar with 16px vertical padding. Left: 'NETFLIX' wordmark in #e50914, Netflix Sans weight 900, 24px. Right: dark language selector (8px radius, globe icon + 'English' text at 14px #ffffff) followed by a red Sign-In button (#e50914, white text, 14px, 8px radius, 8px 16px padding).\n\n5. *Footer link list:* No container, directly on #000000. Multi-column grid of links in Netflix Sans 400, 13px, #b3b3b3, with 22px row spacing. 2px bottom-border on hover state. No icons, no separators between columns."
+      }
+    ],
+    "elevationPhilosophy": "No drop shadows. Depth is communicated exclusively through surface tonal shifts (black → carbon → charcoal) and gradient washes on feature cards. The system rejects traditional elevation in favor of the cinematic flat-black aesthetic where depth comes from luminance contrast, not box-shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "input",
+            "button",
+            "image",
+            "heading",
+            "card",
+            "list"
+          ],
+          "frequency": 1000,
+          "confidence": 1,
+          "prominence": 44946339.66553639,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 11,
+            "card/color": 1,
+            "icon/color": 12,
+            "list/color": 18,
+            "other/fill": 12,
+            "image/color": 1,
+            "input/color": 4,
+            "other/color": 129,
+            "button/color": 10,
+            "heading/color": 17,
+            "body/borderColor": 44,
+            "card/borderColor": 1,
+            "icon/borderColor": 48,
+            "list/borderColor": 72,
+            "image/borderColor": 4,
+            "other/borderColor": 508,
+            "button/borderColor": 40,
+            "heading/borderColor": 68
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "card",
+            "button",
+            "body",
+            "heading"
+          ],
+          "frequency": 397,
+          "confidence": 1,
+          "prominence": 38946107.3399996,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "card/color": 20,
+            "other/color": 9,
+            "button/color": 10,
+            "heading/color": 30,
+            "body/borderColor": 40,
+            "card/borderColor": 80,
+            "other/borderColor": 36,
+            "button/borderColor": 40,
+            "heading/borderColor": 120,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7651658759683705
+          },
+          "contexts": [
+            "body",
+            "other",
+            "button",
+            "icon",
+            "footer",
+            "link",
+            "list"
+          ],
+          "frequency": 316,
+          "confidence": 1,
+          "prominence": 4811998.8744590515,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 9,
+            "icon/color": 1,
+            "link/color": 20,
+            "list/color": 20,
+            "other/fill": 1,
+            "other/color": 11,
+            "button/color": 1,
+            "footer/color": 1,
+            "body/borderColor": 36,
+            "icon/borderColor": 4,
+            "link/borderColor": 80,
+            "list/borderColor": 80,
+            "other/borderColor": 44,
+            "button/borderColor": 4,
+            "footer/borderColor": 4
+          }
+        },
+        {
+          "hex": "#2d2d2d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2971629660895966
+          },
+          "contexts": [
+            "card",
+            "heading",
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 361074.3113882549,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 6,
+            "heading/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#232323",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.25615330860684143
+          },
+          "contexts": [
+            "button",
+            "card"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 215681.69709813493,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 16,
+            "button/backgroundColor": 10
+          }
+        },
+        {
+          "hex": "#5a5a5a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4661627024504069
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 128583.40606005317,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 16
+          }
+        },
+        {
+          "hex": "#393939",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.34458382051778663
+          },
+          "contexts": [
+            "button",
+            "card"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 90720,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0f0f0f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17027036427560066
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 73043.21400896664,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#414141",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.37529907288004455
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 69436.15861107307,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 10,
+            "heading/borderColor": 40
+          }
+        },
+        {
+          "hex": "#323232",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3171360098393996
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 45360,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e50914",
+          "oklch": {
+            "c": 0.23486278405011712,
+            "h": 27.986895785650635,
+            "l": 0.5814209831347156
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 44190.65111404092,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/fill": 4,
+            "other/color": 1,
+            "other/borderColor": 4,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 24534.28903937571,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "body/borderColor": 8
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.004121845981925537,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.17,
+          "background": "#0f0f0f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.72,
+          "background": "#232323",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.77,
+          "background": "#2d2d2d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.82,
+          "background": "#323232",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.55,
+          "background": "#393939",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.21,
+          "background": "#ffffff",
+          "foreground": "#414141"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#000000",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.14,
+          "background": "#0f0f0f",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.5,
+          "background": "#232323",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.9,
+          "background": "#ffffff",
+          "foreground": "#5a5a5a"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.57,
+          "background": "#2d2d2d",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.11,
+          "background": "#323232",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.51,
+          "background": "#393939",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#000000",
+          "foreground": "#808080"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.87,
+          "background": "#b3b3b3",
+          "foreground": "#414141"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.85,
+          "background": "#0f0f0f",
+          "foreground": "#808080"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.79,
+          "background": "#e50914",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.38,
+          "background": "#e50914",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4,
+          "background": "#0f0f0f",
+          "foreground": "#e50914"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button",
+            "card",
+            "body"
+          ],
+          "frequency": 44
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 28
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "input",
+            "button",
+            "list"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingBottom",
+            "marginLeft",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|input",
+            "marginLeft|button",
+            "paddingTop|list",
+            "paddingBottom|list",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "list"
+          ],
+          "frequency": 59,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginLeft|icon",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginTop|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "input"
+          ],
+          "frequency": 48,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingBottom|other",
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 21,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingRight|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "input",
+            "button",
+            "other"
+          ],
+          "frequency": 46,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 148,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 173,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(149deg, rgb(25, 34, 71) 0%, rgb(33, 14, 23) 96.86%)",
+        "colors": [
+          "rgb(25, 34, 71)",
+          "rgb(33, 14, 23)"
+        ],
+        "frequency": 4
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(11% 56% at 17% 50%, rgb(70, 21, 24) 0%, rgba(0, 0, 0, 0) 100%)",
+        "colors": [
+          "rgb(70, 21, 24)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(11% 56% at 83% 50%, rgb(70, 21, 24) 0%, rgba(0, 0, 0, 0) 100%)",
+        "colors": [
+          "rgb(70, 21, 24)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgb(111, 24, 29) 50%, rgba(0, 0, 0, 0) 100%)",
+        "colors": [
+          "rgba(0, 0, 0, 0)",
+          "rgb(111, 24, 29)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(50% 500% at 50% -420%, rgba(64, 97, 231, 0.4) 80%, rgba(0, 0, 0, 0.1) 100%)",
+        "colors": [
+          "rgba(64, 97, 231, 0.4)",
+          "rgba(0, 0, 0, 0.1)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Netflix Sans",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700,
+            900
+          ],
+          "frequency": 360,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Netflix Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Netflix Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Netflix Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Netflix Sans",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Netflix Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Netflix Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Netflix Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "image",
+            "card",
+            "list",
+            "button",
+            "icon",
+            "footer",
+            "link"
+          ],
+          "frequency": 205,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Netflix Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Netflix Sans",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Netflix Sans",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "input"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Netflix Sans",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Netflix Sans",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Netflix Sans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Netflix Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Netflix Sans",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "button",
+            "icon",
+            "other",
+            "body"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Netflix Sans",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 100,
+          "family": "Netflix Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 100,
+          "family": "Netflix Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3b62f5fa-13cf-489a-9f98-9ba781c06dd3.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b750ebb4-8104-48c9-86d5-923d6417fc2d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0e4d933c-aa07-4787-9884-40a0e6c338e4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Netflix Spain design system\",\"item\":\"https://styles.refero.design/style/0e4d933c-aa07-4787-9884-40a0e6c338e4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0e4d933c-aa07-4787-9884-40a0e6c338e4#style-reference\",\"name\":\"Netflix Spain design system reference\",\"headline\":\"Netflix Spain design system | Refero Styles\",\"description\":\"Explore Netflix Spain's dark Media design system: Netflix Red #e50914, Pure Black #000000 colors, Netflix Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/0e4d933c-aa07-4787-9884-40a0e6c338e4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0e4d933c-aa07-4787-9884-40a0e6c338e4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Netflix Spain\",\"url\":\"https://www.netflix.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0e4d933c-aa07-4787-9884-40a0e6c338e4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b750ebb4-8104-48c9-86d5-923d6417fc2d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b750ebb4-8104-48c9-86d5-923d6417fc2d.jpg\",\"caption\":\"Screenshot of Netflix Spain\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b750ebb4-8104-48c9-86d5-923d6417fc2d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Netflix Spain design system\",\"Netflix Spain website design\",\"Netflix Spain colors\",\"Netflix Spain typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Netflix Red\",\"Pure Black\",\"Obsidian\",\"Carbon\",\"Netflix Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Netflix Spain design system\"},{\"@type\":\"Thing\",\"name\":\"Netflix Spain website design\"},{\"@type\":\"Thing\",\"name\":\"Netflix Spain colors\"},{\"@type\":\"Thing\",\"name\":\"Netflix Spain typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-29T00:47:24.716Z\",\"dateModified\":\"2026-04-29T00:47:24.716Z\"}]}19:T6db,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- border: #5a5a5a\n- accent: #e50914\n- primary action: #e50914 (filled action)\n\n**Example Component Prompts**\n\n1. *Hero with email capture:* Full-bleed black (#000000) background with a centered content block. Headline at 56px Netflix Sans weight 900, #ffffff, line-height 1.0. Subtext at 16px weight 400, #b3b3b3. Email input with dark fill (#2d2d2d), white text, 4px inner radius. Red Get Started button (#e50914, white text, weight 500, 8px radius, 12px 24px padding) with trailing › chevron.\n\n2. *Feature reason card:* 16px border-radius card with a Cinema Indigo to Bordeaux gradient background. Heading at 20px weight 700, #ffffff. Description at 16px weight 400, #ffffff. Decorative icon in warm red/orange in the lower-right quadrant. 12px internal padding.\n\n3. *Trending rank row:* Black background section. 'Trending Now' heading at 24px weight 700, #ffffff, with 64px top margin from previous section. Horizontal row of 5 square poster tiles with 8px gaps. Each tile has a large white rank number (100px, weight 900) overlaid on the left edge with a subtle dark outline for legibility, and a small red N-badge in the top-left corner.\n\n4. *Header navigation bar:* Black background bar with 16px vertical padding. Left: 'NETFLIX' wordmark in #e50914, Netflix Sans weight 900, 24px. Right: dark language selector (8px radius, globe icon + 'English' text at 14px #ffffff) followed by a red Sign-In button (#e50914, white text, 14px, 8px radius, 8px 16px padding).\n\n5. *Footer link list:* No container, directly on #000000. Multi-column grid of links in Netflix Sans 400, 13px, #b3b3b3, with 22px row spacing. 2px bottom-border on hover state. No icons, no separators between columns."
+}

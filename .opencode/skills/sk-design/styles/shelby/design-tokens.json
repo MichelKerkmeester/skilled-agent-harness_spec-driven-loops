@@ -1,0 +1,352 @@
+{
+  "color": {
+    "cocoa-husk": {
+      "$value": "#322312",
+      "$type": "color",
+      "$description": "Cocoa Husk — Primary page canvas, body text on light surfaces, large display type on pink fields"
+    },
+    "neon-orchid": {
+      "$value": "#ff77c9",
+      "$type": "color",
+      "$description": "Neon Orchid — Signature accent — massive display headlines on dark sections, body links, icon strokes, tag fills, the dominant brand voice"
+    },
+    "petal-wash": {
+      "$value": "#ffdfef",
+      "$type": "color",
+      "$description": "Petal Wash — Light section canvas, button label text on dark fields, badge text"
+    },
+    "plum-velvet": {
+      "$value": "#470b64",
+      "$type": "color",
+      "$description": "Plum Velvet — Deepest accent surface — section backgrounds that sit between the cocoa base and neon pink, creates tonal depth in the surface stack"
+    },
+    "bubblegum-blush": {
+      "$value": "#ffc2e1",
+      "$type": "color",
+      "$description": "Bubblegum Blush — Soft pink surface for cards, footer panels, and the lighter half of alternating section bands"
+    },
+    "lavender-haze": {
+      "$value": "#e2c9f8",
+      "$type": "color",
+      "$description": "Lavender Haze — Muted violet fill for decorative graphic elements, secondary illustration accent"
+    },
+    "magenta-spark": {
+      "$value": "#de8aff",
+      "$type": "color",
+      "$description": "Magenta Spark — Rare hot violet for standout card backgrounds — used sparingly to break the pink monotony"
+    },
+    "oxblood-rust": {
+      "$value": "#481d2a",
+      "$type": "color",
+      "$description": "Oxblood Rust — Red supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    },
+    "lilac-whisper": {
+      "$value": "#eee2ff",
+      "$type": "color",
+      "$description": "Lilac Whisper — Near-white lavender for button text and borders on dark surfaces, ghost-control labels"
+    },
+    "walnut-vein": {
+      "$value": "#5b4f41",
+      "$type": "color",
+      "$description": "Walnut Vein — Muted warm gray for badge borders and hairline dividers — a lighter cocoa for subtle structural lines"
+    }
+  },
+  "font": {
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Times — detected in extracted data but not described by AI"
+    },
+    "gt-planar": {
+      "$value": "GT-Planar",
+      "$type": "fontFamily",
+      "$description": "Primary display and body typeface. Weight 300 is reserved for the 95px display headlines, weight 700 drives 42-59px section headings, weight 400 carries 16-22px body. Tight negative tracking at -0.04em on display and -0.02em on sub-display is a signature choice — the letters compress into each other for a sculptural, almost condensed feel"
+    },
+    "abcrepromono": {
+      "$value": "ABCReproMono",
+      "$type": "fontFamily",
+      "$description": "Monospaced micro-labels for uppercase eyebrow text above headlines, badge tags, and section markers. Line-height 0.79 is aggressive — these labels sit tight and act as typographic punctuation"
+    },
+    "suisseintl": {
+      "$value": "SuisseIntl",
+      "$type": "fontFamily",
+      "$description": "UI micro-text for nav links, icon-adjacent labels, and small interactive elements. Acts as a secondary voice to GT-Planar for interface chrome"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "GT-Planar",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "GT-Planar",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 10px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 10px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "ABCReproMono",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 11px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "ABCReproMono",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 0.79
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 11px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "ABCReproMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "GT-Planar",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "GT-Planar",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "GT-Planar",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "GT-Planar",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "GT-Planar",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "GT-Planar",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "GT-Planar",
+        "fontSize": "42px",
+        "fontWeight": 700,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "GT-Planar",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "GT-Planar",
+        "fontSize": "59px",
+        "fontWeight": 700,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 59px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "GT-Planar",
+        "fontSize": "95px",
+        "fontWeight": 700,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 95px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "GT-Planar",
+        "fontSize": "95px",
+        "fontWeight": 700,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 95px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "116": {
+      "$value": "116px",
+      "$type": "dimension",
+      "$description": "Spacing 116px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "3.95833px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "9.89583px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "cocoa-husk": {
+      "$value": "#322312",
+      "$type": "color",
+      "$description": "Surface level 0: Base canvas — dominant page background"
+    },
+    "plum-velvet": {
+      "$value": "#470b64",
+      "$type": "color",
+      "$description": "Surface level 1: Deep tonal section backgrounds"
+    },
+    "bubblegum-blush": {
+      "$value": "#ffc2e1",
+      "$type": "color",
+      "$description": "Surface level 2: Light section canvas, card backgrounds"
+    },
+    "petal-wash": {
+      "$value": "#ffdfef",
+      "$type": "color",
+      "$description": "Surface level 3: Brightest surface — alternating light sections, button labels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://shelby.ashfall.studio",
+      "siteName": "Shelby",
+      "extractedAt": "2026-06-03T21:40:10.080Z",
+      "variant": "extended"
+    }
+  }
+}

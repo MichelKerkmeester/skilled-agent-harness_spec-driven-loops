@@ -1,0 +1,709 @@
+{
+  "source": "https://styles.refero.design/style/0e8e546b-004c-46b6-a960-5dd88968ae07",
+  "uuid": "0e8e546b-004c-46b6-a960-5dd88968ae07",
+  "name": "ddna",
+  "northStar": "warm museum vitrine on raw linen",
+  "capturedAt": "2026-07-18T07:39:50.284Z",
+  "meta": {
+    "url": "https://d-d-n-a.com",
+    "siteName": "ddna",
+    "extractedAt": "2026-06-03T20:02:18.675Z",
+    "durationMs": 29329,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 118,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all text at weight 400 — never introduce bold or semibold weights, the system has no hierarchy through weight",
+      "Use 0.066em letter-spacing on 14–15px text and 0.099em on 10px captions to maintain the catalogue-label feel",
+      "Keep the palette to five warm neutrals (#444242, #595552, #938a83, #dacabf, #efe3dc) — no accent colors, no blue links",
+      "Use Favorit at 30px with line-height 2.0 for any heading or statement — one size, one leading, one weight",
+      "Build depth through tonal layering (sand → cream → charcoal), never through box-shadow",
+      "Pair every affordance with a downward or rightward arrow glyph instead of a button shape",
+      "Use full-bleed product images with 0px radius — let the texture and material do the work"
+    ],
+    "donts": [
+      "Do not add drop-shadows, blurs, or any z-axis elevation to cards, buttons, or images",
+      "Do not introduce a brand accent color — the iridescent orbs are content, not tokens",
+      "Do not use bold (600/700) or semibold (500) weights at any level",
+      "Do not use border-radius greater than 0px on any component — sharp edges preserve the printed-catalogue feel",
+      "Do not set body copy below 14px or above 17px; display should stay at 30px",
+      "Do not fill a button background — the system uses text links with arrow glyphs, not filled rectangles",
+      "Do not separate sections with hairline dividers; use 100px of whitespace as the only separator"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#444242",
+        "name": "Stone Charcoal",
+        "role": "Primary text, navigation links, hairline borders, footer anchors — dark warm gray carries the same temperature as the cream surfaces it sits on, never pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efe3dc",
+        "name": "Linen Cream",
+        "role": "Heading text, footer surface, and the lighter plane in the surface stack — sits one step above the canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dacabf",
+        "name": "Warm Sand",
+        "role": "Page canvas — the dominant field every section and hero lives on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#938a83",
+        "name": "Dust",
+        "role": "Secondary borders and dividers when Stone Charcoal would be too heavy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#595552",
+        "name": "Mortar",
+        "role": "Muted body text and subdued borders — the quietest readable neutral",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed Warm Sand canvas, no max-width container. The hero is a viewport-height composition with centered text overlay floating over scattered 3D orbs. Sections stack vertically as Warm Sand bands with 100px gaps — no dividers, no alternating colors, no card grids breaking the page rhythm. Content is positioned through generous side margins (50px+ on mobile, breathing room expanding on desktop) rather than a fixed container width. The product section uses a 2-column or full-bleed alternating grid where each product image bleeds to its column edge with no padding. Navigation is a single transparent bar with logo left and 3–4 links right. The footer is a Linen Cream band — the only tonal shift on the entire page.",
+    "imagery": "Imagery is the system's only chromatic event. The hero is a constellation of iridescent 3D orbs — translucent spheres in magenta, teal, and violet with subsurface scattering and soft cast shadows on the Warm Sand floor. These are content, not decorative chrome: they carry the brand's only color. Product photography uses tight, edge-to-edge crops of raw materials (wood grain, stone, bone, woven fabric) as backgrounds beneath jewelry — no lifestyle context, no models, no hands. The object sits on its own material, like a museum specimen.",
+    "similar": [
+      {
+        "why": "Same warm monochromatic restraint, weight 400 typography, and the absence of accent colors — both let material and product photography carry the visual weight",
+        "business": "Aesop"
+      },
+      {
+        "why": "Similar spacious warm-cream canvas, minimal nav, and floating organic imagery against a flat earth-toned field",
+        "business": "Mara Hoffman"
+      },
+      {
+        "why": "Luxury brand with weight-400-only typography, wide letter-spacing on small text, and a tonal-neutral palette with no primary action color",
+        "business": "The Elder Statesman"
+      },
+      {
+        "why": "Earth-toned product presentation, generous whitespace, museum-label type tracking, and full-bleed material photography",
+        "business": "Toast (toa.st)"
+      },
+      {
+        "why": "Printed-catalogue aesthetic, text links replacing buttons, and a near-monochromatic warm neutral system with no accent",
+        "business": "Maison Margiela"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20-25px",
+      "sectionGap": "100px",
+      "cardPadding": "135px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#dacabf",
+        "name": "Warm Sand",
+        "level": 1,
+        "purpose": "Page canvas — every section sits on this warm beige field"
+      },
+      {
+        "hex": "#efe3dc",
+        "name": "Linen Cream",
+        "level": 2,
+        "purpose": "Footer and lighter text-grounding surface, one step lighter than canvas"
+      },
+      {
+        "hex": "#444242",
+        "name": "Stone Charcoal",
+        "level": 3,
+        "purpose": "Inverted dark surface for contrast moments — anchors the tonal stack"
+      }
+    ],
+    "northStar": "warm museum vitrine on raw linen",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1,
+        "letterSpacing": 0.99
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.92
+      },
+      {
+        "role": "body-lg",
+        "size": 17,
+        "lineHeight": 1.5,
+        "letterSpacing": 1.12
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.3,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation",
+        "role": "Site header",
+        "description": "Full-bleed, transparent over canvas. Logo (Favorit-style wordmark) at far left, 3–4 nav links at far right. Links in Basis 14px, weight 400, letter-spacing 0.066em, color Stone Charcoal. 50px horizontal padding, 25px vertical padding. No background, no border, no shadow."
+      },
+      {
+        "name": "Text Link with Arrow",
+        "role": "Primary action affordance",
+        "description": "The system has no filled buttons. A text link in Basis 14px weight 400, color Stone Charcoal, with a downward arrow glyph (↓) for scroll cues or a right arrow for navigation. Underline appears only on hover. This is the only 'CTA' the system uses."
+      },
+      {
+        "name": "Product Card",
+        "role": "Jewelry item display",
+        "description": "Full-bleed image card with no border, no radius, no shadow. Image fills the card edge-to-edge. Product name overlay in Basis 10–14px, letter-spacing 0.066–0.099em, color Stone Charcoal on a Linen Cream chip or directly on the image. Padding around card content: none — image bleeds. Card-to-card gap: 25px."
+      },
+      {
+        "name": "Hero Composition",
+        "role": "Above-the-fold brand statement",
+        "description": "Full-viewport Warm Sand canvas with a scattered constellation of iridescent 3D orbs (content, not tokens — purple/magenta/teal). Centered headline overlay in Favorit 30px, weight 400, line-height 2.0, color Stone Charcoal, max-width ~600px. 100px bottom padding, 50px horizontal padding."
+      },
+      {
+        "name": "Statement Paragraph",
+        "role": "Brand body copy",
+        "description": "Centered, Favorit 30px weight 400 at line-height 2.0, color Stone Charcoal. Two sentences max. This is the only place Favorit runs long — the wide line-height gives body text a poetic, spaced-out rhythm."
+      },
+      {
+        "name": "Section Container",
+        "role": "Vertical rhythm unit",
+        "description": "Full-bleed Warm Sand bands stacked vertically. Section gap: 100px. Horizontal padding: 50px. No dividers between sections — visual rhythm comes from whitespace alone."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer",
+        "description": "Linen Cream (#efe3dc) surface — one tonal step lighter than the Warm Sand canvas above it. Basis 10–14px text, letter-spacing 0.066–0.099em, color Stone Charcoal. Minimal link list, no logo repeat, no social icons."
+      },
+      {
+        "name": "Image Label",
+        "role": "Product caption overlay",
+        "description": "Basis 10px, weight 400, letter-spacing 0.099em, uppercase by convention. Sits on a Linen Cream rectangular chip at top-left of the image with 25px padding. No border, no radius."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body, nav, labels, captions — the only text family used for everything below display. The 0.066–0.099em tracking on 10–14px is the signature: it makes small text feel like a printed catalogue label rather than screen UI.",
+        "sizes": "10px, 14px, 15px, 17px",
+        "family": "Basis",
+        "weight": "400",
+        "lineHeight": "1.0–1.5",
+        "substitute": "Söhne, Inter, or Untitled Sans",
+        "letterSpacing": "0.066em at 14–15px, 0.099em at 10px"
+      },
+      {
+        "role": "Display and heading — set at a single 30px size, weight 400 only. The narrow, slightly quirky character shapes (open apertures, subtle inktraps) carry all the personality the system allows. No bold weight exists.",
+        "sizes": "30px",
+        "family": "Favorit",
+        "weight": "400",
+        "lineHeight": "1.3–2.0",
+        "substitute": "Söhne Breit, Migra, or Editorial New (light)"
+      }
+    ],
+    "description": "ddna is a warm earth-toned luxury system built on a single temperature of pigment: cream canvas, stone beige surfaces, dark warm-charcoal text. There is no accent color — the brand speaks through material, texture, and generous silence. Typography is uniformly weight 400 across every level, with wide tracking on small text that makes even body copy feel like a museum label. The hero is a composition of iridescent floating orbs against a peach-cream field, the only chromatic event in an otherwise monochrome world. Surfaces are flat and shadowless; depth comes from tonal layering, not elevation. Components are quiet to the point of absence — text links replace buttons, labels replace cards, and the product photography does the work that chrome would normally do.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0e8e546b-004c-46b6-a960-5dd88968ae07#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ddna design system\",\"item\":\"https://styles.refero.design/style/0e8e546b-004c-46b6-a960-5dd88968ae07\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0e8e546b-004c-46b6-a960-5dd88968ae07#style-reference\",\"name\":\"ddna design system reference\",\"headline\":\"ddna design system | Refero Styles\",\"description\":\"Explore ddna's light E-commerce design system: Stone Charcoal #444242, Linen Cream #efe3dc colors, Basis, Favorit typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/0e8e546b-004c-46b6-a960-5dd88968ae07\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0e8e546b-004c-46b6-a960-5dd88968ae07\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ddna\",\"url\":\"https://d-d-n-a.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0e8e546b-004c-46b6-a960-5dd88968ae07#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ec55ccff-da03-40c4-b645-ac72b28e9785.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ec55ccff-da03-40c4-b645-ac72b28e9785.jpg\",\"caption\":\"Screenshot of ddna\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ec55ccff-da03-40c4-b645-ac72b28e9785.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ddna design system\",\"ddna website design\",\"ddna colors\",\"ddna typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Stone Charcoal\",\"Linen Cream\",\"Warm Sand\",\"Dust\",\"Basis\",\"Favorit\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ddna design system\"},{\"@type\":\"Thing\",\"name\":\"ddna website design\"},{\"@type\":\"Thing\",\"name\":\"ddna colors\"},{\"@type\":\"Thing\",\"name\":\"ddna typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:26:23.826Z\",\"dateModified\":\"2026-04-30T03:26:23.826Z\"}]}19:T6ac,**Quick Color Reference**\n- text: #444242\n- background: #dacabf\n- surface: #efe3dc\n- border: #444242 (primary) / #938a83 (secondary)\n- muted text: #595552\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Create a hero section*: Full-viewport Warm Sand (#dacabf) background. Centered statement copy in Favorit 30px, weight 400, line-height 2.0, color #444242, max-width ~600px, 100px bottom padding. Below the copy, a ghost text link: 'Explore Collections ↓' in Basis 14px, weight 400, letter-spacing 0.066em, color #444242. No background, no border, no shadow.\n\n2. *Create a product card*: Full-bleed image, 0px radius, no border, no shadow. Product name in Basis 10px, weight 400, letter-spacing 0.099em, color #444242, set on a Linen Cream (#efe3dc) chip at top-left with 25px padding. Card sits on Warm Sand (#dacabf) canvas with 25px gap to neighbors.\n\n3. *Create the navigation bar*: Transparent background over Warm Sand (#dacabf) canvas. Logo wordmark (Favorit 30px, weight 400, #444242) at far left. 3–4 nav links at far right in Basis 14px, weight 400, letter-spacing 0.066em, color #444242. 50px horizontal padding, 25px vertical padding. No border, no shadow, no background fill.\n\n4. *Create a footer*: Linen Cream (#efe3dc) background, 50px padding. 2–3 minimal link columns in Basis 10–14px, weight 400, letter-spacing 0.066–0.099em, color #444242. No logo repeat, no social icons, no filled buttons.\n\n5. *Create a section band*: Full-bleed Warm Sand (#dacabf) background, 100px vertical gap to the next section, 50px horizontal padding. Centered heading in Favorit 30px weight 400 line-height 2.0, color #444242. No dividers, no card containers, no shadows."
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no blur, no z-axis. Depth is purely tonal: the surface stack moves through warm beige → cream → charcoal, and that is the entire elevation model. Any added drop-shadow would break the flat, printed-catalogue language."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#444242",
+          "oklch": {
+            "c": 0.0027132162058952284,
+            "h": 17.27569052009612,
+            "l": 0.38104584324047425
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "heading",
+            "button",
+            "icon",
+            "card",
+            "image",
+            "footer"
+          ],
+          "frequency": 555,
+          "confidence": 1,
+          "prominence": 71801812.49133907,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 30,
+            "card/color": 3,
+            "hero/color": 1,
+            "icon/color": 1,
+            "link/color": 8,
+            "other/fill": 5,
+            "icon/stroke": 2,
+            "image/color": 6,
+            "other/color": 56,
+            "button/color": 1,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 3,
+            "nav/borderColor": 120,
+            "card/borderColor": 12,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 32,
+            "image/borderColor": 24,
+            "other/borderColor": 220,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 12,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#efe3dc",
+          "oklch": {
+            "c": 0.01620273459121022,
+            "h": 52.54792233152404,
+            "l": 0.9234189074900738
+          },
+          "contexts": [
+            "heading",
+            "footer"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 2050447.117392121,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#dacabf",
+          "oklch": {
+            "c": 0.023485976273776035,
+            "h": 56.908092790418515,
+            "l": 0.8491022703707913
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#938a83",
+          "oklch": {
+            "c": 0.01495600919432236,
+            "h": 60.441755818563266,
+            "l": 0.639207860784218
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 56248.70809864635,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#595552",
+          "oklch": {
+            "c": 0.0071222871652391676,
+            "h": 59.518204076794525,
+            "l": 0.4523178812116324
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3805.064801061542,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.008150579120066144,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 7.93,
+          "background": "#efe3dc",
+          "foreground": "#444242"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.27,
+          "background": "#dacabf",
+          "foreground": "#444242"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.86,
+          "background": "#efe3dc",
+          "foreground": "#595552"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.63,
+          "background": "#dacabf",
+          "foreground": "#595552"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.35,
+          "background": "#444242",
+          "foreground": "#595552"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.27,
+          "background": "#dacabf",
+          "foreground": "#efe3dc"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "icon"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 33,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|hero",
+            "paddingLeft|hero"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 135,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 245,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Basis",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 105,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Favorit",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 17,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.099,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "nav"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.066,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 17,
+          "family": "Basis",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "card",
+            "link",
+            "image"
+          ],
+          "frequency": 63,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Favorit",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Favorit",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7997e5fe-4f7f-45d5-9962-95ea7b33c33e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ec55ccff-da03-40c4-b645-ac72b28e9785.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0e8e546b-004c-46b6-a960-5dd88968ae07#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ddna design system\",\"item\":\"https://styles.refero.design/style/0e8e546b-004c-46b6-a960-5dd88968ae07\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0e8e546b-004c-46b6-a960-5dd88968ae07#style-reference\",\"name\":\"ddna design system reference\",\"headline\":\"ddna design system | Refero Styles\",\"description\":\"Explore ddna's light E-commerce design system: Stone Charcoal #444242, Linen Cream #efe3dc colors, Basis, Favorit typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/0e8e546b-004c-46b6-a960-5dd88968ae07\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0e8e546b-004c-46b6-a960-5dd88968ae07\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ddna\",\"url\":\"https://d-d-n-a.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0e8e546b-004c-46b6-a960-5dd88968ae07#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ec55ccff-da03-40c4-b645-ac72b28e9785.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ec55ccff-da03-40c4-b645-ac72b28e9785.jpg\",\"caption\":\"Screenshot of ddna\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ec55ccff-da03-40c4-b645-ac72b28e9785.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ddna design system\",\"ddna website design\",\"ddna colors\",\"ddna typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Stone Charcoal\",\"Linen Cream\",\"Warm Sand\",\"Dust\",\"Basis\",\"Favorit\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ddna design system\"},{\"@type\":\"Thing\",\"name\":\"ddna website design\"},{\"@type\":\"Thing\",\"name\":\"ddna colors\"},{\"@type\":\"Thing\",\"name\":\"ddna typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:26:23.826Z\",\"dateModified\":\"2026-04-30T03:26:23.826Z\"}]}19:T6ac,**Quick Color Reference**\n- text: #444242\n- background: #dacabf\n- surface: #efe3dc\n- border: #444242 (primary) / #938a83 (secondary)\n- muted text: #595552\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Create a hero section*: Full-viewport Warm Sand (#dacabf) background. Centered statement copy in Favorit 30px, weight 400, line-height 2.0, color #444242, max-width ~600px, 100px bottom padding. Below the copy, a ghost text link: 'Explore Collections ↓' in Basis 14px, weight 400, letter-spacing 0.066em, color #444242. No background, no border, no shadow.\n\n2. *Create a product card*: Full-bleed image, 0px radius, no border, no shadow. Product name in Basis 10px, weight 400, letter-spacing 0.099em, color #444242, set on a Linen Cream (#efe3dc) chip at top-left with 25px padding. Card sits on Warm Sand (#dacabf) canvas with 25px gap to neighbors.\n\n3. *Create the navigation bar*: Transparent background over Warm Sand (#dacabf) canvas. Logo wordmark (Favorit 30px, weight 400, #444242) at far left. 3–4 nav links at far right in Basis 14px, weight 400, letter-spacing 0.066em, color #444242. 50px horizontal padding, 25px vertical padding. No border, no shadow, no background fill.\n\n4. *Create a footer*: Linen Cream (#efe3dc) background, 50px padding. 2–3 minimal link columns in Basis 10–14px, weight 400, letter-spacing 0.066–0.099em, color #444242. No logo repeat, no social icons, no filled buttons.\n\n5. *Create a section band*: Full-bleed Warm Sand (#dacabf) background, 100px vertical gap to the next section, 50px horizontal padding. Centered heading in Favorit 30px weight 400 line-height 2.0, color #444242. No dividers, no card containers, no shadows."
+}

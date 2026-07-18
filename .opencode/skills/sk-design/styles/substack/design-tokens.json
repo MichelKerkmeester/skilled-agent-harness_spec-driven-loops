@@ -1,0 +1,324 @@
+{
+  "color": {
+    "signal-orange": {
+      "$value": "#ff6719",
+      "$type": "color",
+      "$description": "Signal Orange — Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "ink": {
+      "$value": "#363737",
+      "$type": "color",
+      "$description": "Ink — Primary text — body copy, headings, post titles, timestamps, author names; warm-shifted near-black instead of pure #000 for less aggressive reading"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces, input fields, nav background — the dominant surface, occupying the vast majority of the interface"
+    },
+    "charcoal": {
+      "$value": "#232525",
+      "$type": "color",
+      "$description": "Charcoal — Secondary text and high-emphasis link hover state; deeper than Ink for code blocks and emphasis blocks"
+    },
+    "stone": {
+      "$value": "#777777",
+      "$type": "color",
+      "$description": "Stone — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "ash": {
+      "$value": "#b6b6b6",
+      "$type": "color",
+      "$description": "Ash — Hairline borders, button outlines, icon strokes, disabled control borders"
+    },
+    "mist": {
+      "$value": "#c8c8c8",
+      "$type": "color",
+      "$description": "Mist — Divider lines, subtle icon backgrounds, skeleton placeholder fills"
+    },
+    "cloud": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Cloud — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "slate": {
+      "$value": "#5e5e5e",
+      "$type": "color",
+      "$description": "Slate — Dark mode surface accent or pressed button state — infrequently used but present in the token set"
+    },
+    "black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Black — Icon strokes, image overlays, dark accent blocks in promo cards"
+    }
+  },
+  "font": {
+    "system-ui": {
+      "$value": "system-ui",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body font — used for navigation labels, buttons, post body text, metadata, input fields, and all interface chrome. The compact 12-13px metadata and 15-19px body sizes create the dense newsroom feel. Weight 400 for body, 500 for nav items and button labels, 600 for emphasized post titles and section headers."
+    },
+    "cahuenga": {
+      "$value": "Cahuenga",
+      "$type": "fontFamily",
+      "$description": "Branded display serif for product-level headings (sidebar headings, sign-up card titles, hero text). The medium weight and tight line-height give it editorial presence without feeling heavy; this is the only font that signals 'this is Substack' beyond the orange color."
+    },
+    "spectral": {
+      "$value": "Spectral",
+      "$type": "fontFamily",
+      "$description": "Long-form post body serif — used inside reader views and feed post content for editorial readability. The slightly looser line-height (1.20) keeps reading paragraphs comfortable while maintaining the compact newsroom density."
+    },
+    "jetbrains-mono": {
+      "$value": "JetBrains Mono",
+      "$type": "fontFamily",
+      "$description": "Code blocks and inline code within posts — the slight negative tracking (-0.014em) tightens the monospace for better visual alignment with surrounding serif text."
+    },
+    "apple-system-ui-serif": {
+      "$value": "-apple-system-ui-serif",
+      "$type": "fontFamily",
+      "$description": "-apple-system-ui-serif — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Jetbrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Spectral",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "-apple-system-ui-serif",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Cahuenga",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Cahuenga",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.1) 0px -1px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page background — the dominant surface"
+    },
+    "recessed": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary surface — pill button backgrounds (Sign in), input resting states, subtle hover washes"
+    },
+    "divider": {
+      "$value": "#c8c8c8",
+      "$type": "color",
+      "$description": "Surface level 3: Hairline separators and icon placeholder backgrounds"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://substack.com",
+      "siteName": "Substack",
+      "extractedAt": "2026-06-03T17:19:55.187Z",
+      "variant": "extended"
+    }
+  }
+}

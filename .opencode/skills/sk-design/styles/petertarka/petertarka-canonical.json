@@ -1,0 +1,618 @@
+{
+  "source": "https://styles.refero.design/style/40a590a3-1f0d-41ab-9c39-30adf86dd400",
+  "uuid": "40a590a3-1f0d-41ab-9c39-30adf86dd400",
+  "name": "Petertarka",
+  "northStar": "curated gallery on warm concrete — every card a framed print, every margin deliberate, every type weight a whisper",
+  "capturedAt": "2026-07-18T08:54:36.480Z",
+  "meta": {
+    "url": "https://petertarka.com",
+    "siteName": "Petertarka",
+    "extractedAt": "2026-06-03T21:25:42.998Z",
+    "durationMs": 39623,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 131,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use GT America weight 200 for all display-level text (38px). The whisper-weight is the brand voice — never substitute 400 or 500 here.",
+      "Set card padding to exactly 45px on all four sides. This generous interior is what makes the grid feel like framed art.",
+      "Use 0px border-radius everywhere. Sharp corners are non-negotiable — they signal editorial, architectural intent over soft SaaS convention.",
+      "Use 1px solid #d8d8d8 for all card borders. Depth comes from hairlines, never from shadows or background contrast.",
+      "Anchor year labels at line-height 2.37 to push them to the visual bottom of cards regardless of content height.",
+      "Keep the system achromatic. If color appears, it is a full-bleed project card or a singular illustration — never a button, badge, or UI accent.",
+      "Let the hamburger menu be the only navigation visible. No logos, no nav bars, no link lists in the default state."
+    ],
+    "donts": [
+      "Do not use bold or semibold weights (600+) anywhere — not for headings, not for CTAs, not for emphasis. Weight 200-400 is the system ceiling.",
+      "Do not add box-shadow, drop-shadow, or any elevation effect to cards. Depth is 1px borders only.",
+      "Do not use border-radius greater than 0px on cards, buttons, tags, or images. Sharp edges define the gallery aesthetic.",
+      "Do not introduce a chromatic accent color for buttons, links, or interactive states. Interactive elements inherit #000000 text and #ffffff borders from the monochromatic system.",
+      "Do not use a max-width container. The grid and its hairlines should run edge-to-edge of the viewport at all breakpoints.",
+      "Do not add gradients to UI surfaces. The single detected gradient is a one-off content element, not a design token.",
+      "Do not use color for status indicators (success, error, warning). The system has no semantic color vocabulary — state changes happen through weight, position, or border style only."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#eaeaea",
+        "name": "Warm Concrete",
+        "role": "Page canvas — the warm light gray that makes the whole gallery feel architectural rather than digital",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0f0f0",
+        "name": "Bone",
+        "role": "Card surface — barely distinguishable from the canvas, creating the illusion of cards floating in space",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d8d8d8",
+        "name": "Hairline",
+        "role": "1px card borders and dividers — structural, never decorative",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "All text, heading borders, and the top/bottom hairline rules that frame the page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Nav text and link borders — appears in the hamburger menu area and link underlines",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed two-column grid (50/50 split) that runs the entire viewport width with no max-width constraint. Cards in adjacent columns share a 1px #d8d8d8 border that forms a continuous vertical and horizontal lattice. The grid is the primary structural device — no separate sections, no alternating bands, no distinct header/footer areas beyond the 1px black hairlines that frame the page top and bottom. A single 3D illustration overlaps the grid at the top of the page, breaking the lattice for one compositional moment. Navigation is a hamburger icon in the top-right corner. The page reads as a single continuous grid of framed projects, scrolled vertically, with no page-level section breaks.",
+    "imagery": "The site uses exactly one type of imagery: highly saturated, colorful 3D renders of interior/exterior spaces with stylized furniture, plants, and objects. These renders are the sole chromatic element in an otherwise achromatic system — they function as a counterpoint, not as decoration. Treatment: overlapping the grid (breaking card boundaries), rounded forms within the render itself but no border-radius on the render container, always positioned to span multiple grid cells. The renders are illustrative/sculptural rather than photographic — they read as designed objects, not captured moments. No photography, no flat illustration, no icons-as-imagery. The rest of the site is pure typography and white space.",
+    "similar": [
+      {
+        "why": "Same editorial gallery aesthetic — work presented as a grid of bordered cards, monochromatic palette, no decorative chrome, typography as the primary visual element",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Portfolio-as-gallery pattern with generous whitespace, thin borders, and a single type family carrying the entire visual system",
+        "business": "Tobias van Schneider"
+      },
+      {
+        "why": "Full-bleed grid layouts with sharp corners, hairline dividers, and work presented as framed tiles rather than cards with shadows",
+        "business": "Instrument (instrument.com)"
+      },
+      {
+        "why": "Ultra-light display typography (weight 200-300) and achromatic canvases that let content — illustration, photography, 3D — provide the only color",
+        "business": "DIA Studio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "10-20px",
+      "sectionGap": "",
+      "cardPadding": "45px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#eaeaea",
+        "name": "Warm Concrete",
+        "level": 0,
+        "purpose": "Page canvas — the warm gray backdrop for the entire gallery"
+      },
+      {
+        "hex": "#f0f0f0",
+        "name": "Bone",
+        "level": 1,
+        "purpose": "Card surface — subtle lift from canvas via 1px hairline border rather than contrast shift"
+      }
+    ],
+    "northStar": "curated gallery on warm concrete — every card a framed print, every margin deliberate, every type weight a whisper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 2.37,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 1.31
+      },
+      {
+        "role": "heading",
+        "size": 38,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Project Card (Neutral)",
+        "role": "The structural unit of the gallery — a framed print for each project",
+        "description": "Background #f0f0f0, 1px solid #d8d8d8 border, 0px border-radius, 45px padding on all sides. Contains a category label (16px GT America 300, top-left), project name (38px GT America 200, left-aligned), and year (16px GT America 300, bottom-right, line-height 2.37 to push it to the card's lower edge). Cards butt directly against each other — the 1px borders form a continuous grid lattice."
+      },
+      {
+        "name": "Project Card (Color Block)",
+        "role": "Variant where the card interior is filled with a project-specific color instead of #f0f0f0",
+        "description": "Same dimensions, padding (45px), and border (1px solid #d8d8d8) as the neutral card. Background is a solid project color (e.g. muted violet, sage green). Text remains #000000. These are the only chromatic elements in the system — each one is a one-off, not a repeating accent."
+      },
+      {
+        "name": "Year Label",
+        "role": "Timestamp anchored to the bottom-right corner of each card",
+        "description": "16px GT America weight 300, #000000, line-height 2.37. The loose line-height pushes the year to the visual bottom of the 45px-padded card, creating a consistent baseline across the grid regardless of how much content the card holds."
+      },
+      {
+        "name": "Category Tag",
+        "role": "Small descriptor at the top of each card (e.g. 'Print and Digital')",
+        "description": "16px GT America weight 300, #000000, no background, no border, no padding. Sits at the top-left of the card interior, aligned to the 45px padding edge."
+      },
+      {
+        "name": "Project Title",
+        "role": "The name of the project — the only large text in the system",
+        "description": "38px GT America weight 200, #000000, line-height 1.00. Left-aligned within the card's 45px padding. The ultra-light weight at 38px is the signature: the type appears to hover rather than sit on the page."
+      },
+      {
+        "name": "Hamburger Menu",
+        "role": "The only navigation element — minimal, almost invisible",
+        "description": "Two thin horizontal black lines (#000000, ~1.5px stroke) in the top-right corner of the page. No background, no border, no padding. Vertically stacked with a small gap. This is the entire navigation — no logo, no links, no visible affordance beyond the lines."
+      },
+      {
+        "name": "3D Illustration Overlay",
+        "role": "Signature layout element — a full-color 3D render that breaks the grid",
+        "description": "A large, colorful 3D rendered scene (room/space with furniture, plants, objects) positioned to overlap multiple grid cards. Uses vivid pinks, oranges, yellows, greens, and teals — the only place saturated color appears in the system. Sits above the grid (z-index highest), partially obscuring card content. This is not a repeatable component — it is a one-off compositional device for the portfolio's hero moment."
+      },
+      {
+        "name": "Top/Bottom Page Rules",
+        "role": "Horizontal black hairlines that frame the entire page",
+        "description": "1px solid #000000 horizontal lines running the full viewport width at the very top and very bottom of the page. The page is literally framed like a print."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across all contexts — nav, body, cards, headings, links. Weight 200 for display headlines is the signature anti-convention: most sites use 600-700 for headlines, this whisper-weight gains authority through restraint. Weight 300 for body and UI text, weight 400 reserved for occasional emphasis.",
+        "sizes": "16px, 21px, 38px",
+        "family": "GT America",
+        "weight": "200, 300, 400",
+        "lineHeight": "1.00, 1.31, 1.32, 2.37",
+        "substitute": "Inter (weight 200/300/400) or Söhne (weight 200/300/400) — both share GT America's geometric-humanist proportions"
+      }
+    ],
+    "description": "Petertarka presents a curated gallery aesthetic: a warm light gray canvas anchors a two-column grid where every project card feels like a framed print. Typography whispers at weight 200-300 in GT America — ultra-light headlines that gain authority through restraint rather than volume, a deliberate anti-convention against the SaaS standard of bold display type. Color is monastic: the system is almost entirely achromatic, with occasional full-bleed color blocks acting as project identifiers rather than brand expression. The signature move is a colorful 3D illustration that breaks the grid by overlapping card boundaries — one moment of visual exuberance against the quiet monochrome. Sharp corners (zero border-radius), 1px hairline borders, and 45px internal padding create an editorial, almost architectural feel — more museum wall than web page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/40a590a3-1f0d-41ab-9c39-30adf86dd400#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Petertarka design system\",\"item\":\"https://styles.refero.design/style/40a590a3-1f0d-41ab-9c39-30adf86dd400\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/40a590a3-1f0d-41ab-9c39-30adf86dd400#style-reference\",\"name\":\"Petertarka design system reference\",\"headline\":\"Petertarka design system | Refero Styles\",\"description\":\"Explore Petertarka's light Design design system: Warm Concrete #eaeaea, Bone #f0f0f0 colors, GT America typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/40a590a3-1f0d-41ab-9c39-30adf86dd400\",\"mainEntityOfPage\":\"https://styles.refero.design/style/40a590a3-1f0d-41ab-9c39-30adf86dd400\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Petertarka\",\"url\":\"https://petertarka.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/40a590a3-1f0d-41ab-9c39-30adf86dd400#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/17734caf-750f-4244-94b8-c8a64b5f3ec5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/17734caf-750f-4244-94b8-c8a64b5f3ec5.jpg\",\"caption\":\"Screenshot of Petertarka\"},\"image\":\"https://images.refero.design/styles/refero.design/image/17734caf-750f-4244-94b8-c8a64b5f3ec5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Petertarka design system\",\"Petertarka website design\",\"Petertarka colors\",\"Petertarka typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Warm Concrete\",\"Bone\",\"Hairline\",\"Obsidian\",\"GT America\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Petertarka design system\"},{\"@type\":\"Thing\",\"name\":\"Petertarka website design\"},{\"@type\":\"Thing\",\"name\":\"Petertarka colors\"},{\"@type\":\"Thing\",\"name\":\"Petertarka typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:13:55.187Z\",\"dateModified\":\"2026-04-30T02:13:55.187Z\"}]}19:T5b2,**Quick Color Reference**\n- text: #000000\n- background: #eaeaea\n- card surface: #f0f0f0\n- border: #d8d8d8\n- nav/link: #ffffff\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a project card: 1px solid #d8d8d8 border, #f0f0f0 background, 0px radius, 45px padding all sides. Category label at 16px GT America weight 300 #000000 at top-left. Project title at 38px GT America weight 200 #000000, line-height 1.0, left-aligned. Year label at 16px GT America weight 300 #000000 with line-height 2.37, bottom-right.\n\n2. Create a color block project card: same dimensions and 45px padding as the neutral card, 0px radius, 1px solid #d8d8d8 border, but fill the background with a single solid project color (e.g. #7ec99a sage green or #806d80 muted violet). All text remains #000000.\n\n3. Create a page frame: 1px solid #000000 horizontal line at the very top and very bottom of the viewport, full-bleed, no margin. The rest of the page is #eaeaea canvas with a two-column grid of bordered cards.\n\n4. Create a hamburger menu: two 1.5px-thick #000000 horizontal lines, ~20px wide, vertically stacked with a 6px gap, positioned top-right with 20px margin. No background, no border, no label.\n\n5. Create a type specimen: 38px GT America weight 200 #000000, line-height 1.0, letter-spacing normal. The text should appear to float — extremely thin strokes, no optical adjustment needed because GT America is already drawn for this weight."
+      },
+      {
+        "title": "Design Philosophy",
+        "content": "Petertarka is a portfolio that behaves like a museum. The system is intentionally constrained: one typeface, three weights, four neutrals, zero shadows, zero radius, zero accent color. Every decision removes something. The result is not minimalism for its own sake — it is curation. The 3D illustration is the only moment the system allows itself to be loud, and that contrast is what makes the rest feel quiet. When building new pages: resist the urge to add. If a component doesn't serve the gallery metaphor (frame, print, wall, hairline, whisper), it probably doesn't belong here."
+      }
+    ],
+    "elevationPhilosophy": "Zero shadows. Depth is created exclusively through 1px hairline borders (#d8d8d8) against the canvas. Cards do not float — they are framed. This is an anti-elevation design: flat, architectural, and deliberately resistant to the Material/Fluent card-lift convention."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "card",
+            "heading",
+            "footer",
+            "nav",
+            "body"
+          ],
+          "frequency": 450,
+          "confidence": 1,
+          "prominence": 57292759.58391346,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 4,
+            "nav/color": 4,
+            "body/color": 1,
+            "card/color": 15,
+            "icon/color": 2,
+            "other/color": 18,
+            "button/color": 2,
+            "footer/color": 15,
+            "other/stroke": 2,
+            "heading/color": 45,
+            "nav/borderColor": 16,
+            "body/borderColor": 4,
+            "icon/borderColor": 8,
+            "other/borderColor": 66,
+            "button/borderColor": 8,
+            "footer/borderColor": 60,
+            "heading/borderColor": 180
+          }
+        },
+        {
+          "hex": "#d8d8d8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8822383241093221
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 62,
+          "confidence": 1,
+          "prominence": 7665861.501888643,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 60,
+            "other/borderColor": 2
+          }
+        },
+        {
+          "hex": "#f0f0f0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9551400502551023
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 2139171.5257399064,
+          "properties": [
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/stroke": 2,
+            "card/backgroundColor": 14
+          }
+        },
+        {
+          "hex": "#eaeaea",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9370488987176951
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 107,
+          "confidence": 1,
+          "prominence": 359332.9955650879,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 12,
+            "link/color": 4,
+            "nav/stroke": 2,
+            "other/color": 5,
+            "nav/borderColor": 48,
+            "link/borderColor": 16,
+            "other/borderColor": 20
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.43,
+          "background": "#f0f0f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.46,
+          "background": "#eaeaea",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.73,
+          "background": "#d8d8d8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.2,
+          "background": "#eaeaea",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.14,
+          "background": "#f0f0f0",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 60,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(119, 193, 229) 0%, rgb(142, 208, 239) 100%)",
+        "colors": [
+          "rgb(119, 193, 229)",
+          "rgb(142, 208, 239)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "GT America",
+          "source": "custom",
+          "weights": [
+            200,
+            300,
+            400
+          ],
+          "frequency": 123,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "GT America",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "card",
+            "footer",
+            "nav",
+            "body"
+          ],
+          "frequency": 57,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "GT America",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.31,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "GT America",
+          "weight": 300,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.37,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "GT America",
+          "weight": 200,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.32,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "GT America",
+          "weight": 200,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "GT America",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "nav"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.31,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/a793b965-4b07-4fea-bf7c-b61781646af4.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/17734caf-750f-4244-94b8-c8a64b5f3ec5.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/40a590a3-1f0d-41ab-9c39-30adf86dd400#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Petertarka design system\",\"item\":\"https://styles.refero.design/style/40a590a3-1f0d-41ab-9c39-30adf86dd400\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/40a590a3-1f0d-41ab-9c39-30adf86dd400#style-reference\",\"name\":\"Petertarka design system reference\",\"headline\":\"Petertarka design system | Refero Styles\",\"description\":\"Explore Petertarka's light Design design system: Warm Concrete #eaeaea, Bone #f0f0f0 colors, GT America typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/40a590a3-1f0d-41ab-9c39-30adf86dd400\",\"mainEntityOfPage\":\"https://styles.refero.design/style/40a590a3-1f0d-41ab-9c39-30adf86dd400\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Petertarka\",\"url\":\"https://petertarka.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/40a590a3-1f0d-41ab-9c39-30adf86dd400#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/17734caf-750f-4244-94b8-c8a64b5f3ec5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/17734caf-750f-4244-94b8-c8a64b5f3ec5.jpg\",\"caption\":\"Screenshot of Petertarka\"},\"image\":\"https://images.refero.design/styles/refero.design/image/17734caf-750f-4244-94b8-c8a64b5f3ec5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Petertarka design system\",\"Petertarka website design\",\"Petertarka colors\",\"Petertarka typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Warm Concrete\",\"Bone\",\"Hairline\",\"Obsidian\",\"GT America\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Petertarka design system\"},{\"@type\":\"Thing\",\"name\":\"Petertarka website design\"},{\"@type\":\"Thing\",\"name\":\"Petertarka colors\"},{\"@type\":\"Thing\",\"name\":\"Petertarka typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:13:55.187Z\",\"dateModified\":\"2026-04-30T02:13:55.187Z\"}]}19:T5b2,**Quick Color Reference**\n- text: #000000\n- background: #eaeaea\n- card surface: #f0f0f0\n- border: #d8d8d8\n- nav/link: #ffffff\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a project card: 1px solid #d8d8d8 border, #f0f0f0 background, 0px radius, 45px padding all sides. Category label at 16px GT America weight 300 #000000 at top-left. Project title at 38px GT America weight 200 #000000, line-height 1.0, left-aligned. Year label at 16px GT America weight 300 #000000 with line-height 2.37, bottom-right.\n\n2. Create a color block project card: same dimensions and 45px padding as the neutral card, 0px radius, 1px solid #d8d8d8 border, but fill the background with a single solid project color (e.g. #7ec99a sage green or #806d80 muted violet). All text remains #000000.\n\n3. Create a page frame: 1px solid #000000 horizontal line at the very top and very bottom of the viewport, full-bleed, no margin. The rest of the page is #eaeaea canvas with a two-column grid of bordered cards.\n\n4. Create a hamburger menu: two 1.5px-thick #000000 horizontal lines, ~20px wide, vertically stacked with a 6px gap, positioned top-right with 20px margin. No background, no border, no label.\n\n5. Create a type specimen: 38px GT America weight 200 #000000, line-height 1.0, letter-spacing normal. The text should appear to float — extremely thin strokes, no optical adjustment needed because GT America is already drawn for this weight."
+}

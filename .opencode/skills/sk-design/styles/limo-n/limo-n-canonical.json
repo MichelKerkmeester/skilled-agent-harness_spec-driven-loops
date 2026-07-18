@@ -1,0 +1,1402 @@
+{
+  "source": "https://styles.refero.design/style/f1b6a7d6-1ecb-4f1c-95b0-e03323363999",
+  "uuid": "f1b6a7d6-1ecb-4f1c-95b0-e03323363999",
+  "name": "Limón",
+  "northStar": "moody brasserie under candlelight",
+  "capturedAt": "2026-07-18T08:24:03.439Z",
+  "meta": {
+    "url": "https://limonoslo.no",
+    "siteName": "Limón",
+    "extractedAt": "2026-06-03T15:55:46.529Z",
+    "durationMs": 54226,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 224,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Lemon Zest (#f7ea48) as a filled button background only — never as a text color on a yellow background, and never diluted as a tint.",
+      "Set display headlines (46px and above) with 0.04–0.06em positive letter-spacing; collapse to 0.02–0.04em at body sizes 14–20px.",
+      "Keep corner radius at 1px (or 0px) for all buttons, cards, inputs, and badges — the system is intentionally unsoftened. Reserve 40px radius exclusively for the circular back-to-top button.",
+      "Lay food photography full-bleed or as large edge-to-edge tiles — avoid thin framed images or small thumbnails.",
+      "Use Black Olive (#1d0b0d) as the default canvas for hero and dark sections; switch to Warm Cream (#fcf9f0) only for content-light breathing sections.",
+      "Pair the filled Lemon Zest CTA with a ghost Forest Ink 'ORDER NOW' inline link in the same flow — the system relies on that filled/ghost contrast to establish hierarchy without color overload.",
+      "Keep section padding between 30–60px vertically; 15px is the standard element gap inside a card or list."
+    ],
+    "donts": [
+      "Don't introduce new accent hues — the system is one near-black, one deep green, one lemon yellow, and cream. Any additional color breaks the candlelight metaphor.",
+      "Don't soften corners with 8–12px radii. The 1px (near-zero) radius is a signature choice; rounding destroys the editorial feel.",
+      "Don't use tight or negative letter-spacing on display text. VenusCom's signature is wide positive tracking; tightening it makes headlines generic.",
+      "Don't place the Lemon Zest CTA on a Warm Cream background — the yellow loses all contrast and visual energy. The CTA belongs on dark.",
+      "Don't add drop shadows, glows, or gradients to cards, buttons, or images. The system is flat and confident; elevation comes from color contrast and scale, not depth effects.",
+      "Don't use Forest Ink (#103b15) as a button background — it is a text/link/border color only. The deep green on dark olive disappears.",
+      "Don't reduce the size of display headlines below 46px or pad the wordmark too tightly — the generous tracking and large scale is what makes the brand name feel like signage."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#1d0b0d",
+        "name": "Black Olive",
+        "role": "Page background, hero canvas, primary text on light sections — the dominant surface that makes the yellow accent feel like lit signage",
+        "group": "neutral"
+      },
+      {
+        "hex": "#103b15",
+        "name": "Forest Ink",
+        "role": "Headings, body text, list dividers, link color — the deep green gives the dark-mode typography a botanical, not corporate, character",
+        "group": "brand"
+      },
+      {
+        "hex": "#f7ea48",
+        "name": "Lemon Zest",
+        "role": "Filled CTA buttons, large display headlines, accent links, highlight washes — the only chromatic note in the system, used sparingly to ignite dark sections",
+        "group": "brand"
+      },
+      {
+        "hex": "#fcf9f0",
+        "name": "Warm Cream",
+        "role": "Light section backgrounds, card surfaces, off-white content panels — a paper-stock warmth that softens the dark hero without going clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dbe2dc",
+        "name": "Sage Mist",
+        "role": "Hairline dividers, subtle borders, muted accents — a desaturated green-gray that holds the system together without competing with the two brand greens",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Icon strokes, button borders, negative-space punctuation inside the dark canvas",
+        "group": "neutral"
+      }
+    ],
+    "imagery": "Food photography is the hero. Images are editorial, high-saturation, tightly cropped overhead or three-quarter views of plated dishes (poke bowls, salads, wraps, tortilla chips) on warm-toned surfaces — terracotta, terracotta, peach, mauve. Photography is treated as edge-to-edge tiles with no frames, no rounded corners, no drop shadows. The 'cards' in the grid are essentially unchromised photographs. No people, no lifestyle context, no abstract graphics — the food IS the visual identity. Icons are solid-fill Font Awesome glyphs at 14–16px, inheriting the wide letter-spacing of the type system.",
+    "similar": [
+      {
+        "why": "Same near-black canvas with a single vivid accent and oversized editorial display type over food photography",
+        "business": "Nobu Restaurants"
+      },
+      {
+        "why": "Same flat food-first photography aesthetic with minimal chrome, no shadows, and a single high-contrast accent",
+        "business": "Sweetgreen"
+      },
+      {
+        "why": "Same dark olive/forest palette with warm cream content sections and wide-tracked display typography",
+        "business": "Soho House"
+      },
+      {
+        "why": "Same editorial dark-canvas hero with display text floating over photography and lemon-yellow accent punctuation",
+        "business": "Oleada Studio"
+      },
+      {
+        "why": "Same near-square button radius, flat surfaces, and food-photography-as-hero approach with no decorative elevation",
+        "business": "Fucina (restaurant sites)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "1px",
+        "inputs": "1px",
+        "buttons": "1px",
+        "circular": "40px"
+      },
+      "elementGap": "15-20px",
+      "sectionGap": "60px",
+      "cardPadding": "30px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#1d0b0d",
+        "name": "Black Olive Canvas",
+        "level": 1,
+        "purpose": "Page background, hero canvas, footer — the dominant dark surface"
+      },
+      {
+        "hex": "#fcf9f0",
+        "name": "Warm Cream Panel",
+        "level": 2,
+        "purpose": "Light content sections, food card backgrounds, editorial body sections"
+      },
+      {
+        "hex": "#103b15",
+        "name": "Forest Ink Surface",
+        "level": 3,
+        "purpose": "Headline plates, dark accent surfaces, floating circular utility buttons"
+      },
+      {
+        "hex": "#f7ea48",
+        "name": "Lemon Zest Accent",
+        "level": 4,
+        "purpose": "Call-to-action fill, display text overlay, highlight washes on dark"
+      }
+    ],
+    "northStar": "moody brasserie under candlelight",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.45,
+        "letterSpacing": 0.84
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.37,
+        "letterSpacing": 0.64
+      },
+      {
+        "role": "body-lg",
+        "size": 20,
+        "lineHeight": 1.25,
+        "letterSpacing": 0.4
+      },
+      {
+        "role": "subheading",
+        "size": 26,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.52
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.15,
+        "letterSpacing": 0.9
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.15,
+        "letterSpacing": 1.08
+      },
+      {
+        "role": "heading-lg",
+        "size": 46,
+        "lineHeight": 1.1,
+        "letterSpacing": 1.84
+      },
+      {
+        "role": "display",
+        "size": 68,
+        "lineHeight": 1.01,
+        "letterSpacing": 4.08
+      },
+      {
+        "role": "display-xl",
+        "size": 75,
+        "lineHeight": 1,
+        "letterSpacing": 4.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide header with centered logo and split link groups",
+        "description": "Dark olive (#1d0b0d) background, full-bleed, ~80px tall. Two-column nav link groups (HOME, MENU, ABOUT US, FAQ, CONTACT on left; FOLLOW US ON INSTAGRAM on right) set in VenusCom 16px weight 400 letter-spacing 0.04em uppercase in Warm Cream (#fcf9f0). The 'HOME' item uses a 1px white border outline. Wordmark 'LIMÓN' centered at ~46px weight 500, letter-spacing ~1.84px, in Warm Cream. Vertical separators between nav items are implied by spacing rather than drawn."
+      },
+      {
+        "name": "Filled CTA Button (Lemon)",
+        "role": "Primary action — ordering, reservations",
+        "description": "Background: Lemon Zest (#f7ea48). Text: Black Olive (#1d0b0d) at 16px weight 600 letter-spacing 0.04em uppercase. Padding: 12px 16px. Border-radius: 1px (near-square). No border, no shadow. The flat saturated rectangle against the dark canvas is the system's loudest functional element — used sparingly so it stays loud."
+      },
+      {
+        "name": "Ghost / Outlined Navigation Item",
+        "role": "Active or current-section indicator in the nav bar",
+        "description": "Transparent background, 1px solid white (#ffffff) border, 1px radius. VenusCom 16px weight 400 uppercase Warm Cream text with 5–6px horizontal padding. Mirrors the filled CTA's letter-spacing."
+      },
+      {
+        "name": "Hero Overlay Display Text",
+        "role": "Large editorial wordmark floating over hero photography",
+        "description": "Lemon Zest (#f7ea48) at 75px weight 400 line-height 1.00, letter-spacing 4.5px (0.06em). Sits as two words on different lines with generous vertical breathing. Slightly transparent or overlaid on the food photography without a background plate — the text and image share the dark canvas."
+      },
+      {
+        "name": "Hero Sub-Line",
+        "role": "Supporting hero text under the display wordmark",
+        "description": "Warm Cream (#fcf9f0) at 20px weight 400, letter-spacing 0.4px. Plain sentence case, not uppercase. Sits below the display line at ~20px gap."
+      },
+      {
+        "name": "Food Card (3-Column Grid)",
+        "role": "Menu item tile in the cream section's three-up grid",
+        "description": "Square or near-square food photograph as the only visual element — no card chrome, no border, no shadow. Caption sits 30px below the image: VenusCom 20px body in Black Olive or Forest Ink (#103b15), followed by descriptive body copy at 19px, then an 'ORDER NOW' ghost link with right-arrow. Grid gap is ~30px horizontal and ~40px vertical."
+      },
+      {
+        "name": "Ghost Link Button (ORDER NOW)",
+        "role": "Tertiary action — per-item ordering, inline CTAs in card descriptions",
+        "description": "No background, no border. VenusCom 16px weight 500 uppercase, letter-spacing 0.04em, in Forest Ink (#103b15) or Black Olive depending on section. A right-arrow glyph (Font Awesome 6 Free solid) sits inline at 14px. 4px gap between text and arrow. Underline appears on hover only."
+      },
+      {
+        "name": "Back-to-Top Circular Button",
+        "role": "Floating utility control after scroll",
+        "description": "40px diameter circle, Forest Ink (#103b15) background, Warm Cream (#fcf9f0) upward chevron icon centered. Position: fixed bottom-right with ~24px inset. Zero shadow, zero border."
+      },
+      {
+        "name": "Featured Dish Banner (Poke/Featured Section)",
+        "role": "Full-bleed editorial food section with oversized photography",
+        "description": "Warm Cream (#fcf9f0) section background. A single large food photograph offset to the right (roughly right-half of the container, ~55% width), no card or frame. Text and CTA stack to the left at 30–40px gap, with heading at 30–36px and body at 19px."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Standard heading + intro copy used between sections",
+        "description": "Centered or left-aligned. Heading in VenusCom 30–36px weight 500, letter-spacing ~1px, in Forest Ink (#103b15) on cream or Warm Cream on dark. Body intro at 19px weight 400. 20–30px margin-bottom between heading and body."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Default readable copy block in menu descriptions and content sections",
+        "description": "VenusCom 19px weight 400 line-height 1.30 letter-spacing 0.57px. Color: Forest Ink (#103b15) on cream, or Warm Cream (#fcf9f0) on dark. Max-width ~640px to maintain measure."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface across all UI — the signature choice is positive tracking that scales with size (0.06em at 75px down to 0.04em at body), giving display lines a wide-set, almost neon-sign feel and keeping small body text compact",
+        "sizes": "14, 16, 19, 20, 26, 30, 36, 46, 54, 68, 75px",
+        "family": "VenusCom",
+        "weight": "300, 400, 500, 600, 700",
+        "lineHeight": "1.00, 1.01, 1.15, 1.20, 1.25, 1.30, 1.35, 1.37, 1.40, 1.45, 1.60",
+        "substitute": "DM Sans, Outfit, or Plus Jakarta Sans",
+        "letterSpacing": "0.02em at 26px, 0.03em at 30–36px, 0.04em at 46px, 0.06em at 54–75px"
+      },
+      {
+        "role": "Icon system — solid-fill glyphs inheriting the wide letter-spacing for UI micro-elements (arrows, social marks)",
+        "sizes": "14, 16px",
+        "family": "Font Awesome 6 Free",
+        "weight": "900",
+        "lineHeight": "1.00",
+        "letterSpacing": "0.04em, 0.06em"
+      },
+      {
+        "role": "Brand/social icons rendered larger for footer or badge contexts",
+        "sizes": "36px",
+        "family": "Font Awesome 6 Brands",
+        "weight": "400",
+        "lineHeight": "1.00"
+      },
+      {
+        "role": "Times — detected in extracted data but not described by AI",
+        "sizes": "19px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.01"
+      },
+      {
+        "role": "Helvetica — detected in extracted data but not described by AI",
+        "sizes": "15px",
+        "family": "Helvetica",
+        "weight": "400",
+        "lineHeight": "1.5",
+        "letterSpacing": "0.007"
+      },
+      {
+        "role": "FreeSans — detected in extracted data but not described by AI",
+        "sizes": "19px",
+        "family": "FreeSans",
+        "weight": "400",
+        "lineHeight": "1.01",
+        "letterSpacing": "-0.312"
+      }
+    ],
+    "description": "Limón runs on the visual grammar of an evening brasserie: deep olive-black canvases under warm overhead light, food photographed as editorial still-life, and a single flash of saturated lemon yellow that reads as accent illumination rather than decoration. Typography carries unusually wide positive tracking — almost hand-stenciled — which makes the brand name and display lines feel pressed onto glass or neon. The palette is deliberately minimal: one near-black, one forest-deep green, one electric yellow, and one warm cream for the breathing sections. Cards and images are heavy; chrome (buttons, borders, dividers) is feather-light with essentially zero corner radius, giving the whole site a confident, unsoftened edge.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f1b6a7d6-1ecb-4f1c-95b0-e03323363999#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Limón design system\",\"item\":\"https://styles.refero.design/style/f1b6a7d6-1ecb-4f1c-95b0-e03323363999\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f1b6a7d6-1ecb-4f1c-95b0-e03323363999#style-reference\",\"name\":\"Limón design system reference\",\"headline\":\"Limón design system | Refero Styles\",\"description\":\"Explore Limón's dark Other design system: Black Olive #1d0b0d, Forest Ink #103b15 colors, VenusCom, Font Awesome 6 Free typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f1b6a7d6-1ecb-4f1c-95b0-e03323363999\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f1b6a7d6-1ecb-4f1c-95b0-e03323363999\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Limón\",\"url\":\"https://limonoslo.no\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f1b6a7d6-1ecb-4f1c-95b0-e03323363999#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/df527dd2-9abb-46d0-8e64-8b08d8ff54bb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/df527dd2-9abb-46d0-8e64-8b08d8ff54bb.jpg\",\"caption\":\"Screenshot of Limón\"},\"image\":\"https://images.refero.design/styles/refero.design/image/df527dd2-9abb-46d0-8e64-8b08d8ff54bb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Limón design system\",\"Limón website design\",\"Limón colors\",\"Limón typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Black Olive\",\"Forest Ink\",\"Lemon Zest\",\"Warm Cream\",\"VenusCom\",\"Font Awesome 6 Free\",\"Font Awesome 6 Brands\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Limón design system\"},{\"@type\":\"Thing\",\"name\":\"Limón website design\"},{\"@type\":\"Thing\",\"name\":\"Limón colors\"},{\"@type\":\"Thing\",\"name\":\"Limón typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T02:47:04.459Z\",\"dateModified\":\"2026-04-30T02:47:04.459Z\"}]}19:T5a1,Quick Color Reference\n- text (primary): #1d0b0d on light, #fcf9f0 on dark\n- text (accent/brand): #103b15 on light, #f7ea48 on dark\n- background (canvas): #1d0b0d\n- background (light section): #fcf9f0\n- border/hairline: #dbe2dc or #103b15\n- primary action: #f7ea48 (filled action)\n\nExample Component Prompts\n1. Create a filled CTA button: background #f7ea48, text #1d0b0d, padding 12px 16px, border-radius 1px, font VenusCom 16px weight 600 uppercase letter-spacing 0.64px. No border, no shadow.\n2. Create a food card in a three-column grid: full-bleed square photograph with no border or radius, VenusCom 20px weight 500 heading in #103b15 30px below the image, 19px body copy in #103b15, then a ghost 'ORDER NOW' link with a 14px right-arrow icon at 15px gap. Grid gap 30px.\n3. Create a hero display headline: text in #f7ea48, font VenusCom 75px weight 400 line-height 1.00, letter-spacing 4.5px, overlaid directly on a dark olive (#1d0b0d) background with food photography, no background plate. A 20px sub-line in #fcf9f0 at 20px below.\n4. Create a back-to-top circular button: 40px diameter, background #103b15, centered upward chevron icon in #fcf9f0, fixed bottom-right with 24px inset. No shadow.\n5. Create a top navigation bar: full-bleed #1d0b0d background, centered 46px VenusCom wordmark in #fcf9f0, two groups of nav links in 16px uppercase letter-spacing 0.64px flanking the logo. Active nav item uses a 1px white border outline."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids shadows, gradients, and stacked depth. Visual hierarchy is built entirely through color contrast (dark olive vs cream vs lemon yellow), scale (75px display vs 16px body), and positive letter-spacing — never through drop shadows or z-axis elevation. Flatness is a core brand choice: the food photography is the only thing with physical presence, and the UI chrome must recede beside it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1d0b0d",
+          "oklch": {
+            "c": 0.03141060277586537,
+            "h": 13.69187697898327,
+            "l": 0.17819855773560309
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "image",
+            "button",
+            "list",
+            "footer"
+          ],
+          "frequency": 135,
+          "confidence": 1,
+          "prominence": 41667938.22730908,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "body/color": 8,
+            "list/color": 8,
+            "image/color": 3,
+            "other/color": 104,
+            "button/color": 3,
+            "footer/color": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#103b15",
+          "oklch": {
+            "c": 0.07975734351411308,
+            "h": 145.32479637699694,
+            "l": 0.31237114286552126
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "image",
+            "body",
+            "button",
+            "other",
+            "heading",
+            "list",
+            "badge"
+          ],
+          "frequency": 103,
+          "confidence": 1,
+          "prominence": 5879334.332881492,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 5,
+            "body/color": 28,
+            "link/color": 10,
+            "badge/color": 1,
+            "image/color": 2,
+            "other/color": 1,
+            "button/color": 2,
+            "heading/color": 18,
+            "nav/borderColor": 4,
+            "list/borderColor": 24,
+            "other/borderColor": 4,
+            "list/backgroundColor": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fcf9f0",
+          "oklch": {
+            "c": 0.01229119944711188,
+            "h": 91.51572787552367,
+            "l": 0.9819627459170612
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 3454485.998896787,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 2,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#dbe2dc",
+          "oklch": {
+            "c": 0.01101184663064187,
+            "h": 149.8483037361038,
+            "l": 0.9057465953200654
+          },
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 3101667.866908964,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 3,
+            "list/borderColor": 8,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f7ea48",
+          "oklch": {
+            "c": 0.17314900253694518,
+            "h": 104.68610138587026,
+            "l": 0.9202891356324088
+          },
+          "contexts": [
+            "button",
+            "heading",
+            "body",
+            "list",
+            "link",
+            "badge"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 181156,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "link/color": 3,
+            "badge/color": 1,
+            "heading/color": 5,
+            "body/backgroundColor": 1,
+            "list/backgroundColor": 3,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 111780.1331566892,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "other/fill": 1,
+            "other/color": 1,
+            "button/color": 1,
+            "heading/color": 1,
+            "icon/borderColor": 4,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 4608,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#141414",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1912512996316179
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2304,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.1424337795889492,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.95,
+          "background": "#fcf9f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.99,
+          "background": "#1d0b0d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.42,
+          "background": "#ffffff",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.04,
+          "background": "#fcf9f0",
+          "foreground": "#1d0b0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.5,
+          "background": "#fcf9f0",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.82,
+          "background": "#f7ea48",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.92,
+          "background": "#dbe2dc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.21,
+          "background": "#f7ea48",
+          "foreground": "#1d0b0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.75,
+          "background": "#f7ea48",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.4,
+          "background": "#dbe2dc",
+          "foreground": "#1d0b0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.97,
+          "background": "#dbe2dc",
+          "foreground": "#141414"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.66,
+          "background": "#103b15",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.03,
+          "background": "#fcf9f0",
+          "foreground": "#103b15"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.14,
+          "background": "#f7ea48",
+          "foreground": "#103b15"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.6,
+          "background": "#dbe2dc",
+          "foreground": "#103b15"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.5,
+          "background": "#103b15",
+          "foreground": "#1d0b0d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.32,
+          "background": "#dbe2dc",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.25,
+          "background": "#dbe2dc",
+          "foreground": "#fcf9f0"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.25,
+          "background": "#f7ea48",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 1,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "image",
+            "body",
+            "list"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|image",
+            "paddingRight|image",
+            "paddingBottom|image",
+            "paddingLeft|image",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "body",
+            "list",
+            "heading"
+          ],
+          "frequency": 102,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "marginTop|list",
+            "marginBottom|list",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "heading",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginBottom|heading",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "heading",
+            "image"
+          ],
+          "frequency": 31,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "paddingBottom|other",
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 98,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "VenusCom",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 198,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Font Awesome 6 Brands",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Font Awesome 6 Free",
+          "source": "custom",
+          "weights": [
+            900
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Helvetica",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "FreeSans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "VenusCom",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.37,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Font Awesome 6 Free",
+          "weight": 900,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "VenusCom",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "VenusCom",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "VenusCom",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "footer"
+          ],
+          "frequency": 115,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "VenusCom",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "VenusCom",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "VenusCom",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Font Awesome 6 Free",
+          "weight": 900,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 19,
+          "family": "VenusCom",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.01,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 19,
+          "family": "VenusCom",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.01,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 19,
+          "family": "FreeSans",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.01,
+          "letterSpacing": -0.312,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.01,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "VenusCom",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "VenusCom",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "VenusCom",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 26,
+          "family": "VenusCom",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "VenusCom",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "VenusCom",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "VenusCom",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 36,
+          "family": "VenusCom",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.53,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 36,
+          "family": "VenusCom",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.53,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Font Awesome 6 Brands",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "badge"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "VenusCom",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "VenusCom",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 68,
+          "family": "VenusCom",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 75,
+          "family": "VenusCom",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 75,
+          "family": "VenusCom",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/df2a817d-68f4-4971-9c04-01a48952cff3.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/df527dd2-9abb-46d0-8e64-8b08d8ff54bb.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f1b6a7d6-1ecb-4f1c-95b0-e03323363999#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Limón design system\",\"item\":\"https://styles.refero.design/style/f1b6a7d6-1ecb-4f1c-95b0-e03323363999\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f1b6a7d6-1ecb-4f1c-95b0-e03323363999#style-reference\",\"name\":\"Limón design system reference\",\"headline\":\"Limón design system | Refero Styles\",\"description\":\"Explore Limón's dark Other design system: Black Olive #1d0b0d, Forest Ink #103b15 colors, VenusCom, Font Awesome 6 Free typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f1b6a7d6-1ecb-4f1c-95b0-e03323363999\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f1b6a7d6-1ecb-4f1c-95b0-e03323363999\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Limón\",\"url\":\"https://limonoslo.no\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f1b6a7d6-1ecb-4f1c-95b0-e03323363999#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/df527dd2-9abb-46d0-8e64-8b08d8ff54bb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/df527dd2-9abb-46d0-8e64-8b08d8ff54bb.jpg\",\"caption\":\"Screenshot of Limón\"},\"image\":\"https://images.refero.design/styles/refero.design/image/df527dd2-9abb-46d0-8e64-8b08d8ff54bb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Limón design system\",\"Limón website design\",\"Limón colors\",\"Limón typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Black Olive\",\"Forest Ink\",\"Lemon Zest\",\"Warm Cream\",\"VenusCom\",\"Font Awesome 6 Free\",\"Font Awesome 6 Brands\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Limón design system\"},{\"@type\":\"Thing\",\"name\":\"Limón website design\"},{\"@type\":\"Thing\",\"name\":\"Limón colors\"},{\"@type\":\"Thing\",\"name\":\"Limón typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T02:47:04.459Z\",\"dateModified\":\"2026-04-30T02:47:04.459Z\"}]}19:T5a1,Quick Color Reference\n- text (primary): #1d0b0d on light, #fcf9f0 on dark\n- text (accent/brand): #103b15 on light, #f7ea48 on dark\n- background (canvas): #1d0b0d\n- background (light section): #fcf9f0\n- border/hairline: #dbe2dc or #103b15\n- primary action: #f7ea48 (filled action)\n\nExample Component Prompts\n1. Create a filled CTA button: background #f7ea48, text #1d0b0d, padding 12px 16px, border-radius 1px, font VenusCom 16px weight 600 uppercase letter-spacing 0.64px. No border, no shadow.\n2. Create a food card in a three-column grid: full-bleed square photograph with no border or radius, VenusCom 20px weight 500 heading in #103b15 30px below the image, 19px body copy in #103b15, then a ghost 'ORDER NOW' link with a 14px right-arrow icon at 15px gap. Grid gap 30px.\n3. Create a hero display headline: text in #f7ea48, font VenusCom 75px weight 400 line-height 1.00, letter-spacing 4.5px, overlaid directly on a dark olive (#1d0b0d) background with food photography, no background plate. A 20px sub-line in #fcf9f0 at 20px below.\n4. Create a back-to-top circular button: 40px diameter, background #103b15, centered upward chevron icon in #fcf9f0, fixed bottom-right with 24px inset. No shadow.\n5. Create a top navigation bar: full-bleed #1d0b0d background, centered 46px VenusCom wordmark in #fcf9f0, two groups of nav links in 16px uppercase letter-spacing 0.64px flanking the logo. Active nav item uses a 1px white border outline."
+}

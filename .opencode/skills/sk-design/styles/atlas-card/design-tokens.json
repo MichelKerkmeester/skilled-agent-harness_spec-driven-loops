@@ -1,0 +1,277 @@
+{
+  "color": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Page canvas, section backgrounds, image masks — pure absorption that lets photography and the blue accent carry all visual weight"
+    },
+    "obsidian": {
+      "$value": "#1e1e1e",
+      "$type": "color",
+      "$description": "Obsidian — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "graphite": {
+      "$value": "#272727",
+      "$type": "color",
+      "$description": "Graphite — Hover states, tertiary surfaces, subtle panel backgrounds — the second elevation step, still achromatic"
+    },
+    "ash": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Ash — Secondary text, muted metadata, helper copy, de-emphasized body — sits between the white text and the void"
+    },
+    "frost": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Frost — Tertiary text, icon strokes on dark, disabled foregrounds — lighter than Ash but never as bright as primary text"
+    },
+    "paper": {
+      "$value": "#f8f8f8",
+      "$type": "color",
+      "$description": "Paper — Primary body and heading text, button text on filled controls — chosen over pure white for a softer, less clinical read on black"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Logo badge background, icon fills on light photography, maximum-emphasis text — reserved for logo lockups and peak contrast moments"
+    },
+    "sapphire-volt": {
+      "$value": "#001391",
+      "$type": "color",
+      "$description": "Sapphire Volt — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "sequel-sans-headline-book": {
+      "$value": "Sequel Sans Headline Book",
+      "$type": "fontFamily",
+      "$description": "Display and body headlines. The 700 weight carries section titles and hero text; 400 handles body copy and subheadings. Sequel Sans is a geometric sans with tall x-height and clean terminals — its near-equal weight across 400 and 700 means hierarchy is established by size and tracking, not by contrast in stroke weight. Letter-spacing sits between -0.0080em and +0.0080em, virtually neutral, so text reads as one confident voice rather than tight display or loose utility."
+    },
+    "sequel-sans-book": {
+      "$value": "Sequel Sans Book",
+      "$type": "fontFamily",
+      "$description": "Button labels, navigation links, footer text, inline emphasis — Sequel Sans in its single weight at 17px is the utility voice: controls, links, and micro-copy. Sharing DNA with the headline family creates a unified typographic system where buttons feel like a natural extension of the text, not a separate component."
+    },
+    "apercumono-pro": {
+      "$value": "ApercuMono Pro",
+      "$type": "fontFamily",
+      "$description": "Captions, fine print, disclaimers, metadata, eyebrow labels, monospaced tags. ApercuMono provides the system's secondary voice: a monospaced counterpoint that signals 'annotation' or 'footnote' the moment it appears. The 10px and 12px sizes are reserved for legal/qualifier text below buttons; 15px with generous 1.67 line-height handles inline annotations and small labels. This pairing of geometric sans + monospace is a signature choice — it evokes fintech precision and concierge paperwork simultaneously."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ApercuMono Pro Regular",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ApercuMono Pro Medium",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ApercuMono Pro Medium",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Sequel Sans Headline Book",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Sequel Sans Book",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Sequel Sans Headline Book",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Sequel Sans Headline Book",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Sequel Sans Headline Book",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Sequel Sans Headline Book",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "176": {
+      "$value": "176px",
+      "$type": "dimension",
+      "$description": "Spacing 176px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1429px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, full-bleed section foundation"
+    },
+    "obsidian-panel": {
+      "$value": "#1e1e1",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated buttons, first surface step"
+    },
+    "graphite-layer": {
+      "$value": "#272727",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary panels, hover states, image overlays"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://atlascard.com",
+      "siteName": "Atlas Card",
+      "extractedAt": "2026-06-03T15:45:55.597Z",
+      "variant": "extended"
+    }
+  }
+}

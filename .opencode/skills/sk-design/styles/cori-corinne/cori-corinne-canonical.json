@@ -1,0 +1,449 @@
+{
+  "source": "https://styles.refero.design/style/2c18e573-0ffb-4f0d-848c-ff72a5839fd3",
+  "uuid": "2c18e573-0ffb-4f0d-848c-ff72a5839fd3",
+  "name": "Cori Corinne",
+  "northStar": "editorial gallery on warm paper",
+  "capturedAt": "2026-07-18T08:29:07.730Z",
+  "meta": {
+    "url": "https://www.coricorinne.com",
+    "siteName": "Cori Corinne",
+    "extractedAt": "2026-06-03T17:02:17.746Z",
+    "durationMs": 32307,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 83,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Let the cream (#f6f5f0) canvas dominate — never add a full-bleed colored background section",
+      "Use the editorial serif at 120-180px only for the nameplate or equivalent hero moment; never as body text",
+      "Set body text at 18px with 2.33 line-height for the editorial reading rhythm",
+      "Keep all border-radius at 0px — this system is sharp-edged and print-like",
+      "Use 30px horizontal padding on the nav bar to create edge-to-edge breathing",
+      "Let photography fill its container edge-to-edge with no rounded corners or frames",
+      "Use #292a2c for body text and #000000 for nav/links/display — the slight tonal shift adds subtle hierarchy"
+    ],
+    "donts": [
+      "Don't introduce any color outside the cream/white/charcoal/black palette — the 1% colorfulness is the brand",
+      "Don't use shadows, gradients, or elevation — the system is flat and paper-like",
+      "Don't round corners on images, buttons, or cards — sharp edges are mandatory",
+      "Don't use the editorial serif for body copy or navigation — it is display-only",
+      "Don't add borders, dividers, or rules between sections — let whitespace separate content",
+      "Don't center body text in long blocks — left-align for editorial readability",
+      "Don't use the monogram 'C+C' at large sizes or with decoration — it stays small and quiet"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f6f5f0",
+        "name": "Paper Cream",
+        "role": "Page background — warm off-white canvas, the surface everything floats on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Alternate surface for image plates and card containers layered on the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#292a2c",
+        "name": "Ink Charcoal",
+        "role": "Primary text, heading fills, and structural borders — near-black with a faint warm cast that sits softer on cream than pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Ink",
+        "role": "Navigation text, link colors, and heading strokes — reserved for the most weighty typographic moments",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed single-column layout with no visible max-width constraint. The top navigation is a thin horizontal bar with monogram left and menu right, sitting directly on the cream canvas. The hero is a single massive display line that spans nearly the full viewport width, followed by full-bleed or two-column photography sections. Content alternates between edge-to-edge image plates and left-aligned text blocks. Vertical rhythm is extremely spacious — 80-120px between sections. No sidebar, no card grid, no multi-column content layout visible. The structure is essentially: nav → display type → image → image → text → image, with generous whitespace as the only divider.",
+    "imagery": "Natural-light documentary photography — candid portraits with shallow depth of field, warm color temperature, grain or film texture visible. Images function as gallery plates: full-bleed or column-width, no rounded corners, no frames, no overlays. Photography is the primary visual content; the UI is almost invisible around it. Subjects are human, close-cropped, and editorial in tone — fashion-magazine sensibility rather than corporate headshots.",
+    "similar": [
+      {
+        "why": "Same editorial portfolio-on-cream aesthetic with massive display serif type and minimal sans-serif navigation",
+        "business": "Werkplaats Typografie"
+      },
+      {
+        "why": "Same paper-warm background, monochromatic restraint, and serif/sans typographic contrast",
+        "business": "Aesop (corinccorporate.com style sites)"
+      },
+      {
+        "why": "Same editorial-print sensibility — warm neutral canvas, full-bleed documentary photography, near-zero UI chrome",
+        "business": "Kinfolk Magazine web"
+      },
+      {
+        "why": "Same single-name display nameplate as hero, cream or off-white background, photography-forward, minimal nav",
+        "business": "Portfolio sites by designers like Frank Chimero or Tim Van Damme"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "30px",
+      "sectionGap": "80-120px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f6f5f0",
+        "name": "Paper Canvas",
+        "level": 1,
+        "purpose": "Base page background — warm cream, the dominant surface"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Plate White",
+        "level": 2,
+        "purpose": "Image plate backgrounds and card containers that sit on the cream"
+      }
+    ],
+    "northStar": "editorial gallery on warm paper",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 30
+      },
+      {
+        "role": "display",
+        "size": 180,
+        "lineHeight": 180
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal horizontal nav — monogram left, menu items right",
+        "description": "No background fill, no border-bottom. Monogram 'C+C' in #000000 at left, menu items (About, Work, Teaching, Artifacts, Contact) in #000000 at right, all in 18px Neue Haas Grotesk Text weight 400. 30px horizontal padding on both sides. Vertically centered, no shadow, no fill — the cream paper shows through."
+      },
+      {
+        "name": "Display Nameplate",
+        "role": "Hero typographic element — the site's signature",
+        "description": "Single line of editorial serif text ('Cori Corinne') at ~180px, weight 400, line-height 1.0, color #000000. Spans nearly full viewport width. No underline, no decoration. The letterforms themselves do the work — high contrast, elegant terminals."
+      },
+      {
+        "name": "Photography Plate",
+        "role": "Full-bleed or grid-aligned image container",
+        "description": "Edge-to-edge or column-width images with 0px border-radius. No border, no shadow, no frame. Photographs sit directly on the cream canvas, sometimes with white (#ffffff) plate behind them. Images carry the content — no overlays or captions layered on top."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Long-form content reading area",
+        "description": "18px Open Sans weight 400, line-height 2.33 (generous, editorial). Color #292a2c. No max-width constraint apparent — reads as a full-width column or naturally constrained by image grid alignment."
+      },
+      {
+        "name": "Monogram Logo",
+        "role": "Brand mark — top-left anchor",
+        "description": "'C+C' in 18px Neue Haas Grotesk Text weight 400, #000000. Minimal, almost invisible — functions as a return-to-home cue rather than a decorative logo."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Hero nameplate only — the massive 'Cori Corinne' cover line. High-contrast strokes (hairline serifs, thick verticals) create a fashion-magazine authority. Not used anywhere else on the site; this is a one-shot signature moment.",
+        "sizes": "",
+        "family": "Editorial Serif (display — likely Bodoni/Didone family or custom)",
+        "weight": "400",
+        "lineHeight": "1.0",
+        "substitute": "Bodoni Moda, Playfair Display, or DM Serif Display"
+      },
+      {
+        "role": "Navigation and body text — the workhorse sans. Tight line-height (1.0) at large sizes for nav, generous (2.33) for body. Its restraint and neutrality are the point: the serif gets all the drama.",
+        "sizes": "18px, 30px",
+        "family": "Neue Haas Grotesk Text",
+        "weight": "400",
+        "lineHeight": "1.0 to 2.33",
+        "substitute": "Inter, Helvetica Neue, or system-ui"
+      },
+      {
+        "role": "Secondary body and link text — slightly warmer geometry than Neue Haas, used as a fallback or accent voice for long-form reading sections.",
+        "sizes": "18px, 30px",
+        "family": "Open Sans",
+        "weight": "400",
+        "lineHeight": "1.67 to 2.33",
+        "substitute": "Source Sans 3 or Noto Sans"
+      }
+    ],
+    "description": "Cori Corinne is a personal portfolio site that reads like an editorial print spread — a warm cream canvas, a single massive serif name as the cover line, and quiet sans-serif navigation that almost disappears. The entire system is restrained to one ink color and one paper color, letting photography and typography do all the expressive work. Every element earns its place: the wordmark is the hero, the page sections function as gallery plates, and the only UI chrome is a hairline-thin top bar. Components are essentially absent — this is a typography-and-photography system, not a component library. The visual identity comes from the tension between the whisper-light cream background (#f6f5f0) and the dense, high-contrast serif display, which creates a fashion-editorial or art-catalog feeling rather than a typical portfolio grid.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2c18e573-0ffb-4f0d-848c-ff72a5839fd3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Cori Corinne design system\",\"item\":\"https://styles.refero.design/style/2c18e573-0ffb-4f0d-848c-ff72a5839fd3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2c18e573-0ffb-4f0d-848c-ff72a5839fd3#style-reference\",\"name\":\"Cori Corinne design system reference\",\"headline\":\"Cori Corinne design system | Refero Styles\",\"description\":\"Explore Cori Corinne's light Agency design system: Paper Cream #f6f5f0, Bone White #ffffff colors, Editorial Serif (display — likely Bodoni/Didone family or...\",\"url\":\"https://styles.refero.design/style/2c18e573-0ffb-4f0d-848c-ff72a5839fd3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2c18e573-0ffb-4f0d-848c-ff72a5839fd3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Cori Corinne\",\"url\":\"https://www.coricorinne.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2c18e573-0ffb-4f0d-848c-ff72a5839fd3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ac1459de-09ed-40de-a18c-49bbd84fe98c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ac1459de-09ed-40de-a18c-49bbd84fe98c.jpg\",\"caption\":\"Screenshot of Cori Corinne\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ac1459de-09ed-40de-a18c-49bbd84fe98c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Cori Corinne design system\",\"Cori Corinne website design\",\"Cori Corinne colors\",\"Cori Corinne typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper Cream\",\"Bone White\",\"Ink Charcoal\",\"Pure Ink\",\"Editorial Serif (display — likely Bodoni/Didone family or custom)\",\"Neue Haas Grotesk Text\",\"Open Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Cori Corinne design system\"},{\"@type\":\"Thing\",\"name\":\"Cori Corinne website design\"},{\"@type\":\"Thing\",\"name\":\"Cori Corinne colors\"},{\"@type\":\"Thing\",\"name\":\"Cori Corinne typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:02:18.446Z\",\"dateModified\":\"2026-04-30T03:02:18.446Z\"}]}19:T5eb,**Quick Color Reference**\n- Background: #f6f5f0 (Paper Cream)\n- Surface: #ffffff (Bone White)\n- Text/Heading: #292a2c (Ink Charcoal)\n- Nav/Link/Display: #000000 (Pure Ink)\n- Border: #292a2c at 1px\n- Accent: none (monochrome only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a top navigation bar: cream background (#f6f5f0), no border, no shadow. Left-aligned monogram 'C+C' in 18px Neue Haas Grotesk weight 400, #000000. Right-aligned menu items (About, Work, Teaching, Artifacts, Contact) in the same font and color. 30px padding left and right. Vertically centered.\n\n2. Create a display nameplate: a single line of 'Cori Corinne' in an editorial serif (Bodoni Moda), weight 400, ~180px size, line-height 1.0, color #000000. Spans nearly full viewport width. Sits on the cream (#f6f5f0) canvas with 60-80px top padding.\n\n3. Create a photography plate: full-bleed image at viewport width, 0px border-radius, no border, no shadow. Image sits directly on the cream canvas with 80-100px vertical breathing room above and below. No captions, no overlays.\n\n4. Create a body text block: 18px Open Sans weight 400, line-height 2.33, color #292a2c. Left-aligned. No max-width constraint — flows naturally or is constrained by adjacent image columns. 80px vertical gap to next section.\n\n5. Create a two-column image grid: two photographs side by side, each at 50% viewport width, 0px border-radius, 0px gap between them. No gutter, no border, no frame. Sits on cream (#f6f5f0) canvas."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#292a2c",
+          "oklch": {
+            "c": 0.003912727543498919,
+            "h": 264.5039439516218,
+            "l": 0.28477360399949125
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "hero",
+            "heading"
+          ],
+          "frequency": 315,
+          "confidence": 1,
+          "prominence": 17708750.772712216,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "hero/color": 1,
+            "image/color": 3,
+            "other/color": 47,
+            "heading/color": 5,
+            "nav/borderColor": 28,
+            "hero/borderColor": 4,
+            "image/borderColor": 12,
+            "other/borderColor": 188,
+            "heading/borderColor": 20
+          }
+        },
+        {
+          "hex": "#f6f5f0",
+          "oklch": {
+            "c": 0.00670686953134852,
+            "h": 97.35175855103256,
+            "l": 0.9695333415218491
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2132613,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "link",
+            "nav",
+            "heading"
+          ],
+          "frequency": 95,
+          "confidence": 1,
+          "prominence": 37455.26670410194,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 10,
+            "link/color": 4,
+            "heading/color": 6,
+            "nav/borderColor": 35,
+            "link/borderColor": 16,
+            "heading/borderColor": 24
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00812920523309832,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.24,
+          "background": "#f6f5f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.37,
+          "background": "#ffffff",
+          "foreground": "#292a2c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.16,
+          "background": "#f6f5f0",
+          "foreground": "#292a2c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Open Sans",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 60,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "neue-haas-grotesk-text",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 23,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 18,
+          "family": "Open Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "neue-haas-grotesk-text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "neue-haas-grotesk-text",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Open Sans",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 2.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "neue-haas-grotesk-text",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 2.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/45ddd07a-f591-40d9-be4f-bcf9a6f1ceb0.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ac1459de-09ed-40de-a18c-49bbd84fe98c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2c18e573-0ffb-4f0d-848c-ff72a5839fd3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Cori Corinne design system\",\"item\":\"https://styles.refero.design/style/2c18e573-0ffb-4f0d-848c-ff72a5839fd3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2c18e573-0ffb-4f0d-848c-ff72a5839fd3#style-reference\",\"name\":\"Cori Corinne design system reference\",\"headline\":\"Cori Corinne design system | Refero Styles\",\"description\":\"Explore Cori Corinne's light Agency design system: Paper Cream #f6f5f0, Bone White #ffffff colors, Editorial Serif (display — likely Bodoni/Didone family or...\",\"url\":\"https://styles.refero.design/style/2c18e573-0ffb-4f0d-848c-ff72a5839fd3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2c18e573-0ffb-4f0d-848c-ff72a5839fd3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Cori Corinne\",\"url\":\"https://www.coricorinne.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2c18e573-0ffb-4f0d-848c-ff72a5839fd3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ac1459de-09ed-40de-a18c-49bbd84fe98c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ac1459de-09ed-40de-a18c-49bbd84fe98c.jpg\",\"caption\":\"Screenshot of Cori Corinne\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ac1459de-09ed-40de-a18c-49bbd84fe98c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Cori Corinne design system\",\"Cori Corinne website design\",\"Cori Corinne colors\",\"Cori Corinne typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper Cream\",\"Bone White\",\"Ink Charcoal\",\"Pure Ink\",\"Editorial Serif (display — likely Bodoni/Didone family or custom)\",\"Neue Haas Grotesk Text\",\"Open Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Cori Corinne design system\"},{\"@type\":\"Thing\",\"name\":\"Cori Corinne website design\"},{\"@type\":\"Thing\",\"name\":\"Cori Corinne colors\"},{\"@type\":\"Thing\",\"name\":\"Cori Corinne typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:02:18.446Z\",\"dateModified\":\"2026-04-30T03:02:18.446Z\"}]}19:T5eb,**Quick Color Reference**\n- Background: #f6f5f0 (Paper Cream)\n- Surface: #ffffff (Bone White)\n- Text/Heading: #292a2c (Ink Charcoal)\n- Nav/Link/Display: #000000 (Pure Ink)\n- Border: #292a2c at 1px\n- Accent: none (monochrome only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a top navigation bar: cream background (#f6f5f0), no border, no shadow. Left-aligned monogram 'C+C' in 18px Neue Haas Grotesk weight 400, #000000. Right-aligned menu items (About, Work, Teaching, Artifacts, Contact) in the same font and color. 30px padding left and right. Vertically centered.\n\n2. Create a display nameplate: a single line of 'Cori Corinne' in an editorial serif (Bodoni Moda), weight 400, ~180px size, line-height 1.0, color #000000. Spans nearly full viewport width. Sits on the cream (#f6f5f0) canvas with 60-80px top padding.\n\n3. Create a photography plate: full-bleed image at viewport width, 0px border-radius, no border, no shadow. Image sits directly on the cream canvas with 80-100px vertical breathing room above and below. No captions, no overlays.\n\n4. Create a body text block: 18px Open Sans weight 400, line-height 2.33, color #292a2c. Left-aligned. No max-width constraint — flows naturally or is constrained by adjacent image columns. 80px vertical gap to next section.\n\n5. Create a two-column image grid: two photographs side by side, each at 50% viewport width, 0px border-radius, 0px gap between them. No gutter, no border, no frame. Sits on cream (#f6f5f0) canvas."
+}

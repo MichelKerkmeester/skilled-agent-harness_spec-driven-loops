@@ -1,0 +1,944 @@
+{
+  "source": "https://styles.refero.design/style/e67ac20e-6497-4756-b7e2-17859a794fb6",
+  "uuid": "e67ac20e-6497-4756-b7e2-17859a794fb6",
+  "name": "Silencio",
+  "northStar": "white room with floating artifacts. A warm-paper gallery vitrine where every element earns its space against negative volume, and silence is a deliberate design material.",
+  "capturedAt": "2026-07-18T08:20:55.806Z",
+  "meta": {
+    "url": "https://silencio.es",
+    "siteName": "Silencio",
+    "extractedAt": "2026-06-03T17:34:46.576Z",
+    "durationMs": 32133,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1526,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the full 141px HaasT weight 100 for display headlines — it is the only moment this system is allowed to be loud",
+      "Reach for #dbdad9 as the only chromatic surface departure; every other surface stays #ffffff or #000000",
+      "Separate content with 1px #000000 hairlines, not padding, not shadows, not color blocks",
+      "Pair every display headline with a PT Mono 11px museum label directly beneath it",
+      "Use radius 7.2px for cards and 129.6px for buttons — do not interpolate intermediate values",
+      "Set lineHeight at 0.90 for any type at 39px or above; tight leading is a signature, not an accident",
+      "Let product photography float on pure white with no frame, no caption box, and no drop shadow"
+    ],
+    "donts": [
+      "Never introduce a chromatic color — the palette ends at #000000, #dbdad9, #808080, and #ffffff",
+      "Never use drop shadows for elevation; the gradient #dbdad9 → #ffffff is the only depth the system allows",
+      "Never set type above 141px or below 9px — the 132px range is the entire expressive spectrum",
+      "Never use #0000ee or any default browser link color — links are #000000, no exception",
+      "Never fill a button with color; the pill is always transparent with a 1px #000000 border",
+      "Never center body text in paragraphs; only display statements and labels earn centered alignment",
+      "Never use shadows, blurs, or glows on photographs or product imagery"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, iconography, hairline rules, table borders — the only high-contrast element on the page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dbdad9",
+        "name": "Paper Warm Gray",
+        "role": "Card surfaces, soft fills, the single chromatic departure from pure white, gentle gradient origin",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Graphite Border",
+        "role": "Subtle table dividers and secondary rule lines — used when #000000 would feel too heavy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bleach White",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is a centered, max-width 1440px composition with generous breathing room between sections (43px). Hero patterns favor a single statement line of HaasT 141px centered above a small PT Mono label, with floating product artifacts arranged asymmetrically around the typography. Sections are separated by hairline rules, not by background color shifts — the entire page is #ffffff with #dbdad9 appearing only as soft card fills. The grid is loose: no rigid column structure, no card grids, no pricing tables. Navigation is minimal and typographic only. Content rhythm alternates between quiet text-only bands and sparse, object-laden bands where a single photograph occupies 60–80% of the viewport. The overall feel is closer to a printed art-book spread than a traditional web layout.",
+    "imagery": "Product photography rendered as floating artifacts on pure white — the objects (packaging, containers, objects) sit in the canvas like museum pieces, uncaptioned, unframed, and shadowless. The treatment is high-key and even, with no lifestyle context: tight product crops on warm paper-white, with the object itself functioning as the hero. The photographic style is editorial-catalog — every product is isolated, every surface is neutral, and the page itself reads as the gallery wall. No illustration, no abstract graphics, no 3D renders; the visual language is strictly photographic and rigorously austere.",
+    "similar": [
+      {
+        "why": "Same warm-paper canvas with single accent gray, tightly typeset editorial copy, and product-as-artifact photography on pure white backgrounds",
+        "business": "Aesop"
+      },
+      {
+        "why": "Same restrained monochrome system, large display type against vast white space, and product photography that reads as gallery objects rather than retail shots",
+        "business": "COS (cosstores.com)"
+      },
+      {
+        "why": "Same studio-discipline of typographic hierarchy with custom-feeling grotesques, minimal color, and case-study layouts that let work breathe on white",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same quiet-luxury restraint where absence of decoration and white space itself become the design language, with typographic details doing the heavy lifting",
+        "business": "Maison Margiela"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "7.2px",
+        "buttons": "129.6px",
+        "surfaces": "43.2px"
+      },
+      "elementGap": "7px",
+      "sectionGap": "43px",
+      "cardPadding": "29px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "The dominant background — silence made visible"
+      },
+      {
+        "hex": "#dbdad9",
+        "name": "Paper Card",
+        "level": 1,
+        "purpose": "The only warm departure from white; soft cards, subtle fills, gradient origin"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Surface",
+        "level": 2,
+        "purpose": "Inverted moments — text blocks on black, dark contrast panels"
+      }
+    ],
+    "northStar": "white room with floating artifacts. A warm-paper gallery vitrine where every element earns its space against negative volume, and silence is a deliberate design material.",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading-sm",
+        "size": 39,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading",
+        "size": 58,
+        "lineHeight": 0.9
+      },
+      {
+        "role": "display",
+        "size": 141,
+        "lineHeight": 0.9
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button",
+        "role": "Primary interactive element",
+        "description": "Full pill radius (129.6px), 14px vertical × 29px horizontal padding, Inkwel Black border at 1px, transparent fill. Text in HaasR 12px weight 400 #000000. No fill state — the outline IS the button."
+      },
+      {
+        "name": "Ghost Link",
+        "role": "Inline navigation and content links",
+        "description": "No underline, no color shift. HaasR 16px weight 400 #000000. Underline appears only on hover at 1px, #000000, 2px offset. The link reads as a continuation of the sentence, not a clickable widget."
+      },
+      {
+        "name": "Paper Card",
+        "role": "Grouped content surface",
+        "description": "Background #dbdad9, no border, radius 7.2px, padding 29px on all sides. No shadow. The card's only separation from the white canvas is its warm gray fill — a whisper of elevation."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero and section set-pieces",
+        "description": "HaasT weight 100 at 141px, lineHeight 0.90, color #000000, letter-spacing normal, centered. Used at most once per viewport. Pairs with PT Mono 11px caption directly beneath as a museum-style label."
+      },
+      {
+        "name": "Museum Label",
+        "role": "Metadata, catalog tags, object captions",
+        "description": "PT Mono 11px weight 400 #000000, lineHeight 1.20, letter-spacing normal, often uppercase. Functions as the only typographic ornament — a small typographic signature against the otherwise grotesque system."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separation",
+        "description": "1px solid #000000, full-bleed or container-width. The primary structural divider — replaces shadows, padding, and color blocking."
+      },
+      {
+        "name": "Table Rule",
+        "role": "Data and catalog row separation",
+        "description": "1px #808080 border. Lighter than the primary hairline (#000000) to keep dense data tables from feeling heavy."
+      },
+      {
+        "name": "Floating Product Showcase",
+        "role": "Primary visual carrier",
+        "description": "Object photography rendered on transparent white, no frame, no shadow, no caption box. The object sits in the canvas like a museum artifact — the page itself is the pedestal."
+      },
+      {
+        "name": "Centered Statement Block",
+        "role": "Editorial copy placement",
+        "description": "HaasR 22px weight 400, lineHeight 1.10, #000000, centered, max width 640px. Used for manifesto text, section openers, and the SILENCIO ® VISUAL LANGUAGES signature."
+      },
+      {
+        "name": "Micro Caption",
+        "role": "Image credit, footnote, and ancillary copy",
+        "description": "HaasR 9px weight 400 #000000, lineHeight 1.20. The smallest text on the site — used for the kind of copy that would be printed in 6pt in a printed catalog."
+      },
+      {
+        "name": "Navigation Anchor",
+        "role": "Top-level menu items",
+        "description": "HaasR 12px weight 400 #000000, letter-spacing normal, uppercase optional. No background, no border, no hover fill — navigation is typographic only."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Workhorse grotesque for body, subheadings, and mid-size headings. Weight 100 is used for restraint in body contexts; 700 sparingly for emphasis. The single most-used face carries the page.",
+        "sizes": "9px, 12px, 16px, 19px, 22px, 39px, 58px",
+        "family": "HaasR",
+        "weight": "100, 400, 700",
+        "lineHeight": "0.90–1.40",
+        "substitute": "Inter, Söhne, Neue Haas Grotesk"
+      },
+      {
+        "role": "Display-only face at 141px with tightened leading (0.90). Used for hero statements and singular set-pieces — the only moment typography shouts, and it shouts at full volume against pure white.",
+        "sizes": "141px",
+        "family": "HaasT",
+        "weight": "100, 400",
+        "lineHeight": "0.90",
+        "substitute": "Neue Haas Grotesk Display, Söhne Breit, Inter Display at weight 100"
+      },
+      {
+        "role": "Metadata, spec labels, catalog tags — the typographic equivalent of a printed museum label. Appears at 11px only; functions as a quiet signature rather than informational copy.",
+        "sizes": "11px",
+        "family": "PT Mono",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "IBM Plex Mono, JetBrains Mono"
+      }
+    ],
+    "description": "Silencio operates as a visual silence — a monochrome gallery where objects float on warm paper-white and typography does nearly all the talking. The system strips away every non-essential: no chromatic accents, no shadows, no decorative geometry; instead it relies on extreme type contrast (141px display whispers next to 9px metadata) and one warm gray (#dbdad9) as the only departure from pure black-on-white. Surfaces are paper-flat, separated by hairline rules and small radius (7.2px) rather than elevation. The brand voice reads like museum wall text: centered, brief, slightly italicized by silence, with monospaced labels (PT Mono, 11px) used as quiet signatures next to a custom Haas grotesque. Components feel like printed catalog pages more than web UI — buttons are full pill shapes (129.6px), cards have a single rounded corner, and the whole composition breathes with the confidence of a room with nothing on its walls.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e67ac20e-6497-4756-b7e2-17859a794fb6#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Silencio design system\",\"item\":\"https://styles.refero.design/style/e67ac20e-6497-4756-b7e2-17859a794fb6\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e67ac20e-6497-4756-b7e2-17859a794fb6#style-reference\",\"name\":\"Silencio design system reference\",\"headline\":\"Silencio design system | Refero Styles\",\"description\":\"Explore Silencio's light Design design system: Ink Black #000000, Paper Warm Gray #dbdad9 colors, HaasR, HaasT typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e67ac20e-6497-4756-b7e2-17859a794fb6\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e67ac20e-6497-4756-b7e2-17859a794fb6\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Silencio\",\"url\":\"https://silencio.es\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e67ac20e-6497-4756-b7e2-17859a794fb6#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0988d9f0-17ca-439c-8c05-54e089fff8d6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0988d9f0-17ca-439c-8c05-54e089fff8d6.jpg\",\"caption\":\"Screenshot of Silencio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0988d9f0-17ca-439c-8c05-54e089fff8d6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Silencio design system\",\"Silencio website design\",\"Silencio colors\",\"Silencio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink Black\",\"Paper Warm Gray\",\"Graphite Border\",\"Bleach White\",\"HaasR\",\"HaasT\",\"PT Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Silencio design system\"},{\"@type\":\"Thing\",\"name\":\"Silencio website design\"},{\"@type\":\"Thing\",\"name\":\"Silencio colors\"},{\"@type\":\"Thing\",\"name\":\"Silencio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-02-27T09:21:05.000Z\",\"dateModified\":\"2026-02-27T09:21:05.000Z\"}]}19:T56a,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- surface (cards/soft fills): #dbdad9\n- border (primary): #000000\n- border (secondary/table): #808080\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Display hero block**: White #ffffff canvas. Headline at 141px HaasT weight 100, #000000, line-height 0.90, centered, max-width 900px. Beneath it, a PT Mono 11px label at #000000 reading as a museum-style caption. Generous vertical space above and below (43px+).\n\n2. **Ghost pill button**: Transparent fill, 1px #000000 border, radius 129.6px (full pill), padding 14px vertical × 29px horizontal. Label in HaasR 12px weight 400 #000000. No hover fill — only a subtle text or border darkening.\n\n3. **Paper card**: Background #dbdad9, radius 7.2px, padding 29px on all sides, no border, no shadow. Body text inside in HaasR 16px weight 400 #000000. Used for grouped metadata, specs, or editorial blocks.\n\n4. **Floating product showcase**: A single product photograph on pure #ffffff background, uncaptioned, unframed, no shadow. A small PT Mono 11px label sits 14px to the right or below the object as the only typographic anchor.\n\n5. **Editorial statement block**: Centered, max-width 640px. HaasR 22px weight 400, lineHeight 1.10, #000000. Used for manifesto text, section openers, and signature statements like SILENCIO ® VISUAL LANGUAGES."
+      },
+      {
+        "title": "Gradient System",
+        "content": "A single gradient is sanctioned: linear-gradient(0deg, #dbdad9, #ffffff). Use it to lift a card or section gently off the page — never horizontally, never as a decorative wash, never with additional stops. The gradient is the system's only depth tool, and it works in one direction only: warm gray descending into white."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "Three faces, three roles. HaasR (grotesque, 100/400/700) is the workhorse and handles 95% of the system. HaasT (display, 100/400) appears only at 141px and is reserved for hero statements. PT Mono (11px only) is the museum-label voice for metadata. Do not introduce a fourth face, and do not use HaasT below 39px. The Haas family's tight, slightly geometric character is the system's only expressive signature — let it carry the silence."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is achieved through contrast and gentle gradient lift (#dbdad9 → #ffffff) rather than drop shadows. The page reads as paper-flat; depth is implied by a single degree of warmth, not by z-axis blur."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "image",
+            "icon",
+            "heading",
+            "hero",
+            "table",
+            "list",
+            "link",
+            "button"
+          ],
+          "frequency": 6456,
+          "confidence": 1,
+          "prominence": 65612064.84809826,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dbdad9",
+          "oklch": {
+            "c": 0.0017500754447491273,
+            "h": 67.79972316497123,
+            "l": 0.8888658574469825
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading",
+            "link",
+            "button"
+          ],
+          "frequency": 1004,
+          "confidence": 1,
+          "prominence": 22747967.97282577,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "table"
+          ],
+          "frequency": 176,
+          "confidence": 1,
+          "prominence": 66894.81051764349,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0006219032699050457,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.04,
+          "background": "#dbdad9",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 7.2,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 18
+        },
+        {
+          "value": 43.2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 129.6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 34,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 25,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 17,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 22,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 29,
+          "contexts": [],
+          "frequency": 51,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 43,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 72,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 144,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 173,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(0deg, rgb(219, 218, 217), rgb(255, 255, 255))",
+        "colors": [
+          "rgb(219, 218, 217)",
+          "rgb(255, 255, 255)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "HaasR",
+          "source": "custom",
+          "weights": [
+            100,
+            400,
+            700
+          ],
+          "frequency": 1211,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HaasT",
+          "source": "custom",
+          "weights": [
+            100,
+            400
+          ],
+          "frequency": 285,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HAASR",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 20,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PT Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.89
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "HaasR",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "table"
+          ],
+          "frequency": 113,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 9,
+          "family": "HaasR",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 9,
+          "family": "HaasR",
+          "weight": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 9,
+          "family": "HaasR",
+          "weight": 700,
+          "contexts": [
+            "table"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 9,
+          "family": "HAASR",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 9,
+          "family": "HaasR",
+          "weight": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "PT Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "image"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "PT Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "HaasR",
+          "weight": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "HaasR",
+          "weight": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "HaasR",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "list",
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "HaasR",
+          "weight": 100,
+          "contexts": [
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 845,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "HaasR",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "hero",
+            "icon",
+            "link"
+          ],
+          "frequency": 79,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "HaasR",
+          "weight": 100,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "HaasR",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "HaasR",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "HaasR",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "HaasR",
+          "weight": 100,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "HaasR",
+          "weight": 100,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 39,
+          "family": "HaasR",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 39,
+          "family": "HaasR",
+          "weight": 100,
+          "contexts": [
+            "heading",
+            "icon",
+            "other"
+          ],
+          "frequency": 89,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 39,
+          "family": "HaasR",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 39,
+          "family": "HaasR",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "HaasR",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.68,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 141,
+          "family": "HaasT",
+          "weight": 100,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 283,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 141,
+          "family": "HaasT",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d1fe25bd-e0e7-4844-bae7-bdc7e6a1e995.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/0988d9f0-17ca-439c-8c05-54e089fff8d6.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e67ac20e-6497-4756-b7e2-17859a794fb6#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Silencio design system\",\"item\":\"https://styles.refero.design/style/e67ac20e-6497-4756-b7e2-17859a794fb6\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e67ac20e-6497-4756-b7e2-17859a794fb6#style-reference\",\"name\":\"Silencio design system reference\",\"headline\":\"Silencio design system | Refero Styles\",\"description\":\"Explore Silencio's light Design design system: Ink Black #000000, Paper Warm Gray #dbdad9 colors, HaasR, HaasT typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e67ac20e-6497-4756-b7e2-17859a794fb6\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e67ac20e-6497-4756-b7e2-17859a794fb6\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Silencio\",\"url\":\"https://silencio.es\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e67ac20e-6497-4756-b7e2-17859a794fb6#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0988d9f0-17ca-439c-8c05-54e089fff8d6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0988d9f0-17ca-439c-8c05-54e089fff8d6.jpg\",\"caption\":\"Screenshot of Silencio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0988d9f0-17ca-439c-8c05-54e089fff8d6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Silencio design system\",\"Silencio website design\",\"Silencio colors\",\"Silencio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink Black\",\"Paper Warm Gray\",\"Graphite Border\",\"Bleach White\",\"HaasR\",\"HaasT\",\"PT Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Silencio design system\"},{\"@type\":\"Thing\",\"name\":\"Silencio website design\"},{\"@type\":\"Thing\",\"name\":\"Silencio colors\"},{\"@type\":\"Thing\",\"name\":\"Silencio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-02-27T09:21:05.000Z\",\"dateModified\":\"2026-02-27T09:21:05.000Z\"}]}19:T56a,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- surface (cards/soft fills): #dbdad9\n- border (primary): #000000\n- border (secondary/table): #808080\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Display hero block**: White #ffffff canvas. Headline at 141px HaasT weight 100, #000000, line-height 0.90, centered, max-width 900px. Beneath it, a PT Mono 11px label at #000000 reading as a museum-style caption. Generous vertical space above and below (43px+).\n\n2. **Ghost pill button**: Transparent fill, 1px #000000 border, radius 129.6px (full pill), padding 14px vertical × 29px horizontal. Label in HaasR 12px weight 400 #000000. No hover fill — only a subtle text or border darkening.\n\n3. **Paper card**: Background #dbdad9, radius 7.2px, padding 29px on all sides, no border, no shadow. Body text inside in HaasR 16px weight 400 #000000. Used for grouped metadata, specs, or editorial blocks.\n\n4. **Floating product showcase**: A single product photograph on pure #ffffff background, uncaptioned, unframed, no shadow. A small PT Mono 11px label sits 14px to the right or below the object as the only typographic anchor.\n\n5. **Editorial statement block**: Centered, max-width 640px. HaasR 22px weight 400, lineHeight 1.10, #000000. Used for manifesto text, section openers, and signature statements like SILENCIO ® VISUAL LANGUAGES."
+}

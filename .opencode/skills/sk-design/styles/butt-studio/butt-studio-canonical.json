@@ -1,0 +1,767 @@
+{
+  "source": "https://styles.refero.design/style/c6e55968-fa2d-47c9-b833-2c4ad1e74906",
+  "uuid": "c6e55968-fa2d-47c9-b833-2c4ad1e74906",
+  "name": "BUTT STUDIO",
+  "northStar": "gallery wall with one massive serif wordmark",
+  "capturedAt": "2026-07-18T07:33:55.772Z",
+  "meta": {
+    "url": "https://www.butt-studio.com",
+    "siteName": "BUTT STUDIO",
+    "extractedAt": "2026-06-03T20:40:49.571Z",
+    "durationMs": 34271,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1128,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set the hero wordmark oversized in Caslon at weight 400, tight tracking (-0.02em), so one word fills the full viewport width",
+      "Use #e0e0e0 as the page canvas — never pure white at the page level; reserve #ffffff for card surfaces only",
+      "Use Studio Indigo #31338 exactly once per surface as the only chromatic accent",
+      "Set body text at 20px Helvetica weight 400 with -0.03em letter-spacing — bigger and tighter than web convention",
+      "Give buttons and the STUDIO badge a 50px pill radius for the only rounded elements in the system",
+      "Separate project tiles with a 1px black hairline and 180px vertical space to read as a printed catalog",
+      "Let interactive illustrations physically break through or weave between the serif letterforms in the hero"
+    ],
+    "donts": [
+      "Do not introduce any color other than the four neutrals and Studio Indigo — no gradients, no tints, no hover-state color shifts",
+      "Do not use shadows, glows, or elevation — the design is flat like print, with no synthetic depth",
+      "Do not add border-radius to cards, tiles, or thumbnails — they must stay sharp like cut paper",
+      "Do not set body text below 20px or add bold/medium weights to Helvetica — weight 400 is the only weight that exists",
+      "Do not use Caslon for anything below the hero — reserve it for the wordmark and project titles to preserve its weight",
+      "Do not add underlines, color, or icons to links in the client/feature lists — they read as plain text on purpose",
+      "Do not center body text or list items — the ledger columns are left-aligned like a contact page"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, borders, button outlines, structural strokes — the only color that ever carries information",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Card surfaces, thumbnail covers, inverted text on dark blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#131313",
+        "name": "Carbon",
+        "role": "Dark project tile backgrounds, near-black surface for video panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e0e0e0",
+        "name": "Bone Gray",
+        "role": "Page canvas, neutral button fills — the warm gray the whole composition sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#31338e",
+        "name": "Studio Indigo",
+        "role": "Sole chromatic accent — STUDIO pill badge, and any deep brand punctuation. The only saturated color in the system",
+        "group": "brand"
+      }
+    ],
+    "layout": "Hero is full-bleed with no max-width — the wordmark scales to fill the viewport. Below the hero, content sits in a wide unconstrained column with generous left/right breathing room. A three-column ledger spans the page (contact / clients / features) with no dividers between columns. Project entries are arranged in a two-column grid, alternating light tiles (white card + video thumbnail) with dark tiles (carbon-black video panel) to create rhythm. Vertical spacing is generous: 180px between major sections, 70px between project cards. Navigation is essentially absent — the page is a single scroll, the wordmark IS the navigation.",
+    "imagery": "Imagery is concentrated in the hero — a full-width interactive illustration (the tomato vine and fruit garland) that physically threads through the serif letterforms, breaking the wordmark. Below the fold, project thumbnails are 16:9 video stills: saturated, high-key 3D renders and motion frames in pinks, magentas, blues, and warm reds. These are content (the work itself), not UI decoration. No stock photography, no lifestyle imagery, no icons as illustration.",
+    "similar": [
+      {
+        "why": "Same full-bleed typographic hero where a single oversized serif word dominates the viewport, followed by a restrained two-column project grid",
+        "business": "Locomotive Mtl"
+      },
+      {
+        "why": "Editorial portfolio language with massive display type, no UI chrome, and a two-column case-study grid in monochrome",
+        "business": "Studio Brasch"
+      },
+      {
+        "why": "Print-magazine treatment of a portfolio: serif display, sans body, hairline dividers, no decorative elevation",
+        "business": "Pentagram partner sites"
+      },
+      {
+        "why": "Bold oversized identity wordmark over a single accent color, with a flat monochrome project grid below",
+        "business": "Resn"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px (sharp, like printed paper)",
+        "badges": "50px-68px (rounded pill, almost stadium)",
+        "buttons": "50px (pill-shaped)"
+      },
+      "elementGap": "20px",
+      "sectionGap": "",
+      "cardPadding": "20px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#e0e0e0",
+        "name": "Bone Gray Canvas",
+        "level": 1,
+        "purpose": "Page background — the warm off-white paper the whole site rests on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper Card",
+        "level": 2,
+        "purpose": "White card surfaces for project details, inline blocks"
+      },
+      {
+        "hex": "#131313",
+        "name": "Carbon Plate",
+        "level": 3,
+        "purpose": "Dark video panels and feature blocks for contrast sections"
+      },
+      {
+        "hex": "#31338",
+        "name": "Studio Indigo Plate",
+        "level": 4,
+        "purpose": "Indigo badge and any accent wash"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "1px solid #000000 — the only structural line in the system",
+        "element": "Page Divider"
+      }
+    ],
+    "northStar": "gallery wall with one massive serif wordmark",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading",
+        "size": 42,
+        "lineHeight": 1,
+        "letterSpacing": -0.84
+      },
+      {
+        "role": "display",
+        "size": 200,
+        "lineHeight": 1,
+        "letterSpacing": -4
+      }
+    ],
+    "components": [
+      {
+        "name": "Wordmark Hero",
+        "role": "The site identity block",
+        "description": "Full-bleed Caslon display set oversized (approximately 200-280px) so a single word fills the viewport width. Tight letter-spacing (-0.02em to -0.04em) so strokes nearly touch. An interactive illustration may weave horizontally through the letterforms, breaking the baseline — this is the signature move."
+      },
+      {
+        "name": "STUDIO Pill Badge",
+        "role": "Brand stamp overlapping the wordmark",
+        "description": "50-68px border-radius capsule. Fill #31338 (Studio Indigo). Text in Helvetica 20px, white, weight 400, letter-spacing -0.02em. Sits at the lower-left of the first letterform, partially overlapping it. The only chromatic UI element on the site."
+      },
+      {
+        "name": "Three-Column Info Ledger",
+        "role": "Primary navigation and metadata block beneath the hero",
+        "description": "Three equal columns separated only by whitespace, no dividers. Left column: contact name + email + social handle in Helvetica 20px black. Middle column: 'Selected Clients' list (adidas, Boiler Room, Chloé, Google, Instagram, Nike, Warner Records, Sony Music). Right column: 'Features' list with publication and year. All black text, no links styled differently, all weight 400."
+      },
+      {
+        "name": "Project Tile (Light)",
+        "role": "Standard project entry with video thumbnail",
+        "description": "Two-column grid item. Thumbnail is a 16:9 video player (color-tinted, often pink/magenta or blue gradient fills behind glass-like 3D objects). Below: project title in Caslon 42px, black, followed by a description in Helvetica 20px. Optional 50px-pill 'Download' button in #e0e0e0 with black text."
+      },
+      {
+        "name": "Project Tile (Dark)",
+        "role": "Inverted project entry for visual rhythm",
+        "description": "Same dimensions as the light tile but the right half is a #131313 carbon-black panel with minimal white progress indicators (four short white dashes) at the bottom — mimicking a video player scrubber. Used to alternate against light tiles."
+      },
+      {
+        "name": "Download Button",
+        "role": "Neutral pill action",
+        "description": "50px border-radius pill. Fill #e0e0e0 (Bone Gray). Padding 5px top/bottom, 20px left/right. Text in Helvetica 20px black, weight 400, letter-spacing -0.02em. No border, no shadow. Sits inline with project titles."
+      },
+      {
+        "name": "Video Thumbnail",
+        "role": "Clickable preview for project media",
+        "description": "Full-bleed 16:9 rectangle, no border, no radius. Centered white triangle play icon (no background plate). Behind the icon: full-color 3D render or animation frame — these are the only places saturated color appears, and they are content, not UI."
+      },
+      {
+        "name": "Page Divider",
+        "role": "Visual break between project entries",
+        "description": "1px solid #000000 horizontal line spanning the full content width, with 180px of vertical space on either side. Functions like a section break in a printed catalog."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Every utility, body, list, button, and link on the site. Stays at one weight — no bold, no medium. The decision to use weight 400 Helvetica at 20px for body (not 16px) is deliberate: text is meant to feel like printed matter, not a UI. Tighter letter-spacing on larger sizes (-0.03em) prevents the 40px from feeling airy.",
+        "sizes": "20px body, 40px subhead",
+        "family": "helvetica",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Helvetica Neue, Inter, or Arial as system fallback",
+        "letterSpacing": "-0.03em at 20px, -0.02em at 40px"
+      },
+      {
+        "role": "The hero wordmark and any serif accent. A single weight of a custom display serif — chosen because its high contrast strokes and ball terminals read as editorial print, not web type. This font IS the brand; everything else is scaffolding.",
+        "sizes": "42px display, scales up to fill the viewport at the wordmark level",
+        "family": "Caslon",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Playfair Display, Cormorant Garamond, or any high-contrast didone/transitional serif",
+        "letterSpacing": "-0.02em at display sizes, tightening to nearly none at body"
+      },
+      {
+        "role": "Sometimes Times — detected in extracted data but not described by AI",
+        "sizes": "20px",
+        "family": "Sometimes Times",
+        "weight": "400",
+        "lineHeight": "1.2",
+        "letterSpacing": "-0.02"
+      }
+    ],
+    "description": "BUTT Studio is an editorial portfolio that treats type as architecture: one enormous Caslon wordmark stretches wall-to-wall across the top of the page, broken by an organic illustration that weaves through the letterforms. Below the hero, the system collapses into a clinical three-column ledger of contact, clients, and features in a quiet sans-serif, then opens into a generous two-column project grid. Color is almost entirely absent — matte black ink on warm gray paper, with a single deep indigo badge as the only chromatic punctuation. The feel is a print magazine that happens to be alive: confident serif display, utilitarian sans body, no gradients, no rounded chrome, no decorative shadows.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c6e55968-fa2d-47c9-b833-2c4ad1e74906#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"BUTT STUDIO design system\",\"item\":\"https://styles.refero.design/style/c6e55968-fa2d-47c9-b833-2c4ad1e74906\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c6e55968-fa2d-47c9-b833-2c4ad1e74906#style-reference\",\"name\":\"BUTT STUDIO design system reference\",\"headline\":\"BUTT STUDIO design system | Refero Styles\",\"description\":\"Explore BUTT STUDIO's light Agency design system: Ink Black #000000, Paper #ffffff colors, helvetica, Caslon typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c6e55968-fa2d-47c9-b833-2c4ad1e74906\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c6e55968-fa2d-47c9-b833-2c4ad1e74906\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"BUTT STUDIO\",\"url\":\"https://www.butt-studio.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c6e55968-fa2d-47c9-b833-2c4ad1e74906#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/10a8479f-7856-4de4-bdd8-4283438452cc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/10a8479f-7856-4de4-bdd8-4283438452cc.jpg\",\"caption\":\"Screenshot of BUTT STUDIO\"},\"image\":\"https://images.refero.design/styles/refero.design/image/10a8479f-7856-4de4-bdd8-4283438452cc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"BUTT STUDIO design system\",\"BUTT STUDIO website design\",\"BUTT STUDIO colors\",\"BUTT STUDIO typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Paper\",\"Carbon\",\"Bone Gray\",\"helvetica\",\"Caslon\",\"Sometimes Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"BUTT STUDIO design system\"},{\"@type\":\"Thing\",\"name\":\"BUTT STUDIO website design\"},{\"@type\":\"Thing\",\"name\":\"BUTT STUDIO colors\"},{\"@type\":\"Thing\",\"name\":\"BUTT STUDIO typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:29:10.166Z\",\"dateModified\":\"2026-04-30T03:29:10.166Z\"}]}19:T836,## Quick Color Reference\n- background: #e0e0e0\n- text: #000000\n- card surface: #ffffff\n- border: #000000\n- accent: #31338e (Studio Indigo)\n- primary action: no distinct CTA color\n\n## 3-5 Example Component Prompts\n\n1. **Build a three-column info ledger**: Bone Gray #e0e0e0 page background, three equal columns separated only by whitespace. Left column: contact name in Helvetica 20px weight 400 black, then email below. Middle column: heading 'Selected Clients' in Helvetica 20px black, then list of client names each on its own line. Right column: heading 'Features' in Helvetica 20px black, then list of publications with years. No dividers, no bullets, no links styled differently.\n\n2. **Build a full-bleed wordmark hero**: Black #000000 background optional, but a Caslon (or Playfair Display fallback) weight 400 wordmark at approximately 200px, letter-spacing -0.04em, fills the full viewport width. Color #000000. Position a Studio Indigo #31338e pill badge (50px border-radius, 5px 20px padding, white Helvetica 20px text) overlapping the lower-left of the first letter.\n\n3. **Build a light project tile**: Two-column grid cell. Top half: 16:9 video thumbnail with no border or radius, centered white triangle play icon, behind it a saturated 3D-render-style fill (pink/magenta gradient). Bottom half: 20px vertical gap, then project title in Caslon 42px weight 400 black, letter-spacing -0.02em, line-height 1.0. Below: 10px gap, then description in Helvetica 20px black. A 50px-pill Download button (fill #e0e0e0, black Helvetica 20px text) sits inline to the right of the title.\n\n4. **Build a dark project tile**: Same dimensions as the light tile, but the right half is a solid #131313 panel. At the bottom-center of the dark panel, render four short white horizontal dashes (each ~20px wide, 2px tall, 8px apart) as a video player scrubber indicator. No other UI on the dark panel.\n\n5. **Build a page divider**: A 1px solid #000000 horizontal line spanning the full content width, with 180px of vertical space above and below. No other styling — it functions like a printed section break."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally flat. There are no box-shadows, no glows, no z-axis elevation. Surfaces are distinguished by background color (Bone Gray canvas → Paper card → Carbon plate) and by 1px black hairlines, not by shadow. The reference is editorial print, not material design."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "image",
+            "heading",
+            "body",
+            "link",
+            "list",
+            "button"
+          ],
+          "frequency": 5313,
+          "confidence": 1,
+          "prominence": 341087884.83645535,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 49,
+            "link/color": 61,
+            "list/color": 20,
+            "image/color": 230,
+            "other/color": 651,
+            "button/color": 12,
+            "heading/color": 40,
+            "body/borderColor": 196,
+            "link/borderColor": 229,
+            "list/borderColor": 80,
+            "image/borderColor": 920,
+            "other/borderColor": 2604,
+            "button/borderColor": 48,
+            "heading/borderColor": 160,
+            "other/backgroundColor": 13
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 304,
+          "confidence": 1,
+          "prominence": 8840461.527876517,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "image/color": 13,
+            "other/color": 39,
+            "other/stroke": 13,
+            "image/borderColor": 52,
+            "other/borderColor": 156,
+            "other/backgroundColor": 31
+          }
+        },
+        {
+          "hex": "#131313",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18674120159806412
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 228,
+          "confidence": 1,
+          "prominence": 8397551.077904148,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 228
+          }
+        },
+        {
+          "hex": "#e0e0e0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9067006916295425
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 5035228.537065691,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 13,
+            "button/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#31338e",
+          "oklch": {
+            "c": 0.147093511838315,
+            "h": 275.8663459630641,
+            "l": 0.37953884775599805
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 10450,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "heading/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 87,
+          "confidence": 1,
+          "prominence": 516.7545294909838,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 87
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00006672541658198154,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.58,
+          "background": "#131313",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#e0e0e0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.07,
+          "background": "#e0e0e0",
+          "foreground": "#131313"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.53,
+          "background": "#31338e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.98,
+          "background": "#e0e0e0",
+          "foreground": "#31338e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#808080",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#808080",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.99,
+          "background": "#31338e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.32,
+          "background": "#e0e0e0",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.13,
+          "background": "#131313",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 49
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 68,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 420,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 102,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "paddingTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|heading",
+            "paddingTop|other",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 1013,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "body",
+            "other",
+            "image"
+          ],
+          "frequency": 152,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|image",
+            "paddingRight|image",
+            "paddingBottom|image",
+            "paddingLeft|image"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 232,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|image",
+            "paddingRight|image",
+            "paddingBottom|image",
+            "paddingLeft|image"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "helvetica",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 1095,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Caslon",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 19,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Sometimes Times",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 20,
+          "family": "helvetica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "body",
+            "link",
+            "list",
+            "button"
+          ],
+          "frequency": 1074,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Sometimes Times",
+          "weight": 400,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "helvetica",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 19,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Caslon",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 19,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/5c1c352f-1979-4fe7-a516-e21d38178997.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/10a8479f-7856-4de4-bdd8-4283438452cc.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c6e55968-fa2d-47c9-b833-2c4ad1e74906#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"BUTT STUDIO design system\",\"item\":\"https://styles.refero.design/style/c6e55968-fa2d-47c9-b833-2c4ad1e74906\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c6e55968-fa2d-47c9-b833-2c4ad1e74906#style-reference\",\"name\":\"BUTT STUDIO design system reference\",\"headline\":\"BUTT STUDIO design system | Refero Styles\",\"description\":\"Explore BUTT STUDIO's light Agency design system: Ink Black #000000, Paper #ffffff colors, helvetica, Caslon typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c6e55968-fa2d-47c9-b833-2c4ad1e74906\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c6e55968-fa2d-47c9-b833-2c4ad1e74906\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"BUTT STUDIO\",\"url\":\"https://www.butt-studio.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c6e55968-fa2d-47c9-b833-2c4ad1e74906#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/10a8479f-7856-4de4-bdd8-4283438452cc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/10a8479f-7856-4de4-bdd8-4283438452cc.jpg\",\"caption\":\"Screenshot of BUTT STUDIO\"},\"image\":\"https://images.refero.design/styles/refero.design/image/10a8479f-7856-4de4-bdd8-4283438452cc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"BUTT STUDIO design system\",\"BUTT STUDIO website design\",\"BUTT STUDIO colors\",\"BUTT STUDIO typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Paper\",\"Carbon\",\"Bone Gray\",\"helvetica\",\"Caslon\",\"Sometimes Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"BUTT STUDIO design system\"},{\"@type\":\"Thing\",\"name\":\"BUTT STUDIO website design\"},{\"@type\":\"Thing\",\"name\":\"BUTT STUDIO colors\"},{\"@type\":\"Thing\",\"name\":\"BUTT STUDIO typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:29:10.166Z\",\"dateModified\":\"2026-04-30T03:29:10.166Z\"}]}19:T836,## Quick Color Reference\n- background: #e0e0e0\n- text: #000000\n- card surface: #ffffff\n- border: #000000\n- accent: #31338e (Studio Indigo)\n- primary action: no distinct CTA color\n\n## 3-5 Example Component Prompts\n\n1. **Build a three-column info ledger**: Bone Gray #e0e0e0 page background, three equal columns separated only by whitespace. Left column: contact name in Helvetica 20px weight 400 black, then email below. Middle column: heading 'Selected Clients' in Helvetica 20px black, then list of client names each on its own line. Right column: heading 'Features' in Helvetica 20px black, then list of publications with years. No dividers, no bullets, no links styled differently.\n\n2. **Build a full-bleed wordmark hero**: Black #000000 background optional, but a Caslon (or Playfair Display fallback) weight 400 wordmark at approximately 200px, letter-spacing -0.04em, fills the full viewport width. Color #000000. Position a Studio Indigo #31338e pill badge (50px border-radius, 5px 20px padding, white Helvetica 20px text) overlapping the lower-left of the first letter.\n\n3. **Build a light project tile**: Two-column grid cell. Top half: 16:9 video thumbnail with no border or radius, centered white triangle play icon, behind it a saturated 3D-render-style fill (pink/magenta gradient). Bottom half: 20px vertical gap, then project title in Caslon 42px weight 400 black, letter-spacing -0.02em, line-height 1.0. Below: 10px gap, then description in Helvetica 20px black. A 50px-pill Download button (fill #e0e0e0, black Helvetica 20px text) sits inline to the right of the title.\n\n4. **Build a dark project tile**: Same dimensions as the light tile, but the right half is a solid #131313 panel. At the bottom-center of the dark panel, render four short white horizontal dashes (each ~20px wide, 2px tall, 8px apart) as a video player scrubber indicator. No other UI on the dark panel.\n\n5. **Build a page divider**: A 1px solid #000000 horizontal line spanning the full content width, with 180px of vertical space above and below. No other styling — it functions like a printed section break."
+}

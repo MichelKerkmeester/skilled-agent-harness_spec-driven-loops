@@ -1,0 +1,1320 @@
+{
+  "source": "https://styles.refero.design/style/2b41e7c4-1e8c-4ea2-a87f-51e24c57886e",
+  "uuid": "2b41e7c4-1e8c-4ea2-a87f-51e24c57886e",
+  "name": "Dropbox.com",
+  "northStar": "warm cream workspace — editorial confidence on paper",
+  "capturedAt": "2026-07-18T08:38:43.295Z",
+  "meta": {
+    "url": "https://dropbox.com",
+    "siteName": "Dropbox.com",
+    "extractedAt": "2026-06-03T22:38:25.677Z",
+    "durationMs": 33248,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 854,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Cream Paper (#f7f5f2) as the base canvas for all page sections — never default to pure white for full-page backgrounds",
+      "Reserve solid #0061fe fills exclusively for primary action buttons and active nav states",
+      "Set heading weight to 500 (not 700) in Sharp Grotesk — the medium weight is signature",
+      "Use 16px border-radius on all buttons and 8–12px on cards and product mockups",
+      "Anchor layouts on a 6px spacing scale: 12/24/48/72/96px are the most common step values",
+      "Pair Atlas Grotesk 16px body with Stone Gray (#716b61) for secondary/supporting text",
+      "Use 2-column card grids with 24px gutters for solution/industry sections"
+    ],
+    "donts": [
+      "Don't use pure white (#ffffff) as a page background — it breaks the warm paper aesthetic",
+      "Don't use bold (700) or semibold (600) weights for headings — Sharp Grotesk at 500 is the standard",
+      "Don't add drop shadows to cards or product mockups — separation comes from hairline borders and the cream-to-white surface shift",
+      "Don't introduce secondary chromatic accents that compete with #0061fe blue",
+      "Don't use Times serif as a design choice in headings or body — it appears only as a system fallback artifact",
+      "Don't use fully rounded (9999px) pill buttons for primary CTAs — 16px is the canonical radius",
+      "Don't mix the cream canvas with cool grays (#e5e7eb, #f3f4f6) — stick to warm neutrals in the #eee9e2 / #f7f5f2 family"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0061fe",
+        "name": "Dropbox Blue",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#f7f5f2",
+        "name": "Cream Paper",
+        "role": "Page canvas, section backgrounds, nav bar surface — warm off-white replaces sterile SaaS white to soften the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Elevated card surfaces, content panels, product mockup backgrounds — the only true white, reserved for surfaces that sit on the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1e1919",
+        "name": "Warm Ink",
+        "role": "Primary text, dark nav button text, heading color — warm near-black reads softer than pure ink on cream backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#716b61",
+        "name": "Stone Gray",
+        "role": "Secondary text, helper copy, muted icon strokes, footer metadata — warm desaturated gray that sits comfortably on cream",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eee9e2",
+        "name": "Sand Card",
+        "role": "Alternate card surface, subtle elevated panel — slightly darker cream for cards that need gentle separation from canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cd2f7b",
+        "name": "Magenta Accent",
+        "role": "Decorative highlight, occasional link underline, brand illustration accent — provides chromatic variety without competing with primary blue",
+        "group": "accent"
+      }
+    ],
+    "layout": "Page model is centered max-width ~1200px with generous outer margins on cream canvas. Navigation is a fixed-height top bar (~64px) in white. The hero pattern is consistently a 2-column split: left-aligned text (headline + body + CTA) occupying ~40% width, right-side product visual occupying ~50% with white surface. Below the hero, a logo carousel strip provides social proof. Mid-page sections alternate between centered CTA banners and 2-column card grids (industry solutions, feature blocks). Section vertical rhythm is 72–96px. Navigation is minimal top-bar with dropdown chevrons; no sidebar, no mega-menu visible in the captured flow.",
+    "imagery": "Imagery is used sparingly and always in service of content context. Industry/solution sections use 1:1 square photography — construction workers, office teams, students, factory scenes — in naturalistic, slightly warm color grading. Images sit flush-left in 2-column cards with 8px corner radius. No lifestyle overlays, no duotone treatments, no decorative full-bleed hero photography. The product UI mockup (composite of web + mobile app screens) does the heavy visual lifting in the hero. Icon style: thin-stroke line icons in #716b61 Stone Gray, geometric and utilitarian, no filled variants.",
+    "similar": [
+      {
+        "why": "Similar restrained single-accent color approach (Notion's black/white with one ink color) and clean editorial typography at generous sizes",
+        "business": "Notion"
+      },
+      {
+        "why": "Same split-hero pattern (text left, product mockup right) and warm-off-white canvas with minimal shadow reliance",
+        "business": "Figma"
+      },
+      {
+        "why": "Custom Grotesk typeface pairing (Sharp Grotesk echoes Linear Sans Grotesk influence) and confident medium-weight headings",
+        "business": "Linear"
+      },
+      {
+        "why": "Warm neutral canvas tone (Miro's #f5f5f5 leans cooler but same comfort-first density) with 2-column feature grids and single brand accent",
+        "business": "Miro"
+      },
+      {
+        "why": "Editorial confidence — large medium-weight display type, cream/off-white backgrounds, and one chromatic action color for CTAs",
+        "business": "Webflow"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "12px",
+        "cards": "8px",
+        "pills": "9999px",
+        "buttons": "16px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "72px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#f7f5f2",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Base background for all pages — warm cream paper"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Content cards, product mockups, elevated panels"
+      },
+      {
+        "hex": "#eee9e2",
+        "name": "Alt Card",
+        "level": 2,
+        "purpose": "Subtle card variant for visual rhythm in grids"
+      },
+      {
+        "hex": "#0061fe",
+        "name": "Action Surface",
+        "level": 3,
+        "purpose": "Primary CTA fills, brand callouts"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — uses 1px hairline border on white surface",
+        "element": "Product UI Mockup"
+      },
+      {
+        "style": "none — flat on cream canvas",
+        "element": "Industry Cards"
+      },
+      {
+        "style": "none — flat white bar",
+        "element": "Nav Bar"
+      }
+    ],
+    "northStar": "warm cream workspace — editorial confidence on paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.57
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent site navigation",
+        "description": "White nav bar with Dropbox brand mark (blue box logo) on left, product/solution/enterprise/pricing links in Atlas Grotesk 14px, right-side secondary links (Contact sales, Get app, Sign up, Log in), and primary action button 'Get started' as solid blue (#0061fe) pill with white text, 16px radius, 8px 16px padding."
+      },
+      {
+        "name": "Primary CTA Button (Filled)",
+        "role": "Main call-to-action on pages",
+        "description": "Solid #0061fe background, white text in Atlas Grotesk 14px weight 500, 16px border-radius, 12px 24px padding, right-pointing arrow icon. No border. Used for 'Try Dropbox free' and 'Get started' actions."
+      },
+      {
+        "name": "Outline/Secondary Button",
+        "role": "Secondary action, less visual weight",
+        "description": "Transparent background with #1e1919 1px border, dark text, 16px border-radius, 12px 24px padding, optional arrow. Appears in centered CTA banners where a single button stands alone."
+      },
+      {
+        "name": "Hero Section (Split Layout)",
+        "role": "Above-fold page introduction",
+        "description": "Two-column layout: left column has H1 in Sharp Grotesk 40px weight 500, supporting body copy in Atlas Grotesk 16px, and primary CTA below. Right column displays product UI mockup on white card with 8px radius and subtle 1px border. Section padding approximately 96px vertical."
+      },
+      {
+        "name": "Logo Carousel Strip",
+        "role": "Social proof — trusted brands",
+        "description": "Horizontal row of partner/client logos (KATZ, Zoom, Lincoln Center, McLaren, Crunch, Cirque du Soleil) on cream background, evenly spaced, monochrome black or grayscale treatment. Paused by default, auto-scrolling."
+      },
+      {
+        "name": "Centered CTA Banner",
+        "role": "Mid-page conversion prompt",
+        "description": "Centered stack on cream canvas: small icon badge at top, H2 in Sharp Grotesk 26px weight 500, supporting text in Atlas Grotesk 16px, single outline button below. Vertical rhythm 48–72px between elements."
+      },
+      {
+        "name": "Industry Solution Card (2-Column Grid)",
+        "role": "Use-case explanation in industry context section",
+        "description": "Two-column grid of cards on cream background. Each card: square image (construction, education, etc.) on left in a 1:1 ratio with 8px radius, title in Atlas Grotesk 16px weight 500, description in 14px body, 'Learn more →' link in blue (#0061fe) weight 500. Cards are flat with no shadow, separated by 24px gutters."
+      },
+      {
+        "name": "Product UI Mockup",
+        "role": "In-hero and feature illustrations",
+        "description": "Composite screenshot showing Dropbox web app and mobile app interfaces side by side. White surface (#ffffff) with 8–12px corner radii, 1px hairline border (#eee9e2 or #d0ccc4), no drop shadow — floats on cream canvas."
+      },
+      {
+        "name": "Nav Dropdown Link",
+        "role": "Product/Solutions submenu items",
+        "description": "Text link in Atlas Grotesk 14px weight 500, #1e1919, with small downward chevron icon. 12px padding, no background. Underline or background fill on hover."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Times — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Body copy, navigation links, UI labels, button text — Dropbox's primary interface typeface; geometric humanist sans with open apertures, optimized for dense UI reading at 14–16px",
+        "sizes": "12px, 14px, 16px, 20px",
+        "family": "Atlas Grotesk Web",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.20–1.57",
+        "substitute": "Inter, IBM Plex Sans, Söhne"
+      },
+      {
+        "role": "Section headings and subheadings — medium weight (500) instead of bold creates editorial restraint; the tight, slightly compressed letterforms distinguish it from generic sans headings",
+        "sizes": "18px, 26px, 40px",
+        "family": "Sharp Grotesk",
+        "weight": "500",
+        "lineHeight": "1.20, 1.30",
+        "substitute": "Inter Tight, Manrope, Söhne Breit"
+      },
+      {
+        "role": "Display headings at 32px+ — regular weight (not bold) on large display type is an anti-convention choice that relies on size and letterform precision rather than weight to create impact",
+        "sizes": "32px",
+        "family": "Sharp Grotesk 23",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Inter Tight, Manrope"
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Dropbox reads as a warm editorial workspace rather than a cold productivity dashboard. The canvas is cream paper (#f7f5f2), not sterile white; text is a warm near-black (#1e1919), not pure ink. The brand speaks through one confident electric blue (#0061fe) that paints every action surface, paired with Sharp Grotesk headlines and Atlas Grotesk body copy — a custom Grotesk pairing that gives the system a proprietary, designed quality. Layouts are generous and breathing, built on a 6px base, with 2-column card grids, split text+visual heroes, and minimal elevation. Surfaces are flat with hairline borders; corners are soft (8–16px). The mood is approachable, considered, and quietly confident — the opposite of a sterile enterprise UI.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "**Quick Color Reference**\n- Background: #f7f5f2 (Cream Paper)\n- Surface (card): #ffffff\n- Text: #1e1919 (Warm Ink)\n- Secondary text: #716b61 (Stone Gray)\n- Border: #eee9e2 (Sand Card)\n- primary action: no distinct CTA color\n\n**3 Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Create a 2-column industry solution grid on #f7f5f2 background. Each card has a 1:1 square image on the left (8px corner radius), title in Atlas Grotesk 16px weight 500 #1e1919, description in Atlas Grotesk 14px weight 400 #716b61, and a 'Learn more →' link in #0061fe weight 500. 24px gap between cards in each row.\n"
+      }
+    ],
+    "elevationPhilosophy": "Dropbox intentionally avoids drop shadows. Separation is achieved through three layers only: cream canvas (#f7f5f2), white card (#ffffff), and warm ink text (#1e1919). Borders are 1px hairlines in #eee9e2 or #d0ccc4. This flat, editorial approach reads as considered and premium rather than busy."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "image",
+            "list",
+            "icon",
+            "card",
+            "footer"
+          ],
+          "frequency": 2183,
+          "confidence": 1,
+          "prominence": 131915844.41281874,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f7f5f2",
+          "oklch": {
+            "c": 0.0045300886445556075,
+            "h": 78.29800452382378,
+            "l": 0.9708500692267411
+          },
+          "contexts": [
+            "link",
+            "body",
+            "nav",
+            "other",
+            "button",
+            "icon",
+            "heading",
+            "list"
+          ],
+          "frequency": 909,
+          "confidence": 1,
+          "prominence": 10170873.092329955,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 4936083.08618939,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1e1919",
+          "oklch": {
+            "c": 0.007944608000008005,
+            "h": 17.773366169828503,
+            "l": 0.21931881491240174
+          },
+          "contexts": [
+            "link",
+            "nav",
+            "button",
+            "heading",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 727,
+          "confidence": 1,
+          "prominence": 975499.7300843862,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#716b61",
+          "oklch": {
+            "c": 0.017150748737618054,
+            "h": 78.16889780789975,
+            "l": 0.5293266500382993
+          },
+          "contexts": [
+            "nav",
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 227,
+          "confidence": 1,
+          "prominence": 293263.4021303279,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eee9e2",
+          "oklch": {
+            "c": 0.010829073203860826,
+            "h": 76.59642189045273,
+            "l": 0.935983103993235
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 181460.32218322216,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0061fe",
+          "oklch": {
+            "c": 0.2452733793996983,
+            "h": 261.39600896351146,
+            "l": 0.5533145662037867
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "link"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 67369.5625494881,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cd2f7b",
+          "oklch": {
+            "c": 0.20208659448951033,
+            "h": 356.68596084443567,
+            "l": 0.5745034424393306
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 13748,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c6c4c3",
+          "oklch": {
+            "c": 0.0032424910899669416,
+            "h": 75.42083823507804,
+            "l": 0.822498481931271
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 306.49450852513183,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.013746147111587741,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.3,
+          "background": "#f7f5f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.39,
+          "background": "#eee9e2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.38,
+          "background": "#ffffff",
+          "foreground": "#1e1919"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.97,
+          "background": "#1e1919",
+          "foreground": "#f7f5f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.39,
+          "background": "#eee9e2",
+          "foreground": "#1e1919"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.09,
+          "background": "#c6c4c3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10,
+          "background": "#c6c4c3",
+          "foreground": "#1e1919"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.28,
+          "background": "#ffffff",
+          "foreground": "#716b61"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.07,
+          "background": "#ffffff",
+          "foreground": "#0061fe"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.9,
+          "background": "#ffffff",
+          "foreground": "#cd2f7b"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.85,
+          "background": "#f7f5f2",
+          "foreground": "#716b61"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.66,
+          "background": "#0061fe",
+          "foreground": "#f7f5f2"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.5,
+          "background": "#f7f5f2",
+          "foreground": "#cd2f7b"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.37,
+          "background": "#eee9e2",
+          "foreground": "#716b61"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.29,
+          "background": "#000000",
+          "foreground": "#cd2f7b"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.2,
+          "background": "#eee9e2",
+          "foreground": "#0061fe"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.14,
+          "background": "#0061fe",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.05,
+          "background": "#eee9e2",
+          "foreground": "#cd2f7b"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.98,
+          "background": "#000000",
+          "foreground": "#716b61"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "nav",
+            "other"
+          ],
+          "frequency": 43,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|button",
+            "marginRight|button",
+            "marginBottom|button",
+            "marginLeft|button",
+            "columnGap|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "body",
+            "nav",
+            "button",
+            "other",
+            "list"
+          ],
+          "frequency": 103,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingRight|body",
+            "paddingBottom|body",
+            "paddingLeft|body",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "marginTop|body",
+            "marginBottom|body",
+            "rowGap|other",
+            "paddingTop|other",
+            "marginBottom|other",
+            "paddingBottom|other",
+            "marginTop|list",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 41,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "link",
+            "card",
+            "body"
+          ],
+          "frequency": 85,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "rowGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "columnGap|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "columnGap|card",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|body",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 89,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "columnGap",
+            "marginRight",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "marginRight|list",
+            "marginLeft|list",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "rowGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 84,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 115,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other",
+            "marginTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 258,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 274,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 295,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(41, 44, 49), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(41, 44, 49)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 573,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Atlas Grotesk Web",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 195,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 26,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Sharp Grotesk",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 14,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Sharp Grotesk 23",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Atlas Grotesk Web",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Atlas Grotesk Web",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Atlas Grotesk Web",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Atlas Grotesk Web",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Atlas Grotesk Web",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Atlas Grotesk Web",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 118,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "body",
+            "icon",
+            "list",
+            "card",
+            "footer"
+          ],
+          "frequency": 402,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Atlas Grotesk Web",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Atlas Grotesk Web",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "body",
+            "other"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Atlas Grotesk Web",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Sharp Grotesk",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Atlas Grotesk Web",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Atlas Grotesk Web",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Atlas Grotesk Web",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Sharp Grotesk",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Sharp Grotesk 23",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Sharp Grotesk",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/75ed27e4-f224-425c-9a15-38c737423972.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/10725c2b-f311-4a59-bce1-e9046da03936.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2b41e7c4-1e8c-4ea2-a87f-51e24c57886e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dropbox.com design system\",\"item\":\"https://styles.refero.design/style/2b41e7c4-1e8c-4ea2-a87f-51e24c57886e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2b41e7c4-1e8c-4ea2-a87f-51e24c57886e#style-reference\",\"name\":\"Dropbox.com design system reference\",\"headline\":\"Dropbox.com design system | Refero Styles\",\"description\":\"Explore Dropbox.com's light SaaS design system: Dropbox Blue #0061fe, Cream Paper #f7f5f2 colors, Times, Atlas Grotesk Web typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/2b41e7c4-1e8c-4ea2-a87f-51e24c57886e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2b41e7c4-1e8c-4ea2-a87f-51e24c57886e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dropbox.com\",\"url\":\"https://dropbox.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2b41e7c4-1e8c-4ea2-a87f-51e24c57886e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/10725c2b-f311-4a59-bce1-e9046da03936.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/10725c2b-f311-4a59-bce1-e9046da03936.jpg\",\"caption\":\"Screenshot of Dropbox.com\"},\"image\":\"https://images.refero.design/styles/refero.design/image/10725c2b-f311-4a59-bce1-e9046da03936.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dropbox.com design system\",\"Dropbox.com website design\",\"Dropbox.com colors\",\"Dropbox.com typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Dropbox Blue\",\"Cream Paper\",\"Pure White\",\"Warm Ink\",\"Times\",\"Atlas Grotesk Web\",\"Sharp Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dropbox.com design system\"},{\"@type\":\"Thing\",\"name\":\"Dropbox.com website design\"},{\"@type\":\"Thing\",\"name\":\"Dropbox.com colors\"},{\"@type\":\"Thing\",\"name\":\"Dropbox.com typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-12T11:57:56.000Z\",\"dateModified\":\"2026-04-12T11:57:56.000Z\"}]}"
+}

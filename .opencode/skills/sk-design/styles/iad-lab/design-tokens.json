@@ -1,0 +1,197 @@
+{
+  "color": {
+    "charcoal-canvas": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Charcoal Canvas — Page background, the dominant surface across all sections and the base layer behind full-bleed photography"
+    },
+    "bone": {
+      "$value": "#f8f8f8",
+      "$type": "color",
+      "$description": "Bone — All body text, meta labels, navigation dots, and the dominant hairline border color — serves as the single foreground tone in this near-monochrome system"
+    },
+    "graphite": {
+      "$value": "#2a2b2d",
+      "$type": "color",
+      "$description": "Graphite — Secondary icon strokes, subtle list dividers, and muted fill details — sits one step darker than the canvas for low-contrast decoration"
+    },
+    "ash": {
+      "$value": "#757577",
+      "$type": "color",
+      "$description": "Ash — Inactive or resting state for navigation dots and quiet UI affordances"
+    }
+  },
+  "font": {
+    "neue-haas-unica": {
+      "$value": "Neue Haas Unica",
+      "$type": "fontFamily",
+      "$description": "The sole text family for all UI copy: meta labels at 16px, body at 18px, list/links at 24px, subheadings at 27px, section headings at 36px. Weight 400 is default; 700 is reserved for emphasis in the meta block and active labels. The 1.10 lineHeight on 36px headings creates tight, architectural vertical rhythm."
+    },
+    "display-custom-or-system-fallback": {
+      "$value": "Display (custom or system fallback)",
+      "$type": "fontFamily",
+      "$description": "Reserved exclusively for the two program words ('IMAGINE', 'PROGRAM') that span the full viewport width and bleed past both edges. This face is wide, heavy, with rounded terminals — it is the visual signature of the entire site and carries the brand's identity more than any other element. When recreating, use a heavy extended grotesque (e.g. Obviously Wide Black, Neue Machina Black) at a size that forces letter cropping at the viewport edges."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica",
+        "fontSize": "27px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 27px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Neue Haas Unica",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "charcoal-canvas": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Surface level 1: The base layer — page background and the surface visible between photographic panels"
+    },
+    "photographic-surface": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed image/video panels that replace the canvas at section boundaries. Same hex but visually distinct due to content."
+    },
+    "text-surface": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Surface level 3: No actual elevated surface — text sits directly on the canvas or photography. The 'elevation' is purely typographic scale."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://iad-lab.ch",
+      "siteName": "Iad-lab",
+      "extractedAt": "2026-06-03T21:06:52.967Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,1350 @@
+{
+  "source": "https://styles.refero.design/style/a3161c3c-26d4-425b-aaa3-4fc3f06b77ee",
+  "uuid": "a3161c3c-26d4-425b-aaa3-4fc3f06b77ee",
+  "name": "Revolut",
+  "northStar": "Monochrome editorial banking on cloud photography — white ink, pill buttons, one blue ribbon of color in an otherwise grayscale world.",
+  "capturedAt": "2026-07-18T06:31:02.300Z",
+  "meta": {
+    "url": "https://revolut.com",
+    "siteName": "Revolut",
+    "extractedAt": "2026-07-03T03:30:22.443Z",
+    "durationMs": 90909,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 501,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 9999px radius for every button, tag, and input — pill geometry is the signature.",
+      "Keep display headlines at Aeonik Pro weight 500, never heavier — authority comes from size, not weight.",
+      "Reserve #1227fd→#6fa0ff gradient exclusively for the top promotional bar; never use it on buttons, cards, or section backgrounds.",
+      "Use #c9c9cd hairlines (1-2px) instead of shadows to separate cards and lists from the page canvas.",
+      "Let full-bleed photography carry all color and atmosphere — keep UI surfaces #ffffff, #f7f7f7, or #1f1f1f.",
+      "Apply tightening tracking at every display size: -0.024em at 88px through -0.010em at 24px, opening only at 12px uppercase (+0.015em).",
+      "Place pricing and conversion sections on #1f1f1f backgrounds with white cards — the dark/light flip is the pricing module's signature."
+    ],
+    "donts": [
+      "Don't introduce new chromatic colors — the palette is 7 neutrals and one blue gradient, and that's the whole system.",
+      "Don't apply shadows to cards or buttons — separation is achieved with #c9c9cd borders and surface color shifts, not elevation.",
+      "Don't use a heading weight above 500 on Aeonik Pro — going to 600/700 breaks the editorial calm.",
+      "Don't place the promo gradient on hero sections, buttons, or product cards — it loses its meaning if it appears more than once per page.",
+      "Don't use square or slightly-rounded corners on primary actions — pills (9999px) are the only acceptable control shape.",
+      "Don't mix Inter and Aeonik Pro at the same size — Aeonik Pro owns 18px and above, Inter owns 16px and below.",
+      "Don't use color to indicate state on neutral surfaces — use opacity shifts and border weight instead (e.g. #1f1f1f at 80% vs 100%)."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#1f1f1f",
+        "name": "Ink",
+        "role": "Primary text, footer background, filled dark buttons. The near-black that carries all body and display copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Button text on light surfaces, pure-black background blocks. Used where maximum contrast is required",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Page canvas, card surfaces, button text on dark fills, button borders on light fills. The dominant surface color across all sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c9c9cd",
+        "name": "Ash Grey",
+        "role": "Hairline borders, disabled dividers, and the dominant link color at 80 occurrences. The neutral that defines edge separation without shadow",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f7f7",
+        "name": "Mist",
+        "role": "List and grouped-background fills — the recessed surface beneath cards, tables, and secondary containers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#717173",
+        "name": "Slate",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4c4c4c",
+        "name": "Graphite",
+        "role": "Tertiary body text, inline badge copy, and minor muted surfaces between true ink and slate",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1227fd",
+        "name": "Cobalt Wash",
+        "role": "Promotional bar gradient start. The single chromatic accent in the entire system — only ever appears as part of the blue gradient on top-of-page offer strips",
+        "group": "brand",
+        "gradient": "linear-gradient(to right, rgb(18, 39, 253), rgb(111, 160, 255))"
+      }
+    ],
+    "imagery": "Photography is the primary color source. Hero sections use full-bleed, high-key sky-and-cloud photography — pale blues, whites, and warm skin tones — that acts as the canvas for white display headlines. People are shot close-up, looking off-camera, in soft natural light, with a candid editorial feel rather than staged commercial poses. No decorative graphics, no 3D renders, no illustrations. Icons throughout the product are monochrome line icons at 1.5-2px stroke weight, neutral-colored, never filled with brand color. Award logos in the trust section are full-color third-party brand marks on white. Product UI is shown via iPhone-frame overlays with 22.5px top radius, never as flat screenshots.",
+    "similar": [
+      {
+        "why": "Same full-bleed sky/cloud photography with massive light-weight display headlines overlaid, and the same near-black-on-white editorial restraint",
+        "business": "Apple"
+      },
+      {
+        "why": "Same monochrome fintech language with a single accent color, pill-shaped buttons, and oversized Aeonik-style display type",
+        "business": "Wise (TransferWise)"
+      },
+      {
+        "why": "Same achromatic banking palette and pill-button geometry, though N26 tends to use deeper blacks and heavier contrast",
+        "business": "N26"
+      },
+      {
+        "why": "Same editorial monochrome approach with full-bleed photography carrying all the color, though Cash App uses green as a brand accent where Revolut uses blue",
+        "business": "Cash App"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "22.5px",
+        "lists": "20px",
+        "buttons": "9999px",
+        "smallControls": "12px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Default page background for all editorial and content sections"
+      },
+      {
+        "hex": "#f7f7f7",
+        "name": "Recessed",
+        "level": 1,
+        "purpose": "List groups, grouped backgrounds, secondary containers below cards"
+      },
+      {
+        "hex": "#c9c9cd",
+        "name": "Edge",
+        "level": 2,
+        "purpose": "Hairline dividers and disabled-state borders, not a background"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 3,
+        "purpose": "Card and pricing tier surfaces (visually identical to canvas but defined by radius and border)"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Inverted",
+        "level": 4,
+        "purpose": "Dark section bands, footer, navigation, and filled dark buttons"
+      }
+    ],
+    "northStar": "Monochrome editorial banking on cloud photography — white ink, pill buttons, one blue ribbon of color in an otherwise grayscale world.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 18,
+        "letterSpacing": 0.18
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 22,
+        "letterSpacing": -0.07
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 19.2
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 24
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 28,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 38,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 48,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "display",
+        "size": 52,
+        "lineHeight": 52,
+        "letterSpacing": -0.624
+      },
+      {
+        "role": "display-xl",
+        "size": 88,
+        "lineHeight": 88,
+        "letterSpacing": -2.112
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button (Light)",
+        "role": "Primary button on light surfaces and hero sections",
+        "description": "White background, #1f1f1f text, #1f1f1f 2px border, 9999px radius, 10px 24px padding. 16px Inter weight 600. The 'Explore Savings' and 'Sign up' variant."
+      },
+      {
+        "name": "Pill Button (Dark)",
+        "role": "Primary button on photo and light hero contexts",
+        "description": "#1f1f1f background, white text, 9999px radius, 0px 20px padding with vertical centering. The 'Download the app' CTA — appears as a solid dark pill that photographs cleanly against sky imagery."
+      },
+      {
+        "name": "Pill Button (Ghost on Photo)",
+        "role": "Secondary action over photographic backgrounds",
+        "description": "rgba(255,255,255,0.1) background, white text, white 1px border, 9999px radius, 10px 24px padding. Glassmorphic treatment for buttons sitting on top of hero photography."
+      },
+      {
+        "name": "Pill Button (Text Link)",
+        "role": "Inline interactive link styled as a button",
+        "description": "Transparent background, #1f1f1f at 80% opacity text, 12px radius, no padding. Smaller interactive elements inside body copy."
+      },
+      {
+        "name": "Promo Gradient Bar",
+        "role": "Top-of-page offer strip",
+        "description": "linear-gradient(to right, #1227fd, #6fa0ff), 16px Inter weight 400 white text, centered. The only chromatic surface in the entire design system. 32-40px tall. Contains an underlined white link."
+      },
+      {
+        "name": "Navigation Header",
+        "role": "Primary site navigation",
+        "description": "Dark #1f1f1f band across the top. White 'Revolut' wordmark left, 16px Inter nav items centered, 'Log in' text + 'Sign up' pill right. Sits above photo heroes without competing with them."
+      },
+      {
+        "name": "Location Selector Pill",
+        "role": "Country/region switcher in the top utility bar",
+        "description": "White background, 9999px radius, country flag emoji + label, 12-16px Inter. Sits inside a white utility strip above the dark nav."
+      },
+      {
+        "name": "Phone Preview Card",
+        "role": "Product screenshot overlay on hero sections",
+        "description": "22.5px top-left/top-right radius, 0px bottom radius. Full-bleed photo behind it, white card overlapping the photo bottom. Internal product UI shows on a clean white surface with a pill label like 'Accounts'."
+      },
+      {
+        "name": "Pricing Tier Card",
+        "role": "Three-column plan comparison on dark background",
+        "description": "White background, 22.5px radius, 24-40px internal padding. Tier name (Aeonik Pro 24px weight 500), price (Aeonik Pro 32px weight 500), description body. Sits on a #1f1f1f section background to maximize card contrast."
+      },
+      {
+        "name": "Trust Badge Block",
+        "role": "Award/social-proof cell in the social proof grid",
+        "description": "Transparent background, centered logo or icon, 12-14px Inter caption below in #717173. Arranged in 3-column or 4-column grids separated by 40-80px gaps."
+      },
+      {
+        "name": "Section Header (Muted)",
+        "role": "Section-level subheading above gridded content",
+        "description": "24-40px Aeonik Pro weight 500, color #717173 (not #1f1f1f). The choice to use slate for section titles instead of ink is deliberate — it creates a calm editorial rhythm between hero and content."
+      },
+      {
+        "name": "List Container",
+        "role": "Grouped content rows (feature lists, FAQ items)",
+        "description": "#f7f7f7 background, 20px radius, 16-24px internal padding. The recessed surface that sits one step below card white."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Marketing display and heading face. Weight 500 across the entire scale — never heavier. Used for hero headlines ('Banking & Beyond' at 88px), section headings, and emphasis paragraphs. The signature choice is that no heading goes bolder than 500: authority comes from size and tracking, not weight.",
+        "sizes": "16, 18, 24, 32, 40, 52, 88",
+        "family": "Aeonik Pro",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.17, 1.19, 1.20, 1.33, 1.38",
+        "substitute": "Inter, DM Sans, or Manrope at matching weights",
+        "letterSpacing": "-0.0240em at 88px → -0.0120em at 52px → -0.0100em at 40-24px"
+      },
+      {
+        "role": "Product UI and body face. Carries all buttons, form labels, navigation, badges, and the 16px default body copy. Uppercase 12px labels open to +0.0150em — the only positive tracking in the system, reserved for micro-tags and button labels to add breathing room at small sizes.",
+        "sizes": "12, 14, 16",
+        "family": "Inter",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.20, 1.50, 1.57",
+        "substitute": "System UI sans (already in the design tokens as fallback)",
+        "letterSpacing": "-0.0100em to -0.0050em for body, +0.0150em for uppercase 12px labels"
+      }
+    ],
+    "description": "Revolut runs an editorial-monochrome banking language: the product UI is nearly entirely achromatic — white surfaces, #1f1f1f ink, hairline #c9c9cd dividers — and the entire color budget is outsourced to full-bleed sky photography that washes across hero sections. Aeonik Pro at weight 500 carries every display moment with aggressively tightened tracking (-0.024em at 88px), while Inter at 16px handles all UI density. Controls are exclusively pill-shaped (9999px) in four restrained variants, and the only chromatic element in the entire system is a single blue gradient reserved for the promotional bar. Surfaces prefer to float without shadows — edges do the work that elevation usually would.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a3161c3c-26d4-425b-aaa3-4fc3f06b77ee#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Revolut design system\",\"item\":\"https://styles.refero.design/style/a3161c3c-26d4-425b-aaa3-4fc3f06b77ee\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a3161c3c-26d4-425b-aaa3-4fc3f06b77ee#style-reference\",\"name\":\"Revolut design system reference\",\"headline\":\"Revolut design system | Refero Styles\",\"description\":\"Explore Revolut's light Fintech design system: Ink #1f1f1f, Pure Black #000000 colors, Aeonik Pro, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a3161c3c-26d4-425b-aaa3-4fc3f06b77ee\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a3161c3c-26d4-425b-aaa3-4fc3f06b77ee\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Revolut\",\"url\":\"https://revolut.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a3161c3c-26d4-425b-aaa3-4fc3f06b77ee#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/940119af-f2af-458b-971e-1a3d5ce2901d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/940119af-f2af-458b-971e-1a3d5ce2901d.jpg\",\"caption\":\"Screenshot of Revolut\"},\"image\":\"https://images.refero.design/styles/refero.design/image/940119af-f2af-458b-971e-1a3d5ce2901d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Revolut design system\",\"Revolut website design\",\"Revolut colors\",\"Revolut typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Ink\",\"Pure Black\",\"Bone\",\"Ash Grey\",\"Aeonik Pro\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Revolut design system\"},{\"@type\":\"Thing\",\"name\":\"Revolut website design\"},{\"@type\":\"Thing\",\"name\":\"Revolut colors\"},{\"@type\":\"Thing\",\"name\":\"Revolut typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-02-16T09:29:17.000Z\",\"dateModified\":\"2026-02-16T09:29:17.000Z\"}]}19:T573,**Quick Color Reference**\n- text: #1f1f1f\n- background: #ffffff\n- border: #c9c9cd\n- muted text: #717173\n- recessed surface: #f7f7f7\n- dark surface: #1f1f1f\n- primary action: #1f1f1f (filled action)\n- promo accent: linear-gradient(to right, #1227fd, #6fa0ff)\n\n**Example Component Prompts**\n\n1. **Hero headline overlay**: Full-bleed sky photograph as background. Display headline at 88px Aeonik Pro weight 500, white, letter-spacing -2.112px. Subtext at 18px Aeonik Pro weight 400, white, line-height 24px. Dark pill button below: #1f1f1f background, white text, 9999px radius, 10px 24px padding, 16px Inter weight 600.\n\n2. **Pricing tier card**: Three cards on a #1f1f1f section background. Each card: white background, 22.5px radius, 32px padding. Tier name at 24px Aeonik Pro weight 500 #1f1f1f, price at 32px Aeonik Pro weight 500 #1f1f1f, description at 16px Inter weight 400 #4c4c4c.\n\n3. **Promotional bar**: linear-gradient(to right, #1227fd, #6fa0ff) background, 40px tall, centered. Text: 16px Inter weight 400 white. Underlined white link inline.\n\n4. **Trust badge grid cell**: Transparent background, 40-80px gap to neighboring cells. Logo or icon centered, 12-14px Inter caption below in #717173.\n\n5. **Section header**: 24-40px Aeonik Pro weight 500, color #717173 (not #1f1f1f), centered, max-width 800px. This slate color for section titles is the system's calm editorial signature."
+      },
+      {
+        "title": "Photography Direction",
+        "content": "Full-bleed sky and cloud photography is the only color source in the system. Treatments should follow three rules: (1) high-key, overexposed skies with soft cumulus clouds — never moody or dark, (2) human subjects shot in editorial close-up, looking off-camera, in warm natural daylight, candid rather than posed, (3) crops that leave generous negative space in the upper portion of the frame so white display headlines can sit cleanly on top without competing with the subject. Product UI is never shown as a flat screenshot — it is always inside a white iPhone-frame card with 22.5px top radius, overlapping the bottom edge of the photograph."
+      }
+    ],
+    "elevationPhilosophy": "Revolut's design system deliberately avoids elevation shadows on standard cards and buttons. Surface separation is achieved through three mechanisms instead: (1) color shifts from #ffffff canvas to #f7f7f7 recessed, (2) hairline #c9c9cd 1-2px borders, and (3) full-bleed dark-to-light section bands (#1f1f1f pricing footer under white content). The shadow tokens exist in the system for popovers and modals only."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1f1f1f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23929237775790413
+          },
+          "contexts": [
+            "button",
+            "badge",
+            "heading",
+            "body",
+            "link",
+            "footer"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 14668855.893120632,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "link/color": 6,
+            "badge/color": 2,
+            "button/color": 1,
+            "heading/color": 13,
+            "body/backgroundColor": 5,
+            "button/backgroundColor": 5,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 10695857.62869953,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "button/color": 7,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#c9c9cd",
+          "oklch": {
+            "c": 0.0055064853960488875,
+            "h": 286.28008336855885,
+            "l": 0.8370819523099893
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "badge",
+            "button"
+          ],
+          "frequency": 99,
+          "confidence": 1,
+          "prominence": 1868684.2112169878,
+          "properties": [
+            "borderColor",
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "link/color": 80,
+            "badge/color": 1,
+            "other/color": 2,
+            "button/color": 1,
+            "other/borderColor": 3,
+            "body/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "badge",
+            "heading",
+            "card"
+          ],
+          "frequency": 76,
+          "confidence": 1,
+          "prominence": 1762627.7163685514,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 15,
+            "other/fill": 6,
+            "badge/color": 5,
+            "other/color": 1,
+            "button/color": 10,
+            "heading/color": 17,
+            "button/borderColor": 12,
+            "body/backgroundColor": 1,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#f7f7f7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.976138790665567
+          },
+          "contexts": [
+            "body",
+            "link",
+            "list"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 308481,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1,
+            "list/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#717173",
+          "oklch": {
+            "c": 0.0030582735280374087,
+            "h": 286.2985192472044,
+            "l": 0.5492795958508594
+          },
+          "contexts": [
+            "heading",
+            "badge"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 106679.48703818896,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "badge/color": 5,
+            "heading/color": 1
+          }
+        },
+        {
+          "hex": "#4c4c4c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4157992184167868
+          },
+          "contexts": [
+            "badge",
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 39838.934005507,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "badge/color": 8,
+            "other/color": 1,
+            "button/color": 1,
+            "body/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.005902909023434573,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.6,
+          "background": "#f7f7f7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.48,
+          "background": "#ffffff",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.39,
+          "background": "#f7f7f7",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.72,
+          "background": "#c9c9cd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.98,
+          "background": "#c9c9cd",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.59,
+          "background": "#4c4c4c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.02,
+          "background": "#4c4c4c",
+          "foreground": "#f7f7f7"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.2,
+          "background": "#4c4c4c",
+          "foreground": "#c9c9cd"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.87,
+          "background": "#ffffff",
+          "foreground": "#717173"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.55,
+          "background": "#f7f7f7",
+          "foreground": "#717173"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.31,
+          "background": "#000000",
+          "foreground": "#717173"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.38,
+          "background": "#1f1f1f",
+          "foreground": "#717173"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.95,
+          "background": "#c9c9cd",
+          "foreground": "#717173"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.45,
+          "background": "#4c4c4c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.92,
+          "background": "#4c4c4c",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.76,
+          "background": "#4c4c4c",
+          "foreground": "#717173"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.65,
+          "background": "#ffffff",
+          "foreground": "#c9c9cd"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.54,
+          "background": "#f7f7f7",
+          "foreground": "#c9c9cd"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.27,
+          "background": "#000000",
+          "foreground": "#1f1f1f"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "icon",
+            "button",
+            "body"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 22.5,
+          "contexts": [
+            "card",
+            "image",
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link",
+            "button",
+            "body"
+          ],
+          "frequency": 28,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|link",
+            "marginLeft|button",
+            "rowGap|body",
+            "columnGap|body",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "body",
+            "link",
+            "other",
+            "heading",
+            "list"
+          ],
+          "frequency": 215,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "rowGap|body",
+            "columnGap|body",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginTop|button",
+            "marginTop|body",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|body",
+            "paddingBottom|other",
+            "paddingTop|heading",
+            "paddingBottom|heading",
+            "paddingBottom|list",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|body",
+            "columnGap|body",
+            "marginTop|body",
+            "marginBottom|body",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 40,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|body",
+            "columnGap|body",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingBottom|link",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "marginBottom|body",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "list",
+            "body"
+          ],
+          "frequency": 73,
+          "properties": [
+            "marginLeft",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "rowGap",
+            "marginTop",
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|other",
+            "rowGap|other",
+            "rowGap|list",
+            "columnGap|list",
+            "rowGap|body",
+            "columnGap|body",
+            "marginTop|other",
+            "paddingTop|list",
+            "paddingRight|list",
+            "paddingLeft|list",
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "footer",
+            "heading",
+            "other",
+            "list"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer",
+            "paddingBottom|footer",
+            "marginTop|heading",
+            "marginBottom|heading",
+            "marginBottom|other",
+            "marginTop|list",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|body",
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 68,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|badge",
+            "marginLeft|badge"
+          ]
+        },
+        {
+          "value": 109,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 213,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 220,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 232,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(to right, rgb(18, 39, 253), rgb(111, 160, 255))",
+        "colors": [
+          "rgb(18, 39, 253)",
+          "rgb(111, 160, 255)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 420,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Aeonik Pro",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 77,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "badge",
+            "body",
+            "link",
+            "button",
+            "icon"
+          ],
+          "frequency": 112,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "badge",
+            "body",
+            "link",
+            "heading"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.57,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon",
+            "badge",
+            "link",
+            "hero",
+            "image",
+            "card",
+            "list",
+            "footer"
+          ],
+          "frequency": 281,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Aeonik Pro",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "badge"
+          ],
+          "frequency": 46,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Aeonik Pro",
+          "weight": 400,
+          "contexts": [
+            "badge",
+            "body",
+            "heading"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Aeonik Pro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Aeonik Pro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.19,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Aeonik Pro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Aeonik Pro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 88,
+          "family": "Aeonik Pro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.024,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/055f3921-9657-4980-ad04-4cc58ff79407.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/940119af-f2af-458b-971e-1a3d5ce2901d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a3161c3c-26d4-425b-aaa3-4fc3f06b77ee#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Revolut design system\",\"item\":\"https://styles.refero.design/style/a3161c3c-26d4-425b-aaa3-4fc3f06b77ee\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a3161c3c-26d4-425b-aaa3-4fc3f06b77ee#style-reference\",\"name\":\"Revolut design system reference\",\"headline\":\"Revolut design system | Refero Styles\",\"description\":\"Explore Revolut's light Fintech design system: Ink #1f1f1f, Pure Black #000000 colors, Aeonik Pro, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a3161c3c-26d4-425b-aaa3-4fc3f06b77ee\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a3161c3c-26d4-425b-aaa3-4fc3f06b77ee\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Revolut\",\"url\":\"https://revolut.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a3161c3c-26d4-425b-aaa3-4fc3f06b77ee#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/940119af-f2af-458b-971e-1a3d5ce2901d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/940119af-f2af-458b-971e-1a3d5ce2901d.jpg\",\"caption\":\"Screenshot of Revolut\"},\"image\":\"https://images.refero.design/styles/refero.design/image/940119af-f2af-458b-971e-1a3d5ce2901d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Revolut design system\",\"Revolut website design\",\"Revolut colors\",\"Revolut typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Ink\",\"Pure Black\",\"Bone\",\"Ash Grey\",\"Aeonik Pro\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Revolut design system\"},{\"@type\":\"Thing\",\"name\":\"Revolut website design\"},{\"@type\":\"Thing\",\"name\":\"Revolut colors\"},{\"@type\":\"Thing\",\"name\":\"Revolut typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-02-16T09:29:17.000Z\",\"dateModified\":\"2026-02-16T09:29:17.000Z\"}]}19:T573,**Quick Color Reference**\n- text: #1f1f1f\n- background: #ffffff\n- border: #c9c9cd\n- muted text: #717173\n- recessed surface: #f7f7f7\n- dark surface: #1f1f1f\n- primary action: #1f1f1f (filled action)\n- promo accent: linear-gradient(to right, #1227fd, #6fa0ff)\n\n**Example Component Prompts**\n\n1. **Hero headline overlay**: Full-bleed sky photograph as background. Display headline at 88px Aeonik Pro weight 500, white, letter-spacing -2.112px. Subtext at 18px Aeonik Pro weight 400, white, line-height 24px. Dark pill button below: #1f1f1f background, white text, 9999px radius, 10px 24px padding, 16px Inter weight 600.\n\n2. **Pricing tier card**: Three cards on a #1f1f1f section background. Each card: white background, 22.5px radius, 32px padding. Tier name at 24px Aeonik Pro weight 500 #1f1f1f, price at 32px Aeonik Pro weight 500 #1f1f1f, description at 16px Inter weight 400 #4c4c4c.\n\n3. **Promotional bar**: linear-gradient(to right, #1227fd, #6fa0ff) background, 40px tall, centered. Text: 16px Inter weight 400 white. Underlined white link inline.\n\n4. **Trust badge grid cell**: Transparent background, 40-80px gap to neighboring cells. Logo or icon centered, 12-14px Inter caption below in #717173.\n\n5. **Section header**: 24-40px Aeonik Pro weight 500, color #717173 (not #1f1f1f), centered, max-width 800px. This slate color for section titles is the system's calm editorial signature."
+}

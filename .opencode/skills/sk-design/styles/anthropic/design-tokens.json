@@ -1,0 +1,392 @@
+{
+  "color": {
+    "slate-dark": {
+      "$value": "#141413",
+      "$type": "color",
+      "$description": "Slate Dark — Primary text, headings, footer background, hairline borders — near-black with a hint of warmth, never pure black"
+    },
+    "ivory-medium": {
+      "$value": "#f0eee6",
+      "$type": "color",
+      "$description": "Ivory Medium — Page canvas and large surface fills — the parchment background that sets the entire warm tone"
+    },
+    "ivory-light": {
+      "$value": "#faf9f5",
+      "$type": "color",
+      "$description": "Ivory Light — Card surfaces, elevated panels, skip-link buttons — one step brighter than canvas for subtle layering without shadows"
+    },
+    "cloud-medium": {
+      "$value": "#b0aea5",
+      "$type": "color",
+      "$description": "Cloud Medium — Muted helper text, inactive nav items, secondary labels — the neutral that recedes without disappearing"
+    },
+    "cloud-dark": {
+      "$value": "#87867f",
+      "$type": "color",
+      "$description": "Cloud Dark — Outlined button borders, mid-contrast dividers"
+    },
+    "stone": {
+      "$value": "#cccbc8",
+      "$type": "color",
+      "$description": "Stone — Hairline borders and dividers between sections — visible but never assertive"
+    },
+    "slate-medium": {
+      "$value": "#3d3d3a",
+      "$type": "color",
+      "$description": "Slate Medium — Dark-on-dark borders inside the footer"
+    },
+    "oat-warm": {
+      "$value": "#e3dacc",
+      "$type": "color",
+      "$description": "Oat Warm — Secondary warm surface for grouped panels and feature containers — a deeper paper tone for variety"
+    },
+    "manilla": {
+      "$value": "#f5e3c7",
+      "$type": "color",
+      "$description": "Manilla — Featured hero card background — vintage paper tone that signals editorial importance without color shouting"
+    },
+    "clay": {
+      "$value": "#d97757",
+      "$type": "color",
+      "$description": "Clay — Filled CTA buttons (e.g. cookie consent accept) — the single chromatic accent in the system, a terracotta warmth that belongs to the earth-tone family rather than typical UI blue"
+    },
+    "clay-deep": {
+      "$value": "#c6613f",
+      "$type": "color",
+      "$description": "Clay Deep — Hover/pressed state for Clay CTAs and the canonical accent token — deeper version of the primary accent"
+    }
+  },
+  "font": {
+    "anthropic-serif": {
+      "$value": "Anthropic Serif",
+      "$type": "fontFamily",
+      "$description": "Editorial voice — used for the display heading at 68px, all body copy at 20px, card titles, and supporting paragraphs. The serif carries personality; its presence in body text (unusual for tech sites) signals research-publication DNA. Weight 400 is default, 600 for emphasis."
+    },
+    "anthropic-sans": {
+      "$value": "Anthropic Sans",
+      "$type": "fontFamily",
+      "$description": "UI chrome and display sans — nav links, buttons, footers, badges, and the bold sans display heading at 61px weight 700. The 61px sans display sits beside the 68px serif display as a deliberate dual-system: sans shouts declarative statements, serif reads as editorial essay."
+    },
+    "anthropic-mono": {
+      "$value": "Anthropic Mono",
+      "$type": "fontFamily",
+      "$description": "Reserved for code or technical snippets — appears sparingly"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Anthropic Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Anthropic Sans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Anthropic Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Anthropic Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Anthropic Sans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Anthropic Serif",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Anthropic Sans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Anthropic Sans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Anthropic Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Anthropic Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Anthropic Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Anthropic Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Anthropic Sans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Anthropic Serif",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Anthropic Serif",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Anthropic Serif",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Anthropic Sans",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Anthropic Serif",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Anthropic Sans",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Anthropic Sans",
+        "fontSize": "61px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 61px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Anthropic Serif",
+        "fontSize": "68px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 68px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "76": {
+      "$value": "76px",
+      "$type": "dimension",
+      "$description": "Spacing 76px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f0eee6",
+      "$type": "color",
+      "$description": "Surface level 0: Page-level background — the parchment that everything sits on"
+    },
+    "card-surface": {
+      "$value": "#faf9f5",
+      "$type": "color",
+      "$description": "Surface level 1: Standard card and elevated panel — one tonal step above canvas"
+    },
+    "warm-feature-surface": {
+      "$value": "#f5e3c7",
+      "$type": "color",
+      "$description": "Surface level 2: Featured hero card and editorial highlights — manilla paper tone for visual emphasis"
+    },
+    "deep-warm-surface": {
+      "$value": "#e3dacc",
+      "$type": "color",
+      "$description": "Surface level 3: Secondary grouped panels and deeper warm containers"
+    },
+    "inversion-surface": {
+      "$value": "#141413",
+      "$type": "color",
+      "$description": "Surface level 4: Footer and dark utility bands — the only dark surface in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://anthropic.com",
+      "siteName": "Anthropic",
+      "extractedAt": "2026-07-03T03:04:05.854Z",
+      "variant": "extended"
+    }
+  }
+}

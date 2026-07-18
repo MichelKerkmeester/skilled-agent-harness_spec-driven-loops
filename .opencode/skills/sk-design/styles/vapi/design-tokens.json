@@ -1,0 +1,587 @@
+{
+  "color": {
+    "void-canvas": {
+      "$value": "#0e0e13",
+      "$type": "color",
+      "$description": "Void Canvas — Page background, primary canvas — near-black with a cool ink tint that lets the cream text feel hand-set rather than digital"
+    },
+    "carbon-surface": {
+      "$value": "#09090b",
+      "$type": "color",
+      "$description": "Carbon Surface — Card backgrounds, inset panels, and list items — one shade deeper than the canvas to create surface depth without elevation"
+    },
+    "slab-elevated": {
+      "$value": "#18181b",
+      "$type": "color",
+      "$description": "Slab Elevated — Elevated surface layer, rarely visible — used only for small chips and modal-like overlays that need to sit above cards"
+    },
+    "iron-border": {
+      "$value": "#27272a",
+      "$type": "color",
+      "$description": "Iron Border — Primary hairline border across lists, dividers, and card edges — appears 490+ times, it is the structural skeleton of the system"
+    },
+    "steel-border": {
+      "$value": "#3f3f46",
+      "$type": "color",
+      "$description": "Steel Border — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "zinc-mute": {
+      "$value": "#71717a",
+      "$type": "color",
+      "$description": "Zinc Mute — Muted body text, icon strokes, and disabled labels — the voice of secondary information"
+    },
+    "pearl-border": {
+      "$value": "#d8d7d4",
+      "$type": "color",
+      "$description": "Pearl Border — Light hairline border used inside nav bars and inverted surfaces — a near-white wire for dark containers"
+    },
+    "ice-border": {
+      "$value": "#d9e6ef",
+      "$type": "color",
+      "$description": "Ice Border — Cool-tinted light border for icons, links, and glassy outlined elements — adds a faint blue whisper to contrast with the warm Cream text"
+    },
+    "cream-text": {
+      "$value": "#fffaea",
+      "$type": "color",
+      "$description": "Cream Text — Primary heading and body text — warm off-white (not pure #fff) that reads softer on dark and unifies with the orange accent's warmth"
+    },
+    "bone-text": {
+      "$value": "#f4f4f5",
+      "$type": "color",
+      "$description": "Bone Text — Secondary text and button labels — the cool counterpart to Cream, used when a label needs to feel more clinical than editorial"
+    },
+    "mercury-text": {
+      "$value": "#a1a1aa",
+      "$type": "color",
+      "$description": "Mercury Text — Tertiary text and meta-information — the lightest reading level above Zinc Mute"
+    },
+    "ember-orange": {
+      "$value": "#e96b34",
+      "$type": "color",
+      "$description": "Ember Orange — Primary filled CTA (Request a Demo) — warm burnt orange against cool dark creates urgency without the aggression of pure red"
+    },
+    "mint-pulse": {
+      "$value": "#62f6b5",
+      "$type": "color",
+      "$description": "Mint Pulse — Secondary filled CTA (Sign Up / Login) — bright mint green pairs against Ember Orange as a complementary pair, the two action colors share the same pill geometry but never co-occupy the same surface"
+    },
+    "spectrogram-blue": {
+      "$value": "#4dcafa",
+      "$type": "color",
+      "$description": "Spectrogram Blue — Decorative waveform accent — appears only inside the hero audio visualization, never on UI elements"
+    },
+    "spectrogram-pink": {
+      "$value": "#de94e2",
+      "$type": "color",
+      "$description": "Spectrogram Pink — Decorative waveform accent — part of the six-color spectrogram palette in the hero"
+    },
+    "spectrogram-yellow": {
+      "$value": "#ffdd03",
+      "$type": "color",
+      "$description": "Spectrogram Yellow — Decorative waveform accent — bright lemon dot in the hero waveform graphic"
+    },
+    "spectrogram-violet": {
+      "$value": "#9977ff",
+      "$type": "color",
+      "$description": "Spectrogram Violet — Decorative waveform accent — soft purple dot in the hero waveform graphic"
+    }
+  },
+  "font": {
+    "seasonsans": {
+      "$value": "seasonSans",
+      "$type": "fontFamily",
+      "$description": "All UI text, headings, body, and button labels — a custom neo-grotesque with an unusually wide weight range (300→650) that lets headlines whisper at 300 while labels speak at 650"
+    },
+    "geist-mono": {
+      "$value": "Geist Mono",
+      "$type": "fontFamily",
+      "$description": "Developer-facing micro-copy: nav links, section labels, 'TALK TO VAPI' callouts, and any monospaced interface element — tracked wide (+0.05em to +0.08em) to read as a console label rather than code"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "11px",
+        "fontWeight": 570,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "12px",
+        "fontWeight": 510,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "16px",
+        "fontWeight": 650,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "68px",
+        "fontWeight": 400,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 68px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "68px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 68px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 96px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "120px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 120px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "seasonSans",
+        "fontSize": "144px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 144px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5.6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#0e0e13",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the infinite dark stage"
+    },
+    "carbon-surface": {
+      "$value": "#09090b",
+      "$type": "color",
+      "$description": "Surface level 1: Card and list-item background — subtle depth without shadow"
+    },
+    "slab-elevated": {
+      "$value": "#18181b",
+      "$type": "color",
+      "$description": "Surface level 2: Chip and overlay surface — used sparingly for elements that need to float"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://vapi.ai",
+      "siteName": "Vapi",
+      "extractedAt": "2026-06-03T20:59:12.863Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,372 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#292d34",
+      "$type": "color",
+      "$description": "Ink — Primary text, dark surface fills, structural borders — cool near-black that reads as the dominant ink across the system"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, text on dark fills"
+    },
+    "slate": {
+      "$value": "#646464",
+      "$type": "color",
+      "$description": "Slate — Secondary text, link borders, muted UI chrome — the mid-gray that carries nav, list borders, and body annotations"
+    },
+    "charcoal": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Charcoal — Dark filled button backgrounds, dark card surfaces, deep accent panels"
+    },
+    "black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Black — Icon fills, pure dark accents, maximum-contrast text on light surfaces"
+    },
+    "ash": {
+      "$value": "#838383",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, badge borders, disabled-state borders"
+    },
+    "fog": {
+      "$value": "#e8e8e8",
+      "$type": "color",
+      "$description": "Fog — Hairline dividers, subtle surface separation"
+    },
+    "mist": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Mist — Subtle surface tint behind nav and ghost buttons"
+    },
+    "iris": {
+      "$value": "#7b68ee",
+      "$type": "color",
+      "$description": "Iris — Primary accent — link text, interactive borders, feature labels, eyebrow text; vivid violet used sparingly as a signal color"
+    },
+    "aubergine": {
+      "$value": "#514b81",
+      "$type": "color",
+      "$description": "Aubergine — Deep accent — section dividers, secondary violet border, paired with Iris for two-tone violet treatments"
+    },
+    "prism": {
+      "$value": "#a43cb4",
+      "$type": "color",
+      "$description": "Prism — Anchor color of the signature rainbow gradient sweep (with cyan #0091ff and magenta #f100e3)"
+    }
+  },
+  "font": {
+    "plus-jakarta-sans": {
+      "$value": "Plus Jakarta Sans",
+      "$type": "fontFamily",
+      "$description": "Display and heading face — carries hero (60px), section headings (40-48px), and bold subheads (34px) at weights 650-700; the tight -0.035em to -0.047em tracking at 40-60px gives headlines a dense, engineered quality rather than airy SaaS default. Weight 400 is reserved for occasional body-large passages. Substitute: Inter, Manrope"
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "UI and body face — navigation, button labels, body copy, captions, and small numeric labels. Weight 650 is the button/badge weight; 500-600 for nav and labels; 400 for body. Tracking is subtly negative even at 14-16px, giving text a tight, considered feel. Substitute: system-ui, -apple-system"
+    },
+    "sometype-mono": {
+      "$value": "Sometype Mono",
+      "$type": "fontFamily",
+      "$description": "Eyebrow and badge accent — uppercase mono labels for section tags and feature eyebrows, adding a technical/editorial counterpoint to the sans-serif system. Substitute: JetBrains Mono, IBM Plex Mono"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "8px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Sometype Mono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Sometype Mono",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 650,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "34px",
+        "fontWeight": 650,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "40px",
+        "fontWeight": 650,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "60px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default page background, occupies the majority of screen real estate"
+    },
+    "mist-well": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle tint behind ghost controls and nav wells"
+    },
+    "dark-card": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Surface level 3: Hero product preview card and gradient CTA panel — the system's only dark surface tier"
+    },
+    "ink-panel": {
+      "$value": "#292d34",
+      "$type": "color",
+      "$description": "Surface level 4: Secondary dark surface for product mockups and structural dark sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://qatalog.com",
+      "siteName": "Qatalog",
+      "extractedAt": "2026-06-03T19:08:14.403Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,329 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, icon strokes, high-contrast borders — the strongest voice in the system, used sparingly on headlines and glyphs"
+    },
+    "charcoal": {
+      "$value": "#3d3d3d",
+      "$type": "color",
+      "$description": "Charcoal — Default text, dividers, input and card borders — the workhorse gray carrying the entire UI structure"
+    },
+    "concrete": {
+      "$value": "#9e9e9e",
+      "$type": "color",
+      "$description": "Concrete — Subdued body text and secondary borders — the whisper layer beneath Charcoal"
+    },
+    "ash": {
+      "$value": "#b5b5b5",
+      "$type": "color",
+      "$description": "Ash — Disabled or resting-state button fills — surfaces that should recede"
+    },
+    "smoke": {
+      "$value": "#8d8d8d",
+      "$type": "color",
+      "$description": "Smoke — Active tab/segmented control background — the only gray used as a filled surface to indicate selected state"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page and panel backgrounds, card surfaces, icon fills, image borders — the base canvas and the glass-panel fill"
+    },
+    "bone": {
+      "$value": "#f0eeed",
+      "$type": "color",
+      "$description": "Bone — Warm off-white used for badge fills and subtle surface lifts — gives a paper-like warmth against the cool grays"
+    },
+    "liberty-navy": {
+      "$value": "#142161",
+      "$type": "color",
+      "$description": "Liberty Navy — Outlined-action border and link underline — the only chromatic stroke in the system, indicating navigation or interactive text"
+    },
+    "signal-red": {
+      "$value": "#ba2223",
+      "$type": "color",
+      "$description": "Signal Red — Red action color for filled buttons, selected navigation states, and focused conversion moments"
+    }
+  },
+  "font": {
+    "ntneuss": {
+      "$value": "NTNeuss",
+      "$type": "fontFamily",
+      "$description": "The workhorse grotesque for all UI: body copy, labels, tab text, button text, badges, product metadata, timestamps, counts. Tracks wide (0.036–0.122em) — especially at 8–11px — giving micro-text a monospace-like label feel. Weight 500 is reserved for emphasized labels and tab active states; weight 400 carries everything else."
+    },
+    "recklessneue-book": {
+      "$value": "RecklessNeue-Book",
+      "$type": "fontFamily",
+      "$description": "The editorial serif — used only for narrative titles (e.g. the 'NOW PLAYING' presentation headline). Its normal letter-spacing and serif detail cut through the utilitarian grotesque to signal editorial content. This is the ONLY moment the system speaks in anything other than UI voice."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "NTNeuss",
+        "fontSize": "8px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "NTNeuss",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 9px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "NTNeuss",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "NTNeuss",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "NTNeuss",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 11px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "NTNeuss",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 11px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "NTNeuss",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "NTNeuss",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "NTNeuss",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 2.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "NTNeuss",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "NTNeuss",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "NTNeuss",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "NTNeuss",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "RecklessNeue-Book",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "RecklessNeue-Book",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "3xl": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.08) 1px 1px 6px -1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "media-backdrop": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page base — the full-bleed fashion film visually overrides this, but the underlying canvas is pure white"
+    },
+    "glass-panel": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Translucent white (~70% opacity) with backdrop blur — the floating right-side container that holds all interactive UI over the video"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Opaque white tiles (Now Playing, product cards) nested inside the glass panel — full-opacity variants"
+    },
+    "bone-highlight": {
+      "$value": "#f0eeed",
+      "$type": "color",
+      "$description": "Surface level 3: Warm off-white for tags, badges, and subtle selected-state fills inside cards"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.sneakinpeace.com",
+      "siteName": "Sneak in Peace",
+      "extractedAt": "2026-06-03T18:50:49.270Z",
+      "variant": "extended"
+    }
+  }
+}

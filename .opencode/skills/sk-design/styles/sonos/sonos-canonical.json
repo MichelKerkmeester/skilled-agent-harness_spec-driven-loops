@@ -1,0 +1,1230 @@
+{
+  "source": "https://styles.refero.design/style/8d315332-6267-4dc0-a14c-e8b49c26b0e1",
+  "uuid": "8d315332-6267-4dc0-a14c-e8b49c26b0e1",
+  "name": "Sonos",
+  "northStar": "Gallery wall of warm light",
+  "capturedAt": "2026-07-18T09:41:03.613Z",
+  "meta": {
+    "url": "https://sonos.com",
+    "siteName": "Sonos",
+    "extractedAt": "2026-06-03T18:34:54.165Z",
+    "durationMs": 30594,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 679,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 80px or 9999px border-radius on all buttons and interactive pills — pill shapes are the signature component geometry",
+      "Set display headlines at 64–96px weight 400 with line-height 1.0 — let scale, not weight, carry authority",
+      "Fill the viewport with photography at full bleed with no gradient overlay or scrim — contrast is created by the image itself",
+      "Build the entire palette from #000000, #ffffff, #f5f5f5, and #2e2e2 — no chromatic accents in the UI system",
+      "Use #ffffff for card surfaces on the #f5f5f5 canvas — the subtle off-white separation creates the surface hierarchy without borders",
+      "Pad section content with 48–80px vertical gaps and 48px horizontal card padding — generous whitespace is structural, not decorative",
+      "Use 14px weight 500 at 9999px radius for inline tags, status pills, and category labels"
+    ],
+    "donts": [
+      "Never introduce a chromatic color — the 0% colorfulness is deliberate; photography carries all emotional color",
+      "Don't bold headlines at 600–700 weight — the system uses 400 at massive size instead; bolding flattens the dramatic scale",
+      "Don't add visible borders between most sections — use background color shifts from #f5f5f5 to #ffffff to #000000 to create separation",
+      "Don't apply line-height above 1.2 to display sizes — the tight 1.0 leading is what makes 96px feel like a poster, not a paragraph",
+      "Don't use box-shadow on cards for elevation — if depth is needed, use surface color layering (gray 50 → white → dark 900), not shadows",
+      "Don't use sharp corners (0–4px radius) on primary UI elements — only on small utility elements or data tables; the system is built on soft curves",
+      "Don't center-align body text or long-form copy — only display headlines center; body stays left-aligned with a 640px max-width"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Concrete",
+        "role": "Dominant page canvas, section backgrounds, elevated surface wash",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2e2e2e",
+        "name": "Graphite",
+        "role": "Dark surface panels, secondary dark fill, text on light cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e0e0e0",
+        "name": "Mist",
+        "role": "Hairline borders, subtle separators, box-shadow tint on cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cdcdcd",
+        "name": "Ash",
+        "role": "Visible borders, dividers between sections or card edges",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bfbfbf",
+        "name": "Smoke",
+        "role": "Button hover borders, outline stroke, subtle elevation shadow base",
+        "group": "neutral"
+      },
+      {
+        "hex": "#737373",
+        "name": "Slate",
+        "role": "Muted secondary text, icon strokes on light surfaces, metadata labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5f5f5f",
+        "name": "Charcoal",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1440px centered content with full-bleed photographic sections that break the container. The page model alternates between cinematic full-viewport moments and tight content sections: hero is full-bleed image with centered overlay text, followed by a white product image card section, then a dark music grid section. Section rhythm uses background color alternation (light → white → dark) rather than dividers or borders. Content is predominantly left-aligned in text blocks; product cards and hero text center. Grid usage is limited — single-column text stacks and 2-column image+text splits dominate, with a dense 6–8 column thumbnail grid only for content discovery (music/playlists). Navigation is a single white bar with no sticky behavior and no mega-menu — minimal horizontal text links. Vertical spacing between sections is generous (80px+) creating breathing room between photographic moments.",
+    "imagery": "Photography is the only color in the system. Lifestyle imagery dominates: warm-lit domestic interiors, people interacting with speakers in living rooms and on patios, golden-hour and ambient natural light. Shots are candid rather than staged, mid-action (hands placing a speaker, someone walking through a sunlit room). No studio product shots against white — products are always shown in context within lived-in spaces. The second layer is content imagery: colorful album artwork and playlist cover tiles in dense grids, which provide the only chromatic color on the entire site. No illustrations, no abstract graphics, no 3D renders. Iconography is minimal and outlined: 1px stroke, 24px size, monochrome black or white depending on surface.",
+    "similar": [
+      {
+        "why": "Full-bleed lifestyle photography, massive-weight-400 display type, and a pure black/white/gray product UI with no chromatic accents",
+        "business": "Apple"
+      },
+      {
+        "why": "Premium audio with pure monochromatic palette, large minimal type, and product photography carrying all warmth and color",
+        "business": "Bang & Olufsen"
+      },
+      {
+        "why": "Black/white/gray-only product design language with geometric sans-serif type and generous negative space",
+        "business": "Teenage Engineering"
+      },
+      {
+        "why": "Achromatic dot-matrix aesthetic with pill-shaped UI elements and high-contrast type-only hierarchy",
+        "business": "Nothing (tech)"
+      },
+      {
+        "why": "Audio brand using full-bleed lifestyle imagery over near-white canvases with minimal type and pill-shaped CTAs",
+        "business": "Bose"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "20px",
+        "cards": "20px",
+        "pills": "9999px",
+        "small": "10px",
+        "buttons": "80px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "48px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f5f5f5",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Dominant page background across all sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Elevated white surfaces — product cards, button fills, nav background"
+      },
+      {
+        "hex": "#e0e0e0",
+        "name": "Border",
+        "level": 2,
+        "purpose": "Hairline separators and card edges"
+      },
+      {
+        "hex": "#2e2e2",
+        "name": "Dark Surface",
+        "level": 3,
+        "purpose": "Dark panels and inverted section backgrounds"
+      },
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 4,
+        "purpose": "Deepest surface — navigation, primary button fills, full-bleed dark sections"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.627) 0px 0px 3px 0px inset, rgb(0, 0, 0) 0px 0px 3px 0px",
+        "element": "Filled Button"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.25) 0px 0px 24px 0px",
+        "element": "Elevated Button"
+      }
+    ],
+    "northStar": "Gallery wall of warm light",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1
+      },
+      {
+        "role": "display-lg",
+        "size": 96,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Dark Pill Button",
+        "role": "Primary call-to-action on light backgrounds",
+        "description": "Background #000000, text #ffffff, 80px border-radius (full pill), aktiv-grotesk 16px weight 500, padding 16px 32px. Inset dark shadow gives subtle bevel. Used for \"Explorar todo\" in hero."
+      },
+      {
+        "name": "Filled White Pill Button",
+        "role": "Primary call-to-action on dark/photographic backgrounds",
+        "description": "Background #ffffff, text #000000, 80px border-radius, 16px weight 500, padding 16px 32px. Sits on top of hero photography for high contrast."
+      },
+      {
+        "name": "Ghost Outlined Pill Button",
+        "role": "Secondary action, information request",
+        "description": "Transparent background, 1px border #ffffff (on dark) or #000000 (on light), 9999px radius, text matches border color. 16px weight 500, padding 16px 32px."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Full-bleed landing visual",
+        "description": "Edge-to-edge photographic background (no gradient overlay), centered text block with display headline 64–96px weight 400, line-height 1.0, white text, and two pill buttons stacked horizontally. Text sits at vertical center, no gradient or scrim — relies on photographic contrast."
+      },
+      {
+        "name": "Product Image Card",
+        "role": "Showcase individual products or features",
+        "description": "Full-width photographic card, 20px border-radius, white text overlay positioned bottom-left, 48px padding, white ghost pill button. Image bleeds to card edges with rounded clipping."
+      },
+      {
+        "name": "Music Grid Section",
+        "role": "Content discovery — radio stations, playlists",
+        "description": "Dark background #000000, dense grid of square thumbnail tiles (6–8 columns), each tile is a colorful album/playlist cover. Section headline 48px weight 400 in white, positioned left-aligned with ghost button below."
+      },
+      {
+        "name": "Display Heading",
+        "role": "Section-defining statement",
+        "description": "aktiv-grotesk 64–96px weight 400, line-height 1.0, #000000 on light sections, #ffffff on dark. No font-weight bolding — the sheer size carries authority. Centered or left-aligned depending on context."
+      },
+      {
+        "name": "Top Announcement Bar",
+        "role": "Promotional message strip",
+        "description": "Full-width #000000 bar, 40–48px height, white text 14px weight 400 centered, dismiss X icon left, text link right. Sits above navigation."
+      },
+      {
+        "name": "Primary Navigation",
+        "role": "Site-wide navigation",
+        "description": "White #ffffff background, horizontal layout. SONOS wordmark left (16px weight 700, letter-spacing wide). Center: text links 14px weight 400 (#000000). Right: icon trio — account, search, cart — 24px outlined icons, #000000 stroke. No background fill on nav items."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Standard paragraph content",
+        "description": "16–18px weight 400, line-height 1.5, #000000. Maximum width 640px for readability. No decorative treatment — pure clean paragraph."
+      },
+      {
+        "name": "Footer Link Group",
+        "role": "Site footer navigation columns",
+        "description": "Multiple columns of 14px text links, #000000, 16px row-gap. Section headers in 14px weight 700 uppercase or weight 500."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Audio/video playback control",
+        "description": "Small circular button 32px, 1px border #ffffff or #000000, contains play/pause icon. Sits fixed in corner of media sections."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface. Body text at 400 weight 16px with 1.5 line-height. Headlines scale dramatically to 64–96px at 400 weight with line-height 1.0 for poster-like impact. Nav and buttons use 500–700 at 14–16px. The dramatic size range and tight display leading are the signature — type is the only brand voice since color is absent.",
+        "sizes": "13px, 14px, 16px, 18px, 21px, 32px, 40px, 48px, 64px, 72px, 96px",
+        "family": "aktiv-grotesk",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.00–1.50 (tighter as size increases: 1.50 for body, 1.00 for display)",
+        "substitute": "Inter, Söhne, or Suisse Int'l"
+      }
+    ],
+    "description": "Sonos operates in a deliberate visual void — pure achromatic black, white, and gray with zero chromatic accent. The interface is a frame for photography rather than a canvas of color; lifestyle imagery of people in warm-lit spaces does every emotional job that a brand color would normally carry. Typography is the only voice: aktiv-grotesk at dramatic scale, with display sizes reaching 96px and tight 1.0 line-height creating poster-like headlines that float over full-bleed photography. Components are reduced to their silhouettes — pill-shaped buttons (80px radius), minimal navigation, generous breathing room — letting product photography and large type carry the entire identity. The result is a luxury-electronics aesthetic where restraint signals premium, not austerity.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8d315332-6267-4dc0-a14c-e8b49c26b0e1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sonos design system\",\"item\":\"https://styles.refero.design/style/8d315332-6267-4dc0-a14c-e8b49c26b0e1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8d315332-6267-4dc0-a14c-e8b49c26b0e1#style-reference\",\"name\":\"Sonos design system reference\",\"headline\":\"Sonos design system | Refero Styles\",\"description\":\"Explore Sonos's light E-commerce design system: Obsidian #000000, Paper White #ffffff colors, aktiv-grotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8d315332-6267-4dc0-a14c-e8b49c26b0e1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8d315332-6267-4dc0-a14c-e8b49c26b0e1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Sonos\",\"url\":\"https://sonos.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8d315332-6267-4dc0-a14c-e8b49c26b0e1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/17319f1e-6eab-44ba-b0ff-4ebc48ded08c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/17319f1e-6eab-44ba-b0ff-4ebc48ded08c.jpg\",\"caption\":\"Screenshot of Sonos\"},\"image\":\"https://images.refero.design/styles/refero.design/image/17319f1e-6eab-44ba-b0ff-4ebc48ded08c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Sonos design system\",\"Sonos website design\",\"Sonos colors\",\"Sonos typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Obsidian\",\"Paper White\",\"Concrete\",\"Graphite\",\"aktiv-grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Sonos design system\"},{\"@type\":\"Thing\",\"name\":\"Sonos website design\"},{\"@type\":\"Thing\",\"name\":\"Sonos colors\"},{\"@type\":\"Thing\",\"name\":\"Sonos typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-02-18T16:32:46.000Z\",\"dateModified\":\"2026-02-18T16:32:46.000Z\"}]}19:T648,Quick Color Reference:\n- text: #000000 (on light) / #ffffff (on dark)\n- background: #f5f5f5 (page canvas) / #ffffff (cards)\n- border: #e0e0e0 (hairline) / #cdcdcd (visible)\n- primary action: no distinct CTA color\n- dark surface: #2e2e2e\n\nExample Component Prompts:\n1. Create a hero section: full-bleed photographic background (no overlay/scrim). Centered headline at 72px aktiv-grotesk weight 400, line-height 1.0, color #ffffff. Below: a row of two pill buttons (80px radius, 16px weight 500, padding 16px 32px) — one filled #ffffff with #000000 text, one filled #000000 with #ffffff text.\n2. Create a product feature card: full-width container, 20px border-radius, photographic background filling the card. Bottom-left overlay with a 32px subheading in #ffffff, a 48px heading in #ffffff, and a ghost pill button (1px border #ffffff, transparent fill, 9999px radius, #ffffff text).\n3. Create a music discovery section: background #000000, full viewport. Left-aligned headline at 48px aktiv-grotesk weight 400 in #ffffff, a 16px body paragraph in #ffffff, and a ghost pill button (1px #ffffff border, 9999px radius). Right side: 6-column grid of 1:1 thumbnail tiles with 8px gaps.\n4. Create a content section: #f5f5f5 background, centered display heading at 64px weight 400 line-height 1.0 in #000000, followed by a 2-column row of white #ffffff cards (20px radius, 48px padding) each containing a 21px subheading and 16px body text.\n5. Create a top announcement bar: #000000 background, 44px height, full-width. Centered 14px text in #ffffff. Left: X dismiss icon in #ffffff. Right: text link in #ffffff."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "icon",
+            "card",
+            "heading",
+            "body"
+          ],
+          "frequency": 1562,
+          "confidence": 1,
+          "prominence": 185738070.05201,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f5f5f5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9701507725365187
+          },
+          "contexts": [
+            "card",
+            "other",
+            "heading",
+            "list",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 467,
+          "confidence": 1,
+          "prominence": 12844580.835992517,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "body",
+            "link",
+            "card",
+            "heading"
+          ],
+          "frequency": 597,
+          "confidence": 1,
+          "prominence": 11954306.169760743,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2e2e2e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3011838100535464
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 116,
+          "confidence": 1,
+          "prominence": 9948514.835992517,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e0e0e0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9067006916295425
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 912713.1843156933,
+          "properties": [
+            "boxShadow",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cdcdcd",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8483222133157919
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 230754.69047999312,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#bfbfbf",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8054428611228005
+          },
+          "contexts": [
+            "button",
+            "link",
+            "other"
+          ],
+          "frequency": 324,
+          "confidence": 1,
+          "prominence": 62331.89043213115,
+          "properties": [
+            "boxShadow",
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#737373",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5555267576690717
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 14376.464555856992,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5f5f5f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4859068790844495
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 3136,
+          "properties": [
+            "boxShadow",
+            "stroke"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.26,
+          "background": "#f5f5f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#e0e0e0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.58,
+          "background": "#2e2e2e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.21,
+          "background": "#cdcdcd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.46,
+          "background": "#2e2e2e",
+          "foreground": "#f5f5f5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.42,
+          "background": "#bfbfbf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.29,
+          "background": "#e0e0e0",
+          "foreground": "#2e2e2e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.54,
+          "background": "#cdcdcd",
+          "foreground": "#2e2e2e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.38,
+          "background": "#bfbfbf",
+          "foreground": "#2e2e2e"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.39,
+          "background": "#ffffff",
+          "foreground": "#5f5f5f"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.86,
+          "background": "#f5f5f5",
+          "foreground": "#5f5f5f"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.84,
+          "background": "#e0e0e0",
+          "foreground": "#5f5f5f"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.74,
+          "background": "#ffffff",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.43,
+          "background": "#000000",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.35,
+          "background": "#f5f5f5",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.02,
+          "background": "#cdcdcd",
+          "foreground": "#5f5f5f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.47,
+          "background": "#bfbfbf",
+          "foreground": "#5f5f5f"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.86,
+          "background": "#2e2e2e",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.58,
+          "background": "#bfbfbf",
+          "foreground": "#737373"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 80,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 24
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.627) 0px 0px 3px 0px inset, rgb(0, 0, 0) 0px 0px 3px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.25) 0px 0px 24px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 34,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 25,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 149,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 39,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 27,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 31,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 30,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 53,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "marginRight",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 76,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 107,
+          "contexts": [],
+          "frequency": 30,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 112,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 224,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "aktiv-grotesk",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 639,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "aktiv-grotesk",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "aktiv-grotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "aktiv-grotesk",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "list",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "aktiv-grotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "aktiv-grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "card",
+            "image",
+            "icon",
+            "list",
+            "link"
+          ],
+          "frequency": 461,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "aktiv-grotesk",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "aktiv-grotesk",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "aktiv-grotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "aktiv-grotesk",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "aktiv-grotesk",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "aktiv-grotesk",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "aktiv-grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "aktiv-grotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "aktiv-grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "aktiv-grotesk",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "aktiv-grotesk",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "aktiv-grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "aktiv-grotesk",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "aktiv-grotesk",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "aktiv-grotesk",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "aktiv-grotesk",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/60dbb882-a959-48a4-83dd-a09376884a8b.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/17319f1e-6eab-44ba-b0ff-4ebc48ded08c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8d315332-6267-4dc0-a14c-e8b49c26b0e1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sonos design system\",\"item\":\"https://styles.refero.design/style/8d315332-6267-4dc0-a14c-e8b49c26b0e1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8d315332-6267-4dc0-a14c-e8b49c26b0e1#style-reference\",\"name\":\"Sonos design system reference\",\"headline\":\"Sonos design system | Refero Styles\",\"description\":\"Explore Sonos's light E-commerce design system: Obsidian #000000, Paper White #ffffff colors, aktiv-grotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8d315332-6267-4dc0-a14c-e8b49c26b0e1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8d315332-6267-4dc0-a14c-e8b49c26b0e1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Sonos\",\"url\":\"https://sonos.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8d315332-6267-4dc0-a14c-e8b49c26b0e1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/17319f1e-6eab-44ba-b0ff-4ebc48ded08c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/17319f1e-6eab-44ba-b0ff-4ebc48ded08c.jpg\",\"caption\":\"Screenshot of Sonos\"},\"image\":\"https://images.refero.design/styles/refero.design/image/17319f1e-6eab-44ba-b0ff-4ebc48ded08c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Sonos design system\",\"Sonos website design\",\"Sonos colors\",\"Sonos typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Obsidian\",\"Paper White\",\"Concrete\",\"Graphite\",\"aktiv-grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Sonos design system\"},{\"@type\":\"Thing\",\"name\":\"Sonos website design\"},{\"@type\":\"Thing\",\"name\":\"Sonos colors\"},{\"@type\":\"Thing\",\"name\":\"Sonos typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-02-18T16:32:46.000Z\",\"dateModified\":\"2026-02-18T16:32:46.000Z\"}]}19:T648,Quick Color Reference:\n- text: #000000 (on light) / #ffffff (on dark)\n- background: #f5f5f5 (page canvas) / #ffffff (cards)\n- border: #e0e0e0 (hairline) / #cdcdcd (visible)\n- primary action: no distinct CTA color\n- dark surface: #2e2e2e\n\nExample Component Prompts:\n1. Create a hero section: full-bleed photographic background (no overlay/scrim). Centered headline at 72px aktiv-grotesk weight 400, line-height 1.0, color #ffffff. Below: a row of two pill buttons (80px radius, 16px weight 500, padding 16px 32px) — one filled #ffffff with #000000 text, one filled #000000 with #ffffff text.\n2. Create a product feature card: full-width container, 20px border-radius, photographic background filling the card. Bottom-left overlay with a 32px subheading in #ffffff, a 48px heading in #ffffff, and a ghost pill button (1px border #ffffff, transparent fill, 9999px radius, #ffffff text).\n3. Create a music discovery section: background #000000, full viewport. Left-aligned headline at 48px aktiv-grotesk weight 400 in #ffffff, a 16px body paragraph in #ffffff, and a ghost pill button (1px #ffffff border, 9999px radius). Right side: 6-column grid of 1:1 thumbnail tiles with 8px gaps.\n4. Create a content section: #f5f5f5 background, centered display heading at 64px weight 400 line-height 1.0 in #000000, followed by a 2-column row of white #ffffff cards (20px radius, 48px padding) each containing a 21px subheading and 16px body text.\n5. Create a top announcement bar: #000000 background, 44px height, full-width. Centered 14px text in #ffffff. Left: X dismiss icon in #ffffff. Right: text link in #ffffff."
+}

@@ -1,0 +1,1333 @@
+{
+  "source": "https://styles.refero.design/style/9e2dceb8-0c87-45db-8830-9df961b02b32",
+  "uuid": "9e2dceb8-0c87-45db-8830-9df961b02b32",
+  "name": "Dezeen",
+  "northStar": "White-cube gallery for architecture photography — pure white canvas, image-first cards, blue-violet ink.\n\n",
+  "capturedAt": "2026-07-18T09:02:41.256Z",
+  "meta": {
+    "url": "https://dezeen.com",
+    "siteName": "Dezeen",
+    "extractedAt": "2026-06-03T20:58:55.342Z",
+    "durationMs": 30255,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1951,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Gallery Indigo (#556e9b) for every link, nav item, and interactive text signal — it is the only chromatic voice in the body content and must remain consistent",
+      "Set all card, modal, input, and button border-radius to 0px — sharp edges are non-negotiable for the gallery-wall feel",
+      "Build all content at max-width 1200px centered on Gallery White (#ffffff) — never use full-bleed dark backgrounds in content sections",
+      "Use StandardCT 700 as the sole heading weight at 19/27/40px — do not introduce lighter weights or a second display face",
+      "Reserve Signal Orange (#ff7617) exclusively for hover and emphasis states — it should appear on fewer than 5% of interactive elements at any time",
+      "Maintain 80px section gaps and 9px element gaps as the spacing rhythm — generous vertical breathing is the signature density",
+      "Render all submit/CTA actions as text links in Chronicle 700 Press Black, never as filled buttons — the interface should feel like a newspaper, not an app"
+    ],
+    "donts": [
+      "Do not add drop-shadows to cards, modals, or any content surface — the only shadow in the system is the blue-violet horizontal heading bleed",
+      "Do not use rounded corners on images, cards, inputs, or buttons — the design is deliberately sharp-edged",
+      "Do not introduce additional brand colors or accent hues — the palette is Gallery White, Press Black, Gallery Indigo, and Signal Orange only",
+      "Do not use filled or outlined button shapes for primary actions — use text links in Press Black or Gallery Indigo",
+      "Do not reduce heading line-heights below 0.95 or above 1.37 — tight editorial bands are a signature",
+      "Do not add background colors or tints to article cards — they must float on the white canvas with no surface distinction",
+      "Do not use system sans-serifs like Arial or Helvetica for headings — StandardCT (or a geometric bold substitute) is required for editorial voice"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#556e9b",
+        "name": "Gallery Indigo",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff7617",
+        "name": "Signal Orange",
+        "role": "Hover states on links, rare emphasis marks, accent strokes — appears sparingly to create a small spark against the cool blue-violet baseline",
+        "group": "accent"
+      },
+      {
+        "hex": "#000000",
+        "name": "Press Black",
+        "role": "Primary text, body copy, headlines, icons — the dominant ink used everywhere readable content appears",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Gallery White",
+        "role": "Page canvas, card surfaces, modal backgrounds, input fields — the base layer of the entire interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0f0f0",
+        "name": "Plaster",
+        "role": "Subtle surface wash for nested blocks, list items, secondary panels — barely visible depth beneath the white canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eaeaea",
+        "name": "Stone",
+        "role": "Nav backgrounds, hairline surface separators — used where a neutral needs to sit visibly above the canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d8d8d8",
+        "name": "Concrete",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b1bacb",
+        "name": "Steel Mist",
+        "role": "Cool-tinted borders and rules — carries a faint blue cast that harmonises with the Gallery Indigo brand color rather than fighting it",
+        "group": "neutral"
+      },
+      {
+        "hex": "#757575",
+        "name": "Pewter",
+        "role": "Muted secondary text, metadata, timestamps, comment counts — subordinated body information that should not compete with primary copy",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width ~1200px container centered on a white canvas. The page is a continuous vertical scroll of content bands, each introduced by a flush-left section header label (e.g. 'Highlights', 'Magazine', 'Most commented') followed by a 1px Concrete rule. Article content is arranged in a consistent 3-column grid with generous gutters; the rightmost column often holds a 'Most Commented' text sidebar. No full-viewport hero — the page opens directly into the content grid after a minimal navigation bar. No alternating dark/light bands; the entire page stays on Gallery White. Section spacing is generous (~80px) to let each content band breathe like a gallery wall. Navigation is a single horizontal bar with multi-column link groups, search, and social icons — no sticky behavior, no sidebar nav.",
+    "imagery": "Photography is the primary design element. Architecture and design photography is presented full-bleed within article cards with zero border-radius and no overlay tinting. Images are large (dominant proportion of each card), well-lit, and high-resolution — treated as gallery prints rather than thumbnails. No illustrations, no abstract graphics, no 3D renders in the interface chrome. Icons are minimal and flat: navigation chevrons, social media brand circles, and category badges. The only non-photographic visual element is the Dezeen wordmark and the blue-violet heading accent. Image density is very high — photography occupies roughly 60–70% of all visible pixel area in content sections.",
+    "similar": [
+      {
+        "why": "Same editorial-magazine DNA — photography-dominant 3-column grids, white canvas, minimal chrome, single chromatic accent for links and interactivity",
+        "business": "Wallpaper*"
+      },
+      {
+        "why": "Similar architecture-publication rhythm with large image cards, tight typographic metadata, and a clean achromatic layout that lets photography lead",
+        "business": "ArchDaily"
+      },
+      {
+        "why": "Shared white-cube editorial language with full-bleed creative imagery, compact grid structure, and restrained use of color reserved for links and emphasis",
+        "business": "It's Nice That"
+      },
+      {
+        "why": "Same architecture/design publication aesthetic — large headline typography against quiet body text, image-first cards, no decorative shadows or gradients",
+        "business": "Dwell"
+      },
+      {
+        "why": "Independent editorial magazine with the same minimal-chrome approach — full-bleed photography, sharp 0px radii, text-only interactivity, and generous white space between content bands",
+        "business": "Apartamento"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "modals": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "9px",
+      "sectionGap": "80px",
+      "cardPadding": "9px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Gallery White",
+        "level": 0,
+        "purpose": "Page canvas — the dominant background for all content"
+      },
+      {
+        "hex": "#f0f0f0",
+        "name": "Plaster",
+        "level": 1,
+        "purpose": "Nested list and panel backgrounds — subtle depth beneath the white canvas"
+      },
+      {
+        "hex": "#eaeaea",
+        "name": "Stone",
+        "level": 2,
+        "purpose": "Nav and secondary block backgrounds — visible separation from the canvas"
+      },
+      {
+        "hex": "#d8d8d8",
+        "name": "Concrete",
+        "level": 3,
+        "purpose": "Bordered surfaces, input frames, structural chrome that needs to read as a surface"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(101, 122, 183, 0.6) 10px 0px 0px 0px, rgba(101, 122, 183, 0.6) -10px 0px 0px 0px",
+        "element": "Section Headings"
+      },
+      {
+        "style": "none — no shadow, no border, no background change",
+        "element": "Article Cards"
+      },
+      {
+        "style": "none — separated from page by dim overlay only",
+        "element": "Newsletter Modal"
+      },
+      {
+        "style": "none — flat surfaces, hairline borders only",
+        "element": "All Other Elements"
+      }
+    ],
+    "northStar": "White-cube gallery for architecture photography — pure white canvas, image-first cards, blue-violet ink.\n\n",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.29,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.29,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.37,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 27,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 40,
+        "lineHeight": 1.1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Newsletter Modal",
+        "role": "Overlay capture for email subscription",
+        "description": "Centered white modal (~520px wide) over a dimmed page. Contains a full-width landscape hero image with overlaid headline at 27px StandardCT 700 white. Below the image: email input field spanning full width with a 1px Stone (#eaeaea) bottom border, no other chrome. Submit action is a plain text link 'Next' in Press Black 16px Chronicle 700 — no button shape, no background. Close button is a small × in the top-right corner. The modal floats with no shadow, separated only by the dim overlay."
+      },
+      {
+        "name": "Article Card",
+        "role": "Primary content unit in the 3-column grid",
+        "description": "Image-first card with no border, no shadow, no background change on hover. Full-bleed photograph at the top (aspect ratio ~4:3) with zero border-radius. Below: headline at 19px StandardCT 700 Press Black, then a short description at 16px Chronicle 400, then metadata line (author, date, comment count) at 14px Chronicle 400 Pewter. Card padding is 9px on top, 0 horizontal and bottom. Stacked vertically inside a 3-column grid with generous gutters."
+      },
+      {
+        "name": "Section Header Label",
+        "role": "Category markers like 'Highlights', 'Magazine', 'Most commented'",
+        "description": "Bold uppercase or title-case label at 16px Chronicle 700 Press Black, prefixed by a small numeric/icon indicator. Often paired with a horizontal rule beneath in Concrete (#d8d8d8) at 1px. Appears as the opening line of each content band, sitting flush-left within the grid."
+      },
+      {
+        "name": "Navigation Header",
+        "role": "Primary site navigation",
+        "description": "Full-width white bar. Left: Dezeen wordmark in large StandardCT 700. Center: multi-column nav links (Magazine, Architecture, Interiors, Design, Technology | Series, Interviews, Opinion, Talks, Videos | Awards, Jobs, Events Guide, Showroom, School Shows) in Chronicle 400 at ~14px Press Black, arranged in 3 visual columns. Right: search field and social media follow icons (Pinterest, Instagram, Facebook, Twitter, YouTube) as small filled circles in their brand colors. No background fill, no border-bottom — the header relies on the white canvas alone."
+      },
+      {
+        "name": "Email Input",
+        "role": "Single-field email capture in the newsletter modal",
+        "description": "Full-width text field with no box, no background fill, no border-radius. A single 1px bottom border in Stone (#eaeaea) that intensifies on focus. Placeholder text 'Email' in 16px Chronicle 400 at low opacity. No padding above the border — the field is a hairline underline only, keeping the modal visually quiet."
+      },
+      {
+        "name": "Text-Link Submit",
+        "role": "Submit action paired with the email input",
+        "description": "The 'Next' action is rendered as plain text, not a button: 16px Chronicle 700 Press Black, no background, no border, no padding. Sits to the right of the input field. On hover, the text shifts to Signal Orange (#ff7617) — the only chromatic feedback in the capture flow."
+      },
+      {
+        "name": "Most Commented Sidebar",
+        "role": "Ranked list of trending articles in the right rail",
+        "description": "Numbered list (1, 2, 3…) with article titles at 16px Chronicle 400 Press Black, each title wrapping to multiple lines. Numbers in Pewter (#757575) at 16px. Compact spacing between items (~9px). No images in this list — text-only with tight typographic rhythm."
+      },
+      {
+        "name": "Tag Badge",
+        "role": "Category tags overlaying article cards",
+        "description": "Small pill or rectangle in the top-left corner of an article card image. Semi-transparent dark background with white text at 13px Chronicle 700. No border-radius or very slight (~2px). Used to tag content type (e.g. 'interiors', 'design')."
+      },
+      {
+        "name": "Footer",
+        "role": "Site-wide footer with links and legal",
+        "description": "Full-width white block with a top border in Concrete (#d8d8d8) at 1px. Multi-column link lists in 14px Chronicle 400 Press Black. Bottom row: copyright and legal links in 13px Chronicle 400 Pewter. Generous vertical padding (~60–80px) to separate from the content above. No background fill change."
+      },
+      {
+        "name": "Search Field",
+        "role": "Inline search in the navigation bar",
+        "description": "Narrow text input in the top-right of the header, approximately 180px wide. 1px Concrete border, 2–3px radius, 14px Chronicle 400 placeholder. Minimal visual weight — should not compete with the nav links or social icons."
+      },
+      {
+        "name": "Social Icon Circle",
+        "role": "Follow links for Pinterest, Instagram, Facebook, Twitter, YouTube",
+        "description": "Small filled circles (~24px diameter) in each platform's brand color. Arranged horizontally in the top-right of the header. The only place on the site where multiple chromatic colors coexist in the interface chrome."
+      },
+      {
+        "name": "Hamburger Menu Icon",
+        "role": "Mobile/overlay menu trigger",
+        "description": "Three short horizontal bars in Press Black, ~20px wide, flush-right or in a dedicated position. No background, no border. Triggers a full-screen overlay menu on tap."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body and UI text — the workhorse face used for paragraphs, metadata, buttons, inputs, navigation, and card content. Weight 400 for body copy, 700 reserved for inline emphasis. The narrow size range (14–16px) keeps all running text within a compact editorial band, and the generous line-heights (up to 1.50) give dense article descriptions room to breathe on white.",
+        "sizes": "14px, 16px",
+        "family": "Chronicle Text G1 A",
+        "weight": "400, 700",
+        "lineHeight": "1.23–1.50",
+        "substitute": "Source Serif 4, PT Serif, Charter, Lora"
+      },
+      {
+        "role": "Display and heading face — the only weight used (700) at all sizes, with tight line-heights (0.95–1.20) on large sizes that compress headlines into dense editorial bands. Custom font with geometric, slightly condensed proportions and controlled OpenType features: stylistic alternates and ligatures disabled, kerning retained. The signature choice is using a single bold weight across the entire display scale rather than building a weight ladder — every headline shouts at the same volume.",
+        "sizes": "19px, 27px, 40px",
+        "family": "StandardCT",
+        "weight": "700",
+        "lineHeight": "0.95–1.38",
+        "substitute": "Druk Wide, Söhne Breit, GT America Compressed Bold",
+        "letterSpacing": "normal",
+        "fontFeatureSettings": "\"calt\" 0, \"kern\", \"liga\" 0"
+      },
+      {
+        "role": "System fallback for form controls and minor UI text where the custom body face is unavailable — appears at very low frequency as a graceful degradation layer.",
+        "sizes": "13px, 14px, 16px",
+        "family": "Arial",
+        "weight": "400, 700",
+        "lineHeight": "1.00–1.29",
+        "substitute": "system-ui sans-serif"
+      },
+      {
+        "role": "Times — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Dezeen operates as a white-cube editorial gallery for architecture and design — the page reads like a curated biennale catalogue rather than a content portal. Photography occupies near-total visual weight: full-bleed image cards sit on a pure white canvas with almost no chrome between them, letting the work speak before the typography. A single muted blue-violet (#556e9b) carries every interactive signal — links, nav, heading accents — against a strict black-on-white text system, with a vivid orange (#ff7617) reserved as a rare chromatic punctuation for hover and emphasis. Headlines use StandardCT at weight 700 with tight line-heights that compress display copy into architectural bands, while Chronicle Text G1 A keeps body copy quiet and readable at 14–16px. Components are deliberately flat: no drop-shadows on cards, no decorative gradients, and a distinctive blue-violet colored shadow (rgba(101,122,183,0.6)) that bleeds horizontally from select headings as the only elevation gesture.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9e2dceb8-0c87-45db-8830-9df961b02b32#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dezeen design system\",\"item\":\"https://styles.refero.design/style/9e2dceb8-0c87-45db-8830-9df961b02b32\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9e2dceb8-0c87-45db-8830-9df961b02b32#style-reference\",\"name\":\"Dezeen design system reference\",\"headline\":\"Dezeen design system | Refero Styles\",\"description\":\"Explore Dezeen's light Media design system: Gallery Indigo #556e9b, Signal Orange #ff7617 colors, Chronicle Text G1 A, StandardCT typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/9e2dceb8-0c87-45db-8830-9df961b02b32\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9e2dceb8-0c87-45db-8830-9df961b02b32\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dezeen\",\"url\":\"https://dezeen.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9e2dceb8-0c87-45db-8830-9df961b02b32#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/db40a975-619c-4344-a555-9ee7a4b8165d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/db40a975-619c-4344-a555-9ee7a4b8165d.jpg\",\"caption\":\"Screenshot of Dezeen\"},\"image\":\"https://images.refero.design/styles/refero.design/image/db40a975-619c-4344-a555-9ee7a4b8165d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dezeen design system\",\"Dezeen website design\",\"Dezeen colors\",\"Dezeen typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Gallery Indigo\",\"Signal Orange\",\"Press Black\",\"Gallery White\",\"Chronicle Text G1 A\",\"StandardCT\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dezeen design system\"},{\"@type\":\"Thing\",\"name\":\"Dezeen website design\"},{\"@type\":\"Thing\",\"name\":\"Dezeen colors\"},{\"@type\":\"Thing\",\"name\":\"Dezeen typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-02-27T13:43:44.000Z\",\"dateModified\":\"2026-02-27T13:43:44.000Z\"}]}19:T9f7,**Quick Color Reference**\n- Text: #000000 (Press Black) for primary, #757575 (Pewter) for muted\n- Background: #ffffff (Gallery White) canvas, #f0f0f0 (Plaster) for nested surfaces\n- Border: #d8d8d8 (Concrete) for structural, #b1bacb (Steel Mist) for cool-tinted rules\n- Accent: #556e9b (Gallery Indigo) for links and interactive elements\n- Hover accent: #ff7617 (Signal Orange) for hover-state sparks\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Build a 3-column article grid section:* White #ffffff background, max-width 1200px centered. Section header label at 16px Chronicle 400 700 in Press Black, followed by a 1px #d8d8d8 horizontal rule spanning the full width. Below, three article cards in equal columns with ~24px gutters. Each card: full-bleed 4:3 image with 0px radius, then 9px top padding, then headline at 19px StandardCT 700 in Press Black, then description at 16px Chronicle 400 in Press Black, then metadata at 14px Chronicle 400 in #757575. No card borders, no shadows, no background.\n\n2. *Build the navigation header:* Full-width white bar on #ffffff. Left: 'Dezeen' wordmark in StandardCT 700 at 40px in Press Black. Center: 3-column link block at 14px Chronicle 400 in Press Black, with links like Magazine, Architecture, Interiors. Right: search input (180px, 1px #d8d8d8 border, 2px radius, 14px Chronicle placeholder) and 5 social icon circles in their respective brand colors. No border-bottom, no background.\n\n3. *Build a newsletter capture modal:* White #ffffff modal ~520px wide, centered over a dimmed page (rgba(0,0,0,0.5) overlay). Inside: full-width landscape image at the top, then 27px StandardCT 700 white text overlaid on the image reading the capture headline. Below the image: email input with 1px bottom border in #eaeaea, placeholder 'Email' in 16px Chronicle 400, no background. Submit is a text link 'Next' in 16px Chronicle 700 Press Black, sitting to the right. Close × in top-right corner. No modal shadow.\n\n4. *Build a 'Most Commented' sidebar:* Single column, ~300px wide. Numbered list (1–10) with 16px Chronicle 400 Press Black article titles wrapping to multiple lines. Numbers in #757575. 9px vertical gap between items. No images, no borders, no background — text only on the white canvas.\n\n5. *Build a section divider:* A section header label at 16px Chronicle 700 Press Black, flush-left, followed immediately by a 1px horizontal rule in #d8d8d8 spanning the full 1200px max-width. 80px vertical padding above and below the rule to create gallery-wall spacing."
+      }
+    ],
+    "elevationPhilosophy": "The design deliberately avoids drop-shadows across nearly the entire interface. The only shadow gesture in the system is a horizontal blue-violet bleed (rgba(101,122,183,0.6)) that extends ±10px from select section headings — it functions as a typographic underline made of color rather than a structural elevation. Cards, modals, and inputs rely on the white canvas alone for separation, letting photography carry all visual weight without competing surface effects."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "list",
+            "icon",
+            "link",
+            "nav",
+            "button",
+            "heading",
+            "card",
+            "footer",
+            "image",
+            "input"
+          ],
+          "frequency": 2732,
+          "confidence": 1,
+          "prominence": 147162292.77827698,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "heading",
+            "input",
+            "footer",
+            "button",
+            "icon"
+          ],
+          "frequency": 873,
+          "confidence": 1,
+          "prominence": 124014448.19960913,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "boxShadow",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#556e9b",
+          "oklch": {
+            "c": 0.07703912833560786,
+            "h": 261.7604846986553,
+            "l": 0.5375173104170826
+          },
+          "contexts": [
+            "heading",
+            "link",
+            "icon",
+            "nav",
+            "button",
+            "other",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 6014,
+          "confidence": 1,
+          "prominence": 5318737.84364033,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f0f0f0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9551400502551023
+          },
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 1337973.2322557797,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4d4d4d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.41838944017064794
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b1bacb",
+          "oklch": {
+            "c": 0.026118529850896438,
+            "h": 263.3014442888161,
+            "l": 0.7872206867537236
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1245526.3467313838,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d8d8d8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8822383241093221
+          },
+          "contexts": [
+            "list",
+            "heading",
+            "link",
+            "button"
+          ],
+          "frequency": 66,
+          "confidence": 1,
+          "prominence": 168879.92306234437,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a3afd4",
+          "oklch": {
+            "c": 0.05455500532681254,
+            "h": 270.1597848355343,
+            "l": 0.7572948790549606
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 19662.71387409146,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#757575",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5624050641913382
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 12803.356420576638,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff7617",
+          "oklch": {
+            "c": 0.19005389653083649,
+            "h": 47.610223916910776,
+            "l": 0.7177919252515735
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 6170.3054892213995,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eaeaea",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9370488987176951
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5347,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#bc04ac",
+          "oklch": {
+            "c": 0.24491875112919245,
+            "h": 333.1003167050181,
+            "l": 0.5493048768189335
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 966,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e42b26",
+          "oklch": {
+            "c": 0.21933014401707307,
+            "h": 28.090439269144497,
+            "l": 0.5946837484869819
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 767.1218503490395,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cb2027",
+          "oklch": {
+            "c": 0.20333749630393597,
+            "h": 25.914085460246476,
+            "l": 0.5424435874480994
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 483,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#007bb6",
+          "oklch": {
+            "c": 0.12784499855598117,
+            "h": 240.21571867950917,
+            "l": 0.556079123775484
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 483,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4867aa",
+          "oklch": {
+            "c": 0.11225675142385552,
+            "h": 264.13580434169734,
+            "l": 0.5220758354686693
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 483,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#94989b",
+          "oklch": {
+            "c": 0.006413242222550466,
+            "h": 239.867151290987,
+            "l": 0.6773214393586975
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 150,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.1294930001190537,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.43,
+          "background": "#f0f0f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.46,
+          "background": "#eaeaea",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.73,
+          "background": "#d8d8d8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.76,
+          "background": "#b1bacb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.64,
+          "background": "#a3afd4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.45,
+          "background": "#4d4d4d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.86,
+          "background": "#000000",
+          "foreground": "#ff7617"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.42,
+          "background": "#f0f0f0",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.03,
+          "background": "#eaeaea",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.93,
+          "background": "#4d4d4d",
+          "foreground": "#d8d8d8"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.13,
+          "background": "#556e9b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.61,
+          "background": "#ffffff",
+          "foreground": "#757575"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.56,
+          "background": "#000000",
+          "foreground": "#757575"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.51,
+          "background": "#f0f0f0",
+          "foreground": "#556e9b"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.33,
+          "background": "#b1bacb",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.27,
+          "background": "#eaeaea",
+          "foreground": "#556e9b"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.09,
+          "background": "#556e9b",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.04,
+          "background": "#f0f0f0",
+          "foreground": "#757575"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.88,
+          "background": "#a3afd4",
+          "foreground": "#4d4d4d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": [
+        {
+          "value": "rgba(101, 122, 183, 0.6) 10px 0px 0px 0px, rgba(101, 122, 183, 0.6) -10px 0px 0px 0px",
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "marginRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 31,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 57,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginRight",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 52,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 401,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 50,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 381,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 141,
+          "properties": [
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 25,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 26,
+          "contexts": [],
+          "frequency": 25,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 154,
+          "properties": [
+            "marginRight",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingLeft",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 35,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 114,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Chronicle Text G1 A",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 1140,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "StandardCT",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 693,
+          "fontFeatureSettings": [
+            "\"calt\" 0, \"kern\", \"liga\" 0"
+          ]
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 61,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Chronicle Text G1 A",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 700,
+          "contexts": [
+            "list",
+            "image"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Chronicle Text G1 A",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "icon",
+            "link",
+            "button",
+            "image",
+            "card",
+            "body",
+            "footer"
+          ],
+          "frequency": 1127,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Chronicle Text G1 A",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "input"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Chronicle Text G1 A",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Chronicle Text G1 A",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "image"
+          ],
+          "frequency": 25,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "StandardCT",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "body",
+            "other",
+            "link",
+            "footer"
+          ],
+          "frequency": 562,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "StandardCT",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 103,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "StandardCT",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "StandardCT",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "StandardCT",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.95,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "StandardCT",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.37,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "StandardCT",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "StandardCT",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "StandardCT",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3bf50053-b17e-444f-9264-f1f75d33c8db.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/db40a975-619c-4344-a555-9ee7a4b8165d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9e2dceb8-0c87-45db-8830-9df961b02b32#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dezeen design system\",\"item\":\"https://styles.refero.design/style/9e2dceb8-0c87-45db-8830-9df961b02b32\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9e2dceb8-0c87-45db-8830-9df961b02b32#style-reference\",\"name\":\"Dezeen design system reference\",\"headline\":\"Dezeen design system | Refero Styles\",\"description\":\"Explore Dezeen's light Media design system: Gallery Indigo #556e9b, Signal Orange #ff7617 colors, Chronicle Text G1 A, StandardCT typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/9e2dceb8-0c87-45db-8830-9df961b02b32\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9e2dceb8-0c87-45db-8830-9df961b02b32\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dezeen\",\"url\":\"https://dezeen.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9e2dceb8-0c87-45db-8830-9df961b02b32#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/db40a975-619c-4344-a555-9ee7a4b8165d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/db40a975-619c-4344-a555-9ee7a4b8165d.jpg\",\"caption\":\"Screenshot of Dezeen\"},\"image\":\"https://images.refero.design/styles/refero.design/image/db40a975-619c-4344-a555-9ee7a4b8165d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dezeen design system\",\"Dezeen website design\",\"Dezeen colors\",\"Dezeen typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Gallery Indigo\",\"Signal Orange\",\"Press Black\",\"Gallery White\",\"Chronicle Text G1 A\",\"StandardCT\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dezeen design system\"},{\"@type\":\"Thing\",\"name\":\"Dezeen website design\"},{\"@type\":\"Thing\",\"name\":\"Dezeen colors\"},{\"@type\":\"Thing\",\"name\":\"Dezeen typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-02-27T13:43:44.000Z\",\"dateModified\":\"2026-02-27T13:43:44.000Z\"}]}19:T9f7,**Quick Color Reference**\n- Text: #000000 (Press Black) for primary, #757575 (Pewter) for muted\n- Background: #ffffff (Gallery White) canvas, #f0f0f0 (Plaster) for nested surfaces\n- Border: #d8d8d8 (Concrete) for structural, #b1bacb (Steel Mist) for cool-tinted rules\n- Accent: #556e9b (Gallery Indigo) for links and interactive elements\n- Hover accent: #ff7617 (Signal Orange) for hover-state sparks\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Build a 3-column article grid section:* White #ffffff background, max-width 1200px centered. Section header label at 16px Chronicle 400 700 in Press Black, followed by a 1px #d8d8d8 horizontal rule spanning the full width. Below, three article cards in equal columns with ~24px gutters. Each card: full-bleed 4:3 image with 0px radius, then 9px top padding, then headline at 19px StandardCT 700 in Press Black, then description at 16px Chronicle 400 in Press Black, then metadata at 14px Chronicle 400 in #757575. No card borders, no shadows, no background.\n\n2. *Build the navigation header:* Full-width white bar on #ffffff. Left: 'Dezeen' wordmark in StandardCT 700 at 40px in Press Black. Center: 3-column link block at 14px Chronicle 400 in Press Black, with links like Magazine, Architecture, Interiors. Right: search input (180px, 1px #d8d8d8 border, 2px radius, 14px Chronicle placeholder) and 5 social icon circles in their respective brand colors. No border-bottom, no background.\n\n3. *Build a newsletter capture modal:* White #ffffff modal ~520px wide, centered over a dimmed page (rgba(0,0,0,0.5) overlay). Inside: full-width landscape image at the top, then 27px StandardCT 700 white text overlaid on the image reading the capture headline. Below the image: email input with 1px bottom border in #eaeaea, placeholder 'Email' in 16px Chronicle 400, no background. Submit is a text link 'Next' in 16px Chronicle 700 Press Black, sitting to the right. Close × in top-right corner. No modal shadow.\n\n4. *Build a 'Most Commented' sidebar:* Single column, ~300px wide. Numbered list (1–10) with 16px Chronicle 400 Press Black article titles wrapping to multiple lines. Numbers in #757575. 9px vertical gap between items. No images, no borders, no background — text only on the white canvas.\n\n5. *Build a section divider:* A section header label at 16px Chronicle 700 Press Black, flush-left, followed immediately by a 1px horizontal rule in #d8d8d8 spanning the full 1200px max-width. 80px vertical padding above and below the rule to create gallery-wall spacing."
+}

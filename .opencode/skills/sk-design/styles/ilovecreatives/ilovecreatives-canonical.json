@@ -1,0 +1,1514 @@
+{
+  "source": "https://styles.refero.design/style/9afa0254-423b-4354-a852-8894c33d2e6b",
+  "uuid": "9afa0254-423b-4354-a852-8894c33d2e6b",
+  "name": "ilovecreatives",
+  "northStar": "Gen-Z monochrome zine at viewport scale",
+  "capturedAt": "2026-07-18T09:00:37.504Z",
+  "meta": {
+    "url": "https://ilovecreatives.com",
+    "siteName": "ilovecreatives",
+    "extractedAt": "2026-06-03T21:05:09.509Z",
+    "durationMs": 59531,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1762,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 450px border-radius for all interactive buttons and 300px for all tags/badges — pill shape is the only shape in the system",
+      "Set all body and UI type in Suisse Regular; reserve Romana exclusively for display sizes 20px+ and the brand wordmark",
+      "Apply -0.02em to -0.06em letter-spacing across the entire type scale, tightening further as size increases (-0.06em at display, -0.02em at body)",
+      "Render all images with 20px border-radius — no exceptions, no sharp corners on any photo or illustration",
+      "Render creative profile photos in black & white; reserve full color photography for hero and course card imagery only",
+      "Use the 1px Ink Black (#222222) border as the primary structural divider and button outline — no shadows, no fills for depth",
+      "Use the #e1ea99 Risograph Lime only as a sparse surface accent on occasional blocks or tags, never as text color or primary action"
+    ],
+    "donts": [
+      "Never introduce a chromatic accent color (no blues, reds, purples) — the system is deliberately and aggressively monochrome",
+      "Never use filled solid-color CTA buttons with bright fills — all buttons are ghost/outlined pills",
+      "Never apply drop shadows or elevation glows to any component — flatness is the design philosophy",
+      "Never use Romana below 20px — it is display-only and loses its character at body sizes",
+      "Never use rounded corners smaller than 8px on images or larger than 20px — the radii vocabulary is strict",
+      "Never set body text in #000000 — use #222222 for softer contrast at small sizes; reserve #000000 for true-black emphasis",
+      "Never color the full-bleed hero photo edge — let it bleed to the viewport edge with no padding or frame"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#222222",
+        "name": "Ink Black",
+        "role": "Primary text, pill button borders, hairline dividers, ghost button outlines, card borders — the workhorse near-black that reads softer than pure #000000 at body sizes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Logo, sharpest borders, true-black hero overlays, selected/active states, image masking — used sparingly where maximum contrast or absolute black is required",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, button fills, badge backgrounds, hero photo overlay anchor — the default background of everything",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e1ea99",
+        "name": "Risograph Lime",
+        "role": "Secondary surface accent — warm cream-lime wash used on occasional highlighted blocks, tag fills, and standout cards; the only chromatic note in the entire system and intentionally muted to a riso-print tint",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page model is centered, max-width ~1280px, with generous side padding. The hero is a full-bleed exception: 100vw color photograph with the massive white Romana wordmark bleeding edge-to-edge, subtext and outlined button anchored bottom-left. Below the hero, the layout settles into a vertical stack of horizontal card carousels — one for 'Edutainment' courses, one for 'Creative Profiles' — each with a left-aligned section heading (Suisse Regular body weight, large size, with inline outlined-pill words for emphasis) and a right-aligned 'View all →' Ghost Pill Button. Carousels are horizontally scrollable with vertical pagination dots anchored to the left edge of the section. Sections are separated by 48-64px vertical gaps. The overall rhythm is: one dramatic full-bleed moment, then calm horizontal bands of card content stacked vertically. Navigation is a single minimal top bar with no sticky behavior evident.",
+    "imagery": "Photography carries 100% of the color and warmth in this system. The site uses two distinct photographic treatments: lush, full-color editorial portraits in the hero and course card imagery (lifestyle, candid, warm-lit), then a deliberate hard pivot to high-contrast black & white portraiture in the Creative Profiles grid. Photos are tight, person-focused crops — never wide environmental shots, never stocky. Images are always 20px-radius, never full-bleed except in the hero. No illustrations, no abstract graphics, no icons beyond simple social marks. The black & white treatment on profile photos is the signature move — it signals community and editorial credibility against the color chaos everywhere else.",
+    "similar": [
+      {
+        "why": "Same monochrome editorial palette with zero chromatic accents, same pill-shaped outlined buttons, same zine-like community-first aesthetic",
+        "business": "Are.na"
+      },
+      {
+        "why": "Same mix of large display headings and compact Swiss grotesque body, same generous use of editorial photography in tight crops, same Gen-Z creative-community positioning",
+        "business": "It's Nice That"
+      },
+      {
+        "why": "Same card-grid layout for community/creator profiles with location metadata, same rounded 20px photo treatment, same horizontal scrollable carousel rhythm",
+        "business": "Pinterest"
+      },
+      {
+        "why": "Same indie-creative-portfolio energy with mixed color and B&W photography, same flat no-shadow component treatment, same emphasis on the creator portrait as the primary content",
+        "business": "Cargo Collective"
+      },
+      {
+        "why": "Same display-serif-meets-Swiss-grotype type pairing, same oversized edge-to-edge display headings, same editorial-print-meets-web-page rhythm",
+        "business": "Readymag"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "300px",
+        "images": "20px",
+        "buttons": "450px",
+        "smallElements": "8px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 1,
+        "purpose": "Default page background and card surface"
+      },
+      {
+        "hex": "#e1ea99",
+        "name": "Risograph Lime",
+        "level": 2,
+        "purpose": "Sporadic warm accent surface for highlighted blocks, active tags, standout cards"
+      },
+      {
+        "hex": "#222222",
+        "name": "Ink Black",
+        "level": 3,
+        "purpose": "Inverted surface — used behind the giant white display wordmark and in dark image overlays"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Gen-Z monochrome zine at viewport scale",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.018
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.17,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.022
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.024
+      },
+      {
+        "role": "heading-lg",
+        "size": 49,
+        "lineHeight": 1.05,
+        "letterSpacing": -0.04
+      },
+      {
+        "role": "display",
+        "size": 59,
+        "lineHeight": 0.95,
+        "letterSpacing": -0.06
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site header",
+        "description": "Minimal horizontal bar on white with Ink Black text, ~14-16px Suisse Regular, items separated by ~20-32px gap. Logo wordmark left, nav links (Courses, Ads, Creatives, Resources, Shop, +Newsletter) center-left, social icons and 'Made for #Slashies' microcopy right. No background fill, no shadow — just a hairline border-bottom in some states."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Primary interactive element (replaces traditional CTA)",
+        "description": "Pill-shaped button with 450px border-radius, transparent background, 1px Ink Black (#222222) border, 6-10px vertical padding and 20-24px horizontal padding. Text in Ink Black at 14-15px Suisse Regular weight 400. The only 'CTA' style on the site — used for enrollment, view-all, browse, and watch actions."
+      },
+      {
+        "name": "Location Tag Pill",
+        "role": "Profile metadata badge",
+        "description": "Small pill badge with 300px border-radius, white background, 1px Ink Black border, ~2-4px vertical and 8-13px horizontal padding. Text at 11-13px Suisse Regular in Ink Black. Appears in clusters above profile names (City · Country format)."
+      },
+      {
+        "name": "Course Card",
+        "role": "Featured course in Edutainment carousel",
+        "description": "Tall card (~4:3 image) with 20px border-radius on the photo, no shadow. Image area carries full-color vibrant graphic design. Below image: course title in 22-32px Suisse Regular, short testimonial quote in 13-14px body, then a Ghost Pill Button labeled 'Enrollment Open' or similar. White card surface, no border."
+      },
+      {
+        "name": "Creative Profile Card",
+        "role": "Community member showcase",
+        "description": "Portrait photo (4:5 ratio) with 20px border-radius, rendered in high-contrast black & white (signature treatment — the rest of the site uses color photos, these are deliberately desaturated). Below photo: name in 18-22px Suisse Regular, role/title in 13-14px body, location tags as Location Tag Pills above. No card border, no shadow — photo sits directly on white."
+      },
+      {
+        "name": "Hero Display Wordmark",
+        "role": "Brand identity moment",
+        "description": "The literal text 'ilovecreatives' rendered at 80-120px+ in Romana serif, weight 400, letter-spacing -0.06em, white text. Bleeds edge-to-edge across the full viewport width, partially cropped by the frame. Sits directly over a full-bleed color hero photograph with a subtle dark overlay for legibility."
+      },
+      {
+        "name": "Hero Photo Background",
+        "role": "Full-bleed visual",
+        "description": "Edge-to-edge color photograph filling the entire hero viewport. No border-radius. Subject (person) positioned so the large white display wordmark wraps around them — photo is the container, wordmark is the chrome."
+      },
+      {
+        "name": "Section Heading with Inline Highlight",
+        "role": "Section title with editorial emphasis",
+        "description": "Large display text (35-49px) mixing two treatments: plain Suisse Regular body-weight text alongside words wrapped in 1px Ink Black pill borders (e.g. 'your profile' or 'community' rendered as inline outlined words). Creates a visual rhythm where key terms are literally circled. The 'circular pill on a word' is a signature interaction pattern."
+      },
+      {
+        "name": "Hero Subtext Block",
+        "role": "Hero body copy with call-to-action",
+        "description": "Small paragraph at 14-16px Suisse Regular in white, positioned bottom-left of the hero over the photo. Accompanied by an outlined Ghost Pill Button ('Watch: About Us Video') directly beneath. Generous left margin, no background."
+      },
+      {
+        "name": "Carousel Pagination Dots",
+        "role": "Carousel navigation indicator",
+        "description": "Vertical column of small (~4-6px) circles along the left edge of card carousels. Active dot is filled Ink Black, inactive dots are outlined or light gray. A subtle but consistent navigation pattern across all horizontal card rows."
+      },
+      {
+        "name": "Footer Newsletter Bar",
+        "role": "Bottom-of-page engagement strip",
+        "description": "A condensed bar near the footer combining the brand wordmark in Romana with a newsletter signup call-to-action. White background, Ink Black text, 1px hairline border-top."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary UI and body type — navigation, buttons, body copy, course titles, profile names, tags. Carries every functional text role. A neutral Swiss grotesque that disappears into the layout and lets imagery and the Romana display dominate. Substitute: Inter or Söhne if Suisse is unavailable.",
+        "sizes": "13, 14, 15, 16, 18, 20, 22, 32, 49, 54px",
+        "family": "Suisse Regular",
+        "weight": "400, 500",
+        "lineHeight": "1.0–1.43",
+        "substitute": "Inter",
+        "letterSpacing": "Tight throughout: -0.02em to -0.06em depending on size"
+      },
+      {
+        "role": "Display serif reserved for the brand wordmark and hero-scale headings. A modern Roman with sharp contrast that screams editorial at large sizes but is never used below 20px. The negative tracking (-0.06em at 59px) pulls the letterforms so tight they almost touch, creating the signature edge-to-edge wordmark that bleeds across the full viewport.",
+        "sizes": "20, 35, 53, 59px",
+        "family": "Romana",
+        "weight": "400",
+        "lineHeight": "0.95–1.27",
+        "substitute": "DM Serif Display or Playfair Display",
+        "letterSpacing": "-0.0600em, -0.0400em"
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "10px, 18px, 32px",
+        "family": "Arial",
+        "weight": "100",
+        "lineHeight": "1, 1.1, 1.4, 2.52",
+        "letterSpacing": "-0.02"
+      }
+    ],
+    "description": "ilovecreatives is a monochrome editorial system for a Gen-Z creative community: every screen is a page from an indie print zine scaled to viewport. The palette is aggressively achromatic — deep ink black, soft charcoal, warm paper white, and one barely-there lime-cream surface — with zero chromatic accent. Photography carries the color: lush full-bleed color in the hero and course cards, then a deliberate pivot to high-contrast black & white in the profile grids. Typography is the only chrome: a Swiss grotesque (Suisse Regular) handles all UI, a custom Roman display serif (Romana) blasts the brand wordmark edge-to-edge across the hero, and aggressive negative letter-spacing ties everything to the page edges. Components are minimal: pill-shaped ghost buttons, pill-shaped location tags, 20px-radius photo cards, and almost no shadows. The feeling is warm, confident, editorial, community-first — never corporate SaaS.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9afa0254-423b-4354-a852-8894c33d2e6b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ilovecreatives design system\",\"item\":\"https://styles.refero.design/style/9afa0254-423b-4354-a852-8894c33d2e6b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9afa0254-423b-4354-a852-8894c33d2e6b#style-reference\",\"name\":\"ilovecreatives design system reference\",\"headline\":\"ilovecreatives design system | Refero Styles\",\"description\":\"Explore ilovecreatives's light Media design system: Ink Black #222222, Pure Black #000000 colors, Suisse Regular, Romana typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/9afa0254-423b-4354-a852-8894c33d2e6b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9afa0254-423b-4354-a852-8894c33d2e6b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ilovecreatives\",\"url\":\"https://ilovecreatives.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9afa0254-423b-4354-a852-8894c33d2e6b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e04c912d-7114-4d64-8334-d19c2b477dae.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e04c912d-7114-4d64-8334-d19c2b477dae.jpg\",\"caption\":\"Screenshot of ilovecreatives\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e04c912d-7114-4d64-8334-d19c2b477dae.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ilovecreatives design system\",\"ilovecreatives website design\",\"ilovecreatives colors\",\"ilovecreatives typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Ink Black\",\"Pure Black\",\"Paper White\",\"Risograph Lime\",\"Suisse Regular\",\"Romana\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ilovecreatives design system\"},{\"@type\":\"Thing\",\"name\":\"ilovecreatives website design\"},{\"@type\":\"Thing\",\"name\":\"ilovecreatives colors\"},{\"@type\":\"Thing\",\"name\":\"ilovecreatives typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T03:02:30.895Z\",\"dateModified\":\"2026-04-30T03:02:30.895Z\"}]}19:T768,**Quick Color Reference**\n- text: #222222 (Ink Black)\n- background: #ffffff (Paper White)\n- border: #222222 (Ink Black, 1px)\n- accent surface: #e1ea99 (Risograph Lime)\n- true black emphasis: #000000\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Hero Block**: Full-viewport color photograph as background, no border-radius. Overlay the literal wordmark 'ilovecreatives' centered at 90px Romana, weight 400, #ffffff, letter-spacing -0.06em, bleeding edge-to-edge and partially cropped. Bottom-left: 15px Suisse Regular subtext in #ffffff, then a Ghost Pill Button ('Watch: About Us Video') — 450px radius, transparent fill, 1px #222222 border, #222222 text at 14px, 6px vertical / 20px horizontal padding.\n\n2. **Course Card**: White card, no border, no shadow. Top is a 4:3 image with 20px border-radius, full-color graphic design. Below at 20px gap: course title in 22px Suisse Regular #222222, then 13px body testimonial in #222222, then a Ghost Pill Button ('Enrollment Open') — same 450px pill spec as above.\n\n3. **Creative Profile Card**: Portrait photo 4:5 ratio rendered in black & white with 20px border-radius. Below: two Location Tag Pills side by side (300px radius, white fill, 1px #222222 border, 11-13px Suisse Regular #222222 text, 2px vertical / 8px horizontal padding). Then name in 18-22px Suisse Regular #222222, then role in 13-14px body #222222.\n\n4. **Section Heading with Inline Highlight**: 35-49px Suisse Regular weight 400 in #222222, left-aligned. Wrap key words in inline 1px #222222 pill borders with 450px radius and ~4-8px horizontal padding (e.g. 'Make your profile and get eyeballs' where 'your profile' is rendered inside a pill outline).\n\n5. **Carousel Pagination Dots**: Vertical column of 6-8px circles along the left edge of a card row, ~24px apart. Active dot filled #222222, inactive dots outlined #222222 at 1px stroke."
+      },
+      {
+        "title": "Editorial Pill-on-Word Pattern",
+        "content": "A signature interaction pattern: key words inside headings are wrapped in a 1px Ink Black pill outline (450px radius) with 4-8px horizontal padding, rendering the word as a small outlined badge within the sentence. This is NOT a button — it is a typographic emphasis device. Use it to highlight 1-2 words per heading, never more. Example: 'Make (your profile) and get eyeballs' where 'your profile' sits inside the pill. This pattern appears on Edutainment and Creative Profiles section headers and is a defining visual motif of the brand."
+      }
+    ],
+    "elevationPhilosophy": "The system is flat by design. No drop shadows, no elevation glows, no layered surfaces. Visual depth comes entirely from image bleed, background color shifts, and 1-2px hairline borders in Ink Black. This keeps the feel editorial and print-like — closer to a magazine spread than a SaaS dashboard."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "other",
+            "image",
+            "nav",
+            "link",
+            "button",
+            "icon",
+            "heading",
+            "body",
+            "badge",
+            "footer"
+          ],
+          "frequency": 6864,
+          "confidence": 1,
+          "prominence": 153196104.42784652,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 39,
+            "body/color": 33,
+            "icon/color": 1,
+            "link/color": 178,
+            "badge/color": 50,
+            "image/color": 99,
+            "other/color": 868,
+            "button/color": 13,
+            "footer/color": 1,
+            "heading/color": 6,
+            "nav/borderColor": 156,
+            "body/borderColor": 132,
+            "icon/borderColor": 4,
+            "link/borderColor": 712,
+            "badge/borderColor": 200,
+            "image/borderColor": 396,
+            "other/borderColor": 3376,
+            "button/borderColor": 572,
+            "footer/borderColor": 4,
+            "heading/borderColor": 24
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "icon",
+            "hero",
+            "image",
+            "heading",
+            "button",
+            "footer"
+          ],
+          "frequency": 998,
+          "confidence": 1,
+          "prominence": 15674237.00828611,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 6,
+            "icon/fill": 2,
+            "nav/color": 51,
+            "hero/color": 1,
+            "icon/color": 1,
+            "other/fill": 1,
+            "image/color": 5,
+            "other/color": 62,
+            "button/color": 140,
+            "heading/color": 22,
+            "nav/borderColor": 204,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "image/borderColor": 20,
+            "other/borderColor": 344,
+            "button/borderColor": 40,
+            "heading/borderColor": 88,
+            "other/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "icon",
+            "badge",
+            "body",
+            "button",
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 1067,
+          "confidence": 1,
+          "prominence": 12456278.422069473,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/color": 28,
+            "body/color": 73,
+            "link/color": 26,
+            "badge/color": 1,
+            "icon/stroke": 2,
+            "other/color": 49,
+            "button/color": 2,
+            "other/stroke": 1,
+            "heading/color": 2,
+            "nav/borderColor": 112,
+            "body/borderColor": 292,
+            "link/borderColor": 104,
+            "badge/borderColor": 4,
+            "other/borderColor": 196,
+            "button/borderColor": 8,
+            "heading/borderColor": 8,
+            "nav/backgroundColor": 11,
+            "other/backgroundColor": 14,
+            "button/backgroundColor": 131
+          }
+        },
+        {
+          "hex": "#e1ea99",
+          "oklch": {
+            "c": 0.10339828647706231,
+            "h": 113.63261407634043,
+            "l": 0.9117782729175813
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.000031293933742036355,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.43,
+          "background": "#e1ea99",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#ffffff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.45,
+          "background": "#e1ea99",
+          "foreground": "#222222"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.32,
+          "background": "#000000",
+          "foreground": "#222222"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.28,
+          "background": "#e1ea99",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "image",
+            "link"
+          ],
+          "frequency": 175
+        },
+        {
+          "value": 450,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 112
+        },
+        {
+          "value": 300,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 20
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 1458,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "icon",
+            "image"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 1056,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 540,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 1603.8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 61,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "badge",
+            "button"
+          ],
+          "frequency": 346,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|badge",
+            "paddingRight|badge",
+            "paddingBottom|badge",
+            "paddingLeft|badge",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 240,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "marginTop|nav",
+            "marginRight|nav",
+            "marginBottom|nav",
+            "marginLeft|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingTop|button",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav",
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 56,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 250,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 46,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "button",
+            "body"
+          ],
+          "frequency": 127,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "paddingRight",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginTop|nav",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingRight|other",
+            "marginRight|button",
+            "marginBottom|other",
+            "paddingBottom|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 166,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 120,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 89,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|button",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 133,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingTop|badge",
+            "paddingRight|badge",
+            "paddingBottom|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body",
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "other",
+            "nav"
+          ],
+          "frequency": 62,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginBottom",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 143,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 231,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "SuisseRegular",
+          "source": "custom",
+          "weights": [
+            100,
+            400,
+            500
+          ],
+          "frequency": 1666,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            100
+          ],
+          "frequency": 62,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "romana",
+          "source": "custom",
+          "weights": [
+            100
+          ],
+          "frequency": 23,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Arial",
+          "weight": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "lineHeight": 2.52,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 10,
+          "family": "Arial",
+          "weight": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 13,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "image",
+            "other"
+          ],
+          "frequency": 224,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.028,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.026,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 33,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.026,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.024,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 58,
+          "lineHeight": 1.8,
+          "letterSpacing": -0.024,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 112,
+          "lineHeight": 1.8,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SuisseRegular",
+          "weight": 500,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": -0.022,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "body",
+            "link",
+            "badge",
+            "button",
+            "footer"
+          ],
+          "frequency": 450,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 59,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "SuisseRegular",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "SuisseRegular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Arial",
+          "weight": 100,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Arial",
+          "weight": 100,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "romana",
+          "weight": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.27,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 20,
+          "lineHeight": 1,
+          "letterSpacing": -0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.83,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Arial",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 122,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "romana",
+          "weight": 100,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 49,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 53,
+          "family": "romana",
+          "weight": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.06,
+          "letterSpacing": -0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "SuisseRegular",
+          "weight": 100,
+          "contexts": [
+            "heading",
+            "icon"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 59,
+          "family": "romana",
+          "weight": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/14fb2158-e747-4dfd-9bd6-1fbb170a222f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e04c912d-7114-4d64-8334-d19c2b477dae.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9afa0254-423b-4354-a852-8894c33d2e6b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ilovecreatives design system\",\"item\":\"https://styles.refero.design/style/9afa0254-423b-4354-a852-8894c33d2e6b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9afa0254-423b-4354-a852-8894c33d2e6b#style-reference\",\"name\":\"ilovecreatives design system reference\",\"headline\":\"ilovecreatives design system | Refero Styles\",\"description\":\"Explore ilovecreatives's light Media design system: Ink Black #222222, Pure Black #000000 colors, Suisse Regular, Romana typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/9afa0254-423b-4354-a852-8894c33d2e6b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9afa0254-423b-4354-a852-8894c33d2e6b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ilovecreatives\",\"url\":\"https://ilovecreatives.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9afa0254-423b-4354-a852-8894c33d2e6b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e04c912d-7114-4d64-8334-d19c2b477dae.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e04c912d-7114-4d64-8334-d19c2b477dae.jpg\",\"caption\":\"Screenshot of ilovecreatives\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e04c912d-7114-4d64-8334-d19c2b477dae.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ilovecreatives design system\",\"ilovecreatives website design\",\"ilovecreatives colors\",\"ilovecreatives typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Ink Black\",\"Pure Black\",\"Paper White\",\"Risograph Lime\",\"Suisse Regular\",\"Romana\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ilovecreatives design system\"},{\"@type\":\"Thing\",\"name\":\"ilovecreatives website design\"},{\"@type\":\"Thing\",\"name\":\"ilovecreatives colors\"},{\"@type\":\"Thing\",\"name\":\"ilovecreatives typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T03:02:30.895Z\",\"dateModified\":\"2026-04-30T03:02:30.895Z\"}]}19:T768,**Quick Color Reference**\n- text: #222222 (Ink Black)\n- background: #ffffff (Paper White)\n- border: #222222 (Ink Black, 1px)\n- accent surface: #e1ea99 (Risograph Lime)\n- true black emphasis: #000000\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Hero Block**: Full-viewport color photograph as background, no border-radius. Overlay the literal wordmark 'ilovecreatives' centered at 90px Romana, weight 400, #ffffff, letter-spacing -0.06em, bleeding edge-to-edge and partially cropped. Bottom-left: 15px Suisse Regular subtext in #ffffff, then a Ghost Pill Button ('Watch: About Us Video') — 450px radius, transparent fill, 1px #222222 border, #222222 text at 14px, 6px vertical / 20px horizontal padding.\n\n2. **Course Card**: White card, no border, no shadow. Top is a 4:3 image with 20px border-radius, full-color graphic design. Below at 20px gap: course title in 22px Suisse Regular #222222, then 13px body testimonial in #222222, then a Ghost Pill Button ('Enrollment Open') — same 450px pill spec as above.\n\n3. **Creative Profile Card**: Portrait photo 4:5 ratio rendered in black & white with 20px border-radius. Below: two Location Tag Pills side by side (300px radius, white fill, 1px #222222 border, 11-13px Suisse Regular #222222 text, 2px vertical / 8px horizontal padding). Then name in 18-22px Suisse Regular #222222, then role in 13-14px body #222222.\n\n4. **Section Heading with Inline Highlight**: 35-49px Suisse Regular weight 400 in #222222, left-aligned. Wrap key words in inline 1px #222222 pill borders with 450px radius and ~4-8px horizontal padding (e.g. 'Make your profile and get eyeballs' where 'your profile' is rendered inside a pill outline).\n\n5. **Carousel Pagination Dots**: Vertical column of 6-8px circles along the left edge of a card row, ~24px apart. Active dot filled #222222, inactive dots outlined #222222 at 1px stroke."
+}

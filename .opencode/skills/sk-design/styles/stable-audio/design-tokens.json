@@ -1,0 +1,327 @@
+{
+  "color": {
+    "amber-pulse": {
+      "$value": "#f9a916",
+      "$type": "color",
+      "$description": "Amber Pulse — Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "lime-signal": {
+      "$value": "#a0f32f",
+      "$type": "color",
+      "$description": "Lime Signal — Green supporting accent for decorative details and low-frequency emphasis."
+    },
+    "lavender-wash": {
+      "$value": "#c4bae3",
+      "$type": "color",
+      "$description": "Lavender Wash — Text-to-audio feature panel background — large full-bleed section tint"
+    },
+    "mustard-field": {
+      "$value": "#e1ca46",
+      "$type": "color",
+      "$description": "Mustard Field — Audio-to-audio feature panel background — full-bleed section tint"
+    },
+    "sage-mist": {
+      "$value": "#9fc2c7",
+      "$type": "color",
+      "$description": "Sage Mist — Sound effects feature panel background — full-bleed section tint"
+    },
+    "khaki-paper": {
+      "$value": "#e5dfc8",
+      "$type": "color",
+      "$description": "Khaki Paper — Secondary panel tint, hero left-column background — warm beige sitting one step darker than the main cream canvas"
+    },
+    "warm-canvas": {
+      "$value": "#f4f1ec",
+      "$type": "color",
+      "$description": "Warm Canvas — Page background, dominant cream surface — every section and most cards sit on this tone"
+    },
+    "pure-paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure Paper — Card surfaces, track cards, elevated panels — the only true white in the system"
+    },
+    "pale-mist": {
+      "$value": "#e2e2e7",
+      "$type": "color",
+      "$description": "Pale Mist — Cool light-gray structural tone for subtle UI layers beneath the warm cream"
+    },
+    "hairline": {
+      "$value": "#d2d1db",
+      "$type": "color",
+      "$description": "Hairline — Borders, dividers, subtle separators"
+    },
+    "ink-stone": {
+      "$value": "#27262b",
+      "$type": "color",
+      "$description": "Ink Stone — Secondary text, dark app-interface surfaces, filled toggle states — near-black with a slight warm cast"
+    },
+    "charcoal": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Charcoal — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "ash": {
+      "$value": "#737170",
+      "$type": "color",
+      "$description": "Ash — Muted body text, helper text, metadata — mid-gray for tertiary information"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "All text — headlines commit to weight 700 (bold), never 500 or 600; the two-weight commitment is a signature choice that gives the interface a confident, opinionated voice without needing a display face"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.78
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 30px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f4f1ec",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, dominant warm cream surface"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card surfaces (track cards, nav, product cards)"
+    },
+    "feature-panel": {
+      "$value": "#c4bae3",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed colored section backgrounds (lavender, mustard, sage, khaki variants)"
+    },
+    "dark-surface": {
+      "$value": "#27262b",
+      "$type": "color",
+      "$description": "Surface level 3: Dark app-interface surfaces, active toggle states"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://stableaudio.com",
+      "siteName": "Stable Audio",
+      "extractedAt": "2026-06-03T19:17:24.601Z",
+      "variant": "extended"
+    }
+  }
+}

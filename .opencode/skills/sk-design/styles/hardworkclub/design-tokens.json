@@ -1,0 +1,232 @@
+{
+  "color": {
+    "pitch-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pitch Black — Page canvas, hero backgrounds, card fills — the default surface for the entire site; every other element floats on this"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Primary text, hairline borders on dark surfaces, nav wordmark, overlay labels on imagery"
+    },
+    "charcoal-whisper": {
+      "$value": "#313130",
+      "$type": "color",
+      "$description": "Charcoal Whisper — Near-invisible secondary borders and dividers — just enough to separate layers without breaking the black-box illusion"
+    },
+    "electric-cobalt": {
+      "$value": "#1200e3",
+      "$type": "color",
+      "$description": "Electric Cobalt — The circular nav toggle button and the only chromatic surface in the UI — a single stage light against an otherwise dark room"
+    }
+  },
+  "font": {
+    "maligna": {
+      "$value": "Maligna",
+      "$type": "fontFamily",
+      "$description": "Display serif used for the wordmark, hero statement, and work-card overlay titles. A humanist serif with warmth and character in a system otherwise built on a cold grotesque — it signals craft, editorial confidence, and refusal of the default SaaS look. The -0.03em tracking tightens optical spacing at display sizes."
+    },
+    "founders-grotesk": {
+      "$value": "Founders Grotesk",
+      "$type": "fontFamily",
+      "$description": "The workhorse sans covering body copy, UI labels, the 'HWC' monogram, eyebrow text like 'FEATURED WORK', and all button text. Weight 300 carries body, 500 holds subheadings, 700 is reserved for small-caps eyebrows and emphasis. The tight -0.03em tracking across all sizes gives text a slightly condensed, editorial rhythm."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 0.78
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "22px",
+        "fontWeight": 300,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Founders Grotesk",
+        "fontSize": "31px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 31px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Maligna",
+        "fontSize": "31px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 31px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Maligna",
+        "fontSize": "31px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 31px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Maligna",
+        "fontSize": "61px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 61px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "999999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "stage-floor": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, hero canvas, all card surfaces — the unbroken black of the theater"
+    },
+    "accent-bloom": {
+      "$value": "#1200e3",
+      "$type": "color",
+      "$description": "Surface level 1: The circular nav control — the only raised color surface in the entire interface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.hardworkclub.com",
+      "siteName": "Hardworkclub",
+      "extractedAt": "2026-06-03T21:38:44.624Z",
+      "variant": "extended"
+    }
+  }
+}

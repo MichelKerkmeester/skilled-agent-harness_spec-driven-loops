@@ -1,0 +1,554 @@
+{
+  "color": {
+    "signal-violet": {
+      "$value": "#6b53ff",
+      "$type": "color",
+      "$description": "Signal Violet — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "lighter-violet": {
+      "$value": "#8d49f7",
+      "$type": "color",
+      "$description": "Lighter Violet — Secondary brand accent, gradient highlight stops, icon fills, decorative violet washes — a brighter cousin used when Signal Violet would feel too heavy"
+    },
+    "deep-indigo": {
+      "$value": "#371789",
+      "$type": "color",
+      "$description": "Deep Indigo — Dark brand text, deep gradient end-stops, footer/marketing accent on white sections — the shadow side of the violet family"
+    },
+    "solar-yellow": {
+      "$value": "#ffd02c",
+      "$type": "color",
+      "$description": "Solar Yellow — Energy accent — slide preview highlights, decorative bursts, gradient start, illustration fills. Used sparingly as visual punctuation, never as a functional color; Warm accent gradient — linear-gradient(90deg, #ffd02c, #ff9e2c) for decorative bursts and illustration gradients"
+    },
+    "ember-orange": {
+      "$value": "#ffa000",
+      "$type": "color",
+      "$description": "Ember Orange — Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "slate-ink": {
+      "$value": "#2b2a35",
+      "$type": "color",
+      "$description": "Slate Ink — Primary text, heading text, icon strokes, dark surface fill — the dominant achromatic doing all reading work (1,700+ occurrences)"
+    },
+    "carbon": {
+      "$value": "#1e1d28",
+      "$type": "color",
+      "$description": "Carbon — Secondary dark text, card text on light surfaces — a step lighter than Slate Ink for subordinate copy"
+    },
+    "steel": {
+      "$value": "#3f4250",
+      "$type": "color",
+      "$description": "Steel — Muted body text, secondary headings, dark-mode support text"
+    },
+    "fog": {
+      "$value": "#6f7387",
+      "$type": "color",
+      "$description": "Fog — Supporting neutral for secondary UI, dividers, and muted labels."
+    },
+    "ash": {
+      "$value": "#95959a",
+      "$type": "color",
+      "$description": "Ash — Tertiary borders, subtle dividers, light-mode shadow tint at low opacity"
+    },
+    "mist": {
+      "$value": "#dddfe5",
+      "$type": "color",
+      "$description": "Mist — Hairline borders, card outlines, button shadows — the lightest visible structural line"
+    },
+    "marble": {
+      "$value": "#f0eff4",
+      "$type": "color",
+      "$description": "Marble — Page canvas background — slightly cooler than pure white, sets product sections apart from card surfaces"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "shadow-violet": {
+      "$value": "#0a0359",
+      "$type": "color",
+      "$description": "Shadow Violet — Deep shadow color tinted violet (rgba 0.3) — appears only in the hero card's large ambient shadow, giving elevation an on-brand cool cast"
+    },
+    "hero-stage": {
+      "$value": "#5718eb",
+      "$type": "color",
+      "$description": "Hero Stage — Primary hero gradient end-stop — linear gradient(90deg, #5718eb, #ab6ef9) fills the entire first screen behind the headline"
+    }
+  },
+  "font": {
+    "eina01": {
+      "$value": "Eina01",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body font. Used for navigation, buttons, body copy, list items, badges, and subheadings up to 28px. Its signature is a wide +0.1em letter-spacing applied consistently — this airiness gives the UI a measured, deliberate pace rather than dense SaaS compression. Substitute: Inter or Manrope (both geometric sans with similar x-height)."
+    },
+    "mark-pro": {
+      "$value": "Mark Pro",
+      "$type": "fontFamily",
+      "$description": "Display and headline font only. Used for hero headlines (60–80px), section headings (42px), and small uppercase labels (13px). The display sizes carry tight negative tracking (-0.02em at 60–80px, -0.01em at 27–28px) that contrasts with Eina01's openness — the two fonts create a deliberate tight/wide duality. Substitute: Söhne (closest match) or Inter at heavy weight."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Mark Pro",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.85
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.69
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Mark Pro",
+        "fontSize": "27px",
+        "fontWeight": 800,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 27px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Mark Pro",
+        "fontSize": "28px",
+        "fontWeight": 800,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Eina01",
+        "fontSize": "28px",
+        "fontWeight": 800,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Mark Pro",
+        "fontSize": "42px",
+        "fontWeight": 800,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Mark Pro",
+        "fontSize": "60px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Mark Pro",
+        "fontSize": "80px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Mark Pro",
+        "fontSize": "80px",
+        "fontWeight": 800,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "159": {
+      "$value": "159px",
+      "$type": "dimension",
+      "$description": "Spacing 159px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.15) 0px 3px 10px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "xl": {
+      "$value": "rgba(103, 110, 144, 0.2) 0px 8px 26px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "xl-2": {
+      "$value": "rgba(43, 42, 53, 0.25) 0px 6px 27px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-2"
+    },
+    "xl-3": {
+      "$value": "rgba(43, 42, 53, 0.5) 0px 6px 27px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-3"
+    },
+    "xl-4": {
+      "$value": "rgba(10, 3, 89, 0.3) 0px 20px 90px 0px, rgba(0, 0, 0, 0.02) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-4"
+    }
+  },
+  "surface": {
+    "marble": {
+      "$value": "#f0eff4",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the default background for content sections below the hero"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card and panel surfaces — sits one step above Marble, the primary product surface"
+    },
+    "elevated-paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Modals, popovers, floating toolbars — same white but distinguished by stronger shadow and/or border"
+    },
+    "hero-stage": {
+      "$value": "#5718eb",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed brand sections — the violet gradient, reserved for hero and major emotional peaks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://pitch.com",
+      "siteName": "Pitch",
+      "extractedAt": "2026-06-03T16:17:03.024Z",
+      "variant": "extended"
+    }
+  }
+}

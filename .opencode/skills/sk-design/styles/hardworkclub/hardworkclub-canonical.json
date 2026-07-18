@@ -1,0 +1,848 @@
+{
+  "source": "https://styles.refero.design/style/1775bf6a-afdd-48b1-8435-b92ec585c674",
+  "uuid": "1775bf6a-afdd-48b1-8435-b92ec585c674",
+  "name": "Hardworkclub",
+  "northStar": "midnight black-box theater — a dark room where one round blue light glows above a stage, and the only thing louder than the silence is the film playing",
+  "capturedAt": "2026-07-18T08:49:34.736Z",
+  "meta": {
+    "url": "https://www.hardworkclub.com",
+    "siteName": "Hardworkclub",
+    "extractedAt": "2026-06-03T21:38:44.624Z",
+    "durationMs": 25248,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 482,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Pitch Black (#000000) as the default canvas for every page and surface — the black room is non-negotiable",
+      "Reserve Electric Cobalt (#1200e3) for the circular nav control and nothing else — one blue dot per screen",
+      "Set type in Maligna for the wordmark, hero statement, and work-card overlays; use Founders Grotesk for everything else",
+      "Apply -0.03em letter-spacing to all text regardless of size — the tight tracking is a system signature",
+      "Pad cards and content blocks with 48px on all sides to let the black space breathe",
+      "Use the 1440px pill radius for buttons and links, 8px for rectangular cards, and a larger arch radius for the specialty work card",
+      "Left-align all body and intro text — centered alignment would break the editorial theater atmosphere"
+    ],
+    "donts": [
+      "Do not introduce drop shadows, glow effects, or any z-axis elevation — the system is intentionally flat",
+      "Do not add a second accent color or a secondary CTA color — Electric Cobalt is the only chromatic surface in the UI",
+      "Do not use white or light-gray card fills against the black canvas — cards stay transparent over images or black-filled",
+      "Do not center-align body copy, statements, or labels — the entire layout grammar is left-aligned editorial",
+      "Do not apply system fonts, Inter, or generic grotesques as the display serif — Maligna (or its substitute) is what makes the wordmark and hero feel crafted rather than templated",
+      "Do not use borders thicker than 1px on dark surfaces — hairlines only, or the black-box illusion breaks",
+      "Do not stack multiple work cards in rows of 3 or more — the featured work is shown as deliberate 2-up pairs"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Pitch Black",
+        "role": "Page canvas, hero backgrounds, card fills — the default surface for the entire site; every other element floats on this",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Primary text, hairline borders on dark surfaces, nav wordmark, overlay labels on imagery",
+        "group": "neutral"
+      },
+      {
+        "hex": "#313130",
+        "name": "Charcoal Whisper",
+        "role": "Near-invisible secondary borders and dividers — just enough to separate layers without breaking the black-box illusion",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1200e3",
+        "name": "Electric Cobalt",
+        "role": "The circular nav toggle button and the only chromatic surface in the UI — a single stage light against an otherwise dark room",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed cinematic hero at the top edge, then left-aligned editorial text blocks separated by 48-96px vertical rhythm on a pure black canvas. Content is asymmetric and grid-loose rather than centered or symmetrically stacked. The 'Featured Work' section uses a 2-column grid pairing an arch-top card with a rectangular card — matching silhouettes is deliberately avoided to create visual tension. Navigation is minimal: a centered wordmark and one circular button, nothing else. No sidebar, no mega-menu, no footer chrome visible in the fold. Max content width approximately 1440px, but the hero and imagery always break full-bleed regardless.",
+    "imagery": "Cinema-grade full-bleed photography and video: dark, underexposed, stage-lit subjects (drummer under string lights, intimate human close-ups, product still lifes). Treatment is editorial and observational — not polished brand photography but raw, atmospheric frames with deep shadows and warm practical light. Images are contained inside arched or rectangular frames with 8-24px corner radii; no full-bleed decorative graphics. The only non-photographic element is the Electric Cobalt nav dot, which reads as a single stage light in a dark room.",
+    "similar": [
+      {
+        "why": "Creative agency that rejects the agency template — pure black canvas, single accent color, editorial left-aligned type, photography-first layouts",
+        "business": "Anomaly"
+      },
+      {
+        "why": "Design studio with full-bleed dark cinematic work pages, Maligna-adjacent serif display, minimal chrome, and generous black space between projects",
+        "business": "Buck"
+      },
+      {
+        "why": "Same black-box theater atmosphere — dark canvas, single vivid accent on the nav, serif wordmark, and cinema-grade full-bleed imagery",
+        "business": "Mubi"
+      },
+      {
+        "why": "Fashion brand that treats the website as a dark editorial spread — oversized serif type floating on black, no UI chrome, imagery as the only decoration",
+        "business": "Acne Studios"
+      },
+      {
+        "why": "Dark-mode editorial commerce with serif display headlines over full-bleed photography, hairline borders, and minimal text labels",
+        "business": "SSENSE"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "9999px",
+        "cards": "8px",
+        "buttons": "1440px",
+        "archedImage": "24px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "96-160px",
+      "cardPadding": "48px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Stage Floor",
+        "level": 0,
+        "purpose": "Page background, hero canvas, all card surfaces — the unbroken black of the theater"
+      },
+      {
+        "hex": "#1200e3",
+        "name": "Accent Bloom",
+        "level": 1,
+        "purpose": "The circular nav control — the only raised color surface in the entire interface"
+      }
+    ],
+    "northStar": "midnight black-box theater — a dark room where one round blue light glows above a stage, and the only thing louder than the silence is the film playing",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.54
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.66
+      },
+      {
+        "role": "heading-sm",
+        "size": 31,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.93
+      },
+      {
+        "role": "display",
+        "size": 61,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.83
+      }
+    ],
+    "components": [
+      {
+        "name": "Circular Nav Toggle",
+        "role": "Primary site navigation trigger",
+        "description": "A fully round button in Electric Cobalt (#1200e3) anchored to the top-right corner. No text, no border, no shadow — a single saturated disc that is the only chromatic element in the entire UI. Radius 1440px (effectively infinite). Acts as the one consistent interactive target across every page."
+      },
+      {
+        "name": "Wordmark Lockup",
+        "role": "Brand identity mark in the header",
+        "description": "Centered 'HardWorkClub' in Maligna weight 300, white on black, at approximately 22-31px. No icon, no tagline, no container — the text floats directly on the black canvas. On interior pages, collapses to the 'HWC' monogram in Founders Grotesk weight 500."
+      },
+      {
+        "name": "Full-Bleed Hero Stage",
+        "role": "Opening cinematic canvas",
+        "description": "Edge-to-edge video or still image filling the full viewport against #000000. No overlay copy, no CTA, no gradient — the imagery IS the message. Visual content is dark and underexposed so the white wordmark and blue nav dot remain legible. 96px top padding separates the hero from the header."
+      },
+      {
+        "name": "Intro Statement Block",
+        "role": "Brand manifesto on landing",
+        "description": "Left-aligned three-line statement in Founders Grotesk weight 300 at 18-22px, white on black. No heading, no decoration, no background — just type sitting in the void. Generous 48px padding-bottom separates it from the next section."
+      },
+      {
+        "name": "Eyebrow Section Label",
+        "role": "Section identifier above content groups",
+        "description": "Small uppercase wordmark text ('FEATURED WORK') in Founders Grotesk weight 500, white, left-aligned. No divider, no dot, no line — just the label and then 48px of breathing room before the content begins."
+      },
+      {
+        "name": "Arch-Top Work Card",
+        "role": "Featured project with architectural framing",
+        "description": "Image container with a rounded arch at the top (achieved via a large 24px+ top radius and 8px bottom radius, or a CSS clip-path). Full-width image fill, no visible border, no shadow. Maligna weight 300 overlay text in white sits at the bottom-left of the image, approximately 31px."
+      },
+      {
+        "name": "Rectangular Work Card",
+        "role": "Standard featured project tile",
+        "description": "Rectangular image with 8px corner radius, no border, no shadow. Overlay title in Maligna weight 300 white at 31px, bottom-left aligned. Functions as a quiet pair to the arch-top card — same type, same padding logic, different silhouette."
+      },
+      {
+        "name": "Pill Button",
+        "role": "Inline link or action",
+        "description": "Text-only pill using 1440px border-radius. White text, no fill, optional white border. Internal padding 13px horizontal, 5-7px vertical. Used sparingly for navigational links and secondary actions."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display serif used for the wordmark, hero statement, and work-card overlay titles. A humanist serif with warmth and character in a system otherwise built on a cold grotesque — it signals craft, editorial confidence, and refusal of the default SaaS look. The -0.03em tracking tightens optical spacing at display sizes.",
+        "sizes": "31px, 61px",
+        "family": "Maligna",
+        "weight": "300, 500",
+        "lineHeight": "1.1, 1.2",
+        "substitute": "Cormorant Garamond, Tiempos Headline, or Recoleta",
+        "letterSpacing": "-0.03em"
+      },
+      {
+        "role": "The workhorse sans covering body copy, UI labels, the 'HWC' monogram, eyebrow text like 'FEATURED WORK', and all button text. Weight 300 carries body, 500 holds subheadings, 700 is reserved for small-caps eyebrows and emphasis. The tight -0.03em tracking across all sizes gives text a slightly condensed, editorial rhythm.",
+        "sizes": "16px, 18px, 22px, 31px",
+        "family": "Founders Grotesk",
+        "weight": "300, 500, 700",
+        "lineHeight": "0.78, 1.0, 1.1, 1.2, 1.21, 1.5, 1.67",
+        "substitute": "Inter, Söhne, or Neue Haas Grotesk",
+        "letterSpacing": "-0.03em"
+      }
+    ],
+    "description": "Hardworkclub operates as a black-box performance space: the page is a single dark room where cinematic footage plays full-bleed and the only interruptions are a luminous cobalt menu dot and a thin Maligna serif wordmark. The system is aggressively monochrome — pure black canvas, bone-white type, and one electric blue accent that exists solely on the circular nav control. Layout is left-aligned and editorial rather than centered and corporate; cards breathe inside 48px padding with no shadows and almost no visible borders, letting photography carry the visual weight. Typography splits cleanly between a grotesque workhorse (Founders Grotesk) for body and UI labels and a humanist serif (Maligna) that signals craft, warmth, and 'we are not a template' on the hero, logo, and work-card overlays.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1775bf6a-afdd-48b1-8435-b92ec585c674#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Hardworkclub design system\",\"item\":\"https://styles.refero.design/style/1775bf6a-afdd-48b1-8435-b92ec585c674\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1775bf6a-afdd-48b1-8435-b92ec585c674#style-reference\",\"name\":\"Hardworkclub design system reference\",\"headline\":\"Hardworkclub design system | Refero Styles\",\"description\":\"Explore Hardworkclub's dark Agency design system: Pitch Black #000000, Bone White #ffffff colors, Maligna, Founders Grotesk typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/1775bf6a-afdd-48b1-8435-b92ec585c674\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1775bf6a-afdd-48b1-8435-b92ec585c674\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Hardworkclub\",\"url\":\"https://www.hardworkclub.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1775bf6a-afdd-48b1-8435-b92ec585c674#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a597c5d2-e14a-4115-b259-d41a2fa85835.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a597c5d2-e14a-4115-b259-d41a2fa85835.jpg\",\"caption\":\"Screenshot of Hardworkclub\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a597c5d2-e14a-4115-b259-d41a2fa85835.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Hardworkclub design system\",\"Hardworkclub website design\",\"Hardworkclub colors\",\"Hardworkclub typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pitch Black\",\"Bone White\",\"Charcoal Whisper\",\"Electric Cobalt\",\"Maligna\",\"Founders Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Hardworkclub design system\"},{\"@type\":\"Thing\",\"name\":\"Hardworkclub website design\"},{\"@type\":\"Thing\",\"name\":\"Hardworkclub colors\"},{\"@type\":\"Thing\",\"name\":\"Hardworkclub typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:22:20.058Z\",\"dateModified\":\"2026-04-30T02:22:20.058Z\"}]}19:T4d6,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- border: #ffffff (hairline) or #313130 (near-invisible divider)\n- accent: #1200e3\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build the hero: edge-to-edge cinematic image against #000000, no overlay text except a centered 'HardWorkClub' wordmark in Maligna weight 300 white at 31px with -0.93px letter-spacing. Top-right corner holds a circular nav button in #1200e3 at 48px diameter.\n2. Build a featured work card: rectangular image with 8px corner radius, no border, no shadow. Overlay 'Project Title' in Maligna weight 300 white at 31px, bottom-left aligned with 48px inset padding.\n3. Build the arch-top work card: image with 24px top radius and 8px bottom radius (arched silhouette), full-width fill on #000000. Maligna weight 300 white title at 31px at the bottom-left, 48px from edges.\n4. Build the intro statement: left-aligned three-line block in Founders Grotesk weight 300 at 22px, white on #000000, 48px padding-bottom before the next section. No heading, no decoration.\n5. Build the eyebrow label: 'FEATURED WORK' in Founders Grotesk weight 500 uppercase at 16px, white, left-aligned, 48px space below before the work grid begins."
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no glows, no z-axis. Depth is implied by content layering (image over text, button over canvas) and by the single accent color, not by drop-shadow elevation. Cards sit flush against the black ground; the absence of elevation is itself a signature — the room is flat and dark, the only light is from the imagery and the cobalt dot."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "hero",
+            "image",
+            "heading",
+            "badge",
+            "icon",
+            "footer"
+          ],
+          "frequency": 1850,
+          "confidence": 1,
+          "prominence": 120307875.0031385,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "hero/color": 1,
+            "icon/color": 1,
+            "link/color": 15,
+            "other/fill": 12,
+            "badge/color": 39,
+            "image/color": 13,
+            "other/color": 172,
+            "other/stroke": 1,
+            "heading/color": 124,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 60,
+            "badge/borderColor": 156,
+            "image/borderColor": 52,
+            "other/borderColor": 684,
+            "heading/borderColor": 496,
+            "other/backgroundColor": 15,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "footer",
+            "heading",
+            "link",
+            "button"
+          ],
+          "frequency": 370,
+          "confidence": 1,
+          "prominence": 94605897.0136549,
+          "properties": [
+            "backgroundColor",
+            "fill",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 5,
+            "other/fill": 43,
+            "other/color": 49,
+            "button/color": 2,
+            "footer/color": 1,
+            "heading/color": 5,
+            "link/borderColor": 20,
+            "other/borderColor": 196,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 20,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 16
+          }
+        },
+        {
+          "hex": "#313130",
+          "oklch": {
+            "c": 0.0021867391160256644,
+            "h": 91.47006535682159,
+            "l": 0.3123382876760217
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 22733.997977042163,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#1200e3",
+          "oklch": {
+            "c": 0.28439155219425644,
+            "h": 265.7329635195801,
+            "l": 0.4172243139252377
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2304,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.00035607471443469067,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.02,
+          "background": "#ffffff",
+          "foreground": "#313130"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.84,
+          "background": "#1200e3",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.13,
+          "background": "#1200e3",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 1440,
+          "corners": [
+            1440,
+            1440,
+            8,
+            8
+          ],
+          "contexts": [
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 7,
+          "asymmetric": true
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 999999,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|heading",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 78,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 62,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 106,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Founders Grotesk",
+          "source": "custom",
+          "weights": [
+            300,
+            500,
+            700
+          ],
+          "frequency": 402,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Maligna",
+          "source": "custom",
+          "weights": [
+            300,
+            500
+          ],
+          "frequency": 25,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Founders Grotesk",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "hero",
+            "image",
+            "badge",
+            "footer"
+          ],
+          "frequency": 251,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Founders Grotesk",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Founders Grotesk",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.21,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 124,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "Maligna",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "Maligna",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 61,
+          "family": "Maligna",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/0817aac4-0440-48d6-a001-e27ff837a32f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a597c5d2-e14a-4115-b259-d41a2fa85835.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1775bf6a-afdd-48b1-8435-b92ec585c674#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Hardworkclub design system\",\"item\":\"https://styles.refero.design/style/1775bf6a-afdd-48b1-8435-b92ec585c674\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1775bf6a-afdd-48b1-8435-b92ec585c674#style-reference\",\"name\":\"Hardworkclub design system reference\",\"headline\":\"Hardworkclub design system | Refero Styles\",\"description\":\"Explore Hardworkclub's dark Agency design system: Pitch Black #000000, Bone White #ffffff colors, Maligna, Founders Grotesk typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/1775bf6a-afdd-48b1-8435-b92ec585c674\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1775bf6a-afdd-48b1-8435-b92ec585c674\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Hardworkclub\",\"url\":\"https://www.hardworkclub.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1775bf6a-afdd-48b1-8435-b92ec585c674#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a597c5d2-e14a-4115-b259-d41a2fa85835.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a597c5d2-e14a-4115-b259-d41a2fa85835.jpg\",\"caption\":\"Screenshot of Hardworkclub\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a597c5d2-e14a-4115-b259-d41a2fa85835.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Hardworkclub design system\",\"Hardworkclub website design\",\"Hardworkclub colors\",\"Hardworkclub typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pitch Black\",\"Bone White\",\"Charcoal Whisper\",\"Electric Cobalt\",\"Maligna\",\"Founders Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Hardworkclub design system\"},{\"@type\":\"Thing\",\"name\":\"Hardworkclub website design\"},{\"@type\":\"Thing\",\"name\":\"Hardworkclub colors\"},{\"@type\":\"Thing\",\"name\":\"Hardworkclub typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:22:20.058Z\",\"dateModified\":\"2026-04-30T02:22:20.058Z\"}]}19:T4d6,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- border: #ffffff (hairline) or #313130 (near-invisible divider)\n- accent: #1200e3\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build the hero: edge-to-edge cinematic image against #000000, no overlay text except a centered 'HardWorkClub' wordmark in Maligna weight 300 white at 31px with -0.93px letter-spacing. Top-right corner holds a circular nav button in #1200e3 at 48px diameter.\n2. Build a featured work card: rectangular image with 8px corner radius, no border, no shadow. Overlay 'Project Title' in Maligna weight 300 white at 31px, bottom-left aligned with 48px inset padding.\n3. Build the arch-top work card: image with 24px top radius and 8px bottom radius (arched silhouette), full-width fill on #000000. Maligna weight 300 white title at 31px at the bottom-left, 48px from edges.\n4. Build the intro statement: left-aligned three-line block in Founders Grotesk weight 300 at 22px, white on #000000, 48px padding-bottom before the next section. No heading, no decoration.\n5. Build the eyebrow label: 'FEATURED WORK' in Founders Grotesk weight 500 uppercase at 16px, white, left-aligned, 48px space below before the work grid begins."
+}

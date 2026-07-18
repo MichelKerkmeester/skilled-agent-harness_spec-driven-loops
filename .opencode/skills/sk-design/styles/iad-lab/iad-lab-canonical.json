@@ -1,0 +1,810 @@
+{
+  "source": "https://styles.refero.design/style/7d66c966-6cee-4c82-b2e4-2bf1ca7b2ccd",
+  "uuid": "7d66c966-6cee-4c82-b2e4-2bf1ca7b2ccd",
+  "name": "Iad-lab",
+  "northStar": "art-school exhibition on charcoal",
+  "capturedAt": "2026-07-18T07:27:29.985Z",
+  "meta": {
+    "url": "https://iad-lab.ch",
+    "siteName": "Iad-lab",
+    "extractedAt": "2026-06-03T21:06:52.967Z",
+    "durationMs": 40326,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 362,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #f8f8f8 for all text and borders; #222222 is the only background. This binary is the system.",
+      "Apply 20px border-radius to any rounded element — buttons, tags, chips, containers. Never use sharp corners on interactive surfaces.",
+      "Set the display heading to overflow the viewport. The wordmark must bleed past both left and right edges — if all letters are fully visible, it is too small.",
+      "Use Neue Haas Unica weight 400 as default; reserve weight 700 for active or emphasized labels only. Do not mix intermediate weights.",
+      "Separate list items with 1px solid #f8f8f8 bottom borders. This hairline divider is the primary structural separator in the system.",
+      "Use 24px as the default element gap and 16px as the tight gap. Maintain the 4px base unit for all spacing decisions.",
+      "Let photography fill 100vw with zero padding or border-radius. Full-bleed is non-negotiable for visual panels."
+    ],
+    "donts": [
+      "Do not introduce any color beyond the four neutrals (#222222, #f8f8f8, #2a2b2d, #757577). Chromatic accents are forbidden.",
+      "Do not add drop shadows, gradients, or glow effects. Elevation is communicated through photography scale, not CSS shadows.",
+      "Do not add a traditional navigation bar, header, or footer chrome. The meta label and dot navigation are the entire structural frame.",
+      "Do not center text in narrow columns. Text should be short, left-aligned, and surrounded by generous negative space.",
+      "Do not use border-radius values other than 15px or 20px. Avoid 4px, 8px, or fully rounded (9999px) — neither matches the system's geometric language.",
+      "Do not set the display heading at a size where all letters fit within the viewport. The cropping is intentional and defines the visual identity.",
+      "Do not use line-height above 1.35 for body text or below 1.10 for headings. The tight heading leading creates the architectural feel."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#222222",
+        "name": "Charcoal Canvas",
+        "role": "Page background, the dominant surface across all sections and the base layer behind full-bleed photography",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8f8f8",
+        "name": "Bone",
+        "role": "All body text, meta labels, navigation dots, and the dominant hairline border color — serves as the single foreground tone in this near-monochrome system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2a2b2d",
+        "name": "Graphite",
+        "role": "Secondary icon strokes, subtle list dividers, and muted fill details — sits one step darker than the canvas for low-contrast decoration",
+        "group": "neutral"
+      },
+      {
+        "hex": "#757577",
+        "name": "Ash",
+        "role": "Inactive or resting state for navigation dots and quiet UI affordances",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed, edge-to-edge layout with no max-width container. The page reads as a vertical sequence of full-viewport sections: display wordmark → meta text → full-bleed photo → dark interstitial text → full-bleed photo → next display wordmark. The two program words ('IMAGINE', 'PROGRAM') are each given their own full-viewport section with the text bleeding past the edges. Navigation is three vertical dots on the right margin — no header bar, no hamburger menu, no footer. Content is positioned with precise edge alignment: meta text at 16px from top-left, nav dots at 24px from right edge, vertically centered. The grid is invisible — there is no column system, only viewport-edge alignment and generous negative space.",
+    "imagery": "Full-bleed abstract photography dominates the visual language. Images are large-scale, high-saturation, and fill 100vw with no padding or border-radius. The subject matter is abstract and material: close-up flower petals in pink/magenta, folded paper or fabric in amber/orange, a 3D geometric form in deep red. No people, no products, no UI screenshots. The images function as environmental mood rather than informational content — they set emotional temperature between quiet text sections. Treatment is raw, unedited, with natural lighting and shallow depth of field. The photography is the only source of color in the entire system.",
+    "similar": [
+      {
+        "why": "Same editorial-agency approach: massive display type, zero navigation chrome, photography as structural element, dark or neutral canvas with full-bleed sections",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same art-institution restraint — display typography that functions as architecture, photography at viewport scale, and a near-monochrome palette that lets content carry weight",
+        "business": "Bauhaus Archive Berlin"
+      },
+      {
+        "why": "Same gallery catalog rhythm: quiet text sections punctuated by full-bleed visual panels, minimal UI chrome, type-led hierarchy",
+        "business": "Tate Modern exhibition pages"
+      },
+      {
+        "why": "Same Dutch design-school discipline: single grotesk family, tight heading leading, generous negative space, and the confidence to leave screens mostly empty",
+        "business": "Studio Dumbar"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "20px",
+        "cards": "20px",
+        "inputs": "20px",
+        "buttons": "20px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "40px",
+      "cardPadding": "24px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#222222",
+        "name": "Charcoal Canvas",
+        "level": 1,
+        "purpose": "The base layer — page background and the surface visible between photographic panels"
+      },
+      {
+        "hex": "#222222",
+        "name": "Photographic Surface",
+        "level": 2,
+        "purpose": "Full-bleed image/video panels that replace the canvas at section boundaries. Same hex but visually distinct due to content."
+      },
+      {
+        "hex": "#222222",
+        "name": "Text Surface",
+        "level": 3,
+        "purpose": "No actual elevated surface — text sits directly on the canvas or photography. The 'elevation' is purely typographic scale."
+      }
+    ],
+    "northStar": "art-school exhibition on charcoal",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.35
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-sm",
+        "size": 27,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.1
+      }
+    ],
+    "components": [
+      {
+        "name": "Full-Bleed Program Word",
+        "role": "Brand-defining display heading",
+        "description": "The two largest typographic elements on the site. Set in a heavy, wide, rounded display face at 200px+ (fluid). Sized to overflow the viewport horizontally — 'IMAGINE' and 'PROGRAM' are both intentionally cropped at left and right edges. Color is always #f8f8f8. No padding, no margin — sits flush against the viewport top. This is not a heading; it is an architectural element."
+      },
+      {
+        "name": "Meta Label Block",
+        "role": "Contextual site identity",
+        "description": "Fixed top-left cluster: four lines of text reading 'Interaction / Design / Lab / Bern — 25'. Set in Neue Haas Unica 16px weight 400, line-height 1.30, color #f8f8f8. No background, no border, no container — text floats directly on the dark canvas or photography. Sits at approximately 16px from the left edge and 16px from the top."
+      },
+      {
+        "name": "Section Navigation Dots",
+        "role": "Sole navigation control",
+        "description": "Three small circles vertically stacked on the right margin, approximately 24px from the right edge and vertically centered. Active dot is filled #f8f8f8 (8px diameter), inactive dots are outlined #f8f8f8 with transparent fill. This is the only navigation — no menu bar, no hamburger, no links bar."
+      },
+      {
+        "name": "Full-Bleed Photographic Panel",
+        "role": "Visual content section",
+        "description": "Edge-to-edge image or video panels that span 100vw with no border-radius, no padding, no margin. Images are abstract, high-saturation, large-scale (pink petal, amber paper, red 3D). The panel height varies but typically fills 70-100vh. The dark charcoal canvas (#222222) is only visible between panels as breathing space."
+      },
+      {
+        "name": "List Item with Hairline Border",
+        "role": "Content links or project entries",
+        "description": "Each list item separated by a 1px solid #f8f8f8 bottom border (used 248 times in the data — the dominant border usage). Text in #f8f8f8, Neue Haas Unica 24px weight 400. No background, no hover fill change indicated. 20px border-radius available for interactive containers but not applied to border lines themselves."
+      },
+      {
+        "name": "Rounded Interactive Surface",
+        "role": "Buttons, tags, or clickable chips",
+        "description": "When interactive elements appear, they use 20px border-radius — the dominant radius token. On the dark canvas, these would be transparent fills with 1px #f8f8f8 borders (the 'neutral-action-border-not-distinct-CTA' pattern). 16-24px horizontal padding, 10-15px vertical padding. No drop shadows, no gradients."
+      },
+      {
+        "name": "Quiet Text Section",
+        "role": "Interstitial content between visual panels",
+        "description": "Blocks of body text on the bare #222222 canvas with no container. Max-width is unrestricted (full-bleed layout), so text columns are short — likely 4-6 words per line. Neue Haas Unica 18-24px, line-height 1.30-1.35, color #f8f8f8. The emptiness around the text is as important as the text itself."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole text family for all UI copy: meta labels at 16px, body at 18px, list/links at 24px, subheadings at 27px, section headings at 36px. Weight 400 is default; 700 is reserved for emphasis in the meta block and active labels. The 1.10 lineHeight on 36px headings creates tight, architectural vertical rhythm.",
+        "sizes": "16px, 18px, 24px, 27px, 36px",
+        "family": "Neue Haas Unica",
+        "weight": "400, 700",
+        "lineHeight": "1.10, 1.25, 1.30, 1.35",
+        "substitute": "Neue Haas Grotesk Display Pro, Inter, Helvetica Neue",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Reserved exclusively for the two program words ('IMAGINE', 'PROGRAM') that span the full viewport width and bleed past both edges. This face is wide, heavy, with rounded terminals — it is the visual signature of the entire site and carries the brand's identity more than any other element. When recreating, use a heavy extended grotesque (e.g. Obviously Wide Black, Neue Machina Black) at a size that forces letter cropping at the viewport edges.",
+        "sizes": "",
+        "family": "Display (custom or system fallback)",
+        "weight": "900 (Black/Heavy)",
+        "lineHeight": "0.85",
+        "substitute": "Obviously Wide Black, Neue Machina Pop, Cooper Black Extended"
+      }
+    ],
+    "description": "Iad-lab operates as a digital exhibition wall rather than a conventional website: a near-black canvas interrupted by full-bleed photographic panels and two colossal display words that bleed past the viewport edges. The palette is essentially binary — off-white on charcoal — with zero chromatic decoration, letting the photography carry all emotional and visual weight. Navigation is reduced to three floating dots on the right margin; there is no header bar, no menu, no buttons. Typography does the structural work: a single grotesk family at restrained sizes handles all UI copy while an enormous, rounded display face delivers program titles at architectural scale. The rhythm is gallery-like: wide quiet sections, then sudden full-bleed visual ruptures, then quiet again.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7d66c966-6cee-4c82-b2e4-2bf1ca7b2ccd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Iad-lab design system\",\"item\":\"https://styles.refero.design/style/7d66c966-6cee-4c82-b2e4-2bf1ca7b2ccd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7d66c966-6cee-4c82-b2e4-2bf1ca7b2ccd#style-reference\",\"name\":\"Iad-lab design system reference\",\"headline\":\"Iad-lab design system | Refero Styles\",\"description\":\"Explore Iad-lab's dark Design design system: Charcoal Canvas #222222, Bone #f8f8f8 colors, Neue Haas Unica, Display (custom or system fallback) typography,...\",\"url\":\"https://styles.refero.design/style/7d66c966-6cee-4c82-b2e4-2bf1ca7b2ccd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7d66c966-6cee-4c82-b2e4-2bf1ca7b2ccd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Iad-lab\",\"url\":\"https://iad-lab.ch\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7d66c966-6cee-4c82-b2e4-2bf1ca7b2ccd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e394f024-f0e9-4998-9736-144f1fe069f8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e394f024-f0e9-4998-9736-144f1fe069f8.jpg\",\"caption\":\"Screenshot of Iad-lab\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e394f024-f0e9-4998-9736-144f1fe069f8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Iad-lab design system\",\"Iad-lab website design\",\"Iad-lab colors\",\"Iad-lab typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Charcoal Canvas\",\"Bone\",\"Graphite\",\"Ash\",\"Neue Haas Unica\",\"Display (custom or system fallback)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Iad-lab design system\"},{\"@type\":\"Thing\",\"name\":\"Iad-lab website design\"},{\"@type\":\"Thing\",\"name\":\"Iad-lab colors\"},{\"@type\":\"Thing\",\"name\":\"Iad-lab typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:42:58.965Z\",\"dateModified\":\"2026-04-30T02:42:58.965Z\"}]}19:T5f2,**Quick Color Reference**\n- text: #f8f8f8\n- background: #222222\n- border: #f8f8f8 (1px hairline)\n- muted: #2a2b2d\n- inactive: #757577\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a full-bleed display wordmark: a single word at 200px+ in a heavy, wide, rounded display face (weight 900), color #f8f8f8, positioned flush to the viewport top, intentionally overflowing left and right edges. No padding, no background. On a #222222 canvas.\n\n2. Create a meta label block: four stacked lines of text at 16px Neue Haas Unica weight 400, line-height 1.30, color #f8f8f8, positioned 16px from the top-left corner. No container, no border. Reads as floating text on the dark canvas.\n\n3. Create a section navigation indicator: three 8px circles vertically stacked at 24px from the right viewport edge, vertically centered. First circle filled #f8f8f8 (active state), remaining two are 1px outlined #f8f8f8 with transparent fill.\n\n4. Create a full-bleed photographic panel: a single image filling 100vw and ~80vh with zero padding, zero border-radius, and no border. The image is abstract, high-saturation, large-scale material subject (petal, paper, 3D form). Edges are hard — no gradient fade to canvas.\n\n5. Create a list of linked items: each item is a single line of text in Neue Haas Unica 24px weight 400, color #f8f8f8, separated by a 1px solid #f8f8f8 bottom border. No padding between items beyond 24px vertical gap. No background on items. Full-bleed width — items span edge to edge."
+      }
+    ],
+    "elevationPhilosophy": "The system has no elevation. There are no card surfaces, no floating panels, no modals, no tooltips with shadows. Hierarchy is achieved entirely through typographic scale, photographic scale, and the hairline 1px #f8f8f8 border. A surface either IS the full viewport (photography) or it IS the canvas (text). There is no middle layer."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f8f8f8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9791293560100793
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "list",
+            "heading",
+            "hero",
+            "body",
+            "link",
+            "icon",
+            "footer"
+          ],
+          "frequency": 1495,
+          "confidence": 1,
+          "prominence": 484628091.8349344,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 10,
+            "body/color": 21,
+            "hero/color": 2,
+            "icon/color": 6,
+            "link/color": 12,
+            "list/color": 62,
+            "other/fill": 13,
+            "other/color": 127,
+            "footer/color": 1,
+            "heading/color": 53,
+            "nav/borderColor": 40,
+            "body/borderColor": 84,
+            "hero/borderColor": 8,
+            "icon/borderColor": 24,
+            "link/borderColor": 48,
+            "list/borderColor": 248,
+            "other/borderColor": 508,
+            "footer/borderColor": 4,
+            "heading/borderColor": 212,
+            "list/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2a2b2d",
+          "oklch": {
+            "c": 0.0038986573255777417,
+            "h": 264.50489672591755,
+            "l": 0.288836564860675
+          },
+          "contexts": [
+            "list",
+            "icon",
+            "other"
+          ],
+          "frequency": 144,
+          "confidence": 1,
+          "prominence": 25847.672724053766,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 12,
+            "list/color": 12,
+            "other/fill": 24,
+            "icon/borderColor": 48,
+            "list/borderColor": 48
+          }
+        },
+        {
+          "hex": "#757577",
+          "oklch": {
+            "c": 0.002139167793277991,
+            "h": 264.53940243106643,
+            "l": 0.5629456873709179
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 928.7712379549449,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 4
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0009370081640959868,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 14.98,
+          "background": "#222222",
+          "foreground": "#f8f8f8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.34,
+          "background": "#f8f8f8",
+          "foreground": "#2a2b2d"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.33,
+          "background": "#757577",
+          "foreground": "#f8f8f8"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.08,
+          "background": "#757577",
+          "foreground": "#2a2b2d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#222222",
+          "foreground": "#2a2b2d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "list",
+            "link",
+            "other"
+          ],
+          "frequency": 50
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginRight|nav",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "heading",
+            "list"
+          ],
+          "frequency": 32,
+          "properties": [
+            "columnGap",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "marginBottom|heading",
+            "marginLeft|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "heading",
+            "body",
+            "list",
+            "link",
+            "other"
+          ],
+          "frequency": 76,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading",
+            "marginBottom|body",
+            "marginTop|body",
+            "paddingRight|list",
+            "paddingLeft|list",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "rowGap|other",
+            "columnGap|other",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|list"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Neue Haas Unica",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 241,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Neue Haas Unica",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 54,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Haas Unica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "list",
+            "icon",
+            "link",
+            "footer",
+            "image",
+            "body"
+          ],
+          "frequency": 138,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Haas Unica",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Neue Haas Unica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Neue Haas Unica",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Neue Haas Unica",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "Neue Haas Unica",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Neue Haas Unica",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1bf5743b-9cbe-4be7-953f-d8d1f6f355cf.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e394f024-f0e9-4998-9736-144f1fe069f8.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7d66c966-6cee-4c82-b2e4-2bf1ca7b2ccd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Iad-lab design system\",\"item\":\"https://styles.refero.design/style/7d66c966-6cee-4c82-b2e4-2bf1ca7b2ccd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7d66c966-6cee-4c82-b2e4-2bf1ca7b2ccd#style-reference\",\"name\":\"Iad-lab design system reference\",\"headline\":\"Iad-lab design system | Refero Styles\",\"description\":\"Explore Iad-lab's dark Design design system: Charcoal Canvas #222222, Bone #f8f8f8 colors, Neue Haas Unica, Display (custom or system fallback) typography,...\",\"url\":\"https://styles.refero.design/style/7d66c966-6cee-4c82-b2e4-2bf1ca7b2ccd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7d66c966-6cee-4c82-b2e4-2bf1ca7b2ccd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Iad-lab\",\"url\":\"https://iad-lab.ch\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7d66c966-6cee-4c82-b2e4-2bf1ca7b2ccd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e394f024-f0e9-4998-9736-144f1fe069f8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e394f024-f0e9-4998-9736-144f1fe069f8.jpg\",\"caption\":\"Screenshot of Iad-lab\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e394f024-f0e9-4998-9736-144f1fe069f8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Iad-lab design system\",\"Iad-lab website design\",\"Iad-lab colors\",\"Iad-lab typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Charcoal Canvas\",\"Bone\",\"Graphite\",\"Ash\",\"Neue Haas Unica\",\"Display (custom or system fallback)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Iad-lab design system\"},{\"@type\":\"Thing\",\"name\":\"Iad-lab website design\"},{\"@type\":\"Thing\",\"name\":\"Iad-lab colors\"},{\"@type\":\"Thing\",\"name\":\"Iad-lab typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T02:42:58.965Z\",\"dateModified\":\"2026-04-30T02:42:58.965Z\"}]}19:T5f2,**Quick Color Reference**\n- text: #f8f8f8\n- background: #222222\n- border: #f8f8f8 (1px hairline)\n- muted: #2a2b2d\n- inactive: #757577\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a full-bleed display wordmark: a single word at 200px+ in a heavy, wide, rounded display face (weight 900), color #f8f8f8, positioned flush to the viewport top, intentionally overflowing left and right edges. No padding, no background. On a #222222 canvas.\n\n2. Create a meta label block: four stacked lines of text at 16px Neue Haas Unica weight 400, line-height 1.30, color #f8f8f8, positioned 16px from the top-left corner. No container, no border. Reads as floating text on the dark canvas.\n\n3. Create a section navigation indicator: three 8px circles vertically stacked at 24px from the right viewport edge, vertically centered. First circle filled #f8f8f8 (active state), remaining two are 1px outlined #f8f8f8 with transparent fill.\n\n4. Create a full-bleed photographic panel: a single image filling 100vw and ~80vh with zero padding, zero border-radius, and no border. The image is abstract, high-saturation, large-scale material subject (petal, paper, 3D form). Edges are hard — no gradient fade to canvas.\n\n5. Create a list of linked items: each item is a single line of text in Neue Haas Unica 24px weight 400, color #f8f8f8, separated by a 1px solid #f8f8f8 bottom border. No padding between items beyond 24px vertical gap. No background on items. Full-bleed width — items span edge to edge."
+}

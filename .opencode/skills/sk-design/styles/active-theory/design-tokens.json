@@ -1,0 +1,227 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void Black — Page canvas, immersive background, card surfaces when stacked on dark — the absence of surface, not a color"
+    },
+    "ghost-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Ghost White — Primary text, icon strokes, high-contrast labels — used at full opacity against pure black"
+    },
+    "ash-border": {
+      "$value": "#4d4d4d",
+      "$type": "color",
+      "$description": "Ash Border — Card borders, divider hairlines — barely-there separator that defines edges without adding visual weight"
+    },
+    "smoke": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Smoke — Muted borders on ghost buttons, secondary chrome — recedes behind active controls"
+    },
+    "fog": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Fog — Medium-contrast borders, control outlines, and structural separators. Do not promote it to the primary CTA color"
+    },
+    "pale-mist": {
+      "$value": "#c6c6c6",
+      "$type": "color",
+      "$description": "Pale Mist — Tertiary text, link default state, low-priority metadata — sits between white and gray for gentle hierarchy"
+    },
+    "dusk-violet": {
+      "$value": "#343755",
+      "$type": "color",
+      "$description": "Dusk Violet — Primary action fill — filled pill buttons, the only chromatic accent in the system; muted indigo reads as electric against void black without competing with the rendered scene"
+    }
+  },
+  "font": {
+    "nbarchitekt": {
+      "$value": "nbarchitekt",
+      "$type": "fontFamily",
+      "$description": "Navigation, button labels, micro-labels, and link text — the architectural geometric sans carries all UI chrome. Weight 700 (14px) for button labels gives them physical presence; weight 400 (10-12px) for nav and metadata keeps controls whisper-thin. nbarchitekt's geometric DNA makes it feel engineered rather than editorial."
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Body copy, card descriptions, inline links — the serif choice is deliberate editorial counterpoint against the geometric UI sans. Times (system) signals that body content should read as written prose, not UI labels, separating voice from chrome. Line height jumps to 1.88 for longer passages."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Cookie consent micro-copy — system fallback for compliance text, intentionally utilitarian and non-brand"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "nbarchitekt",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "nbarchitekt",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "nbarchitekt",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "nbarchitekt",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "nbarchitekt",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.88
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "500px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Immersive WebGL background, the base layer for all rendered scenes"
+    },
+    "translucent-overlay": {
+      "$value": "#00000080",
+      "$type": "color",
+      "$description": "Surface level 1: Cookie banner, modal scrims, tooltip panels — provides separation without solid blocks"
+    },
+    "dusk-violet-surface": {
+      "$value": "#343755",
+      "$type": "color",
+      "$description": "Surface level 2: Filled pill CTA, selected state surfaces — the only chromatic surface tier"
+    },
+    "frosted-glass": {
+      "$value": "#ffffff1a",
+      "$type": "color",
+      "$description": "Surface level 3: Ghost button fills — barely-visible white wash that confirms a button exists on hover/active"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://activetheory.net",
+      "siteName": "Active Theory",
+      "extractedAt": "2026-07-03T03:21:07.573Z",
+      "variant": "extended"
+    }
+  }
+}

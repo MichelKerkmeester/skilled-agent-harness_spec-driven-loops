@@ -1,0 +1,704 @@
+{
+  "source": "https://styles.refero.design/style/9aad4722-413d-4b32-bda7-6f94bbd9938c",
+  "uuid": "9aad4722-413d-4b32-bda7-6f94bbd9938c",
+  "name": "clau.as.kee",
+  "northStar": "lavender poster wall, monumental type. A flat periwinkle field with a single black-letter sculpture filling the viewport and a thin line of small nav text floating above it.",
+  "capturedAt": "2026-07-18T07:30:39.291Z",
+  "meta": {
+    "url": "https://clauaskee.com",
+    "siteName": "clau.as.kee",
+    "extractedAt": "2026-06-03T20:48:55.234Z",
+    "durationMs": 51490,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 267,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set every page background to Periwinkle Field (#8e93ff) — this is the operating mode of the system",
+      "Use Beastly clauworks at 288px or larger for any display-level headline; do not use it below 200px",
+      "Reach for Suisse Intl clauworks at 20px, 30px, or 144px only — do not interpolate intermediate sizes",
+      "Separate dark content from the lavender canvas with a full-bleed Carbon Ink (#1a1a1a) panel, not a shadow or border",
+      "Let display type run past the viewport edge — cropping is the layout, not a bug",
+      "Place at most one Signal Green (#47f654) badge per page; it is punctuation, not decoration",
+      "Use 130px vertical breathing room between major sections; 30px between typographic elements within a section"
+    ],
+    "donts": [
+      "Do not add a fifth color, a tinted neutral, or a soft shadow to soften the lavender — the flatness is the design",
+      "Do not use rounded corners on panels, cards, or images; 0px radius everywhere except the green badge",
+      "Do not introduce a bold or medium weight of Suisse Intl — hierarchy is size-driven only",
+      "Do not use Beastly at small sizes (under 200px) — it loses its character and becomes a bad display grotesque",
+      "Do not center body copy or set it in narrow columns; body text is left-aligned, full-width-feeling, generous",
+      "Do not add a sticky header, breadcrumb, or secondary navigation; the three-link top bar is the entire nav system",
+      "Do not use gradients, blur, glow, or any CSS filter on the lavender background — it must read as a flat printed field"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#8e93ff",
+        "name": "Periwinkle Field",
+        "role": "Page canvas, hero background, full-bleed section fills — the single defining brand color, a mid-saturation lavender that swallows the viewport and against which all type is set in black ink",
+        "group": "brand"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Carbon Ink",
+        "role": "Primary text, display type, hairline borders, dark panels, nav links — near-black rather than pure black, keeps the lavender from vibrating too hard",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#47f654",
+        "name": "Signal Green",
+        "role": "Green action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed single-page architecture with no max-width container. The hero is a viewport-filling Beastly wordmark on periwinkle, followed by a full-width Carbon Panel band of portfolio content, then a return to periwinkle for editorial display headlines. Sections alternate periwinkle → carbon → periwinkle in a strict 1:1 rhythm. Spacing is generous: 130px between major sections, 30px between typographic elements, 65px container padding on the sides. Navigation is a single row of three text links distributed across the top edge. No sidebar, no grid system, no card layout — content is a vertical editorial scroll where every section is allowed to break the viewport.",
+    "imagery": "Imagery is portfolio-first and editorial in tone. Photographs and scans are presented as large rectangular plates with 0px radius, framed by a Carbon Ink panel. No lifestyle, no stock, no decoration — every image is project output (catalog spreads, exhibition documentation, printed materials). No illustration, no 3D, no icon system. The visual language is: flat color background → flat color frame → flat image surface → flat text. Three layers, zero effects.",
+    "similar": [
+      {
+        "why": "Same custom-display-monumentalism on a single saturated field, same flat periwinkle-adjacent canvas, same anti-component minimalism",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Editorial full-bleed sections on a vivid brand color, oversized custom display type, hairline-divided dark/light rhythm",
+        "business": "Pentagram portfolio sites"
+      },
+      {
+        "why": "Lavender-adjacent monochrome field, sculptural custom wordmark, the work itself is the only other content",
+        "business": "M/M (Paris) site"
+      },
+      {
+        "why": "Flat saturated color blocks alternating with dark image bands, display type that treats the page as a poster rather than a layout",
+        "business": "Vitra design museum microsites"
+      },
+      {
+        "why": "Custom grotesque + custom display duo, single chromatic field, almost no UI chrome — type and color do the work",
+        "business": "Actual Source"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "badge": "75px",
+        "default": "0px"
+      },
+      "elementGap": "30px",
+      "sectionGap": "130px",
+      "cardPadding": "65px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#8e93ff",
+        "name": "Periwinkle Canvas",
+        "level": 1,
+        "purpose": "Base page background, occupies the entire viewport by default"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Carbon Panel",
+        "level": 2,
+        "purpose": "Dark inverted bands for portfolio content — the magazine spread, the image carousel wrapper"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper Plate",
+        "level": 3,
+        "purpose": "Inner surfaces inside dark panels — the white paper of a catalog page, the clean rectangle around a photograph"
+      }
+    ],
+    "northStar": "lavender poster wall, monumental type. A flat periwinkle field with a single black-letter sculpture filling the viewport and a thin line of small nav text floating above it.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 30,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "display",
+        "size": 144,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "display-lg",
+        "size": 288,
+        "lineHeight": 1.05
+      },
+      {
+        "role": "display-xl",
+        "size": 504,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Wordmark",
+        "role": "Hero brand mark and section-opening sculpture",
+        "description": "Beastly clauworks at 288–504px, Carbon Ink (#1a1a1a), set tight on the periwinkle canvas with near-zero letter-spacing and line-height 1.00–1.05. Fills the full viewport width; characters bleed off the edges intentionally. Single line, no wrapping. The letters are the layout — there is no other hero content."
+      },
+      {
+        "name": "Editorial Display Headline",
+        "role": "Large in-flow headings on the periwinkle canvas",
+        "description": "Suisse Intl clauworks at 144px, weight 400, line-height 1.15, Carbon Ink (#1a1a1a). Example: 'Art direction – Dig…'. Set as a single sentence that may run past the viewport — cropping is acceptable and expected. No underline, no italic, no color variation."
+      },
+      {
+        "name": "Top Navigation",
+        "role": "Minimal horizontal nav across the top edge",
+        "description": "Three text links ('About', 'Contact', 'Playground') in Suisse Intl clauworks 20px weight 400, Carbon Ink. Distributed across the full viewport width with left/center/right alignment rather than grouped. No background, no border, no hover state visible — the nav is a whisper, not a bar."
+      },
+      {
+        "name": "Request Badge",
+        "role": "Sole chromatic interactive element on the page",
+        "description": "Circular pill in Signal Green (#47f654) with Carbon Ink text. Radius 75px (appears fully circular). Text reads 'ON REQUEST • ON REQUEST' in a repeating ring pattern, or curved along the circumference in Suisse Intl clauworks 20px. Placed as a floating overlay element, typically bottom-left of a portfolio block."
+      },
+      {
+        "name": "Carbon Panel",
+        "role": "Dark inverted section for portfolio content",
+        "description": "Full-bleed Carbon Ink (#1a1a1a) band, no border, no shadow, no radius. Contains Paper White (#ffffff) sub-surfaces that frame individual portfolio spreads or images. Generous internal padding (130px top/bottom). Functions as a negative-space container that makes the surrounding lavender feel more saturated by contrast."
+      },
+      {
+        "name": "Portfolio Spread",
+        "role": "Image-and-text content block inside a Carbon Panel",
+        "description": "Rectangular composition: a large photographic or scan plate (Paper White background, 0px radius) on the left, dense editorial copy in Suisse Intl clauworks 20px on the right. Copy uses Carbon Ink on Paper White, line-height 1.50. No card chrome, no shadow — the white rectangle against black does all the separation."
+      },
+      {
+        "name": "Image Carousel",
+        "role": "Horizontal scroller for project imagery",
+        "description": "Contained inside a Carbon Panel. Large landscape images, Paper White or photographic fill, 0px radius. Pagination dots below (Carbon Ink dots on Paper White). Frame counter in small monospace numerals ('04 / 24'). No rounded corners, no padding around individual images."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separator",
+        "description": "1px solid Carbon Ink (#1a1a1a) line, full viewport width, 0px margin above and below. The only border in the system. Used sparingly — typically once between major editorial sections."
+      },
+      {
+        "name": "Body Copy",
+        "role": "Long-form paragraph text",
+        "description": "Suisse Intl clauworks 20px, weight 400, line-height 1.50, Carbon Ink on periwinkle or Carbon Ink on Paper White inside a dark panel. Justified-left, no hyphenation, no first-line indent. Paragraph spacing 30px between blocks."
+      },
+      {
+        "name": "Subheading",
+        "role": "Section label and small editorial title",
+        "description": "Suisse Intl clauworks 30px, weight 400, line-height 1.30, Carbon Ink. Single weight — no bold option. Used above body copy to introduce a portfolio spread or service description."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display / wordmark — the proprietary display face, used only at monumental scale (288–504px) for the brand wordmark and hero sculpture. Chunky, almost stencil-cut geometric forms that read as a graphic object rather than readable text. Single weight, no italic. Substitute: a heavy display grotesque like Druk Wide or a custom commission. Do not use at small sizes — this face is architecture, not communication.",
+        "sizes": "288px, 504px",
+        "family": "Beastly clauworks",
+        "weight": "400",
+        "lineHeight": "1.00–1.05",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Headlines, subheads, and long-form body — a custom-cut Suisse International (Swiss grotesque) in a single weight. Used at three distinct scales: 20px for body and nav, 30px for section subheads, 144px for editorial display headings like 'Art direction – Dig…'. The absence of bold/medium weights is the signature: everything is the same quiet weight, hierarchy comes from size alone. Substitute: Suisse Int'l, Inter, or Neue Haas Grotesk.",
+        "sizes": "20px, 30px, 144px",
+        "family": "Suisse Intl clauworks",
+        "weight": "400",
+        "lineHeight": "1.15–1.50",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Smallest body fallback / metadata — appears as system Times at 16px, likely the serif default for tiny labels and captions. Single weight, system face. Substitute: any system serif.",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.15",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "clau.as.kee is a typographic monolith on a field of periwinkle. The page is essentially one giant poster: a single lavender canvas (#8e93ff) carries colossal custom-drawn letterforms that dwarf everything else, while a thin black hairline system and one jarring green badge do the work of UI. Almost no component vocabulary exists — navigation, headlines, and portfolio frames are all variations of oversized type and flat color blocks. The design is anti-SaaS: no cards, no shadows, no buttons-as-pills, no soft radii. The restraint is total: two neutrals (black ink, paper white), one saturated background, one green signal. When new pages are built, the first decision is canvas: lavender. The second is scale: type must be monumental or it is wrong.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9aad4722-413d-4b32-bda7-6f94bbd9938c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"clau.as.kee design system\",\"item\":\"https://styles.refero.design/style/9aad4722-413d-4b32-bda7-6f94bbd9938c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9aad4722-413d-4b32-bda7-6f94bbd9938c#style-reference\",\"name\":\"clau.as.kee design system reference\",\"headline\":\"clau.as.kee design system | Refero Styles\",\"description\":\"Explore clau.as.kee's light Agency design system: Periwinkle Field #8e93ff, Carbon Ink #1a1a1a colors, Beastly clauworks, Suisse Intl clauworks typography,...\",\"url\":\"https://styles.refero.design/style/9aad4722-413d-4b32-bda7-6f94bbd9938c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9aad4722-413d-4b32-bda7-6f94bbd9938c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"clau.as.kee\",\"url\":\"https://clauaskee.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9aad4722-413d-4b32-bda7-6f94bbd9938c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e901499c-d213-4a2b-9b96-fcf4fed2499b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e901499c-d213-4a2b-9b96-fcf4fed2499b.jpg\",\"caption\":\"Screenshot of clau.as.kee\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e901499c-d213-4a2b-9b96-fcf4fed2499b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"clau.as.kee design system\",\"clau.as.kee website design\",\"clau.as.kee colors\",\"clau.as.kee typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Periwinkle Field\",\"Carbon Ink\",\"Paper White\",\"Signal Green\",\"Beastly clauworks\",\"Suisse Intl clauworks\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"clau.as.kee design system\"},{\"@type\":\"Thing\",\"name\":\"clau.as.kee website design\"},{\"@type\":\"Thing\",\"name\":\"clau.as.kee colors\"},{\"@type\":\"Thing\",\"name\":\"clau.as.kee typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:47:15.558Z\",\"dateModified\":\"2026-04-30T01:47:15.558Z\"}]}19:T5ca,**Quick Color Reference**\n- canvas: #8e93ff (Periwinkle Field)\n- text: #1a1a1a (Carbon Ink)\n- surface: #ffffff (Paper White)\n- border: #1a1a1a (Carbon Ink hairline)\n- accent: #47f654 (Signal Green)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build a hero section: full-viewport Periwinkle Field (#8e93ff) background, Beastly clauworks at 504px line-height 1.00 in Carbon Ink (#1a1a1a), single line of display type filling the viewport width, characters may bleed off edges.\n2. Build a portfolio dark band: full-bleed Carbon Ink (#1a1a1a) panel, 130px top/bottom padding. Inside, a Paper White (#ffffff) image plate at 0px radius on the left (60% width), and body copy in Suisse Intl clauworks 20px weight 400 line-height 1.50 Carbon Ink on the right.\n3. Build an editorial display headline: Periwinkle Field background, Suisse Intl clauworks at 144px weight 400 line-height 1.15 in Carbon Ink, single sentence that may run past the viewport. Below it, a 1px Carbon Ink hairline divider spanning full width.\n4. Build a Signal Green request badge: circular shape at 75px radius, Signal Green (#47f654) fill, Carbon Ink text in Suisse Intl clauworks 20px reading 'ON REQUEST', positioned as a floating overlay bottom-left of a portfolio block.\n5. Build the top navigation: full-width row, three text links ('About' left, 'Contact' center, 'Playground' right) in Suisse Intl clauworks 20px weight 400 Carbon Ink, no background, no border, 20px top padding."
+      },
+      {
+        "title": "Type System Philosophy",
+        "content": "This system runs on a two-font engine: Beastly (custom display, monumental scale only) and Suisse Intl (custom grotesque, everything else). There are no bold weights, no italics, no condensed cuts. Hierarchy is produced exclusively by size: 20 / 30 / 144 / 288 / 504. When in doubt, go bigger, not heavier. The smallest type on the site (16px) uses system Times as a deliberate contrast against the Swiss grotesques — it is the only serif and it only appears at caption scale."
+      },
+      {
+        "title": "Color Discipline",
+        "content": "The palette is four colors and they are not interchangeable. Periwinkle is the canvas, always. Carbon Ink is the type and frame, always. Paper White is the inner surface, always. Signal Green is the punctuation, used once per page maximum. Any new color added to a new page breaks the system. If a new page needs a different mood, adjust the photography inside the Carbon Panel — do not change the canvas color."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. The design rejects elevation entirely — surfaces are defined by color contrast (periwinkle vs carbon vs paper), not depth. No drop shadows, no inner glow, no tinted shadows on lavender. The only separator is the 1px Carbon Ink hairline. If something needs to feel 'above' the canvas, flip the surface to Carbon Ink — do not add blur."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "body",
+            "image",
+            "nav"
+          ],
+          "frequency": 1313,
+          "confidence": 1,
+          "prominence": 158062811.86241323,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "body/color": 62,
+            "link/color": 24,
+            "image/color": 11,
+            "other/color": 143,
+            "heading/color": 12,
+            "nav/borderColor": 32,
+            "body/borderColor": 248,
+            "link/borderColor": 96,
+            "image/borderColor": 44,
+            "other/borderColor": 572,
+            "heading/borderColor": 48,
+            "other/backgroundColor": 13
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 21607753.236225083,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8e93ff",
+          "oklch": {
+            "c": 0.15607245533517447,
+            "h": 279.5996859464127,
+            "l": 0.7064829074337582
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 6885184.880582751,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#47f654",
+          "oklch": {
+            "c": 0.2471522859485222,
+            "h": 143.99117048173363,
+            "l": 0.8544987112012633
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 22500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0011434296860180545,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#ffffff",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.08,
+          "background": "#47f654",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.44,
+          "background": "#8e93ff",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.7,
+          "background": "#8e93ff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.44,
+          "background": "#47f654",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 75,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 26,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 21,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginTop|heading",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 36,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 130,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 202,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 113,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Suisse Intl clauworks",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 96,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Beastly clauworks",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 58,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.67
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "body"
+          ],
+          "frequency": 113,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Suisse Intl clauworks",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Suisse Intl clauworks",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 46,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Suisse Intl clauworks",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 33,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Suisse Intl clauworks",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 144,
+          "family": "Suisse Intl clauworks",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 288,
+          "family": "Beastly clauworks",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 25,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 288,
+          "family": "Beastly clauworks",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 504,
+          "family": "Beastly clauworks",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d73e9bd7-e8c3-45cc-995d-46feb8c1f30d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e901499c-d213-4a2b-9b96-fcf4fed2499b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9aad4722-413d-4b32-bda7-6f94bbd9938c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"clau.as.kee design system\",\"item\":\"https://styles.refero.design/style/9aad4722-413d-4b32-bda7-6f94bbd9938c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9aad4722-413d-4b32-bda7-6f94bbd9938c#style-reference\",\"name\":\"clau.as.kee design system reference\",\"headline\":\"clau.as.kee design system | Refero Styles\",\"description\":\"Explore clau.as.kee's light Agency design system: Periwinkle Field #8e93ff, Carbon Ink #1a1a1a colors, Beastly clauworks, Suisse Intl clauworks typography,...\",\"url\":\"https://styles.refero.design/style/9aad4722-413d-4b32-bda7-6f94bbd9938c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9aad4722-413d-4b32-bda7-6f94bbd9938c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"clau.as.kee\",\"url\":\"https://clauaskee.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9aad4722-413d-4b32-bda7-6f94bbd9938c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e901499c-d213-4a2b-9b96-fcf4fed2499b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e901499c-d213-4a2b-9b96-fcf4fed2499b.jpg\",\"caption\":\"Screenshot of clau.as.kee\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e901499c-d213-4a2b-9b96-fcf4fed2499b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"clau.as.kee design system\",\"clau.as.kee website design\",\"clau.as.kee colors\",\"clau.as.kee typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Periwinkle Field\",\"Carbon Ink\",\"Paper White\",\"Signal Green\",\"Beastly clauworks\",\"Suisse Intl clauworks\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"clau.as.kee design system\"},{\"@type\":\"Thing\",\"name\":\"clau.as.kee website design\"},{\"@type\":\"Thing\",\"name\":\"clau.as.kee colors\"},{\"@type\":\"Thing\",\"name\":\"clau.as.kee typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:47:15.558Z\",\"dateModified\":\"2026-04-30T01:47:15.558Z\"}]}19:T5ca,**Quick Color Reference**\n- canvas: #8e93ff (Periwinkle Field)\n- text: #1a1a1a (Carbon Ink)\n- surface: #ffffff (Paper White)\n- border: #1a1a1a (Carbon Ink hairline)\n- accent: #47f654 (Signal Green)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build a hero section: full-viewport Periwinkle Field (#8e93ff) background, Beastly clauworks at 504px line-height 1.00 in Carbon Ink (#1a1a1a), single line of display type filling the viewport width, characters may bleed off edges.\n2. Build a portfolio dark band: full-bleed Carbon Ink (#1a1a1a) panel, 130px top/bottom padding. Inside, a Paper White (#ffffff) image plate at 0px radius on the left (60% width), and body copy in Suisse Intl clauworks 20px weight 400 line-height 1.50 Carbon Ink on the right.\n3. Build an editorial display headline: Periwinkle Field background, Suisse Intl clauworks at 144px weight 400 line-height 1.15 in Carbon Ink, single sentence that may run past the viewport. Below it, a 1px Carbon Ink hairline divider spanning full width.\n4. Build a Signal Green request badge: circular shape at 75px radius, Signal Green (#47f654) fill, Carbon Ink text in Suisse Intl clauworks 20px reading 'ON REQUEST', positioned as a floating overlay bottom-left of a portfolio block.\n5. Build the top navigation: full-width row, three text links ('About' left, 'Contact' center, 'Playground' right) in Suisse Intl clauworks 20px weight 400 Carbon Ink, no background, no border, 20px top padding."
+}

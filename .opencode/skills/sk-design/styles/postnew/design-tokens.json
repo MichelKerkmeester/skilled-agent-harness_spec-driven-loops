@@ -1,0 +1,145 @@
+{
+  "color": {
+    "canvas-black": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Canvas Black — Page background, gallery vitrine, frame around content — a near-black not-quite-pure-black that lets imagery breathe without the harshness of #000"
+    },
+    "bone-white": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Bone White — Primary text, nav labels, icon strokes, light surface fill — the only light token, reserved for foreground against Canvas Black"
+    },
+    "slate-surface": {
+      "$value": "#242424",
+      "$type": "color",
+      "$description": "Slate Surface — Elevated cards, button backgrounds, secondary surface panels — one step lighter than canvas to create depth without contrast drama"
+    },
+    "ash": {
+      "$value": "#5d5d5d",
+      "$type": "color",
+      "$description": "Ash — Muted UI elements, inactive dots, decorative fills — the 6.3:1 ratio against white keeps it legible but clearly secondary"
+    },
+    "absolute-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Absolute Black — Hairline borders, high-contrast text, deepest shadow line — used sparingly where maximum definition is needed against the canvas"
+    }
+  },
+  "font": {
+    "abc-diatype-medium": {
+      "$value": "ABC Diatype Medium",
+      "$type": "fontFamily",
+      "$description": "Editorial display and body — the only display face, used at just two sizes (18px / 22px) with -0.025em tracking. The single weight (500) is deliberate: no bold, no light. The OpenType features (blwf, cv03-cv11, ss09-ss10) activate specific character alternates that give it a subtly editorial personality. Substitute with Inter Tight Medium or Söhne Medium if ABC Diatype is unavailable."
+    },
+    "system-sans-serif": {
+      "$value": "System Sans-Serif",
+      "$type": "fontFamily",
+      "$description": "UI chrome only — nav labels (Index, Feed, Profile), view toggle icons, scroll dots. At 12px it is intentionally small and quiet, the typographic equivalent of architectural labeling. Do not promote to editorial content."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABC Diatype Medium",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ABC Diatype Medium",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page background, the gallery floor"
+    },
+    "slate-surface": {
+      "$value": "#242424",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated panels, button fills, toggle backgrounds"
+    },
+    "ash": {
+      "$value": "#5d5d5d",
+      "$type": "color",
+      "$description": "Surface level 2: Muted indicators, inactive dots, decorative fills"
+    },
+    "bone-white": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 3: Highest-contrast foreground — light text, active indicators, content surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.postnew.xyz",
+      "siteName": "PostNew",
+      "extractedAt": "2026-06-03T21:15:08.557Z",
+      "variant": "extended"
+    }
+  }
+}

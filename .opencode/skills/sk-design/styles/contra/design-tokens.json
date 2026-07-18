@@ -1,0 +1,529 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#14171f",
+      "$type": "color",
+      "$description": "Ink — Primary text, headings, icon strokes, hairline borders, deep surfaces — the near-black backbone that makes white space read as gallery rather than form"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Primary canvas and card surface — the default ground for the entire directory"
+    },
+    "mist": {
+      "$value": "#f5f6f9",
+      "$type": "color",
+      "$description": "Mist — Secondary surface for subtle bands, input fills, and tag/chip backgrounds that need to sit just behind Paper"
+    },
+    "hairline": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Hairline — Borders, dividers, and outlined-button strokes — the thinnest visible structural line"
+    },
+    "slate": {
+      "$value": "#677084",
+      "$type": "color",
+      "$description": "Slate — Secondary body text and muted nav labels — never used as a primary heading color"
+    },
+    "fog": {
+      "$value": "#9ba2b0",
+      "$type": "color",
+      "$description": "Fog — Tertiary text, placeholder text, disabled labels"
+    },
+    "graphite": {
+      "$value": "#373f51",
+      "$type": "color",
+      "$description": "Graphite — Dark borders and separators for elevated surfaces and inverted UI."
+    },
+    "charcoal": {
+      "$value": "#222834",
+      "$type": "color",
+      "$description": "Charcoal — Primary filled button background, elevated card surface, and tag pill fill — the single non-neutral action color"
+    },
+    "deep-ink": {
+      "$value": "#050505",
+      "$type": "color",
+      "$description": "Deep Ink — Heaviest text weight and maximum-contrast border accents on dark cards"
+    },
+    "pearl": {
+      "$value": "#d0d4dc",
+      "$type": "color",
+      "$description": "Pearl — Icon strokes on white surfaces and faint structural outlines"
+    },
+    "iris": {
+      "$value": "#6a57e3",
+      "$type": "color",
+      "$description": "Iris — Category/challenge card background — vivid violet used as one of the rotating card-fill colors"
+    },
+    "lilac": {
+      "$value": "#ddd8ff",
+      "$type": "color",
+      "$description": "Lilac — Soft violet wash for decorative surfaces and pale category cards"
+    },
+    "orchid": {
+      "$value": "#cd74dd",
+      "$type": "color",
+      "$description": "Orchid — Vivid pink-purple card fill in the category carousel"
+    },
+    "wine": {
+      "$value": "#45192f",
+      "$type": "color",
+      "$description": "Wine — Deep muted plum card fill in the category carousel"
+    },
+    "coral": {
+      "$value": "#ff5a5e",
+      "$type": "color",
+      "$description": "Coral — Warm red card fill in the category carousel and highlight badges"
+    },
+    "lime": {
+      "$value": "#f0fb96",
+      "$type": "color",
+      "$description": "Lime — Vivid green-yellow card fill and decorative wash — the brightest accent in the palette"
+    },
+    "hero-wash": {
+      "$value": "#9ddef9",
+      "$type": "color",
+      "$description": "Hero Wash — Hero background gradient running from icy cyan through sky blue into soft violet — the only multi-color wash on the page"
+    }
+  },
+  "font": {
+    "gt-standard-m": {
+      "$value": "GT Standard M",
+      "$type": "fontFamily",
+      "$description": "Workhorse for body text, navigation, buttons, labels, input fields, and most headings up to 24px. The 15–16px body with tight -0.01em tracking and generous 1.50 line-height is what gives Contra its editorial-density feel without sacrificing legibility."
+    },
+    "gt-standard-l": {
+      "$value": "GT Standard L",
+      "$type": "fontFamily",
+      "$description": "Reserved for the largest display moments (the 58px hero headline) and small uppercase eyebrows (8px at 0.15em tracking). The 0.88–1.05 line-heights at display sizes let the headline 'Get more creative' sit on a single tight block — a magazine-cover move, not a UI move."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GT Standard L",
+        "fontSize": "8px",
+        "fontWeight": 600,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "GT Standard L",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "GT Standard L",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "GT Standard L",
+        "fontSize": "19px",
+        "fontWeight": 500,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "GT Standard L",
+        "fontSize": "23px",
+        "fontWeight": 500,
+        "lineHeight": 1.39
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "GT Standard M",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "GT Standard L",
+        "fontSize": "58px",
+        "fontWeight": 500,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "63px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(34, 40, 52, 0.05) 0px 4px 10px 0px, rgba(34, 40, 52, 0.04) -2px 18px 18px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "subtle": {
+      "$value": "rgb(19, 24, 25) 0px 1px 3px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "lg": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 10px 20px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page background and primary card surface"
+    },
+    "mist-band": {
+      "$value": "#f5f6f9",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle background bands and input/chip fills"
+    },
+    "charcoal-card": {
+      "$value": "#222834",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated featured cards and dark mode sections"
+    },
+    "ink-card": {
+      "$value": "#14171f",
+      "$type": "color",
+      "$description": "Surface level 3: Darkest card level used for trending topic and feature cards"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://contra.com",
+      "siteName": "Contra",
+      "extractedAt": "2026-06-03T20:03:40.165Z",
+      "variant": "extended"
+    }
+  }
+}

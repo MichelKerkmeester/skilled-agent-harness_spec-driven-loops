@@ -1,0 +1,1838 @@
+{
+  "source": "https://styles.refero.design/style/127a4efb-685c-42c3-83eb-72bb410a8429",
+  "uuid": "127a4efb-685c-42c3-83eb-72bb410a8429",
+  "name": "Felt",
+  "northStar": "topographic atlas at dusk — moss-green pages, serif headlines, one amber needle",
+  "capturedAt": "2026-07-18T07:19:26.182Z",
+  "meta": {
+    "url": "https://www.felt.com",
+    "siteName": "Felt",
+    "extractedAt": "2026-06-03T21:47:27.821Z",
+    "durationMs": 32816,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 639,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use GT Alpina Standard weight 300 for all display and section headlines — the thin serif is the brand's most distinctive choice and must carry the editorial voice",
+      "Set display headlines at 86px with line-height 0.88 and letter-spacing -3.44px for the compressed, carved-into-stone effect",
+      "Use Amber Compass (#dc8c46) exclusively for filled CTAs and accent moments — never as a surface fill or decorative wash",
+      "Step surfaces using the green scale: Moss Canvas (#314218) → Fern (#3d521e) → Lichen (#64754b) for elevation, not shadows",
+      "Set body and UI text in Atlas Grotesk weight 400 with 0.033em letter-spacing for legibility on the dark green canvas",
+      "Embed product UI panels in light surface (#ffffff) with 6px radius and the single subtle shadow to create contrast against the dark page",
+      "Maintain centered, magazine-style layouts with 80px section gaps — the page rhythm should feel like turning pages in an atlas"
+    ],
+    "donts": [
+      "Don't use Amber Compass (#dc8c46) for body text, backgrounds, or large surface areas — it loses its compass-needle effect when overused",
+      "Don't set serif headlines at line-height above 1.0 — the compressed treatment is essential to the editorial feel",
+      "Don't apply multiple shadow layers — Felt uses elevation through color stepping, not shadow stacks",
+      "Don't use pure black (#000000) as a page background — the mossy green tones are the canvas, not black",
+      "Don't replace GT Alpina Standard with a geometric or grotesque display face — the serif is the brand identity",
+      "Don't use border-radius above 6px on cards, images, or product panels — only buttons get the 20px pill radius",
+      "Don't introduce new accent hues — the entire palette is green monochrome plus one warm amber; any other color breaks the system"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#314218",
+        "name": "Moss Canvas",
+        "role": "Page background, hero sections, dominant canvas — the deep mossy green that carries the entire site and grounds the editorial atmosphere",
+        "group": "brand"
+      },
+      {
+        "hex": "#3d521e",
+        "name": "Fern",
+        "role": "Mid-green surface for cards, elevated panels, and the topside of the surface stack",
+        "group": "brand"
+      },
+      {
+        "hex": "#64754b",
+        "name": "Lichen",
+        "role": "Muted green for secondary surfaces, borders on cards, and subtle dividers against the canvas",
+        "group": "brand"
+      },
+      {
+        "hex": "#212f0c",
+        "name": "Forest Floor",
+        "role": "Deeper green for nested surface layers and inset product UI backgrounds",
+        "group": "brand"
+      },
+      {
+        "hex": "#18210c",
+        "name": "Deep Bog",
+        "role": "Darkest green for the deepest surface layer, code blocks, and high-contrast panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dc8c46",
+        "name": "Amber Compass",
+        "role": "Primary action — filled CTA buttons, link borders, active link text. The single warm accent that cuts through the green monochrome like a compass needle",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Primary text, heading color, button text on amber fills, and the dominant border for ghost/outlined controls",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Parchment",
+        "role": "Light surface for embedded product UI, inset map views, and light-mode panel surfaces against the dark canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Charcoal",
+        "role": "Text and borders inside the light parchment product UI panels — the dark-on-light text color for embedded app surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d8dcd2",
+        "name": "Limestone",
+        "role": "Soft warm-tinted gray for badge backgrounds, subtle borders, and muted helper text inside light panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "SVG fills, max-contrast elements, and the map marker pin color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Centered, magazine-style page layout with max-width 1200px for content. Hero is full-bleed dark green with centered oversized serif headline, subtitle, and two side-by-side CTAs. Below the hero, a full-width embedded product UI panel breaks the layout to a wider reveal (like a fold-out map spread). Sections alternate between typographic hero zones (centered text, 80px vertical padding) and product reveal zones (full-width embedded app surfaces). A scrolling ticker banner sits at the very top. Navigation is a clean transparent bar overlaying the dark canvas. The page rhythm is: ticker → nav → hero headline → product reveal → social proof logos → feature section (headline + product) → repeating feature sections. All content is centered; no asymmetric or left-aligned compositions.",
+    "imagery": "Imagery is dominated by embedded product screenshots showing the Felt map application — these are full-width, light-surface panels with real GIS map content (street maps, satellite views, data overlays, map markers). The product UI itself IS the hero imagery. No lifestyle photography, no stock imagery, no decorative illustration. The only non-product visual elements are topographic contour-line patterns in muted green (#64754b) that appear as background decoration on hero sections, evoking actual cartographic map texture. Client logos appear in white monochrome. The map marker pin (#dc8c46 with white border) serves as the brand's recurring visual signature across product surfaces.",
+    "similar": [
+      {
+        "why": "Both use dark canvas backgrounds with a single warm accent color and center their hero on embedded map product UI rather than abstract imagery",
+        "business": "Mapbox"
+      },
+      {
+        "why": "Same editorial approach with oversized serif headlines on dark backgrounds, though Notion uses black rather than green canvas",
+        "business": "Notion"
+      },
+      {
+        "why": "Dark monochromatic UI with one distinctive accent color, centered layouts, and serif/serif-adjacent display type for a premium editorial feel",
+        "business": "Linear"
+      },
+      {
+        "why": "Both use nature-inspired dark canvas palettes (Roam uses deep navy, Felt uses moss green) with serif headlines and a single warm accent for interactive elements",
+        "business": "Roam Research"
+      },
+      {
+        "why": "Cartographic design studio aesthetic — mossy greens, topographic texture, and serif typography rooted in atlas and map traditions",
+        "business": "Stamen Design"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "6px",
+        "badges": "6px",
+        "images": "6px",
+        "inputs": "6px",
+        "buttons": "20px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#314218",
+        "name": "Moss Canvas",
+        "level": 0,
+        "purpose": "Primary page background and hero zones"
+      },
+      {
+        "hex": "#3d521",
+        "name": "Fern",
+        "level": 1,
+        "purpose": "First elevation — cards and content panels sitting on the canvas"
+      },
+      {
+        "hex": "#64754b",
+        "name": "Lichen",
+        "level": 2,
+        "purpose": "Secondary surface for sub-cards and dividers"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "level": 3,
+        "purpose": "Inverted product UI surfaces (embedded map app panels)"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.2) 0px 2px 5px 0px",
+        "element": "Embedded product UI panels"
+      }
+    ],
+    "northStar": "topographic atlas at dusk — moss-green pages, serif headlines, one amber needle",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.43,
+        "letterSpacing": 0.4
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0.46
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.53
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.33,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.11,
+        "letterSpacing": -0.92
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1,
+        "letterSpacing": -1.19
+      },
+      {
+        "role": "heading-lg",
+        "size": 50,
+        "lineHeight": 0.96,
+        "letterSpacing": -1.65
+      },
+      {
+        "role": "display",
+        "size": 86,
+        "lineHeight": 0.88,
+        "letterSpacing": -3.44
+      }
+    ],
+    "components": [
+      {
+        "name": "Amber CTA Button",
+        "role": "Primary action — filled button for conversion moments",
+        "description": "Filled #dc8c46 background, white (#ffffff) text in Atlas Grotesk 16px weight 500, tracking 0.033em. 20px border-radius (pilled). Horizontal padding 20-24px, vertical padding 12-16px. No border. Includes a white play-arrow icon inline at the right."
+      },
+      {
+        "name": "Ghost Link Button",
+        "role": "Secondary action — text link with underline border treatment",
+        "description": "No fill, no border. Atlas Grotesk 16px weight 400, #ffffff text. Underline created by a 1px white bottom border. Used for \"Book a demo\" style secondary CTAs."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Transparent on Moss Canvas. Felt wordmark in white serif at left. Nav items (PLATFORM, INDUSTRIES, RESOURCES, PRICING) in Atlas Grotesk 12px weight 500, uppercase, 0.033em tracking, white. Right side: \"BOOK A DEMO\" and \"LOG IN\" as ghost text links, \"SIGN UP\" as a filled Amber CTA with play icon."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Above-the-fold headline and CTA zone",
+        "description": "Centered layout on Moss Canvas. Headline in GT Alpina Standard 86px weight 300, white, line-height 0.88, letter-spacing -3.44px. Subtitle in Atlas Grotesk 18px weight 400, #eeeeee. Two CTAs side by side: Amber CTA + Ghost Link."
+      },
+      {
+        "name": "Scrolling Ticker Banner",
+        "role": "Top announcement bar",
+        "description": "Full-width strip. White text on Moss Canvas (#314218). Atlas Grotesk 12px weight 500, uppercase, repeated headline text with separators. Sits above the navigation."
+      },
+      {
+        "name": "Product UI Panel",
+        "role": "Embedded application screenshot / product surface",
+        "description": "Light surface (#ffffff or #eeeeee) with rounded corners 6px. Dark text (#333333) inside. Subtle shadow rgba(0,0,0,0.2) 0px 2px 5px. Contains toolbars, map canvases, and library sidebars — mimics the actual Felt product."
+      },
+      {
+        "name": "Client Logo Row",
+        "role": "Social proof — trusted-by brand logos",
+        "description": "Horizontal row of client logos (Lyft, Lime, Turo, Cushman & Wakefield) rendered in white on Moss Canvas. Section title \"Leading a modern GIS movement\" in GT Alpina Standard 36px weight 300, white, centered above."
+      },
+      {
+        "name": "Feature Section",
+        "role": "Mid-page content blocks with headline + product visual",
+        "description": "Centered serif headline (GT Alpina Standard 36-50px, white) followed by Atlas Grotesk 18px subtext, then a full-width Product UI Panel below. Generous 80px vertical gap between sections."
+      },
+      {
+        "name": "Badge / Tag",
+        "role": "Category labels and metadata tags",
+        "description": "Limestone (#d8dcd2) background, small radius 6px, Atlas Grotesk 12px weight 500, 0.033em tracking. Minimal padding 2px 6px."
+      },
+      {
+        "name": "Map Marker Pin",
+        "role": "Interactive map point indicator",
+        "description": "#dc8c46 (Amber) circular pin with a white border, placed on the map canvas. Small drop shadow. Acts as the brand's visual signature on the product surface."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "14px, 16px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.25, 1.33, 1.43"
+      },
+      {
+        "role": "Display and heading serif — the editorial headline face. Used at large sizes for hero headlines and section titles. The tight negative tracking (-0.033em to -0.040em) and line-height under 1.0 give the serif a compressed, almost carved-into-stone quality that evokes old cartographic title plates. This is the signature type choice: a humanist serif that feels hand-drawn rather than mechanical.",
+        "sizes": "28px, 36px, 43px, 46px, 50px, 86px",
+        "family": "GT Alpina Standard",
+        "weight": "300, 400",
+        "lineHeight": "0.80, 0.96, 1.00, 1.11, 1.33",
+        "substitute": "Fraunces, Tiempos Headline, Playfair Display",
+        "letterSpacing": "-0.0400em at 86px, -0.0330em at 36-50px"
+      },
+      {
+        "role": "Primary UI and body sans-serif — handles navigation, body text, button labels, badges, and links. The slight positive tracking (0.033em) on body sizes adds legibility on the dark green canvas. The grotesque geometry provides a clean utility counterpoint to the expressive serif headlines.",
+        "sizes": "12px, 14px, 16px, 18px, 19px, 20px",
+        "family": "Atlas Grotesk",
+        "weight": "300, 400, 500, 700",
+        "lineHeight": "1.00, 1.11, 1.20, 1.25, 1.30, 1.33, 1.43, 1.50, 1.56",
+        "substitute": "Inter, Söhne, Helvetica Neue",
+        "letterSpacing": "0.0330em"
+      },
+      {
+        "role": "Fallback system serif at extreme display sizes. The 101px / 0.88 line-height ratio confirms the compressed display treatment for the largest headlines.",
+        "sizes": "36px, 101px",
+        "family": "Times New Roman",
+        "weight": "400",
+        "lineHeight": "0.88, 2.46",
+        "substitute": "system serif"
+      }
+    ],
+    "description": "Felt renders as a cartographer's field journal at dusk: a deep mossy-green canvas carries oversized editorial serif headlines that feel pulled from a vintage atlas, while a grotesque sans handles utility text. The warm amber accent appears sparingly — a compass needle against the green — punctuating CTAs, links, and interactive borders without ever flooding the surface. Layout is centered, magazine-like, with generous breathing room and full-width product reveals that feel like fold-out map spreads. The visual rhythm alternates between typographic hero zones and embedded product UI, creating a sense of a working tool rather than a marketing site.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/127a4efb-685c-42c3-83eb-72bb410a8429#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Felt design system\",\"item\":\"https://styles.refero.design/style/127a4efb-685c-42c3-83eb-72bb410a8429\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/127a4efb-685c-42c3-83eb-72bb410a8429#style-reference\",\"name\":\"Felt design system reference\",\"headline\":\"Felt design system | Refero Styles\",\"description\":\"Explore Felt's dark SaaS design system: Moss Canvas #314218, Fern #3d521e colors, Arial, GT Alpina Standard typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/127a4efb-685c-42c3-83eb-72bb410a8429\",\"mainEntityOfPage\":\"https://styles.refero.design/style/127a4efb-685c-42c3-83eb-72bb410a8429\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Felt\",\"url\":\"https://www.felt.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/127a4efb-685c-42c3-83eb-72bb410a8429#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/db049dbc-a6df-4a9a-8bf7-455cd79d4ece.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/db049dbc-a6df-4a9a-8bf7-455cd79d4ece.jpg\",\"caption\":\"Screenshot of Felt\"},\"image\":\"https://images.refero.design/styles/refero.design/image/db049dbc-a6df-4a9a-8bf7-455cd79d4ece.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Felt design system\",\"Felt website design\",\"Felt colors\",\"Felt typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Moss Canvas\",\"Fern\",\"Lichen\",\"Forest Floor\",\"Arial\",\"GT Alpina Standard\",\"Atlas Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Felt design system\"},{\"@type\":\"Thing\",\"name\":\"Felt website design\"},{\"@type\":\"Thing\",\"name\":\"Felt colors\"},{\"@type\":\"Thing\",\"name\":\"Felt typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T03:28:31.422Z\",\"dateModified\":\"2026-04-30T03:28:31.422Z\"}]}19:T594,## Quick Color Reference\n- Background (canvas): #314218 (Moss Canvas)\n- Text: #ffffff (headings) / #eeeeee (body on dark)\n- Border / divider: #64754b (Lichen) or #3d521e (Fern)\n- Accent / brand: #dc8c46 (Amber Compass)\n- Product surface: #ffffff (Bone White)\n- primary action: #ffffff (filled action)\n\n## Example Component Prompts\n\n1. Create a Primary Action Button: #ffffff background, #eeeeee text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **Feature Section**: Moss Canvas background, centered content. Section headline: GT Alpina Standard 50px, weight 300, #ffffff, line-height 0.96, letter-spacing -1.65px, centered. Body text: Atlas Grotesk 18px, weight 400, #eeeeee, centered, max-width 720px. Below: full-width Product UI Panel — #ffffff surface, 6px border-radius, shadow rgba(0,0,0,0.2) 0px 2px 5px, containing a mock map interface with #333333 toolbar elements.\n\n3. **Client Logo Row**: Moss Canvas background. Section title: GT Alpina Standard 36px, weight 300, #ffffff, centered. Below: horizontal row of 4–5 client logos in white monochrome, evenly spaced with 48px gaps, centered in the layout.\n\n4. **Embedded Product Panel**: White (#ffffff) surface, 6px border-radius, shadow rgba(0,0,0,0.2) 0px 2px 5px 0px. Interior toolbar in #333333, Atlas Grotesk 14px. Map canvas fills the body. Amber map marker pin (#dc8c46 circle, 2px white border) at a notable location."
+      },
+      {
+        "title": "Type & Tone",
+        "content": "The visual voice is editorial-cartographic: think National Geographic meets a modern SaaS landing page. Serif headlines do the heavy emotional lifting while the grotesque sans handles all functional text. The amber accent acts as a compass needle — singular, precise, never decorative. Topographic contour-line patterns appear as background texture on hero sections to reinforce the mapping identity without resorting to literal map imagery. The overall effect should feel like opening a beautifully typeset atlas: authoritative, warm, and slightly adventurous."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is used sparingly and only to separate embedded light-mode product surfaces from the dark green canvas. The site avoids decorative shadows — depth comes from surface color stepping (Moss → Fern → Lichen → Bone White) rather than shadow stacks."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other",
+            "image",
+            "hero",
+            "icon"
+          ],
+          "frequency": 860,
+          "confidence": 1,
+          "prominence": 31814106.687809296,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "hero/color": 2,
+            "icon/color": 2,
+            "image/color": 24,
+            "other/color": 144,
+            "hero/borderColor": 8,
+            "icon/borderColor": 8,
+            "image/borderColor": 96,
+            "other/borderColor": 576
+          }
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "other",
+            "image",
+            "link",
+            "heading"
+          ],
+          "frequency": 725,
+          "confidence": 1,
+          "prominence": 9163788.356916001,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 6,
+            "image/color": 12,
+            "other/color": 117,
+            "heading/color": 6,
+            "link/borderColor": 24,
+            "image/borderColor": 48,
+            "other/borderColor": 468,
+            "heading/borderColor": 24,
+            "other/backgroundColor": 20
+          }
+        },
+        {
+          "hex": "#3d521e",
+          "oklch": {
+            "c": 0.08105060870978995,
+            "h": 128.01885877455058,
+            "l": 0.40840396982161176
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 5374925.694997118,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/color": 2,
+            "other/borderColor": 8,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "body",
+            "heading"
+          ],
+          "frequency": 640,
+          "confidence": 1,
+          "prominence": 4051114.018811631,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "link/color": 7,
+            "other/fill": 3,
+            "other/color": 88,
+            "button/color": 5,
+            "heading/color": 19,
+            "body/borderColor": 40,
+            "link/borderColor": 28,
+            "other/borderColor": 342,
+            "button/borderColor": 20,
+            "heading/borderColor": 76,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#314218",
+          "oklch": {
+            "c": 0.06778650737311287,
+            "h": 127.85799330063189,
+            "l": 0.35227780886339055
+          },
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2777451.733337357,
+          "properties": [
+            "boxShadow",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "image/boxShadow": 1,
+            "other/boxShadow": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#dc8c46",
+          "oklch": {
+            "c": 0.1293834286634172,
+            "h": 59.4108037062775,
+            "l": 0.7097840407511026
+          },
+          "contexts": [
+            "link",
+            "image",
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 403,
+          "confidence": 1,
+          "prominence": 2662945.4982695905,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/color": 3,
+            "link/color": 49,
+            "image/color": 7,
+            "other/color": 22,
+            "button/color": 4,
+            "icon/borderColor": 12,
+            "link/borderColor": 196,
+            "image/borderColor": 28,
+            "other/borderColor": 64,
+            "button/borderColor": 16,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#64754b",
+          "oklch": {
+            "c": 0.06469577442459339,
+            "h": 126.35850957539523,
+            "l": 0.5360428600596848
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 1811723.995076647,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 10,
+            "other/backgroundColor": 6,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 101,
+          "confidence": 1,
+          "prominence": 692764.5611301905,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 101
+          }
+        },
+        {
+          "hex": "#d8dcd2",
+          "oklch": {
+            "c": 0.014717937457930286,
+            "h": 124.74337852550029,
+            "l": 0.8895643877240285
+          },
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 134640.35681256212,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "badge/color": 1,
+            "other/color": 6,
+            "badge/borderColor": 4,
+            "other/borderColor": 24
+          }
+        },
+        {
+          "hex": "#212f0c",
+          "oklch": {
+            "c": 0.05889902165918073,
+            "h": 128.1521559223045,
+            "l": 0.28336800551747765
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 12398,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#18210c",
+          "oklch": {
+            "c": 0.03863060544866337,
+            "h": 127.23944856338616,
+            "l": 0.23235688708135632
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5649,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0532485976796271,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.64,
+          "background": "#18210c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.09,
+          "background": "#d8dcd2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.35,
+          "background": "#18210c",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.22,
+          "background": "#212f0c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.26,
+          "background": "#212f0c",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.96,
+          "background": "#18210c",
+          "foreground": "#d8dcd2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.92,
+          "background": "#314218",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.89,
+          "background": "#eeeeee",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.22,
+          "background": "#212f0c",
+          "foreground": "#d8dcd2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.41,
+          "background": "#314218",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.08,
+          "background": "#d8dcd2",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.66,
+          "background": "#ffffff",
+          "foreground": "#3d521e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.88,
+          "background": "#dc8c46",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.85,
+          "background": "#314218",
+          "foreground": "#d8dcd2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.47,
+          "background": "#3d521e",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.25,
+          "background": "#18210c",
+          "foreground": "#dc8c46"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.22,
+          "background": "#3d521e",
+          "foreground": "#d8dcd2"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "image",
+            "link",
+            "other"
+          ],
+          "frequency": 24
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.2) 0px 2px 5px 0px",
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 4
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 49,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body",
+            "image"
+          ],
+          "frequency": 80,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "marginTop",
+            "marginBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "marginTop|body",
+            "marginBottom|image",
+            "columnGap|other",
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 85,
+          "properties": [
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginBottom|link",
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "button",
+            "badge"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|badge"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 38,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingRight",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button",
+            "heading"
+          ],
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|heading",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "image",
+            "body",
+            "icon",
+            "heading",
+            "link"
+          ],
+          "frequency": 45,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|image",
+            "marginTop|other",
+            "marginBottom|body",
+            "marginTop|icon",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginLeft|other",
+            "marginRight|other",
+            "marginTop|link",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "button",
+            "image",
+            "body",
+            "icon"
+          ],
+          "frequency": 38,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "marginBottom",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingRight|button",
+            "marginBottom|image",
+            "marginBottom|other",
+            "columnGap|other",
+            "marginBottom|body",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|icon"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 41,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 21,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "paddingLeft",
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginBottom|heading",
+            "paddingLeft|other",
+            "paddingRight|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 86,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 97,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|image",
+            "marginLeft|image"
+          ]
+        },
+        {
+          "value": 115,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 130,
+          "contexts": [
+            "image",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|image",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 174,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 187,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 248,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 288,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|hero",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 309,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Atlasgrotesk cy web",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            700
+          ],
+          "frequency": 155,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times New Roman",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 40,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Gt alpina standard",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 32,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Atlasgrotesk cy web",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 55,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.033,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "button",
+            "icon",
+            "hero"
+          ],
+          "frequency": 290,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Atlasgrotesk cy web",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 56,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Atlasgrotesk cy web",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Atlasgrotesk cy web",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Atlasgrotesk cy web",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Atlasgrotesk cy web",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Atlasgrotesk cy web",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Atlasgrotesk cy web",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Atlasgrotesk cy web",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Atlasgrotesk cy web",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Atlasgrotesk cy web",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 19,
+          "family": "Atlasgrotesk cy web",
+          "weight": 300,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Atlasgrotesk cy web",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Atlasgrotesk cy web",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Atlasgrotesk cy web",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Gt alpina standard",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Times New Roman",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 2.46,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Gt alpina standard",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Gt alpina standard",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "image",
+            "button",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Gt alpina standard",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.96,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "Gt alpina standard",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "Gt alpina standard",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Gt alpina standard",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "Gt alpina standard",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "Gt alpina standard",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.5,
+          "letterSpacing": -0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "Gt alpina standard",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 101,
+          "family": "Times New Roman",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "lineHeight": 0.88,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/09bac67d-220e-4197-8168-3991dcb345e3.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/db049dbc-a6df-4a9a-8bf7-455cd79d4ece.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/127a4efb-685c-42c3-83eb-72bb410a8429#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Felt design system\",\"item\":\"https://styles.refero.design/style/127a4efb-685c-42c3-83eb-72bb410a8429\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/127a4efb-685c-42c3-83eb-72bb410a8429#style-reference\",\"name\":\"Felt design system reference\",\"headline\":\"Felt design system | Refero Styles\",\"description\":\"Explore Felt's dark SaaS design system: Moss Canvas #314218, Fern #3d521e colors, Arial, GT Alpina Standard typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/127a4efb-685c-42c3-83eb-72bb410a8429\",\"mainEntityOfPage\":\"https://styles.refero.design/style/127a4efb-685c-42c3-83eb-72bb410a8429\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Felt\",\"url\":\"https://www.felt.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/127a4efb-685c-42c3-83eb-72bb410a8429#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/db049dbc-a6df-4a9a-8bf7-455cd79d4ece.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/db049dbc-a6df-4a9a-8bf7-455cd79d4ece.jpg\",\"caption\":\"Screenshot of Felt\"},\"image\":\"https://images.refero.design/styles/refero.design/image/db049dbc-a6df-4a9a-8bf7-455cd79d4ece.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Felt design system\",\"Felt website design\",\"Felt colors\",\"Felt typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Moss Canvas\",\"Fern\",\"Lichen\",\"Forest Floor\",\"Arial\",\"GT Alpina Standard\",\"Atlas Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Felt design system\"},{\"@type\":\"Thing\",\"name\":\"Felt website design\"},{\"@type\":\"Thing\",\"name\":\"Felt colors\"},{\"@type\":\"Thing\",\"name\":\"Felt typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T03:28:31.422Z\",\"dateModified\":\"2026-04-30T03:28:31.422Z\"}]}19:T594,## Quick Color Reference\n- Background (canvas): #314218 (Moss Canvas)\n- Text: #ffffff (headings) / #eeeeee (body on dark)\n- Border / divider: #64754b (Lichen) or #3d521e (Fern)\n- Accent / brand: #dc8c46 (Amber Compass)\n- Product surface: #ffffff (Bone White)\n- primary action: #ffffff (filled action)\n\n## Example Component Prompts\n\n1. Create a Primary Action Button: #ffffff background, #eeeeee text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **Feature Section**: Moss Canvas background, centered content. Section headline: GT Alpina Standard 50px, weight 300, #ffffff, line-height 0.96, letter-spacing -1.65px, centered. Body text: Atlas Grotesk 18px, weight 400, #eeeeee, centered, max-width 720px. Below: full-width Product UI Panel — #ffffff surface, 6px border-radius, shadow rgba(0,0,0,0.2) 0px 2px 5px, containing a mock map interface with #333333 toolbar elements.\n\n3. **Client Logo Row**: Moss Canvas background. Section title: GT Alpina Standard 36px, weight 300, #ffffff, centered. Below: horizontal row of 4–5 client logos in white monochrome, evenly spaced with 48px gaps, centered in the layout.\n\n4. **Embedded Product Panel**: White (#ffffff) surface, 6px border-radius, shadow rgba(0,0,0,0.2) 0px 2px 5px 0px. Interior toolbar in #333333, Atlas Grotesk 14px. Map canvas fills the body. Amber map marker pin (#dc8c46 circle, 2px white border) at a notable location."
+}

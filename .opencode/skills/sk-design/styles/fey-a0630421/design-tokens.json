@@ -1,0 +1,604 @@
+{
+  "color": {
+    "fey-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Fey White — Primary text, decorative borders, hairlines — the dominant color of the system, used for typography and 554+ border occurrences"
+    },
+    "fey-ink": {
+      "$value": "#0b0b0b",
+      "$type": "color",
+      "$description": "Fey Ink — Primary canvas and card surfaces — the near-black that everything floats on"
+    },
+    "fey-charcoal": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Fey Charcoal — Elevated card surface, secondary panels — one step lighter than the canvas for nested depth"
+    },
+    "fey-obsidian": {
+      "$value": "#131313",
+      "$type": "color",
+      "$description": "Fey Obsidian — Tertiary surface, input backgrounds, subtle elevated layers"
+    },
+    "fey-graphite": {
+      "$value": "#868f97",
+      "$type": "color",
+      "$description": "Fey Graphite — Muted secondary text, subdued borders, disabled labels — the workhorse mid-gray for everything that is not the headline"
+    },
+    "fey-mist": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Fey Mist — Icon strokes, subtle links, tertiary borders — a step brighter than Graphite for elements that need more presence"
+    },
+    "fey-smoke": {
+      "$value": "#525252",
+      "$type": "color",
+      "$description": "Fey Smoke — Deep dividers, shadow-tinted borders, very low-emphasis strokes"
+    },
+    "fey-pale": {
+      "$value": "#e6e6e6",
+      "$type": "color",
+      "$description": "Fey Pale — Subtle body borders, ghost button outlines, light strokes — the lightest non-white neutral"
+    },
+    "fey-ash": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Fey Ash — Low-emphasis borders and secondary text — sits between Graphite and Smoke"
+    },
+    "fey-ember": {
+      "$value": "#ffa16c",
+      "$type": "color",
+      "$description": "Fey Ember — Warm accent for highlighted headline words and warm gradient terminus — orange-on-black reads as urgency and premium warmth; Warm hero gradient — Ember fading into deep brown for product showcase atmosphere"
+    },
+    "fey-signal": {
+      "$value": "#479ffa",
+      "$type": "color",
+      "$description": "Fey Signal — Navigation underline, active link border, cool accent — vivid blue draws the eye to current location and trust indicators"
+    },
+    "fey-growth": {
+      "$value": "#4ebe96",
+      "$type": "color",
+      "$description": "Fey Growth — Green outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color"
+    },
+    "fey-abyss": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Fey Abyss — Shadow base color, deepest possible background — used in 0.8-opacity halos and gradient termini"
+    },
+    "fey-frost": {
+      "$value": "#b6d6ff",
+      "$type": "color",
+      "$description": "Fey Frost — Cool gradient accent — pale blue fading into slate for secondary product showcase"
+    },
+    "fey-volt": {
+      "$value": "#d6fe51",
+      "$type": "color",
+      "$description": "Fey Volt — Highlight gradient — electric yellow-green fading into deep olive for standout elements"
+    }
+  },
+  "font": {
+    "calibre": {
+      "$value": "Calibre",
+      "$type": "fontFamily",
+      "$description": "The sole typeface — a geometric sans with slightly compressed proportions. Weight 400 carries body and most UI; 500–600 for nav and labels; 700 reserved for large display headlines. Tight tracking at -0.08em on 48–54px display creates the premium, compressed feel. Letter-spacing of -0.053em applies to mid-range headings. No secondary font family is used — Calibre does all roles from 10px captions to 54px heroes"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "11px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "26px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "54px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 54px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "calibre",
+        "fontSize": "54px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 54px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "42": {
+      "$value": "42px",
+      "$type": "dimension",
+      "$description": "Spacing 42px"
+    },
+    "103": {
+      "$value": "103px",
+      "$type": "dimension",
+      "$description": "Spacing 103px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "3.2px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "md-2": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md-2"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "13.9806px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "275px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.8) 0px 0px 44px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.85) 0px 1px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "md": {
+      "$value": "rgba(255, 255, 255, 0.25) 0px 0px 14px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "xl-2": {
+      "$value": "rgba(0, 0, 0, 0.5) 0px 0px 35px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#0b0b0b",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page background — the matte-black that everything sits on"
+    },
+    "card": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Surface level 1: Product mockup cards, feature panels — one tonal step up for separation"
+    },
+    "elevated": {
+      "$value": "#131313",
+      "$type": "color",
+      "$description": "Surface level 2: Nested cards, input wells, subtle elevated containers"
+    },
+    "overlay": {
+      "$value": "#000000cc",
+      "$type": "color",
+      "$description": "Surface level 3: Modal/overlay backdrop — heavy black wash for focus states"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.fey.com",
+      "siteName": "Fey",
+      "extractedAt": "2026-06-03T17:41:40.011Z",
+      "variant": "extended"
+    }
+  }
+}

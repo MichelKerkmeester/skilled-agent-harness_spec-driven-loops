@@ -1,0 +1,1200 @@
+{
+  "source": "https://styles.refero.design/style/143d553e-d71f-4e86-98ed-b80b9ef78ea9",
+  "uuid": "143d553e-d71f-4e86-98ed-b80b9ef78ea9",
+  "name": "AREA 17",
+  "northStar": "Monochrome editorial struck yellow — a typographic monolith on white marble interrupted by a single flash of electric yellow.",
+  "capturedAt": "2026-07-18T07:58:14.858Z",
+  "meta": {
+    "url": "https://area17.com",
+    "siteName": "AREA 17",
+    "extractedAt": "2026-06-03T18:59:39.509Z",
+    "durationMs": 46148,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 405,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Suisse Intl at 55px/1.10 with -0.015em tracking for editorial headlines — the tight rhythm is the signature",
+      "Maintain the monochrome palette across all pages; #fdf313 Electric Yellow is the only chromatic color and must appear as a singular accent, not decoration",
+      "Use 8px radius as the default for cards, buttons, and inputs — it's the system's geometric constant",
+      "Use #e6e6e6 Hairline for all borders and dividers; never use heavier borders or decorative strokes",
+      "Let the layout breathe with section gaps of 80px-192px; whitespace is a design element, not empty space",
+      "Use ghost text links and outlined buttons for most interactions; reserve filled buttons for primary actions only",
+      "Left-align editorial headlines and body copy; the system reads as a publication, not a centered marketing page"
+    ],
+    "donts": [
+      "Never add chromatic colors beyond #fdf313 Electric Yellow; the system is intentionally 0% colorful outside the accent bar",
+      "Never use shadows, glows, or blur effects for elevation; use surface color shifts (#ffffff → #f2f2f2) instead",
+      "Never use system-ui as the primary typeface; Suisse Intl is the workhorse and defines the brand voice",
+      "Never center-align body text or headlines; left-alignment is non-negotiable",
+      "Never use border-radius values other than 4px (nav), 8px (default), or 9999px (pills); the system avoids 12px, 16px, or custom radii on interactive elements",
+      "Never fill pages with imagery; full-bleed content blocks are cinematic punctuation, not wallpaper",
+      "Never use letter-spacing values looser than normal on body text; Suisse Intl wants tight tracking at all sizes, with 0.004em as the loosest allowed"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page canvas, input fields, inverse text on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Graphite",
+        "role": "Primary text, headlines, body copy, nav links — near-black warmth over pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "True Black",
+        "role": "Logo mark fill, select borders, deep shadow tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e6e6e6",
+        "name": "Hairline",
+        "role": "Borders, dividers, outlined control strokes, card edges",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Fog",
+        "role": "Secondary card surfaces, disabled button fills, subtle elevation layers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2ede9",
+        "name": "Cream Stone",
+        "role": "Warm accent card surface — the only chromatic neutral, used for editorial feature cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#949494",
+        "name": "Muted",
+        "role": "Secondary link color, meta text, subdued captions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#757575",
+        "name": "Dim",
+        "role": "Tertiary text, low-priority helper copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Disabled",
+        "role": "Disabled button backgrounds, inactive control fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fdf313",
+        "name": "Electric Yellow",
+        "role": "Announcement bar, single chromatic accent across the system — the only color permitted to break monochrome",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed edge-to-edge sections with no max-width container on media blocks. The typographic sections use an implicit left-aligned grid with max-width around 900px for text blocks. The hero pattern is a large left-aligned editorial headline (3 lines) followed by generous whitespace, then a full-bleed video/photography block. Section rhythm alternates: quiet white space → typographic headline → full-bleed media → whitespace. The navigation is a minimal top bar with logo left and 5-6 text links right — no background, no border, no hamburger. The announcement bar is fixed to the viewport bottom. Content density is low; the page favors breathing room and single-column reading over multi-column grids or card matrices.",
+    "imagery": "Full-bleed cinematic photography and video dominate the visual storytelling — documentary-style stills, wide environmental shots, and high-production film content that bleeds to viewport edges. The hero uses a full-bleed film or photograph with no overlay text, no rounded corners, no decorative framing. Imagery serves as visual exhalation between typographic sections: the page alternates between dense editorial text and immersive moving-image moments. The photography style is cinematic, naturalistic, and human-centered — not product shots, not stock imagery, not illustrations. No iconography beyond minimal text-based marks.",
+    "similar": [
+      {
+        "why": "Same agency-as-publisher ethos: monochromatic canvas, oversized editorial headlines, typographic confidence, and full-bleed project imagery breaking the grid",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Shares the restrained monochrome aesthetic with one strong accent color used sparingly, plus oversized left-aligned headlines and full-bleed visual storytelling",
+        "business": "Instrument"
+      },
+      {
+        "why": "Editorial agency layout language — generous whitespace, large confident type, content blocks that alternate between typographic and full-bleed media",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Experimental creative agency aesthetic with typographic identity, monochrome restraint, and willingness to let one bold element (here, the yellow bar) carry all the color",
+        "business": "Resn"
+      },
+      {
+        "why": "Design agency portfolio that treats typography as hero, uses flat surfaces without shadows, and relies on full-bleed visual content to punctuate typographic sections",
+        "business": "Manual"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "4px",
+        "cards": "8px",
+        "pills": "9999px",
+        "images": "8px",
+        "inputs": "8px",
+        "buttons": "8px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "80-192px",
+      "cardPadding": "16-24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Primary page background"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Fog Surface",
+        "level": 2,
+        "purpose": "Secondary card backgrounds, quiet elevated panels"
+      },
+      {
+        "hex": "#f2ede9",
+        "name": "Cream Surface",
+        "level": 3,
+        "purpose": "Warm editorial card — the only chromatic neutral surface"
+      },
+      {
+        "hex": "#fdf313",
+        "name": "Yellow Accent",
+        "level": 4,
+        "purpose": "Announcement bar, the system's sole chromatic surface"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Graphite",
+        "level": 5,
+        "purpose": "Dark inverse surface (not used as a page background — reserved for dark text only)"
+      }
+    ],
+    "northStar": "Monochrome editorial struck yellow — a typographic monolith on white marble interrupted by a single flash of electric yellow.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.06
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.42
+      },
+      {
+        "role": "heading",
+        "size": 42,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.59
+      },
+      {
+        "role": "display",
+        "size": 55,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.82
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Sticky bottom notification strip — the system's sole chromatic element",
+        "description": "Fixed to viewport bottom, full-width. Background #fdf313 Electric Yellow, text #1a1a1a in Suisse Intl 16px/1.5. Single line of text with optional arrow/link. Height approximately 40-48px, padding 12px 24px. This bar is the brand's signature: one flash of color in an otherwise monochrome system."
+      },
+      {
+        "name": "Top Navigation",
+        "role": "Minimal horizontal nav bar with logo left, links right",
+        "description": "Transparent or white background, no border. Logo 'A/' at left in True Black, Suisse Intl bold (custom logotype, not a font glyph). Right-aligned links in Suisse Intl 16px weight 500, color #1a1a1a. Nav height approximately 64-84px, horizontal padding 24-48px. No background fill — the nav sits directly on the white canvas."
+      },
+      {
+        "name": "Editorial Headline",
+        "role": "Large display text that carries the brand voice",
+        "description": "Suisse Intl 55px / 42px at line-height 1.10-1.15, weight 400, color #1a1a1a, letter-spacing -0.015em. Left-aligned, max-width approximately 900px. No underline, no decorative elements — the typography IS the design. Often appears in two-to-three line stacks with natural sentence breaks."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Standard inline link and nav link treatment",
+        "description": "No background, no border. Text in Suisse Intl 16px weight 500, color #1a1a1a. Hover state: color shifts to #949494 Muted or underline appears. This is the dominant interactive element — the system avoids filled buttons in favor of typographic links."
+      },
+      {
+        "name": "Outlined Button",
+        "role": "Secondary action with hairline border",
+        "description": "Background transparent, border 1px solid #1a1a1a, radius 8px. Text in Suisse Intl 16px weight 500, color #1a1a1a. Padding 16px top/bottom, 24px left/right. Hover: inverts to #1a1a1a background with #ffffff text."
+      },
+      {
+        "name": "Solid Neutral Button",
+        "role": "Primary action button using Fog surface",
+        "description": "Background #f2f2f2, border none, radius 8px. Text in Suisse Intl 16px weight 500, color #1a1a1a. Padding 16px 24px. The system avoids heavy chromatic buttons — primary actions are quiet, almost ghosted."
+      },
+      {
+        "name": "Fog Card",
+        "role": "Quiet elevated content block",
+        "description": "Background #f2f2f2, border none, radius 8px. Padding 16-24px. No shadow — the system uses surface color shifts instead of elevation. Contains text, links, or media at a lower visual weight than the canvas."
+      },
+      {
+        "name": "Cream Feature Card",
+        "role": "Editorial accent card with warm tone",
+        "description": "Background #f2ede9 Cream Stone, border none, radius 8px. Padding 24px. Used sparingly for featured content blocks — the warm tone is the only chromatic neutral and signals editorial importance. No shadow."
+      },
+      {
+        "name": "Text Input",
+        "role": "Minimal form field",
+        "description": "Background #ffffff, border 1px solid #e6e6e6 Hairline, radius 8px. Padding 12px 16px. Text in Suisse Intl 16px weight 400, color #1a1a1a. Placeholder color #949494. Focus state: border darkens to #1a1a1a. No floating labels, no decorative icons."
+      },
+      {
+        "name": "Full-Bleed Video Block",
+        "role": "Cinematic content section breaking the typographic grid",
+        "description": "Edge-to-edge media, no border, no radius — bleeds to viewport edges. Aspect ratio 16:9 or wider. No overlay text, no captions inside the frame. Functions as a visual exhale between typographic sections. Content is documentary/cinematic photography or video, not stock imagery."
+      },
+      {
+        "name": "Pill Element",
+        "role": "Occasional rounded tag or status indicator",
+        "description": "Radius 9999px (full pill). Background #f2f2f2 or transparent, text Suisse Intl 16px weight 500. Rarely used — the system prefers square 8px corners. Pills appear only for status indicators or tag-like metadata."
+      },
+      {
+        "name": "Footer",
+        "role": "Minimal closing block with links and meta",
+        "description": "White or #f2f2f2 background, no heavy decoration. Links in Suisse Intl 16px weight 500, color #1a1a1a. Generous padding (128px+ top/bottom) to create visual closure. Same nav links may repeat; copyright text in #949494 Muted."
+      }
+    ],
+    "typography": [
+      {
+        "role": "ui-sans-serif — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "ui-sans-serif",
+        "weight": "400",
+        "lineHeight": "1.5"
+      },
+      {
+        "role": "Primary brand typeface for headlines, navigation, body, and UI. The 55px display at line-height 1.10 with -0.015em tracking is the signature voice — editorial weight, magazine-tight rhythm. Weight 500 is reserved for nav links and select emphasis.",
+        "sizes": "16px, 20px, 32px, 42px, 55px",
+        "family": "Suisse Intl",
+        "weight": "400, 500",
+        "lineHeight": "1.10 / 1.15 / 1.40",
+        "substitute": "Inter, Söhne, or GT America for paid alternatives; Manrope as a free editorial-adjacent substitute",
+        "letterSpacing": "-0.015em at 55px, -0.014em at 42px, -0.013em at 32px, 0.004em at small sizes"
+      },
+      {
+        "role": "Secondary UI text, system fallbacks, form labels. Used sparingly — Suisse Intl is the workhorse. System stack appears for form fields and accessibility fallbacks where neutral rendering matters.",
+        "sizes": "",
+        "family": "System Sans-Serif",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+      }
+    ],
+    "description": "AREA 17 operates as a monochrome editorial canvas with typographic confidence as its primary visual language. The system is deliberately austere: near-black text on pure white, hairline borders, flat surfaces, and almost no color — just one electric yellow that appears as a single bright accent against the grayscale field. Headlines do the heavy lifting through scale and tight tracking, using Suisse Intl at display sizes to create an editorial, almost magazine-like voice. Layout breathes with generous whitespace punctuated by full-bleed cinematic content blocks that break the typographic grid. The aesthetic reads as a design agency's own portfolio: restrained, opinionated, and confident enough to leave most of the page empty.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/143d553e-d71f-4e86-98ed-b80b9ef78ea9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"AREA 17 design system\",\"item\":\"https://styles.refero.design/style/143d553e-d71f-4e86-98ed-b80b9ef78ea9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/143d553e-d71f-4e86-98ed-b80b9ef78ea9#style-reference\",\"name\":\"AREA 17 design system reference\",\"headline\":\"AREA 17 design system | Refero Styles\",\"description\":\"Explore AREA 17's light Agency design system: Pure White #ffffff, Graphite #1a1a1a colors, ui-sans-serif, Suisse Intl typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/143d553e-d71f-4e86-98ed-b80b9ef78ea9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/143d553e-d71f-4e86-98ed-b80b9ef78ea9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"AREA 17\",\"url\":\"https://area17.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/143d553e-d71f-4e86-98ed-b80b9ef78ea9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a271d14a-43f1-465a-b619-80d7a9ec1e1e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a271d14a-43f1-465a-b619-80d7a9ec1e1e.jpg\",\"caption\":\"Screenshot of AREA 17\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a271d14a-43f1-465a-b619-80d7a9ec1e1e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"AREA 17 design system\",\"AREA 17 website design\",\"AREA 17 colors\",\"AREA 17 typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pure White\",\"Graphite\",\"True Black\",\"Hairline\",\"ui-sans-serif\",\"Suisse Intl\",\"System Sans-Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"AREA 17 design system\"},{\"@type\":\"Thing\",\"name\":\"AREA 17 website design\"},{\"@type\":\"Thing\",\"name\":\"AREA 17 colors\"},{\"@type\":\"Thing\",\"name\":\"AREA 17 typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-10T23:54:47.714Z\",\"dateModified\":\"2026-05-10T23:54:47.714Z\"}]}19:T4f3,**Quick Color Reference**\n- Text: #1a1a1a\n- Background: #ffffff\n- Surface (secondary): #f2f2f2\n- Border/hairline: #e6e6e6\n- Accent: #fdf313\n- Muted text: #949494\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Editorial hero headline: Suisse Intl 55px, weight 400, line-height 1.10, color #1a1a1a, letter-spacing -0.015em. Left-aligned, max-width 900px, sitting on #ffffff canvas with 192px top padding.\n\n2. Ghost text link in body: No background, no border. Suisse Intl 16px weight 500, color #1a1a1a. On hover, color shifts to #949494. Inline with body text, 16px line-height 1.5.\n\n3. Fog surface card: Background #f2f2f2, border none, border-radius 8px. Padding 24px. Contains a Suisse Intl 20px subheading (weight 500, #1a1a1a, letter-spacing -0.014em) and 16px body text below. No shadow.\n\n4. Outlined action button: Background transparent, border 1px solid #1a1a1a, border-radius 8px. Text Suisse Intl 16px weight 500, color #1a1a1a. Padding 16px vertical, 24px horizontal. Hover state inverts to #1a1a1a background with #ffffff text.\n\n5. Sticky announcement bar: Fixed to viewport bottom, full width. Background #fdf313, padding 12px 24px. Single line of text in Suisse Intl 16px weight 500, color #1a1a1a, with a trailing arrow link."
+      },
+      {
+        "title": "Typographic Identity",
+        "content": "The 'A/' logotype is set in a custom geometric sans (bolder than Suisse Intl's display cuts) with a forward-slash terminal. It functions as both logo and punctuation. The system treats type as the primary visual asset: there are no decorative icons, no graphic flourishes, no color washes — the typographic system carries 90% of the visual identity. Suisse Intl's slightly humanist proportions and tight tracking give the page a confident, editorial feel that distinguishes it from generic system-font SaaS sites."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "The system uses zero shadows. Elevation is communicated entirely through surface color shifts: #ffffff (base) → #f2f2f2 (card) → #f2ede9 (warm accent). The absence of shadows is deliberate — it keeps the page flat, editorial, and print-like. No element should have a box-shadow, drop-shadow, or blur. Depth comes from the warm cream surface (#f2ede9) acting as a subtle warm island against the cool gray (#f2f2f2) and white (#ffffff) system."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e6e6e6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9249395393966913
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "link",
+            "heading",
+            "nav",
+            "list",
+            "icon",
+            "hero",
+            "card",
+            "footer",
+            "input"
+          ],
+          "frequency": 1584,
+          "confidence": 1,
+          "prominence": 119016375.05939558,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 68,
+            "body/borderColor": 264,
+            "card/borderColor": 24,
+            "hero/borderColor": 4,
+            "icon/borderColor": 24,
+            "link/borderColor": 116,
+            "list/borderColor": 108,
+            "input/borderColor": 56,
+            "other/borderColor": 784,
+            "button/borderColor": 72,
+            "footer/borderColor": 4,
+            "heading/borderColor": 60
+          }
+        },
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "link",
+            "heading",
+            "nav",
+            "list",
+            "hero",
+            "card",
+            "footer",
+            "input",
+            "icon"
+          ],
+          "frequency": 371,
+          "confidence": 1,
+          "prominence": 95604345.19673622,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 17,
+            "body/color": 62,
+            "card/color": 6,
+            "hero/color": 1,
+            "icon/color": 1,
+            "link/color": 11,
+            "list/color": 27,
+            "input/color": 18,
+            "other/color": 185,
+            "button/color": 12,
+            "footer/color": 1,
+            "heading/color": 14,
+            "input/borderColor": 16
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "button",
+            "body",
+            "icon",
+            "footer",
+            "input"
+          ],
+          "frequency": 59,
+          "confidence": 1,
+          "prominence": 66133493.946417615,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "icon/color": 5,
+            "link/color": 5,
+            "other/color": 11,
+            "button/color": 6,
+            "heading/color": 1,
+            "link/backgroundColor": 1,
+            "input/backgroundColor": 13,
+            "other/backgroundColor": 9,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 5955745.563386084,
+          "properties": [
+            "fill",
+            "backgroundColor",
+            "borderColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "body/boxShadow": 1,
+            "body/borderColor": 12,
+            "body/backgroundColor": 1,
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "button",
+            "card"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 1868208.1425749133,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 5,
+            "button/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#949494",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6665481264667662
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 124479.0916785482,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "link/color": 12
+          }
+        },
+        {
+          "hex": "#f2ede9",
+          "oklch": {
+            "c": 0.0076200171758564585,
+            "h": 61.450470899848604,
+            "l": 0.9488715030719242
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 113064,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fdf313",
+          "oklch": {
+            "c": 0.19926605221459076,
+            "h": 106.590072934358,
+            "l": 0.9417719654320121
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 77518,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#757575",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5624050641913382
+          },
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 6873.982365627654,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3350.1114009346184,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 5
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.000269860781319064,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.07,
+          "background": "#f2ede9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.01,
+          "background": "#fdf313",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#ffffff",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.83,
+          "background": "#e6e6e6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.55,
+          "background": "#f2f2f2",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.97,
+          "background": "#f2ede9",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.92,
+          "background": "#fdf313",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.94,
+          "background": "#e6e6e6",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.84,
+          "background": "#cccccc",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.92,
+          "background": "#000000",
+          "foreground": "#949494"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.61,
+          "background": "#ffffff",
+          "foreground": "#757575"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.56,
+          "background": "#000000",
+          "foreground": "#757575"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.12,
+          "background": "#f2f2f2",
+          "foreground": "#757575"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.96,
+          "background": "#f2ede9",
+          "foreground": "#757575"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#fdf313",
+          "foreground": "#757575"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.03,
+          "background": "#ffffff",
+          "foreground": "#949494"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.87,
+          "background": "#cccccc",
+          "foreground": "#757575"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "card",
+            "other",
+            "input"
+          ],
+          "frequency": 35
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "list",
+            "link",
+            "other"
+          ],
+          "frequency": 63,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|list",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "list",
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|other",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "link",
+            "other",
+            "nav",
+            "heading",
+            "list",
+            "card",
+            "input",
+            "body"
+          ],
+          "frequency": 188,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginLeft",
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|link",
+            "marginLeft|link",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginRight|heading",
+            "marginLeft|heading",
+            "paddingRight|other",
+            "rowGap|list",
+            "columnGap|list",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "columnGap|card",
+            "paddingLeft|other",
+            "rowGap|other",
+            "marginTop|other",
+            "paddingTop|input",
+            "paddingRight|input",
+            "paddingBottom|input",
+            "paddingLeft|input",
+            "marginRight|link",
+            "marginBottom|link",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "hero",
+            "other",
+            "list"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|hero",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "list",
+            "other",
+            "input"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "rowGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list",
+            "paddingTop|list",
+            "rowGap|list",
+            "paddingRight|other",
+            "paddingRight|input"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingTop|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 84,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 192,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|heading",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 232,
+          "contexts": [
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingTop|heading",
+            "paddingTop|other",
+            "marginTop|heading"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ui-sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 239,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "SuisseIntl",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 164,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "nav",
+            "icon",
+            "link",
+            "other",
+            "input"
+          ],
+          "frequency": 117,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "nav",
+            "body",
+            "list",
+            "hero",
+            "card",
+            "footer",
+            "input",
+            "icon"
+          ],
+          "frequency": 239,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "SuisseIntl",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "SuisseIntl",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "SuisseIntl",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 55,
+          "family": "SuisseIntl",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/2d2153af-d94a-449a-940b-90a39816d709.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a271d14a-43f1-465a-b619-80d7a9ec1e1e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/143d553e-d71f-4e86-98ed-b80b9ef78ea9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"AREA 17 design system\",\"item\":\"https://styles.refero.design/style/143d553e-d71f-4e86-98ed-b80b9ef78ea9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/143d553e-d71f-4e86-98ed-b80b9ef78ea9#style-reference\",\"name\":\"AREA 17 design system reference\",\"headline\":\"AREA 17 design system | Refero Styles\",\"description\":\"Explore AREA 17's light Agency design system: Pure White #ffffff, Graphite #1a1a1a colors, ui-sans-serif, Suisse Intl typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/143d553e-d71f-4e86-98ed-b80b9ef78ea9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/143d553e-d71f-4e86-98ed-b80b9ef78ea9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"AREA 17\",\"url\":\"https://area17.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/143d553e-d71f-4e86-98ed-b80b9ef78ea9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a271d14a-43f1-465a-b619-80d7a9ec1e1e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a271d14a-43f1-465a-b619-80d7a9ec1e1e.jpg\",\"caption\":\"Screenshot of AREA 17\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a271d14a-43f1-465a-b619-80d7a9ec1e1e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"AREA 17 design system\",\"AREA 17 website design\",\"AREA 17 colors\",\"AREA 17 typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pure White\",\"Graphite\",\"True Black\",\"Hairline\",\"ui-sans-serif\",\"Suisse Intl\",\"System Sans-Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"AREA 17 design system\"},{\"@type\":\"Thing\",\"name\":\"AREA 17 website design\"},{\"@type\":\"Thing\",\"name\":\"AREA 17 colors\"},{\"@type\":\"Thing\",\"name\":\"AREA 17 typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-10T23:54:47.714Z\",\"dateModified\":\"2026-05-10T23:54:47.714Z\"}]}19:T4f3,**Quick Color Reference**\n- Text: #1a1a1a\n- Background: #ffffff\n- Surface (secondary): #f2f2f2\n- Border/hairline: #e6e6e6\n- Accent: #fdf313\n- Muted text: #949494\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Editorial hero headline: Suisse Intl 55px, weight 400, line-height 1.10, color #1a1a1a, letter-spacing -0.015em. Left-aligned, max-width 900px, sitting on #ffffff canvas with 192px top padding.\n\n2. Ghost text link in body: No background, no border. Suisse Intl 16px weight 500, color #1a1a1a. On hover, color shifts to #949494. Inline with body text, 16px line-height 1.5.\n\n3. Fog surface card: Background #f2f2f2, border none, border-radius 8px. Padding 24px. Contains a Suisse Intl 20px subheading (weight 500, #1a1a1a, letter-spacing -0.014em) and 16px body text below. No shadow.\n\n4. Outlined action button: Background transparent, border 1px solid #1a1a1a, border-radius 8px. Text Suisse Intl 16px weight 500, color #1a1a1a. Padding 16px vertical, 24px horizontal. Hover state inverts to #1a1a1a background with #ffffff text.\n\n5. Sticky announcement bar: Fixed to viewport bottom, full width. Background #fdf313, padding 12px 24px. Single line of text in Suisse Intl 16px weight 500, color #1a1a1a, with a trailing arrow link."
+}

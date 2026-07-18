@@ -1,0 +1,407 @@
+{
+  "color": {
+    "motto-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Motto Ink — Primary text, headlines, logo wordmark, borders, decorative marks — the only ink in the system"
+    },
+    "soft-carbon": {
+      "$value": "#1b1b1c",
+      "$type": "color",
+      "$description": "Soft Carbon — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "bone-paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone Paper — Card surfaces, testimonial panels, text on dark fills, inverted nav state"
+    },
+    "parchment": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Parchment — Page canvas — the default background; sections sit on this without a card wrapper"
+    },
+    "ash-rule": {
+      "$value": "#d8d8d8",
+      "$type": "color",
+      "$description": "Ash Rule — Hairline dividers between sections, subtle separators, secondary surface"
+    },
+    "slate": {
+      "$value": "#717476",
+      "$type": "color",
+      "$description": "Slate — Body secondary text, helper copy, muted annotations"
+    },
+    "graphite": {
+      "$value": "#4d5153",
+      "$type": "color",
+      "$description": "Graphite — Body text on inverted or elevated surfaces, slightly stronger than Slate"
+    },
+    "smoke": {
+      "$value": "#848484",
+      "$type": "color",
+      "$description": "Smoke — Disabled nav items, list bullets, low-priority metadata, scroll cues"
+    },
+    "fog-border": {
+      "$value": "#c8cacd",
+      "$type": "color",
+      "$description": "Fog Border — Input field borders, form control edges"
+    },
+    "pewter": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Pewter — Tertiary text, footnote-level annotations"
+    }
+  },
+  "font": {
+    "disp-custom-display-face": {
+      "$value": "disp (custom display face)",
+      "$type": "fontFamily",
+      "$description": "Reserved exclusively for hero statements and display headlines. The display face operates at 61–154px with line-height locked near 1.0–1.1, so lines almost touch and the type forms a wall. Weight 500 here is anti-convention — most display faces use 700–900; this medium weight gives the headlines editorial gravity without the shouting, which is the signature move of the system."
+    },
+    "sans-custom-sans-face": {
+      "$value": "sans (custom sans face)",
+      "$type": "fontFamily",
+      "$description": "Used for all body copy, navigation, buttons, labels, captions, card content, and footers. A single weight — 500 — runs through the entire secondary type system, so visual hierarchy comes from size and leading, never from bold or light. This creates an evenness that lets the display font dominate without competition."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "25px",
+        "fontWeight": 500,
+        "lineHeight": 1.26
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "25px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "34px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "34px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 34px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "sans",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "disp",
+        "fontSize": "61px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 61px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "disp",
+        "fontSize": "99px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 99px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "disp",
+        "fontSize": "138px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 138px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "disp",
+        "fontSize": "139px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 139px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "disp",
+        "fontSize": "154px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 154px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "67": {
+      "$value": "67px",
+      "$type": "dimension",
+      "$description": "Spacing 67px"
+    },
+    "70": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Spacing 70px"
+    },
+    "77": {
+      "$value": "77px",
+      "$type": "dimension",
+      "$description": "Spacing 77px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "158": {
+      "$value": "158px",
+      "$type": "dimension",
+      "$description": "Spacing 158px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8.64px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "parchment": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the default light gray field every section sits on"
+    },
+    "bone-paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card and testimonial surfaces — the only elevated layer in the system"
+    },
+    "ash-rule": {
+      "$value": "#d8d8d8",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary surface, dividers, rule lines"
+    },
+    "soft-carbon": {
+      "$value": "#1b1b1c",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted surface for footer and dark sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://wearemotto.com",
+      "siteName": "Motto®",
+      "extractedAt": "2026-06-03T16:17:14.466Z",
+      "variant": "extended"
+    }
+  }
+}

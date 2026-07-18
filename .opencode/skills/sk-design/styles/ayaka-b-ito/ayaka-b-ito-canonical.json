@@ -1,0 +1,2025 @@
+{
+  "source": "https://styles.refero.design/style/8ac43b3b-7139-4777-bc77-217614e01e89",
+  "uuid": "8ac43b3b-7139-4777-bc77-217614e01e89",
+  "name": "Ayaka B. Ito",
+  "northStar": "Editorial spread on warm linen paper.\n\nA tactile, magazine-like atmosphere where oversized serif type and flat color planes replace the usual UI scaffolding.",
+  "capturedAt": "2026-07-18T08:49:06.845Z",
+  "meta": {
+    "url": "https://ayakaito.com",
+    "siteName": "Ayaka B. Ito",
+    "extractedAt": "2026-06-03T21:39:55.027Z",
+    "durationMs": 41045,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 706,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Hanae for all editorial and structural type — the custom serif IS the brand. Open Sans appears only as a supporting voice, never as the primary type on a key screen.",
+      "Let section backgrounds be full-bleed color planes (Ember Rust, Ochre, Deep Teal, etc.) to signal project boundaries — never use cards, shadows, or borders to separate sections.",
+      "Track display headlines aggressively positive: ~0.4em at 62–68px, scaling down to ~0.1em at 25px and negative at body sizes. The letter-spacing fan is what makes the type read as editorial.",
+      "Use Blush (#ddbad0) as the default hairline border color for all rules, dividers, and interactive outlines — it recedes into a warm tint that complements every earth-tone ground.",
+      "Round all interactive elements (buttons, inputs, language toggle) to 120–180px — pill geometry reinforces the soft, warm, tactile feel of the system.",
+      "Keep navigation and UI chrome minimal: bare text links, a tiny parenthesized tag system, and at most one pill toggle. Let the typography and color planes carry hierarchy.",
+      "Switch on dlig, liga, and swsh font features for Hanae — the swash and discretionary ligatures contribute the inscriptional character the type is known for."
+    ],
+    "donts": [
+      "Do not add drop shadows, card elevation, or rounded panels to separate content — hierarchy comes from full-bleed color changes and type scale, not from surface lift.",
+      "Do not use Blush (#ddbad0) or any chromatic color as a filled button background — the system has no filled CTA pattern; actions are bare text or outlined pills.",
+      "Do not bold Hanae above weight 500 — the serif's authority comes from its weight combined with extreme tracking, not from heavy weight.",
+      "Do not set body copy in a sans-serif — even secondary text should stay in Hanae to preserve the editorial voice. Open Sans is a rare accent, not a substitute.",
+      "Do not center-align long-form body paragraphs — the intro hero uses wide tracking as its style, but multi-line reading text should stay left-aligned for legibility.",
+      "Do not introduce cool grays or pure neutral grays for backgrounds — the palette stays warm (Bone White → Linen Mist → Paper Cream) to match the linen-paper atmosphere.",
+      "Do not crop or round the magazine-spread thumbnail images — they should sit as raw rectangular blocks, possibly overlapping at slight rotations, to preserve the printed-object feel."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Body text, hairline borders, and rule lines — the dominant structural color used everywhere text and dividers are drawn",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Primary page canvas and base background for gallery and intro spreads",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeecec",
+        "name": "Linen Mist",
+        "role": "Warm light-gray surface for secondary spreads and subtle tonal shifts between sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fefdf8",
+        "name": "Paper Cream",
+        "role": "Warm off-white alt canvas for soft tonal contrast against Bone White",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a1a1a1",
+        "name": "Chalk Gray",
+        "role": "Muted helper text, secondary labels, and low-emphasis borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d6e0eb",
+        "name": "Haze Blue",
+        "role": "Cool gray-blue tint for quiet borders and subdued type, balancing the warm earth tones",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6b969f",
+        "name": "Slate Blue",
+        "role": "Dusty blue-gray accent for heading type and project labels",
+        "group": "accent"
+      },
+      {
+        "hex": "#9ec5d6",
+        "name": "Sky Mist",
+        "role": "Light dusty blue for heading type and border rules — the coolest note in the palette",
+        "group": "accent"
+      },
+      {
+        "hex": "#9cb8d3",
+        "name": "Periwinkle",
+        "role": "Soft lavender-blue for heading copy and delicate dividers",
+        "group": "accent"
+      },
+      {
+        "hex": "#167070",
+        "name": "Deep Teal",
+        "role": "Saturated muted teal for heading type — the strongest cool accent in the system",
+        "group": "accent"
+      },
+      {
+        "hex": "#507f70",
+        "name": "Sage",
+        "role": "Muted green accent for tag labels and short heading runs",
+        "group": "accent"
+      },
+      {
+        "hex": "#576041",
+        "name": "Olive",
+        "role": "Warm gray-olive for heading type and project titles — anchors the earth-tone half of the palette",
+        "group": "accent"
+      },
+      {
+        "hex": "#495116",
+        "name": "Moss",
+        "role": "Darker olive for emphasized heading type and link rules, reading as near-black with warmth",
+        "group": "accent"
+      },
+      {
+        "hex": "#cda04f",
+        "name": "Ochre",
+        "role": "Golden mustard for full-bleed project backgrounds and accent headings — a signature warm note",
+        "group": "accent"
+      },
+      {
+        "hex": "#a65d4d",
+        "name": "Ember Rust",
+        "role": "Full-bleed intro section background — the signature terracotta that defines the brand's cover moment",
+        "group": "brand"
+      },
+      {
+        "hex": "#f75929",
+        "name": "Lava",
+        "role": "Vivid orange punctuation for accent text and graphic highlights against muted grounds",
+        "group": "brand"
+      },
+      {
+        "hex": "#ddbad0",
+        "name": "Blush",
+        "role": "Dusty pink used as the dominant hairline border color across the entire UI — the single most repeated chromatic color",
+        "group": "accent"
+      },
+      {
+        "hex": "#d7b5bf",
+        "name": "Rose Ash",
+        "role": "Muted rose-gray for heading type and link borders, a softer companion to Blush",
+        "group": "accent"
+      },
+      {
+        "hex": "#c7afac",
+        "name": "Clay",
+        "role": "Warm taupe for heading rules and type — the bridge between the pinks and the earth tones",
+        "group": "accent"
+      }
+    ],
+    "layout": "$19",
+    "imagery": "Photography and editorial spreads dominate the visual language — no icons, no illustrations, no abstract graphics, no 3D. The imagery is the designer's own work: full magazine spreads, book covers, type specimens, and brand identity layouts photographed as physical objects. Images are presented as raw rectangular crops with no rounding, no shadows, and no border treatments; they overlap slightly at varying rotations to evoke a desk of printed work. Treatment is high-fidelity editorial photography — high-key lighting, sharp detail, the paper texture and ink visible. When type is shown as imagery, it appears as oversized display specimens (e.g. the 'JASMINE' lettering) filling entire viewports, functioning as both content and decoration. The role of imagery is the portfolio itself: the work IS the hero, with type and color planes framing it.",
+    "similar": [
+      {
+        "why": "Same editorial-portfolio DNA — full-bleed project spreads, custom serif display type, minimal nav, no card components. Pentagram's per-partner full-bleed color covers mirror Ayaka's project-as-magazine-spread approach.",
+        "business": "Pentagram (pentagram.com)"
+      },
+      {
+        "why": "Editorial publishing layout with oversized serif headlines, warm earth-tone section backgrounds, and bare text-link navigation. Both treat type and color as the primary structural elements rather than UI scaffolding.",
+        "business": "It's Nice That (itsnicethat.com)"
+      },
+      {
+        "why": "Full-bleed color-block project pages with large serif headlines, minimal chrome, and the same 'work IS the hero' philosophy. The flat-color section transitions and generous vertical rhythm are closely related.",
+        "business": "Wolff Olins (wolff-olins.com)"
+      },
+      {
+        "why": "Both lean on custom serif display type with extreme positive letter-spacing on hero headlines, creating a printed-magazine rhythm. Lava's warm editorial palette and hairline typographic details echo Ayaka's system.",
+        "business": "Lava (lavamagazine.com)"
+      },
+      {
+        "why": "Same warm linen atmosphere, custom serif with swash features, overlapping spread thumbnails on the cover, and parenthesized micro-tags as the only metadata layer.",
+        "business": "Anja Meiners / editorial portfolio sites (anjameiners.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "180px",
+        "tags": "120px",
+        "inputs": "140px",
+        "buttons": "120px",
+        "sections": "0px"
+      },
+      "elementGap": "26px",
+      "sectionGap": "80px",
+      "cardPadding": "26px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Bone White Canvas",
+        "level": 1,
+        "purpose": "Primary page background for gallery and list spreads"
+      },
+      {
+        "hex": "#fefdf8",
+        "name": "Paper Cream Alt",
+        "level": 2,
+        "purpose": "Warm off-white canvas used as tonal variant to break up long pages"
+      },
+      {
+        "hex": "#eeecec",
+        "name": "Linen Mist",
+        "level": 3,
+        "purpose": "Soft warm-gray surface for project panels and secondary spreads"
+      },
+      {
+        "hex": "#a65d4d",
+        "name": "Full-Bleed Color Plane",
+        "level": 4,
+        "purpose": "Project section background — the terracotta and other earth tones take over entire pages as editorial spreads"
+      }
+    ],
+    "northStar": "Editorial spread on warm linen paper.\n\nA tactile, magazine-like atmosphere where oversized serif type and flat color planes replace the usual UI scaffolding.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.82,
+        "letterSpacing": -0.41
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.67,
+        "letterSpacing": 0.27
+      },
+      {
+        "role": "subheading",
+        "size": 25,
+        "lineHeight": 1.16,
+        "letterSpacing": 2.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.1,
+        "letterSpacing": 4.35
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.05,
+        "letterSpacing": 10.9
+      },
+      {
+        "role": "display",
+        "size": 68,
+        "lineHeight": 1,
+        "letterSpacing": 27.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Category Navigation",
+        "role": "Primary site navigation bar",
+        "description": "Horizontally arranged text links in Hanae at ~13–16px, weight 400, tracking -0.44px. Left side: brand mark 'Ayaka B. Ito —' followed by bare category links (Branding, Editorial, Typefaces, Illustrations). Right side: Info, Instagram, and a pill-shaped language toggle. No background, no border, no underline — links sit on the page surface. Vertically thin with 7–13px padding. The language toggle uses the 120px pill radius."
+      },
+      {
+        "name": "Language Toggle Pill",
+        "role": "Bilingual UI switcher",
+        "description": "Pill-shaped button with 120px border-radius, ~10px vertical and 18px horizontal padding, hairline Blush (#ddbad0) border, Hanae 11px text weight 500, uppercase or small-caps treatment. Background transparent or white; text Ink Black."
+      },
+      {
+        "name": "Section Tag Label",
+        "role": "Tiny editorial metadata tag",
+        "description": "Parenthesized uppercase label like '(INTRO)' or '(FEATURED PROJECTS)'. Hanae 10–11px, weight 500, letter-spacing ~0.1em, rendered in a muted accent color (Sage, Olive, or Rose Ash depending on section). Sits above or beside a headline as a quiet classification marker."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Oversized editorial headline for section intros and project titles",
+        "description": "Hanae 62–68px, weight 400, line-height 1.0, letter-spacing 0.4em (~27px). Renders as a wide horizontal band of individually tracked glyphs. Color typically Ink Black or a muted accent (Olive, Teal). The extreme tracking transforms the headline from a sentence into a graphic mark."
+      },
+      {
+        "name": "Intro Hero Block",
+        "role": "Full-bleed welcome panel",
+        "description": "Full-viewport-width section with Ember Rust (#a65d4d) background. Contains a large editorial paragraph in Hanae 32–38px weight 400, color Bone White or light cream, tracking ~0.27em. A tiny '(INTRO)' tag sits above in Rose Ash. The block acts as a magazine cover spread — no image, no card, just flat color and type."
+      },
+      {
+        "name": "Project Title Overlay",
+        "role": "Headline positioned over a project background color panel",
+        "description": "Large Hanae serif (38–40px) at weight 400, tight tracking, placed to the right of or overlapping a full-bleed colored panel (Ochre, Teal, etc.). Color is either Ink Black or a contrasting neutral. A small '(CUSTOM TYPEFACE)' or similar tag sits below in muted accent color at 10–11px."
+      },
+      {
+        "name": "Gallery Grid (Magazine Spread Thumbnails)",
+        "role": "Portfolio project thumbnail arrangement",
+        "description": "Loose, overlapping arrangement of editorial magazine spread images at varying rotations, filling the viewport. Each spread sits as a raw rectangular image with no border, no shadow, no rounded corners. The grid is the hero — no headline or CTA competes for attention."
+      },
+      {
+        "name": "Full-Bleed Color Spread",
+        "role": "Project or section background plane",
+        "description": "Edge-to-edge single-color section (Ochre, Ember Rust, Deep Teal, Sky Mist, etc.) that functions as a magazine page. Holds only type and optionally one or two large images. Zero padding inside the color plane — type sits at the edges with generous internal margins."
+      },
+      {
+        "name": "Bare Text Link",
+        "role": "In-line or nav link",
+        "description": "Hanae 13–16px weight 400, color Ink Black or an accent. No underline by default; on hover, a Blush (#ddbad0) hairline underline appears via border-bottom. No background, no padding chip — links are typographic, not boxy."
+      },
+      {
+        "name": "Project Meta Label",
+        "role": "Small project category or role descriptor",
+        "description": "Hanae 10–11px weight 500, tracking 0.1em, uppercase, in a muted accent color (Sage, Rose Ash, Clay). Sits adjacent to a project title as a quiet annotation."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form input for contact or newsletter",
+        "description": "Pill-shaped input with 140px border-radius, Blush (#ddbad0) hairline border, 18–20px vertical padding, Hanae 16px text. Background white. No visible label — placeholder text only. Used in sparse contact contexts."
+      },
+      {
+        "name": "Footer Link Row",
+        "role": "Bottom-of-page contact and social links",
+        "description": "Horizontal row of bare text links in Hanae 13–16px, Ink Black, flush left or center. Same hairline-underline-on-hover behavior as nav links. No background bar."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary custom display and body serif. Carries the site's editorial identity. Used for hero headlines at 62–68px with extreme positive tracking (~0.4em), for body copy at 16–20px, and for tiny parenthesized section tags at 10–11px. The custom typeface's swash and discretionary ligature features are switched on for a handwritten inscriptional quality. Weight stays 400–500 even at display sizes — the scale and tracking carry the voice, not boldness.",
+        "sizes": "10px, 11px, 13px, 16px, 18px, 20px, 23px, 25px, 32px, 38px, 40px, 62px, 68px",
+        "family": "Hanae",
+        "weight": "400, 500",
+        "lineHeight": "1.0–2.73 (tightest on display sizes 62–68px, loosest on tag/label 10–11px)",
+        "substitute": "Cormorant Garamond or Fraunces (variable serif) — both offer the high-contrast modern serif feel with delicate inscriptional qualities",
+        "letterSpacing": "Negative at small sizes (-0.41px at 10px, -0.44px at 11px, -0.34px at 16px), shifting positive as size grows (0.27px at 18px, 2.5px at 25px, 4.35px at 32px, ~10.9px at 40px, ~24.8–27.2px at 62–68px). The tracking fan-out on display sizes is a signature.",
+        "fontFeatureSettings": "\"dlig\" on, \"liga\" on, \"swsh\" on"
+      },
+      {
+        "role": "Secondary sans for occasional subhead and hero-supporting text where a cleaner geometric voice is needed alongside the serif. Used sparingly — the serif does the structural work.",
+        "sizes": "18px, 50px",
+        "family": "Open Sans",
+        "weight": "400, 700",
+        "lineHeight": "1.67",
+        "substitute": "Inter or system-ui sans",
+        "letterSpacing": "normal",
+        "fontFeatureSettings": "\"dlig\" on, \"liga\" on, \"swsh\" on"
+      }
+    ],
+    "description": "Ayaka B. Ito presents an editorial portfolio language: full-bleed warm-toned pages flipping between a dust-pink cover collage, a terracotta-rust intro spread, and oversized serif display panels. The system reads like a printed magazine — flat color planes, hairline rules, and one custom display serif that swells to extreme positive tracking on hero copy. Color is used as whole-page atmosphere rather than UI accent: terracotta, olive, teal, gold, and dusty pink each take over entire sections to signal project boundaries. Components are reduced to their editorial primitives — a top bar of bare category links, tiny parenthesized section tags, and pill-shaped language toggles — with no shadows, no cards, and almost no raised surfaces. The page breathes with generous vertical rhythm and lets typography do all the structural work.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1a"
+      },
+      {
+        "title": "Letter-Spacing System",
+        "content": "The site's tracking behavior is one of its most recognizable traits. Hanae shifts from negative to dramatically positive as type size grows:\n- 10–13px: -0.41 to -0.44px (tight, for tags and micro labels)\n- 16–18px: 0.27 to 0.34px (near-normal, for body)\n- 20–25px: ~2.5px (loose, for subheadings)\n- 32–38px: ~4.35px (spaced, for editorial paragraphs)\n- 40px: ~10.9px (wide, for project titles)\n- 62–68px: ~24.8–27.2px (extreme, for display headlines)\n\nThis tracking fan-out is the design's signature. Do not flatten it to a single value — display and body must feel categorically different in rhythm."
+      },
+      {
+        "title": "Editorial Section Tagging",
+        "content": "The parenthesized uppercase tag system (e.g. '(INTRO)', '(FEATURED PROJECTS)', '(CUSTOM TYPEFACE)') functions as the site's only metadata layer. Tags are always:\n- Hanae 10–11px, weight 500\n- Uppercase, letter-spacing 0.1em\n- Wrapped in parentheses\n- Colored in a muted accent appropriate to the section (Sage for type, Rose Ash for intro, Clay for editorial)\n- Placed above or beside the headline they describe, not below\n\nThis tag system replaces the conventional eyebrow/kicker text pattern found in typical SaaS sites and reinforces the magazine-spread metaphor."
+      }
+    ],
+    "elevationPhilosophy": "The design intentionally avoids shadows and raised surfaces. Hierarchy is built through typography scale, flat color planes, and hairline borders rather than elevation. Cards and panels sit flush with the page; if a section needs emphasis, it gets a full-bleed color change instead of a drop shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "body",
+            "image",
+            "link",
+            "icon"
+          ],
+          "frequency": 2139,
+          "confidence": 1,
+          "prominence": 278820955.12906736,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "body/color": 1,
+            "icon/color": 1,
+            "link/color": 12,
+            "image/color": 76,
+            "other/color": 285,
+            "heading/color": 30,
+            "nav/borderColor": 12,
+            "body/borderColor": 96,
+            "icon/borderColor": 4,
+            "link/borderColor": 48,
+            "image/borderColor": 304,
+            "other/borderColor": 1144,
+            "heading/borderColor": 124,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 50404230,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ddbad0",
+          "oklch": {
+            "c": 0.049429592960008865,
+            "h": 340.1788790703265,
+            "l": 0.8257322654476773
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "hero",
+            "image",
+            "heading",
+            "body",
+            "link",
+            "input",
+            "button"
+          ],
+          "frequency": 1129,
+          "confidence": 1,
+          "prominence": 26288341.492528208,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 25,
+            "body/color": 70,
+            "hero/color": 1,
+            "link/color": 16,
+            "image/color": 23,
+            "input/color": 1,
+            "other/color": 76,
+            "button/color": 1,
+            "heading/color": 23,
+            "nav/borderColor": 92,
+            "body/borderColor": 244,
+            "hero/borderColor": 4,
+            "link/borderColor": 64,
+            "image/borderColor": 92,
+            "input/borderColor": 4,
+            "other/borderColor": 300,
+            "button/borderColor": 4,
+            "heading/borderColor": 88,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#eeecec",
+          "oklch": {
+            "c": 0.002154031862929772,
+            "h": 17.195773311997026,
+            "l": 0.9446310806015125
+          },
+          "contexts": [
+            "heading",
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 62,
+          "confidence": 1,
+          "prominence": 7746554.780855892,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 2,
+            "heading/color": 10,
+            "link/borderColor": 8,
+            "heading/borderColor": 40,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a65d4d",
+          "oklch": {
+            "c": 0.09921084295104199,
+            "h": 33.339745632602515,
+            "l": 0.5588049477825544
+          },
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 7276663.95797331,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#fefdf8",
+          "oklch": {
+            "c": 0.00666665583157431,
+            "h": 97.34903285733728,
+            "l": 0.9934338666043169
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054111.4009346182,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#c6a66f",
+          "oklch": {
+            "c": 0.08143542665174985,
+            "h": 80.50303677347198,
+            "l": 0.7410774346037254
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fcccc5",
+          "oklch": {
+            "c": 0.05558233458729038,
+            "h": 27.87171696248954,
+            "l": 0.8850315436137446
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0a1019",
+          "oklch": {
+            "c": 0.02114519734446857,
+            "h": 258.3191719482735,
+            "l": 0.1716319878252557
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1b2618",
+          "oklch": {
+            "c": 0.029955599781264865,
+            "h": 139.04197101299343,
+            "l": 0.25343264308932667
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c0bccd",
+          "oklch": {
+            "c": 0.02405414292344606,
+            "h": 296.6277434001655,
+            "l": 0.8036922913215945
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e5e3dc",
+          "oklch": {
+            "c": 0.009644634716627666,
+            "h": 93.5755520762761,
+            "l": 0.9154384560539085
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c7d7df",
+          "oklch": {
+            "c": 0.020543971166211556,
+            "h": 229.07705195426598,
+            "l": 0.8694927025003648
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#243217",
+          "oklch": {
+            "c": 0.04925478312979966,
+            "h": 131.26450427040592,
+            "l": 0.29658393482040335
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#282227",
+          "oklch": {
+            "c": 0.01274450631905411,
+            "h": 331.46674143952646,
+            "l": 0.26073392808115703
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e5e9ef",
+          "oklch": {
+            "c": 0.009180494767873151,
+            "h": 258.3364758649069,
+            "l": 0.9327023844368827
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#576041",
+          "oklch": {
+            "c": 0.04869316738136276,
+            "h": 121.4335312486604,
+            "l": 0.4724818438669313
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 31,
+          "confidence": 1,
+          "prominence": 910490,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "heading/color": 6,
+            "heading/borderColor": 24
+          }
+        },
+        {
+          "hex": "#495116",
+          "oklch": {
+            "c": 0.08128175813988137,
+            "h": 116.70774383582541,
+            "l": 0.41484197776987414
+          },
+          "contexts": [
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 760525.5986315619,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1,
+            "heading/color": 2,
+            "link/borderColor": 4,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#d6e0eb",
+          "oklch": {
+            "c": 0.018531224007960305,
+            "h": 250.60141046201545,
+            "l": 0.9023761843453989
+          },
+          "contexts": [
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 751578.1424720648,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1,
+            "heading/color": 2,
+            "link/borderColor": 4,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#9cb8d3",
+          "oklch": {
+            "c": 0.04944049268248908,
+            "h": 247.50851568365394,
+            "l": 0.7707494271304981
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 677521.4907142912,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "heading/color": 3,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#167070",
+          "oklch": {
+            "c": 0.0788130722486622,
+            "h": 194.91392739563736,
+            "l": 0.49645796696369504
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 632840.701956541,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "heading/color": 3,
+            "body/borderColor": 4,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#d7b5bf",
+          "oklch": {
+            "c": 0.04124163257642564,
+            "h": 358.45804946167135,
+            "l": 0.8055739755106395
+          },
+          "contexts": [
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 585770.2123167448,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1,
+            "heading/color": 2,
+            "link/borderColor": 4,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#9ec5d6",
+          "oklch": {
+            "c": 0.04797004240797503,
+            "h": 226.2826108053191,
+            "l": 0.8008642179493133
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 514768.8758717192,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "heading/color": 5,
+            "heading/borderColor": 20
+          }
+        },
+        {
+          "hex": "#c7afac",
+          "oklch": {
+            "c": 0.028216726182604058,
+            "h": 26.253765456331124,
+            "l": 0.7738086577952239
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 486819.9827854294,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "heading/color": 2,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#f75929",
+          "oklch": {
+            "c": 0.2022146247416687,
+            "h": 36.577531344526285,
+            "l": 0.6691467445469295
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 473853.43729410303,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#cda04f",
+          "oklch": {
+            "c": 0.11228092021765022,
+            "h": 80.15069758680092,
+            "l": 0.7315286846938676
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 448432.20432770724,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "heading/color": 2,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#a1a1a1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7089995458654064
+          },
+          "contexts": [
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 402582.3901604284,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1,
+            "heading/color": 2,
+            "link/borderColor": 4,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#507f70",
+          "oklch": {
+            "c": 0.0567606281975167,
+            "h": 171.99097293366412,
+            "l": 0.5580048003393258
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 267176.55414953723,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#6b969f",
+          "oklch": {
+            "c": 0.0486136148795506,
+            "h": 212.03761135867714,
+            "l": 0.6450824429272546
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 78349.35545326087,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "heading/color": 2,
+            "heading/borderColor": 8
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0516038981514299,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.62,
+          "background": "#fefdf8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.07,
+          "background": "#0a1019",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#fefdf8",
+          "foreground": "#0a1019"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.84,
+          "background": "#eeecec",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.23,
+          "background": "#e5e9ef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.35,
+          "background": "#e5e3dc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.21,
+          "background": "#0a1019",
+          "foreground": "#eeecec"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.72,
+          "background": "#000000",
+          "foreground": "#d6e0eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.71,
+          "background": "#1b2618",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.65,
+          "background": "#e5e9ef",
+          "foreground": "#0a1019"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.57,
+          "background": "#282227",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.42,
+          "background": "#fefdf8",
+          "foreground": "#1b2618"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.29,
+          "background": "#fefdf8",
+          "foreground": "#282227"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.85,
+          "background": "#e5e3dc",
+          "foreground": "#0a1019"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.58,
+          "background": "#fcccc5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.28,
+          "background": "#0a1019",
+          "foreground": "#d6e0eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.21,
+          "background": "#c7d7df",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.6,
+          "background": "#243217",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.36,
+          "background": "#fefdf8",
+          "foreground": "#243217"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 120,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 140,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 7,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|input"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "heading",
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 34,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 48,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Open Sans",
+          "source": "google",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 466,
+          "fontFeatureSettings": [
+            "\"dlig\", \"liga\", \"swsh\""
+          ]
+        },
+        {
+          "family": "Hanae Regular",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 240,
+          "fontFeatureSettings": [
+            "\"dlig\", \"liga\", \"swsh\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Hanae Regular",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 2,
+          "letterSpacing": 0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.4,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Hanae Regular",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 6.18,
+          "letterSpacing": 0.136,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.55,
+          "letterSpacing": 0.273,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Hanae Regular",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.44,
+          "letterSpacing": 0.136,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Hanae Regular",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.82,
+          "letterSpacing": 0.136,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Hanae Regular",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.73,
+          "letterSpacing": 0.136,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Hanae Regular",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 2.27,
+          "letterSpacing": 0.136,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Hanae Regular",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.45,
+          "letterSpacing": 0.136,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Hanae Regular",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.54,
+          "letterSpacing": 0.136,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.31,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Hanae Regular",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.31,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Open Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 343,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "input"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Hanae Regular",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Hanae Regular",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Hanae Regular",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Hanae Regular",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Hanae Regular",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.12,
+          "letterSpacing": -0.041,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.44,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.16,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.16,
+          "letterSpacing": -0.034,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Open Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Open Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.54,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 72,
+          "lineHeight": 1.03,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "Hanae Regular",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.03,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "Hanae Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.03,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 68,
+          "family": "Hanae Regular",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.29,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ba25d06f-57d7-4b04-9f40-eebccddbd9a4.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6acbf1fb-8aaa-4b50-9fb0-a738fabdb87c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8ac43b3b-7139-4777-bc77-217614e01e89#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ayaka B. Ito design system\",\"item\":\"https://styles.refero.design/style/8ac43b3b-7139-4777-bc77-217614e01e89\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8ac43b3b-7139-4777-bc77-217614e01e89#style-reference\",\"name\":\"Ayaka B. Ito design system reference\",\"headline\":\"Ayaka B. Ito design system | Refero Styles\",\"description\":\"Explore Ayaka B. Ito's mixed Design design system: Ink Black #000000, Bone White #ffffff colors, Hanae, Open Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8ac43b3b-7139-4777-bc77-217614e01e89\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8ac43b3b-7139-4777-bc77-217614e01e89\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ayaka B. Ito\",\"url\":\"https://ayakaito.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8ac43b3b-7139-4777-bc77-217614e01e89#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6acbf1fb-8aaa-4b50-9fb0-a738fabdb87c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6acbf1fb-8aaa-4b50-9fb0-a738fabdb87c.jpg\",\"caption\":\"Screenshot of Ayaka B. Ito\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6acbf1fb-8aaa-4b50-9fb0-a738fabdb87c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ayaka B. Ito design system\",\"Ayaka B. Ito website design\",\"Ayaka B. Ito colors\",\"Ayaka B. Ito typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink Black\",\"Bone White\",\"Linen Mist\",\"Paper Cream\",\"Hanae\",\"Open Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ayaka B. Ito design system\"},{\"@type\":\"Thing\",\"name\":\"Ayaka B. Ito website design\"},{\"@type\":\"Thing\",\"name\":\"Ayaka B. Ito colors\"},{\"@type\":\"Thing\",\"name\":\"Ayaka B. Ito typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:52:37.601Z\",\"dateModified\":\"2026-04-30T03:52:37.601Z\"}]}19:T46e,Full-bleed editorial page model — sections are viewport-wide color planes that change abruptly between Bone White, Linen Mist, and project-specific earth tones. The first viewport is a scattered, overlapping grid of magazine-spread thumbnails filling the entire screen with no headline or CTA — the work is the hero. Navigation is a single thin top bar with bare text links, flush left and right, no background fill. Sections alternate between image-dominant spreads and type-dominant spreads, each filling the full viewport. Hero sections are split asymmetrically: a large image or display-type specimen on one side meets a solid color plane with a paragraph on the other (as in the rust intro and the Jasmine project). Section rhythm is spacious — 80px+ vertical gaps between blocks, with no visible dividers between sections (color change does the separating). Content is arranged in 2-column asymmetric splits or single full-width centered text blocks; no 3-column card grids, no pricing tables, no feature comparison layouts. The entire page reads as a flip-through of magazine pages rather than a scrollable app interface.1a:T6df,Quick Color Reference:\n- text: #000000 (Ink Black)\n- background: #ffffff (Bone White)\n- border: #ddbad0 (Blush, hairline)\n- accent: #a65d4d (Ember Rust, full-bleed panels)\n- secondary accent: #cda04f (Ochre), #167070 (Deep Teal), #576041 (Olive)\n- primary action: #ddbad0 (outlined action border)\n\nExample Component Prompts:\n1. Create a full-bleed intro hero section: Ember Rust (#a65d4d) background spanning the full viewport. Tiny '(INTRO)' tag in Hanae 11px, weight 500, letter-spacing 0.1em, color #d7b5bf (Rose Ash). Body headline in Hanae 38px, weight 400, letter-spacing 0.27em, color #fefdf8 (Paper Cream), line-height 1.3. Generous internal padding, no border, no card.\n\n2. Create a display headline block: Hanae 68px, weight 400, letter-spacing 0.4em (~27px), line-height 1.0, color #000000 (Ink Black). The text reads as a wide horizontal band of individually tracked glyphs against a Bone White (#ffffff) background. No border, no shadow.\n\n3. Create a language toggle pill: 120px border-radius, 1px solid #ddbad0 (Blush) border, transparent or white background, Hanae 11px weight 500 text, 10px vertical / 18px horizontal padding. Text color #000000.\n\n4. Create a project title overlay over an Ochre (#cda04f) full-bleed panel: Hanae 40px, weight 400, letter-spacing 0.27em, color #000000, placed to the right side. Small '(CUSTOM TYPEFACE)' tag below in Hanae 10px, weight 500, letter-spacing 0.1em, color #507f70 (Sage). Panel fills the full viewport with zero rounded corners.\n\n5. Create a portfolio gallery hero: viewport-filling arrangement of rectangular editorial magazine-spread images overlapping at slight rotations. No headlines, no navigation beyond the top bar, no CTA. Images are raw rectangles with 0px border-radius and no shadows."
+}

@@ -1,0 +1,192 @@
+{
+  "color": {
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "gallery-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Gallery White — Page canvas, card surfaces, and heading backgrounds — the dominant surface across all sections"
+    },
+    "plaster-gray": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Plaster Gray — Subtle surface variation against white — used at near-imperceptible contrast for stacked layers"
+    }
+  },
+  "font": {
+    "esallianz": {
+      "$value": "ESAllianz",
+      "$type": "fontFamily",
+      "$description": "Primary brand typeface for navigation links, body copy, and display headlines. The custom face is a neo-grotesque with restrained geometry — its near-monolinear strokes and generous counters give the editorial feel. At 45px it functions as display; at 27px as section headings; at 18px as body and nav. Two weights (Light, Regular) both used at 400 — the visual difference is in the eye, not the number."
+    },
+    "open-sans": {
+      "$value": "Open Sans",
+      "$type": "fontFamily",
+      "$description": "Secondary face for general body text and link rendering — serves as a web-safe fallback and the default for text blocks where the custom face is unavailable"
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "ESAllianz-Light",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "ESAllianz-Light",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "ESAllianz-Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ESAllianz-Light",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "ESAllianz-Regular",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 45px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "ESAllianz-Light",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 45px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "ESAllianz-Light",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 45px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page background"
+    },
+    "recessed": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 2: Near-white surface tint for secondary layers"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Project thumbnail backgrounds, same as canvas — cards are defined by their image content, not a fill"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://wearewouq.com",
+      "siteName": "WOUQ",
+      "extractedAt": "2026-06-03T21:32:24.334Z",
+      "variant": "extended"
+    }
+  }
+}

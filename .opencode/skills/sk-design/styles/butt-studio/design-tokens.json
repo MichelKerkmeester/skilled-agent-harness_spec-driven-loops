@@ -1,0 +1,187 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, borders, button outlines, structural strokes — the only color that ever carries information"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card surfaces, thumbnail covers, inverted text on dark blocks"
+    },
+    "carbon": {
+      "$value": "#131313",
+      "$type": "color",
+      "$description": "Carbon — Dark project tile backgrounds, near-black surface for video panels"
+    },
+    "bone-gray": {
+      "$value": "#e0e0e0",
+      "$type": "color",
+      "$description": "Bone Gray — Page canvas, neutral button fills — the warm gray the whole composition sits on"
+    },
+    "studio-indigo": {
+      "$value": "#31338e",
+      "$type": "color",
+      "$description": "Studio Indigo — Sole chromatic accent — STUDIO pill badge, and any deep brand punctuation. The only saturated color in the system"
+    }
+  },
+  "font": {
+    "helvetica": {
+      "$value": "helvetica",
+      "$type": "fontFamily",
+      "$description": "Every utility, body, list, button, and link on the site. Stays at one weight — no bold, no medium. The decision to use weight 400 Helvetica at 20px for body (not 16px) is deliberate: text is meant to feel like printed matter, not a UI. Tighter letter-spacing on larger sizes (-0.03em) prevents the 40px from feeling airy."
+    },
+    "caslon": {
+      "$value": "Caslon",
+      "$type": "fontFamily",
+      "$description": "The hero wordmark and any serif accent. A single weight of a custom display serif — chosen because its high contrast strokes and ball terminals read as editorial print, not web type. This font IS the brand; everything else is scaffolding."
+    },
+    "sometimes-times": {
+      "$value": "Sometimes Times",
+      "$type": "fontFamily",
+      "$description": "Sometimes Times — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xl": {
+      "$value": {
+        "fontFamily": "helvetica",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Sometimes Times",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "helvetica",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Caslon",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 42px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "70": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Spacing 70px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "bone-gray-canvas": {
+      "$value": "#e0e0e0",
+      "$type": "color",
+      "$description": "Surface level 1: Page background — the warm off-white paper the whole site rests on"
+    },
+    "paper-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: White card surfaces for project details, inline blocks"
+    },
+    "carbon-plate": {
+      "$value": "#131313",
+      "$type": "color",
+      "$description": "Surface level 3: Dark video panels and feature blocks for contrast sections"
+    },
+    "studio-indigo-plate": {
+      "$value": "#31338",
+      "$type": "color",
+      "$description": "Surface level 4: Indigo badge and any accent wash"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.butt-studio.com",
+      "siteName": "BUTT STUDIO",
+      "extractedAt": "2026-06-03T20:40:49.571Z",
+      "variant": "extended"
+    }
+  }
+}

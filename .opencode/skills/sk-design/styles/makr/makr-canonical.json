@@ -1,0 +1,1164 @@
+{
+  "source": "https://styles.refero.design/style/f2bf6db7-37b6-4394-be97-6bbb2c45c268",
+  "uuid": "f2bf6db7-37b6-4394-be97-6bbb2c45c268",
+  "name": "MAKR",
+  "northStar": "Museum vitrine for crafted leather. A quiet, paper-white gallery where warm-black ink labels float beneath large editorial photographs of leather objects held in hands or placed in landscapes, with one muted sage band as the only chromatic interruption.",
+  "capturedAt": "2026-07-18T08:10:38.230Z",
+  "meta": {
+    "url": "https://makr.com",
+    "siteName": "MAKR",
+    "extractedAt": "2026-06-03T18:08:20.965Z",
+    "durationMs": 37541,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1016,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #1c1717 (Obsidian Ink) for all text, borders, icons, and interactive elements. It is the only structural color besides white.",
+      "Set all type in Sohne 400 — never use a bold weight. Create hierarchy through size (11–32px) and tracking (0.0150em–0.0300em), not weight.",
+      "Use #a9aea9 (Eucalyptus Mist) sparingly as a full-bleed banner background only. It is the system's single chromatic moment — do not use it for text, small accents, or inline elements.",
+      "Style every interactive element as an underlined text link. Filled buttons do not exist in this system.",
+      "Render form inputs as 1px bottom-border lines on a transparent background. No boxed inputs, no rounded fields.",
+      "Photograph products tight to the object in natural light. Use a 2:3 or square crop with no overlays, no borders, and no radius.",
+      "Maintain generous vertical breathing room (80–120px) between editorial sections so the layout reads as a gallery, not a feed."
+    ],
+    "donts": [
+      "Do not introduce bold, semibold, or any weight above 400. The system communicates through restraint, not volume.",
+      "Do not add shadows, elevation, or z-axis depth. Surfaces are flat, separated by whitespace and the occasional hairline border.",
+      "Do not use rounded corners on any component — inputs, modals, cards, and banners are all 0px radius.",
+      "Do not use color for hover or active states. Use underline thickness, text color shift to #a9aea9, or opacity changes only.",
+      "Do not add icons, badges, tags, or decorative chrome inside product photography. The image is the content.",
+      "Do not introduce new accent colors. The system is monochrome ink-on-paper with one sage band. Any additional hue breaks the gallery language.",
+      "Do not overlay text on product imagery. Captions, links, and labels always live in the white margin below the image."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#1c1717",
+        "name": "Obsidian Ink",
+        "role": "Primary text, all text links, body copy, headings, icon strokes, hairline borders across the entire UI. This is the load-bearing color — 17.7:1 on white, used for 5,000+ instances. Its very slight warm cast (not pure black) gives the entire interface a printed-catalog feel rather than a screen feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0f0f0",
+        "name": "Bone",
+        "role": "Secondary surface for alternating sections, subtle panel backgrounds, and inline borders/separators. Creates the faintest warm-gray tier between paper-white and the sage announcement band",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a9aea9",
+        "name": "Eucalyptus Mist",
+        "role": "Top announcement banner background, muted section washes, tertiary border. Reads as near-gray in isolation but carries a barely-perceptible sage cast when used full-width — a single chromatic breath in an otherwise monochrome system",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed, edge-to-edge layout with no maximum content width — images fill the viewport. The top announcement banner spans 100% width, followed by the header nav also full-width. The main content area uses a multi-column image grid (2–3 columns desktop) with zero or minimal gaps, letting photographs create their own visual structure. Text and links live in the white margins below images, never overlaid. Editorial sections alternate between product grids and full-bleed lifestyle photographs. Vertical rhythm is generous (80–120px section gaps) creating a gallery-walk pacing. The newsletter modal is a fixed bottom-left panel; a dismissible subscription bar sits at the very bottom of the viewport. The overall feel is a museum catalog or editorial print spread, not a typical e-commerce store layout.",
+    "imagery": "Photography is the primary content and brand language. Two coexisting registers: (1) tight black-and-white product-on-hands shots, square or 3:4 cropped, high contrast, the object filling the frame with no lifestyle context; (2) full-color lifestyle photography in warm natural light, earth-toned landscapes, models in motion carrying bags, shot from low angles with shallow depth of field. The grayscale/full-color alternation creates the page's only visual rhythm. No illustration, no 3D renders, no abstract graphics. Images are full-bleed or edge-to-edge in grid cells with zero radius and no borders. Icons are absent or minimal — a simple × for dismiss, nothing more.",
+    "similar": [
+      {
+        "why": "Same editorial leather-goods e-commerce language: monochrome ink-on-paper palette, Sohne-adjacent neo-grotesque type, large ungated product photography, and text-link-only CTAs",
+        "business": "Mismo"
+      },
+      {
+        "why": "Shared quiet-luxury restraint with a nearly all-white canvas, single warm-neutral accent, and image-dominant product grids that let the objects speak",
+        "business": "Cuyana"
+      },
+      {
+        "why": "Identical gallery-walk layout philosophy — generous whitespace, small refined type, no filled buttons, and product photography treated as editorial portraiture",
+        "business": "Aesop"
+      },
+      {
+        "why": "Same museum-catalog pacing with monochrome surface palette, minimal nav chrome, and lifestyle photography that frames objects in hands and natural settings",
+        "business": "Want Les Essentiels"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "inputs": "0px",
+        "modals": "0px",
+        "banners": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "5-8px",
+      "sectionGap": "80-120px",
+      "cardPadding": "12px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Default page canvas, card surface, header/nav background, input fill, modal background"
+      },
+      {
+        "hex": "#f0f0f0",
+        "name": "Bone",
+        "level": 2,
+        "purpose": "Secondary section surface, subtle alternating panel, hairline separator tone"
+      },
+      {
+        "hex": "#a9aea9",
+        "name": "Eucalyptus Mist",
+        "level": 3,
+        "purpose": "Full-bleed announcement banner background — the only chromatic surface tier"
+      }
+    ],
+    "northStar": "Museum vitrine for crafted leather. A quiet, paper-white gallery where warm-black ink labels float beneath large editorial photographs of leather objects held in hands or placed in landscapes, with one muted sage band as the only chromatic interruption.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.35,
+        "letterSpacing": 0.33
+      },
+      {
+        "role": "body-lg",
+        "size": 14,
+        "lineHeight": 1.45,
+        "letterSpacing": 0.21
+      },
+      {
+        "role": "heading-sm",
+        "size": 18,
+        "lineHeight": 1.45,
+        "letterSpacing": 0.27
+      },
+      {
+        "role": "heading",
+        "size": 20,
+        "lineHeight": 1.15,
+        "letterSpacing": 0.3
+      },
+      {
+        "role": "display",
+        "size": 32,
+        "lineHeight": 1.15,
+        "letterSpacing": 0.48
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Announcement Banner",
+        "role": "Full-bleed sage band promoting sales or new releases",
+        "SALE!\")": "a headline (\"25% OFF ZIP WALLETS\")",
+        "description": "Full-width strip spanning the entire viewport, background #a9aea9 (Eucalyptus Mist), text in #1c1717 (Obsidian Ink) at 13–14px Sohne weight 400, centered. Three columns of text: a label (",
+        "and a supporting line in smaller type. Padding approximately 20–30px vertical": "no border"
+      },
+      {
+        "name": "Minimal Header Navigation",
+        "role": "Primary site navigation and utility links",
+        "description": "White (#ffffff) bar over the announcement strip. Logo \\\"MAKR\\\" left-aligned in 13–14px uppercase Obsidian Ink. Nav items (Shop, Info, Journal) left-of-center, Search/Account/Cart right-aligned, all as text-only links in Sohne 400. No background fills, no borders, no icons. Vertical padding ~12–16px. The entire nav reads as a printed colophon, not a web navbar."
+      },
+      {
+        "name": "Text Link (Underlined)",
+        "role": "Default interactive text element used for navigation, product CTAs, and inline references",
+        "description": "Obsidian Ink (#1c1717) at body sizes (12–16px), Sohne 400, with a 1px underline by default. On hover, the underline can thicken or the text can become the sage accent #a9aea9. This is the primary action style for the entire site — there are no filled CTA buttons."
+      },
+      {
+        "name": "Newsletter Subscription Modal",
+        "role": "Email capture overlay shown on first visit",
+        "description": "Fixed-position panel, bottom-left corner. White (#ffffff) or near-white surface with no shadow, no border, no radius. Heading in 13–14px Sohne 400 Obsidian Ink, email input below as a single bottom-bordered line (1px Obsidian Ink border-bottom), placeholder \\\"your@email.com\\\" in muted gray. Submit button is a text link \\\"SUBMIT\\\" in uppercase 12–13px with positive tracking, no background fill. Close (×) icon top-right in 14px Obsidian Ink."
+      },
+      {
+        "name": "Email Input Field",
+        "role": "Text input for email capture and other form fields",
+        "description": "Transparent background, 1px bottom border in Obsidian Ink (#1c1717), no left/right/top border, no radius. Padding: ~1px top/bottom, ~2px left/right (extremely compact). Placeholder text in a muted gray. Font: Sohne 400 at 13–14px. The input is a single ruled line on the canvas, echoing a form field in a printed catalog."
+      },
+      {
+        "name": "Text Submit Button",
+        "role": "Form submission trigger styled as plain text",
+        "description": "Uppercase Sohne 400 at 12–13px, Obsidian Ink, letter-spacing 0.0300em, no background, no border, no radius. Sits inline with the input field. Padding: 12px horizontal, ~6px vertical. On hover, the text becomes the sage #a9aea9 or shifts to a 2px underline."
+      },
+      {
+        "name": "Bottom Subscription Bar",
+        "role": "Persistent site-wide promotional strip with dismiss",
+        "description": "Thin full-width white bar at the very bottom of the viewport. Single line of centered uppercase text in 11–12px Sohne 400 Obsidian Ink, letter-spacing ~0.0300em. Close (×) icon right-aligned in 14px. No background fill, no border-top (or a 1px hairline in #f0f0f0)."
+      },
+      {
+        "name": "Editorial Product Image Grid",
+        "role": "Primary content display for products and journal stories",
+        "description": "Multi-column image grid (typically 2–3 columns on desktop) with zero gaps or very small gaps between images. Images fill their grid cells edge-to-edge with no radius, no borders, no shadows. Mix of black-and-white product-on-hands photography and full-color lifestyle shots. Captions are placed below in the white margin, not overlaid on images."
+      },
+      {
+        "name": "Product Caption Link",
+        "role": "Short descriptive link beneath a product image",
+        "description": "Obsidian Ink 12–13px Sohne 400, centered or left-aligned beneath the image, with an underline. Example pattern: \\\"Zip Luxe 'V' Now Available in Black and Bark Chromexcel\\\" followed by a second-line text link \\\"Shop Bags and Totes\\\" as a secondary action. The product name uses no special styling — only the second-line action is underlined."
+      },
+      {
+        "name": "Lifestyle Photography Block",
+        "role": "Full-bleed editorial imagery for product stories",
+        "description": "Full-width images at natural aspect ratios, no radius, no border, no overlay. Photographed in warm natural light with muted earth tones. May be paired with a single line of caption text in the white space below. Images do the storytelling; UI chrome stays out of the way."
+      },
+      {
+        "name": "Black-and-White Product Photography",
+        "role": "Tight object shots used in product grids",
+        "description": "High-contrast monochrome photographs of leather objects held in hands or placed on neutral surfaces. Cropped tight to the object, often square or 3:4. No color treatment, no duotone — pure grayscale. The juxtaposition with full-color lifestyle shots creates the system's only visual rhythm."
+      },
+      {
+        "name": "Close (×) Icon Button",
+        "role": "Dismiss control for modals, banners, and overlays",
+        "description": "Simple × glyph in 14px Obsidian Ink, no background, no border, no radius. Click target should be padded to ~24px. Used in the newsletter modal, bottom bar, and any dismissible overlay."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The entire interface voice — body, nav, links, headings, buttons, inputs, badges, image captions. Sohne at 400 only (no bold weights detected) gives MAKR its whisper-quiet authority: information is communicated through size and tracking, never through weight contrast. Substitute: Inter, Söhne, or Untitled Sans.",
+        "sizes": "11, 12, 13, 14, 16, 18, 20, 32px",
+        "family": "Sohne Web",
+        "weight": "400",
+        "lineHeight": "1.15, 1.35, 1.40, 1.45, 1.80",
+        "substitute": "Inter, Untitled Sans, or Neue Haas Grotesk",
+        "letterSpacing": "0.0150em, 0.0300em"
+      },
+      {
+        "role": "Reserved for rare technical or product-spec callouts — a monospaced whisper that breaks the neo-grotesque rhythm. Use sparingly: a product code, a material specification, nothing more. Substitute: JetBrains Mono or IBM Plex Mono.",
+        "sizes": "13, 20px",
+        "family": "CircularXXMonoWeb",
+        "weight": "400",
+        "lineHeight": "1.15",
+        "substitute": "JetBrains Mono, IBM Plex Mono",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "MAKR is an editorial e-commerce gallery for crafted leather objects, built on an almost completely achromatic palette where photography is the protagonist. A single near-gray banner tone (with a barely-there sage cast) punctuates the top announcement strip, while everything else — surfaces, text, dividers, links — lives in deep warm-black ink on paper-white. Typography is the Sohne neo-grotesque at its most restrained: small sizes, generous line-height, and positive tracking on uppercase labels read as gallery-wall text, not web UI copy. The layout is image-dominant, asymmetric, and museum-sparse: product objects are photographed on hands, in landscapes, in natural light, with tiny caption links beneath. Components are nearly invisible — underlined text links, ghost inputs, no shadows, no rounded buttons — letting the leather and the photography carry the brand weight.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "**Quick Color Reference**\\n- text: #1c1717 (Obsidian Ink)\\n- background: #ffffff (Paper)\\n- surface alt: #f0f0f0 (Bone)\\n- border: #1c1717 (Obsidian Ink, 1px)\\n- accent banner: #a9aea9 (Eucalyptus Mist)\\n- primary action: no distinct CTA color"
+      }
+    ],
+    "elevationPhilosophy": "MAKR uses no shadows and no z-axis elevation. Surfaces are separated exclusively by whitespace, hairline borders, and the sage announcement band. Depth is communicated through the image hierarchy itself — foreground objects photographed against neutral backgrounds create the only sense of dimensional space."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1c1717",
+          "oklch": {
+            "c": 0.008034837054883963,
+            "h": 17.807411944461087,
+            "l": 0.21060239914779114
+          },
+          "contexts": [
+            "other",
+            "image",
+            "link",
+            "input",
+            "heading",
+            "body",
+            "badge",
+            "button"
+          ],
+          "frequency": 5061,
+          "confidence": 1,
+          "prominence": 430761997.167827,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 23,
+            "link/color": 76,
+            "badge/color": 1,
+            "image/color": 121,
+            "input/color": 2,
+            "other/color": 754,
+            "button/color": 1,
+            "heading/color": 35,
+            "body/borderColor": 92,
+            "link/borderColor": 304,
+            "badge/borderColor": 4,
+            "image/borderColor": 484,
+            "input/borderColor": 8,
+            "other/borderColor": 3012,
+            "button/borderColor": 4,
+            "heading/borderColor": 140
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 3440022.6755167767,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "heading/color": 2,
+            "body/borderColor": 4,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#f0f0f0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9551400502551023
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1619624,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#a9aea9",
+          "oklch": {
+            "c": 0.0090202864325895,
+            "h": 145.4843461008464,
+            "l": 0.7453268793720405
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 830495.6313388373,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e0e0e0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9079194522448294
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 88536.00529028378,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0216197048064859,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.73,
+          "background": "#ffffff",
+          "foreground": "#1c1717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.56,
+          "background": "#f0f0f0",
+          "foreground": "#1c1717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.43,
+          "background": "#e0e0e0",
+          "foreground": "#1c1717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.86,
+          "background": "#a9aea9",
+          "foreground": "#1c1717"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.25,
+          "background": "#a9aea9",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.14,
+          "background": "#f0f0f0",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 147,
+          "properties": [
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 39,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "input",
+            "button"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingTop|heading",
+            "paddingLeft|input",
+            "paddingRight|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 46,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "marginTop|other",
+            "marginBottom|link",
+            "paddingBottom|button",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|other",
+            "paddingTop|other",
+            "paddingBottom|link",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 38,
+          "properties": [
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 29,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 105,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 110,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 278,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 279,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 283,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginLeft",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginLeft|heading",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 284,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Sohne Web Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1013,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "CircularXXMonoWeb-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 140,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link",
+            "other"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "CircularXXMonoWeb-Regular",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "link",
+            "badge",
+            "input"
+          ],
+          "frequency": 761,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "input",
+            "other",
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.015,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "CircularXXMonoWeb-Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Sohne Web Regular",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/bd006a4c-e504-4701-876d-a5afddf7a715.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/fbf00395-d8bf-41ae-90fa-bb9f198cec87.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f2bf6db7-37b6-4394-be97-6bbb2c45c268#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"MAKR design system\",\"item\":\"https://styles.refero.design/style/f2bf6db7-37b6-4394-be97-6bbb2c45c268\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f2bf6db7-37b6-4394-be97-6bbb2c45c268#style-reference\",\"name\":\"MAKR design system reference\",\"headline\":\"MAKR design system | Refero Styles\",\"description\":\"Explore MAKR's light E-commerce design system: Obsidian Ink #1c1717, Paper #ffffff colors, Sohne Web, CircularXXMonoWeb typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f2bf6db7-37b6-4394-be97-6bbb2c45c268\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f2bf6db7-37b6-4394-be97-6bbb2c45c268\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"MAKR\",\"url\":\"https://makr.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f2bf6db7-37b6-4394-be97-6bbb2c45c268#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fbf00395-d8bf-41ae-90fa-bb9f198cec87.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fbf00395-d8bf-41ae-90fa-bb9f198cec87.jpg\",\"caption\":\"Screenshot of MAKR\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fbf00395-d8bf-41ae-90fa-bb9f198cec87.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"MAKR design system\",\"MAKR website design\",\"MAKR colors\",\"MAKR typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Obsidian Ink\",\"Paper\",\"Bone\",\"Eucalyptus Mist\",\"Sohne Web\",\"CircularXXMonoWeb\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"MAKR design system\"},{\"@type\":\"Thing\",\"name\":\"MAKR website design\"},{\"@type\":\"Thing\",\"name\":\"MAKR colors\"},{\"@type\":\"Thing\",\"name\":\"MAKR typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:19:07.647Z\",\"dateModified\":\"2026-04-30T02:19:07.647Z\"}]}"
+}

@@ -1,0 +1,282 @@
+{
+  "color": {
+    "warm-cream": {
+      "$value": "#f6f3f0",
+      "$type": "color",
+      "$description": "Warm Cream — Page canvas, hero and section backgrounds. This off-white with a barely-there pink undertone is the only surface tone used at scale — it warms the entire brand without ever calling attention to itself"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, modal backgrounds, and inverted text on dark buttons. Used sparingly against the cream canvas to create a single step of elevation without shadows"
+    },
+    "ink-charcoal": {
+      "$value": "#3c3c3c",
+      "$type": "color",
+      "$description": "Ink Charcoal — Primary body text, nav links, headings, and the dominant border color. Slightly softer than pure black — the entire interface reads as if printed in warm ink rather than digital black"
+    },
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Maximum-contrast text and strong borders for emphasis moments. Used in place of Ink Charcoal when an element needs to read as a hard rule — list separators, selected states, bold emphasis"
+    },
+    "stone-border": {
+      "$value": "#dedfdb",
+      "$type": "color",
+      "$description": "Stone Border — Hairline dividers and subtle structural borders between sections. A warm pale gray-green that disappears into the cream canvas — visible only as a quiet structural gesture"
+    },
+    "ash-gray": {
+      "$value": "#939393",
+      "$type": "color",
+      "$description": "Ash Gray — Medium-contrast borders, control outlines, and structural separators."
+    },
+    "graphite": {
+      "$value": "#434343",
+      "$type": "color",
+      "$description": "Graphite — Button border and dark-mode modal backgrounds. A middle graphite that defines outlined actions without the harshness of pure black"
+    }
+  },
+  "font": {
+    "neue-haas-grotesk-text": {
+      "$value": "Neue Haas Grotesk Text",
+      "$type": "fontFamily",
+      "$description": "All functional UI typography: nav, body copy, links, buttons, product names, footer text. Weight 500 reserved for nav labels and small emphasis; weight 400 for body and descriptions. The 11px size with +0.023em tracking and uppercase is used for tracked micro-labels (nav, 'SCENT SELECTOR', category tags) — a signature editorial gesture that treats interface labels like magazine captions."
+    },
+    "martina-plant": {
+      "$value": "Martina Plant",
+      "$type": "fontFamily",
+      "$description": "Display serif for section headlines, feature titles, and the large editorial pull-quotes that anchor each page. The 42px display size with tight 1.10 leading and slight +0.014em positive tracking creates a distinctive 'perfume ad' voice — the line-height of 0.72 at this size pulls lines together for a condensed editorial block. Weight 500 adds quiet weight to the larger cuts without going bold."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Martina Plant",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Martina Plant",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Martina Plant",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 0.72
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Martina Plant",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Neue Haas Grotesk Text",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Martina Plant",
+        "fontSize": "42px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "warm-cream-canvas": {
+      "$value": "#f6f3f0",
+      "$type": "color",
+      "$description": "Surface level 0: Page-wide base background — the only dominant surface tone"
+    },
+    "pure-white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Modal popups and elevated content blocks; the single step above the canvas"
+    },
+    "graphite-overlay": {
+      "$value": "#434343",
+      "$type": "color",
+      "$description": "Surface level 2: Dark inverted surfaces for modals and emphasis blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ashleyandco.co",
+      "siteName": "Ashleyandco",
+      "extractedAt": "2026-06-03T21:31:08.203Z",
+      "variant": "extended"
+    }
+  }
+}

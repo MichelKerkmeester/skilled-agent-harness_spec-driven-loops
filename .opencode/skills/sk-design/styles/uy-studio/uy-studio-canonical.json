@@ -1,0 +1,1004 @@
+{
+  "source": "https://styles.refero.design/style/b376d42c-b2cb-4a52-8cec-ebf19cf1883f",
+  "uuid": "b376d42c-b2cb-4a52-8cec-ebf19cf1883f",
+  "name": "UY Studio",
+  "northStar": "Monastic stone gallery — a quiet concrete-walled space where perfume bottles sit on white plinths, lit by one weight-400 voice and four warm grays.",
+  "capturedAt": "2026-07-18T07:49:43.349Z",
+  "meta": {
+    "url": "https://www.uy-studio.com",
+    "siteName": "UY Studio",
+    "extractedAt": "2026-06-03T19:24:56.148Z",
+    "durationMs": 34292,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 174,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use GP at weight 400 for ALL text — from 13px footer notes to 48px display lines. No bold, no semibold, no light variants exist in this system.",
+      "Use Limestone (#d1d3cf) as the page background for every screen. Never substitute pure white (#ffffff) — the warm gray tint is the system's identity.",
+      "Use Soot (#24241f) for all text, icon strokes, and 1px borders. The warm-tinted near-black replaces standard #000 and ties the type to the concrete textures in the photography.",
+      "Apply 0.0390em letter-spacing to display sizes (30px+) and 0.0110em to body sizes (13–16px). The dual-tracking system is how hierarchy is expressed in a single-weight world.",
+      "Use 0px border-radius on all cards, images, and containers. 3px radius is reserved exclusively for text inputs. Sharp edges reinforce the architectural, gallery-like feel.",
+      "Present products as full-bleed photography on Chalk (#e5e5e5) surfaces with no card borders or shadows. The photograph IS the card.",
+      "Use text links with underlines as the primary interaction pattern. Filled buttons in Graphite (#333333) are reserved for single-purpose dark actions and should appear at most once per page."
+    ],
+    "donts": [
+      "Don't introduce bold, semibold, or light font weights. Weight 400 is the only voice — adding weight would break the flat, even texture that defines the system.",
+      "Don't add saturated colors, brand hues, or accent fills. The palette is four warm grays only — any chromatic color would shatter the monastic quality.",
+      "Don't use box-shadow or drop-shadow for elevation. Depth comes from the warm-gray surface stack (Limestone → Chalk → Graphite → Soot), not from shadows.",
+      "Don't round corners on cards, images, or containers. 0px everywhere except inputs. Rounded corners would soften the architectural, museum-pedestal feel.",
+      "Don't use color or weight to indicate interactive states. Use Soot underlines on hover, position shifts on active, and the underline-on-current pattern for navigation state.",
+      "Don't add decorative gradients, patterns, background textures, or ornamental graphics. The only imagery is product photography against real textures.",
+      "Don't use filled, colored, or rounded icon buttons. Icons are stroke-only in Soot, inline with text at the same baseline. The interface is text-first."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#24241f",
+        "name": "Soot",
+        "role": "Primary text, all icon strokes, hairline borders, nav links, footer text — the single dark voice of the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d1d3cf",
+        "name": "Limestone",
+        "role": "Page canvas, announcement bar, nav background — the warm-tinted near-gray that replaces white as the system's base tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Chalk",
+        "role": "Secondary surface, subtle borders, product photo backgrounds — a slightly cooler neutral for layering atop Limestone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Graphite",
+        "role": "Dark button fill — the only filled surface in the system, used sparingly for a single tonal shift from the Soot text",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width container — every section spans edge to edge. Navigation is a single horizontal bar: left-aligned category links, centered wordmark, right-aligned utility links, all on one row. The hero is full-viewport-height photography with centered text overlay. The product grid is a 5-column equal-width layout filling the viewport, separated by 1px Soot dividers. Footer is a horizontal band with three link columns and a newsletter input, all on the Limestone canvas. Vertical rhythm is generous: 96px between major sections, with the hero-to-grid transition being the largest break. No sidebar, no asymmetric compositions — everything is centered or evenly distributed. The page reads top-to-bottom as: announcement → nav → hero → product grid → footer, a clean vertical stack with no deviation.",
+    "imagery": "Product photography is editorial still-life: perfume bottles, candles, and room sprays shot in natural directional light against raw concrete and weathered plaster walls. Products rest on white or off-white plinths, creating a museum-pedestal effect. Full-bleed hero images, contained grid thumbnails with no rounding. Long, dramatic shadows cast across the surfaces. Color treatment is desaturated and warm — amber liquids in glass bottles, natural wax tones, the warm gray of concrete and stone. No lifestyle imagery, no models, no hands — the object alone is the subject, lit like a gallery installation. The photography carries all the visual warmth that the UI refuses to express through color.",
+    "similar": [
+      {
+        "why": "Same single-weight sans-serif typography and monochrome product photography approach, with editorial type that whispers rather than shouts",
+        "business": "Byredo"
+      },
+      {
+        "why": "Same warm-neutral palette and museum-pedestal product presentation, where the object is the hero and the UI stays out of the way",
+        "business": "Aesop"
+      },
+      {
+        "why": "Same raw-material-forward aesthetic and sparse, text-based navigation with zero decorative chrome on the product cards",
+        "business": "Le Labo"
+      },
+      {
+        "why": "Same weight-400-only typography philosophy and warm grayscale palette that treats restraint as the ultimate luxury signal",
+        "business": "The Row"
+      },
+      {
+        "why": "Same full-bleed product photography and minimal text-driven interface where negative space carries the compositional weight",
+        "business": "Mansur Gavriel"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "3px",
+        "buttons": "0px"
+      },
+      "elementGap": "13px",
+      "sectionGap": "96px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#d1d3cf",
+        "name": "Limestone Canvas",
+        "level": 0,
+        "purpose": "Page background, nav, announcement bar — the base warm gray that defines the entire tonal range"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Chalk Surface",
+        "level": 1,
+        "purpose": "Product photography backgrounds, subtle dividers — cooler neutral for the white plinths in product shots"
+      },
+      {
+        "hex": "#333333",
+        "name": "Graphite Button",
+        "level": 2,
+        "purpose": "Rare dark button fill — the only tonal step down from text, used for single-purpose dark actions"
+      },
+      {
+        "hex": "#24241f",
+        "name": "Soot Text",
+        "level": 3,
+        "purpose": "Text, icon strokes, hairline borders — functions as the darkest surface in the tonal stack"
+      }
+    ],
+    "northStar": "Monastic stone gallery — a quiet concrete-walled space where perfume bottles sit on white plinths, lit by one weight-400 voice and four warm grays.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.14
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.17
+      },
+      {
+        "role": "subheading",
+        "size": 30,
+        "lineHeight": 1.2,
+        "letterSpacing": 1.17
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": 1.87
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page brand message strip",
+        "description": "Full-width bar at the very top, Limestone (#d1d3cf) background, Soot (#24241f) text, GP 400 at 13px with 0.14px tracking. Centered text. 1px Soot bottom border. Sits above the nav with no gap."
+      },
+      {
+        "name": "Main Navigation",
+        "role": "Primary site navigation",
+        "description": "Full-width bar, Limestone background, 1px Soot bottom border. Three zones: left-aligned category links (FRAGRANCE COLLECTION ▾, CORE HOMEWEAR, GIFT COLLECTION, CLOTHING), centered wordmark 'UY' at 30px, right-aligned utility links (JOURNAL, THE STUDIO ▾, LOG IN, EUR ▾, cart icon, account icon). All text GP 400, 13px, Soot. Category links have 13px horizontal spacing between items."
+      },
+      {
+        "name": "Hero Image with Overlay Text",
+        "role": "Full-bleed editorial banner",
+        "description": "Edge-to-edge product photography (no border-radius) with centered text overlay. Overlay text is Chalk (#e5e5e5) on the darker portions of the image, GP 400 at 48px, letter-spacing 1.87px. Text is vertically centered. No gradient overlay — text relies on the image's natural contrast zones."
+      },
+      {
+        "name": "Product Card",
+        "role": "Individual product listing in the grid",
+        "description": "Full-bleed product photo on Chalk (#e5e5e5) surface, 0px radius. Below the image: product name and price in GP 400, 15px, Soot (#24241f), centered, 0.17px tracking. Name and price are on the same line or stacked. No card border, no shadow — the product photo IS the card."
+      },
+      {
+        "name": "Product Grid",
+        "role": "5-column product listing",
+        "description": "Equal-width 5-column grid spanning the full viewport width. Each column holds one Product Card. 1px Soot vertical dividers between columns. 1px Soot horizontal divider below the entire grid. No gutters between columns — the dividers create the grid structure."
+      },
+      {
+        "name": "Newsletter Input",
+        "role": "Email signup field",
+        "description": "Single-line text input, no fill, 1px Soot (#24241f) bottom border only (underline style), 3px border-radius. Placeholder 'E-mail' in GP 400, 15px, Soot, 0.17px tracking. No label. The 'JOIN' action is a text link to the right, GP 400, 15px, Soot, with no underline by default."
+      },
+      {
+        "name": "Footer Link Column",
+        "role": "Footer navigation links",
+        "description": "Vertical stack of text links, GP 400, 13px, Soot (#24241f), 0.14px tracking. No bullet points, no icons. Left-aligned. Column header (e.g. 'OPENING TIMES') is uppercase at 13px. 1px Soot top border separates footer from product grid."
+      },
+      {
+        "name": "Language Toggle",
+        "role": "Language selector",
+        "description": "Two-letter codes (EN | DE) separated by a thin Soot vertical bar. GP 400, 13px, Soot. Positioned bottom-left of the hero overlay. Active language is bold by convention — but since weight 400 is the only weight, active state uses a Soot underline instead."
+      },
+      {
+        "name": "Dropdown Nav Link",
+        "role": "Category navigation with submenu indicator",
+        "description": "Standard nav link (GP 400, 13px, Soot) followed by a small downward chevron (▾). The chevron is a text character, not an icon. No background change, no border on hover — the link underline appears on hover."
+      },
+      {
+        "name": "Utility Icon",
+        "role": "Cart and account icons in nav",
+        "description": "Stroke-only icons (bag silhouette, person silhouette) in Soot (#24241f), approximately 16px. No fill. Positioned at the far right of the nav. Icons are inline with text links at the same 13px baseline."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Universal typeface — used for nav, body, headings, buttons, and footer at weight 400 only. The single-weight constraint is the signature: no bold, no light, no medium. Hierarchy comes from size (13→48px) and tracking (0.0110em body, 0.0390em display), not weight contrast. The slight positive tracking gives the type an editorial, architectural quality.",
+        "sizes": "13px, 15px, 16px, 30px, 48px",
+        "family": "GP",
+        "weight": "400",
+        "lineHeight": "1.10–1.77",
+        "substitute": "Inter or DM Sans",
+        "letterSpacing": "0.0110em (body 13–16px), 0.0390em (display 30–48px)"
+      },
+      {
+        "role": "GTStandard-M — detected in extracted data but not described by AI",
+        "sizes": "15px",
+        "family": "GTStandard-M",
+        "weight": "400",
+        "lineHeight": "1.5"
+      }
+    ],
+    "description": "UY operates as a monastic gallery: four warm grays, one weight of type, zero ornament. The entire interface speaks in a single 400-weight voice from 13px captions to 48px display lines, letting whitespace and grid alignment do what color and weight would in a louder system. The palette is almost geological — a limestone canvas, soot text, chalk surfaces, and a single graphite for the rare dark button — all warm-tinted to harmonize with the raw concrete and weathered plaster in the photography. Products are treated as still-life objects on white plinths, presented full-bleed against textured walls with no decorative chrome, UI patterns, or color to compete with the objects themselves.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b376d42c-b2cb-4a52-8cec-ebf19cf1883f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"UY Studio design system\",\"item\":\"https://styles.refero.design/style/b376d42c-b2cb-4a52-8cec-ebf19cf1883f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b376d42c-b2cb-4a52-8cec-ebf19cf1883f#style-reference\",\"name\":\"UY Studio design system reference\",\"headline\":\"UY Studio design system | Refero Styles\",\"description\":\"Explore UY Studio's light E-commerce design system: Soot #24241f, Limestone #d1d3cf colors, GP, GTStandard-M typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/b376d42c-b2cb-4a52-8cec-ebf19cf1883f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b376d42c-b2cb-4a52-8cec-ebf19cf1883f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"UY Studio\",\"url\":\"https://www.uy-studio.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b376d42c-b2cb-4a52-8cec-ebf19cf1883f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f89bf9f2-b704-4ce6-87ed-29551026d0ab.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f89bf9f2-b704-4ce6-87ed-29551026d0ab.jpg\",\"caption\":\"Screenshot of UY Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f89bf9f2-b704-4ce6-87ed-29551026d0ab.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"UY Studio design system\",\"UY Studio website design\",\"UY Studio colors\",\"UY Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Soot\",\"Limestone\",\"Chalk\",\"Graphite\",\"GP\",\"GTStandard-M\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"UY Studio design system\"},{\"@type\":\"Thing\",\"name\":\"UY Studio website design\"},{\"@type\":\"Thing\",\"name\":\"UY Studio colors\"},{\"@type\":\"Thing\",\"name\":\"UY Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:14:31.563Z\",\"dateModified\":\"2026-04-30T02:14:31.563Z\"}]}19:T6e9,## Quick Color Reference\n- text: #24241f (Soot)\n- background: #d1d3cf (Limestone)\n- border: #24241f (Soot, 1px hairline)\n- accent: #d1d3cf (Limestone — the warm gray IS the accent)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Hero Overlay Text**: Centered text over a full-bleed product photograph. GP 400, 48px, color #e5e5e5, letter-spacing 1.87px, line-height 1.10. Vertically centered in the viewport. No background overlay — text relies on the image's natural dark areas for contrast.\n\n2. **Product Card**: Full-bleed product photograph on a #e5e5e5 surface, 0px border-radius, no border, no shadow. Below the image: product name and price in GP 400, 15px, #24241f, centered, letter-spacing 0.17px. The name and price sit on one line or stack with 4px gap. No card padding on the image — the photo fills the column edge to edge.\n\n3. **Navigation Link**: GP 400, 13px, #24241f, letter-spacing 0.14px, text-transform uppercase. No background, no border. On hover: 1px #24241f underline. Active state: permanent underline. 13px horizontal spacing between adjacent links. Chevron ▾ characters for dropdowns are inline text, not icons.\n\n4. **Newsletter Input**: Single-line text input, no background fill, 1px #24241f bottom border only (underline style), 3px border-radius. Placeholder 'E-mail' in GP 400, 15px, #24241f, letter-spacing 0.17px. The 'JOIN' action to the right is a text link in GP 400, 15px, #24241f, with no default underline.\n\n5. **Footer Link Column**: Vertical stack of text links, GP 400, 13px, #24241f, letter-spacing 0.14px, left-aligned. Column header uppercase at 13px. 17px vertical gap between links. 1px #24241f top border above the entire footer block. No icons, no bullets, no dividers between links."
+      },
+      {
+        "title": "The Letter System",
+        "content": "Every product carries a single uppercase letter as its primary brand mark (T, U, S). This letter is rendered in the same GP 400 weight as all other typography, at a large display size on the product label. The letter system is a typographic logo reduced to its most essential element — one character, one weight, one voice. When building new product pages, assign each product line a single letter and render it as a display element on the label. Do not add logos, wordmarks, or secondary marks to product surfaces."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids box-shadows and drop-shadows. Elevation is communicated entirely through the warm-gray surface stack: Limestone (page) → Chalk (product surfaces) → Graphite (dark button) → Soot (text and borders). Where depth is needed, it comes from 1px hairline borders in Soot, not from blur or offset shadows. The only shadows in the system are the natural ones cast by products in the photography."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#24241f",
+          "oklch": {
+            "c": 0.009106091333859053,
+            "h": 107.02002430848431,
+            "l": 0.25850134309891776
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "list",
+            "icon",
+            "input",
+            "image",
+            "heading",
+            "body",
+            "footer",
+            "badge"
+          ],
+          "frequency": 745,
+          "confidence": 1,
+          "prominence": 21959651.83919391,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 12,
+            "body/color": 12,
+            "icon/color": 3,
+            "link/color": 28,
+            "list/color": 12,
+            "nav/stroke": 1,
+            "badge/color": 1,
+            "image/color": 6,
+            "input/color": 1,
+            "other/color": 70,
+            "footer/color": 1,
+            "other/stroke": 2,
+            "heading/color": 6,
+            "nav/borderColor": 32,
+            "body/borderColor": 48,
+            "icon/borderColor": 12,
+            "link/borderColor": 112,
+            "list/borderColor": 48,
+            "badge/borderColor": 4,
+            "image/borderColor": 24,
+            "other/borderColor": 280,
+            "footer/borderColor": 4,
+            "heading/borderColor": 24,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#d1d3cf",
+          "oklch": {
+            "c": 0.005849936488299829,
+            "h": 128.53616808181985,
+            "l": 0.8641571976548647
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "input",
+            "button"
+          ],
+          "frequency": 94,
+          "confidence": 1,
+          "prominence": 8893942.02977802,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/color": 2,
+            "other/color": 12,
+            "button/color": 2,
+            "heading/color": 1,
+            "input/borderColor": 8,
+            "other/borderColor": 48,
+            "button/borderColor": 8,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#e5e5e5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9219060167761346
+          },
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 187328.22214920964,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "button/color": 1,
+            "body/borderColor": 4,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 54150,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.023319338866852713,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 12.37,
+          "background": "#24241f",
+          "foreground": "#e5e5e5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.34,
+          "background": "#d1d3cf",
+          "foreground": "#24241f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.03,
+          "background": "#333333",
+          "foreground": "#e5e5e5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.38,
+          "background": "#333333",
+          "foreground": "#d1d3cf"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.23,
+          "background": "#333333",
+          "foreground": "#24241f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.2,
+          "background": "#d1d3cf",
+          "foreground": "#e5e5e5"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "list",
+            "input"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list",
+            "marginRight|list",
+            "marginBottom|list",
+            "marginLeft|list",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|input",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginRight|heading"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingBottom|other",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "input",
+            "heading",
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "marginBottom|heading",
+            "marginRight|button"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "nav",
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav",
+            "paddingLeft|link",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|image",
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 143,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "GP",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 170,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GTStandard-M",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 13,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.41,
+          "letterSpacing": 0.039,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "icon",
+            "footer",
+            "body",
+            "link",
+            "list",
+            "badge"
+          ],
+          "frequency": 52,
+          "lineHeight": 1.41,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "icon"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.41,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.37,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.77,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "GTStandard-M",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.011,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 48,
+          "family": "GP",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/2a04bb3e-4633-4a16-a4d4-dce1a9e4c4b1.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f89bf9f2-b704-4ce6-87ed-29551026d0ab.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b376d42c-b2cb-4a52-8cec-ebf19cf1883f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"UY Studio design system\",\"item\":\"https://styles.refero.design/style/b376d42c-b2cb-4a52-8cec-ebf19cf1883f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b376d42c-b2cb-4a52-8cec-ebf19cf1883f#style-reference\",\"name\":\"UY Studio design system reference\",\"headline\":\"UY Studio design system | Refero Styles\",\"description\":\"Explore UY Studio's light E-commerce design system: Soot #24241f, Limestone #d1d3cf colors, GP, GTStandard-M typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/b376d42c-b2cb-4a52-8cec-ebf19cf1883f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b376d42c-b2cb-4a52-8cec-ebf19cf1883f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"UY Studio\",\"url\":\"https://www.uy-studio.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b376d42c-b2cb-4a52-8cec-ebf19cf1883f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f89bf9f2-b704-4ce6-87ed-29551026d0ab.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f89bf9f2-b704-4ce6-87ed-29551026d0ab.jpg\",\"caption\":\"Screenshot of UY Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f89bf9f2-b704-4ce6-87ed-29551026d0ab.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"UY Studio design system\",\"UY Studio website design\",\"UY Studio colors\",\"UY Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Soot\",\"Limestone\",\"Chalk\",\"Graphite\",\"GP\",\"GTStandard-M\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"UY Studio design system\"},{\"@type\":\"Thing\",\"name\":\"UY Studio website design\"},{\"@type\":\"Thing\",\"name\":\"UY Studio colors\"},{\"@type\":\"Thing\",\"name\":\"UY Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:14:31.563Z\",\"dateModified\":\"2026-04-30T02:14:31.563Z\"}]}19:T6e9,## Quick Color Reference\n- text: #24241f (Soot)\n- background: #d1d3cf (Limestone)\n- border: #24241f (Soot, 1px hairline)\n- accent: #d1d3cf (Limestone — the warm gray IS the accent)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Hero Overlay Text**: Centered text over a full-bleed product photograph. GP 400, 48px, color #e5e5e5, letter-spacing 1.87px, line-height 1.10. Vertically centered in the viewport. No background overlay — text relies on the image's natural dark areas for contrast.\n\n2. **Product Card**: Full-bleed product photograph on a #e5e5e5 surface, 0px border-radius, no border, no shadow. Below the image: product name and price in GP 400, 15px, #24241f, centered, letter-spacing 0.17px. The name and price sit on one line or stack with 4px gap. No card padding on the image — the photo fills the column edge to edge.\n\n3. **Navigation Link**: GP 400, 13px, #24241f, letter-spacing 0.14px, text-transform uppercase. No background, no border. On hover: 1px #24241f underline. Active state: permanent underline. 13px horizontal spacing between adjacent links. Chevron ▾ characters for dropdowns are inline text, not icons.\n\n4. **Newsletter Input**: Single-line text input, no background fill, 1px #24241f bottom border only (underline style), 3px border-radius. Placeholder 'E-mail' in GP 400, 15px, #24241f, letter-spacing 0.17px. The 'JOIN' action to the right is a text link in GP 400, 15px, #24241f, with no default underline.\n\n5. **Footer Link Column**: Vertical stack of text links, GP 400, 13px, #24241f, letter-spacing 0.14px, left-aligned. Column header uppercase at 13px. 17px vertical gap between links. 1px #24241f top border above the entire footer block. No icons, no bullets, no dividers between links."
+}

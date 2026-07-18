@@ -1,0 +1,255 @@
+{
+  "color": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page background, light-section canvas, inverse-mode text on dark sections"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Dark-section canvas, headline type on light sections, full-bleed background blocks"
+    },
+    "graphite": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Graphite — Body copy, secondary text, hairlines and card borders — the working neutral for content"
+    },
+    "bone": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Bone — Tinted surface for subtle elevation against the white canvas, used for off-white blocks and muted framing"
+    },
+    "steel": {
+      "$value": "#525252",
+      "$type": "color",
+      "$description": "Steel — Muted helper text, caption weight, secondary metadata where Graphite reads too heavy"
+    }
+  },
+  "font": {
+    "neue-montreal": {
+      "$value": "Neue Montreal",
+      "$type": "fontFamily",
+      "$description": "Signature display and heading face — weight 300 for monumental headlines at 178px, weight 400 for subhead and body, weight 500 for emphasized labels. The 178px display line-height of 1.00 lets letterforms stack into a typographic block; 0.05em positive tracking prevents the hairline weights from collapsing at small sizes and adds the wide, airy grotesk character that defines the brand."
+    },
+    "neue-montreal-variable": {
+      "$value": "Neue Montreal Variable",
+      "$type": "fontFamily",
+      "$description": "Variable-axis instance used for interactive and mid-scale elements — links, icons, navigation, and mid-weight display blocks. The variable axis lets weight, optical size, and slant interpolate smoothly for hover and active states without swapping fonts."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback only — appears in non-brand utility contexts where a system font is acceptable"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "27px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 27px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Neue Montreal Variable",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Neue Montreal Variable",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal Variable",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "178px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 178px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "178px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 178px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "85": {
+      "$value": "85px",
+      "$type": "dimension",
+      "$description": "Spacing 85px"
+    },
+    "89": {
+      "$value": "89px",
+      "$type": "dimension",
+      "$description": "Spacing 89px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Light section canvas — the default reading surface"
+    },
+    "bone": {
+      "$value": "#f7f7f7",
+      "$type": "color",
+      "$description": "Surface level 2: Tinted off-white block for subtle contrast against Paper, used for nested surfaces within light sections"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Dark section canvas — the inverted reading surface that resets visual rhythm"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.elvinaprasad.com",
+      "siteName": "Elvina Prasad",
+      "extractedAt": "2026-06-03T21:02:06.817Z",
+      "variant": "extended"
+    }
+  }
+}

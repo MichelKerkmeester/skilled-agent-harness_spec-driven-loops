@@ -1,0 +1,111 @@
+:root {
+  /* Colors */
+  --color-lime-spark: #d2e823;
+  --color-lavender-mist: #e9c0e9;
+  --color-cobalt-band: #2665d6;
+  --color-maroon-plate: #780016;
+  --color-cobalt-deep: #061492;
+  --color-forest-ink: #254f1a;
+  --color-mustard-pop: #d6a337;
+  --color-linen-canvas: #f3f3f1;
+  --color-white-plate: #ffffff;
+  --color-ink-black: #000000;
+  --color-midnight-ink: #1e2330;
+  --color-sage-mute: #676b5f;
+  --color-silver-border: #c7c8cb;
+  --color-charcoal-pill: #222222;
+  --color-concrete-tile: #adadad;
+  --color-leaf-wash: #ebffc5;
+  --color-moss-tint: #e8efd6;
+
+  /* Typography — Font Families */
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-linksans: 'Linksans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-linksans-linksansvf: 'Linksans Linksansvf', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-yerk: 'yerk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.12px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --tracking-body-sm: -0.28px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: -0.16px;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.3;
+  --tracking-body-lg: -0.36px;
+  --text-subheading: 24px;
+  --leading-subheading: 1.2;
+  --tracking-subheading: -0.48px;
+  --text-heading-sm: 28px;
+  --leading-heading-sm: 1.07;
+  --tracking-heading-sm: -0.67px;
+  --text-heading: 51px;
+  --leading-heading: 1.06;
+  --tracking-heading: -2.19px;
+  --text-display: 80px;
+  --leading-display: 1;
+  --tracking-display: -3.44px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-22: 22px;
+  --spacing-24: 24px;
+  --spacing-26: 26px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-65: 65px;
+  --spacing-128: 128px;
+  --spacing-216: 216px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 64-80px;
+  --card-padding: 20-24px;
+  --element-gap: 12-16px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-2xl: 16px;
+  --radius-3xl: 29.09px;
+  --radius-3xl-2: 32px;
+  --radius-3xl-3: 41.6px;
+  --radius-full: 64px;
+  --radius-full-2: 99px;
+  --radius-full-3: 1000px;
+
+  /* Named Radii */
+  --radius-nav: 8px;
+  --radius-tags: 99px;
+  --radius-cards: 32px;
+  --radius-inputs: 8px;
+  --radius-buttons: 99px;
+  --radius-largecards: 64px;
+  --radius-organicshapes: 1000px;
+  --radius-smallelements: 16px;
+
+  /* Surfaces */
+  --surface-linen-canvas: #f3f3f1;
+  --surface-white-plate: #ffffff;
+  --surface-leaf-wash: #ebffc5;
+  --surface-moss-tint: #e8efd6;
+  --surface-concrete-tile: #adadad;
+  --surface-cobalt-band: #2665d6;
+  --surface-maroon-plate: #780016;
+}

@@ -1,0 +1,26 @@
+@theme {
+  /* Colors */
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+
+  /* Typography */
+  --font-helveticanowdisplay: 'HelveticaNowDisplay', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-locomotivenew: 'LocomotiveNew', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 15px;
+  --leading-body: 1.3;
+  --text-heading-sm: 26px;
+  --leading-heading-sm: 1.2;
+  --text-heading-lg: 70px;
+  --leading-heading-lg: 1.1;
+  --text-display: 110px;
+  --leading-display: 1;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-20: 20px;
+  --spacing-40: 40px;
+  --spacing-160: 160px;
+}

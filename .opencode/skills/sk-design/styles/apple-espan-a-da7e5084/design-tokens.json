@@ -1,0 +1,487 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#1d1d1f",
+      "$type": "color",
+      "$description": "Obsidian — Primary dark canvas, card surfaces on dark sections, primary text on light backgrounds — the signature near-black that defines Apple's product stage"
+    },
+    "frost-white": {
+      "$value": "#f5f5f7",
+      "$type": "color",
+      "$description": "Frost White — Primary text on dark backgrounds, light section surfaces, subtle dividers — slightly warm white that softens contrast against pure black"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Deepest dark canvas for hero and feature stages, footer background — used where absolute darkness amplifies product photography"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Light section backgrounds, button text on dark fills, icon fills — the bright counterweight in alternating dark/light page rhythm"
+    },
+    "carbon": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Carbon — Elevated surface above black, badge backgrounds — sits one step lighter than pure black for subtle layered depth"
+    },
+    "platinum": {
+      "$value": "#86868b",
+      "$type": "color",
+      "$description": "Platinum — Muted body text, secondary descriptions, subtitle lines, caption text — the conversational gray that recedes behind primary copy"
+    },
+    "graphite": {
+      "$value": "#333336",
+      "$type": "color",
+      "$description": "Graphite — Subtle elevated surfaces, secondary button backgrounds, nav dividers — quiet structural tone between obsidian and black"
+    },
+    "silver-mist": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Silver Mist — Nav borders, button outlines, inactive UI chrome — the lightest neutral that still reads as structural rather than decorative"
+    },
+    "smoke": {
+      "$value": "#424245",
+      "$type": "color",
+      "$description": "Smoke — Hairline borders, low-contrast dividers on dark sections"
+    },
+    "apple-blue": {
+      "$value": "#0071e3",
+      "$type": "color",
+      "$description": "Apple Blue — Primary CTA fill (Comprar button), primary action background — the single filled chromatic button color on the page, vivid saturated blue against black creates unmistakable tap target"
+    },
+    "link-blue": {
+      "$value": "#0066cc",
+      "$type": "color",
+      "$description": "Link Blue — Text links, inline link text, Learn more arrows — deeper than Apple Blue, optimized for readability on white"
+    },
+    "halo-blue": {
+      "$value": "#2997ff",
+      "$type": "color",
+      "$description": "Halo Blue — Lighter link variant, accent text on dark backgrounds, secondary link color — brighter blue for dark-surface legibility"
+    },
+    "signal-orange": {
+      "$value": "#f56900",
+      "$type": "color",
+      "$description": "Signal Orange — Orange outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    },
+    "iris-violet": {
+      "$value": "#8668ff",
+      "$type": "color",
+      "$description": "Iris Violet — Secondary category accent, alternate product-line color coding — used sparingly to differentiate categories from the orange-tagged ones"
+    },
+    "reef-teal": {
+      "$value": "#00a1b3",
+      "$type": "color",
+      "$description": "Reef Teal — Tertiary category accent, alternate product-line color coding — cool counterpoint to the warm orange/iris palette"
+    }
+  },
+  "font": {
+    "sf-pro-display": {
+      "$value": "SF Pro Display",
+      "$type": "fontFamily",
+      "$description": "All headlines, display text, section titles, hero copy. Used at dramatic scale (56–80px) for hero and section openers, contracting to 19–32px for feature card titles. Weight 600–700 with heavy negative letter-spacing creates the signature Apple headline density — characters pull tight at large sizes."
+    },
+    "sf-pro-text": {
+      "$value": "SF Pro Text",
+      "$type": "fontFamily",
+      "$description": "Body copy, navigation, buttons, captions, footnotes, legal text. The utility face for everything below headlines. Weight 400 for body paragraphs, 600 for nav items, buttons, and labels. Generous line-height (1.47–1.83) for body creates breathing room; tight (1.00–1.24) for nav/buttons keeps interactive elements compact."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "10px",
+        "fontWeight": 600,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.83
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "17px",
+        "fontWeight": 600,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 17px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 17px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "17px",
+        "fontWeight": 600,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 17px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 17px"
+    },
+    "lg-8": {
+      "$value": {
+        "fontFamily": "SF Pro Display",
+        "fontSize": "19px",
+        "fontWeight": 600,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-8 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "SF Pro Display",
+        "fontSize": "21px",
+        "fontWeight": 600,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 21px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "SF Pro Display",
+        "fontSize": "21px",
+        "fontWeight": 600,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "SF Pro Display",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "SF Pro Display",
+        "fontSize": "28px",
+        "fontWeight": 600,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "SF Pro Display",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "SF Pro Text",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "SF Pro Display",
+        "fontSize": "56px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "SF Pro Display",
+        "fontSize": "80px",
+        "fontWeight": 600,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "76": {
+      "$value": "76px",
+      "$type": "dimension",
+      "$description": "Spacing 76px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "980px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "pure-black-stage": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Hero, feature stages, dramatic product photography backgrounds"
+    },
+    "carbon-layer": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated badges, subtle layering above pure black"
+    },
+    "obsidian-card": {
+      "$value": "#1d1d1f",
+      "$type": "color",
+      "$description": "Surface level 2: Card surfaces on dark sections, footer, content panels over black"
+    },
+    "graphite-surface": {
+      "$value": "#333336",
+      "$type": "color",
+      "$description": "Surface level 3: Subtle elevated panels, secondary button fills on dark"
+    },
+    "frost-white-panel": {
+      "$value": "#f5f5f7",
+      "$type": "color",
+      "$description": "Surface level 4: Light section content blocks, subtle off-white bands"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 5: Full light sections, clean product detail bands"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.apple.com/apple-watch-ultra-3",
+      "siteName": "Apple (España)",
+      "extractedAt": "2026-06-03T20:30:17.041Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,76 @@
+@theme {
+  /* Colors */
+  --color-obsidian: #08080a;
+  --color-onyx: #040406;
+  --color-carbon: #121317;
+  --color-graphite: #1c1d22;
+  --color-slate: #2e3038;
+  --color-smoke: #464853;
+  --color-ash: #5e616e;
+  --color-steel: #777a88;
+  --color-fog: #9194a1;
+  --color-mist: #acafb9;
+  --color-silver: #c7c9d1;
+  --color-bone: #e2e3e9;
+  --color-paper-white: #ffffff;
+  --color-copper: #cc9166;
+  --color-gilded-gradient: #ae9357;
+
+  /* Typography */
+  --font-ivy-presto: 'Ivy Presto', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-eyebrow: 13px;
+  --leading-eyebrow: 1;
+  --tracking-eyebrow: -0.26px;
+  --text-body-xs: 16px;
+  --leading-body-xs: 1.5;
+  --text-body-sm: 18px;
+  --leading-body-sm: 1.38;
+  --tracking-body-sm: -0.36px;
+  --text-body: 20px;
+  --leading-body: 1.38;
+  --tracking-body: -0.8px;
+  --text-subheading: 24px;
+  --leading-subheading: 1;
+  --tracking-subheading: -0.31px;
+  --text-heading-sm: 44px;
+  --leading-heading-sm: 1.38;
+  --tracking-heading-sm: 0.44px;
+  --text-heading: 52px;
+  --leading-heading: 1.13;
+  --tracking-heading: 0.52px;
+  --text-heading-lg: 64px;
+  --leading-heading-lg: 1.13;
+  --tracking-heading-lg: 0.64px;
+  --text-display: 88px;
+  --leading-display: 1;
+  --tracking-display: 0.88px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-9: 9px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-22: 22px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-105: 105px;
+  --spacing-224: 224px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-lg: 10px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px;
+}

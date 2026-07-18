@@ -1,0 +1,1366 @@
+{
+  "source": "https://styles.refero.design/style/34b4856c-cc2b-4164-ab90-1b87cf8e0213",
+  "uuid": "34b4856c-cc2b-4164-ab90-1b87cf8e0213",
+  "name": "Everlane",
+  "northStar": "Minimalist atelier on raw linen. White walls, bare architecture, a single sage-green ribbon of light.",
+  "capturedAt": "2026-07-18T09:18:50.255Z",
+  "meta": {
+    "url": "https://everlane.com",
+    "siteName": "Everlane",
+    "extractedAt": "2026-06-03T20:07:10.848Z",
+    "durationMs": 30276,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 505,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all UI text in Maison Neue Book (or Inter substitute) at 400 — weight 700 is reserved for inline emphasis, never for standalone headlines",
+      "Use uppercase with tracking 0.033-0.067em for every label, nav item, product name, and headline — this is the system's signature",
+      "Use Pistachio Wash (#d9e9bb) exclusively for the top promo bar; never apply it to buttons, cards, or section backgrounds",
+      "Use Text Link CTA pattern (underlined uppercase 12px) as the only interactive component — no filled buttons, no outlined buttons",
+      "Keep all corners sharp: 0px radius on cards, buttons, images, inputs, and tags — rounding would break the editorial print aesthetic",
+      "Let photography fill the full viewport width for hero and editorial sections — no max-width container, no gutters around imagery",
+      "Use #c8c0b8 (Linen) as the only warm surface for editorial brand-story bands; everything else stays white or achromatic"
+    ],
+    "donts": [
+      "Do not introduce colored buttons, badges, or filled CTAs — the system has no primary action color and never should",
+      "Do not add drop shadows, box-shadows, or any elevation to cards, images, or product tiles — surfaces are flat and flush",
+      "Do not use rounded corners on any element — 0px radius is non-negotiable across the entire system",
+      "Do not set body text in anything other than 400 weight — bolding body copy breaks the restrained editorial voice",
+      "Do not use color to create hierarchy — rely on size, tracking, and uppercase/lowercase contrast instead",
+      "Do not add decorative dividers, ornamental rules, or graphic flourishes between sections — rely on whitespace and Linen surface shifts",
+      "Do not use Pistachio Wash as a hover state, focus ring, or link color — it is strictly a promotional surface treatment"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Onyx",
+        "role": "Primary text, icons, hairline borders, nav typography, footer text — the dominant ink across every surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, product card backgrounds, hero text overlays, input fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#121212",
+        "name": "Soot",
+        "role": "Dark feature sections, inverted text on light surfaces, high-contrast blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#161912",
+        "name": "Ink",
+        "role": "Near-black body text variant, deep borders — virtually indistinguishable from Onyx but carries a barely-warm cast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4c4c4c",
+        "name": "Graphite",
+        "role": "Secondary body text, muted descriptions, helper copy beneath headlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#737373",
+        "name": "Slate",
+        "role": "Tertiary text, captions, price labels, disabled links",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9b9b9b",
+        "name": "Ash",
+        "role": "Subtle borders, dividers between product tiles, low-emphasis separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c8c0b8",
+        "name": "Linen",
+        "role": "Warm taupe surface for editorial bands, soft section backgrounds — the only chromatic neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d9e9bb",
+        "name": "Pistachio Wash",
+        "role": "Promotional bar fill, seasonal event accent — the single chromatic note in the entire system, used sparingly for time-bound urgency",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width container on any section. Each section edge runs to the viewport edge. Vertical rhythm: promo bar (40-48px) → nav (56px) → full-bleed hero (600px+) → editorial split bands alternating image-left/text-right → product grids in 4 columns → footer. Section transitions are seamless — no horizontal rules, no cards, no boxed containers. Spacing between major sections is 64-80px. The text blocks within editorial splits are centered vertically and constrained to ~480px max-width. Navigation is a sticky top bar with the wordmark centered. No sidebar, no mega-menu panels — nav links route to destination pages directly.",
+    "imagery": "Photography dominates the visual system at roughly 70-80% of screen real estate on key pages. Treatment is editorial fashion editorial: full-bleed, sharp-edged, no masks or rounded crops. Models are shot in minimal architectural environments — concrete walls, beige plaster, natural light — to keep focus on garments. Color treatment is naturalistic with warm neutral grading (beiges, taupes, soft blacks). Product photography is shot on pure white/light gray seamless backgrounds with no lifestyle context — the garment IS the hero. No illustrations, no abstract graphics, no 3D renders, no icon-based imagery. Icon usage is limited to tiny utility icons (search, account, bag) rendered as 1px stroke outlines in Onyx.",
+    "similar": [
+      {
+        "why": "Same editorial restraint — full-bleed photography, uppercase tracked labels, near-zero color, no buttons or shadows, type-as-ornament approach",
+        "business": "Aesop"
+      },
+      {
+        "why": "Identical minimalist fashion language — all-white canvas, sharp-edged product tiles, widely tracked uppercase labels, warm neutral photography on plaster backgrounds",
+        "business": "The Row"
+      },
+      {
+        "why": "Shared monochrome Scandinavian fashion aesthetic — full-bleed editorial photography, no decorative chrome, uppercase wordmark, sharp 0px corners throughout",
+        "business": "Toteme"
+      },
+      {
+        "why": "Same tight grid product layouts with flush tiles, uppercase tracked product names, prices directly below — the fashion e-commerce minimalism pattern",
+        "business": "M.Gemi"
+      },
+      {
+        "why": "Editorial fashion brand using generous whitespace, uppercase tracking on all UI labels, full-bleed campaign imagery, and zero decorative shadows or borders",
+        "business": "COS"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64-80px",
+      "cardPadding": "",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Base page background, dominant surface across most screens"
+      },
+      {
+        "hex": "#d9e9bb",
+        "name": "Promo Bar",
+        "level": 1,
+        "purpose": "Top announcement strip for sales and events"
+      },
+      {
+        "hex": "#c8c0b8",
+        "name": "Editorial Band",
+        "level": 2,
+        "purpose": "Warm taupe section backgrounds for brand-story content"
+      },
+      {
+        "hex": "#121212",
+        "name": "Dark Section",
+        "level": 3,
+        "purpose": "Inverted feature blocks, footer, high-contrast editorial moments"
+      },
+      {
+        "hex": "#000000",
+        "name": "Deepest Surface",
+        "level": 4,
+        "purpose": "Full-black closures, dramatic hero backgrounds"
+      }
+    ],
+    "northStar": "Minimalist atelier on raw linen. White walls, bare architecture, a single sage-green ribbon of light.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.4
+      },
+      {
+        "role": "heading",
+        "size": 20,
+        "lineHeight": 1.25,
+        "letterSpacing": 0.8
+      },
+      {
+        "role": "heading-lg",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 1.2
+      },
+      {
+        "role": "display",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": 1.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Promo Bar",
+        "role": "Seasonal sale announcement strip",
+        "description": "Full-width band at #d9e9bb (Pistachio Wash), 40-48px tall, centered uppercase text in Onyx at 12px weight 400 with 0.033em tracking. Items separated by 24-32px gaps. No borders, no radius. Single chromatic element in the system — replace or remove for non-promotional periods."
+      },
+      {
+        "name": "Primary Navigation",
+        "role": "Site-wide top navigation",
+        "description": "White background, three-zone layout: left-aligned nav links (WOMEN, MEN, SUSTAINABILITY, EVERWORLD) at 12px uppercase with 0.020em tracking in Onyx, centered wordmark in Onyx at ~20px with wide tracking, right-aligned utility links (SEARCH, ACCOUNT, BAG) in same style. ~56px tall. Active nav item gets a thin Onyx underline."
+      },
+      {
+        "name": "Hero Overlay",
+        "role": "Full-bleed editorial homepage hero",
+        "description": "Edge-to-edge photograph, minimum 600px tall. Headline in white uppercase 24-32px, weight 400, tracking 0.050-0.067em, positioned lower-left over the image. Subhead in white at 14-15px, weight 400, one or two lines. CTA is a text link in white with thin underline, 12px uppercase, 0.040em tracking — no button chrome. No dark gradient overlay; text sits directly on the photograph relying on contrast zones."
+      },
+      {
+        "name": "Editorial Split Section",
+        "role": "Brand storytelling block",
+        "description": "50/50 split: large photograph left, text block right on white. Headline in Onyx uppercase at 20-24px with 0.043-0.060em tracking. Body paragraphs in Graphite at 14-15px, weight 400, generous line-height (1.6-1.8). Text block vertically centered, max-width ~480px. Followed by a text-link CTA with thin Onyx underline."
+      },
+      {
+        "name": "Product Card",
+        "role": "Individual product tile in grid",
+        "description": "Sharp-edged rectangle, zero radius. Full-width product photograph with no border or padding. Below image: product name at 12px uppercase Onyx with 0.033em tracking, then price at 12px Onyx directly beneath. No card background, no shadow, no hover state beyond subtle image opacity shift. ~16px vertical gap between image and text."
+      },
+      {
+        "name": "Product Grid",
+        "role": "4-column product listing",
+        "description": "4 equal-width columns on desktop, 2 on tablet, 1 on mobile. Column gap 0px (items separated only by hairline borders). Section title above grid in 12px uppercase Onyx with 0.033em tracking, left-aligned with no decoration. Optional 1px Ash divider beneath the section label."
+      },
+      {
+        "name": "Text Link CTA",
+        "role": "Primary call-to-action element",
+        "description": "No button — the system uses underlined text links. 12px uppercase Onyx with 0.040em tracking, 1px solid Onyx underline offset 4px below baseline. Hover darkens to #4c4c4c (Graphite). No fill, no border, no padding, no radius. This is the only interactive component pattern."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Category or collection label",
+        "description": "Uppercase Onyx at 12-14px, weight 400, tracking 0.033-0.040em. Left-aligned. No decorative lines, no spacing flourishes. Sits directly above content with 16-24px margin-bottom."
+      },
+      {
+        "name": "Price Label",
+        "role": "Product price display",
+        "description": "Onyx at 12px weight 400, no tracking adjustment from body. Positioned directly below product name with 4px gap. Currency symbol (€, $, etc.) inherits same size. No strikethrough for sale prices in primary data — keep minimal."
+      },
+      {
+        "name": "Footer",
+        "role": "Site-wide footer",
+        "description": "White or very light gray background, multi-column link grid. Column headers in 12px uppercase Onyx with 0.033em tracking. Links below in 12-14px Onyx weight 400, stacked with 8px vertical gap. Hairline 1px Ash divider above footer zone. Generous 48-64px top padding."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary workhorse for nav, body, labels, prices, and most UI — used at 400 for body, 700 for emphasized inline text and section anchors",
+        "sizes": "10px, 12px, 14px, 15px, 16px, 20px, 24px, 32px",
+        "family": "Maison Neue Book",
+        "weight": "400, 700",
+        "lineHeight": "1.00–2.25",
+        "substitute": "Inter, Helvetica Neue, Neue Haas Grotesk",
+        "letterSpacing": "Ranges from 0.020em at 12px to 0.067em at 32px — tracking widens as size increases, reflecting the uppercase headline convention"
+      },
+      {
+        "role": "Rare mid-weight emphasis for sub-headers and category labels — the half-step between Book and Book Bold",
+        "sizes": "12px",
+        "family": "Maison Neue Demi",
+        "weight": "600",
+        "lineHeight": "1.33",
+        "substitute": "Inter Semi Bold, Helvetica Neue Medium",
+        "letterSpacing": "0.0200em"
+      },
+      {
+        "role": "Secondary body variant for longer-form descriptive paragraphs in editorial sections",
+        "sizes": "12px, 16px, 24px",
+        "family": "Maison Neue",
+        "weight": "400",
+        "lineHeight": "1.33–1.50",
+        "substitute": "Inter, Helvetica Neue",
+        "letterSpacing": "0.0200em, 0.0400em"
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "GTStandard-M — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "GTStandard-M",
+        "weight": "400",
+        "lineHeight": "1.5",
+        "letterSpacing": "0.038"
+      }
+    ],
+    "description": "Everlane operates as a minimalist editorial fashion catalogue: near-total achromatic palette, one soft sage accent reserved for promotional urgency, and Maison Neue set almost entirely in uppercase with wide tracking. Photography carries nearly all visual weight — full-bleed editorial shots and tightly cropped product images sit on white canvases with zero decoration, zero shadows, and zero chrome. Type is the only ornament: tracked uppercase headings float over imagery, body copy stays minimal and quiet. Components are stripped to their essentials — thin text links, sharp-edged product tiles, no buttons, no cards, no panels. The result reads less like a storefront and more like a printed lookbook translated to screen.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/34b4856c-cc2b-4164-ab90-1b87cf8e0213#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Everlane design system\",\"item\":\"https://styles.refero.design/style/34b4856c-cc2b-4164-ab90-1b87cf8e0213\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/34b4856c-cc2b-4164-ab90-1b87cf8e0213#style-reference\",\"name\":\"Everlane design system reference\",\"headline\":\"Everlane design system | Refero Styles\",\"description\":\"Explore Everlane's light E-commerce design system: Onyx #000000, Paper White #ffffff colors, Maison Neue Book, Maison Neue Demi typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/34b4856c-cc2b-4164-ab90-1b87cf8e0213\",\"mainEntityOfPage\":\"https://styles.refero.design/style/34b4856c-cc2b-4164-ab90-1b87cf8e0213\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Everlane\",\"url\":\"https://everlane.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/34b4856c-cc2b-4164-ab90-1b87cf8e0213#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/df3df32a-d310-4536-8369-132fe866f03b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/df3df32a-d310-4536-8369-132fe866f03b.jpg\",\"caption\":\"Screenshot of Everlane\"},\"image\":\"https://images.refero.design/styles/refero.design/image/df3df32a-d310-4536-8369-132fe866f03b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Everlane design system\",\"Everlane website design\",\"Everlane colors\",\"Everlane typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Onyx\",\"Paper White\",\"Soot\",\"Ink\",\"Maison Neue Book\",\"Maison Neue Demi\",\"Maison Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Everlane design system\"},{\"@type\":\"Thing\",\"name\":\"Everlane website design\"},{\"@type\":\"Thing\",\"name\":\"Everlane colors\"},{\"@type\":\"Thing\",\"name\":\"Everlane typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-01-30T20:38:26.000Z\",\"dateModified\":\"2026-01-30T20:38:26.000Z\"}]}19:T5d2,Quick Color Reference:\n- text: #000000 (Onyx)\n- background: #ffffff (Paper White)\n- border: #9b9b9b (Ash) for dividers, #000000 for active states\n- accent: #d9e9bb (Pistachio Wash) — promo bar only\n- secondary surface: #c8c0b8 (Linen) for editorial bands\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Create a product grid section: 4 equal columns, 0px column gap, no card backgrounds, no borders, no shadows. Section label 'SHOP CULT FAVORITES' in Onyx 12px uppercase letter-spacing 0.40px (0.033em) with 16px margin-bottom. Each product tile: full-bleed product photo (no padding), then 12px uppercase Onyx product name with 0.40px tracking, then 12px Onyx price directly below with 4px gap.\n\n\n4. Create the promo bar: full-width #d9e9bb band, 44px tall, centered content. Items 'SPRING ESSENTIALS EVENT' and 'UP TO 40% OFF' and 'SHOP WOMEN' and 'SHOP MEN' in Onyx 12px weight 400, uppercase, letter-spacing 0.40px, separated by 32px gaps. No borders, no radius.\n\n5. Create a text-link navigation: white background, 56px tall. Left zone: 'WOMEN MEN SUSTAINABILITY EVERWORLD' in Onyx 12px uppercase letter-spacing 0.24px. Center zone: 'EVERLANE' wordmark in Onyx 20px uppercase letter-spacing 0.80px. Right zone: 'SEARCH ACCOUNT BAG' in Onyx 12px uppercase letter-spacing 0.24px. Active item gets 1px Onyx underline at baseline."
+      },
+      {
+        "title": "Uppercase Tracking Convention",
+        "content": "The signature typographic move is uppercase text with wide tracking across all sizes — from 10px nav labels to 32px hero headlines. Smaller text uses less absolute tracking but proportionally more (0.040em at 12px), while larger text uses more absolute pixels but similar em ratios. This is a print-editorial convention adapted to screen: every label, price, and heading reads as if typeset in a fashion magazine. Body paragraphs in mixed case are the quiet exception, not the rule. Never set headlines or UI labels in lowercase — the system would lose its entire voice."
+      }
+    ],
+    "elevationPhilosophy": "The system intentionally eliminates all shadows. Surfaces are defined by flat color shifts (white → Linen → dark) and generous whitespace rather than elevation. This is a deliberate editorial-print decision: no component floats, no card lifts off the page, no depth illusion exists. Hierarchy is built through scale, tracking, and photography scale alone."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "icon",
+            "nav",
+            "button",
+            "hero",
+            "image",
+            "heading",
+            "footer",
+            "list"
+          ],
+          "frequency": 2038,
+          "confidence": 1,
+          "prominence": 81908291.89390637,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "other",
+            "heading",
+            "body",
+            "input",
+            "icon",
+            "button"
+          ],
+          "frequency": 217,
+          "confidence": 1,
+          "prominence": 1714484.8895842163,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9b9b9b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6894878914251888
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 314331.01584537665,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "link",
+            "other",
+            "heading",
+            "body",
+            "input"
+          ],
+          "frequency": 66,
+          "confidence": 1,
+          "prominence": 230996.67637263195,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d9e9bb",
+          "oklch": {
+            "c": 0.06310520481201633,
+            "h": 123.23652763080302,
+            "l": 0.9103216728477791
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 135375,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#737373",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5555267576690717
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 66411.83943241487,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c8c0b8",
+          "oklch": {
+            "c": 0.014307019421028423,
+            "h": 67.62432715625536,
+            "l": 0.8120465984547693
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 45600,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#161912",
+          "oklch": {
+            "c": 0.014190718218368044,
+            "h": 126.49246608855128,
+            "l": 0.20759141034865672
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 120,
+          "confidence": 1,
+          "prominence": 43464.298856559006,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4c4c4c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.41653969239784205
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "link",
+            "heading"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 21173.045522250668,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0019192729658978752,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#121212",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.77,
+          "background": "#ffffff",
+          "foreground": "#161912"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.32,
+          "background": "#d9e9bb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.56,
+          "background": "#d9e9bb",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.81,
+          "background": "#d9e9bb",
+          "foreground": "#161912"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.69,
+          "background": "#c8c0b8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.43,
+          "background": "#c8c0b8",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.89,
+          "background": "#c8c0b8",
+          "foreground": "#161912"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.59,
+          "background": "#ffffff",
+          "foreground": "#4c4c4c"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.68,
+          "background": "#d9e9bb",
+          "foreground": "#4c4c4c"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.78,
+          "background": "#c8c0b8",
+          "foreground": "#4c4c4c"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.74,
+          "background": "#ffffff",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.43,
+          "background": "#000000",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#121212",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.69,
+          "background": "#d9e9bb",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.64,
+          "background": "#c8c0b8",
+          "foreground": "#737373"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.45,
+          "background": "#000000",
+          "foreground": "#4c4c4c"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.18,
+          "background": "#121212",
+          "foreground": "#4c4c4c"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.8,
+          "background": "#c8c0b8",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 0,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 19,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "columnGap",
+            "marginTop",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 46,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 19,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "marginRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "columnGap",
+            "marginRight",
+            "rowGap",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 34,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 71,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 83,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 113,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 149,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Maison Neue Book",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 451,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Maison Neue",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 39,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Maison Neue Demi",
+          "source": "custom",
+          "weights": [
+            600
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GTStandard-M",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.024,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 53,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Maison Neue Demi",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "list"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.8,
+          "letterSpacing": 0.043,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.8,
+          "letterSpacing": 0.043,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.067,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "link",
+            "image",
+            "footer"
+          ],
+          "frequency": 223,
+          "lineHeight": 1.8,
+          "letterSpacing": 0.038,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.038,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GTStandard-M",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.038,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.35,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Maison Neue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.25,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Maison Neue Book",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1da79de9-d08a-434f-9968-e021a7bc9c7d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/df3df32a-d310-4536-8369-132fe866f03b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/34b4856c-cc2b-4164-ab90-1b87cf8e0213#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Everlane design system\",\"item\":\"https://styles.refero.design/style/34b4856c-cc2b-4164-ab90-1b87cf8e0213\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/34b4856c-cc2b-4164-ab90-1b87cf8e0213#style-reference\",\"name\":\"Everlane design system reference\",\"headline\":\"Everlane design system | Refero Styles\",\"description\":\"Explore Everlane's light E-commerce design system: Onyx #000000, Paper White #ffffff colors, Maison Neue Book, Maison Neue Demi typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/34b4856c-cc2b-4164-ab90-1b87cf8e0213\",\"mainEntityOfPage\":\"https://styles.refero.design/style/34b4856c-cc2b-4164-ab90-1b87cf8e0213\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Everlane\",\"url\":\"https://everlane.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/34b4856c-cc2b-4164-ab90-1b87cf8e0213#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/df3df32a-d310-4536-8369-132fe866f03b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/df3df32a-d310-4536-8369-132fe866f03b.jpg\",\"caption\":\"Screenshot of Everlane\"},\"image\":\"https://images.refero.design/styles/refero.design/image/df3df32a-d310-4536-8369-132fe866f03b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Everlane design system\",\"Everlane website design\",\"Everlane colors\",\"Everlane typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Onyx\",\"Paper White\",\"Soot\",\"Ink\",\"Maison Neue Book\",\"Maison Neue Demi\",\"Maison Neue\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Everlane design system\"},{\"@type\":\"Thing\",\"name\":\"Everlane website design\"},{\"@type\":\"Thing\",\"name\":\"Everlane colors\"},{\"@type\":\"Thing\",\"name\":\"Everlane typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-01-30T20:38:26.000Z\",\"dateModified\":\"2026-01-30T20:38:26.000Z\"}]}19:T5d2,Quick Color Reference:\n- text: #000000 (Onyx)\n- background: #ffffff (Paper White)\n- border: #9b9b9b (Ash) for dividers, #000000 for active states\n- accent: #d9e9bb (Pistachio Wash) — promo bar only\n- secondary surface: #c8c0b8 (Linen) for editorial bands\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Create a product grid section: 4 equal columns, 0px column gap, no card backgrounds, no borders, no shadows. Section label 'SHOP CULT FAVORITES' in Onyx 12px uppercase letter-spacing 0.40px (0.033em) with 16px margin-bottom. Each product tile: full-bleed product photo (no padding), then 12px uppercase Onyx product name with 0.40px tracking, then 12px Onyx price directly below with 4px gap.\n\n\n4. Create the promo bar: full-width #d9e9bb band, 44px tall, centered content. Items 'SPRING ESSENTIALS EVENT' and 'UP TO 40% OFF' and 'SHOP WOMEN' and 'SHOP MEN' in Onyx 12px weight 400, uppercase, letter-spacing 0.40px, separated by 32px gaps. No borders, no radius.\n\n5. Create a text-link navigation: white background, 56px tall. Left zone: 'WOMEN MEN SUSTAINABILITY EVERWORLD' in Onyx 12px uppercase letter-spacing 0.24px. Center zone: 'EVERLANE' wordmark in Onyx 20px uppercase letter-spacing 0.80px. Right zone: 'SEARCH ACCOUNT BAG' in Onyx 12px uppercase letter-spacing 0.24px. Active item gets 1px Onyx underline at baseline."
+}

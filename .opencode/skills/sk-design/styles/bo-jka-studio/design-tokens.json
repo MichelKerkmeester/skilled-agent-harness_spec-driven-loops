@@ -1,0 +1,187 @@
+{
+  "color": {
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Primary text, all hairline borders, nav text, link underlines — the dominant ink. At 21:1 against white it carries the entire typographic system on its own"
+    },
+    "graphite": {
+      "$value": "#282828",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, image and card borders, soft structural strokes — slightly lifted from pure black to create a quieter border weight without losing contrast"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — Page canvas, card surfaces, image backgrounds — the neutral ground that lets the green and oversized type do all the visual work"
+    },
+    "fluorescent": {
+      "$value": "#0af500",
+      "$type": "color",
+      "$description": "Fluorescent — Full-bleed hero/feature band background, section color blocks — a near-lime pure green used sparingly as a single saturated field. Its only job is to shock the eye and establish the studio's visual voice; it should never appear on UI controls, text, or thin UI strokes"
+    },
+    "ember": {
+      "$value": "#ff4600",
+      "$type": "color",
+      "$description": "Ember — Orange outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "custom15364-bjka-display": {
+      "$value": "custom_15364 (Bōjka Display)",
+      "$type": "fontFamily",
+      "$description": "The studio's signature display face — used at 157px for the wordmark and section headlines, and at 44px for sub-headings. Its 1.0 line-height at 157px lets characters nearly touch; this tight vertical spacing combined with negative tracking is what gives the wordmark its poster-like compression. The custom letterforms (note the macron over 'o' in 'Bōjka') are non-negotiable brand identity and must be preserved at all sizes."
+    },
+    "apple-system-blinkmacsystemfont-system-ui": {
+      "$value": "-apple-system / BlinkMacSystemFont (System UI)",
+      "$type": "fontFamily",
+      "$description": "Body copy, supporting text, and utilitarian UI labels. Intentionally restrained — the system font at default 16px recedes so the display face carries the personality. Never use it for headlines or navigation links."
+    },
+    "roboto": {
+      "$value": "Roboto",
+      "$type": "fontFamily",
+      "$description": "Larger body and descriptive paragraphs where the system stack needs a more readable default — slightly looser leading (1.44) suggests it's used for longer copy blocks rather than labels."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Roboto",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "custom_15364",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "custom_15364",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 0.05
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "custom_15364",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "custom_15364",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 2.73
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "custom_15364",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "custom_15364",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 0.02
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "custom_15364",
+        "fontSize": "157px",
+        "fontWeight": 400,
+        "lineHeight": 0.01
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 157px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default page background across all body sections"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Project cards and content blocks sitting on the canvas — distinguished by 68px radius and hairline graphite border, not by fill change"
+    },
+    "fluorescent-band": {
+      "$value": "#0af500",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed accent section (hero/feature) that interrupts the white canvas — the only chromatic surface in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://bojka.studio",
+      "siteName": "Bōjka Studio",
+      "extractedAt": "2026-06-03T20:19:51.946Z",
+      "variant": "extended"
+    }
+  }
+}

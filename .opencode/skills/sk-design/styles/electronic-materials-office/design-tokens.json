@@ -1,0 +1,269 @@
+{
+  "color": {
+    "studio-charcoal": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Studio Charcoal — Page canvas and card surfaces — the floor of the dark gallery, never pure black so the eye can rest on edge softness"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Primary text, hairline borders on images, and the rare inverted surface. Carries all type hierarchy on its own"
+    },
+    "ash-gray": {
+      "$value": "#9d9d9d",
+      "$type": "color",
+      "$description": "Ash Gray — Muted text, subtle card borders, inactive labels — the only middle gray in the scale, used when white is too loud"
+    },
+    "mid-felt": {
+      "$value": "#eaeaea",
+      "$type": "color",
+      "$description": "Mid Felt — Light surface wash for inverted panels or modal scrims — the off-white that sits between bone and the dark canvas"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Deepest accent for icon strokes and contrast borders where the charcoal canvas is too light to hold an edge"
+    },
+    "ember-orange": {
+      "$value": "#f45500",
+      "$type": "color",
+      "$description": "Ember Orange — Filled primary action button — the only chromatic surface in the UI, always paired with a 30px orange halo so it glows like a filament; 30px outer glow on the primary CTA — duplicates the Ember Orange hex but exists as a box-shadow, not a fill, so the button appears lit from within"
+    },
+    "lavender-link": {
+      "$value": "#9e9eff",
+      "$type": "color",
+      "$description": "Lavender Link — Inline link color and the outlined secondary action border — a desaturated cool counterpoint to the warm orange ember, keeping actions readable against charcoal"
+    }
+  },
+  "font": {
+    "gt-flexa": {
+      "$value": "GT-Flexa",
+      "$type": "fontFamily",
+      "$description": "Display and heading workhorse. Weight 200 carries every headline above 24px — the 200 weight is the signature: at 68px and 86px the letterforms dissolve into atmosphere rather than shout. Weight 400 steps in for sub-headings and card captions where a whisper isn't enough. Line-heights collapse toward 1.0 at the largest sizes so display type stacks like a column of breath."
+    },
+    "tobias-light": {
+      "$value": "Tobias-light",
+      "$type": "fontFamily",
+      "$description": "Secondary display voice for section headers and the footer wordmark. Used at a step below GT-Flexa 200 to create tonal contrast — Tobias feels more architectural, more labeled, while GT-Flexa feels ambient. Negative letter-spacing tightens the wide proportions of the Tobias Light cut."
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Body text and hero paragraph copy — a deliberate serif counterpoint to the geometric display fonts. The serif adds warmth and editorial gravity to product descriptions without ever growing larger than body size."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "GT-Flexa",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "GT-Flexa",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "GT-Flexa",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "GT-Flexa",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "GT-Flexa",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Tobias-light",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Tobias-light",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "GT-Flexa",
+        "fontSize": "42px",
+        "fontWeight": 200,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 42px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Tobias-Light",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "GT-Flexa",
+        "fontSize": "68px",
+        "fontWeight": 200,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 68px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "GT-Flexa",
+        "fontSize": "68px",
+        "fontWeight": 200,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 68px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "GT-Flexa",
+        "fontSize": "86px",
+        "fontWeight": 200,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 86px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(245, 86, 0, 0.6) 0px 0px 30px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "xl-2": {
+      "$value": "rgba(255, 255, 255, 0.3) 0px 0px 30px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-2"
+    }
+  },
+  "surface": {
+    "studio-floor": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the base of the gallery"
+    },
+    "card-matte": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Surface level 1: Feature cards and media frames sit on the same charcoal as the canvas, defined by 1px borders rather than surface shifts"
+    },
+    "inverted-panel": {
+      "$value": "#eaeaea",
+      "$type": "color",
+      "$description": "Surface level 2: Light scrim or modal surface when the system inverts"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://electronicmaterialsoffice.com",
+      "siteName": "Electronic Materials Office®",
+      "extractedAt": "2026-06-03T20:53:44.735Z",
+      "variant": "extended"
+    }
+  }
+}

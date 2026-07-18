@@ -1,0 +1,930 @@
+{
+  "source": "https://styles.refero.design/style/3da7b444-ded8-406b-90b7-96851604b92b",
+  "uuid": "3da7b444-ded8-406b-90b7-96851604b92b",
+  "name": "Luffu",
+  "northStar": "Family almanac printed on cream linen — editorial restraint meets intimate warmth, executed in two weights of a single serif-adjacent type system on a near-parchment ground.",
+  "capturedAt": "2026-07-18T10:16:49.322Z",
+  "meta": {
+    "url": "https://luffu.com",
+    "siteName": "Luffu",
+    "extractedAt": "2026-04-12T10:44:07.656Z",
+    "durationMs": 120031,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 528,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use ABC Arizona Flare weight 400 at -0.05em letter-spacing for all display headings above 40px — this tight tracking is non-negotiable for the editorial look.",
+      "Keep the background #f5f5ee (Parchment) as the default section fill; only use #e4e7da (Linen) or #d7d7cb (Pressed Cotton) for subtle section alternation.",
+      "Use circular (9999px radius) crops for all person/avatar photography — it humanizes data and links visual language to the family-member representation pattern.",
+      "Restrict the palette to Parchment + Graphite + White for all new sections; #192830 appears ONLY on the primary button and footer — not as a text color or decorative element.",
+      "Apply letterSpacing -0.016em to -0.05em across all type sizes; zero-tracking Arizona type looks wrong at every size.",
+      "Use full-bleed lifestyle photography for hero sections with text overlaid left-aligned in white, not in a card or box — the image IS the content.",
+      "Maintain single-weight (400) discipline across both typefaces — all hierarchy comes from size and opacity, never weight changes."
+    ],
+    "donts": [
+      "Never introduce a chromatic accent color (no brand blue, green, or orange) — the entire system is intentionally achromatic except for the near-teal #192830.",
+      "Never use bold or semibold weights of Arizona Sans or Arizona Flare; the single-weight system breaks immediately when bold appears.",
+      "Don't use drop shadows or card elevation shadows on content sections — the design is entirely flat with background color differentiation only.",
+      "Don't increase button border-radius above 6px; this is a rectilinear system — pill buttons would clash with the editorial register.",
+      "Never place heading text on a white background without the warm Parchment tint (#f5f5ee) — pure white reads too clinical against this family-warmth palette.",
+      "Don't use icon-only buttons or icon-first navigation; all interactive elements are text-labeled in this system.",
+      "Don't stack multiple sections with the same background color (#f5f5ee) without visual break — alternate with Linen (#e4e7da) or photography."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#192830",
+        "name": "Deep Ink",
+        "role": "Primary CTA button fill, nav border, interactive controls — this single dark-teal anchor is the only departure from the black/cream palette, creating a subtle aquatic undertone that reads health-adjacent without being clinical",
+        "group": "brand"
+      },
+      {
+        "hex": "#f5f5ee",
+        "name": "Parchment",
+        "role": "Page background, section fills — the slight warm-green cast separates this from pure white and prevents sterility",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e4e7da",
+        "name": "Linen",
+        "role": "Subtle section dividers, secondary surface tinting",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d7d7cb",
+        "name": "Pressed Cotton",
+        "role": "Tertiary surface, card backgrounds in feature sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2f3136",
+        "name": "Graphite",
+        "role": "Body text, headings, primary readable content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#535557",
+        "name": "Slate",
+        "role": "Secondary body text, captions, supporting copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#424e52",
+        "name": "Dusk",
+        "role": "Tertiary text, footer links, subdued labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White",
+        "role": "Button text on dark fills, icon fills, overlay text on photography",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Maximum contrast text, SVG fills",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width approximately 1200px centered on wide screens, with the hero section breaking fully to 100vw. Hero is full-viewport-height lifestyle photography with floating navigation overlay and left-aligned text block at upper-left. Second section (caregiver) is Parchment background with scattered circular avatars around a centered heading — the layout is deliberately open, low-density, white-space-dominant. Third section (feature cards) is a 3-column grid on Parchment-to-Linen gradient background with equal-width cards. Section gap is generous at 120-218px vertical margin between content blocks. No alternating dark/light band pattern — the site remains warm cream throughout with photography providing contrast. Navigation is a single floating top bar, no sticky behavior implied, no mega-menu.",
+    "imagery": "Full-bleed lifestyle photography of real multi-generational families (grandparents, parents, children, pets) in natural outdoor settings — golden hour, residential gardens, candid movement. Photography is warm-keyed, not treated or duotone, with rich natural color that contrasts with the restrained type system. Circular portrait crops are used for individual family member representations in feature sections. Product feature cards use contained photography (food close-ups, health tracking interfaces) with subdued color-tinted card backgrounds. The brand wordmark 'Luffu' overlaid at massive scale on the hero image is the primary graphic design move — type as imagery. Icons are minimal outlined glyphs at 16-20px, monochrome. Image-to-text ratio is very high in the hero, dropping to roughly 50/50 in feature sections, then text-dominant in the footer.",
+    "similar": [
+      {
+        "why": "Same warm cream (#f5f5ee-range) backgrounds with lifestyle photography, single-weight serif display type, and extreme color restraint across the palette",
+        "business": "Calm"
+      },
+      {
+        "why": "Editorial sans-serif UI type at tight letter-spacing with achromatic palette and nature-adjacent photography for a wellness app",
+        "business": "Gentler Streak"
+      },
+      {
+        "why": "Health tech brand that uses lifestyle photography as primary visual language with near-typographic-only supporting sections",
+        "business": "Whoop"
+      },
+      {
+        "why": "Multi-generational family care positioning expressed through warm-tone photography and editorial type hierarchy",
+        "business": "Care.com"
+      },
+      {
+        "why": "Custom serif display typeface at very tight tracking overlaid on full-bleed photography, with a warm neutral palette and no accent color",
+        "business": "Bellabeat"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "6px",
+        "buttons": "4-6px",
+        "avatarCircles": "9999px"
+      },
+      "elementGap": "16-24px",
+      "sectionGap": "",
+      "cardPadding": "32-34px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#f5f5ee",
+        "name": "Page Ground",
+        "level": 0,
+        "purpose": "Default section background — the warm cream anchor of the entire system"
+      },
+      {
+        "hex": "#e4e7da",
+        "name": "Section Lift",
+        "level": 1,
+        "purpose": "Subtle section differentiation without color shift"
+      },
+      {
+        "hex": "#d7d7cb",
+        "name": "Card Surface",
+        "level": 2,
+        "purpose": "Feature card backgrounds and UI mock containers"
+      },
+      {
+        "hex": "#192830",
+        "name": "Dark Anchor",
+        "level": 3,
+        "purpose": "Primary button fill and footer background — the only true dark surfaces"
+      }
+    ],
+    "northStar": "Family almanac printed on cream linen — editorial restraint meets intimate warmth, executed in two weights of a single serif-adjacent type system on a near-parchment ground.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1,
+        "letterSpacing": -0.35
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "body-lg",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "heading-sm",
+        "size": 40,
+        "lineHeight": 1,
+        "letterSpacing": -1.24
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1,
+        "letterSpacing": -2.02
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1,
+        "letterSpacing": -3.2
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Button Group (Primary CTA + Ghost + Inline Waitlist)",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Section Heading Block with Caregiver Questions",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Feature Cards — Health Logging 3-Up Grid",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary CTA Button (Dark Fill)",
+        "role": "Main conversion action — waitlist signup",
+        "description": "Background #192830, white text (#ffffff), 4px border-radius, 0px vertical padding with 20px horizontal padding. ABC Arizona Sans 16px weight 400, letter-spacing -0.32px. The minimal vertical padding makes this feel like an inline chip rather than a traditional button — compact and editorial."
+      },
+      {
+        "name": "Ghost Navigation Button (Outlined)",
+        "role": "Secondary actions in the navigation bar",
+        "description": "Background white (#ffffff), text #192830, border 1px solid #192830, 6px border-radius, 4px top/bottom padding, 18px left/right padding. ABC Arizona Sans 16px. Sits next to ghost text links — the light border marks it as actionable without using color."
+      },
+      {
+        "name": "Inline Waitlist Link-Button",
+        "role": "In-text or body-section CTA",
+        "description": "White background, #192830 text, border 1px solid #192830, 6px radius, 4px/18px padding. Small arrow glyph appended after text ('Join the waitlist →'). Uses the same construction as the nav button but with arrow affordance for in-context placement."
+      },
+      {
+        "name": "Hero Full-Bleed Section",
+        "role": "Above-the-fold full-viewport visual anchor",
+        "description": "Full-width lifestyle photography spanning 100vw, headline text in ABC Arizona Flare 48px weight 400, white (#ffffff), letterSpacing -2.02px, positioned top-left over the image. Oversized brand wordmark 'Luffu' at ~120px+ Arizona Flare overlaid at bottom-left, white, bleeding into the image. Dark gradient overlay implied left-side for text legibility. Navigation floats over image with white text links and outlined ghost button."
+      },
+      {
+        "name": "Feature Card — App Screen Preview",
+        "role": "Product feature illustration in 3-up grid",
+        "description": "Rounded card at 6px radius, image fills the card top, 32px internal padding on text area. Three cards in a row with 20px column gap. Each card has a subdued-tone background (desaturated blue or warm cream) rather than white. Category label in ABC Arizona Sans 14px uppercase tracked, body copy in Sans 16px #535557."
+      },
+      {
+        "name": "Floating Family Member Avatar",
+        "role": "Caregiver network visualization in mid-page section",
+        "description": "Circular photo crops at 9999px border-radius, approximately 80-100px diameter, on the #f5f5ee parchment background. Small question text labels in Arizona Sans 14px #535557 float adjacent. No card container — avatars scatter with negative-space arrangement around a centered heading block."
+      },
+      {
+        "name": "Section Heading Block (Centered)",
+        "role": "Mid-page section introductions",
+        "description": "Arizona Flare 48px #2f3136 letterSpacing -2.02px centered, followed by Arizona Sans 20px #535557 letterSpacing -0.32px body paragraph, also centered. Max-width approximately 600px on the paragraph to preserve narrow measure. No decorative elements — pure typographic hierarchy."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Global persistent header",
+        "description": "Transparent/overlay over hero photography, left-anchored brand logomark (floral icon + 'luffu' wordmark in white Arizona Flare). Right side: 'About' text link in white Arizona Sans 16px, and outlined ghost button 'Join the Waitlist'. No background color — floats over hero image. Height approximately 70px."
+      },
+      {
+        "name": "Footer Strip",
+        "role": "Site footer with legal and social links",
+        "description": "Background near #393e28 (dark olive-near-black), white text links in Arizona Sans 14px. Social platform links (Instagram, LinkedIn, X, Facebook) and Privacy Notice. Compact height approximately 50px, full-width. The warm dark-olive footer background echoes the #192830 button tone — the only two dark surfaces on the page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Navigation links, body copy, buttons, captions, footer text. Single weight used across all UI text — no bold weight anywhere forces hierarchy through size alone. The tight letter-spacing (-0.016em at 20px, -0.020em at 16px, -0.025em at 14px) gives a condensed editorial feel at every size.",
+        "sizes": "14px, 16px, 20px",
+        "family": "ABC Arizona Sans",
+        "weight": "400",
+        "lineHeight": "1.0–1.2",
+        "substitute": "Freight Sans Pro or Cormorant SC",
+        "letterSpacing": "-0.35px at 14px, -0.32px at 16px, -0.32px at 20px"
+      },
+      {
+        "role": "Display headings and the oversized brand wordmark. The flare-serif construction (hairline terminal spurs) at very tight -0.05em spacing at 64px collapses letterforms together like editorial magazine typography — the 'Luffu' logotype treatment at display scale is the signature visual moment of this system.",
+        "sizes": "40px, 48px, 64px",
+        "family": "ABC Arizona Flare",
+        "weight": "400",
+        "lineHeight": "1.0",
+        "substitute": "Playfair Display or Cormorant Garamond",
+        "letterSpacing": "-3.2px at 64px, -2.02px at 48px, -1.24px at 40px"
+      }
+    ],
+    "description": "Luffu feels like late afternoon sun through a kitchen window — warm, unhurried, intimate. The cream-tan background (#f5f5ee) and near-black text (#2f3136) create a paper-and-ink warmth far from the cold blues of health tech. Two custom ABC Arizona typefaces do the heavy lifting: Flare at massive display sizes with -0.05em letter-spacing renders the brand name as a piece of editorial typography, while Sans handles navigation and body with similar optical tightening. The hero is full-bleed lifestyle photography — a real family, natural light, golden retriever — with oversized logotype overlaid at near-opacity, bleeding into the image. Color restriction is extreme: no accent color anywhere, just dark ink, warm cream, and white, with a single dark-teal (#192830) reserved for the primary CTA button.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      },
+      {
+        "title": "Brand Typography Signature",
+        "content": "The most distinctive typographic move: ABC Arizona Flare at 64px with -3.2px letter-spacing (≈ -0.05em) used for the brand wordmark 'Luffu' as a display graphic overlaid on photography. The flare-serif terminals — slight calligraphic spurs on an otherwise geometric form — read as warm and human at massive scale. No other typeface, no other weight, no color variation: the brand identity lives entirely in this one typographic gesture. When reproducing this system, the letterSpacing on Flare is mandatory — unspaced Flare reads generic; the collapsed spacing is the brand."
+      }
+    ],
+    "elevationPhilosophy": "No box-shadows appear anywhere in the UI. Depth and hierarchy are achieved entirely through background color layering (Parchment → Linen → Pressed Cotton) and typographic scale. The absence of elevation shadows is consistent with the tactile, print-inspired aesthetic — this is a page, not a dashboard."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#2f3136",
+          "oklch": {
+            "c": 0.009342921462285159,
+            "h": 268.36886617468224,
+            "l": 0.31314848364123016
+          },
+          "contexts": [
+            "other",
+            "image",
+            "body",
+            "heading",
+            "badge",
+            "footer",
+            "link"
+          ],
+          "frequency": 1824,
+          "confidence": 1,
+          "prominence": 154927961.57532,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "button",
+            "heading",
+            "body"
+          ],
+          "frequency": 333,
+          "confidence": 1,
+          "prominence": 10865280.76304637,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#f5f5ee",
+          "oklch": {
+            "c": 0.009249940857334124,
+            "h": 106.5711094939822,
+            "l": 0.9682232412943212
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2548890,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#d7d7cb",
+          "oklch": {
+            "c": 0.016211831339257996,
+            "h": 106.72968108165095,
+            "l": 0.8758371090995184
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1926300.0248764642,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#e4e7da",
+          "oklch": {
+            "c": 0.01762831350079968,
+            "h": 117.30832500731054,
+            "l": 0.9220943369728128
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1845099.226039518,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#192830",
+          "oklch": {
+            "c": 0.02518868346462022,
+            "h": 232.2228808416304,
+            "l": 0.2670772085044356
+          },
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "body",
+            "icon",
+            "heading",
+            "badge"
+          ],
+          "frequency": 250,
+          "confidence": 1,
+          "prominence": 897276.9424326989,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#393e28",
+          "oklch": {
+            "c": 0.036635256883663536,
+            "h": 118.72906119843026,
+            "l": 0.35252914053088835
+          },
+          "contexts": [
+            "footer",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 568304.1542585777,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#535557",
+          "oklch": {
+            "c": 0.0036422371558029972,
+            "h": 235.26657018015203,
+            "l": 0.4494578975968439
+          },
+          "contexts": [
+            "other",
+            "body",
+            "badge"
+          ],
+          "frequency": 165,
+          "confidence": 1,
+          "prominence": 358426.91636346054,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 74812.62445087652,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#424e52",
+          "oklch": {
+            "c": 0.0172483322785885,
+            "h": 217.90832587393817,
+            "l": 0.41505327644117207
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 31115.17662296474,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#5d653e",
+          "oklch": {
+            "c": 0.058859557860030325,
+            "h": 118.07818999849903,
+            "l": 0.4894229963001998
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 11891,
+          "properties": [
+            "boxShadow"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.02529555903689454,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.18,
+          "background": "#f5f5ee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.74,
+          "background": "#e4e7da",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#192830",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.47,
+          "background": "#d7d7cb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.82,
+          "background": "#f5f5ee",
+          "foreground": "#192830"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.02,
+          "background": "#ffffff",
+          "foreground": "#2f3136"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.07,
+          "background": "#e4e7da",
+          "foreground": "#192830"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.89,
+          "background": "#f5f5ee",
+          "foreground": "#2f3136"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.09,
+          "background": "#393e28",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.43,
+          "background": "#d7d7cb",
+          "foreground": "#192830"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.38,
+          "background": "#e4e7da",
+          "foreground": "#2f3136"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.13,
+          "background": "#f5f5ee",
+          "foreground": "#393e28"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.97,
+          "background": "#d7d7cb",
+          "foreground": "#2f3136"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.84,
+          "background": "#e4e7da",
+          "foreground": "#393e28"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.6,
+          "background": "#ffffff",
+          "foreground": "#424e52"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.85,
+          "background": "#f5f5ee",
+          "foreground": "#424e52"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.64,
+          "background": "#d7d7cb",
+          "foreground": "#393e28"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.49,
+          "background": "#ffffff",
+          "foreground": "#535557"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.85,
+          "background": "#e4e7da",
+          "foreground": "#424e52"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 5
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 15,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "paddingRight",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 18,
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 22,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 34,
+          "frequency": 43,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 123,
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 200,
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 218,
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ABC Arizona Sans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 507,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ABC Arizona Flare",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 12,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "ABC Arizona Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Arizona Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Arizona Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABC Arizona Sans",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "badge"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABC Arizona Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "button",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 475,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABC Arizona Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "ABC Arizona Flare",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "ABC Arizona Flare",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.042,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "ABC Arizona Flare",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d8cafa2a-3caa-414d-9ba6-cdaac075188b.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b57f43b3-58ea-4d3e-8aeb-5540aed06341.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3da7b444-ded8-406b-90b7-96851604b92b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Luffu design system\",\"item\":\"https://styles.refero.design/style/3da7b444-ded8-406b-90b7-96851604b92b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3da7b444-ded8-406b-90b7-96851604b92b#style-reference\",\"name\":\"Luffu design system reference\",\"headline\":\"Luffu design system | Refero Styles\",\"description\":\"Explore Luffu's light AI design system: Deep Ink #192830, Parchment #f5f5ee colors, ABC Arizona Sans, ABC Arizona Flare typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3da7b444-ded8-406b-90b7-96851604b92b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3da7b444-ded8-406b-90b7-96851604b92b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Luffu\",\"url\":\"https://luffu.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3da7b444-ded8-406b-90b7-96851604b92b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b57f43b3-58ea-4d3e-8aeb-5540aed06341.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b57f43b3-58ea-4d3e-8aeb-5540aed06341.jpg\",\"caption\":\"Screenshot of Luffu\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b57f43b3-58ea-4d3e-8aeb-5540aed06341.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Luffu design system\",\"Luffu website design\",\"Luffu colors\",\"Luffu typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Deep Ink\",\"Parchment\",\"Linen\",\"Pressed Cotton\",\"ABC Arizona Sans\",\"ABC Arizona Flare\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Luffu design system\"},{\"@type\":\"Thing\",\"name\":\"Luffu website design\"},{\"@type\":\"Thing\",\"name\":\"Luffu colors\"},{\"@type\":\"Thing\",\"name\":\"Luffu typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-03-23T12:41:22.000Z\",\"dateModified\":\"2026-03-23T12:41:22.000Z\"}]}19:Tae1,<div style=\"padding:40px;background:var(--color-parchment,#f5f5ee);font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);max-width:600px;\">\n  <style>\n    :root {\n      --color-deep-ink:#192830;--color-parchment:#f5f5ee;--color-linen:#e4e7da;--color-pressed-cotton:#d7d7cb;--color-graphite:#2f3136;--color-slate:#535557;--color-dusk:#424e52;--color-white:#ffffff;--color-ink:#000000;--font-abc-arizona-sans:'Cormorant SC',Georgia,serif;--font-abc-arizona-flare:'Playfair Display','Cormorant Garamond',Georgia,serif;\n    }\n  </style>\n  <p style=\"font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:14px;letter-spacing:-0.35px;line-height:1;color:var(--color-slate,#535557);margin:0 0 24px 0;text-transform:uppercase;\">Actions</p>\n\n  <div style=\"display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-bottom:32px;\">\n    <!-- Primary CTA Button -->\n    <a href=\"#\" style=\"display:inline-flex;align-items:center;justify-content:center;background:var(--color-deep-ink,#192830);color:var(--color-white,#ffffff);font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:16px;font-weight:400;letter-spacing:-0.32px;line-height:1.2;padding:12px 20px;border-radius:4px;border:none;text-decoration:none;cursor:pointer;\">Join the Waitlist</a>\n\n    <!-- Ghost Navigation Button -->\n    <a href=\"#\" style=\"display:inline-flex;align-items:center;justify-content:center;background:var(--color-white,#ffffff);color:var(--color-deep-ink,#192830);font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:16px;font-weight:400;letter-spacing:-0.32px;line-height:1.2;padding:4px 18px;border-radius:6px;border:1px solid var(--color-deep-ink,#192830);text-decoration:none;cursor:pointer;\">About</a>\n  </div>\n\n  <!-- Inline Waitlist Link-Button -->\n  <div style=\"margin-top:8px;\">\n    <a href=\"#\" style=\"display:inline-flex;align-items:center;gap:12px;background:var(--color-white,#ffffff);color:var(--color-deep-ink,#192830);font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:16px;font-weight:400;letter-spacing:-0.32px;line-height:1.2;padding:10px 18px;border-radius:6px;border:1px solid var(--color-deep-ink,#192830);text-decoration:none;cursor:pointer;\">\n      <span style=\"display:inline-flex;align-items:center;gap:8px;\">\n        <svg width=\"8\" height=\"8\" viewBox=\"0 0 8 8\" fill=\"none\" style=\"flex-shrink:0;\"><circle cx=\"4\" cy=\"4\" r=\"4\" fill=\"var(--color-deep-ink,#192830)\"/></svg>\n        Join the waitlist\n      </span>\n      <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" style=\"flex-shrink:0;\"><path d=\"M3 8h10M10 5l3 3-3 3\" stroke=\"var(--color-deep-ink,#192830)\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    </a>\n  </div>\n</div>1a:Teca,<div style=\"padding:60px 32px;background:var(--color-parchment,#f5f5ee);font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);max-width:600px;\">\n  <style>\n    :root {\n      --color-deep-ink:#192830;--color-parchment:#f5f5ee;--color-linen:#e4e7da;--color-pressed-cotton:#d7d7cb;--color-graphite:#2f3136;--color-slate:#535557;--color-dusk:#424e52;--color-white:#ffffff;--color-ink:#000000;--font-abc-arizona-sans:'Cormorant SC',Georgia,serif;--font-abc-arizona-flare:'Playfair Display','Cormorant Garamond',Georgia,serif;\n    }\n  </style>\n\n  <!-- Floating question bubbles -->\n  <div style=\"display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:48px;\">\n    <span style=\"display:inline-block;font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:14px;letter-spacing:-0.35px;line-height:1;color:var(--color-slate,#535557);padding:8px 16px;border:1px solid var(--color-pressed-cotton,#d7d7cb);border-radius:6px;background:var(--color-parchment,#f5f5ee);\">Is Dad's new meal plan affecting his blood pressure?</span>\n    <span style=\"display:inline-block;font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:14px;letter-spacing:-0.35px;line-height:1;color:var(--color-slate,#535557);padding:8px 16px;border:1px solid var(--color-pressed-cotton,#d7d7cb);border-radius:6px;background:var(--color-parchment,#f5f5ee);\">Am I eating the right foods to manage PCOS?</span>\n    <span style=\"display:inline-block;font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:14px;letter-spacing:-0.35px;line-height:1;color:var(--color-slate,#535557);padding:8px 16px;border:1px solid var(--color-pressed-cotton,#d7d7cb);border-radius:6px;background:var(--color-parchment,#f5f5ee);\">What happened at Grandpa's last doctor's visit?</span>\n    <span style=\"display:inline-block;font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:14px;letter-spacing:-0.35px;line-height:1;color:var(--color-slate,#535557);padding:8px 16px;border:1px solid var(--color-pressed-cotton,#d7d7cb);border-radius:6px;background:var(--color-parchment,#f5f5ee);\">Is Grandma recovering from her surgery OK?</span>\n  </div>\n\n  <!-- Avatars row -->\n  <div style=\"display:flex;justify-content:center;gap:16px;margin-bottom:40px;\">\n    <div style=\"width:72px;height:72px;border-radius:9999px;background:var(--color-pressed-cotton,#d7d7cb);border:2px solid var(--color-linen,#e4e7da);\"></div>\n    <div style=\"width:72px;height:72px;border-radius:9999px;background:#a8b5a0;border:2px solid var(--color-linen,#e4e7da);\"></div>\n    <div style=\"width:72px;height:72px;border-radius:9999px;background:#c4b9a8;border:2px solid var(--color-linen,#e4e7da);\"></div>\n    <div style=\"width:72px;height:72px;border-radius:9999px;background:#b0bcc0;border:2px solid var(--color-linen,#e4e7da);\"></div>\n    <div style=\"width:72px;height:72px;border-radius:9999px;background:#c8c0b0;border:2px solid var(--color-linen,#e4e7da);\"></div>\n  </div>\n\n  <!-- Centered heading block -->\n  <div style=\"text-align:center;\">\n    <h2 style=\"font-family:var(--font-abc-arizona-flare,'Playfair Display','Cormorant Garamond',Georgia,serif);font-size:48px;font-weight:400;letter-spacing:-2.02px;line-height:1;color:var(--color-graphite,#2f3136);margin:0 0 24px 0;\">For the caregivers<br>who do it all</h2>\n    <p style=\"font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:16px;font-weight:400;letter-spacing:-0.32px;line-height:1.4;color:var(--color-slate,#535557);margin:0 auto;max-width:480px;\">Your mind's brimming with questions, concerns, and an ever-changing list of who-needs-what-when. Luffu learns your family's rhythms and stays on top of it all, so you can focus on caring.</p>\n  </div>\n</div>1b:T1e4a,<div style=\"padding:48px 24px;background:var(--color-parchment,#f5f5ee);font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);max-width:600px;\">\n  <style>\n    :root {\n      --color-deep-ink:#192830;--color-parchment:#f5f5ee;--color-linen:#e4e7da;--color-pressed-cotton:#d7d7cb;--color-graphite:#2f3136;--color-slate:#535557;--color-dusk:#424e52;--color-white:#ffffff;--color-ink:#000000;--font-abc-arizona-sans:'Cormorant SC',Georgia,serif;--font-abc-arizona-flare:'Playfair Display','Cormorant Garamond',Georgia,serif;\n    }\n  </style>\n\n  <!-- Section heading -->\n  <div style=\"text-align:center;margin-bottom:40px;\">\n    <h2 style=\"font-family:var(--font-abc-arizona-flare,'Playfair Display','Cormorant Garamond',Georgia,serif);font-size:40px;font-weight:400;letter-spacing:-1.24px;line-height:1;color:var(--color-graphite,#2f3136);margin:0 0 16px 0;\">Effortless health logging for everyone</h2>\n    <p style=\"font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:16px;font-weight:400;letter-spacing:-0.32px;line-height:1.4;color:var(--color-slate,#535557);margin:0 auto;max-width:480px;\">Use voice, text, photos, or connect to devices, apps, and medical portals to instantly record data—from health records and medications to meals and vitals for you and your whole family.</p>\n  </div>\n\n  <!-- Cards grid -->\n  <div style=\"display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;\">\n    <!-- Card 1: Natural Language -->\n    <div style=\"display:flex;flex-direction:column;\">\n      <div style=\"background:#9bb8c8;border-radius:6px;height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden;\">\n        <div style=\"width:64px;height:64px;border-radius:9999px;background:#c4b9a8;border:3px solid var(--color-white,#ffffff);margin-bottom:8px;\"></div>\n        <span style=\"font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:13px;color:var(--color-white,#ffffff);letter-spacing:-0.32px;\">Mom</span>\n        <div style=\"position:absolute;bottom:40px;left:20px;right:20px;border-top:1px dotted rgba(255,255,255,0.4);\"></div>\n        <div style=\"position:absolute;bottom:16px;left:20px;display:flex;align-items:center;gap:4px;\">\n          <span style=\"color:#c85c3a;font-family:var(--font-abc-arizona-flare,'Playfair Display',Georgia,serif);font-size:18px;font-weight:400;font-style:italic;\">/</span>\n          <span style=\"font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:13px;color:rgba(255,255,255,0.7);letter-spacing:-0.32px;\">weigh</span>\n        </div>\n      </div>\n      <div style=\"padding:12px 0 0 0;text-align:center;\">\n        <p style=\"font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:12px;font-weight:400;letter-spacing:0.5px;line-height:1;color:var(--color-graphite,#2f3136);margin:0 0 4px 0;text-transform:uppercase;\">Natural Language</p>\n        <p style=\"font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:13px;font-weight:400;letter-spacing:-0.32px;line-height:1.3;color:var(--color-slate,#535557);margin:0;\">Easily log with voice or text.</p>\n      </div>\n    </div>\n\n    <!-- Card 2: Vision -->\n    <div style=\"display:flex;flex-direction:column;\">\n      <div style=\"background:#8a9088;border-radius:6px;height:220px;display:flex;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden;\">\n        <div style=\"width:100px;height:100px;border-radius:9999px;background:#6b7a5e;border:2px solid rgba(255,255,255,0.5);\"></div>\n        <!-- Viewfinder corners -->\n        <div style=\"position:absolute;top:40px;left:30px;width:20px;height:20px;border-left:2px solid rgba(255,255,255,0.6);border-top:2px solid rgba(255,255,255,0.6);\"></div>\n        <div style=\"position:absolute;top:40px;right:30px;width:20px;height:20px;border-right:2px solid rgba(255,255,255,0.6);border-top:2px solid rgba(255,255,255,0.6);\"></div>\n        <div style=\"position:absolute;bottom:40px;left:30px;width:20px;height:20px;border-left:2px solid rgba(255,255,255,0.6);border-bottom:2px solid rgba(255,255,255,0.6);\"></div>\n        <div style=\"position:absolute;bottom:40px;right:30px;width:20px;height:20px;border-right:2px solid rgba(255,255,255,0.6);border-bottom:2px solid rgba(255,255,255,0.6);\"></div>\n      </div>\n      <div style=\"padding:12px 0 0 0;text-align:center;\">\n        <p style=\"font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:12px;font-weight:400;letter-spacing:0.5px;line-height:1;color:var(--color-graphite,#2f3136);margin:0 0 4px 0;text-transform:uppercase;\">Vision</p>\n        <p style=\"font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:13px;font-weight:400;letter-spacing:-0.32px;line-height:1.3;color:var(--color-slate,#535557);margin:0;\">Take photos to log meals, medications, and more.</p>\n      </div>\n    </div>\n\n    <!-- Card 3: Connect -->\n    <div style=\"display:flex;flex-direction:column;\">\n      <div style=\"background:var(--color-linen,#e4e7da);border-radius:6px;height:220px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:20px;gap:10px;\">\n        <div style=\"display:flex;align-items:center;gap:8px;opacity:0.5;\">\n          <div style=\"width:18px;height:18px;border-radius:4px;background:var(--color-pressed-cotton,#d7d7cb);\"></div>\n          <span style=\"font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:13px;color:var(--color-slate,#535557);letter-spacing:-0.32px;\">Medical Records</span>\n        </div>\n        <div style=\"display:flex;align-items:center;gap:8px;\">\n          <div style=\"width:18px;height:18px;border-radius:4px;background:#c85c3a;\"></div>\n          <span style=\"font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:14px;color:var(--color-graphite,#2f3136);letter-spacing:-0.35px;font-weight:400;\">Lab Test</span>\n        </div>\n        <div style=\"display:flex;align-items:center;gap:8px;\">\n          <div style=\"width:18px;height:18px;border-radius:4px;background:var(--color-graphite,#2f3136);\"></div>\n          <span style=\"font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:15px;color:var(--color-graphite,#2f3136);letter-spacing:-0.32px;font-weight:400;\">Apple Health</span>\n        </div>\n        <div style=\"display:flex;align-items:center;gap:8px;\">\n          <div style=\"width:18px;height:18px;border-radius:4px;background:#5a8a6a;\"></div>\n          <span style=\"font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:14px;color:var(--color-graphite,#2f3136);letter-spacing:-0.35px;\">Vaccine Records</span>\n        </div>\n        <div style=\"display:flex;align-items:center;gap:8px;margin-top:4px;opacity:0.4;\">\n          <div style=\"width:36px;height:16px;border-radius:3px;background:var(--color-dusk,#424e52);\"></div>\n          <span style=\"font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:12px;color:var(--color-slate,#535557);letter-spacing:-0.32px;\">fitbit</span>\n        </div>\n      </div>\n      <div style=\"padding:12px 0 0 0;text-align:center;\">\n        <p style=\"font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:12px;font-weight:400;letter-spacing:0.5px;line-height:1;color:var(--color-graphite,#2f3136);margin:0 0 4px 0;text-transform:uppercase;\">Connect</p>\n        <p style=\"font-family:var(--font-abc-arizona-sans,'Cormorant SC',Georgia,serif);font-size:13px;font-weight:400;letter-spacing:-0.32px;line-height:1.3;color:var(--color-slate,#535557);margin:0;\">Integrate with apps and wearables.</p>\n      </div>\n    </div>\n  </div>\n</div>1c:T962,**Quick Color Reference**\n- Page background: #f5f5ee (Parchment)\n- Primary text: #2f3136 (Graphite)\n- Secondary text: #535557 (Slate)\n- CTA button fill: #192830 (Deep Ink)\n- Button/border text on dark: #ffffff (White)\n- Section surface 2: #e4e7da (Linen)\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-bleed lifestyle photography (100vw). Float nav bar over image with white ABC Arizona Sans 16px 'About' text link and ghost button ('Join the Waitlist', border 1px #192830, bg #ffffff, text #192830, 6px radius, 4px/18px padding). Overlay left-aligned headline in ABC Arizona Flare 48px #ffffff letterSpacing -2.02px weight 400. Below headline: body copy ABC Arizona Sans 16px #ffffff lineHeight 1.2. Primary button: bg #192830, text #ffffff, 4px radius, 0px/20px padding, Flare arrow suffix. Oversized 'Luffu' wordmark in Flare at 96px+ #ffffff bottom-left, overlapping image edge.\n\n2. **Caregiver Section**: Background #f5f5ee. Centered heading in ABC Arizona Flare 48px #2f3136 letterSpacing -2.02px. Centered body paragraph in Arizona Sans 20px #535557 letterSpacing -0.32px, max-width 560px. Circular avatar photos (9999px radius, ~88px diameter) scattered spatially around the heading block with 14px Arizona Sans #535557 question-text labels floating adjacent to each. 218px vertical section margin.\n\n3. **3-Column Feature Card Grid**: Background #f5f5ee. Three equal-width cards, 20px column gap, 6px border-radius. Each card: top-half is an image or tinted screenshot (use desaturated blue ~#b3c4cd or warm cream #d7d7cb as card background tint). Bottom: 32px padding, category label in Arizona Sans 14px #535557 uppercase, card heading in Arizona Sans 20px #2f3136 letterSpacing -0.32px, body in Arizona Sans 16px #535557.\n\n4. **Section Text Block (Centered)**: Background #f5f5ee. Centered 'eyebrow' label in Arizona Sans 14px #535557 uppercase letterSpacing -0.35px. Main heading in Arizona Flare 48px #2f3136 letterSpacing -2.02px, max-width 640px centered. Supporting paragraph in Arizona Sans 20px #535557 letterSpacing -0.32px, max-width 560px centered, lineHeight 1.2.\n\n5. **Footer Strip**: Background #393e28 (dark olive). White (#ffffff) Arizona Sans 14px links in a single horizontal row: social platform names (Instagram, LinkedIn, X, Facebook) + Privacy Notice. No hover state color change implied — text-only links. Full width, ~50px height, 34px horizontal padding."
+}

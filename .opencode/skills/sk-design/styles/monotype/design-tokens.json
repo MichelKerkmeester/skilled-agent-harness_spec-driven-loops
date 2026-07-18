@@ -1,0 +1,379 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#1e242c",
+      "$type": "color",
+      "$description": "Ink — Primary text, nav borders, icon strokes, card borders — near-black with a barely-there cool tint reads as a refined alternative to pure black"
+    },
+    "steel": {
+      "$value": "#576579",
+      "$type": "color",
+      "$description": "Steel — Secondary text, muted nav links, subtle borders — the workhorse mid-gray for everything that must be quieter than body copy"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces, button text on filled controls — the dominant surface"
+    },
+    "mist": {
+      "$value": "#e7eaee",
+      "$type": "color",
+      "$description": "Mist — Nav dividers, subtle section separators — the lightest functional border"
+    },
+    "fog": {
+      "$value": "#dbdfe5",
+      "$type": "color",
+      "$description": "Fog — Card borders, content block outlines — slightly darker than Mist for card-level separation"
+    },
+    "ash": {
+      "$value": "#cfd5dd",
+      "$type": "color",
+      "$description": "Ash — Button focus shadow, input hover rings — the mid-neutral for interaction feedback"
+    },
+    "signal-blue": {
+      "$value": "#1a73e8",
+      "$type": "color",
+      "$description": "Signal Blue — Blue action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "coal": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Coal — Icon fills, SVG strokes — true black reserved for graphic assets only, not text"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "helveticanowmtdisplaymedium": {
+      "$value": "HelveticaNowMTDisplayMedium",
+      "$type": "fontFamily",
+      "$description": "Display headlines (page titles like 'Variable fonts') — the largest voice on the page, 57px with tight 1.12 line-height"
+    },
+    "helveticanowmttextregular": {
+      "$value": "HelveticaNowMTTextRegular",
+      "$type": "fontFamily",
+      "$description": "Body copy, nav items, buttons, article titles, card descriptions — the workhorse text family across 13/14/16px with line-heights that scale from tight nav (1.20) to generous article body (1.50)"
+    },
+    "helveticanowmttextbold": {
+      "$value": "HelveticaNowMTTextBold",
+      "$type": "fontFamily",
+      "$description": "Bold labels, active nav states, emphasized article titles — the -0.02em tracking is a brand signature: tight enough to read as deliberate typographic craft"
+    },
+    "helveticanowmtmicroregular": {
+      "$value": "HelveticaNowMTMicroRegular",
+      "$type": "fontFamily",
+      "$description": "Micro-copy, metadata, breadcrumb text, tag labels — 11px with 2.55 line-height for very fine annotations; 14px version for small UI labels"
+    },
+    "typecasevar": {
+      "$value": "TypecaseVar",
+      "$type": "fontFamily",
+      "$description": "TypecaseVar — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTMicroRegular",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTMicroRegular",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 2.55
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTTextMedium",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTTextRegular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTTextRegular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTTextRegular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTTextRegular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTTextMedium",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 2.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 13px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTTextMedium",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 13px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTTextBold",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 13px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTTextRegular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTMicroRegular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTTextRegular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTTextMedium",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTTextBold",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTTextRegular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTTextMedium",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTTextMedium",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.26
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "TypecaseVar",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "HelveticaNowMTDisplayMedium",
+        "fontSize": "57px",
+        "fontWeight": 400,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 57px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.16) 0px 0px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the dominant surface"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Content cards and article tiles — same white, delineated only by 1px #dbdfe5 border"
+    },
+    "overlay": {
+      "$value": "#1a73e8",
+      "$type": "color",
+      "$description": "Surface level 2: Primary action button surface — the only filled control"
+    },
+    "inverted": {
+      "$value": "#1e242c",
+      "$type": "color",
+      "$description": "Surface level 3: Announcement bar and footer — dark inverted band"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://variable-fonts.com",
+      "siteName": "Monotype.",
+      "extractedAt": "2026-06-03T20:23:34.786Z",
+      "variant": "extended"
+    }
+  }
+}

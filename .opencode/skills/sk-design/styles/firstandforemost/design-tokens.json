@@ -1,0 +1,212 @@
+{
+  "color": {
+    "signal-orange": {
+      "$value": "#ff4501",
+      "$type": "color",
+      "$description": "Signal Orange — Brand color saturating hero text, navigation borders, section backgrounds, body text accents, and icon strokes — the only chromatic voice in the system; treated as both ink and fill"
+    },
+    "apricot-wash": {
+      "$value": "#ffefe9",
+      "$type": "color",
+      "$description": "Apricot Wash — Tertiary surface — soft peach band at the foot of white sections, footer background, subtle warmth under statement blocks"
+    },
+    "peach-mist": {
+      "$value": "#ffc2a9",
+      "$type": "color",
+      "$description": "Peach Mist — Hairline border accent on the orange field, low-contrast divider where #ff4501 would be too loud"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary canvas and card surface; text-on-orange and image borders"
+    },
+    "carbon-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Ink — SVG illustration fill, icon weight, photographic subjects — black only, never used for body text on white"
+    }
+  },
+  "font": {
+    "neuemontreal": {
+      "$value": "NeueMontreal",
+      "$type": "fontFamily",
+      "$description": "Single family carries the entire system. Weight 100 at 200px size is the signature — whisper-thin display type that becomes monumental through scale alone, not boldness. Weight 400 for body and navigation, weight 700 reserved for statement headlines and emphasis. Line-height compresses to 0.80 on the massive display sizes so the letterforms stack into a solid block."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "NeueMontreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "NeueMontreal",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "NeueMontreal",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "NeueMontreal",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "NeueMontreal",
+        "fontSize": "26px",
+        "fontWeight": 100,
+        "lineHeight": 3.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "NeueMontreal",
+        "fontSize": "36px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "NeueMontreal",
+        "fontSize": "58px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "NeueMontreal",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "NeueMontreal",
+        "fontSize": "200px",
+        "fontWeight": 700,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 200px"
+    }
+  },
+  "spacing": {
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "65": {
+      "$value": "65px",
+      "$type": "dimension",
+      "$description": "Spacing 65px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "110": {
+      "$value": "110px",
+      "$type": "dimension",
+      "$description": "Spacing 110px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default canvas for hero, statement blocks, and resting sections"
+    },
+    "apricot-wash": {
+      "$value": "#ffefe9",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle warm band at the foot of white sections, footer area"
+    },
+    "signal-broadcast": {
+      "$value": "#ff4501",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed inverted section for team, calls-to-action, and emphasis blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://firstandforemost.co",
+      "siteName": "Firstandforemost",
+      "extractedAt": "2026-06-03T19:25:20.960Z",
+      "variant": "extended"
+    }
+  }
+}

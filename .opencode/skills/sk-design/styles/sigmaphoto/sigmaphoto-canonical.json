@@ -1,0 +1,1409 @@
+{
+  "source": "https://styles.refero.design/style/67c60ee4-ac38-41ee-834e-ed2a92146417",
+  "uuid": "67c60ee4-ac38-41ee-834e-ed2a92146417",
+  "name": "Sigmaphoto",
+  "northStar": "Monochrome gallery for precision instruments — a hushed white room where the only color that matters is the one that asks you to act.",
+  "capturedAt": "2026-07-18T07:55:51.786Z",
+  "meta": {
+    "url": "https://www.sigmaphoto.com",
+    "siteName": "Sigmaphoto",
+    "extractedAt": "2026-06-03T19:04:34.120Z",
+    "durationMs": 55561,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 534,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #0048ff only for filled primary action buttons — it is the system's single chromatic voice and loses all power if applied to anything else",
+      "Set all headings at weight 400 — the site has no bold weights and adding them would break the editorial whisper",
+      "Pair Sigma Serif Head for display with Sigma Serif for body — the serif-to-serif continuity is the site's typographic signature, not sans-to-serif",
+      "Leave at least 80px of vertical breathing room between full-bleed image bands and centered text blocks",
+      "Use the warm bone #faf7ef as a secondary surface instead of gray cards — it is warmer than gray and more distinctive than white",
+      "Keep corners sharp: 0px radius on all cards, buttons, and images; 1px maximum on form inputs",
+      "Place section labels (13px uppercase, #707070, 0.08em tracking) as typographic dividers between content bands rather than using visible lines"
+    ],
+    "donts": [
+      "Do not introduce any color other than #0048ff as an accent — the 0% colorfulness is the design",
+      "Do not use bold or semibold weights in any font — weight 400 across all roles is deliberate, not a fallback",
+      "Do not add box-shadows to cards or buttons — the flat system relies on whitespace and borders for separation",
+      "Do not use rounded corners above 1px on any element — sharpness communicates precision and engineering",
+      "Do not use gradients on buttons, backgrounds, or overlays — the only gradient is the photographic studio backdrop behind products",
+      "Do not place multiple CTA buttons of different colors on the same screen — one blue button per view is the ceiling",
+      "Do not use icon-only buttons in the navigation — Sigma labels every action in text, even SEARCH and CART"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#333333",
+        "name": "Slate Ink",
+        "role": "Primary text, dominant borders, nav links — the workhorse dark that replaces pure black everywhere a softer edge is wanted",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Onyx Black",
+        "role": "Icon strokes, input borders, and hard-edge accents where maximum contrast is required",
+        "group": "neutral"
+      },
+      {
+        "hex": "#faf7ef",
+        "name": "Warm Bone",
+        "role": "Secondary surface — a barely-warm cream that lifts cards off pure white without introducing visible color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#707070",
+        "name": "Ash Gray",
+        "role": "Muted helper text, secondary borders, disabled states — quieter than Slate Ink by two stops",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0048ff",
+        "name": "Cobalt Signal",
+        "role": "Primary action fill — the only chromatic color in the system, reserved for CTA buttons and live action moments",
+        "group": "brand"
+      },
+      {
+        "hex": "#999999",
+        "name": "Stone Gray",
+        "role": "Tertiary borders and inactive icon strokes — the quietest neutral, used only when Ash is still too loud",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is a vertical sequence of full-bleed product vignettes separated by narrow centered text bands. The hero opens with a single dark product photograph filling the viewport. Below the fold, a white content section presents a centered headline (48px Sigma Serif Head), short body copy (16px, ~600px max-width), and a text-only link CTA. A small all-caps section label (\"NEW PRODUCT\") acts as a divider. The next band returns to full-bleed imagery with overlay text. Navigation is a single-line top bar: left-aligned section links, centered serif wordmark, right-aligned utility links (LOG IN, SEARCH, CART). A dark promotional banner sits above the nav. The overall rhythm alternates between maximum-width photography and narrow centered text, with 80px vertical breathing room between bands. No multi-column grids, no card carousels, no sidebar layouts — every page is a linear editorial scroll.",
+    "imagery": "The visual language is almost entirely large-format product photography. Each lens is shot like a museum object: single subject, centered or slightly off-center, set against a dark studio gradient that fades from charcoal to near-black. Lenses are lit to reveal knurled metal rings, engraved markings, and glass element coatings — the tactile craft of the object is the content. No lifestyle photography, no human subjects, no environmental context. Overlay headlines sit in white serif type directly on the dark image, creating a cinematic poster effect. The treatment is full-bleed, sharp-cornered, and isolationist: every image is given the entire viewport to breathe.",
+    "similar": [
+      {
+        "why": "Same editorial monochrome approach with full-bleed product photography on dark backgrounds, serif wordmark, and extreme typographic restraint",
+        "business": "Leica Camera"
+      },
+      {
+        "why": "Identical museum-gallery treatment of camera equipment — no lifestyle imagery, centered serif headlines, near-zero color palette with photography as the only visual richness",
+        "business": "Hasselblad"
+      },
+      {
+        "why": "Same product-as-sculpture photography on dark gradient backgrounds, centered navigation wordmark, and a single accent color for the rare action element",
+        "business": "Bang & Olufsen"
+      },
+      {
+        "why": "Editorial typography-first layout with generous whitespace, no decorative imagery, and extreme typographic restraint that treats products as objects worth studying",
+        "business": "Aesop"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "1px",
+        "buttons": "0px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Pure Canvas",
+        "level": 0,
+        "purpose": "Default page background — the white gallery wall"
+      },
+      {
+        "hex": "#faf7ef",
+        "name": "Warm Bone",
+        "level": 1,
+        "purpose": "Secondary surface for cards and content blocks that need subtle separation from the canvas"
+      },
+      {
+        "hex": "#0048ff",
+        "name": "Cobalt Signal",
+        "level": 2,
+        "purpose": "The only chromatic surface — reserved for primary action buttons"
+      },
+      {
+        "hex": "#333333",
+        "name": "Slate Ink",
+        "level": 3,
+        "purpose": "Dark surface used for the top promotional banner and inverse panels"
+      }
+    ],
+    "northStar": "Monochrome gallery for precision instruments — a hushed white room where the only color that matters is the one that asks you to act.",
+    "typeScale": [
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.3
+      },
+      {
+        "role": "display",
+        "size": 88,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Promotional Banner",
+        "role": "Top-of-page announcement strip",
+        "description": "Full-width bar, #333333 background, 13px Sigma Sans weight 400 in white, centered text with a 'SHOP NOW' link on the right. Height ~40px, no padding variations. This is the darkest surface on the site and the first element users see."
+      },
+      {
+        "name": "Primary Navigation Bar",
+        "role": "Site-wide navigation",
+        "description": "White background, 1px #333333 bottom border. Left: section links in 13px Sigma Sans uppercase (PRODUCTS, MADE IN AIZU, INSPIRATION, SUPPORT, NEWS). Center: SIGMA wordmark in 24px Sigma Serif Head. Right: utility links (LOG IN, SEARCH, CART (0)) in 13px Sigma Sans uppercase. Height ~60px, no fill, no shadow."
+      },
+      {
+        "name": "Full-Bleed Hero Image",
+        "role": "Primary product showcase on landing",
+        "description": "100vw width, ~100vh height or ~600px minimum. Dark studio gradient background (charcoal to black). Single camera lens centered, photographed in dramatic isolation. No overlay UI on the hero itself. Sharp corners, no border."
+      },
+      {
+        "name": "Centered Editorial Text Block",
+        "role": "Product introduction copy on white",
+        "description": "White background, max-width ~600px, centered horizontally. Headline in 48px Sigma Serif Head weight 400, #333333, slight negative tracking. Body in 16px Sigma Serif weight 400, #707070, 1.54 line-height, 20px paragraph spacing. No card chrome, no background fill."
+      },
+      {
+        "name": "Text-Only Link CTA",
+        "role": "Exploration trigger (\"EXPLORE MORE\")",
+        "description": "No background, no border, no button chrome. 13px Sigma Sans uppercase, #333333, with subtle hover underline. Vertically separated from body by 24–32px. This is the default interactive element on content sections."
+      },
+      {
+        "name": "Cobalt Action Button",
+        "role": "Primary action (cart, checkout, form submit)",
+        "description": "Filled rectangle, #0048ff background, white text in 13–16px Sigma Sans weight 400, 11px vertical × 16px horizontal padding, 0px radius. One button type in one color — no hover state variation needed since the color itself is the rarity."
+      },
+      {
+        "name": "Section Label",
+        "role": "Content divider between editorial blocks",
+        "description": "13px Sigma Sans uppercase, #707070, letter-spacing 0.08em, centered above a content band. Functions as a typographic section break replacing visual dividers."
+      },
+      {
+        "name": "Product Feature Banner",
+        "role": "Full-bleed product spotlight with overlay text",
+        "description": "Full-viewport image with a large white headline overlaid in 48px Sigma Serif Head weight 400. The text sits at left or center, directly on the dark image. A small \"EXPLORE MORE\" text link appears below the headline. This is the second-level hero pattern, used after the opening section."
+      },
+      {
+        "name": "Ghost Form Input",
+        "role": "Search and form fields",
+        "description": "1px #333333 border, 7px vertical × 11px horizontal padding, 1px border-radius, 13–16px Sigma Sans in #333333. No fill, no focus glow — the design trusts the border to do all the work."
+      },
+      {
+        "name": "Product Card (Grid Context)",
+        "role": "Catalog or collection grid items",
+        "description": "White background, 0px radius, no shadow, 16px padding around a product image. Image fills card with no rounding. Product name in 16px Sigma Serif, price in 13px Sigma Sans #707070. Minimal — the image carries the visual weight."
+      },
+      {
+        "name": "Search Icon Trigger",
+        "role": "Utility action in nav",
+        "description": "Text label \"SEARCH\" in 13px Sigma Sans uppercase, #333333. No icon button — the text IS the button. Hover adds underline."
+      },
+      {
+        "name": "Cart Link with Count",
+        "role": "Utility action in nav",
+        "description": "Text label \"CART (0)\" in 13px Sigma Sans uppercase, #333333. Count is inline, no badge background, no color emphasis — zero is treated identically to ten."
+      },
+      {
+        "name": "Footer Navigation",
+        "role": "Site map and legal links",
+        "description": "White or #faf7ef background, multi-column link lists in 13px Sigma Sans, #333333. 1px #333333 top border separator. No newsletter signup, no social icons in primary footer — these are utility links only."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Navigation links, buttons, form labels, and utility micro-copy — the functional voice, compact and quiet",
+        "sizes": "13px, 16px",
+        "family": "Sigma Sans",
+        "weight": "400",
+        "lineHeight": "1.20–1.54",
+        "substitute": "Inter",
+        "letterSpacing": "-0.3100em, 0.0050em, 0.0060em, 0.0200em"
+      },
+      {
+        "role": "Display and hero headlines — a high-contrast didone-style serif at regular weight only, creating editorial authority without boldness",
+        "sizes": "48px, 88px",
+        "family": "Sigma Serif Head",
+        "weight": "400",
+        "lineHeight": "1.10–1.25",
+        "substitute": "Playfair Display",
+        "letterSpacing": "-0.3px at 48px, -0.5px at 88px"
+      },
+      {
+        "role": "Subheadings, body paragraphs, and mid-size editorial text — the reading voice of the site, set at regular weight with generous line-height",
+        "sizes": "16px, 24px",
+        "family": "Sigma Serif",
+        "weight": "400",
+        "lineHeight": "1.25",
+        "substitute": "Cormorant Garamond",
+        "letterSpacing": "-0.3100em, 0.0030em, 0.0050em, 0.0160em"
+      },
+      {
+        "role": "Rare medium-weight sans for emphasized micro-labels — the only weight above 400 in the system, used sparingly",
+        "sizes": "14px",
+        "family": "Metropolis",
+        "weight": "500",
+        "lineHeight": "1.14",
+        "substitute": "Inter Medium",
+        "letterSpacing": "-0.0040em"
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Times — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Sigma's site reads like a museum exhibition catalog for precision optical instruments — entirely weight-400 typography, vast whitespace, and a single vivid cobalt-blue accent that punctuates an otherwise purely monochrome experience. Product photography dominates at near-full-bleed scale, shot against dark studio gradients that let matte-black lens bodies dissolve into shadow and re-emerge as sculptural objects. The editorial restraint — centered serif headlines, tiny all-caps section labels, text-only CTAs — signals confidence through quietness, with the single blue button (#0048ff) functioning as the only raised voice in an otherwise whispered conversation. Sharp corners, no shadows, no gradients, no decorative motion: every screen is a frame around a piece of glass and metal.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/67c60ee4-ac38-41ee-834e-ed2a92146417#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sigmaphoto design system\",\"item\":\"https://styles.refero.design/style/67c60ee4-ac38-41ee-834e-ed2a92146417\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/67c60ee4-ac38-41ee-834e-ed2a92146417#style-reference\",\"name\":\"Sigmaphoto design system reference\",\"headline\":\"Sigmaphoto design system | Refero Styles\",\"description\":\"Explore Sigmaphoto's light E-commerce design system: Slate Ink #333333, Pure White #ffffff colors, Sigma Sans, Sigma Serif Head typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/67c60ee4-ac38-41ee-834e-ed2a92146417\",\"mainEntityOfPage\":\"https://styles.refero.design/style/67c60ee4-ac38-41ee-834e-ed2a92146417\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Sigmaphoto\",\"url\":\"https://www.sigmaphoto.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/67c60ee4-ac38-41ee-834e-ed2a92146417#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c232717c-c4b8-4018-9cba-96b6cdacdab7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c232717c-c4b8-4018-9cba-96b6cdacdab7.jpg\",\"caption\":\"Screenshot of Sigmaphoto\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c232717c-c4b8-4018-9cba-96b6cdacdab7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Sigmaphoto design system\",\"Sigmaphoto website design\",\"Sigmaphoto colors\",\"Sigmaphoto typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Slate Ink\",\"Pure White\",\"Onyx Black\",\"Warm Bone\",\"Sigma Sans\",\"Sigma Serif Head\",\"Sigma Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Sigmaphoto design system\"},{\"@type\":\"Thing\",\"name\":\"Sigmaphoto website design\"},{\"@type\":\"Thing\",\"name\":\"Sigmaphoto colors\"},{\"@type\":\"Thing\",\"name\":\"Sigmaphoto typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:34:29.824Z\",\"dateModified\":\"2026-04-30T00:34:29.824Z\"}]}19:T5d2,**Quick Color Reference**\n- text: #333333\n- background: #ffffff\n- secondary surface: #faf7ef\n- border: #333333\n- muted text: #707070\n- primary action: #0048ff (filled action)\n\n**Example Component Prompts:**\n\n1. *Full-bleed product hero*: Viewport-height image section. Dark charcoal-to-black photographic background. No overlay text, no UI elements. Product subject centered at ~40% width. 0px radius, full-bleed.\n\n2. *Centered editorial intro*: White background, 80px top padding. Centered headline in 48px Playfair Display weight 400, #333333, letter-spacing -0.3px. Body text in 16px Cormorant Garamond weight 400, #707070, 1.54 line-height, max-width 600px centered. 32px gap to a text-only \"EXPLORE MORE\" link in 13px Inter weight 400, #333333, uppercase, 0.08em letter-spacing.\n\n3. *Cobalt action button*: Filled rectangle, #0048ff background, 0px radius, 11px vertical × 16px horizontal padding. Text: \"ADD TO CART\" in 13px Inter weight 400, white, uppercase, 0.08em letter-spacing.\n\n4. *Section divider label*: White background, 48px vertical padding, centered text \"NEW PRODUCT\" in 13px Inter weight 400, #707070, uppercase, 0.08em letter-spacing. No horizontal rules, no borders.\n\n5. *Navigation bar*: White background, 1px #333333 bottom border, 60px height. Left: \"PRODUCTS  MADE IN AIZU  INSPIRATION  SUPPORT  NEWS\" in 13px Inter uppercase #333333. Center: \"SIGMA\" in 24px Playfair Display weight 400 #333333. Right: \"LOG IN  SEARCH  CART (0)\" in 13px Inter uppercase #333333."
+      }
+    ],
+    "elevationPhilosophy": "The design is deliberately flat: no card shadows, no elevation tiers, no depth illusions. Visual separation is achieved through whitespace, hairline borders (#333333 at 1px), and background contrast — never through shadow. The only shadow detected (rgba(0,0,0,0.5) -2px 0px 5px) appears on a minor decorative element and is not a systematic elevation pattern."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "link",
+            "image",
+            "body",
+            "button",
+            "list",
+            "footer"
+          ],
+          "frequency": 2059,
+          "confidence": 1,
+          "prominence": 105489511.22342563,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 80,
+            "body/color": 62,
+            "link/color": 40,
+            "list/color": 31,
+            "image/color": 10,
+            "other/color": 177,
+            "button/color": 2,
+            "footer/color": 1,
+            "heading/color": 9,
+            "nav/borderColor": 320,
+            "body/borderColor": 248,
+            "link/borderColor": 160,
+            "list/borderColor": 124,
+            "image/borderColor": 40,
+            "other/borderColor": 704,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 36,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "body",
+            "link",
+            "other",
+            "input",
+            "button",
+            "heading",
+            "footer",
+            "nav"
+          ],
+          "frequency": 247,
+          "confidence": 1,
+          "prominence": 48652024.67899646,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 9,
+            "link/color": 8,
+            "other/color": 21,
+            "button/color": 2,
+            "other/stroke": 1,
+            "heading/color": 6,
+            "body/borderColor": 36,
+            "link/borderColor": 32,
+            "other/borderColor": 84,
+            "button/borderColor": 8,
+            "heading/borderColor": 24,
+            "nav/backgroundColor": 4,
+            "input/backgroundColor": 4,
+            "other/backgroundColor": 7,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#faf7ef",
+          "oklch": {
+            "c": 0.011048472122681651,
+            "h": 89.72126257322306,
+            "l": 0.9762512803236281
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 580954,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#7f7f7f",
+          "oklch": {
+            "c": 0.0007476492905291581,
+            "h": 106.42225616870158,
+            "l": 0.5963316352198368
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 556321.8377531258,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "other",
+            "button",
+            "input"
+          ],
+          "frequency": 160,
+          "confidence": 1,
+          "prominence": 117294.67004983386,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 12,
+            "body/color": 14,
+            "icon/color": 7,
+            "other/fill": 8,
+            "input/color": 5,
+            "other/color": 1,
+            "button/color": 1,
+            "other/stroke": 12,
+            "body/borderColor": 56,
+            "icon/borderColor": 28,
+            "input/borderColor": 8,
+            "other/borderColor": 4,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#707070",
+          "oklch": {
+            "c": 0.00045890895034990273,
+            "h": 106.41483157126254,
+            "l": 0.5447260920551035
+          },
+          "contexts": [
+            "input",
+            "link",
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 122,
+          "confidence": 1,
+          "prominence": 111080.23208542784,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 12,
+            "link/color": 4,
+            "other/fill": 1,
+            "heading/color": 5,
+            "body/borderColor": 48,
+            "link/borderColor": 16,
+            "input/borderColor": 12,
+            "other/borderColor": 4,
+            "heading/borderColor": 20
+          }
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 2490.790765418854,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "button/color": 1,
+            "icon/borderColor": 4,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#0048ff",
+          "oklch": {
+            "c": 0.27289085844567645,
+            "h": 263.4872936521068,
+            "l": 0.5125243586827647
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1936,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00035463522975268976,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.62,
+          "background": "#faf7ef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.8,
+          "background": "#faf7ef",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.23,
+          "background": "#0048ff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.95,
+          "background": "#ffffff",
+          "foreground": "#707070"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.63,
+          "background": "#faf7ef",
+          "foreground": "#707070"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.43,
+          "background": "#333333",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.37,
+          "background": "#0048ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.85,
+          "background": "#ffffff",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.66,
+          "background": "#faf7ef",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.55,
+          "background": "#333333",
+          "foreground": "#707070"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.19,
+          "background": "#0048ff",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.03,
+          "background": "#0048ff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.66,
+          "background": "#333333",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.26,
+          "background": "#0048ff",
+          "foreground": "#707070"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.07,
+          "background": "#faf7ef",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 1,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.5) -2px 0px 5px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "input"
+          ],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|input"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 4,
+          "properties": [
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "marginRight|input"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|list",
+            "paddingLeft|list",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "input",
+            "button",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 104,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "rowGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "columnGap|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "marginBottom|other",
+            "marginTop|other",
+            "marginBottom|link",
+            "marginBottom|body",
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 21,
+          "properties": [
+            "rowGap",
+            "marginBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "marginBottom|heading",
+            "marginBottom|body",
+            "columnGap|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 184,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Sigma Sans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 264,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Sigma Serif",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 215,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 16,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Sigma Serif head",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Metropolis",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon",
+            "input"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Sigma Sans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "other",
+            "image",
+            "list"
+          ],
+          "frequency": 126,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.006,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Sigma Sans",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 102,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Sigma Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Sigma Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.31,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Sigma Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "input",
+            "body",
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Sigma Sans",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.54,
+          "letterSpacing": 0.006,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Sigma Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.006,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Metropolis",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Sigma Serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "body",
+            "list",
+            "footer"
+          ],
+          "frequency": 168,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Sigma Serif",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.005,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Sigma Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Sigma Serif",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Sigma Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.005,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Sigma Serif",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.31,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Sigma Serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Sigma Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.003,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 48,
+          "family": "Sigma Serif head",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link",
+            "image"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Sigma Serif head",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 88,
+          "family": "Sigma Serif head",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.001,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e094ae84-9300-4c81-b006-9163df44f602.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c232717c-c4b8-4018-9cba-96b6cdacdab7.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/67c60ee4-ac38-41ee-834e-ed2a92146417#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sigmaphoto design system\",\"item\":\"https://styles.refero.design/style/67c60ee4-ac38-41ee-834e-ed2a92146417\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/67c60ee4-ac38-41ee-834e-ed2a92146417#style-reference\",\"name\":\"Sigmaphoto design system reference\",\"headline\":\"Sigmaphoto design system | Refero Styles\",\"description\":\"Explore Sigmaphoto's light E-commerce design system: Slate Ink #333333, Pure White #ffffff colors, Sigma Sans, Sigma Serif Head typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/67c60ee4-ac38-41ee-834e-ed2a92146417\",\"mainEntityOfPage\":\"https://styles.refero.design/style/67c60ee4-ac38-41ee-834e-ed2a92146417\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Sigmaphoto\",\"url\":\"https://www.sigmaphoto.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/67c60ee4-ac38-41ee-834e-ed2a92146417#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c232717c-c4b8-4018-9cba-96b6cdacdab7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c232717c-c4b8-4018-9cba-96b6cdacdab7.jpg\",\"caption\":\"Screenshot of Sigmaphoto\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c232717c-c4b8-4018-9cba-96b6cdacdab7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Sigmaphoto design system\",\"Sigmaphoto website design\",\"Sigmaphoto colors\",\"Sigmaphoto typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Slate Ink\",\"Pure White\",\"Onyx Black\",\"Warm Bone\",\"Sigma Sans\",\"Sigma Serif Head\",\"Sigma Serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Sigmaphoto design system\"},{\"@type\":\"Thing\",\"name\":\"Sigmaphoto website design\"},{\"@type\":\"Thing\",\"name\":\"Sigmaphoto colors\"},{\"@type\":\"Thing\",\"name\":\"Sigmaphoto typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:34:29.824Z\",\"dateModified\":\"2026-04-30T00:34:29.824Z\"}]}19:T5d2,**Quick Color Reference**\n- text: #333333\n- background: #ffffff\n- secondary surface: #faf7ef\n- border: #333333\n- muted text: #707070\n- primary action: #0048ff (filled action)\n\n**Example Component Prompts:**\n\n1. *Full-bleed product hero*: Viewport-height image section. Dark charcoal-to-black photographic background. No overlay text, no UI elements. Product subject centered at ~40% width. 0px radius, full-bleed.\n\n2. *Centered editorial intro*: White background, 80px top padding. Centered headline in 48px Playfair Display weight 400, #333333, letter-spacing -0.3px. Body text in 16px Cormorant Garamond weight 400, #707070, 1.54 line-height, max-width 600px centered. 32px gap to a text-only \"EXPLORE MORE\" link in 13px Inter weight 400, #333333, uppercase, 0.08em letter-spacing.\n\n3. *Cobalt action button*: Filled rectangle, #0048ff background, 0px radius, 11px vertical × 16px horizontal padding. Text: \"ADD TO CART\" in 13px Inter weight 400, white, uppercase, 0.08em letter-spacing.\n\n4. *Section divider label*: White background, 48px vertical padding, centered text \"NEW PRODUCT\" in 13px Inter weight 400, #707070, uppercase, 0.08em letter-spacing. No horizontal rules, no borders.\n\n5. *Navigation bar*: White background, 1px #333333 bottom border, 60px height. Left: \"PRODUCTS  MADE IN AIZU  INSPIRATION  SUPPORT  NEWS\" in 13px Inter uppercase #333333. Center: \"SIGMA\" in 24px Playfair Display weight 400 #333333. Right: \"LOG IN  SEARCH  CART (0)\" in 13px Inter uppercase #333333."
+}

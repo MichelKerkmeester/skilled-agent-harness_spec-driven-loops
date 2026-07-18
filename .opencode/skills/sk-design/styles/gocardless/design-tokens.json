@@ -1,0 +1,339 @@
+{
+  "color": {
+    "acid-highlight": {
+      "$value": "#f1f252",
+      "$type": "color",
+      "$description": "Acid Highlight — Primary action buttons, decorative accent shapes, heading highlights, nav emphasis — the single chromatic color in an otherwise achromatic system, used sparingly to draw the eye to CTAs and break visual monotony"
+    },
+    "charcoal-ink": {
+      "$value": "#1c1b18",
+      "$type": "color",
+      "$description": "Charcoal Ink — Primary text, dark hero/section backgrounds, icon strokes, nav borders, high-contrast surfaces — the structural black of the system, warmer than pure black"
+    },
+    "warm-graphite": {
+      "$value": "#545048",
+      "$type": "color",
+      "$description": "Warm Graphite — Secondary body text, muted labels, image borders, card borders, icon outlines — the mid-tone that bridges ink and paper"
+    },
+    "cream-paper": {
+      "$value": "#efece7",
+      "$type": "color",
+      "$description": "Cream Paper — Dominant page canvas, card backgrounds on dark sections, nav borders, link borders — the warm off-white that defines the brand's lighter surfaces"
+    },
+    "soft-stone": {
+      "$value": "#d4d1cd",
+      "$type": "color",
+      "$description": "Soft Stone — Hairline dividers, subtle borders, image outlines, secondary structural lines — the lightest warm gray for quiet separation"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Elevated card surfaces, modal backgrounds, light-theme cards, inset border glows — the brightest surface for content containers that sit on cream"
+    },
+    "espresso": {
+      "$value": "#3c3428",
+      "$type": "color",
+      "$description": "Espresso — Footer accents, deep warm browns for grounding the bottom of pages — a desaturated warm dark that complements charcoal without competing"
+    }
+  },
+  "font": {
+    "haffer": {
+      "$value": "Haffer",
+      "$type": "fontFamily",
+      "$description": "Primary interface and heading typeface — the workhorse sans-serif used for nav, body, buttons, links, and most headings. Weight 400 for body and nav, 600 for subheadings and button labels, 700 for primary headlines. Substitute: Inter or General Sans"
+    },
+    "para": {
+      "$value": "Para",
+      "$type": "fontFamily",
+      "$description": "Display serif for editorial-style headings — the weight-300 italic-feeling serif introduces contrast against the bold sans-serif headlines, giving select sections a magazine-cover quality. Used sparingly. Substitute: Source Serif Pro Light or Playfair Display Light"
+    },
+    "nudge": {
+      "$value": "Nudge",
+      "$type": "fontFamily",
+      "$description": "Massive display sans for hero statements — ultra-bold, ultra-tight, single-line hero words that dominate the viewport. The weight-700 weight at 84px with 1.0 line-height makes headlines feel carved rather than written. Substitute: Haffer 700 at 84px or Druk Wide"
+    },
+    "dm-mono": {
+      "$value": "DM Mono",
+      "$type": "fontFamily",
+      "$description": "Monospace accent for code snippets, technical labels, or numbered annotations. Rare but present for moments needing a technical voice. Substitute: JetBrains Mono or IBM Plex Mono"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Haffer",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Haffer",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Haffer",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Haffer",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Haffer",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 4.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Haffer",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Haffer",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Haffer",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "DM Mono",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Haffer",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Haffer",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Haffer",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "DM Mono",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Haffer",
+        "fontSize": "28px",
+        "fontWeight": 600,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Haffer",
+        "fontSize": "36px",
+        "fontWeight": 600,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Para",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Nudge",
+        "fontSize": "84px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 84px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(28, 27, 24) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgb(250, 249, 247) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#efece7",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background across most light sections; the warm paper that all content sits on"
+    },
+    "white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated cards, modals, dashboard mockups — surfaces that need to lift off the cream canvas"
+    },
+    "charcoal-section": {
+      "$value": "#1c1b18",
+      "$type": "color",
+      "$description": "Surface level 2: Dark hero panels, footer backgrounds, inverted sections — high-contrast bands that break the cream rhythm"
+    },
+    "acid-highlight-panel": {
+      "$value": "#f1f252",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed yellow sections used as feature highlight bands or visual punctuation in dark contexts"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://gocardless.com",
+      "siteName": "Gocardless",
+      "extractedAt": "2026-06-03T20:41:57.330Z",
+      "variant": "extended"
+    }
+  }
+}

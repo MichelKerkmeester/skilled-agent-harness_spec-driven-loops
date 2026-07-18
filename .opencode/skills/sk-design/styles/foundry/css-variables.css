@@ -1,0 +1,73 @@
+:root {
+  /* Colors */
+  --color-ember-orange: #ff4d00;
+  --color-foundry-black: #121212;
+  --color-chalk-white: #e2e8f0;
+  --color-bone-white: #efefef;
+  --color-soot: #3a3a3a;
+  --color-ash: #747474;
+
+  /* Typography — Font Families */
+  --font-jetbrains-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-basement-grotesque-ffflauta-b-mecha-bunker-caniche-carpenter-curia-adhesion-trovador-xer0-blob: 'Basement Grotesque, FFFLAUTA, B-Mecha, Bunker, Caniche, Carpenter, Curia, Adhesion, Trovador, XER0, Blob', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ffflauta-400: 'FFFLAUTA 400', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-basement-grotesque-black-expanded: 'Basement Grotesque Black Expanded', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mecha-regular: 'Mecha Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-curia-regular: 'Curia Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-adhesion-regular: 'Adhesion Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-carpenter-regular: 'Carpenter Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-bunker-regular: 'Bunker Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-trovador-regular: 'Trovador Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-xer0-regular: 'XER0 Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-caniche-regular: 'Caniche Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-blob-regular: 'Blob Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.4;
+  --tracking-caption: 0.04px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.29;
+  --tracking-body-sm: -0.02px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 18px;
+  --leading-subheading: 1.32;
+  --text-display: 120px;
+  --leading-display: 0.95;
+  --tracking-display: 0.01px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-100: 100px;
+
+  /* Layout */
+  --page-max-width: 1440px;
+  --section-gap: 64px;
+  --card-padding: 15px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-sm: 2.8px;
+  --radius-lg: 8px;
+
+  /* Named Radii */
+  --radius-nav: 2.8px;
+  --radius-tags: 2.8px;
+  --radius-cards: 8px;
+  --radius-buttons: 2.8px;
+
+  /* Surfaces */
+  --surface-canvas: #121212;
+  --surface-inverted-surface: #efefef;
+}

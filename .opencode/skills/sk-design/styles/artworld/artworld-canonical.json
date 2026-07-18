@@ -1,0 +1,697 @@
+{
+  "source": "https://styles.refero.design/style/bab94db1-25ec-459d-8c81-5905a0324b65",
+  "uuid": "bab94db1-25ec-459d-8c81-5905a0324b65",
+  "name": "ARTWORLD",
+  "northStar": "fashion masthead on white linen",
+  "capturedAt": "2026-07-18T07:33:17.555Z",
+  "meta": {
+    "url": "https://artworld.agency",
+    "siteName": "ARTWORLD",
+    "extractedAt": "2026-06-03T20:41:49.027Z",
+    "durationMs": 41210,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 240,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #000000 and #ffffff. Any introduction of grey, tint, or color breaks the monochrome contract.",
+      "Set all display type in Cardinal Fruit (upright or italic) at 65–75px with weight 300. The whisper weight is non-negotiable — it creates the airiness that makes the type feel printed, not digital.",
+      "Set all body and supporting type in Graphik Light at weight 300. Do not promote to Regular or Medium; the thinness is the point.",
+      "Use the two type families as a system of contrast: Cardinal Fruit speaks, Graphik Light stays quiet. Never let Graphik Light appear at sizes that compete with Cardinal Fruit.",
+      "Maintain tight letter-spacing: -0.065em for Graphik Light, -0.010 to -0.031em for Cardinal Fruit. This tracking is what gives the type its editorial density.",
+      "Keep all spacing generous — 76–95px between major sections, 20–30px between elements. This is a spacious design that breathes.",
+      "Left-align everything. Center-alignment would break the ragged editorial grid that gives the page its fashion-magazine rhythm."
+    ],
+    "donts": [
+      "Do not add any color beyond black and white. No accent colors, no state colors, no hover tints. Monochrome is the brand.",
+      "Do not use rounded corners. Every edge is sharp, every surface is flat. The system has no curves.",
+      "Do not add shadows, gradients, or elevation effects. The design is completely flat — depth comes from type size contrast, not from visual effects.",
+      "Do not use bold or semibold weights for body or display type. The system lives at 300. Heavier weights break the whisper voice.",
+      "Do not use system sans-serifs (Arial, Helvetica, Roboto) as substitutes for Graphik Light. The lightness and tight tracking of Graphik are what make it disappear correctly.",
+      "Do not center-align body text or grid items. The ragged left edge is a design feature, not a limitation.",
+      "Do not add icons, illustrations, photography, or decorative graphics. This is a typography-only system. The wordmark is the only visual element that isn't running text."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "All text, the ARTWORLD wordmark, hairline structural borders, link strokes — the only mark-making color in the entire system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, negative space between type, reverse text on the wordmark bar",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Single-page editorial layout with full-bleed content (no max-width container). The page reads top-to-bottom as: (1) talent credits grid occupying the upper 60% of the page in a ragged 3–4 column layout of mixed italic/upright serif names with superscript role annotations, (2) a small horizontal legend line explaining the role codes, (3) the massive ARTWORLD wordmark spanning full viewport width at the bottom in heavy bold sans-serif. Everything is left-aligned. There is no traditional navigation, no hero section, no sidebar — the talent roster IS the page. The layout treats the browser as a printed editorial spread.",
+    "imagery": "No photography, no illustration, no product imagery, no icons. The entire visual system is typography. The only graphic element is the ARTWORLD wordmark itself, which functions as both brand identifier and the page's only visual mass. Any imagery would be foreign to this system.",
+    "similar": [
+      {
+        "why": "Same editorial-masthead aesthetic with massive bold sans-serif wordmark on pure white, zero color, type-only composition, whisper-thin supporting text",
+        "business": "Saint Laurent (ysl.com)"
+      },
+      {
+        "why": "High-fashion agency feel with serif italic names, generous white space, monochrome palette, and type as the sole design element",
+        "business": "Acne Studios (acnestudios.com)"
+      },
+      {
+        "why": "Editorial roster/credits approach with mixed serif italic display type, generous spacing, and a roster-as-design philosophy",
+        "business": "The Gentlewoman magazine"
+      },
+      {
+        "why": "Cultural curation site with extreme type contrast, monochrome palette, whisper-light body text supporting bold display moments",
+        "business": "Mubi (mubi.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "76-95px",
+      "cardPadding": "30px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Full-page canvas — the entire site lives on this surface"
+      }
+    ],
+    "northStar": "fashion masthead on white linen",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.78
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -1.04
+      },
+      {
+        "role": "body-lg",
+        "size": 20,
+        "lineHeight": 1.58,
+        "letterSpacing": -1.3
+      },
+      {
+        "role": "display",
+        "size": 65,
+        "lineHeight": 1.09,
+        "letterSpacing": -2.015
+      },
+      {
+        "role": "display-lg",
+        "size": 75,
+        "lineHeight": 1,
+        "letterSpacing": -0.75
+      }
+    ],
+    "components": [
+      {
+        "name": "Talent Name Cell",
+        "role": "Primary unit of the talent grid — individual artist/creator name in the credits section",
+        "description": "Name set in Cardinal Fruit Italic at 18px, line-height 1.20, letter-spacing -0.011em, color #000000. Followed immediately by a superscript role tag (e.g., P, D, V, C, S) also at 12–18px in Cardinal Fruit Italic. The tag sits as a raised annotation, like a footnote in a magazine masthead. No border, no background, no decoration — just type on white."
+      },
+      {
+        "name": "Role Legend",
+        "role": "Key explaining the superscript role tags in the talent grid",
+        "description": "A single horizontal line of Graphik Light at 12px, color #000000, centered or left-aligned at the bottom of the credits section. Format: (P) Photographer (D) Director (V) Virtual (C) CGI (S) Stylist — parenthetical letters followed by lowercase labels. Generous 29–30px horizontal padding between items to create breathing room."
+      },
+      {
+        "name": "ARTWORLD Wordmark",
+        "role": "Brand identifier and visual anchor — the page's only large-scale graphic element",
+        "description": "Set in a heavy bold sans-serif (distinct from Cardinal Fruit and Graphik — appears to be a Neue Haas or similar grotesque at 900 weight) at approximately 120–150px, letter-spacing tight (-0.02em range), color #000000, line-height 1.00. Occupies the full viewport width, left-aligned. This is the loudest element on the page by an order of magnitude — its only structural function is to assert brand presence against the whisper-quiet grid above it."
+      },
+      {
+        "name": "Info Link",
+        "role": "Persistent utility link, likely to contact or about details",
+        "description": "Set in Cardinal Fruit Italic at 12px, color #000000, positioned in the bottom-right corner of the page. No underline by default — the italic serif itself signals interactivity. Minimal padding, sits alone with significant white space around it."
+      },
+      {
+        "name": "Credits Grid",
+        "role": "The main content surface — a multi-row, multi-column layout of talent name cells",
+        "description": "Flexible ragged grid of 3–4 columns on desktop. Column gap 40–95px, row gap 20–35px. Each row is vertically centered, not baseline-aligned, creating a slightly uneven but visually rhythmic flow. The mix of italic and upright Cardinal Fruit across cells creates natural variation — some names lean right, some stand straight. The grid is the page; there is no other content structure."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The invisible support system — body text, captions, metadata, role tags, the legend, the info link. Weight 300 is deliberately thin: it recedes so the Cardinal Fruit can dominate. This is the typographic equivalent of using whisper voice in a conversation where someone else is speaking. The consistent -0.065em letter-spacing tightens the already-light forms, giving the sans-serif an editorial density that prevents it from feeling like default UI text.",
+        "sizes": "12px, 16px, 20px",
+        "family": "Graphik Light",
+        "weight": "300",
+        "lineHeight": "1.20–1.58",
+        "substitute": "Inter Light, IBM Plex Sans Light, or Söhne Buch",
+        "letterSpacing": "-0.0650em"
+      },
+      {
+        "role": "The editorial display voice — used for talent names, artist credits, and any moment of typographic expression. The italic variant carries the romantic, fashion-magazine feeling while the upright version provides structural headlines. Custom serif with high contrast strokes, used at extreme sizes (65–75px) to dominate the page. The whisper weight (300) on such a large serif is anti-convention: most editorial serifs use 400–700 here, but the light cuts create airier letterforms that feel more printed than digital.",
+        "sizes": "18px, 65px, 75px",
+        "family": "Cardinal Fruit (and Italic / Classic Italic variants)",
+        "weight": "300",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Playfair Display, Cormorant Garamond, or Libre Caslon Text",
+        "letterSpacing": "-0.0100em at 75px, -0.0310em at 65px, -0.0110em at 18px"
+      },
+      {
+        "role": "Cardinal Fruit Italic — detected in extracted data but not described by AI",
+        "sizes": "16px, 65px, 75px",
+        "family": "Cardinal Fruit Italic",
+        "weight": "300",
+        "lineHeight": "1, 1.09, 1.5",
+        "letterSpacing": "-0.031, -0.01"
+      },
+      {
+        "role": "Cardinal Classic Italic — detected in extracted data but not described by AI",
+        "sizes": "18px",
+        "family": "Cardinal Classic Italic",
+        "weight": "300",
+        "lineHeight": "1.2",
+        "letterSpacing": "-0.011"
+      }
+    ],
+    "description": "ARTWORLD is a typographic art piece masquerading as a website — an agency masthead where the entire visual system is built from two weights of contrast: pure white paper and pure black ink. The aesthetic borrows from high-fashion editorial credits pages, where the talent roster becomes the design itself, and a single oversized wordmark anchors the composition like a magazine cover. Two type families do all the work: Cardinal Fruit (a refined display serif) provides the elegant italic voices for names, while Graphik Light at weight 300 supplies the quiet, whisper-thin supporting text — a deliberate anti-convention choice that makes the 75px display serifs feel monumental by contrast. Everything is left-aligned in a ragged editorial grid, with no color, no shadows, no rounded corners, no decoration. The system is monochrome to its bones and treats typography as the only meaningful design surface.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bab94db1-25ec-459d-8c81-5905a0324b65#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ARTWORLD design system\",\"item\":\"https://styles.refero.design/style/bab94db1-25ec-459d-8c81-5905a0324b65\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bab94db1-25ec-459d-8c81-5905a0324b65#style-reference\",\"name\":\"ARTWORLD design system reference\",\"headline\":\"ARTWORLD design system | Refero Styles\",\"description\":\"Explore ARTWORLD's light Agency design system: Ink Black #000000, Paper White #ffffff colors, Graphik Light, Cardinal Fruit (and Italic / Classic Italic...\",\"url\":\"https://styles.refero.design/style/bab94db1-25ec-459d-8c81-5905a0324b65\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bab94db1-25ec-459d-8c81-5905a0324b65\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ARTWORLD\",\"url\":\"https://artworld.agency\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bab94db1-25ec-459d-8c81-5905a0324b65#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7e052a6d-0f2a-4f0b-bef7-c66190e31125.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7e052a6d-0f2a-4f0b-bef7-c66190e31125.jpg\",\"caption\":\"Screenshot of ARTWORLD\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7e052a6d-0f2a-4f0b-bef7-c66190e31125.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ARTWORLD design system\",\"ARTWORLD website design\",\"ARTWORLD colors\",\"ARTWORLD typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Paper White\",\"Graphik Light\",\"Cardinal Fruit (and Italic / Classic Italic variants)\",\"Cardinal Fruit Italic\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ARTWORLD design system\"},{\"@type\":\"Thing\",\"name\":\"ARTWORLD website design\"},{\"@type\":\"Thing\",\"name\":\"ARTWORLD colors\"},{\"@type\":\"Thing\",\"name\":\"ARTWORLD typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:50:15.516Z\",\"dateModified\":\"2026-04-30T02:50:15.516Z\"}]}19:T6b8,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px hairline)\n- accent: no distinct accent color\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. Create a talent name cell: white background. Name in Cardinal Fruit Italic, 18px, weight 300, color #000000, letter-spacing -0.198px. Immediately after the name, a superscript role tag in the same font at 12px, raised 4px. No border, no background, no padding — just type sitting on the page.\n\n2. Create a section legend: horizontal row at the bottom of a credits grid, set in Graphik Light 12px weight 300, color #000000, letter-spacing -0.78px. Items separated by 29px horizontal padding. Format each item as a parenthetical letter followed by a lowercase label, e.g. '(P) Photographer'.\n\n3. Create the ARTWORLD wordmark: set 'ARTWORLD' in a heavy bold sans-serif (Neue Haas Grotesk Display or Inter at weight 900) at 120–150px, line-height 1.00, letter-spacing -0.02em, color #000000, left-aligned, spanning the full viewport width. No margin above — it should sit directly against the preceding content with the page's standard 76–95px section gap.\n\n4. Create a credits grid container: white background, no border, no padding. 3-column grid with 95px column gap and 20px row gap. Each grid cell is a talent name cell (see component 1). Grid is left-aligned within the page — no centering, no max-width constraint.\n\n5. Create an info link: Cardinal Fruit Italic 12px, weight 300, color #000000, no underline, positioned bottom-right of the page with 30px padding from the viewport edge. The italic serif itself signals clickability — no hover treatment needed beyond the existing #000000 color."
+      },
+      {
+        "title": "Typography Pairing Logic",
+        "content": "The two type families are not interchangeable — they serve opposite functions. Cardinal Fruit (both upright and italic variants) is the VOICE: it carries names, headlines, brand moments, and any text that should be read as expression. Graphik Light is the INFRASTRUCTURE: it carries metadata, legends, UI chrome, and any text that should be read as information. The 300 weight on both creates a system-wide whisper that makes the contrast between serif (expressive) and sans (informational) feel natural rather than hierarchical. Never use Graphik Light for names or headlines. Never use Cardinal Fruit for body paragraphs or metadata."
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no elevation, no depth effects whatsoever. The design achieves hierarchy entirely through type scale and weight contrast — a 75px Cardinal Fruit display naturally dominates a 16px Graphik Light body without needing any visual lift. Surfaces are absolute: pure black ink on pure white paper, nothing between."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "link",
+            "heading",
+            "body",
+            "list"
+          ],
+          "frequency": 721,
+          "confidence": 1,
+          "prominence": 12306628.114845773,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 34,
+            "hero/color": 1,
+            "link/color": 16,
+            "list/color": 6,
+            "image/color": 14,
+            "other/color": 40,
+            "heading/color": 33,
+            "body/borderColor": 136,
+            "hero/borderColor": 4,
+            "link/borderColor": 64,
+            "list/borderColor": 24,
+            "image/borderColor": 56,
+            "other/borderColor": 160,
+            "heading/borderColor": 132,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "image",
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 480,
+          "confidence": 1,
+          "prominence": 11547221.436565975,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 45,
+            "link/color": 5,
+            "image/color": 1,
+            "other/color": 44,
+            "heading/color": 1,
+            "body/borderColor": 180,
+            "link/borderColor": 20,
+            "image/borderColor": 4,
+            "other/borderColor": 176,
+            "heading/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 10,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 71,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginBottom|body",
+            "paddingTop|heading",
+            "paddingRight|heading",
+            "paddingBottom|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 49,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 76,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 48,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|image",
+            "paddingRight|image",
+            "paddingBottom|image",
+            "paddingLeft|image"
+          ]
+        },
+        {
+          "value": 95,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Graphik Light",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 142,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Cardinal Fruit Italic",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 54,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Cardinal Fruit",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 42,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Cardinal Classic Italic",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Graphik Light",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 49,
+          "lineHeight": 6.23,
+          "letterSpacing": -0.065,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Graphik Light",
+          "weight": 300,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Graphik Light",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 33,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Graphik Light",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.58,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Graphik Light",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Cardinal Fruit Italic",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Cardinal Fruit",
+          "weight": 300,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Cardinal Classic Italic",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Graphik Light",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "image",
+            "hero",
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 65,
+          "family": "Cardinal Fruit",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.09,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 65,
+          "family": "Cardinal Fruit Italic",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.09,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 75,
+          "family": "Cardinal Fruit",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "image",
+            "link",
+            "heading"
+          ],
+          "frequency": 40,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 75,
+          "family": "Cardinal Fruit Italic",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "image",
+            "link",
+            "heading"
+          ],
+          "frequency": 40,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/dd45dca9-5e31-473f-a487-c6999024fc21.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7e052a6d-0f2a-4f0b-bef7-c66190e31125.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bab94db1-25ec-459d-8c81-5905a0324b65#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ARTWORLD design system\",\"item\":\"https://styles.refero.design/style/bab94db1-25ec-459d-8c81-5905a0324b65\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bab94db1-25ec-459d-8c81-5905a0324b65#style-reference\",\"name\":\"ARTWORLD design system reference\",\"headline\":\"ARTWORLD design system | Refero Styles\",\"description\":\"Explore ARTWORLD's light Agency design system: Ink Black #000000, Paper White #ffffff colors, Graphik Light, Cardinal Fruit (and Italic / Classic Italic...\",\"url\":\"https://styles.refero.design/style/bab94db1-25ec-459d-8c81-5905a0324b65\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bab94db1-25ec-459d-8c81-5905a0324b65\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ARTWORLD\",\"url\":\"https://artworld.agency\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bab94db1-25ec-459d-8c81-5905a0324b65#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7e052a6d-0f2a-4f0b-bef7-c66190e31125.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7e052a6d-0f2a-4f0b-bef7-c66190e31125.jpg\",\"caption\":\"Screenshot of ARTWORLD\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7e052a6d-0f2a-4f0b-bef7-c66190e31125.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ARTWORLD design system\",\"ARTWORLD website design\",\"ARTWORLD colors\",\"ARTWORLD typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ink Black\",\"Paper White\",\"Graphik Light\",\"Cardinal Fruit (and Italic / Classic Italic variants)\",\"Cardinal Fruit Italic\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ARTWORLD design system\"},{\"@type\":\"Thing\",\"name\":\"ARTWORLD website design\"},{\"@type\":\"Thing\",\"name\":\"ARTWORLD colors\"},{\"@type\":\"Thing\",\"name\":\"ARTWORLD typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:50:15.516Z\",\"dateModified\":\"2026-04-30T02:50:15.516Z\"}]}19:T6b8,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px hairline)\n- accent: no distinct accent color\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. Create a talent name cell: white background. Name in Cardinal Fruit Italic, 18px, weight 300, color #000000, letter-spacing -0.198px. Immediately after the name, a superscript role tag in the same font at 12px, raised 4px. No border, no background, no padding — just type sitting on the page.\n\n2. Create a section legend: horizontal row at the bottom of a credits grid, set in Graphik Light 12px weight 300, color #000000, letter-spacing -0.78px. Items separated by 29px horizontal padding. Format each item as a parenthetical letter followed by a lowercase label, e.g. '(P) Photographer'.\n\n3. Create the ARTWORLD wordmark: set 'ARTWORLD' in a heavy bold sans-serif (Neue Haas Grotesk Display or Inter at weight 900) at 120–150px, line-height 1.00, letter-spacing -0.02em, color #000000, left-aligned, spanning the full viewport width. No margin above — it should sit directly against the preceding content with the page's standard 76–95px section gap.\n\n4. Create a credits grid container: white background, no border, no padding. 3-column grid with 95px column gap and 20px row gap. Each grid cell is a talent name cell (see component 1). Grid is left-aligned within the page — no centering, no max-width constraint.\n\n5. Create an info link: Cardinal Fruit Italic 12px, weight 300, color #000000, no underline, positioned bottom-right of the page with 30px padding from the viewport edge. The italic serif itself signals clickability — no hover treatment needed beyond the existing #000000 color."
+}

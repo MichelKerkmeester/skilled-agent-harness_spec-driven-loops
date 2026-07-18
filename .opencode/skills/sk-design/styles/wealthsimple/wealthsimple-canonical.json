@@ -1,0 +1,1247 @@
+{
+  "source": "https://styles.refero.design/style/043341c3-cf82-4be1-9142-fa5e6a370ca9",
+  "uuid": "043341c3-cf82-4be1-9142-fa5e6a370ca9",
+  "name": "Wealthsimple",
+  "northStar": "Cashmere-lined vault with gallery lighting",
+  "capturedAt": "2026-07-18T08:22:02.002Z",
+  "meta": {
+    "url": "https://wealthsimple.com",
+    "siteName": "Wealthsimple",
+    "extractedAt": "2026-06-03T17:30:02.885Z",
+    "durationMs": 32156,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 576,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Tiempos at 56–84px for all display and section titles with letter-spacing -0.01em — the serif is the brand's editorial signature",
+      "Use 1600px border-radius on every button, tag, and pill-shaped control — the pill is non-negotiable",
+      "Use warm neutrals (#fcfcfc, #faf8f5, #e4e2e1, #32302f) and reserve Bronze Field #3a3525 for full-bleed dark feature blocks",
+      "Pair Tiempos serif headlines with The Future sans body — never set body copy in Tiempos, never set display in The Future",
+      "Apply 0.025em letter-spacing to every Wealthsimple Sans label inside buttons and nav controls",
+      "Maintain ~80px section gaps and 32px card padding; let whitespace carry hierarchy instead of borders or shadows",
+      "Use sculptural 3D illustrations as the only imagery — never stock photography, never product UI screenshots, never flat icons as heroes"
+    ],
+    "donts": [
+      "Don't use pure #000000 as primary text — use Graphite Ink #32302f so the dark tones stay warm",
+      "Don't introduce accent colors, gradients, or brand hues — the system is monochrome by design; color only appears inside 3D illustrations",
+      "Don't use square or moderately rounded buttons — every interactive element must be a 1600px pill",
+      "Don't apply CSS drop shadows to cards, modals, or buttons — rely on the warm surface stack and hairlines instead",
+      "Don't set display type in The Future or body in Tiempos — the serif/sans split is the system's core rhythm",
+      "Don't use bright or cool grays, blues, or cool whites — the palette is warm and stays within the cream-graphite axis",
+      "Don't crowd the page with cards, borders, or grid lines — the editorial feel depends on generous, un-divided whitespace"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#32302f",
+        "name": "Graphite Ink",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fcfcfc",
+        "name": "Paper White",
+        "role": "Default page canvas, card surfaces, button text on dark fills — the brightest neutral, used for main reading surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#faf8f5",
+        "name": "Linen Cream",
+        "role": "Warm alternate section background, hero warm-tones, subtle washes — gives the page its boutique warmth and distinguishes sections from flat white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1f0f0",
+        "name": "Fog Veil",
+        "role": "Quiet elevated surfaces, subtle hover washes, soft surface tints for inset regions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e4e2e1",
+        "name": "Stone",
+        "role": "Hairline borders, input outlines, section dividers, nav-rule lines — the workhorse neutral for structural separation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#686664",
+        "name": "Pebble",
+        "role": "Secondary/captive text, link body, helper copy — keeps muted text inside the warm-grey family instead of dipping into cool slate",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Onyx",
+        "role": "Reserved for SVG icon fills and a few crisp borders where true black is needed for contrast on warm-cream surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#09090a",
+        "name": "Charcoal",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3a3525",
+        "name": "Bronze Field",
+        "role": "Hero/feature-block full-bleed background — a warm dark khaki that stages sculptural 3D illustrations without going full-black, maintaining the boutique-warm axis even in dark sections",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page model is max-width 1200px centered with full-bleed dark feature bands breaking the rhythm. The header is a thin two-row top bar (segmented 'Personal | Business' switcher over a main bar with logo, horizontal nav, and two pill CTAs) that sits directly on the page background with no shadow. The first screen is a full-bleed Bronze Field hero with left-aligned Tiempos display headline (~40% width), supporting paragraph, two pill CTAs, and a large sculptural 3D form floating on the right. Below the hero, sections alternate Paper White and Linen Cream with 80px vertical padding, each in a 2-column 'text-left, illustration-right' composition. Feature lists use a 3-column grid where each column starts with a hairline Stone rule at the top, no card backgrounds. Section transitions are seamless — no dividers between sections, just whitespace and a possible background swap. The chat launcher is the only fixed-position element, floating 24px from the bottom-right.",
+    "imagery": "Wealthsimple uses sculptural 3D renders as its only imagery language: twisted paper ribbons, draped fabric forms, geometric block compositions, and isometric card stacks in muted sage, cream, terracotta, and off-white. The renders are treated as gallery objects — placed on the right half of a section on a warm cream floor with soft ambient-occlusion shadow, never cropped, never overlapped with text. There is no photography, no flat illustration, no product UI screenshots, no chart art. Icons are minimal outlined glyphs in Graphite Ink. The overall feel is closer to a Kinfolk spread or a Bottega Veneta product page than a typical fintech — imagery carries atmosphere, not information.",
+    "similar": [
+      {
+        "why": "Same editorial display-serif-over-clean-sans hierarchy with full-bleed image-led hero bands and pill-shaped CTAs",
+        "business": "Apple (product pages)"
+      },
+      {
+        "why": "Same warm-paper palette, sculptural 3D-led imagery, and serif display type that reads as fashion/luxury rather than tech",
+        "business": "Bottega Veneta / Mr Porter"
+      },
+      {
+        "why": "Same generous whitespace, Tiempos-style serif at large sizes, warm off-white canvas, and restrained monochrome palette",
+        "business": "Kinfolk Magazine online"
+      },
+      {
+        "why": "Same pill-button system and serif+sans type pairing used in editorial features, though Stripe uses cooler neutrals",
+        "business": "Stripe (Press/brand sections)"
+      },
+      {
+        "why": "Same soft-rounded card surfaces (100px radius) and warm off-white canvas with hairline dividers in place of heavy borders",
+        "business": "Notion"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "100px",
+        "badges": "1600px",
+        "inputs": "100px",
+        "buttons": "1600px",
+        "smallElements": "12px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#fcfcfc",
+        "name": "Page Canvas",
+        "level": 1,
+        "purpose": "Default body background for all editorial content sections"
+      },
+      {
+        "hex": "#faf8f5",
+        "name": "Warm Section",
+        "level": 2,
+        "purpose": "Alternate cream sections, hero right-side wash, and card backgrounds needing warmth"
+      },
+      {
+        "hex": "#f1f0f0",
+        "name": "Soft Surface",
+        "level": 3,
+        "purpose": "Subtle elevated regions, hover states, divider fills"
+      },
+      {
+        "hex": "#3a3525",
+        "name": "Hero Bronze",
+        "level": 4,
+        "purpose": "Full-bleed dark feature blocks for the taxes, investing, and 3D-led hero panels"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "Soft ambient occlusion shadow on a warm-cream floor — no hard drop shadow, just a low-spread warm-grey falloff simulating gallery lighting",
+        "element": "Sculptural 3D illustrations"
+      }
+    ],
+    "northStar": "Cashmere-lined vault with gallery lighting",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.07
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "display",
+        "size": 84,
+        "lineHeight": 1.08,
+        "letterSpacing": -0.84
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site header with segmented product switcher, primary nav, and auth CTAs",
+        "description": "Sits on Paper White (#fcfcfc). A thin 12px-tall row at the very top carries small 12–14px The Future text reading 'Personal | Business' (segmented, left-aligned). Below it the main bar holds the Wealthsimple wordmark (Graphite Ink #32302f, The Future 500), a horizontal nav of links (What we offer, Benefits, Learn, Support — each in The Future 400, 16px), and on the right two pill buttons: 'Log in' as an outlined pill (Graphite border, transparent fill) and 'Get started' as a filled pill (Charcoal #09090a fill, Paper White text, 1600px radius). No drop shadow; a hairline Stone (#e4e2e1) rule may sit at the bottom of the bar."
+      },
+      {
+        "name": "Filled Dark Pill Button (Primary)",
+        "role": "Primary CTA — 'Get started', 'Start my return', 'Start trading'",
+        "description": "Pill-shaped (1600px radius), Charcoal #09090a or Graphite #32302f fill, Paper White #fcfcfc text. Label set in Wealthsimple Sans 400, 16px, 0.025em letter-spacing. Vertical padding ~12px, horizontal padding 24–32px. No shadow. The dark pill is the dominant interactive mark across the system; it should always be the loudest button on its surface."
+      },
+      {
+        "name": "Outlined Pill Button (Secondary)",
+        "role": "Secondary CTA — 'Learn more', 'Log in'",
+        "description": "Pill-shaped (1600px radius), transparent fill, 1px Graphite Ink #32302f border, Graphite text. Same Wealthsimple Sans 16px label and padding as the filled variant. Lives next to the filled button on dark heroes and in the nav bar; never the sole CTA on a section."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Low-emphasis CTA used on light surfaces, e.g. 'Start trading' in the trading section",
+        "description": "Pill-shaped (1600px radius), no visible border, Linen Cream #faf8f5 fill, Graphite Ink #32302f text. Same label sizing. Used when the design wants a single quiet CTA on a light field without competing with the headline serif."
+      },
+      {
+        "name": "Editorial Section Heading (Tiempos Display)",
+        "role": "Hero and section titles",
+        "description": "Set in Tiempos 500 at 56–84px, line-height 1.08–1.16, letter-spacing -0.01em, color Graphite Ink #32302f on light surfaces or Paper White on the Bronze Field hero. Often paired with a small The Future eyebrow above (e.g. 'Self-directed Investing', 'Trusted by more than 2M Canadians') in 14–16px, 0.005em tracking, Pebble #686664."
+      },
+      {
+        "name": "Bronze Hero Panel",
+        "role": "Full-bleed dark feature block hosting 3D sculptural artwork",
+        "description": "Full-viewport-width section, Bronze Field #3a3525 background, with the editorial heading and supporting paragraph aligned to the left at ~40% width, and a sculptural 3D illustration (twisted paper, draped forms, card stack) floating on the right with soft ambient shadow into a warm-cream floor. The transition from the dark field to a lighter warm wash is handled by a radial fade — no hard edge. Two CTAs sit beneath the headline: filled dark pill primary + outlined pill secondary."
+      },
+      {
+        "name": "Light Editorial Section",
+        "role": "Standard content section below the hero",
+        "description": "Paper White #fcfcfc or Linen Cream #faf8f5 background, max-width 1200px centered. Two-column layout: Tiempos heading + The Future paragraph + single dark-pill CTA on the left (~45% width), 3D illustration or isometric scene on the right. Section vertical padding ~80px. No background, no card chrome — the whitespace and serif type do the work."
+      },
+      {
+        "name": "Feature Column with Top Divider",
+        "role": "Three-column under-section describing product pillars",
+        "description": "Three equal columns separated by ~48px gaps. Each column starts with a 1px Stone #e4e2e1 hairline rule at the top, followed by a The Future 500 18–20px headline, then a 14–16px The Future 400 paragraph in Graphite Ink. No background fill, no card — the hairline at the top is the only chrome."
+      },
+      {
+        "name": "Eyebrow Tag",
+        "role": "Small label above display headings, e.g. 'Self-directed Investing'",
+        "description": "The Future 400, 14–16px, 0.005em letter-spacing, Pebble #686664 color. Sits 12–16px above the Tiempos heading. Never bold, never uppercase — the muted warmth of the color and tight tracking are the styling."
+      },
+      {
+        "name": "Sculptural 3D Illustration",
+        "role": "Decorative hero and section imagery",
+        "description": "Abstract sculptural renders: twisted paper ribbons, draped fabric forms, geometric block compositions in sage green, cream, terracotta, and off-white. Always sit on a warm cream floor with a soft ambient shadow. Rounded, no hard cropping; the illustration reads as a single art object centered in the right half of the layout. Not product UI screenshots."
+      },
+      {
+        "name": "Soft Card Surface",
+        "role": "Optional container for grouped content (e.g. pricing cards, dashboard panels)",
+        "description": "Linen Cream #faf8f5 or Paper White #fcfcfc fill, 100px corner radius, 32px padding on all sides, no border, no shadow. The extreme roundness (100px on a small card) is the design's signature softness — it makes even dense product UI feel boutique."
+      },
+      {
+        "name": "Text Input",
+        "role": "Form fields for email, amount, etc.",
+        "description": "Transparent or Paper White fill, 1px Stone #e4e2e1 border, 100px radius, The Future 400 16px. Focus state: 1px Graphite Ink #32302f border, no glow. Placeholder text in Pebble #686664. 16px vertical padding."
+      },
+      {
+        "name": "Chat Bubble (Bottom-Round)",
+        "role": "Floating support chat launcher in lower-right corner",
+        "description": "A 48px circular Charcoal #09090a button with a Paper White chat-icon glyph inside. No label. Floats 24px from the bottom-right of the viewport. Sits outside the main content flow."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and editorial heading serif — used at 56–84px for hero and section titles, 36px for sub-section heads, and 14–18px for emphasis lead-ins. Tiempos is the soul of the brand: a contemporary text serif with strong terminals that brings a Kinfolk-magazine / art-book quality to a fintech. The 500 weight is reserved for the largest display sizes where extra weight balances the tight tracking.",
+        "sizes": "14, 16, 18, 36, 56, 64, 72, 84",
+        "family": "Tiempos",
+        "weight": "400, 500",
+        "lineHeight": "1.08, 1.16, 1.24",
+        "substitute": "Source Serif 4, Lora, or PT Serif",
+        "letterSpacing": "-0.01em (slightly negative on display; reads as composed and editorial, not loose)"
+      },
+      {
+        "role": "Primary UI and body sans — a clean geometric workhorse used for paragraph copy, nav links, card titles, input fields, and small UI labels at 14–20px. The 500 weight appears in nav and a few mid-size emphasis lines. The near-zero letter-spacing (0.005em) keeps running text tight and un-fussy. It is the calm counterpart to Tiempos's editorial display.",
+        "sizes": "14, 16, 18, 20, 56, 58",
+        "family": "The Future",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.16, 1.40",
+        "substitute": "Inter, Söhne, or GT America",
+        "letterSpacing": "0.0050em"
+      },
+      {
+        "role": "Tracked-out utility face for buttons, nav controls, and selected UI labels — used at 16px with 0.025em letter-spacing so that interactive elements read as distinct, almost stamp-like marks. The wide tracking pushes these elements forward visually without needing weight, reinforcing the pill-button rhythm across the system.",
+        "sizes": "16",
+        "family": "Wealthsimple Sans",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Inter with letter-spacing 0.025em, or Söhne Buch",
+        "letterSpacing": "0.025em (wide-tracked, the brand's interactive-element signature)"
+      }
+    ],
+    "description": "Wealthsimple operates as an editorial boutique masquerading as a fintech: a warm, near-monochrome canvas of paper-cream and graphite, where large Tiempos serif display type shares the page with a quiet geometric sans for body and UI. The signature is the juxtaposition — a fashion-magazine serif headline sitting beside pill-shaped dark buttons, a hero that swaps to a warm bronze-dark field to stage a sculptural 3D form, and illustrations that read as gallery objects rather than product screenshots. Color is almost entirely suppressed in chrome; warmth comes from the off-white stack (#fcfcfc → #faf8f5 → #e4e2e1) rather than from accents. Components stay low and weightless: hairline dividers, 100px-soft-rounded cards, pill buttons, no drop shadows, no gradients. Density is comfortable with long reading lines and generous 48px section gaps — the design trusts typography and whitespace to do the persuading.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/043341c3-cf82-4be1-9142-fa5e6a370ca9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Wealthsimple design system\",\"item\":\"https://styles.refero.design/style/043341c3-cf82-4be1-9142-fa5e6a370ca9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/043341c3-cf82-4be1-9142-fa5e6a370ca9#style-reference\",\"name\":\"Wealthsimple design system reference\",\"headline\":\"Wealthsimple design system | Refero Styles\",\"description\":\"Explore Wealthsimple's mixed Fintech design system: Graphite Ink #32302f, Paper White #fcfcfc colors, Tiempos, The Future typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/043341c3-cf82-4be1-9142-fa5e6a370ca9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/043341c3-cf82-4be1-9142-fa5e6a370ca9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Wealthsimple\",\"url\":\"https://wealthsimple.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/043341c3-cf82-4be1-9142-fa5e6a370ca9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6f0e019f-81a6-4800-a90b-543fa21dae2e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6f0e019f-81a6-4800-a90b-543fa21dae2e.jpg\",\"caption\":\"Screenshot of Wealthsimple\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6f0e019f-81a6-4800-a90b-543fa21dae2e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Wealthsimple design system\",\"Wealthsimple website design\",\"Wealthsimple colors\",\"Wealthsimple typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Graphite Ink\",\"Paper White\",\"Linen Cream\",\"Fog Veil\",\"Tiempos\",\"The Future\",\"Wealthsimple Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Wealthsimple design system\"},{\"@type\":\"Thing\",\"name\":\"Wealthsimple website design\"},{\"@type\":\"Thing\",\"name\":\"Wealthsimple colors\"},{\"@type\":\"Thing\",\"name\":\"Wealthsimple typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-13T18:20:29.000Z\",\"dateModified\":\"2026-04-13T18:20:29.000Z\"}]}19:T78a,**Quick Color Reference**\n- text: #32302f (Graphite Ink)\n- background: #fcfcfc (Paper White)\n- secondary background: #faf8f5 (Linen Cream)\n- border: #e4e2e1 (Stone)\n- muted text: #686664 (Pebble)\n- filled button background: #09090a (Charcoal)\n- dark hero field: #3a3525 (Bronze Field)\n- primary action: no distinct CTA color\n\n**3 Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. *Build a light editorial section:* Paper White #fcfcfc background, max-width 1200px centered, 80px vertical padding. Left column (~45% width): a 14px The Future eyebrow in Pebble #686664, then a Tiempos 500 56px heading in Graphite Ink #32302f with -0.56px letter-spacing, then a 18px The Future 400 paragraph in Graphite, then a single Charcoal filled pill button. Right column: a sculptural 3D render of draped paper or geometric blocks on a warm cream floor with soft ambient shadow.\n\n3. *Build a three-column feature row with hairline dividers:* three equal columns at max-width 1200px with 48px column gaps. Each column begins with a 1px Stone #e4e2e1 horizontal rule at the top, then a The Future 500 20px headline in Graphite Ink, then a 16px The Future 400 paragraph. No card backgrounds, no shadows — the hairline rule is the only chrome.\n\n4. *Build a Bronze Field hero:* full-bleed background in Bronze Field #3a3525, 80–120px vertical padding. Left-aligned at ~40% width: a 14px The Future eyebrow in Paper White at 70% opacity, a Tiempos 500 84px headline in Paper White with -0.84px letter-spacing, a 18px The Future 400 paragraph in Paper White at 80% opacity, and two pill CTAs — a Charcoal filled pill primary next to an outlined pill secondary (1px Paper White border, transparent fill). Right side: a large sculptural 3D form (twisted paper or draped fabric) floating on the right with soft warm ambient shadow."
+      }
+    ],
+    "elevationPhilosophy": "Wealthsimple deliberately avoids UI drop shadows on cards, buttons, nav, and modals. Elevation is communicated by the warm surface stack (#fcfcfc → #faf8f5 → #f1f0f0), hairline Stone dividers, and 100px radius — the system reads as a flat, paper-like layout where depth comes from typography and whitespace, not from CSS shadows. Shadows appear only as the rendered ambient occlusion baked into the 3D illustrations."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#32302f",
+          "oklch": {
+            "c": 0.003375486026949717,
+            "h": 48.61882827987819,
+            "l": 0.3108823817502826
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "nav",
+            "heading",
+            "icon",
+            "link",
+            "card",
+            "list",
+            "footer",
+            "image",
+            "input"
+          ],
+          "frequency": 2244,
+          "confidence": 1,
+          "prominence": 117158839.05710043,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fcfcfc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9910689031024799
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "body",
+            "icon",
+            "hero",
+            "heading",
+            "card",
+            "list",
+            "input"
+          ],
+          "frequency": 418,
+          "confidence": 1,
+          "prominence": 17166168.46873047,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "other",
+            "body",
+            "nav"
+          ],
+          "frequency": 52,
+          "confidence": 1,
+          "prominence": 6554316.178145304,
+          "properties": [
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e4e2e1",
+          "oklch": {
+            "c": 0.002569059905812792,
+            "h": 48.716157976859996,
+            "l": 0.9140626864024629
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "input"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 5922142.619996874,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#686664",
+          "oklch": {
+            "c": 0.004017734197564506,
+            "h": 67.7353309767943,
+            "l": 0.5114378591738981
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 437765.5742973436,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f1f0f0",
+          "oklch": {
+            "c": 0.0010728184629257304,
+            "h": 17.17676916074446,
+            "l": 0.9559072178689891
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 389005.27136449696,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d3e5f3",
+          "oklch": {
+            "c": 0.027148978494554544,
+            "h": 241.1740550334157,
+            "l": 0.9127299379094014
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 250668,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#09090a",
+          "oklch": {
+            "c": 0.0022253490834714235,
+            "h": 286.10932878666097,
+            "l": 0.14027374218899843
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 160087,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#faf8f5",
+          "oklch": {
+            "c": 0.004519735584262973,
+            "h": 78.29817786156882,
+            "l": 0.9798268821176696
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 160084,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d3ccc2",
+          "oklch": {
+            "c": 0.015746725493336652,
+            "h": 77.05697423421304,
+            "l": 0.8480516100327848
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 12520,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eeece7",
+          "oklch": {
+            "c": 0.007016613386987673,
+            "h": 88.64395770961687,
+            "l": 0.943242515156193
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4705,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.007623621222849935,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.47,
+          "background": "#000000",
+          "foreground": "#fcfcfc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.81,
+          "background": "#faf8f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.4,
+          "background": "#09090a",
+          "foreground": "#fcfcfc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.78,
+          "background": "#faf8f5",
+          "foreground": "#09090a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.46,
+          "background": "#f1f0f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.79,
+          "background": "#eeece7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.5,
+          "background": "#f1f0f0",
+          "foreground": "#09090a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.86,
+          "background": "#eeece7",
+          "foreground": "#09090a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.27,
+          "background": "#d3e5f3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.26,
+          "background": "#e4e2e1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.42,
+          "background": "#e4e2e1",
+          "foreground": "#09090a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.42,
+          "background": "#d3e5f3",
+          "foreground": "#09090a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.19,
+          "background": "#d3ccc2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.8,
+          "background": "#fcfcfc",
+          "foreground": "#32302f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.5,
+          "background": "#d3ccc2",
+          "foreground": "#09090a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.39,
+          "background": "#faf8f5",
+          "foreground": "#32302f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.54,
+          "background": "#f1f0f0",
+          "foreground": "#32302f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.12,
+          "background": "#eeece7",
+          "foreground": "#32302f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.17,
+          "background": "#e4e2e1",
+          "foreground": "#32302f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.17,
+          "background": "#d3e5f3",
+          "foreground": "#32302f"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 1600,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "card",
+            "input"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 168,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "marginTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 47,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 26,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 77,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 69,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 73,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 128,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "the-future",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 475,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "wealthsimple-sans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 45,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "tiempos",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 23,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "tiempos",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "card"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.24,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "tiempos",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.24,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "the-future",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "wealthsimple-sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "nav",
+            "icon"
+          ],
+          "frequency": 43,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "the-future",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "tiempos",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.24,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "the-future",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "link"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "the-future",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "hero",
+            "button",
+            "icon",
+            "card",
+            "list",
+            "footer",
+            "input"
+          ],
+          "frequency": 269,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "the-future",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "heading"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.16,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "tiempos",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.24,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "the-future",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 96,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "the-future",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 34,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "the-future",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "tiempos",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.16,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "tiempos",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.08,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "the-future",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.16,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "the-future",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "tiempos",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.16,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "tiempos",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.16,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 84,
+          "family": "tiempos",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.16,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/0ee92f92-25e7-475d-9cf4-f379b4a31af6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6f0e019f-81a6-4800-a90b-543fa21dae2e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/043341c3-cf82-4be1-9142-fa5e6a370ca9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Wealthsimple design system\",\"item\":\"https://styles.refero.design/style/043341c3-cf82-4be1-9142-fa5e6a370ca9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/043341c3-cf82-4be1-9142-fa5e6a370ca9#style-reference\",\"name\":\"Wealthsimple design system reference\",\"headline\":\"Wealthsimple design system | Refero Styles\",\"description\":\"Explore Wealthsimple's mixed Fintech design system: Graphite Ink #32302f, Paper White #fcfcfc colors, Tiempos, The Future typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/043341c3-cf82-4be1-9142-fa5e6a370ca9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/043341c3-cf82-4be1-9142-fa5e6a370ca9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Wealthsimple\",\"url\":\"https://wealthsimple.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/043341c3-cf82-4be1-9142-fa5e6a370ca9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6f0e019f-81a6-4800-a90b-543fa21dae2e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6f0e019f-81a6-4800-a90b-543fa21dae2e.jpg\",\"caption\":\"Screenshot of Wealthsimple\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6f0e019f-81a6-4800-a90b-543fa21dae2e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Wealthsimple design system\",\"Wealthsimple website design\",\"Wealthsimple colors\",\"Wealthsimple typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Graphite Ink\",\"Paper White\",\"Linen Cream\",\"Fog Veil\",\"Tiempos\",\"The Future\",\"Wealthsimple Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Wealthsimple design system\"},{\"@type\":\"Thing\",\"name\":\"Wealthsimple website design\"},{\"@type\":\"Thing\",\"name\":\"Wealthsimple colors\"},{\"@type\":\"Thing\",\"name\":\"Wealthsimple typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-13T18:20:29.000Z\",\"dateModified\":\"2026-04-13T18:20:29.000Z\"}]}19:T78a,**Quick Color Reference**\n- text: #32302f (Graphite Ink)\n- background: #fcfcfc (Paper White)\n- secondary background: #faf8f5 (Linen Cream)\n- border: #e4e2e1 (Stone)\n- muted text: #686664 (Pebble)\n- filled button background: #09090a (Charcoal)\n- dark hero field: #3a3525 (Bronze Field)\n- primary action: no distinct CTA color\n\n**3 Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. *Build a light editorial section:* Paper White #fcfcfc background, max-width 1200px centered, 80px vertical padding. Left column (~45% width): a 14px The Future eyebrow in Pebble #686664, then a Tiempos 500 56px heading in Graphite Ink #32302f with -0.56px letter-spacing, then a 18px The Future 400 paragraph in Graphite, then a single Charcoal filled pill button. Right column: a sculptural 3D render of draped paper or geometric blocks on a warm cream floor with soft ambient shadow.\n\n3. *Build a three-column feature row with hairline dividers:* three equal columns at max-width 1200px with 48px column gaps. Each column begins with a 1px Stone #e4e2e1 horizontal rule at the top, then a The Future 500 20px headline in Graphite Ink, then a 16px The Future 400 paragraph. No card backgrounds, no shadows — the hairline rule is the only chrome.\n\n4. *Build a Bronze Field hero:* full-bleed background in Bronze Field #3a3525, 80–120px vertical padding. Left-aligned at ~40% width: a 14px The Future eyebrow in Paper White at 70% opacity, a Tiempos 500 84px headline in Paper White with -0.84px letter-spacing, a 18px The Future 400 paragraph in Paper White at 80% opacity, and two pill CTAs — a Charcoal filled pill primary next to an outlined pill secondary (1px Paper White border, transparent fill). Right side: a large sculptural 3D form (twisted paper or draped fabric) floating on the right with soft warm ambient shadow."
+}

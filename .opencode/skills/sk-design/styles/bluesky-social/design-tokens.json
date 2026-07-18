@@ -1,0 +1,277 @@
+{
+  "color": {
+    "sky-signal": {
+      "$value": "#006aff",
+      "$type": "color",
+      "$description": "Sky Signal — Brand accent — the single chromatic punctuation in a monochrome interface. Active nav items, inline links, hashtag chips, and filled primary buttons"
+    },
+    "slate-type": {
+      "$value": "#405168",
+      "$type": "color",
+      "$description": "Slate Type — Primary text and nav labels — a cool, slightly desaturated near-black that reads softer than pure ink on the warm-white canvas"
+    },
+    "hazy-steel": {
+      "$value": "#8798b0",
+      "$type": "color",
+      "$description": "Hazy Steel — Secondary icons, metadata, timestamps, and muted helper text. The cool tint keeps it visually adjacent to Sky Signal without competing"
+    },
+    "whisper-border": {
+      "$value": "#dce2ea",
+      "$type": "color",
+      "$description": "Whisper Border — Hairline dividers and card borders. The only structural line work in the system — it defines edges without adding weight"
+    },
+    "fog-surface": {
+      "$value": "#eff2f6",
+      "$type": "color",
+      "$description": "Fog Surface — Subtle fill for hover states, secondary buttons, and search input backgrounds. Sits one step above the canvas without creating contrast drama"
+    },
+    "mist-canvas": {
+      "$value": "#f9fafb",
+      "$type": "color",
+      "$description": "Mist Canvas — Page background — a barely-warm off-white that prevents the harshness of pure white during long reading sessions"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card and surface background. The single step up from the canvas that gives post cards their boundary via border, not shadow"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Body text on cards and highest-contrast foreground. Used sparingly where maximum legibility is required"
+    }
+  },
+  "font": {
+    "intervariable": {
+      "$value": "InterVariable",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for all UI — navigation, post bodies, metadata, buttons, inputs. The variable axis is critical: the scale ranges from 8px timestamps to 24px tab headers, so the weight axis must flex smoothly across that range without optical hiccups. No display sizes exist — this is a feed UI, not a landing page."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "8px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 15px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "mist-canvas": {
+      "$value": "#f9fafb",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — visible in gutters and behind all content"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Post cards, sidebar widgets, and all elevated content surfaces"
+    },
+    "fog-surface": {
+      "$value": "#eff2f6",
+      "$type": "color",
+      "$description": "Surface level 2: Interactive fills — search input, hover states, secondary controls"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://bsky.app",
+      "siteName": "Bluesky Social",
+      "extractedAt": "2026-06-03T19:49:09.406Z",
+      "variant": "extended"
+    }
+  }
+}

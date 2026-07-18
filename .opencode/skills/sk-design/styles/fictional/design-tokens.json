@@ -1,0 +1,354 @@
+{
+  "color": {
+    "cream-blush": {
+      "$value": "#ffe9ce",
+      "$type": "color",
+      "$description": "Cream Blush — Page canvas, hero background — the warm off-white that everything else sticks to"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Speech bubble fills, text on saturated color blocks, card reverse"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, hero wordmark, sticker outlines, all display typography"
+    },
+    "slate-gray": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Slate Gray — Secondary body text, link underline, muted helper copy"
+    },
+    "near-black": {
+      "$value": "#101010",
+      "$type": "color",
+      "$description": "Near Black — Input text and input border — the UI control ink"
+    },
+    "mist-gray": {
+      "$value": "#dddddd",
+      "$type": "color",
+      "$description": "Mist Gray — Disabled button fill, low-emphasis surface"
+    },
+    "pale-gray": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Pale Gray — Inactive link border, disabled underline"
+    },
+    "electric-violet": {
+      "$value": "#8a53ff",
+      "$type": "color",
+      "$description": "Electric Violet — Section color blocks, circular badge fills, sticker bursts — the cool anchor of the palette"
+    },
+    "coral-blaze": {
+      "$value": "#fd4b38",
+      "$type": "color",
+      "$description": "Coral Blaze — Starburst stickers, red section blocks, urgent decorative shouts"
+    },
+    "sunburst-yellow": {
+      "$value": "#ffd80c",
+      "$type": "color",
+      "$description": "Sunburst Yellow — Sticker fills, section blocks, and the only shadow color in the system (2px solid ring around active controls)"
+    },
+    "lime-spark": {
+      "$value": "#3ccb09",
+      "$type": "color",
+      "$description": "Lime Spark — Round sticker badges and pill tags — the fresh-pop accent in sticker compositions"
+    },
+    "deep-indigo": {
+      "$value": "#0500a3",
+      "$type": "color",
+      "$description": "Deep Indigo — Inverted heading text on light cards and accent text inside color blocks — the cool counterweight to Coral Blaze"
+    }
+  },
+  "font": {
+    "fictional": {
+      "$value": "Fictional",
+      "$type": "fontFamily",
+      "$description": "The only typeface. Body, display, and UI voice. The five-weight family (Light through UltraBold) maps to a single size-and-voice axis: bigger and bolder is the entire hierarchy. The whisper-light 300 is reserved for captioning the type itself; UltraBold 800 owns the hero wordmark and sticker shouts."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 29px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 29px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "37px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 37px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 40px"
+    },
+    "4xl-5": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-5 at 40px"
+    },
+    "4xl-6": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "43px",
+        "fontWeight": 400,
+        "lineHeight": 3.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-6 at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 50px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 72px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "115px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 115px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "202px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 202px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Fictional",
+        "fontSize": "346px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 346px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "108": {
+      "$value": "108px",
+      "$type": "dimension",
+      "$description": "Spacing 108px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(251, 215, 12) 0px 0px 0px 2px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "cream-blush-canvas": {
+      "$value": "#ffe9ce",
+      "$type": "color",
+      "$description": "Surface level 1: Default page and hero background — the tabletop everything sticks to"
+    },
+    "color-block-section": {
+      "$value": "#8a53ff",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed violet sections that flip the canvas temperature and act as a secondary background"
+    },
+    "sticker-fill": {
+      "$value": "#fd4b38",
+      "$type": "color",
+      "$description": "Surface level 3: Decorative overlays and reverse sections carrying urgency"
+    },
+    "paper-white-reverse": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 4: Speech bubbles, specimen cards, and reverse type plates that need a neutral within a colored section"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://fictional-typeface.com",
+      "siteName": "Fictional",
+      "extractedAt": "2026-06-03T15:04:26.450Z",
+      "variant": "extended"
+    }
+  }
+}

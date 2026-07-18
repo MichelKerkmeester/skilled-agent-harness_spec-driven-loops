@@ -1,0 +1,222 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, all borders, icon strokes, logo, divider lines, button outlines — the structural ink that defines every shape on the page"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, text on dark fills, input fields"
+    },
+    "fog-gray": {
+      "$value": "#f4f4f4",
+      "$type": "color",
+      "$description": "Fog Gray — Soft section background, alternate surface, and quiet card fill"
+    },
+    "ash-gray": {
+      "$value": "#a3a3a3",
+      "$type": "color",
+      "$description": "Ash Gray — Muted secondary text, inactive links, placeholder copy, tertiary metadata"
+    },
+    "highlighter-yellow": {
+      "$value": "#fbff2b",
+      "$type": "color",
+      "$description": "Highlighter Yellow — Primary action background, focus highlights, tag fills — the single chromatic accent that makes interactive elements feel switched on against the monochrome system"
+    }
+  },
+  "font": {
+    "neue-haas-grotesk-text": {
+      "$value": "neue-haas-grotesk-text",
+      "$type": "fontFamily",
+      "$description": "neue-haas-grotesk-text — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "neueHaasGroteskText",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "neueHaasGroteskText",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "neueHaasGroteskText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "neueHaasGroteskText",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "neueHaasGroteskText",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-text",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "neueHaasGroteskText",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "neueHaasGroteskText",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "neueHaasGroteskText",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "neueHaasGroteskText",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "neueHaasGroteskText",
+        "fontSize": "42px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the dominant surface"
+    },
+    "fog-card": {
+      "$value": "#f4f4f4",
+      "$type": "color",
+      "$description": "Surface level 1: Soft info banners and elevated callouts that recede without a border"
+    },
+    "accent-fill": {
+      "$value": "#fbff2b",
+      "$type": "color",
+      "$description": "Surface level 2: Highlight wash on primary action surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://programa.design",
+      "siteName": "Programa",
+      "extractedAt": "2026-06-03T19:59:55.786Z",
+      "variant": "extended"
+    }
+  }
+}

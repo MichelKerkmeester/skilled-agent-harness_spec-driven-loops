@@ -1,0 +1,422 @@
+{
+  "color": {
+    "void": {
+      "$value": "#05050b",
+      "$type": "color",
+      "$description": "Void — Deepest canvas — the void behind everything, visible at the absolute darkest page edges"
+    },
+    "midnight-canvas": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Midnight Canvas — Primary page background — the dominant surface where all content lives"
+    },
+    "carbon": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Carbon — Subtle surface lift for embedded app screenshots and elevated content blocks"
+    },
+    "graphite": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Graphite — List and card surface — the faintest step up from canvas for grouped content"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary text, headings, icons — maximum contrast against the dark canvas"
+    },
+    "ash": {
+      "$value": "#c3c3c3",
+      "$type": "color",
+      "$description": "Ash — Secondary text and icon fills at reduced opacity contexts"
+    },
+    "smoke": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Smoke — Muted body text and supporting copy"
+    },
+    "dim": {
+      "$value": "#a3a3a3",
+      "$type": "color",
+      "$description": "Dim — Tertiary text — captions, metadata, timestamps"
+    },
+    "fog": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Fog — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "pewter": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Pewter — Deepest text level — placeholder, disabled, very-low-emphasis body"
+    },
+    "silver": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Silver — Heading color at reduced emphasis — sub-section titles, subdued headers"
+    },
+    "signal-violet": {
+      "$value": "#7047ba",
+      "$type": "color",
+      "$description": "Signal Violet — Primary brand violet — the signature color saturating hero backgrounds, app icons, and brand surfaces"
+    },
+    "glow-violet": {
+      "$value": "#ba94ff",
+      "$type": "color",
+      "$description": "Glow Violet — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "pulse-violet": {
+      "$value": "#9466e7",
+      "$type": "color",
+      "$description": "Pulse Violet — Mid-violet for feature headings and emphasis — sits between Signal Violet and Glow Violet in the scale"
+    },
+    "deep-violet": {
+      "$value": "#4c278e",
+      "$type": "color",
+      "$description": "Deep Violet — Dark violet for pressed link states and deep accent contexts"
+    },
+    "twilight-violet": {
+      "$value": "#301e4f",
+      "$type": "color",
+      "$description": "Twilight Violet — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "lilac-mist": {
+      "$value": "#deccff",
+      "$type": "color",
+      "$description": "Lilac Mist — Soft violet for muted text and subtle border accents where full saturation would shout"
+    },
+    "periwinkle": {
+      "$value": "#cdd4f8",
+      "$type": "color",
+      "$description": "Periwinkle — Cool violet tint for body text and light border treatment — the coolest end of the violet range"
+    },
+    "neon-green": {
+      "$value": "#74ec5a",
+      "$type": "color",
+      "$description": "Neon Green — Accent green for select feature headings — functional punctuation that breaks the violet monotony"
+    },
+    "alarm-red": {
+      "$value": "#ff3543",
+      "$type": "color",
+      "$description": "Alarm Red — Notification badges, unread indicators, and attention-grabbing icon accents"
+    },
+    "aurora-gradient": {
+      "$value": "#7b48ff",
+      "$type": "color",
+      "$description": "Aurora Gradient — Signature hero and brand gradient — blue to magenta sweep used on logo, feature icons, and brand surfaces"
+    }
+  },
+  "font": {
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "Universal system stack serving all text from body copy through display headings. Weight 300 is used for large display headings to create an airy, premium feel; weight 400 for body; weight 500 for subheadings and navigation; weight 600 for feature names and labels. The system-font-only choice is deliberate — it signals native Apple heritage, ensures zero font-loading delay, and matches the product's iOS-first identity."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "21px",
+        "fontWeight": 600,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 21px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "21px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "28px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 0.84
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#05050b",
+      "$type": "color",
+      "$description": "Surface level 0: Absolute background — the deepest dark, barely visible at page edges"
+    },
+    "midnight-canvas": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page surface where all text and content sit"
+    },
+    "carbon": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Surface level 2: Embedded device frames and app screenshot backings"
+    },
+    "graphite": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Surface level 3: List groupings and subtle content blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://tapbots.com/ivory",
+      "siteName": "Tapbots",
+      "extractedAt": "2026-06-03T19:10:58.016Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,76 @@
+:root {
+  /* Colors */
+  --color-dark-cocoa: #3b2722;
+  --color-cream-parchment: #f2ebd0;
+  --color-charcoal: #000000;
+  --color-honeycomb-gold: #ffca50;
+  --color-barn-red: #a0342a;
+  --color-cornflower-blue: #6aacc2;
+  --color-sage-green: #6fa162;
+
+  /* Typography — Font Families */
+  --font-taymakawao: 'TayMakawao', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-barkman-honey: 'Barkman Honey', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-taybirdie: 'TayBirdie', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-times-new-roman: 'Times New Roman', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-anonymous-pro: 'Anonymous Pro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-body: 16px;
+  --leading-body: 1.2;
+  --text-subheading: 20px;
+  --leading-subheading: 1.5;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.1;
+  --text-heading: 28px;
+  --leading-heading: 1;
+  --text-heading-lg: 65px;
+  --leading-heading-lg: 1;
+  --text-display: 90px;
+  --leading-display: 0.82;
+  --tracking-display: -0.9px;
+  --text-display-lg: 135px;
+  --leading-display-lg: 0.8;
+  --tracking-display-lg: -1.35px;
+  --text-display-xl: 238px;
+  --leading-display-xl: 0.8;
+  --tracking-display-xl: -2.38px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-80: 80px;
+
+  /* Layout */
+  --card-padding: 24px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-3xl: 42.75px;
+  --radius-full: 500px;
+  --radius-full-2: 1000px;
+
+  /* Named Radii */
+  --radius-tags: 500px;
+  --radius-cards: 0px;
+  --radius-pills: 500px;
+  --radius-buttons: 1000px;
+  --radius-sections: 0px;
+
+  /* Surfaces */
+  --surface-dark-cocoa-canvas: #3b2722;
+  --surface-honeycomb-gold-section: #ffca50;
+  --surface-cornflower-marquee: #6aacc2;
+  --surface-cream-parchment: #f2ebd0;
+}

@@ -1,0 +1,891 @@
+{
+  "source": "https://styles.refero.design/style/71717c5a-324a-40ed-8a09-9a35df74f1d3",
+  "uuid": "71717c5a-324a-40ed-8a09-9a35df74f1d3",
+  "name": "Anna Jóna",
+  "northStar": "a love letter on blush paper",
+  "capturedAt": "2026-07-18T07:31:17.249Z",
+  "meta": {
+    "url": "https://annajona.is",
+    "siteName": "Anna Jóna",
+    "extractedAt": "2026-06-03T20:46:14.875Z",
+    "durationMs": 27268,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1026,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only Coral Crimson (#db404f) for all text, icons, and interactive elements — never introduce a second chromatic text color",
+      "Set all body text at 18px with 1.5 line-height in Nunito Sans — smaller or denser prose breaks the editorial reading rhythm",
+      "Apply -0.02em letter-spacing to every Sansita heading size, scaling proportionally (e.g. -1.4px at 70px, -0.56px at 28px)",
+      "Break sections with full-bleed photographs using angled diagonal edges (8-12° clip-path), never with horizontal dividers or color bands",
+      "Use 90px border-radius for decorative shapes and 300px for the pill button — these two radii are the only geometry in the system",
+      "Maintain 144px top padding on major sections and 48px between paragraphs to preserve the slow, letter-like vertical cadence",
+      "Place all content directly on Blush Paper (#fce1e3) — no white cards, no elevated panels, no background containers"
+    ],
+    "donts": [
+      "Do not add box-shadows, drop-shadows, or any z-depth indication — the design is intentionally paper-flat",
+      "Do not introduce additional accent colors — Coral Crimson is the only chromatic voice",
+      "Do not use rectangular image containers, standard card components, or 8-16px UI corner radii — the system operates at two radius extremes only",
+      "Do not set body text below 18px — the type scale starts at body and grows upward",
+      "Do not use horizontal rules, section dividers, or background color bands to separate content — use diagonal image bleeds and whitespace instead",
+      "Do not apply different colors to link states — all text including links stays Coral Crimson, distinguished only by underline",
+      "Do not use sans-serif for headlines — Sansita 700 is the only display voice and defines the editorial character"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fce1e3",
+        "name": "Blush Paper",
+        "role": "Page canvas, section backgrounds, the warm field all content lives on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#db404f",
+        "name": "Coral Crimson",
+        "role": "All headings, body text, icons, and the sole action color — the entire voice of the brand",
+        "group": "brand"
+      },
+      {
+        "hex": "#0e1736",
+        "name": "Midnight Ink",
+        "role": "Deep accent for select surfaces and inverse contexts, a cool counterpoint to the warm field",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Image backgrounds, inline accents, negative space within photographs and cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Soft Black",
+        "role": "Decorative strokes, icon fills, hairline borders — the only place pure black appears",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width ~1200px centered for text columns, but images break full-bleed. The page is a vertical sequence of alternating pink-text bands and full-bleed image bands, connected by diagonal cuts rather than horizontal rules. Section rhythm: 144px top padding between major blocks, 48px between paragraphs within a letter. No sidebar, no grid cards, no masonry. Navigation is minimal — likely a single small logo mark top-left and nothing else. Content is asymmetric two-column (heading left, supporting text right) in the hero, then collapses to single-column prose for the letter.",
+    "imagery": "Photography is the emotional engine. All images are warm-toned, golden-hour interior shots — close crops of food on a pass, a hand holding a wine glass, the curved pink bar and arched doorways of the restaurant. The treatment is intimate and documentary: shallow depth of field, warm tungsten color temperature, no lifestyle staging. Images are always full-bleed with angled (diagonal) edges cutting into the pink field — never contained in cards or rectangles. The pink tones in the restaurant's physical design echo the page's blush canvas, so photography and UI share the same color world.",
+    "similar": [
+      {
+        "why": "Same warm blush-and-coral palette with generous whitespace and editorial typography — though Aesop adds more product photography structure",
+        "business": "Aesop"
+      },
+      {
+        "why": "Shared soft-pink canvas discipline with a single bold accent doing all the typographic work, though Glossier uses sans-serif throughout",
+        "business": "Glossier"
+      },
+      {
+        "why": "Same editorial restraint — paper-flat surfaces, oversized condensed display type, and the sense that every word is hand-placed rather than gridded",
+        "business": "Maison Margiela"
+      },
+      {
+        "why": "Warm interior photography, slow vertical pacing, and the same feeling of intimate, unhurried luxury rendered through space rather than ornament",
+        "business": "Aman Resorts"
+      },
+      {
+        "why": "Minimal color palette, custom condensed serif display face, and the editorial-magazine instinct to let type and image breathe without UI chrome",
+        "business": "The Row"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "images": "0px",
+        "shapes": "90px",
+        "buttons": "300px"
+      },
+      "elementGap": "11px",
+      "sectionGap": "144px",
+      "cardPadding": "48px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#fce1e3",
+        "name": "Blush Canvas",
+        "level": 0,
+        "purpose": "The page field — every text block and letter section sits directly on this warm pink"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Image Bleed",
+        "level": 1,
+        "purpose": "Full-bleed photography that breaks the canvas with diagonal angled edges"
+      },
+      {
+        "hex": "#0e1736",
+        "name": "Midnight Plate",
+        "level": 2,
+        "purpose": "Rare dark surface for contrast moments, used sparingly to reset the eye"
+      }
+    ],
+    "elevation": [],
+    "northStar": "a love letter on blush paper",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-lg",
+        "size": 25,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.17,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "heading",
+        "size": 39,
+        "lineHeight": 1.14,
+        "letterSpacing": -0.78
+      },
+      {
+        "role": "heading-lg",
+        "size": 49,
+        "lineHeight": 1.11,
+        "letterSpacing": -0.98
+      },
+      {
+        "role": "display",
+        "size": 70,
+        "lineHeight": 1.06,
+        "letterSpacing": -1.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Statement",
+        "role": "Opening page declaration — the largest text block on the site",
+        "description": "Two-column flex layout: oversized Sansita 70px/700 heading in Coral Crimson (#db404f) at left, a smaller Nunito Sans 18px body paragraph in the same color at right. Sits directly on Blush Paper (#fce1e3) canvas with 144px top padding. No card, no border — the type itself is the container. A small 90px-rounded red icon marks the top-left corner as a quiet signature mark."
+      },
+      {
+        "name": "Angled Image Bleed",
+        "role": "Full-bleed photograph that breaks the pink field with a diagonal cut",
+        "description": "A warm-toned photograph stretches edge-to-edge across the viewport, then meets the pink canvas along a sloped diagonal line (angled clip-path, roughly 8-12 degrees). No border, no radius, no shadow. The image becomes a landscape the text paragraphs rest against."
+      },
+      {
+        "name": "Letter Section",
+        "role": "Long-form prose block — the emotional heart of the page",
+        "description": "Centered or left-aligned text block on Blush Paper (#fce1e3), max-width ~640px. Opens with a Sansita 28px/700 Coral Crimson header, followed by Nunito Sans 18px/400 body at 1.5 line-height, also in Coral Crimson. Generous 48px vertical padding between paragraphs. The entire section is one unbroken column — no dividers, no cards, no background shifts."
+      },
+      {
+        "name": "Pill Button",
+        "role": "Sole interactive element style",
+        "description": "300px border-radius (full pill), 8px vertical padding, 40px horizontal padding, Coral Crimson (#db404f) fill, white (#ffffff) Nunito Sans text at 700 weight. Compact and confident — the generous radius makes a small element feel intentional rather than utilitarian."
+      },
+      {
+        "name": "Rounded Decorative Shape",
+        "role": "90px-radius geometric element used as visual punctuation",
+        "description": "Square or rectangular elements clipped to 90px corners — used for the small logo/icon mark and potentially image masks. Always rendered in Coral Crimson (#db404f). The 90px radius is the design's signature curve, softer than typical 8-16px UI rounding but sharper than a pill."
+      },
+      {
+        "name": "Side-by-Side Image Pair",
+        "role": "Two-photo composition for showing complementary views",
+        "description": "Two photographs placed in a 1:1 grid (50/50 split), separated only by a thin gap (11px column gap). Both images share the same warm interior lighting treatment. No captions, no borders — the pair reads as a single panoramic statement."
+      },
+      {
+        "name": "Inline Link",
+        "role": "Text-level navigation within body prose",
+        "description": "Underlined Nunito Sans 18px text in Coral Crimson (#db404f), same color as surrounding body — distinguished by underline weight rather than color shift. No hover color change visible; the link is already saturated enough."
+      },
+      {
+        "name": "Section Anchor Header",
+        "role": "Small-caps or oversized subhead marking a new prose section",
+        "description": "Sansita 28-39px/700 in Coral Crimson, often with an underline to signal 'click for letter' or section anchor. Functions as a typographic wayfinding device in place of navigation chrome."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading face — bold, slightly condensed, with -0.02em tracking that tightens at every size. Carries all editorial weight: the page announces itself through this one confident voice.",
+        "sizes": "28px, 39px, 49px, 70px",
+        "family": "Sansita",
+        "weight": "700",
+        "lineHeight": "1.06-1.17",
+        "substitute": "Playfair Display, DM Serif Display",
+        "letterSpacing": "-0.02em (e.g. -0.56px at 28px, -1.4px at 70px)"
+      },
+      {
+        "role": "Body and UI face — the 18px body sets a generous reading rhythm at 1.5 line-height; 700 weight for emphasized inline phrases and small caps headers. The 72px outlier is likely a single oversized numeral or pull-quote.",
+        "sizes": "18px, 25px, 72px",
+        "family": "Nunito Sans",
+        "weight": "400, 700",
+        "lineHeight": "1.20-1.50",
+        "substitute": "Inter, Source Sans 3"
+      },
+      {
+        "role": "Secondary prose — the slightly taller 1.7 line-height is for long-form letter passages where breathing room matters more than density",
+        "sizes": "18px",
+        "family": "Clarkson",
+        "weight": "400",
+        "lineHeight": "1.50-1.70",
+        "substitute": "Lora, Source Serif 4"
+      }
+    ],
+    "description": "Anna Jóna speaks in a hushed, single-color voice: a blush-pink canvas washed warm and soft, with one vivid coral-red doing all the talking for type, icons, and accents. The page reads like a folded letter — generous whitespace, oversized display headings in a custom condensed serif, and angled full-bleed image cuts that bleed warm interior photography into the pink field. Every interface element is weightless: no shadows, no cards with elevation, no border treatments. Structure comes from typography scale and spatial rhythm alone, with large rounded shapes (90px) and a single pill button (300px) as the only geometric gestures. The mood is intimate, editorial, and slightly melancholic — a closing tribute rendered as quiet visual poetry.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/71717c5a-324a-40ed-8a09-9a35df74f1d3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Anna Jóna design system\",\"item\":\"https://styles.refero.design/style/71717c5a-324a-40ed-8a09-9a35df74f1d3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/71717c5a-324a-40ed-8a09-9a35df74f1d3#style-reference\",\"name\":\"Anna Jóna design system reference\",\"headline\":\"Anna Jóna design system | Refero Styles\",\"description\":\"Explore Anna Jóna's light Other design system: Blush Paper #fce1e3, Coral Crimson #db404f colors, Sansita, Nunito Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/71717c5a-324a-40ed-8a09-9a35df74f1d3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/71717c5a-324a-40ed-8a09-9a35df74f1d3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Anna Jóna\",\"url\":\"https://annajona.is\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/71717c5a-324a-40ed-8a09-9a35df74f1d3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/99e52aca-7045-4b1c-b519-8ccce7f2651c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/99e52aca-7045-4b1c-b519-8ccce7f2651c.jpg\",\"caption\":\"Screenshot of Anna Jóna\"},\"image\":\"https://images.refero.design/styles/refero.design/image/99e52aca-7045-4b1c-b519-8ccce7f2651c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Anna Jóna design system\",\"Anna Jóna website design\",\"Anna Jóna colors\",\"Anna Jóna typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Blush Paper\",\"Coral Crimson\",\"Midnight Ink\",\"Pure White\",\"Sansita\",\"Nunito Sans\",\"Clarkson\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Anna Jóna design system\"},{\"@type\":\"Thing\",\"name\":\"Anna Jóna website design\"},{\"@type\":\"Thing\",\"name\":\"Anna Jóna colors\"},{\"@type\":\"Thing\",\"name\":\"Anna Jóna typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:43:55.482Z\",\"dateModified\":\"2026-04-30T01:43:55.482Z\"}]}19:T570,## Quick Color Reference\n- text/heading: #db404f (Coral Crimson)\n- background: #fce1e3 (Blush Paper)\n- border/accent: #000000 (only for decorative strokes)\n- image surface: #ffffff\n- primary action: #db404f (filled action)\n- dark accent: #0e1736\n\n## Example Component Prompts\n\n1. **Hero Statement**: Full-width section on #fce1e3 background, 144px top padding. Two-column flex layout. Left column: Sansita 70px/700 in #db404f, letter-spacing -1.4px, line-height 1.06. Right column: Nunito Sans 18px/400 in #db404f, max-width 480px, line-height 1.5.\n\n2. **Angled Image Bleed**: Full-viewport-width photograph with a diagonal clip-path cutting from lower-left to upper-right (top edge angles up at ~10°). Image sits edge-to-edge with no padding or border. Below the image, content resumes on #fce1e3 background.\n\n3. **Letter Section**: Centered single column, max-width 640px, on #fce1e3. Header: Sansita 28px/700 in #db404f, letter-spacing -0.56px. Body: Nunito Sans 18px/400 in #db404f, line-height 1.5, 48px gap between paragraphs.\n\n4. **Pill Button**: 300px border-radius, #db404f background, Nunito Sans 700 white (#ffffff) text, 8px vertical padding, 40px horizontal padding, no border, no shadow.\n\n5. **Rounded Logo Mark**: Small square element at ~48px size, 90px border-radius, #db404f fill, containing a white icon or letterform. Positioned top-left of the page with generous margin."
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no elevation, no z-depth. The design is deliberately flat — all visual hierarchy comes from typographic scale, color contrast, and spatial rhythm. Even the 90px rounded shapes and pill buttons exist in the same plane as the canvas, not above it. This is a paper-based metaphor: ink on a page, not glass on a screen."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "icon"
+          ],
+          "frequency": 193,
+          "confidence": 1,
+          "prominence": 2008599212.4523702,
+          "properties": [
+            "borderColor",
+            "fill",
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "icon/color": 4,
+            "link/color": 3,
+            "other/fill": 72,
+            "other/color": 4,
+            "button/color": 4,
+            "other/stroke": 18,
+            "icon/borderColor": 16,
+            "link/borderColor": 12,
+            "other/borderColor": 36,
+            "button/borderColor": 16
+          }
+        },
+        {
+          "hex": "#fce1e3",
+          "oklch": {
+            "c": 0.02985740110731906,
+            "h": 12.588887505006477,
+            "l": 0.9323122616943184
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 62,
+          "confidence": 1,
+          "prominence": 922905708.1594119,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 8,
+            "other/borderColor": 12,
+            "other/backgroundColor": 42
+          }
+        },
+        {
+          "hex": "#db404f",
+          "oklch": {
+            "c": 0.19080434851746625,
+            "h": 19.846680402628504,
+            "l": 0.6013837505028643
+          },
+          "contexts": [
+            "other",
+            "card",
+            "hero",
+            "image",
+            "heading",
+            "button",
+            "footer"
+          ],
+          "frequency": 3730,
+          "confidence": 1,
+          "prominence": 779483565.6529242,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "card/color": 1,
+            "hero/color": 2,
+            "other/fill": 34,
+            "image/color": 56,
+            "other/color": 669,
+            "footer/color": 1,
+            "heading/color": 9,
+            "card/borderColor": 4,
+            "hero/borderColor": 8,
+            "image/borderColor": 224,
+            "other/borderColor": 2656,
+            "footer/borderColor": 4,
+            "heading/borderColor": 36,
+            "other/backgroundColor": 25,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "image",
+            "button"
+          ],
+          "frequency": 847,
+          "confidence": 1,
+          "prominence": 32016463.704615217,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "image/color": 11,
+            "other/color": 157,
+            "button/color": 1,
+            "image/borderColor": 44,
+            "other/borderColor": 616,
+            "button/borderColor": 4,
+            "other/backgroundColor": 14
+          }
+        },
+        {
+          "hex": "#0e1736",
+          "oklch": {
+            "c": 0.061845956598326424,
+            "h": 268.6359829981064,
+            "l": 0.21642353362177766
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 7641913.492396622,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.3989218041854985,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.58,
+          "background": "#0e1736",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.02,
+          "background": "#fce1e3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.25,
+          "background": "#fce1e3",
+          "foreground": "#0e1736"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.86,
+          "background": "#db404f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.32,
+          "background": "#ffffff",
+          "foreground": "#db404f"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.07,
+          "background": "#0e1736",
+          "foreground": "#db404f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.5,
+          "background": "#fce1e3",
+          "foreground": "#db404f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.23,
+          "background": "#fce1e3",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.19,
+          "background": "#0e1736",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 90,
+          "corners": [
+            92,
+            0,
+            0,
+            0
+          ],
+          "contexts": [
+            "other"
+          ],
+          "frequency": 42,
+          "asymmetric": true
+        },
+        {
+          "value": 300,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 72,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 86,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 95,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 115,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 173,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Nunito Sans",
+          "source": "google",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 896,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Sansita",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 16,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Clarkson",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 18,
+          "family": "Nunito Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "hero",
+            "image",
+            "footer"
+          ],
+          "frequency": 876,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Clarkson",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Clarkson",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Nunito Sans",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Nunito Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Nunito Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Sansita",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 39,
+          "family": "Sansita",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 49,
+          "family": "Sansita",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 70,
+          "family": "Sansita",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.06,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 70,
+          "family": "Sansita",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Nunito Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c5d92a7a-676a-4c9e-9b34-9e7cba4e3364.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/99e52aca-7045-4b1c-b519-8ccce7f2651c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/71717c5a-324a-40ed-8a09-9a35df74f1d3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Anna Jóna design system\",\"item\":\"https://styles.refero.design/style/71717c5a-324a-40ed-8a09-9a35df74f1d3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/71717c5a-324a-40ed-8a09-9a35df74f1d3#style-reference\",\"name\":\"Anna Jóna design system reference\",\"headline\":\"Anna Jóna design system | Refero Styles\",\"description\":\"Explore Anna Jóna's light Other design system: Blush Paper #fce1e3, Coral Crimson #db404f colors, Sansita, Nunito Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/71717c5a-324a-40ed-8a09-9a35df74f1d3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/71717c5a-324a-40ed-8a09-9a35df74f1d3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Anna Jóna\",\"url\":\"https://annajona.is\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/71717c5a-324a-40ed-8a09-9a35df74f1d3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/99e52aca-7045-4b1c-b519-8ccce7f2651c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/99e52aca-7045-4b1c-b519-8ccce7f2651c.jpg\",\"caption\":\"Screenshot of Anna Jóna\"},\"image\":\"https://images.refero.design/styles/refero.design/image/99e52aca-7045-4b1c-b519-8ccce7f2651c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Anna Jóna design system\",\"Anna Jóna website design\",\"Anna Jóna colors\",\"Anna Jóna typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Blush Paper\",\"Coral Crimson\",\"Midnight Ink\",\"Pure White\",\"Sansita\",\"Nunito Sans\",\"Clarkson\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Anna Jóna design system\"},{\"@type\":\"Thing\",\"name\":\"Anna Jóna website design\"},{\"@type\":\"Thing\",\"name\":\"Anna Jóna colors\"},{\"@type\":\"Thing\",\"name\":\"Anna Jóna typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:43:55.482Z\",\"dateModified\":\"2026-04-30T01:43:55.482Z\"}]}19:T570,## Quick Color Reference\n- text/heading: #db404f (Coral Crimson)\n- background: #fce1e3 (Blush Paper)\n- border/accent: #000000 (only for decorative strokes)\n- image surface: #ffffff\n- primary action: #db404f (filled action)\n- dark accent: #0e1736\n\n## Example Component Prompts\n\n1. **Hero Statement**: Full-width section on #fce1e3 background, 144px top padding. Two-column flex layout. Left column: Sansita 70px/700 in #db404f, letter-spacing -1.4px, line-height 1.06. Right column: Nunito Sans 18px/400 in #db404f, max-width 480px, line-height 1.5.\n\n2. **Angled Image Bleed**: Full-viewport-width photograph with a diagonal clip-path cutting from lower-left to upper-right (top edge angles up at ~10°). Image sits edge-to-edge with no padding or border. Below the image, content resumes on #fce1e3 background.\n\n3. **Letter Section**: Centered single column, max-width 640px, on #fce1e3. Header: Sansita 28px/700 in #db404f, letter-spacing -0.56px. Body: Nunito Sans 18px/400 in #db404f, line-height 1.5, 48px gap between paragraphs.\n\n4. **Pill Button**: 300px border-radius, #db404f background, Nunito Sans 700 white (#ffffff) text, 8px vertical padding, 40px horizontal padding, no border, no shadow.\n\n5. **Rounded Logo Mark**: Small square element at ~48px size, 90px border-radius, #db404f fill, containing a white icon or letterform. Positioned top-left of the page with generous margin."
+}

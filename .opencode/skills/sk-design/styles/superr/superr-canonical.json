@@ -1,0 +1,1483 @@
+{
+  "source": "https://styles.refero.design/style/cfd0fec1-f25a-4b9b-9bd0-d5b66960f2f2",
+  "uuid": "cfd0fec1-f25a-4b9b-9bd0-d5b66960f2f2",
+  "name": "Superr",
+  "northStar": "Warm schoolyard notebook in soft afternoon light. A cream page, an orange marker uncapped, and a stack of sticker-laminated name labels waiting to be peeled.",
+  "capturedAt": "2026-07-18T08:16:29.508Z",
+  "meta": {
+    "url": "https://www.superr.ai",
+    "siteName": "Superr",
+    "extractedAt": "2026-06-03T17:48:09.582Z",
+    "durationMs": 42731,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 645,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set headlines in gelica 600 at 104px, lowercase, color Cocoa Ink (#2b1a07), line-height 1.08",
+      "Use Marker Orange (#ff6f1e) only for handwritten captions, inline emphasis highlights, and the footer brand band",
+      "Use Charcoal (#171717) for all text, borders, button strokes, and structural edges — it is the only 'ink' color",
+      "Round all buttons and tags to 20px pill radius, all cards to 12px, and reserve 56px for the footer's asymmetric top edge",
+      "Keep the canvas at Cream Paper (#fdfbf9) with Dew Drop (#f7efe9) as a subtle secondary surface tint, never pure white",
+      "Lean on photographed product objects (notebooks, pencils, labels) as the primary visual content — they are the hero",
+      "Scatter sticker illustrations at random rotations between 5-15° to maintain the placed-by-hand feeling"
+    ],
+    "donts": [
+      "Do not use Sky Sticker blue, Bubblegum pink, or Sprout green for any functional UI element — they are decoration only",
+      "Do not use filled CTA buttons — the action language is always a dark border on cream, never a solid color fill",
+      "Do not capitalize headlines or apply letter-spacing — the lowercase + normal tracking is a signature",
+      "Do not use drop shadows heavier than rgba(0,0,0,0.06) on cards or rgba(0,0,0,0.25) on buttons — the elevation is whisper-light",
+      "Do not center-align headlines after the first line; left-align the full stack for the hand-notebook rhythm",
+      "Do not introduce gradients, glassmorphism, or neon accents — the palette is matte and warm",
+      "Do not use Geist for headlines — it is a supporting grotesque, gelica owns all display sizes"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fdfbf9",
+        "name": "Cream Paper",
+        "role": "Page canvas, card surfaces, button fills — the warm-white ground tone that makes dark borders and orange accents feel like ink and marker on paper",
+        "group": "neutral"
+      },
+      {
+        "hex": "#171717",
+        "name": "Charcoal",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2b1a07",
+        "name": "Cocoa Ink",
+        "role": "Headline color, decorative borders — a warmer dark that headlines and accent borders inherit from notebook-leather tones instead of pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "True Black",
+        "role": "Reserved for highest-emphasis headline moments and strict edge cases where charcoal feels too soft",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7efe9",
+        "name": "Dew Drop",
+        "role": "Secondary surface tint, the slightly warmer card layer that sits between the cream canvas and colored accents",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ff6f1e",
+        "name": "Marker Orange",
+        "role": "Signature accent for handwritten captions, script annotations, the footer brand band, and the highlight underline beneath emphasis words — the uncapped-marker energy of the brand",
+        "group": "brand"
+      },
+      {
+        "hex": "#ce500a",
+        "name": "Burnt Sienna",
+        "role": "Darker orange shade used for body-color and border accents when the marker orange needs more weight against cream",
+        "group": "brand"
+      },
+      {
+        "hex": "#3b82f6",
+        "name": "Sky Sticker",
+        "role": "Decorative illustration accent — appears in sticker characters, sparkle marks, and notebook cover patterns. Not a UI token; do not use for buttons or links",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff66cf",
+        "name": "Bubblegum Sticker",
+        "role": "Decorative illustration accent — used exclusively on sticker characters and pink notebook covers. Do not promote to functional UI",
+        "group": "accent"
+      },
+      {
+        "hex": "#22c55e",
+        "name": "Sprout Sticker",
+        "role": "Green outline accent for tags, dividers, and focused UI edges",
+        "group": "accent"
+      },
+      {
+        "hex": "#bebcbb",
+        "name": "Shadow Mist",
+        "role": "Shadow base color — the desaturated gray under-toning the card and button drop shadows",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Asymmetric and editorial. The hero is a two-column split: left half holds the display headline, handwritten caption, and pill CTA stacked loosely; right half is occupied by a single large product photograph of a tilted brown notebook. Below the fold, the layout alternates between product photography blocks and centered typographic moments, with sticker illustrations bridging the two. Navigation is minimal — a 32px icon in the top-left, a pill button in the top-right, and nothing in between. Content is left-aligned throughout; the design resists centering as a crutch. Page max-width is ~1200px but the hero photography often breaks the container to feel more spontaneous.",
+    "imagery": "Photography-forward: real product shots of leather-bound notebooks in brown, blue-cloud, and rose-pink cover patterns, each photographed with a colored pencil tucked alongside. Stickers are illustrated (flat, 2px dark outlines, vivid fills) and treated as physical objects placed on the page — slightly rotated, never grid-aligned. Hand-drawn SVG arrows and script captions in Marker Orange connect the photography to the copy. No abstract graphics, no 3D renders, no stock photography — the product IS the imagery.",
+    "similar": [
+      {
+        "why": "Same warm-cream canvas, handcrafted editorial feel, and confident lowercase display type with dark borders on light surfaces",
+        "business": "Are.na"
+      },
+      {
+        "why": "Pill-shaped outlined buttons on cream backgrounds, playful illustrated accents scattered through a product-forward layout",
+        "business": "Gumroad"
+      },
+      {
+        "why": "Matte paper-like surfaces, thin dark borders defining all structural elements, and sticker/illustration personality on an otherwise restrained UI",
+        "business": "Notion"
+      },
+      {
+        "why": "Kawaii-adjacent sticker vocabulary paired with serious editorial typography and warm off-white canvas",
+        "business": "Croissant"
+      },
+      {
+        "why": "Hand-marker orange as the only chromatic accent against cream paper, with hand-drawn arrows and annotations labeling product photography",
+        "business": "Craigslist redesigns (e.g. by Patta)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "20px",
+        "cards": "12px",
+        "footer": "56px",
+        "inputs": "8px",
+        "buttons": "20px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "64px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#fdfbf9",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — warm cream paper"
+      },
+      {
+        "hex": "#f7efe9",
+        "name": "Surface Tint",
+        "level": 1,
+        "purpose": "Secondary card/panel layer, slightly warmer than canvas"
+      },
+      {
+        "hex": "#ff6f1",
+        "name": "Brand Band",
+        "level": 2,
+        "purpose": "Footer accent stripe — the only saturated surface"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.06) 0px 2px 20px 0px",
+        "element": "Card"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.25) 0px 1px 2px 0px",
+        "element": "Button"
+      }
+    ],
+    "northStar": "Warm schoolyard notebook in soft afternoon light. A cream page, an orange marker uncapped, and a stack of sticker-laminated name labels waiting to be peeled.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 18,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 28,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 46,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 104,
+        "lineHeight": 1.08
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Action Button",
+        "role": "Primary call-to-action surface — appears in header and hero",
+        "description": "Cream fill (#fdfbf9), 1.5px Charcoal border (#171717), 20px pill radius, 28px horizontal padding / 10-11px vertical padding, gelica 16px weight 500 Charcoal text. Subtle 1-2px drop shadow rgba(0,0,0,0.25) for paper-lift. No fill state — the button's identity is the dark border, not the background."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero and section-open titles",
+        "description": "gelica 104px / line-height 1.08, weight 600, lowercase, color Cocoa Ink (#2b1a07). Tight two-line stack with no letter-spacing. The headline reads as a single visual object — never break above 3 lines, never center-align after the first line."
+      },
+      {
+        "name": "Handwritten Caption",
+        "role": "Script-style annotations that label products ('a big blue parchi', 'cute pinks', 'Like making')",
+        "description": "gelica 20-24px weight 400 in Marker Orange (#ff6f1e), slightly rotated or aligned to a hand-drawn arrow. Pairs with a thin SVG curved arrow pointing at the object being labeled."
+      },
+      {
+        "name": "Marker Highlight",
+        "role": "Inline emphasis on a single word inside body copy ('actually!')",
+        "description": "Text rendered in Marker Orange (#ff6f1e) with a rough hand-drawn underline in the same color, 2-3px stroke weight, slight wobble. Sits inline within a Cocoa Ink body sentence."
+      },
+      {
+        "name": "Product Notebook",
+        "role": "The hero product asset — a photographed leather notebook with name-label sticker",
+        "description": "Full-bleed object image, 12-16px corner radius on the notebook edges in the photo, tilted 5-8° off-axis. Carries a white sticker label (Name / Class / Roll no.) on the cover with gelica 16-20px handwritten text."
+      },
+      {
+        "name": "Name Label Sticker",
+        "role": "Laminated name tag that sits on each notebook cover",
+        "description": "White card with 1px Charcoal border, 8px corner radius, three fields: Name (gelica 20px handwritten), Class (gelica 16px), Roll no. (gelica 16px). Mimics a real school label — small, functional, charming."
+      },
+      {
+        "name": "Sticker Illustration",
+        "role": "Decorative personality elements scattered through the layout",
+        "description": "Flat, illustrated characters (lightning bolt, bear, heart with eyes, ghost, cat, sparkle) in Sky Sticker blue / Bubblegum pink / Sprout green with 2px dark outlines. Rotated 5-15° at random, treated as physical stickers placed on the page — never aligned to a grid."
+      },
+      {
+        "name": "Hand-drawn Arrow",
+        "role": "Visual connector between captions and product images",
+        "description": "Thin 1.5px Charcoal stroke curved arrow, hand-drawn wobble, no arrowhead fill. Originates from a Handwritten Caption and terminates at the labeled object with a slight curl."
+      },
+      {
+        "name": "Pre-order Info Block",
+        "role": "Small caption directly under a primary button",
+        "description": "gelica 16px weight 400, color Cocoa Ink (#2b1a07), 8px gap below button. States availability/timing — no decoration, no icon, just a quiet line of text."
+      },
+      {
+        "name": "Footer Brand Band",
+        "role": "Bottom page band with the orange signature",
+        "description": "Marker Orange (#ff6f1e) background, 56px asymmetric corner radius on the top edge, gelica text in Charcoal or cream. Functions as the brand closer — a single orange stripe that says 'we're done, and we had fun.'"
+      },
+      {
+        "name": "Top-left Brand Mark",
+        "role": "Site logo and navigation anchor",
+        "description": "Small illustrated hand/pointing icon (~32px) in Charcoal, 16px margin from top-left edge. No wordmark beside it — the icon IS the brand mark. Links to home."
+      },
+      {
+        "name": "Top-right Action",
+        "role": "Persistent header CTA",
+        "description": "Same Pill Action Button pattern, positioned top-right with 16px margin. Visible on every screen as the single conversion anchor."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All display, heading, and body text. The custom gelica is a rounded, slightly soft sans with heavy weight at 600 — at 104px the 'meet superrbook' headline becomes a tactile object, not a title. Lowercase is the default; the type speaks quietly through size and weight, not through capitalization. Substitutes: Recoleta, Fraunces (tight tracking), or DM Serif Display for the rounded display feel.",
+        "sizes": "16, 20, 24, 28, 32, 36, 40, 46, 104",
+        "family": "gelica",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.08–1.50",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Secondary body, navigation, and UI labels. Geist appears sparingly — for nav items, fine-print captions, and anywhere a clean grotesque cuts the warmth of gelica. Substitutes: Inter, Söhne, or General Sans.",
+        "sizes": "18, 20, 32",
+        "family": "Geist",
+        "weight": "400, 500",
+        "lineHeight": "1.50"
+      }
+    ],
+    "description": "Superr is a warm schoolyard aesthetic rendered in digital form: a cream-paper canvas, hand-marker orange as the only chromatic accent, and chunky lowercase display type that reads like a child's notebook scrawled at full volume. The product itself is photographed like a real object — leather-bound notebooks, colored pencils, sticker-laminated name labels — and these objects, not abstract UI illustrations, do the visual work. Playful illustrated stickers (lightning bolts, bears, hearts, ghosts) scatter across the layout as little bursts of personality, but they are decorative punctuation, not system icons. Every surface stays matte and soft: thin dark borders instead of fills, minimal shadows, generous breathing room, and rounded corners that stop at 20px before going full-pill. The result is a site that feels like opening a fresh parchi on the first day of school — unhurried, tactile, and slightly mischievous.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cfd0fec1-f25a-4b9b-9bd0-d5b66960f2f2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Superr design system\",\"item\":\"https://styles.refero.design/style/cfd0fec1-f25a-4b9b-9bd0-d5b66960f2f2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cfd0fec1-f25a-4b9b-9bd0-d5b66960f2f2#style-reference\",\"name\":\"Superr design system reference\",\"headline\":\"Superr design system | Refero Styles\",\"description\":\"Explore Superr's light Other design system: Cream Paper #fdfbf9, Charcoal #171717 colors, gelica, Geist typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/cfd0fec1-f25a-4b9b-9bd0-d5b66960f2f2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cfd0fec1-f25a-4b9b-9bd0-d5b66960f2f2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Superr\",\"url\":\"https://www.superr.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cfd0fec1-f25a-4b9b-9bd0-d5b66960f2f2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/cc8ffdae-b407-40ea-b35c-97940939028a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/cc8ffdae-b407-40ea-b35c-97940939028a.jpg\",\"caption\":\"Screenshot of Superr\"},\"image\":\"https://images.refero.design/styles/refero.design/image/cc8ffdae-b407-40ea-b35c-97940939028a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Superr design system\",\"Superr website design\",\"Superr colors\",\"Superr typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Cream Paper\",\"Charcoal\",\"Cocoa Ink\",\"True Black\",\"gelica\",\"Geist\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Superr design system\"},{\"@type\":\"Thing\",\"name\":\"Superr website design\"},{\"@type\":\"Thing\",\"name\":\"Superr colors\"},{\"@type\":\"Thing\",\"name\":\"Superr typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:15:05.181Z\",\"dateModified\":\"2026-04-30T00:15:05.181Z\"}]}19:Ta0f,**Quick Color Reference**\n- canvas: #fdfbf9 (Cream Paper)\n- text: #171717 (Charcoal) / #2b1a07 (Cocoa Ink for headlines)\n- border: #171717 (Charcoal)\n- accent: #ff6f1e (Marker Orange)\n- surface tint: #f7efe9 (Dew Drop)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build the hero: Cream Paper (#fdfbf9) canvas, full page. Left half: gelica 104px weight 600 lowercase 'meet superrbook' in Cocoa Ink (#2b1a07), line-height 1.08. Below it, a Handwritten Caption in gelica 20px Marker Orange (#ff6f1e) reading 'Dear grownups,'. Below that, body text in gelica 20px weight 400 Cocoa Ink with the word 'actually!' rendered in Marker Orange and underlined with a 2px hand-drawn stroke. Below the body, a Pill Action Button: 20px radius, 1.5px Charcoal (#171717) border, cream fill, gelica 16px weight 500 text 'I call dibs!'. Under the button, a Pre-order Info Block in gelica 16px Cocoa Ink: 'Pre-order starting April 2026.' Right half: a photograph of a brown leather notebook tilted 5-8°, with a Sky Sticker (#3b82f6) lightning bolt and a Bubblegum (#ff66cf) bear character floating above it at random rotations.\n\n2. Build a product showcase row: Cream Paper canvas. Two notebook photographs side by side — left notebook is blue with white cloud pattern, right notebook is rose-pink. Above the blue notebook, a Handwritten Caption in Marker Orange 'a big blue parchi' with a thin Charcoal curved arrow pointing down to the notebook. Above the pink notebook, a Handwritten Caption 'cute pinks' with a matching arrow. Between them, centered: a small Marker Orange script caption 'Like making' above gelica 36px weight 500 Cocoa Ink text 'Our SuperrBook. Our Way.'\n\n3. Build a pill button: Cream Paper fill (#fdfbf9), 1.5px solid Charcoal (#171717) border, 20px border-radius, 28px horizontal padding and 10px vertical padding. gelica 16px weight 500 Charcoal text, centered. Drop shadow: rgba(0,0,0,0.25) 0px 1px 2px 0px. No hover fill change — keep the cream background on all states.\n\n4. Build a footer band: full-width Marker Orange (#ff6f1e) background with 56px top-left and top-right border-radius (asymmetric cap). gelica 16-20px Charcoal or cream text centered or left-aligned. Functions as the brand closer.\n\n5. Build a sticker illustration cluster: flat 2D characters (lightning bolt in Sky Sticker #3b82f6, heart with eyes in Marker Orange, ghost in Charcoal) each with 2px dark outlines, placed at random rotations between 5-15°, overlapping slightly. No drop shadows on stickers — they sit flat on the page like real peel-and-stick."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is paper-thin. Cards float on a 20px-blur whisper shadow (0.06 opacity) and buttons wear a single 2px contact shadow (0.25 opacity) — enough to separate object from page, never enough to feel like a digital UI. The design wants to feel printed, not rendered."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#171717",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20462653095774938
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "heading",
+            "button",
+            "hero",
+            "card",
+            "list",
+            "footer"
+          ],
+          "frequency": 2043,
+          "confidence": 1,
+          "prominence": 218436206.22730032,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 3,
+            "hero/color": 2,
+            "link/color": 2,
+            "list/color": 18,
+            "image/color": 10,
+            "other/color": 344,
+            "button/color": 25,
+            "footer/color": 1,
+            "heading/color": 10,
+            "hero/borderColor": 8,
+            "link/borderColor": 8,
+            "list/borderColor": 72,
+            "image/borderColor": 40,
+            "other/borderColor": 1356,
+            "button/borderColor": 100,
+            "footer/borderColor": 4,
+            "heading/borderColor": 40
+          }
+        },
+        {
+          "hex": "#fdfbf9",
+          "oklch": {
+            "c": 0.0034077321040327864,
+            "h": 67.78373157005005,
+            "l": 0.9890579269474745
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "card",
+            "heading",
+            "nav"
+          ],
+          "frequency": 150,
+          "confidence": 1,
+          "prominence": 143775926.64888227,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 23,
+            "nav/stroke": 5,
+            "heading/color": 1,
+            "nav/borderColor": 92,
+            "other/borderColor": 4,
+            "heading/borderColor": 4,
+            "card/backgroundColor": 3,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 16,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff6f1e",
+          "oklch": {
+            "c": 0.19415275170385937,
+            "h": 44.30667330241873,
+            "l": 0.7083852398280434
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 3627866.631813175,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2b1a07",
+          "oklch": {
+            "c": 0.04085628446277112,
+            "h": 66.79339379347857,
+            "l": 0.23542401470161192
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading",
+            "card",
+            "image"
+          ],
+          "frequency": 308,
+          "confidence": 1,
+          "prominence": 1505604.7861912658,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 38,
+            "image/color": 1,
+            "heading/color": 17,
+            "body/borderColor": 152,
+            "card/borderColor": 12,
+            "image/borderColor": 4,
+            "other/borderColor": 16,
+            "heading/borderColor": 68
+          }
+        },
+        {
+          "hex": "#f7efe9",
+          "oklch": {
+            "c": 0.011806853651160314,
+            "h": 59.56522084648454,
+            "l": 0.9567097685923276
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1415882,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 569538.6232594536,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 4,
+            "heading/borderColor": 16
+          }
+        },
+        {
+          "hex": "#ce500a",
+          "oklch": {
+            "c": 0.17359975774997374,
+            "h": 42.32429243157035,
+            "l": 0.5915526537536929
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 329592,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/color": 1,
+            "body/borderColor": 8,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#8a7b6a",
+          "oklch": {
+            "c": 0.03114396459317066,
+            "h": 70.65866866977147,
+            "l": 0.5917960249218402
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 54842.36945025707,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "body/borderColor": 8
+          }
+        },
+        {
+          "hex": "#3b82f6",
+          "oklch": {
+            "c": 0.18801473450792208,
+            "h": 259.81452852548136,
+            "l": 0.6230830326348528
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 34300,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "heading/color": 2,
+            "body/borderColor": 4,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#bebcbb",
+          "oklch": {
+            "c": 0.0026977305067488987,
+            "h": 67.78437950665175,
+            "l": 0.7967802523053842
+          },
+          "contexts": [
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 32038,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "link/boxShadow": 1,
+            "other/boxShadow": 1,
+            "button/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#ff66cf",
+          "oklch": {
+            "c": 0.21641977584727867,
+            "h": 341.8555357578672,
+            "l": 0.734896226250285
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 32000,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "heading/color": 2,
+            "body/borderColor": 4,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#22c55e",
+          "oklch": {
+            "c": 0.19200735889944792,
+            "h": 149.57933770959528,
+            "l": 0.7227459182734359
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 29816.841121034864,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "heading/color": 1,
+            "body/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ded6d2",
+          "oklch": {
+            "c": 0.010409416996801856,
+            "h": 48.60761590950821,
+            "l": 0.8813380082199801
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 1664,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 15
+          }
+        },
+        {
+          "hex": "#d2bbad",
+          "oklch": {
+            "c": 0.032748970402715835,
+            "h": 53.393789727927576,
+            "l": 0.8077353445339707
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 7
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.025631746193048238,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.34,
+          "background": "#fdfbf9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.48,
+          "background": "#f7efe9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.37,
+          "background": "#fdfbf9",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.23,
+          "background": "#fdfbf9",
+          "foreground": "#2b1a07"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.77,
+          "background": "#f7efe9",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.74,
+          "background": "#f7efe9",
+          "foreground": "#2b1a07"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.66,
+          "background": "#ded6d2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.51,
+          "background": "#ded6d2",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.69,
+          "background": "#ded6d2",
+          "foreground": "#2b1a07"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.45,
+          "background": "#d2bbad",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.1,
+          "background": "#bebcbb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.78,
+          "background": "#d2bbad",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.48,
+          "background": "#bebcbb",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.22,
+          "background": "#22c55e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.14,
+          "background": "#d2bbad",
+          "foreground": "#2b1a07"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.86,
+          "background": "#bebcbb",
+          "foreground": "#2b1a07"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.05,
+          "background": "#ff66cf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.87,
+          "background": "#22c55e",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.54,
+          "background": "#ff6f1e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.35,
+          "background": "#22c55e",
+          "foreground": "#2b1a07"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 56,
+          "corners": [
+            56,
+            56,
+            0,
+            0
+          ],
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.06) 0px 2px 20px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.25) 0px 1px 2px 0px",
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "body",
+            "link"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginLeft|body",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button",
+            "image"
+          ],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "marginLeft|button",
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "heading",
+            "other",
+            "list",
+            "body",
+            "nav"
+          ],
+          "frequency": 29,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list",
+            "marginBottom|other",
+            "marginTop|body",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "icon",
+            "card",
+            "body"
+          ],
+          "frequency": 24,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginTop|other",
+            "marginTop|icon",
+            "paddingBottom|card",
+            "marginLeft|body",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "body",
+            "other",
+            "card",
+            "button"
+          ],
+          "frequency": 26,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|button",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "image",
+            "button"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|image",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|button",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "button",
+            "card",
+            "link",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|button",
+            "rowGap|card",
+            "columnGap|card",
+            "marginTop|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 85,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 89,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 116,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "gelica",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 567,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Geist",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 51,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "gelica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "heading",
+            "button",
+            "icon",
+            "hero",
+            "card",
+            "list",
+            "footer"
+          ],
+          "frequency": 511,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Geist",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "gelica",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Geist",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "nav",
+            "other"
+          ],
+          "frequency": 29,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "gelica",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "gelica",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "gelica",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "image"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Geist",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "gelica",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "gelica",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "gelica",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "gelica",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "image"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "gelica",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "gelica",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 104,
+          "family": "gelica",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.08,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7d44be49-6836-4709-8bf3-32d2913f500f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/cc8ffdae-b407-40ea-b35c-97940939028a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/cfd0fec1-f25a-4b9b-9bd0-d5b66960f2f2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Superr design system\",\"item\":\"https://styles.refero.design/style/cfd0fec1-f25a-4b9b-9bd0-d5b66960f2f2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/cfd0fec1-f25a-4b9b-9bd0-d5b66960f2f2#style-reference\",\"name\":\"Superr design system reference\",\"headline\":\"Superr design system | Refero Styles\",\"description\":\"Explore Superr's light Other design system: Cream Paper #fdfbf9, Charcoal #171717 colors, gelica, Geist typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/cfd0fec1-f25a-4b9b-9bd0-d5b66960f2f2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/cfd0fec1-f25a-4b9b-9bd0-d5b66960f2f2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Superr\",\"url\":\"https://www.superr.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/cfd0fec1-f25a-4b9b-9bd0-d5b66960f2f2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/cc8ffdae-b407-40ea-b35c-97940939028a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/cc8ffdae-b407-40ea-b35c-97940939028a.jpg\",\"caption\":\"Screenshot of Superr\"},\"image\":\"https://images.refero.design/styles/refero.design/image/cc8ffdae-b407-40ea-b35c-97940939028a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Superr design system\",\"Superr website design\",\"Superr colors\",\"Superr typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Cream Paper\",\"Charcoal\",\"Cocoa Ink\",\"True Black\",\"gelica\",\"Geist\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Superr design system\"},{\"@type\":\"Thing\",\"name\":\"Superr website design\"},{\"@type\":\"Thing\",\"name\":\"Superr colors\"},{\"@type\":\"Thing\",\"name\":\"Superr typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:15:05.181Z\",\"dateModified\":\"2026-04-30T00:15:05.181Z\"}]}19:Ta0f,**Quick Color Reference**\n- canvas: #fdfbf9 (Cream Paper)\n- text: #171717 (Charcoal) / #2b1a07 (Cocoa Ink for headlines)\n- border: #171717 (Charcoal)\n- accent: #ff6f1e (Marker Orange)\n- surface tint: #f7efe9 (Dew Drop)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Build the hero: Cream Paper (#fdfbf9) canvas, full page. Left half: gelica 104px weight 600 lowercase 'meet superrbook' in Cocoa Ink (#2b1a07), line-height 1.08. Below it, a Handwritten Caption in gelica 20px Marker Orange (#ff6f1e) reading 'Dear grownups,'. Below that, body text in gelica 20px weight 400 Cocoa Ink with the word 'actually!' rendered in Marker Orange and underlined with a 2px hand-drawn stroke. Below the body, a Pill Action Button: 20px radius, 1.5px Charcoal (#171717) border, cream fill, gelica 16px weight 500 text 'I call dibs!'. Under the button, a Pre-order Info Block in gelica 16px Cocoa Ink: 'Pre-order starting April 2026.' Right half: a photograph of a brown leather notebook tilted 5-8°, with a Sky Sticker (#3b82f6) lightning bolt and a Bubblegum (#ff66cf) bear character floating above it at random rotations.\n\n2. Build a product showcase row: Cream Paper canvas. Two notebook photographs side by side — left notebook is blue with white cloud pattern, right notebook is rose-pink. Above the blue notebook, a Handwritten Caption in Marker Orange 'a big blue parchi' with a thin Charcoal curved arrow pointing down to the notebook. Above the pink notebook, a Handwritten Caption 'cute pinks' with a matching arrow. Between them, centered: a small Marker Orange script caption 'Like making' above gelica 36px weight 500 Cocoa Ink text 'Our SuperrBook. Our Way.'\n\n3. Build a pill button: Cream Paper fill (#fdfbf9), 1.5px solid Charcoal (#171717) border, 20px border-radius, 28px horizontal padding and 10px vertical padding. gelica 16px weight 500 Charcoal text, centered. Drop shadow: rgba(0,0,0,0.25) 0px 1px 2px 0px. No hover fill change — keep the cream background on all states.\n\n4. Build a footer band: full-width Marker Orange (#ff6f1e) background with 56px top-left and top-right border-radius (asymmetric cap). gelica 16-20px Charcoal or cream text centered or left-aligned. Functions as the brand closer.\n\n5. Build a sticker illustration cluster: flat 2D characters (lightning bolt in Sky Sticker #3b82f6, heart with eyes in Marker Orange, ghost in Charcoal) each with 2px dark outlines, placed at random rotations between 5-15°, overlapping slightly. No drop shadows on stickers — they sit flat on the page like real peel-and-stick."
+}

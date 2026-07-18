@@ -1,0 +1,669 @@
+{
+  "color": {
+    "page-cream": {
+      "$value": "#f9f4f2",
+      "$type": "color",
+      "$description": "Page Cream — Page background, large section surfaces — the warm paper tone that sets the entire mood"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, elevated panels, input fills, inverse text on dark buttons"
+    },
+    "charcoal-ink": {
+      "$value": "#2d2c2b",
+      "$type": "color",
+      "$description": "Charcoal Ink — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "graphite": {
+      "$value": "#44423f",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, muted UI labels, icon strokes, nav links"
+    },
+    "slate": {
+      "$value": "#4b4c4d",
+      "$type": "color",
+      "$description": "Slate — Tertiary text, footer body, helper copy, low-emphasis borders"
+    },
+    "stone": {
+      "$value": "#63605d",
+      "$type": "color",
+      "$description": "Stone — Disabled states, lowest-emphasis text, decorative dividers"
+    },
+    "driftwood": {
+      "$value": "#c6c1b9",
+      "$type": "color",
+      "$description": "Driftwood — Hairline list dividers, subtle structural separators"
+    },
+    "linen": {
+      "$value": "#e2ded9",
+      "$type": "color",
+      "$description": "Linen — Card borders, input borders, subtle elevation shadows — the neutral that separates surfaces on cream"
+    },
+    "ash": {
+      "$value": "#d0d0d0",
+      "$type": "color",
+      "$description": "Ash — Input border, focused field rings, checkbox borders"
+    },
+    "soft-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Soft Black — True black for maximum-contrast dark buttons and bold display text"
+    },
+    "brand-orange": {
+      "$value": "#f47d31",
+      "$type": "color",
+      "$description": "Brand Orange — Headspace logo mark — the single warm dot that anchors the brand identity across all surfaces"
+    },
+    "mindful-blue": {
+      "$value": "#0061ef",
+      "$type": "color",
+      "$description": "Mindful Blue — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "sunbeam-yellow": {
+      "$value": "#ffce00",
+      "$type": "color",
+      "$description": "Sunbeam Yellow — Headspace signature brand yellow — top banner backgrounds, feature card highlights, optimistic punctuation"
+    },
+    "deep-indigo": {
+      "$value": "#3b197f",
+      "$type": "color",
+      "$description": "Deep Indigo — Contemplative illustration fills, meditation-related visual moments — the serious counterpart to the cheerful yellow"
+    },
+    "twilight-violet": {
+      "$value": "#281466",
+      "$type": "color",
+      "$description": "Twilight Violet — Deep illustration fills paired with Deep Indigo, gradient companion, night-mode meditation contexts"
+    },
+    "plum": {
+      "$value": "#5f2b89",
+      "$type": "color",
+      "$description": "Plum — Mid-tone violet for illustration gradients and decorative fills"
+    },
+    "mauve": {
+      "$value": "#8144a8",
+      "$type": "color",
+      "$description": "Mauve — Lighter violet in illustration gradients — soft, warm purple"
+    },
+    "celeste": {
+      "$value": "#00a4ff",
+      "$type": "color",
+      "$description": "Celeste — Bright sky blue used in category icons and decorative illustration accents"
+    }
+  },
+  "font": {
+    "headspace-apercu": {
+      "$value": "Headspace Apercu",
+      "$type": "fontFamily",
+      "$description": "Single-family system used for everything from body copy to display headlines. Weights are 400 (body), 500 (subheadings, nav), 700 (headings, buttons). The custom geometric forms give a friendly-but-precise feel; tight tracking on display sizes sculpts the headlines into confident shapes rather than defaulting to bold shouts."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 0.67
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 24px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 24px"
+    },
+    "2xl-7": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-7 at 24px"
+    },
+    "2xl-8": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-8 at 24px"
+    },
+    "2xl-9": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "29px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-9 at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "52px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 52px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 56px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 64px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Headspace Apercu",
+        "fontSize": "72px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "84": {
+      "$value": "84px",
+      "$type": "dimension",
+      "$description": "Spacing 84px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "800px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(65, 61, 69, 0.2) 0px 2px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "page-cream": {
+      "$value": "#f9f4f2",
+      "$type": "color",
+      "$description": "Surface level 0: Base canvas — the warm paper tone of the entire site"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, category cards, email input fields"
+    },
+    "sunbeam-yellow": {
+      "$value": "#ffce00",
+      "$type": "color",
+      "$description": "Surface level 2: Feature content cards, brand-accent surfaces"
+    },
+    "blush": {
+      "$value": "#ffa1cc",
+      "$type": "color",
+      "$description": "Surface level 3: Alternate accent surface for content variety"
+    },
+    "celeste": {
+      "$value": "#00a4ff",
+      "$type": "color",
+      "$description": "Surface level 4: Rare chromatic surface for standout feature blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://headspace.com",
+      "siteName": "Headspace",
+      "extractedAt": "2026-06-03T14:58:55.460Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,252 @@
+{
+  "color": {
+    "parchment": {
+      "$value": "#eee9cc",
+      "$type": "color",
+      "$description": "Parchment — Primary canvas and card surface — the warm bone tone that carries all body content, tables, and quiet sections"
+    },
+    "aged-linen": {
+      "$value": "#cecab1",
+      "$type": "color",
+      "$description": "Aged Linen — Secondary surface and muted text — slightly deeper parchment for sub-surfaces, helper text, and table headers"
+    },
+    "tobacco-brown": {
+      "$value": "#674825",
+      "$type": "color",
+      "$description": "Tobacco Brown — Chapter-break sections and featured band backgrounds — rich warm umber that anchors the page's heaviest typographic moments"
+    },
+    "midnight-espresso": {
+      "$value": "#1e1915",
+      "$type": "color",
+      "$description": "Midnight Espresso — Full-bleed dark sections and navigation background — the near-black that creates the page's dramatic section breaks"
+    },
+    "ink-black": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Ink Black — Primary text and hairline rules — the deepest tone for body copy, headings, table content, and footer dividers"
+    }
+  },
+  "font": {
+    "pp-neue-montreal": {
+      "$value": "PP Neue Montreal",
+      "$type": "fontFamily",
+      "$description": "The sole typeface across the entire system — used at every size from 15px captions to 317px display words. Weight stays at 400 throughout, so hierarchy is built purely through scale, whitespace, and the choice of dark or light ground. This single-weight restraint is the signature: no bold, no italic, no medium — just one calm voice that gets larger or smaller depending on how much the page wants to say. Substitute with Inter or Söhne for similar geometric neutrality."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "58px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "115px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 115px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "225px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 225px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "317px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 317px"
+    }
+  },
+  "spacing": {
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "210": {
+      "$value": "210px",
+      "$type": "dimension",
+      "$description": "Spacing 210px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#eee9cc",
+      "$type": "color",
+      "$description": "Surface level 1: Default page background for all body content, tables, quotes, and text-heavy sections"
+    },
+    "aged-linen-sub-surface": {
+      "$value": "#cecab1",
+      "$type": "color",
+      "$description": "Surface level 2: Muted secondary surface for table headers, helper zones, and slightly recessed text blocks"
+    },
+    "tobacco-feature-band": {
+      "$value": "#674825",
+      "$type": "color",
+      "$description": "Surface level 3: Full-width featured sections with display typography — creates warm color punctuation"
+    },
+    "midnight-espresso-break": {
+      "$value": "#1e1915",
+      "$type": "color",
+      "$description": "Surface level 4: Full-bleed dark section dividers, navigation bar, and the page's dramatic dark bands"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://maelanlemeur.com",
+      "siteName": "Maëlan Le Meur",
+      "extractedAt": "2026-06-03T21:08:28.717Z",
+      "variant": "extended"
+    }
+  }
+}

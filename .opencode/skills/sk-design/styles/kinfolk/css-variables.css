@@ -1,0 +1,71 @@
+:root {
+  /* Colors */
+  --color-ink-black: #000000;
+  --color-bone-white: #ffffff;
+  --color-paper-mist: #f4f4f4;
+  --color-sage-paper: #dbded5;
+
+  /* Typography — Font Families */
+  --font-kinfolk-serif-text: 'Kinfolk-Serif-Text', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-kinfolk-serif-display: 'Kinfolk-Serif-Display', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-kinfolk-serif-deck: 'Kinfolk-Serif-Deck', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-kinfolk-sans: 'Kinfolk-Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 13px;
+  --leading-caption: 1.2;
+  --tracking-caption: 0.78px;
+  --text-body-sm: 15px;
+  --leading-body-sm: 1.5;
+  --text-subheading: 20px;
+  --leading-subheading: 1.33;
+  --text-heading-sm: 25px;
+  --leading-heading-sm: 1.19;
+  --tracking-heading-sm: 0.25px;
+  --text-heading: 32px;
+  --leading-heading: 1.16;
+  --tracking-heading: -0.32px;
+  --text-heading-lg: 50px;
+  --leading-heading-lg: 1.04;
+  --tracking-heading-lg: -0.5px;
+  --text-display: 60px;
+  --leading-display: 1;
+  --tracking-display: -1.5px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-40: 40px;
+  --spacing-60: 60px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+  --spacing-200: 200px;
+
+  /* Layout */
+  --page-max-width: 1400px;
+  --section-gap: 80px;
+  --card-padding: 20px;
+  --element-gap: 20px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+
+  /* Named Radii */
+  --radius-cards: 0px;
+  --radius-links: 2px;
+  --radius-inputs: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-canvas: #ffffff;
+  --surface-inset-mist: #f4f4f4;
+  --surface-sage-band: #dbded5;
+}

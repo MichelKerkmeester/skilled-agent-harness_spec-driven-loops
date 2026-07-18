@@ -1,0 +1,1436 @@
+{
+  "source": "https://styles.refero.design/style/a1b78a21-a304-482b-8ce5-f612d95d44fe",
+  "uuid": "a1b78a21-a304-482b-8ce5-f612d95d44fe",
+  "name": "Ciridae",
+  "northStar": "void chamber with ember pulse — a near-black cathedral where the only warm note is a thin line of ember rust, and every surface is defined by hairline borders rather than shadow.",
+  "capturedAt": "2026-07-18T07:12:17.422Z",
+  "meta": {
+    "url": "https://www.ciridae.com",
+    "siteName": "Ciridae",
+    "extractedAt": "2026-07-03T03:30:15.366Z",
+    "durationMs": 157172,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1567,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 1440px border-radius for all buttons, badges, nav items, and pill-shaped interactive elements",
+      "Use 10px border-radius exclusively for card and content containers — pill = interactive, rounded-rect = content",
+      "Set all text in uppercase using Pragmatica Cond at weight 400 — never use bold, never use mixed case",
+      "Apply -0.02em letter-spacing to all type sizes above 14px; -0.01em is acceptable for 15px body passages",
+      "Define surfaces through background tonal shifts (#0b0b0b → #272a2a → #edebe7) and 1px hairline borders, never through box-shadow",
+      "Reserve #cc6437 Ember Rust for hairline accent strokes and small text highlights only — never use it as a fill",
+      "Use Roboto Mono 11px exclusively for system data (news ticker, metadata, technical labels) to create a clear typographic register"
+    ],
+    "donts": [
+      "Do not introduce bold or semi-bold weights — the entire system operates at weight 400 only",
+      "Do not add drop shadows, glow effects, or any box-shadow values — the system is intentionally flat",
+      "Do not use color fills on buttons — all interactive controls are ghost/outlined with 1px borders",
+      "Do not use mixed-case text or sentence case in any UI label, heading, or body string",
+      "Do not introduce additional accent colors — Ember Rust is the only chromatic note permitted",
+      "Do not use non-pill radii (e.g. 4px, 8px) on buttons, badges, or nav items — the 1440px pill is the system's signature shape",
+      "Do not use gradients — the system is built on flat color fields and blurred photography, not color transitions"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#cc6437",
+        "name": "Ember Rust",
+        "role": "Accent strokes, icon linework, small text highlights — the only chromatic color in an otherwise monochrome system, appearing as a hairline pulse rather than a fill",
+        "group": "brand"
+      },
+      {
+        "hex": "#0b0b0b",
+        "name": "Void Black",
+        "role": "Primary page canvas and section backgrounds; the foundation of the entire system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#272a2a",
+        "name": "Charcoal Surface",
+        "role": "Card and panel backgrounds on dark sections — one step lighter than the canvas to create surface separation without shadow",
+        "group": "neutral"
+      },
+      {
+        "hex": "#edebe7",
+        "name": "Bone",
+        "role": "Light section backgrounds and off-white surfaces where the system flips from dark to bright",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dfddd9",
+        "name": "Bone Darker",
+        "role": "Subtle variant of Bone for layered light surfaces and warm-tinted off-white elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "All body and heading text, ghost button borders, nav elements — the dominant foreground color at 19.7:1 contrast on Void Black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#050505",
+        "name": "Abyss",
+        "role": "Elevated bar backgrounds (top news strip) — one shade darker than the main canvas to push the bar forward",
+        "group": "neutral"
+      },
+      {
+        "hex": "#484848",
+        "name": "Steel",
+        "role": "Mid-tone border for secondary solid buttons where Pure White would be too stark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cecece",
+        "name": "Ash",
+        "role": "Hairline borders for pill badges and numbered markers — lighter than Steel to read as fine detail against the dark canvas",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page model with content centered within a ~1400px max width. Hero is a full-viewport dark composition with centered constellation logo, flanked by micro-labels at far left and right. Sections alternate: dark hero → light backers strip (Bone) → dark transformation narrative → dark systems card grid → dark footer. The single light section creates one dramatic tonal break. Card grid uses 4 columns where the first card is approximately 2× wider than the remaining three, creating an asymmetric featured layout. Vertical breathing room between sections is generous (80px+). Navigation is minimal: top news bar + a single left-aligned ghost pill ('Start Now') and right-aligned ghost pill ('Menu') in the header bar. No sidebar, no mega-menu.",
+    "imagery": "Atmospheric, full-bleed photography dominates the hero and card backgrounds. Images are heavily blurred (50px and 40px backdrop-blur values detected) and high-contrast, depicting liquid marble with blue/red swirling patterns, smoke, dark landscape silhouettes, and fire/ember textures. The photography is moody and dark, not high-key — it sits in the same tonal register as the void canvas rather than popping against it. No product photography, no people, no UI screenshots. Imagery is ambient atmosphere, not illustrative content. The card grid pairs each system with a different atmospheric scene, making the photographs function as abstract visual identifiers rather than literal representations of the product.",
+    "similar": [
+      {
+        "why": "Same near-black canvas with white text, all-caps narrow type, and refusal of color except for a single warm accent — both systems treat the void as the brand",
+        "business": "Nothing (nothing.tech)"
+      },
+      {
+        "why": "Dark monochromatic UI with hairline borders, pill-shaped controls, and zero reliance on shadow for elevation — though Linear uses more color in its feature sets",
+        "business": "Linear"
+      },
+      {
+        "why": "Full-bleed dark sections with centered typographic compositions, generous vertical breathing room, and minimal navigation chrome",
+        "business": "Vercel"
+      },
+      {
+        "why": "Extremely restrained typographic system using condensed uppercase type at small sizes, with color appearing only as a single accent punctuation",
+        "business": "Framework"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "1440px",
+        "cards": "10px",
+        "badges": "1440px",
+        "buttons": "1440px",
+        "news-bar-button": "0px"
+      },
+      "elementGap": "16-20px",
+      "sectionGap": "80px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#0b0b0b",
+        "name": "Void Canvas",
+        "level": 1,
+        "purpose": "Primary page background for all dark sections including hero, transformation narrative, systems grid, and footer"
+      },
+      {
+        "hex": "#050505",
+        "name": "Abyss Bar",
+        "level": 2,
+        "purpose": "Top news bar — one shade darker than the canvas to push the strip forward without using shadow"
+      },
+      {
+        "hex": "#272a2a",
+        "name": "Charcoal Card",
+        "level": 3,
+        "purpose": "Card and panel surfaces on dark sections — the only elevated surface, defined by tonal shift not shadow"
+      },
+      {
+        "hex": "#edebe7",
+        "name": "Bone Inversion",
+        "level": 4,
+        "purpose": "Light section background for the backers strip — the single dramatic tonal break in the page"
+      }
+    ],
+    "northStar": "void chamber with ember pulse — a near-black cathedral where the only warm note is a thin line of ember rust, and every surface is defined by hairline borders rather than shadow.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.22
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading-lg",
+        "size": 32,
+        "lineHeight": 1.05,
+        "letterSpacing": -0.64
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Pill Button",
+        "role": "Primary interactive control across the site",
+        "description": "Transparent background, 1px Pure White border, 1440px border-radius (full pill), 10px vertical / 18-20px horizontal padding, Pragmatica Cond 14px uppercase Pure White text, letter-spacing -0.02em. Used for 'Start Now', 'Menu', and all primary navigation triggers. The 1440px radius (effectively a stadium shape) is extreme — it pushes these controls into a signature capsule form that appears nowhere else in common UI kits."
+      },
+      {
+        "name": "News Bar Solid Button",
+        "role": "Top-page system announcement trigger",
+        "description": "Abyss (#050505) background, 1px Pure White border, 0px border-radius (sharp corners, contrast with pill buttons), 10px vertical / 20px horizontal padding, Pragmatica Cond 14px uppercase text. The sharp-cornered, dark-filled variant is reserved exclusively for the top news strip — the different shape signals a different functional zone (system status, not brand navigation)."
+      },
+      {
+        "name": "Pill Badge",
+        "role": "Status markers, numbered tags, micro-labels",
+        "description": "Transparent background, 1px Ash (#cecece) border, 1440px border-radius, 5px vertical / 11px horizontal padding, Pragmatica Cond 14px uppercase Pure White text. Used for numbered card markers ('01', '02', etc.) and small inline labels. The lighter Ash border (vs Pure White on buttons) reads as subordinate detail."
+      },
+      {
+        "name": "System Card",
+        "role": "Content panels in the product systems section",
+        "description": "Charcoal Surface (#272a2a) background, 10px border-radius, no box-shadow, 32px vertical / 0px horizontal padding (content aligns to card edges). Full-bleed atmospheric photography sits behind or within each card. The 10px radius is the only non-pill radius in the system, creating a deliberate geometric contrast: pill = interactive, rounded rectangle = content container."
+      },
+      {
+        "name": "Top News Bar",
+        "role": "Site-wide announcement strip fixed at the top of every page",
+        "description": "Abyss (#050505) background, spans full viewport width, contains centered Roboto Mono 11px uppercase text with bullet separators ('NEWS • JUN 15, 2026 • CRUCIBLE EARLY ACCESS IS NOW OPEN'). The monospace typeface and dotted separators create a terminal/log aesthetic that contrasts with the brand's condensed type."
+      },
+      {
+        "name": "Constellation Logo Mark",
+        "role": "Brand identity anchor in the hero and load contexts",
+        "description": "Geometric mark composed of a central diamond with four extending point-shapes arranged in a cross/star pattern, rendered as thin Pure White strokes. Below it, the wordmark 'CIRIDAE' in Pragmatica Cond 32px uppercase Pure White, letter-spacing -0.02em. The mark's four-pointed geometry echoes the system's orthogonal precision."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Full-viewport opening composition",
+        "description": "Void Black (#0b0b0b) canvas with full-bleed heavily-blurred atmospheric photography (warm skin tones, bokeh) at 50px backdrop-blur. Centered constellation logo and wordmark. Flanking micro-labels in Pragmatica Cond 14px uppercase Pure White at far left ('AUTOMATE THE MUNDANE') and far right ('ACCELERATE THE REMARKABLE'). The flanking labels span the full width while the logo sits dead center — a triadic composition that fills the viewport without crowding."
+      },
+      {
+        "name": "Backers Logo Strip",
+        "role": "Social proof section with inverted light theme",
+        "description": "Bone (#edebe7) background — the only light section, creating a stark visual break. Centered 'OUR WORK IS BACKED BY' label in Pragmatica Cond 14px uppercase, followed by a horizontal row of partner logos (General Catalyst, Accel, Andreessen Horowitz) rendered in Pure White or dark tone. The light-to-dark inversion is the system's most dramatic tonal shift, used once to punctuate the page."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Centered typographic header for major dark sections",
+        "description": "Eyebrow label in Pragmatica Cond 14px uppercase (e.g. 'AI TRANSFORMATION', 'SYSTEMS, NOT TOOLS'), followed by a large headline in Pragmatica Cond 32px uppercase Pure White, letter-spacing -0.64px, centered on Void Black. Generous vertical breathing room above and below (40-60px). The eyebrow-to-headline pairing is the standard section-opening pattern."
+      },
+      {
+        "name": "Footer",
+        "role": "Site termination with minimal legal/nav content",
+        "description": "Void Black (#0b0b0b) background, Pragmatica Cond 14px uppercase Pure White text. Minimal links and legal text arranged in simple rows. No visual embellishment — the footer respects the void."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary display and UI typeface — narrow condensed uppercase at 14px for body, 20px for section labels, 32px for hero wordmark. The extreme narrowness and all-caps setting at 14px body size is the system's most signature choice: body text reads as a whisper of architectural type, not conventional prose. Substitute with Oswald or Barlow Condensed if Pragmatica Cond is unavailable.",
+        "sizes": "14px, 20px, 32px",
+        "family": "Pragmatica Cond",
+        "weight": "400",
+        "lineHeight": "1.00, 1.05, 1.43",
+        "substitute": "Oswald, Barlow Condensed",
+        "letterSpacing": "-0.02em on all sizes"
+      },
+      {
+        "role": "Secondary body typeface used for longer-form prose passages (e.g. the 'AI Operating System' card description at 24px, paragraph text at 15px). Slightly wider than Pragmatica Cond for reading comfort in extended blocks, but still 400 weight — no bold ever. Substitute with Inter or Söhne.",
+        "sizes": "14px, 15px, 16px, 24px",
+        "family": "Pragmatica",
+        "weight": "400",
+        "lineHeight": "0.90, 1.00, 1.10, 1.20, 1.25, 1.40",
+        "substitute": "Inter, Söhne",
+        "letterSpacing": "-0.02em at 24px, -0.01em at 15px"
+      },
+      {
+        "role": "Monospace micro-type for the top news bar ticker ('NEWS • JUN 15, 2026 • CRUCIBLE EARLY ACCESS IS NOW OPEN'). The only place monospace appears, creating a clear functional distinction: this is system data, not brand voice.",
+        "sizes": "11px, 14px",
+        "family": "Roboto Mono",
+        "weight": "400",
+        "lineHeight": "0.90, 1.00, 1.10, 1.20",
+        "substitute": "Roboto Mono (free, use as-is)",
+        "letterSpacing": "-0.02em"
+      }
+    ],
+    "description": "Ciridae operates in a void: #0b0b0b canvas, ghost-outlined pill controls, and typography locked in uppercase Pragmatica Cond at weight 400 — no bold, no mixed case, no decoration. The only chromatic note is #cc6437, a warm ember rust used as hairline strokes and small accent punctuation, never as a fill. Cards float on #272a2a with 10px radius and zero shadow; the system refuses elevation, defining surfaces through tonal contrast and 1px hairline borders. Photography arrives heavily blurred and atmospheric — liquid marble, smoke, fire — set behind type at full-bleed scale, so the visuals feel ambient rather than illustrative.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a1b78a21-a304-482b-8ce5-f612d95d44fe#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ciridae design system\",\"item\":\"https://styles.refero.design/style/a1b78a21-a304-482b-8ce5-f612d95d44fe\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a1b78a21-a304-482b-8ce5-f612d95d44fe#style-reference\",\"name\":\"Ciridae design system reference\",\"headline\":\"Ciridae design system | Refero Styles\",\"description\":\"Explore Ciridae's dark AI design system: Ember Rust #cc6437, Void Black #0b0b0b colors, Pragmatica Cond, Pragmatica typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a1b78a21-a304-482b-8ce5-f612d95d44fe\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a1b78a21-a304-482b-8ce5-f612d95d44fe\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ciridae\",\"url\":\"https://www.ciridae.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a1b78a21-a304-482b-8ce5-f612d95d44fe#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/39ea2db4-a7a1-40f3-acc7-9dda996b592b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/39ea2db4-a7a1-40f3-acc7-9dda996b592b.jpg\",\"caption\":\"Screenshot of Ciridae\"},\"image\":\"https://images.refero.design/styles/refero.design/image/39ea2db4-a7a1-40f3-acc7-9dda996b592b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ciridae design system\",\"Ciridae website design\",\"Ciridae colors\",\"Ciridae typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Ember Rust\",\"Void Black\",\"Charcoal Surface\",\"Bone\",\"Pragmatica Cond\",\"Pragmatica\",\"Roboto Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ciridae design system\"},{\"@type\":\"Thing\",\"name\":\"Ciridae website design\"},{\"@type\":\"Thing\",\"name\":\"Ciridae colors\"},{\"@type\":\"Thing\",\"name\":\"Ciridae typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-13T16:42:41.000Z\",\"dateModified\":\"2026-04-13T16:42:41.000Z\"}]}19:T524,**Quick Color Reference**\n- text: #ffffff\n- background: #0b0b0b\n- card surface: #272a2a\n- border: #cecece (badges) / #ffffff (buttons)\n- accent: #cc6437\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a ghost pill button: transparent background, 1px #ffffff border, 1440px border-radius, 10px 20px padding, Pragmatica Cond 14px uppercase #ffffff text, letter-spacing -0.02em.\n\n2. Create a system card: #272a2a background, 10px border-radius, no box-shadow, 32px vertical padding, Pragmatica Cond 14px uppercase #ffffff body text, with a full-bleed atmospheric photo behind the content.\n\n3. Create a hero section: #0b0b0b canvas, full-bleed blurred warm-toned photography at 50px backdrop-blur, centered constellation diamond mark (4-point star, thin #ffffff strokes), 'CIRIDAE' wordmark below in Pragmatica Cond 32px uppercase #ffffff, flanking labels in Pragmatica Cond 14px uppercase at far left and far right.\n\n4. Create a top news bar: #050505 background, full-width strip, centered Roboto Mono 11px uppercase #ffffff text with '•' bullet separators, containing a news announcement string.\n\n5. Create a numbered pill badge: transparent background, 1px #cecece border, 1440px border-radius, 5px 11px padding, Pragmatica Cond 14px uppercase #ffffff text (e.g. '01', '02', '03')."
+      },
+      {
+        "title": "Typographic Register System",
+        "content": "Ciridae uses a three-register typographic system to signal information hierarchy without weight variation:\n\n- **Brand voice** — Pragmatica Cond 14-32px, uppercase, 400 weight. All UI labels, headings, navigation, and short brand statements live here. This is what the system sounds like.\n\n- **Body voice** — Pragmatica 15-24px, mixed case allowed but rare, 400 weight. Reserved for longer-form prose passages (card descriptions, explanatory text). The shift to mixed case and a slightly wider letterform signals 'read this as a sentence, not a label.'\n\n- **System voice** — Roboto Mono 11px, uppercase, 400 weight. The news ticker and any technical metadata. Monospace + dot separators create a terminal/log register that says 'this is machine data, not brand communication.'\n\nNever cross registers. A navigation label in Roboto Mono would feel broken. A news announcement in Pragmatica Cond would feel like a headline."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately refuses drop shadows. All elevation is communicated through background tonal contrast (#0b0b0b canvas → #272a2a cards → #050505 abyss bar) and 1px hairline borders. The flat treatment is a signature choice: surfaces feel pressed onto the page rather than floating above it, reinforcing the void-chamber aesthetic. Cards in the systems grid deliberately carry box-shadow: none."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0b0b0b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.14957711653082623
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 786,
+          "confidence": 1,
+          "prominence": 12337931.926213352,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 780,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#edebe7",
+          "oklch": {
+            "c": 0.005772046022377832,
+            "h": 84.5667270943668,
+            "l": 0.9404990230278085
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1524535.805381162,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#272a2a",
+          "oklch": {
+            "c": 0.004305051804354069,
+            "h": 196.91247210577617,
+            "l": 0.2819895762556277
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 1455190.5335339783,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 3,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "nav",
+            "body",
+            "heading"
+          ],
+          "frequency": 224,
+          "confidence": 1,
+          "prominence": 742543.626601355,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 13,
+            "body/color": 20,
+            "other/fill": 52,
+            "other/color": 113,
+            "button/color": 3,
+            "heading/color": 3,
+            "nav/borderColor": 8,
+            "button/borderColor": 8,
+            "nav/backgroundColor": 2,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 84,
+          "confidence": 1,
+          "prominence": 480512.0384822435,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 84
+          }
+        },
+        {
+          "hex": "#050505",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1149182763483161
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 57000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#484848",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4016665194169638
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 57000,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 1
+          }
+        },
+        {
+          "hex": "#cc6437",
+          "oklch": {
+            "c": 0.1447461689853856,
+            "h": 42.66457769867193,
+            "l": 0.6200835538920009
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 26286.901682963682,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 6,
+            "other/color": 6,
+            "other/borderColor": 24
+          }
+        },
+        {
+          "hex": "#858585",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.616706943829689
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 5709.778485091705,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 12
+          }
+        },
+        {
+          "hex": "#cecece",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8520384288614808
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 28,
+          "confidence": 1,
+          "prominence": 4304.171161683029,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "badge/borderColor": 28
+          }
+        },
+        {
+          "hex": "#bbbbbb",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7910654944920967
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 57.05865002596162,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.011999433554014876,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.38,
+          "background": "#050505",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.68,
+          "background": "#0b0b0b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.64,
+          "background": "#edebe7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.12,
+          "background": "#edebe7",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.53,
+          "background": "#edebe7",
+          "foreground": "#0b0b0b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.47,
+          "background": "#272a2a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.34,
+          "background": "#cecece",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.95,
+          "background": "#cecece",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.51,
+          "background": "#cecece",
+          "foreground": "#0b0b0b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.16,
+          "background": "#edebe7",
+          "foreground": "#272a2a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.94,
+          "background": "#bbbbbb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.62,
+          "background": "#bbbbbb",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.25,
+          "background": "#bbbbbb",
+          "foreground": "#0b0b0b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.2,
+          "background": "#cecece",
+          "foreground": "#272a2a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.15,
+          "background": "#ffffff",
+          "foreground": "#484848"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.68,
+          "background": "#edebe7",
+          "foreground": "#484848"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.54,
+          "background": "#bbbbbb",
+          "foreground": "#272a2a"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.81,
+          "background": "#cecece",
+          "foreground": "#484848"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.29,
+          "background": "#050505",
+          "foreground": "#cc6437"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 1440,
+          "contexts": [
+            "nav",
+            "badge",
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 29
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 1,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 999,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "paddingBottom|badge"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 79,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginBottom|body",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "heading",
+            "body",
+            "badge"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|body",
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 42,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 11,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 41,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 122,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 170,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Pragmatica Cond",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 455,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Pragmatica",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 132,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Roboto Mono",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 100,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Pragmatica Cond",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "hero",
+            "nav",
+            "image",
+            "card",
+            "badge",
+            "icon",
+            "footer",
+            "link"
+          ],
+          "frequency": 422,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 39,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Pragmatica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Pragmatica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Roboto Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Pragmatica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Pragmatica",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Pragmatica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 27,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Pragmatica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Pragmatica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Pragmatica Cond",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Pragmatica",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Pragmatica Cond",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1874ac76-0101-438c-9fab-6983248092a4.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/39ea2db4-a7a1-40f3-acc7-9dda996b592b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a1b78a21-a304-482b-8ce5-f612d95d44fe#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ciridae design system\",\"item\":\"https://styles.refero.design/style/a1b78a21-a304-482b-8ce5-f612d95d44fe\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a1b78a21-a304-482b-8ce5-f612d95d44fe#style-reference\",\"name\":\"Ciridae design system reference\",\"headline\":\"Ciridae design system | Refero Styles\",\"description\":\"Explore Ciridae's dark AI design system: Ember Rust #cc6437, Void Black #0b0b0b colors, Pragmatica Cond, Pragmatica typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a1b78a21-a304-482b-8ce5-f612d95d44fe\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a1b78a21-a304-482b-8ce5-f612d95d44fe\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ciridae\",\"url\":\"https://www.ciridae.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a1b78a21-a304-482b-8ce5-f612d95d44fe#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/39ea2db4-a7a1-40f3-acc7-9dda996b592b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/39ea2db4-a7a1-40f3-acc7-9dda996b592b.jpg\",\"caption\":\"Screenshot of Ciridae\"},\"image\":\"https://images.refero.design/styles/refero.design/image/39ea2db4-a7a1-40f3-acc7-9dda996b592b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ciridae design system\",\"Ciridae website design\",\"Ciridae colors\",\"Ciridae typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Ember Rust\",\"Void Black\",\"Charcoal Surface\",\"Bone\",\"Pragmatica Cond\",\"Pragmatica\",\"Roboto Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ciridae design system\"},{\"@type\":\"Thing\",\"name\":\"Ciridae website design\"},{\"@type\":\"Thing\",\"name\":\"Ciridae colors\"},{\"@type\":\"Thing\",\"name\":\"Ciridae typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-13T16:42:41.000Z\",\"dateModified\":\"2026-04-13T16:42:41.000Z\"}]}19:T524,**Quick Color Reference**\n- text: #ffffff\n- background: #0b0b0b\n- card surface: #272a2a\n- border: #cecece (badges) / #ffffff (buttons)\n- accent: #cc6437\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a ghost pill button: transparent background, 1px #ffffff border, 1440px border-radius, 10px 20px padding, Pragmatica Cond 14px uppercase #ffffff text, letter-spacing -0.02em.\n\n2. Create a system card: #272a2a background, 10px border-radius, no box-shadow, 32px vertical padding, Pragmatica Cond 14px uppercase #ffffff body text, with a full-bleed atmospheric photo behind the content.\n\n3. Create a hero section: #0b0b0b canvas, full-bleed blurred warm-toned photography at 50px backdrop-blur, centered constellation diamond mark (4-point star, thin #ffffff strokes), 'CIRIDAE' wordmark below in Pragmatica Cond 32px uppercase #ffffff, flanking labels in Pragmatica Cond 14px uppercase at far left and far right.\n\n4. Create a top news bar: #050505 background, full-width strip, centered Roboto Mono 11px uppercase #ffffff text with '•' bullet separators, containing a news announcement string.\n\n5. Create a numbered pill badge: transparent background, 1px #cecece border, 1440px border-radius, 5px 11px padding, Pragmatica Cond 14px uppercase #ffffff text (e.g. '01', '02', '03')."
+}

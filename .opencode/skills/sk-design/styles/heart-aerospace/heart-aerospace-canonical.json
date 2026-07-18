@@ -1,0 +1,666 @@
+{
+  "source": "https://styles.refero.design/style/bf523387-03fc-4243-86ca-25af34daa0ce",
+  "uuid": "bf523387-03fc-4243-86ca-25af34daa0ce",
+  "name": "Heart Aerospace",
+  "northStar": "monumental type drifting through cloud-level gradient skies — the brand reads like an engineering manifesto printed on atmosphere.",
+  "capturedAt": "2026-07-18T08:01:02.991Z",
+  "meta": {
+    "url": "https://heartaerospace.com",
+    "siteName": "Heart Aerospace",
+    "extractedAt": "2026-06-03T18:44:12.211Z",
+    "durationMs": 36440,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 177,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set display headlines at 156px in NeueHaasGroteskDisplay weight 600 with -0.02em tracking — this scale is the brand's signature and should not be reduced for non-product pages",
+      "Use the linear gradient from Stratosphere #716e85 to Cloud #ffffff for all atmospheric/hero section backgrounds",
+      "Render all partner and third-party logos in monochrome Onyx #000000 on light surfaces — never preserve original logo colors",
+      "Keep all interactive elements as outlined/ghost (Jetstream Blue #001489 border, no fill) — never introduce filled buttons with backgrounds",
+      "Set all border-radius to 0 — this system has no rounded surfaces anywhere",
+      "Use Cloud #ffffff text on Stratosphere/Onyx surfaces; use Onyx #000000 text only on Cloud surfaces",
+      "Anchor headlines to the left edge with 40px padding from viewport — never center display type"
+    ],
+    "donts": [
+      "Do not use Jetstream Blue #001489 as a filled button background — it is an outlined-action color only (ACTION_BACKGROUND=0 in the data)",
+      "Do not introduce card components with padding, borders, or shadows — the system is flat and full-bleed",
+      "Do not add border-radius to buttons, inputs, tags, or images — every corner is sharp",
+      "Do not use color for section differentiation — the palette is intentionally three colors plus white, repetition is the point",
+      "Do not place body copy directly on the Stratosphere #716e85 background — it fails contrast (2.9:1 with Jetstream Blue, 4.3:1 with Onyx); only Cloud #ffffff text survives on atmospheric surfaces",
+      "Do not add drop shadows or elevation effects — the design language is flat, depth comes from photography and gradient not from CSS shadows",
+      "Do not use decorative icons or illustrations — the only mark is the Heart Aerospace aircraft logo"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#716e85",
+        "name": "Stratosphere",
+        "role": "Hero and section atmospheric backgrounds, sky gradient origin, the signature non-neutral surface that carries brand mood",
+        "group": "accent"
+      },
+      {
+        "hex": "#001489",
+        "name": "Jetstream Blue",
+        "role": "Outlined/ghost action borders, link text, image accent borders — the only chromatic accent, used as outlined-link color and focused-frame treatment, never as a filled button background",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Onyx",
+        "role": "Primary text, structural borders, footer background, partner logo fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Cloud",
+        "role": "Inverse text on dark and gradient backgrounds, content section canvas, navigation text on hero, gradient endpoint",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed edge-to-edge design with no max-width container — every section fills the viewport. The page is a vertical sequence of atmospheric bands: full-bleed gradient/photography hero → gradient display section (ES-30) → white content sections with partner grid → Onyx terminal footer. There is no centered narrow column, no asymmetric split layouts, no card grids with padding — the layout grammar is 'band, headline, photograph, repeat.' Navigation is a transparent overlay on the hero only. Content alignment is left-edge anchored (40px from viewport) for headlines, centered for logo grids. Vertical rhythm is generous: 70px section gaps, 40px content padding, plenty of empty atmosphere between type moments. The layout is architectural — each screen is a single composition, not a collection of components.",
+    "imagery": "Photography is the primary visual medium — full-bleed aviation photography dominates the hero, showing the ES-30 aircraft in flight above clouds at golden-hour sunset. Treatment is atmospheric and aspirational: high-altitude perspective, soft natural light, the aircraft positioned small within vast sky to emphasize scale and environment over product detail. No lifestyle photography, no people, no ground-level shots. Logos in the partner grid are stripped to monochrome Onyx — original brand color is always removed. There are no illustrations, no icons beyond the minimal logo mark, no 3D renders, no decorative graphics. When photography ends, white space and type take over.",
+    "similar": [
+      {
+        "why": "Same aerospace-scale display type (200px+ headlines) over full-bleed photography with a nearly monochrome palette — both treat type and photography as the only two design elements",
+        "business": "Boom Supersonic"
+      },
+      {
+        "why": "eVTOL competitor with the same restrained palette, oversized product-name typography, and edge-to-edge atmospheric hero sections",
+        "business": "Joby Aviation"
+      },
+      {
+        "why": "Nordic industrial brand sharing the NeueHaasGrotesk type system, zero-radius flat surfaces, and a single deep-blue accent against monochrome — same engineering-manifesto restraint",
+        "business": "Northvolt"
+      },
+      {
+        "why": "Clean industrial branding with monumental type, full-bleed environmental photography, and a near-monochrome palette punctuated by a single deep accent color",
+        "business": "Rivian"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "18-20px",
+      "sectionGap": "70px",
+      "cardPadding": "",
+      "pageMaxWidth": null
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#716e85",
+        "name": "Atmospheric Canvas",
+        "level": 0,
+        "purpose": "Full-bleed hero and feature sections — the gradient origin for sky photography overlays"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Cloud Canvas",
+        "level": 1,
+        "purpose": "Content sections below the fold — partner grids, article bodies, secondary pages"
+      },
+      {
+        "hex": "#000000",
+        "name": "Onyx Footer",
+        "level": 2,
+        "purpose": "Terminal footer surface for navigation, social, and address columns"
+      }
+    ],
+    "northStar": "monumental type drifting through cloud-level gradient skies — the brand reads like an engineering manifesto printed on atmosphere.",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "heading-sm",
+        "size": 46,
+        "lineHeight": 1,
+        "letterSpacing": -0.92
+      },
+      {
+        "role": "display",
+        "size": 156,
+        "lineHeight": 1,
+        "letterSpacing": -3.12
+      }
+    ],
+    "components": [
+      {
+        "name": "Transparent Hero Navigation",
+        "role": "Primary site navigation overlaid on atmospheric hero",
+        "description": "No background, no border, no fill. Heart Aerospace logo (aircraft icon + wordmark, ~120px wide) anchored left, text links right-aligned (Our mission, Company, ES-30™, Newsroom, Careers, Media bank, Contact). Links in Cloud #ffffff at 18px weight 400 with 28px left margins between items. Sits directly on the gradient/photograph with no visual separation."
+      },
+      {
+        "name": "Full-Bleed Atmospheric Hero",
+        "role": "Brand introduction section with photography and overlay headline",
+        "description": "Edge-to-edge aviation photograph (aircraft above clouds) with a linear gradient overlay from Stratosphere #716e85 at top fading to lighter tones. No padding constraint — image fills viewport. Headline anchored to bottom-left in Cloud #ffffff, NeueHaasGroteskDisplay at ~120-156px, -0.02em tracking, line-height 1.0. 40px left padding from viewport edge."
+      },
+      {
+        "name": "Monumental Display Section",
+        "role": "Product naming or section showstopper (e.g. 'ES-30')",
+        "description": "Full-bleed gradient background (Stratosphere #716e85 to Cloud #ffffff, linear, top to bottom). Single NeueHaasGroteskDisplay word in Cloud #ffffff at 156px, weight 600, -0.02em tracking, filling 80%+ of viewport width. No supporting copy in the same viewport — the type IS the content. Product imagery enters from the bottom edge as a subtle reveal."
+      },
+      {
+        "name": "Outlined Ghost Link",
+        "role": "Primary interactive accent — navigation CTA, external links, focused treatments",
+        "description": "1-2px border in Jetstream Blue #001489, no background fill, Cloud or Onyx text inside. Text in NeueHaasGroteskText 18px weight 400. Zero radius. Used for link borders (48 occurrences in data) and image frames (44 occurrences) — this is a bordered/outlined action style, never a filled button."
+      },
+      {
+        "name": "Partner Logo Grid",
+        "role": "Social proof — investors, airline partners, institutional backers",
+        "description": "Cloud #ffffff background section. 5-column grid wrapping to 3 rows, generous 40px+ vertical gap between rows. All logos rendered in Onyx #000000 monochrome (original brand colors stripped). Logos centered within their grid cells at uniform optical size. No borders, no cards, no background tiles."
+      },
+      {
+        "name": "Onyx Footer",
+        "role": "Terminal site navigation, social links, and corporate address",
+        "description": "Solid Onyx #000000 background, full-bleed. Three-column layout: Navigation (internal links), Follow (social platforms), Address (201 Nevada St Suite B, El Segundo, CA 90245). Column headers in Cloud #ffffff weight 600, list items weight 400. 20px vertical padding per link. 40px horizontal section padding. Small bottom-left logo mark in Cloud as a closing signature."
+      },
+      {
+        "name": "Section Headline (Cloud Canvas)",
+        "role": "Content section titles on white background pages",
+        "description": "NeueHaasGroteskDisplay 46px weight 600, -0.02em tracking, Onyx #000000 color, line-height 1.0. Sits with 46px margin-bottom from body content. Left-aligned, 40px from container edge."
+      }
+    ],
+    "typography": [
+      {
+        "role": "NeueHaasText — detected in extracted data but not described by AI",
+        "sizes": "18px",
+        "family": "NeueHaasText",
+        "weight": "400, 600",
+        "lineHeight": "1, 1.3",
+        "letterSpacing": "-0.01"
+      },
+      {
+        "role": "Monumental display headlines (ES-30 wordmark, section showstoppers) — the weight 600 at 156px with -0.02em tracking is the brand's signature voice, engineered for aerospace-scale moments that fill the viewport",
+        "sizes": "",
+        "family": "NeueHaasGroteskDisplay",
+        "weight": "600",
+        "lineHeight": "1.00",
+        "substitute": "Inter Display Bold, Helvetica Neue Bold, or Söhne Breit Bold",
+        "letterSpacing": "-0.02em"
+      },
+      {
+        "role": "All UI and body text — navigation links, body copy, footer links, captions. Weight 400 is the default reading voice; weight 600 for subheadings and emphasized nav. The -0.01em tracking at 18px is subtle but consistent — tighter than browser default, which is the Ne Haas family hallmark",
+        "sizes": "",
+        "family": "NeueHaasGroteskText",
+        "weight": "400, 600",
+        "lineHeight": "1.30",
+        "substitute": "Inter, Helvetica Neue, or Söhne",
+        "letterSpacing": "-0.01em"
+      },
+      {
+        "role": "NeueHaasDisplay — detected in extracted data but not described by AI",
+        "sizes": "46px, 156px",
+        "family": "NeueHaasDisplay",
+        "weight": "600",
+        "lineHeight": "1",
+        "letterSpacing": "-0.02"
+      }
+    ],
+    "description": "Heart Aerospace uses a monumental-typography-over-atmospheric-sky language: the brand communicates through oversized type and full-bleed aviation photography, with almost no decorative UI chrome. The palette is nearly monochrome — a muted stratosphere purple-gray anchors atmospheric sections, a deep jetstream blue punctuates outlined actions, and black/white carry all structural weight. Every screen should feel like a single composition: type the subject, photography the environment, negative space the luxury. There are no cards, no shadows, no rounded surfaces, no gradients beyond the sky atmosphere — the design earns its restraint by letting a 156px display headline and a photograph do all the work.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bf523387-03fc-4243-86ca-25af34daa0ce#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Heart Aerospace design system\",\"item\":\"https://styles.refero.design/style/bf523387-03fc-4243-86ca-25af34daa0ce\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bf523387-03fc-4243-86ca-25af34daa0ce#style-reference\",\"name\":\"Heart Aerospace design system reference\",\"headline\":\"Heart Aerospace design system | Refero Styles\",\"description\":\"Explore Heart Aerospace's light Other design system: Stratosphere #716e85, Jetstream Blue #001489 colors, NeueHaasText, NeueHaasGroteskDisplay typography,...\",\"url\":\"https://styles.refero.design/style/bf523387-03fc-4243-86ca-25af34daa0ce\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bf523387-03fc-4243-86ca-25af34daa0ce\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Heart Aerospace\",\"url\":\"https://heartaerospace.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bf523387-03fc-4243-86ca-25af34daa0ce#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/70e5cf67-1a7c-497e-8a89-8110b4264a60.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/70e5cf67-1a7c-497e-8a89-8110b4264a60.jpg\",\"caption\":\"Screenshot of Heart Aerospace\"},\"image\":\"https://images.refero.design/styles/refero.design/image/70e5cf67-1a7c-497e-8a89-8110b4264a60.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Heart Aerospace design system\",\"Heart Aerospace website design\",\"Heart Aerospace colors\",\"Heart Aerospace typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Stratosphere\",\"Jetstream Blue\",\"Onyx\",\"Cloud\",\"NeueHaasText\",\"NeueHaasGroteskDisplay\",\"NeueHaasGroteskText\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Heart Aerospace design system\"},{\"@type\":\"Thing\",\"name\":\"Heart Aerospace website design\"},{\"@type\":\"Thing\",\"name\":\"Heart Aerospace colors\"},{\"@type\":\"Thing\",\"name\":\"Heart Aerospace typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:31:40.606Z\",\"dateModified\":\"2026-04-30T01:31:40.606Z\"}]}19:T6cf,**Quick Color Reference**\n- text: #000000 (Onyx)\n- background: #ffffff (Cloud)\n- atmospheric hero/section: #716e85 (Stratosphere)\n- border/footer: #000000 (Onyx)\n- accent (outlined actions, link borders, image frames): #001489 (Jetstream Blue)\n- primary action: #001489 (outlined action border)\n\n**Example Component Prompts**\n\n1. *Atmospheric hero section:* Full-bleed section, no max-width. Linear gradient background from #716e85 at top fading to #ffffff at 65%. Headline 'Electrifying regional air travel' in NeueHaasGroteskDisplay, 120px, weight 600, color #ffffff, letter-spacing -0.02em, line-height 1.0, anchored 40px from left edge and bottom of viewport. No card, no shadow, no border.\n\n2. *Monumental product display:* Full-viewport section, gradient background #716e85 → #ffffff (top to bottom). Single word 'ES-30' in NeueHaasGroteskDisplay, 156px, weight 600, #ffffff, letter-spacing -0.02em, line-height 1.0, filling ~80% of viewport width. No body copy in the same viewport.\n\n3. *Outlined ghost link button:* Transparent background, 1.5px solid border in #001489 (Jetstream Blue). Text in NeueHaasGroteskText, 18px, weight 400, color #000000. Zero border-radius. Padding 12px 24px. No hover fill — color shifts to #001489 text on white background only.\n\n4. *Partner logo grid:* White #ffffff background. 5-column grid, 40px row gap, logos centered in each cell. All logos rendered in monochrome #000000. No borders, no card backgrounds, no shadows.\n\n5. *Onyx footer:* Solid #000000 background, full-bleed. Three columns: Navigation (internal links), Follow (social), Address. Column headers in NeueHaasGroteskText 18px weight 600 #ffffff. List items weight 400 #ffffff, 20px vertical spacing. 40px section padding all sides."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "heading",
+            "body",
+            "footer"
+          ],
+          "frequency": 241,
+          "confidence": 1,
+          "prominence": 19100401.073528405,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "hero/color": 1,
+            "other/fill": 4,
+            "image/color": 3,
+            "other/color": 36,
+            "heading/color": 4,
+            "body/borderColor": 12,
+            "hero/borderColor": 4,
+            "image/borderColor": 12,
+            "other/borderColor": 144,
+            "heading/borderColor": 16,
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "nav",
+            "hero",
+            "image",
+            "footer",
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 392,
+          "confidence": 1,
+          "prominence": 12410475.123252394,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 17,
+            "body/color": 1,
+            "hero/color": 1,
+            "link/color": 13,
+            "list/color": 14,
+            "other/fill": 32,
+            "image/color": 1,
+            "other/color": 19,
+            "footer/color": 1,
+            "heading/color": 5,
+            "nav/borderColor": 68,
+            "body/borderColor": 4,
+            "hero/borderColor": 4,
+            "link/borderColor": 52,
+            "list/borderColor": 56,
+            "image/borderColor": 4,
+            "other/borderColor": 76,
+            "footer/borderColor": 4,
+            "heading/borderColor": 20
+          }
+        },
+        {
+          "hex": "#716e85",
+          "oklch": {
+            "c": 0.03555570962230538,
+            "h": 291.16197368559904,
+            "l": 0.5491783806859555
+          },
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#001489",
+          "oklch": {
+            "c": 0.1854192362084478,
+            "h": 264.16938198839574,
+            "l": 0.3024782798402876
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 120,
+          "confidence": 1,
+          "prominence": 295117.19252271054,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 12,
+            "image/color": 11,
+            "other/color": 1,
+            "link/borderColor": 48,
+            "image/borderColor": 44,
+            "other/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.07988337534818281,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.37,
+          "background": "#ffffff",
+          "foreground": "#001489"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.92,
+          "background": "#716e85",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.27,
+          "background": "#716e85",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.92,
+          "background": "#716e85",
+          "foreground": "#001489"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.46,
+          "background": "#000000",
+          "foreground": "#001489"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 18,
+          "contexts": [
+            "nav",
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginBottom|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "image",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|image",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "hero",
+            "footer"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(113, 110, 133) 0px, rgb(255, 255, 255) 65%)",
+        "colors": [
+          "rgb(113, 110, 133)",
+          "rgb(255, 255, 255)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "NeueHaasText",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 139,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "NeueHaasDisplay",
+          "source": "custom",
+          "weights": [
+            600
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 18,
+          "family": "NeueHaasText",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "nav",
+            "hero",
+            "image",
+            "footer",
+            "list"
+          ],
+          "frequency": 93,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "NeueHaasText",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "NeueHaasText",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "NeueHaasDisplay",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 156,
+          "family": "NeueHaasDisplay",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/5c9f6d3d-75c4-4476-a2cf-c68a58b24db1.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/70e5cf67-1a7c-497e-8a89-8110b4264a60.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bf523387-03fc-4243-86ca-25af34daa0ce#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Heart Aerospace design system\",\"item\":\"https://styles.refero.design/style/bf523387-03fc-4243-86ca-25af34daa0ce\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bf523387-03fc-4243-86ca-25af34daa0ce#style-reference\",\"name\":\"Heart Aerospace design system reference\",\"headline\":\"Heart Aerospace design system | Refero Styles\",\"description\":\"Explore Heart Aerospace's light Other design system: Stratosphere #716e85, Jetstream Blue #001489 colors, NeueHaasText, NeueHaasGroteskDisplay typography,...\",\"url\":\"https://styles.refero.design/style/bf523387-03fc-4243-86ca-25af34daa0ce\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bf523387-03fc-4243-86ca-25af34daa0ce\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Heart Aerospace\",\"url\":\"https://heartaerospace.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bf523387-03fc-4243-86ca-25af34daa0ce#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/70e5cf67-1a7c-497e-8a89-8110b4264a60.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/70e5cf67-1a7c-497e-8a89-8110b4264a60.jpg\",\"caption\":\"Screenshot of Heart Aerospace\"},\"image\":\"https://images.refero.design/styles/refero.design/image/70e5cf67-1a7c-497e-8a89-8110b4264a60.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Heart Aerospace design system\",\"Heart Aerospace website design\",\"Heart Aerospace colors\",\"Heart Aerospace typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Stratosphere\",\"Jetstream Blue\",\"Onyx\",\"Cloud\",\"NeueHaasText\",\"NeueHaasGroteskDisplay\",\"NeueHaasGroteskText\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Heart Aerospace design system\"},{\"@type\":\"Thing\",\"name\":\"Heart Aerospace website design\"},{\"@type\":\"Thing\",\"name\":\"Heart Aerospace colors\"},{\"@type\":\"Thing\",\"name\":\"Heart Aerospace typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:31:40.606Z\",\"dateModified\":\"2026-04-30T01:31:40.606Z\"}]}19:T6cf,**Quick Color Reference**\n- text: #000000 (Onyx)\n- background: #ffffff (Cloud)\n- atmospheric hero/section: #716e85 (Stratosphere)\n- border/footer: #000000 (Onyx)\n- accent (outlined actions, link borders, image frames): #001489 (Jetstream Blue)\n- primary action: #001489 (outlined action border)\n\n**Example Component Prompts**\n\n1. *Atmospheric hero section:* Full-bleed section, no max-width. Linear gradient background from #716e85 at top fading to #ffffff at 65%. Headline 'Electrifying regional air travel' in NeueHaasGroteskDisplay, 120px, weight 600, color #ffffff, letter-spacing -0.02em, line-height 1.0, anchored 40px from left edge and bottom of viewport. No card, no shadow, no border.\n\n2. *Monumental product display:* Full-viewport section, gradient background #716e85 → #ffffff (top to bottom). Single word 'ES-30' in NeueHaasGroteskDisplay, 156px, weight 600, #ffffff, letter-spacing -0.02em, line-height 1.0, filling ~80% of viewport width. No body copy in the same viewport.\n\n3. *Outlined ghost link button:* Transparent background, 1.5px solid border in #001489 (Jetstream Blue). Text in NeueHaasGroteskText, 18px, weight 400, color #000000. Zero border-radius. Padding 12px 24px. No hover fill — color shifts to #001489 text on white background only.\n\n4. *Partner logo grid:* White #ffffff background. 5-column grid, 40px row gap, logos centered in each cell. All logos rendered in monochrome #000000. No borders, no card backgrounds, no shadows.\n\n5. *Onyx footer:* Solid #000000 background, full-bleed. Three columns: Navigation (internal links), Follow (social), Address. Column headers in NeueHaasGroteskText 18px weight 600 #ffffff. List items weight 400 #ffffff, 20px vertical spacing. 40px section padding all sides."
+}

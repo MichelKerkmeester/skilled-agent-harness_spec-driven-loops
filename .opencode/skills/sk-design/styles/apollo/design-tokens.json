@@ -1,0 +1,347 @@
+{
+  "color": {
+    "charcoal": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Charcoal — Primary body text and input values — softer than pure black for extended reading"
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Headlines, high-contrast text, icon strokes, and button text on light surfaces"
+    },
+    "limestone": {
+      "$value": "#ccc9c6",
+      "$type": "color",
+      "$description": "Limestone — Page canvas and footer background — warm gray that prevents the UI from feeling sterile"
+    },
+    "marble": {
+      "$value": "#f7f5f2",
+      "$type": "color",
+      "$description": "Marble — Card surfaces and button backgrounds — warm cream that lifts cards off the limestone canvas"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Elevated card surfaces and overlay panels — pure white for contrast against the warm canvas"
+    },
+    "flint": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Flint — Hairline borders, input outlines, divider lines — the structural grid of the entire interface"
+    },
+    "graphite": {
+      "$value": "#47423d",
+      "$type": "color",
+      "$description": "Graphite — Decorative SVG fills, secondary icon strokes — warm dark that matches the palette's earthiness"
+    },
+    "pebble": {
+      "$value": "#736f6c",
+      "$type": "color",
+      "$description": "Pebble — Secondary body text, muted descriptions, and inactive link states"
+    },
+    "ash": {
+      "$value": "#94918e",
+      "$type": "color",
+      "$description": "Ash — Subtle borders for less prominent structural elements"
+    },
+    "twilight-indigo": {
+      "$value": "#3f3653",
+      "$type": "color",
+      "$description": "Twilight Indigo — Display heading accent — muted violet that signals editorial personality without breaking the monochromatic discipline"
+    },
+    "highlighter": {
+      "$value": "#f8ff2c",
+      "$type": "color",
+      "$description": "Highlighter — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "volt": {
+      "$value": "#ebf212",
+      "$type": "color",
+      "$description": "Volt — Alternate CTA background variant — slightly warmer yellow-green used on specific button instances"
+    }
+  },
+  "font": {
+    "season-mix": {
+      "$value": "Season Mix",
+      "$type": "fontFamily",
+      "$description": "Display headlines at 48–88px. Weight 550 is the signature choice — not bold, not light, a medium that feels confident and editorial. Line-height locked near 1.0 creates dense, magazine-style headline blocks. The slight negative tracking (-0.01em) tightens the display into a cohesive statement."
+    },
+    "soehne": {
+      "$value": "Soehne",
+      "$type": "fontFamily",
+      "$description": "Body text, hero subcopy, input values, and primary UI text. The workhorse — appears in every context. Slightly positive letter-spacing (0.009em) gives it an open, modern feel despite being a neo-grotesque."
+    },
+    "abc-diatype": {
+      "$value": "Abc Diatype",
+      "$type": "fontFamily",
+      "$description": "Secondary UI text, nav links, icon labels, and small body copy. Weight 700 for emphasis in compact contexts. Negative tracking (-0.01em) tightens small sizes for legibility."
+    },
+    "founders-grotesk-mono": {
+      "$value": "Founders Grotesk Mono",
+      "$type": "fontFamily",
+      "$description": "Captions, metadata, eyebrow labels, and data annotations. Slightly positive tracking (0.012–0.014em) keeps monospaced text from feeling cramped at small sizes."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Abc Diatype",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Founders Grotesk Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Abc Diatype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Founders Grotesk Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Abc Diatype",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Abc Diatype",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Abc Diatype",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Soehne",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Soehne",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Abc Diatype",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Abc Diatype",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Season Mix",
+        "fontSize": "48px",
+        "fontWeight": 550,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Season Mix",
+        "fontSize": "56px",
+        "fontWeight": 550,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Season Mix",
+        "fontSize": "64px",
+        "fontWeight": 550,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Season Mix",
+        "fontSize": "72px",
+        "fontWeight": 550,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 72px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Season Mix",
+        "fontSize": "88px",
+        "fontWeight": 550,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 88px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "limestone-canvas": {
+      "$value": "#ccc9c6",
+      "$type": "color",
+      "$description": "Surface level 0: Page background and footer — warm gray that prevents sterile white-page feel"
+    },
+    "marble-card": {
+      "$value": "#f7f5f2",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces and secondary buttons — warm cream that lifts content off the canvas"
+    },
+    "paper-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated cards, input fields, and overlay panels — maximum contrast for interactive elements"
+    },
+    "highlighter-accent": {
+      "$value": "#f8ff2c",
+      "$type": "color",
+      "$description": "Surface level 3: Primary action surfaces — the only chromatic layer in the stack"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.apollo.io",
+      "siteName": "Apollo",
+      "extractedAt": "2026-06-03T18:30:02.409Z",
+      "variant": "extended"
+    }
+  }
+}

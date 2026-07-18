@@ -1,0 +1,89 @@
+:root {
+  /* Colors */
+  --color-onyx-canvas: #08090a;
+  --color-carbon-surface: #141516;
+  --color-graphite-surface: #1c1c1f;
+  --color-smoke-surface: #23252a;
+  --color-iron-surface: #2d2e31;
+  --color-ash-border: #34343a;
+  --color-ferrite-border: #3e3e44;
+  --color-steel-text: #62666d;
+  --color-pewter-text: #7f7f80;
+  --color-fog-text: #8a8f98;
+  --color-mist-text: #d0d6e0;
+  --color-chalk-border: #e4e5e9;
+  --color-snow: #f7f8f8;
+  --color-void: #030404;
+
+  /* Typography — Font Families */
+  --font-inter-variable: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-berkeley-mono: 'Berkeley Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.6;
+  --tracking-caption: -0.12px;
+  --text-body: 15px;
+  --leading-body: 1.5;
+  --tracking-body: -0.15px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.33;
+  --tracking-heading-sm: -0.288px;
+  --text-heading: 32px;
+  --leading-heading: 1.2;
+  --tracking-heading: -0.416px;
+  --text-display: 48px;
+  --leading-display: 1.13;
+  --tracking-display: -1.056px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-w510: 510;
+  --font-weight-w590: 590;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-80: 80px;
+
+  /* Layout */
+  --page-max-width: 1080px;
+  --section-gap: 48px;
+  --card-padding: 16px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-md: 4.4625px;
+  --radius-lg: 8px;
+  --radius-full: 100px;
+  --radius-full-2: 9999px;
+
+  /* Named Radii */
+  --radius-nav: 9999px;
+  --radius-tags: 4px;
+  --radius-cards: 8px;
+  --radius-icons: 4.4625px;
+  --radius-inputs: 4px;
+  --radius-buttons: 9999px;
+
+  /* Shadows */
+  --shadow-subtle: rgb(62, 62, 68) 0px 0px 0px 1px;
+  --shadow-subtle-2: rgba(0, 0, 0, 0.01) 0px 5px 2px 0px, rgba(0, 0, 0, 0.04) 0px 3px 2px 0px, rgba(0, 0, 0, 0.07) 0px 1px 1px 0px, rgba(0, 0, 0, 0.08) 0px 0px 1px 0px;
+  --shadow-subtle-3: rgba(255, 255, 255, 0.03) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.04) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 4px 0px;
+
+  /* Surfaces */
+  --surface-onyx-canvas: #08090a;
+  --surface-carbon: #141516;
+  --surface-graphite: #1c1c1f;
+  --surface-smoke: #23252a;
+  --surface-iron: #2d2e31;
+}

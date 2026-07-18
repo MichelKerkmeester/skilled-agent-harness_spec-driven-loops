@@ -1,0 +1,357 @@
+{
+  "color": {
+    "putty": {
+      "$value": "#c4c3b6",
+      "$type": "color",
+      "$description": "Putty — Dominant page canvas — the warm gray-beige that fills hero and most light sections. The single most-used color in the system; sets the gallery-wall tone"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "bone": {
+      "$value": "#e7e5e4",
+      "$type": "color",
+      "$description": "Bone — Elevated card surfaces and secondary canvas in light sections. Sits one step above Putty for subtle layering without breaking the monochrome warmth"
+    },
+    "chalk": {
+      "$value": "#ebebeb",
+      "$type": "color",
+      "$description": "Chalk — Footers and lightest surface tier. The coolest neutral — used sparingly at section bases to signal a different page zone"
+    },
+    "vellum": {
+      "$value": "#dfdcd5",
+      "$type": "color",
+      "$description": "Vellum — Hairline borders on body and icon elements. A mid-tone warm gray that reads as a printed page edge, not a UI divider"
+    },
+    "graphite": {
+      "$value": "#595855",
+      "$type": "color",
+      "$description": "Graphite — Muted secondary text fills and subtle image backgrounds. The darkest warm gray — used where pure black would be too severe"
+    },
+    "ash": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Ash — Image placeholder backgrounds and mid-neutral surfaces. The only truly cool gray in the system, reserved for image containers"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Text on dark sections, white icon strokes, and the rare pure-white element. Used only as reverse type or accent fill, never as a large surface"
+    }
+  },
+  "font": {
+    "davinci": {
+      "$value": "Davinci",
+      "$type": "fontFamily",
+      "$description": "Display and heading serif — the brand voice. Drives the 374px hero wordmark, 94px section titles, and 52px sub-headings. Weight 500 is used for emphasis; 400 for body serif moments. The extreme size range (16–374px) and tight negative tracking at large sizes make this the single most distinctive typographic choice — a wordmark that occupies half the viewport."
+    },
+    "helvetica-now": {
+      "$value": "Helvetica Now",
+      "$type": "fontFamily",
+      "$description": "Utility grotesk for body copy, nav labels, button text, stats (TVL, APY), and caption micro-text. Stays at 9–26px — never takes display duty. Weight 500 is reserved for labels and small data callouts."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Davinci",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Davinci",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Davinci",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "43px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Davinci",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Davinci",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 52px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Davinci",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 52px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Davinci",
+        "fontSize": "94px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 94px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Davinci",
+        "fontSize": "94px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 94px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Davinci",
+        "fontSize": "374px",
+        "fontWeight": 500,
+        "lineHeight": 0.84
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 374px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "168": {
+      "$value": "168px",
+      "$type": "dimension",
+      "$description": "Spacing 168px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "28.8px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "putty-canvas": {
+      "$value": "#c4c3b6",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background for light sections"
+    },
+    "bone-card": {
+      "$value": "#e7e5e4",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated cards and secondary light surfaces"
+    },
+    "chalk-footer": {
+      "$value": "#ebebeb",
+      "$type": "color",
+      "$description": "Surface level 2: Lightest tier, used for footer and section bases"
+    },
+    "ink-room": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Dark section canvas — feature and explainer blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://structured.money",
+      "siteName": "Structured",
+      "extractedAt": "2026-06-03T16:22:36.077Z",
+      "variant": "extended"
+    }
+  }
+}

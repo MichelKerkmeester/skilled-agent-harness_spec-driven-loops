@@ -1,0 +1,1055 @@
+{
+  "source": "https://styles.refero.design/style/d19c6fc3-1fc6-44a0-9c22-a0a82f7f79b4",
+  "uuid": "d19c6fc3-1fc6-44a0-9c22-a0a82f7f79b4",
+  "name": "HyperAktiv",
+  "northStar": "Swiss editorial broadsheet. Black display type at 90px on white, with electric blue as the only chromatic note.",
+  "capturedAt": "2026-07-18T08:09:51.452Z",
+  "meta": {
+    "url": "https://hyperaktiv.li",
+    "siteName": "HyperAktiv",
+    "extractedAt": "2026-06-03T18:07:18.039Z",
+    "durationMs": 41053,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 172,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #0000ff exclusively for filled action buttons and the footer — it is the only chromatic surface allowed",
+      "Set display headlines to 72–90px in Studiofeixensans 700 uppercase with line-height 0.89–1.0",
+      "Use 20px border-radius on buttons and 0px on everything else (cards, inputs, images, tags)",
+      "Let photographs run edge-to-edge with no border-radius and no overlay treatment",
+      "Use the 50/50 split layout as the default for content sections — image on one side, text on the other",
+      "Keep all body and interface text in DM Sans 400 at 14–20px — never let it compete with the display face",
+      "Use uppercase for all headings, sub-headings, button labels, and feature lists in Studiofeixensans"
+    ],
+    "donts": [
+      "Never introduce additional accent colors — the system is binary (black/white) plus one blue",
+      "Never apply drop shadows, glows, or blurred surfaces to UI components — keep it flat",
+      "Never use rounded corners on cards, inputs, or images — only buttons get the 20px radius",
+      "Never set body or display line-height above 1.5 for body and below 0.9 for display — the compression is the signature",
+      "Never use a chromatic color for text other than the white text on the blue footer",
+      "Never add gradients, glassmorphism, or noise textures — surfaces are either solid white or solid blue",
+      "Never use a serif, script, or decorative typeface — the system is two sans-serifs only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page background, card surfaces, text on dark/action backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Absolute Black",
+        "role": "Body text, headings, icon strokes, hairline borders, image overlays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Mid Graphite",
+        "role": "Input text, secondary text content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Light Silver",
+        "role": "Input borders, subtle form dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0000ff",
+        "name": "Hyper Blue",
+        "role": "Filled action buttons, footer background, interactive accent — the single chromatic punctuation against an otherwise achromatic system",
+        "group": "brand"
+      }
+    ],
+    "layout": "Max-width ~1200px centered, but content frequently breaks the container to full-bleed for hero and footer. The page is a vertical sequence of full-width bands: full-bleed hero photo → marquee text → 50/50 split (concept text) → 50/50 split (venue image + text) → image grid → 50/50 split (reservation form). No sidebar, no card grid for features. Navigation is minimal — likely a thin top bar or hidden behind a menu trigger. Section rhythm is driven by 30px+ vertical gaps between bands and the dramatic scale shift between 90px display type and 16px body text. The 50/50 split is the workhorse layout pattern, used 3+ times per page.",
+    "imagery": "Photographic documentation only — no illustration, no abstract graphics, no icons beyond the chat widget. Photography is documentary in tone: train platforms, empty interior rooms, architectural details, candid venue shots. Full-bleed at hero scale, contained at ~480px width in split sections. No filters, no duotone treatment, no rounded corners. Images carry the natural contrast and color of Swiss urban/architectural photography and are left to speak unprocessed. The visual language of a venue portfolio, not a lifestyle brand.",
+    "similar": [
+      {
+        "why": "Parent studio — shares the same custom display typeface (Studiofeixensans) and Swiss editorial typographic system",
+        "business": "Studio Raphaël Lutz"
+      },
+      {
+        "why": "Same oversized sans-serif headlines on white with full-bleed architectural photography and zero chromatic noise",
+        "business": "Vitra"
+      },
+      {
+        "why": "Editorial broadsheet layout with massive display type and monochrome palette punctuated by single accent moments",
+        "business": "Atelier Bingo"
+      },
+      {
+        "why": "Swiss branding studio aesthetic — pure black/white with one electric accent, flat components, no shadows",
+        "business": "Haltbar"
+      },
+      {
+        "why": "Poster-scale typography, full-bleed documentary photography, and binary color discipline",
+        "business": "Sagmeister & Walsh"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "20px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "30px",
+      "cardPadding": "15px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Primary page background — the dominant canvas"
+      },
+      {
+        "hex": "#0000ff",
+        "name": "Hyper Blue Ground",
+        "level": 2,
+        "purpose": "Footer and action surface — the only chromatic surface in the system"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Swiss editorial broadsheet. Black display type at 90px on white, with electric blue as the only chromatic note.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading-sm",
+        "size": 25,
+        "lineHeight": 1.22
+      },
+      {
+        "role": "heading",
+        "size": 42,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 72,
+        "lineHeight": 1
+      },
+      {
+        "role": "display",
+        "size": 90,
+        "lineHeight": 0.89
+      }
+    ],
+    "components": [
+      {
+        "name": "Full-Bleed Hero Photograph",
+        "role": "Opening visual statement",
+        "description": "Edge-to-edge photographic image (train station, cityscape) filling the viewport width. No border-radius, no overlay tint, no gradient mask. The image carries its own natural depth and contrast against the white margins above and below."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Section title",
+        "description": "Studiofeixensans weight 700, uppercase, 72–90px, line-height 0.89–1.0, color #000000 on #ffffff. The defining element of the system — these headlines are 5–6x larger than body text and define the vertical rhythm of every page."
+      },
+      {
+        "name": "Split Section (50/50 Image + Text)",
+        "role": "Primary content block",
+        "description": "Two-column layout, image on one side (no padding, edge-to-edge), text on the other with ~30px internal padding. Used for concept, venue showcase, and reservation sections. Text column max-width ~480px, vertically centered."
+      },
+      {
+        "name": "Primary Filled Button",
+        "role": "Call-to-action",
+        "description": "Background #0000ff, text #ffffff, Studiofeixensans weight 400 uppercase, 14–16px, padding 10px 20px, border-radius 20px (the only rounded element in the system). No border, no shadow. The blue fill against the black/white surroundings makes it the only element that demands attention."
+      },
+      {
+        "name": "Text Input",
+        "role": "Form field",
+        "description": "Border 1px solid #cccccc (Light Silver), no border-radius, padding 8–12px vertical / 10–12px horizontal. Text color #333333 (Mid Graphite), 14–16px. Placeholder inherits lighter weight. Underlined or boxed, never rounded — consistent with the flat, editorial tone."
+      },
+      {
+        "name": "Feature Bullet List",
+        "role": "Amenity/specification listing",
+        "description": "Studiofeixensans weight 400, uppercase, 16–20px, line-height 1.43, color #000000. Items separated by a filled circle bullet (●) as inline character — no extra padding or decoration. Tight horizontal rhythm creates a dense, catalog-like feel."
+      },
+      {
+        "name": "Image Grid (Events)",
+        "role": "Multi-image gallery block",
+        "description": "Horizontal row of rectangular photographs, no gap or 5–10px gap, no border-radius, no captions. Each image bleeds to the section edge. Functions as visual proof-of-work for the venue."
+      },
+      {
+        "name": "Marquee Headline",
+        "role": "Animated brand repetition",
+        "description": "Studiofeixensans weight 700, uppercase, 80–90px, repeating the brand name 'HyperAktiv.' across the viewport. Tight letter-spacing, line-height 1.0, black on white. The trailing period is part of the wordmark identity."
+      },
+      {
+        "name": "Chat Widget Bubble",
+        "role": "Persistent contact CTA",
+        "description": "Fixed bottom-right, white card with subtle 1px border, rounded ~12px, containing avatar thumbnail, bold name 'Olivia', timestamp, and message preview. Green circular WhatsApp-style icon button adjacent. The only element that introduces any softness into the system."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer",
+        "description": "Full-bleed #0000ff background, white text, Studiofeixensans weight 400 uppercase, generous padding (40–60px vertical). Navigation links, legal text, and contact info all white on blue. The blue ground is the chromatic bookend to the white page."
+      },
+      {
+        "name": "Pricing Statement",
+        "role": "Rate display",
+        "description": "Studiofeixensans weight 400, uppercase, 42px, line-height 1.20, color #000000. Format: 'DÈS CHF 1000/JOURNÉE' — a single, declarative typographic moment, not a styled badge or card."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading typeface. Used uppercase at 72–90px with line-heights compressed to 0.89–1.0 so massive headlines stack into dense typographic blocks. Weights 400 and 700 — the lighter weight carries sub-headlines, 700 owns the display statements. Custom font; substitute with Archivo or Space Grotesk for its tight, geometric, slightly condensed character.",
+        "sizes": "14, 16, 20, 22, 25, 28, 42, 72, 80, 90px",
+        "family": "Studiofeixensans",
+        "weight": "400, 700",
+        "lineHeight": "0.89, 1.00, 1.20, 1.22, 1.43, 1.50, 2.00",
+        "substitute": "Archivo or Space Grotesk",
+        "letterSpacing": "normal across all sizes — the visual tightness comes from line-height compression, not tracking"
+      },
+      {
+        "role": "Body and interface text. Single weight 400 across 14–20px. Used for form labels, card body copy, navigation, and supporting paragraphs. DM Sans stays quiet so Studiofeixensans can dominate at the top of the hierarchy.",
+        "sizes": "14, 16, 20px",
+        "family": "DM Sans",
+        "weight": "400",
+        "lineHeight": "1.25, 1.43",
+        "substitute": "Inter or system-ui sans-serif"
+      }
+    ],
+    "description": "HyperAktiv operates as a Swiss editorial poster: pure white canvas, oversized black display type, and one electric blue (#0000ff) that fires only on action and footer surfaces. Headlines dominate at 72–90px with line-heights tightened to 0.89–1.0, collapsing the page into a vertical column of massive typographic statements. Layouts alternate between full-bleed photography and asymmetric 50/50 splits, treating the interior photos as raw documentation rather than styled artwork. Everything is sharp-cornered except a single 20px button radius, and the only shadows are the ones baked into the photography — the interface itself stays flat, binary, and graphic.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d19c6fc3-1fc6-44a0-9c22-a0a82f7f79b4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"HyperAktiv design system\",\"item\":\"https://styles.refero.design/style/d19c6fc3-1fc6-44a0-9c22-a0a82f7f79b4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d19c6fc3-1fc6-44a0-9c22-a0a82f7f79b4#style-reference\",\"name\":\"HyperAktiv design system reference\",\"headline\":\"HyperAktiv design system | Refero Styles\",\"description\":\"Explore HyperAktiv's light Agency design system: Pure White #ffffff, Absolute Black #000000 colors, Studiofeixensans, DM Sans typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/d19c6fc3-1fc6-44a0-9c22-a0a82f7f79b4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d19c6fc3-1fc6-44a0-9c22-a0a82f7f79b4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"HyperAktiv\",\"url\":\"https://hyperaktiv.li\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d19c6fc3-1fc6-44a0-9c22-a0a82f7f79b4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0cfcf94e-6893-4883-bb06-606272448f04.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0cfcf94e-6893-4883-bb06-606272448f04.jpg\",\"caption\":\"Screenshot of HyperAktiv\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0cfcf94e-6893-4883-bb06-606272448f04.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"HyperAktiv design system\",\"HyperAktiv website design\",\"HyperAktiv colors\",\"HyperAktiv typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pure White\",\"Absolute Black\",\"Mid Graphite\",\"Light Silver\",\"Studiofeixensans\",\"DM Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"HyperAktiv design system\"},{\"@type\":\"Thing\",\"name\":\"HyperAktiv website design\"},{\"@type\":\"Thing\",\"name\":\"HyperAktiv colors\"},{\"@type\":\"Thing\",\"name\":\"HyperAktiv typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:57:58.173Z\",\"dateModified\":\"2026-04-30T02:57:58.173Z\"}]}19:T638,## Quick Color Reference\n- text: #000000\n- background: #ffffff\n- border: #000000 (hairline) or #cccccc (input)\n- accent: #0000ff (Hyper Blue — action and footer only)\n- primary action: #0000ff (filled action)\n\n## Example Component Prompts\n\n1. **Display Headline Block**: 'NOUS ACCUEILLONS VOS AMAZING EVENTS DEPUIS 2016!' in Studiofeixensans weight 700, uppercase, 90px, line-height 0.89, color #000000 on #ffffff background. Full viewport width, 30px top/bottom margin.\n\n2. **50/50 Split Section (Image + Text)**: Left column: full-bleed interior photograph of a venue space, no border-radius, no overlay. Right column: 30px padding, Studiofeixensans weight 700 uppercase 72px heading 'ALIVE' in #000000, followed by DM Sans 400 16px body text in #333333, line-height 1.43. Below: Studiofeixensans 400 uppercase 16px feature list with ● separators.\n\n3. **Primary Filled Button**: 'DÈS CHF 1000/JOURNÉE' link styled as a button: background #0000ff, text #ffffff, Studiofeixensans weight 400, uppercase, 16px, padding 10px 20px, border-radius 20px, no border, no shadow. Inline, left-aligned within its text column.\n\n4. **Text Input Field**: 1px solid #cccccc border, 0px border-radius, padding 10px 12px, width 100% of column. Label above in DM Sans 400 14px #000000. Placeholder text in #333333. No focus glow — use a 2px #000000 border on focus instead.\n\n5. **Full-Bleed Hero Photograph**: Edge-to-edge image filling 100vw width and ~60vh height. No overlay, no border-radius, no caption. White margin above and below (30px each). Followed immediately by the marquee headline block."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "The typographic system is the product. Two typefaces, one job each: Studiofeixensans (custom) for everything that should be read from across the room, DM Sans for everything read at arm's length. The extreme display sizes (72–90px) with line-heights compressed to 0.89–1.0 are not a bug — they are the signature. They force headlines to stack into dense, poster-like blocks that anchor each section. Body text stays small (14–20px) and quiet (DM Sans, no bold, single weight 400). The contrast between these two registers is what gives the page its visual rhythm."
+      }
+    ],
+    "elevationPhilosophy": "The interface is intentionally flat. No drop shadows, no glows, no blurred surfaces. Depth is communicated only through full-bleed photography and typographic scale — the UI stays graphic, not skeuomorphic. If a component seems to need a shadow, it probably needs a border or a background swap instead."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "link",
+            "image",
+            "hero",
+            "card",
+            "button",
+            "footer"
+          ],
+          "frequency": 741,
+          "confidence": 1,
+          "prominence": 28172752.992807046,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "card/color": 2,
+            "hero/color": 1,
+            "link/color": 5,
+            "other/fill": 6,
+            "image/color": 15,
+            "other/color": 95,
+            "button/color": 3,
+            "footer/color": 1,
+            "heading/color": 15,
+            "body/borderColor": 40,
+            "card/borderColor": 8,
+            "hero/borderColor": 4,
+            "link/borderColor": 20,
+            "image/borderColor": 60,
+            "other/borderColor": 380,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 60
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "input",
+            "button",
+            "body"
+          ],
+          "frequency": 91,
+          "confidence": 1,
+          "prominence": 6507253.051166871,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/fill": 1,
+            "other/color": 3,
+            "button/color": 2,
+            "heading/color": 9,
+            "body/borderColor": 4,
+            "other/borderColor": 12,
+            "button/borderColor": 8,
+            "heading/borderColor": 36,
+            "input/backgroundColor": 4,
+            "other/backgroundColor": 8,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#0000ff",
+          "oklch": {
+            "c": 0.31321438863448475,
+            "h": 264.05202261636987,
+            "l": 0.45201371817442365
+          },
+          "contexts": [
+            "other",
+            "button",
+            "footer"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 906596.8246487706,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 157731.10358100935,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 16
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 89600.88325360842,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "input/color": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.003955726049942975,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.59,
+          "background": "#0000ff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.87,
+          "background": "#cccccc",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.35,
+          "background": "#cccccc",
+          "foreground": "#0000ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.44,
+          "background": "#0000ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.47,
+          "background": "#0000ff",
+          "foreground": "#333333"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginTop|heading",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "input",
+            "button"
+          ],
+          "frequency": 56,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|heading",
+            "marginTop|heading",
+            "marginBottom|heading",
+            "paddingLeft|other",
+            "marginTop|body",
+            "marginBottom|body",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginBottom|input",
+            "marginTop|button",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginBottom|other",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 243,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "DM Sans",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 107,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Studiofeixensans",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 59,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.9
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Studiofeixensans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "hero",
+            "card",
+            "footer"
+          ],
+          "frequency": 102,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Studiofeixensans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Studiofeixensans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Studiofeixensans",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Studiofeixensans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Studiofeixensans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Studiofeixensans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Studiofeixensans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Studiofeixensans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Studiofeixensans",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Studiofeixensans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 42,
+          "family": "Studiofeixensans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 72,
+          "family": "Studiofeixensans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 80,
+          "family": "Studiofeixensans",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 90,
+          "family": "Studiofeixensans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.89,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4444d00e-51d9-43f6-8445-39d978104ee6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/0cfcf94e-6893-4883-bb06-606272448f04.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d19c6fc3-1fc6-44a0-9c22-a0a82f7f79b4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"HyperAktiv design system\",\"item\":\"https://styles.refero.design/style/d19c6fc3-1fc6-44a0-9c22-a0a82f7f79b4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d19c6fc3-1fc6-44a0-9c22-a0a82f7f79b4#style-reference\",\"name\":\"HyperAktiv design system reference\",\"headline\":\"HyperAktiv design system | Refero Styles\",\"description\":\"Explore HyperAktiv's light Agency design system: Pure White #ffffff, Absolute Black #000000 colors, Studiofeixensans, DM Sans typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/d19c6fc3-1fc6-44a0-9c22-a0a82f7f79b4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d19c6fc3-1fc6-44a0-9c22-a0a82f7f79b4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"HyperAktiv\",\"url\":\"https://hyperaktiv.li\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d19c6fc3-1fc6-44a0-9c22-a0a82f7f79b4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/0cfcf94e-6893-4883-bb06-606272448f04.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/0cfcf94e-6893-4883-bb06-606272448f04.jpg\",\"caption\":\"Screenshot of HyperAktiv\"},\"image\":\"https://images.refero.design/styles/refero.design/image/0cfcf94e-6893-4883-bb06-606272448f04.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"HyperAktiv design system\",\"HyperAktiv website design\",\"HyperAktiv colors\",\"HyperAktiv typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pure White\",\"Absolute Black\",\"Mid Graphite\",\"Light Silver\",\"Studiofeixensans\",\"DM Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"HyperAktiv design system\"},{\"@type\":\"Thing\",\"name\":\"HyperAktiv website design\"},{\"@type\":\"Thing\",\"name\":\"HyperAktiv colors\"},{\"@type\":\"Thing\",\"name\":\"HyperAktiv typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:57:58.173Z\",\"dateModified\":\"2026-04-30T02:57:58.173Z\"}]}19:T638,## Quick Color Reference\n- text: #000000\n- background: #ffffff\n- border: #000000 (hairline) or #cccccc (input)\n- accent: #0000ff (Hyper Blue — action and footer only)\n- primary action: #0000ff (filled action)\n\n## Example Component Prompts\n\n1. **Display Headline Block**: 'NOUS ACCUEILLONS VOS AMAZING EVENTS DEPUIS 2016!' in Studiofeixensans weight 700, uppercase, 90px, line-height 0.89, color #000000 on #ffffff background. Full viewport width, 30px top/bottom margin.\n\n2. **50/50 Split Section (Image + Text)**: Left column: full-bleed interior photograph of a venue space, no border-radius, no overlay. Right column: 30px padding, Studiofeixensans weight 700 uppercase 72px heading 'ALIVE' in #000000, followed by DM Sans 400 16px body text in #333333, line-height 1.43. Below: Studiofeixensans 400 uppercase 16px feature list with ● separators.\n\n3. **Primary Filled Button**: 'DÈS CHF 1000/JOURNÉE' link styled as a button: background #0000ff, text #ffffff, Studiofeixensans weight 400, uppercase, 16px, padding 10px 20px, border-radius 20px, no border, no shadow. Inline, left-aligned within its text column.\n\n4. **Text Input Field**: 1px solid #cccccc border, 0px border-radius, padding 10px 12px, width 100% of column. Label above in DM Sans 400 14px #000000. Placeholder text in #333333. No focus glow — use a 2px #000000 border on focus instead.\n\n5. **Full-Bleed Hero Photograph**: Edge-to-edge image filling 100vw width and ~60vh height. No overlay, no border-radius, no caption. White margin above and below (30px each). Followed immediately by the marquee headline block."
+}

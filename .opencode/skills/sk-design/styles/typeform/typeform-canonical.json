@@ -1,0 +1,1093 @@
+{
+  "source": "https://styles.refero.design/style/a0d54731-58dc-448b-a6b0-ed543f397ab1",
+  "uuid": "a0d54731-58dc-448b-a6b0-ed543f397ab1",
+  "name": "Typeform",
+  "northStar": "Publishing house meets product dashboard — serif headlines borrowed from a literary journal, UI chrome stripped to bare minimum so the type can own every screen.",
+  "capturedAt": "2026-07-18T10:17:26.781Z",
+  "meta": {
+    "url": "https://typeform.com",
+    "siteName": "Typeform",
+    "extractedAt": "2026-04-11T19:07:51.673Z",
+    "durationMs": 109272,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 646,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Tobias 400 with negative letter-spacing (-1.98px at 64px minimum) for all display headlines — do not substitute a heavier weight sans-serif",
+      "Reserve #9454ab exclusively for section eyebrow labels in uppercase TWK Lausanne 14px — never use it on buttons, links, or backgrounds",
+      "Apply 12px radius to all button variants and 24px radius to all card containers — do not use pill (9999px) or sharp (0px) radius anywhere in the UI",
+      "Alternate sections between #2a222b dark surfaces and #faf9fb/#f5f3f6 light surfaces — never stack two dark sections or two identical-tone light sections consecutively",
+      "Maintain TWK Lausanne font-feature-settings of '\"clig\", \"liga\", \"ss01\", \"ss11\"' at all sizes — these alternate glyphs are part of the brand identity",
+      "Use #2a222b (not pure #000000) for all primary text and dark backgrounds — the warm violet undertone is the brand's chromatic signature",
+      "Keep CTAs in near-black fill regardless of section — on dark backgrounds use #faf9fb text with #faf9fb border; on light backgrounds same fill, no change"
+    ],
+    "tags": [
+      "editorial-type",
+      "serif-headlines",
+      "dark-hero",
+      "cream-palette",
+      "aubergine",
+      "print-inspired",
+      "minimal-chrome",
+      "product-led",
+      "enterprise-approachable",
+      "type-forward"
+    ],
+    "donts": [
+      "Do not use saturated purple (#9454ab, #b66dd5) on buttons, hover states, or backgrounds — it exists only as typographic ink for category labels",
+      "Do not use Tobias for body copy, captions, or UI labels — it is display-only; all functional text uses TWK Lausanne",
+      "Do not add box-shadows to cards or buttons — elevation is expressed through background color contrast (dark surface vs light surface), not shadows",
+      "Do not use weight 600+ in TWK Lausanne for headlines — heavy-weight sans headings contradict the editorial register the Tobias/Lausanne pairing establishes",
+      "Do not use pill-shaped buttons (border-radius > 12px) for CTAs — the 12px radius is intentionally understated so typography leads, not the button shape",
+      "Do not place colored backgrounds (purple, green, yellow) behind large content sections — only #2a222b, #faf9fb, #f5f3f6, and #ffffff are valid section backgrounds",
+      "Do not set display headlines without negative letter-spacing — Tobias at -0em tracking reads archaic; the tightened tracking is what makes it feel contemporary"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#2a222b",
+        "name": "Aubergine Ink",
+        "role": "Primary text, hero background, CTA button fill — the near-black with a warm violet undertone prevents the harshness of pure black while maintaining AAA contrast on cream",
+        "group": "brand"
+      },
+      {
+        "hex": "#3e3040",
+        "name": "Deep Plum",
+        "role": "Hero section background variant, elevated surface in dark contexts",
+        "group": "brand"
+      },
+      {
+        "hex": "#9454ab",
+        "name": "Violet Mist",
+        "role": "Section eyebrow labels ('AI ENGAGEMENT PLATFORM', 'DATA COLLECTION', 'INTEGRATIONS') — saturated purple used exclusively for categorical labeling, never on interactive elements",
+        "group": "accent"
+      },
+      {
+        "hex": "#ddb7f0",
+        "name": "Lavender Whisper",
+        "role": "Subtle purple tints in light contexts, decorative highlights",
+        "group": "accent"
+      },
+      {
+        "hex": "#faf9fb",
+        "name": "Cream Canvas",
+        "role": "Page background, light section backgrounds, reversed text on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces, integration logo pills, elevated elements in light sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Charcoal",
+        "role": "Secondary text, ghost button borders and labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#564b58",
+        "name": "Slate Mid",
+        "role": "Dividers, subtle borders in dark contexts",
+        "group": "neutral"
+      },
+      {
+        "hex": "#655d67",
+        "name": "Ash",
+        "role": "Secondary body text, footnotes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#837a85",
+        "name": "Fog",
+        "role": "Placeholder text, disabled states",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d4d1d5",
+        "name": "Mist",
+        "role": "Light borders, dividers in cream backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f3f6",
+        "name": "Parchment",
+        "role": "Alternating section backgrounds, subtle surface differentiation from cream canvas",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1536px, centered with horizontal padding of 48px. Hero is full-bleed #2a222b with centered text stack — eyebrow label, display headline, body copy, CTA, all center-aligned. Below hero: alternating cream (#faf9fb) and slightly tinted (#f5f3f6) bands with 64px vertical padding each. Content sections use a two-column split: text left (heading + body + CTA), product visual right. The integrations section breaks into a multi-row logo grid (6-7 columns) with a centered heading above. Navigation is a fixed-height (~72px) sticky top bar with logo left, centered links, auth buttons right. Section rhythm is consistent: eyebrow → large heading → body → CTA, with 16px gaps between stacked text elements and 48px gap before the CTA.",
+    "imagery": "Product UI screenshots are the primary visual content — shown inside 24px-radius containers with lavender-tinted (#f9f2fd) backgrounds, not floating freely. No lifestyle photography on the main marketing page. Integration logos are displayed as monochrome marks inside white rounded-rectangle pills, neutralizing their varied brand colors into a cohesive grid. Icons use a thin outlined style consistent with TWK Lausanne's light stroke character. Imagery is purely explanatory — every visual element depicts the product interface, not aspirational context. Image density is low: each section has at most one product preview, occupying roughly half the column width in a two-column layout, with generous whitespace dominating.",
+    "similar": [
+      {
+        "why": "Same editorial serif-meets-sans pairing for display text, near-black dominant brand color, cream/off-white page backgrounds — both reject SaaS-blue in favor of ink-like neutrals",
+        "business": "Notion"
+      },
+      {
+        "why": "Shared philosophy of letting typography lead with minimal color accent, dark hero transitioning to light content sections, no shadow elevation system",
+        "business": "Linear"
+      },
+      {
+        "why": "Dark aubergine/near-black hero with reversed cream text, restrained accent color usage, product screenshots as primary visuals",
+        "business": "Framer"
+      },
+      {
+        "why": "Editorial-weight serif headlines mixed with geometric sans UI text, dark-to-light section alternation, integration partner logo grids",
+        "business": "Webflow"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "24px",
+        "pills": "80px",
+        "images": "8px",
+        "buttons": "12px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "",
+      "pageMaxWidth": "1536px"
+    },
+    "category": "SaaS",
+    "surfaces": [
+      {
+        "hex": "#2a222b",
+        "name": "Dark Canvas",
+        "level": 1,
+        "purpose": "Hero section, announcement banner, CTA buttons — the dominant dark surface"
+      },
+      {
+        "hex": "#3e3040",
+        "name": "Dark Elevated",
+        "level": 2,
+        "purpose": "Slightly lighter dark surface within hero context"
+      },
+      {
+        "hex": "#faf9fb",
+        "name": "Cream Canvas",
+        "level": 3,
+        "purpose": "Primary light page background, nav bar"
+      },
+      {
+        "hex": "#f5f3f6",
+        "name": "Parchment",
+        "level": 4,
+        "purpose": "Alternate light sections, subtle differentiation from cream canvas"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "level": 5,
+        "purpose": "Card surfaces, integration pills, elevated components on light backgrounds"
+      }
+    ],
+    "northStar": "Publishing house meets product dashboard — serif headlines borrowed from a literary journal, UI chrome stripped to bare minimum so the type can own every screen.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.49
+      },
+      {
+        "role": "body-lg",
+        "size": 20,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 48,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading",
+        "size": 64,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.98
+      },
+      {
+        "role": "heading-lg",
+        "size": 72,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.01
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1,
+        "letterSpacing": -0.96
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Announcement Banner",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Feature Content Block",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Integrations Section",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary CTA Button",
+        "role": "Main call to action throughout the page",
+        "description": "Background #2a222b, text #faf9fb, border-radius 12px, padding 8px 24px. TWK Lausanne 400 at 16px. The near-black fill with cream text is restrained — no color accent on CTAs, letting the form contrast with surrounding light sections do the work."
+      },
+      {
+        "name": "Ghost Navigation Button",
+        "role": "Secondary actions, nav-level text links with chevrons",
+        "description": "Transparent background, text #222222, no border-radius (0px), minimal padding 0px 8px. Used for Platform/Solutions/Resources dropdown triggers. Invisible until needed — the nav reads as pure text."
+      },
+      {
+        "name": "Section Eyebrow Label",
+        "role": "Category identifier above section headings",
+        "description": "TWK Lausanne 400 at 14px, uppercase, letter-spacing wide, color #9454ab (Violet Mist). No background, no pill, no border — pure typographic color accent. This is the only place saturated purple appears in content."
+      },
+      {
+        "name": "Integration Logo Pill",
+        "role": "Partner/integration logos in the integrations section",
+        "description": "White (#ffffff) background, border #d4d1d5, border-radius 24px, padding 12px 24px. Logos rendered at grayscale/monochrome. The rounded-rectangle container unifies disparate brand marks into a cohesive grid."
+      },
+      {
+        "name": "Dark Hero Section",
+        "role": "Full-width page hero with dark background",
+        "description": "Background #2a222b, full viewport width, centered content. Heading in Tobias 400 at 64-80px, color #faf9fb with negative tracking. Subheading in TWK Lausanne 400 at 20px, color #faf9fb. CTA button inherits primary button style but the border becomes #faf9fb on the dark surface."
+      },
+      {
+        "name": "Light Content Section",
+        "role": "Alternating content blocks in cream/white backgrounds",
+        "description": "Background #faf9fb or #f5f3f6, padding 64px vertical. Headings in Tobias 400 at 64px, #2a222b. Two-column layout: text left, product visual right. Contains section eyebrow, heading, body copy at 16px, and CTA button."
+      },
+      {
+        "name": "Product Preview Card",
+        "role": "Embedded UI/screenshot previews in content sections",
+        "description": "Border-radius 24px, background #f5f3f6 or light lavender tint (#f9f2fd from CSS tokens), no hard border visible. Acts as a contained viewport for product UI. Padding internal 24px. Shadow minimal or absent."
+      },
+      {
+        "name": "Primary Navigation Bar",
+        "role": "Top navigation with logo, links, and auth CTAs",
+        "description": "Background #faf9fb, height ~72px. Logo left. Center nav links in TWK Lausanne 400 16px #2a222b. Right side: 'Log in' ghost text, 'Sign up' filled button (#2a222b, #faf9fb text, 12px radius, 8px 24px padding). Sticky on scroll."
+      },
+      {
+        "name": "Trust Stat Block",
+        "role": "Social proof number display",
+        "description": "Background cream or white, centered. Stat value in Tobias 400 at 64px #2a222b with -1.98px tracking. Supporting text in TWK Lausanne 400 16px #655d67 (Ash). No card container — floats on section background."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and hero headlines exclusively. A classical editorial serif at weight 400 — most SaaS sites use a geometric sans at 700+ for headlines; Tobias at regular weight makes Typeform's headings feel authored, not announced. The tight negative tracking (-1.98px at 64px, -2.24px at 72px, -2.48px at 80px) is essential — without it, the serif reads loose and archaic.",
+        "sizes": "64px, 72px, 80px",
+        "family": "Tobias",
+        "weight": "400",
+        "lineHeight": "1.00–1.10",
+        "substitute": "Playfair Display, Freight Display Pro",
+        "letterSpacing": "-1.98px at 64px, -1.01px at 72px, -0.96px at 80px",
+        "fontFeatureSettings": "\"clig\", \"liga\", \"ss01\", \"ss11\""
+      },
+      {
+        "role": "Large section headings where serif would be too literary — weight 350 is lighter than any standard system font weight, creating headers that are large but not heavy, letting white space carry visual weight instead of stroke width.",
+        "sizes": "14px, 16px, 20px",
+        "family": "TWK Lausanne",
+        "weight": "350",
+        "lineHeight": "1.10",
+        "substitute": "Inter var at weight 350, Neue Haas Grotesk",
+        "fontFeatureSettings": "\"clig\", \"liga\", \"ss01\", \"ss11\""
+      },
+      {
+        "role": "Body copy, navigation, buttons, labels, captions. The workhorse sans-serif. ss01 and ss11 OpenType features active — these are likely alternate glyph sets that distinguish it from a plain geometric sans. At 14px for eyebrow labels (uppercase-tracked), at 16px for body, at 20px for subheadings.",
+        "sizes": "16px",
+        "family": "TWK Lausanne",
+        "weight": "400",
+        "lineHeight": "1.00–1.49",
+        "substitute": "Inter, Aktiv Grotesk",
+        "fontFeatureSettings": "\"clig\", \"liga\", \"ss01\", \"ss11\""
+      },
+      {
+        "role": "Bold emphasis in body contexts, strong labels.",
+        "sizes": "14px",
+        "family": "TWK Lausanne",
+        "weight": "700",
+        "lineHeight": "1.20–1.30",
+        "substitute": "Inter 700"
+      }
+    ],
+    "description": "Typeform operates in a register of editorial authority — a publishing house that also ships software. The hero section is a deep aubergine-black (#2a222b) that transitions to an almost-white cream (#faf9fb), creating a palette that feels like parchment under lamplight rather than a typical SaaS light-on-dark flip. The defining signature is the Tobias serif at display sizes: a classical editorial typeface with tight negative tracking (-0.031em at 64px) sitting alongside the geometric sans-serif TWK Lausanne, creating a deliberate tension between print heritage and digital utility. Buttons are low-key 12px radius rectangles in near-black — not pill-shaped, not sharp — quiet enough to let the typography lead. Purple (#9454ab) appears sparingly as a section label color for category eyebrows, never as a primary CTA, acting more like an editorial accent ink than a conversion color.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      }
+    ],
+    "elevationPhilosophy": "Typeform avoids box-shadows entirely. Elevation and depth are conveyed through background color progression: #2a222b → #3e3040 for dark layers, #faf9fb → #f5f3f6 → #ffffff for light layers. The dark-to-light section alternation IS the elevation system — a card on a cream background uses white to lift off the surface, not a shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#2a222b",
+          "oklch": {
+            "c": 0.02011517362130985,
+            "h": 322.5499126398542,
+            "l": 0.26485523465895305
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "button",
+            "heading",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 1931,
+          "confidence": 1,
+          "prominence": 71648743.0488138,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#faf9fb",
+          "oklch": {
+            "c": 0.0028337763293875703,
+            "h": 308.4283799048858,
+            "l": 0.9834398593557317
+          },
+          "contexts": [
+            "nav",
+            "hero",
+            "other",
+            "heading",
+            "body",
+            "button",
+            "image",
+            "footer",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 1097,
+          "confidence": 1,
+          "prominence": 10570413.842405314,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "button",
+            "icon"
+          ],
+          "frequency": 94,
+          "confidence": 1,
+          "prominence": 5574003.465075751,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#564b58",
+          "oklch": {
+            "c": 0.025379550742453915,
+            "h": 321.05976938109904,
+            "l": 0.42850303348445357
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 876909,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#3e3040",
+          "oklch": {
+            "c": 0.03353768407038579,
+            "h": 322.15086786965554,
+            "l": 0.33116373993812054
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 102311,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 63,
+          "confidence": 1,
+          "prominence": 65826,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#9454ab",
+          "oklch": {
+            "c": 0.1454408295067922,
+            "h": 316.5056537660281,
+            "l": 0.5552540998603348
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 15640,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ddb7f0",
+          "oklch": {
+            "c": 0.08801471905930293,
+            "h": 314.30917312810806,
+            "l": 0.8311820849498601
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 8354.598802330776,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.03761337628734334,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#ffffff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.42,
+          "background": "#ffffff",
+          "foreground": "#2a222b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.16,
+          "background": "#faf9fb",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.69,
+          "background": "#faf9fb",
+          "foreground": "#2a222b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.34,
+          "background": "#3e3040",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.76,
+          "background": "#3e3040",
+          "foreground": "#faf9fb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.17,
+          "background": "#ddb7f0",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.89,
+          "background": "#2a222b",
+          "foreground": "#ddb7f0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.26,
+          "background": "#ffffff",
+          "foreground": "#564b58"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.87,
+          "background": "#faf9fb",
+          "foreground": "#564b58"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.11,
+          "background": "#3e3040",
+          "foreground": "#ddb7f0"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.1,
+          "background": "#ffffff",
+          "foreground": "#9454ab"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.86,
+          "background": "#faf9fb",
+          "foreground": "#9454ab"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.76,
+          "background": "#ddb7f0",
+          "foreground": "#564b58"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.02,
+          "background": "#2a222b",
+          "foreground": "#9454ab"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.42,
+          "background": "#3e3040",
+          "foreground": "#9454ab"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.73,
+          "background": "#ffffff",
+          "foreground": "#ddb7f0"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.65,
+          "background": "#faf9fb",
+          "foreground": "#ddb7f0"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.29,
+          "background": "#3e3040",
+          "foreground": "#222222"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.25,
+          "background": "#3e3040",
+          "foreground": "#2a222b"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 86
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 113,
+          "properties": [
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 256,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 218,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 72,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 137,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Twklausanne 400",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 579,
+          "fontFeatureSettings": [
+            "\"clig\", \"liga\", \"ss01\", \"ss11\""
+          ]
+        },
+        {
+          "family": "Twklausanne 500",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 21,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Tobias",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": [
+            "\"clig\", \"liga\", \"ss01\", \"ss11\""
+          ]
+        },
+        {
+          "family": "Twklausanne 600",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Twklausanne 350",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": [
+            "\"clig\", \"liga\", \"ss01\", \"ss11\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Twklausanne 600",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Twklausanne 400",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "link"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.49,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Twklausanne 400",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "nav",
+            "hero",
+            "image",
+            "footer",
+            "list",
+            "link"
+          ],
+          "frequency": 533,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Twklausanne 400",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Twklausanne 500",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Twklausanne 400",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Twklausanne 500",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Twklausanne 400",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Twklausanne 400",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Twklausanne 400",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Twklausanne 350",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Tobias",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Tobias",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Tobias",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d268963c-ca1a-4384-bf5b-3007cbd00985.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3ce30ab0-c01f-495b-b552-720569445d82.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a0d54731-58dc-448b-a6b0-ed543f397ab1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Typeform design system\",\"item\":\"https://styles.refero.design/style/a0d54731-58dc-448b-a6b0-ed543f397ab1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a0d54731-58dc-448b-a6b0-ed543f397ab1#style-reference\",\"name\":\"Typeform design system reference\",\"headline\":\"Typeform design system | Refero Styles\",\"description\":\"Explore Typeform's mixed SaaS design system: Aubergine Ink #2a222b, Deep Plum #3e3040 colors, Tobias, TWK Lausanne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a0d54731-58dc-448b-a6b0-ed543f397ab1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a0d54731-58dc-448b-a6b0-ed543f397ab1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Typeform\",\"url\":\"https://typeform.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a0d54731-58dc-448b-a6b0-ed543f397ab1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3ce30ab0-c01f-495b-b552-720569445d82.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3ce30ab0-c01f-495b-b552-720569445d82.jpg\",\"caption\":\"Screenshot of Typeform\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3ce30ab0-c01f-495b-b552-720569445d82.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Typeform design system\",\"Typeform website design\",\"Typeform colors\",\"Typeform typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Aubergine Ink\",\"Deep Plum\",\"Violet Mist\",\"Lavender Whisper\",\"Tobias\",\"TWK Lausanne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Typeform design system\"},{\"@type\":\"Thing\",\"name\":\"Typeform website design\"},{\"@type\":\"Thing\",\"name\":\"Typeform colors\"},{\"@type\":\"Thing\",\"name\":\"Typeform typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-03-16T19:55:27.000Z\",\"dateModified\":\"2026-03-16T19:55:27.000Z\"}]}19:T5d8,<div style=\"--color-aubergine-ink:#2a222b;--color-deep-plum:#3e3040;--color-violet-mist:#9454ab;--color-lavender-whisper:#ddb7f0;--color-cream-canvas:#faf9fb;--color-pure-white:#ffffff;--color-charcoal:#222222;--color-slate-mid:#564b58;--color-ash:#655d67;--color-fog:#837a85;--color-mist:#d4d1d5;--color-parchment:#f5f3f6;--font-tobias:'Playfair Display',Georgia,serif;--font-twk-lausanne:'Inter',system-ui,sans-serif;width:600px;box-sizing:border-box;font-family:var(--font-twk-lausanne);\"><div style=\"background:var(--color-aubergine-ink);padding:14px 48px;display:flex;align-items:center;justify-content:center;position:relative;min-height:48px;\"><p style=\"margin:0;font-family:var(--font-twk-lausanne);font-size:15px;font-weight:400;color:var(--color-cream-canvas);line-height:1.4;text-align:center;font-feature-settings:'clig','liga','ss01','ss11';\">Don't just collect leads—close them.&nbsp;<a href=\"#\" style=\"color:var(--color-cream-canvas);text-decoration:underline;font-family:var(--font-twk-lausanne);font-size:15px;font-weight:400;\">Learn more about Typeform for Growth.</a></p><button style=\"position:absolute;right:20px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 4L4 12M4 4L12 12\" stroke=\"#faf9fb\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></svg></button></div></div>1a:Tad8,<div style=\"--color-aubergine-ink:#2a222b;--color-deep-plum:#3e3040;--color-violet-mist:#9454ab;--color-lavender-whisper:#ddb7f0;--color-cream-canvas:#faf9fb;--color-pure-white:#ffffff;--color-charcoal:#222222;--color-slate-mid:#564b58;--color-ash:#655d67;--color-fog:#837a85;--color-mist:#d4d1d5;--color-parchment:#f5f3f6;--font-tobias:'Playfair Display',Georgia,serif;--font-twk-lausanne:'Inter',system-ui,sans-serif;width:600px;box-sizing:border-box;font-family:var(--font-twk-lausanne);background:var(--color-cream-canvas);padding:56px 48px;\"><div style=\"display:flex;gap:32px;align-items:flex-start;\"><div style=\"flex:1;min-width:0;\"><p style=\"margin:0 0 16px 0;font-family:var(--font-twk-lausanne);font-size:13px;font-weight:400;color:var(--color-violet-mist);text-transform:uppercase;letter-spacing:0.1em;font-feature-settings:'clig','liga','ss01','ss11';\">Data Collection</p><h2 style=\"margin:0 0 20px 0;font-family:var(--font-tobias);font-size:40px;font-weight:400;color:var(--color-aubergine-ink);line-height:1.08;letter-spacing:-1.2px;font-feature-settings:'clig','liga','ss01','ss11';\">Get 3.5x more data with a form expert</h2><p style=\"margin:0 0 32px 0;font-family:var(--font-twk-lausanne);font-size:16px;font-weight:400;color:var(--color-ash);line-height:1.49;font-feature-settings:'clig','liga','ss01','ss11';\">Backed by over a decade of experience, Typeform AI helps you build expertly-designed, best-practice forms proven to get more responses.</p><a href=\"#\" style=\"display:inline-block;background:var(--color-aubergine-ink);color:var(--color-cream-canvas);font-family:var(--font-twk-lausanne);font-size:16px;font-weight:400;padding:10px 24px;border-radius:12px;text-decoration:none;font-feature-settings:'clig','liga','ss01','ss11';\">Get started—it's free</a></div><div style=\"width:180px;flex-shrink:0;\"><div style=\"width:180px;height:220px;background:linear-gradient(145deg,#f0eaf8,#e8dff4);border-radius:24px;display:flex;align-items:center;justify-content:center;\"><div style=\"width:130px;\"><div style=\"background:rgba(255,255,255,0.7);border-radius:8px;padding:10px 12px;margin-bottom:8px;\"><div style=\"height:6px;background:#c8b8d8;border-radius:3px;width:80%;margin-bottom:5px;\"></div><div style=\"height:6px;background:#c8b8d8;border-radius:3px;width:55%;\"></div></div><div style=\"background:rgba(255,255,255,0.5);border-radius:8px;padding:10px 12px;margin-bottom:8px;\"><div style=\"height:6px;background:#d4c5e2;border-radius:3px;width:90%;margin-bottom:5px;\"></div><div style=\"height:6px;background:#d4c5e2;border-radius:3px;width:65%;\"></div></div><div style=\"background:rgba(255,255,255,0.4);border-radius:8px;padding:8px 12px;\"><div style=\"height:6px;background:#ddd0ea;border-radius:3px;width:70%;\"></div></div></div></div></div></div></div>1b:T1242,<div style=\"--color-aubergine-ink:#2a222b;--color-deep-plum:#3e3040;--color-violet-mist:#9454ab;--color-lavender-whisper:#ddb7f0;--color-cream-canvas:#faf9fb;--color-pure-white:#ffffff;--color-charcoal:#222222;--color-slate-mid:#564b58;--color-ash:#655d67;--color-fog:#837a85;--color-mist:#d4d1d5;--color-parchment:#f5f3f6;--font-tobias:'Playfair Display',Georgia,serif;--font-twk-lausanne:'Inter',system-ui,sans-serif;width:600px;box-sizing:border-box;font-family:var(--font-twk-lausanne);background:var(--color-pure-white);padding:56px 40px;\"><div style=\"text-align:center;margin-bottom:40px;\"><p style=\"margin:0 0 16px 0;font-family:var(--font-twk-lausanne);font-size:13px;font-weight:400;color:var(--color-violet-mist);text-transform:uppercase;letter-spacing:0.1em;font-feature-settings:'clig','liga','ss01','ss11';\">Integrations</p><h2 style=\"margin:0;font-family:var(--font-tobias);font-size:40px;font-weight:400;color:var(--color-aubergine-ink);line-height:1.08;letter-spacing:-1.2px;font-feature-settings:'clig','liga','ss01','ss11';\">Connect with hundreds of your business-critical tools</h2></div><div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px;\"><div style=\"background:var(--color-pure-white);border:1px solid var(--color-mist);border-radius:24px;padding:14px 20px;display:flex;align-items:center;justify-content:center;min-height:52px;\"><span style=\"font-family:var(--font-twk-lausanne);font-size:15px;font-weight:700;color:var(--color-aubergine-ink);letter-spacing:-0.3px;\">CallRail</span></div><div style=\"background:var(--color-pure-white);border:1px solid var(--color-mist);border-radius:24px;padding:14px 20px;display:flex;align-items:center;justify-content:center;min-height:52px;\"><span style=\"font-family:var(--font-twk-lausanne);font-size:15px;font-weight:600;color:var(--color-aubergine-ink);\">⊙ Calendly</span></div><div style=\"background:var(--color-pure-white);border:1px solid var(--color-mist);border-radius:24px;padding:14px 20px;display:flex;align-items:center;justify-content:center;min-height:52px;\"><span style=\"font-family:var(--font-twk-lausanne);font-size:15px;font-weight:600;color:var(--color-aubergine-ink);\">INTERCOM</span></div><div style=\"background:var(--color-pure-white);border:1px solid var(--color-mist);border-radius:24px;padding:14px 20px;display:flex;align-items:center;justify-content:center;min-height:52px;\"><span style=\"font-family:var(--font-twk-lausanne);font-size:15px;font-weight:700;color:var(--color-aubergine-ink);letter-spacing:-0.5px;\">klaviyo</span></div><div style=\"background:var(--color-pure-white);border:1px solid var(--color-mist);border-radius:24px;padding:14px 20px;display:flex;align-items:center;justify-content:center;min-height:52px;\"><span style=\"font-family:var(--font-twk-lausanne);font-size:15px;font-weight:600;color:var(--color-aubergine-ink);\">✦ slack</span></div><div style=\"background:var(--color-pure-white);border:1px solid var(--color-mist);border-radius:24px;padding:14px 20px;display:flex;align-items:center;justify-content:center;min-height:52px;\"><span style=\"font-family:var(--font-twk-lausanne);font-size:15px;font-weight:700;color:var(--color-aubergine-ink);\">Stripe</span></div></div><div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:36px;\"><div style=\"background:var(--color-pure-white);border:1px solid var(--color-mist);border-radius:24px;padding:14px 20px;display:flex;align-items:center;justify-content:center;min-height:52px;\"><span style=\"font-family:var(--font-twk-lausanne);font-size:14px;font-weight:600;color:var(--color-aubergine-ink);\">ActiveCampaign ›</span></div><div style=\"background:var(--color-pure-white);border:1px solid var(--color-mist);border-radius:24px;padding:14px 20px;display:flex;align-items:center;justify-content:center;min-height:52px;\"><span style=\"font-family:var(--font-twk-lausanne);font-size:15px;font-weight:700;color:var(--color-aubergine-ink);\">—Zapier</span></div><div style=\"background:var(--color-pure-white);border:1px solid var(--color-mist);border-radius:24px;padding:14px 20px;display:flex;align-items:center;justify-content:center;min-height:52px;\"><span style=\"font-family:var(--font-twk-lausanne);font-size:15px;font-weight:700;color:var(--color-aubergine-ink);\">Webflow</span></div></div><div style=\"text-align:center;\"><a href=\"#\" style=\"display:inline-block;background:var(--color-aubergine-ink);color:var(--color-cream-canvas);font-family:var(--font-twk-lausanne);font-size:16px;font-weight:400;padding:12px 28px;border-radius:12px;text-decoration:none;font-feature-settings:'clig','liga','ss01','ss11';\">See all integrations</a></div></div>1c:T898,**Quick Color Reference**\n- Page background: #faf9fb (Cream Canvas)\n- Primary text: #2a222b (Aubergine Ink)\n- Hero / CTA button background: #2a222b\n- CTA button text / reversed text: #faf9fb\n- Section eyebrow accent: #9454ab (Violet Mist)\n- Borders / dividers: #d4d1d5\n- Secondary text: #655d67\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-width background #2a222b. Eyebrow label: 'AI ENGAGEMENT PLATFORM' in TWK Lausanne 400 14px uppercase, color #9454ab, letter-spacing 0.08em, centered. Headline: Tobias 400 80px, color #faf9fb, line-height 1.0, letter-spacing -0.96px, centered, max-width 720px. Subtext: TWK Lausanne 400 20px, color #faf9fb, opacity 0.85, centered, max-width 560px, margin-top 24px. CTA button: background #faf9fb... wait — use background #2a222b with border 1px #faf9fb, text #faf9fb, border-radius 12px, padding 8px 24px, TWK Lausanne 400 16px, margin-top 32px.\n\n2. **Content Section (light)**: Background #faf9fb, padding 64px 48px. Two-column: left column eyebrow label in #9454ab TWK Lausanne 14px uppercase + heading in Tobias 400 64px #2a222b letter-spacing -1.98px + body in TWK Lausanne 400 16px #2a222b line-height 1.49 + CTA button (#2a222b fill, #faf9fb text, 12px radius, 8px 24px padding). Right column: product screenshot in a #f9f2fd background container, border-radius 24px.\n\n3. **Integration Logo Grid**: Background #faf9fb, centered heading Tobias 400 64px #2a222b. Grid of logo pills: each pill background #ffffff, border 1px #d4d1d5, border-radius 24px, padding 12px 24px, logo in #2a222b monochrome. Grid: 6-7 columns, gap 8px. Below grid: centered CTA button #2a222b fill, #faf9fb text, 12px radius.\n\n4. **Announcement Banner**: Full-width, background #2a222b, padding 12px 48px, flex row centered. Text in TWK Lausanne 400 14px #faf9fb. Inline link text #ddb7f0 underlined. Dismiss icon right-aligned, #faf9fb, 16px.\n\n5. **Section Eyebrow + Heading Stack**: Eyebrow: TWK Lausanne 400 14px, uppercase, letter-spacing 0.08em, color #9454ab, margin-bottom 8px. Heading: Tobias 400 64px, color #2a222b, letter-spacing -1.98px, line-height 1.10, margin-bottom 16px. Body: TWK Lausanne 400 16px, color #655d67, line-height 1.49, max-width 480px."
+}

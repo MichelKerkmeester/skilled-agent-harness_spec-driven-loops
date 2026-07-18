@@ -1,0 +1,617 @@
+{
+  "source": "https://styles.refero.design/style/ea55601d-e953-48b3-99db-374b39bf2f56",
+  "uuid": "ea55601d-e953-48b3-99db-374b39bf2f56",
+  "name": "Waka Waka",
+  "northStar": "museum poster in bone and ink — monumental black grotesk type printed on warm off-white paper, everything else recedes",
+  "capturedAt": "2026-07-18T07:15:36.881Z",
+  "meta": {
+    "url": "https://wakawaka.world",
+    "siteName": "Waka Waka",
+    "extractedAt": "2026-06-03T21:57:37.582Z",
+    "durationMs": 33477,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 66,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Waka Sans weight 700 at 560px with line-height 0.80 and letter-spacing -0.09em for any monumental display element — this is the system's single most recognizable choice",
+      "Set all backgrounds to #edeae4 and all text, borders, and icons to #28282a — never introduce a second color",
+      "Use 0px border-radius on every component including cards, buttons, and image containers",
+      "Use hairline 1px #28282a dividers and borders instead of background-color contrast to separate content",
+      "Set tight letter-spacing at scale: -0.09em at display, -0.03em at subheading, -0.02em at body",
+      "Keep spacing compact: 10px element gaps, 20px container padding, 80px section gaps",
+      "Let product photography sit directly on the bone background with no frame, shadow, or radius"
+    ],
+    "donts": [
+      "Do not introduce any chromatic color, gradient, or accent hue — the system is strictly two-tone",
+      "Do not use filled buttons, colored backgrounds, or background-fill hover states on interactive elements",
+      "Do not apply border-radius greater than 0px to any element",
+      "Do not use box-shadow or any elevation effect — surfaces are flat",
+      "Do not set type below 10px or above 560px — the scale is deliberate and extreme",
+      "Do not use light line-heights (1.5+) on display or heading sizes — 0.80–1.00 is required to maintain density",
+      "Do not separate sections with colored bands or background fills — use whitespace and hairline rules only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#edeae4",
+        "name": "Bone Paper",
+        "role": "Page background, all canvas surfaces — warm off-white that reads as unbleached paper rather than digital white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c9c7c4",
+        "name": "Stone Gray",
+        "role": "Secondary surface and muted contextual neutral — appears in contrast pairings as a slightly deeper layer below the canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#28282a",
+        "name": "Ink Black",
+        "role": "Primary text, all borders, hairline rules, icon strokes, and the only chromatic anchor in the system — near-black with a hint of warmth so it sits comfortably on the bone background instead of vibrating",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered on the bone canvas with generous outer margins that create a printed-page feel. The page is organized as a single vertical scroll of stacked sections rather than a multi-column dashboard. The hero is a full-viewport editorial poster: oversized 560px wordmark anchored to the top, followed by an image grid, then a second monumental type block. Below the hero, sections alternate between product image grids (2-column and asymmetric layouts) and typographic statements. Navigation is a minimal top bar with small text and 10px gaps. Footer is a dense colophon-style text block. The overall rhythm is the rhythm of a printed catalog: one bold image or type statement, then breathing space, then the next. Grid usage is restrained — 2-column image grids and asymmetric editorial compositions, not dense card matrices.",
+    "imagery": "Product photography is the only visual content beyond type. Images are presented as documentary-style object studies on the warm bone background — furniture and functional objects photographed frontally or at slight angle, with no lifestyle context, no human subjects, and no environmental staging. Each image is a tight crop that fills its grid cell edge-to-edge with no margin, frame, or radius. The photography carries the role of a museum catalog plate: the object IS the image, and the surrounding bone paper is the gallery wall. No illustration, no abstract graphics, no decorative imagery. Color treatment is natural and slightly desaturated so the objects read as physical artifacts rather than advertising.",
+    "similar": [
+      {
+        "why": "Same bone-and-ink monochromatic palette, same editorial poster approach, same custom grotesk used at monumental scale against warm off-white",
+        "business": "Menu Space"
+      },
+      {
+        "why": "Same museum-catalog product presentation on warm neutral canvas, same hairline-bordered grid layouts, no decorative chrome",
+        "business": "Areaware"
+      },
+      {
+        "why": "Same Scandinavian furniture-studio restraint — single background tone, oversized wordmark as primary graphic, products photographed flat on neutral",
+        "business": "Hem"
+      },
+      {
+        "why": "Same editorial typographic system with grotesk at extreme scale, same printed-publication rhythm instead of app-like sectioning",
+        "business": "Coming Soon (studio)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#edeae4",
+        "name": "Bone Paper",
+        "level": 1,
+        "purpose": "Base canvas — the entire page surface"
+      },
+      {
+        "hex": "#c9c7c4",
+        "name": "Stone Gray",
+        "level": 2,
+        "purpose": "Secondary contextual surface appearing in contrast relationships, slightly deeper than the canvas"
+      }
+    ],
+    "northStar": "museum poster in bone and ink — monumental black grotesk type printed on warm off-white paper, everything else recedes",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.6,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1,
+        "letterSpacing": -0.72
+      },
+      {
+        "role": "display",
+        "size": 560,
+        "lineHeight": 0.8,
+        "letterSpacing": -50.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Monumental Display Headline",
+        "role": "Hero wordmark and section dividers",
+        "description": "Waka Sans weight 700 at 560px, line-height 0.80, letter-spacing -0.09em, color #28282a. Used for the brand name rendered as a single oversized graphic element that fills the vertical viewport. No other type element approaches this scale — the contrast between 560px display and 10px captions defines the visual rhythm."
+      },
+      {
+        "name": "Editorial Section Heading",
+        "role": "Mid-scale titles and category labels",
+        "description": "Waka Sans weight 700 at 24px, line-height 1.0, letter-spacing -0.03em, color #28282a. Functions as a quiet secondary headline that appears above product blocks or image grids."
+      },
+      {
+        "name": "Product Image Plate",
+        "role": "Photography containers in grid layouts",
+        "description": "Raw product photography on the #edeae4 canvas with no border, no padding, no radius, and no shadow. Images are presented as full-bleed crops at grid cell size, sitting directly on the bone background so the negative space between images becomes part of the composition."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section and content separators",
+        "description": "1px solid #28282a rule spanning the full content width. The divider is the only structural separator in the system — no background tints, no shadows, no spacing tricks to divide content."
+      },
+      {
+        "name": "Nav Link",
+        "role": "Top navigation items",
+        "description": "Waka Sans weight 500 at 14px, color #28282a, 10px horizontal margin between items. No background, no underline, no active state background — navigation reads as a quiet list of words in the top margin of the page."
+      },
+      {
+        "name": "Footer Text",
+        "role": "Bottom page information",
+        "description": "Waka Sans weight 400 at 10–14px, line-height 1.6, color #28282a, 20px horizontal padding. Multi-column text block at the foot of the page that mirrors the density of a printed colophon."
+      },
+      {
+        "name": "Outlined Action Border",
+        "role": "The only interactive element treatment available",
+        "description": "Uses #28282a as a 1px border on interactive surfaces (ACTION_BORDER evidence present, ACTION_BACKGROUND=0). This is a ghost/outlined pattern only — no filled buttons exist. Interactive areas are demarcated by a hairline outline against the bone background, never by a colored fill."
+      },
+      {
+        "name": "Icon Stroke",
+        "role": "All iconography",
+        "description": "Waka Sans weight 400 glyphs or simple stroke icons at #28282a, sized to match surrounding text (10–18px). 6px margin offset. Icons are treated as typographic elements, not illustrations."
+      },
+      {
+        "name": "Full-Bleed Poster Page",
+        "role": "Landing and index pages",
+        "description": "The entire viewport acts as a single composition: oversized type at top, image grid below, footer at bottom. #edeae4 background, no card containers, no sections with distinct surface colors. The page itself is the component."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single custom grotesk used for everything from 10px captions to 560px display — tight tracking scales with size (-0.09em at display, -0.02em at body) so the enormous type locks into a dense block while body text stays readable. The 0.80–0.83 line-height at display size is the signature: letterforms stack into an almost solid mass of ink",
+        "sizes": "10px, 14px, 18px, 24px, 560px",
+        "family": "Waka Sans",
+        "weight": "400, 500, 700",
+        "lineHeight": "0.80, 0.83, 1.00, 1.20, 1.60",
+        "substitute": "Inter (free) or Söhne (paid) — modern grotesks with similarly tight apertures and even stroke weights",
+        "letterSpacing": "-0.09em at 560px, -0.03em at 24px, -0.02em at 18px",
+        "fontFeatureSettings": ""
+      }
+    ],
+    "description": "Waka Waka treats its website like a printed exhibition catalog: a warm bone-colored paper canvas, one near-black ink, and a custom grotesk typeface deployed at both 10px footnote size and 560px monumental scale. The system is essentially monoline and monochromatic — there are no accents, no secondary hues, no gradients, and almost no decorative chrome. Visual hierarchy is created entirely through typographic weight, scale, and whitespace, with the brand's own name acting as the dominant graphic device on every screen. Components are flat, borderless or hairline-bordered, and feel curated rather than interactive — the page reads as a gallery wall of objects and oversized letterforms, not a software interface.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ea55601d-e953-48b3-99db-374b39bf2f56#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Waka Waka design system\",\"item\":\"https://styles.refero.design/style/ea55601d-e953-48b3-99db-374b39bf2f56\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ea55601d-e953-48b3-99db-374b39bf2f56#style-reference\",\"name\":\"Waka Waka design system reference\",\"headline\":\"Waka Waka design system | Refero Styles\",\"description\":\"Explore Waka Waka's light Design design system: Bone Paper #edeae4, Stone Gray #c9c7c4 colors, Waka Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ea55601d-e953-48b3-99db-374b39bf2f56\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ea55601d-e953-48b3-99db-374b39bf2f56\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Waka Waka\",\"url\":\"https://wakawaka.world\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ea55601d-e953-48b3-99db-374b39bf2f56#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d71ad4b6-d059-4815-83b9-26e2f0150dc4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d71ad4b6-d059-4815-83b9-26e2f0150dc4.jpg\",\"caption\":\"Screenshot of Waka Waka\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d71ad4b6-d059-4815-83b9-26e2f0150dc4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Waka Waka design system\",\"Waka Waka website design\",\"Waka Waka colors\",\"Waka Waka typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Bone Paper\",\"Stone Gray\",\"Ink Black\",\"Waka Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Waka Waka design system\"},{\"@type\":\"Thing\",\"name\":\"Waka Waka website design\"},{\"@type\":\"Thing\",\"name\":\"Waka Waka colors\"},{\"@type\":\"Thing\",\"name\":\"Waka Waka typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T00:35:19.346Z\",\"dateModified\":\"2026-04-30T00:35:19.346Z\"}]}19:T5b3,**Quick Color Reference**\n- background: #edeae4\n- text: #28282a\n- border: #28282a\n- accent: no accent color\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. *Create a hero poster section:* Full-viewport on #edeae4 background. Headline at 560px Waka Sans weight 700, color #28282a, line-height 0.80, letter-spacing -50.4px (-0.09em). Subtitle at 18px weight 400, color #28282a, letter-spacing -0.36px. No buttons, no decoration — the type is the hero.\n\n2. *Create a product image grid:* 2-column grid with 10px gap on #edeae4 background. Each cell is a product photograph filling the cell edge-to-edge with 0px radius, no border, no padding, no shadow. Caption below each image at 10px Waka Sans weight 400, color #28282a, 6px margin-top.\n\n3. *Create a minimal top navigation:* Full-width on #edeae4 background, 20px horizontal padding. Nav items in Waka Sans weight 500 at 14px, color #28282a, 10px horizontal gap between items. No background, no border, no underline on hover — just a quiet list of words.\n\n4. *Create a section divider:* Full-width 1px solid #28282a hairline rule, no padding, no margin decoration. This is the only structural separator in the system.\n\n5. *Create a footer colophon:* 3-column text block at the bottom of the page on #edeae4 background, 20px horizontal padding, separated from content above by a 1px #28282a hairline. Text in Waka Sans weight 400 at 10–14px, line-height 1.6, color #28282a."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally flat. There are no shadows, no elevation effects, and no layered surfaces. Depth is communicated entirely through typographic scale contrast, hairline 1px #28282a borders, and the arrangement of objects on the bone-colored plane."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#28282a",
+          "oklch": {
+            "c": 0.003633739558507327,
+            "h": 286.1606251356827,
+            "l": 0.277632662803872
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "nav",
+            "body",
+            "icon",
+            "image",
+            "footer"
+          ],
+          "frequency": 305,
+          "confidence": 1,
+          "prominence": 2754548.9808924706,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "body/color": 7,
+            "icon/color": 2,
+            "link/color": 7,
+            "other/fill": 3,
+            "image/color": 1,
+            "other/color": 27,
+            "footer/color": 1,
+            "heading/color": 11,
+            "nav/borderColor": 16,
+            "body/borderColor": 28,
+            "icon/borderColor": 8,
+            "link/borderColor": 28,
+            "image/borderColor": 4,
+            "other/borderColor": 108,
+            "footer/borderColor": 4,
+            "heading/borderColor": 44,
+            "body/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#edeae4",
+          "oklch": {
+            "c": 0.008655717537367607,
+            "h": 84.57342470713108,
+            "l": 0.9377084939321264
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 333586,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c9c7c4",
+          "oklch": {
+            "c": 0.004709391463555468,
+            "h": 78.29468951746166,
+            "l": 0.8304098408319084
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 168056.74387646563,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 856.2432512275693,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "other/fill": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.009694999705708498,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.49,
+          "background": "#edeae4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.45,
+          "background": "#c9c7c4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.26,
+          "background": "#edeae4",
+          "foreground": "#28282a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.72,
+          "background": "#c9c7c4",
+          "foreground": "#28282a"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [
+            "icon",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|icon",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|footer",
+            "paddingLeft|footer",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Waka Sans",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 60,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.8
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Waka Sans",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Waka Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "footer",
+            "body"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Waka Sans",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Waka Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Waka Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Waka Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Waka Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Waka Sans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Waka Sans",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Waka Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Waka Sans",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.83,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 560,
+          "family": "Waka Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.09,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/64bb9b6d-733e-43b7-96cd-1e958976f769.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d71ad4b6-d059-4815-83b9-26e2f0150dc4.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ea55601d-e953-48b3-99db-374b39bf2f56#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Waka Waka design system\",\"item\":\"https://styles.refero.design/style/ea55601d-e953-48b3-99db-374b39bf2f56\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ea55601d-e953-48b3-99db-374b39bf2f56#style-reference\",\"name\":\"Waka Waka design system reference\",\"headline\":\"Waka Waka design system | Refero Styles\",\"description\":\"Explore Waka Waka's light Design design system: Bone Paper #edeae4, Stone Gray #c9c7c4 colors, Waka Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ea55601d-e953-48b3-99db-374b39bf2f56\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ea55601d-e953-48b3-99db-374b39bf2f56\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Waka Waka\",\"url\":\"https://wakawaka.world\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ea55601d-e953-48b3-99db-374b39bf2f56#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d71ad4b6-d059-4815-83b9-26e2f0150dc4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d71ad4b6-d059-4815-83b9-26e2f0150dc4.jpg\",\"caption\":\"Screenshot of Waka Waka\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d71ad4b6-d059-4815-83b9-26e2f0150dc4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Waka Waka design system\",\"Waka Waka website design\",\"Waka Waka colors\",\"Waka Waka typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Bone Paper\",\"Stone Gray\",\"Ink Black\",\"Waka Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Waka Waka design system\"},{\"@type\":\"Thing\",\"name\":\"Waka Waka website design\"},{\"@type\":\"Thing\",\"name\":\"Waka Waka colors\"},{\"@type\":\"Thing\",\"name\":\"Waka Waka typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T00:35:19.346Z\",\"dateModified\":\"2026-04-30T00:35:19.346Z\"}]}19:T5b3,**Quick Color Reference**\n- background: #edeae4\n- text: #28282a\n- border: #28282a\n- accent: no accent color\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. *Create a hero poster section:* Full-viewport on #edeae4 background. Headline at 560px Waka Sans weight 700, color #28282a, line-height 0.80, letter-spacing -50.4px (-0.09em). Subtitle at 18px weight 400, color #28282a, letter-spacing -0.36px. No buttons, no decoration — the type is the hero.\n\n2. *Create a product image grid:* 2-column grid with 10px gap on #edeae4 background. Each cell is a product photograph filling the cell edge-to-edge with 0px radius, no border, no padding, no shadow. Caption below each image at 10px Waka Sans weight 400, color #28282a, 6px margin-top.\n\n3. *Create a minimal top navigation:* Full-width on #edeae4 background, 20px horizontal padding. Nav items in Waka Sans weight 500 at 14px, color #28282a, 10px horizontal gap between items. No background, no border, no underline on hover — just a quiet list of words.\n\n4. *Create a section divider:* Full-width 1px solid #28282a hairline rule, no padding, no margin decoration. This is the only structural separator in the system.\n\n5. *Create a footer colophon:* 3-column text block at the bottom of the page on #edeae4 background, 20px horizontal padding, separated from content above by a 1px #28282a hairline. Text in Waka Sans weight 400 at 10–14px, line-height 1.6, color #28282a."
+}

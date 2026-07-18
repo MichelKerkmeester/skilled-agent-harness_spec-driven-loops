@@ -1,0 +1,322 @@
+{
+  "color": {
+    "void-canvas": {
+      "$value": "#151316",
+      "$type": "color",
+      "$description": "Void Canvas — Page background, hero canvas, footer — near-black with a faint violet undertone that keeps the dark from feeling flat or sterile"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Primary text and icon color on dark surfaces; borders on dark UI; inverted text on light feature cards"
+    },
+    "elevated-surface": {
+      "$value": "#444245",
+      "$type": "color",
+      "$description": "Elevated Surface — Card and panel surface above the void canvas — subtle lift achieved through one tonal step rather than shadow"
+    },
+    "mist": {
+      "$value": "#8e8e8e",
+      "$type": "color",
+      "$description": "Mist — Muted body text, hairline dividers, inactive icon strokes, and low-emphasis borders on dark backgrounds"
+    },
+    "smoke": {
+      "$value": "#585657",
+      "$type": "color",
+      "$description": "Smoke — Mid-weight borders and subtle UI separators — slightly darker than Mist for structural rules"
+    },
+    "ash": {
+      "$value": "#b9b9b9",
+      "$type": "color",
+      "$description": "Ash — Light-mode body borders and secondary text on warm light sections"
+    },
+    "bone": {
+      "$value": "#f4f2ee",
+      "$type": "color",
+      "$description": "Bone — Hairline borders, dividers, input outlines, and card edges on light surfaces."
+    },
+    "charcoal": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Charcoal — Primary text on light feature sections and nav borders in light mode"
+    },
+    "mint-filament": {
+      "$value": "#8ef5b5",
+      "$type": "color",
+      "$description": "Mint Filament — The single chromatic accent — filled primary CTAs, eyebrow pill labels, active nav indicator, logo glow, and green-text logo tints. Against #151316 the contrast is 14:1, making it legible as both text and fill"
+    },
+    "deep-teal": {
+      "$value": "#24574d",
+      "$type": "color",
+      "$description": "Deep Teal — Muted teal used for gradient stops and subtle secondary accents — never appears alone, always paired as a background fade or shadow; Gradient overlay creating soft elevation behind product screenshot and logo wall"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Entire UI — body, nav, headings, buttons, cards. Only two weights used (regular 400, medium 500) which is the core typographic discipline: no bold display weight, no light italic, just calm and confident Inter. The 13px/17px pair forms the dense product text; 40–60px carries the marketing voice. Headlines use -0.03em tracking to pull letters tight against the dark canvas."
+    },
+    "inconsolata-custom-mapped-eyebrow-face": {
+      "$value": "Inconsolata (custom-mapped eyebrow face)",
+      "$type": "fontFamily",
+      "$description": "Eyebrow labels, status pills, and small ALL CAPS markers like 'ASSEMBLY 15 NOW ORDINAL', 'SCHEDULING', 'WATCH A DEMO 4:15'. The monospace character at 13–17px is a deliberate break from Inter's proportions — signals 'metadata / system status / not body content'. 0.01em positive tracking on the eyebrow adds the ALL CAPS breath small caps need."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inconsolata-Eyebrow",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inconsolata-Eyebrow",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inconsolata-Eyebrow",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inconsolata-Eyebrow",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Inconsolata-Eyebrow",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 17px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "53px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 53px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    },
+    "33": {
+      "$value": "33px",
+      "$type": "dimension",
+      "$description": "Spacing 33px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "83": {
+      "$value": "83px",
+      "$type": "dimension",
+      "$description": "Spacing 83px"
+    },
+    "141": {
+      "$value": "141px",
+      "$type": "dimension",
+      "$description": "Spacing 141px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4.96px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10.08px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "18.08px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#151316",
+      "$type": "color",
+      "$description": "Surface level 0: Base page and section background — the room everything sits in"
+    },
+    "elevated-panel": {
+      "$value": "#444245",
+      "$type": "color",
+      "$description": "Surface level 1: Cards, feature blocks, and product surface — one step lighter than the canvas"
+    },
+    "teal-wash": {
+      "$value": "#24574d",
+      "$type": "color",
+      "$description": "Surface level 2: Gradient backstop behind product screenshots and logo wall — softens the void"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.meetassembly.com",
+      "siteName": "Ordinal",
+      "extractedAt": "2026-06-03T20:00:03.203Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — All text, thin dividers, image overlays, wordmark fill, and the sole stroke color for outlined controls. Maximum contrast against paper"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, all surface backgrounds, inverted text on dark photographic plates, scroll indicator wells"
+    }
+  },
+  "font": {
+    "favorit-times": {
+      "$value": "Favorit Times",
+      "$type": "fontFamily",
+      "$description": "Display and editorial headlines only. The wordmark 'Favorit' and section titles live here. Set at sizes between 44px and 179px, always weight 400, always with negative tracking that tightens proportionally with size. A single weight at display size is the signature: no bold, no italic — authority comes from scale and the serif's contrast, not from weight."
+    },
+    "twklausanne": {
+      "$value": "TWKLausanne",
+      "$type": "fontFamily",
+      "$description": "Utility and body voice — navigation labels, scroll indicators, list items, body copy, and the rare button. Also handles oversized sans display work in the 135–189px range where the serif would feel wrong. Tracking loosens as size shrinks: -0.025em at display, -0.017em at mid, -0.010em at body. A single weight across the entire scale keeps the sans disciplined and the serif dramatic by contrast."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "TWKLausanne",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "TWKLausanne",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 23px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Favorit Times",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Favorit Times",
+        "fontSize": "55px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 55px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "TWKLausanne",
+        "fontSize": "135px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 135px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "TWKLausanne",
+        "fontSize": "159px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 159px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Favorit Times",
+        "fontSize": "179px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 179px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "TWKLausanne",
+        "fontSize": "189px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 189px"
+    }
+  },
+  "spacing": {
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "46": {
+      "$value": "46px",
+      "$type": "dimension",
+      "$description": "Spacing 46px"
+    },
+    "47": {
+      "$value": "47px",
+      "$type": "dimension",
+      "$description": "Spacing 47px"
+    },
+    "54": {
+      "$value": "54px",
+      "$type": "dimension",
+      "$description": "Spacing 54px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: The entire page canvas. There is no surface above it — no cards, no panels, no elevated layers. All text and all photographs sit directly on Paper."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://favorit.studio",
+      "siteName": "Favorit Studio",
+      "extractedAt": "2026-06-03T20:40:42.473Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,1001 @@
+{
+  "source": "https://styles.refero.design/style/e5081033-bd79-479a-aef6-8b002df6086a",
+  "uuid": "e5081033-bd79-479a-aef6-8b002df6086a",
+  "name": "Ableton",
+  "northStar": "Editorial workshop on stark white. White paper, black Futura, one blue pen mark for interactivity, photography clipped flush to the edges like magazine spreads.",
+  "capturedAt": "2026-07-18T07:42:13.978Z",
+  "meta": {
+    "url": "https://ableton.com",
+    "siteName": "Ableton",
+    "extractedAt": "2026-06-03T19:50:43.615Z",
+    "durationMs": 22231,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 248,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Futura PT for all text — never introduce a secondary typeface",
+      "Set every border-radius to 0px — the system is sharp, angular, and grid-faithful",
+      "Use #0000ff exclusively for link text, active nav, and interactive text — no other blue",
+      "Reach for coral #ff8389 and teal #00d2be only as category tag fills, never as backgrounds or text colors",
+      "Let the page be flat: no shadows, no borders, no fills on cards — let whitespace and type do the work",
+      "Use 90px weight 400 white for hero overlay text, not weight 700 — the light weight on bold imagery is the signature",
+      "Set body line-height to 1.50 and display line-height to 1.00 — the contrast between breathing body and tight display is intentional"
+    ],
+    "donts": [
+      "Do not add box-shadows or elevation to any component — the system is deliberately flat",
+      "Do not round corners on cards, tags, buttons, or inputs — keep 0px everywhere",
+      "Do not use coral or teal for buttons, CTAs, or interactive text — they are taxonomy-only",
+      "Do not call #0000ff a 'CTA color' — it is a link color used for interactive text, not filled buttons",
+      "Do not introduce gradient backgrounds — the system is solid color and photography only",
+      "Do not add icons, illustrations, or decorative graphics — photography and type carry the visual load",
+      "Do not set body text below 14px or use a weight other than 400 for body copy"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, nav labels, logo, icon strokes, and every text-level heading — sets the full information hierarchy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, card surface, and hero overlay text — the default background for almost every screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Fog",
+        "role": "Subtle form inputs, tag surfaces, and quiet secondary panel backgrounds — barely-there neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0000ff",
+        "name": "Signal Blue",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff8389",
+        "name": "Coral",
+        "role": "Category tag fills (Downloads, News) — flat rectangular badges that classify content without padding the layout",
+        "group": "accent"
+      },
+      {
+        "hex": "#00d2be",
+        "name": "Teal",
+        "role": "Category tag fills (Tutorials, Videos) — flat rectangular badges paired with coral to split content taxonomy visually",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page model is full-bleed for hero and footer zones, contained to ~1200px for content sections. The hero is a full-viewport-width photographic band with left-aligned white type overlay. Content sections sit on white with generous ~80px vertical breathing room between them. The 3-column card grid is the dominant content pattern, used for blog posts, tutorial videos, and featured content. Card titles are left-aligned, category tags sit flush left above the title. The top navigation is a single thin horizontal bar — no mega-menu, no sidebar, no sticky behavior visible beyond standard. Section transitions rely on whitespace rather than dividers, background changes, or visual breaks. The overall rhythm is: bold photographic hero → quiet white editorial sections → 3-column grid repeat. The design favors a left-to-right, top-to-bottom reading flow with no overlapping or asymmetric compositions.",
+    "imagery": "Photography dominates the visual system — no illustrations, no 3D renders, no abstract graphics. The hero uses a full-bleed environmental shot (laptop on patterned rug, musician at workstation) with a dark scrim and white overlaid type. Grid content cards use contained 16:10 or 16:9 photographs — musicians in studios, hardware close-ups, software UI captures, domestic creative spaces. Photography is warm, natural-lit, candid rather than staged; people are shown making, not performing. The product itself (the software, controllers like Push) appears in context rather than as isolated hero shots. Photography edges are sharp, un-masked, flush to container boundaries — no rounded corners, no soft drop shadows behind images. Icons are absent except for the brand glyph and minimal interface controls.",
+    "similar": [
+      {
+        "why": "Same monochrome editorial approach with photography-first content cards, flat layout, and a single accent color for interactive text",
+        "business": "Native Instruments"
+      },
+      {
+        "why": "Same sharp-cornered zero-radius aesthetic, Futura-adjacent geometric type, and reliance on product-in-context photography over decorative chrome",
+        "business": "Teenage Engineering"
+      },
+      {
+        "why": "Same stark-white-canvas editorial feel with bold geometric type, category-color taxonomy tags, and full-bleed photography of musicians at work",
+        "business": "Moog Music"
+      },
+      {
+        "why": "Same text-driven, no-decoration layout philosophy with 3-column content grids and category-based color coding for tags",
+        "business": "Bandcamp"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Primary page canvas and card surface"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Fog",
+        "level": 2,
+        "purpose": "Recessed form input fields and occasional quiet panel fills"
+      }
+    ],
+    "northStar": "Editorial workshop on stark white. White paper, black Futura, one blue pen mark for interactivity, photography clipped flush to the edges like magazine spreads.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 21
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 24
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 30
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 33.6
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 36
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 48
+      },
+      {
+        "role": "display",
+        "size": 90,
+        "lineHeight": 90
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Thin white bar, height ~48px. Left: Ableton wordmark icon (vertical-line glyph). Center-left: product names (Live, Push, Move, Note, Link, Shop, Packs, Help, More +) in 14px Futura PT weight 400 black, separated by 20–24px horizontal gap. Right: 'Try Live 12 for free' link in #0000ff, then 'Log in or register' in #0000ff, each at 14px. No background fill change on hover, no borders."
+      },
+      {
+        "name": "Full-Bleed Hero with Photo Scrim",
+        "role": "Above-the-fold announcement",
+        "description": "Full-viewport-width photograph (laptop on patterned rug) with a dark semi-transparent overlay. Headline in 90px Futura PT weight 400 white, line-height 1.00, positioned at left ~8% from edge. Subhead/CTA link 'Learn more >' in 14px white beneath. No box around the text — the scrim and white type are the entire component. Edge-to-edge photography with no rounded corners."
+      },
+      {
+        "name": "Section Header with Filter Bar",
+        "role": "Content section introduction",
+        "description": "Left-aligned 'The latest from Ableton' in 30px weight 400 black. Right-aligned filter links (All posts, Artists, News, Downloads, Tutorials, Videos, Loop) in 14px #0000ff, horizontally separated by ~16px gaps. The two elements sit on a single baseline-aligned row, no divider between them."
+      },
+      {
+        "name": "Content Card (Grid Item)",
+        "role": "Blog post or video entry in 3-column grid",
+        "description": "Rectangular card, 0px border-radius, 0px border, 0px shadow. Structure top-to-bottom: full-width contained image (aspect ~16:10, no rounding), then a category tag (see Category Tag), then the title in 20px weight 400 black. Cards in a 3-column grid with ~20px horizontal and ~40px vertical gap. No card background fill — cards sit directly on the white canvas."
+      },
+      {
+        "name": "Category Tag",
+        "role": "Content classification badge",
+        "description": "Filled rectangle, 0px border-radius, ~2px vertical and ~8px horizontal padding. Two color variants: coral #ff8389 (Downloads, News) and teal #00d2be (Tutorials, Videos). Label text in ~12–14px Futura PT weight 400, color #000000. Tags are flat, non-interactive, non-removable."
+      },
+      {
+        "name": "Inline Text Link",
+        "role": "Default clickable text",
+        "description": "14–16px Futura PT weight 400 #0000ff, no underline by default. Hover state adds underline. Often followed by a right-pointing chevron character '>' to signal destination. Used for all primary navigation and in-content references."
+      },
+      {
+        "name": "Overlay Text Link (on dark scrim)",
+        "role": "Link variant on photographic backgrounds",
+        "description": "White #ffffff text at 14px weight 400, paired with '>' chevron. Sits directly on darkened image without a background fill. Used for hero CTAs and overlay actions."
+      },
+      {
+        "name": "Filter Link (Section)",
+        "role": "Content category filter",
+        "description": "14px Futura PT weight 400 in #0000ff when active, #000000 when inactive. No pill, no background fill, no underline. Arranged inline with even gaps. Selection communicated purely through color."
+      },
+      {
+        "name": "Image Thumbnail (Tutorial Card)",
+        "role": "Visual entry into video content",
+        "description": "Full-bleed rectangular image within a 3-column grid card, 0px border-radius, no border. Aspect ratio approximately 16:9. Acts as the entire card surface — no padding, no frame."
+      },
+      {
+        "name": "Logo Glyph",
+        "role": "Brand mark in navigation",
+        "description": "Ableton 'Live' mark: a series of vertical black bars of varying heights, evoking a DAW track header or audio meters. Rendered at ~24px height in the nav. No wordmark beside it — the glyph alone is the brand."
+      },
+      {
+        "name": "Horizontal Section Divider",
+        "role": "Implicit separation between content zones",
+        "description": "Not a drawn rule — separation comes from ~80px vertical whitespace between sections and the change in heading typography. The page flows without visible borders."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The single typeface powering everything from body copy to 90px display headlines. Futura PT's geometric precision mirrors Ableton's grid-based music software — the type and the product share a visual logic. Weight 700 carries headlines, 400 carries body. No serif, no monospace secondary face — the system stays mono-typographic.",
+        "sizes": "14px, 16px, 20px, 24px, 30px, 40px, 90px",
+        "family": "futura-pt",
+        "weight": "400, 700",
+        "lineHeight": "1.00–1.50",
+        "substitute": "Futura PT Bold, Futura PT Book → free substitutes: Jost* (geometric grotesque) or Avenir Next; for closer match try ITC Avant Garde Gothic",
+        "letterSpacing": "normal",
+        "fontFeatureSettings": "\"kern\""
+      }
+    ],
+    "description": "Ableton's visual system reads like a working studio's editorial wall: stark white canvas, Futura PT geometry, and one confident blue that marks every interactive text. The site is text-first and almost ruthlessly flat — no shadows, no rounded corners, no decorative chrome — letting photography of musicians, hardware, and software do the emotional work. Color appears as small functional punctuation: a vivid blue for links, plus coral and teal tag fills that categorize content without softening it. Navigation is a thin top bar of monospace-feeling product names. The overall feel is that of a well-set technical manual that happens to be beautiful — information density carried by typography and image, not by container design.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e5081033-bd79-479a-aef6-8b002df6086a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ableton design system\",\"item\":\"https://styles.refero.design/style/e5081033-bd79-479a-aef6-8b002df6086a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e5081033-bd79-479a-aef6-8b002df6086a#style-reference\",\"name\":\"Ableton design system reference\",\"headline\":\"Ableton design system | Refero Styles\",\"description\":\"Explore Ableton's light Productivity design system: Ink #000000, Paper #ffffff colors, futura-pt typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e5081033-bd79-479a-aef6-8b002df6086a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e5081033-bd79-479a-aef6-8b002df6086a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ableton\",\"url\":\"https://ableton.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e5081033-bd79-479a-aef6-8b002df6086a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/897d4942-f8c5-4c62-a913-73997cb2a648.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/897d4942-f8c5-4c62-a913-73997cb2a648.jpg\",\"caption\":\"Screenshot of Ableton\"},\"image\":\"https://images.refero.design/styles/refero.design/image/897d4942-f8c5-4c62-a913-73997cb2a648.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ableton design system\",\"Ableton website design\",\"Ableton colors\",\"Ableton typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Ink\",\"Paper\",\"Fog\",\"Signal Blue\",\"futura-pt\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ableton design system\"},{\"@type\":\"Thing\",\"name\":\"Ableton website design\"},{\"@type\":\"Thing\",\"name\":\"Ableton colors\"},{\"@type\":\"Thing\",\"name\":\"Ableton typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-01-27T16:17:02.000Z\",\"dateModified\":\"2026-01-27T16:17:02.000Z\"}]}19:T7c7,Quick Color Reference:\n- text: #000000\n- background: #ffffff\n- border: none (0px everywhere)\n- link/interactive text: #0000ff\n- tag fill A: #ff8389 (coral)\n- tag fill B: #00d2be (teal)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a full-bleed hero: a photograph (musician at studio desk) fills the entire viewport width, with a dark semi-transparent scrim overlay. Headline at 90px futura-pt weight 400 white, line-height 1.00, positioned at left ~8% from edge, sits on the scrim. A white inline link 'Learn more >' at 14px weight 400 sits directly below the headline, 0px border-radius, no background, no underline.\n\n2. Create a content section: white #ffffff background, max-width 1200px centered, 80px vertical padding above and below. Section heading at 30px futura-pt weight 400 #000000, left-aligned. To the right on the same baseline, filter links at 14px #0000ff separated by 16px gaps.\n\n3. Create a 3-column card grid: three cards per row, 20px horizontal gap, 40px vertical gap. Each card has 0px border-radius, 0px border, no shadow, no background fill. Top of card: full-width 16:10 photograph (contained, sharp edges). Below: a flat tag rectangle (0px radius, #ff8389 or #00d2be fill, 2px 8px padding, #000000 text at 12px). Below tag: title at 20px weight 400 #000000.\n\n4. Create a top navigation bar: white background, 48px height, full width. Left: Ableton glyph icon (vertical black bars) at 24px height. Beside it: product names (Live, Push, Move, Note, Link, Shop, Packs, Help, More +) in 14px futura-pt weight 400 #000000, 20px gap between items. Right-aligned: 'Try Live 12 for free' in 14px #0000ff, then 16px gap, then 'Log in or register' in 14px #0000ff. No borders, no fills, no hover backgrounds.\n\n5. Create a category tag: 0px border-radius rectangle, 2px vertical padding, 8px horizontal padding, fill #ff8389 (or #00d2be for the second category), text at 12px futura-pt weight 400 #000000. No border, no shadow, no hover state."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "card",
+            "image",
+            "link",
+            "heading",
+            "body",
+            "footer",
+            "input",
+            "list",
+            "icon"
+          ],
+          "frequency": 1044,
+          "confidence": 1,
+          "prominence": 48801348.24910915,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "footer",
+            "button",
+            "icon"
+          ],
+          "frequency": 37,
+          "confidence": 1,
+          "prominence": 25535806.520824928,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 855284.2096910202,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0000ff",
+          "oklch": {
+            "c": 0.31321438863448475,
+            "h": 264.05202261636987,
+            "l": 0.45201371817442365
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "button"
+          ],
+          "frequency": 91,
+          "confidence": 1,
+          "prominence": 34235.6531453872,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff8389",
+          "oklch": {
+            "c": 0.15075741194259326,
+            "h": 18.35367345402637,
+            "l": 0.7507835551074978
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 3436.1987015634663,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5865f2",
+          "oklch": {
+            "c": 0.2090896732780479,
+            "h": 273.85036224828,
+            "l": 0.5774363808320988
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2048,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#00d2be",
+          "oklch": {
+            "c": 0.13820071408246104,
+            "h": 182.8864318793299,
+            "l": 0.7754971440875623
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1750,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0866ff",
+          "oklch": {
+            "c": 0.2402231194162597,
+            "h": 261.15317413876807,
+            "l": 0.5641390107395967
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1020,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#00f2ea",
+          "oklch": {
+            "c": 0.14957303402498562,
+            "h": 190.50862931087244,
+            "l": 0.8675717739212931
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 775,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff004f",
+          "oklch": {
+            "c": 0.2539299609351878,
+            "h": 17.096607355769706,
+            "l": 0.6343433597560542
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 735,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff0302",
+          "oklch": {
+            "c": 0.2571102370629343,
+            "h": 29.214425715267225,
+            "l": 0.6285260809216563
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 721,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.06891401170412592,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.89,
+          "background": "#00f2ea",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.96,
+          "background": "#00d2be",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.86,
+          "background": "#ff8389",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.59,
+          "background": "#0000ff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.41,
+          "background": "#eeeeee",
+          "foreground": "#0000ff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.09,
+          "background": "#00f2ea",
+          "foreground": "#0000ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.49,
+          "background": "#00d2be",
+          "foreground": "#0000ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.63,
+          "background": "#ff8389",
+          "foreground": "#0000ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.44,
+          "background": "#0000ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.37,
+          "background": "#ff8389",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.92,
+          "background": "#00d2be",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.16,
+          "background": "#eeeeee",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 21,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 203,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "futura-pt",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 232,
+          "fontFeatureSettings": [
+            "\"kern\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "futura-pt",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body",
+            "link"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "futura-pt",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "futura-pt",
+          "weight": 700,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "futura-pt",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "image",
+            "link"
+          ],
+          "frequency": 68,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "futura-pt",
+          "weight": 700,
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "futura-pt",
+          "weight": 700,
+          "contexts": [
+            "nav",
+            "heading",
+            "link",
+            "body",
+            "list"
+          ],
+          "frequency": 43,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "futura-pt",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "futura-pt",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "image",
+            "body",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "futura-pt",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "futura-pt",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "futura-pt",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "futura-pt",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "futura-pt",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 90,
+          "family": "futura-pt",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/be957b99-be6f-4e05-b8e1-bd8a49528f0a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/897d4942-f8c5-4c62-a913-73997cb2a648.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e5081033-bd79-479a-aef6-8b002df6086a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ableton design system\",\"item\":\"https://styles.refero.design/style/e5081033-bd79-479a-aef6-8b002df6086a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e5081033-bd79-479a-aef6-8b002df6086a#style-reference\",\"name\":\"Ableton design system reference\",\"headline\":\"Ableton design system | Refero Styles\",\"description\":\"Explore Ableton's light Productivity design system: Ink #000000, Paper #ffffff colors, futura-pt typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e5081033-bd79-479a-aef6-8b002df6086a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e5081033-bd79-479a-aef6-8b002df6086a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Ableton\",\"url\":\"https://ableton.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e5081033-bd79-479a-aef6-8b002df6086a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/897d4942-f8c5-4c62-a913-73997cb2a648.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/897d4942-f8c5-4c62-a913-73997cb2a648.jpg\",\"caption\":\"Screenshot of Ableton\"},\"image\":\"https://images.refero.design/styles/refero.design/image/897d4942-f8c5-4c62-a913-73997cb2a648.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Ableton design system\",\"Ableton website design\",\"Ableton colors\",\"Ableton typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Ink\",\"Paper\",\"Fog\",\"Signal Blue\",\"futura-pt\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Ableton design system\"},{\"@type\":\"Thing\",\"name\":\"Ableton website design\"},{\"@type\":\"Thing\",\"name\":\"Ableton colors\"},{\"@type\":\"Thing\",\"name\":\"Ableton typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-01-27T16:17:02.000Z\",\"dateModified\":\"2026-01-27T16:17:02.000Z\"}]}19:T7c7,Quick Color Reference:\n- text: #000000\n- background: #ffffff\n- border: none (0px everywhere)\n- link/interactive text: #0000ff\n- tag fill A: #ff8389 (coral)\n- tag fill B: #00d2be (teal)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a full-bleed hero: a photograph (musician at studio desk) fills the entire viewport width, with a dark semi-transparent scrim overlay. Headline at 90px futura-pt weight 400 white, line-height 1.00, positioned at left ~8% from edge, sits on the scrim. A white inline link 'Learn more >' at 14px weight 400 sits directly below the headline, 0px border-radius, no background, no underline.\n\n2. Create a content section: white #ffffff background, max-width 1200px centered, 80px vertical padding above and below. Section heading at 30px futura-pt weight 400 #000000, left-aligned. To the right on the same baseline, filter links at 14px #0000ff separated by 16px gaps.\n\n3. Create a 3-column card grid: three cards per row, 20px horizontal gap, 40px vertical gap. Each card has 0px border-radius, 0px border, no shadow, no background fill. Top of card: full-width 16:10 photograph (contained, sharp edges). Below: a flat tag rectangle (0px radius, #ff8389 or #00d2be fill, 2px 8px padding, #000000 text at 12px). Below tag: title at 20px weight 400 #000000.\n\n4. Create a top navigation bar: white background, 48px height, full width. Left: Ableton glyph icon (vertical black bars) at 24px height. Beside it: product names (Live, Push, Move, Note, Link, Shop, Packs, Help, More +) in 14px futura-pt weight 400 #000000, 20px gap between items. Right-aligned: 'Try Live 12 for free' in 14px #0000ff, then 16px gap, then 'Log in or register' in 14px #0000ff. No borders, no fills, no hover backgrounds.\n\n5. Create a category tag: 0px border-radius rectangle, 2px vertical padding, 8px horizontal padding, fill #ff8389 (or #00d2be for the second category), text at 12px futura-pt weight 400 #000000. No border, no shadow, no hover state."
+}

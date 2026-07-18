@@ -1,0 +1,235 @@
+{
+  "color": {
+    "signal-flare": {
+      "$value": "#ff1a00",
+      "$type": "color",
+      "$description": "Signal Flare — The only chromatic color in the system — used for logo, all navigation, body text, headings, icons, borders, and the video play affordance. Functions as both brand mark and foreground text color simultaneously"
+    },
+    "sun-baked-canvas": {
+      "$value": "#e7a196",
+      "$type": "color",
+      "$description": "Sun-Baked Canvas — Page background — a warm, muted clay-peach that softens the intensity of the red and gives the whole site its heat-shimmer atmosphere. Every default surface sits on this tone"
+    },
+    "midnight-frame": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Midnight Frame — Reserved for full-bleed video and photography sections only — appears as the dark frame around embedded media, never as a UI surface or text color"
+    }
+  },
+  "font": {
+    "gt-pressura": {
+      "$value": "GT Pressura",
+      "$type": "fontFamily",
+      "$description": "The single workhorse typeface — carries everything from 12px footer labels to 245px display headlines. Its neo-grotesque character with slight mechanical tension makes it read almost monospace at small sizes and almost posterized at display sizes. Weight stays at 400 across the entire system; hierarchy is built through size, never weight."
+    },
+    "monument-grotesk": {
+      "$value": "Monument Grotesk",
+      "$type": "fontFamily",
+      "$description": "Reserved for one purpose: the primary 48px statement headline (\"IMPACT-LED BRAND CONSULTANCY\"). A wider, more humanist grotesque that contrasts GT Pressura's mechanical quality with a slightly warmer proportion. Only appears once per page at this exact size."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GT Pressura",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "GT Pressura",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "GT Pressura",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "GT Pressura",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "GT Pressura",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "GT Pressura",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "GT Pressura",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "GT Pressura",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 0.82
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Monument Grotesk",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "GT Pressura",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 0.65
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "GT Pressura",
+        "fontSize": "95px",
+        "fontWeight": 400,
+        "lineHeight": 0.65
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 95px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "GT Pressura",
+        "fontSize": "128px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 128px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "GT Pressura",
+        "fontSize": "190px",
+        "fontWeight": 400,
+        "lineHeight": 0.65
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 190px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "GT Pressura",
+        "fontSize": "245px",
+        "fontWeight": 400,
+        "lineHeight": 0.65
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 245px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "138": {
+      "$value": "138px",
+      "$type": "dimension",
+      "$description": "Spacing 138px"
+    },
+    "150": {
+      "$value": "150px",
+      "$type": "dimension",
+      "$description": "Spacing 150px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "sun-baked-canvas": {
+      "$value": "#e7a196",
+      "$type": "color",
+      "$description": "Surface level 1: Default page background — every text section, navigation layer, and content block sits on this warm clay-peach field"
+    },
+    "midnight-frame": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed video and photography sections only — the only departure from the warm canvas, used to frame embedded media"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://valientebrands.com",
+      "siteName": "VALIENTE BRANDS",
+      "extractedAt": "2026-06-03T18:54:48.683Z",
+      "variant": "extended"
+    }
+  }
+}

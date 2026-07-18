@@ -1,0 +1,1286 @@
+{
+  "source": "https://styles.refero.design/style/8618f649-6d1c-45ca-aff8-e7f04928d8dd",
+  "uuid": "8618f649-6d1c-45ca-aff8-e7f04928d8dd",
+  "name": "Squarespace",
+  "northStar": "Cinematic monochrome gallery",
+  "capturedAt": "2026-07-18T08:11:06.730Z",
+  "meta": {
+    "url": "https://www.squarespace.com",
+    "siteName": "Squarespace",
+    "extractedAt": "2026-06-03T18:05:33.974Z",
+    "durationMs": 37391,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1122,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use weight 300 Clarkson at 40–72px for all display headlines — the whisper-weight is the brand's signature, not 700",
+      "Set display tracking to -0.06em at 72px and scale proportionally down — never use default letter-spacing on large type",
+      "Alternate sections between full #000000 and #ffffff backgrounds — the page rhythm is defined by black/white contrast, not color",
+      "Use 0px border-radius on buttons and 8px on cards — the sharp-to-soft radius contrast is intentional",
+      "Set 100px border-radius on all pill-shaped tabs, tags, and filter chips",
+      "Let full-bleed photography or video carry the hero — never use a solid color or gradient hero background",
+      "Center-align section headlines and CTAs in light sections; left-align in dark feature grids"
+    ],
+    "donts": [
+      "Never introduce chromatic color to the palette — the system is 0% colorfulness by design",
+      "Never use Clarkson at weight 700 or 800 — the brand voice caps at weight 500",
+      "Never use a solid-color hero background — the first screen must always be photographic or video",
+      "Never use pill-radius (100px) on rectangular buttons or cards — pills are exclusive to filter chips and tags",
+      "Never set body copy below 14px or above #898989 on white — contrast hierarchy must stay clean",
+      "Never use drop shadows on cards — depth comes from contrast against the canvas, not elevation",
+      "Never add gradient backgrounds to UI components — the one detected gradient is decorative only (a soft blue-to-yellow-to-white fade), not a UI pattern"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Primary text, nav bar, black section bands, dark feature cards, logo mark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page background, hero text on dark imagery, light section canvases, button text on filled buttons",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2f2f2f",
+        "name": "Charcoal",
+        "role": "Filled button background, elevated dark surfaces — softer than pure black, reads as premium matte",
+        "group": "neutral"
+      },
+      {
+        "hex": "#898989",
+        "name": "Ash",
+        "role": "Muted body text, secondary borders, de-emphasized labels on dark backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dddddd",
+        "name": "Fog",
+        "role": "Light borders, button outlines on light surfaces, subtle dividers, pill-tab inactive background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Slate",
+        "role": "Tertiary text, very subtle UI dividers, placeholder-level hierarchy",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed hero with a single centered headline floating over video/photo. Black stats band follows, then a white section with centered headline + pill filter row + 3-column image card grid. Feature sections use a 4-column dark card grid on white canvas. Page max-width ~1200px for content blocks; hero and stats bands are 100% viewport width. Vertical rhythm is dramatic: 80–120px between major sections, 24–40px between content blocks within a section. Navigation is a transparent top bar that becomes solid black on scroll, with logo left, center menu, and dual CTAs right.",
+    "imagery": "Full-bleed cinematic photography and video dominate. The hero is a real-world documentary-style frame (a barber cutting hair) — no studio lighting, no staged perfection. Dark feature card backgrounds use a mix of product UI screenshots (design editor, email client, domain search) and atmospheric photography (a white flower, geometric objects). Imagery always bleeds to the card edge with 8px corner clipping. No illustrations, no icons-as-decoration, no 3D renders. Icons are functional only (arrow indicators, chevron dropdowns, logo mark).",
+    "similar": [
+      {
+        "why": "Same cinematic full-bleed photography hero with centered large-weight-light headline floating over it; same uncompromising black/white section rhythm",
+        "business": "Apple"
+      },
+      {
+        "why": "Same monumental display typography with aggressive negative tracking; same 0% colorfulness confidence; same editorial whitespace",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same achromatic restraint, same reliance on serif/sans typographic contrast, same gallery-like page rhythm with full-bleed imagery",
+        "business": "Aesop"
+      },
+      {
+        "why": "Same full-bleed photographic hero with white overlay text; same minimal nav with dual CTA pattern",
+        "business": "Mubi"
+      },
+      {
+        "why": "Same weight-300-at-72px display treatment and same near-monochrome editorial system",
+        "business": "SSENSE"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "pills": "100px",
+        "inputs": "8px",
+        "buttons": "0px"
+      },
+      "elementGap": "12-16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "32-40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Primary page canvas and light section backgrounds"
+      },
+      {
+        "hex": "#dddddd",
+        "name": "Fog",
+        "level": 1,
+        "purpose": "Active pill-tab fill, subtle dividers, secondary card surfaces"
+      },
+      {
+        "hex": "#898989",
+        "name": "Ash",
+        "level": 2,
+        "purpose": "Muted text and tertiary borders — non-surface, hierarchy only"
+      },
+      {
+        "hex": "#2f2f2f",
+        "name": "Charcoal",
+        "level": 3,
+        "purpose": "Filled button background — the softest non-pure-black surface"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "level": 4,
+        "purpose": "Black section bands, dark feature cards, nav bar on scroll, text"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Cinematic monochrome gallery",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.001
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.04
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1,
+        "letterSpacing": -0.05
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 0.93,
+        "letterSpacing": -0.06
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Button (Hero CTA)",
+        "role": "Primary action over full-bleed photography",
+        "description": "Transparent background, 1px #ffffff border, #ffffff text. Clarkson 400, 14px, uppercase tracking 0. Padding 16px 32px. 0px border-radius (sharp corners — a deliberate contrast to the pill shapes used elsewhere). Sits centered below the hero headline."
+      },
+      {
+        "name": "Filled Dark Button (Nav CTA)",
+        "role": "Persistent top-right conversion action",
+        "description": "Background #ffffff on dark nav, 1px #ffffff border, #000000 text. Clarkson 500, 13px, uppercase, tracking 0.02em. Padding 12px 24px. 0px radius. Stays in the same position across all sections."
+      },
+      {
+        "name": "Login Text Link",
+        "role": "Secondary nav action",
+        "description": "No background or border. #ffffff text, Clarkson 400, 13px, uppercase. Sits left of the filled CTA in nav. Underline appears on hover."
+      },
+      {
+        "name": "Pill Category Tab",
+        "role": "Filter chips for feature category selection",
+        "description": "100px border-radius. Inactive: transparent bg, #000000 text, no border. Active: #dddddd background, #000000 text. Clarkson 400, 14px. Padding 8px 18px. No horizontal gap between pills — they sit in a single row with even spacing."
+      },
+      {
+        "name": "Dark Feature Card",
+        "role": "Product capability showcase in 4-column grid",
+        "description": "8px border-radius. Full-bleed background image (photographic or product UI screenshot) with dark overlay. #ffffff heading (Clarkson 300, 20px), #ffffff body copy (Clarkson 400, 13px, #898989 for muted). Arrow icon (→) in bottom-right corner, #ffffff. Cards are equal-width in a 4-col grid with ~24px gap."
+      },
+      {
+        "name": "Stat Display Block",
+        "role": "Social proof numbers in black band section",
+        "description": "Three-column layout on #000000 background. Massive number: Clarkson 300, ~80–100px, #ffffff. Period/comma rendered as small superscript element beside the digits. Label below: Clarkson 400, 12px, #898989 or #ffffff, uppercase. Numbers are the dominant visual — labels are subordinate."
+      },
+      {
+        "name": "Section Header (Centered)",
+        "role": "Opening headline for light sections",
+        "description": "Centered text block. Clarkson 300, 40–64px, #000000, tracking -0.05em. Optional subline in Clarkson 400, 15px, #898989, max-width 480px."
+      },
+      {
+        "name": "Transparent Navigation Bar",
+        "role": "Persistent top header",
+        "description": "Transparent background over hero photography, transitions to #000000 on scroll. Logo (squarespace wordmark + cube icon) left-aligned in #ffffff. Center nav items (Products, Solutions, Resources) with chevron dropdowns — Clarkson 400, 13px, #ffffff, uppercase. Right side: Log In text link + filled CTA. No visible background or border until scrolled."
+      },
+      {
+        "name": "Category Image Card",
+        "role": "Hero-adjacent product preview tiles",
+        "description": "Equal-width cards with 8px radius, showing a cropped website preview with pink (#ff8d8d approximate) category tag overlay in top-left. Sits at the bottom of the hero, partially overlapping the video frame edge. 3-card row."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary brand typeface. Weight 300 at 64–72px for hero/display creates editorial whisper-weight headlines with serif-like density. Weight 400 for body and UI. Weight 500 for active nav and tab labels. Tight tracking (-0.06em at display) collapses glyphs into a continuous visual mass.",
+        "sizes": "12px, 13px, 14px, 15px, 20px, 26px, 40px, 64px, 72px",
+        "family": "Clarkson",
+        "weight": "300, 400, 500",
+        "lineHeight": "0.93, 1.00, 1.20, 1.40",
+        "substitute": "Inter, Neue Haas Grotesk, Helvetica Neue",
+        "letterSpacing": "-0.0600em at 64–72px, -0.0500em at 40px, -0.0400em at 26px, -0.0200em at 20px, -0.0100em at 14–15px, -0.0010em at 12–13px"
+      },
+      {
+        "role": "Accent serif used selectively for editorial subheadings — the italic-feel contrast against the geometric sans adds visual punctuation",
+        "sizes": "26px",
+        "family": "Clarkson Serif",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Tiempos Text, GT Sectra, Lyon Text",
+        "letterSpacing": "-0.0200em"
+      },
+      {
+        "role": "Fallback rendering when Clarkson fails to load — 16px base for system text only",
+        "sizes": "16px",
+        "family": "System sans-serif",
+        "weight": "400",
+        "lineHeight": "1.20"
+      }
+    ],
+    "description": "Squarespace speaks in absolute black and white — a purely achromatic system where drama comes from scale, contrast, and full-bleed photography rather than color. The visual identity is cinematic: a single massive headline floats over a full-bleed photographic hero, then the page alternates between stark black bands and white expanses, each section announcing itself through scale rather than color. Typography carries the entire brand voice — Clarkson, a custom geometric sans, is used at whisper-light 300 weight for huge 64–72px displays with aggressively tight tracking (-0.06em), creating a serif-like density that feels editorial. Components are intentionally minimal: ghost buttons, pill-shaped filter tabs, dark image cards with arrow indicators. The system is deliberately austere so user content (the websites being built) inherits all the visual energy.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8618f649-6d1c-45ca-aff8-e7f04928d8dd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Squarespace design system\",\"item\":\"https://styles.refero.design/style/8618f649-6d1c-45ca-aff8-e7f04928d8dd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8618f649-6d1c-45ca-aff8-e7f04928d8dd#style-reference\",\"name\":\"Squarespace design system reference\",\"headline\":\"Squarespace design system | Refero Styles\",\"description\":\"Explore Squarespace's light SaaS design system: Obsidian #000000, Paper #ffffff colors, Clarkson, Clarkson Serif typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8618f649-6d1c-45ca-aff8-e7f04928d8dd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8618f649-6d1c-45ca-aff8-e7f04928d8dd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Squarespace\",\"url\":\"https://www.squarespace.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8618f649-6d1c-45ca-aff8-e7f04928d8dd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4e8d2eed-ee45-45b3-ac26-88086e785c7f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4e8d2eed-ee45-45b3-ac26-88086e785c7f.jpg\",\"caption\":\"Screenshot of Squarespace\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4e8d2eed-ee45-45b3-ac26-88086e785c7f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Squarespace design system\",\"Squarespace website design\",\"Squarespace colors\",\"Squarespace typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Obsidian\",\"Paper\",\"Charcoal\",\"Ash\",\"Clarkson\",\"Clarkson Serif\",\"System sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Squarespace design system\"},{\"@type\":\"Thing\",\"name\":\"Squarespace website design\"},{\"@type\":\"Thing\",\"name\":\"Squarespace colors\"},{\"@type\":\"Thing\",\"name\":\"Squarespace typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T00:15:18.194Z\",\"dateModified\":\"2026-04-30T00:15:18.194Z\"}]}19:T7d8,**Quick Color Reference**\n- Text: #000000 (on light) or #ffffff (on dark)\n- Background: #ffffff (canvas) or #000000 (bands)\n- Border: #dddddd (light) or #ffffff (dark)\n- Muted text: #898989\n- Accent: none — system is purely achromatic\n- primary action: #2f2f2f (filled action)\n\n**Example Component Prompts**\n\n1. Create a hero section: full-bleed photographic background, overlaid with a centered headline \"A website makes it real\" in Clarkson 300, 72px, #ffffff, letter-spacing -0.06em. Below it, a transparent ghost button with 1px #ffffff border, Clarkson 400 14px uppercase #ffffff text, padding 16px 32px, 0px radius. Small caption \"Start for free. No credit card required.\" in Clarkson 400 13px #ffffff below the button.\n\n2. Create a stat display band: #000000 full-width background, padding 80px 0. Three columns centered. Each column: massive number in Clarkson 300, 80px, #ffffff (e.g. \"1.M+\" with the period as a small superscript dot). Label below in Clarkson 400 12px #898989 uppercase.\n\n3. Create a category filter row: 8 pill-shaped tabs in a single horizontal row, 100px border-radius, padding 8px 18px each, 8px gap. Inactive: transparent bg, #000000 text, Clarkson 400 14px. Active: #dddddd background, #000000 text. Tabs: Services, Online Store, Invoicing, Scheduling, Donations, Memberships, Blog, Portfolio.\n\n4. Create a dark feature card grid: 4 equal-width columns, 24px gap, on #ffffff canvas. Each card: 8px border-radius, full-bleed background image with dark overlay, padding 32px. White heading Clarkson 300 20px, body text Clarkson 400 13px #898989. Arrow icon (→) in bottom-right, #ffffff, 16px.\n\n5. Create a transparent nav bar: full-width, transparent background, positioned absolute over hero. Left: logo (wordmark + cube icon) in #ffffff. Center: nav items in Clarkson 400 13px uppercase #ffffff with chevron indicators. Right: \"Log In\" text link in #ffffff + filled button with #ffffff background, #000000 text, Clarkson 500 13px uppercase, padding 12px 24px, 0px radius."
+      },
+      {
+        "title": "Gradient System",
+        "content": "Only one gradient detected in the entire system: a 90° linear fade from #ffffff through rgb(136, 188, 216) (soft cornflower) to rgb(243, 255, 193) (pale chartreuse) and back to #ffffff. This is a decorative atmospheric band — it appears as a subtle wash, never as a UI component fill. Do not extend this gradient system to other elements; it exists as a single editorial accent, not a repeatable pattern."
+      }
+    ],
+    "elevationPhilosophy": "Squarespace deliberately avoids box-shadows. Depth is communicated through two mechanisms only: (1) alternating pure black and pure white section bands, and (2) full-bleed photography with no visible card edges. Cards have no drop shadow — they rely on 8px radius and the contrast of their content (dark imagery with white text) to feel distinct from the white canvas."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "nav",
+            "hero",
+            "image",
+            "card",
+            "body",
+            "list",
+            "icon",
+            "footer",
+            "badge"
+          ],
+          "frequency": 2331,
+          "confidence": 1,
+          "prominence": 124155745.39055339,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "body/color": 15,
+            "card/color": 51,
+            "hero/color": 2,
+            "icon/color": 21,
+            "link/color": 2,
+            "list/color": 125,
+            "other/fill": 3,
+            "badge/color": 2,
+            "image/color": 11,
+            "other/color": 193,
+            "button/color": 36,
+            "footer/color": 1,
+            "nav/borderColor": 16,
+            "body/borderColor": 60,
+            "card/borderColor": 204,
+            "hero/borderColor": 8,
+            "icon/borderColor": 84,
+            "link/borderColor": 8,
+            "list/borderColor": 500,
+            "badge/borderColor": 8,
+            "image/borderColor": 44,
+            "other/borderColor": 771,
+            "button/borderColor": 136,
+            "footer/borderColor": 4,
+            "body/backgroundColor": 3,
+            "card/backgroundColor": 2,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 15,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "heading",
+            "hero",
+            "link",
+            "image",
+            "card",
+            "other",
+            "icon",
+            "input"
+          ],
+          "frequency": 2681,
+          "confidence": 1,
+          "prominence": 17702910.854016744,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/color": 3,
+            "body/color": 102,
+            "card/color": 90,
+            "icon/color": 12,
+            "link/color": 153,
+            "other/fill": 56,
+            "image/color": 27,
+            "input/color": 1,
+            "other/color": 2,
+            "button/color": 6,
+            "heading/color": 127,
+            "nav/borderColor": 12,
+            "body/borderColor": 408,
+            "card/borderColor": 360,
+            "icon/borderColor": 48,
+            "link/borderColor": 612,
+            "image/borderColor": 108,
+            "other/borderColor": 9,
+            "button/borderColor": 24,
+            "heading/borderColor": 508,
+            "hero/backgroundColor": 1,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#2f2f2f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.305191278401601
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 336562.11759389454,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#898989",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6300934477406146
+          },
+          "contexts": [
+            "card",
+            "body",
+            "link"
+          ],
+          "frequency": 355,
+          "confidence": 1,
+          "prominence": 117710.98588926134,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 68,
+            "card/color": 2,
+            "link/color": 1,
+            "body/borderColor": 272,
+            "card/borderColor": 8,
+            "link/borderColor": 4
+          }
+        },
+        {
+          "hex": "#dddddd",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8975468705785317
+          },
+          "contexts": [
+            "body",
+            "button",
+            "heading"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 94640,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4,
+            "button/borderColor": 8,
+            "heading/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 2775.329788605819,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "other/backgroundColor": 10
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.46,
+          "background": "#dddddd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.39,
+          "background": "#2f2f2f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.86,
+          "background": "#2f2f2f",
+          "foreground": "#dddddd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.37,
+          "background": "#999999",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6,
+          "background": "#000000",
+          "foreground": "#898989"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.83,
+          "background": "#2f2f2f",
+          "foreground": "#898989"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.5,
+          "background": "#ffffff",
+          "foreground": "#898989"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.85,
+          "background": "#999999",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.58,
+          "background": "#dddddd",
+          "foreground": "#898989"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.1,
+          "background": "#999999",
+          "foreground": "#dddddd"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.57,
+          "background": "#2f2f2f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.36,
+          "background": "#dddddd",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.23,
+          "background": "#999999",
+          "foreground": "#898989"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "card",
+            "link",
+            "button",
+            "other",
+            "input"
+          ],
+          "frequency": 32
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "list",
+            "other",
+            "button"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "list"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|list",
+            "paddingRight|list",
+            "paddingBottom|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "card",
+            "list",
+            "button"
+          ],
+          "frequency": 48,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "link",
+            "other",
+            "list",
+            "body"
+          ],
+          "frequency": 61,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|list",
+            "columnGap|list",
+            "marginTop|body",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "card",
+            "button",
+            "other",
+            "body",
+            "badge",
+            "list"
+          ],
+          "frequency": 50,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingTop|body",
+            "rowGap|badge",
+            "columnGap|badge",
+            "marginBottom|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "badge"
+          ],
+          "frequency": 61,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginBottom|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|body",
+            "rowGap|badge",
+            "columnGap|badge",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 104,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|button",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card",
+            "button",
+            "footer"
+          ],
+          "frequency": 81,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "rowGap|card",
+            "columnGap|card",
+            "marginLeft|card",
+            "paddingBottom|card",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginLeft|other",
+            "paddingRight|footer",
+            "paddingLeft|footer",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 77,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other",
+            "hero",
+            "card",
+            "body"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|card",
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 240,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(255, 255, 255) 29.44%, rgb(136, 188, 216) 39.97%, rgb(243, 255, 193) 61.04%, rgb(255, 255, 255) 71.57%)",
+        "colors": [
+          "rgb(255, 255, 255)",
+          "rgb(136, 188, 216)",
+          "rgb(243, 255, 193)",
+          "rgb(255, 255, 255)"
+        ],
+        "frequency": 2
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 660,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Clarkson",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 380,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Clarkson Serif",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 18,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Clarkson",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "card",
+            "heading",
+            "link"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Clarkson",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Clarkson",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 62,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Clarkson",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Clarkson",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "body",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Clarkson",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "card",
+            "link"
+          ],
+          "frequency": 142,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.001,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Clarkson",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.001,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "hero",
+            "image",
+            "card",
+            "list",
+            "icon",
+            "footer",
+            "badge"
+          ],
+          "frequency": 655,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Clarkson",
+          "weight": 500,
+          "contexts": [
+            "card",
+            "heading",
+            "body"
+          ],
+          "frequency": 46,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Clarkson Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 18,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Clarkson",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Clarkson",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.001,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Clarkson",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Clarkson",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.93,
+          "letterSpacing": -0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Clarkson",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 71,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Clarkson",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.93,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/aeb9d9e7-c203-4865-b784-10f8af5a33fc.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4e8d2eed-ee45-45b3-ac26-88086e785c7f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8618f649-6d1c-45ca-aff8-e7f04928d8dd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Squarespace design system\",\"item\":\"https://styles.refero.design/style/8618f649-6d1c-45ca-aff8-e7f04928d8dd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8618f649-6d1c-45ca-aff8-e7f04928d8dd#style-reference\",\"name\":\"Squarespace design system reference\",\"headline\":\"Squarespace design system | Refero Styles\",\"description\":\"Explore Squarespace's light SaaS design system: Obsidian #000000, Paper #ffffff colors, Clarkson, Clarkson Serif typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8618f649-6d1c-45ca-aff8-e7f04928d8dd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8618f649-6d1c-45ca-aff8-e7f04928d8dd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Squarespace\",\"url\":\"https://www.squarespace.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8618f649-6d1c-45ca-aff8-e7f04928d8dd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4e8d2eed-ee45-45b3-ac26-88086e785c7f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4e8d2eed-ee45-45b3-ac26-88086e785c7f.jpg\",\"caption\":\"Screenshot of Squarespace\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4e8d2eed-ee45-45b3-ac26-88086e785c7f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Squarespace design system\",\"Squarespace website design\",\"Squarespace colors\",\"Squarespace typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Obsidian\",\"Paper\",\"Charcoal\",\"Ash\",\"Clarkson\",\"Clarkson Serif\",\"System sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Squarespace design system\"},{\"@type\":\"Thing\",\"name\":\"Squarespace website design\"},{\"@type\":\"Thing\",\"name\":\"Squarespace colors\"},{\"@type\":\"Thing\",\"name\":\"Squarespace typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T00:15:18.194Z\",\"dateModified\":\"2026-04-30T00:15:18.194Z\"}]}19:T7d8,**Quick Color Reference**\n- Text: #000000 (on light) or #ffffff (on dark)\n- Background: #ffffff (canvas) or #000000 (bands)\n- Border: #dddddd (light) or #ffffff (dark)\n- Muted text: #898989\n- Accent: none — system is purely achromatic\n- primary action: #2f2f2f (filled action)\n\n**Example Component Prompts**\n\n1. Create a hero section: full-bleed photographic background, overlaid with a centered headline \"A website makes it real\" in Clarkson 300, 72px, #ffffff, letter-spacing -0.06em. Below it, a transparent ghost button with 1px #ffffff border, Clarkson 400 14px uppercase #ffffff text, padding 16px 32px, 0px radius. Small caption \"Start for free. No credit card required.\" in Clarkson 400 13px #ffffff below the button.\n\n2. Create a stat display band: #000000 full-width background, padding 80px 0. Three columns centered. Each column: massive number in Clarkson 300, 80px, #ffffff (e.g. \"1.M+\" with the period as a small superscript dot). Label below in Clarkson 400 12px #898989 uppercase.\n\n3. Create a category filter row: 8 pill-shaped tabs in a single horizontal row, 100px border-radius, padding 8px 18px each, 8px gap. Inactive: transparent bg, #000000 text, Clarkson 400 14px. Active: #dddddd background, #000000 text. Tabs: Services, Online Store, Invoicing, Scheduling, Donations, Memberships, Blog, Portfolio.\n\n4. Create a dark feature card grid: 4 equal-width columns, 24px gap, on #ffffff canvas. Each card: 8px border-radius, full-bleed background image with dark overlay, padding 32px. White heading Clarkson 300 20px, body text Clarkson 400 13px #898989. Arrow icon (→) in bottom-right, #ffffff, 16px.\n\n5. Create a transparent nav bar: full-width, transparent background, positioned absolute over hero. Left: logo (wordmark + cube icon) in #ffffff. Center: nav items in Clarkson 400 13px uppercase #ffffff with chevron indicators. Right: \"Log In\" text link in #ffffff + filled button with #ffffff background, #000000 text, Clarkson 500 13px uppercase, padding 12px 24px, 0px radius."
+}

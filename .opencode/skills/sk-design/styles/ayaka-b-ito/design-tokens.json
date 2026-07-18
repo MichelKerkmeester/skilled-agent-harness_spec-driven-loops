@@ -1,0 +1,597 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Body text, hairline borders, and rule lines — the dominant structural color used everywhere text and dividers are drawn"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Primary page canvas and base background for gallery and intro spreads"
+    },
+    "linen-mist": {
+      "$value": "#eeecec",
+      "$type": "color",
+      "$description": "Linen Mist — Warm light-gray surface for secondary spreads and subtle tonal shifts between sections"
+    },
+    "paper-cream": {
+      "$value": "#fefdf8",
+      "$type": "color",
+      "$description": "Paper Cream — Warm off-white alt canvas for soft tonal contrast against Bone White"
+    },
+    "chalk-gray": {
+      "$value": "#a1a1a1",
+      "$type": "color",
+      "$description": "Chalk Gray — Muted helper text, secondary labels, and low-emphasis borders"
+    },
+    "haze-blue": {
+      "$value": "#d6e0eb",
+      "$type": "color",
+      "$description": "Haze Blue — Cool gray-blue tint for quiet borders and subdued type, balancing the warm earth tones"
+    },
+    "slate-blue": {
+      "$value": "#6b969f",
+      "$type": "color",
+      "$description": "Slate Blue — Dusty blue-gray accent for heading type and project labels"
+    },
+    "sky-mist": {
+      "$value": "#9ec5d6",
+      "$type": "color",
+      "$description": "Sky Mist — Light dusty blue for heading type and border rules — the coolest note in the palette"
+    },
+    "periwinkle": {
+      "$value": "#9cb8d3",
+      "$type": "color",
+      "$description": "Periwinkle — Soft lavender-blue for heading copy and delicate dividers"
+    },
+    "deep-teal": {
+      "$value": "#167070",
+      "$type": "color",
+      "$description": "Deep Teal — Saturated muted teal for heading type — the strongest cool accent in the system"
+    },
+    "sage": {
+      "$value": "#507f70",
+      "$type": "color",
+      "$description": "Sage — Muted green accent for tag labels and short heading runs"
+    },
+    "olive": {
+      "$value": "#576041",
+      "$type": "color",
+      "$description": "Olive — Warm gray-olive for heading type and project titles — anchors the earth-tone half of the palette"
+    },
+    "moss": {
+      "$value": "#495116",
+      "$type": "color",
+      "$description": "Moss — Darker olive for emphasized heading type and link rules, reading as near-black with warmth"
+    },
+    "ochre": {
+      "$value": "#cda04f",
+      "$type": "color",
+      "$description": "Ochre — Golden mustard for full-bleed project backgrounds and accent headings — a signature warm note"
+    },
+    "ember-rust": {
+      "$value": "#a65d4d",
+      "$type": "color",
+      "$description": "Ember Rust — Full-bleed intro section background — the signature terracotta that defines the brand's cover moment"
+    },
+    "lava": {
+      "$value": "#f75929",
+      "$type": "color",
+      "$description": "Lava — Vivid orange punctuation for accent text and graphic highlights against muted grounds"
+    },
+    "blush": {
+      "$value": "#ddbad0",
+      "$type": "color",
+      "$description": "Blush — Dusty pink used as the dominant hairline border color across the entire UI — the single most repeated chromatic color"
+    },
+    "rose-ash": {
+      "$value": "#d7b5bf",
+      "$type": "color",
+      "$description": "Rose Ash — Muted rose-gray for heading type and link borders, a softer companion to Blush"
+    },
+    "clay": {
+      "$value": "#c7afac",
+      "$type": "color",
+      "$description": "Clay — Warm taupe for heading rules and type — the bridge between the pinks and the earth tones"
+    }
+  },
+  "font": {
+    "hanae": {
+      "$value": "Hanae",
+      "$type": "fontFamily",
+      "$description": "Primary custom display and body serif. Carries the site's editorial identity. Used for hero headlines at 62–68px with extreme positive tracking (~0.4em), for body copy at 16–20px, and for tiny parenthesized section tags at 10–11px. The custom typeface's swash and discretionary ligature features are switched on for a handwritten inscriptional quality. Weight stays 400–500 even at display sizes — the scale and tracking carry the voice, not boldness."
+    },
+    "open-sans": {
+      "$value": "Open Sans",
+      "$type": "fontFamily",
+      "$description": "Secondary sans for occasional subhead and hero-supporting text where a cleaner geometric voice is needed alongside the serif. Used sparingly — the serif does the structural work."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 6.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 0.55
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 0.55
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 11px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 11px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.82
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 11px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 2.73
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 11px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 2.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 11px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 2.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 11px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 0.54
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 23px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "23px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "25px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 2.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "50px",
+        "fontWeight": 700,
+        "lineHeight": 0.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "50px",
+        "fontWeight": 700,
+        "lineHeight": 0.54
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 62px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 62px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "62px",
+        "fontWeight": 500,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 62px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 62px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Hanae Regular",
+        "fontSize": "68px",
+        "fontWeight": 500,
+        "lineHeight": 0.29
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 68px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "surface": {
+    "bone-white-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background for gallery and list spreads"
+    },
+    "paper-cream-alt": {
+      "$value": "#fefdf8",
+      "$type": "color",
+      "$description": "Surface level 2: Warm off-white canvas used as tonal variant to break up long pages"
+    },
+    "linen-mist": {
+      "$value": "#eeecec",
+      "$type": "color",
+      "$description": "Surface level 3: Soft warm-gray surface for project panels and secondary spreads"
+    },
+    "full-bleed-color-plane": {
+      "$value": "#a65d4d",
+      "$type": "color",
+      "$description": "Surface level 4: Project section background — the terracotta and other earth tones take over entire pages as editorial spreads"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ayakaito.com",
+      "siteName": "Ayaka B. Ito",
+      "extractedAt": "2026-06-03T21:39:55.027Z",
+      "variant": "extended"
+    }
+  }
+}

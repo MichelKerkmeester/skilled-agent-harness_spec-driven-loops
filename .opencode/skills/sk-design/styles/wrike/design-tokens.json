@@ -1,0 +1,434 @@
+{
+  "color": {
+    "signal-green": {
+      "$value": "#00e05c",
+      "$type": "color",
+      "$description": "Signal Green — Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color; Decorative geometric shapes, radial glow accents in dark sections, gradient endpoints"
+    },
+    "midnight-navy": {
+      "$value": "#162136",
+      "$type": "color",
+      "$description": "Midnight Navy — Headlines, primary body text, navigation, dark footer sections — the structural anchor of the entire hierarchy"
+    },
+    "slate-navy": {
+      "$value": "#2b3a57",
+      "$type": "color",
+      "$description": "Slate Navy — Secondary headings, card titles, muted dark text — a softened navy for sub-hierarchy"
+    },
+    "steel-blue-gray": {
+      "$value": "#657694",
+      "$type": "color",
+      "$description": "Steel Blue-Gray — Helper text, secondary copy, muted labels, dropdown menus — the cool-toned equivalent of mid-gray"
+    },
+    "mist-blue": {
+      "$value": "#bfc7d9",
+      "$type": "color",
+      "$description": "Mist Blue — Hairline borders, dividers, input borders, subtle separators"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Icon strokes, high-contrast text, SVG fills, decorative geometric accents"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, inverse text on dark, input fills"
+    },
+    "frost-surface": {
+      "$value": "#f2f5fa",
+      "$type": "color",
+      "$description": "Frost Surface — Feature card backgrounds, subtle wash sections, ghost button hovers — the softest cool tint"
+    },
+    "halo-blue-gray": {
+      "$value": "#c1c9d8",
+      "$type": "color",
+      "$description": "Halo Blue-Gray — Shadow tones, elevated surface edges, decorative background shapes"
+    },
+    "link-blue": {
+      "$value": "#0073d3",
+      "$type": "color",
+      "$description": "Link Blue — Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "smoke-gray": {
+      "$value": "#737a86",
+      "$type": "color",
+      "$description": "Smoke Gray — Disabled button states, inactive controls, de-emphasized metadata"
+    }
+  },
+  "font": {
+    "tt-norms-pro": {
+      "$value": "TT Norms Pro",
+      "$type": "fontFamily",
+      "$description": "Single-family system for all UI. Weight 700 for headlines and CTAs (commands attention on white), weight 600 for subheadings and button labels, weight 400 for body and descriptions. Tabular numerals (tnum) enabled for data-heavy product mockups; stylistic alternates ss01–ss04, ss06 active for refined letterforms in display sizes. The 0.125em letter-spacing on 12–13px all-caps creates the uppercase eyebrow pattern ('3+ HOURS', 'TRUSTED BY 20,000+ HAPPY CUSTOMERS WORLDWIDE') that structures every section."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "TT_Norms_Pro",
+        "fontSize": "64px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(24, 31, 56, 0.25) 0px 25px 45px -45px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background"
+    },
+    "frost-card": {
+      "$value": "#f2f5fa",
+      "$type": "color",
+      "$description": "Surface level 1: Feature cards, subtle section washes"
+    },
+    "dark-stage": {
+      "$value": "#162136",
+      "$type": "color",
+      "$description": "Surface level 2: Final CTA section, dark-mode contrast band"
+    },
+    "signal-layer": {
+      "$value": "#00e05c",
+      "$type": "color",
+      "$description": "Surface level 3: CTA fills, announcement bar, active state fills"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://wrike.com",
+      "siteName": "Wrike",
+      "extractedAt": "2026-06-03T18:17:12.878Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "color": {
+    "ember-red": {
+      "$value": "#ff1841",
+      "$type": "color",
+      "$description": "Ember Red — Red supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "bloodline": {
+      "$value": "#7b0016",
+      "$type": "color",
+      "$description": "Bloodline — Decorative dark red stroke, link hover states, secondary accent where a deeper red register is needed against white"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Hero section background, primary body text, icon strokes, input field text — the structural darkness"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas base, text on dark backgrounds, input field backgrounds"
+    },
+    "ash": {
+      "$value": "#e8e6e6",
+      "$type": "color",
+      "$description": "Ash — Card surfaces, subtle section backgrounds, hairline divider highlights on dark"
+    },
+    "steel": {
+      "$value": "#949494",
+      "$type": "color",
+      "$description": "Steel — Muted borders, inactive control outlines, secondary dividers"
+    },
+    "charcoal": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Charcoal — Deep surface layer — elevated panels, dark card backgrounds behind red sections"
+    },
+    "fog": {
+      "$value": "#bebcbc",
+      "$type": "color",
+      "$description": "Fog — Light border variant for input fields on white, subtle structural lines"
+    },
+    "mist": {
+      "$value": "#c7c7c7",
+      "$type": "color",
+      "$description": "Mist — Disabled control borders, tertiary structural lines"
+    }
+  },
+  "font": {
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Micro UI text — toggle labels, badge text, button micro-copy, fine print; Arial's universality here is deliberate, keeping tiny text neutral and system-native"
+    },
+    "10x-display-custom-madefor-text-variant": {
+      "$value": "10X Display (custom — madefor-text variant)",
+      "$type": "fontFamily",
+      "$description": "Hero display headline — the massive '10X HUB' wordmark and large section openers; weight 400 at near-300px with letter-spacing -0.064em creates a poster-scale compression that fills the viewport edge-to-edge"
+    },
+    "helvetica-w01-roman": {
+      "$value": "Helvetica W01 Roman",
+      "$type": "fontFamily",
+      "$description": "Workhorse for all body copy, form labels, subheadings, navigation, and secondary headings up to 45px; the only weight available is 400, forcing visual hierarchy to come from size and color contrast rather than weight shifts"
+    },
+    "wfont9aea05daebdda91ced4d119f7837b7bae26e19": {
+      "$value": "wfont_9aea05_daebdda91ced4d119f7837b7bae26e19",
+      "$type": "fontFamily",
+      "$description": "wfont_9aea05_daebdda91ced4d119f7837b7bae26e19 — detected in extracted data but not described by AI"
+    },
+    "madefor-text": {
+      "$value": "madefor-text",
+      "$type": "fontFamily",
+      "$description": "madefor-text — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "helvetica-w01-roman",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "helvetica-w01-roman",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "helvetica-w01-roman",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "helvetica-w01-roman",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "helvetica-w01-roman",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "wfont_9aea05_daebdda91ced4d119f7837b7bae26e19",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "helvetica-w01-roman",
+        "fontSize": "31px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 31px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "helvetica-w01-roman",
+        "fontSize": "45px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "madefor-text",
+        "fontSize": "187px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 187px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "wfont_9aea05_daebdda91ced4d119f7837b7bae26e19",
+        "fontSize": "298px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 298px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "744.047px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas and form field background"
+    },
+    "ash": {
+      "$value": "#e8e6e6",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle card surfaces and light dividers"
+    },
+    "charcoal": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated dark surface behind or between red sections"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Hero background — the deepest surface, full-bleed"
+    },
+    "ember-red": {
+      "$value": "#ff1841",
+      "$type": "color",
+      "$description": "Surface level 4: Branded content section background — not a UI surface in the traditional sense but a full-bleed visual field"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://10xdesigners.co",
+      "siteName": "10X HUB",
+      "extractedAt": "2026-06-03T17:36:34.354Z",
+      "variant": "extended"
+    }
+  }
+}

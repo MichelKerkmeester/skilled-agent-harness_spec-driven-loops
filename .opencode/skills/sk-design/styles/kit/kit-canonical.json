@@ -1,0 +1,1427 @@
+{
+  "source": "https://styles.refero.design/style/7f7d24b9-6878-4548-82ca-a26bbf7a6f2c",
+  "uuid": "7f7d24b9-6878-4548-82ca-a26bbf7a6f2c",
+  "name": "Kit",
+  "northStar": "Warm creator notebook — parchment pages, highlighter-blue ink, heavy type on linen.",
+  "capturedAt": "2026-07-18T10:16:39.429Z",
+  "meta": {
+    "url": "https://kit.com",
+    "siteName": "Kit",
+    "extractedAt": "2026-04-11T19:03:33.812Z",
+    "durationMs": 135137,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 2080,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #f2efe9 (Parchment) as the default page background — never pure white (#ffffff) for full-page base",
+      "Apply #44b1ff only to primary CTA buttons and keyword highlights; all other interactive text states use #1e1e1 on transparent",
+      "Set all button border-radius to 12px for primary actions; use 8px for secondary/tertiary controls and form inputs",
+      "Use KitSansFont weight 500 only at 48px and above; switch to Libre Franklin for all text at 20px and below",
+      "Apply 1px #e3e3e3 border to all cards and inputs — no shadows; elevation reads through surface color contrast alone",
+      "Use pastel section backgrounds (Dust Blue #a2d1f1, Blush Mist #e7c9f1, Peach Sand #ffd0ad, Sage Foam #b9e9c5) for alternating content bands; limit to one per section, never consecutive same-hue bands",
+      "Set Libre Franklin at negative letter-spacing: -0.016em at 16px, -0.013em at 14px, -0.025em at 10-12px caps labels with +0.025em for uppercase tags"
+    ],
+    "tags": [
+      "warm-neutral",
+      "editorial",
+      "creator-economy",
+      "parchment-base",
+      "highlight-blue",
+      "mixed-pastel-sections",
+      "bold-headlines",
+      "two-font-system",
+      "comfortable-density",
+      "trust-forward"
+    ],
+    "donts": [
+      "Don't use #44b1ff as a section background or decorative fill — it exists only on interactive elements (buttons, inline highlights)",
+      "Don't add box-shadows to cards or buttons — shadows break the flat editorial print aesthetic; use border 1px #e3e3e3 instead",
+      "Don't use KitSansFont below 48px in display contexts; at smaller sizes it loses the structural weight that justifies its custom status",
+      "Don't use Amber Flag (#f2ba41) for text, borders, or buttons — it is strictly an icon accent fill color",
+      "Don't stack two consecutive pastel-background sections of the same hue — alternate with parchment (#f2efe9) or white (#ffffff) bands between",
+      "Don't use border-radius above 16px — avoid pill/capsule shapes (9999px) entirely; the system sits between pill-free and boxy",
+      "Don't apply the dark footer (#1e1e1e) surface to any mid-page section — it is reserved exclusively for the page-closing footer block"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#44b1ff",
+        "name": "Sky Marker",
+        "role": "Primary CTA buttons, active nav states, inline keyword highlights — vivid blue on parchment or near-black backgrounds acts as the single highlighter across an otherwise neutral palette, directing attention without competing with any other chromatic element",
+        "group": "brand"
+      },
+      {
+        "hex": "#a2d1f1",
+        "name": "Dust Blue",
+        "role": "Hero and section background panels — muted blue used as an atmospheric backdrop, never for text or interaction",
+        "group": "accent"
+      },
+      {
+        "hex": "#e7c9f1",
+        "name": "Blush Mist",
+        "role": "Section background panels — pastel pink used decoratively to vary section rhythm",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffd0ad",
+        "name": "Peach Sand",
+        "role": "Section background panels — muted orange for alternating content band backgrounds",
+        "group": "accent"
+      },
+      {
+        "hex": "#b9e9c5",
+        "name": "Sage Foam",
+        "role": "Section background panels — muted green used as a decorative surface, never for semantic status",
+        "group": "accent"
+      },
+      {
+        "hex": "#f2ba41",
+        "name": "Amber Flag",
+        "role": "Icon fills and inline callout elements — warm yellow used sparingly for small graphic accents, not for text or backgrounds",
+        "group": "accent"
+      },
+      {
+        "hex": "#1e1e1",
+        "name": "Near Black",
+        "role": "Primary text, nav text, button text, footer text, borders on dark surfaces — near-black rather than pure black softens the contrast ceiling while still reading as definitive ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2efe9",
+        "name": "Parchment",
+        "role": "Page background, hero section fill, card backgrounds — the defining warm-tinted base that makes the whole site feel like a printed editorial page rather than a screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Chalk",
+        "role": "Card interiors, form inputs, modal surfaces, footer text on dark backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e3e3e3",
+        "name": "Fog",
+        "role": "All borders, dividers, input outlines — omnipresent at freq=7844, it is the connective tissue border color across every component",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d4d4d4",
+        "name": "Ash",
+        "role": "Subdued body text, placeholder text, disabled states",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width ~1200px centered, sections are full-bleed to viewport width with content constrained inside. The above-the-fold hero splits 50/50: left half parchment (#f2efe9) with headline + CTA, right half full-height portrait photography — no gutter between them, creating an edge-to-edge split without a grid column gap. Below the hero: alternating pastel band sections (Dust Blue, Blush Mist, Peach Sand) each containing a centered product screenshot or feature illustration with text alongside. Feature grid: 4-column card row at comfortable 24px padding each. 'Thousands of' social proof section: centered headline with keyword highlighted in Sky Marker #44b1ff, followed by a horizontal creator photo strip. Footer: dark (#1e1e1e) full-bleed 4-column link grid. Navigation is sticky top bar at 56px, parchment-colored matching the hero. Section vertical rhythm is 80px gaps between major bands. No sidebar patterns — all layouts are horizontal-grid or centered-stack.",
+    "imagery": "$19",
+    "similar": [
+      {
+        "why": "Warm-tinted neutral base (Mailchimp's oat/yellow vs Kit's parchment) with single vivid accent for CTAs and heavy-weight display typography for hero headlines",
+        "business": "Mailchimp"
+      },
+      {
+        "why": "Creator-economy email SaaS using editorial typography hierarchy and product-screenshot-as-hero approach against a light neutral page base",
+        "business": "Beehiiv"
+      },
+      {
+        "why": "Same creator-first positioning reflected visually: serif-adjacent heavy headlines, minimal color palette, warm neutrals over cold corporate blues",
+        "business": "Substack"
+      },
+      {
+        "why": "Single-accent-on-neutral palette approach (Ghost's green vs Kit's blue), photography-forward hero with stat overlay cards, dark footer contrasting light page body",
+        "business": "Ghost"
+      },
+      {
+        "why": "Email marketing SaaS using pastel section backgrounds for visual rhythm and portrait photography of real creators as primary hero imagery",
+        "business": "Flodesk"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "8px",
+        "cards": "12px",
+        "inputs": "8px",
+        "modals": "16px",
+        "buttons": "12px",
+        "navDropdowns": "12px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "category": "SaaS",
+    "surfaces": [
+      {
+        "hex": "#f2efe9",
+        "name": "Page Base",
+        "level": 0,
+        "purpose": "Default page and hero background — warm parchment that defines the editorial character"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Form inputs, content cards, dashboard mockup overlays — reads as lifted against parchment without shadows"
+      },
+      {
+        "hex": "#1e1e1",
+        "name": "Dark Inversion",
+        "level": 2,
+        "purpose": "Footer only — full-bleed near-black surface that closes the page as a strong typographic terminus"
+      }
+    ],
+    "northStar": "Warm creator notebook — parchment pages, highlighter-blue ink, heavy type on linen.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.25
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.56,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.43
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 0.95,
+        "letterSpacing": -0.72
+      }
+    ],
+    "components": [
+      {
+        "html": "$1a",
+        "name": "Hero Feature Cards",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Subscriber Stats Dashboard Card",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1c",
+        "name": "Primary CTA Button Group with Trial Note",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary CTA Button",
+        "role": "Main call-to-action — 'Start free trial', sign-up triggers",
+        "description": "Background #44b1ff, text #1e1e1, border-radius 12px, padding 16px all sides. Font: Libre Franklin 600 14-16px. No border. On parchment (#f2efe9) backgrounds this creates the single chromatic pop on an otherwise neutral surface. Appears 9× as the dominant button variant."
+      },
+      {
+        "name": "Ghost Navigation Button",
+        "role": "Secondary nav actions like 'Log in', 'Request a demo', dropdown triggers",
+        "description": "Background transparent, text #1e1e1, border-radius 0px, no padding (inline text-style). Libre Franklin 400-600 14px. Border inherited as #e3e3e3 only when grouped. Used for non-CTA nav links that need no chrome — they read as text until hovered."
+      },
+      {
+        "name": "Subtle Tinted Button",
+        "role": "Tertiary or grouped option buttons within content",
+        "description": "Background oklab dark-tinted at ~8% opacity (#1e1e1 at 0.08), text #1e1e1, border-radius 8px, zero padding (tight fit). Creates a very-light pressed-surface appearance against parchment. Appears 4× as an in-content control variant."
+      },
+      {
+        "name": "Text Action Button",
+        "role": "Inline content actions, pill-style small controls",
+        "description": "Background transparent, text #1e1e1, border-radius 8px, padding 4px top/bottom × 8px left/right. Libre Franklin 400 14px. Minimal-chrome button for low-emphasis actions within content blocks."
+      },
+      {
+        "name": "Hero Feature Card",
+        "role": "Below-the-fold 4-column feature summary tiles",
+        "description": "Background #ffffff on parchment page, border 1px #e3e3e3, border-radius 12px, padding 24px. Contains a colored icon (Amber Flag #f2ba41 or Sky Marker #44b1ff), Libre Franklin 700 14-16px bold feature name inline with body weight 400 description. Light card on warm page base creates subtle lift without shadows."
+      },
+      {
+        "name": "Pastel Section Background Band",
+        "role": "Full-bleed section backgrounds used to break page rhythm",
+        "description": "Full-width bands using Dust Blue #a2d1f1, Blush Mist #e7c9f1, Peach Sand #ffd0ad, or Sage Foam #b9e9c5. No border, no radius (edge-to-edge). Text remains #1e1e1 throughout — contrast is always AAA (12:1+). Each band houses product screenshots or feature illustrations, never more than one pastel per consecutive section."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Sticky top navigation across all pages",
+        "description": "Background #f2efe9 (parchment), height ~56px, border-bottom 1px #e3e3e3. Left: Kit wordmark #1e1e1e. Center: ghost text nav items (Features, Pricing, Use Cases, Resources) Libre Franklin 600 14px. Right: 'Log in' ghost + 'Request a demo' ghost + 'Start free trial' #44b1ff pill button at border-radius 12px, padding 16px. Entire bar shares the parchment base — no white nav-on-white convention."
+      },
+      {
+        "name": "Footer Column Grid",
+        "role": "Site-wide footer link columns",
+        "description": "Background #1e1e1 (near-black), text #ffffff for links, column headers in Libre Franklin 600 10-12px uppercase with 0.025em letter-spacing. Links in Libre Franklin 400 14px #ffffff. 4-column grid with 32px column gap. 'NEW' badge appears as a small Sage Foam #b9e9c5 pill tag inline with select links. Parchment logo (#f2efe9 tinted) in bottom-left."
+      },
+      {
+        "name": "Testimonial / Creator Photo Strip",
+        "role": "Social proof imagery along the hero's right edge",
+        "description": "Circular avatar images 40-48px diameter, stacked vertically with 4px gap, border 2px #ffffff. Float against the photographic hero background. No label text — image-only stack creates ambient trust signal without disrupting the headline hierarchy."
+      },
+      {
+        "name": "NEW Badge",
+        "role": "Inline tag marking new features in nav and footer",
+        "description": "Background Sage Foam #b9e9c5, text #1e1e1, border-radius 8px, padding 4px 8px. Libre Franklin 600 10px uppercase with 0.025em tracking. Appears inline after link text — not as a standalone badge but as a tight appended label."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Hero display headlines and large section statements only. Weight 500 is the only cut — this custom face is reserved for sizes 48px and above in practice, with 14px/18px appearing as UI labels in kit-branded contexts. At 80px with 0.95 line-height, lines stack with intentional bleed, creating visual mass. The -0.009em tracking at display sizes tightens the setting so letterforms feel cut from a single block.",
+        "sizes": "14px, 18px, 48px, 56px, 64px, 80px",
+        "family": "KitSansFont",
+        "weight": "500",
+        "lineHeight": "0.95–1.50 (0.95 at 80px, 1.00 at 64px, 1.25 at 56px)",
+        "substitute": "Instrument Sans, Plus Jakarta Sans",
+        "letterSpacing": "-0.72px at 80px, -0.45px at 48px, 0.35px for caps labels (0.025em)"
+      },
+      {
+        "role": "Everything except display headlines — nav, body copy, buttons, links, captions, footer columns. Weight 700 for sub-headlines and emphasis within body text; 600 for button labels and nav items; 400 for running body text and secondary info. Negative tracking from -0.025em at small sizes to -0.008em at 20px gives all text a slightly condensed, editorial feel even at small scales. The 0.025em uppercase letter-spacing on small-caps labels creates a typewriter-tag contrast against the condensed body.",
+        "sizes": "10px, 12px, 14px, 16px, 18px, 20px",
+        "family": "Libre Franklin",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.40–1.56 for body (1.50 typical), 1.25 for UI labels, 1.00 for single-line caps",
+        "substitute": "Libre Franklin is freely available on Google Fonts — use directly",
+        "letterSpacing": "-0.25px at 10px (-0.025em), -0.18px at 14px (-0.013em), -0.16px at 16px (-0.010em), -0.14px at 18px (-0.008em), 0.25px for 0.025em uppercase tags"
+      }
+    ],
+    "description": "Kit reads like a warm editorial notebook — cream-tinted parchment (#f2efe9) as the page base, heavy black headlines punching out of it at weight 700, and a single sky-blue accent (#44b1ff) that appears on CTAs and interactive highlights against the near-black (#1e1e1e). The palette is intentionally muted and hand-curated: soft pastel blocks (dusty blue, blush pink, peach, sage green) appear as section backgrounds, never as text or interaction states, making the one vivid blue feel like a highlighter on a notebook page. KitSansFont at 80px/64px in the custom weight 500 dominates hero spaces with tight -0.009em tracking, while Libre Franklin handles everything else across the content hierarchy — a two-font system where custom display and workhorse utility stay in clearly assigned lanes. Radius tokens are tight and intentional: 12px on buttons and cards, 8px on secondary UI, creating a slightly-rounded-but-serious personality that avoids both sharp corporate rigidity and bubbly consumer softness.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1d"
+      },
+      {
+        "title": "Pastel Band System",
+        "content": "Kit uses four muted pastel hues as interchangeable full-bleed section backgrounds: Dust Blue (#a2d1f1), Blush Mist (#e7c9f1), Peach Sand (#ffd0ad), Sage Foam (#b9e9c5). Rules: (1) Never place two pastel bands consecutively — always break with Parchment (#f2efe9) or White (#ffffff). (2) All four achieve AAA contrast with #1e1e1 text (12:1 minimum). (3) Never use these colors for borders, buttons, or text — surface-only. (4) The Sage Foam (#b9e9c5) shade doubles as the NEW badge fill, the only case where a pastel color appears on a UI component rather than a full section."
+      }
+    ],
+    "elevationPhilosophy": "Kit avoids drop shadows almost entirely. Elevation is achieved through surface color contrast: white (#ffffff) cards read as lifted against parchment (#f2efe9), and parchment sections read as recessed against white overlays. The single exception is the UI mockup/dashboard card that floats over photography — it uses the white card surface plus the 1px #e3e3e3 border to visually separate from the photographic background without a shadow. This keeps the design feeling printed and flat rather than glass-and-depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e3e3e3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9158314666321387
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "heading",
+            "body",
+            "image",
+            "icon",
+            "link",
+            "footer",
+            "list"
+          ],
+          "frequency": 7844,
+          "confidence": 1,
+          "prominence": 233197214.04409158,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#1e1e1e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23503112514957922
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "heading",
+            "body",
+            "image",
+            "icon",
+            "link",
+            "footer"
+          ],
+          "frequency": 1499,
+          "confidence": 1,
+          "prominence": 190175364.4258455,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "list"
+          ],
+          "frequency": 169,
+          "confidence": 1,
+          "prominence": 133552974.98046824,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ]
+        },
+        {
+          "hex": "#f2efe9",
+          "oklch": {
+            "c": 0.008621789659147876,
+            "h": 84.57305626223489,
+            "l": 0.9527868928928261
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "image",
+            "body",
+            "heading",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 108,
+          "confidence": 1,
+          "prominence": 23429146.18152297,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#a2d1f1",
+          "oklch": {
+            "c": 0.06661423035652461,
+            "h": 238.35354905732703,
+            "l": 0.8384784596242536
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1483380,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#e7c9f1",
+          "oklch": {
+            "c": 0.06302351819127489,
+            "h": 317.6443531051734,
+            "l": 0.8734716369412128
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 250000,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffd0ad",
+          "oklch": {
+            "c": 0.07052596882662555,
+            "h": 58.359240354873144,
+            "l": 0.8897438319817321
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 250000,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#b9e9c5",
+          "oklch": {
+            "c": 0.06980585502041937,
+            "h": 152.45891663206388,
+            "l": 0.8907424996195742
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 250000,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#44b1ff",
+          "oklch": {
+            "c": 0.14968514265233623,
+            "h": 243.86609740311698,
+            "l": 0.7327043866783558
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "heading",
+            "body",
+            "icon"
+          ],
+          "frequency": 65,
+          "confidence": 1,
+          "prominence": 236094.0343021412,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#f2ba41",
+          "oklch": {
+            "c": 0.146634620745113,
+            "h": 82.78483467647193,
+            "l": 0.8195162672343169
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 150,
+          "confidence": 1,
+          "prominence": 4169.321129851245,
+          "properties": [
+            "color",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#d4d4d4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8699435455856324
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1993,
+          "properties": [
+            "color"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.009078323648913554,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#ffffff",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.53,
+          "background": "#f2efe9",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.99,
+          "background": "#e3e3e3",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.32,
+          "background": "#b9e9c5",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.81,
+          "background": "#ffd0ad",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.25,
+          "background": "#1e1e1e",
+          "foreground": "#d4d4d4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.13,
+          "background": "#e7c9f1",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.26,
+          "background": "#a2d1f1",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.43,
+          "background": "#1e1e1e",
+          "foreground": "#f2ba41"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.13,
+          "background": "#44b1ff",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.34,
+          "background": "#44b1ff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.04,
+          "background": "#44b1ff",
+          "foreground": "#f2efe9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.77,
+          "background": "#ffffff",
+          "foreground": "#f2ba41"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.73,
+          "background": "#b9e9c5",
+          "foreground": "#44b1ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.66,
+          "background": "#ffd0ad",
+          "foreground": "#44b1ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.62,
+          "background": "#a2d1f1",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.58,
+          "background": "#44b1ff",
+          "foreground": "#d4d4d4"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.56,
+          "background": "#e7c9f1",
+          "foreground": "#44b1ff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.54,
+          "background": "#f2efe9",
+          "foreground": "#f2ba41"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.5,
+          "background": "#e7c9f1",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "icon",
+            "other",
+            "image"
+          ],
+          "frequency": 30
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "image",
+            "link"
+          ],
+          "frequency": 54
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 18
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "frequency": 21,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 385,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 25,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 97,
+          "properties": [
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 40,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 382,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginRight",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 64,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 67,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 28,
+          "frequency": 36,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 181,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginTop",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 60,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 128,
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 160,
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Libre Franklin",
+          "source": "google",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 1932,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "KitSansFont",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 28,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ui-sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Libre Franklin",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Libre Franklin",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.013,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Libre Franklin",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 115,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Libre Franklin",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Libre Franklin",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Libre Franklin",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Libre Franklin",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Libre Franklin",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "link"
+          ],
+          "frequency": 112,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Libre Franklin",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Libre Franklin",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 2.86,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Libre Franklin",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.011,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Libre Franklin",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Libre Franklin",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "KitSansFont",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "KitSansFont",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Libre Franklin",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "body",
+            "button",
+            "image",
+            "icon",
+            "footer",
+            "list",
+            "link"
+          ],
+          "frequency": 1444,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Libre Franklin",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "body",
+            "link"
+          ],
+          "frequency": 104,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Libre Franklin",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Libre Franklin",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "link"
+          ],
+          "frequency": 26,
+          "lineHeight": 1,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "KitSansFont",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Libre Franklin",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.56,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Libre Franklin",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.56,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Libre Franklin",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.56,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Libre Franklin",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Libre Franklin",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Libre Franklin",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Libre Franklin",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "KitSansFont",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "KitSansFont",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "KitSansFont",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "KitSansFont",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "KitSansFont",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "KitSansFont",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.47,
+          "letterSpacing": -0.002,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "KitSansFont",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "KitSansFont",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.95,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/565b5f1f-03be-4241-b487-d5470b1c4bf0.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3660e578-1276-49ac-9f43-a3cd97dfbbdf.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7f7d24b9-6878-4548-82ca-a26bbf7a6f2c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Kit design system\",\"item\":\"https://styles.refero.design/style/7f7d24b9-6878-4548-82ca-a26bbf7a6f2c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7f7d24b9-6878-4548-82ca-a26bbf7a6f2c#style-reference\",\"name\":\"Kit design system reference\",\"headline\":\"Kit design system | Refero Styles\",\"description\":\"Explore Kit's light E-commerce design system: Sky Marker #44b1ff, Dust Blue #a2d1f1 colors, KitSansFont, Libre Franklin typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7f7d24b9-6878-4548-82ca-a26bbf7a6f2c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7f7d24b9-6878-4548-82ca-a26bbf7a6f2c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Kit\",\"url\":\"https://kit.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7f7d24b9-6878-4548-82ca-a26bbf7a6f2c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3660e578-1276-49ac-9f43-a3cd97dfbbdf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3660e578-1276-49ac-9f43-a3cd97dfbbdf.jpg\",\"caption\":\"Screenshot of Kit\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3660e578-1276-49ac-9f43-a3cd97dfbbdf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Kit design system\",\"Kit website design\",\"Kit colors\",\"Kit typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Sky Marker\",\"Dust Blue\",\"Blush Mist\",\"Peach Sand\",\"KitSansFont\",\"Libre Franklin\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Kit design system\"},{\"@type\":\"Thing\",\"name\":\"Kit website design\"},{\"@type\":\"Thing\",\"name\":\"Kit colors\"},{\"@type\":\"Thing\",\"name\":\"Kit typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-03-23T19:31:49.000Z\",\"dateModified\":\"2026-03-23T19:31:49.000Z\"}]}19:T47b,Kit uses portrait photography as the hero's dominant visual — waist-up shots of real creators (authors, coaches, bloggers) holding their books or products against solid-color studio backgrounds (teal, blue). The photography is warm, direct, high-key studio lit with no moody processing — subjects look at camera or slightly off, smiling, creating a peer-to-peer feeling rather than aspirational stock. Photos bleed to the card edge with a 12px radius container. Product UI screenshots appear as overlapping card overlays (dashboard metrics, sign-up pages) positioned partially over the photography, grounding the emotional imagery in functional reality. The second-screen hero section uses a darkened product screenshot as a full-panel background with a floating white card overlay — photography mixed with UI, not isolated. The testimonial strip uses tight circular avatar crops. Icon style: filled, minimal, two-tone (Sky Marker blue #44b1ff body + Amber Flag #f2ba41 accent detail), displayed at 24-32px in feature cards. Imagery density is balanced — one large photo per hero, then primarily text + UI screenshot driven below the fold.1a:T1229,<style>\n  @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600;700&display=swap');\n  :root {\n    --color-sky-marker: #44b1ff;\n    --color-near-black: #1e1e1e;\n    --color-parchment: #f2efe9;\n    --color-chalk: #ffffff;\n    --color-fog: #e3e3e3;\n    --color-amber-flag: #f2ba41;\n    --font-libre-franklin: 'Libre Franklin', sans-serif;\n  }\n  .feature-cards-wrapper {\n    background: var(--color-parchment);\n    padding: 24px;\n    font-family: var(--font-libre-franklin);\n    box-sizing: border-box;\n    width: 100%;\n  }\n  .feature-cards-grid {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: 12px;\n  }\n  .feature-card {\n    background: var(--color-chalk);\n    border: 1px solid var(--color-fog);\n    border-radius: 12px;\n    padding: 20px;\n    box-sizing: border-box;\n  }\n  .feature-card.active {\n    border-color: var(--color-sky-marker);\n    border-width: 1.5px;\n  }\n  .feature-card-icon {\n    width: 40px;\n    height: 40px;\n    margin-bottom: 12px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n  .feature-card-icon svg {\n    width: 40px;\n    height: 40px;\n  }\n  .feature-card-text {\n    font-size: 14px;\n    line-height: 1.5;\n    letter-spacing: -0.013em;\n    color: var(--color-near-black);\n  }\n  .feature-card-text strong {\n    font-weight: 700;\n  }\n</style>\n<div class=\"feature-cards-wrapper\">\n  <div class=\"feature-cards-grid\">\n    <div class=\"feature-card active\">\n      <div class=\"feature-card-icon\">\n        <svg viewBox=\"0 0 40 40\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <circle cx=\"14\" cy=\"14\" r=\"7\" fill=\"#44b1ff\" opacity=\"0.25\"/>\n          <circle cx=\"14\" cy=\"14\" r=\"4\" fill=\"#44b1ff\"/>\n          <circle cx=\"26\" cy=\"14\" r=\"7\" fill=\"#44b1ff\" opacity=\"0.25\"/>\n          <circle cx=\"26\" cy=\"14\" r=\"4\" fill=\"#44b1ff\"/>\n          <rect x=\"8\" y=\"24\" width=\"24\" height=\"10\" rx=\"3\" fill=\"#f2ba41\" opacity=\"0.5\"/>\n          <rect x=\"10\" y=\"26\" width=\"20\" height=\"6\" rx=\"2\" fill=\"#f2ba41\"/>\n        </svg>\n      </div>\n      <p class=\"feature-card-text\"><strong>Get more subscribers</strong> with landing pages, forms, and creator recommendations.</p>\n    </div>\n    <div class=\"feature-card\">\n      <div class=\"feature-card-icon\">\n        <svg viewBox=\"0 0 40 40\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <rect x=\"5\" y=\"10\" width=\"30\" height=\"20\" rx=\"4\" fill=\"#44b1ff\" opacity=\"0.2\"/>\n          <rect x=\"5\" y=\"10\" width=\"30\" height=\"20\" rx=\"4\" stroke=\"#44b1ff\" stroke-width=\"1.5\"/>\n          <path d=\"M5 16 L20 24 L35 16\" stroke=\"#44b1ff\" stroke-width=\"1.5\" fill=\"none\"/>\n          <circle cx=\"32\" cy=\"11\" r=\"5\" fill=\"#f2ba41\"/>\n        </svg>\n      </div>\n      <p class=\"feature-card-text\"><strong>Send beautiful emails</strong> that build relationships, not just revenue.</p>\n    </div>\n    <div class=\"feature-card\">\n      <div class=\"feature-card-icon\">\n        <svg viewBox=\"0 0 40 40\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <rect x=\"5\" y=\"14\" width=\"20\" height=\"14\" rx=\"3\" fill=\"#44b1ff\" opacity=\"0.2\"/>\n          <rect x=\"5\" y=\"14\" width=\"20\" height=\"14\" rx=\"3\" stroke=\"#44b1ff\" stroke-width=\"1.5\"/>\n          <rect x=\"17\" y=\"20\" width=\"18\" height=\"12\" rx=\"3\" fill=\"#44b1ff\" opacity=\"0.4\"/>\n          <rect x=\"17\" y=\"20\" width=\"18\" height=\"12\" rx=\"3\" stroke=\"#44b1ff\" stroke-width=\"1.5\"/>\n          <path d=\"M22 26 L25 29 L30 23\" stroke=\"#f2ba41\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n      </div>\n      <p class=\"feature-card-text\"><strong>Automate your work</strong> with apps that connect your creator tools directly to Kit.</p>\n    </div>\n    <div class=\"feature-card\">\n      <div class=\"feature-card-icon\">\n        <svg viewBox=\"0 0 40 40\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <rect x=\"6\" y=\"8\" width=\"6\" height=\"24\" rx=\"2\" fill=\"#44b1ff\" opacity=\"0.3\"/>\n          <rect x=\"6\" y=\"18\" width=\"6\" height=\"14\" rx=\"2\" fill=\"#44b1ff\"/>\n          <rect x=\"17\" y=\"8\" width=\"6\" height=\"24\" rx=\"2\" fill=\"#44b1ff\" opacity=\"0.3\"/>\n          <rect x=\"17\" y=\"12\" width=\"6\" height=\"20\" rx=\"2\" fill=\"#44b1ff\"/>\n          <rect x=\"28\" y=\"8\" width=\"6\" height=\"24\" rx=\"2\" fill=\"#44b1ff\" opacity=\"0.3\"/>\n          <rect x=\"28\" y=\"8\" width=\"6\" height=\"16\" rx=\"2\" fill=\"#44b1ff\"/>\n          <circle cx=\"34\" cy=\"10\" r=\"5\" fill=\"#f2ba41\"/>\n          <path d=\"M32 10 L33.5 11.5 L36 8.5\" stroke=\"white\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n      </div>\n      <p class=\"feature-card-text\"><strong>Earn more on autopilot</strong> with your digital products, subscriptions, and Kit Ads.</p>\n    </div>\n  </div>\n</div>1b:T117f,<style>\n  @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600;700&display=swap');\n  :root {\n    --color-sky-marker: #44b1ff;\n    --color-dust-blue: #a2d1f1;\n    --color-near-black: #1e1e1e;\n    --color-parchment: #f2efe9;\n    --color-chalk: #ffffff;\n    --color-fog: #e3e3e3;\n    --color-ash: #d4d4d4;\n    --font-libre-franklin: 'Libre Franklin', sans-serif;\n  }\n  .stats-wrapper {\n    background: var(--color-dust-blue);\n    padding: 32px 24px;\n    font-family: var(--font-libre-franklin);\n    box-sizing: border-box;\n    width: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n  }\n  .stats-card {\n    background: var(--color-chalk);\n    border: 1px solid var(--color-fog);\n    border-radius: 12px;\n    padding: 20px 24px;\n    width: 100%;\n    max-width: 360px;\n    box-sizing: border-box;\n  }\n  .stats-card-header {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    margin-bottom: 14px;\n  }\n  .stats-card-title-row {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n  }\n  .stats-card-icon {\n    width: 20px;\n    height: 16px;\n    background: var(--color-near-black);\n    border-radius: 2px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-shrink: 0;\n  }\n  .stats-card-title {\n    font-size: 14px;\n    font-weight: 600;\n    color: var(--color-near-black);\n    letter-spacing: -0.013em;\n    line-height: 1.25;\n  }\n  .stats-card-menu {\n    display: flex;\n    gap: 3px;\n    align-items: center;\n  }\n  .stats-card-menu span {\n    width: 4px;\n    height: 4px;\n    background: var(--color-ash);\n    border-radius: 50%;\n    display: block;\n  }\n  .stats-label {\n    font-size: 10px;\n    font-weight: 600;\n    letter-spacing: 0.025em;\n    text-transform: uppercase;\n    color: var(--color-ash);\n    margin-bottom: 4px;\n  }\n  .stats-big-number {\n    font-size: 28px;\n    font-weight: 700;\n    color: var(--color-near-black);\n    letter-spacing: -0.02em;\n    line-height: 1.1;\n    margin-bottom: 16px;\n  }\n  .stats-period-card {\n    background: var(--color-parchment);\n    border-radius: 8px;\n    padding: 14px 16px;\n  }\n  .stats-period-label {\n    font-size: 12px;\n    font-weight: 600;\n    color: var(--color-near-black);\n    letter-spacing: -0.013em;\n    margin-bottom: 12px;\n  }\n  .stats-metrics-row {\n    display: grid;\n    grid-template-columns: 1fr 1fr 1fr;\n    gap: 0;\n  }\n  .stats-metric {\n    padding-right: 16px;\n    border-right: 1px solid var(--color-fog);\n  }\n  .stats-metric:last-child {\n    border-right: none;\n    padding-right: 0;\n    padding-left: 16px;\n  }\n  .stats-metric:nth-child(2) {\n    padding-left: 16px;\n  }\n  .stats-metric-label {\n    font-size: 10px;\n    font-weight: 600;\n    letter-spacing: 0.025em;\n    text-transform: uppercase;\n    color: var(--color-ash);\n    margin-bottom: 4px;\n  }\n  .stats-metric-value {\n    font-size: 16px;\n    font-weight: 700;\n    color: var(--color-near-black);\n    letter-spacing: -0.016em;\n    line-height: 1.25;\n  }\n</style>\n<div class=\"stats-wrapper\">\n  <div class=\"stats-card\">\n    <div class=\"stats-card-header\">\n      <div class=\"stats-card-title-row\">\n        <div class=\"stats-card-icon\">\n          <svg width=\"12\" height=\"10\" viewBox=\"0 0 12 10\" fill=\"none\">\n            <rect x=\"0\" y=\"2\" width=\"12\" height=\"1.5\" rx=\"0.5\" fill=\"white\"/>\n            <rect x=\"0\" y=\"5\" width=\"12\" height=\"1.5\" rx=\"0.5\" fill=\"white\"/>\n            <rect x=\"0\" y=\"8\" width=\"8\" height=\"1.5\" rx=\"0.5\" fill=\"white\"/>\n          </svg>\n        </div>\n        <span class=\"stats-card-title\">Studio Notes sign up page</span>\n      </div>\n      <div class=\"stats-card-menu\">\n        <span></span><span></span><span></span>\n      </div>\n    </div>\n    <div class=\"stats-label\">Total Subscribers</div>\n    <div class=\"stats-big-number\">8,834</div>\n    <div class=\"stats-period-card\">\n      <div class=\"stats-period-label\">Last 90 days</div>\n      <div class=\"stats-metrics-row\">\n        <div class=\"stats-metric\">\n          <div class=\"stats-metric-label\">Visitors</div>\n          <div class=\"stats-metric-value\">24,257</div>\n        </div>\n        <div class=\"stats-metric\">\n          <div class=\"stats-metric-label\">Subscribers</div>\n          <div class=\"stats-metric-value\">3,014</div>\n        </div>\n        <div class=\"stats-metric\">\n          <div class=\"stats-metric-label\">Conversion Rate</div>\n          <div class=\"stats-metric-value\">12.47%</div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>1c:Tde9,<style>\n  @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600;700&display=swap');\n  :root {\n    --color-sky-marker: #44b1ff;\n    --color-near-black: #1e1e1e;\n    --color-parchment: #f2efe9;\n    --color-chalk: #ffffff;\n    --color-fog: #e3e3e3;\n    --color-sage-foam: #b9e9c5;\n    --font-libre-franklin: 'Libre Franklin', sans-serif;\n  }\n  .cta-section-wrapper {\n    background: var(--color-parchment);\n    padding: 48px 32px;\n    font-family: var(--font-libre-franklin);\n    box-sizing: border-box;\n    width: 100%;\n    display: flex;\n    flex-direction: column;\n    align-items: flex-start;\n    gap: 0;\n  }\n  .cta-headline {\n    font-size: 48px;\n    font-weight: 700;\n    color: var(--color-near-black);\n    line-height: 1.1;\n    letter-spacing: -0.43px;\n    margin: 0 0 16px 0;\n    font-family: var(--font-libre-franklin);\n  }\n  .cta-headline .highlight {\n    color: var(--color-sky-marker);\n  }\n  .cta-body {\n    font-size: 16px;\n    font-weight: 400;\n    color: var(--color-near-black);\n    line-height: 1.5;\n    letter-spacing: -0.016em;\n    margin: 0 0 28px 0;\n    max-width: 460px;\n  }\n  .cta-body strong {\n    font-weight: 700;\n  }\n  .cta-button-row {\n    display: flex;\n    align-items: center;\n    gap: 16px;\n    margin-bottom: 14px;\n    flex-wrap: wrap;\n  }\n  .btn-primary {\n    background: var(--color-sky-marker);\n    color: var(--color-near-black);\n    font-family: var(--font-libre-franklin);\n    font-size: 15px;\n    font-weight: 600;\n    letter-spacing: -0.013em;\n    border: none;\n    border-radius: 12px;\n    padding: 16px 24px;\n    cursor: pointer;\n    text-decoration: none;\n    display: inline-block;\n    line-height: 1;\n    box-sizing: border-box;\n  }\n  .btn-secondary {\n    background: transparent;\n    color: var(--color-near-black);\n    font-family: var(--font-libre-franklin);\n    font-size: 15px;\n    font-weight: 600;\n    letter-spacing: -0.013em;\n    border: 1.5px solid var(--color-fog);\n    border-radius: 12px;\n    padding: 14px 22px;\n    cursor: pointer;\n    text-decoration: none;\n    display: inline-block;\n    line-height: 1;\n    box-sizing: border-box;\n  }\n  .cta-fine-print {\n    font-size: 13px;\n    font-weight: 400;\n    color: var(--color-near-black);\n    letter-spacing: -0.013em;\n    opacity: 0.6;\n    margin: 0;\n    line-height: 1.4;\n  }\n  .cta-badges {\n    display: flex;\n    gap: 8px;\n    margin-bottom: 24px;\n    flex-wrap: wrap;\n  }\n  .cta-badge {\n    background: var(--color-sage-foam);\n    color: var(--color-near-black);\n    font-family: var(--font-libre-franklin);\n    font-size: 11px;\n    font-weight: 600;\n    letter-spacing: 0.025em;\n    text-transform: uppercase;\n    border-radius: 8px;\n    padding: 5px 10px;\n    display: inline-block;\n    line-height: 1.25;\n  }\n</style>\n<div class=\"cta-section-wrapper\">\n  <div class=\"cta-badges\">\n    <span class=\"cta-badge\">14-day free trial</span>\n    <span class=\"cta-badge\">No credit card</span>\n    <span class=\"cta-badge\">Free migrations</span>\n  </div>\n  <h2 class=\"cta-headline\">Email marketing<br>that <span class=\"highlight\">automates</span><br>your growth</h2>\n  <p class=\"cta-body\">Stop juggling complex marketing tasks when you could be writing, teaching, and creating. Kit automates your email marketing so <strong>you can get back to doing what you love.</strong></p>\n  <div class=\"cta-button-row\">\n    <a href=\"#\" class=\"btn-primary\">Start free trial</a>\n    <a href=\"#\" class=\"btn-secondary\">Request a demo</a>\n  </div>\n  <p class=\"cta-fine-print\">14-day free trial. No credit card required. Free migrations.</p>\n</div>1d:T7d1,**Quick Color Reference**\n- Page background: #f2efe9 (Parchment)\n- Primary text: #1e1e1 (Near Black)\n- CTA / highlights: #44b1ff (Sky Marker)\n- Borders / dividers: #e3e3e3 (Fog)\n- Card surface: #ffffff (Chalk)\n- Footer background: #1e1e1 (Near Black)\n\n**Example Component Prompts**\n\n1. Hero Section: Split layout, left 50% parchment background (#f2efe9). Headline at 64px KitSansFont weight 500, #1e1e1, letter-spacing -0.58px, line-height 1.00. Body copy 18px Libre Franklin weight 400, #1e1e1, letter-spacing -0.14px. CTA button: background #44b1ff, text #1e1e1, border-radius 12px, padding 16px all sides, Libre Franklin 600 16px. Right 50%: full-height portrait photo, border-radius 0 (edge-to-edge).\n\n2. Feature Summary Card: Background #ffffff, border 1px #e3e3e3, border-radius 12px, padding 24px. Top: 28px icon in #44b1ff. Below: Libre Franklin 700 16px #1e1e1 feature name inline with Libre Franklin 400 16px #1e1e1 description. No shadow.\n\n3. Pastel Content Section Band: Full-bleed background #a2d1f1 (or #ffd0ad / #b9e9c5 / #e7c9f1 for alternating bands). Internal max-width 1200px centered. Product screenshot contained in #ffffff card, border-radius 12px, border 1px #e3e3e3. Text beside it: 48px KitSansFont 500 #1e1e1 headline, 18px Libre Franklin 400 #1e1e1 body. 80px top/bottom section padding.\n\n4. Footer Column: Background #1e1e1 full-bleed. 4-column grid, 32px column gap. Section headers: Libre Franklin 600 10px #ffffff uppercase, letter-spacing 0.025em. Links: Libre Franklin 400 14px #ffffff. NEW badge: background #b9e9c5, text #1e1e1, border-radius 8px, padding 4px 8px, Libre Franklin 600 10px uppercase.\n\n5. Email Sign-Up Block: Input field background #ffffff, border 1px #e3e3e3, border-radius 8px, padding 12px 16px, placeholder Libre Franklin 400 16px #d4d4d4. Submit button full-width below: background #44b1ff, border-radius 8px, padding 14px, Libre Franklin 600 16px #1e1e1e. Stack with 8px gap. Privacy note: Libre Franklin 400 12px #d4d4d4 centered below button."
+}

@@ -1,0 +1,706 @@
+{
+  "source": "https://styles.refero.design/style/40154dc4-e681-4df9-be01-a6681d5887a6",
+  "uuid": "40154dc4-e681-4df9-be01-a6681d5887a6",
+  "name": "V–A–C",
+  "northStar": "Gallery wall on a drafting table. The starkness of a printed exhibition catalog where every margin, weight, and registration mark is deliberate.",
+  "capturedAt": "2026-07-18T08:48:10.462Z",
+  "meta": {
+    "url": "https://v-a-c.org/en",
+    "siteName": "V–A–C",
+    "extractedAt": "2026-06-03T21:42:36.352Z",
+    "durationMs": 35997,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 632,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #000000, #ffffff, and #999999. Never introduce color — the achromatic system is the identity.",
+      "Set every text element to weight 400. Do not use bold, medium, light, or any other weight. The flat single-weight voice is the design.",
+      "Apply 0px border-radius to all elements — images, cards, buttons, tags. The geometry is sharp and architectural.",
+      "Prefix every event-type metadata link with the ↗ arrow glyph. It is the universal marker for 'clickable event detail'.",
+      "Maintain the V—A—C registration bar on every page with the three letters at left/center/right on a 1px black line.",
+      "Use the 250–275px vertical gap between card rows. The generous inter-row breathing room is what makes the grid feel like gallery wall spacing, not a product card list.",
+      "Set display headings to line-height 0.88–0.90. The tight leading makes large type lock into a dense block, not airy paragraphs."
+    ],
+    "donts": [
+      "Do not add brand colors, accent colors, or semantic state colors (no green for success, no red for error). The system is deliberately colorless.",
+      "Do not use bold or semibold weights. Do not increase font-weight on hover or active states — use underline or color shift instead.",
+      "Do not apply border-radius, box-shadow, or gradients. Surfaces are flat, edges are sharp, and there is no elevation system.",
+      "Do not use centered text alignment for card titles or body copy. Text is left-aligned in a strict grid.",
+      "Do not reduce the vertical gap between card rows below 150px. The spacious row separation is essential to the gallery feel.",
+      "Do not use colored icons, filled icons, or multi-color illustrations. Icons should be single-stroke black outlines or typographic glyphs (↗, ×, ·).",
+      "Do not add background colors, tinted overlays, or section bands. The page is one continuous white field — section distinction comes from whitespace and grid rhythm, not color."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, all borders, card outlines, link color, arrow glyphs, V—A—C registration marks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Graphite",
+        "role": "Diagonal category watermarks on cards, subtle decorative strokes — the only third tone in the system",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed layout with a strict three-column card grid. The V—A—C registration bar spans the entire viewport width at the top. Content sits in a max-width ~1440px centered container with generous side margins. Each row contains exactly three cards; the vertical gap between rows is 250–275px — far more than typical card grids, creating a gallery-walk rhythm. Within each card: image fills the top of the column width, then a tight stack of metadata link + title text below. Left and right viewport edges host pinned navigation (language switcher bottom-left, section nav right edge) that frames the content. No sidebar, no full-width hero section, no alternating band layouts — the entire page is one continuous white field with the same 3-column rhythm repeating. Content is left-aligned, never centered.",
+    "imagery": "Photography dominates — event documentation, film stills, exhibition installation shots, portrait photography. All images are full-bleed within their grid cell with no cropping masks, no rounded corners, and no overlay treatments. The imagery is documentary and editorial: film festival stills show raw cinematic moments (actors mid-performance, audience reactions, architectural spaces), not stylized product shots. Color in images is permitted because the chrome around them is strictly achromatic — the photographs are the only source of visual color on the page. Image aspect ratios vary between landscape and square within the same row, creating an intentional editorial irregularity. No illustrations, no abstract graphics, no decorative imagery.",
+    "similar": [
+      {
+        "why": "Same strict editorial grid, achromatic palette, and museum-label-style card layout with image + small metadata + title stacked vertically",
+        "business": "ICA (Institute of Contemporary Arts)"
+      },
+      {
+        "why": "Same zero-colorfulness approach, 3-column event grid, sharp 0px radius geometry, and typographic-only hierarchy at a single weight",
+        "business": "SculptureCenter"
+      },
+      {
+        "why": "The V—A—C design is a direct digital translation of a printed art-institution catalog — same registration marks, same row gap, same flat ink-on-paper feel",
+        "business": "Printed exhibition catalogs (e.g., MoMA PS1, Tate publications)"
+      },
+      {
+        "why": "Same minimal achromatic aesthetic, single-weight typography, and generous whitespace that frames content like a gallery wall rather than a website",
+        "business": "KW Institute for Contemporary Art"
+      },
+      {
+        "why": "Same archival, catalog-like density of event listings in a simple grid, with dates in numeric format and no decorative color or chrome",
+        "business": "e-flux Announcements"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "5px",
+      "sectionGap": "150px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Page canvas — the entire site sits on pure white"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Image Field",
+        "level": 1,
+        "purpose": "Implicit neutral behind unloaded card images (placeholder gray before media renders)"
+      }
+    ],
+    "northStar": "Gallery wall on a drafting table. The starkness of a printed exhibition catalog where every margin, weight, and registration mark is deliberate.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 16,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 0.9
+      },
+      {
+        "role": "heading-lg",
+        "size": 35,
+        "lineHeight": 0.88
+      }
+    ],
+    "components": [
+      {
+        "name": "Event Card",
+        "role": "Primary content unit — displays an event, screening, installation, or exhibition",
+        "description": "Three-column grid item. Full-bleed image (square or landscape, 0px radius) occupies the top of the card slot. Below the image: a small metadata line prefixed with ↗ (e.g., '↗ Film screening, 11 Jun 2026') in 16px Diagramatika Text. Title in 24–35px Diagramatika Display, 400 weight, line-height 0.88–0.90, #000000, wrapping to 2–3 lines. No card border, no shadow, no background fill — the card exists only in the white space of the grid. A diagonal category watermark (Architecture, Observation) at ~45° rotation in #999999 may overlay the right edge of the card in 16px text."
+      },
+      {
+        "name": "V—A—C Registration Bar",
+        "role": "Site-wide page header — functions as both navigation and brand mark",
+        "description": "A 1px #000000 horizontal line spanning the full viewport width, positioned at the very top of the page. Three letter labels (V, A, C) sit on this line at left edge, center, and right edge respectively — functioning as registration marks like a printer's alignment guide. An upward arrow (↑) appears beneath the 'A'. The letter spacing between V—A—C is extremely wide, with long em-dash-like gaps. Typography: 20px Diagramatika Text, 400 weight, #000000."
+      },
+      {
+        "name": "Arrow Metadata Link",
+        "role": "Event type + date label above each card title",
+        "description": "Plain text link prefixed with ↗ (north-east arrow glyph). Format: '↗ Film screening, 11 Jun 2026' or '↗ Installation'. 16px Diagramatika Text, 400 weight, #000000. No underline by default. Dates always in numeric '11 Jun 2026' format. Functions as both a category tag and a link to event details."
+      },
+      {
+        "name": "Diagonal Category Watermark",
+        "role": "Category indicator overlaid on select cards",
+        "description": "Text rotated approximately 30–45° in light gray (#999999), positioned along the right edge of a card. 16px Diagramatika Text, 400 weight. Examples seen: 'Architecture', 'Observation'. Creates a subtle classification system without color or borders. Optional — appears only on cards in specific categories."
+      },
+      {
+        "name": "Left Edge Language Switcher",
+        "role": "Locale toggle pinned to the left viewport edge",
+        "description": "Stacked text 'Ru / En' in 16px Diagramatika Text, 400 weight, #000000, positioned at the bottom-left edge of the viewport, oriented horizontally. Minimal — no border, no background, just text flush to the edge."
+      },
+      {
+        "name": "Right Edge Vertical Navigation",
+        "role": "Primary section navigation pinned to the right viewport edge",
+        "description": "Vertically stacked section links reading top-to-bottom along the right edge: 'About · Projects · Publishing' (and likely more sections). 16px Diagramatika Text, 400 weight, #000000, rotated 90° so text reads bottom-to-top. Separated by middle dots (·). This edge-pinned navigation is signature — it frames the content like the margins of a printed page."
+      },
+      {
+        "name": "Cookie Consent Banner",
+        "role": "GDPR/cookie notice",
+        "description": "Small text banner ('We use cookies ×') positioned at bottom-right. 16px Diagramatika Text, 400 weight, #000000, with an × close glyph. No background, no border, no box — just dismissible text floating over the content."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body copy, metadata links, card titles, list items, navigation, all UI text. The only weight used is 400 — no bold, no medium, no light. This even single-weight voice is the defining typographic choice: nothing shouts, everything reads at the same conversational volume.",
+        "sizes": "16px, 20px",
+        "family": "Diagramatika Text",
+        "weight": "400",
+        "lineHeight": "1.00–1.15",
+        "substitute": "Inter, Söhne, or system-ui at weight 400 only"
+      },
+      {
+        "role": "Larger headings, hero text, featured card titles. Despite the name, used at the same 400 weight as body — the distinction is size and tight line-height (0.88–0.90) which lets lines of large type lock together into a dense block. The absence of weight contrast between display and text is anti-convention; most systems use 600-700 for headings.",
+        "sizes": "24px, 34px, 35px",
+        "family": "Diagramatika Display",
+        "weight": "400",
+        "lineHeight": "0.88–1.15",
+        "substitute": "GT Sectra, Söhne Breit, or Suisse Int'l at weight 400 with tight tracking"
+      }
+    ],
+    "description": "V–A–C reads like a printed exhibition catalog translated to the web: pure white paper, pure black ink, and not a single chromatic pixel. The entire system is achromatic — typography does all the expressive work, and it does so at a single weight (400) across both body and display. The signature is the V—A—C registration line stretching full-bleed across the top of every screen, turning the page header into an architectural measurement mark. Layout is a strict three-column card grid where each card is a museum wall label: full-bleed image, tiny ↗ metadata link, and a tight two-line title — separated by 250px+ of vertical breathing room between rows. No shadows, no rounded corners, no gradients, no accent color. The visual language is the visual restraint.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/40154dc4-e681-4df9-be01-a6681d5887a6#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"V–A–C design system\",\"item\":\"https://styles.refero.design/style/40154dc4-e681-4df9-be01-a6681d5887a6\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/40154dc4-e681-4df9-be01-a6681d5887a6#style-reference\",\"name\":\"V–A–C design system reference\",\"headline\":\"V–A–C design system | Refero Styles\",\"description\":\"Explore V–A–C's light Media design system: Ink #000000, Paper #ffffff colors, Diagramatika Text, Diagramatika Display typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/40154dc4-e681-4df9-be01-a6681d5887a6\",\"mainEntityOfPage\":\"https://styles.refero.design/style/40154dc4-e681-4df9-be01-a6681d5887a6\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"V–A–C\",\"url\":\"https://v-a-c.org/en\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/40154dc4-e681-4df9-be01-a6681d5887a6#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/877283d7-d456-42c8-99a5-3dbf1b08861d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/877283d7-d456-42c8-99a5-3dbf1b08861d.jpg\",\"caption\":\"Screenshot of V–A–C\"},\"image\":\"https://images.refero.design/styles/refero.design/image/877283d7-d456-42c8-99a5-3dbf1b08861d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"V–A–C design system\",\"V–A–C website design\",\"V–A–C colors\",\"V–A–C typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Ink\",\"Paper\",\"Graphite\",\"Diagramatika Text\",\"Diagramatika Display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"V–A–C design system\"},{\"@type\":\"Thing\",\"name\":\"V–A–C website design\"},{\"@type\":\"Thing\",\"name\":\"V–A–C colors\"},{\"@type\":\"Thing\",\"name\":\"V–A–C typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T02:55:18.017Z\",\"dateModified\":\"2026-04-30T02:55:18.017Z\"}]}19:T7d1,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000\n- subtle/decorative: #999999\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Event Card (grid item):** Place a full-bleed landscape or square image at the top of a 3-column grid cell (0px radius, no border, no shadow). Below the image, add a 16px Diagramatika Text line in #000000 reading '↗ Film screening, 11 Jun 2026' (the ↗ prefix is required). Below that, a title in 34px Diagramatika Display, weight 400, line-height 0.88, #000000, left-aligned, wrapping to 2–3 lines. No card background, no border, no padding around the cell content beyond column gap of 20px.\n\n2. **V—A—C Registration Header:** Draw a 1px #000000 horizontal line across the full viewport width at the very top of the page. Place three labels on this line: 'V' flush left, 'A' centered, 'C' flush right. Each in 20px Diagramatika Text, weight 400, #000000. Add a small ↑ arrow glyph beneath the centered 'A'. The spacing between V and A, and A and C, should be wide — roughly 40% of viewport width each.\n\n3. **Right Edge Vertical Navigation:** Pin a vertical text block to the right edge of the viewport, rotated 90° (reads bottom-to-top). Content: 'About · Projects · Publishing' separated by middle dots. 16px Diagramatika Text, weight 400, #000000. Position at roughly 40% from the top of the viewport.\n\n4. **Diagonal Category Watermark:** Overlay a text element on a card, rotated 30° clockwise, positioned along the right edge of the card. Content: 'Architecture' or 'Observation'. 16px Diagramatika Text, weight 400, color #999999. Low contrast — it's a subtle classification mark, not a heading.\n\n5. **Page Grid Composition:** Build a 3-column grid with 20px column gap and 258px row gap. No row should contain fewer than 3 items. The massive row gap is essential — it creates the gallery wall cadence. No background fill on the grid container; it sits directly on the white page canvas."
+      }
+    ],
+    "elevationPhilosophy": "The design uses zero elevation. No box-shadows, no border-radius, no background tints distinguish cards from the page surface. The 3-column grid structure alone provides spatial organization. This is a deliberate editorial-print translation to web: cards behave like printed page items in a catalog, not like interactive UI components."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "button",
+            "body",
+            "hero",
+            "list",
+            "card",
+            "image",
+            "input"
+          ],
+          "frequency": 3105,
+          "confidence": 1,
+          "prominence": 87166303.07150428,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 97,
+            "card/color": 103,
+            "hero/color": 1,
+            "link/color": 43,
+            "list/color": 26,
+            "other/fill": 8,
+            "image/color": 22,
+            "input/color": 1,
+            "other/color": 256,
+            "button/color": 4,
+            "heading/color": 66,
+            "body/borderColor": 388,
+            "card/borderColor": 412,
+            "hero/borderColor": 4,
+            "link/borderColor": 172,
+            "list/borderColor": 104,
+            "image/borderColor": 88,
+            "input/borderColor": 4,
+            "other/borderColor": 1024,
+            "button/borderColor": 16,
+            "heading/borderColor": 264,
+            "body/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1837909.8361362468,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "button"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 1090881.392073436,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 5,
+            "button/color": 2,
+            "other/borderColor": 20,
+            "button/borderColor": 8,
+            "other/backgroundColor": 4,
+            "heading/backgroundColor": 6
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 77,
+          "properties": [
+            "marginLeft",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginBottom|other",
+            "marginBottom|card",
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other",
+            "columnGap|list",
+            "marginTop|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 25,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 258,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 271,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 274,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 275,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 276,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 284,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 310,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Diagramatika Text",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 511,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Diagramatika Display",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 114,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Diagramatika Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "hero",
+            "list",
+            "card",
+            "image"
+          ],
+          "frequency": 320,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Diagramatika Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "body",
+            "link"
+          ],
+          "frequency": 177,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Diagramatika Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Diagramatika Text",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Diagramatika Text",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 24,
+          "family": "Diagramatika Display",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Diagramatika Display",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "card",
+            "other"
+          ],
+          "frequency": 89,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Diagramatika Display",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "button"
+          ],
+          "frequency": 24,
+          "lineHeight": 0.88,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/9b92cd4d-c7b9-4134-aafe-eacee90f7e92.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/877283d7-d456-42c8-99a5-3dbf1b08861d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/40154dc4-e681-4df9-be01-a6681d5887a6#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"V–A–C design system\",\"item\":\"https://styles.refero.design/style/40154dc4-e681-4df9-be01-a6681d5887a6\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/40154dc4-e681-4df9-be01-a6681d5887a6#style-reference\",\"name\":\"V–A–C design system reference\",\"headline\":\"V–A–C design system | Refero Styles\",\"description\":\"Explore V–A–C's light Media design system: Ink #000000, Paper #ffffff colors, Diagramatika Text, Diagramatika Display typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/40154dc4-e681-4df9-be01-a6681d5887a6\",\"mainEntityOfPage\":\"https://styles.refero.design/style/40154dc4-e681-4df9-be01-a6681d5887a6\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"V–A–C\",\"url\":\"https://v-a-c.org/en\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/40154dc4-e681-4df9-be01-a6681d5887a6#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/877283d7-d456-42c8-99a5-3dbf1b08861d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/877283d7-d456-42c8-99a5-3dbf1b08861d.jpg\",\"caption\":\"Screenshot of V–A–C\"},\"image\":\"https://images.refero.design/styles/refero.design/image/877283d7-d456-42c8-99a5-3dbf1b08861d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"V–A–C design system\",\"V–A–C website design\",\"V–A–C colors\",\"V–A–C typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Ink\",\"Paper\",\"Graphite\",\"Diagramatika Text\",\"Diagramatika Display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"V–A–C design system\"},{\"@type\":\"Thing\",\"name\":\"V–A–C website design\"},{\"@type\":\"Thing\",\"name\":\"V–A–C colors\"},{\"@type\":\"Thing\",\"name\":\"V–A–C typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T02:55:18.017Z\",\"dateModified\":\"2026-04-30T02:55:18.017Z\"}]}19:T7d1,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000\n- subtle/decorative: #999999\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Event Card (grid item):** Place a full-bleed landscape or square image at the top of a 3-column grid cell (0px radius, no border, no shadow). Below the image, add a 16px Diagramatika Text line in #000000 reading '↗ Film screening, 11 Jun 2026' (the ↗ prefix is required). Below that, a title in 34px Diagramatika Display, weight 400, line-height 0.88, #000000, left-aligned, wrapping to 2–3 lines. No card background, no border, no padding around the cell content beyond column gap of 20px.\n\n2. **V—A—C Registration Header:** Draw a 1px #000000 horizontal line across the full viewport width at the very top of the page. Place three labels on this line: 'V' flush left, 'A' centered, 'C' flush right. Each in 20px Diagramatika Text, weight 400, #000000. Add a small ↑ arrow glyph beneath the centered 'A'. The spacing between V and A, and A and C, should be wide — roughly 40% of viewport width each.\n\n3. **Right Edge Vertical Navigation:** Pin a vertical text block to the right edge of the viewport, rotated 90° (reads bottom-to-top). Content: 'About · Projects · Publishing' separated by middle dots. 16px Diagramatika Text, weight 400, #000000. Position at roughly 40% from the top of the viewport.\n\n4. **Diagonal Category Watermark:** Overlay a text element on a card, rotated 30° clockwise, positioned along the right edge of the card. Content: 'Architecture' or 'Observation'. 16px Diagramatika Text, weight 400, color #999999. Low contrast — it's a subtle classification mark, not a heading.\n\n5. **Page Grid Composition:** Build a 3-column grid with 20px column gap and 258px row gap. No row should contain fewer than 3 items. The massive row gap is essential — it creates the gallery wall cadence. No background fill on the grid container; it sits directly on the white page canvas."
+}

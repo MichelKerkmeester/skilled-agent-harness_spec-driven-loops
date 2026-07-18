@@ -1,0 +1,165 @@
+{
+  "color": {
+    "gallery-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Gallery White — Page canvas, project tile background where artwork doesn't fill the frame"
+    },
+    "fog-gray": {
+      "$value": "#b0b0b0",
+      "$type": "color",
+      "$description": "Fog Gray — Secondary surface, subtle dividers, muted metadata text"
+    },
+    "graphite": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Graphite — Link borders, secondary text, caption metadata, inactive nav"
+    },
+    "gallery-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Gallery Black — Primary text, active nav, all structural borders, the single ink that holds the system together"
+    }
+  },
+  "font": {
+    "helvetica-neue": {
+      "$value": "Helvetica Neue",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across every context — nav, body, headings, links, footer. The deliberate choice of a single weight at 400 across all roles removes typographic hierarchy and forces the grid and the imagery to do the ranking. No display cuts, no bold emphasis, no italics — restraint as a point of view."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Helvetica Neue",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 25px"
+    }
+  },
+  "spacing": {
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "gallery-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page canvas — the white wall"
+    },
+    "fog-gray": {
+      "$value": "#b0b0b0",
+      "$type": "color",
+      "$description": "Surface level 2: Recessed surface for metadata and quieter elements"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://stephaniespecht.com",
+      "siteName": "Specht Studio",
+      "extractedAt": "2026-06-03T21:12:14.171Z",
+      "variant": "extended"
+    }
+  }
+}

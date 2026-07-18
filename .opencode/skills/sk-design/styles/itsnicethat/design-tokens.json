@@ -1,0 +1,357 @@
+{
+  "color": {
+    "page-mist": {
+      "$value": "#f0efef",
+      "$type": "color",
+      "$description": "Page Mist — Page canvas — the warm off-white that holds the entire site. Cards and content float on top of this"
+    },
+    "card-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Card White — Card surfaces, input fields, elevated panels — the brighter layer stacked above Page Mist"
+    },
+    "ink": {
+      "$value": "#2b2b2b",
+      "$type": "color",
+      "$description": "Ink — Primary text, body copy, headings, icons, link defaults. Slightly softer than pure black, warming the type against the off-white canvas"
+    },
+    "graphite": {
+      "$value": "#676767",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, metadata (dates, bylines), footer labels, muted descriptions"
+    },
+    "slate": {
+      "$value": "#555555",
+      "$type": "color",
+      "$description": "Slate — Tertiary text, image captions, disabled-adjacent labels"
+    },
+    "faint-line": {
+      "$value": "#c2c2c2",
+      "$type": "color",
+      "$description": "Faint Line — Hairline dividers, subtle borders between feed items and card edges"
+    },
+    "ash": {
+      "$value": "#929292",
+      "$type": "color",
+      "$description": "Ash — Placeholder text, low-emphasis labels, very muted helper copy"
+    },
+    "banner-cream": {
+      "$value": "#faead9",
+      "$type": "color",
+      "$description": "Banner Cream — Top promotional bar background, soft warm callouts. The only non-violet warmth in the system"
+    },
+    "signal-violet": {
+      "$value": "#8147ff",
+      "$type": "color",
+      "$description": "Signal Violet — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "deep-iris": {
+      "$value": "#6219ff",
+      "$type": "color",
+      "$description": "Deep Iris — Pressed/hover state of Signal Violet, chromatic text emphasis, link text in article contexts. Sits one step darker on the same hue"
+    },
+    "hi-vis-yellow": {
+      "$value": "#ffd519",
+      "$type": "color",
+      "$description": "Hi-Vis Yellow — Yellow supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "labilvariable": {
+      "$value": "LabilVariable",
+      "$type": "fontFamily",
+      "$description": "Display and heading face. Set at 40px for article hero titles and 25px for section headings, with aggressively wide tracking (up to 0.091em at display size). The wide letter-spacing is the single most recognizable typographic signal of the brand — it forces whitespace between letters, giving headlines a printed-poster cadence. Also used for navigation labels, tags, and the floating nav bar."
+    },
+    "bradford": {
+      "$value": "Bradford",
+      "$type": "fontFamily",
+      "$description": "Body and UI face. Tight tracking (0.005–0.027em) at 15–17px for article descriptions, card metadata, button labels, and dense UI chrome. The contrast with LabilVariable's wide tracking is deliberate: LabilVariable announces, Bradford explains. Weight 500 appears for emphasis in metadata and button labels."
+    },
+    "labil": {
+      "$value": "Labil",
+      "$type": "fontFamily",
+      "$description": "Masthead and logo lockup, plus secondary UI labels. A static companion to LabilVariable — same family, different cuts — used where the variable axis isn't needed (wordmark, fixed-size badges)."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Bradford",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 2.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Labil",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "LabilVariable",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Labil",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Labil",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Labil",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "LabilVariable",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.46
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "LabilVariable",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.73
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "LabilVariable",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Bradford",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Bradford",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Labil",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Bradford",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Bradford",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.47
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 17px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "LabilVariable",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "LabilVariable",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "LabilVariable",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "113": {
+      "$value": "113px",
+      "$type": "dimension",
+      "$description": "Spacing 113px"
+    },
+    "191": {
+      "$value": "191px",
+      "$type": "dimension",
+      "$description": "Spacing 191px"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "75px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#f0efef",
+      "$type": "color",
+      "$description": "Surface level 1: Warm off-white base that fills the viewport behind all content."
+    },
+    "card-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Article cards, image frames, input fields — the primary content surface."
+    },
+    "banner-cream": {
+      "$value": "#faead9",
+      "$type": "color",
+      "$description": "Surface level 3: Top promotional partner bar, soft warm zone separating the masthead from the feed."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://itsnicethat.com",
+      "siteName": "Itsnicethat",
+      "extractedAt": "2026-06-03T18:36:08.743Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,854 @@
+{
+  "source": "https://styles.refero.design/style/f6b396e6-0ad6-402e-9ab9-0034df0d204d",
+  "uuid": "f6b396e6-0ad6-402e-9ab9-0034df0d204d",
+  "name": "San Rita",
+  "northStar": "alpine field guide on sage paper",
+  "capturedAt": "2026-07-18T09:56:38.289Z",
+  "meta": {
+    "url": "https://sanrita.ca/about",
+    "siteName": "San Rita",
+    "extractedAt": "2026-06-03T17:19:53.815Z",
+    "durationMs": 32111,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 443,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use F37stout for display moments only — let 366px headlines own the viewport, never shrink below 40px",
+      "Set all display text in Highlighter Mint (#e2ffcc) and let it overlap photographic backgrounds",
+      "Keep line-height at 0.90 for all F37stout type — the extreme tightness is the signature",
+      "Use mono (system mono substitute) at 10/12/16px for all UI, body, and caption text with -0.01em tracking",
+      "Set section gaps at 67–70px and element gaps at 24px — the rhythm comes from the 6px base unit scaled up",
+      "Scatter tilted photo cards at varying rotation angles (-12° to +12°) on Carbon Ink (#161b13) backgrounds",
+      "Keep radius at 0px for all components — corners stay sharp, the design language is topo-map crisp"
+    ],
+    "donts": [
+      "Don't add border-radius to buttons, cards, or images — sharp corners are non-negotiable",
+      "Don't use a second chromatic accent — Highlighter Mint is the only color moment that carries brand",
+      "Don't set F37stout at intermediate sizes (16–36px) — it only works at display scale or subheading scale (40–48px)",
+      "Don't use Times for body copy — it's a link accent only, the rest of the system is mono",
+      "Don't apply shadows or elevation — surfaces are defined purely by color and photographic layering",
+      "Don't center body text — mono UI copy should sit left-aligned or right-aligned, never centered",
+      "Don't introduce a third neutral — the five-tone scale (#dde2e4 → #84907f → #2d3329 → #161b13 → #000000) is the complete tonal range"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#e2ffcc",
+        "name": "Highlighter Mint",
+        "role": "Primary brand accent — display text, nav links, button labels, icon fills. The signature color; reads as highlighter pen on topo map",
+        "group": "brand"
+      },
+      {
+        "hex": "#84907f",
+        "name": "Sage Stone",
+        "role": "Muted secondary accent — subtle background washes, subdued UI elements where Highlighter Mint would be too loud",
+        "group": "neutral"
+      },
+      {
+        "hex": "#161b13",
+        "name": "Carbon Ink",
+        "role": "Dark section backgrounds — near-black with the faintest green undertone, anchors the dark bands of the page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2d3329",
+        "name": "Forest Charcoal",
+        "role": "Mid-dark text and borders on light sections — softer than pure black, keeps the green-warmth consistent",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dde2e4",
+        "name": "Topo Gray",
+        "role": "Light section backgrounds, card surfaces, hairlines — the base canvas for light bands",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Icon strokes, link underlines, high-contrast accents where maximum punch is needed",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed edge-to-edge layout with no max-width container — the canvas stretches to viewport edges on all sections. Hero pattern: full-viewport landscape photograph with the massive display headline overlapping the lower portion of the image. Section rhythm alternates between photographic/light bands and solid dark bands (#161b13), each spanning full width. Dark sections feature asymmetric, hand-scattered photo clusters rather than grids. Navigation is a minimal top bar — wordmark left, single outlined button right — with no sticky behavior apparent. Content arrangement is deliberately non-grid: photos are rotated and overlapping, text blocks sit at irregular margins (67px, 70px, 190px observed), creating a journal/zine composition rather than a SaaS dashboard. No card grids, no pricing tables, no feature matrices. Generous breathing room between sections (67–70px) but tight internal spacing (12–24px).",
+    "imagery": "Photography is the primary visual content — expansive landscape shots of canyons, mountains, and fly-fishing environments, treated as full-bleed hero backgrounds without color grading or filters. Tonal range is warm golden-hour to cool dusk. Secondary imagery appears as scattered, hand-tilted Polaroid-style snapshots (rotated -12° to +12°) on dark sections, creating a scrapbook/zine aesthetic. No illustrations, no product renders, no abstract graphics. The only non-photographic visual is simple line-drawn icon badges (hat, house, location markers) in 1.5px stroke. Photography occupies roughly 60% of total page real estate — image-heavy overall, with text punctuating rather than dominating.",
+    "similar": [
+      {
+        "why": "Same outdoor-brand full-bleed photography, condensed display type, and minimal chrome — both treat the website as a lookbook rather than a store",
+        "business": "Topo Designs"
+      },
+      {
+        "why": "Landscape-first hero imagery with environmental storytelling, though San Rita is more zine-scrapbook and less editorial",
+        "business": "Patagonia"
+      },
+      {
+        "why": "Same utilitarian mono UI type, photographic full-bleed sections, and topographic/field-guide visual language",
+        "business": "Rumpl"
+      },
+      {
+        "why": "Hand-tilted photo collage aesthetic, dark-and-photo alternating sections, casual outdoor brand attitude over polished e-commerce",
+        "business": "Poler"
+      },
+      {
+        "why": "Minimal nav chrome, landscape photography dominance, and typography that prioritizes display moments over body text density",
+        "business": "Snow Peak"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "67px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#dde2e4",
+        "name": "Topo Gray",
+        "level": 0,
+        "purpose": "Light page canvas and card base"
+      },
+      {
+        "hex": "#e2ffcc",
+        "name": "Highlighter Mint",
+        "level": 1,
+        "purpose": "Accent surface for highlighted text blocks and tonal emphasis"
+      },
+      {
+        "hex": "#84907f",
+        "name": "Sage Stone",
+        "level": 2,
+        "purpose": "Mid-tone surface for subdued sections"
+      },
+      {
+        "hex": "#2d3329",
+        "name": "Forest Charcoal",
+        "level": 3,
+        "purpose": "Deep UI surface on light themes"
+      },
+      {
+        "hex": "#161b13",
+        "name": "Carbon Ink",
+        "level": 4,
+        "purpose": "Dark section background — alternate page band"
+      }
+    ],
+    "northStar": "alpine field guide on sage paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "subheading",
+        "size": 40,
+        "lineHeight": 0.9
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 0.9
+      },
+      {
+        "role": "display",
+        "size": 366,
+        "lineHeight": 0.9
+      }
+    ],
+    "components": [
+      {
+        "name": "Brand Wordmark",
+        "role": "Logo lockup in the top-left corner",
+        "description": "Custom display face (F37stout equivalent) reading 'San Rita' at approximately 40px. Color is Highlighter Mint (#e2ffcc) on dark sections, Forest Charcoal (#2d3329) on light sections. No icon, no container — just the wordmark as a direct stamp."
+      },
+      {
+        "name": "Outlined Nav Button",
+        "role": "Primary navigation CTA in the header (e.g. 'SHOW TRAILS')",
+        "description": "1px solid border in current text color, transparent fill, 0px radius, 12–16px horizontal padding, mono caps at 10–12px. Sits flush right in the header. On dark backgrounds: border and text in Highlighter Mint (#e2ffcc). On light backgrounds: border and text in Forest Charcoal (#2d3329)."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Section-opener text that fills the viewport",
+        "description": "F37stout at 366px, line-height 0.90, letter-spacing normal, weight 400. Set in Highlighter Mint (#e2ffcc) and overlaps photographic backgrounds. The extreme scale means one line of text occupies the full width — the headline IS the layout, not contained within it."
+      },
+      {
+        "name": "Tilted Photo Card",
+        "role": "Scrapbook-style image cluster on dark sections",
+        "description": "Photographs at roughly 280–360px wide, set at varying rotation angles (approximately -8°, +12°, +4°) to create a hand-scattered, Polaroid-tossed effect. No border, no shadow, no radius — raw 0px corners. Overlaps and partially covers neighboring images. Sits on Carbon Ink (#161b13) background."
+      },
+      {
+        "name": "Circular Icon Badge",
+        "role": "Standalone illustrated icon pinned to sections",
+        "description": "Small circular badge (approximately 40–48px diameter) with a 1.5px stroke outline in Highlighter Mint (#e2ffcc), transparent fill. Contains a simple line illustration (e.g. hat, house, location pin). Functions as a decorative marker — not interactive chrome."
+      },
+      {
+        "name": "Footer Caption Block",
+        "role": "Small all-caps location/credit text in the lower-right",
+        "description": "Mono 10–12px, line-height 1.20, letter-spacing -0.01em, color Highlighter Mint (#e2ffcc) on dark. All-caps. Two to three short lines of geographical/brand lineage copy. Right-aligned, sits near the bottom edge with generous margin (190px+ from one side)."
+      },
+      {
+        "name": "Section Band — Dark",
+        "role": "Full-bleed dark content band",
+        "description": "Background Carbon Ink (#161b13), spans full viewport width, no max-width constraint. Contains scattered tilted photo cards, icon badges, and Highlighter Mint text. Section padding is roughly 67–70px top/bottom."
+      },
+      {
+        "name": "Section Band — Light",
+        "role": "Full-bleed light content band",
+        "description": "Background Topo Gray (#dde2e4) or photographic. Mono body text in Forest Charcoal (#2d3329). Section padding 67–70px. Often the top band under a full-bleed photographic hero."
+      },
+      {
+        "name": "Inline Link",
+        "role": "Text links within body copy",
+        "description": "Serif (Times) at 16px, underline present, color Forest Charcoal (#2d3329) on light backgrounds. The only serif moment in the system — reads as editorial anchor text."
+      },
+      {
+        "name": "Scroll Cue Indicator",
+        "role": "Small fixed element near bottom of viewport",
+        "description": "Tiny circular or hexagonal icon (approximately 24px) with 1px stroke in Forest Charcoal (#2d3329) or Highlighter Mint (#e2ffcc). Suggests downward scroll direction. No fill, no animation chrome — a quiet directional hint."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display face for section openers and brand wordmark. The extreme condensed proportions at 0.90 line-height and a single weight (400) create landscape-blocking headlines that read as stamped signage, not web type. At 366px it fills the viewport; at 40–48px it becomes a tight sectional label.",
+        "sizes": "40px, 48px, 366px",
+        "family": "F37stout",
+        "weight": "400",
+        "lineHeight": "0.90",
+        "substitute": "Bebas Neue, Anton, Oswald",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "All UI chrome, body copy, nav, captions, buttons, footer text. The -0.01em tracking and tight 1.20 line-height give it a screen-printed, field-guide density. Weight 700 is used sparingly for emphasis; weight 400 carries the load. All-caps treatments dominate — this face behaves like a typewriter.",
+        "sizes": "10px, 12px, 16px",
+        "family": "mono",
+        "weight": "400, 700",
+        "lineHeight": "1.20",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Space Mono",
+        "letterSpacing": "-0.01em"
+      },
+      {
+        "role": "Serif accent for inline links, providing a newspaper/editorial contrast against the mono body. Used sparingly — one or two link moments per page.",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Times New Roman, any system serif",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "San Rita reads like a field journal for an outdoor boot brand: expansive landscape photography, a single pale mint accent that pops like highlighter on topo paper, and a custom condensed display face that turns section openers into landscape-blocking statements. The visual rhythm alternates between bright, full-bleed imagery and near-black (#161b13) dark bands where tilted Polaroid-style photos scatter across the canvas like a fly-fishing logbook. Typography is utilitarian and small for everything except the display moments — mono caps handle UI chrome while a single massive 300px+ display line carries each section's identity. Components stay flat and unembellished: thin outlined buttons, no shadows, no rounded corners to soften the edges. The whole system feels like topographic map meets adventure zine — confident, outdoorsy, and deliberately raw rather than polished SaaS.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f6b396e6-0ad6-402e-9ab9-0034df0d204d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"San Rita design system\",\"item\":\"https://styles.refero.design/style/f6b396e6-0ad6-402e-9ab9-0034df0d204d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f6b396e6-0ad6-402e-9ab9-0034df0d204d#style-reference\",\"name\":\"San Rita design system reference\",\"headline\":\"San Rita design system | Refero Styles\",\"description\":\"Explore San Rita's mixed E-commerce design system: Highlighter Mint #e2ffcc, Sage Stone #84907f colors, F37stout, mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f6b396e6-0ad6-402e-9ab9-0034df0d204d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f6b396e6-0ad6-402e-9ab9-0034df0d204d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"San Rita\",\"url\":\"https://sanrita.ca/about\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f6b396e6-0ad6-402e-9ab9-0034df0d204d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/188c3b4d-93a7-4803-8ac6-8da10e0695f4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/188c3b4d-93a7-4803-8ac6-8da10e0695f4.jpg\",\"caption\":\"Screenshot of San Rita\"},\"image\":\"https://images.refero.design/styles/refero.design/image/188c3b4d-93a7-4803-8ac6-8da10e0695f4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"San Rita design system\",\"San Rita website design\",\"San Rita colors\",\"San Rita typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Highlighter Mint\",\"Sage Stone\",\"Carbon Ink\",\"Forest Charcoal\",\"F37stout\",\"mono\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"San Rita design system\"},{\"@type\":\"Thing\",\"name\":\"San Rita website design\"},{\"@type\":\"Thing\",\"name\":\"San Rita colors\"},{\"@type\":\"Thing\",\"name\":\"San Rita typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-11T19:44:26.000Z\",\"dateModified\":\"2026-04-11T19:44:26.000Z\"}]}19:T534,## Quick Color Reference\n- text: #2d3329 (on light) / #e2ffcc (on dark)\n- background: #dde2e4 (light) / #161b13 (dark)\n- border: #2d3329 (on light) / #e2ffcc (on dark)\n- accent: #e2ffcc (Highlighter Mint)\n- primary action: no distinct CTA color\n\n## 3 Example Component Prompts\n\n### 1. Outlined Ghost Nav Button\nCreate a nav button: 1px solid #e2ffcc border, transparent fill, 0px radius, 12px 16px padding. Text: 'SHOW TRAILS' in mono 10px, weight 400, letter-spacing -0.01em, color #e2ffcc, all-caps. No background fill — the border IS the affordance.\n\n### 2. Display Headline Over Photography\nCreate a section with a full-bleed landscape photograph as background. Overlap it with a headline: F37stout (use Bebas Neue as substitute) at 366px, weight 400, line-height 0.90, color #e2ffcc, letter-spacing normal. Text should fill the viewport width on a single line, anchored to the lower third of the image.\n\n### 3. Tilted Photo Cluster on Dark Band\nCreate a dark section: background #161b13, padding 67px top/bottom. Inside, place three photograph cards (280–360px wide) at rotation angles of -8°, +12°, and +4°, with slight overlap. Images: outdoor landscape/fly-fishing photography. No border, no radius, no shadow. Add a small circular icon badge (1.5px stroke #e2ffcc, 48px diameter) floating in the upper-left quadrant."
+      },
+      {
+        "title": "Photo Composition Rules",
+        "content": "Tilted photo clusters follow these rules:\n- Rotation range: -12° to +12°, never beyond\n- Cards overlap by approximately 15–25% of their width\n- No two adjacent photos share the same angle\n- All photos share the same warm color treatment — no black-and-white breaks\n- The cluster is always asymmetric — never a centered, balanced stack\n- The dark background (#161b13) is visible in the gaps between photos, defining the negative space"
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no drop shadows, no glow effects. Depth is created entirely through the layered overlap of photographic elements on solid color backgrounds, and through the surface scale from Topo Gray through Carbon Ink. The flatness is deliberate — it reads as printed paper, not digital UI."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "hero",
+            "heading",
+            "footer"
+          ],
+          "frequency": 538,
+          "confidence": 1,
+          "prominence": 85910804.49397023,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dde2e4",
+          "oklch": {
+            "c": 0.0060653734147895315,
+            "h": 223.46151488870672,
+            "l": 0.9095330580714904
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "other",
+            "icon",
+            "list"
+          ],
+          "frequency": 477,
+          "confidence": 1,
+          "prominence": 60723413.429604985,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#161b13",
+          "oklch": {
+            "c": 0.017047655593211374,
+            "h": 133.85070872408582,
+            "l": 0.2139720209215009
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10812916.907757364,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#84907f",
+          "oklch": {
+            "c": 0.028502505599177202,
+            "h": 136.38676948565217,
+            "l": 0.6385775863438584
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 6537534.778688556,
+          "properties": [
+            "backgroundColor",
+            "fill",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e2ffcc",
+          "oklch": {
+            "c": 0.07325127328487381,
+            "h": 131.85153587735158,
+            "l": 0.9662065813549343
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "icon",
+            "list",
+            "body"
+          ],
+          "frequency": 536,
+          "confidence": 1,
+          "prominence": 4557242.460253229,
+          "properties": [
+            "fill",
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2d3329",
+          "oklch": {
+            "c": 0.01930568792591637,
+            "h": 132.84126897101763,
+            "l": 0.31187759765415984
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "heading"
+          ],
+          "frequency": 246,
+          "confidence": 1,
+          "prominence": 479771.39446568274,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.07063226463117554,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.41,
+          "background": "#e2ffcc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.17,
+          "background": "#161b13",
+          "foreground": "#e2ffcc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.07,
+          "background": "#dde2e4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.39,
+          "background": "#161b13",
+          "foreground": "#dde2e4"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12,
+          "background": "#2d3329",
+          "foreground": "#e2ffcc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.94,
+          "background": "#2d3329",
+          "foreground": "#dde2e4"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.28,
+          "background": "#84907f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.23,
+          "background": "#161b13",
+          "foreground": "#84907f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.88,
+          "background": "#2d3329",
+          "foreground": "#84907f"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.09,
+          "background": "#e2ffcc",
+          "foreground": "#84907f"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.56,
+          "background": "#84907f",
+          "foreground": "#dde2e4"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.62,
+          "background": "#2d3329",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.35,
+          "background": "#161b13",
+          "foreground": "#2d3329"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.21,
+          "background": "#e2ffcc",
+          "foreground": "#dde2e4"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.2,
+          "background": "#161b13",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 55,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 21,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 66,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 67,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 70,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 190,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "mono",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 292,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "F37stout",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 41,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 22,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.83
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "mono",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 10,
+          "family": "mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 16,
+          "family": "mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "hero",
+            "heading",
+            "image",
+            "list",
+            "body",
+            "footer"
+          ],
+          "frequency": 183,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "mono",
+          "weight": 700,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "mono",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "body"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "F37stout",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 48,
+          "family": "F37stout",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 16,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 366,
+          "family": "F37stout",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 17,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/fbe4ded7-63e9-4d01-9700-7e377640bfb4.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/188c3b4d-93a7-4803-8ac6-8da10e0695f4.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f6b396e6-0ad6-402e-9ab9-0034df0d204d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"San Rita design system\",\"item\":\"https://styles.refero.design/style/f6b396e6-0ad6-402e-9ab9-0034df0d204d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f6b396e6-0ad6-402e-9ab9-0034df0d204d#style-reference\",\"name\":\"San Rita design system reference\",\"headline\":\"San Rita design system | Refero Styles\",\"description\":\"Explore San Rita's mixed E-commerce design system: Highlighter Mint #e2ffcc, Sage Stone #84907f colors, F37stout, mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f6b396e6-0ad6-402e-9ab9-0034df0d204d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f6b396e6-0ad6-402e-9ab9-0034df0d204d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"San Rita\",\"url\":\"https://sanrita.ca/about\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f6b396e6-0ad6-402e-9ab9-0034df0d204d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/188c3b4d-93a7-4803-8ac6-8da10e0695f4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/188c3b4d-93a7-4803-8ac6-8da10e0695f4.jpg\",\"caption\":\"Screenshot of San Rita\"},\"image\":\"https://images.refero.design/styles/refero.design/image/188c3b4d-93a7-4803-8ac6-8da10e0695f4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"San Rita design system\",\"San Rita website design\",\"San Rita colors\",\"San Rita typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Highlighter Mint\",\"Sage Stone\",\"Carbon Ink\",\"Forest Charcoal\",\"F37stout\",\"mono\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"San Rita design system\"},{\"@type\":\"Thing\",\"name\":\"San Rita website design\"},{\"@type\":\"Thing\",\"name\":\"San Rita colors\"},{\"@type\":\"Thing\",\"name\":\"San Rita typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-11T19:44:26.000Z\",\"dateModified\":\"2026-04-11T19:44:26.000Z\"}]}19:T534,## Quick Color Reference\n- text: #2d3329 (on light) / #e2ffcc (on dark)\n- background: #dde2e4 (light) / #161b13 (dark)\n- border: #2d3329 (on light) / #e2ffcc (on dark)\n- accent: #e2ffcc (Highlighter Mint)\n- primary action: no distinct CTA color\n\n## 3 Example Component Prompts\n\n### 1. Outlined Ghost Nav Button\nCreate a nav button: 1px solid #e2ffcc border, transparent fill, 0px radius, 12px 16px padding. Text: 'SHOW TRAILS' in mono 10px, weight 400, letter-spacing -0.01em, color #e2ffcc, all-caps. No background fill — the border IS the affordance.\n\n### 2. Display Headline Over Photography\nCreate a section with a full-bleed landscape photograph as background. Overlap it with a headline: F37stout (use Bebas Neue as substitute) at 366px, weight 400, line-height 0.90, color #e2ffcc, letter-spacing normal. Text should fill the viewport width on a single line, anchored to the lower third of the image.\n\n### 3. Tilted Photo Cluster on Dark Band\nCreate a dark section: background #161b13, padding 67px top/bottom. Inside, place three photograph cards (280–360px wide) at rotation angles of -8°, +12°, and +4°, with slight overlap. Images: outdoor landscape/fly-fishing photography. No border, no radius, no shadow. Add a small circular icon badge (1.5px stroke #e2ffcc, 48px diameter) floating in the upper-left quadrant."
+}

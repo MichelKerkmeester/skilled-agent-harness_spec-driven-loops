@@ -1,0 +1,248 @@
+{
+  "color": {
+    "ember-signal": {
+      "$value": "#ff4d00",
+      "$type": "color",
+      "$description": "Ember Signal — Active nav state only — appears on a single interactive element as a hot indicator, never used for buttons or CTAs; its rarity is the feature"
+    },
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Page background, button fill, SVG fills — absolute black, not near-black"
+    },
+    "chalk": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Chalk — Primary text, nav labels, button text, body copy"
+    },
+    "fog": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Fog — Border color across nav, cards, buttons, logo grid dividers — the structural skeleton visible against black"
+    },
+    "ash": {
+      "$value": "#c4c4c4",
+      "$type": "color",
+      "$description": "Ash — Secondary text, subheadings, de-emphasized body copy, SVG fills"
+    },
+    "graphite": {
+      "$value": "#757575",
+      "$type": "color",
+      "$description": "Graphite — Tertiary text, muted labels, icon fills"
+    },
+    "carbon": {
+      "$value": "#454545",
+      "$type": "color",
+      "$description": "Carbon — Card/tile border color — used on logo grid cells to define structure without brightness"
+    },
+    "obsidian": {
+      "$value": "#2e2e2",
+      "$type": "color",
+      "$description": "Obsidian — Subtle element backgrounds, hover states, SVG fills"
+    },
+    "cinder": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Cinder — Input backgrounds, input borders — the only surface that differs from absolute black"
+    },
+    "smudge": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Smudge — SVG illustration fills, decorative icon tones"
+    }
+  },
+  "font": {
+    "geist": {
+      "$value": "Geist",
+      "$type": "fontFamily",
+      "$description": "Single font family across all type — nav, body, display, headings, labels. The 87px weight-600 headline at 0.89 line-height is the system's signature: text taller than its own cap-height spacing, letters colliding at scale. -0.04em letter-spacing at display sizes crushes the tracking until characters nearly touch. 'ss01' feature flag activates alternate glyph forms distinct to Geist. Using one face for everything from 12px captions to 87px display creates a monolithic typographic voice — zero genre-mixing."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 0.89
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 0.89
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "38px",
+        "fontWeight": 600,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "38px",
+        "fontWeight": 600,
+        "lineHeight": 0.89
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "76px",
+        "fontWeight": 600,
+        "lineHeight": 0.89
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 76px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Geist",
+        "fontSize": "87px",
+        "fontWeight": 600,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 87px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://basement.studio",
+      "siteName": "basement.studio",
+      "extractedAt": "2026-04-11T22:15:28.353Z",
+      "variant": "extended"
+    }
+  }
+}

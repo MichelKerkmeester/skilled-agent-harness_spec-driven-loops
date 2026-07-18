@@ -1,0 +1,227 @@
+{
+  "color": {
+    "workshop-blue": {
+      "$value": "#0076ff",
+      "$type": "color",
+      "$description": "Workshop Blue — Blue action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "hail-yellow": {
+      "$value": "#f4eb59",
+      "$type": "color",
+      "$description": "Hail Yellow — Promotional banners, first-order discount strip — a single warm yellow used sparingly to draw the eye without competing with photography"
+    },
+    "pale-sky": {
+      "$value": "#c3d7ee",
+      "$type": "color",
+      "$description": "Pale Sky — Soft blue surface for secondary panels or callout backgrounds — a desaturated companion to Workshop Blue"
+    },
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas — Page background, base surface"
+    },
+    "bone": {
+      "$value": "#eeede8",
+      "$type": "color",
+      "$description": "Bone — Warm off-white for product detail panels, card surfaces, and secondary backgrounds — slight yellow tint gives the whole site its paper-like cast"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, hairline borders, icon strokes — used aggressively for borders (1000+ instances) to create the dense grid of dividers"
+    },
+    "press-black": {
+      "$value": "#1e1e1e",
+      "$type": "color",
+      "$description": "Press Black — Body and heading text, form borders — slightly softer than pure black, the main reading text color"
+    },
+    "smudge": {
+      "$value": "#888888",
+      "$type": "color",
+      "$description": "Smudge — Muted body text, secondary descriptions"
+    },
+    "ash": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Ash — Helper text, tertiary metadata, muted labels"
+    }
+  },
+  "font": {
+    "gerstner-programm-fsl-regular": {
+      "$value": "Gerstner Programm FSL Regular",
+      "$type": "fontFamily",
+      "$description": "Gerstner Programm FSL Regular — detected in extracted data but not described by AI"
+    },
+    "ot-neue-montreal-medium-semi-squeezed": {
+      "$value": "OT Neue Montreal Medium Semi Squeezed",
+      "$type": "fontFamily",
+      "$description": "Display headings — the semi-squeezed (condensed) proportions and 0.81 line-height let large headings stack tightly, giving editorial zine-like rhythm. Weight 500 (not 700) keeps headlines assertive but not heavy. Sub: Oswald, Bebas Neue, or Barlow Condensed Medium."
+    },
+    "gerstner-programm-fsl": {
+      "$value": "Gerstner Programm FSL",
+      "$type": "fontFamily",
+      "$description": "Body copy, product descriptions — a typewriter-era serif with quirky ligatures and alternate glyphs (blwf, cv03-11) that gives the text a stamped/maker quality. Tight tracking (-0.02em) and 1.14 line-height produce dense, print-like paragraphs. Sub: IBM Plex Serif, Source Serif Pro, or JetBrains Mono."
+    },
+    "abc-marfa-mono": {
+      "$value": "ABC Marfa Mono",
+      "$type": "fontFamily",
+      "$description": "Tiny uppercase labels, price tags, status badges — tracked wide (+0.1em) at micro size to read as editorial captions or rubber-stamp marks. Sub: Space Mono, IBM Plex Mono."
+    },
+    "system-sans-serif": {
+      "$value": "system sans-serif",
+      "$type": "fontFamily",
+      "$description": "Fallback UI text, nav labels, utility micro-copy. Sub: -apple-system, Inter, or any system UI font."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ABC Marfa Mono Unlicensed Trial Regular",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Gerstner Programm FSL Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Gerstner Programm FSL Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Gerstner Programm FSL",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "OT Neue Montreal Medium Semi Squeezed",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "OT Neue Montreal Medium Semi Squeezed",
+        "fontSize": "54px",
+        "fontWeight": 500,
+        "lineHeight": 0.81
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base background for the entire site"
+    },
+    "bone-panel": {
+      "$value": "#eeede8",
+      "$type": "color",
+      "$description": "Surface level 1: Product detail sidebars, secondary card surfaces, warm off-white accent surface"
+    },
+    "pale-sky": {
+      "$value": "#c3d7ee",
+      "$type": "color",
+      "$description": "Surface level 2: Soft blue highlight or callout panel"
+    },
+    "hail-yellow": {
+      "$value": "#f4eb59",
+      "$type": "color",
+      "$description": "Surface level 3: Promotional banner strip, urgency messaging"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://agronomywork.shop",
+      "siteName": "Agronomy Workshop",
+      "extractedAt": "2026-06-03T21:02:25.014Z",
+      "variant": "extended"
+    }
+  }
+}

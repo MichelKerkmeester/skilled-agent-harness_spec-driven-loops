@@ -1,0 +1,240 @@
+{
+  "color": {
+    "ink-charcoal": {
+      "$value": "#303030",
+      "$type": "color",
+      "$description": "Ink Charcoal — Primary text, all UI borders, nav rules, image borders — the only non-white structural color in the system. The brand's deliberate refusal to go pure black gives headlines a softer, printed feel"
+    },
+    "dust-gray": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Dust Gray — Secondary borders, card dividers, footer rules, tertiary UI separators — a mid-gray that recedes behind content and never competes with photography"
+    },
+    "bone": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Bone — Card surfaces, subtle elevation against the white page, light shadow tints — warms the page away from clinical white and echoes paper stock"
+    },
+    "faded-pencil": {
+      "$value": "#767676",
+      "$type": "color",
+      "$description": "Faded Pencil — Rare nav underline / accent rule — used sparingly where a separator needs slightly more presence than Dust Gray"
+    }
+  },
+  "font": {
+    "itcfranklingothicstdbook": {
+      "$value": "ITCFranklinGothicStdBook",
+      "$type": "fontFamily",
+      "$description": "UI sans — nav items, category labels (CAFÉS | MADRID), dates, footer micro-copy, tag metadata. The single weight 400 acts as a quiet utilitarian voice that stays out of the way of imagery and serif titles."
+    },
+    "garamond": {
+      "$value": "Garamond",
+      "$type": "fontFamily",
+      "$description": "Project card titles, section labels, and secondary prose. The 28px Garamond with line-height 1.00 sits tight and dense like editorial captions, while 17px handles body-level text in lists and inputs. Its classical proportions give the grid a literary tone."
+    },
+    "perpetuatitlingmt": {
+      "$value": "PerpetuaTitlingMT",
+      "$type": "fontFamily",
+      "$description": "Major section and page titles — the 48px tier anchors featured-project headers while 25–40px handles sub-section and card-stack headlines. Perpetua's titling proportions (narrow caps, tall x-height) give the layout a stately, museum-label quality."
+    },
+    "displacekc": {
+      "$value": "DisplaceKC",
+      "$type": "fontFamily",
+      "$description": "The wordmark only — the 'CUP OF COUPLE' logo at 72px. This is the system's single moment of typographic spectacle: the custom face's distorted, slightly retro character sets the entire editorial mood and is never reused elsewhere."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ITCFranklinGothicStdBook",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ITCFranklinGothicStdBook",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ITCFranklinGothicStdBook",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ITCFranklinGothicStdBook",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Garamond",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Garamond",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Garamond",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Garamond",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 17px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "PerpetuaTitlingMT",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Garamond",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "PerpetuaTitlingMT",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "PerpetuaTitlingMT",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PerpetuaTitlingMT",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "DisplaceKC",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Implicit page background — pure white beneath all content"
+    },
+    "card-surface": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle card lift, image matte borders, soft fill blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.cupofcouple.com",
+      "siteName": "Cup of Couple",
+      "extractedAt": "2026-06-03T20:34:52.239Z",
+      "variant": "extended"
+    }
+  }
+}

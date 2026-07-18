@@ -1,0 +1,274 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, filled action button (Try ChatGPT), strongest interactive emphasis — the single period of chromatic punctuation in an otherwise achromatic system"
+    },
+    "graphite": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Graphite — Muted captions, helper text, and de-emphasized UI labels."
+    },
+    "smoke": {
+      "$value": "#8f8f8f",
+      "$type": "color",
+      "$description": "Smoke — Tertiary text, disabled states, icon strokes, placeholder text — the dimmest readable voice"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces, input fills — the infinite background that lets type and imagery carry all weight"
+    },
+    "ash": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Ash — Subtle surface elevation, hover states, language selector background — a barely-visible plane shift from Paper"
+    },
+    "hairline": {
+      "$value": "#0000001f",
+      "$type": "color",
+      "$description": "Hairline — All borders, dividers, card outlines, button outlines — structure without weight, defined as a semi-transparent black rather than a gray hex"
+    },
+    "whisper": {
+      "$value": "#0000000a",
+      "$type": "color",
+      "$description": "Whisper — Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "openai-sans": {
+      "$value": "OpenAI Sans",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all UI text — custom geometric sans with humanist warmth, used at weight 400 for body, 500 for nav/labels/headings, 600 only for the largest headings. Signature: -0.03em tracking at display sizes creates compressed authority; +0.011em at 28px adds subtle breathing for subheads. Font features: 'calt' and 'liga' enable contextual alternates and ligatures."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.51
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.32
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.26
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "28px",
+        "fontWeight": 600,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "OpenAI Sans",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "md-2": {
+      "$value": "6.08px",
+      "$type": "dimension",
+      "$description": "Border radius md-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.02) 0px 4px 6px 0px, rgba(0, 0, 0, 0.05) 0px 0px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base canvas — all content sits directly on this surface"
+    },
+    "ash": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated surface for language selector and subtle hover/selected states"
+    },
+    "whisper": {
+      "$value": "#0000000a",
+      "$type": "color",
+      "$description": "Surface level 2: Interactive surface tint for ghost button hover and card selection"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://openai.com",
+      "siteName": "OpenAI",
+      "extractedAt": "2026-07-03T03:45:45.294Z",
+      "variant": "extended"
+    }
+  }
+}

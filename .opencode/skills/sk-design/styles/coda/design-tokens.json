@@ -1,0 +1,369 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, heading fills, primary borders, and the structural ink color across all UI surfaces"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Default page canvas, card surfaces, button text on dark fills, and outlined-button fills"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Filled primary action background, hard offset shadow color, and high-contrast icon fills"
+    },
+    "cream-paper": {
+      "$value": "#fff6ec",
+      "$type": "color",
+      "$description": "Cream Paper — Warm hero band, footer surface, and the signature alternate canvas that gives Coda its editorial mood"
+    },
+    "ash-border": {
+      "$value": "#e0e0e0",
+      "$type": "color",
+      "$description": "Ash Border — Hairline borders, card edges, and subtle dividers separating surfaces from canvas"
+    },
+    "graphite": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Graphite — Secondary body text, muted helper text, and low-emphasis metadata"
+    },
+    "smoke": {
+      "$value": "#8e8e8e",
+      "$type": "color",
+      "$description": "Smoke — Tertiary text, placeholder text, disabled labels, and nav item resting state"
+    },
+    "slate-button": {
+      "$value": "#444444",
+      "$type": "color",
+      "$description": "Slate Button — Secondary button borders and mid-weight icon strokes"
+    },
+    "ember-orange": {
+      "$value": "#ee5a29",
+      "$type": "color",
+      "$description": "Ember Orange — Sole chromatic accent — heading highlights, section eyebrow text, decorative underlines, and brand-mark punctuation. The single warm note against an otherwise black-and-cream system"
+    }
+  },
+  "font": {
+    "calibre-r": {
+      "$value": "Calibre-R",
+      "$type": "fontFamily",
+      "$description": "Display and section headlines. Custom geometric 700-weight face with extremely tight tracking that compresses letterforms into dense blocks of ink. The heavy + tight combination is Coda's signature — headlines feel carved rather than written. Substitute: Manrope 800 or DM Sans 800 with -0.03em tracking."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "All UI text: body copy, nav links, buttons, labels, captions. Inter carries the entire functional layer; its near-default weights and tracking let the Calibre headlines lead."
+    },
+    "tiempos-headline": {
+      "$value": "Tiempos-Headline",
+      "$type": "fontFamily",
+      "$description": "Occasional editorial subheading in a light serif weight — the soft counterpoint to Calibre's blocky display. Used sparingly for emphasis rather than hierarchy."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Calibre-R",
+        "fontSize": "38px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Tiempos-Headline",
+        "fontSize": "38px",
+        "fontWeight": 300,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Calibre-R",
+        "fontSize": "52px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Calibre-R",
+        "fontSize": "72px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "164": {
+      "$value": "164px",
+      "$type": "dimension",
+      "$description": "Spacing 164px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(33, 33, 33) 0px 0px 0px 1.5px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "lg": {
+      "$value": "rgba(0, 0, 0, 0.06) 0px 12px 24px -5px, rgba(0, 0, 0, 0.06) 0px 5px 10px -6px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    },
+    "subtle-2": {
+      "$value": "rgb(224, 224, 224) 0px 0px 0px 1.5px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgb(0, 0, 0) 8px 8px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    },
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.06) 0px 18px 36px -6px, rgba(0, 0, 0, 0.06) 0px 6px 12px -6px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#fff6ec",
+      "$type": "color",
+      "$description": "Surface level 0: Hero band, footer, and the warm editorial entry surface."
+    },
+    "default-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Main content canvas, card surfaces, product mockup frames."
+    },
+    "cool-white": {
+      "$value": "#dbeefa",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle secondary canvas for alternating sections."
+    },
+    "apricot": {
+      "$value": "#f8ad40",
+      "$type": "color",
+      "$description": "Surface level 3: Accent surface washes (rarely used, brand tone)."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://coda.io",
+      "siteName": "Coda",
+      "extractedAt": "2026-06-03T19:31:52.708Z",
+      "variant": "extended"
+    }
+  }
+}

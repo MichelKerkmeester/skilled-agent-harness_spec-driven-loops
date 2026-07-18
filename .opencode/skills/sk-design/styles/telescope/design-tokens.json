@@ -1,0 +1,217 @@
+{
+  "color": {
+    "bone-paper": {
+      "$value": "#f4f3f0",
+      "$type": "color",
+      "$description": "Bone Paper — Page canvas — the warm off-white that reads as paper stock, not screen white. Everything sits on this surface"
+    },
+    "ink": {
+      "$value": "#1a1915",
+      "$type": "color",
+      "$description": "Ink — Primary text, body copy, headings, borders, and hairline rules. A warm near-black, never pure #000, so the contrast against Bone Paper feels printed rather than digital"
+    },
+    "ash": {
+      "$value": "#82868e",
+      "$type": "color",
+      "$description": "Ash — Secondary text, meta labels, and subtle borders. The cool counterpoint to Ink's warmth — used when type needs to recede without losing legibility"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Surface layer above Bone Paper for inline cards and the bottom navigation bar. Rare — most surfaces stay on Bone"
+    },
+    "lime-pulse": {
+      "$value": "#e3f794",
+      "$type": "color",
+      "$description": "Lime Pulse — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "beausite": {
+      "$value": "Beausite",
+      "$type": "fontFamily",
+      "$description": "The sole display and body face. Used at four sizes: 19px for body and card text, 23px for emphasized body and sub-headings, 55px for section headings, and 57px for hero headlines. Single weight (400) across all sizes — the system relies on size and negative tracking for hierarchy, not weight contrast. Letter-spacing tightens aggressively at large sizes: -0.007em at 19–23px, deepening to -0.017em at 55px and -0.020em at 57px. This negative tracking is the signature — it gives the serif a modern, tight, fashion-editorial feel rather than a bookish one."
+    },
+    "dm-mono": {
+      "$value": "DM Mono",
+      "$type": "fontFamily",
+      "$description": "Exclusively for UI chrome: the 'CURRENTLY IN BETA' label, 'LOGIN' and 'SIGN UP' button text, and the 'SCROLL' indicator. Set in all-caps at 12px with +0.03em tracking (0.36px), creating a widened mechanical texture that contrasts sharply with Beausite's organic serif. This is the only typographic texture outside the serif system."
+    },
+    "cm-geom": {
+      "$value": "CM Geom",
+      "$type": "fontFamily",
+      "$description": "A massive decorative display at 250px — likely a brand wordmark or oversized brand-mark element rendered as layout sculpture, not readable copy. Line-height of 1.00 with minimal -0.002em tracking. Use sparingly as an atmospheric or branding element, never for functional text."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "DM Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Beausite",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Beausite",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Beausite",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 23px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Beausite",
+        "fontSize": "55px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 55px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Beausite",
+        "fontSize": "57px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 57px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "CM Geom",
+        "fontSize": "250px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 250px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "41": {
+      "$value": "41px",
+      "$type": "dimension",
+      "$description": "Spacing 41px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "71": {
+      "$value": "71px",
+      "$type": "dimension",
+      "$description": "Spacing 71px"
+    },
+    "135": {
+      "$value": "135px",
+      "$type": "dimension",
+      "$description": "Spacing 135px"
+    },
+    "225": {
+      "$value": "225px",
+      "$type": "dimension",
+      "$description": "Spacing 225px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    }
+  },
+  "surface": {
+    "bone-paper": {
+      "$value": "#f4f3f0",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page canvas"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Bottom navigation bar and inline card surfaces"
+    },
+    "lime-pulse": {
+      "$value": "#e3f794",
+      "$type": "color",
+      "$description": "Surface level 2: Primary action button fill"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://telescope.fyi",
+      "siteName": "Telescope",
+      "extractedAt": "2026-06-03T18:26:59.876Z",
+      "variant": "extended"
+    }
+  }
+}

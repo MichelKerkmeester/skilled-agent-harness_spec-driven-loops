@@ -1,0 +1,215 @@
+{
+  "color": {
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary text, logotype fill, border strokes, and the dominant foreground on the dark canvas — carries 92% of all color instances"
+    },
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Base canvas and primary background — the default surface for every page"
+    },
+    "charcoal-shale": {
+      "$value": "#101010",
+      "$type": "color",
+      "$description": "Charcoal Shale — Secondary surface for icon wells, sub-panels, and slight tonal lift above the pure-black canvas"
+    },
+    "signal-red": {
+      "$value": "#ff2936",
+      "$type": "color",
+      "$description": "Signal Red — Sparingly-applied accent for active states, marquee highlights, and high-emphasis punctuation — used as a single saturated note against the monochrome system"
+    }
+  },
+  "font": {
+    "editorial-new": {
+      "$value": "Editorial New",
+      "$type": "fontFamily",
+      "$description": "Hero and headline display — the ultralight weight 200 is anti-convention; combined with the 20px breakpoint it reads as editorial print rather than web UI"
+    },
+    "tt-firs-neue": {
+      "$value": "TT Firs Neue",
+      "$type": "fontFamily",
+      "$description": "Workhorse UI and body sans — the only geometric grotesque in the system, anchors the project ticker labels, menu trigger, and utility text"
+    },
+    "altform": {
+      "$value": "Altform",
+      "$type": "fontFamily",
+      "$description": "Compact meta and condensed labels — tight 0.86–0.88 line-height and -0.03em tracking make it read like a festival credit roll"
+    },
+    "wasted-year": {
+      "$value": "Wasted Year",
+      "$type": "fontFamily",
+      "$description": "Signature editorial flourishes — bracket-wrapped taglines and small accent phrases; its hand-set quality is used for personality, not information density"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "TT Firs Neue",
+        "fontSize": "1px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 1px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "TT Firs Neue",
+        "fontSize": "1px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 1px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Wasted Year",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Altform",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 0.86
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Wasted Year",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 0.86
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "TT Firs Neue",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "16px",
+        "fontWeight": 200,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Altform",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Wasted Year",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Wasted Year",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Editorial New",
+        "fontSize": "20px",
+        "fontWeight": 200,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page canvas — the dominant surface covering the viewport"
+    },
+    "charcoal-shale": {
+      "$value": "#101010",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle elevation for utility elements like the cookie consent bar; barely perceptible shift above the canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://freshman.tv",
+      "siteName": "Freshman",
+      "extractedAt": "2026-06-03T19:41:29.048Z",
+      "variant": "extended"
+    }
+  }
+}

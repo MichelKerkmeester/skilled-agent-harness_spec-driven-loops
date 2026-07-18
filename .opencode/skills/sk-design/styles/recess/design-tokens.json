@@ -1,0 +1,455 @@
+{
+  "color": {
+    "twilight-navy": {
+      "$value": "#25385b",
+      "$type": "color",
+      "$description": "Twilight Navy — Primary text, headings, body copy, links, icons — the structural ink color that carries the entire voice"
+    },
+    "periwinkle-sky": {
+      "$value": "#a2b0ff",
+      "$type": "color",
+      "$description": "Periwinkle Sky — Dominant section background, soft accents, atmospheric washes — the signature background that gives Recess its dreamy identity"
+    },
+    "dusk-indigo": {
+      "$value": "#0a0a3a",
+      "$type": "color",
+      "$description": "Dusk Indigo — Footer backgrounds, high-contrast dark surfaces, deep accent fills"
+    },
+    "cobalt-pop": {
+      "$value": "#3252f4",
+      "$type": "color",
+      "$description": "Cobalt Pop — Rare vivid accent for emphasis, active states, and standout headings — used sparingly to create a single electric beat against the muted palette"
+    },
+    "coral-blush": {
+      "$value": "#ff5a5a",
+      "$type": "color",
+      "$description": "Coral Blush — Decorative warmth, occasional accent — the single warm note in an otherwise cool palette"
+    },
+    "cloud-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Cloud White — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "cream-linen": {
+      "$value": "#fffcef",
+      "$type": "color",
+      "$description": "Cream Linen — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "slate-mist": {
+      "$value": "#84849c",
+      "$type": "color",
+      "$description": "Slate Mist — Muted secondary text, captions, helper text, low-emphasis borders"
+    },
+    "onyx": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Onyx — Logo mark, icon strokes, high-contrast borders, nav elements"
+    }
+  },
+  "font": {
+    "sharp-grotesk-web": {
+      "$value": "Sharp Grotesk Web",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all UI text, headings, body, buttons, and nav — a geometric sans that is structural, even, and modern. The 60px display weight feels confident without being heavy; 400/500 for body keeps things light and airy. Sharp Grotesk's clean geometry contrasts with the handwritten script logo, and that tension is the type personality."
+    },
+    "recess-script-logo": {
+      "$value": "Recess Script (logo)",
+      "$type": "fontFamily",
+      "$description": "Wordmark only — a hand-drawn cursive script that reads 'Recess' with a casual, personal warmth. The script is intentionally casual against Sharp Grotesk's formality: the logo is a signature, the body is a label."
+    },
+    "adobe-blank": {
+      "$value": "Adobe Blank",
+      "$type": "fontFamily",
+      "$description": "Adobe Blank — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Adobe Blank",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 24px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 24px"
+    },
+    "2xl-7": {
+      "$value": {
+        "fontFamily": "Adobe Blank",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-7 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Sharp Grotesk Web",
+        "fontSize": "60px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "84": {
+      "$value": "84px",
+      "$type": "dimension",
+      "$description": "Spacing 84px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "cloud-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas"
+    },
+    "periwinkle-sky": {
+      "$value": "#a2b0ff",
+      "$type": "color",
+      "$description": "Surface level 1: Dominant atmospheric section background"
+    },
+    "cream-linen": {
+      "$value": "#fffcef",
+      "$type": "color",
+      "$description": "Surface level 2: Warm-tinted alt surface for contrast sections"
+    },
+    "dusk-indigo": {
+      "$value": "#0a0a3a",
+      "$type": "color",
+      "$description": "Surface level 3: Footer and dark contrast surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://takearecess.com",
+      "siteName": "Recess",
+      "extractedAt": "2026-06-03T18:47:48.084Z",
+      "variant": "extended"
+    }
+  }
+}

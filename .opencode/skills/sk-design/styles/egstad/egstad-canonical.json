@@ -1,0 +1,633 @@
+{
+  "source": "https://styles.refero.design/style/ec17bdec-c8fa-4221-abd6-da717bf38d96",
+  "uuid": "ec17bdec-c8fa-4221-abd6-da717bf38d96",
+  "name": "Egstad",
+  "northStar": "editorial broadside in warm ink — monumental type, one paper color, zero decoration",
+  "capturedAt": "2026-07-18T08:10:10.110Z",
+  "meta": {
+    "url": "https://egstad.com",
+    "siteName": "Egstad",
+    "extractedAt": "2026-06-03T18:11:32.341Z",
+    "durationMs": 24690,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 57,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Press Ink (#252422) on Bone Paper (#e2e0d9) for all text — never introduce a second color",
+      "Set display headlines in EG Metaphor at 399px with -0.055em letter-spacing and 0.97 line-height so letters touch and fill the viewport",
+      "Use system Times at 16px/1.2 for all body copy — do not substitute a different serif",
+      "Set nav labels in S85 (or a mono fallback) at 12px with 0.1em tracking and 3.0 line-height for vertical air inside the pill bar",
+      "Use 1440px border-radius for the main navigation pill so it reads as a perfect capsule",
+      "Separate content with 1px hairline rules in Press Ink or Pure Carbon — never with background color blocks",
+      "Let circular image masks overlap display type without borders, shadows, or padding rings"
+    ],
+    "donts": [
+      "Do not add accent colors, gradients, or chromatic buttons — the system is monochrome by design",
+      "Do not apply box-shadows to any element — separation comes from ink contrast, not elevation",
+      "Do not use bold or semibold weights of EG Metaphor or Times — the entire system runs at weight 400",
+      "Do not break the display headline into multiple lines with manual line-breaks — let it run edge to edge as a single composition",
+      "Do not use small radii (4px, 8px, 12px) on containers — the only radii in the system are 1440px (pill) and 36px (nav inner)",
+      "Do not add icons, badges, tags, or pill labels inside body content — navigation and labeling are text-only",
+      "Do not set body copy in EG Metaphor — reserve that face exclusively for display and heading scales"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#252422",
+        "name": "Press Ink",
+        "role": "Primary text, heading strokes, borders, dark surface for the navigation bar and any filled dark blocks — warm near-black with a brown undertone that sits softer than pure black on the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2e0d9",
+        "name": "Bone Paper",
+        "role": "Page canvas, card and container backgrounds, inverted text on dark surfaces — warm off-white with a slight olive/khaki cast that makes the dark ink feel printed rather than digital",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Carbon",
+        "role": "Hairline borders and rare exact-black accents where maximum edge contrast is needed against the cream canvas",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed editorial layout with no visible max-width constraint at the display scale — the 399px wordmark fills edge to edge. Below the hero, content is left-aligned with generous left margin and flows in a single narrow column (constrained to roughly 700–900px for readability). The pill nav bar sits absolutely or fixed at the top-left corner of the viewport, compact and horizontal. The page reads as a vertical scroll of monumental type blocks separated by hairline rules and small circular image interruptions — no card grids, no multi-column feature sections, no alternating dark/light bands. Navigation is a minimal top bar; no sidebar, no mega-menu, no footer navigation system beyond simple text links.",
+    "imagery": "Imagery is extremely sparse and used only as a single circular portrait mask that overlaps the display wordmark. The photograph is a tight face crop, natural color, no filter or duotone treatment, no background context. No product photography, no illustration, no abstract graphics. The visual language is overwhelmingly text-driven: the typography IS the imagery, and the photograph exists only to humanize the type-driven page. No icon system is present beyond the text-based nav labels.",
+    "similar": [
+      {
+        "why": "Same editorial broadside treatment — one custom display face at extreme scale, warm paper background, no decorative UI, typography as the entire visual system",
+        "business": "Pentagram partner sites"
+      },
+      {
+        "why": "Large-format serif display type filling the viewport, minimal monochrome palette, circular portrait crops overlapping headlines",
+        "business": "It's Nice That features"
+      },
+      {
+        "why": "Pill-shaped dark navigation bar, oversized custom display wordmark, warm off-white canvas, zero chromatic accents",
+        "business": "Manual (manualcreative.jp)"
+      },
+      {
+        "why": "Monumental serif display type, restrained monochrome palette, editorial magazine-masthead feel rather than SaaS product UI",
+        "business": "Locomotive (locomotive.ca)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "navPill": "1440px",
+        "navInner": "36px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80-120px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#e2e0d9",
+        "name": "Paper Canvas",
+        "level": 0,
+        "purpose": "Base page background — warm cream that all other elements sit on"
+      },
+      {
+        "hex": "#252422",
+        "name": "Ink Surface",
+        "level": 1,
+        "purpose": "Dark filled blocks (navigation bar pill, footer if present) — warm near-black with brown undertone"
+      }
+    ],
+    "northStar": "editorial broadside in warm ink — monumental type, one paper color, zero decoration",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.33,
+        "letterSpacing": 0.24
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.34,
+        "letterSpacing": 0.3
+      },
+      {
+        "role": "heading",
+        "size": 59,
+        "lineHeight": 1.33,
+        "letterSpacing": -3.245
+      },
+      {
+        "role": "display",
+        "size": 399,
+        "lineHeight": 0.97,
+        "letterSpacing": -21.945
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Fully pill-shaped dark bar (1440px border-radius) filled with Press Ink (#252422), containing the site name and nav links. Internal padding roughly 7px right margin between items, 16px vertical padding. Hosts S85 12px labels with 0.1em tracking in Bone Paper (#e2e0d9) text. Sits at the very top-left of the viewport, compact and horizontally oriented."
+      },
+      {
+        "name": "Nav Tab Item",
+        "role": "Individual navigation link",
+        "description": "S85 at 12px, 0.1em letter-spacing, line-height 3.0 for vertical air. Text color Bone Paper (#e2e0d9) on the dark pill background. No hover state indicated — flat, label-only, no underlines or icons. Separated by 7–16px gaps within the pill."
+      },
+      {
+        "name": "Display Wordmark",
+        "role": "Hero-scale brand identifier",
+        "description": "EG Metaphor at 399px, weight 400, line-height 0.97, letter-spacing -0.055em (≈-22px). Fills nearly the full viewport width. Color Press Ink (#252422) on Bone Paper (#e2e0d9). Often overlapped by circular image masks without z-index conflict. This is the signature element — it is not a heading, it is architecture."
+      },
+      {
+        "name": "Mid-Scale Heading",
+        "role": "Section-level headline",
+        "description": "EG Metaphor at 59px, weight 400, line-height 1.33, letter-spacing -0.055em (≈-3.2px). Press Ink color. Used for secondary headlines that need the same personality as the display wordmark at a human-readable size."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Readable paragraph copy",
+        "description": "System Times at 16px, line-height 1.2, weight 400, normal letter-spacing. Press Ink (#252422) color. No paragraph spacing beyond the 1.2 line-height multiplier — text sits in tight, continuous blocks. Sits directly beneath display type without an intervening label or eyebrow."
+      },
+      {
+        "name": "Circular Image Mask",
+        "role": "Portrait or visual insert",
+        "description": "Photograph cropped to a perfect circle with no border, no shadow, no padding ring. Overlaps display type and body text directly, with the image content visible in front of the letterforms. No border-radius specified but rendered as 50% or a large fixed value. Image color and content carry the only chromatic variation in the system."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section or content separator",
+        "description": "1px horizontal rule in Press Ink (#252422) or Pure Carbon (#000000). Full-width or constrained to content width depending on context. No decorative styling — just a line. Used to separate body paragraphs from links or to close sections."
+      },
+      {
+        "name": "Footer Block",
+        "role": "Page-bottom content area",
+        "description": "Minimal footer with 22px vertical padding above and below content. Uses the same Times 16px body type. No background color change, no border — flows directly from the page canvas."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Signature display and wordmark face used across the full type scale from 12px captions to 399px page-filling headlines. The single weight (400) is intentional — the face carries all personality through its custom letterforms, not through weight contrast. Wide stylistic alternates (ss04–ss07) are active and likely swap letterforms for headline compositions.",
+        "sizes": "12px, 15px, 59px, 399px",
+        "family": "EG Metaphor",
+        "weight": "400",
+        "lineHeight": "0.97–1.34 depending on size — tight 0.97 at display scale, generous 1.33 at mid scale",
+        "substitute": "GT Sectra Display, Tiempos Headline, or Reckless Neue",
+        "letterSpacing": "-0.055em at display sizes (≈-22px at 399px, ≈-3.2px at 59px); +0.02em at small sizes (12–15px)",
+        "fontFeatureSettings": "\"kern\" on, \"liga\" on, \"pnum\" on, \"ss04\" on, \"ss05\" on, \"ss06\" on, \"ss07\" on"
+      },
+      {
+        "role": "Body copy only — system Times at a single 16px/1.2 size for all paragraph text. Chosen as a deliberate contrast to the custom display face: familiar, neutral, unbranded serif that lets the display type own the page.",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Times New Roman, system-ui serif",
+        "letterSpacing": "normal",
+        "fontFeatureSettings": "\"kern\" on, \"liga\" on, \"pnum\" on"
+      },
+      {
+        "role": "Navigation micro-labels set at 12px with 0.1em tracking and a 3.0 line-height that creates generous vertical air around each nav item. Sits inside the dark pill nav bar as uppercase or small-caps category labels (EGSTAD, WORK, EMAIL).",
+        "sizes": "12px",
+        "family": "S85",
+        "weight": "400",
+        "lineHeight": "3.00",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Söhne Mono at 12px with 0.1em tracking",
+        "letterSpacing": "0.1em (1.2px)",
+        "fontFeatureSettings": "\"ss04\" on, \"ss05\" on, \"ss06\" on, \"ss07\" on"
+      }
+    ],
+    "description": "Egstad operates as a one-color editorial broadside: warm ink (#252422) stamped onto warm cream paper (#e2e0d9), with no decorative color, no gradients, and almost no UI chrome. The entire visual identity is carried by three typefaces — a custom monumental display face (EG Metaphor) that fills the page edge-to-edge, system Times for body copy, and a wide-tracked micro-display (S85) for navigation. Components are stripped to their bones: a fully pill-shaped dark navigation bar, hairline horizontal rules, and circular image masks that overlap type without containers. The result reads more like a printed poster or magazine masthead than a typical portfolio site — restraint as identity, typography as architecture.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ec17bdec-c8fa-4221-abd6-da717bf38d96#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Egstad design system\",\"item\":\"https://styles.refero.design/style/ec17bdec-c8fa-4221-abd6-da717bf38d96\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ec17bdec-c8fa-4221-abd6-da717bf38d96#style-reference\",\"name\":\"Egstad design system reference\",\"headline\":\"Egstad design system | Refero Styles\",\"description\":\"Explore Egstad's light Agency design system: Press Ink #252422, Bone Paper #e2e0d9 colors, EG Metaphor, Times typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ec17bdec-c8fa-4221-abd6-da717bf38d96\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ec17bdec-c8fa-4221-abd6-da717bf38d96\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Egstad\",\"url\":\"https://egstad.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ec17bdec-c8fa-4221-abd6-da717bf38d96#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/56aa4a08-78e7-463f-858a-c9e14f1a9ee7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/56aa4a08-78e7-463f-858a-c9e14f1a9ee7.jpg\",\"caption\":\"Screenshot of Egstad\"},\"image\":\"https://images.refero.design/styles/refero.design/image/56aa4a08-78e7-463f-858a-c9e14f1a9ee7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Egstad design system\",\"Egstad website design\",\"Egstad colors\",\"Egstad typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Press Ink\",\"Bone Paper\",\"Pure Carbon\",\"EG Metaphor\",\"Times\",\"S85\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Egstad design system\"},{\"@type\":\"Thing\",\"name\":\"Egstad website design\"},{\"@type\":\"Thing\",\"name\":\"Egstad colors\"},{\"@type\":\"Thing\",\"name\":\"Egstad typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T04:01:21.427Z\",\"dateModified\":\"2026-04-30T04:01:21.427Z\"}]}19:T567,**Quick Color Reference**\n- text: #252422\n- background: #e2e0d9\n- dark surface (nav bar): #252422\n- border: #000000 or #252422\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a pill navigation bar: 1440px border-radius, background #252422, padding 16px vertical, positioned top-left. Inside, set nav labels in S85 (or JetBrains Mono) at 12px, weight 400, 0.1em letter-spacing, line-height 3.0, color #e2e0d9, with 7–16px gaps between items.\n\n2. Create a display wordmark hero: full-bleed EG Metaphor (or GT Sectra Display) at 399px, weight 400, line-height 0.97, letter-spacing -0.055em, color #252422 on #e2e0d9 background. A circular portrait image (50% border-radius, no border, no shadow) overlaps the lower-right portion of the wordmark.\n\n3. Create a body text block: Times at 16px, weight 400, line-height 1.2, color #252422 on #e2e0d9. Constrain width to ~800px, left-aligned with generous left margin. Close the block with a 1px hairline rule in #252422.\n\n4. Create a mid-scale section heading: EG Metaphor at 59px, weight 400, line-height 1.33, letter-spacing -0.055em, color #252422. Sits above body copy with ~40px gap, no eyebrow label or decorative element.\n\n5. Create a footer: 22px padding top and bottom, Times 16px body text in #252422 on #e2e0d9, no background change, no border, no icons — just text links separated by spaces."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. All spatial separation is achieved through the warm dark-on-cream contrast, hairline borders in Pure Carbon or Press Ink, and generous negative space. Elevation is communicated by ink density, not by blur or offset."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#252422",
+          "oklch": {
+            "c": 0.00396541339535878,
+            "h": 84.58375789507352,
+            "l": 0.2606416352210785
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "heading",
+            "body",
+            "link",
+            "footer"
+          ],
+          "frequency": 244,
+          "confidence": 1,
+          "prominence": 14788281.915277917,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 12,
+            "body/color": 4,
+            "hero/color": 1,
+            "link/color": 4,
+            "other/color": 17,
+            "footer/color": 1,
+            "heading/color": 9,
+            "nav/borderColor": 48,
+            "body/borderColor": 16,
+            "hero/borderColor": 4,
+            "link/borderColor": 16,
+            "other/borderColor": 68,
+            "footer/borderColor": 4,
+            "heading/borderColor": 36,
+            "nav/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#e2e0d9",
+          "oklch": {
+            "c": 0.009668349766026155,
+            "h": 93.57687254338755,
+            "l": 0.9063073101006249
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 37,
+          "confidence": 1,
+          "prominence": 9778426.600306839,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "nav/borderColor": 28,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 6445934.718985545,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 2,
+            "other/borderColor": 8
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.01230881220219662,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.9,
+          "background": "#e2e0d9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.74,
+          "background": "#e2e0d9",
+          "foreground": "#252422"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.35,
+          "background": "#252422",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 1440,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 7,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other",
+            "marginBottom|nav",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav",
+            "heading"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginLeft|other",
+            "paddingTop|heading",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 26,
+          "fontFeatureSettings": [
+            "\"kern\", \"liga\", \"pnum\""
+          ]
+        },
+        {
+          "family": "EG Metaphor",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 19,
+          "fontFeatureSettings": [
+            "\"kern\", \"liga\", \"pnum\"",
+            "\"ss04\", \"ss05\", \"ss06\", \"ss07\""
+          ]
+        },
+        {
+          "family": "System85",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 9,
+          "fontFeatureSettings": [
+            "\"ss04\", \"ss05\", \"ss06\", \"ss07\"",
+            "\"tnum\""
+          ]
+        },
+        {
+          "family": "S85",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": [
+            "\"ss04\", \"ss05\", \"ss06\", \"ss07\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.8
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "S85",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 3,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "System85",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 3,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "System85",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 3,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "EG Metaphor",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "System85",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "heading",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "EG Metaphor",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.34,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 59,
+          "family": "EG Metaphor",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.97,
+          "letterSpacing": -0.055,
+          "textTransform": "none"
+        },
+        {
+          "size": 399,
+          "family": "EG Metaphor",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/9536c7d2-098f-41b5-9c7c-040b4134309f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/56aa4a08-78e7-463f-858a-c9e14f1a9ee7.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ec17bdec-c8fa-4221-abd6-da717bf38d96#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Egstad design system\",\"item\":\"https://styles.refero.design/style/ec17bdec-c8fa-4221-abd6-da717bf38d96\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ec17bdec-c8fa-4221-abd6-da717bf38d96#style-reference\",\"name\":\"Egstad design system reference\",\"headline\":\"Egstad design system | Refero Styles\",\"description\":\"Explore Egstad's light Agency design system: Press Ink #252422, Bone Paper #e2e0d9 colors, EG Metaphor, Times typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ec17bdec-c8fa-4221-abd6-da717bf38d96\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ec17bdec-c8fa-4221-abd6-da717bf38d96\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Egstad\",\"url\":\"https://egstad.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ec17bdec-c8fa-4221-abd6-da717bf38d96#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/56aa4a08-78e7-463f-858a-c9e14f1a9ee7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/56aa4a08-78e7-463f-858a-c9e14f1a9ee7.jpg\",\"caption\":\"Screenshot of Egstad\"},\"image\":\"https://images.refero.design/styles/refero.design/image/56aa4a08-78e7-463f-858a-c9e14f1a9ee7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Egstad design system\",\"Egstad website design\",\"Egstad colors\",\"Egstad typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Press Ink\",\"Bone Paper\",\"Pure Carbon\",\"EG Metaphor\",\"Times\",\"S85\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Egstad design system\"},{\"@type\":\"Thing\",\"name\":\"Egstad website design\"},{\"@type\":\"Thing\",\"name\":\"Egstad colors\"},{\"@type\":\"Thing\",\"name\":\"Egstad typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T04:01:21.427Z\",\"dateModified\":\"2026-04-30T04:01:21.427Z\"}]}19:T567,**Quick Color Reference**\n- text: #252422\n- background: #e2e0d9\n- dark surface (nav bar): #252422\n- border: #000000 or #252422\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. Create a pill navigation bar: 1440px border-radius, background #252422, padding 16px vertical, positioned top-left. Inside, set nav labels in S85 (or JetBrains Mono) at 12px, weight 400, 0.1em letter-spacing, line-height 3.0, color #e2e0d9, with 7–16px gaps between items.\n\n2. Create a display wordmark hero: full-bleed EG Metaphor (or GT Sectra Display) at 399px, weight 400, line-height 0.97, letter-spacing -0.055em, color #252422 on #e2e0d9 background. A circular portrait image (50% border-radius, no border, no shadow) overlaps the lower-right portion of the wordmark.\n\n3. Create a body text block: Times at 16px, weight 400, line-height 1.2, color #252422 on #e2e0d9. Constrain width to ~800px, left-aligned with generous left margin. Close the block with a 1px hairline rule in #252422.\n\n4. Create a mid-scale section heading: EG Metaphor at 59px, weight 400, line-height 1.33, letter-spacing -0.055em, color #252422. Sits above body copy with ~40px gap, no eyebrow label or decorative element.\n\n5. Create a footer: 22px padding top and bottom, Times 16px body text in #252422 on #e2e0d9, no background change, no border, no icons — just text links separated by spaces."
+}

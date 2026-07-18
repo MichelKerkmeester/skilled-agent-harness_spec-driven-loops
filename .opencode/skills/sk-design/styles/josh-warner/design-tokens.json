@@ -1,0 +1,264 @@
+{
+  "color": {
+    "void": {
+      "$value": "#0f0f0f",
+      "$type": "color",
+      "$description": "Void — Page canvas and primary surface — the base layer beneath all artwork, slightly lifted from pure black to prevent OLED banding in the dark void"
+    },
+    "absolute": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Absolute — Hairline borders, image containers, icon strokes, footer dividers — pure black acts as the structural ink that defines edges in the absence of visible card surfaces"
+    },
+    "charcoal": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Charcoal — Elevated footer surface and deeper UI panels — a single step up from canvas for zone separation without breaking the dark void"
+    },
+    "faint": {
+      "$value": "#080808",
+      "$type": "color",
+      "$description": "Faint — Shadow base for subtle elevation effects — nearly invisible against canvas, used in box-shadow compositions for soft ambient lift"
+    },
+    "bone": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Bone — Primary text color, nav item fills, filled button background — warm off-white replaces pure white to soften contrast against the black void and reduce eye strain"
+    },
+    "ash": {
+      "$value": "#b8b8b8",
+      "$type": "color",
+      "$description": "Ash — Secondary body text, subdued helper labels, muted metadata — sits one step below Bone for non-emphasized copy without losing legibility on dark surfaces"
+    },
+    "graphite": {
+      "$value": "#696969",
+      "$type": "color",
+      "$description": "Graphite — Tertiary text and border accents on headings — used sparingly for fine print and inactive labels that should recede"
+    },
+    "live-wire": {
+      "$value": "#08ff00",
+      "$type": "color",
+      "$description": "Live Wire — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    }
+  },
+  "font": {
+    "inter-display": {
+      "$value": "Inter Display",
+      "$type": "fontFamily",
+      "$description": "Primary typeface across all UI, body, navigation, and headings — used exclusively at weight 400 with no weight variation, creating a flat, even visual texture where size and spacing alone carry hierarchy. Substitute with Inter (free, near-identical metrics)."
+    },
+    "system-sans-serif": {
+      "$value": "System sans-serif",
+      "$type": "fontFamily",
+      "$description": "Micro-UI labels (12px) — system stack for the smallest utility text where font loading overhead isn't justified"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter Display Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter Display Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter Display Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter Display Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Inter Display Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Inter Display Regular",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Inter Display Regular",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.5) 0px 1px 10px -2px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "md-2": {
+      "$value": "rgba(0, 0, 0, 0.16) 0px 0px 10px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md-2"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#0f0f0f",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the base layer beneath all content"
+    },
+    "charcoal": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 1: Footer surface — one step above canvas for zone separation"
+    },
+    "bone": {
+      "$value": "#f0f0f0",
+      "$type": "color",
+      "$description": "Surface level 2: Filled button background — inverted surface for interactive emphasis"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.joshwarner.design",
+      "siteName": "Josh Warner",
+      "extractedAt": "2026-06-03T20:58:25.017Z",
+      "variant": "extended"
+    }
+  }
+}

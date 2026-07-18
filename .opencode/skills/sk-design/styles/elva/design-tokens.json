@@ -1,0 +1,242 @@
+{
+  "color": {
+    "warm-obsidian": {
+      "$value": "#262523",
+      "$type": "color",
+      "$description": "Warm Obsidian — Primary text, logos, pictogram strokes, structural elements — the near-black with a brown undertone is the only ink in the system and gives the minimalism its printed-on-paper warmth"
+    },
+    "bone-white": {
+      "$value": "#ececec",
+      "$type": "color",
+      "$description": "Bone White — Page canvas and primary surface — the warm slightly-grayed white fills the entire viewport and provides the breathing room around monumental type"
+    },
+    "pale-ash": {
+      "$value": "#cfcdcd",
+      "$type": "color",
+      "$description": "Pale Ash — Secondary surface and hairline borders — one step darker than the canvas, used for subtle dividers and the rare nested surface"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Sparing deep contrast for the smallest marks and AAA contrast anchors — never used for body text (that is always Warm Obsidian)"
+    }
+  },
+  "font": {
+    "basis-grotesque": {
+      "$value": "Basis Grotesque",
+      "$type": "fontFamily",
+      "$description": "Primary workhorse typeface — carries the entire system from 10px metadata to 640px hero statements. Weight 400 for body and display, 500 for navigation and small labels, 700 reserved for rare emphasis. The extreme size range is the signature: Basis is asked to perform as both a 10px caption and a building-scale poster without switching families."
+    },
+    "messina-sans": {
+      "$value": "Messina Sans",
+      "$type": "fontFamily",
+      "$description": "Secondary editorial display face — reserved for oversized moments at 240px+ where a slightly more humanist, wider-cut character set can break the Basis rhythm. The 1.0 line-height (versus Basis's 0.82) creates a more relaxed, poster-like cadence when both faces appear together."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "120px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 120px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "160px",
+        "fontWeight": 500,
+        "lineHeight": 0.82
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 160px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Messina Sans",
+        "fontSize": "240px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 240px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Basis",
+        "fontSize": "640px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 640px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ececec",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the warm bone-white that fills the entire viewport and provides the breathing room around monumental type"
+    },
+    "subtle-surface": {
+      "$value": "#cfcdcd",
+      "$type": "color",
+      "$description": "Surface level 1: Secondary surface for the rare nested element or alternating section band — just one step darker than the canvas"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://helloelva.com",
+      "siteName": "Elva",
+      "extractedAt": "2026-06-03T19:34:21.159Z",
+      "variant": "extended"
+    }
+  }
+}

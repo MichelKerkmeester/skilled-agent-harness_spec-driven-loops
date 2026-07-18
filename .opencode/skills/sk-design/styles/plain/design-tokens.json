@@ -1,0 +1,297 @@
+{
+  "color": {
+    "forest-ink": {
+      "$value": "#0a2414",
+      "$type": "color",
+      "$description": "Forest Ink — Primary text, heading strokes, and structural borders. A near-black with green undertone that grounds the warm cream surfaces in nature rather than corporate gray"
+    },
+    "parchment-cream": {
+      "$value": "#f3fbe9",
+      "$type": "color",
+      "$description": "Parchment Cream — Primary surface for buttons, soft callouts, and section tints. A warm cream with green undertone — the canvas color, not pure white"
+    },
+    "card-linen": {
+      "$value": "#f9f6f1",
+      "$type": "color",
+      "$description": "Card Linen — Card and elevated surface background. Slightly warmer and more beige than Parchment Cream, creating a paper-grain feel for nested elements"
+    },
+    "sage-charcoal": {
+      "$value": "#283a2e",
+      "$type": "color",
+      "$description": "Sage Charcoal — Dark elevated surface for hero feature blocks and inverse sections. A muted green-black that ties the dark theme back to the brand green"
+    },
+    "muted-moss": {
+      "$value": "#607166",
+      "$type": "color",
+      "$description": "Muted Moss — Secondary helper text, subdued labels, and low-emphasis icons. The bridge between Forest Ink and Sage Charcoal for non-primary copy"
+    },
+    "vivid-green": {
+      "$value": "#1ad379",
+      "$type": "color",
+      "$description": "Vivid Green — Primary action background, active nav state, live notification dots, and the hero brand accent. Vivid botanical green that reads as alive against the cream — this is the only color allowed to shout"
+    },
+    "deep-botanical": {
+      "$value": "#17b267",
+      "$type": "color",
+      "$description": "Deep Botanical — Green accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    },
+    "coral-blush": {
+      "$value": "#ffbac3",
+      "$type": "color",
+      "$description": "Coral Blush — Red outline accent for tags, dividers, and focused UI edges"
+    },
+    "wine-plum": {
+      "$value": "#360003",
+      "$type": "color",
+      "$description": "Wine Plum — Red wash for highlight backgrounds, decorative bands, and soft emphasis behind content."
+    }
+  },
+  "font": {
+    "abc-favorit": {
+      "$value": "ABC Favorit",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all body, headings, links, and display text. The tight -0.02em tracking at display sizes and -0.01em at body is signature — it pulls letters into a dense, editorial rhythm. ABC Favorit is a custom neo-grotesque with humanist warmth; substitute with Inter at -0.02em letter-spacing if unavailable. Weight 400 for body and links, weight 500 for headings, subheadings, and emphasis. The 80px display size with 0.95 line-height creates a tight, almost poster-like headline presence."
+    },
+    "geist-mono": {
+      "$value": "Geist Mono",
+      "$type": "fontFamily",
+      "$description": "Metadata, labels, timestamps, and code-like micro-copy. Set at 13px with 0.015em positive tracking and stylistic alternates ss02/ss06 enabled — the slightly wider mono and feature settings give labels a quiet technical authority that contrasts Favorit's editorial warmth. Substitute with JetBrains Mono or IBM Plex Mono."
+    },
+    "system-sans-serif": {
+      "$value": "System Sans-Serif",
+      "$type": "fontFamily",
+      "$description": "Small UI chrome — icon-adjacent labels and 12px utility text in dense product surfaces. A system fallback that lets the UI degrade gracefully where custom fonts aren't loaded."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.46
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ABC Favorit Regular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.46
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ABC Favorit Regular",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ABC Favorit Medium",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABC Favorit Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ABC Favorit Medium",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ABC Favorit Regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "ABC Favorit Medium",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ABC Favorit Medium",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ABC Favorit Medium",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "ABC Favorit Regular",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Outermost page background — pure white lets the warm cream cards pop forward."
+    },
+    "parchment-cream": {
+      "$value": "#f3fbe9",
+      "$type": "color",
+      "$description": "Surface level 1: Primary warm surface for hero bands, button fills, and section tints."
+    },
+    "card-linen": {
+      "$value": "#f9f6f1",
+      "$type": "color",
+      "$description": "Surface level 2: Nested card background — slightly more beige to create paper-grain depth."
+    },
+    "sage-charcoal": {
+      "$value": "#283a2",
+      "$type": "color",
+      "$description": "Surface level 3: Dark elevated surface for inverse feature blocks and dark product UI containers."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://plain.com",
+      "siteName": "Plain",
+      "extractedAt": "2026-06-03T15:48:15.912Z",
+      "variant": "extended"
+    }
+  }
+}

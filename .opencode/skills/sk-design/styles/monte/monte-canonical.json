@@ -1,0 +1,1532 @@
+{
+  "source": "https://styles.refero.design/style/fb6ac216-c11a-47c3-88e8-0423541da69c",
+  "uuid": "fb6ac216-c11a-47c3-88e8-0423541da69c",
+  "name": "Monte",
+  "northStar": "rust-tinted coastal morning",
+  "capturedAt": "2026-07-18T08:11:25.642Z",
+  "meta": {
+    "url": "https://montecafe.com.au",
+    "siteName": "Monte",
+    "extractedAt": "2026-06-03T18:05:30.528Z",
+    "durationMs": 54161,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1044,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #b84b30 for all primary actions as an outlined pill — 9999px radius, 1.5px border, #b84b30 text matching border. Never fill the pill.",
+      "Set display headlines in Riposte weight 600 at 36px with 3.6px tracking in uppercase — the wide-tracked serif caps are the system's signature typographic gesture.",
+      "Pair every section with a centered uppercase eyebrow label in Riposte 24px, #b84b30, 2.4px tracking, sitting 20-24px above the headline.",
+      "Use Apercu Mono exclusively for data: times, temperatures, coordinates, input fields. Never for headlines or long-form copy.",
+      "Let the hero bleed full-viewport in #b84b30 with the wordmark centered and nav flush to edges. No container, no card — the screen IS the hero.",
+      "Use 14px border-radius on content cards and 9999px on buttons, inputs, and badges. This two-radius system is the entire shape language.",
+      "Use line-art illustrations with 3px continuous strokes in #5f1d1a on terracotta fields and #000000 on cream. No fills, no shading."
+    ],
+    "donts": [
+      "Don't use shadows or elevation effects. The system is flat — depth comes from the terracotta-to-cream surface transition, not from drop shadows.",
+      "Don't introduce a third surface color. The palette is exactly two: #b84b30 and #f8f4e9. Everything else is neutrals for text and borders.",
+      "Don't fill buttons with solid color. All actions are ghost/outlined — the border carries the weight.",
+      "Don't use Riposte for body paragraphs longer than 2 lines. The wide tracking that makes it beautiful in caps becomes exhausting in running text — switch to a system serif for long-form.",
+      "Don't add gradients, patterns, or background textures. The surfaces are always flat color fields.",
+      "Don't use #5f1d1a (Bordeaux) for text or UI elements — it's reserved for SVG illustration fills only.",
+      "Don't round image corners. Photography sits with natural edges within the max-width container. The 14px radius applies to cards, not photos."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#b84b30",
+        "name": "Corten",
+        "role": "Primary brand color — hero field, headline text, icon strokes, pill button borders, link accents. The defining rust-orange that makes every page read as Monte",
+        "group": "brand"
+      },
+      {
+        "hex": "#5f1d1a",
+        "name": "Bordeaux",
+        "role": "Deep brand accent for SVG illustration fills and occasional link hover. Used sparingly as a deeper register of Corten",
+        "group": "brand"
+      },
+      {
+        "hex": "#f8f4e9",
+        "name": "Sandstone",
+        "role": "Primary canvas — body section backgrounds, card surfaces, text on terracotta fields. The warm cream that carries every page after the hero",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Driftwood",
+        "role": "Hairline borders, dividers, and card outlines. A barely-there neutral that separates without shouting",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Charcoal",
+        "role": "Line-art illustration strokes, icon fills, inline pictograms. Pure black for hand-drawn elements on the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Pure white for text on terracotta fields, button text, image overlays. Also appears as subtle borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Smoke",
+        "role": "Muted helper text, secondary metadata, quiet body copy. Reads as a soft gray against Sandstone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Ash",
+        "role": "Lowest-priority neutral — image metadata, placeholder tones. Sits behind Smoke in the hierarchy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3e3d3a",
+        "name": "Espresso",
+        "role": "Dark surface for badge backgrounds, occasional deep contrast blocks. A near-black warm brown",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed hero (100vw × 100vh) in #b84b30, then content constrained to max-width 1200px centered on #f8f4e9. Navigation is a minimal three-element bar (MENU / wordmark / BOOK A TABLE) floating over the hero with no background. Sections alternate between full-width image carousels and centered text blocks with 80px vertical gaps. The body content follows a pattern of: full-bleed image → centered text intro → two-column image+illustration pairs → more centered text. Grid is implicit rather than explicit — most content is centered single-column, with two-column splits only for image+illustration pairings. No sidebar, no multi-column text flow. The rhythm is: one image, one thought, generous space.",
+    "imagery": "Photography is documentary café-interior style: warm natural light, terracotta tiles, green plants, wooden surfaces, baristas in motion (deliberate motion blur on one figure). Images are unfiltered, slightly desaturated, and always horizontal landscape orientation. No food close-ups dominate — the space IS the subject. Illustrations are hand-drawn continuous-line figures (people drinking from cups) at ~3px stroke weight, Bordeaux on terracotta fields and black on cream. No icons in the traditional sense — illustrations and type do all the symbolic work. Imagery occupies roughly 40% of the page surface, alternating with generous text blocks.",
+    "similar": [
+      {
+        "why": "Same rust/terracotta-dominant brand language with serif headlines and documentary café photography",
+        "business": "St. Frank Coffee"
+      },
+      {
+        "why": "Bold single-color full-bleed hero with serif wordmark and generous cream whitespace below",
+        "business": "Devoción"
+      },
+      {
+        "why": "Warm earthy brand palette, serif display type, and hand-drawn illustrative accents",
+        "business": "Ona Coffee"
+      },
+      {
+        "why": "Outlined pill buttons, single dominant brand color, serif display headlines with wide tracking",
+        "business": "Pact Coffee"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "14px",
+        "inputs": "9999px",
+        "buttons": "9999px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#b84b30",
+        "name": "Corten Field",
+        "level": 1,
+        "purpose": "Full-bleed hero background, section accents, the dominant brand surface"
+      },
+      {
+        "hex": "#f8f4e9",
+        "name": "Sandstone",
+        "level": 2,
+        "purpose": "Primary content canvas for all post-hero sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "level": 3,
+        "purpose": "Image overlays, button text on terracotta, subtle border accents"
+      }
+    ],
+    "northStar": "rust-tinted coastal morning",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.25
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.35,
+        "letterSpacing": 0.8
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 2.4
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.1,
+        "letterSpacing": 3.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Outlined Button",
+        "role": "Primary action — 'Book a Table', navigation CTAs",
+        "description": "Transparent background, 1.5px solid #b84b30 border, 9999px border-radius, Riposte weight 400 at 15px with 0.75px tracking, #b84b30 text, 16px vertical / 32px horizontal padding. The border IS the action — no fill, no shadow. Text and border share the same Corten hue."
+      },
+      {
+        "name": "Ghost Nav Link",
+        "role": "Header navigation — MENU, BOOK A TABLE",
+        "description": "No background, no border, Riposte weight 400 at 12px, #f8f4e9 (Bone) text on terracotta, 0.6px tracking uppercase. Sits flush left and right of the centered wordmark. Minimal, almost invisible until hovered."
+      },
+      {
+        "name": "Centered Wordmark",
+        "role": "Brand mark in navigation",
+        "description": "'monte' in Riposte, lowercase, weight 400, ~24px, #f8f4e9 on terracotta / #b84b30 on cream. The only logo treatment — no icon, no tagline. Its serifs and weight carry the entire brand identity."
+      },
+      {
+        "name": "Curved Headline Text",
+        "role": "Hero text wrapped around illustration",
+        "description": "Display text at ~36px Riposte weight 600, #f8f4e9, following a circular path (SVG textPath). Tagline reads 'WHERE COFFEE MEETS THE COAST' wrapping the line-art figure. The curve is the signature — type as illustration, not just copy."
+      },
+      {
+        "name": "Line-Art Illustration",
+        "role": "Decorative hero graphic, inline content visuals",
+        "description": "Hand-drawn continuous-line style, ~3px stroke weight, #5f1d1a (Bordeaux) on terracotta / #000000 on cream. Figures are people drinking from cups, holding mugs. No fills, no shading — pure contour. Acts as both decoration and brand mark."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Section openers — 'HELLO & GOOD MORNING'",
+        "description": "Riposte weight 400, 24px, #b84b30, uppercase, 2.4px tracking. Centered above section headlines. Wide tracking on the serif is the most distinctive typographic gesture in the system — it makes the label feel like a stamp or a printed card."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Section titles — 'MONTE IS FOR LAIDBACK BREKKIES...'",
+        "description": "Riposte weight 600, 36px, #b84b30, centered, line-height 1.10, tracking 3.6px uppercase. Sits below eyebrow label with generous gap. The weight-600 Riposte at this size is the loudest the system ever gets."
+      },
+      {
+        "name": "Full-Bleed Hero Section",
+        "role": "Opening viewport",
+        "description": "100% width, 100vh height, #b84b30 background, centered illustration with curved text. No card, no frame — the entire screen IS the hero. Padding 0. Navigation floats over the top with 24px margins."
+      },
+      {
+        "name": "Content Image Block",
+        "role": "Interior photography, food shots, lifestyle images",
+        "description": "Full-width within max-width container, natural aspect ratio, no border-radius on the main image. Paired with 14px-radius illustration cards beside or below. Images bleed edge-to-edge in the gallery carousel."
+      },
+      {
+        "name": "Gallery Carousel",
+        "role": "Interior photography slider",
+        "description": "Single large image with circular prev/next arrow buttons (9999px radius, 1.5px #b84b30 border, centered arrows). Images sit within max-width, no border-radius on the photo itself."
+      },
+      {
+        "name": "Card with Illustration",
+        "role": "Content blocks pairing photo with line-art",
+        "description": "Two-column layout: photo left (no radius, natural edges), line-art illustration right at ~300px wide. Both vertically centered. 14px radius only appears on smaller contained cards, not on the full-bleed images."
+      },
+      {
+        "name": "Data Badge / Meta Pill",
+        "role": "Status indicators, small metadata",
+        "description": "Pill shape (9999px radius), Riposte 12px weight 400, uppercase, 0.6px tracking. Background varies: #3e3d3a for dark badges, transparent for inline text. Used sparingly for functional labels."
+      },
+      {
+        "name": "Circular Nav Button",
+        "role": "Carousel controls — left/right arrows",
+        "description": "40px diameter circle, 1.5px #b84b30 border, transparent fill, Riposte weight 400 arrow glyph centered inside in #b84b30. Matches the pill button language but compressed to a circle."
+      },
+      {
+        "name": "Form Input",
+        "role": "Text inputs, booking fields",
+        "description": "Apercu Mono 16px, weight 400, -0.4px tracking, #000000 text on #f8f4e9 background. 9999px border-radius (pill shape), 1px #e5e7eb border. Placeholder in #999999. No focus ring color change — restraint over visual feedback."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary serif face — all headlines, display text, navigation, buttons, body copy. Riposte carries the entire brand voice with its warm geometric serif character. Weight 400 for body and most text, weight 600 reserved for display headlines. The wide tracking at 0.10em on uppercase labels (HELLO & GOOD MORNING) is a signature move — the serif breathes in all-caps, unlike most modern sans-serif systems that tighten.",
+        "sizes": "10, 11, 12, 13, 14, 15, 16, 17, 20, 23, 24, 36",
+        "family": "Riposte",
+        "weight": "400, 600",
+        "lineHeight": "0.90, 1.00, 1.10, 1.20, 1.25, 1.35, 1.40",
+        "substitute": "DM Serif Display or Playfair Display",
+        "letterSpacing": "0.025em at 12px, 0.05em at 16px, 0.10em at 24px+"
+      },
+      {
+        "role": "Monospace secondary face — timestamps (TOMORROW FROM 6:30AM), temperature readouts (NEWCASTLE 22°C), input fields, and quiet data labels. Slight negative tracking tightens the mono for functional data display. Creates a typographic counterpoint to the serif — the serif speaks, the mono measures.",
+        "sizes": "12, 15, 16",
+        "family": "Apercu Mono",
+        "weight": "400",
+        "lineHeight": "1.33, 1.35",
+        "substitute": "JetBrains Mono or IBM Plex Mono",
+        "letterSpacing": "-0.025em"
+      }
+    ],
+    "description": "Monte Café is a sun-baked coastal café language: a single dominant terracotta field floods the hero like rusted corten steel under a Newcastle morning, then dissolves into warm cream interiors and café photography. The design is built on two surfaces only — terracotta and cream — and a single serif face (Riposte) that does all the talking, from eyebrow labels to display headlines. Apercu Mono appears as small functional print for metadata, hours, and temperature. The mood is hand-drawn and human: line-art illustrations, curved headline text wrapping circular forms, pill-shaped ghost buttons, and generous breathing room. There are no shadows, no gradients, no decorative chrome — just ink, warmth, and white space.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fb6ac216-c11a-47c3-88e8-0423541da69c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Monte design system\",\"item\":\"https://styles.refero.design/style/fb6ac216-c11a-47c3-88e8-0423541da69c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fb6ac216-c11a-47c3-88e8-0423541da69c#style-reference\",\"name\":\"Monte design system reference\",\"headline\":\"Monte design system | Refero Styles\",\"description\":\"Explore Monte's light Other design system: Corten #b84b30, Bordeaux #5f1d1a colors, Riposte, Apercu Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/fb6ac216-c11a-47c3-88e8-0423541da69c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fb6ac216-c11a-47c3-88e8-0423541da69c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Monte\",\"url\":\"https://montecafe.com.au\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fb6ac216-c11a-47c3-88e8-0423541da69c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/55b17e55-a3ef-4078-a7d5-18a5c497bd12.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/55b17e55-a3ef-4078-a7d5-18a5c497bd12.jpg\",\"caption\":\"Screenshot of Monte\"},\"image\":\"https://images.refero.design/styles/refero.design/image/55b17e55-a3ef-4078-a7d5-18a5c497bd12.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Monte design system\",\"Monte website design\",\"Monte colors\",\"Monte typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Corten\",\"Bordeaux\",\"Sandstone\",\"Driftwood\",\"Riposte\",\"Apercu Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Monte design system\"},{\"@type\":\"Thing\",\"name\":\"Monte website design\"},{\"@type\":\"Thing\",\"name\":\"Monte colors\"},{\"@type\":\"Thing\",\"name\":\"Monte typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:20:21.284Z\",\"dateModified\":\"2026-04-30T00:20:21.284Z\"}]}19:T680,**Quick Color Reference**\n- text: #b84b30 (primary), #000000 (illustration), #666666 (muted), #f8f4e9 (on terracotta)\n- background: #f8f4e9 (canvas), #b84b30 (hero/brand field)\n- border: #b84b30 (action), #e5e7eb (hairline), #ffffff (on terracotta)\n- accent: #5f1d1a (illustration fills only)\n- primary action: #b84b30 (outlined action border)\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-viewport (#b84b30) background. Centered line-art illustration of a person drinking coffee, 3px stroke in #5f1d1a. Curved display text following a circular path: 'WHERE COFFEE MEETS THE COAST' in Riposte weight 600, 36px, #f8f4e9. Navigation bar: 'MENU' flush left, 'monte' wordmark centered, 'BOOK A TABLE' flush right — all Riposte 12px uppercase, #f8f4e9, 0.6px tracking.\n\n2. **Outlined Pill Button**: Transparent background. 1.5px solid #b84b30 border, 9999px border-radius. Text: Riposte 400, 15px, #b84b30, 0.75px tracking, uppercase. Padding: 16px vertical, 32px horizontal. No shadow, no fill on hover.\n\n3. **Section Opener**: Centered layout on #f8f4e9. Eyebrow label: 'HELLO & GOOD MORNING' in Riposte 400, 24px, #b84b30, 2.4px tracking, uppercase. 24px gap below. Display headline: Riposte 600, 36px, #b84b30, 3.6px tracking, centered, line-height 1.10.\n\n4. **Content Card Pair**: Two-column within 1200px max-width. Left: full-height photograph, natural edges, no border-radius. Right: line-art illustration ~300px wide, 3px stroke in #000000, vertically centered. 20px column gap.\n\n5. **Data Label**: Apercu Mono 16px, weight 400, -0.4px tracking. Text: 'NEWCASTLE 22°C' in #f8f4e9 on terracotta. No background, sits inline with other meta labels."
+      }
+    ],
+    "elevationPhilosophy": "This system uses no shadows or drop-shadow elevation. Depth is achieved entirely through surface color contrast — the jump from #b84b30 to #f8f4e9 is the only elevation the design needs. Cards and images sit flush on the canvas, distinguished only by content and 14px border-radius on contained elements. This flatness is a deliberate anti-pattern to modern SaaS card-with-shadow conventions; the system trusts typography and color to create hierarchy without artificial lift."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "body",
+            "hero",
+            "image",
+            "icon",
+            "heading",
+            "card",
+            "list",
+            "badge",
+            "footer"
+          ],
+          "frequency": 2905,
+          "confidence": 1,
+          "prominence": 161978141.27864486,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 624,
+            "card/borderColor": 32,
+            "hero/borderColor": 4,
+            "icon/borderColor": 132,
+            "link/borderColor": 121,
+            "list/borderColor": 312,
+            "badge/borderColor": 12,
+            "image/borderColor": 36,
+            "other/borderColor": 1272,
+            "button/borderColor": 40,
+            "footer/borderColor": 4,
+            "heading/borderColor": 316
+          }
+        },
+        {
+          "hex": "#b84b30",
+          "oklch": {
+            "c": 0.14749420562700136,
+            "h": 35.096533081980446,
+            "l": 0.5525798764456177
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "card",
+            "image",
+            "button",
+            "body",
+            "icon",
+            "heading",
+            "list",
+            "badge",
+            "link",
+            "input",
+            "footer"
+          ],
+          "frequency": 783,
+          "confidence": 1,
+          "prominence": 135366999.7900337,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 85,
+            "card/color": 23,
+            "hero/color": 1,
+            "icon/color": 6,
+            "link/color": 7,
+            "list/color": 73,
+            "other/fill": 49,
+            "badge/color": 2,
+            "image/color": 3,
+            "input/color": 3,
+            "other/color": 268,
+            "button/color": 8,
+            "heading/color": 75,
+            "body/borderColor": 36,
+            "card/borderColor": 60,
+            "hero/borderColor": 4,
+            "link/borderColor": 6,
+            "input/borderColor": 12,
+            "other/borderColor": 36,
+            "body/backgroundColor": 9,
+            "card/backgroundColor": 15,
+            "hero/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f8f4e9",
+          "oklch": {
+            "c": 0.01516151332385363,
+            "h": 90.23446290303679,
+            "l": 0.967246033617643
+          },
+          "contexts": [
+            "button",
+            "link",
+            "body",
+            "other",
+            "hero",
+            "input",
+            "footer",
+            "heading",
+            "list",
+            "icon"
+          ],
+          "frequency": 69,
+          "confidence": 1,
+          "prominence": 7860805.469231919,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 12,
+            "hero/color": 1,
+            "icon/color": 1,
+            "link/color": 5,
+            "list/color": 5,
+            "other/fill": 4,
+            "other/color": 23,
+            "button/color": 2,
+            "footer/color": 1,
+            "heading/color": 3,
+            "body/backgroundColor": 9,
+            "input/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 217,
+          "confidence": 1,
+          "prominence": 2052548.5032141833,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 66,
+            "other/fill": 151
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "other",
+            "badge",
+            "icon",
+            "heading",
+            "body"
+          ],
+          "frequency": 158,
+          "confidence": 1,
+          "prominence": 904896.1368868862,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 56,
+            "icon/color": 14,
+            "link/color": 25,
+            "other/fill": 14,
+            "badge/color": 1,
+            "other/color": 22,
+            "heading/color": 1,
+            "link/borderColor": 25
+          }
+        },
+        {
+          "hex": "#5f1d1a",
+          "oklch": {
+            "c": 0.09686133153923468,
+            "h": 26.305921370114664,
+            "l": 0.33498288917671376
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 160253.70117008308,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/fill": 17,
+            "other/color": 2
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 123206.14857091321,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 12,
+            "other/color": 12
+          }
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "image"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 116258.1820322495,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "image/color": 6
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8464,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3e3d3a",
+          "oklch": {
+            "c": 0.004856778054221993,
+            "h": 90.2197884845324,
+            "l": 0.3600475367967035
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8464,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "badge/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8c8f9a",
+          "oklch": {
+            "c": 0.0166500058245516,
+            "h": 273.72749336445384,
+            "l": 0.6511171161275412
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 784.8116960719284,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 12,
+            "other/fill": 12
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.08719821418970042,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.11,
+          "background": "#f8f4e9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#333333",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.52,
+          "background": "#ffffff",
+          "foreground": "#5f1d1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.5,
+          "background": "#333333",
+          "foreground": "#f8f4e9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.39,
+          "background": "#f8f4e9",
+          "foreground": "#5f1d1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.86,
+          "background": "#3e3d3a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.2,
+          "background": "#e5e7eb",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.11,
+          "background": "#e5e7eb",
+          "foreground": "#5f1d1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.88,
+          "background": "#3e3d3a",
+          "foreground": "#f8f4e9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.77,
+          "background": "#e5e7eb",
+          "foreground": "#3e3d3a"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.22,
+          "background": "#f8f4e9",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.14,
+          "background": "#b84b30",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.68,
+          "background": "#f8f4e9",
+          "foreground": "#b84b30"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.43,
+          "background": "#333333",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.92,
+          "background": "#333333",
+          "foreground": "#8c8f9a"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.81,
+          "background": "#3e3d3a",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.37,
+          "background": "#3e3d3a",
+          "foreground": "#8c8f9a"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.93,
+          "background": "#f8f4e9",
+          "foreground": "#8c8f9a"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "body",
+            "input"
+          ],
+          "frequency": 21
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 15
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 48,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "icon",
+            "body"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|icon",
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 54,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body",
+            "marginRight|icon",
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "input"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|button",
+            "rowGap|body",
+            "columnGap|body",
+            "rowGap|other",
+            "marginRight|input"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 24,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "body",
+            "badge",
+            "other",
+            "input"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|body",
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other",
+            "footer",
+            "list",
+            "body"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|other",
+            "paddingBottom|footer",
+            "marginTop|list",
+            "marginBottom|body",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 39,
+          "properties": [
+            "columnGap",
+            "rowGap",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "rowGap|other",
+            "paddingBottom|other",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 67,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "list",
+            "heading"
+          ],
+          "frequency": 65,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|list",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 31,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "paddingRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingRight|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 88,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 107,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "hero",
+            "footer"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 308,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Riposte",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 658,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Apercu Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 113,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Apercu Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 24,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "link"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.35,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Apercu Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Apercu Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "hero",
+            "card",
+            "image",
+            "list",
+            "badge",
+            "footer"
+          ],
+          "frequency": 359,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Apercu Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "input"
+          ],
+          "frequency": 94,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 70,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 17,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 23,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Riposte",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 36,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 36,
+          "family": "Riposte",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/62af8b6a-436b-47d0-95cb-5ff3dceebcdb.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/55b17e55-a3ef-4078-a7d5-18a5c497bd12.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fb6ac216-c11a-47c3-88e8-0423541da69c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Monte design system\",\"item\":\"https://styles.refero.design/style/fb6ac216-c11a-47c3-88e8-0423541da69c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fb6ac216-c11a-47c3-88e8-0423541da69c#style-reference\",\"name\":\"Monte design system reference\",\"headline\":\"Monte design system | Refero Styles\",\"description\":\"Explore Monte's light Other design system: Corten #b84b30, Bordeaux #5f1d1a colors, Riposte, Apercu Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/fb6ac216-c11a-47c3-88e8-0423541da69c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fb6ac216-c11a-47c3-88e8-0423541da69c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Monte\",\"url\":\"https://montecafe.com.au\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fb6ac216-c11a-47c3-88e8-0423541da69c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/55b17e55-a3ef-4078-a7d5-18a5c497bd12.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/55b17e55-a3ef-4078-a7d5-18a5c497bd12.jpg\",\"caption\":\"Screenshot of Monte\"},\"image\":\"https://images.refero.design/styles/refero.design/image/55b17e55-a3ef-4078-a7d5-18a5c497bd12.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Monte design system\",\"Monte website design\",\"Monte colors\",\"Monte typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Corten\",\"Bordeaux\",\"Sandstone\",\"Driftwood\",\"Riposte\",\"Apercu Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Monte design system\"},{\"@type\":\"Thing\",\"name\":\"Monte website design\"},{\"@type\":\"Thing\",\"name\":\"Monte colors\"},{\"@type\":\"Thing\",\"name\":\"Monte typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:20:21.284Z\",\"dateModified\":\"2026-04-30T00:20:21.284Z\"}]}19:T680,**Quick Color Reference**\n- text: #b84b30 (primary), #000000 (illustration), #666666 (muted), #f8f4e9 (on terracotta)\n- background: #f8f4e9 (canvas), #b84b30 (hero/brand field)\n- border: #b84b30 (action), #e5e7eb (hairline), #ffffff (on terracotta)\n- accent: #5f1d1a (illustration fills only)\n- primary action: #b84b30 (outlined action border)\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-viewport (#b84b30) background. Centered line-art illustration of a person drinking coffee, 3px stroke in #5f1d1a. Curved display text following a circular path: 'WHERE COFFEE MEETS THE COAST' in Riposte weight 600, 36px, #f8f4e9. Navigation bar: 'MENU' flush left, 'monte' wordmark centered, 'BOOK A TABLE' flush right — all Riposte 12px uppercase, #f8f4e9, 0.6px tracking.\n\n2. **Outlined Pill Button**: Transparent background. 1.5px solid #b84b30 border, 9999px border-radius. Text: Riposte 400, 15px, #b84b30, 0.75px tracking, uppercase. Padding: 16px vertical, 32px horizontal. No shadow, no fill on hover.\n\n3. **Section Opener**: Centered layout on #f8f4e9. Eyebrow label: 'HELLO & GOOD MORNING' in Riposte 400, 24px, #b84b30, 2.4px tracking, uppercase. 24px gap below. Display headline: Riposte 600, 36px, #b84b30, 3.6px tracking, centered, line-height 1.10.\n\n4. **Content Card Pair**: Two-column within 1200px max-width. Left: full-height photograph, natural edges, no border-radius. Right: line-art illustration ~300px wide, 3px stroke in #000000, vertically centered. 20px column gap.\n\n5. **Data Label**: Apercu Mono 16px, weight 400, -0.4px tracking. Text: 'NEWCASTLE 22°C' in #f8f4e9 on terracotta. No background, sits inline with other meta labels."
+}

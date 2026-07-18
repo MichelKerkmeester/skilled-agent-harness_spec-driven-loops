@@ -1,0 +1,615 @@
+{
+  "source": "https://styles.refero.design/style/b8899cbd-e2ca-4069-83cf-d8f8b0d71100",
+  "uuid": "b8899cbd-e2ca-4069-83cf-d8f8b0d71100",
+  "name": "BMW.com",
+  "northStar": "Gallery wall for sculpted metal — a typographic frame where the cars are the only color.",
+  "capturedAt": "2026-07-18T08:36:03.966Z",
+  "meta": {
+    "url": "https://bmw.com",
+    "siteName": "BMW.com",
+    "extractedAt": "2026-06-03T15:25:48.551Z",
+    "durationMs": 21861,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 135,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use BMWTypeNextLatin Light weight 300 at 60px for the single largest heading per page — it is the brand's typographic signature",
+      "Let product photography fill the full viewport width with zero overlay UI — the image is the interface",
+      "Use Carbon (#262626) for all body and heading text on white surfaces; the contrast is 15.1:1 AAA",
+      "Keep all components borderless and shadowless — depth comes from surface polarity (white vs. #262626) and whitespace, never from elevation",
+      "Set border-radius to 0 on all elements — the squared geometry is part of the automotive precision language",
+      "Use the dark Carbon footer band as the only color contrast moment; keep all other content sections on white or Fog (#f1f1f1)",
+      "Render navigation and footer items as plain text at 16px weight 400 — no pills, no chips, no decorative containers"
+    ],
+    "donts": [
+      "Do not bold the display heading — weight 300 is non-negotiable; weight 700+ breaks the restraint",
+      "Do not add drop shadows to cards, buttons, or navigation — the system is shadow-free by design",
+      "Do not introduce accent colors, gradients, or decorative backgrounds — the only chromatic content is photography",
+      "Do not add rounded corners to buttons, cards, or badges — keep all edges sharp at 0px",
+      "Do not use color for hover, focus, or active states — underline or weight shift only",
+      "Do not use the BMWTypeNextLatin Light variant for body copy or small sizes — it is reserved for 40px+ display use",
+      "Do not overlay text, buttons, or UI controls on top of hero photography — keep the image uncontaminated"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#262626",
+        "name": "Carbon",
+        "role": "Body text, footer background, heading text on light surfaces — the near-black structural anchor",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page canvas, header background, inverted text on dark footer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bbbbbb",
+        "name": "Concrete",
+        "role": "Muted helper text and secondary dividers on white surfaces, secondary text on dark footer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1f1f1",
+        "name": "Fog",
+        "role": "Alternate surface band, subtle card background where a step up from pure white is needed",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Single-column, center-aligned vertical flow on a 1200px max-width content rail, with hero images breaking out to full-bleed edge-to-edge width. No multi-column grids, no sidebar, no card grids. Page rhythm: full-bleed hero image → centered display heading (60px Light) → centered inline arrow link → spacious white space → full-bleed dark footer band. Section gaps are 56px. Navigation is a single flat top bar — no sticky behavior, no mega-menu, no dropdowns. The footer is a flat dark band with four unstyled text columns and a language switcher row. Content density is sparse — each section earns its vertical space with large images and generous breathing room between them.",
+    "imagery": "Hero photography is the sole source of color and atmosphere on the page. The style is dramatic, dark, tightly cropped product photography: extreme close-ups of wheels, badges, grilles, and body panels with controlled studio lighting that produces deep blues, blacks, and metallic highlights against near-black backgrounds. Images are full-bleed, edge-to-edge with no rounded corners, no borders, no padding, and no overlay UI. The treatment is high-contrast and moody — not lifestyle, not contextual, not staged. Vehicles and components are isolated objects presented as sculptural artifacts, similar to a museum or gallery installation. Photography occupies 60–70% of the page real estate; text and UI chrome are deliberately minimal frames around it.",
+    "similar": [
+      {
+        "why": "Same typographic-restraint approach — whisper-light display headings, product photography as the sole color, no UI chrome",
+        "business": "Porsche.com"
+      },
+      {
+        "why": "Identical near-black/white polarity with zero accent colors, large display headings, and full-bleed automotive photography",
+        "business": "Audi.com"
+      },
+      {
+        "why": "Minimal monochrome interface that steps back to let product imagery dominate, with sharp 0px geometry and borderless components",
+        "business": "Volvo.com"
+      },
+      {
+        "why": "Luxury automotive site with sparse typographic framing, large-scale Light-weight display faces, and dark footer band contrast",
+        "business": "Bentley Motors"
+      },
+      {
+        "why": "Full-bleed product photography with overlay-free heroes and a single light-weight display heading approach",
+        "business": "Tesla.com"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "10-20px",
+      "sectionGap": "56px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Primary page background, header bar"
+      },
+      {
+        "hex": "#f1f1f1",
+        "name": "Subtle Band",
+        "level": 1,
+        "purpose": "Alternate section background for quiet visual separation"
+      },
+      {
+        "hex": "#262626",
+        "name": "Footer",
+        "level": 2,
+        "purpose": "Dark footer band — the only strong contrast surface on the page"
+      }
+    ],
+    "northStar": "Gallery wall for sculpted metal — a typographic frame where the cars are the only color.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.63
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1.3,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global site header",
+        "description": "White background (#ffffff), no border, 5px top/bottom padding. BMW roundel logo left, tagline 'Sheer Driving Pleasure' in 16px weight 400 Carbon (#262626) immediately right of logo with a 12px gap, nav links and search icon right-aligned. No background blur, no shadow — sits flat on canvas."
+      },
+      {
+        "name": "Full-Bleed Hero Image",
+        "role": "Product showcase",
+        "description": "Edge-to-edge photograph filling the viewport width with no padding or margin, no overlay text or UI chrome. The image IS the content. Used to present vehicle details (wheels, badges, body panels) in dramatic close-up."
+      },
+      {
+        "name": "Display Section Heading",
+        "role": "Page section title",
+        "description": "BMWTypeNextLatin Light, weight 300, 60px, line-height 1.30, Carbon (#262626), centered alignment. The whisper-weight is the signature — never bold this. Below it, a single secondary link 'Find your BMW' at 16px weight 400 with a right-arrow glyph, 40px margin-top."
+      },
+      {
+        "name": "Dark Footer Band",
+        "role": "Site footer with link columns",
+        "description": "Carbon (#262626) background spanning full viewport width. White (#ffffff) text at 16px weight 400, organized in four flat columns: Quick Links, More BMW Websites, BMW.com, Visit us on. Column headers are plain white text — no bold, no underline. 45–56px top/bottom padding inside the band."
+      },
+      {
+        "name": "Language Switcher",
+        "role": "Locale selector row",
+        "description": "Horizontal row of plain text links inside the dark footer: English / Deutsch / Italiano / Français / Español / 日本語. 16px weight 400 white text, 24px horizontal spacing between items, no flags, no icons, no border or separator. The current language is not visually marked — selection is implicit through context."
+      },
+      {
+        "name": "Footer Link",
+        "role": "Text-only navigation link",
+        "description": "Pure text, 16px weight 400, white (#ffffff) on Carbon (#262626) background. No underline, no color shift, no background hover state. Multiline items wrap naturally. 10px row-gap between links in a column."
+      },
+      {
+        "name": "Inline Arrow Link",
+        "role": "Action prompt link",
+        "description": "e.g. '> Find your BMW' — a small right-pointing chevron glyph in Carbon (#262626) followed by label text at 16px weight 400. No underline, no button chrome. Centered below the display heading with 40px margin-top."
+      },
+      {
+        "name": "Logo Lockup",
+        "role": "Brand mark with tagline",
+        "description": "BMW roundel at native scale, 12px right margin, then 'Sheer Driving Pleasure' at 16px weight 400 Carbon. Logo and tagline sit on a shared baseline — no container, no border, no background."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Workhorse type family — 400 for body copy and nav links, 700 for inline emphasis and section labels, 900 reserved for brand wordmarks. Compact leading (1.20–1.30) on headings, generous (1.60+) on body. Custom typeface with squared geometric forms; substitute with Inter or Neue Haas Grotesk for close fidelity.",
+        "sizes": "16px, 18px",
+        "family": "BMWTypeNextLatin",
+        "weight": "400, 700, 900",
+        "lineHeight": "1.20, 1.30, 1.60, 1.63",
+        "substitute": "Inter",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Display heading only — the 300 weight at 60px is the brand's anti-convention signature; it whispers rather than shouts, signaling premium through restraint. Used exclusively for the largest section title per page. Do not reuse for anything below 40px.",
+        "sizes": "60px",
+        "family": "BMWTypeNextLatin Light",
+        "weight": "300",
+        "lineHeight": "1.30",
+        "substitute": "Inter Light",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "BMW.com uses an austere automotive showcase language: the UI recedes entirely so the product photography can speak. The interface is built from just two surfaces — pure white and a charcoal near-black — connected by a whisper-light display heading at 60px that signals premium through typographic restraint rather than weight. Every structural element (navigation, footer links, language switcher) is rendered as plain text with no decorative chrome, treating the web page as a typographic frame for the vehicles rather than a software interface. The signature choice is the 300-weight display face — a deliberate anti-convention in luxury automotive branding where most competitors default to 700–900 weights.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b8899cbd-e2ca-4069-83cf-d8f8b0d71100#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"BMW.com design system\",\"item\":\"https://styles.refero.design/style/b8899cbd-e2ca-4069-83cf-d8f8b0d71100\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b8899cbd-e2ca-4069-83cf-d8f8b0d71100#style-reference\",\"name\":\"BMW.com design system reference\",\"headline\":\"BMW.com design system | Refero Styles\",\"description\":\"Explore BMW.com's light Other design system: Carbon #262626, Pure White #ffffff colors, BMWTypeNextLatin, BMWTypeNextLatin Light typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/b8899cbd-e2ca-4069-83cf-d8f8b0d71100\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b8899cbd-e2ca-4069-83cf-d8f8b0d71100\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"BMW.com\",\"url\":\"https://bmw.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b8899cbd-e2ca-4069-83cf-d8f8b0d71100#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/85cb315f-ac79-4d94-9f73-18c493f6425d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/85cb315f-ac79-4d94-9f73-18c493f6425d.jpg\",\"caption\":\"Screenshot of BMW.com\"},\"image\":\"https://images.refero.design/styles/refero.design/image/85cb315f-ac79-4d94-9f73-18c493f6425d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"BMW.com design system\",\"BMW.com website design\",\"BMW.com colors\",\"BMW.com typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Carbon\",\"Pure White\",\"Concrete\",\"Fog\",\"BMWTypeNextLatin\",\"BMWTypeNextLatin Light\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"BMW.com design system\"},{\"@type\":\"Thing\",\"name\":\"BMW.com website design\"},{\"@type\":\"Thing\",\"name\":\"BMW.com colors\"},{\"@type\":\"Thing\",\"name\":\"BMW.com typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-02-09T19:27:53.000Z\",\"dateModified\":\"2026-02-09T19:27:53.000Z\"}]}19:T6df,**Quick Color Reference**\n- text: #262626\n- background: #ffffff\n- secondary surface: #f1f1f1\n- dark surface: #262626\n- border / muted text: #bbbbbb\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Display Section Heading**: Render at 60px, BMWTypeNextLatin Light (or Inter Light substitute), weight 300, color #262626, line-height 1.30, centered. 40px below it, a small right-chevron (›) followed by 'Find your BMW' at 16px weight 400 in #262626, also centered.\n\n2. **Top Navigation Bar**: White (#ffffff) background, 5px top/bottom padding. Left: BMW roundel at 32px native size, 12px gap, then 'Sheer Driving Pleasure' in 16px weight 400 #262626. Right: 'Home' text link at 16px weight 400 #262626, 24px gap, then a search icon (outline, 1.5px stroke, #262626). No border, no shadow.\n\n3. **Full-Bleed Hero Image**: A dramatic full-width product photograph (e.g. close-up of a BMW wheel center) with no padding, no margin, no overlay text or controls. The image must fill 100% viewport width edge-to-edge.\n\n4. **Dark Footer Band**: Background #262626, full viewport width, 56px top/bottom padding. Inside, a 1200px centered container with four columns of plain white text links: 'Quick Links', 'More BMW Websites', 'BMW.com', 'Visit us on'. All text 16px weight 400 #ffffff, 10px row-gap. Column headers are plain white text — no bold. Above the columns, a horizontal row: 'English / Deutsch / Italiano / Français / Español / 日本語' at 16px weight 400 #ffffff, 24px horizontal gaps, no separators.\n\n5. **Alternate Surface Section**: Background #f1f1f1 (Fog), 56px top/bottom padding, centered content. Use this band sparingly — only when a quiet visual step-up from pure white is needed between two white sections."
+      },
+      {
+        "title": "Color Philosophy",
+        "content": "BMW.com's color system is intentionally non-system — there are no brand accents, no semantic colors, no interactive state colors. The UI is purely typographic and spatial. Color enters the experience exclusively through product photography, which is always deep blue-black metallic against dark backgrounds. This means an AI agent should never invent a CTA color, a success green, or an error red — those states are communicated through weight shifts, underlines, and whitespace, not hue. The contrast pair #262626 on #ffffff (15.1:1) is the system's entire interactive vocabulary: text either is or isn't there."
+      }
+    ],
+    "elevationPhilosophy": "The design uses zero shadow elevation. Instead, depth and hierarchy are communicated through surface contrast alone: white sections sit directly on white, the dark footer band provides a single hard transition. Cards and modules have no drop shadow or border — they rely on whitespace, typography weight shifts, and the white/charcoal polarity."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#262626",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.26861827698438745
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "link",
+            "icon",
+            "body",
+            "button",
+            "badge",
+            "hero",
+            "heading",
+            "footer"
+          ],
+          "frequency": 221,
+          "confidence": 1,
+          "prominence": 11800800.182565125,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "footer",
+            "heading"
+          ],
+          "frequency": 253,
+          "confidence": 1,
+          "prominence": 8721119.253594184,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#bbbbbb",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7920743408035346
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 175,
+          "confidence": 1,
+          "prominence": 59033.94182989557,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f1f1f1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9587479711678493
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 15647.473431445933,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#ffffff",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.4,
+          "background": "#f1f1f1",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.88,
+          "background": "#262626",
+          "foreground": "#bbbbbb"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.92,
+          "background": "#ffffff",
+          "foreground": "#bbbbbb"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 60,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginLeft",
+            "marginRight",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 45,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 100,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "BMWTypeNextLatin",
+          "source": "custom",
+          "weights": [
+            400,
+            700,
+            900
+          ],
+          "frequency": 128,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "BMWTypeNextLatin Light",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "BMWTypeNextLatin",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "link",
+            "icon",
+            "button",
+            "badge",
+            "hero"
+          ],
+          "frequency": 33,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BMWTypeNextLatin",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BMWTypeNextLatin",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BMWTypeNextLatin",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "BMWTypeNextLatin",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "nav",
+            "heading"
+          ],
+          "frequency": 86,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "BMWTypeNextLatin",
+          "weight": 900,
+          "contexts": [
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "BMWTypeNextLatin Light",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/b7a1a713-82ac-4e4c-9b6e-3b8f1ffeb16c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/85cb315f-ac79-4d94-9f73-18c493f6425d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b8899cbd-e2ca-4069-83cf-d8f8b0d71100#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"BMW.com design system\",\"item\":\"https://styles.refero.design/style/b8899cbd-e2ca-4069-83cf-d8f8b0d71100\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b8899cbd-e2ca-4069-83cf-d8f8b0d71100#style-reference\",\"name\":\"BMW.com design system reference\",\"headline\":\"BMW.com design system | Refero Styles\",\"description\":\"Explore BMW.com's light Other design system: Carbon #262626, Pure White #ffffff colors, BMWTypeNextLatin, BMWTypeNextLatin Light typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/b8899cbd-e2ca-4069-83cf-d8f8b0d71100\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b8899cbd-e2ca-4069-83cf-d8f8b0d71100\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"BMW.com\",\"url\":\"https://bmw.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b8899cbd-e2ca-4069-83cf-d8f8b0d71100#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/85cb315f-ac79-4d94-9f73-18c493f6425d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/85cb315f-ac79-4d94-9f73-18c493f6425d.jpg\",\"caption\":\"Screenshot of BMW.com\"},\"image\":\"https://images.refero.design/styles/refero.design/image/85cb315f-ac79-4d94-9f73-18c493f6425d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"BMW.com design system\",\"BMW.com website design\",\"BMW.com colors\",\"BMW.com typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Carbon\",\"Pure White\",\"Concrete\",\"Fog\",\"BMWTypeNextLatin\",\"BMWTypeNextLatin Light\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"BMW.com design system\"},{\"@type\":\"Thing\",\"name\":\"BMW.com website design\"},{\"@type\":\"Thing\",\"name\":\"BMW.com colors\"},{\"@type\":\"Thing\",\"name\":\"BMW.com typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-02-09T19:27:53.000Z\",\"dateModified\":\"2026-02-09T19:27:53.000Z\"}]}19:T6df,**Quick Color Reference**\n- text: #262626\n- background: #ffffff\n- secondary surface: #f1f1f1\n- dark surface: #262626\n- border / muted text: #bbbbbb\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Display Section Heading**: Render at 60px, BMWTypeNextLatin Light (or Inter Light substitute), weight 300, color #262626, line-height 1.30, centered. 40px below it, a small right-chevron (›) followed by 'Find your BMW' at 16px weight 400 in #262626, also centered.\n\n2. **Top Navigation Bar**: White (#ffffff) background, 5px top/bottom padding. Left: BMW roundel at 32px native size, 12px gap, then 'Sheer Driving Pleasure' in 16px weight 400 #262626. Right: 'Home' text link at 16px weight 400 #262626, 24px gap, then a search icon (outline, 1.5px stroke, #262626). No border, no shadow.\n\n3. **Full-Bleed Hero Image**: A dramatic full-width product photograph (e.g. close-up of a BMW wheel center) with no padding, no margin, no overlay text or controls. The image must fill 100% viewport width edge-to-edge.\n\n4. **Dark Footer Band**: Background #262626, full viewport width, 56px top/bottom padding. Inside, a 1200px centered container with four columns of plain white text links: 'Quick Links', 'More BMW Websites', 'BMW.com', 'Visit us on'. All text 16px weight 400 #ffffff, 10px row-gap. Column headers are plain white text — no bold. Above the columns, a horizontal row: 'English / Deutsch / Italiano / Français / Español / 日本語' at 16px weight 400 #ffffff, 24px horizontal gaps, no separators.\n\n5. **Alternate Surface Section**: Background #f1f1f1 (Fog), 56px top/bottom padding, centered content. Use this band sparingly — only when a quiet visual step-up from pure white is needed between two white sections."
+}

@@ -1,0 +1,307 @@
+{
+  "color": {
+    "charcoal-press": {
+      "$value": "#212529",
+      "$type": "color",
+      "$description": "Charcoal Press — Primary text, body copy, filled buttons, hairline borders — the dominant ink of the system"
+    },
+    "bone-white": {
+      "$value": "#f4f4f2",
+      "$type": "color",
+      "$description": "Bone White — Page canvas, secondary surface fill behind content sections"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, white-space inside pastel cards, icon contrast against dark fills"
+    },
+    "silver-rule": {
+      "$value": "#d4d5d4",
+      "$type": "color",
+      "$description": "Silver Rule — Hairline dividers, subtle structural borders between dense sections"
+    },
+    "vermillion-mark": {
+      "$value": "#ed4a29",
+      "$type": "color",
+      "$description": "Vermillion Mark — Orange accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    },
+    "sage-panel": {
+      "$value": "#8d9876",
+      "$type": "color",
+      "$description": "Sage Panel — Feature card background — muted olive-green panel for storytelling sections like environmental impact"
+    },
+    "periwinkle-panel": {
+      "$value": "#a0b1cd",
+      "$type": "color",
+      "$description": "Periwinkle Panel — Feature card background — dusty blue panel for collection-overview sections"
+    },
+    "blush-panel": {
+      "$value": "#e5cce0",
+      "$type": "color",
+      "$description": "Blush Panel — Feature card background — soft lilac-pink panel for rarity/utility sections"
+    },
+    "peach-headline": {
+      "$value": "#f4ddbe",
+      "$type": "color",
+      "$description": "Peach Headline — Accent on display headlines, decorative borders within heading contexts — warm cream tint that sits between the ink and the pastel cards"
+    }
+  },
+  "font": {
+    "migra": {
+      "$value": "Migra",
+      "$type": "fontFamily",
+      "$description": "Display and editorial headlines only. The custom serif brings fashion-magazine authority: weight 500 (medium) avoids the heavy black-serif cliché and keeps the type feeling like ink on paper rather than poster art. Used at 64px for section openers and stretched to 187px for hero statements with line-height 1.0 — the tight setting lets oversized serifs lock into compositional blocks. Italic within upright passages (e.g. 'blockchain', 'rare', 'matters') creates editorial cadence without leaving the family."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "All running text: body copy at 16px/400, card descriptions at 14px, sub-headings and emphasized text at 20–24px. Light weight 300 used for de-emphasized text, medium 500 for inline emphasis and button labels. The letter-spacing of ~0.079em (relative) adds breathing room that complements the dense spacing grid without feeling loose. Inter's geometric neutrality keeps the focus on the serif display moments."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback for icon-adjacent micro-labels and button secondary text where a sans-serif system reference is acceptable"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 2.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 2.88
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Migra",
+        "fontSize": "50px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Migra",
+        "fontSize": "50px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Migra",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Migra",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 64px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Migra",
+        "fontSize": "187px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 187px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#f4f4f2",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — warm off-white that feels like paper stock"
+    },
+    "paper-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: White surface inside pastel panels for readable text"
+    },
+    "pastel-feature-card": {
+      "$value": "#e5cce0",
+      "$type": "color",
+      "$description": "Surface level 2: Blush/lilac tinted card for feature storytelling"
+    },
+    "pastel-feature-card-alt": {
+      "$value": "#a0b1cd",
+      "$type": "color",
+      "$description": "Surface level 2: Periwinkle tinted card for collection overview"
+    },
+    "pastel-feature-card-alt-2": {
+      "$value": "#8d9876",
+      "$type": "color",
+      "$description": "Surface level 2: Sage tinted card for mission/impact sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://nft.tinyfac.es",
+      "siteName": "TinyFaces NFT",
+      "extractedAt": "2026-06-03T20:26:03.918Z",
+      "variant": "extended"
+    }
+  }
+}

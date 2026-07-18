@@ -1,0 +1,412 @@
+{
+  "color": {
+    "ember-orange": {
+      "$value": "#ff4300",
+      "$type": "color",
+      "$description": "Ember Orange — Orange action color for filled buttons, selected navigation states, and focused conversion moments"
+    },
+    "void-black": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Void Black — Page canvas, deepest background layer"
+    },
+    "obsidian": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Obsidian — Elevated card surface, section backgrounds"
+    },
+    "charcoal": {
+      "$value": "#2b2a2a",
+      "$type": "color",
+      "$description": "Charcoal — Footer surface, tertiary elevated panel"
+    },
+    "graphite": {
+      "$value": "#343434",
+      "$type": "color",
+      "$description": "Graphite — Card borders, secondary button fills, hairline dividers"
+    },
+    "steel": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Steel — Muted secondary headings, sub-label text"
+    },
+    "fog": {
+      "$value": "#8d8d8d",
+      "$type": "color",
+      "$description": "Fog — Tertiary heading text, less-prominent labels"
+    },
+    "ash": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Ash — Muted body text, secondary borders, icon strokes"
+    },
+    "silver": {
+      "$value": "#cacaca",
+      "$type": "color",
+      "$description": "Silver — Primary text on dark surfaces, dominant hairline borders, icon strokes"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Headlines, badge fills, input text, emphasis text, subtle border highlights"
+    },
+    "bone": {
+      "$value": "#e9e6e6",
+      "$type": "color",
+      "$description": "Bone — Off-white button fill, soft surface highlight"
+    }
+  },
+  "font": {
+    "apple-system-system-ui-sans-serif": {
+      "$value": "-apple-system, system-ui, sans-serif",
+      "$type": "fontFamily",
+      "$description": "The system font stack is used at weight 700 only — this exclusive boldness is a signature choice. No 300/400/500/600 weights appear. At 68px the tracking tightens to -0.056em, creating dense display headlines that feel machined rather than airy. At 14–16px the tracking relaxes to -0.008em to -0.015em, keeping body text legible without losing the assertive feel. The single-weight discipline means hierarchy comes purely from size and color, not weight variation."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "9px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "46px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "46px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "68px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 68px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "76": {
+      "$value": "76px",
+      "$type": "dimension",
+      "$description": "Spacing 76px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "99px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background, full-bleed"
+    },
+    "obsidian-card": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card and section backgrounds"
+    },
+    "charcoal-panel": {
+      "$value": "#2b2a2a",
+      "$type": "color",
+      "$description": "Surface level 2: Footer, tertiary elevated panels"
+    },
+    "graphite-border": {
+      "$value": "#343434",
+      "$type": "color",
+      "$description": "Surface level 3: Card and button borders, subtle dividers"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://three.tools",
+      "siteName": "Three",
+      "extractedAt": "2026-06-03T18:20:35.224Z",
+      "variant": "extended"
+    }
+  }
+}

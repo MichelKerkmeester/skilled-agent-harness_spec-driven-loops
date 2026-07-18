@@ -1,0 +1,786 @@
+{
+  "source": "https://styles.refero.design/style/ac86af87-6f60-42a2-b805-87a168792e55",
+  "uuid": "ac86af87-6f60-42a2-b805-87a168792e55",
+  "name": "Firstandforemost",
+  "northStar": "Protest poster on cream paper",
+  "capturedAt": "2026-07-18T09:30:22.369Z",
+  "meta": {
+    "url": "https://firstandforemost.co",
+    "siteName": "Firstandforemost",
+    "extractedAt": "2026-06-03T19:25:20.960Z",
+    "durationMs": 37925,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 168,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Signal Orange (#ff4501) for all chromatic type, borders, and section fills — never introduce a second color",
+      "Set hero display type at 200px weight 100 with line-height 0.80 so letters stack into a solid mass",
+      "Apply 80px border-radius to every button; never use square or slightly-rounded buttons",
+      "Let display headlines overflow the viewport horizontally — clipping is intentional",
+      "Alternate between full-white and full-orange sections at 160px padding; avoid mid-tone grays",
+      "Use botanical line illustrations in #ff4501 stroke as section transitions",
+      "Set body type at 16–22px weight 400 in Signal Orange on white — black body text breaks the system"
+    ],
+    "donts": [
+      "Don't add shadows, gradients, or glass effects — the system is flat ink on paper",
+      "Don't use weight 400 or 700 for display sizes; the whisper-thin 100 weight is the signature",
+      "Don't wrap the 200px display headline to multiple lines or scale it down to fit",
+      "Don't place orange type on orange backgrounds or white type on white — the system has no mid-tones",
+      "Don't introduce a secondary accent color, even for hover states — deepen the existing orange or invert to white",
+      "Don't use card components with drop shadows or visible borders; sections are color blocks, not cards",
+      "Don't use border-radius under 80px on any interactive element"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ff4501",
+        "name": "Signal Orange",
+        "role": "Brand color saturating hero text, navigation borders, section backgrounds, body text accents, and icon strokes — the only chromatic voice in the system; treated as both ink and fill",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffefe9",
+        "name": "Apricot Wash",
+        "role": "Tertiary surface — soft peach band at the foot of white sections, footer background, subtle warmth under statement blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffc2a9",
+        "name": "Peach Mist",
+        "role": "Hairline border accent on the orange field, low-contrast divider where #ff4501 would be too loud",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Primary canvas and card surface; text-on-orange and image borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon Ink",
+        "role": "SVG illustration fill, icon weight, photographic subjects — black only, never used for body text on white",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page architecture with no max-width container. The header is a compact horizontal bar: wordmark left, tagline center, navigation right. Hero is a vertical stack — centered or left-aligned statement type, then a massive 200px display headline that intentionally overflows the viewport, then a botanical illustration border at the bottom edge. Body sections alternate between centered statement blocks on white and full-width orange broadcast bands. Content within orange bands is split: text left, visual cluster right. Vertical rhythm is dramatic — 160px section padding, 110px between major blocks, 60px between elements within a block. Navigation is a minimal top bar with generous 58px gaps. The overall density is spacious to the point of theatrical — white space is content, not absence.",
+    "imagery": "Imagery is minimal and tightly curated. Photography appears only as black-and-white circular portrait crops (60–70px) on the orange broadcast section, arranged in an overlapping row. Illustration dominates: hand-drawn botanical line art in #ff4501 stroke, 1.5–2px weight, no fill, used as a decorative bottom border in the hero. No product photography, no lifestyle imagery, no 3D renders. The visual system treats illustration and typography as the primary content, with photography as functional identification only.",
+    "similar": [
+      {
+        "why": "Same poster-scale editorial typography and willingness to let a single saturated color carry an entire brand expression",
+        "business": "Wieden+Kennedy"
+      },
+      {
+        "why": "Shared typographic confidence — oversized thin sans-serif as the primary visual instrument, monochrome canvas with one chromatic accent",
+        "business": "Mucca"
+      },
+      {
+        "why": "Flat ink-on-paper aesthetic, generous white space as active design element, pill-shaped controls, and botanical/illustrative accents",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Agency site language that treats display type and illustration as the interface itself, with minimal photography and strong color-block sectioning",
+        "business": "Ueno"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "avatars": "9999px",
+        "buttons": "80px",
+        "sections": "0px"
+      },
+      "elementGap": "60px",
+      "sectionGap": "160px",
+      "cardPadding": "50px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Default canvas for hero, statement blocks, and resting sections"
+      },
+      {
+        "hex": "#ffefe9",
+        "name": "Apricot Wash",
+        "level": 1,
+        "purpose": "Subtle warm band at the foot of white sections, footer area"
+      },
+      {
+        "hex": "#ff4501",
+        "name": "Signal Broadcast",
+        "level": 2,
+        "purpose": "Full-bleed inverted section for team, calls-to-action, and emphasis blocks"
+      }
+    ],
+    "northStar": "Protest poster on cream paper",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.45
+      },
+      {
+        "role": "body-lg",
+        "size": 22,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "subheading",
+        "size": 26,
+        "lineHeight": 1.36
+      },
+      {
+        "role": "heading-sm",
+        "size": 36,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 58,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 80,
+        "lineHeight": 1
+      },
+      {
+        "role": "display",
+        "size": 200,
+        "lineHeight": 0.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button",
+        "role": "Primary and secondary call-to-action control",
+        "description": "80px border-radius creating a true pill shape. Two variants: (1) Ghost — transparent background, 1px #ff4501 border, #ff4501 text, 50px horizontal padding; (2) Filled — #ff4501 background, #ffffff text, no border. Padding approximately 16px vertical × 50px horizontal. Text in NeueMontreal weight 400 at 16px."
+      },
+      {
+        "name": "Orange Broadcast Section",
+        "role": "Full-bleed content band that reverses the canvas",
+        "description": "Full-width #ff4501 background, no border-radius, generous padding (110px bottom, 160px top). Content splits: text block left-aligned at 36–58px, circular avatar cluster right-aligned. Text in #ffffff at heading weight 700; supporting copy in weight 400."
+      },
+      {
+        "name": "Portrait Circle Avatar",
+        "role": "Team member thumbnail",
+        "description": "Circular crop (border-radius 9999px) of black-and-white photography, roughly 60–70px diameter. Arranged in overlapping horizontal row with negative gap so faces slightly touch. White 1–2px border separates photo from the orange field."
+      },
+      {
+        "name": "Statement Block",
+        "role": "Centered mission text on white",
+        "description": "Centered text stack on #ffffff canvas. Headline at 58px weight 700 in #ff4501, line-height 1.20, max-width constrained to keep three lines. Supporting paragraph at 16–22px weight 400 in #ff4501 below. Apricot Wash band (#ffefe9) anchors the bottom edge of the section."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Scrolling or static hero type that exceeds viewport",
+        "description": "NeueMontreal weight 100 at 200px, line-height 0.80, #ff4501 fill. Intentionally overflows the viewport horizontally — the letters are clipped by the page edge rather than wrapping. Acts as both content and decorative texture."
+      },
+      {
+        "name": "Botanical Line Illustration",
+        "role": "Decorative bottom-edge graphic in hero and section transitions",
+        "description": "Hand-drawn leaf and frond forms in #ff4501 stroke, 1.5–2px weight, no fill. Arranged as a dense organic border along the bottom of the hero, overlapping and varying in scale. Functions as a typographic underline made of foliage."
+      },
+      {
+        "name": "Wordmark Lockup",
+        "role": "Brand mark in header",
+        "description": "\"First + Foremost\" stacked on two lines, NeueMontreal weight 700, #ff4501. The \"+\" sits between the two words as a visual fulcrum. Approximately 22–26px in the header, never scales to match other type — stays compact and recognizable."
+      },
+      {
+        "name": "Ghost Navigation Link",
+        "role": "Top-bar navigation item",
+        "description": "NeueMontreal weight 400 at 16px, #ff4501 text, no background, no underline at rest. Right-aligned cluster with ~58px gap between items. Active state adds a 1px #ff4501 underline."
+      },
+      {
+        "name": "Tagline Pillar",
+        "role": "Centered descriptive text beside the wordmark",
+        "description": "Vertical orange hairline rule (1px #ff4501) on the left, three lines of NeueMontreal weight 400 at 16px in #ff4501 on the right. Functions as a compact value proposition, not a navigation element."
+      },
+      {
+        "name": "Full-Bleed Canvas Section",
+        "role": "Default content section background",
+        "description": "#ffffff background, no border, section padding 160px top and bottom. Content centered horizontally with generous side margins. This is the system's resting state — silence between orange broadcasts."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single family carries the entire system. Weight 100 at 200px size is the signature — whisper-thin display type that becomes monumental through scale alone, not boldness. Weight 400 for body and navigation, weight 700 reserved for statement headlines and emphasis. Line-height compresses to 0.80 on the massive display sizes so the letterforms stack into a solid block.",
+        "sizes": "16, 22, 26, 36, 58, 80, 200",
+        "family": "NeueMontreal",
+        "weight": "100, 400, 700",
+        "lineHeight": "0.80, 1.00, 1.20, 1.36, 1.40, 1.45",
+        "substitute": "Inter (weight 100 maps to Thin)",
+        "letterSpacing": "normal at all sizes; tracking stays default to let the tight line-heights do the work"
+      }
+    ],
+    "description": "First+Foremost is a monochrome canvas charged by a single vivid orange — a design system that treats one color as a loudhailer rather than a decoration. The aesthetic is editorial and protest-poster: vast white paper, giant thin sans-serif type that bleeds past the viewport, botanical line-art illustrations in the same orange, and pill-shaped controls with 80px radii. Layout is centered and breathing; content sections are either full-white statements or full-orange broadcasts with no middle ground. Photography is limited to circular black-and-white portrait crops on the orange field. The rhythm alternates between silence (white space, thin weight) and shouting (200px display, solid orange band).",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ac86af87-6f60-42a2-b805-87a168792e55#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Firstandforemost design system\",\"item\":\"https://styles.refero.design/style/ac86af87-6f60-42a2-b805-87a168792e55\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ac86af87-6f60-42a2-b805-87a168792e55#style-reference\",\"name\":\"Firstandforemost design system reference\",\"headline\":\"Firstandforemost design system | Refero Styles\",\"description\":\"Explore Firstandforemost's light Agency design system: Signal Orange #ff4501, Apricot Wash #ffefe9 colors, NeueMontreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ac86af87-6f60-42a2-b805-87a168792e55\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ac86af87-6f60-42a2-b805-87a168792e55\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Firstandforemost\",\"url\":\"https://firstandforemost.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ac86af87-6f60-42a2-b805-87a168792e55#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5dd31a65-9ae7-416e-89bb-1e94c5f1cc48.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5dd31a65-9ae7-416e-89bb-1e94c5f1cc48.jpg\",\"caption\":\"Screenshot of Firstandforemost\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5dd31a65-9ae7-416e-89bb-1e94c5f1cc48.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Firstandforemost design system\",\"Firstandforemost website design\",\"Firstandforemost colors\",\"Firstandforemost typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Signal Orange\",\"Apricot Wash\",\"Peach Mist\",\"Paper White\",\"NeueMontreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Firstandforemost design system\"},{\"@type\":\"Thing\",\"name\":\"Firstandforemost website design\"},{\"@type\":\"Thing\",\"name\":\"Firstandforemost colors\"},{\"@type\":\"Thing\",\"name\":\"Firstandforemost typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:54:11.169Z\",\"dateModified\":\"2026-04-30T03:54:11.169Z\"}]}19:T600,**Quick Color Reference**\n- Text: #ff4501\n- Background: #ffffff\n- Surface accent: #ffefe9\n- Border: #ff4501\n- Brand fill: #ff4501\n- primary action: #ff4501 (filled action)\n\n**Example Component Prompts**\n\n1. *Orange broadcast section*: Full-width #ff4501 background, 110px bottom padding. Left column: 'Our team' headline at 58px NeueMontreal weight 700 in #ffffff, body copy at 16px weight 400 in #ffffff, and a ghost pill button below (#ffffff background, #ff4501 text, 80px radius, 16px 50px padding). Right column: a row of 6 circular 60px portrait thumbnails (border-radius 9999px, 2px #ffffff border) overlapping horizontally.\n\n2. *Hero display headline*: 200px NeueMontreal weight 100 in #ff4501, line-height 0.80, set full-bleed so letters clip the viewport edge. No wrapping, no scaling. Below: a botanical line illustration border in #ff4501 stroke at 1.5px, filling the bottom 200px of the hero.\n\n3. *Centered statement block*: #ffffff background, 160px top padding. Centered headline at 58px weight 700 in #ff4501, line-height 1.20, max-width 700px. Below: 22px weight 400 paragraph in #ff4501, centered. Bottom 80px of section transitions to #ffefe9 Apricot Wash band.\n\n4. *Ghost navigation link*: 16px NeueMontreal weight 400 in #ff4501, no background, no border, no underline at rest. 58px gap to next item. Active state: 1px #ff4501 underline.\n\n5. *Pill primary button*: #ff4501 background, #ffffff text, 80px border-radius, 16px vertical × 50px horizontal padding, NeueMontreal weight 400 at 16px. No shadow, no border."
+      }
+    ],
+    "elevationPhilosophy": "The system is deliberately flat — no drop shadows, no glows, no layered translucency. Depth is created by alternating solid color blocks (white → orange → apricot) rather than by stacking surfaces with shadows. Borders are 1px hairlines in #ff4501, not raised edges."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ff4501",
+          "oklch": {
+            "c": 0.22930025606878793,
+            "h": 35.34811726995356,
+            "l": 0.6602217948255132
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "hero",
+            "image",
+            "heading",
+            "button",
+            "icon",
+            "list",
+            "footer"
+          ],
+          "frequency": 574,
+          "confidence": 1,
+          "prominence": 75567944.5179056,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "body/color": 14,
+            "hero/color": 2,
+            "icon/color": 4,
+            "link/color": 5,
+            "list/color": 1,
+            "other/fill": 13,
+            "image/color": 5,
+            "other/color": 63,
+            "button/color": 5,
+            "footer/color": 1,
+            "other/stroke": 7,
+            "heading/color": 3,
+            "nav/borderColor": 12,
+            "body/borderColor": 56,
+            "hero/borderColor": 8,
+            "icon/borderColor": 16,
+            "link/borderColor": 20,
+            "list/borderColor": 4,
+            "image/borderColor": 20,
+            "other/borderColor": 272,
+            "button/borderColor": 20,
+            "footer/borderColor": 4,
+            "heading/borderColor": 12,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "heading",
+            "body",
+            "other",
+            "image"
+          ],
+          "frequency": 124,
+          "confidence": 1,
+          "prominence": 3643578.8542096284,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/fill": 1,
+            "image/color": 8,
+            "other/color": 15,
+            "button/color": 2,
+            "heading/color": 2,
+            "body/borderColor": 8,
+            "image/borderColor": 32,
+            "other/borderColor": 36,
+            "button/borderColor": 8,
+            "heading/borderColor": 8,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffefe9",
+          "oklch": {
+            "c": 0.019184098561547736,
+            "h": 41.81138911635221,
+            "l": 0.9631320545725265
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1855101.9243815693,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 1466686.1804941802,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "other/fill": 14
+          }
+        },
+        {
+          "hex": "#ffc2a9",
+          "oklch": {
+            "c": 0.07827421324135918,
+            "h": 43.31156572441298,
+            "l": 0.8629383750614414
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 167236.87103426227,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.49400992750457734,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.78,
+          "background": "#ffefe9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.54,
+          "background": "#ffc2a9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.44,
+          "background": "#ffffff",
+          "foreground": "#ff4501"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.08,
+          "background": "#ffefe9",
+          "foreground": "#ff4501"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#ffefe9",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 80,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 30,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "button",
+            "footer"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|footer",
+            "columnGap|footer"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 110,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 259,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "NeueMontreal",
+          "source": "custom",
+          "weights": [
+            100,
+            400,
+            700
+          ],
+          "frequency": 138,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.86
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "NeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "image",
+            "button",
+            "icon",
+            "list",
+            "footer",
+            "body"
+          ],
+          "frequency": 106,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "NeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "NeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "NeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "NeueMontreal",
+          "weight": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 3.08,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "NeueMontreal",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "NeueMontreal",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "NeueMontreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 200,
+          "family": "NeueMontreal",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4135c7a5-7ee2-46be-8984-9f044f8804ad.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5dd31a65-9ae7-416e-89bb-1e94c5f1cc48.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ac86af87-6f60-42a2-b805-87a168792e55#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Firstandforemost design system\",\"item\":\"https://styles.refero.design/style/ac86af87-6f60-42a2-b805-87a168792e55\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ac86af87-6f60-42a2-b805-87a168792e55#style-reference\",\"name\":\"Firstandforemost design system reference\",\"headline\":\"Firstandforemost design system | Refero Styles\",\"description\":\"Explore Firstandforemost's light Agency design system: Signal Orange #ff4501, Apricot Wash #ffefe9 colors, NeueMontreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ac86af87-6f60-42a2-b805-87a168792e55\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ac86af87-6f60-42a2-b805-87a168792e55\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Firstandforemost\",\"url\":\"https://firstandforemost.co\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ac86af87-6f60-42a2-b805-87a168792e55#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5dd31a65-9ae7-416e-89bb-1e94c5f1cc48.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5dd31a65-9ae7-416e-89bb-1e94c5f1cc48.jpg\",\"caption\":\"Screenshot of Firstandforemost\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5dd31a65-9ae7-416e-89bb-1e94c5f1cc48.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Firstandforemost design system\",\"Firstandforemost website design\",\"Firstandforemost colors\",\"Firstandforemost typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Signal Orange\",\"Apricot Wash\",\"Peach Mist\",\"Paper White\",\"NeueMontreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Firstandforemost design system\"},{\"@type\":\"Thing\",\"name\":\"Firstandforemost website design\"},{\"@type\":\"Thing\",\"name\":\"Firstandforemost colors\"},{\"@type\":\"Thing\",\"name\":\"Firstandforemost typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:54:11.169Z\",\"dateModified\":\"2026-04-30T03:54:11.169Z\"}]}19:T600,**Quick Color Reference**\n- Text: #ff4501\n- Background: #ffffff\n- Surface accent: #ffefe9\n- Border: #ff4501\n- Brand fill: #ff4501\n- primary action: #ff4501 (filled action)\n\n**Example Component Prompts**\n\n1. *Orange broadcast section*: Full-width #ff4501 background, 110px bottom padding. Left column: 'Our team' headline at 58px NeueMontreal weight 700 in #ffffff, body copy at 16px weight 400 in #ffffff, and a ghost pill button below (#ffffff background, #ff4501 text, 80px radius, 16px 50px padding). Right column: a row of 6 circular 60px portrait thumbnails (border-radius 9999px, 2px #ffffff border) overlapping horizontally.\n\n2. *Hero display headline*: 200px NeueMontreal weight 100 in #ff4501, line-height 0.80, set full-bleed so letters clip the viewport edge. No wrapping, no scaling. Below: a botanical line illustration border in #ff4501 stroke at 1.5px, filling the bottom 200px of the hero.\n\n3. *Centered statement block*: #ffffff background, 160px top padding. Centered headline at 58px weight 700 in #ff4501, line-height 1.20, max-width 700px. Below: 22px weight 400 paragraph in #ff4501, centered. Bottom 80px of section transitions to #ffefe9 Apricot Wash band.\n\n4. *Ghost navigation link*: 16px NeueMontreal weight 400 in #ff4501, no background, no border, no underline at rest. 58px gap to next item. Active state: 1px #ff4501 underline.\n\n5. *Pill primary button*: #ff4501 background, #ffffff text, 80px border-radius, 16px vertical × 50px horizontal padding, NeueMontreal weight 400 at 16px. No shadow, no border."
+}

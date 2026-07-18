@@ -1,0 +1,1098 @@
+{
+  "source": "https://styles.refero.design/style/6da76890-6e04-452a-834d-ff019e232c2b",
+  "uuid": "6da76890-6e04-452a-834d-ff019e232c2b",
+  "name": "Touchy Coffee",
+  "northStar": "Hand-painted coffee zine — earthy paint bands, typewriter labels, and extreme pill buttons on warm matte surfaces.",
+  "capturedAt": "2026-07-18T09:21:31.223Z",
+  "meta": {
+    "url": "https://touchycoffee.com",
+    "siteName": "Touchy Coffee",
+    "extractedAt": "2026-06-03T19:59:16.914Z",
+    "durationMs": 40254,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 323,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 100px border-radius for all interactive elements (buttons, inputs, tags, origin labels) — the extreme pill is the signature shape",
+      "Use 20px border-radius for all cards and product images — the softer square gives containers a distinct identity from controls",
+      "Set all UI text in Apercu Mono (or Space Mono / IBM Plex Mono substitute) — monospace is the brand's typographic signature, not a fallback",
+      "Use full-bleed section bands of solid color (Terracotta, Sage, Sky) rather than card-on-white patterns — the site paints walls, not cards",
+      "Reserve #000000 for text, borders, and inverted pill buttons — black is the ink that makes the painted backgrounds readable",
+      "Use the custom script wordmark only for the brand name 'touchy coffee' — never set headlines in the script; headlines stay monospaced",
+      "Apply color via background bands and card fills, not via accent dots or small chips — color here is architectural, not decorative"
+    ],
+    "donts": [
+      "Don't use sharp corners (0-4px radius) on any interactive element — the pill is mandatory",
+      "Don't introduce a sans-serif typeface for UI text — the monospaced constraint is what makes the brand read as craft, not commerce",
+      "Don't use drop shadows or elevation on cards — the design relies on color contrast and border weight, not depth",
+      "Don't place body content on a white page background — sections always live on a painted band (Sage, Terracotta, Sky, or Sunshine)",
+      "Don't use the Terracotta or Lavender as small UI accents — they are section-scale colors, applied to full-bleed surfaces",
+      "Don't center-align body text — the design uses left-aligned monospaced blocks that read like stamped labels",
+      "Don't use icon outlines or line-style iconography — icons (arrow, star, leaf) are flat solid shapes, matched in visual weight to the bold borders"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Body text, borders, pill button fills, logo — the structural constant across every section",
+        "group": "neutral"
+      },
+      {
+        "hex": "#788c8c",
+        "name": "Sage",
+        "role": "Dominant neutral for section backgrounds, form borders, and the shop canvas — carries the largest surface area on the site",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Cream",
+        "role": "Card surfaces, input fills, text on dark pill buttons — the only true white, used sparingly as a counterpoint to the painted section bands",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9f4920",
+        "name": "Terracotta",
+        "role": "Hero section background, circular product label accents — warm clay red that grounds the brand in earth and roast",
+        "group": "brand"
+      },
+      {
+        "hex": "#a697c6",
+        "name": "Lavender",
+        "role": "Violet outline accent for tags, dividers, and focused UI edges",
+        "group": "accent"
+      },
+      {
+        "hex": "#5b9133",
+        "name": "Moss",
+        "role": "Green accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#fff78f",
+        "name": "Sunshine",
+        "role": "Surface band accent, subtle background wash — buttery yellow used as a section break between terracotta and sage",
+        "group": "accent"
+      },
+      {
+        "hex": "#d0eaf4",
+        "name": "Sky",
+        "role": "Testimonial section background — washed pale blue providing a cool, airy counterpoint to the warm dominant tones",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed horizontal section bands stacked vertically: Terracotta hero (centered logo + tagline) → Sage shop section (3-column product grid) → Sky testimonials section (3-column review cards). Each band fills the viewport width and uses 80px vertical gaps. Navigation sits in the top corners of the hero (pill buttons) and as a vertical left-edge stack in the shop section. The product grid is 3 columns on desktop with generous 40-60px gaps. A black marquee ticker runs along the very bottom, full-width. No sidebar, no max-width container — the layout is edge-to-edge painted surfaces with content breathing inside them.",
+    "imagery": "Product photography is the primary visual: tight, well-lit shots of kraft-paper coffee bags centered on flat backgrounds, each bag featuring a hand-applied circular origin label. No lifestyle photography, no hands holding mugs, no cafe interiors — the product is the subject. Surrounding graphics are minimal: flat solid star shapes, a single left-arrow icon, and a leaf glyph in the marquee. The wordmark script and the monospaced labels carry more visual personality than any illustration. Image treatment: contained within cards with 20px radius, no bleed, no overlays, no duotone.",
+    "similar": [
+      {
+        "why": "Similar commitment to a tight, restrained palette and a custom wordmark that carries brand identity, though Blue Bottle is far more minimal and sans-serif where Touchy is monospaced and zine-like",
+        "business": "Blue Bottle Coffee"
+      },
+      {
+        "why": "Both treat the product bag as the hero image and rely on bold stamped labels with origin names, but Touchy's monospaced typography and full-bleed paint bands are far more playful",
+        "business": "Stumptown Coffee"
+      },
+      {
+        "why": "Independent roaster with a hand-crafted visual identity and extreme pill-shaped UI controls, though Cuvée leans darker and more editorial where Touchy is warm and color-blocked",
+        "business": "Cuvée Coffee"
+      },
+      {
+        "why": "Specialty roaster using bold geometric section bands and a strong typographic identity, but Onyx uses clean sans-serif where Touchy is unapologetically monospaced",
+        "business": "Onyx Coffee Lab"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "100px",
+        "cards": "20px",
+        "images": "20px",
+        "inputs": "100px",
+        "buttons": "100px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#9f4920",
+        "name": "Terracotta Band",
+        "level": 1,
+        "purpose": "Hero section canvas — warm clay full-bleed background"
+      },
+      {
+        "hex": "#788c8c",
+        "name": "Sage Band",
+        "level": 2,
+        "purpose": "Shop/product grid section — dominant neutral canvas"
+      },
+      {
+        "hex": "#d0eaf4",
+        "name": "Sky Band",
+        "level": 3,
+        "purpose": "Testimonials section — airy cool break between warm bands"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 4,
+        "purpose": "Product cards, testimonial cards, newsletter popup — the elevated readable surface"
+      }
+    ],
+    "northStar": "Hand-painted coffee zine — earthy paint bands, typewriter labels, and extreme pill buttons on warm matte surfaces.",
+    "typeScale": [
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 50,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Navigation Button",
+        "role": "Primary site navigation (HOME, SHOP)",
+        "description": "Inverted pill: #000000 background, #ffffff text, 100px border-radius, Apercu Mono Bold 20px uppercase, 10px vertical / 20px horizontal padding. Sits at the top corners of the hero, flat and high-contrast against the terracotta band."
+      },
+      {
+        "name": "Shop Product Card",
+        "role": "Coffee bag product display",
+        "description": "White card on Sage background, 20px border-radius, 20px padding. Contains a 20px-radius product photo of a kraft coffee bag, a 100px-radius circular accent label (Terracotta, pink, or dark) with the roast origin name in Apercu Mono, the product name in Apercu Mono 20px, and two stacked pill controls below."
+      },
+      {
+        "name": "Size Selector Pill",
+        "role": "Product size and price display",
+        "description": "Ghost pill: 1px #000000 border, 100px radius, Apercu Mono 20px, shows size + price (e.g. '12 OZ $27'). Outlined only — no fill."
+      },
+      {
+        "name": "Add to Cart Pill",
+        "role": "Quantity stepper and add action",
+        "description": "Outlined pill: 1px #000000 border, 100px radius, Apercu Mono Bold 20px uppercase. Contains a '- 1 +' stepper on the left and 'ADD' label on the right, separated by a thin vertical divider. No fill color — relies on black border for definition."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "Customer review display",
+        "description": "Solid color card (Moss green or Terracotta) with 20px radius, 20px padding. Five 5-pointed stars at the top (pink or yellow fill, ~28px), customer name in underlined Apercu Mono Bold 20px, review text in Apercu Mono 20px at 1.5 line-height. No shadow — color is the card."
+      },
+      {
+        "name": "Progress Bar (Custom)",
+        "role": "Shop section decorative indicator",
+        "description": "Long horizontal pill: 100px radius, Lavender (#a697c6) fill with a darker outlined track inside, containing a left-arrow icon. Sits centered below the product grid as a stylistic flourish, not a functional progress indicator."
+      },
+      {
+        "name": "Newsletter Popup",
+        "role": "Email capture overlay",
+        "description": "Pink (#f5b5c8) rounded card, 20px radius, positioned bottom-right. Header in Apercu Mono Bold 20px with a dismiss 'X' in the top-right corner. Body copy in Apercu Mono 20px, email input is a Cream (#ffffff) pill with 100px radius and black border, paired with a black 'SEND' pill button."
+      },
+      {
+        "name": "Star Rating",
+        "role": "Visual review score indicator",
+        "description": "Row of five 5-pointed star glyphs, each ~24-28px, filled in warm colors (pink #f5b5c8 or yellow #fff78f). No stroke — solid flat shapes, no outlined stars."
+      },
+      {
+        "name": "Circular Origin Label",
+        "role": "Product origin badge on bag",
+        "description": "100px radius circle (fully round), solid color fill (Terracotta, hot pink, or near-black), 20px padding. Origin name in Apercu Mono Bold uppercase, centered. Sits on the upper-left of the product photo as a stamp."
+      },
+      {
+        "name": "Bottom Marquee Ticker",
+        "role": "Scrolling brand tagline strip",
+        "description": "Full-width black band, white Apercu Mono 20px uppercase text, left-scrolling. Content is a continuous brand description ('WITH JUST THE RIGHT AMOUNT OF SHADE [leaf icon] THE SEED IS TENDERLY ATTENDED TO AS IT GROWS AND IT EVENTUALLY BLOSSOMS'). Repeats infinitely."
+      },
+      {
+        "name": "Side Vertical Nav",
+        "role": "Secondary left-edge navigation",
+        "description": "Vertically stacked Apercu Mono 20px links ('IN', 'OUR', 'SHOP') in black, left-aligned with wide letter-spacing, positioned along the left edge of the shop section. Acts as a supplementary nav, not a replacement for the top pills."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole UI typeface — all navigation, body copy, prices, buttons, labels, and links rendered in monospace. The 50px size is reserved for hero display lines; 20-24px is the working range for everything from button text to product names. Monospaced letterforms are a deliberate anti-corporate signal: labels read like typewriter tags stamped on coffee bags, not SaaS chrome.",
+        "sizes": "20px, 24px, 50px",
+        "family": "Apercu Mono",
+        "weight": "400, 700",
+        "lineHeight": "1.20, 1.50",
+        "substitute": "Space Mono, IBM Plex Mono, JetBrains Mono",
+        "letterSpacing": "normal at all sizes"
+      },
+      {
+        "role": "Custom hand-drawn bouncy script used exclusively for the wordmark 'touchy coffee'. The letterforms are loose, slightly irregular, and bubble-like — the single brand-defining element that signals craft and personality before any product is shown.",
+        "sizes": "Logo only — roughly 180-220px equivalent on the hero",
+        "family": "Touchy Script (custom)",
+        "weight": "400",
+        "lineHeight": "1.0",
+        "substitute": "Caveat Brush, Permanent Marker, or Patrick Hand SC for approximate feel — but the actual logo is custom and should not be swapped for a system script"
+      },
+      {
+        "role": "Apercu Mono Bold — detected in extracted data but not described by AI",
+        "sizes": "20px",
+        "family": "Apercu Mono Bold",
+        "weight": "700",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Touchy Coffee operates like an indie zine meets corner coffee shop: a rotating cast of earthy, hand-mixed backgrounds (terracotta, sage, sky blue) where the product photography and a bouncy custom script logo do the heavy lifting, and the UI chrome stays deliberately lo-fi. Everything readable is set in Apercu Mono — a monospaced face that reads like a typewriter label, reinforcing the craft, small-batch identity over glossy e-commerce polish. Controls are extreme pills (100px radius), cards are softly rounded (20px), and the color system behaves like a set of paint swatches — lavender, terracotta, moss green, sage gray — applied to full-bleed section bands rather than used as accent dots. Borders are bold and black, text is unapologetically black-on-color, and the overall effect is tactile, warm, and personal rather than slick or optimized.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6da76890-6e04-452a-834d-ff019e232c2b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Touchy Coffee design system\",\"item\":\"https://styles.refero.design/style/6da76890-6e04-452a-834d-ff019e232c2b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6da76890-6e04-452a-834d-ff019e232c2b#style-reference\",\"name\":\"Touchy Coffee design system reference\",\"headline\":\"Touchy Coffee design system | Refero Styles\",\"description\":\"Explore Touchy Coffee's mixed E-commerce design system: Ink #000000, Sage #788c8c colors, Apercu Mono, Touchy Script (custom) typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/6da76890-6e04-452a-834d-ff019e232c2b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6da76890-6e04-452a-834d-ff019e232c2b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Touchy Coffee\",\"url\":\"https://touchycoffee.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6da76890-6e04-452a-834d-ff019e232c2b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/996f8567-6cc0-4c2c-a004-2e29f6a8478d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/996f8567-6cc0-4c2c-a004-2e29f6a8478d.jpg\",\"caption\":\"Screenshot of Touchy Coffee\"},\"image\":\"https://images.refero.design/styles/refero.design/image/996f8567-6cc0-4c2c-a004-2e29f6a8478d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Touchy Coffee design system\",\"Touchy Coffee website design\",\"Touchy Coffee colors\",\"Touchy Coffee typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink\",\"Sage\",\"Cream\",\"Terracotta\",\"Apercu Mono\",\"Touchy Script (custom)\",\"Apercu Mono Bold\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Touchy Coffee design system\"},{\"@type\":\"Thing\",\"name\":\"Touchy Coffee website design\"},{\"@type\":\"Thing\",\"name\":\"Touchy Coffee colors\"},{\"@type\":\"Thing\",\"name\":\"Touchy Coffee typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:30:14.188Z\",\"dateModified\":\"2026-04-30T00:30:14.188Z\"}]}19:T932,**Quick Color Reference**\n- text: #000000\n- background (sections): rotate between #9f4920 (Terracotta), #788c8c (Sage), #d0eaf4 (Sky)\n- card surface: #ffffff\n- border: #000000\n- accent (progress bar, newsletter): #a697c6 (Lavender)\n- primary action: #000000 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. Create a hero section: full-bleed #9f4920 Terracotta background. Centered custom 'touchy coffee' script logo at ~200px in #000000. Below it, Apercu Mono 20px #000000 uppercase tagline 'SENSATIONAL COFFEES ROASTED IN TROY, NY'. Top-left corner: black pill button ('HOME', Apercu Mono Bold 20px white, 100px radius, 10px 20px padding). Top-right corner: identical black pill ('SHOP').\n\n2. Create a product card on a #788c8c Sage background: white card with 20px radius and 20px padding. Contains a 20px-radius product photo of a kraft coffee bag. Top-left of the bag: 100px-radius Terracotta circle with 'COLOMBIA AURA DIAZ' in Apercu Mono Bold 20px white. Below photo: product name in Apercu Mono 20px #000000. Then two stacked pills: (a) outlined 100px-radius size selector ('↓ 12 OZ $27', 1px #000000 border, Apercu Mono 20px) and (b) outlined 100px-radius add control ('- 1 + | ADD', 1px #000000 border, Apercu Mono Bold 20px uppercase).\n\n3. Create a testimonial card: solid #5b9133 Moss background, 20px radius, 20px padding. Top row: five solid pink (#f5b5c8) star shapes at 28px. Below: customer name in underlined Apercu Mono Bold 20px #000000, then 3-4 lines of review text in Apercu Mono 20px #000000 at 1.5 line-height. No shadow, no border — color is the card.\n\n4. Create a newsletter popup: #f5b5c8 pink background, 20px radius, 300-360px width, positioned bottom-right. Header 'NEWSLETTER' in Apercu Mono Bold 20px #000000 with an 'X' close icon top-right. Body text in Apercu Mono 20px #000000. Email input: #ffffff pill with 100px radius, 1px #000000 border, placeholder 'YOUR EMAIL' in Apercu Mono 20px. Beside it: black 'SEND' pill (#000000 fill, #ffffff text, 100px radius, Apercu Mono Bold 20px).\n\n5. Create a bottom marquee ticker: full-width #000000 band, 40-50px tall. Scrolling #ffffff Apercu Mono 20px uppercase text with a small leaf icon (solid #9f4920, ~16px) between phrases. Content repeats: 'WITH JUST THE RIGHT AMOUNT OF SHADE [leaf] THE SEED IS TENDERLY ATTENDED TO AS IT GROWS AND IT EVENTUALLY BLOSSOMS'."
+      },
+      {
+        "title": "Color Band System",
+        "content": "The site uses full-bleed color bands as its primary structural device rather than a white page with cards. The band sequence from top to bottom is: Terracotta (#9f4920) → Sage (#788c8c) → Sky (#d0eaf4). Each band fills 100% viewport width. White card surfaces sit on top of the bands as readable containers. This is not an accent-color system — it is a wall-paint system. When building new pages, assign each major section a band color from this palette and let the section's background do the brand work, with white cards for content. Do not introduce a white page background or a neutral gray section; the absence of a band would feel like the system is missing a wall."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "card",
+            "other",
+            "button",
+            "body",
+            "hero",
+            "link",
+            "image",
+            "icon",
+            "footer"
+          ],
+          "frequency": 1135,
+          "confidence": 1,
+          "prominence": 29248769.868207507,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 63,
+            "card/color": 1,
+            "hero/color": 2,
+            "icon/color": 16,
+            "link/color": 15,
+            "other/fill": 25,
+            "image/color": 17,
+            "other/color": 106,
+            "footer/color": 1,
+            "other/stroke": 2,
+            "body/borderColor": 252,
+            "card/borderColor": 4,
+            "hero/borderColor": 8,
+            "icon/borderColor": 64,
+            "link/borderColor": 60,
+            "image/borderColor": 68,
+            "other/borderColor": 416,
+            "footer/borderColor": 4,
+            "other/backgroundColor": 7,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#788c8c",
+          "oklch": {
+            "c": 0.023012753028679243,
+            "h": 196.57692072453048,
+            "l": 0.624241294108185
+          },
+          "contexts": [
+            "other",
+            "body",
+            "input",
+            "button"
+          ],
+          "frequency": 267,
+          "confidence": 1,
+          "prominence": 10228607.7024195,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 31,
+            "input/color": 5,
+            "other/color": 11,
+            "button/color": 5,
+            "body/borderColor": 124,
+            "input/borderColor": 20,
+            "other/borderColor": 44,
+            "button/borderColor": 20,
+            "body/backgroundColor": 5,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#a697c6",
+          "oklch": {
+            "c": 0.06948762229996747,
+            "h": 299.2351155220656,
+            "l": 0.7058524314277533
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 5318113.3551300615,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 2,
+            "other/borderColor": 8,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#9f4920",
+          "oklch": {
+            "c": 0.12629537156795123,
+            "h": 43.66973489320367,
+            "l": 0.5089625065527276
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 4837535.013324582,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 7,
+            "other/borderColor": 28
+          }
+        },
+        {
+          "hex": "#5b9133",
+          "oklch": {
+            "c": 0.13842190219371536,
+            "h": 134.22236256176197,
+            "l": 0.5984152677406454
+          },
+          "contexts": [
+            "footer",
+            "button",
+            "body"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 4566698.786791999,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "button/color": 2,
+            "body/borderColor": 8,
+            "button/borderColor": 8,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d0eaf4",
+          "oklch": {
+            "c": 0.030629287877449955,
+            "h": 222.8950687069413,
+            "l": 0.921079615513506
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2159099.3169823876,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "card",
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 82,
+          "confidence": 1,
+          "prominence": 413102.5551512807,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 13,
+            "other/color": 1,
+            "button/color": 2,
+            "body/borderColor": 52,
+            "other/borderColor": 4,
+            "button/borderColor": 8,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e23f3d",
+          "oklch": {
+            "c": 0.20027302548790638,
+            "h": 25.99317475532621,
+            "l": 0.6094153827363481
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 10000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fff78f",
+          "oklch": {
+            "c": 0.1262101613864276,
+            "h": 104.65255788916718,
+            "l": 0.9607207817631748
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 10000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.025625655474201058,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.95,
+          "background": "#fff78f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.76,
+          "background": "#d0eaf4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.86,
+          "background": "#a697c6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.09,
+          "background": "#ffffff",
+          "foreground": "#9f4920"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.93,
+          "background": "#788c8c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.54,
+          "background": "#5b9133",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.5,
+          "background": "#fff78f",
+          "foreground": "#9f4920"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.01,
+          "background": "#e23f3d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.86,
+          "background": "#d0eaf4",
+          "foreground": "#9f4920"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.19,
+          "background": "#e23f3d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.79,
+          "background": "#ffffff",
+          "foreground": "#5b9133"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.54,
+          "background": "#ffffff",
+          "foreground": "#788c8c"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.45,
+          "background": "#000000",
+          "foreground": "#9f4920"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.42,
+          "background": "#fff78f",
+          "foreground": "#5b9133"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.2,
+          "background": "#fff78f",
+          "foreground": "#788c8c"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.02,
+          "background": "#d0eaf4",
+          "foreground": "#5b9133"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.83,
+          "background": "#d0eaf4",
+          "foreground": "#788c8c"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.67,
+          "background": "#a697c6",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.28,
+          "background": "#a697c6",
+          "foreground": "#9f4920"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 100,
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 30
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card",
+            "image"
+          ],
+          "frequency": 18
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "card",
+            "other",
+            "button"
+          ],
+          "frequency": 48,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 96,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "body",
+            "hero"
+          ],
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|body",
+            "paddingRight|hero",
+            "paddingBottom|hero",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "paddingRight|footer",
+            "paddingLeft|footer",
+            "rowGap|footer",
+            "columnGap|footer"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "body",
+            "other",
+            "footer"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "paddingBottom|other",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 113,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 140,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|hero",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Apercu Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 179,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Apercu Mono Bold",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 121,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 20,
+          "family": "Apercu Mono",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other",
+            "body",
+            "hero",
+            "link"
+          ],
+          "frequency": 91,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Apercu Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Apercu Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "footer",
+            "link"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Apercu Mono Bold",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "other",
+            "input",
+            "button",
+            "link"
+          ],
+          "frequency": 121,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Apercu Mono",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "Apercu Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1509ae8f-da91-46c6-aea8-b9357775b6c8.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/996f8567-6cc0-4c2c-a004-2e29f6a8478d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6da76890-6e04-452a-834d-ff019e232c2b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Touchy Coffee design system\",\"item\":\"https://styles.refero.design/style/6da76890-6e04-452a-834d-ff019e232c2b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6da76890-6e04-452a-834d-ff019e232c2b#style-reference\",\"name\":\"Touchy Coffee design system reference\",\"headline\":\"Touchy Coffee design system | Refero Styles\",\"description\":\"Explore Touchy Coffee's mixed E-commerce design system: Ink #000000, Sage #788c8c colors, Apercu Mono, Touchy Script (custom) typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/6da76890-6e04-452a-834d-ff019e232c2b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6da76890-6e04-452a-834d-ff019e232c2b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Touchy Coffee\",\"url\":\"https://touchycoffee.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6da76890-6e04-452a-834d-ff019e232c2b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/996f8567-6cc0-4c2c-a004-2e29f6a8478d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/996f8567-6cc0-4c2c-a004-2e29f6a8478d.jpg\",\"caption\":\"Screenshot of Touchy Coffee\"},\"image\":\"https://images.refero.design/styles/refero.design/image/996f8567-6cc0-4c2c-a004-2e29f6a8478d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Touchy Coffee design system\",\"Touchy Coffee website design\",\"Touchy Coffee colors\",\"Touchy Coffee typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink\",\"Sage\",\"Cream\",\"Terracotta\",\"Apercu Mono\",\"Touchy Script (custom)\",\"Apercu Mono Bold\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Touchy Coffee design system\"},{\"@type\":\"Thing\",\"name\":\"Touchy Coffee website design\"},{\"@type\":\"Thing\",\"name\":\"Touchy Coffee colors\"},{\"@type\":\"Thing\",\"name\":\"Touchy Coffee typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:30:14.188Z\",\"dateModified\":\"2026-04-30T00:30:14.188Z\"}]}19:T932,**Quick Color Reference**\n- text: #000000\n- background (sections): rotate between #9f4920 (Terracotta), #788c8c (Sage), #d0eaf4 (Sky)\n- card surface: #ffffff\n- border: #000000\n- accent (progress bar, newsletter): #a697c6 (Lavender)\n- primary action: #000000 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. Create a hero section: full-bleed #9f4920 Terracotta background. Centered custom 'touchy coffee' script logo at ~200px in #000000. Below it, Apercu Mono 20px #000000 uppercase tagline 'SENSATIONAL COFFEES ROASTED IN TROY, NY'. Top-left corner: black pill button ('HOME', Apercu Mono Bold 20px white, 100px radius, 10px 20px padding). Top-right corner: identical black pill ('SHOP').\n\n2. Create a product card on a #788c8c Sage background: white card with 20px radius and 20px padding. Contains a 20px-radius product photo of a kraft coffee bag. Top-left of the bag: 100px-radius Terracotta circle with 'COLOMBIA AURA DIAZ' in Apercu Mono Bold 20px white. Below photo: product name in Apercu Mono 20px #000000. Then two stacked pills: (a) outlined 100px-radius size selector ('↓ 12 OZ $27', 1px #000000 border, Apercu Mono 20px) and (b) outlined 100px-radius add control ('- 1 + | ADD', 1px #000000 border, Apercu Mono Bold 20px uppercase).\n\n3. Create a testimonial card: solid #5b9133 Moss background, 20px radius, 20px padding. Top row: five solid pink (#f5b5c8) star shapes at 28px. Below: customer name in underlined Apercu Mono Bold 20px #000000, then 3-4 lines of review text in Apercu Mono 20px #000000 at 1.5 line-height. No shadow, no border — color is the card.\n\n4. Create a newsletter popup: #f5b5c8 pink background, 20px radius, 300-360px width, positioned bottom-right. Header 'NEWSLETTER' in Apercu Mono Bold 20px #000000 with an 'X' close icon top-right. Body text in Apercu Mono 20px #000000. Email input: #ffffff pill with 100px radius, 1px #000000 border, placeholder 'YOUR EMAIL' in Apercu Mono 20px. Beside it: black 'SEND' pill (#000000 fill, #ffffff text, 100px radius, Apercu Mono Bold 20px).\n\n5. Create a bottom marquee ticker: full-width #000000 band, 40-50px tall. Scrolling #ffffff Apercu Mono 20px uppercase text with a small leaf icon (solid #9f4920, ~16px) between phrases. Content repeats: 'WITH JUST THE RIGHT AMOUNT OF SHADE [leaf] THE SEED IS TENDERLY ATTENDED TO AS IT GROWS AND IT EVENTUALLY BLOSSOMS'."
+}

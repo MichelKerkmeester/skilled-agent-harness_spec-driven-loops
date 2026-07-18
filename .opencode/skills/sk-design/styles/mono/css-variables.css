@@ -1,0 +1,73 @@
+:root {
+  /* Colors */
+  --color-ink: #292929;
+  --color-paper: #ffffff;
+  --color-carbon: #000000;
+
+  /* Typography — Font Families */
+  --font-nh: 'NH', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-s-condensed: 'S-Condensed', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ev: 'EV', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-s-works: 'S-Works', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.34;
+  --tracking-caption: 0.12px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 0.9;
+  --tracking-body-sm: 0.14px;
+  --text-body: 16px;
+  --leading-body: 1.34;
+  --tracking-body: -0.32px;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.5;
+  --tracking-body-lg: -0.36px;
+  --text-subheading: 25px;
+  --leading-subheading: 1.27;
+  --tracking-subheading: -0.5px;
+  --text-heading-sm: 32px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.64px;
+  --text-heading: 40px;
+  --leading-heading: 1.34;
+  --tracking-heading: -0.8px;
+  --text-display: 43px;
+  --leading-display: 1.34;
+  --tracking-display: -0.86px;
+
+  /* Typography — Weights */
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-w350: 350;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-5: 5px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-20: 20px;
+  --spacing-23: 23px;
+  --spacing-25: 25px;
+  --spacing-43: 43px;
+  --spacing-45: 45px;
+  --spacing-50: 50px;
+
+  /* Layout */
+  --card-padding: 20px;
+  --element-gap: 8px;
+
+  /* Named Radii */
+  --radius-tags: 0px;
+  --radius-cards: 0px;
+  --radius-images: 0px;
+  --radius-inputs: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-paper: #ffffff;
+  --surface-ink-block: #292929;
+}

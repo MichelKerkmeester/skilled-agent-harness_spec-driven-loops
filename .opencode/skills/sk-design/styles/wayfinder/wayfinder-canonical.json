@@ -1,0 +1,699 @@
+{
+  "source": "https://styles.refero.design/style/d9fbc68b-0d42-4c09-829d-1207b781f46a",
+  "uuid": "d9fbc68b-0d42-4c09-829d-1207b781f46a",
+  "name": "Wayfinder",
+  "northStar": "A black cinema screen with one whispered title floating over a living illustration. The interface is a dimmer switch, not a dashboard.",
+  "capturedAt": "2026-07-18T09:42:00.327Z",
+  "meta": {
+    "url": "https://wayfinder.nfb.ca",
+    "siteName": "Wayfinder",
+    "extractedAt": "2026-06-03T18:31:48.595Z",
+    "durationMs": 35637,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 63,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Keep the canvas at #000000. The black is a stage, not a background color.",
+      "Set all type in Enreal weight 300 for titles and weight 400 for body. The thinness is the signature.",
+      "Maintain 0.042em letter-spacing on all Enreal usage — do not tighten it for body sizes.",
+      "Center the primary composition vertically and horizontally in the viewport.",
+      "Use the filled white button for the single most important action and the dark outlined button for secondary.",
+      "Keep corner utility controls icon-only and monochrome. No labels, no backgrounds, no tooltips.",
+      "Let the illustration occupy the full viewport. Never crop it, never overlay a surface on top of it."
+    ],
+    "donts": [
+      "Do not introduce shadows, glows, or elevation effects on any element.",
+      "Do not add gradients, brand accent colors, or chromatic highlights — the palette is intentionally achromatic.",
+      "Do not use border-radius on any component. Everything is sharp-edged and architectural.",
+      "Do not switch the title to a bold or heavy weight. Weight 300 on Enreal is the defining voice.",
+      "Do not add card containers, backgrounds, or frosted-glass panels behind the type or buttons.",
+      "Do not use any color from the illustration (ochre, terracotta, moss) as a UI token — those belong to the artwork.",
+      "Do not build dense layouts. This is a one-screen-at-a-time experience; whitespace is the layout."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void Black",
+        "role": "Page canvas, primary borders, icon strokes — the literal theater curtain everything sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0b0502",
+        "name": "Smolder Earth",
+        "role": "Secondary surface tone — picks up a warm cast from the illustration overlay, used as a slightly lifted dark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Charcoal",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e3e3e2",
+        "name": "Ash",
+        "role": "Hairline borders on the dark button, subtle separators, muted off-white dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c0bfbe",
+        "name": "Driftwood",
+        "role": "Muted surface for low-emphasis background panels and body containers",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Single-screen, full-bleed layout with no scrolling content sections. The page model is 100vw × 100vh, center-aligned. The hero is the entire page: a centered title block, a two-line subtitle, and a vertical button stack, all overlaid on the full-bleed animated illustration. Top-left holds a 3-icon scene control cluster; top-right holds a 3-icon utility cluster (language, audio, fullscreen). There is no navigation bar, no sidebar, no footer. Section rhythm does not apply — there is only one section, and it loops between scenes controlled by the top-left filmstrip icon.",
+    "imagery": "The visual language is hand-illustrated 2D animation — flat shapes with a slight painterly texture, no outlines on most forms, warm earth palette (terracotta, ochre, olive, cream, sienna). Trees are rendered as triangular canopies with horizontal striping; mushrooms and wildflowers are scattered as small graphic accents. The illustration occupies the entire viewport at all times and is animated (parallax or character movement). There is no photography, no product imagery, no 3D. Icons in the UI are thin, monochrome, line-based and sit at roughly 1px stroke weight. The art style evokes mid-century children's book illustration crossed with a Studio Ghibli background plate — cozy, handcrafted, slightly nostalgic.",
+    "similar": [
+      {
+        "why": "Same NFB interactive-film lineage — full-bleed illustrated/photographic canvas with minimal monochrome UI overlaid, no shadows, no card layers, type floating directly on imagery",
+        "business": "Bear 71 (NFB Interactive)"
+      },
+      {
+        "why": "Cinematic full-viewport narrative with centered light-weight display type and an almost invisible interface — the art carries the page, the chrome stays out of the way",
+        "business": "The Boat (SBS Interactive)"
+      },
+      {
+        "why": "Pure black canvas with thin, airy type and a single primary action button — the generative artwork is the entire visual system",
+        "business": "Silk – Interactive Generative Art"
+      },
+      {
+        "why": "Full-bleed illustrated scenes with centered whisper-light display type and a single white-on-dark action button — the same title-card, cinema-screen discipline",
+        "business": "Everyone Has a Story (Google)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "4px",
+      "sectionGap": "40px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void Black",
+        "level": 1,
+        "purpose": "Underlying page canvas — the theater-dark base layer"
+      },
+      {
+        "hex": "#0b0502",
+        "name": "Smolder Earth",
+        "level": 2,
+        "purpose": "Warm dark surface that absorbs the illustration's color cast"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Charcoal",
+        "level": 3,
+        "purpose": "Secondary button fill and border — the only stepped dark"
+      }
+    ],
+    "northStar": "A black cinema screen with one whispered title floating over a living illustration. The interface is a dimmer switch, not a dashboard.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.67
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 1.01
+      }
+    ],
+    "components": [
+      {
+        "name": "Centered Title Block",
+        "role": "Hero typography composition",
+        "description": "Vertically and horizontally centered in the viewport. Title at ~48-64px in Enreal weight 300, #ffffff, letter-spacing 0.042em, all-caps. Subtitle in Ciutadella-Medium weight 300, 14px, #ffffff at reduced opacity, two short lines separated by a hard line break. No drop shadow, no background — type floats directly on the illustration."
+      },
+      {
+        "name": "Start Button (Filled White)",
+        "role": "Primary user action",
+        "description": "White (#ffffff) solid fill, #000000 text, no border, 0px radius. Inline arrow icon (→) left of the label 'start' in Enreal or Arial 13px. Padding ~8px 16px. The only visually loud element on the page besides the title."
+      },
+      {
+        "name": "Info Button (Outlined Dark)",
+        "role": "Secondary action",
+        "description": "Charcoal (#1a1a1a) fill with Ash (#e3e3e2) 1px hairline border, 0px radius, white text 'info' at 13px. Sits 30px below the primary action. Quiet but clearly interactive — the border is the affordance."
+      },
+      {
+        "name": "Corner Utility Cluster (Top-Left)",
+        "role": "Scene control toggles",
+        "description": "Three small icon-only controls aligned top-left at ~8-10px padding: a filmstrip/scene-selector icon, a pause/play toggle, and an info dot. Monochrome white on black, no background, no labels. The film-strip icon implies a chapter/segment picker."
+      },
+      {
+        "name": "Corner Utility Cluster (Top-Right)",
+        "role": "Global controls",
+        "description": "Three icon-only controls top-right: language toggle 'FR', speaker/audio icon, and fullscreen expand icon. Same monochrome treatment as the left cluster. Equal padding from the edge as the left cluster to create visual balance."
+      },
+      {
+        "name": "Immersive Illustration Layer",
+        "role": "Full-bleed visual content",
+        "description": "The page background is not a color — it is a full-viewport animated illustration. Warm earth palette (ochre, terracotta, moss green, cream) rendered in a flat, slightly textured style with stylized trees, mushrooms, wildflowers, and landscape motifs. Edges are not masked; the illustration bleeds into every corner. This layer is content, not chrome, and carries the entire emotional weight of the experience."
+      },
+      {
+        "name": "Button Stack",
+        "role": "Action container",
+        "description": "Two buttons stacked vertically with 30px gap between them. Center-aligned. No background container — the buttons exist directly on the illustration."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and UI type. Weight 300 carries the title — a thin geometric sans that whispers against the dark canvas. The 0.042em tracking (roughly 0.67px at 16px) is wide for a sans, giving every word a cinematic, breathing quality. Body and labels step up to 400, reserved to 700 for the rare emphasis.",
+        "sizes": "14px, 16px, 24px",
+        "family": "Enreal",
+        "weight": "300, 400, 700",
+        "lineHeight": "1.20, 1.75",
+        "substitute": "Jost Light, DM Sans Light, or Outfit Light",
+        "letterSpacing": "0.0420em"
+      },
+      {
+        "role": "Secondary support face at weight 300 — used for small labels, links, and metadata. Tight line-height (1.0) and normal tracking make it a quiet, textural companion to the wider Enreal.",
+        "sizes": "14px",
+        "family": "Ciutadella-Medium",
+        "weight": "300",
+        "lineHeight": "1.00",
+        "substitute": "Karla Light, Inter Light, or Manrope Light"
+      },
+      {
+        "role": "System fallback for button text and small body contexts where the custom faces are not loaded.",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "system-ui, -apple-system, Helvetica"
+      }
+    ],
+    "description": "Wayfinder is an immersive interactive film that treats the entire viewport as a stage for animated illustration. The UI is deliberately vestigial: a pure black canvas, a single light-weight display title, two compact action buttons, and a few icon-only controls in the corners. Almost everything visual is illustration content — stylized trees, mushrooms, flowers, earth textures — while the interface stays flat, borderless, and silent. The design discipline is subtraction: no shadows, no gradients, no card layers, no decorative color. The wide letter-spacing on the display type and the centered composition give every screen a cinematic, title-card quality.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d9fbc68b-0d42-4c09-829d-1207b781f46a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Wayfinder design system\",\"item\":\"https://styles.refero.design/style/d9fbc68b-0d42-4c09-829d-1207b781f46a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d9fbc68b-0d42-4c09-829d-1207b781f46a#style-reference\",\"name\":\"Wayfinder design system reference\",\"headline\":\"Wayfinder design system | Refero Styles\",\"description\":\"Explore Wayfinder's dark Media design system: Void Black #000000, Smolder Earth #0b0502 colors, Enreal, Ciutadella-Medium typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/d9fbc68b-0d42-4c09-829d-1207b781f46a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d9fbc68b-0d42-4c09-829d-1207b781f46a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Wayfinder\",\"url\":\"https://wayfinder.nfb.ca\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d9fbc68b-0d42-4c09-829d-1207b781f46a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d5038ab5-882a-4fec-8761-c7af0c0831b4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d5038ab5-882a-4fec-8761-c7af0c0831b4.jpg\",\"caption\":\"Screenshot of Wayfinder\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d5038ab5-882a-4fec-8761-c7af0c0831b4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Wayfinder design system\",\"Wayfinder website design\",\"Wayfinder colors\",\"Wayfinder typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Void Black\",\"Smolder Earth\",\"Charcoal\",\"Bone White\",\"Enreal\",\"Ciutadella-Medium\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Wayfinder design system\"},{\"@type\":\"Thing\",\"name\":\"Wayfinder website design\"},{\"@type\":\"Thing\",\"name\":\"Wayfinder colors\"},{\"@type\":\"Thing\",\"name\":\"Wayfinder typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T02:53:38.391Z\",\"dateModified\":\"2026-04-30T02:53:38.391Z\"}]}19:T4d6,**Quick Color Reference**\n- text (display): #ffffff\n- text (body/label): #ffffff at reduced opacity\n- background (page canvas): #000000\n- background (secondary button fill): #1a1a1a\n- border (subtle separator): #e3e3e2\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. *Full-bleed title screen*: Set body and html background to #000000, 100vw × 100vh. Center a display headline at 48px in Enreal weight 300, #ffffff, letter-spacing 0.042em, all caps. Beneath it, a two-line subtitle in Ciutadella-Medium weight 300, 14px, #ffffff at 70% opacity, line-height 1.0, hard line break between lines. No background container.\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n4. *Corner utility cluster (top-left)*: Three icon-only buttons in a horizontal row, 8-10px padding from viewport edge. Each icon is white line-art at ~16px, no background, no border, no label. Spacing between icons ~8px.\n5. *Immersive illustration background*: A full-viewport absolutely-positioned layer behind all UI at z-index 0, rendering a warm earth-toned illustrated landscape. The UI lives at z-index 1 or above and does not dim or tint the artwork."
+      },
+      {
+        "title": "Scene Structure",
+        "content": "Wayfinder is a sequence of illustrated scenes rather than a multi-page site. The top-left filmstrip icon implies the user can scrub between segments; the play/pause icon controls auto-progression. When generating new 'pages' for this system, treat each one as a new scene: a single full-viewport illustration, the same centered title block pattern, the same two-button stack, and the same corner clusters. Do not invent navigation menus, breadcrumbs, footers, or multi-column content — they would break the cinematic contract."
+      },
+      {
+        "title": "Type Atmosphere",
+        "content": "The display title uses weight 300 specifically because a heavier weight would overpower the quiet, hand-drawn world behind it. A bold sans here would feel like a billboard stapled onto a watercolor. The wide 0.042em tracking ensures the letters don't crowd when the type is large, preserving the title-card pacing. Any new page generated in this system should keep the same restraint: thin weights, wide tracking, generous vertical space, and a single, generous moment of type centered in the frame."
+      }
+    ],
+    "elevationPhilosophy": "The design uses no shadows whatsoever. Depth is implied only through the illustrated background and the slight contrast step from #000000 to #1a1a1a. Components float on the illustration as flat shapes — any shadow would compete with the artwork and break the cinematic illusion."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "body",
+            "other",
+            "image",
+            "icon"
+          ],
+          "frequency": 116,
+          "confidence": 1,
+          "prominence": 8943565.977364892,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "image/color": 2,
+            "other/color": 20,
+            "icon/borderColor": 4,
+            "image/borderColor": 8,
+            "other/borderColor": 80,
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0b0502",
+          "oklch": {
+            "c": 0.016813282150649353,
+            "h": 58.41725953424528,
+            "l": 0.1263613794857947
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "body"
+          ],
+          "frequency": 153,
+          "confidence": 1,
+          "prominence": 481351.94045563025,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 11,
+            "link/color": 4,
+            "other/color": 13,
+            "button/color": 4,
+            "body/borderColor": 44,
+            "link/borderColor": 14,
+            "other/borderColor": 49,
+            "button/borderColor": 14
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "image"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 357187.1060848651,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "image/color": 1,
+            "other/color": 5,
+            "body/borderColor": 8,
+            "image/borderColor": 4,
+            "other/borderColor": 20,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e3e3e2",
+          "oklch": {
+            "c": 0.0013432399224860801,
+            "h": 106.42610658248445,
+            "l": 0.9155480087567741
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 198720,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 2,
+            "other/borderColor": 3,
+            "button/borderColor": 2
+          }
+        },
+        {
+          "hex": "#c0bfbe",
+          "oklch": {
+            "c": 0.0017938666568254546,
+            "h": 67.79692479776102,
+            "l": 0.8051670421293984
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 50.718800023076994,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 8
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0003363198048636673,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.25,
+          "background": "#0b0502",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#ffffff",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.35,
+          "background": "#e3e3e2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.77,
+          "background": "#e3e3e2",
+          "foreground": "#0b0502"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.55,
+          "background": "#e3e3e2",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.44,
+          "background": "#c0bfbe",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.03,
+          "background": "#c0bfbe",
+          "foreground": "#0b0502"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.48,
+          "background": "#c0bfbe",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.84,
+          "background": "#c0bfbe",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.21,
+          "background": "#000000",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.16,
+          "background": "#0b0502",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.04,
+          "background": "#0b0502",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Enreal",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            700
+          ],
+          "frequency": 31,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Ciutadella-Medium",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 13,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 13,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Ciutadella-Medium",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Enreal",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "image",
+            "icon"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Enreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Enreal",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.75,
+          "letterSpacing": 0.042,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/a677feac-a88d-4222-ab6a-57093b9cacec.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d5038ab5-882a-4fec-8761-c7af0c0831b4.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d9fbc68b-0d42-4c09-829d-1207b781f46a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Wayfinder design system\",\"item\":\"https://styles.refero.design/style/d9fbc68b-0d42-4c09-829d-1207b781f46a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d9fbc68b-0d42-4c09-829d-1207b781f46a#style-reference\",\"name\":\"Wayfinder design system reference\",\"headline\":\"Wayfinder design system | Refero Styles\",\"description\":\"Explore Wayfinder's dark Media design system: Void Black #000000, Smolder Earth #0b0502 colors, Enreal, Ciutadella-Medium typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/d9fbc68b-0d42-4c09-829d-1207b781f46a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d9fbc68b-0d42-4c09-829d-1207b781f46a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Wayfinder\",\"url\":\"https://wayfinder.nfb.ca\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d9fbc68b-0d42-4c09-829d-1207b781f46a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d5038ab5-882a-4fec-8761-c7af0c0831b4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d5038ab5-882a-4fec-8761-c7af0c0831b4.jpg\",\"caption\":\"Screenshot of Wayfinder\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d5038ab5-882a-4fec-8761-c7af0c0831b4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Wayfinder design system\",\"Wayfinder website design\",\"Wayfinder colors\",\"Wayfinder typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Void Black\",\"Smolder Earth\",\"Charcoal\",\"Bone White\",\"Enreal\",\"Ciutadella-Medium\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Wayfinder design system\"},{\"@type\":\"Thing\",\"name\":\"Wayfinder website design\"},{\"@type\":\"Thing\",\"name\":\"Wayfinder colors\"},{\"@type\":\"Thing\",\"name\":\"Wayfinder typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T02:53:38.391Z\",\"dateModified\":\"2026-04-30T02:53:38.391Z\"}]}19:T4d6,**Quick Color Reference**\n- text (display): #ffffff\n- text (body/label): #ffffff at reduced opacity\n- background (page canvas): #000000\n- background (secondary button fill): #1a1a1a\n- border (subtle separator): #e3e3e2\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. *Full-bleed title screen*: Set body and html background to #000000, 100vw × 100vh. Center a display headline at 48px in Enreal weight 300, #ffffff, letter-spacing 0.042em, all caps. Beneath it, a two-line subtitle in Ciutadella-Medium weight 300, 14px, #ffffff at 70% opacity, line-height 1.0, hard line break between lines. No background container.\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n4. *Corner utility cluster (top-left)*: Three icon-only buttons in a horizontal row, 8-10px padding from viewport edge. Each icon is white line-art at ~16px, no background, no border, no label. Spacing between icons ~8px.\n5. *Immersive illustration background*: A full-viewport absolutely-positioned layer behind all UI at z-index 0, rendering a warm earth-toned illustrated landscape. The UI lives at z-index 1 or above and does not dim or tint the artwork."
+}

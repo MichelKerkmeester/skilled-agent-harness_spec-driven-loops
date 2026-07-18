@@ -1,0 +1,49 @@
+:root {
+  /* Colors */
+  --color-obsidian: #000000;
+  --color-bone: #ffffff;
+  --color-ash: #a9a9a9;
+
+  /* Typography — Font Families */
+  --font-lausanne: 'Lausanne', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-victor-serif: 'Victor Serif', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-black-tie: 'Black Tie', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 24px;
+  --leading-body: 1.2;
+  --text-display: 72px;
+  --leading-display: 1;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-7: 7px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-13: 13px;
+  --spacing-20: 20px;
+  --spacing-29: 29px;
+
+  /* Layout */
+  --section-gap: 48-80px;
+  --card-padding: 0px;
+  --element-gap: 10-13px;
+
+  /* Border Radius */
+  --radius-full: 120px;
+
+  /* Named Radii */
+  --radius-nav: 120px;
+  --radius-tags: 120px;
+  --radius-cards: 0px;
+  --radius-images: 0px;
+  --radius-buttons: 120px;
+
+  /* Surfaces */
+  --surface-obsidian-field: #000000;
+  --surface-bone-plate: #ffffff;
+}

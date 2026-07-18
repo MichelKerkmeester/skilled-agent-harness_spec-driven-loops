@@ -1,0 +1,850 @@
+{
+  "source": "https://styles.refero.design/style/c406697b-677f-40c7-a3a2-10ea545278f1",
+  "uuid": "c406697b-677f-40c7-a3a2-10ea545278f1",
+  "name": "International Magic",
+  "northStar": "midnight gallery wall — a single spotlight, a piece of work, and a wall of black velvet",
+  "capturedAt": "2026-07-18T07:24:20.594Z",
+  "meta": {
+    "url": "https://intmagic.com",
+    "siteName": "International Magic",
+    "extractedAt": "2026-06-03T21:16:36.868Z",
+    "durationMs": 25692,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 324,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Keep every screen fully achromatic — palette is Void, Chalk, and three mid-grays; no chromatic accents.",
+      "Center all content in a 640px column and let 120px of Void separate every section.",
+      "Use the 24px radius on any container that holds a piece of work (device, video, image), and 9999px radius on any tag, badge, or button.",
+      "Lift featured work with the single ambient shadow `0px 64px 72px 0px rgba(0,0,0,0.25)` — never stack a second tier.",
+      "Set display headlines at 96px / weight 400 / letter-spacing -1.632px; the whisper weight is the brand.",
+      "Use `ordn` and `ss01` font features wherever Wand UI Pro appears — they are part of the voice.",
+      "Treat the top bar as a sentence, not a bar: three words, 11px / 550, no background, no border."
+    ],
+    "donts": [
+      "Don't introduce any hue — no blue, no red, no warm grays with chroma. The page is 0% colorful by design.",
+      "Don't add a filled primary-color CTA. Actions stay ghost (outlined Ivory) or neutral-charcoal.",
+      "Don't use sharp 0–4px corners on device or card surfaces — the 24px radius is what makes the dark canvas feel soft.",
+      "Don't crowd sections. If vertical space between blocks drops below 80px, the void stops working.",
+      "Don't use weights above 650 in Wand UI Pro; the type system caps there and going heavier breaks the quiet voice.",
+      "Don't add secondary shadows, colored shadows, or border-glow effects to lift work — the 64/72/25% ambient shadow is the only elevation.",
+      "Don't left-align hero content. Every headline, subtitle, badge, and CTA in the main column is centered."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#0a0a0a",
+        "name": "Void",
+        "role": "Page background, primary canvas — the dark field that holds every piece of work",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f7f7",
+        "name": "Chalk",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebebeb",
+        "name": "Ivory",
+        "role": "Button labels and button borders — marginally warmer than Chalk, used on neutral pill buttons to feel pressed but not clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7c7c7c",
+        "name": "Ash",
+        "role": "Secondary link and body text, subdued dividers — mid-gray for de-emphasized type that still needs to read",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4d4d4d",
+        "name": "Graphite",
+        "role": "Heading borders and low-emphasis heading text — darker mid-gray that recedes behind primary Chalk type",
+        "group": "neutral"
+      },
+      {
+        "hex": "#707070",
+        "name": "Smoke",
+        "role": "Badge text — sits between Ash and Charcoal, calm and unreadable as ornament",
+        "group": "neutral"
+      },
+      {
+        "hex": "#616161",
+        "name": "Steel",
+        "role": "Badge borders — paired with Smoke text for outlined tag affordance",
+        "group": "neutral"
+      },
+      {
+        "hex": "#585858",
+        "name": "Charcoal",
+        "role": "Elevated surface for the single neutral filled button — barely lighter than Void so the button whispers rather than shouts",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Every page is a single centered column capped at roughly 640px, floating inside a full-bleed Void canvas. There is no grid system, no multi-column rows, and no sidebar — each screen is a vertical stack: three-word top nav → empty space → centered display headline + subtitle + badge → large breathing gap → one device or image mockup → optional portrait thumbnail offset to the lower left → ghost CTA at the bottom. Section rhythm is defined entirely by vertical whitespace (120px between blocks) rather than background bands or dividers. Navigation is the only chrome: no sticky header, no mega-menu, no footer. The hero is always the same — type floating in the dark with no background image, animation, or video autoplay at the top of the page.",
+    "imagery": "Imagery is sparse and high-contrast: the agency shows its work through vertical phone-screen video captures and tight portrait crops, never through full-bleed lifestyle photography. All visuals sit on pure Void with no background context — the frame is a window, not a scene. Portraits are circular-cropped and unedited, video stills are raw phone captures, and no decorative illustration or abstract graphic appears anywhere. The visual density is low: a single device mockup, a single thumbnail, and otherwise the page is type and empty space. Iconography is absent in the main column; the only iconography-adjacent elements are minimal player controls (play, fullscreen) rendered as thin pill outlines.",
+    "similar": [
+      {
+        "why": "Same dark-canvas + whisper-weight type + generous vertical breathing room, with work presented as a single centered artifact",
+        "business": "Locomotive Mtl"
+      },
+      {
+        "why": "Achromatic black gallery layout where each screen is one featured piece lifted by a soft ambient shadow",
+        "business": "Resn"
+      },
+      {
+        "why": "Sparse agency site with no accent color, no background sections, and center-aligned type on pure dark",
+        "business": "Manual"
+      },
+      {
+        "why": "Minimal three-word nav, single-column hero, and the same restraint of letting work carry the page",
+        "business": "Work & Co"
+      },
+      {
+        "why": "Dark creative-agency homepages that treat the void as a frame and use one soft shadow to float the work",
+        "business": "Ueno"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "24px",
+        "badges": "9999px",
+        "buttons": "9999px",
+        "smallContainers": "16px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "120px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "640px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#0a0a0a",
+        "name": "Void",
+        "level": 1,
+        "purpose": "Base page canvas"
+      },
+      {
+        "hex": "#585858",
+        "name": "Charcoal",
+        "level": 2,
+        "purpose": "Raised neutral button surface"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0px 64px 72px 0px rgba(0, 0, 0, 0.25)",
+        "element": "Work / device mockup containers"
+      }
+    ],
+    "northStar": "midnight gallery wall — a single spotlight, a piece of work, and a wall of black velvet",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.25
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.6,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.384
+      },
+      {
+        "role": "display",
+        "size": 96,
+        "lineHeight": 1,
+        "letterSpacing": -1.632
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Bar Navigation",
+        "role": "Site-wide header",
+        "description": "Three text links in a single horizontal row centered at the very top of the page. 11px Wand UI Pro at 550 weight in Chalk (#f7f7f7), with the center item (the brand wordmark) set slightly larger or on its own line. No background fill, no border, no logo mark — the header is a sentence, not a bar."
+      },
+      {
+        "name": "Display Headline (Centered)",
+        "role": "Hero / project title",
+        "description": "96px Wand UI Pro at 400 weight, Chalk (#f7f7f7), line-height 1.0, letter-spacing -1.632px. Centered in a 640px column. Used for the single project name on each page. The whisper-weight at display size is the signature — it lets the headline sit on the dark canvas without competing with the work."
+      },
+      {
+        "name": "Subtitle (Centered, Muted)",
+        "role": "Supporting label below display",
+        "description": "15–16px Wand UI Pro at 400 weight, Ash (#7c7c7c) or Graphite (#4d4d4d), letter-spacing -0.16px. Sits 8–12px below the display headline, also centered."
+      },
+      {
+        "name": "AD Badge",
+        "role": "Project type / category tag",
+        "description": "10px Wand UI Pro at 475 weight, letter-spacing +0.25px, Smoke text (#707070) on Void with a 1px Steel (#616161) border. 9999px radius. Compact 4px 8px padding. Outlined pill, never filled."
+      },
+      {
+        "name": "Subscribe Button (Outlined Ghost)",
+        "role": "Primary action on content pages",
+        "description": "15px Wand UI Pro at 475 weight, Ivory (#ebebeb) text and 1px Ivory border on transparent / Void background. 9999px radius. 8px 20px padding. Sits centered below hero content. The ghost treatment keeps it present without breaking the dark monochrome."
+      },
+      {
+        "name": "Subscribe Button (Filled Neutral)",
+        "role": "Alternative primary action on lighter frames",
+        "description": "15px Wand UI Pro at 475 weight, Ivory (#ebebeb) text on Charcoal (#585858) fill. 9999px radius. 8px 24px padding. Used when the page needs the button to feel pressed against a near-white section."
+      },
+      {
+        "name": "Phone / Device Mockup Frame",
+        "role": "Hero visual container for video or app work",
+        "description": "Vertical device frame with 24px outer radius, placed inside a 64px×72px ambient shadow at 25% black. The frame itself holds video content and sits centered in the 640px column with at least 80px of breathing room above."
+      },
+      {
+        "name": "Portrait Thumbnail Card",
+        "role": "Small creator / contributor tile",
+        "description": "20–24px radius square containing a circular-cropped portrait. No border, no shadow, no caption overlay — the image alone sits on the Void. Positioned at lower-left of the content stack with a 12px gap to the next element."
+      },
+      {
+        "name": "Section Divider (Invisible)",
+        "role": "Vertical rhythm separator",
+        "description": "Not a line — just 120px of empty Void between sections. The page uses negative space as its only divider."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface — used for everything from 96px display headlines down to 10px badge labels. The 475 and 550 weights are the workhorses; 650 is reserved for emphasis. The font is custom but has the personality of a contemporary geometric grotesk with subtle humanist warmth, tight apertures, and a tall x-height.",
+        "sizes": "10, 11, 15, 16, 32, 96",
+        "family": "Wand UI Pro",
+        "weight": "400, 475, 500, 550, 650",
+        "lineHeight": "1.00–1.60",
+        "substitute": "General Sans, Switzer, or Inter (with stylistic alternates enabled)",
+        "letterSpacing": "-1.632px at 96px, -0.384px at 32px, -0.16px at 16px, +0.25px at 10px",
+        "fontFeatureSettings": "\"ordn\" on, \"ss01\" on"
+      }
+    ],
+    "description": "International Magic presents itself inside a near-black void where only the work is allowed to speak. The entire interface is achromatic — off-white type on charcoal canvas, with gray as the only variable — so attention collapses onto whatever the agency is showing. Layouts are sparse, centered, and vertical, with enormous breathing room between sections; navigation sits as three quiet words in a single line at the very top. Components are soft and rounded: 24px on device and work containers, 9999px on buttons and badges, and one large diffuse shadow that gently lifts content from the darkness rather than locking it down with sharp edges. The custom Wand UI Pro typeface carries almost the entire brand voice — its negative tracking at display sizes and slightly widened tracking on micro-labels create the same contrast as the page: quiet at scale, deliberate at small.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c406697b-677f-40c7-a3a2-10ea545278f1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"International Magic design system\",\"item\":\"https://styles.refero.design/style/c406697b-677f-40c7-a3a2-10ea545278f1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c406697b-677f-40c7-a3a2-10ea545278f1#style-reference\",\"name\":\"International Magic design system reference\",\"headline\":\"International Magic design system | Refero Styles\",\"description\":\"Explore International Magic's dark Agency design system: Void #0a0a0a, Chalk #f7f7f7 colors, Wand UI Pro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c406697b-677f-40c7-a3a2-10ea545278f1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c406697b-677f-40c7-a3a2-10ea545278f1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"International Magic\",\"url\":\"https://intmagic.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c406697b-677f-40c7-a3a2-10ea545278f1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b9389cec-fc7c-47ea-b55c-d991da684100.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b9389cec-fc7c-47ea-b55c-d991da684100.jpg\",\"caption\":\"Screenshot of International Magic\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b9389cec-fc7c-47ea-b55c-d991da684100.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"International Magic design system\",\"International Magic website design\",\"International Magic colors\",\"International Magic typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void\",\"Chalk\",\"Ivory\",\"Ash\",\"Wand UI Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"International Magic design system\"},{\"@type\":\"Thing\",\"name\":\"International Magic website design\"},{\"@type\":\"Thing\",\"name\":\"International Magic colors\"},{\"@type\":\"Thing\",\"name\":\"International Magic typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:24:53.568Z\",\"dateModified\":\"2026-04-30T01:24:53.568Z\"}]}19:T41d,Quick Color Reference\n- canvas: #0a0a0a\n- text: #f7f7f7\n- secondary text: #7c7c7c\n- border: #f7f7f7 (hairline) or #4d4d4d (low-emphasis)\n- badge text: #707070 / badge border: #616161\n- primary action: no distinct CTA color\n\n3 Example Component Prompts\n1. Centered display headline: 96px Wand UI Pro (use Inter as substitute) weight 400, color #f7f7f7, line-height 1.0, letter-spacing -1.632px, centered in a 640px column on #0a0a0a canvas. Optional 11px / 550 weight AD badge above at letter-spacing +0.25px with 1px #616161 border and 9999px radius.\n2. Ghost subscribe button: 15px Wand UI Pro weight 475, color #ebebeb, 1px solid #ebebeb border, 9999px radius, 8px vertical / 20px horizontal padding, transparent background, centered, sitting 24px below the last content block.\n3. Phone mockup hero frame: 24px outer radius container, vertical aspect ratio (~9:16), holding a video still, wrapped in the single ambient shadow `0px 64px 72px 0px rgba(0,0,0,0.25)`. Frame is centered in the 640px column with at least 80px of empty Void above and below."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is used as a single ambient mood-lift rather than a stacking hierarchy. One 64px-offset, 72px-blur, 25%-black shadow floats all featured work off the page; smaller elements stay flat with hairline borders. No nested shadows, no colored shadows, no second tier — the design trusts the shadow to do one job."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f7f7f7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.976138790665567
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "heading",
+            "image",
+            "link",
+            "body"
+          ],
+          "frequency": 1460,
+          "confidence": 1,
+          "prominence": 651484051.0227921,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "hero/color": 2,
+            "link/color": 1,
+            "image/color": 6,
+            "other/color": 269,
+            "heading/color": 13,
+            "body/borderColor": 4,
+            "hero/borderColor": 8,
+            "link/borderColor": 4,
+            "image/borderColor": 24,
+            "other/borderColor": 1076,
+            "heading/borderColor": 52
+          }
+        },
+        {
+          "hex": "#0a0a0a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1435711923549727
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 546918.1885321429,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 19,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#7c7c7c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5863164681546698
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 132990.5869268953,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 2,
+            "other/color": 1,
+            "body/borderColor": 4,
+            "link/borderColor": 8,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#4d4d4d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.42023714570450815
+          },
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 65,
+          "confidence": 1,
+          "prominence": 127270.7625772116,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "heading/color": 12,
+            "link/borderColor": 4,
+            "heading/borderColor": 48
+          }
+        },
+        {
+          "hex": "#ebebeb",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9400701157803539
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 12920.977095610306,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 2,
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#616161",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4931415529209761
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 48,
+          "confidence": 1,
+          "prominence": 8006.576237708287,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "badge/borderColor": 48
+          }
+        },
+        {
+          "hex": "#585858",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.45931226948676995
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 7035,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#707070",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5467258877077075
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 5276.827038069197,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "badge/color": 12
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.48,
+          "background": "#0a0a0a",
+          "foreground": "#f7f7f7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.61,
+          "background": "#0a0a0a",
+          "foreground": "#ebebeb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.89,
+          "background": "#f7f7f7",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.09,
+          "background": "#ebebeb",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.64,
+          "background": "#585858",
+          "foreground": "#f7f7f7"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.97,
+          "background": "#585858",
+          "foreground": "#ebebeb"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.78,
+          "background": "#f7f7f7",
+          "foreground": "#616161"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.2,
+          "background": "#ebebeb",
+          "foreground": "#616161"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.74,
+          "background": "#0a0a0a",
+          "foreground": "#7c7c7c"
+        },
+        {
+          "level": "fail",
+          "ratio": 4,
+          "background": "#0a0a0a",
+          "foreground": "#707070"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.34,
+          "background": "#0a0a0a",
+          "foreground": "#4d4d4d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.7,
+          "background": "#585858",
+          "foreground": "#7c7c7c"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.44,
+          "background": "#585858",
+          "foreground": "#707070"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.19,
+          "background": "#585858",
+          "foreground": "#4d4d4d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 31
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "badge",
+            "button"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.25) 0px 64px 72px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "heading",
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 68,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Wand UI Pro",
+          "source": "custom",
+          "weights": [
+            400,
+            475,
+            500,
+            550,
+            650
+          ],
+          "frequency": 324,
+          "fontFeatureSettings": [
+            "\"ordn\", \"ss01\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Wand UI Pro",
+          "weight": 550,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Wand UI Pro",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Wand UI Pro",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Wand UI Pro",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Wand UI Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "image"
+          ],
+          "frequency": 277,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Wand UI Pro",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Wand UI Pro",
+          "weight": 475,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Wand UI Pro",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "Wand UI Pro",
+          "weight": 650,
+          "contexts": [
+            "heading",
+            "link",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.017,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/98f0a0d8-79ef-4538-bd79-dac1804e1d5e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b9389cec-fc7c-47ea-b55c-d991da684100.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c406697b-677f-40c7-a3a2-10ea545278f1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"International Magic design system\",\"item\":\"https://styles.refero.design/style/c406697b-677f-40c7-a3a2-10ea545278f1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c406697b-677f-40c7-a3a2-10ea545278f1#style-reference\",\"name\":\"International Magic design system reference\",\"headline\":\"International Magic design system | Refero Styles\",\"description\":\"Explore International Magic's dark Agency design system: Void #0a0a0a, Chalk #f7f7f7 colors, Wand UI Pro typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c406697b-677f-40c7-a3a2-10ea545278f1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c406697b-677f-40c7-a3a2-10ea545278f1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"International Magic\",\"url\":\"https://intmagic.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c406697b-677f-40c7-a3a2-10ea545278f1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b9389cec-fc7c-47ea-b55c-d991da684100.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b9389cec-fc7c-47ea-b55c-d991da684100.jpg\",\"caption\":\"Screenshot of International Magic\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b9389cec-fc7c-47ea-b55c-d991da684100.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"International Magic design system\",\"International Magic website design\",\"International Magic colors\",\"International Magic typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void\",\"Chalk\",\"Ivory\",\"Ash\",\"Wand UI Pro\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"International Magic design system\"},{\"@type\":\"Thing\",\"name\":\"International Magic website design\"},{\"@type\":\"Thing\",\"name\":\"International Magic colors\"},{\"@type\":\"Thing\",\"name\":\"International Magic typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:24:53.568Z\",\"dateModified\":\"2026-04-30T01:24:53.568Z\"}]}19:T41d,Quick Color Reference\n- canvas: #0a0a0a\n- text: #f7f7f7\n- secondary text: #7c7c7c\n- border: #f7f7f7 (hairline) or #4d4d4d (low-emphasis)\n- badge text: #707070 / badge border: #616161\n- primary action: no distinct CTA color\n\n3 Example Component Prompts\n1. Centered display headline: 96px Wand UI Pro (use Inter as substitute) weight 400, color #f7f7f7, line-height 1.0, letter-spacing -1.632px, centered in a 640px column on #0a0a0a canvas. Optional 11px / 550 weight AD badge above at letter-spacing +0.25px with 1px #616161 border and 9999px radius.\n2. Ghost subscribe button: 15px Wand UI Pro weight 475, color #ebebeb, 1px solid #ebebeb border, 9999px radius, 8px vertical / 20px horizontal padding, transparent background, centered, sitting 24px below the last content block.\n3. Phone mockup hero frame: 24px outer radius container, vertical aspect ratio (~9:16), holding a video still, wrapped in the single ambient shadow `0px 64px 72px 0px rgba(0,0,0,0.25)`. Frame is centered in the 640px column with at least 80px of empty Void above and below."
+}

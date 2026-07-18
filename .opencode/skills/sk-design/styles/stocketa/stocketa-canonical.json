@@ -1,0 +1,1324 @@
+{
+  "source": "https://styles.refero.design/style/c1f7749f-319b-491b-8243-22050e85994f",
+  "uuid": "c1f7749f-319b-491b-8243-22050e85994f",
+  "name": "Stocketa",
+  "northStar": "Neon aurora on frosted glass — a light, weightless interface floating beneath a prism-washed sky.",
+  "capturedAt": "2026-07-18T08:17:53.916Z",
+  "meta": {
+    "url": "https://stocketa.com",
+    "siteName": "Stocketa",
+    "extractedAt": "2026-06-03T17:43:29.910Z",
+    "durationMs": 37638,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 204,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the aurora radial gradient as the only page-level background — never overlay it with a solid color or another gradient",
+      "Apply the magenta-to-navy linear gradient only to display headlines (50px+) and the brand icon — never to body text or UI controls",
+      "Use 100px pill radius for every button and chip — no exceptions for size, even on small icon buttons",
+      "Keep the three-layer shadow stack (blue-tinted drop, white inner highlight, 1px navy inset) reserved for floating elements — never apply it to inline cards or list rows",
+      "Set the type scale to negative tracking as sizes grow: -0.25px at caption, tightening to -1.76px at display — this compression is the system's voice",
+      "Anchor the phone mockup to the right column on every section that features it — never let it drift center or stack below the headline on desktop",
+      "Use Tidewater Navy (#3a4766) for the single filled primary button per screen, and pair it with an outlined ghost button using a Pebble or Navy border"
+    ],
+    "donts": [
+      "Don't introduce green or red as semantic UI colors — they only appear inside the phone mockup's chart strokes and must not bleed into badges, alerts, or form states",
+      "Don't use solid #ffffff as the page background — always use Lavender Mist (#e0dde2) so the aurora has warmth to land on",
+      "Don't add visible card borders on white surfaces — rely on the shadow stack and the Lavender Mist canvas for separation",
+      "Don't use corners sharper than 18px on product cards or 22px on decorative elements — the system requires consistent softness",
+      "Don't set type below 14px or above 98px — the scale is intentionally narrow",
+      "Don't apply the Aurora Magenta as a flat fill on large areas — it must always be expressed as a gradient or as a small icon/heading accent",
+      "Don't center the hero headline — the magenta gradient text is left-aligned by design, anchored to the same gridline as the body copy below it"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#995bb9",
+        "name": "Aurora Magenta",
+        "role": "Headline gradient start, icon fills, decorative brand strokes — the single chromatic voice of the system, used as gradient text on display headings and as fill on small icon badges",
+        "group": "brand"
+      },
+      {
+        "hex": "#5b638c",
+        "name": "Deep Iris",
+        "role": "Muted violet used for decorative SVG strokes and secondary graphic outlines — sits behind the magenta as the system-wide line color",
+        "group": "accent"
+      },
+      {
+        "hex": "#1d2630",
+        "name": "Midnight Ink",
+        "role": "Primary body and heading text on light surfaces — slightly warmer than pure black, reads softer at large sizes while keeping AAA contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Highest-weight text and the densest border color — used where maximum contrast is required against the near-white canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e0dde2",
+        "name": "Lavender Mist",
+        "role": "Page canvas and subtle surface tint — the entire site reads on this near-white, giving the aurora gradient something warm to land on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Card and elevated surface fill — floats above Lavender Mist as the base for product cards, phone screen, and feature panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0f0f0",
+        "name": "Frost Shadow",
+        "role": "Shadow tone used in the multi-layer card elevation — too light to be a border, present only as the ambient outer blur",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9aa1b2",
+        "name": "Pebble",
+        "role": "Mid-neutral for muted body text and link borders — the default text color for descriptions and the border for inline link affordances",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a5afcb",
+        "name": "Silver Lining",
+        "role": "Light hairline border and secondary muted text — used on card edges and quiet metadata rows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#abbdcf",
+        "name": "Cloud Veil",
+        "role": "Softest neutral for decorative SVG fills and ambient accents — supports the aurora without competing with the magenta",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3a4766",
+        "name": "Tidewater Navy",
+        "role": "Violet accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#69c966",
+        "name": "Aurora Green",
+        "role": "Gradient stop in the page-level aurora and accent on positive chart lines inside the phone mockup",
+        "group": "accent",
+        "gradient": "radial-gradient(140% 119% at 50% 0%, rgba(105, 201, 102, 0.4) 14%, rgba(39, 187, 219, 0.33) 36%, rgba(139, 71, 206, 0.2) 52%, rgba(218, 64, 134, 0.1) 70%, rgba(255, 149, 116, 0) 82%, rgba(0, 0, 0, 0) 100%)"
+      }
+    ],
+    "layout": "Two-column desktop layout, max-width 1200px centered. Left column (roughly 45%) holds all text content: the gradient headline, supporting paragraph, button row, and the full feature list. Right column (roughly 45%) is anchored by the phone mockup, which stays pinned to the same vertical position across every section. Hero is NOT full-bleed — it inherits the aurora-washed canvas and uses a 1200px container. Sections stack vertically with 80px gaps, no alternating dark/light bands, no dividers. The feature list is a single vertical column of rows (icon + heading + description) with 40px between items. Navigation is minimal — just the wordmark and small CTA in the top-left, no mega-menu, no sticky header. The right column has a slight staggered effect: the phone mockup is static while the floating ticker cards are positioned at irregular offsets to create visual rhythm.",
+    "imagery": "The site is overwhelmingly text-and-UI driven. The only recurring visual asset is the iPhone mockup of the app itself, which functions as both product proof and decorative centerpiece — it appears at full opacity in the right column and is reinforced by three floating stock ticker cards (TSLA, AAPL, SQ) scattered around it with 1-stroke sparkline charts. No photography, no illustrations, no abstract graphics beyond the aurora gradient and the magenta-to-navy linear gradient. Icons are uniformly small (24–28px), single-color, and filled with Aurora Magenta at full or 60% opacity — no outline icons, no multicolor glyphs.",
+    "similar": [
+      {
+        "why": "Same clean white card surfaces, same pill-shaped CTA buttons, and the same habit of letting the app UI do the visual heavy lifting while the marketing page stays almost monochrome",
+        "business": "Robinhood"
+      },
+      {
+        "why": "Same tight negative tracking on large display type, same restraint with color (a single accent against near-white), and the same neumorphic-feeling soft shadows on floating panels",
+        "business": "Linear"
+      },
+      {
+        "why": "Same product-as-hero layout with a phone mockup anchored in the right column, same friendly geometric sans-serif voice, and the same aurora-like background washes on a light canvas",
+        "business": "Acorns"
+      },
+      {
+        "why": "Same Tidewater-leaning navy as the primary action color, same hairline borders over soft shadows, and the same willingness to let a single gradient headline do the emotional work of the whole page",
+        "business": "Mercury"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "18px",
+        "buttons": "100px",
+        "asymmetric": "34px",
+        "decorative": "22px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#e0dde2",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, washed with the aurora radial gradient near the top"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Feature panels, in-phone UI, and product screenshots"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Elevated",
+        "level": 2,
+        "purpose": "Floating stock ticker cards and phone mockup, lifted with the three-layer shadow stack"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0px 4px 15px 0px rgba(97, 110, 124, 0.114), inset 0px 1px 1px 0px rgba(255, 255, 255, 0.39), 0px 1px 1px 0px rgba(34, 50, 94, 0.08)",
+        "element": "Floating card (stock ticker, phone mockup)"
+      }
+    ],
+    "northStar": "Neon aurora on frosted glass — a light, weightless interface floating beneath a prism-washed sky.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.25
+      },
+      {
+        "role": "heading-sm",
+        "size": 19,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.06
+      },
+      {
+        "role": "heading",
+        "size": 27,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.49
+      },
+      {
+        "role": "heading-lg",
+        "size": 53,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.95
+      },
+      {
+        "role": "display",
+        "size": 98,
+        "lineHeight": 1,
+        "letterSpacing": -1.76
+      }
+    ],
+    "components": [
+      {
+        "name": "Aurora Hero Background",
+        "role": "Page-level atmospheric wash",
+        "description": "Radial gradient (140% 119% at 50% 0%) flowing from translucent green (rgba(105,201,102,0.4)) through teal and violet to transparent pink, fading to zero at the bottom. Sits behind all page content and is the only background treatment allowed at the section level."
+      },
+      {
+        "name": "Gradient Text Headline",
+        "role": "Hero and section H1",
+        "description": "Display text at 50–98px, weight 700, filled with a linear gradient left-to-right from Aurora Magenta (#995bb9) through Deep Iris to Tidewater Navy. Tracking is extremely tight (-0.95 to -1.76px). Always left-aligned, never centered."
+      },
+      {
+        "name": "Filled Primary Button",
+        "role": "Single primary action per screen",
+        "description": "Pill shape at 100px radius, background Tidewater Navy (#3a4766) with Paper White text, weight 600, 15–16px, padding 14px 30px. No drop shadow — the dark fill against Lavender Mist is the elevation."
+      },
+      {
+        "name": "Outlined Ghost Button",
+        "role": "Secondary action",
+        "description": "Pill shape at 100px radius, 1px border in Pebble (#9aa1b2) or Tidewater Navy, transparent fill, Midnight Ink text, weight 500, 15–16px, padding 14px 30px. Sits to the right of the primary with 16px gap."
+      },
+      {
+        "name": "Feature List Item",
+        "role": "Vertical feature list (Transaction details, Widgets, etc.)",
+        "description": "Horizontal row with a 24–28px icon in a soft tinted square (Silver Lining fill, Aurora Magenta icon at 60% opacity), bold heading at 17px weight 600 in Midnight Ink, and description at 15px weight 400 in Pebble. 40px vertical gap between items."
+      },
+      {
+        "name": "Floating Stock Ticker Card",
+        "role": "Decorative product proof",
+        "description": "White card at 22px radius, ~16px padding, soft three-layer shadow, containing a 3-letter ticker label and a 1-stroke sparkline chart. Two size variants: small (TSLA/SQ at ~60px wide) and large (AAPL at ~100px wide). Scattered around the phone mockup at 15–20° rotations."
+      },
+      {
+        "name": "Phone Mockup Frame",
+        "role": "Product hero element",
+        "description": "iPhone-shaped frame at 300×620px with a subtle 1px Cloud Veil border and the three-layer shadow stack. Rounded to 44px to mimic device corners. Contains the in-app holdings screen. Anchored to the right column on desktop, full-bleed centered on mobile."
+      },
+      {
+        "name": "App Holdings Card",
+        "role": "In-app content card (white surface inside phone mockup)",
+        "description": "White card, 18px radius, 16px padding, hairline Silver Lining bottom border. Contains ticker symbol (17px weight 700), company name (14px weight 400 in Pebble), current price (right-aligned, 17px weight 600), daily change in small Aurora Green or warm red text, and a 60px-tall sparkline chart."
+      },
+      {
+        "name": "In-App Time Tab Bar",
+        "role": "Chart period selector",
+        "description": "Horizontal row of time period chips (1D, 1M, 6M, 1Y, 5Y) at 14px weight 500. Active tab gets an Aurora Magenta fill at 10% opacity with Aurora Magenta text; inactive tabs are Pebble. Chips are pill-shaped at 100px radius, 4px 12px padding."
+      },
+      {
+        "name": "Holdings Summary Header",
+        "role": "In-app portfolio total",
+        "description": "Top of the holdings list inside the phone. 'Holdings' label at 15px weight 500 in Pebble, total value at 27px weight 700 in Midnight Ink, and a 'Daily change' delta line in small Aurora Green text. Bottom hairline border in Silver Lining."
+      },
+      {
+        "name": "Gradient Brand Icon",
+        "role": "App icon and small logo mark",
+        "description": "Rounded square (8px radius) filled with the same left-to-right magenta-to-navy linear gradient as the headline text. Contains a white chart-stroke glyph. Used as the app icon next to the wordmark and as small decorative marks."
+      },
+      {
+        "name": "Section Container",
+        "role": "Wrapping container for each content band",
+        "description": "Max-width 1200px centered, 80px vertical padding top and bottom. No visible border. Background is always the canvas color — sections are separated by space, not lines or alternating fills."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across the system. Custom geometric sans with humanist warmth — the slightly rounded terminals soften what would otherwise be a cold fintech voice.",
+        "sizes": "14px, 15px, 16px, 17px, 19px, 27px, 28px, 50px, 53px, 62px, 98px",
+        "family": "averta standard",
+        "weight": "400, 500, 600, 700, 800",
+        "lineHeight": "1.0–1.4 (tighter as size increases)",
+        "substitute": "Inter, General Sans, or DM Sans",
+        "letterSpacing": "Tightens with size: -0.018em at 14px, -0.016em at 15px, -0.011em at 16px, -0.006em at 17px, -0.003em at 19px",
+        "fontFeatureSettings": "tnum on for numeric tables and price displays"
+      }
+    ],
+    "description": "Stocketa floats its product on a dreamy light canvas washed with a soft radial aurora — green, teal, purple, and pink bleeding from the top — where the color is felt as atmosphere rather than seen as decoration. The interface below stays calm and almost achromatic: white cards, hairline borders, and a signature three-layer shadow (a faint blue-tinted outer drop, a 1px white inner highlight, and a barely-there navy inset) that whispers elevation instead of declaring it. A single vivid magenta (#995bb9) does all the emotional work — painting headlines as a left-to-right gradient, filling icons, and pulling the eye through each section. Typography is a custom geometric sans (averta standard) cut for very tight negative tracking at display sizes up to 98px, giving even the biggest headlines a compressed, confident posture. The phone mockup is the hero: it sits at the visual center of every section, turning the product itself into the brand's primary visual asset.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c1f7749f-319b-491b-8243-22050e85994f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Stocketa design system\",\"item\":\"https://styles.refero.design/style/c1f7749f-319b-491b-8243-22050e85994f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c1f7749f-319b-491b-8243-22050e85994f#style-reference\",\"name\":\"Stocketa design system reference\",\"headline\":\"Stocketa design system | Refero Styles\",\"description\":\"Explore Stocketa's light Fintech design system: Aurora Magenta #995bb9, Deep Iris #5b638c colors, averta standard typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c1f7749f-319b-491b-8243-22050e85994f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c1f7749f-319b-491b-8243-22050e85994f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Stocketa\",\"url\":\"https://stocketa.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c1f7749f-319b-491b-8243-22050e85994f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/08cbc85e-80d1-4d9f-bf65-aab909c4fcb3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/08cbc85e-80d1-4d9f-bf65-aab909c4fcb3.jpg\",\"caption\":\"Screenshot of Stocketa\"},\"image\":\"https://images.refero.design/styles/refero.design/image/08cbc85e-80d1-4d9f-bf65-aab909c4fcb3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Stocketa design system\",\"Stocketa website design\",\"Stocketa colors\",\"Stocketa typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Aurora Magenta\",\"Deep Iris\",\"Midnight Ink\",\"Obsidian\",\"averta standard\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Stocketa design system\"},{\"@type\":\"Thing\",\"name\":\"Stocketa website design\"},{\"@type\":\"Thing\",\"name\":\"Stocketa colors\"},{\"@type\":\"Thing\",\"name\":\"Stocketa typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T01:29:18.854Z\",\"dateModified\":\"2026-04-30T01:29:18.854Z\"}]}19:T830,Quick Color Reference:\n- text: #1d2630 (Midnight Ink) for body and headings, #000000 for highest-weight text\n- background: #e0dde2 (Lavender Mist) for page canvas, #ffffff (Paper White) for cards\n- border: #a5afcb (Silver Lining) for hairlines, #9aa1b2 (Pebble) for link borders\n- accent: #995bb9 (Aurora Magenta) for gradient text, icons, and the only chromatic voice\n- primary action: #3a4766 (outlined action border)\n\nExample Component Prompts:\n1. Build a hero section: Lavender Mist (#e0dde2) canvas with the aurora radial gradient overlay. Left-aligned display headline at 53px, weight 700, filled with the magenta-to-navy linear gradient (rgb(149,91,185) → rgb(91,99,140) → rgb(58,71,102)), letter-spacing -0.95px. Supporting text at 16px weight 400 in Midnight Ink (#1d2630). Two buttons: filled pill at 100px radius with Tidewater Navy (#3a4766) background, Paper White text, 14px 30px padding; and an outlined pill at 100px radius with 1px Pebble (#9aa1b2) border, Midnight Ink text.\n2. Create a feature list row: 24px Aurora Magenta (#995bb9) icon in a 40px square with Silver Lining (#a5afcb) fill at 30% opacity. Bold heading at 17px weight 600 in Midnight Ink. Description at 15px weight 400 in Pebble (#9aa1b2). 40px vertical gap between rows.\n3. Build a floating stock ticker card: 22px radius, white fill, 16px padding, three-layer shadow (rgba(97,110,124,0.114) 0 4px 15px, inset 0 1px 1px rgba(255,255,255,0.39), 0 1px 1px rgba(34,50,94,0.08)). 3-letter ticker at 14px weight 700 in Midnight Ink and a 40px-tall sparkline in Tidewater Navy.\n4. Create the in-app holdings card (white card inside the phone mockup): 18px radius, 16px padding, Silver Lining bottom border. Ticker symbol at 17px weight 700, company name at 14px weight 400 in Pebble, current price right-aligned at 17px weight 600, daily change at 13px weight 500 in Aurora Green. 60px sparkline at the bottom.\n5. Build a section container: max-width 1200px centered, 80px padding top and bottom, Lavender Mist background. Two-column grid with 45%/45% split and 10% gap, phone mockup pinned in the right column."
+      },
+      {
+        "title": "Gradient System",
+        "content": "Three gradients carry the entire visual identity. (1) The page aurora — a radial from translucent green through teal and violet to transparent pink, anchored at 50% 0% and fading to nothing before reaching the fold midpoint. This is the only background treatment allowed and must be applied at the page level, not on cards. (2) The headline gradient — a linear sweep from Aurora Magenta (#995bb9) through Deep Iris (#5b638c) to Tidewater Navy (#3a4766), applied only as a background-clip text fill on display headlines and the brand icon. Never use it on body copy, buttons, or borders. (3) The phone fade — a linear gradient from rgba(132,161,208,0.33) to transparent, used to soften the bottom edge of the phone mockup and make it feel like it dissolves into the canvas."
+      },
+      {
+        "title": "Shadow Philosophy",
+        "content": "Elevation is a three-part conversation, not a single drop shadow. The outer blur (rgba(97,110,124,0.114) at 0 4px 15px) does the heavy lifting with a barely-there blue tint that reads as ambient light, not as a hard edge. The inner highlight (inset rgba(255,255,255,0.39) at 0 1px 1px) is the signature: it suggests a light source from above and gives every floating surface a glassy, neumorphic quality. The 1px navy inset line (rgba(34,50,94,0.08)) is almost invisible alone but adds depth by simulating the way real glass catches a dark edge. Use this exact stack on every floating element; do not decompose it or substitute a flat drop shadow."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "heading",
+            "image",
+            "card",
+            "body"
+          ],
+          "frequency": 464,
+          "confidence": 1,
+          "prominence": 33787120.567561604,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "card/color": 10,
+            "icon/color": 15,
+            "other/fill": 9,
+            "image/color": 1,
+            "other/color": 60,
+            "heading/color": 2,
+            "body/borderColor": 12,
+            "card/borderColor": 40,
+            "icon/borderColor": 60,
+            "image/borderColor": 4,
+            "other/borderColor": 240,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#5b638c",
+          "oklch": {
+            "c": 0.06607685393129331,
+            "h": 275.80804677979125,
+            "l": 0.5096404616176322
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 5176204.125108633,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 41
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 5033130,
+          "properties": [
+            "boxShadow",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "other/stroke": 3,
+            "other/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#f0f0f0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9550197275981923
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 4709927.426285263,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "card/boxShadow": 3,
+            "other/boxShadow": 3
+          }
+        },
+        {
+          "hex": "#abbdcf",
+          "oklch": {
+            "c": 0.032407071321747825,
+            "h": 248.23709423230866,
+            "l": 0.7903527954485252
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#9aa1b2",
+          "oklch": {
+            "c": 0.025317263505140696,
+            "h": 267.34794513604334,
+            "l": 0.7087112148154949
+          },
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 748910.1657839319,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 3,
+            "other/color": 1,
+            "body/borderColor": 12,
+            "link/borderColor": 12,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#1d2630",
+          "oklch": {
+            "c": 0.02274359149202339,
+            "h": 251.35913420556426,
+            "l": 0.2645628592951205
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 122157.57289657967,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4
+          }
+        },
+        {
+          "hex": "#8190a0",
+          "oklch": {
+            "c": 0.030089302920219548,
+            "h": 250.05864416853484,
+            "l": 0.6457735771845207
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 120409.69695394236,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 11,
+            "body/borderColor": 44
+          }
+        },
+        {
+          "hex": "#626e7c",
+          "oklch": {
+            "c": 0.0267440505064567,
+            "h": 252.78873112180173,
+            "l": 0.5324002597270514
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 97158.40055210538,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4
+          }
+        },
+        {
+          "hex": "#a5afcb",
+          "oklch": {
+            "c": 0.04163617699519378,
+            "h": 270.5698636397241,
+            "l": 0.7541973276286104
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 95452,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/color": 1,
+            "body/borderColor": 8,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#995bb9",
+          "oklch": {
+            "c": 0.15165672588052767,
+            "h": 313.0159221307478,
+            "l": 0.5795536282061995
+          },
+          "contexts": [
+            "icon",
+            "heading",
+            "other"
+          ],
+          "frequency": 89,
+          "confidence": 1,
+          "prominence": 30635.054761579737,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 20,
+            "other/fill": 13,
+            "other/stroke": 1,
+            "heading/color": 11,
+            "heading/borderColor": 44
+          }
+        },
+        {
+          "hex": "#e0dde2",
+          "oklch": {
+            "c": 0.008307935329331505,
+            "h": 313.7975139528149,
+            "l": 0.9006072218029472
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 23986.250252990558,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 11,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3a4766",
+          "oklch": {
+            "c": 0.05527492427161554,
+            "h": 266.473500807035,
+            "l": 0.40050022915390676
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 16755.726929674533,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 1,
+            "button/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.07314855105695434,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.43,
+          "background": "#f0f0f0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.61,
+          "background": "#e0dde2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.3,
+          "background": "#ffffff",
+          "foreground": "#1d2630"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.43,
+          "background": "#f0f0f0",
+          "foreground": "#1d2630"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.38,
+          "background": "#e0dde2",
+          "foreground": "#1d2630"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.91,
+          "background": "#abbdcf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.59,
+          "background": "#a5afcb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.24,
+          "background": "#ffffff",
+          "foreground": "#3a4766"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.11,
+          "background": "#9aa1b2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.11,
+          "background": "#f0f0f0",
+          "foreground": "#3a4766"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.95,
+          "background": "#abbdcf",
+          "foreground": "#1d2630"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.99,
+          "background": "#a5afcb",
+          "foreground": "#1d2630"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.87,
+          "background": "#e0dde2",
+          "foreground": "#3a4766"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.91,
+          "background": "#9aa1b2",
+          "foreground": "#1d2630"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.8,
+          "background": "#abbdcf",
+          "foreground": "#3a4766"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.22,
+          "background": "#a5afcb",
+          "foreground": "#3a4766"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.86,
+          "background": "#e0dde2",
+          "foreground": "#626e7c"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.57,
+          "background": "#9aa1b2",
+          "foreground": "#3a4766"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.43,
+          "background": "#e0dde2",
+          "foreground": "#995bb9"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 34,
+          "corners": [
+            0,
+            0,
+            34,
+            0
+          ],
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "asymmetric": true
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(97, 110, 124, 0.114) 0px 4px 15px 0px, rgba(255, 255, 255, 0.39) 0px 1px 1px 0px inset, rgba(34, 50, 94, 0.08) 0px 1px 1px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "icon",
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|icon",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 63,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 88,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "radial",
+        "value": "radial-gradient(140% 119% at 50% 0%, rgba(105, 201, 102, 0.4) 14%, rgba(39, 187, 219, 0.33) 36%, rgba(139, 71, 206, 0.2) 52%, rgba(218, 64, 134, 0.1) 70%, rgba(255, 149, 116, 0) 82%, rgba(0, 0, 0, 0) 100%)",
+        "colors": [
+          "rgba(105, 201, 102, 0.4)",
+          "rgba(39, 187, 219, 0.33)",
+          "rgba(139, 71, 206, 0.2)",
+          "rgba(218, 64, 134, 0.1)",
+          "rgba(255, 149, 116, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(-333deg, rgb(96, 235, 140) -100%, rgb(235, 205, 96) -60%, rgb(235, 133, 96) -20%, rgb(159, 96, 235) 20%, rgb(96, 180, 235) 60%, rgb(96, 235, 110) 100%)",
+        "colors": [
+          "rgb(96, 235, 140)",
+          "rgb(235, 205, 96)",
+          "rgb(235, 133, 96)",
+          "rgb(159, 96, 235)",
+          "rgb(96, 180, 235)",
+          "rgb(96, 235, 110)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(0deg, rgba(132, 161, 208, 0.33), rgba(0, 0, 0, 0))",
+        "colors": [
+          "rgba(132, 161, 208, 0.33)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "averta standard",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600,
+            700,
+            800
+          ],
+          "frequency": 127,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "averta standard",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "averta standard",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "averta standard",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "averta standard",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "averta standard",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "averta standard",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "image",
+            "card"
+          ],
+          "frequency": 58,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "averta standard",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "averta standard",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "averta standard",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "averta standard",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "averta standard",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "averta standard",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "averta standard",
+          "weight": 800,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 53,
+          "family": "averta standard",
+          "weight": 800,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "averta standard",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 98,
+          "family": "averta standard",
+          "weight": 800,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.003,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3efe18c9-7702-491f-a9f1-978ac36da033.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/08cbc85e-80d1-4d9f-bf65-aab909c4fcb3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c1f7749f-319b-491b-8243-22050e85994f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Stocketa design system\",\"item\":\"https://styles.refero.design/style/c1f7749f-319b-491b-8243-22050e85994f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c1f7749f-319b-491b-8243-22050e85994f#style-reference\",\"name\":\"Stocketa design system reference\",\"headline\":\"Stocketa design system | Refero Styles\",\"description\":\"Explore Stocketa's light Fintech design system: Aurora Magenta #995bb9, Deep Iris #5b638c colors, averta standard typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c1f7749f-319b-491b-8243-22050e85994f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c1f7749f-319b-491b-8243-22050e85994f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Stocketa\",\"url\":\"https://stocketa.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c1f7749f-319b-491b-8243-22050e85994f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/08cbc85e-80d1-4d9f-bf65-aab909c4fcb3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/08cbc85e-80d1-4d9f-bf65-aab909c4fcb3.jpg\",\"caption\":\"Screenshot of Stocketa\"},\"image\":\"https://images.refero.design/styles/refero.design/image/08cbc85e-80d1-4d9f-bf65-aab909c4fcb3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Stocketa design system\",\"Stocketa website design\",\"Stocketa colors\",\"Stocketa typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Aurora Magenta\",\"Deep Iris\",\"Midnight Ink\",\"Obsidian\",\"averta standard\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Stocketa design system\"},{\"@type\":\"Thing\",\"name\":\"Stocketa website design\"},{\"@type\":\"Thing\",\"name\":\"Stocketa colors\"},{\"@type\":\"Thing\",\"name\":\"Stocketa typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-04-30T01:29:18.854Z\",\"dateModified\":\"2026-04-30T01:29:18.854Z\"}]}19:T830,Quick Color Reference:\n- text: #1d2630 (Midnight Ink) for body and headings, #000000 for highest-weight text\n- background: #e0dde2 (Lavender Mist) for page canvas, #ffffff (Paper White) for cards\n- border: #a5afcb (Silver Lining) for hairlines, #9aa1b2 (Pebble) for link borders\n- accent: #995bb9 (Aurora Magenta) for gradient text, icons, and the only chromatic voice\n- primary action: #3a4766 (outlined action border)\n\nExample Component Prompts:\n1. Build a hero section: Lavender Mist (#e0dde2) canvas with the aurora radial gradient overlay. Left-aligned display headline at 53px, weight 700, filled with the magenta-to-navy linear gradient (rgb(149,91,185) → rgb(91,99,140) → rgb(58,71,102)), letter-spacing -0.95px. Supporting text at 16px weight 400 in Midnight Ink (#1d2630). Two buttons: filled pill at 100px radius with Tidewater Navy (#3a4766) background, Paper White text, 14px 30px padding; and an outlined pill at 100px radius with 1px Pebble (#9aa1b2) border, Midnight Ink text.\n2. Create a feature list row: 24px Aurora Magenta (#995bb9) icon in a 40px square with Silver Lining (#a5afcb) fill at 30% opacity. Bold heading at 17px weight 600 in Midnight Ink. Description at 15px weight 400 in Pebble (#9aa1b2). 40px vertical gap between rows.\n3. Build a floating stock ticker card: 22px radius, white fill, 16px padding, three-layer shadow (rgba(97,110,124,0.114) 0 4px 15px, inset 0 1px 1px rgba(255,255,255,0.39), 0 1px 1px rgba(34,50,94,0.08)). 3-letter ticker at 14px weight 700 in Midnight Ink and a 40px-tall sparkline in Tidewater Navy.\n4. Create the in-app holdings card (white card inside the phone mockup): 18px radius, 16px padding, Silver Lining bottom border. Ticker symbol at 17px weight 700, company name at 14px weight 400 in Pebble, current price right-aligned at 17px weight 600, daily change at 13px weight 500 in Aurora Green. 60px sparkline at the bottom.\n5. Build a section container: max-width 1200px centered, 80px padding top and bottom, Lavender Mist background. Two-column grid with 45%/45% split and 10% gap, phone mockup pinned in the right column."
+}

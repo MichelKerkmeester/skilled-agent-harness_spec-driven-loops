@@ -1,0 +1,344 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#0a0a0a",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, deepest foreground — the absolute ink for body copy and legal/footer type"
+    },
+    "zinc-ink": {
+      "$value": "#18181b",
+      "$type": "color",
+      "$description": "Zinc Ink — Headlines, nav text, icons, filled button background — the universal interactive ink"
+    },
+    "slate-700": {
+      "$value": "#27272a",
+      "$type": "color",
+      "$description": "Slate 700 — Body text emphasis, input fill backgrounds for dark/inverted inputs"
+    },
+    "slate-600": {
+      "$value": "#3f3f46",
+      "$type": "color",
+      "$description": "Slate 600 — Secondary body text, input borders, subtle button borders"
+    },
+    "slate-500": {
+      "$value": "#52525c",
+      "$type": "color",
+      "$description": "Slate 500 — Muted helper text, link text, icon details"
+    },
+    "zinc-500": {
+      "$value": "#71717b",
+      "$type": "color",
+      "$description": "Zinc 500 — Icon strokes (the dominant icon color), secondary UI lines"
+    },
+    "zinc-300": {
+      "$value": "#d4d4d8",
+      "$type": "color",
+      "$description": "Zinc 300 — Card borders when slightly more definition is needed than the default hairline"
+    },
+    "zinc-200": {
+      "$value": "#e5e5e5",
+      "$type": "color",
+      "$description": "Zinc 200 — Universal hairline border — by far the most-used color in the system at 360+ border applications"
+    },
+    "zinc-100": {
+      "$value": "#f4f4f5",
+      "$type": "color",
+      "$description": "Zinc 100 — Card surfaces, hero background tint, subtle section backgrounds"
+    },
+    "paper-white": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Paper White — Page-tinted background variant, near-white surfaces for cards that need separation from pure white"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary canvas and card surface — the page sits on white"
+    },
+    "footer-green": {
+      "$value": "#54b16c",
+      "$type": "color",
+      "$description": "Footer Green — Footer band background — the only chromatic UI color, a friendly grass green that punctuates the monochrome page"
+    }
+  },
+  "font": {
+    "gelica": {
+      "$value": "Gelica",
+      "$type": "fontFamily",
+      "$description": "Display and heading face — a custom chunky serif used exclusively for h1/h2 moments. Tight line-heights (1.0–1.11) make stacked headlines feel dense and editorial. Normal letter-spacing."
+    },
+    "articulat-cf": {
+      "$value": "Articulat CF",
+      "$type": "fontFamily",
+      "$description": "Body, UI, and small-label face. The defining quirk: 0.28em letter-spacing on this family creates the system's signature airy, architectural feel — almost certainly applied to small/uppercase labels and meta text where the wide tracking reads as deliberate typesetting rather than gap. Generous line-heights (up to 1.78) keep body copy breathing."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Articulat CF",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Articulat CF",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Articulat CF",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Articulat CF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Articulat CF",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Articulat CF",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Articulat CF",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Articulat CF",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Articulat CF",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Articulat CF",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.78
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Articulat CF",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Articulat CF",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Articulat CF",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Gelica",
+        "fontSize": "36px",
+        "fontWeight": 600,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Gelica",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Gelica",
+        "fontSize": "60px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background — pure white"
+    },
+    "soft-section": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle off-white for sections that need a whisper of separation"
+    },
+    "card-hero-tint": {
+      "$value": "#f4f4f5",
+      "$type": "color",
+      "$description": "Surface level 2: Light gray for card surfaces and the hero's tinted backdrop"
+    },
+    "ink-surface": {
+      "$value": "#18181b",
+      "$type": "color",
+      "$description": "Surface level 3: Dark surface for the filled button and any inverted UI moments"
+    },
+    "footer-green": {
+      "$value": "#54b16c",
+      "$type": "color",
+      "$description": "Surface level 4: Sole chromatic surface — the footer band that closes the page with warmth"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://sparkles.dev",
+      "siteName": "Sparkles",
+      "extractedAt": "2026-06-03T17:38:33.603Z",
+      "variant": "extended"
+    }
+  }
+}

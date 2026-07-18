@@ -1,0 +1,1841 @@
+{
+  "source": "https://styles.refero.design/style/b5532c58-620a-4d69-8861-35b2b6443956",
+  "uuid": "b5532c58-620a-4d69-8861-35b2b6443956",
+  "name": "Escape Coffee Company",
+  "northStar": "Frost-bleached editorial broadsheet — large display type cut into warm off-white, all atmosphere carried by raw photography.",
+  "capturedAt": "2026-07-18T08:55:23.164Z",
+  "meta": {
+    "url": "https://escape.cafe",
+    "siteName": "Escape Coffee Company",
+    "extractedAt": "2026-06-03T21:24:15.747Z",
+    "durationMs": 47311,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 628,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "skipped",
+        "attempts": 1
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Molitor only at 45px or larger — below that scale it loses its editorial weight and fights with TWK Lausanne body text",
+      "Set every display headline at line-height 0.85 so lines of type lock together like stone courses; do not let them breathe vertically",
+      "Use Garaje exclusively for all-caps tracked labels (categories, metadata, nav) — never for body copy or sentences",
+      "Let photography bleed full-width whenever possible; the design system's job is to frame the image, not to decorate it",
+      "Use #f5f4f2 as the default surface for everything that isn't a card or input — pure white only appears as a surface lift, never as the canvas",
+      "Set product metadata (TYPE / ORIGIN / PROCESS) in Garaje 18px with 0.044em tracking to create a typographic spine that runs through the page",
+      "Keep all borders at 1px or 1.5px in warm grays (#ebe9e6 or #f5f4f2) — the system whispers, it does not announce",
+      "Give every link a visible 1px underline in #151515 — never rely on color alone to signal interactivity"
+    ],
+    "donts": [
+      "Never introduce chromatic color (blue, red, green) into the UI — the system is intentionally 0% colorfulness; the only accent is the warm-to-cool contrast in the photography itself",
+      "Do not use shadows for elevation — the design avoids drop-shadows entirely; use surface tone shifts (#f5f4f2 → #ffffff → #ebe9e6) instead",
+      "Do not use border-radius above 16px on any element — radii above 20px break the editorial, stone-cut feel",
+      "Do not set body text below 13px or above 19px — the type scale has a strict functional range outside of display",
+      "Never use italics in body or UI; weight contrast (200 vs 600) is the only typographic hierarchy tool",
+      "Do not center body copy or paragraph blocks — left-align everything, even short micro-copy",
+      "Do not use a chromatic accent for sale badges, new tags, or status — rely on Garaje uppercase + tracking to distinguish labels",
+      "Do not use gradients — the palette is flat and the system relies on photographic depth for visual interest",
+      "Do not let UI elements sit inside the right-edge sidecar — that 80px strip is reserved for shipping info and utility icons"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f5f4f2",
+        "name": "Bone",
+        "role": "Primary canvas, page background, section surfaces — warm off-white replaces pure white to give every page a printed, slightly weathered feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#151515",
+        "name": "Ink",
+        "role": "High-contrast neutral action fill for primary buttons on light surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebe9e6",
+        "name": "Ash",
+        "role": "Secondary surface, input fills, subtle dividers, disabled states — one step darker than Bone, used to separate zones without introducing color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Card surfaces, elevated panels, reverse text on dark images — true white reserved for surface lift against the warm canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Link borders, input borders, maximum-contrast accents where Ink is too soft",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8a8a8a",
+        "name": "Smoke",
+        "role": "Muted helper text, input border default state, low-emphasis dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#929292",
+        "name": "Fog",
+        "role": "Mid-tone panel surface for subdued dark UI layers and secondary containers. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      }
+    ],
+    "imagery": "Photography is the design system's primary material. Every section above the fold is built around a full-bleed, atmospheric photograph: frost on stone, weathered mountain fog, coffee grounds scattered on granite, product bags laid on raw surfaces. Treatment is documentary and unpolished — never studio-lit, never lifestyle-staged, never stock-cheerful. Images are desaturated or already muted in capture, sitting naturally within the monochromatic palette. Subjects are always textures and surfaces (stone, snow, bark, paper, cloth) rather than people. Composition favors tight crops and overhead angles. The Shop Now button and product cards sit ON the image, not next to it, so photography and commerce share the same plane. No illustration, no 3D, no abstract graphics — the system is anti-decorative.",
+    "similar": [
+      {
+        "why": "Same warm off-white canvas, monochrome restraint, and large editorial serif display type against photography",
+        "business": "Aesop"
+      },
+      {
+        "why": "Same editorial product photography on raw stone/wood surfaces, three-typeface system with a dramatic display voice, near-zero color",
+        "business": "Mast Brothers"
+      },
+      {
+        "why": "Same obsession with thin type, warm grays, and photography-driven commerce moments; similar use of full-bleed atmospheric imagery over restrained UI",
+        "business": "Fellow"
+      },
+      {
+        "why": "Same left-aligned oversized display type, warm off-white canvas, monochromatic palette, and product-as-art photography treatment",
+        "business": "La Cabra"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "10px",
+        "cards": "16px",
+        "badges": "10px",
+        "images": "0px",
+        "inputs": "3px",
+        "buttons": "3px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f5f4f2",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, full-bleed warm off-white"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Product cards, content panels, elevated containers"
+      },
+      {
+        "hex": "#ebe9e6",
+        "name": "Recessed",
+        "level": 2,
+        "purpose": "Input fields, subtle zone separators, disabled states"
+      },
+      {
+        "hex": "#151515",
+        "name": "Inverse",
+        "level": 3,
+        "purpose": "Inverted sections, filled actions, dark overlays on imagery"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Frost-bleached editorial broadsheet — large display type cut into warm off-white, all atmosphere carried by raw photography.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.81,
+        "letterSpacing": 0.83
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.35,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.5
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.5
+      },
+      {
+        "role": "heading-lg",
+        "size": 50,
+        "lineHeight": 1.06,
+        "letterSpacing": 0.4
+      },
+      {
+        "role": "display",
+        "size": 75,
+        "lineHeight": 0.85,
+        "letterSpacing": -0.9
+      },
+      {
+        "role": "display-xl",
+        "size": 250,
+        "lineHeight": 0.85,
+        "letterSpacing": -0.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Action Button",
+        "role": "Primary interactive element when a action is required",
+        "description": "Background #151515, text #ffffff, no border, 3px radius, padding 14px 24px, TWK Lausanne 13px weight 400 uppercase with 0.073em tracking. Reverses to outlined on hover. Used sparingly — Escape's commerce moments, not every click."
+      },
+      {
+        "name": "Text Underline Link",
+        "role": "Default inline and standalone link",
+        "description": "TWK Lausanne 13–16px weight 400 in #151515, single 1px bottom border in #151515. No background, no padding. The 1px underline IS the affordance — never replaced with color or weight."
+      },
+      {
+        "name": "Shop Now Pill Button",
+        "role": "Inline commerce call-to-action embedded over photography",
+        "description": "Transparent background, 1.5px border in #f5f4f2 (matching canvas, creating a soft ring on dark imagery), padding 10px 20px, Garaje 18px weight 600 uppercase with 0.044em tracking. Floats over product photography without competing with the image."
+      },
+      {
+        "name": "Product Card",
+        "role": "Coffee product listing in grids",
+        "description": "White (#ffffff) surface on Bone (#f5f4f2) canvas, 16px radius, no shadow, 24px internal padding. Product image fills card, name and price below in TWK Lausanne 19px weight 300. Origin/process metadata in Garaje 18px uppercase at 0.044em tracking."
+      },
+      {
+        "name": "Limited Series Card",
+        "role": "Featured collection or editorial tile",
+        "description": "Full-bleed photography inside a 16px-radius frame, 4:3 or 3:4 aspect, no border, no shadow. Overlay label in Molitor 45–75px weight 300 over the bottom-left corner, white text. Title repeated below card in TWK Lausanne 24px weight 600."
+      },
+      {
+        "name": "Sidecar Info Bar",
+        "role": "Persistent vertical strip on the right edge",
+        "description": "80px wide, full viewport height, #f5f4f2 background, fixed position. Contains rotated shipping notice in Garaje 18px weight 600 at 0.053em tracking, plus stacked social/utility icons at top and bottom. Separated from content by a 1px #ebe9e6 line."
+      },
+      {
+        "name": "Category Label (Garaje Tag)",
+        "role": "Uppercase product categories, table headers, and metadata labels",
+        "description": "Garaje 18–22px weight 300–600, #151515, tracking 0.044–0.053em, uppercase. No background, no border, no padding. Functions as a typographic tag, not a UI chip."
+      },
+      {
+        "name": "Data Table Row",
+        "role": "Product detail tables (origin, type, process)",
+        "description": "TWK Lausanne 13px weight 400 in #151515, single-cell layout with 1px #ebe9e6 row dividers, 5px vertical padding. Label column in Garaje 18px uppercase at 0.044em tracking, value column left-aligned in TWK."
+      },
+      {
+        "name": "Input Field",
+        "role": "Newsletter, search, form entry",
+        "description": "No visible border by default. Underline-only style: 1px bottom border in #8a8a8a, 3px radius on the underline ends. Placeholder in TWK Lausanne 14px weight 300, #8a8a8a. Focus state thickens underline to 2px and shifts to #151515. No background fill."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Primary emotional statement on landing",
+        "description": "Molitor 250px weight 300, line-height 0.85, letter-spacing -0.02em, color #ffffff, set over full-bleed atmospheric photography. Never centered always left-aligned, starting at the canvas edge. Often 2–4 words, wrapping to 3–5 lines."
+      },
+      {
+        "name": "Nav Bar",
+        "role": "Top-level site navigation",
+        "description": "Sticky, transparent or #f5f4f2, left-aligned logo in TWK Lausanne 18px weight 600, right-aligned nav items in Garaje 18px weight 600 uppercase at 0.044em tracking. 1px #ebe9e6 bottom border. No background fill, no shadow."
+      },
+      {
+        "name": "Collection Card Grid Item",
+        "role": "Card in the Collections section",
+        "description": "Image tile 16px radius, aspect ratio matches the feature it previews. Below the image, a category label in Garaje 18px uppercase + title in Molitor 45px weight 300, all left-aligned. The grid breathes with 40px gutters on a Bone canvas."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body, UI, captions, links, buttons, table cells, lists — the workhorse at 13–18px weight 300–400; weight 700 used sparingly for section heads; tracking near 0 at body sizes opens to 0.06–0.075em at 11–13px for micro-labels",
+        "sizes": "11px, 13px, 14px, 16px, 18px, 19px, 22px, 24px, 28px, 50px",
+        "family": "TWK Lausanne",
+        "weight": "200, 300, 400, 600, 700",
+        "lineHeight": "1.00, 1.05, 1.06, 1.20, 1.35, 1.81",
+        "substitute": "Inter, Söhne, or Neue Haas Grotesk",
+        "letterSpacing": "-0.16px at 16px, 0.68px at 11px, 0.83px at 13px"
+      },
+      {
+        "role": "Display and hero headlines only — oversized (75–250px) with line-height 0.85, negative tracking at -0.02em at display sizes, positive tracking 0.021–0.037em at smaller sizes; the signature voice, used for 1–3 word emotional statements",
+        "sizes": "26px, 45px, 75px, 250px",
+        "family": "Molitor",
+        "weight": "300, 700",
+        "lineHeight": "0.85, 1.00",
+        "substitute": "Playfair Display (for character) or Tiempos Headline",
+        "letterSpacing": "-0.5px at 250px, -0.9px at 75px, 0.57px at 26px"
+      },
+      {
+        "role": "All-caps category labels, tags, and small display micro-copy — wide tracking 0.044–0.053em gives a stamped, industrial quality to product names, status labels, and nav items",
+        "sizes": "18px, 22px",
+        "family": "Garaje",
+        "weight": "300, 600, 700",
+        "lineHeight": "1.00, 1.20",
+        "substitute": "JetBrains Mono uppercase, or Space Mono uppercase",
+        "letterSpacing": "0.8px at 18px, 1.17px at 22px"
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "GTStandard-M — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "GTStandard-M",
+        "weight": "300",
+        "lineHeight": "1.5",
+        "letterSpacing": "0.06"
+      }
+    ],
+    "description": "Escape is a monochromatic, editorial system built around weather-worn photography and three custom typefaces that do the heavy lifting. The canvas is a warm off-white (#f5f4f2) rather than pure white, giving every page the feel of a sun-bleached magazine spread rather than a SaaS dashboard. Molitor at 250px carries the emotional weight — oversized, tightly leaded (0.85), and slightly negative-tracked so the type feels cut from stone — while TWK Lausanne at near-light weights (200–300) handles everything functional with the restraint of a printed caption. Color is deliberately absent: the entire palette is warm grays from #ffffff to #151515, and accents arrive only as the texture of the imagery itself (snow, stone, coffee grounds). Components are minimal and geometric: thin borders, no elevation, tiny radii (3–10px), and generous whitespace. The system never decorates — it curates.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b5532c58-620a-4d69-8861-35b2b6443956#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Escape Coffee Company design system\",\"item\":\"https://styles.refero.design/style/b5532c58-620a-4d69-8861-35b2b6443956\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b5532c58-620a-4d69-8861-35b2b6443956#style-reference\",\"name\":\"Escape Coffee Company design system reference\",\"headline\":\"Escape Coffee Company design system | Refero Styles\",\"description\":\"Explore Escape Coffee Company's light E-commerce design system: Bone #f5f4f2, Ink #151515 colors, TWK Lausanne, Molitor typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/b5532c58-620a-4d69-8861-35b2b6443956\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b5532c58-620a-4d69-8861-35b2b6443956\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Escape Coffee Company\",\"url\":\"https://escape.cafe\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b5532c58-620a-4d69-8861-35b2b6443956#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6b94ffac-fe74-45c1-a346-5e3c90d58da9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6b94ffac-fe74-45c1-a346-5e3c90d58da9.jpg\",\"caption\":\"Screenshot of Escape Coffee Company\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6b94ffac-fe74-45c1-a346-5e3c90d58da9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Escape Coffee Company design system\",\"Escape Coffee Company website design\",\"Escape Coffee Company colors\",\"Escape Coffee Company typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone\",\"Ink\",\"Ash\",\"Paper\",\"TWK Lausanne\",\"Molitor\",\"Garaje\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Escape Coffee Company design system\"},{\"@type\":\"Thing\",\"name\":\"Escape Coffee Company website design\"},{\"@type\":\"Thing\",\"name\":\"Escape Coffee Company colors\"},{\"@type\":\"Thing\",\"name\":\"Escape Coffee Company typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:22:38.334Z\",\"dateModified\":\"2026-04-30T00:22:38.334Z\"}]}19:T7f0,**Quick Color Reference**\n- canvas: #f5f4f2\n- card surface: #ffffff\n- recessed surface: #ebe9e6\n- Create a Primary Action Button: #151515 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n- muted text / input border: #8a8a8a\n- primary action: #151515 (filled action)\n\n**Example Component Prompts**\n1. Build a hero with a full-bleed atmospheric photograph (overcast stone, frost, or coffee on granite). Headline in Molitor 250px weight 300, line-height 0.85, letter-spacing -0.5px, color #ffffff, left-aligned at canvas edge. A Shop Now button floats at lower-right: transparent background, 1.5px #f5f4f2 border, 3px radius, Garaje 18px weight 600 uppercase with 0.8px tracking.\n2. Build a product card on #f5f4f2 canvas. Card surface #ffffff, 16px radius, no shadow, 24px padding. Product image fills the top. Below: product name in TWK Lausanne 19px weight 300 in #151515, price right-aligned in same style. Origin/Process/TYPE metadata in Garaje 18px weight 300 uppercase at 0.8px tracking.\n3. Build a Collections section. Section heading 'Collections' in TWK Lausanne 24px weight 600 in #151515, with a 'View all →' text-underline link right-aligned. Below: 2-column grid of 16px-radius image tiles with a category label in Garaje 18px uppercase + title in Molitor 45px weight 300 in #151515.\n4. Build a sidecar info bar fixed to the right edge: 80px wide, #f5f4f2 background, full viewport height. Contains rotated text 'Free Shipping / Quebec & Montreal orders $55+ / Canada orders $55+ USA - Temporarily suspended' in Garaje 18px weight 600 at 0.95px tracking, plus a menu icon at top and 3 social/utility icons stacked at bottom. Separated by a 1px #ebe9e6 left border.\n5. Build a data table for product specs. Two-column layout with 1px #ebe9e6 row dividers and 5px vertical padding. Label column in Garaje 18px weight 300 uppercase at 0.8px tracking, value column in TWK Lausanne 13px weight 400 in #151515. No table borders, no zebra striping, no background fill."
+      },
+      {
+        "title": "Typography Personality",
+        "content": "The system is a three-voice choir. Molitor is the soloist — used 2–3 times per page maximum, always at 45px+, always left-aligned, always carrying the emotional message. TWK Lausanne is the choir — nearly invisible at weight 300, it handles 90% of all rendered type. Garaje is the metronome — every uppercase label, every category, every metadata field passes through it. The signature move: a 250px Molitor headline sitting on a snow photograph, with a 13px TWK Lausanne caption and a 22px Garaje label as its only companions. Never reverse the hierarchy — Molitor never appears at 16px, Garaje never appears as body text."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "Escape uses no drop-shadows. Surfaces are distinguished exclusively by tone shifts within the warm-gray palette: #f5f4f2 canvas → #ffffff card → #ebe9e6 recessed → #151515 inverse. The only shadow-like effect in the system is the 1.5px ring used on a handful of outlined buttons and badges (rgb(245,244,242) 0px 0px 0px 1.5px), which functions as a border, not elevation. Depth in the layout is created by photography and whitespace, never by z-axis separation. This is a deliberate editorial choice — shadows would introduce skeuomorphic noise into a system that wants to feel printed."
+      }
+    ],
+    "elevationPhilosophy": "Escape uses no drop-shadows. Surfaces are distinguished by tone shifts within the warm-gray palette: #f5f4f2 canvas → #ffffff card → #ebe9e6 recessed → #151515 inverse. The only 'shadow' in the system is a 1.5px ring used on a handful of outlined buttons and badges, which functions as a border not elevation. Depth is created by photography and whitespace, never by z-axis separation."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f5f4f2",
+          "oklch": {
+            "c": 0.0028686483951220784,
+            "h": 84.55894530640826,
+            "l": 0.9673609106023859
+          },
+          "contexts": [
+            "icon",
+            "other",
+            "image",
+            "heading",
+            "badge",
+            "body",
+            "link",
+            "list",
+            "table",
+            "input",
+            "button"
+          ],
+          "frequency": 1526,
+          "confidence": 1,
+          "prominence": 91319925.35945594,
+          "properties": [
+            "fill",
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 9,
+            "icon/color": 21,
+            "link/color": 21,
+            "list/color": 21,
+            "other/fill": 28,
+            "badge/color": 3,
+            "image/color": 4,
+            "input/color": 1,
+            "other/color": 50,
+            "table/color": 33,
+            "button/color": 3,
+            "heading/color": 130,
+            "list/boxShadow": 3,
+            "badge/boxShadow": 1,
+            "other/boxShadow": 1,
+            "body/borderColor": 36,
+            "icon/borderColor": 84,
+            "link/borderColor": 84,
+            "list/borderColor": 84,
+            "badge/borderColor": 12,
+            "image/borderColor": 16,
+            "input/borderColor": 4,
+            "other/borderColor": 212,
+            "table/borderColor": 132,
+            "button/borderColor": 4,
+            "heading/borderColor": 520,
+            "link/backgroundColor": 4,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#151515",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.19573496075691943
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body",
+            "hero",
+            "heading",
+            "button",
+            "image",
+            "list",
+            "card"
+          ],
+          "frequency": 1151,
+          "confidence": 1,
+          "prominence": 87809593.58430327,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 30,
+            "card/color": 2,
+            "hero/color": 1,
+            "icon/color": 11,
+            "link/color": 7,
+            "list/color": 4,
+            "other/fill": 9,
+            "image/color": 14,
+            "other/color": 152,
+            "button/color": 4,
+            "heading/color": 11,
+            "body/borderColor": 120,
+            "card/borderColor": 8,
+            "hero/borderColor": 4,
+            "icon/borderColor": 44,
+            "link/borderColor": 20,
+            "list/borderColor": 16,
+            "image/borderColor": 56,
+            "other/borderColor": 571,
+            "button/borderColor": 16,
+            "heading/borderColor": 44,
+            "body/backgroundColor": 3,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ebe9e6",
+          "oklch": {
+            "c": 0.0045729775414468845,
+            "h": 78.29726635834326,
+            "l": 0.9347319019769406
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 38,
+          "confidence": 1,
+          "prominence": 1084326.6922106845,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "other/fill": 1,
+            "button/color": 1,
+            "heading/color": 2,
+            "icon/borderColor": 4,
+            "other/borderColor": 13,
+            "button/borderColor": 4,
+            "heading/borderColor": 8,
+            "body/backgroundColor": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#929292",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6595618430742677
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 519946.94836157525,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "card",
+            "input"
+          ],
+          "frequency": 61,
+          "confidence": 1,
+          "prominence": 507851.2659018277,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "other/fill": 2,
+            "other/color": 5,
+            "button/color": 1,
+            "body/borderColor": 16,
+            "other/borderColor": 20,
+            "button/borderColor": 4,
+            "card/backgroundColor": 2,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "link",
+            "icon",
+            "other",
+            "body",
+            "input"
+          ],
+          "frequency": 66,
+          "confidence": 1,
+          "prominence": 133502.49090359465,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "body/color": 3,
+            "link/color": 5,
+            "input/color": 2,
+            "other/color": 3,
+            "other/stroke": 2,
+            "body/borderColor": 12,
+            "link/borderColor": 20,
+            "other/borderColor": 12,
+            "link/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#8a8a8a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6334289343813261
+          },
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 76135.17106296965,
+          "properties": [
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 2,
+            "input/borderColor": 8
+          }
+        },
+        {
+          "hex": "#050505",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1149182763483161
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 3363.259433703244,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/color": 3,
+            "other/color": 6,
+            "other/stroke": 6,
+            "icon/borderColor": 12,
+            "other/borderColor": 24
+          }
+        },
+        {
+          "hex": "#292d32",
+          "oklch": {
+            "c": 0.010712642963929169,
+            "h": 254.0032905948878,
+            "l": 0.2952296894062133
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 1023.8857754658668,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 8
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0043022719600325715,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.38,
+          "background": "#ffffff",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.1,
+          "background": "#000000",
+          "foreground": "#f5f4f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.54,
+          "background": "#f5f4f2",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#ffffff",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.33,
+          "background": "#000000",
+          "foreground": "#ebe9e6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.82,
+          "background": "#ebe9e6",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.61,
+          "background": "#151515",
+          "foreground": "#f5f4f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.07,
+          "background": "#ebe9e6",
+          "foreground": "#151515"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.86,
+          "background": "#ffffff",
+          "foreground": "#292d32"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.6,
+          "background": "#f5f4f2",
+          "foreground": "#292d32"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.43,
+          "background": "#ebe9e6",
+          "foreground": "#292d32"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.75,
+          "background": "#929292",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.55,
+          "background": "#929292",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.87,
+          "background": "#929292",
+          "foreground": "#151515"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.11,
+          "background": "#929292",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.83,
+          "background": "#929292",
+          "foreground": "#f5f4f2"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.57,
+          "background": "#929292",
+          "foreground": "#ebe9e6"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.21,
+          "background": "#ffffff",
+          "foreground": "#ebe9e6"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.15,
+          "background": "#000000",
+          "foreground": "#151515"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "link",
+            "other",
+            "input"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "input"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "list",
+            "badge"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 16,
+          "corners": [
+            16,
+            16,
+            0,
+            0
+          ],
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "asymmetric": true
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(245, 244, 242) 0px 0px 0px 1.5px",
+          "contexts": [
+            "other",
+            "list",
+            "badge"
+          ],
+          "frequency": 5
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|input",
+            "marginRight|input",
+            "marginBottom|input",
+            "marginLeft|input",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "list",
+            "badge"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginLeft|list",
+            "marginTop|badge",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "link",
+            "table"
+          ],
+          "frequency": 38,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "marginTop|table"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "body",
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "icon",
+            "input"
+          ],
+          "frequency": 36,
+          "properties": [
+            "paddingBottom",
+            "marginLeft",
+            "columnGap",
+            "marginRight",
+            "paddingTop",
+            "marginBottom",
+            "rowGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginLeft|link",
+            "columnGap|list",
+            "marginRight|icon",
+            "marginLeft|icon",
+            "paddingTop|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|input"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "heading",
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingTop|input"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button",
+            "link",
+            "table",
+            "icon",
+            "heading",
+            "input"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginTop|table",
+            "marginRight|icon",
+            "marginLeft|icon",
+            "paddingBottom|heading",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card",
+            "input"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingLeft|input",
+            "paddingTop|input",
+            "paddingRight|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "link",
+            "table",
+            "badge",
+            "button",
+            "heading"
+          ],
+          "frequency": 61,
+          "properties": [
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "columnGap|table",
+            "paddingTop|badge",
+            "paddingRight|badge",
+            "paddingBottom|badge",
+            "paddingLeft|badge",
+            "marginLeft|button",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginBottom|heading",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|button"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "heading",
+            "table",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginTop|table",
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 54,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 130,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 155,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "TWK Lausanne",
+          "source": "custom",
+          "weights": [
+            200,
+            300,
+            400,
+            600,
+            700
+          ],
+          "frequency": 417,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Molitor",
+          "source": "custom",
+          "weights": [
+            300,
+            700
+          ],
+          "frequency": 96,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Garaje",
+          "source": "custom",
+          "weights": [
+            300,
+            600,
+            700
+          ],
+          "frequency": 46,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GTStandard-M",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.86
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "TWK Lausanne",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.073,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1,
+          "letterSpacing": 0.075,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.067,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "hero",
+            "image",
+            "heading",
+            "body",
+            "list",
+            "badge",
+            "button",
+            "card"
+          ],
+          "frequency": 272,
+          "lineHeight": 1,
+          "letterSpacing": 0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.05,
+          "letterSpacing": 0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.06,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.35,
+          "letterSpacing": 0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.81,
+          "letterSpacing": 0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GTStandard-M",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Garaje",
+          "weight": 300,
+          "contexts": [
+            "link",
+            "table",
+            "list",
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 34,
+          "lineHeight": 1,
+          "letterSpacing": 0.053,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.35,
+          "letterSpacing": 0.053,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Garaje",
+          "weight": 700,
+          "contexts": [
+            "table"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0.053,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Garaje",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 19,
+          "family": "TWK Lausanne",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.051,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0.043,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Garaje",
+          "weight": 300,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.044,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.067,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Molitor",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 49,
+          "lineHeight": 1,
+          "letterSpacing": 0.037,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 28,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": 0.034,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Molitor",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 13,
+          "lineHeight": 0.85,
+          "letterSpacing": 0.021,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 50,
+          "family": "TWK Lausanne",
+          "weight": 200,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 57,
+          "lineHeight": 1.06,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 75,
+          "family": "Molitor",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.013,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 250,
+          "family": "Molitor",
+          "weight": 700,
+          "contexts": [
+            "badge",
+            "other",
+            "heading"
+          ],
+          "frequency": 32,
+          "lineHeight": 0.85,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/77706ed3-8284-45d3-b0e7-2fc6e7e8938e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6b94ffac-fe74-45c1-a346-5e3c90d58da9.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b5532c58-620a-4d69-8861-35b2b6443956#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Escape Coffee Company design system\",\"item\":\"https://styles.refero.design/style/b5532c58-620a-4d69-8861-35b2b6443956\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b5532c58-620a-4d69-8861-35b2b6443956#style-reference\",\"name\":\"Escape Coffee Company design system reference\",\"headline\":\"Escape Coffee Company design system | Refero Styles\",\"description\":\"Explore Escape Coffee Company's light E-commerce design system: Bone #f5f4f2, Ink #151515 colors, TWK Lausanne, Molitor typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/b5532c58-620a-4d69-8861-35b2b6443956\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b5532c58-620a-4d69-8861-35b2b6443956\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Escape Coffee Company\",\"url\":\"https://escape.cafe\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b5532c58-620a-4d69-8861-35b2b6443956#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6b94ffac-fe74-45c1-a346-5e3c90d58da9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6b94ffac-fe74-45c1-a346-5e3c90d58da9.jpg\",\"caption\":\"Screenshot of Escape Coffee Company\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6b94ffac-fe74-45c1-a346-5e3c90d58da9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Escape Coffee Company design system\",\"Escape Coffee Company website design\",\"Escape Coffee Company colors\",\"Escape Coffee Company typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone\",\"Ink\",\"Ash\",\"Paper\",\"TWK Lausanne\",\"Molitor\",\"Garaje\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Escape Coffee Company design system\"},{\"@type\":\"Thing\",\"name\":\"Escape Coffee Company website design\"},{\"@type\":\"Thing\",\"name\":\"Escape Coffee Company colors\"},{\"@type\":\"Thing\",\"name\":\"Escape Coffee Company typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:22:38.334Z\",\"dateModified\":\"2026-04-30T00:22:38.334Z\"}]}19:T7f0,**Quick Color Reference**\n- canvas: #f5f4f2\n- card surface: #ffffff\n- recessed surface: #ebe9e6\n- Create a Primary Action Button: #151515 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n- muted text / input border: #8a8a8a\n- primary action: #151515 (filled action)\n\n**Example Component Prompts**\n1. Build a hero with a full-bleed atmospheric photograph (overcast stone, frost, or coffee on granite). Headline in Molitor 250px weight 300, line-height 0.85, letter-spacing -0.5px, color #ffffff, left-aligned at canvas edge. A Shop Now button floats at lower-right: transparent background, 1.5px #f5f4f2 border, 3px radius, Garaje 18px weight 600 uppercase with 0.8px tracking.\n2. Build a product card on #f5f4f2 canvas. Card surface #ffffff, 16px radius, no shadow, 24px padding. Product image fills the top. Below: product name in TWK Lausanne 19px weight 300 in #151515, price right-aligned in same style. Origin/Process/TYPE metadata in Garaje 18px weight 300 uppercase at 0.8px tracking.\n3. Build a Collections section. Section heading 'Collections' in TWK Lausanne 24px weight 600 in #151515, with a 'View all →' text-underline link right-aligned. Below: 2-column grid of 16px-radius image tiles with a category label in Garaje 18px uppercase + title in Molitor 45px weight 300 in #151515.\n4. Build a sidecar info bar fixed to the right edge: 80px wide, #f5f4f2 background, full viewport height. Contains rotated text 'Free Shipping / Quebec & Montreal orders $55+ / Canada orders $55+ USA - Temporarily suspended' in Garaje 18px weight 600 at 0.95px tracking, plus a menu icon at top and 3 social/utility icons stacked at bottom. Separated by a 1px #ebe9e6 left border.\n5. Build a data table for product specs. Two-column layout with 1px #ebe9e6 row dividers and 5px vertical padding. Label column in Garaje 18px weight 300 uppercase at 0.8px tracking, value column in TWK Lausanne 13px weight 400 in #151515. No table borders, no zebra striping, no background fill."
+}

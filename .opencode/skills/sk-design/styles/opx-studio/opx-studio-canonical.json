@@ -1,0 +1,888 @@
+{
+  "source": "https://styles.refero.design/style/bd395e2e-58a8-4626-acfa-9be8d6cdf604",
+  "uuid": "bd395e2e-58a8-4626-acfa-9be8d6cdf604",
+  "name": "OPX Studio",
+  "northStar": "Dark gallery monolith — a near-black exhibition hall where monumental white type and full-bleed photography do all the talking, and borders whisper at #292a2c.",
+  "capturedAt": "2026-07-18T07:17:13.318Z",
+  "meta": {
+    "url": "https://opx.studio",
+    "siteName": "OPX Studio",
+    "extractedAt": "2026-06-03T21:59:16.226Z",
+    "durationMs": 20837,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 314,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use OPX-Medium 400 at 80–111px for display headlines with line-height locked at 1.00–1.07 — never bold the display",
+      "Apply the #292a2c 1px hairline as the only divider between sections and around interactive elements",
+      "Set all CTA buttons as 1px white-stroke pills at 45px radius with 7px/15px padding — no filled buttons",
+      "Let photography fill its container edge-to-edge at 0px radius — never frame or round project imagery",
+      "Maintain 100–200px vertical padding between major sections to preserve the editorial pacing",
+      "Use #9b9b9b exclusively for muted metadata and helper text; reserve #ffffff for all primary content",
+      "Keep the navigation to two-word labels set in OPX-Medium — the page is the navigation"
+    ],
+    "donts": [
+      "Do not introduce a brand color, accent, or gradient — the system is monochrome by design",
+      "Do not use box-shadows, glows, or any drop-shadow elevation",
+      "Do not bold the display type — authority comes from size (80–111px), not weight",
+      "Do not round the project imagery or apply a card background — images sit on the void directly",
+      "Do not use #9b9b9b on a #ffffff surface — it fails contrast (2.8:1); it's only valid on the dark canvas",
+      "Do not add icons, bullets, or decorative glyphs to the nav or links — type is the only ornament",
+      "Do not tighten body line-height below 1.67 — the relaxed leading is the only counterpoint to the display text's compression"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#020202",
+        "name": "Void Black",
+        "role": "Page canvas — the base background across all sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Surface Black",
+        "role": "Section surfaces and image containment backgrounds, barely distinguishable from canvas to keep elevation flat",
+        "group": "neutral"
+      },
+      {
+        "hex": "#292a2c",
+        "name": "Charcoal Hairline",
+        "role": "Structural dividers and borders — the only mid-tone in the system, carrying 900 occurrences as the skeleton between sections and elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Primary text, nav labels, project titles, and 1px pill-button borders — the sole signal of interactivity",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9b9b9b",
+        "name": "Ash Gray",
+        "role": "Muted helper text and secondary metadata in footer and supporting copy — recedes against the void",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Edge-to-edge dark canvas with no maximum content width — sections bleed to the viewport edges while internal type holds generous left padding (50–100px). Hero is a centered-or-left-aligned display headline over the void, no hero image. Featured project is a single full-width photographic block followed by a 3-column project grid (3 tiles per row, equal width, equal gap). Footer is a 3-column text block (address / enquiries / social + tagline). Section rhythm is monolithic: 100–200px vertical breathing room between bands, separated by #292a2c hairlines. Navigation is a minimal two-item top bar, not a full menu — the page itself does the navigation work. No sidebar, no mega-menu, no sticky behavior implied. Overall density is sparse and editorial, not product-dense.",
+    "imagery": "Photography and 3D-rendered product/device shots dominate the visual language. Project tiles are full-bleed editorial photography — hands holding devices, lifestyle objects, designed products in context. Treatments are diverse per project (moody dark product photography, saturated color brand campaigns, natural-light lifestyle) but always presented at full scale without overlay text or treatments. The images are the only source of color in the entire system. Icons are absent from the navigation and UI; the two-word nav labels (\"Projects\", \"Studio\") function as the icon system. Decorative graphics: none.",
+    "similar": [
+      {
+        "why": "Same editorial-agency monochrome dark mode, oversize display type as the only ornament, and photography-led project tiles with no card chrome",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Edge-to-edge full-bleed project photography on near-black canvas with minimal typographic navigation",
+        "business": "Resn"
+      },
+      {
+        "why": "Two-word navigation, monumental display type, and project-grid layout that lets the photography carry all the color",
+        "business": "Manual (manual.tv)"
+      },
+      {
+        "why": "Dark agency homepage with custom single-weight display face, hairline dividers, and pill-outline CTAs",
+        "business": "Locomotive (locomotive.ca)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "links": "45px",
+        "images": "0px",
+        "buttons": "45px"
+      },
+      "elementGap": "30px",
+      "sectionGap": "100-200px",
+      "cardPadding": "",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#020202",
+        "name": "Void Canvas",
+        "level": 1,
+        "purpose": "Base page background — the entire site sits on this near-black"
+      },
+      {
+        "hex": "#000000",
+        "name": "Surface Black",
+        "level": 2,
+        "purpose": "Section bands and image containers — nearly identical to canvas; elevation is implied by content rather than tonal shift"
+      },
+      {
+        "hex": "#292a2c",
+        "name": "Hairline",
+        "level": 3,
+        "purpose": "1px structural dividers between sections and around interactive elements — the only visual layering device"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — the design system deliberately avoids box-shadows",
+        "element": "All elements"
+      }
+    ],
+    "northStar": "Dark gallery monolith — a near-black exhibition hall where monumental white type and full-bleed photography do all the talking, and borders whisper at #292a2c.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.67
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.67
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.67
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.42
+      },
+      {
+        "role": "heading",
+        "size": 35,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-lg",
+        "size": 50,
+        "lineHeight": 1.38
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1.07
+      },
+      {
+        "role": "display-xl",
+        "size": 111,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Navigation Link",
+        "role": "Primary top-bar nav item (\"Projects\", \"Studio\")",
+        "description": "OPX-Medium 400 at ~26–35px in #ffffff, left-aligned in nav container, set with 50px vertical padding. No underline, no active state styling — navigation is a typographic gesture, not a control."
+      },
+      {
+        "name": "Editorial Hero Headline",
+        "role": "Opening statement on the home canvas",
+        "description": "OPX-Medium 400 at 80–111px in #ffffff, line-height 1.00–1.07, left-aligned with 50–100px page padding. Uses weight 400 (not bold) — authority through scale and tightness, not weight. Sits in generous 200px top padding against the #020202 void."
+      },
+      {
+        "name": "Featured Project Block",
+        "role": "Single full-bleed project case study (e.g. KB&Co)",
+        "description": "Full-width photograph (no border, no radius) occupying the visual center, followed by 20px gap, then project title in OPX-Medium 400 at ~26–35px #ffffff, then 30px gap, then a 'View case study' pill button. Image bleeds to container edges."
+      },
+      {
+        "name": "Project Card (Grid Item)",
+        "role": "Individual case study tile in the 3-column project grid",
+        "description": "Full-bleed photograph (0px radius) filling the card width, 30px gap, then OPX-Medium 400 at ~20–26px #ffffff for the project title, 15px gap, then a pill 'View case study' button. Cards have no visible border or background — they are defined by the image and the void around them."
+      },
+      {
+        "name": "Pill CTA Button ('View case study')",
+        "role": "Primary call-to-action linking to a case study",
+        "description": "1px solid #ffffff border, transparent fill on #020202 canvas, 45px border-radius (pill-like), padding 7px vertical × 15px horizontal. Label in Untitled 500 at 14px #ffffff. The button is outline-only — no filled state exists in the system."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Mid-page editorial section titles",
+        "description": "OPX-Medium 400 at 35–50px in #ffffff, line-height 1.38–1.40, left-aligned, with 30px gap to following content. No decorative elements — pure type."
+      },
+      {
+        "name": "Footer Column Block",
+        "role": "Structured contact and meta information at page bottom",
+        "description": "3-column grid of text blocks. Each column starts with a 18–20px OPX-Medium 400 #ffffff label (e.g. 'OPX Studio', 'Project enquiries', 'Social'), then 20px gap, then body lines in OPX-Medium 400 at 18px #9b9b9b (muted)."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Supporting descriptive copy",
+        "description": "Open Sans or OPX-Medium 400 at 18px, line-height 1.67, #ffffff. Relaxed leading for readability against the dark canvas — contrasts with the display text's tight leading."
+      },
+      {
+        "name": "Social/External Link",
+        "role": "Footer or inline outbound link",
+        "description": "OPX-Medium 400 at 18px in #9b9b9b, no underline by default. On hover or context: shifts to #ffffff. Sits inline within body text without a bullet or icon."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Horizontal separator between major content bands",
+        "description": "1px solid #292a2c hairline spanning full width. The only structural separator in the system — replaces shadows, fills, and whitespace demarcation. Spans appear between the hero, featured project, project grid, and footer."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary brand display and text face — a single weight (400) scaling across body, nav, subheadings, and monumental display. Custom face with a humanist-geometric tension; the anti-convention of using weight 400 (not bold) at 111px display size lets the headline dominate through scale alone rather than visual weight",
+        "sizes": "18px, 20px, 26px, 35px, 50px, 80px, 111px",
+        "family": "OPX-Medium",
+        "weight": "400",
+        "lineHeight": "1.00–1.73 (tightens inversely with size: 1.00 at 111px, 1.73 at 18px)",
+        "substitute": "Söhne, Inter, or a custom neo-grotesque like ABC Diatype Mono"
+      },
+      {
+        "role": "Secondary supporting copy — used in hero subtext and longer descriptive passages where a more relaxed, open-licensed humanist is desired",
+        "sizes": "18px",
+        "family": "Open Sans",
+        "weight": "400",
+        "lineHeight": "1.67",
+        "substitute": "Source Sans 3, Noto Sans"
+      },
+      {
+        "role": "Small label text for pill buttons and tag-like links (e.g. \"View case study\") — the only weight-500 usage in the system, giving micro-UI slightly more presence",
+        "sizes": "14px",
+        "family": "Untitled",
+        "weight": "500",
+        "lineHeight": "1.67",
+        "substitute": "Inter, Söhne"
+      },
+      {
+        "role": "System fallback for incidental body text and metadata",
+        "sizes": "18px",
+        "family": "Helvetica",
+        "weight": "400",
+        "lineHeight": "1.67",
+        "substitute": "system-ui, Arial"
+      }
+    ],
+    "description": "OPX Studio operates as a black void gallery: a near-pure #020202 canvas where the only voices are stark white type and full-bleed project photography. The system is aggressively monochrome — zero brand color, zero accent, zero semantic hues — letting the project imagery provide all visual variation. Typography is the sole brand signature: a single-weight (400) custom display face (OPX-Medium) scales from 18px body text to 111px editorial statements with extremely tight leading, giving the page a typographic confidence that fills the dark space. Components are flat, borderless on canvas, and rely on hairline #292a2c dividers and white-stroke pill buttons (45px radius) rather than shadows or fills. Navigation reduces to two words (\"Projects\", \"Studio\") set as oversize display type — the page itself is the brand mark. Generous 100–200px vertical breathing room between sections reinforces a slow, editorial pace rather than a dense product feel.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bd395e2e-58a8-4626-acfa-9be8d6cdf604#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"OPX Studio design system\",\"item\":\"https://styles.refero.design/style/bd395e2e-58a8-4626-acfa-9be8d6cdf604\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bd395e2e-58a8-4626-acfa-9be8d6cdf604#style-reference\",\"name\":\"OPX Studio design system reference\",\"headline\":\"OPX Studio design system | Refero Styles\",\"description\":\"Explore OPX Studio's dark Agency design system: Void Black #020202, Surface Black #000000 colors, OPX-Medium, Open Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/bd395e2e-58a8-4626-acfa-9be8d6cdf604\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bd395e2e-58a8-4626-acfa-9be8d6cdf604\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"OPX Studio\",\"url\":\"https://opx.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bd395e2e-58a8-4626-acfa-9be8d6cdf604#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/80e08f37-882b-4754-ac5b-13eb1f53a4d1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/80e08f37-882b-4754-ac5b-13eb1f53a4d1.jpg\",\"caption\":\"Screenshot of OPX Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/80e08f37-882b-4754-ac5b-13eb1f53a4d1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"OPX Studio design system\",\"OPX Studio website design\",\"OPX Studio colors\",\"OPX Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void Black\",\"Surface Black\",\"Charcoal Hairline\",\"Bone White\",\"OPX-Medium\",\"Open Sans\",\"Untitled\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"OPX Studio design system\"},{\"@type\":\"Thing\",\"name\":\"OPX Studio website design\"},{\"@type\":\"Thing\",\"name\":\"OPX Studio colors\"},{\"@type\":\"Thing\",\"name\":\"OPX Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:13:32.279Z\",\"dateModified\":\"2026-04-30T03:13:32.279Z\"}]}19:T4e7,**Quick Color Reference**\n- text: #ffffff\n- background: #020202\n- border: #292a2c\n- accent: #ffffff (white stroke only, no fill)\n- muted text: #9b9b9b\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Create a hero headline: #020202 canvas. Display type in OPX-Medium (substitute: Söhne) weight 400, 111px, #ffffff, line-height 1.00, left-aligned with 100px left padding and 200px top padding.\n2. Create a project card: full-bleed photograph at 0px radius filling the card width. 30px gap below, then OPX-Medium weight 400, 20px, #ffffff for the project title. 15px gap, then a pill 'View case study' button: 1px solid #ffffff border, transparent fill, 45px border-radius, 7px/15px padding, label in Untitled weight 500, 14px, #ffffff.\n3. Create a section divider: 1px solid #292a2c hairline spanning 100% width, with 150px vertical padding above and below the rule.\n4. Create a footer column: OPX-Medium weight 400, 20px, #ffffff column label. 20px gap, then 2–3 lines of OPX-Medium weight 400, 18px, #9b9b9b body text. Arrange in a 3-column grid with 50px column gutters.\n5. Create a body paragraph: Open Sans (substitute: Source Sans 3) weight 400, 18px, #ffffff, line-height 1.67, on #020202 canvas, with 30px margin-bottom."
+      }
+    ],
+    "elevationPhilosophy": "Flat by conviction. The dark canvas provides no tonal room for shadow-based elevation, and the design doubles down on this: the only layering device is the 1px #292a2c hairline. Cards, buttons, and sections are delineated by content, whitespace, and hairline rules — never by drop shadows, glows, or fills."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#292a2c",
+          "oklch": {
+            "c": 0.003912727543498919,
+            "h": 264.5039439516218,
+            "l": 0.28477360399949125
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero"
+          ],
+          "frequency": 900,
+          "confidence": 1,
+          "prominence": 140607790.112203,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "hero/color": 2,
+            "other/color": 174,
+            "nav/borderColor": 16,
+            "hero/borderColor": 8,
+            "other/borderColor": 696
+          }
+        },
+        {
+          "hex": "#020202",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.0846725099673314
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 28650494,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 224,
+          "confidence": 1,
+          "prominence": 10021174.377735851,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "body/color": 7,
+            "link/color": 13,
+            "heading/color": 13,
+            "nav/borderColor": 8,
+            "body/borderColor": 28,
+            "link/borderColor": 52,
+            "other/borderColor": 48,
+            "heading/borderColor": 52,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "link",
+            "image",
+            "body"
+          ],
+          "frequency": 415,
+          "confidence": 1,
+          "prominence": 8592023.538813336,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "body/color": 1,
+            "link/color": 10,
+            "image/color": 10,
+            "other/color": 51,
+            "heading/color": 18,
+            "nav/borderColor": 8,
+            "body/borderColor": 4,
+            "link/borderColor": 40,
+            "image/borderColor": 40,
+            "other/borderColor": 156,
+            "heading/borderColor": 72,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#9b9b9b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6894878914251888
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 29287.6251331707,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "link/color": 3,
+            "body/borderColor": 16,
+            "link/borderColor": 12
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.006035158767329392,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.75,
+          "background": "#020202",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.37,
+          "background": "#ffffff",
+          "foreground": "#292a2c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.56,
+          "background": "#000000",
+          "foreground": "#9b9b9b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.46,
+          "background": "#020202",
+          "foreground": "#9b9b9b"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.78,
+          "background": "#ffffff",
+          "foreground": "#9b9b9b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.46,
+          "background": "#000000",
+          "foreground": "#292a2c"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.44,
+          "background": "#020202",
+          "foreground": "#292a2c"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.01,
+          "background": "#020202",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 45,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 24
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 7,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 45,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 99,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Open Sans",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 228,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "OPX-Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 56,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Helvetica",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 18,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Untitled",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 12,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Untitled",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Open Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 199,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "OPX-Medium",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "OPX-Medium",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "OPX-Medium",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.42,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "OPX-Medium",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "OPX-Medium",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.73,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "OPX-Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "OPX-Medium",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "OPX-Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.21,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 111,
+          "family": "OPX-Medium",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.07,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1c22786b-17bd-4b9f-a32d-600f106e7f91.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/80e08f37-882b-4754-ac5b-13eb1f53a4d1.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bd395e2e-58a8-4626-acfa-9be8d6cdf604#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"OPX Studio design system\",\"item\":\"https://styles.refero.design/style/bd395e2e-58a8-4626-acfa-9be8d6cdf604\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bd395e2e-58a8-4626-acfa-9be8d6cdf604#style-reference\",\"name\":\"OPX Studio design system reference\",\"headline\":\"OPX Studio design system | Refero Styles\",\"description\":\"Explore OPX Studio's dark Agency design system: Void Black #020202, Surface Black #000000 colors, OPX-Medium, Open Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/bd395e2e-58a8-4626-acfa-9be8d6cdf604\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bd395e2e-58a8-4626-acfa-9be8d6cdf604\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"OPX Studio\",\"url\":\"https://opx.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bd395e2e-58a8-4626-acfa-9be8d6cdf604#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/80e08f37-882b-4754-ac5b-13eb1f53a4d1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/80e08f37-882b-4754-ac5b-13eb1f53a4d1.jpg\",\"caption\":\"Screenshot of OPX Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/80e08f37-882b-4754-ac5b-13eb1f53a4d1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"OPX Studio design system\",\"OPX Studio website design\",\"OPX Studio colors\",\"OPX Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void Black\",\"Surface Black\",\"Charcoal Hairline\",\"Bone White\",\"OPX-Medium\",\"Open Sans\",\"Untitled\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"OPX Studio design system\"},{\"@type\":\"Thing\",\"name\":\"OPX Studio website design\"},{\"@type\":\"Thing\",\"name\":\"OPX Studio colors\"},{\"@type\":\"Thing\",\"name\":\"OPX Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:13:32.279Z\",\"dateModified\":\"2026-04-30T03:13:32.279Z\"}]}19:T4e7,**Quick Color Reference**\n- text: #ffffff\n- background: #020202\n- border: #292a2c\n- accent: #ffffff (white stroke only, no fill)\n- muted text: #9b9b9b\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. Create a hero headline: #020202 canvas. Display type in OPX-Medium (substitute: Söhne) weight 400, 111px, #ffffff, line-height 1.00, left-aligned with 100px left padding and 200px top padding.\n2. Create a project card: full-bleed photograph at 0px radius filling the card width. 30px gap below, then OPX-Medium weight 400, 20px, #ffffff for the project title. 15px gap, then a pill 'View case study' button: 1px solid #ffffff border, transparent fill, 45px border-radius, 7px/15px padding, label in Untitled weight 500, 14px, #ffffff.\n3. Create a section divider: 1px solid #292a2c hairline spanning 100% width, with 150px vertical padding above and below the rule.\n4. Create a footer column: OPX-Medium weight 400, 20px, #ffffff column label. 20px gap, then 2–3 lines of OPX-Medium weight 400, 18px, #9b9b9b body text. Arrange in a 3-column grid with 50px column gutters.\n5. Create a body paragraph: Open Sans (substitute: Source Sans 3) weight 400, 18px, #ffffff, line-height 1.67, on #020202 canvas, with 30px margin-bottom."
+}

@@ -1,0 +1,1428 @@
+{
+  "source": "https://styles.refero.design/style/22cc86bc-6c5f-4413-a4a2-66b8ddc82ad0",
+  "uuid": "22cc86bc-6c5f-4413-a4a2-66b8ddc82ad0",
+  "name": "Yellowbird®",
+  "northStar": "Retro condiment billboard in midday sun — a single yellow plane under a black sun, every letter drawn with a fat marker.\n\nThe system breathes through color contrast, not elevation: yellow on yellow separated by thick black strokes, with cream cards as the only neutral relief.",
+  "capturedAt": "2026-07-18T07:42:23.693Z",
+  "meta": {
+    "url": "https://www.yellowbirdfoods.com",
+    "siteName": "Yellowbird®",
+    "extractedAt": "2026-06-03T19:53:50.055Z",
+    "durationMs": 61450,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 896,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #ffe845 as the full-bleed canvas for every full-width section — hero, product grids, testimonials, and footer should all sit on yellow, never on white or gray",
+      "Set body and heading copy in Monument Grotesk weight 400 only; the system has no bold weight for this face, so hierarchy comes from size and tracking, not weight",
+      "Use 30px border-radius on all product cards and images; 14px on primary buttons; 6px on category badges — these three radii define the shape language",
+      "Separate sections by color swap (yellow band → cream card → yellow band), not by shadows or dividers — the design is deliberately flat",
+      "Use the Gooper 91px display face only for the wordmark and equivalent brand statements; never for product names, body, or UI text",
+      "Size all CTAs in Monument Grotesk 18px all caps with -0.011em tracking — consistency in button typography is a signature",
+      "Apply the starburst sticker pattern to exactly one callout per viewport — it loses impact as a repeated motif"
+    ],
+    "donts": [
+      "Never introduce a new chromatic color beyond the yellow/black/white/cream/blue set — the system's power is its two-color discipline",
+      "Never add drop shadows, inner glows, or blur effects to cards or buttons — separation comes from solid black strokes, not elevation",
+      "Never use the blue (#007aff) as a filled button background or for navigation; it is a ghost-border utility color only",
+      "Never use a font weight heavier than 400 for Monument Grotesk; the face doesn't ship bold, and faking bold breaks the geometric evenness",
+      "Never place body copy on white over the yellow canvas without a card surface — floating text on white feels broken; always commit to cream or pure white as a card surface",
+      "Never use positive letter-spacing on body or display text — the only positive tracking (0.05em) is reserved for Pitch Sans testimonial attributions",
+      "Never reduce the wordmark below 61px or substitute a standard display face for Gooper; the bubbly custom face is the brand's most recognizable element"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffe845",
+        "name": "Sunglow",
+        "role": "Brand canvas — the dominant page background across all sections, hero, footer, and announcement bar; also fills product category tags and sticker burst shapes",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Sauce Bottle Black",
+        "role": "Primary text, all borders and hairlines, product card strokes, mascot linework, and the filled primary action button background — does the heavy structural and typographic lifting",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fbfaf2",
+        "name": "Buttermilk",
+        "role": "Alternate card surface for quieter product tiles — an off-white that reads as warm cream against the saturated yellow canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#007aff",
+        "name": "Cool Link Blue",
+        "role": "Ghost/outlined secondary action border — a borrowed utility color for low-emphasis links, never used for filled buttons or primary navigation",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed yellow canvas with no max-width constraint on background color. Content is max-width ~1280px centered. The hero is a centered wordmark + mascot stack with a large subhead paragraph below, followed by a 3-column product card grid (3 visible products per row at desktop). Sections are separated by color swap rather than by dividers or shadow changes — the rhythm reads as yellow → yellow-band-with-cream-cards → yellow → yellow. Navigation is a single full-bleed horizontal bar at the top, no sticky behavior implied, no sidebar. The product grid uses uniform card sizing with equal gutters. Below the grid, a centered SHOP ALL button acts as the section closer. A testimonial band follows at full viewport width with side-edge carousel arrows, then the footer. Vertical rhythm is generous: ~80px between major sections, ~24px between cards and internal card elements.",
+    "imagery": "Product photography is tight, centered, and isolated on pure white card backgrounds — bottles are shot straight-on with no lifestyle context, no hands, no food pairings. The hero wordmark is paired with a hand-drawn black-line cartoon bird mascot (spiky feathers, expressive eyes, no color fill) that functions as a secondary brand asset. A hand-drawn starburst sticker shape with jagged edges appears as a decorative seal. No full-bleed photography, no video, no abstract gradients — imagery is limited to: (1) clean white-background product shots, (2) black-line mascot illustrations, and (3) the hand-drawn starburst. Iconography is entirely custom and line-art based, rendered in solid black on yellow.",
+    "similar": [
+      {
+        "why": "Same saturated yellow-and-black hot-sauce brand palette with thick custom display typography and flat card-based product grids",
+        "business": "HEATONIST"
+      },
+      {
+        "why": "Bold condiment branding with a single dominant brand color, custom display wordmark, and flat illustration-driven mascot identity",
+        "business": "Cholula"
+      },
+      {
+        "why": "High-contrast packaging-forward food brand using thick black strokes, saturated canvas colors, and a flat no-shadow component language",
+        "business": "Omsom"
+      },
+      {
+        "why": "Premium condiment brand with playful illustrated mascot, oversized custom display type, and a two-color identity system",
+        "business": "Fly By Jing"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "6px",
+        "cards": "30px",
+        "images": "30px",
+        "buttons": "14px",
+        "stickers": "36px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffe845",
+        "name": "Sunglow Canvas",
+        "level": 1,
+        "purpose": "Full-bleed page background for every section including hero, product grid, testimonial band, and footer"
+      },
+      {
+        "hex": "#fbfaf2",
+        "name": "Cream Card",
+        "level": 2,
+        "purpose": "Alternate product tile background for lower-prominence SKUs"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White Card",
+        "level": 3,
+        "purpose": "Primary product card surface sitting on the yellow canvas"
+      },
+      {
+        "hex": "#000000",
+        "name": "Black Button",
+        "level": 4,
+        "purpose": "Primary action surface — the single filled CTA pattern"
+      }
+    ],
+    "northStar": "Retro condiment billboard in midday sun — a single yellow plane under a black sun, every letter drawn with a fat marker.\n\nThe system breathes through color contrast, not elevation: yellow on yellow separated by thick black strokes, with cream cards as the only neutral relief.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "subheading",
+        "size": 27,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.57
+      },
+      {
+        "role": "heading",
+        "size": 41,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.45
+      },
+      {
+        "role": "heading-lg",
+        "size": 61,
+        "lineHeight": 0.9,
+        "letterSpacing": -0.67
+      },
+      {
+        "role": "display",
+        "size": 91,
+        "lineHeight": 1.05,
+        "letterSpacing": -2.55
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Slim site-wide utility bar above the nav",
+        "description": "Full-width #000000 background, ~36px tall, centered white text in Monument Grotesk 14px. Used for shipping promos and trust signals. No padding beyond vertical centering."
+      },
+      {
+        "name": "Primary Navigation Header",
+        "role": "Main site nav anchored to the top of every page",
+        "description": "#ffe845 background, full-bleed. Left-aligned nav links (SHOP, ABOUT, FIND US) and right-aligned utility links (SEARCH, LOG IN, CART) in Monument Grotesk 18px, #000000, all caps, letter-spacing -0.011em. The bird-mark logo sits centered as a small inline icon. No background, no border — nav floats on the yellow canvas."
+      },
+      {
+        "name": "Hero Wordmark Block",
+        "role": "Above-the-fold brand statement replacing a typical headline+subhead+CTA",
+        "description": "Full-bleed #ffe845 section. Centered Gooper 91px 'Yellowbird' wordmark in #000000 with the spiky-bird mascot illustration overlapping the top of the letters. No subtitle, no CTA — the wordmark IS the hero. Vertical padding ~80px above and below."
+      },
+      {
+        "name": "Hero Subhead Paragraph",
+        "role": "Long-form intro text under the hero wordmark",
+        "description": "Monument Grotesk 45px, weight 400, line-height 1.0, letter-spacing -0.014em, #000000, centered, max-width ~900px. Black text on yellow — no background card. This is the largest running text in the system."
+      },
+      {
+        "name": "Product Card",
+        "role": "Primary commerce tile for sauce SKUs in the featured grid",
+        "description": "White (#ffffff) or cream (#fbfaf2) background, 1.5–2px solid #000000 border, 30px border-radius. ~24px internal padding. Product image centered, category badge overlaid at top-center, product name in Monument Grotesk 18–27px below. No shadow — separation comes from the black stroke against the yellow page."
+      },
+      {
+        "name": "Product Category Badge",
+        "role": "Label tag overlaid on product cards (CLASSIC, ORGANIC, SMALL BATCH)",
+        "description": "#ffe845 fill with 1.5px #000000 border, 6px border-radius, ~15px vertical and ~18px horizontal padding. Pitch Sans 16px weight 600, #000000, all caps. Sits at the top-center of the product card, slightly overlapping the card edge."
+      },
+      {
+        "name": "Primary Action Button",
+        "role": "The single filled CTA — used for SHOP ALL and checkout actions",
+        "description": "#000000 fill, #ffffff text, 14px border-radius, ~15px vertical and ~18px horizontal padding. Monument Grotesk 18px weight 400, all caps, letter-spacing -0.011em. No border, no shadow, no hover lift — sits flat like a sticker on the yellow canvas."
+      },
+      {
+        "name": "Ghost Secondary Action",
+        "role": "Outlined secondary button for lower-emphasis links",
+        "description": "Transparent fill, 1.5px #007aff border, 10px border-radius, ~10px vertical and ~18px horizontal padding. Monument Grotesk 18px, #007aff text. The only place blue enters the system — treats blue as borrowed utility, not brand."
+      },
+      {
+        "name": "Starburst Sticker",
+        "role": "Decorative seal/burst shape for callouts and trust signals",
+        "description": "#ffe845 fill with #000000 stroke, 36px border-radius, hand-drawn jagged edge approximation. Monument Grotesk 18px, weight 400, #000000, all caps, slightly rotated (~5°). Used sparingly as a visual exclamation point — never more than one per viewport."
+      },
+      {
+        "name": "Testimonial Quote Block",
+        "role": "Full-width customer quote band",
+        "description": "#ffe845 background, no card. Monument Grotesk 45px italic-feel weight 400, #000000, centered, with opening/closing curly quotes rendered extra-large. Attribution in Pitch Sans 16px, letter-spacing 0.05em (the only positive tracking in the system), all caps, #000000. Carousel arrow controls sit at the left/right edges in #000000."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Horizontal separator between content bands",
+        "description": "Thin 1px #000000 hairline spanning the full content width. Used sparingly — most section separation comes from color swap, not a visible line."
+      },
+      {
+        "name": "Starburst Mascot Mark",
+        "role": "Small brand icon used in nav center and testimonial accent",
+        "description": "#000000 linework illustration of a spiky-feathered cartoon bird face, ~40px tall in nav, larger in testimonial accent. No fill, no color — pure black ink on yellow."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Signature wordmark display — the massive 'Yellowbird' logotype and any oversized display headings; a custom bubbly, ultra-chunky display face that functions as the brand's icon. Tight tracking (-0.028em) keeps the rounded forms from feeling wobbly at 91px",
+        "sizes": "91px",
+        "family": "Gooper",
+        "weight": "400, 700",
+        "lineHeight": "1.05",
+        "substitute": "Bagel Fat One, Fraunces 900, or Bowlby One",
+        "letterSpacing": "-0.0280em"
+      },
+      {
+        "role": "Primary workhorse — nav links, body copy, product names, section headings, button text, footer, and hero subhead. The single weight (400) carries all roles from 14px caption to 61px hero subhead, unified by negative tracking that tightens as size grows (-0.04em at 14px to -0.011em at 61px)",
+        "sizes": "14px, 18px, 27px, 30px, 41px, 45px, 61px",
+        "family": "ABC Monument Grotesk",
+        "weight": "400",
+        "lineHeight": "0.87, 0.90, 1.00, 1.10, 1.20, 1.30, 1.67",
+        "substitute": "Inter, GT America, Söhne, or General Sans",
+        "letterSpacing": "-0.0400em, -0.0300em, -0.0140em, -0.0110em, -0.0070em, -0.0060em"
+      },
+      {
+        "role": "Secondary utility — used for badges, tags, micro-labels, and supporting metadata where a slightly more compact feel is needed. Weight 600 for badge text adds the only weight contrast in the system",
+        "sizes": "16px, 18px, 27px",
+        "family": "Pitch Sans",
+        "weight": "400, 600",
+        "lineHeight": "0.84, 1.00, 1.20, 1.30, 1.46",
+        "substitute": "Söhne, Inter, or Untitled Sans",
+        "letterSpacing": "-0.0310em, -0.0120em, -0.0110em, 0.0500em"
+      }
+    ],
+    "description": "Yellowbird is a high-volume, two-color world: a single vivid yellow floods every section while black does all the structural and typographic work. The page reads like a hand-drawn condiment billboard — flat surfaces, thick hairline borders instead of shadows, generous breathing room, and a custom chunky display face that turns the wordmark into the hero. There is no gradient depth, no glassmorphism, no card-on-card layering; spatial separation comes from color swaps (yellow band → cream card → black button) and generous padding. Interactive elements stay minimal and confident: most surfaces are borderless on the yellow canvas, product cards use a 30px radius and a solid black stroke, and the one true CTA is a heavy black pill-shaped button with white text. The blue (#007aff) appears only as a ghost-button border for secondary actions, making it feel borrowed rather than owned.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/22cc86bc-6c5f-4413-a4a2-66b8ddc82ad0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Yellowbird® design system\",\"item\":\"https://styles.refero.design/style/22cc86bc-6c5f-4413-a4a2-66b8ddc82ad0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/22cc86bc-6c5f-4413-a4a2-66b8ddc82ad0#style-reference\",\"name\":\"Yellowbird® design system reference\",\"headline\":\"Yellowbird® design system | Refero Styles\",\"description\":\"Explore Yellowbird®'s light E-commerce design system: Sunglow #ffe845, Sauce Bottle Black #000000 colors, Gooper, ABC Monument Grotesk typography, and...\",\"url\":\"https://styles.refero.design/style/22cc86bc-6c5f-4413-a4a2-66b8ddc82ad0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/22cc86bc-6c5f-4413-a4a2-66b8ddc82ad0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Yellowbird®\",\"url\":\"https://www.yellowbirdfoods.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/22cc86bc-6c5f-4413-a4a2-66b8ddc82ad0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5af82e60-c443-4a04-a56a-280ac1d7352c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5af82e60-c443-4a04-a56a-280ac1d7352c.jpg\",\"caption\":\"Screenshot of Yellowbird®\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5af82e60-c443-4a04-a56a-280ac1d7352c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Yellowbird® design system\",\"Yellowbird® website design\",\"Yellowbird® colors\",\"Yellowbird® typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Sunglow\",\"Sauce Bottle Black\",\"Pure White\",\"Buttermilk\",\"Gooper\",\"ABC Monument Grotesk\",\"Pitch Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Yellowbird® design system\"},{\"@type\":\"Thing\",\"name\":\"Yellowbird® website design\"},{\"@type\":\"Thing\",\"name\":\"Yellowbird® colors\"},{\"@type\":\"Thing\",\"name\":\"Yellowbird® typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:32:59.364Z\",\"dateModified\":\"2026-04-30T00:32:59.364Z\"}]}19:T625,**Quick Color Reference**\n- Canvas: #ffe845\n- Text: #000000\n- Card surface: #ffffff\n- Alternate card: #fbfaf2\n- Border/stroke: #000000\n- primary action: #ffe845 (filled action)\n- Secondary action: #007aff (outlined ghost border only)\n\n**3-5 Example Component Prompts**\n\n1. **Product Card**: White (#ffffff) background, 1.5px solid #000000 border, 30px border-radius, 24px padding. Centered sauce bottle product image. Category badge overlaid at top-center: #ffe845 fill, 1.5px #000000 border, 6px radius, Pitch Sans 16px weight 600, all caps, #000000. Product name below in Monument Grotesk 27px, #000000, letter-spacing -0.011em.\n\n2. Create a Primary Action Button: #ffe845 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **Hero Subhead Paragraph**: Full-bleed #ffe845 background, no card. Monument Grotesk 45px, weight 400, line-height 1.0, letter-spacing -0.014em, #000000, centered, max-width 900px. ~80px vertical padding above and below.\n\n4. **Starburst Sticker**: #ffe845 fill, 1.5px #000000 stroke, 36px border-radius with hand-drawn jagged edge, rotated ~5°. Monument Grotesk 18px, weight 400, #000000, all caps, centered inside. Place at top-right of viewport as a single decorative callout.\n\n5. **Testimonial Quote Section**: Full-bleed #ffe845 background. Monument Grotesk 45px, weight 400, #000000, centered, with oversized curly quotes. Attribution in Pitch Sans 16px, letter-spacing 0.05em, all caps, #000000, below the quote. Carousel arrow controls in #000000 at the far left and right edges."
+      }
+    ],
+    "elevationPhilosophy": "The design intentionally avoids shadows. Spatial separation is achieved exclusively through: (1) color contrast — yellow surfaces against black-bordered white cards, (2) thick solid 1.5–2px black strokes on all elevated elements, and (3) generous padding. There is no z-axis hierarchy — the system is deliberately flat, reading more like screen-printed packaging than a typical depth-using SaaS UI. Adding even a subtle shadow would break the printed-poster feel that defines the brand."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "link",
+            "button",
+            "other",
+            "nav",
+            "icon",
+            "heading",
+            "input",
+            "hero",
+            "body",
+            "card",
+            "image",
+            "badge",
+            "footer",
+            "list"
+          ],
+          "frequency": 3705,
+          "confidence": 1,
+          "prominence": 98888261.25865974,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 10,
+            "body/color": 114,
+            "card/color": 53,
+            "hero/color": 1,
+            "icon/color": 104,
+            "link/color": 34,
+            "list/color": 24,
+            "other/fill": 43,
+            "badge/color": 20,
+            "image/color": 30,
+            "input/color": 2,
+            "other/color": 283,
+            "button/color": 10,
+            "footer/color": 1,
+            "other/stroke": 114,
+            "heading/color": 19,
+            "nav/borderColor": 40,
+            "body/borderColor": 456,
+            "card/borderColor": 212,
+            "hero/borderColor": 4,
+            "icon/borderColor": 416,
+            "link/borderColor": 136,
+            "list/borderColor": 96,
+            "badge/borderColor": 80,
+            "image/borderColor": 120,
+            "input/borderColor": 8,
+            "other/borderColor": 1132,
+            "button/borderColor": 56,
+            "footer/borderColor": 4,
+            "heading/borderColor": 76,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#ffe845",
+          "oklch": {
+            "c": 0.17279503047486397,
+            "h": 100.96424135164693,
+            "l": 0.9229701583625316
+          },
+          "contexts": [
+            "other",
+            "button",
+            "card",
+            "footer",
+            "icon"
+          ],
+          "frequency": 142,
+          "confidence": 1,
+          "prominence": 7868727.238604797,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "other/fill": 59,
+            "other/color": 9,
+            "button/color": 3,
+            "other/stroke": 11,
+            "icon/borderColor": 4,
+            "other/borderColor": 36,
+            "button/borderColor": 4,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 11,
+            "button/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 5338276.424552143,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 2,
+            "other/fill": 10,
+            "button/color": 2,
+            "icon/borderColor": 8,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fbfaf2",
+          "oklch": {
+            "c": 0.010588028175078446,
+            "h": 100.81868947614105,
+            "l": 0.9836781699372031
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 493814,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#007aff",
+          "oklch": {
+            "c": 0.21771224104574957,
+            "h": 257.4238698955573,
+            "l": 0.6027647392623869
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 3382.0844155396458,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 4,
+            "button/borderColor": 16
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.02007963234972745,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.06,
+          "background": "#fbfaf2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.88,
+          "background": "#ffe845",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.23,
+          "background": "#000000",
+          "foreground": "#007aff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.02,
+          "background": "#ffffff",
+          "foreground": "#007aff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.84,
+          "background": "#fbfaf2",
+          "foreground": "#007aff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.23,
+          "background": "#ffe845",
+          "foreground": "#007aff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.24,
+          "background": "#ffffff",
+          "foreground": "#ffe845"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.19,
+          "background": "#fbfaf2",
+          "foreground": "#ffe845"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.05,
+          "background": "#fbfaf2",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "card",
+            "image"
+          ],
+          "frequency": 36
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|button",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "list"
+          ],
+          "frequency": 31,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginBottom|other",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "input",
+            "button",
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|badge"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "heading",
+            "button",
+            "body"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button",
+            "card",
+            "list"
+          ],
+          "frequency": 40,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "marginTop|other",
+            "marginRight|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "image"
+          ],
+          "frequency": 83,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginRight|image",
+            "marginLeft|image"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card",
+            "footer"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingBottom",
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginRight|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|card",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "marginTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 75,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 306,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|hero",
+            "marginBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 83,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 86,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 210,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "radial",
+        "value": "radial-gradient(closest-side, rgb(255, 232, 69) 80%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 0) 100%)",
+        "colors": [
+          "rgb(255, 232, 69)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ABC Monument Grotesk",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 360,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Pitch Sans",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 351,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Gooper",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 15,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "ABC Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 2.14,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABC Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABC Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Pitch Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Pitch Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 316,
+          "lineHeight": 1.46,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Pitch Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "badge"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.46,
+          "letterSpacing": -0.012,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Pitch Sans",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "ABC Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "button",
+            "other",
+            "hero",
+            "card",
+            "image",
+            "icon",
+            "badge",
+            "footer",
+            "list"
+          ],
+          "frequency": 268,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ABC Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Pitch Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "ABC Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 27,
+          "family": "Pitch Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.84,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "ABC Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.87,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "ABC Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "ABC Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "icon",
+            "button",
+            "heading"
+          ],
+          "frequency": 27,
+          "lineHeight": 0.78,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "ABC Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.78,
+          "letterSpacing": -0.006,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 41,
+          "family": "ABC Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "ABC Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 61,
+          "family": "ABC Monument Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 91,
+          "family": "Gooper",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.028,
+          "textTransform": "none"
+        },
+        {
+          "size": 91,
+          "family": "Gooper",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.028,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/a6de281f-12f0-49d5-957d-dbe04cbb1b31.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5af82e60-c443-4a04-a56a-280ac1d7352c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/22cc86bc-6c5f-4413-a4a2-66b8ddc82ad0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Yellowbird® design system\",\"item\":\"https://styles.refero.design/style/22cc86bc-6c5f-4413-a4a2-66b8ddc82ad0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/22cc86bc-6c5f-4413-a4a2-66b8ddc82ad0#style-reference\",\"name\":\"Yellowbird® design system reference\",\"headline\":\"Yellowbird® design system | Refero Styles\",\"description\":\"Explore Yellowbird®'s light E-commerce design system: Sunglow #ffe845, Sauce Bottle Black #000000 colors, Gooper, ABC Monument Grotesk typography, and...\",\"url\":\"https://styles.refero.design/style/22cc86bc-6c5f-4413-a4a2-66b8ddc82ad0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/22cc86bc-6c5f-4413-a4a2-66b8ddc82ad0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Yellowbird®\",\"url\":\"https://www.yellowbirdfoods.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/22cc86bc-6c5f-4413-a4a2-66b8ddc82ad0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5af82e60-c443-4a04-a56a-280ac1d7352c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5af82e60-c443-4a04-a56a-280ac1d7352c.jpg\",\"caption\":\"Screenshot of Yellowbird®\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5af82e60-c443-4a04-a56a-280ac1d7352c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Yellowbird® design system\",\"Yellowbird® website design\",\"Yellowbird® colors\",\"Yellowbird® typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Sunglow\",\"Sauce Bottle Black\",\"Pure White\",\"Buttermilk\",\"Gooper\",\"ABC Monument Grotesk\",\"Pitch Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Yellowbird® design system\"},{\"@type\":\"Thing\",\"name\":\"Yellowbird® website design\"},{\"@type\":\"Thing\",\"name\":\"Yellowbird® colors\"},{\"@type\":\"Thing\",\"name\":\"Yellowbird® typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:32:59.364Z\",\"dateModified\":\"2026-04-30T00:32:59.364Z\"}]}19:T625,**Quick Color Reference**\n- Canvas: #ffe845\n- Text: #000000\n- Card surface: #ffffff\n- Alternate card: #fbfaf2\n- Border/stroke: #000000\n- primary action: #ffe845 (filled action)\n- Secondary action: #007aff (outlined ghost border only)\n\n**3-5 Example Component Prompts**\n\n1. **Product Card**: White (#ffffff) background, 1.5px solid #000000 border, 30px border-radius, 24px padding. Centered sauce bottle product image. Category badge overlaid at top-center: #ffe845 fill, 1.5px #000000 border, 6px radius, Pitch Sans 16px weight 600, all caps, #000000. Product name below in Monument Grotesk 27px, #000000, letter-spacing -0.011em.\n\n2. Create a Primary Action Button: #ffe845 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **Hero Subhead Paragraph**: Full-bleed #ffe845 background, no card. Monument Grotesk 45px, weight 400, line-height 1.0, letter-spacing -0.014em, #000000, centered, max-width 900px. ~80px vertical padding above and below.\n\n4. **Starburst Sticker**: #ffe845 fill, 1.5px #000000 stroke, 36px border-radius with hand-drawn jagged edge, rotated ~5°. Monument Grotesk 18px, weight 400, #000000, all caps, centered inside. Place at top-right of viewport as a single decorative callout.\n\n5. **Testimonial Quote Section**: Full-bleed #ffe845 background. Monument Grotesk 45px, weight 400, #000000, centered, with oversized curly quotes. Attribution in Pitch Sans 16px, letter-spacing 0.05em, all caps, #000000, below the quote. Carousel arrow controls in #000000 at the far left and right edges."
+}

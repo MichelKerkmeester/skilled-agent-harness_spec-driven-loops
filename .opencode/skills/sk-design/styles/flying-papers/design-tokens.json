@@ -1,0 +1,377 @@
+{
+  "color": {
+    "dusk-violet": {
+      "$value": "#8584bd",
+      "$type": "color",
+      "$description": "Dusk Violet — Primary canvas and hero background — the stage that every other color performs on"
+    },
+    "hi-vis-yellow": {
+      "$value": "#f4ed36",
+      "$type": "color",
+      "$description": "Hi-Vis Yellow — Yellow accent for outlined action borders, linked labels, and lightweight interactive emphasis. Do not promote it to the primary CTA color"
+    },
+    "buttery-yellow": {
+      "$value": "#f9cc73",
+      "$type": "color",
+      "$description": "Buttery Yellow — Secondary display text and softer borders — a mellower sibling of Hi-Vis for when Hi-Vis would be too much"
+    },
+    "lilac-shadow": {
+      "$value": "#61609a",
+      "$type": "color",
+      "$description": "Lilac Shadow — Card and block backgrounds — a deeper violet for nested surfaces on the violet stage"
+    },
+    "bubblegum-pink": {
+      "$value": "#f8c1ba",
+      "$type": "color",
+      "$description": "Bubblegum Pink — Decorative borders and confetti accent — a warm pink used sparingly for pop"
+    },
+    "matcha-cream": {
+      "$value": "#b5c995",
+      "$type": "color",
+      "$description": "Matcha Cream — Decorative borders and confetti accent — a dusty sage for the secondary cast of cards"
+    },
+    "magenta-punch": {
+      "$value": "#ac4f98",
+      "$type": "color",
+      "$description": "Magenta Punch — Accent card surface — reserved for standout blocks that need to scream louder than the stage"
+    },
+    "firecracker-red": {
+      "$value": "#c94245",
+      "$type": "color",
+      "$description": "Firecracker Red — Red wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "bone-white": {
+      "$value": "#f9f5f2",
+      "$type": "color",
+      "$description": "Bone White — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "ink-black": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Ink Black — Body text, primary borders, and outlined button strokes — the near-black that does typographic work on cream surfaces"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Hard borders, icons, and text on yellow surfaces — pure black where maximum edge contrast is needed"
+    }
+  },
+  "font": {
+    "obviouslyvariable": {
+      "$value": "ObviouslyVariable",
+      "$type": "fontFamily",
+      "$description": "Display and large heading family — the only font loud enough for the system. Sizes scale from 18px body uses up to 341px poster-scale display. Tight 0.80–1.00 leading makes multi-line headlines stack into solid color blocks; calt is disabled so the wide geometric forms stay unornamented. Substitute: Founders Grotesk Condensed, Knockout, or Druk Wide."
+    },
+    "degularvariable": {
+      "$value": "DegularVariable",
+      "$type": "fontFamily",
+      "$description": "Ultra-small UI text — nav, footer micro-copy, and inline labels at 10px. The neutral workhorse that disappears next to the display voice. Substitute: Inter, IBM Plex Sans."
+    },
+    "bergenmonoregular": {
+      "$value": "bergen_monoregular",
+      "$type": "fontFamily",
+      "$description": "Monospaced micro-type for nav, tags, and small data labels — provides a typewriter rhythm against the rounded display. The 0.80 leading on monospace is signature: mono stacked tight feels like a receipt. Substitute: JetBrains Mono, IBM Plex Mono."
+    },
+    "degulardisplay-bold": {
+      "$value": "DegularDisplay-Bold",
+      "$type": "fontFamily",
+      "$description": "Small bold body text for CTAs, button labels, and emphasized micro-copy. The 0.05em tracking opens the letterforms enough to read at 16px without crowding. Substitute: Degular Bold, Söhne Bold."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "DegularVariable",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "bergen_monoregular",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "bergen_monoregular",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "bergen_monoregular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "bergen_monoregular",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "bergen_monoregular",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "DegularDisplay-Bold",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ObviouslyVariable",
+        "fontSize": "18px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "ObviouslyVariable",
+        "fontSize": "20px",
+        "fontWeight": 800,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ObviouslyVariable",
+        "fontSize": "20px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "ObviouslyVariable",
+        "fontSize": "30px",
+        "fontWeight": 800,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ObviouslyVariable",
+        "fontSize": "100px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 100px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ObviouslyVariable",
+        "fontSize": "113px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 113px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "ObviouslyVariable",
+        "fontSize": "130px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 130px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "ObviouslyVariable",
+        "fontSize": "133px",
+        "fontWeight": 800,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 133px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "ObviouslyVariable",
+        "fontSize": "149px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 149px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "ObviouslyVariable",
+        "fontSize": "184px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 184px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "ObviouslyVariable",
+        "fontSize": "241px",
+        "fontWeight": 900,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 241px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "ObviouslyVariable",
+        "fontSize": "244px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 244px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "ObviouslyVariable",
+        "fontSize": "244px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 244px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "ObviouslyVariable",
+        "fontSize": "341px",
+        "fontWeight": 900,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 341px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "dusk-violet-stage": {
+      "$value": "#8584bd",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page canvas and hero background"
+    },
+    "bone-white-card": {
+      "$value": "#f9f5f2",
+      "$type": "color",
+      "$description": "Surface level 1: Light card and button surface on the violet stage"
+    },
+    "lilac-shadow-block": {
+      "$value": "#61609a",
+      "$type": "color",
+      "$description": "Surface level 2: Nested surface for content blocks sitting on the violet stage"
+    },
+    "hi-vis-yellow-surface": {
+      "$value": "#f4ed36",
+      "$type": "color",
+      "$description": "Surface level 3: Accent surface for the most important element on a given screen"
+    },
+    "accent-paint-card": {
+      "$value": "#f8c1ba",
+      "$type": "color",
+      "$description": "Surface level 4: Decorative confetti card surface (alternates: #b5c995, #ac4f98, #c94245)"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.flyingpapers.com",
+      "siteName": "Flying Papers",
+      "extractedAt": "2026-06-03T17:03:21.797Z",
+      "variant": "extended"
+    }
+  }
+}

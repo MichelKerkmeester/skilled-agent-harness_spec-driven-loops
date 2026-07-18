@@ -1,0 +1,232 @@
+{
+  "color": {
+    "ikea-yellow": {
+      "$value": "#ffdb00",
+      "$type": "color",
+      "$description": "IKEA Yellow — Primary CTA fills, featured card backgrounds, hero accent panels, the singular chromatic workhorse of the system"
+    },
+    "ink-black": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, body copy, headings, dominant borders (851 occurrences), icon strokes"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page background, card surfaces, nav background, button text on dark fills"
+    },
+    "warm-white": {
+      "$value": "#fffefb",
+      "$type": "color",
+      "$description": "Warm White — Slightly off-white surface variant for buttons and cards — barely warmer than pure white, breaks digital coldness"
+    },
+    "steel-gray": {
+      "$value": "#818181",
+      "$type": "color",
+      "$description": "Steel Gray — Secondary text, muted borders, disabled icon states"
+    },
+    "true-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "True Black — SVG icon fills, input borders, true-black accents where maximum contrast is needed"
+    },
+    "link-blue": {
+      "$value": "#0159a3",
+      "$type": "color",
+      "$description": "Link Blue — Text link color, used extensively across navigation and body links — the only blue in the system"
+    },
+    "soft-pink": {
+      "$value": "#ffa6da",
+      "$type": "color",
+      "$description": "Soft Pink — Occasional decorative highlight, used sparingly on select link elements or promotional accents"
+    }
+  },
+  "font": {
+    "noto-ikea": {
+      "$value": "Noto IKEA",
+      "$type": "fontFamily",
+      "$description": "Sole typeface — custom IKEA-branded Noto variant. Two-weight system (regular 400, bold 700) is deliberate restraint: no italics, no medium weight, no light. The 700 headlines at 36–51px carry the entire brand voice; body at 16px stays neutral. Letter-spacing tightens as size grows, giving display text a compressed, architectural quality."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Noto IKEA",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Noto IKEA",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Noto IKEA",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Noto IKEA",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Noto IKEA",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Noto IKEA",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Noto IKEA",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.62
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Noto IKEA",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Noto IKEA",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.62
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Noto IKEA",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Noto IKEA",
+        "fontSize": "51px",
+        "fontWeight": 700,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 51px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background, top navigation"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default card background on white pages"
+    },
+    "warm-white-surface": {
+      "$value": "#fffefb",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle off-white for specific card or button surfaces"
+    },
+    "accent-surface": {
+      "$value": "#ffdb00",
+      "$type": "color",
+      "$description": "Surface level 3: Yellow solid-fill cards and hero panels — the highest surface level, demands attention"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.ikea.com",
+      "siteName": "IKEA",
+      "extractedAt": "2026-06-03T20:49:37.912Z",
+      "variant": "extended"
+    }
+  }
+}

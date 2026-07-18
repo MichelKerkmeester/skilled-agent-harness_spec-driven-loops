@@ -1,0 +1,72 @@
+@theme {
+  /* Colors */
+  --color-porcelain: #ffffff;
+  --color-charcoal: #1d1d1d;
+  --color-hairline: #e5e7eb;
+  --color-smoke: #737373;
+  --color-ash: #a3a3a3;
+  --color-mist: #f3f4f6;
+  --color-graphite: #5e5e5e;
+  --color-bone: #cacaca;
+  --color-onyx: #000000;
+  --color-slate: #6b7280;
+  --color-moss: #569d5f;
+  --color-signal-blue: #2563eb;
+
+  /* Typography */
+  --font-suisseintl: 'SuisseIntl', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ui-monospace: 'ui-monospace', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-intercom-sans: 'Intercom Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-intercom-font: 'intercom-font', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 20px;
+  --leading-subheading: 1.25;
+  --tracking-subheading: -0.3px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.36px;
+  --text-heading: 36px;
+  --leading-heading: 1.05;
+  --text-heading-lg: 44px;
+  --leading-heading-lg: 1.05;
+  --tracking-heading-lg: -0.88px;
+  --text-display: 72px;
+  --leading-display: 1;
+  --tracking-display: -1.8px;
+  --text-display-xl: 100px;
+  --leading-display-xl: 0.9;
+  --tracking-display-xl: -2.5px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-60: 60px;
+  --spacing-64: 64px;
+  --spacing-120: 120px;
+  --spacing-176: 176px;
+  --spacing-180: 180px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: rgba(0, 0, 0, 0.06) 0px 1px 6px 0px, rgba(0, 0, 0, 0.16) 0px 2px 32px 0px;
+  --shadow-sm-2: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px;
+}

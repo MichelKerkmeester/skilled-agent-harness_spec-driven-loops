@@ -1,0 +1,417 @@
+{
+  "color": {
+    "midnight-sapphire": {
+      "$value": "#0a1d4b",
+      "$type": "color",
+      "$description": "Midnight Sapphire — Primary canvas for hero and feature bands, body text on cream surfaces, outlined action borders — the void that everything floats on"
+    },
+    "bright-violet": {
+      "$value": "#9c8bf9",
+      "$type": "color",
+      "$description": "Bright Violet — Rare accent fill for highlight buttons and emphasis moments — a vivid punctuation against the matte navy canvas"
+    },
+    "deep-indigo": {
+      "$value": "#162d67",
+      "$type": "color",
+      "$description": "Deep Indigo — Elevated card surface against the main canvas — one step lighter than Midnight Sapphire, used for nested feature cards"
+    },
+    "slate-violet": {
+      "$value": "#3a486b",
+      "$type": "color",
+      "$description": "Slate Violet — Muted text on dark sections, secondary borders and dividers — a desaturated companion to the primary navy"
+    },
+    "warm-cream": {
+      "$value": "#fcf6ea",
+      "$type": "color",
+      "$description": "Warm Cream — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "sand": {
+      "$value": "#faedd2",
+      "$type": "color",
+      "$description": "Sand — FAQ section background, warm surface wash, decorative fills — slightly more saturated than Warm Cream to signal content zones"
+    },
+    "graphite": {
+      "$value": "#474b60",
+      "$type": "color",
+      "$description": "Graphite — Body text borders, form field borders, subtle dividers — cool gray that reads as neutral on both light and dark surfaces"
+    },
+    "khaki": {
+      "$value": "#b4ad98",
+      "$type": "color",
+      "$description": "Khaki — Muted helper text, subtle borders, low-emphasis labels — a warm desaturated gray for tertiary information"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary text and icon color on dark sections, high-contrast borders — used sparingly for maximum readability"
+    },
+    "coral-pink": {
+      "$value": "#ffb8d9",
+      "$type": "color",
+      "$description": "Coral Pink — Illustrative ribbon strokes, decorative accent lines, hand-drawn highlights in feature illustrations"
+    },
+    "mint-wave": {
+      "$value": "#68dacb",
+      "$type": "color",
+      "$description": "Mint Wave — Illustrative ribbon strokes, teal accents in feature card backgrounds — the secondary illustrative color"
+    },
+    "ice-blue": {
+      "$value": "#bcdff0",
+      "$type": "color",
+      "$description": "Ice Blue — Illustrative ribbon strokes, light blue decorative curves in hero and feature illustrations"
+    },
+    "pale-mint": {
+      "$value": "#a1e8df",
+      "$type": "color",
+      "$description": "Pale Mint — Secondary illustrative teal — lighter ribbon strokes and soft decorative elements"
+    },
+    "blush": {
+      "$value": "#ffe9f4",
+      "$type": "color",
+      "$description": "Blush — Soft pink-tinted card surface — warm pink background for individual feature card variants"
+    }
+  },
+  "font": {
+    "excon": {
+      "$value": "Excon",
+      "$type": "fontFamily",
+      "$description": "Display and heading typeface — tightly tracked geometric cuts that define the editorial voice. Used at massive sizes (90–151px) for hero and section headings with aggressive negative letter-spacing (-0.04em to -0.1em) that makes the letterforms lock into architectural shapes. Line-heights below 1.0 at display sizes create a compressed, almost overlapping density. Substitute: Space Grotesk or Archivo for close geometric character with similar tracking behavior."
+    },
+    "generalsans": {
+      "$value": "Generalsans",
+      "$type": "fontFamily",
+      "$description": "Body and UI typeface — humanist sans for all conversational text, buttons, labels, FAQ content, and card descriptions. Normal letter-spacing. The contrast with Excon's compressed display cuts is the typographic signature: editorial headlines whisper in geometric precision while body text speaks in approachable warmth. Substitute: Inter or DM Sans for a similar humanist feel at UI sizes."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Generalsans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Generalsans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Generalsans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Generalsans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Generalsans",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Generalsans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Generalsans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Excon",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Excon",
+        "fontSize": "25px",
+        "fontWeight": 700,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Excon",
+        "fontSize": "45px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Excon",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Excon",
+        "fontSize": "50px",
+        "fontWeight": 700,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Excon",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 60px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Excon",
+        "fontSize": "90px",
+        "fontWeight": 700,
+        "lineHeight": 0.87
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 90px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Excon",
+        "fontSize": "128px",
+        "fontWeight": 700,
+        "lineHeight": 0.87
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 128px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Excon",
+        "fontSize": "130px",
+        "fontWeight": 700,
+        "lineHeight": 0.87
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 130px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Excon",
+        "fontSize": "151px",
+        "fontWeight": 700,
+        "lineHeight": 0.87
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 151px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "Excon",
+        "fontSize": "274px",
+        "fontWeight": 700,
+        "lineHeight": 0.87
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 274px"
+    }
+  },
+  "spacing": {
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "42": {
+      "$value": "42px",
+      "$type": "dimension",
+      "$description": "Spacing 42px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "midnight-canvas": {
+      "$value": "#0a1d4b",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background for hero and feature bands"
+    },
+    "deep-indigo": {
+      "$value": "#162d67",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card surface against the main canvas"
+    },
+    "warm-cream": {
+      "$value": "#fcf6ea",
+      "$type": "color",
+      "$description": "Surface level 2: Light content zones, card surfaces on light bands, inverted button fills"
+    },
+    "sand": {
+      "$value": "#faedd2",
+      "$type": "color",
+      "$description": "Surface level 3: FAQ section background, warm content wash"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://paywithpeppermint.com",
+      "siteName": "Peppermint",
+      "extractedAt": "2026-06-03T21:44:32.456Z",
+      "variant": "extended"
+    }
+  }
+}

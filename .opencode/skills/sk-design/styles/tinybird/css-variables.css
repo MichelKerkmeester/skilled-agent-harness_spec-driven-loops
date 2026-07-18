@@ -1,0 +1,78 @@
+:root {
+  /* Colors */
+  --color-cursor-green: #27f795;
+  --color-hover-green: #008060;
+  --color-terminal-red: #800000;
+  --color-pure-white: #ffffff;
+  --color-void-black: #000000;
+  --color-console-black: #0a0a0a;
+  --color-panel-charcoal: #151515;
+  --color-card-graphite: #262626;
+  --color-border-smoke: #353535;
+  --color-muted-ash: #8d8d8d;
+  --color-tertiary-fog: #999999;
+  --color-highlight-mist: #d9d9d9;
+
+  /* Typography — Font Families */
+  --font-roboto: 'Roboto', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-roboto-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.57;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.57;
+  --text-body: 16px;
+  --leading-body: 1.67;
+  --text-subheading: 18px;
+  --leading-subheading: 1.5;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.33;
+  --tracking-heading-sm: -0.31px;
+  --text-stat-figure: 56px;
+  --leading-stat-figure: 1;
+  --tracking-stat-figure: -4.7px;
+  --text-display: 64px;
+  --leading-display: 1.13;
+  --tracking-display: -1.28px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-72: 72px;
+  --spacing-152: 152px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+
+  /* Named Radii */
+  --radius-tags: 4px;
+  --radius-cards: 8px;
+  --radius-buttons: 4px;
+
+  /* Surfaces */
+  --surface-void: #000000;
+  --surface-console: #0a0a0a;
+  --surface-panel: #151515;
+  --surface-card: #262626;
+  --surface-edge: #353535;
+}

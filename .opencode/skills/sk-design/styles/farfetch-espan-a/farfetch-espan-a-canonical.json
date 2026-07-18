@@ -1,0 +1,724 @@
+{
+  "source": "https://styles.refero.design/style/600002c5-c5f5-4df0-adf6-6324ee6255c0",
+  "uuid": "600002c5-c5f5-4df0-adf6-6324ee6255c0",
+  "name": "FARFETCH España",
+  "northStar": "White-cube fashion gallery. Imagine a high-end retail space where the walls, floors, and fixtures have been bleached to bone, leaving only the garments and the people wearing them to provide every hue, texture, and visual weight.",
+  "capturedAt": "2026-07-18T08:27:24.959Z",
+  "meta": {
+    "url": "https://farfetch.com",
+    "siteName": "FARFETCH España",
+    "extractedAt": "2026-06-03T17:15:01.137Z",
+    "durationMs": 26203,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 409,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all text and interactive elements in #222222 — there is no chromatic palette to draw from",
+      "Use 24px as the standard element gap in grids and 48–72px as the section breathing room",
+      "Apply weight 400 to all headings and body; reserve weight 700 exclusively for the wordmark and emphatic category labels",
+      "Render product tiles with 0 border-radius, 0 border, 0 box-shadow — the photograph is the entire visual",
+      "Anchor the header as a three-zone layout: category links left, wordmark center, utility icons right, all on a #ffffff background",
+      "Use #f5f5f5 as the only non-white surface for utility bars and hover washes; #e6e6e6 for hairlines",
+      "Invert to #222222 for the footer as the single dramatic close of an otherwise luminous white page"
+    ],
+    "donts": [
+      "Never introduce chromatic color anywhere in the interface — color lives exclusively in the photography",
+      "Never apply box-shadow, gradient, or border to product tiles, category cards, or navigation elements",
+      "Never use weight 500 or 600 — the system is strictly binary: 400 for everything, 700 for the wordmark",
+      "Never use filled buttons with background color — the only interactive surface treatments are underline and hover wash",
+      "Never break the 3- or 4-column grid with asymmetric or masonry layouts in product sections",
+      "Never place text directly on imagery without a tested contrast treatment or overlay scrim",
+      "Never use color to signal state — communicate active, hover, and selected through underline, weight shift, or opacity"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#222222",
+        "name": "Carbon",
+        "role": "Primary text, body copy, nav links, icons, logo wordmark, footer surface, and the near-black anchoring tone for the entire monochrome system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, card backgrounds, product tile surfaces, input fields, and the dominant background that makes photography the only chromatic voice",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b6b6b6",
+        "name": "Ash Gray",
+        "role": "Subtle icon strokes, secondary borders, search underline at rest, placeholder ghost text in inputs — the quietest non-text neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Stone",
+        "role": "Hover wash on nav strips, secondary surface tone for utility bars and announcement backgrounds, the softest surface lift in the stack",
+        "group": "neutral"
+      },
+      {
+        "hex": "#727272",
+        "name": "Graphite",
+        "role": "Muted helper text, inactive form borders, disabled icon strokes — the mid-gray that signals de-emphasis without losing legibility",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e6e6e6",
+        "name": "Smoke",
+        "role": "Hairline dividers between product rows, thin section separators, the barely-visible structural line in an otherwise seamless layout",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is a centered, full-width composition with a max content width of ~1280px. The header is a thin three-zone bar (category nav left, centered wordmark, utility icons right) with the search field floating beneath on the right. The first section is a 3-column grid of full-bleed editorial category tiles (MUJER, HOMBRE, INFANTIL), each with an overlay label. Below each category section, a 4-column grid of product category cards (NOVEDADES, ROPA, BOLSOS, ZAPATOS) with uppercase captions. Section titles are centered in display type with ~48px vertical padding above and below. No alternating background bands — the entire page is one continuous white field. The footer inverts to #222222 as the single dark band. Navigation is a minimal top bar with no sticky treatment, no mega-menu chrome, and no sidebar.",
+    "imagery": "Editorial fashion photography dominates the visual system — large-format, high-resolution, full-bleed images of models in architectural indoor settings and tightly cropped product still lifes. The photography itself carries a muted, desaturated palette: concrete walls, natural stone, neutral interiors, soft directional daylight. Models are shot at medium and full length with editorial posing rather than e-commerce catalog stiffness. Product images (bags, shoes) are isolated on neutral gray or stone backgrounds with no lifestyle context — the object IS the hero. The interface contributes zero imagery chrome: no badges, no promotional stickers, no decorative frames. All visual richness comes from the photography department, not the design system.",
+    "similar": [
+      {
+        "why": "Same editorial-fashion-gallery approach — achromatic interface, large-format editorial photography, display serif section titles, ghost navigation, zero shadows on product tiles",
+        "business": "SSENSE"
+      },
+      {
+        "why": "Identical monochrome restraint with a strong serif/sans duality, centered wordmark, uppercase category labels beneath imagery, and product tiles that are pure image with a caption",
+        "business": "Mr Porter"
+      },
+      {
+        "why": "Same luxury-fashion white-cube philosophy — white canvas, editorial photography, thin sans-serif body type, generous section breathing room, and the absence of decorative chrome",
+        "business": "Net-a-Porter"
+      },
+      {
+        "why": "Same architectural minimalism — full-bleed photography, strict grid systems, monochrome interface that lets the product be the only color, generous whitespace as the primary layout tool",
+        "business": "COS"
+      },
+      {
+        "why": "Same typographic confidence and restraint — custom sans-serif body, serif display moments, completely achromatic interface, zero decorative elements, typography as the only structure",
+        "business": "Aesop"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "48-72px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — the infinite white wall of the gallery"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Wash",
+        "level": 1,
+        "purpose": "Utility bar and hover state for nav strips — the only non-white surface that ever appears"
+      },
+      {
+        "hex": "#e6e6e6",
+        "name": "Divider",
+        "level": 2,
+        "purpose": "Hairline structural separator between product grid rows and footer sections"
+      },
+      {
+        "hex": "#222222",
+        "name": "Inversion",
+        "level": 3,
+        "purpose": "Footer background and any high-contrast terminal surface — used sparingly to close the page"
+      }
+    ],
+    "northStar": "White-cube fashion gallery. Imagine a high-end retail space where the walls, floors, and fixtures have been bleached to bone, leaving only the garments and the people wearing them to provide every hue, texture, and visual weight.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.33,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.31,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-lg",
+        "size": 30,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.3
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page utility strip with shipping and return policies",
+        "description": "Full-bleed #f5f5f5 background, 6–10px vertical padding, centered text at 13px weight 400 #222222. No icons, no close button visible — minimal and informational."
+      },
+      {
+        "name": "Header Navigation",
+        "role": "Primary site header with category nav, wordmark, and utility icons",
+        "description": "White background, 0 border-radius, three-zone layout: left-anchored category links (Mujer, Hombre, Niños) at 13px weight 400 #222222 with 24px gap; center-anchored FARFETCH wordmark at 22–30px weight 700; right-anchored flag selector, account, wishlist, and cart icons at 16px stroke #222222. Total height ~64px, no shadow, no sticky visual treatment beyond the default."
+      },
+      {
+        "name": "Search Input (Underline)",
+        "role": "Minimal search field with no visible bounding box",
+        "description": "No background, no border, just a 1px #b6b6b6 bottom underline. Placeholder text in #b6b6b6 at 13px weight 400, query text in #222222. Left-aligned magnifying-glass icon at 14px. Width adapts to container; focus state likely darkens the underline to #222222."
+      },
+      {
+        "name": "Category Tile (Editorial Hero)",
+        "role": "Large primary category entry point with overlay label",
+        "description": "Full-bleed editorial photograph, 0 border-radius, aspect ratio approximately 4:3 or 16:10. Category label (MUJER, HOMBRE, INFANTIL) overlaid center-center in white at 22–30px weight 400 with generous letter-spacing. No hover effect visible — the tile is a static editorial composition, not an interactive card."
+      },
+      {
+        "name": "Product Category Card",
+        "role": "Secondary category entry beneath each main section (NOVEDADES, ROPA, BOLSOS, ZAPATOS)",
+        "description": "Photograph occupying ~75% of card height with 0 border-radius and no border. Caption at 13px weight 400 #222222 in uppercase, left-aligned, positioned below the image with ~12px gap. No price, no metadata, no overlay — pure editorial card."
+      },
+      {
+        "name": "Section Title (Serif Display)",
+        "role": "Centered section heading introducing a product rail",
+        "description": "Set in the display/serif treatment of the brand type, 22–30px weight 400, #222222, centered, with ~48px vertical breathing room above and below. Examples: 'Elige una sección', 'Moda para mujer', 'Moda para hombre'."
+      },
+      {
+        "name": "Ghost Navigation Link",
+        "role": "Text-only category link in header",
+        "description": "13px weight 400 #222222, no underline at rest, underline on hover with 1px #222222 and a subtle transition. No background, no border, no padding beyond the text bounds."
+      },
+      {
+        "name": "Utility Icon Button",
+        "role": "Flag, account, wishlist, and cart actions in the header",
+        "description": "16–20px icon at #222222 stroke 1.5px, no background, no border, 8–12px tap target padding. Active states communicated through weight or fill, not color."
+      },
+      {
+        "name": "Footer (Inverted Surface)",
+        "role": "Terminal page section with site-wide links and legal",
+        "description": "#222222 background, white text at 13–15px weight 400, organized in multi-column link lists. This is the only place the page inverts — a confident full-bleed black close after the entire white gallery above."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Custom geometric sans-serif used for everything user-facing: nav links at 13–15px/400, body and product labels at 15px/400, section titles at 22–30px/400, and the FARFETCH wordmark at 700. The 400-weight-only headings are a deliberate anti-bold move — section titles rest at regular weight, confident without shouting, while 700 is reserved for the wordmark and the most emphatic category labels. The custom geometry brings even stroke contrast and subtle humanist warmth that a system Helvetica wouldn't.",
+        "sizes": "13px, 15px, 22px, 30px",
+        "family": "Farfetch Basis",
+        "weight": "400, 700",
+        "lineHeight": "1.20–1.33 (tightened as size increases)",
+        "substitute": "Söhne (paid) or Inter (free) — both share the geometric humanist proportions; Inter as the practical open-source fallback",
+        "letterSpacing": "normal at body sizes, slightly tightened at 30px display (~-0.3px)"
+      }
+    ],
+    "description": "Farfetch operates as a white-cube gallery for fashion: the interface is a near-total absence of color, letting editorial photography carry every visual decision. Typography does all the structural work — a custom geometric sans-serif (Farfetch Basis) at weights 400 and 700, with section titles and the wordmark set in a serif display treatment that treats text as composition. Layout is architectural: centered full-width content, rigid 3- and 4-column product grids, generous 48–72px section breathing room, and zero decorative chrome. Components are unornamented — thin underlines for search, ghost navigation links, uppercase category labels beneath imagery, flat product tiles with no shadows or borders. The only color in the system is the photography itself; the interface is the frame, never the picture.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/600002c5-c5f5-4df0-adf6-6324ee6255c0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"FARFETCH España design system\",\"item\":\"https://styles.refero.design/style/600002c5-c5f5-4df0-adf6-6324ee6255c0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/600002c5-c5f5-4df0-adf6-6324ee6255c0#style-reference\",\"name\":\"FARFETCH España design system reference\",\"headline\":\"FARFETCH España design system | Refero Styles\",\"description\":\"Explore FARFETCH España's light E-commerce design system: Carbon #222222, Paper #ffffff colors, Farfetch Basis typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/600002c5-c5f5-4df0-adf6-6324ee6255c0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/600002c5-c5f5-4df0-adf6-6324ee6255c0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"FARFETCH España\",\"url\":\"https://farfetch.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/600002c5-c5f5-4df0-adf6-6324ee6255c0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4b0dd72f-f1e6-4464-98d2-3a733fe7ccc8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4b0dd72f-f1e6-4464-98d2-3a733fe7ccc8.jpg\",\"caption\":\"Screenshot of FARFETCH España\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4b0dd72f-f1e6-4464-98d2-3a733fe7ccc8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"FARFETCH España design system\",\"FARFETCH España website design\",\"FARFETCH España colors\",\"FARFETCH España typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Carbon\",\"Paper\",\"Ash Gray\",\"Stone\",\"Farfetch Basis\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"FARFETCH España design system\"},{\"@type\":\"Thing\",\"name\":\"FARFETCH España website design\"},{\"@type\":\"Thing\",\"name\":\"FARFETCH España colors\"},{\"@type\":\"Thing\",\"name\":\"FARFETCH España typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-03-11T13:03:14.000Z\",\"dateModified\":\"2026-03-11T13:03:14.000Z\"}]}19:T67b,**Quick Color Reference**\n- text: #222222\n- background: #ffffff\n- border: #e6e6e6\n- muted text: #727272\n- icon / placeholder: #b6b6b6\n- surface wash: #f5f5f5\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Category tile (editorial hero)*: Full-width image filling a 4:3 container, 0px border-radius, no border, no shadow. Category label centered over the image in white, 30px Farfetch Basis weight 400, letter-spacing 0.5px. No hover effect, no overlay — the photograph and the word are the entire component.\n\n2. *Product category card*: Photograph in a 1:1 or 3:4 container, 0px border-radius, no border, no shadow. Caption below at 13px Farfetch Basis weight 400, #222222, uppercase, left-aligned, 12px margin-top from the image. No price, no badge, no metadata.\n\n3. *Header navigation*: White background, 64px height, three zones. Left: 'Mujer · Hombre · Niños' at 13px weight 400, #222222, 24px gap between links. Center: 'FARFETCH' wordmark at 24px weight 700, #222222. Right: four 18px outline icons (flag, person, heart, bag) at #222222, 16px gap. No border-bottom, no shadow.\n\n4. *Underlined search input*: Full width of its container, 1px solid #b6b6b6 bottom border only, no other borders, no background. Placeholder 'Buscar piezas y marcas' at 13px weight 400, #b6b6b6. 14px magnifying-glass icon at left. Focus state: bottom border becomes #222222.\n\n5. *Section title*: Centered text 'Moda para mujer' in the serif/display variant of the brand type, 30px weight 400, #222222. 48px padding-top and padding-bottom. No border, no decorative element — the title and its white space are the entire section opener."
+      },
+      {
+        "title": "Typography Duality",
+        "content": "The visual system operates on a two-mode typography model: (1) the custom geometric sans-serif (Farfetch Basis) at 400/700 for all functional UI — navigation, body, product labels, utility text; (2) a display/serif treatment reserved for section titles and the wordmark, treating these elements as editorial composition rather than UI. This duality means an AI agent should not apply one typeface uniformly — the section title and the product caption beneath its grid are intentionally different voices, and that contrast is what makes the hierarchy readable at a glance."
+      },
+      {
+        "title": "The Photography-as-Color Principle",
+        "content": "The system has been architected so that the interface provides zero chromatic information. Every hue, every texture, every gradient the user perceives comes from the product photography. This means: (a) the design system cannot rely on color-coded states — use weight, underline, and opacity instead; (b) product images must carry their own visual context (background, lighting, styling) because the page provides none; (c) any chromatic addition to the UI would break the contract and feel like an error. An AI agent building new screens should treat the #ffffff canvas as a stage and the images as the only performers."
+      }
+    ],
+    "elevationPhilosophy": "The system has zero shadow vocabulary. Elevation is achieved through surface tone shifts (Paper → Wash) and photography scale, never through drop-shadow or blur. A product tile is just an image on white with a caption beneath — no card chrome, no border, no lift. This is a deliberate editorial choice: the product IS the elevation, the photograph carries the visual weight that shadows normally would."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "other",
+            "button",
+            "list",
+            "body",
+            "link",
+            "nav",
+            "icon",
+            "input",
+            "heading",
+            "card",
+            "image",
+            "footer"
+          ],
+          "frequency": 1885,
+          "confidence": 1,
+          "prominence": 54576642.677065216,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "list",
+            "body",
+            "link",
+            "heading",
+            "card",
+            "input",
+            "footer"
+          ],
+          "frequency": 43,
+          "confidence": 1,
+          "prominence": 27382991.277094703,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e6e6e6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9249395393966913
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 622625,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b6b6b6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.776274031332301
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "card"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 206971.7722375118,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f5f5f5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9701507725365187
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 37,
+          "confidence": 1,
+          "prominence": 54956.29692078123,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#727272",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5520796201025747
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 50160.79531009041,
+          "properties": [
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#ffffff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.59,
+          "background": "#f5f5f5",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.75,
+          "background": "#e6e6e6",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.85,
+          "background": "#222222",
+          "foreground": "#b6b6b6"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.03,
+          "background": "#ffffff",
+          "foreground": "#b6b6b6"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.86,
+          "background": "#f5f5f5",
+          "foreground": "#b6b6b6"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.62,
+          "background": "#e6e6e6",
+          "foreground": "#b6b6b6"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.25,
+          "background": "#e6e6e6",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#f5f5f5",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 31,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "paddingTop",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 87,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 54,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 72,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Farfetch Basis",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 391,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Farfetch Basis",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "body",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.31,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Farfetch Basis",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "nav",
+            "link",
+            "body",
+            "input",
+            "card",
+            "icon",
+            "footer"
+          ],
+          "frequency": 207,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Farfetch Basis",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Farfetch Basis",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Farfetch Basis",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "Farfetch Basis",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Farfetch Basis",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c96ce8c4-4817-4cfb-ae34-36f07d08229d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4b0dd72f-f1e6-4464-98d2-3a733fe7ccc8.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/600002c5-c5f5-4df0-adf6-6324ee6255c0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"FARFETCH España design system\",\"item\":\"https://styles.refero.design/style/600002c5-c5f5-4df0-adf6-6324ee6255c0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/600002c5-c5f5-4df0-adf6-6324ee6255c0#style-reference\",\"name\":\"FARFETCH España design system reference\",\"headline\":\"FARFETCH España design system | Refero Styles\",\"description\":\"Explore FARFETCH España's light E-commerce design system: Carbon #222222, Paper #ffffff colors, Farfetch Basis typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/600002c5-c5f5-4df0-adf6-6324ee6255c0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/600002c5-c5f5-4df0-adf6-6324ee6255c0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"FARFETCH España\",\"url\":\"https://farfetch.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/600002c5-c5f5-4df0-adf6-6324ee6255c0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4b0dd72f-f1e6-4464-98d2-3a733fe7ccc8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4b0dd72f-f1e6-4464-98d2-3a733fe7ccc8.jpg\",\"caption\":\"Screenshot of FARFETCH España\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4b0dd72f-f1e6-4464-98d2-3a733fe7ccc8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"FARFETCH España design system\",\"FARFETCH España website design\",\"FARFETCH España colors\",\"FARFETCH España typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Carbon\",\"Paper\",\"Ash Gray\",\"Stone\",\"Farfetch Basis\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"FARFETCH España design system\"},{\"@type\":\"Thing\",\"name\":\"FARFETCH España website design\"},{\"@type\":\"Thing\",\"name\":\"FARFETCH España colors\"},{\"@type\":\"Thing\",\"name\":\"FARFETCH España typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-03-11T13:03:14.000Z\",\"dateModified\":\"2026-03-11T13:03:14.000Z\"}]}19:T67b,**Quick Color Reference**\n- text: #222222\n- background: #ffffff\n- border: #e6e6e6\n- muted text: #727272\n- icon / placeholder: #b6b6b6\n- surface wash: #f5f5f5\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Category tile (editorial hero)*: Full-width image filling a 4:3 container, 0px border-radius, no border, no shadow. Category label centered over the image in white, 30px Farfetch Basis weight 400, letter-spacing 0.5px. No hover effect, no overlay — the photograph and the word are the entire component.\n\n2. *Product category card*: Photograph in a 1:1 or 3:4 container, 0px border-radius, no border, no shadow. Caption below at 13px Farfetch Basis weight 400, #222222, uppercase, left-aligned, 12px margin-top from the image. No price, no badge, no metadata.\n\n3. *Header navigation*: White background, 64px height, three zones. Left: 'Mujer · Hombre · Niños' at 13px weight 400, #222222, 24px gap between links. Center: 'FARFETCH' wordmark at 24px weight 700, #222222. Right: four 18px outline icons (flag, person, heart, bag) at #222222, 16px gap. No border-bottom, no shadow.\n\n4. *Underlined search input*: Full width of its container, 1px solid #b6b6b6 bottom border only, no other borders, no background. Placeholder 'Buscar piezas y marcas' at 13px weight 400, #b6b6b6. 14px magnifying-glass icon at left. Focus state: bottom border becomes #222222.\n\n5. *Section title*: Centered text 'Moda para mujer' in the serif/display variant of the brand type, 30px weight 400, #222222. 48px padding-top and padding-bottom. No border, no decorative element — the title and its white space are the entire section opener."
+}

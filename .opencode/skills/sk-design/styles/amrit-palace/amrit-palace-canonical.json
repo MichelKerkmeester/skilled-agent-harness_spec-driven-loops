@@ -1,0 +1,1465 @@
+{
+  "source": "https://styles.refero.design/style/b753dfda-cbe1-41e4-b341-b98d69c8422f",
+  "uuid": "b753dfda-cbe1-41e4-b341-b98d69c8422f",
+  "name": "Amrit Palace",
+  "northStar": "spiced parchment gallery — a candlelit beige wall holding sparse saffron punctuation beneath breath-soft serif headlines.",
+  "capturedAt": "2026-07-18T06:24:39.215Z",
+  "meta": {
+    "url": "https://amritpalace.com",
+    "siteName": "Amrit Palace",
+    "extractedAt": "2026-07-03T03:49:06.472Z",
+    "durationMs": 198444,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 783,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all section headings in TT Ramillas Variable at weight 300 — never bold the serif display face; the whisper weight IS the luxury",
+      "Use uppercase + tight letter-spacing (-0.0400em to -0.0300em) on every heading 50px and above",
+      "Reserve #d49653 saffron exclusively for star ratings, active states, and single decorative punctuation moments — it should appear on screen no more than 2-3 times per fold",
+      "Apply 0px border-radius to all cards, sections, and image containers; reserve 3px only for buttons, tags, and interactive controls",
+      "Use 1px solid #b6ab9c hairlines as section dividers — they function as editorial column rules, not decorative borders",
+      "Lead with dark photographic full-bleed sections (hero + atmospheric transitions), then transition to the #d8cbb8 parchment canvas for content-heavy lower sections",
+      "Set body text at 14px Satoshi 500 with -0.0100em tracking; never drop below 13px for readable content",
+      "Use the marquee animation sparingly for signature dish scrolling — it is the only motion personality in the system"
+    ],
+    "donts": [
+      "Do not round card corners — sharp geometry is signature; 0px radius everywhere except buttons",
+      "Do not add box-shadows or elevation to cards — the system relies on flatness and hairline borders, never depth",
+      "Do not introduce a second chromatic accent — the saffron orange stands alone against the warm neutrals",
+      "Do not set body text above 16px or below 13px — the 14px Satoshi 500 baseline is deliberate",
+      "Do not center-align body paragraphs — left-align for editorial column flow",
+      "Do not use filled solid-color buttons with chromatic backgrounds — all interactive elements are ghost/outlined or text-only",
+      "Do not use pure black (#000000) for text — always #2c2c2c to maintain the warm temperature",
+      "Do not add gradients — the palette is flat; atmosphere comes from photography, not CSS effects",
+      "Do not bold the TT Ramillas serif headings — weight 300 is non-negotiable; use Satoshi 700 for emphasis instead",
+      "Do not introduce additional serif or display faces — TT Ramillas and Satoshi are the complete type system"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#d8cbb8",
+        "name": "Parchment",
+        "role": "Page canvas and primary card surfaces — the warm beige that carries the entire interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bfb4a3",
+        "name": "Linen",
+        "role": "Secondary surface tone for elevated sections and subtle layering above parchment",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b6ab9c",
+        "name": "Warm Stone",
+        "role": "Hairline borders and 1px section dividers throughout the interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#978e81",
+        "name": "Walnut",
+        "role": "Muted helper text, captions, and de-emphasized metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#615b53",
+        "name": "Espresso",
+        "role": "Secondary body text and subhead copy — warm dark gray that softens pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2c2c2c",
+        "name": "Onyx Warm",
+        "role": "Primary text, navigation, headings, and dark surface fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#292622",
+        "name": "Midnight Roast",
+        "role": "Deepest dark surface for photo overlays and high-contrast hero backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d49653",
+        "name": "Saffron Glow",
+        "role": "Sole chromatic accent — featured tags, active states, decorative punctuation; warm spice-orange against the beige canvas creates curated restraint",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed sections with no centered max-width container — content extends edge-to-edge. Hero and atmospheric sections use dark photographic backgrounds with text overlaid top-left or centered. Content sections after the hero unfold on the parchment canvas with generous breathing room (120-160px section gaps). Headings and body text align left, creating an editorial column rhythm rather than centered marketing stacks. Navigation is a floating transparent bar over the hero with no visible background. The testimonials section uses a horizontal card row with sharp-cornered cards on the same-color canvas. No sidebar, no grid columns — the layout reads as a vertical scroll of editorial spreads.",
+    "imagery": "Full-bleed atmospheric photography dominates the upper half of the page: dark, moody restaurant interiors shot at table-height showing place settings, candles, and food in sharp focus with shallow depth of field. Tonal treatment is warm and dim — amber candlelight, rich wood, copper accents. The lower half transitions to food photography presented as editorial still-lives on the parchment canvas, with dishes styled on dark surfaces. No lifestyle imagery, no people shots, no abstract graphics. Icons are minimal — only a small ornamental logo mark and a few functional icons (gift, menu, chevrons) rendered in thin 1px strokes. The marquee element scrolls signature dish names horizontally as the sole kinetic element.",
+    "similar": [
+      {
+        "why": "Same editorial restaurant aesthetic with oversized serif headings and dark atmospheric photography over full-bleed sections",
+        "business": "SAGA"
+      },
+      {
+        "why": "Similar whisper-weight serif at extreme sizes paired with minimal sharp-geometry UI and warm earthy palette",
+        "business": "Lilia (Missy Robbins)"
+      },
+      {
+        "why": "Fine-dining restraint with monochrome warm canvas, single accent color, and editorial type hierarchy",
+        "business": "Le Bernardin"
+      },
+      {
+        "why": "Korean fine-dining site using similar parchment-toned canvas, sharp 0px-radius cards, and large uppercase display serif",
+        "business": "Atomix"
+      },
+      {
+        "why": "Warm beige dominant palette with dark photographic hero sections and minimal sharp-cornered component geometry",
+        "business": "Sqirl (LA)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "3px",
+        "cards": "0px",
+        "inputs": "3px",
+        "buttons": "3px"
+      },
+      "elementGap": "12-16px",
+      "sectionGap": "120-160px",
+      "cardPadding": "28px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#d8cbb8",
+        "name": "Parchment Canvas",
+        "level": 0,
+        "purpose": "Base page background and dominant card fill"
+      },
+      {
+        "hex": "#bfb4a3",
+        "name": "Linen",
+        "level": 1,
+        "purpose": "Section tone shift and subtle elevation"
+      },
+      {
+        "hex": "#292622",
+        "name": "Midnight Roast",
+        "level": 2,
+        "purpose": "Dark overlay behind hero and atmospheric photography"
+      },
+      {
+        "hex": "#2c2c2c",
+        "name": "Onyx Warm",
+        "level": 3,
+        "purpose": "Navigation and highest-contrast surface"
+      }
+    ],
+    "northStar": "spiced parchment gallery — a candlelit beige wall holding sparse saffron punctuation beneath breath-soft serif headlines.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.143
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.15
+      },
+      {
+        "role": "body-lg",
+        "size": 26,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.156
+      },
+      {
+        "role": "subheading",
+        "size": 42,
+        "lineHeight": 1,
+        "letterSpacing": -1.68
+      },
+      {
+        "role": "heading-sm",
+        "size": 50,
+        "lineHeight": 0.9,
+        "letterSpacing": -1.5
+      },
+      {
+        "role": "heading",
+        "size": 65,
+        "lineHeight": 0.85,
+        "letterSpacing": -2.6
+      },
+      {
+        "role": "heading-lg",
+        "size": 69,
+        "lineHeight": 0.9,
+        "letterSpacing": -2.76
+      },
+      {
+        "role": "display",
+        "size": 115,
+        "lineHeight": 0.8,
+        "letterSpacing": -4.6
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Outlined Button",
+        "role": "Primary interactive element for navigation and hero CTAs",
+        "description": "Transparent background, 1px solid #d8cbb8 border (or #2c2c2c on light sections), text in #d8cbb8 on dark overlays / #2c2c2c on light canvas. Satoshi 500, 14px, uppercase, letter-spacing -0.14px. Padding 20px horizontal, 20px vertical. Border-radius 3px. No shadow."
+      },
+      {
+        "name": "Text Link Button",
+        "role": "Inline navigation and tertiary actions",
+        "description": "No background or border. Text-only with underline-on-hover. Satoshi 500, 13-15px, uppercase. Color follows context: #d8cbb8 on dark overlays, #2c2c2c on light sections."
+      },
+      {
+        "name": "Hero Wordmark Display",
+        "role": "Signature typographic statement on hero",
+        "description": "Satoshi 500, 199px, line-height 0.8, letter-spacing -0.0160em, uppercase. Color #d8cbb8. Sits over dark photographic overlay as the opening brand moment."
+      },
+      {
+        "name": "Editorial Section Heading",
+        "role": "Section titles throughout the page",
+        "description": "TT Ramillas Variable 300, 50-115px range depending on section prominence, uppercase, line-height 0.8-0.9, letter-spacing -0.0400em to -0.0300em. Color #d8cbb8 on dark sections, #2c2c2c on light. The whisper-weight serif at extreme size is the signature choice."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "Guest review display",
+        "description": "Background #d8cbb8 (same as canvas, no contrast elevation). Border-radius 0px. Padding 52px top, 28px sides, 32px bottom. No shadow, no border. Content: 5-star rating row in #d49653, review body in Satoshi 500 14px #2c2c2c, source attribution (Yelp/Reddit/Maps) in micro caps top-right, author name in #978e81."
+      },
+      {
+        "name": "Image Overlay Container",
+        "role": "Full-bleed atmospheric photography with text",
+        "description": "Full-viewport image with dark gradient overlay (linear darkening from transparent to rgba(41,38,34,0.7+)). Text content sits top-left or centered in #d8cbb8. Used for hero and atmospheric transition sections."
+      },
+      {
+        "name": "Star Rating Display",
+        "role": "Google review score and star indicators",
+        "description": "5 filled stars in #d49653, 15px size. Numerical score (e.g. 4.7/5) in Satoshi 700 large. Source label 'Excellent' in Satoshi 500 13px. White card background with subtle border, embedded as floating widget."
+      },
+      {
+        "name": "Menu Item Card",
+        "role": "Individual dish presentation",
+        "description": "Transparent background. No border. Image (food photo) + dish name in TT Ramillas Variable 300 or Satoshi 500, description in body-sm. Padding 0px on container, internal spacing 16px between elements."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Transparent background over hero. Left: small logo mark. Center-left: nav links (Home, Catering, Gift Cards, About, Contact) in Satoshi 500 14px uppercase, color #d8cbb8, letter-spacing -0.14px. Right: 'Menu' link, icon button (3px radius square), 'Order Now' with dropdown chevron, gift icon button. No background bar — floats over content."
+      },
+      {
+        "name": "Section Divider Rule",
+        "role": "Editorial column-rule separator between sections",
+        "description": "1px solid #b6ab9c horizontal line. Full-width within max-width container. No vertical padding — acts as typographic element, not structural."
+      },
+      {
+        "name": "Caption Label",
+        "role": "Small uppercase section metadata and tags",
+        "description": "Satoshi 500, 12px, uppercase, letter-spacing -0.144px. Color #978e81 or #d8cbb8 depending on surface. Examples: 'SERVING CENTRAL FLORIDA', 'ESTABLISHED 1996', source names on testimonial cards."
+      },
+      {
+        "name": "Hero Meta Label",
+        "role": "Date stamp or supporting hero information",
+        "description": "Satoshi 500, 12-14px, uppercase, letter-spacing -0.14px. Flanks the main hero heading as flanking metadata ('SERVING CENTRAL FLORIDA' left, 'ESTABLISHED 1996' right)."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All display and section headings — set uppercase at extreme sizes with weight 300; the whisper-weight serif at 115px is the signature anti-convention choice, creating editorial luxury through restraint rather than bold volume",
+        "sizes": "22px, 26px, 50px, 65px, 69px, 115px",
+        "family": "TT Ramillas Variable",
+        "weight": "300",
+        "lineHeight": "0.80, 0.85, 0.90, 1.00, 1.20",
+        "substitute": "Cormorant Garamond, Playfair Display, or DM Serif Display",
+        "letterSpacing": "-0.0400em at display sizes (115px/69px/65px), -0.0300em at 50px, -0.0350em at 22px, -0.0060em at 26px"
+      },
+      {
+        "role": "Navigation, buttons, body copy, labels, and the 199px hero wordmark — confident 500-weight geometric sans provides structural counterpoint to the airy serif",
+        "sizes": "12px, 13px, 14px, 15px, 42px, 199px",
+        "family": "Satoshi",
+        "weight": "500, 700",
+        "lineHeight": "0.80, 1.00, 1.30, 1.40",
+        "substitute": "Inter, DM Sans, or Manrope",
+        "letterSpacing": "-0.0160em at 199px, -0.0400em at 42px, -0.0100em at 14px/15px, -0.0110em at 13px, -0.0120em at 12px"
+      }
+    ],
+    "description": "Amrit Palace treats the screen like a curated dining room: a warm beige parchment canvas (#d8cbb8) carries the entire interface, accented only by a single saffron-orange moment (#d49653) and grounded by deep warm-black type (#2c2c2c). Typography carries the luxury — whisper-weight 300 headlines reaching 115px in a serif display face, paired with confident 500-weight sans-serif for navigation, buttons, and body, set uppercase with tight negative tracking. Geometry is deliberately sharp: zero border-radius on cards, 1px hairline borders dividing sections like editorial column rules, 3px on interactive elements. Full-bleed atmospheric photography with dark overlays bookends the page, while the lower half unfolds as a wide editorial spread on the warm canvas.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b753dfda-cbe1-41e4-b341-b98d69c8422f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Amrit Palace design system\",\"item\":\"https://styles.refero.design/style/b753dfda-cbe1-41e4-b341-b98d69c8422f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b753dfda-cbe1-41e4-b341-b98d69c8422f#style-reference\",\"name\":\"Amrit Palace design system reference\",\"headline\":\"Amrit Palace design system | Refero Styles\",\"description\":\"Explore Amrit Palace's light Other design system: Parchment #d8cbb8, Linen #bfb4a3 colors, TT Ramillas Variable, Satoshi typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/b753dfda-cbe1-41e4-b341-b98d69c8422f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b753dfda-cbe1-41e4-b341-b98d69c8422f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Amrit Palace\",\"url\":\"https://amritpalace.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b753dfda-cbe1-41e4-b341-b98d69c8422f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/abbfd343-4ca8-438a-986b-16e8bdc8be3d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/abbfd343-4ca8-438a-986b-16e8bdc8be3d.jpg\",\"caption\":\"Screenshot of Amrit Palace\"},\"image\":\"https://images.refero.design/styles/refero.design/image/abbfd343-4ca8-438a-986b-16e8bdc8be3d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Amrit Palace design system\",\"Amrit Palace website design\",\"Amrit Palace colors\",\"Amrit Palace typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Parchment\",\"Linen\",\"Warm Stone\",\"Walnut\",\"TT Ramillas Variable\",\"Satoshi\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Amrit Palace design system\"},{\"@type\":\"Thing\",\"name\":\"Amrit Palace website design\"},{\"@type\":\"Thing\",\"name\":\"Amrit Palace colors\"},{\"@type\":\"Thing\",\"name\":\"Amrit Palace typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-10T23:15:32.789Z\",\"dateModified\":\"2026-05-10T23:15:32.789Z\"}]}19:T411,Quick Color Reference:\n• Canvas: #d8cbb8 (warm parchment beige)\n• Dark surface: #2c2c2c / #292622 (warm onyx)\n• Primary text: #2c2c2c\n• Muted text: #978e81 / #615b53\n• Border: #b6ab9c (1px hairline)\n• Accent: #d49653 (saffron — stars, active states only)\n• primary action: no distinct CTA color\n\n3 Example Component Prompts:\n\n1. Build a section heading: TT Ramillas Variable weight 300, 69px, uppercase, line-height 0.9, letter-spacing -2.76px, color #2c2c2c on #d8cbb8 canvas. No border, no background.\n\n2. Build a ghost outlined button: transparent background, 1px solid #2c2c2c border, text 'Reserve a Table' in Satoshi 500, 14px, uppercase, letter-spacing -0.14px, color #2c2c2c. Padding 20px vertical, 28px horizontal. Border-radius 3px. No shadow.\n\n3. Build a testimonial card: background #d8cbb8 (same as canvas), border-radius 0px, padding 52px top / 28px sides / 32px bottom. Five #d49653 stars at top, review body in Satoshi 500 14px #2c2c2c, author name in #978e81 Satoshi 500 12px at bottom. No border, no shadow."
+      },
+      {
+        "title": "Editorial Type Philosophy",
+        "content": "The type system performs a deliberate duet: TT Ramillas Variable at weight 300 sings the editorial aria at extreme sizes (50-115px), while Satoshi at weight 500 provides the structural recitative at 12-15px. The serif never appears below 22px — it is a display voice only. The sans never appears above 42px except the singular 199px hero wordmark. All headings are uppercase. Letter-spacing tightens aggressively with size: -0.0060em at 26px, -0.0300em at 50px, -0.0400em at 65px and above. Line-heights compress to 0.8-0.9 at display sizes, letting oversized lettersets stack into dense typographic blocks reminiscent of vintage restaurant menus and fashion magazine covers."
+      },
+      {
+        "title": "Motion Philosophy",
+        "content": "Motion is minimal and deliberate. Primary duration is 0.4s with ease easing for hover states and reveals. The marquee animation is the only extended motion (27s linear) and is reserved for signature dish name scrolling. All interactive transitions use the cubic-bezier(0.25, 0.46, 0.45, 0.94) curve for organic deceleration. No parallax, no scroll-triggered animations, no loading sequences — the page should feel like turning pages of a printed menu, not navigating a web app."
+      }
+    ],
+    "elevationPhilosophy": "The system intentionally avoids shadows and elevation. Depth is communicated through tonal shifts in the warm neutral palette (parchment #d8cbb8 → linen #bfb4a3 → walnut #978e81) and through 1px hairline borders, never through box-shadows. Components feel printed onto the surface rather than floating above it — an editorial flatness that signals fine-dining sophistication over app-like depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#d8cbb8",
+          "oklch": {
+            "c": 0.02960037298512562,
+            "h": 77.51625938924474,
+            "l": 0.8475919981870131
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "body",
+            "link",
+            "card"
+          ],
+          "frequency": 168,
+          "confidence": 1,
+          "prominence": 14387309.624132566,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 78,
+            "link/color": 1,
+            "other/color": 47,
+            "button/color": 2,
+            "heading/color": 15,
+            "link/borderColor": 4,
+            "other/borderColor": 6,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 14
+          }
+        },
+        {
+          "hex": "#2c2c2c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.29312847409143017
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 141,
+          "confidence": 1,
+          "prominence": 8362630.220857456,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 9,
+            "other/color": 95,
+            "link/borderColor": 16,
+            "other/borderColor": 16,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#978e81",
+          "oklch": {
+            "c": 0.02213930567976159,
+            "h": 77.52273528557069,
+            "l": 0.6511363768568176
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1749600,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d49653",
+          "oklch": {
+            "c": 0.112229853904586,
+            "h": 66.48634118916513,
+            "l": 0.7203016970942163
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1604136.5313462627,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#292622",
+          "oklch": {
+            "c": 0.008506896374023272,
+            "h": 75.23066163958924,
+            "l": 0.2704210808029858
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1491131,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#bfb4a3",
+          "oklch": {
+            "c": 0.026733791173959933,
+            "h": 78.8759262974968,
+            "l": 0.7743952249411739
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1480331,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#615b53",
+          "oklch": {
+            "c": 0.0154063110545709,
+            "h": 77.53360928956684,
+            "l": 0.47526877624788216
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1169640,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b6ab9c",
+          "oklch": {
+            "c": 0.024463681886488196,
+            "h": 77.5311557561772,
+            "l": 0.7463487126027146
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 44,
+          "confidence": 1,
+          "prominence": 1023752.8112461036,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 44
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.049194956834672794,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 9.43,
+          "background": "#292622",
+          "foreground": "#d8cbb8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.75,
+          "background": "#2c2c2c",
+          "foreground": "#d8cbb8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.37,
+          "background": "#bfb4a3",
+          "foreground": "#292622"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.83,
+          "background": "#bfb4a3",
+          "foreground": "#2c2c2c"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.66,
+          "background": "#b6ab9c",
+          "foreground": "#292622"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.18,
+          "background": "#b6ab9c",
+          "foreground": "#2c2c2c"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.94,
+          "background": "#292622",
+          "foreground": "#d49653"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.51,
+          "background": "#d49653",
+          "foreground": "#2c2c2c"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.32,
+          "background": "#978e81",
+          "foreground": "#2c2c2c"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.2,
+          "background": "#615b53",
+          "foreground": "#d8cbb8"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.28,
+          "background": "#bfb4a3",
+          "foreground": "#615b53"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.97,
+          "background": "#b6ab9c",
+          "foreground": "#615b53"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.65,
+          "background": "#615b53",
+          "foreground": "#d49653"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.08,
+          "background": "#615b53",
+          "foreground": "#2c2c2c"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.02,
+          "background": "#978e81",
+          "foreground": "#d8cbb8"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.59,
+          "background": "#d49653",
+          "foreground": "#d8cbb8"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.28,
+          "background": "#bfb4a3",
+          "foreground": "#d8cbb8"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.27,
+          "background": "#978e81",
+          "foreground": "#d49653"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.24,
+          "background": "#bfb4a3",
+          "foreground": "#d49653"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.08,
+          "background": "#292622",
+          "foreground": "#2c2c2c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 23
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 33,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|body",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 168,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 90,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "other",
+            "heading"
+          ],
+          "frequency": 52,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|heading",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "card"
+          ],
+          "frequency": 68,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|heading",
+            "marginTop|other",
+            "paddingRight|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 51,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 93,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingLeft|other",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 62,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 92,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 206,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 237,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 315,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Satoshi",
+          "source": "custom",
+          "weights": [
+            500,
+            700
+          ],
+          "frequency": 709,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "TT Ramillas Variable",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 72,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.92
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 24,
+          "lineHeight": 1,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 58,
+          "lineHeight": 1,
+          "letterSpacing": -0.012,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Satoshi",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 123,
+          "lineHeight": 1,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.011,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 43,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "hero",
+            "icon",
+            "image",
+            "card"
+          ],
+          "frequency": 408,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "TT Ramillas Variable",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.035,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "TT Ramillas Variable",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "TT Ramillas Variable",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 14,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 65,
+          "family": "TT Ramillas Variable",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.85,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 69,
+          "family": "TT Ramillas Variable",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 69,
+          "family": "TT Ramillas Variable",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 115,
+          "family": "TT Ramillas Variable",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 20,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 199,
+          "family": "Satoshi",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.016,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/980eabfd-7e95-4a2b-8d91-6bb45e00ed87.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/abbfd343-4ca8-438a-986b-16e8bdc8be3d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b753dfda-cbe1-41e4-b341-b98d69c8422f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Amrit Palace design system\",\"item\":\"https://styles.refero.design/style/b753dfda-cbe1-41e4-b341-b98d69c8422f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b753dfda-cbe1-41e4-b341-b98d69c8422f#style-reference\",\"name\":\"Amrit Palace design system reference\",\"headline\":\"Amrit Palace design system | Refero Styles\",\"description\":\"Explore Amrit Palace's light Other design system: Parchment #d8cbb8, Linen #bfb4a3 colors, TT Ramillas Variable, Satoshi typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/b753dfda-cbe1-41e4-b341-b98d69c8422f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b753dfda-cbe1-41e4-b341-b98d69c8422f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Amrit Palace\",\"url\":\"https://amritpalace.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b753dfda-cbe1-41e4-b341-b98d69c8422f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/abbfd343-4ca8-438a-986b-16e8bdc8be3d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/abbfd343-4ca8-438a-986b-16e8bdc8be3d.jpg\",\"caption\":\"Screenshot of Amrit Palace\"},\"image\":\"https://images.refero.design/styles/refero.design/image/abbfd343-4ca8-438a-986b-16e8bdc8be3d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Amrit Palace design system\",\"Amrit Palace website design\",\"Amrit Palace colors\",\"Amrit Palace typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Parchment\",\"Linen\",\"Warm Stone\",\"Walnut\",\"TT Ramillas Variable\",\"Satoshi\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Amrit Palace design system\"},{\"@type\":\"Thing\",\"name\":\"Amrit Palace website design\"},{\"@type\":\"Thing\",\"name\":\"Amrit Palace colors\"},{\"@type\":\"Thing\",\"name\":\"Amrit Palace typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-10T23:15:32.789Z\",\"dateModified\":\"2026-05-10T23:15:32.789Z\"}]}19:T411,Quick Color Reference:\n• Canvas: #d8cbb8 (warm parchment beige)\n• Dark surface: #2c2c2c / #292622 (warm onyx)\n• Primary text: #2c2c2c\n• Muted text: #978e81 / #615b53\n• Border: #b6ab9c (1px hairline)\n• Accent: #d49653 (saffron — stars, active states only)\n• primary action: no distinct CTA color\n\n3 Example Component Prompts:\n\n1. Build a section heading: TT Ramillas Variable weight 300, 69px, uppercase, line-height 0.9, letter-spacing -2.76px, color #2c2c2c on #d8cbb8 canvas. No border, no background.\n\n2. Build a ghost outlined button: transparent background, 1px solid #2c2c2c border, text 'Reserve a Table' in Satoshi 500, 14px, uppercase, letter-spacing -0.14px, color #2c2c2c. Padding 20px vertical, 28px horizontal. Border-radius 3px. No shadow.\n\n3. Build a testimonial card: background #d8cbb8 (same as canvas), border-radius 0px, padding 52px top / 28px sides / 32px bottom. Five #d49653 stars at top, review body in Satoshi 500 14px #2c2c2c, author name in #978e81 Satoshi 500 12px at bottom. No border, no shadow."
+}

@@ -1,0 +1,83 @@
+:root {
+  /* Colors */
+  --color-deep-ink: #130e30;
+  --color-hi-yellow: #ffe228;
+  --color-moss-green: #59e25d;
+  --color-fuchsia: #e261e5;
+  --color-slate: #5f5c6e;
+  --color-canvas: #f9fbf2;
+  --color-soft-meadow: #eff2e5;
+  --color-charcoal: #222222;
+  --color-onyx: #000000;
+
+  /* Typography — Font Families */
+  --font-hedvig-letters-serif: 'Hedvig Letters Serif', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.2;
+  --tracking-caption: -0.2px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --tracking-body-sm: -0.14px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: -0.16px;
+  --text-subheading: 18px;
+  --leading-subheading: 1.5;
+  --tracking-subheading: -0.18px;
+  --text-heading-sm: 22px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.22px;
+  --text-heading: 32px;
+  --leading-heading: 1.15;
+  --tracking-heading: -0.32px;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.1;
+  --tracking-heading-lg: -0.48px;
+  --text-display: 64px;
+  --leading-display: 1;
+  --tracking-display: -0.64px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-96: 96px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 48-80px;
+  --card-padding: 24-48px;
+  --element-gap: 12-16px;
+
+  /* Border Radius */
+  --radius-3xl: 24px;
+  --radius-full: 48px;
+  --radius-full-2: 1440px;
+
+  /* Named Radii */
+  --radius-nav: 1440px;
+  --radius-tags: 1440px;
+  --radius-cards: 24px;
+  --radius-icons: 1440px;
+  --radius-images: 24-48px;
+  --radius-buttons: 1440px;
+
+  /* Surfaces */
+  --surface-canvas: #f9fbf2;
+  --surface-soft-meadow: #eff2e5;
+  --surface-hi-yellow-accent: #ffe228;
+  --surface-deep-ink: #130e30;
+}

@@ -1,0 +1,89 @@
+:root {
+  /* Colors */
+  --color-ember-orange: #ff4300;
+  --color-void-black: #111111;
+  --color-obsidian: #181818;
+  --color-charcoal: #2b2a2a;
+  --color-graphite: #343434;
+  --color-steel: #666666;
+  --color-fog: #8d8d8d;
+  --color-ash: #999999;
+  --color-silver: #cacaca;
+  --color-pure-white: #ffffff;
+  --color-bone: #e9e6e6;
+
+  /* Typography — Font Families */
+  --font-apple-system-system-ui-sans-serif: '-apple-system, system-ui, sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 14px;
+  --leading-body: 1.25;
+  --tracking-body: -0.14px;
+  --text-body-lg: 16px;
+  --leading-body-lg: 1.25;
+  --tracking-body-lg: -0.24px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.25;
+  --tracking-subheading: -0.3px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.36px;
+  --text-heading: 46px;
+  --leading-heading: 1;
+  --tracking-heading: -1.15px;
+  --text-display: 68px;
+  --leading-display: 1;
+  --tracking-display: -3.8px;
+
+  /* Typography — Weights */
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-44: 44px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-60: 60px;
+  --spacing-76: 76px;
+  --spacing-100: 100px;
+  --spacing-120: 120px;
+  --spacing-128: 128px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80-100px;
+  --card-padding: 20px;
+  --element-gap: 20px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-md: 7px;
+  --radius-lg: 10px;
+  --radius-xl: 15px;
+  --radius-2xl: 20px;
+  --radius-3xl: 25px;
+  --radius-full: 50px;
+  --radius-full-2: 99px;
+  --radius-full-3: 999px;
+
+  /* Named Radii */
+  --radius-cards: 20-25px;
+  --radius-pills: 999px;
+  --radius-badges: 7px;
+  --radius-inputs: 50px;
+  --radius-buttons: 15px;
+
+  /* Surfaces */
+  --surface-void-canvas: #111111;
+  --surface-obsidian-card: #181818;
+  --surface-charcoal-panel: #2b2a2a;
+  --surface-graphite-border: #343434;
+}

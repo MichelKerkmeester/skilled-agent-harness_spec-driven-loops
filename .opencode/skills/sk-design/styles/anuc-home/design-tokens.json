@@ -1,0 +1,235 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#1a1a1e",
+      "$type": "color",
+      "$description": "Ink — Primary text, all borders, logo forms, icon strokes — the structural near-black that defines every contour across the system"
+    },
+    "canvas": {
+      "$value": "#f3f3f2",
+      "$type": "color",
+      "$description": "Canvas — Page background — warm off-white that gives the entire system its gallery-wall warmth rather than clinical white"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card surfaces, article blocks, elevated panels — pure white sits on top of Canvas to create subtle layering without shadows"
+    },
+    "ash": {
+      "$value": "#d1d1d2",
+      "$type": "color",
+      "$description": "Ash — Hairline borders, divider lines, subtle structural rules — the thinnest visible grid"
+    },
+    "stone": {
+      "$value": "#c1c2bd",
+      "$type": "color",
+      "$description": "Stone — Secondary borders, muted fills, icon strokes at lower emphasis"
+    },
+    "linen": {
+      "$value": "#e7e6e4",
+      "$type": "color",
+      "$description": "Linen — Muted surface for category tags, soft chips, low-emphasis backgrounds — warm-tinted neutral that steps between Paper and Canvas"
+    },
+    "graphite": {
+      "$value": "#4d4942",
+      "$type": "color",
+      "$description": "Graphite — Muted body text, secondary copy — warm dark gray for hierarchy below Ink"
+    },
+    "mist": {
+      "$value": "#8d8d8f",
+      "$type": "color",
+      "$description": "Mist — Tertiary text, timestamps, metadata — the lightest readable gray"
+    },
+    "bronze": {
+      "$value": "#9a682c",
+      "$type": "color",
+      "$description": "Bronze — Sparingly used warm accent — appears as small punctuation dots or category indicators, never as fills; adds a whisper of warmth to the achromatic system"
+    },
+    "slate": {
+      "$value": "#4a626f",
+      "$type": "color",
+      "$description": "Slate — Secondary accent — cool counterpoint to Bronze, used in equally restrained dot/tag contexts to create subtle color rhythm"
+    }
+  },
+  "font": {
+    "instrument-sans": {
+      "$value": "Instrument Sans",
+      "$type": "fontFamily",
+      "$description": "All UI, navigation, body copy, button labels, and small headlines. Weight 500 carries nav and button emphasis; weight 400 is the default reading voice. Free substitute: Inter, DM Sans."
+    },
+    "instrument-serif": {
+      "$value": "Instrument Serif",
+      "$type": "fontFamily",
+      "$description": "All display and editorial headlines — the 52px and 74px sizes carry the brand's magazine-portfolio voice. The contrast between this high-contrast serif and the neutral sans is the system's signature typographic gesture. Free substitute: Playfair Display, Cormorant Garamond."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Instrument Sans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Instrument Sans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Instrument Sans",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Instrument Serif",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Instrument Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Instrument Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Instrument Serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Instrument Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Instrument Serif",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Instrument Serif",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Instrument Serif",
+        "fontSize": "74px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 74px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f3f3f2",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background — the warm off-white gallery wall"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Card surfaces and article blocks that float above Canvas"
+    },
+    "linen": {
+      "$value": "#e7e6e4",
+      "$type": "color",
+      "$description": "Surface level 3: Soft chip and tag backgrounds — the most recessed surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.anuchome.com",
+      "siteName": "Anuc Home",
+      "extractedAt": "2026-06-03T20:31:22.390Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "color": {
+    "ink-charcoal": {
+      "$value": "#292a2c",
+      "$type": "color",
+      "$description": "Ink Charcoal — Primary text, dominant border strokes (635 occurrences as borderColor), nav accents"
+    },
+    "vellum": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Vellum — Page canvas, card surfaces — warm-leaning off-white that gives the page a paper-stock feel rather than digital white"
+    },
+    "full-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Full Black — Link border underlines, footer text, icon strokes, image overlay text — used as a chromatic anchor only where maximum contrast against Vellum is required"
+    }
+  },
+  "font": {
+    "ogg": {
+      "$value": "ogg",
+      "$type": "fontFamily",
+      "$description": "Display and project headlines. This is a high-contrast didone-flavored serif used at 55px with aggressive -0.036em tracking — it acts as the gallery label, announcing each case study with typographic weight that the sans-serif never attempts. At smaller sizes (24-26px) the same family handles editorial pull-quotes and the wordmark, where the negative tracking tightens less aggressively (-0.02em). The signature choice: a single weight (400) doing all serif work, relying on the contrast within letterforms rather than weight variation to create hierarchy."
+    },
+    "telegraf": {
+      "$value": "telegraf",
+      "$type": "fontFamily",
+      "$description": "Body copy, navigation, metadata tags, project category labels, and secondary headings. A geometric sans that does all the quiet documentation work. At 55px it can also serve as display type, creating a rare moment where both fonts meet at the same size — typically the serif announces the project name while the sans describes it below. Tracking is positive throughout (0.002em to 0.040em), widening as size decreases — a deliberate inverse relationship that keeps small caps-styled metadata readable and gives the wordmark breathing room."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 0.75
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "ogg",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 25px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 25px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "ogg",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 26px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "telegraf",
+        "fontSize": "55px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 55px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ogg",
+        "fontSize": "55px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 55px"
+    }
+  },
+  "spacing": {
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "vellum-canvas": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 1: The page itself — a warm off-white that reads as paper stock rather than digital background. Everything floats on this surface with no card containers or elevated panels."
+    },
+    "ink-surface": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Rare dark inversions for full-bleed campaign sections or video containers where the artwork demands a black surround."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://notreal.tv",
+      "siteName": "Not Real",
+      "extractedAt": "2026-06-03T21:12:12.230Z",
+      "variant": "extended"
+    }
+  }
+}

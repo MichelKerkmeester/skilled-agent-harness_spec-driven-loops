@@ -1,0 +1,187 @@
+{
+  "color": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Page canvas, image overlays, nav background — pure black lets full-bleed 3D renders carry every chromatic moment while UI chrome disappears into the background"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — Hairline borders, dividers, input outlines, and card edges on light surfaces."
+    },
+    "charcoal": {
+      "$value": "#444345",
+      "$type": "color",
+      "$description": "Charcoal — Filled action buttons (Explore, Connect Wallet) and the one elevated surface level above the void — a soft dark step that reads as pressed-in rather than raised, keeping the flat-gallery feel"
+    },
+    "frost": {
+      "$value": "#e2e2e2",
+      "$type": "color",
+      "$description": "Frost — Hairline borders, divider lines, subtle structural edges — visible only where it separates two dark surfaces or wraps a control"
+    },
+    "ash": {
+      "$value": "#b8bab9",
+      "$type": "color",
+      "$description": "Ash — Subtle surface tone for inactive UI blocks and muted containers — sits between Void and Bone, used sparingly to indicate a non-default resting state"
+    }
+  },
+  "font": {
+    "roobert": {
+      "$value": "Roobert",
+      "$type": "fontFamily",
+      "$description": "All display, hero, and heading type. A single geometric grotesque used at extreme sizes — 80px for hero titles with line-height 0.78 produces a tightly stacked monumental mark rather than a flowing headline. The choice to render a custom display face at weight 400 (not 700) is the signature: the type whispers authority rather than shouting it. Substitute: Inter at matching weights if Roobert is unavailable."
+    },
+    "gt-america-mono": {
+      "$value": "GT America Mono",
+      "$type": "fontFamily",
+      "$description": "All chrome, nav, micro-labels, and link text. The monospaced face is deliberately anti-display — it reads as system instrumentation rather than editorial design, which keeps the UI subordinate to the 3D world. Tracking at -0.02em tightens the mono rhythm for a quieter presence at 10–12px. Substitute: JetBrains Mono at matching weight."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GT America Mono Regular",
+        "fontSize": "5px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 5px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "GT America Mono Regular",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "GT America Mono Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 0.78
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "116": {
+      "$value": "116px",
+      "$type": "dimension",
+      "$description": "Spacing 116px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Universal page canvas behind all rendered artwork and beneath all UI"
+    },
+    "charcoal": {
+      "$value": "#444345",
+      "$type": "color",
+      "$description": "Surface level 1: First elevation step — filled action buttons and inline control surfaces that need to lift off the void without casting shadow"
+    },
+    "ash": {
+      "$value": "#b8bab9",
+      "$type": "color",
+      "$description": "Surface level 2: Muted panel or disabled-state surface, used only when a non-interactive block needs a visible material"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://themekaverse.com",
+      "siteName": "MekaVerse",
+      "extractedAt": "2026-06-03T17:54:48.569Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,1341 @@
+{
+  "source": "https://styles.refero.design/style/ded6d7c4-2801-45f4-8b8a-089f1b37842d",
+  "uuid": "ded6d7c4-2801-45f4-8b8a-089f1b37842d",
+  "name": "until",
+  "northStar": "warm parchment monograph under a single olive tree.",
+  "capturedAt": "2026-07-18T07:22:06.836Z",
+  "meta": {
+    "url": "https://www.untillabs.com",
+    "siteName": "until",
+    "extractedAt": "2026-06-03T21:27:06.365Z",
+    "durationMs": 40754,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 812,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #f7f3ec as the page background on every screen; never substitute pure white for the main canvas.",
+      "Set all headings in Neue Haas Display with letter-spacing between -0.020em and -0.037em — the negative tracking is the brand's editorial signature.",
+      "Round all interactive elements to 64px (full pill) and all cards to 32px; the softness is non-negotiable.",
+      "Use #6c853b olive only on heading text, heading underlines, and small annotation labels — never as a button fill or large surface.",
+      "Use Geist Mono 12px with +0.05em tracking for bracketed micro-labels like '[ Scroll to discover ]' — these are decorative research-journal accents.",
+      "Keep shadows to the single inset-highlight pattern (rgba(255,255,255,0.1) inset top and bottom + rgba(0,0,0,0.05) 0 3px 17px outer); avoid heavy drop-shadows.",
+      "Maintain 48–96px vertical gaps between major sections; the page breathes like a printed magazine spread."
+    ],
+    "donts": [
+      "Do not use pure black (#000000) for body text — use #121212, which has a slight warmth matching the cream canvas.",
+      "Do not introduce additional chromatic colors; the olive is the only accent and overusing it dilutes the botanical restraint.",
+      "Do not use sharp corners (0–6px radius) on cards, buttons, or images — the rounded language defines the softness.",
+      "Do not place text on tinted overlays over photography; headlines sit directly on images or on the cream canvas.",
+      "Do not set body text below 14px or above 16px; the type scale is deliberately narrow and editorial.",
+      "Do not use filled colored buttons — every CTA is a pill with a 1px #121212 border, either white or ghost.",
+      "Do not use box-shadows heavier than the defined inset/outer combo; the system relies on cream-on-cream layering, not elevation."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f7f3ec",
+        "name": "Parchment",
+        "role": "Page background, card surfaces, nav container — warm off-white that replaces pure white to soften the entire system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#121212",
+        "name": "Ink",
+        "role": "Primary text, all borders, card outlines, nav links — near-black with a whisper of warmth, drives every structural line on the page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Black",
+        "role": "Link borders, footer accents, and icon fills — pure black reserved for high-emphasis micro elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Button fills, elevated surface accents, footer background — pure white used sparingly for contrast punctuation against the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bebebe",
+        "name": "Mist",
+        "role": "Disabled or secondary body text and subtle dividers — sits below the ink line",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6c853b",
+        "name": "Olive Branch",
+        "role": "Heading color and accent borders — the sole chromatic note, an organic olive green that gives the brand its botanical, anti-corporate feel",
+        "group": "brand"
+      },
+      {
+        "hex": "#121c0f",
+        "name": "Bone",
+        "role": "Deep text on light backgrounds where extra weight is needed — almost-black with a green undertone matching the olive",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered container, full-bleed hero, then alternating cream bands. Hero is a full-viewport photograph with a bottom-left display headline and a centered floating nav pill at top. Content sections use a 4-column card grid for visual showcases (lab/team), then transition to 2-column text-heavy blocks for hiring copy. Navigation is a thin header strip on the home page and a floating white pill capsule on inner pages. Vertical rhythm is generous (48–96px between sections) creating a magazine-spread cadence. The page reads top-to-bottom as: hero photo → 4-up card grid → recruitment copy block → footer.",
+    "imagery": "Photography dominates the visual language: full-bleed overhead lifestyle shots of people in nature (a couple on a picnic blanket in grass, lab scientists at work) serve as the entire hero and section visuals. No illustration, no product renders, no abstract graphics. Images are treated raw — no overlays, no duotone, no rounded crops except inside cards (24–32px). The photography style is warm, natural-light, slightly nostalgic, shot from above or at eye level in real environments. Icons are minimal and inline; most visual punctuation is typographic (brackets, pipes, mono annotations). Density is image-heavy in the hero and card grids, text-dominant in body sections.",
+    "similar": [
+      {
+        "why": "Same cream-canvas editorial biotech aesthetic with large display type and minimal chromatic palette",
+        "business": "Ginkgo Bioworks"
+      },
+      {
+        "why": "Similar warm off-white backgrounds, soft rounded cards, and bio-laboratory photography in lifestyle settings",
+        "business": "Modern Meadow"
+      },
+      {
+        "why": "Pill-shaped CTAs, generous border-radius on cards, and restrained near-monochrome palette with a single accent",
+        "business": "Notion (marketing site)"
+      },
+      {
+        "why": "Cream canvas with near-black text, tight Neue-Haas-style display tracking, and full-bleed photographic hero treatment",
+        "business": "Arc Browser"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "64px",
+        "cards": "32px",
+        "small": "6px",
+        "badges": "50px",
+        "images": "24px",
+        "buttons": "64px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "48px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#f7f3ec",
+        "name": "Parchment Canvas",
+        "level": 0,
+        "purpose": "Base page background — every page, every section"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper Elevation",
+        "level": 1,
+        "purpose": "Floating nav capsule, primary button fills, footer, elevated badges"
+      },
+      {
+        "hex": "#6c853b",
+        "name": "Olive Accent",
+        "level": 2,
+        "purpose": "Decorative heading accents and annotation labels only"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(255, 255, 255, 0.1) 0px -1px 2px 0px inset, rgba(255, 255, 255, 0.1) 0px 1px 2px 0px inset, rgba(0, 0, 0, 0.1) 0px 0px 2px 0px, rgba(0, 0, 0, 0.05) 0px 3px 17px 0px",
+        "element": "Editorial Image Card"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.043) 0px 7.5px 30px 0px, rgba(255, 255, 255, 0.3) 0px 1px 1px 0px inset",
+        "element": "Floating Nav Pill"
+      }
+    ],
+    "northStar": "warm parchment monograph under a single olive tree.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.3
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.35
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "heading",
+        "size": 39,
+        "lineHeight": 1,
+        "letterSpacing": -1.17
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 1,
+        "letterSpacing": -1.68
+      },
+      {
+        "role": "display",
+        "size": 69,
+        "lineHeight": 0.9,
+        "letterSpacing": -2.55
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Floating capsule container with 64px border-radius, white or cream fill, 1px solid #121212 border, 16px vertical padding. Brand wordmark left, centered nav links at 14px Neue Haas Text weight 400, rounded 'Join Us' button right. Sits over the hero with a subtle inset highlight."
+      },
+      {
+        "name": "Pill Primary Button",
+        "role": "Main call-to-action",
+        "description": "64px border-radius (full pill), white #ffffff fill, 1px solid #121212 border, 8px–16px horizontal padding, 14px Neue Haas Text weight 500, color #121212. Joins CTAs, contact actions, and team invites."
+      },
+      {
+        "name": "Pill Ghost Button",
+        "role": "Secondary action",
+        "description": "Same 64px radius and border as primary, but transparent fill over the cream canvas. Used in nav for 'Join Us' when not filled, and for lower-emphasis actions like FAQ links."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "First-screen editorial headline",
+        "description": "Neue Haas Display 69px weight 400, line-height 0.90, letter-spacing -2.55px, color #121212 or #ffffff depending on image brightness. Sits bottom-left of the hero image, often paired with a Geist Mono 12px caption like '[ Scroll to discover ]'."
+      },
+      {
+        "name": "Editorial Image Card",
+        "role": "Team / lab photography card",
+        "description": "32px border-radius, 1px solid #121212 border, no shadow. Image fills the card edge-to-edge. Small Geist Mono label (e.g., '| 3 |') sits above in olive #6c853b or ink."
+      },
+      {
+        "name": "Feature Image Card Grid",
+        "role": "Four-column lab/team showcase",
+        "description": "Four cards in a row, each 32px radius, 1px solid #121212 border, equal width with 16–24px gaps. Numbered annotations in olive above each card: '| 1 | A remarkably interdisciplinary lab'."
+      },
+      {
+        "name": "Recruitment Copy Block",
+        "role": "Hiring section text",
+        "description": "Two-column layout: bold statement left in Neue Haas Display 32–39px weight 500, supporting paragraph right in Neue Haas Text 16px weight 400, color #121212. Pairs with a primary pill button below."
+      },
+      {
+        "name": "Scroll Prompt Caption",
+        "role": "Editorial micro-label",
+        "description": "Geist Mono 12px, color #ffffff over hero images, often wrapped in brackets '[ Scroll to discover ]' with +0.05em letter-spacing — functions as a typographic ornament."
+      },
+      {
+        "name": "Top Header Strip",
+        "role": "Above-nav utility bar",
+        "description": "Thin horizontal strip with the brand wordmark and three small dots on the left, nav links center, 'Join Us' pill right. Cream #f7f3ec fill, 1px #121212 bottom border."
+      },
+      {
+        "name": "Full-Bleed Hero Image",
+        "role": "First-viewport visual",
+        "description": "Edge-to-edge photograph (overhead lifestyle, grass/picnic scenes), no overlay tint, no border-radius on the image itself. Headline overlays directly on the image at bottom-left."
+      },
+      {
+        "name": "Nav Pill Container",
+        "role": "Floating navigation capsule",
+        "description": "White #ffffff pill with 64px radius, 1px #121212 border, floats centered at top of inner pages (not the hero). Contains two small dots (page indicator) and the 'Join Us' CTA."
+      },
+      {
+        "name": "Borderless Stacked Section",
+        "role": "Content block separator",
+        "description": "Sections flow into each other with only whitespace — no visible dividers. Vertical rhythm driven by 48–96px gaps between sections."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and headings — from subhead at 24px to hero at 69px, with tight line-heights (0.90–1.10) and aggressive negative tracking (up to -0.037em) creating a compressed Swiss-editorial feel",
+        "sizes": "16px, 24px, 32px, 39px, 56px, 69px",
+        "family": "neueHaasDisplay",
+        "weight": "400, 500",
+        "lineHeight": "0.90–1.50",
+        "substitute": "Neue Haas Grotesk Display Pro, or Inter at matching weight + tight letter-spacing",
+        "letterSpacing": "-2.55px at 69px, -0.96px at 32px, -0.4px at 16px"
+      },
+      {
+        "role": "Body copy, nav links, button labels, card text — 14px and 16px with moderate negative tracking (-0.025em at 14px, -0.009em at 16px), reads as a clean grotesque but not clinical",
+        "sizes": "14px, 16px",
+        "family": "neueHaasText",
+        "weight": "400, 500",
+        "lineHeight": "1.43–1.50",
+        "substitute": "Neue Haas Grotesk Text Pro, or Inter",
+        "letterSpacing": "-0.35px at 14px, -0.14px at 16px"
+      },
+      {
+        "role": "Captions, annotations, code-like labels, scroll prompts — 12–14px with +0.05em tracking on the 12px size, adds a technical/research-lab accent",
+        "sizes": "12px, 14px",
+        "family": "Geist Mono",
+        "weight": "400, 500",
+        "lineHeight": "1.40–1.50",
+        "substitute": "JetBrains Mono, IBM Plex Mono",
+        "letterSpacing": "-0.3px at 12px (normal), +0.7px at 12px (annotation)",
+        "fontFeatureSettings": "\"ss01\" on"
+      }
+    ],
+    "description": "Until presents a warm, editorial biotech identity: a cream-paper canvas (#f7f3ec) carries nearly all surfaces, text is near-black (#121212), and a single olive green (#6c853b) acts as botanical punctuation on headings and borders. The system is fundamentally photographic — full-bleed overhead lifestyle imagery replaces illustration, and copy rides directly over pictures with no tinted overlays. Typography carries the weight: Neue Haas Display in compressed tracking at near-1.0 line-height creates a Swiss editorial cadence, while Neue Haas Text at 14–16px keeps body content quiet. Everything is rounded generously — 32px on cards, 64px on buttons — producing soft, pill-heavy UI that feels like a printed science monograph rather than a dashboard. Shadows are almost imperceptible; the cream-on-cream layering and thick border lines (1px solid #121212) provide separation instead of elevation.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ded6d7c4-2801-45f4-8b8a-089f1b37842d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"until design system\",\"item\":\"https://styles.refero.design/style/ded6d7c4-2801-45f4-8b8a-089f1b37842d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ded6d7c4-2801-45f4-8b8a-089f1b37842d#style-reference\",\"name\":\"until design system reference\",\"headline\":\"until design system | Refero Styles\",\"description\":\"Explore until's light AI design system: Parchment #f7f3ec, Ink #121212 colors, neueHaasDisplay, neueHaasText typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ded6d7c4-2801-45f4-8b8a-089f1b37842d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ded6d7c4-2801-45f4-8b8a-089f1b37842d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"until\",\"url\":\"https://www.untillabs.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ded6d7c4-2801-45f4-8b8a-089f1b37842d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b6ef0773-14c5-4e9f-8bce-d1f8f04cebdb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b6ef0773-14c5-4e9f-8bce-d1f8f04cebdb.jpg\",\"caption\":\"Screenshot of until\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b6ef0773-14c5-4e9f-8bce-d1f8f04cebdb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"until design system\",\"until website design\",\"until colors\",\"until typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Parchment\",\"Ink\",\"Black\",\"Paper\",\"neueHaasDisplay\",\"neueHaasText\",\"Geist Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"until design system\"},{\"@type\":\"Thing\",\"name\":\"until website design\"},{\"@type\":\"Thing\",\"name\":\"until colors\"},{\"@type\":\"Thing\",\"name\":\"until typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-30T00:26:24.154Z\",\"dateModified\":\"2026-04-30T00:26:24.154Z\"}]}19:T697,Quick Color Reference:\n- text: #121212\n- background: #f7f3ec\n- border: #121212\n- accent: #6c853b\n- surface (elevated): #ffffff\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a hero section: full-bleed photograph background, no overlay tint. Headline at 69px neueHaasDisplay weight 400, color #ffffff, letter-spacing -2.55px, line-height 0.90, positioned bottom-left. Below the headline, add a 12px Geist Mono caption in white with +0.7px tracking: '[ Scroll to discover ]'.\n\n2. Create a four-column image card grid: each card 32px border-radius, 1px solid #121212 border, 1px inset highlight rgba(255,255,255,0.1). Above each card, a small olive label in 12px Geist Mono: '| 1 |', '| 2 |', etc., color #6c853b. 24px gap between cards, all on #f7f3ec background.\n\n3. Create a floating nav pill: white #ffffff fill, 64px border-radius, 1px solid #121212 border, horizontal padding 24px, vertical padding 8px. Contains two small black dots (8px circles) on the left and a 'Join Us' text button on the right in 14px neueHaasText weight 500, color #121212.\n\n4. Create a recruitment copy block: two-column layout on #f7f3ec. Left column: headline at 39px neueHaasDisplay weight 500, color #121212, letter-spacing -1.17px. Right column: body text at 16px neueHaasText weight 400, color #121212, line-height 1.5. Below left column, a pill button: white fill, 64px radius, 1px #121212 border, padding 8px 16px, label 'Join the team' in 14px neueHaasText weight 500.\n\n5. Create a secondary ghost button: transparent fill, 64px border-radius, 1px solid #121212 border, padding 8px 16px, label in 14px neueHaasText weight 500, color #121212. Sits on the cream canvas."
+      },
+      {
+        "title": "Gradient System",
+        "content": "A single decorative gradient appears on the site: linear-gradient(90deg, rgb(203, 53, 15) 0%, rgb(244, 224, 155) 50%, rgb(171, 193, 227) 100%) — a warm-to-cool sunset sweep (terracotta → cream → soft blue). This is used as a thin accent rule or section divider, not as a surface. Treat it as a rare typographic ornament, not a fill."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#121212",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18220370283599863
+          },
+          "contexts": [
+            "body",
+            "other",
+            "hero",
+            "heading",
+            "link",
+            "card",
+            "button"
+          ],
+          "frequency": 2948,
+          "confidence": 1,
+          "prominence": 585314755.8116076,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 96,
+            "card/color": 80,
+            "hero/color": 2,
+            "link/color": 46,
+            "other/color": 318,
+            "button/color": 4,
+            "heading/color": 47,
+            "body/borderColor": 384,
+            "card/borderColor": 320,
+            "hero/borderColor": 8,
+            "link/borderColor": 184,
+            "other/borderColor": 1268,
+            "heading/borderColor": 188,
+            "body/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#f7f3ec",
+          "oklch": {
+            "c": 0.010240373248995032,
+            "h": 81.79509019355211,
+            "l": 0.9653130556633115
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "link",
+            "body",
+            "heading",
+            "hero",
+            "card"
+          ],
+          "frequency": 400,
+          "confidence": 1,
+          "prominence": 17997773.62635367,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "body/color": 4,
+            "link/color": 2,
+            "other/fill": 8,
+            "other/color": 52,
+            "button/color": 1,
+            "heading/color": 1,
+            "nav/borderColor": 32,
+            "body/borderColor": 16,
+            "link/borderColor": 8,
+            "other/borderColor": 204,
+            "button/borderColor": 4,
+            "heading/borderColor": 4,
+            "body/backgroundColor": 1,
+            "card/backgroundColor": 40,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 14
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "footer",
+            "link",
+            "heading",
+            "body",
+            "icon"
+          ],
+          "frequency": 224,
+          "confidence": 1,
+          "prominence": 9897372.828542208,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "icon/color": 3,
+            "link/color": 12,
+            "other/fill": 9,
+            "other/color": 21,
+            "footer/color": 1,
+            "heading/color": 2,
+            "body/borderColor": 16,
+            "icon/borderColor": 12,
+            "link/borderColor": 48,
+            "other/borderColor": 84,
+            "footer/borderColor": 4,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "footer"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 1816799.016302942,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 4,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#121c0f",
+          "oklch": {
+            "c": 0.028733482482634305,
+            "h": 138.60867192918852,
+            "l": 0.2121992570790508
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6c853b",
+          "oklch": {
+            "c": 0.1049974365207675,
+            "h": 125.08005027718521,
+            "l": 0.5801260634490251
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 274865.9866779471,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "heading/color": 4,
+            "heading/borderColor": 16,
+            "body/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#bebebe",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8015167399412204
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 6329.329406224194,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "body/borderColor": 16
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00472195578475115,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.99,
+          "background": "#f7f3ec",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.73,
+          "background": "#ffffff",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.52,
+          "background": "#ffffff",
+          "foreground": "#121c0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.94,
+          "background": "#f7f3ec",
+          "foreground": "#121212"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.84,
+          "background": "#121c0f",
+          "foreground": "#f7f3ec"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.3,
+          "background": "#bebebe",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.08,
+          "background": "#121212",
+          "foreground": "#bebebe"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.43,
+          "background": "#121c0f",
+          "foreground": "#bebebe"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.06,
+          "background": "#6c853b",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.51,
+          "background": "#6c853b",
+          "foreground": "#121212"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.22,
+          "background": "#121c0f",
+          "foreground": "#6c853b"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.15,
+          "background": "#ffffff",
+          "foreground": "#6c853b"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.76,
+          "background": "#6c853b",
+          "foreground": "#f7f3ec"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.23,
+          "background": "#6c853b",
+          "foreground": "#bebebe"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.86,
+          "background": "#ffffff",
+          "foreground": "#bebebe"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.68,
+          "background": "#f7f3ec",
+          "foreground": "#bebebe"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.2,
+          "background": "#121c0f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#121212",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#ffffff",
+          "foreground": "#f7f3ec"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 87
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 40
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(255, 255, 255, 0.1) 0px -1px 2px 0px inset, rgba(255, 255, 255, 0.1) 0px 1px 2px 0px inset, rgba(0, 0, 0, 0.1) 0px 0px 2px 0px, rgba(0, 0, 0, 0.05) 0px 3px 17px 0px",
+          "contexts": [
+            "body",
+            "card"
+          ],
+          "frequency": 44
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.043) 0px 7.5px 30px 0px, rgba(255, 255, 255, 0.3) 0px 1px 1px 0px inset",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "heading"
+          ],
+          "frequency": 339,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|button",
+            "marginLeft|button",
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingRight|other",
+            "marginBottom|link",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 184,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 80,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "nav",
+            "hero",
+            "other",
+            "heading"
+          ],
+          "frequency": 11,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|hero",
+            "rowGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|heading",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 71,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 138,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|hero",
+            "paddingLeft|hero"
+          ]
+        },
+        {
+          "value": 257,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(203, 53, 15) 0%, rgb(244, 224, 153) 50%, rgb(171, 193, 227) 100%)",
+        "colors": [
+          "rgb(203, 53, 15)",
+          "rgb(244, 224, 153)",
+          "rgb(171, 193, 227)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "neueHaasText",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 615,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "neueHaasDisplay",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 135,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Geist Mono",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 47,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Geist Mono",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Geist Mono",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Geist Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Geist Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "neueHaasText",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 120,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "neueHaasText",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "neueHaasText",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "link",
+            "hero",
+            "image",
+            "card",
+            "body",
+            "footer",
+            "icon"
+          ],
+          "frequency": 482,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "neueHaasText",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "neueHaasText",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "neueHaasDisplay",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "neueHaasDisplay",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 40,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "neueHaasDisplay",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "neueHaasDisplay",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.037,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "neueHaasDisplay",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 39,
+          "family": "neueHaasDisplay",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.031,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "neueHaasDisplay",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "neueHaasDisplay",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "neueHaasDisplay",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "neueHaasDisplay",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 69,
+          "family": "neueHaasDisplay",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.024,
+          "textTransform": "none"
+        },
+        {
+          "size": 69,
+          "family": "neueHaasDisplay",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 39,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/68b70c27-d2f5-4699-9e6b-ed85020933d7.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b6ef0773-14c5-4e9f-8bce-d1f8f04cebdb.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ded6d7c4-2801-45f4-8b8a-089f1b37842d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"until design system\",\"item\":\"https://styles.refero.design/style/ded6d7c4-2801-45f4-8b8a-089f1b37842d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ded6d7c4-2801-45f4-8b8a-089f1b37842d#style-reference\",\"name\":\"until design system reference\",\"headline\":\"until design system | Refero Styles\",\"description\":\"Explore until's light AI design system: Parchment #f7f3ec, Ink #121212 colors, neueHaasDisplay, neueHaasText typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ded6d7c4-2801-45f4-8b8a-089f1b37842d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ded6d7c4-2801-45f4-8b8a-089f1b37842d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"until\",\"url\":\"https://www.untillabs.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ded6d7c4-2801-45f4-8b8a-089f1b37842d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b6ef0773-14c5-4e9f-8bce-d1f8f04cebdb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b6ef0773-14c5-4e9f-8bce-d1f8f04cebdb.jpg\",\"caption\":\"Screenshot of until\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b6ef0773-14c5-4e9f-8bce-d1f8f04cebdb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"until design system\",\"until website design\",\"until colors\",\"until typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Parchment\",\"Ink\",\"Black\",\"Paper\",\"neueHaasDisplay\",\"neueHaasText\",\"Geist Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"until design system\"},{\"@type\":\"Thing\",\"name\":\"until website design\"},{\"@type\":\"Thing\",\"name\":\"until colors\"},{\"@type\":\"Thing\",\"name\":\"until typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-30T00:26:24.154Z\",\"dateModified\":\"2026-04-30T00:26:24.154Z\"}]}19:T697,Quick Color Reference:\n- text: #121212\n- background: #f7f3ec\n- border: #121212\n- accent: #6c853b\n- surface (elevated): #ffffff\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a hero section: full-bleed photograph background, no overlay tint. Headline at 69px neueHaasDisplay weight 400, color #ffffff, letter-spacing -2.55px, line-height 0.90, positioned bottom-left. Below the headline, add a 12px Geist Mono caption in white with +0.7px tracking: '[ Scroll to discover ]'.\n\n2. Create a four-column image card grid: each card 32px border-radius, 1px solid #121212 border, 1px inset highlight rgba(255,255,255,0.1). Above each card, a small olive label in 12px Geist Mono: '| 1 |', '| 2 |', etc., color #6c853b. 24px gap between cards, all on #f7f3ec background.\n\n3. Create a floating nav pill: white #ffffff fill, 64px border-radius, 1px solid #121212 border, horizontal padding 24px, vertical padding 8px. Contains two small black dots (8px circles) on the left and a 'Join Us' text button on the right in 14px neueHaasText weight 500, color #121212.\n\n4. Create a recruitment copy block: two-column layout on #f7f3ec. Left column: headline at 39px neueHaasDisplay weight 500, color #121212, letter-spacing -1.17px. Right column: body text at 16px neueHaasText weight 400, color #121212, line-height 1.5. Below left column, a pill button: white fill, 64px radius, 1px #121212 border, padding 8px 16px, label 'Join the team' in 14px neueHaasText weight 500.\n\n5. Create a secondary ghost button: transparent fill, 64px border-radius, 1px solid #121212 border, padding 8px 16px, label in 14px neueHaasText weight 500, color #121212. Sits on the cream canvas."
+}

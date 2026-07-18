@@ -1,0 +1,64 @@
+:root {
+  /* Colors */
+  --color-obsidian: #000000;
+  --color-pure-white: #ffffff;
+  --color-concrete: #c4c4c4;
+  --color-charcoal: #363636;
+
+  /* Typography — Font Families */
+  --font-monospace: 'monospace', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-anton: 'Anton', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-montserrat: 'Montserrat', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-times: 'Times', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.2;
+  --text-body-lg: 18px;
+  --leading-body-lg: 2.78;
+  --text-subheading: 24px;
+  --leading-subheading: 1.2;
+  --text-heading-sm: 30px;
+  --leading-heading-sm: 1.2;
+  --text-heading: 36px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.2;
+  --text-display: 90px;
+  --leading-display: 1;
+  --text-display-xl: 150px;
+  --leading-display-xl: 1;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-unit: 6px;
+  --spacing-12: 12px;
+  --spacing-23: 23px;
+  --spacing-42: 42px;
+  --spacing-54: 54px;
+  --spacing-108: 108px;
+
+  /* Layout */
+  --section-gap: 54px;
+  --card-padding: 23px;
+  --element-gap: 23px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+
+  /* Named Radii */
+  --radius-tags: 2px;
+  --radius-cards: 2px;
+  --radius-inputs: 2px;
+  --radius-buttons: 2px;
+  --radius-default: 2px;
+
+  /* Surfaces */
+  --surface-obsidian-canvas: #000000;
+  --surface-charcoal-panel: #363636;
+  --surface-pure-white-mark: #ffffff;
+}

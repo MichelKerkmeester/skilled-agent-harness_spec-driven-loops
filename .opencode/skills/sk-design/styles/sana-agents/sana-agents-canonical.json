@@ -1,0 +1,860 @@
+{
+  "source": "https://styles.refero.design/style/5bfbe8b0-de0e-470f-b130-929f50437160",
+  "uuid": "5bfbe8b0-de0e-470f-b130-929f50437160",
+  "name": "Sana Agents",
+  "northStar": "Lime spark on editorial white",
+  "capturedAt": "2026-07-18T08:35:54.975Z",
+  "meta": {
+    "url": "https://sana.ai",
+    "siteName": "Sana Agents",
+    "extractedAt": "2026-06-03T15:26:40.726Z",
+    "durationMs": 26591,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 141,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Sana Serif exclusively for the 72px hero headline at weight 400 — it is the system's only serif, and diluting it to smaller sizes destroys its editorial authority",
+      "Apply 24px border-radius to all cards, inputs, and panel containers; use 9999px exclusively for pill-shaped buttons and tags",
+      "Restrict #cdfe00 (Electric Lime) to filled action buttons sitting on #0a1217 (Ink Black) surfaces — the lime-on-ink contrast is the entire purpose of the accent",
+      "Use Sana Sans weight 450 for button labels and nav links rather than 500 — the 450 step is what makes the body type feel quiet and considered",
+      "Set font-feature-settings to \"lnum\" on, \"tnum\" on for all Sana Sans usage — tabular numerals ensure numeric data aligns cleanly in tables, prices, and timestamps",
+      "Create depth through surface color shifts (white → frost → ink) rather than box-shadows — the system is flat by design",
+      "Keep the hero headline centered and the rest of the layout left-aligned — centering is reserved for the single editorial moment"
+    ],
+    "donts": [
+      "Do not use Sana Serif below 56px — weight 400 at small sizes loses its authority and reads as thin/generic",
+      "Do not place #cdfe00 on #ffffff or #e4eff7 surfaces — the contrast is insufficient and the lime loses its electric quality",
+      "Do not introduce a second accent color — the system is monochromatic with exactly one chromatic note, adding more dilutes the poster-like discipline",
+      "Do not apply drop shadows to cards or panels — depth comes from the white → frost → ink surface stack, not elevation",
+      "Do not use sharp corners (0px radius) on any container — the 24px radius defines the system's soft, tactile personality",
+      "Do not center-align body text, card content, or navigation links — only the hero display headline gets centered treatment",
+      "Do not add gradients, patterns, or background imagery to surfaces — the design language is pure flat color blocks"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0a1217",
+        "name": "Ink Black",
+        "role": "Primary text, dark card surfaces, sign-up panel, filled primary buttons on light backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e4eff7",
+        "name": "Frost Wash",
+        "role": "Soft tinted surface for light product cards and secondary panels — the only chromatic step between paper white and ink black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#85898b",
+        "name": "Stone Gray",
+        "role": "Muted helper text, footer labels, and desaturated secondary copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Hairline borders, nav text, and input outlines where the sharpest contrast edge is required",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cdfe00",
+        "name": "Electric Lime",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page is a centered, max-width contained layout (approximately 1200px) on a pure white canvas. The hero is a single centered serif headline with no accompanying image — pure typographic. Below the hero, the layout shifts to a two-column product card grid with both cards at equal width and identical height, each containing a device photograph that bleeds past the card's right edge. The sign-up CTA panel is a single contained dark card centered within the page width. The footer is a four-column text grid (wordmark + three link columns) aligned to the same max-width. Navigation is a minimal top bar: wordmark left, centered links, single pill button right. No sidebar, no mega-menu, no sticky elements visible.",
+    "imagery": "Product photography is the only imagery present: tight device crops showing the Sana Agents mobile app on a hand-held phone (dark card) and the Sana Learn platform on a laptop screen (light card). No lifestyle photography, no abstract illustrations, no decorative graphics. The product screenshot IS the hero within each card — devices are photographed at a slight angle with shallow depth of field, bleeding off the card edges. The imagery treatment is documentary and utilitarian: show the actual product, not a stylized version of it.",
+    "similar": [
+      {
+        "why": "Same monochrome-first discipline with a single restrained accent, generous border-radius, pill-shaped buttons, and flat surfaces with no shadows — both systems treat white space as a primary design element",
+        "business": "Linear"
+      },
+      {
+        "why": "Identical typographic confidence: custom geometric sans at compressed sizes, monochrome canvas, generous letter-spacing, and zero decorative chrome — both let type and spacing do the heavy lifting",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same editorial instinct: serif used for brand-defining moments, sans for utility, white canvas with deliberate dark-surface panels, and a warm-accent restraint that reads as considered rather than corporate",
+        "business": "Anthropic"
+      },
+      {
+        "why": "Same poster-design heritage: massive editorial type, two-color surface contrast (white + near-black), and the absence of shadows or gradients in favor of flat geometric panels with generous radius",
+        "business": "Stripe"
+      },
+      {
+        "why": "Same soft-tactile feel through generous border-radius on cards and inputs, but Sana pushes further into monochrome and editorial type where Notion stays neutral and utilitarian",
+        "business": "Notion"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "24px",
+        "inputs": "24px",
+        "buttons": "9999px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "64px",
+      "cardPadding": "24-32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Page canvas, default background for all sections and footer"
+      },
+      {
+        "hex": "#e4eff7",
+        "name": "Frost Wash",
+        "level": 1,
+        "purpose": "Light product cards and secondary panels — subtle cool tint to separate from the white canvas"
+      },
+      {
+        "hex": "#0a1217",
+        "name": "Ink Black",
+        "level": 2,
+        "purpose": "Dark product cards, sign-up CTA panels, and filled button fills — the strongest contrast surface in the system"
+      },
+      {
+        "hex": "#cdfe00",
+        "name": "Electric Lime",
+        "level": 3,
+        "purpose": "Accent action surface, used only as filled button on ink-black backgrounds"
+      }
+    ],
+    "northStar": "Lime spark on editorial white",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "heading",
+        "size": 20,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1.1
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Headline (Sana Serif Display)",
+        "role": "The 72px serif display that opens the page",
+        "description": "Weight 400 Sana Serif at 72px, line-height 1.10, color #0a1217 on #ffffff canvas. Centered alignment, used exactly once per page in the hero. The massive scale of a weight-400 serif — not bold, not light — is the system's defining typographic statement."
+      },
+      {
+        "name": "Product Card — Dark (Sana Agents)",
+        "role": "Full-bleed dark product showcase card",
+        "description": "Background #0a1217, border-radius 24px, padding 24-32px. Title in Sana Sans 20px weight 500 at #ffffff, subtitle at 16px weight 400 in #85898b. Contains a product screenshot. Houses two pill buttons: a dark-on-dark 'Explore' (but actually the Explore button is a dark pill which is hard to see — likely has a white outline or is actually a different style) and a green 'Book an intro' accent button in #cdfe00."
+      },
+      {
+        "name": "Product Card — Light (Sana Learn)",
+        "role": "Full-bleed light product showcase card",
+        "description": "Background #e4eff7 (Frost Wash), border-radius 24px, padding 24-32px. Title in Sana Sans 20px weight 500 at #0a1217, subtitle at 16px weight 400. Contains a product screenshot on the frost surface. Buttons: 'Explore' in #0a1217 filled pill, 'Book an intro' as ghost/white pill with #0a1217 border."
+      },
+      {
+        "name": "Pill Button — Filled Dark",
+        "role": "Primary action on light backgrounds",
+        "description": "Background #0a1217, text #ffffff, Sana Sans 16px weight 450, border-radius 9999px (full pill), padding 10px 18px. Used for 'Explore', 'Sign in', and 'Enter your work email' CTAs on white or frost surfaces."
+      },
+      {
+        "name": "Pill Button — Accent Lime",
+        "role": "Highlighted action on dark surfaces",
+        "description": "Background #cdfe00 (Electric Lime), text #0a1217, Sana Sans 16px weight 450, border-radius 9999px, padding 10px 18px. Only ever used on #0a1217 dark surfaces — the contrast against ink black is the point."
+      },
+      {
+        "name": "Pill Button — Ghost/White",
+        "role": "Secondary action on dark surfaces, or outlined action on light surfaces",
+        "description": "Background #ffffff with 1px border #ffffff on dark cards; or background transparent with border #0a1217 on light cards. Text matches surface logic: #0a1217 on white, #0a1217 on frost. Border-radius 9999px, padding 10px 18px."
+      },
+      {
+        "name": "OAuth Button (Google)",
+        "role": "Third-party authentication action",
+        "description": "Full-width pill, background #ffffff, border-radius 9999px, padding 10px 18px. Google 'G' logo on the left, label 'Continue con Google' in Sana Sans 16px weight 450 at #0a1217, centered. Used inside the dark sign-up card."
+      },
+      {
+        "name": "Sign-Up CTA Card",
+        "role": "Conversion panel for account creation",
+        "description": "Background #0a1217, border-radius 24px, padding 32-62px. Centered heading 'Try for free with your work email' in Sana Sans weight 500 at #ffffff. Contains OAuth button, 'or' divider in #85898b, email input + submit button stack, and terms text in #85898b at 13px. The 62px padding token appears here for generous internal breathing room."
+      },
+      {
+        "name": "Email Input",
+        "role": "Text input for email capture",
+        "description": "Background #ffffff, border 1px #000000 or #0a1217, border-radius 24px, padding 10px 18px. Placeholder text 'name@work-email.com' in #85898b. Full-width within its container. No focus ring color change observed — the solid border is the visual anchor."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Background #ffffff, horizontal layout with 'Sana' wordmark left, centered nav links (Sana Agents, Sana Learn, Mission, Careers) in Sana Sans 16px weight 400 at #0a1217, and 'Sign in' pill button (#0a1217 filled, #ffffff text) on the far right. No background, no border, no shadow — the nav sits directly on the white canvas."
+      },
+      {
+        "name": "Product Section Label",
+        "role": "Small section-introducing label",
+        "description": "Sana Sans 13px weight 400 at #85898b, left-aligned, sits above the product cards. Extremely quiet — the section label is barely louder than the background."
+      },
+      {
+        "name": "Footer",
+        "role": "Site-wide footer with link columns",
+        "description": "Background #ffffff, padding 32-62px. 'Sana' wordmark on the left, three columns of text links (Sana Agents, Sana Learn, Company) in Sana Sans 14px weight 400 at #0a1217. Column headers at 16px weight 450. Copyright line at 13px in #85898b. No dividers, no background tint — the footer is pure typographic structure."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Hero display headline only. A weight-400 serif at 72px is the system's signature move: most AI brands shout with bold sans, Sana whispers with editorial type and lets the scale carry authority. The serif counterforms and bracket serifs give the wordmark a literary, humanist quality absent from typical product UI.",
+        "sizes": "72px",
+        "family": "Sana Serif",
+        "weight": "400",
+        "lineHeight": "1.10",
+        "substitute": "GT Super, Tiempos Headline, or Source Serif 4 at weight 400"
+      },
+      {
+        "role": "All UI, body, navigation, buttons, and subheadings. The 450 weight is a distinctive mid-step between regular and medium — used for button labels and nav links instead of jumping to 500, producing quieter emphasis. Tabular numerals (tnum) and lining figures (lnum) are always on, giving all numeric data a consistent grid.",
+        "sizes": "13px, 14px, 16px, 20px",
+        "family": "Sana Sans",
+        "weight": "400, 450, 500",
+        "lineHeight": "1.20, 1.40, 1.43, 1.50",
+        "substitute": "Söhne, Inter, or Untitled Sans",
+        "fontFeatureSettings": "\"lnum\" on, \"tnum\" on"
+      }
+    ],
+    "description": "Sana's design system is an editorial-grade monochrome canvas with a single electric accent — a Swiss-poster discipline applied to a knowledge work product. The page is overwhelmingly white and typographic, with a massive weight-400 serif headline that gives the brand a literary, almost magazine-cover authority rare in AI tooling. Dark surfaces (#0a1217) and one vivid lime (#cdfe00) appear as deliberate punctuation — full-bleed product cards, sign-up panels, and the occasional action button — never as background washes. Rounded geometry is generous: 24px for cards and inputs, full pills for buttons, which together give the system a soft, tactile quality against the otherwise austere type. Components stay flat and unshaded; depth comes from surface color contrast rather than shadows, creating a visual rhythm of white → frost → ink → lime rather than z-axis elevation.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5bfbe8b0-de0e-470f-b130-929f50437160#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sana Agents design system\",\"item\":\"https://styles.refero.design/style/5bfbe8b0-de0e-470f-b130-929f50437160\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5bfbe8b0-de0e-470f-b130-929f50437160#style-reference\",\"name\":\"Sana Agents design system reference\",\"headline\":\"Sana Agents design system | Refero Styles\",\"description\":\"Explore Sana Agents's light AI design system: Ink Black #0a1217, Paper White #ffffff colors, Sana Serif, Sana Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5bfbe8b0-de0e-470f-b130-929f50437160\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5bfbe8b0-de0e-470f-b130-929f50437160\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Sana Agents\",\"url\":\"https://sana.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5bfbe8b0-de0e-470f-b130-929f50437160#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/80d68854-4659-4146-8a9d-a97e7170bc8c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/80d68854-4659-4146-8a9d-a97e7170bc8c.jpg\",\"caption\":\"Screenshot of Sana Agents\"},\"image\":\"https://images.refero.design/styles/refero.design/image/80d68854-4659-4146-8a9d-a97e7170bc8c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Sana Agents design system\",\"Sana Agents website design\",\"Sana Agents colors\",\"Sana Agents typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Ink Black\",\"Paper White\",\"Frost Wash\",\"Stone Gray\",\"Sana Serif\",\"Sana Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Sana Agents design system\"},{\"@type\":\"Thing\",\"name\":\"Sana Agents website design\"},{\"@type\":\"Thing\",\"name\":\"Sana Agents colors\"},{\"@type\":\"Thing\",\"name\":\"Sana Agents typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-03-05T20:20:57.000Z\",\"dateModified\":\"2026-03-05T20:20:57.000Z\"}]}19:T6ef,primary action: no distinct CTA color\n## Quick Color Reference\n\n- text: #0a1217\n- background: #ffffff\n- dark surface: #0a1217\n- light surface / frost: #e4eff7\n- border: #000000\n- accent / primary action on dark surfaces: #cdfe00 (Electric Lime)\n- primary action on light surfaces: #0a1217 (Ink Black filled pill)\n\n## Example Component Prompts\n\n**1. Hero section:** White #ffffff background. Centered headline 'Superintelligence for work' at 72px Sana Serif weight 400, color #0a1217, line-height 1.10. No accompanying image. Below at 13px Sana Sans weight 400, color #85898b, the label 'Our products', left-aligned.\n\n**2. Dark product card:** Background #0a1217, border-radius 24px, padding 32px. Title 'Sana Agents' in Sana Sans 20px weight 500 at #ffffff. Subtitle 'AI agents for every team' in Sana Sans 16px weight 400 at #85898b. Two pill buttons: 'Explore' as filled #0a1217 with white border (or surface-elevation style), 'Book an intro' as filled #cdfe00 with #0a1217 text. Both at 9999px radius, 10px 18px padding, Sana Sans 16px weight 450.\n\n**3. Light product card:** Background #e4eff7, border-radius 24px, padding 32px. Title 'Sana Learn' in Sana Sans 20px weight 500 at #0a1217. Subtitle 'AI-native learning platform' in Sana Sans 16px weight 400. Buttons: 'Explore' as filled #0a1217 pill with #ffffff text, 'Book an intro' as ghost pill with #ffffff background and #0a1217 text.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n**5. Footer:** White #ffffff background, no dividers. 'Sana' wordmark left in Sana Serif or Sans. Three columns of links in Sana Sans 14px weight 400 at #0a1217, column headers at 16px weight 450. Copyright 'Sana Labs © 2026' at 13px in #85898b."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids drop shadows. Depth and hierarchy are created entirely through surface color contrast — white → frost → ink black — rather than z-axis elevation. Components sit flat against their containers, and the 24px border radius is the only softening agent. This produces a poster-like, Swiss-graphic-design quality where every surface edge is a deliberate color boundary, not a diffuse shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0a1217",
+          "oklch": {
+            "c": 0.01597336032134107,
+            "h": 236.30900624103555,
+            "l": 0.17664694352466773
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "heading",
+            "hero",
+            "card",
+            "body",
+            "footer",
+            "link"
+          ],
+          "frequency": 388,
+          "confidence": 1,
+          "prominence": 22859370.602805685,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "card",
+            "image",
+            "heading",
+            "body",
+            "input",
+            "link"
+          ],
+          "frequency": 196,
+          "confidence": 1,
+          "prominence": 9878179.158015464,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e4eff7",
+          "oklch": {
+            "c": 0.015965521465996703,
+            "h": 239.1081624182238,
+            "l": 0.9462115952087675
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 704265.40749544,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "input",
+            "other"
+          ],
+          "frequency": 33,
+          "confidence": 1,
+          "prominence": 77329.43518700516,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#85898b",
+          "oklch": {
+            "c": 0.006050730242841685,
+            "h": 234.79361185121462,
+            "l": 0.6258632292704853
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 74214.2733957044,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6c7174",
+          "oklch": {
+            "c": 0.0075067607349967305,
+            "h": 234.8542333222997,
+            "l": 0.5447873785373805
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 6612,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cdfe00",
+          "oklch": {
+            "c": 0.22711496838884562,
+            "h": 122.67860760314672,
+            "l": 0.9291280447161465
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4600,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0278697841141906,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.89,
+          "background": "#ffffff",
+          "foreground": "#0a1217"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.99,
+          "background": "#e4eff7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.77,
+          "background": "#cdfe00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.18,
+          "background": "#e4eff7",
+          "foreground": "#0a1217"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.99,
+          "background": "#cdfe00",
+          "foreground": "#0a1217"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.35,
+          "background": "#0a1217",
+          "foreground": "#85898b"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.94,
+          "background": "#ffffff",
+          "foreground": "#6c7174"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.23,
+          "background": "#e4eff7",
+          "foreground": "#6c7174"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.18,
+          "background": "#cdfe00",
+          "foreground": "#6c7174"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.82,
+          "background": "#0a1217",
+          "foreground": "#6c7174"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.53,
+          "background": "#ffffff",
+          "foreground": "#85898b"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.02,
+          "background": "#e4eff7",
+          "foreground": "#85898b"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.99,
+          "background": "#cdfe00",
+          "foreground": "#85898b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.18,
+          "background": "#cdfe00",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.17,
+          "background": "#e4eff7",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#0a1217",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "other",
+            "input"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 6
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 19,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 25,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 62,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Sana Sans",
+          "source": "custom",
+          "weights": [
+            400,
+            450,
+            500
+          ],
+          "frequency": 128,
+          "fontFeatureSettings": [
+            "\"lnum\", \"tnum\""
+          ]
+        },
+        {
+          "family": "Sana Serif",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Sana Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Sana Sans",
+          "weight": 450,
+          "contexts": [
+            "nav",
+            "button",
+            "footer",
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 57,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Sana Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Sana Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Sana Sans",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Sana Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Sana Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "hero",
+            "card",
+            "image"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Sana Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Sana Sans",
+          "weight": 450,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Sana Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/a611b55f-2e23-4b3b-ab12-d2b9482d2c71.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/80d68854-4659-4146-8a9d-a97e7170bc8c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5bfbe8b0-de0e-470f-b130-929f50437160#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sana Agents design system\",\"item\":\"https://styles.refero.design/style/5bfbe8b0-de0e-470f-b130-929f50437160\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5bfbe8b0-de0e-470f-b130-929f50437160#style-reference\",\"name\":\"Sana Agents design system reference\",\"headline\":\"Sana Agents design system | Refero Styles\",\"description\":\"Explore Sana Agents's light AI design system: Ink Black #0a1217, Paper White #ffffff colors, Sana Serif, Sana Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5bfbe8b0-de0e-470f-b130-929f50437160\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5bfbe8b0-de0e-470f-b130-929f50437160\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Sana Agents\",\"url\":\"https://sana.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5bfbe8b0-de0e-470f-b130-929f50437160#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/80d68854-4659-4146-8a9d-a97e7170bc8c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/80d68854-4659-4146-8a9d-a97e7170bc8c.jpg\",\"caption\":\"Screenshot of Sana Agents\"},\"image\":\"https://images.refero.design/styles/refero.design/image/80d68854-4659-4146-8a9d-a97e7170bc8c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Sana Agents design system\",\"Sana Agents website design\",\"Sana Agents colors\",\"Sana Agents typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Ink Black\",\"Paper White\",\"Frost Wash\",\"Stone Gray\",\"Sana Serif\",\"Sana Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Sana Agents design system\"},{\"@type\":\"Thing\",\"name\":\"Sana Agents website design\"},{\"@type\":\"Thing\",\"name\":\"Sana Agents colors\"},{\"@type\":\"Thing\",\"name\":\"Sana Agents typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-03-05T20:20:57.000Z\",\"dateModified\":\"2026-03-05T20:20:57.000Z\"}]}19:T6ef,primary action: no distinct CTA color\n## Quick Color Reference\n\n- text: #0a1217\n- background: #ffffff\n- dark surface: #0a1217\n- light surface / frost: #e4eff7\n- border: #000000\n- accent / primary action on dark surfaces: #cdfe00 (Electric Lime)\n- primary action on light surfaces: #0a1217 (Ink Black filled pill)\n\n## Example Component Prompts\n\n**1. Hero section:** White #ffffff background. Centered headline 'Superintelligence for work' at 72px Sana Serif weight 400, color #0a1217, line-height 1.10. No accompanying image. Below at 13px Sana Sans weight 400, color #85898b, the label 'Our products', left-aligned.\n\n**2. Dark product card:** Background #0a1217, border-radius 24px, padding 32px. Title 'Sana Agents' in Sana Sans 20px weight 500 at #ffffff. Subtitle 'AI agents for every team' in Sana Sans 16px weight 400 at #85898b. Two pill buttons: 'Explore' as filled #0a1217 with white border (or surface-elevation style), 'Book an intro' as filled #cdfe00 with #0a1217 text. Both at 9999px radius, 10px 18px padding, Sana Sans 16px weight 450.\n\n**3. Light product card:** Background #e4eff7, border-radius 24px, padding 32px. Title 'Sana Learn' in Sana Sans 20px weight 500 at #0a1217. Subtitle 'AI-native learning platform' in Sana Sans 16px weight 400. Buttons: 'Explore' as filled #0a1217 pill with #ffffff text, 'Book an intro' as ghost pill with #ffffff background and #0a1217 text.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n**5. Footer:** White #ffffff background, no dividers. 'Sana' wordmark left in Sana Serif or Sans. Three columns of links in Sana Sans 14px weight 400 at #0a1217, column headers at 16px weight 450. Copyright 'Sana Labs © 2026' at 13px in #85898b."
+}

@@ -1,0 +1,75 @@
+@theme {
+  /* Colors */
+  --color-void-canvas: #0e0e13;
+  --color-carbon-surface: #09090b;
+  --color-slab-elevated: #18181b;
+  --color-iron-border: #27272a;
+  --color-steel-border: #3f3f46;
+  --color-zinc-mute: #71717a;
+  --color-pearl-border: #d8d7d4;
+  --color-ice-border: #d9e6ef;
+  --color-cream-text: #fffaea;
+  --color-bone-text: #f4f4f5;
+  --color-mercury-text: #a1a1aa;
+  --color-ember-orange: #e96b34;
+  --color-mint-pulse: #62f6b5;
+  --color-spectrogram-blue: #4dcafa;
+  --color-spectrogram-pink: #de94e2;
+  --color-spectrogram-yellow: #ffdd03;
+  --color-spectrogram-violet: #9977ff;
+
+  /* Typography */
+  --font-seasonsans: 'seasonSans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-geist-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-label: 12px;
+  --leading-label: 1.5;
+  --text-caption: 14px;
+  --leading-caption: 1.5;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.5;
+  --text-body: 18px;
+  --leading-body: 1.43;
+  --text-body-lg: 24px;
+  --leading-body-lg: 1.32;
+  --text-heading-sm: 40px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -0.64px;
+  --text-heading: 56px;
+  --leading-heading: 1.1;
+  --tracking-heading: -1.12px;
+  --text-heading-lg: 68px;
+  --leading-heading-lg: 1.09;
+  --tracking-heading-lg: -1.5px;
+  --text-display-sm: 96px;
+  --leading-display-sm: 1;
+  --tracking-display-sm: -2.4px;
+  --text-display: 120px;
+  --leading-display: 1;
+  --tracking-display: -3px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-100: 100px;
+  --spacing-120: 120px;
+
+  /* Border Radius */
+  --radius-md: 5.6px;
+  --radius-xl: 12px;
+  --radius-3xl: 24px;
+  --radius-full: 9999px;
+}

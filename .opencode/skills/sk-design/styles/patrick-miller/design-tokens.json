@@ -1,0 +1,205 @@
+{
+  "color": {
+    "persimmon-wash": {
+      "$value": "#fd9b65",
+      "$type": "color",
+      "$description": "Persimmon Wash — Hero full-bleed section background — warm terracotta field that carries the massive name lockup"
+    },
+    "blush-linen": {
+      "$value": "#e9d1c7",
+      "$type": "color",
+      "$description": "Blush Linen — Section background, split-screen left or right panel — dusty rose that softens adjacent fields"
+    },
+    "candlelight": {
+      "$value": "#f8f5d1",
+      "$type": "color",
+      "$description": "Candlelight — Section background, split-screen panel — off-white cream that recedes behind type"
+    },
+    "sage-whisper": {
+      "$value": "#9ac8ae",
+      "$type": "color",
+      "$description": "Sage Whisper — Accent full-bleed background for occasional sections — desaturated eucalyptus that cools the warm system"
+    },
+    "inkwell-blue": {
+      "$value": "#004b82",
+      "$type": "color",
+      "$description": "Inkwell Blue — Solid circle action button, link underlines and text — the only dark saturated mark against the chalky fields, dense and editorial"
+    },
+    "slate-moss": {
+      "$value": "#4c564b",
+      "$type": "color",
+      "$description": "Slate Moss — Alternate muted button or surface fill — warm-leaning gray-green for secondary controls"
+    },
+    "fossil": {
+      "$value": "#a4b1b3",
+      "$type": "color",
+      "$description": "Fossil — Muted section background, quiet tonal step between cream and white"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — All typography, hairline borders, icon strokes, arrow marks — the sole ink color across every surface"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Canvas background, inverse text on dark button, rotated Contact badge fill"
+    }
+  },
+  "font": {
+    "mlrstandard": {
+      "$value": "MlrStandard",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for all text — 331px for the hero name with lineHeight 0.80 and -0.02em tracking, 32px for section labels at lineHeight 1.20, 16px for pagination and UI chrome at lineHeight 1.30 with +0.01em to +0.02em tracking. The custom face has near-zero terminals and uniform stroke weight that holds up at 331px without distortion — a system font would look brittle at that size."
+    },
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "Ultralight fallback reserved only for the secondary button label — used at 32px weight 200 to contrast with MlrStandard's heavier editorial presence"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "MlrStandard",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "MlrStandard",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "MlrStandard",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "MlrStandard",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "32px",
+        "fontWeight": 200,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "MlrStandard",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "MlrStandard",
+        "fontSize": "331px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 331px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background and split-screen right panel"
+    },
+    "candlelight": {
+      "$value": "#f8f5d1",
+      "$type": "color",
+      "$description": "Surface level 1: Soft cream section — sits one step above white"
+    },
+    "blush-linen": {
+      "$value": "#e9d1c7",
+      "$type": "color",
+      "$description": "Surface level 2: Dusty rose section — introduces warmth without saturating"
+    },
+    "sage-whisper": {
+      "$value": "#9ac8ae",
+      "$type": "color",
+      "$description": "Surface level 3: Cool green section — palette counterweight"
+    },
+    "persimmon": {
+      "$value": "#fd9b65",
+      "$type": "color",
+      "$description": "Surface level 4: Hero color field — maximum warmth, carries the masthead"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://patrickmiller.se",
+      "siteName": "Patrick Miller",
+      "extractedAt": "2026-06-03T17:31:27.274Z",
+      "variant": "extended"
+    }
+  }
+}

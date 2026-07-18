@@ -1,0 +1,87 @@
+:root {
+  /* Colors */
+  --color-ink: #171717;
+  --color-paper: #ffffff;
+  --color-graphite-hairline: #e5e7eb;
+  --color-vellum: #f3f3f3;
+  --color-slate: #6f6f6f;
+  --color-pewter: #5e5e5e;
+  --color-ash: #a0a0a0;
+  --color-carbon: #222222;
+  --color-stone: #c7c7c7;
+  --color-cream-notice: #ffe9bf;
+
+  /* Typography — Font Families */
+  --font-monument-grotesk: 'Monument Grotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 18px;
+  --leading-subheading: 1.38;
+  --text-heading-sm: 36px;
+  --leading-heading-sm: 1.25;
+  --text-heading: 48px;
+  --leading-heading: 1.11;
+  --text-heading-lg: 60px;
+  --leading-heading-lg: 1.1;
+  --text-display: 72px;
+  --leading-display: 1;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-112: 112px;
+  --spacing-128: 128px;
+  --spacing-160: 160px;
+  --spacing-176: 176px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-xl: 14px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 28px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-cards: 20px;
+  --radius-icons: 9999px;
+  --radius-buttons: 9999px;
+  --radius-list-items: 28px;
+  --radius-large-cards: 24px;
+  --radius-small-cards: 8px;
+
+  /* Shadows */
+  --shadow-xl: rgba(0, 0, 0, 0.01) 0px 128px 51px 0px, rgba(0, 0, 0, 0.02) 0px 72px 43px 0px, rgba(0, 0, 0, 0.03) 0px 32px 32px 0px, rgba(0, 0, 0, 0.04) 0px 8px 18px 0px;
+  --shadow-xl-2: rgba(194, 194, 194, 0.01) 0px 168px 67px 0px, rgba(194, 194, 194, 0.05) 0px 94px 57px 0px, rgba(194, 194, 194, 0.09) 0px 42px 42px 0px, rgba(194, 194, 194, 0.1) 0px 10px 23px 0px;
+  --shadow-xl-3: rgba(207, 207, 207, 0.01) 0px 132px 53px 0px, rgba(207, 207, 207, 0.05) 0px 74px 44px 0px, rgba(207, 207, 207, 0.09) 0px 33px 33px 0px, rgba(207, 207, 207, 0.1) 0px 8px 18px 0px;
+
+  /* Surfaces */
+  --surface-page-canvas: #ffffff;
+  --surface-vellum-surface: #f3f3f3;
+  --surface-graphite-edge: #e5e7eb;
+  --surface-stone-accent: #c7c7c7;
+  --surface-cream-notice: #ffe9bf;
+}

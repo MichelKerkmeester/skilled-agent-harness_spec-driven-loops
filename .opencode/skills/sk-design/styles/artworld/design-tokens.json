@@ -1,0 +1,235 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — All text, the ARTWORLD wordmark, hairline structural borders, link strokes — the only mark-making color in the entire system"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, negative space between type, reverse text on the wordmark bar"
+    }
+  },
+  "font": {
+    "graphik-light": {
+      "$value": "Graphik Light",
+      "$type": "fontFamily",
+      "$description": "The invisible support system — body text, captions, metadata, role tags, the legend, the info link. Weight 300 is deliberately thin: it recedes so the Cardinal Fruit can dominate. This is the typographic equivalent of using whisper voice in a conversation where someone else is speaking. The consistent -0.065em letter-spacing tightens the already-light forms, giving the sans-serif an editorial density that prevents it from feeling like default UI text."
+    },
+    "cardinal-fruit-and-italic-classic-italic-variants": {
+      "$value": "Cardinal Fruit (and Italic / Classic Italic variants)",
+      "$type": "fontFamily",
+      "$description": "The editorial display voice — used for talent names, artist credits, and any moment of typographic expression. The italic variant carries the romantic, fashion-magazine feeling while the upright version provides structural headlines. Custom serif with high contrast strokes, used at extreme sizes (65–75px) to dominate the page. The whisper weight (300) on such a large serif is anti-convention: most editorial serifs use 400–700 here, but the light cuts create airier letterforms that feel more printed than digital."
+    },
+    "cardinal-fruit-italic": {
+      "$value": "Cardinal Fruit Italic",
+      "$type": "fontFamily",
+      "$description": "Cardinal Fruit Italic — detected in extracted data but not described by AI"
+    },
+    "cardinal-classic-italic": {
+      "$value": "Cardinal Classic Italic",
+      "$type": "fontFamily",
+      "$description": "Cardinal Classic Italic — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Graphik Light",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 6.23
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Graphik Light",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Graphik Light",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Graphik Light",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Graphik Light",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Cardinal Fruit Italic",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Cardinal Fruit",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Cardinal Classic Italic",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Graphik Light",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Cardinal Fruit",
+        "fontSize": "65px",
+        "fontWeight": 300,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 65px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Cardinal Fruit Italic",
+        "fontSize": "65px",
+        "fontWeight": 300,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 65px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Cardinal Fruit",
+        "fontSize": "75px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 75px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Cardinal Fruit Italic",
+        "fontSize": "75px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 75px"
+    }
+  },
+  "spacing": {
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "49": {
+      "$value": "49px",
+      "$type": "dimension",
+      "$description": "Spacing 49px"
+    },
+    "76": {
+      "$value": "76px",
+      "$type": "dimension",
+      "$description": "Spacing 76px"
+    },
+    "90": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Spacing 90px"
+    },
+    "95": {
+      "$value": "95px",
+      "$type": "dimension",
+      "$description": "Spacing 95px"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page canvas — the entire site lives on this surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://artworld.agency",
+      "siteName": "ARTWORLD",
+      "extractedAt": "2026-06-03T20:41:49.027Z",
+      "variant": "extended"
+    }
+  }
+}

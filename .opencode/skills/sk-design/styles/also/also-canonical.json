@@ -1,0 +1,1515 @@
+{
+  "source": "https://styles.refero.design/style/d04a3970-45f0-4030-8375-d0d26c083c0f",
+  "uuid": "d04a3970-45f0-4030-8375-d0d26c083c0f",
+  "name": "ALSO",
+  "northStar": "Bicycle zine on cream paper",
+  "capturedAt": "2026-07-18T09:01:15.948Z",
+  "meta": {
+    "url": "https://ridealso.com",
+    "siteName": "ALSO",
+    "extractedAt": "2026-06-03T21:02:20.553Z",
+    "durationMs": 35855,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 579,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all buttons and tags to 9999px radius — the pill is non-negotiable across every variant (primary, dark, green, ghost).",
+      "Use the single Shadow Plum (#48316a) 2px solid hard shadow on every elevated element — never use blur, never stack shadows, never change the offset.",
+      "Use Electric Violet (#ac74fc) for links, active states, icon highlights, and section borders — it is the signal color and should appear in functional roles, not decoration.",
+      "Set SerialC-Heavy labels in uppercase with positive tracking (0.036–0.063em) — never use it in mixed case or tight tracking.",
+      "Push ABCCameraPlainVariable line-heights tighter as size grows: 1.5 at body, 1.0 at heading-lg, 0.93 at display — the system is defined by compression at scale.",
+      "Maintain 8px base unit spacing: 16px element gap, 24px card padding, 80px section gap — never break to a 4px or 12px base.",
+      "When a section flips to Electric Violet (#ac74fc) background, keep the same component structure, shadows, and type system — only the canvas color changes."
+    ],
+    "donts": [
+      "Never use soft drop shadows with blur — the 2px solid hard shadow is the only shadow in the system.",
+      "Never use Pure White (#ffffff) as page canvas — always start from Cream Paper (#fcf7fa); white is reserved for cards and elevated surfaces.",
+      "Never set ABCCameraPlainVariable with positive letter-spacing on body or heading text — the system compresses at scale, it does not expand.",
+      "Never use rounded corners on product images, story cards, or hero photography — these are sharp-edged; only buttons, inputs, and feature cards get radius.",
+      "Never add a second chromatic accent — Electric Violet is the system; Acid Lime and Signal Blue are rare utility colors for specific states only.",
+      "Never use a different shadow color — Shadow Plum (#48316a) stays constant even on dark or green buttons, keeping the brand cohesive across all CTA variants.",
+      "Never set SerialC-Heavy in lowercase or sentence case — it is an uppercase-only typeface in this system; using it otherwise breaks the typographic rhythm."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fcf7fa",
+        "name": "Cream Paper",
+        "role": "Page canvas, soft section background — warm off-white with a barely-there pink cast, never pure white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Card",
+        "role": "Card surfaces, elevated panels, button text on violet fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1f1f1",
+        "name": "Ash Mist",
+        "role": "Tertiary surface, muted dividers, subtle background washes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon Black",
+        "role": "Primary text, default borders, icon strokes — the structural ink of the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#212121",
+        "name": "Graphite Input",
+        "role": "Input field borders, secondary dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Obsidian Pill",
+        "role": "Dark CTA fill — the secondary action button (e.g. Reserve), pairs with white text and violet shadow",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ac74fc",
+        "name": "Electric Violet",
+        "role": "Primary accent — link borders, active states, icon highlights, section accent borders. The brand's signal color",
+        "group": "brand"
+      },
+      {
+        "hex": "#c181ff",
+        "name": "Lilac Pill",
+        "role": "Primary CTA button fill — the dominant call-to-action, sits on violet hard shadow with black text",
+        "group": "brand"
+      },
+      {
+        "hex": "#381b5e",
+        "name": "Deep Plum",
+        "role": "Dark violet text variant, deep accent borders, section-level emphasis when Electric Violet feels too bright",
+        "group": "brand"
+      },
+      {
+        "hex": "#48316a",
+        "name": "Shadow Plum",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#b1ff8f",
+        "name": "Acid Lime",
+        "role": "Sparingly used highlight wash or accent surface for urgency moments (limited drops, reservation states)",
+        "group": "accent"
+      },
+      {
+        "hex": "#1276a9",
+        "name": "Signal Blue",
+        "role": "Outlined action border — secondary ghost button or informational outline accent",
+        "group": "accent"
+      }
+    ],
+    "layout": "$19",
+    "imagery": "The visual system is product-photography-dominant with a strong cutout/isolated treatment. Riders on bikes, quads, and helmets are photographed against pure white or pure cream, then placed on the canvas as full-bleed cutouts with no shadows, no borders, no context — the object is the hero, not the environment. Treatment is high-key, bright, slightly desaturated to keep focus on form. Lifestyle photography appears in feature cards and story cards with environmental context (San Francisco bridge, trail riding, urban commuting), but always shot in bright daylight with no dark/moody moments. The hero grid showcases the cutouts as a horizontal procession of riders — almost like a parade, each annotated with a small numerical counter. There is no 3D rendering, no illustration, no abstract graphics — the brand trusts photography to carry the visual weight, and the system earns its personality from the typographic and color treatment around those photos rather than from the imagery itself.",
+    "similar": [
+      {
+        "why": "Same editorial product-catalog-as-zine approach — warm off-white canvas, large centered headlines, uppercase tracked-out eyebrow labels, and isolated product photography with no environment",
+        "business": "Aimé Leon Dore"
+      },
+      {
+        "why": "Identical warm cream canvas, restraint with a single accent color, tight grotesque type, and editorial section rhythms that trust whitespace over decoration",
+        "business": "Aesop"
+      },
+      {
+        "why": "Cream background, product-as-hero photography on isolated cutouts, playful uppercase labels, and the same 'friendly editorial' tone that treats commerce as a magazine",
+        "business": "Glossier"
+      },
+      {
+        "why": "Direct e-bike category neighbor with a similarly playful product-celebration layout — centered headline hero, horizontal procession of bike cutouts, pill buttons with hard offset shadows",
+        "business": "Cowboy"
+      },
+      {
+        "why": "Fellow e-bike brand with a near-identical product grid structure, full-bleed isolated product photography, uppercase mono-style labels for specs and counters, and pill-shaped CTAs",
+        "business": "VanMoof"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "12px",
+        "pills": "9999px",
+        "inputs": "12px",
+        "buttons": "9999px",
+        "feature-cards": "56px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#fcf7fa",
+        "name": "Cream Paper",
+        "level": 1,
+        "purpose": "Base page canvas — every section starts here unless deliberately flipped to violet"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Card",
+        "level": 2,
+        "purpose": "Product cards, story cards, elevated content blocks sitting on the cream canvas"
+      },
+      {
+        "hex": "#f1f1f1",
+        "name": "Ash Mist",
+        "level": 3,
+        "purpose": "Tertiary wash for muted sections, subtle background variation within cream zones"
+      },
+      {
+        "hex": "#ac74fc",
+        "name": "Electric Violet",
+        "level": 4,
+        "purpose": "Full-bleed accent canvas for Stories / editorial sections — inverted mode without changing component logic"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgb(72, 49, 106) 0px 2px 0px 0px",
+        "element": "Primary CTA (Lilac Pill)"
+      },
+      {
+        "style": "rgb(72, 49, 106) 0px 2px 0px 0px",
+        "element": "Dark CTA (Obsidian Pill)"
+      },
+      {
+        "style": "rgb(72, 49, 106) 0px 2px 0px 0px",
+        "element": "Green CTA (Acid Lime)"
+      }
+    ],
+    "northStar": "Bicycle zine on cream paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.75
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.09,
+        "letterSpacing": -0.9
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.13,
+        "letterSpacing": -1
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.17,
+        "letterSpacing": -0.8
+      },
+      {
+        "role": "heading-lg",
+        "size": 44,
+        "lineHeight": 1,
+        "letterSpacing": -0.7
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 0.93,
+        "letterSpacing": 3
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button (Lilac Pill)",
+        "role": "The dominant call-to-action — \"LEARN MORE\", \"EXPLORE\", primary product actions",
+        "description": "Pill radius 9999px, fill #c181ff, text #000000 in SerialC-Heavy 900 uppercase at 14px with 0.05em tracking, padding 20px 40px (or 12px 20px for compact). Sits on a 2px solid Shadow Plum hard shadow (#48316a) with no blur. No border, no hover lift — the shadow is the depth."
+      },
+      {
+        "name": "Dark CTA Button (Obsidian Pill)",
+        "role": "Secondary high-emphasis action — \"RESERVE NOW\" top banner button",
+        "description": "Pill radius 9999px, fill #1a1a1a, text #ffffff in SerialC-Heavy 900 uppercase at 14px, padding 20px 40px. Same 2px Shadow Plum hard shadow as primary CTA. Pairs black-on-white with violet shadow to keep brand cohesion."
+      },
+      {
+        "name": "Green CTA Button (Acid Lime)",
+        "role": "Scarce/limited state CTA — reservation confirmations, low-stock urgency",
+        "description": "Pill radius 9999px, fill #b1ff8f, text #000000 in SerialC-Heavy 900 uppercase, padding 20px 40px. Same 2px Shadow Plum hard shadow. Used sparingly — its presence signals urgency or availability windows."
+      },
+      {
+        "name": "Ghost Navigation Link",
+        "role": "Top-bar nav items (BIKE, QUAD, HELMET, GEAR, COMPANY)",
+        "description": "Text-only in ABCCameraPlainVariable 400 at 16px, color #000000, no underline. Active state: Electric Violet (#ac74fc) color or 1px bottom border in violet. No background, no padding — sits in the navigation flow like a magazine TOC."
+      },
+      {
+        "name": "Section Eyebrow Label",
+        "role": "Uppercase section markers — \"WHEN YOU RIDE ON ALSO, YOU SEE, FEEL, AND NOTICE THINGS\"",
+        "description": "SerialC-Heavy 400 uppercase at 14px, tracking 0.063em, color #000000, centered or left-aligned. Functions as a typographic divider between sections — the most reliable signal that a new content block is beginning."
+      },
+      {
+        "name": "Product Card (Hero Showcase)",
+        "role": "Large illustrated/photographic product cards in the grid — bikes, quads, helmets, riders",
+        "description": "Radius 0 (sharp corners), no border, no shadow — the card IS the image. Image fills the entire card on a #fcf7fa canvas (isolated cutout). A small counter label in SerialC-Heavy (e.g. \"1,043\") sits at top-left in 14px black. Cards are large (roughly 280–340px wide), arranged in a horizontal flex/grid that can extend past the viewport edge."
+      },
+      {
+        "name": "Feature Card (Three-Column Grid)",
+        "role": "Editorial cards in the \"SEE, FEEL, NOTICE\" section — TM-B, Alpha Wave, Our Company",
+        "description": "Radius 12px, full-bleed photographic background (no border, no shadow). Title overlay bottom-left in ABCCameraPlainVariable 32px black (-0.8px tracking). A compact pill CTA (\"EXPLORE\") in Lilac Pill style sits at bottom-left below the title. The middle card (Alpha Wave) flips to a full violet (#ac74fc) fill with white product photography — same card structure, inverted palette."
+      },
+      {
+        "name": "Story Card (Purple Section)",
+        "role": "Editorial story cards in the Stories carousel — \"Join ALSO at the Sea Otter Classic 2026\"",
+        "description": "Radius 0, no border, no shadow. Full Electric Violet (#ac74fc) background as the card canvas itself (no card-on-card layering — the card IS the section). Title in ABCCameraPlainVariable 20–24px black at top-left. Date in SerialC-Heavy 14px uppercase tracked at top-left below title. Image fills the bottom 50% of the card, sharp corners, no rounding."
+      },
+      {
+        "name": "Pagination Control",
+        "role": "Carousel navigation — \"01/03\" counter with prev/next circle buttons",
+        "description": "Counter \"01/03\" in SerialC-Heavy 14px uppercase at right of section header. Prev/next: 32px circle buttons with 1px #000000 border, Electric Violet arrow icon, no fill. No shadow, no hover fill change."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form inputs (email, address, reservation details)",
+        "description": "Radius 12px, 1px solid #212121 border, no fill (transparent over canvas), padding 12px 16px. Text in ABCCameraPlainVariable 16px black. Placeholder in #212121 at 50% opacity. Focus state: border becomes Electric Violet (#ac74fc), no glow ring, no shadow — the border color change is the focus signal."
+      },
+      {
+        "name": "Top Announcement Bar",
+        "role": "Site-wide reservation banner — \"RESERVE NOW TO RIDE SOONER\"",
+        "description": "Full-bleed strip, Electric Violet (#ac74fc) or #b1ff8f fill (status-dependent), centered text in SerialC-Heavy 14px uppercase with 0.05em tracking, black text. No padding beyond a tight 10–12px vertical. Sits above the main navigation as a fixed utility rail."
+      },
+      {
+        "name": "Logo Wordmark",
+        "role": "Brand mark — \"ALSO.\" with period",
+        "description": "ABCCameraPlainVariable 400 at 24px, black, letter-spacing 0. The trailing period is part of the wordmark — not punctuation, not a typo. Sits top-left of the navigation bar."
+      },
+      {
+        "name": "Rider Counter Tag",
+        "role": "Small numerical labels next to product cutouts — \"1,043\", \"2,803\", \"2,041\"",
+        "description": "SerialC-Heavy 400 at 14px, black, with comma thousands separator. Functions as a stat annotation — how many riders, how many rides, a tactile product-counter feel. Always paired with a rider/product cutout."
+      },
+      {
+        "name": "Chat Bubble (Bottom-Right)",
+        "role": "Persistent customer support / reservation concierge entry point",
+        "description": "48px circle, Electric Violet (#ac74fc) fill, white chat icon, 1px #000000 border, no shadow. Fixed bottom-right, 24px margin from viewport edge. Sits over both cream and violet sections without color adjustment — the violet fill works on both."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary UI and display typeface — handles body, headings, navigation, and product copy",
+        "sizes": "12px, 16px, 20px, 24px, 32px, 44px, 60px",
+        "family": "ABCCameraPlainVariable",
+        "weight": "400",
+        "lineHeight": "0.93–1.50",
+        "substitute": "Inter (free) or Söhne (paid) — a neo-grotesque with mechanical proportions; the system depends on aggressive negative tracking and tight line-heights that most grotesques can be pushed into",
+        "description": "The signature voice. A neo-grotesque variable that tightens line-height as it grows — 0.93 at 60px is near-architectural, lines almost touch. Negative letter-spacing intensifies with size (-0.05em at body, -0.016em at large). Anti-convention: most systems open up tracking at display; this one compresses it, giving headlines a quiet, constructed feel rather than a billboard shout.",
+        "letterSpacing": "-0.05em at 12px → -0.016em at 44px, positive 0.05em only for the all-caps display eyebrow"
+      },
+      {
+        "role": "Uppercase eyebrows, button text, section labels, mono-influenced captions",
+        "sizes": "14px, 16px, 20px",
+        "family": "SerialC-Heavy",
+        "weight": "400, 900",
+        "lineHeight": "1.20–1.43",
+        "substitute": "Space Grotesk Bold (free) or ABC Diatype Mono Bold (paid) — needs a grotesque with monospace DNA and a heavy weight to carry the industrial uppercase treatment",
+        "description": "The system's industrial counterpoint. Always set uppercase, always tracked out (0.036–0.063em), always at small sizes (12–20px). Functions as a typographic system on its own: section markers, button labels, pagination indicators, product counters (\"1,043\", \"2,803\"). The positive tracking is the deliberate inverse of ABCCamera's negative tracking — the system breathes in mono, compresses in sans.",
+        "letterSpacing": "0.036em–0.063em (always positive, always tracked out)"
+      },
+      {
+        "role": "SerialC — detected in extracted data but not described by AI",
+        "sizes": "12px, 16px, 20px",
+        "family": "SerialC",
+        "weight": "400, 700",
+        "lineHeight": "1, 1.2",
+        "letterSpacing": "0.05"
+      }
+    ],
+    "description": "$1a",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1b"
+      },
+      {
+        "title": "Typographic Rhythm",
+        "content": "The system uses two fonts in a deliberate push-pull relationship. ABCCameraPlainVariable is the compressor: negative letter-spacing (-0.05em at body, tightening toward -0.016em at large sizes) and collapsing line-heights (1.5 at 12px → 0.93 at 60px). SerialC-Heavy is the expander: always uppercase, always positive tracking (0.036–0.063em), always small. The two never overlap in size range — ABCCamera handles 12px and up (but really shines at 24px+), SerialC handles 12–20px only. They alternate in the page rhythm: an uppercase SerialC eyebrow → a large compressed ABCCamera headline → SerialC button text → ABCCamera body copy. This alternation is what makes the system feel editorial rather than app-like."
+      },
+      {
+        "title": "Color Discipline",
+        "content": "ALSO is a 2.5-color system, not a multi-color palette. The 2.5: Cream Paper + Carbon Black form the achromatic backbone. Electric Violet (#ac74fc) is the 1 chromatic accent and appears in functional roles only — links, active states, borders, the dominant CTA fill (via #c181ff), section flips. The remaining colors (Lilac Pill #c181ff, Deep Plum #381b5e, Shadow Plum #48316a) are all in the violet family and exist to support the primary accent. Acid Lime (#b1ff8f) and Signal Blue (#1276a9) are utility colors for specific states (reservation urgency, informational ghost borders) and should appear at most once per page. When in doubt, restrict to: black, cream, white, and one shade of violet."
+      }
+    ],
+    "elevationPhilosophy": "The system uses a single hard-offset shadow — 2px solid, 0 blur, tinted Shadow Plum (#48316a) — across every elevated element. This is neo-brutalist sticker-on-paper, not material elevation. Never use soft drop shadows, never stack multiple shadows, never use blur. The shadow is always below (offsetY: 2px) and always the same violet. This consistency is what makes a single shadow feel like a complete system rather than a missing one."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "icon",
+            "heading",
+            "image",
+            "input"
+          ],
+          "frequency": 1969,
+          "confidence": 1,
+          "prominence": 82736039.44926217,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 54,
+            "icon/color": 7,
+            "link/color": 20,
+            "other/fill": 1,
+            "icon/stroke": 12,
+            "image/color": 23,
+            "input/color": 1,
+            "other/color": 264,
+            "button/color": 25,
+            "other/stroke": 6,
+            "heading/color": 19,
+            "body/borderColor": 196,
+            "icon/borderColor": 24,
+            "link/borderColor": 56,
+            "image/borderColor": 92,
+            "other/borderColor": 980,
+            "button/borderColor": 92,
+            "heading/borderColor": 96,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ac74fc",
+          "oklch": {
+            "c": 0.19647908661644753,
+            "h": 300.2148926300394,
+            "l": 0.6770015812680539
+          },
+          "contexts": [
+            "icon",
+            "other",
+            "link",
+            "heading",
+            "body",
+            "list"
+          ],
+          "frequency": 398,
+          "confidence": 1,
+          "prominence": 11023976.190941919,
+          "properties": [
+            "fill",
+            "stroke",
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 6,
+            "icon/color": 4,
+            "link/color": 22,
+            "list/color": 18,
+            "other/fill": 2,
+            "icon/stroke": 10,
+            "other/color": 21,
+            "other/stroke": 5,
+            "heading/color": 4,
+            "body/borderColor": 24,
+            "icon/borderColor": 16,
+            "link/borderColor": 88,
+            "list/borderColor": 72,
+            "other/borderColor": 84,
+            "heading/borderColor": 16,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "button",
+            "body",
+            "icon",
+            "input"
+          ],
+          "frequency": 226,
+          "confidence": 1,
+          "prominence": 10037548.434950598,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "icon/color": 8,
+            "icon/stroke": 16,
+            "other/color": 24,
+            "button/color": 1,
+            "other/stroke": 8,
+            "heading/color": 8,
+            "body/borderColor": 32,
+            "icon/borderColor": 32,
+            "other/borderColor": 64,
+            "input/backgroundColor": 1,
+            "button/backgroundColor": 22
+          }
+        },
+        {
+          "hex": "#381b5e",
+          "oklch": {
+            "c": 0.11361780977043637,
+            "h": 299.37084781117005,
+            "l": 0.3027181531248223
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "body"
+          ],
+          "frequency": 124,
+          "confidence": 1,
+          "prominence": 4139243.1665533287,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 104,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#fcf7fa",
+          "oklch": {
+            "c": 0.00660509536915297,
+            "h": 340.38602118396796,
+            "l": 0.980820238786397
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1928224.289046356,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#8a38f5",
+          "oklch": {
+            "c": 0.25739133134226333,
+            "h": 296.7040303350052,
+            "l": 0.5609323563107987
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1282500,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#212121",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24775871011467596
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 80617.34345448921,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 4
+          }
+        },
+        {
+          "hex": "#1276a9",
+          "oklch": {
+            "c": 0.11510920159297963,
+            "h": 238.59176346263612,
+            "l": 0.5383135723860079
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 80617.34345448921,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 34720,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#48316a",
+          "oklch": {
+            "c": 0.09679423887704994,
+            "h": 300.3432646321683,
+            "l": 0.3685195532121364
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 32121.26400646156,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "button/boxShadow": 11
+          }
+        },
+        {
+          "hex": "#c181ff",
+          "oklch": {
+            "c": 0.18512506904735943,
+            "h": 305.7134562449127,
+            "l": 0.7196057155214953
+          },
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 29764.475730190767,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 4,
+            "button/borderColor": 4,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b1ff8f",
+          "oklch": {
+            "c": 0.16349209268230247,
+            "h": 136.79335613463198,
+            "l": 0.9241849406627082
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8960,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f1f1f1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9581468870268093
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.09417332221932546,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.82,
+          "background": "#fcf7fa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.59,
+          "background": "#f1f1f1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.57,
+          "background": "#b1ff8f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#1a1a1a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.43,
+          "background": "#fcf7fa",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.1,
+          "background": "#ffffff",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.41,
+          "background": "#f1f1f1",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.2,
+          "background": "#fcf7fa",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.56,
+          "background": "#b1ff8f",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.26,
+          "background": "#f1f1f1",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.13,
+          "background": "#ffffff",
+          "foreground": "#381b5e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.47,
+          "background": "#b1ff8f",
+          "foreground": "#212121"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.34,
+          "background": "#fcf7fa",
+          "foreground": "#381b5e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.51,
+          "background": "#f1f1f1",
+          "foreground": "#381b5e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.82,
+          "background": "#b1ff8f",
+          "foreground": "#381b5e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.92,
+          "background": "#ffffff",
+          "foreground": "#48316a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.31,
+          "background": "#fcf7fa",
+          "foreground": "#48316a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.67,
+          "background": "#f1f1f1",
+          "foreground": "#48316a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.14,
+          "background": "#b1ff8f",
+          "foreground": "#48316a"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(72, 49, 106) 0px 2px 0px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 11
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "input",
+            "list"
+          ],
+          "frequency": 172,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "paddingRight|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button",
+            "marginRight|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|button",
+            "paddingLeft|input",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 39,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 82,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 11,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ABCCameraPlainVariable",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 434,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "SerialC-Heavy",
+          "source": "custom",
+          "weights": [
+            400,
+            900
+          ],
+          "frequency": 100,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "SerialC",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "SerialC",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "ABCCameraPlainVariable",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SerialC-Heavy",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "SerialC-Heavy",
+          "weight": 900,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.036,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "ABCCameraPlainVariable",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "icon",
+            "image",
+            "body",
+            "list"
+          ],
+          "frequency": 378,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SerialC-Heavy",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "SerialC-Heavy",
+          "weight": 900,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 29,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.063,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "SerialC-Heavy",
+          "weight": 900,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.063,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABCCameraPlainVariable",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABCCameraPlainVariable",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SerialC",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "SerialC-Heavy",
+          "weight": 900,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "SerialC-Heavy",
+          "weight": 900,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABCCameraPlainVariable",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "SerialC",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "SerialC",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ABCCameraPlainVariable",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "ABCCameraPlainVariable",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.042,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "ABCCameraPlainVariable",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.047,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "ABCCameraPlainVariable",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.09,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "ABCCameraPlainVariable",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.93,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/04e7cb1d-2707-4551-abe4-d4c0580a2749.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7246faf5-e61e-4e7d-bc1a-7486c13d1d36.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d04a3970-45f0-4030-8375-d0d26c083c0f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ALSO design system\",\"item\":\"https://styles.refero.design/style/d04a3970-45f0-4030-8375-d0d26c083c0f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d04a3970-45f0-4030-8375-d0d26c083c0f#style-reference\",\"name\":\"ALSO design system reference\",\"headline\":\"ALSO design system | Refero Styles\",\"description\":\"Explore ALSO's light E-commerce design system: Cream Paper #fcf7fa, Pure Card #ffffff colors, ABCCameraPlainVariable, SerialC-Heavy typography, and...\",\"url\":\"https://styles.refero.design/style/d04a3970-45f0-4030-8375-d0d26c083c0f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d04a3970-45f0-4030-8375-d0d26c083c0f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ALSO\",\"url\":\"https://ridealso.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d04a3970-45f0-4030-8375-d0d26c083c0f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7246faf5-e61e-4e7d-bc1a-7486c13d1d36.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7246faf5-e61e-4e7d-bc1a-7486c13d1d36.jpg\",\"caption\":\"Screenshot of ALSO\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7246faf5-e61e-4e7d-bc1a-7486c13d1d36.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ALSO design system\",\"ALSO website design\",\"ALSO colors\",\"ALSO typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Cream Paper\",\"Pure Card\",\"Ash Mist\",\"Carbon Black\",\"ABCCameraPlainVariable\",\"SerialC-Heavy\",\"SerialC\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ALSO design system\"},{\"@type\":\"Thing\",\"name\":\"ALSO website design\"},{\"@type\":\"Thing\",\"name\":\"ALSO colors\"},{\"@type\":\"Thing\",\"name\":\"ALSO typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-05-10T22:35:03.443Z\",\"dateModified\":\"2026-05-10T22:35:03.443Z\"}]}19:T44e,The page model is centered max-width (~1200px) with content blocks that can extend to the viewport edges when needed for image grids. The top bar is a simple horizontal nav: logo left, nav items centered, utility icon right — no sticky behavior, no mega-menu, no sidebar. The hero opens with a horizontal procession of rider cutouts that can extend past the container, then drops into a centered headline (\"One machine for every being.\") with a single CTA below. Sections are stacked vertically with 80px gaps and no visible dividers — flow is seamless, separated only by the typographic eyebrow labels. Feature sections use a 3-column equal grid. The Stories section flips the entire viewport to Electric Violet and uses a 3-column card grid with a pagination control at top-right. Navigation between sections is purely vertical scrolling — no tabs, no anchors, no carousels except in the Stories section. Density is spacious: most sections breathe, with the product grid being the densest moment. Footer is minimal — no multi-column sitemap, just the wordmark and a few links in a single row.1a:T410,ALSO reads as a confident, editorial product showcase — a bicycle zine reimagined for the web rather than a conventional e-commerce interface. A warm cream canvas (#fcf7fa) carries every surface while a single electric violet (#ac74fc) does the work of an entire color system, appearing on links, borders, highlights, and the dominant CTA fill. Type is whisper-tight: ABCCameraPlainVariable pushes negative tracking harder as size grows and line-heights collapse to 0.93 at display, making even the 60px headline feel architectural rather than shouty. Uppercase mono labels (SerialC-Heavy) with positive tracking act as eyebrows, button text, and section markers — the only place the type system opens up. Pill buttons (9999px) sit on hard 2px violet offset shadows with zero blur, reading as stickers pressed onto paper rather than soft UI elevation. Full-bleed violet sections flip the canvas to accent mode without changing typography, spacing logic, or component rules — the same buttons, same shadows, same rhythm, just inverted.1b:T64c,**Quick Color Reference**\n- text: #000000\n- background: #fcf7fa\n- card surface: #ffffff\n- border: #000000\n- accent / brand signal: #ac74fc\n- primary action: #c181ff (filled action)\n\n**Example Component Prompts**\n\n1. *Hero centered headline section*: Cream Paper (#fcf7fa) background. Headline \"One machine for every being.\" at 60px ABCCameraPlainVariable weight 400, color #000000, line-height 0.93, letter-spacing 3px. Single Lilac Pill CTA below at 20px 40px padding, #c181ff fill, #000000 text in SerialC-Heavy 900 uppercase 14px with 0.05em tracking, 9999px radius, 2px solid #48316a hard shadow.\n\n2. *Product card with rider cutout*: No card chrome. Full-bleed photographic cutout of a rider on a bike, sharp corners, sitting directly on the #fcf7fa canvas. Small counter \"1,043\" in SerialC-Heavy 14px black at top-left of the card. Card width ~320px, no border, no shadow, no padding.\n\n3. Create a Primary Action Button: #c181ff background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n4. *Story card on violet section*: Full Electric Violet (#ac74fc) background as the card itself. Title \"Join ALSO at the Sea Otter Classic 2026.\" at top-left in ABCCameraPlainVariable 20px black. Date \"04-08-2026\" below in SerialC-Heavy 14px uppercase with 0.063em tracking. Landscape photograph fills the bottom half of the card, sharp corners, no rounding.\n\n5. *Section eyebrow label*: SerialC-Heavy 400 uppercase at 14px, tracking 0.063em, color #000000, centered above the section content with 40px bottom margin. The marker that signals a new section is beginning."
+}

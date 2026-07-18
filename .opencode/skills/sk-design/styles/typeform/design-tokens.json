@@ -1,0 +1,327 @@
+{
+  "color": {
+    "aubergine-ink": {
+      "$value": "#2a222b",
+      "$type": "color",
+      "$description": "Aubergine Ink — Primary text, hero background, CTA button fill — the near-black with a warm violet undertone prevents the harshness of pure black while maintaining AAA contrast on cream"
+    },
+    "deep-plum": {
+      "$value": "#3e3040",
+      "$type": "color",
+      "$description": "Deep Plum — Hero section background variant, elevated surface in dark contexts"
+    },
+    "violet-mist": {
+      "$value": "#9454ab",
+      "$type": "color",
+      "$description": "Violet Mist — Section eyebrow labels ('AI ENGAGEMENT PLATFORM', 'DATA COLLECTION', 'INTEGRATIONS') — saturated purple used exclusively for categorical labeling, never on interactive elements"
+    },
+    "lavender-whisper": {
+      "$value": "#ddb7f0",
+      "$type": "color",
+      "$description": "Lavender Whisper — Subtle purple tints in light contexts, decorative highlights"
+    },
+    "cream-canvas": {
+      "$value": "#faf9fb",
+      "$type": "color",
+      "$description": "Cream Canvas — Page background, light section backgrounds, reversed text on dark surfaces"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, integration logo pills, elevated elements in light sections"
+    },
+    "charcoal": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Charcoal — Secondary text, ghost button borders and labels"
+    },
+    "slate-mid": {
+      "$value": "#564b58",
+      "$type": "color",
+      "$description": "Slate Mid — Dividers, subtle borders in dark contexts"
+    },
+    "ash": {
+      "$value": "#655d67",
+      "$type": "color",
+      "$description": "Ash — Secondary body text, footnotes"
+    },
+    "fog": {
+      "$value": "#837a85",
+      "$type": "color",
+      "$description": "Fog — Placeholder text, disabled states"
+    },
+    "mist": {
+      "$value": "#d4d1d5",
+      "$type": "color",
+      "$description": "Mist — Light borders, dividers in cream backgrounds"
+    },
+    "parchment": {
+      "$value": "#f5f3f6",
+      "$type": "color",
+      "$description": "Parchment — Alternating section backgrounds, subtle surface differentiation from cream canvas"
+    }
+  },
+  "font": {
+    "tobias": {
+      "$value": "Tobias",
+      "$type": "fontFamily",
+      "$description": "Display and hero headlines exclusively. A classical editorial serif at weight 400 — most SaaS sites use a geometric sans at 700+ for headlines; Tobias at regular weight makes Typeform's headings feel authored, not announced. The tight negative tracking (-1.98px at 64px, -2.24px at 72px, -2.48px at 80px) is essential — without it, the serif reads loose and archaic."
+    },
+    "twk-lausanne": {
+      "$value": "TWK Lausanne",
+      "$type": "fontFamily",
+      "$description": "Bold emphasis in body contexts, strong labels."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Twklausanne 600",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Twklausanne 400",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.49
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Twklausanne 400",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Twklausanne 400",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Twklausanne 500",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Twklausanne 400",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Twklausanne 500",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Twklausanne 400",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Twklausanne 400",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Twklausanne 400",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Twklausanne 350",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Tobias",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Tobias",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Tobias",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 80px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "dark-canvas": {
+      "$value": "#2a222b",
+      "$type": "color",
+      "$description": "Surface level 1: Hero section, announcement banner, CTA buttons — the dominant dark surface"
+    },
+    "dark-elevated": {
+      "$value": "#3e3040",
+      "$type": "color",
+      "$description": "Surface level 2: Slightly lighter dark surface within hero context"
+    },
+    "cream-canvas": {
+      "$value": "#faf9fb",
+      "$type": "color",
+      "$description": "Surface level 3: Primary light page background, nav bar"
+    },
+    "parchment": {
+      "$value": "#f5f3f6",
+      "$type": "color",
+      "$description": "Surface level 4: Alternate light sections, subtle differentiation from cream canvas"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 5: Card surfaces, integration pills, elevated components on light backgrounds"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://typeform.com",
+      "siteName": "Typeform",
+      "extractedAt": "2026-04-11T19:07:51.673Z",
+      "variant": "extended"
+    }
+  }
+}

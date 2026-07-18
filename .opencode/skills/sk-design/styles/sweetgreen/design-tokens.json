@@ -1,0 +1,414 @@
+{
+  "color": {
+    "deep-forest": {
+      "$value": "#00473c",
+      "$type": "color",
+      "$description": "Deep Forest — Primary brand color, nav logo, dark pill buttons, text accents, badge borders, link colors — the structural green that anchors the palette"
+    },
+    "lime-glow": {
+      "$value": "#e6ff55",
+      "$type": "color",
+      "$description": "Lime Glow — Green action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "sage-mist": {
+      "$value": "#d8e5d6",
+      "$type": "color",
+      "$description": "Sage Mist — Section backgrounds, card surfaces, content band alternation — soft botanical green that signals freshness without competing with the food photography"
+    },
+    "warm-sand": {
+      "$value": "#e8dcc6",
+      "$type": "color",
+      "$description": "Warm Sand — Accent surface for alternate section bands — warm beige that pairs with food photography and adds earthy variety to the green-dominant palette"
+    },
+    "cream-canvas": {
+      "$value": "#f4f3e7",
+      "$type": "color",
+      "$description": "Cream Canvas — Primary page background, the warm off-white that gives the entire system its organic, non-clinical feel"
+    },
+    "forest-shadow": {
+      "$value": "#0e150e",
+      "$type": "color",
+      "$description": "Forest Shadow — Primary text color, borders, input strokes — near-black with a barely-perceptible green undertone that harmonizes with the brand greens"
+    },
+    "pure-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Ink — Maximum-contrast text, hairlines, icon strokes — used where absolute sharpness is needed"
+    },
+    "warm-gray": {
+      "$value": "#8c8c82",
+      "$type": "color",
+      "$description": "Warm Gray — Medium-contrast borders, control outlines, and structural separators. Do not promote it to the primary CTA color"
+    },
+    "slate-gray": {
+      "$value": "#555555",
+      "$type": "color",
+      "$description": "Slate Gray — Secondary text in disabled or low-emphasis button contexts"
+    }
+  },
+  "font": {
+    "sweetsans": {
+      "$value": "SweetSans",
+      "$type": "fontFamily",
+      "$description": "Display headlines, hero text, large category labels — used at extreme sizes (70–80px) with tight leading (0.85) that lets letterforms nearly touch; weight 400 at this size is the signature choice, creating a calm authority that doesn't shout"
+    },
+    "grenette": {
+      "$value": "Grenette",
+      "$type": "fontFamily",
+      "$description": "Secondary display accent — ultra-thin weight with extreme negative tracking creates a delicate, editorial counterpoint to the geometric SweetSans display"
+    },
+    "sweetsanstext": {
+      "$value": "SweetSansText",
+      "$type": "fontFamily",
+      "$description": "Body text, navigation, button labels, card descriptions, footers — positive tracking (0.01–0.05em) improves readability at small sizes; weight 700 for labels and CTAs, 400 for body"
+    },
+    "sweetsanstext-regular": {
+      "$value": "SweetSansText-Regular",
+      "$type": "fontFamily",
+      "$description": "Small UI text, micro-labels, fine print — the regular-weight variant for the smallest readable sizes"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "SweetSansText",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "SweetSansText-Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "SweetSansText-Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "SweetSansText-Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "SweetSansText",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2.64
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "SweetSansText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "SweetSansText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "SweetSansText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "SweetSansText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "SweetSansText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "SweetSansText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "SweetSansText",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "SweetSansText",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "SweetSansText",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "SweetSansText",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "SweetSansText",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "SweetSansText",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "SweetSansText",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 2.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "SweetSans",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Grenette",
+        "fontSize": "48px",
+        "fontWeight": 200,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "SweetSans",
+        "fontSize": "70px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 70px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "SweetSans",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "lg-2": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Border radius lg-2"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(14, 21, 14, 0.4) 3px 3px 32px -10px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#f4f3e7",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — warm off-white that reads as organic rather than clinical"
+    },
+    "sage-mist-band": {
+      "$value": "#d8e5d6",
+      "$type": "color",
+      "$description": "Surface level 1: Full-width content sections alternating with the canvas — calm botanical background for text-forward or split-layout content"
+    },
+    "warm-sand-band": {
+      "$value": "#e8dcc6",
+      "$type": "color",
+      "$description": "Surface level 2: Alternate section background — earthy warm tone for visual rhythm variation"
+    },
+    "lime-glow-highlight": {
+      "$value": "#e6ff55",
+      "$type": "color",
+      "$description": "Surface level 3: Accent surface for badges and CTA fills — the only chromatic surface that draws functional attention"
+    },
+    "deep-forest-surface": {
+      "$value": "#00473c",
+      "$type": "color",
+      "$description": "Surface level 4: Dark accent surface for nav pills, dark-mode content blocks, or reversed text sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.sweetgreen.com",
+      "siteName": "sweetgreen",
+      "extractedAt": "2026-06-03T15:48:11.711Z",
+      "variant": "extended"
+    }
+  }
+}

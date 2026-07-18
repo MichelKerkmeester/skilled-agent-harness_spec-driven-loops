@@ -1,0 +1,352 @@
+{
+  "color": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Page background, all structural borders, primary text on light surfaces — the absolute black that makes the dashed containment lines read as ink on paper"
+    },
+    "carbon": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Carbon — Elevated surface — card backgrounds, section fills, the canvas where the hero spotlight lands; lifted one step from Void but barely"
+    },
+    "graphite": {
+      "$value": "#4d4d4d",
+      "$type": "color",
+      "$description": "Graphite — Tertiary borders and disabled outlines, dividers in dense lists"
+    },
+    "steel": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Steel — Body text secondary, metadata labels, muted borders, checkbox/divider lines on dark"
+    },
+    "ash": {
+      "$value": "#ababab",
+      "$type": "color",
+      "$description": "Ash — Helper text, caption-level metadata, tertiary text on dark surfaces"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Primary text, logo mark, active nav text, button borders, eyebrow chips — the one bright stroke against the void"
+    },
+    "periwinkle-annotation": {
+      "$value": "#7089ba",
+      "$type": "color",
+      "$description": "Periwinkle Annotation — Decorative icon fills, data-node accents, subtle highlight washes on feature illustrations, checkmark accents — the only chromatic mark in the system, rationed to annotation roles"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "raveo-variable": {
+      "$value": "Raveo Variable",
+      "$type": "fontFamily",
+      "$description": "Primary face for all display, heading, body, and nav text. Weight 1000 at 70px is the signature display; weight 500 for subheadings; weight 400 for body. The 1000 weight is the system's defining move — a single blocky headline silhouette against the void does more work than any color or shadow could."
+    },
+    "geist-mono": {
+      "$value": "Geist Mono",
+      "$type": "fontFamily",
+      "$description": "Eyebrow chips, version tags (\"NEW · INDEX 2.0 EARLY PREVIEW\"), step labels, and all-caps micro-labels. Sets a technical/code-adjacent tone that reinforces the blueprint metaphor. Tracked +0.02em for legibility at small sizes."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Raveo Variable Variable",
+        "fontSize": "12px",
+        "fontWeight": 1000,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Raveo Variable Variable",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Raveo Variable Variable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Raveo Variable Variable",
+        "fontSize": "12px",
+        "fontWeight": 1000,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Geist Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Raveo Variable Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Raveo Variable Variable",
+        "fontSize": "14px",
+        "fontWeight": 1000,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Raveo Variable Variable",
+        "fontSize": "14px",
+        "fontWeight": 1000,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Raveo Variable Variable",
+        "fontSize": "16px",
+        "fontWeight": 1000,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Raveo Variable Variable",
+        "fontSize": "16px",
+        "fontWeight": 1000,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Raveo Variable Variable",
+        "fontSize": "24px",
+        "fontWeight": 1000,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Raveo Variable Variable",
+        "fontSize": "32px",
+        "fontWeight": 1000,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Raveo Variable Variable",
+        "fontSize": "70px",
+        "fontWeight": 1000,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 70px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "34": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Spacing 34px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "188px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, behind everything"
+    },
+    "carbon-surface": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Surface level 1: Hero wash, elevated section backgrounds, card fills"
+    },
+    "periwinkle-wash": {
+      "$value": "#7089ba",
+      "$type": "color",
+      "$description": "Surface level 2: Decorative highlight zones — feature illustration backgrounds, data-node fills"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://index.app",
+      "siteName": "Index",
+      "extractedAt": "2026-06-03T18:42:56.947Z",
+      "variant": "extended"
+    }
+  }
+}

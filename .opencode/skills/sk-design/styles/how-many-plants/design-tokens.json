@@ -1,0 +1,237 @@
+{
+  "color": {
+    "cream-paper": {
+      "$value": "#f9f5f1",
+      "$type": "color",
+      "$description": "Cream Paper — Page background, card surfaces, section bands — the warm off-white that reads as uncoated stock rather than digital white"
+    },
+    "ink-black": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, illustration outlines, large display letters, image borders — near-black that feels like a drafting pen rather than pure black"
+    },
+    "golden-olive": {
+      "$value": "#bfb33b",
+      "$type": "color",
+      "$description": "Golden Olive — Signature illustration color, hero shelf bands, decorative borders, hard offset shadows, icon fills — the only saturated hue in the system and the brand's defining mark"
+    },
+    "dusty-lavender": {
+      "$value": "#e8d1eb",
+      "$type": "color",
+      "$description": "Dusty Lavender — Tab backgrounds, tag pills, soft surface accents — desaturated lilac that cools the warm cream without competing with the gold"
+    },
+    "deep-teal": {
+      "$value": "#025050",
+      "$type": "color",
+      "$description": "Deep Teal — Secondary text and accent on lavender surfaces, occasional icon detail — the only dark chromatic in the palette, used sparingly for contrast against light washes"
+    }
+  },
+  "font": {
+    "chromatica": {
+      "$value": "Chromatica",
+      "$type": "fontFamily",
+      "$description": "Primary display and body face — the chunky geometric letterforms spell out the brand in the hero and carry all body copy. The extremely tight 0.89 leading at 36px is what makes display letters stack into compact shelf-height bands rather than airy headlines."
+    },
+    "hellenictypewriter": {
+      "$value": "Hellenictypewriter",
+      "$type": "fontFamily",
+      "$description": "Secondary typewriter face for section headings, navigation labels, and editorial accents — its mechanical rhythm contrasts with Chromatica's geometry to create a handmade-meets-typeset feel"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Chromatica",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Chromatica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Chromatica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Hellenictypewriter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Hellenictypewriter",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Chromatica",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Hellenictypewriter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Chromatica",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Hellenictypewriter",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Hellenictypewriter",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Hellenictypewriter",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Hellenictypewriter",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 36px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Chromatica",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 0.89
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 36px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "152": {
+      "$value": "152px",
+      "$type": "dimension",
+      "$description": "Spacing 152px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(191, 179, 59) 6px 6px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#f9f5f1",
+      "$type": "color",
+      "$description": "Surface level 0: Full-page background, the base paper stock"
+    },
+    "lavender-wash": {
+      "$value": "#e8d1eb",
+      "$type": "color",
+      "$description": "Surface level 1: Tab and tag backgrounds that sit on the cream canvas"
+    },
+    "golden-shelf": {
+      "$value": "#bfb33b",
+      "$type": "color",
+      "$description": "Surface level 2: Illustrated hero bands and decorative banners — the only mid-saturation surface in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://howmanyplants.com",
+      "siteName": "How Many Plants",
+      "extractedAt": "2026-06-03T20:33:29.895Z",
+      "variant": "extended"
+    }
+  }
+}

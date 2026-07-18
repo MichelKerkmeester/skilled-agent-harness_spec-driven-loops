@@ -1,0 +1,1305 @@
+{
+  "source": "https://styles.refero.design/style/715a3ad2-5b6d-421f-b72b-3aa6fec86351",
+  "uuid": "715a3ad2-5b6d-421f-b72b-3aa6fec86351",
+  "name": "Era",
+  "northStar": "Quiet ledger on warm paper",
+  "capturedAt": "2026-07-18T09:03:57.687Z",
+  "meta": {
+    "url": "https://era.app",
+    "siteName": "Era",
+    "extractedAt": "2026-06-03T20:53:47.514Z",
+    "durationMs": 34789,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 360,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Saans VF at weight 380 for any headline 30px or larger — the whisper-weight is the signature",
+      "Set card radius to 12px and button radius to 9999px — these two values define the surface vocabulary",
+      "Keep the page canvas at #f3f3f1 (Parchment), not pure white — the warm off-white is what makes the editorial metaphor hold",
+      "Use Ink (#191a17) as the filled button background with Paper (#ffffff) text for primary actions",
+      "Apply -0.02em letter-spacing at 30px+ sizes and -0.01em at 20px and below",
+      "Use tnum and lnum font features on all numeric content — financial alignment depends on tabular figures",
+      "Communicate elevation through surface color (Sage, Slate, Dusk, Ink panels) rather than shadows"
+    ],
+    "donts": [
+      "Do not use weight 600+ for headlines — the light-weight display is the brand's anti-convention signature",
+      "Do not add drop shadows to cards, buttons, or modals — the system is intentionally flat",
+      "Do not introduce saturated brand colors (red, blue, green) — the palette is near-monochrome by design",
+      "Do not render partner logos in their full brand colors — all must be desaturated to Smoke (#868784)",
+      "Do not use pure white (#ffffff) as the page background — always Parchment (#f3f3f1)",
+      "Do not use radius values other than 9999px (buttons), 12px (cards), 6px (badges) — these three values carry the shape system",
+      "Do not skip letter-spacing on large text — the tight tracking at -0.02em is what makes the 56px headlines feel typeset rather than default"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#191a17",
+        "name": "Ink",
+        "role": "Primary text, filled CTA buttons, nav links, icon strokes, card borders — the near-black that carries the entire typographic and action system. Used as filled pill background for primary actions (white text) and as hairline border on outlined buttons",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f3f3f1",
+        "name": "Parchment",
+        "role": "Page canvas background — a warm off-white that replaces pure white as the base surface, giving the entire site a paper-like editorial warmth rather than a clinical SaaS feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e6e6e4",
+        "name": "Ash",
+        "role": "Hairline borders, divider lines, footer borders, subtle surface elevation — the structural gray that separates content without ever competing with it",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Light neutral action fill for buttons on dark surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#868784",
+        "name": "Smoke",
+        "role": "Secondary text, link underlines, icon fills, muted helper copy — the mid-gray that recedes so Ink can lead",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3d3d3d",
+        "name": "Charcoal",
+        "role": "Dark badge backgrounds where full Ink feels too heavy — used sparingly for tag fills that need to read as dark without the starkness of pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#add2d1",
+        "name": "Sage Wash",
+        "role": "Product feature card background (Thesis panel) — a desaturated teal that introduces the only sustained chromatic presence in the UI without ever becoming loud",
+        "group": "accent"
+      },
+      {
+        "hex": "#9dbebe",
+        "name": "Slate Teal",
+        "role": "Secondary product card background — a deeper desaturated teal for the Agency-adjacent surface, harmonizing with Sage Wash as a tonal pair",
+        "group": "accent"
+      },
+      {
+        "hex": "#c9c5e1",
+        "name": "Dusk Gradient",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast.",
+        "group": "accent",
+        "gradient": "linear-gradient(90deg, rgb(201, 197, 225) 0%, rgb(234, 211, 221) 100%)"
+      }
+    ],
+    "layout": "Max-width ~1200px centered container, with the hero and major sections contained within it. Hero is a two-column split: left column holds the 56px headline, right column holds the subtext and two stacked pill buttons (Google OAuth + Add to Claude). Below the hero, a centered single-row partner logo strip acts as a trust band. The product section is a 3-column card grid (Context / Agency / Thesis) with equal-width cards, each ~12px radius and 24px internal padding, with product screenshots partially overflowing the card boundaries to create visual depth without shadows. The FAQ section is a full-width single-column list with hairline bottom borders, no background card. Navigation is a minimal top bar: wordmark left ('era'), nav links (Pricing, Company, Articles) + Sign in + filled CTA button right. Section gaps are generous (~80px), card padding is 24px, element gaps are 16px — the rhythm is spacious and editorial, not dense.",
+    "imagery": "Era uses almost no imagery. The visual world is built from typography, surface color, and product mockups. The only images present are: (1) a phone screenshot of a ChatGPT conversation inside the Context card, (2) a chart mockup in the Context card, and (3) grayscale partner logos (Cursor, Gemini, Perplexity, Cline, OpenAI) in the trust strip. The three product cards carry color as their primary visual identity: lavender gradient, near-black, and sage teal. No photography, no illustration, no 3D renders — the interface is pure editorial design language with product artifacts embedded as evidence.",
+    "similar": [
+      {
+        "why": "Same fintech-meets-editorial approach: warm off-white canvas, near-monochrome palette with Ink as the dominant text and action color, and pill-shaped buttons.",
+        "business": "Mercury"
+      },
+      {
+        "why": "Shared monochrome restraint and confidence in typography — both systems use a custom or premium sans-serif at light display weights and let negative letter-spacing do the typographic work.",
+        "business": "Linear"
+      },
+      {
+        "why": "Similar editorial fintech layout: max-width contained hero with split text+CTAs, generous spacing, and a quiet neutral palette that lets product surfaces carry the color.",
+        "business": "Ramp"
+      },
+      {
+        "why": "Both use warm off-white canvases (not pure white) as a deliberate departure from clinical SaaS, paired with near-monochrome interfaces and pill-shaped controls.",
+        "business": "Arc Browser"
+      },
+      {
+        "why": "Shared commitment to editorial-grade typography and gradient accent panels for product showcases — Era's lavender-to-pink gradient card echoes Stripe's soft product hero treatments.",
+        "business": "Stripe"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "12px",
+        "badges": "6px",
+        "buttons": "9999px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#f3f3f1",
+        "name": "Parchment Canvas",
+        "level": 0,
+        "purpose": "Page background — warm off-white base"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper Card",
+        "level": 1,
+        "purpose": "Standard card surface on parchment"
+      },
+      {
+        "hex": "#e6e6e4",
+        "name": "Ash Divider",
+        "level": 2,
+        "purpose": "Hairline borders, footer rules, subtle structural lines"
+      },
+      {
+        "hex": "#add2d1",
+        "name": "Sage Product Card",
+        "level": 3,
+        "purpose": "Thesis product feature card background"
+      },
+      {
+        "hex": "#9dbebe",
+        "name": "Slate Product Card",
+        "level": 4,
+        "purpose": "Secondary product card background"
+      },
+      {
+        "hex": "#c9c5e1",
+        "name": "Dusk Product Card",
+        "level": 5,
+        "purpose": "Context product card — lavender gradient surface"
+      },
+      {
+        "hex": "#191a17",
+        "name": "Ink Product Card",
+        "level": 6,
+        "purpose": "Agency product card — near-black full-bleed panel"
+      }
+    ],
+    "northStar": "Quiet ledger on warm paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.12
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.38,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading",
+        "size": 35,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.7
+      },
+      {
+        "role": "display",
+        "size": 56,
+        "lineHeight": 1.15,
+        "letterSpacing": -1.12
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "Main conversion action (Get started free, primary product CTAs)",
+        "description": "Filled pill button. Background #191a17 (Ink), text #ffffff (Paper), 9999px radius, 16px horizontal padding, 8px vertical padding. Saans VF 500 at 15px, -0.01em tracking. No border, no shadow. Hover state not extracted — assume slight lightness shift."
+      },
+      {
+        "name": "Outlined Action Button",
+        "role": "Secondary actions and OAuth providers (Continue with Google, Add to Claude)",
+        "description": "Ghost pill button. Background #ffffff (Paper), 1px border #191a17 (Ink) at 92+ evidence occurrences, 9999px radius, 16px horizontal padding, 8px vertical padding. Saans VF 500 at 15px. Optional leading icon (Google logo, sparkle icon)."
+      },
+      {
+        "name": "Inline Text Link",
+        "role": "Nav links, inline text links",
+        "description": "Smoke (#868784) or Ink (#191a17) Saans VF 400 at 15px, with 1px underline border at 52+ occurrences in the same color. No box, no padding — sits inline with text flow."
+      },
+      {
+        "name": "Product Feature Card — Context",
+        "role": "Hero product card with gradient background",
+        "description": "12px radius, Dusk Gradient fill (linear-gradient(90deg, #c9c5e1, #ead3dd)), 24px padding. Badge 'Personal MCP' (6px radius, light fill, Ink text) top-right. Saans VF 380 at 30px heading, 15px body in Ink. Product screenshot (phone mockup) anchored bottom-right, partially overflowing the card edge."
+      },
+      {
+        "name": "Product Feature Card — Agency",
+        "role": "Dark inverted product card",
+        "description": "12px radius, #191a17 (Ink) fill, 24px padding. Badge 'Native app' (6px radius, Ash or white fill, Ink text) top-right. Saans VF 380 at 30px heading, 15px body in #ffffff (Paper). Full-bleed dark surface creates the strongest contrast moment in the product grid."
+      },
+      {
+        "name": "Product Feature Card — Thesis",
+        "role": "Sage-colored product card",
+        "description": "12px radius, #add2d1 (Sage Wash) fill, 24px padding. All text in Ink (#191a17). The softest of the three product surfaces — reads as a tonal variation rather than a separate visual world."
+      },
+      {
+        "name": "FAQ Accordion Item",
+        "role": "Expandable question in the FAQ section",
+        "description": "Full-width row, 1px bottom border in #e6e6e4 (Ash). Question text: Saans VF 500 at 15px, Ink. Plus/minus toggle icon (Ink) right-aligned, 16px. Expanded answer: Saans VF 400 at 15px, Smoke (#868784), 16px top padding, 16px bottom padding before the next border."
+      },
+      {
+        "name": "Product Badge / Tag",
+        "role": "Small label on product cards and feature highlights",
+        "description": "6px radius, light Ash (#e6e6e4) or Paper (#ffffff) background, Ink text, ~8px horizontal padding, ~4px vertical padding. Saans VF 500 at 12px. Sometimes prefixed with a decorative diamond icon (✦) in Ink."
+      },
+      {
+        "name": "Partner Logo Strip",
+        "role": "Horizontal row of AI platform logos (Cursor, Gemini, Perplexity, Cline, OpenAI, etc.)",
+        "description": "Single horizontal row, centered, ~48px gap between logos. All logos rendered in Smoke (#868784) — desaturated to harmonize with the monochrome system. No logos in full color."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Section-level titles (e.g., 'Frequently asked questions')",
+        "description": "Saans VF 380 at 35px, Ink (#191a17), -0.02em letter-spacing, 1.20 line-height. Left-aligned. No underline, no decorative element — the size and weight do the work."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Primary page headline ('Make Claude manage your money.')",
+        "description": "Saans VF 380 at 56px, Ink (#191a17), -0.02em letter-spacing, 1.15 line-height. Light weight at display size is the signature: most fintechs shout at 56px with weight 700; Era whispers at weight 380 and lets the sentence structure do the work."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer with links and border",
+        "description": "1px top border in #e6e6e4 (Ash), 48px vertical padding. Saans VF 400 at 13px, Smoke links. No logo color treatment, no social icons in color — the footer stays in the monochrome register."
+      },
+      {
+        "name": "Decorative Diamond Icon",
+        "role": "Brand symbol and section marker (✦)",
+        "description": "Simple four-point diamond in Ink (#191a17), ~12px, used as a visual bullet before section labels and inside badges. The only custom mark in the system."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Exclusive typeface across all UI. Custom variable font with five weights; the 380 weight carries display and headlines (unusually light for a fintech — confidence through restraint, not volume). 400 for body. 500 for subheadings and button text. 600-670 for emphasized labels and nav. Negative letter-spacing tightens at larger sizes (-0.02em at 30px+), normalizes toward body. lnum + tnum features force lining and tabular numerals, critical for financial data alignment.",
+        "sizes": "12, 13, 15, 16, 20, 30, 35, 56",
+        "family": "Saans VF",
+        "weight": "380, 400, 500, 600, 670",
+        "lineHeight": "1.15, 1.20, 1.25, 1.30, 1.38, 1.40, 1.50",
+        "substitute": "Inter (closest free match in weight range and geometric humanism)",
+        "letterSpacing": "-0.02em at 30px+ sizes, -0.01em at 20px and below",
+        "fontFeatureSettings": "\"lnum\" on, \"tnum\" on"
+      }
+    ],
+    "description": "Era operates in a near-monochrome editorial register: a warm parchment canvas, ink-black typography, and just enough chromatic punctuation — a soft lavender wash, a teal panel, a black card — to make three product surfaces feel like distinct chapters in a printed financial document. The visual system privileges typographic confidence over decoration: a custom variable sans-serif at tight negative tracking carries all the weight, and the interface stays text-first, with components reduced to pill buttons, hairline borders, and flat cards with zero shadow. Every screen should feel like a well-typeset magazine spread — quiet authority, generous whitespace, and color appearing only when a surface needs to announce itself as a distinct product. Density is comfortable, not dense; the rhythm comes from large headlines and 16px padding breathing inside cards, not from packed information rows.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/715a3ad2-5b6d-421f-b72b-3aa6fec86351#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Era design system\",\"item\":\"https://styles.refero.design/style/715a3ad2-5b6d-421f-b72b-3aa6fec86351\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/715a3ad2-5b6d-421f-b72b-3aa6fec86351#style-reference\",\"name\":\"Era design system reference\",\"headline\":\"Era design system | Refero Styles\",\"description\":\"Explore Era's light Fintech design system: Ink #191a17, Parchment #f3f3f1 colors, Saans VF typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/715a3ad2-5b6d-421f-b72b-3aa6fec86351\",\"mainEntityOfPage\":\"https://styles.refero.design/style/715a3ad2-5b6d-421f-b72b-3aa6fec86351\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Era\",\"url\":\"https://era.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/715a3ad2-5b6d-421f-b72b-3aa6fec86351#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5d74a099-7616-4fbd-9d01-e2565a02a429.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5d74a099-7616-4fbd-9d01-e2565a02a429.jpg\",\"caption\":\"Screenshot of Era\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5d74a099-7616-4fbd-9d01-e2565a02a429.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Era design system\",\"Era website design\",\"Era colors\",\"Era typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Ink\",\"Parchment\",\"Ash\",\"Paper\",\"Saans VF\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Era design system\"},{\"@type\":\"Thing\",\"name\":\"Era website design\"},{\"@type\":\"Thing\",\"name\":\"Era colors\"},{\"@type\":\"Thing\",\"name\":\"Era typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-05-07T22:39:55.108Z\",\"dateModified\":\"2026-05-07T22:39:55.108Z\"}]}19:T5b1,**Quick Color Reference**\n- text: #191a17 (Ink)\n- background: #f3f3f1 (Parchment)\n- card surface: #ffffff (Paper)\n- border / divider: #e6e6e4 (Ash)\n- muted text / secondary: #868784 (Smoke)\n- primary action: #191a17 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. **Hero Headline**: 56px Saans VF weight 380, color #191a17, letter-spacing -1.12px, line-height 1.15. Set on a #f3f3f1 page canvas. No underline, no decoration.\n\n2. **Primary CTA Button**: Pill shape (border-radius 9999px), background #191a17, color #ffffff, padding 8px 16px, font Saans VF weight 500 at 15px, letter-spacing -0.15px. No border, no shadow. Text: 'Get started free'.\n\n3. **Outlined OAuth Button**: Pill shape (border-radius 9999px), background #ffffff, 1px solid border #191a17, padding 8px 16px, font Saans VF weight 500 at 15px, color #191a17. Leading icon slot 16px left, 8px gap to label.\n\n4. **Product Feature Card (Agency variant)**: 12px border-radius, background #191a17, padding 24px. Top-right badge: 6px radius, background #e6e6e4, padding 4px 8px, font Saans VF weight 500 at 12px, color #191a17, text 'Native app'. Heading: Saans VF weight 380 at 30px, color #ffffff, letter-spacing -0.6px. Body: Saans VF weight 400 at 15px, color #ffffff.\n\n5. **FAQ Accordion Row**: Full width, 1px bottom border in #e6e6e4, no other borders. Question: Saans VF weight 500 at 15px, color #191a17. Plus/minus icon right-aligned in #191a17, 16px. Row padding: 16px vertical."
+      }
+    ],
+    "elevationPhilosophy": "Era uses zero shadows. Elevation is communicated through color contrast and surface fills alone — dark cards on parchment, white cards on parchment, and colored product panels. This flatness is deliberate: it keeps the editorial magazine metaphor intact and avoids the soft-shadow vocabulary of conventional SaaS."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#191a17",
+          "oklch": {
+            "c": 0.00594674322758423,
+            "h": 121.93916081389528,
+            "l": 0.21551729513462514
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "icon",
+            "body",
+            "heading",
+            "card",
+            "badge",
+            "image",
+            "footer"
+          ],
+          "frequency": 1222,
+          "confidence": 1,
+          "prominence": 43140064.97782275,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 69,
+            "card/color": 5,
+            "icon/color": 3,
+            "link/color": 1,
+            "other/fill": 4,
+            "badge/color": 1,
+            "image/color": 1,
+            "other/color": 139,
+            "button/color": 26,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 4,
+            "body/borderColor": 274,
+            "card/borderColor": 20,
+            "icon/borderColor": 12,
+            "link/borderColor": 4,
+            "badge/borderColor": 4,
+            "image/borderColor": 4,
+            "other/borderColor": 534,
+            "button/borderColor": 92,
+            "footer/borderColor": 3,
+            "heading/borderColor": 16,
+            "card/backgroundColor": 1,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#f3f3f1",
+          "oklch": {
+            "c": 0.0026513810884412625,
+            "h": 106.44925584311031,
+            "l": 0.9635951109092714
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 9766584.507910924,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#e6e6e4",
+          "oklch": {
+            "c": 0.0026789554728631378,
+            "h": 106.45189475181266,
+            "l": 0.9243754718480426
+          },
+          "contexts": [
+            "other",
+            "button",
+            "footer"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 2603385.542289625,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 22,
+            "footer/borderColor": 1,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "card",
+            "other",
+            "badge",
+            "heading",
+            "image"
+          ],
+          "frequency": 125,
+          "confidence": 1,
+          "prominence": 2299299.803270086,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "card/color": 2,
+            "icon/color": 2,
+            "badge/color": 1,
+            "image/color": 1,
+            "other/color": 9,
+            "button/color": 4,
+            "other/stroke": 1,
+            "heading/color": 1,
+            "body/borderColor": 24,
+            "card/borderColor": 8,
+            "icon/borderColor": 8,
+            "badge/borderColor": 4,
+            "image/borderColor": 4,
+            "other/borderColor": 36,
+            "button/borderColor": 8,
+            "heading/borderColor": 4,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#868784",
+          "oklch": {
+            "c": 0.0037382071140889843,
+            "h": 115.6889873531393,
+            "l": 0.6205343213420069
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 204,
+          "confidence": 1,
+          "prominence": 549981.3262862816,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "icon/color": 8,
+            "link/color": 13,
+            "other/fill": 33,
+            "other/color": 10,
+            "other/stroke": 6,
+            "body/borderColor": 8,
+            "icon/borderColor": 32,
+            "link/borderColor": 52,
+            "other/borderColor": 40
+          }
+        },
+        {
+          "hex": "#add2d1",
+          "oklch": {
+            "c": 0.03913490305764864,
+            "h": 194.40101803562646,
+            "l": 0.8368015778499043
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 83776,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#9dbebe",
+          "oklch": {
+            "c": 0.035572542797583685,
+            "h": 196.4426123882269,
+            "l": 0.7772314630956305
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 7686,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3d3d3d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3600233686910596
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2370,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "badge/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d97757",
+          "oklch": {
+            "c": 0.13084016610885288,
+            "h": 38.755898087748044,
+            "l": 0.672419630107895
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 982.6767504471168,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "icon/color": 1,
+            "other/fill": 1,
+            "icon/borderColor": 4
+          }
+        },
+        {
+          "hex": "#34a853",
+          "oklch": {
+            "c": 0.16027720143019927,
+            "h": 148.49546939929175,
+            "l": 0.6475493045428872
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 86,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#ea4335",
+          "oklch": {
+            "c": 0.205841062123344,
+            "h": 29.077253722430367,
+            "l": 0.625730845256174
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 86,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#4285f4",
+          "oklch": {
+            "c": 0.18002738094419357,
+            "h": 259.95600432861727,
+            "l": 0.63038615374003
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 61,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#fbbc05",
+          "oklch": {
+            "c": 0.16981012207062468,
+            "h": 83.99272171392238,
+            "l": 0.8304375423751036
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 27,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.01685076409023442,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.48,
+          "background": "#ffffff",
+          "foreground": "#191a17"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.73,
+          "background": "#f3f3f1",
+          "foreground": "#191a17"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.99,
+          "background": "#e6e6e4",
+          "foreground": "#191a17"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.86,
+          "background": "#3d3d3d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.75,
+          "background": "#add2d1",
+          "foreground": "#191a17"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.24,
+          "background": "#fbbc05",
+          "foreground": "#191a17"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.78,
+          "background": "#f3f3f1",
+          "foreground": "#3d3d3d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.77,
+          "background": "#9dbebe",
+          "foreground": "#191a17"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.69,
+          "background": "#e6e6e4",
+          "foreground": "#3d3d3d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.68,
+          "background": "#add2d1",
+          "foreground": "#3d3d3d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.36,
+          "background": "#fbbc05",
+          "foreground": "#3d3d3d"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.6,
+          "background": "#191a17",
+          "foreground": "#d97757"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.45,
+          "background": "#9dbebe",
+          "foreground": "#3d3d3d"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.84,
+          "background": "#191a17",
+          "foreground": "#868784"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.61,
+          "background": "#ffffff",
+          "foreground": "#868784"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.48,
+          "background": "#3d3d3d",
+          "foreground": "#d97757"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.25,
+          "background": "#f3f3f1",
+          "foreground": "#868784"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.12,
+          "background": "#ffffff",
+          "foreground": "#d97757"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.01,
+          "background": "#3d3d3d",
+          "foreground": "#868784"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.89,
+          "background": "#e6e6e4",
+          "foreground": "#868784"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "badge",
+            "button"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "badge",
+            "body"
+          ],
+          "frequency": 19,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "other",
+            "card"
+          ],
+          "frequency": 45,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other",
+            "card"
+          ],
+          "frequency": 151,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "icon",
+            "other",
+            "footer"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|icon",
+            "marginLeft|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 203,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(201, 197, 225) 0%, rgb(234, 211, 221) 100%)",
+        "colors": [
+          "rgb(201, 197, 225)",
+          "rgb(234, 211, 221)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Saans VF",
+          "source": "custom",
+          "weights": [
+            380,
+            400,
+            500,
+            600,
+            670
+          ],
+          "frequency": 310,
+          "fontFeatureSettings": [
+            "\"lnum\", \"tnum\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Saans VF",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Saans VF",
+          "weight": 500,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Saans VF",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Saans VF",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Saans VF",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Saans VF",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Saans VF",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Saans VF",
+          "weight": 670,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Saans VF",
+          "weight": 380,
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "icon",
+            "body",
+            "card",
+            "image",
+            "footer"
+          ],
+          "frequency": 187,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Saans VF",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Saans VF",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Saans VF",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Saans VF",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Saans VF",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Saans VF",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Saans VF",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/068c7650-99ad-440c-9db1-9c15381ab513.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5d74a099-7616-4fbd-9d01-e2565a02a429.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/715a3ad2-5b6d-421f-b72b-3aa6fec86351#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Era design system\",\"item\":\"https://styles.refero.design/style/715a3ad2-5b6d-421f-b72b-3aa6fec86351\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/715a3ad2-5b6d-421f-b72b-3aa6fec86351#style-reference\",\"name\":\"Era design system reference\",\"headline\":\"Era design system | Refero Styles\",\"description\":\"Explore Era's light Fintech design system: Ink #191a17, Parchment #f3f3f1 colors, Saans VF typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/715a3ad2-5b6d-421f-b72b-3aa6fec86351\",\"mainEntityOfPage\":\"https://styles.refero.design/style/715a3ad2-5b6d-421f-b72b-3aa6fec86351\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Era\",\"url\":\"https://era.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/715a3ad2-5b6d-421f-b72b-3aa6fec86351#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5d74a099-7616-4fbd-9d01-e2565a02a429.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5d74a099-7616-4fbd-9d01-e2565a02a429.jpg\",\"caption\":\"Screenshot of Era\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5d74a099-7616-4fbd-9d01-e2565a02a429.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Era design system\",\"Era website design\",\"Era colors\",\"Era typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Ink\",\"Parchment\",\"Ash\",\"Paper\",\"Saans VF\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Era design system\"},{\"@type\":\"Thing\",\"name\":\"Era website design\"},{\"@type\":\"Thing\",\"name\":\"Era colors\"},{\"@type\":\"Thing\",\"name\":\"Era typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-05-07T22:39:55.108Z\",\"dateModified\":\"2026-05-07T22:39:55.108Z\"}]}19:T5b1,**Quick Color Reference**\n- text: #191a17 (Ink)\n- background: #f3f3f1 (Parchment)\n- card surface: #ffffff (Paper)\n- border / divider: #e6e6e4 (Ash)\n- muted text / secondary: #868784 (Smoke)\n- primary action: #191a17 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. **Hero Headline**: 56px Saans VF weight 380, color #191a17, letter-spacing -1.12px, line-height 1.15. Set on a #f3f3f1 page canvas. No underline, no decoration.\n\n2. **Primary CTA Button**: Pill shape (border-radius 9999px), background #191a17, color #ffffff, padding 8px 16px, font Saans VF weight 500 at 15px, letter-spacing -0.15px. No border, no shadow. Text: 'Get started free'.\n\n3. **Outlined OAuth Button**: Pill shape (border-radius 9999px), background #ffffff, 1px solid border #191a17, padding 8px 16px, font Saans VF weight 500 at 15px, color #191a17. Leading icon slot 16px left, 8px gap to label.\n\n4. **Product Feature Card (Agency variant)**: 12px border-radius, background #191a17, padding 24px. Top-right badge: 6px radius, background #e6e6e4, padding 4px 8px, font Saans VF weight 500 at 12px, color #191a17, text 'Native app'. Heading: Saans VF weight 380 at 30px, color #ffffff, letter-spacing -0.6px. Body: Saans VF weight 400 at 15px, color #ffffff.\n\n5. **FAQ Accordion Row**: Full width, 1px bottom border in #e6e6e4, no other borders. Question: Saans VF weight 500 at 15px, color #191a17. Plus/minus icon right-aligned in #191a17, 16px. Row padding: 16px vertical."
+}

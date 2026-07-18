@@ -1,0 +1,442 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#1e2532",
+      "$type": "color",
+      "$description": "Ink — Body text, primary copy, icon strokes, footer text — the default ink across all running content"
+    },
+    "carbon": {
+      "$value": "#0f141e",
+      "$type": "color",
+      "$description": "Carbon — Headlines, headings, footer brand mark — darker than Ink for emphasis lift on large type"
+    },
+    "pencil": {
+      "$value": "#656e83",
+      "$type": "color",
+      "$description": "Pencil — Secondary body text, descriptions, helper copy — sits between Ink and Fog"
+    },
+    "fog": {
+      "$value": "#828ba2",
+      "$type": "color",
+      "$description": "Fog — Muted metadata, captions, inactive nav items, subtle icon tint"
+    },
+    "haze": {
+      "$value": "#9fa6bb",
+      "$type": "color",
+      "$description": "Haze — List dividers, lightest neutral text, disabled borders"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page background, card surfaces, button text on colored fills — the base canvas"
+    },
+    "mist": {
+      "$value": "#f7f9fc",
+      "$type": "color",
+      "$description": "Mist — Hero section wash, feature row background, subtle surface lift below cards"
+    },
+    "lavender-wash": {
+      "$value": "#f1f2ff",
+      "$type": "color",
+      "$description": "Lavender Wash — Tinted section background for tool/feature blocks — barely-there violet breath"
+    },
+    "chalk": {
+      "$value": "#d9deeb",
+      "$type": "color",
+      "$description": "Chalk — Hairline borders, nav separators, card outlines on tinted backgrounds"
+    },
+    "ash": {
+      "$value": "#e7eaf4",
+      "$type": "color",
+      "$description": "Ash — Subtle button borders, ghost-control outlines, secondary surface"
+    },
+    "signal-blue": {
+      "$value": "#1a91f0",
+      "$type": "color",
+      "$description": "Signal Blue — Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "deep-signal": {
+      "$value": "#016fd0",
+      "$type": "color",
+      "$description": "Deep Signal — Hover/pressed state of Signal Blue, darker link color for visited emphasis"
+    },
+    "iris": {
+      "$value": "#5660e8",
+      "$type": "color",
+      "$description": "Iris — Decorative icon accent, step indicator strokes, secondary highlight on cards"
+    },
+    "midnight": {
+      "$value": "#1a1c6a",
+      "$type": "color",
+      "$description": "Midnight — Dark template preview surface, deep contrast callout — the only near-black accent beyond Ink"
+    },
+    "mint-whisper": {
+      "$value": "#e7f4ed",
+      "$type": "color",
+      "$description": "Mint Whisper — Light supporting surface for subtle backgrounds and section separation. Use as a supporting accent, not as a status color"
+    },
+    "blush-whisper": {
+      "$value": "#ffebe4",
+      "$type": "color",
+      "$description": "Blush Whisper — Light supporting surface for subtle backgrounds and section separation. Use as a supporting accent, not as a status color"
+    },
+    "rose-whisper": {
+      "$value": "#edd7df",
+      "$type": "color",
+      "$description": "Rose Whisper — Supporting neutral for secondary UI, dividers, and muted labels. Use as a supporting accent, not as a status color"
+    }
+  },
+  "font": {
+    "tt-commons": {
+      "$value": "TT Commons",
+      "$type": "fontFamily",
+      "$description": "Single-family system covering everything from 14px helper text to 67px display headlines. The custom geometric sans is the brand's voice; its 0.96–1.00 line-height on display sizes is anti-convention (most sites use 1.1+) and produces the tight, poster-like headline feel. 0.1290em tracking appears on small uppercase micro-labels; 0.0210em is the default body rhythm."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.26
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "19px",
+        "fontWeight": 500,
+        "lineHeight": 1.26
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 19px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.26
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "22px",
+        "fontWeight": 600,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "31px",
+        "fontWeight": 400,
+        "lineHeight": 1.16
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 31px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "TT Commons",
+        "fontSize": "67px",
+        "fontWeight": 400,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 67px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas"
+    },
+    "mist": {
+      "$value": "#f7f9fc",
+      "$type": "color",
+      "$description": "Surface level 1: Hero and section wash — soft elevation without shadow"
+    },
+    "lavender-wash": {
+      "$value": "#f1f2ff",
+      "$type": "color",
+      "$description": "Surface level 2: Feature card tinted background"
+    },
+    "tinted-feature-surfaces": {
+      "$value": "#e7f4ed",
+      "$type": "color",
+      "$description": "Surface level 3: Coloured feature card variants (mint, blush, rose)"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://resume.io",
+      "siteName": "Free Resume Builder",
+      "extractedAt": "2026-06-03T17:56:45.791Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,417 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, iconography, hairline rules, table borders — the only high-contrast element on the page"
+    },
+    "paper-warm-gray": {
+      "$value": "#dbdad9",
+      "$type": "color",
+      "$description": "Paper Warm Gray — Card surfaces, soft fills, the single chromatic departure from pure white, gentle gradient origin"
+    },
+    "graphite-border": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Graphite Border — Subtle table dividers and secondary rule lines — used when #000000 would feel too heavy"
+    },
+    "bleach-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bleach White — Supporting palette color for small decorative accents when the core palette needs contrast."
+    }
+  },
+  "font": {
+    "haasr": {
+      "$value": "HaasR",
+      "$type": "fontFamily",
+      "$description": "Workhorse grotesque for body, subheadings, and mid-size headings. Weight 100 is used for restraint in body contexts; 700 sparingly for emphasis. The single most-used face carries the page."
+    },
+    "haast": {
+      "$value": "HaasT",
+      "$type": "fontFamily",
+      "$description": "Display-only face at 141px with tightened leading (0.90). Used for hero statements and singular set-pieces — the only moment typography shouts, and it shouts at full volume against pure white."
+    },
+    "pt-mono": {
+      "$value": "PT Mono",
+      "$type": "fontFamily",
+      "$description": "Metadata, spec labels, catalog tags — the typographic equivalent of a printed museum label. Appears at 11px only; functions as a quiet signature rather than informational copy."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 9px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "9px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 9px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "9px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 9px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "HAASR",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 9px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "9px",
+        "fontWeight": 100,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 9px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "PT Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 11px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "PT Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 11px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "12px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "12px",
+        "fontWeight": 100,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 12px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 12px"
+    },
+    "xs-12": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "12px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-12 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "19px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "22px",
+        "fontWeight": 100,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "22px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "39px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 39px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "39px",
+        "fontWeight": 100,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 39px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "39px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 39px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "39px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 39px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "HaasR",
+        "fontSize": "58px",
+        "fontWeight": 100,
+        "lineHeight": 0.68
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "HaasT",
+        "fontSize": "141px",
+        "fontWeight": 100,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 141px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "HaasT",
+        "fontSize": "141px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 141px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "43": {
+      "$value": "43px",
+      "$type": "dimension",
+      "$description": "Spacing 43px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "173": {
+      "$value": "173px",
+      "$type": "dimension",
+      "$description": "Spacing 173px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "7.2px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "43.2px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "129.6px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: The dominant background — silence made visible"
+    },
+    "paper-card": {
+      "$value": "#dbdad9",
+      "$type": "color",
+      "$description": "Surface level 1: The only warm departure from white; soft cards, subtle fills, gradient origin"
+    },
+    "ink-surface": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Inverted moments — text blocks on black, dark contrast panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://silencio.es",
+      "siteName": "Silencio",
+      "extractedAt": "2026-06-03T17:34:46.576Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,1515 @@
+{
+  "source": "https://styles.refero.design/style/90b8631c-4e2c-407e-86a3-d2bff456dc93",
+  "uuid": "90b8631c-4e2c-407e-86a3-d2bff456dc93",
+  "name": "SuperHi",
+  "northStar": "Paper-cut shapes scattered across a pale-blue classroom wall",
+  "capturedAt": "2026-07-18T09:51:55.185Z",
+  "meta": {
+    "url": "https://superhi.com",
+    "siteName": "SuperHi",
+    "extractedAt": "2026-06-03T17:49:35.630Z",
+    "durationMs": 29638,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1627,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #2727e6 as the single chromatic for every filled action button, active link, and brand-tinted icon container — no secondary brand colors on buttons.",
+      "Set border-radius to 48px for all primary and secondary buttons; 24px for cards; 5000px for inputs, tags, and icon containers.",
+      "Weight 400 across all three type families — the hierarchy comes from size, line-height, and letter-spacing, not from going bold.",
+      "Anchor letter-spacing to -0.03em at 92px and ease it to -0.004em at 24px so display type tightens as it scales up.",
+      "Scatter at least 3–5 oversized flat geometric shapes in the five accent colors behind any full-bleed hero or section, with 0px radius and no shadow.",
+      "Use Martian Mono 12px only for promotional ticker text, tag labels, and code-flavored meta lines — never for paragraphs.",
+      "Build cards on #ffffff with a 1px #e1edff hairline border and a hard 0 2px 0 0 #111118 offset shadow — no soft drop shadows."
+    ],
+    "donts": [
+      "Don't introduce a second brand chromatic on buttons or links — #2727e6 owns every action; the five accent colors are decoration only.",
+      "Don't use bold or semibold weights — the type system runs entirely on 400, and bumping weight breaks the quiet, confident voice.",
+      "Don't apply soft blurred drop shadows (rgba 0,0,0,0.x with blur > 4px) — the system uses hard offset shadows or no shadow at all.",
+      "Don't use gradients inside decorative shapes or content blocks — only the announcement ticker carries a gradient, and only as a fade-to-clear.",
+      "Don't put text directly on the pale-blue canvas without a card or button surface — the contrast ratio of #111118 on #f0f6ff is fine, but layout rhythm requires cards to create the page grid.",
+      "Don't use the accent colors (red, yellow, green, pink, sky) on text or borders — they live exclusively as fills of the decorative shape layer.",
+      "Don't use border-radius below 16px on any visible component — sharp corners would break the soft, pill-driven visual language."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#2727e6",
+        "name": "Electric Iris",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#111118",
+        "name": "Ink Black",
+        "role": "Primary text, dark secondary buttons, icon strokes, hairline borders — warmer than pure black, reads as ink rather than void",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Card surfaces, elevated panels, button text on dark fills, page sections that need to lift off the pale-blue canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0f6ff",
+        "name": "Chalk Blue",
+        "role": "Dominant page canvas — a barely-there blue tint that prevents the page from feeling clinical and ties the scattered blue shapes to the background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e1edff",
+        "name": "Frost Blue",
+        "role": "Secondary surface wash, input field backgrounds, footer tint — a step deeper than the canvas to create soft layering without shadows",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ff4141",
+        "name": "Marker Red",
+        "role": "Decorative shape fill — the large red semicircle, star bursts, and accent blobs scattered through the decorative layer",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffda00",
+        "name": "Hi-Yellow",
+        "role": "Decorative shape fill — the yellow pentagon and sunny accents in the cutout composition; also used as a section wash behind featured content",
+        "group": "accent"
+      },
+      {
+        "hex": "#91d8ec",
+        "name": "Powder Sky",
+        "role": "Decorative shape fill — soft powder-blue circles and cloud forms in the scattered cutout scene",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffbac4",
+        "name": "Bubblegum Pink",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis.",
+        "group": "accent"
+      },
+      {
+        "hex": "#16ab59",
+        "name": "Jelly Green",
+        "role": "Decorative shape fill — green triangle accents in the scattered cutout scene",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffe54d",
+        "name": "Sunbeam",
+        "role": "Decorative shape fill — a slightly warmer yellow variant for layering against Hi-Yellow in the cutout composition",
+        "group": "accent"
+      }
+    ],
+    "layout": "Layout is full-bleed with a 1200px content rail. The announcement ticker spans edge to edge at the very top, followed by a sticky white nav bar with the wordmark on the left and account actions on the right. The hero is a centered text block — single headline, subhead, and two pill buttons side by side — with decorative shapes floating in the negative space around the text rather than in a split column. Below the hero, sections alternate between Chalk Blue canvas and white card surfaces, stacking vertically with 80px gaps. Course and student work cards use a 3-column grid that collapses to 2 then 1. Section headers are left-aligned with a right-aligned 'See all' link. The cookie consent is a fixed full-width bar at the bottom with a dark fill and two action buttons aligned right.",
+    "imagery": "Imagery is split into two distinct registers. The decorative layer is oversized flat paper-cut geometric shapes — pentagons, triangles, semicircles, stars, and circles in marker-red, hi-yellow, jelly-green, powder-sky, and bubblegum-pink — scattered behind content at full-bleed, overlapping the canvas edges, with sharp corners and zero shadow. The content layer is student project cards and course thumbnails shown as tight rectangular crops with 16px radii, no rounded masking, sitting on white card surfaces. Photography (when used) is high-key and product-focused, not lifestyle. There are no gradients in the decorative shapes; the only gradient is a violet-to-transparent left fade on the announcement bar.",
+    "similar": [
+      {
+        "why": "Same creative-education positioning with a bright, illustrative decorative layer behind content and pill-shaped CTA buttons",
+        "business": "Skillshare"
+      },
+      {
+        "why": "Same single-vibrant-accent-plus-pastel-canvas treatment and oversized flat geometric shapes used as atmospheric background",
+        "business": "Canva's design school pages"
+      },
+      {
+        "why": "Same soft-blue canvas, confident centered hero typography, and pill-radius buttons with trailing arrow glyphs",
+        "business": "Maven"
+      },
+      {
+        "why": "Same playful, creative-platform tone with a pale pastel background and one saturated brand color doing all the action-button work",
+        "business": "Glitch"
+      },
+      {
+        "why": "Same clean, near-white canvas with quiet typography and the visual personality carried by scattered color accents rather than chrome",
+        "business": "Are.na"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "5000px",
+        "cards": "24px",
+        "small": "16px",
+        "inputs": "5000px",
+        "shapes": "0px",
+        "buttons": "48px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#f0f6ff",
+        "name": "Chalk Blue Canvas",
+        "level": 0,
+        "purpose": "Page background — the default stage for the scattered cutout shapes"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White Card",
+        "level": 1,
+        "purpose": "Card surfaces, elevated content blocks, button fills"
+      },
+      {
+        "hex": "#e1edff",
+        "name": "Frost Blue Wash",
+        "level": 2,
+        "purpose": "Soft section background and input field rest state"
+      },
+      {
+        "hex": "#ffbac4",
+        "name": "Bubblegum Section",
+        "level": 3,
+        "purpose": "Featured content section wash (e.g. 'Most popular')"
+      },
+      {
+        "hex": "#ffda00",
+        "name": "Hi-Yellow Section",
+        "level": 4,
+        "purpose": "Promotional section wash for high-attention blocks"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 4px 0 0 #111118",
+        "element": "Primary CTA button"
+      },
+      {
+        "style": "0 4px 0 0 #2727e6",
+        "element": "Secondary dark button"
+      },
+      {
+        "style": "0 2px 0 0 #111118",
+        "element": "Course card"
+      }
+    ],
+    "northStar": "Paper-cut shapes scattered across a pale-blue classroom wall",
+    "typeScale": [
+      {
+        "role": "caption-mono",
+        "size": 12,
+        "lineHeight": 1.35,
+        "letterSpacing": -0.156
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.35,
+        "letterSpacing": -0.176
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.168
+      },
+      {
+        "role": "heading-lg",
+        "size": 42,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.378
+      },
+      {
+        "role": "display",
+        "size": 52,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.468
+      },
+      {
+        "role": "display-lg",
+        "size": 62,
+        "lineHeight": 1.05,
+        "letterSpacing": -0.558
+      },
+      {
+        "role": "display-xl",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -0.648
+      },
+      {
+        "role": "mega",
+        "size": 92,
+        "lineHeight": 1,
+        "letterSpacing": -2.76
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Pill Button",
+        "role": "Main call-to-action — course enrollment, catalog navigation, see-more links",
+        "description": "Fill #2727e6, text #ffffff in Haas Grot Text 20px weight 400, letter-spacing -0.01em, 12px 24px padding, border-radius 48px (full pill), includes a trailing arrow glyph (→) after the label. Hard offset shadow 0 4px 0 0 #111118 gives a sticker-like pop without softness."
+      },
+      {
+        "name": "Dark Pill Button",
+        "role": "Secondary action — free trials, sign-in entry points",
+        "description": "Fill #000000, text #ffffff, same 48px pill radius and 20px label, 12px 24px padding, no arrow. Hard offset shadow 0 4px 0 0 #2727e6 echoes the primary brand color as the shadow hue."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Tertiary navigation — 'About', 'Catalog' nav links, footer links",
+        "description": "No fill, no border, text #111118 in Haas Grot Text 20px weight 400, 8px vertical padding, transparent background, underline only on hover."
+      },
+      {
+        "name": "Announcement Ticker",
+        "role": "Site-wide promotional bar at the very top of every page",
+        "description": "Full-bleed bar, fill #111118, text #ffffff in Martian Mono 12px, letter-spacing -0.013em, uppercase tracking. Repeating message with a bullet separator. Fades to transparent on the left edge via the violet-to-clear linear-gradient, suggesting an infinite marquee."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation, sticky below the ticker",
+        "description": "White background #ffffff, 1px bottom border #e1edff, height ~64px. Left: round 32px logo mark + 'Catalog' and 'About' links in Haas Grot Text 20px. Right: search icon, 'Cart' link, 'Sign in' pill button. No drop shadow — the 1px hairline is the only separator."
+      },
+      {
+        "name": "Hero Text Block",
+        "role": "Centered headline-and-CTA composition on the home hero",
+        "description": "Headline in Haas Grot Disp 72px weight 400, color #111118, letter-spacing -0.03em, two lines maximum, centered. Above the headline, a small 48px round icon mark in #2727e6 (the smiley emoji container). Below: subhead in Haas Grot Text 20px #111118, then two pill buttons side by side with 16px gap."
+      },
+      {
+        "name": "Decorative Shape Layer",
+        "role": "Atmospheric cutout shapes scattered behind page content",
+        "description": "Absolute-positioned oversized flat geometric forms — pentagons, triangles, semicircles, stars, circles — in the five accent colors. Sizes range 200–600px, rotated at varied angles, with 0px radius and no shadow. Sits behind the content layer at z-index 0, partially clipped by the viewport edges to create the impression of shapes spilling off the page."
+      },
+      {
+        "name": "Course Card",
+        "role": "Catalog grid item — links to individual course pages",
+        "description": "White surface #ffffff, 24px border-radius, 1px border #e1edff, 24px padding. Course image at top with 16px top radius. Title in Haas Grot Text 20px weight 400, meta line below in Martian Mono 12px, price or 'Free' tag at bottom. Hard offset shadow 0 2px 0 0 #111118."
+      },
+      {
+        "name": "Student Work Card",
+        "role": "Showcase grid item — displays student project thumbnails",
+        "description": "White surface, 16px border-radius, no shadow, image fills the entire card edge-to-edge with the title overlaid at the bottom-left in a small text bar. Designed to be visual-first, with minimal chrome."
+      },
+      {
+        "name": "Featured Section Wash",
+        "role": "Highlighted content band (e.g. 'Most popular')",
+        "description": "Full-bleed background in #ffbac4 (bubblegum) or #ffda00 (hi-yellow), content sits inside a 1200px max-width container. Section heading in Haas Grot Disp 42px #111118 left-aligned, with a right-aligned 'See all content →' primary pill button at the section's vertical center."
+      },
+      {
+        "name": "Input Field",
+        "role": "Email capture, search, newsletter signup",
+        "description": "Fill #f0f6ff, border 1px solid #e1edff, border-radius 5000px (full pill), padding 12px 20px, placeholder text in #111118 at 40% opacity, Haas Grot Text 16px. Focus state adds a 2px #2727e6 outer ring with 2px offset."
+      },
+      {
+        "name": "Tag / Category Pill",
+        "role": "Course category labels, filter chips",
+        "description": "5000px border-radius, fill #e1edff, text #111118 in Haas Grot Text 16px, padding 4px 12px, no border. Active filter state swaps fill to #2727e6 and text to #ffffff."
+      },
+      {
+        "name": "Cookie Consent Bar",
+        "role": "GDPR notice pinned to the bottom of the viewport",
+        "description": "Fixed full-width, fill #111118, padding 16px 24px, text #ffffff in Haas Grot Text 16px left-aligned with body copy and a 'We use essential cookies…' message. Right side: two pill buttons — 'Essential cookies only' in ghost style (white text, 1px white border) and 'Sure thing' as a dark-fill pill with white text."
+      },
+      {
+        "name": "Round Icon Container",
+        "role": "Brand mark, category icon, avatar fallback",
+        "description": "48px circle, fill #2727e6, contains a centered emoji or icon glyph in #ffffff. Used as the small smiley mark above the hero headline and as a floating category indicator."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and headings only — the geometric grotesque has a sturdy, slightly condensed skeleton that holds 92px hero lines without losing legibility; weight stays at 400 because the tight letter-spacing (-0.03em at the largest sizes) does the heavy-lifting, not bold weight",
+        "sizes": "24px, 35px, 42px, 52px, 62px, 72px, 92px",
+        "family": "Haas Grot Disp",
+        "weight": "400",
+        "lineHeight": "1.00, 1.10, 1.15, 1.35",
+        "substitute": "Inter, Manrope, or Suisse Int'l",
+        "letterSpacing": "-0.0300em at 92px down to -0.0040em at 24px",
+        "fontFeatureSettings": "\"ss01\" on, \"tnum\" on"
+      },
+      {
+        "role": "Body, navigation, buttons, and smaller UI text — the text cut of the same family tuned for readability at small sizes with looser tracking than the display companion",
+        "sizes": "16px, 20px, 22px, 24px",
+        "family": "Haas Grot Text",
+        "weight": "400",
+        "lineHeight": "1.10, 1.25, 1.35, 1.40",
+        "substitute": "Inter, Manrope, or Suisse Int'l",
+        "letterSpacing": "-0.0200em at 16px down to -0.0070em at 24px"
+      },
+      {
+        "role": "Promotional ticker text, tag labels, and code-flavored micro-copy — a monospaced voice used sparingly for editorial texture, not for entire paragraphs",
+        "sizes": "12px, 17px",
+        "family": "Martian Mono",
+        "weight": "400",
+        "lineHeight": "1.00, 1.30, 1.35",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Space Mono",
+        "letterSpacing": "-0.0130em"
+      }
+    ],
+    "description": "SuperHi reads like a creative-school art room translated to screen: a near-white pale-blue canvas strewn with oversized flat paper-cut shapes in candy-bright primaries, wrapped around quietly confident typography that never competes with the playfulness. The palette is almost monochrome in interface chrome — deep ink text, white surfaces, one electric violet that powers every action — while the decorative layer is intentionally loud: yellow pentagons, red half-circles, green triangles, pink stars and powder-blue blobs float behind content like cutouts on a studio wall. Components are pill-soft (24–48px radii), buttons are chunky capsules with arrow glyphs, and the tone is friendly, confident, and unmistakably creative.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/90b8631c-4e2c-407e-86a3-d2bff456dc93#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"SuperHi design system\",\"item\":\"https://styles.refero.design/style/90b8631c-4e2c-407e-86a3-d2bff456dc93\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/90b8631c-4e2c-407e-86a3-d2bff456dc93#style-reference\",\"name\":\"SuperHi design system reference\",\"headline\":\"SuperHi design system | Refero Styles\",\"description\":\"Explore SuperHi's light Other design system: Electric Iris #2727e6, Ink Black #111118 colors, Haas Grot Disp, Haas Grot Text typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/90b8631c-4e2c-407e-86a3-d2bff456dc93\",\"mainEntityOfPage\":\"https://styles.refero.design/style/90b8631c-4e2c-407e-86a3-d2bff456dc93\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"SuperHi\",\"url\":\"https://superhi.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/90b8631c-4e2c-407e-86a3-d2bff456dc93#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/410c9b1f-e1a9-45c4-9397-505c3606658b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/410c9b1f-e1a9-45c4-9397-505c3606658b.jpg\",\"caption\":\"Screenshot of SuperHi\"},\"image\":\"https://images.refero.design/styles/refero.design/image/410c9b1f-e1a9-45c4-9397-505c3606658b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"SuperHi design system\",\"SuperHi website design\",\"SuperHi colors\",\"SuperHi typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Electric Iris\",\"Ink Black\",\"Paper White\",\"Chalk Blue\",\"Haas Grot Disp\",\"Haas Grot Text\",\"Martian Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"SuperHi design system\"},{\"@type\":\"Thing\",\"name\":\"SuperHi website design\"},{\"@type\":\"Thing\",\"name\":\"SuperHi colors\"},{\"@type\":\"Thing\",\"name\":\"SuperHi typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-02-01T14:04:58.000Z\",\"dateModified\":\"2026-02-01T14:04:58.000Z\"}]}19:T743,Quick Color Reference:\n- text: #111118\n- background: #f0f6ff (canvas) / #ffffff (cards)\n- border: #e1edff\n- accent shapes: #ffda00, #ff4141, #ffbac4, #91d8ec, #16ab59\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Hero text block: center a 48px #2727e6 round icon container at the top, then a two-line headline in Haas Grot Disp 72px weight 400, #111118, letter-spacing -2.16px, line-height 1.0. Subhead in Haas Grot Text 20px #111118, line-height 1.4. Below, two pill buttons with 16px gap: a primary 48px-pill #2727e6 button with white 20px label and trailing → arrow, 12px 24px padding, hard shadow 0 4px 0 0 #111118; beside it a secondary 48px-pill #000000 button with white label, same padding, shadow 0 4px 0 0 #2727e6.\n\n2. Course card: #ffffff surface, 24px radius, 1px #e1edff border, 24px padding, hard shadow 0 2px 0 0 #111118. Course image at top spanning the card width with 16px top radius. Title in Haas Grot Text 20px #111118, meta in Martian Mono 12px #111118 at 60% opacity, and a 5000px-radius tag pill in #e1edff with #111118 16px label for the category.\n\n3. Announcement ticker bar: full-bleed #111118 strip, 32px tall, text in Martian Mono 12px #ffffff, letter-spacing -0.156px, repeating message with • separator. Apply a linear-gradient(to left, #2727e6 0%, rgba(0,0,0,0) 50%) as a left-edge mask fade.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n5. Cookie consent bar: fixed to bottom, full-width, fill #111118, 16px 24px padding. Left-aligned body copy in Haas Grot Text 16px #ffffff. Right-aligned two buttons with 8px gap: a ghost button (transparent fill, 1px #ffffff border, white text, 48px radius) reading 'Essential cookies only', and a dark pill (#000000 fill, white text, 48px radius) reading 'Sure thing'."
+      },
+      {
+        "title": "Decorative Shape System",
+        "content": "The scattered paper-cut shape layer is the brand's most distinctive visual signature — treat it as a first-class component. Build a reusable shape library with five primitives: pentagon, triangle, semicircle, star, and circle. Each instance picks one of the five accent colors (#ffda00, #ff4141, #ffbac4, #91d8ec, #16ab59) as its fill, uses 0px border-radius, zero shadow, and is placed at absolute position behind the content layer with a random rotation between -15° and +15°. Sizes range from 200px to 600px. Shapes should always be clipped by the viewport edge — they spill off the page, they don't sit fully inside it. On any full-bleed section, include 3–5 shapes minimum; on the home hero, include 6–8."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "Elevation in this system is not about soft Gaussian shadows — it's about hard, offset, sticker-like pop. Every shadow is a 0px-blur offset shadow (e.g. 0 4px 0 0 #111118), creating the impression that cards and buttons are physically stuck onto the page rather than floating above it. This pairs naturally with the paper-cut decorative layer: both the content cards and the background shapes are flat cutouts, and the offset shadow is the only thing telling you which layer is on top."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#111118",
+          "oklch": {
+            "c": 0.014283462057627592,
+            "h": 284.8847587353065,
+            "l": 0.18105988989003288
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "heading",
+            "list",
+            "link",
+            "nav",
+            "button",
+            "body",
+            "card",
+            "footer"
+          ],
+          "frequency": 4310,
+          "confidence": 1,
+          "prominence": 144286495.35373697,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "link",
+            "icon",
+            "card",
+            "heading",
+            "nav"
+          ],
+          "frequency": 913,
+          "confidence": 1,
+          "prominence": 107634895.75826424,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f0f6ff",
+          "oklch": {
+            "c": 0.013642932446090938,
+            "h": 258.3446343040672,
+            "l": 0.9712201764711739
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 23900746,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#16ab59",
+          "oklch": {
+            "c": 0.16649084597237973,
+            "h": 151.8707022889971,
+            "l": 0.6511474913641507
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2530753.020029152,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e1edff",
+          "oklch": {
+            "c": 0.02755806169484817,
+            "h": 258.36462494196894,
+            "l": 0.9425051939644907
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2233404.5862697815,
+          "properties": [
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffda00",
+          "oklch": {
+            "c": 0.18388083192008942,
+            "h": 96.60971705990029,
+            "l": 0.8927189344031342
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2171520,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2727e6",
+          "oklch": {
+            "c": 0.267287738158167,
+            "h": 268.81443855433497,
+            "l": 0.4512477090052162
+          },
+          "contexts": [
+            "button",
+            "other",
+            "list",
+            "card",
+            "nav"
+          ],
+          "frequency": 205,
+          "confidence": 1,
+          "prominence": 2094448.4096489921,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff7715",
+          "oklch": {
+            "c": 0.18962661075533552,
+            "h": 48.16780599573756,
+            "l": 0.7191474479974995
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1720888.8847830023,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#91d8ec",
+          "oklch": {
+            "c": 0.07603068606287963,
+            "h": 217.41495277619566,
+            "l": 0.8422349668506265
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1408721.844093007,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffcfd6",
+          "oklch": {
+            "c": 0.05482847357038837,
+            "h": 8.394610067426218,
+            "l": 0.8978676831084794
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1121528,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff8e3d",
+          "oklch": {
+            "c": 0.1643989880053994,
+            "h": 52.563377657340205,
+            "l": 0.7563307531384973
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 863753.844093007,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff4141",
+          "oklch": {
+            "c": 0.22581450455469293,
+            "h": 25.953882578176177,
+            "l": 0.6606827132219294
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 524647.6705010594,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffbac4",
+          "oklch": {
+            "c": 0.08069495989753403,
+            "h": 9.289493881790403,
+            "l": 0.8552056118204028
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 243188,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffe54d",
+          "oklch": {
+            "c": 0.16578121647524305,
+            "h": 99.3163615258788,
+            "l": 0.9174749405816134
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 216651.69414857627,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "button",
+            "other",
+            "nav",
+            "input"
+          ],
+          "frequency": 289,
+          "confidence": 1,
+          "prominence": 153070.63880144947,
+          "properties": [
+            "fill",
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9393f3",
+          "oklch": {
+            "c": 0.13877644102311623,
+            "h": 282.2377112953711,
+            "l": 0.7036381242064399
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 419,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.05825338126723752,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.33,
+          "background": "#f0f6ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.8,
+          "background": "#ffffff",
+          "foreground": "#111118"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.76,
+          "background": "#e1edff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.3,
+          "background": "#f0f6ff",
+          "foreground": "#111118"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.57,
+          "background": "#ffe54d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.9,
+          "background": "#e1edff",
+          "foreground": "#111118"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.28,
+          "background": "#ffda00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.15,
+          "background": "#ffcfd6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.83,
+          "background": "#ffe54d",
+          "foreground": "#111118"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.68,
+          "background": "#ffda00",
+          "foreground": "#111118"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.56,
+          "background": "#ffcfd6",
+          "foreground": "#111118"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.24,
+          "background": "#91d8ec",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.07,
+          "background": "#ffbac4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.85,
+          "background": "#91d8ec",
+          "foreground": "#111118"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.7,
+          "background": "#ffbac4",
+          "foreground": "#111118"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.19,
+          "background": "#ff8e3d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.34,
+          "background": "#2727e6",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.22,
+          "background": "#ff8e3d",
+          "foreground": "#111118"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.9,
+          "background": "#ff7715",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 41
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "button",
+            "image"
+          ],
+          "frequency": 31
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 5000,
+          "contexts": [
+            "card",
+            "input",
+            "icon"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 800,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 87,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 46,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 7,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 86,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 83,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 21,
+          "properties": [
+            "paddingLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 147,
+          "properties": [
+            "paddingTop",
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingBottom",
+            "marginBottom",
+            "marginLeft",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 19,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 238,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 44,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 35,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(to left, rgb(39, 39, 230) 50%, rgba(0, 0, 0, 0))",
+        "colors": [
+          "rgb(39, 39, 230)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Haas Grot Text",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 933,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Haas Grot Disp",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 59,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Martian Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 46,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Martian Mono",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Martian Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.013,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Martian Mono",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Haas Grot Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "list",
+            "nav",
+            "card",
+            "body",
+            "image",
+            "footer"
+          ],
+          "frequency": 723,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Haas Grot Text",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 65,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Haas Grot Text",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Haas Grot Text",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Haas Grot Text",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Martian Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Haas Grot Text",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "heading"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Haas Grot Text",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.008,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 22,
+          "family": "Haas Grot Text",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Haas Grot Text",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Haas Grot Disp",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Haas Grot Disp",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Haas Grot Text",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "card",
+            "heading"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Haas Grot Disp",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Haas Grot Disp",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Haas Grot Disp",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "Haas Grot Disp",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Haas Grot Disp",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 92,
+          "family": "Haas Grot Disp",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3181ddf6-00ae-4d13-8ff2-bf0c9a2bc896.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/410c9b1f-e1a9-45c4-9397-505c3606658b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/90b8631c-4e2c-407e-86a3-d2bff456dc93#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"SuperHi design system\",\"item\":\"https://styles.refero.design/style/90b8631c-4e2c-407e-86a3-d2bff456dc93\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/90b8631c-4e2c-407e-86a3-d2bff456dc93#style-reference\",\"name\":\"SuperHi design system reference\",\"headline\":\"SuperHi design system | Refero Styles\",\"description\":\"Explore SuperHi's light Other design system: Electric Iris #2727e6, Ink Black #111118 colors, Haas Grot Disp, Haas Grot Text typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/90b8631c-4e2c-407e-86a3-d2bff456dc93\",\"mainEntityOfPage\":\"https://styles.refero.design/style/90b8631c-4e2c-407e-86a3-d2bff456dc93\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"SuperHi\",\"url\":\"https://superhi.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/90b8631c-4e2c-407e-86a3-d2bff456dc93#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/410c9b1f-e1a9-45c4-9397-505c3606658b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/410c9b1f-e1a9-45c4-9397-505c3606658b.jpg\",\"caption\":\"Screenshot of SuperHi\"},\"image\":\"https://images.refero.design/styles/refero.design/image/410c9b1f-e1a9-45c4-9397-505c3606658b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"SuperHi design system\",\"SuperHi website design\",\"SuperHi colors\",\"SuperHi typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Electric Iris\",\"Ink Black\",\"Paper White\",\"Chalk Blue\",\"Haas Grot Disp\",\"Haas Grot Text\",\"Martian Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"SuperHi design system\"},{\"@type\":\"Thing\",\"name\":\"SuperHi website design\"},{\"@type\":\"Thing\",\"name\":\"SuperHi colors\"},{\"@type\":\"Thing\",\"name\":\"SuperHi typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-02-01T14:04:58.000Z\",\"dateModified\":\"2026-02-01T14:04:58.000Z\"}]}19:T743,Quick Color Reference:\n- text: #111118\n- background: #f0f6ff (canvas) / #ffffff (cards)\n- border: #e1edff\n- accent shapes: #ffda00, #ff4141, #ffbac4, #91d8ec, #16ab59\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Hero text block: center a 48px #2727e6 round icon container at the top, then a two-line headline in Haas Grot Disp 72px weight 400, #111118, letter-spacing -2.16px, line-height 1.0. Subhead in Haas Grot Text 20px #111118, line-height 1.4. Below, two pill buttons with 16px gap: a primary 48px-pill #2727e6 button with white 20px label and trailing → arrow, 12px 24px padding, hard shadow 0 4px 0 0 #111118; beside it a secondary 48px-pill #000000 button with white label, same padding, shadow 0 4px 0 0 #2727e6.\n\n2. Course card: #ffffff surface, 24px radius, 1px #e1edff border, 24px padding, hard shadow 0 2px 0 0 #111118. Course image at top spanning the card width with 16px top radius. Title in Haas Grot Text 20px #111118, meta in Martian Mono 12px #111118 at 60% opacity, and a 5000px-radius tag pill in #e1edff with #111118 16px label for the category.\n\n3. Announcement ticker bar: full-bleed #111118 strip, 32px tall, text in Martian Mono 12px #ffffff, letter-spacing -0.156px, repeating message with • separator. Apply a linear-gradient(to left, #2727e6 0%, rgba(0,0,0,0) 50%) as a left-edge mask fade.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n5. Cookie consent bar: fixed to bottom, full-width, fill #111118, 16px 24px padding. Left-aligned body copy in Haas Grot Text 16px #ffffff. Right-aligned two buttons with 8px gap: a ghost button (transparent fill, 1px #ffffff border, white text, 48px radius) reading 'Essential cookies only', and a dark pill (#000000 fill, white text, 48px radius) reading 'Sure thing'."
+}

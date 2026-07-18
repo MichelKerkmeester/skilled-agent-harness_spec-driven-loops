@@ -1,0 +1,407 @@
+{
+  "color": {
+    "cream-paper": {
+      "$value": "#f5f4f0",
+      "$type": "color",
+      "$description": "Cream Paper — Page background, canvas — warm off-white that softens the overall feel and keeps the pastel accents from vibrating against pure white"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card and button surfaces — sits one elevation above the cream canvas"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, hairline borders, icon strokes, card outlines — the dominant structural color, 3625 occurrences make it the spine of every layout"
+    },
+    "charcoal": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Charcoal — Body text and secondary headings when a slightly softer black is needed"
+    },
+    "slate": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Slate — Nav text and subdued UI labels"
+    },
+    "fog": {
+      "$value": "#dddfe2",
+      "$type": "color",
+      "$description": "Fog — Subtle link underlines and dividers in muted contexts"
+    },
+    "mint-splash": {
+      "$value": "#99ffcc",
+      "$type": "color",
+      "$description": "Mint Splash — Primary action button fill, hand-drawn headline highlight swashes, active nav emphasis — the signature color that signals go"
+    },
+    "plum-ink": {
+      "$value": "#160042",
+      "$type": "color",
+      "$description": "Plum Ink — Deep brand accent for dark surface text, illustration fills, and emphasis — provides a rich counterweight to the pastels"
+    },
+    "aubergine": {
+      "$value": "#26153f",
+      "$type": "color",
+      "$description": "Aubergine — Outlined action border, dark button outline variant — borders and strokes when a deeper violet frame is needed without filling"
+    },
+    "sky-pop": {
+      "$value": "#7bbbff",
+      "$type": "color",
+      "$description": "Sky Pop — Decorative illustration strokes, confetti dots, secondary accent chips, icon outlines — the cool member of the pastel set"
+    },
+    "bubblegum": {
+      "$value": "#ff99cc",
+      "$type": "color",
+      "$description": "Bubblegum — Decorative confetti dots, highlight swashes, playful accent shapes — adds warmth and energy"
+    },
+    "peach-pop": {
+      "$value": "#ffcc99",
+      "$type": "color",
+      "$description": "Peach Pop — Decorative dots, warm accent fills, illustration warm tones — the sunset note in the pastel quartet"
+    }
+  },
+  "font": {
+    "recoleta": {
+      "$value": "Recoleta",
+      "$type": "fontFamily",
+      "$description": "All headlines, hero display, nav wordmark. Used exclusively at weight 700; the high-contrast chunky serif gives the brand its editorial-creative voice. Scales from 32px subheadings up to 151px hero display. Tight negative tracking (approximately -0.028em) tightens the bold forms at large sizes so the headline reads as one confident block rather than airy display type."
+    },
+    "lota-grotes-que-alt": {
+      "$value": "Lota Grotes Que Alt",
+      "$type": "fontFamily",
+      "$description": "Body copy, UI labels, button text, nav links, icon labels. The 400 weight carries paragraphs and helper text; 700 weight handles button labels and small emphatic UI strings. Acts as the quiet utilitarian counterpoint to Recoleta's personality — it should never compete for attention."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Lota Grotes Que Alt",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Lota Grotes Que Alt",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Lota Grotes Que Alt",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Lota Grotes Que Alt",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Recoleta",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Lota Grotes Que Alt",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 2.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "Lota Grotes Que Alt",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "Recoleta",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Lota Grotes Que Alt",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Recoleta",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Lota Grotes Que Alt",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Recoleta",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Recoleta",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Recoleta",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Recoleta",
+        "fontSize": "72px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Recoleta",
+        "fontSize": "84px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 84px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Recoleta",
+        "fontSize": "151px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 151px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "172": {
+      "$value": "172px",
+      "$type": "dimension",
+      "$description": "Spacing 172px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f5f4f0",
+      "$type": "color",
+      "$description": "Surface level 0: Page background"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated content surfaces, logo tiles, feature cards"
+    },
+    "mint-action": {
+      "$value": "#99ffcc",
+      "$type": "color",
+      "$description": "Surface level 2: Primary CTA surface, highlight wash behind headlines"
+    },
+    "decorative-accent": {
+      "$value": "#ffcc99",
+      "$type": "color",
+      "$description": "Surface level 3: Warm accent fills on illustration and chips"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.hatch.fm",
+      "siteName": "Hatch",
+      "extractedAt": "2026-06-03T18:38:37.954Z",
+      "variant": "extended"
+    }
+  }
+}

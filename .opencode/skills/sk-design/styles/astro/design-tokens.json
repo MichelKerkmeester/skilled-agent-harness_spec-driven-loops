@@ -1,0 +1,457 @@
+{
+  "color": {
+    "void-canvas": {
+      "$value": "#1f232e",
+      "$type": "color",
+      "$description": "Void Canvas — Primary page background — the base layer for hero, sections, and footer. Slight cool-blue undertone, never pure black, so colored elements feel like they're floating in space rather than printed on paper"
+    },
+    "abyss": {
+      "$value": "#0c0f19",
+      "$type": "color",
+      "$description": "Abyss — Deeper surface level for elevated cards, code blocks, and inset wells. One step darker than the canvas to create depth without using shadows"
+    },
+    "singularity": {
+      "$value": "#060913",
+      "$type": "color",
+      "$description": "Singularity — Darkest surface for terminal windows, CLI boxes, and high-contrast containers. Almost pure black with a blue whisper"
+    },
+    "carbon": {
+      "$value": "#17191e",
+      "$type": "color",
+      "$description": "Carbon — Mid-elevation card surface, sitting between canvas and abyss. Used for theme preview tiles and nested cards"
+    },
+    "lunar-white": {
+      "$value": "#f2f6fa",
+      "$type": "color",
+      "$description": "Lunar White — Primary text and high-contrast foreground. The slightly cool tint keeps it from feeling clinical against the dark canvas"
+    },
+    "platinum": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Platinum — Secondary text, icon strokes, and light dividers. Most-used achromatic token for hairline borders and muted foregrounds"
+    },
+    "mist": {
+      "$value": "#bfc1c9",
+      "$type": "color",
+      "$description": "Mist — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "steel": {
+      "$value": "#858b98",
+      "$type": "color",
+      "$description": "Steel — Muted body text and subdued descriptions. The default for paragraphs that should recede behind headlines"
+    },
+    "gunmetal": {
+      "$value": "#545864",
+      "$type": "color",
+      "$description": "Gunmetal — Hairline borders and dividers on the dark canvas. Low contrast on purpose — structural, not decorative"
+    },
+    "nebula-gradient": {
+      "$value": "#3245ff",
+      "$type": "color",
+      "$description": "Nebula Gradient — Primary brand gradient stop — the blue origin of the hero nebula and the color of highlighted CTAs and accent rings"
+    },
+    "plasma-gradient": {
+      "$value": "#d83333",
+      "$type": "color",
+      "$description": "Plasma Gradient — Secondary gradient (red-to-magenta) used sparingly for illustration accents and decorative energy bands"
+    },
+    "aurora-mint": {
+      "$value": "#4bf3c8",
+      "$type": "color",
+      "$description": "Aurora Mint — Teal supporting accent for decorative details and low-frequency emphasis"
+    },
+    "plasma-blue": {
+      "$value": "#54b9ff",
+      "$type": "color",
+      "$description": "Plasma Blue — Blue supporting accent for decorative details and low-frequency emphasis"
+    },
+    "ultraviolet": {
+      "$value": "#acafff",
+      "$type": "color",
+      "$description": "Ultraviolet — Code keywords, violet link variant, and decorative highlight. A desaturated violet that complements the nebula gradient without competing"
+    },
+    "electric-cyan": {
+      "$value": "#00daef",
+      "$type": "color",
+      "$description": "Electric Cyan — Secondary syntax token — reserved for specific code contexts and rare accent strokes"
+    },
+    "amber": {
+      "$value": "#ffd493",
+      "$type": "color",
+      "$description": "Amber — Yellow supporting accent for decorative details and low-frequency emphasis"
+    },
+    "signal-blue": {
+      "$value": "#61dafb",
+      "$type": "color",
+      "$description": "Signal Blue — Decorative dot and badge accent — used for version pills and notification indicators"
+    }
+  },
+  "font": {
+    "ui-sans-serif": {
+      "$value": "ui-sans-serif",
+      "$type": "fontFamily",
+      "$description": "Body and UI text — system stack fallback. Weight 400 for body copy, 500/600 for button labels and nav, 700 for subheadings. Line-height 1.65 at 14px keeps dense UI readable without feeling airy."
+    },
+    "obviously": {
+      "$value": "Obviously",
+      "$type": "fontFamily",
+      "$description": "Display and headline face — the custom workhorse. Weight 300/400 used for the largest headlines, 700 for the hero. The cv09 and salt alternates give it a distinctive wide, slightly retro character; ss06 and ss11 add quirky details. No web-safe substitute captures the feel — Inter Black or Space Grotesk Bold approximate it."
+    },
+    "ui-monospace": {
+      "$value": "ui-monospace",
+      "$type": "fontFamily",
+      "$description": "Code blocks, terminal commands, and inline code. Fixed 14px with generous 1.65 line-height for readability of multi-line snippets."
+    },
+    "mdio": {
+      "$value": "MDIO",
+      "$type": "fontFamily",
+      "$description": "Icon and badge face — used at 12-16px with widened tracking (0.0250em) for small labels and version chips. The slight letter-spacing and geometric forms give badges a technical, instrument-panel feel."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Inter — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "MDIO",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "MDIO",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ui-monospace",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.81
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "MDIO",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 200,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Obviously",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Obviously",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Obviously",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Obviously",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Obviously",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Obviously",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "224": {
+      "$value": "224px",
+      "$type": "dimension",
+      "$description": "Spacing 224px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#1f232",
+      "$type": "color",
+      "$description": "Surface level 1: Page background — the deep space floor"
+    },
+    "carbon-card": {
+      "$value": "#17191",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated card and panel surfaces"
+    },
+    "abyss-well": {
+      "$value": "#0c0f19",
+      "$type": "color",
+      "$description": "Surface level 3: Inset wells, terminal boxes, and nested containers"
+    },
+    "singularity": {
+      "$value": "#060913",
+      "$type": "color",
+      "$description": "Surface level 4: Deepest surface for high-contrast CLI and code blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://astro.build",
+      "siteName": "Astro",
+      "extractedAt": "2026-06-03T20:12:17.798Z",
+      "variant": "extended"
+    }
+  }
+}

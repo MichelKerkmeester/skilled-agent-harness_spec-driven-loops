@@ -1,0 +1,1281 @@
+{
+  "source": "https://styles.refero.design/style/acfb6fa1-3aed-4e64-8522-7f332a796de8",
+  "uuid": "acfb6fa1-3aed-4e64-8522-7f332a796de8",
+  "name": "Arc",
+  "northStar": "industrial white gallery above midnight water",
+  "capturedAt": "2026-07-18T09:44:22.392Z",
+  "meta": {
+    "url": "https://arcboats.com",
+    "siteName": "Arc",
+    "extractedAt": "2026-06-03T18:21:23.122Z",
+    "durationMs": 36926,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 321,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only Soehne (or Inter substitute) at the weights 300/400/500/600 — never introduce a second typeface family",
+      "Set display headings at 48–140px weight 300 with tracking between -0.021em and -0.043em; the whisper-weight is the signature",
+      "Use 5px radius for all controls (buttons, inputs) and 32px radius for all imagery — never mix or round to 8/12/16px",
+      "Alternate between #e5e7eb / #ffffff light bands and #1d1d1 / #031e25 dark bands for section rhythm — no mid-gray bridges",
+      "Reserve uppercase +0.15em–0.185em tracking for labels, meta, nav, and button text only — never for body or headings",
+      "Let full-bleed aerial marine photography carry the visual weight of hero and feature sections; do not compete with overlaid illustrations or graphics",
+      "Use #e5e7eb hairline 1px borders for all dividers and card edges; avoid colored borders"
+    ],
+    "donts": [
+      "Never introduce a chromatic accent color — the system is deliberately monochromatic plus dark teal-navy",
+      "Never use weight 700 or higher — the heaviest weight in the system is 600, and display text stays at 300",
+      "Never add drop shadows, glows, or blur effects to elements beyond the single detected hero shadow",
+      "Never use a border-radius between 6px and 31px — controls stay at 5px, images at 32px, nothing in between",
+      "Never place text directly on a photograph without a darkening overlay or contained card surface",
+      "Never use centered body copy longer than two lines; long-form content goes left-aligned in contained columns",
+      "Never use illustrations, icons-as-decoration, or 3D renders — photography and type are the only visual vocabulary",
+      "Never set body text above 18px or below 14px — the 14–18px range is the readable band"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e5e7eb",
+        "name": "Bone",
+        "role": "Page canvas, card surfaces, hairline dividers between sections, ghost-button borders — the lightest structural gray carries borders, surface, and the dominant background in a near-white mode",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Charcoal",
+        "role": "Primary body and heading text, nav links, footer text, filled button text — near-black for maximum legibility without the harshness of pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Card surfaces, filled button backgrounds, image overlays, reverse text on dark sections — the brightest structural white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Headings on light canvas where maximum contrast is required, nav background accents — used sparingly only where absolute black is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#031e25",
+        "name": "Deep Current",
+        "role": "Dark feature section backgrounds (alternating bands), large image containers — the navy-black that recedes like deep ocean water",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1d1d1e",
+        "name": "Slate Depth",
+        "role": "Secondary dark section background, elevated panels over Deep Current — one step lighter to layer depth within dark bands",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Page model is full-bleed for all hero and feature imagery, with max-width 1200px contained for text and component grids. The hero is a 100vh full-bleed dark photograph with text overlaid in the bottom-left quadrant — no centered headline, no split layout. The first scroll section drops to a #ffffff band with a single centered statement (max-width ~720px), creating a moment of silence. The third section is a #031e25 dark band with a 3-column card grid of image-top / text-below cards. Section rhythm alternates: dark photo → white statement → dark feature grid → light detail blocks. Navigation is a minimal top bar with logo-left, links-center, hamburger-right, transparent background over the hero. Spacing is generous — 36–64px between sections, 18–20px between elements, 20px inside cards. No sidebar, no mega-menu, no sticky behavior visible in static frames.",
+    "imagery": "Photography is the primary visual medium and it is always marine and always aerial or high-angle. Shots are full-bleed or 32px-radius framed, never square, never with decoration. Color treatment is naturalistic — the deep teal-green of open water carries the only chromatic energy in the system. No illustration, no iconography beyond the smallest utility glyphs (hamburger, flag), no 3D renders, no abstract graphics. The product itself (boats) is always shown in motion from above, creating wake and speed lines. Screenshots of software interfaces appear as flat product evidence inside feature cards. Density is image-dominant in the hero and feature sections, text-dominant in transition and detail sections.",
+    "similar": [
+      {
+        "why": "Same full-bleed aerial photography of vehicles in natural environments, same monochrome-plus-single-accent restraint, same engineering-precise type voice",
+        "business": "Rivian"
+      },
+      {
+        "why": "Minimalist type-driven layout with oversized headings, alternating light/dark section bands, and product photography as the sole chromatic content",
+        "business": "Polestar"
+      },
+      {
+        "why": "Industrial white gallery aesthetic with skeletal ghost buttons, hairline borders, and near-zero shadow — product-forward without chrome",
+        "business": "Canoo"
+      },
+      {
+        "why": "Direct marine-industry peer using full-bleed ocean photography and minimal text overlays to let the product speak",
+        "business": "Brunswick (marine)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "2.25px",
+        "cards": "0px",
+        "images": "32px",
+        "inputs": "5px",
+        "buttons": "5px"
+      },
+      "elementGap": "18-20px",
+      "sectionGap": "36-64px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#e5e7eb",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Default page background for light sections — a slightly warm light gray that feels industrial rather than clinical"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Section backgrounds, card surfaces, button fills, image frames — the bright neutral that creates breathing room"
+      },
+      {
+        "hex": "#1d1d1",
+        "name": "Deep Section",
+        "level": 2,
+        "purpose": "Dark band background for feature sections and image-forward blocks"
+      },
+      {
+        "hex": "#031e25",
+        "name": "Ocean Floor",
+        "level": 3,
+        "purpose": "Deepest dark surface — the bottom of the elevation stack, used for hero overlays and full-bleed photographic sections"
+      }
+    ],
+    "northStar": "industrial white gallery above midnight water",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.185
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.44
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.44
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.44,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.012
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.016
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.16,
+        "letterSpacing": -0.021
+      },
+      {
+        "role": "display",
+        "size": 140,
+        "lineHeight": 1,
+        "letterSpacing": -0.043
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Navigation Button",
+        "role": "Header nav links (SPORT, COAST, COMMERCIAL) and CTAs",
+        "description": "Transparent background, #0a0a0a text at 12–14px weight 500, letter-spacing +0.15em uppercase. No border, no fill. Underline or weight shift on hover. 45px horizontal padding inside nav."
+      },
+      {
+        "name": "Outlined CTA Button",
+        "role": "Primary action on hero (RECREATION, COMMERCIAL) and section CTAs",
+        "description": "Transparent or #ffffff fill, 1px #0a0a0a or #ffffff border, 5px radius, 20px vertical × 20px horizontal padding, 11–12px Soehne weight 500 uppercase at +0.15em tracking. Text color matches border color (reversible on dark sections)."
+      },
+      {
+        "name": "Filled Reversed Button",
+        "role": "Dark-section actions",
+        "description": "#ffffff fill on #031e25 background, #0a0a0a text, 5px radius, identical padding and tracking to outlined variant. Used sparingly — most actions remain outlined."
+      },
+      {
+        "name": "Hero Image Container",
+        "role": "Full-bleed opening section with aerial marine photography",
+        "description": "100vw width, 100vh height, image object-fit cover. Text overlay positioned bottom-left at ~40px from edges. The photograph is the only content — no decorative border, no radius."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Three-column grid in dark feature section (Advanced Software, Quiet power, etc.)",
+        "description": "#031e25 background, 32px radius image at top filling 100% width, 20px padding, white Soehne weight 400 16px body text, white Soehne weight 400 22px heading. No border, no shadow — image and text sit directly on the dark panel."
+      },
+      {
+        "name": "Centered Statement Block",
+        "role": "Section transition moments (e.g., 'Electric power built for everything the water demands.')",
+        "description": "Full-width #ffffff or #e5e7eb band, max-width 720px, centered text, 32–48px Soehne weight 300 heading with tight tracking, 48–64px vertical padding. No supporting copy, no decoration — the statement alone."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separators and grid lines",
+        "description": "1px #e5e7eb line, full width or column-width. No gradient, no shadow — just the bone-gray rule."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand identity in nav",
+        "description": "Lowercase 'a' or 'arc' wordmark in Soehne weight 300 at 32–48px, #ffffff on dark hero, #0a0a0a on light sections. Tracking -0.021em. The logo IS the display type — no separate logomark."
+      },
+      {
+        "name": "Overlay Image Frame",
+        "role": "In-section photography (product crops, dashboard screenshots)",
+        "description": "32px corner radius, contained within max-width column, no border, no shadow. Photographs are the surface — no card chrome around them."
+      },
+      {
+        "name": "Footer Link Row",
+        "role": "Footer navigation",
+        "description": "12px Soehne weight 400–500, #0a0a0a or #ffffff depending on section, +0.15em uppercase tracking, 20px horizontal gap between items. No dividers, no bullets."
+      },
+      {
+        "name": "Hamburger Menu Trigger",
+        "role": "Mobile or secondary nav",
+        "description": "Two stacked 1px #0a0a0a horizontal lines, 18px wide, 2.25px radius. No background, no animation chrome — the most minimal possible affordance."
+      },
+      {
+        "name": "Meta Label",
+        "role": "Pre-headline tags (e.g., 'DESIGNED AND BUILT IN THE USA')",
+        "description": "11px Soehne weight 500 uppercase, +0.185em tracking, #0a0a0a. Prefixed with a small flag or icon mark. Sets the industrial-engineering tone before the headline."
+      },
+      {
+        "name": "Card Grid Container",
+        "role": "Three-column feature layout in dark section",
+        "description": "Equal-width columns with 18–20px column gap, 36px row gap. No visible grid lines — separation comes from spacing and the dark panel background."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All interface type: weight 300 reserved for display headings (48–140px) to create a quiet engineering voice, 400 for body and subheadings, 500 for nav and meta, 600 for button labels. Soehne's geometric neutrality with the extreme -0.043em tracking on display sizes is the signature — it makes headlines feel architectural rather than editorial. Substitute: Inter (closest free analog with matching weights and tracking) or Untitled Sans.",
+        "sizes": "11px, 12px, 14px, 16px, 18px, 22px, 32px, 48px, 140px",
+        "family": "Soehne",
+        "weight": "300, 400, 500, 600",
+        "lineHeight": "1.00, 1.30, 1.33, 1.44, 1.95",
+        "substitute": "Inter",
+        "letterSpacing": "-0.043em at 140px, -0.021em at 48px, -0.016em at 32px, -0.012em at 22px, -0.01em at 18px, normal at 16px and below, +0.15em–0.185em on uppercase labels at 11–12px",
+        "fontFeatureSettings": "\"ss01\" on, \"tnum\" on"
+      }
+    ],
+    "description": "Arc operates as an industrial white gallery suspended above dark ocean. The page alternates between full-bleed aerial marine photography and monastic white space dominated by type, with a single deep teal-navy band used as a rhythmic counterpoint between sections. Components are deliberately skeletal: thin ghost buttons with hairline borders, 5px corner radii on controls, almost no shadow, and generous negative space that lets the imagery and oversized type do the storytelling. The Soehne family carries a weight-300 display voice at 48–140px that reads as confident and engineering-precise, while body text sits at 16–18px weight 400 with tight tracking. Color is used as restraint — the system is 99% achromatic plus two near-black teals (#031e25, #1d1d1e) for image-driven sections, with no chromatic accent at all. Photography is always contained within generously rounded 32px frames against the flat canvas.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/acfb6fa1-3aed-4e64-8522-7f332a796de8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Arc design system\",\"item\":\"https://styles.refero.design/style/acfb6fa1-3aed-4e64-8522-7f332a796de8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/acfb6fa1-3aed-4e64-8522-7f332a796de8#style-reference\",\"name\":\"Arc design system reference\",\"headline\":\"Arc design system | Refero Styles\",\"description\":\"Explore Arc's light E-commerce design system: Bone #e5e7eb, Charcoal #0a0a0a colors, Soehne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/acfb6fa1-3aed-4e64-8522-7f332a796de8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/acfb6fa1-3aed-4e64-8522-7f332a796de8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Arc\",\"url\":\"https://arcboats.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/acfb6fa1-3aed-4e64-8522-7f332a796de8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/61322a0d-dbae-4fa5-a9b1-4312928180ad.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/61322a0d-dbae-4fa5-a9b1-4312928180ad.jpg\",\"caption\":\"Screenshot of Arc\"},\"image\":\"https://images.refero.design/styles/refero.design/image/61322a0d-dbae-4fa5-a9b1-4312928180ad.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Arc design system\",\"Arc website design\",\"Arc colors\",\"Arc typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone\",\"Charcoal\",\"Paper\",\"Obsidian\",\"Soehne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Arc design system\"},{\"@type\":\"Thing\",\"name\":\"Arc website design\"},{\"@type\":\"Thing\",\"name\":\"Arc colors\"},{\"@type\":\"Thing\",\"name\":\"Arc typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-05-10T23:41:30.025Z\",\"dateModified\":\"2026-05-10T23:41:30.025Z\"}]}19:T5bf,**Quick Color Reference**\n- text: #0a0a0a\n- background: #ffffff (cards/buttons) / #e5e7eb (canvas) / #031e25 (dark bands)\n- border: #e5e7eb (hairline) / #0a0a0a (ghost button)\n- accent: none — monochromatic system\n- primary action: no distinct CTA color\n\n**3 Example Component Prompts**\n\n1. **Hero section with full-bleed photograph**: Full-viewport dark ocean aerial image as background, object-fit cover. Bottom-left overlay text: 11px Soehne weight 500 uppercase at +0.185em tracking in #ffffff with flag icon, reading 'DESIGNED AND BUILT IN THE USA'. Below it, 48px Soehne weight 300 in #ffffff at -0.021em tracking reading 'Electrifying the marine industry'. Two outlined ghost buttons below, each 5px radius, 1px #ffffff border, 11px Soehne weight 500 uppercase +0.15em, 20px padding, reading 'RECREATION' and 'COMMERCIAL'.\n\n2. **Centered statement block**: Full-width #ffffff band, 64px vertical padding. Centered text, max-width 720px: 32px Soehne weight 300 in #0a0a0a at -0.016em tracking, two lines: 'Electric power built for / everything the water demands.' No other elements — statement alone.\n\n3. **Feature card in dark section**: 32px-radius image filling 100% column width at top (aerial boat shot). Below, 20px padding, #031e25 background extending. Heading: 22px Soehne weight 400 in #ffffff at -0.012em tracking. Body: 16px Soehne weight 400 in #ffffff at default tracking, max 2 lines. No border, no shadow, no card chrome beyond the dark surface."
+      },
+      {
+        "title": "Animation Philosophy",
+        "content": "Arc is a static, almost motionless site. The motion profile reads as 'none' — no detected transitions, no hover animations documented in the tokens. The one detected shadow is a static lift, not an animated effect. If animation is needed, it should be: instant or near-instant (0–150ms), no bounce or ease-out curves, no scroll-triggered reveals, no parallax. The stillness is part of the engineering aesthetic — the boats move, the interface does not."
+      }
+    ],
+    "elevationPhilosophy": "Arc avoids shadow almost entirely. The single detected shadow (rgba(0,0,0,0.05) 0 10px 15px -3px) is an isolated instance on the hero — likely a subtle text-lift on the headline. Depth comes from tonal jumps between #e5e7eb, #ffffff, #1d1d1, and #031e25, not from cast shadows. This reinforces the flat, engineering-precise aesthetic: surfaces sit on top of each other through color contrast, not blur."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "heading",
+            "hero",
+            "body",
+            "icon",
+            "link",
+            "image",
+            "footer",
+            "input"
+          ],
+          "frequency": 1270,
+          "confidence": 1,
+          "prominence": 175528446.24445942,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 348,
+            "body/borderColor": 36,
+            "hero/borderColor": 8,
+            "icon/borderColor": 4,
+            "link/borderColor": 44,
+            "image/borderColor": 96,
+            "input/borderColor": 4,
+            "other/borderColor": 432,
+            "button/borderColor": 64,
+            "footer/borderColor": 4,
+            "heading/borderColor": 224,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#0a0a0a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1447879553888796
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "hero",
+            "link",
+            "heading",
+            "footer"
+          ],
+          "frequency": 187,
+          "confidence": 1,
+          "prominence": 128595578.8138389,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 77,
+            "hero/color": 2,
+            "link/color": 7,
+            "other/color": 87,
+            "button/color": 11,
+            "footer/color": 1,
+            "heading/color": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "heading",
+            "button",
+            "link",
+            "footer"
+          ],
+          "frequency": 101,
+          "confidence": 1,
+          "prominence": 10297687.478771448,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/color": 4,
+            "body/color": 9,
+            "link/color": 4,
+            "other/color": 15,
+            "button/color": 5,
+            "heading/color": 46,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 10,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "input"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 5817753.031684925,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 5,
+            "input/color": 1,
+            "other/color": 6,
+            "heading/color": 6,
+            "nav/backgroundColor": 2,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#031e25",
+          "oklch": {
+            "c": 0.03543524957753256,
+            "h": 217.84587693845546,
+            "l": 0.2181729282721614
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1588981,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1d1d1e",
+          "oklch": {
+            "c": 0.0018997997884650684,
+            "h": 286.2500919114832,
+            "l": 0.2311574867877686
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1286100,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cecece",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8514193414111833
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 19800,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8e8e8e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6467273699038915
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 18468,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "heading/color": 3
+          }
+        },
+        {
+          "hex": "#666d75",
+          "oklch": {
+            "c": 0.015194877072791437,
+            "h": 251.66892611251166,
+            "l": 0.5315008885894589
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8845,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.012663241436289628,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.8,
+          "background": "#ffffff",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.27,
+          "background": "#031e25",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.84,
+          "background": "#1d1d1e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.99,
+          "background": "#e5e7eb",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.95,
+          "background": "#e5e7eb",
+          "foreground": "#031e25"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.6,
+          "background": "#e5e7eb",
+          "foreground": "#1d1d1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.34,
+          "background": "#cecece",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.58,
+          "background": "#cecece",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.97,
+          "background": "#cecece",
+          "foreground": "#031e25"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.7,
+          "background": "#cecece",
+          "foreground": "#1d1d1e"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.41,
+          "background": "#000000",
+          "foreground": "#8e8e8e"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.04,
+          "background": "#0a0a0a",
+          "foreground": "#8e8e8e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.27,
+          "background": "#031e25",
+          "foreground": "#8e8e8e"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.24,
+          "background": "#ffffff",
+          "foreground": "#666d75"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.14,
+          "background": "#1d1d1e",
+          "foreground": "#8e8e8e"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.23,
+          "background": "#e5e7eb",
+          "foreground": "#666d75"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.01,
+          "background": "#000000",
+          "foreground": "#666d75"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.78,
+          "background": "#0a0a0a",
+          "foreground": "#666d75"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 5,
+          "contexts": [
+            "button",
+            "other",
+            "input"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 2.25,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 13.5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.05) 0px 10px 15px -3px",
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "nav",
+            "icon"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "marginTop|nav",
+            "marginBottom|nav",
+            "paddingLeft|icon"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginTop|link",
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|body",
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "properties": [
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "heading",
+            "button",
+            "other",
+            "input"
+          ],
+          "frequency": 29,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "marginLeft|other",
+            "marginRight|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 81,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingRight|hero",
+            "paddingBottom|hero",
+            "paddingLeft|hero"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 215,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 248,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 311,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Soehne",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            600
+          ],
+          "frequency": 318,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.89
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Soehne",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.185,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Soehne",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.18,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Soehne",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.95,
+          "letterSpacing": 0.15,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Soehne",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0.18,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "hero",
+            "link",
+            "image",
+            "body",
+            "footer",
+            "input"
+          ],
+          "frequency": 169,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Soehne",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "nav"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Soehne",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Soehne",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Soehne",
+          "weight": 300,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Soehne",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Soehne",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Soehne",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 35,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 140,
+          "family": "Soehne",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.043,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/b2ba8acd-8b20-47e1-be8d-b14af2ac99f7.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/61322a0d-dbae-4fa5-a9b1-4312928180ad.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/acfb6fa1-3aed-4e64-8522-7f332a796de8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Arc design system\",\"item\":\"https://styles.refero.design/style/acfb6fa1-3aed-4e64-8522-7f332a796de8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/acfb6fa1-3aed-4e64-8522-7f332a796de8#style-reference\",\"name\":\"Arc design system reference\",\"headline\":\"Arc design system | Refero Styles\",\"description\":\"Explore Arc's light E-commerce design system: Bone #e5e7eb, Charcoal #0a0a0a colors, Soehne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/acfb6fa1-3aed-4e64-8522-7f332a796de8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/acfb6fa1-3aed-4e64-8522-7f332a796de8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Arc\",\"url\":\"https://arcboats.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/acfb6fa1-3aed-4e64-8522-7f332a796de8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/61322a0d-dbae-4fa5-a9b1-4312928180ad.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/61322a0d-dbae-4fa5-a9b1-4312928180ad.jpg\",\"caption\":\"Screenshot of Arc\"},\"image\":\"https://images.refero.design/styles/refero.design/image/61322a0d-dbae-4fa5-a9b1-4312928180ad.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Arc design system\",\"Arc website design\",\"Arc colors\",\"Arc typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone\",\"Charcoal\",\"Paper\",\"Obsidian\",\"Soehne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Arc design system\"},{\"@type\":\"Thing\",\"name\":\"Arc website design\"},{\"@type\":\"Thing\",\"name\":\"Arc colors\"},{\"@type\":\"Thing\",\"name\":\"Arc typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-05-10T23:41:30.025Z\",\"dateModified\":\"2026-05-10T23:41:30.025Z\"}]}19:T5bf,**Quick Color Reference**\n- text: #0a0a0a\n- background: #ffffff (cards/buttons) / #e5e7eb (canvas) / #031e25 (dark bands)\n- border: #e5e7eb (hairline) / #0a0a0a (ghost button)\n- accent: none — monochromatic system\n- primary action: no distinct CTA color\n\n**3 Example Component Prompts**\n\n1. **Hero section with full-bleed photograph**: Full-viewport dark ocean aerial image as background, object-fit cover. Bottom-left overlay text: 11px Soehne weight 500 uppercase at +0.185em tracking in #ffffff with flag icon, reading 'DESIGNED AND BUILT IN THE USA'. Below it, 48px Soehne weight 300 in #ffffff at -0.021em tracking reading 'Electrifying the marine industry'. Two outlined ghost buttons below, each 5px radius, 1px #ffffff border, 11px Soehne weight 500 uppercase +0.15em, 20px padding, reading 'RECREATION' and 'COMMERCIAL'.\n\n2. **Centered statement block**: Full-width #ffffff band, 64px vertical padding. Centered text, max-width 720px: 32px Soehne weight 300 in #0a0a0a at -0.016em tracking, two lines: 'Electric power built for / everything the water demands.' No other elements — statement alone.\n\n3. **Feature card in dark section**: 32px-radius image filling 100% column width at top (aerial boat shot). Below, 20px padding, #031e25 background extending. Heading: 22px Soehne weight 400 in #ffffff at -0.012em tracking. Body: 16px Soehne weight 400 in #ffffff at default tracking, max 2 lines. No border, no shadow, no card chrome beyond the dark surface."
+}

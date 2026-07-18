@@ -1,0 +1,367 @@
+{
+  "color": {
+    "electric-violet": {
+      "$value": "#7270ff",
+      "$type": "color",
+      "$description": "Electric Violet — Primary CTA buttons, active nav items, accent keywords in headlines, focus rings — the only chromatic element allowed to break the monochrome canvas, making every action feel switched on"
+    },
+    "signal-blue": {
+      "$value": "#1560fb",
+      "$type": "color",
+      "$description": "Signal Blue — Secondary accent for interactive highlights, selected states in tool surfaces, and inline brand emphasis where a cooler note is needed"
+    },
+    "deep-indigo": {
+      "$value": "#2f2b4a",
+      "$type": "color",
+      "$description": "Deep Indigo — Primary text and headings — a near-black with a violet undertone that warms the monochrome palette and distinguishes the brand from flat-charcoal SaaS defaults"
+    },
+    "midnight-ink": {
+      "$value": "#1c1a2c",
+      "$type": "color",
+      "$description": "Midnight Ink — Heaviest text weight, section titles, and surface-dark contexts — a deeper step than Deep Indigo for maximum contrast moments"
+    },
+    "slate": {
+      "$value": "#4b5563",
+      "$type": "color",
+      "$description": "Slate — Secondary body text, descriptions, metadata — sits between Deep Indigo and Silver for layered reading hierarchy"
+    },
+    "silver": {
+      "$value": "#9ca3af",
+      "$type": "color",
+      "$description": "Silver — Muted helper text, placeholder copy, disabled labels, and icon secondary tones"
+    },
+    "fog": {
+      "$value": "#d9dbda",
+      "$type": "color",
+      "$description": "Fog — Icon strokes at rest, subtle surface borders, low-emphasis dividers"
+    },
+    "mist": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Mist — Primary hairline borders across cards, inputs, dividers, and component edges — the dominant structural neutral"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card surfaces, elevated panels, button text on violet fills, inverted icon strokes"
+    },
+    "bone": {
+      "$value": "#f9fafb",
+      "$type": "color",
+      "$description": "Bone — Alternate surface for nested panels, input fills, quiet sections within white pages"
+    },
+    "pebble": {
+      "$value": "#f3f4f6",
+      "$type": "color",
+      "$description": "Pebble — Page canvas, section bands between white blocks, product mockup backgrounds, footer wash"
+    },
+    "sunset-gradient": {
+      "$value": "#facc15",
+      "$type": "color",
+      "$description": "Sunset Gradient — Decorative gradient endpoint for marketing visuals and showcase cards"
+    },
+    "bloom-gradient": {
+      "$value": "#ec4899",
+      "$type": "color",
+      "$description": "Bloom Gradient — Decorative gradient endpoint for showcase cards and hero illustration accents"
+    }
+  },
+  "font": {
+    "plus-jakarta-sans": {
+      "$value": "Plus Jakarta Sans",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the product. Geometric humanist sans with subtly squared terminals — contemporary but not cold. Weight 700 carries display and headings for confident vertical presence; weight 500 serves UI controls and labels; weight 400 handles body and descriptions. The slight openness in counters at small sizes keeps labels legible on dense tool surfaces."
+    },
+    "google-sans-code": {
+      "$value": "Google Sans Code",
+      "$type": "fontFamily",
+      "$description": "Google Sans Code — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Google Sans Code",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "36px",
+        "fontWeight": 600,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.78
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Plus Jakarta Sans",
+        "fontSize": "60px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 60px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "192": {
+      "$value": "192px",
+      "$type": "dimension",
+      "$description": "Spacing 192px"
+    },
+    "224": {
+      "$value": "224px",
+      "$type": "dimension",
+      "$description": "Spacing 224px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f3f4f6",
+      "$type": "color",
+      "$description": "Surface level 0: Page background between content bands"
+    },
+    "panel": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card and component surfaces"
+    },
+    "nested": {
+      "$value": "#f9fafb",
+      "$type": "color",
+      "$description": "Surface level 2: Inner panels, inputs, quiet wells"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.lottielab.com",
+      "siteName": "Lottielab",
+      "extractedAt": "2026-06-03T22:00:45.937Z",
+      "variant": "extended"
+    }
+  }
+}

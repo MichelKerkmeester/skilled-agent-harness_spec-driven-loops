@@ -1,0 +1,724 @@
+{
+  "source": "https://styles.refero.design/style/f8ab25e8-87c1-4d7b-a633-daf3ea39b916",
+  "uuid": "f8ab25e8-87c1-4d7b-a633-daf3ea39b916",
+  "name": "Concrete Club Studio",
+  "northStar": "sun-faded editorial zine on dusty rose paper — the layout is a printed page, not a screen",
+  "capturedAt": "2026-07-18T09:36:22.163Z",
+  "meta": {
+    "url": "https://concreteclub.studio",
+    "siteName": "Concrete Club Studio",
+    "extractedAt": "2026-06-03T18:56:04.130Z",
+    "durationMs": 24308,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 277,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use TRJN DaVinci exclusively for the wordmark and display type at 112px and above",
+      "Let the wordmark fill the full viewport width on hero sections — no max-width container",
+      "Set all body and nav text in uppercase HelveticaNeue-Light — no mixed case in the editorial voice",
+      "Alternate between the three surface colors (Dusty Rose, Bone White, Charcoal) in full-bleed sections with no borders between them",
+      "Use Ember Ink (#d9462b) as the only chromatic text color, and only on the Dusty Rose surface",
+      "Position the hand-drawn illustration at the right margin of the display wordmark, overlapping the baseline",
+      "Use 230px top padding on the hero to push the wordmark below the nav zone"
+    ],
+    "donts": [
+      "Do not introduce buttons, cards, or any elevated UI components — the system has no interactive surfaces",
+      "Do not apply border-radius to any element — keep all edges sharp and printed",
+      "Do not use shadows or elevation — surfaces are defined by color alone",
+      "Do not center content in a max-width container — layout is edge-to-edge full-bleed",
+      "Do not use mixed-case typography — the entire system speaks in uppercase",
+      "Do not use Ember Ink on light or dark surfaces — it belongs only on Dusty Rose",
+      "Do not add gradient or photographic backgrounds — the system is flat printed color only"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#d9462b",
+        "name": "Ember Ink",
+        "role": "Hero wordmark color, accent strokes, and the only chromatic text — a warm orange-red that reads as hand-pressed ink against the pink field. Used on display headlines and select illustration details",
+        "group": "brand"
+      },
+      {
+        "hex": "#e296bb",
+        "name": "Dusty Rose",
+        "role": "Primary section background — a warm desaturated pink that carries the hero band and full-width content panels. Sets the editorial tone of the site",
+        "group": "accent"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, wordmark fill on light sections, illustration linework, and borders. The workhorse neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#212121",
+        "name": "Charcoal",
+        "role": "Dark section surface — used for full-bleed panels that invert the page to white-on-black editorial spreads",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f5f6f5",
+        "name": "Bone White",
+        "role": "Default page canvas and light section background — slightly warm off-white that pairs with the pink rather than competing against it",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Pure white reserved for maximum contrast moments and the lightest content panels",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed editorial layout with no max-width container. The page reads top-to-bottom as a sequence of full-viewport color bands: Dusty Rose hero → Bone White section → Charcoal dark section. Within each band, content is positioned with generous padding (30-60px sides, 60-230px vertical) but never centered in a fixed container. The wordmark is the dominant element on hero and section openers, stretching nearly edge-to-edge at 300px. Small text elements (nav, chapter tags, body blocks) are narrow columns set in tight clusters. Navigation is minimal: top-left identity tag and top-right menu, both 12-14px uppercase. The grid is loose and asymmetric — text columns and illustration accents are placed by hand rather than snapping to a strict grid.",
+    "imagery": "Illustration-only visual language. Hand-drawn line art in single-color outline — no fills, no gradients, no photography. Illustrations appear as small accents (roughly 80-120px) at the right margin of the display wordmark, suggesting objects like a lozenge/eye, a bag labeled 'DAMN', or loose linework. The style is lo-fi, pen-on-paper, slightly wobbly — the opposite of polished vector illustration. No product photography, no portraits, no abstract graphics beyond the illustrations themselves.",
+    "similar": [
+      {
+        "why": "Same full-bleed editorial layout with oversized serif display type on warm paper-tone backgrounds and minimal sans-serif metadata",
+        "business": "Werkplaats Typografie"
+      },
+      {
+        "why": "Same approach of treating the web page as a printed editorial spread — large confident type, flat color fields, no UI chrome",
+        "business": "Pentagram portfolio pages"
+      },
+      {
+        "why": "Same hand-drawn illustration accents and willingness to let a single warm chromatic color (pink/orange family) carry the entire visual identity",
+        "business": "Stefan Sagmeister studio site"
+      },
+      {
+        "why": "Same French-creative-agency sensibility: Dusty Rose + warm orange-red palette, large humanist serif wordmark, uppercase sans body, alternating light/dark editorial sections",
+        "business": "Locomotive MTL"
+      },
+      {
+        "why": "Same edge-to-edge full-bleed color bands with massive display type and zero border-radius or shadow — the page is a zine, not an app",
+        "business": "Spin (studio site)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "5-10px",
+      "sectionGap": "",
+      "cardPadding": "30px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f5f6f5",
+        "name": "Bone White Canvas",
+        "level": 0,
+        "purpose": "Default page background and light editorial panels"
+      },
+      {
+        "hex": "#e296bb",
+        "name": "Dusty Rose Field",
+        "level": 1,
+        "purpose": "Hero band and warm content sections — the brand's signature surface"
+      },
+      {
+        "hex": "#212121",
+        "name": "Charcoal Spread",
+        "level": 2,
+        "purpose": "Full-bleed dark editorial section — inverts the page to white type"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "level": 3,
+        "purpose": "Maximum-contrast content surfaces"
+      }
+    ],
+    "northStar": "sun-faded editorial zine on dusty rose paper — the layout is a printed page, not a screen",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.17,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.14,
+        "letterSpacing": -0.42
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.19,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "subheading",
+        "size": 26,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 0.78
+      },
+      {
+        "role": "heading-lg",
+        "size": 112,
+        "lineHeight": 0.78
+      },
+      {
+        "role": "display",
+        "size": 300,
+        "lineHeight": 0.73,
+        "letterSpacing": -9
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Wordmark",
+        "role": "The 'Concrete Club' brand name on hero and section openers",
+        "description": "TRJN DaVinci at 300px, line-height 0.73, letter-spacing -0.03em. Color is Ember Ink (#d9462b) on the Dusty Rose surface, or Ink Black (#000000) on light surfaces. Fills the full viewport width on the hero. No padding above — the type bleeds from the top edge. The 'e' in 'Concrete' is replaced or overlapped by a hand-drawn lozenge/eye illustration at the baseline."
+      },
+      {
+        "name": "Uppercase Nav Tag",
+        "role": "Small navigation and chapter labels at top of sections",
+        "description": "HelveticaNeue-Light at 14px, uppercase, letter-spacing normal. Set in 3-line stack: category / location / chapter. Color is Ember Ink on pink, Ink Black on white, Paper White on charcoal. Stacks tightly with 5px line gap. Appears centered above the wordmark on the hero, and in the top-right corner as a site nav."
+      },
+      {
+        "name": "Editorial Body Block",
+        "role": "Paragraph text in the intro and content sections",
+        "description": "HelveticaNeue-Light at 16px, line-height 1.19, letter-spacing -0.03em. All caps, set in a narrow column (max ~400px wide). Color is Ink Black on light surfaces, Paper White on charcoal. No margins between paragraphs within a block — blocks are tightly stacked."
+      },
+      {
+        "name": "Hand-Drawn Illustration Accent",
+        "role": "Decorative line-art that breaks the typographic grid",
+        "description": "Monochrome line illustration in the brand's current chromatic color (Ember Ink on pink, Ink Black on white, Paper White on charcoal). 0px border-radius, no fill — pure outline stroke. Positioned at the right margin of the display wordmark, slightly overlapping the baseline. Acts as a signature mark, not a decorative flourish."
+      },
+      {
+        "name": "Hero Band (Pink)",
+        "role": "The opening section that establishes the brand",
+        "description": "Full-bleed Dusty Rose (#e296bb) background, 230px top padding to push the wordmark below the fold of the nav. Contains: top-left micro-description, top-right uppercase nav, centered chapter tag, and the massive 300px wordmark. No borders, no cards, no shadows — the surface IS the container."
+      },
+      {
+        "name": "Light Editorial Section",
+        "role": "Content sections on off-white canvas",
+        "description": "Bone White (#f5f6f5) background with the 112px display wordmark in Ink Black. Side-by-side layout: wordmark left, small illustration accent right. 60px horizontal padding, 60-100px vertical padding."
+      },
+      {
+        "name": "Dark Inverted Section",
+        "role": "Full-bleed charcoal section for contrasting editorial content",
+        "description": "Charcoal (#212121) background with Paper White text. Same typographic system inverts — HelveticaNeue-Light 16px all-caps body, large display wordmark in Paper White. Centered line illustration in Paper White outline. The dark spread is a deliberate page-turn moment, not a footer."
+      },
+      {
+        "name": "Top-Right Site Nav",
+        "role": "Minimal navigation in the upper-right corner of every section",
+        "description": "Three-line stack: location (e.g. 'Paris, France — 11:34') / menu links (Studio, Contact, Blog) / blank. HelveticaNeue-Light 12-14px, uppercase. Anchored top-right with 30px padding. No background, no border — sits directly on the section surface."
+      },
+      {
+        "name": "Top-Left Identity Tag",
+        "role": "Persistent brand description in the upper-left corner",
+        "description": "Two lines of small caps text: 'The Concrete Club is a collaboration-based creative freelance collective founded by Gaétan Pautler.' HelveticaNeue-Light 12px, Ink Black on light, Paper White on dark. Anchored top-left with 30px padding."
+      },
+      {
+        "name": "Chapter Marker",
+        "role": "Small label indicating the current section/chapter",
+        "description": "Three-line uppercase stack: 'CONCRETE CLUB' / 'PARIS, WORLDWIDE' / 'CHAPTER 2'. HelveticaNeue-Light 14px, centered horizontally, positioned in the upper third of the page above the wordmark. Color matches the current surface accent."
+      },
+      {
+        "name": "Full-Bleed Surface Section",
+        "role": "Edge-to-edge colored band",
+        "description": "No border-radius anywhere. Sections fill the viewport edge-to-edge with no max-width constraint. The layout is truly full-bleed — the wordmark and content are positioned with padding relative to viewport edges, not a centered container."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display wordmark and editorial display type. This humanist serif at 300px is the signature — it carries the brand name and section titles. Its tall x-height, ball-terminal details, and slight contrast make it feel like wood-type rather than web type. Used at massive scale for the 'Concrete Club' wordmark and at 14–16px for editorial pull-quotes and chapter labels. Substitute: Playfair Display or DM Serif Display for a similar humanist editorial serif character.",
+        "sizes": "14px, 16px, 300px",
+        "family": "TRJN DaVinci",
+        "weight": "400",
+        "lineHeight": "0.73, 0.75, 1.14, 1.19",
+        "substitute": "Playfair Display",
+        "letterSpacing": "-0.0300em"
+      },
+      {
+        "role": "Body text, navigation labels, and large all-caps section statements. The 300-weight thinness of this sans is deliberate — it sits quietly beneath the DaVinci wordmark rather than competing. At 48px and 112px it becomes statement type in its own right, used for large chapter intros and hero secondary text. Tight line-height (0.78) makes multi-line headers stack densely. Substitute: Helvetica Neue Light or Inter Light.",
+        "sizes": "26px, 48px, 112px",
+        "family": "HelveticaNeue-Light",
+        "weight": "400",
+        "lineHeight": "0.78, 1.15"
+      },
+      {
+        "role": "Micro-labels and small print — copyright lines, location markers, fine meta text. The cleanest, most neutral voice in the system. Substitute: Neue Haas Grotesk or Inter.",
+        "sizes": "12px",
+        "family": "Neue Montreal",
+        "weight": "400",
+        "lineHeight": "1.17"
+      }
+    ],
+    "description": "Concrete Club is a warm editorial zine on dusty rose: oversized serif wordmarks dominate generous pink and off-white fields, small uppercase sans-serif tags steer the eye, and single warm orange-red ink bleeds through the layout as the one chromatic accent. Sections alternate between dusty rose, off-white canvas, and deep charcoal — each acts as a separate printed page bound into one publication. Typography is the interface: a distinctive humanist serif (DaVinci) carries all display weight, while Helvetica Neue Light whispers at body and nav scale. Hand-drawn line illustrations interrupt the grid at the right margin of the wordmark, softening the bold typographic authority with lo-fi charm. Everything else is restrained — no buttons, no cards, no shadows — the page behaves like a printed art book, not a software product.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f8ab25e8-87c1-4d7b-a633-daf3ea39b916#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Concrete Club Studio design system\",\"item\":\"https://styles.refero.design/style/f8ab25e8-87c1-4d7b-a633-daf3ea39b916\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f8ab25e8-87c1-4d7b-a633-daf3ea39b916#style-reference\",\"name\":\"Concrete Club Studio design system reference\",\"headline\":\"Concrete Club Studio design system | Refero Styles\",\"description\":\"Explore Concrete Club Studio's mixed Agency design system: Ember Ink #d9462b, Dusty Rose #e296bb colors, TRJN DaVinci, HelveticaNeue-Light typography, and...\",\"url\":\"https://styles.refero.design/style/f8ab25e8-87c1-4d7b-a633-daf3ea39b916\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f8ab25e8-87c1-4d7b-a633-daf3ea39b916\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Concrete Club Studio\",\"url\":\"https://concreteclub.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f8ab25e8-87c1-4d7b-a633-daf3ea39b916#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/247e87c4-3f30-4320-aa22-00b8e95046f3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/247e87c4-3f30-4320-aa22-00b8e95046f3.jpg\",\"caption\":\"Screenshot of Concrete Club Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/247e87c4-3f30-4320-aa22-00b8e95046f3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Concrete Club Studio design system\",\"Concrete Club Studio website design\",\"Concrete Club Studio colors\",\"Concrete Club Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ember Ink\",\"Dusty Rose\",\"Ink Black\",\"Charcoal\",\"TRJN DaVinci\",\"HelveticaNeue-Light\",\"Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Concrete Club Studio design system\"},{\"@type\":\"Thing\",\"name\":\"Concrete Club Studio website design\"},{\"@type\":\"Thing\",\"name\":\"Concrete Club Studio colors\"},{\"@type\":\"Thing\",\"name\":\"Concrete Club Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-17T19:15:19.000Z\",\"dateModified\":\"2026-02-17T19:15:19.000Z\"}]}19:T6e3,**Quick Color Reference**\n- text: #000000 (Ink Black)\n- background: #f5f6f5 (Bone White)\n- border: #000000 (Ink Black, 1px hairline)\n- accent: #d9462b (Ember Ink)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Display Wordmark Block**: Full-bleed Dusty Rose (#e296bb) background, 230px top padding. Massive 'Concrete Club' set in TRJN DaVinci (substitute: Playfair Display) at 300px, line-height 0.73, letter-spacing -0.03em, color #d9462b. Place a small hand-drawn line illustration (~100px) at the right margin of the wordmark, slightly overlapping the final letter's baseline.\n\n2. **Light Editorial Section**: Bone White (#f5f6f5) full-bleed background. Display wordmark in TRJN DaVinci at 112px, line-height 0.78, color #000000, left-aligned with 60px left padding. Narrow body column (max 400px) in HelveticaNeue-Light 16px all-caps, line-height 1.19, letter-spacing -0.03em, color #000000, positioned in the lower-left quadrant.\n\n3. **Dark Inverted Spread**: Charcoal (#212121) full-bleed background. Centered line illustration in #ffffff outline (~150px). Body text in HelveticaNeue-Light 16px all-caps, line-height 1.19, color #ffffff, set in a narrow centered column (max 500px).\n\n4. **Top-Right Nav Cluster**: Positioned absolute top-right with 30px padding. Three-line stack: 'Paris, France — 11:34' / 'Studio, Contact, Blog' / blank. HelveticaNeue-Light 12px, uppercase, color #000000 on light surfaces, #ffffff on dark. No background, no border.\n\n5. **Chapter Marker**: Centered horizontally, positioned in the upper third of the page. Three-line uppercase stack in HelveticaNeue-Light 14px: 'CONCRETE CLUB' / 'PARIS, WORLDWIDE' / 'CHAPTER 2'. 5px line gap. Color #d9462b on pink surface, #000000 on light surface."
+      }
+    ],
+    "elevationPhilosophy": "The design uses zero shadows. Surface hierarchy is communicated entirely through color field alternation — Dusty Rose → Bone White → Charcoal act as distinct printed pages rather than stacked digital layers. Elevation is a print metaphor (paper on paper), not a digital metaphor (cards above canvas)."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "hero",
+            "button",
+            "image"
+          ],
+          "frequency": 1045,
+          "confidence": 1,
+          "prominence": 97197164.55023287,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f5f6f5",
+          "oklch": {
+            "c": 0.001689291056125286,
+            "h": 145.5630686842127,
+            "l": 0.9721055087347101
+          },
+          "contexts": [
+            "other",
+            "body",
+            "hero"
+          ],
+          "frequency": 181,
+          "confidence": 1,
+          "prominence": 33700613.1911919,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d9462b",
+          "oklch": {
+            "c": 0.18807856579550566,
+            "h": 32.62824594155089,
+            "l": 0.5994124614821732
+          },
+          "contexts": [
+            "other",
+            "body",
+            "nav",
+            "heading"
+          ],
+          "frequency": 115,
+          "confidence": 1,
+          "prominence": 8887943.369685333,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "nav"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 7083968.208643119,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#212121",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.24775871011467596
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 6098143.221524648,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e296bb",
+          "oklch": {
+            "c": 0.102086193518254,
+            "h": 349.1473864521869,
+            "l": 0.7595083090839452
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054111.4009346182,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.04304679979521357,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.38,
+          "background": "#f5f6f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.1,
+          "background": "#212121",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.86,
+          "background": "#212121",
+          "foreground": "#f5f6f5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.31,
+          "background": "#e296bb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.14,
+          "background": "#e296bb",
+          "foreground": "#212121"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.99,
+          "background": "#f5f6f5",
+          "foreground": "#d9462b"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.73,
+          "background": "#212121",
+          "foreground": "#d9462b"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.25,
+          "background": "#e296bb",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.08,
+          "background": "#e296bb",
+          "foreground": "#f5f6f5"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.92,
+          "background": "#e296bb",
+          "foreground": "#d9462b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.3,
+          "background": "#212121",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.08,
+          "background": "#f5f6f5",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 19,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 230,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "HelveticaNeue-Light",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 239,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "TRJN DaVinci",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 28,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Neue Montreal",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Perfect Fourth",
+        "ratio": 1.333,
+        "confidence": 0.86
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "TRJN DaVinci",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TRJN DaVinci",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.75,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TRJN DaVinci",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.19,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 26,
+          "family": "HelveticaNeue-Light",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero"
+          ],
+          "frequency": 30,
+          "lineHeight": 0.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "HelveticaNeue-Light",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.42,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 112,
+          "family": "HelveticaNeue-Light",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "lineHeight": 0.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 112,
+          "family": "HelveticaNeue-Light",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "image"
+          ],
+          "frequency": 192,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 300,
+          "family": "TRJN DaVinci",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.73,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/b9c9466e-2c34-4945-a896-3e641465cb6a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/247e87c4-3f30-4320-aa22-00b8e95046f3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f8ab25e8-87c1-4d7b-a633-daf3ea39b916#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Concrete Club Studio design system\",\"item\":\"https://styles.refero.design/style/f8ab25e8-87c1-4d7b-a633-daf3ea39b916\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f8ab25e8-87c1-4d7b-a633-daf3ea39b916#style-reference\",\"name\":\"Concrete Club Studio design system reference\",\"headline\":\"Concrete Club Studio design system | Refero Styles\",\"description\":\"Explore Concrete Club Studio's mixed Agency design system: Ember Ink #d9462b, Dusty Rose #e296bb colors, TRJN DaVinci, HelveticaNeue-Light typography, and...\",\"url\":\"https://styles.refero.design/style/f8ab25e8-87c1-4d7b-a633-daf3ea39b916\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f8ab25e8-87c1-4d7b-a633-daf3ea39b916\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Concrete Club Studio\",\"url\":\"https://concreteclub.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f8ab25e8-87c1-4d7b-a633-daf3ea39b916#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/247e87c4-3f30-4320-aa22-00b8e95046f3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/247e87c4-3f30-4320-aa22-00b8e95046f3.jpg\",\"caption\":\"Screenshot of Concrete Club Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/247e87c4-3f30-4320-aa22-00b8e95046f3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Concrete Club Studio design system\",\"Concrete Club Studio website design\",\"Concrete Club Studio colors\",\"Concrete Club Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Ember Ink\",\"Dusty Rose\",\"Ink Black\",\"Charcoal\",\"TRJN DaVinci\",\"HelveticaNeue-Light\",\"Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Concrete Club Studio design system\"},{\"@type\":\"Thing\",\"name\":\"Concrete Club Studio website design\"},{\"@type\":\"Thing\",\"name\":\"Concrete Club Studio colors\"},{\"@type\":\"Thing\",\"name\":\"Concrete Club Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-17T19:15:19.000Z\",\"dateModified\":\"2026-02-17T19:15:19.000Z\"}]}19:T6e3,**Quick Color Reference**\n- text: #000000 (Ink Black)\n- background: #f5f6f5 (Bone White)\n- border: #000000 (Ink Black, 1px hairline)\n- accent: #d9462b (Ember Ink)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Display Wordmark Block**: Full-bleed Dusty Rose (#e296bb) background, 230px top padding. Massive 'Concrete Club' set in TRJN DaVinci (substitute: Playfair Display) at 300px, line-height 0.73, letter-spacing -0.03em, color #d9462b. Place a small hand-drawn line illustration (~100px) at the right margin of the wordmark, slightly overlapping the final letter's baseline.\n\n2. **Light Editorial Section**: Bone White (#f5f6f5) full-bleed background. Display wordmark in TRJN DaVinci at 112px, line-height 0.78, color #000000, left-aligned with 60px left padding. Narrow body column (max 400px) in HelveticaNeue-Light 16px all-caps, line-height 1.19, letter-spacing -0.03em, color #000000, positioned in the lower-left quadrant.\n\n3. **Dark Inverted Spread**: Charcoal (#212121) full-bleed background. Centered line illustration in #ffffff outline (~150px). Body text in HelveticaNeue-Light 16px all-caps, line-height 1.19, color #ffffff, set in a narrow centered column (max 500px).\n\n4. **Top-Right Nav Cluster**: Positioned absolute top-right with 30px padding. Three-line stack: 'Paris, France — 11:34' / 'Studio, Contact, Blog' / blank. HelveticaNeue-Light 12px, uppercase, color #000000 on light surfaces, #ffffff on dark. No background, no border.\n\n5. **Chapter Marker**: Centered horizontally, positioned in the upper third of the page. Three-line uppercase stack in HelveticaNeue-Light 14px: 'CONCRETE CLUB' / 'PARIS, WORLDWIDE' / 'CHAPTER 2'. 5px line gap. Color #d9462b on pink surface, #000000 on light surface."
+}

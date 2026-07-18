@@ -1,0 +1,1320 @@
+{
+  "source": "https://styles.refero.design/style/5d9e1cc2-4b81-40fe-aa92-640f2e1d7420",
+  "uuid": "5d9e1cc2-4b81-40fe-aa92-640f2e1d7420",
+  "name": "Decide AI",
+  "northStar": "Observatory at midnight — mint signal",
+  "capturedAt": "2026-07-18T09:35:34.066Z",
+  "meta": {
+    "url": "https://decideai.xyz",
+    "siteName": "Decide AI",
+    "extractedAt": "2026-06-03T18:58:30.843Z",
+    "durationMs": 31089,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 774,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use PP Neue Montreal at 110–220px for hero and section-opening headlines with letter-spacing -0.0360em",
+      "Set page background to #030303 and let white product cards flip the contrast — this contrast IS the system",
+      "Reserve #73ffb9 for step indicator bars, arrow glyphs, and icon highlights — never as a full button background",
+      "Use 9999px border-radius for all buttons and tags; use 0px (sharp) for all cards and content surfaces",
+      "Separate sections with 80–120px vertical gaps and a 1px #e5e7eb hairline rule",
+      "Keep body text at 16–17px weight 400 with line-height 1.5–1.62 for comfortable reading rhythm",
+      "Use the repeating marquee band (brand wordmark at 200–400px) as the primary section divider"
+    ],
+    "donts": [
+      "Don't add box-shadows or drop-shadows — the system is intentionally flat; elevation comes from tonal contrast only",
+      "Don't use the green accent (#73ffb9) on large surfaces — it loses impact as a signal when used decoratively",
+      "Don't use a filled chromatic CTA button — primary actions are text links with arrows, or ghost pill buttons",
+      "Don't introduce additional chromatic colors — the 2% colorfulness budget is deliberate; adding more dilutes the signal",
+      "Don't use border-radius between 1px and 8px on cards or surfaces — the system is binary: 0px sharp or 9999px pill",
+      "Don't set body text below 14px — the comfortable density and large display sizes mean smaller text breaks the visual hierarchy",
+      "Don't center-align body paragraphs — left-align with 60–70ch measure for readability under the oversized headlines"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#030303",
+        "name": "Deep Obsidian",
+        "role": "Page canvas, card surfaces, body text on light surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "SVG fills, deepest surface level beneath Obsidian",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Frost",
+        "role": "Primary text on dark surfaces, icon fills, inverted surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Silver Haze",
+        "role": "Hairline borders, dividers, subtle list separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#73ffb9",
+        "name": "Mint Signal",
+        "role": "Sole accent — decorative bars, active step indicators, icon highlights, signal punctuation against the dark canvas",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with content centered in ~1200px max-width container. Hero is a near-viewport section with step indicator bars above a 110–220px display headline. Sections are separated by 80–120px vertical gaps, thin hairline rules, and full-bleed marquee bands. Product features appear as a 3-column card grid with light cards on the dark canvas — the inversion creates visual punctuation. Navigation is a minimal top bar with logo left, links right. The page scrolls vertically as a sequence of editorial spreads rather than a dashboard.",
+    "imagery": "Minimal photography; the system relies on geometric line-art icons (circular crosshairs, arcs, concentric rings) and typographic hero treatments. One embedded product screenshot band appears (Redactor module) as a full-bleed dark rectangle. Product cards use monochrome line-drawn glyphs rather than illustrations or photos. The marquee wordmark acts as a graphic element. No lifestyle imagery, no stock photography — the brand communicates through type, geometric mark, and negative space.",
+    "similar": [
+      {
+        "why": "Same dark-canvas editorial approach with oversized display type and single accent color; both use geometric line-art icons and minimal color palettes",
+        "business": "Linear"
+      },
+      {
+        "why": "Near-black backgrounds, massive display headlines with tight tracking, and a rationed accent color; both treat type as the primary visual element",
+        "business": "Vercel"
+      },
+      {
+        "why": "Dark-mode technical brand with clean PP-Neue-style grotesk typography, comfortable density, and product cards that flip between dark and light surfaces",
+        "business": "Anthropic"
+      },
+      {
+        "why": "Same editorial dark-canvas aesthetic with 100–200px display type, hairline rules, and near-monochrome palette with a single warm accent",
+        "business": "Rauno Freiberg"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "0px (sharp corners define the editorial feel)",
+        "links": "8.64px",
+        "buttons": "9999px (full pill)"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80-120px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#030303",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Full-page dark background"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Product Card",
+        "level": 2,
+        "purpose": "Light surface for product cards that flip the dark theme"
+      },
+      {
+        "hex": "#000000",
+        "name": "Overlay",
+        "level": 3,
+        "purpose": "Deepest layer behind marquee and embedded media bands"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Observatory at midnight — mint signal",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-lg",
+        "size": 17,
+        "lineHeight": 1.62
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.38
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.27,
+        "letterSpacing": -0.96
+      },
+      {
+        "role": "heading",
+        "size": 46,
+        "lineHeight": 1.27,
+        "letterSpacing": -1.47
+      },
+      {
+        "role": "heading-lg",
+        "size": 54,
+        "lineHeight": 1,
+        "letterSpacing": -1.73
+      },
+      {
+        "role": "display",
+        "size": 110,
+        "lineHeight": 1,
+        "letterSpacing": -3.96
+      },
+      {
+        "role": "display-xl",
+        "size": 220,
+        "lineHeight": 1,
+        "letterSpacing": -7.92
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Headline",
+        "role": "Hero and section-opening type",
+        "description": "PP Neue Montreal at 110–220px, weight 400–500, lineHeight 1.0, letter-spacing -0.0360em. Color: #ffffff. Fills viewport width, often split across lines for editorial rhythm. No drop shadow, no gradient — the size IS the visual weight."
+      },
+      {
+        "name": "Pill Button",
+        "role": "Primary navigation action",
+        "description": "9999px border-radius, 6px 20px padding, 14px PP Neue Montreal weight 500, text color #ffffff, transparent or #030303 background. Underlined on hover. The pill shape is the only button form in the system."
+      },
+      {
+        "name": "Active Nav Link",
+        "role": "Underlined current-page indicator",
+        "description": "14px PP Neue Montreal weight 500, #ffffff text, 1px underline in #ffffff, 8.64px radius on the underline region. Non-active nav items omit the underline."
+      },
+      {
+        "name": "Product Card (Light Variant)",
+        "role": "Product feature card on dark background",
+        "description": "White (#ffffff) surface, 0px border-radius, 20px padding, thin #e5e7eb hairline border. Contains: uppercase label (13px, letter-spacing wide, #030303), circular geometric icon in #030303 line art, product name at 40–46px weight 400, short description at 16px weight 400."
+      },
+      {
+        "name": "Product Card (Dark Variant)",
+        "role": "Product feature card when inverted is needed",
+        "description": "#030303 background, #e5e7eb hairline border, 0px radius, 20px padding. Same internal hierarchy as light variant with inverted colors."
+      },
+      {
+        "name": "Step Indicator Bar",
+        "role": "Progress or phase marker (ST/00, 01.DATA, 02.TRUST, 03.UNIQUENESS)",
+        "description": "Vertical bar: 3–4px wide, 40–60px tall. Active steps use #73ffb9 fill; inactive steps use #e5e7eb or transparent. Label sits above at 13–14px uppercase. Green bars are the only color punctuation on the hero canvas."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand identity in nav and footer",
+        "description": "PP Neue Montreal weight 700 at 16–18px, #ffffff on dark, preceded by a 4-point star/sparkle glyph (✦) in #ffffff. The star is a brand signature — it appears after the wordmark and in the mark variants."
+      },
+      {
+        "name": "Geometric Icon (Circle)",
+        "role": "Product card icon and decorative motif",
+        "description": "Circular outline in #030303, 48–64px diameter, containing intersecting geometric line work (rings, arcs, crosshairs). Stroke weight 1–1.5px. No fill — pure line art."
+      },
+      {
+        "name": "Marquee Band",
+        "role": "Repeating brand text scroller",
+        "description": "Full-bleed band with #030303 or #000000 background, PP Neue Montreal at 200–400px weight 400, #ffffff text, infinite horizontal scroll. Acts as a visual divider between major sections."
+      },
+      {
+        "name": "Inline Tag",
+        "role": "Category or protocol label",
+        "description": "PP Neue Montreal 13px weight 500, uppercase, #e5e7eb text, no background. Used as 'TRAINING', 'PROTOCOL', 'TOOLKIT' in card headers. 7–8px gap to adjacent content."
+      },
+      {
+        "name": "Arrow Link",
+        "role": "Text link with directional indicator (Discover ↓, Try Now ↗)",
+        "description": "PP Neue Montreal 14–16px weight 500, #ffffff text, underline on text, arrow glyph in #73ffb9 (green) or #ffffff. The green arrow is a rare but consistent accent on these directional links."
+      },
+      {
+        "name": "Hero Subheadline",
+        "role": "Supporting text under display headline",
+        "description": "PP Neue Montreal 18–22px weight 400, line-height 1.38, #e5e7eb color, max-width 60–70ch. Separated from headline by 12–20px gap and a thin #e5e7eb horizontal rule."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single typeface carrying the entire brand voice — body, headings, and oversized display (up to 220px). The aggressive negative tracking (-0.0360em at display, -0.0320em at subhead) is the signature: letters lock together tightly even at 110px+, making the type read as a solid mass rather than individual glyphs. Weight 700 reserved for the largest display moments, weight 500 for subheadings, weight 400 for body and UI text.",
+        "sizes": "13, 14, 16, 17, 18, 22, 23, 30, 40, 46, 50, 54, 110, 220",
+        "family": "PP Neue Montreal",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.00–1.62",
+        "substitute": "Neue Haas Grotesk Display, Inter (tight tracking), or Söhne",
+        "letterSpacing": "-0.0360em at display sizes (110–220px), -0.0320em at 30–54px headings, normal at body sizes",
+        "fontFeatureSettings": "\"ss01\" on if available — geometric alternates reinforce the editorial precision"
+      }
+    ],
+    "description": "Decide AI operates as a midnight intelligence command center — a near-black canvas (Deep Obsidian) where massive display type dominates and a single mint-green accent (#73ffb9) punctuates the silence. The system speaks in two voices: whisper-quiet product cards on a dark surface, and oversized editorial headlines at 110–220px that fill the viewport like a magazine spread. Typography is the entire personality: PP Neue Montreal at display weights with aggressive negative tracking collapses the visual gap between letters, creating geometric solidity at extreme sizes. Components are minimal — pill-radius buttons, thin hairline borders in #e5e7eb, and almost no decoration. Color is rationed: a 2% colorfulness budget means the green accent appears as bars, icons, and rare punctuation rather than full surfaces. Density is comfortable and spacious, with generous vertical gaps and content centered in wide container widths.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5d9e1cc2-4b81-40fe-aa92-640f2e1d7420#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Decide AI design system\",\"item\":\"https://styles.refero.design/style/5d9e1cc2-4b81-40fe-aa92-640f2e1d7420\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5d9e1cc2-4b81-40fe-aa92-640f2e1d7420#style-reference\",\"name\":\"Decide AI design system reference\",\"headline\":\"Decide AI design system | Refero Styles\",\"description\":\"Explore Decide AI's dark AI design system: Deep Obsidian #030303, Pure Black #000000 colors, PP Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5d9e1cc2-4b81-40fe-aa92-640f2e1d7420\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5d9e1cc2-4b81-40fe-aa92-640f2e1d7420\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Decide AI\",\"url\":\"https://decideai.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5d9e1cc2-4b81-40fe-aa92-640f2e1d7420#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/79c3dda8-0950-46af-a453-b5c147b3248e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/79c3dda8-0950-46af-a453-b5c147b3248e.jpg\",\"caption\":\"Screenshot of Decide AI\"},\"image\":\"https://images.refero.design/styles/refero.design/image/79c3dda8-0950-46af-a453-b5c147b3248e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Decide AI design system\",\"Decide AI website design\",\"Decide AI colors\",\"Decide AI typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Deep Obsidian\",\"Pure Black\",\"Frost\",\"Silver Haze\",\"PP Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Decide AI design system\"},{\"@type\":\"Thing\",\"name\":\"Decide AI website design\"},{\"@type\":\"Thing\",\"name\":\"Decide AI colors\"},{\"@type\":\"Thing\",\"name\":\"Decide AI typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-07T18:38:11.956Z\",\"dateModified\":\"2026-05-07T18:38:11.956Z\"}]}19:T56e,**Quick Color Reference**\n- text: #ffffff\n- background: #030303\n- border: #e5e7eb\n- accent: #73ffb9\n- surface (card): #ffffff\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Hero Section**: Background #030303. Step indicator bars (3px × 50px, #73ffb9) above labels. Display headline: 'The future of intelligence.' at 110px PP Neue Montreal weight 500, #ffffff, letter-spacing -3.96px, line-height 1.0. Subheadline at 22px weight 400, #e5e7eb, line-height 1.38. 1px #e5e7eb horizontal rule separating subhead from footer line.\n\n2. **Product Card Grid (3 columns)**: Each card #ffffff background, 0px radius, 1px #e5e7eb border, 20px padding. Uppercase tag at 13px weight 500 #030303. Circular line-art icon (56px, #030303 stroke 1.5px) centered. Product name at 40px weight 400 #030303. Description at 16px weight 400 #030303, line-height 1.56.\n\n3. **Pill Navigation Button**: 9999px border-radius, 6px 20px padding, 14px PP Neue Montreal weight 500, text #ffffff, background transparent. Underline appears on hover in #ffffff.\n\n4. **Marquee Divider Band**: Full-bleed #030303, PP Neue Montreal at 220px weight 400, #ffffff text, infinite horizontal scroll. Wordmark repeated with ✦ glyph separator.\n\n5. **Arrow Text Link**: PP Neue Montreal 14px weight 500, #ffffff text with underline. Arrow glyph (↗ or ↓) in #73ffb9 immediately following the text."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. Elevation is communicated exclusively through tonal contrast between the deep canvas (#030303), pure white product cards, and the bright Frost text. The flatness is intentional — shadows would soften the sharp editorial precision that defines the system."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image",
+            "list",
+            "hero",
+            "icon",
+            "heading",
+            "button"
+          ],
+          "frequency": 2064,
+          "confidence": 1,
+          "prominence": 89618302.84579436,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 68,
+            "hero/borderColor": 8,
+            "icon/borderColor": 16,
+            "link/borderColor": 73,
+            "list/borderColor": 76,
+            "image/borderColor": 8,
+            "other/borderColor": 1791,
+            "button/borderColor": 4,
+            "heading/borderColor": 20
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image",
+            "list",
+            "hero",
+            "icon",
+            "heading"
+          ],
+          "frequency": 331,
+          "confidence": 1,
+          "prominence": 68158541.52893353,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 15,
+            "hero/color": 2,
+            "icon/color": 1,
+            "link/color": 11,
+            "list/color": 10,
+            "image/color": 2,
+            "other/color": 274,
+            "heading/color": 4,
+            "link/borderColor": 2,
+            "body/backgroundColor": 3,
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#030303",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.09692582811234322
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "body",
+            "icon",
+            "list",
+            "button"
+          ],
+          "frequency": 251,
+          "confidence": 1,
+          "prominence": 17631463.85971875,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "icon/color": 3,
+            "link/color": 11,
+            "list/color": 9,
+            "other/fill": 3,
+            "other/color": 175,
+            "button/color": 1,
+            "heading/color": 1,
+            "link/borderColor": 1,
+            "other/borderColor": 1,
+            "other/backgroundColor": 44
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 174,
+          "confidence": 1,
+          "prominence": 348172.74162258924,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 174
+          }
+        },
+        {
+          "hex": "#73ffb9",
+          "oklch": {
+            "c": 0.15757930198921033,
+            "h": 159.02186841744515,
+            "l": 0.904291798702902
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 87,
+          "confidence": 1,
+          "prominence": 302120.53566690366,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 78,
+            "other/color": 1,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#c1c1c1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8109314104129781
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 161019,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#22c55e",
+          "oklch": {
+            "c": 0.19200735889944792,
+            "h": 149.57933770959528,
+            "l": 0.7227459182734359
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 444,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.024063770486676912,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.62,
+          "background": "#030303",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.73,
+          "background": "#73ffb9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.66,
+          "background": "#e5e7eb",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.43,
+          "background": "#030303",
+          "foreground": "#73ffb9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.67,
+          "background": "#c1c1c1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.46,
+          "background": "#c1c1c1",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.22,
+          "background": "#22c55e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.05,
+          "background": "#22c55e",
+          "foreground": "#030303"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.28,
+          "background": "#22c55e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.82,
+          "background": "#22c55e",
+          "foreground": "#73ffb9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.8,
+          "background": "#c1c1c1",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.43,
+          "background": "#c1c1c1",
+          "foreground": "#73ffb9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.25,
+          "background": "#ffffff",
+          "foreground": "#73ffb9"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8.64,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "properties": [
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginBottom",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginLeft|body",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 188,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|body",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 39,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 80,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 91,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 127,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 185,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "PP Neue Montreal",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 522,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.93
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image",
+            "list",
+            "hero",
+            "icon",
+            "button"
+          ],
+          "frequency": 391,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.62,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "PP Neue Montreal",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "PP Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.032,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 110,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        },
+        {
+          "size": 220,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3ddd1c08-d7b0-42ab-93b2-ee0abfe6888c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/79c3dda8-0950-46af-a453-b5c147b3248e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5d9e1cc2-4b81-40fe-aa92-640f2e1d7420#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Decide AI design system\",\"item\":\"https://styles.refero.design/style/5d9e1cc2-4b81-40fe-aa92-640f2e1d7420\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5d9e1cc2-4b81-40fe-aa92-640f2e1d7420#style-reference\",\"name\":\"Decide AI design system reference\",\"headline\":\"Decide AI design system | Refero Styles\",\"description\":\"Explore Decide AI's dark AI design system: Deep Obsidian #030303, Pure Black #000000 colors, PP Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5d9e1cc2-4b81-40fe-aa92-640f2e1d7420\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5d9e1cc2-4b81-40fe-aa92-640f2e1d7420\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Decide AI\",\"url\":\"https://decideai.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5d9e1cc2-4b81-40fe-aa92-640f2e1d7420#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/79c3dda8-0950-46af-a453-b5c147b3248e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/79c3dda8-0950-46af-a453-b5c147b3248e.jpg\",\"caption\":\"Screenshot of Decide AI\"},\"image\":\"https://images.refero.design/styles/refero.design/image/79c3dda8-0950-46af-a453-b5c147b3248e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Decide AI design system\",\"Decide AI website design\",\"Decide AI colors\",\"Decide AI typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Deep Obsidian\",\"Pure Black\",\"Frost\",\"Silver Haze\",\"PP Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Decide AI design system\"},{\"@type\":\"Thing\",\"name\":\"Decide AI website design\"},{\"@type\":\"Thing\",\"name\":\"Decide AI colors\"},{\"@type\":\"Thing\",\"name\":\"Decide AI typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-05-07T18:38:11.956Z\",\"dateModified\":\"2026-05-07T18:38:11.956Z\"}]}19:T56e,**Quick Color Reference**\n- text: #ffffff\n- background: #030303\n- border: #e5e7eb\n- accent: #73ffb9\n- surface (card): #ffffff\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Hero Section**: Background #030303. Step indicator bars (3px × 50px, #73ffb9) above labels. Display headline: 'The future of intelligence.' at 110px PP Neue Montreal weight 500, #ffffff, letter-spacing -3.96px, line-height 1.0. Subheadline at 22px weight 400, #e5e7eb, line-height 1.38. 1px #e5e7eb horizontal rule separating subhead from footer line.\n\n2. **Product Card Grid (3 columns)**: Each card #ffffff background, 0px radius, 1px #e5e7eb border, 20px padding. Uppercase tag at 13px weight 500 #030303. Circular line-art icon (56px, #030303 stroke 1.5px) centered. Product name at 40px weight 400 #030303. Description at 16px weight 400 #030303, line-height 1.56.\n\n3. **Pill Navigation Button**: 9999px border-radius, 6px 20px padding, 14px PP Neue Montreal weight 500, text #ffffff, background transparent. Underline appears on hover in #ffffff.\n\n4. **Marquee Divider Band**: Full-bleed #030303, PP Neue Montreal at 220px weight 400, #ffffff text, infinite horizontal scroll. Wordmark repeated with ✦ glyph separator.\n\n5. **Arrow Text Link**: PP Neue Montreal 14px weight 500, #ffffff text with underline. Arrow glyph (↗ or ↓) in #73ffb9 immediately following the text."
+}

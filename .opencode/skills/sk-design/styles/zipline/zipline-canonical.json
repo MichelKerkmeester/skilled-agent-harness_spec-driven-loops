@@ -1,0 +1,964 @@
+{
+  "source": "https://styles.refero.design/style/4a248569-2b5a-4416-bb2a-c78890218b9f",
+  "uuid": "4a248569-2b5a-4416-bb2a-c78890218b9f",
+  "name": "Zipline",
+  "northStar": "open meadow in morning light",
+  "capturedAt": "2026-07-18T07:47:42.217Z",
+  "meta": {
+    "url": "https://www.zipline.com",
+    "siteName": "Zipline",
+    "extractedAt": "2026-06-03T19:20:24.152Z",
+    "durationMs": 52979,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 283,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use fkScreamer 700 at 90–150px for editorial headlines; line-height 0.85 is non-negotiable — it's what makes the type feel stamped rather than set",
+      "Keep the canvas at Meadow Cream (#f7f4e8) on every body section; reserve stark white for moments you specifically want to feel clinical",
+      "Default all buttons, cards, and images to 20px radius — this single value unifies the system and is the most repeated shape token",
+      "Pair fkGroteskNeue body at 16px/1.4 with fkScreamer displays; never use fkScreamer for anything under 40px",
+      "Reach for Drone Violet (#643aed) only as a card or feature-block surface, never as a text color or border — its job is to make a block pop, not to tint typography",
+      "Use 1px Hillside Ink borders in place of shadows for elevation; the system is flat-by-default and the border carries the separation",
+      "Bleed photography full-bleed in heroes and section dividers; avoid contained rounded image cards at large scale"
+    ],
+    "donts": [
+      "Don't use fkScreamer for body copy, navigation, captions, or anything under 40px — the weight and line-height collapse at small sizes",
+      "Don't introduce additional chromatic accent colors; the entire system's restraint depends on having exactly one violet",
+      "Don't add box-shadows to cards or buttons — use 1px borders or the violet surface for separation instead",
+      "Don't use pure white (#ffffff) as a background; Meadow Cream is the canvas and stark white breaks the warm editorial tone",
+      "Don't set body type at anything other than fkGroteskNeue 16px/1.4 as the default — resist the urge to mix in a serif or secondary sans",
+      "Don't apply radii smaller than 20px to interactive elements; buttons, cards, and images all share the same generous rounding",
+      "Don't use letter-spacing on fkScreamer — it ships with normal tracking and the tight glyph spacing is part of its impact"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f7f4e8",
+        "name": "Meadow Cream",
+        "role": "Page canvas, card surfaces, body text inverse, button borders — the warm off-white that gives the whole system its outdoor, paper-like character instead of clinical SaaS white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Hillside Ink",
+        "role": "Primary headings, body copy, icon strokes, filled action buttons, hairline borders — maximum-contrast black that lets the cream breathe and makes fkScreamer headlines land",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c6c3ba",
+        "name": "Stone Border",
+        "role": "Muted dividers, secondary surfaces, low-contrast borders — warm gray that sits a step behind Meadow Cream and prevents the canvas from looking flat",
+        "group": "neutral"
+      },
+      {
+        "hex": "#643aed",
+        "name": "Drone Violet",
+        "role": "Card and feature-block backgrounds, accent surfaces — the single chromatic note in an otherwise achromatic system; vivid against the cream so attention-grabbing blocks pop without breaking the editorial mood",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width container — pages extend edge-to-edge. The hero is a full-viewport landscape photograph with the headline (fkScreamer, cream-colored) positioned bottom-left and a ghost button below it. Below the hero, a curved mask transitions the photo into the Meadow Cream canvas. The main body uses centered display statements at 90–150px, often broken across multiple lines, with body copy left-aligned in a narrower measure below. Navigation is a minimal top bar (hamburger left, centered wordmark, ghost CTA right) that floats transparently over the hero. Section gaps are generous (60–128px) and the system relies on the type scale and photography, not grids or columns, to create rhythm.",
+    "imagery": "Full-bleed landscape photography dominates: motion-blurred green hillsides, low-angle nature shots, and small embedded portrait thumbnails integrated inline with display type. All photography is shot at ground level with natural daylight — no studio, no product-on-white, no abstract 3D renders. The blur and speed in the hero photo communicates 'drone delivery' without ever showing a drone. A small portrait thumbnail of a person appears as a visual token dropped into the middle of an fkScreamer headline, a signature editorial device.",
+    "similar": [
+      {
+        "why": "Same warm cream canvas, nature-first full-bleed photography, oversized editorial type, and one restrained accent color — the print-magazine-over-photography approach",
+        "business": "Patagonia"
+      },
+      {
+        "why": "Warm off-white background replacing typical e-commerce white, oversized condensed display type, and photography that bleeds edge-to-edge without rounded containers",
+        "business": "Allbirds"
+      },
+      {
+        "why": "Nature-led hero photography with motion blur, minimal UI chrome, and a single accent color (violet here, teal for Rivian) against a warm neutral canvas",
+        "business": "Rivian"
+      },
+      {
+        "why": "Editorial product-page layout with massive display headlines over landscape imagery, thin black borders instead of shadows, and a commitment to one warm neutral as the system base",
+        "business": "Arc'teryx"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "20px",
+        "cards": "20px",
+        "images": "20px",
+        "buttons": "20px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "60-128px",
+      "cardPadding": "24px",
+      "pageMaxWidth": null
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#f7f4e8",
+        "name": "Meadow Cream",
+        "level": 0,
+        "purpose": "Page canvas — the warm off-white base that all content sits on"
+      },
+      {
+        "hex": "#c6c3ba",
+        "name": "Stone Border",
+        "level": 1,
+        "purpose": "Subtle secondary surface and divider tone for low-emphasis sections"
+      },
+      {
+        "hex": "#643aed",
+        "name": "Drone Violet",
+        "level": 2,
+        "purpose": "Accent card / feature-block surface — the only chromatic surface in the system"
+      },
+      {
+        "hex": "#000000",
+        "name": "Hillside Ink",
+        "level": 3,
+        "purpose": "Inverted surface for filled buttons, dark hero photo zones, and high-contrast text blocks"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none (1px #000000 border instead of shadow)",
+        "element": "Outlined Cream Card"
+      },
+      {
+        "style": "none (surface color contrast instead of shadow)",
+        "element": "Violet Feature Card"
+      },
+      {
+        "style": "none (flat fill, no shadow)",
+        "element": "Pill Action Button"
+      }
+    ],
+    "northStar": "open meadow in morning light",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1,
+        "letterSpacing": -0.22
+      },
+      {
+        "role": "heading-sm",
+        "size": 40,
+        "lineHeight": 0.85,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 90,
+        "lineHeight": 0.85,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-lg",
+        "size": 120,
+        "lineHeight": 0.85,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 150,
+        "lineHeight": 0.85,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Action Button (Filled Black)",
+        "role": "Primary conversion action",
+        "description": "Hillside Ink (#000000) filled background, Meadow Cream (#f7f4e8) text, fkGroteskNeue 16px weight 500, 20px radius, 14px vertical / 24px horizontal padding. Thin black border (1px #000000) sits flush with the fill."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary action or navigation CTA",
+        "description": "Transparent background, 1px Hillside Ink border, Hillside Ink text, fkGroteskNeue 16px weight 500, 20px radius, 12–14px vertical / 20–24px horizontal padding. Used for \"Try it now\" and \"Get delivery\" CTAs."
+      },
+      {
+        "name": "Editorial Display Statement",
+        "role": "Hero or section-level headline",
+        "description": "fkScreamer 700, sizes 90–150px, line-height 0.85, normal letter-spacing. No color override needed — renders in Hillside Ink on Meadow Cream. The type itself is the component."
+      },
+      {
+        "name": "Violet Feature Card",
+        "role": "Highlighted content block",
+        "description": "Drone Violet (#643aed) background, Meadow Cream text, 20px radius, 24px padding. The single chromatic surface in the system — use sparingly to mark featured content."
+      },
+      {
+        "name": "Outlined Cream Card",
+        "role": "Standard content card on cream canvas",
+        "description": "Meadow Cream (#f7f4e8) background, 1px Hillside Ink border, 20px radius, 24px padding. No shadow — the border does the elevation work."
+      },
+      {
+        "name": "Full-Bleed Photo Hero",
+        "role": "Hero section background",
+        "description": "Edge-to-edge photography (no max-width, no rounding at the page edge) with Meadow Cream headline overlay in fkScreamer. The photo bleeds off all sides; the curve at the bottom transitions into the cream canvas below."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global header",
+        "description": "Transparent or Meadow Cream background, hamburger icon (left), centered Zipline wordmark, ghost outline CTA (right) \"Get delivery ↗\". No background fill — sits directly on the hero photo or cream canvas."
+      },
+      {
+        "name": "Inline Thumbnail Token",
+        "role": "Embedded visual within display text",
+        "description": "Small rounded photograph (20px radius) dropped into a line of fkScreamer text as a visual inline element. Unique editorial device — the image becomes a word."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body copy, navigation, buttons, captions, and any text smaller than the display headlines — the workhorse grotesque that handles all functional UI at 14–22px. The consistent -0.01em tracking keeps it tight even at small sizes.",
+        "sizes": "14, 16, 18, 22, 120px",
+        "family": "fkGroteskNeue",
+        "weight": "400, 500, 600, 700",
+        "lineHeight": "0.85, 1.0, 1.2, 1.4",
+        "substitute": "Inter, Neue Haas Grotesk, or Söhne",
+        "letterSpacing": "-0.14px at 14px, -0.16px at 16px, -0.18px at 18px, -0.22px at 22px"
+      },
+      {
+        "role": "Signature display face — used only for oversized editorial statements (40–150px). This is the voice of the brand: ultra-heavy, aggressively condensed, line-height 0.85 so the letters nearly touch. The restraint of using one weight at one role makes the moments it appears feel like magazine pull-quotes, not just headings.",
+        "sizes": "40, 90, 120, 150px",
+        "family": "fkScreamer",
+        "weight": "700",
+        "lineHeight": "0.85",
+        "substitute": "Druk Wide, Antonio Bold, or Tungsten Bold"
+      },
+      {
+        "role": "Mid-weight display variant for sub-statements that need fkScreamer's character at a smaller scale — bridges the gap between the massive editorial type and fkGroteskNeue body",
+        "sizes": "22px",
+        "family": "fkDisplay",
+        "weight": "400",
+        "lineHeight": "0.85",
+        "substitute": "Tungsten, Druk Condensed, or Compacta"
+      }
+    ],
+    "description": "Zipline reads like a nature magazine cover reimagined for a drone-delivery startup: a warm cream canvas (#f7f4e8) replaces the usual stark SaaS white, and the entire visual rhythm is dictated by fkScreamer — a massive, ultra-heavy display face that stamps oversized editorial statements across the page. Photography is the primary medium, shot at ground level with motion blur so the landscape itself feels like it's moving; the UI is a secondary layer that only intrudes with thin black outlines, a single violet (#643aed) accent for cards, and restrained type. Components are generous (20px radii, 24px interior padding) but never decorative — the system prizes breathing room and confident restraint over dense information architecture.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4a248569-2b5a-4416-bb2a-c78890218b9f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Zipline design system\",\"item\":\"https://styles.refero.design/style/4a248569-2b5a-4416-bb2a-c78890218b9f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4a248569-2b5a-4416-bb2a-c78890218b9f#style-reference\",\"name\":\"Zipline design system reference\",\"headline\":\"Zipline design system | Refero Styles\",\"description\":\"Explore Zipline's light Other design system: Meadow Cream #f7f4e8, Hillside Ink #000000 colors, fkGroteskNeue, fkScreamer typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/4a248569-2b5a-4416-bb2a-c78890218b9f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4a248569-2b5a-4416-bb2a-c78890218b9f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Zipline\",\"url\":\"https://www.zipline.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4a248569-2b5a-4416-bb2a-c78890218b9f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/389b30ae-02a2-409e-82de-5cb36890fd32.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/389b30ae-02a2-409e-82de-5cb36890fd32.jpg\",\"caption\":\"Screenshot of Zipline\"},\"image\":\"https://images.refero.design/styles/refero.design/image/389b30ae-02a2-409e-82de-5cb36890fd32.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Zipline design system\",\"Zipline website design\",\"Zipline colors\",\"Zipline typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Meadow Cream\",\"Hillside Ink\",\"Stone Border\",\"Drone Violet\",\"fkGroteskNeue\",\"fkScreamer\",\"fkDisplay\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Zipline design system\"},{\"@type\":\"Thing\",\"name\":\"Zipline website design\"},{\"@type\":\"Thing\",\"name\":\"Zipline colors\"},{\"@type\":\"Thing\",\"name\":\"Zipline typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:39:56.920Z\",\"dateModified\":\"2026-04-30T00:39:56.920Z\"}]}19:T5aa,## Quick Color Reference\n- text: #000000 (Hillside Ink)\n- background: #f7f4e8 (Meadow Cream)\n- border: #000000 (Hillside Ink) or #c6c3ba (Stone Border)\n- accent surface: #643aed (Drone Violet)\n- primary action: #000000 (filled action)\n\n## Example Component Prompts\n\n1. **Editorial hero section**: Full-bleed landscape photograph as background. Headline at 120px fkScreamer weight 700, #f7f4e8, line-height 0.85, positioned bottom-left. Subtext at 18px fkGroteskNeue weight 400, #f7f4e8. Ghost outline button below: 1px #f7f4e8 border, #f7f4e8 text, 20px radius, 14px 24px padding, fkGroteskNeue 16px weight 500.\n\n2. **Centered display statement on cream**: Meadow Cream (#f7f4e8) background. Headline at 90px fkScreamer weight 700, #000000, line-height 0.85, centered. Body text at 16px fkGroteskNeue weight 400, #000000, max-width 640px, centered below with 60px top margin.\n\n3. **Violet feature card**: Drone Violet (#643aed) background, 20px radius, 24px padding. Headline at 22px fkGroteskNeue weight 600, #f7f4e8. Body at 16px fkGroteskNeue weight 400, #f7f4e8.\n\n4. **Outlined cream card**: Meadow Cream (#f7f4e8) background, 1px #000000 border, 20px radius, 24px padding. No shadow. Text in #000000.\n\n5. **Top navigation bar**: Transparent background, no border. Hamburger icon (2px stroke) left, wordmark \"Zipline\" centered in fkGroteskNeue 16px weight 600, ghost button right: 1px #000000 border, #000000 text, 20px radius, 12px 20px padding."
+      },
+      {
+        "title": "Type Pairing Logic",
+        "content": "fkScreamer is a one-role font: display only, 40px+, weight 700, line-height 0.85. fkGroteskNeue handles everything else (body, nav, buttons, captions) at 14–22px, weights 400–700, line-height 1.0–1.4. fkDisplay (22px, weight 400) is a bridge option for mid-size statements that need display character without Screamer's volume. The contrast between Screamer's aggressive compression and Grotesk's clean readability is the system's signature — never use them at the same size in the same block."
+      }
+    ],
+    "northStarSentence": "Warm cream paper, one violet bloom, and oversized black editorial type laid over blurred green hills — like a nature magazine spread that happens to ship packages.",
+    "elevationPhilosophy": "The system is flat-by-design: there are no drop-shadows anywhere. Elevation is communicated through (1) 1px black borders on cream surfaces, (2) the violet surface step for featured content, and (3) full-bleed photography that creates depth through imagery rather than UI shadow. This keeps the editorial, print-magazine feeling intact — shadows would introduce skeuomorphic depth that fights the paper-like cream canvas."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "icon",
+            "hero",
+            "heading",
+            "card",
+            "link"
+          ],
+          "frequency": 459,
+          "confidence": 1,
+          "prominence": 339722341.0973138,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 6,
+            "body/color": 6,
+            "card/color": 12,
+            "hero/color": 1,
+            "icon/color": 3,
+            "link/color": 4,
+            "other/fill": 3,
+            "other/color": 46,
+            "button/color": 3,
+            "heading/color": 13,
+            "body/borderColor": 24,
+            "card/borderColor": 48,
+            "hero/borderColor": 4,
+            "icon/borderColor": 12,
+            "link/borderColor": 16,
+            "other/borderColor": 184,
+            "button/borderColor": 16,
+            "heading/borderColor": 52,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#f7f4e8",
+          "oklch": {
+            "c": 0.01617082375629646,
+            "h": 95.22474869931389,
+            "l": 0.9662050061340919
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon",
+            "hero",
+            "heading",
+            "footer",
+            "link",
+            "nav",
+            "list"
+          ],
+          "frequency": 763,
+          "confidence": 1,
+          "prominence": 15011125.609048864,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 22,
+            "nav/color": 12,
+            "body/color": 18,
+            "hero/color": 1,
+            "icon/color": 11,
+            "link/color": 7,
+            "list/color": 7,
+            "other/fill": 33,
+            "other/color": 72,
+            "button/color": 6,
+            "footer/color": 1,
+            "heading/color": 6,
+            "nav/borderColor": 48,
+            "body/borderColor": 72,
+            "hero/borderColor": 4,
+            "icon/borderColor": 44,
+            "link/borderColor": 28,
+            "list/borderColor": 28,
+            "other/borderColor": 288,
+            "button/borderColor": 20,
+            "footer/borderColor": 4,
+            "heading/borderColor": 24,
+            "body/backgroundColor": 2,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#c6c3ba",
+          "oklch": {
+            "c": 0.0134917987591746,
+            "h": 95.22233199101822,
+            "l": 0.8170256352194972
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2481922.894166772,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#643aed",
+          "oklch": {
+            "c": 0.24750717150066334,
+            "h": 284.5086934576013,
+            "l": 0.5187179882621663
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 207499.1041996091,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.029393764436955724,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.06,
+          "background": "#f7f4e8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.92,
+          "background": "#c6c3ba",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.66,
+          "background": "#643aed",
+          "foreground": "#f7f4e8"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.37,
+          "background": "#643aed",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.6,
+          "background": "#c6c3ba",
+          "foreground": "#f7f4e8"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "image",
+            "card"
+          ],
+          "frequency": 23
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|body",
+            "columnGap|body",
+            "paddingTop|heading",
+            "paddingBottom|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "heading",
+            "body",
+            "other",
+            "list"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "paddingTop|body",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "nav"
+          ],
+          "frequency": 58,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|button",
+            "rowGap|other",
+            "marginTop|other",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 53,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "hero",
+            "other",
+            "footer"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 199,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 247,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "fkGroteskNeue",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 211,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "fkScreamer",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 25,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "fkDisplay",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.88
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "fkGroteskNeue",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "fkGroteskNeue",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 34,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "fkGroteskNeue",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "fkGroteskNeue",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "fkGroteskNeue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "card",
+            "link",
+            "footer",
+            "nav",
+            "list",
+            "icon"
+          ],
+          "frequency": 162,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "fkGroteskNeue",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "fkGroteskNeue",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "fkDisplay",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "fkScreamer",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 90,
+          "family": "fkScreamer",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 120,
+          "family": "fkGroteskNeue",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "fkScreamer",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 150,
+          "family": "fkScreamer",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3469c5b5-a723-497d-ad85-382c1986e82d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/389b30ae-02a2-409e-82de-5cb36890fd32.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4a248569-2b5a-4416-bb2a-c78890218b9f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Zipline design system\",\"item\":\"https://styles.refero.design/style/4a248569-2b5a-4416-bb2a-c78890218b9f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4a248569-2b5a-4416-bb2a-c78890218b9f#style-reference\",\"name\":\"Zipline design system reference\",\"headline\":\"Zipline design system | Refero Styles\",\"description\":\"Explore Zipline's light Other design system: Meadow Cream #f7f4e8, Hillside Ink #000000 colors, fkGroteskNeue, fkScreamer typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/4a248569-2b5a-4416-bb2a-c78890218b9f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4a248569-2b5a-4416-bb2a-c78890218b9f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Zipline\",\"url\":\"https://www.zipline.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4a248569-2b5a-4416-bb2a-c78890218b9f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/389b30ae-02a2-409e-82de-5cb36890fd32.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/389b30ae-02a2-409e-82de-5cb36890fd32.jpg\",\"caption\":\"Screenshot of Zipline\"},\"image\":\"https://images.refero.design/styles/refero.design/image/389b30ae-02a2-409e-82de-5cb36890fd32.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Zipline design system\",\"Zipline website design\",\"Zipline colors\",\"Zipline typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Meadow Cream\",\"Hillside Ink\",\"Stone Border\",\"Drone Violet\",\"fkGroteskNeue\",\"fkScreamer\",\"fkDisplay\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Zipline design system\"},{\"@type\":\"Thing\",\"name\":\"Zipline website design\"},{\"@type\":\"Thing\",\"name\":\"Zipline colors\"},{\"@type\":\"Thing\",\"name\":\"Zipline typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:39:56.920Z\",\"dateModified\":\"2026-04-30T00:39:56.920Z\"}]}19:T5aa,## Quick Color Reference\n- text: #000000 (Hillside Ink)\n- background: #f7f4e8 (Meadow Cream)\n- border: #000000 (Hillside Ink) or #c6c3ba (Stone Border)\n- accent surface: #643aed (Drone Violet)\n- primary action: #000000 (filled action)\n\n## Example Component Prompts\n\n1. **Editorial hero section**: Full-bleed landscape photograph as background. Headline at 120px fkScreamer weight 700, #f7f4e8, line-height 0.85, positioned bottom-left. Subtext at 18px fkGroteskNeue weight 400, #f7f4e8. Ghost outline button below: 1px #f7f4e8 border, #f7f4e8 text, 20px radius, 14px 24px padding, fkGroteskNeue 16px weight 500.\n\n2. **Centered display statement on cream**: Meadow Cream (#f7f4e8) background. Headline at 90px fkScreamer weight 700, #000000, line-height 0.85, centered. Body text at 16px fkGroteskNeue weight 400, #000000, max-width 640px, centered below with 60px top margin.\n\n3. **Violet feature card**: Drone Violet (#643aed) background, 20px radius, 24px padding. Headline at 22px fkGroteskNeue weight 600, #f7f4e8. Body at 16px fkGroteskNeue weight 400, #f7f4e8.\n\n4. **Outlined cream card**: Meadow Cream (#f7f4e8) background, 1px #000000 border, 20px radius, 24px padding. No shadow. Text in #000000.\n\n5. **Top navigation bar**: Transparent background, no border. Hamburger icon (2px stroke) left, wordmark \"Zipline\" centered in fkGroteskNeue 16px weight 600, ghost button right: 1px #000000 border, #000000 text, 20px radius, 12px 20px padding."
+}

@@ -1,0 +1,823 @@
+{
+  "source": "https://styles.refero.design/style/a90dbcb6-e42c-4992-a83b-94879699dd4f",
+  "uuid": "a90dbcb6-e42c-4992-a83b-94879699dd4f",
+  "name": "Simon Liesinger",
+  "northStar": "Drafting table on bone paper. A designer’s monograph rendered as a website — serif body type sitting on a vast off-white canvas, punctuated by a single stroke of red.",
+  "capturedAt": "2026-07-18T09:37:37.184Z",
+  "meta": {
+    "url": "https://www.liesingers.com",
+    "siteName": "Simon Liesinger",
+    "extractedAt": "2026-06-03T18:49:45.007Z",
+    "durationMs": 25309,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 136,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #f2f2f2 for the page canvas and never introduce a different background color within the main content bands",
+      "Set all body and headline text in Garamond at weight 400; the serif contrast is the only typographic voice needed",
+      "Use #fc523b exclusively for the wireframe illustration and the ↗ arrow glyph — never as a fill on text, buttons, or borders",
+      "Separate sections with 1px hairline rules in #181818 or #6e6e6 and 160px of vertical padding rather than cards or backgrounds",
+      "Anchor primary navigation to the bottom of the viewport with three text segments divided by vertical rules",
+      "Use 0px border-radius on every component — the system is square-cornered throughout",
+      "Reserve 12px Helvetica for metadata columns (names, services, contact) and pair it with tabular figures to keep stacked names aligned"
+    ],
+    "donts": [
+      "Do not add drop shadows, glows, or any form of elevation — the system is flat and reads as printed matter",
+      "Do not introduce a second accent color or shift the vermillion to a more saturated or muted red",
+      "Do not set body type in Helvetica or display type in Times — the serif/sans division is strictly size-based",
+      "Do not use rounded corners on cards, buttons, tags, or images",
+      "Do not place navigation at the top of the page or use a hamburger menu",
+      "Do not use color blocks, filled buttons, or solid panels as section backgrounds",
+      "Do not use font-weight above 400; bold or black weights break the printed-page illusion"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f2f2f2",
+        "name": "Bone",
+        "role": "Page canvas, card surfaces, section backgrounds — the paper of the monograph",
+        "group": "neutral"
+      },
+      {
+        "hex": "#181818",
+        "name": "Graphite",
+        "role": "Primary text, body copy, hairline rules, column dividers — softer than pure black, reads as printed ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Hardest rule weights, foot dividers, densest border lines — the purest black on the page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6e6e6e",
+        "name": "Ash",
+        "role": "Muted column rules, secondary divider strokes — the gray that softens the grid",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fc523b",
+        "name": "Vermillion",
+        "role": "Link arrows, the wireframe illustration, the only chromatic accent — a printer’s mark red, not an interface brand color",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed page with no max-width container — content stretches to the viewport edges. The page is organized as a vertical stack of horizontal bands, each band subdivided by 1px vertical rules into 3–4 equal columns. The opening statement occupies the top-left in a generous column with the wireframe illustration floating in the center-right space. A four-column metadata band follows (services, services, awards, collaborators), then a two-column prologue block (narrow label column + wide body column), and finally a three-segment bottom navigation. Spacing between bands is ~160px; padding within columns is uniformly 30px. Density is spacious — the grid breathes.",
+    "imagery": "No photography, no raster images. The visual language is almost entirely typographic and structural — the single ornamental element is a wireframe/3D wireframe illustration rendered in thin vermillion (#fc523b) strokes with no fill. Illustrations, when present, are line-based geometric constructions that sit as free-floating objects on the bone canvas. The site’s iconography is limited to the ↗ arrow glyph, which appears exclusively in vermillion.",
+    "similar": [
+      {
+        "why": "Same monograph-on-the-web treatment: editorial serif body type, generous whitespace, columnar grids, zero ornament beyond typography",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Studio portfolio with the same single-accent-color discipline — almost entirely monochrome with one vivid red used sparingly for arrows and small marks",
+        "business": "Manual Madrid"
+      },
+      {
+        "why": "Print-design sensibility applied to web — Garamond-adjacent serif, column rules, flat composition, no shadows or rounded corners",
+        "business": "A Practice for Everyday Life"
+      },
+      {
+        "why": "Editorial publishing aesthetic with hairline rules, a single chromatic accent, and typography doing all the structural work",
+        "business": "Lars Müller Publishers"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "5px",
+      "sectionGap": "30px",
+      "cardPadding": "30px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f2f2f2",
+        "name": "Bone Canvas",
+        "level": 1,
+        "purpose": "Full-page background, the paper on which everything is printed"
+      },
+      {
+        "hex": "#181818",
+        "name": "Ink Plate",
+        "level": 2,
+        "purpose": "Dark contrast surface for selected sections or footers"
+      }
+    ],
+    "northStar": "Drafting table on bone paper. A designer’s monograph rendered as a website — serif body type sitting on a vast off-white canvas, punctuated by a single stroke of red.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 25,
+        "lineHeight": 1.22,
+        "letterSpacing": 0.4
+      },
+      {
+        "role": "subheading",
+        "size": 29,
+        "lineHeight": 1,
+        "letterSpacing": 0.46
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 0.86,
+        "letterSpacing": 0.58
+      }
+    ],
+    "components": [
+      {
+        "name": "Section Column",
+        "role": "Vertical content column within a multi-column grid band",
+        "description": "Full-width band divided by 1px Graphite (#181818) vertical rules into equal columns. 30px horizontal padding per column. No card background — the bone canvas shows through. Headings, lists, and prose stack within the column at 30px top padding."
+      },
+      {
+        "name": "Service List",
+        "role": "Left-aligned vertical list of discipline or service labels",
+        "description": "Stacked Garamond 25px or Helvetica 12px items separated by 12–14px of vertical space. No bullets, no dividers between items — whitespace carries the rhythm. Left-aligned to the column edge."
+      },
+      {
+        "name": "Collaborator Roster",
+        "role": "Right-side column listing names and disciplines",
+        "description": "Two-line pair: name in Helvetica 12px weight 400, discipline label in the same size immediately below, separated by tight line-height. Names carry an asterisk marker (★ or *) to flag them. Tabular figures keep the names optically aligned in a column."
+      },
+      {
+        "name": "Bottom Navigation",
+        "role": "Primary site navigation anchored to page foot",
+        "description": "Three segments — about ↗, work ↗, lab ↗ — set in Garamond, separated by 1px Graphite (#181818) vertical rules. Arrow glyph rendered in Vermillion (#fc523b). 30px horizontal padding, ~79px bottom padding from viewport edge."
+      },
+      {
+        "name": "Link Arrow",
+        "role": "External/internal link indicator",
+        "description": "Vermillion (#fc523b) diagonal arrow (↗) trailing a text label. The only place the accent color touches text. Functions as a signifier of navigation away from the current context."
+      },
+      {
+        "name": "Wireframe Illustration",
+        "role": "Decorative centerpiece in the hero region",
+        "description": "Geometric line drawing in Vermillion (#fc523b) — thin 1px strokes, no fills, transparent. Sits as a free-floating ornament on the bone canvas. The only non-textual, non-structural element on the page."
+      },
+      {
+        "name": "Prologue Block",
+        "role": "Long-form editorial copy section",
+        "description": "Indented label 'prologue' in 12px Helvetica sits in a narrow left column; the body text occupies a wider right column at Garamond 25px with 40px bottom margin before the next band. Generous left margin (119px) creates the indentation."
+      },
+      {
+        "name": "Contact Strip",
+        "role": "Email and phone metadata at page foot",
+        "description": "Two-line stack: 'hello@liesingers.com*' and '+43 (0)650 68 98 665*' in Helvetica 12px, Graphite (#181818). Tightly packed against the bottom-left of the viewport."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Horizontal rule between bands",
+        "description": "1px Ash (#6e6e6e) or Graphite (#181818) hairline spanning the full viewport width. 160px of vertical padding above and below creates the breathing room between sections."
+      },
+      {
+        "name": "Heading Statement",
+        "role": "Opening address or section title",
+        "description": "Garamond 36px weight 400, line-height 0.86 (tight), set left-aligned. The tight leading is a deliberate editorial choice — lines almost touch, creating a compact monogram-like block."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Editorial serif used for headlines, body copy, and the introductory address. Set exclusively at weight 400 — the typeface’s contrast and oldstyle proportions do the visual lifting. The 36px tier is the opening statement, 29px is section copy, 25px is dense paragraphs.",
+        "sizes": "25px, 29px, 36px",
+        "family": "Garamond",
+        "weight": "400",
+        "lineHeight": "0.86–1.28",
+        "substitute": "EB Garamond, Cormorant Garamond",
+        "letterSpacing": "0.0160em"
+      },
+      {
+        "role": "Small UI metadata — navigation labels, contact lines, service labels, collaborator names. Renders with tabular figures and stylistic alternates (ss04, ss07, zero) so columns of names align like a typeset index.",
+        "sizes": "12px",
+        "family": "Helvetica",
+        "weight": "400",
+        "lineHeight": "1.20–1.67",
+        "substitute": "Inter, Neue Haas Grotesk, Helvetica Neue",
+        "letterSpacing": "0.0170em",
+        "fontFeatureSettings": "\"case\", \"kern\", \"ss04\", \"ss07\", \"tnum\", \"zero\""
+      },
+      {
+        "role": "Micro-copy at 10px — copyright, fine print, the smallest annotations. System serif fallback for the tiniest type tier.",
+        "sizes": "10px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Times New Roman"
+      }
+    ],
+    "description": "Liesingers is a gallery-wrapped-in-a-browser: a near-monochromatic editorial portfolio where a warm vermillion red is the only chromatic interruption in an otherwise graphite-and-bone-white composition. The system behaves like a printed monograph — Garamond sets the voice for headlines and body copy, while Helvetica with tabular figures handles the metadata column at the foot of the page. The grid is unapologetically wide and columnar, sections stack as full-bleed bands separated by hairline rules, and the navigation lives at the bottom rather than the top. Components are flat, borderless in the traditional sense, and rely on line weight and whitespace for structure rather than fill, shadow, or color blocks. The wireframe illustration in vermillion is the only piece of ornament — everything else earns its place as structure or text.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a90dbcb6-e42c-4992-a83b-94879699dd4f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Simon Liesinger design system\",\"item\":\"https://styles.refero.design/style/a90dbcb6-e42c-4992-a83b-94879699dd4f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a90dbcb6-e42c-4992-a83b-94879699dd4f#style-reference\",\"name\":\"Simon Liesinger design system reference\",\"headline\":\"Simon Liesinger design system | Refero Styles\",\"description\":\"Explore Simon Liesinger's light Agency design system: Bone #f2f2f2, Graphite #181818 colors, Garamond, Helvetica typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a90dbcb6-e42c-4992-a83b-94879699dd4f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a90dbcb6-e42c-4992-a83b-94879699dd4f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Simon Liesinger\",\"url\":\"https://www.liesingers.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a90dbcb6-e42c-4992-a83b-94879699dd4f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/184e7689-5e39-461a-9428-4c68a7c910cd.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/184e7689-5e39-461a-9428-4c68a7c910cd.jpg\",\"caption\":\"Screenshot of Simon Liesinger\"},\"image\":\"https://images.refero.design/styles/refero.design/image/184e7689-5e39-461a-9428-4c68a7c910cd.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Simon Liesinger design system\",\"Simon Liesinger website design\",\"Simon Liesinger colors\",\"Simon Liesinger typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone\",\"Graphite\",\"Ink\",\"Ash\",\"Garamond\",\"Helvetica\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Simon Liesinger design system\"},{\"@type\":\"Thing\",\"name\":\"Simon Liesinger website design\"},{\"@type\":\"Thing\",\"name\":\"Simon Liesinger colors\"},{\"@type\":\"Thing\",\"name\":\"Simon Liesinger typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:07:30.657Z\",\"dateModified\":\"2026-04-30T03:07:30.657Z\"}]}19:T6e4,**Quick Color Reference**\n- canvas: #f2f2f2\n- text: #181818\n- border: #181818 (strong) / #6e6e6e (muted)\n- accent: #fc523b (illustration and link arrow only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Opening Statement**: Left-aligned Garamond 36px weight 400, #181818, line-height 0.86, letter-spacing 0.58px. Sits in the left third of the viewport with 30px column padding. Below it, body text at Garamond 25px, line-height 1.22, same graphite color. A 5px top margin separates heading from body.\n\n2. **Bottom Navigation Bar**: Full-width band anchored to the viewport bottom with ~79px bottom padding. Three equal-width segments separated by 1px vertical rules in #181818. Each segment contains a Garamond label (e.g. 'about') followed by a ↗ glyph in #fc523b. 30px horizontal padding per segment.\n\n3. **Four-Column Metadata Band**: Full-width section with 160px top padding. Four equal columns divided by 1px #181818 vertical rules. Each column contains a left-aligned vertical list of items at 12px Helvetica weight 400, separated by 12–14px vertical space, color #181818. The rightmost column pairs a name (12px) with a discipline label directly below it.\n\n4. **Prologue Block**: Full-width band with 160px top padding. Narrow left column (narrow margin offset of 119px) holds the label 'prologue' in 12px Helvetica, color #181818. Wider right column holds body copy in Garamond 25px, line-height 1.22, color #181818. 40px bottom margin before the next band.\n\n5. **Wireframe Illustration**: Centered in the right portion of the opening band. Thin 1px strokes in #fc523b, no fills, transparent background. Pure geometric line construction, roughly 400–500px wide. Sits on the #f2f2f2 canvas with no container or border."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. No elevation. Structure is communicated exclusively through line weight, column rules, and whitespace. The system trusts the grid."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "list",
+            "image",
+            "footer"
+          ],
+          "frequency": 254,
+          "confidence": 1,
+          "prominence": 35213775.84363244,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 6,
+            "hero/color": 1,
+            "list/color": 6,
+            "image/color": 1,
+            "other/color": 38,
+            "footer/color": 1,
+            "nav/borderColor": 19,
+            "hero/borderColor": 4,
+            "list/borderColor": 24,
+            "image/borderColor": 4,
+            "other/borderColor": 146,
+            "footer/borderColor": 4
+          }
+        },
+        {
+          "hex": "#181818",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20903608651870992
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "link",
+            "body",
+            "list",
+            "footer"
+          ],
+          "frequency": 386,
+          "confidence": 1,
+          "prominence": 2639786.7198348744,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "body/color": 27,
+            "link/color": 8,
+            "list/color": 24,
+            "heading/color": 10,
+            "nav/borderColor": 32,
+            "body/borderColor": 108,
+            "link/borderColor": 32,
+            "list/borderColor": 96,
+            "heading/borderColor": 40,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6e6e6e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5382366621247504
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 2104731.4841733905,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 5,
+            "other/borderColor": 6
+          }
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "link",
+            "body"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 570272.6776844735,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "link/color": 2,
+            "heading/color": 1,
+            "body/borderColor": 8,
+            "link/borderColor": 8,
+            "heading/borderColor": 4,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fc523b",
+          "oklch": {
+            "c": 0.20992199174149542,
+            "h": 30.834694039467987,
+            "l": 0.6709558087473549
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 943.511312763222,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "nav/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.004159506850707289,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.86,
+          "background": "#f2f2f2",
+          "foreground": "#181818"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.42,
+          "background": "#181818",
+          "foreground": "#fc523b"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.93,
+          "background": "#f2f2f2",
+          "foreground": "#fc523b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.18,
+          "background": "#181818",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "heading",
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "hero",
+            "other",
+            "heading",
+            "list"
+          ],
+          "frequency": 56,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 79,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 119,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 53,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HelveticaMd",
+          "source": "custom",
+          "weights": [
+            600
+          ],
+          "frequency": 51,
+          "fontFeatureSettings": [
+            "\"case\", \"kern\", \"ss04\", \"ss07\", \"tnum\", \"zero\""
+          ]
+        },
+        {
+          "family": "GaramondRg",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 22,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HelveticaRg",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": [
+            "\"case\", \"kern\", \"ss04\", \"ss07\", \"tnum\", \"zero\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 7,
+          "family": "HelveticaMd",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.39,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 7,
+          "family": "HelveticaMd",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.028,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "list",
+            "image",
+            "footer"
+          ],
+          "frequency": 53,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "HelveticaRg",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.83,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "HelveticaMd",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.83,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "HelveticaRg",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "HelveticaRg",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "HelveticaMd",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.92,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "HelveticaMd",
+          "weight": 600,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "GaramondRg",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.28,
+          "letterSpacing": 0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "GaramondRg",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.86,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "GaramondRg",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "GaramondRg",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/b0651150-45fa-45d3-a4d0-e4de28e2c4fc.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/184e7689-5e39-461a-9428-4c68a7c910cd.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/a90dbcb6-e42c-4992-a83b-94879699dd4f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Simon Liesinger design system\",\"item\":\"https://styles.refero.design/style/a90dbcb6-e42c-4992-a83b-94879699dd4f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/a90dbcb6-e42c-4992-a83b-94879699dd4f#style-reference\",\"name\":\"Simon Liesinger design system reference\",\"headline\":\"Simon Liesinger design system | Refero Styles\",\"description\":\"Explore Simon Liesinger's light Agency design system: Bone #f2f2f2, Graphite #181818 colors, Garamond, Helvetica typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/a90dbcb6-e42c-4992-a83b-94879699dd4f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/a90dbcb6-e42c-4992-a83b-94879699dd4f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Simon Liesinger\",\"url\":\"https://www.liesingers.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/a90dbcb6-e42c-4992-a83b-94879699dd4f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/184e7689-5e39-461a-9428-4c68a7c910cd.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/184e7689-5e39-461a-9428-4c68a7c910cd.jpg\",\"caption\":\"Screenshot of Simon Liesinger\"},\"image\":\"https://images.refero.design/styles/refero.design/image/184e7689-5e39-461a-9428-4c68a7c910cd.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Simon Liesinger design system\",\"Simon Liesinger website design\",\"Simon Liesinger colors\",\"Simon Liesinger typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone\",\"Graphite\",\"Ink\",\"Ash\",\"Garamond\",\"Helvetica\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Simon Liesinger design system\"},{\"@type\":\"Thing\",\"name\":\"Simon Liesinger website design\"},{\"@type\":\"Thing\",\"name\":\"Simon Liesinger colors\"},{\"@type\":\"Thing\",\"name\":\"Simon Liesinger typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:07:30.657Z\",\"dateModified\":\"2026-04-30T03:07:30.657Z\"}]}19:T6e4,**Quick Color Reference**\n- canvas: #f2f2f2\n- text: #181818\n- border: #181818 (strong) / #6e6e6e (muted)\n- accent: #fc523b (illustration and link arrow only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Opening Statement**: Left-aligned Garamond 36px weight 400, #181818, line-height 0.86, letter-spacing 0.58px. Sits in the left third of the viewport with 30px column padding. Below it, body text at Garamond 25px, line-height 1.22, same graphite color. A 5px top margin separates heading from body.\n\n2. **Bottom Navigation Bar**: Full-width band anchored to the viewport bottom with ~79px bottom padding. Three equal-width segments separated by 1px vertical rules in #181818. Each segment contains a Garamond label (e.g. 'about') followed by a ↗ glyph in #fc523b. 30px horizontal padding per segment.\n\n3. **Four-Column Metadata Band**: Full-width section with 160px top padding. Four equal columns divided by 1px #181818 vertical rules. Each column contains a left-aligned vertical list of items at 12px Helvetica weight 400, separated by 12–14px vertical space, color #181818. The rightmost column pairs a name (12px) with a discipline label directly below it.\n\n4. **Prologue Block**: Full-width band with 160px top padding. Narrow left column (narrow margin offset of 119px) holds the label 'prologue' in 12px Helvetica, color #181818. Wider right column holds body copy in Garamond 25px, line-height 1.22, color #181818. 40px bottom margin before the next band.\n\n5. **Wireframe Illustration**: Centered in the right portion of the opening band. Thin 1px strokes in #fc523b, no fills, transparent background. Pure geometric line construction, roughly 400–500px wide. Sits on the #f2f2f2 canvas with no container or border."
+}

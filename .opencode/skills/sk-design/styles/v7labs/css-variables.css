@@ -1,0 +1,104 @@
+:root {
+  /* Colors */
+  --color-amber-curtain: #ec580a;
+  --color-ember-wash: #ff683d;
+  --color-midnight-ink: #00104e;
+  --color-canvas-cream: #f7f6f5;
+  --color-paper-white: #ffffff;
+  --color-charcoal-depth: #1c1c1c;
+  --color-graphite: #292929;
+  --color-stone: #484848;
+  --color-mist: #989897;
+  --color-foil: #6a6a6a;
+  --color-onyx: #000000;
+
+  /* Typography — Font Families */
+  --font-sans-serif: 'sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-martina-plantijn: 'Martina Plantijn', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-stk-bureau: 'STK Bureau', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter-variable: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --tracking-caption: -0.01px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.25;
+  --tracking-body-sm: -0.01px;
+  --text-body: 16px;
+  --leading-body: 1.4;
+  --tracking-body: -0.01px;
+  --text-subheading: 18px;
+  --leading-subheading: 1.43;
+  --tracking-subheading: -0.02px;
+  --text-subheading-lg: 24px;
+  --leading-subheading-lg: 1.4;
+  --tracking-subheading-lg: -0.02px;
+  --text-heading-sm: 30px;
+  --leading-heading-sm: 1.33;
+  --tracking-heading-sm: -0.01px;
+  --text-heading: 40px;
+  --leading-heading: 1.07;
+  --tracking-heading: -0.02px;
+  --text-display: 60px;
+  --leading-display: 1;
+  --tracking-display: -0.02px;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-w430: 430;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-60: 60px;
+  --spacing-80: 80px;
+  --spacing-100: 100px;
+  --spacing-120: 120px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-3xl: 33px;
+  --radius-3xl-2: 40px;
+  --radius-full: 99px;
+  --radius-full-2: 120px;
+  --radius-full-3: 160px;
+
+  /* Named Radii */
+  --radius-cards: 12px;
+  --radius-icons: 99px;
+  --radius-pills: 99px;
+  --radius-inputs: 160px;
+  --radius-buttons: 160px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(0, 0, 0, 0.25) 0px 1px 2px 0px;
+  --shadow-subtle-2: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+
+  /* Surfaces */
+  --surface-canvas: #f7f6f5;
+  --surface-card: #ffffff;
+  --surface-dark-panel: #1c1c1c;
+  --surface-graphite-field: #292929;
+  --surface-amber-stage: #ec580a;
+}

@@ -1,0 +1,862 @@
+{
+  "source": "https://styles.refero.design/style/73359194-de93-436e-af53-81d4029f5e7a",
+  "uuid": "73359194-de93-436e-af53-81d4029f5e7a",
+  "name": "Clase bcn",
+  "northStar": "editorial gallery on white wall",
+  "capturedAt": "2026-07-18T07:17:22.912Z",
+  "meta": {
+    "url": "https://clasebcn.com",
+    "siteName": "Clase bcn",
+    "extractedAt": "2026-06-03T21:54:23.798Z",
+    "durationMs": 39197,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 135,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Suisse Int'l (or a neo-grotesque substitute like Inter) at weight 400 for every element — no bold, no italic, no second family",
+      "Let project imagery and project color fills carry all visual variety; keep all UI chrome in #000000 and #ffffff",
+      "Use 20px padding consistently for all text-block insets (navigation, card text, footer)",
+      "Separate projects with 100px vertical breathing room — let each card exist in its own visual silence",
+      "Mark every interaction as a plain text link with a → arrow, never as a filled or outlined button",
+      "Scale hierarchy through font size and line-height only — 24px for body, 28px for subtitles, 45px for display",
+      "Keep border-radius at 0 across all elements — corners are sharp, the page is a grid"
+    ],
+    "donts": [
+      "Don't introduce buttons, pills, chips, or any filled interactive component — this system has no buttons",
+      "Don't add shadows, gradients, or border effects to cards or images — surface depth comes from color contrast alone",
+      "Don't use bold or semibold weights — weight 400 is the only voice; hierarchy is size-only",
+      "Don't use #43d491, #efccbe, or #262a36 as UI accents — they belong only inside project card backgrounds",
+      "Don't add a logo mark, wordmark treatment, or branded icon — the word 'Cl' in the nav is the entire identity mark",
+      "Don't constrain the layout to a max-width container — project cards must be full-bleed",
+      "Don't add hover animations, transitions, or micro-interactions — the site reads as static, like a printed catalogue"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surface base, text on dark cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, hairline borders, nav labels — the structural anchor of every element",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Carbon",
+        "role": "Secondary text and deep surfaces where pure black reads too harsh",
+        "group": "neutral"
+      },
+      {
+        "hex": "#939393",
+        "name": "Concrete",
+        "role": "Muted navigation labels, secondary link text, inactive nav state",
+        "group": "neutral"
+      },
+      {
+        "hex": "#aaaaaa",
+        "name": "Ash",
+        "role": "Tertiary link borders and subdued annotation text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e8e8e8",
+        "name": "Plaster",
+        "role": "Subtle surface division, alternating card backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0a0000",
+        "name": "Sumi",
+        "role": "Near-black project card background — reads as deepest neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#262a36",
+        "name": "Slate Night",
+        "role": "Project card background — slightly cool dark, content-driven not UI",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efccbe",
+        "name": "Terracotta Blush",
+        "role": "Project card background — warm content fill, not a UI accent",
+        "group": "accent"
+      },
+      {
+        "hex": "#43d491",
+        "name": "Verdant",
+        "role": "Project card background — vivid content fill, not a UI accent",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width constraint. The page is a vertical stack of full-viewport-width project cards separated by whitespace, preceded by a minimal text-only navigation and a single oversized statement headline. The top nav is a single horizontal row: five left-aligned links, one right-aligned language label. The statement headline sits at the top of the content area, left-aligned, occupying roughly 15% of the page height. Below it, project cards stack vertically — each card fills the viewport width, contains its title/subtitle/link in the top-left corner with 20px inset, and flows directly into the next card with no gap or divider. There are no sidebar, no multi-column grids, no card-of-cards arrangements. The rhythm is: statement → project → project → project → footer, with each project given equal visual weight.",
+    "imagery": "Photography is full-bleed and architectural — gallery interiors, product shots on neutral backgrounds, campaign artwork. Images are raw-edged with no rounded corners, no shadows, and no masks. The treatment is documentary, not stylized: subjects (museum spaces, furniture, concert halls) are presented at their natural aspect ratio, cropped only by the viewport. There are no people, no lifestyle scenes, no stock-style compositions. Illustration is absent; the only graphic element is the Kave Home chair sketch, which is hand-drawn line work on white — consistent with the editorial-print language. Icons are absent; navigation is text-only.",
+    "similar": [
+      {
+        "why": "Same editorial-portfolio language — full-bleed project imagery, minimal text-only navigation, no buttons or decorative UI chrome",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Single-weight sans-serif at large display sizes, project cards as full-viewport images with overlaid text, zero interaction chrome",
+        "business": "Manual (manualcreative.com)"
+      },
+      {
+        "why": "Museum-catalogue restraint — generous whitespace, single typeface, photography as the primary content, text links with arrows as the only affordance",
+        "business": "Hasselblad Foundation"
+      },
+      {
+        "why": "Dutch-design agency portfolio discipline: monochrome UI, project case studies as full-bleed images, minimal nav, no decorative elements",
+        "business": "Studio Dumbar"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "100px",
+      "cardPadding": "20px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Default page background and card base for light projects"
+      },
+      {
+        "hex": "#e8e8e8",
+        "name": "Plaster",
+        "level": 1,
+        "purpose": "Subtle off-white for content sections that need tonal contrast"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Carbon",
+        "level": 2,
+        "purpose": "Deepest project card fill — white text sits on top"
+      }
+    ],
+    "northStar": "editorial gallery on white wall",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 24,
+        "lineHeight": 1.17
+      },
+      {
+        "role": "subheading",
+        "size": 28,
+        "lineHeight": 1.21
+      },
+      {
+        "role": "heading",
+        "size": 45,
+        "lineHeight": 1.11
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal text-only site header",
+        "description": "Transparent background sitting directly on the page canvas. No logo mark, no fill, no border-bottom. Left side: five text labels (Cl, Projects, Studio, Contact, Tips) separated by ~20px gaps, 24px Suisse Int'l, #000000 active and #939393 inactive. Right side: language selector ('English') in the same treatment. No sticky behavior, no shadow, no padding beyond vertical breathing room."
+      },
+      {
+        "name": "Statement Headline",
+        "role": "Opening page declaration",
+        "description": "A single block of body-length text set at the largest type size (45px), line-height 1.11, color #000000, left-aligned. No separate label, no eyebrow, no CTA below — the statement IS the hero. Occupies the top quarter of the page with generous margin below before the first project card."
+      },
+      {
+        "name": "Full-Bleed Project Card",
+        "role": "Portfolio case study entry",
+        "description": "Each project spans the full viewport width with zero border-radius. A background fill (project-specific: #43d491, #0a0000, #efccbe, #262a36, or a photograph) covers the card. Overlay text sits in the top-left corner with 20px padding from all edges: project name at 28px line-height 1.21 #000000, subtitle at 24px line-height 1.17 #000000, then a 'See the case →' text link. No hover state, no shadow, no border — the card edge is defined purely by where the next card begins."
+      },
+      {
+        "name": "Photographic Project Card",
+        "role": "Image-led portfolio entry",
+        "description": "Same structural treatment as the colored Project Card but the background is a full-bleed photograph. Text overlay uses the same 20px padding, 28px title, 24px subtitle, and text link. Typography remains #000000 on light imagery; white or near-black text on dark imagery. No gradient overlays or scrims — readability is expected from image choice."
+      },
+      {
+        "name": "Text Link with Arrow",
+        "role": "The only interactive element in the system",
+        "description": "Plain text label followed by a right arrow glyph (→). 24px Suisse Int'l weight 400, color #000000. No underline, no button fill, no border, no padding. Spacing between label and arrow is tight. This is the universal interaction pattern — it replaces every conventional button across the site."
+      },
+      {
+        "name": "Footer",
+        "role": "Minimal page closer",
+        "description": "Same 20px horizontal padding as project cards. Contains text links and copyright in 24px #000000. No social icons, no newsletter form, no decorative elements. The footer's job is to be quiet and invisible until you scroll there."
+      }
+    ],
+    "typography": [
+      {
+        "role": "SuisseIntl-Regular — detected in extracted data but not described by AI",
+        "sizes": "24px, 28px, 45px",
+        "family": "SuisseIntl-Regular",
+        "weight": "400",
+        "lineHeight": "1.11, 1.17, 1.21, 1.25, 1.79, 2.01, 2.44"
+      },
+      {
+        "role": "Single typeface at a single weight carries the entire interface — navigation, body, and display. The refusal to use a bold or italic weight forces hierarchy through size, line-height, and whitespace alone. The variable line-heights (1.11 for tight display stacks, 1.79–2.44 for body) show that this one weight is stretched across very different densities.",
+        "sizes": "",
+        "family": "Suisse Int'l",
+        "weight": "400",
+        "lineHeight": "1.11, 1.17, 1.21, 1.25, 1.79, 2.01, 2.44",
+        "substitute": "Inter, Söhne, Neue Haas Grotesk, Helvetica Now"
+      }
+    ],
+    "description": "Clase bcn is an editorial gallery on a white wall: a branding agency whose portfolio reads like a museum catalogue. The interface is almost invisible — text, hairline dividers, and full-bleed project imagery do all the work. A single sans-serif (Suisse Int'l) at one weight (400) carries every element, from navigation labels to oversized project titles. Whitespace is generous and structural: project cards span the full viewport with titles and subtitles overlaid directly on photography. The only interactions are text links with arrow indicators; there are no buttons, no fills, no shadows, no decorative UI chrome. Color appears as content — individual project case studies bring their own palettes as background fills — while the chrome stays achromatic and quiet.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/73359194-de93-436e-af53-81d4029f5e7a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Clase bcn design system\",\"item\":\"https://styles.refero.design/style/73359194-de93-436e-af53-81d4029f5e7a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/73359194-de93-436e-af53-81d4029f5e7a#style-reference\",\"name\":\"Clase bcn design system reference\",\"headline\":\"Clase bcn design system | Refero Styles\",\"description\":\"Explore Clase bcn's light Agency design system: Paper White #ffffff, Ink Black #000000 colors, SuisseIntl-Regular, Suisse Int'l typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/73359194-de93-436e-af53-81d4029f5e7a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/73359194-de93-436e-af53-81d4029f5e7a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Clase bcn\",\"url\":\"https://clasebcn.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/73359194-de93-436e-af53-81d4029f5e7a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d81523d1-24a3-40a6-b8d6-3d1fae6750bb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d81523d1-24a3-40a6-b8d6-3d1fae6750bb.jpg\",\"caption\":\"Screenshot of Clase bcn\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d81523d1-24a3-40a6-b8d6-3d1fae6750bb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Clase bcn design system\",\"Clase bcn website design\",\"Clase bcn colors\",\"Clase bcn typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper White\",\"Ink Black\",\"Carbon\",\"Concrete\",\"SuisseIntl-Regular\",\"Suisse Int'l\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Clase bcn design system\"},{\"@type\":\"Thing\",\"name\":\"Clase bcn website design\"},{\"@type\":\"Thing\",\"name\":\"Clase bcn colors\"},{\"@type\":\"Thing\",\"name\":\"Clase bcn typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:52:36.403Z\",\"dateModified\":\"2026-04-30T03:52:36.403Z\"}]}19:T642,## Quick Color Reference\n- text: #000000\n- background: #ffffff\n- border: #000000\n- muted text: #939393\n- project card surface: project-specific (no fixed UI accent)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Full-Bleed Project Card (Photographic)** — 100vw width, viewport-tall, no border-radius. Background is a full-bleed photograph. Top-left inset of 20px contains: project name at 28px line-height 1.21 #000000, subtitle at 24px line-height 1.17 #000000, then a 'See the case →' text link at 24px #000000. No overlay, no scrim, no border.\n\n3. **Full-Bleed Project Card (Color Fill)** — 100vw width, ~60vh tall, no border-radius. Background fill is a single solid color (e.g. #43d491, #efccbe, #262a36, or #0a0000). Same 20px top-left text inset as photographic cards. Text color adjusts: #000000 on light fills, #ffffff on dark fills.\n\n4. **Text Link with Arrow** — 24px Suisse Int'l weight 400, #000000, followed by a → arrow glyph at the same size. No underline, no button background, no border, no padding. The arrow has ~4px space between it and the label text. This is the system's only interaction component.\n\n5. **Top Navigation** — Transparent row on #ffffff, no border-bottom, no background fill. Left group: 'Cl · Projects · Studio · Contact · Tips' at 24px #000000 separated by ~20px gaps, with 'Cl' as the active/brand label. Right group: 'English' at 24px #939393. No logo, no icons, no sticky behavior."
+      }
+    ],
+    "elevationPhilosophy": "The system has no shadows. Depth is communicated entirely through color contrast between adjacent surface fills (white canvas → photographic card → colored card → dark card) and through generous vertical whitespace between sections. A 1px black border is the strongest structural device in use, and even that is rare."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "nav",
+            "heading",
+            "card",
+            "link",
+            "image",
+            "footer"
+          ],
+          "frequency": 332,
+          "confidence": 1,
+          "prominence": 93634525.6250011,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 6,
+            "body/color": 1,
+            "card/color": 5,
+            "link/color": 5,
+            "image/color": 4,
+            "other/color": 18,
+            "heading/color": 27,
+            "nav/borderColor": 24,
+            "body/borderColor": 4,
+            "card/borderColor": 20,
+            "link/borderColor": 20,
+            "image/borderColor": 16,
+            "other/borderColor": 72,
+            "heading/borderColor": 108,
+            "card/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "link",
+            "heading",
+            "footer"
+          ],
+          "frequency": 100,
+          "confidence": 1,
+          "prominence": 8629042.081646325,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 2,
+            "link/color": 2,
+            "other/color": 6,
+            "footer/color": 1,
+            "heading/color": 8,
+            "card/borderColor": 8,
+            "link/borderColor": 8,
+            "other/borderColor": 24,
+            "footer/borderColor": 4,
+            "heading/borderColor": 32,
+            "nav/backgroundColor": 2,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#0a0a0a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1447879553888796
+          },
+          "contexts": [
+            "card",
+            "other",
+            "link",
+            "heading"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 6420638.41826139,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 1,
+            "link/color": 1,
+            "other/color": 1,
+            "heading/color": 3,
+            "card/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 4,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#43d491",
+          "oklch": {
+            "c": 0.15643117600806633,
+            "h": 158.8987181234395,
+            "l": 0.7768097088915576
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e8e8e8",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9309991411193288
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0a0000",
+          "oklch": {
+            "c": 0.03730943869582964,
+            "h": 29.233880279627872,
+            "l": 0.09092037321766382
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#efccbe",
+          "oklch": {
+            "c": 0.0441062864825111,
+            "h": 43.010455469637904,
+            "l": 0.8712233159483397
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#262a36",
+          "oklch": {
+            "c": 0.022778121137719695,
+            "h": 270.50025281035914,
+            "l": 0.2863317576256177
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#adada0",
+          "oklch": {
+            "c": 0.018254883939023026,
+            "h": 106.83523186153744,
+            "l": 0.743911624395237
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#939393",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.663255002410531
+          },
+          "contexts": [
+            "nav",
+            "link"
+          ],
+          "frequency": 185,
+          "confidence": 1,
+          "prominence": 759947.2081596896,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 28,
+            "link/color": 9,
+            "nav/borderColor": 112,
+            "link/borderColor": 36
+          }
+        },
+        {
+          "hex": "#aaaaaa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7380186709485949
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 188945.24902771218,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 7,
+            "link/borderColor": 28
+          }
+        },
+        {
+          "hex": "#f1f1f1",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9581468870268093
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 158400,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0010939469904018742,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.73,
+          "background": "#0a0000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.8,
+          "background": "#ffffff",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.59,
+          "background": "#f1f1f1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.36,
+          "background": "#f1f1f1",
+          "foreground": "#0a0000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.53,
+          "background": "#f1f1f1",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.14,
+          "background": "#e8e8e8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.92,
+          "background": "#e8e8e8",
+          "foreground": "#0a0000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.16,
+          "background": "#e8e8e8",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.32,
+          "background": "#262a36",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.05,
+          "background": "#efccbe",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.87,
+          "background": "#efccbe",
+          "foreground": "#0a0000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.25,
+          "background": "#efccbe",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.67,
+          "background": "#f1f1f1",
+          "foreground": "#262a36"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.68,
+          "background": "#e8e8e8",
+          "foreground": "#262a36"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.06,
+          "background": "#43d491",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.92,
+          "background": "#43d491",
+          "foreground": "#0a0000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.43,
+          "background": "#43d491",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.58,
+          "background": "#efccbe",
+          "foreground": "#262a36"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.26,
+          "background": "#adada0",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "heading",
+            "image",
+            "footer"
+          ],
+          "frequency": 62,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginTop|heading",
+            "paddingRight|image",
+            "paddingLeft|image",
+            "paddingTop|heading",
+            "paddingRight|heading",
+            "paddingBottom|heading",
+            "paddingLeft|heading",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginRight|heading"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "SuisseIntl-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 135,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 45,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 24,
+          "family": "SuisseIntl-Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "SuisseIntl-Regular",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 26,
+          "lineHeight": 2.01,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "SuisseIntl-Regular",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.79,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "SuisseIntl-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.21,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "SuisseIntl-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "link",
+            "footer"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "SuisseIntl-Regular",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "heading",
+            "link"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "SuisseIntl-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link",
+            "image"
+          ],
+          "frequency": 22,
+          "lineHeight": 2.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/87853e61-be23-49e4-8335-b92fa06e0033.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d81523d1-24a3-40a6-b8d6-3d1fae6750bb.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/73359194-de93-436e-af53-81d4029f5e7a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Clase bcn design system\",\"item\":\"https://styles.refero.design/style/73359194-de93-436e-af53-81d4029f5e7a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/73359194-de93-436e-af53-81d4029f5e7a#style-reference\",\"name\":\"Clase bcn design system reference\",\"headline\":\"Clase bcn design system | Refero Styles\",\"description\":\"Explore Clase bcn's light Agency design system: Paper White #ffffff, Ink Black #000000 colors, SuisseIntl-Regular, Suisse Int'l typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/73359194-de93-436e-af53-81d4029f5e7a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/73359194-de93-436e-af53-81d4029f5e7a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Clase bcn\",\"url\":\"https://clasebcn.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/73359194-de93-436e-af53-81d4029f5e7a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d81523d1-24a3-40a6-b8d6-3d1fae6750bb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d81523d1-24a3-40a6-b8d6-3d1fae6750bb.jpg\",\"caption\":\"Screenshot of Clase bcn\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d81523d1-24a3-40a6-b8d6-3d1fae6750bb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Clase bcn design system\",\"Clase bcn website design\",\"Clase bcn colors\",\"Clase bcn typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper White\",\"Ink Black\",\"Carbon\",\"Concrete\",\"SuisseIntl-Regular\",\"Suisse Int'l\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Clase bcn design system\"},{\"@type\":\"Thing\",\"name\":\"Clase bcn website design\"},{\"@type\":\"Thing\",\"name\":\"Clase bcn colors\"},{\"@type\":\"Thing\",\"name\":\"Clase bcn typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:52:36.403Z\",\"dateModified\":\"2026-04-30T03:52:36.403Z\"}]}19:T642,## Quick Color Reference\n- text: #000000\n- background: #ffffff\n- border: #000000\n- muted text: #939393\n- project card surface: project-specific (no fixed UI accent)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Full-Bleed Project Card (Photographic)** — 100vw width, viewport-tall, no border-radius. Background is a full-bleed photograph. Top-left inset of 20px contains: project name at 28px line-height 1.21 #000000, subtitle at 24px line-height 1.17 #000000, then a 'See the case →' text link at 24px #000000. No overlay, no scrim, no border.\n\n3. **Full-Bleed Project Card (Color Fill)** — 100vw width, ~60vh tall, no border-radius. Background fill is a single solid color (e.g. #43d491, #efccbe, #262a36, or #0a0000). Same 20px top-left text inset as photographic cards. Text color adjusts: #000000 on light fills, #ffffff on dark fills.\n\n4. **Text Link with Arrow** — 24px Suisse Int'l weight 400, #000000, followed by a → arrow glyph at the same size. No underline, no button background, no border, no padding. The arrow has ~4px space between it and the label text. This is the system's only interaction component.\n\n5. **Top Navigation** — Transparent row on #ffffff, no border-bottom, no background fill. Left group: 'Cl · Projects · Studio · Contact · Tips' at 24px #000000 separated by ~20px gaps, with 'Cl' as the active/brand label. Right group: 'English' at 24px #939393. No logo, no icons, no sticky behavior."
+}

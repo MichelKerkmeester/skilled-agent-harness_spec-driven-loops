@@ -1,0 +1,332 @@
+{
+  "color": {
+    "warm-cream": {
+      "$value": "#ffedd7",
+      "$type": "color",
+      "$description": "Warm Cream — Light text on dark surfaces, inverse labels, and high-contrast captions."
+    },
+    "walnut-shadow": {
+      "$value": "#100904",
+      "$type": "color",
+      "$description": "Walnut Shadow — Page canvas and deepest background — warm near-black, not pure black. The void behind every product reveal"
+    },
+    "bark-brown": {
+      "$value": "#382416",
+      "$type": "color",
+      "$description": "Bark Brown — Elevated surface and filled button background — the one chromatic step above the canvas, used for the single solid CTA"
+    },
+    "cork-border": {
+      "$value": "#40372e",
+      "$type": "color",
+      "$description": "Cork Border — Hairline dividers, dashed section separators, subtle container borders — warmer than the canvas by one step"
+    },
+    "driftwood": {
+      "$value": "#6c5f51",
+      "$type": "color",
+      "$description": "Driftwood — Mid-tone warm gray for secondary dividers and muted structural elements — the bridge between Bark and Cream"
+    },
+    "ember-accent": {
+      "$value": "#dc5000",
+      "$type": "color",
+      "$description": "Ember Accent — Orange text accent for links, tags, and emphasized short phrases."
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — SVG icon fills and decorative vector elements only — never used as a background or text color"
+    }
+  },
+  "font": {
+    "halyard-display-variable": {
+      "$value": "halyard-display-variable",
+      "$type": "fontFamily",
+      "$description": "The only typeface. Weight 500 at 51px drives display headlines with extreme uppercase confidence; the same family at weight 400 / 29px becomes the system's sole mixed-case body voice. Letter-spacing stays normal — the geometric forms do the work without tightening. Substitute: 'Inter', 'Söhne', or 'Neue Haas Grotesk' for close structural match."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback for micro-legal labels (8px uppercase credits like \"* ADOBE ILLUSTRATOR\"). Not a design choice — a necessity for system-rendered disclaimers."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "8px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "halyard-display-variable",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "halyard-display-variable",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "halyard-display-variable",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "halyard-display-variable",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "halyard-display-variable",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "halyard-display-variable",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "halyard-display-variable",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "halyard-display-variable",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "halyard-display-variable",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "halyard-display-variable",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "halyard-display-variable",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "halyard-display-variable",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "halyard-display-variable",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.26
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 29px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "halyard-display-variable",
+        "fontSize": "41px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 41px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "halyard-display-variable",
+        "fontSize": "51px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 51px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "31": {
+      "$value": "31px",
+      "$type": "dimension",
+      "$description": "Spacing 31px"
+    },
+    "41": {
+      "$value": "41px",
+      "$type": "dimension",
+      "$description": "Spacing 41px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "204": {
+      "$value": "204px",
+      "$type": "dimension",
+      "$description": "Spacing 204px"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "22.5px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "walnut-shadow": {
+      "$value": "#100904",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page canvas and section background"
+    },
+    "bark-brown": {
+      "$value": "#382416",
+      "$type": "color",
+      "$description": "Surface level 1: Filled button surface, the only elevated solid"
+    },
+    "cork-border": {
+      "$value": "#40372",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline borders, dashed dividers, card outlines"
+    },
+    "warm-cream": {
+      "$value": "#ffedd7",
+      "$type": "color",
+      "$description": "Surface level 3: Foreground text, navigation, interactive borders"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://oryzo.ai",
+      "siteName": "ORYZO AI",
+      "extractedAt": "2026-07-03T02:49:01.712Z",
+      "variant": "extended"
+    }
+  }
+}

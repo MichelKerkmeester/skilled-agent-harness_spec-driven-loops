@@ -1,0 +1,577 @@
+{
+  "color": {
+    "ember-orange": {
+      "$value": "#ff4100",
+      "$type": "color",
+      "$description": "Ember Orange — Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "signal-blue": {
+      "$value": "#0052ef",
+      "$type": "color",
+      "$description": "Signal Blue — Links, secondary highlights, focus rings, decorative code accents — cool counterpoint to the warm orange, used sparingly"
+    },
+    "plex-green": {
+      "$value": "#19d600",
+      "$type": "color",
+      "$description": "Plex Green — Green supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    },
+    "plasma-magenta": {
+      "$value": "#f500ff",
+      "$type": "color",
+      "$description": "Plasma Magenta — Decorative code syntax highlight, studio editor token — appears only within code/editor contexts, not general UI"
+    },
+    "acid-lime": {
+      "$value": "#45ff00",
+      "$type": "color",
+      "$description": "Acid Lime — Code syntax token — restricted to developer-facing surfaces like the terminal and JSON editor"
+    },
+    "electric-blue": {
+      "$value": "#027fff",
+      "$type": "color",
+      "$description": "Electric Blue — Code syntax token, inline link variants in editorial copy — secondary to Signal Blue"
+    },
+    "onyx": {
+      "$value": "#0b0b0b",
+      "$type": "color",
+      "$description": "Onyx — Primary text, dark hero backgrounds, dark product surface panels, button text on light fills"
+    },
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Page background, card surfaces, text on dark sections, input fields"
+    },
+    "smoke": {
+      "$value": "#b9b9b9",
+      "$type": "color",
+      "$description": "Smoke — Borders, dividers, disabled text, muted icon strokes, placeholder text"
+    },
+    "ash": {
+      "$value": "#d6d6d6",
+      "$type": "color",
+      "$description": "Ash — Subtle borders on cards, input field outlines in light mode"
+    },
+    "graphite": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Graphite — Elevated dark surface (cards on dark backgrounds), input borders on dark sections"
+    },
+    "charcoal": {
+      "$value": "#353535",
+      "$type": "color",
+      "$description": "Charcoal — Deepest elevated surface, code editor background, terminal panel"
+    },
+    "mid": {
+      "$value": "#797979",
+      "$type": "color",
+      "$description": "Mid — Secondary text, helper text, metadata, low-emphasis icons"
+    },
+    "steel": {
+      "$value": "#4a4a4a",
+      "$type": "color",
+      "$description": "Steel — Tertiary text, icon outlines on light surfaces"
+    },
+    "frost": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Frost — Hover backgrounds, subtle row separators, very light surface tint"
+    }
+  },
+  "font": {
+    "waldenburg": {
+      "$value": "Waldenburg",
+      "$type": "fontFamily",
+      "$description": "Primary display and body typeface. Used for all headings, body text, navigation, buttons, and editorial copy. The weight 425 is distinctive — a true book weight between 400 and 500 that adds warmth. Extremely tight letter-spacing at display sizes (–4.48px at 112px) creates a compressed, architectural feel. Custom stylistic alternates (cv01, cv11, cv12, cv13, ss07) give it a unique character — likely single-story 'a', distinctive 'g', and other bespoke glyphs."
+    },
+    "ibm-plex-mono": {
+      "$value": "IBM Plex Mono",
+      "$type": "fontFamily",
+      "$description": "Monospace typeface for code blocks, terminal output, JSON schemas, numbered section labels (01–05), and technical metadata. Creates a developer-first identity when paired with Waldenburg's editorial warmth."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ibmPlexMono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "ibmPlexMono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "11px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "ibmPlexMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "ibmPlexMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "ibmPlexMono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ibmPlexMono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "ibmPlexMono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 13px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 13px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "ibmPlexMono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 13px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "ibmPlexMono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 13px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "ibmPlexMono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "ibmPlexMono",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "20px",
+        "fontWeight": 425,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "24px",
+        "fontWeight": 425,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "32px",
+        "fontWeight": 425,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "32px",
+        "fontWeight": 425,
+        "lineHeight": 1.24
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 60px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 72px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 72px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "waldenburgNormal",
+        "fontSize": "112px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 112px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "99999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background for editorial content sections"
+    },
+    "onyx": {
+      "$value": "#0b0b0b",
+      "$type": "color",
+      "$description": "Surface level 1: Dark hero, dark product showcase sections"
+    },
+    "graphite": {
+      "$value": "#212121",
+      "$type": "color",
+      "$description": "Surface level 2: Cards and panels elevated on dark backgrounds"
+    },
+    "charcoal": {
+      "$value": "#353535",
+      "$type": "color",
+      "$description": "Surface level 3: Code editor panels, terminal surfaces, deepest dark elevation"
+    },
+    "frost": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Surface level 4: Light hover states and subtle row separators on white surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://sanity.io",
+      "siteName": "Sanity.io",
+      "extractedAt": "2026-06-03T18:00:47.206Z",
+      "variant": "extended"
+    }
+  }
+}

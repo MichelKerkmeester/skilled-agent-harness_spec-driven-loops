@@ -1,0 +1,1171 @@
+{
+  "source": "https://styles.refero.design/style/17824ea8-ac7d-42ca-97e2-9bf92ebea7e1",
+  "uuid": "17824ea8-ac7d-42ca-97e2-9bf92ebea7e1",
+  "name": "Shupatto",
+  "northStar": "Museum vitrine on white marble",
+  "capturedAt": "2026-07-18T07:38:33.818Z",
+  "meta": {
+    "url": "https://www.shupatto.com/en",
+    "siteName": "Shupatto",
+    "extractedAt": "2026-06-03T19:40:57.383Z",
+    "durationMs": 70379,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 482,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use uppercase with letter-spacing ≥ 0.07em for all interface text — this tracking is the typographic signature, not the weight or size",
+      "Separate content containers with 1px #2d2d2d or #000000 hairline borders, never with background fills or shadows",
+      "Keep the 3px border-radius for every rounded element — a sharper, more architectural system than the common 8–16px",
+      "Limit color to the neutrals plus periwinkle #738ae5; let the periwinkle appear on at most 1–2 elements per view as a quiet accent",
+      "Set body text at 16–18px with 1.22–1.33 line-height and 0.07–0.1em letter-spacing for an editorial gallery feel",
+      "Use GillSansNova-SemiBold (weight 800) at 8px with 0.119em tracking for all micro-labels, badges, and category stamps",
+      "Apply the \"palt\" font-feature setting globally — it optimizes proportional alternates and is non-negotiable for the brand's typographic identity"
+    ],
+    "donts": [
+      "Do not introduce shadows, gradients, or any form of elevation — the design system is flat by philosophy",
+      "Do not add bright or saturated colors beyond #738ae5; even secondary accents should stay neutral",
+      "Do not use border-radius above 3px; avoid pill shapes and large rounded corners",
+      "Do not set type in mixed case or normal letter-spacing; everything reads as editorial display via tracking",
+      "Do not fill cards or sections with tinted backgrounds; rely on hairline borders to create structure on the white canvas",
+      "Do not use large display type below 28px or above 32px — the scale is deliberately compressed and quiet",
+      "Do not add icons with weight above 1px stroke; icons are absent or drawn as the thinnest possible lines"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#2d2d2d",
+        "name": "Graphite",
+        "role": "Primary text, hairline borders, structural lines — the dominant neutral carrying all interface weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Strongest text and most emphatic borders, logo dots, footer marks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, card surfaces, nav backgrounds — the unbroken white field everything floats on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#878887",
+        "name": "Fog",
+        "role": "Muted helper text, secondary borders, dimmed metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#738ae5",
+        "name": "Periwinkle",
+        "role": "Sole chromatic accent — selected nav state, badge fills, a rare pressure point in an otherwise colorless system",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page model is a single max-width column at ~1200px centered on a white canvas, with no full-bleed sections. The hero is a centered text statement ('BAGS DESIGNED TO FOLD WITH A SNAP') set in wide-tracked uppercase at ~21px, floating in vast negative space with no accompanying image. Navigation sits in the top-right corner as a single small text link. Sections flow vertically with generous 80px+ vertical gaps, separated by hairline rules. Content blocks alternate between text-only editorial statements and product grid cells. Product grids use 3–4 columns at desktop width. The overall rhythm is slow and contemplative — a museum walk-through rather than a commercial browse. Footer is a single hairline-bordered line of micro-text.",
+    "imagery": "Product photography is the only visual content — no lifestyle imagery, no illustrations, no abstract graphics. Product shots appear as tight, centered catalog images on white backgrounds, contained within hairline-bordered cells. The object itself is the hero; the surrounding frame is gallery-like. No overlapping, no masking, no decorative treatment. Imagery-to-text ratio is moderate, with product images occupying roughly 40–50% of viewport space on catalog pages. No icons are used as decorative elements — the system is image-free and icon-free, relying entirely on typography and line work.",
+    "similar": [
+      {
+        "why": "Same near-monochrome palette, hairline structural lines, and uppercase wide-tracked typography on white canvas — both treat the product as the only source of visual warmth",
+        "business": "MUJI"
+      },
+      {
+        "why": "Editorial Japanese design language with compressed type scale, museum-like negative space, and zero decorative chrome — the product is framed, not promoted",
+        "business": "Issey Miyake"
+      },
+      {
+        "why": "Wide letter-spaced uppercase headings, hairline borders defining product cells, and the same restrained gallery-presentation rhythm",
+        "business": "COS (cosstores.com)"
+      },
+      {
+        "why": "Anti-shadow, anti-gradient approach with content defined by serif/grotesque typography and hairlines rather than by color or elevation",
+        "business": "Aesop"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "3px",
+        "cards": "3px",
+        "badges": "3px",
+        "buttons": "3px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Base page canvas and card surface — there is no distinction between page and card backgrounds; everything sits on the same white field"
+      },
+      {
+        "hex": "#2d2d2d",
+        "name": "Ink Hairline",
+        "level": 2,
+        "purpose": "Hairline borders at 1px define every container and divider; surfaces are carved out by line work, not by tonal layering"
+      }
+    ],
+    "northStar": "Museum vitrine on white marble",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.29,
+        "letterSpacing": 1.28
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.25,
+        "letterSpacing": 1.44
+      },
+      {
+        "role": "heading-sm",
+        "size": 21,
+        "lineHeight": 1.22,
+        "letterSpacing": 2.52
+      },
+      {
+        "role": "heading-lg",
+        "size": 28,
+        "lineHeight": 1,
+        "letterSpacing": 2.24
+      }
+    ],
+    "components": [
+      {
+        "name": "Hairline-Bordered Card",
+        "role": "Universal content container",
+        "description": "White surface with 1px #2d2d2d border, 3px radius, 24px internal padding. No shadow, no fill distinction from page — the border alone separates content from canvas. The dominant structural unit across the site."
+      },
+      {
+        "name": "Text-Nav Link",
+        "role": "Navigation item",
+        "description": "GillSansNova-SemiBold at 8–18px, uppercase, letter-spacing 0.1–0.119em, color #2d2d2d or #000000. No background, no border, no underline. Items separated by generous whitespace rather than dividers."
+      },
+      {
+        "name": "Selected Nav Dot",
+        "role": "Active state indicator",
+        "description": "A small filled circle in #000000 or the periwinkle #738ae5 placed adjacent to the active nav label — the only visual signal of selection. The periwinkle variant appears on badge/nav surfaces."
+      },
+      {
+        "name": "Editorial Display Heading",
+        "role": "Page title and section headers",
+        "description": "GillSansNova-Book or SemiBold at 21–28px, uppercase, letter-spacing 0.12–0.125em, color #2d2d2d. The wide tracking transforms mid-weight type into a display voice without needing a display weight or decorative treatment."
+      },
+      {
+        "name": "Micro-Label Badge",
+        "role": "Category tags and product marks",
+        "description": "GillSansNova-SemiBold at 8px, uppercase, letter-spacing 0.119em, 3px radius. Background either transparent (text only, #2d2d2d) or filled with #738ae5 (white text). Functions as a typographic stamp, not a pill."
+      },
+      {
+        "name": "Product Grid Cell",
+        "role": "Catalog item",
+        "description": "White card with 1px #2d2d2d border, 3px radius, no padding around the product image (which bleeds to the border). Caption text in GillSansNova-SemiBold 8px or GillSansNova-Book 12px sits below with 16–24px margin-top."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separator",
+        "description": "1px solid #2d2d2d or #000000 horizontal line, full-width or content-width. The most common separator; no double-line, no dotted, no gradient fades."
+      },
+      {
+        "name": "Ghost Body Link",
+        "role": "Inline text link",
+        "description": "GillSansNova-Book 16–18px, color #000000 with 1px underline border. On hover or active, the underline thickens or shifts to #2d2d2d. No color change, no background change."
+      },
+      {
+        "name": "Sparse Footer Mark",
+        "role": "Footer brand and meta",
+        "description": "Minimalist footer with GillSansNova-SemiBold 8–18px, letter-spacing 0.119em, all caps. A single small #000000 dot serves as the brand mark or separator. Maximum restraint."
+      },
+      {
+        "name": "Image Caption Label",
+        "role": "Photo or product caption",
+        "description": "GillSansNova-Book 12px or CezannePro-DB 15px, uppercase, letter-spacing 0.133em, color #2d2d2d. Sits tightly below images with 3–10px gap, functioning as gallery wall text."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface for body, headings, nav, links, and icon-adjacent text — carries the entire English typographic system at a medium weight with wide tracking",
+        "sizes": "12px, 16px, 18px, 19px, 21px, 22px, 28px",
+        "family": "GillSansNova-Book",
+        "weight": "500",
+        "lineHeight": "1.00–1.33",
+        "substitute": "Jost, Outfit, or Avenir Next",
+        "letterSpacing": "0.07–0.125em",
+        "fontFeatureSettings": "\"palt\""
+      },
+      {
+        "role": "Emphasis and key headings — the bolder weight creates hierarchy without size inflation; the 8px variant carries micro-labels and badge text",
+        "sizes": "8px, 18px, 21px, 28px",
+        "family": "GillSansNova-SemiBold",
+        "weight": "800",
+        "lineHeight": "1.00–2.50",
+        "substitute": "Jost Medium or Outfit SemiBold",
+        "letterSpacing": "0.064–0.119em",
+        "fontFeatureSettings": "\"palt\""
+      },
+      {
+        "role": "Japanese text rendering — sits at the same metric scale as the English system, ensuring bilingual visual parity",
+        "sizes": "18px",
+        "family": "游ゴシック体 (Yu Gothic)",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Noto Sans JP or Hiragino Sans",
+        "letterSpacing": "0.1em",
+        "fontFeatureSettings": "\"palt\""
+      },
+      {
+        "role": "Micro-decorative and brand-specific marks — a secondary display face for labels that need a different visual texture from the main Gill system",
+        "sizes": "15px",
+        "family": "CezannePro-DB",
+        "weight": "600",
+        "lineHeight": "1.00–1.33",
+        "substitute": "Italiana or Cinzel",
+        "letterSpacing": "0.133em",
+        "fontFeatureSettings": "\"palt\""
+      },
+      {
+        "role": "GillSansNova-Medium — detected in extracted data but not described by AI",
+        "sizes": "10px, 17px",
+        "family": "GillSansNova-Medium",
+        "weight": "600",
+        "lineHeight": "1, 1.41",
+        "letterSpacing": "0.071, 0.18",
+        "fontFeatureSettings": "\"palt\""
+      }
+    ],
+    "description": "Shupatto's digital presence operates like a quiet museum vitrine for a single physical product. The visual system is almost entirely achromatic — a canvas of white interrupted by hairline charcoal lines, generous negative space, and minuscule typography that whispers rather than shouts. Everything is set in uppercase with dramatically wide letter-spacing, transforming even body copy into editorial display text. The only chromatic note is a soft periwinkle blue that functions less as a brand color and more as a faint pressure point — a tag, a selected state, a small badge. The interface is a study in restraint: no shadows, no gradients, no rounded corners beyond 3px, no decorative imagery competing with the product. Line work and typographic rhythm do all the work.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/17824ea8-ac7d-42ca-97e2-9bf92ebea7e1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Shupatto design system\",\"item\":\"https://styles.refero.design/style/17824ea8-ac7d-42ca-97e2-9bf92ebea7e1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/17824ea8-ac7d-42ca-97e2-9bf92ebea7e1#style-reference\",\"name\":\"Shupatto design system reference\",\"headline\":\"Shupatto design system | Refero Styles\",\"description\":\"Explore Shupatto's light E-commerce design system: Graphite #2d2d2d, Ink #000000 colors, GillSansNova-Book, GillSansNova-SemiBold typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/17824ea8-ac7d-42ca-97e2-9bf92ebea7e1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/17824ea8-ac7d-42ca-97e2-9bf92ebea7e1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Shupatto\",\"url\":\"https://www.shupatto.com/en\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/17824ea8-ac7d-42ca-97e2-9bf92ebea7e1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f39181cb-9236-4bb0-9be9-b8bb0415ff7e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f39181cb-9236-4bb0-9be9-b8bb0415ff7e.jpg\",\"caption\":\"Screenshot of Shupatto\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f39181cb-9236-4bb0-9be9-b8bb0415ff7e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Shupatto design system\",\"Shupatto website design\",\"Shupatto colors\",\"Shupatto typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Graphite\",\"Ink\",\"Paper\",\"Fog\",\"GillSansNova-Book\",\"GillSansNova-SemiBold\",\"游ゴシック体 (Yu Gothic)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Shupatto design system\"},{\"@type\":\"Thing\",\"name\":\"Shupatto website design\"},{\"@type\":\"Thing\",\"name\":\"Shupatto colors\"},{\"@type\":\"Thing\",\"name\":\"Shupatto typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:14:54.023Z\",\"dateModified\":\"2026-04-30T00:14:54.023Z\"}]}19:T5a9,## Quick Color Reference\n- Text: #2d2d2d (primary), #000000 (strongest), #878887 (muted)\n- Background: #ffffff (all surfaces)\n- Border: #2d2d2d (standard hairline), #000000 (emphatic)\n- Accent: #738ae5 (periwinkle — selected states, badge fills only)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Editorial Display Heading**: Set in GillSansNova-Book (sub: Jost) weight 500, 28px, uppercase, letter-spacing 0.08em, color #2d2d2d. No border, no background, sits on white canvas with 80px vertical breathing room above and below.\n\n2. **Hairline-Bordered Product Card**: White surface, 1px solid #2d2d2d border, 3px border-radius, 0px internal padding (image bleeds to edge). Caption below: GillSansNova-SemiBold (sub: Jost) 8px, uppercase, letter-spacing 0.119em, color #2d2d2d, 16px margin-top.\n\n3. **Micro-Label Badge**: GillSansNova-SemiBold (sub: Jost) 8px, uppercase, letter-spacing 0.119em, color #2d2d2d, transparent background, 3px radius, 4px 8px padding. For the accent variant: background #738ae5, color #ffffff.\n\n4. **Ghost Nav Link**: GillSansNova-SemiBold (sub: Jost) 18px, uppercase, letter-spacing 0.1em, color #2d2d2d, no underline, no background. Active state: a 4px filled circle in #000000 sits to the right of the text.\n\n5. **Section Divider**: 1px solid #2d2d2d horizontal line, full content width (max 1200px), no spacing above or below — sits flush between content blocks as a typographic mark."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "This design system intentionally avoids all box-shadow usage. Elevation is never communicated through depth, glow, or blur. Instead, structure is created through hairline borders (1px #2d2d2d or #000000) and generous negative space. When separation is needed, a line is drawn — not a shadow cast. This is a deliberate choice: the site treats the interface as a flat editorial layout, not a layered application surface. The single surface level (white) means every container must declare itself through stroke, not through tonal difference."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#2d2d2d",
+          "oklch": {
+            "c": 0.0009078793748386739,
+            "h": 145.55319071169276,
+            "l": 0.29821451178917396
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "badge",
+            "heading",
+            "image",
+            "nav",
+            "body",
+            "button",
+            "icon",
+            "footer"
+          ],
+          "frequency": 1446,
+          "confidence": 1,
+          "prominence": 28346892.85763566,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "body/color": 183,
+            "icon/color": 4,
+            "link/color": 6,
+            "list/color": 9,
+            "badge/color": 1,
+            "image/color": 1,
+            "other/color": 61,
+            "button/color": 1,
+            "footer/color": 1,
+            "heading/color": 21,
+            "nav/borderColor": 12,
+            "body/borderColor": 723,
+            "icon/borderColor": 16,
+            "link/borderColor": 24,
+            "list/borderColor": 36,
+            "badge/borderColor": 4,
+            "image/borderColor": 4,
+            "other/borderColor": 244,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 84
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "link",
+            "body",
+            "badge",
+            "footer"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 3515738.8118895036,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "body/color": 2,
+            "badge/color": 1,
+            "nav/borderColor": 12,
+            "body/borderColor": 8,
+            "badge/borderColor": 4,
+            "nav/backgroundColor": 1,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "nav",
+            "body",
+            "icon"
+          ],
+          "frequency": 873,
+          "confidence": 1,
+          "prominence": 779334.9141294898,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "nav/color": 35,
+            "body/color": 85,
+            "link/color": 27,
+            "list/color": 13,
+            "other/fill": 7,
+            "other/color": 9,
+            "nav/borderColor": 140,
+            "body/borderColor": 349,
+            "link/borderColor": 108,
+            "list/borderColor": 52,
+            "other/borderColor": 36,
+            "nav/backgroundColor": 2,
+            "body/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#878887",
+          "oklch": {
+            "c": 0.0022626534504965475,
+            "h": 145.5488781416568,
+            "l": 0.6260309818725261
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 257543.8951954617,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "other/color": 3,
+            "body/borderColor": 12,
+            "other/borderColor": 12
+          }
+        },
+        {
+          "hex": "#717271",
+          "oklch": {
+            "c": 0.0019483343174565575,
+            "h": 145.54938084908463,
+            "l": 0.5491562747103682
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2282.3460010384647,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#738ae5",
+          "oklch": {
+            "c": 0.13813044171248773,
+            "h": 271.44382886261394,
+            "l": 0.6560975302540624
+          },
+          "contexts": [
+            "nav",
+            "badge"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 665.6842503028855,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1,
+            "badge/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.001880490870131577,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.77,
+          "background": "#ffffff",
+          "foreground": "#2d2d2d"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.5,
+          "background": "#738ae5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.9,
+          "background": "#000000",
+          "foreground": "#878887"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.83,
+          "background": "#717271",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.35,
+          "background": "#717271",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.26,
+          "background": "#738ae5",
+          "foreground": "#2d2d2d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.56,
+          "background": "#ffffff",
+          "foreground": "#878887"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.23,
+          "background": "#738ae5",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.85,
+          "background": "#717271",
+          "foreground": "#2d2d2d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.52,
+          "background": "#000000",
+          "foreground": "#2d2d2d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.36,
+          "background": "#717271",
+          "foreground": "#878887"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#738ae5",
+          "foreground": "#878887"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body",
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingRight|body"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|list",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "link",
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "heading",
+            "footer"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingBottom|footer"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "GillSansNova-Book",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 277,
+          "fontFeatureSettings": [
+            "\"palt\""
+          ]
+        },
+        {
+          "family": "GillSansNova-SemiBold",
+          "source": "custom",
+          "weights": [
+            800
+          ],
+          "frequency": 101,
+          "fontFeatureSettings": [
+            "\"palt\""
+          ]
+        },
+        {
+          "family": "游ゴシック体",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 57,
+          "fontFeatureSettings": [
+            "\"palt\""
+          ]
+        },
+        {
+          "family": "CezannePro-DB",
+          "source": "custom",
+          "weights": [
+            600
+          ],
+          "frequency": 30,
+          "fontFeatureSettings": [
+            "\"palt\""
+          ]
+        },
+        {
+          "family": "GillSansNova-Medium",
+          "source": "custom",
+          "weights": [
+            600
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": [
+            "\"palt\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "GillSansNova-SemiBold",
+          "weight": 800,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.5,
+          "letterSpacing": 0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 8,
+          "family": "GillSansNova-SemiBold",
+          "weight": 800,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "GillSansNova-Medium",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.18,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "GillSansNova-Book",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 28,
+          "lineHeight": 1,
+          "letterSpacing": 0.117,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "GillSansNova-Book",
+          "weight": 500,
+          "contexts": [
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 21,
+          "lineHeight": 1,
+          "letterSpacing": 0.125,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "GillSansNova-Book",
+          "weight": 500,
+          "contexts": [
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": 0.15,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "GillSansNova-Book",
+          "weight": 500,
+          "contexts": [
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "GillSansNova-Book",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.08,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "CezannePro-DB",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.133,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "CezannePro-DB",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GillSansNova-Book",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.125,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "GillSansNova-Medium",
+          "weight": 600,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.41,
+          "letterSpacing": 0.071,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "游ゴシック体",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "badge",
+            "image",
+            "nav",
+            "button",
+            "body",
+            "footer",
+            "icon"
+          ],
+          "frequency": 55,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GillSansNova-Book",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "other",
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "游ゴシック体",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GillSansNova-Book",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.22,
+          "letterSpacing": 0.072,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GillSansNova-SemiBold",
+          "weight": 800,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.22,
+          "letterSpacing": 0.072,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "GillSansNova-Book",
+          "weight": 500,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": 0.12,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "GillSansNova-Book",
+          "weight": 500,
+          "contexts": [
+            "list",
+            "heading",
+            "body"
+          ],
+          "frequency": 78,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.119,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "GillSansNova-SemiBold",
+          "weight": 800,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 52,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.119,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "GillSansNova-Book",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1,
+          "letterSpacing": 0.071,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "GillSansNova-Book",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 44,
+          "lineHeight": 1,
+          "letterSpacing": 0.114,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "GillSansNova-Book",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 15,
+          "lineHeight": 1,
+          "letterSpacing": 0.095,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "GillSansNova-Book",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.29,
+          "letterSpacing": 0.082,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "GillSansNova-SemiBold",
+          "weight": 800,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.29,
+          "letterSpacing": 0.064,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/89006657-c1f4-4652-b98f-a752c97d47d3.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f39181cb-9236-4bb0-9be9-b8bb0415ff7e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/17824ea8-ac7d-42ca-97e2-9bf92ebea7e1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Shupatto design system\",\"item\":\"https://styles.refero.design/style/17824ea8-ac7d-42ca-97e2-9bf92ebea7e1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/17824ea8-ac7d-42ca-97e2-9bf92ebea7e1#style-reference\",\"name\":\"Shupatto design system reference\",\"headline\":\"Shupatto design system | Refero Styles\",\"description\":\"Explore Shupatto's light E-commerce design system: Graphite #2d2d2d, Ink #000000 colors, GillSansNova-Book, GillSansNova-SemiBold typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/17824ea8-ac7d-42ca-97e2-9bf92ebea7e1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/17824ea8-ac7d-42ca-97e2-9bf92ebea7e1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Shupatto\",\"url\":\"https://www.shupatto.com/en\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/17824ea8-ac7d-42ca-97e2-9bf92ebea7e1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f39181cb-9236-4bb0-9be9-b8bb0415ff7e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f39181cb-9236-4bb0-9be9-b8bb0415ff7e.jpg\",\"caption\":\"Screenshot of Shupatto\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f39181cb-9236-4bb0-9be9-b8bb0415ff7e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Shupatto design system\",\"Shupatto website design\",\"Shupatto colors\",\"Shupatto typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Graphite\",\"Ink\",\"Paper\",\"Fog\",\"GillSansNova-Book\",\"GillSansNova-SemiBold\",\"游ゴシック体 (Yu Gothic)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Shupatto design system\"},{\"@type\":\"Thing\",\"name\":\"Shupatto website design\"},{\"@type\":\"Thing\",\"name\":\"Shupatto colors\"},{\"@type\":\"Thing\",\"name\":\"Shupatto typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:14:54.023Z\",\"dateModified\":\"2026-04-30T00:14:54.023Z\"}]}19:T5a9,## Quick Color Reference\n- Text: #2d2d2d (primary), #000000 (strongest), #878887 (muted)\n- Background: #ffffff (all surfaces)\n- Border: #2d2d2d (standard hairline), #000000 (emphatic)\n- Accent: #738ae5 (periwinkle — selected states, badge fills only)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. **Editorial Display Heading**: Set in GillSansNova-Book (sub: Jost) weight 500, 28px, uppercase, letter-spacing 0.08em, color #2d2d2d. No border, no background, sits on white canvas with 80px vertical breathing room above and below.\n\n2. **Hairline-Bordered Product Card**: White surface, 1px solid #2d2d2d border, 3px border-radius, 0px internal padding (image bleeds to edge). Caption below: GillSansNova-SemiBold (sub: Jost) 8px, uppercase, letter-spacing 0.119em, color #2d2d2d, 16px margin-top.\n\n3. **Micro-Label Badge**: GillSansNova-SemiBold (sub: Jost) 8px, uppercase, letter-spacing 0.119em, color #2d2d2d, transparent background, 3px radius, 4px 8px padding. For the accent variant: background #738ae5, color #ffffff.\n\n4. **Ghost Nav Link**: GillSansNova-SemiBold (sub: Jost) 18px, uppercase, letter-spacing 0.1em, color #2d2d2d, no underline, no background. Active state: a 4px filled circle in #000000 sits to the right of the text.\n\n5. **Section Divider**: 1px solid #2d2d2d horizontal line, full content width (max 1200px), no spacing above or below — sits flush between content blocks as a typographic mark."
+}

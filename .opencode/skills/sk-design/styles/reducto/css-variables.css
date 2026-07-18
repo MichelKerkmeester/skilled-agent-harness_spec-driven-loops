@@ -1,0 +1,100 @@
+:root {
+  /* Colors */
+  --color-aubergine: #310632;
+  --color-magenta-pulse: #9d17a0;
+  --color-damson: #690f6b;
+  --color-lilac-wash: #dcbffb;
+  --color-ochre: #a2541b;
+  --color-moss: #718613;
+  --color-reed: #87a017;
+  --color-paper: #fafaf9;
+  --color-vellum: #f5f5f4;
+  --color-snow: #ffffff;
+  --color-sand: #d7ccc1;
+  --color-driftwood: #e7e5e4;
+  --color-stone: #d6d3d1;
+  --color-graphite: #292524;
+  --color-slate: #57534d;
+  --color-pewter: #79716b;
+  --color-bark: #44403b;
+  --color-ash: #a6a09b;
+
+  /* Typography — Font Families */
+  --font-reductoserif: 'reductoSerif', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-reductosans: 'reductosans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-reddit-mono: 'Reddit Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 14px;
+  --leading-caption: 1.5;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.5;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.5;
+  --text-subheading: 20px;
+  --leading-subheading: 1.5;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.33;
+  --tracking-heading-sm: -0.01px;
+  --text-heading: 32px;
+  --leading-heading: 1.25;
+  --tracking-heading: -0.01px;
+  --text-heading-lg: 64px;
+  --leading-heading-lg: 1.13;
+  --tracking-heading-lg: -0.01px;
+  --text-display-sm: 80px;
+  --leading-display-sm: 1.13;
+  --tracking-display-sm: -0.01px;
+  --text-display: 136px;
+  --leading-display: 1.13;
+  --tracking-display: -0.01px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-w470: 470;
+  --font-weight-medium: 500;
+  --font-weight-w650: 650;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-88: 88px;
+  --spacing-120: 120px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 24-32px;
+  --element-gap: 16-24px;
+
+  /* Named Radii */
+  --radius-tags: 9999px;
+  --radius-cards: 8px;
+  --radius-inputs: 4px;
+  --radius-buttons: 4px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(255, 255, 255, 0.25) 0px -2px 0px 0px inset, rgba(255, 255, 255, 0.25) 0px 2px 0px 0px inset;
+  --shadow-subtle-2: rgba(255, 255, 255, 0.3) 0px -2px 0px 0px inset, rgba(255, 255, 255, 0.3) 0px 2px 0px 0px inset;
+  --shadow-subtle-3: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+
+  /* Surfaces */
+  --surface-paper: #fafaf9;
+  --surface-snow: #ffffff;
+  --surface-vellum: #f5f5f4;
+  --surface-magenta-pulse: #9d17a0;
+  --surface-graphite: #292524;
+}

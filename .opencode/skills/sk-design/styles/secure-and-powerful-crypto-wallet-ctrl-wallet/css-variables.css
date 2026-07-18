@@ -1,0 +1,86 @@
+:root {
+  /* Colors */
+  --color-acid-lime: #05c92f;
+  --color-sticker-yellow: #fcea59;
+  --color-cotton-pink: #ffd0e2;
+  --color-powder-blue: #a7cbf6;
+  --color-obsidian: #000000;
+  --color-carbon: #0f0f0f;
+  --color-ash-gray: #5a585a;
+  --color-slate-gray: #6e726e;
+  --color-paper-white: #f9faf9;
+  --color-pure-white: #ffffff;
+  --color-bone: #ecefec;
+  --color-plaster: #eeeeee;
+
+  /* Typography — Font Families */
+  --font-tomato-grotesk: 'Tomato Grotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.5;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.5;
+  --text-subheading: 25px;
+  --leading-subheading: 1.13;
+  --text-heading-sm: 35px;
+  --leading-heading-sm: 1.06;
+  --text-heading: 53px;
+  --leading-heading: 1.02;
+  --text-heading-lg: 84px;
+  --leading-heading-lg: 0.9;
+  --text-display: 153px;
+  --leading-display: 0.8;
+  --text-display-xl: 176px;
+  --leading-display-xl: 0.77;
+
+  /* Typography — Weights */
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-7: 7px;
+  --spacing-9: 9px;
+  --spacing-11: 11px;
+  --spacing-13: 13px;
+  --spacing-18: 18px;
+  --spacing-26: 26px;
+  --spacing-31: 31px;
+  --spacing-35: 35px;
+  --spacing-42: 42px;
+  --spacing-44: 44px;
+  --spacing-53: 53px;
+  --spacing-55: 55px;
+  --spacing-70: 70px;
+  --spacing-105: 105px;
+  --spacing-149: 149px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 26px;
+  --element-gap: 18px;
+
+  /* Border Radius */
+  --radius-lg: 8.78054px;
+  --radius-xl: 14px;
+  --radius-2xl: 17.5611px;
+  --radius-3xl: 26.3416px;
+  --radius-3xl-2: 35.1222px;
+  --radius-full: 52.6833px;
+
+  /* Named Radii */
+  --radius-nav: 9px;
+  --radius-tags: 14px;
+  --radius-cards: 17.5px;
+  --radius-inputs: 35px;
+  --radius-buttons: 35px;
+  --radius-largeelements: 53px;
+
+  /* Surfaces */
+  --surface-canvas: #f9faf9;
+  --surface-card: #ffffff;
+  --surface-bone-surface: #ecefec;
+  --surface-input: #eeeeee;
+}

@@ -1,0 +1,69 @@
+:root {
+  /* Colors */
+  --color-bone-white: #fcf9ee;
+  --color-linen: #f2efe3;
+  --color-pebble: #bcbab2;
+  --color-bark: #6a6965;
+  --color-ink-black: #000000;
+
+  /* Typography — Font Families */
+  --font-beausite: 'beausite', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.79;
+  --tracking-body-sm: -0.022px;
+  --text-body: 21px;
+  --leading-body: 1.36;
+  --tracking-body: -0.022px;
+  --text-subheading: 30px;
+  --leading-subheading: 1.2;
+  --tracking-subheading: -0.024px;
+  --text-heading-sm: 34px;
+  --leading-heading-sm: 1.08;
+  --tracking-heading-sm: -0.024px;
+  --text-heading: 48px;
+  --leading-heading: 0.97;
+  --tracking-heading: -0.036px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-5: 5px;
+  --spacing-9: 9px;
+  --spacing-11: 11px;
+  --spacing-15: 15px;
+  --spacing-17: 17px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-21: 21px;
+  --spacing-25: 25px;
+  --spacing-26: 26px;
+  --spacing-27: 27px;
+  --spacing-34: 34px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-58: 58px;
+  --spacing-61: 61px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 48-80px;
+  --element-gap: 17px;
+
+  /* Border Radius */
+  --radius-2xl: 20px;
+
+  /* Named Radii */
+  --radius-tags: 20px;
+  --radius-cards: 0px;
+  --radius-inputs: 0px;
+  --radius-buttons: 0px (rectangular ghost) or 20px (pill links);
+
+  /* Surfaces */
+  --surface-bone-white: #fcf9ee;
+  --surface-linen: #f2efe3;
+  --surface-ink-black: #000000;
+}

@@ -1,0 +1,1163 @@
+{
+  "source": "https://styles.refero.design/style/4887c681-d4e6-41d3-b83c-5650cf925ee9",
+  "uuid": "4887c681-d4e6-41d3-b83c-5650cf925ee9",
+  "name": "Vanmoof",
+  "northStar": "cinematic monochrome showroom",
+  "capturedAt": "2026-07-18T07:39:59.713Z",
+  "meta": {
+    "url": "https://www.vanmoof.com",
+    "siteName": "Vanmoof",
+    "extractedAt": "2026-06-03T20:12:56.987Z",
+    "durationMs": 40716,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 400,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 280px Unica77LLWeb weight 700 in #ffffff for all hero product names — this is the single most recognizable typographic signature",
+      "Set button and nav radius to 2px; set card and link radius to 8px; use 9999px only for the VANMOOF logo pill — the geometric sharpness is intentional, not lazy default rounding",
+      "Maintain 8px as the base spacing unit; snap all padding, margins, and gaps to multiples of 4px",
+      "Render all icons as 1.5px stroke line-art in #222222 — no filled icons, no multicolor iconography, no emoji-style pictograms",
+      "Use #e5e7eb for all structural dividers and borders; never use a heavier border weight than 1px",
+      "Let product photography provide all color and atmosphere in hero sections — never add background tints, overlays, or gradients to UI chrome",
+      "Alternate between #ffffff and #f7f7f7 for section banding in content areas to create rhythm without borders"
+    ],
+    "donts": [
+      "Do not introduce any chromatic color (red, blue, green, purple) to the UI system — the monochromatic discipline IS the brand identity",
+      "Do not use drop shadows, elevation, or blur effects on cards or buttons — flat surfaces only, separated by whitespace and hairlines",
+      "Do not center hero text — always anchor product names left and supporting text right for editorial tension",
+      "Do not set body text below 14px or above 18px; do not set display text below 80px (except the 280px hero step)",
+      "Do not use border-radius values other than 2px (controls), 8px (containers), or 9999px (logo pill) — no 4px, 6px, 12px, 16px, or 24px radii",
+      "Do not add background colors, patterns, or decorative graphics to white content sections — the product and typography carry the visual weight",
+      "Do not use the Gold Award badge color (#FFD700 or similar) as a brand accent — it is a third-party credential, not a design system token"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#222222",
+        "name": "Carbon",
+        "role": "Navigation bar, dark surface panels, primary text on light, logo wordmark fill — the near-black anchor of the system, softer than pure #000 for reduced eye strain on large surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Body text, headline text on light surfaces, footer text — reserved for highest-emphasis type where absolute black is needed for maximum contrast (21:1 on white)",
+        "group": "neutral"
+      },
+      {
+        "hex": "#313131",
+        "name": "Graphite",
+        "role": "Secondary text, link text on light, button labels on light surfaces — the mid-dark step between Carbon and Obsidian for hierarchy without a hue shift",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Frost",
+        "role": "Page canvas for content sections, card surfaces, icon fills on dark hero, button text on dark fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f7f7",
+        "name": "Paper",
+        "role": "Subtle surface tint alternating with pure white for section banding, elevated card backgrounds when pure white feels too sharp",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Mist",
+        "role": "Hairline borders, dividers, nav separator lines, input borders, card outlines — the most-used color in the system by frequency (1231 occurrences), defining structural edges without visual weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e0e0e0",
+        "name": "Ash",
+        "role": "Secondary surface fills, muted background panels, subtle hover states — one step deeper than Mist for surfaces that need slightly more presence",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Page model is full-bleed with no max-width constraint on hero panels — dark cinematic imagery spans the entire viewport. Content sections after the hero use a centered max-width of ~1200–1440px with generous 24–64px horizontal gutters. The hero pattern is a single full-viewport dark panel per product, stacking vertically as the user scrolls (S6 hero, then A5 hero, then app section). Each hero is a split: oversized left-anchored product name (280px) + right-aligned supporting text with ghost CTA. Navigation is a fixed top bar with centered logo. Section rhythm alternates between dark full-bleed hero bands and white content sections, creating high-contrast vertical pulses. Content arrangement uses 4-column symmetric grids for feature cards (track, configure, share, unlock) with equal gutters. No sidebar, no mega-menu — the hamburger is the only nav trigger. Density is extremely sparse: each section gets 64–80px vertical padding, and the page never exceeds 5–6 content blocks above the fold of any given product.",
+    "imagery": "Imagery is the sole source of color and atmosphere in this system. Hero panels use full-bleed, high-contrast product photography — tight crops on bicycle frames, handlebars, lights, and wheels against dark studio backgrounds with no lifestyle context. The bike IS the subject; the photography eliminates all background noise, leaving the product to occupy the entire visual field. No people, no environments, no props. Lower sections transition to white-background product shots and UI mockups (app screens, dashboard tiles). The treatment is editorial-commerce: think automotive launch photography, not lifestyle cycling. Images are always rectangular with sharp corners (no rounding), overlapping the navigation boundary, and frequently full-bleed edge-to-edge. The 280px product name sits as a typographic overlay on the left, never centered, creating an asymmetric balance with the product imagery occupying the right and center.",
+    "similar": [
+      {
+        "why": "Same monumental display typography over full-bleed dark product photography, same monochromatic discipline with zero accent color, same editorial whitespace-driven layout, same ghost outline button language",
+        "business": "Apple (apple.com)"
+      },
+      {
+        "why": "Same ultra-minimal interface with massive product-name typography, same hairline border restraint, same refusal to use color as brand identity — the product and type carry all visual weight",
+        "business": "Nothing (nothing.tech)"
+      },
+      {
+        "why": "Same industrial-product-as-luxury-object treatment, same generous whitespace, same typographic confidence without decorative UI chrome, same monochromatic palette with product photography providing all atmosphere",
+        "business": "Teenage Engineering"
+      },
+      {
+        "why": "Same premium-product editorial layout with full-bleed dark hero photography, same hairline border restraint, same ghost CTA pattern, same discipline of letting product imagery dominate over UI",
+        "business": "Arc'teryx (arcteryx.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "2px",
+        "cards": "8px",
+        "links": "8px",
+        "pills": "9999px",
+        "buttons": "2px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#222222",
+        "name": "Hero Panel",
+        "level": 0,
+        "purpose": "Full-bleed dark photographic background for product heroes — the darkest surface in the system"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Primary page background for content sections, feature grids, editorial blocks"
+      },
+      {
+        "hex": "#f7f7f7",
+        "name": "Section Band",
+        "level": 2,
+        "purpose": "Alternating section tint to create visual rhythm between white content blocks"
+      },
+      {
+        "hex": "#e0e0e0",
+        "name": "Muted Surface",
+        "level": 3,
+        "purpose": "Subtle background for inactive states, placeholder fills, or tertiary panels"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Structural Line",
+        "level": 4,
+        "purpose": "Hairline border and divider color — defines edges without surface weight"
+      }
+    ],
+    "northStar": "cinematic monochrome showroom",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.56
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1
+      },
+      {
+        "role": "hero-product",
+        "size": 280,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Full-Bleed Dark Hero Panel",
+        "role": "Cinematic product showcase",
+        "description": "Full-viewport dark photographic background (#222 to near-black gradient from the bike imagery), product name overlaid at 280px Unica77 weight 700 in #ffffff positioned left-third, supporting headline + ghost CTA positioned right-third at ~32% from right edge. The hero text never centers — it anchors left to create editorial tension with the right-aligned description. No overlay tint needed; the product photography provides its own darkness."
+      },
+      {
+        "name": "Product Name Display",
+        "role": "Hero typographic element",
+        "description": "Model identifier (S6, A5) rendered at 280px Unica77LLWeb weight 700, #ffffff on dark hero, letter-spacing normal, line-height 1.0. Functions as a graphic object — occupies the left portion of the hero at roughly 50% of viewport height. The single accent element in the entire visual system (a small red reflector/light on the bike itself) is part of the product, not the UI."
+      },
+      {
+        "name": "Ghost CTA Button",
+        "role": "Primary call-to-action",
+        "description": "Transparent background with 1px border in #ffffff (on dark hero) or #222222 (on light sections), 2px radius, 12px 24px padding, label in Unica77 weight 600 at 14px. Icon prefix (arrow ↗) in 12px before label. No fill state — these are always outline. Padding: 8px vertical, 24px horizontal."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Fixed/sticky top bar with #222222 background, #ffffff text, 64px height, horizontal flex layout. Left: hamburger menu icon (☰). Center: VANMOOF logo in outlined pill badge. Right: shopping bag icon. Separated from page content by a 1px #e5e7eb bottom border that only appears when content scrolls beneath."
+      },
+      {
+        "name": "VANMOOF Logo Pill Badge",
+        "role": "Brand mark in navigation",
+        "description": "Oval/pill shape with 9999px radius, 1px stroke border in #ffffff, transparent fill, VANMOOF text inside in Unica77 weight 700 at 12px tracking +0.1em uppercase, #ffffff. Functions as the wordmark container — the text alone would feel too small to anchor the nav."
+      },
+      {
+        "name": "Country Selector Bar",
+        "role": "Localization prompt",
+        "description": "Thin top bar above main nav, #ffffff background, 1px bottom border in #e5e7eb. Body text in Unica77 14px #000000 with bold weight on the country name. Inline 'Select country' button: #222222 background, #ffffff text, 2px radius, 8px 16px padding, 14px weight 600. Dismiss '×' icon right-aligned."
+      },
+      {
+        "name": "Feature Card Grid Item",
+        "role": "App/feature section content card",
+        "description": "4-column grid item on white background, no card surface (flat layout). Icon at 32px line-art in #222222 at top, heading in Unica77 weight 600 at 18px #000000 below icon, description in Unica77 weight 400 at 14px #313131. Vertical gap of 12px between icon, heading, and body. No border, no shadow, no background — pure typographic structure."
+      },
+      {
+        "name": "App Feature Icon",
+        "role": "Visual identifier for feature cards",
+        "description": "Monochromatic line-art icon in #222222, 32px size, 1.5px stroke weight, geometric and minimal. No fill, no color — always outlined. Aligned to start (left) of its card column."
+      },
+      {
+        "name": "Section Header",
+        "role": "Editorial section title",
+        "description": "Centered or left-aligned section title in Unica77 weight 600 at 32–48px #000000, with optional sub-description in 16px #313131 weight 400 below. Generous 64px padding-top from previous section. No dividers or decorative elements between sections — whitespace is the separator."
+      },
+      {
+        "name": "Award Badge (iF Design Gold)",
+        "role": "Trust/credential marker",
+        "description": "Small square badge ~48px in the bottom-left of the hero, gold/yellow background with iF logo and 'GOLD AWARD 2025' text in dark type. Positioned absolutely over the hero image. The only non-monochrome UI element permitted — a third-party credential, not a brand color choice."
+      },
+      {
+        "name": "Hero Support Text Block",
+        "role": "Hero secondary messaging",
+        "description": "Right-aligned text block in the hero: headline in Unica77 weight 400 at 16px #ffffff line-height 1.5, followed by the Ghost CTA Button with 16px vertical gap. Positioned at approximately 30% from right, 50% vertical. Maximum width ~280px."
+      },
+      {
+        "name": "Delivery/Reservation Footer Link",
+        "role": "Micro-CTA at hero base",
+        "description": "Small text link at bottom-right of hero: 'Reserve now →' or 'Delivery within 7 days →' in Unica77 14px #ffffff weight 400 with right-arrow glyph, positioned 24px from bottom-right corner. Functions as the secondary conversion path below the main ghost CTA."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface for all UI and editorial text. Weight 400 for body and navigation, weight 600 for subheadings and button labels, weight 700 for product-name hero displays (S6, A5 at 280px) and section headings. The geometric humanist character with its tall x-height carries authority at massive sizes while remaining legible at 12px. The 280px step is the signature — product names function as graphic objects, not text.",
+        "sizes": "12, 14, 16, 18, 24, 32, 48, 80, 280px",
+        "family": "Unica77LLWeb",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.00–1.56 (display sizes use tight 1.0–1.1; body uses 1.43–1.56)",
+        "substitute": "Inter, or DM Sans for geometric humanist fallback"
+      },
+      {
+        "role": "Monospaced companion for technical metadata, spec labels, navigation micro-text, and any data-adjacent content (dimensions, weights, delivery estimates) where tabular alignment matters",
+        "sizes": "14px",
+        "family": "Unica77Mono",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "JetBrains Mono, or IBM Plex Mono"
+      }
+    ],
+    "description": "Vanmoof operates on radical monochromatic discipline: a black, white, and gray system where the only visual loudness comes from 280px product-letter typography and full-bleed dark product photography. The interface itself is almost invisible — thin 1px borders at #e5e7eb, ghost controls, no accent color, no decorative gradients, no brand fills. The page alternates between dark cinematic hero panels (where the product IS the color) and white editorial sections with quiet 4-column feature grids. Every chrome decision prioritizes negative space and typographic confidence over UI density. Components feel like museum labels next to sculpture, not a software dashboard. The 2px radius on buttons and 8px on cards keep geometry sharp and architectural, reinforcing a premium industrial-product language rather than a consumer-app softness.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4887c681-d4e6-41d3-b83c-5650cf925ee9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Vanmoof design system\",\"item\":\"https://styles.refero.design/style/4887c681-d4e6-41d3-b83c-5650cf925ee9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4887c681-d4e6-41d3-b83c-5650cf925ee9#style-reference\",\"name\":\"Vanmoof design system reference\",\"headline\":\"Vanmoof design system | Refero Styles\",\"description\":\"Explore Vanmoof's mixed E-commerce design system: Carbon #222222, Obsidian #000000 colors, Unica77LLWeb, Unica77Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/4887c681-d4e6-41d3-b83c-5650cf925ee9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4887c681-d4e6-41d3-b83c-5650cf925ee9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Vanmoof\",\"url\":\"https://www.vanmoof.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4887c681-d4e6-41d3-b83c-5650cf925ee9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a56a4bfa-2e5f-406f-9aee-a5b4009bd089.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a56a4bfa-2e5f-406f-9aee-a5b4009bd089.jpg\",\"caption\":\"Screenshot of Vanmoof\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a56a4bfa-2e5f-406f-9aee-a5b4009bd089.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Vanmoof design system\",\"Vanmoof website design\",\"Vanmoof colors\",\"Vanmoof typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Carbon\",\"Obsidian\",\"Graphite\",\"Frost\",\"Unica77LLWeb\",\"Unica77Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Vanmoof design system\"},{\"@type\":\"Thing\",\"name\":\"Vanmoof website design\"},{\"@type\":\"Thing\",\"name\":\"Vanmoof colors\"},{\"@type\":\"Thing\",\"name\":\"Vanmoof typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:40:46.642Z\",\"dateModified\":\"2026-04-30T00:40:46.642Z\"}]}19:T82e,**Quick Color Reference:**\n- text: #000000\n- background: #ffffff\n- surface dark: #222222\n- border: #e5e7eb\n- secondary text: #313131\n- primary action: no distinct CTA color\n\n**Example Component Prompts:**\n\n1. **Full-Bleed Dark Hero Section:** Full-viewport background of #222222 with a product photograph filling the frame. Left-aligned product name at 280px Unica77LLWeb weight 700, color #ffffff, positioned 8% from left, vertically centered. Right-aligned support text at 16px Unica77 weight 400 #ffffff, max-width 280px, positioned 30% from right, with a ghost outline button below (1px #ffffff border, 2px radius, 8px 24px padding, 14px weight 600 label, arrow icon prefix).\n\n2. **Feature Card Grid (4-column):** White #ffffff background, 4 equal columns with 24px gaps. Each card: 32px line-art icon in #222222 at top-left, 18px Unica77 weight 600 heading in #000000 below with 12px gap, 14px Unica77 weight 400 description in #313131 below heading with 8px gap. No card background, no border, no shadow — pure typographic structure on white.\n\n3. **Ghost Outline Button (light variant):** Transparent background, 1px solid border in #222222, 2px border-radius, 8px vertical 24px horizontal padding. Label in Unica77 weight 600 at 14px in #222222, followed by a 12px right-arrow icon (↗) in the same color. No hover fill — border darkens to #000000 on hover.\n\n4. **Top Navigation Bar:** Fixed position, 64px height, background #222222. Flexbox with three zones: left (hamburger ☰ icon in #ffffff 20px), center (VANMOOF text in Unica77 weight 700 at 12px tracking +0.1em uppercase, #ffffff, inside a 9999px-radius pill with 1px #ffffff border and 6px 20px padding), right (shopping bag icon in #ffffff 20px). Bottom border: 1px solid #e5e7eb when scrolled.\n\n5. **Editorial Content Section:** Background #ffffff, max-width 1200px centered, 64px vertical padding. Section heading centered in Unica77 weight 600 at 32px #000000, with 16px sub-description in #313131 below at 16px weight 400, 24px gap. Followed by 4-column feature grid with 32px row gap between heading block and grid."
+      },
+      {
+        "title": "Typographic Signature",
+        "content": "The 280px product-name display is the single most defining visual choice in this system. At this scale, the model identifier (S6, A5) stops being text and becomes a graphic object — it competes with the product photography for visual dominance rather than supporting it. This is an anti-convention approach: most product pages use large photography with moderate headlines (48–80px). Vanmoof inverts this by making the type itself monumental. The weight 700 at this size creates architectural weight without the need for a chromatic brand color. The line-height 1.0 eliminates any air above/below, allowing the letters to sit as solid shapes against the dark hero. Any new page in this system must include at least one element at this scale or above to maintain the signature."
+      },
+      {
+        "title": "Flatness Philosophy",
+        "content": "This system intentionally avoids all elevation devices — no drop shadows, no box-shadow, no blurs, no gradient backgrounds, no overlay tints on UI chrome. Spatial hierarchy is achieved exclusively through: (1) scale contrast (280px vs 14px), (2) value contrast (#000 vs #fff), (3) whitespace, and (4) the 1px #e5e7eb hairline. This flatness is deliberate: it positions the interface as a frame for the product, not as a competing visual layer. The product photography provides all the depth and atmosphere. When the UI itself adds depth, it competes with the product and breaks the editorial-showroom feel."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "icon",
+            "nav",
+            "hero",
+            "image",
+            "link",
+            "heading",
+            "card",
+            "footer",
+            "list"
+          ],
+          "frequency": 1231,
+          "confidence": 1,
+          "prominence": 92026628.6275419,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 272,
+            "body/borderColor": 124,
+            "card/borderColor": 4,
+            "hero/borderColor": 8,
+            "icon/borderColor": 104,
+            "link/borderColor": 52,
+            "list/borderColor": 4,
+            "image/borderColor": 36,
+            "other/borderColor": 560,
+            "button/borderColor": 24,
+            "footer/borderColor": 4,
+            "heading/borderColor": 36,
+            "card/backgroundColor": 1,
+            "link/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "hero",
+            "link",
+            "footer",
+            "nav",
+            "list"
+          ],
+          "frequency": 63,
+          "confidence": 1,
+          "prominence": 53781168,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "body/color": 1,
+            "hero/color": 2,
+            "link/color": 3,
+            "list/color": 1,
+            "other/color": 48,
+            "footer/color": 1
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "card",
+            "heading",
+            "body",
+            "other",
+            "link",
+            "nav"
+          ],
+          "frequency": 219,
+          "confidence": 1,
+          "prominence": 10882130.401687961,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 16,
+            "icon/fill": 4,
+            "nav/color": 51,
+            "body/color": 13,
+            "card/color": 1,
+            "icon/color": 9,
+            "link/color": 2,
+            "other/fill": 10,
+            "other/color": 57,
+            "button/color": 4,
+            "other/stroke": 23,
+            "heading/color": 3,
+            "link/borderColor": 4,
+            "other/borderColor": 4,
+            "button/borderColor": 16,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f7f7f7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.976138790665567
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8963528,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "nav",
+            "link",
+            "heading",
+            "icon",
+            "footer"
+          ],
+          "frequency": 147,
+          "confidence": 1,
+          "prominence": 8776615.50043591,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 11,
+            "nav/color": 10,
+            "body/color": 12,
+            "icon/color": 16,
+            "link/color": 4,
+            "other/fill": 16,
+            "other/color": 38,
+            "button/color": 4,
+            "heading/color": 6,
+            "link/borderColor": 4,
+            "other/borderColor": 24,
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#313131",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.31316712939792546
+          },
+          "contexts": [
+            "body",
+            "link",
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 1021147.4086252801,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "icon/color": 1,
+            "link/color": 6,
+            "other/fill": 1,
+            "other/color": 5,
+            "button/color": 2,
+            "link/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e0e0e0",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9067006916295425
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 191967.57198861646,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4,
+            "other/backgroundColor": 7
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.011424579205352992,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.6,
+          "background": "#f7f7f7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#e0e0e0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#ffffff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.85,
+          "background": "#f7f7f7",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.01,
+          "background": "#313131",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.85,
+          "background": "#e5e7eb",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.14,
+          "background": "#f7f7f7",
+          "foreground": "#313131"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.05,
+          "background": "#e0e0e0",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.51,
+          "background": "#e5e7eb",
+          "foreground": "#313131"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.85,
+          "background": "#e0e0e0",
+          "foreground": "#313131"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.61,
+          "background": "#313131",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.32,
+          "background": "#222222",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.32,
+          "background": "#e0e0e0",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.24,
+          "background": "#e5e7eb",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.22,
+          "background": "#313131",
+          "foreground": "#222222"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.07,
+          "background": "#f7f7f7",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "link"
+          ],
+          "frequency": 38
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link",
+            "card"
+          ],
+          "frequency": 10
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 90,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|body",
+            "marginTop|link",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "heading",
+            "other",
+            "nav"
+          ],
+          "frequency": 29,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 19,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "card",
+            "image",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "marginTop|image",
+            "paddingTop|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Unica77LLWeb",
+          "source": "custom",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 317,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Unica77Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.89
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Unica77LLWeb",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Unica77LLWeb",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 63,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Unica77LLWeb",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Unica77LLWeb",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Unica77Mono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Unica77LLWeb",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "nav",
+            "hero",
+            "image",
+            "link",
+            "body",
+            "card",
+            "footer",
+            "list"
+          ],
+          "frequency": 217,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Unica77LLWeb",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Unica77LLWeb",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Unica77LLWeb",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Unica77LLWeb",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Unica77LLWeb",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 280,
+          "family": "Unica77LLWeb",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1741da89-0373-4275-9792-174bef1a9136.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a56a4bfa-2e5f-406f-9aee-a5b4009bd089.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4887c681-d4e6-41d3-b83c-5650cf925ee9#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Vanmoof design system\",\"item\":\"https://styles.refero.design/style/4887c681-d4e6-41d3-b83c-5650cf925ee9\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4887c681-d4e6-41d3-b83c-5650cf925ee9#style-reference\",\"name\":\"Vanmoof design system reference\",\"headline\":\"Vanmoof design system | Refero Styles\",\"description\":\"Explore Vanmoof's mixed E-commerce design system: Carbon #222222, Obsidian #000000 colors, Unica77LLWeb, Unica77Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/4887c681-d4e6-41d3-b83c-5650cf925ee9\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4887c681-d4e6-41d3-b83c-5650cf925ee9\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Vanmoof\",\"url\":\"https://www.vanmoof.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4887c681-d4e6-41d3-b83c-5650cf925ee9#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a56a4bfa-2e5f-406f-9aee-a5b4009bd089.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a56a4bfa-2e5f-406f-9aee-a5b4009bd089.jpg\",\"caption\":\"Screenshot of Vanmoof\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a56a4bfa-2e5f-406f-9aee-a5b4009bd089.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Vanmoof design system\",\"Vanmoof website design\",\"Vanmoof colors\",\"Vanmoof typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Carbon\",\"Obsidian\",\"Graphite\",\"Frost\",\"Unica77LLWeb\",\"Unica77Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Vanmoof design system\"},{\"@type\":\"Thing\",\"name\":\"Vanmoof website design\"},{\"@type\":\"Thing\",\"name\":\"Vanmoof colors\"},{\"@type\":\"Thing\",\"name\":\"Vanmoof typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:40:46.642Z\",\"dateModified\":\"2026-04-30T00:40:46.642Z\"}]}19:T82e,**Quick Color Reference:**\n- text: #000000\n- background: #ffffff\n- surface dark: #222222\n- border: #e5e7eb\n- secondary text: #313131\n- primary action: no distinct CTA color\n\n**Example Component Prompts:**\n\n1. **Full-Bleed Dark Hero Section:** Full-viewport background of #222222 with a product photograph filling the frame. Left-aligned product name at 280px Unica77LLWeb weight 700, color #ffffff, positioned 8% from left, vertically centered. Right-aligned support text at 16px Unica77 weight 400 #ffffff, max-width 280px, positioned 30% from right, with a ghost outline button below (1px #ffffff border, 2px radius, 8px 24px padding, 14px weight 600 label, arrow icon prefix).\n\n2. **Feature Card Grid (4-column):** White #ffffff background, 4 equal columns with 24px gaps. Each card: 32px line-art icon in #222222 at top-left, 18px Unica77 weight 600 heading in #000000 below with 12px gap, 14px Unica77 weight 400 description in #313131 below heading with 8px gap. No card background, no border, no shadow — pure typographic structure on white.\n\n3. **Ghost Outline Button (light variant):** Transparent background, 1px solid border in #222222, 2px border-radius, 8px vertical 24px horizontal padding. Label in Unica77 weight 600 at 14px in #222222, followed by a 12px right-arrow icon (↗) in the same color. No hover fill — border darkens to #000000 on hover.\n\n4. **Top Navigation Bar:** Fixed position, 64px height, background #222222. Flexbox with three zones: left (hamburger ☰ icon in #ffffff 20px), center (VANMOOF text in Unica77 weight 700 at 12px tracking +0.1em uppercase, #ffffff, inside a 9999px-radius pill with 1px #ffffff border and 6px 20px padding), right (shopping bag icon in #ffffff 20px). Bottom border: 1px solid #e5e7eb when scrolled.\n\n5. **Editorial Content Section:** Background #ffffff, max-width 1200px centered, 64px vertical padding. Section heading centered in Unica77 weight 600 at 32px #000000, with 16px sub-description in #313131 below at 16px weight 400, 24px gap. Followed by 4-column feature grid with 32px row gap between heading block and grid."
+}

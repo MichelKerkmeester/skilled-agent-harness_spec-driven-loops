@@ -1,0 +1,362 @@
+{
+  "color": {
+    "cobalt-surge": {
+      "$value": "#061fff",
+      "$type": "color",
+      "$description": "Cobalt Surge — Headlines, body text, card borders, nav links, icons, and the filled primary CTA — this is the single voice of the brand and appears in nearly every context including input outlines. Saturated blue at near-maximum chroma reads as neon rather than corporate"
+    },
+    "sour-lime": {
+      "$value": "#d3ff56",
+      "$type": "color",
+      "$description": "Sour Lime — Green action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "blush-puck": {
+      "$value": "#ffcfd1",
+      "$type": "color",
+      "$description": "Blush Puck — Product card fills behind the flavor name — a warm pink that softens the cobalt/lime intensity and reads as candy packaging rather than UI chrome"
+    },
+    "lavender-mist": {
+      "$value": "#efe5ff",
+      "$type": "color",
+      "$description": "Lavender Mist — Primary page canvas — every content section between photographic full-bleeds lives on this pale lavender. Replaces what would normally be white or light gray"
+    },
+    "lilac-bloom": {
+      "$value": "#ceb3ff",
+      "$type": "color",
+      "$description": "Lilac Bloom — Elevated card surface — a step up from Lavender Mist for highlighted panels or hover states where a card needs to rise off the canvas without using a shadow"
+    },
+    "soft-lilac": {
+      "$value": "#dfceff",
+      "$type": "color",
+      "$description": "Soft Lilac — Input field background — sits between the lavender canvas and the Lilac Bloom elevated surface, giving form fields a subtle fill without introducing a new hue"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Headline text on photographic full-bleeds, text inside filled cobalt CTAs, and the gummy bear product row. White does not appear as a page background"
+    }
+  },
+  "font": {
+    "good-sans": {
+      "$value": "Good Sans",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across every UI surface — nav, body, card titles, hero, footer, buttons. Custom geometric sans with extremely tight tracking at large sizes (-0.05em at 86px through 56px) that compresses wide display lines into a dense, almost squished block. The 400 weight carries body text, 500 for nav and card titles, 700 for display. The aggressive negative letter-spacing on headlines is the signature — most sans-serif brands open up tracking at large sizes, BEHAVE closes it."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 2.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 3.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 2.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "53px",
+        "fontWeight": 400,
+        "lineHeight": 1.51
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 53px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "56px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "72px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Good Sans",
+        "fontSize": "86px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 86px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "55": {
+      "$value": "55px",
+      "$type": "dimension",
+      "$description": "Spacing 55px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "110": {
+      "$value": "110px",
+      "$type": "dimension",
+      "$description": "Spacing 110px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "151": {
+      "$value": "151px",
+      "$type": "dimension",
+      "$description": "Spacing 151px"
+    },
+    "220": {
+      "$value": "220px",
+      "$type": "dimension",
+      "$description": "Spacing 220px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6.95px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#efe5ff",
+      "$type": "color",
+      "$description": "Surface level 0: Lavender Mist — the base surface every content section sits on between full-bleed photographic blocks."
+    },
+    "product-card": {
+      "$value": "#ffcfd1",
+      "$type": "color",
+      "$description": "Surface level 1: Blush Puck — card fill for flavor collections, distinguishes product cards from the canvas without using elevation."
+    },
+    "input-field": {
+      "$value": "#dfceff",
+      "$type": "color",
+      "$description": "Surface level 2: Soft Lilac — one step toward Lilac Bloom from the canvas, used for form field fills."
+    },
+    "elevated-card-hover": {
+      "$value": "#ceb3ff",
+      "$type": "color",
+      "$description": "Surface level 3: Lilac Bloom — highest neutral surface, used sparingly for highlighted panels or hover states."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.eatbehave.com",
+      "siteName": "BEHAVE Candy",
+      "extractedAt": "2026-06-03T19:13:33.506Z",
+      "variant": "extended"
+    }
+  }
+}

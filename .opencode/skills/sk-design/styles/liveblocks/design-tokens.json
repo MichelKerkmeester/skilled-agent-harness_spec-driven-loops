@@ -1,0 +1,584 @@
+{
+  "color": {
+    "void-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void Canvas — Page background, hero backdrop, product mockup canvas"
+    },
+    "obsidian-surface": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Obsidian Surface — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "carbon-layer": {
+      "$value": "#141716",
+      "$type": "color",
+      "$description": "Carbon Layer — Secondary surface level, nested panels, code editor background"
+    },
+    "graphite-panel": {
+      "$value": "#21222b",
+      "$type": "color",
+      "$description": "Graphite Panel — Product UI inner panels, inbox sidebar, tabbed editor frames"
+    },
+    "ash-border": {
+      "$value": "#272626",
+      "$type": "color",
+      "$description": "Ash Border — Hairline 1px borders on cards, inputs, dividers — the only visible separation in a no-shadow system"
+    },
+    "steel-text": {
+      "$value": "#918d8d",
+      "$type": "color",
+      "$description": "Steel Text — Muted body text, secondary labels, nav items, partner logo washes"
+    },
+    "fog-text": {
+      "$value": "#a3a3a3",
+      "$type": "color",
+      "$description": "Fog Text — Helper text, icon strokes, tertiary metadata"
+    },
+    "smoke-divider": {
+      "$value": "#424242",
+      "$type": "color",
+      "$description": "Smoke Divider — Deeper dividers, inactive tab underlines, icon outlines at rest"
+    },
+    "bone-text": {
+      "$value": "#edecee",
+      "$type": "color",
+      "$description": "Bone Text — Primary body text at 400 weight, the high-contrast default on void canvas"
+    },
+    "pure-light": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure Light — Headlines at full weight, button text on dark fills, emphasis runs"
+    },
+    "plasma-violet": {
+      "$value": "#9f8dfc",
+      "$type": "color",
+      "$description": "Plasma Violet — Primary brand accent — underlines, brand glow, active states, the signature chromatic note"
+    },
+    "ultraviolet": {
+      "$value": "#bf7af0",
+      "$type": "color",
+      "$description": "Ultraviolet — Secondary brand violet, code syntax keywords, badge fills, gradient partner with Plasma Violet"
+    },
+    "wisteria": {
+      "$value": "#a667ff",
+      "$type": "color",
+      "$description": "Wisteria — Deeper violet for hover states, brand gradients, emphasis borders"
+    },
+    "ember-pink": {
+      "$value": "#f76e99",
+      "$type": "color",
+      "$description": "Ember Pink — Red supporting accent for decorative details and low-frequency emphasis; The signature magenta smoke texture erupting behind the hero product mockup — radial wash from #f76e99 through pinks to deep crimson"
+    },
+    "circuit-teal": {
+      "$value": "#00c1d6",
+      "$type": "color",
+      "$description": "Circuit Teal — Code syntax strings, live cursors in multiplayer UI, data-viz highlights"
+    },
+    "mint-pulse": {
+      "$value": "#6cefce",
+      "$type": "color",
+      "$description": "Mint Pulse — Teal supporting accent for decorative details and low-frequency emphasis"
+    },
+    "mint-whisper": {
+      "$value": "#70e1c8",
+      "$type": "color",
+      "$description": "Mint Whisper — Softer teal for secondary presence states, comment thread highlights"
+    },
+    "electric-blue": {
+      "$value": "#0090ff",
+      "$type": "color",
+      "$description": "Electric Blue — Code syntax types, link accents, comment thread timestamp markers"
+    },
+    "sky-pulse": {
+      "$value": "#34a7ff",
+      "$type": "color",
+      "$description": "Sky Pulse — Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "cloud-mist": {
+      "$value": "#ebf6ff",
+      "$type": "color",
+      "$description": "Cloud Mist — Near-white blue tint used in shadow glows behind key elements"
+    }
+  },
+  "font": {
+    "suisse-intl": {
+      "$value": "Suisse Int'l",
+      "$type": "fontFamily",
+      "$description": "The sole interface typeface. All UI text, headings, nav, buttons, labels. 64px headlines use -0.02em tracking to tighten the Swiss grotesque rhythm; micro-text (10-12px) uses positive 0.01-0.025em tracking for legibility. The 1.0 line-height on display sizes is a signature choice — text feels compressed against the void."
+    },
+    "jetbrains-mono": {
+      "$value": "JetBrains Mono",
+      "$type": "fontFamily",
+      "$description": "Code blocks only. 14px body, 10px annotations. 0.025em positive tracking gives monospace text air without feeling scattered."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "52px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 52px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "60px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 60px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "suisse",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "196": {
+      "$value": "196px",
+      "$type": "dimension",
+      "$description": "Spacing 196px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(39, 38, 38) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "color(srgb 0.925333 0.925333 0.925333) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, hero backdrop, full-bleed sections"
+    },
+    "obsidian-surface": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated cards, nav bar, filled dark buttons, dropdown panels"
+    },
+    "carbon-layer": {
+      "$value": "#141716",
+      "$type": "color",
+      "$description": "Surface level 2: Code editor background, secondary elevated panels"
+    },
+    "graphite-panel": {
+      "$value": "#21222b",
+      "$type": "color",
+      "$description": "Surface level 3: Product UI inner panels, inbox sidebar, tabbed editor frames"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://liveblocks.io",
+      "siteName": "Liveblocks",
+      "extractedAt": "2026-06-03T18:39:31.908Z",
+      "variant": "extended"
+    }
+  }
+}

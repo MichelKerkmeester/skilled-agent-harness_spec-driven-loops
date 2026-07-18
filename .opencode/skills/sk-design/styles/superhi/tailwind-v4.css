@@ -1,0 +1,74 @@
+@theme {
+  /* Colors */
+  --color-electric-iris: #2727e6;
+  --color-ink-black: #111118;
+  --color-paper-white: #ffffff;
+  --color-chalk-blue: #f0f6ff;
+  --color-frost-blue: #e1edff;
+  --color-carbon: #000000;
+  --color-marker-red: #ff4141;
+  --color-hi-yellow: #ffda00;
+  --color-powder-sky: #91d8ec;
+  --color-bubblegum-pink: #ffbac4;
+  --color-jelly-green: #16ab59;
+  --color-sunbeam: #ffe54d;
+
+  /* Typography */
+  --font-haas-grot-disp: 'Haas Grot Disp', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-haas-grot-text: 'Haas Grot Text', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-martian-mono: 'Martian Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption-mono: 12px;
+  --leading-caption-mono: 1.35;
+  --tracking-caption-mono: -0.156px;
+  --text-body-sm: 16px;
+  --leading-body-sm: 1.4;
+  --tracking-body-sm: -0.32px;
+  --text-body: 20px;
+  --leading-body: 1.4;
+  --tracking-body: -0.2px;
+  --text-subheading: 22px;
+  --leading-subheading: 1.35;
+  --tracking-subheading: -0.176px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.168px;
+  --text-heading-lg: 42px;
+  --leading-heading-lg: 1.1;
+  --tracking-heading-lg: -0.378px;
+  --text-display: 52px;
+  --leading-display: 1.1;
+  --tracking-display: -0.468px;
+  --text-display-lg: 62px;
+  --leading-display-lg: 1.05;
+  --tracking-display-lg: -0.558px;
+  --text-display-xl: 72px;
+  --leading-display-xl: 1;
+  --tracking-display-xl: -0.648px;
+  --text-mega: 92px;
+  --leading-mega: 1;
+  --tracking-mega: -2.76px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 32px;
+  --radius-full: 48px;
+  --radius-full-2: 500px;
+  --radius-full-3: 800px;
+  --radius-full-4: 5000px;
+}

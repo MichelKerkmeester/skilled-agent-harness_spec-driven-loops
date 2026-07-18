@@ -1,0 +1,684 @@
+{
+  "source": "https://styles.refero.design/style/7922b756-2d0f-4a58-8fa6-39d40264fe66",
+  "uuid": "7922b756-2d0f-4a58-8fa6-39d40264fe66",
+  "name": "COS",
+  "northStar": "white-walled fashion gallery",
+  "capturedAt": "2026-07-18T07:53:13.951Z",
+  "meta": {
+    "url": "https://cos.com",
+    "siteName": "COS",
+    "extractedAt": "2026-06-03T19:15:00.589Z",
+    "durationMs": 26558,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 202,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 0px border-radius on every button, card, input, and modal — squareness is the geometry of the brand.",
+      "Reserve #c80000 for fewer than 2% of pixels on any given screen; it must read as punctuation, not decoration.",
+      "Use SuisseIntl weight 700 only for category statements and section titles, weight 500 for navigation and buttons, weight 400 for body — the weight ladder is the entire hierarchy.",
+      "Apply 135px top/bottom section padding for major editorial bands, 8–24px for in-component rhythm.",
+      "Separate surfaces with whitespace and #dadada 1px hairlines, never with box-shadow or color fill.",
+      "Let photography bleed full-bleed edge-to-edge; never wrap product imagery in padded cards with borders.",
+      "Set letter-spacing positively: 0.01em at 12px, scaling up to 0.04em at 35px — the wider tracking at larger sizes is what makes headlines feel like gallery wall text."
+    ],
+    "donts": [
+      "Don't introduce gradients, drop shadows, or blur effects on any component — the system is flat by design.",
+      "Don't round corners on buttons, inputs, or cards — 0px radius is non-negotiable.",
+      "Don't use the red accent for primary CTAs, hover states, or button fills — it is reserved for error/promotional whisper moments.",
+      "Don't add a second typeface family; SuisseIntl alone must carry both 12px labels and 35px headlines.",
+      "Don't place text inside bordered cards with backgrounds; text floats directly on white or directly on photography.",
+      "Don't add icons, badges, or quick-action overlays to product cards — the image is the product.",
+      "Don't use saturated backgrounds for footer or modals; invert with #080808 and let #ffffff do all the work."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#080808",
+        "name": "Ink Black",
+        "role": "Primary text, icons, links, navigation type, button borders, logo, footer text — softer than pure black so photography does not feel clipped against it",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "True Black",
+        "role": "Hero text overlays on dark imagery, body copy, button labels — the true-zero black reserved for highest-contrast typographic moments",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dadada",
+        "name": "Mist Gray",
+        "role": "Hairline borders, input underlines, subtle dividers, disabled-state outlines — the quietest neutral, only visible by what it separates",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c80000",
+        "name": "Signal Red",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed page model — the canvas extends edge-to-edge with no max-width container, and content is anchored by image split ratios and whitespace rather than by a centered column. The hero is a 50/50 vertical split of two full-viewport-tall editorial portraits, a pattern so dominant it functions as the brand's structural signature. Below the hero, sections alternate between white-ground text blocks (centered, single-column) and additional full-bleed imagery. Vertical rhythm is spacious: 135px section padding creates museum-wall breathing room between bands. Navigation is a single thin white strip with a centered wordmark and a right-aligned locale selector — no horizontal category bar, no mega-menu visible in the primary frame. Information density is low: one statement per section, one image per idea.",
+    "imagery": "Large-format editorial fashion photography dominates the page — full-bleed portraits and 3/4-length model shots in controlled studio lighting, predominantly neutral and desaturated with selective warm tones. Images are tight crops that fill their containers edge-to-edge with no rounded corners, no decorative masks, and no overlay frames. The two-up hero frame (MUJER / HOMBRE) is the signature pattern: two equally weighted portraits side by side, each anchored by a single bottom-left category label. Photography is treated like a gallery print — object-first, context-stripped, human-scaled, monochrome-leaning. No lifestyle scenes, no props, no textural backgrounds.",
+    "similar": [
+      {
+        "why": "Same editorial fashion-photography-dominant landing with monochrome white canvas and minimal text overlay",
+        "business": "Everlane"
+      },
+      {
+        "why": "Same Scandinavian restraint: full-bleed model photography, zero rounded corners, near-black-on-white, single grotesque typeface",
+        "business": "Toteme"
+      },
+      {
+        "why": "Sibling-minimalist retail aesthetic with gallery-style layout, hairline-bordered UI, and image-as-section-divider approach",
+        "business": "Arket"
+      },
+      {
+        "why": "Identical luxury-quiet palette: pure white, no chrome, serif-free grotesque, photography as the only ornament",
+        "business": "The Row"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "135px",
+      "cardPadding": "24px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, full-bleed white ground"
+      },
+      {
+        "hex": "#080808",
+        "name": "Ink Plane",
+        "level": 1,
+        "purpose": "Inverted sections (footer, promotional bars, occasional dark bands) where type inverts to white"
+      }
+    ],
+    "northStar": "white-walled fashion gallery",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.12
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.48
+      },
+      {
+        "role": "heading",
+        "size": 35,
+        "lineHeight": 1,
+        "letterSpacing": 1.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Editorial Hero — Split Frame",
+        "role": "Above-the-fold brand statement for category landings (Mujer / Hombre)",
+        "description": "Full-viewport 50/50 split between two large editorial portraits. No overlay chrome, no card containers. The only interface element is a single all-caps category label in SuisseIntl 35px weight 700, letter-spacing 0.04em, color #ffffff, anchored to the bottom-left of the left image (Mujer) — text is what floats, photography is what stays."
+      },
+      {
+        "name": "Utility Announcement Bar",
+        "role": "Top-of-page promotional strip above the logo",
+        "description": "Single thin black band at #080808, full-bleed, containing centered SuisseIntl 12px weight 400 in #ffffff with 1px top/bottom padding. Marquee-style scroll. No close button visible by default."
+      },
+      {
+        "name": "Centered Logo Navigation",
+        "role": "Primary site header",
+        "description": "Pure white background (#ffffff), COS wordmark centered in SuisseIntl 16px weight 500, letter-spacing 0.03em, color #080808. Locale selector right-aligned in same weight/size. No horizontal category bar on the landing frame shown — navigation is iconographic and minimal."
+      },
+      {
+        "name": "Ghost Button — Outlined",
+        "role": "Secondary actions and account-creation CTAs",
+        "description": "Transparent fill, 1px solid #080808 border, square corners (0px radius), 15px vertical / 24px horizontal padding. Label in SuisseIntl 12px weight 500, letter-spacing 0.01em, uppercase, color #080808. No hover fill change — ghost stays ghost, the border weight is the only signal."
+      },
+      {
+        "name": "Newsletter Modal / Slide-In",
+        "role": "First-visit email capture",
+        "description": "White card surface (#ffffff) anchored to bottom-right, ~360px wide, no border, no shadow — separated from page only by the empty space around it. Title in SuisseIntl 13px weight 700, body in 12px weight 400, both #080808. Close icon top-right. Outlined ghost button (#080808 border) as the sole action."
+      },
+      {
+        "name": "Primary Nav Link",
+        "role": "Category and utility links in the header",
+        "description": "Inline text, no underline, no background. SuisseIntl 13–16px weight 400–500, color #080808, letter-spacing 0.02–0.03em. Active state communicated by weight shift to 500 only — no color change, no underline, no pill."
+      },
+      {
+        "name": "Product Card",
+        "role": "Category and product-listing grid items",
+        "description": "Square or 3:4 photography fills the card edge-to-edge (no padding, no border). Product name and price sit immediately below the image in SuisseIntl 13px weight 400, #080808, line-height 1.45. No badge, no hover overlay, no quick-add — the card is a print, not a tile."
+      },
+      {
+        "name": "Footer",
+        "role": "Site-wide link directory and legal",
+        "description": "Inverted dark surface (#080808), generous vertical padding (~135px top/bottom). Column headings in SuisseIntl 12px weight 700 uppercase #ffffff, link lists in 13px weight 400 #ffffff. No dividers between columns — whitespace is the only separator, matching the overall system."
+      },
+      {
+        "name": "Locale Selector",
+        "role": "Region/language picker in the top-right",
+        "description": "Plain text trigger (e.g. 'ES/ES') in SuisseIntl 12px weight 400, #080808, with a small chevron. No flag icons, no decorative chrome. Opens to a text-only menu."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across the entire interface — used for navigation, body, headlines, buttons, and product copy. The positive tracking (0.01–0.04em) is unusual for a screen face and reinforces the printed-catalogue feeling; 700 weight is reserved for category statements, 500 for navigation and buttons, 400 for everything else. The single-family commitment and tiny size range (12–35px) is the signature — type never shouts.",
+        "sizes": "12, 13, 16, 35",
+        "family": "SuisseIntl",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.0 (micro-labels), 1.4 (small body), 1.45 (body), 1.5 (hero/headline)",
+        "substitute": "Neue Haas Grotesk Display, Inter, Helvetica Neue",
+        "letterSpacing": "0.01em at 12px → 0.02em at 13px → 0.03em at 16px → 0.04em at 35px"
+      }
+    ],
+    "description": "COS speaks in the visual grammar of a contemporary art gallery: vast white walls, oversized monochrome photography, and typography that stays out of the model's way. The interface is nearly colorless — 97% achromatic — using a near-black (#080808) on pure white (#ffffff) as the only structural contrast, with a single red (#c80000) held in reserve as a whisper-quiet accent for moments that must feel urgent without being loud. Spacing is generous and editorial, section padding reaches 135px, and components dissolve into the page: hairline borders at #dadada, no shadows, no gradients, no rounded corners. Typography (SuisseIntl) is the only ornament — a single grotesque family that stays consistent from 12px micro-labels to 35px category statements, tracking slightly positive to feel like printed gallery placards.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7922b756-2d0f-4a58-8fa6-39d40264fe66#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"COS design system\",\"item\":\"https://styles.refero.design/style/7922b756-2d0f-4a58-8fa6-39d40264fe66\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7922b756-2d0f-4a58-8fa6-39d40264fe66#style-reference\",\"name\":\"COS design system reference\",\"headline\":\"COS design system | Refero Styles\",\"description\":\"Explore COS's light E-commerce design system: Canvas White #ffffff, Ink Black #080808 colors, SuisseIntl typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7922b756-2d0f-4a58-8fa6-39d40264fe66\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7922b756-2d0f-4a58-8fa6-39d40264fe66\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"COS\",\"url\":\"https://cos.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7922b756-2d0f-4a58-8fa6-39d40264fe66#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1d7308d0-44ae-4567-b1bd-b77519f9b23a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1d7308d0-44ae-4567-b1bd-b77519f9b23a.jpg\",\"caption\":\"Screenshot of COS\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1d7308d0-44ae-4567-b1bd-b77519f9b23a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"COS design system\",\"COS website design\",\"COS colors\",\"COS typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Canvas White\",\"Ink Black\",\"True Black\",\"Mist Gray\",\"SuisseIntl\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"COS design system\"},{\"@type\":\"Thing\",\"name\":\"COS website design\"},{\"@type\":\"Thing\",\"name\":\"COS colors\"},{\"@type\":\"Thing\",\"name\":\"COS typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-03-13T15:36:45.000Z\",\"dateModified\":\"2026-03-13T15:36:45.000Z\"}]}19:T6cb,**Quick Color Reference**\n- background: #ffffff\n- text: #080808\n- border: #dadada\n- accent: #c80000\n- inverted text on dark: #ffffff\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. Build an editorial split hero: 100vw × 100vh, two children at 50% width each. Left child shows a full-bleed model portrait with a bottom-left label in SuisseIntl 35px weight 700, letter-spacing 1.4px (0.04em), color #ffffff, text 'MUJER'. Right child shows a second full-bleed model portrait. No borders, no padding, no shadows.\n\n2. Build a ghost newsletter modal: 360px wide, white background (#ffffff), no border, no radius, no shadow, anchored to bottom-right with 24px margin. Title in SuisseIntl 13px weight 700 #080808, supporting copy in 12px weight 400 #080808. Action is a ghost button: 1px solid #080808 border, 0px radius, 15px vertical / 24px horizontal padding, label 'CREAR CUENTA' in 12px weight 500 #080808.\n\n3. Build a centered logo header: 100vw white bar, ~60px tall, COS wordmark centered in SuisseIntl 16px weight 500, letter-spacing 0.48px (0.03em), color #080808. Locale text 'ES/ES' right-aligned in same type, 12px weight 400.\n\n4. Build a product card: image fills the card edge-to-edge with no border or padding, 3:4 aspect ratio. Below the image, product name and price stack vertically with 8px gap, both in SuisseIntl 13px weight 400 #080808, line-height 1.45. No hover state, no badge, no quick-add.\n\n5. Build the footer: full-width #080808 surface, 135px top and bottom padding. Four columns of links; column headings in 12px weight 700 uppercase #ffffff, link items in 13px weight 400 #ffffff with 15px vertical spacing. No dividers between columns, no background color change between sections."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is deliberately absent. The system relies entirely on scale, whitespace, and hairline borders at #dadada to separate planes. Any shadow would break the gallery-wall metaphor — surfaces sit on the page the way a print sits in a matte, not the way a card floats above it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "body",
+            "button"
+          ],
+          "frequency": 110,
+          "confidence": 1,
+          "prominence": 15657751.74725142,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "heading",
+            "footer",
+            "body",
+            "link",
+            "icon",
+            "list"
+          ],
+          "frequency": 443,
+          "confidence": 1,
+          "prominence": 8987919.398657406,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#080808",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.13440923139492972
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "footer",
+            "icon",
+            "other",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 323,
+          "confidence": 1,
+          "prominence": 8523351.722498095,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dadada",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8883696500007239
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 75602.71128439915,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c80000",
+          "oklch": {
+            "c": 0.21459706234512924,
+            "h": 29.23388027962788,
+            "l": 0.5229573448933804
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 54,
+          "confidence": 1,
+          "prominence": 1480.028086662313,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.033389734820022415,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.03,
+          "background": "#080808",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.02,
+          "background": "#dadada",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.33,
+          "background": "#dadada",
+          "foreground": "#080808"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.08,
+          "background": "#ffffff",
+          "foreground": "#c80000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.3,
+          "background": "#080808",
+          "foreground": "#c80000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.05,
+          "background": "#080808",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 68,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingBottom",
+            "marginBottom",
+            "paddingRight",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "paddingBottom",
+            "marginRight",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 135,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "SuisseIntl",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 182,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 13,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.45,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.45,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon",
+            "list",
+            "button",
+            "body"
+          ],
+          "frequency": 62,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.45,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "button",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.45,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "SuisseIntl",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.45,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "button",
+            "image",
+            "footer",
+            "list",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 77,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "SuisseIntl",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/16f9107b-8f67-45e0-ae33-4c00ff5e8ac7.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1d7308d0-44ae-4567-b1bd-b77519f9b23a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7922b756-2d0f-4a58-8fa6-39d40264fe66#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"COS design system\",\"item\":\"https://styles.refero.design/style/7922b756-2d0f-4a58-8fa6-39d40264fe66\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7922b756-2d0f-4a58-8fa6-39d40264fe66#style-reference\",\"name\":\"COS design system reference\",\"headline\":\"COS design system | Refero Styles\",\"description\":\"Explore COS's light E-commerce design system: Canvas White #ffffff, Ink Black #080808 colors, SuisseIntl typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7922b756-2d0f-4a58-8fa6-39d40264fe66\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7922b756-2d0f-4a58-8fa6-39d40264fe66\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"COS\",\"url\":\"https://cos.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7922b756-2d0f-4a58-8fa6-39d40264fe66#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1d7308d0-44ae-4567-b1bd-b77519f9b23a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1d7308d0-44ae-4567-b1bd-b77519f9b23a.jpg\",\"caption\":\"Screenshot of COS\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1d7308d0-44ae-4567-b1bd-b77519f9b23a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"COS design system\",\"COS website design\",\"COS colors\",\"COS typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Canvas White\",\"Ink Black\",\"True Black\",\"Mist Gray\",\"SuisseIntl\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"COS design system\"},{\"@type\":\"Thing\",\"name\":\"COS website design\"},{\"@type\":\"Thing\",\"name\":\"COS colors\"},{\"@type\":\"Thing\",\"name\":\"COS typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-03-13T15:36:45.000Z\",\"dateModified\":\"2026-03-13T15:36:45.000Z\"}]}19:T6cb,**Quick Color Reference**\n- background: #ffffff\n- text: #080808\n- border: #dadada\n- accent: #c80000\n- inverted text on dark: #ffffff\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. Build an editorial split hero: 100vw × 100vh, two children at 50% width each. Left child shows a full-bleed model portrait with a bottom-left label in SuisseIntl 35px weight 700, letter-spacing 1.4px (0.04em), color #ffffff, text 'MUJER'. Right child shows a second full-bleed model portrait. No borders, no padding, no shadows.\n\n2. Build a ghost newsletter modal: 360px wide, white background (#ffffff), no border, no radius, no shadow, anchored to bottom-right with 24px margin. Title in SuisseIntl 13px weight 700 #080808, supporting copy in 12px weight 400 #080808. Action is a ghost button: 1px solid #080808 border, 0px radius, 15px vertical / 24px horizontal padding, label 'CREAR CUENTA' in 12px weight 500 #080808.\n\n3. Build a centered logo header: 100vw white bar, ~60px tall, COS wordmark centered in SuisseIntl 16px weight 500, letter-spacing 0.48px (0.03em), color #080808. Locale text 'ES/ES' right-aligned in same type, 12px weight 400.\n\n4. Build a product card: image fills the card edge-to-edge with no border or padding, 3:4 aspect ratio. Below the image, product name and price stack vertically with 8px gap, both in SuisseIntl 13px weight 400 #080808, line-height 1.45. No hover state, no badge, no quick-add.\n\n5. Build the footer: full-width #080808 surface, 135px top and bottom padding. Four columns of links; column headings in 12px weight 700 uppercase #ffffff, link items in 13px weight 400 #ffffff with 15px vertical spacing. No dividers between columns, no background color change between sections."
+}

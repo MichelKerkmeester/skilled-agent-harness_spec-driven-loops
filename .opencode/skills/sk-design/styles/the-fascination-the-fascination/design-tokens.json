@@ -1,0 +1,362 @@
+{
+  "color": {
+    "cream-paper": {
+      "$value": "#fbfbf7",
+      "$type": "color",
+      "$description": "Cream Paper — Page canvas, primary background"
+    },
+    "parchment": {
+      "$value": "#efe8dc",
+      "$type": "color",
+      "$description": "Parchment — Card surfaces, secondary elevated backgrounds, subtle warm wash"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, card borders, heading text"
+    },
+    "stone-gray": {
+      "$value": "#767676",
+      "$type": "color",
+      "$description": "Stone Gray — Muted helper text, secondary metadata, input borders"
+    },
+    "charcoal-slate": {
+      "$value": "#1a202c",
+      "$type": "color",
+      "$description": "Charcoal Slate — Body text alternative, link text on light surfaces"
+    },
+    "gunmetal": {
+      "$value": "#1f2937",
+      "$type": "color",
+      "$description": "Gunmetal — Input text, dark UI element borders"
+    },
+    "iron-gray": {
+      "$value": "#4b5563",
+      "$type": "color",
+      "$description": "Iron Gray — Subtle borders, low-emphasis text"
+    },
+    "electric-blue": {
+      "$value": "#2ea3f2",
+      "$type": "color",
+      "$description": "Electric Blue — Blue accent for outlined action borders, linked labels, and lightweight interactive emphasis."
+    },
+    "deep-violet": {
+      "$value": "#4c40e0",
+      "$type": "color",
+      "$description": "Deep Violet — Heading text, brand wordmark color, editorial display text"
+    },
+    "indigo-bloom": {
+      "$value": "#454ad3",
+      "$type": "color",
+      "$description": "Indigo Bloom — Secondary heading text, section title accents"
+    },
+    "marigold": {
+      "$value": "#ffd92a",
+      "$type": "color",
+      "$description": "Marigold — Decorative highlight wash, seasonal accent blocks"
+    },
+    "sage-splash": {
+      "$value": "#91dea8",
+      "$type": "color",
+      "$description": "Sage Splash — Decorative soft accent, editorial section markers"
+    },
+    "sky-mist": {
+      "$value": "#90d3e3",
+      "$type": "color",
+      "$description": "Sky Mist — Decorative cool accent, editorial section markers"
+    }
+  },
+  "font": {
+    "graphik": {
+      "$value": "Graphik",
+      "$type": "fontFamily",
+      "$description": "Primary UI and editorial typeface — all body copy, headlines, navigation, buttons, links, and functional text. Weight 400 for body, 500 for sub-emphasis, 700 for strong headlines, 100 as dramatic thin display"
+    },
+    "qwitcher-grypen": {
+      "$value": "Qwitcher Grypen",
+      "$type": "fontFamily",
+      "$description": "Decorative handwritten script used exclusively for editorial section accents and brand voice moments — never for functional UI text. Its appearance next to geometric sans creates the magazine-spread tension"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2.55
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 2.19
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2.19
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.91
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.91
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 100,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.02
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Qwitcher Grypen",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 0.55
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Qwitcher Grypen",
+        "fontSize": "60px",
+        "fontWeight": 400,
+        "lineHeight": 0.55
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "96px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 96px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "cream-paper": {
+      "$value": "#fbfbf7",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas, all content sits on this warm off-white"
+    },
+    "parchment": {
+      "$value": "#efe8dc",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card surfaces, product review containers, subtle warm separation"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://thefascination.com",
+      "siteName": "The Fascination The Fascination",
+      "extractedAt": "2026-06-03T21:54:22.676Z",
+      "variant": "extended"
+    }
+  }
+}

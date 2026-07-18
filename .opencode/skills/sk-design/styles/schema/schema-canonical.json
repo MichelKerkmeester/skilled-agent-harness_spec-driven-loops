@@ -1,0 +1,1282 @@
+{
+  "source": "https://styles.refero.design/style/2b07d62c-d706-4c9d-a3fb-9c163da09f03",
+  "uuid": "2b07d62c-d706-4c9d-a3fb-9c163da09f03",
+  "name": "Schema",
+  "northStar": "Ink-black keynote stage with confetti-bright murals",
+  "capturedAt": "2026-07-18T07:19:16.657Z",
+  "meta": {
+    "url": "https://schema.figma.com",
+    "siteName": "Schema",
+    "extractedAt": "2026-06-03T21:47:01.755Z",
+    "durationMs": 25387,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 514,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 0px border-radius on all cards, buttons, images, and tags — sharp corners are non-negotiable",
+      "Pair the dark hero with a large outlined button (1px Paper border, no fill); fill it on hover",
+      "Apply Figma Sans Display at 56–86px with -0.02em tracking and 0.90–1.00 line-height for any headline that needs to feel carved",
+      "Reach 0.03em tracking on small labels (13–18px) to give uppercase eyebrows and nav links air",
+      "Alternate full-bleed colored bands (Mint Wash #c7f8fb, Emerald Band #24cb71) between dark and light sections to create visual rhythm",
+      "Use Ash (#e2e2e2) 1px borders for hairline separation; reserve Ink (#0f0f0f) borders for emphasis on light sections",
+      "Keep the UI monochrome — let color appear only in decorative murals and speaker portrait backgrounds, never in controls"
+    ],
+    "donts": [
+      "Don't add border-radius to any element — sharp corners define the system's poster-like character",
+      "Don't use shadows, glows, or blur effects — flat is the only elevation language here",
+      "Don't introduce a chromatic CTA color — the system is intentionally monochrome, actions are outlined or text-only",
+      "Don't set body text below 16px; captions can go to 13px but never smaller",
+      "Don't let display headlines exceed 0.90–1.00 line-height — tight leading is what makes them feel architectural",
+      "Don't color-fill buttons with brand hues; outlined Paper-on-Obsidian is the only button pattern in the system",
+      "Don't separate light sections with gray bands — use either full-bleed color or seamless Paper-to-Paper flow"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Hero canvas, heavy structural borders, icon strokes — sets the high-contrast keynote-stage mood for the opening fold",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0f0f0f",
+        "name": "Ink",
+        "role": "Body and heading text on light surfaces, dark section borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page background, speaker card surfaces, light-section text on dark hero",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2e2e2",
+        "name": "Ash",
+        "role": "Hairline borders, subtle icon fills, structural dividers between UI regions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c7f8fb",
+        "name": "Mint Wash",
+        "role": "Teal wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#24cb71",
+        "name": "Emerald Band",
+        "role": "Full-bleed accent section background — a bright green horizontal band that closes the hero composition",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page follows a top-to-bottom band model. It opens with a full-bleed black hero (centered or left-aligned content block, full-width outlined Register CTA) that bleeds into a ~250px-tall geometric mural banner spanning the viewport width. Below the mural, a light teal (Mint Wash) band holds the secondary 'Join us virtually!' CTA and an event status notice, followed by a bright green (Emerald Band) strip. The page then resolves into a max-width 1200px white content area with 60px vertical section gaps, opening with a left-aligned section header (eyebrow + display headline) above a 4-column grid of speaker cards. Navigation is a minimal top bar — logo left, 2 text links right, transparent on the dark hero and Paper on light sections. There is no sidebar, no sticky header beyond the nav, and no modal overlays.",
+    "imagery": "The site uses bold flat-color geometric illustration as a hero divider: circles, rectangles, hexagons, chevrons, and dots in a saturated palette (indigo, lavender, teal, maroon, orange, emerald, yellow) with hard rectilinear edges and no gradients or shadows. Speaker portraits are desaturated or black-and-white photographs, each placed on a solid color background (mint, emerald, indigo, lavender, orange, yellow) to create a poster-grid effect. Icons are minimal and mono — a single triangular warning glyph is the only iconographic element visible. The overall treatment is editorial-poster: no soft photography, no lifestyle shots, no depth — everything is either flat color, flat type, or a flat photo on flat color.",
+    "similar": [
+      {
+        "why": "Same Figma Sans Display typography at hero scale, same poster-mural art style, same monochrome UI with full-bleed colored bands",
+        "business": "Config (Figma's annual conference)"
+      },
+      {
+        "why": "Black hero with large outlined CTA, editorial display type at extreme scale, full-bleed color band transitions between sections",
+        "business": "Apple Event pages"
+      },
+      {
+        "why": "Identical geometric flat-color illustration system and Figma Sans pairing, with speaker portraits on solid color backgrounds",
+        "business": "Figma Config 2022–2024 microsites"
+      },
+      {
+        "why": "Editorial-poster layout, sharp 0px corners, monochrome UI punctuated by bold flat-color section bands",
+        "business": "Are.na event pages"
+      },
+      {
+        "why": "Design-zine aesthetic with oversized display headlines, tight tracking, and full-bleed decorative color blocks",
+        "business": "It's Nice That conference coverage"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "buttons": "0px",
+        "speaker-images": "0px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "60px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Dark Hero Canvas",
+        "level": 0,
+        "purpose": "Opening fold, sets editorial tone, contains Register CTA and decorative mural"
+      },
+      {
+        "hex": "#c7f8fb",
+        "name": "Colored Band",
+        "level": 1,
+        "purpose": "Cyan section separating hero from content"
+      },
+      {
+        "hex": "#24cb71",
+        "name": "Colored Band",
+        "level": 1,
+        "purpose": "Green section band"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 2,
+        "purpose": "Main content canvas for speaker grid and text sections"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Ink-black keynote stage with confetti-bright murals",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.26
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-md",
+        "size": 18,
+        "lineHeight": 1.22,
+        "letterSpacing": 0.54
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "heading",
+        "size": 56,
+        "lineHeight": 1,
+        "letterSpacing": -1.12
+      },
+      {
+        "role": "heading-lg",
+        "size": 72,
+        "lineHeight": 0.9,
+        "letterSpacing": -1.44
+      },
+      {
+        "role": "display",
+        "size": 86,
+        "lineHeight": 0.9,
+        "letterSpacing": -1.72
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent header across all sections",
+        "description": "Transparent on the black hero, Paper on light sections. Left: small monogram logo (32px square, Obsidian or Paper fill). Right: 2–4 text links (FAQ, Agenda) at 16px Figma Sans Text weight 400, tracking 0.03em. 16px horizontal padding, 20px vertical. No background fill, no border."
+      },
+      {
+        "name": "Hero Outlined Register Button",
+        "role": "Primary action on the dark hero",
+        "description": "Full-width on the hero, 56–64px tall. 1px Paper border, no fill, Paper text. 0px radius. Text at 18–24px Figma Sans Text weight 400, centered. On hover, fills to Paper with Obsidian text."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Section pre-heading (VIRTUAL, SPEAKERS, REGISTER)",
+        "description": "12–13px Figma Sans Text weight 400 or 600, uppercase via CSS, tracking 0.03em. Color is Ink on light sections, Paper on dark. Sits 16–24px above the headline."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Section hero titles ('Schema by Figma', 'Meet our speakers!', 'Join us virtually!')",
+        "description": "Figma Sans Display weight 400, 56–86px, line-height 0.90–1.00, letter-spacing -0.02em. Ink color on light sections, Paper on dark hero. No max-width constraint — fills available column."
+      },
+      {
+        "name": "Geometric Mural Banner",
+        "role": "Decorative full-bleed section divider between hero and content",
+        "description": "Full viewport width, ~200–300px tall. Flat 2D art: circles, rectangles, hexagons, chevrons in saturated palette (indigo #4a4afc, lavender #b8b3ff, teal #c7f8fb, maroon #7a2e2, orange #ff6b2c, emerald #24cb71, yellow #ffe74a). No gradients, no shadows. Edges are hard/rectilinear where blocks meet the canvas."
+      },
+      {
+        "name": "Speaker Portrait Card",
+        "role": "Speaker in the grid",
+        "description": "Square portrait image, 0px radius, fills a 4-column grid. Each portrait sits on a solid background color (mint, emerald, indigo, lavender, orange, yellow). Below: name in Figma Sans Text weight 600 at 18px, title/role in Figma Sans Text weight 400 at 16px — both in Ink. 24px gap between portrait and text, 48px between cards vertically."
+      },
+      {
+        "name": "Event Status Notice",
+        "role": "Inline status banner ('Event ended')",
+        "description": "Centered or right-aligned block. Small triangular warning icon (~24px, Ink fill) above label. Label in Figma Sans Text weight 600 at 18–24px, subtext at 16px weight 400. Sits on the cyan Mint Wash band."
+      },
+      {
+        "name": "Full-Bleed Color Section",
+        "role": "Horizontal content band with colored background",
+        "description": "Edge-to-edge, ~200–400px tall, Paper or Ink text depending on contrast. Internal padding 60px top/bottom, 24–48px left/right. No border, no radius, no shadow."
+      },
+      {
+        "name": "Date/Time Metadata Block",
+        "role": "Event date and time under hero headline",
+        "description": "Two lines: bold date (16–18px Figma Sans Text weight 600) above time range (16–18px weight 400). Inherit text color from section (Paper on dark hero). 8–16px gap between lines."
+      },
+      {
+        "name": "Grid Section Header",
+        "role": "Section title block above card grid (e.g., \"Meet our speakers!\")",
+        "description": "Eyebrow label + display headline, left-aligned. 24px gap between label and headline. Sits 48–60px above the grid."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Source Sans Pro — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Source Sans Pro",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Headlines and display copy — used at 56–86px for hero ('Schema by Figma', 'Meet our speakers!') with tight leading (0.90–1.10) and -0.02em tracking that makes type feel carved from a block. Weight 400 carries the design; 700 is reserved for emphasis.",
+        "sizes": "16, 24, 32, 56, 72, 86",
+        "family": "Figma Sans Display",
+        "weight": "400, 700",
+        "lineHeight": "0.90–1.40",
+        "substitute": "Inter Tight or a custom variable sans like General Sans",
+        "letterSpacing": "-0.02em at 72–86px, -0.01em at 24–32px, 0.03em for some 16px contexts"
+      },
+      {
+        "role": "Body, nav, button labels, supporting text. The companion text face at modest sizes (13–18px) with weight 400 as default and 600 for buttons/labels. -0.02em at 13px prevents the small type from feeling loose; 0.03em at 18px gives labels air.",
+        "sizes": "13, 16, 18",
+        "family": "Figma Sans Text",
+        "weight": "400, 600",
+        "lineHeight": "1.20–1.22",
+        "substitute": "Inter or Söhne",
+        "letterSpacing": "-0.02em at 13px, 0.03em at 18px"
+      },
+      {
+        "role": "Code or metadata snippets — used sparingly at 16px with 0.03em tracking for an architectural, monospaced accent in a world of proportional text",
+        "sizes": "16",
+        "family": "Figma Mono",
+        "weight": "400",
+        "lineHeight": "1.30–1.40",
+        "substitute": "JetBrains Mono or IBM Plex Mono",
+        "letterSpacing": "0.03em"
+      },
+      {
+        "role": "Figma VF-normal-700-75 — detected in extracted data but not described by AI",
+        "sizes": "24px",
+        "family": "Figma VF-normal-700-75",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Figma VF-normal-400-100 — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Figma VF-normal-400-100",
+        "weight": "400",
+        "lineHeight": "1.2",
+        "letterSpacing": "0.03"
+      }
+    ],
+    "description": "Schema by Figma runs on a stark monochrome architecture punctured by bold flat-color geometric murals. The UI uses pure black, near-black, and white with hairline gray borders — no shadows, minimal radii, no chromatic accents in the interface itself. Color appears only as decorative art (circles, hexagons, rectangles in purple, teal, maroon, green, orange) and as solid-background speaker portraits. Typography is the loudest element: Figma's custom display face at 56–86px with extreme negative tracking (-0.02em) and tight 0.90 line-height makes headlines feel carved rather than typeset. The hero inverts convention with a black canvas and an oversized outlined Register button; content sections then alternate through full-bleed colored bands before resolving into a clean white speaker grid.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2b07d62c-d706-4c9d-a3fb-9c163da09f03#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Schema design system\",\"item\":\"https://styles.refero.design/style/2b07d62c-d706-4c9d-a3fb-9c163da09f03\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2b07d62c-d706-4c9d-a3fb-9c163da09f03#style-reference\",\"name\":\"Schema design system reference\",\"headline\":\"Schema design system | Refero Styles\",\"description\":\"Explore Schema's mixed Design design system: Obsidian #000000, Ink #0f0f0f colors, Source Sans Pro, Figma Sans Display typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2b07d62c-d706-4c9d-a3fb-9c163da09f03\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2b07d62c-d706-4c9d-a3fb-9c163da09f03\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Schema\",\"url\":\"https://schema.figma.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2b07d62c-d706-4c9d-a3fb-9c163da09f03#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7f660658-6434-4322-a5ca-6445993c36da.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7f660658-6434-4322-a5ca-6445993c36da.jpg\",\"caption\":\"Screenshot of Schema\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7f660658-6434-4322-a5ca-6445993c36da.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Schema design system\",\"Schema website design\",\"Schema colors\",\"Schema typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Obsidian\",\"Ink\",\"Paper\",\"Ash\",\"Source Sans Pro\",\"Figma Sans Display\",\"Figma Sans Text\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Schema design system\"},{\"@type\":\"Thing\",\"name\":\"Schema website design\"},{\"@type\":\"Thing\",\"name\":\"Schema colors\"},{\"@type\":\"Thing\",\"name\":\"Schema typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:12:34.842Z\",\"dateModified\":\"2026-04-30T03:12:34.842Z\"}]}19:T95a,**Quick Color Reference**\n- text on light: #0f0f0f (Ink)\n- text on dark hero: #ffffff (Paper)\n- page background: #ffffff (Paper)\n- hero background: #000000 (Obsidian)\n- hairline borders: #e2e2e2 (Ash)\n- accent section band 1: #c7f8fb (Mint Wash)\n- accent section band 2: #24cb71 (Emerald Band)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Dark hero with outlined Register button**: Full-bleed Obsidian (#000000) background, left-aligned content with 60px horizontal padding. Eyebrow 'VIRTUAL' at 13px Figma Sans Text weight 400, uppercase, tracking 0.03em, Paper color. Headline 'Schema by Figma' at 72px Figma Sans Display weight 400, line-height 0.90, letter-spacing -1.44px, Paper. Date/time block at 18px Figma Sans Text, Paper, 16px gap between lines. Register button: full-width within content column, 64px tall, 1px Paper border, 0px radius, no fill, 'Register' at 24px Figma Sans Text weight 400 centered, Paper text.\n\n2. **Speaker card in a 4-column grid**: 0px radius portrait image, 1:1 aspect ratio, placed on a solid lavender (#b8b3ff) background. 24px gap below portrait, then name 'Loredana Crisan' at 18px Figma Sans Text weight 600 in Ink, title 'Chief Design Officer / Figma' at 16px weight 400 in Ink with 4px line gap. Cards separated by 48px vertical and 24px horizontal gaps; grid sits inside a 1200px max-width container with 60px section padding above.\n\n3. **Geometric mural divider**: Full-bleed, 250px tall, no padding. Layer flat shapes: 200px indigo (#4a4afc) circle bottom-left, 120px lavender (#b8b3ff) rectangle top-center, 80px maroon (#7a2e2e) hexagon right-center on a 120px mint (#c7f8fb) square, 60px orange (#ff6b2c) circle far right, 180px emerald (#24cb71) rectangle bottom-right. No gradients, no shadows, no border-radius.\n\n4. **Light section header**: Paper background. Eyebrow 'SPEAKERS' at 13px Figma Sans Text weight 600, uppercase, tracking 0.03em, Ink color. 16px gap to headline 'Meet our speakers!' at 56px Figma Sans Display weight 400, line-height 1.00, letter-spacing -1.12px, Ink. 60px gap below to grid.\n\n5. **Event status notice on colored band**: Mint Wash (#c7f8fb) full-bleed section, 60px vertical padding, right-aligned content block. 24px Ink triangular warning icon, 16px gap, label 'Event ended' at 18px Figma Sans Text weight 600 Ink, subtext 'This event has already ended.' at 16px weight 400 Ink."
+      }
+    ],
+    "elevationPhilosophy": "Shadowless flat design — separation is achieved through hard edges, color blocks, and 1px hairline borders in Ash (#e2e2e2) or Ink. The absence of shadow is a deliberate editorial choice: every element is printed flat onto the page like a poster, never floating above it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "nav",
+            "image",
+            "body",
+            "heading",
+            "list",
+            "link"
+          ],
+          "frequency": 1903,
+          "confidence": 1,
+          "prominence": 103381742.86736132,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "body/color": 40,
+            "icon/color": 1,
+            "link/color": 4,
+            "list/color": 6,
+            "image/color": 14,
+            "other/color": 297,
+            "button/color": 1,
+            "heading/color": 9,
+            "nav/borderColor": 32,
+            "body/borderColor": 160,
+            "icon/borderColor": 4,
+            "link/borderColor": 16,
+            "list/borderColor": 24,
+            "image/borderColor": 56,
+            "other/borderColor": 1187,
+            "button/borderColor": 4,
+            "heading/borderColor": 36,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "icon",
+            "body",
+            "heading",
+            "link"
+          ],
+          "frequency": 95,
+          "confidence": 1,
+          "prominence": 62485203.0415306,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "nav/color": 8,
+            "body/color": 2,
+            "other/fill": 1,
+            "other/color": 3,
+            "heading/color": 4,
+            "nav/borderColor": 32,
+            "body/borderColor": 8,
+            "link/borderColor": 4,
+            "other/borderColor": 13,
+            "heading/borderColor": 16,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#e2e2e2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9127904142191143
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 73,
+          "confidence": 1,
+          "prominence": 5618779.114223496,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "icon/color": 4,
+            "other/fill": 4,
+            "other/color": 8,
+            "icon/borderColor": 16,
+            "other/borderColor": 32,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#24cb71",
+          "oklch": {
+            "c": 0.1822718956219895,
+            "h": 152.98975595269542,
+            "l": 0.741748798080094
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2083951,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0f0f0f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.16841612499987832
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "other",
+            "list"
+          ],
+          "frequency": 460,
+          "confidence": 1,
+          "prominence": 893746.3114751249,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 62,
+            "list/color": 3,
+            "other/color": 6,
+            "heading/color": 21,
+            "body/borderColor": 248,
+            "list/borderColor": 12,
+            "other/borderColor": 24,
+            "heading/borderColor": 84
+          }
+        },
+        {
+          "hex": "#c7f8fb",
+          "oklch": {
+            "c": 0.050004333772902004,
+            "h": 200.96873653010516,
+            "l": 0.9462186001153624
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 441750,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00024783797590176326,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.17,
+          "background": "#ffffff",
+          "foreground": "#0f0f0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.25,
+          "background": "#c7f8fb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.66,
+          "background": "#c7f8fb",
+          "foreground": "#0f0f0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.21,
+          "background": "#e2e2e2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.8,
+          "background": "#e2e2e2",
+          "foreground": "#0f0f0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.86,
+          "background": "#24cb71",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9,
+          "background": "#24cb71",
+          "foreground": "#0f0f0f"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.13,
+          "background": "#24cb71",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.64,
+          "background": "#24cb71",
+          "foreground": "#e2e2e2"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.3,
+          "background": "#e2e2e2",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.15,
+          "background": "#c7f8fb",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.13,
+          "background": "#c7f8fb",
+          "foreground": "#e2e2e2"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#000000",
+          "foreground": "#0f0f0f"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|list",
+            "paddingRight|list",
+            "paddingBottom|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "nav",
+            "heading"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingBottom|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|heading",
+            "columnGap|heading"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 43,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 49,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingTop|link"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "link",
+            "list",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "marginLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link",
+            "marginLeft|list",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Figma-Sans-Text-Regular",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 343,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Figma-Sans-Display-Regular",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 129,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Source Sans Pro",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Figma VF-normal-700-75",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Figma-Mono-Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Figma-Sans-Text-Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 6,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Figma VF-normal-400-100",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Figma-Sans-Text-Regular",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Source Sans Pro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Figma-Sans-Text-Regular",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Figma VF-normal-400-100",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Figma-Sans-Display-Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Figma-Mono-Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Figma-Sans-Display-Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 57,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Figma-Mono-Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Figma-Mono-Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Figma-Sans-Text-Regular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "image",
+            "list",
+            "body"
+          ],
+          "frequency": 329,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Figma-Sans-Text-Regular",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Figma-Sans-Text-Regular",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Figma-Sans-Display-Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "list",
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Figma-Sans-Display-Regular",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Figma-Sans-Display-Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Figma-Sans-Text-Medium",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Figma-Sans-Display-Regular",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Figma-Sans-Display-Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Figma-Sans-Display-Regular",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Figma VF-normal-700-75",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Figma-Sans-Display-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Figma-Sans-Display-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Figma-Sans-Display-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Figma-Sans-Text-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Figma-Sans-Display-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 86,
+          "family": "Figma-Sans-Display-Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c96dc339-a84c-4b60-b60f-d4e3d9be4d7a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7f660658-6434-4322-a5ca-6445993c36da.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2b07d62c-d706-4c9d-a3fb-9c163da09f03#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Schema design system\",\"item\":\"https://styles.refero.design/style/2b07d62c-d706-4c9d-a3fb-9c163da09f03\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2b07d62c-d706-4c9d-a3fb-9c163da09f03#style-reference\",\"name\":\"Schema design system reference\",\"headline\":\"Schema design system | Refero Styles\",\"description\":\"Explore Schema's mixed Design design system: Obsidian #000000, Ink #0f0f0f colors, Source Sans Pro, Figma Sans Display typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2b07d62c-d706-4c9d-a3fb-9c163da09f03\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2b07d62c-d706-4c9d-a3fb-9c163da09f03\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Schema\",\"url\":\"https://schema.figma.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2b07d62c-d706-4c9d-a3fb-9c163da09f03#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7f660658-6434-4322-a5ca-6445993c36da.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7f660658-6434-4322-a5ca-6445993c36da.jpg\",\"caption\":\"Screenshot of Schema\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7f660658-6434-4322-a5ca-6445993c36da.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Schema design system\",\"Schema website design\",\"Schema colors\",\"Schema typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Obsidian\",\"Ink\",\"Paper\",\"Ash\",\"Source Sans Pro\",\"Figma Sans Display\",\"Figma Sans Text\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Schema design system\"},{\"@type\":\"Thing\",\"name\":\"Schema website design\"},{\"@type\":\"Thing\",\"name\":\"Schema colors\"},{\"@type\":\"Thing\",\"name\":\"Schema typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:12:34.842Z\",\"dateModified\":\"2026-04-30T03:12:34.842Z\"}]}19:T95a,**Quick Color Reference**\n- text on light: #0f0f0f (Ink)\n- text on dark hero: #ffffff (Paper)\n- page background: #ffffff (Paper)\n- hero background: #000000 (Obsidian)\n- hairline borders: #e2e2e2 (Ash)\n- accent section band 1: #c7f8fb (Mint Wash)\n- accent section band 2: #24cb71 (Emerald Band)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Dark hero with outlined Register button**: Full-bleed Obsidian (#000000) background, left-aligned content with 60px horizontal padding. Eyebrow 'VIRTUAL' at 13px Figma Sans Text weight 400, uppercase, tracking 0.03em, Paper color. Headline 'Schema by Figma' at 72px Figma Sans Display weight 400, line-height 0.90, letter-spacing -1.44px, Paper. Date/time block at 18px Figma Sans Text, Paper, 16px gap between lines. Register button: full-width within content column, 64px tall, 1px Paper border, 0px radius, no fill, 'Register' at 24px Figma Sans Text weight 400 centered, Paper text.\n\n2. **Speaker card in a 4-column grid**: 0px radius portrait image, 1:1 aspect ratio, placed on a solid lavender (#b8b3ff) background. 24px gap below portrait, then name 'Loredana Crisan' at 18px Figma Sans Text weight 600 in Ink, title 'Chief Design Officer / Figma' at 16px weight 400 in Ink with 4px line gap. Cards separated by 48px vertical and 24px horizontal gaps; grid sits inside a 1200px max-width container with 60px section padding above.\n\n3. **Geometric mural divider**: Full-bleed, 250px tall, no padding. Layer flat shapes: 200px indigo (#4a4afc) circle bottom-left, 120px lavender (#b8b3ff) rectangle top-center, 80px maroon (#7a2e2e) hexagon right-center on a 120px mint (#c7f8fb) square, 60px orange (#ff6b2c) circle far right, 180px emerald (#24cb71) rectangle bottom-right. No gradients, no shadows, no border-radius.\n\n4. **Light section header**: Paper background. Eyebrow 'SPEAKERS' at 13px Figma Sans Text weight 600, uppercase, tracking 0.03em, Ink color. 16px gap to headline 'Meet our speakers!' at 56px Figma Sans Display weight 400, line-height 1.00, letter-spacing -1.12px, Ink. 60px gap below to grid.\n\n5. **Event status notice on colored band**: Mint Wash (#c7f8fb) full-bleed section, 60px vertical padding, right-aligned content block. 24px Ink triangular warning icon, 16px gap, label 'Event ended' at 18px Figma Sans Text weight 600 Ink, subtext 'This event has already ended.' at 16px weight 400 Ink."
+}

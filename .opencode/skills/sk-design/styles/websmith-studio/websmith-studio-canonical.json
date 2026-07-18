@@ -1,0 +1,1064 @@
+{
+  "source": "https://styles.refero.design/style/11cfc460-807b-42c5-b10a-7b042c60f3e8",
+  "uuid": "11cfc460-807b-42c5-b10a-7b042c60f3e8",
+  "name": "Websmith Studio",
+  "northStar": "morning light on cream paper",
+  "capturedAt": "2026-07-18T08:04:39.541Z",
+  "meta": {
+    "url": "https://websmith.studio",
+    "siteName": "Websmith Studio",
+    "extractedAt": "2026-06-03T18:58:58.630Z",
+    "durationMs": 34306,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 150,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #1a1a1a Studio Ink for all body text, icons, and the filled button — never use pure #000000 for text or backgrounds.",
+      "Set the hero headline at 88–96px, weight 700, line-height 1.00, letter-spacing -2.4px to recreate the signature typographic statement.",
+      "Apply 12px radius to all cards and images, and 8px radius to buttons — these two values are the only radii in the system.",
+      "Use the three pastel tints (Powder Blue, Mint Wash, Blush Tint) exclusively as full card backgrounds for service/category tiles, never as text colors or small accents.",
+      "Reserve Signal Green (#00c950) for the status dot only — it is a one-pixel punctuation, not a brand color for CTAs or icons.",
+      "Maintain 96–112px vertical padding between major page sections to preserve the spacious, editorial rhythm.",
+      "Pair white (#ffffff) with cream (#f8f8f2) to create surface layering without using shadows — the color shift IS the elevation."
+    ],
+    "donts": [
+      "Don't introduce a second typeface or a serif display — the system uses a single geometric sans at every size.",
+      "Don't use the pastel tints for text, borders, or icons — they are surface fills only and lose readability at small sizes.",
+      "Don't add box-shadows to cards or buttons — elevation comes from color shifts and whitespace, not drop shadows.",
+      "Don't use Signal Green on anything other than the status dot — it would over-promise the brand's restraint.",
+      "Don't use a CTA button with a colored background — the only action color in the system is the dark Studio Ink fill.",
+      "Don't compress section padding below 64px — the layout reads as cramped when vertical rhythm is reduced.",
+      "Don't apply radius values other than 12px (cards/images) or 8px (buttons) — these two values define the visual softness."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f8f8f2",
+        "name": "Cream Paper",
+        "role": "Page canvas and base surface — warm off-white that softens the starkness of pure white, giving the whole site a printed-editorial warmth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card White",
+        "role": "Elevated card surfaces and the nav bar — sits one step above the cream canvas to create subtle layering without shadows; White text and button labels — used on dark backgrounds and as the light-mode border on neutral card edges",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Studio Ink",
+        "role": "Primary text, icons, and the filled button — near-black rather than pure black, softer on the warm canvas and used as the sole dark element in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Deep Black",
+        "role": "Reserved for SVG icon fills — logo glyph and nav icon strokes; rarely surfaces as a background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bedbff",
+        "name": "Powder Blue",
+        "role": "Blue wash for highlight backgrounds, decorative bands, and soft emphasis behind content.",
+        "group": "accent"
+      },
+      {
+        "hex": "#a4f4cf",
+        "name": "Mint Wash",
+        "role": "Feature card surface — pastel green used as a category tint in the services grid, always paired with near-black text and an icon",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffc9c9",
+        "name": "Blush Tint",
+        "role": "Feature card surface — soft coral used as the third category tint; the warmest of the three pastels, slightly louder on the cream canvas",
+        "group": "accent"
+      },
+      {
+        "hex": "#00c950",
+        "name": "Signal Green",
+        "role": "Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-width sections on a cream canvas, with content constrained to a centered max-width of ~1200px. The hero is a single text block, left-aligned, with no image — typographic-first. Portfolio cards sit in a 2-column grid at 32px column gap. The 'What we do' section alternates to a colored-card grid (2 or 3 columns). Testimonial uses a 2-column split: image left, text right at 64px gap. Vertical rhythm is built on 96–112px section padding, creating a slow scroll pace. Navigation is a simple top bar, not sticky. The overall composition feels like a printed magazine spread — large, quiet, and image-driven in the middle third, text-driven at top and bottom.",
+    "imagery": "Photography is central to the portfolio sections — full-bleed device mockups, workspace shots, and environmental product photography fill the collaboration cards. Images are treated with rich, saturated color (warm orange phone renders, dramatic blue water splash, natural wood textures) and capped with 12px rounded corners, no overlays or duotones. A single black-and-white portrait appears in the testimonial block, creating a tonal shift from the color work above. No illustration, no abstract graphics, no icon-as-imagery — the only icons are small functional glyphs (compass, grid) in the service cards.",
+    "similar": [
+      {
+        "why": "Same approach of pairing a massive typographic hero with a quiet near-monochrome canvas and image-driven portfolio grid",
+        "business": "Studio Schicketanz"
+      },
+      {
+        "why": "Editorial-style portfolio layout with cream/off-white canvas, oversized sans-serif headlines, and large image blocks with rounded corners",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Agency site with warm off-white background, dark filled button as the only dark element, and project showcase cards in a clean grid",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Minimalist agency site with a single geometric sans at display sizes, pastel category cards, and generous vertical section padding",
+        "business": "Manual"
+      },
+      {
+        "why": "Scandinavian agency aesthetic with cream canvas, no shadows, and project cards using full-bleed photography with 12px corner radius",
+        "business": "Heydays"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "12px",
+        "images": "12px",
+        "buttons": "8px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "96-112px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#f8f8f2",
+        "name": "Cream Canvas",
+        "level": 0,
+        "purpose": "Page background, the warm base everything sits on"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card White",
+        "level": 1,
+        "purpose": "Nav bar, white service cards, and elevated content surfaces"
+      },
+      {
+        "hex": "#bedbff",
+        "name": "Pastel Tints",
+        "level": 2,
+        "purpose": "Colored service cards — one step above white in the visual stack"
+      }
+    ],
+    "elevation": [],
+    "northStar": "morning light on cream paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.35
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.75
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.2,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "display",
+        "size": 88,
+        "lineHeight": 1,
+        "letterSpacing": -2.2
+      },
+      {
+        "role": "display-xl",
+        "size": 96,
+        "lineHeight": 1,
+        "letterSpacing": -2.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide header",
+        "description": "White (#ffffff) bar spanning full width on the cream canvas. Left: small SVG wordmark 'Websmith' in Studio Ink at 16px. Center-left: nav links (Home, Collabs, FAQs, Blog, Contact) in 16px Studio Ink, weight 500, with the active link underlined. Right: a 8px Signal Green status dot beside '10:56 am' in 14px Studio Ink. No border, no shadow — separation comes from the white-on-cream color shift only."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero typography",
+        "description": "Single sentence at 88–96px, weight 700, line-height 1.00, letter-spacing -2.4px (-0.025em), in Studio Ink on the cream canvas. No subtitle decoration, no kicker, no buttons in the hero — the type IS the hero. Paired with a 20px weight 400 subtitle in Studio Ink at 60% opacity, left-aligned, with a 32px gap above it."
+      },
+      {
+        "name": "Collaboration Project Card",
+        "role": "Portfolio thumbnail",
+        "description": "Full-bleed image filling the card, 12px radius, no border, no shadow. White text overlaid top-left at 20px weight 600 (project name) and 14px weight 400 (collab credit). Two-column grid at 32px column gap, images at roughly 16:9 ratio. Card surface is transparent — the image itself is the card."
+      },
+      {
+        "name": "Dark Filled Button",
+        "role": "Primary action",
+        "description": "Background #1a1a1a, text #ffffff, 16px weight 500, padding 16px 24px, 8px radius. Centered as a single solitary action. No hover state change detected beyond standard opacity. Used sparingly — typically one per page section."
+      },
+      {
+        "name": "Service Category Card",
+        "role": "Feature/service tile",
+        "description": "Rounded rectangle with one of three pastel fills: Powder Blue, Mint Wash, or Blush Tint. 12px radius, 32px internal padding, label in 20px weight 600 Studio Ink at top-left, icon in 24px Studio Ink at bottom-right. Cards sit in a 2- or 3-column grid at 32px gaps. No border, no shadow — the color fill IS the visual weight."
+      },
+      {
+        "name": "Neutral Service Card",
+        "role": "Feature/service tile (default state)",
+        "description": "White (#ffffff) surface variant of the Service Category Card — same 12px radius, 32px padding, 20px label, 24px icon, but sits on the cream canvas with no color fill. Used as the 'default' or first card before the pastel tints introduce color."
+      },
+      {
+        "name": "Testimonial Block",
+        "role": "Social proof / quote",
+        "description": "Two-column layout at 64px gap. Left: square or portrait black-and-white photograph, 12px radius. Right: oversized opening quotation mark (48px Studio Ink) above a 30px weight 400 quote in Studio Ink, with 16px weight 600 name and underlined link for the attribution below at 32px gap."
+      },
+      {
+        "name": "Section Heading",
+        "role": "In-page section title",
+        "description": "30–48px weight 600 Studio Ink, left-aligned, 0px margin-bottom, with content starting at 32–48px below. No kicker, no eyebrow text — just the heading and what follows."
+      },
+      {
+        "name": "Blog List Card",
+        "role": "Editorial content entry",
+        "description": "Horizontal layout with text on left and small image on right, separated by a 1px #1a1a1a hairline border. 20px weight 600 title, 14px meta line in Studio Ink at 60% opacity. No card surface — the border IS the card."
+      },
+      {
+        "name": "Status Dot",
+        "role": "Live indicator",
+        "description": "8px diameter circle in Signal Green (#00c950) paired with 14px Studio Ink text immediately to its right. Sits in the nav bar to communicate availability — the only place a vivid color appears at small size."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer",
+        "description": "Cream canvas continuing the page surface, 96–112px top padding, 1px top border in #1a1a1a, simple text links and copyright in 14px Studio Ink. No social icons, no logo repeat — minimal closing."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface used across the system — the page commits fully to a single geometric system stack at a 96px display size with tight -0.025em tracking, which is the signature move: most agency sites use a serif display; Websmith uses a 96px geometric sans at negative tracking to create a flat, architectural, almost-Futura authority. Substitute with Inter at the same tracking.",
+        "sizes": "14, 16, 20, 30, 48, 88, 96",
+        "family": "-apple-system",
+        "weight": "400, 500, 600, 700",
+        "lineHeight": "1.00–1.50",
+        "substitute": "Inter",
+        "letterSpacing": "-0.025em"
+      }
+    ],
+    "description": "Websmith Studio is a quiet, almost monastic portfolio language built on warm cream paper and one near-black ink. The hero is typographic — a 96px sentence that carries the entire first screen — and everything else retreats to give it room. The interface is 99% achromatic; color appears only as three pastel card surfaces (powder blue, mint, blush) and a single vivid green status dot, used as functional punctuation rather than decoration. Components are flat and borderless, relying on generous whitespace, 12px image radii, and a single dark filled button to create rhythm. The system feels less like a website and more like a printed editorial spread — confident, restrained, and deliberately under-designed.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/11cfc460-807b-42c5-b10a-7b042c60f3e8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Websmith Studio design system\",\"item\":\"https://styles.refero.design/style/11cfc460-807b-42c5-b10a-7b042c60f3e8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/11cfc460-807b-42c5-b10a-7b042c60f3e8#style-reference\",\"name\":\"Websmith Studio design system reference\",\"headline\":\"Websmith Studio design system | Refero Styles\",\"description\":\"Explore Websmith Studio's light Agency design system: Cream Paper #f8f8f2, Card White #ffffff colors, -apple-system typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/11cfc460-807b-42c5-b10a-7b042c60f3e8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/11cfc460-807b-42c5-b10a-7b042c60f3e8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Websmith Studio\",\"url\":\"https://websmith.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/11cfc460-807b-42c5-b10a-7b042c60f3e8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8072af11-e8af-43f6-9070-cfdd58d1920e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8072af11-e8af-43f6-9070-cfdd58d1920e.jpg\",\"caption\":\"Screenshot of Websmith Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8072af11-e8af-43f6-9070-cfdd58d1920e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Websmith Studio design system\",\"Websmith Studio website design\",\"Websmith Studio colors\",\"Websmith Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Cream Paper\",\"Card White\",\"Studio Ink\",\"Deep Black\",\"-apple-system\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Websmith Studio design system\"},{\"@type\":\"Thing\",\"name\":\"Websmith Studio website design\"},{\"@type\":\"Thing\",\"name\":\"Websmith Studio colors\"},{\"@type\":\"Thing\",\"name\":\"Websmith Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:57:10.434Z\",\"dateModified\":\"2026-04-30T02:57:10.434Z\"}]}19:T531,**Quick Color Reference**\n- text: #1a1a1a (Studio Ink)\n- background: #f8f8f2 (Cream Paper)\n- surface/card: #ffffff (Card White)\n- border: #1a1a1a at 1px\n- accent surface (blue): #bedbff\n- accent surface (mint): #a4f4cf\n- accent surface (blush): #ffc9c9\n- status dot: #00c950\n- primary action: #1a1a1a (filled action)\n\n**Example Component Prompts**\n1. Build the hero: cream #f8f8f2 canvas, headline 'Partner for designers' at 96px system font weight 700, letter-spacing -2.4px, line-height 1.00, color #1a1a1a. Subtitle at 20px weight 400, 32px gap above it.\n2. Build a Collaboration Project Card: full-bleed image filling the card, 12px radius, white #ffffff text overlaid top-left at 20px weight 600 (title) and 14px weight 400 (collab line).\n3. Build a Service Category Card with Powder Blue (#bedbff) background: 12px radius, 32px padding, 'Build' label at 20px weight 600 in #1a1a1a top-left, 24px grid icon in #1a1a1a bottom-right.\n4. Build a Dark Filled Button: background #1a1a1a, text #ffffff, 16px weight 500, padding 16px 24px, 8px radius, centered on the page.\n5. Build a Testimonial Block: 2-column layout at 64px column gap, square 12px-radius black-and-white photo on the left, 48px opening quotation mark and 30px weight 400 quote in #1a1a1a on the right, with 16px name and underlined link attribution 32px below."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids drop shadows entirely. Elevation is expressed through color contrast between the cream canvas (#f8f8f2) and white card surfaces (#ffffff), and through generous whitespace that lets elements breathe rather than float. A shadow would break the printed-editorial metaphor."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "body",
+            "hero",
+            "link",
+            "image",
+            "button",
+            "card",
+            "icon",
+            "footer",
+            "list"
+          ],
+          "frequency": 620,
+          "confidence": 1,
+          "prominence": 55443922.166114524,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "nav/color": 19,
+            "body/color": 8,
+            "card/color": 4,
+            "hero/color": 1,
+            "icon/color": 3,
+            "link/color": 8,
+            "list/color": 5,
+            "image/color": 8,
+            "other/color": 53,
+            "footer/color": 1,
+            "heading/color": 13,
+            "nav/borderColor": 76,
+            "body/borderColor": 32,
+            "card/borderColor": 16,
+            "hero/borderColor": 4,
+            "icon/borderColor": 12,
+            "link/borderColor": 32,
+            "list/borderColor": 20,
+            "image/borderColor": 32,
+            "other/borderColor": 212,
+            "footer/borderColor": 4,
+            "heading/borderColor": 52,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#f8f8f2",
+          "oklch": {
+            "c": 0.007913245082833632,
+            "h": 106.54509580425686,
+            "l": 0.9774766224672119
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 9471036.935846811,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "card"
+          ],
+          "frequency": 111,
+          "confidence": 1,
+          "prominence": 1428550.6598134763,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 12,
+            "other/color": 6,
+            "button/color": 4,
+            "body/borderColor": 48,
+            "other/borderColor": 24,
+            "button/borderColor": 16,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#bedbff",
+          "oklch": {
+            "c": 0.059,
+            "h": 254.128,
+            "l": 0.882
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 209854,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#a4f4cf",
+          "oklch": {
+            "c": 0.093,
+            "h": 164.15,
+            "l": 0.905
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 209854,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffc9c9",
+          "oklch": {
+            "c": 0.062,
+            "h": 18.334,
+            "l": 0.885
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 209854,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 22048.965557840424,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 2,
+            "other/fill": 4
+          }
+        },
+        {
+          "hex": "#00c950",
+          "oklch": {
+            "c": 0.219,
+            "h": 149.579,
+            "l": 0.723
+          },
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 228.23460010384647,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1,
+            "body/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0024259898654666783,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.7,
+          "background": "#f8f8f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#ffffff",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.42,
+          "background": "#a4f4cf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.33,
+          "background": "#f8f8f2",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.77,
+          "background": "#bedbff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.45,
+          "background": "#ffc9c9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.61,
+          "background": "#a4f4cf",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.24,
+          "background": "#bedbff",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.98,
+          "background": "#ffc9c9",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.47,
+          "background": "#00c950",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.85,
+          "background": "#00c950",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.22,
+          "background": "#00c950",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.45,
+          "background": "#ffc9c9",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.42,
+          "background": "#bedbff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.28,
+          "background": "#a4f4cf",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.07,
+          "background": "#f8f8f2",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "image",
+            "card"
+          ],
+          "frequency": 23
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 24,
+          "corners": [
+            0,
+            0,
+            24,
+            24
+          ],
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "list",
+            "body"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginRight|nav",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|list",
+            "columnGap|list",
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "button",
+            "body"
+          ],
+          "frequency": 21,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 34,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "footer",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 176,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 183,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "-apple-system",
+          "source": "system",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 145,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "link",
+            "image",
+            "card",
+            "icon",
+            "body",
+            "footer",
+            "list"
+          ],
+          "frequency": 111,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "-apple-system",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "-apple-system",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "button",
+            "heading"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "-apple-system",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "-apple-system",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "-apple-system",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 88,
+          "family": "-apple-system",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "-apple-system",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/23b22f53-d761-429a-add0-2469bd4ddfa6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/8072af11-e8af-43f6-9070-cfdd58d1920e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/11cfc460-807b-42c5-b10a-7b042c60f3e8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Websmith Studio design system\",\"item\":\"https://styles.refero.design/style/11cfc460-807b-42c5-b10a-7b042c60f3e8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/11cfc460-807b-42c5-b10a-7b042c60f3e8#style-reference\",\"name\":\"Websmith Studio design system reference\",\"headline\":\"Websmith Studio design system | Refero Styles\",\"description\":\"Explore Websmith Studio's light Agency design system: Cream Paper #f8f8f2, Card White #ffffff colors, -apple-system typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/11cfc460-807b-42c5-b10a-7b042c60f3e8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/11cfc460-807b-42c5-b10a-7b042c60f3e8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Websmith Studio\",\"url\":\"https://websmith.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/11cfc460-807b-42c5-b10a-7b042c60f3e8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/8072af11-e8af-43f6-9070-cfdd58d1920e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/8072af11-e8af-43f6-9070-cfdd58d1920e.jpg\",\"caption\":\"Screenshot of Websmith Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/8072af11-e8af-43f6-9070-cfdd58d1920e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Websmith Studio design system\",\"Websmith Studio website design\",\"Websmith Studio colors\",\"Websmith Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Cream Paper\",\"Card White\",\"Studio Ink\",\"Deep Black\",\"-apple-system\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Websmith Studio design system\"},{\"@type\":\"Thing\",\"name\":\"Websmith Studio website design\"},{\"@type\":\"Thing\",\"name\":\"Websmith Studio colors\"},{\"@type\":\"Thing\",\"name\":\"Websmith Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:57:10.434Z\",\"dateModified\":\"2026-04-30T02:57:10.434Z\"}]}19:T531,**Quick Color Reference**\n- text: #1a1a1a (Studio Ink)\n- background: #f8f8f2 (Cream Paper)\n- surface/card: #ffffff (Card White)\n- border: #1a1a1a at 1px\n- accent surface (blue): #bedbff\n- accent surface (mint): #a4f4cf\n- accent surface (blush): #ffc9c9\n- status dot: #00c950\n- primary action: #1a1a1a (filled action)\n\n**Example Component Prompts**\n1. Build the hero: cream #f8f8f2 canvas, headline 'Partner for designers' at 96px system font weight 700, letter-spacing -2.4px, line-height 1.00, color #1a1a1a. Subtitle at 20px weight 400, 32px gap above it.\n2. Build a Collaboration Project Card: full-bleed image filling the card, 12px radius, white #ffffff text overlaid top-left at 20px weight 600 (title) and 14px weight 400 (collab line).\n3. Build a Service Category Card with Powder Blue (#bedbff) background: 12px radius, 32px padding, 'Build' label at 20px weight 600 in #1a1a1a top-left, 24px grid icon in #1a1a1a bottom-right.\n4. Build a Dark Filled Button: background #1a1a1a, text #ffffff, 16px weight 500, padding 16px 24px, 8px radius, centered on the page.\n5. Build a Testimonial Block: 2-column layout at 64px column gap, square 12px-radius black-and-white photo on the left, 48px opening quotation mark and 30px weight 400 quote in #1a1a1a on the right, with 16px name and underlined link attribution 32px below."
+}

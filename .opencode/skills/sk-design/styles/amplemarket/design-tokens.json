@@ -1,0 +1,514 @@
+{
+  "color": {
+    "phoenix-orange": {
+      "$value": "#e8400d",
+      "$type": "color",
+      "$description": "Phoenix Orange — Brand accent, hero gradient origin, marketing highlights — vivid warm orange that gives the brand its identity; Hero background gradient — radial wash from phoenix orange through cream to violet"
+    },
+    "midnight-indigo": {
+      "$value": "#10054d",
+      "$type": "color",
+      "$description": "Midnight Indigo — Deep brand surface, feature card backgrounds, text on light cards — the dark counterweight to the bright accents"
+    },
+    "charcoal": {
+      "$value": "#272625",
+      "$type": "color",
+      "$description": "Charcoal — Secondary dark surface, testimonial card backgrounds, dark UI panels — warm-tinted near-black"
+    },
+    "ink": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Ink — Primary text, heading color, filled action button background — near-black with slight warmth"
+    },
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Primary page background, card surface, text on dark surfaces"
+    },
+    "cream-wash": {
+      "$value": "#f6f5f3",
+      "$type": "color",
+      "$description": "Cream Wash — Soft surface tint, secondary card backgrounds, muted section backgrounds"
+    },
+    "ash": {
+      "$value": "#6d6c6b",
+      "$type": "color",
+      "$description": "Ash — Muted body text, secondary labels, helper copy"
+    },
+    "stone": {
+      "$value": "#b1b1af",
+      "$type": "color",
+      "$description": "Stone — Hairline borders, subtle dividers, muted placeholder"
+    },
+    "pearl": {
+      "$value": "#ecebea",
+      "$type": "color",
+      "$description": "Pearl — Subtle button backgrounds, hover states on ghost controls"
+    },
+    "petal-pink": {
+      "$value": "#ffd7f0",
+      "$type": "color",
+      "$description": "Petal Pink — Pastel accent card surface — category-coded color tile"
+    },
+    "mint-green": {
+      "$value": "#b7efb2",
+      "$type": "color",
+      "$description": "Mint Green — Pastel accent card surface — category-coded color tile"
+    },
+    "canary-yellow": {
+      "$value": "#ffef99",
+      "$type": "color",
+      "$description": "Canary Yellow — Pastel accent card surface — category-coded color tile"
+    },
+    "soft-violet": {
+      "$value": "#e2ddfd",
+      "$type": "color",
+      "$description": "Soft Violet — Pastel accent card surface — category-coded color tile"
+    },
+    "aqua": {
+      "$value": "#99fff9",
+      "$type": "color",
+      "$description": "Aqua — Gradient endpoint, hero highlight wash"
+    },
+    "indigo-deep": {
+      "$value": "#2e2460",
+      "$type": "color",
+      "$description": "Indigo Deep — Dark input field background, form surface on dark sections"
+    }
+  },
+  "font": {
+    "labil-grotesk-variable": {
+      "$value": "Labil Grotesk Variable",
+      "$type": "fontFamily",
+      "$description": "Primary typeface — geometric grotesque with variable weight axis. Weight 400 for all body, nav, and most headings (unusual restraint at large sizes); weight 900 reserved for poster-size 84px display headlines set uppercase. Negative letter-spacing scales aggressively with size: -0.05em at 56px, -0.04em at 44px, -0.03em at 36px. Body and small UI text tracks at normal or near-zero."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "56px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Labil Grotesk Variable",
+        "fontSize": "84px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 84px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "84": {
+      "$value": "84px",
+      "$type": "dimension",
+      "$description": "Spacing 84px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(17, 17, 17, 0.05) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "xl": {
+      "$value": "rgba(17, 17, 17, 0.12) 0px 26px 60px -6px, rgba(17, 17, 17, 0.02) 0px 28px 28px -14px, rgba(17, 17, 17, 0.04) 0px 6px 6px -3px, rgba(17, 17, 17, 0.04) 0px 1px 1px -0.5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "sm": {
+      "$value": "rgba(17, 17, 17, 0.02) 0px -6px 6px 0px, rgba(17, 17, 17, 0.01) 0px -23px 9px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "subtle-2": {
+      "$value": "rgba(17, 17, 17, 0.05) 0px 0px 1px 0px, rgba(17, 17, 17, 0.04) 1px 1px 1px 0px, rgba(17, 17, 17, 0.03) 2px 3px 2px 0px, rgba(17, 17, 17, 0.01) 4px 4px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "xl-2": {
+      "$value": "rgba(25, 34, 35, 0.12) 0px 26px 60px -6px, rgba(25, 34, 35, 0.02) 0px 28px 28px -14px, rgba(25, 34, 35, 0.04) 0px 6px 6px -3px, rgba(25, 34, 35, 0.04) 0px 1px 1px -0.5px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-2"
+    },
+    "subtle-3": {
+      "$value": "rgba(17, 17, 17, 0.04) 0px 1px 2px 0px, rgba(17, 17, 17, 0.04) 0px 4px 8px 0px, rgba(17, 17, 17, 0.04) 0px 0px 1px 0px, rgba(17, 17, 17, 0.04) 0px 0px 1px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background"
+    },
+    "cream-wash": {
+      "$value": "#f6f5f3",
+      "$type": "color",
+      "$description": "Surface level 1: Soft secondary surface, alternating section bands"
+    },
+    "pastel-tiles": {
+      "$value": "#ffd7f0",
+      "$type": "color",
+      "$description": "Surface level 2: Color-coded category cards (taxonomy system)"
+    },
+    "midnight-indigo": {
+      "$value": "#10054d",
+      "$type": "color",
+      "$description": "Surface level 3: Brand feature surface, deep accent cards"
+    },
+    "charcoal": {
+      "$value": "#272625",
+      "$type": "color",
+      "$description": "Surface level 4: Dark testimonial and footer surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.amplemarket.com",
+      "siteName": "Amplemarket",
+      "extractedAt": "2026-07-03T03:12:58.514Z",
+      "variant": "extended"
+    }
+  }
+}

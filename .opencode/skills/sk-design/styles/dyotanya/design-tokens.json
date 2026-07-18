@@ -1,0 +1,509 @@
+{
+  "color": {
+    "warm-paper": {
+      "$value": "#f5f5f3",
+      "$type": "color",
+      "$description": "Warm Paper — Page background, card surfaces, text on dark elements — the warm off-white that replaces pure white and gives the entire site its analog, paper-like quality"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, hairline borders, decorative line illustrations, icon strokes — the dominant neutral that carries nearly all UI information"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal — Offset hard-shadow borders on cards and buttons, secondary text, surface backgrounds for inverted elements"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Elevated card surfaces, button text on dark fills, subtle highlights"
+    },
+    "dusty-sky": {
+      "$value": "#81aed9",
+      "$type": "color",
+      "$description": "Dusty Sky — Decorative card borders, input borders, link borders, blue brand stroke — muted and desaturated so it reads as ink wash rather than digital blue"
+    },
+    "cobalt-wash": {
+      "$value": "#55a1ea",
+      "$type": "color",
+      "$description": "Cobalt Wash — Brighter blue accent for interactive borders and link states when more chromatic presence is needed than the dusty default"
+    },
+    "coral-link": {
+      "$value": "#ff8562",
+      "$type": "color",
+      "$description": "Coral Link — Inline link text color — the single warm chromatic note in the entire system, used sparingly to mark navigable text"
+    }
+  },
+  "font": {
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "System serif fallback at body size — appears as a safety net for Simeiz when custom font fails to load"
+    },
+    "simeiz": {
+      "$value": "Simeiz",
+      "$type": "fontFamily",
+      "$description": "Display and heading serif — the signature typeface. Used at 80px for hero statements, 46–48px for section titles, 24–30px for sub-headings, 16–18px for emphasis in body. Weight 300 creates thin elegant strokes; weight 400 for italic emphasis on emotional words like 'unique' and 'they are'. Free substitute: Playfair Display or DM Serif Display for the italic play, though Simeiz's high contrast is distinctive."
+    },
+    "manrope": {
+      "$value": "Manrope",
+      "$type": "fontFamily",
+      "$description": "Body, UI labels, button text, captions — handles everything functional. Tighter letter-spacing at -0.036em is the only tracked value in the system and gives a contemporary geometric counterpoint to the editorial serif headlines."
+    },
+    "suisse-intl": {
+      "$value": "Suisse Intl",
+      "$type": "fontFamily",
+      "$description": "Suisse Intl — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "14px",
+        "fontWeight": 450,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Simeiz",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Simeiz",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Manrope",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Simeiz",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Simeiz",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Simeiz",
+        "fontSize": "30px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Simeiz",
+        "fontSize": "46px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Simeiz",
+        "fontSize": "46px",
+        "fontWeight": 300,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 46px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Simeiz",
+        "fontSize": "46px",
+        "fontWeight": 300,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 46px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Simeiz",
+        "fontSize": "46px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Simeiz",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Simeiz",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Simeiz",
+        "fontSize": "80px",
+        "fontWeight": 300,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Simeiz",
+        "fontSize": "80px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 80px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1.5px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "91px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    },
+    "full-5": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full-5"
+    },
+    "full-6": {
+      "$value": "3000px",
+      "$type": "dimension",
+      "$description": "Border radius full-6"
+    },
+    "full-7": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-7"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(51, 51, 51) 5px -5px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgb(51, 51, 51) 4px -4px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#f5f5f3",
+      "$type": "color",
+      "$description": "Surface level 1: Base page canvas — warm off-white that absorbs all content like a sketchbook page"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated card surfaces for client showcases, appearing as white paper pasted onto the warm canvas"
+    },
+    "inverted": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Surface level 3: Dark surface for high-contrast sections or inverted UI moments"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://dyotanya.com/en",
+      "siteName": "Dyotanya",
+      "extractedAt": "2026-06-03T17:38:38.584Z",
+      "variant": "extended"
+    }
+  }
+}

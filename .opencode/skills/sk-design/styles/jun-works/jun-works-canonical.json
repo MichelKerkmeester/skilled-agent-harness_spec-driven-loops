@@ -1,0 +1,566 @@
+{
+  "source": "https://styles.refero.design/style/02ba867b-49e3-4ab4-ad23-c30baf345078",
+  "uuid": "02ba867b-49e3-4ab4-ad23-c30baf345078",
+  "name": "jun.works",
+  "northStar": "printed editorial zine with sticker labels — black ink on bright white, nothing else",
+  "capturedAt": "2026-07-18T07:24:39.718Z",
+  "meta": {
+    "url": "https://jun.works",
+    "siteName": "jun.works",
+    "extractedAt": "2026-06-03T21:16:05.032Z",
+    "durationMs": 26367,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 134,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 129.6px border-radius on every interactive element — no rectangles, no modest rounding",
+      "Set all display text in Standard at 45–54px with -0.045em to -0.054em letter-spacing",
+      "Render body text in Times serif with ~1.70 line-height for editorial breathing room",
+      "Anchor all content to the left edge — no centering, no max-width containers",
+      "Prefix list items with an em-dash (—) instead of bullets or numbers",
+      "Use #000000 for all borders, text, and outlines — never introduce color",
+      "Maintain #ffffff backgrounds everywhere; let the 1px black border define shape, not fill"
+    ],
+    "donts": [
+      "Never add color — no accent, no semantic green/red/yellow, no brand color",
+      "Never use box-shadow or elevation — depth comes from border definition, not shadow",
+      "Never use border-radius below 129.6px on any element",
+      "Never bold the display type — Standard ships in one weight (400) and that restraint is the system",
+      "Never use a sans-serif for body text — the serif/sans split is structural, not optional",
+      "Never center-align headings or body paragraphs",
+      "Never add imagery, photography, or illustration — the page is pure typography and label geometry"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Press Black",
+        "role": "Body text, all borders, pill outlines, button strokes — the sole ink color, used at full opacity for every foreground element",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Page canvas, card surfaces, pill fills — the only surface color, creating maximum contrast against Press Black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Smoke Gray",
+        "role": "Hairline dividers, muted outlines, secondary borders where a softer separation is needed",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed left-anchored layout with no max-width constraint. The top of the page is a single column: logo top-left, hamburger top-right, followed by a display heading and a multi-paragraph bio in Times serif. Below the bio, content shifts to a two-column grid where the left column holds 'Service' and the right column holds 'Clients', each headed by a pill-shaped inverted label. A 'Recognition' section follows in the same two-column structure. Social link pills sit at the bottom-left as a horizontal row. Sections are separated by ~52px vertical gaps. The overall rhythm is: big display statement → dense editorial paragraph → structured two-column label-and-list → social links, with no decorative dividers or section backgrounds.",
+    "imagery": "No imagery of any kind. The site contains zero photographs, illustrations, icons, or graphics. The visual language is entirely typographic — the custom display sans, the system serif body, the pill-shaped outlined labels, and the em-dash list markers carry all visual interest. The page reads as a typographic specimen or printed editorial spread.",
+    "similar": [
+      {
+        "why": "Same monochrome editorial approach with left-anchored type, two-column structured lists, and zero decorative imagery — the portfolio IS the typography",
+        "business": "Pentagram (pentagram.com)"
+      },
+      {
+        "why": "Editorial deconstruction aesthetic where the serif/sans collision, extreme tracking, and lack of color create a printed-page-on-screen feeling",
+        "business": "David Carson design archives"
+      },
+      {
+        "why": "Minimal typographic identity with pill-shaped elements, black-on-white palette, and the sense that you're looking at a printed specimen rather than a website",
+        "business": "Hato Press (hatopress.com)"
+      },
+      {
+        "why": "Type designer portfolio treatment — the page functions as a typographic resume with label-pill section markers and Times serif body text",
+        "business": "Tobias Frere-Jones studio page"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "129.6px",
+        "links": "129.6px",
+        "pills": "129.6px",
+        "buttons": "129.6px"
+      },
+      "elementGap": "13px",
+      "sectionGap": "52px",
+      "cardPadding": "19px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pill Surface",
+        "level": 1,
+        "purpose": "Interior of every pill-shaped element (buttons, links, section labels) — white fill on white canvas so only the black outline defines the shape"
+      }
+    ],
+    "northStar": "printed editorial zine with sticker labels — black ink on bright white, nothing else",
+    "typeScale": [
+      {
+        "role": "heading",
+        "size": 45,
+        "lineHeight": 1.15,
+        "letterSpacing": -2.025
+      },
+      {
+        "role": "display",
+        "size": 54,
+        "lineHeight": 1.12,
+        "letterSpacing": -2.916
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Button",
+        "role": "All clickable actions — nav toggles, social links, CTAs",
+        "description": "129.6px border-radius, 1px solid #000000 border, #ffffff fill, #000000 text. Padding approximately 5px top, 3px bottom, 18px right, 19px left. Uses Standard font. The pill shape is universal — no rounded rectangles, no sharp corners on any interactive element."
+      },
+      {
+        "name": "Pill Section Label",
+        "role": "Category headers like 'Service', 'Clients', 'Recognition'",
+        "description": "Same pill geometry as buttons: 129.6px radius, 1px #000000 border, white fill, white text on a #000000 filled version (inverted). The label sits above its content list as a visual anchor. Uses Standard font at heading size."
+      },
+      {
+        "name": "Display Heading",
+        "role": "Page-level statements and paragraph introductions",
+        "description": "Standard font, 45–54px, weight 400, letter-spacing -0.045em to -0.054em. Line-height 1.12–1.15. Single weight only — no bold, no italic. The tight tracking makes the letterforms nearly touch."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Primary prose content — bio text, descriptions",
+        "description": "Times serif, normal letter-spacing, generous line-height (~1.70). Left-aligned, no max-width constraint — text runs as far as content demands."
+      },
+      {
+        "name": "Dashed List Item",
+        "role": "Service offerings, client names, recognition entries",
+        "description": "Standard font at heading size, each line prefixed with an em-dash (—). No bullets, no markers — just the typographic dash acting as a list indicator. Lines stack with 13px vertical gap."
+      },
+      {
+        "name": "Footnote Link",
+        "role": "Superscript annotations referencing email, social, etc.",
+        "description": "Small superscript numbers in Times serif, linking to pill-shaped contact buttons. The footnote-to-pipeline pattern mimics academic citations."
+      },
+      {
+        "name": "Social Pill Row",
+        "role": "External profile links (LinkedIn, Instagram, Soot, Behance)",
+        "description": "Horizontal row of pill buttons, each 129.6px radius, 1px #000000 border, white fill. 13px gap between pills. Uses Standard font."
+      },
+      {
+        "name": "Logo Lockup",
+        "role": "Brand mark at top-left of page",
+        "description": "'jun.works™' set in Standard at display size with tight tracking. The ™ superscript is inline. No icon, no symbol — the wordmark is the logo."
+      },
+      {
+        "name": "Hamburger Toggle",
+        "role": "Menu trigger at top-right",
+        "description": "Two horizontal black lines, equal length, 1px weight. Positioned at the top-right corner, opposite the logo lockup. Minimal — no border, no pill, no label."
+      },
+      {
+        "name": "Two-Column Content Grid",
+        "role": "Service/Clients/Recognition layout",
+        "description": "Two equal columns with ~26px horizontal padding per column. Each column headed by a Pill Section Label. Content stacks vertically with 13px gaps between dashed list items."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading type only — a custom geometric sans used at two large sizes with extreme negative tracking (-0.045em to -0.054em). Also sets link and button text. The single weight (400) and tight tracking create a compressed, poster-like presence that dominates the page. No bold variant exists; hierarchy is achieved through size and tracking alone.",
+        "sizes": "45px, 54px",
+        "family": "Standard",
+        "weight": "400",
+        "lineHeight": "1.12–1.70",
+        "substitute": "Inter Tight 400, or NB International Pro Regular",
+        "letterSpacing": "-0.0540em, -0.0450em"
+      },
+      {
+        "role": "Body and micro-copy type — the system serif at 13px, used in editorial contexts (footnotes, annotations, fine print). The serif/sans collision with Standard is deliberate: the sans shouts, the serif footnotes.",
+        "sizes": "13px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Times New Roman, or any system serif"
+      }
+    ],
+    "description": "jun.works is a monochrome editorial manifest — pure black ink on white paper, no accent colors, no gradients, no imagery. The entire visual identity collapses into two ideas: a custom display sans (Standard) set at 45–54px with aggressive negative tracking, and a system serif (Times) for body at small size, creating a headline-vs-zine tension. Every interactive element is a fully rounded pill (129.6px radius) with a 1px black border, giving the page the feeling of a printed page covered in adhesive labels. The layout is left-anchored and two-columned, generous but dense, treating the portfolio as a typographic specimen rather than a product page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/02ba867b-49e3-4ab4-ad23-c30baf345078#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"jun.works design system\",\"item\":\"https://styles.refero.design/style/02ba867b-49e3-4ab4-ad23-c30baf345078\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/02ba867b-49e3-4ab4-ad23-c30baf345078#style-reference\",\"name\":\"jun.works design system reference\",\"headline\":\"jun.works design system | Refero Styles\",\"description\":\"Explore jun.works's light Design design system: Press Black #000000, Bone White #ffffff colors, Standard, Times typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/02ba867b-49e3-4ab4-ad23-c30baf345078\",\"mainEntityOfPage\":\"https://styles.refero.design/style/02ba867b-49e3-4ab4-ad23-c30baf345078\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"jun.works\",\"url\":\"https://jun.works\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/02ba867b-49e3-4ab4-ad23-c30baf345078#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/558c873b-7967-4f16-be0c-c19c12d2492b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/558c873b-7967-4f16-be0c-c19c12d2492b.jpg\",\"caption\":\"Screenshot of jun.works\"},\"image\":\"https://images.refero.design/styles/refero.design/image/558c873b-7967-4f16-be0c-c19c12d2492b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"jun.works design system\",\"jun.works website design\",\"jun.works colors\",\"jun.works typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Press Black\",\"Bone White\",\"Smoke Gray\",\"Standard\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"jun.works design system\"},{\"@type\":\"Thing\",\"name\":\"jun.works website design\"},{\"@type\":\"Thing\",\"name\":\"jun.works colors\"},{\"@type\":\"Thing\",\"name\":\"jun.works typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:13:34.771Z\",\"dateModified\":\"2026-04-30T03:13:34.771Z\"}]}19:T4f2,Quick Color Reference:\n- text: #000000\n- background: #ffffff\n- border: #000000\n- muted border: #cccccc\n- accent: none\n- primary action: no distinct CTA color\n\n3-5 Example Component Prompts:\n1. Create a display heading: 'Selected Work' in Standard font, 54px, weight 400, #000000, letter-spacing -2.916px (or -0.054em). Line-height 1.12. Left-aligned, no margin.\n\n2. Create a pill-shaped navigation button: 1px solid #000000 border, #ffffff fill, 129.6px border-radius, padding 5px 18px 3px 19px. Label text in Standard font, #000000. No shadow, no gradient.\n\n3. Create a two-column service list: Left column headed by an inverted pill label ('Service' — #000000 fill, #ffffff text, 129.6px radius), followed by lines prefixed with em-dash (—) in Standard font at 45px. Right column mirrors with 'Clients' label and client names. 26px horizontal padding per column, 13px vertical gap between items.\n\n4. Create a body paragraph: Times serif, ~1.70 line-height, #000000, left-aligned, running edge-to-edge with no max-width. Use normal letter-spacing.\n\n5. Create a social link pill row: horizontal flex of 4 pills, each with 129.6px radius, 1px #000000 border, white fill. Labels: 'LinkedIn', 'Instagram', 'Soot', 'Behance' in Standard font. 13px gap between pills."
+      }
+    ],
+    "elevationPhilosophy": "Zero elevation. No shadows, no blur, no depth effects. Form is defined entirely by 1px black outlines on white surfaces. The design treats the screen as a flat printed page where only ink and paper exist."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "heading",
+            "button"
+          ],
+          "frequency": 639,
+          "confidence": 1,
+          "prominence": 41832282.832800366,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "icon/color": 1,
+            "link/color": 11,
+            "other/color": 95,
+            "button/color": 17,
+            "heading/color": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 44,
+            "other/borderColor": 373,
+            "button/borderColor": 68,
+            "heading/borderColor": 16,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 4913515.631002563,
+          "properties": [
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/borderColor": 3
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 3428455.6227245405,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "other/borderColor": 16,
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 129.6,
+          "contexts": [
+            "link",
+            "heading",
+            "other",
+            "button"
+          ],
+          "frequency": 24
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 59,
+          "properties": [
+            "marginBottom",
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|link",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingRight|button"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingTop",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingLeft|other",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 39,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Standard",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 88,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 43,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Standard",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.12,
+          "letterSpacing": -0.054,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "Standard",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 64,
+          "lineHeight": 1.12,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "Standard",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "button"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.7,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "Standard",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.045,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/556f4070-c6d0-4384-9c39-1b7d9f2fe25d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/558c873b-7967-4f16-be0c-c19c12d2492b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/02ba867b-49e3-4ab4-ad23-c30baf345078#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"jun.works design system\",\"item\":\"https://styles.refero.design/style/02ba867b-49e3-4ab4-ad23-c30baf345078\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/02ba867b-49e3-4ab4-ad23-c30baf345078#style-reference\",\"name\":\"jun.works design system reference\",\"headline\":\"jun.works design system | Refero Styles\",\"description\":\"Explore jun.works's light Design design system: Press Black #000000, Bone White #ffffff colors, Standard, Times typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/02ba867b-49e3-4ab4-ad23-c30baf345078\",\"mainEntityOfPage\":\"https://styles.refero.design/style/02ba867b-49e3-4ab4-ad23-c30baf345078\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"jun.works\",\"url\":\"https://jun.works\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/02ba867b-49e3-4ab4-ad23-c30baf345078#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/558c873b-7967-4f16-be0c-c19c12d2492b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/558c873b-7967-4f16-be0c-c19c12d2492b.jpg\",\"caption\":\"Screenshot of jun.works\"},\"image\":\"https://images.refero.design/styles/refero.design/image/558c873b-7967-4f16-be0c-c19c12d2492b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"jun.works design system\",\"jun.works website design\",\"jun.works colors\",\"jun.works typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Press Black\",\"Bone White\",\"Smoke Gray\",\"Standard\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"jun.works design system\"},{\"@type\":\"Thing\",\"name\":\"jun.works website design\"},{\"@type\":\"Thing\",\"name\":\"jun.works colors\"},{\"@type\":\"Thing\",\"name\":\"jun.works typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:13:34.771Z\",\"dateModified\":\"2026-04-30T03:13:34.771Z\"}]}19:T4f2,Quick Color Reference:\n- text: #000000\n- background: #ffffff\n- border: #000000\n- muted border: #cccccc\n- accent: none\n- primary action: no distinct CTA color\n\n3-5 Example Component Prompts:\n1. Create a display heading: 'Selected Work' in Standard font, 54px, weight 400, #000000, letter-spacing -2.916px (or -0.054em). Line-height 1.12. Left-aligned, no margin.\n\n2. Create a pill-shaped navigation button: 1px solid #000000 border, #ffffff fill, 129.6px border-radius, padding 5px 18px 3px 19px. Label text in Standard font, #000000. No shadow, no gradient.\n\n3. Create a two-column service list: Left column headed by an inverted pill label ('Service' — #000000 fill, #ffffff text, 129.6px radius), followed by lines prefixed with em-dash (—) in Standard font at 45px. Right column mirrors with 'Clients' label and client names. 26px horizontal padding per column, 13px vertical gap between items.\n\n4. Create a body paragraph: Times serif, ~1.70 line-height, #000000, left-aligned, running edge-to-edge with no max-width. Use normal letter-spacing.\n\n5. Create a social link pill row: horizontal flex of 4 pills, each with 129.6px radius, 1px #000000 border, white fill. Labels: 'LinkedIn', 'Instagram', 'Soot', 'Behance' in Standard font. 13px gap between pills."
+}

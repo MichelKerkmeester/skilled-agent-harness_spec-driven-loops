@@ -1,0 +1,734 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#1d1d1c",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, primary borders, dark surface fills — the workhorse neutral that carries all high-contrast text and structural outlines"
+    },
+    "parchment-cream": {
+      "$value": "#f8f7f2",
+      "$type": "color",
+      "$description": "Parchment Cream — Page canvas, default body background, nav surface — warm off-white that replaces pure white to avoid sterile SaaS feel"
+    },
+    "sand-gray": {
+      "$value": "#d8d6ce",
+      "$type": "color",
+      "$description": "Sand Gray — Hairline borders, dividers, soft box-shadow base — the warm-tinted stroke that gives components a paper-on-paper quality"
+    },
+    "linen-beige": {
+      "$value": "#edeae4",
+      "$type": "color",
+      "$description": "Linen Beige — Card surfaces, elevated backgrounds, shadow tint — sits one step above Parchment Cream as the secondary surface level"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Highest-elevation surfaces, button fills, input fields — the brightest neutral reserved for the focal interactive elements"
+    },
+    "charcoal-stone": {
+      "$value": "#43423e",
+      "$type": "color",
+      "$description": "Charcoal Stone — Secondary text, muted button borders, button text on light fills — the mid-dark neutral for body copy and neutral action outlines"
+    },
+    "ash-gray": {
+      "$value": "#99978f",
+      "$type": "color",
+      "$description": "Ash Gray — Muted text, placeholder text, subtle icon strokes, disabled state borders — the warm mid-gray for de-emphasized content"
+    },
+    "slate-warm": {
+      "$value": "#7a7974",
+      "$type": "color",
+      "$description": "Slate Warm — Secondary muted text, button labels in ghost variants — one step darker than Ash Gray for slightly more legible de-emphasis"
+    },
+    "electric-violet": {
+      "$value": "#b26bf5",
+      "$type": "color",
+      "$description": "Electric Violet — Primary brand accent — the most-prominent chromatic across the system, used for highlighted card surfaces, illustration fills, and brand emphasis; vivid lavender that defines the Passionfroot identity"
+    },
+    "twilight-indigo": {
+      "$value": "#190922",
+      "$type": "color",
+      "$description": "Twilight Indigo — Dark hero section base, deep contrast text on light surfaces — the near-black plum that anchors the twilight gradient backgrounds"
+    },
+    "bubblegum-pink": {
+      "$value": "#f788d2",
+      "$type": "color",
+      "$description": "Bubblegum Pink — Accent card surface, tag pill, illustration fill — one of the pastel punctuation colors in the rainbow accent set"
+    },
+    "tangerine": {
+      "$value": "#ff9147",
+      "$type": "color",
+      "$description": "Tangerine — Accent card surface, warm illustration fill, decorative highlight — the sunset-orange accent for warmth and energy"
+    },
+    "aqua-teal": {
+      "$value": "#4ad5e8",
+      "$type": "color",
+      "$description": "Aqua Teal — Accent card surface, cool-toned illustration fill — the bright sky-cyan for variety in the multi-color accent set"
+    },
+    "sky-blue": {
+      "$value": "#51b1fb",
+      "$type": "color",
+      "$description": "Sky Blue — Accent card surface, cool illustration fill — lighter blue accent used in color card rotation"
+    },
+    "sunshine-yellow": {
+      "$value": "#ffe747",
+      "$type": "color",
+      "$description": "Sunshine Yellow — Accent card surface, highlight wash — the warm yellow accent for cheerful punctuation in card backgrounds"
+    },
+    "lavender-glow": {
+      "$value": "#b977f8",
+      "$type": "color",
+      "$description": "Lavender Glow — Decorative border, icon stroke, soft accent outline — slightly lighter than Electric Violet for outlined elements"
+    },
+    "pale-violet": {
+      "$value": "#dab2ff",
+      "$type": "color",
+      "$description": "Pale Violet — Outlined button border, soft accent stroke — the desaturated lavender for ghost/outlined action elements"
+    },
+    "lilac-mist": {
+      "$value": "#f3e8ff",
+      "$type": "color",
+      "$description": "Lilac Mist — Outlined button background wash, soft accent fill — extremely pale violet for subtle tinted button states"
+    },
+    "deep-violet": {
+      "$value": "#8200db",
+      "$type": "color",
+      "$description": "Deep Violet — Icon border, decorative stroke, bold accent outline — the saturated dark violet for iconography and emphasis strokes"
+    },
+    "coral-red": {
+      "$value": "#ee5968",
+      "$type": "color",
+      "$description": "Coral Red — Illustration fill, warm accent, character highlight — the warm coral used in the mascot and decorative artwork"
+    },
+    "mint-green": {
+      "$value": "#58df8c",
+      "$type": "color",
+      "$description": "Mint Green — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "forest-green": {
+      "$value": "#00a63e",
+      "$type": "color",
+      "$description": "Forest Green — Green decorative accent for icons, marks, and small graphic details. Use as a supporting accent, not as a status color"
+    },
+    "burnt-orange": {
+      "$value": "#eb6928",
+      "$type": "color",
+      "$description": "Burnt Orange — Icon border, warm stroke, illustrative accent — darker orange for icon outlines and warm decorative elements"
+    },
+    "deep-teal": {
+      "$value": "#2c91af",
+      "$type": "color",
+      "$description": "Deep Teal — Icon border, cool stroke, informative accent — the desaturated teal for cool-toned iconography and strokes"
+    },
+    "magenta-bloom": {
+      "$value": "#b036a4",
+      "$type": "color",
+      "$description": "Magenta Bloom — Icon border, decorative stroke, pink-magenta accent — the warm magenta for iconography and brand emphasis strokes"
+    },
+    "mint-wash": {
+      "$value": "#dcfce7",
+      "$type": "color",
+      "$description": "Mint Wash — Gray wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Use as a supporting accent, not as a status color"
+    }
+  },
+  "font": {
+    "new-kansas": {
+      "$value": "new-kansas",
+      "$type": "fontFamily",
+      "$description": "Display and heading serif — the editorial voice. new-kansas carries the brand's literary/storybook personality at 48px and 64px display sizes, with letter-spacing tightening from -0.023em at 64px to -0.010em at 16px. The 400 weight (not 700) is anti-convention: it whispers authority through restraint, letting size and letter-spacing do the work rather than weight. Font features 'calt', 'kern', 'liga' enable the custom ligatures that give new-kansas its distinctive character. Substitute with 'DM Serif Display' or 'Source Serif Pro' for close character."
+    },
+    "nunito-sans": {
+      "$value": "Nunito Sans",
+      "$type": "fontFamily",
+      "$description": "UI and body sans-serif — the functional workhorse. Nunito Sans covers everything below the headline: nav links, button text, body copy, card labels, form inputs, footer text. Weights range from 400 (body) to 700 (emphasis). Letter-spacing tightens to -0.012em at larger sizes. Font features 'kern', 'liga' for clean rendering. Its rounded geometric character complements the 3D mascot aesthetic. Substitute with 'Inter' or 'DM Sans'."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 12px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 12px"
+    },
+    "xs-12": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-12 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "new-kansas",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "new-kansas",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "new-kansas",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "new-kansas",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "new-kansas",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "new-kansas",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "new-kansas",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "new-kansas",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "new-kansas",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "73": {
+      "$value": "73px",
+      "$type": "dimension",
+      "$description": "Spacing 73px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(237, 234, 228) 0px 0px 0px 1px, oklch(0.23 0.002 98 / 0.04) 0px 1px 1px -0.5px, oklch(0.23 0.002 98 / 0.04) 0px 3px 3px -1.5px, oklch(0.23 0.002 98 / 0.04) 0px 6px 6px -3px, oklch(0.23 0.002 98 / 0.02) 0px 12px 12px -6px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "oklch(0.958 0.007 98) 0px 0px 0px 1px, oklch(0.23 0.002 98 / 0.02) 0px 1px 1px -0.5px, oklch(0.23 0.002 98 / 0.02) 0px 3px 3px -1.5px, oklch(0.23 0.002 98 / 0.02) 0px 6px 6px -3px, oklch(0.23 0.002 98 / 0.00999999) 0px 12px 12px -6px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "oklch(0.876 0.011 98) 0px 0px 0px 1px, oklch(0.23 0.002 98 / 0.04) 0px 1px 1px -0.5px, oklch(0.23 0.002 98 / 0.04) 0px 3px 3px -1.5px, oklch(0.23 0.002 98 / 0.04) 0px 6px 6px -3px, oklch(0.23 0.002 98 / 0.02) 0px 12px 12px -6px, oklch(0.23 0.002 98 / 0.02) 0px 24px 24px -12px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    },
+    "subtle-4": {
+      "$value": "oklch(0.23 0.002 98 / 0.02) 0px 1px 1px -0.5px, oklch(0.23 0.002 98 / 0.02) 0px 3px 3px -1.5px, oklch(0.23 0.002 98 / 0.02) 0px 6px 6px -3px, oklch(0.23 0.002 98 / 0.00999999) 0px 12px 12px -6px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-4"
+    },
+    "subtle-5": {
+      "$value": "rgba(255, 255, 255, 0.2) 0px 0px 0px 3px, rgba(255, 255, 255, 0.3) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-5"
+    },
+    "subtle-6": {
+      "$value": "rgba(255, 255, 255, 0.2) 0px 0px 0px 3px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-6"
+    },
+    "subtle-7": {
+      "$value": "oklab(0.999994 0.0000455678 0.0000200868 / 0.07) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.04) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.1) 0px 2px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-7"
+    },
+    "subtle-8": {
+      "$value": "rgba(255, 255, 255, 0.2) 0px 0px 0px 1px, rgba(255, 255, 255, 0.06) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.12) 0px 2px 6px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-8"
+    }
+  },
+  "surface": {
+    "twilight-sky": {
+      "$value": "#190922",
+      "$type": "color",
+      "$description": "Surface level 0: Hero section background base — dark indigo gradient field with starfield and cloud illustration"
+    },
+    "parchment-canvas": {
+      "$value": "#f8f7f2",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background — warm cream that replaces pure white for the editorial feel"
+    },
+    "linen-card": {
+      "$value": "#edeae4",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary card surface — one step above canvas for subtle depth"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Elevated card, button fill, input field — the brightest interactive surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.passionfroot.me",
+      "siteName": "Passionfroot",
+      "extractedAt": "2026-06-03T22:08:16.147Z",
+      "variant": "extended"
+    }
+  }
+}

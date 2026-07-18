@@ -1,0 +1,1901 @@
+{
+  "source": "https://styles.refero.design/style/d271a6c4-942f-4abf-a3de-66795f15f031",
+  "uuid": "d271a6c4-942f-4abf-a3de-66795f15f031",
+  "name": "Sauce Labs",
+  "northStar": "Neon-lit command center on obsidian glass — a dark engineering console where a single green pulse marks every live signal.",
+  "capturedAt": "2026-07-18T09:20:44.173Z",
+  "meta": {
+    "url": "https://saucelabs.com",
+    "siteName": "Sauce Labs",
+    "extractedAt": "2026-06-03T20:01:57.689Z",
+    "durationMs": 37242,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1179,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #3ddc91 exclusively for primary actions, active states, and the announcement bar — ration it to preserve its signal weight",
+      "Set all buttons to 56px border-radius for the fully pill-shaped interactive language",
+      "Use 60px radius for large content cards and 20px for smaller nested cards",
+      "Place uppercase eyebrow labels (AeonikFono 9px, 0.45px tracking) above section headlines as structural anchors",
+      "Alternate between dark #132322 bands and light #edf7f5 content cards to create section rhythm through luminance contrast",
+      "Set Aeonik body text to weight 400 with -0.08px tracking at 16px for the clean geometric feel",
+      "Use #0e1a19 for nested dark surfaces to create depth within the obsidian shell without introducing new hues"
+    ],
+    "donts": [
+      "Don't apply #3ddc48 or any green to decorative non-interactive elements — the accent only works as a live signal because it's rationed",
+      "Don't use square or slightly-rounded buttons — the 56px pill is non-negotiable for system identity",
+      "Don't place light cards directly adjacent to each other without a dark band between them",
+      "Don't use box shadows heavier than rgba(0,0,0,0.04) — depth comes from luminance layers, not drop shadows",
+      "Don't use color gradients — the system is entirely flat with luminance-defined depth",
+      "Don't use body weight above 400 or display weight above 500 — the thin weights are the signature",
+      "Don't introduce new chromatic colors beyond the defined palette — green, yellow, and white are the only voices"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#132322",
+        "name": "Obsidian Shell",
+        "role": "Primary page background, dark navigation, dark card surfaces — the structural canvas that absorbs everything else and makes the green accent feel electric by contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Primary text on dark surfaces, card content backgrounds, light section canvases — maximum contrast against the obsidian shell",
+        "group": "neutral"
+      },
+      {
+        "hex": "#edf7f5",
+        "name": "Mint Frost",
+        "role": "Light content card surfaces, elevated feature panels — the bright counterpoint that breaks up dark sections and hosts detailed content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0e1a19",
+        "name": "Deep Abyss",
+        "role": "Darker surface variant for nested elements, deep card backgrounds, gradient endpoints — pushes further into the void when extra depth is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#070f0f",
+        "name": "Charcoal",
+        "role": "Darkest surface for overlays, modals, and maximum-contrast panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d0d3d3",
+        "name": "Fog Border",
+        "role": "Hairline dividers and borders on light surfaces — quiet structural lines that never compete with content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b2b6b4",
+        "name": "Stone Border",
+        "role": "Medium borders on light cards, secondary dividers, subtle frame lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#828786",
+        "name": "Slate Text",
+        "role": "Muted body text, captions on light backgrounds, secondary labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#424f4f",
+        "name": "Graphite Fill",
+        "role": "Icon fills, decorative SVG strokes on light sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "SVG icon fills, high-contrast decorative strokes — graphic asset workhorse",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3ddc91",
+        "name": "Neon Pulse",
+        "role": "Green action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "brand"
+      },
+      {
+        "hex": "#97ddbc",
+        "name": "Mint Whisper",
+        "role": "Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffcd48",
+        "name": "Signal Yellow",
+        "role": "Accent fills within isometric illustrations and product mockups — a warm punctuation that breaks the green monochrome and adds dimensional interest to graphics",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with max-width 1200px content containers. The hero is a split composition: left-aligned headline and CTAs (roughly 50% width) with a right-aligned isometric product illustration. Section rhythm alternates between dark structural bands and light content cards (mint frost #edf7f5) that float on the dark background. Logo bar uses evenly-spaced dark tiles in a single row. Feature sections use centered headline stacks with tab-pill navigation below. Stats appear as a horizontal row of large green numbers with small uppercase labels. Navigation is a single dark bar with logo left, centered nav items, and CTA cluster right. The overall feel is a dark dashboard with bright content cards rising from it.",
+    "imagery": "The visual language centers on isometric product illustrations — a 3D phone rendering with stacked colored cards representing product modules (AI-Powered Insights, Mobile App Testing, Web Testing, Model App Distribution, Error Reporting, Visual Testing). Illustrations use flat geometric shapes with soft shadows, brand greens (#3ddc91, #97ddbc) and signal yellow (#ffcd48) for card surfaces, and thin connector lines linking modules. Product screenshots appear in dashboard mockup panels with realistic UI chrome. Logo bars for social proof use dark tile containers with white monochrome logos. No photography — the product itself is the hero, rendered as 3D isometric and flat UI mockups.",
+    "similar": [
+      {
+        "why": "Same dark-canvas + single-accent approach with pill-shaped CTAs and minimal shadow — both treat the dark background as a stage for a single luminous signal color",
+        "business": "Vercel"
+      },
+      {
+        "why": "Identical dark navigation, restrained green accent on interactive states, geometric sans typography, and the same sense of a product-first engineering tool",
+        "business": "Linear"
+      },
+      {
+        "why": "Dark devtools dashboard aesthetic with monospace-influenced geometric sans, flat surfaces, and accent colors reserved for live data signals",
+        "business": "Datadog"
+      },
+      {
+        "why": "Dark hero with vivid single-color accent, generous card radii, uppercase tracked-out eyebrow labels, and alternating dark/light content bands",
+        "business": "Resend"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tabs": "56px",
+        "cards": "20px",
+        "buttons": "56px",
+        "largeCards": "60px",
+        "smallElements": "10px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#132322",
+        "name": "Obsidian Canvas",
+        "level": 1,
+        "purpose": "Primary page background — the dark structural plane"
+      },
+      {
+        "hex": "#0e1a19",
+        "name": "Deep Card",
+        "level": 2,
+        "purpose": "Nested dark cards, logo bar tiles, stat containers"
+      },
+      {
+        "hex": "#edf7f5",
+        "name": "Mint Card",
+        "level": 3,
+        "purpose": "Light content cards floating on the dark canvas"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White Panel",
+        "level": 4,
+        "purpose": "Product screenshots, dashboard previews, maximum-light surfaces"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.04) 1px 0px 9px 2px",
+        "element": "Light content card"
+      },
+      {
+        "style": "none — relies on #0e1a19 against #132322 for depth",
+        "element": "Dark stat tile"
+      }
+    ],
+    "northStar": "Neon-lit command center on obsidian glass — a dark engineering console where a single green pulse marks every live signal.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.45
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.08
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.45
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.96
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1.22
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.12
+      },
+      {
+        "role": "display",
+        "size": 64,
+        "lineHeight": 1.1
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button (Pill)",
+        "role": "Main conversion action — sign up, try free, get started",
+        "description": "56px border-radius (fully pill-shaped). Background: #3ddc91 (Neon Pulse). Text: #132322, Aeonik 16px weight 400, letter-spacing -0.08px. Padding: 14px 28px. No border. On hover, slightly brightens. This is the single most prominent interactive element in the system."
+      },
+      {
+        "name": "Ghost CTA Button (Pill)",
+        "role": "Secondary action — book demo, learn more",
+        "description": "56px border-radius. Background: transparent. Border: 1.5px solid #ffffff. Text: #ffffff, Aeonik 16px weight 400. Padding: 14px 28px. Pairs directly beside the primary green pill in the nav and hero."
+      },
+      {
+        "name": "Dark Text Button",
+        "role": "Tertiary nav action — Book a Demo in top bar",
+        "description": "No background, no border. Text: #ffffff, Aeonik 15px weight 400. Minimal padding. Sits left of the CTA cluster in navigation."
+      },
+      {
+        "name": "Announcement Banner",
+        "role": "Top-of-page promotional strip",
+        "description": "Full-width bar. Background: #3ddc91 (Neon Pulse). Text: #132322, Aeonik 14px weight 400. Small close (×) button on the right. Creates immediate green punctuation at the page entry point."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Full-width dark bar. Background: #132322. Logo left, nav items centered (Aeonik 15px white, with dropdown chevrons), CTA cluster right. No visible border or shadow — sits directly on the dark canvas."
+      },
+      {
+        "name": "Stat Block",
+        "role": "Social proof metrics below hero",
+        "description": "Horizontal row. Number: #3ddc91, AeonikFono 48px weight 500. Label: #ffffff at ~50% opacity, Aeonik 9px weight 400, letter-spacing 0.45px, uppercase. No container — floats directly on the dark hero background."
+      },
+      {
+        "name": "Logo Bar Tile",
+        "role": "Enterprise social proof — client logos",
+        "description": "Dark rounded card (60px radius, background: #0e1a19) containing a white monochrome logo. Arranged in a horizontal row with even spacing. Logos sit at white or light gray for contrast against the dark tile."
+      },
+      {
+        "name": "Light Content Card",
+        "role": "Feature section container — platform overviews, product modules",
+        "description": "60px border-radius. Background: #edf7f5 (Mint Frost). Padding: 48px internal. Shadow: rgba(0,0,0,0.04) 1px 0px 9px 2px. Contains headline, description text, tab navigation, and product preview. The bright counterpoint to the dark page."
+      },
+      {
+        "name": "Tab Pill Navigation",
+        "role": "Feature section content switcher",
+        "description": "Horizontal row of pill-shaped tabs. Active tab: 56px radius, #3ddc91 background, #132322 text. Inactive tabs: 56px radius, transparent background, #828786 text. Padding: 12px 24px. Arrow chevrons at both ends for overflow indication."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Section category indicator above headlines",
+        "description": "AeonikFono 9px weight 400, letter-spacing 0.45px, uppercase. Color: #132322 on light cards, #3ddc91 on dark sections. Examples: 'ENTERPRISE-READY. AI-DRIVEN. ONE UNIFIED VIEW.'"
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Primary page-level value proposition",
+        "description": "AeonikFono 64px weight 500, line-height 1.10, color #ffffff on dark hero. Multi-line, left-aligned. The largest text element on the page — sets the tone for everything below."
+      },
+      {
+        "name": "Isometric Product Illustration",
+        "role": "Visual product representation in hero",
+        "description": "3D isometric phone rendering with stacked colored module cards (green #3ddc91, mint #97ddbc, yellow #ffcd48, light gray). Thin connecting lines and small floating elements (Test, Build, Deploy, Operate labels). Sits on the right side of the hero split."
+      },
+      {
+        "name": "Product Screenshot Panel",
+        "role": "Dashboard or UI preview within content cards",
+        "description": "Embedded within Mint Frost content cards. Shows realistic product UI with browser chrome, dashboard widgets, and data visualizations. Background: #ffffff for the screen area, #0e1a19 for the chrome frame."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body and UI text — the workhorse typeface for paragraphs, button labels, nav items, card content, and form fields. Clean geometric humanist sans at weight 400, tightly tracked at body sizes (-0.08px at 16px).",
+        "sizes": "15px, 16px, 18px, 20px, 24px",
+        "family": "Aeonik",
+        "weight": "400",
+        "lineHeight": "1.20–1.50",
+        "substitute": "Inter",
+        "letterSpacing": "-0.08px at 16px body, 0.96px at 24px subheading",
+        "fontFeatureSettings": "\"ss01\" on, \"cv11\" on"
+      },
+      {
+        "role": "Display, headings, and uppercase eyebrow labels. Weight 500 for the largest display sizes (40–64px) to anchor the hierarchy; weight 400 for 14–32px headings and 9px all-caps labels with 0.05em tracking. The 9px tracked-out caps create the small structural labels that sit above section titles.",
+        "sizes": "9px, 14px, 16px, 24px, 32px, 40px, 48px, 64px",
+        "family": "AeonikFono",
+        "weight": "400 500",
+        "lineHeight": "1.10–1.30",
+        "substitute": "Inter Display",
+        "letterSpacing": "0.45px at 9px caption (0.05em), 0.05em throughout"
+      }
+    ],
+    "description": "Sauce Labs operates as a neon-lit engineering console: deep obsidian canvas (#132322) with white precision typography and a single vivid green (#3ddc91) that activates every interactive surface. The system alternates between dark structural bands and light content cards (#edf7f5), creating rhythm through luminance contrast rather than ornament or elevation. Components are confident and generously rounded — 56px pill buttons, 20px card radii, minimal shadow — reading as high-end developer tooling where the product's intelligence is the visual subject. The green accent is rationed: it appears on primary actions, active tab states, announcement bars, and stat highlights, never as decoration, which gives it real semantic weight.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d271a6c4-942f-4abf-a3de-66795f15f031#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sauce Labs design system\",\"item\":\"https://styles.refero.design/style/d271a6c4-942f-4abf-a3de-66795f15f031\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d271a6c4-942f-4abf-a3de-66795f15f031#style-reference\",\"name\":\"Sauce Labs design system reference\",\"headline\":\"Sauce Labs design system | Refero Styles\",\"description\":\"Explore Sauce Labs's dark Dev Tools design system: Obsidian Shell #132322, Pure White #ffffff colors, Aeonik, AeonikFono typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/d271a6c4-942f-4abf-a3de-66795f15f031\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d271a6c4-942f-4abf-a3de-66795f15f031\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Sauce Labs\",\"url\":\"https://saucelabs.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d271a6c4-942f-4abf-a3de-66795f15f031#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/463538c7-1d98-4889-a06d-5cb16474bc4e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/463538c7-1d98-4889-a06d-5cb16474bc4e.jpg\",\"caption\":\"Screenshot of Sauce Labs\"},\"image\":\"https://images.refero.design/styles/refero.design/image/463538c7-1d98-4889-a06d-5cb16474bc4e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Sauce Labs design system\",\"Sauce Labs website design\",\"Sauce Labs colors\",\"Sauce Labs typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Obsidian Shell\",\"Pure White\",\"Mint Frost\",\"Deep Abyss\",\"Aeonik\",\"AeonikFono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Sauce Labs design system\"},{\"@type\":\"Thing\",\"name\":\"Sauce Labs website design\"},{\"@type\":\"Thing\",\"name\":\"Sauce Labs colors\"},{\"@type\":\"Thing\",\"name\":\"Sauce Labs typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-05-07T02:06:16.518Z\",\"dateModified\":\"2026-05-07T02:06:16.518Z\"}]}19:T53e,**Quick Color Reference**\n- text on dark: #ffffff\n- text on light: #132322\n- dark canvas: #132322\n- light card: #edf7f5\n- border (light): #d0d3d3\n- primary action: #3ddc91 (filled action)\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #3ddc91 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Build a stat block row: Four columns on #132322 background. Each shows a number in AeonikFono 48px weight 500, color #3ddc91, with a label below in AeonikFono 9px weight 400, letter-spacing 0.45px, uppercase, color #ffffff at 50% opacity.\n\n3. Build a light content card: 60px border-radius, background #edf7f5, padding 48px. Eyebrow label in AeonikFono 9px weight 400, letter-spacing 0.45px, uppercase, color #132322. Headline in AeonikFono 40px weight 500, color #132322, line-height 1.20. Body text in Aeonik 16px, color #132322.\n\n4. Build a tab pill navigation row: Five pill tabs, each 56px radius, 12px 24px padding. Active tab: #3ddc91 background, #132322 text. Inactive: transparent background, #828786 text. Aeonik 16px weight 400 throughout. Left/right chevron arrows in #828786.\n\n5. Build a logo bar: Row of five tiles, each 60px border-radius, #0e1a19 background, 120px tall. Inside each: white monochrome client logo, centered. Even 24px gap between tiles."
+      },
+      {
+        "title": "Dark/Light Rhythm",
+        "content": "The page oscillates between dark structural sections and light content cards. Dark sections host: navigation, hero, stats, CTA bands, footer. Light cards (Mint Frost #edf7f5, 60px radius) float on the dark canvas to host: feature deep-dives, platform overviews, product module breakdowns. This luminance alternation replaces the need for section dividers, borders, or heavy shadows. Never place a light card on a light card or a dark card on a dark card — the contrast is the structure."
+      }
+    ],
+    "elevationPhilosophy": "Shadow is used as a whisper, not a declaration. The primary depth technique is luminance layering: #132322 → #0e1a19 → #edf7f5. When shadows appear, they are barely-perceptible (0.04 opacity) on light cards, making them feel like they are catching ambient room light rather than floating above the page."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#132322",
+          "oklch": {
+            "c": 0.021730726039861845,
+            "h": 190.80810768332896,
+            "l": 0.2415530451877715
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "icon",
+            "button",
+            "card",
+            "heading"
+          ],
+          "frequency": 1954,
+          "confidence": 1,
+          "prominence": 90742918.62575996,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 41,
+            "card/color": 34,
+            "icon/color": 3,
+            "link/color": 18,
+            "other/fill": 1,
+            "other/color": 290,
+            "button/color": 2,
+            "heading/color": 16,
+            "body/borderColor": 164,
+            "card/borderColor": 116,
+            "icon/borderColor": 12,
+            "link/borderColor": 72,
+            "other/borderColor": 1100,
+            "heading/borderColor": 64,
+            "other/backgroundColor": 21
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "heading",
+            "icon",
+            "card"
+          ],
+          "frequency": 1362,
+          "confidence": 1,
+          "prominence": 76860727.93899761,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 38,
+            "body/color": 41,
+            "icon/color": 17,
+            "link/color": 42,
+            "other/fill": 24,
+            "icon/stroke": 4,
+            "other/color": 149,
+            "button/color": 3,
+            "other/stroke": 4,
+            "heading/color": 5,
+            "body/borderColor": 164,
+            "icon/borderColor": 68,
+            "link/borderColor": 168,
+            "other/borderColor": 592,
+            "button/borderColor": 16,
+            "heading/borderColor": 20,
+            "card/backgroundColor": 4,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "other",
+            "card"
+          ],
+          "frequency": 457,
+          "confidence": 1,
+          "prominence": 11996470.149963504,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 371,
+            "button/color": 8,
+            "other/stroke": 22,
+            "card/borderColor": 20,
+            "other/borderColor": 8,
+            "button/borderColor": 28
+          }
+        },
+        {
+          "hex": "#3ddc91",
+          "oklch": {
+            "c": 0.16876343519990225,
+            "h": 157.72220323910858,
+            "l": 0.7955776208270608
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "card"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 7070212.803844589,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/color": 1,
+            "button/color": 1,
+            "heading/color": 1,
+            "other/borderColor": 20,
+            "heading/borderColor": 4,
+            "card/backgroundColor": 3,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#edf7f5",
+          "oklch": {
+            "c": 0.01088803548754275,
+            "h": 182.87564621059894,
+            "l": 0.9680983798101933
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2398940,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#0e1a19",
+          "oklch": {
+            "c": 0.017218174914717884,
+            "h": 189.3333765581522,
+            "l": 0.20608352329071092
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 2303920.3859497802,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffcd48",
+          "oklch": {
+            "c": 0.15419265060403478,
+            "h": 87.50213071153796,
+            "l": 0.8698111631904263
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1478580,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#97ddbc",
+          "oklch": {
+            "c": 0.08459142199447882,
+            "h": 163.6135178166721,
+            "l": 0.8430054318013991
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 703992,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 612422.4354207787,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 22
+          }
+        },
+        {
+          "hex": "#b2b6b4",
+          "oklch": {
+            "c": 0.005277174261843571,
+            "h": 164.96371749631135,
+            "l": 0.7724864663666187
+          },
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 269913.3499348159,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/color": 2,
+            "heading/color": 1,
+            "body/borderColor": 8,
+            "other/borderColor": 8,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#d0d3d3",
+          "oklch": {
+            "c": 0.0032868448806464136,
+            "h": 197.09644852698213,
+            "l": 0.8645244755920743
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "confidence": 1,
+          "prominence": 130485.36952912658,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 28
+          }
+        },
+        {
+          "hex": "#828786",
+          "oklch": {
+            "c": 0.005489626137613293,
+            "h": 189.08980584405256,
+            "l": 0.6181886418116429
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 130177.59464567584,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 14
+          }
+        },
+        {
+          "hex": "#424f4f",
+          "oklch": {
+            "c": 0.01650059580807197,
+            "h": 196.53483835729517,
+            "l": 0.41627661092892104
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 106159,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#dca578",
+          "oklch": {
+            "c": 0.0884806286533814,
+            "h": 60.213802203283336,
+            "l": 0.7631265997036272
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 89469,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#243b3a",
+          "oklch": {
+            "c": 0.028909804212934456,
+            "h": 192.38341815015193,
+            "l": 0.33297690521059664
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 81195.50355011616,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#070f0f",
+          "oklch": {
+            "c": 0.012680767769474676,
+            "h": 195.95719739366865,
+            "l": 0.16002418191687612
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 55424.55368771811,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#192b29",
+          "oklch": {
+            "c": 0.02405572338976556,
+            "h": 187.06377863755264,
+            "l": 0.2726809157998027
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 55424.55368771811,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#899191",
+          "oklch": {
+            "c": 0.009347621802672427,
+            "h": 192.42564938346052,
+            "l": 0.6499350931649085
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 21115.61409490567,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#757575",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5634349923635189
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 4135.94000115385,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 1,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#b1f1d3",
+          "oklch": {
+            "c": 0.0765531816617434,
+            "h": 164.24679298651245,
+            "l": 0.9068829592064697
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2172,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#60bf89",
+          "oklch": {
+            "c": 0.1208553255143236,
+            "h": 156.70440369942477,
+            "l": 0.7319851862183117
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1992.2978634064932,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#a0a5a5",
+          "oklch": {
+            "c": 0.005718042073124064,
+            "h": 197.0291553707772,
+            "l": 0.7178816530830348
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1292,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#fcd1c4",
+          "oklch": {
+            "c": 0.05187959581109682,
+            "h": 37.47500084213262,
+            "l": 0.8940850536474131
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1007,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#1f1f1f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23929237775790413
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 188.61053758581758,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.03466736748575559,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.37,
+          "background": "#070f0f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.22,
+          "background": "#edf7f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.79,
+          "background": "#0e1a19",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.73,
+          "background": "#edf7f5",
+          "foreground": "#070f0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.48,
+          "background": "#ffffff",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.39,
+          "background": "#b1f1d3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.28,
+          "background": "#edf7f5",
+          "foreground": "#0e1a19"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.26,
+          "background": "#ffffff",
+          "foreground": "#132322"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.12,
+          "background": "#b1f1d3",
+          "foreground": "#070f0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.09,
+          "background": "#edf7f5",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.06,
+          "background": "#fcd1c4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.89,
+          "background": "#edf7f5",
+          "foreground": "#132322"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.8,
+          "background": "#192b29",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.08,
+          "background": "#ffcd48",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.94,
+          "background": "#d0d3d3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.89,
+          "background": "#b1f1d3",
+          "foreground": "#0e1a19"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.89,
+          "background": "#fcd1c4",
+          "foreground": "#070f0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.55,
+          "background": "#edf7f5",
+          "foreground": "#192b29"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.38,
+          "background": "#97ddbc",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 18
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.04) 1px 0px 9px 2px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "icon",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|body",
+            "paddingTop|link",
+            "paddingTop|icon",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginLeft|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 38,
+          "properties": [
+            "marginLeft",
+            "marginRight",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginRight|body",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "icon",
+            "button",
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|icon",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 61,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginLeft",
+            "marginRight",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginLeft|other",
+            "marginRight|other",
+            "marginRight|button",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "marginLeft|button",
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "card",
+            "heading",
+            "body"
+          ],
+          "frequency": 120,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "marginRight|card",
+            "marginLeft|card",
+            "marginRight|other",
+            "marginTop|heading",
+            "marginTop|body",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "button",
+            "card",
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 96,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginTop|card",
+            "marginLeft|other",
+            "marginTop|heading",
+            "marginTop|body",
+            "marginTop|link",
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card",
+            "body"
+          ],
+          "frequency": 25,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|body",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 23,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 45,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 95,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "paddingTop|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Aeonik",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 623,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "AeonikFono",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 96,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "AeonikFono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "AeonikFono",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "AeonikFono",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "icon",
+            "body",
+            "card"
+          ],
+          "frequency": 562,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "AeonikFono",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "AeonikFono",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "AeonikFono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 46,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.45,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Aeonik",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "AeonikFono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "AeonikFono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "AeonikFono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "AeonikFono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.12,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "AeonikFono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "AeonikFono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/cbe92249-5dbd-4539-8b16-8f8ee3e57c34.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/463538c7-1d98-4889-a06d-5cb16474bc4e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d271a6c4-942f-4abf-a3de-66795f15f031#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sauce Labs design system\",\"item\":\"https://styles.refero.design/style/d271a6c4-942f-4abf-a3de-66795f15f031\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d271a6c4-942f-4abf-a3de-66795f15f031#style-reference\",\"name\":\"Sauce Labs design system reference\",\"headline\":\"Sauce Labs design system | Refero Styles\",\"description\":\"Explore Sauce Labs's dark Dev Tools design system: Obsidian Shell #132322, Pure White #ffffff colors, Aeonik, AeonikFono typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/d271a6c4-942f-4abf-a3de-66795f15f031\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d271a6c4-942f-4abf-a3de-66795f15f031\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Sauce Labs\",\"url\":\"https://saucelabs.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d271a6c4-942f-4abf-a3de-66795f15f031#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/463538c7-1d98-4889-a06d-5cb16474bc4e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/463538c7-1d98-4889-a06d-5cb16474bc4e.jpg\",\"caption\":\"Screenshot of Sauce Labs\"},\"image\":\"https://images.refero.design/styles/refero.design/image/463538c7-1d98-4889-a06d-5cb16474bc4e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Sauce Labs design system\",\"Sauce Labs website design\",\"Sauce Labs colors\",\"Sauce Labs typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Obsidian Shell\",\"Pure White\",\"Mint Frost\",\"Deep Abyss\",\"Aeonik\",\"AeonikFono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Sauce Labs design system\"},{\"@type\":\"Thing\",\"name\":\"Sauce Labs website design\"},{\"@type\":\"Thing\",\"name\":\"Sauce Labs colors\"},{\"@type\":\"Thing\",\"name\":\"Sauce Labs typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-05-07T02:06:16.518Z\",\"dateModified\":\"2026-05-07T02:06:16.518Z\"}]}19:T53e,**Quick Color Reference**\n- text on dark: #ffffff\n- text on light: #132322\n- dark canvas: #132322\n- light card: #edf7f5\n- border (light): #d0d3d3\n- primary action: #3ddc91 (filled action)\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #3ddc91 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Build a stat block row: Four columns on #132322 background. Each shows a number in AeonikFono 48px weight 500, color #3ddc91, with a label below in AeonikFono 9px weight 400, letter-spacing 0.45px, uppercase, color #ffffff at 50% opacity.\n\n3. Build a light content card: 60px border-radius, background #edf7f5, padding 48px. Eyebrow label in AeonikFono 9px weight 400, letter-spacing 0.45px, uppercase, color #132322. Headline in AeonikFono 40px weight 500, color #132322, line-height 1.20. Body text in Aeonik 16px, color #132322.\n\n4. Build a tab pill navigation row: Five pill tabs, each 56px radius, 12px 24px padding. Active tab: #3ddc91 background, #132322 text. Inactive: transparent background, #828786 text. Aeonik 16px weight 400 throughout. Left/right chevron arrows in #828786.\n\n5. Build a logo bar: Row of five tiles, each 60px border-radius, #0e1a19 background, 120px tall. Inside each: white monochrome client logo, centered. Even 24px gap between tiles."
+}

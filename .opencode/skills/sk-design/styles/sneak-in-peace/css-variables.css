@@ -1,0 +1,72 @@
+:root {
+  /* Colors */
+  --color-ink-black: #000000;
+  --color-charcoal: #3d3d3d;
+  --color-concrete: #9e9e9e;
+  --color-ash: #b5b5b5;
+  --color-smoke: #8d8d8d;
+  --color-paper-white: #ffffff;
+  --color-bone: #f0eeed;
+  --color-liberty-navy: #142161;
+  --color-signal-red: #ba2223;
+
+  /* Typography — Font Families */
+  --font-ntneuss: 'NTNeuss', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-recklessneue-book: 'RecklessNeue-Book', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.5;
+  --text-body-sm: 11px;
+  --leading-body-sm: 1.5;
+  --text-body: 12px;
+  --leading-body: 1.5;
+  --text-body-lg: 13px;
+  --leading-body-lg: 1.5;
+  --text-heading-sm: 14px;
+  --leading-heading-sm: 1.5;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-5: 5px;
+  --spacing-6: 6px;
+  --spacing-7: 7px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-11: 11px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+
+  /* Layout */
+  --page-max-width: 420px;
+  --card-padding: 16px;
+  --element-gap: 6px;
+
+  /* Border Radius */
+  --radius-md: 6px;
+  --radius-3xl: 26px;
+
+  /* Named Radii */
+  --radius-cards: 6px;
+  --radius-badges: 6px;
+  --radius-inputs: 6px;
+  --radius-avatars: 26px;
+  --radius-buttons: 6px;
+
+  /* Shadows */
+  --shadow-sm: rgba(0, 0, 0, 0.08) 1px 1px 6px -1px;
+
+  /* Surfaces */
+  --surface-media-backdrop: #ffffff;
+  --surface-glass-panel: #ffffff;
+  --surface-card-surface: #ffffff;
+  --surface-bone-highlight: #f0eeed;
+}

@@ -1,0 +1,314 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void Black — Primary canvas, page background — deepest layer of the dark surface stack"
+    },
+    "obsidian": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Obsidian — Card surfaces, raised panels, modal backgrounds — one step up from the canvas"
+    },
+    "graphite": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Graphite — Elevated controls, hover surfaces, filled button backgrounds — the interactive surface tier"
+    },
+    "ash-gray": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Ash Gray — Input borders, subtle dividers, inactive control outlines"
+    },
+    "steel-mist": {
+      "$value": "#767676",
+      "$type": "color",
+      "$description": "Steel Mist — Muted text, secondary nav, disabled labels — text that fades into the background"
+    },
+    "cloud-gray": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Cloud Gray — Secondary body text, metadata, timestamps — readable but never competing with content"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary text, headings, light icon fills, pill button fills — the highest-contrast element on the dark canvas"
+    },
+    "spotify-green": {
+      "$value": "#1ed760",
+      "$type": "color",
+      "$description": "Spotify Green — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "premium-magenta": {
+      "$value": "#af2896",
+      "$type": "color",
+      "$description": "Premium Magenta — Gradient anchor for premium promotional banners, subscription upsell surfaces"
+    },
+    "premium-cobalt": {
+      "$value": "#509bf5",
+      "$type": "color",
+      "$description": "Premium Cobalt — Gradient terminus for premium promotional banners, feature callouts on subscription screens"
+    },
+    "amber-glow": {
+      "$value": "#a16b1b",
+      "$type": "color",
+      "$description": "Amber Glow — Decorative warmth — album artwork occasionally carries this tonal range"
+    }
+  },
+  "font": {
+    "spotifymixui": {
+      "$value": "SpotifyMixUI",
+      "$type": "fontFamily",
+      "$description": "Primary UI typeface — handles all body copy, navigation, buttons, metadata, and small headings. Weight 400 carries body and labels, weight 600 appears in tab headers and emphasized metadata, weight 700 anchors section titles. The 4px size range (11–16px) keeps the entire interface at conversational volume, never editorial. Substitute: Inter, IBM Plex Sans, or DM Sans as freely available alternates with similar geometric warmth."
+    },
+    "spotifymixuititle": {
+      "$value": "SpotifyMixUITitle",
+      "$type": "fontFamily",
+      "$description": "Rail and section headings — the 24px bold treatment for 'Trending songs', 'Popular artists', etc. is the only typographic moment that breaks above body size. Substitutes should be a geometric grotesque with a tall x-height and even stroke contrast."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "11px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "SpotifyMixUI",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "SpotifyMixUITitle",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "172": {
+      "$value": "172px",
+      "$type": "dimension",
+      "$description": "Spacing 172px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "500px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "lg": {
+      "$value": "rgba(0, 0, 0, 0.5) 0px 8px 24px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    },
+    "subtle": {
+      "$value": "rgb(18, 18, 18) 0px 1px 0px 0px, rgb(124, 124, 124) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, left sidebar, footer areas"
+    },
+    "obsidian-card": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Surface level 1: Album cards, playlist prompt cards, content surfaces"
+    },
+    "graphite-control": {
+      "$value": "#1f1f1f",
+      "$type": "color",
+      "$description": "Surface level 2: Search bar, elevated buttons, hover states"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.spotify.com",
+      "siteName": "Spotify",
+      "extractedAt": "2026-06-03T22:09:01.041Z",
+      "variant": "extended"
+    }
+  }
+}

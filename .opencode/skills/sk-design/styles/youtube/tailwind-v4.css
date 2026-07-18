@@ -1,0 +1,38 @@
+@theme {
+  /* Colors */
+  --color-canvas-white: #ffffff;
+  --color-youtube-ink: #0f0f0f;
+  --color-graphite: #606060;
+  --color-ash: #909090;
+  --color-mist: #c6c6c6;
+  --color-silver: #d3d3d3;
+  --color-signal-blue: #065fd4;
+  --color-play-red: #ff0000;
+
+  /* Typography */
+  --font-roboto: 'Roboto', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-youtube-sans: 'YouTube Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.2;
+  --text-body-lg: 14px;
+  --leading-body-lg: 1.38;
+  --text-heading: 20px;
+  --leading-heading: 1.4;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-240: 240px;
+
+  /* Border Radius */
+  --radius-lg: 10px;
+  --radius-2xl: 18px;
+  --radius-3xl: 40px;
+}

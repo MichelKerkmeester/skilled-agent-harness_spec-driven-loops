@@ -1,0 +1,407 @@
+{
+  "color": {
+    "obsidian-canvas": {
+      "$value": "#151515",
+      "$type": "color",
+      "$description": "Obsidian Canvas — Primary page background, dominant surface across all sections; Hero background gradient — warm amber-rust bleeds from bottom-left into near-black"
+    },
+    "void-black": {
+      "$value": "#0e0e0e",
+      "$type": "color",
+      "$description": "Void Black — Deepest surface layer, card backgrounds that recede below canvas"
+    },
+    "ember-surface": {
+      "$value": "#242424",
+      "$type": "color",
+      "$description": "Ember Surface — Raised card and panel backgrounds — one step above canvas"
+    },
+    "charcoal-rim": {
+      "$value": "#3f403d",
+      "$type": "color",
+      "$description": "Charcoal Rim — Subtle borders and dividers on dark surfaces"
+    },
+    "copper-wire": {
+      "$value": "#8b867f",
+      "$type": "color",
+      "$description": "Copper Wire — Mid-tone icon fills, decorative borders, muted surface accents"
+    },
+    "ash-text": {
+      "$value": "#94958e",
+      "$type": "color",
+      "$description": "Ash Text — Secondary body text, nav subtitles, helper labels"
+    },
+    "fog-text": {
+      "$value": "#cbccc4",
+      "$type": "color",
+      "$description": "Fog Text — Subheadings, supporting body copy, secondary headings"
+    },
+    "limestone": {
+      "$value": "#b6b8af",
+      "$type": "color",
+      "$description": "Limestone — Tertiary text, eyebrow labels, captions"
+    },
+    "parchment": {
+      "$value": "#e9ebdf",
+      "$type": "color",
+      "$description": "Parchment — Primary text, headline color, outlined button borders and text, pill button fill — slightly warm off-white that softens the contrast against near-black ground"
+    },
+    "forest-deep": {
+      "$value": "#185849",
+      "$type": "color",
+      "$description": "Forest Deep — Decorative background wash — large-area teal tint used as atmospheric section color"
+    },
+    "midnight-moss": {
+      "$value": "#0e352c",
+      "$type": "color",
+      "$description": "Midnight Moss — Deeper teal wash, badge and label backgrounds in forest green"
+    },
+    "spectrum-shimmer": {
+      "$value": "#e87650",
+      "$type": "color",
+      "$description": "Spectrum Shimmer — Animated text shimmer gradient — parchment transitions through coral and steel blue, used on select highlight phrases"
+    }
+  },
+  "font": {
+    "saansfont": {
+      "$value": "saansFont",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all display, heading, body, and UI text. Weight 300 at 60-72px is anti-conventional — most platforms use 600-700 for hero text; the thin weight creates authority through mass (huge scale) rather than stroke weight. Weight 380 handles body and subheadings. Weight 570 for labels and small UI. Custom font unavailable externally."
+    },
+    "pxgroteskfont": {
+      "$value": "pxGroteskFont",
+      "$type": "fontFamily",
+      "$description": "Monospace-adjacent label font for nav, micro-copy, tags, and icon captions. The slight +0.010em tracking at small sizes distinguishes it from body text — reads like interface chrome rather than content."
+    },
+    "ui-sans-serif": {
+      "$value": "ui-sans-serif",
+      "$type": "fontFamily",
+      "$description": "Fallback system font for utility text, form inputs, and browser-native UI elements. Not a designed choice — appears only as system default context."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "pxGroteskFont",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "pxGroteskFont",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "pxGroteskFont",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "pxGroteskFont",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "pxGroteskFont",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "pxGroteskFont",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "saansFont",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "saansFont",
+        "fontSize": "14px",
+        "fontWeight": 570,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "saansFont",
+        "fontSize": "14px",
+        "fontWeight": 380,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "ui-sans-serif",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "saansFont",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "saansFont",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "saansFont",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "saansFont",
+        "fontSize": "24px",
+        "fontWeight": 380,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "saansFont",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "saansFont",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "saansFont",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "saansFont",
+        "fontSize": "60px",
+        "fontWeight": 300,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "saansFont",
+        "fontSize": "72px",
+        "fontWeight": 300,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#0e0e0",
+      "$type": "color",
+      "$description": "Surface level 0: Deepest background — recessed panels, testimonial blocks, elements that should feel inset below canvas"
+    },
+    "canvas": {
+      "$value": "#151515",
+      "$type": "color",
+      "$description": "Surface level 1: Dominant page background — the ground all content sits on"
+    },
+    "raised": {
+      "$value": "#242424",
+      "$type": "color",
+      "$description": "Surface level 2: Card surfaces, panel backgrounds, interactive tiles — lifted above canvas by lightness alone"
+    },
+    "teal-wash": {
+      "$value": "#185849",
+      "$type": "color",
+      "$description": "Surface level 3: Atmospheric section tint — used as a large-area background color wash to signal a distinct content zone"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://retool.com",
+      "siteName": "Retool",
+      "extractedAt": "2026-04-29T23:05:34.544Z",
+      "variant": "extended"
+    }
+  }
+}

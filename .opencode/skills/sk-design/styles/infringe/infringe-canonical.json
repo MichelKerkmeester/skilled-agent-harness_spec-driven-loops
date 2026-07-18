@@ -1,0 +1,794 @@
+{
+  "source": "https://styles.refero.design/style/36e7c3f9-b7cb-48a2-9695-db726e3dccdb",
+  "uuid": "36e7c3f9-b7cb-48a2-9695-db726e3dccdb",
+  "name": "INFRINGE",
+  "northStar": "Punk editorial broadsheet with highlighter pen",
+  "capturedAt": "2026-07-18T09:11:36.535Z",
+  "meta": {
+    "url": "https://www.infringe.com",
+    "siteName": "INFRINGE",
+    "extractedAt": "2026-06-03T20:29:56.090Z",
+    "durationMs": 28643,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 236,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Archivo Black at 252px with -23.4px letter-spacing for any display masthead that introduces a page or issue",
+      "Reserve #ffff01 for full-width bands and feature name callouts — never use it as a fill on small UI elements or buttons",
+      "Keep border-radius at 0px on every surface including cards, buttons, inputs, and images",
+      "Set the persistent left sidebar to 16px Archivo Black rotated 90° and let it repeat the nav label continuously down the viewport edge",
+      "Use 50/50 split-screen grids for hero compositions with no gutter between the two photo columns",
+      "Apply 1px solid #000000 borders on images that sit inside a yellow band to create a hard edge against the photo",
+      "Pick type sizes from the 6-step scale only (12, 16, 32, 48, 108, 252) — do not interpolate intermediate sizes"
+    ],
+    "donts": [
+      "Do not introduce a second typeface family — Archivo Black carries the entire system at every size",
+      "Do not add box-shadows, drop-shadows, or inset shadows on any component",
+      "Do not use gradients of any kind, even subtle ones between #000000 and #ffffff",
+      "Do not round any corner — buttons, cards, tags, inputs, and image masks must all stay 0px",
+      "Do not use the red/terracotta backdrop visible in editorial photography as a brand surface — it lives inside the photograph only",
+      "Do not use display sizes below 48px for primary section headings — the scale jumps from 32px to 48px and the jump is intentional",
+      "Do not apply hover transitions longer than 0ms or color fades — state changes are instant swaps between #000000, #ffffff, #ffff01, and #2b4dff"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Photocopy Black",
+        "role": "Display type, sidebar text, structural borders, image outlines, header bands — the ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Newsprint White",
+        "role": "Primary canvas, card surfaces, text on black bands",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Muted Ash",
+        "role": "Input placeholder text, form field borders, secondary metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffff01",
+        "name": "Highlighter Yellow",
+        "role": "Accent bands, feature name callouts, section dividers — the highlighter drag that breaks the monochrome",
+        "group": "brand"
+      },
+      {
+        "hex": "#2b4dff",
+        "name": "Link Cobalt",
+        "role": "Rotated category labels and inline links between editorial blocks — the only chromatic voice besides yellow",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed page model — no max-width container, every section runs edge to edge. The page rhythm is: full-width black masthead band (252px type), split-screen editorial hero (two photos 50/50 with rotated label in the seam), yellow feature band (type left, photo right at 50/50), portrait/drawing column (square image centered on white), repeating display-type footer strip. The persistent left vertical sidebar (16px rotated text) anchors every section. Sections stack vertically with 64px gaps; within sections, no padding or margin — content touches column edges. No card grids, no pricing tables, no multi-column feature blocks — the editorial grammar is always 2-column split or single full-bleed type band.",
+    "imagery": "Photography is editorial and full-bleed: tight crops of plant matter, studio portraits with theatrical backdrops (terracotta, neutral white), and product still-lifes of wig displays and sculptural objects. High contrast, no lifestyle context, no people in environments — subjects are isolated on solid backdrops and treated as found objects. The terracotta red behind the portrait in the hero is a studio backdrop inside the photograph, not a design-system surface. Drawings and scans (portrait sketches) sit in their own white columns with no frame. No rounded corners, no drop shadows, no image overlays, no duotone treatments — images are raw, sometimes grainy, and sit edge-to-edge against type.",
+    "similar": [
+      {
+        "why": "Same editorial split-screen photography, same zine-broadsheet page model, same willingness to use type as image at extreme scale",
+        "business": "Buffalo Zine"
+      },
+      {
+        "why": "Identical full-bleed editorial sections, bold display masthead bands, and a black-white-plus-single-accent discipline",
+        "business": "System Magazine"
+      },
+      {
+        "why": "Same art-publication density — large square portraits, rotated inline labels, and a tri-color palette (black/white/highlight) over fine-art photography",
+        "business": "KALEIDOSCOPE"
+      },
+      {
+        "why": "Same magazine-of-architecture sensibility — square editorial crops, hard yellow or solid color bands, and zero rounded corners",
+        "business": "PIN-UP"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "all": "0px",
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Default background for all editorial sections and content blocks"
+      },
+      {
+        "hex": "#ffff01",
+        "name": "Highlighter Band",
+        "level": 1,
+        "purpose": "Full-width feature sections and category callouts that interrupt the monochrome"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Header",
+        "level": 2,
+        "purpose": "Display-type header band and persistent sidebar background zones"
+      }
+    ],
+    "northStar": "Punk editorial broadsheet with highlighter pen",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.28
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.37
+      },
+      {
+        "role": "heading-sm",
+        "size": 32,
+        "lineHeight": 1,
+        "letterSpacing": -0.99
+      },
+      {
+        "role": "heading",
+        "size": 48,
+        "lineHeight": 1,
+        "letterSpacing": -1.49
+      },
+      {
+        "role": "heading-lg",
+        "size": 108,
+        "lineHeight": 0.8,
+        "letterSpacing": -4.32
+      },
+      {
+        "role": "display",
+        "size": 252,
+        "lineHeight": 0.8,
+        "letterSpacing": -23.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Vertical Sidebar Nav",
+        "role": "Persistent left-edge site navigation across all pages",
+        "description": "Fixed 16px-wide column on the left viewport edge. Text 'MENU INFRINGE' rotated 90° counterclockwise in Archivo Black 16px, #000000, letter-spacing 0.37px. Repeats continuously from top to bottom of viewport. No background fill — text floats on the page canvas. Padding 8px from viewport edge."
+      },
+      {
+        "name": "Display Masthead Band",
+        "role": "Full-width header announcing brand or issue title",
+        "description": "Full-bleed #000000 background band. Brand or section title set in Archivo Black 252px, #ffffff, line-height 0.80, letter-spacing -23.4px. 50px top and bottom padding. Text fills or overflows the viewport width. No border, no shadow, no curve."
+      },
+      {
+        "name": "Yellow Feature Band",
+        "role": "Highlighted name or title block over solid yellow",
+        "description": "Full-width #ffff01 background. Name or title in Archivo Black 48px, #000000, letter-spacing -1.49px, line-height 1.00. 24px horizontal padding, sits inside a 50/50 grid with a photo on the right. Yellow is the 'highlighter drag' — it points, never decorates."
+      },
+      {
+        "name": "Split-Screen Editorial Section",
+        "role": "Two-photo composition with a rotated label between",
+        "description": "Two equal-width 50/50 columns, each containing a full-bleed photograph. No gap between columns, no padding inside. Between them, a vertical rotated label (e.g. 'Flower Study') in Link Cobalt #2b4dff at 32px Archivo Black, rotated 90°, sits in the seam. Photography occupies 100% of column height."
+      },
+      {
+        "name": "Rotated Category Label",
+        "role": "Inline rotated text used as a section label between editorial blocks",
+        "description": "Single word or short phrase rotated 90° counterclockwise. Archivo Black 32px, #2b4dff, letter-spacing -0.99px. Sits in the negative space between two photos or a photo and a type block. No background, no border — the text itself is the divider."
+      },
+      {
+        "name": "Editorial Photo Block",
+        "role": "Large contained or full-bleed photograph",
+        "description": "Photograph with no padding, no border-radius (0px), no shadow. May carry a 1px #000000 border when used inside a yellow feature band to separate it from adjacent type. Image fills its container edge-to-edge."
+      },
+      {
+        "name": "Newsletter Input Field",
+        "role": "Email capture in footer or interstitial",
+        "description": "Single-line input with 1px solid #666666 border, #ffffff background, #000000 text, Archivo Black 16px, letter-spacing 0.37px. Padding 6px 14px. Placeholder text in #666666. Border-radius 0px. No focus ring color change — focus removes the border entirely and replaces with a 2px #000000 outline."
+      },
+      {
+        "name": "Underlined Text Link",
+        "role": "Inline navigational or editorial link",
+        "description": "Archivo Black 16px, #000000, text-decoration underline (1px solid). 8px margin top and bottom to separate from surrounding type. Hover state swaps to #2b4dff with no transition. No button chrome — links are always bare text."
+      },
+      {
+        "name": "Portrait/Drawing Container",
+        "role": "Contained portrait artwork on white",
+        "description": "Square or near-square image (drawing, photograph, or scan) centered on #ffffff canvas, max-width constrained within the split-screen column. No border, no frame, no caption. Image sits flush to column edges with no padding."
+      },
+      {
+        "name": "Bottom Strip Footer",
+        "role": "Closing element at page bottom",
+        "description": "Repeating display type set in Archivo Black 108px, #000000, line-height 0.80, letter-spacing -4.32px. May run a category or word like 'NGE INFRINGE' repeatedly across the viewport. No link styling, no metadata, no subscribe form — just type."
+      },
+      {
+        "name": "Yellow Accent Strip",
+        "role": "Thin horizontal band used as a section break or emphasis",
+        "description": "Full-width band, 8–16px tall, #ffff01 background. Contains no text. Sits between a white editorial section and a black display band, or under a masthead. Functions as a printed highlighter rule."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across the entire system — display masthead fills 252px viewport, captions drop to 12px, no other family exists. Negative tracking tightens at scale, positive tracking opens at body size",
+        "sizes": "12, 16, 32, 48, 108, 252",
+        "family": "Archivo Black",
+        "weight": "100, 400, 700",
+        "lineHeight": "0.80, 1.00, 1.20",
+        "substitute": "Anton (closest free match for the condensed-black display), or Archivo via Google Fonts at weight 900 as fallback for 400/700 weights",
+        "letterSpacing": "-0.093em at 252px (-23.4px), -0.040em at 108px (-4.32px), -0.031em at 48px (-1.49px), 0.023em at 16px (0.37px), 0.023em at 12px (0.28px)"
+      }
+    ],
+    "description": "Infringe operates as a brutalist editorial zine: pure white canvas interrupted by solid black and highlighter-yellow bands, with a single typeface (Archivo Black) that fills entire viewports at 252px or shrinks to 12px captions — nothing in between. The system commits to extremes rather than modulation: every surface is either #ffffff, #000000, or #ffff01, every corner is square, every shadow is absent, every gradient is forbidden. Layouts read as full-bleed magazine spreads — split-screen photography meets type-as-image, with a persistent rotated vertical sidebar anchoring the left edge like a photocopied zine masthead. Color does no decorative work; yellow is a highlighter pen dragged across the page to call out names and sections, never an aesthetic wash.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/36e7c3f9-b7cb-48a2-9695-db726e3dccdb#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"INFRINGE design system\",\"item\":\"https://styles.refero.design/style/36e7c3f9-b7cb-48a2-9695-db726e3dccdb\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/36e7c3f9-b7cb-48a2-9695-db726e3dccdb#style-reference\",\"name\":\"INFRINGE design system reference\",\"headline\":\"INFRINGE design system | Refero Styles\",\"description\":\"Explore INFRINGE's light Media design system: Photocopy Black #000000, Newsprint White #ffffff colors, Archivo Black typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/36e7c3f9-b7cb-48a2-9695-db726e3dccdb\",\"mainEntityOfPage\":\"https://styles.refero.design/style/36e7c3f9-b7cb-48a2-9695-db726e3dccdb\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"INFRINGE\",\"url\":\"https://www.infringe.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/36e7c3f9-b7cb-48a2-9695-db726e3dccdb#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2d682786-345a-48fd-bea0-8ab0535dda13.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2d682786-345a-48fd-bea0-8ab0535dda13.jpg\",\"caption\":\"Screenshot of INFRINGE\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2d682786-345a-48fd-bea0-8ab0535dda13.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"INFRINGE design system\",\"INFRINGE website design\",\"INFRINGE colors\",\"INFRINGE typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Photocopy Black\",\"Newsprint White\",\"Muted Ash\",\"Highlighter Yellow\",\"Archivo Black\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"INFRINGE design system\"},{\"@type\":\"Thing\",\"name\":\"INFRINGE website design\"},{\"@type\":\"Thing\",\"name\":\"INFRINGE colors\"},{\"@type\":\"Thing\",\"name\":\"INFRINGE typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T03:38:06.283Z\",\"dateModified\":\"2026-04-30T03:38:06.283Z\"}]}19:T5bc,Quick Color Reference:\n- Background: #ffffff\n- Text: #000000\n- Border: #000000\n- Accent: #ffff01\n- Muted text: #666666\n- Link / category label: #2b4dff\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Build a full-width black masthead band: #000000 background, brand name in Archivo Black 252px #ffffff, line-height 0.80, letter-spacing -23.4px, 50px top and bottom padding, 0px radius. The text should visually fill or overflow the viewport width.\n\n2. Build a yellow feature name block: full-width #ffff01 background, name in Archivo Black 48px #000000, letter-spacing -1.49px, 24px padding on the left half of a 50/50 grid. The right half holds a full-bleed photo with a 1px #000000 border and 0px radius.\n\n3. Build a split-screen editorial hero: two 50/50 columns, each containing a full-bleed photograph with 0px radius and no padding. Between the columns, place a single rotated 90° label in Archivo Black 32px, color #2b4dff, letter-spacing -0.99px.\n\n4. Build a vertical sidebar nav: position fixed along the left viewport edge, 8px from the edge, text 'MENU INFRINGE' in Archivo Black 16px #000000, letter-spacing 0.37px, rotated 90° counterclockwise, repeating continuously. No background fill, no border.\n\n5. Build a newsletter input: 1px solid #666666 border, #ffffff background, Archivo Black 16px #000000 text, padding 6px 14px, 0px radius, placeholder text in #666666. On focus, swap border to 2px solid #000000 with no transition."
+      },
+      {
+        "title": "Typography Doctrine",
+        "content": "The type system is a two-axis instrument: size and tracking. There is no italic, no underline-as-decoration (only as link affordance), no small caps, no condensed variant. Archivo Black is the only voice. Display sizes (108px and 252px) use heavy negative tracking to pull letters into a single ink-block; body and caption sizes (12px and 16px) use positive 0.023em tracking to let the black weight breathe. Line-height collapses at scale (0.80 for 108–252px) and opens slightly at caption size (1.20 for 12px). Never mix display tracking with body tracking or the optical density collapses."
+      }
+    ],
+    "elevationPhilosophy": "The system has no elevation. Depth is constructed from the contrast between solid color blocks (#ffffff canvas, #000000 bands, #ffff01 highlighter strips) and 1px hairlines. There are no shadows because the design is photocopied, not skeuomorphic — separation comes from ink, not from light."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "body",
+            "input",
+            "image",
+            "footer"
+          ],
+          "frequency": 1145,
+          "confidence": 1,
+          "prominence": 265252935.73776403,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 43,
+            "list/color": 19,
+            "image/color": 28,
+            "other/color": 136,
+            "footer/color": 1,
+            "body/borderColor": 4,
+            "link/borderColor": 172,
+            "list/borderColor": 76,
+            "image/borderColor": 112,
+            "input/borderColor": 1,
+            "other/borderColor": 544,
+            "footer/borderColor": 4,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 65,
+          "confidence": 1,
+          "prominence": 90665911.7903768,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "list/color": 3,
+            "link/borderColor": 16,
+            "list/borderColor": 12,
+            "other/backgroundColor": 30
+          }
+        },
+        {
+          "hex": "#ffff01",
+          "oklch": {
+            "c": 0.21090772025882357,
+            "h": 109.76787519853059,
+            "l": 0.9679926598226519
+          },
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 181532.0950575969,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "list/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 48180.00796891277,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/color": 1,
+            "input/borderColor": 3
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0009375343183624803,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.56,
+          "background": "#ffff01",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.35,
+          "background": "#ffff01",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.66,
+          "background": "#000000",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.07,
+          "background": "#ffff01",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|input",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "link",
+            "list"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|list",
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "archivo_blackregular",
+          "source": "custom",
+          "weights": [
+            100,
+            400,
+            700
+          ],
+          "frequency": 236,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Augmented Fourth",
+        "ratio": 1.414,
+        "confidence": 0.83
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "archivo_blackregular",
+          "weight": 700,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "archivo_blackregular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "image",
+            "footer"
+          ],
+          "frequency": 188,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "archivo_blackregular",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 23,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "archivo_blackregular",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "archivo_blackregular",
+          "weight": 100,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": -0.031,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "archivo_blackregular",
+          "weight": 700,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 48,
+          "family": "archivo_blackregular",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 108,
+          "family": "archivo_blackregular",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.093,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 108,
+          "family": "archivo_blackregular",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": 0.023,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 252,
+          "family": "archivo_blackregular",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/81f68db6-6362-44b2-a735-91066df9eedc.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2d682786-345a-48fd-bea0-8ab0535dda13.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/36e7c3f9-b7cb-48a2-9695-db726e3dccdb#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"INFRINGE design system\",\"item\":\"https://styles.refero.design/style/36e7c3f9-b7cb-48a2-9695-db726e3dccdb\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/36e7c3f9-b7cb-48a2-9695-db726e3dccdb#style-reference\",\"name\":\"INFRINGE design system reference\",\"headline\":\"INFRINGE design system | Refero Styles\",\"description\":\"Explore INFRINGE's light Media design system: Photocopy Black #000000, Newsprint White #ffffff colors, Archivo Black typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/36e7c3f9-b7cb-48a2-9695-db726e3dccdb\",\"mainEntityOfPage\":\"https://styles.refero.design/style/36e7c3f9-b7cb-48a2-9695-db726e3dccdb\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"INFRINGE\",\"url\":\"https://www.infringe.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/36e7c3f9-b7cb-48a2-9695-db726e3dccdb#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2d682786-345a-48fd-bea0-8ab0535dda13.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2d682786-345a-48fd-bea0-8ab0535dda13.jpg\",\"caption\":\"Screenshot of INFRINGE\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2d682786-345a-48fd-bea0-8ab0535dda13.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"INFRINGE design system\",\"INFRINGE website design\",\"INFRINGE colors\",\"INFRINGE typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Photocopy Black\",\"Newsprint White\",\"Muted Ash\",\"Highlighter Yellow\",\"Archivo Black\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"INFRINGE design system\"},{\"@type\":\"Thing\",\"name\":\"INFRINGE website design\"},{\"@type\":\"Thing\",\"name\":\"INFRINGE colors\"},{\"@type\":\"Thing\",\"name\":\"INFRINGE typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T03:38:06.283Z\",\"dateModified\":\"2026-04-30T03:38:06.283Z\"}]}19:T5bc,Quick Color Reference:\n- Background: #ffffff\n- Text: #000000\n- Border: #000000\n- Accent: #ffff01\n- Muted text: #666666\n- Link / category label: #2b4dff\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Build a full-width black masthead band: #000000 background, brand name in Archivo Black 252px #ffffff, line-height 0.80, letter-spacing -23.4px, 50px top and bottom padding, 0px radius. The text should visually fill or overflow the viewport width.\n\n2. Build a yellow feature name block: full-width #ffff01 background, name in Archivo Black 48px #000000, letter-spacing -1.49px, 24px padding on the left half of a 50/50 grid. The right half holds a full-bleed photo with a 1px #000000 border and 0px radius.\n\n3. Build a split-screen editorial hero: two 50/50 columns, each containing a full-bleed photograph with 0px radius and no padding. Between the columns, place a single rotated 90° label in Archivo Black 32px, color #2b4dff, letter-spacing -0.99px.\n\n4. Build a vertical sidebar nav: position fixed along the left viewport edge, 8px from the edge, text 'MENU INFRINGE' in Archivo Black 16px #000000, letter-spacing 0.37px, rotated 90° counterclockwise, repeating continuously. No background fill, no border.\n\n5. Build a newsletter input: 1px solid #666666 border, #ffffff background, Archivo Black 16px #000000 text, padding 6px 14px, 0px radius, placeholder text in #666666. On focus, swap border to 2px solid #000000 with no transition."
+}

@@ -1,0 +1,1047 @@
+{
+  "source": "https://styles.refero.design/style/c47654a9-7d7a-4b2c-8e0a-cd9296719c69",
+  "uuid": "c47654a9-7d7a-4b2c-8e0a-cd9296719c69",
+  "name": "Haley Park",
+  "northStar": "Illuminated manuscript on forest vellum",
+  "capturedAt": "2026-07-18T08:02:45.996Z",
+  "meta": {
+    "url": "https://haleys.design",
+    "siteName": "Haley Park",
+    "extractedAt": "2026-06-03T18:37:23.330Z",
+    "durationMs": 27561,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 326,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Pine Vellum (#143930) as the only page background. Do not introduce lighter or darker surface tints for cards or sections.",
+      "Set every text element in weight 200 of EditorialOld (or Old Standard TT at body sizes). Weight 300+ breaks the manuscript voice.",
+      "Reserve 96px Wispy for a single display use per page — the hero name plate. Never reuse 96px for subheadings or section titles.",
+      "Mark every section divider with the terminal '+' crosshair in Parchment on both ends and at the center break.",
+      "Use Aged Tan (#bead89) for all secondary metadata (years, category labels, captions). Parchment is for primary content only.",
+      "Build decorative line art in Cedar Stroke (#456859) at 1px stroke, no fill, as full-bleed background elements — never inside cards or containers.",
+      "Space project tiles with 26px column gaps and 51px row gaps; the grid must feel like a printed index, not a card collection."
+    ],
+    "donts": [
+      "Do not introduce filled buttons, drop shadows, or card elevation. The system has no 'lift' — depth comes from line and contrast alone.",
+      "Do not use corner radii above 64px except for the pill/ornament shape. Cards, inputs, and links stay at 0–4.8px.",
+      "Do not mix chromatic colors into the palette. The whole system is one green–cream–tan axis; adding blue, red, or purple would destroy the manuscript feel.",
+      "Do not set body type above 22px. The page is intentionally quiet; the 96px display is the only element that gets to be large.",
+      "Do not use solid backgrounds behind text blocks. Text sits directly on the canvas, over line art if necessary — let the architecture show through.",
+      "Do not replace the terminal '+' crosshairs on dividers with arrows, dots, or other markers. The crosshair is a load-bearing motif.",
+      "Do not add gradients, blurs, or glassmorphism. The only shadow in the entire dataset is a single pine-tinted boxShadow token; keep it that way."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#143930",
+        "name": "Pine Vellum",
+        "role": "Page canvas, all section backgrounds, box-shadow tint for the only subtle elevation present",
+        "group": "neutral"
+      },
+      {
+        "hex": "#456859",
+        "name": "Cedar Stroke",
+        "role": "Stroke color for background architectural illustrations, icon outlines, sage decorative line art, secondary borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8f2de",
+        "name": "Parchment",
+        "role": "Primary text, link text, outlined button borders, heading characters, and the full suite of hairline rules and dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bead89",
+        "name": "Aged Tan",
+        "role": "Muted secondary text and metadata labels (project years, category tags) — sits between parchment and the background, a quieter tertiary",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width container; content lives edge-to-edge with interior margins of roughly 26–51px from the viewport edge. The hero is a centered single-line display name flanked by two short italic descriptors, with no imagery — the name is the hero. Below, a section divider with the terminal '+' crosshair introduces the work grid: a 4-column tile layout centered in the page, tiles are borderless text blocks (title over year) with 26px column and 51px row gaps. The page rhythm alternates between text-only sections and sections where architectural line art bleeds through the background, creating a pulse of quiet-then-ornament. Navigation is a single top bar, non-sticky, no sidebar, no mega-menu — the three primary destinations are listed inline with their keyboard shortcuts. The page reads top-to-bottom as a scroll, not as distinct screens.",
+    "imagery": "Imagery is almost entirely abstract architectural line art — SVG drawings of rose windows, pointed cathedral arches, and intersecting grid lines, all rendered as 1px Cedar Stroke outlines on the Pine Vellum canvas. No photography, no product screenshots, no realistic illustrations. The drawings function as section-level background patterns that bleed edge-to-edge and clip softly into adjacent dividers. Iconography follows the same logic: small line-art glyphs (the + crosshairs, the rosette ornaments, the single-letter keyboard chips) all in Parchment or Cedar Stroke, 1px, no fills, no multicolor. The overall density is text-dominant — the line art is atmosphere, the serif type is the content, and there is a strict 70/30 split favoring type over decoration in any given viewport.",
+    "similar": [
+      {
+        "why": "Same single-color dark canvas, editorial serif at whisper weights, and a portfolio that treats the personal name as a display monument",
+        "business": "Tobias van Schneider"
+      },
+      {
+        "why": "Same manuscript-influenced serif typography and architectural ornament embedded in dark backgrounds",
+        "business": "Aether Pro / Manuel Bortoletti"
+      },
+      {
+        "why": "Same discipline of full-bleed dark canvas with thin serifs and decorative line-drawn background motifs",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Same combination of deep forest green canvas, cream serif, and gothic-architectural decorative line art",
+        "business": "Nicolae Robin — personal portfolio"
+      },
+      {
+        "why": "Same restraint: one chromatic background, one accent weight, no shadows, no rounded cards — the page as a printed sheet",
+        "business": "Rauno Freiberg"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "pills": "64px",
+        "inputs": "4.8px",
+        "buttons": "4.8px"
+      },
+      "elementGap": "11px",
+      "sectionGap": "51px",
+      "cardPadding": "26px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#143930",
+        "name": "Pine Vellum",
+        "level": 0,
+        "purpose": "Universal page canvas — every section sits directly on this dark green ground"
+      },
+      {
+        "hex": "#456859",
+        "name": "Cedar Pattern",
+        "level": 1,
+        "purpose": "Decorative line-drawing layer — architectural illustrations rendered as low-contrast sage strokes sit on top of the canvas"
+      }
+    ],
+    "northStar": "Illuminated manuscript on forest vellum",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.6,
+        "letterSpacing": 0.06
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.076
+      },
+      {
+        "role": "heading-sm",
+        "size": 21,
+        "lineHeight": 1.44,
+        "letterSpacing": 0.084
+      },
+      {
+        "role": "heading",
+        "size": 27,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.135
+      },
+      {
+        "role": "heading-lg",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.16
+      },
+      {
+        "role": "display",
+        "size": 96,
+        "lineHeight": 1,
+        "letterSpacing": -0.96
+      }
+    ],
+    "components": [
+      {
+        "name": "Navigation Bar",
+        "role": "Primary top navigation spanning full viewport width",
+        "description": "Full-bleed horizontal bar with Parchment hairline border (1px) top and bottom against Pine Vellum. Three evenly-spaced link clusters: 'Work' (with W keyboard chip), 'Thoughts' (T chip), 'About Me' (A chip). Link text in EditorialOld 16px weight 200, Parchment, with the single-letter shortcut rendered in a 1px-bordered Parchment box (4.8px radius) to its right — the box is a ghost outline, no fill. Total bar height is minimal, roughly 48px, and lives in the 13px gap rhythm of the page."
+      },
+      {
+        "name": "Outlined Link Button",
+        "role": "Ghost / outlined interactive element (the only button pattern in this system)",
+        "description": "No filled buttons exist. Interactive elements use a 1px Parchment border (#f8f2de) at 4.8px radius with no background fill, paired with Parchment text in EditorialOld 16px weight 200. Padding 11px vertical × 18–22px horizontal, with 11–12px gap between the text and any trailing shortcut chip. ACTION_BORDER=140 confirms this is the system's only action treatment — it's an outlined action, never a solid one."
+      },
+      {
+        "name": "Keyboard Shortcut Chip",
+        "role": "Single-letter keycap indicator paired with navigation links",
+        "description": "A 1px Parchment-bordered square (4.8px radius) containing a single uppercase letter in ui-sans-serif 16px weight 400 (Parchment). Approximately 24×24px footprint, vertically centered with the parent link text. No fill, no shadow — the border alone does the work of identifying it as an interactive surface."
+      },
+      {
+        "name": "Section Divider Rule",
+        "role": "Horizontal hairline separator between major page sections",
+        "description": "A 1px Parchment line stretching the full viewport width, interrupted in the center by a small italic section label (EditorialOld italic, 16px, Parchment) such as 'Work projects' or 'Lil projects'. At each end and at the center break, a small '+' crosshair sits on the line in Parchment — this is a signature motif and should appear on every major divider. Zero vertical padding above and below the line itself; the surrounding section gap is 51px."
+      },
+      {
+        "name": "Project Tile",
+        "role": "Name-and-date entry in the work grid",
+        "description": "A borderless, shadowless block. Project name set in EditorialOld 21px weight 200 Parchment, centered. Directly below, the year range in EditorialOld 13–16px weight 200, Aged Tan (#bead89) — the tan is the visual cue for metadata, never use Parchment for years. 26px vertical gap between the title and year. Tiles live in a 4-column grid with 26px column gaps and 51px row gaps; no card chrome whatsoever."
+      },
+      {
+        "name": "Category Tag",
+        "role": "Small label above project titles in the secondary project grid (e.g. 'iOS', '3D', 'Figma plugin')",
+        "description": "EditorialOld 13px weight 200, Aged Tan, no border, no background. Sits 3–4px above the project title. The tan-on-green treatment is the signal that this is supplementary information, not a heading."
+      },
+      {
+        "name": "Display Name Plate",
+        "role": "The hero treatment for the owner's name in the page header",
+        "description": "Centered, single line, Wispy 96px weight 100, Parchment, letter-spacing -0.96px, line-height exactly 1.0. No underline, no ornament, no background — the type itself is the hero. The only other element in this region is two short italic descriptors ('Software design' left, 'Assorted tomfoolery' right) in EditorialOld italic 19px weight 200 Parchment, sitting on the same baseline as the name with ~20% viewport width on each side. This is the single most-loud element the system produces; nothing else in any screen may reach 96px."
+      },
+      {
+        "name": "Architectural Line Illustration",
+        "role": "Full-bleed decorative background pattern (rose windows, pointed arches)",
+        "description": "SVG line art drawn entirely in Cedar Stroke (#456859) at 1px stroke width, no fill, sitting directly on the Pine Vellum canvas. The drawings bleed from edge to edge of their section, partially clipped by the next section's divider rule. Opacity should be kept at roughly 30–40% of the base Cedar value to read as a watermark rather than foreground content. These are not illustrations in a card — they ARE the background of the section."
+      },
+      {
+        "name": "Inline Text Link",
+        "role": "In-body reference or cross-link within paragraphs",
+        "description": "Parchment text in EditorialOld 16px weight 200 with a 1px Parchment underline (1px offset). No color shift on hover — the link's only active-state signal is the underline thickening to 2px or shifting to a slight cream-to-tan gradient. The link evidence (link/borderColor=84) confirms underlines are the primary link affordance, not color."
+      },
+      {
+        "name": "Hero Ornament (Rosette)",
+        "role": "Small decorative motif anchoring project grids",
+        "description": "A 64px-radius circular ornament drawn in Cedar Stroke at 1px, used as a visual rest point between project groups. Not a button, not clickable — it is a typographic dingbat that happens to be drawn. Renders as a geometric rose-window pattern, centered between rows of project tiles in the work grid."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary editorial serif — runs the entire information layer: navigation links, project titles, body paragraphs, list items, inline labels. Weight 200 across all sizes keeps the type from competing with the architectural background; this is the workhorse face and everything else is a special occasion. Letter-spacing stays at +0.004–0.005em, giving the thin strokes a touch of air without becoming formal.",
+        "sizes": "16, 19, 21, 22, 27, 32px",
+        "family": "EditorialOld",
+        "weight": "200",
+        "lineHeight": "1.20–1.50",
+        "substitute": "Old Standard TT (weight 200) or Cormorant Garamond Light",
+        "letterSpacing": "0.0040em at body sizes (16–22px), 0.0050em at 27–32px"
+      },
+      {
+        "role": "The single monumental display cut — used exactly once for the owner's name in the hero. The -0.01em tracking pulls the hairlines tight; this is the only place the design allows itself to be loud, and it earns that volume by being the only 96px element on the page.",
+        "sizes": "96px",
+        "family": "Wispy",
+        "weight": "100",
+        "lineHeight": "1.00",
+        "substitute": "Italiana, Marcellus, or Cormorant SC at weight 300 with tightened tracking",
+        "letterSpacing": "-0.0100em"
+      },
+      {
+        "role": "Google-available fallback for EditorialOld at the smallest sizes — 13px captions and 16px secondary paragraphs. Same ultra-light weight, same manuscript register.",
+        "sizes": "13, 16px",
+        "family": "Old Standard TT",
+        "weight": "200",
+        "lineHeight": "1.50",
+        "substitute": "Old Standard TT is the open substitute for itself; Cormorant Garamond Light is a close stand-in",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "A secondary body serif with slightly more open leading (1.60) and a touch more weight (300) — appears in longer-form sections where the tighter EditorialOld would feel constraining. Looser tracking at +0.004em matches the primary family.",
+        "sizes": "15, 21px",
+        "family": "GTA",
+        "weight": "300",
+        "lineHeight": "1.60",
+        "substitute": "Cormorant Garamond Light (300) or EB Garamond Light",
+        "letterSpacing": "0.0040em"
+      },
+      {
+        "role": "Ornamental display face — used sparingly for the small decorative motifs embedded in body text (flourishes, dingbats, the small flowers in the rose-window pattern). Wider tracking (+0.011em) is intentional, these characters need room to breathe as mark-making rather than text.",
+        "sizes": "16, 21px",
+        "family": "bodoni-classic-ornaments",
+        "weight": "200, 300, 400",
+        "lineHeight": "1.44–1.50",
+        "substitute": "Baskerville Ornaments via Adobe Fonts, or replace with Bodoni Moda glyphs",
+        "letterSpacing": "0.0110em"
+      },
+      {
+        "role": "Reserved display serif for mid-level section headers — the rare heading that isn't set in EditorialOld. Tight line-height (1.10) and the highest stroke contrast in the family make it feel like a pull-quote.",
+        "sizes": "27px",
+        "family": "altesse-std-24pt",
+        "weight": "300",
+        "lineHeight": "1.10",
+        "substitute": "Playfair Display (300) or DM Serif Display Light",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "System fallback for the rare non-serif surface — the keyboard-shortcut chips (W, T, A) in the navigation, where a monospaced feel is needed for the boxed letter.",
+        "sizes": "16px",
+        "family": "ui-sans-serif",
+        "weight": "100, 400",
+        "lineHeight": "1.50",
+        "substitute": "Any geometric sans at weight 100 / 400 (Inter, IBM Plex Mono for the chips)",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "A personal portfolio system built on a dark forest-green manuscript — the page reads like a hand-illuminated codex rather than a website. The entire interface lives inside a single chromatic mood: deep pine canvas (#143930), warm parchment text (#f8f2de), and a sage structural accent (#456859) for line work and iconography. Typography stays in the weight-200 whisper range across a curated family of editorial serifs, with one display cut (Wispy, 96px) used as a single monumental name treatment. Decorative gothic architecture — rose windows, arches, intersecting plus-signs at line junctions — bleeds through the layout as full-width structural pattern rather than ornament. No drop shadows, no gradients, no rounded cards; the system draws its depth from line weight, the cream-on-green contrast pair (11.3:1), and the disciplined rhythm of thin horizontal rules with terminal crosses.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c47654a9-7d7a-4b2c-8e0a-cd9296719c69#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Haley Park design system\",\"item\":\"https://styles.refero.design/style/c47654a9-7d7a-4b2c-8e0a-cd9296719c69\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c47654a9-7d7a-4b2c-8e0a-cd9296719c69#style-reference\",\"name\":\"Haley Park design system reference\",\"headline\":\"Haley Park design system | Refero Styles\",\"description\":\"Explore Haley Park's dark Design design system: Pine Vellum #143930, Cedar Stroke #456859 colors, EditorialOld, Wispy typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c47654a9-7d7a-4b2c-8e0a-cd9296719c69\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c47654a9-7d7a-4b2c-8e0a-cd9296719c69\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Haley Park\",\"url\":\"https://haleys.design\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c47654a9-7d7a-4b2c-8e0a-cd9296719c69#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/18dad8f3-05c2-440e-99a6-723ef545c3a4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/18dad8f3-05c2-440e-99a6-723ef545c3a4.jpg\",\"caption\":\"Screenshot of Haley Park\"},\"image\":\"https://images.refero.design/styles/refero.design/image/18dad8f3-05c2-440e-99a6-723ef545c3a4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Haley Park design system\",\"Haley Park website design\",\"Haley Park colors\",\"Haley Park typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Pine Vellum\",\"Cedar Stroke\",\"Parchment\",\"Aged Tan\",\"EditorialOld\",\"Wispy\",\"Old Standard TT\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Haley Park design system\"},{\"@type\":\"Thing\",\"name\":\"Haley Park website design\"},{\"@type\":\"Thing\",\"name\":\"Haley Park colors\"},{\"@type\":\"Thing\",\"name\":\"Haley Park typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:24:46.720Z\",\"dateModified\":\"2026-04-30T03:24:46.720Z\"}]}19:T7b1,**Quick Color Reference**\n- text: #f8f2de (Parchment)\n- background: #143930 (Pine Vellum)\n- border: #f8f2de (Parchment, 1px)\n- accent: #456859 (Cedar Stroke — decorative line art and icons only)\n- secondary text: #bead89 (Aged Tan — years, metadata)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Build the hero name plate.* Full-bleed Pine Vellum background. Center the name in Wispy, 96px, weight 100, color #f8f2de, letter-spacing -0.96px, line-height 1.0. Two italic descriptors ('Software design' left, 'Assorted tomfoolery' right) in EditorialOld italic, 19px, weight 200, #f8f2de, sitting on the same baseline with ~20% viewport width on each side.\n\n2. *Build a project tile in the work grid.* No card, no border, no shadow. Title in EditorialOld, 21px, weight 200, #f8f2de, centered. Year directly below in EditorialOld, 16px, weight 200, #bead89. 26px gap between title and year. Place in a 4-column grid with 26px column gaps and 51px row gaps.\n\n3. *Build a section divider with crosshair terminals.* Full-width 1px #f8f2de horizontal line. Place a small '+' crosshair in #f8f2de at both far ends and at the exact center break. In the center break, render an italic section label in EditorialOld, 16px, weight 200, #f8f2de (e.g. 'Work projects').\n\n4. *Build the outlined link button (the only action pattern).* 1px #f8f2de border, 4.8px radius, transparent fill. Padding 11px vertical, 18px horizontal. Text in EditorialOld, 16px, weight 200, #f8f2de. Place a keyboard-shortcut chip (1px #f8f2de bordered square, 4.8px radius, single uppercase letter in ui-sans-serif 16px weight 400) 11px to the right of the text.\n\n5. *Build the architectural background pattern.* Full-bleed SVG line art on Pine Vellum, 1px stroke in #456859, no fill. Draw three adjacent pointed-arch cathedral windows across the viewport. Keep overall opacity around 35% of the base Cedar value so the pattern reads as a watermark, not foreground content."
+      }
+    ],
+    "northStarSentence": "A dark pine-green page where cream serif whispers float over ghostly cathedral line-drawings, and every line of text feels like it was set by a scribe.",
+    "elevationPhilosophy": "Elevation is replaced by line. The design carries no drop shadows in the conventional sense; depth comes from the single boxShadow token in the raw data (a faint pine-green glow on heading backgrounds) and from the contrast between architectural line art and empty canvas. Never introduce card shadows, floating panels, or neumorphism — those would shatter the manuscript illusion."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f8f2de",
+          "oklch": {
+            "c": 0.027099191466089634,
+            "h": 93.1033623251079,
+            "l": 0.9604986247621927
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "body",
+            "hero",
+            "heading",
+            "button",
+            "list"
+          ],
+          "frequency": 891,
+          "confidence": 1,
+          "prominence": 42594652.159654245,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 41,
+            "hero/color": 1,
+            "icon/color": 2,
+            "link/color": 21,
+            "list/color": 12,
+            "other/fill": 2,
+            "other/color": 66,
+            "button/color": 14,
+            "heading/color": 26,
+            "body/borderColor": 164,
+            "hero/borderColor": 4,
+            "icon/borderColor": 8,
+            "link/borderColor": 84,
+            "list/borderColor": 48,
+            "other/borderColor": 238,
+            "button/borderColor": 56,
+            "heading/borderColor": 104
+          }
+        },
+        {
+          "hex": "#143930",
+          "oklch": {
+            "c": 0.0454980306416549,
+            "h": 174.78044229887857,
+            "l": 0.3146315393710769
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 6145713.880539451,
+          "properties": [
+            "backgroundColor",
+            "boxShadow",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 37,
+            "other/boxShadow": 5,
+            "other/backgroundColor": 1,
+            "heading/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#456859",
+          "oklch": {
+            "c": 0.04677119576092841,
+            "h": 166.46264998761723,
+            "l": 0.4856273590118414
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 164,
+          "confidence": 1,
+          "prominence": 3527812.737946678,
+          "properties": [
+            "borderColor",
+            "color",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 4,
+            "other/fill": 12,
+            "other/color": 6,
+            "other/stroke": 72,
+            "icon/borderColor": 16,
+            "other/borderColor": 50,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#bead89",
+          "oklch": {
+            "c": 0.05282059091785719,
+            "h": 85.6460059132086,
+            "l": 0.752931055143039
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 160,
+          "confidence": 1,
+          "prominence": 17638.186008743767,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 32,
+            "body/borderColor": 128
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.09076482545433236,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 11.31,
+          "background": "#143930",
+          "foreground": "#f8f2de"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.75,
+          "background": "#143930",
+          "foreground": "#bead89"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.55,
+          "background": "#456859",
+          "foreground": "#f8f2de"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.82,
+          "background": "#456859",
+          "foreground": "#bead89"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.04,
+          "background": "#143930",
+          "foreground": "#456859"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4.8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|body",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 38,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "link",
+            "heading",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "marginRight|heading",
+            "marginLeft|heading",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|icon",
+            "marginRight|icon",
+            "marginBottom|icon",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other",
+            "hero",
+            "heading",
+            "list"
+          ],
+          "frequency": 33,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "columnGap|hero",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "marginBottom|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|heading",
+            "columnGap|heading"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 51,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 102,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 138,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "EditorialOld",
+          "source": "custom",
+          "weights": [
+            200
+          ],
+          "frequency": 129,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ui-sans-serif",
+          "source": "system",
+          "weights": [
+            100,
+            400
+          ],
+          "frequency": 37,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Old Standard TT",
+          "source": "google",
+          "weights": [
+            200
+          ],
+          "frequency": 37,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GTA",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 12,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "bodoni-classic-ornaments",
+          "source": "custom",
+          "weights": [
+            200,
+            300,
+            400
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Wispy",
+          "source": "custom",
+          "weights": [
+            100
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "altesse-std-24pt",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 7,
+          "family": "bodoni-classic-ornaments",
+          "weight": 200,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Old Standard TT",
+          "weight": 200,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 15,
+          "family": "GTA",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ui-sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "bodoni-classic-ornaments",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "EditorialOld",
+          "weight": 200,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "list"
+          ],
+          "frequency": 82,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Old Standard TT",
+          "weight": 200,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "EditorialOld",
+          "weight": 200,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "EditorialOld",
+          "weight": 200,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "GTA",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "EditorialOld",
+          "weight": 200,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "EditorialOld",
+          "weight": 200,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "bodoni-classic-ornaments",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.44,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "EditorialOld",
+          "weight": 200,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "EditorialOld",
+          "weight": 200,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "altesse-std-24pt",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "EditorialOld",
+          "weight": 200,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "Wispy",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/2f9e30ec-7343-4e09-be24-8809af3c9051.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/18dad8f3-05c2-440e-99a6-723ef545c3a4.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c47654a9-7d7a-4b2c-8e0a-cd9296719c69#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Haley Park design system\",\"item\":\"https://styles.refero.design/style/c47654a9-7d7a-4b2c-8e0a-cd9296719c69\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c47654a9-7d7a-4b2c-8e0a-cd9296719c69#style-reference\",\"name\":\"Haley Park design system reference\",\"headline\":\"Haley Park design system | Refero Styles\",\"description\":\"Explore Haley Park's dark Design design system: Pine Vellum #143930, Cedar Stroke #456859 colors, EditorialOld, Wispy typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c47654a9-7d7a-4b2c-8e0a-cd9296719c69\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c47654a9-7d7a-4b2c-8e0a-cd9296719c69\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Haley Park\",\"url\":\"https://haleys.design\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c47654a9-7d7a-4b2c-8e0a-cd9296719c69#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/18dad8f3-05c2-440e-99a6-723ef545c3a4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/18dad8f3-05c2-440e-99a6-723ef545c3a4.jpg\",\"caption\":\"Screenshot of Haley Park\"},\"image\":\"https://images.refero.design/styles/refero.design/image/18dad8f3-05c2-440e-99a6-723ef545c3a4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Haley Park design system\",\"Haley Park website design\",\"Haley Park colors\",\"Haley Park typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Pine Vellum\",\"Cedar Stroke\",\"Parchment\",\"Aged Tan\",\"EditorialOld\",\"Wispy\",\"Old Standard TT\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Haley Park design system\"},{\"@type\":\"Thing\",\"name\":\"Haley Park website design\"},{\"@type\":\"Thing\",\"name\":\"Haley Park colors\"},{\"@type\":\"Thing\",\"name\":\"Haley Park typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:24:46.720Z\",\"dateModified\":\"2026-04-30T03:24:46.720Z\"}]}19:T7b1,**Quick Color Reference**\n- text: #f8f2de (Parchment)\n- background: #143930 (Pine Vellum)\n- border: #f8f2de (Parchment, 1px)\n- accent: #456859 (Cedar Stroke — decorative line art and icons only)\n- secondary text: #bead89 (Aged Tan — years, metadata)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Build the hero name plate.* Full-bleed Pine Vellum background. Center the name in Wispy, 96px, weight 100, color #f8f2de, letter-spacing -0.96px, line-height 1.0. Two italic descriptors ('Software design' left, 'Assorted tomfoolery' right) in EditorialOld italic, 19px, weight 200, #f8f2de, sitting on the same baseline with ~20% viewport width on each side.\n\n2. *Build a project tile in the work grid.* No card, no border, no shadow. Title in EditorialOld, 21px, weight 200, #f8f2de, centered. Year directly below in EditorialOld, 16px, weight 200, #bead89. 26px gap between title and year. Place in a 4-column grid with 26px column gaps and 51px row gaps.\n\n3. *Build a section divider with crosshair terminals.* Full-width 1px #f8f2de horizontal line. Place a small '+' crosshair in #f8f2de at both far ends and at the exact center break. In the center break, render an italic section label in EditorialOld, 16px, weight 200, #f8f2de (e.g. 'Work projects').\n\n4. *Build the outlined link button (the only action pattern).* 1px #f8f2de border, 4.8px radius, transparent fill. Padding 11px vertical, 18px horizontal. Text in EditorialOld, 16px, weight 200, #f8f2de. Place a keyboard-shortcut chip (1px #f8f2de bordered square, 4.8px radius, single uppercase letter in ui-sans-serif 16px weight 400) 11px to the right of the text.\n\n5. *Build the architectural background pattern.* Full-bleed SVG line art on Pine Vellum, 1px stroke in #456859, no fill. Draw three adjacent pointed-arch cathedral windows across the viewport. Keep overall opacity around 35% of the base Cedar value so the pattern reads as a watermark, not foreground content."
+}

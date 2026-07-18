@@ -1,0 +1,612 @@
+{
+  "color": {
+    "espresso": {
+      "$value": "#140b00",
+      "$type": "color",
+      "$description": "Espresso — Page canvas and primary surface — warm coffee-black rather than pure black, the entire site sits on this"
+    },
+    "midnight-cocoa": {
+      "$value": "#0b0600",
+      "$type": "color",
+      "$description": "Midnight Cocoa — Deepest surface for footers and recessed bands — almost-black brown for slight layering below Espresso"
+    },
+    "warm-cream": {
+      "$value": "#fff1e0",
+      "$type": "color",
+      "$description": "Warm Cream — Primary text and icon strokes — the only ink color across the system, reads as off-white parchment in dark contexts"
+    },
+    "soft-cream": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Soft Cream — Occasional light surface tint where near-white is needed (rare, secondary to Warm Cream)"
+    },
+    "walnut": {
+      "$value": "#43392d",
+      "$type": "color",
+      "$description": "Walnut — Subtle hairline borders on dark surfaces — warm taupe that holds edges without competing with content"
+    },
+    "cedar": {
+      "$value": "#4f4538",
+      "$type": "color",
+      "$description": "Cedar — Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color"
+    },
+    "driftwood": {
+      "$value": "#85796c",
+      "$type": "color",
+      "$description": "Driftwood — Muted helper text and secondary labels — warm gray that recedes against Espresso without disappearing"
+    },
+    "burnt-edge": {
+      "$value": "#181109",
+      "$type": "color",
+      "$description": "Burnt Edge — Faint internal border on cards and panels — barely-visible depth line on the dark canvas"
+    },
+    "amber-forge": {
+      "$value": "#ffb442",
+      "$type": "color",
+      "$description": "Amber Forge — Primary action fill, accent highlights, and the system signal color — the only chromatic accent; appears on filled CTAs, icon hover states, and section dividers. Pairs against Espresso for a heated-metal contrast that feels pressed-in and intentional"
+    }
+  },
+  "font": {
+    "pp-neue-montreal": {
+      "$value": "PP Neue Montreal",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire system. PP Neue Montreal is a geometric humanist sans with a soft, slightly rounded terminal — more editorial than Inter, more clinical than GT America. Used at weight 400 for body and 500 for emphasis; no weight 600+ anywhere, which keeps the voice restrained and high-end. Display sizes (43–81px) use tight negative tracking (down to -1.13px) to lock letters into compact editorial blocks. Substitute with Inter (close) or Manrope (slightly warmer)."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 13px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 13px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 13px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "sm-13": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-13 at 14px"
+    },
+    "sm-14": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-14 at 14px"
+    },
+    "sm-15": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-15 at 14px"
+    },
+    "sm-16": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-16 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 23px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "23px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "27px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 27px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 29px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "33px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 33px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "35px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 35px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "43px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 43px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "43px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "55px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 55px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "59px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 59px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "59px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 59px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "69px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 69px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "73px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 73px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal",
+        "fontSize": "81px",
+        "fontWeight": 500,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 81px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "152": {
+      "$value": "152px",
+      "$type": "dimension",
+      "$description": "Spacing 152px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "full": {
+      "$value": "1162.8px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1296px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "espresso-canvas": {
+      "$value": "#140b00",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background, dominant canvas"
+    },
+    "midnight-cocoa": {
+      "$value": "#0b0600",
+      "$type": "color",
+      "$description": "Surface level 1: Footer and recessed dark bands, one step deeper than canvas"
+    },
+    "walnut-outline": {
+      "$value": "#43392d",
+      "$type": "color",
+      "$description": "Surface level 2: Card and panel borders on the Espresso canvas"
+    },
+    "amber-signal": {
+      "$value": "#ffb442",
+      "$type": "color",
+      "$description": "Surface level 3: Action fill, the only elevated chromatic surface"
+    },
+    "warm-cream": {
+      "$value": "#fff1e0",
+      "$type": "color",
+      "$description": "Surface level 4: Inverse text surface (light bands, e.g. FAQ section) that flips the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://abetterlou.com",
+      "siteName": "Abetterlou",
+      "extractedAt": "2026-06-03T18:44:46.882Z",
+      "variant": "extended"
+    }
+  }
+}

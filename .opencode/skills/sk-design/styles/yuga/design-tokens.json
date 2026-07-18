@@ -1,0 +1,237 @@
+{
+  "color": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Page canvas, card surfaces, footer background — the dominant black field that swallows everything except typography and accent"
+    },
+    "charcoal": {
+      "$value": "#131313",
+      "$type": "color",
+      "$description": "Charcoal — Elevated card surface above Void, hover-state surfaces — barely lighter than canvas, creates whisper-quiet depth"
+    },
+    "pure": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure — Hairline borders, dividers, input outlines, and card edges on light surfaces."
+    },
+    "acid-lime": {
+      "$value": "#d3de5d",
+      "$type": "color",
+      "$description": "Acid Lime — Decorative accent strip, highlight washes, section punctuation — chartreuse against matte black creates voltage; never used for text or buttons"
+    }
+  },
+  "font": {
+    "ak-monument-grotesk": {
+      "$value": "AK Monument Grotesk",
+      "$type": "fontFamily",
+      "$description": "Single typeface carries the entire system. Weight 200 for massive display creates a featherlight monumental effect at 102–160px; weight 700–800 for 'BUILDING.'-style statements; weight 400 for body and nav. Crushed line-heights (0.78–0.83 at display sizes) eliminate inter-line space and let type stack into graphic blocks rather than paragraphs. Tight letter-spacing (-0.02em to -0.03em) pulls letters into near-solidity at large sizes."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "AK Monument Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 200,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "AK Monument Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "AK Monument Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "AK Monument Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "AK Monument Grotesk",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "AK Monument Grotesk",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 0.78
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "AK Monument Grotesk",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "AK Monument Grotesk",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "AK Monument Grotesk",
+        "fontSize": "52px",
+        "fontWeight": 800,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "AK Monument Grotesk",
+        "fontSize": "102px",
+        "fontWeight": 800,
+        "lineHeight": 0.82
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 102px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "AK Monument Grotesk",
+        "fontSize": "160px",
+        "fontWeight": 800,
+        "lineHeight": 0.82
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 160px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, the absolute base"
+    },
+    "charcoal-plate": {
+      "$value": "#131313",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card surface, used for collection cards and feature panels"
+    },
+    "acid-wash": {
+      "$value": "#d3de5d",
+      "$type": "color",
+      "$description": "Surface level 2: Accent strip, decorative side bar, highlight zone"
+    },
+    "pure-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Inverse fill for logo marks, inverse button states"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://yuga.com",
+      "siteName": "Yuga",
+      "extractedAt": "2026-06-03T21:24:41.530Z",
+      "variant": "extended"
+    }
+  }
+}

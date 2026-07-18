@@ -1,0 +1,82 @@
+:root {
+  /* Colors */
+  --color-giallo-vivo: #ffc000;
+  --color-giallo-ombra: #917300;
+  --color-carbony-black: #202020;
+  --color-pure-black: #000000;
+  --color-carbon-deep: #181818;
+  --color-pearl-white: #ffffff;
+  --color-marble-gray: #f5f5f5;
+  --color-graphite-border: #494949;
+  --color-steel-mid: #7d7d7d;
+  --color-ash-border: #969696;
+  --color-anvil: #313131;
+
+  /* Typography — Font Families */
+  --font-lambotype: 'LamboType', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-open-sans: 'Open Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 10px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.23px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: 0.37px;
+  --text-subheading: 18px;
+  --leading-subheading: 1.5;
+  --tracking-subheading: 0.41px;
+  --text-heading-sm: 27px;
+  --leading-heading-sm: 1.37;
+  --tracking-heading-sm: 0.62px;
+  --text-heading: 32px;
+  --leading-heading: 1.38;
+  --tracking-heading: 0.74px;
+  --text-heading-lg: 40px;
+  --leading-heading-lg: 1.19;
+  --tracking-heading-lg: 0.92px;
+  --text-display: 54px;
+  --leading-display: 1.13;
+  --tracking-display: 1.24px;
+  --text-display-lg: 80px;
+  --leading-display-lg: 1;
+  --tracking-display-lg: 1.84px;
+  --text-hero: 120px;
+  --leading-hero: 0.92;
+  --tracking-hero: 2.76px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-160: 160px;
+
+  /* Layout */
+  --page-max-width: 1440px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 24px;
+
+  /* Named Radii */
+  --radius-cards: 0px;
+  --radius-badges: 0px;
+  --radius-images: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-canvas-white: #ffffff;
+  --surface-marble: #f5f5f5;
+  --surface-carbony: #202020;
+  --surface-carbon-deep: #181818;
+  --surface-pure-black: #000000;
+}

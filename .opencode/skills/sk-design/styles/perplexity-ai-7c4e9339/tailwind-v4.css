@@ -1,0 +1,52 @@
+@theme {
+  /* Colors */
+  --color-aged-sepia: #271a00;
+  --color-parchment: #faf8f5;
+  --color-fog: #d1cfc7;
+  --color-absolute-black: #000000;
+  --color-pure-white: #ffffff;
+  --color-moss-shadow: #7c7464;
+  --color-deep-forest: #23291b;
+  --color-teal-accent: #0f3639;
+  --color-ash-mist: #e5e5e3;
+  --color-slate-edge: #121516;
+
+  /* Typography */
+  --font-pplxsans: 'pplxSans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-pplxsansmono: 'pplxSansMono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-pplxserif: 'pplxSerif', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-pplx-serif-beta-v0-vf: 'PPLX Serif Beta v0 VF', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-pplx-mono: 'PPLX Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-pplx-mono-beta-v0-vf: 'PPLX Mono Beta v0 VF', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.2;
+  --text-body-sm: 12px;
+  --leading-body-sm: 1.2;
+  --text-body: 15px;
+  --leading-body: 1.2;
+  --text-body-lg: 16px;
+  --leading-body-lg: 1.2;
+  --text-heading-sm: 32px;
+  --leading-heading-sm: 1.2;
+  --text-heading: 96px;
+  --leading-heading: 1.2;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-40: 40px;
+  --spacing-80: 80px;
+  --spacing-180: 180px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-xl: 12px;
+  --radius-3xl: 40px;
+}

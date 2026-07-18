@@ -1,0 +1,454 @@
+{
+  "color": {
+    "forest-ink": {
+      "$value": "#00381c",
+      "$type": "color",
+      "$description": "Forest Ink — Page canvas, section backgrounds — deep saturated green creates the base atmosphere; the page reads as forest-green, not black, which warms the dark theme and separates this system from generic dark-mode SaaS"
+    },
+    "forest-deep": {
+      "$value": "#002d16",
+      "$type": "color",
+      "$description": "Forest Deep — Shadow and recessed surface tone — used in card drop-shadows and inner depth layers, the slightly darker shade of the canvas adds dimension without breaking the monochrome green field"
+    },
+    "peach-cream": {
+      "$value": "#ffe0ce",
+      "$type": "color",
+      "$description": "Peach Cream — Primary text, hairline borders, outlined-action strokes — the system's only near-gray warm tone; carries the majority of legibility weight and acts as the universal border color across lists, cards, and images. Outlined ghost-button stroke color"
+    },
+    "bone": {
+      "$value": "#f6e9d9",
+      "$type": "color",
+      "$description": "Bone — Secondary text, decorative stroke and fill accents — a slightly cooler cream for subtle differentiation from Peach Cream without breaking the warm neutrals family"
+    },
+    "charcoal": {
+      "$value": "#272221",
+      "$type": "color",
+      "$description": "Charcoal — Card surface, elevated panels, secondary dark surface — sits one step off pure black, warm enough to harmonize with the green canvas, used for the back-layer of illustrated artwork tiles"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Deepest surface, button border, text on light card — true black reserved for max-contrast elements and neutral button outlines"
+    },
+    "slate": {
+      "$value": "#2c2f34",
+      "$type": "color",
+      "$description": "Slate — Neutral card surface variant for utility panels — cool-tinted alternative to Charcoal for sections that need to feel mechanical rather than warm"
+    },
+    "fog": {
+      "$value": "#c3bfbc",
+      "$type": "color",
+      "$description": "Fog — Muted neutral card surface — desaturated warm gray for low-emphasis panels"
+    },
+    "coral-flame": {
+      "$value": "#ff8370",
+      "$type": "color",
+      "$description": "Coral Flame — Display type accent, link text, emphasis headings — vivid warm orange that dominates the hero typography and section labels; against the green canvas it reads as high-energy poster ink, not a UI CTA color"
+    },
+    "lavender": {
+      "$value": "#d1adff",
+      "$type": "color",
+      "$description": "Lavender — Violet accent for outlined action borders, linked labels, and lightweight interactive emphasis."
+    },
+    "sage": {
+      "$value": "#546f57",
+      "$type": "color",
+      "$description": "Sage — Body background panels, list dividers, utility surfaces — desaturated green that sits between Forest Ink and the cream text, used for secondary content blocks and list separators"
+    },
+    "ultraviolet": {
+      "$value": "#2d0458",
+      "$type": "color",
+      "$description": "Ultraviolet — Dramatic card surface for featured work tiles — deep saturated violet as an alternative canvas for highlight cards; high contrast with Peach Cream text"
+    },
+    "indigo-depth": {
+      "$value": "#1e1779",
+      "$type": "color",
+      "$description": "Indigo Depth — Accent card surface — vivid indigo for occasional card variants that need to feel different from the green field without going warm"
+    },
+    "heather": {
+      "$value": "#977eac",
+      "$type": "color",
+      "$description": "Heather — Muted card surface — dusty violet for low-priority cards and section dividers"
+    },
+    "navy-depths": {
+      "$value": "#002a3b",
+      "$type": "color",
+      "$description": "Navy Depths — Cool card surface — deep blue-teal for cards that need to break from the warm/green field with a cool note"
+    }
+  },
+  "font": {
+    "mango-grotesque": {
+      "$value": "Mango Grotesque",
+      "$type": "fontFamily",
+      "$description": "Display and heading — Mango Grotesque is a condensed grotesque used at near-illegible sizes (88–518px) with compressed line-height (0.80–0.85), intentionally bleeding off the viewport. The tight tracking plus compressed leading is what makes the type read as 'poster' rather than 'web headline'. Substitutes: Anton, Bebas Neue, Druk Wide for the mass, Archivo Black for smaller weights."
+    },
+    "nohemi": {
+      "$value": "Nohemi",
+      "$type": "fontFamily",
+      "$description": "UI body, navigation, buttons, meta text — Nohemi runs at a deliberately tiny 14–18px with generous +0.10em tracking, a signature move that makes the UI text feel like caption furniture rather than body copy. The +10% tracking is anti-convention: most body systems tighten tracking, this loosens it to keep the small text airy and readable against the dark green. Substitutes: Inter, General Sans, Satoshi."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback for the smallest UI metadata — 13px Arial is used purely as a safe baseline when custom fonts fail; treated as invisible utility, not a design choice."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Nohemi",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Nohemi",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Nohemi",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Nohemi",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Nohemi",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Nohemi",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Mango Grotesque",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 0.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Mango Grotesque",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Mango Grotesque",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Mango Grotesque",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Mango Grotesque",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Mango Grotesque",
+        "fontSize": "88px",
+        "fontWeight": 500,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 88px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Mango Grotesque",
+        "fontSize": "94px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 94px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Mango Grotesque",
+        "fontSize": "94px",
+        "fontWeight": 700,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 94px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Mango Grotesque",
+        "fontSize": "97px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 97px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Mango Grotesque",
+        "fontSize": "144px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 144px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Mango Grotesque",
+        "fontSize": "256px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 256px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "Mango Grotesque",
+        "fontSize": "256px",
+        "fontWeight": 700,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 256px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "Mango Grotesque",
+        "fontSize": "518px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 518px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "79": {
+      "$value": "79px",
+      "$type": "dimension",
+      "$description": "Spacing 79px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "900px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.01) 0px 62px 25px 0px, rgba(0, 0, 0, 0.05) 0px 35px 21px 0px, rgba(0, 0, 0, 0.09) 0px 16px 16px 0px, rgba(0, 0, 0, 0.1) 0px 4px 9px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "xl-2": {
+      "$value": "rgba(0, 0, 0, 0.2) 0px 0px 112px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-2"
+    },
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.1) 4px -4px 12px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "lg": {
+      "$value": "rgba(0, 0, 0, 0.01) 21px 44px 20px 0px, rgba(0, 0, 0, 0.05) 12px 25px 17px 0px, rgba(0, 0, 0, 0.09) 5px 11px 12px 0px, rgba(0, 0, 0, 0.1) 1px 3px 7px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    },
+    "xl-3": {
+      "$value": "rgba(0, 0, 0, 0.01) 0px 262px 105px 0px, rgba(0, 0, 0, 0.05) 0px 148px 89px 0px, rgba(0, 0, 0, 0.09) 0px 66px 66px 0px, rgba(0, 0, 0, 0.1) 0px 16px 36px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-3"
+    }
+  },
+  "surface": {
+    "forest-ink-canvas": {
+      "$value": "#00381c",
+      "$type": "color",
+      "$description": "Surface level 0: The page field — all sections and heroes sit directly on this deep green; no lighter background exists at the page level."
+    },
+    "sage-panel": {
+      "$value": "#546f57",
+      "$type": "color",
+      "$description": "Surface level 1: Body and list background panels that need a subtle lift from the canvas without breaking the green field."
+    },
+    "charcoal-card": {
+      "$value": "#272221",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated cards and illustration tile backings — warm dark surface that complements the green canvas."
+    },
+    "ultraviolet-feature-card": {
+      "$value": "#2d0458",
+      "$type": "color",
+      "$description": "Surface level 3: Accent surface for featured work tiles — the only high-chroma card surface in the system."
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://flayks.com",
+      "siteName": "Flayks",
+      "extractedAt": "2026-06-03T21:31:04.571Z",
+      "variant": "extended"
+    }
+  }
+}

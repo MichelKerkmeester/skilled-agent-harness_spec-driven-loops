@@ -1,0 +1,704 @@
+{
+  "source": "https://styles.refero.design/style/16a8de02-a4c6-4077-9d3a-ef6b5c10db12",
+  "uuid": "16a8de02-a4c6-4077-9d3a-ef6b5c10db12",
+  "name": "Intra",
+  "northStar": "white-walled gallery placard with one giant black eye",
+  "capturedAt": "2026-07-18T07:50:57.858Z",
+  "meta": {
+    "url": "https://intracbr.com.au",
+    "siteName": "Intra",
+    "extractedAt": "2026-06-03T19:21:52.602Z",
+    "durationMs": 32158,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 127,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 95px Whyte weight 400 as the only display size — never split into bold/regular variants, let the SIZE carry hierarchy.",
+      "Hold the page to four colors total: #ffffff canvas, #212529 ink, #000000 for the heaviest moments, #e4e4e4 hairlines.",
+      "Use 0px border-radius on every component — cards, buttons, images, tags. Sharp corners are the brand.",
+      "Set section padding to 100px top and bottom, with 50px horizontal gutters — the breathing room IS the layout.",
+      "Let product photography supply color: when a colored element is needed, use a real product image rather than introducing a new brand color.",
+      "Use 1px outlined buttons with 6px horizontal / 1px vertical padding — the bar should feel like a typographic underline, not a conventional CTA.",
+      "Keep the body line-height at 1.50 and the display line-height at 1.00 — never let the giant headlines feel airy."
+    ],
+    "donts": [
+      "Don't introduce a chromatic accent color for buttons, links, badges, or icons — there is no brand color in this system, the packaging supplies the only saturation.",
+      "Don't use drop shadows, gradients, or blur effects — surfaces are flat, defined only by hairline borders.",
+      "Don't use rounded corners anywhere, even on tags or avatars — everything is a sharp rectangle.",
+      "Don't use bold (weight 600+) or light (weight 300) cuts of Whyte — weight 400 is the only voice, all hierarchy is typographic scale.",
+      "Don't add icons, emojis, or decorative glyphs to the UI — the eye mark and the wordmark are the only marks.",
+      "Don't split the giant wordmark into multiple lines or hyphenate it — \"CAFE\", \"HOURS\", \"INTRA\" each occupy one line at 95px.",
+      "Don't apply a hover color change to links — the underline is the affordance, not a color shift."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, type knocked out of black panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#212529",
+        "name": "Ink Black",
+        "role": "Primary text, bold panels, the dominant non-white surface — carries a barely-perceptible cool tint that softens it from pure #000",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "Button strokes, logo fill, and the heaviest typographic moments where absolute zero contrast is required",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e4e4e4",
+        "name": "Hairline Gray",
+        "role": "Dividers, card borders, image outlines, table rules — the only mid-tone in the system",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed multi-column grid that fills the viewport without a max-width container. The page is divided into roughly three vertical columns: a large left panel for the eye mark, a center column for display wordmarks and body text, and a right column for product cards and a secondary black panel. Section rhythm alternates white canvas with an occasional #212529 black panel rather than white/gray bands. The hero is a giant eye-mark on white with no headline or CTA — the mark itself is the hero. Section spacing is generous: 100px vertical padding between blocks creates a gallery-walk feel rather than a scrolling feed. Navigation is minimal — likely a top bar with simple text links rather than a sticky header. Cards are arranged in a vertical stack in the right rail, not a grid. The overall page model is editorial print more than SaaS dashboard.",
+    "imagery": "Imagery is documentary and editorial: unmanipulated photographs of the two owners inside the venue, shot in available light with slightly desaturated tones that harmonize with the monochrome page. Product photography of the coffee bags is the chromatic event of the page — flat, high-contrast, full-bleed within a hairline-framed card, with vivid packaging colors (magenta #d92a8a-ish, lime #c5e63a-ish, terracotta) that become the only color on an otherwise achromatic site. No illustrations, no 3D renders, no abstract graphics. Icons are absent — the eye mark is the only iconography. Photography occupies roughly 30–40% of the page and is contained, never full-bleed, framed by 0px-radius edges and 78px gutters.",
+    "similar": [
+      {
+        "why": "Same restrained editorial typography at oversized scale, near-monochrome canvas, sharp 0px corners, and product photography as the sole source of color saturation",
+        "business": "Aesop"
+      },
+      {
+        "why": "Similar gallery-walk layout with hairline dividers, document-style body copy, and type that reads as wall labels rather than web copy",
+        "business": "The Wing / Soho House site"
+      },
+      {
+        "why": "Shared brutalist restraint — flat surfaces, single weight sans-serif, 0px radii, and a refusal to decorate the UI with color or shadow",
+        "business": "Muji"
+      },
+      {
+        "why": "Same Swiss-print sensibility: oversized single-weight display type, generous 100px+ vertical breathing room, documentary photography, and near-achromatic palette",
+        "business": "Kinfolk Magazine"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "100px",
+      "cardPadding": "40px",
+      "pageMaxWidth": null
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Page canvas — the dominant background, covering most of the viewport"
+      },
+      {
+        "hex": "#212529",
+        "name": "Ink Panel",
+        "level": 1,
+        "purpose": "Inverse sections, logo plate, and the rare dark band that punctuates the white page"
+      }
+    ],
+    "northStar": "white-walled gallery placard with one giant black eye",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading",
+        "size": 20,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "display",
+        "size": 95,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Eye Logo Lockup",
+        "role": "Primary brand mark — the most identifiable asset on the site",
+        "description": "A large black oval with a centered circular pupil, stacked above the wordmark \"INTRA\" set in 95px Whyte. Used at full-bleed scale on the home page as a hero panel. Always 0px radius, always pure black on white, no color variants."
+      },
+      {
+        "name": "Display Wordmark Section",
+        "role": "Editorial section header — replaces what a colored banner or card would do on a conventional site",
+        "description": "One or two words (CAFE, HOURS, BUY IN-STORE) at 95px Whyte weight 400, line-height 1.0, color #212529 on #ffffff. The word IS the section header. No subhead, no decorative element. Let the size carry the page."
+      },
+      {
+        "name": "Body Text Block",
+        "role": "Long-form copy describing the venue, menu philosophy, hours",
+        "description": "16–18px Whyte weight 400, line-height 1.50, color #212529, max-width reads around 50–60 characters. Paragraph spacing roughly 20px. No drop caps, no pull quotes — the type speaks plainly."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separation",
+        "description": "1px line in #e4e4e4 spanning the full column width. No drop shadow, no color fill, no decorative element — just a flat rule between blocks."
+      },
+      {
+        "name": "Product Card (Coffee Bag)",
+        "role": "Showcase tile for available single-origin beans",
+        "description": "Rectangular card with 0px radius, 1px #e4e4e4 border, no shadow. Contains a flat-color product photograph (magenta, lime, terracotta) on a #ffffff background, with origin name (\"Ethiopia\", \"Honduras\", \"Staple\") set large in 20px Whyte above the image. The bag photo provides the only chromatic moment on the page."
+      },
+      {
+        "name": "Outlined Action Button",
+        "role": "Navigation and call-to-action control",
+        "description": "1px #000000 border, 0px radius, 6px horizontal × 1px vertical padding, color #000000, text 16–20px Whyte weight 400. The minimal vertical padding (1px) creates a very thin, type-like bar — this button reads as underlined text with a stroke, not a conventional pill. Used for \"BUY IN-STORE\" and similar nav-style actions."
+      },
+      {
+        "name": "Editorial Photo Block",
+        "role": "Documentary imagery of the venue and team",
+        "description": "Full-bleed or column-width photograph with 0px radius, framed by 78px horizontal margins to let it sit within a 3-column grid. Treatment is unmanipulated, high-resolution, slightly desaturated to harmonize with the monochrome page."
+      },
+      {
+        "name": "Metadata Row",
+        "role": "Hours, locations, and structured information",
+        "description": "16–20px Whyte weight 400, color #212529, arranged in a left-aligned two-column or stacked list with 15px vertical padding per row. No icons, no color coding, no badges — just plain labels and values."
+      },
+      {
+        "name": "Link List (Footer/Info)",
+        "role": "Secondary navigation and contact links",
+        "description": "16px Whyte weight 400, color #212529 with #000000 underline, 15px vertical padding between items. No hover color change documented — the link is defined by the underline, not by a color shift."
+      },
+      {
+        "name": "Black Panel Block",
+        "role": "Inverse section — the only large dark surface on the site",
+        "description": "Full-width #212529 (or #000000) background with white type (#ffffff) at the same 95px display scale. Used sparingly as a counterpoint to the white canvas, often for the logo or a single statement word."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-weight type system. 95px display headlines for the wordmark and section titles carry the brand's editorial weight; 18–20px reads as body and meta; 16px as captions and link lists. The single weight (400) at all sizes is a signature choice — no bold, no light, the hierarchy is built through SIZE, not stroke. Substitute with Inter, Söhne, or Neue Haas Grotesk.",
+        "sizes": "16px, 18px, 20px, 95px",
+        "family": "Whyte",
+        "weight": "400",
+        "lineHeight": "1.00 for display, 1.50 for body",
+        "substitute": "Inter or Söhne"
+      },
+      {
+        "role": "System fallback for environments where Whyte is unavailable; inherits macOS/iOS native rhythm. Use only as the last-resort stack, not the primary voice.",
+        "sizes": "16px, 20px",
+        "family": "-apple-system",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "system-ui"
+      }
+    ],
+    "description": "Intra is a brutally editorial cafe identity: a white canvas dominated by an oversized black eye-mark and gigantic sans-serif wordmarks that read like gallery wall text. Color is almost entirely suppressed — only black, near-black, white, and a single hairline gray — so that the bright packaging of its coffee bags (magenta, lime, terracotta) detonates against the monochrome page like curated art objects. Type is the interface: 95px Whyte at weight 400 does the heavy lifting that buttons and color would do on a conventional site, and every section breathes through generous 100px vertical padding and wide 50px gutters. The aesthetic borrows from Swiss editorial print, brutalist signage, and museum labeling — content is presented as a series of facts, images, and objects rather than wrapped in a product UI.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/16a8de02-a4c6-4077-9d3a-ef6b5c10db12#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Intra design system\",\"item\":\"https://styles.refero.design/style/16a8de02-a4c6-4077-9d3a-ef6b5c10db12\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/16a8de02-a4c6-4077-9d3a-ef6b5c10db12#style-reference\",\"name\":\"Intra design system reference\",\"headline\":\"Intra design system | Refero Styles\",\"description\":\"Explore Intra's light Other design system: Paper White #ffffff, Ink Black #212529 colors, Whyte, -apple-system typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/16a8de02-a4c6-4077-9d3a-ef6b5c10db12\",\"mainEntityOfPage\":\"https://styles.refero.design/style/16a8de02-a4c6-4077-9d3a-ef6b5c10db12\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Intra\",\"url\":\"https://intracbr.com.au\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/16a8de02-a4c6-4077-9d3a-ef6b5c10db12#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/762a4d6a-9471-4b66-b181-1d52d011cfb6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/762a4d6a-9471-4b66-b181-1d52d011cfb6.jpg\",\"caption\":\"Screenshot of Intra\"},\"image\":\"https://images.refero.design/styles/refero.design/image/762a4d6a-9471-4b66-b181-1d52d011cfb6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Intra design system\",\"Intra website design\",\"Intra colors\",\"Intra typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Paper White\",\"Ink Black\",\"Pure Black\",\"Hairline Gray\",\"Whyte\",\"-apple-system\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Intra design system\"},{\"@type\":\"Thing\",\"name\":\"Intra website design\"},{\"@type\":\"Thing\",\"name\":\"Intra colors\"},{\"@type\":\"Thing\",\"name\":\"Intra typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T02:43:09.852Z\",\"dateModified\":\"2026-04-30T02:43:09.852Z\"}]}19:T534,Quick Color Reference:\n- text: #212529\n- background: #ffffff\n- border/hairline: #e4e4e4\n- accent: #000000 (logo fill, button strokes)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create an editorial hero: full-bleed #ffffff canvas. Centered or left-aligned display wordmark \"CAFE\" at 95px Whyte weight 400, line-height 1.0, color #212529. 100px top and bottom padding. No background panel, no button, no subhead — the word IS the section.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n3. Create a metadata/hours row: two-column or stacked list. Labels in 16px Whyte weight 400 color #212529, values in 16px Whyte weight 400 color #212529, 15px vertical padding between rows. No icons, no dividers, no color coding.\n\n4. Create an outlined navigation button: 1px #000000 border, 0px radius, 6px horizontal padding × 1px vertical padding. Text \"BUY IN-STORE\" at 16–20px Whyte weight 400 color #000000. Sits in the top bar, uppercase or title case, no fill, no shadow.\n\n5. Create a black inverse panel: full-width #212529 background, 100px vertical padding. White (#ffffff) 95px display text centered or left-aligned, line-height 1.0. Use to punctuate the page and provide a visual counterweight to the white canvas."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "Intra uses a single weight (400) of one typeface (Whyte) at radically different sizes. The 95px display scale is not decoration — it replaces the role that color, iconography, and buttons play on a conventional site. When a new section needs emphasis, scale the type up, never add a color, never add a weight, never add a graphic. This is a constraint, not a limitation: it forces the content to be the visual hierarchy."
+      },
+      {
+        "title": "Color Source Rule",
+        "content": "The UI itself never carries a chromatic color. If a screen needs warmth, vitality, or visual energy, it must come from photography of real objects (the coffee bags, the venue, the people). Never introduce a new brand hex for a button background, link hover, badge fill, or icon stroke. The packaging photography is the only palette the system ever needs."
+      }
+    ],
+    "elevationPhilosophy": "Intra uses no shadow elevation at all. Depth is created by hairline 1px #e4e4e4 borders and by alternating white canvas with full-bleed #212529 panels. Components do not float — they sit on the page as printed elements."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "hero",
+            "other",
+            "link",
+            "card",
+            "image",
+            "list"
+          ],
+          "frequency": 290,
+          "confidence": 1,
+          "prominence": 10772605.531322166,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 1,
+            "hero/color": 1,
+            "link/color": 1,
+            "list/color": 5,
+            "image/color": 1,
+            "other/color": 49,
+            "card/borderColor": 4,
+            "hero/borderColor": 4,
+            "link/borderColor": 4,
+            "list/borderColor": 20,
+            "image/borderColor": 4,
+            "other/borderColor": 196
+          }
+        },
+        {
+          "hex": "#212529",
+          "oklch": {
+            "c": 0.009493466733044721,
+            "h": 248.18975403208174,
+            "l": 0.2620927620695693
+          },
+          "contexts": [
+            "other",
+            "card",
+            "heading",
+            "body",
+            "list",
+            "link",
+            "image"
+          ],
+          "frequency": 229,
+          "confidence": 1,
+          "prominence": 10325920.185450949,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 19,
+            "link/color": 2,
+            "list/color": 9,
+            "other/fill": 5,
+            "image/color": 8,
+            "other/color": 3,
+            "heading/color": 3,
+            "body/borderColor": 76,
+            "link/borderColor": 8,
+            "list/borderColor": 36,
+            "image/borderColor": 32,
+            "other/borderColor": 12,
+            "heading/borderColor": 12,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 1715416.0742561552,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/fill": 5,
+            "button/color": 4,
+            "button/borderColor": 16
+          }
+        },
+        {
+          "hex": "#e4e4e4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.918869996650694
+          },
+          "contexts": [
+            "list",
+            "image",
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 61,
+          "confidence": 1,
+          "prominence": 1011850.1667908351,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "link/color": 1,
+            "list/color": 1,
+            "other/fill": 1,
+            "image/color": 2,
+            "body/borderColor": 32,
+            "link/borderColor": 4,
+            "list/borderColor": 4,
+            "image/borderColor": 8
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00971187796232853,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.52,
+          "background": "#e4e4e4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.43,
+          "background": "#212529",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.13,
+          "background": "#212529",
+          "foreground": "#e4e4e4"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.36,
+          "background": "#212529",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "body",
+            "list"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|body",
+            "paddingTop|list",
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "link",
+            "list"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingTop|list",
+            "paddingRight|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "heading",
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingBottom|body",
+            "paddingBottom|other",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|body",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 78,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|image",
+            "marginLeft|image"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "-apple-system",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 60,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Whyte",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 58,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "list"
+          ],
+          "frequency": 46,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Whyte",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "card",
+            "list",
+            "image",
+            "body"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Whyte",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "body",
+            "link"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Whyte",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Whyte",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 95,
+          "family": "Whyte",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e226f08f-a2c7-43ac-bcfc-e21cf42bc010.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/762a4d6a-9471-4b66-b181-1d52d011cfb6.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/16a8de02-a4c6-4077-9d3a-ef6b5c10db12#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Intra design system\",\"item\":\"https://styles.refero.design/style/16a8de02-a4c6-4077-9d3a-ef6b5c10db12\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/16a8de02-a4c6-4077-9d3a-ef6b5c10db12#style-reference\",\"name\":\"Intra design system reference\",\"headline\":\"Intra design system | Refero Styles\",\"description\":\"Explore Intra's light Other design system: Paper White #ffffff, Ink Black #212529 colors, Whyte, -apple-system typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/16a8de02-a4c6-4077-9d3a-ef6b5c10db12\",\"mainEntityOfPage\":\"https://styles.refero.design/style/16a8de02-a4c6-4077-9d3a-ef6b5c10db12\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Intra\",\"url\":\"https://intracbr.com.au\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/16a8de02-a4c6-4077-9d3a-ef6b5c10db12#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/762a4d6a-9471-4b66-b181-1d52d011cfb6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/762a4d6a-9471-4b66-b181-1d52d011cfb6.jpg\",\"caption\":\"Screenshot of Intra\"},\"image\":\"https://images.refero.design/styles/refero.design/image/762a4d6a-9471-4b66-b181-1d52d011cfb6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Intra design system\",\"Intra website design\",\"Intra colors\",\"Intra typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Paper White\",\"Ink Black\",\"Pure Black\",\"Hairline Gray\",\"Whyte\",\"-apple-system\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Intra design system\"},{\"@type\":\"Thing\",\"name\":\"Intra website design\"},{\"@type\":\"Thing\",\"name\":\"Intra colors\"},{\"@type\":\"Thing\",\"name\":\"Intra typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T02:43:09.852Z\",\"dateModified\":\"2026-04-30T02:43:09.852Z\"}]}19:T534,Quick Color Reference:\n- text: #212529\n- background: #ffffff\n- border/hairline: #e4e4e4\n- accent: #000000 (logo fill, button strokes)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create an editorial hero: full-bleed #ffffff canvas. Centered or left-aligned display wordmark \"CAFE\" at 95px Whyte weight 400, line-height 1.0, color #212529. 100px top and bottom padding. No background panel, no button, no subhead — the word IS the section.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n3. Create a metadata/hours row: two-column or stacked list. Labels in 16px Whyte weight 400 color #212529, values in 16px Whyte weight 400 color #212529, 15px vertical padding between rows. No icons, no dividers, no color coding.\n\n4. Create an outlined navigation button: 1px #000000 border, 0px radius, 6px horizontal padding × 1px vertical padding. Text \"BUY IN-STORE\" at 16–20px Whyte weight 400 color #000000. Sits in the top bar, uppercase or title case, no fill, no shadow.\n\n5. Create a black inverse panel: full-width #212529 background, 100px vertical padding. White (#ffffff) 95px display text centered or left-aligned, line-height 1.0. Use to punctuate the page and provide a visual counterweight to the white canvas."
+}

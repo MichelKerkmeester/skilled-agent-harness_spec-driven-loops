@@ -1,0 +1,1402 @@
+{
+  "source": "https://styles.refero.design/style/f6fbc2fb-ea5d-44cc-a37d-d7896005acbd",
+  "uuid": "f6fbc2fb-ea5d-44cc-a37d-d7896005acbd",
+  "name": "Brand",
+  "northStar": "Chromatic graph paper atlas — a living brand specimen where every color block, headline, and border snaps to an invisible modular grid printed on white.",
+  "capturedAt": "2026-07-18T07:18:29.306Z",
+  "meta": {
+    "url": "https://brand.dropbox.com",
+    "siteName": "Brand",
+    "extractedAt": "2026-06-03T21:51:22.051Z",
+    "durationMs": 36442,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 292,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #0061fe for all primary headlines, link text, and outlined action borders — it is the voice of the brand",
+      "Apply -0.02em letter-spacing to all display type at 30px and above; the tight tracking is what makes the headings feel custom and editorial",
+      "Snap every element to the visible grid — color blocks, text, and whitespace all respect the modular lattice",
+      "Use 8px border-radius universally for all cards, buttons, and color panels — the only radius in the system",
+      "Use 1px hairline borders in Ink (#1e1919) for all structural dividers and grid cell edges",
+      "Deploy large flat color blocks (full grid cells filled with Sun Yellow, Tangerine, Sky Cyan, etc.) as section furniture — color is both content and layout",
+      "Set body text at 14px with line-height 1.67 for comfortable paragraph density"
+    ],
+    "donts": [
+      "Never add drop shadows or box-shadow effects — the grid and flat color provide all visual structure",
+      "Never use border-radius values other than 8px — the system is geometric, not pill-shaped or fully rounded",
+      "Never use filled solid-color CTA buttons — all actions are outlined with a #0061fe border",
+      "Never center body or heading text — all type is left-aligned within its grid cell",
+      "Never use more than 4 brand palette colors on a single section — over-saturation breaks the editorial discipline",
+      "Never add gradients — the palette is entirely flat, saturated, and singular",
+      "Never use colors outside the defined 13-color palette (2 blues, 8 brand swatches, 3 neutrals) for UI elements"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0061fe",
+        "name": "Dropbox Blue",
+        "role": "Primary text, link borders, icon strokes, heading type, outlined action borders — the single most defining chromatic element, used wherever the brand needs to speak",
+        "group": "brand"
+      },
+      {
+        "hex": "#5f9dff",
+        "name": "Dropbox Light",
+        "role": "Soft surface washes, decorative icon accents, and secondary blue fields — a desaturated companion to Dropbox Blue for large background panels",
+        "group": "brand"
+      },
+      {
+        "hex": "#fad24b",
+        "name": "Sun Yellow",
+        "role": "Brand palette swatch, large color block panels, decorative fills",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff8c19",
+        "name": "Tangerine",
+        "role": "Brand palette swatch, full-bleed color block panels, accent fills",
+        "group": "brand"
+      },
+      {
+        "hex": "#3dd3ee",
+        "name": "Sky Cyan",
+        "role": "Brand palette swatch, full-bleed color block panels, illustration accent",
+        "group": "brand"
+      },
+      {
+        "hex": "#b4dc19",
+        "name": "Lime",
+        "role": "Brand palette swatch, large color block panels, accent fills",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffafa5",
+        "name": "Coral",
+        "role": "Brand palette swatch, warm color block panels, accent surfaces",
+        "group": "brand"
+      },
+      {
+        "hex": "#c8aff0",
+        "name": "Lavender",
+        "role": "Brand palette swatch, soft color block panels, illustration accent",
+        "group": "brand"
+      },
+      {
+        "hex": "#892055",
+        "name": "Magenta",
+        "role": "Brand palette swatch, deep accent panels, editorial accent",
+        "group": "brand"
+      },
+      {
+        "hex": "#283750",
+        "name": "Slate Navy",
+        "role": "Brand palette swatch, dark accent panels, editorial contrast",
+        "group": "brand"
+      },
+      {
+        "hex": "#1e1919",
+        "name": "Ink",
+        "role": "Primary body text, hairline borders, structural dividers, nav type — the near-black workhorse of the grid system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, card surfaces, reverse text on color blocks, background beneath the visible grid",
+        "group": "neutral"
+      },
+      {
+        "hex": "#736c64",
+        "name": "Graphite",
+        "role": "Muted secondary text, subtle helper labels, low-emphasis borders",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed grid-based layout with no max-width container. The entire page is a visible modular grid of thin gray lines on white, dividing the viewport into rectangular cells. Content is composed by placing text, color blocks, and UI elements into individual grid cells rather than into traditional section containers. The hero is an editorial headline set in the upper-left grid cell in Dropbox Blue. The second section demonstrates the system with three large color block panels (Tangerine on left, Dropbox Blue center with white reverse text, Sky Cyan on right) each spanning multiple grid units. Navigation sits at the bottom edge. The pattern repeats vertically — each section is a new grid composition rather than a stacked container.",
+    "imagery": "Minimal to no photography or illustration. The visual language is entirely UI-as-imagery: large flat color blocks function as graphic elements, the visible grid itself becomes a pattern, and the typographic treatment carries the visual weight. When brand illustrations exist (like the Dropbox glyph), they are flat, geometric, and brand-blue. No product screenshots, no lifestyle photography, no 3D renders — the system communicates through type, color, and structural grid alone.",
+    "similar": [
+      {
+        "why": "Same grid-based brand specimen page where color blocks and type are presented as editorial content on a white lattice",
+        "business": "Figma Brand Resources"
+      },
+      {
+        "why": "Same editorial discipline — heavy tight-tracked grotesque headings in brand color, flat color swatch panels, zero shadow reliance, geometric 8px-radius system",
+        "business": "IBM Design Language"
+      },
+      {
+        "why": "Similar white-canvas approach with single brand color for type, modular block-based content, and minimal radius values",
+        "business": "Notion Brand Guidelines"
+      },
+      {
+        "why": "Same flat color block content sections, tight-tracked geometric headings, and grid-driven layout without container cards",
+        "business": "Vercel Design"
+      },
+      {
+        "why": "Same pattern of large flat color rectangles as content furniture combined with bold editorial type and visible structural grids",
+        "business": "Spotify Design (former brand site)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "buttons": "8px",
+        "all-elements": "8px",
+        "color-blocks": "8px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "22-24px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper Canvas",
+        "level": 0,
+        "purpose": "Base page background with visible grid lines printed on top"
+      },
+      {
+        "hex": "#0061fe",
+        "name": "Color Block Panels",
+        "level": 1,
+        "purpose": "Full-saturation color panels sitting on the grid as content blocks"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Elevated Grid Cells",
+        "level": 2,
+        "purpose": "White cells within the grid for reverse-type headlines"
+      }
+    ],
+    "northStar": "Chromatic graph paper atlas — a living brand specimen where every color block, headline, and border snaps to an invisible modular grid printed on white.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 17,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 23,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 36,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "heading",
+        "size": 34,
+        "lineHeight": 27,
+        "letterSpacing": -0.68
+      },
+      {
+        "role": "heading-lg",
+        "size": 36,
+        "lineHeight": 43,
+        "letterSpacing": -0.72
+      }
+    ],
+    "components": [
+      {
+        "name": "Grid Canvas",
+        "role": "Structural background",
+        "description": "White (#ffffff) page with visible thin gray grid lines forming a modular lattice. Grid cells define all content placement. The grid is the layout — there is no separate container system."
+      },
+      {
+        "name": "Color Block Panel",
+        "role": "Large chromatic content surface",
+        "description": "Full-bleed flat color rectangle snapped to grid cells. Background fills with a single brand palette color (Tangerine #ff8c19, Sky Cyan #3dd3ee, Dropbox Blue #0061fe, Sun Yellow #fad24b, etc.). 8px border-radius. Contains white reverse-type text or sits empty as visual punctuation. No border, no shadow."
+      },
+      {
+        "name": "Editorial Headline Block",
+        "role": "Primary heading display",
+        "description": "Bold type in Dbsharpgroteskvariable Vf at 30-36px, weight 700, color Dropbox Blue (#0061fe), letter-spacing -0.02em. Left-aligned within a white grid cell. No decorative elements — the grid lines frame the type."
+      },
+      {
+        "name": "Inverted Text Panel",
+        "role": "White text on color",
+        "description": "White (#ffffff) body text in Atlasgrotesk Web 14px, line-height 1.67, placed inside a Color Block Panel. Creates a color/text duality where the panel is both a color swatch and a readable surface."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Structural separator",
+        "description": "1px line in Ink (#1e1919). Used to define grid cell boundaries, section separations, and content edges. The dominant border treatment — appears with freq=300 in border contexts."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline navigation",
+        "description": "Atlasgrotesk Web 14px weight 500, color Dropbox Blue (#0061fe). Often with a 1px bottom border in the same color. The 8px border-radius applies to link containers if wrapped in a button-like element."
+      },
+      {
+        "name": "Outlined Action",
+        "role": "Primary call-to-action border",
+        "description": "Ghost/outlined button: transparent background, 1px border in Dropbox Blue (#0061fe), text in Dropbox Blue. 8px border-radius, 12-16px padding. This is the only CTA pattern — the system never uses filled buttons."
+      },
+      {
+        "name": "Nav Label",
+        "role": "Navigation text",
+        "description": "Atlasgrotesk Web 12px, weight 500, color Ink (#1e1919). Sits within 8px vertical and 14px horizontal padding containers. Compact, utility-scale type."
+      },
+      {
+        "name": "Brand Mark",
+        "role": "Logo/identity anchor",
+        "description": "The Dropbox glyph in Dropbox Blue (#0061fe) — the four-triangle box mark. Appears at the bottom-left of the grid as a constant identity anchor."
+      },
+      {
+        "name": "Chevron Scroll Indicator",
+        "role": "Scroll affordance",
+        "description": "Down-chevron icon in Atlasgrotesk Web or as an SVG stroke, positioned at the bottom-right of the grid. Single visual cue that more content exists below."
+      },
+      {
+        "name": "Color Swatch Cell",
+        "role": "Brand palette documentation",
+        "description": "Small rectangular fill in one of the ten brand palette colors (Sun Yellow, Lime, Tangerine, Sky Cyan, Coral, Lavender, Magenta, Slate Navy, Dropbox Blue, Dropbox Light). Functions both as documentation of the palette and as inline color samples within grid cells."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading type — tight-tracked, geometric grotesque at heavy weights. The 0.80 line-height at 34px is a compression device for editorial taglines where lines almost touch, creating a block-of-text effect. Free substitute: Inter at 700, or Space Grotesk Bold.",
+        "sizes": "30px, 34px, 36px",
+        "family": "Dbsharpgroteskvariable Vf",
+        "weight": "500, 700",
+        "lineHeight": "0.80, 1.20",
+        "substitute": "Space Grotesk Bold or Inter 700",
+        "letterSpacing": "-0.02em (-0.6px at 30px, -0.68px at 34px, -0.72px at 36px)"
+      },
+      {
+        "role": "Body copy, navigation labels, link text, button labels, and all utility type. Neutral grotesque at compact sizes — 14px at line-height 1.67 gives breathing room for readable paragraphs while 12px at 1.43 keeps metadata tight. Free substitute: Inter or Atlas Grotesk via Adobe Fonts.",
+        "sizes": "12px, 14px",
+        "family": "Atlasgrotesk Web",
+        "weight": "400, 500",
+        "lineHeight": "1.43, 1.57, 1.67",
+        "substitute": "Inter or Atlas Grotesk",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Dropbox Brand Guidelines uses a Swiss-editorial visual system: a white graph-paper canvas with thin gray grid lines that organizes the entire page into discrete cells, each capable of holding either type or a flat color block. Headlines are tight-tracked, heavy sans-serif set in Dropbox Blue (#0061fe) that bleeds into the grid as confident editorial type, while a curated palette of eight vivid swatches — tangerine, sky cyan, sun yellow, lime, coral, lavender, magenta, slate — populates large rectangular panels that act as both color documentation and page furniture. The system feels like a living style guide: the grid IS the layout, color blocks ARE the content, and every element snaps to the modular lattice. The only radius is 8px, the shadows are absent, and the typographic discipline is total.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f6fbc2fb-ea5d-44cc-a37d-d7896005acbd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Brand design system\",\"item\":\"https://styles.refero.design/style/f6fbc2fb-ea5d-44cc-a37d-d7896005acbd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f6fbc2fb-ea5d-44cc-a37d-d7896005acbd#style-reference\",\"name\":\"Brand design system reference\",\"headline\":\"Brand design system | Refero Styles\",\"description\":\"Explore Brand's light Design design system: Dropbox Blue #0061fe, Dropbox Light #5f9dff colors, Dbsharpgroteskvariable Vf, Atlasgrotesk Web typography, and...\",\"url\":\"https://styles.refero.design/style/f6fbc2fb-ea5d-44cc-a37d-d7896005acbd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f6fbc2fb-ea5d-44cc-a37d-d7896005acbd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Brand\",\"url\":\"https://brand.dropbox.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f6fbc2fb-ea5d-44cc-a37d-d7896005acbd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b41c1b09-41e6-4f41-8369-c3f3d9e79d15.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b41c1b09-41e6-4f41-8369-c3f3d9e79d15.jpg\",\"caption\":\"Screenshot of Brand\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b41c1b09-41e6-4f41-8369-c3f3d9e79d15.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Brand design system\",\"Brand website design\",\"Brand colors\",\"Brand typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Dropbox Blue\",\"Dropbox Light\",\"Sun Yellow\",\"Tangerine\",\"Dbsharpgroteskvariable Vf\",\"Atlasgrotesk Web\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Brand design system\"},{\"@type\":\"Thing\",\"name\":\"Brand website design\"},{\"@type\":\"Thing\",\"name\":\"Brand colors\"},{\"@type\":\"Thing\",\"name\":\"Brand typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T00:26:01.439Z\",\"dateModified\":\"2026-04-30T00:26:01.439Z\"}]}19:T71d,**Quick Color Reference:**\n- Text: #1e1919 (Ink) for body, #0061fe (Dropbox Blue) for headings and links\n- Background: #ffffff (Paper) for canvas, #5f9dff (Dropbox Light) for soft blue surfaces\n- Border: #1e1919 (Ink) for hairlines, #0061fe (Dropbox Blue) for outlined actions\n- Accent palette: #fad24b Sun Yellow, #ff8c19 Tangerine, #3dd3ee Sky Cyan, #b4dc19 Lime, #ffafa5 Coral, #c8aff0 Lavender, #892055 Magenta, #283750 Slate Navy\n- primary action: #0061fe (outlined action border)\n\n**3-5 Example Component Prompts:**\n\n1. **Editorial Headline Block:** Create a left-aligned heading inside a white grid cell. Type at 36px in Dbsharpgroteskvariable Vf weight 700, color #0061fe, letter-spacing -0.72px, line-height 1.20. No background, no border, no decoration — the grid lines frame the type.\n\n2. **Outlined Action Button:** Build a ghost button with transparent background, 1px solid border in #0061fe, text in #0061fe at 14px Atlasgrotesk Web weight 500. 8px border-radius. 12px vertical padding, 16px horizontal padding.\n\n3. **Color Block Panel with Inverted Text:** Create a full grid cell filled with #ff8c19 (Tangerine). 8px border-radius. Inside, set white (#ffffff) body text at 14px Atlasgrotesk Web weight 400, line-height 1.67, left-aligned with 22-24px padding from cell edges.\n\n4. **Brand Swatch Cell:** A rectangular element filled with one of the eight accent colors (e.g., #fad24b Sun Yellow). 8px border-radius. No text, no border, no shadow. Functions as a flat color sample within the grid composition.\n\n5. **Grid Canvas Section:** A full-width section with #ffffff background. Overlay a visible grid of 1px lines in #1e1919 at low opacity (use rgba(30,25,25,0.08)). All content elements — text, color blocks, buttons — snap to this grid. No container boxes; the grid itself defines placement."
+      }
+    ],
+    "elevationPhilosophy": "Zero shadows. The system relies entirely on the visible grid, flat color blocks, and 1px hairline borders in Ink (#1e1919) to create depth and separation. Elevation is achieved by the physical layering of grid cells and color panels, never by drop shadows or blur."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1e1919",
+          "oklch": {
+            "c": 0.007944608000008005,
+            "h": 17.773366169828503,
+            "l": 0.21931881491240174
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "nav"
+          ],
+          "frequency": 430,
+          "confidence": 1,
+          "prominence": 11342001.100579472,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 9,
+            "other/color": 75,
+            "heading/color": 2,
+            "nav/borderColor": 36,
+            "other/borderColor": 300,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button"
+          ],
+          "frequency": 31,
+          "confidence": 1,
+          "prominence": 6210000,
+          "properties": [
+            "backgroundColor",
+            "stroke",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/stroke": 4,
+            "other/color": 5,
+            "other/borderColor": 20,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0061fe",
+          "oklch": {
+            "c": 0.2452733793996983,
+            "h": 261.39600896351146,
+            "l": 0.5533145662037867
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "button",
+            "heading"
+          ],
+          "frequency": 96,
+          "confidence": 1,
+          "prominence": 4202850.897556132,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "icon/color": 2,
+            "link/color": 2,
+            "other/fill": 5,
+            "other/color": 11,
+            "button/color": 1,
+            "other/stroke": 1,
+            "heading/color": 1,
+            "icon/borderColor": 8,
+            "link/borderColor": 8,
+            "other/borderColor": 44,
+            "button/borderColor": 4,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffafa5",
+          "oklch": {
+            "c": 0.0956509939763178,
+            "h": 27.19498908868713,
+            "l": 0.8281644375161062
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 4187429.008152083,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 10,
+            "nav/borderColor": 40,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#6d2e09",
+          "oklch": {
+            "c": 0.1006665691339954,
+            "h": 45.81863443978955,
+            "l": 0.3835754216116777
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 4169187.601054032,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/color": 11,
+            "nav/borderColor": 36,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#055463",
+          "oklch": {
+            "c": 0.07112939282707492,
+            "h": 215.574545859213,
+            "l": 0.41121565373361246
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 4039822.743420978,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 5,
+            "nav/color": 8,
+            "nav/borderColor": 32
+          }
+        },
+        {
+          "hex": "#684505",
+          "oklch": {
+            "c": 0.08600749715905859,
+            "h": 74.95350351726779,
+            "l": 0.41980170127421024
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 3935550.551552352,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 10,
+            "nav/color": 6,
+            "nav/borderColor": 24
+          }
+        },
+        {
+          "hex": "#682760",
+          "oklch": {
+            "c": 0.11922435079756735,
+            "h": 332.66583617423186,
+            "l": 0.38960199688674063
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 92,
+          "confidence": 1,
+          "prominence": 3819666.523062045,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 12,
+            "nav/color": 13,
+            "nav/stroke": 13,
+            "nav/borderColor": 52,
+            "nav/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#b4c8e1",
+          "oklch": {
+            "c": 0.0414372227996734,
+            "h": 254.06666676107398,
+            "l": 0.8257468145513592
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 94,
+          "confidence": 1,
+          "prominence": 3415799.3278834266,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 9,
+            "nav/color": 15,
+            "nav/stroke": 10,
+            "nav/borderColor": 60
+          }
+        },
+        {
+          "hex": "#4e0119",
+          "oklch": {
+            "c": 0.10706683980496996,
+            "h": 11.425174002565477,
+            "l": 0.2715347913177944
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 2133731.446595271,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 5,
+            "nav/color": 6,
+            "nav/borderColor": 24
+          }
+        },
+        {
+          "hex": "#175641",
+          "oklch": {
+            "c": 0.07266987212284381,
+            "h": 166.684010763533,
+            "l": 0.40737023645634146
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 2133731.446595271,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 5,
+            "nav/color": 6,
+            "nav/borderColor": 24
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 31,
+          "confidence": 1,
+          "prominence": 1984500,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 28,
+            "other/fill": 3
+          }
+        },
+        {
+          "hex": "#fad24b",
+          "oklch": {
+            "c": 0.15374637950073097,
+            "h": 92.09395980039776,
+            "l": 0.8749357624635741
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 734580,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#892055",
+          "oklch": {
+            "c": 0.1478077493373469,
+            "h": 354.5118110690634,
+            "l": 0.4317928902238289
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 734580,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#3dd3ee",
+          "oklch": {
+            "c": 0.12631136157414422,
+            "h": 212.66339967684482,
+            "l": 0.801314731363676
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 731380,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff8c19",
+          "oklch": {
+            "c": 0.17597400299130553,
+            "h": 56.88861568145451,
+            "l": 0.7510852829689562
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 731380,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#283750",
+          "oklch": {
+            "c": 0.04870348310666386,
+            "h": 260.33145015528055,
+            "l": 0.33553201184612086
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 519920,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c8aff0",
+          "oklch": {
+            "c": 0.09403833470189528,
+            "h": 301.92695071025975,
+            "l": 0.7979508556049919
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 519920,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cd2f7b",
+          "oklch": {
+            "c": 0.20208659448951033,
+            "h": 356.68596084443567,
+            "l": 0.5745034424393306
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 479384.5646057422,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 12
+          }
+        },
+        {
+          "hex": "#fa551e",
+          "oklch": {
+            "c": 0.21012454557640073,
+            "h": 36.91126078341597,
+            "l": 0.6687583947722262
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 412720,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b4dc19",
+          "oklch": {
+            "c": 0.19843281275400657,
+            "h": 122.12854914354146,
+            "l": 0.8359023176298972
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 412720,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#736c64",
+          "oklch": {
+            "c": 0.015074332274706182,
+            "h": 71.1846442116525,
+            "l": 0.535213427321686
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 303596.9802624679,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/color": 2,
+            "body/borderColor": 8,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#be4b0a",
+          "oklch": {
+            "c": 0.16172099365973927,
+            "h": 42.91761346684355,
+            "l": 0.5593839685673712
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 75230.47027435053,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#5f9dff",
+          "oklch": {
+            "c": 0.15824783895071745,
+            "h": 259.20127109164866,
+            "l": 0.6990818744233187
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 62,
+          "confidence": 1,
+          "prominence": 51643.69853903928,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "link/color": 2,
+            "other/fill": 6,
+            "other/color": 2,
+            "link/borderColor": 8,
+            "other/borderColor": 8,
+            "other/backgroundColor": 36
+          }
+        },
+        {
+          "hex": "#bfd8ff",
+          "oklch": {
+            "c": 0.06069995934758781,
+            "h": 259.5036585966209,
+            "l": 0.8762154798340941
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 13374.305826551206,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#3080ff",
+          "oklch": {
+            "c": 0.20451013581513605,
+            "h": 259.62596242818415,
+            "l": 0.6220051416030106
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 7436.644053383664,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "icon/color": 1,
+            "other/fill": 4,
+            "other/color": 3,
+            "icon/borderColor": 4,
+            "other/borderColor": 12
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.1960912621544691,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.38,
+          "background": "#ffffff",
+          "foreground": "#1e1919"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.64,
+          "background": "#ffffff",
+          "foreground": "#4e0119"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.48,
+          "background": "#bfd8ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.39,
+          "background": "#fad24b",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.19,
+          "background": "#b4dc19",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.29,
+          "background": "#b4c8e1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.99,
+          "background": "#bfd8ff",
+          "foreground": "#1e1919"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.98,
+          "background": "#283750",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.93,
+          "background": "#ffafa5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.91,
+          "background": "#fad24b",
+          "foreground": "#1e1919"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.75,
+          "background": "#3dd3ee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.92,
+          "background": "#b4dc19",
+          "foreground": "#1e1919"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.85,
+          "background": "#c8aff0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.79,
+          "background": "#bfd8ff",
+          "foreground": "#4e0119"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.72,
+          "background": "#fad24b",
+          "foreground": "#4e0119"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.27,
+          "background": "#6d2e09",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.26,
+          "background": "#682760",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.17,
+          "background": "#b4c8e1",
+          "foreground": "#1e1919"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.87,
+          "background": "#ffafa5",
+          "foreground": "#1e1919"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "corners": [
+            0,
+            0,
+            8,
+            0
+          ],
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 8,
+          "asymmetric": true
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 206,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Atlasgrotesk Web",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 185,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Dbsharpgroteskvariable Vf",
+          "source": "custom",
+          "weights": [
+            500,
+            700
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Atlasgrotesk Web",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Atlasgrotesk Web",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button"
+          ],
+          "frequency": 121,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Atlasgrotesk Web",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Dbsharpgroteskvariable Vf",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Dbsharpgroteskvariable Vf",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Dbsharpgroteskvariable Vf",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7051ee45-1bda-4372-a27d-5846441c52bc.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b41c1b09-41e6-4f41-8369-c3f3d9e79d15.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f6fbc2fb-ea5d-44cc-a37d-d7896005acbd#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Brand design system\",\"item\":\"https://styles.refero.design/style/f6fbc2fb-ea5d-44cc-a37d-d7896005acbd\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f6fbc2fb-ea5d-44cc-a37d-d7896005acbd#style-reference\",\"name\":\"Brand design system reference\",\"headline\":\"Brand design system | Refero Styles\",\"description\":\"Explore Brand's light Design design system: Dropbox Blue #0061fe, Dropbox Light #5f9dff colors, Dbsharpgroteskvariable Vf, Atlasgrotesk Web typography, and...\",\"url\":\"https://styles.refero.design/style/f6fbc2fb-ea5d-44cc-a37d-d7896005acbd\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f6fbc2fb-ea5d-44cc-a37d-d7896005acbd\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Brand\",\"url\":\"https://brand.dropbox.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f6fbc2fb-ea5d-44cc-a37d-d7896005acbd#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b41c1b09-41e6-4f41-8369-c3f3d9e79d15.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b41c1b09-41e6-4f41-8369-c3f3d9e79d15.jpg\",\"caption\":\"Screenshot of Brand\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b41c1b09-41e6-4f41-8369-c3f3d9e79d15.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Brand design system\",\"Brand website design\",\"Brand colors\",\"Brand typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Dropbox Blue\",\"Dropbox Light\",\"Sun Yellow\",\"Tangerine\",\"Dbsharpgroteskvariable Vf\",\"Atlasgrotesk Web\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Brand design system\"},{\"@type\":\"Thing\",\"name\":\"Brand website design\"},{\"@type\":\"Thing\",\"name\":\"Brand colors\"},{\"@type\":\"Thing\",\"name\":\"Brand typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T00:26:01.439Z\",\"dateModified\":\"2026-04-30T00:26:01.439Z\"}]}19:T71d,**Quick Color Reference:**\n- Text: #1e1919 (Ink) for body, #0061fe (Dropbox Blue) for headings and links\n- Background: #ffffff (Paper) for canvas, #5f9dff (Dropbox Light) for soft blue surfaces\n- Border: #1e1919 (Ink) for hairlines, #0061fe (Dropbox Blue) for outlined actions\n- Accent palette: #fad24b Sun Yellow, #ff8c19 Tangerine, #3dd3ee Sky Cyan, #b4dc19 Lime, #ffafa5 Coral, #c8aff0 Lavender, #892055 Magenta, #283750 Slate Navy\n- primary action: #0061fe (outlined action border)\n\n**3-5 Example Component Prompts:**\n\n1. **Editorial Headline Block:** Create a left-aligned heading inside a white grid cell. Type at 36px in Dbsharpgroteskvariable Vf weight 700, color #0061fe, letter-spacing -0.72px, line-height 1.20. No background, no border, no decoration — the grid lines frame the type.\n\n2. **Outlined Action Button:** Build a ghost button with transparent background, 1px solid border in #0061fe, text in #0061fe at 14px Atlasgrotesk Web weight 500. 8px border-radius. 12px vertical padding, 16px horizontal padding.\n\n3. **Color Block Panel with Inverted Text:** Create a full grid cell filled with #ff8c19 (Tangerine). 8px border-radius. Inside, set white (#ffffff) body text at 14px Atlasgrotesk Web weight 400, line-height 1.67, left-aligned with 22-24px padding from cell edges.\n\n4. **Brand Swatch Cell:** A rectangular element filled with one of the eight accent colors (e.g., #fad24b Sun Yellow). 8px border-radius. No text, no border, no shadow. Functions as a flat color sample within the grid composition.\n\n5. **Grid Canvas Section:** A full-width section with #ffffff background. Overlay a visible grid of 1px lines in #1e1919 at low opacity (use rgba(30,25,25,0.08)). All content elements — text, color blocks, buttons — snap to this grid. No container boxes; the grid itself defines placement."
+}

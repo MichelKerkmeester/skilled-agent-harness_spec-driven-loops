@@ -1,0 +1,479 @@
+{
+  "source": "https://styles.refero.design/style/e11be5e4-cd8f-410e-bfe1-8763ed62fac3",
+  "uuid": "e11be5e4-cd8f-410e-bfe1-8763ed62fac3",
+  "name": "Eduardo del Fraile",
+  "northStar": "Black gallery vitrine — a darkened room where one object glows in white text",
+  "capturedAt": "2026-07-18T07:15:08.641Z",
+  "meta": {
+    "url": "https://www.eduardodelfraile.com",
+    "siteName": "Eduardo del Fraile",
+    "extractedAt": "2026-06-03T22:00:46.566Z",
+    "durationMs": 23335,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 133,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set the page background to #000000 on every screen — there is no light variant and no secondary surface color.",
+      "Use only Akzidenz-Grotesk at 14, 15, 20, or 21px with weight 400 or 700; line-height 1.3; tracking 0. Never introduce a second typeface.",
+      "Build navigation as raw text links in #ffffff with 0px border-radius and 20px gap between items — no pills, no fills, no underlines.",
+      "Let 3D or photographic content sit directly on the black canvas with no frame, card, or shadow around it.",
+      "Use weight 700 (bold) as the sole way to emphasize — never use color, italics, or size jumps larger than 6px to create hierarchy.",
+      "Use #888888 only for genuinely de-emphasized secondary text; never for interactive states or active nav.",
+      "Keep all UI micro-copy short and instructional (one to three words) so the void stays empty."
+    ],
+    "donts": [
+      "Do not add accent colors, brand fills, or chromatic highlights of any kind — the palette is strictly black, white, and ash gray.",
+      "Do not apply border-radius to anything — buttons, cards, tags, and images all stay at 0px.",
+      "Do not introduce drop shadows, inner glows, or elevated card layers; the canvas must remain flat.",
+      "Do not use italic, condensed, or extended Akzidenz weights; the family is restricted to 400 and 700.",
+      "Do not wrap the 3D content in a bordered card, a gradient backdrop, or a vignette — it should float on pure black.",
+      "Do not use #ffffff as a filled button background; the system has no filled buttons — actions are text or icons only.",
+      "Do not exceed 21px for any UI text — the grotesk's editorial scale is part of the signature."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Page background, full-bleed canvas for all content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "All text, navigation, footer instructions, and thin UI strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#888888",
+        "name": "Ash Gray",
+        "role": "Secondary or muted text, de-emphasized labels, inactive hints",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed black canvas, no max-width container, no centered column. Navigation is split: brand wordmark flush-left at the top edge, nav links + social icon flush-right, both vertically aligned to a single ~15px text row. The main body is a horizontal scroll sequence of 3D renders — each render fills the viewport and the user advances by mouse-wheel or L/R arrow keys (per the footer hint). There is no grid, no sidebar, no card stack. Sections are not separated by dividers or color bands; the transition between works is a hard cut from one rendered object to the next against the same black field. Footer is a thin row of instructional text flush-left at the bottom edge. The entire page reads as a darkened gallery corridor where the visitor walks past lit objects.",
+    "imagery": "Photorealistic 3D renders are the only imagery on the site: a porcelain gorilla-bottle hybrid, a matte orange with a striped paper straw, and a glossy green pepper. Each render is full-bleed, centered on the black canvas, and lit like a product photograph under a single key light. No lifestyle context, no background plate, no overlay text — the object is cropped at its silhouette and floats in the void. Imagery occupies roughly 80% of the visible viewport per scene, with UI text pushed to the corners. There are no icons, illustrations, or decorative graphics beyond the single Instagram glyph in the nav.",
+    "similar": [
+      {
+        "why": "Same black-void portfolio treatment with 3D renders floating without frames on a pure #000000 canvas, text-only navigation in the corners.",
+        "business": "Aristide Benoist"
+      },
+      {
+        "why": "Minimalist dark portfolio using a single grotesk face, no accent color, and no UI chrome beyond corner-aligned text links.",
+        "business": "Charlie Davis"
+      },
+      {
+        "why": "Full-bleed dark creative studio site that lets immersive 3D content dominate while the interface recedes to plain white type.",
+        "business": "Active Theory"
+      },
+      {
+        "why": "Single-color-canvas artist sites with zero decorative UI — the work is the entire visual system and the chrome is nearly invisible.",
+        "business": "Rafaël Rozendaal"
+      },
+      {
+        "why": "Editorial-feel dark portfolio relying on weight contrast in a single sans-serif and a strictly monochrome palette to let imagery lead.",
+        "business": "Studio AKAA"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 1,
+        "purpose": "Single-level surface — there is no card or panel layer above the canvas; content sits directly on black"
+      }
+    ],
+    "northStar": "Black gallery vitrine — a darkened room where one object glows in white text",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "body-lg",
+        "size": 21,
+        "lineHeight": 1.3
+      }
+    ],
+    "components": [
+      {
+        "name": "Brand Mark (Wordmark)",
+        "role": "Site identifier in top-left",
+        "description": "Plain text 'Eduardo del Fraile' in Akzidenz-Grotesk 14–15px, weight 400, color #ffffff, no decoration. Sits flush left at the viewport edge with 0px padding from the canvas."
+      },
+      {
+        "name": "Text Navigation Link",
+        "role": "Primary navigation items in top-right",
+        "description": "Akzidenz-Grotesk 14–15px, weight 400, color #ffffff, no underline, no background, no border. ~20px gap between links. Active state indicated only by default-vs-hover color shift; no fill or pill."
+      },
+      {
+        "name": "Social Icon Link",
+        "role": "Instagram entry in top-right",
+        "description": "Single line-stroke Instagram glyph in #ffffff at the same height as text links (14–15px). No background, no border-radius, no container — the icon is sized to align with the text baseline."
+      },
+      {
+        "name": "Footer Instruction Text",
+        "role": "Scroll-hint labels at bottom-left",
+        "description": "Akzidenz-Grotesk 14px weight 400 #ffffff, two short phrases separated by ~20px gap ('Scroll with the mouse' / 'Scroll with L and R keyboard arrows'). No icons, no buttons — plain instructional copy."
+      },
+      {
+        "name": "Full-Bleed Showcase Frame",
+        "role": "Container for 3D content in the page body",
+        "description": "No container at all. 3D renders are placed directly on the #000000 canvas, centered both axes, scaled to occupy the viewport. No padding, no border, no shadow, no background plate — the artwork terminates at its own silhouette."
+      },
+      {
+        "name": "Language Toggle",
+        "role": "Locale switcher in nav (ESP)",
+        "description": "Same treatment as a text nav link — Akzidenz-Grotesk 14–15px weight 400 #ffffff. Functions as a plain label, not a styled control."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across navigation, body, footer, and brand mark. The weight 400/700 pairing is the entire hierarchy system — no color, no size jumps, no italic to differentiate roles. At 14–15px the grotesk reads as utilitarian editorial; at 20–21px it becomes signage. Normal tracking preserves the geometric, mechanical feel.",
+        "sizes": "14px, 15px, 20px, 21px",
+        "family": "Akzidenz-Grotesk",
+        "weight": "400, 700",
+        "lineHeight": "1.30",
+        "substitute": "Inter, Helvetica Neue, Neue Haas Grotesk",
+        "letterSpacing": "0"
+      }
+    ],
+    "description": "Eduardo del Fraile is a portfolio built on radical subtraction: a pure black void where one custom grotesk and white text form the entire interface. The UI recedes almost entirely so that 3D renders float in negative space like objects under museum spotlights. Every typographic decision, every near-absence of color, every flat shadowless surface serves the same purpose — make the canvas feel infinite and weightless, then place one object inside it. Components are text-first and borderless; hierarchy comes from weight shifts in Akzidenz Grotesk alone, not from fills, elevations, or accent colors.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e11be5e4-cd8f-410e-bfe1-8763ed62fac3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Eduardo del Fraile design system\",\"item\":\"https://styles.refero.design/style/e11be5e4-cd8f-410e-bfe1-8763ed62fac3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e11be5e4-cd8f-410e-bfe1-8763ed62fac3#style-reference\",\"name\":\"Eduardo del Fraile design system reference\",\"headline\":\"Eduardo del Fraile design system | Refero Styles\",\"description\":\"Explore Eduardo del Fraile's dark Design design system: Void #000000, Bone White #ffffff colors, Akzidenz-Grotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e11be5e4-cd8f-410e-bfe1-8763ed62fac3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e11be5e4-cd8f-410e-bfe1-8763ed62fac3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Eduardo del Fraile\",\"url\":\"https://www.eduardodelfraile.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e11be5e4-cd8f-410e-bfe1-8763ed62fac3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bc16d521-3d9e-467c-9bcd-e52820f35ca9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bc16d521-3d9e-467c-9bcd-e52820f35ca9.jpg\",\"caption\":\"Screenshot of Eduardo del Fraile\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bc16d521-3d9e-467c-9bcd-e52820f35ca9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Eduardo del Fraile design system\",\"Eduardo del Fraile website design\",\"Eduardo del Fraile colors\",\"Eduardo del Fraile typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Void\",\"Bone White\",\"Ash Gray\",\"Akzidenz-Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Eduardo del Fraile design system\"},{\"@type\":\"Thing\",\"name\":\"Eduardo del Fraile website design\"},{\"@type\":\"Thing\",\"name\":\"Eduardo del Fraile colors\"},{\"@type\":\"Thing\",\"name\":\"Eduardo del Fraile typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:49:25.827Z\",\"dateModified\":\"2026-04-30T03:49:25.827Z\"}]}19:T5c6,Quick Color Reference\n- text: #ffffff\n- background: #000000\n- border: none (no border system; use #ffffff only for 1px hairlines if absolutely needed)\n- accent: none\n- primary action: no distinct CTA color\n\nExample Component Prompts\n1. Top navigation: Place the wordmark 'Eduardo del Fraile' flush-left at the top edge, and the links 'Work', 'About', 'Contact', 'ESP' followed by a 14px Instagram line-icon flush-right. All text is Akzidenz-Grotesk 15px weight 400, color #ffffff, with 20px gap between links. No background, no border, no underline.\n2. Full-bleed showcase: Render a 3D object (e.g. a matte ceramic bottle) centered on a pure #000000 canvas. The object occupies ~70% of the viewport height, lit with a single overhead key light. No frame, no card, no border, no shadow around the object. The canvas is edge-to-edge with no margin.\n3. Footer: Bottom-left, two short instructions in Akzidenz-Grotesk 14px weight 400 #ffffff, separated by 20px gap: 'Scroll with the mouse' and 'Scroll with L and R keyboard arrows'. No icons, no buttons, no background.\n4. De-emphasized helper text: A label like 'ESP' or a secondary annotation in #888888 Akzidenz-Grotesk 14px weight 400 — only when the text is not interactive and must recede behind the primary white type.\n5. Active section title: Use Akzidenz-Grotesk 20px weight 700 #ffffff for a section heading. This is the only typographic emphasis allowed — do not change color, add a background, or add a divider line."
+      }
+    ],
+    "elevationPhilosophy": "No elevation. No drop shadows, no inner glows, no stacked panels. The only depth cue is the 3D content itself against the flat black void. Surfaces never lift off the page — they are the page."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "body",
+            "icon",
+            "image",
+            "footer"
+          ],
+          "frequency": 640,
+          "confidence": 1,
+          "prominence": 12084137.98841789,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 1,
+            "link/color": 25,
+            "list/color": 5,
+            "image/color": 20,
+            "other/color": 75,
+            "footer/color": 1,
+            "body/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 100,
+            "list/borderColor": 20,
+            "image/borderColor": 80,
+            "other/borderColor": 300,
+            "footer/borderColor": 4
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#888888",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6267535410065036
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 21706.630618375562,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/color": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 16
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.92,
+          "background": "#000000",
+          "foreground": "#888888"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "list",
+            "link",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list",
+            "marginBottom|list",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|list"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "AkzidenzGrotesk",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 133,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "AkzidenzGrotesk",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "AkzidenzGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "AkzidenzGrotesk",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "AkzidenzGrotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "icon",
+            "image",
+            "footer"
+          ],
+          "frequency": 124,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "AkzidenzGrotesk",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/99257d7c-60e6-4a48-acad-5457635037ae.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/bc16d521-3d9e-467c-9bcd-e52820f35ca9.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e11be5e4-cd8f-410e-bfe1-8763ed62fac3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Eduardo del Fraile design system\",\"item\":\"https://styles.refero.design/style/e11be5e4-cd8f-410e-bfe1-8763ed62fac3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e11be5e4-cd8f-410e-bfe1-8763ed62fac3#style-reference\",\"name\":\"Eduardo del Fraile design system reference\",\"headline\":\"Eduardo del Fraile design system | Refero Styles\",\"description\":\"Explore Eduardo del Fraile's dark Design design system: Void #000000, Bone White #ffffff colors, Akzidenz-Grotesk typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e11be5e4-cd8f-410e-bfe1-8763ed62fac3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e11be5e4-cd8f-410e-bfe1-8763ed62fac3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Eduardo del Fraile\",\"url\":\"https://www.eduardodelfraile.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e11be5e4-cd8f-410e-bfe1-8763ed62fac3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bc16d521-3d9e-467c-9bcd-e52820f35ca9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bc16d521-3d9e-467c-9bcd-e52820f35ca9.jpg\",\"caption\":\"Screenshot of Eduardo del Fraile\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bc16d521-3d9e-467c-9bcd-e52820f35ca9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Eduardo del Fraile design system\",\"Eduardo del Fraile website design\",\"Eduardo del Fraile colors\",\"Eduardo del Fraile typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Void\",\"Bone White\",\"Ash Gray\",\"Akzidenz-Grotesk\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Eduardo del Fraile design system\"},{\"@type\":\"Thing\",\"name\":\"Eduardo del Fraile website design\"},{\"@type\":\"Thing\",\"name\":\"Eduardo del Fraile colors\"},{\"@type\":\"Thing\",\"name\":\"Eduardo del Fraile typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:49:25.827Z\",\"dateModified\":\"2026-04-30T03:49:25.827Z\"}]}19:T5c6,Quick Color Reference\n- text: #ffffff\n- background: #000000\n- border: none (no border system; use #ffffff only for 1px hairlines if absolutely needed)\n- accent: none\n- primary action: no distinct CTA color\n\nExample Component Prompts\n1. Top navigation: Place the wordmark 'Eduardo del Fraile' flush-left at the top edge, and the links 'Work', 'About', 'Contact', 'ESP' followed by a 14px Instagram line-icon flush-right. All text is Akzidenz-Grotesk 15px weight 400, color #ffffff, with 20px gap between links. No background, no border, no underline.\n2. Full-bleed showcase: Render a 3D object (e.g. a matte ceramic bottle) centered on a pure #000000 canvas. The object occupies ~70% of the viewport height, lit with a single overhead key light. No frame, no card, no border, no shadow around the object. The canvas is edge-to-edge with no margin.\n3. Footer: Bottom-left, two short instructions in Akzidenz-Grotesk 14px weight 400 #ffffff, separated by 20px gap: 'Scroll with the mouse' and 'Scroll with L and R keyboard arrows'. No icons, no buttons, no background.\n4. De-emphasized helper text: A label like 'ESP' or a secondary annotation in #888888 Akzidenz-Grotesk 14px weight 400 — only when the text is not interactive and must recede behind the primary white type.\n5. Active section title: Use Akzidenz-Grotesk 20px weight 700 #ffffff for a section heading. This is the only typographic emphasis allowed — do not change color, add a background, or add a divider line."
+}

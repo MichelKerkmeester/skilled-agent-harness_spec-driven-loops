@@ -1,0 +1,779 @@
+{
+  "source": "https://styles.refero.design/style/442dfaf8-c0c6-467b-a8d4-54e953c049f3",
+  "uuid": "442dfaf8-c0c6-467b-a8d4-54e953c049f3",
+  "name": "CHAIBOY",
+  "northStar": "black gallery wall with a single illuminated photograph.",
+  "capturedAt": "2026-07-18T07:20:32.028Z",
+  "meta": {
+    "url": "https://wearechaiboy.com",
+    "siteName": "CHAIBOY",
+    "extractedAt": "2026-06-03T21:32:46.796Z",
+    "durationMs": 38814,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 134,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #000000 as the page background everywhere; let #131313 appear only when a true surface lift is needed without breaking the monochrome language.",
+      "Set all interface text in Neue Haas Grotesk 55 Roman at weight 400 only, with font-feature-settings: 'case' on to keep all-caps forms typographically correct.",
+      "Use only the four documented sizes — 11, 14, 18, 54 — to build hierarchy. No weights beyond 400.",
+      "Use #ffffff for primary text, hairline rules, and the 1px borders that separate regions; use #afafaf only when a label must visibly step back.",
+      "Keep all border-radius at 4px across buttons, cards, chips, and inputs — the system has one radius and it should not be overridden.",
+      "Let product or editorial photography carry the visual weight; the chrome should be invisible. Frame hero imagery with a 1px white border on black.",
+      "Separate major regions (announcement, nav, footer) with a 1px solid #ffffff hairline rule rather than background-color changes or padding alone."
+    ],
+    "donts": [
+      "Do not introduce any chromatic color — no brand accent, no semantic red/green/blue, no hover tint. The system is monochromatic by conviction.",
+      "Do not use font-weight above 400, and do not add italic. Weight contrast is not available as a hierarchy tool.",
+      "Do not use box-shadow, gradients, or glow effects. Surfaces are flat black; depth comes from hairline borders and photography only.",
+      "Do not use border-radius larger than 4px. Pills, fully rounded shapes, and large curves are outside this system.",
+      "Do not use backgrounds or fills on nav links, buttons in the main flow, or cart. The bordered chip is the only filled/bordered interactive shape, and it belongs only in the announcement bar.",
+      "Do not underline links or change their color on hover. Text links are distinguished by position, context, and cursor only.",
+      "Do not set type below 11px or use centered body copy. Small text is always uppercase, tight-leading, left-aligned in rows."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Page canvas, hero background, footer background — the absolute ground everything else sits on or within",
+        "group": "neutral"
+      },
+      {
+        "hex": "#131313",
+        "name": "Carbon",
+        "role": "Subtle surface variation from the page canvas — used as a near-identical lifted surface where one is needed without breaking the monochrome spell",
+        "group": "neutral"
+      },
+      {
+        "hex": "#afafaf",
+        "name": "Ash",
+        "role": "Secondary text, muted labels, inactive input borders — a half-step between white and black for elements that must recede",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Primary text, hairline rules, link and button borders, image borders — the only forward-facing tone, used with restraint as both type and geometry",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed, centered, and austere. The page is one continuous black canvas with no max-width container; regions are separated by 1px white hairline rules rather than by background-color bands. The hero is a single large monochrome portrait photograph, centered horizontally and sized to roughly 60-70% of the page width, with deep black gutters on either side. Above the hero: a thin announcement ticker, then a two-line nav with the wordmark left, centered links, and cart right. Below the hero: a single footer row with legal links left and newsletter/time right. Vertical rhythm is set by hairline rules and 60px section gaps, not by alternating background colors. Grid: no multi-column product grid or card layout — this is a brand and editorial surface, not a catalog page.",
+    "imagery": "A single large black-and-white editorial photograph carries the entire visual load of the page. The subject is a portrait — a model with a product box balanced on her head — shot in high-contrast monochrome against a soft gray background, contained in a centered frame roughly 60-70% of the page width, edged by a 1px white border that reads as a gallery frame. Treatment: high-key studio lighting, sharp focus, no color, no lifestyle context — the object and the subject are the art. No product photography, no illustrations, no icons, no 3D renders, no abstract graphics. Imagery is sparse, deliberate, and editorial.",
+    "similar": [
+      {
+        "why": "Same editorial restraint and monochrome discipline — black canvas, small uppercase type, photographic product framing, zero decoration",
+        "business": "Aesop"
+      },
+      {
+        "why": "Same gallery-wall presentation: one large monochrome image, hairline rules, single weight sans-serif, no visible UI chrome",
+        "business": "The Row"
+      },
+      {
+        "why": "Same minimal typographic system with a single weight and size-based hierarchy on a dark neutral ground",
+        "business": "Cos (the fashion label)"
+      },
+      {
+        "why": "Same quiet, text-first interface with hairline rules separating regions and no decorative color or shape",
+        "business": "Muji"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4px",
+        "cards": "4px",
+        "inputs": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "5px",
+      "sectionGap": "60px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Base page canvas — every screen begins here"
+      },
+      {
+        "hex": "#131313",
+        "name": "Carbon",
+        "level": 1,
+        "purpose": "Near-identical lifted surface for the rare case where a region must differ from the base without breaking the monochrome field"
+      },
+      {
+        "hex": "#afafaf",
+        "name": "Ash",
+        "level": 2,
+        "purpose": "Stepped-back typographic surface — secondary text and inactive input borders that need to read but not compete"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "level": 3,
+        "purpose": "Forward-facing surface — primary text, hairline rules, and the 1px frame around imagery and bordered chips"
+      }
+    ],
+    "northStar": "black gallery wall with a single illuminated photograph.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.11
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.29
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.27
+      },
+      {
+        "role": "display",
+        "size": 54,
+        "lineHeight": 0.89
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Ticker Bar",
+        "role": "Scrolling promotional strip across the top of every page",
+        "description": "Full-bleed black bar at the very top, 1px solid #ffffff bottom border. Contains small repeating text blocks in Neue Haas Grotesk 11px weight 400, uppercase, white. Each text block may include a bordered CTA chip (4px radius, 1px white border, 5-7px vertical padding, 6-10px horizontal padding). Items are separated by inline 4-5px gaps."
+      },
+      {
+        "name": "Primary Navigation Row",
+        "role": "Main site navigation",
+        "description": "Two-line layout: brand wordmark 'CHAIBOY' left, nav links centered, cart right. Sits on a black canvas with a 1px white rule above and below. All text is 14px weight 400 uppercase, #ffffff. Nav links separated by 15-16px gaps. No background, no border, no fill — just text on black."
+      },
+      {
+        "name": "Text Link",
+        "role": "All clickable navigation, footer, and inline references",
+        "description": "Bare 14px uppercase white text. No underline, no color change. The only active affordance is the cursor. Spacing between links is 15-16px horizontal."
+      },
+      {
+        "name": "Bordered Chip Button",
+        "role": "Promotional micro-CTA inside the announcement ticker",
+        "description": "4px border-radius, 1px solid #ffffff border, 5-7px padding top/bottom, 6-10px padding left/right. 11px weight 400 uppercase white text on black fill. Example shape: 'ORDER NOW' or 'SHOP NOW'."
+      },
+      {
+        "name": "Hero Photograph Frame",
+        "role": "Full-bleed editorial image that defines the page",
+        "description": "A single large monochrome photograph centered on the black canvas. Contained to roughly 60-70% of the page width, left/right gutters are pure void. 1px solid #ffffff border (72 instances of borderColor on images), creating a fine gallery-frame edge. No caption, no overlay, no gradient — the image is the entire content of the fold."
+      },
+      {
+        "name": "Footer Link Bar",
+        "role": "Bottom-of-page legal and contact links",
+        "description": "Single horizontal row on black, top edge marked by a 1px white rule. Left side: TERMS & CONDITIONS, PRIVACY POLICY, CONTACT, INSTAGRAM at 11-14px weight 400 uppercase white. Right side: NEWSLETTER link and a local time display (e.g. '22:50'). Gaps between links are 4-6px."
+      },
+      {
+        "name": "Cart Link",
+        "role": "Shopping bag entry point in the nav",
+        "description": "Right-aligned in the primary nav row. 14px uppercase weight 400 white text reading 'CART'. No icon, no badge, no fill — the word alone is the affordance."
+      },
+      {
+        "name": "Brand Wordmark",
+        "role": "Logo lockup in the top-left of the nav",
+        "description": "Plain text 'CHAIBOY' in Neue Haas Grotesk 14-18px weight 400 uppercase, #ffffff. No symbol, no mark, no decoration. Acts as the home link."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface for all interface text — navigation, body, headlines, buttons, footer. The exclusive use of weight 400 is a deliberate anti-hierarchy choice; scale and spacing do the work that weight normally would. The OpenType 'case' feature is enabled site-wide, giving all-caps small text properly designed uppercase parentheses, hyphens, and numerals instead of lowercase glyphs scaled up.",
+        "sizes": "11px, 14px, 18px, 54px",
+        "family": "Neue Haas Grotesk TP 55 Roman",
+        "weight": "400",
+        "lineHeight": "0.89, 1.11, 1.27, 1.29",
+        "substitute": "Neue Haas Grotesk Text Pro, Inter, Helvetica Neue, Arial",
+        "fontFeatureSettings": "\"case\" on"
+      }
+    ],
+    "description": "CHAIBOY presents a black-box gallery aesthetic: a single dark canvas where nearly everything is typographic and almost nothing is decorative. The interface behaves like a museum wall — one large monochrome photograph dominates the viewport, framed by hairline white rules and small uppercase navigation. Color is rejected as a tool; hierarchy is built entirely through type size, generous negative space, and the stark contrast of white on black. The Neue Haas Grotesk 55 Roman at weight 400 only, combined with the OpenType 'case' feature, produces a disciplined all-caps voice that reads more like a printed art monograph than a DTC tea site. Every UI element — nav links, buttons, cart, footer — is a text fragment. There are no fills, no shadows, no gradients, no rounded chrome; the single 4px radius is the system's only concession to softness.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/442dfaf8-c0c6-467b-a8d4-54e953c049f3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"CHAIBOY design system\",\"item\":\"https://styles.refero.design/style/442dfaf8-c0c6-467b-a8d4-54e953c049f3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/442dfaf8-c0c6-467b-a8d4-54e953c049f3#style-reference\",\"name\":\"CHAIBOY design system reference\",\"headline\":\"CHAIBOY design system | Refero Styles\",\"description\":\"Explore CHAIBOY's dark E-commerce design system: Void #000000, Carbon #131313 colors, Neue Haas Grotesk TP 55 Roman typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/442dfaf8-c0c6-467b-a8d4-54e953c049f3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/442dfaf8-c0c6-467b-a8d4-54e953c049f3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"CHAIBOY\",\"url\":\"https://wearechaiboy.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/442dfaf8-c0c6-467b-a8d4-54e953c049f3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6c3dd6d2-6e28-4918-9351-8b480c9d579d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6c3dd6d2-6e28-4918-9351-8b480c9d579d.jpg\",\"caption\":\"Screenshot of CHAIBOY\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6c3dd6d2-6e28-4918-9351-8b480c9d579d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"CHAIBOY design system\",\"CHAIBOY website design\",\"CHAIBOY colors\",\"CHAIBOY typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Void\",\"Carbon\",\"Ash\",\"Bone\",\"Neue Haas Grotesk TP 55 Roman\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"CHAIBOY design system\"},{\"@type\":\"Thing\",\"name\":\"CHAIBOY website design\"},{\"@type\":\"Thing\",\"name\":\"CHAIBOY colors\"},{\"@type\":\"Thing\",\"name\":\"CHAIBOY typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:50:24.215Z\",\"dateModified\":\"2026-04-30T02:50:24.215Z\"}]}19:T624,Quick Color Reference:\n- text: #ffffff\n- background: #000000\n- border: #ffffff (1px hairlines)\n- muted text: #afafaf\n- accent: none — the system is monochromatic\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Create the primary nav row: black #000000 background, 1px solid #ffffff top and bottom rules. Left: 'CHAIBOY' wordmark in 14px Neue Haas Grotesk weight 400 uppercase #ffffff. Center: nav links BLENDS, COCKTAILS, VALUES, STUDIO at 14px weight 400 uppercase #ffffff, 15px gaps. Right: 'CART' link at 14px weight 400 uppercase #ffffff. No fills, no borders on the links themselves.\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n3. Create the hero photograph frame: centered on the #000000 page canvas, constrained to roughly 60% of the page width, 1px solid #ffffff border on all sides. The image is a black-and-white high-contrast portrait. No caption, no overlay, no gradient — just the framed photograph on void.\n4. Create the footer link bar: #000000 background, 1px solid #ffffff top border. Left row at 11-14px weight 400 uppercase #ffffff: TERMS & CONDITIONS, PRIVACY POLICY, CONTACT, INSTAGRAM with 4-6px gaps. Right row: NEWSLETTER link and a time string (e.g. '22:50') in the same treatment.\n5. Create a bordered chip button: #000000 background, 4px border-radius, 1px solid #ffffff border, 7px padding top/bottom and 10px padding left/right. 11px Neue Haas Grotesk weight 400 uppercase #ffffff text. Used only inside the announcement ticker."
+      },
+      {
+        "title": "Typographic Discipline",
+        "content": "The interface uses exactly one weight (400) of one typeface (Neue Haas Grotesk 55 Roman) at exactly four sizes (11, 14, 18, 54). Hierarchy is not purchased with bold or italic; it is earned through scale jumps, negative space, and the white-on-black contrast. Every element that is not a body of running text is set in uppercase. The OpenType 'case' feature is enabled globally so that all-caps small text uses proper case-sensitive glyph forms — parentheses, hyphens, and numerals retain the proportions designed for uppercase contexts rather than being scaled-up lowercase forms. Line-height at 54px is extremely tight (0.89), giving the display a compressed, almost monolithic presence. Body sizes use a more conventional 1.27-1.29 leading."
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no glow, no layered surfaces. The system intentionally avoids all depth cues because the visual hierarchy is carried entirely by typographic scale, generous negative space, and the 1px white hairline that separates the few regions. A raised element in this system is simply a white rule above and below it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "image",
+            "button",
+            "input",
+            "footer"
+          ],
+          "frequency": 487,
+          "confidence": 1,
+          "prominence": 11574235.5894815,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "link/color": 16,
+            "other/fill": 9,
+            "image/color": 18,
+            "input/color": 1,
+            "other/color": 59,
+            "footer/color": 1,
+            "body/borderColor": 20,
+            "link/borderColor": 64,
+            "image/borderColor": 72,
+            "input/borderColor": 4,
+            "other/borderColor": 212,
+            "footer/borderColor": 4,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#afafaf",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7540172565886749
+          },
+          "contexts": [
+            "link",
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 125,
+          "confidence": 1,
+          "prominence": 550298.0675664385,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 12,
+            "input/color": 2,
+            "other/color": 4,
+            "button/color": 1,
+            "link/borderColor": 48,
+            "input/borderColor": 8,
+            "other/borderColor": 40,
+            "button/borderColor": 4,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 361364.22007269255,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 7,
+            "other/backgroundColor": 3,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#131313",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.18674120159806412
+          },
+          "contexts": [
+            "image"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 11411.730005192323,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "image/backgroundColor": 8
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.58,
+          "background": "#131313",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.57,
+          "background": "#000000",
+          "foreground": "#afafaf"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.47,
+          "background": "#131313",
+          "foreground": "#afafaf"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.19,
+          "background": "#afafaf",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "button",
+            "link"
+          ],
+          "frequency": 10
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|image"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|link",
+            "marginBottom|link"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "link",
+            "other",
+            "input",
+            "body"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingBottom",
+            "marginLeft",
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link",
+            "marginLeft|other",
+            "marginBottom|other",
+            "paddingBottom|input",
+            "paddingBottom|body",
+            "paddingRight|link"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "link",
+            "other",
+            "input"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingBottom|other",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "link",
+            "button",
+            "input",
+            "body",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|button",
+            "paddingTop|input",
+            "paddingTop|body",
+            "paddingTop|other",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "image",
+            "link"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|image",
+            "marginLeft|link",
+            "marginRight|link",
+            "paddingTop|link"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "button",
+            "input",
+            "link",
+            "footer"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|button",
+            "marginTop|button",
+            "marginRight|input",
+            "paddingTop|link",
+            "paddingRight|footer",
+            "paddingLeft|footer",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 51,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 78,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "NeueHaasGroteskTP55R",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 119,
+          "fontFeatureSettings": [
+            "\"case\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "NeueHaasGroteskTP55R",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "NeueHaasGroteskTP55R",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "other",
+            "input",
+            "button",
+            "image",
+            "footer"
+          ],
+          "frequency": 72,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "NeueHaasGroteskTP55R",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "NeueHaasGroteskTP55R",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 54,
+          "family": "NeueHaasGroteskTP55R",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.89,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f7841923-fa2c-4bcb-9d1c-0c7fa9869968.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6c3dd6d2-6e28-4918-9351-8b480c9d579d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/442dfaf8-c0c6-467b-a8d4-54e953c049f3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"CHAIBOY design system\",\"item\":\"https://styles.refero.design/style/442dfaf8-c0c6-467b-a8d4-54e953c049f3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/442dfaf8-c0c6-467b-a8d4-54e953c049f3#style-reference\",\"name\":\"CHAIBOY design system reference\",\"headline\":\"CHAIBOY design system | Refero Styles\",\"description\":\"Explore CHAIBOY's dark E-commerce design system: Void #000000, Carbon #131313 colors, Neue Haas Grotesk TP 55 Roman typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/442dfaf8-c0c6-467b-a8d4-54e953c049f3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/442dfaf8-c0c6-467b-a8d4-54e953c049f3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"CHAIBOY\",\"url\":\"https://wearechaiboy.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/442dfaf8-c0c6-467b-a8d4-54e953c049f3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6c3dd6d2-6e28-4918-9351-8b480c9d579d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6c3dd6d2-6e28-4918-9351-8b480c9d579d.jpg\",\"caption\":\"Screenshot of CHAIBOY\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6c3dd6d2-6e28-4918-9351-8b480c9d579d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"CHAIBOY design system\",\"CHAIBOY website design\",\"CHAIBOY colors\",\"CHAIBOY typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Void\",\"Carbon\",\"Ash\",\"Bone\",\"Neue Haas Grotesk TP 55 Roman\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"CHAIBOY design system\"},{\"@type\":\"Thing\",\"name\":\"CHAIBOY website design\"},{\"@type\":\"Thing\",\"name\":\"CHAIBOY colors\"},{\"@type\":\"Thing\",\"name\":\"CHAIBOY typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:50:24.215Z\",\"dateModified\":\"2026-04-30T02:50:24.215Z\"}]}19:T624,Quick Color Reference:\n- text: #ffffff\n- background: #000000\n- border: #ffffff (1px hairlines)\n- muted text: #afafaf\n- accent: none — the system is monochromatic\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Create the primary nav row: black #000000 background, 1px solid #ffffff top and bottom rules. Left: 'CHAIBOY' wordmark in 14px Neue Haas Grotesk weight 400 uppercase #ffffff. Center: nav links BLENDS, COCKTAILS, VALUES, STUDIO at 14px weight 400 uppercase #ffffff, 15px gaps. Right: 'CART' link at 14px weight 400 uppercase #ffffff. No fills, no borders on the links themselves.\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n3. Create the hero photograph frame: centered on the #000000 page canvas, constrained to roughly 60% of the page width, 1px solid #ffffff border on all sides. The image is a black-and-white high-contrast portrait. No caption, no overlay, no gradient — just the framed photograph on void.\n4. Create the footer link bar: #000000 background, 1px solid #ffffff top border. Left row at 11-14px weight 400 uppercase #ffffff: TERMS & CONDITIONS, PRIVACY POLICY, CONTACT, INSTAGRAM with 4-6px gaps. Right row: NEWSLETTER link and a time string (e.g. '22:50') in the same treatment.\n5. Create a bordered chip button: #000000 background, 4px border-radius, 1px solid #ffffff border, 7px padding top/bottom and 10px padding left/right. 11px Neue Haas Grotesk weight 400 uppercase #ffffff text. Used only inside the announcement ticker."
+}

@@ -1,0 +1,240 @@
+{
+  "color": {
+    "plaster-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Plaster White — Primary canvas for the light sections; text color on the dark sections; hairline dividers on the dark sections"
+    },
+    "carbon": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Carbon — Page background for the dark/film section; primary body text on light sections; structural fill for project name typography"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Secondary text and fill on light sections; used where maximum contrast is needed against the white canvas"
+    },
+    "graphite": {
+      "$value": "#2b2b2b",
+      "$type": "color",
+      "$description": "Graphite — Subtle darker border for low-emphasis rules on light surfaces"
+    }
+  },
+  "font": {
+    "teg": {
+      "$value": "Teg",
+      "$type": "fontFamily",
+      "$description": "Display — reserved for the largest project names and the hero text. The aggressive -0.033em tracking at 86px tightens the letters into a near-monolithic block; this is the font that creates the 'stacked concrete' reading. Substitute: Migra, Editorial New, or Canela Display."
+    },
+    "beatrice-display": {
+      "$value": "Beatrice Display",
+      "$type": "fontFamily",
+      "$description": "Mid-scale editorial type — appears as secondary project list text alongside the larger Teg names, providing typographic counterpoint at a calmer scale. Substitute: Tiempos Headline, Canela, or Reckless."
+    },
+    "beatrice": {
+      "$value": "Beatrice",
+      "$type": "fontFamily",
+      "$description": "Body-weight Beatrice variant for the same 26px role but with the text-figure character set. Substitute: same as Beatrice Display."
+    },
+    "diatype": {
+      "$value": "Diatype",
+      "$type": "fontFamily",
+      "$description": "Workhorse sans for body copy, nav items, and supporting text. Weight 500 is the default; 700 is reserved for the nav name 'Ben Powell' to give it anchor weight in the distributed nav. Substitute: Söhne, Inter, or ABC Diatype."
+    },
+    "new-grotesk": {
+      "$value": "New Grotesk",
+      "$type": "fontFamily",
+      "$description": "Wide-tracked all-caps label face for section markers ('Design', 'Film'). The extreme +0.069em tracking turns short words into spaced-out type-art — this is the system's only 'decorative' choice. Substitute: ABC Diatype Mono Upper, Space Grotesk, or Neue Haas Grotesk Display."
+    }
+  },
+  "typography": {
+    "2xl": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Beatricedisplay",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Beatricedisplay",
+        "fontSize": "26px",
+        "fontWeight": 600,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Beatrice",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 26px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "26px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 26px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 26px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Teg",
+        "fontSize": "58px",
+        "fontWeight": 600,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Teg",
+        "fontSize": "58px",
+        "fontWeight": 500,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 58px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "New Grotesk",
+        "fontSize": "58px",
+        "fontWeight": 600,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 58px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Diatype",
+        "fontSize": "58px",
+        "fontWeight": 500,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 58px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "New Grotesk",
+        "fontSize": "60px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 60px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Teg",
+        "fontSize": "86px",
+        "fontWeight": 500,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 86px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "plaster-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default page canvas for the design section; all text and labels render as #111111 on it"
+    },
+    "carbon": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Surface level 2: Inverted canvas for the film section; all text and labels render as #ffffff on it"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.bpowell.co",
+      "siteName": "Bpowell",
+      "extractedAt": "2026-06-03T20:32:46.195Z",
+      "variant": "extended"
+    }
+  }
+}

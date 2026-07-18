@@ -1,0 +1,469 @@
+{
+  "color": {
+    "lego-yellow": {
+      "$value": "#FFD502",
+      "$type": "color",
+      "$description": "LEGO Yellow — Logo background, badges, active nav indicators, brand accent — the single chromatic constant that appears regardless of page section, making every badge feel like a price sticker on a toy box."
+    },
+    "brick-orange": {
+      "$value": "#F47D20",
+      "$type": "color",
+      "$description": "Brick Orange — Primary CTA buttons ('Buy now', 'Add to Bag', 'Become a member') — warm against white product backgrounds, the only pill button fill color for purchase actions."
+    },
+    "ember-dark": {
+      "$value": "#E96F14",
+      "$type": "color",
+      "$description": "Ember Dark — Orange hover/pressed state for CTA buttons — 1 step darker than Brick Orange."
+    },
+    "lego-navy": {
+      "$value": "#201D48",
+      "$type": "color",
+      "$description": "LEGO Navy — Footer background, deep brand surface — the only dark chromatic surface, anchoring the page bottom with brand identity."
+    },
+    "link-blue": {
+      "$value": "#006DB7",
+      "$type": "color",
+      "$description": "Link Blue — Body copy links, inline hyperlinks within editorial text — vivid blue on white for maximum contrast."
+    },
+    "action-blue": {
+      "$value": "#005AD2",
+      "$type": "color",
+      "$description": "Action Blue — Secondary action buttons ('Become a member', 'Learn more'), interactive link emphasis — the outlined pill button border and text color."
+    },
+    "flag-red": {
+      "$value": "#D0021B",
+      "$type": "color",
+      "$description": "Flag Red — 'New' nav badge text — used sparingly to flag newness in navigation."
+    },
+    "off-black": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Off Black — Primary text, card titles, prices, icon fills — the dominant foreground color across all light surfaces."
+    },
+    "graphite": {
+      "$value": "#2C2C2C",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, badge labels, footer body text, nav items."
+    },
+    "pitch": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pitch — Button label text on orange CTAs, heavy borders on ghost buttons."
+    },
+    "snow": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$description": "Snow — Page background, card surfaces, input backgrounds, text on dark surfaces."
+    },
+    "fog": {
+      "$value": "#F2F2F2",
+      "$type": "color",
+      "$description": "Fog — Secondary button fill (icon-only circular buttons, wishlist/cart controls), subtle surface backgrounds."
+    },
+    "pebble": {
+      "$value": "#F6F6F6",
+      "$type": "color",
+      "$description": "Pebble — Page section backgrounds, list row fills — one step warmer than pure white."
+    },
+    "steel": {
+      "$value": "#757575",
+      "$type": "color",
+      "$description": "Steel — Disabled state text, muted borders, helper text."
+    },
+    "silver": {
+      "$value": "#E0E0E0",
+      "$type": "color",
+      "$description": "Silver — Input borders in default state."
+    }
+  },
+  "font": {
+    "cera-pro": {
+      "$value": "Cera Pro",
+      "$type": "fontFamily",
+      "$description": "The only typeface on the site. Weight 700 at 24–37px for headings with -0.02em tracking — the negative spacing compensates for the geometric roundness of Cera Pro at large sizes, preventing letters from floating apart. Weight 500 for subheadings and labels. Weight 400 for body, nav links, and badge text. The custom geometric rounded sans directly mirrors LEGO brick corner geometry — a system font would read as generic where Cera Pro reads as branded."
+    },
+    "cera-pro-italic": {
+      "$value": "Cera Pro Italic",
+      "$type": "fontFamily",
+      "$description": "Caption-level italic, used for fine-print disclaimers and legal copy only."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 2.08
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Cera Pro Italic",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.58
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.62
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "19px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Cera Pro",
+        "fontSize": "37px",
+        "fontWeight": 700,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 37px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "192": {
+      "$value": "192px",
+      "$type": "dimension",
+      "$description": "Spacing 192px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.54) 0px 2px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "page-base": {
+      "$value": "#F6F6F6",
+      "$type": "color",
+      "$description": "Surface level 0: Overall page background, section fills between content blocks"
+    },
+    "card-surface": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$description": "Surface level 1: Product card backgrounds, content panels, input fields"
+    },
+    "header-bar": {
+      "$value": "#FFD502",
+      "$type": "color",
+      "$description": "Surface level 2: Primary navigation bar, brand stripe"
+    },
+    "dark-tray": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Surface level 3: Promotional announcement bar at top of page"
+    },
+    "footer-well": {
+      "$value": "#201D48",
+      "$type": "color",
+      "$description": "Surface level 4: Site footer, deep brand anchor surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://lego.com",
+      "siteName": "Home",
+      "extractedAt": "2026-04-11T19:15:24.282Z",
+      "variant": "extended"
+    }
+  }
+}

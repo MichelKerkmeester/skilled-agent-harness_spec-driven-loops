@@ -1,0 +1,512 @@
+{
+  "color": {
+    "ember-orange": {
+      "$value": "#ff2f00",
+      "$type": "color",
+      "$description": "Ember Orange — Orange action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "marble-white": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Marble White — Page canvas, card surfaces, input fields, default panel backgrounds. The dominant surface tone, barely off-white for warmth"
+    },
+    "stone-gray": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Stone Gray — Secondary surface for filled buttons, muted card backgrounds, image placeholder fills. One step deeper than Marble White to create gentle separation without contrast"
+    },
+    "graphite": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, link color, subdued metadata, helper text. Reads as muted black — never used for primary text or headings"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, all headings, hairline borders (cards, lists, badges, inputs), icons, navigation. The structural backbone — 1px borders everywhere define the system"
+    },
+    "signal-yellow": {
+      "$value": "#ffb700",
+      "$type": "color",
+      "$description": "Signal Yellow — Yellow state accent for badges, validation surfaces, and short status labels."
+    },
+    "ice-blue": {
+      "$value": "#bfe0ff",
+      "$type": "color",
+      "$description": "Ice Blue — Blue state accent for badges, validation surfaces, and short status labels."
+    }
+  },
+  "font": {
+    "neue-montreal": {
+      "$value": "Neue Montreal",
+      "$type": "fontFamily",
+      "$description": "The workhorse and display face. Weight 400 for body, weight 530 for subheads and medium emphasis, weight 600 for headings and display overlays. Used at 145px for hero type, 48px for section headlines, 18-20px for body, 14px for navigation, 12px for badges. The type IS the product — this single family carries the entire brand voice."
+    },
+    "neue-montreal-semibold": {
+      "$value": "Neue Montreal Semibold",
+      "$type": "fontFamily",
+      "$description": "Heavy display variant used for the largest typographic moments in specimen cards. Tighter, more compressed than standard weight 600."
+    },
+    "neue-york": {
+      "$value": "Neue York",
+      "$type": "fontFamily",
+      "$description": "Companion serif/contrast face shown in specimen contexts. The 700 weight provides a sharp counterpoint to the geometric Montreal."
+    },
+    "frama-semibold": {
+      "$value": "Frama Semibold",
+      "$type": "fontFamily",
+      "$description": "Specimen showcase weight — displayed at exact 103px in the grid to demonstrate each family's character at scale."
+    },
+    "kyoto-semibold": {
+      "$value": "Kyoto Semibold",
+      "$type": "fontFamily",
+      "$description": "Specimen showcase — fixed 103px display size in the font grid."
+    },
+    "neue-gstaad-bold": {
+      "$value": "Neue Gstaad Bold",
+      "$type": "fontFamily",
+      "$description": "Specimen showcase — fixed 103px display size in the font grid."
+    },
+    "palma-fizzy-heavy": {
+      "$value": "Palma Fizzy Heavy",
+      "$type": "fontFamily",
+      "$description": "Specimen showcase — fixed 103px display size in the font grid."
+    },
+    "mori-bold": {
+      "$value": "Mori Bold",
+      "$type": "fontFamily",
+      "$description": "Specimen showcase — fixed 103px display size in the font grid."
+    },
+    "museum-light": {
+      "$value": "Museum Light",
+      "$type": "fontFamily",
+      "$description": "Specimen showcase — the 300 weight in the grid is deliberately whisper-light, making weight 300 headlines read as anti-convention: authority through restraint rather than volume."
+    },
+    "neue-corp-semibold": {
+      "$value": "Neue Corp Semibold",
+      "$type": "fontFamily",
+      "$description": "Specimen showcase — fixed 103px display size in the font grid."
+    },
+    "watch-medium": {
+      "$value": "Watch Medium",
+      "$type": "fontFamily",
+      "$description": "Specimen showcase — fixed 103px display size in the font grid."
+    },
+    "monument-narrow-medium": {
+      "$value": "Monument Narrow Medium",
+      "$type": "fontFamily",
+      "$description": "Specimen showcase — fixed 103px display size in the font grid."
+    },
+    "model-plastic-regular": {
+      "$value": "Model Plastic Regular",
+      "$type": "fontFamily",
+      "$description": "Specimen showcase — fixed 103px display size in the font grid."
+    },
+    "neue-gstaad-normal-bold": {
+      "$value": "neue-gstaad-normal-bold",
+      "$type": "fontFamily",
+      "$description": "neue-gstaad-normal-bold — detected in extracted data but not described by AI"
+    },
+    "neue-corp-normal-semibold": {
+      "$value": "neue-corp-normal-semibold",
+      "$type": "fontFamily",
+      "$description": "neue-corp-normal-semibold — detected in extracted data but not described by AI"
+    },
+    "neue-york-normal-normal-bold": {
+      "$value": "neue-york-normal-normal-bold",
+      "$type": "fontFamily",
+      "$description": "neue-york-normal-normal-bold — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "14px",
+        "fontWeight": 530,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "neue-montreal-semibold",
+        "fontSize": "103px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 103px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "neue-york-normal-bold",
+        "fontSize": "103px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 103px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "frama-semibold",
+        "fontSize": "103px",
+        "fontWeight": 580,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 103px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "kyoto-semibold",
+        "fontSize": "103px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 103px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "neue-gstaad-normal-bold",
+        "fontSize": "103px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 103px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "palma-fizzy-heavy",
+        "fontSize": "103px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 103px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "mori-bold",
+        "fontSize": "103px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 103px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "museum-light",
+        "fontSize": "103px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 103px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "neue-corp-normal-semibold",
+        "fontSize": "103px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 103px"
+    },
+    "5xl-11": {
+      "$value": {
+        "fontFamily": "watch-medium",
+        "fontSize": "103px",
+        "fontWeight": 485,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-11 at 103px"
+    },
+    "5xl-12": {
+      "$value": {
+        "fontFamily": "monument-narrow-medium",
+        "fontSize": "103px",
+        "fontWeight": 525,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-12 at 103px"
+    },
+    "5xl-13": {
+      "$value": {
+        "fontFamily": "model-plastic-regular",
+        "fontSize": "103px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-13 at 103px"
+    },
+    "5xl-14": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "121px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-14 at 121px"
+    },
+    "5xl-15": {
+      "$value": {
+        "fontFamily": "neue-montreal-semibold",
+        "fontSize": "121px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-15 at 121px"
+    },
+    "5xl-16": {
+      "$value": {
+        "fontFamily": "neue-york-normal-normal-bold",
+        "fontSize": "121px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-16 at 121px"
+    },
+    "5xl-17": {
+      "$value": {
+        "fontFamily": "Neue Montreal",
+        "fontSize": "145px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-17 at 145px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the base white-marble surface"
+    },
+    "card": {
+      "$value": "#fafafa",
+      "$type": "color",
+      "$description": "Surface level 1: Font specimen cards, content panels — same as canvas, separated by 1px black border"
+    },
+    "secondary-fill": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Surface level 2: Filled buttons, muted card backgrounds, image placeholders — one step deeper for gentle separation"
+    },
+    "accent-surface": {
+      "$value": "#ff2f00",
+      "$type": "color",
+      "$description": "Surface level 5: Primary accent badge background for New status and icon highlights"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://pangrampangram.com",
+      "siteName": "Pangram Pangram Foundry",
+      "extractedAt": "2026-06-03T21:20:44.798Z",
+      "variant": "extended"
+    }
+  }
+}

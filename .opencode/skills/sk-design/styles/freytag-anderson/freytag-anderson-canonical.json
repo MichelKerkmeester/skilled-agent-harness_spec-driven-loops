@@ -1,0 +1,892 @@
+{
+  "source": "https://styles.refero.design/style/2d4fc4ba-2ea4-465f-8644-f3ff5c6713a2",
+  "uuid": "2d4fc4ba-2ea4-465f-8644-f3ff5c6713a2",
+  "name": "Freytag Anderson",
+  "northStar": "cinema curtain rising on a single word.\n\nA vast moving image carries the screen, the brand name sits in the corner like a title card, and nothing else competes for attention.",
+  "capturedAt": "2026-07-18T07:46:27.298Z",
+  "meta": {
+    "url": "https://www.freytaganderson.com",
+    "siteName": "Freytag Anderson",
+    "extractedAt": "2026-06-03T19:39:45.491Z",
+    "durationMs": 38504,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 412,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Keep the palette to six neutrals — never introduce a chromatic accent color; the design's power comes from restraint.",
+      "Anchor all text to the top-left viewport corner on full-bleed media; centering or middle-alignment breaks the title-card logic.",
+      "Use FAVORIT exclusively for UI and body — do not import secondary typefaces for hierarchy; let weight (300 vs 400) and size do the work.",
+      "Set body line-height to 1.7 — generous leading is part of the system's quiet, slow-reading rhythm.",
+      "Use 288px bottom padding between major sections to create the cinematic breath between acts.",
+      "Let photographs and video fill the viewport edge-to-edge with no border, radius, or overlay chrome.",
+      "Use pill geometry (border-radius: 300px) for every button — there is no square or slightly-rounded button in this system."
+    ],
+    "donts": [
+      "Do not add a chromatic accent color (blue, red, green) — the system is deliberately achromatic and a single hue would shatter the cinema metaphor.",
+      "Do not add card shadows, drop shadows, or elevation tokens — the design is flat, relying on color contrast and whitespace for separation.",
+      "Do not center text horizontally — the top-left anchor is the system's defining gesture.",
+      "Do not add a traditional navigation bar with visible menu items — the hamburger is the only nav surface.",
+      "Do not use multiple typefaces to create hierarchy — FAVORIT is the only voice, period.",
+      "Do not frame or round images — photographs are presented raw, full-bleed, unbordered.",
+      "Do not use bold (600+) weights — the system speaks at 300 and 400 only; heavier weights would break the whispered tone."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#fafafa",
+        "name": "Paper",
+        "role": "Page canvas, base surface behind text — off-white, never pure white, to soften photographic edges",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink",
+        "role": "Primary text, hairline borders, link underlines — the only chromatic accent in the system is its absence of color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1c1c1c",
+        "name": "Charcoal",
+        "role": "Dark content surface for text-only sections — warm-leaning black that softens contrast against pure ink",
+        "group": "neutral"
+      },
+      {
+        "hex": "#141109",
+        "name": "Midnight Soil",
+        "role": "Deepest dark surface, used for the most recessed bands — barely distinguishable from charcoal but warmer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dcdcdc",
+        "name": "Ash",
+        "role": "Hairline borders, disabled borders, subtle dividers — a neutral gray that whispers structure without drawing the eye",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c2b5ae",
+        "name": "Driftwood",
+        "role": "Warm taupe accent surface, used sparingly as a tonal break in dark sections — the only non-achromatic hint in the palette",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed, viewport-as-section. The page is not a max-width container with padding gutters; it is a sequence of edge-to-edge planes. The hero is a single full-viewport image or video. The second plane continues the same full-bleed media with a new top-left text statement. The third plane shifts to a solid dark surface (#1c1c1c) with a large headline and a three-column body grid below. Navigation is a single hamburger line in the top-right — no top bar, no breadcrumb, no footer chrome. Sections are separated by generous 288px gaps, creating a cinematic intermission rhythm. Content density is extremely low: one statement per screen, no sidebars, no floating elements, no overlapping layers. The grid that does exist (the three-column body block) is tight and uniform, contrasting the otherwise unbounded photography above and below it.",
+    "imagery": "Imagery is the dominant content type and carries the site's entire emotional weight. Full-bleed cinematic photography and video — atmospheric, often motion-blurred, shot during golden hour, with deep natural grain and warm/cool tonal range. No product photography, no headshots, no UI screenshots. Images are presented raw: no borders, no rounded corners, no overlays, no captions, no attribution chrome. They function like film stills in a director's reel rather than marketing visuals. The system has zero illustration or iconography — no SVG decorations, no spot graphics, no logos competing with the media.",
+    "similar": [
+      {
+        "why": "Same single-typeface, full-bleed editorial approach with achromatic palette and text-as-image hero statements",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same achromatic portfolio language — vast photography, minimal type, no decorative chrome, whitespace as structure",
+        "business": "Manual (design studio)"
+      },
+      {
+        "why": "Same quiet grotesque typography anchored in viewport corners over cinematic full-bleed media",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Same anti-product visual logic — portfolio as film, not as UI surface, with restrained type and no component clutter",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Same single-family grotesque throughout, generous tracking-tightened headlines, and a near-monochrome palette",
+        "business": "Order"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px (no rounding)",
+        "inputs": "0px",
+        "buttons": "300px (fully pill)"
+      },
+      "elementGap": "17px",
+      "sectionGap": "",
+      "cardPadding": "43px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#fafafa",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Base canvas, the default page surface behind text-only blocks"
+      },
+      {
+        "hex": "#c2b5ae",
+        "name": "Driftwood",
+        "level": 2,
+        "purpose": "Warm tonal break surface — used as an accent band, not a default"
+      },
+      {
+        "hex": "#dcdcdc",
+        "name": "Ash",
+        "level": 3,
+        "purpose": "Divider lines, disabled borders, subtle structural gray"
+      },
+      {
+        "hex": "#141109",
+        "name": "Midnight Soil",
+        "level": 4,
+        "purpose": "Deepest dark band — used sparingly for the most recessed sections"
+      },
+      {
+        "hex": "#1c1c1c",
+        "name": "Charcoal",
+        "level": 5,
+        "purpose": "Dark content surface for intertitle-style text sections"
+      }
+    ],
+    "northStar": "cinema curtain rising on a single word.\n\nA vast moving image carries the screen, the brand name sits in the corner like a title card, and nothing else competes for attention.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 15,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.33
+      },
+      {
+        "role": "body",
+        "size": 17,
+        "lineHeight": 1.7,
+        "letterSpacing": -0.34
+      },
+      {
+        "role": "display",
+        "size": 41,
+        "lineHeight": 1.18,
+        "letterSpacing": -0.9
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Pill Button",
+        "role": "Primary interactive control",
+        "description": "Fully rounded pill (border-radius: 300px), hairline 1px border, no fill. Padding: 12px vertical, 20px horizontal. FAVORIT 15px weight 400, letter-spacing -0.02em. Default state: transparent background, #000000 border, #000000 text. Hover likely inverts or thickens border. No shadow, no gradient."
+      },
+      {
+        "name": "Outlined Pill Button (Light)",
+        "role": "Secondary action on dark/photographic backgrounds",
+        "description": "Same pill geometry as Ghost Pill Button, but border and text are #fafafa for legibility over imagery. No background fill. 1px border, FAVORIT 15px weight 400."
+      },
+      {
+        "name": "Hamburger Menu",
+        "role": "Sole navigation control",
+        "description": "Two thin horizontal lines (1px each) in #fafafa or #000000, top-right viewport corner. No labels, no visible menu items — the menu reveals content on activation. Always the same size regardless of scroll position."
+      },
+      {
+        "name": "Hero Title",
+        "role": "Opening statement over cinematic media",
+        "description": "FAVORIT 41px weight 400, line-height 1.18, letter-spacing -0.022em. White (#fafafa). Anchored to the top-left viewport corner, never centered. Sits over full-bleed photographic or video media that fills the entire viewport."
+      },
+      {
+        "name": "Section Statement",
+        "role": "Large declarative text introducing a content block",
+        "description": "FAVORIT 41px weight 400, #fafafa on dark surfaces or #000000 on light. Top-left anchored. Generous line-height (1.18) gives each phrase breathing room. The statement acts as the section's only visual identity — no graphics, no icons."
+      },
+      {
+        "name": "Three-Column Body Block",
+        "role": "Detailed descriptive text in a constrained grid",
+        "description": "Three equal-width text columns with 17px body text in FAVORIT 400, line-height 1.7. White on dark surface. Columns are tightly leaded with ~17px vertical gap between paragraphs. No column borders, no dividers — the grid is implied through alignment."
+      },
+      {
+        "name": "Photographic Hero",
+        "role": "Primary content surface — not a component but a structural device",
+        "description": "Full-viewport, full-bleed cinematic video or still photography. No overlay, no gradient, no text shadow for legibility. The image is unframed — no border, no radius. Text contrast is handled by the image's own tonal range, not by UI chrome."
+      },
+      {
+        "name": "Dark Content Section",
+        "role": "Text-only section with photographic weight",
+        "description": "Solid #1c1c1c or #141109 background, no texture. White text only. Functions as a visual pause between photographic acts — like a film intertitle. Generous 288px bottom padding before the next section."
+      },
+      {
+        "name": "Image Grid Item (implied)",
+        "role": "Project thumbnail in portfolio contexts",
+        "description": "Full-bleed image, no padding, no caption chrome visible. Images likely sit edge-to-edge in a grid. The system has no card or frame device — images are presented raw, as if printed on the page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The single typeface for everything: hero titles at 41px weight 400, body at 17px weight 400, captions at 15px weight 300. Weight 300 is the signature choice for secondary text — it creates hierarchy through restraint rather than bold contrast. Slight negative tracking (-0.02em to -0.022em) tightens the grotesque's default rhythm. The same family voices headlines, navigation, buttons, and body, which is unusual — most systems differentiate roles through typefaces. Here, FAVORIT's dual weight and tight letterforms carry the entire hierarchy alone.",
+        "sizes": "15px, 17px, 41px",
+        "family": "FAVORIT",
+        "weight": "300, 400",
+        "lineHeight": "1.0–1.7",
+        "substitute": "Söhne, Inter, Neue Haas Grotesk",
+        "letterSpacing": "-0.02em to -0.022em across all sizes",
+        "fontFeatureSettings": "\"ss01\" on, \"tnum\" on"
+      },
+      {
+        "role": "Reserved for micro-copy or supporting text in specific contexts — appears at low frequency and never headlines. Could be a FAVORIT alternate cut rather than a true second family.",
+        "sizes": "17px",
+        "family": "Clarkson",
+        "weight": "300, 400",
+        "lineHeight": "1.40, 1.70",
+        "substitute": "Söhne",
+        "letterSpacing": "-0.0200em"
+      },
+      {
+        "role": "Rare accent — appears in button or micro-label contexts. Functions as a display-only voice when FAVORIT needs to step aside.",
+        "sizes": "15px, 17px",
+        "family": "halyard-display",
+        "weight": "300",
+        "lineHeight": "1.20, 1.40",
+        "substitute": "Söhne, Söhne Breit",
+        "letterSpacing": "-0.0200em, 0.0200em"
+      }
+    ],
+    "description": "Freytag Anderson operates as a cinematic portfolio: full-bleed atmospheric photography carries the entire visual weight while typography recedes to a whisper. The site is almost entirely achromatic — an off-white canvas (#fafafa), pure black ink, and a single warm-charcoal section that reads like a film intermission. FAVORIT, a single grotesque sans-serif, is the only voice, used identically for headlines, body, and UI; weight shifts and tracking do all the work of hierarchy. Text consistently anchors to the top-left viewport corner over imagery, and a single hamburger line replaces conventional navigation. Components are reduced to their minimum: pill-shaped ghost controls with hairline borders, no card surfaces, no shadows, no gradients. The impression is of a film opening — image, title, silence — rather than a product surface.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2d4fc4ba-2ea4-465f-8644-f3ff5c6713a2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Freytag Anderson design system\",\"item\":\"https://styles.refero.design/style/2d4fc4ba-2ea4-465f-8644-f3ff5c6713a2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2d4fc4ba-2ea4-465f-8644-f3ff5c6713a2#style-reference\",\"name\":\"Freytag Anderson design system reference\",\"headline\":\"Freytag Anderson design system | Refero Styles\",\"description\":\"Explore Freytag Anderson's mixed Agency design system: Paper #fafafa, Ink #000000 colors, FAVORIT, Clarkson typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2d4fc4ba-2ea4-465f-8644-f3ff5c6713a2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2d4fc4ba-2ea4-465f-8644-f3ff5c6713a2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Freytag Anderson\",\"url\":\"https://www.freytaganderson.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2d4fc4ba-2ea4-465f-8644-f3ff5c6713a2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5bd53a52-c4e7-46c6-bd52-afe157391821.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5bd53a52-c4e7-46c6-bd52-afe157391821.jpg\",\"caption\":\"Screenshot of Freytag Anderson\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5bd53a52-c4e7-46c6-bd52-afe157391821.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Freytag Anderson design system\",\"Freytag Anderson website design\",\"Freytag Anderson colors\",\"Freytag Anderson typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper\",\"Ink\",\"Charcoal\",\"Midnight Soil\",\"FAVORIT\",\"Clarkson\",\"halyard-display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Freytag Anderson design system\"},{\"@type\":\"Thing\",\"name\":\"Freytag Anderson website design\"},{\"@type\":\"Thing\",\"name\":\"Freytag Anderson colors\"},{\"@type\":\"Thing\",\"name\":\"Freytag Anderson typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:45:31.792Z\",\"dateModified\":\"2026-04-30T02:45:31.792Z\"}]}19:T673,Quick Color Reference:\n- text: #000000 (primary), #fafafa (on dark/photo)\n- background: #fafafa (default), #1c1c1c (dark section), #141109 (deepest)\n- border: #000000 (default), #fafafa (on dark), #dcdcdc (subtle divider)\n- accent: none (achromatic only)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a full-bleed hero section: viewport-filling photographic or video background, no overlay. Headline at 41px FAVORIT weight 400, #fafafa, letter-spacing -0.9px, line-height 1.18. Text anchored to the top-left viewport corner with 24px padding. Hamburger menu icon (two 1px lines) in #fafafa, top-right corner.\n\n2. Create a dark intertitle section: solid #1c1c1c background, no texture. Section statement at 41px FAVORIT weight 400, #fafafa, letter-spacing -0.9px, anchored top-left. Below at 120px gap, a three-column grid of body text at 17px FAVORIT weight 400, #fafafa, line-height 1.7, letter-spacing -0.34px. 288px padding-bottom before the next section.\n\n3. Create a ghost pill button: border-radius 300px, 1px solid #000000 border, transparent background, padding 12px vertical 20px horizontal. Label at 15px FAVORIT weight 400, #000000, letter-spacing -0.3px. On dark backgrounds, swap border and text to #fafafa.\n\n4. Create a body text block: 17px FAVORIT weight 400, #fafafa on #1c1c1c surface, line-height 1.7, letter-spacing -0.34px. Paragraph spacing 17px. No column dividers — the grid is implied through alignment alone.\n\n5. Create a section transition: 288px of empty space between the previous section and the next, functioning as a cinematic intermission. No dividers, no spacers, no visual markers."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is deliberately absent. The system relies entirely on color contrast (off-white vs charcoal vs photographic media) and generous whitespace to separate layers. No shadows exist because no surface needs to 'rise' — the page reads as a sequence of full-bleed planes rather than a stack of cards. This is a flat-design system taken to its logical extreme: the photograph itself is the only elevated element, and it sits flush with the viewport edge."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#fafafa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9851036517304731
+          },
+          "contexts": [
+            "other",
+            "card",
+            "hero",
+            "heading",
+            "link",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 1638,
+          "confidence": 1,
+          "prominence": 260210788.88950604,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 19,
+            "card/color": 1,
+            "hero/color": 2,
+            "link/color": 22,
+            "image/color": 8,
+            "other/color": 271,
+            "footer/color": 1,
+            "heading/color": 16,
+            "body/borderColor": 76,
+            "card/borderColor": 4,
+            "hero/borderColor": 8,
+            "link/borderColor": 88,
+            "image/borderColor": 32,
+            "other/borderColor": 1016,
+            "footer/borderColor": 4,
+            "heading/borderColor": 64,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "heading"
+          ],
+          "frequency": 303,
+          "confidence": 1,
+          "prominence": 16036824.86905398,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 9,
+            "other/color": 48,
+            "button/color": 2,
+            "heading/color": 2,
+            "body/borderColor": 36,
+            "other/borderColor": 192,
+            "button/borderColor": 4,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#1c1c1c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.22644986475198373
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 5542872.781693042,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 12,
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#141109",
+          "oklch": {
+            "c": 0.016164628406905395,
+            "h": 89.92677680716372,
+            "l": 0.1785233647628781
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 5242171.09390356,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 16
+          }
+        },
+        {
+          "hex": "#c2b5ae",
+          "oklch": {
+            "c": 0.01787120199007394,
+            "h": 50.37257207658383,
+            "l": 0.7819499820273268
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 4065428.8143497654,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#dcdcdc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8944904147418206
+          },
+          "contexts": [
+            "button",
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 116,
+          "confidence": 1,
+          "prominence": 2966321.1898684525,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "link/color": 8,
+            "heading/color": 3,
+            "link/borderColor": 32,
+            "other/borderColor": 56,
+            "button/borderColor": 4,
+            "heading/borderColor": 12,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#5a7574",
+          "oklch": {
+            "c": 0.03141292532498873,
+            "h": 193.44117503687033,
+            "l": 0.5408951964958836
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2032714.4071748827,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0005971526745198335,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.12,
+          "background": "#000000",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.06,
+          "background": "#141109",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.33,
+          "background": "#1c1c1c",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.31,
+          "background": "#dcdcdc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.75,
+          "background": "#141109",
+          "foreground": "#dcdcdc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.43,
+          "background": "#1c1c1c",
+          "foreground": "#dcdcdc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.51,
+          "background": "#c2b5ae",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.44,
+          "background": "#c2b5ae",
+          "foreground": "#141109"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.53,
+          "background": "#c2b5ae",
+          "foreground": "#1c1c1c"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.75,
+          "background": "#5a7574",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.23,
+          "background": "#5a7574",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.62,
+          "background": "#5a7574",
+          "foreground": "#dcdcdc"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.91,
+          "background": "#c2b5ae",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.46,
+          "background": "#c2b5ae",
+          "foreground": "#dcdcdc"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.31,
+          "background": "#dcdcdc",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.23,
+          "background": "#1c1c1c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#141109",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 300,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "marginBottom|body",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 29,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 288,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "FAVORIT",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 398,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Clarkson",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 12,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "halyard-display",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 17,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 15,
+          "family": "halyard-display",
+          "weight": 300,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "FAVORIT",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 35,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.022,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "halyard-display",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "FAVORIT",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "FAVORIT",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "FAVORIT",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "card",
+            "hero",
+            "link",
+            "image",
+            "footer"
+          ],
+          "frequency": 304,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Clarkson",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Clarkson",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.7,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "FAVORIT",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.7,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 41,
+          "family": "FAVORIT",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 33,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/03766401-2e16-456a-a66a-51ddc2e159d8.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5bd53a52-c4e7-46c6-bd52-afe157391821.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2d4fc4ba-2ea4-465f-8644-f3ff5c6713a2#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Freytag Anderson design system\",\"item\":\"https://styles.refero.design/style/2d4fc4ba-2ea4-465f-8644-f3ff5c6713a2\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2d4fc4ba-2ea4-465f-8644-f3ff5c6713a2#style-reference\",\"name\":\"Freytag Anderson design system reference\",\"headline\":\"Freytag Anderson design system | Refero Styles\",\"description\":\"Explore Freytag Anderson's mixed Agency design system: Paper #fafafa, Ink #000000 colors, FAVORIT, Clarkson typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/2d4fc4ba-2ea4-465f-8644-f3ff5c6713a2\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2d4fc4ba-2ea4-465f-8644-f3ff5c6713a2\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Freytag Anderson\",\"url\":\"https://www.freytaganderson.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2d4fc4ba-2ea4-465f-8644-f3ff5c6713a2#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5bd53a52-c4e7-46c6-bd52-afe157391821.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5bd53a52-c4e7-46c6-bd52-afe157391821.jpg\",\"caption\":\"Screenshot of Freytag Anderson\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5bd53a52-c4e7-46c6-bd52-afe157391821.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Freytag Anderson design system\",\"Freytag Anderson website design\",\"Freytag Anderson colors\",\"Freytag Anderson typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper\",\"Ink\",\"Charcoal\",\"Midnight Soil\",\"FAVORIT\",\"Clarkson\",\"halyard-display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Freytag Anderson design system\"},{\"@type\":\"Thing\",\"name\":\"Freytag Anderson website design\"},{\"@type\":\"Thing\",\"name\":\"Freytag Anderson colors\"},{\"@type\":\"Thing\",\"name\":\"Freytag Anderson typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:45:31.792Z\",\"dateModified\":\"2026-04-30T02:45:31.792Z\"}]}19:T673,Quick Color Reference:\n- text: #000000 (primary), #fafafa (on dark/photo)\n- background: #fafafa (default), #1c1c1c (dark section), #141109 (deepest)\n- border: #000000 (default), #fafafa (on dark), #dcdcdc (subtle divider)\n- accent: none (achromatic only)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a full-bleed hero section: viewport-filling photographic or video background, no overlay. Headline at 41px FAVORIT weight 400, #fafafa, letter-spacing -0.9px, line-height 1.18. Text anchored to the top-left viewport corner with 24px padding. Hamburger menu icon (two 1px lines) in #fafafa, top-right corner.\n\n2. Create a dark intertitle section: solid #1c1c1c background, no texture. Section statement at 41px FAVORIT weight 400, #fafafa, letter-spacing -0.9px, anchored top-left. Below at 120px gap, a three-column grid of body text at 17px FAVORIT weight 400, #fafafa, line-height 1.7, letter-spacing -0.34px. 288px padding-bottom before the next section.\n\n3. Create a ghost pill button: border-radius 300px, 1px solid #000000 border, transparent background, padding 12px vertical 20px horizontal. Label at 15px FAVORIT weight 400, #000000, letter-spacing -0.3px. On dark backgrounds, swap border and text to #fafafa.\n\n4. Create a body text block: 17px FAVORIT weight 400, #fafafa on #1c1c1c surface, line-height 1.7, letter-spacing -0.34px. Paragraph spacing 17px. No column dividers — the grid is implied through alignment alone.\n\n5. Create a section transition: 288px of empty space between the previous section and the next, functioning as a cinematic intermission. No dividers, no spacers, no visual markers."
+}

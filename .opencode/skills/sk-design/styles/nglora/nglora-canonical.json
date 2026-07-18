@@ -1,0 +1,1329 @@
+{
+  "source": "https://styles.refero.design/style/24c0de95-295d-42aa-8240-4e36683cf35b",
+  "uuid": "24c0de95-295d-42aa-8240-4e36683cf35b",
+  "name": "NGLORA",
+  "northStar": "NGLORA - Apothecary's Formulary. A meticulously organized space where typography and product photography are treated with scientific precision.",
+  "capturedAt": "2026-07-18T10:19:04.478Z",
+  "meta": {
+    "url": "https://aesop.com",
+    "siteName": "NGLORA",
+    "extractedAt": "2026-04-11T17:53:01.853Z",
+    "durationMs": 70825,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1041,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Zapf-Humanist exclusively for large, emotive headlines, otherwise default to SuisseIntl.",
+      "Maintain sharp 0px corners on all rectangular UI elements like cards, buttons, and inputs.",
+      "Rely on generous whitespace (96px+ between sections) for separation, not dividers or shadows.",
+      "Center-align text and imagery within product cards and feature blocks.",
+      "Use the Parchment (#fffef2) and Charcoal (#333333) combination for primary content.",
+      "Keep layouts simple: centered stacks or balanced multi-column grids.",
+      "Use the Dark Action Button for all primary purchasing actions."
+    ],
+    "tags": [
+      "minimalist",
+      "editorial",
+      "monochrome",
+      "typography-driven",
+      "premium",
+      "apothecary",
+      "structured",
+      "high-contrast",
+      "brutalist-inspired"
+    ],
+    "donts": [
+      "Do not use rounded corners on any element other than circular icon buttons.",
+      "Do not use drop shadows or any other 3D-effect for elevation.",
+      "Do not introduce new colors; the palette is intentionally restricted.",
+      "Do not use gradients.",
+      "Do not place text over complex parts of images; ensure high contrast.",
+      "Do not use lifestyle photography that shows models or hands using products.",
+      "Do not create complex, overlapping, or asymmetrical layouts."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fffef2",
+        "name": "Parchment",
+        "role": "Primary page background, light surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Charcoal",
+        "role": "Primary text, UI icons, primary buttons, borders.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Hero section text, high-emphasis text elements.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#252525",
+        "name": "Carbon",
+        "role": "Footer background, secondary dark surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Stone",
+        "role": "Secondary body text.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d6d5cc",
+        "name": "Slate",
+        "role": "Carousel scrollbar track.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Alabaster",
+        "role": "Text on dark backgrounds, rare highlight surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#945c26",
+        "name": "Umber",
+        "role": "Accent text on specific badges; provides a rare, earthy color pop.",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page follows a highly structured, architectural model with a generous max-width of around 1600px, within which content is neatly centered. The structure is a vertical stack of full-width bands, often alternating between the Parchment background and full-bleed imagery or video in the hero. Vertical rhythm is defined by expansive gaps (96px+) between sections. Content is arranged in simple, centered stacks or rigid 3-column grids for product carousels. This methodical, spacious, and grid-based approach reinforces the brand's precision and focus.",
+    "imagery": "The visual language for imagery is stark and artifact-like. Product photography features items isolated and centrally framed against the Parchment (#fffef2) background, akin to specimens in a lab or objects in a gallery. There is a deliberate absence of lifestyle context, models, or hands. The focus is purely on the product's form, amber glass, and typographic labels. Hero sections may use moody, atmospheric video focusing on texture and sensation (e.g., fur, water) rather than direct product use, providing a sensory counterpoint to the clinical product shots.",
+    "similar": [
+      {
+        "why": "Similar minimalist product photography, monochrome palettes, and premium typographic focus.",
+        "business": "Byredo"
+      },
+      {
+        "why": "Shares the 'apothecary' label aesthetic, reliance on typography for branding, and a refined e-commerce experience.",
+        "business": "Le Labo"
+      },
+      {
+        "why": "Employs a similar brutalist-inspired grid layout and a strong, singular sans-serif font as a core identity element.",
+        "business": "SSENSE"
+      },
+      {
+        "why": "Swiss design sensibility with a focus on gridded layouts, high-quality typography (sans-serif), and clean product presentation.",
+        "business": "Vitra"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "96-128px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1600px"
+    },
+    "category": "e-commerce",
+    "northStar": "NGLORA - Apothecary's Formulary. A meticulously organized space where typography and product photography are treated with scientific precision.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.7
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "heading-sm",
+        "size": 18,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Product Card — Animal",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Product Carousel Section — New and Notable",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Hero CTA Banner",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Dark Action Button",
+        "role": "Primary call-to-action, such as 'Add to Cart'.",
+        "description": "Background: Charcoal (#333333). Text: Parchment (#fffef2). Padding: 12px 24px. Radius: 0px. No border. Font: SuisseIntl."
+      },
+      {
+        "name": "Outline Navigation Button",
+        "role": "Secondary header actions like 'Email sign up' or 'Search'.",
+        "description": "Background: transparent. Text: Charcoal (#333333). Border: 1px solid rgba(51, 51, 51, 0.2). Padding: ~8px 16px. Radius: 0px. Font: SuisseIntl."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline navigation or tertiary actions.",
+        "description": "Background: transparent. Text: Charcoal (#333333). No border or padding. Underlined on hover. Font: SuisseIntl."
+      },
+      {
+        "name": "Hero Outline Button",
+        "role": "Main CTA within the hero section.",
+        "description": "Background: transparent. Text: Alabaster (#FFFFFF) or Ink Black (#000000) depending on hero video. Border: 1px solid matching text color. Padding: 12px 24px. Radius: 0px. Font: SuisseIntl."
+      },
+      {
+        "name": "Text Input / Select",
+        "role": "Form fields for user input or selection.",
+        "description": "Background: Parchment (#fffef2). Text: Charcoal (#333333). Border: 1px solid rgba(51, 51, 51, 0.2). Radius: 0px. Padding: ~12px 20px."
+      },
+      {
+        "name": "Informational Badge",
+        "role": "Small text labels above product titles, e.g., 'New addition'.",
+        "description": "Background: transparent. Text: Charcoal (#333333). Radius: 0px. Font: SuisseIntl, 11px, bold."
+      },
+      {
+        "name": "Circular Arrow Button",
+        "role": "Carousel navigation controls.",
+        "description": "Background: transparent. Border: none. Radius: 9999px. Contains a simple arrow icon in Charcoal (#333333)."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The workhorse font for all UI text, body copy, navigation, product titles, and buttons. Its neutrality provides a stable, legible foundation for the more expressive serif.",
+        "sizes": "11px, 12px, 14px, 16px, 18px, 30px",
+        "family": "SuisseIntl",
+        "weight": "400, 700",
+        "lineHeight": "1.20-2.86",
+        "substitute": "Inter, Helvetica Neue"
+      },
+      {
+        "role": "Reserved for major, atmospheric headlines. Its humanist serif form contrasts with the clinical sans-serif, adding an editorial, classic quality.",
+        "sizes": "31px",
+        "family": "Zapf-Humanist",
+        "weight": "400",
+        "lineHeight": "1.33",
+        "substitute": "Optima, Palatino"
+      }
+    ],
+    "description": "The design evokes a scholarly apothecary's formulary, where every element is presented with meticulous precision. It operates on a starkly limited palette of warm off-white and charcoal, creating a high-contrast, text-forward environment. A rigid, architectural layout with sharp 0px corners dominates, reinforcing a sense of order and clinical quality. The system's signature is the typographic tension between the humanist serif 'Zapf-Humanist' for expressive headlines and the neutral sans-serif 'SuisseIntl' for all functional text, lending an air of classicism to a modern digital interface.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      }
+    ],
+    "elevationPhilosophy": "This system actively avoids shadows for elevation. Depth and hierarchy are achieved through typographic scale, stark color contrast between Parchment (#fffef2) and Charcoal (#333333), and generous whitespace, not through layered surfaces or drop shadows. This creates a flat, graphic, and print-inspired aesthetic."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "image",
+            "nav",
+            "body",
+            "button",
+            "heading",
+            "hero",
+            "badge",
+            "input",
+            "footer",
+            "icon"
+          ],
+          "frequency": 3852,
+          "confidence": 1,
+          "prominence": 140190604.0051087,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#fffef2",
+          "oklch": {
+            "c": 0.01576065673548466,
+            "h": 102.81822331541875,
+            "l": 0.9945442771140781
+          },
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "other",
+            "nav",
+            "heading",
+            "hero",
+            "input",
+            "icon",
+            "list"
+          ],
+          "frequency": 715,
+          "confidence": 1,
+          "prominence": 10146412.0503586,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "body",
+            "image"
+          ],
+          "frequency": 220,
+          "confidence": 1,
+          "prominence": 8895552.576705998,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 5431160.886933672,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#252525",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2644796726260613
+          },
+          "contexts": [
+            "body",
+            "footer",
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 4583400,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#f6f5e8",
+          "oklch": {
+            "c": 0.01717416797456986,
+            "h": 103.14559306379542,
+            "l": 0.9673936656885298
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2946854.1442734418,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#d6d5cc",
+          "oklch": {
+            "c": 0.013033490263687058,
+            "h": 102.80373831024147,
+            "l": 0.8721958774969858
+          },
+          "contexts": [
+            "other",
+            "button",
+            "input",
+            "link"
+          ],
+          "frequency": 49,
+          "confidence": 1,
+          "prominence": 241274.85211286947,
+          "properties": [
+            "backgroundColor",
+            "boxShadow",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 270,
+          "confidence": 1,
+          "prominence": 203476.18426512505,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#945c26",
+          "oklch": {
+            "c": 0.10024434737299116,
+            "h": 61.31543954659707,
+            "l": 0.5270659816457236
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 7036.5582580572145,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5699,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#f3f3f3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9641535001508271
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5699,
+          "properties": [
+            "backgroundColor"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.007570869331912415,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.71,
+          "background": "#fffef2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.14,
+          "background": "#f6f5e8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.93,
+          "background": "#f3f3f3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.33,
+          "background": "#252525",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.12,
+          "background": "#252525",
+          "foreground": "#fffef2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.25,
+          "background": "#d6d5cc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.97,
+          "background": "#f6f5e8",
+          "foreground": "#252525"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.81,
+          "background": "#f3f3f3",
+          "foreground": "#252525"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.46,
+          "background": "#fffef2",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.52,
+          "background": "#f6f5e8",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.39,
+          "background": "#f3f3f3",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.4,
+          "background": "#d6d5cc",
+          "foreground": "#252525"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.57,
+          "background": "#d6d5cc",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#ffffff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.66,
+          "background": "#fffef2",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.5,
+          "background": "#ffffff",
+          "foreground": "#945c26"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.42,
+          "background": "#fffef2",
+          "foreground": "#945c26"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.38,
+          "background": "#252525",
+          "foreground": "#999999"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": [
+        {
+          "value": "rgba(51, 51, 51, 0.2) 0px 0px 4px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "frequency": 50,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 5,
+          "frequency": 30,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 5,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 7,
+          "frequency": 11,
+          "properties": [
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 85,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "marginBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 47,
+          "properties": [
+            "paddingBottom",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 111,
+          "properties": [
+            "paddingLeft",
+            "marginLeft",
+            "marginBottom",
+            "paddingBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingRight"
+          ]
+        },
+        {
+          "value": 13,
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 15,
+          "frequency": 59,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 17,
+          "frequency": 40,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 18,
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 51,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginRight",
+            "paddingLeft",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 23,
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 63,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 30,
+          "frequency": 11,
+          "properties": [
+            "paddingBottom",
+            "paddingRight"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 35,
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 9,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 60,
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 73,
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 100,
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 113,
+          "frequency": 18,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 180,
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "SuisseIntl",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 910,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "SuisseIntl-Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 118,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Zapf-Humanist",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "work sans",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "SuisseIntl-Medium",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "body",
+            "hero",
+            "footer",
+            "icon"
+          ],
+          "frequency": 587,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "nav",
+            "body",
+            "link"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "SuisseIntl",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "badge",
+            "image"
+          ],
+          "frequency": 46,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "link",
+            "icon",
+            "input"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SuisseIntl-Medium",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SuisseIntl",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SuisseIntl-Medium",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "button",
+            "heading"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "input",
+            "body"
+          ],
+          "frequency": 29,
+          "lineHeight": 2.86,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SuisseIntl-Medium",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SuisseIntl-Medium",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SuisseIntl-Medium",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SuisseIntl",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SuisseIntl",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "work sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SuisseIntl-Medium",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SuisseIntl-Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "SuisseIntl",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "Zapf-Humanist",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "SuisseIntl",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7c1782be-4d1a-4072-a5bc-11a5d2dfc493.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7b2ff181-33e6-4f1c-bb6c-7dc04bf90e49.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/24c0de95-295d-42aa-8240-4e36683cf35b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Aesop design system\",\"item\":\"https://styles.refero.design/style/24c0de95-295d-42aa-8240-4e36683cf35b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/24c0de95-295d-42aa-8240-4e36683cf35b#style-reference\",\"name\":\"Aesop design system reference\",\"headline\":\"Aesop design system | Refero Styles\",\"description\":\"Explore Aesop's light E-commerce design system: Parchment #fffef2, Charcoal #333333 colors, SuisseIntl, Zapf-Humanist typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/24c0de95-295d-42aa-8240-4e36683cf35b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/24c0de95-295d-42aa-8240-4e36683cf35b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Aesop\",\"url\":\"https://aesop.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/24c0de95-295d-42aa-8240-4e36683cf35b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7b2ff181-33e6-4f1c-bb6c-7dc04bf90e49.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7b2ff181-33e6-4f1c-bb6c-7dc04bf90e49.jpg\",\"caption\":\"Screenshot of Aesop\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7b2ff181-33e6-4f1c-bb6c-7dc04bf90e49.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Aesop design system\",\"Aesop website design\",\"Aesop colors\",\"Aesop typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Parchment\",\"Charcoal\",\"Ink Black\",\"Carbon\",\"SuisseIntl\",\"Zapf-Humanist\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Aesop design system\"},{\"@type\":\"Thing\",\"name\":\"Aesop website design\"},{\"@type\":\"Thing\",\"name\":\"Aesop colors\"},{\"@type\":\"Thing\",\"name\":\"Aesop typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-03-08T13:42:24.000Z\",\"dateModified\":\"2026-03-08T13:42:24.000Z\"}]}19:Tb2c,<div style=\"--color-parchment:#fffef2;--color-charcoal:#333333;--color-ink-black:#000000;--color-carbon:#252525;--color-stone:#666666;--color-slate:#d6d5cc;--color-alabaster:#ffffff;--color-umber:#945c26;--font-suisseintl:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;--font-zapf-humanist:'Optima','Palatino',Georgia,serif;\">\n<div style=\"background:var(--color-parchment);padding:40px 24px 32px;max-width:320px;margin:0 auto;font-family:var(--font-suisseintl);text-align:center;position:relative;\">\n  <!-- Bookmark icon -->\n  <div style=\"position:absolute;top:16px;right:16px;cursor:pointer;\">\n    <svg width=\"16\" height=\"20\" viewBox=\"0 0 16 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path d=\"M2 2h12v16l-6-4-6 4V2z\" stroke=\"#333333\" stroke-width=\"1\" fill=\"none\"/>\n    </svg>\n  </div>\n  <!-- Product image placeholder (amber bottle) -->\n  <div style=\"width:160px;height:260px;margin:0 auto 28px;background:linear-gradient(160deg,#b8722a 0%,#8a4e1a 60%,#5c3010 100%);border-radius:4px;display:flex;align-items:center;justify-content:center;\">\n    <div style=\"width:80px;height:36px;background:rgba(255,255,255,0.88);border-radius:2px;display:flex;align-items:center;justify-content:center;\">\n      <span style=\"font-family:var(--font-suisseintl);font-size:8px;color:#333;letter-spacing:0.04em;text-align:center;line-height:1.3;\">Āesop.<br><strong>ANIMAL</strong></span>\n    </div>\n  </div>\n  <!-- Product name -->\n  <div style=\"font-family:var(--font-suisseintl);font-size:18px;font-weight:700;color:var(--color-charcoal);margin-bottom:6px;line-height:1.33;\">Animal</div>\n  <!-- Subtitle -->\n  <div style=\"font-family:var(--font-suisseintl);font-size:14px;color:var(--color-stone);margin-bottom:24px;line-height:1.6;\">For pampered pets</div>\n  <!-- Size info -->\n  <div style=\"text-align:center;margin-bottom:4px;\">\n    <div style=\"font-family:var(--font-suisseintl);font-size:11px;color:var(--color-stone);line-height:1.7;\">One size only</div>\n    <div style=\"font-family:var(--font-suisseintl);font-size:14px;color:var(--color-charcoal);line-height:1.6;\">16.9 fl oz</div>\n  </div>\n  <!-- Price -->\n  <div style=\"font-family:var(--font-suisseintl);font-size:16px;font-weight:400;color:var(--color-charcoal);margin:16px 0 20px;line-height:1.2;\">$48.00</div>\n  <!-- Add to cart button -->\n  <button style=\"width:100%;background:var(--color-charcoal);color:var(--color-parchment);font-family:var(--font-suisseintl);font-size:14px;font-weight:400;padding:16px 24px;border:none;border-radius:0;cursor:pointer;letter-spacing:0.02em;display:flex;align-items:center;justify-content:center;gap:8px;\">\n    <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" style=\"animation:none;\">\n      <path d=\"M7 1v12M1 7h12\" stroke=\"#fffef2\" stroke-width=\"1.2\"/>\n    </svg>\n    Add to cart\n  </button>\n</div>\n</div>1a:T15ca,<div style=\"--color-parchment:#fffef2;--color-charcoal:#333333;--color-ink-black:#000000;--color-carbon:#252525;--color-stone:#666666;--color-slate:#d6d5cc;--color-alabaster:#ffffff;--color-umber:#945c26;--font-suisseintl:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;--font-zapf-humanist:'Optima','Palatino',Georgia,serif;\">\n<section style=\"background:var(--color-parchment);padding:60px 24px 48px;font-family:var(--font-suisseintl);max-width:600px;margin:0 auto;box-sizing:border-box;\">\n  <!-- Section heading -->\n  <div style=\"text-align:center;margin-bottom:40px;\">\n    <h2 style=\"font-family:var(--font-zapf-humanist);font-size:31px;font-weight:400;color:var(--color-charcoal);margin:0 0 12px;line-height:1.33;\">New and notable</h2>\n    <p style=\"font-family:var(--font-suisseintl);font-size:14px;color:var(--color-stone);margin:0;line-height:1.6;max-width:480px;margin-left:auto;margin-right:auto;\">A collection of longstanding formulations and recent additions to the range—each likely to make for a memorable gift.</p>\n  </div>\n  <!-- Product cards grid -->\n  <div style=\"display:grid;grid-template-columns:1fr 1fr;gap:0 24px;\">\n    <!-- Card 1 -->\n    <div style=\"text-align:center;position:relative;\">\n      <div style=\"position:absolute;top:0;right:0;cursor:pointer;\">\n        <svg width=\"14\" height=\"18\" viewBox=\"0 0 14 18\" fill=\"none\"><path d=\"M1.5 1.5h11v15l-5.5-3.5-5.5 3.5V1.5z\" stroke=\"#333\" stroke-width=\"1\" fill=\"none\"/></svg>\n      </div>\n      <!-- Badge -->\n      <div style=\"font-family:var(--font-suisseintl);font-size:11px;font-weight:700;color:var(--color-umber);margin-bottom:12px;letter-spacing:0.03em;min-height:16px;\">New addition</div>\n      <!-- Image placeholder -->\n      <div style=\"width:110px;height:200px;margin:0 auto 20px;background:linear-gradient(170deg,#c07d30 0%,#7a4010 100%);border-radius:3px;\"></div>\n      <div style=\"font-family:var(--font-suisseintl);font-size:14px;font-weight:700;color:var(--color-charcoal);margin-bottom:4px;line-height:1.4;\">Resolute Facial Concentrate</div>\n      <div style=\"font-family:var(--font-suisseintl);font-size:12px;color:var(--color-stone);margin-bottom:16px;line-height:1.5;\">For renewed, replenished, resilient skin.</div>\n      <!-- Size select -->\n      <div style=\"border:1px solid rgba(51,51,51,0.2);padding:8px 12px;background:var(--color-parchment);margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;\">\n        <span style=\"font-size:11px;color:var(--color-stone);display:block;line-height:1;\">Size</span>\n        <span style=\"font-size:13px;color:var(--color-charcoal);\">2.0 oz</span>\n        <svg width=\"10\" height=\"6\" viewBox=\"0 0 10 6\" fill=\"none\"><path d=\"M1 1l4 4 4-4\" stroke=\"#333\" stroke-width=\"1.2\"/></svg>\n      </div>\n      <div style=\"font-family:var(--font-suisseintl);font-size:15px;color:var(--color-charcoal);margin-bottom:14px;\">$179.00</div>\n      <button style=\"width:100%;background:var(--color-charcoal);color:var(--color-parchment);font-family:var(--font-suisseintl);font-size:12px;padding:14px 8px;border:none;border-radius:0;cursor:pointer;\">Add to cart</button>\n    </div>\n    <!-- Card 2 -->\n    <div style=\"text-align:center;position:relative;\">\n      <div style=\"position:absolute;top:0;right:0;cursor:pointer;\">\n        <svg width=\"14\" height=\"18\" viewBox=\"0 0 14 18\" fill=\"none\"><path d=\"M1.5 1.5h11v15l-5.5-3.5-5.5 3.5V1.5z\" stroke=\"#333\" stroke-width=\"1\" fill=\"none\"/></svg>\n      </div>\n      <!-- Badge -->\n      <div style=\"font-family:var(--font-suisseintl);font-size:11px;font-weight:700;color:var(--color-umber);margin-bottom:12px;letter-spacing:0.03em;\">Beloved formulation</div>\n      <!-- Image placeholder -->\n      <div style=\"width:110px;height:200px;margin:0 auto 20px;background:linear-gradient(170deg,#c07d30 0%,#7a4010 100%);border-radius:3px;\"></div>\n      <div style=\"font-family:var(--font-suisseintl);font-size:14px;font-weight:700;color:var(--color-charcoal);margin-bottom:4px;line-height:1.4;\">Resurrection Aromatique Hand Wash</div>\n      <div style=\"font-family:var(--font-suisseintl);font-size:12px;color:var(--color-stone);margin-bottom:16px;line-height:1.5;\">Clear, low-foaming gel for gentle cleansing</div>\n      <!-- Size select -->\n      <div style=\"border:1px solid rgba(51,51,51,0.2);padding:8px 12px;background:var(--color-parchment);margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;\">\n        <span style=\"font-size:11px;color:var(--color-stone);display:block;line-height:1;\">Size</span>\n        <span style=\"font-size:13px;color:var(--color-charcoal);\">16.9 fl oz</span>\n        <svg width=\"10\" height=\"6\" viewBox=\"0 0 10 6\" fill=\"none\"><path d=\"M1 1l4 4 4-4\" stroke=\"#333\" stroke-width=\"1.2\"/></svg>\n      </div>\n      <div style=\"font-family:var(--font-suisseintl);font-size:15px;color:var(--color-charcoal);margin-bottom:14px;\">$47.00</div>\n      <button style=\"width:100%;background:var(--color-charcoal);color:var(--color-parchment);font-family:var(--font-suisseintl);font-size:12px;padding:14px 8px;border:none;border-radius:0;cursor:pointer;\">Add to cart</button>\n    </div>\n  </div>\n  <!-- Carousel dots -->\n  <div style=\"display:flex;justify-content:center;gap:8px;margin-top:32px;align-items:center;\">\n    <div style=\"width:32px;height:2px;background:var(--color-charcoal);\"></div>\n    <div style=\"width:32px;height:2px;background:var(--color-slate);\"></div>\n    <div style=\"width:32px;height:2px;background:var(--color-slate);\"></div>\n    <div style=\"width:32px;height:2px;background:var(--color-slate);\"></div>\n  </div>\n</section>\n</div>1b:Tcfd,<div style=\"--color-parchment:#fffef2;--color-charcoal:#333333;--color-ink-black:#000000;--color-carbon:#252525;--color-stone:#666666;--color-slate:#d6d5cc;--color-alabaster:#ffffff;--color-umber:#945c26;--font-suisseintl:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;--font-zapf-humanist:'Optima','Palatino',Georgia,serif;\">\n<div style=\"position:relative;width:100%;max-width:600px;margin:0 auto;overflow:hidden;\">\n  <!-- Background image placeholder (moody warm-grey tone) -->\n  <div style=\"width:100%;height:400px;background:linear-gradient(180deg,#9a8c7a 0%,#6e6055 40%,#4a3a2e 100%);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:48px;box-sizing:border-box;\">\n    <!-- Overlay for text legibility -->\n    <div style=\"position:absolute;inset:0;background:rgba(0,0,0,0.22);\"></div>\n    <!-- Content -->\n    <div style=\"position:relative;z-index:1;text-align:center;padding:0 32px;\">\n      <p style=\"font-family:var(--font-suisseintl);font-size:12px;font-weight:700;color:var(--color-alabaster);letter-spacing:0.08em;text-transform:uppercase;margin:0 0 10px;line-height:1.4;\">Of paws and poise</p>\n      <h1 style=\"font-family:var(--font-zapf-humanist);font-size:31px;font-weight:400;color:var(--color-alabaster);margin:0 0 16px;line-height:1.33;\">For discerning canines</h1>\n      <p style=\"font-family:var(--font-suisseintl);font-size:13px;color:rgba(255,254,242,0.88);line-height:1.6;margin:0 0 28px;max-width:420px;\">An aromatic wash that is gentle on skin yet tough on mud, crud and other undesirable debris. Animal extends our philosophy of efficacious, sensorial care to pets.</p>\n      <!-- Hero outline button -->\n      <a href=\"#\" style=\"display:inline-flex;align-items:center;gap:12px;font-family:var(--font-suisseintl);font-size:14px;color:var(--color-alabaster);border:1px solid var(--color-alabaster);padding:14px 28px;text-decoration:none;letter-spacing:0.02em;border-radius:0;\">\n        Discover more\n        <svg width=\"16\" height=\"12\" viewBox=\"0 0 16 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M1 6h14M9 1l6 5-6 5\" stroke=\"#fffef2\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n      </a>\n    </div>\n  </div>\n  <!-- Bottom controls row -->\n  <div style=\"position:absolute;bottom:16px;left:16px;display:flex;gap:8px;\">\n    <!-- Pause button -->\n    <button style=\"width:32px;height:32px;border-radius:9999px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;\">\n      <svg width=\"10\" height=\"12\" viewBox=\"0 0 10 12\" fill=\"none\"><rect x=\"1\" y=\"1\" width=\"3\" height=\"10\" fill=\"#fff\" rx=\"0.5\"/><rect x=\"6\" y=\"1\" width=\"3\" height=\"10\" fill=\"#fff\" rx=\"0.5\"/></svg>\n    </button>\n    <!-- Sound button -->\n    <button style=\"width:32px;height:32px;border-radius:9999px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;\">\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" fill=\"none\"><path d=\"M2 4H5L9 1v10L5 8H2V4z\" fill=\"#fff\"/><path d=\"M10 3c1 0.8 1.5 1.8 1.5 3s-0.5 2.2-1.5 3\" stroke=\"#fff\" stroke-width=\"1\" fill=\"none\"/></svg>\n    </button>\n  </div>\n</div>\n</div>1c:T606,### Quick Color Reference\n- **Page Background**: `Parchment` (#fffef2)\n- **Primary Text**: `Charcoal` (#333333)\n- **Primary CTA Background**: `Charcoal` (#333333)\n- **Primary CTA Text**: `Parchment` (#fffef2)\n- **Borders**: `rgba(51, 51, 51, 0.2)`\n\n### Example Component Prompts\n1.  **Hero Section**: \"Create a full-screen hero with a dark, atmospheric video background. Center-align the text. The headline should be 'For discerning canines' in `Zapf-Humanist`, 31px, `Alabaster` (#FFFFFF). Below it, add body text in `SuisseIntl`, 18px, `Alabaster`. Finally, add an outline button with text 'Discover more ->', 1px `Alabaster` border, 0px radius, and padding 12px 24px.\"\n2.  **Product Carousel Section**: \"Create a product carousel on a `Parchment` (#fffef2) background. The section heading 'New and notable' should be 30px `SuisseIntl`, color `Charcoal` (#333333). Arrange three product cards in a row. Each card has a 0px radius, `Parchment` background, and centered content. Product image on top, then the product name 'Animal' in 18px `SuisseIntl` bold, then description in 14px `SuisseIntl`. Below it, add a dark action button with text 'Loading...' using `Charcoal` background, `Parchment` text, 0px radius, and 12px 24px padding.\"\n3.  **Text Input Field**: \"Design a text input field for a form. It should have a `Parchment` (#fffef2) background, 0px radius, and a 1px solid border of `rgba(51, 51, 51, 0.2)`. Placeholder text should be `SuisseIntl`, 14px, `Charcoal` (#333333). The input's padding should be approximately 12px 20px.\""
+}

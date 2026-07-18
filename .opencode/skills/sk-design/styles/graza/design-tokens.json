@@ -1,0 +1,382 @@
+{
+  "color": {
+    "olive-ink": {
+      "$value": "#3c422e",
+      "$type": "color",
+      "$description": "Olive Ink — Primary text, nav links, borders, button outlines, icon strokes — near-black with an olive undertone that keeps the page from feeling clinical"
+    },
+    "linen-cream": {
+      "$value": "#fff4ec",
+      "$type": "color",
+      "$description": "Linen Cream — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "buttery-peach": {
+      "$value": "#f6e6d9",
+      "$type": "color",
+      "$description": "Buttery Peach — Secondary surface and warm contrast bands — slightly deeper than Linen Cream, used to break long pages and nest cards"
+    },
+    "squeeze-bottle-green": {
+      "$value": "#9eef80",
+      "$type": "color",
+      "$description": "Squeeze Bottle Green — Full-bleed section bands, highlighted text treatments — bright produce-shelf green that carries entire pages"
+    },
+    "evoo-yellow-green": {
+      "$value": "#d1e030",
+      "$type": "color",
+      "$description": "EVOO Yellow-Green — Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "mustard-sun": {
+      "$value": "#fbd535",
+      "$type": "color",
+      "$description": "Mustard Sun — Full-bleed editorial section bands, large decorative type wash — warmer sibling to EVOO Yellow-Green, carries hero-level moments"
+    }
+  },
+  "font": {
+    "gt-alpina-typewriter": {
+      "$value": "GT Alpina Typewriter",
+      "$type": "fontFamily",
+      "$description": "Primary workhorse for body copy, nav, buttons, links, captions, input fields, and small editorial labels. The typewriter serif gives the brand its hand-set, kitchen-counter voice — slightly imperfect letterforms make utility text feel editorial rather than transactional."
+    },
+    "itc-garamond-condensed": {
+      "$value": "ITC Garamond Condensed",
+      "$type": "fontFamily",
+      "$description": "Display and hero headlines only — the tall, narrow Garamond contrasts sharply with the typewriter body, creating a magazine-cover hierarchy. The 120px size with -0.031em tracking is the brand's signature mark: editorial confidence that swallows the page."
+    },
+    "apercu": {
+      "$value": "Apercu",
+      "$type": "fontFamily",
+      "$description": "Badge and status micro-labels — a neutral geometric sans used in tight all-caps tags like 'BACK IN STOCK'. Appears only in badge contexts to avoid competing with the serif system."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GT Alpina Typewriter",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Apercu",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "GT Alpina Typewriter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "GT Alpina Typewriter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "GT Alpina Typewriter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "GT Alpina Typewriter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "GT Alpina Typewriter",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "GT Alpina Typewriter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "GT Alpina Typewriter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "GT Alpina Typewriter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "GT Alpina Typewriter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "GT Alpina Typewriter",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "GT Alpina Typewriter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "ITC Garamond Condensed",
+        "fontSize": "46px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "ITC Garamond Condensed",
+        "fontSize": "46px",
+        "fontWeight": 400,
+        "lineHeight": 0.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "ITC Garamond Condensed",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ITC Garamond Condensed",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "ITC Garamond Condensed",
+        "fontSize": "102px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 102px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "ITC Garamond Condensed",
+        "fontSize": "120px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 120px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#fff4ec",
+      "$type": "color",
+      "$description": "Surface level 0: Default page background — warm linen white for most content"
+    },
+    "warm-card": {
+      "$value": "#f6e6d9",
+      "$type": "color",
+      "$description": "Surface level 1: Secondary surface and alternating content bands — slightly deeper peach-cream"
+    },
+    "mustard-band": {
+      "$value": "#fbd535",
+      "$type": "color",
+      "$description": "Surface level 2: Full-bleed editorial section background — warm yellow for feature spreads"
+    },
+    "green-band": {
+      "$value": "#9eef80",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed editorial section background — bright produce green for recipe/keyword sections"
+    },
+    "cta-surface": {
+      "$value": "#d1e030",
+      "$type": "color",
+      "$description": "Surface level 4: Action accent — only on the primary filled button, not as a section band"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://graza.co",
+      "siteName": "GRAZA",
+      "extractedAt": "2026-06-03T17:58:09.573Z",
+      "variant": "extended"
+    }
+  }
+}

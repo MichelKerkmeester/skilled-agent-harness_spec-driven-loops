@@ -1,0 +1,91 @@
+:root {
+  /* Colors */
+  --color-cocoa-black: #200f0a;
+  --color-cream-mist: #fcfaf9;
+  --color-warm-sand: #e3ccc0;
+  --color-ash-gray: #e5e7eb;
+  --color-stone: #a69f9d;
+  --color-deep-plum: #2b2538;
+  --color-aubergine: #4d3f3b;
+  --color-mint-keyhole: #a2f6f5;
+  --color-iris: #858df9;
+  --color-periwinkle: #6c74df;
+  --color-lavender-mist: #b6bbfb;
+
+  /* Typography — Font Families */
+  --font-saans: 'Saans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-saansmono: 'SaansMono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.24px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --tracking-body-sm: 0.14px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: 0.16px;
+  --text-subheading: 18px;
+  --leading-subheading: 1.5;
+  --tracking-subheading: 0.18px;
+  --text-heading-sm: 28px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: 0.28px;
+  --text-heading: 36px;
+  --leading-heading: 1.17;
+  --tracking-heading: 0.36px;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.17;
+  --tracking-heading-lg: 0.48px;
+  --text-display: 72px;
+  --leading-display: 1.1;
+  --tracking-display: 0.72px;
+  --text-display-xl: 100px;
+  --leading-display-xl: 1.1;
+  --tracking-display-xl: 1px;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-44: 44px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80-120px;
+  --card-padding: 32-40px;
+  --element-gap: 12-24px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-tags: 9999px;
+  --radius-cards: 8px;
+  --radius-images: 8px;
+  --radius-inputs: 4px;
+  --radius-buttons: 9999px;
+
+  /* Surfaces */
+  --surface-cocoa-canvas: #200f0a;
+  --surface-deep-plum-card: #2b2538;
+  --surface-aubergine-accent: #4d3f3b;
+}

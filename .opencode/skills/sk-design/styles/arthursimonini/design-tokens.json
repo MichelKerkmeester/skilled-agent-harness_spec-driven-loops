@@ -1,0 +1,145 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas, nav background, poster grid ground"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — All text, hairline section borders, image borders, icon strokes"
+    }
+  },
+  "font": {
+    "romieligatures-regular": {
+      "$value": "RomieLigatures-Regular",
+      "$type": "fontFamily",
+      "$description": "Display headlines, section titles, marquee text. The signature choice: this didone carries discretionary ligatures (dlig) that fuse letters into ornamental shapes — the oversized wordmarks and repeated marquee bands rely on these ligatures for their distinctive character. Line-height collapses to 0.73 at the 167px size so stacked display lines almost touch, creating a dense editorial block. Reserved exclusively for type-as-art moments; never used for body copy or UI labels."
+    },
+    "lifeltstd-roman": {
+      "$value": "LifeLTStd-Roman",
+      "$type": "fontFamily",
+      "$description": "Navigation links, metadata, body copy, timestamps, section category labels. A single weight at a single size — the system does not modulate emphasis through weight. Tracking is normal. This is the functional typeface that scaffolds the UI while the display face performs. Its quietness is the point: LifeLTStd is a transitional serif that reads cleanly at 18px without competing with the display type."
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "LifeLTStd-Roman",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "RomieLigatures-Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "LifeLTStd-Roman",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "LifeLTStd-Roman",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "RomieLigatures-Regular",
+        "fontSize": "65px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 65px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "RomieLigatures-Regular",
+        "fontSize": "167px",
+        "fontWeight": 400,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 167px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "62": {
+      "$value": "62px",
+      "$type": "dimension",
+      "$description": "Spacing 62px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed page background, navigation bar"
+    },
+    "bone-image-frame": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline borders around poster thumbnails and between sections — the only non-text white usage"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://arthursimonini.com",
+      "siteName": "Arthursimonini",
+      "extractedAt": "2026-06-03T21:42:02.940Z",
+      "variant": "extended"
+    }
+  }
+}

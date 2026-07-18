@@ -1,0 +1,1351 @@
+{
+  "source": "https://styles.refero.design/style/fd2e0187-e67b-4869-8cfd-9de9e58d2868",
+  "uuid": "fd2e0187-e67b-4869-8cfd-9de9e58d2868",
+  "name": "Eclipse",
+  "northStar": "Cel-shaded neon comic strip — think Akira signage rendered as a finance terminal.",
+  "capturedAt": "2026-07-18T09:33:40.249Z",
+  "meta": {
+    "url": "https://www.eclipse.builders",
+    "siteName": "Eclipse",
+    "extractedAt": "2026-06-03T19:07:57.859Z",
+    "durationMs": 58682,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1631,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #a1fea0 only for primary CTAs, active states, and the investor-card spotlight — never as a body text color or page background.",
+      "Set display headlines in GT Alpina Condensed at weight 100 or 200, not 300+; the hairline serif is the signature.",
+      "Apply 25px radius to all buttons, badges, and cards, and 100px radius only to the nav-pill CTA.",
+      "Set all eyebrows and section labels in Atlas Typewriter, uppercase, 0.2em tracking, 12px.",
+      "Keep #000000 borders at 1px; thicken to 2px only on hover for buttons.",
+      "Separate sections with at least 80px of vertical space; the design breathes between bands.",
+      "Pair the green primary button directly beside a black-outlined secondary button in every CTA group."
+    ],
+    "donts": [
+      "Don't introduce any color other than #a1fea0, #000000, and #ffffff — the system is intentionally bichromatic-plus-one.",
+      "Don't use GT Alpina Condensed above weight 200 — heavier weights break the hairline signature.",
+      "Don't apply drop shadows to cards, buttons, or illustrations; the flat ink-outline language is the look.",
+      "Don't set body copy in the typewriter face; reserve Atlas Typewriter for labels and eyebrows at 12–18px only.",
+      "Don't use 4px, 8px, or 12px radii — all corners should be 25px or 100px.",
+      "Don't place green text on white or white text on green at body sizes; the 1.2:1 contrast fails accessibility.",
+      "Don't break the 1200px page column with edge-bleed content; only the hero and footer break out."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#a1fea0",
+        "name": "Eclipse Green",
+        "role": "Primary action fill, active nav state, decorative border accents, cloud and glow illustration fills, investor-card spotlight — the only chromatic token in the system, applied sparingly to make each occurrence feel like a marker pen stroke",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Body and heading text, hairline borders across cards/badges/buttons, footer rules, outlined button stroke — the dominant neutral that carries all structural lines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, button text on dark fills, nav backgrounds, image backdrop — the base layer everything sits on",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Centered max-width 1200px column with full-bleed dark hero at the top. The hero is a pure vertical stack: eyebrow label → stacked display headline → dual pill CTAs → illustration anchored bottom-center. Below the hero, the page alternates between Paper White sections (investor grid, feature blocks) and thin marquee strips, with generous 80px section gaps. The investor grid is a 3-column layout that collapses vertically on narrow screens. Footer is a full-bleed Ink Black band. Navigation is a fixed white top bar with a centered wordmark and right-aligned social + CTA cluster.",
+    "imagery": "Illustration-first, anime/cel-shaded style with thick ink outlines and flat color fills. Characters (bull-headed rider on a motorcycle, turbo car) drawn in a 90s-anime register. Environments mix pure black negative space with flat green cloud forms — no gradients, no atmospheric perspective. Photography is absent; product UI is rendered through illustration and video. Icons are minimal-stroke line icons, mono (Ink Black or Paper White), 1px weight, never filled. Imagery is contained — never full-bleed except inside the hero band — and always sits above a flat color field, never composited onto a photo.",
+    "similar": [
+      {
+        "why": "Same mono-plus-one-accent discipline with a single vivid brand color against black/white, plus pill-shaped CTAs and heavy condensed display type.",
+        "business": "Berachain"
+      },
+      {
+        "why": "Cel-illustration meets crypto dashboard — flat black/white surfaces with one neon token, tight letter-spaced caps, and pill buttons.",
+        "business": "Blur (blur.io)"
+      },
+      {
+        "why": "Dark hero inversion over a white site, outlined-vs-filled pill CTA pairing, and a single saturated accent used as spotlight not chrome.",
+        "business": "Phantom Wallet"
+      },
+      {
+        "why": "Anime/cel-shaded illustration language applied to a tech brand, with ultra-condensed display type and high-contrast ink-on-white surfaces.",
+        "business": "Azuki"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "25px",
+        "pills": "100px",
+        "badges": "25px",
+        "buttons": "25px"
+      },
+      "elementGap": "10-16px",
+      "sectionGap": "80px",
+      "cardPadding": "32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 1,
+        "purpose": "Default page and card canvas"
+      },
+      {
+        "hex": "#a1fea0",
+        "name": "Eclipse Green",
+        "level": 2,
+        "purpose": "Accent wash — investor spotlight, decorative blob, active highlight"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "level": 3,
+        "purpose": "Hero and footer inversion band"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 0 40px 10px rgba(161, 254, 160, 0.5)",
+        "element": "Investor Card (active glow)"
+      }
+    ],
+    "northStar": "Cel-shaded neon comic strip — think Akira signage rendered as a finance terminal.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.6,
+        "letterSpacing": 0.2
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.56,
+        "letterSpacing": 0.2
+      },
+      {
+        "role": "subheading",
+        "size": 32,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 48,
+        "lineHeight": 1,
+        "letterSpacing": -0.03
+      },
+      {
+        "role": "heading",
+        "size": 80,
+        "lineHeight": 0.9,
+        "letterSpacing": -0.04
+      },
+      {
+        "role": "heading-lg",
+        "size": 120,
+        "lineHeight": 0.83,
+        "letterSpacing": -0.06
+      },
+      {
+        "role": "display",
+        "size": 182,
+        "lineHeight": 0.8,
+        "letterSpacing": -0.06
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Pill Button (Eclipse Green Fill)",
+        "role": "Main CTA — 'Start Building', 'Build on Eclipse'",
+        "description": "Filled #a1fea0 background, Ink Black text. Barlow Condensed 500, 16px, uppercase, 0.1em tracking. Padding 10px 24px. Border 1px solid Ink Black. Radius 25px (pill). No shadow. On hover the background intensifies and the border thickens to 2px."
+      },
+      {
+        "name": "Secondary Pill Button (Black Outline)",
+        "role": "Companion CTA — 'Bridge to Eclipse'",
+        "description": "White background, Ink Black text and 1px border. Barlow Condensed 500, 16px, uppercase, 0.1em tracking. Padding 10px 24px. Radius 25px. Trailing arrow icon (→) in Ink Black. Pairs directly beside the primary green button to create a two-step 'softer / louder' hierarchy."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide navigation",
+        "description": "White background, transparent until scrolled. Left: text nav links in Barlow Condensed 500, 16px, uppercase (ABOUT, BUILDERS, CAREERS, ECOSYSTEM) with caret dropdowns. Center: Eclipse wordmark in Barlow Condensed 700. Right: social icon cluster (Instagram, YouTube, Discord, X) + 100px-radius pill 'Start Building' CTA in Ink Black with Paper White text."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Above-the-fold brand statement",
+        "description": "Stacked three-line composition. Line 1 'SOLANA' in GT Alpina Condensed 200, 120–182px, line-height 0.80, -0.06em tracking, Paper White on Ink Black band. Line 2 'ON' in 80px regular, treated as connector. Line 3 'ETHEREUM' mirrors Line 1. Eyebrow 'ECLIPSE IS' in Atlas Typewriter 12px, 0.2em tracking, sits above. Center-aligned. No drop cap, no decoration — the type does the work."
+      },
+      {
+        "name": "Section Eyebrow Label",
+        "role": "Section identifier above headlines",
+        "description": "Atlas Typewriter 12px, weight 400, uppercase, 0.2em tracking, Ink Black. Centered. 16px gap to the headline below. Examples: 'ECLIPSE IS', 'BACKED BY', 'ETHEREUM'S FIRST SVM L2'."
+      },
+      {
+        "name": "Investor Spotlight Card",
+        "role": "Backer logo grid item with highlight state",
+        "description": "White card, 1px Ink Black border, 25px radius, padding 32px. Serif name (e.g. 'Portal Ventures') in GT Alpina Condensed 100–200, 24–33px, centered. Active state: #a1fea0 fill replaces white, text remains Ink Black, and a soft green glow halo extends ~20px beyond the card edge (a blurred green ellipse behind the card). Inactive state: pure white."
+      },
+      {
+        "name": "Full-Bleed Hero Illustration Panel",
+        "role": "Animated hero visual + video entry point",
+        "description": "Ink Black background, Paper White crescent ring (the Eclipse), green cloud illustrations at the base, and an illustrated character/vehicle in the lower third. Centered play button: 80px circle, 1px Paper White border, no fill, with a Paper White triangle icon. No drop shadow on the illustration itself — depth comes from the green cloud layer sitting below the character."
+      },
+      {
+        "name": "Marquee Strip",
+        "role": "Ticker banner of value props",
+        "description": "Single horizontal line scrolling edge-to-edge. Barlow Condensed 700, 48–80px, uppercase, Ink Black on Paper White. Items separated by em-dashes and 32px gaps. No background color change — relies on weight and scale for emphasis."
+      },
+      {
+        "name": "Footer / Social Footer",
+        "role": "Bottom anchor and social links",
+        "description": "Ink Black background band. White text and icons. Barlow Condensed 500, 16px, uppercase for link lists. Social icons 24px, 1px stroke, Paper White. Generous 80px top padding."
+      }
+    ],
+    "typography": [
+      {
+        "role": "UI chrome, nav links, buttons, badges, secondary headlines, marquee strips. Condensed proportions keep horizontal copy tight inside pill buttons and ticker bars. 700 for emphasis, 500 for nav, 400 for body UI. Letter-spacing opens up on small caps labels (0.1–0.2em) and tightens on large display uses (-0.02 to -0.03em).",
+        "sizes": "12px, 16px, 32px, 44px, 48px, 80px, 96px, 120px, 182px",
+        "family": "Barlow Condensed",
+        "weight": "400, 500, 700",
+        "lineHeight": "0.83–1.60",
+        "substitute": "Barlow Condensed (Google Fonts native)",
+        "letterSpacing": "0.1em to 0.2em for small caps labels, -0.02em to -0.03em for large display"
+      },
+      {
+        "role": "Display and hero headlines — the signature voice. Hairline weights 100–200 push the serif into a near-glyph wireframe, making words feel stamped rather than typeset. Letter-spacing tightens as size grows: -0.01em at 24px climbing to -0.06em at the 562px masthead. Substitutes: Cormorant Garamond Condensed Light, EB Garamond 200.",
+        "sizes": "24px, 33px, 44px, 46px, 61px, 64px, 88px, 120px, 562px",
+        "family": "GT Alpina Condensed",
+        "weight": "100, 200",
+        "lineHeight": "0.80–1.20 (tight, display-driven)",
+        "substitute": "Cormorant Garamond Condensed Light",
+        "letterSpacing": "-0.01em at 24px, -0.03em at 44px, -0.04em at 64px, -0.06em at 88px+"
+      },
+      {
+        "role": "Eyebrow labels, section tags, small body annotations — the 'label maker' voice. Always set in uppercase with 0.2em tracking, functioning as a timestamp or chapter mark. Substitutes: IBM Plex Mono, Space Mono, JetBrains Mono.",
+        "sizes": "12px, 16px, 18px",
+        "family": "Atlas Typewriter",
+        "weight": "400",
+        "lineHeight": "1.00–1.60",
+        "substitute": "Space Mono",
+        "letterSpacing": "0.2em (consistent across sizes)"
+      },
+      {
+        "role": "math — detected in extracted data but not described by AI",
+        "sizes": "14px",
+        "family": "math",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Eclipse runs a monochromatic canvas with a single neon-green pulse — the visual grammar is closer to a 90s anime cel than a blockchain dashboard. Headlines use GT Alpina Condensed at hairline weights (100–200), the thinnest possible serif line that still reads as letterforms, paired with Barlow Condensed for compact UI chrome. The single chromatic token (#a1fea0) behaves like a highlighter drawn over an ink-on-paper sketch: borders, button fills, cloud illustrations, and glow halos all share that one vivid green against pure black and white. Surfaces are flat — no shadows, no gradients, no elevation tricks. Buttons are fat pills (25px radius), labels are tracked-out typewriter caps, and illustration carries the atmosphere while the type does the structural work.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fd2e0187-e67b-4869-8cfd-9de9e58d2868#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Eclipse design system\",\"item\":\"https://styles.refero.design/style/fd2e0187-e67b-4869-8cfd-9de9e58d2868\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fd2e0187-e67b-4869-8cfd-9de9e58d2868#style-reference\",\"name\":\"Eclipse design system reference\",\"headline\":\"Eclipse design system | Refero Styles\",\"description\":\"Explore Eclipse's mixed Crypto design system: Eclipse Green #a1fea0, Ink Black #000000 colors, Barlow Condensed, GT Alpina Condensed typography, and...\",\"url\":\"https://styles.refero.design/style/fd2e0187-e67b-4869-8cfd-9de9e58d2868\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fd2e0187-e67b-4869-8cfd-9de9e58d2868\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Eclipse\",\"url\":\"https://www.eclipse.builders\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fd2e0187-e67b-4869-8cfd-9de9e58d2868#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2980175b-b8fa-4860-9985-4ddda90458cf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2980175b-b8fa-4860-9985-4ddda90458cf.jpg\",\"caption\":\"Screenshot of Eclipse\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2980175b-b8fa-4860-9985-4ddda90458cf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Eclipse design system\",\"Eclipse website design\",\"Eclipse colors\",\"Eclipse typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Eclipse Green\",\"Ink Black\",\"Paper White\",\"Barlow Condensed\",\"GT Alpina Condensed\",\"Atlas Typewriter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Eclipse design system\"},{\"@type\":\"Thing\",\"name\":\"Eclipse website design\"},{\"@type\":\"Thing\",\"name\":\"Eclipse colors\"},{\"@type\":\"Thing\",\"name\":\"Eclipse typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-07T15:48:25.971Z\",\"dateModified\":\"2026-05-07T15:48:25.971Z\"}]}19:T78c,Quick Color Reference\n- text: #000000\n- background: #ffffff\n- border: #000000\n- accent / decorative: #a1fea0\n- primary action: #a1fea0 (filled action)\n- inversion band: #000000 background, #ffffff text\n\nExample Component Prompts\n1. Hero Display Headline: full-bleed #000000 background. Eyebrow 'ECLIPSE IS' in Atlas Typewriter 12px, 0.2em tracking, #ffffff, centered. Then a three-line stacked headline: 'SOLANA' / 'ON' / 'ETHEREUM' in GT Alpina Condensed weight 200, 120px, line-height 0.80, -0.06em letter-spacing, #ffffff, centered. Below, a 16px gap, then two pill buttons side by side: outlined black 'Bridge to Eclipse →' and filled #a1fea0 'Build on Eclipse', both 25px radius, Barlow Condensed 500, 16px, uppercase, 0.1em tracking, 10px 24px padding, 1px solid #000000 border.\n\n2. Investor Spotlight Card: 1200px max-width parent, 3-column grid. Each card is 32px padded, 1px solid #000000 border, 25px radius, #ffffff background. Name in GT Alpina Condensed 200, 24px, centered. Active card swaps #a1fea0 for the background and gains a 40px green outer glow (#a1fea0 at 50% alpha). Eyebrow 'BACKED BY' / 'GREAT INVESTORS & ANGELS' in Atlas Typewriter 12px above the grid.\n\n3. Marquee Strip: full-bleed band, 80px tall, #ffffff background. Scrolling single-line copy in Barlow Condensed 700, 48px, uppercase, #000000, with em-dash separators and 32px gaps between items (e.g. 'FASTEST LAYER 2 — POWERED BY SVM — ETHEREUM'S FASTEST LAYER 2').\n\n4. Footer Band: full-bleed #000000 background, 80px top padding. Two-column inner layout, 1200px max-width, #ffffff text. Left: Barlow Condensed 500, 16px, uppercase link list. Right: row of social icons at 24px, 1px stroke, #ffffff.\n\n5. Section Header Pair: an Atlas Typewriter 12px eyebrow (#000000, 0.2em tracking, centered) with 16px gap, then a Barlow Condensed 700, 48px heading below — pair this whenever a section needs a title without using the full display serif."
+      }
+    ],
+    "elevationPhilosophy": "The system avoids box-shadow elevation almost entirely. The only deliberate glow is the green halo behind an active investor card — a single soft outer shadow that reads as a spotlight, not depth. Cards, buttons, and badges rely on 1px ink borders for definition, keeping the surface treatment flat and comic-like."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "icon",
+            "heading",
+            "hero",
+            "image",
+            "body",
+            "badge",
+            "card",
+            "footer",
+            "link"
+          ],
+          "frequency": 6795,
+          "confidence": 1,
+          "prominence": 147007968.26491565,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 15,
+            "body/color": 75,
+            "card/color": 70,
+            "hero/color": 1,
+            "icon/color": 6,
+            "link/color": 15,
+            "other/fill": 27,
+            "badge/color": 76,
+            "image/color": 4,
+            "other/color": 915,
+            "button/color": 73,
+            "footer/color": 1,
+            "other/stroke": 4,
+            "heading/color": 101,
+            "nav/borderColor": 52,
+            "body/borderColor": 300,
+            "card/borderColor": 280,
+            "hero/borderColor": 4,
+            "icon/borderColor": 24,
+            "link/borderColor": 60,
+            "badge/borderColor": 304,
+            "image/borderColor": 16,
+            "other/borderColor": 3660,
+            "button/borderColor": 280,
+            "footer/borderColor": 4,
+            "heading/borderColor": 404,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 21,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "image",
+            "heading"
+          ],
+          "frequency": 825,
+          "confidence": 1,
+          "prominence": 111897431.82450962,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 13,
+            "nav/color": 20,
+            "other/fill": 1,
+            "image/color": 5,
+            "other/color": 119,
+            "button/color": 4,
+            "other/stroke": 1,
+            "heading/color": 2,
+            "nav/borderColor": 80,
+            "image/borderColor": 20,
+            "other/borderColor": 476,
+            "button/borderColor": 8,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 71
+          }
+        },
+        {
+          "hex": "#a1fea0",
+          "oklch": {
+            "c": 0.15404799217854576,
+            "h": 143.9609435852375,
+            "l": 0.9162589294705115
+          },
+          "contexts": [
+            "button",
+            "other",
+            "link",
+            "icon",
+            "footer"
+          ],
+          "frequency": 454,
+          "confidence": 1,
+          "prominence": 5228917.655104288,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 2,
+            "link/color": 2,
+            "other/fill": 9,
+            "other/color": 70,
+            "icon/borderColor": 8,
+            "link/borderColor": 8,
+            "other/borderColor": 280,
+            "other/backgroundColor": 72,
+            "button/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.02341107875431307,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.2,
+          "background": "#a1fea0",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.22,
+          "background": "#a1fea0",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 25,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 140
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 6
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 82,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "nav",
+            "other"
+          ],
+          "frequency": 78,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "badge"
+          ],
+          "frequency": 154,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 131,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "heading",
+            "hero",
+            "other",
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginBottom|heading",
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "other",
+            "button"
+          ],
+          "frequency": 287,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|other",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "marginTop|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|footer",
+            "paddingRight|footer",
+            "paddingBottom|footer",
+            "paddingLeft|footer",
+            "rowGap|footer",
+            "columnGap|footer"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 140,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Barlow Condensed",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 756,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "MJXZERO",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 322,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Atlas Typewriter",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 227,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "math",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 161,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Gt Alpina Condensed",
+          "source": "custom",
+          "weights": [
+            100,
+            200
+          ],
+          "frequency": 99,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GT Alpina Condensed",
+          "source": "custom",
+          "weights": [
+            100
+          ],
+          "frequency": 9,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.89
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Barlow Condensed",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Barlow Condensed",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.13,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Atlas Typewriter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 208,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Barlow Condensed",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.13,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "math",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "math",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 154,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "math-auto"
+        },
+        {
+          "size": 16,
+          "family": "Barlow Condensed",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "hero",
+            "badge",
+            "button",
+            "card",
+            "icon",
+            "link",
+            "footer"
+          ],
+          "frequency": 674,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Barlow Condensed",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.2,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Atlas Typewriter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Barlow Condensed",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.13,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Atlas Typewriter",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.56,
+          "letterSpacing": 0.2,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Barlow Condensed",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Atlas Typewriter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.2,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Gt Alpina Condensed",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 70,
+          "lineHeight": 1.16,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Barlow Condensed",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.19,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "Gt Alpina Condensed",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "Barlow Condensed",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "Gt Alpina Condensed",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "GT Alpina Condensed",
+          "weight": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 0.35,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Barlow Condensed",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Barlow Condensed",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 61,
+          "family": "Gt Alpina Condensed",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 64,
+          "family": "Gt Alpina Condensed",
+          "weight": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Barlow Condensed",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 88,
+          "family": "Gt Alpina Condensed",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 96,
+          "family": "Barlow Condensed",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.83,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 120,
+          "family": "Gt Alpina Condensed",
+          "weight": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "Barlow Condensed",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 120,
+          "family": "Gt Alpina Condensed",
+          "weight": 100,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 182,
+          "family": "Barlow Condensed",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 562,
+          "family": "Gt Alpina Condensed",
+          "weight": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/478989f2-2dec-4aa5-b33f-c2c06e727865.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2980175b-b8fa-4860-9985-4ddda90458cf.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fd2e0187-e67b-4869-8cfd-9de9e58d2868#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Eclipse design system\",\"item\":\"https://styles.refero.design/style/fd2e0187-e67b-4869-8cfd-9de9e58d2868\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fd2e0187-e67b-4869-8cfd-9de9e58d2868#style-reference\",\"name\":\"Eclipse design system reference\",\"headline\":\"Eclipse design system | Refero Styles\",\"description\":\"Explore Eclipse's mixed Crypto design system: Eclipse Green #a1fea0, Ink Black #000000 colors, Barlow Condensed, GT Alpina Condensed typography, and...\",\"url\":\"https://styles.refero.design/style/fd2e0187-e67b-4869-8cfd-9de9e58d2868\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fd2e0187-e67b-4869-8cfd-9de9e58d2868\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Eclipse\",\"url\":\"https://www.eclipse.builders\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fd2e0187-e67b-4869-8cfd-9de9e58d2868#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2980175b-b8fa-4860-9985-4ddda90458cf.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2980175b-b8fa-4860-9985-4ddda90458cf.jpg\",\"caption\":\"Screenshot of Eclipse\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2980175b-b8fa-4860-9985-4ddda90458cf.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Eclipse design system\",\"Eclipse website design\",\"Eclipse colors\",\"Eclipse typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Eclipse Green\",\"Ink Black\",\"Paper White\",\"Barlow Condensed\",\"GT Alpina Condensed\",\"Atlas Typewriter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Eclipse design system\"},{\"@type\":\"Thing\",\"name\":\"Eclipse website design\"},{\"@type\":\"Thing\",\"name\":\"Eclipse colors\"},{\"@type\":\"Thing\",\"name\":\"Eclipse typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-05-07T15:48:25.971Z\",\"dateModified\":\"2026-05-07T15:48:25.971Z\"}]}19:T78c,Quick Color Reference\n- text: #000000\n- background: #ffffff\n- border: #000000\n- accent / decorative: #a1fea0\n- primary action: #a1fea0 (filled action)\n- inversion band: #000000 background, #ffffff text\n\nExample Component Prompts\n1. Hero Display Headline: full-bleed #000000 background. Eyebrow 'ECLIPSE IS' in Atlas Typewriter 12px, 0.2em tracking, #ffffff, centered. Then a three-line stacked headline: 'SOLANA' / 'ON' / 'ETHEREUM' in GT Alpina Condensed weight 200, 120px, line-height 0.80, -0.06em letter-spacing, #ffffff, centered. Below, a 16px gap, then two pill buttons side by side: outlined black 'Bridge to Eclipse →' and filled #a1fea0 'Build on Eclipse', both 25px radius, Barlow Condensed 500, 16px, uppercase, 0.1em tracking, 10px 24px padding, 1px solid #000000 border.\n\n2. Investor Spotlight Card: 1200px max-width parent, 3-column grid. Each card is 32px padded, 1px solid #000000 border, 25px radius, #ffffff background. Name in GT Alpina Condensed 200, 24px, centered. Active card swaps #a1fea0 for the background and gains a 40px green outer glow (#a1fea0 at 50% alpha). Eyebrow 'BACKED BY' / 'GREAT INVESTORS & ANGELS' in Atlas Typewriter 12px above the grid.\n\n3. Marquee Strip: full-bleed band, 80px tall, #ffffff background. Scrolling single-line copy in Barlow Condensed 700, 48px, uppercase, #000000, with em-dash separators and 32px gaps between items (e.g. 'FASTEST LAYER 2 — POWERED BY SVM — ETHEREUM'S FASTEST LAYER 2').\n\n4. Footer Band: full-bleed #000000 background, 80px top padding. Two-column inner layout, 1200px max-width, #ffffff text. Left: Barlow Condensed 500, 16px, uppercase link list. Right: row of social icons at 24px, 1px stroke, #ffffff.\n\n5. Section Header Pair: an Atlas Typewriter 12px eyebrow (#000000, 0.2em tracking, centered) with 16px gap, then a Barlow Condensed 700, 48px heading below — pair this whenever a section needs a title without using the full display serif."
+}

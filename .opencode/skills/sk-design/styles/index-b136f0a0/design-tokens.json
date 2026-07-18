@@ -1,0 +1,749 @@
+{
+  "color": {
+    "abyss-black": {
+      "$value": "#02030b",
+      "$type": "color",
+      "$description": "Abyss Black — Deepest canvas — modal overlays, deepest surface beneath elevated cards"
+    },
+    "midnight-indigo": {
+      "$value": "#04061c",
+      "$type": "color",
+      "$description": "Midnight Indigo — Primary page canvas — hero sits on this, full-bleed sections"
+    },
+    "slate-indigo": {
+      "$value": "#0c0a2b",
+      "$type": "color",
+      "$description": "Slate Indigo — Elevated surface — card backgrounds, panel containers, dropdowns"
+    },
+    "carbon-iris": {
+      "$value": "#13151f",
+      "$type": "color",
+      "$description": "Carbon Iris — Secondary surface — table rows, list items, inset wells"
+    },
+    "twilight-plum": {
+      "$value": "#2c2b52",
+      "$type": "color",
+      "$description": "Twilight Plum — Hover surface and subtle fills — input backgrounds, selected row highlights"
+    },
+    "iris-border": {
+      "$value": "#292a4d",
+      "$type": "color",
+      "$description": "Iris Border — Primary border — card outlines, dividers, table cell borders"
+    },
+    "graphite": {
+      "$value": "#202333",
+      "$type": "color",
+      "$description": "Graphite — Secondary border — subtle separators, nav container edge"
+    },
+    "steel": {
+      "$value": "#353545",
+      "$type": "color",
+      "$description": "Steel — Tertiary border — checkbox frames, input outlines, ghost button border"
+    },
+    "smoke": {
+      "$value": "#9b9ba4",
+      "$type": "color",
+      "$description": "Smoke — Secondary text — captions, helper text, metadata, muted labels"
+    },
+    "ash": {
+      "$value": "#b4b4bb",
+      "$type": "color",
+      "$description": "Ash — Tertiary text — placeholders, disabled labels, nav secondary"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — Primary text, icon stroke, and surface highlights — the dominant high-contrast value across all text and icon contexts"
+    },
+    "ember-coral": {
+      "$value": "#ff3a63",
+      "$type": "color",
+      "$description": "Ember Coral — Red wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "electric-blue": {
+      "$value": "#0067ff",
+      "$type": "color",
+      "$description": "Electric Blue — Blue wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "arc-violet": {
+      "$value": "#665eff",
+      "$type": "color",
+      "$description": "Arc Violet — Violet wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "alpine-gradient": {
+      "$value": "#4859eb",
+      "$type": "color",
+      "$description": "Alpine Gradient — Hero landscape — dramatic cyan-to-indigo-to-violet mountain horizon behind the headline; never used on UI components"
+    },
+    "chartreuse": {
+      "$value": "#ffff00",
+      "$type": "color",
+      "$description": "Chartreuse — Rare decorative accent — zero-friction indicators, callout highlights on screenshots only"
+    }
+  },
+  "font": {
+    "index": {
+      "$value": "Index",
+      "$type": "fontFamily",
+      "$description": "Custom display and heading face. Used for all headlines (32–72px), subheadings (22–24px), and select body emphasis (17–18px). The signature choice: letter-spacing scales inversely with size (0.0030em at 72px → 0.0150em at 14px), keeping absolute optical tracking nearly constant at ~0.2px regardless of size — prevents both headlines from feeling airy and body from feeling cramped. Geometric, slightly compact forms with tall x-height give the product UI its dense, confident feel."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body face. Used for table cells, button labels, nav items, form inputs, captions, and all dense data contexts. The workhorse — 90% of visible text. Tabular figures ('tnum') are enabled to keep numbers aligned in tables and dashboards. Normal letter-spacing; tracking is left to the custom face for display."
+    },
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "System fallback for icon-adjacent labels and Apple-native rendering. Rare, used where OS-native rhythm is preferred."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 13px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 13px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 13px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 13px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "sm-13": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-13 at 14px"
+    },
+    "sm-14": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-14 at 14px"
+    },
+    "sm-15": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-15 at 14px"
+    },
+    "sm-16": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-16 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "22px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "42px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "56px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "56px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Index",
+        "fontSize": "72px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "oklch(0.2 0 0 / 0.4) 1px 2px 6px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "md": {
+      "$value": "oklch(0 0 0 / 0.1) 1px 1px 10px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    },
+    "sm-2": {
+      "$value": "oklch(0.89 0 0 / 0.18) 0px 1px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-2"
+    },
+    "xl": {
+      "$value": "oklch(0.76 0.15 225.13 / 0.6) 0px 0px 70px 0px, oklch(0.52 0.28 280.29 / 0.11) 0px 0px 0px 26px, oklch(0.54 0.29 296.54 / 0.09) 0px 0px 0px 52px, oklch(0.62 0.27 308.71 / 0.1) 0px 0px 0px 80px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "subtle": {
+      "$value": "rgb(225, 225, 225) 615px 66px 0px 0px, rgb(225, 225, 225) 459px 608px 0px 0px, rgb(225, 225, 225) 692px 688px 0px 0px, rgb(225, 225, 225) 687px 124px 0px 0px, rgb(225, 225, 225) 110px 403px 0px 0px, rgb(225, 225, 225) 88px 494px 0px 0px, rgb(225, 225, 225) 109px 329px 0px 0px, rgb(225, 225, 225) 462px 264px 0px 0px, rgb(225, 225, 225) 650px 584px 0px 0px, rgb(225, 225, 225) 45px 46px 0px 0px, rgb(225, 225, 225) 71px 73px 0px 0px, rgb(225, 225, 225) 457px 495px 0px 0px, rgb(225, 225, 225) 370px 568px 0px 0px, rgb(225, 225, 225) 605px 509px 0px 0px, rgb(225, 225, 225) 616px 573px 0px 0px, rgb(225, 225, 225) 484px 253px 0px 0px, rgb(225, 225, 225) 566px 203px 0px 0px, rgb(225, 225, 225) 544px 110px 0px 0px, rgb(225, 225, 225) 495px 268px 0px 0px, rgb(225, 225, 225) 648px 372px 0px 0px, rgb(225, 225, 225) 649px 285px 0px 0px, rgb(225, 225, 225) 487px 541px 0px 0px, rgb(225, 225, 225) 264px 151px 0px 0px, rgb(225, 225, 225) 105px 614px 0px 0px, rgb(225, 225, 225) 348px 169px 0px 0px, rgb(225, 225, 225) 528px 161px 0px 0px, rgb(225, 225, 225) 217px 538px 0px 0px, rgb(225, 225, 225) 421px 608px 0px 0px, rgb(225, 225, 225) 610px 425px 0px 0px, rgb(225, 225, 225) 366px 647px 0px 0px, rgb(225, 225, 225) 191px 602px 0px 0px, rgb(225, 225, 225) 343px 505px 0px 0px, rgb(225, 225, 225) 81px 478px 0px 0px, rgb(225, 225, 225) 159px 6px 0px 0px, rgb(225, 225, 225) 463px 311px 0px 0px, rgb(225, 225, 225) 529px 70px 0px 0px, rgb(225, 225, 225) 274px 445px 0px 0px, rgb(225, 225, 225) 681px 389px 0px 0px, rgb(225, 225, 225) 323px 47px 0px 0px, rgb(225, 225, 225) 13px 413px 0px 0px, rgb(225, 225, 225) 606px 449px 0px 0px, rgb(225, 225, 225) 629px 180px 0px 0px, rgb(225, 225, 225) 526px 335px 0px 0px, rgb(225, 225, 225) 445px 363px 0px 0px, rgb(225, 225, 225) 404px 91px 0px 0px, rgb(225, 225, 225) 216px 317px 0px 0px, rgb(225, 225, 225) 422px 140px 0px 0px, rgb(225, 225, 225) 10px 521px 0px 0px, rgb(225, 225, 225) 1px 475px 0px 0px, rgb(225, 225, 225) 102px 435px 0px 0px, rgb(225, 225, 225) 92px 382px 0px 0px, rgb(225, 225, 225) 326px 45px 0px 0px, rgb(225, 225, 225) 44px 404px 0px 0px, rgb(225, 225, 225) 142px 625px 0px 0px, rgb(225, 225, 225) 47px 630px 0px 0px, rgb(225, 225, 225) 24px 534px 0px 0px, rgb(225, 225, 225) 443px 207px 0px 0px, rgb(225, 225, 225) 657px 581px 0px 0px, rgb(225, 225, 225) 168px 645px 0px 0px, rgb(225, 225, 225) 491px 622px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgb(225, 225, 225) 435px 352px 0px 0px, rgb(225, 225, 225) 57px 465px 0px 0px, rgb(225, 225, 225) 331px 440px 0px 0px, rgb(225, 225, 225) 44px 615px 0px 0px, rgb(225, 225, 225) 151px 515px 0px 0px, rgb(225, 225, 225) 468px 627px 0px 0px, rgb(225, 225, 225) 472px 158px 0px 0px, rgb(225, 225, 225) 46px 206px 0px 0px, rgb(225, 225, 225) 610px 333px 0px 0px, rgb(225, 225, 225) 305px 595px 0px 0px, rgb(225, 225, 225) 524px 210px 0px 0px, rgb(225, 225, 225) 543px 661px 0px 0px, rgb(225, 225, 225) 136px 584px 0px 0px, rgb(225, 225, 225) 146px 162px 0px 0px, rgb(225, 225, 225) 61px 83px 0px 0px, rgb(225, 225, 225) 582px 236px 0px 0px, rgb(225, 225, 225) 671px 98px 0px 0px, rgb(225, 225, 225) 358px 280px 0px 0px, rgb(225, 225, 225) 444px 346px 0px 0px, rgb(225, 225, 225) 355px 288px 0px 0px, rgb(225, 225, 225) 587px 19px 0px 0px, rgb(225, 225, 225) 245px 80px 0px 0px, rgb(225, 225, 225) 438px 381px 0px 0px, rgb(225, 225, 225) 314px 20px 0px 0px, rgb(225, 225, 225) 151px 476px 0px 0px, rgb(225, 225, 225) 327px 470px 0px 0px, rgb(225, 225, 225) 379px 411px 0px 0px, rgb(225, 225, 225) 332px 575px 0px 0px, rgb(225, 225, 225) 132px 654px 0px 0px, rgb(225, 225, 225) 655px 71px 0px 0px, rgb(225, 225, 225) 402px 549px 0px 0px, rgb(225, 225, 225) 480px 316px 0px 0px, rgb(225, 225, 225) 215px 41px 0px 0px, rgb(225, 225, 225) 131px 94px 0px 0px, rgb(225, 225, 225) 95px 233px 0px 0px, rgb(225, 225, 225) 398px 281px 0px 0px, rgb(225, 225, 225) 54px 275px 0px 0px, rgb(225, 225, 225) 311px 686px 0px 0px, rgb(225, 225, 225) 29px 252px 0px 0px, rgb(225, 225, 225) 549px 277px 0px 0px, rgb(225, 225, 225) 665px 664px 0px 0px, rgb(225, 225, 225) 94px 240px 0px 0px, rgb(225, 225, 225) 243px 543px 0px 0px, rgb(225, 225, 225) 331px 197px 0px 0px, rgb(225, 225, 225) 478px 641px 0px 0px, rgb(225, 225, 225) 258px 68px 0px 0px, rgb(225, 225, 225) 311px 371px 0px 0px, rgb(225, 225, 225) 664px 83px 0px 0px, rgb(225, 225, 225) 692px 626px 0px 0px, rgb(225, 225, 225) 405px 195px 0px 0px, rgb(225, 225, 225) 401px 289px 0px 0px, rgb(225, 225, 225) 284px 94px 0px 0px, rgb(225, 225, 225) 617px 309px 0px 0px, rgb(225, 225, 225) 214px 393px 0px 0px, rgb(225, 225, 225) 571px 196px 0px 0px, rgb(225, 225, 225) 404px 439px 0px 0px, rgb(225, 225, 225) 522px 130px 0px 0px, rgb(225, 225, 225) 144px 535px 0px 0px, rgb(225, 225, 225) 604px 496px 0px 0px, rgb(225, 225, 225) 625px 321px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    },
+    "subtle-3": {
+      "$value": "rgb(225, 225, 225) 219px 422px 0px 0px, rgb(225, 225, 225) 582px 623px 0px 0px, rgb(225, 225, 225) 223px 497px 0px 0px, rgb(225, 225, 225) 681px 529px 0px 0px, rgb(225, 225, 225) 217px 312px 0px 0px, rgb(225, 225, 225) 690px 135px 0px 0px, rgb(225, 225, 225) 30px 338px 0px 0px, rgb(225, 225, 225) 409px 448px 0px 0px, rgb(225, 225, 225) 169px 159px 0px 0px, rgb(225, 225, 225) 347px 120px 0px 0px, rgb(225, 225, 225) 134px 56px 0px 0px, rgb(225, 225, 225) 574px 250px 0px 0px, rgb(225, 225, 225) 369px 662px 0px 0px, rgb(225, 225, 225) 527px 663px 0px 0px, rgb(225, 225, 225) 570px 490px 0px 0px, rgb(225, 225, 225) 506px 370px 0px 0px, rgb(225, 225, 225) 496px 484px 0px 0px, rgb(225, 225, 225) 5px 86px 0px 0px, rgb(225, 225, 225) 435px 584px 0px 0px, rgb(225, 225, 225) 600px 652px 0px 0px, rgb(225, 225, 225) 128px 554px 0px 0px, rgb(225, 225, 225) 413px 539px 0px 0px, rgb(225, 225, 225) 202px 101px 0px 0px, rgb(225, 225, 225) 301px 572px 0px 0px, rgb(225, 225, 225) 10px 591px 0px 0px, rgb(225, 225, 225) 331px 392px 0px 0px, rgb(225, 225, 225) 317px 393px 0px 0px, rgb(225, 225, 225) 170px 81px 0px 0px, rgb(225, 225, 225) 366px 414px 0px 0px, rgb(225, 225, 225) 228px 316px 0px 0px, rgb(225, 225, 225) 464px 343px 0px 0px, rgb(225, 225, 225) 527px 232px 0px 0px, rgb(225, 225, 225) 311px 646px 0px 0px, rgb(225, 225, 225) 242px 440px 0px 0px, rgb(225, 225, 225) 121px 136px 0px 0px, rgb(225, 225, 225) 120px 591px 0px 0px, rgb(225, 225, 225) 197px 158px 0px 0px, rgb(225, 225, 225) 299px 138px 0px 0px, rgb(225, 225, 225) 429px 262px 0px 0px, rgb(225, 225, 225) 520px 552px 0px 0px, rgb(225, 225, 225) 39px 228px 0px 0px, rgb(225, 225, 225) 48px 315px 0px 0px, rgb(225, 225, 225) 127px 296px 0px 0px, rgb(225, 225, 225) 154px 265px 0px 0px, rgb(225, 225, 225) 75px 353px 0px 0px, rgb(225, 225, 225) 268px 225px 0px 0px, rgb(225, 225, 225) 25px 214px 0px 0px, rgb(225, 225, 225) 34px 656px 0px 0px, rgb(225, 225, 225) 212px 179px 0px 0px, rgb(225, 225, 225) 294px 185px 0px 0px, rgb(225, 225, 225) 106px 448px 0px 0px, rgb(225, 225, 225) 653px 130px 0px 0px, rgb(225, 225, 225) 251px 4px 0px 0px, rgb(225, 225, 225) 458px 676px 0px 0px, rgb(225, 225, 225) 417px 150px 0px 0px, rgb(225, 225, 225) 297px 367px 0px 0px, rgb(225, 225, 225) 54px 118px 0px 0px, rgb(225, 225, 225) 608px 293px 0px 0px, rgb(225, 225, 225) 136px 107px 0px 0px, rgb(225, 225, 225) 492px 212px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-3"
+    },
+    "xl-2": {
+      "$value": "rgba(0, 0, 0, 0.4) 0px 4px 40px 8px, rgba(0, 0, 0, 0.8) 0px 0px 0px 0.5px, rgba(255, 255, 255, 0.3) 0px 0.5px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-2"
+    }
+  },
+  "surface": {
+    "abyss": {
+      "$value": "#02030b",
+      "$type": "color",
+      "$description": "Surface level 0: Deepest base — behind modals, behind the hero landscape"
+    },
+    "midnight": {
+      "$value": "#04061c",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas — hero background, full-bleed sections"
+    },
+    "slate-indigo": {
+      "$value": "#0c0a2b",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated panels — feature cards, dropdowns, product window frames"
+    },
+    "carbon-iris": {
+      "$value": "#13151f",
+      "$type": "color",
+      "$description": "Surface level 3: Inset surfaces — table rows, list items, input wells"
+    },
+    "twilight-plum": {
+      "$value": "#2c2b52",
+      "$type": "color",
+      "$description": "Surface level 4: Hover/active surface — selected rows, interactive feedback"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://index.inc",
+      "siteName": "Index",
+      "extractedAt": "2026-06-03T16:41:33.843Z",
+      "variant": "extended"
+    }
+  }
+}

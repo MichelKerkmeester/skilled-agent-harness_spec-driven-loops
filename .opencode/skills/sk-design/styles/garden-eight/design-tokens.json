@@ -1,0 +1,337 @@
+{
+  "color": {
+    "parchment": {
+      "$value": "#dbd6d0",
+      "$type": "color",
+      "$description": "Parchment — Page canvas, card surfaces, light dividers, link borders — a warm desaturated bone tone that replaces the conventional near-white and gives the whole system its editorial temperature"
+    },
+    "carbon-ink": {
+      "$value": "#1e1f1f",
+      "$type": "color",
+      "$description": "Carbon Ink — Primary text, display headlines, nav rules, card borders, icon strokes — near-black with the faintest warm cast that harmonizes with the parchment rather than fighting it"
+    },
+    "pitch-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pitch Black — Reserved for maximum-contrast display moments and the deepest text on the lightest surfaces — used sparingly so Carbon Ink carries the default reading weight"
+    }
+  },
+  "font": {
+    "lausanne": {
+      "$value": "Lausanne",
+      "$type": "fontFamily",
+      "$description": "Primary serif — carries nav labels at 12–15px weight 400, body and link copy at 14–15px weight 400, and the colossal 215px display headline at weight 200. The weight-200 display is the signature: most agencies use 600–700 for monumental type, Lausanne's hairline 200 lets the headline whisper at 215px and still feel like the loudest thing on the page through scale alone"
+    },
+    "gunsan": {
+      "$value": "Gunsan",
+      "$type": "fontFamily",
+      "$description": "Display serif companion — weight 600 at 215px with an aggressively tight 0.77 line-height creates the condensed, high-contrast letterspacing on hero compositions. The 0.77 leading is the tightest in the system and is the only place this font appears"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "12px",
+        "fontWeight": 200,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "12px",
+        "fontWeight": 200,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "12px",
+        "fontWeight": 200,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "12px",
+        "fontWeight": 200,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "12px",
+        "fontWeight": 200,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "12px",
+        "fontWeight": 200,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "15px",
+        "fontWeight": 200,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "15px",
+        "fontWeight": 200,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "15px",
+        "fontWeight": 200,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 15px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 15px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 15px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "lausanne",
+        "fontSize": "215px",
+        "fontWeight": 400,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 215px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "gunsan",
+        "fontSize": "215px",
+        "fontWeight": 600,
+        "lineHeight": 0.51
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 215px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "gunsan",
+        "fontSize": "215px",
+        "fontWeight": 600,
+        "lineHeight": 0.77
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 215px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "27": {
+      "$value": "27px",
+      "$type": "dimension",
+      "$description": "Spacing 27px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "45": {
+      "$value": "45px",
+      "$type": "dimension",
+      "$description": "Spacing 45px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "210": {
+      "$value": "210px",
+      "$type": "dimension",
+      "$description": "Spacing 210px"
+    }
+  },
+  "radius": {
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#dbd6d0",
+      "$type": "color",
+      "$description": "Surface level 1: The dominant page background — warm bone, never pure white"
+    },
+    "ink-plate": {
+      "$value": "#1e1f1f",
+      "$type": "color",
+      "$description": "Surface level 2: Dark inset sections, inverse cards, and any surface that needs to recede behind Carbon Ink text"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://garden-eight.com",
+      "siteName": "Garden Eight",
+      "extractedAt": "2026-06-03T20:19:17.796Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,377 @@
+{
+  "color": {
+    "carbon-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Ink — Primary text, filled action buttons, icon strokes, hairlines — the dominant ink across the entire interface"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, text on dark fills, image backgrounds"
+    },
+    "soft-mist": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Soft Mist — Subtle surface alternation, disabled states, skeleton backgrounds, light dividers"
+    },
+    "warm-fog": {
+      "$value": "#f0efe7",
+      "$type": "color",
+      "$description": "Warm Fog — Off-white surface variant for subtle banding between product rows and editorial sections"
+    },
+    "blush-sand": {
+      "$value": "#f5ebd5",
+      "$type": "color",
+      "$description": "Blush Sand — Warm cream surface for editorial highlight sections and seasonal accents"
+    },
+    "smoke-charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Smoke Charcoal — Secondary text, input borders, subdued UI chrome"
+    },
+    "onyx": {
+      "$value": "#1d1d1d",
+      "$type": "color",
+      "$description": "Onyx — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "stone-gray": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Stone Gray — Placeholder backgrounds, image placeholder fills, neutral swatch defaults"
+    },
+    "slate": {
+      "$value": "#2f3440",
+      "$type": "color",
+      "$description": "Slate — Cool charcoal for product photography backgrounds and muted editorial surfaces"
+    },
+    "olive-drab": {
+      "$value": "#636355",
+      "$type": "color",
+      "$description": "Olive Drab — Warm muted surface for product photography contexts"
+    },
+    "maroon-clay": {
+      "$value": "#523037",
+      "$type": "color",
+      "$description": "Maroon Clay — Warm muted surface for product photography contexts"
+    },
+    "deep-iris": {
+      "$value": "#222845",
+      "$type": "color",
+      "$description": "Deep Iris — Cool muted surface for product photography contexts"
+    },
+    "pewter": {
+      "$value": "#677284",
+      "$type": "color",
+      "$description": "Pewter — Cool gray for product photography contexts"
+    },
+    "driftwood": {
+      "$value": "#dfccbe",
+      "$type": "color",
+      "$description": "Driftwood — Warm beige for product photography contexts"
+    },
+    "pale-tide": {
+      "$value": "#badce4",
+      "$type": "color",
+      "$description": "Pale Tide — Cool pastel surface for editorial accent sections"
+    }
+  },
+  "font": {
+    "favorit": {
+      "$value": "Favorit",
+      "$type": "fontFamily",
+      "$description": "Brand and UI typeface — used across all navigation, headings, body, buttons, inputs, and product cards. Custom monoline sans-serif with tight tracking (0.025em). Substitutes: Inter, Söhne, or Neue Haas Grotesk. The whisper-weight 400 at 30px for hero headlines is a signature choice — most fashion sites use display serifs or bold weights, but Adanola's regular-weight headlines in a clean sans feel like editorial captions rather than advertising slogans."
+    },
+    "nunito-sans": {
+      "$value": "Nunito Sans",
+      "$type": "fontFamily",
+      "$description": "Secondary fallback for form inputs and minor chrome elements"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback for legacy email and content blocks"
+    },
+    "swym-font": {
+      "$value": "swym-font",
+      "$type": "fontFamily",
+      "$description": "swym-font — detected in extracted data but not described by AI"
+    },
+    "source-sans-pro": {
+      "$value": "Source Sans Pro",
+      "$type": "fontFamily",
+      "$description": "Source Sans Pro — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "swym-font",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 12px"
+    },
+    "xs-11": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-11 at 12px"
+    },
+    "xs-12": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-12 at 12px"
+    },
+    "xs-13": {
+      "$value": {
+        "fontFamily": "Source Sans Pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-13 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Favorit",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page canvas and product card background"
+    },
+    "soft-mist": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Surface level 1: Alternate section background for visual banding"
+    },
+    "warm-fog": {
+      "$value": "#f0efe7",
+      "$type": "color",
+      "$description": "Surface level 2: Off-white editorial section background"
+    },
+    "blush-sand": {
+      "$value": "#f5ebd5",
+      "$type": "color",
+      "$description": "Surface level 3: Warm cream editorial highlight sections"
+    },
+    "pale-tide": {
+      "$value": "#badce4",
+      "$type": "color",
+      "$description": "Surface level 4: Cool pastel editorial accent band"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://adanola.com",
+      "siteName": "Adanola",
+      "extractedAt": "2026-06-03T19:46:06.786Z",
+      "variant": "extended"
+    }
+  }
+}

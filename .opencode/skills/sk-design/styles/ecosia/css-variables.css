@@ -1,0 +1,82 @@
+:root {
+  /* Colors */
+  --color-lime-canopy: #d7eb80;
+  --color-ink-black: #333333;
+  --color-paper-white: #ffffff;
+  --color-warm-mist: #f8f8f6;
+  --color-linen-cream: #f0f0eb;
+  --color-stone-gray: #6c6c6c;
+  --color-ash-border: #bebeb9;
+  --color-silver-surface: #b6b6b6;
+
+  /* Typography — Font Families */
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-founders-grotesk: 'Founders Grotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.4;
+  --tracking-caption: 0.084px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.4;
+  --tracking-body-sm: 0.098px;
+  --text-body: 16px;
+  --leading-body: 1.4;
+  --tracking-body: 0.112px;
+  --text-subheading: 18px;
+  --leading-subheading: 1.4;
+  --text-heading-sm: 20px;
+  --leading-heading-sm: 1.3;
+  --text-heading: 24px;
+  --leading-heading: 1.3;
+  --text-heading-lg: 36px;
+  --leading-heading-lg: 1.15;
+  --text-display: 48px;
+  --leading-display: 1.1;
+  --text-display-lg: 54px;
+  --leading-display-lg: 1.1;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-80: 80px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 24px;
+  --element-gap: 16px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 10px;
+  --radius-2xl: 20px;
+  --radius-3xl: 40px;
+  --radius-full: 9999px;
+
+  /* Named Radii */
+  --radius-cards: 20px;
+  --radius-chips: 9999px (pill);
+  --radius-links: 4px;
+  --radius-inputs: 9999px (pill);
+  --radius-buttons: 9999px (pill);
+
+  /* Shadows */
+  --shadow-xl: rgba(0, 0, 0, 0.2) 0px 11px 33px 0px;
+
+  /* Surfaces */
+  --surface-page-canvas: #ffffff;
+  --surface-soft-card: #f8f8f6;
+  --surface-warm-band: #f0f0eb;
+  --surface-hero-photo-stat-overlay: #d7eb80 / rgba(0,0,0,0.2);
+}

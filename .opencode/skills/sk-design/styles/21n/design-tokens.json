@@ -1,0 +1,372 @@
+{
+  "color": {
+    "snow": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Snow — Primary canvas — page backgrounds, card surfaces, button text on dark fills"
+    },
+    "fog": {
+      "$value": "#f9f9fb",
+      "$type": "color",
+      "$description": "Fog — First surface layer above canvas — subtle alternating sections, soft elevated cards"
+    },
+    "mist": {
+      "$value": "#eff0f6",
+      "$type": "color",
+      "$description": "Mist — Cool card surface — slightly bluer than fog, used for inset panels and secondary cards"
+    },
+    "silver": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Silver — Hairline borders, dividers, and 1px structural lines — the system's primary separator color"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "graphite": {
+      "$value": "#545454",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, subdued button borders, and metadata — sits between primary text and muted gray"
+    },
+    "smoke": {
+      "$value": "#767676",
+      "$type": "color",
+      "$description": "Smoke — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "ash": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Ash — Disabled and inactive states — lowest-priority neutral for de-emphasized text and icons"
+    },
+    "emerald-pulse": {
+      "$value": "#24b26d",
+      "$type": "color",
+      "$description": "Emerald Pulse — Green supporting accent for decorative details and low-frequency emphasis"
+    },
+    "cobalt-signal": {
+      "$value": "#2c70dd",
+      "$type": "color",
+      "$description": "Cobalt Signal — Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "sen": {
+      "$value": "Sen",
+      "$type": "fontFamily",
+      "$description": "Display and body — humanist sans-serif with warm proportions and open apertures, the sole typeface in the system. Weight 400 carries body text, 500–600 for UI controls and subheadings, 700 reserved for the 56px display headline where it provides atlas-scale presence without resorting to a separate display face."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.94
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "15px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 2.21
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 17px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 17px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "19px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "44px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Sen",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "33": {
+      "$value": "33px",
+      "$type": "dimension",
+      "$description": "Spacing 33px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "67": {
+      "$value": "67px",
+      "$type": "dimension",
+      "$description": "Spacing 67px"
+    },
+    "84": {
+      "$value": "84px",
+      "$type": "dimension",
+      "$description": "Spacing 84px"
+    },
+    "90": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Spacing 90px"
+    },
+    "95": {
+      "$value": "95px",
+      "$type": "dimension",
+      "$description": "Spacing 95px"
+    },
+    "134": {
+      "$value": "134px",
+      "$type": "dimension",
+      "$description": "Spacing 134px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6.26325px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12.5265px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "snow-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — the dominant surface"
+    },
+    "fog-section": {
+      "$value": "#f9f9fb",
+      "$type": "color",
+      "$description": "Surface level 1: First elevated section band — subtle alternation"
+    },
+    "mist-card": {
+      "$value": "#eff0f6",
+      "$type": "color",
+      "$description": "Surface level 2: Card and inset panel surface — cool-tinted elevation"
+    },
+    "silver-border": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Surface level 3: Structural hairline — the primary separator"
+    },
+    "charcoal-anchor": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Surface level 4: Dark button and inverse text — the only heavy surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://memotron.app",
+      "siteName": "21n",
+      "extractedAt": "2026-06-03T16:28:19.647Z",
+      "variant": "extended"
+    }
+  }
+}

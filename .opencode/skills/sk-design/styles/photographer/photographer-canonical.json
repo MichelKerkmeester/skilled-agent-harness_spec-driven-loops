@@ -1,0 +1,1049 @@
+{
+  "source": "https://styles.refero.design/style/837ba115-568f-4ada-8182-3dc100c8b3e4",
+  "uuid": "837ba115-568f-4ada-8182-3dc100c8b3e4",
+  "name": "Photographer",
+  "northStar": "Giant black wordmark raining through a white-walled photo gallery — the text IS the architecture.",
+  "capturedAt": "2026-07-18T08:03:04.807Z",
+  "meta": {
+    "url": "https://juliajohnson.com",
+    "siteName": "Photographer",
+    "extractedAt": "2026-06-03T18:40:12.211Z",
+    "durationMs": 25979,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 325,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Helvetica 700 at extreme size contrast: 10-18px for chrome, 200-400px for the Julia wordmark — the ratio IS the hierarchy",
+      "Apply letter-spacing -0.02em to all type; tighter tracking pulls bold letterforms into sculptural mass",
+      "Wrap photographic tiles in 1px chromatic hairline borders sampled from each image's dominant hue — the grid becomes a color study",
+      "Keep line-height at 1.00 for the wordmark; letters must overlap or nearly touch vertically for maximum impact",
+      "Use #000000 as the only structural color — white canvas, black text, black hairlines; all color comes from photography",
+      "Let tiles touch with 15px gutters; never add internal padding or margins inside a tile",
+      "Maintain 0px border-radius everywhere — sharp edges only, consistent with editorial print aesthetic"
+    ],
+    "donts": [
+      "Never introduce drop shadows, gradients, or blur — the system is flat by conviction",
+      "Never add background fill to buttons or links; this system has no filled interactive elements",
+      "Never use a border-radius above 0px on tiles, frames, or any container",
+      "Never use color for body text — all text is #000000; color is reserved for borders and photographic content",
+      "Never add a navigation bar, header, or footer chrome that competes with the wordmark for visual real estate",
+      "Never use a light or thin weight of Helvetica; weight 700 is the only weight in the system",
+      "Never add card padding, drop shadows, or surface elevation to group images — the grid IS the grouping"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas White",
+        "role": "Page background, negative space between tiles, surface for the wordmark to read against",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Wordmark Black",
+        "role": "The Julia wordmark, all body and nav text, hairline grid borders, and structural lines — the only structural color in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e21715",
+        "name": "Vermillion Frame",
+        "role": "Chromatic hairline borders on photographic tiles whose dominant hue reads red — the most frequent accent border in the grid",
+        "group": "accent"
+      },
+      {
+        "hex": "#086392",
+        "name": "Cobalt Frame",
+        "role": "Chromatic hairline borders on tiles with blue-dominant photography — paired with Vermillion as the secondary axis of the colored-frame system",
+        "group": "accent"
+      },
+      {
+        "hex": "#f2572c",
+        "name": "Marigold Frame",
+        "role": "Orange accent for outlined action borders, linked labels, and lightweight interactive emphasis.",
+        "group": "accent"
+      },
+      {
+        "hex": "#5bc52c",
+        "name": "Fern Frame",
+        "role": "Chromatic border for green-dominant photography tiles — completes the four-corner color rotation across the masonry",
+        "group": "accent"
+      },
+      {
+        "hex": "#b3813c",
+        "name": "Brass Frame",
+        "role": "Chromatic border for yellow/golden-toned photography tiles, expanding the color frame vocabulary to five hues",
+        "group": "accent"
+      },
+      {
+        "hex": "#f11216",
+        "name": "Signal Red",
+        "role": "Outlined action border and link accent in navigation and interactive edges — the highest-saturation red in the system",
+        "group": "accent"
+      },
+      {
+        "hex": "#2e99c9",
+        "name": "Cyan Blue",
+        "role": "Outlined action border and link accent in navigation, paired with Signal Red for interactive link edges",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page is a single full-bleed masonry grid with no maximum content width — tiles extend edge-to-edge. The massive Julia wordmark sits in the left portion of the viewport as a fixed or scroll-anchored overlay, and the masonry flows to the right of (and potentially behind) it. Tiles vary in aspect ratio — tall portraits, wide landscapes, and squares — creating an organic, non-uniform rhythm. There are no section breaks, no card grouping, no alternating bands. Navigation is minimal: a few bare typographic links, likely top-right or in a fixed position. The page is a single continuous scroll with no distinct hero, features, or footer sections — it IS a gallery wall. Spacing between tiles is 15px; the wordmark's vertical extent defines the page's implicit section boundaries. The content is image-heavy to the extreme — text occupies perhaps 5% of the viewport at any time.",
+    "imagery": "The site is a photography portfolio, so imagery is the product. All visuals are high-saturation editorial photography: fashion editorials, portraiture, and campaign work with bold color grading. Images are full-bleed within their tiles with no rounded corners, no drop shadows, and no overlay treatments. The photography itself ranges from tightly-cropped portrait fragments (a hand with rings, a torso, a face detail) to full environmental fashion shots. Color treatment is vivid and saturated — deep reds, electric blues, acid greens, warm oranges — not desaturated or moody. There is no lifestyle staging or candid reportage; every frame is controlled and art-directed. The images carry their own color identity, and the system's chromatic border system draws from each photograph's dominant hue, making the grid function as a self-organizing color palette.",
+    "similar": [
+      {
+        "why": "Same editorial-print sensibility: massive typographic identity, full-bleed photography tiles, white canvas, no UI chrome",
+        "business": "Garage Magazine"
+      },
+      {
+        "why": "Same masonry-of-editorial-shots layout with bold sans-serif wordmark overlay and chromatic photography",
+        "business": "System Magazine"
+      },
+      {
+        "why": "Same fashion-photography-first approach: image grid dominates, text is minimal and massive, color lives inside the frames",
+        "business": "Mert & Marcus portfolio"
+      },
+      {
+        "why": "Same Helvetica-Bold-at-extreme-sizes wordmark treatment with white-walled photo gallery structure",
+        "business": "Document Journal"
+      },
+      {
+        "why": "Same bold typographic identity layered over high-saturation editorial photography on a clean white canvas",
+        "business": "AnOther Magazine"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tiles": "0px",
+        "borders": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "15px",
+      "sectionGap": "120px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Full-bleed page background — the gallery wall"
+      },
+      {
+        "hex": "#000000",
+        "name": "Tile Surface",
+        "level": 1,
+        "purpose": "Photographic tile content — the image fills the frame edge-to-edge"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Giant black wordmark raining through a white-walled photo gallery — the text IS the architecture.",
+    "typeScale": [
+      {
+        "role": "nav",
+        "size": 10,
+        "lineHeight": 1,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "display",
+        "size": 320,
+        "lineHeight": 0.85,
+        "letterSpacing": -6.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Masonry Tile",
+        "role": "Primary content unit — a single editorial photograph in the grid",
+        "description": "Full-bleed photographic image, no internal padding, no border-radius (0px). Wrapped in a 1px chromatic hairline border whose color is sampled from the image's dominant hue (Vermillion, Cobalt, Marigold, Fern, or Brass). Tiles vary in aspect ratio — portrait, landscape, and square intermixed — creating an organic masonry rhythm. Tiles touch each other with 15px gutters."
+      },
+      {
+        "name": "Julia Wordmark Overlay",
+        "role": "Brand identity element that doubles as a graphic device across the page",
+        "description": "Massive Helvetica Bold at approximately 320px, line-height 0.85, letter-spacing -6.4px. Solid #000000 on white. Sits in the left margin of the page, spanning the full vertical height of the grid. The 'J' in Julia extends below the baseline. Functions as both a navigation anchor and a visual frame for the masonry."
+      },
+      {
+        "name": "Navigation Links",
+        "role": "Minimal site navigation",
+        "description": "Helvetica 700 at 10px, letter-spacing -0.2px. #000000 text on white. Underlined with a 1px chromatic border (typically Signal Red or Cobalt Blue). All-caps or lowercase, left-aligned. No background fill, no padding, no button shape — links are bare typographic elements."
+      },
+      {
+        "name": "Chromatic Hairline Frame",
+        "role": "Decorative border system for photographic tiles",
+        "description": "1px solid border in one of five accent colors: Vermillion (#e21715), Cobalt (#086392), Marigold (#f2572c), Fern (#5bc52c), or Brass (#b3813c). Applied to the outer edge of photographic tiles. The border is part of the tile's visual identity, not a UI affordance — it echoes the dominant color of the enclosed photograph."
+      },
+      {
+        "name": "Image Caption / Label",
+        "role": "Optional metadata under tiles (project name, client, date)",
+        "description": "Helvetica 700 at 10px, #000000, letter-spacing -0.2px. No background, no border. Sits directly below a tile with minimal vertical spacing. May carry a thin colored underline matching the tile's border color."
+      },
+      {
+        "name": "Full-Width Image Break",
+        "role": "Editorial emphasis tiles that span the grid width",
+        "description": "A single photograph that breaks the masonry grid and occupies the full content width. No border, no padding, no caption chrome — lets the image command the viewport. Used sparingly, roughly once per scroll-fold."
+      },
+      {
+        "name": "Outlined Link / Action",
+        "role": "The only interactive element type in the system",
+        "description": "No filled buttons exist. All actions are bare text links with a 1px chromatic border (Signal Red #f11216, Cobalt Blue #2e99c9, or Vermillion #e21715). Helvetica 700, 18px, #000000 text. No background fill, no border-radius, no padding beyond the border's footprint."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary display + UI typeface. Weight 700 is non-negotiable — used at 700 across nav, links, and the colossal Julia wordmark. The tight -0.02em tracking pulls the massive letterforms into a single sculptural mass rather than a line of text. The wordmark sits in the hundreds of pixels while nav/labels sit at 10-18px, creating extreme typographic contrast between identity and chrome.",
+        "sizes": "10px, 18px (raw); 200-400px for the Julia wordmark (derived from visual evidence)",
+        "family": "Helvetica",
+        "weight": "700",
+        "lineHeight": "1.00",
+        "substitute": "Inter (700), Arial Black, Neue Haas Grotesk Display Pro Bold",
+        "letterSpacing": "-0.0200em"
+      }
+    ],
+    "description": "Julia is a visual-first photography portfolio: a white canvas hosting a loose masonry of large editorial frames, interrupted by a massive black wordmark that functions as both identity and graphic device. The interface is deliberately skeletal — no menus, no cards, no buttons — letting high-saturation editorial photography carry the color while the chrome stays black-on-white. Every photographic tile is wrapped in a thin chromatic hairline border drawn from the image's own dominant hue, turning the grid itself into a color study. Type does one thing and does it loudly: an ultra-bold, tightly-tracked wordmark anchors the page and proves the design system is confident enough to let white space do the rest.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/837ba115-568f-4ada-8182-3dc100c8b3e4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Photographer design system\",\"item\":\"https://styles.refero.design/style/837ba115-568f-4ada-8182-3dc100c8b3e4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/837ba115-568f-4ada-8182-3dc100c8b3e4#style-reference\",\"name\":\"Photographer design system reference\",\"headline\":\"Photographer design system | Refero Styles\",\"description\":\"Explore Photographer's light Agency design system: Canvas White #ffffff, Wordmark Black #000000 colors, Helvetica typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/837ba115-568f-4ada-8182-3dc100c8b3e4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/837ba115-568f-4ada-8182-3dc100c8b3e4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Photographer\",\"url\":\"https://juliajohnson.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/837ba115-568f-4ada-8182-3dc100c8b3e4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/eb8a8aa2-1420-4bbc-b6af-f1d1e2888928.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/eb8a8aa2-1420-4bbc-b6af-f1d1e2888928.jpg\",\"caption\":\"Screenshot of Photographer\"},\"image\":\"https://images.refero.design/styles/refero.design/image/eb8a8aa2-1420-4bbc-b6af-f1d1e2888928.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Photographer design system\",\"Photographer website design\",\"Photographer colors\",\"Photographer typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Canvas White\",\"Wordmark Black\",\"Vermillion Frame\",\"Cobalt Frame\",\"Helvetica\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Photographer design system\"},{\"@type\":\"Thing\",\"name\":\"Photographer website design\"},{\"@type\":\"Thing\",\"name\":\"Photographer colors\"},{\"@type\":\"Thing\",\"name\":\"Photographer typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:48:15.940Z\",\"dateModified\":\"2026-04-30T03:48:15.940Z\"}]}19:T667,## Quick Color Reference\n- text: #000000\n- background: #ffffff\n- border: #000000 (structural) | #e21715, #086392, #f2572c, #5bc52c, #b3813c (chromatic tile frames)\n- accent: Signal Red #f11216 (interactive links)\n- primary action: #e21715 (outlined action border)\n\n## Example Component Prompts\n\n1. **Julia Wordmark Overlay**: Render 'Julia' at 320px, Helvetica 700, line-height 0.85, letter-spacing -6.4px, #000000 on a #ffffff canvas. Position left-aligned, spanning the full vertical viewport height. The 'J' descender must extend below the baseline by ~30px. No other elements should overlap the letterforms.\n\n2. **Masonry Tile with Chromatic Frame**: A full-bleed editorial photograph (aspect ratio 3:4 portrait). 1px solid border in #e21715 (Vermillion) on all four sides. 0px border-radius. No padding, no shadow, no caption inside. 15px gap to neighboring tiles. The border color should match the image's dominant hue.\n\n3. **Navigation Link**: Bare text link, Helvetica 700, 10px, #000000, letter-spacing -0.2px. Underlined with a 1px #f11216 (Signal Red) border. No background, no padding, no border-radius, no button shape. Sits in the top-right corner of the page.\n\n4. **Full-Width Image Break**: A landscape editorial photograph at 16:9 aspect ratio spanning the full viewport width. 0px border-radius, no border, no overlay, no caption. Used once per scroll-fold to break the masonry rhythm.\n\n5. **Tile with Fern Border**: A photograph with green-dominant subject matter. Wrapped in 1px solid #5bc52c (Fern) border. Below the tile, a 10px Helvetica 700 caption in #000000, with a 1px #5bc52c underline matching the frame color."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "The Julia wordmark is not a logo placed on the page — it is a typographic installation. At 320px+ in Helvetica 700 with -0.02em tracking, the name functions as architecture, dividing the page into spatial zones and proving the design system's confidence. The extreme size jump from 18px (body) to 320px (wordmark) — a ratio of nearly 18:1 — is deliberately anti-hierarchy. Most systems use a 3-4x ratio between display and body. Julia uses nearly 20x because the wordmark is not 'content' to be read; it is a surface to be inhabited. UI type stays at 10-18px and never grows, because the wordmark already owns the upper register."
+      },
+      {
+        "title": "Color Philosophy",
+        "content": "The chromatic border system is the most distinctive structural choice. Rather than assigning colors to categories (like a typical design system with blue=link, red=error), Julia draws each tile's border color from the photograph it contains. The grid becomes self-organizing: a scan across the page reveals a color rhythm dictated by the photography, not by a fixed palette. This means the 'color system' is emergent — it cannot be pre-specified, only bounded. The five canonical border hues (Vermillion, Cobalt, Marigold, Fern, Brass) represent the color families the portfolio tends to work in, and new tiles will naturally fall into one of these ranges."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. Photography tiles sit flush against the white canvas; separation is achieved through generous whitespace and thin chromatic hairlines, not drop shadows. The system treats elevation as an unnecessary decoration that would compete with the imagery."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "link",
+            "other",
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 641,
+          "confidence": 1,
+          "prominence": 12087052.615310505,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 6,
+            "body/color": 1,
+            "link/color": 5,
+            "other/fill": 6,
+            "other/color": 113,
+            "button/color": 1,
+            "nav/borderColor": 24,
+            "body/borderColor": 4,
+            "link/borderColor": 20,
+            "other/borderColor": 452,
+            "button/borderColor": 4,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f2572c",
+          "oklch": {
+            "c": 0.19840006243047953,
+            "h": 35.82253865123189,
+            "l": 0.6591373210463727
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "link"
+          ],
+          "frequency": 46,
+          "confidence": 1,
+          "prominence": 7198747.151774218,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "other/color": 4,
+            "link/borderColor": 16,
+            "other/borderColor": 16,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#e21715",
+          "oklch": {
+            "c": 0.22861977444427353,
+            "h": 28.611213172972818,
+            "l": 0.5797379196170364
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 98,
+          "confidence": 1,
+          "prominence": 1426597.7685014114,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 8,
+            "image/color": 2,
+            "other/color": 8,
+            "link/borderColor": 32,
+            "image/borderColor": 8,
+            "other/borderColor": 32,
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#086392",
+          "oklch": {
+            "c": 0.10638086804287779,
+            "h": 240.02131985713987,
+            "l": 0.47664837109581093
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 88,
+          "confidence": 1,
+          "prominence": 1363970.7810975905,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 8,
+            "other/color": 8,
+            "link/borderColor": 32,
+            "other/borderColor": 32,
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#f11216",
+          "oklch": {
+            "c": 0.242306898688418,
+            "h": 28.295246822509387,
+            "l": 0.6061285104338544
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 88,
+          "confidence": 1,
+          "prominence": 1362643.2557442423,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 8,
+            "other/color": 8,
+            "link/borderColor": 32,
+            "other/borderColor": 32,
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#2e99c9",
+          "oklch": {
+            "c": 0.11758982454386914,
+            "h": 232.67673831056402,
+            "l": 0.6448583229494677
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 49,
+          "confidence": 1,
+          "prominence": 1207141.8250061567,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "image/color": 1,
+            "other/color": 4,
+            "link/borderColor": 16,
+            "image/borderColor": 4,
+            "other/borderColor": 16,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#5bc52c",
+          "oklch": {
+            "c": 0.20826865856446508,
+            "h": 138.26350142850745,
+            "l": 0.7322719246378517
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 49,
+          "confidence": 1,
+          "prominence": 1189453.9797074026,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "image/color": 1,
+            "other/color": 4,
+            "link/borderColor": 16,
+            "image/borderColor": 4,
+            "other/borderColor": 16,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#c34a3b",
+          "oklch": {
+            "c": 0.15808454874866648,
+            "h": 29.81674104861414,
+            "l": 0.5701316747730352
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 93,
+          "confidence": 1,
+          "prominence": 828408.26660813,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 8,
+            "image/color": 1,
+            "other/color": 8,
+            "link/borderColor": 32,
+            "image/borderColor": 4,
+            "other/borderColor": 32,
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#dd391c",
+          "oklch": {
+            "c": 0.20461643956956935,
+            "h": 32.279937206946826,
+            "l": 0.5922720095614831
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 88,
+          "confidence": 1,
+          "prominence": 818442.0454061191,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 8,
+            "other/color": 8,
+            "link/borderColor": 32,
+            "other/borderColor": 32,
+            "other/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#b3813c",
+          "oklch": {
+            "c": 0.10548936239771764,
+            "h": 72.59821950388253,
+            "l": 0.6395566179717246
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 49,
+          "confidence": 1,
+          "prominence": 749470.2388649448,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "image/color": 1,
+            "other/color": 4,
+            "link/borderColor": 16,
+            "image/borderColor": 4,
+            "other/borderColor": 16,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ed036d",
+          "oklch": {
+            "c": 0.24336915166925888,
+            "h": 5.725533088537387,
+            "l": 0.608483689352268
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 49,
+          "confidence": 1,
+          "prominence": 699505.1800168691,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "image/color": 1,
+            "other/color": 4,
+            "link/borderColor": 16,
+            "image/borderColor": 4,
+            "other/borderColor": 16,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#b43429",
+          "oklch": {
+            "c": 0.16640643008056424,
+            "h": 29.006259754369506,
+            "l": 0.5171209914782255
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 49,
+          "confidence": 1,
+          "prominence": 697823.3108723162,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "image/color": 1,
+            "other/color": 4,
+            "link/borderColor": 16,
+            "image/borderColor": 4,
+            "other/borderColor": 16,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#c33e2d",
+          "oklch": {
+            "c": 0.17228303631197756,
+            "h": 30.51439122987842,
+            "l": 0.5540541957407669
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 44,
+          "confidence": 1,
+          "prominence": 590857.4909279171,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "other/color": 4,
+            "link/borderColor": 16,
+            "other/borderColor": 16,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#fe4f08",
+          "oklch": {
+            "c": 0.2206381132310616,
+            "h": 37.060596207670045,
+            "l": 0.6681791035752123
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 49,
+          "confidence": 1,
+          "prominence": 590200.617189502,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "image/color": 1,
+            "other/color": 4,
+            "link/borderColor": 16,
+            "image/borderColor": 4,
+            "other/borderColor": 16,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#df661f",
+          "oklch": {
+            "c": 0.169663615965429,
+            "h": 45.87113022232933,
+            "l": 0.6487595419524655
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 49,
+          "confidence": 1,
+          "prominence": 583512.6476046189,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "image/color": 1,
+            "other/color": 4,
+            "link/borderColor": 16,
+            "image/borderColor": 4,
+            "other/borderColor": 16,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#0364cb",
+          "oklch": {
+            "c": 0.1778916430669622,
+            "h": 256.4405215759095,
+            "l": 0.5171531338369392
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 44,
+          "confidence": 1,
+          "prominence": 567517.1152685159,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "other/color": 4,
+            "link/borderColor": 16,
+            "other/borderColor": 16,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#54a705",
+          "oklch": {
+            "c": 0.19037877110535675,
+            "h": 135.5818622947084,
+            "l": 0.6499149752672035
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 49,
+          "confidence": 1,
+          "prominence": 337553.3948542365,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "image/color": 1,
+            "other/color": 4,
+            "link/borderColor": 16,
+            "image/borderColor": 4,
+            "other/borderColor": 16,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#d13d25",
+          "oklch": {
+            "c": 0.18868074979151248,
+            "h": 31.91189496538299,
+            "l": 0.5760015133193904
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 44,
+          "confidence": 1,
+          "prominence": 328264.53512691363,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "other/color": 4,
+            "link/borderColor": 16,
+            "other/borderColor": 16,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#e71235",
+          "oklch": {
+            "c": 0.23194804465040014,
+            "h": 22.59371817803132,
+            "l": 0.5900522053680515
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 44,
+          "confidence": 1,
+          "prominence": 274191.7495404517,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 4,
+            "other/color": 4,
+            "link/borderColor": 16,
+            "other/borderColor": 16,
+            "other/backgroundColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.31374667180952875,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 9.47,
+          "background": "#5bc52c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.91,
+          "background": "#54a705",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.52,
+          "background": "#2e99c9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.34,
+          "background": "#fe4f08",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.18,
+          "background": "#f2572c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.12,
+          "background": "#b3813c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.06,
+          "background": "#df661f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.84,
+          "background": "#f11216",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.83,
+          "background": "#ed036d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.68,
+          "background": "#dd391c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.54,
+          "background": "#e71235",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.41,
+          "background": "#d13d25",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.37,
+          "background": "#e21715",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.36,
+          "background": "#c34a3b",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.05,
+          "background": "#c33e2d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.69,
+          "background": "#0364cb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.46,
+          "background": "#b43429",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.21,
+          "background": "#086392",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.95,
+          "background": "#5bc52c",
+          "foreground": "#086392"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.73,
+          "background": "#b43429",
+          "foreground": "#5bc52c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 384,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica",
+          "source": "system",
+          "weights": [
+            700
+          ],
+          "frequency": 321,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 10,
+          "family": "Helvetica",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "link",
+            "image"
+          ],
+          "frequency": 319,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Helvetica",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/0669f94e-2f96-4130-9653-b428d7d22fd8.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/eb8a8aa2-1420-4bbc-b6af-f1d1e2888928.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/837ba115-568f-4ada-8182-3dc100c8b3e4#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Photographer design system\",\"item\":\"https://styles.refero.design/style/837ba115-568f-4ada-8182-3dc100c8b3e4\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/837ba115-568f-4ada-8182-3dc100c8b3e4#style-reference\",\"name\":\"Photographer design system reference\",\"headline\":\"Photographer design system | Refero Styles\",\"description\":\"Explore Photographer's light Agency design system: Canvas White #ffffff, Wordmark Black #000000 colors, Helvetica typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/837ba115-568f-4ada-8182-3dc100c8b3e4\",\"mainEntityOfPage\":\"https://styles.refero.design/style/837ba115-568f-4ada-8182-3dc100c8b3e4\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Photographer\",\"url\":\"https://juliajohnson.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/837ba115-568f-4ada-8182-3dc100c8b3e4#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/eb8a8aa2-1420-4bbc-b6af-f1d1e2888928.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/eb8a8aa2-1420-4bbc-b6af-f1d1e2888928.jpg\",\"caption\":\"Screenshot of Photographer\"},\"image\":\"https://images.refero.design/styles/refero.design/image/eb8a8aa2-1420-4bbc-b6af-f1d1e2888928.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Photographer design system\",\"Photographer website design\",\"Photographer colors\",\"Photographer typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Canvas White\",\"Wordmark Black\",\"Vermillion Frame\",\"Cobalt Frame\",\"Helvetica\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Photographer design system\"},{\"@type\":\"Thing\",\"name\":\"Photographer website design\"},{\"@type\":\"Thing\",\"name\":\"Photographer colors\"},{\"@type\":\"Thing\",\"name\":\"Photographer typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:48:15.940Z\",\"dateModified\":\"2026-04-30T03:48:15.940Z\"}]}19:T667,## Quick Color Reference\n- text: #000000\n- background: #ffffff\n- border: #000000 (structural) | #e21715, #086392, #f2572c, #5bc52c, #b3813c (chromatic tile frames)\n- accent: Signal Red #f11216 (interactive links)\n- primary action: #e21715 (outlined action border)\n\n## Example Component Prompts\n\n1. **Julia Wordmark Overlay**: Render 'Julia' at 320px, Helvetica 700, line-height 0.85, letter-spacing -6.4px, #000000 on a #ffffff canvas. Position left-aligned, spanning the full vertical viewport height. The 'J' descender must extend below the baseline by ~30px. No other elements should overlap the letterforms.\n\n2. **Masonry Tile with Chromatic Frame**: A full-bleed editorial photograph (aspect ratio 3:4 portrait). 1px solid border in #e21715 (Vermillion) on all four sides. 0px border-radius. No padding, no shadow, no caption inside. 15px gap to neighboring tiles. The border color should match the image's dominant hue.\n\n3. **Navigation Link**: Bare text link, Helvetica 700, 10px, #000000, letter-spacing -0.2px. Underlined with a 1px #f11216 (Signal Red) border. No background, no padding, no border-radius, no button shape. Sits in the top-right corner of the page.\n\n4. **Full-Width Image Break**: A landscape editorial photograph at 16:9 aspect ratio spanning the full viewport width. 0px border-radius, no border, no overlay, no caption. Used once per scroll-fold to break the masonry rhythm.\n\n5. **Tile with Fern Border**: A photograph with green-dominant subject matter. Wrapped in 1px solid #5bc52c (Fern) border. Below the tile, a 10px Helvetica 700 caption in #000000, with a 1px #5bc52c underline matching the frame color."
+}

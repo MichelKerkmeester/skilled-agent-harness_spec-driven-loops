@@ -1,0 +1,392 @@
+{
+  "color": {
+    "aged-sepia": {
+      "$value": "#271a00",
+      "$type": "color",
+      "$description": "Aged Sepia — Primary text, borders, icons, strokes — the near-brown warmth softens digital harshness without sacrificing legibility. Appears across every UI context from nav to body to buttons."
+    },
+    "parchment": {
+      "$value": "#faf8f5",
+      "$type": "color",
+      "$description": "Parchment — Page backgrounds, card surfaces, heading text on dark — the cream canvas against which all content rests. Acts as both background and reversed foreground."
+    },
+    "fog": {
+      "$value": "#d1cfc7",
+      "$type": "color",
+      "$description": "Fog — Button fills, borders, dividers — a muted gray-beige midtone that bridges Parchment and Aged Sepia without introducing new chromatic energy."
+    },
+    "absolute-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Absolute Black — Footer backgrounds, high-contrast text inversion — appears sparingly, reserved for terminal anchoring at page bottom."
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card backgrounds, reversed text, button fills — pristine whites float above Parchment base, creating layered depth."
+    },
+    "moss-shadow": {
+      "$value": "#7c7464",
+      "$type": "color",
+      "$description": "Moss Shadow — Secondary body text, muted labels — a desaturated brown-gray for deemphasized content."
+    },
+    "deep-forest": {
+      "$value": "#23291b",
+      "$type": "color",
+      "$description": "Deep Forest — Nav backgrounds on scroll, elevated surfaces — a near-black with faint greenish tint echoing the botanical imagery."
+    },
+    "teal-accent": {
+      "$value": "#0f3639",
+      "$type": "color",
+      "$description": "Teal Accent — Nav active states, subtle highlights — the only cool color in a warm palette, used sparingly for interactive focus."
+    },
+    "ash-mist": {
+      "$value": "#e5e5e3",
+      "$type": "color",
+      "$description": "Ash Mist — Tertiary text, disabled states — lightest text color before transitioning to pure white."
+    },
+    "slate-edge": {
+      "$value": "#121516",
+      "$type": "color",
+      "$description": "Slate Edge — Headline text, button borders — nearly black but slightly warmer, used for maximum contrast without harshness."
+    }
+  },
+  "font": {
+    "pplxsans": {
+      "$value": "pplxSans",
+      "$type": "fontFamily",
+      "$description": "Interface workhorse — nav, body, buttons, badges, links at 11-16px for UI, 32-96px for hero headlines. Weight 300 at display sizes creates authority through whisper-weight restraint. Custom typeface ensures brand distinction unavailable through system fonts."
+    },
+    "pplxsansmono": {
+      "$value": "pplxSansMono",
+      "$type": "fontFamily",
+      "$description": "Code snippets, technical badges (/query markers), status labels — monospace grounds the AI agent narrative in developer credibility. Appears at 10-14px in buttons and badges."
+    },
+    "pplxserif": {
+      "$value": "pplxSerif",
+      "$type": "fontFamily",
+      "$description": "Section headlines, declaration moments — serif at 48-96px creates editorial gravitas, separating feature announcements from interface chrome. Weight 300 at 72-96px continues the whisper-weight authority pattern."
+    },
+    "pplx-serif-beta-v0-vf": {
+      "$value": "PPLX Serif Beta v0 VF",
+      "$type": "fontFamily",
+      "$description": "PPLX Serif Beta v0 VF — detected in extracted data but not described by AI"
+    },
+    "pplx-mono": {
+      "$value": "PPLX Mono",
+      "$type": "fontFamily",
+      "$description": "PPLX Mono — detected in extracted data but not described by AI"
+    },
+    "pplx-mono-beta-v0-vf": {
+      "$value": "PPLX Mono Beta v0 VF",
+      "$type": "fontFamily",
+      "$description": "PPLX Mono Beta v0 VF — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "pplxSansMono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "PPLX Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "11px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "pplxSansMono",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "PPLX Mono Beta v0 VF",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "pplxSansMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "pplxSansMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "pplxSansMono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "pplxSerif",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PPLX Serif Beta v0 VF",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "pplxSerif",
+        "fontSize": "72px",
+        "fontWeight": 300,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "pplxSerif",
+        "fontSize": "96px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 96px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 96px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#faf8f5",
+      "$type": "color",
+      "$description": "Surface level 1: Page background — the cream foundation upon which all content rests"
+    },
+    "pure-white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Primary content cards — pristine white floats 2-3% above Parchment base"
+    },
+    "fog-divider": {
+      "$value": "#d1cfc7",
+      "$type": "color",
+      "$description": "Surface level 3: Borders, button fills, subtle separators — midtone bridging layer"
+    },
+    "deep-forest-overlay": {
+      "$value": "#23291b",
+      "$type": "color",
+      "$description": "Surface level 4: Nav on scroll, elevated dark surfaces — near-black with botanical tint"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.perplexity.ai/products/computer",
+      "siteName": "Perplexity AI",
+      "extractedAt": "2026-04-17T02:02:05.925Z",
+      "variant": "extended"
+    }
+  }
+}

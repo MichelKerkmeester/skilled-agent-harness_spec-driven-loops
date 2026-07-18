@@ -1,0 +1,1367 @@
+{
+  "source": "https://styles.refero.design/style/49dba9e1-0d9d-4997-805a-bfea7525252d",
+  "uuid": "49dba9e1-0d9d-4997-805a-bfea7525252d",
+  "name": "Klarna ES",
+  "northStar": "midnight gallery with candy accents — a near-black plum void opens onto a warm bone-white floor scattered with vibrant product cards, anchored by oversized geometric type and pill-shaped controls.",
+  "capturedAt": "2026-07-18T09:42:47.412Z",
+  "meta": {
+    "url": "https://klarna.com",
+    "siteName": "Klarna ES",
+    "extractedAt": "2026-06-03T18:25:49.316Z",
+    "durationMs": 29972,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 727,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Midnight Plum (#0b051d) for all display headlines, hero backgrounds, and primary text — it's the signature brand color",
+      "Set page background to Warm Bone (#f9f8f5) for all content sections; reserve Midnight Plum for full-bleed dark sections only",
+      "Scale Klarna Title aggressively: 40px for section headings, 58px for major, 90px for hero — tight line-height (1.05-1.10) is essential",
+      "Use pill-shaped buttons (100px border-radius) for all interactive controls; pink (#ffa8cd) for accent CTAs, Midnight Plum for serious actions",
+      "Place accent cards (lavender, lime, deep plum) as individual scattered items, never in consecutive pairs — rhythm requires breathing room",
+      "Use 16px border-radius for cards and 32px for images/visuals; avoid 4-8px radii which would feel too sharp for this system",
+      "Keep shadows minimal: a single rgba(0,0,0,0.1) 0 2px 4px on cards, and 1px inset #e2e2e7 borders on buttons — never stack or blur shadows"
+    ],
+    "donts": [
+      "Don't use gray or neutral backgrounds for CTA buttons — pink (#ffa8cd) and Midnight Plum (#0b051d) are the only button fills",
+      "Don't use small heading sizes — the system requires 40px+ for any heading-level text; 16-20px is body/UI only",
+      "Don't add heavy drop shadows, glows, or glassmorphism — the design relies on flat color contrast for depth",
+      "Don't use pure black (#000000) — always use Midnight Plum (#0b051d) for dark elements to maintain the violet undertone",
+      "Don't group accent cards together (lavender next to lime next to plum) — intersperse with white cards for visual rest",
+      "Don't use line-heights above 1.20 for display type — the tight 1.05-1.10 line-height is what makes the oversized headlines feel controlled",
+      "Don't use system fonts for display headings — Klarna Title at 40px+ is the signature and must not be replaced with generic sans-serif"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0b051d",
+        "name": "Midnight Plum",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis.",
+        "group": "brand"
+      },
+      {
+        "hex": "#2c2242",
+        "name": "Deep Plum",
+        "role": "Accent card background — a slightly lifted version of Midnight Plum, used for dark-themed product/feature cards to create tonal variation within the dark family",
+        "group": "accent"
+      },
+      {
+        "hex": "#aa89f2",
+        "name": "Lavender Mist",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis",
+        "group": "accent"
+      },
+      {
+        "hex": "#e6ffa9",
+        "name": "Lime Sherbet",
+        "role": "Accent card background — high-key lime used as a rotating card surface color. High contrast against Midnight Plum text makes it ideal for dark-on-light product cards",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffa8cd",
+        "name": "Bubblegum Pink",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#f9f8f5",
+        "name": "Warm Bone",
+        "role": "Page canvas — the warm off-white that fills the body of every content section. Slightly cream-toned to feel inviting rather than clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces and nav background — used for elevated cards on the Warm Bone canvas, and for the sticky top navigation bar",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2e2e7",
+        "name": "Silver Mist",
+        "role": "Hairline borders, input outlines, and card edge definition. Also functions as the inset shadow color on buttons (rgb(228, 227, 223) inset ring)",
+        "group": "neutral"
+      },
+      {
+        "hex": "#615f6d",
+        "name": "Storm Gray",
+        "role": "Primary muted text — body copy, nav links, secondary descriptions. Near-gray with a slight cool violet undertone matching the brand",
+        "group": "neutral"
+      },
+      {
+        "hex": "#75727f",
+        "name": "Slate Gray",
+        "role": "Secondary text — captions, helper text, fine print, and less prominent body copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#373544",
+        "name": "Charcoal Plum",
+        "role": "Dark UI text and button borders — used on pill buttons and nav controls where a softer dark than Midnight Plum is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Ash Gray",
+        "role": "Tertiary neutral — placeholder text, disabled states, and very low-emphasis UI elements",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page uses a max-width 1200px centered container with full-bleed dark hero. The hero is a split layout: oversized left-aligned headline (occupying ~45% width) paired with a right-aligned phone mockup (~40% width). Below the hero, the page flows in single full-width bands of Warm Bone (#f9f8f5) canvas, each containing centered content. The primary content pattern is a 4-column card grid (gap: 24px) with a section heading above. Cards alternate between white and accent-colored backgrounds for visual rhythm. Navigation is a sticky white top bar with centered links, search icon, and dark sign-in pill button right-aligned. Vertical rhythm is generous: 48px section gaps, 16px element gaps, 24px card padding. The overall page reads as: dark dramatic opening → light airy content with colorful product cards → quiet legal disclaimer band.",
+    "imagery": "Imagery is minimal but intentional. The hero features a single large lifestyle photograph: a hand with neon green sleeve, gold rings, and yellow-painted nails holding a phone displaying the Klarna app. This is the only photography in the system and it carries significant weight — the hand's bold styling mirrors the playful accent palette. Product screenshots appear in feature cards, shown on phone frames with 32px corner radius. No illustrations, no abstract graphics, no 3D renders. The visual language is: one warm human moment, surrounded by colorful product cards, set against generous white space.",
+    "similar": [
+      {
+        "why": "Same dark-on-light duality with a deep near-black brand color, oversized geometric headlines, and rounded card components in a fintech context",
+        "business": "Revolut"
+      },
+      {
+        "why": "Similar premium fintech visual language with generous border-radius, pill-shaped controls, and a restrained palette with single vibrant accent moments",
+        "business": "N26"
+      },
+      {
+        "why": "Shares the playful approach to fintech with vibrant accent colors (pink/lime) scattered across cards on a light canvas, though Cash App leans more saturated",
+        "business": "Cash App"
+      },
+      {
+        "why": "Same warm off-white canvas treatment, oversized custom display typography, and minimal shadow philosophy where depth comes from color contrast",
+        "business": "Wise"
+      },
+      {
+        "why": "Similar confident use of oversized display type, dark hero-to-light-content transition, and a restrained base palette that lets accent colors pop on cards",
+        "business": "Spotify"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "20px",
+        "cards": "16px",
+        "pills": "999px",
+        "images": "32px",
+        "inputs": "20px",
+        "buttons": "100px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "48px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "fintech",
+    "surfaces": [
+      {
+        "hex": "#f9f8f5",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Warm off-white body background filling all content sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "White cards sitting on the Warm Bone canvas, and the top nav bar"
+      },
+      {
+        "hex": "#aa89f2",
+        "name": "Accent Card Surfaces",
+        "level": 2,
+        "purpose": "Vibrant rotating card backgrounds (lavender, lime, deep plum) for feature/product showcases"
+      },
+      {
+        "hex": "#0b051d",
+        "name": "Dark Hero Surface",
+        "level": 3,
+        "purpose": "Full-bleed dark hero section and dark-themed product cards"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.1) 0px 2px 4px 0px",
+        "element": "Card"
+      },
+      {
+        "style": "rgb(228, 227, 223) 0px 0px 0px 1px inset",
+        "element": "Button (inset border)"
+      }
+    ],
+    "northStar": "midnight gallery with candy accents — a near-black plum void opens onto a warm bone-white floor scattered with vibrant product cards, anchored by oversized geometric type and pill-shaped controls.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.003
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.003
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading-sm",
+        "size": 40,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading",
+        "size": 52,
+        "lineHeight": 1.06
+      },
+      {
+        "role": "heading-lg",
+        "size": 58,
+        "lineHeight": 1.05
+      },
+      {
+        "role": "display",
+        "size": 90,
+        "lineHeight": 1.05
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Sticky header with logo, nav links, search, and sign-in",
+        "description": "White (#ffffff) background, full-width, ~64px height. Klarna wordmark left in Midnight Plum, nav links centered in Storm Gray with 500 weight, search icon and dark 'Inicio de sesión' pill button right. Nav links: 'Descubre Klarna', 'Compra', 'App de Klarna', 'Ayuda'. Top utility row above in small text."
+      },
+      {
+        "name": "Pink Accent CTA Button",
+        "role": "Primary action call-to-action in hero and feature areas",
+        "description": "Pill-shaped (100px border-radius), Bubblegum Pink (#ffa8cd) background, Midnight Plum (#0b051d) text at 16px weight 500, padding ~10px 20px. This is the playful action color — warm and inviting. Use sparingly, one per screen at most."
+      },
+      {
+        "name": "Dark Sign-in Pill Button",
+        "role": "Navigation sign-in / login action",
+        "description": "Pill-shaped (100px radius), Midnight Plum (#0b051d) background, white text, 16px weight 500, 10px 20px padding. Contrasts with the pink CTA as the 'serious' counterpart action in the nav bar."
+      },
+      {
+        "name": "Ghost Text Link with Arrow",
+        "role": "Secondary navigation link under feature cards",
+        "description": "No background or border, Storm Gray (#615f6d) text at 16px, right-arrow icon (→) inlined. Text: 'Más información' or 'Descarga la app'. Underlined on hover."
+      },
+      {
+        "name": "Dark Hero Section",
+        "role": "Full-bleed opening section with headline and product visual",
+        "description": "Full-width Midnight Plum (#0b051d) background, ~560px height. Left: 90px display headline in white. Right: phone mockup image with 32px border-radius. Below headline: body text in lighter gray with a pink CTA button. The dark hero is a signature — it sets a premium, gallery-like tone before transitioning to the warm light canvas."
+      },
+      {
+        "name": "White Feature Card",
+        "role": "Light card in the feature grid with product image",
+        "description": "White (#ffffff) background, 16px border-radius, image area with 32px radius, 24px padding. Card title in 20px Midnight Plum weight 700, 'Más información →' text link below. Subtle drop shadow: rgba(0,0,0,0.1) 0 2px 4px."
+      },
+      {
+        "name": "Accent Feature Card (Colored)",
+        "role": "Vibrant product/feature card with colored background",
+        "description": "Full-bleed colored background — rotating between Lavender Mist (#aa89f2), Lime Sherbet (#e6ffa9), Deep Plum (#2c2242). 16px border-radius, product image or illustration fills the card. Title in 20px weight 700, link arrow below. These cards bring the 'candy' to the gallery — they should be scattered, not grouped, for visual rhythm."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Large section title introducing a content area",
+        "description": "Left-aligned, 40-58px Klarna Title weight 500-700, Midnight Plum text, no subtitle. Tight line-height (1.05-1.10). Typically sits above a card grid or feature row with 48px gap below."
+      },
+      {
+        "name": "Search Input",
+        "role": "Rounded search field in the nav bar",
+        "description": "Circular/pill input, Warm Bone (#f9f8f5) background, Silver Mist (#e2e2e7) 1px inset border, search icon left, placeholder text in Ash Gray. 20px+ border-radius for pill shape."
+      },
+      {
+        "name": "App Rating Badge",
+        "role": "Social proof indicator in the hero",
+        "description": "Small inline element: star icon (★) + rating text in white, '4,8/5 en el App Store'. No background or border, sits inline with hero description text."
+      },
+      {
+        "name": "Legal Disclaimer Block",
+        "role": "Fine print and regulatory text",
+        "description": "Full-width below feature cards, Storm Gray (#615f6d) text at 12-14px, tight line-height, with underlined links. Multi-paragraph, separated by superscript markers (1, 2, 3). Uses the system font, not Klarna Text."
+      },
+      {
+        "name": "Phone Mockup Visual",
+        "role": "Hero product screenshot showing the Klarna app",
+        "description": "Large image of a hand holding a phone, phone screen showing payment options. 32px border-radius on the phone frame. Takes up roughly 40% of the hero width. The human hand (with neon green sleeve, gold rings, yellow nails) adds warmth and lifestyle context — this is the only photography in the system."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Custom display font used exclusively for headings and hero text. Sizes escalate dramatically (40→58→90px) with tight 1.05-1.10 line-height — the 90px hero weight is a signature: oversized geometric type that commands the viewport. Normal letter-spacing at these sizes lets the letterforms breathe at their natural width.",
+        "sizes": "40px, 41px, 52px, 58px, 90px",
+        "family": "Klarna Title",
+        "weight": "500, 700",
+        "lineHeight": "1.05, 1.06, 1.10",
+        "substitute": "Inter, system-ui, -apple-system",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Custom UI/body font for navigation labels, input text, and smaller headings. Slight negative tracking (-0.01em) tightens display usage; -0.003em for body keeps text compact without feeling cramped. Weight 500 for nav, 700 for subheadings, 400 for body.",
+        "sizes": "14px, 16px, 20px",
+        "family": "Klarna Text",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.05, 1.20, 1.30",
+        "substitute": "Inter, system-ui, -apple-system",
+        "letterSpacing": "-0.0100em, -0.0030em"
+      },
+      {
+        "role": "System font fallback for body text, links, buttons, and general UI at 12-20px. Tighter line-heights (1.14-1.20) for compact UI elements, relaxed 1.43-1.50 for readable body paragraphs.",
+        "sizes": "12px, 14px, 16px, 20px",
+        "family": "-apple-system",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.05, 1.14, 1.20, 1.25, 1.43, 1.50",
+        "substitute": "-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif",
+        "letterSpacing": "-0.0030em"
+      }
+    ],
+    "description": "Klarna's visual system is a confident dark-meets-light duality: a near-black plum (#0b051d) anchors brand presence across the hero and display type, set against a warm bone-white canvas (#f9f8f5) that keeps content sections approachable rather than clinical. Oversized custom display typography at 90px commands the hero, while compact body text at 16px stays quiet and legible. Playful accent colors — bubblegum pink, lavender, lime, deep plum — appear as small punctuation on cards and CTAs, never as structural or background elements. Generous rounded corners (16-32px on cards, pill-shaped buttons), near-zero shadows, and hairline borders create a premium, almost gallery-like feel where depth comes from color contrast and scale, not from elevation.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/49dba9e1-0d9d-4997-805a-bfea7525252d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Klarna ES design system\",\"item\":\"https://styles.refero.design/style/49dba9e1-0d9d-4997-805a-bfea7525252d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/49dba9e1-0d9d-4997-805a-bfea7525252d#style-reference\",\"name\":\"Klarna ES design system reference\",\"headline\":\"Klarna ES design system | Refero Styles\",\"description\":\"Explore Klarna ES's light Fintech design system: Midnight Plum #0b051d, Deep Plum #2c2242 colors, Klarna Title, Klarna Text typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/49dba9e1-0d9d-4997-805a-bfea7525252d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/49dba9e1-0d9d-4997-805a-bfea7525252d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Klarna ES\",\"url\":\"https://klarna.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/49dba9e1-0d9d-4997-805a-bfea7525252d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/60a890c7-14b9-4e65-8239-0d952f9951ee.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/60a890c7-14b9-4e65-8239-0d952f9951ee.jpg\",\"caption\":\"Screenshot of Klarna ES\"},\"image\":\"https://images.refero.design/styles/refero.design/image/60a890c7-14b9-4e65-8239-0d952f9951ee.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Klarna ES design system\",\"Klarna ES website design\",\"Klarna ES colors\",\"Klarna ES typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Midnight Plum\",\"Deep Plum\",\"Lavender Mist\",\"Lime Sherbet\",\"Klarna Title\",\"Klarna Text\",\"-apple-system\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Klarna ES design system\"},{\"@type\":\"Thing\",\"name\":\"Klarna ES website design\"},{\"@type\":\"Thing\",\"name\":\"Klarna ES colors\"},{\"@type\":\"Thing\",\"name\":\"Klarna ES typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-03-28T20:47:07.000Z\",\"dateModified\":\"2026-03-28T20:47:07.000Z\"}]}19:T4bc,primary action: no distinct CTA color\n**Quick Color Reference**\n- text: #0b051d (Midnight Plum)\n- background: #f9f8f5 (Warm Bone)\n- surface/card: #ffffff (Pure White)\n- border: #e2e2e7 (Silver Mist)\n- muted text: #615f6d (Storm Gray)\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n**3-5 Example Component Prompts**\n\n\n2. **Feature Card Grid Row**: 4-column grid on Warm Bone (#f9f8f5) background, 24px gap. Each card: 16px border-radius, 24px padding. Alternating card styles: Card 1 white with product image, Card 2 Lavender Mist (#aa89f2) with dark product image, Card 3 Deep Plum (#2c2242) with white text, Card 4 Lime Sherbet (#e6ffa9) with dark product. Card title: 20px weight 700, Midnight Plum. 'Más información →' text link below in Storm Gray.\n\n3. **Section Heading**: 48px Klarna Title weight 500, Midnight Plum, line-height 1.10, left-aligned on Warm Bone canvas. 48px gap below to the content grid.\n\n4. **Pill Accent Button**: Bubblegum Pink (#ffa8cd) background, Midnight Plum (#0b051d) text, 16px weight 500, 10px 20px padding, 100px border-radius. Use as the playful action button in hero or feature areas."
+      },
+      {
+        "title": "Accent Card System",
+        "content": "Klarna's signature visual rhythm comes from a rotating set of four accent card backgrounds: Lavender Mist (#aa89f2), Lime Sherbet (#e6ffa9), Deep Plum (#2c2242), and the default white surface. These appear in 4-column feature grids and are never used as page backgrounds. The key rule: never place two accent cards adjacent to each other — always intersperse with white cards. This creates a breathing rhythm where color appears as punctuation, not as a wall. Deep Plum (#2c2242) should be treated as a 'dark accent' — it uses white text and mirrors the Midnight Plum hero tonally, creating a bridge between light and dark sections."
+      }
+    ],
+    "elevationPhilosophy": "Klarna deliberately avoids heavy elevation. The only shadow used on cards is an extremely subtle 2px/4px black-at-10% — barely perceptible. Buttons rely on an inset 1px hairline border (#e2e2e7) for definition rather than drop shadows. Depth is created through color contrast (dark hero on light canvas, colored accent cards on Warm Bone) and scale (90px display type), not through stacked shadows or glassmorphism."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0b051d",
+          "oklch": {
+            "c": 0.05106417223222883,
+            "h": 291.61799286063626,
+            "l": 0.14416203631904947
+          },
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "nav",
+            "button",
+            "image",
+            "icon",
+            "heading",
+            "body",
+            "card"
+          ],
+          "frequency": 3137,
+          "confidence": 1,
+          "prominence": 99722271.24670577,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f9f8f5",
+          "oklch": {
+            "c": 0.0041126820248931495,
+            "h": 91.44595448880399,
+            "l": 0.9790605294760115
+          },
+          "contexts": [
+            "other",
+            "card",
+            "button"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 4208152.072041413,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#615f6d",
+          "oklch": {
+            "c": 0.022227847110155078,
+            "h": 292.11913900875714,
+            "l": 0.4923317399695031
+          },
+          "contexts": [
+            "link",
+            "nav",
+            "other",
+            "body",
+            "icon",
+            "input"
+          ],
+          "frequency": 89,
+          "confidence": 1,
+          "prominence": 973375.4695574788,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "body",
+            "image"
+          ],
+          "frequency": 108,
+          "confidence": 1,
+          "prominence": 925887.6156294835,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e2e2e7",
+          "oklch": {
+            "c": 0.006734395685530175,
+            "h": 286.26568613889935,
+            "l": 0.9142312875797679
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "card",
+            "other"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 824323.0627636625,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 497802.30206109385,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffd0e2",
+          "oklch": {
+            "c": 0.057482042051730485,
+            "h": 353.3545326483216,
+            "l": 0.9031005881800341
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 228000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2c2242",
+          "oklch": {
+            "c": 0.058448828908966965,
+            "h": 296.85920209867743,
+            "l": 0.27998790752839864
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 158236,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#aa89f2",
+          "oklch": {
+            "c": 0.15205232379807154,
+            "h": 296.7974485940412,
+            "l": 0.7038519221786522
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 158236,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e6ffa9",
+          "oklch": {
+            "c": 0.11218076199996495,
+            "h": 121.71282867287341,
+            "l": 0.9621250439387067
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 158236,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#75727f",
+          "oklch": {
+            "c": 0.021062939570315495,
+            "h": 297.1531361739111,
+            "l": 0.5588534339821755
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 75,
+          "confidence": 1,
+          "prominence": 66977.78294411523,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#373544",
+          "oklch": {
+            "c": 0.026210149346575944,
+            "h": 291.03567569183946,
+            "l": 0.3372065007966645
+          },
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 18724.449173305857,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffa8cd",
+          "oklch": {
+            "c": 0.11143492445503518,
+            "h": 352.70148168829684,
+            "l": 0.8271010130393041
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 6511,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1f1f1f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23929237775790413
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 280,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1d192a",
+          "oklch": {
+            "c": 0.03289069808863037,
+            "h": 294.4306399614662,
+            "l": 0.22659040675661968
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.1267103572405078,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.93,
+          "background": "#ffffff",
+          "foreground": "#0b051d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.77,
+          "background": "#f9f8f5",
+          "foreground": "#0b051d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#e6ffa9",
+          "foreground": "#0b051d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.15,
+          "background": "#1d192a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.48,
+          "background": "#ffffff",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.15,
+          "background": "#f9f8f5",
+          "foreground": "#1d192a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.71,
+          "background": "#e6ffa9",
+          "foreground": "#1d192a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.52,
+          "background": "#f9f8f5",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.44,
+          "background": "#e2e2e7",
+          "foreground": "#0b051d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.1,
+          "background": "#e6ffa9",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.85,
+          "background": "#2c2242",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.59,
+          "background": "#ffd0e2",
+          "foreground": "#0b051d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.98,
+          "background": "#f9f8f5",
+          "foreground": "#2c2242"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.6,
+          "background": "#e6ffa9",
+          "foreground": "#2c2242"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.28,
+          "background": "#e2e2e7",
+          "foreground": "#1d192a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.77,
+          "background": "#e2e2e7",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.55,
+          "background": "#ffd0e2",
+          "foreground": "#1d192a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.07,
+          "background": "#ffd0e2",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.96,
+          "background": "#ffffff",
+          "foreground": "#373544"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.5,
+          "background": "#e2e2e7",
+          "foreground": "#2c2242"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 85
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 40
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 999,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.1) 0px 2px 4px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": "rgb(228, 227, 223) 0px 0px 0px 1px inset",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 34,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 61,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 34,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 17,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 52,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 92,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 143,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "-apple-system",
+          "source": "system",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 687,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Klarna Title",
+          "source": "custom",
+          "weights": [
+            500,
+            700
+          ],
+          "frequency": 15,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Klarna Text",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "-apple-system",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.003,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Klarna Text",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "input"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.003,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "-apple-system",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "nav",
+            "button",
+            "image",
+            "icon",
+            "card",
+            "body",
+            "link"
+          ],
+          "frequency": 488,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Klarna Text",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.003,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "-apple-system",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "image",
+            "icon",
+            "body"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "-apple-system",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Klarna Text",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "-apple-system",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Klarna Title",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 41,
+          "family": "Klarna Title",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Klarna Title",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.06,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Klarna Title",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "Klarna Title",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 90,
+          "family": "Klarna Title",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c2e0d615-f920-40b7-836d-9ee209227caa.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/60a890c7-14b9-4e65-8239-0d952f9951ee.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/49dba9e1-0d9d-4997-805a-bfea7525252d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Klarna ES design system\",\"item\":\"https://styles.refero.design/style/49dba9e1-0d9d-4997-805a-bfea7525252d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/49dba9e1-0d9d-4997-805a-bfea7525252d#style-reference\",\"name\":\"Klarna ES design system reference\",\"headline\":\"Klarna ES design system | Refero Styles\",\"description\":\"Explore Klarna ES's light Fintech design system: Midnight Plum #0b051d, Deep Plum #2c2242 colors, Klarna Title, Klarna Text typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/49dba9e1-0d9d-4997-805a-bfea7525252d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/49dba9e1-0d9d-4997-805a-bfea7525252d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Klarna ES\",\"url\":\"https://klarna.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/49dba9e1-0d9d-4997-805a-bfea7525252d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/60a890c7-14b9-4e65-8239-0d952f9951ee.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/60a890c7-14b9-4e65-8239-0d952f9951ee.jpg\",\"caption\":\"Screenshot of Klarna ES\"},\"image\":\"https://images.refero.design/styles/refero.design/image/60a890c7-14b9-4e65-8239-0d952f9951ee.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Klarna ES design system\",\"Klarna ES website design\",\"Klarna ES colors\",\"Klarna ES typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Fintech design system\",\"Midnight Plum\",\"Deep Plum\",\"Lavender Mist\",\"Lime Sherbet\",\"Klarna Title\",\"Klarna Text\",\"-apple-system\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Klarna ES design system\"},{\"@type\":\"Thing\",\"name\":\"Klarna ES website design\"},{\"@type\":\"Thing\",\"name\":\"Klarna ES colors\"},{\"@type\":\"Thing\",\"name\":\"Klarna ES typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Fintech design system\"}],\"datePublished\":\"2026-03-28T20:47:07.000Z\",\"dateModified\":\"2026-03-28T20:47:07.000Z\"}]}19:T4bc,primary action: no distinct CTA color\n**Quick Color Reference**\n- text: #0b051d (Midnight Plum)\n- background: #f9f8f5 (Warm Bone)\n- surface/card: #ffffff (Pure White)\n- border: #e2e2e7 (Silver Mist)\n- muted text: #615f6d (Storm Gray)\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n**3-5 Example Component Prompts**\n\n\n2. **Feature Card Grid Row**: 4-column grid on Warm Bone (#f9f8f5) background, 24px gap. Each card: 16px border-radius, 24px padding. Alternating card styles: Card 1 white with product image, Card 2 Lavender Mist (#aa89f2) with dark product image, Card 3 Deep Plum (#2c2242) with white text, Card 4 Lime Sherbet (#e6ffa9) with dark product. Card title: 20px weight 700, Midnight Plum. 'Más información →' text link below in Storm Gray.\n\n3. **Section Heading**: 48px Klarna Title weight 500, Midnight Plum, line-height 1.10, left-aligned on Warm Bone canvas. 48px gap below to the content grid.\n\n4. **Pill Accent Button**: Bubblegum Pink (#ffa8cd) background, Midnight Plum (#0b051d) text, 16px weight 500, 10px 20px padding, 100px border-radius. Use as the playful action button in hero or feature areas."
+}

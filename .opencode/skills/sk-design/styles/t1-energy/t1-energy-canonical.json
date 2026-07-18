@@ -1,0 +1,981 @@
+{
+  "source": "https://styles.refero.design/style/e79b761d-f476-4c5d-8943-e31a58664e4d",
+  "uuid": "e79b761d-f476-4c5d-8943-e31a58664e4d",
+  "name": "T1 Energy",
+  "northStar": "Factory floor blueprint on warm vellum — a quiet, monochromatic stage where industrial scale and whisper-light typography carry the entire brand.",
+  "capturedAt": "2026-07-18T08:33:40.254Z",
+  "meta": {
+    "url": "https://t1energy.com",
+    "siteName": "T1 Energy",
+    "extractedAt": "2026-06-03T16:19:26.410Z",
+    "durationMs": 37876,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 155,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use T1 Sans weight 300 at 52px for all display headlines — the light weight is the brand's typographic signature and should not be replaced by 600/700 bold.",
+      "Set border-radius to 80px on all image containers and 100px on all interactive buttons to maintain the pill-and-orb geometry.",
+      "Use Carbon Warm (#322d2a) for all borders, text, and filled interactive elements — never use pure black #000000 for text or backgrounds.",
+      "Maintain section gaps of 48px and card padding of 22px to preserve the breathing, specification-sheet rhythm.",
+      "Prefix every section label with the 4px solid square indicator in Carbon Warm before the uppercase label text.",
+      "Keep the palette to vellum canvas, white surfaces, and carbon text — the absence of color is the design.",
+      "Set display headline line-height to exactly 1.0 so the large 52px text forms a tight, architectural block."
+    ],
+    "donts": [
+      "Do not introduce accent colors, gradients, or decorative hues — the 1% colorfulness is intentional and breaking it will shatter the engineered restraint.",
+      "Do not use pure black (#000000) for text, backgrounds, or borders — always warm it to Carbon Warm (#322d2a) or cool it to Onyx (#0f0e12).",
+      "Do not apply box-shadows to cards, buttons, or navigation — the design relies on flat tonal layering (vellum → white → carbon), not elevation.",
+      "Do not set border-radius below 8px on any container — the system is built on generous rounding, and sharp corners will feel out of place.",
+      "Do not use bold or semibold weights for headlines — T1 Sans only ships 300 and 400, and the whisper-light display is the whole point.",
+      "Do not add icons, illustrations, or emoji to section labels or body copy — the square indicator and typography carry all visual signaling.",
+      "Do not break the full-bleed image pattern with borders, frames, or padding around photographs — images should float directly on the vellum canvas with their 80px radius."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f0efe9",
+        "name": "Vellum",
+        "role": "Page canvas, section backgrounds — the warm off-white that defines the entire surface treatment",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#322d2a",
+        "name": "Carbon Warm",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0f0e12",
+        "name": "Onyx Depth",
+        "role": "Footer surface, deepest elevation layer, darkest UI containers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8b8b8b",
+        "name": "Mercury",
+        "role": "Muted secondary text, disabled states, subtle surface layering",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "SVG icon fills, monochrome graphic elements only — never used for text or backgrounds",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered content, with hero sections breaking out to full-bleed. The hero is a full-viewport industrial photograph with bottom-left headline overlay. Below the hero, content alternates in single-column stacks and two-column splits (text-left/image-right). Image cards use 80px corner radius and sit side-by-side as a two-column pair. The technology section uses a split layout: 3D product render on the left, accordion stack on the right. Vertical rhythm is controlled by 48px section gaps with generous internal breathing room. Navigation is a floating dark pill anchored to the top of the viewport, not a full-width bar. No sidebar, no mega-menu, no sticky elements beyond the nav.",
+    "imagery": "Photography is full-bleed industrial documentary — factory floors, robotic arms, solar cell production lines — presented without overlays, duotones, or color treatment. Images are cropped to fill their containers edge-to-edge with 80px border-radius, making them feel like circular portholes into the manufacturing process. No lifestyle photography, no abstract graphics, no illustrations. Product renders (e.g., the TOPCon solar cell 3D model) appear as isolated objects on the vellum canvas, center-left of their section, with no background treatment. The imagery carries the brand's industrial credibility directly — it is the only source of visual richness in an otherwise austere interface.",
+    "similar": [
+      {
+        "why": "Same ultra-minimal monochromatic approach with warm neutrals, large whisper-light headlines, and full-bleed industrial photography",
+        "business": "Crusoe Energy"
+      },
+      {
+        "why": "Deep-tech manufacturing brand using a nearly colorless palette, dark pill navigation, and generous rounded image containers",
+        "business": "Commonwealth Fusion Systems"
+      },
+      {
+        "why": "Clean industrial energy company with flat tonal layering, no shadows, and dramatic corner radii on media containers",
+        "business": "Form Energy"
+      },
+      {
+        "why": "American advanced-manufacturing brand using warm off-white canvas, charcoal text, and pill-shaped navigation as the sole chromatic gesture",
+        "business": "Hadrian"
+      },
+      {
+        "why": "Battery technology company with the same specification-sheet aesthetic — flat surfaces, monospaced-feeling geometry, and full-bleed factory photography",
+        "business": "Sila"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "16px",
+        "body": "12px",
+        "cards": "80px",
+        "pills": "100px",
+        "small": "8px",
+        "buttons": "16px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "48px",
+      "cardPadding": "22px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#f0efe9",
+        "name": "Vellum Canvas",
+        "level": 0,
+        "purpose": "Base page background and the majority of content sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 1,
+        "purpose": "Elevated cards, floating panels, content wells above the vellum canvas"
+      },
+      {
+        "hex": "#322d2a",
+        "name": "Carbon Warm",
+        "level": 2,
+        "purpose": "Navigation pill, filled buttons, case study card, footer-adjacent dark surfaces"
+      },
+      {
+        "hex": "#0f0e12",
+        "name": "Onyx Depth",
+        "level": 3,
+        "purpose": "Footer terminator, darkest elevation layer"
+      }
+    ],
+    "northStar": "Factory floor blueprint on warm vellum — a quiet, monochromatic stage where industrial scale and whisper-light typography carry the entire brand.",
+    "typeScale": [
+      {
+        "role": "label",
+        "size": 12,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.12
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.14
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.16
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.22
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.32
+      },
+      {
+        "role": "display",
+        "size": 52,
+        "lineHeight": 1,
+        "letterSpacing": 0.52
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Navigation Bar",
+        "role": "Primary site navigation — floats as a dark horizontal pill anchored top-right",
+        "description": "Dark Carbon Warm (#322d2a) background, 16px border-radius, 36px vertical padding, 24px horizontal padding. White (#ffffff) link text at 14px weight 400, separated by 24px gaps. Logo T1 mark appears to the left within the same pill or adjacent. Sits over page content with no visible shadow — the contrast difference alone separates it from the vellum canvas."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand identifier in navigation",
+        "description": "Geometric 'T1' wordmark in white when on dark navigation surface. Simple constructed letterforms with the '1' sharing the 'T' crossbar. No tagline, no decorative element."
+      },
+      {
+        "name": "Filled Primary Button",
+        "role": "Primary action trigger (e.g., 'Discover')",
+        "description": "Carbon Warm (#322d2a) background, white text at 14px weight 400, 18px vertical / 22px horizontal padding, 100px border-radius (full pill). No border, no shadow. The pill shape and dark fill make it the highest-weight interactive element on any page."
+      },
+      {
+        "name": "Ghost Outlined Button",
+        "role": "Secondary action trigger (e.g., 'Learn More')",
+        "description": "Transparent background, 1px Carbon Warm (#322d2a) border, Carbon Warm text at 14px weight 400, 18px vertical / 22px horizontal padding, 100px border-radius (full pill). The outlined pill mirrors the filled button's geometry, differing only in fill — the two are a matched pair."
+      },
+      {
+        "name": "Section Label",
+        "role": "Tiny uppercase section identifier (e.g., 'MISSION', 'TECHNOLOGY', 'CASE STUDY')",
+        "description": "A small solid square (4px × 4px) in Carbon Warm precedes the label text. Label rendered at ~11–12px weight 400, uppercase, letter-spacing ~0.12em, Carbon Warm color. The square indicator is a signature device — it replaces the conventional dot or icon and gives the labels a machined, dial-like quality."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero and section-level headlines",
+        "description": "T1 Sans weight 300, 52px, line-height 1.0, letter-spacing 0.52px, Carbon Warm color. The ultra-light weight is the single most distinctive typographic choice on the site — it makes large headlines feel like etched specifications rather than shouted declarations."
+      },
+      {
+        "name": "Case Study Card",
+        "role": "Compact overlay card on hero image — promotes a featured case study",
+        "description": "Carbon Warm (#322d2a) dark surface, 12px border-radius, ~16px padding. Contains a 'CASE STUDY' label in white at 12px, a short white headline at 14px weight 400, and a small map thumbnail image on the right side. The dark card on a photographic background creates a film-still caption effect."
+      },
+      {
+        "name": "Image Card",
+        "role": "Full-bleed image containers in content sections",
+        "description": "Image fills the container edge-to-edge. Container border-radius is 80px — the most dramatic radius on the site, making rectangular photos feel almost circular. No caption, no border, no shadow; the image is the entire content."
+      },
+      {
+        "name": "Accordion Item",
+        "role": "Expandable technology breakdown (e.g., TOPCon layer stack)",
+        "description": "Full-width row with Carbon Warm text label at ~18–22px weight 400 on the left, circular expand/collapse icon button on the right. The icon button is 40px diameter, 100px border-radius, Carbon Warm 1px border, white background. Active/expanded item shows a minus (−) icon; collapsed items show a plus (+). Rows are separated by 1px Carbon Warm hairlines. The active item's description text appears in smaller weight below the label."
+      },
+      {
+        "name": "Hero Overlay",
+        "role": "Full-viewport photographic background with text overlay",
+        "description": "Full-bleed industrial/factory photograph with a large display headline (52px weight 300, white) positioned bottom-left. A filled primary button sits below the headline. No gradient, no darkening overlay — the text relies on the photographic tonal range for legibility. The image extends to all viewport edges."
+      },
+      {
+        "name": "Footer",
+        "role": "Site footer with darkest surface treatment",
+        "description": "Onyx Depth (#0f0e12) background, 30px bottom padding, white text at 14px weight 400. The near-black footer is the only place a dark surface appears at full width, giving the page a definitive terminator."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole typeface across all surfaces. Weight 300 is used at 52px for hero and section display headlines — an anti-convention choice that makes industrial copy feel architectural rather than assertive. Weight 400 at 14px handles body, labels, and navigation. The custom geometric construction carries a technical-instrument quality that system sans-serifs cannot replicate. The 1.0 line-height on display creates tight headline blocks; the 1.3 on body gives reading comfort. Substitute with Inter or Söhne for similar geometric neutrality.",
+        "sizes": "14px, 52px",
+        "family": "T1 Sans",
+        "weight": "300, 400",
+        "lineHeight": "1.00 (display), 1.30 (body)",
+        "substitute": "Inter or Söhne",
+        "letterSpacing": "0.01em universally (~0.52px at 52px, ~0.14px at 14px) — barely open, just enough to prevent the light weight from feeling cramped",
+        "fontFeatureSettings": "No special features detected; rely on default contextual alternates"
+      }
+    ],
+    "description": "T1 Energy speaks the visual language of precision manufacturing: a warm cream canvas, charcoal typography rendered in whisper-light weight, and rounded geometry that softens industrial subject matter. The interface is nearly colorless by design — every element earns its presence through scale, spacing, and shape rather than hue. Navigation floats as a dark pill against the pale surface, imagery uses dramatically rounded 80px corners that echo engineered curves, and content sections breathe with generous 48px gaps. The overall feel is that of a technical specification sheet rendered as a website — precise, confident, and unadorned.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e79b761d-f476-4c5d-8943-e31a58664e4d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"T1 Energy design system\",\"item\":\"https://styles.refero.design/style/e79b761d-f476-4c5d-8943-e31a58664e4d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e79b761d-f476-4c5d-8943-e31a58664e4d#style-reference\",\"name\":\"T1 Energy design system reference\",\"headline\":\"T1 Energy design system | Refero Styles\",\"description\":\"Explore T1 Energy's light Other design system: Vellum #f0efe9, Paper White #ffffff colors, T1 Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e79b761d-f476-4c5d-8943-e31a58664e4d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e79b761d-f476-4c5d-8943-e31a58664e4d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"T1 Energy\",\"url\":\"https://t1energy.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e79b761d-f476-4c5d-8943-e31a58664e4d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a755f7c6-aeaa-4cc2-bbc7-a04071e0ddfe.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a755f7c6-aeaa-4cc2-bbc7-a04071e0ddfe.jpg\",\"caption\":\"Screenshot of T1 Energy\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a755f7c6-aeaa-4cc2-bbc7-a04071e0ddfe.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"T1 Energy design system\",\"T1 Energy website design\",\"T1 Energy colors\",\"T1 Energy typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Vellum\",\"Paper White\",\"Carbon Warm\",\"Onyx Depth\",\"T1 Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"T1 Energy design system\"},{\"@type\":\"Thing\",\"name\":\"T1 Energy website design\"},{\"@type\":\"Thing\",\"name\":\"T1 Energy colors\"},{\"@type\":\"Thing\",\"name\":\"T1 Energy typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:31:18.279Z\",\"dateModified\":\"2026-04-30T00:31:18.279Z\"}]}19:T792,## Quick Color Reference\n- text: #322d2a (Carbon Warm)\n- background: #f0efe9 (Vellum)\n- surface: #ffffff (Paper White)\n- border: #322d2a\n- accent: none — the system is monochromatic\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Hero with overlay text**: Full-bleed industrial photograph filling the viewport. Bottom-left display headline: T1 Sans weight 300, 52px, line-height 1.0, letter-spacing 0.52px, color #ffffff. Below it a filled button: Carbon Warm (#322d2a) background, white text at 14px weight 400, 18px vertical and 22px horizontal padding, 100px border-radius. No overlay, no shadow.\n\n2. **Section with label and body**: Vellum (#f0efe9) background. Top-left section label: a 4px solid square in #322d2a followed by uppercase text at 12px weight 400, letter-spacing 0.12em, color #322d2a. Below, body text in T1 Sans weight 400, 16px, line-height 1.4, color #322d2a. A ghost button at the bottom: transparent background, 1px #322d2a border, text color #322d2a, 18px/22px padding, 100px border-radius.\n\n3. **Two-column image pair**: Two images side by side on vellum canvas, each filling its container edge-to-edge with 80px border-radius. No captions, no borders, no gaps between the images and the vellum background.\n\n4. **Accordion list**: Full-width rows on vellum canvas. Each row has a label on the left in T1 Sans weight 400, ~20px, color #322d2a. On the right, a circular icon button: 40px diameter, 100px border-radius, 1px #322d2a border, white (#ffffff) background, containing either a + or − character. Rows separated by 1px #322d2a hairline dividers.\n\n5. **Navigation pill**: Dark Carbon Warm (#322d2a) pill at the top of the page, 16px border-radius, 36px vertical padding, 24px horizontal padding. White (#ffffff) text links at 14px weight 400 separated by 24px gaps. T1 logo mark on the left in white. No shadow — the tonal contrast against the vellum canvas is sufficient."
+      },
+      {
+        "title": "Signature Design Choices",
+        "content": "Three choices define this system more than any other: (1) Weight 300 at 52px for all display headlines — an anti-convention whisper-weight that makes industrial copy feel architectural; (2) The 4px solid square preceding every section label — a machined dial-indicator replacing the conventional bullet or icon; (3) 80px border-radius on all image containers — turning rectangular photographs into soft portholes that contrast with the otherwise flat, technical interface. Together these create a visual language that is simultaneously industrial and gentle, precise and breathable."
+      }
+    ],
+    "elevationPhilosophy": "The design is deliberately shadowless. All visual hierarchy is achieved through tonal layering (vellum → white → carbon → onyx) and generous spacing, never through drop shadows. This keeps the interface feeling flat, precise, and instrument-like rather than skeuomorphic or app-like."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#322d2a",
+          "oklch": {
+            "c": 0.009045192357843273,
+            "h": 53.142740588278116,
+            "l": 0.30143384726169764
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "card",
+            "image",
+            "body"
+          ],
+          "frequency": 320,
+          "confidence": 1,
+          "prominence": 84277130.08046608,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "body/color": 1,
+            "card/color": 8,
+            "hero/color": 1,
+            "image/color": 13,
+            "other/color": 40,
+            "nav/borderColor": 4,
+            "body/borderColor": 4,
+            "card/borderColor": 32,
+            "hero/borderColor": 4,
+            "image/borderColor": 52,
+            "other/borderColor": 160
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "other",
+            "nav",
+            "hero",
+            "button",
+            "heading",
+            "body",
+            "image",
+            "icon",
+            "footer"
+          ],
+          "frequency": 308,
+          "confidence": 1,
+          "prominence": 10608151.33328736,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 17,
+            "body/color": 1,
+            "hero/color": 1,
+            "icon/color": 2,
+            "link/color": 1,
+            "other/fill": 14,
+            "image/color": 1,
+            "other/color": 26,
+            "button/color": 4,
+            "footer/color": 1,
+            "other/stroke": 16,
+            "heading/color": 1,
+            "nav/borderColor": 68,
+            "body/borderColor": 4,
+            "hero/borderColor": 4,
+            "icon/borderColor": 8,
+            "link/borderColor": 4,
+            "image/borderColor": 4,
+            "other/borderColor": 104,
+            "button/borderColor": 16,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4,
+            "body/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#0f0e12",
+          "oklch": {
+            "c": 0.008410744564096278,
+            "h": 296.9239243095669,
+            "l": 0.1668474729216542
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 2766926.0961589483,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 4,
+            "other/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f0efe9",
+          "oklch": {
+            "c": 0.008048491768727245,
+            "h": 98.88150883989579,
+            "l": 0.9512376815895236
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1160796,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 368835.1297458722,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 21
+          }
+        },
+        {
+          "hex": "#8b8b8b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6367600357959382
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 112675.997151704,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.012088065787981703,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.23,
+          "background": "#0f0e12",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.23,
+          "background": "#f0efe9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.69,
+          "background": "#f0efe9",
+          "foreground": "#0f0e12"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.6,
+          "background": "#ffffff",
+          "foreground": "#322d2a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.8,
+          "background": "#f0efe9",
+          "foreground": "#322d2a"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.65,
+          "background": "#8b8b8b",
+          "foreground": "#0f0e12"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.99,
+          "background": "#8b8b8b",
+          "foreground": "#322d2a"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.41,
+          "background": "#8b8b8b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.41,
+          "background": "#0f0e12",
+          "foreground": "#322d2a"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.15,
+          "background": "#f0efe9",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 80,
+          "contexts": [
+            "card",
+            "other",
+            "image"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "hero",
+            "button",
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|hero",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other",
+            "hero",
+            "footer"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingTop|hero",
+            "paddingRight|hero",
+            "paddingBottom|hero",
+            "paddingLeft|hero",
+            "paddingRight|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "T1 Sans",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 112,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "T1 Sans Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "T1 Sans Mono",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "T1 Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "body",
+            "card",
+            "image",
+            "footer"
+          ],
+          "frequency": 92,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "T1 Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "T1 Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "image"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "T1 Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "T1 Sans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8775dc60-71b6-4c23-bf35-335984bfb3bb.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a755f7c6-aeaa-4cc2-bbc7-a04071e0ddfe.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e79b761d-f476-4c5d-8943-e31a58664e4d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"T1 Energy design system\",\"item\":\"https://styles.refero.design/style/e79b761d-f476-4c5d-8943-e31a58664e4d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e79b761d-f476-4c5d-8943-e31a58664e4d#style-reference\",\"name\":\"T1 Energy design system reference\",\"headline\":\"T1 Energy design system | Refero Styles\",\"description\":\"Explore T1 Energy's light Other design system: Vellum #f0efe9, Paper White #ffffff colors, T1 Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e79b761d-f476-4c5d-8943-e31a58664e4d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e79b761d-f476-4c5d-8943-e31a58664e4d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"T1 Energy\",\"url\":\"https://t1energy.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e79b761d-f476-4c5d-8943-e31a58664e4d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a755f7c6-aeaa-4cc2-bbc7-a04071e0ddfe.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a755f7c6-aeaa-4cc2-bbc7-a04071e0ddfe.jpg\",\"caption\":\"Screenshot of T1 Energy\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a755f7c6-aeaa-4cc2-bbc7-a04071e0ddfe.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"T1 Energy design system\",\"T1 Energy website design\",\"T1 Energy colors\",\"T1 Energy typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Vellum\",\"Paper White\",\"Carbon Warm\",\"Onyx Depth\",\"T1 Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"T1 Energy design system\"},{\"@type\":\"Thing\",\"name\":\"T1 Energy website design\"},{\"@type\":\"Thing\",\"name\":\"T1 Energy colors\"},{\"@type\":\"Thing\",\"name\":\"T1 Energy typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:31:18.279Z\",\"dateModified\":\"2026-04-30T00:31:18.279Z\"}]}19:T792,## Quick Color Reference\n- text: #322d2a (Carbon Warm)\n- background: #f0efe9 (Vellum)\n- surface: #ffffff (Paper White)\n- border: #322d2a\n- accent: none — the system is monochromatic\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Hero with overlay text**: Full-bleed industrial photograph filling the viewport. Bottom-left display headline: T1 Sans weight 300, 52px, line-height 1.0, letter-spacing 0.52px, color #ffffff. Below it a filled button: Carbon Warm (#322d2a) background, white text at 14px weight 400, 18px vertical and 22px horizontal padding, 100px border-radius. No overlay, no shadow.\n\n2. **Section with label and body**: Vellum (#f0efe9) background. Top-left section label: a 4px solid square in #322d2a followed by uppercase text at 12px weight 400, letter-spacing 0.12em, color #322d2a. Below, body text in T1 Sans weight 400, 16px, line-height 1.4, color #322d2a. A ghost button at the bottom: transparent background, 1px #322d2a border, text color #322d2a, 18px/22px padding, 100px border-radius.\n\n3. **Two-column image pair**: Two images side by side on vellum canvas, each filling its container edge-to-edge with 80px border-radius. No captions, no borders, no gaps between the images and the vellum background.\n\n4. **Accordion list**: Full-width rows on vellum canvas. Each row has a label on the left in T1 Sans weight 400, ~20px, color #322d2a. On the right, a circular icon button: 40px diameter, 100px border-radius, 1px #322d2a border, white (#ffffff) background, containing either a + or − character. Rows separated by 1px #322d2a hairline dividers.\n\n5. **Navigation pill**: Dark Carbon Warm (#322d2a) pill at the top of the page, 16px border-radius, 36px vertical padding, 24px horizontal padding. White (#ffffff) text links at 14px weight 400 separated by 24px gaps. T1 logo mark on the left in white. No shadow — the tonal contrast against the vellum canvas is sufficient."
+}

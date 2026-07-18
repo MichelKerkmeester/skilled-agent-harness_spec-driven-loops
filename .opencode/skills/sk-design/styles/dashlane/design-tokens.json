@@ -1,0 +1,362 @@
+{
+  "color": {
+    "cocoa-black": {
+      "$value": "#200f0a",
+      "$type": "color",
+      "$description": "Cocoa Black — Page background, primary text on light surfaces — the warm near-black base; it has subtle brown warmth that distinguishes it from pure black and pairs with mint without vibrating"
+    },
+    "cream-mist": {
+      "$value": "#fcfaf9",
+      "$type": "color",
+      "$description": "Cream Mist — Primary body and heading text on dark surfaces, icon fills — soft off-white that reads as paper against cocoa"
+    },
+    "warm-sand": {
+      "$value": "#e3ccc0",
+      "$type": "color",
+      "$description": "Warm Sand — Hairline borders on cards and nav, subtle dividers — beige linework that defines edges without harshness"
+    },
+    "ash-gray": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Ash Gray — Secondary borders, image outlines, utility rules — neutral gray for the most abundant structural lines"
+    },
+    "stone": {
+      "$value": "#a69f9d",
+      "$type": "color",
+      "$description": "Stone — Muted helper text, link underlines in resting state — desaturated warm gray for non-prominent metadata"
+    },
+    "deep-plum": {
+      "$value": "#2b2538",
+      "$type": "color",
+      "$description": "Deep Plum — Card surfaces, elevated panels — slightly cooler and lighter than the page, reading as a card lifted off cocoa"
+    },
+    "aubergine": {
+      "$value": "#4d3f3b",
+      "$type": "color",
+      "$description": "Aubergine — Accent surface for nested cards or highlighted zones — a warmer brown for the third elevation step"
+    },
+    "mint-keyhole": {
+      "$value": "#a2f6f5",
+      "$type": "color",
+      "$description": "Mint Keyhole — Teal action color for filled buttons, selected navigation states, and focused conversion moments."
+    },
+    "iris": {
+      "$value": "#858df9",
+      "$type": "color",
+      "$description": "Iris — Outlined action borders, secondary highlights, icon accents — vivid violet for the second action voice and decorative strokes"
+    },
+    "periwinkle": {
+      "$value": "#6c74df",
+      "$type": "color",
+      "$description": "Periwinkle — Deeper violet for secondary borders and surface accents when iris needs to recede"
+    },
+    "lavender-mist": {
+      "$value": "#b6bbfb",
+      "$type": "color",
+      "$description": "Lavender Mist — Soft violet for inactive nav borders and gentle icon tints — the muted sibling of iris"
+    }
+  },
+  "font": {
+    "saans": {
+      "$value": "Saans",
+      "$type": "fontFamily",
+      "$description": "All interface and display type — a custom geometric sans where weight 300 carries all headlines and hero statistics while weight 500 is reserved for UI chrome (buttons, nav, labels, body). The whisper-weight headlines are the system's most distinctive move: 100px at weight 300 reads as architectural light, not aggressive marketing."
+    },
+    "saansmono": {
+      "$value": "SaansMono",
+      "$type": "fontFamily",
+      "$description": "Monospace utility — tracking at 0.06em gives it an uppercase tag/label feel, used for overline metadata, tags, and monospaced code-adjacent labels"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "SaansMono",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "28px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "56px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "72px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Saans",
+        "fontSize": "100px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 100px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "cocoa-canvas": {
+      "$value": "#200f0a",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the base vault surface"
+    },
+    "deep-plum-card": {
+      "$value": "#2b2538",
+      "$type": "color",
+      "$description": "Surface level 1: Card and panel surfaces, one step lifted from canvas"
+    },
+    "aubergine-accent": {
+      "$value": "#4d3f3b",
+      "$type": "color",
+      "$description": "Surface level 2: Nested or highlighted card surfaces, two steps lifted"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.dashlane.com",
+      "siteName": "Dashlane",
+      "extractedAt": "2026-06-03T18:57:20.114Z",
+      "variant": "extended"
+    }
+  }
+}

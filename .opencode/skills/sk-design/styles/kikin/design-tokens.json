@@ -1,0 +1,462 @@
+{
+  "color": {
+    "forest-ink": {
+      "$value": "#122315",
+      "$type": "color",
+      "$description": "Forest Ink — Hero canvas, primary heading text, nav bar surface, footer — the dominant dark that anchors every green-on-green moment"
+    },
+    "meadow": {
+      "$value": "#55dd4a",
+      "$type": "color",
+      "$description": "Meadow — Primary action fill (GET FUNDING), accent headline words, tag fills — one switch-on green against both dark and cream surfaces"
+    },
+    "sage-border": {
+      "$value": "#566053",
+      "$type": "color",
+      "$description": "Sage Border — Muted green-gray for secondary borders, dividers on cream, subhead accents — lets Meadow read as the only chromatic action"
+    },
+    "lichen": {
+      "$value": "#77e46e",
+      "$type": "color",
+      "$description": "Lichen — Outlined/ghost action border, hover-state ring — a softer Meadow for non-filled interactive states"
+    },
+    "paper-cream": {
+      "$value": "#f3ede4",
+      "$type": "color",
+      "$description": "Paper Cream — Main content canvas after the hero, card surface on dark hero, ghost-button fill — warm off-white that replaces typical SaaS white"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal — Body text on cream, hairline borders, image overlays — the workhorse neutral that keeps #122315 reserved for display moments"
+    },
+    "slate": {
+      "$value": "#141414",
+      "$type": "color",
+      "$description": "Slate — Icon strokes, near-black text, very dark UI fills when Forest Ink would be too green"
+    },
+    "frost": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Frost — Subtle dividers on cream, secondary card edges — quieter than Sage Border"
+    },
+    "moss-gray": {
+      "$value": "#999c91",
+      "$type": "color",
+      "$description": "Moss Gray — Helper text, metadata, low-emphasis captions on cream"
+    },
+    "driftwood": {
+      "$value": "#626d66",
+      "$type": "color",
+      "$description": "Driftwood — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "river-blue": {
+      "$value": "#73d3eb",
+      "$type": "color",
+      "$description": "River Blue — Illustration accent for water and sky in the hero artwork and badge illustrations, small data-viz highlight"
+    },
+    "sun-yellow": {
+      "$value": "#ffed52",
+      "$type": "color",
+      "$description": "Sun Yellow — Illustration accent for suns and warm callouts in the patch artwork, limited to decorative moments"
+    },
+    "deep-navy": {
+      "$value": "#0a071b",
+      "$type": "color",
+      "$description": "Deep Navy — Illustration dark fills, badge backgrounds where Forest Ink would blend with the canvas"
+    }
+  },
+  "font": {
+    "deacon": {
+      "$value": "Deacon",
+      "$type": "fontFamily",
+      "$description": "Display and headline family. The signature choice: an ultra-condensed sans scaled from 58px subheads up to 259px hero lines, with line-height compressed to 0.8 so two-line headlines read as a single block. Weight 900 for hero and section openers, 700 for mid-page headings, 400 for badge labels and small caps callouts. This is the only voice allowed to be loud."
+    },
+    "graphik": {
+      "$value": "Graphik",
+      "$type": "fontFamily",
+      "$description": "Body, UI, and small-text family. Weight 400 for paragraphs, captions, and nav; weight 500 for button labels, tag text, and emphasized subheads. The geometric humanist sans provides the quiet counterweight to Deacon's shouting display — every sentence is calm, every headline is compressed. Use at -0.4px tracking at 24px and above."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback and chart/dashboard data labels where a neutral numeric voice is needed; 40px reserved for stat readouts in the dashboard preview"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 7.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Deacon",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Deacon",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Deacon",
+        "fontSize": "24px",
+        "fontWeight": 900,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Deacon",
+        "fontSize": "32px",
+        "fontWeight": 900,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Deacon",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Graphik",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.63
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Deacon",
+        "fontSize": "58px",
+        "fontWeight": 700,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Deacon",
+        "fontSize": "72px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Deacon",
+        "fontSize": "101px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 101px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Deacon",
+        "fontSize": "137px",
+        "fontWeight": 900,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 137px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Deacon",
+        "fontSize": "259px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 259px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "164": {
+      "$value": "164px",
+      "$type": "dimension",
+      "$description": "Spacing 164px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "hero-canvas": {
+      "$value": "#122315",
+      "$type": "color",
+      "$description": "Surface level 0: Dark forest ink for the hero, nav, and any full-bleed dark band"
+    },
+    "content-paper": {
+      "$value": "#f3ede4",
+      "$type": "color",
+      "$description": "Surface level 1: Warm cream for all body content, replacing typical SaaS white"
+    },
+    "ink-card": {
+      "$value": "#0a071b",
+      "$type": "color",
+      "$description": "Surface level 2: Dark surface for testimonial quote cards and badge sticker backgrounds"
+    },
+    "sage-tint": {
+      "$value": "#566053",
+      "$type": "color",
+      "$description": "Surface level 3: Muted surface for secondary cards sitting on cream where a pure white would feel cold"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.kikin.io",
+      "siteName": "Kikin",
+      "extractedAt": "2026-06-03T21:22:45.752Z",
+      "variant": "extended"
+    }
+  }
+}

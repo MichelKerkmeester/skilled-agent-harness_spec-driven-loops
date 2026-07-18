@@ -1,0 +1,662 @@
+{
+  "source": "https://styles.refero.design/style/d5017f8f-fa0f-4241-9319-527b0751f66f",
+  "uuid": "d5017f8f-fa0f-4241-9319-527b0751f66f",
+  "name": "Bécane",
+  "northStar": "Gallery wall on bone-white plaster",
+  "capturedAt": "2026-07-18T06:23:54.988Z",
+  "meta": {
+    "url": "https://www.becaneparis.com",
+    "siteName": "Bécane",
+    "extractedAt": "2026-07-03T15:37:39.565Z",
+    "durationMs": 124085,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 120,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Eurostile Becane at 8px with 0.04em tracking as the universal label size for nav, buttons, counts, and footer links",
+      "Keep all borders at 0.5px solid #e6e6e6 — never use box-shadow, never use 1px+ strokes",
+      "Set border-radius to 0px on every interactive element; the only rounding token is the site's own --inner-border-radius for inner cutouts, not visible UI",
+      "Reserve #ff0000 for a single accent surface per viewport; let the rest of the page stay achromatic",
+      "Let product photography carry layout rhythm — space tiles evenly across the full viewport rather than constraining to a fixed grid column",
+      "Set line-height to 1.0 for the 30px wordmark and 1.1–1.2 for 8px labels — tight tracking amplifies the gallery-placard feel",
+      "Anchor a meta-strip (count + secondary affordance) to the bottom of the viewport on category pages"
+    ],
+    "donts": [
+      "Never add background fills, gradients, or hover-color shifts to buttons — buttons remain ghost",
+      "Never introduce a chromatic CTA button; #ff0000 is a surface accent, not an action",
+      "Never round corners on cards, images, or buttons — sharp 0px edges define the aesthetic",
+      "Never use body copy below 12px or above 30px; the scale is intentionally narrow",
+      "Never add elevation (box-shadow, drop-shadow) — the system is flat and depends on hairline borders for structure",
+      "Never use color to indicate state on links; rely on position, weight, or the Muted Grey #b2b2b2 for de-emphasis",
+      "Never constrain the product row to a centered max-width container — let images breathe edge-to-edge"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f6f6f6",
+        "name": "Bone White",
+        "role": "Page canvas, large background blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e6e6e6",
+        "name": "Divider Grey",
+        "role": "Hairline borders between nav rows, section dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Off-Black",
+        "role": "Headlines, body text, nav labels, button strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces, nav bar backgrounds, elevated panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b2b2b2",
+        "name": "Muted Grey",
+        "role": "Tertiary helper text, inactive labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ff0000",
+        "name": "Signal Red",
+        "role": "Accent panel fills — rotating display block, category highlight surface",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed page architecture with no max-width container: the header, hero meta, product row, and footer strip all span edge-to-edge. Header is a slim sticky bar (~86px) with brand cluster flush-left and cart flush-right. Hero zone is left-aligned: small uppercase meta line above an oversized 30px wordmark, both flush to the left margin with no centered alignment. Product grid is a single 12-column horizontal row where each cell is a full-bleed photograph at equal width — no gutters beyond the natural image spacing, no card chrome. Footer meta-strip is a two-line block pinned to the bottom-left of the viewport showing product count and a quiet 'Discover' affordance. Navigation is minimal: top bar only, no sidebar, no mega-menu. Section transitions are seamless — no alternating dark/light bands, no dividers between the hero and product row beyond the hairline border at the header's lower edge.",
+    "imagery": "Product photography dominates the page as full-bleed human-scale editorial crops: twelve model silhouettes arranged in a single horizontal row across the viewport, each figure standing at uniform height on the Bone White canvas. Treatment is clean, evenly lit, fashion-editorial — figures are isolated against the page background with no lifestyle context or props. Photographs carry rounded 0px edges (no clip-path, no radius). No illustration, no icon system beyond minimal UI glyphs, no decorative graphics — the product imagery IS the visual design.",
+    "similar": [
+      {
+        "why": "Same off-white canvas with zero-radius UI and Eurostile-style geometric uppercase tracked labels — both treat the page as an editorial gallery rather than a store",
+        "business": "Lemaire"
+      },
+      {
+        "why": "Near-identical monochrome palette (#f6f6f6/#0a0a0a), hairline borders as the only structural element, and full-bleed product photography with no card chrome",
+        "business": "The Row"
+      },
+      {
+        "why": "Equal restraint in type scale (small uppercase tracked labels), achromatic surfaces, and refusal of decorative color or rounded UI — color appears only as functional punctuation",
+        "business": "Aesop"
+      },
+      {
+        "why": "Minimal Scandinavian editorial layout with bone-white canvas, ghost navigation, and product photography as the dominant visual element rather than UI ornamentation",
+        "business": "Toteme"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "0px",
+        "cards": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "8-10px",
+      "sectionGap": "100px",
+      "cardPadding": "10px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f6f6f6",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Full-page background, base stage for all content"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Surface White",
+        "level": 2,
+        "purpose": "Nav bar, elevated panels, occasional surface breaks"
+      },
+      {
+        "hex": "#ff0000",
+        "name": "Accent Block",
+        "level": 3,
+        "purpose": "Sole chromatic punctuation — rotating display surface"
+      }
+    ],
+    "northStar": "Gallery wall on bone-white plaster",
+    "typeScale": [
+      {
+        "role": "display",
+        "size": 30,
+        "lineHeight": 1,
+        "letterSpacing": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Nav Button",
+        "role": "Top-left brand cluster (ALL / STORIES / BÉCANE)",
+        "description": "Transparent background, 0px radius, no padding, Off-Black 8px uppercase Eurostile tracking 0.04em. Separators are thin Off-Black text strokes, not vertical bars."
+      },
+      {
+        "name": "Ghost Cart Button",
+        "role": "Top-right cart trigger",
+        "description": "Same ghost treatment as nav: transparent fill, Off-Black border 0.5px implied, 0px radius. 8px uppercase label 'CART 00' — the cart count sits inline with no visual container."
+      },
+      {
+        "name": "Hero Wordmark",
+        "role": "Section title — 'COLLECTION'",
+        "description": "Eurostile Becane 700 at 30px, uppercase, line-height 1.0, tracking 0.04em, Off-Black. Sits flush-left with no decorative underline or accent bar — type alone carries hierarchy."
+      },
+      {
+        "name": "Meta Label Row",
+        "role": "Section counter — 'COLLECTION 01 / 01'",
+        "description": "8px Eurostile uppercase, Off-Black, tracking 0.04em. Functions as a gallery placard: precedes and contextualizes the headline without competing with it."
+      },
+      {
+        "name": "Product Count Strip",
+        "role": "Footer summary — '14 PRODUCTS · DISCOVER'",
+        "description": "Full-width row anchored bottom of viewport. Left: 8px Off-Black uppercase count. Right: 8px Muted Grey #b2b2b2 'Discover' as a quiet affordance. No button chrome — just tracked type on Bone White."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Vertical rhythm between nav clusters",
+        "description": "0.5px solid #e6e6e6, full row width. Carries the only structural separation in the layout; the design refuses panels or cards in favor of single-stroke lines."
+      },
+      {
+        "name": "Red Accent Panel",
+        "role": "Rotating chromatic display block (signal surface)",
+        "description": "Solid #ff0000 fill, no radius, no border. Functions as the sole chromatic punctuation — appears as a small block rather than as a button background or CTA fill."
+      },
+      {
+        "name": "Product Silhouette Tile",
+        "role": "Editorial product row — 12 figures across viewport",
+        "description": "No container, no card, no shadow. Photographs sit directly on Bone White #f6f6f6 canvas at uniform scale, evenly spaced. The row is the product grid; there is no per-product chrome."
+      },
+      {
+        "name": "Footer Link Cluster",
+        "role": "Bottom-right policy + contact links",
+        "description": "Stacked 8px uppercase Off-Black labels, tracking 0.04em, zero radius, zero padding. Email link rendered the same way as policy links — no visual hierarchy between them."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Custom Eurostile variant is the sole typeface across all scales. Used uppercase at 8px with 0.04em tracking for nav, buttons, labels, and micro-copy — the high tracking and small size force labels to read as gallery placards rather than UI. Bold 30px anchors the hero 'COLLECTION' wordmark. Substitutes: Eurostile, 'Helvetica Neue', Arial — the geometric warmth of Eurostile is the closest system match; fallback to Helvetica Neue retains the uppercase utility feel.",
+        "sizes": "8px, 12px, 30px",
+        "family": "Eurostile Becane",
+        "weight": "400, 700",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Eurostile, Helvetica Neue, Arial",
+        "letterSpacing": "0.0400em",
+        "fontFeatureSettings": "uppercase; letter-spacing 0.04em baseline"
+      }
+    ],
+    "description": "Bécane operates as a gallery wall rather than a storefront: a vast off-white canvas where models stand at human scale, type sits at whisper-small sizes, and the only chromatic punctuation is a single cycling red signal. Every element is reduced to its barest line — borders under 1px, zero radius, uppercase tracked labels — so that the photography itself becomes the architecture. The system rejects decorative UI entirely; navigation, counts, and category markers read like gallery placards rather than e-commerce chrome.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d5017f8f-fa0f-4241-9319-527b0751f66f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bécane design system\",\"item\":\"https://styles.refero.design/style/d5017f8f-fa0f-4241-9319-527b0751f66f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d5017f8f-fa0f-4241-9319-527b0751f66f#style-reference\",\"name\":\"Bécane design system reference\",\"headline\":\"Bécane design system | Refero Styles\",\"description\":\"Explore Bécane's light E-commerce design system: Bone White #f6f6f6, Divider Grey #e6e6e6 colors, Eurostile Becane typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d5017f8f-fa0f-4241-9319-527b0751f66f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d5017f8f-fa0f-4241-9319-527b0751f66f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Bécane\",\"url\":\"https://www.becaneparis.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d5017f8f-fa0f-4241-9319-527b0751f66f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a9bd66be-d9cb-4f67-8739-63024e222ed9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a9bd66be-d9cb-4f67-8739-63024e222ed9.jpg\",\"caption\":\"Screenshot of Bécane\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a9bd66be-d9cb-4f67-8739-63024e222ed9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Bécane design system\",\"Bécane website design\",\"Bécane colors\",\"Bécane typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone White\",\"Divider Grey\",\"Off-Black\",\"Pure White\",\"Eurostile Becane\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Bécane design system\"},{\"@type\":\"Thing\",\"name\":\"Bécane website design\"},{\"@type\":\"Thing\",\"name\":\"Bécane colors\"},{\"@type\":\"Thing\",\"name\":\"Bécane typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-07-03T15:31:14.865Z\",\"dateModified\":\"2026-07-03T15:31:14.865Z\"}]}19:T61d,Quick Color Reference\n- text: #0a0a0a\n- background: #f6f6f6\n- surface (elevated panel/nav): #ffffff\n- border: #e6e6e6\n- muted text: #b2b2b2\n- accent surface: #ff0000\n- primary action: no distinct CTA color\n\nExample Component Prompts\n1. Build a sticky top header: background #ffffff, 86px tall, 0px radius, 0.5px solid #e6e6e6 bottom border. Left cluster — brand 'BÉCANE' at 8px Eurostile Becane weight 700 uppercase, tracking 0.04em, color #0a0a0a. Right cluster — 'CART 00' at 8px weight 400 same styling. No button backgrounds, no padding beyond 10px vertical.\n2. Build a hero wordmark block: left-aligned on #f6f6f6 canvas. Meta line 'COLLECTION 01 / 01' at 8px uppercase #0a0a0a tracking 0.04em. Below it, 'COLLECTION' at 30px Eurostile Becane weight 700 uppercase, line-height 1.0, tracking 0.04em, color #0a0a0a. No underlines, no accent bars.\n3. Build a product row: full viewport width, #f6f6f6 background, 12 evenly-spaced product photographs at equal column width, 0px radius, no borders, no card containers. Row gap 0; rely on natural image whitespace.\n4. Build a footer meta-strip: pinned bottom, background #f6f6f6. Left — '14 PRODUCTS' at 8px uppercase #0a0a0a tracking 0.04em. Right — 'DISCOVER' at 8px uppercase #b2b2b2 tracking 0.04em. No button chrome, no separator glyph.\n5. Build a nav link group: horizontal row on #ffffff, separated by 0.5px solid #e6e6e6 hairlines. Links at 8px uppercase #0a0a0a tracking 0.04em, 10px horizontal padding, 0px radius, transparent backgrounds. Hover: color shift to #666 only — no background change."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. The system is rigorously flat; structural separation comes from 0.5px hairline borders in #e6e6e6 and from generous negative space. Elevation is communicated by background contrast (Bone White → Pure White → Signal Red) rather than by depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f6f6f6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9731459330353415
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2977872.781693042,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#e6e6e6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9249395393966913
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2502395.3122062925,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 3,
+            "other/borderColor": 1
+          }
+        },
+        {
+          "hex": "#0a0a0a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1447879553888796
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "body",
+            "nav"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 1007869.3097996381,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 5,
+            "body/color": 2,
+            "other/fill": 1,
+            "other/color": 6,
+            "button/color": 2,
+            "other/stroke": 1,
+            "heading/color": 2
+          }
+        },
+        {
+          "hex": "#ff0000",
+          "oklch": {
+            "c": 0.2576833038053608,
+            "h": 29.233880279627854,
+            "l": 0.6279553639214311
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 317793.762993957,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 35936.575654404245,
+          "properties": [
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 1,
+            "nav/backgroundColor": 2,
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#b2b2b2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7635757140646726
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 992.6256002769239,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 5
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.15476474703024673,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.8,
+          "background": "#ffffff",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.32,
+          "background": "#f6f6f6",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.86,
+          "background": "#e6e6e6",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.34,
+          "background": "#b2b2b2",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.95,
+          "background": "#ff0000",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.12,
+          "background": "#ffffff",
+          "foreground": "#b2b2b2"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.96,
+          "background": "#f6f6f6",
+          "foreground": "#b2b2b2"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.89,
+          "background": "#ff0000",
+          "foreground": "#b2b2b2"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "button",
+            "other",
+            "nav"
+          ],
+          "frequency": 11
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "paddingTop",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|body",
+            "paddingTop|body",
+            "paddingLeft|body",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "icon",
+            "nav"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|icon",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|nav",
+            "marginRight|nav",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Eurostile Becane",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 117,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 8,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "Eurostile Becane",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body",
+            "button",
+            "heading",
+            "nav"
+          ],
+          "frequency": 108,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 8,
+          "family": "Eurostile Becane",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Eurostile Becane",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Eurostile Becane",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "Eurostile Becane",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/02081c7f-f99f-44c1-9415-e39c52dae51a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a9bd66be-d9cb-4f67-8739-63024e222ed9.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d5017f8f-fa0f-4241-9319-527b0751f66f#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Bécane design system\",\"item\":\"https://styles.refero.design/style/d5017f8f-fa0f-4241-9319-527b0751f66f\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d5017f8f-fa0f-4241-9319-527b0751f66f#style-reference\",\"name\":\"Bécane design system reference\",\"headline\":\"Bécane design system | Refero Styles\",\"description\":\"Explore Bécane's light E-commerce design system: Bone White #f6f6f6, Divider Grey #e6e6e6 colors, Eurostile Becane typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/d5017f8f-fa0f-4241-9319-527b0751f66f\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d5017f8f-fa0f-4241-9319-527b0751f66f\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Bécane\",\"url\":\"https://www.becaneparis.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d5017f8f-fa0f-4241-9319-527b0751f66f#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a9bd66be-d9cb-4f67-8739-63024e222ed9.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a9bd66be-d9cb-4f67-8739-63024e222ed9.jpg\",\"caption\":\"Screenshot of Bécane\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a9bd66be-d9cb-4f67-8739-63024e222ed9.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Bécane design system\",\"Bécane website design\",\"Bécane colors\",\"Bécane typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone White\",\"Divider Grey\",\"Off-Black\",\"Pure White\",\"Eurostile Becane\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Bécane design system\"},{\"@type\":\"Thing\",\"name\":\"Bécane website design\"},{\"@type\":\"Thing\",\"name\":\"Bécane colors\"},{\"@type\":\"Thing\",\"name\":\"Bécane typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-07-03T15:31:14.865Z\",\"dateModified\":\"2026-07-03T15:31:14.865Z\"}]}19:T61d,Quick Color Reference\n- text: #0a0a0a\n- background: #f6f6f6\n- surface (elevated panel/nav): #ffffff\n- border: #e6e6e6\n- muted text: #b2b2b2\n- accent surface: #ff0000\n- primary action: no distinct CTA color\n\nExample Component Prompts\n1. Build a sticky top header: background #ffffff, 86px tall, 0px radius, 0.5px solid #e6e6e6 bottom border. Left cluster — brand 'BÉCANE' at 8px Eurostile Becane weight 700 uppercase, tracking 0.04em, color #0a0a0a. Right cluster — 'CART 00' at 8px weight 400 same styling. No button backgrounds, no padding beyond 10px vertical.\n2. Build a hero wordmark block: left-aligned on #f6f6f6 canvas. Meta line 'COLLECTION 01 / 01' at 8px uppercase #0a0a0a tracking 0.04em. Below it, 'COLLECTION' at 30px Eurostile Becane weight 700 uppercase, line-height 1.0, tracking 0.04em, color #0a0a0a. No underlines, no accent bars.\n3. Build a product row: full viewport width, #f6f6f6 background, 12 evenly-spaced product photographs at equal column width, 0px radius, no borders, no card containers. Row gap 0; rely on natural image whitespace.\n4. Build a footer meta-strip: pinned bottom, background #f6f6f6. Left — '14 PRODUCTS' at 8px uppercase #0a0a0a tracking 0.04em. Right — 'DISCOVER' at 8px uppercase #b2b2b2 tracking 0.04em. No button chrome, no separator glyph.\n5. Build a nav link group: horizontal row on #ffffff, separated by 0.5px solid #e6e6e6 hairlines. Links at 8px uppercase #0a0a0a tracking 0.04em, 10px horizontal padding, 0px radius, transparent backgrounds. Hover: color shift to #666 only — no background change."
+}

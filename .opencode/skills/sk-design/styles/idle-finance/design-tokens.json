@@ -1,0 +1,417 @@
+{
+  "color": {
+    "abyss-navy": {
+      "$value": "#17202e",
+      "$type": "color",
+      "$description": "Abyss Navy — Page canvas and card surfaces — the foundational darkness every other element floats on"
+    },
+    "tide-card": {
+      "$value": "#202a3e",
+      "$type": "color",
+      "$description": "Tide Card — Elevated surface for nested cards, button backgrounds, and section containers — one step lighter than the canvas to imply depth without shadow"
+    },
+    "spectral-cyan": {
+      "$value": "#6ae4ff",
+      "$type": "color",
+      "$description": "Spectral Cyan — Hero highlight word, outlined action borders, icon strokes, link borders — the single electric signal that draws the eye through the dark interface"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Primary text, filled action buttons, and high-contrast labels — the only fully white tone, reserved for reading and final calls-to-action"
+    },
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Hairline borders on dark surfaces and fine dividers — invisible structural lines that define cards without lifting them off the page"
+    },
+    "fog-gray": {
+      "$value": "#cdd0d6",
+      "$type": "color",
+      "$description": "Fog Gray — Secondary body copy and muted helper text — lowered brightness to create a clear reading hierarchy beneath Bone White"
+    },
+    "horizon-glow": {
+      "$value": "#298acb",
+      "$type": "color",
+      "$description": "Horizon Glow — Gradient atmosphere — the midtone of the radial background bloom that makes the page feel lit from behind"
+    },
+    "yield-gradient": {
+      "$value": "#00d1ff",
+      "$type": "color",
+      "$description": "Yield Gradient — Accent gradient for highlights and yield indicators — teal-to-cyan sweep signaling positive performance"
+    }
+  },
+  "font": {
+    "open-sans": {
+      "$value": "Open Sans",
+      "$type": "fontFamily",
+      "$description": "Primary typeface across the entire system. Weight 700 carries headings and the hero statement; weight 400 handles body copy and metadata; weight 600 sits on emphasized inline labels. The negative letter-spacing of -0.0360em tightens large display sizes so headlines read as solid blocks rather than airy typography. Hero sizes reach 100px — a deliberate terminal-instrument scale that makes the page feel like a financial readout."
+    },
+    "source-sans-pro": {
+      "$value": "Source Sans Pro",
+      "$type": "fontFamily",
+      "$description": "Secondary typeface for tabular data, small labels, and inline micro-copy. Its tighter glyph widths complement Open Sans for data-dense rows like TVL figures and percentage chips without competing with display headlines."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Source Sans Pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Source Sans Pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Source Sans Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Source Sans Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 2.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Source Sans Pro",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 2.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "Source Sans Pro",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Source Sans Pro",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 2.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Source Sans Pro",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Source Sans Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "22px",
+        "fontWeight": 700,
+        "lineHeight": 1.96
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "56px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "100px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 100px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "136": {
+      "$value": "136px",
+      "$type": "dimension",
+      "$description": "Spacing 136px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "abyss-canvas": {
+      "$value": "#17202",
+      "$type": "color",
+      "$description": "Surface level 0: The page-wide background, sits behind everything including the radial gradient bloom"
+    },
+    "tide-card": {
+      "$value": "#202a3",
+      "$type": "color",
+      "$description": "Surface level 1: Yield cards, protocol tiles, button fills — the only surface one step off the canvas"
+    },
+    "bone-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Reserved exclusively for filled primary action buttons; never used as a card or panel surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://idle.finance",
+      "siteName": "Idle Finance",
+      "extractedAt": "2026-06-03T18:11:47.558Z",
+      "variant": "extended"
+    }
+  }
+}

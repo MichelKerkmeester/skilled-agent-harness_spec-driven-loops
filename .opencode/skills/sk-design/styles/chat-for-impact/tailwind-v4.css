@@ -1,0 +1,83 @@
+@theme {
+  /* Colors */
+  --color-canopy-green: #0a3922;
+  --color-coral-pulse: #ff643b;
+  --color-indigo-bloom: #460095;
+  --color-leaf-bright: #1dbf73;
+  --color-deep-teal: #003642;
+  --color-orchid-tint: #f3b3fe;
+  --color-sky-signal: #00b4dc;
+  --color-aubergine: #47264c;
+  --color-ink-black: #000000;
+  --color-paper-white: #ffffff;
+  --color-ash: #a6a6a6;
+  --color-slate: #7a7a7a;
+  --color-graphite: #3d3d3d;
+  --color-charcoal: #333333;
+  --color-frost-gray: #e0e0e0;
+  --color-cloud-gray: #f2f2f2;
+  --color-lavender-mist: #eee2ff;
+  --color-mint-wash: #d2f2e3;
+  --color-sky-wash: #ccf0f8;
+  --color-sage-wash: #e4f7ee;
+  --color-lilac-wash: #fdf0ff;
+  --color-peach-wash: #ffede8;
+  --color-cream: #faf7e8;
+  --color-sand: #f4ece9;
+
+  /* Typography */
+  --font-dm-sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.38;
+  --text-body: 16px;
+  --leading-body: 1.38;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.4;
+  --text-subheading: 20px;
+  --leading-subheading: 1.33;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.3;
+  --text-heading: 32px;
+  --leading-heading: 1.2;
+  --tracking-heading: -0.019px;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.14;
+  --tracking-heading-lg: -0.019px;
+  --text-display: 72px;
+  --leading-display: 1.05;
+  --tracking-display: -0.028px;
+  --text-display-xl: 116px;
+  --leading-display-xl: 0.89;
+  --tracking-display-xl: -0.028px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 40px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+}

@@ -1,0 +1,205 @@
+{
+  "color": {
+    "signal-orange": {
+      "$value": "#ff4f00",
+      "$type": "color",
+      "$description": "Signal Orange — Hero blocks, brand statement panels, full-bleed feature sections — the single chromatic commitment, used in large committed areas rather than small accents"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, logo, hairline borders, dark UI elements, and display type on light surfaces"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Display headings overlaid on photography and colored panels, input fields, light surface level, inverse text on dark hero blocks"
+    },
+    "raw-linen": {
+      "$value": "#ebe9e3",
+      "$type": "color",
+      "$description": "Raw Linen — Page canvas, footer background, secondary surface — warm off-white that softens the contrast between stark white and pure black"
+    },
+    "faint-stone": {
+      "$value": "#767676",
+      "$type": "color",
+      "$description": "Faint Stone — Input field borders, low-emphasis form chrome — the only mid-tone in the system"
+    }
+  },
+  "font": {
+    "moderat": {
+      "$value": "Moderat",
+      "$type": "fontFamily",
+      "$description": "Sole typeface — geometric sans-serif used at weight 300 for display and project names (120px) and weight 400 for body copy (16px). The light weight at display scale is a deliberate anti-shout: headlines whisper authority rather than declaring it, letting the orange blocks and editorial photography carry visual volume instead."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Moderat",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Moderat",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Moderat",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Moderat",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Moderat",
+        "fontSize": "33px",
+        "fontWeight": 300,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 33px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Moderat",
+        "fontSize": "33px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 33px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Moderat",
+        "fontSize": "33px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 33px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "Moderat",
+        "fontSize": "33px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 33px"
+    },
+    "3xl-5": {
+      "$value": {
+        "fontFamily": "Moderat",
+        "fontSize": "33px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-5 at 33px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Moderat",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Moderat",
+        "fontSize": "120px",
+        "fontWeight": 300,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 120px"
+    }
+  },
+  "spacing": {
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "raw-linen-canvas": {
+      "$value": "#ebe9e3",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, footer surface, the base on which everything else floats"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Input fields, elevated text surfaces, and any contained light area above the linen canvas"
+    },
+    "signal-orange": {
+      "$value": "#ff4f00",
+      "$type": "color",
+      "$description": "Surface level 2: Hero blocks, brand statement panels, full-bleed colored sections — the dominant chromatic surface"
+    },
+    "photographic-full-bleed": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Project showcase panels where editorial photography replaces the colored block; black represents the void/photographic surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://studiothomas.co.uk",
+      "siteName": "Studio Thomas",
+      "extractedAt": "2026-06-03T21:36:08.581Z",
+      "variant": "extended"
+    }
+  }
+}

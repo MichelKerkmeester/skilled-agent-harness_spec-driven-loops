@@ -1,0 +1,250 @@
+{
+  "color": {
+    "electric-cobalt": {
+      "$value": "#0004eb",
+      "$type": "color",
+      "$description": "Electric Cobalt — Headlines, nav links, logo block fill, project category labels, section accents — the only chromatic voice in the system, treated at massive scale (wordmarks, 44–68px type) to dominate every surface it touches"
+    },
+    "abyssal-ink": {
+      "$value": "#050516",
+      "$type": "color",
+      "$description": "Abyssal Ink — Dark section canvases, primary body text on light surfaces, reversed logo lockup — near-black with a barely-perceptible blue cast that keeps it on-brand rather than neutral"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Light section canvases, inverted text on dark and blue surfaces, floating card backgrounds over media"
+    },
+    "concrete-mist": {
+      "$value": "#e6e6e6",
+      "$type": "color",
+      "$description": "Concrete Mist — Primary light-mode page canvas, muted text fills, ghost-surface panels — the cool gray ground that lets the blue detonate"
+    },
+    "fog-gray": {
+      "$value": "#979797",
+      "$type": "color",
+      "$description": "Fog Gray — Secondary text, meta labels, placeholders, scrolling ticker background, low-emphasis chrome"
+    }
+  },
+  "font": {
+    "haas-grotesk": {
+      "$value": "Haas Grotesk",
+      "$type": "fontFamily",
+      "$description": "Primary type system for all UI, nav, body, and display. Weight 100 (ultralight) and weight 500 (medium) are used in deliberate tension — ultralight for ambient/nav/micro-copy, medium for headlines and emphasis. The ultralight is anti-convention; most brands use 500–700 for headlines, this system whispers and then SHOUTS with the same family"
+    },
+    "trjndavinci": {
+      "$value": "TRJNDaVinci",
+      "$type": "fontFamily",
+      "$description": "Display italic serif for project category labels and editorial accent lines ('Basketball', 'New York Knicks', 'Prompt & Purpose') — the only non-grotesque voice in the system, used sparingly to create a cinematic-magazine credit-roll feel against the geometric body type"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Haas Grotesk Medium",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Haas Grotesk Medium",
+        "fontSize": "13px",
+        "fontWeight": 100,
+        "lineHeight": 2.31
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Haas Grotesk Medium",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Haas Grotesk Medium",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Haas Grotesk Medium",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "TRJNDaVinci Medium Trial Italic",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Haas Grotesk Medium",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Haas Grotesk Medium",
+        "fontSize": "44px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "TRJNDaVinci Medium Trial Italic",
+        "fontSize": "44px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "TRJNDaVinci Medium Trial Italic",
+        "fontSize": "44px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Haas Grotesk Medium",
+        "fontSize": "68px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 68px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "TRJNDaVinci Medium Trial Italic",
+        "fontSize": "68px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 68px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "TRJNDaVinci Medium Trial Italic",
+        "fontSize": "68px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 68px"
+    }
+  },
+  "spacing": {
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "70": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Spacing 70px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "85": {
+      "$value": "85px",
+      "$type": "dimension",
+      "$description": "Spacing 85px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "light-canvas": {
+      "$value": "#e6e6e6",
+      "$type": "color",
+      "$description": "Surface level 1: Default page background for editorial sections, text-heavy zones, transition areas"
+    },
+    "floating-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: White panels that float above media or sit on the light canvas for maximum contrast and content isolation"
+    },
+    "dark-mode-canvas": {
+      "$value": "#050516",
+      "$type": "color",
+      "$description": "Surface level 3: Immersive project showcase sections, work reels, dark editorial spreads"
+    },
+    "full-bleed-media": {
+      "$value": "video/image",
+      "$type": "color",
+      "$description": "Surface level 4: Cinematic background footage with UI floating as overlay cards"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.nakedcityfilms.com",
+      "siteName": "Nakedcityfilms",
+      "extractedAt": "2026-06-03T19:24:04.168Z",
+      "variant": "extended"
+    }
+  }
+}

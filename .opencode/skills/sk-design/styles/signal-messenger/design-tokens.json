@@ -1,0 +1,234 @@
+{
+  "color": {
+    "signal-blue": {
+      "$value": "#2c6bed",
+      "$type": "color",
+      "$description": "Signal Blue — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "deep-signal": {
+      "$value": "#2942ff",
+      "$type": "color",
+      "$description": "Deep Signal — Navigation links and brand mark anchors — slightly cooler and more electric than Signal Blue, reserved for chrome-level interaction"
+    },
+    "signal-sky": {
+      "$value": "#9dbbf8",
+      "$type": "color",
+      "$description": "Signal Sky — Hero section wash, large decorative panels — soft periwinkle that bathes the page in brand color without overwhelming"
+    },
+    "signal-mist": {
+      "$value": "#a5cad5",
+      "$type": "color",
+      "$description": "Signal Mist — Secondary feature panel backgrounds — desaturated teal that recedes behind content, used to break the page rhythm without adding chroma"
+    },
+    "ink": {
+      "$value": "#1b1b1b",
+      "$type": "color",
+      "$description": "Ink — Primary body and heading text — soft black at AAA contrast on every surface, the dominant typographic color"
+    },
+    "slate": {
+      "$value": "#404654",
+      "$type": "color",
+      "$description": "Slate — Secondary body text, subdued paragraphs — cool gray with a faint violet cast that echoes the brand blue"
+    },
+    "twilight": {
+      "$value": "#3c3744",
+      "$type": "color",
+      "$description": "Twilight — Footer background — muted purple-black that grounds the page in a warm dark wash without pure black harshness"
+    },
+    "fog": {
+      "$value": "#e9e9e9",
+      "$type": "color",
+      "$description": "Fog — Hairline borders, dividers, footer text — the structural neutral that separates content bands"
+    },
+    "paper": {
+      "$value": "#f6f6f6",
+      "$type": "color",
+      "$description": "Paper — Page canvas — off-white that warms the stark white without going cream"
+    },
+    "white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "White — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire site. Weight 800 headlines are anti-soft — paired with tight 1.07–1.14 line-heights they create near-solid blocks of type that anchor the page. Weight 600 handles buttons and subheadings with a confident mid-weight. Weight 400 body at 1.50 line-height provides generous reading rhythm. The extreme contrast between 800 display and 400 body is the typographic signature."
+    },
+    "system-ui": {
+      "$value": "system-ui",
+      "$type": "fontFamily",
+      "$description": "system-ui — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "28px",
+        "fontWeight": 800,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "40px",
+        "fontWeight": 800,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "60px",
+        "fontWeight": 800,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.12) 0px 4px 12px 0px, rgba(0, 0, 0, 0.08) 0px 0px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#f6f6f6",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the base layer everything sits on"
+    },
+    "white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card and component surfaces — elevated above Paper for product mockups and content blocks"
+    },
+    "signal-sky": {
+      "$value": "#9dbbf8",
+      "$type": "color",
+      "$description": "Surface level 2: Hero wash and large brand-color panels"
+    },
+    "signal-mist": {
+      "$value": "#a5cad5",
+      "$type": "color",
+      "$description": "Surface level 3: Secondary feature panels — a muted teal that breaks the blue rhythm"
+    },
+    "twilight": {
+      "$value": "#3c3744",
+      "$type": "color",
+      "$description": "Surface level 4: Footer ground — the only dark surface, anchoring the page bottom"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://signal.org",
+      "siteName": "Signal Messenger",
+      "extractedAt": "2026-06-03T19:38:05.159Z",
+      "variant": "extended"
+    }
+  }
+}

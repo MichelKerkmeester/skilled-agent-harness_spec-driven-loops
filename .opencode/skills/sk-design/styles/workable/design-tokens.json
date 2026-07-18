@@ -1,0 +1,342 @@
+{
+  "color": {
+    "workable-ink": {
+      "$value": "#0f161e",
+      "$type": "color",
+      "$description": "Workable Ink — Headlines, body copy, icon fills, dark UI surfaces — near-black with a blue-ink undertone, softer than pure black"
+    },
+    "page-canvas": {
+      "$value": "#fbfaf8",
+      "$type": "color",
+      "$description": "Page Canvas — Default page background and warm card surface — slightly cream-tinted off-white that gives the whole site a paper-like warmth"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Elevated card surfaces on warm canvas, nav background — true white used sparingly for crisp product panels against the cream page"
+    },
+    "body-graphite": {
+      "$value": "#3d3e45",
+      "$type": "color",
+      "$description": "Body Graphite — Body paragraph text, secondary link color — softened dark gray for readable prose without the weight of ink-black"
+    },
+    "muted-slate": {
+      "$value": "#6f7073",
+      "$type": "color",
+      "$description": "Muted Slate — Eyebrow labels, helper text, metadata — medium gray for de-emphasized copy like section kickers and timestamps"
+    },
+    "hairline-gray": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Hairline Gray — Disabled button background, subtle dividers — the lightest neutral surface"
+    },
+    "forest-teal": {
+      "$value": "#004038",
+      "$type": "color",
+      "$description": "Forest Teal — Teal text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "midnight-violet": {
+      "$value": "#1d0953",
+      "$type": "color",
+      "$description": "Midnight Violet — Secondary action (Check it out pill), stat callout headings — deep indigo-violet used sparingly for the announcement bar and number highlights"
+    },
+    "lavender-wash": {
+      "$value": "#e5d3f7",
+      "$type": "color",
+      "$description": "Lavender Wash — Soft feature card background — pastel lavender for the most prominent colored card surface, gives sections a calm purple identity"
+    },
+    "peach-cream": {
+      "$value": "#fef1e1",
+      "$type": "color",
+      "$description": "Peach Cream — Section background wash, hero-adjacent panels — warm peach-cream used as a large surface band, the dominant chromatic neutral"
+    },
+    "butter-yellow": {
+      "$value": "#fde8ce",
+      "$type": "color",
+      "$description": "Butter Yellow — Card background for warm-themed feature panels — muted butter for secondary colored cards"
+    },
+    "periwinkle": {
+      "$value": "#c6c4f4",
+      "$type": "color",
+      "$description": "Periwinkle — Violet wash for highlight backgrounds, decorative bands, and soft emphasis behind content."
+    },
+    "sky-tint": {
+      "$value": "#bee9f4",
+      "$type": "color",
+      "$description": "Sky Tint — Cool-tone card background — pale sky blue for variety in the pastel card rotation"
+    },
+    "agent-spectrum": {
+      "$value": "#00f5dc",
+      "$type": "color",
+      "$description": "Agent Spectrum — Gradient brand accent for the AI agent visual identity — the mint→lime→violet spectrum used in product illustration and the Workable 'w' logo glow"
+    }
+  },
+  "font": {
+    "proxima-nova": {
+      "$value": "Proxima Nova",
+      "$type": "fontFamily",
+      "$description": "Single sans family carries all UI — bold 700 at 56–72px with tight 1.14 line-height creates editorial display weight, while 400 at 18–20px with 1.56–1.67 line-height keeps body comfortable. The Minor Third scale (1.2 ratio, 16px base) produces a restrained 8-step hierarchy."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "proxima-nova",
+        "fontSize": "72px",
+        "fontWeight": 700,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 72px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#fbfaf8",
+      "$type": "color",
+      "$description": "Surface level 0: Warm off-white default background for all sections — gives the entire site its paper-like warmth"
+    },
+    "white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated product surfaces and feature cards — true white for crispest contrast against the cream canvas"
+    },
+    "lavender-surface": {
+      "$value": "#e5d3f7",
+      "$type": "color",
+      "$description": "Surface level 2: AI/agent-themed section backgrounds and announcement bar"
+    },
+    "peach-surface": {
+      "$value": "#fef1e1",
+      "$type": "color",
+      "$description": "Surface level 3: Warm HR/evaluation-themed section backgrounds"
+    },
+    "butter-surface": {
+      "$value": "#fde8ce",
+      "$type": "color",
+      "$description": "Surface level 4: Secondary warm card surface for visual variety"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.workable.com",
+      "siteName": "Workable",
+      "extractedAt": "2026-07-03T03:39:59.467Z",
+      "variant": "extended"
+    }
+  }
+}

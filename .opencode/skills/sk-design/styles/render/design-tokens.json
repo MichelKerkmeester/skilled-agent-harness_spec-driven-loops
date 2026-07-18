@@ -1,0 +1,467 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#0d0d0d",
+      "$type": "color",
+      "$description": "Obsidian — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, button text on dark fills — the dominant base against which all content rests"
+    },
+    "graphite-hairline": {
+      "$value": "#e3e3e3",
+      "$type": "color",
+      "$description": "Graphite Hairline — Borders, dividers, subtle surface tints — the workhorse neutral at 4000+ occurrences that defines structural edges throughout the UI"
+    },
+    "smoke": {
+      "$value": "#4d4d4d",
+      "$type": "color",
+      "$description": "Smoke — Secondary text, muted nav, footer copy — the soft mid-gray for de-emphasized but still readable text"
+    },
+    "ash": {
+      "$value": "#6b6b6b",
+      "$type": "color",
+      "$description": "Ash — Tertiary text, helper labels, inactive metadata — the quietest text tier for non-essential guidance"
+    },
+    "carbon": {
+      "$value": "#272727",
+      "$type": "color",
+      "$description": "Carbon — Deep surface tone for code blocks, terminal-style badges — a near-black with a whisper of warmth for developer-flavored elements"
+    },
+    "plasma-violet": {
+      "$value": "#8a05ff",
+      "$type": "color",
+      "$description": "Plasma Violet — Brand accent — step indicators, decorative illustration fills, link highlights, gradient text origin — the single chromatic mark that makes this interface feel like Render; Hero emphasis text and promotional banners — the signature warm-to-cool transition that defines Render's expressive typography moments"
+    },
+    "wisteria-tint": {
+      "$value": "#e6daff",
+      "$type": "color",
+      "$description": "Wisteria Tint — Soft violet surface wash for tinted cards, hero illustration backgrounds, highlight panels — a 12% saturation tint of the brand violet that creates brand presence without commitment; Soft highlight wash behind hero text and illustration panels — a barely-there violet tint that signals brand presence on neutral surfaces"
+    },
+    "deep-indigo": {
+      "$value": "#48008c",
+      "$type": "color",
+      "$description": "Deep Indigo — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "marigold": {
+      "$value": "#d67f2e",
+      "$type": "color",
+      "$description": "Marigold — Gradient text terminus (violet→orange), warm accent in illustrations — the chromatic counterweight to Plasma Violet in the signature gradient"
+    },
+    "coral": {
+      "$value": "#e96770",
+      "$type": "color",
+      "$description": "Coral — Decorative illustration accent, infographic data points — used in product mockups to add warmth and color variety"
+    },
+    "mint-signal": {
+      "$value": "#006d4c",
+      "$type": "color",
+      "$description": "Mint Signal — Green supporting accent for decorative details and low-frequency emphasis"
+    },
+    "sky-pulse": {
+      "$value": "#33acff",
+      "$type": "color",
+      "$description": "Sky Pulse — Decorative accent in product illustrations, secondary data visualization — a clear electric blue for chart and metric highlights"
+    },
+    "fuchsia-pop": {
+      "$value": "#f347ff",
+      "$type": "color",
+      "$description": "Fuchsia Pop — Decorative accent in gradient text and illustration hotspots — the highest-chroma pink used sparingly for energy bursts"
+    }
+  },
+  "font": {
+    "ppneuemontreal": {
+      "$value": "PPNeueMontreal",
+      "$type": "fontFamily",
+      "$description": "UI and body text — the workhorse grotesque used for nav, buttons, body copy, and all functional interface elements. The tight tracking at small sizes (-0.01em at 12px) and slight loosening at larger sizes (0.02em at 24px) create optical balance across the UI scale. Weight 400 is the default; weight 500 appears in nav links and button labels where a subtle emphasis is needed without switching faces."
+    },
+    "roobert": {
+      "$value": "Roobert",
+      "$type": "fontFamily",
+      "$description": "Display and heading text — used for hero headlines, section titles, and all oversized type. The signature choice is weight 300 for the largest sizes (64-80px), which is anti-convention — most sites use 600-700 for impact, but Render uses whisper-weight to achieve authority through restraint. Line-heights compress to 1.00-1.10 at display sizes, creating tight, architectural headlines. Tracking tightens aggressively with size (-0.03em at 80px) to compensate for the visual airiness of light weight."
+    },
+    "ppneuemontrealmono": {
+      "$value": "PPNeueMontrealMono",
+      "$type": "fontFamily",
+      "$description": "Code and technical labels — the monospaced face for terminal badges, code snippets, and developer-facing metadata. The slight positive tracking (0.02-0.025em) is typical for mono at small sizes to improve readability of technical strings. Used in elements like the '$ git push' badge and command labels."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "PPNeueMontrealMono",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "PPNeueMontrealMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "PPNeueMontrealMono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.12
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.44
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "PPNeueMontreal",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "56px",
+        "fontWeight": 300,
+        "lineHeight": 1.07
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "64px",
+        "fontWeight": 300,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "64px",
+        "fontWeight": 300,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 64px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Roobert",
+        "fontSize": "80px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 80px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "full": {
+      "$value": "937px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page canvas and card surfaces"
+    },
+    "wisteria-tint": {
+      "$value": "#e6daff",
+      "$type": "color",
+      "$description": "Surface level 1: Illustration panel backgrounds and hero visual stage"
+    },
+    "lilac-wash": {
+      "$value": "#f4f0ff",
+      "$type": "color",
+      "$description": "Surface level 2: Lightest violet tint for subtle section backgrounds"
+    },
+    "carbon": {
+      "$value": "#272727",
+      "$type": "color",
+      "$description": "Surface level 3: Terminal-style code badges and developer-facing dark elements"
+    },
+    "obsidian": {
+      "$value": "#0d0d0d",
+      "$type": "color",
+      "$description": "Surface level 4: Filled button surfaces and inverted dark zones"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://render.com",
+      "siteName": "Render",
+      "extractedAt": "2026-06-03T15:08:30.270Z",
+      "variant": "extended"
+    }
+  }
+}

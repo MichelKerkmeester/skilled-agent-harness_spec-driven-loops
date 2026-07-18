@@ -1,0 +1,272 @@
+{
+  "color": {
+    "blush-paper": {
+      "$value": "#fce1e3",
+      "$type": "color",
+      "$description": "Blush Paper — Page canvas, section backgrounds, the warm field all content lives on"
+    },
+    "coral-crimson": {
+      "$value": "#db404f",
+      "$type": "color",
+      "$description": "Coral Crimson — All headings, body text, icons, and the sole action color — the entire voice of the brand"
+    },
+    "midnight-ink": {
+      "$value": "#0e1736",
+      "$type": "color",
+      "$description": "Midnight Ink — Deep accent for select surfaces and inverse contexts, a cool counterpoint to the warm field"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Image backgrounds, inline accents, negative space within photographs and cards"
+    },
+    "soft-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Soft Black — Decorative strokes, icon fills, hairline borders — the only place pure black appears"
+    }
+  },
+  "font": {
+    "sansita": {
+      "$value": "Sansita",
+      "$type": "fontFamily",
+      "$description": "Display and heading face — bold, slightly condensed, with -0.02em tracking that tightens at every size. Carries all editorial weight: the page announces itself through this one confident voice."
+    },
+    "nunito-sans": {
+      "$value": "Nunito Sans",
+      "$type": "fontFamily",
+      "$description": "Body and UI face — the 18px body sets a generous reading rhythm at 1.5 line-height; 700 weight for emphasized inline phrases and small caps headers. The 72px outlier is likely a single oversized numeral or pull-quote."
+    },
+    "clarkson": {
+      "$value": "Clarkson",
+      "$type": "fontFamily",
+      "$description": "Secondary prose — the slightly taller 1.7 line-height is for long-form letter passages where breathing room matters more than density"
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Clarkson",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Clarkson",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "25px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Sansita",
+        "fontSize": "28px",
+        "fontWeight": 700,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Sansita",
+        "fontSize": "39px",
+        "fontWeight": 700,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 39px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Sansita",
+        "fontSize": "49px",
+        "fontWeight": 700,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 49px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Sansita",
+        "fontSize": "70px",
+        "fontWeight": 700,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 70px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Sansita",
+        "fontSize": "70px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 70px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Nunito Sans",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 0.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 72px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "86": {
+      "$value": "86px",
+      "$type": "dimension",
+      "$description": "Spacing 86px"
+    },
+    "95": {
+      "$value": "95px",
+      "$type": "dimension",
+      "$description": "Spacing 95px"
+    },
+    "115": {
+      "$value": "115px",
+      "$type": "dimension",
+      "$description": "Spacing 115px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "173": {
+      "$value": "173px",
+      "$type": "dimension",
+      "$description": "Spacing 173px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "300px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "blush-canvas": {
+      "$value": "#fce1e3",
+      "$type": "color",
+      "$description": "Surface level 0: The page field — every text block and letter section sits directly on this warm pink"
+    },
+    "image-bleed": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed photography that breaks the canvas with diagonal angled edges"
+    },
+    "midnight-plate": {
+      "$value": "#0e1736",
+      "$type": "color",
+      "$description": "Surface level 2: Rare dark surface for contrast moments, used sparingly to reset the eye"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://annajona.is",
+      "siteName": "Anna Jóna",
+      "extractedAt": "2026-06-03T20:46:14.875Z",
+      "variant": "extended"
+    }
+  }
+}

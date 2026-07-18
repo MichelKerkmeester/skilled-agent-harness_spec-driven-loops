@@ -1,0 +1,879 @@
+{
+  "source": "https://styles.refero.design/style/9fe9f106-44d2-45fc-9873-10c6ddcfa59b",
+  "uuid": "9fe9f106-44d2-45fc-9873-10c6ddcfa59b",
+  "name": "Pika",
+  "northStar": "Cream diptych meets cinema void",
+  "capturedAt": "2026-07-18T08:27:15.358Z",
+  "meta": {
+    "url": "https://pika.art",
+    "siteName": "Pika",
+    "extractedAt": "2026-06-03T17:12:25.763Z",
+    "durationMs": 24101,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 77,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Maintain the 50/50 diptych as the primary layout model — cream on the left for product/story, void on the right for functional UI. Never let the two halves merge into one continuous background.",
+      "Use telkaExtended 900 only once per page, for the display headline. Everything else — body, buttons, links — stays in telka 300-450.",
+      "Set body type at -0.02em letter-spacing. The negative tracking is what makes the light weights feel like printed editorial type rather than airy SaaS chrome.",
+      "Use #ffedd2 cream as a true canvas, not a highlight. It should fill large left-panel regions, not appear as a 4px accent stripe.",
+      "Build buttons at exactly 6px radius — never rounded to 8px or 12px. The slight radius reads as 'rectangular with intent', not 'friendly pill'.",
+      "Keep filled auth buttons #ffffff on #0d0d0d. Do not introduce a chromatic CTA color — the contrast between white-on-black is the action signal.",
+      "Separate the OAuth stack from the email fallback with a hairline divider + 'or' label, not extra vertical space. The divider carries the structural meaning."
+    ],
+    "donts": [
+      "Do not add a chromatic brand color (blue, purple, green) to the palette. The system is warm-cream + void + neutrals only; introducing a hue breaks the cinema/editorial metaphor.",
+      "Do not apply shadows to cards, buttons, or modals. The design is flat — depth comes from cream/void contrast, not from elevation.",
+      "Do not use telkaExtended for section headings, subheadings, or card titles. Weight 900 is display-only; functional hierarchy comes from size and weight shifts within telka 300-450.",
+      "Do not round buttons to 8px, 12px, or pill (9999px). The 6px radius is the system — deviating reads as a different product.",
+      "Do not center body copy on the cream panel. Body text and supporting microcopy align left; only the brand mark, video tile, and tagline center.",
+      "Do not add gradients, glows, or color washes to buttons or the dark panel. Every surface is a flat fill — no gradient transitions between the cream and void halves.",
+      "Do not use #0d0d0d for body text on the cream panel and #ffffff for body text on the dark panel as if they were the same role. The system has two text registers: dark-on-cream and light-on-void, and they must not cross."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#ffedd2",
+        "name": "Cream Paper",
+        "role": "Left-panel canvas, the warm half of the split — also used as a quiet heading surface and the background of the primary video preview tile",
+        "group": "brand"
+      },
+      {
+        "hex": "#0d0d0d",
+        "name": "Void Black",
+        "role": "Right-panel canvas, primary text on cream, icon strokes and fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Polished White",
+        "role": "Filled auth button surfaces on the dark panel, body text on the dark panel, icon strokes on dark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Hairline Gray",
+        "role": "Dividers, button borders, icon strokes, subtle structural lines on the cream side",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9e9e9e",
+        "name": "Muted Ash",
+        "role": "Secondary helper text, muted link state, copyright/footer labels on dark",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Surface Charcoal",
+        "role": "Subtle elevation lift on the dark panel — hovered or pressed button states, recessed containers",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed split-screen diptych as the hero — the viewport is divided 50/50 horizontally, cream left / void right, with no max-width cap. The left column centers its contents (brand mark, video tile, tagline) within its half; the right column left-aligns its auth stack within a narrower content column (roughly 400-500px) inset from the void panel's right edge. Vertical rhythm: comfortable 56-80px section gaps, 10-20px between elements within a stack. No alternating bands below the hero — the diptych IS the page for this view. Navigation is a bare text row (Twitter / Discord / Careers / Blog) bottom-right of the void panel, no top bar, no sticky header. The layout's signature is the hard vertical seam between cream and void — never a gradient, never a shared background.",
+    "imagery": "Imagery is the product. The hero video tile shows a cinematic AI-generated clip (a Shiba Inu seated between broadcast microphones, overlaid with 'AUDIO-DRIVEN PERFORMANCES' title cards) — the visual is a 'still from a premiere', not a screenshot or illustration. Treatment: dark, cinematic, letterboxed, with on-screen typography that borrows from film title design. No supporting photography, no lifestyle imagery, no decorative illustration. The video lives inside a 10px-radius container on the cream canvas, and the contrast between the dark cinematic frame and the warm paper background is the visual hook. No icons in the chrome beyond the OAuth provider marks; the UI is almost iconless outside of those functional glyphs.",
+    "similar": [
+      {
+        "why": "Same AI-creative-tool split between warm product canvas and dark cinematic functional surface; both treat the video preview as the hero, not a sidebar asset",
+        "business": "Runway"
+      },
+      {
+        "why": "Similar whisper-light body type against a cream/off-white canvas, with a single editorial display moment — both reject SaaS-dashboard density in favor of a magazine-page stance",
+        "business": "Midjourney"
+      },
+      {
+        "why": "Same dark-panel-on-light-canvas diptych with cream-paper warmth, same whisper-weight body type, same willingness to let the product (audio/video) be the only visual story",
+        "business": "Suno"
+      },
+      {
+        "why": "Same flat-rectangle component language (6-10px radii, no shadows) and same near-monochrome palette with one warm off-white as the signature surface",
+        "business": "Character.AI"
+      },
+      {
+        "why": "Same split-screen landing pattern with cream/void halves, same hairline-border + flat-button component stack, and the same restraint of using a single warm neutral as the only chromatic presence",
+        "business": "ElevenLabs"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "10px",
+        "inputs": "6px",
+        "buttons": "6px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "56-80px",
+      "cardPadding": "16-20px",
+      "pageMaxWidth": null
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#ffedd2",
+        "name": "Cream Canvas",
+        "level": 1,
+        "purpose": "Left half of the hero — the warm, editorial product surface that hosts video and copy"
+      },
+      {
+        "hex": "#0d0d0d",
+        "name": "Void Panel",
+        "level": 2,
+        "purpose": "Right half of the hero — the dark functional surface that hosts auth and navigation"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White Card",
+        "level": 3,
+        "purpose": "Raised button surface on the void panel; the only 'lifted' element in the system"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Charcoal Lift",
+        "level": 4,
+        "purpose": "Pressed/hovered state of dark-panel elements — barely visible but distinct from the base void"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Cream diptych meets cinema void",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.24
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.32
+      },
+      {
+        "role": "display",
+        "size": 32,
+        "lineHeight": 1.13,
+        "letterSpacing": 0.32
+      }
+    ],
+    "components": [
+      {
+        "name": "Diptych Hero Split",
+        "role": "Primary landing layout — 50/50 horizontal split between warm product canvas and dark functional panel",
+        "description": "Left half: #ffedd2 background, holds brand wordmark, embedded video tile (10px radius), descriptive body copy in telka 16px/300, and a 'happy across different roles' tagline. Right half: #0d0d0d background, holds display headline (telkaExtended 32px/900 white) and auth stack. The two halves never bleed into each other — the seam is a hard vertical edge, not a gradient transition."
+      },
+      {
+        "name": "Display Headline (telkaExtended 900)",
+        "role": "The one shouty moment on the page",
+        "description": "32px / line-height 1.13 / weight 900 / letter-spacing +0.01em / color #ffffff. Reserved for hero-level editorial statements. All-caps by convention. Sets in tight — no second line of subhead follows it; it stands alone."
+      },
+      {
+        "name": "Brand Wordmark",
+        "role": "Logo lockup in the cream panel",
+        "description": "'Pika' in telka weight 400, ~24px, color #0d0d0d on cream. Centered above the video tile. Quiet, not decorated — no icon, no underline, no color shift."
+      },
+      {
+        "name": "Video Preview Tile",
+        "role": "The product showcase in the cream panel",
+        "description": "Container 10px radius, holds an autoplaying muted video. A small speaker/mute toggle sits in the bottom-right corner (~24px, #ffffff on translucent dark). Video content extends edge-to-edge inside the radius; no border or shadow."
+      },
+      {
+        "name": "Filled Auth Button (White on Dark)",
+        "role": "Primary sign-in actions on the dark panel",
+        "description": "Background #ffffff, text and leading icon #0d0d0d, weight 450, 14px. Padding approximately 12px vertical × 16px horizontal. Radius 6px. Full container width. No border, no shadow, no hover lift — flat rect. Provider icon (Google/Facebook/Discord/Email) sits left of label, baseline-aligned."
+      },
+      {
+        "name": "Email Sign-In Button (Outlined on Dark)",
+        "role": "Secondary sign-in option — visually distinct from OAuth buttons",
+        "description": "Transparent background, 1px border #e5e7eb at ~30% opacity (or a desaturated cream), text and icon #0d0d0d or #e5e7eb, weight 450, 14px. Same 6px radius and full width as filled buttons. Separated from the OAuth stack by a thin horizontal rule with an 'or' label centered on it."
+      },
+      {
+        "name": "OAuth Divider with 'or'",
+        "role": "Rhythm break between OAuth group and email fallback",
+        "description": "1px line #e5e7eb at low opacity, full container width. The word 'or' sits centered on the line in telka 12px, color #9e9e9e. No box, no background mask — the type overlaps the rule directly."
+      },
+      {
+        "name": "Legal / Terms Microcopy",
+        "role": "Consent disclosure beneath the sign-in stack",
+        "description": "telka 12px / line-height 1.50 / weight 300 / color #9e9e9e. Inline links to Terms of Service, Acceptable Use Policy, and Privacy Policy are underlined and #e5e7eb — they pick up the hairline color so the link color matches the border color, not the text color. Unusual but on-system."
+      },
+      {
+        "name": "Footer Link Row",
+        "role": "Bottom-right secondary navigation",
+        "description": "Horizontal row of telka 12px links (Twitter, Discord, Careers, Blog), color #9e9e9 default, hover lifts to #e5e7eb. No separators between items — relies on natural word spacing. A second sub-row below holds Privacy/Terms/Support in the same treatment."
+      },
+      {
+        "name": "Section Divider (within cream panel)",
+        "role": "Quiet break before footer microcopy",
+        "description": "A 1px #e5e7eb hairline spanning the cream panel's content width, with comfortable vertical padding (32-56px) above. No box, no shadow — the line is the only ornament."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All functional UI — body copy, buttons, links, icons, captions. The whisper-weight stance (300-450 range) is anti-convention: most product UI pushes 500-600 for body. Light weights here make the chrome feel like editorial print, not SaaS dashboard.",
+        "sizes": "12px, 14px, 16px",
+        "family": "telka",
+        "weight": "300, 400, 450",
+        "lineHeight": "1.33–1.50",
+        "substitute": "Inter, General Sans, Switzer",
+        "letterSpacing": "-0.02em (body tightens for that printed-page feel); +0.01em for slightly larger sizes"
+      },
+      {
+        "role": "Sole display voice — the 'REALITY IS OPTIONAL' headline. Weight 900 is theatrical, designed to detonate against the whisper-weight body below. Use sparingly: one display moment per page, never for section headings or subheadings.",
+        "sizes": "32px",
+        "family": "telkaExtended",
+        "weight": "900",
+        "lineHeight": "1.13",
+        "substitute": "Suisse Int'l Bold, Inter Black, Archivo Black",
+        "letterSpacing": "+0.01em — slightly opened to let the condensed weight breathe"
+      }
+    ],
+    "description": "Pika is a warm-cold diptych: a cream paper canvas on the left holds the product (video, copy, brand mark), while a near-black void on the right houses functional UI (auth, navigation). The palette is almost monastic — black, white, cream, two grays — with cream (#ffedd2) acting as the only warmth, a deliberate foil to the cinematic dark that makes the AI-generated video read as 'premiere' rather than 'demo'. Type is a whisper-to-shout system: telka at weights 300-450 for everything functional reads like editorial body copy, while telkaExtended at weight 900 detonates on the single display heading ('REALITY IS OPTIONAL') to create punctuation, not hierarchy. Components are bare and rectangular: 6px-radius buttons, 10px-radius containers, 1px hairline borders, zero shadows. The design relies on contrast (cream/void, 300/900, still/motion) rather than ornament to carry the brand.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9fe9f106-44d2-45fc-9873-10c6ddcfa59b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Pika design system\",\"item\":\"https://styles.refero.design/style/9fe9f106-44d2-45fc-9873-10c6ddcfa59b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9fe9f106-44d2-45fc-9873-10c6ddcfa59b#style-reference\",\"name\":\"Pika design system reference\",\"headline\":\"Pika design system | Refero Styles\",\"description\":\"Explore Pika's mixed AI design system: Cream Paper #ffedd2, Void Black #0d0d0d colors, telka, telkaExtended typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/9fe9f106-44d2-45fc-9873-10c6ddcfa59b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9fe9f106-44d2-45fc-9873-10c6ddcfa59b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Pika\",\"url\":\"https://pika.art\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9fe9f106-44d2-45fc-9873-10c6ddcfa59b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6a69bbb8-df56-4da0-bb1a-d3a8ae436919.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6a69bbb8-df56-4da0-bb1a-d3a8ae436919.jpg\",\"caption\":\"Screenshot of Pika\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6a69bbb8-df56-4da0-bb1a-d3a8ae436919.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Pika design system\",\"Pika website design\",\"Pika colors\",\"Pika typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Cream Paper\",\"Void Black\",\"Polished White\",\"Hairline Gray\",\"telka\",\"telkaExtended\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Pika design system\"},{\"@type\":\"Thing\",\"name\":\"Pika website design\"},{\"@type\":\"Thing\",\"name\":\"Pika colors\"},{\"@type\":\"Thing\",\"name\":\"Pika typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-01-21T09:03:09.000Z\",\"dateModified\":\"2026-01-21T09:03:09.000Z\"}]}19:T868,**Quick Color Reference**\n- background: #ffedd2 (left panel) / #0d0d0d (right panel)\n- text: #0d0d0d (on cream) / #ffffff (on void)\n- border: #e5e7eb\n- accent: #ffedd2 (cream — used as canvas, not as a button color)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. **Diptych hero:** 50/50 split, left half #ffedd2, right half #0d0d0d. Left: centered 'Pika' wordmark in telka 24px weight 400 #0d0d0d, then a 10px-radius video tile, then telka 16px weight 300 #0d0d0d body copy, then 12px weight 300 tagline. Right: telkaExtended 32px weight 900 #ffffff display headline, then a stack of 6px-radius filled white buttons (#ffffff bg, #0d0d0d text, telka 14px weight 450), each with a leading provider icon, then a hairline divider with centered 'or' (12px, #9e9e9e), then a 6px-radius outlined button (1px #e5e7eb border at low opacity, #e5e7eb text) for email sign-in, then 12px #9e9e9e legal microcopy with underlined #e5e7eb inline links.\n\n2. **Filled auth button (Google):** 6px radius, #ffffff background, 1px #e5e7eb hairline border optional, Google 'G' icon left at 16px #0d0d0d, label 'Sign in with Google' in telka 14px weight 450 #0d0d0d, full container width, 12px vertical padding, 16px horizontal padding. Flat — no shadow, no gradient.\n\n3. **Email sign-in button (outlined):** 6px radius, transparent background, 1px #e5e7eb border at 30% opacity, envelope icon left at 16px #e5e7eb, label 'Sign in with an email' in telka 14px weight 450 #e5e7eb, full container width. Visual rhythm: this button should feel quieter than the white OAuth buttons — it's the fallback, not the headline action.\n\n4. **OAuth divider with 'or':** 1px #e5e7eb hairline at 30% opacity, full container width, with the word 'or' centered in telka 12px weight 300 #9e9e9e directly overlapping the line. No background mask behind the type — the type sits on the rule.\n\n5. **Footer link row:** horizontal row, telka 12px weight 400, color #9e9e9e default, items separated by ~20px space (no pipes, no bullets). Items: 'Twitter', 'Discord', 'Careers', 'Blog'. On hover, color lifts to #e5e7eb. No underline, no icon, no background change."
+      },
+      {
+        "title": "Diptych Layout Rule",
+        "content": "The defining layout primitive is the 50/50 horizontal split: cream on the left for product and story, void on the right for functional UI. This split is not a one-off hero treatment — it is the system's structural unit. When building additional pages, maintain the two-surface model: any 'content' or 'showcase' area lives on cream; any 'action' or 'form' area lives on void. The seam between them is always a hard vertical edge, never a gradient, blur, or shared background. The contrast itself is the brand."
+      },
+      {
+        "title": "Typography Voice Contract",
+        "content": "Two fonts, two voices, no overlap. telka (weights 300-450) is the functional voice — body, buttons, links, captions, form labels. telkaExtended (weight 900) is the editorial voice — used exactly once per page for the display headline. A page may use 50 instances of telka in different sizes; it may use telkaExtended at most once. Mixing them inside the same line, or using telkaExtended for anything below display size, breaks the whisper-to-shout contract that defines the system."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids shadow-based elevation. All depth is communicated through surface color contrast (cream vs void, white on void, charcoal lift) and 1px hairline borders. A single hairline at #e5e7eb on cream is the only structural line in the entire system; everything else is flat fill against flat fill."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.00599996946660428,
+            "h": 264.5285381460292,
+            "l": 0.9280000564226094
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "icon",
+            "body",
+            "heading"
+          ],
+          "frequency": 240,
+          "confidence": 1,
+          "prominence": 10212374.977338389,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 38,
+          "confidence": 1,
+          "prominence": 6821340.103663618,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffedd2",
+          "oklch": {
+            "c": 0.04046904120734942,
+            "h": 78.09936622632965,
+            "l": 0.9534870306556565
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 1505686,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0d0d0d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.15906639920862536
+          },
+          "contexts": [
+            "body",
+            "link",
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 179829.4227366419,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9e9e9e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6999110380705797
+          },
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 32460.032014769276,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4267b2",
+          "oklch": {
+            "c": 0.12590553410726088,
+            "h": 262.97428157781167,
+            "l": 0.5237046071658703
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 800,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5865f2",
+          "oklch": {
+            "c": 0.2090896732780479,
+            "h": 273.85036224828,
+            "l": 0.5774363808320988
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 800,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1f1f1f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23929237775790413
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 784,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffc107",
+          "oklch": {
+            "c": 0.1721585362400874,
+            "h": 84.93378824411164,
+            "l": 0.8441706298639002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 278,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4caf50",
+          "oklch": {
+            "c": 0.1624419535217847,
+            "h": 144.20826736609,
+            "l": 0.6730982850961172
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 86,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff3d00",
+          "oklch": {
+            "c": 0.2347923192885132,
+            "h": 34.03696061309605,
+            "l": 0.6535272182230092
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 84,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1976d2",
+          "oklch": {
+            "c": 0.16334519799267117,
+            "h": 253.27055873749268,
+            "l": 0.5645335707747637
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 65,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.02743553783622502,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.44,
+          "background": "#ffffff",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.93,
+          "background": "#ffedd2",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.48,
+          "background": "#1f1f1f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.7,
+          "background": "#e5e7eb",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.36,
+          "background": "#1f1f1f",
+          "foreground": "#ffedd2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.31,
+          "background": "#e5e7eb",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.92,
+          "background": "#ffc107",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.11,
+          "background": "#ffc107",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.15,
+          "background": "#1f1f1f",
+          "foreground": "#9e9e9e"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.68,
+          "background": "#ffffff",
+          "foreground": "#9e9e9e"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.33,
+          "background": "#ffedd2",
+          "foreground": "#9e9e9e"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.18,
+          "background": "#1f1f1f",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.15,
+          "background": "#ffedd2",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 28,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 67,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 89,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "telka",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            450
+          ],
+          "frequency": 59,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "telkaExtended",
+          "source": "custom",
+          "weights": [
+            900
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "telka",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "telka",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "telka",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "telka",
+          "weight": 450,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "telka",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "telka",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "telkaExtended",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.13,
+          "letterSpacing": 0.01,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4b2224ee-1200-4972-bcfd-a7406ff148b8.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6a69bbb8-df56-4da0-bb1a-d3a8ae436919.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/9fe9f106-44d2-45fc-9873-10c6ddcfa59b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Pika design system\",\"item\":\"https://styles.refero.design/style/9fe9f106-44d2-45fc-9873-10c6ddcfa59b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/9fe9f106-44d2-45fc-9873-10c6ddcfa59b#style-reference\",\"name\":\"Pika design system reference\",\"headline\":\"Pika design system | Refero Styles\",\"description\":\"Explore Pika's mixed AI design system: Cream Paper #ffedd2, Void Black #0d0d0d colors, telka, telkaExtended typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/9fe9f106-44d2-45fc-9873-10c6ddcfa59b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/9fe9f106-44d2-45fc-9873-10c6ddcfa59b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Pika\",\"url\":\"https://pika.art\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/9fe9f106-44d2-45fc-9873-10c6ddcfa59b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6a69bbb8-df56-4da0-bb1a-d3a8ae436919.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6a69bbb8-df56-4da0-bb1a-d3a8ae436919.jpg\",\"caption\":\"Screenshot of Pika\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6a69bbb8-df56-4da0-bb1a-d3a8ae436919.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Pika design system\",\"Pika website design\",\"Pika colors\",\"Pika typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Cream Paper\",\"Void Black\",\"Polished White\",\"Hairline Gray\",\"telka\",\"telkaExtended\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Pika design system\"},{\"@type\":\"Thing\",\"name\":\"Pika website design\"},{\"@type\":\"Thing\",\"name\":\"Pika colors\"},{\"@type\":\"Thing\",\"name\":\"Pika typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-01-21T09:03:09.000Z\",\"dateModified\":\"2026-01-21T09:03:09.000Z\"}]}19:T868,**Quick Color Reference**\n- background: #ffedd2 (left panel) / #0d0d0d (right panel)\n- text: #0d0d0d (on cream) / #ffffff (on void)\n- border: #e5e7eb\n- accent: #ffedd2 (cream — used as canvas, not as a button color)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. **Diptych hero:** 50/50 split, left half #ffedd2, right half #0d0d0d. Left: centered 'Pika' wordmark in telka 24px weight 400 #0d0d0d, then a 10px-radius video tile, then telka 16px weight 300 #0d0d0d body copy, then 12px weight 300 tagline. Right: telkaExtended 32px weight 900 #ffffff display headline, then a stack of 6px-radius filled white buttons (#ffffff bg, #0d0d0d text, telka 14px weight 450), each with a leading provider icon, then a hairline divider with centered 'or' (12px, #9e9e9e), then a 6px-radius outlined button (1px #e5e7eb border at low opacity, #e5e7eb text) for email sign-in, then 12px #9e9e9e legal microcopy with underlined #e5e7eb inline links.\n\n2. **Filled auth button (Google):** 6px radius, #ffffff background, 1px #e5e7eb hairline border optional, Google 'G' icon left at 16px #0d0d0d, label 'Sign in with Google' in telka 14px weight 450 #0d0d0d, full container width, 12px vertical padding, 16px horizontal padding. Flat — no shadow, no gradient.\n\n3. **Email sign-in button (outlined):** 6px radius, transparent background, 1px #e5e7eb border at 30% opacity, envelope icon left at 16px #e5e7eb, label 'Sign in with an email' in telka 14px weight 450 #e5e7eb, full container width. Visual rhythm: this button should feel quieter than the white OAuth buttons — it's the fallback, not the headline action.\n\n4. **OAuth divider with 'or':** 1px #e5e7eb hairline at 30% opacity, full container width, with the word 'or' centered in telka 12px weight 300 #9e9e9e directly overlapping the line. No background mask behind the type — the type sits on the rule.\n\n5. **Footer link row:** horizontal row, telka 12px weight 400, color #9e9e9e default, items separated by ~20px space (no pipes, no bullets). Items: 'Twitter', 'Discord', 'Careers', 'Blog'. On hover, color lifts to #e5e7eb. No underline, no icon, no background change."
+}

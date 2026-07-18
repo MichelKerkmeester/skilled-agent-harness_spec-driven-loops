@@ -1,0 +1,1742 @@
+{
+  "source": "https://styles.refero.design/style/7d10f1d6-f2a8-43ce-b055-6ddd74e3c7e1",
+  "uuid": "7d10f1d6-f2a8-43ce-b055-6ddd74e3c7e1",
+  "name": "Blok",
+  "northStar": "Swiss showroom on teal-tinted paper",
+  "capturedAt": "2026-07-18T08:58:23.942Z",
+  "meta": {
+    "url": "https://blokwatches.com",
+    "siteName": "Blok",
+    "extractedAt": "2026-06-03T21:14:21.425Z",
+    "durationMs": 36296,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 985,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Signal Teal (#1dd8e1) exclusively for interactive moments — buttons, links, active tabs, star ratings — and let it carry 100% of the chromatic load.",
+      "Set all display headlines in Jost 700 with 0.09em tracking; never use Poppins or Cabin for anything above 24px.",
+      "Separate surfaces with hairline #0a0d0f borders or a #ffffff → #f7f7f7 tone shift; do not introduce box-shadows for elevation.",
+      "Use uppercase Cabin 500-600 with 0.064-0.09em tracking for any label, eyebrow, or category text under 21px.",
+      "Keep product cards borderless with 3px radius and 24px internal padding; let the product image do the visual work.",
+      "Default page background to #ffffff; switch to #f7f7f7 for alternating sections like the press strip and product image containers.",
+      "Center-align section headlines and product page titles; left-align only body copy and form content."
+    ],
+    "donts": [
+      "Don't add box-shadows to cards, buttons, or modals — the system is intentionally flat, separated by borders and tone.",
+      "Don't introduce additional accent colors — every interactive element that isn't a neutral border or text should be Signal Teal.",
+      "Don't use a second typeface for body copy; Poppins owns 400-500 across all UI and product descriptions.",
+      "Don't round corners beyond 3px for cards/inputs or 100px for pill buttons — the system is mostly sharp with a few deliberate pills.",
+      "Don't set body copy or UI text in uppercase; reserve letter-spacing for Cabin labels and Jost headlines only.",
+      "Don't place teal text on teal backgrounds, or teal buttons on the Bone (#f7f7f7) footer — contrast is built on white canvas + dark ink.",
+      "Don't crowd sections; sectionGap should never drop below 64px even on dense product pages."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#0a0d0f",
+        "name": "Carbon Ink",
+        "role": "Primary text, product page borders, body type — the near-black that carries the entire brand voice in type",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page canvas, product card surface, button text on dark — the base everything sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2e3438",
+        "name": "Slate Veil",
+        "role": "Secondary text and icon strokes — slightly cooler than Carbon Ink, used where pure black would feel too heavy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Onyx",
+        "role": "Body borders, heading text — the hardest black in the system, used sparingly for maximum edge definition",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f7f7",
+        "name": "Bone",
+        "role": "Alternate section background, subtle card wash, press-logo band — the warm off-white that breaks up white-on-white without introducing a color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Footer Ash",
+        "role": "Footer surface only — one step deeper than Bone to separate the footer from the body",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d5d6d7",
+        "name": "Silver Mist",
+        "role": "Input borders, subtle dividers — hairline neutral that only shows on form elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#656565",
+        "name": "Graphite Tag",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1dd8e1",
+        "name": "Signal Teal",
+        "role": "Primary action buttons, link text, product dial accents, active tab indicators — the only chromatic color in the entire system, carrying every interactive moment on its own",
+        "group": "brand"
+      }
+    ],
+    "layout": "Max-width 1200px centered container drives all content; the hero is the only full-bleed element, expanding edge-to-edge with a dark Carbon Ink background. Below the hero, the layout is a vertical stack of white sections separated by generous 80px gaps. Product grids use a 4-column layout on desktop, collapsing to 2 on tablet and 1 on mobile. Product detail pages use a 2-column split: large product image left (50-55% width), purchase controls and description right. Navigation is a minimal top bar with hamburger left, wordmark center, bag icon right — no mega-menu, no sidebar. Press logos sit in a single full-width band. The footer is a single low-contrast #efefef block at the very bottom.",
+    "imagery": "Product photography is the dominant visual — tight, centered shots of watches on pure white or light gray backgrounds, no lifestyle context, no models, no environment. The hero image is composited with large organic teal shape-blobs behind the watch, creating a liquid editorial feel without literal gradients. Press logos appear as flat monochrome wordmarks. No illustrations, no 3D renders, no stock photography beyond the product itself — the catalog reads as gallery-style product shots where the watch IS the visual.",
+    "similar": [
+      {
+        "why": "Same flat editorial product grid, hairline-separated cards, and a single bold accent carrying all interactive moments",
+        "business": "MVMT Watches"
+      },
+      {
+        "why": "Same wide-tracked uppercase category labels, centered minimal navigation, and product-first hero with generous white space",
+        "business": "Daniel Wellington"
+      },
+      {
+        "why": "Same architectural confidence in type — bold uppercase headlines against clean white product pages, industrial-luxe tone",
+        "business": "Bell & Ross"
+      },
+      {
+        "why": "Same three-typeface system mixing a heavy display sans with a lighter geometric body, and flat 3px-radius product cards",
+        "business": "Studio Proper"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tabs": "3px",
+        "cards": "3px",
+        "inputs": "3px",
+        "buttons": "3px",
+        "buttons-pill": "100px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, default surface"
+      },
+      {
+        "hex": "#f7f7f7",
+        "name": "Band",
+        "level": 1,
+        "purpose": "Press logos strip, alternating section"
+      },
+      {
+        "hex": "#efefef",
+        "name": "Footer",
+        "level": 2,
+        "purpose": "Footer base"
+      }
+    ],
+    "northStar": "Swiss showroom on teal-tinted paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.77
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.42,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-lg",
+        "size": 17,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 1.38,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.38,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 34,
+        "lineHeight": 1.37,
+        "letterSpacing": 3.06
+      },
+      {
+        "role": "heading-lg",
+        "size": 42,
+        "lineHeight": 1.25,
+        "letterSpacing": 3.78
+      },
+      {
+        "role": "display",
+        "size": 68,
+        "lineHeight": 1.2,
+        "letterSpacing": 6.12
+      }
+    ],
+    "components": [
+      {
+        "name": "Teal Filled Button",
+        "role": "Primary call-to-action for product discovery",
+        "description": "Solid #1dd8e1 background, Carbon Ink (#0a0d0f) text, Poppins 500 at 14-16px, 3px corner radius, 12px vertical and 24px horizontal padding. No shadow. Used sparingly — the teal is precious, reserve for high-intent moments."
+      },
+      {
+        "name": "Outlined Teal Button",
+        "role": "Primary action on product detail pages (Add to Cart)",
+        "description": "Transparent background, 1px Signal Teal (#1dd8e1) border, Signal Teal text, Poppins 500, 3px radius, 12px vertical / 24px horizontal padding. Often paired with a fully filled Shop Pay button below it, so this outlined variant carries the brand color while letting the third-party button dominate the visual weight."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Secondary navigation actions like 'Find Your Blok' in the hero",
+        "description": "White or Carbon Ink text, 1px border in the same color, Poppins 500 at 12-14px, wide letter-spacing (0.064em), 3px radius. Reads as a quiet outlined rectangle."
+      },
+      {
+        "name": "Product Card",
+        "role": "Individual watch tile in the collection grid",
+        "description": "White (#ffffff) surface, 3px corner radius, no border, no shadow. Product image sits centered with 24px internal padding. Below the image: product name in Poppins 500 (e.g. 'Blok 33 — Aqua'), price in Poppins 400, optional 'Sold Out' badge in the top-right corner."
+      },
+      {
+        "name": "Sold Out Badge",
+        "role": "Status indicator for unavailable products",
+        "description": "Light neutral background, Graphite Tag (#656565) text in Cabin 500, 3px radius, 5-6px vertical / 10px horizontal padding. Small and quiet — never screams."
+      },
+      {
+        "name": "Collection Tab Bar",
+        "role": "Switch between product lines (BK33, BK38, Bundles, Straps)",
+        "description": "Horizontal row of text tabs in Cabin 500-600, 12-14px, letter-spacing 0.09em, uppercase. Active tab is underlined or colored in Signal Teal; inactive tabs are Carbon Ink. No background fill, no border — separation comes from spacing alone."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Above-the-fold brand statement with featured watch",
+        "description": "Full-bleed dark background (Carbon Ink #0a0d0f with large organic teal shapes as decorative blobs in Signal Teal at low opacity). Headline in Jost 700, 42-68px, white text, letter-spacing 0.09em. Subhead in Poppins 400 white. Ghost text CTA button bottom-right."
+      },
+      {
+        "name": "Press Logo Strip",
+        "role": "Social proof band of media outlets",
+        "description": "Bone (#f7f7f7) background band, single row of monochrome black wordmarks (Esquire, WSJ, NYT, Cool Hunting, Gear Patrol, Financial Times, Hodinkee). Logos sit at uniform height, separated by 40-60px horizontal gaps. No labels, no borders — just logos on a gray strip."
+      },
+      {
+        "name": "Quantity Selector",
+        "role": "Number stepper on product detail",
+        "description": "Outlined rectangle in Carbon Ink (#0a0d0f), 1px border, 3px radius. Contains a '−' button, current quantity number in Poppins, and a '+' button. No fill, no background color."
+      },
+      {
+        "name": "Star Rating Display",
+        "role": "Product review indicator",
+        "description": "Small inline component showing filled stars in Signal Teal (#1dd8e1) and a numeric rating (e.g. '5.0') in Poppins 400, Carbon Ink. Stars are 12-14px, flat geometry, no outline."
+      },
+      {
+        "name": "Product Detail Gallery",
+        "role": "Large product image with light background",
+        "description": "Light neutral (#f7f7f7 or #ffffff) background, 3px radius around the image container, 24-40px internal padding. Product image sits centered with generous breathing room — the product is the hero of its own page."
+      },
+      {
+        "name": "Section Headline Block",
+        "role": "Centered intro text for content sections",
+        "description": "Centered stack: eyebrow caption in Cabin 500 with 0.09em tracking, then headline in Jost 700, then subhead in Poppins 400 Carbon Ink. No decorative rules or dividers — whitespace is the separator."
+      },
+      {
+        "name": "Shop Pay Button",
+        "role": "Third-party express checkout",
+        "description": "Filled #5a31f4 (Shopify purple) background, white text, Poppins 500, 3px radius, 12px vertical / 24px horizontal padding. Sits directly below the outlined Add to Cart button, occupying full width."
+      },
+      {
+        "name": "Navigation Header",
+        "role": "Top-level site navigation",
+        "description": "White background, Carbon Ink text, hamburger menu icon left, 'blok' wordmark center, bag icon right. Minimal — no underline, no background highlight, no nested menus visible at rest."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body copy, product titles, button text, UI chrome — the rounded geometry contrasts with Jost's squared display weight, keeping the system from feeling monotone",
+        "sizes": "14px, 16px, 17px, 21px, 24px, 25px",
+        "family": "Poppins",
+        "weight": "400, 500",
+        "lineHeight": "1.38-1.50",
+        "substitute": "Inter, DM Sans, Manrope"
+      },
+      {
+        "role": "Display and section headlines — the wide 0.09em tracking turns bold weight into something architectural rather than shouty; treat as the only voice for H1/H2/page titles",
+        "sizes": "23px, 34px, 42px, 51px",
+        "family": "Jost",
+        "weight": "700",
+        "lineHeight": "1.25-1.38",
+        "substitute": "Inter Tight, Montserrat, Archivo Black",
+        "letterSpacing": "0.09em",
+        "fontFeatureSettings": "\"ss01\" on, \"tnum\" on"
+      },
+      {
+        "role": "Eyebrow labels, nav tabs, small section captions, badge text — the 0.064em-0.09em tracking at small sizes creates a 'label-grade' voice that sits above Poppins without dominating it",
+        "sizes": "12px, 14px, 17px, 20px, 21px, 68px",
+        "family": "Cabin",
+        "weight": "500, 600",
+        "lineHeight": "1.00-1.63",
+        "substitute": "Inter, Work Sans, Sora",
+        "letterSpacing": "0.064-0.09em"
+      },
+      {
+        "role": "GTStandard-M — detected in extracted data but not described by AI",
+        "sizes": "17px",
+        "family": "GTStandard-M",
+        "weight": "400",
+        "lineHeight": "1.5"
+      }
+    ],
+    "description": "Blok is a premium analog-watch brand that treats the product page like a gallery wall: generous white space, sharp-cornered cards, and typography that leans on wide tracking to feel considered rather than loud. A single vivid teal — #1dd8e1 — does all the accent work, threading through button strokes, text links, and product dial highlights, while the rest of the palette stays architectural in dark navy-blacks and warm off-whites. Headlines are set in a heavy, wide-tracked Jost that feels almost industrial-luxe, contrasted against the rounded Poppins used for body and UI. Layout is centered, max-width-contained, and product-first: a dark hero with organic teal shapes gives way to white product grids, a single light-gray press band, and flat-light product detail pages. Components are flat, hairline-bordered, and almost shadeless — confidence comes from type scale and spacing, not elevation.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7d10f1d6-f2a8-43ce-b055-6ddd74e3c7e1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Blok design system\",\"item\":\"https://styles.refero.design/style/7d10f1d6-f2a8-43ce-b055-6ddd74e3c7e1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7d10f1d6-f2a8-43ce-b055-6ddd74e3c7e1#style-reference\",\"name\":\"Blok design system reference\",\"headline\":\"Blok design system | Refero Styles\",\"description\":\"Explore Blok's mixed E-commerce design system: Carbon Ink #0a0d0f, Pure White #ffffff colors, Poppins, Jost typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7d10f1d6-f2a8-43ce-b055-6ddd74e3c7e1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7d10f1d6-f2a8-43ce-b055-6ddd74e3c7e1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Blok\",\"url\":\"https://blokwatches.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7d10f1d6-f2a8-43ce-b055-6ddd74e3c7e1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/519984fe-dad4-4e03-b87c-a65b62da3bd5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/519984fe-dad4-4e03-b87c-a65b62da3bd5.jpg\",\"caption\":\"Screenshot of Blok\"},\"image\":\"https://images.refero.design/styles/refero.design/image/519984fe-dad4-4e03-b87c-a65b62da3bd5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Blok design system\",\"Blok website design\",\"Blok colors\",\"Blok typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Carbon Ink\",\"Pure White\",\"Slate Veil\",\"Onyx\",\"Poppins\",\"Jost\",\"Cabin\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Blok design system\"},{\"@type\":\"Thing\",\"name\":\"Blok website design\"},{\"@type\":\"Thing\",\"name\":\"Blok colors\"},{\"@type\":\"Thing\",\"name\":\"Blok typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:02:34.771Z\",\"dateModified\":\"2026-04-30T02:02:34.771Z\"}]}19:T76a,Quick Color Reference:\n- text: #0a0d0f (Carbon Ink)\n- background: #ffffff (Pure White)\n- border: #0a0d0f (Carbon Ink, 1px hairline)\n- accent: #1dd8e1 (Signal Teal)\n- primary action: #1dd8e1 (filled action)\n- surface alt: #f7f7f7 (Bone)\n\n3-5 Example Component Prompts:\n1. Build a product card: white #ffffff background, 3px corner radius, no border, no shadow. 24px internal padding. Watch image centered filling the top 70% of the card. Below: 'Blok 33 — Aqua' in Poppins 500 16px #0a0d0f, then '$189.00' in Poppins 400 14px #2e3438.\n2. Build a collection tab bar: horizontal row centered, items 'BK33 | BK38 | BUNDLES | STRAPS' in Cabin 600 12px uppercase, letter-spacing 0.09em, color #0a0d0f. Active tab underlined with a 2px line in #1dd8e1, all other tabs have no underline. No background fill, no borders.\n3. Build a hero section: full-bleed #0a0d0f background with a large organic teal blob shape in #1dd8e1 at 30% opacity behind the right side. Headline 'TAKE BACK TIME' in Jost 700 68px #ffffff, letter-spacing 0.09em, centered. Subhead 'An analog watch for the modern world.' in Poppins 400 17px #ffffff below. Ghost CTA 'FIND YOUR BLOK' bottom-right, 1px white border, white text, Poppins 500 12px, 3px radius, 12px/24px padding.\n4. Build an Add to Cart button row: full-width outlined button, 1px #1dd8e1 border, transparent background, text 'ADD TO CART  $495.00' in Poppins 500 14px #1dd8e1, 3px radius, 12px vertical / 24px horizontal padding. Directly below it, a full-width filled #5a31f4 button with white text 'Buy with shop' in Poppins 500 14px, same radius and padding.\n5. Build a press logo strip: full-width band, #f7f7f7 background, 60px vertical padding. Single horizontal row of monochrome black wordmarks (Esquire, WSJ, The New York Times, Cool Hunting, Gear Patrol, Financial Times, Hodinkee) evenly distributed with 50px gaps, all at uniform 28px height, no captions."
+      },
+      {
+        "title": "Type System Philosophy",
+        "content": "Three-font system with clear role separation: Jost 700 is the showpiece — reserved for headlines 23px+, its 0.09em tracking transforms bold weight from loud to architectural. Cabin 500-600 is the label voice — uppercase + 0.064-0.09em tracking at small sizes creates a 'curated' feel for tabs, eyebrows, and badges. Poppins 400-500 does all body and UI work — its rounded geometry deliberately contrasts with Jost's squared display, keeping the system from feeling monotone. Never blur the lines: a Jost headline in a 17px label role is a category error."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids shadows — surfaces are separated by hairline borders in Carbon Ink (#0a0d0f) and tone shifts between #ffffff and #f7f7f7. Elevation is expressed through content layering, not depth, giving the product catalog a flat editorial-magazine feel."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#0a0d0f",
+          "oklch": {
+            "c": 0.006510820381135464,
+            "h": 237.092982727537,
+            "l": 0.15662764488321568
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image",
+            "button",
+            "body",
+            "badge",
+            "icon",
+            "heading",
+            "input"
+          ],
+          "frequency": 3931,
+          "confidence": 1,
+          "prominence": 101828752.21192488,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 10,
+            "body/color": 47,
+            "icon/color": 6,
+            "link/color": 26,
+            "other/fill": 2,
+            "badge/color": 2,
+            "icon/stroke": 2,
+            "image/color": 60,
+            "input/color": 1,
+            "other/color": 621,
+            "button/color": 18,
+            "other/stroke": 1,
+            "heading/color": 3,
+            "body/borderColor": 188,
+            "icon/borderColor": 24,
+            "link/borderColor": 104,
+            "badge/borderColor": 8,
+            "image/borderColor": 240,
+            "other/borderColor": 2484,
+            "button/borderColor": 72,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "link",
+            "image",
+            "body",
+            "heading",
+            "badge",
+            "input"
+          ],
+          "frequency": 311,
+          "confidence": 1,
+          "prominence": 70654786.52582075,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "icon/color": 3,
+            "link/color": 2,
+            "icon/stroke": 6,
+            "image/color": 3,
+            "input/color": 1,
+            "other/color": 31,
+            "button/color": 3,
+            "other/stroke": 6,
+            "heading/color": 3,
+            "body/borderColor": 20,
+            "icon/borderColor": 12,
+            "link/borderColor": 8,
+            "image/borderColor": 12,
+            "input/borderColor": 4,
+            "other/borderColor": 123,
+            "button/borderColor": 12,
+            "heading/borderColor": 12,
+            "badge/backgroundColor": 2,
+            "other/backgroundColor": 42,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2e3438",
+          "oklch": {
+            "c": 0.010920082115098382,
+            "h": 236.9463766798554,
+            "l": 0.3208684014519051
+          },
+          "contexts": [
+            "icon",
+            "other",
+            "body",
+            "link",
+            "footer",
+            "button",
+            "list",
+            "heading"
+          ],
+          "frequency": 253,
+          "confidence": 1,
+          "prominence": 5649158.432827503,
+          "properties": [
+            "stroke",
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "icon/color": 1,
+            "link/color": 10,
+            "list/color": 9,
+            "other/fill": 1,
+            "icon/stroke": 6,
+            "other/color": 17,
+            "button/color": 3,
+            "footer/color": 1,
+            "heading/color": 1,
+            "body/borderColor": 28,
+            "icon/borderColor": 4,
+            "link/borderColor": 40,
+            "list/borderColor": 36,
+            "other/borderColor": 67,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "button",
+            "icon"
+          ],
+          "frequency": 204,
+          "confidence": 1,
+          "prominence": 4008051.2150935843,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 24,
+            "other/color": 12,
+            "button/color": 1,
+            "heading/color": 3,
+            "body/borderColor": 96,
+            "other/borderColor": 48,
+            "button/borderColor": 4,
+            "heading/borderColor": 12,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f7f7f7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.976138790665567
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "button",
+            "icon",
+            "body",
+            "link"
+          ],
+          "frequency": 113,
+          "confidence": 1,
+          "prominence": 2190795.36079157,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "icon/color": 1,
+            "link/color": 5,
+            "icon/stroke": 2,
+            "other/color": 9,
+            "button/color": 1,
+            "other/stroke": 1,
+            "heading/color": 1,
+            "body/borderColor": 20,
+            "icon/borderColor": 4,
+            "link/borderColor": 20,
+            "other/borderColor": 36,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#efefef",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9521308451894797
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 707145,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2c75d4",
+          "oklch": {
+            "c": 0.16283271814616349,
+            "h": 256.65907363443665,
+            "l": 0.567912697030696
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 268564,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1dd8e1",
+          "oklch": {
+            "c": 0.13316062339081097,
+            "h": 200.32701080257542,
+            "l": 0.8036298239929864
+          },
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 115578.84333224433,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "button/color": 1,
+            "body/borderColor": 16,
+            "button/borderColor": 4,
+            "button/backgroundColor": 10
+          }
+        },
+        {
+          "hex": "#d5d6d7",
+          "oklch": {
+            "c": 0.0017156602374329838,
+            "h": 236.46336432750593,
+            "l": 0.8766201064724588
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 12816.244078575492,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#656565",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5067569125296858
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 8313.014179585425,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "badge/color": 2,
+            "badge/borderColor": 8
+          }
+        },
+        {
+          "hex": "#aaaaaa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7380186709485949
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 2739.8698419607394,
+          "properties": [
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/stroke": 10
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.018403691141842045,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.6,
+          "background": "#f7f7f7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.49,
+          "background": "#ffffff",
+          "foreground": "#0a0d0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.26,
+          "background": "#efefef",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.19,
+          "background": "#f7f7f7",
+          "foreground": "#0a0d0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.95,
+          "background": "#efefef",
+          "foreground": "#0a0d0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.43,
+          "background": "#d5d6d7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.39,
+          "background": "#d5d6d7",
+          "foreground": "#0a0d0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.62,
+          "background": "#2e3438",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.96,
+          "background": "#1dd8e1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.78,
+          "background": "#f7f7f7",
+          "foreground": "#2e3438"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.1,
+          "background": "#1dd8e1",
+          "foreground": "#0a0d0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.97,
+          "background": "#efefef",
+          "foreground": "#2e3438"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.04,
+          "background": "#aaaaaa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.67,
+          "background": "#d5d6d7",
+          "foreground": "#2e3438"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.39,
+          "background": "#aaaaaa",
+          "foreground": "#0a0d0f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.19,
+          "background": "#1dd8e1",
+          "foreground": "#2e3438"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.83,
+          "background": "#ffffff",
+          "foreground": "#656565"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.44,
+          "background": "#f7f7f7",
+          "foreground": "#656565"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.43,
+          "background": "#aaaaaa",
+          "foreground": "#2e3438"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "other",
+            "input",
+            "body",
+            "button"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|image",
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginTop|other",
+            "marginTop|icon"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 24,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "marginTop|body",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "heading",
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "badge",
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "marginTop|link",
+            "marginBottom|link",
+            "marginTop|body",
+            "marginBottom|body",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "link",
+            "input"
+          ],
+          "frequency": 34,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|button",
+            "marginLeft|button",
+            "marginBottom|body",
+            "paddingTop|other",
+            "marginTop|body",
+            "paddingTop|body",
+            "marginRight|link",
+            "marginLeft|link",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "badge",
+            "link",
+            "input",
+            "button",
+            "heading",
+            "body"
+          ],
+          "frequency": 239,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "paddingTop|other",
+            "marginRight|link",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|input",
+            "paddingBottom|button",
+            "marginRight|heading",
+            "marginTop|button",
+            "marginBottom|button",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "input",
+            "list"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|heading",
+            "marginTop|body",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "link"
+          ],
+          "frequency": 202,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginBottom|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "paddingBottom|heading",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|button",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 45,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "button",
+            "other",
+            "heading"
+          ],
+          "frequency": 37,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginTop|other",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 57,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 74,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 76,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 113,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 166,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 189,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Poppins",
+          "source": "google",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 852,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Cabin",
+          "source": "google",
+          "weights": [
+            500,
+            600
+          ],
+          "frequency": 82,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Jost",
+          "source": "google",
+          "weights": [
+            700
+          ],
+          "frequency": 16,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GTStandard-M",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 17,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Cabin",
+          "weight": 600,
+          "contexts": [
+            "badge",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.63,
+          "letterSpacing": 0.09,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Cabin",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.09,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Cabin",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body",
+            "link"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.09,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Cabin",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.09,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Cabin",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.09,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "body",
+            "image",
+            "badge",
+            "icon",
+            "footer",
+            "list"
+          ],
+          "frequency": 442,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Cabin",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.09,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 17,
+          "family": "Cabin",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.09,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 17,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.42,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "GTStandard-M",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Cabin",
+          "weight": 500,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.064,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 21,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Cabin",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.09,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 23,
+          "family": "Jost",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.37,
+          "letterSpacing": 0.09,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Poppins",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Jost",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.38,
+          "letterSpacing": 0.09,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 42,
+          "family": "Jost",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "link",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.09,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 51,
+          "family": "Jost",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.09,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 68,
+          "family": "Cabin",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.09,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4b5ca725-7452-4e22-935f-d4ea2505578e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/519984fe-dad4-4e03-b87c-a65b62da3bd5.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7d10f1d6-f2a8-43ce-b055-6ddd74e3c7e1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Blok design system\",\"item\":\"https://styles.refero.design/style/7d10f1d6-f2a8-43ce-b055-6ddd74e3c7e1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7d10f1d6-f2a8-43ce-b055-6ddd74e3c7e1#style-reference\",\"name\":\"Blok design system reference\",\"headline\":\"Blok design system | Refero Styles\",\"description\":\"Explore Blok's mixed E-commerce design system: Carbon Ink #0a0d0f, Pure White #ffffff colors, Poppins, Jost typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7d10f1d6-f2a8-43ce-b055-6ddd74e3c7e1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7d10f1d6-f2a8-43ce-b055-6ddd74e3c7e1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Blok\",\"url\":\"https://blokwatches.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7d10f1d6-f2a8-43ce-b055-6ddd74e3c7e1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/519984fe-dad4-4e03-b87c-a65b62da3bd5.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/519984fe-dad4-4e03-b87c-a65b62da3bd5.jpg\",\"caption\":\"Screenshot of Blok\"},\"image\":\"https://images.refero.design/styles/refero.design/image/519984fe-dad4-4e03-b87c-a65b62da3bd5.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Blok design system\",\"Blok website design\",\"Blok colors\",\"Blok typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Carbon Ink\",\"Pure White\",\"Slate Veil\",\"Onyx\",\"Poppins\",\"Jost\",\"Cabin\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Blok design system\"},{\"@type\":\"Thing\",\"name\":\"Blok website design\"},{\"@type\":\"Thing\",\"name\":\"Blok colors\"},{\"@type\":\"Thing\",\"name\":\"Blok typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:02:34.771Z\",\"dateModified\":\"2026-04-30T02:02:34.771Z\"}]}19:T76a,Quick Color Reference:\n- text: #0a0d0f (Carbon Ink)\n- background: #ffffff (Pure White)\n- border: #0a0d0f (Carbon Ink, 1px hairline)\n- accent: #1dd8e1 (Signal Teal)\n- primary action: #1dd8e1 (filled action)\n- surface alt: #f7f7f7 (Bone)\n\n3-5 Example Component Prompts:\n1. Build a product card: white #ffffff background, 3px corner radius, no border, no shadow. 24px internal padding. Watch image centered filling the top 70% of the card. Below: 'Blok 33 — Aqua' in Poppins 500 16px #0a0d0f, then '$189.00' in Poppins 400 14px #2e3438.\n2. Build a collection tab bar: horizontal row centered, items 'BK33 | BK38 | BUNDLES | STRAPS' in Cabin 600 12px uppercase, letter-spacing 0.09em, color #0a0d0f. Active tab underlined with a 2px line in #1dd8e1, all other tabs have no underline. No background fill, no borders.\n3. Build a hero section: full-bleed #0a0d0f background with a large organic teal blob shape in #1dd8e1 at 30% opacity behind the right side. Headline 'TAKE BACK TIME' in Jost 700 68px #ffffff, letter-spacing 0.09em, centered. Subhead 'An analog watch for the modern world.' in Poppins 400 17px #ffffff below. Ghost CTA 'FIND YOUR BLOK' bottom-right, 1px white border, white text, Poppins 500 12px, 3px radius, 12px/24px padding.\n4. Build an Add to Cart button row: full-width outlined button, 1px #1dd8e1 border, transparent background, text 'ADD TO CART  $495.00' in Poppins 500 14px #1dd8e1, 3px radius, 12px vertical / 24px horizontal padding. Directly below it, a full-width filled #5a31f4 button with white text 'Buy with shop' in Poppins 500 14px, same radius and padding.\n5. Build a press logo strip: full-width band, #f7f7f7 background, 60px vertical padding. Single horizontal row of monochrome black wordmarks (Esquire, WSJ, The New York Times, Cool Hunting, Gear Patrol, Financial Times, Hodinkee) evenly distributed with 50px gaps, all at uniform 28px height, no captions."
+}

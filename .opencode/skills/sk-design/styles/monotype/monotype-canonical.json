@@ -1,0 +1,1438 @@
+{
+  "source": "https://styles.refero.design/style/be5cf0d7-fc29-4b7f-bf86-f87185b122fc",
+  "uuid": "be5cf0d7-fc29-4b7f-bf86-f87185b122fc",
+  "name": "Monotype.",
+  "northStar": "Curated typography showcase on paper. Monotype's interface behaves like a gallery wall: white surfaces, hairline dividers, generous whitespace, and type itself as the only ornament.",
+  "capturedAt": "2026-07-18T09:14:18.307Z",
+  "meta": {
+    "url": "https://variable-fonts.com",
+    "siteName": "Monotype.",
+    "extractedAt": "2026-06-03T20:23:34.786Z",
+    "durationMs": 39723,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 408,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #1a73e8 (Signal Blue) only on primary conversion actions — never on links, icons, or decorative elements",
+      "Set body text in HelveticaNowMTTextRegular at 16px with line-height 1.50 for article-level readability",
+      "Use 8px border-radius for all controls (buttons, inputs, cards) and 16px for images",
+      "Apply -0.02em letter-spacing on all bold-weight text (13px and 16px) — this tracking is a brand signature",
+      "Use #1e242c (Ink) for all primary text and borders — avoid pure #000000 for text",
+      "Maintain 16px as the standard element gap; jump to 24px only for major control padding",
+      "Let images and type specimens carry visual weight — keep surrounding UI borderless or hairline-bordered"
+    ],
+    "donts": [
+      "Never use Signal Blue for anything other than the primary CTA fill — it loses all impact if scattered across links and icons",
+      "Don't apply shadows beyond the single subtle button shadow (rgba(0,0,0,0.16) 0px 0px 2px 0px) — the design is intentionally flat",
+      "Don't use HelveticaNowMTDisplayMedium below 40px — the display family is calibrated for large sizes only",
+      "Don't add backgrounds to tab or nav states — use only color/weight changes to indicate active",
+      "Don't introduce additional border-radius values — the system is binary: 8px for UI, 16px for images",
+      "Don't use chromatic colors for status indicators, badges, or tags — everything meta stays in the gray scale",
+      "Don't compress section spacing below 80px — the editorial breathing room is part of the identity"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#1e242c",
+        "name": "Ink",
+        "role": "Primary text, nav borders, icon strokes, card borders — near-black with a barely-there cool tint reads as a refined alternative to pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#576579",
+        "name": "Steel",
+        "role": "Secondary text, muted nav links, subtle borders — the workhorse mid-gray for everything that must be quieter than body copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, card surfaces, button text on filled controls — the dominant surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e7eaee",
+        "name": "Mist",
+        "role": "Nav dividers, subtle section separators — the lightest functional border",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dbdfe5",
+        "name": "Fog",
+        "role": "Card borders, content block outlines — slightly darker than Mist for card-level separation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cfd5dd",
+        "name": "Ash",
+        "role": "Button focus shadow, input hover rings — the mid-neutral for interaction feedback",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a73e8",
+        "name": "Signal Blue",
+        "role": "Blue action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Coal",
+        "role": "Icon fills, SVG strokes — true black reserved for graphic assets only, not text",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width contained at ~1280px, centered. Top: full-width dark announcement bar, then white nav bar with logo left, search center, nav items and blue CTA right. Hero zone: large left-aligned display headline with breadcrumb above and horizontal tab navigation below — no full-bleed image hero. Content flows as a 3-column card grid for articles, with each card stacking image over title. Generous vertical rhythm: 80-104px between major sections. Navigation is a single top bar with dropdown menus, no sticky behavior visible. The page is text-and-image dominant, not dashboard-dense — the layout follows editorial magazine conventions, not product UI conventions.",
+    "imagery": "Photography and type specimens dominate visual space. Article cards feature bold, full-bleed images — close-up product shots, bold typographic compositions, video stills, and type specimens at large scale. Images are tightly cropped with no decorative framing, using 16px border-radius to soften without ornament. No illustrations, no abstract graphics, no icons-as-decoration. The imagery is documentary: it shows the work (fonts, branding projects, type in use) rather than illustrating concepts. Color within images is unrestricted — bright greens, bold yellows, dramatic blacks — but the UI chrome around them stays completely neutral, making the images feel like editorial photography in a design magazine.",
+    "similar": [
+      {
+        "why": "Same white-canvas editorial approach with a single blue accent for conversion; both treat type as the primary content",
+        "business": "Google Fonts"
+      },
+      {
+        "why": "Same flat, image-forward editorial layout where type specimens and project photography dominate over UI chrome",
+        "business": "Type foundry sites (Hoefler & Co, Commercial Type)"
+      },
+      {
+        "why": "Same magazine-style grid of editorial cards with generous whitespace and minimal UI ornamentation",
+        "business": "It's Nice That"
+      },
+      {
+        "why": "Same clean white canvas with a single chromatic action color and low-elevation flat components",
+        "business": "Framer"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "badges": "8px",
+        "images": "16px",
+        "inputs": "8px",
+        "buttons": "8px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80-104px",
+      "cardPadding": "16-24px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — the dominant surface"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Content cards and article tiles — same white, delineated only by 1px #dbdfe5 border"
+      },
+      {
+        "hex": "#1a73e8",
+        "name": "Overlay",
+        "level": 2,
+        "purpose": "Primary action button surface — the only filled control"
+      },
+      {
+        "hex": "#1e242c",
+        "name": "Inverted",
+        "level": 3,
+        "purpose": "Announcement bar and footer — dark inverted band"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0px 0px 2px 0px rgba(0, 0, 0, 0.16)",
+        "element": "Primary CTA Button"
+      }
+    ],
+    "northStar": "Curated typography showcase on paper. Monotype's interface behaves like a gallery wall: white surfaces, hairline dividers, generous whitespace, and type itself as the only ornament.",
+    "typeScale": [
+      {
+        "role": "micro",
+        "size": 11,
+        "lineHeight": 1.45,
+        "letterSpacing": 0
+      },
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 26,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 57,
+        "lineHeight": 1.12
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "High-emphasis conversion action",
+        "description": "Filled #1a73e8 background, white text, 8px border-radius, 12px vertical / 24px horizontal padding. Uses HelveticaNowMTTextRegular at 16px weight 400. Single shadow: rgba(0,0,0,0.16) 0px 0px 2px 0px. Exclusively for 'Speak to sales' and similar conversion actions."
+      },
+      {
+        "name": "Secondary Nav Button",
+        "role": "Navigation link in top bar",
+        "description": "Transparent background, #1e242c text at 16px weight 400, no border, 12px horizontal padding. Hover/active states shift to #576579. Dropdown items use 8px radius container."
+      },
+      {
+        "name": "Article Card",
+        "role": "Content card in resource/article grids",
+        "description": "White surface, no shadow, 1px border in #dbdfe5 (Fog), 8px border-radius. 16px internal padding. Image at top with 16px border-radius. Title in HelveticaNowMTTextRegular 16px weight 400, #1e242c. No elevation — flat and editorial."
+      },
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page promotional strip",
+        "description": "Full-width #1e242c background, white text at 14px, 8px vertical padding, centered. Used for Monotype Connect and similar announcements."
+      },
+      {
+        "name": "Search Bar",
+        "role": "Global font/foundry search",
+        "description": "White background, 1px border in #e7eaee, 8px radius, ~40px height. Placeholder text in #576579. No prominent focus ring — subtle interaction."
+      },
+      {
+        "name": "Breadcrumb",
+        "role": "Page hierarchy indicator",
+        "description": "11-14px HelveticaNowMTMicroRegular, #576579 text, separated by '/' delimiter. No background, sits above page title with minimal vertical padding."
+      },
+      {
+        "name": "Tab Navigation",
+        "role": "Secondary navigation under page title",
+        "description": "Horizontal row of text links in HelveticaNowMTTextRegular 16px, #576579 default, #1e242c active. No underline, no background — purely typographic state change. 8px vertical padding, 16-24px horizontal spacing."
+      },
+      {
+        "name": "Tag Label",
+        "role": "Content categorization badge",
+        "description": "Inline text label, 11-14px HelveticaNowMTMicroRegular, #576579. No background or border — just muted text reading 'Tag: Variable fonts' as a plain annotation."
+      },
+      {
+        "name": "Footer",
+        "role": "Site-wide footer",
+        "description": "Dark #1e242c background, white and #576579 text, 1px top border. Column-based link grid in HelveticaNowMTTextRegular at 14-16px."
+      },
+      {
+        "name": "Hero Image",
+        "role": "Featured article or type specimen image",
+        "description": "16px border-radius, no border, no shadow. Full-bleed within card padding. Images carry the visual weight — the UI around them stays invisible."
+      }
+    ],
+    "typography": [
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Display headlines (page titles like 'Variable fonts') — the largest voice on the page, 57px with tight 1.12 line-height",
+        "sizes": "57px",
+        "family": "HelveticaNowMTDisplayMedium",
+        "weight": "500",
+        "lineHeight": "1.12",
+        "substitute": "Inter Tight, Helvetica Neue Display",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Body copy, nav items, buttons, article titles, card descriptions — the workhorse text family across 13/14/16px with line-heights that scale from tight nav (1.20) to generous article body (1.50)",
+        "sizes": "13px, 14px, 16px",
+        "family": "HelveticaNowMTTextRegular",
+        "weight": "400",
+        "lineHeight": "1.20-1.50",
+        "substitute": "Inter, Helvetica Neue"
+      },
+      {
+        "role": "Bold labels, active nav states, emphasized article titles — the -0.02em tracking is a brand signature: tight enough to read as deliberate typographic craft",
+        "sizes": "13px, 16px",
+        "family": "HelveticaNowMTTextBold",
+        "weight": "700",
+        "lineHeight": "1.23-1.50",
+        "substitute": "Inter Bold, Helvetica Neue Bold",
+        "letterSpacing": "-0.02em"
+      },
+      {
+        "role": "Micro-copy, metadata, breadcrumb text, tag labels — 11px with 2.55 line-height for very fine annotations; 14px version for small UI labels",
+        "sizes": "11px, 14px",
+        "family": "HelveticaNowMTMicroRegular",
+        "weight": "400",
+        "lineHeight": "1.45-2.55",
+        "substitute": "Inter, system-ui"
+      },
+      {
+        "role": "TypecaseVar — detected in extracted data but not described by AI",
+        "sizes": "26px",
+        "family": "TypecaseVar",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Monotype's design is an editorial type museum on white: the type is the artifact, the chrome recedes. The interface is overwhelmingly monochrome — near-black ink (#1e242c) on paper-white, with hairline gray dividers and a single saturated blue reserved exclusively for conversion. Components are low-elevation and flat: thin 1px borders instead of shadows, modest 8px radii on controls, generous 16-24px internal padding. Typography is the hero: a custom HelveticaNow family handles body, nav, and display, with a -0.02em tracking on bold labels that signals the brand's typographic pedigree. Layout breathes — comfortable 8px base grid, 16px element gaps, wide section spacing — letting featured type specimens and photography carry visual weight without competition from the UI.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/be5cf0d7-fc29-4b7f-bf86-f87185b122fc#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Monotype. design system\",\"item\":\"https://styles.refero.design/style/be5cf0d7-fc29-4b7f-bf86-f87185b122fc\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/be5cf0d7-fc29-4b7f-bf86-f87185b122fc#style-reference\",\"name\":\"Monotype. design system reference\",\"headline\":\"Monotype. design system | Refero Styles\",\"description\":\"Explore Monotype.'s light Design design system: Ink #1e242c, Steel #576579 colors, sans-serif, HelveticaNowMTDisplayMedium typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/be5cf0d7-fc29-4b7f-bf86-f87185b122fc\",\"mainEntityOfPage\":\"https://styles.refero.design/style/be5cf0d7-fc29-4b7f-bf86-f87185b122fc\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Monotype.\",\"url\":\"https://variable-fonts.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/be5cf0d7-fc29-4b7f-bf86-f87185b122fc#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/eb67b6b1-b57d-4196-8c96-1fad25523e58.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/eb67b6b1-b57d-4196-8c96-1fad25523e58.jpg\",\"caption\":\"Screenshot of Monotype.\"},\"image\":\"https://images.refero.design/styles/refero.design/image/eb67b6b1-b57d-4196-8c96-1fad25523e58.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Monotype. design system\",\"Monotype. website design\",\"Monotype. colors\",\"Monotype. typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink\",\"Steel\",\"Paper\",\"Mist\",\"sans-serif\",\"HelveticaNowMTDisplayMedium\",\"HelveticaNowMTTextRegular\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Monotype. design system\"},{\"@type\":\"Thing\",\"name\":\"Monotype. website design\"},{\"@type\":\"Thing\",\"name\":\"Monotype. colors\"},{\"@type\":\"Thing\",\"name\":\"Monotype. typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:58:07.223Z\",\"dateModified\":\"2026-04-30T03:58:07.223Z\"}]}19:T5ab,## Quick Color Reference\n- text: #1e242c (Ink)\n- background: #ffffff (Paper)\n- border: #dbdfe5 (Fog) for cards, #e7eaee (Mist) for dividers\n- muted text: #576579 (Steel)\n- accent: N/A (no decorative accent color in the system)\n- primary action: #1a73e8 (filled action)\n\n## Example Component Prompts\n1. **Create a primary CTA button**: Filled #1a73e8 background, white text, HelveticaNowMTTextRegular 16px, 8px border-radius, 12px vertical / 24px horizontal padding, shadow 0px 0px 2px 0px rgba(0,0,0,0.16). Label: 'Speak to sales'.\n\n2. **Create an article card**: White background, 1px border #dbdfe5, 8px border-radius, 16px internal padding. Top: image at 16px border-radius, no border. Below: title in HelveticaNowMTTextRegular 16px #1e242c, line-height 1.50.\n\n3. **Create a page hero zone**: White background. Breadcrumb in HelveticaNowMTMicroRegular 11px #576579 above. Display headline 'Variable fonts' in HelveticaNowMTDisplayMedium 57px #1e242c, line-height 1.12, no letter-spacing. Tab row below in HelveticaNowMTTextRegular 16px, #576579 default, #1e242c active, 16-24px gap.\n\n4. **Create a tab nav row**: Transparent background, no borders. Items in HelveticaNowMTTextRegular 16px #576579, active item in #1e242c. 8px vertical padding, 20-24px horizontal gap. No underline, no background change.\n\n5. **Create an announcement bar**: Full-width #1e242c background, white text in HelveticaNowMTTextRegular 14px, centered, 8px vertical padding."
+      }
+    ],
+    "elevationPhilosophy": "The design is deliberately flat. Only the primary CTA carries a shadow — a barely-visible 2px blur that adds a whisper of depth without breaking the editorial flatness. All other components rely on 1px borders for separation, never on elevation."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1e242c",
+          "oklch": {
+            "c": 0.017446577475841173,
+            "h": 255.67980038849248,
+            "l": 0.2579166225677405
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "heading",
+            "badge",
+            "image",
+            "link",
+            "list",
+            "footer",
+            "card",
+            "icon"
+          ],
+          "frequency": 1331,
+          "confidence": 1,
+          "prominence": 61048182.154035695,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 53,
+            "card/color": 1,
+            "icon/color": 1,
+            "link/color": 18,
+            "list/color": 20,
+            "other/fill": 18,
+            "badge/color": 19,
+            "image/color": 36,
+            "other/color": 108,
+            "button/color": 1,
+            "footer/color": 1,
+            "heading/color": 6,
+            "nav/borderColor": 211,
+            "icon/borderColor": 4,
+            "link/borderColor": 72,
+            "list/borderColor": 80,
+            "badge/borderColor": 76,
+            "image/borderColor": 144,
+            "other/borderColor": 429,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 24,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cfd5dd",
+          "oklch": {
+            "c": 0.012825891050306867,
+            "h": 255.51284338945942,
+            "l": 0.8707575594241411
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1310066.6045960789,
+          "properties": [
+            "boxShadow",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/boxShadow": 1,
+            "other/borderColor": 1
+          }
+        },
+        {
+          "hex": "#576579",
+          "oklch": {
+            "c": 0.0363339982031129,
+            "h": 257.27580905630987,
+            "l": 0.5025795741845295
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 275,
+          "confidence": 1,
+          "prominence": 1059986.8596123261,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 49,
+            "body/color": 2,
+            "other/color": 1,
+            "button/color": 2,
+            "heading/color": 2,
+            "nav/borderColor": 191,
+            "body/borderColor": 8,
+            "other/borderColor": 4,
+            "button/borderColor": 8,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "body",
+            "nav",
+            "icon",
+            "card",
+            "other"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 815318.3943241487,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "icon/color": 1,
+            "other/fill": 1,
+            "button/color": 4,
+            "body/borderColor": 8,
+            "icon/borderColor": 4,
+            "button/borderColor": 16,
+            "nav/backgroundColor": 4,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e7eaee",
+          "oklch": {
+            "c": 0.006290824849427999,
+            "h": 255.47636582702359,
+            "l": 0.9359010699184447
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 394568.67611007724,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 4,
+            "other/borderColor": 1
+          }
+        },
+        {
+          "hex": "#dbdfe5",
+          "oklch": {
+            "c": 0.009257565619333087,
+            "h": 258.3373404846427,
+            "l": 0.902320735303866
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 212173.72205919249,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 4,
+            "other/borderColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "icon"
+          ],
+          "frequency": 46,
+          "confidence": 1,
+          "prominence": 113146.97490867348,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "icon/color": 4,
+            "other/fill": 21,
+            "nav/borderColor": 4,
+            "icon/borderColor": 16
+          }
+        },
+        {
+          "hex": "#1a73e8",
+          "oklch": {
+            "c": 0.19460294885266421,
+            "h": 257.8577611261114,
+            "l": 0.5736974681286588
+          },
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 42797.77864496386,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#010101",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.06720461569746486
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 6002.461520066174,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 25
+          }
+        },
+        {
+          "hex": "#667488",
+          "oklch": {
+            "c": 0.0354411937139655,
+            "h": 257.2707464079141,
+            "l": 0.5546873888183514
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 90,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.05316689905720023,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.87,
+          "background": "#ffffff",
+          "foreground": "#010101"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#e7eaee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.3,
+          "background": "#e7eaee",
+          "foreground": "#010101"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.7,
+          "background": "#dbdfe5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.63,
+          "background": "#ffffff",
+          "foreground": "#1e242c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.6,
+          "background": "#dbdfe5",
+          "foreground": "#010101"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.21,
+          "background": "#cfd5dd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.13,
+          "background": "#cfd5dd",
+          "foreground": "#010101"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.95,
+          "background": "#e7eaee",
+          "foreground": "#1e242c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.68,
+          "background": "#dbdfe5",
+          "foreground": "#1e242c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.58,
+          "background": "#cfd5dd",
+          "foreground": "#1e242c"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.93,
+          "background": "#ffffff",
+          "foreground": "#576579"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.66,
+          "background": "#1a73e8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.51,
+          "background": "#1a73e8",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.47,
+          "background": "#1a73e8",
+          "foreground": "#1e242c"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.64,
+          "background": "#1e242c",
+          "foreground": "#576579"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.34,
+          "background": "#1e242c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.32,
+          "background": "#1a73e8",
+          "foreground": "#576579"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 36
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "card"
+          ],
+          "frequency": 5
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.16) 0px 0px 2px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "list",
+            "nav",
+            "other"
+          ],
+          "frequency": 60,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|list",
+            "paddingRight|list",
+            "paddingBottom|list",
+            "paddingLeft|list",
+            "rowGap|button",
+            "columnGap|button",
+            "marginBottom|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginRight|button",
+            "marginLeft|button",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginRight|nav",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "heading",
+            "card"
+          ],
+          "frequency": 121,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginBottom|other",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|nav",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 19,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginLeft|nav",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "nav",
+            "card"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav",
+            "paddingRight|nav",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 104,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 215,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HelveticaNowMTTextRegular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 88,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HelveticaNowMTTextMedium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 27,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HelveticaNowMTMicroRegular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HelveticaNowMTTextBold",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "TypecaseVar",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HelveticaNowMTDisplayMedium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "HelveticaNowMTMicroRegular",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "HelveticaNowMTMicroRegular",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "HelveticaNowMTTextMedium",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "HelveticaNowMTTextRegular",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "HelveticaNowMTTextRegular",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "HelveticaNowMTTextRegular",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "HelveticaNowMTTextRegular",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "HelveticaNowMTTextMedium",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "HelveticaNowMTTextMedium",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "HelveticaNowMTTextBold",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "HelveticaNowMTTextRegular",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "HelveticaNowMTMicroRegular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "badge",
+            "image",
+            "list",
+            "footer",
+            "link",
+            "icon",
+            "card"
+          ],
+          "frequency": 214,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "HelveticaNowMTTextRegular",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "HelveticaNowMTTextMedium",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "HelveticaNowMTTextBold",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "HelveticaNowMTTextRegular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "HelveticaNowMTTextMedium",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "HelveticaNowMTTextMedium",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.26,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "TypecaseVar",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 57,
+          "family": "HelveticaNowMTDisplayMedium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.12,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/213d0c2b-4bf7-4649-926e-7b4467553d06.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/eb67b6b1-b57d-4196-8c96-1fad25523e58.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/be5cf0d7-fc29-4b7f-bf86-f87185b122fc#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Monotype. design system\",\"item\":\"https://styles.refero.design/style/be5cf0d7-fc29-4b7f-bf86-f87185b122fc\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/be5cf0d7-fc29-4b7f-bf86-f87185b122fc#style-reference\",\"name\":\"Monotype. design system reference\",\"headline\":\"Monotype. design system | Refero Styles\",\"description\":\"Explore Monotype.'s light Design design system: Ink #1e242c, Steel #576579 colors, sans-serif, HelveticaNowMTDisplayMedium typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/be5cf0d7-fc29-4b7f-bf86-f87185b122fc\",\"mainEntityOfPage\":\"https://styles.refero.design/style/be5cf0d7-fc29-4b7f-bf86-f87185b122fc\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Monotype.\",\"url\":\"https://variable-fonts.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/be5cf0d7-fc29-4b7f-bf86-f87185b122fc#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/eb67b6b1-b57d-4196-8c96-1fad25523e58.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/eb67b6b1-b57d-4196-8c96-1fad25523e58.jpg\",\"caption\":\"Screenshot of Monotype.\"},\"image\":\"https://images.refero.design/styles/refero.design/image/eb67b6b1-b57d-4196-8c96-1fad25523e58.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Monotype. design system\",\"Monotype. website design\",\"Monotype. colors\",\"Monotype. typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ink\",\"Steel\",\"Paper\",\"Mist\",\"sans-serif\",\"HelveticaNowMTDisplayMedium\",\"HelveticaNowMTTextRegular\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Monotype. design system\"},{\"@type\":\"Thing\",\"name\":\"Monotype. website design\"},{\"@type\":\"Thing\",\"name\":\"Monotype. colors\"},{\"@type\":\"Thing\",\"name\":\"Monotype. typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T03:58:07.223Z\",\"dateModified\":\"2026-04-30T03:58:07.223Z\"}]}19:T5ab,## Quick Color Reference\n- text: #1e242c (Ink)\n- background: #ffffff (Paper)\n- border: #dbdfe5 (Fog) for cards, #e7eaee (Mist) for dividers\n- muted text: #576579 (Steel)\n- accent: N/A (no decorative accent color in the system)\n- primary action: #1a73e8 (filled action)\n\n## Example Component Prompts\n1. **Create a primary CTA button**: Filled #1a73e8 background, white text, HelveticaNowMTTextRegular 16px, 8px border-radius, 12px vertical / 24px horizontal padding, shadow 0px 0px 2px 0px rgba(0,0,0,0.16). Label: 'Speak to sales'.\n\n2. **Create an article card**: White background, 1px border #dbdfe5, 8px border-radius, 16px internal padding. Top: image at 16px border-radius, no border. Below: title in HelveticaNowMTTextRegular 16px #1e242c, line-height 1.50.\n\n3. **Create a page hero zone**: White background. Breadcrumb in HelveticaNowMTMicroRegular 11px #576579 above. Display headline 'Variable fonts' in HelveticaNowMTDisplayMedium 57px #1e242c, line-height 1.12, no letter-spacing. Tab row below in HelveticaNowMTTextRegular 16px, #576579 default, #1e242c active, 16-24px gap.\n\n4. **Create a tab nav row**: Transparent background, no borders. Items in HelveticaNowMTTextRegular 16px #576579, active item in #1e242c. 8px vertical padding, 20-24px horizontal gap. No underline, no background change.\n\n5. **Create an announcement bar**: Full-width #1e242c background, white text in HelveticaNowMTTextRegular 14px, centered, 8px vertical padding."
+}

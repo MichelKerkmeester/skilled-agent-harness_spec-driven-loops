@@ -1,0 +1,843 @@
+{
+  "source": "https://styles.refero.design/style/45267374-ee40-43d9-8bfe-8d6566ce852d",
+  "uuid": "45267374-ee40-43d9-8bfe-8d6566ce852d",
+  "name": "LE CAMP",
+  "northStar": "Alpine summit base camp at dusk — a field command post where one red signal flare cuts through mountain twilight, and everything else is topo-line restraint.",
+  "capturedAt": "2026-07-18T09:12:14.132Z",
+  "meta": {
+    "url": "https://lecampquebec.com",
+    "siteName": "LE CAMP",
+    "extractedAt": "2026-06-03T20:27:44.624Z",
+    "durationMs": 35966,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 193,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #fe3a3a exclusively for primary CTAs, the brand logo, and emphasis body text — never as a background fill for large non-action surfaces",
+      "Set display headlines at 90px Agrandir weight 600 with line-height 1.0 to let letters stack as visual mass",
+      "Apply 35px border-radius (pill shape) to primary CTA buttons and 10px to secondary buttons — the radius difference signals action weight",
+      "Use DM Mono at 10px with 0.04em letter-spacing uppercase for section labels, positioned above their heading",
+      "Separate sections with 60px vertical gaps and alternate between #ffffff, #f5f5f5, and #f5f0e8 to create a base-camp-to-summit rhythm",
+      "Keep all structural borders at 1px solid #000000 — no thicker rules, no decorative dividers",
+      "Use #767676 only for input borders; never for text, never for buttons, never for card edges"
+    ],
+    "donts": [
+      "Do not introduce any color outside #fe3a3a, #000000, #ffffff, and #767676 — the system is intentionally two-tone plus a gray",
+      "Do not apply drop shadows to cards, panels, or any neutral surface — elevation belongs only to the red CTA and hero illustrations",
+      "Do not set body text above 18px or use Agrandir for running prose — Agrandir is display-only",
+      "Do not use 0px or 4px border-radius — all rounded elements use 10px, 20px, or 35px, never square",
+      "Do not place red text on a red background or white text on white — the red's scarcity depends on it always sitting on a neutral surface",
+      "Do not use the cream (#f5f0e8) as a full-page background — it is a card surface only",
+      "Do not use gradients — the system is strictly flat color and photography"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fe3a3a",
+        "name": "Signal Red",
+        "role": "Primary CTA fill, nav active state, brand logo, emphasis body text, accent box-shadows on interactive elements — the single chromatic voice of the system, reserved for moments of decision and identity",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon Ink",
+        "role": "Primary text, heading text on light surfaces, icon strokes, nav text, button text, all structural borders and dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Summit White",
+        "role": "Primary page canvas, card surface, button text on red, input fill, nav background, hero foreground text on dark imagery",
+        "group": "neutral"
+      },
+      {
+        "hex": "#767676",
+        "name": "Ridge Gray",
+        "role": "Input border, subtle form dividers — the only non-black neutral, used where a softer boundary is needed without losing contrast",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Hero is full-bleed dark with centered headline (90px Agrandir) and floating program patches arranged in a loose constellation. Body sections are max-width 1200px centered with generous side padding. The second section uses an asymmetric two-column: dense paragraph left (40% width), oversized display heading stacked left-aligned right (55% width), creating tension between reading-text and poster-text. Stat sections are centered single-column. Feature cards span full width with internal max-width. Section rhythm: dark hero → white expanse → light gray → cream card, with 60px vertical gaps between each. Navigation is a fixed top bar with brand left, actions right — no mega-menu visible, no sidebar.",
+    "imagery": "Hero is a full-bleed dark mountain photograph at dusk — deep blue-black ridges with reflective lake water, no sky detail, no human subjects. The photograph is treated as a topographical field, not a lifestyle shot. All other illustration is shield/badge-shaped program patches with thin 2px line-art iconography (trees, mountains, campfire, globe) in single-color treatment. No product photography, no stock imagery, no 3D renders. The visual language is expedition cartography — maps, badges, and wayfinding markers rather than people or product.",
+    "similar": [
+      {
+        "why": "Same monochrome-first philosophy with a single bold accent color (orange/red), flat surfaces, generous whitespace, and geometric sans-serif body type — both systems prove that extreme restraint with one chromatic voice reads as confidence",
+        "business": "Basecamp"
+      },
+      {
+        "why": "Similar dramatic full-bleed dark photographic hero treatment paired with clean light body sections; both use oversized display type as the primary visual hook and let the hero image do the emotional heavy lifting",
+        "business": "Arc Browser"
+      },
+      {
+        "why": "Same patch/badge illustration style applied to product categories, same monospace label system for wayfinding, same near-monochrome palette with a single accent color for CTAs and emphasis",
+        "business": "Cowboy (e-bikes)"
+      },
+      {
+        "why": "Same typographic precision with a custom/display heading face paired against a clean geometric sans body, same flat-card approach to content blocks, same use of a single saturated accent against neutral structure",
+        "business": "Linear"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "10px",
+        "cards": "20px",
+        "buttons": "35px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "60px",
+      "cardPadding": "40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Summit White",
+        "level": 0,
+        "purpose": "Primary page canvas — most content sections sit on this"
+      },
+      {
+        "hex": "#f5f5f5",
+        "name": "Glacier Mist",
+        "level": 1,
+        "purpose": "Section background for supporting content blocks (social proof, stats)"
+      },
+      {
+        "hex": "#f5f0e8",
+        "name": "Trail Cream",
+        "level": 2,
+        "purpose": "Warm feature card surface for content blocks that need separation without harshness"
+      },
+      {
+        "hex": "#0a1628",
+        "name": "Base Camp Dark",
+        "level": 3,
+        "purpose": "Hero photographic layer — deep blue-black mountain landscape at dusk; serves as full-bleed narrative canvas"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 2px 12px rgba(254,58,58,0.25)",
+        "element": "Primary CTA Button"
+      },
+      {
+        "style": "0 4px 20px rgba(10,22,40,0.4)",
+        "element": "Program Patch Badges (hero)"
+      }
+    ],
+    "northStar": "Alpine summit base camp at dusk — a field command post where one red signal flare cuts through mountain twilight, and everything else is topo-line restraint.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.4
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "subheading",
+        "size": 26,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 90,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button (Pill)",
+        "role": "Hero and nav conversion action",
+        "description": "Filled #fe3a3a background, #ffffff text, DM Sans 400 at 14px, 35px border-radius (fully pill-shaped), 10px vertical × 20px horizontal padding, no border. Single-use per section — scarcity is the point. Drop shadow: 0 2px 8px rgba(254,58,58,0.3) optional glow."
+      },
+      {
+        "name": "Secondary Button (Rounded)",
+        "role": "Utility actions and inline links",
+        "description": "Transparent or #ffffff background, #000000 text, DM Sans 400 at 14px, 10px border-radius, 10px vertical × 20px horizontal padding, 1px solid #000000 border. Lower visual weight than the pill CTA — used for non-decisive actions."
+      },
+      {
+        "name": "Menu Trigger",
+        "role": "Full-screen navigation open",
+        "description": "Transparent background, #ffffff text on dark hero / #000000 text on light sections, DM Sans 400 at 14px, hamburger icon (three horizontal lines) to the left of label, 10px border-radius, 10px vertical × 20px horizontal padding."
+      },
+      {
+        "name": "Display Heading (Agrandir 90)",
+        "role": "Hero and section-defining headlines",
+        "description": "Agrandir weight 600 at 90px, line-height 1.0, normal letter-spacing. Renders in #ffffff over dark hero imagery and #000000 over light surfaces. Functions as poster typography — letters stack as visual mass, not running prose."
+      },
+      {
+        "name": "Section Label (Mono Tag)",
+        "role": "Category wayfinding above section headings",
+        "description": "DM Mono 400 at 10px, line-height 1.3, letter-spacing 0.04em, uppercase, #000000. Sits centered or left-aligned above section headings as an expedition-style category tag."
+      },
+      {
+        "name": "Program Patch Badge",
+        "role": "Decorative illustration identifying each program offering",
+        "description": "Shield/badge-shaped illustration (rounded top, flat or pointed bottom), ~120px wide, 2px stroke, monochromatic fill in one of the system colors: #fe3a3a, #4a7fc5 (blue), or #ffffff outline on dark. Contains line-art iconography (trees, mountains, globe, campfire) and program name in DM Sans 400 at 10–12px. Used as floating decorative elements in the hero."
+      },
+      {
+        "name": "Cream Feature Card",
+        "role": "Content blocks requiring warm separation",
+        "description": "#f5f0e8 background, 20px border-radius, 40px padding on all sides, no border, no shadow. Contains a section label (mono tag) in #000000 and body heading in #fe3a3a at Agrandir 26–90px. The warm cream against the red heading is a signature warm/cool contrast."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form text input",
+        "description": "#ffffff background, 1px solid #767676 border, 10px border-radius, DM Sans 400 at 16px, 10px vertical × 15px horizontal padding. Placeholder text in #767676. Focus state: border shifts to #000000."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Fixed top bar, transparent background over hero / #ffffff with 1px #000000 bottom border over light sections. Contains brand mark (red triangle LE CAMP badge) at left, CTA pill button + menu trigger at right. Padding: 15px vertical."
+      },
+      {
+        "name": "Stat Block (Social Proof)",
+        "role": "Credibility metrics",
+        "description": "Centered or left-aligned, DM Sans 400 at 16px body with DM Sans 400 at 26px weight emphasis on the number. No card wrapper — text sits directly on the surface gray."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading voice — the 90px weight 600 at line-height 1.0 acts as architectural type, not running text; 26px at weight 350/600 bridges display and body; the ultra-tight 1.0 leading on the largest size is a deliberate poster-typography choice that lets letters stack as visual mass",
+        "sizes": "18px, 26px, 90px",
+        "family": "Agrandir",
+        "weight": "350, 600",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Bricolage Grotesque (Google Fonts) at weight 800 for display, weight 400 for sub-display",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Workhorse body and UI font — paragraphs, nav items, button labels, form text, footer copy; 16px at 1.4 for body, 14px at 1.3 for nav/labels, 12px for tertiary meta",
+        "sizes": "12px, 14px, 16px, 18px",
+        "family": "DM Sans",
+        "weight": "400",
+        "lineHeight": "1.30–1.40",
+        "substitute": "Inter (Google Fonts)",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Micro-label and wayfinding voice — uppercase category tags like 'ENTREPRISES', 'COACHS & EXPERTS', program identifiers; 0.04em letter-spacing widens the monospace rhythm so these labels read as expedition wayfinding rather than code",
+        "sizes": "10px, 14px",
+        "family": "DM Mono",
+        "weight": "400",
+        "lineHeight": "1.30",
+        "substitute": "JetBrains Mono or IBM Plex Mono (Google Fonts)",
+        "letterSpacing": "0.04em (≈0.4px at 10px, ≈0.56px at 14px)"
+      }
+    ],
+    "description": "LE CAMP reads as an alpine expedition outpost translated into a digital surface: a near-monochrome canvas pierced by a single flare-red accent, where the brand speaks through dramatic photographic scale and badge-style illustration rather than through decoration. The design system is ruthlessly reduced — two achromatic values and one chromatic — letting Agrandir's distinctive geometric display voice carry hierarchy while DM Sans handles utility text in the background. Components are confident and flat: pill-radius CTAs in signal red, thin hairline borders, uppercase mono labels acting as wayfinding tags, and shield-shaped program patches that function like scout merit badges scattered across a topographic hero. Sections alternate between full-bleed drama (the dark mountain photograph) and quiet white/cream expanses, creating a rhythm of base camp and summit. The single red accent earns its weight through scarcity — it appears only where a decision is being asked for or a category is being defined.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/45267374-ee40-43d9-8bfe-8d6566ce852d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"LE CAMP design system\",\"item\":\"https://styles.refero.design/style/45267374-ee40-43d9-8bfe-8d6566ce852d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/45267374-ee40-43d9-8bfe-8d6566ce852d#style-reference\",\"name\":\"LE CAMP design system reference\",\"headline\":\"LE CAMP design system | Refero Styles\",\"description\":\"Explore LE CAMP's light Other design system: Signal Red #fe3a3a, Carbon Ink #000000 colors, Agrandir, DM Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/45267374-ee40-43d9-8bfe-8d6566ce852d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/45267374-ee40-43d9-8bfe-8d6566ce852d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"LE CAMP\",\"url\":\"https://lecampquebec.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/45267374-ee40-43d9-8bfe-8d6566ce852d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fcfd9cc0-6004-46ef-97db-4d2eebd3a216.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fcfd9cc0-6004-46ef-97db-4d2eebd3a216.jpg\",\"caption\":\"Screenshot of LE CAMP\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fcfd9cc0-6004-46ef-97db-4d2eebd3a216.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"LE CAMP design system\",\"LE CAMP website design\",\"LE CAMP colors\",\"LE CAMP typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Signal Red\",\"Carbon Ink\",\"Summit White\",\"Ridge Gray\",\"Agrandir\",\"DM Sans\",\"DM Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"LE CAMP design system\"},{\"@type\":\"Thing\",\"name\":\"LE CAMP website design\"},{\"@type\":\"Thing\",\"name\":\"LE CAMP colors\"},{\"@type\":\"Thing\",\"name\":\"LE CAMP typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-08T19:24:22.278Z\",\"dateModified\":\"2026-05-08T19:24:22.278Z\"}]}19:T6a6,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (structural), #767676 (inputs only)\n- accent: #fe3a3a\n- primary action: #fe3a3a (filled action)\n\n**3-5 Example Component Prompts**\n\n1. **Hero Section**: Full-bleed dark mountain photograph at 100vh. Centered headline in Agrandir 90px weight 600, line-height 1.0, color #ffffff. Subtext in DM Sans 16px weight 400, #ffffff, opacity 0.85. Three program patch badges (shield-shaped, 2px stroke) floating around the headline in #fe3a3a, #4a7fc5, and #ffffff outline. Section label above headline: DM Mono 10px uppercase, 0.04em letter-spacing, #ffffff.\n\n2. **Asymmetric About Section**: Max-width 1200px, #ffffff background, 60px vertical padding. Left column (40% width): paragraph in DM Sans 14px weight 400, #000000, line-height 1.4, max 6 lines. Right column (55% width): Agrandir 90px weight 600, line-height 1.0, #000000, left-aligned. Small red button (Secondary Button: #000000 text, 1px solid #000000 border, 10px radius, 10px×20px padding) below the paragraph.\n\n3. Create a Primary Action Button: #fe3a3a background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n4. **Cream Feature Card**: #f5f0e8 background, 20px border-radius, 40px padding all sides, no border, no shadow. Section label: DM Mono 10px uppercase, 0.04em letter-spacing, #000000. Heading: Agrandir 26px weight 600, #fe3a3a. Body: DM Sans 16px weight 400, #000000, line-height 1.4.\n\n5. **Section Label Tag**: DM Mono 10px weight 400, uppercase, letter-spacing 0.04em, #000000, line-height 1.3. Sits 15px above its associated heading, centered or left-aligned to match the section's text alignment."
+      }
+    ],
+    "elevationPhilosophy": "The system is fundamentally flat. Elevation appears only as colored glow on the red CTA (matching the brand color, not a neutral shadow) and as atmospheric drop-shadow on hero illustration patches. No card-on-card stacking, no modal depth, no panel shadows — surfaces are separated by color and hairline borders, not by z-axis lift."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "nav",
+            "footer",
+            "card",
+            "input",
+            "button",
+            "icon",
+            "list"
+          ],
+          "frequency": 355,
+          "confidence": 1,
+          "prominence": 24488639.95142113,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "nav/color": 29,
+            "body/color": 10,
+            "icon/color": 4,
+            "link/color": 4,
+            "list/color": 4,
+            "other/fill": 9,
+            "input/color": 1,
+            "other/color": 15,
+            "button/color": 1,
+            "footer/color": 1,
+            "nav/borderColor": 116,
+            "body/borderColor": 40,
+            "icon/borderColor": 16,
+            "link/borderColor": 16,
+            "list/borderColor": 16,
+            "other/borderColor": 56,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "card",
+            "other",
+            "nav",
+            "heading",
+            "link",
+            "image"
+          ],
+          "frequency": 529,
+          "confidence": 1,
+          "prominence": 12750883.662082413,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "nav/color": 62,
+            "body/color": 8,
+            "card/color": 1,
+            "icon/color": 1,
+            "link/color": 3,
+            "other/fill": 7,
+            "image/color": 5,
+            "other/color": 18,
+            "button/color": 3,
+            "heading/color": 2,
+            "nav/borderColor": 248,
+            "body/borderColor": 32,
+            "card/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 12,
+            "image/borderColor": 20,
+            "other/borderColor": 76,
+            "button/borderColor": 12,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fe3a3a",
+          "oklch": {
+            "c": 0.23077062552394723,
+            "h": 26.454279289492952,
+            "l": 0.6527103008175239
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "link",
+            "other"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 40443.34355674808,
+          "properties": [
+            "backgroundColor",
+            "boxShadow",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "nav/boxShadow": 14,
+            "link/boxShadow": 3,
+            "button/boxShadow": 4,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#767676",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5658363307995767
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 28499.345436647483,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.016413273508104353,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.88,
+          "background": "#fe3a3a",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.57,
+          "background": "#fe3a3a",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "nav",
+            "other"
+          ],
+          "frequency": 19
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "nav",
+            "other",
+            "list"
+          ],
+          "frequency": 46,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingBottom|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "body",
+            "link"
+          ],
+          "frequency": 38,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|nav",
+            "marginBottom|nav",
+            "columnGap|nav",
+            "paddingBottom|nav",
+            "marginTop|nav",
+            "rowGap|button",
+            "columnGap|button",
+            "marginBottom|body",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|footer",
+            "marginRight|footer",
+            "marginLeft|footer",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "card",
+            "nav"
+          ],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "DM Sans",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 159,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "DM Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 9,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Agrandir",
+          "source": "custom",
+          "weights": [
+            350,
+            600
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "DM Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "DM Mono",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "input",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "DM Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "icon",
+            "nav",
+            "footer",
+            "card",
+            "image",
+            "list"
+          ],
+          "frequency": 135,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Agrandir",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Agrandir",
+          "weight": 350,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 90,
+          "family": "Agrandir",
+          "weight": 350,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1123faec-dada-41c3-b776-af42f0a550f3.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/fcfd9cc0-6004-46ef-97db-4d2eebd3a216.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/45267374-ee40-43d9-8bfe-8d6566ce852d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"LE CAMP design system\",\"item\":\"https://styles.refero.design/style/45267374-ee40-43d9-8bfe-8d6566ce852d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/45267374-ee40-43d9-8bfe-8d6566ce852d#style-reference\",\"name\":\"LE CAMP design system reference\",\"headline\":\"LE CAMP design system | Refero Styles\",\"description\":\"Explore LE CAMP's light Other design system: Signal Red #fe3a3a, Carbon Ink #000000 colors, Agrandir, DM Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/45267374-ee40-43d9-8bfe-8d6566ce852d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/45267374-ee40-43d9-8bfe-8d6566ce852d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"LE CAMP\",\"url\":\"https://lecampquebec.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/45267374-ee40-43d9-8bfe-8d6566ce852d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fcfd9cc0-6004-46ef-97db-4d2eebd3a216.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fcfd9cc0-6004-46ef-97db-4d2eebd3a216.jpg\",\"caption\":\"Screenshot of LE CAMP\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fcfd9cc0-6004-46ef-97db-4d2eebd3a216.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"LE CAMP design system\",\"LE CAMP website design\",\"LE CAMP colors\",\"LE CAMP typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Signal Red\",\"Carbon Ink\",\"Summit White\",\"Ridge Gray\",\"Agrandir\",\"DM Sans\",\"DM Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"LE CAMP design system\"},{\"@type\":\"Thing\",\"name\":\"LE CAMP website design\"},{\"@type\":\"Thing\",\"name\":\"LE CAMP colors\"},{\"@type\":\"Thing\",\"name\":\"LE CAMP typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-08T19:24:22.278Z\",\"dateModified\":\"2026-05-08T19:24:22.278Z\"}]}19:T6a6,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (structural), #767676 (inputs only)\n- accent: #fe3a3a\n- primary action: #fe3a3a (filled action)\n\n**3-5 Example Component Prompts**\n\n1. **Hero Section**: Full-bleed dark mountain photograph at 100vh. Centered headline in Agrandir 90px weight 600, line-height 1.0, color #ffffff. Subtext in DM Sans 16px weight 400, #ffffff, opacity 0.85. Three program patch badges (shield-shaped, 2px stroke) floating around the headline in #fe3a3a, #4a7fc5, and #ffffff outline. Section label above headline: DM Mono 10px uppercase, 0.04em letter-spacing, #ffffff.\n\n2. **Asymmetric About Section**: Max-width 1200px, #ffffff background, 60px vertical padding. Left column (40% width): paragraph in DM Sans 14px weight 400, #000000, line-height 1.4, max 6 lines. Right column (55% width): Agrandir 90px weight 600, line-height 1.0, #000000, left-aligned. Small red button (Secondary Button: #000000 text, 1px solid #000000 border, 10px radius, 10px×20px padding) below the paragraph.\n\n3. Create a Primary Action Button: #fe3a3a background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n4. **Cream Feature Card**: #f5f0e8 background, 20px border-radius, 40px padding all sides, no border, no shadow. Section label: DM Mono 10px uppercase, 0.04em letter-spacing, #000000. Heading: Agrandir 26px weight 600, #fe3a3a. Body: DM Sans 16px weight 400, #000000, line-height 1.4.\n\n5. **Section Label Tag**: DM Mono 10px weight 400, uppercase, letter-spacing 0.04em, #000000, line-height 1.3. Sits 15px above its associated heading, centered or left-aligned to match the section's text alignment."
+}

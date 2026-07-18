@@ -1,0 +1,277 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void Black — Page canvas, body borders, all text in dark contexts — the default background every other element sits on"
+    },
+    "bone-cream": {
+      "$value": "#ebe4d8",
+      "$type": "color",
+      "$description": "Bone Cream — Primary text color, button fills, surface highlights — warm off-white that reads as paper, not screen white"
+    },
+    "ash-taupe": {
+      "$value": "#c3bdb3",
+      "$type": "color",
+      "$description": "Ash Taupe — Button box-shadow tint — the single warm-gray accent in the system"
+    },
+    "alarm-red": {
+      "$value": "#ff4034",
+      "$type": "color",
+      "$description": "Alarm Red — Hazard icons, strikethrough editorial links, flame illustrations, concentric radar rings — the only chromatic signal in the system, reserved for things requiring attention"
+    }
+  },
+  "font": {
+    "spektra": {
+      "$value": "Spektra",
+      "$type": "fontFamily",
+      "$description": "Display and heading face — extremely condensed, near-black weight even at 400, used for the campaign title and brand wordmark at poster sizes"
+    },
+    "helvetica-neue-lt": {
+      "$value": "Helvetica Neue LT",
+      "$type": "fontFamily",
+      "$description": "Body, subheadings, UI text — quiet humanist sans at 400 for body, 800 for emphasized subheads and footer marks"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "14px",
+        "fontWeight": 800,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "28px",
+        "fontWeight": 800,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Helvetica Neue LT",
+        "fontSize": "30px",
+        "fontWeight": 800,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Spektra",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Spektra",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Spektra",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 0.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Spektra",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Spektra",
+        "fontSize": "100px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 100px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Spektra",
+        "fontSize": "202px",
+        "fontWeight": 400,
+        "lineHeight": 0.82
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 202px"
+    }
+  },
+  "spacing": {
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "168": {
+      "$value": "168px",
+      "$type": "dimension",
+      "$description": "Spacing 168px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "2520px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    }
+  },
+  "surface": {
+    "blackout-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed page background — every section sits directly on black with no separator"
+    },
+    "bone-paper": {
+      "$value": "#ebe4d8",
+      "$type": "color",
+      "$description": "Surface level 2: Highlight/button surface for inverted controls"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.climatecatastrophepack.com",
+      "siteName": "Cards Against Humanity",
+      "extractedAt": "2026-06-03T21:06:36.930Z",
+      "variant": "extended"
+    }
+  }
+}

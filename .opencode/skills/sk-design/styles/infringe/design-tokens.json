@@ -1,0 +1,210 @@
+{
+  "color": {
+    "photocopy-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Photocopy Black — Display type, sidebar text, structural borders, image outlines, header bands — the ink"
+    },
+    "newsprint-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Newsprint White — Primary canvas, card surfaces, text on black bands"
+    },
+    "muted-ash": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Muted Ash — Input placeholder text, form field borders, secondary metadata"
+    },
+    "highlighter-yellow": {
+      "$value": "#ffff01",
+      "$type": "color",
+      "$description": "Highlighter Yellow — Accent bands, feature name callouts, section dividers — the highlighter drag that breaks the monochrome"
+    },
+    "link-cobalt": {
+      "$value": "#2b4dff",
+      "$type": "color",
+      "$description": "Link Cobalt — Rotated category labels and inline links between editorial blocks — the only chromatic voice besides yellow"
+    }
+  },
+  "font": {
+    "archivo-black": {
+      "$value": "Archivo Black",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire system — display masthead fills 252px viewport, captions drop to 12px, no other family exists. Negative tracking tightens at scale, positive tracking opens at body size"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "archivo_blackregular",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "archivo_blackregular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "archivo_blackregular",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "archivo_blackregular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "archivo_blackregular",
+        "fontSize": "32px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "archivo_blackregular",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "archivo_blackregular",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "archivo_blackregular",
+        "fontSize": "108px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 108px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "archivo_blackregular",
+        "fontSize": "108px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 108px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "archivo_blackregular",
+        "fontSize": "252px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 252px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Default background for all editorial sections and content blocks"
+    },
+    "highlighter-band": {
+      "$value": "#ffff01",
+      "$type": "color",
+      "$description": "Surface level 1: Full-width feature sections and category callouts that interrupt the monochrome"
+    },
+    "ink-header": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Display-type header band and persistent sidebar background zones"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.infringe.com",
+      "siteName": "INFRINGE",
+      "extractedAt": "2026-06-03T20:29:56.090Z",
+      "variant": "extended"
+    }
+  }
+}

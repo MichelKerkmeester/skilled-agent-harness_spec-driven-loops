@@ -1,0 +1,116 @@
+:root {
+  /* Colors */
+  --color-void-black: #000000;
+  --color-graphite: #191919;
+  --color-charcoal: #3d3d3d;
+  --color-warm-smoke: #61635d;
+  --color-shadow: #292929;
+  --color-paper-white: #ffffff;
+  --color-fog: #cccccc;
+  --color-ash: #9e9e9e;
+  --color-steel-lilac: #797985;
+  --color-ember-peach: #e3a081;
+  --color-twilight-violet: #5351f3;
+  --color-app-store-blue-gold: #c28e01;
+  --gradient-app-store-blue-gold: linear-gradient(-26deg, rgba(0, 86, 255, 0.29) 0%, rgb(194, 142, 1) 100%);
+  --color-app-store-violet-ember: #fe7900;
+  --gradient-app-store-violet-ember: linear-gradient(-26deg, rgba(133, 93, 255, 0.27) 0%, rgb(254, 121, 0) 100%);
+  --color-app-store-crimson: #ff3b3b;
+  --gradient-app-store-crimson: linear-gradient(-26deg, rgb(89, 16, 16) 0%, rgba(69, 0, 16, 0.46) 22.631%, rgba(255, 59, 59, 0.5) 100%);
+  --color-deep-space: #051e22;
+  --gradient-deep-space: radial-gradient(100% 147.839% at 0px 0%, rgb(6, 87, 161) 0%, rgb(5, 30, 34) 36.2271%, rgba(3, 29, 60, 0.97) 72.4655%, rgba(30, 83, 161, 0.93) 84.8958%, rgb(53, 90, 163) 100%);
+
+  /* Typography — Font Families */
+  --font-sans-serif: 'sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter-display: 'Inter Display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter-tight: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-system-sans: 'System Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-manrope: 'Manrope', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter-regular: 'Inter Regular', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-roboto-condensed: 'Roboto Condensed', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter-variable: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --text-body: 16px;
+  --leading-body: 1.4;
+  --text-subheading: 18px;
+  --leading-subheading: 1.3;
+  --tracking-subheading: -0.54px;
+  --text-heading-sm: 20px;
+  --leading-heading-sm: 1.3;
+  --tracking-heading-sm: -0.6px;
+  --text-heading: 27px;
+  --leading-heading: 1.24;
+  --tracking-heading: -0.81px;
+  --text-heading-lg: 36px;
+  --leading-heading-lg: 1.2;
+  --tracking-heading-lg: -1.08px;
+  --text-display: 48px;
+  --leading-display: 1.1;
+  --tracking-display: -1.44px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-5: 5px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-11: 11px;
+  --spacing-12: 12px;
+  --spacing-13: 13px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-19: 19px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-25: 25px;
+  --spacing-40: 40px;
+  --spacing-50: 50px;
+  --spacing-60: 60px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 40px;
+  --card-padding: 24px;
+  --element-gap: 10px;
+
+  /* Border Radius */
+  --radius-sm: 2.5px;
+  --radius-md: 5px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 32px;
+  --radius-3xl-3: 40px;
+  --radius-full: 48px;
+  --radius-full-2: 60px;
+  --radius-full-3: 93px;
+  --radius-full-4: 99px;
+
+  /* Named Radii */
+  --radius-cards: 16px;
+  --radius-icons: 5px;
+  --radius-pills: 99px;
+  --radius-images: 12px;
+  --radius-inputs: 24px;
+  --radius-buttons: 24px;
+
+  /* Shadows */
+  --shadow-xl: rgba(0, 0, 0, 0.24) -12px -12px 32px 0px;
+  --shadow-lg: rgba(104, 65, 13, 0.23) 0px 10px 20px 0px;
+
+  /* Surfaces */
+  --surface-void: #000000;
+  --surface-graphite: #191919;
+  --surface-charcoal: #3d3d3d;
+  --surface-warm-smoke: #61635d;
+}

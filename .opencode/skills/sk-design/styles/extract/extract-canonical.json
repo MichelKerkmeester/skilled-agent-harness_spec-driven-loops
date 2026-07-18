@@ -1,0 +1,889 @@
+{
+  "source": "https://styles.refero.design/style/c4e125b6-e3a3-4509-b06f-f0169216a394",
+  "uuid": "c4e125b6-e3a3-4509-b06f-f0169216a394",
+  "name": "Extract",
+  "northStar": "Editorial monolith on gallery paper",
+  "capturedAt": "2026-07-18T07:18:38.503Z",
+  "meta": {
+    "url": "https://extract.studio",
+    "siteName": "Extract",
+    "extractedAt": "2026-06-03T21:53:12.837Z",
+    "durationMs": 32000,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 175,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #070707 for all text, borders, and filled UI controls — it is the only structural color in the system",
+      "Reserve #e7feda mint for full section backgrounds, never for buttons, icons, tags, or text",
+      "Set the display wordmark at 104px in Feature Deck with no letter-spacing adjustment — let the natural metrics carry the impact",
+      "Use 9.3px border-radius for all cards, images, and content containers; 4.6px for inputs and small controls; 9999px only for the floating nav pill",
+      "Maintain 1px hairline #070707 borders for all separation — never use shadows to lift elements off the canvas",
+      "Pair Feature Deck 44px section heads with ABC Diatype 19px body — the scale jump is the hierarchy, not weight or color",
+      "Keep the floating nav centered, persistent, and visually identical on every screen — it is the only persistent chrome"
+    ],
+    "donts": [
+      "Do not introduce a second accent color — the system is built on the tension between black, white, and one mint wash",
+      "Do not apply the mint #e7feda to buttons, links, icons, or hover states — it is atmospheric only",
+      "Do not add drop shadows, inner glows, or any elevation effects — flatness is the signature",
+      "Do not use Feature Deck for body copy or sub-100px text — it is display-only and loses legibility below 44px",
+      "Do not use colored backgrounds inside cards on the mint section — let the section color be the unifying field",
+      "Do not center body text — only the display wordmark and nav are centered; all editorial copy is left-aligned",
+      "Do not use border-radius values outside the 4.6px / 9.3px / 9999px scale — the system is intentionally tight"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Gallery White",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#070707",
+        "name": "Ink Black",
+        "role": "Primary text, hairline borders, filled buttons, nav text — the structural linework of the entire system; Dark surface for project cards and editorial spreads — the inverse of the canvas, used to make featured work feel like a framed plate",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e7feda",
+        "name": "Spearmint Wash",
+        "role": "Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Content is centered with a max-width of ~1200px and generous side margins (54-59px). The hero breaks this pattern by allowing the 104px wordmark to bleed across the full content width, establishing a typographic-first opening. Below the hero, the layout settles into a strict editorial grid: a 2-column project showcase on a light gray band, then a 'Recent projects' heading with a 3-column news card grid on a mint background, then footer. Sections are separated by 1px hairline dividers, not by background color changes alone — the mint section is the only true color zone. Navigation is a floating centered pill that persists across all sections, visually breaking the vertical flow. The overall rhythm is spacious and gallery-like: large breathing gaps between sections, no decorative ornament, no overlapping elements.",
+    "imagery": "Editorial photography dominates the visual language. Images are treated as full-bleed plates rather than illustrations — warm-toned, human, often featuring people in staged-but-natural moments (a young man in amber light, a woman in a studio, a hand holding a printed calendar). All images share a 9.3px border-radius, giving them a consistent subtle framing. There is no use of stock photography aesthetic, no illustrations, no abstract graphics, and no icon system beyond simple text links. The warm amber/orange of the hero photo creates a color contrast against the otherwise near-monochrome palette and the cool mint sections, acting as a third emotional register without becoming a design token.",
+    "similar": [
+      {
+        "why": "Same editorial gallery approach — minimal UI chrome, oversized typographic statements, and content-as-artwork project showcases on a restrained palette",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Shared design-studio discipline: near-monochrome canvas, one pastel section color, serif/sans type pairing, and flat hairlined cards with no shadows",
+        "business": "Manual (manualcreative.com)"
+      },
+      {
+        "why": "Both treat the homepage as a typographic poster first and a portfolio second — full-bleed wordmark hero followed by curated image grids",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Identical floating-pill navigation pattern, generous whitespace, and the discipline of letting a single pastel hue mark a content zone",
+        "business": "DIA Studio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "9px",
+        "buttons": "5px",
+        "navPill": "9999px"
+      },
+      "elementGap": "19px",
+      "sectionGap": "59px",
+      "cardPadding": "19px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Default page background, card surfaces on light sections, button fills inside dark panels"
+      },
+      {
+        "hex": "#e7feda",
+        "name": "Mint Zone",
+        "level": 1,
+        "purpose": "Atmospheric section background (newsworthy blocks, footer) — marks editorial content zones"
+      },
+      {
+        "hex": "#070707",
+        "name": "Ink Panel",
+        "level": 2,
+        "purpose": "Inverted surface for featured project cards — makes editorial spreads feel framed and elevated without using shadow"
+      }
+    ],
+    "northStar": "Editorial monolith on gallery paper",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 18,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 34,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading",
+        "size": 44,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "display",
+        "size": 104,
+        "lineHeight": 1.25
+      }
+    ],
+    "components": [
+      {
+        "name": "Floating Pill Navigation",
+        "role": "Persistent site navigation",
+        "description": "White pill-shaped bar (border-radius: 9999px) with thin #070707 border, 1px stroke. Contains 4 text links (Projects, Latest, About us, Contact) in ABC Diatype 19px weight 400, #070707. Floats centered over content with a subtle white fill that occludes the layer beneath. No shadow — separation comes from the border alone."
+      },
+      {
+        "name": "Display Wordmark",
+        "role": "Brand identity at hero scale",
+        "description": "The literal word 'Extract' set in Feature Deck at 104px, #070707, line-height 1.0. Occupies the full content width and bleeds visually off the right edge. This is not a logo lockup — it IS the page. Below it, a serif tagline at 34px (ABC Diatype 400, line-height 1.4) functions as a quiet mission statement."
+      },
+      {
+        "name": "Editorial Project Card (Dark)",
+        "role": "Featured work showcase on light canvas",
+        "description": "#070707 background, 9.3px border-radius, no shadow. Contains a full-bleed image or typographic spread (e.g. a large white serif 'Π' or a magazine cover). Padding is internal to the media; the card itself is flush. Width adapts to a 2-column or 3-column grid."
+      },
+      {
+        "name": "News Article Card",
+        "role": "Editorial/blog entry on mint section",
+        "description": "Transparent background on #e7feda canvas. Top: 9.3px-radius image (16:10 or similar editorial ratio). Title in ABC Diatype 19px weight 700, #070707. Body excerpt in ABC Diatype 18px weight 400, #070707, line-height 1.5. No border, no shadow — separation is purely typographic and spatial."
+      },
+      {
+        "name": "Hairline Section Divider",
+        "role": "Vertical separation between content zones",
+        "description": "1px solid #070707 line spanning the content width. Used between the project grid and the 'Recent projects' heading, and below the news section. No gaps above/below — the line touches adjacent content, creating a sharp editorial break."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Inline navigation ('View all', project titles)",
+        "description": "ABC Diatype 19px weight 400, #070707, with a 1px underline offset 4px from baseline. Underline is the only hover affordance — no color change, no background. Treated as editorial annotation, not a UI button."
+      },
+      {
+        "name": "Outlined Input Field",
+        "role": "Form input for contact/newsletter",
+        "description": "White background, 4.6px border-radius, 1px #070707 border. Padding 9px vertical, 19px horizontal. Placeholder and value in ABC Diatype 19px weight 400. No focus ring color change — the existing border simply thickens to 2px on focus."
+      },
+      {
+        "name": "Hero Image Plate",
+        "role": "Full-bleed editorial photography",
+        "description": "Large photographic image (warm amber/orange tones) with 9.3px border-radius. Sits below the wordmark and overlaps the floating nav. No caption, no border, no shadow — the image is the content."
+      },
+      {
+        "name": "Section Header",
+        "role": "Introductory heading for content blocks",
+        "description": "ABC Diatype 34px weight 400, #070707, left-aligned. Paired with a right-aligned 'View all' ghost link on the same baseline. Vertical margin 59px top, 19px bottom. On the mint section, text remains #070707 — the mint is the background, not an accent."
+      },
+      {
+        "name": "Footer",
+        "role": "Site closure",
+        "description": "Background transitions to #e7feda mint. Contains repeated floating pill nav, small print links, and studio metadata. ABC Diatype 18-19px, #070707 throughout. Maintains the same typographic system as body content — no distinct footer face."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and section-heading face used exclusively for monumental wordmark treatments. The 104px 'Extract' lockup and 44px subheadings carry the entire brand voice through scale alone — no other display serif or grotesque is needed.",
+        "sizes": "44px, 104px",
+        "family": "Feature Deck",
+        "weight": "400",
+        "lineHeight": "1.25, 1.50",
+        "substitute": "Bricolage Grotesque Display, Archivo Black, or GT Walsheim Bold"
+      },
+      {
+        "role": "Universal workhorse — body copy (18-19px), nav and meta (19px), subheadings (21px), and card titles (34px). Weight 700 is used sparingly for emphasis within body contexts. The tight 1.25 line-height on larger sizes keeps the editorial density.",
+        "sizes": "18px, 19px, 21px, 34px",
+        "family": "ABC Diatype",
+        "weight": "400, 700",
+        "lineHeight": "1.25, 1.40, 1.50, 2.00",
+        "substitute": "Inter, Manrope, or Söhne"
+      }
+    ],
+    "description": "Extract operates as an editorial gallery space: a white canvas interrupted by one pastel mint wash, a single monumental wordmark, and confident body type. The visual system is almost entirely achromatic — near-black ink on white paper — with #e7feda mint appearing only as section-level atmospheric color, never as a UI accent or button fill. Hierarchy is built through extreme typographic scale contrast (104px display vs 19px body) rather than color, weight, or decoration. Components are flat and thin: hairline borders, ~9px radii, no shadows, no gradients. The navigation is a floating pill that hovers over content, reinforcing the gallery metaphor — visitors walk through curated rooms rather than scrolling a page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c4e125b6-e3a3-4509-b06f-f0169216a394#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Extract design system\",\"item\":\"https://styles.refero.design/style/c4e125b6-e3a3-4509-b06f-f0169216a394\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c4e125b6-e3a3-4509-b06f-f0169216a394#style-reference\",\"name\":\"Extract design system reference\",\"headline\":\"Extract design system | Refero Styles\",\"description\":\"Explore Extract's light Agency design system: Gallery White #ffffff, Ink Black #070707 colors, Feature Deck, ABC Diatype typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/c4e125b6-e3a3-4509-b06f-f0169216a394\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c4e125b6-e3a3-4509-b06f-f0169216a394\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Extract\",\"url\":\"https://extract.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c4e125b6-e3a3-4509-b06f-f0169216a394#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/617b6f57-7dd3-42c8-ac39-f531e4a1273d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/617b6f57-7dd3-42c8-ac39-f531e4a1273d.jpg\",\"caption\":\"Screenshot of Extract\"},\"image\":\"https://images.refero.design/styles/refero.design/image/617b6f57-7dd3-42c8-ac39-f531e4a1273d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Extract design system\",\"Extract website design\",\"Extract colors\",\"Extract typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Gallery White\",\"Ink Black\",\"Spearmint Wash\",\"Feature Deck\",\"ABC Diatype\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Extract design system\"},{\"@type\":\"Thing\",\"name\":\"Extract website design\"},{\"@type\":\"Thing\",\"name\":\"Extract colors\"},{\"@type\":\"Thing\",\"name\":\"Extract typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:27:36.616Z\",\"dateModified\":\"2026-04-30T01:27:36.616Z\"}]}19:T51c,Quick Color Reference:\n- text: #070707\n- background: #ffffff\n- border: #070707 (1px)\n- accent: #e7feda (section background only)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Build a floating pill navigation: 1px #070707 border, white background, border-radius 9999px, padding 9px 14px. Links set in ABC Diatype 19px weight 400, #070707, separated by 19px gaps. No shadow, centered horizontally.\n2. Build a hero section: #ffffff background. Display wordmark 'Extract' in Feature Deck 104px weight 400, #070707, line-height 1.0, bleeding to the right edge. Below: ABC Diatype 34px serif tagline in #070707. Full-bleed editorial photograph with 9.3px border-radius beneath.\n3. Build a news article card on a #e7feda section: transparent background, 9.3px-radius image at top, title in ABC Diatype 19px weight 700 #070707, body in ABC Diatype 18px weight 400 #070707 line-height 1.5. No border, no shadow.\n4. Build a dark project card: #070707 background, 9.3px border-radius, full-bleed media inside (typographic spread or photograph), no internal padding, no border, no shadow.\n5. Build a section header: ABC Diatype 34px weight 400 #070707 left-aligned, paired with a right-aligned 'View all' ghost link (ABC Diatype 19px #070707, 1px underline). 59px top margin, 19px bottom margin."
+      }
+    ],
+    "elevationPhilosophy": "The design system intentionally avoids drop shadows entirely. Elevation and separation are achieved through three mechanisms only: (1) a 1px #070707 hairline border, (2) a #070707 filled surface on a #ffffff canvas, and (3) a 1px thickness increase on the existing border for focus/active states. This flatness reinforces the editorial gallery metaphor — paper on paper, not cards floating in space."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#070707",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.12855780499391534
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "hero",
+            "body",
+            "nav",
+            "card",
+            "input",
+            "button"
+          ],
+          "frequency": 495,
+          "confidence": 1,
+          "prominence": 58226138.950681865,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 12,
+            "body/color": 17,
+            "hero/color": 1,
+            "link/color": 10,
+            "other/color": 45,
+            "other/stroke": 1,
+            "heading/color": 13,
+            "nav/borderColor": 48,
+            "body/borderColor": 68,
+            "hero/borderColor": 4,
+            "link/borderColor": 40,
+            "other/borderColor": 180,
+            "heading/borderColor": 52,
+            "card/backgroundColor": 1,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "footer",
+            "card",
+            "heading",
+            "input",
+            "button",
+            "icon",
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 228,
+          "confidence": 1,
+          "prominence": 50975716.10072541,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "card/color": 1,
+            "icon/color": 2,
+            "link/color": 6,
+            "list/color": 7,
+            "other/fill": 2,
+            "input/color": 1,
+            "other/color": 15,
+            "button/color": 1,
+            "footer/color": 1,
+            "other/stroke": 2,
+            "heading/color": 8,
+            "body/borderColor": 8,
+            "card/borderColor": 4,
+            "icon/borderColor": 8,
+            "link/borderColor": 24,
+            "list/borderColor": 28,
+            "input/borderColor": 4,
+            "other/borderColor": 60,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 32,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#e7feda",
+          "oklch": {
+            "c": 0.05306138176916286,
+            "h": 134.15197546398272,
+            "l": 0.9708614810810471
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2240908.741419611,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 150955.0564878715,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 9
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00039076059922794654,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.14,
+          "background": "#ffffff",
+          "foreground": "#070707"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.59,
+          "background": "#e7feda",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.79,
+          "background": "#e7feda",
+          "foreground": "#070707"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.07,
+          "background": "#e7feda",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9.27273,
+          "contexts": [
+            "other",
+            "image",
+            "nav",
+            "card"
+          ],
+          "frequency": 28
+        },
+        {
+          "value": 4.63636,
+          "contexts": [
+            "input",
+            "button",
+            "other"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 9,
+          "contexts": [
+            "nav",
+            "heading",
+            "input",
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "marginBottom|heading",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "heading",
+            "body",
+            "nav",
+            "input"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginTop|body",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "image",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|image",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 37,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 5,
+          "properties": [
+            "columnGap",
+            "rowGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "rowGap|other",
+            "marginTop|list",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 54,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 59,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 74,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "rowGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other",
+            "rowGap|other",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 93,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 111,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ABC Diatype",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 153,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Feature Deck",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 19,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 18,
+          "family": "ABC Diatype",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "nav",
+            "footer",
+            "card",
+            "other",
+            "input",
+            "button",
+            "icon",
+            "list",
+            "link"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ABC Diatype",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ABC Diatype",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "list",
+            "link",
+            "icon"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "ABC Diatype",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "hero",
+            "image",
+            "body",
+            "nav"
+          ],
+          "frequency": 84,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "ABC Diatype",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "ABC Diatype",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "ABC Diatype",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "ABC Diatype",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "Feature Deck",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 104,
+          "family": "Feature Deck",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/9212cb16-5a04-43dc-a9b9-9bdf5f9ca299.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/617b6f57-7dd3-42c8-ac39-f531e4a1273d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c4e125b6-e3a3-4509-b06f-f0169216a394#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Extract design system\",\"item\":\"https://styles.refero.design/style/c4e125b6-e3a3-4509-b06f-f0169216a394\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c4e125b6-e3a3-4509-b06f-f0169216a394#style-reference\",\"name\":\"Extract design system reference\",\"headline\":\"Extract design system | Refero Styles\",\"description\":\"Explore Extract's light Agency design system: Gallery White #ffffff, Ink Black #070707 colors, Feature Deck, ABC Diatype typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/c4e125b6-e3a3-4509-b06f-f0169216a394\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c4e125b6-e3a3-4509-b06f-f0169216a394\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Extract\",\"url\":\"https://extract.studio\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c4e125b6-e3a3-4509-b06f-f0169216a394#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/617b6f57-7dd3-42c8-ac39-f531e4a1273d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/617b6f57-7dd3-42c8-ac39-f531e4a1273d.jpg\",\"caption\":\"Screenshot of Extract\"},\"image\":\"https://images.refero.design/styles/refero.design/image/617b6f57-7dd3-42c8-ac39-f531e4a1273d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Extract design system\",\"Extract website design\",\"Extract colors\",\"Extract typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Gallery White\",\"Ink Black\",\"Spearmint Wash\",\"Feature Deck\",\"ABC Diatype\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Extract design system\"},{\"@type\":\"Thing\",\"name\":\"Extract website design\"},{\"@type\":\"Thing\",\"name\":\"Extract colors\"},{\"@type\":\"Thing\",\"name\":\"Extract typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:27:36.616Z\",\"dateModified\":\"2026-04-30T01:27:36.616Z\"}]}19:T51c,Quick Color Reference:\n- text: #070707\n- background: #ffffff\n- border: #070707 (1px)\n- accent: #e7feda (section background only)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Build a floating pill navigation: 1px #070707 border, white background, border-radius 9999px, padding 9px 14px. Links set in ABC Diatype 19px weight 400, #070707, separated by 19px gaps. No shadow, centered horizontally.\n2. Build a hero section: #ffffff background. Display wordmark 'Extract' in Feature Deck 104px weight 400, #070707, line-height 1.0, bleeding to the right edge. Below: ABC Diatype 34px serif tagline in #070707. Full-bleed editorial photograph with 9.3px border-radius beneath.\n3. Build a news article card on a #e7feda section: transparent background, 9.3px-radius image at top, title in ABC Diatype 19px weight 700 #070707, body in ABC Diatype 18px weight 400 #070707 line-height 1.5. No border, no shadow.\n4. Build a dark project card: #070707 background, 9.3px border-radius, full-bleed media inside (typographic spread or photograph), no internal padding, no border, no shadow.\n5. Build a section header: ABC Diatype 34px weight 400 #070707 left-aligned, paired with a right-aligned 'View all' ghost link (ABC Diatype 19px #070707, 1px underline). 59px top margin, 19px bottom margin."
+}

@@ -1,0 +1,427 @@
+{
+  "color": {
+    "warm-parchment": {
+      "$value": "#f0f0eb",
+      "$type": "color",
+      "$description": "Warm Parchment — Page canvas, hero section dividers, large surface fills — warm cream replaces stark white to soften the entire interface"
+    },
+    "gallery-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Gallery White — Card surfaces, elevated panels, button text on dark fills — pure white reserved for objects sitting on the cream canvas"
+    },
+    "soft-linen": {
+      "$value": "#e1e1db",
+      "$type": "color",
+      "$description": "Soft Linen — Secondary card surface, subtle background fills behind grouped content"
+    },
+    "mist-gray": {
+      "$value": "#d7d7cf",
+      "$type": "color",
+      "$description": "Mist Gray — Subtle background fills, body section dividers"
+    },
+    "pale-stone": {
+      "$value": "#cbcbc5",
+      "$type": "color",
+      "$description": "Pale Stone — Light hairline borders on neutral surfaces"
+    },
+    "ash-gray": {
+      "$value": "#bfbfb8",
+      "$type": "color",
+      "$description": "Ash Gray — Icon strokes, secondary borders, muted decorative elements"
+    },
+    "graphite-warm": {
+      "$value": "#575753",
+      "$type": "color",
+      "$description": "Graphite Warm — Secondary card text, muted card labels"
+    },
+    "charcoal-warm": {
+      "$value": "#464643",
+      "$type": "color",
+      "$description": "Charcoal Warm — Body-level borders, secondary text on warm surfaces"
+    },
+    "ink": {
+      "$value": "#111110",
+      "$type": "color",
+      "$description": "Ink — Primary text, hairline borders across all surfaces, filled button background — the structural neutral that carries nearly all interface weight"
+    },
+    "signal-orange": {
+      "$value": "#ff3b00",
+      "$type": "color",
+      "$description": "Signal Orange — Sole chromatic accent — highlights, active tags, icon fills, decorative punctuation. Used sparingly to make functional moments feel switched on against the warm monochrome"
+    },
+    "deep-teal": {
+      "$value": "#042a2b",
+      "$type": "color",
+      "$description": "Deep Teal — Gray outline accent for tags, dividers, and focused UI edges."
+    }
+  },
+  "font": {
+    "cranny": {
+      "$value": "Cranny",
+      "$type": "fontFamily",
+      "$description": "Display and editorial heading face — high-contrast serif used for hero headlines and section titles at 40–96px. Weight 300 at display sizes creates a whisper-soft authority; weight 400 carries through subheadings. This is the brand's typographic signature: an editorial serif in a sea of SaaS grotesques."
+    },
+    "abc-diatype": {
+      "$value": "ABC Diatype",
+      "$type": "fontFamily",
+      "$description": "Primary interface and body text — neutral grotesque handling nav, buttons, inputs, body copy, and card labels. The +0.01em positive tracking is unusually generous for a grotesque and creates a calm, considered rhythm in body text."
+    },
+    "satoshi": {
+      "$value": "Satoshi",
+      "$type": "fontFamily",
+      "$description": "Secondary body fallback for specific micro-copy contexts"
+    },
+    "cabinetgrotesk": {
+      "$value": "Cabinetgrotesk",
+      "$type": "fontFamily",
+      "$description": "Bold display variant for emphasis and large numerals — tighter, heavier counterpoint to the editorial Cranny"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Satoshi",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Cabinetgrotesk",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Cranny",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "ABC Diatype",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Cranny",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Cranny",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 0.91
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Cranny",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Cranny",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Cranny",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Cranny",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Cranny",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Cabinetgrotesk",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Cranny",
+        "fontSize": "61px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 61px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Cranny",
+        "fontSize": "80px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Cranny",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 96px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f0f0eb",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — warm cream replaces stark white"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Content cards, feature panels sitting on the canvas"
+    },
+    "elevated-card": {
+      "$value": "#e1e1db",
+      "$type": "color",
+      "$description": "Surface level 2: Secondary grouped content, subtle background variation"
+    },
+    "dark-surface": {
+      "$value": "#042a2b",
+      "$type": "color",
+      "$description": "Surface level 3: Hero sections and editorial dark moments"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.frontify.com/en",
+      "siteName": "Frontify",
+      "extractedAt": "2026-06-03T17:43:54.070Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,954 @@
+{
+  "color": {
+    "ember-orange": {
+      "$value": "#ff5924",
+      "$type": "color",
+      "$description": "Ember Orange — Brand accent — outlined pill buttons, nav bullet markers, section eyebrow text. Never filled. Appears as coral-warm mark, not command.; Decorative gradient on brand moments and section backgrounds — orange to warm amber; Hero section background — radial bloom from intense orange bleeding into white canvas, creating the signature warm ambient atmosphere"
+    },
+    "cobalt-link": {
+      "$value": "#1573dd",
+      "$type": "color",
+      "$description": "Cobalt Link — Inline hyperlinks and underlined interactive text — only chromatic non-orange color in the UI"
+    },
+    "midnight-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Midnight Ink — Page background (dark sections), primary display text, icon fills"
+    },
+    "canvas-white": {
+      "$value": "#f9fafc",
+      "$type": "color",
+      "$description": "Canvas White — Primary page canvas — the base surface of all main content sections"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, elevated panels, inner containers requiring maximum contrast from canvas"
+    },
+    "blush-tint": {
+      "$value": "#fff1f1",
+      "$type": "color",
+      "$description": "Blush Tint — Warm-tinted section backgrounds, alternating with canvas white for rhythm"
+    },
+    "mist": {
+      "$value": "#e2e2e2",
+      "$type": "color",
+      "$description": "Mist — Dividers, subtle borders, structural separators"
+    },
+    "slate-blue-card": {
+      "$value": "#e5eaf2",
+      "$type": "color",
+      "$description": "Slate Blue Card — Cool-tinted card backgrounds — technology/productivity content cards"
+    },
+    "parchment-card": {
+      "$value": "#f3f0e7",
+      "$type": "color",
+      "$description": "Parchment Card — Warm off-white card backgrounds — notes, writing content cards"
+    },
+    "sage-card": {
+      "$value": "#dde9d3",
+      "$type": "color",
+      "$description": "Sage Card — Green-tinted card backgrounds — third content category surface"
+    },
+    "deep-slate": {
+      "$value": "#3a475a",
+      "$type": "color",
+      "$description": "Deep Slate — Primary heading text in body sections, secondary display text"
+    },
+    "storm": {
+      "$value": "#4a5465",
+      "$type": "color",
+      "$description": "Storm — Body text, paragraph copy, secondary content text"
+    },
+    "steel": {
+      "$value": "#717286",
+      "$type": "color",
+      "$description": "Steel — Tertiary body text, captions, metadata labels"
+    },
+    "slate": {
+      "$value": "#748297",
+      "$type": "color",
+      "$description": "Slate — Ghost button text/border (inactive platform buttons: iPhone app, Browser Extension, Android app)"
+    },
+    "graphite-nav": {
+      "$value": "#24272d",
+      "$type": "color",
+      "$description": "Graphite Nav — Navigation text items in active/scrolled state"
+    },
+    "ash": {
+      "$value": "#afb5c1",
+      "$type": "color",
+      "$description": "Ash — Muted nav labels, disabled states, placeholder text"
+    },
+    "chalk": {
+      "$value": "#a6a8aa",
+      "$type": "color",
+      "$description": "Chalk — Strikethrough / completed list item text inside product demo cards"
+    }
+  },
+  "font": {
+    "open-sans": {
+      "$value": "Open Sans",
+      "$type": "fontFamily",
+      "$description": "Fallback / supporting body text in specific CMS-driven content blocks."
+    },
+    "louize-regular-205tf": {
+      "$value": "Louize-Regular-205TF",
+      "$type": "fontFamily",
+      "$description": "Editorial display and section headlines. The defining typographic voice — a transitional serif with ink-trap details. At 96–140px with -0.062em tracking, letterforms compress into a single visual mass. Anti-conventional: weight 400 (not bold) at enormous sizes creates authority through mass and scale rather than weight."
+    },
+    "louize-italic-205tf": {
+      "$value": "Louize-Italic-205TF",
+      "$type": "fontFamily",
+      "$description": "Italic variant for editorial emphasis within headlines — creates contrast between upright and italic forms at the same display size"
+    },
+    "nunito-semibold-nunito-regular": {
+      "$value": "Nunito-SemiBold / Nunito-Regular",
+      "$type": "fontFamily",
+      "$description": "UI micro-labels, button text, nav items, section eyebrows. Tracked out at +0.025em to +0.125em for uppercase labels — the widest positive tracking in the system, contrasting sharply with Louize's negative tracking. Rounded forms soften UI chrome against the editorial serif."
+    },
+    "avenir-lt-w0145-book1475508": {
+      "$value": "Avenir LT W01_45 Book1475508",
+      "$type": "fontFamily",
+      "$description": "Body copy and long-form explanatory text. Humanist geometric grotesque — bridges the editorial serif headlines and the rounded UI labels. Letter-spacing held at -0.06em across all sizes."
+    },
+    "inter-medium-inter-regular": {
+      "$value": "Inter-Medium / Inter-Regular",
+      "$type": "fontFamily",
+      "$description": "Navigation labels, UI body text, list items. Neutral workhorse for medium-density interface contexts where Avenir's personality would compete. Tracking at -0.04em to -0.013em."
+    },
+    "neue-haas-grotesk-display": {
+      "$value": "neue-haas-grotesk-display",
+      "$type": "fontFamily",
+      "$description": "Small-caps section category labels and UI micro-headings. Tracked out at +0.063em — used where Nunito's roundness is too informal."
+    },
+    "louize-bold-205tf": {
+      "$value": "Louize-Bold-205TF",
+      "$type": "fontFamily",
+      "$description": "Louize-Bold-205TF — detected in extracted data but not described by AI"
+    },
+    "louize-medium-205tf": {
+      "$value": "Louize-Medium-205TF",
+      "$type": "fontFamily",
+      "$description": "Louize-Medium-205TF — detected in extracted data but not described by AI"
+    },
+    "mymindai-regular": {
+      "$value": "mymindai-Regular",
+      "$type": "fontFamily",
+      "$description": "mymindai-Regular — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Nunito-SemiBold",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Nunito-SemiBold",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Nunito-SemiBold",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Nunito-SemiBold",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Nunito-SemiBold",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Nunito-SemiBold",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.62
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Inter-Medium",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.62
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.83
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "base-12": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-12 at 16px"
+    },
+    "base-13": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-13 at 16px"
+    },
+    "base-14": {
+      "$value": {
+        "fontFamily": "Nunito-Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-14 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Louize-Regular-205TF",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Inter-Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Nunito-SemiBold",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "Nunito-SemiBold",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter-Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 2.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Inter-Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Inter-Medium",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "Nunito-Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 20px"
+    },
+    "xl-7": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-7 at 20px"
+    },
+    "xl-8": {
+      "$value": {
+        "fontFamily": "Nunito-Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-8 at 20px"
+    },
+    "xl-9": {
+      "$value": {
+        "fontFamily": "Nunito-Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-9 at 20px"
+    },
+    "xl-10": {
+      "$value": {
+        "fontFamily": "Open Sans",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-10 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter-Medium",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Inter-Medium",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "neue-haas-grotesk-display",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "Inter-Regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 24px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "Inter-Regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Louize-Regular-205TF",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Louize-Regular-205TF",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "Louize-Regular-205TF",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.94
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Louize-Regular-205TF",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Inter-Medium",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Inter-Medium",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 40px"
+    },
+    "4xl-5": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-5 at 42px"
+    },
+    "4xl-6": {
+      "$value": {
+        "fontFamily": "Louize-Regular-205TF",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-6 at 42px"
+    },
+    "4xl-7": {
+      "$value": {
+        "fontFamily": "Louize-Bold-205TF",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-7 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Louize-Medium-205TF",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Louize-Regular-205TF",
+        "fontSize": "52px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 52px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 54px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Louize-Regular-205TF",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 54px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 80px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Louize-Regular-205TF",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 80px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "Louize-Italic-205TF",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 80px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "Louize-Italic-205TF",
+        "fontSize": "84px",
+        "fontWeight": 400,
+        "lineHeight": 0.6
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 84px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 96px"
+    },
+    "5xl-11": {
+      "$value": {
+        "fontFamily": "Louize-Regular-205TF",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-11 at 96px"
+    },
+    "5xl-12": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-12 at 96px"
+    },
+    "5xl-13": {
+      "$value": {
+        "fontFamily": "Louize-Regular-205TF",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-13 at 96px"
+    },
+    "5xl-14": {
+      "$value": {
+        "fontFamily": "mymindai-Regular",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-14 at 96px"
+    },
+    "5xl-15": {
+      "$value": {
+        "fontFamily": "Louize-Regular-205TF",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-15 at 96px"
+    },
+    "5xl-16": {
+      "$value": {
+        "fontFamily": "Avenir LT W01_45 Book1475508",
+        "fontSize": "140px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-16 at 140px"
+    },
+    "5xl-17": {
+      "$value": {
+        "fontFamily": "Louize-Regular-205TF",
+        "fontSize": "140px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-17 at 140px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "70": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Spacing 70px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(255, 167, 129, 0.44) 0px 57px 60px -54px, rgba(255, 128, 36, 0.27) 0px -27px 50px -40px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "sm": {
+      "$value": "rgba(140, 142, 151, 0.32) 0px 4px 7px -4px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f9fafc",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — barely-off-white, receives the warm bloom gradient in hero"
+    },
+    "section-warm": {
+      "$value": "#fff1f1",
+      "$type": "color",
+      "$description": "Surface level 1: Alternating section backgrounds — warm blush tint for rhythm"
+    },
+    "card-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated card surfaces — full white against tinted backgrounds"
+    },
+    "card-blue": {
+      "$value": "#e5eaf2",
+      "$type": "color",
+      "$description": "Surface level 2: Content category card — cool-tinted for tech/productivity content"
+    },
+    "card-parchment": {
+      "$value": "#f3f0e7",
+      "$type": "color",
+      "$description": "Surface level 2: Content category card — warm off-white for notes/writing content"
+    },
+    "card-sage": {
+      "$value": "#dde9d3",
+      "$type": "color",
+      "$description": "Surface level 2: Content category card — green-tinted for nature/wellness content"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://mymind.com",
+      "siteName": "mymind",
+      "extractedAt": "2026-04-29T10:42:11.503Z",
+      "variant": "extended"
+    }
+  }
+}

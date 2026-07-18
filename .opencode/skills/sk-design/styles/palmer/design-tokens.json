@@ -1,0 +1,217 @@
+{
+  "color": {
+    "gallery-cream": {
+      "$value": "#f5f6ee",
+      "$type": "color",
+      "$description": "Gallery Cream — Page canvas and base surface — a warm off-white that flatters glazed ceramics more than pure white would"
+    },
+    "ink": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Ink — Primary text, hairline borders, card outlines, icon strokes — the entire structural skeleton runs through this one near-black"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — Product image backgrounds, occasional inverse surface when a card needs to sit forward of the cream canvas"
+    },
+    "fog": {
+      "$value": "#a1a19c",
+      "$type": "color",
+      "$description": "Fog — Muted secondary borders and low-priority text — used when Ink would be too heavy for a structural divider"
+    },
+    "lampblack": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Lampblack — Reserved for the rare filled element (active nav background, weight anchors) — used sparingly so Ink remains the default voice"
+    }
+  },
+  "font": {
+    "twk-lausanne": {
+      "$value": "TWK Lausanne",
+      "$type": "fontFamily",
+      "$description": "Sole typeface — handles everything from micro-labels to 120px editorial display. Weight 300 carries display and large headings (whisper-thin Swiss grotesque that lets the ceramics dominate), weight 400–500 for body and UI, weight 600–700 reserved for active states and filter labels. The tight letter-spacing (-0.04em at display, -0.02em at body) is signature: characters nestle together, giving even 11px labels a compressed, considered feel rather than airy defaults."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "TWK Lausanne",
+        "fontSize": "120px",
+        "fontWeight": 300,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 120px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "66": {
+      "$value": "66px",
+      "$type": "dimension",
+      "$description": "Spacing 66px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "gallery-canvas": {
+      "$value": "#f5f6ee",
+      "$type": "color",
+      "$description": "Surface level 0: The base page surface — warm off-white, used everywhere as the default background"
+    },
+    "card-surface": {
+      "$value": "#f5f6ee",
+      "$type": "color",
+      "$description": "Surface level 1: Cards use the same cream fill — depth comes from the 1px Ink border, not a lighter or darker shade"
+    },
+    "inverse-surface": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Surface level 2: Rare filled-dark surface for active states and inverted sections (e.g., dark product detail panels)"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.palmer-dinnerware.com",
+      "siteName": "Palmer",
+      "extractedAt": "2026-06-03T19:46:36.187Z",
+      "variant": "extended"
+    }
+  }
+}

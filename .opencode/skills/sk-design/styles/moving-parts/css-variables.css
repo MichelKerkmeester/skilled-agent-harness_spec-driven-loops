@@ -1,0 +1,121 @@
+:root {
+  /* Colors */
+  --color-electric-ink: #0000ff;
+  --color-voltage-green: #00d37c;
+  --color-onyx: #000000;
+  --color-pure: #ffffff;
+  --color-carbon: #121212;
+  --color-slate: #1e1e1e;
+  --color-fog: #bcc1c7;
+  --color-ash: #999999;
+  --color-smoke: #cfcfcf;
+  --color-bone: #efefef;
+  --color-chalk: #f4f4f4;
+  --color-hi-vis-yellow: #fffc52;
+  --gradient-hi-vis-yellow: conic-gradient(rgb(87, 192, 241) 0%, rgb(74, 166, 232) 13%, rgb(134, 57, 162) 26%, rgb(239, 137, 159) 42%, rgb(234, 57, 42) 55%, rgb(239, 115, 53) 62%, rgb(245, 192, 68) 73%, rgb(245, 255, 84) 84%, rgb(160, 218, 83) 95%, rgb(87, 192, 241) 100%);
+
+  /* Typography — Font Families */
+  --font-whyte-semi-mono: 'Whyte Semi-Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-unica77: 'Unica77', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-pp-neue-montreal: 'PP Neue Montreal', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-fraunces-72pt-soft-supersoft: 'Fraunces 72pt Soft / SuperSoft', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-druk-xxcondensed-super: 'Druk XXCondensed Super', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-tan-buster: 'TAN-BUSTER', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ui-monospace: 'ui-monospace', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-fraunces-72pt-supersoft: 'Fraunces 72pt SuperSoft', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.36;
+  --text-body-sm: 17px;
+  --leading-body-sm: 1.36;
+  --tracking-body-sm: 0.01px;
+  --text-subheading: 25px;
+  --leading-subheading: 1.2;
+  --tracking-subheading: -0.01px;
+  --text-heading-sm: 30px;
+  --leading-heading-sm: 1.18;
+  --tracking-heading-sm: -0.005px;
+  --text-heading: 47px;
+  --leading-heading: 1.05;
+  --tracking-heading: -0.04px;
+  --text-heading-lg: 70px;
+  --leading-heading-lg: 0.96;
+  --tracking-heading-lg: -0.04px;
+  --text-display: 100px;
+  --leading-display: 0.92;
+  --tracking-display: -0.04px;
+  --text-mega-display: 248px;
+  --leading-mega-display: 1.2;
+
+  /* Typography — Weights */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-68: 68px;
+  --spacing-80: 80px;
+  --spacing-84: 84px;
+  --spacing-120: 120px;
+  --spacing-148: 148px;
+  --spacing-172: 172px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 80px;
+  --card-padding: 30px;
+  --element-gap: 13px;
+
+  /* Border Radius */
+  --radius-sm: 2.5px;
+  --radius-xl: 14px;
+  --radius-2xl: 18px;
+  --radius-3xl: 24.1667px;
+  --radius-3xl-2: 30.4583px;
+  --radius-3xl-3: 35px;
+  --radius-full: 50px;
+  --radius-full-2: 72.5px;
+  --radius-full-3: 76.6667px;
+  --radius-full-4: 83.3333px;
+  --radius-full-5: 90.3833px;
+  --radius-full-6: 106.333px;
+
+  /* Named Radii */
+  --radius-hero: 76px;
+  --radius-pill: 9999px;
+  --radius-cards: 90px;
+  --radius-image: 14px;
+  --radius-small: 3px;
+  --radius-medium: 24px;
+  --radius-buttons: 18px;
+  --radius-decorative: 35px;
+  --radius-large-cards: 106px;
+
+  /* Shadows */
+  --shadow-xl: rgba(0, 0, 0, 0.3) 15px 20px 30px 0px;
+
+  /* Surfaces */
+  --surface-canvas: #ffffff;
+  --surface-bone-band: #efefef;
+  --surface-chalk: #f4f4f4;
+  --surface-hi-vis-accent: #fffc52;
+  --surface-carbon: #121212;
+  --surface-slate: #1e1e1;
+}

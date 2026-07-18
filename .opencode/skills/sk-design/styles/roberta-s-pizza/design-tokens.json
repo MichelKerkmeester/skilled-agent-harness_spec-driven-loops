@@ -1,0 +1,309 @@
+{
+  "color": {
+    "roberta-red": {
+      "$value": "#ed2023",
+      "$type": "color",
+      "$description": "Roberta Red — Primary filled CTAs, full-bleed social section background, logo wordmark, and any place the brand must shout — vivid red against white and charcoal creates urgency and warmth without aggression"
+    },
+    "charcoal": {
+      "$value": "#2b2f36",
+      "$type": "color",
+      "$description": "Charcoal — Primary text, body copy, dark CTA fill, hairline borders, icon strokes, image borders — the structural neutral that carries 90% of the interface"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, text on dark backgrounds, button text, badge backgrounds — the dominant neutral that gives the system its airy, poster-like feel"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Input field borders and the deepest surface accent — used sparingly for the hardest possible contrast point on form elements"
+    },
+    "shadow-gray": {
+      "$value": "#bfbfbf",
+      "$type": "color",
+      "$description": "Shadow Gray — Supporting neutral for secondary UI, dividers, and muted labels."
+    }
+  },
+  "font": {
+    "offset-tm": {
+      "$value": "Offset TM",
+      "$type": "fontFamily",
+      "$description": "Workhorse sans for body, UI labels, buttons, navigation, and most headings up to 80px — a quirky custom face with 0.04em positive tracking that gives every line a slightly informal, sign-painter rhythm."
+    },
+    "borensa": {
+      "$value": "Borensa",
+      "$type": "fontFamily",
+      "$description": "Condensed display face for oversized posters and the most aggressive headlines — sits at 80–120px with -0.02em tight tracking and aggressive line-height (~0.88) that lets the type stack into blocks; also used at 14–26px for micro-labels that need to feel editorial."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Borensa",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Offset TM",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Offset TM",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Borensa",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Offset TM",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Borensa",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Offset TM",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Borensa",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Offset TM",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Offset TM",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Borensa",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Offset TM",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Borensa",
+        "fontSize": "120px",
+        "fontWeight": 400,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 120px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "196": {
+      "$value": "196px",
+      "$type": "dimension",
+      "$description": "Spacing 196px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "7.2px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "lg-2": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg-2"
+    },
+    "full": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "16000px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.25) 0px 4px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas and card surface — the base the system is printed on"
+    },
+    "roberta-red": {
+      "$value": "#ed2023",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed accent sections (social wall) and filled primary CTAs"
+    },
+    "charcoal": {
+      "$value": "#2b2f36",
+      "$type": "color",
+      "$description": "Surface level 2: Dark CTA fill and any inverted panel"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Input chrome and the deepest focal accents"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.robertaspizza.com",
+      "siteName": "Roberta's Pizza",
+      "extractedAt": "2026-06-03T19:01:52.815Z",
+      "variant": "extended"
+    }
+  }
+}

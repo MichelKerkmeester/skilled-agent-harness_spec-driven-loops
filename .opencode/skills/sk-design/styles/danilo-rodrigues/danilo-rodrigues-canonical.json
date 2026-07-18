@@ -1,0 +1,686 @@
+{
+  "source": "https://styles.refero.design/style/0d68dc70-15ec-494a-855d-fdb6a4e7c982",
+  "uuid": "0d68dc70-15ec-494a-855d-fdb6a4e7c982",
+  "name": "Danilo Rodrigues",
+  "northStar": "Neon flare in a black void — a single oversized lime disc burning against a perfectly black page, with white type drifting around it like caption text on a gallery wall.",
+  "capturedAt": "2026-07-18T09:11:55.265Z",
+  "meta": {
+    "url": "https://danilorodrigues.com",
+    "siteName": "Danilo Rodrigues",
+    "extractedAt": "2026-06-03T20:29:10.776Z",
+    "durationMs": 23543,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 96,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set the page background to Void Black (#000000) edge to edge with no max-width wrapper.",
+      "Use Neue Haas Grotesk 400 at exactly one weight for every typographic element — scale and color carry hierarchy, not weight contrast.",
+      "Use Paper White (#ffffff) only for the loudest display type (31px and above); use Bone White (#eaeaea) for all body and supporting copy.",
+      "Place exactly one Signal Lime (#86ff00) circle per hero — oversized, perfectly round, and let the headline type overlap its lower half.",
+      "Left-align all content at a consistent 8–10% viewport indent, and use 83–130px of vertical space between major sections.",
+      "Trigger the Cobalt Bar (#1a3cff) state on the top nav when the page is in active scroll or focus, and keep it as the only place blue appears.",
+      "Default to 13px vertical padding on inline elements and 32px around grouped content; 13 is the base rhythm unit."
+    ],
+    "donts": [
+      "Do not introduce drop shadows, gradients, glows, or any simulated depth — depth is implied by contrast and scale only.",
+      "Do not use bold (600/700/800) or italic weights of Neue Haas Grotesk; the system is monoweight by design.",
+      "Do not place more than one Signal Lime disc on a screen, and never use it as a button fill or interactive element.",
+      "Do not build cards, panels, or boxed containers — content sits directly on the black void with no surface wrapping.",
+      "Do not center-align body copy or stack content symmetrically; the layout is consistently left-anchored.",
+      "Do not use color-coded states (no green for success, no red for error) — the accent palette of lime and cobalt is for signature moments only, not status communication.",
+      "Do not add a max-width container or visible grid lines; the page is full-bleed and ungridded."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void Black",
+        "role": "Page canvas, hero field, all large surface areas — the dominant ground that makes every other element read as signal",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eaeaea",
+        "name": "Bone White",
+        "role": "Primary body text, paragraph copy, bio blocks, nav labels — slightly off-white so it never feels clinical against the pure black field",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Headline text, hero display type, the loudest typographic register — pure white reserved for the largest voices on the page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#878787",
+        "name": "Ash",
+        "role": "Secondary heading text, muted labels, supportive metadata — the middle gray that lets a subhead recede behind a headline",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1e1e1e",
+        "name": "Iron Gray",
+        "role": "Subtle hairline dividers and section separators — barely one step off the canvas, used only when a line needs to exist without announcing itself",
+        "group": "neutral"
+      },
+      {
+        "hex": "#373737",
+        "name": "Graphite",
+        "role": "Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#86ff00",
+        "name": "Signal Lime",
+        "role": "Signature accent: the oversized hero disc, focal point punctuation, and any single high-attention graphic — a single neon-lime shape per screen, never decorative repetition",
+        "group": "accent"
+      },
+      {
+        "hex": "#1a3cff",
+        "name": "Cobalt Bar",
+        "role": "Active header band and focus state for the top navigation — replaces the black header on scroll/hover to mark the system is now engaged",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed dark canvas, no max-width container — the page extends edge to edge. The persistent top nav is a thin black bar (replaced by a Cobalt Bar band on active state) with four labels: monogram left, role descriptor, work selector, scroll cue right. Content is consistently left-aligned with a deliberate left indent of roughly 8–10% of the viewport, creating a strong vertical column the eye can lock onto. The hero centers a single oversized circular motif with the headline text wrapping its lower half. Subsequent sections use the same left column for paragraphs of body copy, with generous vertical air between them (83–130px). There are no multi-column grids, no card rows, no feature grids — each section is a single column of text on void. Navigation is minimal and persistent; no sidebar, no mega-menu, no sticky CTA bar.",
+    "imagery": "Imagery is almost entirely typographic. The one dominant visual element is a single oversized geometric disc — a perfect circle rendered in Signal Lime (#86ff00) large enough to dominate the hero, with a small concentric ring mark at its center. No photography, no product shots, no lifestyle imagery. Any case-study content is expected to be text- and graphic-led. The visual language is closer to a printed monograph than a web product: a page, a mark, a paragraph, silence.",
+    "similar": [
+      {
+        "why": "Same editorial dark-canvas treatment with oversized display type and a single hero focal point — no chrome, no cards, no component grid",
+        "business": "Tobias van Schneider"
+      },
+      {
+        "why": "Shared monoweight grotesque typography, left-aligned column layout, and the confidence to leave most of the page empty",
+        "business": "Pentagram partner portfolio sites"
+      },
+      {
+        "why": "Type-bleeds-over-image figure-ground tension and a willingness to treat the page as a printed editorial spread rather than a web template",
+        "business": "David Carson experimental layouts"
+      },
+      {
+        "why": "Single saturated accent color punctuating a fully monochrome system, and the discipline of using one typeface at one weight",
+        "business": "Studio Dumbar"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "page": "0px (no rounded corners anywhere on the chrome)",
+        "discs": "9999px (any circular graphic fills the full radius)"
+      },
+      "elementGap": "13-26px",
+      "sectionGap": "83-130px",
+      "cardPadding": "32px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Full-bleed page canvas — the entire site lives on this single surface"
+      },
+      {
+        "hex": "#1a3cff",
+        "name": "Cobalt Band",
+        "level": 1,
+        "purpose": "Active header strip that replaces the black bar when navigation is engaged"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Neon flare in a black void — a single oversized lime disc burning against a perfectly black page, with white type drifting around it like caption text on a gallery wall.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 18,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading-sm",
+        "size": 23,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 26,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 31,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "display",
+        "size": 71,
+        "lineHeight": 1,
+        "letterSpacing": -0.71
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Nav Bar (default)",
+        "role": "Persistent site navigation",
+        "description": "Full-width black bar, ~50px tall, four text labels in Neue Haas Grotesk 400 at 18–19px in Bone White (#eaeaea). Left: monogram 'DR'. Center-left: role descriptor. Center-right: work selector with year range on a second line. Far right: 'Scroll ↓' cue. No background fill, no border, no logo mark — just four text blocks anchored at the viewport edges with generous internal padding of 13px vertical."
+      },
+      {
+        "name": "Top Nav Bar (engaged state)",
+        "role": "Active navigation band, indicates the page is in focus",
+        "description": "Same four-label structure, but the entire bar fills with Cobalt Bar (#1a3cff) and the text flips to white. Triggered on scroll past the hero or on hover. This is the only place blue appears in the system — the bar acts as a system-status indicator rather than a brand element."
+      },
+      {
+        "name": "Hero Disc",
+        "role": "Signature visual punctuation for the landing screen",
+        "description": "A single perfect circle filled with Signal Lime (#86ff00), roughly 60–70% of the viewport height, vertically and horizontally centered in the upper half of the hero. A small concentric outline ring (Bone White #eaeaea, ~1px stroke) marks its center point. No drop shadow, no gradient — pure flat fill. Only one disc per page; never repeated, never used as a button."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Primary display statement",
+        "description": "Neue Haas Grotesk 400 at 71px, Paper White (#ffffff), line-height 1.00, left-aligned at the 8–10% indent. Text wraps and intentionally overlaps the lower edge of the Hero Disc — the disc bleeds behind the type, creating a figure-ground tension. No bold, no italic, no underline."
+      },
+      {
+        "name": "Hero Sub-cue",
+        "role": "Scroll invitation under the headline",
+        "description": "Neue Haas Grotesk 400 at 19px, Bone White (#eaeaea), single line, left-aligned at the same indent as the headline. Includes a downward arrow glyph. Appears 45–83px below the last headline line."
+      },
+      {
+        "name": "Bio Paragraph Block",
+        "role": "Long-form about text on the secondary section",
+        "description": "Stack of three to five paragraphs, each separated by 26–32px of vertical air. Neue Haas Grotesk 400 at 18–19px, Bone White (#eaeaea), line-height ~1.3, left-aligned at the standard indent. Paragraphs are short — two to four lines — and the first sentence of the lead paragraph is always in Paper White (#ffffff) to act as a soft lead-in."
+      },
+      {
+        "name": "Email Link",
+        "role": "Inline contact link in the bio",
+        "description": "Bone White (#eaeaea) text, 19px, underlined with Graphite (#373737) — a deliberately low-contrast underline that reads as a quiet marker, not a call to action. Arrow glyph '→' sits before the address."
+      },
+      {
+        "name": "Inline Image Caption",
+        "role": "Small descriptive text under embedded images",
+        "description": "Times serif 400 at 13px, line-height 1.20, Bone White (#eaeaea). The only place a serif appears on the site. Used sparingly to annotate case-study visuals and contrast the grotesque primary voice with a footnote register."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The only voice on the site. Used for hero display (71px), section headlines (31px), subheads (23–26px), and body copy (18–19px). The signature is a single weight — 400 only — across every size; bold is never used. This monoweight discipline is the typographic equivalent of the black canvas: everything that would normally shout is forced to speak at the same volume, and the hierarchy comes purely from scale and line-height, never from weight contrast.",
+        "sizes": "18px, 19px, 23px, 26px, 31px, 71px",
+        "family": "Neue Haas Grotesk",
+        "weight": "400",
+        "lineHeight": "1.00–1.30",
+        "substitute": "Inter, Helvetica Neue, Helvetica, Arial"
+      },
+      {
+        "role": "Secondary fine-print and small image captions. The serif appears only at 13px, creating an editorial footnote register that contrasts the grotesque's modern authority with a quiet traditionalist voice.",
+        "sizes": "13px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Times New Roman, system serif"
+      }
+    ],
+    "description": "Danilo Rodrigues runs on an almost monastic black-and-white system interrupted by two high-voltage color punches: a giant neon-lime disc in the hero and a saturated cobalt header band. Every other choice is editorial restraint — single-weight Neue Haas Grotesk at full volume, pure #000 canvas, and no shadows, no gradients, no borders, no buttons. The visual personality comes from what is removed, not added: there is no chrome, no card system, no component grid. Content sits directly on the void, left-aligned with generous indent, sized in two registers — a 71px display voice and an 18–19px working voice. Treat every screen as a printed editorial spread: monochrome page, one oversized geometric form, and copy that breathes.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0d68dc70-15ec-494a-855d-fdb6a4e7c982#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Danilo Rodrigues design system\",\"item\":\"https://styles.refero.design/style/0d68dc70-15ec-494a-855d-fdb6a4e7c982\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0d68dc70-15ec-494a-855d-fdb6a4e7c982#style-reference\",\"name\":\"Danilo Rodrigues design system reference\",\"headline\":\"Danilo Rodrigues design system | Refero Styles\",\"description\":\"Explore Danilo Rodrigues's dark Agency design system: Void Black #000000, Bone White #eaeaea colors, Neue Haas Grotesk, Times typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/0d68dc70-15ec-494a-855d-fdb6a4e7c982\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0d68dc70-15ec-494a-855d-fdb6a4e7c982\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Danilo Rodrigues\",\"url\":\"https://danilorodrigues.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0d68dc70-15ec-494a-855d-fdb6a4e7c982#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/35411a12-879d-402f-a7c4-6e88b110c684.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/35411a12-879d-402f-a7c4-6e88b110c684.jpg\",\"caption\":\"Screenshot of Danilo Rodrigues\"},\"image\":\"https://images.refero.design/styles/refero.design/image/35411a12-879d-402f-a7c4-6e88b110c684.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Danilo Rodrigues design system\",\"Danilo Rodrigues website design\",\"Danilo Rodrigues colors\",\"Danilo Rodrigues typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void Black\",\"Bone White\",\"Paper White\",\"Ash\",\"Neue Haas Grotesk\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Danilo Rodrigues design system\"},{\"@type\":\"Thing\",\"name\":\"Danilo Rodrigues website design\"},{\"@type\":\"Thing\",\"name\":\"Danilo Rodrigues colors\"},{\"@type\":\"Thing\",\"name\":\"Danilo Rodrigues typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:28:34.323Z\",\"dateModified\":\"2026-04-30T03:28:34.323Z\"}]}19:T79f,**Quick Color Reference**\n- background: #000000\n- text-primary: #ffffff (headlines 31px+)\n- text-body: #eaeaea (everything else)\n- text-muted: #878787 (subheads, metadata)\n- accent-disc: #86ff00 (hero graphic only)\n- accent-nav: #1a3cff (active header bar only)\n- border-hairline: #1e1e1e\n- link-underline: #373737\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. *Hero section*: full-bleed #000000 canvas. Place a single #86ff00 circle, ~65vh diameter, centered horizontally and biased toward the upper half; add a 1px #eaeaea concentric ring at its center. Below and slightly overlapping the disc's lower arc, place a left-aligned headline: 'Danilo Rodrigues. Senior Visual Designer focused on Design Systems and Branding.' in Neue Haas Grotesk 400, 71px, #ffffff, line-height 1.0, left margin 8% of viewport. Underneath at 45px gap, add a sub-cue: 'Scroll down to see the portfolio ↓' at 19px #eaeaea.\n2. *Top nav bar (default)*: full-width #000000 strip, ~50px tall, padding 13px vertical. Four text labels in Neue Haas Grotesk 400 19px #eaeaea — left: 'DR', center-left: 'Senior Visual Designer', center-right: 'Select Work' on line one and '18 – 25' on line two, far right: 'Scroll ↓'. No border, no logo mark, no background fill beyond the page black.\n3. *Top nav bar (engaged state)*: same four labels and positioning, but the entire bar fills with #1a3cff and the text color flips to #ffffff. Used to mark active scroll/focus.\n4. *Bio section*: left margin 8%, three to five short paragraphs in Neue Haas Grotesk 400 19px #eaeaea, line-height 1.3, 26–32px between paragraphs. Lead paragraph's first sentence set in #ffffff for soft emphasis. Final paragraph includes an inline email link: arrow glyph '→' followed by the address, text color #eaeaea, underline color #373737.\n5. *Inline image caption*: Times serif 400, 13px, #eaeaea, line-height 1.20, placed 13px below the image with no other decoration."
+      }
+    ],
+    "elevationPhilosophy": "Shadows are absent by design. Depth on this site is not simulated — it is implied by the contrast between pure black void and pure white type, and occasionally by a saturated neon shape. There are no cards, no raised surfaces, no z-axis hierarchy. If something needs to feel important, it gets a larger size or a brighter color, never a drop shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "image",
+            "link"
+          ],
+          "frequency": 236,
+          "confidence": 1,
+          "prominence": 65986978.54280252,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "image/color": 6,
+            "other/color": 41,
+            "link/borderColor": 3,
+            "image/borderColor": 24,
+            "other/borderColor": 160,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#eaeaea",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9370488987176951
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "image"
+          ],
+          "frequency": 125,
+          "confidence": 1,
+          "prominence": 33135158.174940493,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "image/color": 4,
+            "other/color": 20,
+            "heading/color": 1,
+            "image/borderColor": 16,
+            "other/borderColor": 80,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#1e1e1e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23332122069741068
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 11026855.098044842,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 100,
+          "confidence": 1,
+          "prominence": 8188568.101004881,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 15,
+            "heading/color": 5,
+            "other/borderColor": 60,
+            "heading/borderColor": 20
+          }
+        },
+        {
+          "hex": "#878787",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6234091788000394
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 52712,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/color": 3,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#373737",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3367991759180189
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3647,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.46,
+          "background": "#000000",
+          "foreground": "#eaeaea"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#ffffff",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.86,
+          "background": "#eaeaea",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.9,
+          "background": "#ffffff",
+          "foreground": "#373737"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.9,
+          "background": "#eaeaea",
+          "foreground": "#373737"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.85,
+          "background": "#000000",
+          "foreground": "#878787"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 13,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 81,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|image"
+          ]
+        },
+        {
+          "value": 83,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 130,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Neue Haas Grotesk",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 49,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 47,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 13,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 47,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Haas Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Haas Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Neue Haas Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Neue Haas Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Neue Haas Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Neue Haas Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 31,
+          "family": "Neue Haas Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 71,
+          "family": "Neue Haas Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1d3137d9-41cb-411f-af90-0847d3b0c4d3.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/35411a12-879d-402f-a7c4-6e88b110c684.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0d68dc70-15ec-494a-855d-fdb6a4e7c982#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Danilo Rodrigues design system\",\"item\":\"https://styles.refero.design/style/0d68dc70-15ec-494a-855d-fdb6a4e7c982\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0d68dc70-15ec-494a-855d-fdb6a4e7c982#style-reference\",\"name\":\"Danilo Rodrigues design system reference\",\"headline\":\"Danilo Rodrigues design system | Refero Styles\",\"description\":\"Explore Danilo Rodrigues's dark Agency design system: Void Black #000000, Bone White #eaeaea colors, Neue Haas Grotesk, Times typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/0d68dc70-15ec-494a-855d-fdb6a4e7c982\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0d68dc70-15ec-494a-855d-fdb6a4e7c982\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Danilo Rodrigues\",\"url\":\"https://danilorodrigues.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0d68dc70-15ec-494a-855d-fdb6a4e7c982#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/35411a12-879d-402f-a7c4-6e88b110c684.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/35411a12-879d-402f-a7c4-6e88b110c684.jpg\",\"caption\":\"Screenshot of Danilo Rodrigues\"},\"image\":\"https://images.refero.design/styles/refero.design/image/35411a12-879d-402f-a7c4-6e88b110c684.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Danilo Rodrigues design system\",\"Danilo Rodrigues website design\",\"Danilo Rodrigues colors\",\"Danilo Rodrigues typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void Black\",\"Bone White\",\"Paper White\",\"Ash\",\"Neue Haas Grotesk\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Danilo Rodrigues design system\"},{\"@type\":\"Thing\",\"name\":\"Danilo Rodrigues website design\"},{\"@type\":\"Thing\",\"name\":\"Danilo Rodrigues colors\"},{\"@type\":\"Thing\",\"name\":\"Danilo Rodrigues typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:28:34.323Z\",\"dateModified\":\"2026-04-30T03:28:34.323Z\"}]}19:T79f,**Quick Color Reference**\n- background: #000000\n- text-primary: #ffffff (headlines 31px+)\n- text-body: #eaeaea (everything else)\n- text-muted: #878787 (subheads, metadata)\n- accent-disc: #86ff00 (hero graphic only)\n- accent-nav: #1a3cff (active header bar only)\n- border-hairline: #1e1e1e\n- link-underline: #373737\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n1. *Hero section*: full-bleed #000000 canvas. Place a single #86ff00 circle, ~65vh diameter, centered horizontally and biased toward the upper half; add a 1px #eaeaea concentric ring at its center. Below and slightly overlapping the disc's lower arc, place a left-aligned headline: 'Danilo Rodrigues. Senior Visual Designer focused on Design Systems and Branding.' in Neue Haas Grotesk 400, 71px, #ffffff, line-height 1.0, left margin 8% of viewport. Underneath at 45px gap, add a sub-cue: 'Scroll down to see the portfolio ↓' at 19px #eaeaea.\n2. *Top nav bar (default)*: full-width #000000 strip, ~50px tall, padding 13px vertical. Four text labels in Neue Haas Grotesk 400 19px #eaeaea — left: 'DR', center-left: 'Senior Visual Designer', center-right: 'Select Work' on line one and '18 – 25' on line two, far right: 'Scroll ↓'. No border, no logo mark, no background fill beyond the page black.\n3. *Top nav bar (engaged state)*: same four labels and positioning, but the entire bar fills with #1a3cff and the text color flips to #ffffff. Used to mark active scroll/focus.\n4. *Bio section*: left margin 8%, three to five short paragraphs in Neue Haas Grotesk 400 19px #eaeaea, line-height 1.3, 26–32px between paragraphs. Lead paragraph's first sentence set in #ffffff for soft emphasis. Final paragraph includes an inline email link: arrow glyph '→' followed by the address, text color #eaeaea, underline color #373737.\n5. *Inline image caption*: Times serif 400, 13px, #eaeaea, line-height 1.20, placed 13px below the image with no other decoration."
+}

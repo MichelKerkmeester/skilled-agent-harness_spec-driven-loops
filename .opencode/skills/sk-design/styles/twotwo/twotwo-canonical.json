@@ -1,0 +1,1221 @@
+{
+  "source": "https://styles.refero.design/style/170a690b-7424-4c2e-9d08-975725cf9261",
+  "uuid": "170a690b-7424-4c2e-9d08-975725cf9261",
+  "name": "TWOTWO",
+  "northStar": "voltage lime on monochrome concrete — a single neon punch inside a black-and-white editorial grid",
+  "capturedAt": "2026-07-18T07:44:17.071Z",
+  "meta": {
+    "url": "https://twotwo-official.com",
+    "siteName": "TWOTWO",
+    "extractedAt": "2026-06-03T20:00:42.943Z",
+    "durationMs": 30679,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 444,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Voltage Lime (#e3fc03) only on filled actions, active states, and the 72px hero headline — never as a background wash, never as a decorative gradient.",
+      "Set all button and input radii to 50px (full pill) and all card/image radii to 16px — these two values are the only radii the system permits.",
+      "Use Whyte Book at 400 weight for everything between 13px and 38px; do not introduce a bold weight to create hierarchy — use size and color step instead.",
+      "Compose every page on Paper White (#ffffff) with Concrete (#e6e6e6) as the only permitted mid-gray for section dividers and backdrops.",
+      "Reserve 1px Obsidian (#000000) hairlines for card borders and structural rules — the system uses lines, not shadows, to separate surfaces.",
+      "Set product photographs full-bleed within 16px-radius frames; let the racket colors carry all visual variety inside the grid.",
+      "Use uppercase, tracked navigation links at 13px Whyte Book with ~0.04em letter-spacing for all top-bar and footer text."
+    ],
+    "donts": [
+      "Do not introduce a second chromatic hue — no blues, reds, or greens outside the product photography. The page is monochrome plus lime, full stop.",
+      "Do not use box-shadows or drop-shadows to elevate cards; elevation comes from 1px Obsidian borders on white surfaces, never from blurred shadows.",
+      "Do not use a bold or 600+ weight for headlines — Whyte Regular at 400 with tight tracking is the signature; boldness would break the editorial register.",
+      "Do not round images or cards to anything other than 16px, and do not use 4px or 8px micro-radii — the system lives in two radius steps only.",
+      "Do not place buttons on colored or photographic backgrounds without the Voltage Lime fill — a white or black button would lose the brand's only signal.",
+      "Do not stack the lime accent on lime (lime button on lime highlight) — the accent must sit against Paper White or Obsidian to register.",
+      "Do not use centered text alignment for body copy, product titles, or prices — reserve centering for hero headlines and section headers only."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e3fc03",
+        "name": "Voltage Lime",
+        "role": "Primary CTA fill, active state, accent badges, and decorative highlights — the single chromatic moment in an otherwise monochrome system. Sits at 18.2:1 contrast against black, so it doubles as a high-visibility call-to-action and a hover indicator without needing a second hue",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Primary text, hairline borders, icon strokes, image borders, and footer background. Carries 2,045 border usages — this system uses black lines to structure space more than boxes or cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#323232",
+        "name": "Graphite",
+        "role": "Secondary text and softer borders — slightly lifted from pure black to create a visible hierarchy without introducing color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Carbon",
+        "role": "Icon strokes, link underlines, and low-priority UI marks — the third step of the dark scale, reserved for fine detail that should recede from primary text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Primary page and card surface — the canvas everything else is drawn onto",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e6e6e6",
+        "name": "Concrete",
+        "role": "Soft section background, alternate surface, and quiet card fill.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is a max-width 1280px contained layout, centered, with full-bleed hero exceptions. The hero is a full-viewport-width product image (~560px tall) with centered 72px lime headline and a pill CTA floating over it. Below the hero, the page settles into a single-column stack of sections separated by 64px gaps, each section either a centered text block (title + supporting copy) or a 3-column product grid. Navigation is a flat top bar with uppercase text links and right-aligned utility icons. There is no sticky header, no sidebar, no mega-menu. The footer is a full-width black band. Section rhythm is: hero image → centered category header → 3-column product grid → repeat. All content sits on white; tonal contrast comes from the product photography and the single lime accent, not from alternating background bands.",
+    "imagery": "Product photography is the entire visual strategy. Rackets are shot straight-on, centered, on a pure light-gray studio backdrop with soft directional lighting and a faint ground shadow. No lifestyle, no court, no athlete — the object is the hero. Images are tightly cropped to the racket silhouette and presented at large scale inside the hero and at 3:4 aspect ratio in the product grid. The racket colors (sage, cream, coral, blue, green, orange) provide the page's only chromatic variety, and the surrounding UI stays ruthlessly monochrome so the products read as the color event. No illustrations, no icons beyond thin-line UI glyphs, no 3D renders, no abstract graphics.",
+    "similar": [
+      {
+        "why": "Same Swiss-grotesque typography approach, monochrome product UI, and a single bold accent color used only on interactive surfaces.",
+        "business": "Teenage Engineering"
+      },
+      {
+        "why": "Full-bleed product photography as the sole chromatic event, white canvas, hairline borders, and one restrained accent for CTA — same 'let the object be the hero' discipline.",
+        "business": "Apple (product pages)"
+      },
+      {
+        "why": "Editorial minimalism, uppercase tracked navigation, product-centered photography on neutral backdrops, and a near-zero decorative color palette.",
+        "business": "Aesop"
+      },
+      {
+        "why": "Pill-shaped CTAs, centered editorial section headers, and a two-radius system separating product surfaces from interactive elements.",
+        "business": "Hodinkee"
+      },
+      {
+        "why": "Compact product grids, light-mode product photography, tight display typography, and a minimal monochrome-plus-accent palette.",
+        "business": "Beosound (Bang & Olufsen product lines)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "50px",
+        "cards": "16px",
+        "images": "16px",
+        "inputs": "50px",
+        "buttons": "50px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Primary page canvas — all sections, cards, and product grids sit on this surface."
+      },
+      {
+        "hex": "#e6e6e6",
+        "name": "Concrete",
+        "level": 1,
+        "purpose": "Soft section backdrop and divider wash when a page needs a quiet tonal break without introducing a color."
+      },
+      {
+        "hex": "#e3fc03",
+        "name": "Voltage Lime",
+        "level": 2,
+        "purpose": "Accent surface — appears only on the pill CTA and occasionally as a 12px swatch tag on product images."
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "level": 3,
+        "purpose": "Inverted surface for the footer band — black canvas, white type, same border and radius rules."
+      }
+    ],
+    "northStar": "voltage lime on monochrome concrete — a single neon punch inside a black-and-white editorial grid",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.6,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.6,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.4,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.26
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "heading-lg",
+        "size": 38,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.38
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.44
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Full-width white bar, 64-80px tall, containing the 'TWO TWO' wordmark (left), five uppercase text links at 13px Whyte Book (SHOP, PADEL RACKETS, PADEL BALLS, APPAREL & ACCESSORIES, BEST SELLERS, CONTACT US), and three right-aligned icon actions (CAD currency selector, search magnifier, cart bag) at 20px Obsidian stroke. No background fill, no border-bottom — the bar floats on white. Links are black, uppercase, tracked at ~0.04em."
+      },
+      {
+        "name": "Pill CTA Button",
+        "role": "Primary action trigger",
+        "description": "Voltage Lime (#e3fc03) fill, Obsidian (#000000) text, 50px border-radius (full pill), 16px 32px padding, Whyte Book 16px / weight 400 / line-height 1.0. No border, no shadow. Sits centered over hero imagery and stretches full-width on product cards (padding 12px 20px). This is the only interactive surface allowed to carry color."
+      },
+      {
+        "name": "Hero Banner",
+        "role": "Full-bleed product showcase",
+        "description": "Edge-to-edge product image filling 100vw × ~560px with a centered overlay headline at 72px Whyte Regular in Voltage Lime, followed by a pill CTA. The lime headline over the muted product photograph creates the brand's signature moment — chromatic type floating on a desaturated canvas. No gradient overlay; the product image's natural tones carry the contrast."
+      },
+      {
+        "name": "Product Card",
+        "role": "Racket showcase tile",
+        "description": "White surface, 16px border-radius, 1px Obsidian border, product image fills 100% width with 16px top-corner radius carrying through. Below the image: product title at 13px Whyte Book (left-aligned) and price at 13px right-aligned, separated by a hairline Obsidian rule. Full-width Pill CTA Button stacked beneath. The 1px black border on a white card is the system doing the work that shadows do elsewhere."
+      },
+      {
+        "name": "Section Header",
+        "role": "Subsection title block",
+        "description": "Centered text block, max-width ~640px. Primary title at 38px Whyte Book, color Obsidian. Optional supporting copy at 16px Whyte Book, color Graphite, 1.6 line-height. Generous 32-40px gap between title and body. No rule, no background — the centering and whitespace do the separation."
+      },
+      {
+        "name": "Product Variant Tag",
+        "role": "Inline product color indicator",
+        "description": "Tiny Voltage Lime square or short label, ~12px, positioned on the product image (top-left corner). Functions as a swatch callout — the lime chip is the same hue as the CTA, reinforcing that the accent is functional, not decorative."
+      },
+      {
+        "name": "Text Input / Search Field",
+        "role": "Query input and form fields",
+        "description": "White fill, 1px Obsidian border, 50px border-radius, Whyte Book 16px placeholder in Graphite. 12-16px vertical padding. Focus state thickens border to 2px Obsidian — no color change, no glow. The pill radius is reserved for inputs, buttons, and tags only."
+      },
+      {
+        "name": "Footer",
+        "role": "Site-wide footer band",
+        "description": "Full-width Obsidian (#000000) band, white text, uppercase Whyte Inktrap 16px for column headers, Whyte Book 13px for link lists. Padding 48-64px vertical. Inverts the page's white-on-black to black-on-white — the same border and type system, just inverted. No social icons in a different style; everything stays in the monochrome logic."
+      },
+      {
+        "name": "Icon Button",
+        "role": "Utility action trigger",
+        "description": "20-24px line icon, 1.5px Obsidian stroke, no fill, no border, no background. Used in nav (search, cart, account) and within cards. Touch target padded to 40px square. No hover state besides color holding — icons are utilitarian, not expressive."
+      },
+      {
+        "name": "Product Image Frame",
+        "role": "Photographic container",
+        "description": "Full-bleed product photograph, 16px border-radius, no border, no shadow. Images carry a 1px Obsidian hairline when used in product cards but stand borderless in hero contexts. The product itself is the content — the frame is barely there."
+      },
+      {
+        "name": "Category Grid",
+        "role": "Product listing layout",
+        "description": "3-column grid on desktop, 1-column mobile, 16-24px gutters. Cards stretch to equal height; images are aspect-ratio locked (3:4) so all rackets align. No alternating background tints — the grid sits on pure white with hairline grid lines."
+      },
+      {
+        "name": "Racket Specification Callout",
+        "role": "Inline technical note",
+        "description": "Centered body text at 16px Whyte Book, Graphite color, max-width 720px, used below section headers to describe product attributes ('Medium balance, 100% carbon and sandy finish — perfect for smooth spins and power in the attacking game without sacrificing too much control.'). Functions as a quiet technical-editorial voice between hero and grid."
+      }
+    ],
+    "typography": [
+      {
+        "role": "WhyteRegular — detected in extracted data but not described by AI",
+        "sizes": "32px, 72px",
+        "family": "WhyteRegular",
+        "weight": "400",
+        "lineHeight": "1.1, 1.15"
+      },
+      {
+        "role": "Display and section headings — used at 72px hero scale and 32px section scale. Tight 1.1 leading and a regular (not bold) weight are anti-convention: most sports brands shout with 800-weight display type, but Whyte Regular at 72px carries authority through letterform precision and negative space alone. The headlines never need a second style. Substitute: Inter Tight or Neue Haas Grotesk Display Pro at 400.",
+        "sizes": "13px, 16px, 18px, 20px, 22px, 26px, 38px",
+        "family": "Whyte",
+        "weight": "400",
+        "lineHeight": "1.10-1.15",
+        "letterSpacing": "-0.02em"
+      },
+      {
+        "role": "Universal workhorse — body copy, subheadings, product captions, navigation, and buttons. One weight, one family, used at seven sizes. The 38px tier handles product card titles; 16px is the default body; 13px is the fine-print and footer size. Line-height tightens from 1.60 at body to 1.30 at 38px. Substitute: Inter or Söhne at 400.",
+        "sizes": "13px, 16px, 18px, 20px, 22px, 26px, 38px",
+        "family": "Whyte Book",
+        "weight": "400",
+        "lineHeight": "1.30-1.60"
+      },
+      {
+        "role": "Secondary detail typeface with inktrap terminals — used for fine UI labels, tag monograms, and small monospace-feeling metadata. The inktrap cuts prevent the letterforms from filling in at small sizes, giving tags and micro-copy a distinct technical voice. Substitute: JetBrains Mono or IBM Plex Mono at 400.",
+        "sizes": "16px",
+        "family": "Whyte Inktrap",
+        "weight": "400",
+        "lineHeight": "1.60"
+      }
+    ],
+    "description": "TWOTWO operates on ruthless visual discipline: a near-pure black-and-white system interrupted by a single piercing voltage-lime accent. The brand reads like a sports-tech catalog stripped to its bones — generous white space, a Swiss-grotesque typeface (Whyte) that does all the tonal work, and absolutely no decorative gradients, shadows, or secondary hues. Product photography is the only color the page permits on its own terms: the rackets themselves bring in coral, blue, sage, and orange, but every UI surface, border, and label stays monochrome. The lime accent functions as functional punctuation — a filled pill button, a hover state, a small swatch tag — never as decoration. Everything is geometric, compact, and confident: 16px image radii, 50px pill buttons, 72px display headlines, uppercase tracked navigation, and tight 1.1 line heights that let type do the heavy lifting. The mood is less 'padel store' and more 'industrial design catalog on a white marble bench.'",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/170a690b-7424-4c2e-9d08-975725cf9261#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"TWOTWO design system\",\"item\":\"https://styles.refero.design/style/170a690b-7424-4c2e-9d08-975725cf9261\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/170a690b-7424-4c2e-9d08-975725cf9261#style-reference\",\"name\":\"TWOTWO design system reference\",\"headline\":\"TWOTWO design system | Refero Styles\",\"description\":\"Explore TWOTWO's light E-commerce design system: Voltage Lime #e3fc03, Obsidian #000000 colors, WhyteRegular, Whyte typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/170a690b-7424-4c2e-9d08-975725cf9261\",\"mainEntityOfPage\":\"https://styles.refero.design/style/170a690b-7424-4c2e-9d08-975725cf9261\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"TWOTWO\",\"url\":\"https://twotwo-official.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/170a690b-7424-4c2e-9d08-975725cf9261#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5452ff6b-de9f-4ebe-ac54-1bca1fff25fc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5452ff6b-de9f-4ebe-ac54-1bca1fff25fc.jpg\",\"caption\":\"Screenshot of TWOTWO\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5452ff6b-de9f-4ebe-ac54-1bca1fff25fc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"TWOTWO design system\",\"TWOTWO website design\",\"TWOTWO colors\",\"TWOTWO typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Voltage Lime\",\"Obsidian\",\"Graphite\",\"Carbon\",\"WhyteRegular\",\"Whyte\",\"Whyte Book\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"TWOTWO design system\"},{\"@type\":\"Thing\",\"name\":\"TWOTWO website design\"},{\"@type\":\"Thing\",\"name\":\"TWOTWO colors\"},{\"@type\":\"Thing\",\"name\":\"TWOTWO typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:46:49.963Z\",\"dateModified\":\"2026-04-30T03:46:49.963Z\"}]}19:T696,**Quick Color Reference**\n- text: #000000 (Obsidian)\n- background: #ffffff (Paper White)\n- border: #000000 (Obsidian, 1px hairline)\n- accent: #e3fc03 (Voltage Lime)\n- secondary text: #323232 (Graphite)\n- primary action: #e3fc03 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. **Hero Banner** — Full-bleed 100vw × 560px product image with centered 72px Whyte Regular headline in #e3fc03 (Voltage Lime), letter-spacing -1.44px. Below the headline, a pill CTA: 50px radius, #e3fc03 fill, #000000 text, Whyte Book 16px, padding 16px 32px.\n\n2. **Product Card** — White surface (#ffffff), 1px #000000 border, 16px radius. Product image fills the card top with 16px top-corner radius. Below: 13px Whyte Book product title left-aligned in #000000, 13px price right-aligned, separated by a 1px #000000 hairline. Full-width pill CTA stacked beneath: 50px radius, #e3fc03 fill, #000000 text.\n\n3. **Section Header** — Centered on white, max-width 640px. Title at 38px Whyte Book in #000000, supporting copy at 16px Whyte Book in #323232, line-height 1.6. 40px gap between title and body. No rule, no background.\n\n4. **Top Navigation Bar** — Full-width white bar, 80px tall. Left: 'TWO TWO' wordmark in Whyte Book 16px uppercase. Center-left: five uppercase links at 13px Whyte Book, #000000, letter-spacing 0.04em. Right: three icon buttons (currency, search, cart) as 20px line icons with 1.5px #000000 stroke. No background, no border.\n\n5. **Footer Band** — Full-width #000000 background, 64px vertical padding. Column headers in 16px Whyte Inktrap uppercase #ffffff, link lists in 13px Whyte Book #ffffff. Inverts the page's monochrome system without introducing any new color."
+      },
+      {
+        "title": "Two-Radius System",
+        "content": "The design uses exactly two border-radius values across every component: 50px for interactive elements (buttons, inputs, tags) and 16px for static surfaces (cards, images, containers). This binary is deliberate — it signals 'interactive vs. static' geometrically, so a user can tell what is clickable from radius alone. A card with a 4px corner says 'document'; a card with a 16px corner says 'product showcase'; a button with 50px says 'tap me.' Do not introduce 4px, 8px, or 24px radii — the system's restraint is the design."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "image",
+            "other",
+            "link",
+            "body",
+            "input",
+            "icon",
+            "heading",
+            "button",
+            "footer"
+          ],
+          "frequency": 2045,
+          "confidence": 1,
+          "prominence": 90549140.2970552,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "body/color": 70,
+            "icon/color": 8,
+            "link/color": 35,
+            "other/fill": 21,
+            "image/color": 51,
+            "input/color": 2,
+            "other/color": 225,
+            "button/color": 3,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 8,
+            "body/borderColor": 280,
+            "icon/borderColor": 32,
+            "link/borderColor": 140,
+            "image/borderColor": 204,
+            "input/borderColor": 8,
+            "other/borderColor": 899,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 32,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#323232",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3171360098393996
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 836195.2278721523,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/color": 6,
+            "heading/color": 3,
+            "body/borderColor": 8,
+            "other/borderColor": 24,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#e3fc03",
+          "oklch": {
+            "c": 0.21609063641940648,
+            "h": 116.81504946620387,
+            "l": 0.9401007383707329
+          },
+          "contexts": [
+            "heading",
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 356663.8326018221,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 9,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "input"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 215040,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#e6e6e6",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9249395393966913
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 92160,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c2c6cc",
+          "oklch": {
+            "c": 0.009468850441552212,
+            "h": 258.3397893563839,
+            "l": 0.8252086206671332
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 92160,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1
+          }
+        },
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 16384,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "link/color": 1,
+            "other/color": 1,
+            "icon/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#e8f952",
+          "oklch": {
+            "c": 0.18444589560246907,
+            "h": 115.0242057866443,
+            "l": 0.940282700315892
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2025,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.004592160940669482,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.19,
+          "background": "#e3fc03",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#e8f952",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#ffffff",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.83,
+          "background": "#e6e6e6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.08,
+          "background": "#e3fc03",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15,
+          "background": "#e8f952",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.94,
+          "background": "#e6e6e6",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.82,
+          "background": "#ffffff",
+          "foreground": "#323232"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.24,
+          "background": "#c2c6cc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.11,
+          "background": "#e3fc03",
+          "foreground": "#323232"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.05,
+          "background": "#e8f952",
+          "foreground": "#323232"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.27,
+          "background": "#e6e6e6",
+          "foreground": "#323232"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.15,
+          "background": "#c2c6cc",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.47,
+          "background": "#c2c6cc",
+          "foreground": "#323232"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.64,
+          "background": "#000000",
+          "foreground": "#323232"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.25,
+          "background": "#e6e6e6",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.21,
+          "background": "#000000",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.15,
+          "background": "#ffffff",
+          "foreground": "#e3fc03"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.08,
+          "background": "#e6e6e6",
+          "foreground": "#e3fc03"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 53
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "link",
+            "input",
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 80,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "marginBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "marginBottom|input",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 75,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "body",
+            "input",
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "heading",
+            "image",
+            "icon",
+            "body"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "marginBottom|image",
+            "marginBottom|icon",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 35,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 68,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 75,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "WhyteInktrapRegular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 245,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "WhyteBook",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 167,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "WhyteRegular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 7,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "WhyteBook",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "WhyteBook",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "WhyteBook",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "WhyteInktrapRegular",
+          "weight": 400,
+          "contexts": [
+            "image",
+            "other",
+            "icon",
+            "footer"
+          ],
+          "frequency": 243,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "WhyteBook",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "input",
+            "button"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "WhyteBook",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "WhyteBook",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "WhyteBook",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "body",
+            "image"
+          ],
+          "frequency": 71,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "WhyteBook",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "WhyteBook",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "WhyteRegular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 38,
+          "family": "WhyteBook",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "WhyteRegular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "WhyteRegular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/39e5aea9-7562-42d3-b935-3336f0d70e8e.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5452ff6b-de9f-4ebe-ac54-1bca1fff25fc.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/170a690b-7424-4c2e-9d08-975725cf9261#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"TWOTWO design system\",\"item\":\"https://styles.refero.design/style/170a690b-7424-4c2e-9d08-975725cf9261\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/170a690b-7424-4c2e-9d08-975725cf9261#style-reference\",\"name\":\"TWOTWO design system reference\",\"headline\":\"TWOTWO design system | Refero Styles\",\"description\":\"Explore TWOTWO's light E-commerce design system: Voltage Lime #e3fc03, Obsidian #000000 colors, WhyteRegular, Whyte typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/170a690b-7424-4c2e-9d08-975725cf9261\",\"mainEntityOfPage\":\"https://styles.refero.design/style/170a690b-7424-4c2e-9d08-975725cf9261\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"TWOTWO\",\"url\":\"https://twotwo-official.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/170a690b-7424-4c2e-9d08-975725cf9261#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5452ff6b-de9f-4ebe-ac54-1bca1fff25fc.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5452ff6b-de9f-4ebe-ac54-1bca1fff25fc.jpg\",\"caption\":\"Screenshot of TWOTWO\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5452ff6b-de9f-4ebe-ac54-1bca1fff25fc.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"TWOTWO design system\",\"TWOTWO website design\",\"TWOTWO colors\",\"TWOTWO typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Voltage Lime\",\"Obsidian\",\"Graphite\",\"Carbon\",\"WhyteRegular\",\"Whyte\",\"Whyte Book\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"TWOTWO design system\"},{\"@type\":\"Thing\",\"name\":\"TWOTWO website design\"},{\"@type\":\"Thing\",\"name\":\"TWOTWO colors\"},{\"@type\":\"Thing\",\"name\":\"TWOTWO typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:46:49.963Z\",\"dateModified\":\"2026-04-30T03:46:49.963Z\"}]}19:T696,**Quick Color Reference**\n- text: #000000 (Obsidian)\n- background: #ffffff (Paper White)\n- border: #000000 (Obsidian, 1px hairline)\n- accent: #e3fc03 (Voltage Lime)\n- secondary text: #323232 (Graphite)\n- primary action: #e3fc03 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. **Hero Banner** — Full-bleed 100vw × 560px product image with centered 72px Whyte Regular headline in #e3fc03 (Voltage Lime), letter-spacing -1.44px. Below the headline, a pill CTA: 50px radius, #e3fc03 fill, #000000 text, Whyte Book 16px, padding 16px 32px.\n\n2. **Product Card** — White surface (#ffffff), 1px #000000 border, 16px radius. Product image fills the card top with 16px top-corner radius. Below: 13px Whyte Book product title left-aligned in #000000, 13px price right-aligned, separated by a 1px #000000 hairline. Full-width pill CTA stacked beneath: 50px radius, #e3fc03 fill, #000000 text.\n\n3. **Section Header** — Centered on white, max-width 640px. Title at 38px Whyte Book in #000000, supporting copy at 16px Whyte Book in #323232, line-height 1.6. 40px gap between title and body. No rule, no background.\n\n4. **Top Navigation Bar** — Full-width white bar, 80px tall. Left: 'TWO TWO' wordmark in Whyte Book 16px uppercase. Center-left: five uppercase links at 13px Whyte Book, #000000, letter-spacing 0.04em. Right: three icon buttons (currency, search, cart) as 20px line icons with 1.5px #000000 stroke. No background, no border.\n\n5. **Footer Band** — Full-width #000000 background, 64px vertical padding. Column headers in 16px Whyte Inktrap uppercase #ffffff, link lists in 13px Whyte Book #ffffff. Inverts the page's monochrome system without introducing any new color."
+}

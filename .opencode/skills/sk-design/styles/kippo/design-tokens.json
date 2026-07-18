@@ -1,0 +1,262 @@
+{
+  "color": {
+    "kippo-pink": {
+      "$value": "#ee1f66",
+      "$type": "color",
+      "$description": "Kippo Pink — Primary action background, accent headings, active badges — the only chromatic voice in the system, rationed to feel like a power-up rather than a brand wash"
+    },
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void Black — Page canvas, card backgrounds, image fills — the infinite dark that everything else floats on"
+    },
+    "carbon": {
+      "$value": "#29292a",
+      "$type": "color",
+      "$description": "Carbon — Elevated card surfaces and secondary panels — barely-distinguishable dark gray for cards that need to step forward from the black canvas"
+    },
+    "ash": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Ash — Subtle borders and dividers where white is too loud — a near-black separator for nested or secondary content"
+    },
+    "ghost-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Ghost White — Hairline borders, dividers, input outlines, and card edges on light surfaces."
+    },
+    "sunset-gradient": {
+      "$value": "#ffc400",
+      "$type": "color",
+      "$description": "Sunset Gradient — Gradient start stop — used only on the warm-to-cool decorative band behind the phone mockup and small accent elements"
+    },
+    "terminal-cyan": {
+      "$value": "#33beff",
+      "$type": "color",
+      "$description": "Terminal Cyan — Gradient start for cool accents — used sparingly in decorative gradient bands"
+    }
+  },
+  "font": {
+    "source-code-pro": {
+      "$value": "Source Code Pro",
+      "$type": "fontFamily",
+      "$description": "Sole typeface — used for every text element from nav links to body copy to display headlines. Monospace at 42px/weight 700 with 0.3–0.5em tracking in all-caps creates a retro arcade marquee feel; at 16px/weight 400 it reads as clean monospace body. The slashed-zero feature is enabled, reinforcing the terminal/CRT aesthetic."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Source Code Pro",
+        "fontSize": "10px",
+        "fontWeight": 600,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Source Code Pro",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Source Code Pro",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Source Code Pro",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 10px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Source Code Pro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Source Code Pro",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Source Code Pro",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Source Code Pro",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Source Code Pro",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Source Code Pro",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.88
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Source Code Pro",
+        "fontSize": "42px",
+        "fontWeight": 700,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "150": {
+      "$value": "150px",
+      "$type": "dimension",
+      "$description": "Spacing 150px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page-level background — the infinite black everything else floats on"
+    },
+    "carbon-panel": {
+      "$value": "#29292a",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card surface, barely stepping forward from the void"
+    },
+    "neon-border": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: 1px white outlines that define transparent cards without filling them"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://kippo.com",
+      "siteName": "Kippo",
+      "extractedAt": "2026-06-03T20:51:47.605Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,1739 @@
+{
+  "source": "https://styles.refero.design/style/3e100552-a8ad-4179-b89a-6aa5113b92e1",
+  "uuid": "3e100552-a8ad-4179-b89a-6aa5113b92e1",
+  "name": "HubSpot",
+  "northStar": "Warm cream paper with a single orange spark. HubSpot feels like a design magazine printed on heavy stock — editorial serif headlines, warm off-white pages, and one flame-orange accent that lights up only the moments that matter.",
+  "capturedAt": "2026-07-18T08:16:10.658Z",
+  "meta": {
+    "url": "https://www.hubspot.com",
+    "siteName": "HubSpot",
+    "extractedAt": "2026-06-03T17:45:38.649Z",
+    "durationMs": 50474,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 875,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Sprout Orange (#ff4800) exclusively for CTAs, active states, brand icons, and functional accents — never for decorative backgrounds or large fills",
+      "Maintain the 8px radius on all buttons and the 16px radius on all cards and images — this two-radius system is the structural shorthand for the entire UI",
+      "Pair every Primary filled CTA with a Ghost outlined CTA in the same orange — they always travel together on hero and section-level calls to action",
+      "Set body text in HubSpot Sans 16px weight 400 at 1.56 line-height — the 16/25 rhythm is the page's default reading measure",
+      "Use HubSpot Serif (weight 500, single weight) for all headings 24px and above — the serif/sans split is the system's signature contrast",
+      "Alternate between Canvas Cream (#fcfcfa) and Warm Parchment (#f8f5ee) section backgrounds to create the paper-stock rhythm — never use stark #ffffff",
+      "Reserve HubSpot Serif Page Header Human at 80px for the hero headline only — it is the largest voice and loses impact if repeated"
+    ],
+    "donts": [
+      "Don't introduce a second chromatic color — the system is built on 2% colorfulness and adding blue, green, or purple breaks the editorial signal",
+      "Don't use shadows or heavy elevation on cards — the 1px hairline border on Warm Parchment is the entire depth system; adding box-shadow breaks the paper-stock feel",
+      "Don't use HubSpot Serif below 24px — the serif's curves need size to read; at body size it competes with HubSpot Sans and creates noise",
+      "Don't use stark white (#ffffff) as a page background — Canvas Cream and Warm Parchment are warmer and more distinctive; pure white makes the UI feel clinical",
+      "Don't use multiple font weights of the serif — HubSpot Serif exists only at 500; hierarchy comes from size, not weight",
+      "Don't apply Sprout Orange to large decorative backgrounds, illustrations, or hero washes — the gradient system is the only exception and even then it appears at 0.3 opacity",
+      "Don't use the 16px card radius on buttons or inputs — the 8px/16px split between buttons and cards is load-bearing for the visual hierarchy"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ff4800",
+        "name": "Sprout Orange",
+        "role": "Primary CTAs, logo sprocket, active nav states, functional icons, and the period punctuation on hero headlines — the sole chromatic accent in the entire system",
+        "group": "brand"
+      },
+      {
+        "hex": "#fcfcfa",
+        "name": "Canvas Cream",
+        "role": "Page background, card surfaces, button text, light dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8f5ee",
+        "name": "Warm Parchment",
+        "role": "Alternating section backgrounds, navigation surface, soft-band separators that give the page a paper-stock warmth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Ink",
+        "role": "Primary body text, headings, card borders, hairline dividers — the structural near-black used everywhere a line or label needs weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Black",
+        "role": "High-contrast text on light surfaces, maximum-emphasis borders and icon fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#60605f",
+        "name": "Graphite",
+        "role": "Muted secondary text inside buttons and controls where full Ink weight would feel heavy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cacac8",
+        "name": "Mist",
+        "role": "Disabled-state borders, inactive list markers, low-emphasis icon fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fcded2",
+        "name": "Peach Wash",
+        "role": "Soft accent surface behind orange elements, badge backgrounds, gentle warm highlight zones that echo the brand orange at low intensity",
+        "group": "accent"
+      },
+      {
+        "hex": "#042729",
+        "name": "Deep Teal",
+        "role": "Dark featured sections, inverted text on cream, occasional deep-surface moments that break the warm palette with cool contrast",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff4900",
+        "name": "Sprocket Gradient",
+        "role": "Decorative brand gradient spanning warm peach through orange into magenta — used sparingly on featured artwork and highlight washes",
+        "group": "accent",
+        "gradient": "linear-gradient(257deg, rgba(251, 221, 208, 0.3) -32.4%, rgba(255, 165, 129, 0.3) -3.42%, rgba(255, 73, 0, 0.3) 23.87%, rgba(251, 223, 233, 0.3) 50.46%, rgba(253, 191, 219, 0.3) 79.15%, rgba(249, 57, 166, 0.3) 103.64%)"
+      }
+    ],
+    "layout": "HubSpot uses a max-width 1200px centered content model with full-bleed photographic sections at the hero. The page rhythm is: thin utility bar (language, accessibility, support) → main nav with logo left, links center, CTA pair right → full-bleed hero image with centered editorial text overlay → partner logo strip on warm background → centered section heading → two-column feature splits (text left, visual right) → 2-column grid of bordered Product Hub cards → repeated sections. Vertical spacing between sections is generous (64-80px), and the surface alternates between Canvas Cream and Warm Parchment to create visual separation without dividers. The 2-column card grid is the dominant content pattern in the mid-page, holding the Hub product suites. Navigation is a standard top bar — no sidebar, no mega-menu in the visible layout, no sticky behavior evident.",
+    "imagery": "Photography is warm-toned lifestyle imagery: diverse teams collaborating in bright, naturally lit office and workshop settings. Shots are candid and human, never staged-corporate, with a warm color grade that harmonizes with the cream canvas. The hero uses a full-bleed photograph with a subtle dark scrim to support white headline text. Product illustrations appear as flat, slightly-perspective card stacks in soft pastels (peach, sage, lavender) with Sprout Orange icons — they feel like printed brochures, not glossy 3D renders. Icon style is monoline outlined in Sprout Orange, sitting at small functional sizes inside cards and lists. A partner logo strip (eBay, DoorDash, Reddit, Tripadvisor, Eventbrite) provides social proof at the page's midpoint. The overall visual density is moderate — photography anchors the hero, illustrations support the mid-page product sections, and the rest is text and cards.",
+    "similar": [
+      {
+        "why": "Same warm cream canvas with a single vivid brand color (Mailchimp yellow) used only for CTAs and icons, and a sans/serif type pairing that reads editorial rather than purely utility",
+        "business": "Mailchimp"
+      },
+      {
+        "why": "Minimal monochrome interface on warm off-white surfaces with one accent color reserved for interactive elements, and generous spacing between content sections",
+        "business": "Notion"
+      },
+      {
+        "why": "Clean light-mode SaaS with a single brand green for primary actions, bordered cards with soft radii, and a comfortable 16px-base spacing system",
+        "business": "Shopify"
+      },
+      {
+        "why": "Editorial serif headlines over a warm cream background with minimal chrome — same magazine-on-paper feel, though Substack is more text-pure and HubSpot is product-illustrated",
+        "business": "Substack"
+      },
+      {
+        "why": "Distinctive custom typeface paired with a single accent color and hairline-border card system, though Linear goes dark-mode while HubSpot stays light and warm",
+        "business": "Linear"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "8px",
+        "cards": "16px",
+        "badges": "4px",
+        "images": "16px",
+        "buttons": "8px"
+      },
+      "elementGap": "16-24px",
+      "sectionGap": "64-80px",
+      "cardPadding": "24-32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#fcfcfa",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "Base page background — the warm off-white default"
+      },
+      {
+        "hex": "#f8f5ee",
+        "name": "Parchment Band",
+        "level": 1,
+        "purpose": "Alternating section background that creates the paper-stock rhythm between content blocks"
+      },
+      {
+        "hex": "#fcded2",
+        "name": "Peach Wash",
+        "level": 2,
+        "purpose": "Soft accent surface for highlight zones, badge backgrounds, and gentle warm emphasis"
+      },
+      {
+        "hex": "#fcfcfa",
+        "name": "Card Surface",
+        "level": 3,
+        "purpose": "White-ish card surface sitting on Parchment or Peach Wash — 16px radius, 1px hairline border, no shadow"
+      }
+    ],
+    "northStar": "Warm cream paper with a single orange spark. HubSpot feels like a design magazine printed on heavy stock — editorial serif headlines, warm off-white pages, and one flame-orange accent that lights up only the moments that matter.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.57
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.56
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.67
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.45
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.42
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "heading-xl",
+        "size": 48,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1.19
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "High-emphasis action button for demos and signups",
+        "description": "Filled Sprout Orange (#ff4800) background, white text in HubSpot Sans 16px weight 500, 8px border-radius, 16px horizontal × 8-12px vertical padding, no shadow. The orange fill is the system — no border needed. Hover deepens slightly; the button is always the loudest element on the screen."
+      },
+      {
+        "name": "Ghost CTA Button",
+        "role": "Secondary action that pairs alongside a primary CTA without competing",
+        "description": "Transparent background, 1.5-2px Sprout Orange (#ff4800) border, Sprout Orange text in HubSpot Sans 16px weight 500, 8px border-radius, 16px × 8-12px padding. The outlined treatment creates a clear visual hierarchy: filled = primary, outlined = secondary, both share the brand color."
+      },
+      {
+        "name": "Utility Navigation Bar",
+        "role": "Thin top bar for site-wide utilities above the main nav",
+        "description": "Warm Parchment (#f8f5ee) background, small HubSpot Sans 12-14px text in Ink, items separated by hairline borders, 2-4px vertical padding. Contains language selector, accessibility toggle, support, and contact links. Sits flush above the main navigation."
+      },
+      {
+        "name": "Main Navigation Header",
+        "role": "Primary site navigation with logo, links, and CTAs",
+        "description": "Canvas Cream (#fcfcfa) or Warm Parchment (#f8f5ee) background, HubSpot sprocket logo on the left, centered nav links in HubSpot Sans 16px weight 400 Ink text, Primary and Ghost CTA buttons on the right. Generous height ~64-72px, no bottom border — the nav floats on the warm canvas."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Above-the-fold brand statement with lifestyle imagery",
+        "description": "Full-width photographic background (warm-toned team imagery), centered text stack overlaid. Eyebrow label in HubSpot Sans 14px weight 500 uppercase tracking, display headline in HubSpot Serif Page Header Human 80px weight 500, body subtext in HubSpot Sans 18px weight 400, and Primary + Ghost CTA pair. The headline ends with a Sprout Orange period for brand punctuation."
+      },
+      {
+        "name": "Partner Logo Strip",
+        "role": "Social proof band showing customer logos",
+        "description": "Single horizontal row of 5-7 brand logos (eBay, DoorDash, Reddit, Tripadvisor, Eventbrite) centered on Canvas Cream or Warm Parchment background. Logos rendered in their native brand colors at uniform height (~24-32px) with consistent horizontal spacing."
+      },
+      {
+        "name": "Product Hub Card",
+        "role": "Bordered card describing a HubSpot product suite (Marketing Hub, Sales Hub, etc.)",
+        "description": "Canvas Cream (#fcfcfa) surface on Warm Parchment background, 1px Ink border at low opacity, 16px border-radius, 24-32px padding. Top section: product icon (Sprout Orange) + HubSpot Sans 22px weight 500 title with registered/trademark superscript. Middle: 2-3 checkmark items in HubSpot Sans 16px with Sprout Orange check icons. Bottom: 'Learn more' link with arrow in Sprout Orange."
+      },
+      {
+        "name": "Feature Split Section",
+        "role": "Two-column layout pairing descriptive text with product visual",
+        "description": "Left column: HubSpot Serif 40-48px weight 500 headline + HubSpot Sans 16-18px body text in Ink, max-width ~480px. Right column: product illustration or card-stack visual (pastel-colored product cards with orange icons, slight 3D perspective). Generous 80-120px section gap above and below."
+      },
+      {
+        "name": "Powered by AI Badge",
+        "role": "Small pill label indicating AI-powered features",
+        "description": "White or Canvas Cream background, 1px hairline border, 4px border-radius, small sparkle/asterisk icon in Sprout Orange, HubSpot Sans 12-14px weight 500 text. Rounded enough to read as a tag, compact enough to sit inline above a headline."
+      },
+      {
+        "name": "Checkmark List Item",
+        "role": "Feature bullet inside Product Hub Cards",
+        "description": "Sprout Orange (#ff4800) checkmark icon, followed by HubSpot Sans 16px weight 400 Ink text, 8px gap between icon and text, 12-16px vertical spacing between items."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Centered heading group introducing a content section",
+        "description": "HubSpot Serif 40-48px weight 500 headline centered, HubSpot Sans 16-18px weight 400 subtext directly below, both in Ink, max-width ~700px. No background — sits on the section's natural surface with 24-32px vertical gap between headline and subtext."
+      },
+      {
+        "name": "Image Card",
+        "role": "Rounded photographic or illustrative surface",
+        "description": "16px border-radius on all images that aren't full-bleed hero photography. No border, no shadow — the radius and warm canvas behind do the work. Applies to product screenshots, illustrations, and thumbnail imagery."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary UI and body typeface — nav, buttons, badges, body copy, links, card metadata. Weight 300 for light labels, 400 for body, 500 for emphasis. The narrow, geometric proportions keep dense interface rows feeling calm. Free substitute: Inter or General Sans.",
+        "sizes": "12, 14, 16, 18, 22, 24, 40",
+        "family": "HubSpot Sans",
+        "weight": "300, 400, 500",
+        "lineHeight": "1.42, 1.45, 1.56, 1.57, 1.60, 1.67, 1.75",
+        "substitute": "Inter",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Section headings and subheadlines — a humanist serif with generous curves that reads editorial rather than corporate. Its single weight (500) forces hierarchy through size, not weight, which keeps the type system restrained. Free substitute: Source Serif 4 or PT Serif.",
+        "sizes": "40, 48",
+        "family": "HubSpot Serif",
+        "weight": "500",
+        "lineHeight": "1.10, 1.15",
+        "substitute": "Source Serif 4"
+      },
+      {
+        "role": "Display-level hero headlines at 80px — the largest voice on the page, reserved for above-the-fold page headers. The humanist cut gives it warmth that a geometric display sans would lose. Free substitute: Source Serif 4 at 500 weight, scaled up.",
+        "sizes": "80",
+        "family": "HubSpot Serif Page Header Human",
+        "weight": "500",
+        "lineHeight": "1.19",
+        "substitute": "Source Serif 4"
+      }
+    ],
+    "description": "HubSpot's design system is a warm, editorial enterprise aesthetic built on cream-paper canvases rather than stark white. A single vivid orange (#ff4800) serves as the sole chromatic accent — appearing in CTAs, icons, the logo sprocket, and even the period punctuation on the hero headline — while everything else stays in a carefully graded neutral scale from off-white to near-black. Typography pairs a custom sans (HubSpot Sans) for UI and body with a custom serif (HubSpot Serif) for headlines, a deliberate choice that signals editorial confidence over typical SaaS utility. Cards float on warm parchment with soft 16px corners and hairline borders rather than heavy shadows, and generous vertical breathing room between sections gives the whole site a calm, unhurried rhythm. The 2% colorfulness score is structural: orange is never decorative chrome, it's functional punctuation that always means \"act here\" or \"this is HubSpot.\"",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3e100552-a8ad-4179-b89a-6aa5113b92e1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"HubSpot design system\",\"item\":\"https://styles.refero.design/style/3e100552-a8ad-4179-b89a-6aa5113b92e1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3e100552-a8ad-4179-b89a-6aa5113b92e1#style-reference\",\"name\":\"HubSpot design system reference\",\"headline\":\"HubSpot design system | Refero Styles\",\"description\":\"Explore HubSpot's light SaaS design system: Sprout Orange #ff4800, Canvas Cream #fcfcfa colors, HubSpot Sans, HubSpot Serif typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/3e100552-a8ad-4179-b89a-6aa5113b92e1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3e100552-a8ad-4179-b89a-6aa5113b92e1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"HubSpot\",\"url\":\"https://www.hubspot.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3e100552-a8ad-4179-b89a-6aa5113b92e1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1a9bb07a-02e4-4bff-a8a0-9d7d85119bd4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1a9bb07a-02e4-4bff-a8a0-9d7d85119bd4.jpg\",\"caption\":\"Screenshot of HubSpot\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1a9bb07a-02e4-4bff-a8a0-9d7d85119bd4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"HubSpot design system\",\"HubSpot website design\",\"HubSpot colors\",\"HubSpot typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Sprout Orange\",\"Canvas Cream\",\"Warm Parchment\",\"Ink\",\"HubSpot Sans\",\"HubSpot Serif\",\"HubSpot Serif Page Header Human\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"HubSpot design system\"},{\"@type\":\"Thing\",\"name\":\"HubSpot website design\"},{\"@type\":\"Thing\",\"name\":\"HubSpot colors\"},{\"@type\":\"Thing\",\"name\":\"HubSpot typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T01:01:46.488Z\",\"dateModified\":\"2026-04-30T01:01:46.488Z\"}]}19:T7de,primary action: #ff4800 (filled action)\nCreate a Primary Action Button: #ff4800 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n## Quick Color Reference\n\n- **Background**: #fcfcfa (Canvas Cream) or #f8f5ee (Warm Parchment) — never #ffffff\n- **Surface (card)**: #fcfcfa with 1px border in #1f1f1f, 16px radius\n- **Text (primary)**: #1f1f1f (Ink) for body and headings, HubSpot Sans 16px/40px\n- **Text (serif heading)**: #1f1f1f in HubSpot Serif weight 500, sizes 24-80px\n- **Border / hairline**: #1f1f1f at full or reduced opacity\n- **Accent**: #ff4800 (Sprout Orange) for icons, checkmarks, brand marks, CTA borders, punctuation\n\n## Example Component Prompts\n\n\n2. **Product Hub Card**: 16px border-radius, 1px border in #1f1f1f, #fcfcfa background, 24px padding. Top: Sprout Orange sprocket icon + title in HubSpot Sans 22px weight 500 #1f1f1f with a small superscript mark. Middle: 2-3 checkmark list items — #ff4800 checkmark icon, HubSpot Sans 16px weight 400 #1f1f1f text, 12px vertical gap. Bottom: \"Learn more →\" link in #ff4800, HubSpot Sans 14px weight 500.\n\n3. **Section Heading Block**: Centered on Warm Parchment (#f8f5ee) background. Headline in HubSpot Serif 48px weight 500 #1f1f1f, 1.10 line-height. Subtext directly below in HubSpot Sans 18px weight 400 #1f1f1f, 1.67 line-height, max-width 700px centered. 80px vertical padding above and below.\n\n4. **Feature Split Section**: Two-column on Canvas Cream (#fcfcfa). Left column (max-width 480px): HubSpot Serif 40px weight 500 #1f1f1f headline, HubSpot Sans 16px weight 400 #1f1f1f body text, 16px gap between paragraphs. Right column: product illustration or card-stack visual, 16px border-radius, no border. 80-120px vertical section gap.\n\n5. **Powered by AI Badge**: Inline pill above a headline. #fcfcfa background, 1px border in #cacac8, 4px border-radius, 6px×12px padding. Sprout Orange sparkle icon (12px) + HubSpot Sans 12px weight 500 #1f1f1f text reading \"Powered by AI\"."
+      }
+    ],
+    "elevationPhilosophy": "HubSpot's elevation system is border-based, not shadow-based. Cards and content surfaces sit on Warm Parchment or Peach Wash backgrounds, defined by 1px hairline borders in Ink (#1f1f1f) at low opacity, with 16px corner radii. There are no drop shadows, no blur effects, no floating panels — the depth is created entirely by the warm-on-warm surface stack and the generous 64-80px section gaps. This border-only approach keeps the UI feeling like printed editorial pages rather than glass-and-shadow software."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1f1f1f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23929237775790413
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "heading",
+            "list",
+            "image",
+            "body",
+            "icon",
+            "badge",
+            "card",
+            "link",
+            "footer"
+          ],
+          "frequency": 2544,
+          "confidence": 1,
+          "prominence": 113278259.4180304,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 19,
+            "icon/fill": 28,
+            "nav/color": 68,
+            "body/color": 45,
+            "card/color": 71,
+            "icon/color": 37,
+            "link/color": 17,
+            "list/color": 58,
+            "other/fill": 14,
+            "badge/color": 20,
+            "image/color": 45,
+            "other/color": 117,
+            "button/color": 7,
+            "heading/color": 31,
+            "nav/borderColor": 272,
+            "body/borderColor": 180,
+            "card/borderColor": 200,
+            "icon/borderColor": 148,
+            "link/borderColor": 68,
+            "list/borderColor": 232,
+            "badge/borderColor": 68,
+            "image/borderColor": 180,
+            "other/borderColor": 468,
+            "button/borderColor": 24,
+            "heading/borderColor": 124,
+            "list/backgroundColor": 1,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fcfcfa",
+          "oklch": {
+            "c": 0.00263325041496997,
+            "h": 106.44757967890396,
+            "l": 0.9905142517294242
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "body",
+            "badge",
+            "card",
+            "link",
+            "icon",
+            "image"
+          ],
+          "frequency": 407,
+          "confidence": 1,
+          "prominence": 19773129.779695008,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 14,
+            "nav/color": 42,
+            "body/color": 11,
+            "icon/color": 7,
+            "link/color": 8,
+            "other/fill": 7,
+            "image/color": 1,
+            "button/color": 4,
+            "nav/borderColor": 164,
+            "body/borderColor": 44,
+            "icon/borderColor": 28,
+            "link/borderColor": 32,
+            "image/borderColor": 4,
+            "nav/backgroundColor": 2,
+            "card/backgroundColor": 21,
+            "badge/backgroundColor": 4,
+            "other/backgroundColor": 8,
+            "button/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#f8f5ee",
+          "oklch": {
+            "c": 0.009814516355408436,
+            "h": 87.47074591534279,
+            "l": 0.9705326402964393
+          },
+          "contexts": [
+            "other",
+            "image",
+            "badge",
+            "heading",
+            "list",
+            "body",
+            "button",
+            "footer",
+            "nav",
+            "link"
+          ],
+          "frequency": 809,
+          "confidence": 1,
+          "prominence": 10628922.085358964,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 101,
+            "body/color": 3,
+            "link/color": 4,
+            "list/color": 20,
+            "badge/color": 1,
+            "image/color": 2,
+            "other/color": 14,
+            "button/color": 7,
+            "footer/color": 1,
+            "heading/color": 9,
+            "nav/borderColor": 403,
+            "body/borderColor": 12,
+            "link/borderColor": 16,
+            "list/borderColor": 80,
+            "badge/borderColor": 4,
+            "image/borderColor": 8,
+            "other/borderColor": 56,
+            "button/borderColor": 28,
+            "footer/borderColor": 4,
+            "heading/borderColor": 36
+          }
+        },
+        {
+          "hex": "#042729",
+          "oklch": {
+            "c": 0.03890069653403402,
+            "h": 200.549177569214,
+            "l": 0.24960307553101188
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1743617.2470433437,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#fcded2",
+          "oklch": {
+            "c": 0.03712529188361971,
+            "h": 43.07430072367808,
+            "l": 0.9221237042221959
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1413600,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff4800",
+          "oklch": {
+            "c": 0.227215175506232,
+            "h": 35.97006896964891,
+            "l": 0.6629064415211277
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 92,
+          "confidence": 1,
+          "prominence": 97819.27665536503,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 38,
+            "nav/color": 2,
+            "body/color": 2,
+            "other/fill": 19,
+            "button/color": 2,
+            "nav/borderColor": 8,
+            "body/borderColor": 8,
+            "button/borderColor": 9,
+            "nav/backgroundColor": 1,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 86,
+          "confidence": 1,
+          "prominence": 14844.54181443547,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 6,
+            "nav/color": 1,
+            "body/color": 5,
+            "icon/color": 5,
+            "button/color": 5,
+            "nav/borderColor": 4,
+            "body/borderColor": 20,
+            "icon/borderColor": 20,
+            "button/borderColor": 20
+          }
+        },
+        {
+          "hex": "#60605f",
+          "oklch": {
+            "c": 0.0011944635759662593,
+            "h": 106.44378737019304,
+            "l": 0.48795115340815737
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 12245.420280571652,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "button/color": 2
+          }
+        },
+        {
+          "hex": "#cacac8",
+          "oklch": {
+            "c": 0.002197001298354598,
+            "h": 106.44695691077001,
+            "l": 0.8373079327141778
+          },
+          "contexts": [
+            "icon",
+            "list",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1488.9384004153858,
+          "properties": [
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "other/fill": 1,
+            "list/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#0000c5",
+          "oklch": {
+            "c": 0.2579138829047028,
+            "h": 264.0520226163699,
+            "l": 0.3722070805521166
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 240,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.020738529287942647,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.44,
+          "background": "#fcfcfa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.29,
+          "background": "#f8f5ee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.52,
+          "background": "#fcded2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.05,
+          "background": "#fcfcfa",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.4,
+          "background": "#042729",
+          "foreground": "#fcfcfa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.14,
+          "background": "#1f1f1f",
+          "foreground": "#f8f5ee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.53,
+          "background": "#042729",
+          "foreground": "#f8f5ee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.97,
+          "background": "#fcded2",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.79,
+          "background": "#cacac8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.44,
+          "background": "#fcded2",
+          "foreground": "#042729"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.32,
+          "background": "#0000c5",
+          "foreground": "#fcfcfa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.68,
+          "background": "#0000c5",
+          "foreground": "#f8f5ee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.04,
+          "background": "#cacac8",
+          "foreground": "#1f1f1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.64,
+          "background": "#cacac8",
+          "foreground": "#042729"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.15,
+          "background": "#fcded2",
+          "foreground": "#0000c5"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.08,
+          "background": "#cacac8",
+          "foreground": "#0000c5"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.18,
+          "background": "#ff4800",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.13,
+          "background": "#fcfcfa",
+          "foreground": "#60605f"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.78,
+          "background": "#f8f5ee",
+          "foreground": "#60605f"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.95,
+          "background": "#fcded2",
+          "foreground": "#60605f"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "card",
+            "badge",
+            "image"
+          ],
+          "frequency": 31
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "link"
+          ],
+          "frequency": 27
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "badge",
+            "image"
+          ],
+          "frequency": 5
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "other",
+            "list"
+          ],
+          "frequency": 129,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other",
+            "paddingTop|list",
+            "paddingRight|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "nav",
+            "icon"
+          ],
+          "frequency": 78,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginTop|icon",
+            "marginRight|icon",
+            "marginBottom|icon",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "badge",
+            "card",
+            "list",
+            "heading",
+            "other"
+          ],
+          "frequency": 43,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button",
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|list",
+            "columnGap|list",
+            "marginBottom|heading",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "card"
+          ],
+          "frequency": 38,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "badge",
+            "list",
+            "card",
+            "link",
+            "other",
+            "heading"
+          ],
+          "frequency": 141,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginBottom|badge",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "marginTop|badge",
+            "rowGap|badge",
+            "columnGap|badge",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|heading",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "heading",
+            "badge",
+            "card",
+            "link",
+            "list",
+            "body"
+          ],
+          "frequency": 215,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|badge",
+            "columnGap|badge",
+            "marginTop|other",
+            "marginBottom|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|badge",
+            "paddingRight|badge",
+            "paddingBottom|badge",
+            "paddingLeft|badge",
+            "paddingTop|link",
+            "marginTop|heading",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|nav",
+            "marginBottom|nav",
+            "marginTop|list",
+            "marginRight|list",
+            "marginLeft|list",
+            "marginTop|body",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "heading",
+            "list",
+            "other",
+            "button",
+            "card",
+            "link",
+            "image",
+            "badge"
+          ],
+          "frequency": 108,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginBottom|heading",
+            "rowGap|list",
+            "columnGap|list",
+            "columnGap|other",
+            "rowGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingBottom|card",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginBottom|image",
+            "paddingBottom|other",
+            "paddingTop|other",
+            "rowGap|badge",
+            "columnGap|badge"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "list"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "card",
+            "footer"
+          ],
+          "frequency": 49,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingBottom|card",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "button",
+            "list"
+          ],
+          "frequency": 25,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "card",
+            "other",
+            "footer"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 141,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 173,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(257deg, rgba(251, 221, 208, 0.3) -32.4%, rgba(255, 165, 129, 0.3) -3.42%, rgba(255, 73, 0, 0.3) 23.87%, rgba(251, 223, 233, 0.3) 50.46%, rgba(253, 191, 219, 0.3) 79.15%, rgba(249, 57, 166, 0.3) 103.64%)",
+        "colors": [
+          "rgba(251, 221, 208, 0.3)",
+          "rgba(255, 165, 129, 0.3)",
+          "rgba(255, 73, 0, 0.3)",
+          "rgba(251, 223, 233, 0.3)",
+          "rgba(253, 191, 219, 0.3)",
+          "rgba(249, 57, 166, 0.3)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "HubSpot Sans",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 758,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HubSpot Serif Page Header Human",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 9,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HubSpot Serif",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "HubSpot Sans",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "HubSpot Sans",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 40,
+          "lineHeight": 2.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "HubSpot Sans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav",
+            "badge",
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "HubSpot Sans",
+          "weight": 500,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "HubSpot Sans",
+          "weight": 300,
+          "contexts": [
+            "card",
+            "icon",
+            "body"
+          ],
+          "frequency": 39,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "HubSpot Sans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "HubSpot Sans",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "HubSpot Sans",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "list",
+            "body",
+            "badge",
+            "card",
+            "icon",
+            "footer"
+          ],
+          "frequency": 483,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "HubSpot Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "icon"
+          ],
+          "frequency": 33,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "HubSpot Sans",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "link",
+            "icon",
+            "image"
+          ],
+          "frequency": 54,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "HubSpot Sans",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "HubSpot Sans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "HubSpot Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "HubSpot Sans",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "HubSpot Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "HubSpot Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "HubSpot Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.42,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "HubSpot Serif",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "HubSpot Sans",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "HubSpot Serif",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "HubSpot Serif Page Header Human",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "list"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.19,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e56a8496-34f9-4876-bfa0-aee058d38d18.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1a9bb07a-02e4-4bff-a8a0-9d7d85119bd4.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3e100552-a8ad-4179-b89a-6aa5113b92e1#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"HubSpot design system\",\"item\":\"https://styles.refero.design/style/3e100552-a8ad-4179-b89a-6aa5113b92e1\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3e100552-a8ad-4179-b89a-6aa5113b92e1#style-reference\",\"name\":\"HubSpot design system reference\",\"headline\":\"HubSpot design system | Refero Styles\",\"description\":\"Explore HubSpot's light SaaS design system: Sprout Orange #ff4800, Canvas Cream #fcfcfa colors, HubSpot Sans, HubSpot Serif typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/3e100552-a8ad-4179-b89a-6aa5113b92e1\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3e100552-a8ad-4179-b89a-6aa5113b92e1\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"HubSpot\",\"url\":\"https://www.hubspot.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3e100552-a8ad-4179-b89a-6aa5113b92e1#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1a9bb07a-02e4-4bff-a8a0-9d7d85119bd4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1a9bb07a-02e4-4bff-a8a0-9d7d85119bd4.jpg\",\"caption\":\"Screenshot of HubSpot\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1a9bb07a-02e4-4bff-a8a0-9d7d85119bd4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"HubSpot design system\",\"HubSpot website design\",\"HubSpot colors\",\"HubSpot typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Sprout Orange\",\"Canvas Cream\",\"Warm Parchment\",\"Ink\",\"HubSpot Sans\",\"HubSpot Serif\",\"HubSpot Serif Page Header Human\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"HubSpot design system\"},{\"@type\":\"Thing\",\"name\":\"HubSpot website design\"},{\"@type\":\"Thing\",\"name\":\"HubSpot colors\"},{\"@type\":\"Thing\",\"name\":\"HubSpot typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T01:01:46.488Z\",\"dateModified\":\"2026-04-30T01:01:46.488Z\"}]}19:T7de,primary action: #ff4800 (filled action)\nCreate a Primary Action Button: #ff4800 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n## Quick Color Reference\n\n- **Background**: #fcfcfa (Canvas Cream) or #f8f5ee (Warm Parchment) — never #ffffff\n- **Surface (card)**: #fcfcfa with 1px border in #1f1f1f, 16px radius\n- **Text (primary)**: #1f1f1f (Ink) for body and headings, HubSpot Sans 16px/40px\n- **Text (serif heading)**: #1f1f1f in HubSpot Serif weight 500, sizes 24-80px\n- **Border / hairline**: #1f1f1f at full or reduced opacity\n- **Accent**: #ff4800 (Sprout Orange) for icons, checkmarks, brand marks, CTA borders, punctuation\n\n## Example Component Prompts\n\n\n2. **Product Hub Card**: 16px border-radius, 1px border in #1f1f1f, #fcfcfa background, 24px padding. Top: Sprout Orange sprocket icon + title in HubSpot Sans 22px weight 500 #1f1f1f with a small superscript mark. Middle: 2-3 checkmark list items — #ff4800 checkmark icon, HubSpot Sans 16px weight 400 #1f1f1f text, 12px vertical gap. Bottom: \"Learn more →\" link in #ff4800, HubSpot Sans 14px weight 500.\n\n3. **Section Heading Block**: Centered on Warm Parchment (#f8f5ee) background. Headline in HubSpot Serif 48px weight 500 #1f1f1f, 1.10 line-height. Subtext directly below in HubSpot Sans 18px weight 400 #1f1f1f, 1.67 line-height, max-width 700px centered. 80px vertical padding above and below.\n\n4. **Feature Split Section**: Two-column on Canvas Cream (#fcfcfa). Left column (max-width 480px): HubSpot Serif 40px weight 500 #1f1f1f headline, HubSpot Sans 16px weight 400 #1f1f1f body text, 16px gap between paragraphs. Right column: product illustration or card-stack visual, 16px border-radius, no border. 80-120px vertical section gap.\n\n5. **Powered by AI Badge**: Inline pill above a headline. #fcfcfa background, 1px border in #cacac8, 4px border-radius, 6px×12px padding. Sprout Orange sparkle icon (12px) + HubSpot Sans 12px weight 500 #1f1f1f text reading \"Powered by AI\"."
+}

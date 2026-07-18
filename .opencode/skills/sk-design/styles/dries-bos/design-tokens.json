@@ -1,0 +1,137 @@
+{
+  "color": {
+    "vellum": {
+      "$value": "#e8e7e3",
+      "$type": "color",
+      "$description": "Vellum — Page background, table row base, card surfaces — warm off-white reads as paper, not screen"
+    },
+    "parchment": {
+      "$value": "#dddbd5",
+      "$type": "color",
+      "$description": "Parchment — Alternating table rows, subtle surface lift one step above the canvas"
+    },
+    "india-ink": {
+      "$value": "#050200",
+      "$type": "color",
+      "$description": "India Ink — Body text, hairline borders, wireframe strokes, icon strokes — the only high-contrast tone in the system"
+    },
+    "graphite": {
+      "$value": "#747472",
+      "$type": "color",
+      "$description": "Graphite — Muted secondary text, disabled icon strokes, de-emphasized metadata"
+    }
+  },
+  "font": {
+    "sohne-buch": {
+      "$value": "Sohne Buch",
+      "$type": "fontFamily",
+      "$description": "All interface and editorial text — headlines, body, table cells, labels. Used at one weight (400) across all roles; the single weight plus generous letter-spacing carries the quiet authority instead of bold/regular contrast"
+    },
+    "myfont": {
+      "$value": "myFont",
+      "$type": "fontFamily",
+      "$description": "Icon glyph set — arrows, external-link markers, theme toggle, search, moon/sun. The 1.0 line-height confirms this is a pictogram face, not running text"
+    }
+  },
+  "typography": {
+    "xl": {
+      "$value": {
+        "fontFamily": "myFont",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Sohne Buch",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "79": {
+      "$value": "79px",
+      "$type": "dimension",
+      "$description": "Spacing 79px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "1000px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#e8e7e3",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the warm paper ground"
+    },
+    "row-surface": {
+      "$value": "#dddbd5",
+      "$type": "color",
+      "$description": "Surface level 1: Alternating table row background, creates the only surface differentiation in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.driesbos.com",
+      "siteName": "Dries Bos",
+      "extractedAt": "2026-06-03T17:05:22.539Z",
+      "variant": "extended"
+    }
+  }
+}

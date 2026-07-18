@@ -1,0 +1,282 @@
+{
+  "color": {
+    "fresh-grass": {
+      "$value": "#8ed462",
+      "$type": "color",
+      "$description": "Fresh Grass — Primary brand accent — navigation strokes, card borders, decorative highlights. The single chromatic anchor that ties the cream canvas to the brand identity"
+    },
+    "cream-paper": {
+      "$value": "#f5f1e4",
+      "$type": "color",
+      "$description": "Cream Paper — Dominant page background and soft card surface. Warm off-white that replaces stark white as the structural canvas"
+    },
+    "ink-black": {
+      "$value": "#2c2e2a",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, icons, nav borders, and the dominant hairline border color. Warm near-black that reads softer than pure black on cream"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Elevated card surfaces, floating nav background, text on dark illustrations. The highest surface level in the stack"
+    },
+    "sandstone": {
+      "$value": "#e0dbce",
+      "$type": "color",
+      "$description": "Sandstone — Secondary surface tone for inset or recessed card states. Slightly deeper than the cream canvas"
+    },
+    "stone-gray": {
+      "$value": "#80827f",
+      "$type": "color",
+      "$description": "Stone Gray — Muted body text and secondary link borders. The only true mid-gray for de-emphasized content"
+    },
+    "hairline-mist": {
+      "$value": "#d5d5d4",
+      "$type": "color",
+      "$description": "Hairline Mist — Subtle nav dividers and low-contrast borders. Barely visible structural lines"
+    },
+    "pure-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Ink — Icon fills, body text on light surfaces, and high-contrast borders. Used where maximum contrast is needed against the cream"
+    },
+    "sky-pop": {
+      "$value": "#2ba0ff",
+      "$type": "color",
+      "$description": "Sky Pop — Decorative illustration accent and card border accent. Vivid blue used illustratively and as a small functional punctuation in icon dots"
+    },
+    "coral-pop": {
+      "$value": "#ff705d",
+      "$type": "color",
+      "$description": "Coral Pop — Red outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    },
+    "sunshine-pop": {
+      "$value": "#f5e211",
+      "$type": "color",
+      "$description": "Sunshine Pop — Footer highlight and decorative illustration accent. Bright yellow used sparingly for warmth and playfulness"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Single-family system: Inter carries everything from 9px micro-labels to 144px display headlines. The use of Inter at display scale is a signature choice — most editorial systems reach for a serif or custom display face; MindMarket trusts Inter's geometric clarity at extreme sizes, relying on tight letter-spacing (-0.06em at 140px+) and aggressive line-height compression (0.95–1.15) to create visual weight without switching families."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "9px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "53px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 53px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "81px",
+        "fontWeight": 500,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 81px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "140px",
+        "fontWeight": 500,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 140px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "144px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 144px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "136": {
+      "$value": "136px",
+      "$type": "dimension",
+      "$description": "Spacing 136px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "25.5px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "63.75px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "cream-paper": {
+      "$value": "#f5f1e4",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the dominant warm background"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated cards, floating navigation, inset content blocks"
+    },
+    "sandstone": {
+      "$value": "#e0dbce",
+      "$type": "color",
+      "$description": "Surface level 2: Recessed or secondary surface tone"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://mindmarket.com",
+      "siteName": "MindMarket",
+      "extractedAt": "2026-06-03T22:39:57.287Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,719 @@
+{
+  "source": "https://styles.refero.design/style/52a007ed-ad1b-46a6-bd44-b76f91df6d0c",
+  "uuid": "52a007ed-ad1b-46a6-bd44-b76f91df6d0c",
+  "name": "ChatGPT",
+  "northStar": "graphite ink on warm paper",
+  "capturedAt": "2026-07-18T07:11:58.459Z",
+  "meta": {
+    "url": "https://chatgpt.com",
+    "siteName": "ChatGPT",
+    "extractedAt": "2026-07-03T03:39:32.068Z",
+    "durationMs": 57005,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 151,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Graphite Ink (#0d0d0d) for all primary text and icons — never pure #000 for body text; reserve #000 for pressed states, tooltips, and scrims.",
+      "Set element gap to 6px and section gap to 24px; rhythm comes from consistent 6/10/16/24 increments, not arbitrary spacing.",
+      "Keep the entire interface achromatic — no brand blue, no green status, no red error. State changes are communicated by weight, fill veil, and position, not hue.",
+      "Use 10px border-radius for all buttons, sidebar items, and cards. Only the Log In CTA breaks the system with a full pill radius.",
+      "Render all text in the system font stack (-apple-system, system-ui, BlinkMacSystemFont). Do not load custom webfonts.",
+      "Express elevation with a 1px Hairline border (#0000001a), never with box-shadow. The system is flat by conviction.",
+      "Use #0000000d (5% black veil) for every hover state — the interface breathes, it does not flash."
+    ],
+    "donts": [
+      "Do not introduce any chromatic accent color — the UI is intentionally grayscale and adding a brand hue breaks the signal that color = data, never decoration.",
+      "Do not use shadows for elevation. Hairline borders only; shadows make a flat utility interface feel ornamental.",
+      "Do not set button text or icons to pure #000000; use #0d0d0d for softer 18.5:1 contrast. Pure black belongs only on inverted surfaces.",
+      "Do not mix pill radii and 10px radii within the same control group — pick one radius per control type and stay consistent.",
+      "Do not use text larger than 24px anywhere in the UI; the display tier is intentionally modest to keep the interface conversational, not promotional.",
+      "Do not add background fills to navigation rows in their default state — chrome should recede until hovered.",
+      "Do not load custom webfonts; the system font is a load-time and a11y advantage, not a compromise."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f9f9f9",
+        "name": "Sidebar Mist",
+        "role": "Sidebar and secondary surface backgrounds — page chrome recedes behind the conversation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Main canvas and elevated surface — primary reading area, elevated panels, inverted text backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0d0d0d",
+        "name": "Graphite Ink",
+        "role": "Primary headings, body text, and icon fills on light surfaces. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5d5d5d",
+        "name": "Mid Ash",
+        "role": "Secondary text and icons — supporting labels, metadata",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8f8f8f",
+        "name": "Hollow",
+        "role": "Tertiary text, disabled states, muted helper copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0000001a",
+        "name": "Hairline",
+        "role": "1px borders and dividers — rgba black at ~10% opacity, the sole structural separator",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0000000d",
+        "name": "Hover Veil",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Press",
+        "role": "Pressed/inverted surface fill, tooltips, scrim — true black for max contrast moments",
+        "group": "neutral"
+      },
+      {
+        "hex": "#00000080",
+        "name": "Deep Charcoal",
+        "role": "Modal scrim overlay — 50% black behind dialogs and drawers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e6e6e6",
+        "name": "Edge Gray",
+        "role": "Stronger divider or inactive surface — used sparingly as a higher-contrast border alternative",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Two-column shell: a fixed-width sidebar (260-280px) on the left with a 52px header strip (model selector + account) and a scrollable chat history, and a flexible main column that hosts the conversation thread with a generous max-width of ~720-768px centered horizontally for reading comfort. The hero is implicit — the first screen shows the welcome state (24px/600 headline, helper copy, login CTA stacked in the lower-left of the sidebar). Vertical rhythm uses 24px section gaps and 6px element gaps. No alternating dark/light bands — the entire page is a single light surface with one sidebar accent. Navigation is a minimal vertical list with no top-bar global nav; the brand is absent from the viewport chrome.",
+    "imagery": "No photography, no illustrations, no product screenshots. The interface is pure UI — iconography is monochrome line icons (16px, 1.5px stroke implied by nav/fill count), icons-only visual language. No decorative imagery occupies space; the conversation text and user-generated content are the only visual content. Avatar circles for user/assistant messages are minimal solid fills. Density is text-dominant — the interface exists to frame text.",
+    "similar": [
+      {
+        "why": "Same achromatic-by-default philosophy with a single subtle background tint for the sidebar; relies on hairline borders and weight rather than color to communicate hierarchy",
+        "business": "Linear"
+      },
+      {
+        "why": "Near-identical system font usage, 10-12px radius on controls, grayscale-only interface where the document content provides all visual interest",
+        "business": "Notion"
+      },
+      {
+        "why": "Minimal utility UI with hairline 1px borders instead of shadows, system fonts, and zero chromatic accents in the chrome",
+        "business": "Vercel"
+      },
+      {
+        "why": "Quiet grayscale sidebar + white main surface, restrained typographic scale, and structural separation through dividers rather than elevation",
+        "business": "Things 3 (Cultured Code)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "10px",
+        "cards": "10px",
+        "links": "16px",
+        "badges": "0px",
+        "buttons": "10px"
+      },
+      "elementGap": "6px",
+      "sectionGap": "24px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#f9f9f9",
+        "name": "Sidebar Canvas",
+        "level": 0,
+        "purpose": "Left rail background, sets off the main conversation area"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Conversation Canvas",
+        "level": 1,
+        "purpose": "Main reading and writing surface where the chat thread lives"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Elevated Panel",
+        "level": 2,
+        "purpose": "Popovers, menus, and floating UI — same white but bordered with hairline to lift above the canvas"
+      }
+    ],
+    "northStar": "graphite ink on warm paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Sidebar Item (Ghost Button)",
+        "role": "Navigation row in the left rail",
+        "description": "Transparent background, Graphite Ink (#0d0d0d) text and icon, 10px border-radius, 6px vertical padding, 10px horizontal padding. On hover: fills with Hover Veil (#0000000d). No active state color — active is implied by position or a subtle background tint."
+      },
+      {
+        "name": "Compact Icon Button",
+        "role": "Toolbar action (new chat, search, images)",
+        "description": "Transparent fill, 10px radius, 6px vertical / 8px horizontal padding, Graphite Ink icon at 16px. Behaves as the sidebar item but tighter. Hover wash via #0000000d."
+      },
+      {
+        "name": "Pill Primary Button (Log In)",
+        "role": "Account entry action at the bottom of the sidebar",
+        "description": "Pure White (#ffffff) fill, Graphite Ink (#0d0d0d) text, 1px Hairline (#0000001a) border, fully rounded radius (16777272px → effectively pill), 0px vertical / 16px horizontal padding. Weight 500 at 14px. The only border-bearing control on the page."
+      },
+      {
+        "name": "Sidebar Footer Block",
+        "role": "Tail stack of links and CTA at sidebar bottom",
+        "description": "Hollow vertical stack with no background, 10px row-gap, Hairline (#0000001a) top divider at 1px separating it from the chat list."
+      },
+      {
+        "name": "Helper Text Block",
+        "role": "Body-sm description under a link in the sidebar footer",
+        "description": "Hollow (#8f8f8f) 12-14px regular text, line-height 1.43, no background, acts as secondary helper copy next to a primary action."
+      },
+      {
+        "name": "Conversation Card",
+        "role": "Recent chat row in the sidebar list",
+        "description": "Transparent default with 10px radius and 6px vertical padding. On hover: #0000000d wash. Title in Graphite Ink at 14px/500 weight; preview in Hollow at 13px."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Section separator",
+        "description": "1px solid Hairline (#0000001a). The only structural divider in the system — no double rules, no shadows."
+      },
+      {
+        "name": "Surface Card (Elevated Panel)",
+        "role": "Floating panel or popover",
+        "description": "Pure White (#ffffff) background, 10px radius, 1px Hairline border. Elevation is expressed by border, not shadow. Matches the elevation token #ffffff."
+      },
+      {
+        "name": "Tooltip",
+        "role": "Hover label on icon buttons",
+        "description": "Ink Press (#000000) fill, white text, small radius. Uses the --bg-tooltip token. Compact, no arrow ornamentation visible."
+      },
+      {
+        "name": "Scrim Overlay",
+        "role": "Modal backdrop",
+        "description": "Deep Charcoal (#00000080) at 50% opacity. Single-layer, no blur."
+      },
+      {
+        "name": "Badge / Chip",
+        "role": "Tag or status indicator",
+        "description": "Sidebar Mist (#f9f9f9) background, Graphite Ink text, 0px radius (square corners — a deliberate break from the 10px button radius), no padding wrapper. Used for low-prominence labels."
+      }
+    ],
+    "typography": [
+      {
+        "role": "System UI font — the entire interface renders in -apple-system / BlinkMacSystemFont / Segoe UI, inheriting the OS typeface rather than shipping a custom face. This is a deliberate utility choice: zero font load, native rendering, automatic dark-mode adaptation on macOS/iOS. Body copy sits at 16px/1.5, fine print at 14px/1.43. The 24px/600 step is the sole display tier, reserved for welcome headings — never stretched for marketing drama.",
+        "sizes": "14px, 16px, 24px",
+        "family": "-apple-system-body",
+        "weight": "400",
+        "lineHeight": "1.43",
+        "substitute": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "ChatGPT uses a graphite-on-paper language: near-white canvas (#f9f9f9 sidebar) with the main conversation surface staying white, near-black ink for all primary text and icons, and zero chromatic accents. The entire UI is achromatic — meaning is carried by weight (600 headings, 400 body, 500 for emphasis) and spatial rhythm rather than color. Surfaces stay flat; elevation comes from a single hairline border at 1px rgba(0,0,0,0.05) rather than shadow. Controls are small, square-ish (10px radius), and chrome-light so the written response dominates. The system reads as restrained utility software — every pixel earns its place.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/52a007ed-ad1b-46a6-bd44-b76f91df6d0c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ChatGPT design system\",\"item\":\"https://styles.refero.design/style/52a007ed-ad1b-46a6-bd44-b76f91df6d0c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/52a007ed-ad1b-46a6-bd44-b76f91df6d0c#style-reference\",\"name\":\"ChatGPT design system reference\",\"headline\":\"ChatGPT design system | Refero Styles\",\"description\":\"Explore ChatGPT's light AI design system: Sidebar Mist #f9f9f9, Pure White #ffffff colors, -apple-system-body typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/52a007ed-ad1b-46a6-bd44-b76f91df6d0c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/52a007ed-ad1b-46a6-bd44-b76f91df6d0c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ChatGPT\",\"url\":\"https://chatgpt.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/52a007ed-ad1b-46a6-bd44-b76f91df6d0c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c5093ab3-cea7-47c5-9599-39b329550ded.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c5093ab3-cea7-47c5-9599-39b329550ded.jpg\",\"caption\":\"Screenshot of ChatGPT\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c5093ab3-cea7-47c5-9599-39b329550ded.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ChatGPT design system\",\"ChatGPT website design\",\"ChatGPT colors\",\"ChatGPT typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Sidebar Mist\",\"Pure White\",\"Graphite Ink\",\"Mid Ash\",\"-apple-system-body\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ChatGPT design system\"},{\"@type\":\"Thing\",\"name\":\"ChatGPT website design\"},{\"@type\":\"Thing\",\"name\":\"ChatGPT colors\"},{\"@type\":\"Thing\",\"name\":\"ChatGPT typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-02-14T12:27:34.000Z\",\"dateModified\":\"2026-02-14T12:27:34.000Z\"}]}19:T571,## Quick Color Reference\n- text: #0d0d0d (Graphite Ink — primary text and icons)\n- background: #ffffff (Pure White — main canvas)\n- sidebar background: #f9f9f9 (Sidebar Mist — left rail)\n- border: #0000001a (Hairline — 1px rgba black at ~10%)\n- secondary text: #5d5d5d (Mid Ash)\n- muted text: #8f8f8f (Hollow)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. Sidebar navigation item: 10px border-radius, transparent background, Graphite Ink (#0d0d0d) 14px regular text and 16px icon, 6px vertical padding and 10px horizontal padding. On hover, fill with #0000000d at the same radius. No border in default state.\n2. Welcome heading: 24px weight 600 Graphite Ink (#0d0d0d), line-height 1.33, letter-spacing normal, system font stack. Followed by 16px/400 body copy in Graphite Ink at line-height 1.5.\n3. Pill Log In button at sidebar bottom: Pure White (#ffffff) fill, 1px Hairline (#0000001a) border, fully rounded radius (9999px), Graphite Ink text at 14px weight 500, 0px vertical / 16px horizontal padding. No fill change on hover — only border darkens to #00000026.\n4. Hairline divider: 1px solid #0000001a, full container width, no margin — sits flush between sidebar sections.\n5. Helper copy block: Hollow (#8f8f8f) 14px regular text at line-height 1.43, no background, used as secondary description beneath a primary action link in the sidebar footer."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is expressed exclusively through 1px hairline borders (#0000001a) on white surfaces, never through drop shadows. The interface is flat by conviction: shadows would make a utility product feel ornamental and would compete with the conversation text that is the actual product. The only exception is the tooltip, which uses a true black fill (#000) to invert against the light surface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f9f9f9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9821176395629414
+          },
+          "contexts": [
+            "badge",
+            "other",
+            "nav"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 604881.2251687505,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 3,
+            "badge/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0d0d0d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.15906639920862536
+          },
+          "contexts": [
+            "link",
+            "button",
+            "nav",
+            "heading"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 51493.175170411094,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 14,
+            "nav/color": 13,
+            "link/color": 1,
+            "button/color": 3,
+            "heading/color": 1
+          }
+        },
+        {
+          "hex": "#8f8f8f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6500412692222284
+          },
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 37658.70901713467,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "nav/color": 4,
+            "button/color": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 2954.4670177603007,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 34
+          }
+        },
+        {
+          "hex": "#e6e6e6",
+          "oklch": {
+            "c": 0.000005933010921478755,
+            "h": 23.523361557158967,
+            "l": 0.9255451633223282
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 576,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 2.0043955815806603e-7,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.95,
+          "background": "#f9f9f9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.46,
+          "background": "#f9f9f9",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.83,
+          "background": "#e6e6e6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.57,
+          "background": "#e6e6e6",
+          "foreground": "#0d0d0d"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.07,
+          "background": "#f9f9f9",
+          "foreground": "#8f8f8f"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.59,
+          "background": "#e6e6e6",
+          "foreground": "#8f8f8f"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 72,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginRight|nav",
+            "marginLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginBottom|nav",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "marginRight|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "button",
+            "nav"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginRight|button",
+            "marginLeft|button",
+            "marginTop|nav",
+            "paddingLeft|button",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav",
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "nav",
+            "button"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginBottom|nav",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "-apple-system-body",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 117,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "-apple-system-body",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 65,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "-apple-system-body",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "-apple-system-body",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "-apple-system-body",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "-apple-system-body",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "badge",
+            "nav",
+            "button"
+          ],
+          "frequency": 46,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "-apple-system-body",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e10fc78d-398f-4596-ac03-891442003410.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c5093ab3-cea7-47c5-9599-39b329550ded.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/52a007ed-ad1b-46a6-bd44-b76f91df6d0c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"ChatGPT design system\",\"item\":\"https://styles.refero.design/style/52a007ed-ad1b-46a6-bd44-b76f91df6d0c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/52a007ed-ad1b-46a6-bd44-b76f91df6d0c#style-reference\",\"name\":\"ChatGPT design system reference\",\"headline\":\"ChatGPT design system | Refero Styles\",\"description\":\"Explore ChatGPT's light AI design system: Sidebar Mist #f9f9f9, Pure White #ffffff colors, -apple-system-body typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/52a007ed-ad1b-46a6-bd44-b76f91df6d0c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/52a007ed-ad1b-46a6-bd44-b76f91df6d0c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"ChatGPT\",\"url\":\"https://chatgpt.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/52a007ed-ad1b-46a6-bd44-b76f91df6d0c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c5093ab3-cea7-47c5-9599-39b329550ded.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c5093ab3-cea7-47c5-9599-39b329550ded.jpg\",\"caption\":\"Screenshot of ChatGPT\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c5093ab3-cea7-47c5-9599-39b329550ded.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"ChatGPT design system\",\"ChatGPT website design\",\"ChatGPT colors\",\"ChatGPT typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Sidebar Mist\",\"Pure White\",\"Graphite Ink\",\"Mid Ash\",\"-apple-system-body\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"ChatGPT design system\"},{\"@type\":\"Thing\",\"name\":\"ChatGPT website design\"},{\"@type\":\"Thing\",\"name\":\"ChatGPT colors\"},{\"@type\":\"Thing\",\"name\":\"ChatGPT typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-02-14T12:27:34.000Z\",\"dateModified\":\"2026-02-14T12:27:34.000Z\"}]}19:T571,## Quick Color Reference\n- text: #0d0d0d (Graphite Ink — primary text and icons)\n- background: #ffffff (Pure White — main canvas)\n- sidebar background: #f9f9f9 (Sidebar Mist — left rail)\n- border: #0000001a (Hairline — 1px rgba black at ~10%)\n- secondary text: #5d5d5d (Mid Ash)\n- muted text: #8f8f8f (Hollow)\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n1. Sidebar navigation item: 10px border-radius, transparent background, Graphite Ink (#0d0d0d) 14px regular text and 16px icon, 6px vertical padding and 10px horizontal padding. On hover, fill with #0000000d at the same radius. No border in default state.\n2. Welcome heading: 24px weight 600 Graphite Ink (#0d0d0d), line-height 1.33, letter-spacing normal, system font stack. Followed by 16px/400 body copy in Graphite Ink at line-height 1.5.\n3. Pill Log In button at sidebar bottom: Pure White (#ffffff) fill, 1px Hairline (#0000001a) border, fully rounded radius (9999px), Graphite Ink text at 14px weight 500, 0px vertical / 16px horizontal padding. No fill change on hover — only border darkens to #00000026.\n4. Hairline divider: 1px solid #0000001a, full container width, no margin — sits flush between sidebar sections.\n5. Helper copy block: Hollow (#8f8f8f) 14px regular text at line-height 1.43, no background, used as secondary description beneath a primary action link in the sidebar footer."
+}

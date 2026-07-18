@@ -1,0 +1,1325 @@
+{
+  "source": "https://styles.refero.design/style/1995b916-d3f1-4b13-8eb0-c1317ab63ccb",
+  "uuid": "1995b916-d3f1-4b13-8eb0-c1317ab63ccb",
+  "name": "Alpine Bio",
+  "northStar": "Sun-drenched botanical apothecary on cream parchment",
+  "capturedAt": "2026-07-18T08:39:49.898Z",
+  "meta": {
+    "url": "https://alpbio.com",
+    "siteName": "Alpine Bio",
+    "extractedAt": "2026-06-03T22:08:59.606Z",
+    "durationMs": 29446,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 687,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #8ec7e2 fill with #000000 text and 22px radius for every action — this is the only button style in the system",
+      "Apply -0.0500em letter-spacing to every Switzer and Geist heading — the tight tracking is what makes the type feel editorial",
+      "Use Pollen Yellow (#f7ca50) only for small typographic accents: breadcrumb labels, scroll cues, and footer highlights — never as a button fill or large background",
+      "Pair every pill button with a right-side circular arrow icon — the arrow is part of the button's identity, not decoration",
+      "Default to full-bleed left-aligned layouts — content starts from the left edge rather than centering in a max-width container",
+      "Use Warm Cream (#f8f4e6) for alternating section backgrounds to create warm/cool rhythm against the gray canvas",
+      "Choose Switzer for all display and heading sizes 20px and above; reserve Geist for body and PT Mono for nav/labels"
+    ],
+    "donts": [
+      "Don't add drop shadows to cards, buttons, or modals — the system is intentionally flat, depth comes from surface color only",
+      "Don't introduce new chromatic colors — the palette is sky blue + pollen yellow + warm neutrals, nothing else",
+      "Don't use the pollen yellow as a CTA or button background — it's a typographic accent only",
+      "Don't center content in a max-width container for body sections — the editorial feel depends on left-aligned, edge-to-edge composition",
+      "Don't use type weights above 500 — Switzer and Geist at 400–500 carry the whole system, bolder weights would break the quiet tone",
+      "Don't apply borders to the Primary Pill Button — it relies on the sky-blue fill alone for its identity",
+      "Don't use dark mode — the entire system is calibrated around the cream canvas; inverting it would destroy the apothecary warmth"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f5f5f5",
+        "name": "Parchment",
+        "role": "Page canvas and base background — the neutral ground everything sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8f4e6",
+        "name": "Warm Cream",
+        "role": "Section backgrounds, footer surface, and warm page rhythm — gives the system its apothecary warmth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Text on dark imagery, elevated card surfaces, and bright contrast moments",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e9e9e9",
+        "name": "Mist Gray",
+        "role": "Subtle surface fills — nav background, button hover rests, and quiet UI layers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1e1e1f",
+        "name": "Ink",
+        "role": "Primary body text and structural borders — softer than pure black, warmer against the cream",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Heading text, heavy borders, icon strokes — the highest-contrast neutral in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8ec7e2",
+        "name": "Sky Blue",
+        "role": "Blue wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#f7ca50",
+        "name": "Pollen Yellow",
+        "role": "Highlight labels, breadcrumb tags, scroll-indicator text — rare warm punctuation against the cream",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed, left-aligned layout with no centered max-width container. The hero is a full-viewport image with centered overlay text. Below, editorial body sections start from the left edge with content extending to roughly half the viewport width, creating a strong asymmetric left-weighted reading flow. The Applications Showcase uses a 3-column card grid where each card is a large image filling its column, arranged in a horizontal carousel. Vertical rhythm is generous — 80px section gaps separate major blocks. Navigation is a sticky top bar with the logo left, section links center-left in monospace, and a pill Contact Us button right. The overall feel is closer to a printed editorial than a typical SaaS product page.",
+    "imagery": "Photography carries all atmospheric weight. The site uses full-bleed, high-resolution product close-ups: a glass being filled with amber liquid in the hero, overhead shots of RTD shakes, protein bars on a light surface, and coffee cream pours. Style is natural-light, warm-toned, intimate, and product-focused — no lifestyle context, no people, no props beyond the food itself. All images sit on the cream/neutral palette, so photography is the only place saturated color appears in the system. No illustrations, no abstract graphics, no 3D renders, no icons beyond a thin arrow chevron used in buttons.",
+    "similar": [
+      {
+        "why": "Same alt-protein ingredient B2B context with warm cream backgrounds, full-bleed product photography, and a single restrained chromatic accent color for actions",
+        "business": "Perfect Day"
+      },
+      {
+        "why": "Shares the warm off-white canvas, playful yellow label accents, large editorial sans-serif type, and the food-photography-does-the-atmosphere approach",
+        "business": "Oatly"
+      },
+      {
+        "why": "Same food-tech ingredient brand feel with sky-blue action buttons, cream surfaces, and close-up product imagery as the primary visual driver",
+        "business": "NotCo"
+      },
+      {
+        "why": "Similar B2B ingredient company restraint — monochrome cream palette, pill-shaped action buttons, monospace nav labels, and editorial body type",
+        "business": "Clariant (ingredients division)"
+      },
+      {
+        "why": "Same flat, unshadowed, pill-rounded component language on warm neutral surfaces with full-bleed product photography and a single soft accent color",
+        "business": "Public Goods"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "3px",
+        "cards": "22px",
+        "pills": "22px",
+        "buttons": "22px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "80px",
+      "cardPadding": "12px",
+      "pageMaxWidth": null
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#f5f5f5",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Base page background, the default resting surface"
+      },
+      {
+        "hex": "#f8f4e6",
+        "name": "Warm Cream Section",
+        "level": 2,
+        "purpose": "Alternating section background — adds apothecary warmth and section rhythm"
+      },
+      {
+        "hex": "#e9e9e9",
+        "name": "Mist",
+        "level": 3,
+        "purpose": "Nav bar fill, quiet button-hover surface"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 4,
+        "purpose": "Elevated cards, light text on dark imagery"
+      }
+    ],
+    "northStar": "Sun-drenched botanical apothecary on cream parchment",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.35,
+        "letterSpacing": -0.75
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.35,
+        "letterSpacing": -0.9
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.66
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.6
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.1,
+        "letterSpacing": -2.4
+      },
+      {
+        "role": "display",
+        "size": 76,
+        "lineHeight": 1.1,
+        "letterSpacing": -3.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Pill Button",
+        "role": "The sole action button variant — used for Contact Us, Request a Sample, Learn More, View All",
+        "description": "Sky Blue (#8ec7e2) fill, Carbon (#000000) text at 13px Geist weight 400, 22px pill radius, 12px vertical / ~16px horizontal padding. Always paired with a circular arrow icon to the right of the label. No border, no shadow."
+      },
+      {
+        "name": "Ghost Nav Button",
+        "role": "The 'Contact Us' control in the top-right of the navigation",
+        "description": "Identical visual treatment to the Primary Pill Button — Sky Blue fill, Carbon text, 22px radius — but lives in the nav rather than page content."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Sticky top header carrying brand + section links",
+        "description": "Mist Gray (#e9e9e9) background, 3px corner radius, logo left (Alpine ❋ Bio), PT Mono 13px nav items center-left (INGREDIENTS ▾, APPLICATIONS, COMPANY, INTEL), pill Contact Us right. No border, no shadow."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Full-viewport opening with product imagery and overlay headline",
+        "description": "Full-bleed background photograph (close-up of liquid being poured), centered overlay text block: 76px Switzer weight 400 white headline, 18px Geist body copy, Primary Pill Button below. 'SCROLL DOWN' indicator in Pollen Yellow at bottom."
+      },
+      {
+        "name": "Editorial Body Block",
+        "role": "Long-form introductory paragraph below the hero",
+        "description": "Left-aligned to canvas edge (no max-width centering), Pollen Yellow (#f7ca50) pill label 'Introduction' sits above, large Switzer paragraph in Ink (#1e1e1f) at ~18px, Primary Pill Button below."
+      },
+      {
+        "name": "Application Showcase Card",
+        "role": "Large product photograph cards in a 3-column carousel",
+        "description": "Full-bleed image filling the card, 22px radius, PT Mono 13px category label ('RTD Protein Shakes', 'Protein Bars', 'Coffee Cream') in white at bottom-left of the image. No internal padding, no border, no shadow."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Large editorial headings like 'Applications Showcase'",
+        "description": "Switzer 32–48px weight 400, Ink color, left-aligned to canvas, with carousel arrow controls right-aligned. Tight -0.0500em tracking."
+      },
+      {
+        "name": "Pollen Label",
+        "role": "Small warm-amber tag for breadcrumb and category markers",
+        "description": "Pollen Yellow (#f7ca50) background, Carbon text, PT Mono 13px, pill-shaped 22px radius, tight horizontal padding. Used for 'Introduction' breadcrumb and 'SCROLL DOWN' indicator."
+      },
+      {
+        "name": "Carousel Arrow Control",
+        "role": "Navigation for the Application Showcase carousel",
+        "description": "Circular icon button, Mist Gray or white background, Carbon arrow icon, sits to the right of the section heading."
+      },
+      {
+        "name": "Carousel Dot Indicator",
+        "role": "Position indicator beneath the Application Showcase",
+        "description": "Row of small dots centered below the card grid, active dot in Carbon, inactive in light gray. Minimal, no labels."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "'SCROLL DOWN' text at the very bottom of the hero",
+        "description": "PT Mono 13px, Pollen Yellow, centered, no icon — just a typographic cue."
+      },
+      {
+        "name": "Footer Surface",
+        "role": "Closing section with warm cream background",
+        "description": "Warm Cream (#f8f4e6) full-bleed background, likely contains Pollen Yellow accent and standard link/contact information in PT Mono or Geist."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading type — geometric sans with consistent tight tracking, carries the editorial voice from 20px subheads up to 76px hero headlines",
+        "sizes": "20px, 32px, 48px, 76px",
+        "family": "Switzer",
+        "weight": "400, 500",
+        "lineHeight": "1.10, 1.20",
+        "substitute": "Inter, General Sans, or DM Sans",
+        "letterSpacing": "-0.0500em at all sizes (-1px at 20, -1.6px at 32, -2.4px at 48, -3.8px at 76)"
+      },
+      {
+        "role": "Body and intermediate type — comfortable reading at 15–18px, scales up to 42px for feature sub-heads",
+        "sizes": "13px, 15px, 18px, 22px, 42px",
+        "family": "Geist",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.20, 1.35",
+        "substitute": "Inter or Söhne",
+        "letterSpacing": "-0.0500em at 13–18px, -0.0300em at 22px, -0.0500em at 42px"
+      },
+      {
+        "role": "Nav items, category labels, and small uppercase tags — the only monospace, used to signal nav/system elements distinct from editorial body",
+        "sizes": "13px",
+        "family": "PT Mono",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "JetBrains Mono or IBM Plex Mono",
+        "letterSpacing": "-0.0400em (-0.52px)"
+      },
+      {
+        "role": "Micro-copy and fallback — only appears at 12px in utility positions",
+        "sizes": "12px",
+        "family": "system sans-serif",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "system-ui, -apple-system, Segoe UI"
+      }
+    ],
+    "description": "Alpine Bio reads as a warm apothecary-editorial system: cream-parchment canvases, a single sky-blue pill accent, and Switzer display type sized like a botanical journal. The interface is deliberately chromatically silent — nearly every surface lives in the warm off-white family, with one soft blue for actions and one pollen-yellow for tiny typographic highlights. Components are flat, unshadowed, and pill-rounded; the design is defined as much by what it withholds (no gradients, no shadows, no dark mode) as by what it adds. Full-bleed close-up product photography carries all atmospheric warmth, letting the UI stay calm and lab-like while the imagery feels edible and alive.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1995b916-d3f1-4b13-8eb0-c1317ab63ccb#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Alpine Bio design system\",\"item\":\"https://styles.refero.design/style/1995b916-d3f1-4b13-8eb0-c1317ab63ccb\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1995b916-d3f1-4b13-8eb0-c1317ab63ccb#style-reference\",\"name\":\"Alpine Bio design system reference\",\"headline\":\"Alpine Bio design system | Refero Styles\",\"description\":\"Explore Alpine Bio's light Other design system: Parchment #f5f5f5, Warm Cream #f8f4e6 colors, Switzer, Geist typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/1995b916-d3f1-4b13-8eb0-c1317ab63ccb\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1995b916-d3f1-4b13-8eb0-c1317ab63ccb\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Alpine Bio\",\"url\":\"https://alpbio.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1995b916-d3f1-4b13-8eb0-c1317ab63ccb#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d4891c5e-547b-4f43-a2b2-d32b0fc9be29.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d4891c5e-547b-4f43-a2b2-d32b0fc9be29.jpg\",\"caption\":\"Screenshot of Alpine Bio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d4891c5e-547b-4f43-a2b2-d32b0fc9be29.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Alpine Bio design system\",\"Alpine Bio website design\",\"Alpine Bio colors\",\"Alpine Bio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Parchment\",\"Warm Cream\",\"Paper White\",\"Mist Gray\",\"Switzer\",\"Geist\",\"PT Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Alpine Bio design system\"},{\"@type\":\"Thing\",\"name\":\"Alpine Bio website design\"},{\"@type\":\"Thing\",\"name\":\"Alpine Bio colors\"},{\"@type\":\"Thing\",\"name\":\"Alpine Bio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-10T22:34:41.324Z\",\"dateModified\":\"2026-05-10T22:34:41.324Z\"}]}19:T4ba,**Quick Color Reference**\n- text: #1e1e1f (body), #000000 (headings)\n- background: #f5f5f5 (canvas), #f8f4e6 (warm sections)\n- border: #000000 (structural), #e9e9e9 (subtle)\n- accent: #f7ca50 (Pollen Yellow — labels only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n\n3. *Application Showcase card*: Full-bleed product photograph (RTD shake, protein bars, or coffee cream) filling the card with 22px border-radius. White PT Mono 13px label at bottom-left of image. No border, no shadow, no internal padding.\n\n4. *Section heading + carousel*: 'Applications Showcase' in Switzer 48px weight 400, #1e1e1f, left-aligned. Two circular carousel arrow controls (Mist Gray fill, Carbon arrow) right-aligned. Row of small Carbon/light-gray dots centered below the card grid.\n\n5. *Navigation bar*: Sticky top, Mist Gray (#e9e9e9) background, 3px radius. Logo 'Alpine ❋ Bio' left, nav items (INGREDIENTS, APPLICATIONS, COMPANY, INTEL) in PT Mono 13px weight 400, #000000 center-left. Sky Blue (#8ec7e2) pill Contact Us button with arrow icon, right-aligned."
+      },
+      {
+        "title": "Photography Direction",
+        "content": "All photography must feel edible, warm, and intimate. Shoot overhead or at 3/4 angle, in natural or warm artificial light, on light neutral surfaces. Subjects are the finished food applications — poured liquids, stacked bars, frothy shakes — never the raw ingredient, never the facility, never people. Color grading leans warm and slightly desaturated so imagery harmonizes with the cream canvas. Treat each image as the only saturated moment on its page; surround it with calm cream and let the food do the talking."
+      },
+      {
+        "title": "Border Radius Philosophy",
+        "content": "The system is defined by 22px. Buttons are 22px pills, labels are 22px pills, image cards are 22px corners. The 3px nav radius is the only deviation and exists only because the nav bar itself has a subtle 3px corner — it does not apply to anything inside the nav. There are no sharp corners on user-facing controls anywhere in the system. The 22px number was chosen as a soft pill: rounded enough to feel friendly and organic, tight enough to still read as a button rather than a tag."
+      }
+    ],
+    "elevationPhilosophy": "The system uses zero drop shadows. Depth is communicated entirely through surface color shifts (canvas → warm cream → mist) and the 22px pill rounding. Every component is flat against its surface — no hover lifts, no modal shadows, no card elevation. The result is an interface that reads like printed matter, not software."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "link",
+            "body",
+            "image",
+            "heading",
+            "icon",
+            "list",
+            "button",
+            "footer"
+          ],
+          "frequency": 1743,
+          "confidence": 1,
+          "prominence": 63177088.188046776,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "icon/fill": 54,
+            "nav/color": 25,
+            "body/color": 13,
+            "hero/color": 2,
+            "icon/color": 13,
+            "link/color": 15,
+            "list/color": 1,
+            "other/fill": 33,
+            "image/color": 1,
+            "other/color": 195,
+            "button/color": 8,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 55,
+            "nav/borderColor": 100,
+            "body/borderColor": 52,
+            "hero/borderColor": 8,
+            "icon/borderColor": 52,
+            "link/borderColor": 60,
+            "list/borderColor": 4,
+            "image/borderColor": 4,
+            "other/borderColor": 780,
+            "button/borderColor": 32,
+            "footer/borderColor": 4,
+            "heading/borderColor": 220,
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#f5f5f5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9701507725365187
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 26539801.32605388,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4,
+            "other/backgroundColor": 17
+          }
+        },
+        {
+          "hex": "#f8f4e6",
+          "oklch": {
+            "c": 0.018960495957136215,
+            "h": 93.6630785955505,
+            "l": 0.9664611070897327
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 65,
+          "confidence": 1,
+          "prominence": 4658426.636577799,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 11,
+            "other/fill": 1,
+            "body/borderColor": 44,
+            "other/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#f7ca50",
+          "oklch": {
+            "c": 0.14536142269893293,
+            "h": 88.39748451513513,
+            "l": 0.8567527968248828
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1590680.9580363904,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "other"
+          ],
+          "frequency": 336,
+          "confidence": 1,
+          "prominence": 1052951.0327697673,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 17,
+            "other/fill": 1,
+            "heading/color": 50,
+            "body/borderColor": 68,
+            "heading/borderColor": 200
+          }
+        },
+        {
+          "hex": "#e9e9e9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9340252444454716
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "button"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 413100,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 2,
+            "link/backgroundColor": 3,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#1e1e1f",
+          "oklch": {
+            "c": 0.0018910214229306064,
+            "h": 286.2535079883803,
+            "l": 0.23543614463004903
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 105683.54950947977,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "body/borderColor": 16
+          }
+        },
+        {
+          "hex": "#8ec7e2",
+          "oklch": {
+            "c": 0.07013438632559844,
+            "h": 229.00219966379947,
+            "l": 0.7998895821880597
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 23617.153650453496,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 14
+          }
+        },
+        {
+          "hex": "#c9c9c9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.835905250269194
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3350.1114009346184,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2.321928094887362,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00344969535552298,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.26,
+          "background": "#f5f5f5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.07,
+          "background": "#f8f4e6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.3,
+          "background": "#e9e9e9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.66,
+          "background": "#ffffff",
+          "foreground": "#1e1e1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.28,
+          "background": "#f5f5f5",
+          "foreground": "#1e1e1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#f8f4e6",
+          "foreground": "#1e1e1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.72,
+          "background": "#e9e9e9",
+          "foreground": "#1e1e1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.52,
+          "background": "#f7ca50",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.68,
+          "background": "#c9c9c9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.42,
+          "background": "#8ec7e2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.72,
+          "background": "#f7ca50",
+          "foreground": "#1e1e1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.06,
+          "background": "#c9c9c9",
+          "foreground": "#1e1e1f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.06,
+          "background": "#8ec7e2",
+          "foreground": "#1e1e1f"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.74,
+          "background": "#666666",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.27,
+          "background": "#666666",
+          "foreground": "#f5f5f5"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.22,
+          "background": "#666666",
+          "foreground": "#f8f4e6"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.66,
+          "background": "#666666",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.9,
+          "background": "#666666",
+          "foreground": "#1e1e1f"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.84,
+          "background": "#8ec7e2",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "list",
+            "footer"
+          ],
+          "frequency": 39,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other",
+            "hero",
+            "link",
+            "footer"
+          ],
+          "frequency": 250,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|hero",
+            "columnGap|hero",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|footer",
+            "columnGap|footer"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingRight|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "hero",
+            "other"
+          ],
+          "frequency": 79,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingBottom|hero",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other",
+            "footer"
+          ],
+          "frequency": 16,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "hero",
+            "other",
+            "link"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 63,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 110,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 462,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Geist",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 88,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Switzer",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 55,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PT Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 15,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "link",
+            "image",
+            "icon",
+            "list",
+            "button",
+            "footer"
+          ],
+          "frequency": 462,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "PT Mono",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "link"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.35,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Switzer",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Geist",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Switzer",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Geist",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Switzer",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 76,
+          "family": "Switzer",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/998dbf4b-1ccc-4ca9-b10e-018519808a59.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d4891c5e-547b-4f43-a2b2-d32b0fc9be29.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/1995b916-d3f1-4b13-8eb0-c1317ab63ccb#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Alpine Bio design system\",\"item\":\"https://styles.refero.design/style/1995b916-d3f1-4b13-8eb0-c1317ab63ccb\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/1995b916-d3f1-4b13-8eb0-c1317ab63ccb#style-reference\",\"name\":\"Alpine Bio design system reference\",\"headline\":\"Alpine Bio design system | Refero Styles\",\"description\":\"Explore Alpine Bio's light Other design system: Parchment #f5f5f5, Warm Cream #f8f4e6 colors, Switzer, Geist typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/1995b916-d3f1-4b13-8eb0-c1317ab63ccb\",\"mainEntityOfPage\":\"https://styles.refero.design/style/1995b916-d3f1-4b13-8eb0-c1317ab63ccb\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Alpine Bio\",\"url\":\"https://alpbio.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/1995b916-d3f1-4b13-8eb0-c1317ab63ccb#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d4891c5e-547b-4f43-a2b2-d32b0fc9be29.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d4891c5e-547b-4f43-a2b2-d32b0fc9be29.jpg\",\"caption\":\"Screenshot of Alpine Bio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d4891c5e-547b-4f43-a2b2-d32b0fc9be29.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Alpine Bio design system\",\"Alpine Bio website design\",\"Alpine Bio colors\",\"Alpine Bio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Parchment\",\"Warm Cream\",\"Paper White\",\"Mist Gray\",\"Switzer\",\"Geist\",\"PT Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Alpine Bio design system\"},{\"@type\":\"Thing\",\"name\":\"Alpine Bio website design\"},{\"@type\":\"Thing\",\"name\":\"Alpine Bio colors\"},{\"@type\":\"Thing\",\"name\":\"Alpine Bio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-10T22:34:41.324Z\",\"dateModified\":\"2026-05-10T22:34:41.324Z\"}]}19:T4ba,**Quick Color Reference**\n- text: #1e1e1f (body), #000000 (headings)\n- background: #f5f5f5 (canvas), #f8f4e6 (warm sections)\n- border: #000000 (structural), #e9e9e9 (subtle)\n- accent: #f7ca50 (Pollen Yellow — labels only)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n\n3. *Application Showcase card*: Full-bleed product photograph (RTD shake, protein bars, or coffee cream) filling the card with 22px border-radius. White PT Mono 13px label at bottom-left of image. No border, no shadow, no internal padding.\n\n4. *Section heading + carousel*: 'Applications Showcase' in Switzer 48px weight 400, #1e1e1f, left-aligned. Two circular carousel arrow controls (Mist Gray fill, Carbon arrow) right-aligned. Row of small Carbon/light-gray dots centered below the card grid.\n\n5. *Navigation bar*: Sticky top, Mist Gray (#e9e9e9) background, 3px radius. Logo 'Alpine ❋ Bio' left, nav items (INGREDIENTS, APPLICATIONS, COMPANY, INTEL) in PT Mono 13px weight 400, #000000 center-left. Sky Blue (#8ec7e2) pill Contact Us button with arrow icon, right-aligned."
+}

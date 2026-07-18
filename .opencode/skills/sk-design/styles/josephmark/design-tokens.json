@@ -1,0 +1,262 @@
+{
+  "color": {
+    "carbon-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon Black — Primary dark canvas — hero backgrounds, full-bleed section stages, base for the editorial atmosphere"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Inverse text on dark canvases, form field backgrounds, button text on filled dark elements"
+    },
+    "stone-taupe": {
+      "$value": "#a9a498",
+      "$type": "color",
+      "$description": "Stone Taupe — The system's sole warm chromatic note — muted link states, secondary surface tints, paper-like card backgrounds that soften the black-to-gray transitions"
+    },
+    "bone-cream": {
+      "$value": "#f4f5ef",
+      "$type": "color",
+      "$description": "Bone Cream — Warm off-white surface — secondary card and panel backgrounds, breaks the clinical feel of pure white and echoes the studio's paper-based brand collateral"
+    },
+    "mist-gray": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Mist Gray — Hairline borders, dividers, list separators, subtle structural lines — the 999-occurrence border color that defines spatial relationships without visual weight"
+    },
+    "graphite": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Graphite — Mid-tone text — secondary headings, supporting copy, metadata that needs presence without competing with primary type"
+    },
+    "forest-ink": {
+      "$value": "#4e5449",
+      "$type": "color",
+      "$description": "Forest Ink — Body text on light surfaces — a desaturated dark olive that reads warmer than pure black, the only hue-leaning neutral in the system"
+    }
+  },
+  "font": {
+    "scto-grotesk-a": {
+      "$value": "Scto Grotesk A",
+      "$type": "fontFamily",
+      "$description": "The sole typeface — a custom neo-grotesque used for everything from 70px display headlines down to 12px captions. Weight 300 carries display and large headings (a deliberate anti-convention choice — most agency sites use bold for impact; Josephmark whispers with light). Weight 400 for body, 500 reserved for emphasis and interactive elements. The consistent aggressive negative tracking (-0.019em to -0.035em) tightens the grotesque's natural apertures, creating a compressed, editorial density even at body sizes."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Scto Grotesk A",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Scto Grotesk A",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Scto Grotesk A",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Scto Grotesk A",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Scto Grotesk A",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Scto Grotesk A",
+        "fontSize": "19px",
+        "fontWeight": 300,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Scto Grotesk A",
+        "fontSize": "19px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Scto Grotesk A",
+        "fontSize": "19px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Scto Grotesk A",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Scto Grotesk A",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Scto Grotesk A",
+        "fontSize": "28px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Scto Grotesk A",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Scto Grotesk A",
+        "fontSize": "70px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 70px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed dark canvas for hero, editorial sections, and project showcases"
+    },
+    "bone": {
+      "$value": "#f4f5ef",
+      "$type": "color",
+      "$description": "Surface level 1: Warm secondary surface — case study inserts, lighter content blocks"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Light form surfaces, input fields, micro-cards"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://josephmark.studio",
+      "siteName": "Josephmark",
+      "extractedAt": "2026-06-03T21:41:07.149Z",
+      "variant": "extended"
+    }
+  }
+}

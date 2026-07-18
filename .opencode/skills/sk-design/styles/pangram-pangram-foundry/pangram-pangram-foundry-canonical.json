@@ -1,0 +1,1634 @@
+{
+  "source": "https://styles.refero.design/style/6d64a4da-ef40-453e-86f7-4bfabc0c9051",
+  "uuid": "6d64a4da-ef40-453e-86f7-4bfabc0c9051",
+  "name": "Pangram Pangram Foundry",
+  "northStar": "Museum vitrine on white marble. A gallery-style type foundry where the canvas is bare stone, the lighting is flat daylight, and the only vivid color is a single orange-red label used by a curator to flag what is new.",
+  "capturedAt": "2026-07-18T07:23:13.824Z",
+  "meta": {
+    "url": "https://pangrampangram.com",
+    "siteName": "Pangram Pangram Foundry",
+    "extractedAt": "2026-06-03T21:20:44.798Z",
+    "durationMs": 41313,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 909,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only #ff2f00 as the chromatic accent — it must remain rare enough to register as editorial highlight, not decoration",
+      "Set all borders to 1px solid #000000 for cards, lists, badges, and inputs — the hairline black is the structural skeleton",
+      "Use 20px border-radius for cards, buttons, and inputs; reserve 999px exclusively for badge pills",
+      "Set hero type to Neue Montreal at 121-145px weight 600 with line-height 1.00 — the type should fill the card vertically",
+      "Use status badges (#ff2f00 New, #ffb700 Update, #bfe0ff Early Access) as the only chromatic elements in any view",
+      "Set card padding to 26px and card gaps to 15-23px to maintain the comfortable editorial density",
+      "Let full-bleed photography carry the hero sections — never apply colored backgrounds to hero cards"
+    ],
+    "donts": [
+      "Do not use #ff2f00 for body text, headings, or large surfaces — its role is badge/punctuation only",
+      "Do not apply box-shadow or heavy elevation — the system relies on 1px borders and whitespace, not depth",
+      "Do not use radius values other than 20px (cards/buttons/inputs) and 999px (badges) — the rounded softness is signature",
+      "Do not use colors other than the defined palette — no decorative blues, greens, or purples for UI chrome",
+      "Do not use multiple type families in the same view — Neue Montreal carries everything except specimen showcases",
+      "Do not set line-height above 1.30 for any size — the tight leading is essential to the editorial feel",
+      "Do not center body text or metadata — only headlines and hero type use center alignment"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ff2f00",
+        "name": "Ember Orange",
+        "role": "Orange action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "brand"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Marble White",
+        "role": "Page canvas, card surfaces, input fields, default panel backgrounds. The dominant surface tone, barely off-white for warmth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ededed",
+        "name": "Stone Gray",
+        "role": "Secondary surface for filled buttons, muted card backgrounds, image placeholder fills. One step deeper than Marble White to create gentle separation without contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Graphite",
+        "role": "Secondary text, link color, subdued metadata, helper text. Reads as muted black — never used for primary text or headings",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, all headings, hairline borders (cards, lists, badges, inputs), icons, navigation. The structural backbone — 1px borders everywhere define the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffb700",
+        "name": "Signal Yellow",
+        "role": "Yellow state accent for badges, validation surfaces, and short status labels.",
+        "group": "semantic"
+      },
+      {
+        "hex": "#bfe0ff",
+        "name": "Ice Blue",
+        "role": "Blue state accent for badges, validation surfaces, and short status labels.",
+        "group": "semantic"
+      }
+    ],
+    "layout": "Max-width 1200px centered content with full-bleed hero cards that break the container. The page model alternates between two primary section types: (1) full-width feature cards with photographic backgrounds and overlaid display type, stacked vertically with generous gaps, and (2) a 4-column grid of font specimen cards on a #fafafa background. The font grid is the workhorse — 4 columns at desktop with 15-23px gaps, 2 columns on tablet, 1 column on mobile. Section rhythm is consistent: each section separated by 92px of vertical whitespace, with 1px hairlines as occasional dividers. Navigation is a single transparent top bar, not sticky, with a centered link cluster and right-aligned utility icons. The hero is never a traditional text+image split — it's always a full-bleed image with centered type overlay.",
+    "imagery": "Full-bleed photography dominates the visual language. Each font hero features a high-resolution environmental photograph — cityscapes, food, lifestyle scenes — chosen to evoke the personality of the typeface (Montreal gets brutalist architecture, New York gets a sandwich, Palma gets cocktail citrus). Photos are unmanipulated: no duotone, no color grading, no overlays except a subtle dark gradient for text legibility. The card grid in specimen view contains no photography — just enormous 'Aa' letterforms in each typeface as the visual content. Icons are minimal, line-style, monochrome. No illustrations, no 3D renders, no abstract graphics — the type specimens and curated photography carry all visual weight.",
+    "similar": [
+      {
+        "why": "Same type-foundry curatorial aesthetic — large display type over editorial imagery, single accent color, minimal UI chrome, type-as-product approach.",
+        "business": "Dinamo (dinamo.com)"
+      },
+      {
+        "why": "Similar specimen-driven layout with full-bleed feature cards, white-canvas grid of typeface cards, and restrained chromatic palette.",
+        "business": "Grilli Type (grillitype.com)"
+      },
+      {
+        "why": "Editorial type-catalogue feel with hairline borders, generous whitespace, and large-format type specimens dominating the visual hierarchy.",
+        "business": "Klim Type Foundry (klim.co.nz)"
+      },
+      {
+        "why": "Independent foundry with the same print-catalogue-on-screen treatment: 1px structural borders, pill controls, type-first hierarchy with minimal decorative color.",
+        "business": "OHno Type (ohnotype.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "20px",
+        "small": "20px",
+        "badges": "999px",
+        "inputs": "20px",
+        "buttons": "20px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "92px",
+      "cardPadding": "26px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "design",
+    "surfaces": [
+      {
+        "hex": "#fafafa",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — the base white-marble surface"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Font specimen cards, content panels — same as canvas, separated by 1px black border"
+      },
+      {
+        "hex": "#ededed",
+        "name": "Secondary Fill",
+        "level": 2,
+        "purpose": "Filled buttons, muted card backgrounds, image placeholders — one step deeper for gentle separation"
+      },
+      {
+        "hex": "#bfe0ff",
+        "name": "Accent Surface",
+        "level": 3,
+        "purpose": "Info badge background for Early Access status"
+      },
+      {
+        "hex": "#ffb700",
+        "name": "Accent Surface",
+        "level": 4,
+        "purpose": "Warning badge background for Update status"
+      },
+      {
+        "hex": "#ff2f00",
+        "name": "Accent Surface",
+        "level": 5,
+        "purpose": "Primary accent badge background for New status and icon highlights"
+      }
+    ],
+    "northStar": "Museum vitrine on white marble. A gallery-style type foundry where the canvas is bare stone, the lighting is flat daylight, and the only vivid color is a single orange-red label used by a curator to flag what is new.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.17
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.17
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "display",
+        "size": 121,
+        "lineHeight": 1
+      },
+      {
+        "role": "display-xl",
+        "size": 145,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Font Showcase Card",
+        "role": "Full-bleed feature card for a typeface release",
+        "description": "Large rounded card (20px radius) with photographic background image filling the entire surface, title text in Neue Montreal at 121-145px weight 600 in white overlaid center, subtitle at 18px weight 400, and a small status badge pill floating above the title. The image darkens or uses a gradient overlay to ensure white text contrast."
+      },
+      {
+        "name": "Status Badge — New",
+        "role": "Highlight tag for newly released fonts",
+        "description": "Pill shape (999px radius), #ff2f00 background, white text in Neue Montreal 12px weight 500, padding 4px 12px. The signature accent — appears on most cards in the grid."
+      },
+      {
+        "name": "Status Badge — Update",
+        "role": "Highlight tag for recently updated fonts",
+        "description": "Pill shape (999px radius), #ffb700 background, black text in Neue Montreal 12px weight 500, padding 4px 12px. Yellow variant of the status badge."
+      },
+      {
+        "name": "Status Badge — Early Access",
+        "role": "Highlight tag for preview/beta releases",
+        "description": "Pill shape (999px radius), #bfe0ff background, black text in Neue Montreal 12px weight 500, padding 4px 12px. Cool blue variant for access-state distinction."
+      },
+      {
+        "name": "Primary Filled Button",
+        "role": "Main call-to-action (Explore font, Try for Free)",
+        "description": "20px border-radius, white (#fafafa) background, 1px black border, Neue Montreal 14px weight 500, black text, padding 8px 23px. The filled white pill against dark or photographic backgrounds is the signature button form."
+      },
+      {
+        "name": "Ghost Outlined Button",
+        "role": "Secondary action paired with primary button",
+        "description": "20px border-radius, transparent background, 1px white border, Neue Montreal 14px weight 500, white text, padding 8px 23px. Used alongside filled buttons on dark/image backgrounds for the secondary action."
+      },
+      {
+        "name": "Font Specimen Card (Grid View)",
+        "role": "Card showing one typeface in the font catalog grid",
+        "description": "#fafafa background, 1px black border, 20px radius, padding 26px. Contains font name at 18px weight 530, metadata (styles count, features) at 14px weight 400 in Graphite, a status badge in the top-right, and a large 'Aa' specimen at ~103px in the displayed font weight, bottom-aligned. Cards in a 4-column grid with 15-23px gaps."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top site navigation",
+        "description": "Full-width sticky bar, transparent or #fafafa background, height ~60px. Logo 'Pangram Pangram Foundry' in Neue Montreal 14px weight 530 left, nav links in Neue Montreal 14px weight 400 center (23px gap between items), search/cart/menu icons right. No background fill — relies on hairline bottom border."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Visual separator between content sections",
+        "description": "1px black border-bottom or generous vertical spacing (92px). The system prefers whitespace over rules; dividers are minimal."
+      },
+      {
+        "name": "Input Field",
+        "role": "Text input for search or forms",
+        "description": "1px black border, 20px radius, padding 24px vertical, #fafafa background, Neue Montreal 16px weight 400, black text. Generous padding makes inputs feel spacious and editorial."
+      },
+      {
+        "name": "View Toggle (Card View / List View)",
+        "role": "Switch between display modes in the font grid",
+        "description": "Inline pill control with two text options separated by a small icon. Active state uses #ff2f00 underline or indicator. Neue Montreal 14px weight 500."
+      },
+      {
+        "name": "Footer Link Group",
+        "role": "Footer navigation cluster",
+        "description": "Stacked links in Neue Montreal 14px weight 400, Graphite color, 4-8px vertical gap. Underline on hover with #666 border-bottom."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The workhorse and display face. Weight 400 for body, weight 530 for subheads and medium emphasis, weight 600 for headings and display overlays. Used at 145px for hero type, 48px for section headlines, 18-20px for body, 14px for navigation, 12px for badges. The type IS the product — this single family carries the entire brand voice.",
+        "sizes": "12, 14, 16, 18, 20, 22, 24, 36, 48, 121, 145",
+        "family": "Neue Montreal",
+        "weight": "400, 530, 600",
+        "lineHeight": "1.00, 1.10, 1.17, 1.20, 1.30",
+        "substitute": "Inter, Söhne, or Neue Haas Grotesk Display Pro"
+      },
+      {
+        "role": "Heavy display variant used for the largest typographic moments in specimen cards. Tighter, more compressed than standard weight 600.",
+        "sizes": "103, 121",
+        "family": "Neue Montreal Semibold",
+        "weight": "600",
+        "lineHeight": "1.00",
+        "substitute": "Inter Tight Bold"
+      },
+      {
+        "role": "Companion serif/contrast face shown in specimen contexts. The 700 weight provides a sharp counterpoint to the geometric Montreal.",
+        "sizes": "103, 121",
+        "family": "Neue York",
+        "weight": "400, 700",
+        "lineHeight": "1.00"
+      },
+      {
+        "role": "Specimen showcase weight — displayed at exact 103px in the grid to demonstrate each family's character at scale.",
+        "sizes": "103",
+        "family": "Frama Semibold",
+        "weight": "580",
+        "lineHeight": "1.00"
+      },
+      {
+        "role": "Specimen showcase — fixed 103px display size in the font grid.",
+        "sizes": "103",
+        "family": "Kyoto Semibold",
+        "weight": "600",
+        "lineHeight": "1.00"
+      },
+      {
+        "role": "Specimen showcase — fixed 103px display size in the font grid.",
+        "sizes": "103",
+        "family": "Neue Gstaad Bold",
+        "weight": "700",
+        "lineHeight": "1.00"
+      },
+      {
+        "role": "Specimen showcase — fixed 103px display size in the font grid.",
+        "sizes": "103",
+        "family": "Palma Fizzy Heavy",
+        "weight": "800",
+        "lineHeight": "1.00"
+      },
+      {
+        "role": "Specimen showcase — fixed 103px display size in the font grid.",
+        "sizes": "103",
+        "family": "Mori Bold",
+        "weight": "700",
+        "lineHeight": "1.00"
+      },
+      {
+        "role": "Specimen showcase — the 300 weight in the grid is deliberately whisper-light, making weight 300 headlines read as anti-convention: authority through restraint rather than volume.",
+        "sizes": "103",
+        "family": "Museum Light",
+        "weight": "300",
+        "lineHeight": "1.00"
+      },
+      {
+        "role": "Specimen showcase — fixed 103px display size in the font grid.",
+        "sizes": "103",
+        "family": "Neue Corp Semibold",
+        "weight": "500",
+        "lineHeight": "1.00"
+      },
+      {
+        "role": "Specimen showcase — fixed 103px display size in the font grid.",
+        "sizes": "103",
+        "family": "Watch Medium",
+        "weight": "485",
+        "lineHeight": "1.00"
+      },
+      {
+        "role": "Specimen showcase — fixed 103px display size in the font grid.",
+        "sizes": "103",
+        "family": "Monument Narrow Medium",
+        "weight": "525",
+        "lineHeight": "1.00"
+      },
+      {
+        "role": "Specimen showcase — fixed 103px display size in the font grid.",
+        "sizes": "103",
+        "family": "Model Plastic Regular",
+        "weight": "500",
+        "lineHeight": "1.00"
+      },
+      {
+        "role": "neue-gstaad-normal-bold — detected in extracted data but not described by AI",
+        "sizes": "103px",
+        "family": "neue-gstaad-normal-bold",
+        "weight": "700",
+        "lineHeight": "1"
+      },
+      {
+        "role": "neue-corp-normal-semibold — detected in extracted data but not described by AI",
+        "sizes": "103px",
+        "family": "neue-corp-normal-semibold",
+        "weight": "500",
+        "lineHeight": "1"
+      },
+      {
+        "role": "neue-york-normal-normal-bold — detected in extracted data but not described by AI",
+        "sizes": "121px",
+        "family": "neue-york-normal-normal-bold",
+        "weight": "400",
+        "lineHeight": "1"
+      }
+    ],
+    "description": "Pangram Pangram Foundry is a type foundry that lets the typefaces speak: an editorial canvas of near-pure grayscale, with one saturated orange-red acting as a hot accent. Hero sections are full-bleed photographic plates with massive display type overlaid in white — the type IS the product, so the UI recedes. Surfaces stay quiet (#fafafa and #ededed), borders are hairline black at 1px, and the only chromatic punctuation is the single #ff2f00 accent used for status badges, icons, and tag chrome. Components are lightweight: pill-shaped controls, ghost buttons, soft card containers, and almost no elevation. The overall effect is a curatorial print catalogue translated to screen — restrained, confident, type-first.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6d64a4da-ef40-453e-86f7-4bfabc0c9051#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Pangram Pangram Foundry design system\",\"item\":\"https://styles.refero.design/style/6d64a4da-ef40-453e-86f7-4bfabc0c9051\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6d64a4da-ef40-453e-86f7-4bfabc0c9051#style-reference\",\"name\":\"Pangram Pangram Foundry design system reference\",\"headline\":\"Pangram Pangram Foundry design system | Refero Styles\",\"description\":\"Explore Pangram Pangram Foundry's light Design design system: Ember Orange #ff2f00, Marble White #fafafa colors, Neue Montreal, Neue Montreal Semibold...\",\"url\":\"https://styles.refero.design/style/6d64a4da-ef40-453e-86f7-4bfabc0c9051\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6d64a4da-ef40-453e-86f7-4bfabc0c9051\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Pangram Pangram Foundry\",\"url\":\"https://pangrampangram.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6d64a4da-ef40-453e-86f7-4bfabc0c9051#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e83c2587-8fe1-45c4-86f6-038e54962f6c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e83c2587-8fe1-45c4-86f6-038e54962f6c.jpg\",\"caption\":\"Screenshot of Pangram Pangram Foundry\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e83c2587-8fe1-45c4-86f6-038e54962f6c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Pangram Pangram Foundry design system\",\"Pangram Pangram Foundry website design\",\"Pangram Pangram Foundry colors\",\"Pangram Pangram Foundry typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ember Orange\",\"Marble White\",\"Stone Gray\",\"Graphite\",\"Neue Montreal\",\"Neue Montreal Semibold\",\"Neue York\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Pangram Pangram Foundry design system\"},{\"@type\":\"Thing\",\"name\":\"Pangram Pangram Foundry website design\"},{\"@type\":\"Thing\",\"name\":\"Pangram Pangram Foundry colors\"},{\"@type\":\"Thing\",\"name\":\"Pangram Pangram Foundry typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:33:11.444Z\",\"dateModified\":\"2026-04-30T01:33:11.444Z\"}]}19:T807,Quick Color Reference:\n- text: #000000\n- background: #fafafa\n- border: #000000 (1px hairline)\n- secondary surface: #ededed\n- muted text: #666666\n- accent: #ff2f00 (badges, icons, highlights only)\n- primary action: #ff2f00 (filled action)\n\nExample Component Prompts:\n\n1. Create a hero font showcase card: full-bleed background image filling a 20px-radius card. Centered title in Neue Montreal 121px weight 600, color #ffffff, line-height 1.00. Subtitle below in Neue Montreal 18px weight 400, #ffffff. A #ff2f00 status pill badge (999px radius, white text, 12px) floats above the title. A white filled pill button ('Explore font') and a white ghost outlined button ('Try for Free') sit side by side at the bottom center — both 20px radius, padding 8px 23px, 14px weight 500.\n\n2. Create a font specimen grid card: #fafafa background, 1px #000000 border, 20px radius, 26px padding. Font name at top-left in Neue Montreal 18px weight 530, #000000. Metadata below in Neue Montreal 14px weight 400, #666666. A #ff2f00 'New' pill badge (999px radius, 12px weight 500, white text) positioned top-right. A massive 'Aa' at ~103px in the showcased font, bottom-aligned, #000000. Cards arrange in a 4-column grid with 20px gaps.\n\n3. Create a status badge: pill shape (999px radius), 4px 12px padding, Neue Montreal 12px weight 500. Three variants: #ff2f00 bg + white text (New), #ffb700 bg + black text (Update), #bfe0ff bg + black text (Early Access).\n\n4. Create the top navigation bar: full-width, transparent background, ~60px height. 'Pangram Pangram Foundry' logo at far left in Neue Montreal 14px weight 530. Five nav links center-aligned in Neue Montreal 14px weight 400, #000000, with 23px gap between items. Search icon, cart icon, and hamburger menu icon right-aligned, all 1px stroke black.\n\n5. Create a filled action button: 20px border-radius, #fafafa background, 1px #000000 border, Neue Montreal 14px weight 500, #000000 text, padding 8px 23px. Inline display, no shadow. This is the 'Explore font' button — the system's only filled button variant."
+      },
+      {
+        "title": "Type System Rules",
+        "content": "The foundry is a single-family UI system: Neue Montreal carries everything from 12px captions to 145px display. Weight 400 = body, weight 530 = subhead/card titles, weight 600 = headings and display. Line-height tightens with size: 1.30 at 12-14px, 1.20 at 16-20px, 1.10 at 36-48px, 1.00 at 121px+. No letter-spacing adjustment. No italic in the primary face. Specimen pages are the only place secondary typefaces appear, always at fixed 103px for visual comparison."
+      }
+    ],
+    "elevationPhilosophy": "The design system deliberately avoids box-shadow and elevation. Separation is achieved exclusively through 1px solid #000000 hairline borders and whitespace. The flat, borderless depth creates a print-catalogue feel — surfaces sit on the page like printed sheets rather than floating digital cards. The only 'depth' technique is a subtle dark gradient overlay on hero images to ensure white text contrast."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "link",
+            "other",
+            "heading",
+            "body",
+            "nav",
+            "button",
+            "hero",
+            "badge",
+            "icon",
+            "list",
+            "card",
+            "image",
+            "input"
+          ],
+          "frequency": 3168,
+          "confidence": 1,
+          "prominence": 117705012.68417008,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "nav/color": 28,
+            "body/color": 58,
+            "card/color": 109,
+            "hero/color": 1,
+            "icon/color": 11,
+            "link/color": 11,
+            "list/color": 99,
+            "nav/stroke": 7,
+            "other/fill": 52,
+            "badge/color": 62,
+            "icon/stroke": 2,
+            "image/color": 31,
+            "input/color": 1,
+            "other/color": 148,
+            "button/color": 37,
+            "other/stroke": 1,
+            "heading/color": 17,
+            "nav/borderColor": 112,
+            "body/borderColor": 232,
+            "card/borderColor": 436,
+            "hero/borderColor": 4,
+            "icon/borderColor": 44,
+            "link/borderColor": 44,
+            "list/borderColor": 396,
+            "badge/borderColor": 248,
+            "image/borderColor": 124,
+            "input/borderColor": 4,
+            "other/borderColor": 592,
+            "button/borderColor": 160,
+            "heading/borderColor": 68,
+            "body/backgroundColor": 16,
+            "card/backgroundColor": 1,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#fafafa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9851036517304731
+          },
+          "contexts": [
+            "card",
+            "other",
+            "badge",
+            "heading",
+            "body",
+            "image",
+            "button",
+            "input"
+          ],
+          "frequency": 681,
+          "confidence": 1,
+          "prominence": 8615286.38524742,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 19,
+            "card/color": 7,
+            "badge/color": 19,
+            "image/color": 5,
+            "other/color": 55,
+            "button/color": 7,
+            "heading/color": 24,
+            "body/borderColor": 76,
+            "card/borderColor": 28,
+            "badge/borderColor": 76,
+            "image/borderColor": 20,
+            "other/borderColor": 220,
+            "button/borderColor": 12,
+            "heading/borderColor": 96,
+            "input/backgroundColor": 1,
+            "button/backgroundColor": 16
+          }
+        },
+        {
+          "hex": "#ededed",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9461052851327489
+          },
+          "contexts": [
+            "button",
+            "card",
+            "image"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 6821499.888345345,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 29,
+            "image/backgroundColor": 4,
+            "button/backgroundColor": 17
+          }
+        },
+        {
+          "hex": "#ff2f00",
+          "oklch": {
+            "c": 0.24312452298197818,
+            "h": 32.1293009380462,
+            "l": 0.643793702242746
+          },
+          "contexts": [
+            "badge",
+            "button",
+            "icon",
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 81,
+          "confidence": 1,
+          "prominence": 394892.98521484766,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 1,
+            "link/color": 1,
+            "other/fill": 4,
+            "other/color": 1,
+            "button/color": 1,
+            "body/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 4,
+            "other/borderColor": 4,
+            "button/borderColor": 8,
+            "badge/backgroundColor": 47,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "card",
+            "link"
+          ],
+          "frequency": 495,
+          "confidence": 1,
+          "prominence": 68938.35739366856,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/color": 12,
+            "link/color": 87,
+            "card/borderColor": 48,
+            "link/borderColor": 348
+          }
+        },
+        {
+          "hex": "#bfe0ff",
+          "oklch": {
+            "c": 0.055279201666920894,
+            "h": 246.7862573578391,
+            "l": 0.8928869192511261
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 4130,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "badge/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ffb700",
+          "oklch": {
+            "c": 0.170928527179632,
+            "h": 80.01277930285227,
+            "l": 0.825295966708069
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3257.665117126969,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "badge/backgroundColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0123874706485157,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.12,
+          "background": "#fafafa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.94,
+          "background": "#ededed",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.32,
+          "background": "#bfe0ff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.03,
+          "background": "#ffb700",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.66,
+          "background": "#ff2f00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.5,
+          "background": "#fafafa",
+          "foreground": "#666666"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.9,
+          "background": "#ededed",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.19,
+          "background": "#bfe0ff",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.66,
+          "background": "#000000",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.56,
+          "background": "#ff2f00",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.29,
+          "background": "#ffb700",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.17,
+          "background": "#ededed",
+          "foreground": "#ff2f00"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.71,
+          "background": "#bfe0ff",
+          "foreground": "#ff2f00"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.13,
+          "background": "#ffb700",
+          "foreground": "#ff2f00"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.67,
+          "background": "#ffb700",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.55,
+          "background": "#ff2f00",
+          "foreground": "#666666"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.31,
+          "background": "#bfe0ff",
+          "foreground": "#fafafa"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#ededed",
+          "foreground": "#fafafa"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 20,
+          "contexts": [
+            "link",
+            "button",
+            "card",
+            "other",
+            "input"
+          ],
+          "frequency": 95
+        },
+        {
+          "value": 999,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 54
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "badge",
+            "body",
+            "other"
+          ],
+          "frequency": 141,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "marginRight|body",
+            "marginLeft|body",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "button",
+            "card",
+            "badge",
+            "list"
+          ],
+          "frequency": 271,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginTop|card",
+            "rowGap|badge",
+            "columnGap|badge",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "badge",
+            "button"
+          ],
+          "frequency": 140,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|button",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "list",
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list",
+            "marginBottom|list",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "card"
+          ],
+          "frequency": 82,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "heading"
+          ],
+          "frequency": 88,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginLeft|button",
+            "marginTop|heading",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "card",
+            "other",
+            "list",
+            "button"
+          ],
+          "frequency": 164,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginTop|other",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 31,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 31,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 83,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 92,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero"
+          ]
+        },
+        {
+          "value": 103,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Neue Montreal",
+          "source": "custom",
+          "weights": [
+            400,
+            530,
+            600
+          ],
+          "frequency": 839,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "neue-montreal-semibold",
+          "source": "custom",
+          "weights": [
+            600
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "neue-york-normal-normal-bold",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "neue-york-normal-bold",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "frama-semibold",
+          "source": "custom",
+          "weights": [
+            580
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "kyoto-semibold",
+          "source": "custom",
+          "weights": [
+            600
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "neue-gstaad-normal-bold",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "palma-fizzy-heavy",
+          "source": "custom",
+          "weights": [
+            800
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "mori-bold",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "museum-light",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "neue-corp-normal-semibold",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "watch-medium",
+          "source": "custom",
+          "weights": [
+            485
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "monument-narrow-medium",
+          "source": "custom",
+          "weights": [
+            525
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "model-plastic-regular",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 0.92
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 54,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon",
+            "link",
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "button",
+            "nav",
+            "body"
+          ],
+          "frequency": 72,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "card",
+            "badge",
+            "body",
+            "image",
+            "list",
+            "button",
+            "icon",
+            "link"
+          ],
+          "frequency": 594,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 27,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 530,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Montreal",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Neue Montreal",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 103,
+          "family": "neue-montreal-semibold",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 103,
+          "family": "neue-york-normal-bold",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 103,
+          "family": "frama-semibold",
+          "weight": 580,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 103,
+          "family": "kyoto-semibold",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 103,
+          "family": "neue-gstaad-normal-bold",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 103,
+          "family": "palma-fizzy-heavy",
+          "weight": 800,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 103,
+          "family": "mori-bold",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 103,
+          "family": "museum-light",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 103,
+          "family": "neue-corp-normal-semibold",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 103,
+          "family": "watch-medium",
+          "weight": 485,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 103,
+          "family": "monument-narrow-medium",
+          "weight": 525,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 103,
+          "family": "model-plastic-regular",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 121,
+          "family": "Neue Montreal",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 121,
+          "family": "neue-montreal-semibold",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 121,
+          "family": "neue-york-normal-normal-bold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 145,
+          "family": "Neue Montreal",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c8b2610c-2645-4a10-b3d4-01c6be506726.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e83c2587-8fe1-45c4-86f6-038e54962f6c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6d64a4da-ef40-453e-86f7-4bfabc0c9051#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Pangram Pangram Foundry design system\",\"item\":\"https://styles.refero.design/style/6d64a4da-ef40-453e-86f7-4bfabc0c9051\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6d64a4da-ef40-453e-86f7-4bfabc0c9051#style-reference\",\"name\":\"Pangram Pangram Foundry design system reference\",\"headline\":\"Pangram Pangram Foundry design system | Refero Styles\",\"description\":\"Explore Pangram Pangram Foundry's light Design design system: Ember Orange #ff2f00, Marble White #fafafa colors, Neue Montreal, Neue Montreal Semibold...\",\"url\":\"https://styles.refero.design/style/6d64a4da-ef40-453e-86f7-4bfabc0c9051\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6d64a4da-ef40-453e-86f7-4bfabc0c9051\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Pangram Pangram Foundry\",\"url\":\"https://pangrampangram.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6d64a4da-ef40-453e-86f7-4bfabc0c9051#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e83c2587-8fe1-45c4-86f6-038e54962f6c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e83c2587-8fe1-45c4-86f6-038e54962f6c.jpg\",\"caption\":\"Screenshot of Pangram Pangram Foundry\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e83c2587-8fe1-45c4-86f6-038e54962f6c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Pangram Pangram Foundry design system\",\"Pangram Pangram Foundry website design\",\"Pangram Pangram Foundry colors\",\"Pangram Pangram Foundry typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Ember Orange\",\"Marble White\",\"Stone Gray\",\"Graphite\",\"Neue Montreal\",\"Neue Montreal Semibold\",\"Neue York\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Pangram Pangram Foundry design system\"},{\"@type\":\"Thing\",\"name\":\"Pangram Pangram Foundry website design\"},{\"@type\":\"Thing\",\"name\":\"Pangram Pangram Foundry colors\"},{\"@type\":\"Thing\",\"name\":\"Pangram Pangram Foundry typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-30T01:33:11.444Z\",\"dateModified\":\"2026-04-30T01:33:11.444Z\"}]}19:T807,Quick Color Reference:\n- text: #000000\n- background: #fafafa\n- border: #000000 (1px hairline)\n- secondary surface: #ededed\n- muted text: #666666\n- accent: #ff2f00 (badges, icons, highlights only)\n- primary action: #ff2f00 (filled action)\n\nExample Component Prompts:\n\n1. Create a hero font showcase card: full-bleed background image filling a 20px-radius card. Centered title in Neue Montreal 121px weight 600, color #ffffff, line-height 1.00. Subtitle below in Neue Montreal 18px weight 400, #ffffff. A #ff2f00 status pill badge (999px radius, white text, 12px) floats above the title. A white filled pill button ('Explore font') and a white ghost outlined button ('Try for Free') sit side by side at the bottom center — both 20px radius, padding 8px 23px, 14px weight 500.\n\n2. Create a font specimen grid card: #fafafa background, 1px #000000 border, 20px radius, 26px padding. Font name at top-left in Neue Montreal 18px weight 530, #000000. Metadata below in Neue Montreal 14px weight 400, #666666. A #ff2f00 'New' pill badge (999px radius, 12px weight 500, white text) positioned top-right. A massive 'Aa' at ~103px in the showcased font, bottom-aligned, #000000. Cards arrange in a 4-column grid with 20px gaps.\n\n3. Create a status badge: pill shape (999px radius), 4px 12px padding, Neue Montreal 12px weight 500. Three variants: #ff2f00 bg + white text (New), #ffb700 bg + black text (Update), #bfe0ff bg + black text (Early Access).\n\n4. Create the top navigation bar: full-width, transparent background, ~60px height. 'Pangram Pangram Foundry' logo at far left in Neue Montreal 14px weight 530. Five nav links center-aligned in Neue Montreal 14px weight 400, #000000, with 23px gap between items. Search icon, cart icon, and hamburger menu icon right-aligned, all 1px stroke black.\n\n5. Create a filled action button: 20px border-radius, #fafafa background, 1px #000000 border, Neue Montreal 14px weight 500, #000000 text, padding 8px 23px. Inline display, no shadow. This is the 'Explore font' button — the system's only filled button variant."
+}

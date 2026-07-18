@@ -1,0 +1,93 @@
+@theme {
+  /* Colors */
+  --color-midnight-canvas: #000814;
+  --color-deep-surface: #010d1e;
+  --color-indigo-surface: #001533;
+  --color-cobalt-surface: #00215e;
+  --color-paper-white: #ffffff;
+  --color-fog: #ccced0;
+  --color-mist: #999ca1;
+  --color-steel-border: #11263b;
+  --color-signal-blue: #1c6cff;
+  --color-tag-coral: #ff4433;
+  --color-tag-lime: #00cc4b;
+  --color-tag-tangerine: #ff8833;
+  --color-tag-hot-pink: #ff33aa;
+  --color-tag-violet: #9019e6;
+  --color-tag-sunflower: #ffcc02;
+  --color-tag-sky: #00acfe;
+  --color-tag-ember: #ea687c;
+  --color-tag-olive: #94ae43;
+  --color-tag-slate: #5c6f8a;
+
+  /* Typography */
+  --font-sans-serif: 'sans-serif', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-jokker: 'Jokker', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-matter-variable-thin: 'Matter Variable Thin', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-matter-trial-semibold: 'Matter-TRIAL SemiBold', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.4;
+  --tracking-body-sm: -0.14px;
+  --text-body: 16px;
+  --leading-body: 1.4;
+  --tracking-body: -0.16px;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.6;
+  --tracking-body-lg: -0.18px;
+  --text-subheading: 24px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.24px;
+  --text-eyebrow: 28px;
+  --leading-eyebrow: 1;
+  --tracking-eyebrow: 1.12px;
+  --text-heading-sm: 38px;
+  --leading-heading-sm: 1.3;
+  --tracking-heading-sm: -0.76px;
+  --text-heading: 56px;
+  --leading-heading: 1.2;
+  --tracking-heading: -1.12px;
+  --text-heading-lg: 64px;
+  --leading-heading-lg: 1.1;
+  --tracking-heading-lg: -0.64px;
+  --text-display: 148px;
+  --leading-display: 0.9;
+  --tracking-display: -2.96px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-88: 88px;
+  --spacing-112: 112px;
+  --spacing-160: 160px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 32px;
+  --radius-3xl-3: 40px;
+  --radius-full: 48px;
+  --radius-full-2: 80px;
+  --radius-full-3: 120px;
+
+  /* Shadows */
+  --shadow-md: rgba(255, 255, 255, 0.16) 4px 4px 16px -4px inset, rgba(0, 0, 0, 0.2) -4px -4px 16px -4px inset, rgba(255, 255, 255, 0.08) 4px 4px 8px 0px inset, rgba(255, 255, 255, 0.4) 1px 1px 1px -0.5px inset;
+  --shadow-md-2: rgba(38, 113, 217, 0.08) 0px 0px 12px 0px inset, rgba(0, 0, 0, 0.32) 0px -4px 8px 0px inset;
+}

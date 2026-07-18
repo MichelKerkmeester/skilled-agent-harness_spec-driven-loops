@@ -1,0 +1,449 @@
+{
+  "color": {
+    "signal-blue": {
+      "$value": "#528fff",
+      "$type": "color",
+      "$description": "Signal Blue — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "button-blue": {
+      "$value": "#1253ff",
+      "$type": "color",
+      "$description": "Button Blue — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "voltage-yellow": {
+      "$value": "#f1f607",
+      "$type": "color",
+      "$description": "Voltage Yellow — Rare text accent — highlight punctuation, featured labels, emphasis. Used sparingly, only when a word needs to flash against the dark canvas. Never on backgrounds"
+    },
+    "carbon": {
+      "$value": "#121214",
+      "$type": "color",
+      "$description": "Carbon — Primary page canvas, card surfaces, input fields, footer. The dominant working surface at 425 occurrences across every context"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Deepest dark — image containers, nav surface, full-bleed backgrounds. Creates the bottom of the surface stack"
+    },
+    "platinum": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Platinum — Primary text, inverted button text, icon fills. The only true white in the system; appears 1506 times across every text context"
+    },
+    "graphite": {
+      "$value": "#232426",
+      "$type": "color",
+      "$description": "Graphite — Dominant canvas background, secondary button surface. Sits one step lighter than Carbon, used when a surface needs to feel like a different plane without using shadow"
+    },
+    "fog": {
+      "$value": "#a6a8ad",
+      "$type": "color",
+      "$description": "Fog — Muted text, nav items, secondary labels, inactive links. The first step down from white in the type hierarchy"
+    },
+    "ash": {
+      "$value": "#c8c9cc",
+      "$type": "color",
+      "$description": "Ash — Button borders, icon strokes, hairline dividers, ghost control outlines. The border that doesn't feel like a border"
+    },
+    "slate": {
+      "$value": "#63656d",
+      "$type": "color",
+      "$description": "Slate — Borders, dividers, inactive controls. Darker than Ash for when a divider needs to recede further"
+    },
+    "iron": {
+      "$value": "#45464d",
+      "$type": "color",
+      "$description": "Iron — Elevated surfaces, button borders, nav separators. The highest dark in the stack — used for the 1px inset stroke that replaces shadows"
+    }
+  },
+  "font": {
+    "intervariable-custom": {
+      "$value": "InterVariable (custom)",
+      "$type": "fontFamily",
+      "$description": "Workhorse for all UI text — body, nav, buttons, inputs, cards, footer. The variable axis allows weight shifts (400→500→600→700) within a single family. Universal -0.015em tracking creates a compact, efficient reading rhythm across every size."
+    },
+    "soehnebreit-custom": {
+      "$value": "SoehneBreit (custom)",
+      "$type": "fontFamily",
+      "$description": "Editorial display headlines. The wider, geometric cut of SoehneBreit at weight 400 creates a distinctive voice — headlines don't shout, they announce with quiet authority. The 0.071em tracking (applied at 14px) appears on uppercase eyebrow labels, creating the system's only wide-tracked text. Weight 400 only — bold is never used."
+    },
+    "soehne-custom": {
+      "$value": "Soehne (custom)",
+      "$type": "fontFamily",
+      "$description": "Subheadings — bridges the gap between SoehneBreit display and Inter body. Used at 20px for secondary headings that need editorial weight without display scale."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "SoehneBreit",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Soehne",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "26px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "SoehneBreit",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "SoehneBreit",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "SoehneBreit",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "SoehneBreit",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "SoehneBreit",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 54px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    },
+    "full-5": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full-5"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.07) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "graphite-canvas": {
+      "$value": "#232426",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the dominant working surface"
+    },
+    "carbon": {
+      "$value": "#121214",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, sections, input fields"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 2: Deepest dark — full-bleed images, nav surface"
+    },
+    "iron": {
+      "$value": "#45464d",
+      "$type": "color",
+      "$description": "Surface level 3: Elevated borders, inset strokes, the system's only 'raised' element"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://splice.com",
+      "siteName": "Splice",
+      "extractedAt": "2026-06-03T19:54:10.025Z",
+      "variant": "extended"
+    }
+  }
+}

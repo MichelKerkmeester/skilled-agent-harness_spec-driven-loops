@@ -1,0 +1,914 @@
+{
+  "source": "https://styles.refero.design/style/e287e026-3433-4a1d-9b23-9a65f8b9c138",
+  "uuid": "e287e026-3433-4a1d-9b23-9a65f8b9c138",
+  "name": "Stink Studios",
+  "northStar": "cinema studio at midnight — the projector hums, the room is black, only the reel glows.",
+  "capturedAt": "2026-07-18T07:21:38.330Z",
+  "meta": {
+    "url": "https://www.stinkstudios.com",
+    "siteName": "Stink Studios",
+    "extractedAt": "2026-06-03T21:42:02.371Z",
+    "durationMs": 38657,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 292,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 52px Helvetica weight 300 for any logo or hero wordmark, with -2.08px letter-spacing to compress the caps into a cinematic block",
+      "Reserve 60px Times New Roman weight 400 for editorial statements and manifesto copy — never for navigation, labels, or body",
+      "Apply 0.10em positive letter-spacing to all Courier New 14px text (tags, badges, index numbers) to read as slate-marking texture",
+      "Let the page canvas be #000000 universally — do not introduce light section bands; the system is monochrome by intention",
+      "Use 20px gap between navigation links and 60px minimum margin-top between major editorial sections",
+      "Set every image to full-bleed (100vw) with 0px radius when it is the section's primary content",
+      "Signal interactivity through a 1px white bottom border appearing on hover — never through color shifts or background fills"
+    ],
+    "donts": [
+      "Do not introduce colored buttons, colored backgrounds, or gradient UI elements — the accent palette belongs to the work, not the chrome",
+      "Do not use box-shadow or elevation on cards, buttons, or navigation — this system is deliberately flat; depth comes from imagery, not stacking",
+      "Do not use rounded corners on cards or work tiles — 0px radius is the signature; rounded containers would break the cinematic frame",
+      "Do not combine the serif display (Times New Roman) with the monospace (Courier New) on the same line or within the same component",
+      "Do not add light-mode toggle, theme switcher UI, or alternate color schemes — dark is the only mode",
+      "Do not use font-weight above 700 for Helvetica — the system lives in the 300-700 range; black weight would break the whisper-thin display logic",
+      "Do not pad work cards with internal whitespace — imagery bleeds to the cell edges, and titles overlay the image directly"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Primary text, heading strokes, nav links, icon strokes, badge fills, logo type — the only high-contrast value in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#050505",
+        "name": "Soot",
+        "role": "Subtle tonal break from pure black for nested surfaces and hairline borders that need to feel present without breaking the dark mode",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e1695e",
+        "name": "Ember Coral",
+        "role": "Accent warmth for marquee display moments, logo gradient highlight, and select project card color treatments — borrowed from the work, never applied to UI chrome",
+        "group": "accent"
+      },
+      {
+        "hex": "#573332",
+        "name": "Burnt Sienna",
+        "role": "Deep warm surface for warm-toned project cards and content imagery containers — the shadow side of the coral accent",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed single-column composition with editorial vertical rhythm. The page opens with a 100vh cinema-set hero image with a giant wordmark overlaid. Navigation is not a top bar — it is a bottom-right anchored link cluster, giving the hero maximum negative space. Below the fold, the layout shifts to a wide single column of typographic manifesto blocks (60px Times New Roman) separated by 60-180px vertical gaps. The work showcase is a 2-column grid of full-bleed project stills, no gutters or card padding. No sidebar, no mega-menu, no sticky header. Every section bleeds to both viewport edges. The overall density is spacious: a handful of large elements per screen, each given room to breathe against the black canvas.",
+    "imagery": "Full-bleed cinema-set photography and behind-the-scenes production stills dominate the hero — moody blue-lit studio environments with director's chairs, ladders, and lighting rigs. Work grid tiles are large-format project stills: outdoor advertising photography (the pink/magenta HR & Payroll transit poster), urban street scenes with branded signage (Canva storefront), and lifestyle editorial crops. Imagery is always unframed, 0px radius, edge-to-edge. No illustrations, no 3D renders, no abstract graphics. Icons are minimal: a single small circular toggle glyph in the nav cluster. Photography treatment is high-contrast and color-saturated — the projects are where the chroma lives, never the UI.",
+    "similar": [
+      {
+        "why": "Same editorial confidence — large serif and sans display type on near-monochrome backgrounds, full-bleed project imagery, minimal navigation, and a deliberate rejection of UI decoration in favor of letting the work breathe",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Dark-mode agency site with a single full-bleed hero reel, bottom-corner minimal nav, large negative-tracked type for section headers, and content grids that let motion work speak without colored UI chrome",
+        "business": "Buck (buck.co)"
+      },
+      {
+        "why": "Austere black canvas with white-only typography, no card backgrounds or borders, work showcased as full-bleed image tiles, and a typographic-first hierarchy that treats copy as the primary design element",
+        "business": "Gunnercooke"
+      },
+      {
+        "why": "Creative agency that uses cinematic full-bleed video heroes, serif editorial pull-quotes, and a flat dark interface where the only visual structure comes from type scale and generous whitespace",
+        "business": "Manual (manual.co)"
+      },
+      {
+        "why": "Dark-canvas portfolio site with zero-radius image containers, oversized display headlines in negative tracking, and a nav that disappears into the layout rather than competing with the work",
+        "business": "Locomotive (locomotive.ca)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "inputs": "10px",
+        "buttons": "0px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "60-180px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Universal page canvas — every section sits on absolute black"
+      },
+      {
+        "hex": "#050505",
+        "name": "Soot",
+        "level": 1,
+        "purpose": "Nested containers and form fields needing barely-visible separation from canvas"
+      }
+    ],
+    "northStar": "cinema studio at midnight — the projector hums, the room is black, only the reel glows.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 1.4
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.3,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.15,
+        "letterSpacing": -0.38
+      },
+      {
+        "role": "heading-sm",
+        "size": 23,
+        "lineHeight": 1,
+        "letterSpacing": -0.69
+      },
+      {
+        "role": "heading",
+        "size": 52,
+        "lineHeight": 0.9,
+        "letterSpacing": -2.08
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1,
+        "letterSpacing": -3
+      }
+    ],
+    "components": [
+      {
+        "name": "Full-Bleed Hero Reel",
+        "role": "Opening cinematic frame",
+        "description": "100vw × 100vh image or video, no overlay, no gradient. Logo sits top-left or top-center in 52px Helvetica 300 white with optional warm gold-to-white gradient on accent characters. Navigation anchors to bottom-right corner at 16px/400 white, 20px gap between links, no background or border."
+      },
+      {
+        "name": "Manifesto Statement Block",
+        "role": "Editorial typographic section",
+        "description": "Black #000000 background, 60px Times New Roman 400 white text at -3px tracking, left-aligned with generous left margin (60px+). Line-height 1.00 keeps the serif tight. No icon, no border, no decoration — the text IS the design."
+      },
+      {
+        "name": "Work Grid Card",
+        "role": "Project showcase tile",
+        "description": "No border, no radius, no padding. Full-bleed image filling its grid cell. Project title overlays bottom-left in 19px Helvetica 400 white when the image is dark, or in black when the image is light. No hover lift or shadow — cards simply swap or dim on interaction."
+      },
+      {
+        "name": "Bottom-Right Nav Cluster",
+        "role": "Primary site navigation",
+        "description": "Fixed or anchored to the bottom-right of the viewport. 16px Helvetica 400 white links — 'Work', 'About', 'News', 'Contact' — separated by 20px gap. No background, no border, no hamburger. Optionally followed by a small circular icon button (16px diameter, 10px radius)."
+      },
+      {
+        "name": "Monospace Tag",
+        "role": "Project metadata label",
+        "description": "14px Courier New 400 white, 0.10em positive tracking, no background or border. Sits flush above project titles as a category index. Functions as graphic texture more than information design."
+      },
+      {
+        "name": "Ghost Link",
+        "role": "Inline text link",
+        "description": "16-19px Helvetica 400 white, underline removed by default, 1px white bottom border appears on hover. No color shift, no fill — the border treatment alone signals interactivity."
+      },
+      {
+        "name": "Full-Bleed Image Block",
+        "role": "Immersive project frame",
+        "description": "100vw width, variable height, 0px radius, no caption or overlay. Image bleeds to all four edges. Used between text sections to punctuate the editorial rhythm."
+      },
+      {
+        "name": "Circular Icon Button",
+        "role": "Compact utility trigger",
+        "description": "10px border-radius (nearly circular at small sizes), 1px white border on #000000 fill, 16px white icon centered. Used for theme toggle or close actions in the corner of overlays."
+      },
+      {
+        "name": "Text Input",
+        "role": "Form field on dark canvas",
+        "description": "10px border-radius, 1px #050505 border, 16px horizontal padding, 16px Helvetica 400 white text on #000000 fill. Placeholder in #050505. No focus glow — focus is signaled by border thickening to 1px white."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary workhorse — body copy at 16px/400, secondary headings at 23px/400, nav and links at 16px/400, and the massive 52px/300 hero logo treatment. Weight 300 is the default for large display: whisper-thin against the heavy black canvas creates a neon-on-velvet tension.",
+        "sizes": "16, 19, 23, 52",
+        "family": "Helvetica",
+        "weight": "300, 400, 700",
+        "lineHeight": "1.15-1.30 body, 0.90-1.00 display",
+        "substitute": "Helvetica Neue, Inter, Arial",
+        "letterSpacing": "-0.04em at 52px (-2.08px), -0.03em at 23px (-0.69px), -0.02em at 19px (-0.38px), tight tracking throughout"
+      },
+      {
+        "role": "Display serif for editorial pull-quotes and manifesto text — the 60px size with -0.05em tracking creates a fashion-magazine weight that contrasts Helvetica's geometric neutrality. Used sparingly for sentences that need gravitas.",
+        "sizes": "60",
+        "family": "Times New Roman",
+        "weight": "400",
+        "lineHeight": "1.00",
+        "substitute": "Playfair Display, GT Super, Lora",
+        "letterSpacing": "-0.05em at 60px (-3.0px)"
+      },
+      {
+        "role": "Monospace for tags, badges, index numbers, and micro-labels — the 0.10em positive tracking turns utility text into graphic texture, like film slate markings",
+        "sizes": "14",
+        "family": "Courier New",
+        "weight": "400",
+        "lineHeight": "1.43",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Space Mono",
+        "letterSpacing": "0.10em at 14px (1.4px)"
+      }
+    ],
+    "description": "Stink Studios operates as a cinematic canvas: a near-monochrome world where black absorbs everything except the work, and typography carries every structural decision. The visual language is deliberately austere — no UI chrome, no decorative gradients on controls, no colored buttons pulling attention from the reels. Instead, a film-studio hero (blue-lit, full-bleed) establishes the world, large confident headlines in negative-tracked Helvetica and Times New Roman do the talking, and warmth arrives only through the work itself. The system is built for an AI agent to produce gallery-like pages where large type and full-bleed media do the heavy lifting, and every interactive element recedes into a flat black plane.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e287e026-3433-4a1d-9b23-9a65f8b9c138#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Stink Studios design system\",\"item\":\"https://styles.refero.design/style/e287e026-3433-4a1d-9b23-9a65f8b9c138\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e287e026-3433-4a1d-9b23-9a65f8b9c138#style-reference\",\"name\":\"Stink Studios design system reference\",\"headline\":\"Stink Studios design system | Refero Styles\",\"description\":\"Explore Stink Studios's dark Agency design system: Void #000000, Bone #ffffff colors, Helvetica, Times New Roman typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e287e026-3433-4a1d-9b23-9a65f8b9c138\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e287e026-3433-4a1d-9b23-9a65f8b9c138\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Stink Studios\",\"url\":\"https://www.stinkstudios.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e287e026-3433-4a1d-9b23-9a65f8b9c138#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a6d0b947-27c3-420e-b5b7-57c8aaf89f66.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a6d0b947-27c3-420e-b5b7-57c8aaf89f66.jpg\",\"caption\":\"Screenshot of Stink Studios\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a6d0b947-27c3-420e-b5b7-57c8aaf89f66.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Stink Studios design system\",\"Stink Studios website design\",\"Stink Studios colors\",\"Stink Studios typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void\",\"Bone\",\"Soot\",\"Ember Coral\",\"Helvetica\",\"Times New Roman\",\"Courier New\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Stink Studios design system\"},{\"@type\":\"Thing\",\"name\":\"Stink Studios website design\"},{\"@type\":\"Thing\",\"name\":\"Stink Studios colors\"},{\"@type\":\"Thing\",\"name\":\"Stink Studios typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:11:06.973Z\",\"dateModified\":\"2026-04-30T02:11:06.973Z\"}]}19:T5c1,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- border: #050505\n- accent: #e1695e (project content only, not UI)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero with wordmark**: Full-viewport (100vw × 100vh) cinematic image as background. Centered or top-left wordmark at 52px Helvetica weight 300 in #ffffff with -2.08px letter-spacing and 0.90 line-height. No overlay gradient, no button — just the image and the type.\n\n2. **Manifesto section**: #000000 background, 60px Times New Roman weight 400 in #ffffff at -3px letter-spacing, left-aligned with 60px left margin, 1.00 line-height. Single declarative sentence, 2-3 lines tall. No icon, no border, no supporting media.\n\n3. **Work grid tile**: Full-bleed image filling a 50vw × auto cell with 0px radius. Bottom-left overlay text in 19px Helvetica 400 #ffffff at -0.38px letter-spacing. No padding, no border, no shadow. Caption in 14px Courier New 400 #ffffff at 1.4px letter-spacing above the title.\n\n4. **Bottom-right nav**: Fixed position bottom-right, 32px from edges. Links at 16px Helvetica 400 #ffffff separated by 20px gap: 'Work', 'About', 'News', 'Contact'. 1px #ffffff bottom border appears on hover. Followed by a 16px circular icon button with 10px radius and 1px #ffffff border.\n\n5. **Ghost link in body copy**: 16px Helvetica 400 #ffffff inline within a paragraph. No underline by default. On hover, 1px #ffffff bottom border fades in over 200ms."
+      },
+      {
+        "title": "Typography Attitude",
+        "content": "Three typefaces, three registers: Helvetica is the neutral voice (body, nav, secondary headings), Times New Roman is the editorial voice (manifesto, pull-quotes, display statements), Courier New is the texture voice (tags, badges, index numbers, monospace labels). The negative letter-spacing on display sizes (-2.08px at 52px, -3.0px at 60px) compresses letterforms into a cinematic block — the opposite of the airy, loose tracking common in tech sites. The positive 0.10em tracking on Courier New pushes it wide, making 14px monospace read as graphic ornament rather than data."
+      },
+      {
+        "title": "Color Discipline",
+        "content": "The UI is strictly black-and-white. The #e1695e coral and #573332 burnt sienna are not design tokens for buttons, badges, or interactive elements — they are the color of the work itself (the pink poster, the warm street scene). An AI agent should never paint a button coral. Coral appears only when the work contains coral, and even then it is content, not chrome. This discipline is what makes the imagery feel curated rather than decorated."
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no elevation tokens, no z-axis depth. The design is intentionally flat — the only layering is visual (image overlapping type, or text overlaying a dark photographic region for legibility). Components do not lift on hover; they swap, dim, or reveal a border. Depth is created by content scale and contrast, not by surface separation."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "hero",
+            "list",
+            "icon",
+            "badge",
+            "footer",
+            "body",
+            "input"
+          ],
+          "frequency": 517,
+          "confidence": 1,
+          "prominence": 72056317.62406306,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 2,
+            "icon/fill": 4,
+            "nav/color": 10,
+            "body/color": 11,
+            "hero/color": 1,
+            "icon/color": 2,
+            "link/color": 12,
+            "list/color": 16,
+            "other/fill": 8,
+            "badge/color": 2,
+            "input/color": 1,
+            "other/color": 40,
+            "button/color": 3,
+            "footer/color": 1,
+            "other/stroke": 2,
+            "nav/borderColor": 40,
+            "body/borderColor": 44,
+            "hero/borderColor": 4,
+            "icon/borderColor": 8,
+            "link/borderColor": 48,
+            "list/borderColor": 64,
+            "badge/borderColor": 8,
+            "input/borderColor": 4,
+            "other/borderColor": 160,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "nav",
+            "other",
+            "heading",
+            "icon",
+            "list",
+            "badge",
+            "body",
+            "footer"
+          ],
+          "frequency": 777,
+          "confidence": 1,
+          "prominence": 33388495.550427973,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "icon/fill": 14,
+            "nav/color": 8,
+            "body/color": 3,
+            "icon/color": 7,
+            "link/color": 20,
+            "list/color": 6,
+            "other/fill": 25,
+            "badge/color": 16,
+            "other/color": 66,
+            "heading/color": 20,
+            "nav/borderColor": 32,
+            "body/borderColor": 12,
+            "icon/borderColor": 28,
+            "link/borderColor": 80,
+            "list/borderColor": 24,
+            "badge/borderColor": 64,
+            "other/borderColor": 264,
+            "heading/borderColor": 80,
+            "other/backgroundColor": 6,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e1695e",
+          "oklch": {
+            "c": 0.15200109158235425,
+            "h": 27.2475843090023,
+            "l": 0.663222802294938
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 359517,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#573332",
+          "oklch": {
+            "c": 0.052474438642396676,
+            "h": 21.663044615097114,
+            "l": 0.36509411277611054
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 179803,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#050505",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.11336513627658514
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 40731.34787783554,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "button/color": 1,
+            "other/borderColor": 4,
+            "button/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.00042315204301301876,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.38,
+          "background": "#ffffff",
+          "foreground": "#050505"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.91,
+          "background": "#573332",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.38,
+          "background": "#e1695e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.2,
+          "background": "#e1695e",
+          "foreground": "#050505"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.29,
+          "background": "#e1695e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.92,
+          "background": "#573332",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.87,
+          "background": "#573332",
+          "foreground": "#050505"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.03,
+          "background": "#000000",
+          "foreground": "#050505"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "badge",
+            "input"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "rowGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|other",
+            "rowGap|badge",
+            "paddingTop|input",
+            "paddingRight|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "heading",
+            "input",
+            "button"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "paddingLeft|input",
+            "marginRight|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "list",
+            "badge",
+            "body",
+            "heading",
+            "footer"
+          ],
+          "frequency": 53,
+          "properties": [
+            "columnGap",
+            "marginLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "marginLeft|nav",
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginLeft|link",
+            "columnGap|list",
+            "columnGap|link",
+            "marginBottom|other",
+            "marginTop|badge",
+            "marginRight|body",
+            "marginBottom|heading",
+            "marginRight|badge",
+            "paddingTop|footer",
+            "columnGap|footer",
+            "paddingTop|list"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginBottom",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 180,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 318,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica",
+          "source": "system",
+          "weights": [
+            300,
+            400,
+            700
+          ],
+          "frequency": 226,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Courier New",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times New Roman",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Courier New",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "badge",
+            "button"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "list",
+            "badge",
+            "footer",
+            "body",
+            "icon"
+          ],
+          "frequency": 154,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Helvetica",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "icon",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Helvetica",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Helvetica",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 23,
+          "family": "Helvetica",
+          "weight": 300,
+          "contexts": [
+            "nav",
+            "body",
+            "link",
+            "input"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Helvetica",
+          "weight": 300,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Helvetica",
+          "weight": 300,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 52,
+          "family": "Helvetica",
+          "weight": 300,
+          "contexts": [
+            "link",
+            "heading",
+            "other"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.15,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Times New Roman",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/80cf5da2-c2ba-4689-9511-e12dd870d2a5.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a6d0b947-27c3-420e-b5b7-57c8aaf89f66.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e287e026-3433-4a1d-9b23-9a65f8b9c138#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Stink Studios design system\",\"item\":\"https://styles.refero.design/style/e287e026-3433-4a1d-9b23-9a65f8b9c138\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e287e026-3433-4a1d-9b23-9a65f8b9c138#style-reference\",\"name\":\"Stink Studios design system reference\",\"headline\":\"Stink Studios design system | Refero Styles\",\"description\":\"Explore Stink Studios's dark Agency design system: Void #000000, Bone #ffffff colors, Helvetica, Times New Roman typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/e287e026-3433-4a1d-9b23-9a65f8b9c138\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e287e026-3433-4a1d-9b23-9a65f8b9c138\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Stink Studios\",\"url\":\"https://www.stinkstudios.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e287e026-3433-4a1d-9b23-9a65f8b9c138#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a6d0b947-27c3-420e-b5b7-57c8aaf89f66.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a6d0b947-27c3-420e-b5b7-57c8aaf89f66.jpg\",\"caption\":\"Screenshot of Stink Studios\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a6d0b947-27c3-420e-b5b7-57c8aaf89f66.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Stink Studios design system\",\"Stink Studios website design\",\"Stink Studios colors\",\"Stink Studios typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void\",\"Bone\",\"Soot\",\"Ember Coral\",\"Helvetica\",\"Times New Roman\",\"Courier New\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Stink Studios design system\"},{\"@type\":\"Thing\",\"name\":\"Stink Studios website design\"},{\"@type\":\"Thing\",\"name\":\"Stink Studios colors\"},{\"@type\":\"Thing\",\"name\":\"Stink Studios typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:11:06.973Z\",\"dateModified\":\"2026-04-30T02:11:06.973Z\"}]}19:T5c1,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- border: #050505\n- accent: #e1695e (project content only, not UI)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Hero with wordmark**: Full-viewport (100vw × 100vh) cinematic image as background. Centered or top-left wordmark at 52px Helvetica weight 300 in #ffffff with -2.08px letter-spacing and 0.90 line-height. No overlay gradient, no button — just the image and the type.\n\n2. **Manifesto section**: #000000 background, 60px Times New Roman weight 400 in #ffffff at -3px letter-spacing, left-aligned with 60px left margin, 1.00 line-height. Single declarative sentence, 2-3 lines tall. No icon, no border, no supporting media.\n\n3. **Work grid tile**: Full-bleed image filling a 50vw × auto cell with 0px radius. Bottom-left overlay text in 19px Helvetica 400 #ffffff at -0.38px letter-spacing. No padding, no border, no shadow. Caption in 14px Courier New 400 #ffffff at 1.4px letter-spacing above the title.\n\n4. **Bottom-right nav**: Fixed position bottom-right, 32px from edges. Links at 16px Helvetica 400 #ffffff separated by 20px gap: 'Work', 'About', 'News', 'Contact'. 1px #ffffff bottom border appears on hover. Followed by a 16px circular icon button with 10px radius and 1px #ffffff border.\n\n5. **Ghost link in body copy**: 16px Helvetica 400 #ffffff inline within a paragraph. No underline by default. On hover, 1px #ffffff bottom border fades in over 200ms."
+}

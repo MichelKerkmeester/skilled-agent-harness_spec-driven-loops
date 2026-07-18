@@ -1,0 +1,177 @@
+{
+  "color": {
+    "celluloid-cream": {
+      "$value": "#ece4b4",
+      "$type": "color",
+      "$description": "Celluloid Cream — Primary text, all icon strokes, 1px hairline borders, and the only outlined-link action border in the system — a warm off-white that reads as aged film stock against black"
+    },
+    "darkroom-shadow": {
+      "$value": "#4f4d3c",
+      "$type": "color",
+      "$description": "Darkroom Shadow — Atmospheric mid-surface visible around and between film stills — a desaturated warm olive-black that softens the page from pure void into projection-room dimness"
+    },
+    "projection-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Projection Black — Deep canvas void used for the darkest recesses of the page and behind embedded media; the floor beneath everything"
+    }
+  },
+  "font": {
+    "changeling-neo": {
+      "$value": "changeling-neo",
+      "$type": "fontFamily",
+      "$description": "Sole typeface — used for both the smallest nav label and the 280px display numerals. Weight 400 across every role is a deliberate anti-convention: no bold ever appears, so hierarchy is built purely through scale and tracking. The very tight -4% letter-spacing at 230-280px is what makes the giant wordmark feel carved rather than typeset."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "diagramm",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "diagramm",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "diagramm",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "diagramm",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "changeling-neo",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 0.49
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "changeling-neo",
+        "fontSize": "230px",
+        "fontWeight": 400,
+        "lineHeight": 0.49
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 230px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "changeling-neo",
+        "fontSize": "230px",
+        "fontWeight": 400,
+        "lineHeight": 0.49
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 230px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "changeling-neo",
+        "fontSize": "280px",
+        "fontWeight": 400,
+        "lineHeight": 0.49
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 280px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "21": {
+      "$value": "21px",
+      "$type": "dimension",
+      "$description": "Spacing 21px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "11.9952px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "projection-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Deepest canvas — embedded media backgrounds and absolute void"
+    },
+    "darkroom-shadow": {
+      "$value": "#4f4d3c",
+      "$type": "color",
+      "$description": "Surface level 2: Primary page background — warm-tinted near-black that prevents the page from reading as a flat #000 UI and instead as a dimly lit room"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.rokumaruichi.tokyo",
+      "siteName": "601 Inc.",
+      "extractedAt": "2026-06-03T18:52:40.408Z",
+      "variant": "extended"
+    }
+  }
+}

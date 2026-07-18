@@ -1,0 +1,322 @@
+{
+  "color": {
+    "pale-lemon": {
+      "$value": "#ffffa7",
+      "$type": "color",
+      "$description": "Pale Lemon — Primary action fill, brand accent, hero section wash, badge labels — the single chromatic voice of the entire system"
+    },
+    "electric-yellow": {
+      "$value": "#fddd05",
+      "$type": "color",
+      "$description": "Electric Yellow — Yellow outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas, card surfaces, text on light fills, hairline dividers, image borders — the base everything floats on"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Primary text on dark, card surface alt, heading strokes, inverted button text"
+    },
+    "graphite": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Graphite — Muted heading strokes, de-emphasized outline text, secondary borders on dark"
+    },
+    "mist": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Mist — Body subtext, link idle state, tertiary metadata — the only neutral that softens body copy without going silver"
+    },
+    "steel": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Steel — Captions, helper text, dense metadata rows, low-emphasis body"
+    }
+  },
+  "font": {
+    "pp-neue-montreal": {
+      "$value": "PP Neue Montreal",
+      "$type": "fontFamily",
+      "$description": "Primary face across body, navigation, subheadings, and display. The custom geometric grotesque carries the entire brand voice: tight tracking at display sizes (up to -4.8px at 120px) compresses headlines into editorial-poster blocks, while relaxed tracking at body keeps 16px reading clean. Single weight 400 used throughout — weight does not differentiate hierarchy; size and color do."
+    },
+    "pp-neue-montreal-medium": {
+      "$value": "PP Neue Montreal Medium",
+      "$type": "fontFamily",
+      "$description": "Navigation and select body emphasis at the 16px size — the only place a medium weight appears, used to give nav links a subtle lift over body text without breaking the single-weight visual rhythm"
+    },
+    "abc-monument-grotesk": {
+      "$value": "ABC Monument Grotesk",
+      "$type": "fontFamily",
+      "$description": "Alternate display face for the largest hero statement — a wider, more architectural grotesque that provides a second editorial voice at maximum scale without competing with PP Neue Montreal elsewhere"
+    },
+    "system-sans-serif": {
+      "$value": "System Sans-Serif",
+      "$type": "fontFamily",
+      "$description": "Micro labels, copyright, legal footnotes — the only size at which the system stack appears, keeping fine print neutral and invisible"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Medium",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Regular",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Regular",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Regular",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 30px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Regular",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 32px"
+    },
+    "3xl-5": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Regular",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-5 at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Regular",
+        "fontSize": "50px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "ABC Monument Grotesk Unlicensed Trial Regular",
+        "fontSize": "120px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 120px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Regular",
+        "fontSize": "120px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 120px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Regular",
+        "fontSize": "144px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 144px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "192": {
+      "$value": "192px",
+      "$type": "dimension",
+      "$description": "Spacing 192px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "obsidian-void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas, product gallery backdrop, full-bleed sections"
+    },
+    "card-surface": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Product cards and feature tiles — distinguished from canvas by 1px border, not by a lighter fill"
+    },
+    "inverted-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Rare light sections, footer blocks, inverted control backgrounds"
+    },
+    "pale-lemon-wash": {
+      "$value": "#ffffa7",
+      "$type": "color",
+      "$description": "Surface level 3: Hero section background — a single full-bleed chromatic moment that signals the brand's only color"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://herokit.design",
+      "siteName": "HeroKit",
+      "extractedAt": "2026-06-03T20:45:06.494Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,337 @@
+{
+  "color": {
+    "bone-canvas": {
+      "$value": "#fcfbf8",
+      "$type": "color",
+      "$description": "Bone Canvas — Primary page background, card surfaces, light text on dark — warm off-white reads as paper, not screen"
+    },
+    "charcoal-ink": {
+      "$value": "#001011",
+      "$type": "color",
+      "$description": "Charcoal Ink — Primary text, headings, primary action fill, dominant borders — near-black with a barely-perceptible cool tint that distinguishes it from pure #000"
+    },
+    "smoke-veil": {
+      "$value": "#0f1e1f",
+      "$type": "color",
+      "$description": "Smoke Veil — Secondary text and borders for body-level elements — a half-step lighter than Charcoal for visual hierarchy without contrast loss"
+    },
+    "ash-layer": {
+      "$value": "#ededea",
+      "$type": "color",
+      "$description": "Ash Layer — Elevated card backgrounds, subtle surface differentiation, hover states — a warm gray that complements the bone canvas without going cold"
+    },
+    "mist-border": {
+      "$value": "#c1c4c2",
+      "$type": "color",
+      "$description": "Mist Border — Hairline borders, dividers, section separators — barely visible structural lines"
+    },
+    "ember": {
+      "$value": "#fd5321",
+      "$type": "color",
+      "$description": "Ember — Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "signal-blue": {
+      "$value": "#007aff",
+      "$type": "color",
+      "$description": "Signal Blue — Outlined action border for secondary interactive elements — ghost-button strokes only, never filled"
+    }
+  },
+  "font": {
+    "aeonikpro": {
+      "$value": "AeonikPro",
+      "$type": "fontFamily",
+      "$description": "Primary typeface across all UI: body (16-18px/400), navigation (16px/500), card titles (24-32px/500), section headings (36px/500), hero display (72-101px/400-500). The custom font's geometric proportions and the 'dlig', 'ss02', 'ss08' stylistic alternates give the system its engineering-precise voice — ss08 likely enables a more open 'a' and 'e', ss02 a distinctive 'g'"
+    },
+    "dotconnect": {
+      "$value": "DotConnect",
+      "$type": "fontFamily",
+      "$description": "Branded display variant for hero and section headings — used selectively where the brand name or signature statements appear, giving those moments a distinct voice from the general AeonikPro headlines"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "AeonikPro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "AeonikPro",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "AeonikPro",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "AeonikPro",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "DotConnect",
+        "fontSize": "19px",
+        "fontWeight": 500,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "AeonikPro",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "AeonikPro",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "DotConnect",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "AeonikPro",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "AeonikPro",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "AeonikPro",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "DotConnect",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "AeonikPro",
+        "fontSize": "72px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "DotConnect",
+        "fontSize": "73px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 73px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "AeonikPro",
+        "fontSize": "101px",
+        "fontWeight": 500,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 101px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "3xl-4": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-4"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#fcfbf8",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, base layer"
+    },
+    "ash-layer": {
+      "$value": "#ededea",
+      "$type": "color",
+      "$description": "Surface level 1: Card and elevated surface backgrounds"
+    },
+    "smoke-veil": {
+      "$value": "#0f1e1f",
+      "$type": "color",
+      "$description": "Surface level 2: Dark mode moments, high-contrast containers"
+    },
+    "ember": {
+      "$value": "#fd5321",
+      "$type": "color",
+      "$description": "Surface level 3: Brand-emphasis surface — used on CTA buttons and accent blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://dotconnect.vc",
+      "siteName": "(dot)connect",
+      "extractedAt": "2026-06-03T15:06:24.539Z",
+      "variant": "extended"
+    }
+  }
+}

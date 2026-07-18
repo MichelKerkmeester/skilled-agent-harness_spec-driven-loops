@@ -1,0 +1,529 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#0e1012",
+      "$type": "color",
+      "$description": "Void Black — Page background, nav background, footer — the base layer everything sits on"
+    },
+    "deep-charcoal": {
+      "$value": "#15171b",
+      "$type": "color",
+      "$description": "Deep Charcoal — Card surfaces, elevated sections sitting one level above Void Black"
+    },
+    "gunmetal": {
+      "$value": "#1c1f24",
+      "$type": "color",
+      "$description": "Gunmetal — Dividers, secondary borders, subtle panel edges"
+    },
+    "graphite": {
+      "$value": "#23262d",
+      "$type": "color",
+      "$description": "Graphite — Tertiary surface, hover states on dark cards"
+    },
+    "steel": {
+      "$value": "#333943",
+      "$type": "color",
+      "$description": "Steel — Inactive icons, secondary UI strokes, muted borders"
+    },
+    "pewter": {
+      "$value": "#444d5a",
+      "$type": "color",
+      "$description": "Pewter — Ghost button borders, subtle rule lines"
+    },
+    "slate": {
+      "$value": "#566171",
+      "$type": "color",
+      "$description": "Slate — Tertiary text, nav dropdown labels, disabled states"
+    },
+    "ash": {
+      "$value": "#8b96aa",
+      "$type": "color",
+      "$description": "Ash — Secondary body text, caption-level descriptions"
+    },
+    "fog": {
+      "$value": "#a0aaba",
+      "$type": "color",
+      "$description": "Fog — Footer text, body copy, icon fills — the primary readable text color on dark surfaces"
+    },
+    "silver": {
+      "$value": "#bbc2ce",
+      "$type": "color",
+      "$description": "Silver — Outlined button borders, slightly elevated muted text"
+    },
+    "cloud": {
+      "$value": "#d5dae2",
+      "$type": "color",
+      "$description": "Cloud — Divider lines in lighter contexts, high-contrast borders"
+    },
+    "white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "White — Primary headings, button text, nav labels, high-emphasis body copy"
+    },
+    "signal-blue": {
+      "$value": "#007afc",
+      "$type": "color",
+      "$description": "Signal Blue — Primary CTA buttons, active nav indicators, links — single chromatic anchor in an achromatic field, impossible to miss"
+    },
+    "deep-signal": {
+      "$value": "#0062ca",
+      "$type": "color",
+      "$description": "Deep Signal — Info/announcement badges — darker blue variant for label-scale elements"
+    },
+    "map-green": {
+      "$value": "#228a56",
+      "$type": "color",
+      "$description": "Map Green — Success and 'Product Update' badge backgrounds — cartographic green signals new features"
+    }
+  },
+  "font": {
+    "cera-pro": {
+      "$value": "Cera Pro",
+      "$type": "fontFamily",
+      "$description": "All text on the site — nav, headings, body, badges, buttons. Weight 700 at 44–68px for hero headlines with -0.02em tracking that compresses letterforms into coordinate-grid density. Weight 500 for subheadings and UI labels. Weight 400 for body copy and captions. The geometric construction of Cera Pro — circular O, monoline strokes — echoes the precision circles of map pin iconography."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 15px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 15px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "base-11": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base-11 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "44px",
+        "fontWeight": 700,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Cera pro",
+        "fontSize": "68px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 68px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgb(14, 16, 18) 0px -175px 175px -75px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "xl-2": {
+      "$value": "rgb(14, 16, 18) 0px 0px 100px 50px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-2"
+    }
+  },
+  "surface": {
+    "void-floor": {
+      "$value": "#0e1012",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, nav, footer — base canvas"
+    },
+    "deep-panel": {
+      "$value": "#15171b",
+      "$type": "color",
+      "$description": "Surface level 1: Card backgrounds, content sections elevated from page"
+    },
+    "raised-surface": {
+      "$value": "#1c1f24",
+      "$type": "color",
+      "$description": "Surface level 2: Nested panels, modal backgrounds, secondary cards"
+    },
+    "overlay": {
+      "$value": "#23262d",
+      "$type": "color",
+      "$description": "Surface level 3: Dropdown menus, tooltips, hover overlays"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://mapbox.com",
+      "siteName": "Mapbox",
+      "extractedAt": "2026-04-11T19:10:46.520Z",
+      "variant": "extended"
+    }
+  }
+}

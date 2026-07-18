@@ -1,0 +1,447 @@
+{
+  "color": {
+    "just-black": {
+      "$value": "#0e100f",
+      "$type": "color",
+      "$description": "Just Black — Page canvas, footer surface, deep section backgrounds"
+    },
+    "surface-cream": {
+      "$value": "#fffce1",
+      "$type": "color",
+      "$description": "Surface Cream — Primary text, outlined button borders, nav links, card text, the default surface-light used for ghost controls and headings"
+    },
+    "surface-50": {
+      "$value": "#7c7c6f",
+      "$type": "color",
+      "$description": "Surface 50 — Muted secondary text, icon fills at rest, subhead annotations, disabled-state labels"
+    },
+    "surface-25": {
+      "$value": "#42433d",
+      "$type": "color",
+      "$description": "Surface 25 — Hairline borders, dividers, low-contrast outlines against the black canvas"
+    },
+    "off-black": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Off Black — Alternative dark surface for nested panels and code blocks"
+    },
+    "shockingly-green": {
+      "$value": "#0ae448",
+      "$type": "color",
+      "$description": "Shockingly Green — Green text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "light-green": {
+      "$value": "#abff84",
+      "$type": "color",
+      "$description": "Light Green — Green text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color"
+    },
+    "orangey": {
+      "$value": "#ff8709",
+      "$type": "color",
+      "$description": "Orangey — SVG category label, orange-tool icon fills, gradient endpoint in Orange Crush"
+    },
+    "pink": {
+      "$value": "#fec5fb",
+      "$type": "color",
+      "$description": "Pink — Scroll category label, decorative splashes, gradient endpoint in Summer Fair"
+    },
+    "lilac": {
+      "$value": "#9d95ff",
+      "$type": "color",
+      "$description": "Lilac — Text category label, thin illustrative strokes, gradient endpoint in Purple Haze"
+    },
+    "blue": {
+      "$value": "#00bae2",
+      "$type": "color",
+      "$description": "Blue — UI category label, gradient endpoint in Skyfall and Emerald City"
+    },
+    "core-green": {
+      "$value": "#dfffd1",
+      "$type": "color",
+      "$description": "Core Green — Subtle brand-tinted background washes for feature cards tied to the GSAP core"
+    },
+    "lipstick-pink": {
+      "$value": "#f100cb",
+      "$type": "color",
+      "$description": "Lipstick Pink — Deep gradient stop for expressive decorative gradients, not used for text or UI"
+    }
+  },
+  "font": {
+    "mori": {
+      "$value": "Mori",
+      "$type": "fontFamily",
+      "$description": "Single-family system. Mori weight 600 at 224px with lh 0.9 and -0.02em tracking is the hero display; the same family at weight 400 body sizes carries every paragraph, label, and nav item. The custom face carries a slightly humanist warmth in the cream rendering that a geometric grotesque (Inter, Manrope) cannot replicate, so substitute with a humanist sans (e.g. Inter Tight or Söhne) and accept a tighter, colder fallback."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "19px",
+        "fontWeight": 600,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "23px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 23px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "33px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 33px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "34px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 34px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "40px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "40px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "66px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 66px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "76px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 76px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "89px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 89px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "101px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 101px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "224px",
+        "fontWeight": 600,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 224px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Mori",
+        "fontSize": "224px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 224px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "76": {
+      "$value": "76px",
+      "$type": "dimension",
+      "$description": "Spacing 76px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "108": {
+      "$value": "108px",
+      "$type": "dimension",
+      "$description": "Spacing 108px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#0e100f",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, all sections sit on this single dark stage"
+    },
+    "nested-panel": {
+      "$value": "#191919",
+      "$type": "color",
+      "$description": "Surface level 1: Footer and code-block backgrounds, one step lifted from the canvas"
+    },
+    "cream-surface": {
+      "$value": "#fffce1",
+      "$type": "color",
+      "$description": "Surface level 2: Light surface used sparingly for callout cards or promotional panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://gsap.com",
+      "siteName": "Gsap",
+      "extractedAt": "2026-07-03T03:17:18.650Z",
+      "variant": "extended"
+    }
+  }
+}

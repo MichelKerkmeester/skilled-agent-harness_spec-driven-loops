@@ -1,0 +1,302 @@
+{
+  "color": {
+    "parchment-cream": {
+      "$value": "#fcfbf7",
+      "$type": "color",
+      "$description": "Parchment Cream — Primary page canvas and hero section background — warm off-white that flatters display serifs the way museum walls flatter paintings"
+    },
+    "pure-linen": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure Linen — Card surfaces, button fills, icon strokes — the cleanest white sits one step above the cream canvas to separate cards from page"
+    },
+    "warm-linen": {
+      "$value": "#e7e4e0",
+      "$type": "color",
+      "$description": "Warm Linen — Secondary surface and frosted nav background — a muted stone tone that softens the nav bar against the cream canvas"
+    },
+    "ink-black": {
+      "$value": "#0d0d0f",
+      "$type": "color",
+      "$description": "Ink Black — Primary text and button borders — near-black with a cool undertone, used for all body copy and the outlined button strokes"
+    },
+    "espresso": {
+      "$value": "#2b1b1b",
+      "$type": "color",
+      "$description": "Espresso — Secondary text and hairline borders — a warm dark brown that acts as the dominant border color across cards, nav, and dividers"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — SVG fills, logo marks, and icon strokes — pure black for the highest-contrast graphic elements"
+    },
+    "bitter-brown": {
+      "$value": "#100401",
+      "$type": "color",
+      "$description": "Bitter Brown — Dark showcase card background — nearly black with warm brown undertone, used for display type specimen cards to make white serifs glow"
+    },
+    "acid-lime": {
+      "$value": "#99ff66",
+      "$type": "color",
+      "$description": "Acid Lime — Accent badge fill for metadata tags — the only chromatic color in the UI, used sparingly to mark type specs, style counts, and new releases"
+    }
+  },
+  "font": {
+    "magicuipro": {
+      "$value": "MagicUIPro",
+      "$type": "fontFamily",
+      "$description": "Sole UI typeface — all navigation, body copy, buttons, labels, and section headings use this family at 11–18px; the custom font includes discretionary ligatures (\"dlig\") that add character to small text"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "MagicUIPro",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "MagicUIPro",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "MagicUIPro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "MagicUIPro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "MagicUIPro",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "MagicUIPro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "MagicUIPro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "MagicUIPro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "MagicUIPro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "MagicUIPro",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "MagicUIPro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "MagicUIPro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "180": {
+      "$value": "180px",
+      "$type": "dimension",
+      "$description": "Spacing 180px"
+    },
+    "208": {
+      "$value": "208px",
+      "$type": "dimension",
+      "$description": "Spacing 208px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "900px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#fcfbf7",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background, hero sections"
+    },
+    "linen-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces raised above canvas"
+    },
+    "stone-overlay": {
+      "$value": "#e7e4e0",
+      "$type": "color",
+      "$description": "Surface level 2: Frosted nav bar, secondary surface"
+    },
+    "bitter-card": {
+      "$value": "#100401",
+      "$type": "color",
+      "$description": "Surface level 3: Dark display specimen card — inverted surface for type showcase"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://claudetype.com",
+      "siteName": "Claude Type",
+      "extractedAt": "2026-06-03T21:09:25.067Z",
+      "variant": "extended"
+    }
+  }
+}

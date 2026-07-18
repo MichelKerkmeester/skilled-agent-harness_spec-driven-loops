@@ -1,0 +1,2539 @@
+{
+  "source": "https://styles.refero.design/style/d6c2a911-45ed-4860-a992-43df22793c2a",
+  "uuid": "d6c2a911-45ed-4860-a992-43df22793c2a",
+  "name": "Granola",
+  "northStar": "Field notes on warm parchment — Granola reads like a well-worn Moleskine open on a sunlit desk: serifed headlines with editorial gravity, organic green accents like ink from a plant-based pen, and hairline-ruled card borders that suggest hand-drawn note margins.",
+  "capturedAt": "2026-07-18T10:12:12.868Z",
+  "meta": {
+    "url": "https://www.granola.ai",
+    "siteName": "Granola",
+    "extractedAt": "2026-05-07T22:41:01.983Z",
+    "durationMs": 160458,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1526,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Quadrant weight 400 at -0.015em tracking for all hero and section headings (48px and above); switch to Melange for every UI control, label, and body text instance.",
+      "Apply #5b6f00 (Forest CTA) exclusively for filled primary action buttons — no other UI element should use this deep olive as a background fill.",
+      "Use 9999px border-radius for all pill buttons, announcement badges, and tag chips; use 8px for card containers, inputs, and rectangular controls.",
+      "Maintain 0.5px solid #d5d5d2 or 1px solid #e3e3e3 as the dominant border weight — hairline rules only, never 2px+ borders in the UI.",
+      "Set page background to #f7f7f2 (Parchment Canvas) not pure #ffffff — white is reserved for card surfaces and elevated components that need contrast against the canvas.",
+      "Apply the olive-green spectrum (#b2c248 surface, #5b6f00 text/CTA, #788c15 borders, #e5eacd tints) as a family — never mix with unrelated chromatic accents except Twitter Blue (#1d9bf0) in social embed contexts.",
+      "Keep section vertical rhythm at 64px gaps; use 24px card padding for feature cards and 16px for compact note/list cards."
+    ],
+    "donts": [
+      "Don't use Quadrant for UI labels, buttons, or body text — it belongs only to headings and display-scale editorial moments.",
+      "Don't add drop shadows to cards beyond the single social proof card exception (rgba(0,0,0,0.15) 0px 8px 48px) — flat hairline-bordered cards are the default surface treatment.",
+      "Don't use #b2c248 (Olive Press) as a button background or text color — it is a decorative highlight surface in product mockups only, never an interactive element fill.",
+      "Don't apply color backgrounds to full page sections — the page alternates white and parchment (#f7f7f2) only; chromatic backgrounds exist only as small card-level accents.",
+      "Don't letter-space Quadrant headings positively — only negative tracking (-0.015em) or the slightly positive 0.01em for smaller sizes; wide-tracked display serifs would break the editorial compactness.",
+      "Don't use the rainbow gradient (amber→pink→lavender→sky→chartreuse) as a UI element background — it exists solely as an animated text/icon decoration within AI-enhanced copy indicators.",
+      "Don't substitute system fonts (San Francisco, Segoe UI) for Melange in navigation or button labels — the custom face's 0.01em tracking at small sizes is what separates the brand UI from generic system chrome."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f7f7f2",
+        "name": "Parchment Canvas",
+        "role": "Page background and disabled input surfaces — the barely-warm off-white that reads as paper, not screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure Surface",
+        "role": "Card backgrounds, nav surface, input fills, elevated overlays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0e0f0c",
+        "name": "Midnight Ink",
+        "role": "Primary heading and body text — near-black with the faintest warm undertone that keeps it from feeling harsh",
+        "group": "neutral"
+      },
+      {
+        "hex": "#292929",
+        "name": "Deep Charcoal",
+        "role": "Nav text, footer text, secondary headings, filled icon fills; Decorative gradient on AI-enhanced copy indicators — transitions from dark charcoal through amber, pink, lavender, sky, chartreuse, then fades transparent",
+        "group": "neutral",
+        "gradient": "linear-gradient(90deg, #292929 0px, #292929 33.33%, #febe29 40%, #ff91e0 45%, #cebef8 50%, #d2e4f8 55%, #d1e043 60%, rgba(0,0,0,0) 66.67%, rgba(0,0,0,0))"
+      },
+      {
+        "hex": "#454745",
+        "name": "Carbon",
+        "role": "Medium-emphasis link and body text, supporting secondary labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#72726e",
+        "name": "Slate",
+        "role": "Tertiary nav labels, metadata, muted helper text, secondary icon fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#818179",
+        "name": "Graphite",
+        "role": "List secondary text, overlay-context captions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e3e3e3",
+        "name": "Ash Border",
+        "role": "Hairline dividers, card borders, rule lines across all UI contexts — the dominant structural border color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d5d5d2",
+        "name": "Stone Border",
+        "role": "Button borders on white-fill controls, card-level contained borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eaebe5",
+        "name": "Fog Surface",
+        "role": "Soft hover state fills, subtle input surface overlays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b2c248",
+        "name": "Olive Press",
+        "role": "Large decorative accent surfaces in product UI mockups — the vivid chartreuse that signals AI-enhanced state",
+        "group": "brand"
+      },
+      {
+        "hex": "#5b6f00",
+        "name": "Forest CTA",
+        "role": "Primary download/action button fill — deep olive-green that feels botanical and grounded against white, not techy",
+        "group": "brand"
+      },
+      {
+        "hex": "#788c15",
+        "name": "Fern Border",
+        "role": "Accent borders, focus-adjacent decorative strokes, icon tints in the green family",
+        "group": "brand"
+      },
+      {
+        "hex": "#e5eacd",
+        "name": "Sprout Tint",
+        "role": "Secondary pill button backgrounds (announcement badge, iPhone download) — the lightest olive wash",
+        "group": "brand"
+      },
+      {
+        "hex": "#1d9bf0",
+        "name": "Twitter Blue",
+        "role": "Social proof badge icons, X/Twitter brand color used in testimonial cards",
+        "group": "accent"
+      },
+      {
+        "hex": "#006fd6",
+        "name": "Link Cobalt",
+        "role": "Inline text links within body copy and social testimonial cards",
+        "group": "accent"
+      },
+      {
+        "hex": "#e95d3d",
+        "name": "Ember Fill",
+        "role": "Orange wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      },
+      {
+        "hex": "#bd4a30",
+        "name": "Ember Border",
+        "role": "Orange outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Max-width approximately 1200px, centered with symmetric horizontal padding. Hero is centered-stack: large Quadrant headline (68px) above a single-line subhead, then one CTA button, then a split product mockup panel below the fold — not full-bleed, the mockup floats on white with a thin border. The page flows in a single continuous white-to-parchment alternation: white nav → white hero → white product demo strip → white logo marquee strip (bordered top and bottom) → feature section on #f7f7f2 → testimonials grid on white → CTA footer. No dark sections at all. Testimonials use a 3-column masonry-like card grid with 16px column gaps. The navigation is a slim centered bar (~56px tall) with blur backdrop, logo left, 4-5 nav links center-spaced at 16px gaps, single pill Download button right. Vertical section gaps are 64px. No mega-menu — hoverable dropdowns with 8px radius white panels and 0.5px borders.",
+    "imagery": "Granola uses product screenshot composites as its primary visual language — no lifestyle photography, no abstract illustration. The hero shows split-panel UI mockups: a raw notes view beside an AI-enhanced view, both contained in borderless floating card frames on the parchment canvas. Video feed thumbnails (user avatar crops at ~60×80px rounded 8px) appear inline with the product UI to simulate a live meeting context. The social proof section is image-free, relying entirely on text-based Twitter card reproductions. The logo strip uses monochrome partner wordmarks (Ramp, Linear, Brex, Replit, Index Ventures) desaturated to #292929 or #72726, no color logos. Icons are minimal and outlined/mono at 16-20px, used sparingly in navigation dropdowns and UI controls. Imagery density is very low — most screen area is white or parchment text surface, with product UI mockups occupying one contained mid-page strip.",
+    "similar": [
+      {
+        "why": "Same serifed-headline + humanist-UI-font split on a near-white canvas, with color used only as small functional punctuation",
+        "business": "Notion"
+      },
+      {
+        "why": "Shared hairline-border card treatment and near-zero shadow philosophy — flat surfaces defined by 0.5-1px rules rather than elevation",
+        "business": "Linear"
+      },
+      {
+        "why": "Editorial serif headings at large tracking with a single brand accent on an off-white page background, product-UI-as-hero approach",
+        "business": "Craft Docs"
+      },
+      {
+        "why": "Single bold-green primary action button against an otherwise achromatic light UI with olive/sage brand hue",
+        "business": "Cron / Notion Calendar"
+      },
+      {
+        "why": "Testimonial-heavy social proof grid with Twitter-card style embeds and video-context UI mockups in the product demo section",
+        "business": "Loom"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "inputs": "8px",
+        "buttons": "9999px",
+        "cardsXL": "16px",
+        "tooltips": "4px",
+        "pillBadge": "9999px",
+        "cardsLarge": "12px",
+        "decorativeBlobs": "64px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#f7f7f2",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — warm off-white, never pure white at page level"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 1,
+        "purpose": "White card surfaces, nav background, input fill backgrounds"
+      },
+      {
+        "hex": "#eaebe5",
+        "name": "Tinted Surface",
+        "level": 2,
+        "purpose": "Hover fills, soft opaque states, subtle inset surfaces"
+      },
+      {
+        "hex": "#e5eacd",
+        "name": "Accent Tint",
+        "level": 3,
+        "purpose": "Sprout-tinted button backgrounds for secondary actions and announcement pills"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.03) 0px 0px 36px 0px",
+        "element": "Floating Nav / Sticky Header"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.15) 0px 8px 48px 0px",
+        "element": "Social Proof Card"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.03) 0px 0px 2px 0px inset",
+        "element": "Input / Text Area"
+      }
+    ],
+    "northStar": "Field notes on warm parchment — Granola reads like a well-worn Moleskine open on a sunlit desk: serifed headlines with editorial gravity, organic green accents like ink from a plant-based pen, and hairline-ruled card borders that suggest hand-drawn note margins.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.23,
+        "letterSpacing": 0.13
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.33,
+        "letterSpacing": 0.2
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.54
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.11,
+        "letterSpacing": -0.72
+      },
+      {
+        "role": "display",
+        "size": 68,
+        "lineHeight": 1,
+        "letterSpacing": -1.02
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Download Button",
+        "role": "Main CTA for app download actions",
+        "description": "Background #5b6f00 (Forest CTA), text #ffffff or #fcfcf8, font Melange 16px weight 500, radius 9999px, padding 10px 20px. Hover shifts to #4c5616. Contains Apple logo icon inline-left. The deep olive against white pages is the brand's primary interaction fingerprint."
+      },
+      {
+        "name": "Announcement Pill Button",
+        "role": "Secondary/news banner linked badge",
+        "description": "Background #e5eacd (Sprout Tint), text #0e0f0c, border 1px solid #d5d5d2, radius 9999px, padding 8px 16px, Melange 14px weight 400. Trailing arrow icon. Used for 'Announcing our Series C' style callouts — softest action in the hierarchy."
+      },
+      {
+        "name": "White Surface Button",
+        "role": "Tertiary action on tinted or colored backgrounds",
+        "description": "Background #ffffff, text #0e0f0c, border 1px solid #d5d5d2, radius 8px, padding 8px 12px, Melange 14px weight 400. Appears on product UI mockups and as in-app controls."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Inline links within social/testimonial content",
+        "description": "Background transparent, text #006fd6 (Link Cobalt), no border, radius 9999px, padding 0px 16px. Used for 'Read 25 replies' / 'Read more on X' — follows Twitter's own link convention inside embedded-style cards."
+      },
+      {
+        "name": "Social Testimonial Card",
+        "role": "Twitter/X embed social proof blocks",
+        "description": "Background #ffffff, border 1px solid #e3e3e3, radius 12px, padding 16px, box-shadow rgba(0,0,0,0.15) 0px 8px 48px 0px. Contains avatar 40px circle, username in Melange 15px weight 500 #0f1419, handle in Melange 14px #536471, body in system-ui 15px #0f1419, timestamp in #536471, action row with #536471 icons. Inline brand links appear in #006fd6."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Product UI preview cards with tinted background",
+        "description": "Background #f7f7f2 (Parchment Canvas), radius 8px, padding 24px, no shadow, border 1px solid #e3e3e3. Contains product screenshot or illustration at full card width. Used in 3-column feature grids."
+      },
+      {
+        "name": "Product Note Card",
+        "role": "In-product UI mockup showing the notepad itself",
+        "description": "Background #ffffff, radius 12px, no box-shadow at card level, border 0.5px solid #d5d5d2. Internal rows use 0.5px solid #e3e3e3 hairline dividers. Olive-green (#b2c248) highlight fills span full-width rows to indicate AI-enhanced sections. Text in Melange 13-15px, primary #0e0f0c, metadata #72726e."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top sticky site navigation",
+        "description": "Background #ffffff with backdrop-filter blur(16px), border-bottom 0.5px solid #d5d5d2, box-shadow rgba(0,0,0,0.03) 0px 0px 36px. Logo + wordmark left, nav links center in Melange 15px weight 400 #292929, Download pill button right in Forest CTA (#5b6f00) with 9999px radius. Gap between nav items: 16px."
+      },
+      {
+        "name": "Logo Marquee Strip",
+        "role": "Social proof partner/customer logo scrolling band",
+        "description": "Background #ffffff, border-top and border-bottom 1px solid #e3e3e3, padding 16px 0. Logos rendered in #292929 or #72726 (desaturated to match brand neutrality). Animated with CSS marquee infinite scroll. No hover states — purely decorative trust signal."
+      },
+      {
+        "name": "AI Enhanced Badge",
+        "role": "Inline label indicating AI processing state",
+        "description": "Pill shape, background #e5eacd, border 1px solid #788c15 (Fern Border), radius 9999px, padding 4px 10px, Melange 13px weight 500 #5b6f00. Sparkle/AI icon at 14px in #b2c248 preceding label text. Signals the product's core value prop within the UI mockup."
+      },
+      {
+        "name": "Recording Indicator Dot",
+        "role": "Live recording state status indicator",
+        "description": "Circle 8px diameter, background #e95d3d (Ember Fill), border 1px solid #bd4a30 (Ember Border), CSS animation 'blink' at 0.9s ease. Appears in product UI mockups within the note-taking interface to signal active recording."
+      },
+      {
+        "name": "Meeting Type Tag",
+        "role": "Categorical label for meeting template types",
+        "description": "Background #ffffff, border 1px solid #d5d5d2, radius 8px, padding 6px 12px, Melange 14px weight 400 #0e0f0c. Examples: 'Customer discovery', '1 on 1', 'Pitch', 'Standup'. Horizontal scrollable row — functions as a filter/tab row inside the product UI preview."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI text: navigation, body copy, buttons, labels, card content, footer. Its 0.01em tracking at 13-16px sizes keeps small text from collapsing — the slightly wider-than-normal tracking is the fingerprint of this face at body sizes. Weight 300 appears for light supporting text, 600 for active nav states and strong labels.",
+        "sizes": "13px, 14px, 15px, 16px, 20px, 24px",
+        "family": "Melange",
+        "weight": "300, 400, 500, 600",
+        "lineHeight": "1.00–1.50",
+        "substitute": "DM Sans, Instrument Sans",
+        "letterSpacing": "0.01em across all UI sizes",
+        "fontFeatureSettings": "normal"
+      },
+      {
+        "role": "All display headings and hero text. The sole serif in the system — its old-style proportions at 68px with -0.015em tracking give headlines editorial gravity that sans-serif alternatives cannot replicate. At smaller sizes (16-24px) it serves section subheadings with the same print warmth. Weight 400 throughout — heavier weights would destroy the handwritten-note quality.",
+        "sizes": "16px, 18px, 20px, 24px, 36px, 48px, 68px",
+        "family": "Quadrant",
+        "weight": "400",
+        "lineHeight": "1.00–1.40",
+        "substitute": "Playfair Display, Lora",
+        "letterSpacing": "-0.015em at display sizes (68px, 48px), +0.01em at smaller heading sizes"
+      },
+      {
+        "role": "Fallback and embedded-content contexts (social card content, badge text, Twitter embed surfaces). Not a deliberate brand choice — follows OS defaults in embedded third-party content zones.",
+        "sizes": "14px, 15px, 16px, 20px",
+        "family": "-apple-system / system-ui",
+        "weight": "300, 400, 500, 700",
+        "lineHeight": "1.14–1.50",
+        "substitute": "Inter, system-ui",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "system-ui — detected in extracted data but not described by AI",
+        "sizes": "13px, 16px",
+        "family": "system-ui",
+        "weight": "400, 500",
+        "lineHeight": "1.23, 1.5",
+        "letterSpacing": "0.01"
+      }
+    ],
+    "description": "Granola pairs a serif editorial headline face (Quadrant) with a humanist mono-inflected UI face (Melange) on a near-white canvas — the tension between old-print warmth and digital utility is the defining atmosphere. The chromatic system is almost entirely olive-green: a single muted-yellow-green (#b2c248 surface, #5b6f00 filled CTA, #788c15 border accents) against hairline-bordered white cards and an off-white page. Everything else is achromatic — dark ink, mid-gray text, and 0.5px solid borders that whisper rather than rule. Typography does the heavy lifting: Quadrant at -0.015em tracking for display sizes drops weight at 68px to feel like editorial print, while Melange's 0.01em tracking at UI sizes keeps body text crisp and warm. The result is a notepad-like surface — quiet, high-contrast text on parchment-adjacent white — punctuated by bursts of organic chartreuse green.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d6c2a911-45ed-4860-a992-43df22793c2a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Granola design system\",\"item\":\"https://styles.refero.design/style/d6c2a911-45ed-4860-a992-43df22793c2a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d6c2a911-45ed-4860-a992-43df22793c2a#style-reference\",\"name\":\"Granola design system reference\",\"headline\":\"Granola design system | Refero Styles\",\"description\":\"Explore Granola's light Productivity design system: Parchment Canvas #f7f7f2, Pure Surface #ffffff colors, Melange, Quadrant typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/d6c2a911-45ed-4860-a992-43df22793c2a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d6c2a911-45ed-4860-a992-43df22793c2a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Granola\",\"url\":\"https://www.granola.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d6c2a911-45ed-4860-a992-43df22793c2a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/219dc2ea-f1e5-4c6f-9ec9-2dcb8f424b71.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/219dc2ea-f1e5-4c6f-9ec9-2dcb8f424b71.jpg\",\"caption\":\"Screenshot of Granola\"},\"image\":\"https://images.refero.design/styles/refero.design/image/219dc2ea-f1e5-4c6f-9ec9-2dcb8f424b71.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Granola design system\",\"Granola website design\",\"Granola colors\",\"Granola typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Parchment Canvas\",\"Pure Surface\",\"Midnight Ink\",\"Deep Charcoal\",\"Melange\",\"Quadrant\",\"-apple-system / system-ui\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Granola design system\"},{\"@type\":\"Thing\",\"name\":\"Granola website design\"},{\"@type\":\"Thing\",\"name\":\"Granola colors\"},{\"@type\":\"Thing\",\"name\":\"Granola typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-05-07T18:37:08.260Z\",\"dateModified\":\"2026-05-07T18:37:08.260Z\"}]}19:T82d,**Quick Color Reference**\n- text (primary): #0e0f0c\n- text (secondary): #72726e\n- background (canvas): #f7f7f2\n- background (card): #ffffff\n- border (hairline): #e3e3e3\n- border (card/button): #d5d5d2\n- accent (olive brand): #b2c248\n- primary action: #5b6f00 (filled action)\n\n**Example Component Prompts**\n\n1. **Hero Section**: #f7f7f2 page background. Quadrant 68px weight 400 #0e0f0c headline, letter-spacing -0.015em, line-height 1.0, centered. Melange 20px weight 400 #72726e subheadline below at 16px margin-top. Primary CTA: #5b6f00 background, #ffffff text, Melange 16px weight 500, radius 9999px, padding 12px 24px, Apple icon inline-left. Gap between headline and CTA: 32px.\n\n2. **Social Testimonial Card**: #ffffff background, 1px solid #e3e3e3 border, 12px radius, 16px padding, box-shadow rgba(0,0,0,0.15) 0px 8px 48px. Avatar 40px circle top-left. Username: Melange 15px weight 600 #0f1419. Handle: Melange 14px weight 400 #536471. Body: system-ui 15px weight 400 #0f1419, line-height 1.4. Inline links #006fd6. Bottom row: timestamp #536471, heart count #536471 at 13px. 'Read N replies' ghost link: #006fd6 Melange 14px, no background, radius 9999px.\n\n3. **Navigation Bar**: #ffffff background, backdrop-filter blur(16px), border-bottom 0.5px solid #d5d5d2, box-shadow rgba(0,0,0,0.03) 0px 0px 36px. Granola wordmark left. Nav links: Melange 15px weight 400 #292929, 16px horizontal gap. Right: Download pill button #5b6f00 background #ffffff text radius 9999px padding 8px 16px.\n\n4. **Feature Card (Parchment)**: #f7f7f2 background, 8px radius, 24px padding, 1px solid #e3e3e3 border, no shadow. Label: Melange 14px weight 500 #5b6f00 uppercase tracking 0.01em. Headline: Quadrant 24px weight 400 #0e0f0c. Body: Melange 15px weight 400 #72726e, line-height 1.5. Product UI screenshot below label row, full card width.\n\n5. **Meeting Type Tag Row**: Row of pill tags, each #ffffff background, 1px solid #d5d5d2 border, 8px radius, 6px 12px padding, Melange 14px weight 400 #0e0f0c. Horizontally scrollable at 8px gap. Active tag: #e5eacd background, #5b6f00 text, #788c15 border."
+      },
+      {
+        "title": "Animation Philosophy",
+        "content": "Motion is utilitarian and fast. Primary transitions run at 0.15s ease (hover color, border, fill changes) and 0.2s ease (layout shifts, opacity fades). The one slow animation is the 75s infinite CSS marquee for the logo scroll strip — deliberately imperceptible speed so logos feel ambient rather than animated. The recording indicator uses a 0.9s 'blink' keyframe at ease timing. The rainbow AI gradient uses a 'bg-slide' animation. Avoid any entrance animations or scroll-triggered reveals — the design language is static and document-like, with motion reserved for live-state indicators only."
+      }
+    ],
+    "elevationPhilosophy": "Granola uses near-zero elevation: almost all cards are flat with hairline borders only. The system reserves meaningful shadow for two specific cases — the testimonial card (large diffuse shadow at 48px blur for the social proof gravity effect) and the sticky nav bar (barely perceptible 36px blur at 3% opacity). Everything else — feature cards, note cards, UI mockup panels — is borderline only. This restraint keeps the parchment-paper reading atmosphere intact; shadows would make it feel like a product dashboard, not a notepad."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e3e3e3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9158314666321387
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "icon",
+            "heading",
+            "body",
+            "card",
+            "image",
+            "list",
+            "link",
+            "badge",
+            "footer"
+          ],
+          "frequency": 4556,
+          "confidence": 1,
+          "prominence": 132391823.87623633,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 148,
+            "body/borderColor": 740,
+            "card/borderColor": 60,
+            "icon/borderColor": 476,
+            "link/borderColor": 540,
+            "list/borderColor": 264,
+            "badge/borderColor": 44,
+            "image/borderColor": 164,
+            "other/borderColor": 1905,
+            "button/borderColor": 28,
+            "footer/borderColor": 4,
+            "heading/borderColor": 164,
+            "card/backgroundColor": 1,
+            "icon/backgroundColor": 2,
+            "other/backgroundColor": 16
+          }
+        },
+        {
+          "hex": "#0e0f0c",
+          "oklch": {
+            "c": 0.006333088350669549,
+            "h": 122.11175332212503,
+            "l": 0.16602079748759455
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "button",
+            "icon",
+            "card",
+            "body",
+            "heading",
+            "list"
+          ],
+          "frequency": 377,
+          "confidence": 1,
+          "prominence": 93268318.3577068,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 21,
+            "card/color": 20,
+            "hero/color": 1,
+            "icon/color": 4,
+            "list/color": 20,
+            "other/fill": 1,
+            "other/color": 269,
+            "button/color": 7,
+            "other/stroke": 1,
+            "heading/color": 31
+          }
+        },
+        {
+          "hex": "#292929",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2809402269547256
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "footer",
+            "card",
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 69,
+          "confidence": 1,
+          "prominence": 66766145.05935515,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "icon/fill": 2,
+            "nav/color": 31,
+            "body/color": 1,
+            "card/color": 2,
+            "icon/color": 1,
+            "other/fill": 2,
+            "other/color": 15,
+            "button/color": 1,
+            "footer/color": 1,
+            "heading/color": 4,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#d5d5d2",
+          "oklch": {
+            "c": 0.0040751731590290535,
+            "h": 106.4837941414368,
+            "l": 0.8721656133692537
+          },
+          "contexts": [
+            "nav",
+            "hero",
+            "card",
+            "other",
+            "button"
+          ],
+          "frequency": 433,
+          "confidence": 1,
+          "prominence": 14853300.096440941,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 8,
+            "card/borderColor": 116,
+            "hero/borderColor": 4,
+            "other/borderColor": 243,
+            "button/borderColor": 60,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b2c248",
+          "oklch": {
+            "c": 0.14629534511163014,
+            "h": 116.25083561120569,
+            "l": 0.7782302187796292
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "card"
+          ],
+          "frequency": 90,
+          "confidence": 1,
+          "prominence": 4293803.856835259,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1,
+            "body/backgroundColor": 2,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 86
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "other",
+            "icon",
+            "card",
+            "heading"
+          ],
+          "frequency": 110,
+          "confidence": 1,
+          "prominence": 3527280.2305204594,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "icon/color": 3,
+            "other/fill": 3,
+            "other/color": 7,
+            "button/color": 5,
+            "other/borderColor": 12,
+            "button/borderColor": 8,
+            "nav/backgroundColor": 3,
+            "card/backgroundColor": 26,
+            "other/backgroundColor": 34,
+            "button/backgroundColor": 5,
+            "heading/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "other",
+            "icon",
+            "body",
+            "card",
+            "button"
+          ],
+          "frequency": 170,
+          "confidence": 1,
+          "prominence": 3379076.6096635177,
+          "properties": [
+            "fill",
+            "color",
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 2,
+            "icon/fill": 2,
+            "body/color": 29,
+            "card/color": 1,
+            "icon/color": 1,
+            "other/fill": 3,
+            "other/color": 81,
+            "button/color": 1,
+            "heading/color": 5,
+            "body/borderColor": 20,
+            "card/borderColor": 4,
+            "other/borderColor": 12,
+            "button/borderColor": 4,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#454745",
+          "oklch": {
+            "c": 0.004228321016078444,
+            "h": 145.4950836056526,
+            "l": 0.39534615918932114
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 2457880.8832898624,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 2,
+            "icon/color": 1,
+            "link/color": 22,
+            "other/fill": 2,
+            "other/color": 12,
+            "button/color": 1
+          }
+        },
+        {
+          "hex": "#0f1419",
+          "oklch": {
+            "c": 0.012843411229135978,
+            "h": 248.5103553241987,
+            "l": 0.18836141617276472
+          },
+          "contexts": [
+            "card",
+            "other",
+            "link",
+            "icon",
+            "body",
+            "image"
+          ],
+          "frequency": 277,
+          "confidence": 1,
+          "prominence": 2333570.3999454086,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 22,
+            "body/color": 52,
+            "card/color": 22,
+            "icon/color": 22,
+            "link/color": 34,
+            "other/fill": 22,
+            "image/color": 1,
+            "other/color": 102
+          }
+        },
+        {
+          "hex": "#f7f7f2",
+          "oklch": {
+            "c": 0.006601611192429787,
+            "h": 106.52144027618007,
+            "l": 0.9747571565757396
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 1513247.8708483248,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "other/color": 1,
+            "card/backgroundColor": 6,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#72726e",
+          "oklch": {
+            "c": 0.006083312928359223,
+            "h": 106.59764887659432,
+            "l": 0.5508148979174655
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "body",
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 341548.07469078765,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 10,
+            "nav/color": 12,
+            "body/color": 7,
+            "icon/color": 5,
+            "link/color": 3,
+            "other/fill": 5,
+            "other/color": 7,
+            "heading/color": 1
+          }
+        },
+        {
+          "hex": "#4e4d4b",
+          "oklch": {
+            "c": 0.003526777097051274,
+            "h": 84.57168726832518,
+            "l": 0.42050407162149217
+          },
+          "contexts": [
+            "list"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 136548.241205537,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "list/color": 22
+          }
+        },
+        {
+          "hex": "#818179",
+          "oklch": {
+            "c": 0.01187060101567828,
+            "h": 106.75159904407305,
+            "l": 0.6008126846022721
+          },
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 118158.95442876218,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "list/color": 24,
+            "other/color": 2
+          }
+        },
+        {
+          "hex": "#536471",
+          "oklch": {
+            "c": 0.029393384488120244,
+            "h": 241.15601743541066,
+            "l": 0.49392350929744866
+          },
+          "contexts": [
+            "link",
+            "body",
+            "other",
+            "icon",
+            "button"
+          ],
+          "frequency": 331,
+          "confidence": 1,
+          "prominence": 111764.90121132472,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 44,
+            "body/color": 44,
+            "icon/color": 22,
+            "link/color": 56,
+            "other/fill": 44,
+            "other/color": 66,
+            "button/color": 11,
+            "button/borderColor": 44
+          }
+        },
+        {
+          "hex": "#006fd6",
+          "oklch": {
+            "c": 0.17925532950465276,
+            "h": 254.75251237635374,
+            "l": 0.5490437983572207
+          },
+          "contexts": [
+            "link",
+            "button",
+            "body"
+          ],
+          "frequency": 42,
+          "confidence": 1,
+          "prominence": 62624.52153401691,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 11,
+            "link/color": 20,
+            "button/color": 11
+          }
+        },
+        {
+          "hex": "#5b6f00",
+          "oklch": {
+            "c": 0.12198210838902498,
+            "h": 121.24925475765777,
+            "l": 0.5070430825496611
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 34498.90953462455,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#e5eacd",
+          "oklch": {
+            "c": 0.03872935479575882,
+            "h": 115.10250103181497,
+            "l": 0.9255893758070157
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 23376.61192313633,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#696969",
+          "oklch": {
+            "c": 0.000008394550870217963,
+            "h": 23.7268518917578,
+            "l": 0.5215051965937071
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 8248.008761005241,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "icon/color": 1,
+            "other/fill": 2,
+            "other/color": 1
+          }
+        },
+        {
+          "hex": "#1d9bf0",
+          "oklch": {
+            "c": 0.1614533750261601,
+            "h": 245.53998081356178,
+            "l": 0.6670531250008304
+          },
+          "contexts": [
+            "badge",
+            "icon",
+            "other"
+          ],
+          "frequency": 121,
+          "confidence": 1,
+          "prominence": 2772.2949350251547,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 44,
+            "icon/color": 22,
+            "other/fill": 44,
+            "badge/color": 11
+          }
+        },
+        {
+          "hex": "#f91880",
+          "oklch": {
+            "c": 0.25006835543673395,
+            "h": 2.0789731500884834,
+            "l": 0.6397744157541112
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 2322.9419688230414,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 22,
+            "icon/color": 11,
+            "other/fill": 22
+          }
+        },
+        {
+          "hex": "#febe29",
+          "oklch": {
+            "c": 0.16352729346597628,
+            "h": 82.38377869004644,
+            "l": 0.8383168680753836
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 2016,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#1e1e1e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23503112514957922
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2007,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 1
+          }
+        },
+        {
+          "hex": "#788c15",
+          "oklch": {
+            "c": 0.1359869778713755,
+            "h": 119.56819381195604,
+            "l": 0.603343222505394
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 29,
+          "confidence": 1,
+          "prominence": 2002.0113630082756,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "icon/color": 1,
+            "other/fill": 1,
+            "other/borderColor": 24,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cebef8",
+          "oklch": {
+            "c": 0.08175101611414164,
+            "h": 297.24474205148067,
+            "l": 0.8342721150150404
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 544,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#bd4a30",
+          "oklch": {
+            "c": 0.15396643528403578,
+            "h": 34.21667779636461,
+            "l": 0.559147763434898
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 464.38561897747246,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 24
+          }
+        },
+        {
+          "hex": "#ed9212",
+          "oklch": {
+            "c": 0.16081741499612318,
+            "h": 65.94112732239049,
+            "l": 0.7379128873443797
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "confidence": 1,
+          "prominence": 464.38561897747246,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 24
+          }
+        },
+        {
+          "hex": "#e95d3d",
+          "oklch": {
+            "c": 0.18030070780037538,
+            "h": 34.31593235242016,
+            "l": 0.6540060133537415
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 280.7354922057604,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 6
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0340911018241418,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.54,
+          "background": "#f7f7f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.23,
+          "background": "#ffffff",
+          "foreground": "#0e0f0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.51,
+          "background": "#ffffff",
+          "foreground": "#0f1419"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.89,
+          "background": "#f7f7f2",
+          "foreground": "#0e0f0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.23,
+          "background": "#f7f7f2",
+          "foreground": "#0f1419"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.98,
+          "background": "#e5eacd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#ffffff",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.36,
+          "background": "#e3e3e3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.55,
+          "background": "#e5eacd",
+          "foreground": "#0e0f0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.51,
+          "background": "#f7f7f2",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.98,
+          "background": "#e3e3e3",
+          "foreground": "#0e0f0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.97,
+          "background": "#e5eacd",
+          "foreground": "#0f1419"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.55,
+          "background": "#ffffff",
+          "foreground": "#292929"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.42,
+          "background": "#e3e3e3",
+          "foreground": "#0f1419"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.28,
+          "background": "#d5d5d2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.54,
+          "background": "#f7f7f2",
+          "foreground": "#292929"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.48,
+          "background": "#e5eacd",
+          "foreground": "#1e1e1e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.07,
+          "background": "#d5d5d2",
+          "foreground": "#0e0f0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.99,
+          "background": "#e3e3e3",
+          "foreground": "#1e1e1e"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "card",
+            "other",
+            "heading",
+            "icon",
+            "button"
+          ],
+          "frequency": 99
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "other",
+            "link",
+            "button"
+          ],
+          "frequency": 77
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.03) 0px 0px 2px 0px inset",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.03) 0px 0px 36px 0px",
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.15) 0px 8px 48px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "list",
+            "icon",
+            "other",
+            "heading"
+          ],
+          "frequency": 49,
+          "properties": [
+            "marginBottom",
+            "marginLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|list",
+            "marginLeft|icon",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 151,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginLeft|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "marginTop|other",
+            "marginLeft|body",
+            "marginBottom|link",
+            "marginTop|button",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "card",
+            "button",
+            "other"
+          ],
+          "frequency": 41,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "heading",
+            "other",
+            "card",
+            "body",
+            "icon"
+          ],
+          "frequency": 286,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginTop|nav",
+            "marginBottom|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button",
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginRight|body",
+            "marginRight|icon",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingRight|heading",
+            "rowGap|heading",
+            "columnGap|heading",
+            "marginTop|other",
+            "marginLeft|other",
+            "marginRight|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "body",
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 181,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginBottom|nav",
+            "rowGap|body",
+            "columnGap|body",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "hero",
+            "button",
+            "heading",
+            "other",
+            "list",
+            "card"
+          ],
+          "frequency": 356,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "marginLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "rowGap|hero",
+            "columnGap|hero",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingLeft|list",
+            "rowGap|card",
+            "columnGap|card",
+            "marginTop|other",
+            "marginBottom|list",
+            "marginLeft|list",
+            "paddingLeft|other",
+            "paddingRight|other",
+            "marginBottom|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginTop|card",
+            "marginRight|card",
+            "marginBottom|card",
+            "marginLeft|card",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 188,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "paddingBottom",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "marginBottom|list",
+            "marginRight|link",
+            "marginRight|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 69,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "marginTop|card",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "heading",
+            "card",
+            "button"
+          ],
+          "frequency": 47,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "paddingLeft|heading",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "marginRight",
+            "marginTop",
+            "marginBottom",
+            "paddingBottom",
+            "paddingLeft",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "marginRight|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "hero",
+            "other",
+            "footer",
+            "card"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|footer",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 73,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 121,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 133,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 172,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 176,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 181,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 192,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 233,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(41, 41, 41) 0px, rgb(41, 41, 41) 33.33%, rgb(254, 190, 41) 40%, rgb(255, 145, 224) 45%, rgb(206, 190, 248) 50%, rgb(210, 228, 248) 55%, rgb(209, 224, 67) 60%, rgba(0, 0, 0, 0) 66.67%, rgba(0, 0, 0, 0))",
+        "colors": [
+          "rgb(41, 41, 41)",
+          "rgb(41, 41, 41)",
+          "rgb(254, 190, 41)",
+          "rgb(255, 145, 224)",
+          "rgb(206, 190, 248)",
+          "rgb(210, 228, 248)",
+          "rgb(209, 224, 67)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 14
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(156, 163, 175) 0px, rgb(156, 163, 175) 33.33%, rgb(254, 190, 41) 40%, rgb(255, 145, 224) 45%, rgb(206, 190, 248) 50%, rgb(210, 228, 248) 55%, rgb(209, 224, 67) 60%, rgba(0, 0, 0, 0) 66.67%, rgba(0, 0, 0, 0))",
+        "colors": [
+          "rgb(156, 163, 175)",
+          "rgb(156, 163, 175)",
+          "rgb(254, 190, 41)",
+          "rgb(255, 145, 224)",
+          "rgb(206, 190, 248)",
+          "rgb(210, 228, 248)",
+          "rgb(209, 224, 67)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "frequency": 6
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Melange",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            600
+          ],
+          "frequency": 620,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "-apple-system",
+          "source": "system",
+          "weights": [
+            300,
+            400,
+            700
+          ],
+          "frequency": 534,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "system-ui",
+          "source": "system",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 90,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Quadrant",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 50,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Melange",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "list",
+            "icon"
+          ],
+          "frequency": 90,
+          "lineHeight": 1.23,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Melange",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.23,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "list",
+            "icon"
+          ],
+          "frequency": 33,
+          "lineHeight": 1.23,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "system-ui",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.23,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Melange",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "icon",
+            "link",
+            "button"
+          ],
+          "frequency": 63,
+          "lineHeight": 1.29,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Melange",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.29,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Melange",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Melange",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "-apple-system",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "-apple-system",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "-apple-system",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "badge",
+            "body"
+          ],
+          "frequency": 210,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "-apple-system",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 33,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Melange",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Melange",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "hero",
+            "card",
+            "image",
+            "button",
+            "icon",
+            "footer"
+          ],
+          "frequency": 310,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Melange",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Melange",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 73,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "system-ui",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 54,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Melange",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Melange",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Quadrant",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "card",
+            "other",
+            "link",
+            "icon",
+            "button",
+            "image"
+          ],
+          "frequency": 192,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Quadrant",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Melange",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Quadrant",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 39,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Melange",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Melange",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Quadrant",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Quadrant",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "icon"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Quadrant",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 68,
+          "family": "Quadrant",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "image"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6b177106-961d-4f71-aba1-c93e63fa03cd.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/219dc2ea-f1e5-4c6f-9ec9-2dcb8f424b71.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d6c2a911-45ed-4860-a992-43df22793c2a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Granola design system\",\"item\":\"https://styles.refero.design/style/d6c2a911-45ed-4860-a992-43df22793c2a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d6c2a911-45ed-4860-a992-43df22793c2a#style-reference\",\"name\":\"Granola design system reference\",\"headline\":\"Granola design system | Refero Styles\",\"description\":\"Explore Granola's light Productivity design system: Parchment Canvas #f7f7f2, Pure Surface #ffffff colors, Melange, Quadrant typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/d6c2a911-45ed-4860-a992-43df22793c2a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d6c2a911-45ed-4860-a992-43df22793c2a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Granola\",\"url\":\"https://www.granola.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d6c2a911-45ed-4860-a992-43df22793c2a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/219dc2ea-f1e5-4c6f-9ec9-2dcb8f424b71.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/219dc2ea-f1e5-4c6f-9ec9-2dcb8f424b71.jpg\",\"caption\":\"Screenshot of Granola\"},\"image\":\"https://images.refero.design/styles/refero.design/image/219dc2ea-f1e5-4c6f-9ec9-2dcb8f424b71.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Granola design system\",\"Granola website design\",\"Granola colors\",\"Granola typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Parchment Canvas\",\"Pure Surface\",\"Midnight Ink\",\"Deep Charcoal\",\"Melange\",\"Quadrant\",\"-apple-system / system-ui\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Granola design system\"},{\"@type\":\"Thing\",\"name\":\"Granola website design\"},{\"@type\":\"Thing\",\"name\":\"Granola colors\"},{\"@type\":\"Thing\",\"name\":\"Granola typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-05-07T18:37:08.260Z\",\"dateModified\":\"2026-05-07T18:37:08.260Z\"}]}19:T82d,**Quick Color Reference**\n- text (primary): #0e0f0c\n- text (secondary): #72726e\n- background (canvas): #f7f7f2\n- background (card): #ffffff\n- border (hairline): #e3e3e3\n- border (card/button): #d5d5d2\n- accent (olive brand): #b2c248\n- primary action: #5b6f00 (filled action)\n\n**Example Component Prompts**\n\n1. **Hero Section**: #f7f7f2 page background. Quadrant 68px weight 400 #0e0f0c headline, letter-spacing -0.015em, line-height 1.0, centered. Melange 20px weight 400 #72726e subheadline below at 16px margin-top. Primary CTA: #5b6f00 background, #ffffff text, Melange 16px weight 500, radius 9999px, padding 12px 24px, Apple icon inline-left. Gap between headline and CTA: 32px.\n\n2. **Social Testimonial Card**: #ffffff background, 1px solid #e3e3e3 border, 12px radius, 16px padding, box-shadow rgba(0,0,0,0.15) 0px 8px 48px. Avatar 40px circle top-left. Username: Melange 15px weight 600 #0f1419. Handle: Melange 14px weight 400 #536471. Body: system-ui 15px weight 400 #0f1419, line-height 1.4. Inline links #006fd6. Bottom row: timestamp #536471, heart count #536471 at 13px. 'Read N replies' ghost link: #006fd6 Melange 14px, no background, radius 9999px.\n\n3. **Navigation Bar**: #ffffff background, backdrop-filter blur(16px), border-bottom 0.5px solid #d5d5d2, box-shadow rgba(0,0,0,0.03) 0px 0px 36px. Granola wordmark left. Nav links: Melange 15px weight 400 #292929, 16px horizontal gap. Right: Download pill button #5b6f00 background #ffffff text radius 9999px padding 8px 16px.\n\n4. **Feature Card (Parchment)**: #f7f7f2 background, 8px radius, 24px padding, 1px solid #e3e3e3 border, no shadow. Label: Melange 14px weight 500 #5b6f00 uppercase tracking 0.01em. Headline: Quadrant 24px weight 400 #0e0f0c. Body: Melange 15px weight 400 #72726e, line-height 1.5. Product UI screenshot below label row, full card width.\n\n5. **Meeting Type Tag Row**: Row of pill tags, each #ffffff background, 1px solid #d5d5d2 border, 8px radius, 6px 12px padding, Melange 14px weight 400 #0e0f0c. Horizontally scrollable at 8px gap. Active tag: #e5eacd background, #5b6f00 text, #788c15 border."
+}

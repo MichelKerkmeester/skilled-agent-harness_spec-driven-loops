@@ -1,0 +1,1305 @@
+{
+  "source": "https://styles.refero.design/style/e00519a1-7b8a-4171-b49b-550c64a57d3c",
+  "uuid": "e00519a1-7b8a-4171-b49b-550c64a57d3c",
+  "name": "Flowers For Society",
+  "northStar": "indigo editorial on white gallery — a single deep-violet voice laid over a paper-white canvas, where the product photograph and the typography do all the talking.",
+  "capturedAt": "2026-07-18T09:16:29.542Z",
+  "meta": {
+    "url": "https://flowersforsociety.com",
+    "siteName": "Flowers For Society",
+    "extractedAt": "2026-06-03T20:15:33.521Z",
+    "durationMs": 33212,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 320,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #203b90 as the only chromatic color — it should appear on the logo, headings, borders, and the hero scrim to assert brand identity.",
+      "Use pill-shaped buttons at 41-60px radius for all actions; never use rectangular or slightly-rounded buttons.",
+      "Use full-bleed product photography with a left-to-right gradient scrim for hero sections.",
+      "Use Soehne with wide letter-spacing (0.043-0.063em) for all UI and body text to maintain the editorial cadence.",
+      "Use Integral with tight line-heights (0.92-1.0) for all display headings to create compressed, magazine-style type.",
+      "Keep the page white-dominant — use #f2f2f2 only for the footer band.",
+      "Use 30px horizontal padding and 12-15px vertical padding on all interactive elements."
+    ],
+    "donts": [
+      "Don't introduce additional chromatic colors — the entire system speaks in indigo and neutrals.",
+      "Don't use box-shadows or elevation effects — the design is intentionally flat.",
+      "Don't use rectangular buttons or inputs — the extreme radii (41-60px) are a signature.",
+      "Don't use body fonts for headings or display text — Integral carries the editorial voice exclusively.",
+      "Don't use tight letter-spacing on Soehne — the wide tracking is what gives the UI its boutique feel.",
+      "Don't add decorative gradients or background patterns to non-hero sections.",
+      "Don't use multiple border colors — stick to #203b90 for brand borders, #000000 for utility borders."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#203b90",
+        "name": "Indigo Statement",
+        "role": "Primary brand color — logo, all headings, primary action fills, action borders, and the left-side hero scrim. This is the only chromatic color in the system; it appears on roughly every surface to assert brand presence",
+        "group": "brand"
+      },
+      {
+        "hex": "#7989bc",
+        "name": "Indigo Mist",
+        "role": "Tonal violet for subtle borders and secondary outlines — the softer sibling of Indigo Statement used where full saturation would feel heavy",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Icon strokes, sharp borders, and high-contrast text accents. Used sparingly where the indigo brand color would be too soft",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1b1b1b",
+        "name": "Graphite",
+        "role": "Near-black for button borders and the SHOP NOW text — a softer alternative to pure black for refined edges",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Fog",
+        "role": "Footer background — the only departure from pure white, creating a quiet band at the page base",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed hero photography dominates the first viewport, followed by a centered content stack on a white canvas. The header is a thin white bar with left-aligned nav, centered logo, and right utility icons — no sticky behavior indicated. Content sections use centered display headings with generous vertical breathing room (50px+ section gaps). The layout is editorial: each section is a statement, not a grid of features. Navigation is minimal — four text links, no mega-menu, no sidebar.",
+    "imagery": "Full-bleed, high-quality product photography in natural, romantic settings — sneakers in a daisy field, products styled against organic environments. The imagery is lush, saturated, and lifestyle-rich, contrasting with the flat, minimal UI chrome. Treatment: edge-to-edge, no rounded corners, gradient scrims for text overlay. The photograph is the hero; the UI is the frame.",
+    "similar": [
+      {
+        "why": "Same single-color brand identity approach — a deep, distinctive hue carried across a white canvas with editorial typography and minimal chrome.",
+        "business": "Aesop"
+      },
+      {
+        "why": "Same boutique fashion aesthetic — wide letter-spacing on UI text, pill-shaped buttons, full-bleed lifestyle product photography, and a single brand color anchoring the entire system.",
+        "business": "Aimé Leon Dore"
+      },
+      {
+        "why": "Same flat, no-shadow design philosophy with a single chromatic brand color and generous white space letting product photography breathe.",
+        "business": "Glossier"
+      },
+      {
+        "why": "Same extreme border-radius system (pill buttons and inputs) and lifestyle product photography treatment with gradient scrims for text overlays.",
+        "business": "On Running"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "41px",
+        "cards": "4px",
+        "inputs": "41px",
+        "buttons": "41px",
+        "buttons-lg": "60px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "50px",
+      "cardPadding": "30px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White Canvas",
+        "level": 1,
+        "purpose": "Primary page background — the white gallery that lets indigo carry the brand."
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Fog Footer",
+        "level": 2,
+        "purpose": "The only non-white surface, used exclusively for the footer band."
+      }
+    ],
+    "northStar": "indigo editorial on white gallery — a single deep-violet voice laid over a paper-white canvas, where the product photograph and the typography do all the talking.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.69
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.6
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.53
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.72
+      },
+      {
+        "role": "heading-sm",
+        "size": 35,
+        "lineHeight": 1,
+        "letterSpacing": 1.23
+      },
+      {
+        "role": "heading",
+        "size": 45,
+        "lineHeight": 1,
+        "letterSpacing": 0.77
+      },
+      {
+        "role": "heading-lg",
+        "size": 52,
+        "lineHeight": 0.92,
+        "letterSpacing": 0.68
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page utility strip for promotions or campaign tags.",
+        "description": "White background, centered text in Soehne 11px weight 700, uppercase, letter-spacing 0.063em, #203b90. Height ~40px. May include a trailing arrow glyph."
+      },
+      {
+        "name": "Header Navigation",
+        "role": "Primary site navigation — left links, centered logo, right utility icons.",
+        "description": "White background, no border or shadow. Left: nav links in Soehne 14px weight 400, #203b90, letter-spacing 0.043em, separated by ~24px gap. Center: logo mark. Right: account and cart icons in #203b90, 20-24px size."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Wordmark — the brand's single most identifiable element.",
+        "description": "\"FLOWERS FOR SOCIETY\" stacked in two lines, Integral 52px weight 400, #203b90, letter-spacing 0.077em, line-height 0.92. The wide tracking and tight line-height create a compressed, editorial logo block."
+      },
+      {
+        "name": "Hero Banner",
+        "role": "Full-bleed product showcase with text overlay.",
+        "description": "Edge-to-edge product photography (sneaker in a daisy field). Left-to-right gradient scrim from rgba(32,59,144,0.7) to transparent for text legibility. Overlay text: Soehne 14-18px weight 700, uppercase, white, letter-spacing 0.055em. CTA positioned bottom-right."
+      },
+      {
+        "name": "Primary CTA Button (Pill)",
+        "role": "The dominant call-to-action — used for SHOP NOW and primary actions.",
+        "description": "White fill (#ffffff), #1b1b1b text, 41-60px border-radius (pill), Soehne 14px weight 700, uppercase, letter-spacing 0.043em, 30px horizontal padding / 12-15px vertical padding. No border, no shadow. The white-on-image contrast makes it pop against the hero photograph."
+      },
+      {
+        "name": "Indigo Action Button",
+        "role": "Secondary CTA on light surfaces where the brand color should carry the action.",
+        "description": "#203b90 fill, white text, 41px border-radius, Soehne 14px weight 700, uppercase, letter-spacing 0.043em, 30px horizontal padding. Used on white or light-gray sections where a white pill would lack contrast."
+      },
+      {
+        "name": "Section Display Heading",
+        "role": "Centered editorial headlines for content sections below the hero.",
+        "description": "Integral 35-45px weight 400, #203b90, uppercase, centered, letter-spacing 0.017-0.035em, line-height 1.0. Example: \"A BRAND BUILT ON PURPOSE\" — tight, compressed, statement-making."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Header and inline navigation items.",
+        "description": "Soehne 14px weight 400, #203b90, letter-spacing 0.043em, no underline, no hover color change indicated (the indigo is already the brand color). 24px gap between items."
+      },
+      {
+        "name": "Footer",
+        "role": "Page-base utility area.",
+        "description": "#f2f2f2 background, 30px+ padding, Soehne 14px weight 400 in #203b90 for links and body text. The only non-white surface on the site."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form inputs (email, search, etc.).",
+        "description": "41px border-radius (pill), 1px border in #000000 or #203b90, 15-16px padding, Soehne 16px weight 400. The extreme radius matches the button system for visual consistency."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Body, navigation, buttons, UI text — the workhorse. The deliberately wide tracking on small sizes (0.063em at 11px, 0.055em at 14px) gives even utility text a boutique, editorial cadence. Weight 700 is reserved for nav items and button labels.",
+        "sizes": "11px, 14px, 16px, 18px",
+        "family": "Soehne",
+        "weight": "400, 700",
+        "lineHeight": "1.20, 1.30, 1.40, 1.50, 1.80",
+        "substitute": "Inter, DM Sans",
+        "letterSpacing": "0.033em at 16-18px, 0.043-0.056em at 14px, 0.063em at 11px"
+      },
+      {
+        "role": "Display and headings — the editorial voice. Used at a single weight (400) that relies on the font's natural density and extreme tight line-heights (0.92-1.0) to create compressed, magazine-style display type. The 0.077em tracking at 52px is a logo-specific treatment.",
+        "sizes": "13px, 15px, 18px, 35px, 37px, 45px, 52px",
+        "family": "Integral",
+        "weight": "400",
+        "lineHeight": "0.92, 1.00, 1.10, 1.28",
+        "substitute": "Druk Wide, Bebas Neue, Anton (for display only)",
+        "letterSpacing": "0.013-0.017em at 45-52px (tight), 0.035-0.048em at 35-37px (moderate), 0.04em at 18px, 0.077em at 52px (logo display)"
+      },
+      {
+        "role": "System fallback for non-brand contexts (email, transactional surfaces). Not used in the main site chrome.",
+        "sizes": "14px",
+        "family": "Arial",
+        "weight": "400, 700",
+        "lineHeight": "1.20",
+        "substitute": "system-ui"
+      },
+      {
+        "role": "Nunito-Sans-Klaviyo-Hosted — detected in extracted data but not described by AI",
+        "sizes": "18px, 20px",
+        "family": "Nunito-Sans-Klaviyo-Hosted",
+        "weight": "400, 700",
+        "lineHeight": "1, 1.2"
+      },
+      {
+        "role": "GTStandard-M — detected in extracted data but not described by AI",
+        "sizes": "18px",
+        "family": "GTStandard-M",
+        "weight": "400",
+        "lineHeight": "1.5",
+        "letterSpacing": "0.033"
+      }
+    ],
+    "description": "Flowers For Society is a fashion house that speaks in a single, assertive voice: deep indigo (#203b90) threading through every surface — logo, headings, buttons, borders, and hero scrims — anchored by a white gallery that breathes. The product is the hero: full-bleed photography with gradient overlays for legibility, oversized pill-shaped CTAs at 41-60px radius, and centered display type that uses Integral's tight line-heights (0.92-1.0) to compress vertical space. The system is deliberately minimal — two custom typefaces, no shadows, extreme border radii, and a single chromatic color. Soehne carries the UI with wide letter-spacing (0.033-0.063em) that gives even small text a boutique, editorial cadence. The result feels like a magazine spread: confident, restrained, and unmistakably branded.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e00519a1-7b8a-4171-b49b-550c64a57d3c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Flowers For Society design system\",\"item\":\"https://styles.refero.design/style/e00519a1-7b8a-4171-b49b-550c64a57d3c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e00519a1-7b8a-4171-b49b-550c64a57d3c#style-reference\",\"name\":\"Flowers For Society design system reference\",\"headline\":\"Flowers For Society design system | Refero Styles\",\"description\":\"Explore Flowers For Society's light E-commerce design system: Indigo Statement #203b90, Indigo Mist #7989bc colors, Soehne, Integral typography, and...\",\"url\":\"https://styles.refero.design/style/e00519a1-7b8a-4171-b49b-550c64a57d3c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e00519a1-7b8a-4171-b49b-550c64a57d3c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Flowers For Society\",\"url\":\"https://flowersforsociety.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e00519a1-7b8a-4171-b49b-550c64a57d3c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b0994cd9-71da-4a03-a751-333d49a83281.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b0994cd9-71da-4a03-a751-333d49a83281.jpg\",\"caption\":\"Screenshot of Flowers For Society\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b0994cd9-71da-4a03-a751-333d49a83281.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Flowers For Society design system\",\"Flowers For Society website design\",\"Flowers For Society colors\",\"Flowers For Society typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Indigo Statement\",\"Indigo Mist\",\"Paper White\",\"Carbon\",\"Soehne\",\"Integral\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Flowers For Society design system\"},{\"@type\":\"Thing\",\"name\":\"Flowers For Society website design\"},{\"@type\":\"Thing\",\"name\":\"Flowers For Society colors\"},{\"@type\":\"Thing\",\"name\":\"Flowers For Society typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:29:10.718Z\",\"dateModified\":\"2026-04-30T02:29:10.718Z\"}]}19:T4ee,**Quick Color Reference**\n- text (headings): #203b90\n- text (body): #000000\n- background: #ffffff\n- border (brand): #203b90\n- accent: #7989bc\n- primary action: #203b90 (filled action)\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #203b90 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **Section Display Heading**: Centered on white canvas. \"A BRAND BUILT ON PURPOSE\" in Integral 45px weight 400, #203b90, uppercase, letter-spacing 0.017em, line-height 1.0. 50px vertical margin above and below.\n\n3. **Header Navigation**: White background, no border, no shadow. Left: nav links (Footwear, Apparel & Collectables, About us, Stories) in Soehne 14px weight 400, #203b90, letter-spacing 0.043em, 24px gap. Center: logo mark \"FLOWERS FOR SOCIETY\" in Integral 52px weight 400, #203b90, letter-spacing 0.077em, line-height 0.92. Right: account and cart icons in #203b90, 24px size.\n\n4. **Announcement Bar**: White background, centered text \"FEEL THE FLOW →\" in Soehne 11px weight 700, uppercase, #203b90, letter-spacing 0.063em. Height 40px, no border.\n\n5. **Footer Band**: #f2f2f2 background, 40px padding. Links and text in Soehne 14px weight 400, #203b90, letter-spacing 0.043em."
+      }
+    ],
+    "elevationPhilosophy": "The design is intentionally flat — no shadows, no elevation effects. Visual hierarchy is achieved through color (indigo on white), typography (Integral display vs. Soehne body), and the extreme border-radius system, not through depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#203b90",
+          "oklch": {
+            "c": 0.1443950853256102,
+            "h": 266.2279497536532,
+            "l": 0.38724639866077254
+          },
+          "contexts": [
+            "button",
+            "other",
+            "link",
+            "body",
+            "icon",
+            "nav",
+            "heading",
+            "image",
+            "input",
+            "hero",
+            "footer",
+            "list"
+          ],
+          "frequency": 1062,
+          "confidence": 1,
+          "prominence": 110037443.88981465,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 14,
+            "body/color": 22,
+            "hero/color": 1,
+            "icon/color": 7,
+            "link/color": 16,
+            "list/color": 12,
+            "other/fill": 17,
+            "image/color": 9,
+            "input/color": 1,
+            "other/color": 127,
+            "button/color": 2,
+            "footer/color": 1,
+            "heading/color": 17,
+            "nav/borderColor": 56,
+            "body/borderColor": 88,
+            "hero/borderColor": 4,
+            "icon/borderColor": 28,
+            "link/borderColor": 64,
+            "list/borderColor": 48,
+            "image/borderColor": 36,
+            "input/borderColor": 8,
+            "other/borderColor": 394,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 68,
+            "button/backgroundColor": 10
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "input",
+            "heading",
+            "body"
+          ],
+          "frequency": 87,
+          "confidence": 1,
+          "prominence": 4155920.7902518134,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/color": 3,
+            "button/color": 10,
+            "heading/color": 2,
+            "other/borderColor": 12,
+            "button/borderColor": 36,
+            "heading/borderColor": 8,
+            "body/backgroundColor": 1,
+            "input/backgroundColor": 2,
+            "other/backgroundColor": 13
+          }
+        },
+        {
+          "hex": "#7989bc",
+          "oklch": {
+            "c": 0.07919043206814613,
+            "h": 270.47913445935444,
+            "l": 0.6383722559448983
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 3201021.1763212937,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 32
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "other",
+            "input"
+          ],
+          "frequency": 112,
+          "confidence": 1,
+          "prominence": 1997964.606860567,
+          "properties": [
+            "fill",
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "other/fill": 6,
+            "input/color": 1,
+            "other/color": 9,
+            "other/borderColor": 88
+          }
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 922053,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1b1b1b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2221287433751307
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 50905.95155231053,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#586cac",
+          "oklch": {
+            "c": 0.10284134382561252,
+            "h": 269.42526895923646,
+            "l": 0.543790648411057
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3448.339975962022,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#3950a0",
+          "oklch": {
+            "c": 0.1322432272267255,
+            "h": 268.6602830112192,
+            "l": 0.45697746674153156
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1012.3606493708899,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.32449979129017076,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.22,
+          "background": "#ffffff",
+          "foreground": "#1b1b1b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.39,
+          "background": "#f2f2f2",
+          "foreground": "#1b1b1b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.05,
+          "background": "#ffffff",
+          "foreground": "#203b90"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.98,
+          "background": "#f2f2f2",
+          "foreground": "#203b90"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.42,
+          "background": "#ffffff",
+          "foreground": "#3950a0"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.63,
+          "background": "#f2f2f2",
+          "foreground": "#3950a0"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.05,
+          "background": "#ffffff",
+          "foreground": "#586cac"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.51,
+          "background": "#f2f2f2",
+          "foreground": "#586cac"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.09,
+          "background": "#203b90",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.99,
+          "background": "#203b90",
+          "foreground": "#586cac"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#f2f2f2",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 41,
+          "contexts": [
+            "input",
+            "button",
+            "body"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|input",
+            "marginRight|input",
+            "marginBottom|input",
+            "marginLeft|input"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|button",
+            "paddingBottom|link",
+            "paddingTop|link"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "icon",
+            "link"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|icon",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "link",
+            "body",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginBottom|body",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "input",
+            "list"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingLeft|input",
+            "marginRight|list"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "columnGap",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "marginTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "button",
+            "body",
+            "heading"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "marginTop|button",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other",
+            "marginTop|list",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 31,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Soehne",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 226,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Integral",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 49,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Nunito-Sans-Klaviyo-Hosted",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GTStandard-M",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.055,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Integral",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.077,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "body",
+            "list"
+          ],
+          "frequency": 29,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.043,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.043,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Integral",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.063,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.056,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "hero",
+            "image",
+            "link",
+            "body",
+            "footer"
+          ],
+          "frequency": 135,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Soehne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.8,
+          "letterSpacing": 0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Integral",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Soehne",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Nunito-Sans-Klaviyo-Hosted",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Nunito-Sans-Klaviyo-Hosted",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GTStandard-M",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Nunito-Sans-Klaviyo-Hosted",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Integral",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.017,
+          "textTransform": "none"
+        },
+        {
+          "size": 37,
+          "family": "Integral",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.28,
+          "letterSpacing": 0.048,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Integral",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Integral",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 25,
+          "lineHeight": 1,
+          "letterSpacing": 0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Integral",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.92,
+          "letterSpacing": 0.035,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/f45b3e01-63a9-40e0-a900-e4d60334da3c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b0994cd9-71da-4a03-a751-333d49a83281.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/e00519a1-7b8a-4171-b49b-550c64a57d3c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Flowers For Society design system\",\"item\":\"https://styles.refero.design/style/e00519a1-7b8a-4171-b49b-550c64a57d3c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/e00519a1-7b8a-4171-b49b-550c64a57d3c#style-reference\",\"name\":\"Flowers For Society design system reference\",\"headline\":\"Flowers For Society design system | Refero Styles\",\"description\":\"Explore Flowers For Society's light E-commerce design system: Indigo Statement #203b90, Indigo Mist #7989bc colors, Soehne, Integral typography, and...\",\"url\":\"https://styles.refero.design/style/e00519a1-7b8a-4171-b49b-550c64a57d3c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/e00519a1-7b8a-4171-b49b-550c64a57d3c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Flowers For Society\",\"url\":\"https://flowersforsociety.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/e00519a1-7b8a-4171-b49b-550c64a57d3c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b0994cd9-71da-4a03-a751-333d49a83281.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b0994cd9-71da-4a03-a751-333d49a83281.jpg\",\"caption\":\"Screenshot of Flowers For Society\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b0994cd9-71da-4a03-a751-333d49a83281.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Flowers For Society design system\",\"Flowers For Society website design\",\"Flowers For Society colors\",\"Flowers For Society typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Indigo Statement\",\"Indigo Mist\",\"Paper White\",\"Carbon\",\"Soehne\",\"Integral\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Flowers For Society design system\"},{\"@type\":\"Thing\",\"name\":\"Flowers For Society website design\"},{\"@type\":\"Thing\",\"name\":\"Flowers For Society colors\"},{\"@type\":\"Thing\",\"name\":\"Flowers For Society typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:29:10.718Z\",\"dateModified\":\"2026-04-30T02:29:10.718Z\"}]}19:T4ee,**Quick Color Reference**\n- text (headings): #203b90\n- text (body): #000000\n- background: #ffffff\n- border (brand): #203b90\n- accent: #7989bc\n- primary action: #203b90 (filled action)\n\n**Example Component Prompts**\n\n1. Create a Primary Action Button: #203b90 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. **Section Display Heading**: Centered on white canvas. \"A BRAND BUILT ON PURPOSE\" in Integral 45px weight 400, #203b90, uppercase, letter-spacing 0.017em, line-height 1.0. 50px vertical margin above and below.\n\n3. **Header Navigation**: White background, no border, no shadow. Left: nav links (Footwear, Apparel & Collectables, About us, Stories) in Soehne 14px weight 400, #203b90, letter-spacing 0.043em, 24px gap. Center: logo mark \"FLOWERS FOR SOCIETY\" in Integral 52px weight 400, #203b90, letter-spacing 0.077em, line-height 0.92. Right: account and cart icons in #203b90, 24px size.\n\n4. **Announcement Bar**: White background, centered text \"FEEL THE FLOW →\" in Soehne 11px weight 700, uppercase, #203b90, letter-spacing 0.063em. Height 40px, no border.\n\n5. **Footer Band**: #f2f2f2 background, 40px padding. Links and text in Soehne 14px weight 400, #203b90, letter-spacing 0.043em."
+}

@@ -1,0 +1,489 @@
+{
+  "color": {
+    "linen-canvas": {
+      "$value": "#fcf9f7",
+      "$type": "color",
+      "$description": "Linen Canvas — Page background, hero gradient origin — warm cream base that absorbs the entire site into a unified off-white"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Card surfaces, section backgrounds, raised panels against the linen canvas"
+    },
+    "graphite-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Graphite Ink — Primary text, dominant border color across cards and sections — the system's typographic anchor"
+    },
+    "nightshade-black": {
+      "$value": "#05060b",
+      "$type": "color",
+      "$description": "Nightshade Black — Primary action button fill, footer background — near-black with a faint cool undertone"
+    },
+    "deep-harbor": {
+      "$value": "#030f1c",
+      "$type": "color",
+      "$description": "Deep Harbor — Alternate dark surface, nav background — indistinguishable from Nightshade but carries a subtle navy tilt"
+    },
+    "charcoal-slate": {
+      "$value": "#1d1d1d",
+      "$type": "color",
+      "$description": "Charcoal Slate — Body borders, secondary surfaces, image card borders — slightly softer than pure black"
+    },
+    "iron-grey": {
+      "$value": "#262628",
+      "$type": "color",
+      "$description": "Iron Grey — Icon strokes, heading borders, secondary fills — mid-dark neutral for iconography"
+    },
+    "obsidian": {
+      "$value": "#111112",
+      "$type": "color",
+      "$description": "Obsidian — Nav text, body borders — the darkest readable neutral after Nightshade"
+    },
+    "stone-grey": {
+      "$value": "#575757",
+      "$type": "color",
+      "$description": "Stone Grey — Muted body text, default body border — the primary mid-grey for paragraph copy and dividers"
+    },
+    "ash": {
+      "$value": "#717171",
+      "$type": "color",
+      "$description": "Ash — Helper text, icon strokes, link borders — lighter mid-grey for secondary metadata"
+    },
+    "pebble": {
+      "$value": "#989695",
+      "$type": "color",
+      "$description": "Pebble — Subtle body borders, low-emphasis copy — barely-there dividers"
+    },
+    "concrete": {
+      "$value": "#a5a5a5",
+      "$type": "color",
+      "$description": "Concrete — Faint body text and dividers — used sparingly for ultra-low emphasis"
+    },
+    "dove": {
+      "$value": "#bababa",
+      "$type": "color",
+      "$description": "Dove — Button border, icon fill, disabled-state borders — the lightest mid-tone"
+    },
+    "clay-shadow": {
+      "$value": "#d1cfcd",
+      "$type": "color",
+      "$description": "Clay Shadow — Soft shadow color, card box-shadows, subtle background fills — warm-tinted shadow grey that matches the canvas"
+    },
+    "haze": {
+      "$value": "#ecedef",
+      "$type": "color",
+      "$description": "Haze — Subtle card borders, low-contrast dividers — the cool counterpoint to Clay Shadow"
+    },
+    "spotlight-gradient": {
+      "$value": "#a89c8a",
+      "$type": "color",
+      "$description": "Spotlight Gradient — Hero radial gradient terminus — warm clay tone that pools beneath the product like stage light fading into a linen floor"
+    }
+  },
+  "font": {
+    "sans-serif": {
+      "$value": "sans-serif",
+      "$type": "fontFamily",
+      "$description": "sans-serif — detected in extracted data but not described by AI"
+    },
+    "hanken-grotesk": {
+      "$value": "Hanken Grotesk",
+      "$type": "fontFamily",
+      "$description": "Primary brand typeface for all navigation, body, headings, and lists. Weight 400 carries body and long-form copy; 500–600 lifts subheadings and buttons; 700 anchors the largest display sizes. Carries custom OpenType features (blwf, cv03, cv04, cv09, cv11) that shape the letterforms into their editorial geometry — not a system stack."
+    },
+    "system-sans": {
+      "$value": "System Sans",
+      "$type": "fontFamily",
+      "$description": "Utility and icon font. Used at micro sizes (10–12px) for eyebrow labels, meta tags, and icon-adjacent text, where the unusually wide 0.4440em tracking creates the spaced-out all-caps aesthetic typical of premium wellness branding."
+    },
+    "sf-mono": {
+      "$value": "SF Mono",
+      "$type": "fontFamily",
+      "$description": "Micro-verification labels (e.g. 'Verified by BrandPush.co'). Tight 0.02em tracking, monospaced at 9px — the smallest typographic element on the site, sitting beneath press logos."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Occasional fallback body copy. Lowest frequency of all fonts — appears sparingly in body contexts."
+    },
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "-apple-system — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "SF Mono",
+        "fontSize": "9px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "10px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.48
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.48
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Hanken Grotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Hanken Grotesk",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Hanken Grotesk",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Hanken Grotesk",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Hanken Grotesk",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Hanken Grotesk",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Hanken Grotesk",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Hanken Grotesk",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Hanken Grotesk",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Hanken Grotesk",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Hanken Grotesk",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Hanken Grotesk",
+        "fontSize": "38px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Hanken Grotesk",
+        "fontSize": "52px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "150": {
+      "$value": "150px",
+      "$type": "dimension",
+      "$description": "Spacing 150px"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.06) 0px 1px 5px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.08) 0px 8px 30px 0px, rgba(0, 0, 0, 0.05) 0px 2px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "md": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 2px 10px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "linen-canvas": {
+      "$value": "#fcf9f7",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background — warm cream that absorbs the entire site into a unified off-white field"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Raised card and section background, the first surface elevation above the linen canvas"
+    },
+    "clay-shadow": {
+      "$value": "#d1cfcd",
+      "$type": "color",
+      "$description": "Surface level 3: Tertiary surface tint for subtle differentiation — used for fills, soft borders, and shadow tone"
+    },
+    "charcoal-slate": {
+      "$value": "#1d1d1d",
+      "$type": "color",
+      "$description": "Surface level 4: Dark accent surface for image card borders and dark gradient overlay bases"
+    },
+    "nightshade-black": {
+      "$value": "#05060b",
+      "$type": "color",
+      "$description": "Surface level 5: Deepest surface — footer, primary CTA fill, terminal dark sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.alveoslabs.com",
+      "siteName": "Alveos One",
+      "extractedAt": "2026-06-03T19:54:31.490Z",
+      "variant": "extended"
+    }
+  }
+}

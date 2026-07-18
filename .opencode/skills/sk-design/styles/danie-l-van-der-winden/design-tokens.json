@@ -1,0 +1,327 @@
+{
+  "color": {
+    "vellum": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Vellum — Page canvas, hairline dividers, link underlines, card-edge borders — the warm-gray field that holds all content"
+    },
+    "ink-black": {
+      "$value": "#111827",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, nav links, body copy — the default reading color"
+    },
+    "graphite": {
+      "$value": "#374151",
+      "$type": "color",
+      "$description": "Graphite — Secondary body text, list items, supporting copy — one step lighter than primary ink"
+    },
+    "charcoal": {
+      "$value": "#2a2a28",
+      "$type": "color",
+      "$description": "Charcoal — Headings and editorial emphasis — slightly warm dark for serif display"
+    },
+    "stone": {
+      "$value": "#717272",
+      "$type": "color",
+      "$description": "Stone — Tertiary text, icon fills, meta labels"
+    },
+    "pebble": {
+      "$value": "#909191",
+      "$type": "color",
+      "$description": "Pebble — Muted body text, image captions, fine print"
+    },
+    "ash": {
+      "$value": "#c4c6c8",
+      "$type": "color",
+      "$description": "Ash — Rarely-used border, subtle structural separator"
+    },
+    "slate": {
+      "$value": "#7b7c7c",
+      "$type": "color",
+      "$description": "Slate — Subdued heading variant, de-emphasized titles"
+    },
+    "pressed-ink": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Pressed Ink — Primary action button fill — the only dark surface on the canvas, creating the only moment of visual weight"
+    },
+    "midnight": {
+      "$value": "#1a202c",
+      "$type": "color",
+      "$description": "Midnight — Secondary dark surface, alternate button fill"
+    }
+  },
+  "font": {
+    "degular": {
+      "$value": "Degular",
+      "$type": "fontFamily",
+      "$description": "UI and body sans — navigation, buttons, body copy, metadata, links, tags, resumé dates. Carries all functional text. Weights step from 400 body to 700 for emphasis in headings and dates."
+    },
+    "blanco": {
+      "$value": "Blanco",
+      "$type": "fontFamily",
+      "$description": "Editorial serif — hero headline, resumé role titles, section headings, and any text that should read as 'published' rather than 'navigational'. Single weight 400, letting size and the serif's own authority carry hierarchy."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Degular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Blanco",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Degular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Degular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Degular",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Degular",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Degular",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Degular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Degular",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Blanco",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Degular",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Blanco",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Degular",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Blanco",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Degular",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Degular",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Degular",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "vellum-field": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Surface level 0: The entire page sits on this warm gray; no separate card surface exists"
+    },
+    "pressed-ink-surface": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Surface level 1: The email button and any filled action — the only surface that breaks the monochrome field"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.daniel.pizza",
+      "siteName": "Daniël van der Winden",
+      "extractedAt": "2026-06-03T19:27:22.172Z",
+      "variant": "extended"
+    }
+  }
+}

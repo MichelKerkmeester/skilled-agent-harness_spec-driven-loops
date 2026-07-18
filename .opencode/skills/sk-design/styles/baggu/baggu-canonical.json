@@ -1,0 +1,1006 @@
+{
+  "source": "https://styles.refero.design/style/39105d96-3cb1-497a-8f9f-507a1bed4d30",
+  "uuid": "39105d96-3cb1-497a-8f9f-507a1bed4d30",
+  "name": "Baggu",
+  "northStar": "Sunlit print catalog on cream paper — a single warm off-white surface where black type and product photography do all the work, and a single green whisper says 'new'.",
+  "capturedAt": "2026-07-18T09:18:59.424Z",
+  "meta": {
+    "url": "https://baggu.com",
+    "siteName": "Baggu",
+    "extractedAt": "2026-06-03T20:06:53.266Z",
+    "durationMs": 33524,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 561,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #f6f4ee for every background — never pure #ffffff, the warmth is the signature",
+      "Set type in studioPro (or Söhne/Inter Tight) at 12–18px only — this system has no display sizes, headlines live in the imagery",
+      "Apply font-feature-settings: 'case', 'ss02' 0, 'ss03', 'ss06', 'ss07', 'ss08', 'ss09' to all studioPro instances",
+      "Reserve #298018 exclusively for the 'New Arrivals' label and success badges — one color, one job",
+      "Use 24px border-radius on every button, 4px on inputs, and zero radius on all images and cards",
+      "Let product photography bleed edge-to-edge with no gutters in hero and grid contexts — the cream canvas is the only breathing room",
+      "Draw all borders and icons in pure #000000 at 1px — never gray, never softened"
+    ],
+    "donts": [
+      "Don't introduce additional brand colors, accent hues, or gradients — the palette is three neutrals and one green",
+      "Don't use type larger than 18px — there are no display sizes in this system, visual weight comes from the wordmark at 700 and product imagery",
+      "Don't add box-shadows, drop shadows, or elevated card surfaces — the cream canvas IS the elevation system",
+      "Don't use #ffffff anywhere — it breaks the warm printed-paper illusion",
+      "Don't round product images or add inner card backgrounds — tiles sit flush on the cream surface",
+      "Don't apply the green (#298018) to CTAs, buttons, or decorative elements — it is metadata only",
+      "Don't use letter-spacing above 0 or below -0.025em — tracking stays tight to feel printed"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f6f4ee",
+        "name": "Bone Cream",
+        "role": "Page background, card surfaces, button fills, input fields. The signature warm off-white that defines the entire visual field — never pure white, always slightly toasted",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "True Black",
+        "role": "Primary text, hairline borders, icons, nav, button outlines, footer. Drawn at full saturation — no softened grays for type",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7b7a77",
+        "name": "Warm Ash",
+        "role": "Secondary text, muted metadata, breadcrumb separators, helper labels. Sits at AA contrast against bone cream for body text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#298018",
+        "name": "Moss Signal",
+        "role": "Green outline accent for tags, dividers, and focused UI edges. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed page model with no max-width container — the cream canvas extends to the viewport edges. Header is a fixed three-zone row (nav | wordmark | cart) with 16px horizontal padding. The hero is a full-viewport-height triptych of edge-to-edge product images with no gutters. Below the hero, a two-element section header row sits directly on the cream surface (black left, green right). Product grids are 5-up with zero gap and equal-aspect cells. Category tiles follow the same 5-up flush grid with centered uppercase labels. Bottom editorial section returns to full-bleed photography. Vertical rhythm is set by 64px section gaps; the cream surface itself is the only breathing room. Navigation is minimal top-bar only — no sidebar, no mega-menu, no sticky secondary nav.",
+    "imagery": "Photography is the entire visual language. Product shots are full-bleed, studio-lit against a neutral light gray or white seamless backdrop, with models shown mid-gesture (hands holding bags, legs mid-stride) rather than full-body portraits. Treatment is editorial-magazine: tight crops, no lifestyle context, no props, no location. Colors in imagery are vibrant and varied (striped pinks, cherry prints, orange citrus charms) but the UI around them stays achromatic. No illustrations, no icons in the interface (only a search magnifier and a accessibility circle), no decorative graphics — the photographs do all the emotional work.",
+    "similar": [
+      {
+        "why": "Same editorial restraint — warm off-white canvas, true black type, product photography that dominates the viewport, and an almost entirely achromatic palette",
+        "business": "Aesop"
+      },
+      {
+        "why": "Same compact neo-grotesque type at small sizes, hairline borders, and a no-nonsense product-grid-first layout with zero decorative chrome",
+        "business": "Muji"
+      },
+      {
+        "why": "Same warm cream background, uppercase tracked-tight type, and editorial triptych/full-bleed product photography approach",
+        "business": "Toteme"
+      },
+      {
+        "why": "Same minimal product-grid commerce pattern, neutral warm background, and type that stays small and functional rather than display-sized",
+        "business": "Cuyana"
+      },
+      {
+        "why": "Same tight product card density, cream/white canvas, and monochromatic UI that lets the product color and print be the only visual excitement",
+        "business": "Mansur Gavriel"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "inputs": "4px",
+        "buttons": "24px"
+      },
+      "elementGap": "4px",
+      "sectionGap": "64px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f6f4ee",
+        "name": "Bone Canvas",
+        "level": 1,
+        "purpose": "Full-page background — the single warm surface everything sits on"
+      },
+      {
+        "hex": "#f6f4ee",
+        "name": "Product Stage",
+        "level": 2,
+        "purpose": "Inset product image background within grid cards (visually identical to canvas, no card surface distinction)"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Sunlit print catalog on cream paper — a single warm off-white surface where black type and product photography do all the work, and a single green whisper says 'new'.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.38,
+        "letterSpacing": -0.009
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.004
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.025
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Top-of-page shipping/promo banner",
+        "description": "Solid black (#000000) background, white (#f6f4ee) text, centered. Compact line-height ~1.2 at 12–14px. Functions as a full-bleed inverse band — the only dark surface in the entire interface."
+      },
+      {
+        "name": "Sticky Header",
+        "role": "Primary navigation bar",
+        "description": "Bone cream (#f6f4ee) background, 16px horizontal padding, three-zone layout: left nav (SHOP, INFO, search icon), centered wordmark (BAGGU at 700 weight), right cart. All type at 14px weight 400 uppercase, black. No border, no shadow — sits directly on the cream canvas."
+      },
+      {
+        "name": "Wordmark",
+        "role": "Brand identity in header",
+        "description": "studioPro at 700 weight, uppercase, ~18px, letter-spacing -0.025em. Centered between nav zones. No logo mark — the word IS the mark."
+      },
+      {
+        "name": "Editorial Triptych Hero",
+        "role": "Full-width hero banner",
+        "description": "Three equal-width product photographs edge-to-edge with no gutters, filling the viewport height below the header. No overlay text, no gradient, no CTA — the imagery is the content. No border-radius on images."
+      },
+      {
+        "name": "Section Header Bar",
+        "role": "Category page section divider",
+        "description": "Two-element row: left-aligned section title in black at 18px weight 600 uppercase ('SHOP'), right-aligned label in Moss Signal green (#298018) at 18px weight 600 ('NEW ARRIVALS'). No background, no border — type sits directly on the cream surface."
+      },
+      {
+        "name": "Product Grid Card",
+        "role": "Individual product in 5-up grid",
+        "description": "Image-first card with zero padding and no background distinction from the page. Product image fills the cell square-cropped. Below: product name at 14px weight 400 black, price at 14px weight 400 black, variant count (e.g. '+ 4 MORE') in Warm Ash (#7b7a77). No border, no shadow, no radius."
+      },
+      {
+        "name": "Category Tile",
+        "role": "Browse-by-category grid cell",
+        "description": "Tall product image with category label centered below at 14px weight 600 uppercase black ('PURSES', 'RECYCLED LEATHER', 'BAG ACCESSORIES'). 5-up grid, equal aspect ratios, no gutters between tiles."
+      },
+      {
+        "name": "Pill Button",
+        "role": "Primary action button",
+        "description": "Border-radius 24px (pill shape). Padding 16px horizontal × 4px vertical. Background transparent or bone cream, border 1px black (#000000), text at 14px weight 600 uppercase black. No fill state — outlined only."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Inline navigational link",
+        "description": "Underlined at all times, black (#000000) text at 14px weight 400. Letter-spacing -0.009em. No color change on hover — the underline thickens or the color inverts to cream on a black fill."
+      },
+      {
+        "name": "Footer",
+        "role": "Bottom-of-page navigation and legal",
+        "description": "Bone cream background, black text, multi-column link lists at 14px weight 400. Hairline 1px black border-top separating it from the page body. No colored accents, no social icons in color."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All interface type — body, nav, buttons, headings, product names, prices, footer. The custom neo-grotesque carries the entire identity. Weight 600 for product names and section headers, 700 for the centered wordmark, 400 for everything else. The 'case' feature and full alternates set (ss03, ss06–ss09) are signature — they reshape the letterforms subtly to feel printed rather than rendered.",
+        "sizes": "12, 14, 16, 18px",
+        "family": "studioPro",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.00–1.50",
+        "substitute": "Söhne, Inter Tight, or Neue Haas Grotesk",
+        "letterSpacing": "-0.025em to -0.004em",
+        "fontFeatureSettings": "\"case\", \"ss02\" 0, \"ss03\", \"ss06\", \"ss07\", \"ss08\", \"ss09\""
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Times — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.2, 1.5"
+      },
+      {
+        "role": "Metropolis — detected in extracted data but not described by AI",
+        "sizes": "14px",
+        "family": "Metropolis",
+        "weight": "500",
+        "lineHeight": "1.14",
+        "letterSpacing": "-0.004"
+      }
+    ],
+    "description": "Baggu operates as an editorial product catalog: a single warm cream canvas, black type and hairline borders, and product photography that takes 90% of the viewport. The interface is almost entirely achromatic — one warm off-white surface, one true black, and one muted warm gray for secondary metadata. The only chromatic element is a single medium green reserved for the 'New Arrivals' label and success states, functioning as a quiet signal rather than a brand color. Typography is custom and compact: a neo-grotesque at 12–18px with tight tracking and stylistic alternates enabled, sitting close to the baseline so product cards feel like printed price tags. Layout is image-first, text-second: full-bleed editorial triptychs, 5-up product grids, category tiles with caption labels. Density is tight, but the cream surface gives the whole thing room to breathe.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/39105d96-3cb1-497a-8f9f-507a1bed4d30#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Baggu design system\",\"item\":\"https://styles.refero.design/style/39105d96-3cb1-497a-8f9f-507a1bed4d30\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/39105d96-3cb1-497a-8f9f-507a1bed4d30#style-reference\",\"name\":\"Baggu design system reference\",\"headline\":\"Baggu design system | Refero Styles\",\"description\":\"Explore Baggu's light E-commerce design system: Bone Cream #f6f4ee, True Black #000000 colors, studioPro, Arial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/39105d96-3cb1-497a-8f9f-507a1bed4d30\",\"mainEntityOfPage\":\"https://styles.refero.design/style/39105d96-3cb1-497a-8f9f-507a1bed4d30\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Baggu\",\"url\":\"https://baggu.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/39105d96-3cb1-497a-8f9f-507a1bed4d30#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c77ab582-bcff-4200-989c-2395ec2085a6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c77ab582-bcff-4200-989c-2395ec2085a6.jpg\",\"caption\":\"Screenshot of Baggu\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c77ab582-bcff-4200-989c-2395ec2085a6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Baggu design system\",\"Baggu website design\",\"Baggu colors\",\"Baggu typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone Cream\",\"True Black\",\"Warm Ash\",\"Moss Signal\",\"studioPro\",\"Arial\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Baggu design system\"},{\"@type\":\"Thing\",\"name\":\"Baggu website design\"},{\"@type\":\"Thing\",\"name\":\"Baggu colors\"},{\"@type\":\"Thing\",\"name\":\"Baggu typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:13:44.453Z\",\"dateModified\":\"2026-04-30T00:13:44.453Z\"}]}19:T699,**Quick Color Reference**\n- text: #000000\n- background: #f6f4ee\n- border: #000000 (1px)\n- muted text: #7b7a77\n- accent: #298018 (only for 'New Arrivals' label and success states)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. **Product Grid Card**: Flush 5-up grid cell, no padding, no background. Product image fills the cell square-cropped edge-to-edge. Below image: product name in studioPro 14px weight 400 #000000, price in studioPro 14px weight 400 #000000, variant count in studioPro 14px weight 400 #7b7a77 (e.g. '+ 4 MORE'). No border, no radius, no shadow.\n\n2. **Sticky Header**: Full-width row, 16px horizontal padding, bone cream #f6f4ee background. Left: 'SHOP' and 'INFO' in studioPro 14px weight 400 uppercase #000000, followed by a search magnifier icon in #000000. Center: 'BAGGU' wordmark in studioPro 18px weight 700 uppercase #000000, letter-spacing -0.025em. Right: 'CART (0)' in studioPro 14px weight 400 uppercase #000000. No border, no shadow.\n\n3. **Section Header Bar**: Full-width row with no background, 16px vertical padding. Left: section title in studioPro 18px weight 600 uppercase #000000 (e.g. 'SHOP'). Right: label in studioPro 18px weight 600 uppercase #298018 (e.g. 'NEW ARRIVALS').\n\n4. **Pill Button**: 24px border-radius, 16px horizontal × 4px vertical padding, transparent fill, 1px solid #000000 border, text in studioPro 14px weight 600 uppercase #000000. No hover fill, no shadow.\n\n5. **Category Tile**: Full-bleed product image filling the cell with no radius, category label centered below in studioPro 14px weight 600 uppercase #000000 (e.g. 'PURSES', 'BAG ACCESSORIES'). Part of a 5-up flush grid with zero gap."
+      }
+    ],
+    "elevationPhilosophy": "There are no shadows in this system. Elevation is communicated entirely through scale: the announcement bar inverts to black, the header sits on the cream canvas with no border, and product cards have zero background distinction from the page. Visual hierarchy is built with type weight (400 vs 600 vs 700) and the single color inversion, never with depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "body",
+            "icon",
+            "other",
+            "button",
+            "nav",
+            "link",
+            "hero",
+            "heading",
+            "footer"
+          ],
+          "frequency": 2330,
+          "confidence": 1,
+          "prominence": 73479733.19437757,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 1,
+            "icon/fill": 20,
+            "nav/color": 3,
+            "body/color": 94,
+            "hero/color": 2,
+            "icon/color": 15,
+            "link/color": 66,
+            "nav/stroke": 2,
+            "other/fill": 19,
+            "other/color": 252,
+            "button/color": 9,
+            "footer/color": 1,
+            "other/stroke": 16,
+            "heading/color": 11,
+            "nav/borderColor": 12,
+            "body/borderColor": 376,
+            "hero/borderColor": 8,
+            "icon/borderColor": 60,
+            "link/borderColor": 264,
+            "other/borderColor": 1008,
+            "button/borderColor": 40,
+            "footer/borderColor": 4,
+            "heading/borderColor": 44,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f6f4ee",
+          "oklch": {
+            "c": 0.008238000393860474,
+            "h": 91.48287389432103,
+            "l": 0.9670330811649984
+          },
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "link",
+            "input"
+          ],
+          "frequency": 70,
+          "confidence": 1,
+          "prominence": 40394435.61180004,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 2,
+            "other/color": 7,
+            "button/color": 1,
+            "input/boxShadow": 1,
+            "body/borderColor": 12,
+            "link/borderColor": 8,
+            "input/borderColor": 4,
+            "other/borderColor": 28,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#298018",
+          "oklch": {
+            "c": 0.15909078713679553,
+            "h": 140.88875831343867,
+            "l": 0.5277777245811246
+          },
+          "contexts": [
+            "body",
+            "input"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 47792.410193108655,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "input/color": 1,
+            "body/borderColor": 4
+          }
+        },
+        {
+          "hex": "#7b7a77",
+          "oklch": {
+            "c": 0.004682415267422581,
+            "h": 91.47919680904073,
+            "l": 0.5794405718109943
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 7266.376863065485,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 10,
+            "body/borderColor": 40
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.001942650666610326,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 19.09,
+          "background": "#f6f4ee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.89,
+          "background": "#000000",
+          "foreground": "#7b7a77"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.55,
+          "background": "#f6f4ee",
+          "foreground": "#298018"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.2,
+          "background": "#000000",
+          "foreground": "#298018"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.9,
+          "background": "#f6f4ee",
+          "foreground": "#7b7a77"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|link"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingTop|link",
+            "marginTop|other",
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|hero"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "studioPro",
+          "source": "custom",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 493,
+          "fontFeatureSettings": [
+            "\"case\", \"ss02\" 0, \"ss03\", \"ss06\", \"ss07\", \"ss08\", \"ss09\""
+          ]
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 15,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Metropolis",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "studioPro",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "studioPro",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "studioPro",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "studioPro",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Metropolis",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "studioPro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 33,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "studioPro",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "studioPro",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "studioPro",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.009,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "studioPro",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "studioPro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "image",
+            "hero",
+            "footer",
+            "icon"
+          ],
+          "frequency": 309,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "studioPro",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "studioPro",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "studioPro",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "studioPro",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "studioPro",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "studioPro",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.38,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "studioPro",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "studioPro",
+          "weight": 700,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "studioPro",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "studioPro",
+          "weight": 700,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6d6de8f9-6975-4b0d-9559-2adabf37e861.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c77ab582-bcff-4200-989c-2395ec2085a6.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/39105d96-3cb1-497a-8f9f-507a1bed4d30#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Baggu design system\",\"item\":\"https://styles.refero.design/style/39105d96-3cb1-497a-8f9f-507a1bed4d30\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/39105d96-3cb1-497a-8f9f-507a1bed4d30#style-reference\",\"name\":\"Baggu design system reference\",\"headline\":\"Baggu design system | Refero Styles\",\"description\":\"Explore Baggu's light E-commerce design system: Bone Cream #f6f4ee, True Black #000000 colors, studioPro, Arial typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/39105d96-3cb1-497a-8f9f-507a1bed4d30\",\"mainEntityOfPage\":\"https://styles.refero.design/style/39105d96-3cb1-497a-8f9f-507a1bed4d30\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Baggu\",\"url\":\"https://baggu.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/39105d96-3cb1-497a-8f9f-507a1bed4d30#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c77ab582-bcff-4200-989c-2395ec2085a6.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c77ab582-bcff-4200-989c-2395ec2085a6.jpg\",\"caption\":\"Screenshot of Baggu\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c77ab582-bcff-4200-989c-2395ec2085a6.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Baggu design system\",\"Baggu website design\",\"Baggu colors\",\"Baggu typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Bone Cream\",\"True Black\",\"Warm Ash\",\"Moss Signal\",\"studioPro\",\"Arial\",\"Times\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Baggu design system\"},{\"@type\":\"Thing\",\"name\":\"Baggu website design\"},{\"@type\":\"Thing\",\"name\":\"Baggu colors\"},{\"@type\":\"Thing\",\"name\":\"Baggu typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:13:44.453Z\",\"dateModified\":\"2026-04-30T00:13:44.453Z\"}]}19:T699,**Quick Color Reference**\n- text: #000000\n- background: #f6f4ee\n- border: #000000 (1px)\n- muted text: #7b7a77\n- accent: #298018 (only for 'New Arrivals' label and success states)\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. **Product Grid Card**: Flush 5-up grid cell, no padding, no background. Product image fills the cell square-cropped edge-to-edge. Below image: product name in studioPro 14px weight 400 #000000, price in studioPro 14px weight 400 #000000, variant count in studioPro 14px weight 400 #7b7a77 (e.g. '+ 4 MORE'). No border, no radius, no shadow.\n\n2. **Sticky Header**: Full-width row, 16px horizontal padding, bone cream #f6f4ee background. Left: 'SHOP' and 'INFO' in studioPro 14px weight 400 uppercase #000000, followed by a search magnifier icon in #000000. Center: 'BAGGU' wordmark in studioPro 18px weight 700 uppercase #000000, letter-spacing -0.025em. Right: 'CART (0)' in studioPro 14px weight 400 uppercase #000000. No border, no shadow.\n\n3. **Section Header Bar**: Full-width row with no background, 16px vertical padding. Left: section title in studioPro 18px weight 600 uppercase #000000 (e.g. 'SHOP'). Right: label in studioPro 18px weight 600 uppercase #298018 (e.g. 'NEW ARRIVALS').\n\n4. **Pill Button**: 24px border-radius, 16px horizontal × 4px vertical padding, transparent fill, 1px solid #000000 border, text in studioPro 14px weight 600 uppercase #000000. No hover fill, no shadow.\n\n5. **Category Tile**: Full-bleed product image filling the cell with no radius, category label centered below in studioPro 14px weight 600 uppercase #000000 (e.g. 'PURSES', 'BAG ACCESSORIES'). Part of a 5-up flush grid with zero gap."
+}

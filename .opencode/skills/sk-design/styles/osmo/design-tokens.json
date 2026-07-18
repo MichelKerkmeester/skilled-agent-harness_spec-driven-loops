@@ -1,0 +1,657 @@
+{
+  "color": {
+    "concrete": {
+      "$value": "#f4f4f4",
+      "$type": "color",
+      "$description": "Concrete — Page canvas, card surfaces, and most border work — the off-white that everything sits on"
+    },
+    "ash-gray": {
+      "$value": "#eaeaea",
+      "$type": "color",
+      "$description": "Ash Gray — Elevated surface layer, input fields, secondary card backgrounds"
+    },
+    "bone": {
+      "$value": "#e1e1e1",
+      "$type": "color",
+      "$description": "Bone — Subtle dividers, list separators, tertiary surface fill"
+    },
+    "smoke": {
+      "$value": "#b8b8b8",
+      "$type": "color",
+      "$description": "Smoke — Muted image borders, disabled-state outlines, badge borders"
+    },
+    "graphite": {
+      "$value": "#4f4c4c",
+      "$type": "color",
+      "$description": "Graphite — Subdued borders and dividers where Steel feels too heavy"
+    },
+    "steel": {
+      "$value": "#7a7a7a",
+      "$type": "color",
+      "$description": "Steel — Secondary body text, helper labels, muted badges"
+    },
+    "charcoal": {
+      "$value": "#312e2e",
+      "$type": "color",
+      "$description": "Charcoal — Card borders, input strokes, mid-depth structural elements"
+    },
+    "ink": {
+      "$value": "#201d1d",
+      "$type": "color",
+      "$description": "Ink — Primary text, heavy borders, dominant structural outlines — the workhorse near-black"
+    },
+    "obsidian": {
+      "$value": "#151313",
+      "$type": "color",
+      "$description": "Obsidian — Dark card surfaces, inverse text, maximum-contrast backgrounds"
+    },
+    "volt": {
+      "$value": "#a1ff62",
+      "$type": "color",
+      "$description": "Volt — Primary brand accent — badge fills, brand borders, featured highlights, success indicators. The radioactive lime that switches elements on"
+    },
+    "ultraviolet": {
+      "$value": "#6840ff",
+      "$type": "color",
+      "$description": "Ultraviolet — Featured card backgrounds, link accents, deep brand moments — used when content deserves a colored stage"
+    },
+    "vermillion": {
+      "$value": "#f84131",
+      "$type": "color",
+      "$description": "Vermillion — Annotation accent — handwritten callouts, emphasis text, icon highlights, never used as a fill or background"
+    }
+  },
+  "font": {
+    "haffer-vf": {
+      "$value": "Haffer VF",
+      "$type": "fontFamily",
+      "$description": "Body and UI workhorse — variable sans used for paragraphs, buttons, labels, and everything between 12–27px. Weight 500 for emphasis, 700 for nav items and button labels"
+    },
+    "haffer-xh": {
+      "$value": "Haffer XH",
+      "$type": "fontFamily",
+      "$description": "Display and heading typeface — an extreme-cut sans with tight apertures and dramatic vertical compression (lh 0.85 at the top of the scale). Carries every word above 40px and defines the editorial voice"
+    },
+    "haffer-mono": {
+      "$value": "Haffer Mono",
+      "$type": "fontFamily",
+      "$description": "Technical metadata stamps — course tags, version labels, mono badges. Tiny sizes only, stamps info like a typewriter"
+    },
+    "brisa-pro": {
+      "$value": "Brisa Pro",
+      "$type": "fontFamily",
+      "$description": "Handwritten signature accent — used for the vermillion annotation callouts that feel like marker scrawl on a print proof. Reserved exclusively for that emotional beat"
+    },
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "-apple-system — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Haffer Mono",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Haffer Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Haffer Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "base-10": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-10 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Haffer XH",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Brisa Pro",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Haffer VF",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 27px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Haffer XH",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Haffer XH",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Haffer XH",
+        "fontSize": "44px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Haffer XH",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Haffer XH",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 62px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Haffer XH",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 64px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Haffer XH",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 80px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Haffer XH",
+        "fontSize": "112px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 112px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Haffer XH",
+        "fontSize": "112px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 112px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Haffer XH",
+        "fontSize": "150px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 150px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "220px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "800px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    },
+    "full-5": {
+      "$value": "1300px",
+      "$type": "dimension",
+      "$description": "Border radius full-5"
+    },
+    "full-6": {
+      "$value": "1600px",
+      "$type": "dimension",
+      "$description": "Border radius full-6"
+    },
+    "full-7": {
+      "$value": "8000px",
+      "$type": "dimension",
+      "$description": "Border radius full-7"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f4f4f4",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the concrete gray that everything composes on"
+    },
+    "card-surface": {
+      "$value": "#eaeaea",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated card backgrounds, input fields, secondary panels"
+    },
+    "brand-surface": {
+      "$value": "#a1ff62",
+      "$type": "color",
+      "$description": "Surface level 2: Volt lime used as accent fill for badges, tags, and feature callouts"
+    },
+    "feature-surface": {
+      "$value": "#6840ff",
+      "$type": "color",
+      "$description": "Surface level 3: Ultraviolet used for featured content cards — testimonials, highlighted sections"
+    },
+    "inverse-surface": {
+      "$value": "#151313",
+      "$type": "color",
+      "$description": "Surface level 4: Dark product cards, image overlays, maximum-contrast blocks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.osmo.supply",
+      "siteName": "Osmo",
+      "extractedAt": "2026-06-03T19:59:03.587Z",
+      "variant": "extended"
+    }
+  }
+}

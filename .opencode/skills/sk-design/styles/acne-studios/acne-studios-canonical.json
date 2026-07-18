@@ -1,0 +1,596 @@
+{
+  "source": "https://styles.refero.design/style/234e9a17-236d-4446-9d58-f83f6806d012",
+  "uuid": "234e9a17-236d-4446-9d58-f83f6806d012",
+  "name": "Acne Studios",
+  "northStar": "Minimalist gallery white space with bold photographic moments — a fashion magazine laid flat on marble.",
+  "capturedAt": "2026-07-18T08:08:36.638Z",
+  "meta": {
+    "url": "https://acnestudios.com",
+    "siteName": "Acne Studios",
+    "extractedAt": "2026-06-03T18:15:17.678Z",
+    "durationMs": 26208,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 261,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #0018a8 only for text links, active nav states, and icon strokes — never as a filled button background",
+      "Set body and nav text to 10-11px uppercase with 0.0330em letter-spacing for the signature editorial voice",
+      "Let product and editorial images span full viewport width with 0px gap between adjacent cells",
+      "Default page background to #ffffff and avoid any tinted surface unless absolutely necessary",
+      "Keep card and image radius at 0px — the system uses hard edges to read as printed magazine spreads",
+      "Use #000000 at 21:1 contrast for all primary text on white; reserve #6b6b6b for genuinely secondary copy",
+      "Maintain 60px vertical section gaps and 30px nav padding as the structural rhythm"
+    ],
+    "donts": [
+      "Do not introduce filled CTA buttons, pill shapes, or rounded containers — they break the editorial-flat aesthetic",
+      "Do not apply box-shadow to product cards, nav, or content tiles; separation comes from whitespace alone",
+      "Do not use colors outside the five-token palette for interface chrome — photography supplies all chromatic richness",
+      "Do not set type below 9px or render body text in anything other than uppercase with tracking for nav-adjacent labels",
+      "Do not center body content or constrain to a max-width — layouts should be full-bleed to feel like a magazine spread",
+      "Do not add borders, dividers, or background fills to product cells — they must bleed into each other",
+      "Do not use #0018a8 as decorative illustration color; it is reserved for functional interactive states"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0018a8",
+        "name": "Electric Cobalt",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, logo wordmark, icon strokes, nav labels, and footer copy. Used at 21:1 contrast on white for absolute legibility",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6b6b6b",
+        "name": "Graphite",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, product card backgrounds, and nav bar surface. The dominant ground that lets editorial photography breathe",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Bone",
+        "role": "Subtle box-shadow tint and hairline border for elevated overlays. Used minimally — the system prefers whitespace to tinted surfaces",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed, edge-to-edge viewport layouts with no max-width constraint. The page follows a strict editorial rhythm: (1) sticky top nav with text links and cart counter, (2) full-viewport split hero (50/50) with overlaid wordmark, (3) 4-column product grid with zero gutters, (4) 5-column editorial tile row with zero gutters. All sections stack vertically with consistent 60px gaps. The grid is always even — no asymmetric or masonry compositions. Navigation is minimal top bar only, no sidebar or mega-menu. The layout reads left-to-right, top-to-bottom like a printed fashion magazine spread.",
+    "imagery": "Photography is the entire product. Editorial fashion shots dominate at full-bleed scale: models in avant-garde styling against neutral studio backdrops (gray, striped fabric, muted interiors). Products are shot on pure white with zero lifestyle context. Secondary imagery includes brand packaging (pink Acne Studios boxes), storefront photography, and architectural shots. No illustrations, no icons beyond simple line glyphs, no gradients, no 3D renders. Images are always rectangular with sharp corners — no masking, no rounded crops, no overlapping. The role of imagery is not decorative atmosphere but primary content; it occupies roughly 90% of visible pixel area.",
+    "similar": [
+      {
+        "why": "Same editorial-fashion e-commerce language: full-bleed photography, minimal UI chrome, uppercase tracked-out nav text, and white-dominant canvas",
+        "business": "SSENSE"
+      },
+      {
+        "why": "Identical restraint philosophy — large whitespace, flat product photography, no decorative elevation, and a near-monochrome interface that lets imagery dominate",
+        "business": "COS"
+      },
+      {
+        "why": "Shared art-direction approach: tiny uppercase labels, zero-radius image crops, no card containers, and editorial tile grids beneath product listings",
+        "business": "Lemaire"
+      },
+      {
+        "why": "Same digital-magazine-as-storefront structure with full-viewport hero splits, 4-column product grids, and complete absence of traditional e-commerce UI affordances",
+        "business": "The Row"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "60px",
+      "cardPadding": "0px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 1,
+        "purpose": "Page canvas and dominant background across all sections"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Bone",
+        "level": 2,
+        "purpose": "Imperceptible shadow and border tint for subtle UI lift"
+      }
+    ],
+    "northStar": "Minimalist gallery white space with bold photographic moments — a fashion magazine laid flat on marble.",
+    "typeScale": [
+      {
+        "role": "display",
+        "size": 120,
+        "lineHeight": 1,
+        "letterSpacing": -1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal text-only site header",
+        "description": "Full-bleed white bar, 30px vertical padding. Left: WOMAN, MAN, BAGS, RUNWAY at 10-11px uppercase, 0.0330em tracking, #000000. Right: SEARCH, HELP, ACCOUNT, cart icon with counter at same spec. No background fill, no border, no shadow. Sticky to top on scroll."
+      },
+      {
+        "name": "Section Label",
+        "role": "Category indicator above editorial splits",
+        "description": "Tiny uppercase label (SHOP WOMAN, SHOP MAN) at 10px, 0.0330em letter-spacing, #000000. Sits at the top-left of each half of a split hero, functioning as a clickable text link. 9-10px horizontal padding from viewport edge."
+      },
+      {
+        "name": "Full-Bleed Split Hero",
+        "role": "Primary landing visual",
+        "description": "Two equal-width editorial photographs spanning full viewport width with no gap. The Acne Studios wordmark in custom display face is centered across the seam at 120px+, #000000, overlapping both images. No overlay, no gradient, no CTA button — the wordmark and the photographs do all the work."
+      },
+      {
+        "name": "Product Grid Cell",
+        "role": "Individual product listing in the category grid",
+        "description": "Full-bleed product photograph with no border, radius, or background. Caption above image: category name (WOMEN'S JEANS, BAGS, T-SHIRTS) at 10px uppercase, 0.0330em tracking, #000000. No visible price, no quick-add button, no badge. Cells butt directly against neighbors with 0px gap to create a seamless editorial spread."
+      },
+      {
+        "name": "Editorial Tile Row",
+        "role": "Brand storytelling content beneath product grid",
+        "description": "Five equal-width tiles in a single row, each containing a full-bleed photograph (packaging, storefront, lookbook, building). No captions, no borders, no interactive chrome — purely atmospheric. Functions as a mood board rather than navigation."
+      },
+      {
+        "name": "Text Link",
+        "role": "Interactive inline link in body copy and nav",
+        "description": "Inherits body type and size, colored #0018a8 with no underline by default. On hover, underline appears at 1px. No pill shape, no background, no border."
+      },
+      {
+        "name": "Icon Button",
+        "role": "Search, help, account, and cart triggers",
+        "description": "Text label at 10-11px uppercase with 0.0330em tracking. Cart includes a 2-digit counter at the same size. Icons are 1px stroke, #000000, no fill, no background container."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Helvetica Monospaced Pro — detected in extracted data but not described by AI",
+        "sizes": "9px",
+        "family": "Helvetica Monospaced Pro",
+        "weight": "400",
+        "lineHeight": "1.15",
+        "letterSpacing": "0.033"
+      },
+      {
+        "role": "Oversized brand wordmark overlaid on hero photography. The custom face has geometric construction with humanist terminals; no system font replicates it, but its character is closest to a wide-aperture geometric sans.",
+        "sizes": "",
+        "family": "Acne Studios (custom wordmark)",
+        "weight": "400-500",
+        "lineHeight": "",
+        "substitute": "GT Walsheim or Manrope at matching optical size and weight",
+        "letterSpacing": "tight (0 to -0.02em at display)"
+      },
+      {
+        "role": "All functional UI text: nav links, section labels, product captions, footer. Always rendered uppercase with generous tracking — this typographic treatment is the single most recognizable non-photographic element on the site.",
+        "sizes": "",
+        "family": "Helvetica Neue / system sans",
+        "weight": "400",
+        "lineHeight": "1.15-1.4",
+        "substitute": "Helvetica or Inter",
+        "letterSpacing": "0.0330em across small sizes; 0.02em on slightly larger"
+      }
+    ],
+    "description": "Acne Studios operates as a digital fashion magazine rather than a conventional storefront: white canvas, full-bleed editorial photography, and almost no UI chrome. The entire page reads as curated art-direction — product images sit edge-to-edge in tight grids, and the only typographic punctuation is tiny uppercase labels with generous letter-spacing. The signature electric cobalt (#0018a8) is used sparingly on links and interactive accents, never as a filled button, letting the photography own attention. Components are deliberately weightless: no shadows, no card surfaces, no rounded containers, no decorative borders. Space between elements does the structural work that elevation does elsewhere.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/234e9a17-236d-4446-9d58-f83f6806d012#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Acne Studios design system\",\"item\":\"https://styles.refero.design/style/234e9a17-236d-4446-9d58-f83f6806d012\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/234e9a17-236d-4446-9d58-f83f6806d012#style-reference\",\"name\":\"Acne Studios design system reference\",\"headline\":\"Acne Studios design system | Refero Styles\",\"description\":\"Explore Acne Studios's light E-commerce design system: Electric Cobalt #0018a8, Ink Black #000000 colors, Helvetica Monospaced Pro, Acne Studios (custom...\",\"url\":\"https://styles.refero.design/style/234e9a17-236d-4446-9d58-f83f6806d012\",\"mainEntityOfPage\":\"https://styles.refero.design/style/234e9a17-236d-4446-9d58-f83f6806d012\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Acne Studios\",\"url\":\"https://acnestudios.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/234e9a17-236d-4446-9d58-f83f6806d012#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/92d7f8db-88db-41a2-a659-8b8ff462c94b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/92d7f8db-88db-41a2-a659-8b8ff462c94b.jpg\",\"caption\":\"Screenshot of Acne Studios\"},\"image\":\"https://images.refero.design/styles/refero.design/image/92d7f8db-88db-41a2-a659-8b8ff462c94b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Acne Studios design system\",\"Acne Studios website design\",\"Acne Studios colors\",\"Acne Studios typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Electric Cobalt\",\"Ink Black\",\"Graphite\",\"Paper White\",\"Helvetica Monospaced Pro\",\"Acne Studios (custom wordmark)\",\"Helvetica Neue / system sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Acne Studios design system\"},{\"@type\":\"Thing\",\"name\":\"Acne Studios website design\"},{\"@type\":\"Thing\",\"name\":\"Acne Studios colors\"},{\"@type\":\"Thing\",\"name\":\"Acne Studios typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-02-16T12:02:09.000Z\",\"dateModified\":\"2026-02-16T12:02:09.000Z\"}]}19:T526,## Quick Color Reference\n- text: #000000\n- background: #ffffff\n- border/shadow tint: #f2f2f2\n- accent/brand: #0018a8\n- muted text: #6b6b6b\n- primary action: no distinct CTA color\n\n## 3-5 Example Component Prompts\n1. **Top Nav Bar**: Full-width white bar, 30px top/bottom padding. Left-aligned links (WOMAN, MAN, BAGS, RUNWAY) at 10px uppercase, letter-spacing 0.33px, #000000. Right-aligned SEARCH, HELP, ACCOUNT, cart icon at same spec, 10px horizontal gap between items. No background fill, no border, sticky to top.\n\n2. **Product Grid Cell**: Full-bleed photograph with 0px radius and no border. Caption 30px above image: category name at 10px uppercase, 0.33px letter-spacing, #000000. No price visible, no button. Cell width is 25% of viewport in a 4-column row with 0px gaps.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n4. **Editorial Tile Row**: 5 equal-width tiles in a single row, each containing one full-bleed photograph (0px radius, no border). No captions, no interactive elements within tiles. Tiles touch at 0px gap to form a continuous strip.\n\n5. **Text Link**: Inline at 10px uppercase, 0.33px letter-spacing. Color #0018a8, no underline by default. 1px underline on hover. No background, no padding, no border."
+      }
+    ],
+    "elevationPhilosophy": "The system intentionally avoids shadows and elevation. White space, not depth, creates separation between elements. The only shadow token (#f2f2f2) is nearly imperceptible — used only for overlays that must float above photography."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "hero",
+            "heading",
+            "image",
+            "body",
+            "footer",
+            "input"
+          ],
+          "frequency": 726,
+          "confidence": 1,
+          "prominence": 74237660.06819606,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0018a8",
+          "oklch": {
+            "c": 0.21745030308196356,
+            "h": 264.1967859240269,
+            "l": 0.3479724741129171
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "button",
+            "icon",
+            "other",
+            "body"
+          ],
+          "frequency": 292,
+          "confidence": 1,
+          "prominence": 9360272.537556162,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "nav",
+            "footer"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 1826428.639438399,
+          "properties": [
+            "boxShadow",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 301415.6969257975,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6b6b6b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5277958377351308
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 56,
+          "confidence": 1,
+          "prominence": 249356.0481055427,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.15558425056953606,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.38,
+          "background": "#ffffff",
+          "foreground": "#0018a8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.06,
+          "background": "#f2f2f2",
+          "foreground": "#0018a8"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.33,
+          "background": "#ffffff",
+          "foreground": "#6b6b6b"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 68,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 76,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "marginLeft",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 19,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Helvetica Now Text",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 228,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Helvetica Monospaced Pro",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 17,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 12,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 9,
+          "family": "Helvetica Monospaced Pro",
+          "weight": 400,
+          "contexts": [
+            "image",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.033,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 9,
+          "family": "Helvetica Monospaced Pro",
+          "weight": 400,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.033,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Helvetica Now Text",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "link",
+            "image",
+            "body"
+          ],
+          "frequency": 71,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Helvetica Now Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "heading",
+            "link",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 136,
+          "lineHeight": 1.67,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Helvetica Now Text",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 20,
+          "lineHeight": 2,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Helvetica Now Text",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": 0.017,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/2ecd8111-aa58-494c-9540-b0689b97ed7d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/92d7f8db-88db-41a2-a659-8b8ff462c94b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/234e9a17-236d-4446-9d58-f83f6806d012#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Acne Studios design system\",\"item\":\"https://styles.refero.design/style/234e9a17-236d-4446-9d58-f83f6806d012\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/234e9a17-236d-4446-9d58-f83f6806d012#style-reference\",\"name\":\"Acne Studios design system reference\",\"headline\":\"Acne Studios design system | Refero Styles\",\"description\":\"Explore Acne Studios's light E-commerce design system: Electric Cobalt #0018a8, Ink Black #000000 colors, Helvetica Monospaced Pro, Acne Studios (custom...\",\"url\":\"https://styles.refero.design/style/234e9a17-236d-4446-9d58-f83f6806d012\",\"mainEntityOfPage\":\"https://styles.refero.design/style/234e9a17-236d-4446-9d58-f83f6806d012\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Acne Studios\",\"url\":\"https://acnestudios.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/234e9a17-236d-4446-9d58-f83f6806d012#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/92d7f8db-88db-41a2-a659-8b8ff462c94b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/92d7f8db-88db-41a2-a659-8b8ff462c94b.jpg\",\"caption\":\"Screenshot of Acne Studios\"},\"image\":\"https://images.refero.design/styles/refero.design/image/92d7f8db-88db-41a2-a659-8b8ff462c94b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Acne Studios design system\",\"Acne Studios website design\",\"Acne Studios colors\",\"Acne Studios typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Electric Cobalt\",\"Ink Black\",\"Graphite\",\"Paper White\",\"Helvetica Monospaced Pro\",\"Acne Studios (custom wordmark)\",\"Helvetica Neue / system sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Acne Studios design system\"},{\"@type\":\"Thing\",\"name\":\"Acne Studios website design\"},{\"@type\":\"Thing\",\"name\":\"Acne Studios colors\"},{\"@type\":\"Thing\",\"name\":\"Acne Studios typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-02-16T12:02:09.000Z\",\"dateModified\":\"2026-02-16T12:02:09.000Z\"}]}19:T526,## Quick Color Reference\n- text: #000000\n- background: #ffffff\n- border/shadow tint: #f2f2f2\n- accent/brand: #0018a8\n- muted text: #6b6b6b\n- primary action: no distinct CTA color\n\n## 3-5 Example Component Prompts\n1. **Top Nav Bar**: Full-width white bar, 30px top/bottom padding. Left-aligned links (WOMAN, MAN, BAGS, RUNWAY) at 10px uppercase, letter-spacing 0.33px, #000000. Right-aligned SEARCH, HELP, ACCOUNT, cart icon at same spec, 10px horizontal gap between items. No background fill, no border, sticky to top.\n\n2. **Product Grid Cell**: Full-bleed photograph with 0px radius and no border. Caption 30px above image: category name at 10px uppercase, 0.33px letter-spacing, #000000. No price visible, no button. Cell width is 25% of viewport in a 4-column row with 0px gaps.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n4. **Editorial Tile Row**: 5 equal-width tiles in a single row, each containing one full-bleed photograph (0px radius, no border). No captions, no interactive elements within tiles. Tiles touch at 0px gap to form a continuous strip.\n\n5. **Text Link**: Inline at 10px uppercase, 0.33px letter-spacing. Color #0018a8, no underline by default. 1px underline on hover. No background, no padding, no border."
+}

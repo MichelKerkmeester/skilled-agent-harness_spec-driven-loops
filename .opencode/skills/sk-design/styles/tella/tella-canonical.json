@@ -1,0 +1,1828 @@
+{
+  "source": "https://styles.refero.design/style/41547c7a-3bbe-49f0-95d6-9701c9df9a5e",
+  "uuid": "41547c7a-3bbe-49f0-95d6-9701c9df9a5e",
+  "name": "Tella",
+  "northStar": "Violet broadcast signal — the design feels like a TV network's on-air package: full-bleed chromatic fields, bold compressed display type, hard cuts between saturated and white.",
+  "capturedAt": "2026-07-18T10:17:17.493Z",
+  "meta": {
+    "url": "https://tella.tv",
+    "siteName": "Tella",
+    "extractedAt": "2026-04-11T19:25:42.180Z",
+    "durationMs": 151955,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1458,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 3
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use NaN Jaune Midi Bold with letter-spacing -0.047em to -0.054em for all display headlines above 48px — never set this font at tracking above -0.036em or it loses its broadcast-title compression.",
+      "Apply the full-bleed violet hero (#5e51f8 → #251544 gradient) as a hard-cut section, not a fade — the abrupt transition to #f8fafc white is a signature move, not a design error.",
+      "Use 40px border-radius for all interactive pill elements: CTA buttons, nav sign-up button, tab selectors, and tag labels — this is the single rounded form that appears system-wide.",
+      "Tint feature card illustrations and ghost text with #d7d3fd or #cfcbfd on white surfaces — this keeps brand violet present in content sections without saturating the white ground.",
+      "Apply the lavender glow shadow (rgba(238,217,253,0.25) 0px 16px 64px 4px) to product screenshots and elevated frames — generic black shadows on violet-adjacent content would break the brand-colored elevation system.",
+      "Maintain the dark CTA (#111111 pill) as the primary action on violet hero sections — the unexpected darkness against saturated violet reads as decisive contrast, not absence of brand.",
+      "Use Inter 700 at 24-30px for section subheadings on white sections — NaN Jaune Midi is reserved for display sizes only; Inter carries section-level hierarchy below 48px."
+    ],
+    "tags": [
+      "violet-dominant",
+      "display-type",
+      "hard-contrast-sections",
+      "pill-buttons",
+      "card-grid",
+      "screen-recorder",
+      "mixed-theme",
+      "custom-font",
+      "gradient-hero",
+      "lavender-accents"
+    ],
+    "donts": [
+      "Never use NaN Jaune Midi Bold below 48px — the custom face loses its display impact at text sizes and competes poorly with Inter's legibility.",
+      "Never add gradient transitions between the violet hero and white sections — the hard cut is a deliberate design choice, not a transition oversight.",
+      "Never use semantic red/green for status colors without verifying they appear in the design system — no semantic colors were detected in the extracted data; default to violet (#5e51f8) for interactive states.",
+      "Never apply card border-radius below 24px — even small UI elements use 12-20px; the system has no sharp-cornered cards.",
+      "Never place the lavender pill button (#d5a8f5) as the sole primary CTA — it reads as decorative or secondary alongside the dark pill; always pair it with or subordinate it to #111111 primary action.",
+      "Never use box-shadows with warm-toned or yellow-shifted colors — all elevation uses either neutral black rgba(0,0,0,x) or brand-tinted lavender rgba(238,217,253,x). No warm brown or golden shadow tones.",
+      "Never center-align body copy in card grids at more than 2 lines — the feature cards use left-aligned body text below card headers; centered multi-line body copy breaks the card's reading rhythm."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#5e51f8",
+        "name": "Signal Violet",
+        "role": "Primary brand color — hero backgrounds, CTAs, interactive states, logo mark. The electric quality (vivid, high-chroma) makes every surface it touches feel charged.",
+        "group": "brand"
+      },
+      {
+        "hex": "#251544",
+        "name": "Deep Nebula",
+        "role": "Hero section footer tone and gradient terminus. Paired with Signal Violet for the dark-to-darker hero gradient that creates depth within the purple field.",
+        "group": "brand",
+        "gradient": "linear-gradient(rgb(39, 21, 76) 0%, rgb(24, 17, 39) 100%)"
+      },
+      {
+        "hex": "#4b41c6",
+        "name": "Iris Mid",
+        "role": "Button shadow underlay and hover states on the hero. Creates tactile depth on dark surfaces via box-shadow layering.",
+        "group": "brand"
+      },
+      {
+        "hex": "#cfcbfd",
+        "name": "Soft Amethyst",
+        "role": "Secondary headline text on dark violet backgrounds — brand color carried into typography so the hero never loses chromatic identity.",
+        "group": "brand"
+      },
+      {
+        "hex": "#d5a8f5",
+        "name": "Lavender Mist",
+        "role": "Pill button accent variant — appears as a pastel contrast button against the violet hero. Black text on this color delivers AAA contrast with brand warmth.",
+        "group": "accent"
+      },
+      {
+        "hex": "#d7d3fd",
+        "name": "Powder Violet",
+        "role": "Feature card illustration tints and ghost typography in the white sections — keeps brand hue present without saturating light backgrounds.",
+        "group": "accent"
+      },
+      {
+        "hex": "#867dfa",
+        "name": "Periwinkle Glow",
+        "role": "Icon fills and glow halos (box-shadow on interactive elements). The lighter violet relative of Signal Violet — used for SVG fills and hover glow effects.",
+        "group": "accent"
+      },
+      {
+        "hex": "#99eeff",
+        "name": "Celestial Cyan",
+        "role": "Decorative accent surface — appears sparingly as a cool counterpoint to the warm violet system.",
+        "group": "accent"
+      },
+      {
+        "hex": "#0f172a",
+        "name": "Ink",
+        "role": "Primary heading text on white sections.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#475569",
+        "name": "Slate",
+        "role": "Body text on white sections, secondary navigation labels.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808a99",
+        "name": "Steel",
+        "role": "Tertiary body copy, fine print, disabled states.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#94a3b8",
+        "name": "Fog",
+        "role": "Icon strokes, placeholder text, muted UI elements.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Ash Border",
+        "role": "Card borders, section dividers, input borders on light surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8fafc",
+        "name": "Chalk",
+        "role": "Page background for feature sections.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces, nav background, text on dark hero.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111111",
+        "name": "Carbon",
+        "role": "CTA button fill on the hero (the dark pill that contrasts with the violet field), high-contrast body text.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#312e58",
+        "name": "Deep Violet Text",
+        "role": "Body copy within violet/dark sections where pure white would be too harsh.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5e51f8",
+        "name": "Hero Gradient",
+        "role": "Full-bleed hero background — Signal Violet to Deep Nebula vertical gradient with radial glow at top center.",
+        "group": "brand",
+        "gradient": "radial-gradient(50% 200% at 50% -100%, rgb(119, 107, 255) 0%, rgb(94, 81, 248) 100%)"
+      }
+    ],
+    "layout": "$19",
+    "imagery": "$1a",
+    "similar": [
+      {
+        "why": "Same violet-dominant brand with a screen recorder product hero — both use full-bleed chromatic hero sections and product-screenshot-in-device-frame layouts",
+        "business": "Loom"
+      },
+      {
+        "why": "Custom display font at heavy negative tracking paired with system-weight UI body copy — same typographic two-tier strategy (expressive headline font + invisible utility font)",
+        "business": "Framer"
+      },
+      {
+        "why": "Hard section cuts between saturated dark hero and white feature panels with lavender/violet illustration accents on white cards",
+        "business": "Pitch"
+      },
+      {
+        "why": "Screen recorder / video editor SaaS with pill CTA buttons, feature cards showing illustrated UI metaphors, and a horizontal scrolling feature card layout",
+        "business": "Descript"
+      },
+      {
+        "why": "Violet brand palette with circular avatar social proof rows and a candid-webcam-footage-as-hero visual approach",
+        "business": "Supercut"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "12px",
+        "cards": "24px",
+        "images": "16px",
+        "inputs": "8px",
+        "buttons": "40px",
+        "featureCards": "32px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "96px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "category": "SaaS",
+    "surfaces": [
+      {
+        "hex": "#f8fafc",
+        "name": "Page Background",
+        "level": 0,
+        "purpose": "Default page surface for feature/content sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Feature cards, nav bar, modal surfaces on light backgrounds"
+      },
+      {
+        "hex": "#5e51f8",
+        "name": "Hero Field",
+        "level": 2,
+        "purpose": "Full-bleed violet hero section — primary brand immersion surface"
+      },
+      {
+        "hex": "#251544",
+        "name": "Dark Depth",
+        "level": 3,
+        "purpose": "Hero gradient base, deepest surface within the violet system"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.15) 0px 8px 32px 4px",
+        "element": "Feature Card (white section)"
+      },
+      {
+        "style": "rgba(238, 217, 253, 0.25) 0px 16px 64px 4px, rgba(0, 0, 0, 0.1) 0px 8px 32px 0px",
+        "element": "Product Screenshot Frame"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.16) 0px 2px 4px 0px, rgba(0, 0, 0, 0.16) 0px 4px 8px 0px, rgba(255, 255, 255, 0.25) 0px 1px 1px 0px inset",
+        "element": "Navigation Pill / Active Tab"
+      },
+      {
+        "style": "rgba(0, 0, 0, 0.05) 0px -4px 6px 0px, rgba(0, 0, 0, 0.1) 0px -10px 15px 0px",
+        "element": "Bottom Card Edge"
+      }
+    ],
+    "northStar": "Violet broadcast signal — the design feels like a TV network's on-air package: full-bleed chromatic fields, bold compressed display type, hard cuts between saturated and white.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 18
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 22
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 25
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 27
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 29
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 36
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 62,
+        "letterSpacing": -3.02
+      },
+      {
+        "role": "display",
+        "size": 84,
+        "lineHeight": 93,
+        "letterSpacing": -4.54
+      }
+    ],
+    "components": [
+      {
+        "html": "$1b",
+        "name": "Hero CTA Section",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1c",
+        "name": "Feature Cards Grid",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1d",
+        "name": "Tab Selector + Video Demo Card",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Hero Primary CTA Button",
+        "role": "Main conversion action on the violet hero",
+        "description": "40px border-radius pill, #111111 background, #ffffff text, Inter 600 16px. Sits inside a fully saturated violet hero — the deliberate darkness makes it recede into urgency rather than compete with the background. Padding approximately 16px 32px. No border."
+      },
+      {
+        "name": "Lavender Accent Pill Button",
+        "role": "Secondary or decorative CTA variant",
+        "description": "40px border-radius pill, #d5a8f5 background, #000000 text, #000000 border. Inter 600 14-16px. Used as a visual counterpoint — warm pastel against violet — creates a softer entry point alongside the hard dark CTA."
+      },
+      {
+        "name": "Ghost Navigation Link",
+        "role": "Top nav links (Features, Resources, Pricing)",
+        "description": "No background, no border. Inter 500 16px, #475569 text color on white nav, #ffffff on dark sections. Hover state likely adds #5e51f8 color. Letter-spacing normal."
+      },
+      {
+        "name": "Outlined Sign Up Button",
+        "role": "Nav bar secondary action",
+        "description": "40px border-radius pill, transparent background, #000000 border 1px solid, #000000 text on light nav. Inter 600 14px. Padding 8px 20px. On dark hero sections, border becomes #ffffff."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Individual feature showcase in the horizontal scrolling card grid",
+        "description": "32px border-radius, #ffffff background, #e5e7eb border 1px solid, shadow rgba(0,0,0,0.15) 0px 8px 32px 4px. Padding 24px. Interior contains an icon (16px, #5e51f8 or #867dfa fill), Inter 700 18px heading in #0f172a, Inter 400 16px body in #475569. Feature illustration in the lower half uses #d7d3fd and #cfcbfd tints on white — brand-colored at low saturation."
+      },
+      {
+        "name": "Tab Selector (Demo/Tutorials/Courses)",
+        "role": "Content filter tabs beneath the hero product screenshot",
+        "description": "Active state: 40px radius pill, #ffffff background, Inter 600 14px #0f172a text, shadow rgba(0,0,0,0.16) 0px 2px 4px, rgba(0,0,0,0.16) 0px 4px 8px, rgba(255,255,255,0.25) 0px 1px 1px inset. Inactive: no background, #ffffff text at reduced opacity. Container: semi-transparent violet surface."
+      },
+      {
+        "name": "Video Demo Card",
+        "role": "Inline video teaser with play button",
+        "description": "24px border-radius card, #ffffff background, shadow rgba(0,0,0,0.15) 0px 8px 32px 0px. Contains thumbnail image at 16px radius left side, Inter 700 20px headline #0f172a, Inter 500 16px link text in #5e51f8 ('Watch the demo'). Positioned floating over the violet-to-white transition band."
+      },
+      {
+        "name": "Product Screenshot Frame",
+        "role": "Showcasing the Tella app UI within the hero",
+        "description": "16px border-radius on the inner screen content, dark bezel (#111111) at ~8-12px around the screen. Shadow: rgba(238,217,253,0.25) 0px 16px 64px 4px + rgba(0,0,0,0.1) 0px 8px 32px 0px. The lavender-tinted outer glow is the signature — elevation feels brand-colored, not neutral."
+      },
+      {
+        "name": "Social Proof Avatar Row",
+        "role": "Trust signal showing user community",
+        "description": "Horizontally scrolling row of circular avatars (40px diameter, 9999px radius). Overlapping arrangement with 16px negative margin between each. Centered below the hero. Caption text Inter 500 14px #475569 centered above."
+      },
+      {
+        "name": "Gear List / Content Card",
+        "role": "Embedded product content card (within app screenshot)",
+        "description": "24px border-radius, #ffffff background, border #e5e7eb 1px. Internal layout: image left (product photo at 16px radius), text right with Inter 700 16px title #0f172a, body Inter 400 14px #475569. CTA pill button '#5e51f8 background, #ffffff text, 40px radius' inside the card."
+      },
+      {
+        "name": "Footnote / Trial Copy",
+        "role": "De-emphasised trust copy beneath primary CTA",
+        "description": "Inter 400 12px, #cfcbfd color on dark violet, centered. No background. Used for '7-day Free trial — no credit card required' messaging."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Hero and section display headlines exclusively. The custom font's chunky stroke contrast and tight tracking at display sizes creates broadcast-title energy — unmistakable at a glance, nothing Inter could replicate. The aggressive negative tracking (-0.054em at 56px) squeezes letters into a dense typographic block that reads as a single graphic unit.",
+        "sizes": "56px, 64px, 84px",
+        "family": "NaN Jaune Midi Bold",
+        "weight": "700",
+        "lineHeight": "1.10–1.20",
+        "substitute": "Cabinet Grotesk ExtraBold or Clash Display Bold",
+        "letterSpacing": "-0.054em at 56px, -0.047em at 64px, -0.036em at 84px",
+        "fontFeatureSettings": "normal"
+      },
+      {
+        "role": "All UI text: navigation, body copy, subheadings, card titles, buttons, captions. Weight 700 at 24-30px for section subheadings; weight 600 at 18-20px for card headers; weight 500 at 14-16px for body and UI labels. The utilitarian pairing with NaN Jaune Midi is intentional — Inter stays invisible so the display font commands full attention.",
+        "sizes": "12px, 14px, 16px, 18px, 20px, 24px, 28px, 30px",
+        "family": "Inter",
+        "weight": "500, 600, 700",
+        "lineHeight": "1.00–1.95",
+        "substitute": "Inter (freely available via Google Fonts)",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "System fallback at 12px for fine-print labels and browser-rendered micro text.",
+        "sizes": "12px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "System sans-serif",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Tella pulses with electric violet energy — a hero that washes the entire viewport in saturated purple (#5e51f8 to #251544), then cuts hard to white for feature sections. The contrast is deliberate and jarring in the best way: you go from immersive chromatic field to clinical white card grid without transition. The headline font NaN Jaune Midi Bold does the heavy lifting — a chunky, tightly-tracked display face at -0.054em letter-spacing that feels like broadcast TV titles squeezed into browser chrome. Lavender-tinted secondary text (#cfcbfd on dark, #d7d3fd on features) carries brand color even into body copy, preventing the white sections from losing brand identity. The pill-shaped dark CTA floating in a violet sea is the signature contradiction: the most important action is the darkest, most contained element on the page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1e"
+      },
+      {
+        "title": "Gradient System",
+        "content": "Tella uses four gradient types with specific roles:\n\n1. **Hero Background Gradient**: radial-gradient(50% 200% at 50% -100%, #776bff 0%, #5e51f8 100%) layered over linear-gradient(#27154c, #181127 100%) — creates a glowing violet orb at the top of the hero that fades to near-black at the bottom.\n\n2. **Brand CTA Gradient**: linear-gradient(135deg, #5e51f8 4.6%, #5e51f8 32.6%, #955ceb 63.4%) — used on brand-colored interactive elements, creates a subtle violet-to-purple shift.\n\n3. **Lavender Shimmer**: linear-gradient(270deg, #dec8ff 0%, #ffffff 50%, #dec8ff 100%) — appears on card backgrounds or section separators in the white feature areas, a barely-there tint suggesting brand presence without commitment.\n\n4. **Rainbow Neon Ring**: linear-gradient(270deg, #ffff00 0%, #00ffff 33%, #ff00ff 65%, #ffff00 100%) — likely animated, appears as a decorative halo element (logo ring or status indicator). Use sparingly — it's a punctuation mark, not a background."
+      }
+    ],
+    "elevationPhilosophy": "Tella uses shadows only at section boundaries and floating elements — never on text or inline content. The hero-to-white transition is handled by hard color cuts, not shadows. Elevated cards on white use rgba(0,0,0,0.15) 0px 8px 32px 4px — a single soft ambient layer. The lavender-tinted glow shadow rgba(238,217,253,0.25) 0px 16px 64px 4px appears on product screenshots and video frames within the violet sections, making elevation feel brand-colored rather than neutral."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image",
+            "heading",
+            "icon",
+            "list",
+            "hero",
+            "footer"
+          ],
+          "frequency": 5500,
+          "confidence": 1,
+          "prominence": 240577797.02825773,
+          "properties": [
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "icon",
+            "list",
+            "hero",
+            "button",
+            "body",
+            "footer"
+          ],
+          "frequency": 1172,
+          "confidence": 1,
+          "prominence": 197411168.0568356,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#5e51f8",
+          "oklch": {
+            "c": 0.23812483609286342,
+            "h": 278.7135465404334,
+            "l": 0.5539646837452379
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 79140037.18268315,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 151,
+          "confidence": 1,
+          "prominence": 17374536.1411841,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#251544",
+          "oklch": {
+            "c": 0.08458734335623783,
+            "h": 295.1628584879721,
+            "l": 0.2467993919958846
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 7888622.996334594,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#f8fafc",
+          "oklch": {
+            "c": 0.003412699212644564,
+            "h": 247.85777459444185,
+            "l": 0.9841518695012075
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 4392092.755673397,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#7755cc",
+          "oklch": {
+            "c": 0.1765216635472729,
+            "h": 292.7789651807907,
+            "l": 0.5461612676842248
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2661577,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#4b41c6",
+          "oklch": {
+            "c": 0.19897859923426917,
+            "h": 279.0358584159776,
+            "l": 0.4723160273741094
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 2114910,
+          "properties": [
+            "boxShadow",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#0f172a",
+          "oklch": {
+            "c": 0.039824326599745954,
+            "h": 265.7548754713905,
+            "l": 0.20768191557381332
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 23,
+          "confidence": 1,
+          "prominence": 492998.0928900423,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#8273f9",
+          "oklch": {
+            "c": 0.19312250063685626,
+            "h": 284.5536390014715,
+            "l": 0.6362875857530478
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 464757.1274726544,
+          "properties": [
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 462261.86882092716,
+          "properties": [
+            "color",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#475569",
+          "oklch": {
+            "c": 0.0374466757720253,
+            "h": 257.2808421473178,
+            "l": 0.44553310481935804
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 392085.3167681815,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#312e58",
+          "oklch": {
+            "c": 0.07256257359577512,
+            "h": 285.15942728103755,
+            "l": 0.3255012531568154
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 353026.6225981267,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#99eeff",
+          "oklch": {
+            "c": 0.0853131155008524,
+            "h": 211.64949700408928,
+            "l": 0.9008096733125486
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 327679,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#cfcbfd",
+          "oklch": {
+            "c": 0.06915235646574477,
+            "h": 288.4214075404882,
+            "l": 0.8611468333372644
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 131712,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#867dfa",
+          "oklch": {
+            "c": 0.1805454375300356,
+            "h": 283.7637847418703,
+            "l": 0.6564268104545058
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 118301.93641550744,
+          "properties": [
+            "boxShadow",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#3a329a",
+          "oklch": {
+            "c": 0.16198562421402915,
+            "h": 279.47711955059305,
+            "l": 0.39576877944076694
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 37130.916504394525,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#473dba",
+          "oklch": {
+            "c": 0.1888926957498561,
+            "h": 279.13990292457106,
+            "l": 0.45137540919885866
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 23427,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#24214b",
+          "oklch": {
+            "c": 0.07481562145941872,
+            "h": 283.87280511578814,
+            "l": 0.27592900667346687
+          },
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 16857.661157670216,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 11680,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#808a99",
+          "oklch": {
+            "c": 0.025429849393808768,
+            "h": 258.37119671588187,
+            "l": 0.6303002550670153
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 10920,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#94a3b8",
+          "oklch": {
+            "c": 0.03511441797152331,
+            "h": 256.7878262641821,
+            "l": 0.7106715960337368
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 41,
+          "confidence": 1,
+          "prominence": 3105.974835520566,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#d7d3fd",
+          "oklch": {
+            "c": 0.05720195771818178,
+            "h": 288.73908120036793,
+            "l": 0.8843202406880761
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2937,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#9b32e6",
+          "oklch": {
+            "c": 0.2512804073962399,
+            "h": 305.9942429649356,
+            "l": 0.5631763434129512
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2908,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#afa8fc",
+          "oklch": {
+            "c": 0.11825661569808911,
+            "h": 286.8297845861856,
+            "l": 0.7688242429011847
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2463.0317261206765,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#909396",
+          "oklch": {
+            "c": 0.005653516105645366,
+            "h": 247.91093446420462,
+            "l": 0.6617026212571646
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 1674.3649034204518,
+          "properties": [
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#d5a8f5",
+          "oklch": {
+            "c": 0.1162399510068294,
+            "h": 310.57875386577456,
+            "l": 0.7989997922064208
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1600,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#8993c5",
+          "oklch": {
+            "c": 0.07518851786818674,
+            "h": 275.9863612030761,
+            "l": 0.6731569854508733
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "stroke"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.01813221294091722,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.07,
+          "background": "#f8fafc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#111111",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.05,
+          "background": "#f8fafc",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.85,
+          "background": "#ffffff",
+          "foreground": "#0f172a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.06,
+          "background": "#f8fafc",
+          "foreground": "#0f172a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.54,
+          "background": "#251544",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.03,
+          "background": "#99eeff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#ffffff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.81,
+          "background": "#f8fafc",
+          "foreground": "#251544"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.25,
+          "background": "#e5e7eb",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.21,
+          "background": "#f8fafc",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.06,
+          "background": "#ffffff",
+          "foreground": "#24214b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.63,
+          "background": "#d7d3fd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.42,
+          "background": "#e5e7eb",
+          "foreground": "#0f172a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.41,
+          "background": "#99eeff",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.4,
+          "background": "#f8fafc",
+          "foreground": "#24214b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.63,
+          "background": "#99eeff",
+          "foreground": "#0f172a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.61,
+          "background": "#cfcbfd",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 27
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.15) 0px 8px 32px 4px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.05) 0px -4px 6px 0px, rgba(0, 0, 0, 0.1) 0px -10px 15px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": "rgba(238, 217, 253, 0.25) 0px 16px 64px 4px, rgba(0, 0, 0, 0.1) 0px 8px 32px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.16) 0px 2px 4px 0px, rgba(0, 0, 0, 0.16) 0px 4px 8px 0px, rgba(255, 255, 255, 0.25) 0px 1px 1px 0px inset",
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.15) 0px 8px 32px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 106,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 120,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 139,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 17,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 100,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 28,
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 57,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 44,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 60,
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 80,
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 84,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 168,
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(270deg, rgb(255, 255, 0) 0%, rgb(0, 255, 255) 33.2824%, rgb(255, 0, 255) 65.6966%, rgb(255, 255, 0) 100%)",
+        "colors": [
+          "rgb(255, 255, 0)",
+          "rgb(0, 255, 255)",
+          "rgb(255, 0, 255)",
+          "rgb(255, 255, 0)"
+        ],
+        "frequency": 4
+      },
+      {
+        "type": "conic",
+        "value": "conic-gradient(from 323deg, rgb(255, 255, 0) 0deg, rgb(0, 255, 255) 119.817deg, rgb(255, 0, 255) 236.508deg, rgb(255, 255, 0) 360deg)",
+        "colors": [
+          "rgb(255, 255, 0)",
+          "rgb(0, 255, 255)",
+          "rgb(255, 0, 255)",
+          "rgb(255, 255, 0)"
+        ],
+        "frequency": 3
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(39, 21, 76) 0%, rgb(24, 17, 39) 100%)",
+        "colors": [
+          "rgb(39, 21, 76)",
+          "rgb(24, 17, 39)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(135deg, rgb(94, 81, 248) 4.64639%, rgb(94, 81, 248) 32.5697%, rgb(149, 92, 235) 63.398%)",
+        "colors": [
+          "rgb(94, 81, 248)",
+          "rgb(94, 81, 248)",
+          "rgb(149, 92, 235)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(270deg, rgb(222, 200, 255) 0%, rgb(255, 255, 255) 50.0989%, rgb(222, 200, 255) 100%)",
+        "colors": [
+          "rgb(222, 200, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(222, 200, 255)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(50% 200% at 50% -100%, rgb(119, 107, 255) 0%, rgb(94, 81, 248) 100%)",
+        "colors": [
+          "rgb(119, 107, 255)",
+          "rgb(94, 81, 248)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(222, 200, 255) 0%, rgb(255, 255, 255) 50.2857%, rgb(222, 200, 255) 100%)",
+        "colors": [
+          "rgb(222, 200, 255)",
+          "rgb(255, 255, 255)",
+          "rgb(222, 200, 255)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "conic",
+        "value": "conic-gradient(from 359deg, rgba(255, 255, 0, 0.5) 0deg, rgba(0, 255, 255, 0.5) 119.817deg, rgba(255, 0, 255, 0.5) 236.508deg, rgba(255, 255, 0, 0.5) 360deg)",
+        "colors": [
+          "rgba(255, 255, 0, 0.5)",
+          "rgba(0, 255, 255, 0.5)",
+          "rgba(255, 0, 255, 0.5)",
+          "rgba(255, 255, 0, 0.5)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(100% 100% at 50% 0px, rgb(81, 42, 163) 0%, rgb(37, 21, 71) 100%)",
+        "colors": [
+          "rgb(81, 42, 163)",
+          "rgb(37, 21, 71)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "conic",
+        "value": "conic-gradient(from 242deg, rgba(255, 255, 0, 0.5) 0deg, rgba(0, 255, 255, 0.5) 119.817deg, rgba(255, 0, 255, 0.5) 236.508deg, rgba(255, 255, 0, 0.5) 360deg)",
+        "colors": [
+          "rgba(255, 255, 0, 0.5)",
+          "rgba(0, 255, 255, 0.5)",
+          "rgba(255, 0, 255, 0.5)",
+          "rgba(255, 255, 0, 0.5)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(102.3% 75% at 50% 100%, rgb(173, 224, 255) 0%, rgb(248, 250, 252) 100%)",
+        "colors": [
+          "rgb(173, 224, 255)",
+          "rgb(248, 250, 252)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(117.9% 107.4% at 50.9% 115.3%, rgba(173, 224, 255, 0.43) 40.31%, rgb(248, 250, 252) 100%)",
+        "colors": [
+          "rgba(173, 224, 255, 0.43)",
+          "rgb(248, 250, 252)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(86.1% 150% at 50% -10.8%, rgb(130, 120, 250) 0%, rgb(94, 81, 248) 100%)",
+        "colors": [
+          "rgb(130, 120, 250)",
+          "rgb(94, 81, 248)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 1135,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            500,
+            600,
+            700
+          ],
+          "frequency": 229,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "NaN Jaune Midi Bold",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 13,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "icon",
+            "list",
+            "hero",
+            "button",
+            "footer"
+          ],
+          "frequency": 1045,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 66,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 41,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.95,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "NaN Jaune Midi Bold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.054,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "NaN Jaune Midi Bold",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.047,
+          "textTransform": "none"
+        },
+        {
+          "size": 84,
+          "family": "NaN Jaune Midi Bold",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.036,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d7683fe3-cdc5-4172-b099-be66a2e8459a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/bb62c659-9da1-47c2-98d5-2c27bded32a4.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/41547c7a-3bbe-49f0-95d6-9701c9df9a5e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Tella design system\",\"item\":\"https://styles.refero.design/style/41547c7a-3bbe-49f0-95d6-9701c9df9a5e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/41547c7a-3bbe-49f0-95d6-9701c9df9a5e#style-reference\",\"name\":\"Tella design system reference\",\"headline\":\"Tella design system | Refero Styles\",\"description\":\"Explore Tella's mixed SaaS design system: Signal Violet #5e51f8, Deep Nebula #251544 colors, NaN Jaune Midi Bold, Inter typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/41547c7a-3bbe-49f0-95d6-9701c9df9a5e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/41547c7a-3bbe-49f0-95d6-9701c9df9a5e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Tella\",\"url\":\"https://tella.tv\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/41547c7a-3bbe-49f0-95d6-9701c9df9a5e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bb62c659-9da1-47c2-98d5-2c27bded32a4.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bb62c659-9da1-47c2-98d5-2c27bded32a4.jpg\",\"caption\":\"Screenshot of Tella\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bb62c659-9da1-47c2-98d5-2c27bded32a4.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Tella design system\",\"Tella website design\",\"Tella colors\",\"Tella typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Signal Violet\",\"Deep Nebula\",\"Iris Mid\",\"Soft Amethyst\",\"NaN Jaune Midi Bold\",\"Inter\",\"sans-serif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Tella design system\"},{\"@type\":\"Thing\",\"name\":\"Tella website design\"},{\"@type\":\"Thing\",\"name\":\"Tella colors\"},{\"@type\":\"Thing\",\"name\":\"Tella typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-03-19T16:34:14.000Z\",\"dateModified\":\"2026-03-19T16:34:14.000Z\"}]}19:T436,Max-width approximately 1200px, centered. Hero is full-bleed violet spanning the full viewport width and approximately 100vh, with centered headline stack and a single dark pill CTA. Below the CTA, a tab row switches between content modes, and a large product screenshot frame extends below the fold — the frame bottom intentionally crops, pulling the eye down. The hero-to-white section transition is a hard cut with no gradient bridge. Feature sections use a horizontal scroll card grid (4 visible cards, partial 5th visible, approximately 280px wide each) — not a static grid, implying overflow scroll on desktop. The video demo card floats in the transition zone between violet and white, using a card-on-gradient effect. Social proof is a single centered row at near-full width. Navigation is a fixed top bar with logo left, three links centered, auth actions right — standard SaaS nav but the sign-up button uses a pill outline matching the brand's rounded language. Footer is multi-column with approximately 3 content columns on a dark violet/near-black background.1a:T43a,Tella's visual language mixes real user webcam footage (candid, casual, head-and-shoulders crops inside rounded device frames) with flat-style brand illustrations. The webcam footage is raw and unretouched — intentionally amateur-feeling, matching the 'anyone can make videos' positioning. Product screenshots are contained within simulated laptop/monitor bezels at 16px internal radius. Feature card illustrations use ultra-light lavender (#d7d3fd, #cfcbfd) line drawings on white — outline-style, no fill, geometric human figures carrying trash (delete silences), large typographic elements ('um', 'ahh', 'ehhh' in fading lavender) for the filler-words card. Icons are outlined, approximately 1.5px stroke weight, monochromatic using #5e51f8 or #94a3b8. The rainbow linear/conic gradient (yellow→cyan→magenta) appears as an animated decorative ring — a neon halo effect, likely around the logo or a status indicator. Imagery is sparse: the white sections are text-and-illustration dominant, the hero is type-dominant with one large contained product demo below the fold.1b:T9c9,<style>\n  :root {\n    --color-signal-violet: #5e51f8;\n    --color-soft-amethyst: #cfcbfd;\n    --color-carbon: #111111;\n    --color-pure-white: #ffffff;\n    --font-inter: 'Inter', system-ui, -apple-system, sans-serif;\n  }\n\n  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');\n\n  .hero-cta-wrapper {\n    background: radial-gradient(50% 200% at 50% -100%, rgb(119, 107, 255) 0%, rgb(94, 81, 248) 100%), linear-gradient(rgb(94, 81, 248) 0%, rgb(39, 21, 76) 100%);\n    width: 600px;\n    box-sizing: border-box;\n    padding: 64px 40px 72px;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    font-family: var(--font-inter);\n  }\n\n  .hero-headline-primary {\n    font-family: 'Georgia', 'Times New Roman', serif;\n    font-weight: 700;\n    font-size: 72px;\n    line-height: 1.10;\n    letter-spacing: -0.054em;\n    color: var(--color-pure-white);\n    text-align: center;\n    margin: 0 0 0 0;\n    padding: 0;\n    font-style: normal;\n  }\n\n  .hero-headline-secondary {\n    font-family: 'Georgia', 'Times New Roman', serif;\n    font-weight: 700;\n    font-size: 72px;\n    line-height: 1.10;\n    letter-spacing: -0.054em;\n    color: var(--color-soft-amethyst);\n    text-align: center;\n    margin: 0 0 24px 0;\n    padding: 0;\n  }\n\n  .hero-subtext {\n    font-family: var(--font-inter);\n    font-size: 18px;\n    font-weight: 500;\n    line-height: 1.5;\n    color: var(--color-pure-white);\n    text-align: center;\n    margin: 0 0 36px 0;\n    opacity: 0.92;\n  }\n\n  .hero-cta-btn {\n    display: inline-block;\n    background: var(--color-carbon);\n    color: var(--color-pure-white);\n    font-family: var(--font-inter);\n    font-size: 16px;\n    font-weight: 600;\n    line-height: 1;\n    padding: 18px 48px;\n    border-radius: 40px;\n    border: none;\n    cursor: pointer;\n    text-decoration: none;\n    margin-bottom: 16px;\n    box-shadow: 0 4px 0 0 #1a1a1a;\n    letter-spacing: 0;\n  }\n\n  .hero-trial-copy {\n    font-family: var(--font-inter);\n    font-size: 13px;\n    font-weight: 400;\n    color: var(--color-soft-amethyst);\n    text-align: center;\n    margin: 0;\n    opacity: 0.8;\n  }\n</style>\n<div class=\"hero-cta-wrapper\">\n  <div class=\"hero-headline-primary\">Record</div>\n  <div class=\"hero-headline-secondary\">incredible videos</div>\n  <p class=\"hero-subtext\">Tella is the screen recorder that edits videos for you.</p>\n  <a href=\"#\" class=\"hero-cta-btn\">Get started</a>\n  <p class=\"hero-trial-copy\">7-day Free trial — no credit card required</p>\n</div>1c:T1fa3,<style>\n  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');\n\n  :root {\n    --color-signal-violet: #5e51f8;\n    --color-powder-violet: #d7d3fd;\n    --color-soft-amethyst: #cfcbfd;\n    --color-periwinkle-glow: #867dfa;\n    --color-ink: #0f172a;\n    --color-slate: #475569;\n    --color-ash-border: #e5e7eb;\n    --color-pure-white: #ffffff;\n    --color-chalk: #f8fafc;\n    --shadow-xl: rgba(0, 0, 0, 0.15) 0px 8px 32px 4px;\n    --font-inter: 'Inter', system-ui, -apple-system, sans-serif;\n  }\n\n  .feature-cards-wrapper {\n    background: var(--color-chalk);\n    width: 600px;\n    box-sizing: border-box;\n    padding: 40px 24px;\n    font-family: var(--font-inter);\n    display: flex;\n    flex-direction: column;\n    gap: 20px;\n  }\n\n  .feature-card {\n    background: var(--color-pure-white);\n    border: 1px solid var(--color-ash-border);\n    border-radius: 32px;\n    padding: 28px 28px 0 28px;\n    box-shadow: var(--shadow-xl);\n    overflow: hidden;\n    display: flex;\n    flex-direction: column;\n  }\n\n  .feature-card-header {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    margin-bottom: 10px;\n  }\n\n  .feature-card-icon {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color: var(--color-periwinkle-glow);\n    flex-shrink: 0;\n  }\n\n  .feature-card-title {\n    font-family: var(--font-inter);\n    font-size: 18px;\n    font-weight: 700;\n    color: var(--color-ink);\n    margin: 0;\n    letter-spacing: -0.01em;\n  }\n\n  .feature-card-body {\n    font-family: var(--font-inter);\n    font-size: 15px;\n    font-weight: 400;\n    color: var(--color-slate);\n    line-height: 1.6;\n    margin: 0 0 24px 0;\n  }\n\n  .feature-card-illustration {\n    height: 120px;\n    border-radius: 16px 16px 0 0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    overflow: hidden;\n    position: relative;\n    margin: 0 -4px;\n  }\n\n  .illustration-silences {\n    background: linear-gradient(180deg, #faf9ff 0%, #f0eeff 100%);\n    gap: 8px;\n    padding: 16px;\n  }\n\n  .trash-group {\n    display: flex;\n    gap: 14px;\n    opacity: 0.5;\n  }\n\n  .trash-icon-svg {\n    color: var(--color-powder-violet);\n  }\n\n  .illustration-filler {\n    background: linear-gradient(180deg, #faf9ff 0%, #f0eeff 100%);\n    flex-direction: column;\n    justify-content: flex-end;\n    padding: 0 24px;\n    gap: 0;\n  }\n\n  .filler-text {\n    font-family: var(--font-inter);\n    font-weight: 700;\n    color: var(--color-powder-violet);\n    line-height: 1;\n    text-align: left;\n    width: 100%;\n  }\n</style>\n<div class=\"feature-cards-wrapper\">\n\n  <!-- Card 1: Delete silences -->\n  <div class=\"feature-card\">\n    <div class=\"feature-card-header\">\n      <span class=\"feature-card-icon\">\n        <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n          <polygon points=\"11 5 6 9 2 9 2 15 6 15 11 19 11 5\"/>\n          <line x1=\"23\" y1=\"9\" x2=\"17\" y2=\"15\"/>\n          <line x1=\"17\" y1=\"9\" x2=\"23\" y2=\"15\"/>\n        </svg>\n      </span>\n      <h3 class=\"feature-card-title\">Delete silences</h3>\n    </div>\n    <p class=\"feature-card-body\">No moment of silence needed. Chuck all the quiet bits in the bin — instantly.</p>\n    <div class=\"feature-card-illustration illustration-silences\">\n      <div class=\"trash-group\">\n        <svg width=\"28\" height=\"36\" viewBox=\"0 0 28 36\" fill=\"none\" stroke=\"#d7d3fd\" stroke-width=\"1.5\">\n          <rect x=\"4\" y=\"10\" width=\"20\" height=\"24\" rx=\"2\"/>\n          <line x1=\"0\" y1=\"10\" x2=\"28\" y2=\"10\"/>\n          <line x1=\"10\" y1=\"10\" x2=\"10\" y2=\"6\"/>\n          <line x1=\"18\" y1=\"10\" x2=\"18\" y2=\"6\"/>\n          <line x1=\"10\" y1=\"6\" x2=\"18\" y2=\"6\"/>\n          <line x1=\"10\" y1=\"16\" x2=\"10\" y2=\"28\"/>\n          <line x1=\"14\" y1=\"16\" x2=\"14\" y2=\"28\"/>\n          <line x1=\"18\" y1=\"16\" x2=\"18\" y2=\"28\"/>\n        </svg>\n        <svg width=\"28\" height=\"36\" viewBox=\"0 0 28 36\" fill=\"none\" stroke=\"#cfcbfd\" stroke-width=\"1.5\">\n          <rect x=\"4\" y=\"10\" width=\"20\" height=\"24\" rx=\"2\"/>\n          <line x1=\"0\" y1=\"10\" x2=\"28\" y2=\"10\"/>\n          <line x1=\"10\" y1=\"10\" x2=\"10\" y2=\"6\"/>\n          <line x1=\"18\" y1=\"10\" x2=\"18\" y2=\"6\"/>\n          <line x1=\"10\" y1=\"6\" x2=\"18\" y2=\"6\"/>\n          <line x1=\"10\" y1=\"16\" x2=\"10\" y2=\"28\"/>\n          <line x1=\"14\" y1=\"16\" x2=\"14\" y2=\"28\"/>\n          <line x1=\"18\" y1=\"16\" x2=\"18\" y2=\"28\"/>\n        </svg>\n        <svg width=\"28\" height=\"36\" viewBox=\"0 0 28 36\" fill=\"none\" stroke=\"#d7d3fd\" stroke-width=\"1.5\">\n          <rect x=\"4\" y=\"10\" width=\"20\" height=\"24\" rx=\"2\"/>\n          <line x1=\"0\" y1=\"10\" x2=\"28\" y2=\"10\"/>\n          <line x1=\"10\" y1=\"10\" x2=\"10\" y2=\"6\"/>\n          <line x1=\"18\" y1=\"10\" x2=\"18\" y2=\"6\"/>\n          <line x1=\"10\" y1=\"6\" x2=\"18\" y2=\"6\"/>\n          <line x1=\"10\" y1=\"16\" x2=\"10\" y2=\"28\"/>\n          <line x1=\"14\" y1=\"16\" x2=\"14\" y2=\"28\"/>\n          <line x1=\"18\" y1=\"16\" x2=\"18\" y2=\"28\"/>\n        </svg>\n        <svg width=\"28\" height=\"36\" viewBox=\"0 0 28 36\" fill=\"none\" stroke=\"#cfcbfd\" stroke-width=\"1.5\">\n          <rect x=\"4\" y=\"10\" width=\"20\" height=\"24\" rx=\"2\"/>\n          <line x1=\"0\" y1=\"10\" x2=\"28\" y2=\"10\"/>\n          <line x1=\"10\" y1=\"10\" x2=\"10\" y2=\"6\"/>\n          <line x1=\"18\" y1=\"10\" x2=\"18\" y2=\"6\"/>\n          <line x1=\"10\" y1=\"6\" x2=\"18\" y2=\"6\"/>\n          <line x1=\"10\" y1=\"16\" x2=\"10\" y2=\"28\"/>\n          <line x1=\"14\" y1=\"16\" x2=\"14\" y2=\"28\"/>\n          <line x1=\"18\" y1=\"16\" x2=\"18\" y2=\"28\"/>\n        </svg>\n      </div>\n    </div>\n  </div>\n\n  <!-- Card 2: Remove filler words -->\n  <div class=\"feature-card\">\n    <div class=\"feature-card-header\">\n      <span class=\"feature-card-icon\">\n        <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n          <path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\"/>\n        </svg>\n      </span>\n      <h3 class=\"feature-card-title\">Remove filler words</h3>\n    </div>\n    <p class=\"feature-card-body\">You can um and ah all you like, no one will ever know. Cut every filler word with just a click.</p>\n    <div class=\"feature-card-illustration illustration-filler\" style=\"height:110px; background: linear-gradient(180deg, #faf9ff 0%, #f0eeff 100%); display:flex; flex-direction:column; justify-content:flex-end; padding: 0 20px; overflow:hidden; border-radius: 16px 16px 0 0; margin: 0 -4px;\">\n      <div class=\"filler-text\" style=\"font-size:22px; opacity:0.55;\">um</div>\n      <div class=\"filler-text\" style=\"font-size:30px; opacity:0.7;\">ahh</div>\n      <div class=\"filler-text\" style=\"font-size:36px; opacity:0.85; margin-bottom:0;\">ehhh</div>\n    </div>\n  </div>\n\n  <!-- Card 3: Edit with text -->\n  <div class=\"feature-card\">\n    <div class=\"feature-card-header\">\n      <span class=\"feature-card-icon\">\n        <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n          <path d=\"M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7\"/>\n          <path d=\"M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z\"/>\n        </svg>\n      </span>\n      <h3 class=\"feature-card-title\">Edit with text</h3>\n    </div>\n    <p class=\"feature-card-body\">Time's up for the timeline. The transcript era is here. Edit your video just like a document.</p>\n    <div style=\"background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px 16px; margin-bottom: 24px; font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.7; color: #475569;\">\n      Using custom layouts can be a little bit tricky. <span style=\"text-decoration: line-through; color: #d7d3fd;\">We need to make this better,</span> but I'll show you the way that I like to use them, which I think makes it a bit easier. <span style=\"color: #5e51f8;\">something</span> similar to what you did, <span style=\"color: #d7d3fd; text-decoration: line-through;\">which is like this. And then we</span> put the camera bubble, <span style=\"color: #d7d3fd;\">like</span> here.\n    </div>\n  </div>\n\n</div>1d:T1823,<style>\n  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');\n\n  :root {\n    --color-signal-violet: #5e51f8;\n    --color-soft-amethyst: #cfcbfd;\n    --color-pure-white: #ffffff;\n    --color-ink: #0f172a;\n    --color-slate: #475569;\n    --color-carbon: #111111;\n    --font-inter: 'Inter', system-ui, -apple-system, sans-serif;\n  }\n\n  .tab-demo-wrapper {\n    background: radial-gradient(50% 200% at 50% -100%, rgb(119, 107, 255) 0%, rgb(94, 81, 248) 100%), linear-gradient(rgb(94, 81, 248) 0%, rgb(39, 21, 76) 100%);\n    width: 600px;\n    box-sizing: border-box;\n    padding: 40px 32px 48px;\n    font-family: var(--font-inter);\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    gap: 32px;\n  }\n\n  /* Tab Selector */\n  .tab-selector {\n    display: flex;\n    align-items: center;\n    gap: 4px;\n    background: rgba(255,255,255,0.1);\n    border-radius: 40px;\n    padding: 4px;\n  }\n\n  .tab-item {\n    font-family: var(--font-inter);\n    font-size: 14px;\n    font-weight: 600;\n    padding: 8px 22px;\n    border-radius: 40px;\n    cursor: pointer;\n    text-decoration: none;\n    letter-spacing: 0;\n    transition: all 0.15s ease;\n  }\n\n  .tab-item--inactive {\n    color: rgba(255,255,255,0.6);\n    background: transparent;\n  }\n\n  .tab-item--active {\n    background: var(--color-pure-white);\n    color: var(--color-ink);\n    box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px 0px, rgba(0, 0, 0, 0.16) 0px 4px 8px 0px, rgba(255, 255, 255, 0.25) 0px 1px 1px 0px inset;\n  }\n\n  /* Video Demo Card */\n  .video-demo-card {\n    background: rgba(255,255,255,0.13);\n    border: 1px solid rgba(255,255,255,0.18);\n    border-radius: 24px;\n    padding: 16px;\n    display: flex;\n    align-items: center;\n    gap: 20px;\n    width: 100%;\n    box-sizing: border-box;\n    box-shadow: rgba(0,0,0,0.15) 0px 8px 32px 0px;\n  }\n\n  .video-thumbnail {\n    width: 148px;\n    height: 88px;\n    border-radius: 12px;\n    background: #2a1d3e;\n    flex-shrink: 0;\n    position: relative;\n    overflow: hidden;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n\n  .video-thumbnail-bg {\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(135deg, #3d2960 0%, #1e1230 100%);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n  }\n\n  .play-btn {\n    width: 36px;\n    height: 36px;\n    background: rgba(255,255,255,0.92);\n    border-radius: 50%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    z-index: 1;\n    position: relative;\n    box-shadow: 0 2px 8px rgba(0,0,0,0.3);\n  }\n\n  .play-btn svg {\n    margin-left: 3px;\n  }\n\n  .video-demo-text {\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n  }\n\n  .video-demo-title {\n    font-family: var(--font-inter);\n    font-size: 18px;\n    font-weight: 700;\n    color: var(--color-pure-white);\n    line-height: 1.25;\n    margin: 0;\n  }\n\n  .video-demo-link {\n    font-family: var(--font-inter);\n    font-size: 15px;\n    font-weight: 500;\n    color: var(--color-soft-amethyst);\n    text-decoration: none;\n    margin: 0;\n  }\n\n  /* Social proof row */\n  .social-proof {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    gap: 14px;\n    width: 100%;\n  }\n\n  .social-proof-label {\n    font-family: var(--font-inter);\n    font-size: 13px;\n    font-weight: 500;\n    color: var(--color-soft-amethyst);\n    opacity: 0.8;\n    text-align: center;\n  }\n\n  .avatar-row {\n    display: flex;\n    align-items: center;\n  }\n\n  .avatar {\n    width: 40px;\n    height: 40px;\n    border-radius: 9999px;\n    border: 2.5px solid rgba(94, 81, 248, 0.6);\n    margin-left: -10px;\n    flex-shrink: 0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 14px;\n    font-weight: 600;\n    color: #fff;\n    overflow: hidden;\n  }\n\n  .avatar:first-child { margin-left: 0; }\n\n  .avatar-a { background: linear-gradient(135deg, #f97316, #ef4444); }\n  .avatar-b { background: linear-gradient(135deg, #8b5cf6, #6366f1); }\n  .avatar-c { background: linear-gradient(135deg, #06b6d4, #3b82f6); }\n  .avatar-d { background: linear-gradient(135deg, #10b981, #059669); }\n  .avatar-e { background: linear-gradient(135deg, #f59e0b, #f97316); }\n  .avatar-f { background: linear-gradient(135deg, #ec4899, #a855f7); }\n  .avatar-g { background: linear-gradient(135deg, #14b8a6, #0ea5e9); }\n  .avatar-h { background: linear-gradient(135deg, #6366f1, #8b5cf6); }\n  .avatar-i { background: #fbbf24; color: #111; }\n  .avatar-j { background: linear-gradient(135deg, #ef4444, #f97316); }\n  .avatar-more { background: rgba(255,255,255,0.15); color: var(--color-soft-amethyst); font-size: 12px; }\n</style>\n\n<div class=\"tab-demo-wrapper\">\n\n  <!-- Tab Selector -->\n  <div class=\"tab-selector\">\n    <a href=\"#\" class=\"tab-item tab-item--inactive\">Demos</a>\n    <a href=\"#\" class=\"tab-item tab-item--active\">Tutorials</a>\n    <a href=\"#\" class=\"tab-item tab-item--inactive\">Courses</a>\n  </div>\n\n  <!-- Video Demo Card -->\n  <div class=\"video-demo-card\">\n    <div class=\"video-thumbnail\">\n      <div class=\"video-thumbnail-bg\"></div>\n      <div class=\"play-btn\">\n        <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\">\n          <path d=\"M3 2L12 7L3 12V2Z\" fill=\"#111111\"/>\n        </svg>\n      </div>\n    </div>\n    <div class=\"video-demo-text\">\n      <p class=\"video-demo-title\">Make a Tella Video In Under 60 Seconds! ⚡</p>\n      <a href=\"#\" class=\"video-demo-link\">Watch the demo</a>\n    </div>\n  </div>\n\n  <!-- Social Proof Avatar Row -->\n  <div class=\"social-proof\">\n    <p class=\"social-proof-label\">Join thousands of entrepreneurs creating videos with Tella</p>\n    <div class=\"avatar-row\">\n      <div class=\"avatar avatar-a\">A</div>\n      <div class=\"avatar avatar-b\">M</div>\n      <div class=\"avatar avatar-c\">J</div>\n      <div class=\"avatar avatar-d\">S</div>\n      <div class=\"avatar avatar-e\">R</div>\n      <div class=\"avatar avatar-f\">K</div>\n      <div class=\"avatar avatar-g\">T</div>\n      <div class=\"avatar avatar-h\">L</div>\n      <div class=\"avatar avatar-i\">😊</div>\n      <div class=\"avatar avatar-j\">P</div>\n      <div class=\"avatar avatar-more\">+</div>\n    </div>\n  </div>\n\n</div>1e:T8c3,**Quick Color Reference**\n- Text (dark sections): #ffffff primary, #cfcbfd secondary\n- Text (light sections): #0f172a primary, #475569 body, #808a99 tertiary\n- Page background: #f8fafc\n- Hero background: #5e51f8 → #251544 gradient\n- Primary CTA: #111111 background, #ffffff text\n- Brand accent / links: #5e51f8\n- Card border: #e5e7eb\n- Card surface: #ffffff\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-bleed violet background using radial-gradient(50% 200% at 50% -100%, #776bff 0%, #5e51f8 100%) over linear-gradient(#27154c, #181127). Centered content. Headline 'Record incredible videos' at 84px NaN Jaune Midi Bold weight 700, letter-spacing -0.054em, line-height 1.10 — first line #ffffff, second line #cfcbfd. Subheadline Inter 500 20px #ffffff at 80% opacity. Dark pill CTA (#111111 background, #ffffff text, 40px radius, 16px 32px padding, Inter 600 16px). Fine-print caption 12px #cfcbfd below button.\n\n2. **Feature Card (White Section)**: White card (#ffffff), 32px border-radius, 1px #e5e7eb border, shadow rgba(0,0,0,0.15) 0px 8px 32px 4px, 24px padding. Top: small icon (20px, #5e51f8 stroke). Title Inter 700 18px #0f172a. Body Inter 400 16px #475569 line-height 1.6. Lower half: decorative illustration using #d7d3fd line-art on white. Card width ~280px.\n\n3. **Tab Selector Row**: Semi-transparent violet container, 40px radius. Active tab: white pill (#ffffff bg, 40px radius, Inter 600 14px #0f172a, shadow rgba(0,0,0,0.16) 0px 2px 4px + rgba(0,0,0,0.16) 0px 4px 8px + rgba(255,255,255,0.25) 0px 1px 1px inset, 8px 20px padding). Inactive tabs: no background, Inter 500 14px #ffffff 70% opacity.\n\n4. **Video Demo Card**: 24px border-radius, #ffffff background, shadow rgba(0,0,0,0.15) 0px 8px 32px 0px. Left: video thumbnail (16px radius, ~80px wide). Right: title Inter 700 18px #0f172a, 'Watch the demo' link Inter 500 16px #5e51f8. Floating between violet and white sections.\n\n5. **Nav Bar**: White background, full-width, ~64px height. Left: logo mark + 'tella' wordmark Inter 700 16px #0f172a. Center: 'Features', 'Resources', 'Pricing' — Inter 500 16px #475569. Right: 'Log in' Inter 500 16px #475569, 'Sign up' pill button 40px radius 1px #000000 border #000000 text Inter 600 14px 8px 20px padding."
+}

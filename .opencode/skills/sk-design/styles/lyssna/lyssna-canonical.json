@@ -1,0 +1,1861 @@
+{
+  "source": "https://styles.refero.design/style/65f775f1-6dcc-4c49-80d2-b5a017b76f59",
+  "uuid": "65f775f1-6dcc-4c49-80d2-b5a017b76f59",
+  "name": "Lyssna",
+  "northStar": "botanical research journal — a quiet white page where one deep teal button glows beneath serif headlines and mint accent panels breathe like greenhouse glass.",
+  "capturedAt": "2026-07-18T08:24:22.842Z",
+  "meta": {
+    "url": "https://www.lyssna.com",
+    "siteName": "Lyssna",
+    "extractedAt": "2026-06-03T15:51:13.926Z",
+    "durationMs": 68573,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1775,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use grenette (Source Serif 4) weight 400 exclusively for headlines 46px and above — never bold the serif, its weight is its character.",
+      "Use #006e75 filled buttons for the single primary action on each page — the teal button is the design's only pulse point.",
+      "Use #b9ffe8 as a section or card accent surface — the mint wash is the brand's signature and should appear at least once per page.",
+      "Separate elements with 1px #e5e7eb hairline borders and color contrast, never with drop shadows.",
+      "Use 8px radius for buttons, inputs, and small UI; 24px radius for cards, images, and large product surfaces.",
+      "Center all hero and section content — Lyssna's layout is symmetric and column-based, not asymmetric.",
+      "Use the tri-tone accent system (mint #b9ffe8, cream #fffded, pink #ffc3e6) for product card backgrounds, rotating through the three colors."
+    ],
+    "donts": [
+      "Never use a drop shadow as a primary elevation technique — the design is flat with hairline borders only.",
+      "Never bold the grenette serif — it is weight 400 only; emphasis comes from size, not weight.",
+      "Never place more than one #006e75 filled button in the same viewport — the teal action must be singular and unambiguous.",
+      "Never use a chromatic border on a card or image — borders are always #e5e7eb hairline or absent.",
+      "Never use grenette for body copy, captions, or UI chrome — it is a display face only, reserved for 46px+ headlines.",
+      "Never left-align hero or section headlines — Lyssna is a centered, editorial layout throughout.",
+      "Never use pure black (#000000) — the design's darkest tone is #061d29, a cool near-black that softens the contrast."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#006e75",
+        "name": "Deep Teal",
+        "role": "Primary filled action buttons (Sign up, primary CTAs), active nav state, brand mark — the single chromatic command on every page",
+        "group": "brand"
+      },
+      {
+        "hex": "#061d29",
+        "name": "Ink",
+        "role": "Primary heading and body text — the dominant non-neutral color, carries 17:1 contrast on white, near-black with a cool cast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#072626",
+        "name": "Midnight Teal",
+        "role": "Alternate heading ink and dark surface text — sits beside Ink for inverse text on light tinted surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#425d6d",
+        "name": "Mist",
+        "role": "Muted body text, outlined/secondary action borders, supporting links — the soft spoken gray-teal for secondary chrome",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Hairline",
+        "role": "Hairline borders, card outlines, image strokes, divider lines — the universal neutral separator at ~7,700 uses",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, button text on teal, card surfaces, nav background — the dominant light surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fffded",
+        "name": "Cream",
+        "role": "Warm-tinted card surface and section wash — a barely-there yellow that softens white without competing with mint",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b9ffe8",
+        "name": "Mint Glass",
+        "role": "Teal action color for filled buttons, selected navigation states, and focused conversion moments.",
+        "group": "accent"
+      },
+      {
+        "hex": "#0b978e",
+        "name": "Bright Teal",
+        "role": "Mid-tone teal for hover states, link fills, and accent strokes — sits between the deep brand teal and the mint surface",
+        "group": "brand"
+      },
+      {
+        "hex": "#4d0037",
+        "name": "Plum",
+        "role": "Decorative accent for illustration, icon fills, and tinted card washes — provides a warm counterpoint to the cool teal system",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffc3e6",
+        "name": "Blossom",
+        "role": "Soft pink surface wash on product cards and decorative blocks — the third color in the tri-tone accent system (mint / cream / pink)",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff492c",
+        "name": "Ember Ring",
+        "role": "Orange decorative accent for icons, marks, and small graphic details",
+        "group": "accent",
+        "gradient": "conic-gradient(rgb(255, 176, 164) 0deg, rgb(255, 73, 44) 0deg, rgb(255, 73, 44) 360deg)"
+      }
+    ],
+    "layout": "Lyssna is a centered, max-width 1200px layout on a white canvas. The hero is a single centered column (max-width ~720px) with serif headline + subtext + dual CTAs + social proof, no sidebar or split image. Below the hero, the page alternates between full-bleed white sections and mint-tinted bands, each section separated by 64–80px of vertical breathing room. Content arrangement is consistently centered — there are no asymmetric or left-aligned hero blocks. The three-column 'How it works' pattern is the page's signature grid, with 24px gaps between columns. The trust logo strip is a single horizontal row. Navigation is a minimal top bar: logo + 5 menu items centered, with login and sign-up actions flush right. No sidebar, no sticky header beyond the nav, no mega-menu. The rhythm is calm, vertical, and centered — closer to a long-form article than a product dashboard.",
+    "imagery": "Photography appears in floating product cards as soft, warm, lifestyle-oriented portraits of diverse people in natural-light settings — often cropped to a head-and-shoulders portrait with rounded corners (24px). The photos are not staged corporate headshots; they feel candid, varied in skin tone and setting. The dominant visual treatment is product UI screenshots rendered inside tinted pastel cards (mint, cream, pink), with the product UI itself in clean white. Conic gradient rings in coral/red serve as rating indicators. No illustration — everything is either photograph, product UI, or type. Icon style: line-based, 1.5px stroke, monochrome in Ink or Deep Teal, used sparingly (nav dropdowns, feature bullets, social proof icons).",
+    "similar": [
+      {
+        "why": "Same user-research product space with a clean centered-hero, mint-and-cream pastel card system, and serif-free modern typography — though Lyssna adds a distinct editorial serif headline.",
+        "business": "Maze"
+      },
+      {
+        "why": "Shared research-tool aesthetic with a single bright accent color (Hotjar's orange, Lyssna's teal) on a white canvas, rounded product cards, and a soft warm humanist tone.",
+        "business": "Hotjar"
+      },
+      {
+        "why": "Both lead with a large centered hero headline, use generous whitespace, and deploy one saturated action color against an otherwise neutral palette — same 'approachable research' posture.",
+        "business": "Typeform"
+      },
+      {
+        "why": "Similar flat-design ethos with hairline borders instead of shadows, centered content, and a quiet neutral base that lets a single accent color do the work.",
+        "business": "Notion"
+      },
+      {
+        "why": "Shared editorial sensibility — a serif display face for headlines, centered column layout, warm cream and soft accent surfaces, and an overall journal-like reading rhythm.",
+        "business": "Substack"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "24px",
+        "images": "8px",
+        "inputs": "8px",
+        "buttons": "8px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "64-80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Base page background — dominant surface"
+      },
+      {
+        "hex": "#fffded",
+        "name": "Cream Section",
+        "level": 1,
+        "purpose": "Warm-tinted wash for alternating sections"
+      },
+      {
+        "hex": "#b9ffe8",
+        "name": "Mint Section",
+        "level": 2,
+        "purpose": "Signature accent background — hero envelope, feature card surrounds, tag fills"
+      },
+      {
+        "hex": "#ffc3e6",
+        "name": "Pink Card",
+        "level": 3,
+        "purpose": "Decorative product card surface — one of three accent washes"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card",
+        "level": 4,
+        "purpose": "Product screenshot cards, step content blocks — white on tinted background"
+      }
+    ],
+    "northStar": "botanical research journal — a quiet white page where one deep teal button glows beneath serif headlines and mint accent panels breathe like greenhouse glass.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 1.22
+      },
+      {
+        "role": "heading",
+        "size": 26,
+        "lineHeight": 1.22
+      },
+      {
+        "role": "heading-lg",
+        "size": 46,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1.05
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Teal Button",
+        "role": "Filled CTA — the only high-saturation action element on the page",
+        "description": "Background #006e75, text #ffffff, font mint 500 at 16px, padding 12px 24px, border-radius 8px, no shadow. Single line of text. This is the pulse of the design — only one should exist per viewport."
+      },
+      {
+        "name": "Outlined Secondary Button",
+        "role": "Secondary action paired with the teal primary",
+        "description": "Transparent background, border 1px #425d6d, text #425d6d, font mint 500 at 16px, padding 12px 24px, border-radius 8px. Used for 'Book a demo' and 'Explore the platform' — always lighter than the primary."
+      },
+      {
+        "name": "Ghost Nav Button",
+        "role": "Top navigation utility actions (Log in)",
+        "description": "Transparent background, no border, text #061d29 at 16px mint 400, padding 8px 16px. The lightest interaction in the nav strip."
+      },
+      {
+        "name": "Green Pill Badge",
+        "role": "Pill-shaped highlight badge next to the logo",
+        "description": "Background #b9ffe8, text #061d29, font mint 500 at 12-13px, padding 4px 12px, border-radius 9999px. The brand's signature decorative element — a mint pill that signals freshness and approachability."
+      },
+      {
+        "name": "Logo Lockup",
+        "role": "Wordmark in the top-left corner",
+        "description": "Text 'Lyssna' in mint font 500 at ~22px in Deep Teal #006e75, followed by a small mint-green leaf/sprig icon. The leaf is the only decorative glyph in the brand mark."
+      },
+      {
+        "name": "Centered Hero Block",
+        "role": "First-screen headline and dual CTA",
+        "description": "Centered column on white, max-width ~720px. Display headline in grenette 400 at 46-60px in #061d29. Subtext in mint 400 at 18px in #061d29 or Mist. Two buttons side by side: teal primary + outlined secondary. Optional microcopy line below in mint 400 14px."
+      },
+      {
+        "name": "Numbered Step Card",
+        "role": "Three-column 'How it works' block",
+        "description": "Number in a small circle (mint 500, 14px, 1px #061d29 border, ~28px diameter). Title in mint 500 at 18-20px in #061d29. Body in mint 400 at 15-16px in Mist #425d6d. No card background — the image above carries the color. Gap 24px between columns."
+      },
+      {
+        "name": "Product Feature Card",
+        "role": "Decorative product screenshot block within step cards",
+        "description": "Background uses one of the accent tints — mint #b9ffe8, cream #fffded, blossom #ffc3e6, or a conic gradient. Inner UI mockup on white #ffffff with 8px radius. Card itself has 24px radius. No border, no shadow."
+      },
+      {
+        "name": "Participant Name Tag",
+        "role": "Floating annotation with directional pointer",
+        "description": "Small pill, background Plum #4d0037, text #ffffff at 13px mint 500, padding 6px 12px, border-radius 9999px. A short triangular tail points toward the annotated element in a photo or screenshot. Adds editorial annotation flavor."
+      },
+      {
+        "name": "Trust Logo Strip",
+        "role": "Row of partner/client wordmarks",
+        "description": "Horizontal row of 5-7 monochrome logos on white, evenly spaced, each logo rendered in #061d29 at native proportions. No borders, no cards. 'Trusted by…' caption above in mint 400 14px Mist."
+      },
+      {
+        "name": "Section Header",
+        "role": "Centered section title with optional subtext",
+        "description": "Headline in grenette 400 at 46px in #061d29, centered. Optional subtext in mint 400 18px Mist, max-width ~560px, centered. No decorative element above the headline — whitespace is the divider."
+      },
+      {
+        "name": "Rating Badge Row",
+        "role": "Social proof line with stars and platform logos",
+        "description": "Star row (5 red/coral stars) + '4.5/5 rating' in mint 500 14px #061d29 + small monochrome platform icons (G, App Store, etc.) spaced 12px apart. No background, sits as a single line."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and large headlines only — a custom humanist serif used at three distinct sizes, always weight 400, never bold. Its exclusive domain is the editorial hero and section openers; it never appears in body copy or UI chrome. Gives the site its magazine-research character.",
+        "sizes": "22px, 46px, 60px",
+        "family": "grenette",
+        "weight": "400",
+        "lineHeight": "1.05–1.20",
+        "substitute": "Source Serif 4"
+      },
+      {
+        "role": "The workhorse sans for everything else — body, nav, buttons, subheadings, captions, icons. Weight 400 is default; weight 500 for emphasized UI labels and button text. 26px is its ceiling; beyond that, grenette takes over.",
+        "sizes": "12px, 13px, 14px, 15px, 16px, 18px, 20px, 22px, 26px",
+        "family": "mint",
+        "weight": "400, 500",
+        "lineHeight": "1.22–1.50",
+        "substitute": "Inter"
+      }
+    ],
+    "description": "Lyssna reads as a botanical research journal brought to life on screen: a near-white editorial canvas, a deeply saturated dark teal that anchors every action, and a single bright mint surface (#b9ffe8) that recurs as accent wash, pill background, and decorative envelope around product imagery. Typography carries the personality — a humanist serif (grenette) reserved exclusively for headlines at 46–60px, weight 400, giving the page a magazine-editorial authority, while the custom sans (mint) handles everything from 12px caption to 22px subheading with quiet consistency. The visual rhythm is open and breathable: centered hero, generous vertical gaps, then alternating white and tinted-mint sections with three-column feature steps. Decorative elements — participant name tags, conic rating rings, soft-pink and cream product cards — add warmth without ever competing with the dark teal action color. Nothing is loud; the teal button is the only thing on screen that pulses.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/65f775f1-6dcc-4c49-80d2-b5a017b76f59#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Lyssna design system\",\"item\":\"https://styles.refero.design/style/65f775f1-6dcc-4c49-80d2-b5a017b76f59\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/65f775f1-6dcc-4c49-80d2-b5a017b76f59#style-reference\",\"name\":\"Lyssna design system reference\",\"headline\":\"Lyssna design system | Refero Styles\",\"description\":\"Explore Lyssna's light Productivity design system: Deep Teal #006e75, Ink #061d29 colors, grenette, mint typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/65f775f1-6dcc-4c49-80d2-b5a017b76f59\",\"mainEntityOfPage\":\"https://styles.refero.design/style/65f775f1-6dcc-4c49-80d2-b5a017b76f59\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Lyssna\",\"url\":\"https://www.lyssna.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/65f775f1-6dcc-4c49-80d2-b5a017b76f59#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ea2444f0-86eb-41b0-9dcd-e86d97785170.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ea2444f0-86eb-41b0-9dcd-e86d97785170.jpg\",\"caption\":\"Screenshot of Lyssna\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ea2444f0-86eb-41b0-9dcd-e86d97785170.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Lyssna design system\",\"Lyssna website design\",\"Lyssna colors\",\"Lyssna typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Deep Teal\",\"Ink\",\"Midnight Teal\",\"Mist\",\"grenette\",\"mint\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Lyssna design system\"},{\"@type\":\"Thing\",\"name\":\"Lyssna website design\"},{\"@type\":\"Thing\",\"name\":\"Lyssna colors\"},{\"@type\":\"Thing\",\"name\":\"Lyssna typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-04-30T00:53:34.922Z\",\"dateModified\":\"2026-04-30T00:53:34.922Z\"}]}19:T6a0,Quick Color Reference:\n- text: #061d29\n- background: #ffffff\n- border: #e5e7eb\n- accent surface: #b9ffe8\n- primary action: #006e75 (filled action)\n- secondary action border: #425d6d\n\nExample Component Prompts:\n\n1. Create a Primary Action Button: #006e75 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Three-column 'How it works' grid: 3 columns, 24px gap. Each column has a small numbered circle (28px, 1px #061d29 border, number in mint 500 14px), then a title in mint 500 20px #061d29, then body in mint 400 15px #425d6d. Above each column, a decorative product card with 24px radius, background #b9ffe8 (or #fffded or #ffc3e6, alternating), containing a white UI mockup with 8px radius.\n\n3. Top navigation bar: height ~64px, white background, border-bottom 1px #e5e7eb. Left: 'Lyssna' wordmark in #006e75 mint 500 22px + mint leaf icon, then a #b9ffe8 pill badge ('Get paid to test') in mint 500 12px with 9999px radius. Center: 5 nav items in mint 400 16px #061d29. Right: ghost 'Log in' + teal 'Sign up' filled button (8px radius, #006e75, white text).\n\n4. Trust logo strip: full-width white section. Centered caption 'Trusted by…' in mint 400 14px #425d6d. Below, a single row of 5-7 partner wordmarks evenly spaced, each rendered monochrome in #061d29 at native proportions. No borders, no cards, 40-48px vertical padding above and below.\n\n5. Floating participant annotation tag: a 9999px-radius pill, background #4d0037, white text mint 500 13px, padding 6px 12px, with a small triangular tail pointing to an element in a 24px-radius photograph below. Positioned absolutely over a lifestyle photo with 24px radius corners."
+      }
+    ],
+    "elevationPhilosophy": "Lyssna deliberately avoids drop shadows as a design primitive. Separation between elements is achieved through flat color contrast (white card on mint surface, Ink text on white), 1px #e5e7eb hairline borders, and 24px corner radii. The result is a paper-like, print-editorial feel rather than a layered digital interface. When a shadow does appear (boxShadow on #ffffff in raw data), it is a single, near-invisible ambient lift — never a multi-layer Material-style stack."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.00599996946660428,
+            "h": 264.5285381460292,
+            "l": 0.9280000564226094
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "body",
+            "image",
+            "card",
+            "icon",
+            "link",
+            "list",
+            "footer"
+          ],
+          "frequency": 6748,
+          "confidence": 1,
+          "prominence": 155171181.56561667,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "other/color": 2,
+            "nav/borderColor": 132,
+            "body/borderColor": 1232,
+            "card/borderColor": 12,
+            "icon/borderColor": 204,
+            "link/borderColor": 396,
+            "list/borderColor": 16,
+            "image/borderColor": 1012,
+            "other/borderColor": 3548,
+            "button/borderColor": 68,
+            "footer/borderColor": 4,
+            "heading/borderColor": 116
+          }
+        },
+        {
+          "hex": "#061d29",
+          "oklch": {
+            "c": 0.037225246223315446,
+            "h": 234.37905243959023,
+            "l": 0.2190546719064636
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "body",
+            "link",
+            "image",
+            "card",
+            "icon"
+          ],
+          "frequency": 1250,
+          "confidence": 1,
+          "prominence": 125509278.1156137,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 28,
+            "body/color": 221,
+            "card/color": 3,
+            "icon/color": 29,
+            "link/color": 34,
+            "image/color": 14,
+            "other/color": 769,
+            "button/color": 16,
+            "heading/color": 15,
+            "body/borderColor": 92,
+            "other/borderColor": 28,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b9ffe8",
+          "oklch": {
+            "c": 0.07622677393986506,
+            "h": 172.25770751745515,
+            "l": 0.9473844592190439
+          },
+          "contexts": [
+            "body",
+            "other",
+            "button",
+            "icon",
+            "footer",
+            "link"
+          ],
+          "frequency": 239,
+          "confidence": 1,
+          "prominence": 10680540.840751436,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 72,
+            "icon/color": 6,
+            "link/color": 69,
+            "other/color": 83,
+            "footer/color": 1,
+            "body/backgroundColor": 7,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#006e75",
+          "oklch": {
+            "c": 0.08343008219833431,
+            "h": 202.51991091505516,
+            "l": 0.4901489559714825
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "icon",
+            "body",
+            "footer"
+          ],
+          "frequency": 74,
+          "confidence": 1,
+          "prominence": 8413819.77011624,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "nav/color": 2,
+            "body/color": 2,
+            "icon/color": 2,
+            "other/fill": 2,
+            "other/color": 35,
+            "nav/backgroundColor": 2,
+            "body/backgroundColor": 22,
+            "button/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "icon",
+            "heading",
+            "button",
+            "list"
+          ],
+          "frequency": 87,
+          "confidence": 1,
+          "prominence": 8056190.1959012,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "body/color": 20,
+            "icon/color": 7,
+            "list/color": 4,
+            "other/color": 9,
+            "button/color": 2,
+            "heading/color": 14,
+            "other/boxShadow": 1,
+            "nav/backgroundColor": 1,
+            "body/backgroundColor": 20,
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#fffded",
+          "oklch": {
+            "c": 0.02105083593332485,
+            "h": 100.9749015010197,
+            "l": 0.9912955332303295
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2058184.7545614718,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#072626",
+          "oklch": {
+            "c": 0.03569749923310088,
+            "h": 195.0851910180541,
+            "l": 0.2463026683145187
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1976762.0609744245,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1,
+            "heading/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#183547",
+          "oklch": {
+            "c": 0.04756556237827613,
+            "h": 238.07407341097482,
+            "l": 0.31531422866216297
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 106920,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 7
+          }
+        },
+        {
+          "hex": "#4d0037",
+          "oklch": {
+            "c": 0.11982687112970637,
+            "h": 344.0863551534578,
+            "l": 0.28073299556755255
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 99881.29819398902,
+          "properties": [
+            "color",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "body/color": 2,
+            "icon/color": 2,
+            "other/fill": 2,
+            "other/color": 2,
+            "body/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#ffc3e6",
+          "oklch": {
+            "c": 0.08146158213295981,
+            "h": 343.0511473897205,
+            "l": 0.8810291682529106
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 68220,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#425d6d",
+          "oklch": {
+            "c": 0.04140964440751161,
+            "h": 234.85762797741245,
+            "l": 0.46328461866489284
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 26,
+          "confidence": 1,
+          "prominence": 67400.53034316716,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 1,
+            "nav/borderColor": 4,
+            "link/borderColor": 16,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ceeae8",
+          "oklch": {
+            "c": 0.029476123053929767,
+            "h": 191.92097180568913,
+            "l": 0.9167971490517911
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 5108,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0b978e",
+          "oklch": {
+            "c": 0.10470436821042466,
+            "h": 187.32189156169756,
+            "l": 0.6099899370447194
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 3388.3666567851096,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "link/backgroundColor": 5,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff492c",
+          "oklch": {
+            "c": 0.22244731451443875,
+            "h": 31.82880898664511,
+            "l": 0.6656601653910652
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 513.7459507365415,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 6
+          }
+        },
+        {
+          "hex": "#fd810b",
+          "oklch": {
+            "c": 0.18240021520625682,
+            "h": 53.33911231583981,
+            "l": 0.7308540475917539
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 370,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        },
+        {
+          "hex": "#87efef",
+          "oklch": {
+            "c": 0.09716085374254581,
+            "h": 195.5467414450193,
+            "l": 0.8895211317025633
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 228,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        },
+        {
+          "hex": "#41e3e2",
+          "oklch": {
+            "c": 0.12898949288161277,
+            "h": 194.34670059265054,
+            "l": 0.8355208479265822
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 228,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        },
+        {
+          "hex": "#68c5ed",
+          "oklch": {
+            "c": 0.1051108109768922,
+            "h": 228.3520772941757,
+            "l": 0.7814955782903279
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 166,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        },
+        {
+          "hex": "#19bab8",
+          "oklch": {
+            "c": 0.1189302401887067,
+            "h": 193.42181620971,
+            "l": 0.715248095487674
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 140.3677461028802,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 6
+          }
+        },
+        {
+          "hex": "#ff9d28",
+          "oklch": {
+            "c": 0.16532505291388588,
+            "h": 63.957861155511544,
+            "l": 0.7798573178572079
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 88,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        },
+        {
+          "hex": "#044d80",
+          "oklch": {
+            "c": 0.10622161996853974,
+            "h": 247.38622003525734,
+            "l": 0.40917986582440125
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 84,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        },
+        {
+          "hex": "#e54747",
+          "oklch": {
+            "c": 0.1949343500491105,
+            "h": 24.80319630000816,
+            "l": 0.623616068914698
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 42,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0387249978885484,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.28,
+          "background": "#ffffff",
+          "foreground": "#061d29"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.89,
+          "background": "#fffded",
+          "foreground": "#061d29"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.98,
+          "background": "#072626",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.62,
+          "background": "#fffded",
+          "foreground": "#072626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.32,
+          "background": "#4d0037",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.25,
+          "background": "#b9ffe8",
+          "foreground": "#061d29"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.97,
+          "background": "#fffded",
+          "foreground": "#4d0037"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.1,
+          "background": "#072626",
+          "foreground": "#b9ffe8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.95,
+          "background": "#061d29",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.62,
+          "background": "#ceeae8",
+          "foreground": "#061d29"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.52,
+          "background": "#4d0037",
+          "foreground": "#b9ffe8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.91,
+          "background": "#072626",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.85,
+          "background": "#87efef",
+          "foreground": "#061d29"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.81,
+          "background": "#ffffff",
+          "foreground": "#183547"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.6,
+          "background": "#ceeae8",
+          "foreground": "#072626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.52,
+          "background": "#fffded",
+          "foreground": "#183547"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.37,
+          "background": "#4d0037",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.08,
+          "background": "#ceeae8",
+          "foreground": "#4d0037"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.89,
+          "background": "#87efef",
+          "foreground": "#072626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.68,
+          "background": "#ffc3e6",
+          "foreground": "#061d29"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "heading",
+            "image",
+            "link",
+            "button",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 50
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "card"
+          ],
+          "frequency": 41
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 27
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 128,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 54,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|body",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 186,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|body",
+            "columnGap|body",
+            "marginBottom|body",
+            "marginLeft|other",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 51,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "nav",
+            "body",
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 53,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "marginLeft|body",
+            "rowGap|body",
+            "columnGap|body",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|list",
+            "columnGap|list",
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingLeft|button",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "body",
+            "heading"
+          ],
+          "frequency": 61,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|body",
+            "rowGap|button",
+            "columnGap|button",
+            "marginBottom|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "body",
+            "other",
+            "image",
+            "heading"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginTop|body",
+            "marginTop|other",
+            "marginTop|image",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "heading",
+            "button",
+            "link",
+            "other",
+            "body",
+            "list"
+          ],
+          "frequency": 110,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|body",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|body",
+            "columnGap|body",
+            "rowGap|list",
+            "columnGap|list",
+            "marginBottom|body",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 100,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|body",
+            "paddingRight|body",
+            "paddingBottom|body",
+            "paddingLeft|body",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "list",
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list",
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 52,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 69,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 75,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginTop|link",
+            "paddingTop|other",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 103,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 176,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 298,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "conic",
+        "value": "conic-gradient(rgb(255, 176, 164) 0deg, rgb(255, 73, 44) 0deg, rgb(255, 73, 44) 360deg)",
+        "colors": [
+          "rgb(255, 176, 164)",
+          "rgb(255, 73, 44)",
+          "rgb(255, 73, 44)"
+        ],
+        "frequency": 12
+      },
+      {
+        "type": "conic",
+        "value": "conic-gradient(rgb(255, 176, 164) 180deg, rgb(255, 73, 44) 180deg, rgb(255, 73, 44) 360deg)",
+        "colors": [
+          "rgb(255, 176, 164)",
+          "rgb(255, 73, 44)",
+          "rgb(255, 73, 44)"
+        ],
+        "frequency": 3
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "mint",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 1700,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "grenette",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 28,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "mint",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "mint",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "mint",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "mint",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "mint",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "mint",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "mint",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "image",
+            "card",
+            "icon",
+            "body",
+            "link",
+            "list",
+            "footer"
+          ],
+          "frequency": 1496,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "mint",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 112,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "mint",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "mint",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "mint",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 34,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "grenette",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "mint",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "grenette",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "grenette",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3db9094c-e0a5-402d-a3b9-9aed97b49b97.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ea2444f0-86eb-41b0-9dcd-e86d97785170.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/65f775f1-6dcc-4c49-80d2-b5a017b76f59#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Lyssna design system\",\"item\":\"https://styles.refero.design/style/65f775f1-6dcc-4c49-80d2-b5a017b76f59\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/65f775f1-6dcc-4c49-80d2-b5a017b76f59#style-reference\",\"name\":\"Lyssna design system reference\",\"headline\":\"Lyssna design system | Refero Styles\",\"description\":\"Explore Lyssna's light Productivity design system: Deep Teal #006e75, Ink #061d29 colors, grenette, mint typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/65f775f1-6dcc-4c49-80d2-b5a017b76f59\",\"mainEntityOfPage\":\"https://styles.refero.design/style/65f775f1-6dcc-4c49-80d2-b5a017b76f59\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Lyssna\",\"url\":\"https://www.lyssna.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/65f775f1-6dcc-4c49-80d2-b5a017b76f59#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ea2444f0-86eb-41b0-9dcd-e86d97785170.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ea2444f0-86eb-41b0-9dcd-e86d97785170.jpg\",\"caption\":\"Screenshot of Lyssna\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ea2444f0-86eb-41b0-9dcd-e86d97785170.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Lyssna design system\",\"Lyssna website design\",\"Lyssna colors\",\"Lyssna typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Deep Teal\",\"Ink\",\"Midnight Teal\",\"Mist\",\"grenette\",\"mint\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Lyssna design system\"},{\"@type\":\"Thing\",\"name\":\"Lyssna website design\"},{\"@type\":\"Thing\",\"name\":\"Lyssna colors\"},{\"@type\":\"Thing\",\"name\":\"Lyssna typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-04-30T00:53:34.922Z\",\"dateModified\":\"2026-04-30T00:53:34.922Z\"}]}19:T6a0,Quick Color Reference:\n- text: #061d29\n- background: #ffffff\n- border: #e5e7eb\n- accent surface: #b9ffe8\n- primary action: #006e75 (filled action)\n- secondary action border: #425d6d\n\nExample Component Prompts:\n\n1. Create a Primary Action Button: #006e75 background, #ffffff text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Three-column 'How it works' grid: 3 columns, 24px gap. Each column has a small numbered circle (28px, 1px #061d29 border, number in mint 500 14px), then a title in mint 500 20px #061d29, then body in mint 400 15px #425d6d. Above each column, a decorative product card with 24px radius, background #b9ffe8 (or #fffded or #ffc3e6, alternating), containing a white UI mockup with 8px radius.\n\n3. Top navigation bar: height ~64px, white background, border-bottom 1px #e5e7eb. Left: 'Lyssna' wordmark in #006e75 mint 500 22px + mint leaf icon, then a #b9ffe8 pill badge ('Get paid to test') in mint 500 12px with 9999px radius. Center: 5 nav items in mint 400 16px #061d29. Right: ghost 'Log in' + teal 'Sign up' filled button (8px radius, #006e75, white text).\n\n4. Trust logo strip: full-width white section. Centered caption 'Trusted by…' in mint 400 14px #425d6d. Below, a single row of 5-7 partner wordmarks evenly spaced, each rendered monochrome in #061d29 at native proportions. No borders, no cards, 40-48px vertical padding above and below.\n\n5. Floating participant annotation tag: a 9999px-radius pill, background #4d0037, white text mint 500 13px, padding 6px 12px, with a small triangular tail pointing to an element in a 24px-radius photograph below. Positioned absolutely over a lifestyle photo with 24px radius corners."
+}

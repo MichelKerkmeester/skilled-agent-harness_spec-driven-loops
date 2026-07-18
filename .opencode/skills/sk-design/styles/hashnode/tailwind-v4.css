@@ -1,0 +1,54 @@
+@theme {
+  /* Colors */
+  --color-blueprint-blue: #1d52de;
+  --color-ink-black: #16191c;
+  --color-carbon: #1c2024;
+  --color-slate: #7b8187;
+  --color-fog: #d1d4d9;
+  --color-paper: #f4f5f7;
+  --color-stone: #e6e8eb;
+  --color-canvas: #f9fafb;
+  --color-mint: #00bc7d;
+
+  /* Typography */
+  --font-suisseintl: 'suisseIntl', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-suisse-intl: 'Suisse Int'l', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-font-awesome-7-jelly-pro: 'Font Awesome 7 Jelly / Pro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-suisse-mono: 'Suisse Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-font-awesome-7-pro: 'Font Awesome 7 Pro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 18px;
+  --leading-subheading: 1.38;
+  --text-heading-sm: 20px;
+  --leading-heading-sm: 1.33;
+  --text-heading: 30px;
+  --leading-heading: 1.2;
+  --tracking-heading: -0.75px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-2xl: 18px;
+
+  /* Shadows */
+  --shadow-subtle: oklab(0 0 0 / 0.1) 0px 0px 0px 1px inset;
+}

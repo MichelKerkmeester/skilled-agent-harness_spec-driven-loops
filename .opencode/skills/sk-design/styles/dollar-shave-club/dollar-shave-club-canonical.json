@@ -1,0 +1,2255 @@
+{
+  "source": "https://styles.refero.design/style/6d72f05e-dce6-43ad-9532-f61bf211ed46",
+  "uuid": "6d72f05e-dce6-43ad-9532-f61bf211ed46",
+  "name": "Dollar Shave Club",
+  "northStar": "Navy warehouse with a single orange flare",
+  "capturedAt": "2026-07-18T09:00:17.943Z",
+  "meta": {
+    "url": "https://www.dollarshaveclub.com",
+    "siteName": "Dollar Shave Club",
+    "extractedAt": "2026-06-03T21:06:22.469Z",
+    "durationMs": 91436,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 492,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Flame Orange #fe5000 filled buttons with white uppercase text for all primary actions.",
+      "Set the main canvas to Midnight Navy #142978 for all full-width dark sections and bands.",
+      "Use DSC Specter weight 700-900 uppercase for navigation, product names, CTAs, and section titles.",
+      "Apply 4px border-radius to all cards, buttons, inputs, and badges — never larger.",
+      "Alternate section backgrounds between Midnight Navy, Wine Burgundy #82163f, and Powder Blue #dbebf5 to create rhythm.",
+      "Use Flame Orange line-art icons at 64px+ for step explainers and decorative imagery.",
+      "Reserve decorative shapes (flower badges, wavy gold borders) for hero and promo bands only — never on utility screens."
+    ],
+    "donts": [
+      "Don't use any color other than Flame Orange for filled CTA buttons.",
+      "Don't apply gradients — this system is flat, single-color surfaces only.",
+      "Don't use light text on light backgrounds or dark text on dark backgrounds — the contrast pairs are strict.",
+      "Don't set border-radius above 4px (or 10px for the rare pill variant) — anything rounder breaks the utility aesthetic.",
+      "Don't mix fonts beyond DSC Specter and Gelica — never substitute system fonts at display sizes.",
+      "Don't place the Flower Badge or wavy gold border on non-hero surfaces — they lose impact when overused.",
+      "Don't use Wine Burgundy for body text on light backgrounds; reserve it for hero display copy and section bands."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#142978",
+        "name": "Midnight Navy",
+        "role": "Violet text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#fe5000",
+        "name": "Flame Orange",
+        "role": "Filled CTA buttons, icon strokes, decorative accents — the single chromatic action color that commands every screen it touches",
+        "group": "brand"
+      },
+      {
+        "hex": "#82163f",
+        "name": "Wine Burgundy",
+        "role": "Secondary section background, hero display text, promotional bands — adds warmth and depth against the navy",
+        "group": "brand"
+      },
+      {
+        "hex": "#001233",
+        "name": "Deep Ink",
+        "role": "Outlined/ghost button borders, dark text on light surfaces, deep button variant background",
+        "group": "brand"
+      },
+      {
+        "hex": "#0a153c",
+        "name": "Abyss Navy",
+        "role": "Pressed/secondary button fill — a near-black navy for dark button variants on the navy canvas",
+        "group": "brand"
+      },
+      {
+        "hex": "#dbebf5",
+        "name": "Powder Blue",
+        "role": "Card surfaces and light-blue panel backgrounds within dark sections — breaks up the navy with breathing room",
+        "group": "accent"
+      },
+      {
+        "hex": "#f3e0c8",
+        "name": "Warm Cream",
+        "role": "Hero left-panel background, soft warm neutral — used in only the highest-impact first-screen block",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Snow White",
+        "role": "Primary text on dark surfaces, button borders, input fills, card text — the dominant foreground color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#404040",
+        "name": "Graphite",
+        "role": "Heavy-use border and text color on light sections, structural dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e3e3e3",
+        "name": "Ash Gray",
+        "role": "Badge and pill borders on light surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Fog",
+        "role": "Subtle dividers, muted panel backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#949596",
+        "name": "Stone",
+        "role": "Input field borders, low-priority form chrome",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark sections stacked vertically with no page max-width constraint until content blocks. Hero is a 50/50 split: left cream text panel + right full-bleed photo with wavy gold edge. Below, a 4-column product category card grid sits centered on the navy canvas. Section rhythm alternates: navy → burgundy promo band → navy explainer → product tiles. Content is consistently centered within each band, with section headers 32-40px uppercase. Navigation is a two-tier system: a slim dark blue promo tab bar above a white main nav with logo left, category links center-left, and utility icons right. Spacing between sections is generous (30-40px gaps) giving the dark bands room to breathe.",
+    "imagery": "Photography is the dominant visual element: high-saturation lifestyle shots of people shaving or in bathtubs, full-bleed with no rounded corners on the image side. Products are shown in tight editorial crops on grid-tile or powder-blue backgrounds — no lifestyle context, the object IS the hero. Decorative graphics are flat vector shapes: lavender flower blobs, gold wavy borders, orange line-art icons. Icon style is consistently outlined with 1.5-2px stroke weight in Flame Orange, used at large sizes (48-64px) for explanatory iconography and small sizes (18px) for inline UI.",
+    "similar": [
+      {
+        "why": "Same dark-navy commerce system with a single bold orange CTA color and heavy condensed uppercase typography for category navigation.",
+        "business": "Harry's"
+      },
+      {
+        "why": "Direct-to-consumer brand using flat dark surfaces with one saturated accent color and bold uppercase display type.",
+        "business": "Warby Parker"
+      },
+      {
+        "why": "Dark-mode-first commerce with heavy condensed display type, flat surfaces, and high-contrast product photography.",
+        "business": "Gymshark"
+      },
+      {
+        "why": "Masculine grooming brand with deep saturated backgrounds, bold uppercase condensed type, and minimal reliance on shadows.",
+        "business": "Beardbrand"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "4px",
+        "cards": "4px",
+        "badges": "4px",
+        "inputs": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "30px",
+      "cardPadding": "25px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#142978",
+        "name": "Midnight Navy Canvas",
+        "level": 0,
+        "purpose": "Primary page background for all dark sections"
+      },
+      {
+        "hex": "#82163f",
+        "name": "Wine Burgundy Band",
+        "level": 1,
+        "purpose": "Promotional section dividers and alternate dark band"
+      },
+      {
+        "hex": "#dbebf5",
+        "name": "Powder Blue Card",
+        "level": 2,
+        "purpose": "Product card and step card surfaces on dark canvas"
+      },
+      {
+        "hex": "#f3e0c8",
+        "name": "Warm Cream Hero",
+        "level": 3,
+        "purpose": "Hero left-panel and warm accent surfaces"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — flat panels with hairline #404040 dividers, no shadows",
+        "element": "Product Category Card"
+      },
+      {
+        "style": "none — flat color fill, no shadow elevation",
+        "element": "Button"
+      }
+    ],
+    "northStar": "Navy warehouse with a single orange flare",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.04
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.025
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.015
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.012
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.29,
+        "letterSpacing": 0.025
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": 0.031
+      },
+      {
+        "role": "heading-lg",
+        "size": 32,
+        "lineHeight": 1.19,
+        "letterSpacing": 0.038
+      },
+      {
+        "role": "display",
+        "size": 40,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.043
+      },
+      {
+        "role": "hero",
+        "size": 52,
+        "lineHeight": 0.8,
+        "letterSpacing": 0.05
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Promo Tab Bar",
+        "role": "Slim full-width navy band above main navigation promoting seasonal or category-specific CTAs",
+        "description": "Background #142978, white text 14px DSC Specter weight 700 uppercase, centered links with a right-pointing arrow on promo text. Height ~40px, no border-radius."
+      },
+      {
+        "name": "Main Navigation Bar",
+        "role": "Primary white navigation bar with logo, category links, and utility icons",
+        "description": "Background #ffffff, logo left (DSC Specter stacked red/orange), 6 category links in 14px DSC Specter weight 700 uppercase with #404040 color, search and account/cart icons right with badge counter in Flame Orange. Padding 15px vertical, hairline #404040 bottom border."
+      },
+      {
+        "name": "Split Hero Section",
+        "role": "First-screen brand impression combining editorial copy with lifestyle photography",
+        "description": "Two-column ~50/50 split. Left panel: #f3e0c8 cream background, display headline at 52px DSC Specter weight 800 uppercase in #82163f, 16px body copy in #404040, Flame Orange filled CTA. Right panel: full-bleed photo with a decorative wavy gold (#fe5000 or #ffc940) border at the edge connecting panels."
+      },
+      {
+        "name": "Flame Orange Filled Button",
+        "role": "Primary action button — the dominant CTA across all dark sections",
+        "description": "Background #fe5000, text #ffffff in 14px DSC Specter weight 700 uppercase, padding 10px 15px, border-radius 4px, no border or 1px #fe5000 border. Letter-spacing 0.050em for emphasis."
+      },
+      {
+        "name": "Ghost / Outlined Button",
+        "role": "Secondary action on light surfaces where a filled orange button would feel too loud",
+        "description": "Background transparent, 1px solid #001233 border, text #001233 in 14px DSC Specter weight 700 uppercase, padding 10px 15px, border-radius 4px."
+      },
+      {
+        "name": "Product Category Card",
+        "role": "Entry-point card in a 4-column grid linking to a product collection",
+        "description": "Two-part card: upper half is a full-bleed product/lifestyle image (no border-radius, edge to edge), lower half is #dbebf5 powder-blue background. Category title in 18-20px DSC Specter weight 800 uppercase #142978, short description 14px in #404040, centered Flame Orange 'SHOP NOW' button at bottom. 4px border-radius on the lower panel."
+      },
+      {
+        "name": "Decorative Flower Badge",
+        "role": "Promotional seal used over hero photography to highlight percentage savings",
+        "description": "Organic scalloped/flower SVG shape, lavender/purple fill (~#b8a0d0), white text 18-24px DSC Specter weight 700 stacked ('save up to / 50% off'), placed at an angle over hero imagery for playful visual punctuation."
+      },
+      {
+        "name": "Wavy Gold Border",
+        "role": "Decorative SVG element that separates the hero photo from the cream panel",
+        "description": "Vertical wavy/scalloped strip in gold-orange (~#ffc940 or gradient to #fe5000), 2-4 undulations, used as a hand-drawn frame between hero blocks."
+      },
+      {
+        "name": "Section Header",
+        "role": "Bold centered display title for full-width dark sections",
+        "description": "32-40px DSC Specter weight 800 uppercase #ffffff, centered, with 15px vertical padding above and below. Used on every navy and burgundy band to anchor the section."
+      },
+      {
+        "name": "How-It-Works Step",
+        "role": "Icon-led three-step explainer in a horizontal row",
+        "description": "Centered column on #142978 background. Icon at top in Flame Orange line art (~64px). Step number+title in 14px DSC Specter weight 800 uppercase #ffffff, description in 14px weight 400 #ffffff. 30px column gap between steps."
+      },
+      {
+        "name": "Promo Band",
+        "role": "Full-width burgundy section promoting a campaign or product line",
+        "description": "Background #82163f, white headline 24-32px DSC Specter weight 800 uppercase, Flame Orange filled CTA, flanked by decorative gold/cream blob shapes. Used between dark sections to break rhythm."
+      },
+      {
+        "name": "Input Field",
+        "role": "Form input for email capture or search",
+        "description": "Background #ffffff, 1px solid #949596 border, 4px border-radius, 15-16px horizontal padding, 14px DSC Specter body text. Focus state: border becomes #fe5000."
+      },
+      {
+        "name": "Icon",
+        "role": "Inline UI iconography",
+        "description": "Font Awesome 5 Pro 300-weight icons at 18px, typically #404040 on light surfaces and #ffffff on dark surfaces, or Flame Orange for decorative utility icons (line-art razor, shaver, play-pause)."
+      },
+      {
+        "name": "Badge / Pill",
+        "role": "Small status or count indicator",
+        "description": "1px solid #e3e3e3 border, 4px border-radius, 4px right/left margin, 12-14px text, used for tags and cart counts."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary display and body family — condensed heavy sans with extreme weight range, used uppercase for navigation, product names, CTAs, and section headers; weights 700-900 drive display headlines (32-52px) while 400 handles body and small UI.",
+        "sizes": "12, 14, 15, 16, 18, 20, 24, 32, 40, 52",
+        "family": "DSC Specter",
+        "weight": "400, 600, 700, 800, 900",
+        "lineHeight": "0.80–1.86",
+        "substitute": "Archivo, Inter, Helvetica Neue Condensed",
+        "letterSpacing": "-0.006em to 0.050em, tighter at display sizes",
+        "fontFeatureSettings": "\"ss01\" on"
+      },
+      {
+        "role": "Secondary utility family for navigation, fine print, and body micro-copy — a serif counterpoint to Specter's industrial weight.",
+        "sizes": "12, 14, 16",
+        "family": "Gelica",
+        "weight": "400, 700, 800",
+        "lineHeight": "1.20–1.80",
+        "substitute": "Lora, Source Serif Pro",
+        "letterSpacing": "0.025em, 0.071em"
+      },
+      {
+        "role": "GTStandard-M — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "GTStandard-M",
+        "weight": "400",
+        "lineHeight": "1.5"
+      },
+      {
+        "role": "Font Awesome 5 Pro — detected in extracted data but not described by AI",
+        "sizes": "18px",
+        "family": "Font Awesome 5 Pro",
+        "weight": "300",
+        "lineHeight": "1"
+      }
+    ],
+    "description": "Dollar Shave Club is a saturated dark-mode commerce system built on a deep royal-navy canvas with one loud orange action color and a deep burgundy secondary. Typography is heavy and condensed through the custom DSC Specter display family, always uppercase for navigation and product names, giving the surface a bold, masculine-utility feel. Decorative shapes — flower blobs, wavy gold borders, orange line-art icons — soften the hard navy structure and keep the brand playful rather than clinical. Content is organized in full-bleed horizontal bands: a split cream-and-photo hero, a dark product category grid, a burgundy promo band, and a dark-navy explainer with icon-led steps.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6d72f05e-dce6-43ad-9532-f61bf211ed46#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dollar Shave Club design system\",\"item\":\"https://styles.refero.design/style/6d72f05e-dce6-43ad-9532-f61bf211ed46\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6d72f05e-dce6-43ad-9532-f61bf211ed46#style-reference\",\"name\":\"Dollar Shave Club design system reference\",\"headline\":\"Dollar Shave Club design system | Refero Styles\",\"description\":\"Explore Dollar Shave Club's dark E-commerce design system: Midnight Navy #142978, Flame Orange #fe5000 colors, DSC Specter, Gelica typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/6d72f05e-dce6-43ad-9532-f61bf211ed46\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6d72f05e-dce6-43ad-9532-f61bf211ed46\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dollar Shave Club\",\"url\":\"https://www.dollarshaveclub.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6d72f05e-dce6-43ad-9532-f61bf211ed46#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7feb9fef-becf-47e8-9a9e-fd864927b889.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7feb9fef-becf-47e8-9a9e-fd864927b889.jpg\",\"caption\":\"Screenshot of Dollar Shave Club\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7feb9fef-becf-47e8-9a9e-fd864927b889.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dollar Shave Club design system\",\"Dollar Shave Club website design\",\"Dollar Shave Club colors\",\"Dollar Shave Club typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Midnight Navy\",\"Flame Orange\",\"Wine Burgundy\",\"Deep Ink\",\"DSC Specter\",\"Gelica\",\"GTStandard-M\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dollar Shave Club design system\"},{\"@type\":\"Thing\",\"name\":\"Dollar Shave Club website design\"},{\"@type\":\"Thing\",\"name\":\"Dollar Shave Club colors\"},{\"@type\":\"Thing\",\"name\":\"Dollar Shave Club typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:04:00.843Z\",\"dateModified\":\"2026-04-30T01:04:00.843Z\"}]}19:T59d,**Quick Color Reference**\n- Background: #142978 (Midnight Navy)\n- Text: #ffffff (primary on dark), #404040 (primary on light)\n- Border: #404040 (structural), #e3e3e3 (badges), #949596 (inputs)\n- Accent: #82163f (Wine Burgundy, section bands)\n- primary action: #fe5000 (filled action)\n\n**Example Component Prompts**\n\n1. **Dark Section with Product Cards**: Background #142978. Section title centered at 32px DSC Specter weight 800 uppercase #ffffff. Below, 4-column grid of cards: upper half is a full-bleed product photo (no border-radius on top), lower half is #dbebf5 with 25px padding, containing a 20px DSC Specter weight 800 uppercase #142978 category title, 14px #404040 body copy, and a centered Flame Orange (#fe5000, white 14px uppercase text, 4px radius, 10px 15px padding) 'SHOP NOW' button.\n\n2. Create a Primary Action Button: #fe5000 background, #404040 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **How-It-Works Step Row**: Background #142978. Centered 32px white DSC Specter weight 800 uppercase title. 3-column row with 64px Flame Orange line-art icons (stroke weight 2px), 14px weight 800 uppercase white step titles, and 14px weight 400 white descriptions. 30px gap between columns.\n\n\n5. **Input Field**: White #ffffff background, 1px solid #949596 border, 4px border-radius, 16px horizontal padding, 14px DSC Specter body text in #404040. Focus border: 1px solid #fe5000."
+      }
+    ],
+    "elevationPhilosophy": "The design is intentionally flat — no drop shadows, no glow. Depth is created through color contrast between Midnight Navy canvas, Wine Burgundy bands, and Powder Blue card surfaces rather than through box-shadow elevation. Cards and buttons sit directly on the navy plane with no z-axis separation."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "body",
+            "icon",
+            "input",
+            "hero",
+            "heading",
+            "image",
+            "list",
+            "card",
+            "footer",
+            "badge"
+          ],
+          "frequency": 237,
+          "confidence": 1,
+          "prominence": 35382670.56406525,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "nav/color": 2,
+            "body/color": 14,
+            "card/color": 13,
+            "hero/color": 1,
+            "icon/color": 4,
+            "link/color": 8,
+            "list/color": 4,
+            "other/fill": 4,
+            "image/color": 4,
+            "other/color": 72,
+            "button/color": 12,
+            "heading/color": 8,
+            "link/borderColor": 20,
+            "other/borderColor": 10,
+            "button/borderColor": 36,
+            "badge/backgroundColor": 3,
+            "input/backgroundColor": 2,
+            "other/backgroundColor": 9,
+            "button/backgroundColor": 2,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#404040",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3714949460297332
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "button",
+            "body",
+            "icon",
+            "input",
+            "list",
+            "footer",
+            "heading",
+            "badge"
+          ],
+          "frequency": 737,
+          "confidence": 1,
+          "prominence": 10297468.642736185,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 22,
+            "icon/fill": 10,
+            "nav/color": 52,
+            "body/color": 29,
+            "icon/color": 6,
+            "link/color": 16,
+            "list/color": 18,
+            "other/fill": 6,
+            "badge/color": 3,
+            "icon/stroke": 2,
+            "image/color": 6,
+            "input/color": 4,
+            "other/color": 94,
+            "button/color": 12,
+            "footer/color": 1,
+            "other/stroke": 2,
+            "heading/color": 11,
+            "nav/borderColor": 66,
+            "body/borderColor": 76,
+            "link/borderColor": 28,
+            "list/borderColor": 16,
+            "badge/borderColor": 4,
+            "image/borderColor": 8,
+            "input/borderColor": 12,
+            "other/borderColor": 154,
+            "button/borderColor": 44,
+            "heading/borderColor": 32,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#142978",
+          "oklch": {
+            "c": 0.13701411338269884,
+            "h": 266.6544219223707,
+            "l": 0.3228843312782993
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "list",
+            "card",
+            "link",
+            "heading",
+            "body"
+          ],
+          "frequency": 47,
+          "confidence": 1,
+          "prominence": 5280515.024881844,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 4,
+            "card/color": 12,
+            "link/color": 4,
+            "list/color": 5,
+            "other/color": 14,
+            "heading/color": 4,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#82163f",
+          "oklch": {
+            "c": 0.14400164034517965,
+            "h": 4.32159007027197,
+            "l": 0.40316624038182886
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "image",
+            "heading",
+            "body"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 4286835.706031447,
+          "properties": [
+            "backgroundColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "image/color": 2,
+            "other/color": 9,
+            "heading/color": 1,
+            "nav/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f5ecdf",
+          "oklch": {
+            "c": 0.019847278781116473,
+            "h": 77.31515407320586,
+            "l": 0.9466216562369382
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1097250,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 306750,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4,
+            "image/backgroundColor": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#dbebf5",
+          "oklch": {
+            "c": 0.02180883230367652,
+            "h": 235.00097416758672,
+            "l": 0.9311165796070686
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 144707.20272957018,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#e3e3e3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9158314666321387
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 143451.7860152704,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "badge/borderColor": 8
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "input",
+            "button"
+          ],
+          "frequency": 34,
+          "confidence": 1,
+          "prominence": 102585.66033889932,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "input/color": 1,
+            "other/color": 1,
+            "other/borderColor": 28,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#fe5000",
+          "oklch": {
+            "c": 0.22036829070525304,
+            "h": 37.71779155213344,
+            "l": 0.6690214089712769
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 92604.81979307016,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 8,
+            "button/backgroundColor": 10
+          }
+        },
+        {
+          "hex": "#949596",
+          "oklch": {
+            "c": 0.001878971356253847,
+            "h": 247.8507889119769,
+            "l": 0.6693120975692906
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 45045.405040814825,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f3e0c8",
+          "oklch": {
+            "c": 0.038119953811369914,
+            "h": 73.72413937919615,
+            "l": 0.9157843475964296
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4644,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 1
+          }
+        },
+        {
+          "hex": "#001233",
+          "oklch": {
+            "c": 0.07121640265207645,
+            "h": 258.1335681401505,
+            "l": 0.19123904260086796
+          },
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 2304,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 1,
+            "button/color": 1,
+            "body/borderColor": 4,
+            "other/borderColor": 4,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#0a153c",
+          "oklch": {
+            "c": 0.07739881111310752,
+            "h": 267.88560583866513,
+            "l": 0.21323039881114952
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 240,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 3
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.033186980260384094,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.51,
+          "background": "#ffffff",
+          "foreground": "#001233"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.95,
+          "background": "#f5ecdf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.72,
+          "background": "#0a153c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.21,
+          "background": "#dbebf5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.36,
+          "background": "#e3e3e3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.31,
+          "background": "#f3e0c8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.96,
+          "background": "#eeeeee",
+          "foreground": "#001233"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.82,
+          "background": "#f5ecdf",
+          "foreground": "#001233"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.27,
+          "background": "#eeeeee",
+          "foreground": "#0a153c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.18,
+          "background": "#dbebf5",
+          "foreground": "#001233"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.14,
+          "background": "#f5ecdf",
+          "foreground": "#0a153c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.52,
+          "background": "#dbebf5",
+          "foreground": "#0a153c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.43,
+          "background": "#e3e3e3",
+          "foreground": "#001233"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.38,
+          "background": "#f3e0c8",
+          "foreground": "#001233"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.8,
+          "background": "#e3e3e3",
+          "foreground": "#0a153c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.76,
+          "background": "#0a153c",
+          "foreground": "#f3e0c8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.98,
+          "background": "#142978",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.19,
+          "background": "#eeeeee",
+          "foreground": "#142978"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "input",
+            "button",
+            "image",
+            "card",
+            "badge"
+          ],
+          "frequency": 56
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|input",
+            "marginRight|input",
+            "marginBottom|input",
+            "marginLeft|input"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "icon",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|icon",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|badge"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav",
+            "body",
+            "button",
+            "other",
+            "list"
+          ],
+          "frequency": 59,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginLeft|body",
+            "marginLeft|button",
+            "paddingBottom|other",
+            "marginTop|list",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "icon",
+            "list"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginLeft|icon",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "input",
+            "other",
+            "list",
+            "button",
+            "body",
+            "heading",
+            "link",
+            "badge"
+          ],
+          "frequency": 114,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingBottom|other",
+            "marginBottom|list",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginTop|body",
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "marginBottom|link",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other",
+            "paddingTop|heading",
+            "paddingTop|badge",
+            "paddingRight|badge",
+            "paddingBottom|badge",
+            "paddingLeft|badge",
+            "marginTop|heading"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "marginLeft|nav",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "button",
+            "nav"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|button",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "columnGap|other",
+            "columnGap|nav",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "input",
+            "nav",
+            "other",
+            "heading",
+            "badge",
+            "list"
+          ],
+          "frequency": 19,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|input",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "marginBottom|badge",
+            "paddingRight|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link",
+            "other",
+            "button",
+            "footer"
+          ],
+          "frequency": 34,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "columnGap|button",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "link"
+          ],
+          "frequency": 46,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|link"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "link",
+            "other",
+            "heading",
+            "button"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|other",
+            "marginTop|other",
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "input",
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "marginTop|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|input",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 53,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|footer",
+            "columnGap|footer"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 147,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 149,
+          "contexts": [
+            "link",
+            "card"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link",
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "DSC Specter",
+          "source": "custom",
+          "weights": [
+            400,
+            600,
+            700,
+            800,
+            900
+          ],
+          "frequency": 401,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Gelica",
+          "source": "custom",
+          "weights": [
+            400,
+            700,
+            800
+          ],
+          "frequency": 45,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "dsc specter",
+          "source": "custom",
+          "weights": [
+            800
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GTStandard-M",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Font Awesome 5 Pro",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "DSC Specter",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Gelica",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "DSC Specter",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Gelica",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "DSC Specter",
+          "weight": 800,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "DSC Specter",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "DSC Specter",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Gelica",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.071,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "DSC Specter",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "DSC Specter",
+          "weight": 800,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.043,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "DSC Specter",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.36,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "DSC Specter",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.36,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "DSC Specter",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "DSC Specter",
+          "weight": 800,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "DSC Specter",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.86,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "DSC Specter",
+          "weight": 900,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.29,
+          "letterSpacing": 0.043,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "DSC Specter",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "DSC Specter",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "dsc specter",
+          "weight": 800,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "dsc specter",
+          "weight": 800,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "DSC Specter",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "DSC Specter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "icon",
+            "nav",
+            "hero",
+            "image",
+            "list",
+            "card",
+            "link",
+            "footer",
+            "input",
+            "badge"
+          ],
+          "frequency": 228,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DSC Specter",
+          "weight": 700,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DSC Specter",
+          "weight": 800,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Gelica",
+          "weight": 800,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DSC Specter",
+          "weight": 800,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "DSC Specter",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.19,
+          "letterSpacing": 0.044,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DSC Specter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "body",
+            "input",
+            "list"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Gelica",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DSC Specter",
+          "weight": 800,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.8,
+          "letterSpacing": 0.031,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Gelica",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Gelica",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DSC Specter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Gelica",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DSC Specter",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Gelica",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "input",
+            "link"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DSC Specter",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DSC Specter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "button"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "DSC Specter",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.038,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "GTStandard-M",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "DSC Specter",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.033,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "DSC Specter",
+          "weight": 900,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.033,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "DSC Specter",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Font Awesome 5 Pro",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "dsc specter",
+          "weight": 800,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "DSC Specter",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "DSC Specter",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "DSC Specter",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.006,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "DSC Specter",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.015,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "DSC Specter",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.015,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 52,
+          "family": "DSC Specter",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": 0.012,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/3aef4e42-e5b7-4829-8155-a4891a989f1c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/7feb9fef-becf-47e8-9a9e-fd864927b889.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/6d72f05e-dce6-43ad-9532-f61bf211ed46#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dollar Shave Club design system\",\"item\":\"https://styles.refero.design/style/6d72f05e-dce6-43ad-9532-f61bf211ed46\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/6d72f05e-dce6-43ad-9532-f61bf211ed46#style-reference\",\"name\":\"Dollar Shave Club design system reference\",\"headline\":\"Dollar Shave Club design system | Refero Styles\",\"description\":\"Explore Dollar Shave Club's dark E-commerce design system: Midnight Navy #142978, Flame Orange #fe5000 colors, DSC Specter, Gelica typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/6d72f05e-dce6-43ad-9532-f61bf211ed46\",\"mainEntityOfPage\":\"https://styles.refero.design/style/6d72f05e-dce6-43ad-9532-f61bf211ed46\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dollar Shave Club\",\"url\":\"https://www.dollarshaveclub.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/6d72f05e-dce6-43ad-9532-f61bf211ed46#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/7feb9fef-becf-47e8-9a9e-fd864927b889.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/7feb9fef-becf-47e8-9a9e-fd864927b889.jpg\",\"caption\":\"Screenshot of Dollar Shave Club\"},\"image\":\"https://images.refero.design/styles/refero.design/image/7feb9fef-becf-47e8-9a9e-fd864927b889.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dollar Shave Club design system\",\"Dollar Shave Club website design\",\"Dollar Shave Club colors\",\"Dollar Shave Club typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Midnight Navy\",\"Flame Orange\",\"Wine Burgundy\",\"Deep Ink\",\"DSC Specter\",\"Gelica\",\"GTStandard-M\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dollar Shave Club design system\"},{\"@type\":\"Thing\",\"name\":\"Dollar Shave Club website design\"},{\"@type\":\"Thing\",\"name\":\"Dollar Shave Club colors\"},{\"@type\":\"Thing\",\"name\":\"Dollar Shave Club typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T01:04:00.843Z\",\"dateModified\":\"2026-04-30T01:04:00.843Z\"}]}19:T59d,**Quick Color Reference**\n- Background: #142978 (Midnight Navy)\n- Text: #ffffff (primary on dark), #404040 (primary on light)\n- Border: #404040 (structural), #e3e3e3 (badges), #949596 (inputs)\n- Accent: #82163f (Wine Burgundy, section bands)\n- primary action: #fe5000 (filled action)\n\n**Example Component Prompts**\n\n1. **Dark Section with Product Cards**: Background #142978. Section title centered at 32px DSC Specter weight 800 uppercase #ffffff. Below, 4-column grid of cards: upper half is a full-bleed product photo (no border-radius on top), lower half is #dbebf5 with 25px padding, containing a 20px DSC Specter weight 800 uppercase #142978 category title, 14px #404040 body copy, and a centered Flame Orange (#fe5000, white 14px uppercase text, 4px radius, 10px 15px padding) 'SHOP NOW' button.\n\n2. Create a Primary Action Button: #fe5000 background, #404040 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n3. **How-It-Works Step Row**: Background #142978. Centered 32px white DSC Specter weight 800 uppercase title. 3-column row with 64px Flame Orange line-art icons (stroke weight 2px), 14px weight 800 uppercase white step titles, and 14px weight 400 white descriptions. 30px gap between columns.\n\n\n5. **Input Field**: White #ffffff background, 1px solid #949596 border, 4px border-radius, 16px horizontal padding, 14px DSC Specter body text in #404040. Focus border: 1px solid #fe5000."
+}

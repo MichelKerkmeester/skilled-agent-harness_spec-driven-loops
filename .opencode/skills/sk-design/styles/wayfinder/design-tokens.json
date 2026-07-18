@@ -1,0 +1,165 @@
+{
+  "color": {
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void Black — Page canvas, primary borders, icon strokes — the literal theater curtain everything sits on"
+    },
+    "smolder-earth": {
+      "$value": "#0b0502",
+      "$type": "color",
+      "$description": "Smolder Earth — Secondary surface tone — picks up a warm cast from the illustration overlay, used as a slightly lifted dark"
+    },
+    "charcoal": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Charcoal — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "bone-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone White — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "ash": {
+      "$value": "#e3e3e2",
+      "$type": "color",
+      "$description": "Ash — Hairline borders on the dark button, subtle separators, muted off-white dividers"
+    },
+    "driftwood": {
+      "$value": "#c0bfbe",
+      "$type": "color",
+      "$description": "Driftwood — Muted surface for low-emphasis background panels and body containers"
+    }
+  },
+  "font": {
+    "enreal": {
+      "$value": "Enreal",
+      "$type": "fontFamily",
+      "$description": "Display and UI type. Weight 300 carries the title — a thin geometric sans that whispers against the dark canvas. The 0.042em tracking (roughly 0.67px at 16px) is wide for a sans, giving every word a cinematic, breathing quality. Body and labels step up to 400, reserved to 700 for the rare emphasis."
+    },
+    "ciutadella-medium": {
+      "$value": "Ciutadella-Medium",
+      "$type": "fontFamily",
+      "$description": "Secondary support face at weight 300 — used for small labels, links, and metadata. Tight line-height (1.0) and normal tracking make it a quiet, textural companion to the wider Enreal."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback for button text and small body contexts where the custom faces are not loaded."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Ciutadella-Medium",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Enreal",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Enreal",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Enreal",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "void-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Underlying page canvas — the theater-dark base layer"
+    },
+    "smolder-earth": {
+      "$value": "#0b0502",
+      "$type": "color",
+      "$description": "Surface level 2: Warm dark surface that absorbs the illustration's color cast"
+    },
+    "charcoal": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 3: Secondary button fill and border — the only stepped dark"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://wayfinder.nfb.ca",
+      "siteName": "Wayfinder",
+      "extractedAt": "2026-06-03T18:31:48.595Z",
+      "variant": "extended"
+    }
+  }
+}

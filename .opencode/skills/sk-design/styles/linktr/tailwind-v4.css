@@ -1,0 +1,78 @@
+@theme {
+  /* Colors */
+  --color-voltage-lime: #d2e823;
+  --color-cobalt-signal: #2665d6;
+  --color-bordeaux-maroon: #780016;
+  --color-midnight-ink: #1e2330;
+  --color-plaster-white: #ffffff;
+  --color-bone-canvas: #f3f3f1;
+  --color-cement-gray: #adadad;
+  --color-slate-mute: #676b5f;
+  --color-carbon: #222222;
+  --color-lilac-whisper: #e9c0e9;
+  --color-indigo-abyss: #061492;
+  --color-forest-depth: #254f1a;
+  --color-saffron: #d6a337;
+
+  /* Typography */
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-linksans: 'Linksans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-linksans-linksansvf: 'Linksans Linksansvf', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-yerk: 'yerk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --tracking-body-sm: -0.28px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: -0.16px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.31;
+  --tracking-subheading: -0.4px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -0.48px;
+  --text-heading: 28px;
+  --leading-heading: 1.2;
+  --tracking-heading: -0.56px;
+  --text-heading-lg: 51px;
+  --leading-heading-lg: 1.06;
+  --tracking-heading-lg: -1.22px;
+  --text-display-alt: 56px;
+  --leading-display-alt: 1.06;
+  --tracking-display-alt: -1.34px;
+  --text-display: 80px;
+  --leading-display: 1;
+  --tracking-display: -3.44px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-22: 22px;
+  --spacing-24: 24px;
+  --spacing-26: 26px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-65: 65px;
+  --spacing-128: 128px;
+  --spacing-216: 216px;
+
+  /* Border Radius */
+  --radius-lg: 8px;
+  --radius-2xl: 16px;
+  --radius-3xl: 29.09px;
+  --radius-3xl-2: 32px;
+  --radius-3xl-3: 41.6px;
+  --radius-full: 64px;
+  --radius-full-2: 99px;
+  --radius-full-3: 1000px;
+}

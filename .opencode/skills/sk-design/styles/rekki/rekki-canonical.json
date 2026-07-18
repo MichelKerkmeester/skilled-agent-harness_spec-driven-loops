@@ -1,0 +1,1716 @@
+{
+  "source": "https://styles.refero.design/style/65b8df27-36a3-47a6-be53-735d1f6a485d",
+  "uuid": "65b8df27-36a3-47a6-be53-735d1f6a485d",
+  "name": "REKKI",
+  "northStar": "Mission control dashboard in a darkroom",
+  "capturedAt": "2026-07-18T07:37:45.934Z",
+  "meta": {
+    "url": "https://rekki.com",
+    "siteName": "REKKI",
+    "extractedAt": "2026-06-03T20:24:24.551Z",
+    "durationMs": 37114,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 750,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #0063e1 exclusively for the single primary CTA per viewport — never for decorative elements, illustrations, or non-action accents",
+      "Apply -0.064em letter-spacing on display type (72px+) and scale proportionally down to -0.005em at body sizes (12px)",
+      "Use Diatype REKKI weight 400 for all headlines — no bold weights for display type; authority comes from size and tracking, not weight",
+      "Communicate card elevation through the rgba(255,255,255,0.12) 1px inset border, never through drop shadows",
+      "Maintain the 5-level surface stack (Obsidian → Carbon → Graphite → Iron → Steel) with clear 3-5% luminance steps between each level",
+      "Use 59px border-radius for all pill-shaped buttons and 16px radius for content cards — never mix the two radii on the same element type",
+      "Let product UI screenshots occupy the visual focal point of marketing sections rather than stock photography or lifestyle imagery"
+    ],
+    "donts": [
+      "Never use multiple chromatic accent colors — the system is monochromatic + one blue; introducing green, red, or purple breaks the entire visual language",
+      "Never apply drop shadows to cards or panels; the inset white border IS the elevation system",
+      "Never set body text below #858585 contrast against the black canvas; use Paper #ffffff for any text that needs to be read at a glance",
+      "Never use bold (700) weights for headlines; Diatype REKKI weight 400 at large sizes with tight tracking is the signature — bolding destroys it",
+      "Never use letter-spacing greater than 0em on display type; the negative tracking is what makes the headlines feel architectural",
+      "Never place white or light-colored cards on the dark canvas; all surfaces must stay in the black-to-charcoal range",
+      "Never use rounded images or organic shapes for the logo or brand mark — the geometry is angular and precise"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#0063e1",
+        "name": "Signal Blue",
+        "role": "Primary CTA fill, active nav indicator, brand accent dots, link highlights — the single chromatic voice in an otherwise silent monochrome system",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Page canvas, dominant background, hairline divider color, icon fill — the floor of the entire system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#040910",
+        "name": "Carbon",
+        "role": "Card surface base, deep panel backgrounds — first step above the page canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0d0d0d",
+        "name": "Graphite",
+        "role": "Elevated card surfaces, section backgrounds, border fills — the mid-surface layer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Iron",
+        "role": "Input field backgrounds, form controls, tertiary surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2b2c2e",
+        "name": "Steel",
+        "role": "Highest card elevation, modal surfaces, hover-state surfaces — the ceiling of the surface stack",
+        "group": "neutral"
+      },
+      {
+        "hex": "#858585",
+        "name": "Ash",
+        "role": "Body text, muted labels, secondary borders, link underlines — the workhorse neutral for non-heading text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#979797",
+        "name": "Smoke",
+        "role": "Icon strokes, tertiary button borders, low-priority text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8c8c8c",
+        "name": "Fog",
+        "role": "Link text, subdued navigation labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Light neutral action fill for buttons on dark surfaces.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with max-width 1200px centered content. The hero is a centered stack: floating status badges in the upper third, large display headline centered below, subtext, then a single CTA — no split-screen, no side image. Below the hero, sections alternate between centered text blocks and embedded product UI screenshots in 16px-radius cards. The rhythm is: centered headline → product screenshot → feature grid (2-3 columns) → customer logo wall → footer. Navigation is a minimal top bar: logo left, 4-5 text links center, CTA button right. No sidebar, no mega-menu. Section gaps are generous (80px) creating breathing room in the dark space.",
+    "imagery": "The page uses embedded product UI screenshots as the primary visual — not lifestyle photography, not illustrations. These screenshots are full-bleed within their card containers, showing dense tabular order data, status indicators, and product features. The hero section includes a dark atmospheric photograph of a desk/office scene at low opacity, serving as a textural background behind floating UI status badges ('scanned 27 invoices', 'detected 4 customers churning'). Customer logos appear as a monochrome text-based logo wall. The imagery strategy is 'show the product, not the lifestyle' — the interface IS the hero.",
+    "similar": [
+      {
+        "why": "Same dark canvas with one vivid blue accent, custom geometric sans-serif with tight tracking, inset-border card elevation replacing drop shadows, pill-shaped primary CTAs",
+        "business": "Linear"
+      },
+      {
+        "why": "Nearly pure black background, monochrome palette with minimal accent color, large whisper-weight display headlines with aggressive negative letter-spacing, embedded product UI as hero imagery",
+        "business": "Vercel"
+      },
+      {
+        "why": "Dark enterprise control-panel aesthetic, dense product UI screenshots as marketing visuals, pill buttons, custom brand typeface with tight tracking on display sizes",
+        "business": "Retool"
+      },
+      {
+        "why": "Pitch-black canvas, single chromatic accent for CTAs, custom rounded display variant of a geometric sans-serif, surface elevation through subtle border rather than shadow",
+        "business": "Railway"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "2px",
+        "cards": "16px",
+        "images": "24px",
+        "inputs": "8px",
+        "buttons": "59px",
+        "largeCards": "30px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian Canvas",
+        "level": 0,
+        "purpose": "Page background, infinite floor"
+      },
+      {
+        "hex": "#040910",
+        "name": "Carbon Panel",
+        "level": 1,
+        "purpose": "First card elevation, product UI containers"
+      },
+      {
+        "hex": "#0d0d0d",
+        "name": "Graphite Card",
+        "level": 2,
+        "purpose": "Standard card surfaces, content blocks"
+      },
+      {
+        "hex": "#1f1f1f",
+        "name": "Iron Form",
+        "level": 3,
+        "purpose": "Input fields, interactive form surfaces"
+      },
+      {
+        "hex": "#2b2c2",
+        "name": "Steel Overlay",
+        "level": 4,
+        "purpose": "Top elevation, hover states, prominent overlays"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(255, 255, 255, 0.12) 0px 0px 0px 1px inset",
+        "element": "Cards"
+      },
+      {
+        "style": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px",
+        "element": "Input fields"
+      }
+    ],
+    "northStar": "Mission control dashboard in a darkroom",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.005
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.007
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.015
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.027
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.027
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.04
+      },
+      {
+        "role": "display",
+        "size": 86,
+        "lineHeight": 1,
+        "letterSpacing": -0.064
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "The singular conversion action",
+        "description": "Pill-shaped button (59px border-radius), Signal Blue #0063e1 fill, white #ffffff text at 16px Diatype REKKI weight 400-600 with -0.007em letter-spacing. Padding 20px vertical, 32px horizontal. No drop shadow — the saturated blue against the black canvas is sufficient visual weight. Used for 'Get a demo' / 'Book a demo' patterns."
+      },
+      {
+        "name": "Navigation Header Button",
+        "role": "Compact header action",
+        "description": "Smaller pill button (59px radius), Signal Blue #0063e1 fill, white text at 12-14px. Dense horizontal padding (14-20px). Sits in the top-right of the header."
+      },
+      {
+        "name": "Nav Link",
+        "role": "Primary navigation text",
+        "description": "Plain text link, no underline, Ash #858585 or Paper #ffffff color, Diatype REKKI 16px weight 400 at -0.007em tracking. Inactive links use #858585; the active/current page uses Paper #ffffff. No background, no border."
+      },
+      {
+        "name": "Hero Display Heading",
+        "role": "Page-level headline",
+        "description": "Diatype REKKI 86px weight 400, Paper #ffffff, -0.064em letter-spacing, line-height 1.0. The negative tracking at this size is signature — it makes the type feel architectural rather than editorial. No bold, no italic, just precise geometry."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Subsection headline",
+        "description": "Diatype REKKI 56px weight 400, Paper #ffffff, -0.040em letter-spacing, line-height 1.25. Same whisper-weight philosophy as display, scaled down for sub-sections."
+      },
+      {
+        "name": "Product UI Panel Card",
+        "role": "Embedded product screenshot container",
+        "description": "Large surface (Carbon #040910 or Graphite #0d0d0d background), 16px border-radius, 1px inset white border at rgba(255,255,255,0.12) for definition against the black canvas. 24px internal padding. Contains dense tabular data with OCD-GARRI labels."
+      },
+      {
+        "name": "Standard Card",
+        "role": "Content grouping surface",
+        "description": "Graphite #0d0d0d or Steel #2b2c2 background, 8-16px border-radius, subtle 1px inset border rgba(255,255,255,0.12) for edge definition. 16-24px internal padding. No drop shadow — elevation is communicated through surface color and the inset border only."
+      },
+      {
+        "name": "Feature Card with Image",
+        "role": "Marketing card with visual",
+        "description": "Larger radius (24-30px), dark background, image area with 24px radius and overflow hidden. Title at 20-24px Diatype REKKI, body text at 16px Ash #858585."
+      },
+      {
+        "name": "Text Input",
+        "role": "Form input field",
+        "description": "Iron #1f1f1f background, 8px border-radius, subtle outer glow via rgba(255,255,255,0.2) 0px 0px 1px 0px. White text, Ash placeholder. 12-16px Diatype REKKI Bolder Rounded for the field text."
+      },
+      {
+        "name": "Status Pill / Tag",
+        "role": "State indicator or category label",
+        "description": "Small pill-shaped element, dark background with white or muted text, OCD-GARRI 12-13px. Used within the product UI for order statuses (upload pending, upload successful, etc.)."
+      },
+      {
+        "name": "Cookie Consent Banner",
+        "role": "Legal/privacy overlay",
+        "description": "Fixed bottom-right, Steel #2b2c2 background, 16px radius, compact padding. Body text in Ash #858585, 'OKAY' dismiss button in a neutral dark style."
+      },
+      {
+        "name": "Logo Mark",
+        "role": "Brand identity",
+        "description": "Custom REKKI wordmark with a distinctive 'π'-like geometric mark preceding the wordmark. White #ffffff on dark canvas. Sits top-left of every page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Primary brand typeface — body text at 16-20px weight 400, large headlines at 56-86px weight 400 with aggressive negative tracking (as tight as -0.064em at 86px). The whisper-weight headlines are signature: no bold shouting, just precise geometric calm. Subheadings/nav at 16-20px weight 400-600.",
+        "sizes": "12, 16, 18, 20, 24, 56, 72, 86",
+        "family": "Diatype REKKI",
+        "weight": "400, 600",
+        "lineHeight": "1.00–1.67",
+        "substitute": "Inter, Söhne, or system-ui sans-serif",
+        "letterSpacing": "Tight: -0.064em at 86px, -0.042em at 72px, -0.040em at 56px, -0.027em at 20px, -0.015em at 18px, -0.007em at 16px, -0.005em at 12px",
+        "fontFeatureSettings": "\"case\""
+      },
+      {
+        "role": "Display variant for the most prominent brand moments — heavier geometric terminals, used sparingly at 72px for hero declarations and at 12-20px weight 700 for emphasis labels in nav/inputs.",
+        "sizes": "12, 14, 16, 20, 72",
+        "family": "Diatype REKKI Bolder Rounded",
+        "weight": "400, 700",
+        "lineHeight": "1.00–1.17",
+        "substitute": "Inter Bold, Söhne Bold",
+        "letterSpacing": "Positive tracking: 0.020em at 20px, 0.040em at 72px"
+      },
+      {
+        "role": "Secondary utility face — likely for product UI labels, status indicators, or monospaced-feeling tabular data within the embedded product screenshots. Carries slight positive letter-spacing (0.033-0.038em) giving it a structured, instrument-label quality.",
+        "sizes": "13, 15, 16",
+        "family": "OCD-GARRI",
+        "weight": "400",
+        "lineHeight": "1.00–1.23",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Roboto Mono",
+        "letterSpacing": "0.033em at 13px, 0.038em at 15px"
+      },
+      {
+        "role": "Diatype REKKI Regular — detected in extracted data but not described by AI",
+        "sizes": "12px, 16px, 18px, 20px, 24px",
+        "family": "Diatype REKKI Regular",
+        "weight": "400, 600",
+        "lineHeight": "1.33, 1.4, 1.5, 1.67",
+        "letterSpacing": "-0.027, -0.015, -0.007, -0.005",
+        "fontFeatureSettings": "\"case\""
+      },
+      {
+        "role": "Inter — detected in extracted data but not described by AI",
+        "sizes": "12px",
+        "family": "Inter",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "REKKI is a midnight enterprise control room: a pitch-black canvas hosting dense product interfaces that glow from within. The visual system is nearly monochromatic — no semantic color clutter, no decorative gradients — letting one electric blue do all the emotional heavy lifting on CTAs, active states, and brand punctuation. Typography is custom and characterful: Diatype REKKI brings quiet authority with tight negative tracking on display sizes, while OCD-GARRI handles the utilitarian UI labels. Components sit on the canvas like instrument panels — dark, lightly elevated by near-invisible inset white borders rather than drop shadows, with pill-shaped interactive elements that feel like physical switches.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/65b8df27-36a3-47a6-be53-735d1f6a485d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"REKKI design system\",\"item\":\"https://styles.refero.design/style/65b8df27-36a3-47a6-be53-735d1f6a485d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/65b8df27-36a3-47a6-be53-735d1f6a485d#style-reference\",\"name\":\"REKKI design system reference\",\"headline\":\"REKKI design system | Refero Styles\",\"description\":\"Explore REKKI's dark SaaS design system: Signal Blue #0063e1, Obsidian #000000 colors, sans-serif, Diatype REKKI typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/65b8df27-36a3-47a6-be53-735d1f6a485d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/65b8df27-36a3-47a6-be53-735d1f6a485d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"REKKI\",\"url\":\"https://rekki.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/65b8df27-36a3-47a6-be53-735d1f6a485d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9a1a7754-3e7c-4715-bccd-3c35f61f9bb1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9a1a7754-3e7c-4715-bccd-3c35f61f9bb1.jpg\",\"caption\":\"Screenshot of REKKI\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9a1a7754-3e7c-4715-bccd-3c35f61f9bb1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"REKKI design system\",\"REKKI website design\",\"REKKI colors\",\"REKKI typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Signal Blue\",\"Obsidian\",\"Carbon\",\"Graphite\",\"sans-serif\",\"Diatype REKKI\",\"Diatype REKKI Bolder Rounded\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"REKKI design system\"},{\"@type\":\"Thing\",\"name\":\"REKKI website design\"},{\"@type\":\"Thing\",\"name\":\"REKKI colors\"},{\"@type\":\"Thing\",\"name\":\"REKKI typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T03:49:13.198Z\",\"dateModified\":\"2026-04-30T03:49:13.198Z\"}]}19:T665,**Quick Color Reference**\n- text: #ffffff (headings, primary), #858585 (body, secondary)\n- background: #000000 (page), #0d0d0d (cards), #2b2c2e (elevated)\n- border: rgba(255,255,255,0.12) 1px inset (cards), #858585 (hairline dividers)\n- accent: #0063e1 (brand blue, status dots, highlights)\n- primary action: #0063e1 (filled action)\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-bleed #000000 background. Centered Diatype REKKI display headline at 86px weight 400, #ffffff, letter-spacing -0.064em, line-height 1.0. Subtext at 18px weight 400, #858585. Primary CTA: pill button, #0063e1 fill, white text at 16px, 59px border-radius, 20px 32px padding.\n\n2. **Product Feature Card**: 16px border-radius, #0d0d0d background, 1px inset border rgba(255,255,255,0.12). 24px internal padding. Heading at 20px Diatype REKKI weight 400, #ffffff, -0.027em tracking. Body text at 16px #858585. Embedded product screenshot fills the lower half with 8px radius.\n\n3. **Navigation Header**: 80px tall, transparent over #000000. Logo (REKKI wordmark + π mark) in #ffffff, left-aligned. Four nav links in Diatype REKKI 16px weight 400, #858585, centered. Pill CTA button right-aligned: #0063e1 fill, 59px radius, white text at 12-14px.\n\n4. **Dark Form Input**: 48px tall, #1f1f1f background, 8px border-radius, outer glow rgba(255,255,255,0.2) 0px 0px 1px 0px. Diatype REKKI Bolder Rounded 16px, #ffffff text, #858585 placeholder. 16px horizontal padding.\n\n5. **Logo Wall / Social Proof**: Horizontal row of 4-6 customer wordmarks in #858585 on #000000 background, evenly spaced with 60px gaps, no logos, no backgrounds, text-only treatment."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is communicated through surface color stepping (Obsidian → Carbon → Graphite → Iron → Steel) and a near-invisible 1px inset white border at rgba(255,255,255,0.12), never through drop shadows. The inset border reads as an edge highlight, like light catching the rim of a dark panel — physically plausible in a dark room. This avoids the muddy, low-contrast drop shadows that plague dark UIs."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "list",
+            "image",
+            "card",
+            "icon",
+            "link"
+          ],
+          "frequency": 2727,
+          "confidence": 1,
+          "prominence": 65438312.27324282,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/fill": 6,
+            "icon/fill": 18,
+            "nav/color": 21,
+            "card/color": 10,
+            "icon/color": 16,
+            "link/color": 2,
+            "list/color": 40,
+            "other/fill": 108,
+            "image/color": 14,
+            "other/color": 414,
+            "button/color": 1,
+            "nav/borderColor": 84,
+            "card/borderColor": 40,
+            "icon/borderColor": 64,
+            "link/borderColor": 8,
+            "list/borderColor": 160,
+            "image/borderColor": 56,
+            "other/borderColor": 1656,
+            "button/borderColor": 4,
+            "card/backgroundColor": 1,
+            "link/backgroundColor": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2b2c2e",
+          "oklch": {
+            "c": 0.0038848845145333538,
+            "h": 264.50581244547527,
+            "l": 0.2928853059617633
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2008212.3899871306,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "heading",
+            "body",
+            "other",
+            "button",
+            "input"
+          ],
+          "frequency": 177,
+          "confidence": 1,
+          "prominence": 1697290.518166611,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "body/color": 8,
+            "other/fill": 24,
+            "input/color": 1,
+            "heading/color": 20,
+            "nav/borderColor": 4,
+            "body/borderColor": 32,
+            "input/borderColor": 4,
+            "heading/borderColor": 80,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#0063e1",
+          "oklch": {
+            "c": 0.20734849962889176,
+            "h": 259.10418236195267,
+            "l": 0.5322223121564417
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "card",
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 298918.05715151434,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1,
+            "nav/backgroundColor": 1,
+            "card/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#858585",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6153643152218807
+          },
+          "contexts": [
+            "nav",
+            "body",
+            "heading",
+            "link",
+            "other"
+          ],
+          "frequency": 254,
+          "confidence": 1,
+          "prominence": 295471.30302630336,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "body/color": 32,
+            "link/color": 9,
+            "other/fill": 4,
+            "other/color": 1,
+            "heading/color": 4,
+            "nav/borderColor": 16,
+            "body/borderColor": 128,
+            "link/borderColor": 36,
+            "other/borderColor": 4,
+            "heading/borderColor": 16
+          }
+        },
+        {
+          "hex": "#0d0d0d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.15906639920862536
+          },
+          "contexts": [
+            "body",
+            "card"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 293087.85386281385,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#040910",
+          "oklch": {
+            "c": 0.01888150816796875,
+            "h": 250.85554155369877,
+            "l": 0.13699361714879732
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 247573.2611892701,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#8c8c8c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6409177981481167
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 13744.245616334387,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "link/borderColor": 4
+          }
+        },
+        {
+          "hex": "#1f1f1f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23929237775790413
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4871,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "input/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4871,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "input/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#979797",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6764032429050417
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 1522.9419688230416,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "icon/color": 1,
+            "other/fill": 1,
+            "button/color": 1,
+            "icon/borderColor": 4,
+            "button/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.0007783881619300946,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.97,
+          "background": "#040910",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.44,
+          "background": "#0d0d0d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.48,
+          "background": "#1f1f1f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.98,
+          "background": "#2b2c2e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.19,
+          "background": "#000000",
+          "foreground": "#979797"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.84,
+          "background": "#040910",
+          "foreground": "#979797"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.65,
+          "background": "#0d0d0d",
+          "foreground": "#979797"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.25,
+          "background": "#000000",
+          "foreground": "#8c8c8c"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.94,
+          "background": "#040910",
+          "foreground": "#8c8c8c"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.78,
+          "background": "#0d0d0d",
+          "foreground": "#8c8c8c"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.69,
+          "background": "#000000",
+          "foreground": "#858585"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.64,
+          "background": "#1f1f1f",
+          "foreground": "#979797"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.42,
+          "background": "#0063e1",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.41,
+          "background": "#040910",
+          "foreground": "#858585"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.27,
+          "background": "#0d0d0d",
+          "foreground": "#858585"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.9,
+          "background": "#1f1f1f",
+          "foreground": "#8c8c8c"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.79,
+          "background": "#2b2c2e",
+          "foreground": "#979797"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.47,
+          "background": "#1f1f1f",
+          "foreground": "#858585"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "card"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "link",
+            "card"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 59,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 30,
+          "corners": [
+            30,
+            30,
+            0,
+            0
+          ],
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        },
+        {
+          "value": 38,
+          "corners": [
+            38,
+            38,
+            0,
+            0
+          ],
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(255, 255, 255, 0.12) 0px 0px 0px 1px inset",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": "rgba(255, 255, 255, 0.2) 0px 0px 1px 0px",
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingLeft|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "button",
+            "other"
+          ],
+          "frequency": 32,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|body",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 37,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "input"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 33,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 39,
+          "contexts": [
+            "button",
+            "card"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "button",
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 72,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 88,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 543,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "OCD-GARRI-V01 Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 37,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Diatype REKKI Regular",
+          "source": "custom",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 23,
+          "fontFeatureSettings": [
+            "\"case\""
+          ]
+        },
+        {
+          "family": "Diatype REKKI Medium",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 19,
+          "fontFeatureSettings": [
+            "\"case\""
+          ]
+        },
+        {
+          "family": "Diatype REKKI Bolder Rounded",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "list",
+            "image",
+            "card",
+            "icon",
+            "link"
+          ],
+          "frequency": 543,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Diatype REKKI Bolder Rounded",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Diatype REKKI Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.67,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Diatype REKKI Regular",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.67,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "OCD-GARRI-V01 Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.23,
+          "letterSpacing": 0.038,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Diatype REKKI Bolder Rounded",
+          "weight": 700,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "OCD-GARRI-V01 Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.07,
+          "letterSpacing": 0.033,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Diatype REKKI Medium",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Diatype REKKI Bolder Rounded",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "OCD-GARRI-V01 Regular",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Diatype REKKI Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Diatype REKKI Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Diatype REKKI Regular",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Diatype REKKI Regular",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Diatype REKKI Bolder Rounded",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.04,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Diatype REKKI Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Diatype REKKI Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Diatype REKKI Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.042,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Diatype REKKI Bolder Rounded",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 86,
+          "family": "Diatype REKKI Medium",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.064,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d9ba5373-6f64-4f54-a222-f8f349678475.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/9a1a7754-3e7c-4715-bccd-3c35f61f9bb1.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/65b8df27-36a3-47a6-be53-735d1f6a485d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"REKKI design system\",\"item\":\"https://styles.refero.design/style/65b8df27-36a3-47a6-be53-735d1f6a485d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/65b8df27-36a3-47a6-be53-735d1f6a485d#style-reference\",\"name\":\"REKKI design system reference\",\"headline\":\"REKKI design system | Refero Styles\",\"description\":\"Explore REKKI's dark SaaS design system: Signal Blue #0063e1, Obsidian #000000 colors, sans-serif, Diatype REKKI typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/65b8df27-36a3-47a6-be53-735d1f6a485d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/65b8df27-36a3-47a6-be53-735d1f6a485d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"REKKI\",\"url\":\"https://rekki.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/65b8df27-36a3-47a6-be53-735d1f6a485d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/9a1a7754-3e7c-4715-bccd-3c35f61f9bb1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/9a1a7754-3e7c-4715-bccd-3c35f61f9bb1.jpg\",\"caption\":\"Screenshot of REKKI\"},\"image\":\"https://images.refero.design/styles/refero.design/image/9a1a7754-3e7c-4715-bccd-3c35f61f9bb1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"REKKI design system\",\"REKKI website design\",\"REKKI colors\",\"REKKI typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Signal Blue\",\"Obsidian\",\"Carbon\",\"Graphite\",\"sans-serif\",\"Diatype REKKI\",\"Diatype REKKI Bolder Rounded\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"REKKI design system\"},{\"@type\":\"Thing\",\"name\":\"REKKI website design\"},{\"@type\":\"Thing\",\"name\":\"REKKI colors\"},{\"@type\":\"Thing\",\"name\":\"REKKI typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T03:49:13.198Z\",\"dateModified\":\"2026-04-30T03:49:13.198Z\"}]}19:T665,**Quick Color Reference**\n- text: #ffffff (headings, primary), #858585 (body, secondary)\n- background: #000000 (page), #0d0d0d (cards), #2b2c2e (elevated)\n- border: rgba(255,255,255,0.12) 1px inset (cards), #858585 (hairline dividers)\n- accent: #0063e1 (brand blue, status dots, highlights)\n- primary action: #0063e1 (filled action)\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-bleed #000000 background. Centered Diatype REKKI display headline at 86px weight 400, #ffffff, letter-spacing -0.064em, line-height 1.0. Subtext at 18px weight 400, #858585. Primary CTA: pill button, #0063e1 fill, white text at 16px, 59px border-radius, 20px 32px padding.\n\n2. **Product Feature Card**: 16px border-radius, #0d0d0d background, 1px inset border rgba(255,255,255,0.12). 24px internal padding. Heading at 20px Diatype REKKI weight 400, #ffffff, -0.027em tracking. Body text at 16px #858585. Embedded product screenshot fills the lower half with 8px radius.\n\n3. **Navigation Header**: 80px tall, transparent over #000000. Logo (REKKI wordmark + π mark) in #ffffff, left-aligned. Four nav links in Diatype REKKI 16px weight 400, #858585, centered. Pill CTA button right-aligned: #0063e1 fill, 59px radius, white text at 12-14px.\n\n4. **Dark Form Input**: 48px tall, #1f1f1f background, 8px border-radius, outer glow rgba(255,255,255,0.2) 0px 0px 1px 0px. Diatype REKKI Bolder Rounded 16px, #ffffff text, #858585 placeholder. 16px horizontal padding.\n\n5. **Logo Wall / Social Proof**: Horizontal row of 4-6 customer wordmarks in #858585 on #000000 background, evenly spaced with 60px gaps, no logos, no backgrounds, text-only treatment."
+}

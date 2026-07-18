@@ -1,0 +1,1186 @@
+{
+  "source": "https://styles.refero.design/style/68d18deb-bb09-4258-8024-001af9c844c0",
+  "uuid": "68d18deb-bb09-4258-8024-001af9c844c0",
+  "name": "21n",
+  "northStar": "Open atlas under pale daylight — a spacious, light-mode canvas where knowledge tools feel weightless against a single charcoal anchor.",
+  "capturedAt": "2026-07-18T08:32:34.593Z",
+  "meta": {
+    "url": "https://memotron.app",
+    "siteName": "21n",
+    "extractedAt": "2026-06-03T16:28:19.647Z",
+    "durationMs": 20208,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 562,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #333333 (Charcoal) exclusively for the single filled button variant — never introduce a chromatic fill for primary actions",
+      "Set all borders to 1px solid #e5e7eb (Silver) — hairline structure is the system's primary separator",
+      "Use 9999px border-radius for pill buttons and tags, 12px for cards and surfaces, 6px for inline links",
+      "Reserve #24b26d (Emerald Pulse) and #2c70dd (Cobalt Signal) for icons, link states, and small functional accents — never as surface fills or large background blocks",
+      "Follow the type scale strictly: 13/15/16/17/19/22/36/44/56 — the 56px display jump is the system's signature scale gesture",
+      "Use #f9f9fb (Fog) and #eff0f6 (Mist) for surface layering instead of shadows to imply depth",
+      "Keep element gaps at 8px and section gaps at 80-100px to maintain the atlas-scale breathing room"
+    ],
+    "donts": [
+      "Do not introduce drop shadows, glows, or blur effects — the system is intentionally flat",
+      "Do not use gradients on buttons, cards, or backgrounds — the palette is pure solid color",
+      "Do not call #2c70dd or #24b26d a CTA or primary action color — they are accent hues only",
+      "Do not add a chromatic background fill to any button — Charcoal #333 is the only filled button color",
+      "Do not use letter-spacing adjustments on Sen — the typeface ships with normal tracking across all sizes",
+      "Do not use #545454 (Graphite) for body text — reserve it for secondary metadata and button borders; primary text is always #333",
+      "Do not introduce a second display font — Sen carries from 13px caption to 56px display with no substitution"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Snow",
+        "role": "Primary canvas — page backgrounds, card surfaces, button text on dark fills",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f9f9fb",
+        "name": "Fog",
+        "role": "First surface layer above canvas — subtle alternating sections, soft elevated cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eff0f6",
+        "name": "Mist",
+        "role": "Cool card surface — slightly bluer than fog, used for inset panels and secondary cards",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Silver",
+        "role": "Hairline borders, dividers, and 1px structural lines — the system's primary separator color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Charcoal",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#545454",
+        "name": "Graphite",
+        "role": "Secondary text, subdued button borders, and metadata — sits between primary text and muted gray",
+        "group": "neutral"
+      },
+      {
+        "hex": "#767676",
+        "name": "Smoke",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Ash",
+        "role": "Disabled and inactive states — lowest-priority neutral for de-emphasized text and icons",
+        "group": "neutral"
+      },
+      {
+        "hex": "#24b26d",
+        "name": "Emerald Pulse",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis",
+        "group": "accent"
+      },
+      {
+        "hex": "#2c70dd",
+        "name": "Cobalt Signal",
+        "role": "Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Centered max-width container at 1200px, with full-bleed sections inside it. The hero is a centered text stack (headline → subtitle → download button → availability caption) over a subtle cream/wave background. Vertical side labels ('21n' left, 'Products' right) sit at the viewport edges, rotated 90°, acting as section anchors. Sections flow seamlessly with hairline #e5e7eb dividers rather than alternating background bands. The product showcase section uses a centered frame with overlapping device mockups. Navigation is a fixed top bar with logo left, center links, and dark pill button right. Content grids are 2- or 3-column with 33px gaps. Vertical rhythm is generous — 80-100px between sections — giving the interface an open-atlas feel.",
+    "imagery": "Product-device mockups (tablet, laptop, phone) are the primary visual — three overlapping screens showing the actual app interface, arranged on a warm cream canvas. The product UI itself is the hero imagery. Supporting graphics are thin stroke-only wave illustrations in soft coral and warm gray, rendered as overlapping sine curves at ~40% opacity. Photography is entirely absent — no lifestyle shots, no stock imagery, no team photos. Icons are mono-weight, small-scale, and appear inline with text rather than as standalone decoration. The visual density is low: large expanses of white space punctuated by the single product showcase frame.",
+    "similar": [
+      {
+        "why": "Same airy, light-mode knowledge-tool aesthetic with generous whitespace, humanist sans-serif typography, and a near-monochrome palette accented by small functional color",
+        "business": "Notion"
+      },
+      {
+        "why": "Similar light-mode productivity tool with flat surfaces, hairline borders, and a single dark button variant against an otherwise white canvas",
+        "business": "Capacities"
+      },
+      {
+        "why": "Same whisper-quiet light-mode notes app with minimal chromatic palette and border-driven structure rather than shadow-based elevation",
+        "business": "Reflect"
+      },
+      {
+        "why": "Similar airy, structured knowledge tool with humanist sans-serif type and a calm, atlas-like spatial rhythm between content sections",
+        "business": "Tana"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "12px",
+        "links": "6px",
+        "buttons": "12px or 9999px (pill)"
+      },
+      "elementGap": "8px",
+      "sectionGap": "80-100px",
+      "cardPadding": "17-25px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Snow Canvas",
+        "level": 0,
+        "purpose": "Base page background — the dominant surface"
+      },
+      {
+        "hex": "#f9f9fb",
+        "name": "Fog Section",
+        "level": 1,
+        "purpose": "First elevated section band — subtle alternation"
+      },
+      {
+        "hex": "#eff0f6",
+        "name": "Mist Card",
+        "level": 2,
+        "purpose": "Card and inset panel surface — cool-tinted elevation"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Silver Border",
+        "level": 3,
+        "purpose": "Structural hairline — the primary separator"
+      },
+      {
+        "hex": "#333333",
+        "name": "Charcoal Anchor",
+        "level": 4,
+        "purpose": "Dark button and inverse text — the only heavy surface"
+      }
+    ],
+    "northStar": "Open atlas under pale daylight — a spacious, light-mode canvas where knowledge tools feel weightless against a single charcoal anchor.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 20
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 23
+      },
+      {
+        "role": "body-lg",
+        "size": 17,
+        "lineHeight": 26
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 33
+      },
+      {
+        "role": "heading-sm",
+        "size": 22,
+        "lineHeight": 33
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 54
+      },
+      {
+        "role": "heading-lg",
+        "size": 44,
+        "lineHeight": 55
+      },
+      {
+        "role": "display",
+        "size": 56,
+        "lineHeight": 60
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent site navigation",
+        "description": "Horizontal bar with logo left, center nav links (Resources dropdown, Pricing, Compare, Extension, Discord), and dark pill button right. Height ~60px, white background, 1px #e5e7eb bottom border. Nav links at 15px Sen 500, #333. Dropdown indicated by chevron icon."
+      },
+      {
+        "name": "Charcoal Pill Button",
+        "role": "Primary navigation action — the system's only filled button variant",
+        "description": "Dark filled button, #333333 background, white text, 9999px border-radius (fully pill). 16px Sen 600, 8px 20px padding. Used for the single 'Go to web app' action in the header. No hover shadow — the button's weight comes from the dark fill against the white canvas, not from elevation."
+      },
+      {
+        "name": "Ghost Download Button",
+        "role": "Secondary action with platform hint",
+        "description": "Outlined pill button with small Apple icon prefix, text 'Download for Mac' at 15px Sen 500, #333. 1px #545454 border, 9999px radius, transparent background. 10px 20px padding. Sits centered in the hero below the headline."
+      },
+      {
+        "name": "Nav Link Item",
+        "role": "Text-only navigation entry",
+        "description": "15px Sen 500, #333, no underline by default. Hover state shifts to Cobalt Signal (#2c70dd). Resources includes a chevron-down icon to indicate dropdown. 17px horizontal spacing between links."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Page-level display heading",
+        "description": "56px Sen 700, #333, line-height 1.07, centered. Dramatic scale jump from 17px body to 56px display creates atlas-scale presence. Single-line or tight two-line treatment."
+      },
+      {
+        "name": "Hero Subtitle",
+        "role": "Supporting description text below headline",
+        "description": "19px Sen 400, #545454, centered, line-height 1.75. Sits 17px below the headline. Generous line-height creates breathing room around the dense body copy."
+      },
+      {
+        "name": "Product Showcase Frame",
+        "role": "Multi-device product visual",
+        "description": "Centered frame containing three overlapping device mockups (tablet, laptop, phone) on a soft warm cream background (#f9f9fb with wave illustration). No shadow on the frame — the cream canvas creates the separation. 12.5px radius on the cream background. Play button overlay centered on the laptop screen."
+      },
+      {
+        "name": "Vertical Side Label",
+        "role": "Section anchor text on page edges",
+        "description": "Rotated 90° text at the far left ('21n') and far right ('Products') of the page. 13px Sen 500, #767676. Acts as a section index rather than navigation — fixed-position or per-section, aligned to the viewport edge."
+      },
+      {
+        "name": "Hairline Section Divider",
+        "role": "Structural separator between content sections",
+        "description": "1px solid #e5e7eb line, full width or content-width. No vertical padding on the line itself — sections use 80-100px vertical gap above and below. The divider is invisible in many sections, only appearing where two surfaces of similar brightness need separation."
+      },
+      {
+        "name": "Wave Illustration Decoration",
+        "role": "Atmorphic background graphic",
+        "description": "Thin curved line illustrations in soft coral/red and warm gray tones, rendered as overlapping sine-wave patterns. Full-bleed behind the product showcase section, masked by the cream background container. No fill colors — stroke-only at ~1px, 40% opacity."
+      },
+      {
+        "name": "Feature Content Card",
+        "role": "Content container for feature blocks",
+        "description": "White or #f9f9fb surface, 12.5px border-radius, 1px #e5e7eb border, 17-25px padding. No shadow. Optional inner content uses 19-22px Sen headings and 16px body. Cards stack in 2- or 3-column grids with 33px gap."
+      },
+      {
+        "name": "Availability Caption",
+        "role": "Small platform-availability note below download CTA",
+        "description": "15px Sen 400, #767676, centered. 'Available as web, chrome extension, iOS and macOS apps.' No icon, no link styling — pure muted text."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and body — humanist sans-serif with warm proportions and open apertures, the sole typeface in the system. Weight 400 carries body text, 500–600 for UI controls and subheadings, 700 reserved for the 56px display headline where it provides atlas-scale presence without resorting to a separate display face.",
+        "sizes": "13px, 15px, 16px, 17px, 19px, 22px, 36px, 44px, 56px",
+        "family": "Sen",
+        "weight": "400, 500, 600, 700",
+        "lineHeight": "1.07 (display) → 2.21 (loose body)",
+        "substitute": "Inter, DM Sans, or Source Sans 3"
+      }
+    ],
+    "description": "Memotron is a whisper-quiet, light-mode knowledge workspace built on a near-monochrome neutral stack — pure white canvas, cool off-white surfaces, and a single hairline border gray carry the entire visual system. The only filled button variant is charcoal-dark, which makes the single primary action feel weighty and deliberate against an otherwise weightless interface. Two accent hues (vivid green and vivid blue) appear only as functional punctuation — icons, link states, decorative strokes — never as backgrounds or large fills. Typography is humanist (Sen) with a dramatic scale jump to 56px display, giving headlines atlas-scale presence. The system is flat and border-driven: 12.5px surfaces and #e5e7eb hairlines create structure, with zero shadows or gradients.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/68d18deb-bb09-4258-8024-001af9c844c0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"21n design system\",\"item\":\"https://styles.refero.design/style/68d18deb-bb09-4258-8024-001af9c844c0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/68d18deb-bb09-4258-8024-001af9c844c0#style-reference\",\"name\":\"21n design system reference\",\"headline\":\"21n design system | Refero Styles\",\"description\":\"Explore 21n's light Productivity design system: Snow #ffffff, Fog #f9f9fb colors, Sen typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/68d18deb-bb09-4258-8024-001af9c844c0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/68d18deb-bb09-4258-8024-001af9c844c0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"21n\",\"url\":\"https://memotron.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/68d18deb-bb09-4258-8024-001af9c844c0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ba6e2e63-6b48-458f-848e-e418601a7b34.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ba6e2e63-6b48-458f-848e-e418601a7b34.jpg\",\"caption\":\"Screenshot of 21n\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ba6e2e63-6b48-458f-848e-e418601a7b34.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"21n design system\",\"21n website design\",\"21n colors\",\"21n typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Snow\",\"Fog\",\"Mist\",\"Silver\",\"Sen\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"21n design system\"},{\"@type\":\"Thing\",\"name\":\"21n website design\"},{\"@type\":\"Thing\",\"name\":\"21n colors\"},{\"@type\":\"Thing\",\"name\":\"21n typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-03-05T12:03:03.000Z\",\"dateModified\":\"2026-03-05T12:03:03.000Z\"}]}19:T534,**Quick Color Reference**\n- text: #333333 (Charcoal)\n- background: #ffffff (Snow)\n- surface: #f9f9fb (Fog) / #eff0f6 (Mist)\n- border: #e5e7eb (Silver)\n- accent: #2c70dd (Cobalt Signal) and #24b26d (Emerald Pulse) — icons and link states only\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Charcoal Pill Button**: Create a filled pill button with #333333 background, white text at 16px Sen 600, 8px 20px padding, 9999px border-radius, no border, no shadow. Text: 'Go to web app'.\n\n2. **Ghost Download Button**: Create an outlined pill button with transparent background, 1px #545454 border, 9999px radius, 10px 20px padding. Left-aligned Apple icon in #333, text 'Download for Mac' at 15px Sen 500 in #333.\n\n3. **Hero Headline + Subtitle**: Centered text stack. Headline 'Your memory atlas' at 56px Sen 700, #333, line-height 1.07. Subtitle below at 19px Sen 400, #545454, line-height 1.75, 17px gap from headline.\n\n4. **Feature Content Card**: White surface, 12px border-radius, 1px #e5e7eb border, 25px padding, no shadow. Heading at 22px Sen 600 #333, body text at 16px Sen 400 #545454, 8px gap between heading and body.\n\n5. **Vertical Side Label**: Text rotated 90°, 13px Sen 500, #767676, positioned at the far left edge of the viewport. No background, no border — pure typographic anchor."
+      },
+      {
+        "title": "Accent Color Discipline",
+        "content": "The green (#24b26d) and blue (#2c70dd) accents follow a strict rule: they appear only at sizes ≤ 24px and only on icons, link underlines, small badges, or decorative strokes. They never fill a button, card, or section background. This discipline keeps the system monochrome at scale — when you zoom out, the page is white, gray, and charcoal; the accents are only visible up close as functional punctuation. Violating this rule (e.g., a green section background or blue CTA) breaks the system's whisper-quiet character."
+      },
+      {
+        "title": "Surface Layering Without Shadows",
+        "content": "Depth is communicated through a four-layer surface stack: #ffffff (base canvas) → #f9f9fb (section band) → #eff0f6 (card/panel) → #e5e7eb (border/separator). Each layer is a subtle step cooler or grayer than the one below. Cards never need shadows because the surface tint shift provides enough visual separation. When a design needs more emphasis, the solution is a cooler surface tint, not a darker shadow."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally shadow-free. Structure comes from hairline #e5e7eb borders, 12.5px surface rounding, and surface-layer contrast (#ffffff → #f9f9fb → #eff0f6) rather than from drop shadows. Depth is implied through cool-tinted off-whites stacking against pure white, not through elevation. This keeps the interface flat, fast, and atlas-like — no visual weight that would compete with the product content."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "link",
+            "body",
+            "image",
+            "heading",
+            "footer"
+          ],
+          "frequency": 1826,
+          "confidence": 1,
+          "prominence": 38046599.29658008,
+          "properties": [
+            "borderColor",
+            "stroke",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "button",
+            "image",
+            "heading",
+            "footer"
+          ],
+          "frequency": 308,
+          "confidence": 1,
+          "prominence": 29044158.860829554,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f9f9fb",
+          "oklch": {
+            "c": 0.0026423780091138966,
+            "h": 286.3508935335121,
+            "l": 0.9826788779385844
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2054111.4009346182,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 43,
+          "confidence": 1,
+          "prominence": 1839058.6756225412,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#24b26d",
+          "oklch": {
+            "c": 0.15420457097226367,
+            "h": 155.8982384551844,
+            "l": 0.6754321797255585
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 64,
+          "confidence": 1,
+          "prominence": 510823.2602688865,
+          "properties": [
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2c70dd",
+          "oklch": {
+            "c": 0.18035373809820193,
+            "h": 259.6732589464509,
+            "l": 0.563440763273785
+          },
+          "contexts": [
+            "icon",
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 83,
+          "confidence": 1,
+          "prominence": 398228.5908042712,
+          "properties": [
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#545454",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.44589784016473566
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 87,
+          "confidence": 1,
+          "prominence": 348647.8216159481,
+          "properties": [
+            "borderColor",
+            "color",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#767676",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.566521959328904
+          },
+          "contexts": [
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 252661.94298518437,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link",
+            "button",
+            "icon"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 30930.472491496228,
+          "properties": [
+            "color",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eff0f6",
+          "oklch": {
+            "c": 0.008082788724429576,
+            "h": 278.6353935787635,
+            "l": 0.9560908359487083
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 3835,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.03946385312666595,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.02,
+          "background": "#f9f9fb",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.11,
+          "background": "#eff0f6",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.2,
+          "background": "#e5e7eb",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.57,
+          "background": "#ffffff",
+          "foreground": "#545454"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.2,
+          "background": "#f9f9fb",
+          "foreground": "#545454"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.66,
+          "background": "#eff0f6",
+          "foreground": "#545454"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.12,
+          "background": "#e5e7eb",
+          "foreground": "#545454"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.7,
+          "background": "#ffffff",
+          "foreground": "#2c70dd"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.61,
+          "background": "#333333",
+          "foreground": "#24b26d"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.54,
+          "background": "#ffffff",
+          "foreground": "#767676"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.47,
+          "background": "#f9f9fb",
+          "foreground": "#2c70dd"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.32,
+          "background": "#f9f9fb",
+          "foreground": "#767676"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.13,
+          "background": "#eff0f6",
+          "foreground": "#2c70dd"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.99,
+          "background": "#eff0f6",
+          "foreground": "#767676"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#ffffff",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.8,
+          "background": "#e5e7eb",
+          "foreground": "#2c70dd"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.76,
+          "background": "#f9f9fb",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.67,
+          "background": "#e5e7eb",
+          "foreground": "#767676"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.47,
+          "background": "#eff0f6",
+          "foreground": "#808080"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12.5265,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 28
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 6.26325,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 28,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 60,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 84,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 53,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 17,
+          "contexts": [],
+          "frequency": 67,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 21,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 25,
+          "contexts": [],
+          "frequency": 105,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 29,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 33,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 38,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 67,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 84,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 90,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 95,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 104,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 134,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 155,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 167,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 203,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Sen",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 459,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 17,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Sen",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Sen",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.94,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Sen",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "other",
+            "link"
+          ],
+          "frequency": 44,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Sen",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Sen",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link",
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 118,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Sen",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Sen",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Sen",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "button",
+            "image",
+            "footer"
+          ],
+          "frequency": 245,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Sen",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Sen",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.21,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Sen",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "icon",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Sen",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Sen",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Sen",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Sen",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 44,
+          "family": "Sen",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Sen",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.07,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/11e221d0-edfd-4045-97a2-fc0f806b6dc8.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ba6e2e63-6b48-458f-848e-e418601a7b34.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/68d18deb-bb09-4258-8024-001af9c844c0#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"21n design system\",\"item\":\"https://styles.refero.design/style/68d18deb-bb09-4258-8024-001af9c844c0\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/68d18deb-bb09-4258-8024-001af9c844c0#style-reference\",\"name\":\"21n design system reference\",\"headline\":\"21n design system | Refero Styles\",\"description\":\"Explore 21n's light Productivity design system: Snow #ffffff, Fog #f9f9fb colors, Sen typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/68d18deb-bb09-4258-8024-001af9c844c0\",\"mainEntityOfPage\":\"https://styles.refero.design/style/68d18deb-bb09-4258-8024-001af9c844c0\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"21n\",\"url\":\"https://memotron.app\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/68d18deb-bb09-4258-8024-001af9c844c0#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ba6e2e63-6b48-458f-848e-e418601a7b34.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ba6e2e63-6b48-458f-848e-e418601a7b34.jpg\",\"caption\":\"Screenshot of 21n\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ba6e2e63-6b48-458f-848e-e418601a7b34.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"21n design system\",\"21n website design\",\"21n colors\",\"21n typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Snow\",\"Fog\",\"Mist\",\"Silver\",\"Sen\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"21n design system\"},{\"@type\":\"Thing\",\"name\":\"21n website design\"},{\"@type\":\"Thing\",\"name\":\"21n colors\"},{\"@type\":\"Thing\",\"name\":\"21n typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-03-05T12:03:03.000Z\",\"dateModified\":\"2026-03-05T12:03:03.000Z\"}]}19:T534,**Quick Color Reference**\n- text: #333333 (Charcoal)\n- background: #ffffff (Snow)\n- surface: #f9f9fb (Fog) / #eff0f6 (Mist)\n- border: #e5e7eb (Silver)\n- accent: #2c70dd (Cobalt Signal) and #24b26d (Emerald Pulse) — icons and link states only\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Charcoal Pill Button**: Create a filled pill button with #333333 background, white text at 16px Sen 600, 8px 20px padding, 9999px border-radius, no border, no shadow. Text: 'Go to web app'.\n\n2. **Ghost Download Button**: Create an outlined pill button with transparent background, 1px #545454 border, 9999px radius, 10px 20px padding. Left-aligned Apple icon in #333, text 'Download for Mac' at 15px Sen 500 in #333.\n\n3. **Hero Headline + Subtitle**: Centered text stack. Headline 'Your memory atlas' at 56px Sen 700, #333, line-height 1.07. Subtitle below at 19px Sen 400, #545454, line-height 1.75, 17px gap from headline.\n\n4. **Feature Content Card**: White surface, 12px border-radius, 1px #e5e7eb border, 25px padding, no shadow. Heading at 22px Sen 600 #333, body text at 16px Sen 400 #545454, 8px gap between heading and body.\n\n5. **Vertical Side Label**: Text rotated 90°, 13px Sen 500, #767676, positioned at the far left edge of the viewport. No background, no border — pure typographic anchor."
+}

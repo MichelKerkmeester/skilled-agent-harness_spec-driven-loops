@@ -1,0 +1,684 @@
+{
+  "color": {
+    "void": {
+      "$value": "#0d0e11",
+      "$type": "color",
+      "$description": "Void — Page canvas, hero backgrounds, deepest surface layer"
+    },
+    "obsidian": {
+      "$value": "#14151a",
+      "$type": "color",
+      "$description": "Obsidian — Card surfaces, elevated panels, code block backgrounds"
+    },
+    "graphite": {
+      "$value": "#1e2028",
+      "$type": "color",
+      "$description": "Graphite — Secondary card surfaces, hover states, nested panels"
+    },
+    "iron": {
+      "$value": "#282a36",
+      "$type": "color",
+      "$description": "Iron — Borders, dividers, subtle separators, table lines"
+    },
+    "steel": {
+      "$value": "#3a3a3f",
+      "$type": "color",
+      "$description": "Steel — Stronger borders, input outlines, card edges"
+    },
+    "slate": {
+      "$value": "#3b3f4b",
+      "$type": "color",
+      "$description": "Slate — Icon strokes, secondary borders, button outlines"
+    },
+    "pewter": {
+      "$value": "#4f5666",
+      "$type": "color",
+      "$description": "Pewter — Muted text, inactive labels, tertiary content"
+    },
+    "fog": {
+      "$value": "#6b7280",
+      "$type": "color",
+      "$description": "Fog — Secondary text, descriptions, helper text"
+    },
+    "ash": {
+      "$value": "#9ca3af",
+      "$type": "color",
+      "$description": "Ash — Tertiary text, captions, metadata"
+    },
+    "bone": {
+      "$value": "#d1d5db",
+      "$type": "color",
+      "$description": "Bone — Light secondary text, subtle emphasis"
+    },
+    "pearl": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Pearl — Near-white text, icon fills, high-contrast labels"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Primary text, logo marks, maximum contrast headings"
+    },
+    "bun-pink": {
+      "$value": "#f472b6",
+      "$type": "color",
+      "$description": "Bun Pink — Red supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "magenta-core": {
+      "$value": "#ec4899",
+      "$type": "color",
+      "$description": "Magenta Core — Hover states on pink CTAs, gradient endpoint for headlines, emphasis text"
+    },
+    "rose-petal": {
+      "$value": "#f9a8d4",
+      "$type": "color",
+      "$description": "Rose Petal — Light pink backgrounds for tags, soft highlights, gradient midpoint"
+    },
+    "blush": {
+      "$value": "#fbcfe8",
+      "$type": "color",
+      "$description": "Blush — Softest pink for background washes, subtle pink tints"
+    },
+    "wine": {
+      "$value": "#3d1629",
+      "$type": "color",
+      "$description": "Wine — Pink-tinted borders for highlighted sections, badge outlines"
+    },
+    "plum": {
+      "$value": "#3f1f33",
+      "$type": "color",
+      "$description": "Plum — Deep pink-tinted backgrounds for active states or featured panels"
+    },
+    "violet": {
+      "$value": "#a855f7",
+      "$type": "color",
+      "$description": "Violet — Decorative accent, gradient endpoint, illustration highlights"
+    },
+    "lavender": {
+      "$value": "#c084fc",
+      "$type": "color",
+      "$description": "Lavender — Headline gradient, icon accents, link hover states"
+    },
+    "lilac": {
+      "$value": "#d8b4fe",
+      "$type": "color",
+      "$description": "Lilac — Soft violet text, gradient midpoint, subtle highlights"
+    },
+    "cyan": {
+      "$value": "#06b6d4",
+      "$type": "color",
+      "$description": "Cyan — Code syntax highlighting, tool accent for Postgres/data features"
+    },
+    "amber": {
+      "$value": "#e67e22",
+      "$type": "color",
+      "$description": "Amber — Code syntax highlighting, tool accent for runtime features, warm contrast"
+    },
+    "gold": {
+      "$value": "#facc15",
+      "$type": "color",
+      "$description": "Gold — Code syntax highlighting, test runner badge accent, attention markers"
+    },
+    "mint": {
+      "$value": "#34d399",
+      "$type": "color",
+      "$description": "Mint — Green supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    }
+  },
+  "font": {
+    "system-ui": {
+      "$value": "system-ui",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all prose, headings, navigation, buttons, and UI text. The full weight range (300–800) gives the system flexibility from whisper-light display headings to bold section labels. Large display sizes (48–60px) carry headline weight, while 16–18px holds body copy at a comfortable reading rhythm."
+    },
+    "jetbrains-mono": {
+      "$value": "JetBrains Mono",
+      "$type": "fontFamily",
+      "$description": "Monospace companion for all executable content: code blocks, terminal commands, file paths, version strings, package names. Tight line-height (1.11) at smaller sizes keeps code dense and scannable. The 500/600 weights are used for emphasis inside code, not body text."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.54
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.85
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.78
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "lg-8": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-8 at 19px"
+    },
+    "lg-9": {
+      "$value": {
+        "fontFamily": "JetBrains Mono",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.51
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-9 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "20px",
+        "fontWeight": 800,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.63
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "48px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "53px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 53px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "60px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 60px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.25) 0px 25px 50px -12px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "md": {
+      "$value": "rgba(131, 24, 67, 0.1) 0px 10px 15px -3px, rgba(131, 24, 67, 0.1) 0px 4px 6px -4px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#0d0e11",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, hero space, footer"
+    },
+    "obsidian-card": {
+      "$value": "#14151a",
+      "$type": "color",
+      "$description": "Surface level 1: Primary card surface, code block background, elevated panels"
+    },
+    "graphite-panel": {
+      "$value": "#1e2028",
+      "$type": "color",
+      "$description": "Surface level 2: Nested cards, hover states, secondary surfaces"
+    },
+    "iron-border": {
+      "$value": "#282a36",
+      "$type": "color",
+      "$description": "Surface level 3: Hairline borders, dividers, table cell separators"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://bun.sh",
+      "siteName": "Bun",
+      "extractedAt": "2026-06-03T16:04:21.544Z",
+      "variant": "extended"
+    }
+  }
+}

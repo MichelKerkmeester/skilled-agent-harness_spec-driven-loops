@@ -1,0 +1,45 @@
+:root {
+  /* Colors */
+  --color-blush-paper: #f5e5e5;
+  --color-ink: #000000;
+  --color-rose: #d9698c;
+
+  /* Typography — Font Families */
+  --font-haas-grotesk-display-r-web: 'Haas Grotesk Display R Web', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-yinka-sans-ultra: 'Yinka Sans Ultra', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 14px;
+  --leading-body: 1.5;
+  --text-subheading: 20px;
+  --leading-subheading: 1.3;
+  --text-display: 120px;
+  --leading-display: 1.1;
+  --tracking-display: 4.8px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-15: 15px;
+  --spacing-30: 30px;
+  --spacing-80: 80px;
+  --spacing-136: 136px;
+  --spacing-175: 175px;
+
+  /* Layout */
+  --section-gap: 175px;
+  --card-padding: 30px;
+  --element-gap: 15px;
+
+  /* Named Radii */
+  --radius-tags: 0px;
+  --radius-cards: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-blush-canvas: #f5e5e5;
+  --surface-pattern-surface: #d9698c;
+}

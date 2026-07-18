@@ -1,0 +1,976 @@
+{
+  "source": "https://styles.refero.design/style/2e4ce685-9f49-47a3-9577-bc4f196bd8f7",
+  "uuid": "2e4ce685-9f49-47a3-9577-bc4f196bd8f7",
+  "name": "Glein",
+  "northStar": "Atelier lookbook on warm linen — full-bleed photography, hairline rules, one whisper-weight voice.",
+  "capturedAt": "2026-07-18T07:42:52.230Z",
+  "meta": {
+    "url": "https://glein.wien",
+    "siteName": "Glein",
+    "extractedAt": "2026-06-03T19:47:42.676Z",
+    "durationMs": 30621,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 306,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Keep every element at weight 400 — F-Grotesk and Maison-Neue-Mono both run single-weight. Build hierarchy through size and space, never through bold.",
+      "Let photography fill the viewport edge to edge. No internal gutters in image grids, no rounded corners, no borders around photos.",
+      "Overlay white F-Grotesk category titles directly on imagery. Use 30px for category names, 13px monospace for 'mehr anzeigen' sub-links.",
+      "Separate sections with warm sand (#ebe6dc) bands or 1px #000000 hairlines — never with shadows or card elevation.",
+      "Use Maison-Neue-Mono for all functional labels: nav items, buttons, tags, footer meta. The mono face is the system's 'utility voice'.",
+      "Let the display type breathe: 111px F-Grotesk at line-height 1.0 with generous surrounding whitespace. No letter-spacing tightening — the natural mono-influenced rhythm of F-Grotesk carries it.",
+      "Use the 2px/6px micro-padding for all interactive elements. Buttons are stamp-sized by design, not 'small by accident'."
+    ],
+    "donts": [
+      "Don't introduce any chromatic color. The system is 0% colorful — adding even one accent breaks the entire monochrome contract.",
+      "Don't use bold, semibold, or light weights. The font files are loaded at 400 only; attempting 500/600/700 will fall back or look wrong.",
+      "Don't add shadows, glows, or blur effects. The surface model is flat — elevation is communicated by warm-band transitions, not z-axis depth.",
+      "Don't round corners. Every radius in the system is 0px. Adding border-radius introduces a 'card' or 'button' feel that contradicts the editorial-paper aesthetic.",
+      "Don't use sans-serif for functional labels. Monospace is reserved for nav, buttons, and meta — mixing it with F-Grotesk here dilutes the atelier voice.",
+      "Don't crowd the 111px display with surrounding UI. Display type needs air — no buttons, links, or images in its immediate margin zone.",
+      "Don't use colored hover states on links. Underline-on-hover in the same color is the only state change the system supports."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Midnight Ink",
+        "role": "Primary text, nav hairline borders, footer dividers, section rules, button text. Dominant structural color — defines the graphic skeleton against the warm canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Page canvas, card surfaces, overlay text on dark imagery, cookie dialog background. The breathing space",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebe6dc",
+        "name": "Warm Sand",
+        "role": "Secondary surface and section bands — the warm beige that gives the atelier its linen-like tactility. Section dividers, footer wash, category card backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8c8c8c",
+        "name": "Concrete Gray",
+        "role": "Muted secondary text, tertiary borders, subdued image overlays. The recede color — present but never competing",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b3b3b3",
+        "name": "Ash Gray",
+        "role": "Subtle dividers, inactive nav borders, low-emphasis rules. The quietest member of the scale",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed editorial grid, no max-width container. The header is a thin announcement strip + hairline-bordered nav. The page body is a multi-column image grid (2-col on smaller viewports, 3-col on wider) with zero gap — tiles meet at shared edges. Category titles overlay the bottom-left of each image cell. Section transitions happen via warm sand (#ebe6dc) bands or 1px hairlines. Information sections (about, atelier address) use centered narrow text columns (~400px) on the warm sand band, creating a 'note from the studio' rhythm between image grids. Navigation is a fixed top bar with brand wordmark centered and functional links flanking.",
+    "imagery": "Imagery IS the interface. Photography is full-bleed, edge-to-edge in tight grid cells, with no rounded corners or decorative framing. Shots are editorial fashion photography: tight crops on garments (T-shirt on hanger, linen on body, leather bag, denim waistband with leather label), natural warm light, tactile material focus. No lifestyle context, no models in environment — the garment and its texture are the subject. Color treatment is honest and unmanipulated: denim blue, warm tan leather, natural linen cream become the page's only chromatic moments. Image density is extremely high — photography occupies roughly 70% of the viewport on category pages, with text overlay only as labels.",
+    "similar": [
+      {
+        "why": "Same editorial grid-with-overlay-text pattern and monochromatic surface treatment on product photography",
+        "business": "Toteme"
+      },
+      {
+        "why": "Identical single-weight type philosophy, zero-chrome palette, and full-bleed garment photography with hairline navigation",
+        "business": "The Row"
+      },
+      {
+        "why": "Same atelier/studio brand voice — warm-neutral canvas, oversized category type, monospace nav labels, no decorative UI",
+        "business": "Studio Nicholson"
+      },
+      {
+        "why": "Matches the lookbook-as-website approach — editorial photography, restrained type, warm sand and bone white surface system, hairline rules as the only graphic element",
+        "business": "Lemaire"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "13px",
+      "sectionGap": "42px",
+      "cardPadding": "13px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Primary page background, cookie dialog surface, overlay text reverse"
+      },
+      {
+        "hex": "#ebe6dc",
+        "name": "Warm Band",
+        "level": 1,
+        "purpose": "Secondary section background, warm neutral contrast band"
+      },
+      {
+        "hex": "#8c8c8c",
+        "name": "Muted Field",
+        "level": 2,
+        "purpose": "Tertiary field, subdued image tint zones"
+      }
+    ],
+    "northStar": "Atelier lookbook on warm linen — full-bleed photography, hairline rules, one whisper-weight voice.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.19
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1
+      },
+      {
+        "role": "display",
+        "size": 111,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Category Image Tile",
+        "role": "Primary navigation and discovery surface — large editorial image with overlaid white category title",
+        "description": "Full-bleed photography (denim, linen, leather textures) occupying 2-column or 3-column grid cells. White F-Grotesk 30px category title ('T-Shirts', 'Hosen', 'Leinen', 'Taschen klein') overlaid bottom-left. Below the title, a 13px monospace 'mehr anzeigen' link in #ffffff. No border, no radius, no shadow — the image is the component."
+      },
+      {
+        "name": "Editorial Section Block",
+        "role": "Scrolling content band that mixes imagery with body text",
+        "description": "Alternating layout: left-aligned or center-aligned text columns of 15–20px F-Grotesk body in #000000 on #ebe6dc warm sand background. Text max-width ~400px for comfortable line length. Section separated by hairline 1px #000000 rule or warm band transition."
+      },
+      {
+        "name": "Top Promo Strip",
+        "role": "Persistent thin announcement bar above the navigation",
+        "description": "Full-width hairline strip with 13px monospace text in #000000 on #ffffff. Promotional copy ('30-TAGE RÜCKGABERECHT', 'GRATIS VERSAND AB EUR 150,-') repeated three times across the viewport at 11px padding top/bottom. Separated from nav by a 1px #000000 bottom border."
+      },
+      {
+        "name": "Primary Navigation",
+        "role": "Top-level site navigation with brand wordmark center",
+        "description": "Horizontal bar: left cluster 'SHOP' / 'NACHHALTIGE MATERIALIEN' (monospace 13px), center brand wordmark 'Glein' (F-Grotesk 20px), right cluster 'STUDIO' / 'DE | EN' / 'Warenkorb'. 18px top padding. 1px #000000 bottom border. No background fill — sits on the page canvas."
+      },
+      {
+        "name": "Hairline CTA Button",
+        "role": "Micro interactive element — 'Alle akzeptieren' and 'Auswählen' in the cookie dialog",
+        "description": "Inverted black button: #000000 background, #ffffff text, F-Grotesk 13px. Padding 2px top/bottom, 6px left/right — a deliberately tiny footprint. Zero radius. Ghost alternative: #ffffff background, 1px #000000 border, #000000 text. No hover elevation, no shadow."
+      },
+      {
+        "name": "Monospace Text Link",
+        "role": "Inline navigational link — 'mehr anzeigen' below category titles, footer links",
+        "description": "13px Maison-Neue-Mono in #ffffff when on image overlays, #000000 on light surfaces. Underline on hover only. Generous letter-spacing from the mono face gives the link a label/tag character."
+      },
+      {
+        "name": "Cookie Consent Dialog",
+        "role": "GDPR consent overlay",
+        "description": "White card (#ffffff) centered or bottom-right on viewport. Black 1px border, zero radius, 24px padding. Body text in F-Grotesk 15px #000000 with underlined 'Datenschutzrichtlinie' link. Two buttons in a row: filled black 'Alle akzeptieren' + outlined black 'Auswählen'."
+      },
+      {
+        "name": "Image Grid Container",
+        "role": "The layout chassis for category and product imagery",
+        "description": "Multi-column CSS grid (2- or 3-column) with 0px gap — images meet edge to edge with no gutters. No rounded corners, no borders between cells. Photography carries the visual weight entirely."
+      },
+      {
+        "name": "Brand Wordmark",
+        "role": "Centered logo lockup in the primary navigation",
+        "description": "F-Grotesk 20px weight 400 in #000000. The wordmark is treated as a typographic element, not a graphic — no custom letterforms, no symbol mark beside it. The lowercase 'G' of 'Glein' is the only brand signature beyond the type system itself."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary grotesque — used for everything from body to display. The entire type system runs at weight 400 only; hierarchy is pure scale.",
+        "sizes": "13px, 15px, 20px, 30px, 111px",
+        "family": "F-Grotesk",
+        "weight": "400",
+        "lineHeight": "1.00, 1.19, 1.20, 1.30",
+        "substitute": "Söhne, Inter, or Neue Haas Grotesk",
+        "description": "Custom geometric sans with humanist warmth. Single weight (400) across the entire system — no bold, no light. This is deliberate: authority comes from scale (111px display) and space, not from weight. The only sans on the site."
+      },
+      {
+        "role": "Monospace companion — navigation, category labels, button text, footer meta, promotional strip. The 'labelling' voice that contrasts the editorial grotesque.",
+        "sizes": "13px, 15px, 20px",
+        "family": "Maison-Neue-Mono",
+        "weight": "400",
+        "lineHeight": "1.00, 1.19, 1.20, 1.30",
+        "substitute": "JetBrains Mono, IBM Plex Mono, or Space Mono",
+        "description": "Fixed-width technical face used as a functional second voice. Its presence in the nav and CTA labels gives the system an atelier/workshop character — like type on a garment tag or atelier stamp."
+      }
+    ],
+    "description": "Glein operates as a monochromatic editorial canvas: oversized product and lifestyle photography fills nearly every viewport, with white sans-serif category labels floating directly on top of the imagery. The palette is a tight warm-achromatic system — Bone White, Midnight Black, a signature Warm Sand beige, and Concrete Gray — with zero chromatic accent, which forces the photography's natural tones (denim, linen, leather) to become the color story. Typography stays at weight 400 across both the grotesque and monospace companion; no bold weights exist, so hierarchy is built through size alone, culminating in a 111px display. Components are razor-thin: hairline black borders, zero radius, micro-padding, and no shadows. The result reads like an art-school lookbook — restrained, tactile, and quiet, where the absence of decoration is the signature.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2e4ce685-9f49-47a3-9577-bc4f196bd8f7#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Glein design system\",\"item\":\"https://styles.refero.design/style/2e4ce685-9f49-47a3-9577-bc4f196bd8f7\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2e4ce685-9f49-47a3-9577-bc4f196bd8f7#style-reference\",\"name\":\"Glein design system reference\",\"headline\":\"Glein design system | Refero Styles\",\"description\":\"Explore Glein's light E-commerce design system: Midnight Ink #000000, Bone White #ffffff colors, F-Grotesk, Maison-Neue-Mono typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/2e4ce685-9f49-47a3-9577-bc4f196bd8f7\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2e4ce685-9f49-47a3-9577-bc4f196bd8f7\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Glein\",\"url\":\"https://glein.wien\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2e4ce685-9f49-47a3-9577-bc4f196bd8f7#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1e288c79-b646-48e2-98b1-313d86d1f1b1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1e288c79-b646-48e2-98b1-313d86d1f1b1.jpg\",\"caption\":\"Screenshot of Glein\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1e288c79-b646-48e2-98b1-313d86d1f1b1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Glein design system\",\"Glein website design\",\"Glein colors\",\"Glein typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Midnight Ink\",\"Bone White\",\"Warm Sand\",\"Concrete Gray\",\"F-Grotesk\",\"Maison-Neue-Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Glein design system\"},{\"@type\":\"Thing\",\"name\":\"Glein website design\"},{\"@type\":\"Thing\",\"name\":\"Glein colors\"},{\"@type\":\"Thing\",\"name\":\"Glein typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:58:51.184Z\",\"dateModified\":\"2026-04-30T03:58:51.184Z\"}]}19:T5e3,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- secondary surface: #ebe6dc (Warm Sand)\n- border: #000000 (1px hairline)\n- muted text: #8c8c8c\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Category Image Tile*: Full-bleed 3-column grid cell containing a fashion photograph. No padding, no border, no radius. White F-Grotesk 30px category title ('Leinen') overlaid at bottom-left, with 13px Maison-Neue-Mono 'mehr anzeigen' link directly beneath in #ffffff.\n\n2. *Top Navigation*: Full-width bar with 1px #000000 bottom border. Left: 'SHOP' and 'NACHHALTIGE MATERIALIEN' in 13px Maison-Neue-Mono #000000. Center: 'Glein' wordmark in F-Grotesk 20px #000000. Right: 'STUDIO', 'DE | EN', 'Warenkorb' in 13px Maison-Neue-Mono. 18px top padding, 11px bottom padding. Background: #ffffff.\n\n3. *Ghost Outlined Button*: White background, 1px #000000 border, zero radius. Text 'Auswählen' in F-Grotesk 13px #000000. Padding 2px vertical, 6px horizontal. No hover state change beyond a background-color shift to #ebe6dc.\n\n4. *Editorial Text Block*: Centered narrow column (~400px max-width) on #ebe6dc warm sand background. Body text in F-Grotesk 20px weight 400, line-height 1.3, color #000000. No headings, no decorations — just generous typographic space.\n\n5. *Promo Strip*: Full-width 1px #000000 bottom border, 11px top/bottom padding. Text 'GRATIS VERSAND AB EUR 150,-' repeated 3x in 13px Maison-Neue-Mono #000000, separated by whitespace, on #ffffff background."
+      }
+    ],
+    "elevationPhilosophy": "The system has no elevation. Surfaces are flat and differentiated by background color alone (white → warm sand → concrete gray) and by 1px #000000 hairline rules. This is a deliberate paper/print metaphor — the site reads like a magazine spread, not a software interface. Any shadow would break the editorial contract."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "body",
+            "icon",
+            "hero",
+            "heading",
+            "image",
+            "footer",
+            "button"
+          ],
+          "frequency": 1290,
+          "confidence": 1,
+          "prominence": 60580367.74315343,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 162,
+            "body/color": 17,
+            "hero/color": 1,
+            "icon/color": 1,
+            "link/color": 4,
+            "image/color": 14,
+            "other/color": 50,
+            "button/color": 2,
+            "footer/color": 1,
+            "heading/color": 5,
+            "nav/borderColor": 648,
+            "body/borderColor": 68,
+            "hero/borderColor": 4,
+            "icon/borderColor": 4,
+            "link/borderColor": 16,
+            "image/borderColor": 56,
+            "other/borderColor": 200,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 20,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8c8c8c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6409177981481167
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "button"
+          ],
+          "frequency": 233,
+          "confidence": 1,
+          "prominence": 1201332.470797211,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 32,
+            "button/color": 1,
+            "heading/color": 14,
+            "other/borderColor": 128,
+            "heading/borderColor": 56,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#ebe6dc",
+          "oklch": {
+            "c": 0.014439310629394426,
+            "h": 84.58428968288418,
+            "l": 0.9260965689769878
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 37440,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b3b3b3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7667552121346497
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 965.181421599806,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "nav/borderColor": 8
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.000025423559520018357,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.88,
+          "background": "#ebe6dc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.02,
+          "background": "#000000",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.25,
+          "background": "#8c8c8c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.36,
+          "background": "#8c8c8c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.1,
+          "background": "#ffffff",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.69,
+          "background": "#ebe6dc",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.6,
+          "background": "#8c8c8c",
+          "foreground": "#b3b3b3"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.24,
+          "background": "#ebe6dc",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "columnGap|other",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 22,
+          "properties": [
+            "marginTop",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingLeft|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginRight|button"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "rowGap|nav"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 91,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 156,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 245,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 267,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "F-Grotesk",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 262,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Maison-Neue-Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 44,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Maison-Neue-Mono",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Maison-Neue-Mono",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "F-Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.19,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "F-Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.19,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Maison-Neue-Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "nav",
+            "button"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.19,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "F-Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "body",
+            "icon",
+            "hero",
+            "heading",
+            "image",
+            "footer"
+          ],
+          "frequency": 172,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "F-Grotesk",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Maison-Neue-Mono",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "F-Grotesk",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Maison-Neue-Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "F-Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "F-Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "F-Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 111,
+          "family": "F-Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/50b59887-af4e-4911-ab9c-5514f3c20d5f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1e288c79-b646-48e2-98b1-313d86d1f1b1.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/2e4ce685-9f49-47a3-9577-bc4f196bd8f7#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Glein design system\",\"item\":\"https://styles.refero.design/style/2e4ce685-9f49-47a3-9577-bc4f196bd8f7\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/2e4ce685-9f49-47a3-9577-bc4f196bd8f7#style-reference\",\"name\":\"Glein design system reference\",\"headline\":\"Glein design system | Refero Styles\",\"description\":\"Explore Glein's light E-commerce design system: Midnight Ink #000000, Bone White #ffffff colors, F-Grotesk, Maison-Neue-Mono typography, and DESIGN.md for...\",\"url\":\"https://styles.refero.design/style/2e4ce685-9f49-47a3-9577-bc4f196bd8f7\",\"mainEntityOfPage\":\"https://styles.refero.design/style/2e4ce685-9f49-47a3-9577-bc4f196bd8f7\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Glein\",\"url\":\"https://glein.wien\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/2e4ce685-9f49-47a3-9577-bc4f196bd8f7#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1e288c79-b646-48e2-98b1-313d86d1f1b1.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1e288c79-b646-48e2-98b1-313d86d1f1b1.jpg\",\"caption\":\"Screenshot of Glein\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1e288c79-b646-48e2-98b1-313d86d1f1b1.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Glein design system\",\"Glein website design\",\"Glein colors\",\"Glein typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Midnight Ink\",\"Bone White\",\"Warm Sand\",\"Concrete Gray\",\"F-Grotesk\",\"Maison-Neue-Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Glein design system\"},{\"@type\":\"Thing\",\"name\":\"Glein website design\"},{\"@type\":\"Thing\",\"name\":\"Glein colors\"},{\"@type\":\"Thing\",\"name\":\"Glein typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:58:51.184Z\",\"dateModified\":\"2026-04-30T03:58:51.184Z\"}]}19:T5e3,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- secondary surface: #ebe6dc (Warm Sand)\n- border: #000000 (1px hairline)\n- muted text: #8c8c8c\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. *Category Image Tile*: Full-bleed 3-column grid cell containing a fashion photograph. No padding, no border, no radius. White F-Grotesk 30px category title ('Leinen') overlaid at bottom-left, with 13px Maison-Neue-Mono 'mehr anzeigen' link directly beneath in #ffffff.\n\n2. *Top Navigation*: Full-width bar with 1px #000000 bottom border. Left: 'SHOP' and 'NACHHALTIGE MATERIALIEN' in 13px Maison-Neue-Mono #000000. Center: 'Glein' wordmark in F-Grotesk 20px #000000. Right: 'STUDIO', 'DE | EN', 'Warenkorb' in 13px Maison-Neue-Mono. 18px top padding, 11px bottom padding. Background: #ffffff.\n\n3. *Ghost Outlined Button*: White background, 1px #000000 border, zero radius. Text 'Auswählen' in F-Grotesk 13px #000000. Padding 2px vertical, 6px horizontal. No hover state change beyond a background-color shift to #ebe6dc.\n\n4. *Editorial Text Block*: Centered narrow column (~400px max-width) on #ebe6dc warm sand background. Body text in F-Grotesk 20px weight 400, line-height 1.3, color #000000. No headings, no decorations — just generous typographic space.\n\n5. *Promo Strip*: Full-width 1px #000000 bottom border, 11px top/bottom padding. Text 'GRATIS VERSAND AB EUR 150,-' repeated 3x in 13px Maison-Neue-Mono #000000, separated by whitespace, on #ffffff background."
+}

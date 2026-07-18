@@ -1,0 +1,347 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#242429",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, icon strokes, hairline borders across the system — the workhorse dark that replaces pure black for a slightly warmer read"
+    },
+    "parchment": {
+      "$value": "#f9f5f2",
+      "$type": "color",
+      "$description": "Parchment — Page canvas, hero and footer backgrounds — warm off-white that signals editorial paper rather than digital default"
+    },
+    "gallery-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Gallery White — Card surfaces, image borders, badge backgrounds — the brighter neutral used to lift content off the parchment"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Headings, navigation borders, and high-contrast typographic moments where maximum weight is needed"
+    },
+    "graphite": {
+      "$value": "#3e3e3e",
+      "$type": "color",
+      "$description": "Graphite — Body text, card metadata, and list items — softer than Obsidian for secondary reading copy"
+    },
+    "ash-gray": {
+      "$value": "#919191",
+      "$type": "color",
+      "$description": "Ash Gray — Muted heading accent and de-emphasized text — the quietest neutral, used for location subtitles and tertiary labels"
+    },
+    "charcoal-deep": {
+      "$value": "#070707",
+      "$type": "color",
+      "$description": "Charcoal Deep — Reserved for the heaviest display headlines where a hair more density than Ink Black is desired"
+    }
+  },
+  "font": {
+    "gill-sans": {
+      "$value": "Gill Sans",
+      "$type": "fontFamily",
+      "$description": "Primary typeface for all editorial copy and headings. The humanist warmth of Gill Sans is the signature — its slightly organic strokes and bookish personality carry the literary travel-magazine tone. 400 handles body and nav; 500 adds weight for sub-headings and card titles. The 64px/1.00 setting powers the monumental KOBU wordmark, where line-height matches font-size to let the letters bleed."
+    },
+    "fira-mono": {
+      "$value": "Fira Mono",
+      "$type": "fontFamily",
+      "$description": "Monospace for small uppercase labels — badges, navigation, and category tags. The fixed-width geometry and wide letter-spacing (0.167em–0.183em on 10–12px) read as printed museum tags, turning functional labels into typographic detail rather than UI chrome."
+    },
+    "gill-sans-mt-pro": {
+      "$value": "Gill Sans MT Pro",
+      "$type": "fontFamily",
+      "$description": "Gill Sans MT Pro — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Fira Mono",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Fira Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.55
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Fira Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Fira Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Fira Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Fira Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Gill Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Gill Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Fira Mono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Gill Sans MT Pro",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Fira Mono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Gill Sans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Gill Sans MT Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Gill Sans MT Pro",
+        "fontSize": "21px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Gill Sans MT Pro",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Gill Sans MT Pro",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Gill Sans",
+        "fontSize": "33px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 33px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Gill Sans MT Pro",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "34": {
+      "$value": "34px",
+      "$type": "dimension",
+      "$description": "Spacing 34px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "110": {
+      "$value": "110px",
+      "$type": "dimension",
+      "$description": "Spacing 110px"
+    },
+    "119": {
+      "$value": "119px",
+      "$type": "dimension",
+      "$description": "Spacing 119px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#f9f5f2",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background — warm cream visible in hero, footer, and breathing space between content blocks"
+    },
+    "gallery-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated content surfaces — card backgrounds, image frames, badge fills"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://kobu.co",
+      "siteName": "Kobu",
+      "extractedAt": "2026-06-03T15:46:09.162Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,352 @@
+{
+  "color": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Page canvas, section backgrounds, card surfaces — pure black, not near-black, makes the off-white type and the lime accent feel luminous"
+    },
+    "charcoal": {
+      "$value": "#0e0e0e",
+      "$type": "color",
+      "$description": "Charcoal — Elevated surface layer, subtle borders, secondary backgrounds — one step off the void for depth without breaking the dark mode"
+    },
+    "bone": {
+      "$value": "#f0eded",
+      "$type": "color",
+      "$description": "Bone — Primary text, pentagon tag fills, announcement bar background — slightly warm off-white, softer than pure white against deep black"
+    },
+    "ash": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Ash — Secondary body text, muted helper copy, list dividers — the dominant mid-gray for all non-primary prose"
+    },
+    "smoke": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Smoke — Tertiary text, subtle metadata, low-priority borders"
+    },
+    "graphite": {
+      "$value": "#606060",
+      "$type": "color",
+      "$description": "Graphite — Faintest visible borders, disabled text — the lower edge of the readable gray scale"
+    },
+    "lime-signal": {
+      "$value": "#e1f0bd",
+      "$type": "color",
+      "$description": "Lime Signal — Primary CTA fill only — a muted pale lime used exclusively for the early-access button, never for links, icons, or decoration. The one chromatic moment on the entire page"
+    }
+  },
+  "font": {
+    "sf-pro": {
+      "$value": "SF Pro",
+      "$type": "fontFamily",
+      "$description": "Body, UI, subheadings, and button text. Weight 300 is used for mid-size headings (24–29px) — an anti-convention choice that makes subheadings recede rather than compete with the serif display. Weight 400 for body, buttons, and dense text at 1.50–1.75 line-height for breathing room"
+    },
+    "tanaclassic": {
+      "$value": "tanaClassic",
+      "$type": "fontFamily",
+      "$description": "Display and heading serif. High-contrast, editorial, used at 84px for hero headlines and 38–48px for section headings. Negative tracking (-0.045em at display, -0.030em at mid-headings) tightens the serif into a dense magazine block. The weight 350–400 range is lighter than typical headline serifs, giving the type a whisper of authority rather than shouting"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "SF Pro",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "SF Pro",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "SF Pro",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "tanaClassic",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "SF Pro",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 17px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "SF Pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "SF Pro",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "SF Pro",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 19px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "tanaClassic",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "SF Pro",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "SF Pro",
+        "fontSize": "21px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "SF Pro",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "SF Pro",
+        "fontSize": "26px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "SF Pro",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 29px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "tanaClassic",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "tanaClassic",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "tanaClassic",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "tanaClassic",
+        "fontSize": "84px",
+        "fontWeight": 350,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 84px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas, all section backgrounds"
+    },
+    "charcoal": {
+      "$value": "#0e0e0",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated cards, subtle surface lift"
+    },
+    "bone": {
+      "$value": "#f0eded",
+      "$type": "color",
+      "$description": "Surface level 3: Pentagon tag fills, announcement bar — the only light surface in the system"
+    },
+    "lime-signal": {
+      "$value": "#e1f0bd",
+      "$type": "color",
+      "$description": "Surface level 4: CTA button — the single colored surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://tana.inc",
+      "siteName": "Tana",
+      "extractedAt": "2026-06-03T21:42:17.328Z",
+      "variant": "extended"
+    }
+  }
+}

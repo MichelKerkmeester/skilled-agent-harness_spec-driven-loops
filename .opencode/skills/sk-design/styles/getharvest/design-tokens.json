@@ -1,0 +1,554 @@
+{
+  "color": {
+    "harvest-flame": {
+      "$value": "#fa5d00",
+      "$type": "color",
+      "$description": "Harvest Flame — Primary CTA fill, active nav indicator, brand link color, heading underlines — warm vermilion that reads as energetic but not aggressive, the single chromatic decision in an otherwise achromatic system"
+    },
+    "marigold-glow": {
+      "$value": "#fee3b5",
+      "$type": "color",
+      "$description": "Marigold Glow — Soft warm highlight wash on cards, decorative glow tint behind product UI — never functional, only atmospheric"
+    },
+    "parchment-shadow": {
+      "$value": "#e3d6c5",
+      "$type": "color",
+      "$description": "Parchment Shadow — Warm-tinted card shadow color, subtle image shadow — the shadow hue is not neutral gray but matches the cream base"
+    },
+    "ink-black": {
+      "$value": "#1d1e1c",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, icon strokes, nav borders, card headings — warm near-black rather than pure #000, preserves the system warmth"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, input fields, elevated panels, button text on orange fill"
+    },
+    "cream-canvas": {
+      "$value": "#fff8f1",
+      "$type": "color",
+      "$description": "Cream Canvas — Page background, hero section base, nav backdrop — the signature warm cream that replaces standard SaaS white"
+    },
+    "mist-gray": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Mist Gray — Hairline dividers, subtle borders on neutral surfaces"
+    },
+    "warm-stone": {
+      "$value": "#615f5c",
+      "$type": "color",
+      "$description": "Warm Stone — Secondary body text, list items, muted icon strokes"
+    },
+    "driftwood": {
+      "$value": "#8e8b87",
+      "$type": "color",
+      "$description": "Driftwood — Tertiary body text, decorative strokes, subtle metadata"
+    },
+    "ironwood": {
+      "$value": "#4a4a47",
+      "$type": "color",
+      "$description": "Ironwood — Strong secondary text, emphasized muted labels"
+    },
+    "ash": {
+      "$value": "#777571",
+      "$type": "color",
+      "$description": "Ash — Helper text, placeholder-adjacent copy, low-priority borders"
+    },
+    "bone": {
+      "$value": "#c0bbb6",
+      "$type": "color",
+      "$description": "Bone — Input borders, form field outlines at rest"
+    },
+    "smoke": {
+      "$value": "#a5a19c",
+      "$type": "color",
+      "$description": "Smoke — Disabled text, decorative borders, very low-priority separators"
+    },
+    "graphite": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Graphite — List borders, tertiary structural lines"
+    }
+  },
+  "font": {
+    "muotoweb": {
+      "$value": "MuotoWeb",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body typeface — geometric sans covering navigation, buttons, body copy, subheadings, and most headings up to 50px. Custom-drawn letterforms give it warmth that generic Inter or Helvetica cannot: slightly humanist terminals and open apertures that read friendly rather than cold."
+    },
+    "monarch": {
+      "$value": "Monarch",
+      "$type": "fontFamily",
+      "$description": "Hero display serif — used only for the largest emotional headline (72px) where editorial weight is needed. The serif is the signature contrast against MuotoWeb's sans body: the page whispers functional in sans, then ROARS one moment in serif. Reserve for hero/page-title moments only."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.26
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "17px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "lg-8": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-8 at 18px"
+    },
+    "lg-9": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-9 at 18px"
+    },
+    "lg-10": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-10 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 20px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 20px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 20px"
+    },
+    "xl-7": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-7 at 20px"
+    },
+    "xl-8": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-8 at 20px"
+    },
+    "xl-9": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "22px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-9 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.26
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "25px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 25px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 26px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "26px",
+        "fontWeight": 600,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 26px"
+    },
+    "2xl-6": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "28px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-6 at 28px"
+    },
+    "2xl-7": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "28px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-7 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "34px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 34px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "MuotoWeb",
+        "fontSize": "50px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 50px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Monarch",
+        "fontSize": "72px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "113": {
+      "$value": "113px",
+      "$type": "dimension",
+      "$description": "Spacing 113px"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.2) 0px 1px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "lg": {
+      "$value": "rgba(250, 166, 0, 0.25) 6px 4px 24px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    }
+  },
+  "surface": {
+    "cream-canvas": {
+      "$value": "#fff8f1",
+      "$type": "color",
+      "$description": "Surface level 1: Page-level background — the warm cream base that defines the entire system mood"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Card and elevated surface — floats above the cream canvas to create product depth"
+    },
+    "orange-brand-surface": {
+      "$value": "#fa5d00",
+      "$type": "color",
+      "$description": "Surface level 3: CTA buttons, active states, and brand accent surfaces — the only chromatic surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.getharvest.com",
+      "siteName": "Getharvest",
+      "extractedAt": "2026-06-03T19:38:34.816Z",
+      "variant": "extended"
+    }
+  }
+}

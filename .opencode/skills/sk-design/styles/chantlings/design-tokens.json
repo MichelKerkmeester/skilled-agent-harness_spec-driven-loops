@@ -1,0 +1,182 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Obsidian — Page background, deep surface layer — the cavern floor of the design"
+    },
+    "graphite": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Graphite — Dominant structural neutral — card borders, icon strokes, dividers, link underlines. Far more present than its visual weight suggests; carries 90% of the UI scaffolding"
+    },
+    "bone": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Bone — Primary text, card border highlights, inverse surface moments — the only luminance in the system"
+    },
+    "ember": {
+      "$value": "#ffaa20",
+      "$type": "color",
+      "$description": "Ember — Accent signal color — App Store badge border, link underlines, the creature's eyes and highlights. Warm amber against graphite creates a firelight-in-darkness effect, not a CTA color"
+    },
+    "amber-glow": {
+      "$value": "#ff8800",
+      "$type": "color",
+      "$description": "Amber Glow — Filled button background — the single chromatic fill in the system. Deeper, more saturated than Ember; used sparingly to mark the one real interactive surface (App Store download)"
+    }
+  },
+  "font": {
+    "mija": {
+      "$value": "Mija",
+      "$type": "fontFamily",
+      "$description": "The only typeface. Display and body both drawn from this single family. Weight 100 is the brand's signature — used for the 'Chantlings' wordmark and headlines, creating an almost handwritten, incense-thin quality. Weight 300 handles body and UI text. The custom nature means no system-font fallback can match the optical contrast between its hairlines and thicker strokes."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Mija webfont",
+        "fontSize": "14px",
+        "fontWeight": 100,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Mija webfont",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Mija webfont",
+        "fontSize": "24px",
+        "fontWeight": 100,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Mija webfont",
+        "fontSize": "24px",
+        "fontWeight": 100,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Mija webfont",
+        "fontSize": "24px",
+        "fontWeight": 100,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Mija webfont",
+        "fontSize": "24px",
+        "fontWeight": 100,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "Mija webfont",
+        "fontSize": "25px",
+        "fontWeight": 100,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 25px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Mija webfont",
+        "fontSize": "32px",
+        "fontWeight": 100,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    }
+  },
+  "spacing": {
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "108": {
+      "$value": "108px",
+      "$type": "dimension",
+      "$description": "Spacing 108px"
+    },
+    "196": {
+      "$value": "196px",
+      "$type": "dimension",
+      "$description": "Spacing 196px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Surface level 0: Page canvas — the full dark stage on which everything floats"
+    },
+    "hollow": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 1: Implicit card surface — barely distinguishable from the canvas; the system relies on hairline graphite borders rather than tonal steps to define cards"
+    },
+    "edge": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline borders and icon strokes — the only visible 'lift' cue in the entire system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.iorama.studio/chantlings",
+      "siteName": "Chantlings",
+      "extractedAt": "2026-06-03T20:21:38.774Z",
+      "variant": "extended"
+    }
+  }
+}

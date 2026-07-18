@@ -1,0 +1,54 @@
+:root {
+  /* Colors */
+  --color-carbon: #0a0a0a;
+  --color-bone: #ffffff;
+  --color-voltage-cyan: #1ef0e4;
+  --color-plasma-magenta: #e91e8c;
+  --color-ember: #ff3a1a;
+
+  /* Typography — Font Families */
+  --font-azeret-mono: 'Azeret Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-azeretmono-display-variant: 'AzeretMono (display variant)', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-ephidona: 'Ephidona', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.4;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 20px;
+  --leading-subheading: 1.3;
+  --text-heading: 56px;
+  --leading-heading: 1.1;
+  --text-heading-lg: 72px;
+  --leading-heading-lg: 1.05;
+  --text-display: 100px;
+  --leading-display: 1;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-9: 9px;
+
+  /* Layout */
+  --page-max-width: 1400px;
+  --section-gap: 80-120px;
+  --card-padding: 32-48px;
+  --element-gap: 8-16px;
+
+  /* Named Radii */
+  --radius-tags: 0px;
+  --radius-cards: 0px;
+  --radius-images: 0px;
+  --radius-buttons: 0px;
+
+  /* Surfaces */
+  --surface-carbon-canvas: #0a0a0a;
+  --surface-voltage-card: #1ef0e4;
+  --surface-image-plate: #1a1a1a;
+}

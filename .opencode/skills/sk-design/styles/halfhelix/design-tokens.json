@@ -1,0 +1,292 @@
+{
+  "color": {
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, inverse text on dark blocks"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, primary borders, hairline rules, icon strokes, logo"
+    },
+    "carbon": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Carbon — Dark surface blocks, inverse badges, input fields on dark"
+    },
+    "graphite": {
+      "$value": "#484a4c",
+      "$type": "color",
+      "$description": "Graphite — Footer borders, subtle dark dividers, secondary dark UI"
+    },
+    "steel": {
+      "$value": "#686c6d",
+      "$type": "color",
+      "$description": "Steel — Secondary body text, muted captions, low-emphasis borders"
+    },
+    "fog": {
+      "$value": "#a5a7a8",
+      "$type": "color",
+      "$description": "Fog — Disabled borders, lowest-emphasis outlines"
+    },
+    "ash": {
+      "$value": "#dbdbdb",
+      "$type": "color",
+      "$description": "Ash — Light dividers, icon borders, subtle field separators"
+    },
+    "mist": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Mist — Soft surface wash behind cards and tags, ghost link fill, badge background"
+    },
+    "smoke": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Smoke — Mid-tone surface for secondary panels, muted button fills"
+    },
+    "signal-blue": {
+      "$value": "#2749ff",
+      "$type": "color",
+      "$description": "Signal Blue — Violet wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "suisse-intl": {
+      "$value": "Suisse Int'l",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across every context — navigation, body, display headlines, buttons, badges, inputs. The brand carries a single weight (400) and a single letterform language, creating typographic unity without hierarchy through weight. The tight line-heights (1.00–1.20) and negative tracking across all sizes make text feel architectural rather than comfortable."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "full": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Page background, default card surface"
+    },
+    "mist-wash": {
+      "$value": "#ededed",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle elevated card, badge pill, ghost link fill"
+    },
+    "ash-line": {
+      "$value": "#dbdbdb",
+      "$type": "color",
+      "$description": "Surface level 3: Hairline dividers, low-contrast separators"
+    },
+    "smoke-panel": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Surface level 4: Mid-tone overlay, muted secondary surface"
+    },
+    "carbon-block": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Surface level 5: Dark inverse surface for featured blocks and badges"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.halfhelix.com",
+      "siteName": "Halfhelix",
+      "extractedAt": "2026-06-03T20:49:44.145Z",
+      "variant": "extended"
+    }
+  }
+}

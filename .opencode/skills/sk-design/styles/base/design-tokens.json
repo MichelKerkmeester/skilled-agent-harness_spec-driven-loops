@@ -1,0 +1,337 @@
+{
+  "color": {
+    "electric-blue": {
+      "$value": "#0000ff",
+      "$type": "color",
+      "$description": "Electric Blue — Violet outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    },
+    "wireframe-green": {
+      "$value": "#098551",
+      "$type": "color",
+      "$description": "Wireframe Green — Data point accent on the world map visualization — marks growth/gas nodes against the neutral wireframe"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Primary text, headlines, structural lines, iconography"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Page canvas, card surfaces, button text on dark or chromatic fills"
+    },
+    "ash": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Ash — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "graphite": {
+      "$value": "#323232",
+      "$type": "color",
+      "$description": "Graphite — Sidebar borders, strong secondary structural lines"
+    },
+    "slate": {
+      "$value": "#717886",
+      "$type": "color",
+      "$description": "Slate — Body text, subhead descriptions, secondary labels — the working gray for prose"
+    },
+    "fog": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Fog — Tertiary text, disabled states, low-priority metadata"
+    },
+    "mist": {
+      "$value": "#b1b7c3",
+      "$type": "color",
+      "$description": "Mist — Hairline borders, sidebar dividers, subtle icon outlines, nav separators"
+    }
+  },
+  "font": {
+    "doto": {
+      "$value": "Doto",
+      "$type": "fontFamily",
+      "$description": "Display headline face — used at 115px with -0.025em tracking for the hero and section openers. Its geometric, rounded character is distinct from typical sans-serifs; the extremely tight line-height (0.70) lets massive type lock to a single line. Substitute: Space Grotesk or Outfit."
+    },
+    "coinbase-sans": {
+      "$value": "Coinbase Sans",
+      "$type": "fontFamily",
+      "$description": "Primary workhorse for headings, subheadings, and UI text. Weight 400 at 32-110px with aggressive negative tracking (-0.03em to -0.05em) creates tight, architectural headlines. Weight 500 for emphasis. Substitute: Inter at matching weights and tracking."
+    },
+    "coinbase-display": {
+      "$value": "Coinbase Display",
+      "$type": "fontFamily",
+      "$description": "Body and navigation text. The default reading face at 14-16px with normal tracking. Calm, neutral, and built for long-form scanning. Substitute: Inter or system-ui."
+    },
+    "coinbase-mono": {
+      "$value": "Coinbase Mono",
+      "$type": "fontFamily",
+      "$description": "Category labels and metadata — always uppercase with 0.073em tracking. Pins section labels like 'BASE APP', 'BASE CHAIN' above content blocks. The monospaced geometry with wide tracking creates a technical, indexical feel. Substitute: JetBrains Mono or IBM Plex Mono."
+    },
+    "base-sans": {
+      "$value": "Base Sans",
+      "$type": "fontFamily",
+      "$description": "Subhead and lead body text at 18px with -0.014em tracking. Slightly tighter than body for emphasis without weight change. Substitute: Inter at 18px with -0.25px tracking."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "coinbaseSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "coinbaseMono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "coinbaseSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "coinbaseSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "coinbaseMono",
+        "fontSize": "14px",
+        "fontWeight": 350,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "coinbaseDisplay",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "coinbaseSans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "coinbaseDisplay",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "coinbaseDisplay",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "coinbaseSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "doto",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "baseSans",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "coinbaseSans",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "coinbaseSans",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 80px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "coinbaseSans",
+        "fontSize": "110px",
+        "fontWeight": 500,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 110px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "doto",
+        "fontSize": "115px",
+        "fontWeight": 400,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 115px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "doto",
+        "fontSize": "115px",
+        "fontWeight": 700,
+        "lineHeight": 0.7
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 115px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base background for all content"
+    },
+    "panel-fill": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 1: Secondary panel backgrounds, ghost button fills, subtle surface elevation"
+    },
+    "brand-surface": {
+      "$value": "#0000ff",
+      "$type": "color",
+      "$description": "Surface level 2: Logo block, primary action fill — only chromatic surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.base.org",
+      "siteName": "Base",
+      "extractedAt": "2026-06-03T18:26:44.810Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,419 @@
+{
+  "color": {
+    "forest-ink": {
+      "$value": "#022c22",
+      "$type": "color",
+      "$description": "Forest Ink — All text, headings, and icon strokes — deep desaturated green replaces black throughout the entire interface, giving the system its organic technical warmth"
+    },
+    "emerald-pulse": {
+      "$value": "#00bc7d",
+      "$type": "color",
+      "$description": "Emerald Pulse — Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color; Hero headline gradient flowing from forest green through emerald to amber — makes the display wordmark feel alive"
+    },
+    "pine": {
+      "$value": "#007a55",
+      "$type": "color",
+      "$description": "Pine — Secondary brand green for darker button states, link text, and icon outlines when a heavier weight than Forest Ink is needed"
+    },
+    "mint-glow": {
+      "$value": "#34d399",
+      "$type": "color",
+      "$description": "Mint Glow — Light accent green for secondary icons, decorative highlights, and hover state washes"
+    },
+    "jade-wash": {
+      "$value": "#10b981",
+      "$type": "color",
+      "$description": "Jade Wash — Mid-green for outlined button borders, checkbox accents, and form focus rings"
+    },
+    "spearmint": {
+      "$value": "#6ee7b7",
+      "$type": "color",
+      "$description": "Spearmint — Lightest green for link hover states and subtle decorative washes"
+    },
+    "signal-red": {
+      "$value": "#dc2626",
+      "$type": "color",
+      "$description": "Signal Red — Red supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    },
+    "lilac-whisper": {
+      "$value": "#e9d5ff",
+      "$type": "color",
+      "$description": "Lilac Whisper — Soft violet accent for the QStash product icon and category tags that need chromatic separation from the green family"
+    },
+    "snow": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Snow — Page canvas, card surfaces, and inverse text on dark code blocks"
+    },
+    "paper": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Paper — Subtle alternating section backgrounds and disabled control fills"
+    },
+    "pale-sage": {
+      "$value": "#c9dbd6",
+      "$type": "color",
+      "$description": "Pale Sage — Soft green-tinted surface for hero background washes and the gradient tail stop on decorative backgrounds"
+    },
+    "mint-mist": {
+      "$value": "#d2f2e7",
+      "$type": "color",
+      "$description": "Mint Mist — Lightest green-tinted background for announcement bars, tag pills, and the hero's left-edge gradient wash"
+    },
+    "hairline": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Hairline — Universal 1px border color for cards, inputs, dividers, and table rules — the most used color in the system"
+    },
+    "graphite": {
+      "$value": "#71717a",
+      "$type": "color",
+      "$description": "Graphite — Muted secondary text, nav items, placeholder text, and subdued icon strokes"
+    },
+    "carbon": {
+      "$value": "#3d3d3f",
+      "$type": "color",
+      "$description": "Carbon — Darkest neutral for code block backgrounds and high-contrast borders where #000 feels too harsh"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Code block background only — the single hard-black surface in the system"
+    }
+  },
+  "font": {
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Body text, nav links, buttons, labels, and small UI chrome — the workhorse sans for everything below the heading level"
+    },
+    "inter-tight": {
+      "$value": "Inter Tight",
+      "$type": "fontFamily",
+      "$description": "Display and heading face — the compressed cuts with negative tracking give headlines an engineered, dense quality; the 128px and 180px sizes create the signature 'loud whisper' hero moments where weight 600-700 meets extreme size with restraint"
+    },
+    "ui-monospace": {
+      "$value": "ui-monospace",
+      "$type": "fontFamily",
+      "$description": "Code blocks and inline code — the slightly negative tracking tightens monospace characters for a cleaner, less typewriter-like read"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.85
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "ui-monospace",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "ui-monospace",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "__Inter_Tight_a3c0d3",
+        "fontSize": "22px",
+        "fontWeight": 600,
+        "lineHeight": 1.48
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "__Inter_Tight_a3c0d3",
+        "fontSize": "24px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "__Inter_Tight_a3c0d3",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "__Inter_Tight_a3c0d3",
+        "fontSize": "30px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "__Inter_Tight_a3c0d3",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "48px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 48px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "__Inter_Tight_a3c0d3",
+        "fontSize": "128px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 128px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "__Inter_Tight_a3c0d3",
+        "fontSize": "180px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 180px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "35.2px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background"
+    },
+    "paper": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Surface level 1: Alternating section bands and subtle background variation"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated card surfaces sitting on canvas, separated by hairline borders"
+    },
+    "code-surface": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Dark code example blocks — the only black surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://upstash.com",
+      "siteName": "Upstash",
+      "extractedAt": "2026-06-03T16:36:46.382Z",
+      "variant": "extended"
+    }
+  }
+}

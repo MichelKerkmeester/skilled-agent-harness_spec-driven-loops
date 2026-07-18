@@ -1,0 +1,1660 @@
+{
+  "source": "https://styles.refero.design/style/898f0127-d235-4832-bf33-ab21104f0529",
+  "uuid": "898f0127-d235-4832-bf33-ab21104f0529",
+  "name": "HBO Max",
+  "northStar": "Cinema lobby at midnight. Pure black walls, one cool blue exit sign, and movie posters glowing from every surface.",
+  "capturedAt": "2026-07-18T07:54:35.898Z",
+  "meta": {
+    "url": "https://www.hbomax.com",
+    "siteName": "HBO Max",
+    "extractedAt": "2026-06-03T19:06:36.162Z",
+    "durationMs": 63329,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 474,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #3d6a99 exclusively for filled CTA buttons, active states, and check icons — it is the system's only chromatic note",
+      "Invert to white surfaces for any commerce/pricing zone; the rest of the page must stay black",
+      "Set buttons to 8px radius and pill elements to 100px radius — never mix intermediate values",
+      "Apply 0.083–0.1em positive letter-spacing on labels, badges, and small-caps text for the cinematic marquee quality",
+      "Keep the page background pure #000000 with no overlays, gradients, or dim layers in content areas",
+      "Use weight 300–400 for headlines; reserve 600–700 for prices, CTAs, and emphasis only",
+      "Maintain generous vertical rhythm: 64px between sections, 24px card padding, 16px between elements"
+    ],
+    "donts": [
+      "Never use drop shadows — depth comes from surface color polarity, not elevation",
+      "Don't introduce additional accent colors — the system is monochrome plus one blue",
+      "Avoid backgrounds lighter than #050409 outside of pricing cards",
+      "Don't use letter-spacing tighter than -0.01em on small text; the system breathes outward, not inward",
+      "Never place white buttons on white pricing cards or blue buttons on blue surfaces — polarity must flip",
+      "Don't add gradients, glass effects, or blur — the aesthetic is flat cinema-dark",
+      "Avoid using #3d6a99 for large decorative areas; it should stay as precise interactive punctuation, not fill backgrounds"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Page background, hero canvas, navigation surface — the default darkness that lets poster art and white text feel illuminated",
+        "group": "neutral"
+      },
+      {
+        "hex": "#050409",
+        "name": "Smoke",
+        "role": "Near-black secondary surface, subtle elevation layer above pure black for section separation",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b8b6bb",
+        "name": "Ash Mist",
+        "role": "Muted helper text, secondary body copy, disabled icon strokes — readable but recedes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#89868e",
+        "name": "Iron Veil",
+        "role": "Tertiary text, inactive border outlines on controls",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999999",
+        "name": "Faded Print",
+        "role": "Lowest-priority metadata, footnote-level text and borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Snow",
+        "role": "Primary text, pricing card surfaces, icon fills, pill backgrounds — the dominant positive value in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0e0a17",
+        "name": "Eclipse Indigo",
+        "role": "Near-black heading accent, subtle border tint for heading underlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#3d6a99",
+        "name": "Signal Blue",
+        "role": "Primary CTA fill, active link color, brand accent on icons and borders — the single chromatic note that powers all interactivity",
+        "group": "brand"
+      },
+      {
+        "hex": "#71b8f2",
+        "name": "Glacier Beam",
+        "role": "Blue text accent for links, tags, and emphasized short phrases. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed cinematic layout. The hero is a max-edge poster grid with centered logo and CTA floating over it — no container, no card. Below the fold: centered single-column stack with max-width 1280px. The pricing section breaks the dark pattern with a 4-column card grid on white surfaces, providing a stark polarity shift. Category tiles are 6 equal columns. Content carousels use a horizontal scroll model with chevron controls. Navigation is a transparent floating bar with no background fill. Section rhythm: dark band → light pricing band → dark content bands, creating a three-act visual structure.",
+    "imagery": "Content poster art is the entire visual identity. The hero is a dense, slightly perspective-tilted grid of real HBO Max show and movie posters — ten or more visible at once with no breathing room between them, creating a wall-of-content effect. Category tiles use full-bleed poster stills with overlaid text. No lifestyle photography, no abstract illustration, no 3D renders. Photography treatment: high-saturation, cinematic color grading inherited from the source material. Icons are minimal — simple checkmark outlines and chevron arrows, no decorative iconography.",
+    "similar": [
+      {
+        "why": "Same dark-canvas streaming aesthetic with content poster grids as the dominant visual unit, and sparse UI chrome that lets artwork carry the brand",
+        "business": "Netflix"
+      },
+      {
+        "why": "Similar dark-mode entertainment layout with category carousels and single-accent CTA buttons against near-black backgrounds",
+        "business": "Disney+"
+      },
+      {
+        "why": "Identical black-canvas minimalism with a single white wordmark and full-bleed content imagery, relying on weight contrast rather than color",
+        "business": "Apple TV+"
+      },
+      {
+        "why": "Dark immersive interface where content art tiles carry the visual weight and the UI recedes into monochrome backgrounds with minimal accent color",
+        "business": "Spotify"
+      },
+      {
+        "why": "Similar streaming-tier pricing card grid with polarity-inverted white cards on a dark page and single blue CTA accent",
+        "business": "Hulu"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "4.5px",
+        "cards": "4.5px",
+        "pills": "100px",
+        "images": "8px",
+        "buttons": "8px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian Canvas",
+        "level": 1,
+        "purpose": "Full-page background, hero section base"
+      },
+      {
+        "hex": "#050409",
+        "name": "Smoke Surface",
+        "level": 2,
+        "purpose": "Subtle section separator, slightly elevated dark panel"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Snow Card",
+        "level": 3,
+        "purpose": "Pricing tier cards, feature panels — inverted polarity for commerce zones"
+      },
+      {
+        "hex": "#3d6a99",
+        "name": "Signal Blue Accent",
+        "level": 4,
+        "purpose": "Active CTA buttons, selected toggle state"
+      }
+    ],
+    "northStar": "Cinema lobby at midnight. Pure black walls, one cool blue exit sign, and movie posters glowing from every surface.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.6,
+        "letterSpacing": 0.83
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.23
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.11
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading-lg",
+        "size": 35,
+        "lineHeight": 1
+      },
+      {
+        "role": "display",
+        "size": 56,
+        "lineHeight": 0.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Signal Blue CTA Button",
+        "role": "Primary call-to-action for sign-up, plan selection, and key conversion points",
+        "description": "Filled #3d6a99 background, white text at 14px weight 600, 8px border-radius, 12px vertical × 16px horizontal padding. Uppercase or sentence case. Letter-spacing 0.083em. Used for 'Sign Up Now', 'Select Plan'."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary CTA, nav actions against dark backgrounds",
+        "description": "Transparent fill, 1px solid white border, white text weight 600, 8px radius, 10px vertical × 16px horizontal padding. Used for 'Sign Up Now' in the header against dark hero."
+      },
+      {
+        "name": "Pricing Tier Card",
+        "role": "Subscription plan display with feature list and price",
+        "description": "White (#ffffff) surface on black page — full polarity inversion. 4.5px border-radius, 24px padding, checkmark icons in blue (#3d6a99) for feature items, bold price at 28px weight 700, '/month' suffix in lighter weight. Bottom-right Signal Blue Select Plan button."
+      },
+      {
+        "name": "Category Tile",
+        "role": "Genre/content category navigation cards",
+        "description": "Full-bleed poster image background, 8px radius, overlay text at bottom: category name in white weight 600, 'for' label in muted white, content title in uppercase small-caps. Used for Movies, Family, Drama, Comedy, Action, True Crime."
+      },
+      {
+        "name": "Billing Toggle",
+        "role": "Monthly/Yearly plan period switcher",
+        "description": "Pill-shaped (100px radius) container with two segments. Active segment: white background, black text. Inactive: transparent, white text. 24px horizontal × 12px vertical padding per segment. SAVE badge floats above in #3d6a99."
+      },
+      {
+        "name": "Header Navigation",
+        "role": "Top-level site navigation and auth actions",
+        "description": "Transparent over hero, minimal. HBO Max logo left (white, stacked). Right side: 'Sign In' text link + 'Sign Up Now' ghost button. No background bar — floats directly on dark hero."
+      },
+      {
+        "name": "Content Hero Grid",
+        "role": "Full-bleed poster wall above the fold",
+        "description": "Dense grid of content poster art (10+ columns on desktop), slight tilt/perspective effect, poster images edge-to-edge. Logo + pricing copy + CTA centered over the grid with no card or panel — text sits directly on the artwork."
+      },
+      {
+        "name": "Feature Check Item",
+        "role": "Line item within pricing cards listing plan capabilities",
+        "description": "Blue (#3d6a99) checkmark icon at 14px, followed by dark text weight 400 at 14px. Consistent 8px vertical gap between items. Unchecked items: empty circle outline in same blue."
+      },
+      {
+        "name": "Carousel Section Header",
+        "role": "Genre section titles with horizontal scroll affordance",
+        "description": "Centered title at 28px weight 400, flanked by left/right arrow chevrons in muted gray. Adjacent dimmed genre labels scroll into view. Letter-spacing 0.083em for cinematic feel."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Major page section titles like 'Pick Your Perfect Plan'",
+        "description": "White text at 28px weight 400, centered alignment, generous 64px vertical breathing room above and below. Subtext at 16px weight 400 in #b8b6bb muted gray."
+      },
+      {
+        "name": "Annual Savings Link",
+        "role": "Yearly pricing callout below monthly price",
+        "description": "'Or pay €X/year and save €Y' in blue (#3d6a99) text link at 12px weight 400, with right-arrow chevron. Sits directly below the /month price line."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Custom sans-serif. Weights 300–400 carry the bulk of body and headline work; 600–700 reserved for prices and CTAs; 100 used for ultra-light display moments. Positive letter-spacing (0.083–0.1em) on small labels gives cinematic, marquee-poster feel.",
+        "sizes": "10, 12, 13, 14, 16, 18, 19, 20, 24, 26, 28, 35, 37, 44, 56",
+        "family": "Max Sans",
+        "weight": "100, 300, 400, 600, 700",
+        "lineHeight": "0.80, 1.00, 1.10, 1.11, 1.20, 1.23, 1.25, 1.35, 1.60, 1.96",
+        "substitute": "Inter, Helvetica Neue, or Söhne",
+        "letterSpacing": "+0.83px at 10px, +1.0px at 12px, +1.6px at 16px",
+        "fontFeatureSettings": "\"locl\" 0"
+      }
+    ],
+    "description": "HBO Max is a cinema-dark streaming interface: deep black canvas, content poster art as the primary visual unit, and a single steel-blue accent that powers every interactive element. The design is deliberately sparse — white text floats on black, pricing cards flip the polarity to white-on-light to signal commerce zones, and typography does the heavy lifting through size and spacing rather than color. Components stay flat and minimal: 8px-radius buttons, hairline borders, no shadows, no gradients. The custom Max Sans typeface carries a slight positive letter-spacing on small labels, giving even utility text a cinematic, editorial quality.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/898f0127-d235-4832-bf33-ab21104f0529#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"HBO Max design system\",\"item\":\"https://styles.refero.design/style/898f0127-d235-4832-bf33-ab21104f0529\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/898f0127-d235-4832-bf33-ab21104f0529#style-reference\",\"name\":\"HBO Max design system reference\",\"headline\":\"HBO Max design system | Refero Styles\",\"description\":\"Explore HBO Max's dark Media design system: Obsidian #000000, Smoke #050409 colors, Max Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/898f0127-d235-4832-bf33-ab21104f0529\",\"mainEntityOfPage\":\"https://styles.refero.design/style/898f0127-d235-4832-bf33-ab21104f0529\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"HBO Max\",\"url\":\"https://www.hbomax.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/898f0127-d235-4832-bf33-ab21104f0529#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a1aec050-e3eb-4fee-96db-4235ca326236.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a1aec050-e3eb-4fee-96db-4235ca326236.jpg\",\"caption\":\"Screenshot of HBO Max\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a1aec050-e3eb-4fee-96db-4235ca326236.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"HBO Max design system\",\"HBO Max website design\",\"HBO Max colors\",\"HBO Max typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Obsidian\",\"Smoke\",\"Ash Mist\",\"Iron Veil\",\"Max Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"HBO Max design system\"},{\"@type\":\"Thing\",\"name\":\"HBO Max website design\"},{\"@type\":\"Thing\",\"name\":\"HBO Max colors\"},{\"@type\":\"Thing\",\"name\":\"HBO Max typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T01:03:56.416Z\",\"dateModified\":\"2026-04-30T01:03:56.416Z\"}]}19:T688,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- border: #050409\n- accent: #3d6a99\n- link/hover: #71b8f2\n- primary action: #3d6a99 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. **Hero Section**: Full-bleed #000000 background with a 10-column grid of poster images filling the viewport. Centered white HBO Max logo at 56px weight 300, letter-spacing 0.083em. Below: 'Start streaming with HBO Max plans from €6.99/month' at 16px weight 400 white. Signal Blue CTA button: #3d6a99 fill, white text 14px weight 600, 8px radius, 12px 24px padding, letter-spacing 0.083em.\n\n2. **Pricing Card**: White (#ffffff) surface, 4.5px radius, 24px padding. Plan name 'Standard' at 20px weight 400. Feature list: #3d6a99 checkmark icons at 14px with dark body text. Price '€10.99' at 28px weight 700, '/month' suffix at 14px weight 400. Signal Blue Select Plan button (8px radius) bottom-right. Annual savings link in #3d6a99 at 12px below price.\n\n3. **Category Tile**: Full-bleed poster image, 8px radius, 200px height. Bottom overlay: category name 'Drama' in white 20px weight 600, 'HBO ORIGINAL' label in uppercase 10px weight 400 white at 0.1em tracking, content title 'EUPHORIA' in 12px weight 400.\n\n4. **Billing Toggle**: 100px-radius pill, 2px border in #050409. 'MONTHLY' active: white fill, black text 14px weight 600. 'YEARLY' inactive: transparent, white text. SAVE 16% badge above in #3d6a99 with white text 10px weight 600.\n\n5. **Carousel Header**: 'DISCOVER THE GREATEST' eyebrow at 12px weight 400 #b8b6bb, letter-spacing 0.1em. Genre name 'Epics' at 35px weight 300 white, centered. Left/right #89868e chevron arrows flanking, 24px from text."
+      },
+      {
+        "title": "Polarity System",
+        "content": "The defining structural principle is surface polarity inversion. The page lives in #000000 darkness. Commerce zones (pricing) flip to #ffffff light. Active states use #3d6a99 blue as the single chromatic signal. Never blend these zones with gradients, overlays, or transitional surfaces — the contrast between black, white, and blue IS the visual system. Cards on black feel like illuminated screens; cards on white feel like printed pages. This binary approach eliminates ambiguity about where the user is in the conversion funnel."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. Depth is communicated exclusively through surface color polarity shifts — white cards on black background create contrast-based elevation, never drop shadows. This keeps the cinema-dark aesthetic pure: no fake light sources, only true surface contrast."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "card",
+            "button",
+            "body",
+            "nav",
+            "hero",
+            "heading",
+            "image",
+            "list",
+            "icon",
+            "footer"
+          ],
+          "frequency": 1203,
+          "confidence": 1,
+          "prominence": 86626116.92253742,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 8,
+            "body/color": 32,
+            "card/color": 1,
+            "hero/color": 1,
+            "icon/color": 2,
+            "list/color": 10,
+            "other/fill": 6,
+            "image/color": 13,
+            "other/color": 148,
+            "button/color": 22,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "heading/color": 21,
+            "nav/borderColor": 32,
+            "body/borderColor": 128,
+            "card/borderColor": 4,
+            "hero/borderColor": 4,
+            "icon/borderColor": 8,
+            "list/borderColor": 22,
+            "image/borderColor": 52,
+            "other/borderColor": 580,
+            "button/borderColor": 12,
+            "footer/borderColor": 4,
+            "heading/borderColor": 84,
+            "body/backgroundColor": 1,
+            "card/backgroundColor": 4,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "card",
+            "nav",
+            "button",
+            "body",
+            "other",
+            "heading",
+            "list",
+            "icon"
+          ],
+          "frequency": 696,
+          "confidence": 1,
+          "prominence": 79950690.5881384,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "nav/color": 1,
+            "body/color": 37,
+            "card/color": 4,
+            "icon/color": 2,
+            "list/color": 28,
+            "other/fill": 14,
+            "other/color": 50,
+            "button/color": 2,
+            "heading/color": 11,
+            "nav/borderColor": 4,
+            "body/borderColor": 148,
+            "card/borderColor": 16,
+            "icon/borderColor": 8,
+            "list/borderColor": 112,
+            "other/borderColor": 212,
+            "heading/borderColor": 37,
+            "nav/backgroundColor": 1,
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#b8b6bb",
+          "oklch": {
+            "c": 0.007398894411966738,
+            "h": 302.191702769725,
+            "l": 0.7795784874240266
+          },
+          "contexts": [
+            "body",
+            "button",
+            "icon",
+            "other"
+          ],
+          "frequency": 84,
+          "confidence": 1,
+          "prominence": 479980.05903454404,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 14,
+            "icon/color": 2,
+            "button/color": 2,
+            "other/stroke": 2,
+            "body/borderColor": 56,
+            "icon/borderColor": 8
+          }
+        },
+        {
+          "hex": "#050409",
+          "oklch": {
+            "c": 0.016526816603183503,
+            "h": 302.8230780591499,
+            "l": 0.11125026771392166
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 346765.40266523627,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 4,
+            "other/borderColor": 16,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#89868e",
+          "oklch": {
+            "c": 0.013050173451459026,
+            "h": 302.0134048843562,
+            "l": 0.6237101403971717
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 118693.08679150522,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 2
+          }
+        },
+        {
+          "hex": "#999999",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6829534013134412
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 76782.08477565482,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 1,
+            "body/borderColor": 4,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#3d6a99",
+          "oklch": {
+            "c": 0.09014283388878608,
+            "h": 250.92161294028585,
+            "l": 0.5134143895943408
+          },
+          "contexts": [
+            "link",
+            "icon",
+            "button",
+            "other"
+          ],
+          "frequency": 106,
+          "confidence": 1,
+          "prominence": 45289.175214642906,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 6,
+            "icon/color": 3,
+            "link/color": 6,
+            "other/fill": 3,
+            "other/color": 12,
+            "icon/borderColor": 12,
+            "link/borderColor": 12,
+            "other/borderColor": 48,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#0e0a17",
+          "oklch": {
+            "c": 0.02903565070143205,
+            "h": 299.30370907118447,
+            "l": 0.1569981116184736
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 41703,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "heading/borderColor": 7
+          }
+        },
+        {
+          "hex": "#71b8f2",
+          "oklch": {
+            "c": 0.11034408725359873,
+            "h": 244.62833685887566,
+            "l": 0.7586945286536858
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 3504,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "link/color": 3
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.014051129297521834,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.43,
+          "background": "#050409",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.54,
+          "background": "#ffffff",
+          "foreground": "#0e0a17"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.45,
+          "background": "#000000",
+          "foreground": "#b8b6bb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.16,
+          "background": "#050409",
+          "foreground": "#b8b6bb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.84,
+          "background": "#000000",
+          "foreground": "#71b8f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.72,
+          "background": "#b8b6bb",
+          "foreground": "#0e0a17"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.57,
+          "background": "#050409",
+          "foreground": "#71b8f2"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.16,
+          "background": "#71b8f2",
+          "foreground": "#0e0a17"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.37,
+          "background": "#000000",
+          "foreground": "#999999"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.17,
+          "background": "#050409",
+          "foreground": "#999999"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.65,
+          "background": "#3d6a99",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.72,
+          "background": "#3d6a99",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.62,
+          "background": "#3d6a99",
+          "foreground": "#050409"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.85,
+          "background": "#ffffff",
+          "foreground": "#999999"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.81,
+          "background": "#3d6a99",
+          "foreground": "#b8b6bb"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.65,
+          "background": "#3d6a99",
+          "foreground": "#71b8f2"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.13,
+          "background": "#ffffff",
+          "foreground": "#71b8f2"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.01,
+          "background": "#ffffff",
+          "foreground": "#b8b6bb"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.98,
+          "background": "#3d6a99",
+          "foreground": "#999999"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "image"
+          ],
+          "frequency": 25
+        },
+        {
+          "value": 4.5,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "heading",
+            "icon",
+            "body"
+          ],
+          "frequency": 47,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginRight",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginLeft|button",
+            "marginRight|heading",
+            "marginBottom|heading",
+            "marginLeft|heading",
+            "marginTop|heading",
+            "marginRight|icon",
+            "marginRight|body",
+            "marginTop|button",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 36,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingBottom|heading",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "button",
+            "heading"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|heading"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "card",
+            "list"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginBottom|card",
+            "paddingTop|list",
+            "paddingBottom|list"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 79,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "body",
+            "list"
+          ],
+          "frequency": 66,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginRight|nav",
+            "marginTop|heading",
+            "marginBottom|heading",
+            "marginTop|body",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginTop|list",
+            "marginBottom|list",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "nav",
+            "heading",
+            "body",
+            "other",
+            "footer"
+          ],
+          "frequency": 61,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginLeft|nav",
+            "marginTop|heading",
+            "marginBottom|body",
+            "paddingTop|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginTop|footer"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "image",
+            "body"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginTop|image",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|list",
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 95,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 143,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 26,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 255,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Max Sans",
+          "source": "custom",
+          "weights": [
+            100,
+            300,
+            400,
+            600,
+            700
+          ],
+          "frequency": 442,
+          "fontFeatureSettings": [
+            "\"locl\" 0"
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Max Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.23,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "Max Sans",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.083,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Max Sans",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.083,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Max Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Max Sans",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Max Sans",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body",
+            "nav"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Max Sans",
+          "weight": 400,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Max Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Max Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Max Sans",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Max Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.35,
+          "letterSpacing": 0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Max Sans",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Max Sans",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Max Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Max Sans",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Max Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Max Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Max Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Max Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "nav",
+            "hero",
+            "body",
+            "list",
+            "image",
+            "button",
+            "icon",
+            "footer"
+          ],
+          "frequency": 212,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Max Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Max Sans",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Max Sans",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "image"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Max Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Max Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Max Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Max Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "Max Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Max Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Max Sans",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Max Sans",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 35,
+          "family": "Max Sans",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "image"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 37,
+          "family": "Max Sans",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "image"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.96,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 44,
+          "family": "Max Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Max Sans",
+          "weight": 100,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/cbcac0ef-005e-4d27-b67f-1cb79aba7679.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/a1aec050-e3eb-4fee-96db-4235ca326236.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/898f0127-d235-4832-bf33-ab21104f0529#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"HBO Max design system\",\"item\":\"https://styles.refero.design/style/898f0127-d235-4832-bf33-ab21104f0529\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/898f0127-d235-4832-bf33-ab21104f0529#style-reference\",\"name\":\"HBO Max design system reference\",\"headline\":\"HBO Max design system | Refero Styles\",\"description\":\"Explore HBO Max's dark Media design system: Obsidian #000000, Smoke #050409 colors, Max Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/898f0127-d235-4832-bf33-ab21104f0529\",\"mainEntityOfPage\":\"https://styles.refero.design/style/898f0127-d235-4832-bf33-ab21104f0529\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"HBO Max\",\"url\":\"https://www.hbomax.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/898f0127-d235-4832-bf33-ab21104f0529#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/a1aec050-e3eb-4fee-96db-4235ca326236.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/a1aec050-e3eb-4fee-96db-4235ca326236.jpg\",\"caption\":\"Screenshot of HBO Max\"},\"image\":\"https://images.refero.design/styles/refero.design/image/a1aec050-e3eb-4fee-96db-4235ca326236.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"HBO Max design system\",\"HBO Max website design\",\"HBO Max colors\",\"HBO Max typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Obsidian\",\"Smoke\",\"Ash Mist\",\"Iron Veil\",\"Max Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"HBO Max design system\"},{\"@type\":\"Thing\",\"name\":\"HBO Max website design\"},{\"@type\":\"Thing\",\"name\":\"HBO Max colors\"},{\"@type\":\"Thing\",\"name\":\"HBO Max typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T01:03:56.416Z\",\"dateModified\":\"2026-04-30T01:03:56.416Z\"}]}19:T688,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- border: #050409\n- accent: #3d6a99\n- link/hover: #71b8f2\n- primary action: #3d6a99 (filled action)\n\n**3-5 Example Component Prompts**\n\n1. **Hero Section**: Full-bleed #000000 background with a 10-column grid of poster images filling the viewport. Centered white HBO Max logo at 56px weight 300, letter-spacing 0.083em. Below: 'Start streaming with HBO Max plans from €6.99/month' at 16px weight 400 white. Signal Blue CTA button: #3d6a99 fill, white text 14px weight 600, 8px radius, 12px 24px padding, letter-spacing 0.083em.\n\n2. **Pricing Card**: White (#ffffff) surface, 4.5px radius, 24px padding. Plan name 'Standard' at 20px weight 400. Feature list: #3d6a99 checkmark icons at 14px with dark body text. Price '€10.99' at 28px weight 700, '/month' suffix at 14px weight 400. Signal Blue Select Plan button (8px radius) bottom-right. Annual savings link in #3d6a99 at 12px below price.\n\n3. **Category Tile**: Full-bleed poster image, 8px radius, 200px height. Bottom overlay: category name 'Drama' in white 20px weight 600, 'HBO ORIGINAL' label in uppercase 10px weight 400 white at 0.1em tracking, content title 'EUPHORIA' in 12px weight 400.\n\n4. **Billing Toggle**: 100px-radius pill, 2px border in #050409. 'MONTHLY' active: white fill, black text 14px weight 600. 'YEARLY' inactive: transparent, white text. SAVE 16% badge above in #3d6a99 with white text 10px weight 600.\n\n5. **Carousel Header**: 'DISCOVER THE GREATEST' eyebrow at 12px weight 400 #b8b6bb, letter-spacing 0.1em. Genre name 'Epics' at 35px weight 300 white, centered. Left/right #89868e chevron arrows flanking, 24px from text."
+}

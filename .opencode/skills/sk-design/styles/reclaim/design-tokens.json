@@ -1,0 +1,752 @@
+{
+  "color": {
+    "lavender-canvas": {
+      "$value": "#ebefff",
+      "$type": "color",
+      "$description": "Lavender Canvas — Page background, hero section wash, footer background — the base atmosphere that distinguishes Reclaim from generic white SaaS"
+    },
+    "white-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "White Surface — Card surfaces, product mockup containers, button text on dark fills — pure white provides the resting layer above the lavender canvas"
+    },
+    "midnight-ink": {
+      "$value": "#181d25",
+      "$type": "color",
+      "$description": "Midnight Ink — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color"
+    },
+    "graphite": {
+      "$value": "#111111",
+      "$type": "color",
+      "$description": "Graphite — Body copy and card text on light surfaces — sits just above pure black for slightly softer reading weight"
+    },
+    "slate": {
+      "$value": "#474747",
+      "$type": "color",
+      "$description": "Slate — Muted helper text, secondary descriptions, footer text — the workhorse for non-headline copy"
+    },
+    "charcoal": {
+      "$value": "#2b2b2b",
+      "$type": "color",
+      "$description": "Charcoal — Subheadings and emphasized body — bridges Midnight Ink headings and Slate body text"
+    },
+    "stone": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Stone — Tertiary text, breadcrumb-style labels"
+    },
+    "mist": {
+      "$value": "#ececec",
+      "$type": "color",
+      "$description": "Mist — Hairline dividers, decorative strokes, subtle separators"
+    },
+    "iris-violet": {
+      "$value": "#5562eb",
+      "$type": "color",
+      "$description": "Iris Violet — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "sapphire-violet": {
+      "$value": "#3451e8",
+      "$type": "color",
+      "$description": "Sapphire Violet — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "lavender-mist": {
+      "$value": "#c2caf9",
+      "$type": "color",
+      "$description": "Lavender Mist — Soft tints for product card highlights, decorative violet washes, outlined button borders — the muted cousin of Iris Violet"
+    },
+    "periwinkle": {
+      "$value": "#96a0f3",
+      "$type": "color",
+      "$description": "Periwinkle — Disabled or secondary violet state, ghost button text on violet themes"
+    },
+    "indigo-depth": {
+      "$value": "#151f8b",
+      "$type": "color",
+      "$description": "Indigo Depth — Dark mode gradient anchor, deep accent for special promotional sections"
+    },
+    "focus-green": {
+      "$value": "#7ac17b",
+      "$type": "color",
+      "$description": "Focus Green — Green supporting accent for decorative details and low-frequency emphasis"
+    },
+    "mint-whisper": {
+      "$value": "#daf0db",
+      "$type": "color",
+      "$description": "Mint Whisper — Light supporting surface for subtle backgrounds and section separation"
+    },
+    "forest-edge": {
+      "$value": "#14532d",
+      "$type": "color",
+      "$description": "Forest Edge — Dark green gradient stop for special promotional banners"
+    },
+    "brick": {
+      "$value": "#5a1a1a",
+      "$type": "color",
+      "$description": "Brick — Red supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    }
+  },
+  "font": {
+    "poppins": {
+      "$value": "Poppins",
+      "$type": "fontFamily",
+      "$description": "Exclusive brand typeface used for every text element. The 300-weight whisper at 70–90px for hero headlines is the signature move — most productivity apps use bold display weights, but Reclaim's thin Poppins headlines float above the page rather than punch through it. Letter-spacing is consistently tightened at -0.01em across all sizes, giving the rounded Poppins letterforms a slightly more compact, intentional feel rather than the default airy spacing."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Secondary fallback used only in 24 specific UI spots — effectively negligible. Treat as legacy or data-table context, not a design system font."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 2.46
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 2.46
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 3.08
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 2.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 2.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "sm-13": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-13 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "base-9": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-9 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.78
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1.78
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "18px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.78
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "lg-8": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-8 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "22px",
+        "fontWeight": 300,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "40px",
+        "fontWeight": 300,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 40px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "44px",
+        "fontWeight": 500,
+        "lineHeight": 1.36
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 44px"
+    },
+    "4xl-5": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "46px",
+        "fontWeight": 400,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-5 at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "48px",
+        "fontWeight": 300,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "70px",
+        "fontWeight": 300,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 70px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Poppins",
+        "fontSize": "90px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 90px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "lavender-canvas": {
+      "$value": "#ebefff",
+      "$type": "color",
+      "$description": "Surface level 0: Page-level background, hero wash, section bands — the atmospheric base"
+    },
+    "white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Product mockup containers, pricing cards, feature blocks — clean resting layer"
+    },
+    "mint-wash": {
+      "$value": "#daf0db",
+      "$type": "color",
+      "$description": "Surface level 2: Green-tinted callout sections, stat highlights, success panels"
+    },
+    "lavender-mist": {
+      "$value": "#c2caf9",
+      "$type": "color",
+      "$description": "Surface level 3: Subtle violet-tinted panels, decorative bands, soft section dividers"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://reclaim.ai",
+      "siteName": "Reclaim",
+      "extractedAt": "2026-06-03T20:01:32.538Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,419 @@
+{
+  "color": {
+    "sunlit-cream": {
+      "$value": "#f2ee98",
+      "$type": "color",
+      "$description": "Sunlit Cream — Page canvas and section background — the warm desert-light base that sets the system's botanical mood"
+    },
+    "forest-ink": {
+      "$value": "#10380b",
+      "$type": "color",
+      "$description": "Forest Ink — Primary text, pill button fills, icon strokes, hard offset shadow, and brand mark — the single deep green that does 80% of structural work"
+    },
+    "marigold": {
+      "$value": "#fce519",
+      "$type": "color",
+      "$description": "Marigold — Yellow state accent for badges, validation surfaces, and short status labels. Do not promote it to the primary CTA color"
+    },
+    "sage-wash": {
+      "$value": "#dbe8ac",
+      "$type": "color",
+      "$description": "Sage Wash — Muted card and surface tint — a soft botanical green used for subtle panel differentiation on the cream canvas"
+    },
+    "vivid-fern": {
+      "$value": "#30be60",
+      "$type": "color",
+      "$description": "Vivid Fern — Green outline accent for tags, dividers, and focused UI edges. Do not promote it to the primary CTA color"
+    },
+    "parchment": {
+      "$value": "#fefde6",
+      "$type": "color",
+      "$description": "Parchment — Lighter card surface that sits one level above Sunlit Cream — used for product mockup cards, testimonial cards, and elevated panels"
+    },
+    "snowcap": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Snowcap — Pure white for high-contrast text on Forest Ink backgrounds and for thin icon strokes inside the product UI mockup"
+    }
+  },
+  "font": {
+    "national-2-condensed": {
+      "$value": "National 2 Condensed",
+      "$type": "fontFamily",
+      "$description": "Display and heading face — oversized condensed headlines up to 180px drive the poster-like visual identity. Tight -0.03em letter-spacing at all sizes, very tight 0.8 line-height at display weights, creating compressed stacked headlines. Hero 'Unbeatable' appears in italic 800."
+    },
+    "rethinksans": {
+      "$value": "RethinkSans",
+      "$type": "fontFamily",
+      "$description": "Body and UI face — already starts at weight 600, so no light weights exist. The system treats type as a structural element: 16px for nav and small UI, 18px for body, 20px for emphasized body. Line-height 1.0 for inline icons/badges, 1.5-1.71 for readable paragraphs."
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "RethinkSans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "RethinkSans",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "RethinkSans",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "National 2 Condensed",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "RethinkSans",
+        "fontSize": "16px",
+        "fontWeight": 800,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "RethinkSans",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "RethinkSans",
+        "fontSize": "18px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "RethinkSans",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "RethinkSans",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "National 2 Condensed",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "National 2 Condensed",
+        "fontSize": "18px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "RethinkSans",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "National 2 Condensed",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "National 2 Condensed",
+        "fontSize": "24px",
+        "fontWeight": 800,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "National 2 Condensed",
+        "fontSize": "32px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "National 2 Condensed",
+        "fontSize": "40px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "National 2 Condensed",
+        "fontSize": "48px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "National 2 Condensed",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 56px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "National 2 Condensed",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 56px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "National 2 Condensed",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 64px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "National 2 Condensed",
+        "fontSize": "86px",
+        "fontWeight": 700,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 86px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "National 2 Condensed",
+        "fontSize": "86px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 86px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "National 2 Condensed",
+        "fontSize": "104px",
+        "fontWeight": 700,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 104px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "National 2 Condensed",
+        "fontSize": "156px",
+        "fontWeight": 600,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 156px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "National 2 Condensed",
+        "fontSize": "180px",
+        "fontWeight": 600,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 180px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(16, 56, 11) 8px 8px 0px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "sunlit-cream": {
+      "$value": "#f2ee98",
+      "$type": "color",
+      "$description": "Surface level 0: Default page canvas and section background"
+    },
+    "parchment": {
+      "$value": "#fefde6",
+      "$type": "color",
+      "$description": "Surface level 1: Lighter card surface for testimonials, product mockups, and elevated panels"
+    },
+    "sage-wash": {
+      "$value": "#dbe8ac",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle tint for differentiation panels within cream sections"
+    },
+    "snowcap": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 3: Pure white only inside product UI mockups and chat bubbles"
+    },
+    "forest-ink": {
+      "$value": "#10380b",
+      "$type": "color",
+      "$description": "Surface level 4: Inverted dark surface for stat bars, feature cards, and high-contrast sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.textla.com",
+      "siteName": "Textla",
+      "extractedAt": "2026-06-03T20:53:52.002Z",
+      "variant": "extended"
+    }
+  }
+}

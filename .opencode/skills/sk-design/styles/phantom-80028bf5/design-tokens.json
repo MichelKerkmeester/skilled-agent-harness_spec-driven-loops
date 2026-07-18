@@ -1,0 +1,329 @@
+{
+  "color": {
+    "midnight-violet": {
+      "$value": "#3c315b",
+      "$type": "color",
+      "$description": "Midnight Violet — Dark section backgrounds, primary text on light surfaces, nav text — the deep brand violet anchors identity and gives the dark hero/sections their weight"
+    },
+    "lavender-whisper": {
+      "$value": "#e2dffe",
+      "$type": "color",
+      "$description": "Lavender Whisper — Brand-tinted shadow, soft accent washes, subtle elevation glow — replaces neutral gray shadows so elevation stays on-brand"
+    },
+    "ghost-lilac": {
+      "$value": "#ab9ff2",
+      "$type": "color",
+      "$description": "Ghost Lilac — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "cornflower-pop": {
+      "$value": "#4a87f2",
+      "$type": "color",
+      "$description": "Cornflower Pop — Rare accent for highlighted CTAs or featured buttons — a brighter blue-violet used sparingly for emphasis"
+    },
+    "cream-glow": {
+      "$value": "#ffffc4",
+      "$type": "color",
+      "$description": "Cream Glow — Decorative pastel surface — soft yellow wash for feature cards or playful callouts against the violet system"
+    },
+    "blush-mist": {
+      "$value": "#ffdadc",
+      "$type": "color",
+      "$description": "Blush Mist — Decorative pastel surface — pale pink wash for feature cards or playful callouts within the light sections"
+    },
+    "emerald-mint": {
+      "$value": "#2ec08b",
+      "$type": "color",
+      "$description": "Emerald Mint — Green supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    },
+    "cloud-canvas": {
+      "$value": "#fdfcfe",
+      "$type": "color",
+      "$description": "Cloud Canvas — Page canvas, light card surfaces, button text on dark — the near-white base that everything sits on"
+    },
+    "charcoal-ink": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Charcoal Ink — Primary text on light surfaces, text on cream/blush accents — the dark reading color"
+    },
+    "frost-white": {
+      "$value": "#f4f2f4",
+      "$type": "color",
+      "$description": "Frost White — Secondary light surface, subtle panel backgrounds, light section fills — a warm-tinted off-white for elevation"
+    },
+    "ash-veil": {
+      "$value": "#e9e8ea",
+      "$type": "color",
+      "$description": "Ash Veil — Tertiary surface, hairline borders, disabled states — barely-there gray for structural separation"
+    },
+    "slate-mute": {
+      "$value": "#86848d",
+      "$type": "color",
+      "$description": "Slate Mute — Muted helper text, secondary icons, inactive nav items — mid-gray for de-emphasized content"
+    }
+  },
+  "font": {
+    "phantom": {
+      "$value": "Phantom",
+      "$type": "fontFamily",
+      "$description": "The sole typeface — custom Phantom with two whisper-light weights. Weight 350 for display/headlines, 400 for body and UI text. The single-weight light approach is anti-convention for crypto (which defaults to bold 700 headlines); the thin strokes make Phantom feel editorial and calm, not aggressive or financial. The custom letterforms — visible in the rounded 'a' and open 'e' — give the brand a distinctive typographic fingerprint that no system font replicates."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "20px",
+        "fontWeight": 350,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "64px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "80px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Phantom",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 96px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgb(226, 223, 254) 0px 0px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "cloud-canvas": {
+      "$value": "#fdfcfe",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background, light hero sections"
+    },
+    "frost-white": {
+      "$value": "#f4f2f4",
+      "$type": "color",
+      "$description": "Surface level 1: Light section fills, subtle card elevation"
+    },
+    "cream-glow": {
+      "$value": "#ffffc4",
+      "$type": "color",
+      "$description": "Surface level 2: Decorative pastel feature card surface"
+    },
+    "blush-mist": {
+      "$value": "#ffdadc",
+      "$type": "color",
+      "$description": "Surface level 3: Decorative pastel feature card surface"
+    },
+    "midnight-violet": {
+      "$value": "#3c315b",
+      "$type": "color",
+      "$description": "Surface level 4: Dark section background, full-bleed dark hero panels"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://phantom.app",
+      "siteName": "Phantom",
+      "extractedAt": "2026-06-03T17:51:59.669Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — All text — display headlines, body copy, navigation links, and icon strokes"
+    },
+    "ash-gray": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Ash Gray — Secondary and supporting text — link hover or muted labels where visual weight must recede"
+    }
+  },
+  "font": {
+    "lab-grotesque": {
+      "$value": "Lab Grotesque",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for the entire site. Weight 100 at 40px is the signature display treatment for the owner name and year — a near-ultralight stroke that reads as quietly confident against the white void. Weight 400 at 18px handles body and link text. Weight 600 at 20px gives nav links a subtle mechanical weight without crossing into bold territory. No other families appear."
+    }
+  },
+  "typography": {
+    "lg": {
+      "$value": {
+        "fontFamily": "Lab Grotesque",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Lab Grotesque",
+        "fontSize": "18px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Lab Grotesque",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Lab Grotesque",
+        "fontSize": "18px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Lab Grotesque",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Lab Grotesque",
+        "fontSize": "20px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Lab Grotesque",
+        "fontSize": "40px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    }
+  },
+  "spacing": {
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "54": {
+      "$value": "54px",
+      "$type": "dimension",
+      "$description": "Spacing 54px"
+    },
+    "63": {
+      "$value": "63px",
+      "$type": "dimension",
+      "$description": "Spacing 63px"
+    },
+    "68": {
+      "$value": "68px",
+      "$type": "dimension",
+      "$description": "Spacing 68px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "135": {
+      "$value": "135px",
+      "$type": "dimension",
+      "$description": "Spacing 135px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed page background — the only surface in the system"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://mikematas.com",
+      "siteName": "Mike Matas",
+      "extractedAt": "2026-06-03T14:58:31.833Z",
+      "variant": "extended"
+    }
+  }
+}

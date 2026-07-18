@@ -1,0 +1,539 @@
+{
+  "color": {
+    "deep-indigo": {
+      "$value": "#234386",
+      "$type": "color",
+      "$description": "Deep Indigo — Primary brand color — headlines, navigation text, links, filled CTA buttons, and dark section backgrounds. The only cool saturated hue in the system, it gives every action weight and authority"
+    },
+    "honey-gold": {
+      "$value": "#ffc400",
+      "$type": "color",
+      "$description": "Honey Gold — Decorative accent — used exclusively in organic flowing blob shapes and illustration highlights, never as a fill or button. The warm burst of yellow is the system's signature punctuation against the cream canvas"
+    },
+    "burnt-orange": {
+      "$value": "#ed7328",
+      "$type": "color",
+      "$description": "Burnt Orange — Orange accent for outlined action borders, linked labels, and lightweight interactive emphasis."
+    },
+    "sky-blue": {
+      "$value": "#6aa8dc",
+      "$type": "color",
+      "$description": "Sky Blue — Soft illustration blue — used in botanical line-art washes and supporting decorative blobs. Lighter and more atmospheric than the primary indigo, it adds depth to the plant illustrations"
+    },
+    "warm-sand": {
+      "$value": "#d2b68c",
+      "$type": "color",
+      "$description": "Warm Sand — Subtle warm accent — used sparingly in illustration details and supporting decorative shapes. Bridges the gap between the cream canvas and the more saturated orange and gold accents"
+    },
+    "mint-sage": {
+      "$value": "#a2d3a6",
+      "$type": "color",
+      "$description": "Mint Sage — Botanical green — appears in organic blob shapes and plant illustration washes. Soft enough to read as a pastel, it reinforces the plant-based brand without competing with the indigo or orange"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, hairline borders, icon strokes, and neutral UI elements. The sheer frequency of black borders (503+ occurrences) signals the system relies on thin dividing lines rather than card elevation to separate content"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, text on dark backgrounds, button text fills, and inset panels. Creates the layered surface effect — white cards resting on the cream canvas"
+    },
+    "cream-paper": {
+      "$value": "#fbf9f6",
+      "$type": "color",
+      "$description": "Cream Paper — Page canvas and hero background. This warm off-white is the system's base surface, immediately distinguishing it from a stark white SaaS layout — it reads as paper, not screen"
+    },
+    "soft-shadow": {
+      "$value": "#d6d6d6",
+      "$type": "color",
+      "$description": "Soft Shadow — Card shadow base tone — used exclusively in box-shadow declarations at low opacity. The shadow is the only elevation mechanism; there are no borders on cards"
+    }
+  },
+  "font": {
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Times — detected in extracted data but not described by AI"
+    },
+    "hwt-artz": {
+      "$value": "hwt-artz",
+      "$type": "fontFamily",
+      "$description": "Primary display headline font — bold condensed slab/sans used in all-caps for section headings like 'INCREDIBLE RECIPES'. The 0.043em letter-spacing tightens the character set into a confident, packed block of type. Substitute: Bebas Neue, Anton, or Oswald Bold for a similar condensed display voice."
+    },
+    "delivery-note-demo": {
+      "$value": "Delivery Note DEMO",
+      "$type": "fontFamily",
+      "$description": "Secondary display font — used for large hero-level headlines at 56–58px. Slightly looser tracking (0.031em) than hwt-artz, it reads as the 'loud' voice while hwt-artz handles sub-display. Substitute: Oswald Bold or Roboto Condensed Black."
+    },
+    "sandmanfill": {
+      "$value": "Sandman_Fill",
+      "$type": "fontFamily",
+      "$description": "Mega display font reserved for the largest brand-level statements. At 86–88px with a 0.73–0.82 line-height, it creates an enormous visual anchor. The very tight line-height lets characters stack and fill space. Substitute: Playfair Display Black or DM Serif Display for a serif display alternative."
+    },
+    "axiforma": {
+      "$value": "Axiforma",
+      "$type": "fontFamily",
+      "$description": "Primary body and UI font — geometric humanist sans used for paragraph text, form inputs, and small labels. Its signature is the dramatically wide letter-spacing (0.063em to 0.267em) on labels and navigation, creating a spaced-out, editorial cadence. At 16px in body copy, tracking relaxes. Substitute: Inter or DM Sans."
+    },
+    "itc-avant-garde-std-bk": {
+      "$value": "ITC Avant Garde Std Bk",
+      "$type": "fontFamily",
+      "$description": "Geometric sans for navigation and labels — used at the widest tracking in the system (0.133em to 0.267em). The Avant Garde influence is unmistakable in the perfectly circular letterforms (O, C, G) when used in nav items. Substitute: Futura or Jost."
+    },
+    "caveat-script-accent": {
+      "$value": "Caveat (script accent)",
+      "$type": "fontFamily",
+      "$description": "Handwritten italic script for emotional taglines and subheadlines (e.g. 'The future of cooking – today'). This is a brand voice layer — not a structural font — that adds the human, handwritten quality. Substitute: Caveat, Dancing Script, or Sacramento."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Sonder Sans Black Rough",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Sonder Sans Black Rough",
+        "fontSize": "10px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Sonder Sans Black Rough",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Sonder Sans Black Rough",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Sonder Sans Black Rough",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Axiforma",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Axiforma",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 12px"
+    },
+    "xs-9": {
+      "$value": {
+        "fontFamily": "Axiforma",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-9 at 12px"
+    },
+    "xs-10": {
+      "$value": {
+        "fontFamily": "ITC Avant Garde Std Bk",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-10 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Sonder Sans Black Rough",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Axiforma",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Axiforma",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Axiforma",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Delivery Note DEMO",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Axiforma",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "ITC Avant Garde Std Bk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Sonder Sans Black Rough",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "ITC Avant Garde Std Bk",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Delivery Note DEMO",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "hwt-artz",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Delivery Note DEMO",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.91
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "hwt-artz",
+        "fontSize": "33px",
+        "fontWeight": 400,
+        "lineHeight": 1.18
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 33px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "hwt-artz",
+        "fontSize": "46px",
+        "fontWeight": 400,
+        "lineHeight": 0.87
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "hwt-artz",
+        "fontSize": "46px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Delivery Note DEMO",
+        "fontSize": "56px",
+        "fontWeight": 400,
+        "lineHeight": 0.86
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Delivery Note DEMO",
+        "fontSize": "58px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 58px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Sandman_Fill",
+        "fontSize": "86px",
+        "fontWeight": 400,
+        "lineHeight": 0.73
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 86px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Sandman_Fill",
+        "fontSize": "88px",
+        "fontWeight": 400,
+        "lineHeight": 0.82
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 88px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Sandman_Fill",
+        "fontSize": "88px",
+        "fontWeight": 400,
+        "lineHeight": 0.66
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 88px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "xl": {
+      "$value": "rgba(0, 0, 0, 0.05) 0px 20px 27px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl"
+    },
+    "xl-2": {
+      "$value": "rgba(0, 0, 0, 0.16) -14px 10px 49px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation xl-2"
+    }
+  },
+  "surface": {
+    "cream-paper-canvas": {
+      "$value": "#fbf9f6",
+      "$type": "color",
+      "$description": "Surface level 1: Base page background and hero section — warm off-white that sets the editorial, paper-like atmosphere"
+    },
+    "pure-white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Recipe cards, content panels, and inset surfaces that float above the cream canvas"
+    },
+    "burnt-orange-section": {
+      "$value": "#ed7328",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed alternating section background (e.g. the recipes block) that breaks the cream rhythm with warm energy"
+    },
+    "deep-indigo-section": {
+      "$value": "#234386",
+      "$type": "color",
+      "$description": "Surface level 4: Dark or footer-level section for high-contrast moments, reinforcing the brand primary as a structural color"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.palais.bio",
+      "siteName": "Pa'lais",
+      "extractedAt": "2026-06-03T18:18:44.800Z",
+      "variant": "extended"
+    }
+  }
+}

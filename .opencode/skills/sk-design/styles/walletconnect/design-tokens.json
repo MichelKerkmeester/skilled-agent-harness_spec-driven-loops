@@ -1,0 +1,414 @@
+{
+  "color": {
+    "electric-cobalt": {
+      "$value": "#006cff",
+      "$type": "color",
+      "$description": "Electric Cobalt — Hero panels, filled buttons, active nav indicators, link accents — the primary brand signal, used as a full-bleed surface rather than a small button color to dominate the page"
+    },
+    "indigo-action": {
+      "$value": "#4672ff",
+      "$type": "color",
+      "$description": "Indigo Action — Primary filled action buttons and their borders — a slightly lighter, more violet-shifted blue for interactive surfaces that need to feel pressed and clickable"
+    },
+    "deep-indigo": {
+      "$value": "#1b2045",
+      "$type": "color",
+      "$description": "Deep Indigo — Primary text, headings, and dark button borders — replaces pure black with a warm navy that reads as authoritative without the harshness of #000"
+    },
+    "sky-tint": {
+      "$value": "#66a7ff",
+      "$type": "color",
+      "$description": "Sky Tint — Hover states, subtle outlined button borders, secondary navigation accents — a desaturated companion to Electric Cobalt for non-dominant blue moments"
+    },
+    "glacial-wash": {
+      "$value": "#cce2ff",
+      "$type": "color",
+      "$description": "Glacial Wash — Pale blue tinted backgrounds, soft highlight washes, tag fills, and light section dividers — bridges the white canvas to the blue brand without harsh contrast"
+    },
+    "parchment": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Parchment — Page background canvas — a warm near-white that softens the starkness of pure white and reduces eye strain across long scrolling pages"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, input fields, button text, elevated panels — the brightest surface layer sitting atop Parchment"
+    },
+    "mist": {
+      "$value": "#e9e9e9",
+      "$type": "color",
+      "$description": "Mist — Hairline borders, input outlines, subtle dividers between sections — the quietest structural line color"
+    },
+    "silver": {
+      "$value": "#bbbbbb",
+      "$type": "color",
+      "$description": "Silver — Secondary surface fills, placeholder backgrounds, disabled states"
+    },
+    "pewter": {
+      "$value": "#b3b3b3",
+      "$type": "color",
+      "$description": "Pewter — Shadow base color and muted icon tints"
+    },
+    "fog": {
+      "$value": "#9a9a9a",
+      "$type": "color",
+      "$description": "Fog — Muted body text, secondary metadata, inactive form labels"
+    },
+    "steel": {
+      "$value": "#787878",
+      "$type": "color",
+      "$description": "Steel — Input placeholder text, tertiary captions, subtle icon strokes"
+    },
+    "slate": {
+      "$value": "#6c6c6c",
+      "$type": "color",
+      "$description": "Slate — Link text in their resting state, secondary body copy"
+    },
+    "graphite": {
+      "$value": "#4f4f4f",
+      "$type": "color",
+      "$description": "Graphite — Mid-tier body text, descriptions, helper copy that needs to recede behind headings"
+    },
+    "charcoal": {
+      "$value": "#303030",
+      "$type": "color",
+      "$description": "Charcoal — Dark section borders, footer dividers"
+    },
+    "obsidian": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Obsidian — Dark footer background, dark section panels, card borders on light surfaces — the system's dark surface color, used as a deliberate band rather than scattered"
+    },
+    "cobalt-radial": {
+      "$value": "#099ff0",
+      "$type": "color",
+      "$description": "Cobalt Radial — Radial gradient highlight accent — used sparingly as a luminous spot inside blue panels to create depth"
+    }
+  },
+  "font": {
+    "khteka": {
+      "$value": "KHTeka",
+      "$type": "fontFamily",
+      "$description": "Primary interface and headline typeface — a geometric humanist sans with slightly compressed proportions and a tech-friendly neutrality. Used across all contexts (heading, body, button, nav, card, badge, icon, input) at every measured size. The 36px display weight 700 is the signature headline voice; 16px weight 400 is the comfortable reading body."
+    },
+    "roboto": {
+      "$value": "Roboto",
+      "$type": "fontFamily",
+      "$description": "Secondary system font — appears in modals, cookie banners, and any overlay/dialog content. Its presence suggests system-stack fallbacks for third-party injected UI rather than a deliberate secondary brand choice."
+    },
+    "khteka-mono": {
+      "$value": "KHTeka Mono",
+      "$type": "fontFamily",
+      "$description": "Monospaced companion for code snippets, wallet addresses, transaction hashes, and any alphanumeric string that must align character-by-character in card contexts"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Roboto",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Roboto",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Roboto",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "KHTekaMono-Regular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "KHTeka-Regular",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.46
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "KHTekaMono-Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "KHTeka-Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "KHTeka-Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "KHTeka-Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "KHTeka-Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Roboto",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "KHTeka-Regular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Roboto",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "KHTeka-Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "KHTeka-Regular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "KHTeka-Regular",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "KHTeka-Regular",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "KHTeka-Regular",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "KHTeka-Regular",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.3) 0px 0px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f9f9f9",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, the warm off-white that defines the overall lightness"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Product cards, input fields, elevated content blocks sitting on the canvas"
+    },
+    "recessed": {
+      "$value": "#e9e9e9",
+      "$type": "color",
+      "$description": "Surface level 2: Inset surfaces, subtle grouping backgrounds, disabled state fills"
+    },
+    "brand-panel": {
+      "$value": "#006cff",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed hero bands, feature panels, and any surface where the brand color becomes the background"
+    },
+    "dark-band": {
+      "$value": "#202020",
+      "$type": "color",
+      "$description": "Surface level 4: Footer and inverted dark sections, used as a terminating band at page bottom"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://walletconnect.com",
+      "siteName": "WalletConnect",
+      "extractedAt": "2026-06-03T20:32:27.494Z",
+      "variant": "extended"
+    }
+  }
+}

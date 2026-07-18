@@ -1,0 +1,1137 @@
+{
+  "source": "https://styles.refero.design/style/c5326639-873a-4257-ad1a-7da9111e9286",
+  "uuid": "c5326639-873a-4257-ad1a-7da9111e9286",
+  "name": "Wise Design",
+  "northStar": "Neon market stall on a global street — electric lime signage that shouts across a crowded marketplace, then polished product UI slips in behind it.",
+  "capturedAt": "2026-07-18T10:13:38.081Z",
+  "meta": {
+    "url": "https://wise.design",
+    "siteName": "Wise Design",
+    "extractedAt": "2026-04-11T21:48:17.504Z",
+    "durationMs": 118552,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 228,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Wise Sans weight 900 with lineHeight 0.85 for all hero display text — lines must stack tightly, almost touching, at 288px minimum",
+      "Fill entire hero and nav sections with #87ea5c — the lime is a background, not a highlight; it should dominate, not accent",
+      "Pair #083400 (Forest Ink) as the primary text color on lime and white backgrounds — never use pure black (#000000) anywhere in the system",
+      "Assign 86px border-radius to content cards and mosaic tiles; reserve 9999px exclusively for pill buttons and tags",
+      "Use the full accent palette (#ffea4b, #ffbd89, #ffd5f0, #2a0831, #370305) as full-bleed card backgrounds — each color is a distinct 'room', not a subtle tint",
+      "Apply Inter font-feature-settings: \"calt\", \"ss01\" — the ss01 variant alternates specific letterforms that are part of the typographic identity",
+      "Maintain negative letter-spacing on Inter at all display sizes: -2.16px at 72px, scaling to -0.08px at 16px"
+    ],
+    "tags": [
+      "bold-display",
+      "neon-green",
+      "design-system",
+      "pill-buttons",
+      "global",
+      "editorial",
+      "color-block",
+      "ultra-heavy-type",
+      "mosaic-layout",
+      "fintech"
+    ],
+    "donts": [
+      "Never use #87ea5c as a small accent detail — it must be used at large scale (full backgrounds, full buttons) or not at all",
+      "Do not use weight 700 for body text — Inter weights are strictly 400 (body) and 600 (labels/subheadings)",
+      "Never apply drop shadows or elevation effects — the system uses color contrast and scale for hierarchy, not shadow depth",
+      "Do not use rectangular (0px radius) cards — content blocks must use either 86px radius or 9999px pill; sharp corners are absent from the system",
+      "Never use conventional fintech blue as a primary brand color — #0097c7 exists only for semantic accent links and focus states, never as primary CTA or brand expression",
+      "Do not place Wise Sans at sizes below 187px — it is a display-only typeface; Inter handles all UI and body text",
+      "Never mix multiple chromatic background colors in a single section — each panel is monochromatic, switching color only at full section breaks"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#87ea5c",
+        "name": "Lime Volt",
+        "role": "Hero backgrounds, pill button fill, category tag backgrounds — the single most identifiable brand signal; vivid green against dark ink creates energy no fintech blue could achieve",
+        "group": "brand"
+      },
+      {
+        "hex": "#083400",
+        "name": "Forest Ink",
+        "role": "Primary text, dark headlines on lime, nav links, icon fills — deep forest green instead of black keeps everything on-brand even at body size",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffea4b",
+        "name": "Volt Yellow",
+        "role": "Accent headlines, decorative text color on dark backgrounds — electric yellow that pairs with deep burgundy for maximum punch",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffbd89",
+        "name": "Papaya",
+        "role": "Warm accent card backgrounds, decorative section highlights",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffd5f0",
+        "name": "Cotton Candy",
+        "role": "Soft accent backgrounds, section highlights in the mosaic grid",
+        "group": "accent"
+      },
+      {
+        "hex": "#2a0831",
+        "name": "Aubergine Night",
+        "role": "Dark card backgrounds, high-contrast panels in the content grid — deep purple-black that isn't neutral",
+        "group": "accent"
+      },
+      {
+        "hex": "#370305",
+        "name": "Crimson Depth",
+        "role": "Dark editorial backgrounds, heading color on light panels — near-black red that reads as richly dark without being neutral",
+        "group": "accent"
+      },
+      {
+        "hex": "#58717a",
+        "name": "Fog",
+        "role": "Secondary body text, border colors, UI chrome",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White",
+        "role": "Page backgrounds, card surfaces, section backgrounds between color blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#008026",
+        "name": "Positive",
+        "role": "Success states, positive transaction indicators",
+        "group": "semantic"
+      },
+      {
+        "hex": "#cf2929",
+        "name": "Negative",
+        "role": "Error states, negative transaction indicators",
+        "group": "semantic"
+      },
+      {
+        "hex": "#0097c7",
+        "name": "Accent Blue",
+        "role": "Interactive accent links, focus states",
+        "group": "semantic"
+      },
+      {
+        "hex": "#9a6500",
+        "name": "Warning",
+        "role": "Warning states, attention-needed transaction labels",
+        "group": "semantic"
+      }
+    ],
+    "layout": "Full-bleed sections with no max-width constraint on hero and color blocks; content sections use ~1152-1440px max-width centered. Hero is full-viewport lime green with Wise Sans stacked display type, no image — the type IS the visual. Navigation merges seamlessly with hero background (same #87ea5c), creating a single unbroken color field from top of page through hero. Section rhythm alternates: massive color hero → white editorial pause → full-bleed photography → mosaic card grid → white section → dark panel → repeat. No decorative dividers — color is the divider. The mosaic grid uses 3-column irregular tile layout where tiles vary in height and background color, creating a collage effect. Individual content sections use centered single-column for editorial statements and 2-column for feature explanations. Spacious vertical breathing room (80-120px) between major sections ensures each color block reads as a distinct visual beat.",
+    "imagery": "Three distinct visual modes coexist in the system. First: full-bleed real-world photography (street scenes with flags, city imagery) used full-width with no border-radius — raw, unmasked, documentary in feel, treated as atmospheric section dividers rather than product illustration. Second: product UI screenshots (transaction cards, app interfaces) contained within 86px-radius white cards, floating against colored backgrounds — the UI is the product showcase. Third: a mosaic of color-block tiles containing flags (circular crop), paper airplane illustrations, currency symbols, and illustrated characters — these are flat, graphic, brand-colored, and decorative. Icons visible in transaction UI are outlined stroke-style at ~1.5px weight, monochrome #083400. The overall density is image-heavy in the mosaic zones but text-dominant in editorial sections — the system alternates between visual feast and typographic silence.",
+    "similar": [
+      {
+        "why": "Coral/hot pink dominant brand color on fintech product — single saturated hue flooding UI that defies category conventions",
+        "business": "Monzo"
+      },
+      {
+        "why": "Vivid lime/green as primary brand color with dark-on-bright type treatment and ultra-rounded pill buttons at 9999px",
+        "business": "Duolingo"
+      },
+      {
+        "why": "Design system documentation with color-block mosaic tiles, each tile a distinct hue showcasing system components",
+        "business": "Figma (brand site)"
+      },
+      {
+        "why": "Same lime-green brand color in fintech context, pill buttons, and dark forest-green text on bright backgrounds",
+        "business": "Cash App"
+      },
+      {
+        "why": "Bold editorial display type (ultra-heavy, stacked) on vivid brand-colored backgrounds as primary hero treatment",
+        "business": "Mailchimp"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "body": "1440px",
+        "tags": "9999px",
+        "cards": "86px",
+        "buttons": "9999px",
+        "contentBlocks": "86px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "80-120px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "category": "fintech",
+    "northStar": "Neon market stall on a global street — electric lime signage that shouts across a crowded marketplace, then polished product UI slips in behind it.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.08
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.44,
+        "letterSpacing": -0.09
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.12
+      },
+      {
+        "role": "heading-sm",
+        "size": 25,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.18
+      },
+      {
+        "role": "heading",
+        "size": 45,
+        "lineHeight": 1.17,
+        "letterSpacing": -0.5
+      },
+      {
+        "role": "heading-lg",
+        "size": 58,
+        "lineHeight": 1.03,
+        "letterSpacing": -1.39
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -2.16
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Category Navigation Pills",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Transaction Card (Product UI)",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Mosaic Design System Cards",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Lime Pill Button",
+        "role": "Primary CTA and category tag navigation",
+        "description": "backgroundColor: #87ea5c (display-p3), color: #083400, borderRadius: 9999px, paddingTop: 11px, paddingBottom: 11px, paddingRight: 24px, paddingLeft: 24px. Font: Inter 400 16px. No border — the lime fill IS the button. Used for 'Components', 'Flags', 'Tone of voice' category navigation."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Secondary or transparent navigation action",
+        "description": "backgroundColor: transparent, color: #083400, borderRadius: 9999px, paddingTop: 11px, paddingBottom: 11px, paddingRight: 24px, paddingLeft: 24px. No visible border. Appears on same lime background surfaces where the lime fill would be redundant."
+      },
+      {
+        "name": "Hero Display Block",
+        "role": "Full-viewport brand statement sections",
+        "description": "backgroundColor: #87ea5c, full-width. Wise Sans weight 900 at 288–562px, color: #083400, lineHeight: 0.85. Text is centered and stacked — 2 lines maximum, each word or pair filling near full width. No padding reduction at any viewport — the type fills edge-to-edge aggressively."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Site-level navigation",
+        "description": "backgroundColor: #87ea5c (matches hero, seamless), logo left-aligned with Wise wordmark in #083400. Nav links center-right: 'Design at Wise', 'Foundations', 'Components', 'Patterns', 'Resources' in Inter 400 16px #083400 with -0.08px letter-spacing. Search icon (magnifier) far right. No divider between nav and hero — intentionally merged."
+      },
+      {
+        "name": "Mosaic Content Card",
+        "role": "Design system section showcase tiles in scrolling grid",
+        "description": "Variable backgroundColor per tile: #87ea5c, #ffd5f0, #ffbd89, #2a0831, #370305, #ffffff. borderRadius: 86px. Contains either large display type (Wise Sans 900), illustration, photography, or product UI at full bleed within the rounded card bounds. Each tile is a self-contained visual story for a design system section."
+      },
+      {
+        "name": "Editorial Subheading",
+        "role": "Section introduction text between visual blocks",
+        "description": "Inter 600 45px, color: #083400, lineHeight: 1.17, letterSpacing: -0.5px. Displayed on #ffffff background with generous whitespace above and below (80px+). Used for statements like 'Made for the world' — single short line, centered or left-aligned."
+      },
+      {
+        "name": "Typography Specimen Card",
+        "role": "Design system typography showcase tile",
+        "description": "backgroundColor: #083400 (dark forest), borderRadius: 86px. Wise Sans weight 900 at 288px+, color: #87ea5c, lineHeight: 0.85. 'WISE SANS' stacked display — lime text on forest card. Demonstrates the inverse colorway from the hero."
+      },
+      {
+        "name": "Category Label Tag",
+        "role": "Section or content type identifier in mosaic grid",
+        "description": "Same as Lime Pill Button — backgroundColor: #87ea5c, color: #083400, borderRadius: 9999px, padding: 11px 24px, Inter 400 16px. Positioned floating at bottom edge of mosaic section to label content category ('Flags', 'Components', 'Tone of voice')."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI text: nav links, body copy, subheadings, and medium display text. Weight 400 for body, 600 for subheadings and labels. The 'ss01' feature setting and negative letter-spacing at large sizes (-0.03em at 72px down to -0.005em at 22px) keep it tight without feeling condensed.",
+        "sizes": "16px, 18px, 22px, 25px, 45px, 58px, 72px, 432px",
+        "family": "Inter",
+        "weight": "400, 600",
+        "lineHeight": "1.00 – 1.50 depending on size (display sizes use 1.00–1.03, body uses 1.44–1.50)",
+        "substitute": "Inter (Google Fonts — this IS Inter)",
+        "letterSpacing": "-2.16px at 72px, -1.39px at 58px, -0.50px at 45px, -0.18px at 25px, -0.12px at 22px, -0.09px at 18px, -0.08px at 16px",
+        "fontFeatureSettings": "\"calt\", \"ss01\""
+      },
+      {
+        "role": "Hero and section display headlines exclusively. Weight 900 at 0.85 line-height is the defining typographic move — lines of text stack so tightly the cap-height of one line nearly touches the descender zone of the line above, creating billboard-compressed stacked type. This is the visual signature of the design system.",
+        "sizes": "187px, 288px, 306px, 374px, 562px",
+        "family": "Wise Sans",
+        "weight": "400, 900",
+        "lineHeight": "0.85",
+        "substitute": "Obviously (similar ultra-compressed display), or Neue Haas Grotesk Display at ultra weight",
+        "fontFeatureSettings": "\"ss01\", \"calt\""
+      },
+      {
+        "role": "Single-use mega-display for CJK character showcase — demonstrates multilingual typographic range of the system",
+        "sizes": "432px",
+        "family": "Zen Kaku Gothic New",
+        "weight": "600",
+        "lineHeight": "1.00",
+        "substitute": "Noto Sans JP weight 600",
+        "fontFeatureSettings": "\"calt\""
+      }
+    ],
+    "description": "Wise Design hits like a silk-screened protest poster — electric lime green (#87ea5c) floods the hero at full saturation, then dark forest ink (#083400) type slams across it at display scale. The palette is deliberately non-fintech: vivid yellow (#ffea4b), peach (#ffbd89), cotton candy pink (#ffd5f0), and deep aubergine (#2a0831) coexist like a global currency collection. Wise Sans at weight 900 with 0.85 line-height is the signature — letterforms stack so tightly they almost collide, creating billboard compression at digital scale. Pills (9999px radius) are the only rounded UI element, while large content blocks use generous 86px radii creating soft-edged cards that contrast the aggressive type. The design system oscillates between screaming and whispering — massive stacked display type then a single quiet midsize line on white.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      },
+      {
+        "title": "Wise Sans Usage Rules",
+        "content": "Wise Sans is a custom typeface used exclusively for display-scale brand moments. It must not appear at sizes below 187px. Its defining characteristic is the 0.85 lineHeight — never increase this on display headlines or the stacked compression effect is lost. The two weights (400, 900) serve different roles: weight 900 for hero stacked headlines in the lime-on-forest or forest-on-lime colorways; weight 400 for secondary display moments. The 'ss01' OpenType feature must be enabled. When Wise Sans is unavailable, use a heavy-weight condensed grotesque (Obviously, Neue Haas Grotesk Display 900, or Anton) — the compression and weight are non-negotiable."
+      },
+      {
+        "title": "Color Block System",
+        "content": "The palette functions as a set of 'rooms' rather than a hierarchy. Each major section picks one background color from the set and fills the entire viewport width. The six primary backgrounds are: #87ea5c (Lime Volt), #ffffff (White), #083400 (Forest Ink), #2a0831 (Aubergine Night), #370305 (Crimson Depth), #ffbd89 (Papaya), #ffd5f0 (Cotton Candy). Text on dark backgrounds (#083400, #2a0831, #370305) uses #ffffff or #ffea4b. Text on light/lime backgrounds uses #083400. Never use more than one background color within a single section band. Transitions between sections are hard cuts — no gradients, no blends."
+      }
+    ],
+    "elevationPhilosophy": "Zero shadow usage throughout the system — elevation and hierarchy are communicated entirely through color contrast and scale. A white card on a lime background reads as 'elevated' purely because the white interrupts the field. The 86px radius on cards signals boundary without any shadow depth. This is a flat design system where the vivid palette does all the spatial work that shadows would normally perform."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#58717a",
+          "oklch": {
+            "c": 0.032532905055444705,
+            "h": 223.18503529658315,
+            "l": 0.5314361732459005
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "body"
+          ],
+          "frequency": 255,
+          "confidence": 1,
+          "prominence": 221212904,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 7.216449660063518e-16,
+            "h": 180,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 43826769.68945363,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#87ea5c",
+          "oklch": {
+            "c": 0.20164763717890186,
+            "h": 137.45915573673145,
+            "l": 0.8482668912667345
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "button",
+            "body"
+          ],
+          "frequency": 426,
+          "confidence": 1,
+          "prominence": 16137316.54703741,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#083400",
+          "oklch": {
+            "c": 0.10202495599555875,
+            "h": 137.71191042186,
+            "l": 0.2826885896352085
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body",
+            "button",
+            "icon",
+            "heading"
+          ],
+          "frequency": 224,
+          "confidence": 1,
+          "prominence": 14430319.200753419,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffea4b",
+          "oklch": {
+            "c": 0.17098048773067503,
+            "h": 100.04275051281405,
+            "l": 0.9313213236128968
+          },
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 11576944.615057066,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#370305",
+          "oklch": {
+            "c": 0.08173997506968947,
+            "h": 24.81824754100282,
+            "l": 0.21754666401133035
+          },
+          "contexts": [
+            "hero",
+            "other",
+            "heading"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 7891753.840049762,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ffbd89",
+          "oklch": {
+            "c": 0.11231695925682587,
+            "h": 54.29057196013286,
+            "l": 0.859234421396654
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 57,
+          "confidence": 1,
+          "prominence": 7693116.559452182,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffd5f0",
+          "oklch": {
+            "c": 0.06556864069816702,
+            "h": 344.3470804536055,
+            "l": 0.9238950035629095
+          },
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 6973397.806068989,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#2a0831",
+          "oklch": {
+            "c": 0.08327707397104572,
+            "h": 320.31515422752835,
+            "l": 0.2171550730841096
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 28,
+          "confidence": 1,
+          "prominence": 6379845.559452182,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#3b3418",
+          "oklch": {
+            "c": 0.04419781931871988,
+            "h": 94.48144355979275,
+            "l": 0.32476078860465135
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1993497,
+          "properties": [
+            "backgroundColor"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.34277228214717387,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17.83,
+          "background": "#ffffff",
+          "foreground": "#370305"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.83,
+          "background": "#ffffff",
+          "foreground": "#2a0831"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.54,
+          "background": "#370305",
+          "foreground": "#ffea4b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.54,
+          "background": "#2a0831",
+          "foreground": "#ffea4b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.99,
+          "background": "#ffffff",
+          "foreground": "#083400"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.61,
+          "background": "#ffd5f0",
+          "foreground": "#370305"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.61,
+          "background": "#2a0831",
+          "foreground": "#ffd5f0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.42,
+          "background": "#ffffff",
+          "foreground": "#3b3418"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.85,
+          "background": "#370305",
+          "foreground": "#87ea5c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.85,
+          "background": "#2a0831",
+          "foreground": "#87ea5c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.4,
+          "background": "#083400",
+          "foreground": "#ffea4b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.95,
+          "background": "#ffbd89",
+          "foreground": "#370305"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.95,
+          "background": "#2a0831",
+          "foreground": "#ffbd89"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.67,
+          "background": "#ffd5f0",
+          "foreground": "#083400"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.13,
+          "background": "#3b3418",
+          "foreground": "#ffea4b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.48,
+          "background": "#3b3418",
+          "foreground": "#ffd5f0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.29,
+          "background": "#083400",
+          "foreground": "#87ea5c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.59,
+          "background": "#ffbd89",
+          "foreground": "#083400"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.26,
+          "background": "#3b3418",
+          "foreground": "#87ea5c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.63,
+          "background": "#3b3418",
+          "foreground": "#ffbd89"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 86.4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 1152,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 1440,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 5,
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 11,
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 17,
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 11,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 22,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 25,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 27,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 29,
+          "frequency": 9,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 35,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 43,
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 63,
+          "frequency": 44,
+          "properties": [
+            "paddingRight"
+          ]
+        },
+        {
+          "value": 86,
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 101,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 144,
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 202,
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 225,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 193,
+          "fontFeatureSettings": [
+            "\"calt\"",
+            "\"ss01\""
+          ]
+        },
+        {
+          "family": "Wise Sans",
+          "source": "custom",
+          "weights": [
+            400,
+            900
+          ],
+          "frequency": 23,
+          "fontFeatureSettings": [
+            "\"ss01\"",
+            "\"calt\""
+          ]
+        },
+        {
+          "family": "Zen Kaku Gothic New",
+          "source": "custom",
+          "weights": [
+            600
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": [
+            "\"calt\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Golden Ratio",
+        "ratio": 1.618,
+        "confidence": 0.62
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 10,
+          "lineHeight": 2,
+          "letterSpacing": -0.007,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "image",
+            "body"
+          ],
+          "frequency": 72,
+          "lineHeight": 1.44,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.44,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 70,
+          "lineHeight": 1.03,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 45,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.024,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.33,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 187,
+          "family": "Wise Sans",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 288,
+          "family": "Wise Sans",
+          "weight": 900,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 306,
+          "family": "Wise Sans",
+          "weight": 900,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 374,
+          "family": "Wise Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.07,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 432,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 432,
+          "family": "Zen Kaku Gothic New",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 562,
+          "family": "Wise Sans",
+          "weight": 900,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.85,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/92d3a561-64bf-4848-b9b4-85865a58fb02.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f09c6edb-c9e4-4622-9b5e-71e4876e76a8.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c5326639-873a-4257-ad1a-7da9111e9286#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Wise Design design system\",\"item\":\"https://styles.refero.design/style/c5326639-873a-4257-ad1a-7da9111e9286\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c5326639-873a-4257-ad1a-7da9111e9286#style-reference\",\"name\":\"Wise Design design system reference\",\"headline\":\"Wise Design design system | Refero Styles\",\"description\":\"Explore Wise Design's mixed Design design system: Lime Volt #87ea5c, Forest Ink #083400 colors, Inter, Wise Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c5326639-873a-4257-ad1a-7da9111e9286\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c5326639-873a-4257-ad1a-7da9111e9286\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Wise Design\",\"url\":\"https://wise.design\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c5326639-873a-4257-ad1a-7da9111e9286#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f09c6edb-c9e4-4622-9b5e-71e4876e76a8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f09c6edb-c9e4-4622-9b5e-71e4876e76a8.jpg\",\"caption\":\"Screenshot of Wise Design\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f09c6edb-c9e4-4622-9b5e-71e4876e76a8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Wise Design design system\",\"Wise Design website design\",\"Wise Design colors\",\"Wise Design typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Design design system\",\"Lime Volt\",\"Forest Ink\",\"Volt Yellow\",\"Papaya\",\"Inter\",\"Wise Sans\",\"Zen Kaku Gothic New\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Wise Design design system\"},{\"@type\":\"Thing\",\"name\":\"Wise Design website design\"},{\"@type\":\"Thing\",\"name\":\"Wise Design colors\"},{\"@type\":\"Thing\",\"name\":\"Wise Design typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Design design system\"}],\"datePublished\":\"2026-04-13T10:35:42.000Z\",\"dateModified\":\"2026-04-13T10:35:42.000Z\"}]}19:T1113,<style>\n  :root {\n    --color-lime-volt: #87ea5c;\n    --color-forest-ink: #083400;\n    --color-volt-yellow: #ffea4b;\n    --color-papaya: #ffbd89;\n    --color-cotton-candy: #ffd5f0;\n    --color-aubergine-night: #2a0831;\n    --color-white: #ffffff;\n    --color-fog: #58717a;\n    --font-inter: 'Inter', system-ui, -apple-system, sans-serif;\n  }\n  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');\n</style>\n<div style=\"background: var(--color-lime-volt); padding: 48px 40px; font-family: var(--font-inter); display: flex; flex-direction: column; gap: 32px; border-radius: 86px; max-width: 560px; margin: 0 auto; box-sizing: border-box;\">\n  <p style=\"font-family: var(--font-inter); font-size: 16px; font-weight: 400; color: var(--color-forest-ink); letter-spacing: -0.08px; margin: 0; line-height: 1.5;\">Explore the design system</p>\n  <div style=\"display: flex; flex-wrap: wrap; gap: 10px;\">\n    <a href=\"#\" style=\"display: inline-flex; align-items: center; background: var(--color-forest-ink); color: var(--color-lime-volt); border-radius: 9999px; padding: 11px 24px; font-family: var(--font-inter); font-size: 16px; font-weight: 400; letter-spacing: -0.08px; text-decoration: none; line-height: 1;\">Design at Wise</a>\n    <a href=\"#\" style=\"display: inline-flex; align-items: center; background: var(--color-lime-volt); color: var(--color-forest-ink); border-radius: 9999px; padding: 11px 24px; font-family: var(--font-inter); font-size: 16px; font-weight: 400; letter-spacing: -0.08px; text-decoration: none; line-height: 1;\">Foundations</a>\n    <a href=\"#\" style=\"display: inline-flex; align-items: center; background: var(--color-lime-volt); color: var(--color-forest-ink); border-radius: 9999px; padding: 11px 24px; font-family: var(--font-inter); font-size: 16px; font-weight: 400; letter-spacing: -0.08px; text-decoration: none; line-height: 1;\">Components</a>\n    <a href=\"#\" style=\"display: inline-flex; align-items: center; background: var(--color-lime-volt); color: var(--color-forest-ink); border-radius: 9999px; padding: 11px 24px; font-family: var(--font-inter); font-size: 16px; font-weight: 400; letter-spacing: -0.08px; text-decoration: none; line-height: 1;\">Patterns</a>\n    <a href=\"#\" style=\"display: inline-flex; align-items: center; background: var(--color-lime-volt); color: var(--color-forest-ink); border-radius: 9999px; padding: 11px 24px; font-family: var(--font-inter); font-size: 16px; font-weight: 400; letter-spacing: -0.08px; text-decoration: none; line-height: 1;\">Resources</a>\n  </div>\n  <div style=\"display: flex; flex-wrap: wrap; gap: 10px; padding-top: 8px; border-top: 1px solid rgba(8,52,0,0.18);\">\n    <span style=\"display: inline-flex; align-items: center; background: var(--color-lime-volt); color: var(--color-forest-ink); border-radius: 9999px; padding: 11px 24px; font-family: var(--font-inter); font-size: 16px; font-weight: 400; letter-spacing: -0.08px; line-height: 1; border: 1.5px solid rgba(8,52,0,0.25);\">Flags</span>\n    <span style=\"display: inline-flex; align-items: center; background: var(--color-lime-volt); color: var(--color-forest-ink); border-radius: 9999px; padding: 11px 24px; font-family: var(--font-inter); font-size: 16px; font-weight: 400; letter-spacing: -0.08px; line-height: 1; border: 1.5px solid rgba(8,52,0,0.25);\">Components</span>\n    <span style=\"display: inline-flex; align-items: center; background: var(--color-lime-volt); color: var(--color-forest-ink); border-radius: 9999px; padding: 11px 24px; font-family: var(--font-inter); font-size: 16px; font-weight: 400; letter-spacing: -0.08px; line-height: 1; border: 1.5px solid rgba(8,52,0,0.25);\">Tone of voice</span>\n    <span style=\"display: inline-flex; align-items: center; background: var(--color-lime-volt); color: var(--color-forest-ink); border-radius: 9999px; padding: 11px 24px; font-family: var(--font-inter); font-size: 16px; font-weight: 400; letter-spacing: -0.08px; line-height: 1; border: 1.5px solid rgba(8,52,0,0.25);\">Typography</span>\n    <span style=\"display: inline-flex; align-items: center; background: var(--color-lime-volt); color: var(--color-forest-ink); border-radius: 9999px; padding: 11px 24px; font-family: var(--font-inter); font-size: 16px; font-weight: 400; letter-spacing: -0.08px; line-height: 1; border: 1.5px solid rgba(8,52,0,0.25);\">Colour</span>\n  </div>\n</div>1a:Tf28,<style>\n  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');\n  :root {\n    --color-lime-volt: #87ea5c;\n    --color-forest-ink: #083400;\n    --color-white: #ffffff;\n    --color-fog: #58717a;\n    --color-positive: #008026;\n    --color-warning: #9a6500;\n    --color-accent-blue: #0097c7;\n    --font-inter: 'Inter', system-ui, -apple-system, sans-serif;\n  }\n</style>\n<div style=\"background: #f2f2ee; padding: 32px; border-radius: 86px; max-width: 560px; margin: 0 auto; box-sizing: border-box; font-family: var(--font-inter);\">\n  <div style=\"background: var(--color-white); border-radius: 24px; padding: 24px; box-sizing: border-box;\">\n    <div style=\"display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 1px solid rgba(88,113,122,0.18); margin-bottom: 4px;\">\n      <span style=\"font-family: var(--font-inter); font-size: 16px; font-weight: 400; color: var(--color-fog); letter-spacing: -0.08px;\">Transactions</span>\n      <a href=\"#\" style=\"font-family: var(--font-inter); font-size: 16px; font-weight: 600; color: var(--color-positive); letter-spacing: -0.08px; text-decoration: underline;\">See all</a>\n    </div>\n    <div style=\"display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(88,113,122,0.12);\">\n      <div style=\"width: 44px; height: 44px; border-radius: 9999px; background: var(--color-lime-volt); display: flex; align-items: center; justify-content: center; flex-shrink: 0;\">\n        <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#083400\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 20h9\"/><path d=\"M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z\"/></svg>\n      </div>\n      <div style=\"flex: 1;\">\n        <div style=\"font-family: var(--font-inter); font-size: 16px; font-weight: 600; color: var(--color-forest-ink); letter-spacing: -0.08px; line-height: 1.4;\">Sophie Beck</div>\n        <div style=\"font-family: var(--font-inter); font-size: 14px; font-weight: 400; color: var(--color-warning); letter-spacing: -0.06px; line-height: 1.4; margin-top: 2px;\">Needs attention</div>\n      </div>\n      <div style=\"font-family: var(--font-inter); font-size: 16px; font-weight: 600; color: var(--color-forest-ink); letter-spacing: -0.08px; white-space: nowrap;\">102.32 GBP</div>\n    </div>\n    <div style=\"display: flex; align-items: center; gap: 16px; padding: 16px 0;\">\n      <div style=\"width: 44px; height: 44px; border-radius: 9999px; background: #f2f2ee; display: flex; align-items: center; justify-content: center; flex-shrink: 0;\">\n        <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#083400\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 20c0-4 3.6-7 8-7s8 3 8 7\"/></svg>\n      </div>\n      <div style=\"flex: 1;\">\n        <div style=\"font-family: var(--font-inter); font-size: 16px; font-weight: 600; color: var(--color-forest-ink); letter-spacing: -0.08px; line-height: 1.4;\">Sainsbury's</div>\n        <div style=\"font-family: var(--font-inter); font-size: 14px; font-weight: 400; color: var(--color-fog); letter-spacing: -0.06px; line-height: 1.4; margin-top: 2px;\">Spent · Tue</div>\n      </div>\n      <div style=\"font-family: var(--font-inter); font-size: 16px; font-weight: 600; color: var(--color-forest-ink); letter-spacing: -0.08px; white-space: nowrap;\">8.90 GBP</div>\n    </div>\n  </div>\n  <div style=\"margin-top: 20px; display: flex; justify-content: flex-start;\">\n    <span style=\"display: inline-flex; align-items: center; background: var(--color-lime-volt); color: var(--color-forest-ink); border-radius: 9999px; padding: 11px 24px; font-family: var(--font-inter); font-size: 16px; font-weight: 400; letter-spacing: -0.08px; line-height: 1;\">Components</span>\n  </div>\n</div>1b:T10a9,<style>\n  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');\n  :root {\n    --color-lime-volt: #87ea5c;\n    --color-forest-ink: #083400;\n    --color-volt-yellow: #ffea4b;\n    --color-papaya: #ffbd89;\n    --color-cotton-candy: #ffd5f0;\n    --color-aubergine-night: #2a0831;\n    --color-crimson-depth: #370305;\n    --color-white: #ffffff;\n    --font-inter: 'Inter', system-ui, -apple-system, sans-serif;\n  }\n</style>\n<div style=\"max-width: 600px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 12px; padding: 16px; box-sizing: border-box; background: var(--color-white); font-family: var(--font-inter);\">\n\n  <!-- Lime type card -->\n  <div style=\"background: var(--color-forest-ink); border-radius: 52px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; min-height: 200px; overflow: hidden; position: relative;\">\n    <div style=\"font-family: 'Inter', system-ui, sans-serif; font-size: 72px; font-weight: 900; color: var(--color-lime-volt); line-height: 0.85; letter-spacing: -2px; font-feature-settings: 'ss01','calt'; user-select: none;\">WISE<br>SANS</div>\n    <span style=\"display: inline-flex; align-self: flex-start; align-items: center; background: var(--color-lime-volt); color: var(--color-forest-ink); border-radius: 9999px; padding: 8px 18px; font-family: var(--font-inter); font-size: 13px; font-weight: 400; letter-spacing: -0.06px; line-height: 1; margin-top: 24px;\">Typography</span>\n  </div>\n\n  <!-- Cotton candy card with editorial text -->\n  <div style=\"background: var(--color-cotton-candy); border-radius: 52px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;\">\n    <div style=\"font-family: var(--font-inter); font-size: 32px; font-weight: 600; color: var(--color-crimson-depth); line-height: 1.1; letter-spacing: -0.5px;\">Tone<br>of voice</div>\n    <span style=\"display: inline-flex; align-self: flex-start; align-items: center; background: var(--color-lime-volt); color: var(--color-forest-ink); border-radius: 9999px; padding: 8px 18px; font-family: var(--font-inter); font-size: 13px; font-weight: 400; letter-spacing: -0.06px; line-height: 1; margin-top: 24px;\">Tone of voice</span>\n  </div>\n\n  <!-- Lime card with stats -->\n  <div style=\"background: var(--color-lime-volt); border-radius: 52px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; min-height: 180px;\">\n    <div>\n      <div style=\"font-family: var(--font-inter); font-size: 13px; font-weight: 400; color: var(--color-forest-ink); opacity: 0.7; letter-spacing: -0.06px; margin-bottom: 8px;\">Design system sections</div>\n      <div style=\"font-family: var(--font-inter); font-size: 52px; font-weight: 900; color: var(--color-forest-ink); line-height: 1; letter-spacing: -1.5px;\">5</div>\n    </div>\n    <span style=\"display: inline-flex; align-self: flex-start; align-items: center; background: var(--color-forest-ink); color: var(--color-lime-volt); border-radius: 9999px; padding: 8px 18px; font-family: var(--font-inter); font-size: 13px; font-weight: 400; letter-spacing: -0.06px; line-height: 1; margin-top: 24px;\">Foundations</span>\n  </div>\n\n  <!-- Papaya card with flag placeholder -->\n  <div style=\"background: var(--color-papaya); border-radius: 52px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; min-height: 180px;\">\n    <div style=\"width: 80px; height: 80px; border-radius: 9999px; background: #1a873a; display: flex; align-items: center; justify-content: center; overflow: hidden;\">\n      <svg width=\"80\" height=\"80\" viewBox=\"0 0 80 80\">\n        <circle cx=\"40\" cy=\"40\" r=\"40\" fill=\"#009c3b\"/>\n        <polygon points=\"40,14 66,40 40,66 14,40\" fill=\"#fedf00\"/>\n        <circle cx=\"40\" cy=\"40\" r=\"14\" fill=\"#002776\"/>\n      </svg>\n    </div>\n    <span style=\"display: inline-flex; align-self: flex-start; align-items: center; background: var(--color-lime-volt); color: var(--color-forest-ink); border-radius: 9999px; padding: 8px 18px; font-family: var(--font-inter); font-size: 13px; font-weight: 400; letter-spacing: -0.06px; line-height: 1; margin-top: 24px;\">Flags</span>\n  </div>\n\n</div>1c:T699,**Quick Color Reference**\n- Text (primary): #083400 (Forest Ink)\n- Background (hero/brand): #87ea5c (Lime Volt)\n- Background (page): #ffffff\n- Secondary text / borders: #58717a (Fog)\n- CTA button fill: #87ea5c with #083400 text\n- Dark panel: #2a0831 (Aubergine Night) or #370305 (Crimson Depth)\n- Accent yellow: #ffea4b\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-bleed #87ea5c background, no padding. Wise Sans (substitute: Obviously or Impact) weight 900, color #083400, lineHeight 0.85, two stacked lines at ~288px each filling near-full width. Nav bar same #87ea5c background, Wise logo left, Inter 400 16px #083400 links centered-right, letterSpacing -0.08px.\n\n2. **Category Tag**: backgroundColor #87ea5c, color #083400, borderRadius 9999px, padding 11px 24px, Inter 400 16px, no border. Use for labels like 'Components', 'Flags', 'Tone of voice'.\n\n3. **Transaction Card**: backgroundColor #ffffff, borderRadius 86px, padding 24px. Header row: 'Transactions' Inter 600 16px #083400 left, 'See all' Inter 400 16px #083400 underlined right. Two transaction rows: 32px circular outlined icon, name Inter 600 16px #083400, amount Inter 600 16px #083400 right-aligned, status + day Inter 400 14px #58717a below name.\n\n4. **Typography Specimen Card (dark)**: backgroundColor #083400, borderRadius 86px, full card. Wise Sans weight 900, color #87ea5c, lineHeight 0.85, stacked text at 288px+. This is the inverse hero — lime on forest.\n\n5. **Editorial Section**: backgroundColor #ffffff, paddingTop 80px, paddingBottom 80px. Single centered line: Inter 600 45px #083400 letterSpacing -0.5px lineHeight 1.17. No decorative elements — the weight and scale carry the section."
+}

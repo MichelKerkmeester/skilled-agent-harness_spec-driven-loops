@@ -1,0 +1,1431 @@
+{
+  "source": "https://styles.refero.design/style/5cb1fbe8-b539-4482-b645-74a745332965",
+  "uuid": "5cb1fbe8-b539-4482-b645-74a745332965",
+  "name": "Swwim",
+  "northStar": "Cobalt wave with floating luxury objects.\n\nA vivid blue ocean where oversized white type is pierced by editorial product still-lifes.",
+  "capturedAt": "2026-07-18T07:26:51.702Z",
+  "meta": {
+    "url": "https://www.weswwim.com",
+    "siteName": "Swwim",
+    "extractedAt": "2026-06-03T20:37:27.198Z",
+    "durationMs": 40564,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 521,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Baton Turbo only for display and oversized headlines — 29px and up; never set it below 20px",
+      "Set the hero headline at 151px on the cobalt background, line-height 1.0, all-caps, with at least one product image overlapping the letterforms",
+      "Use 9999px radius for every button, tag, and pill control — there are no rounded-corner cards or inputs in this system",
+      "Keep surfaces flat: 1px #e5e7eb hairline borders separate content, never drop shadows",
+      "Let #1658b3 carry full-bleed sections as the dominant surface; reserve white for content pages and #0d3c88 for footer/gradient depth",
+      "Use Greycliff 500 for interactive labels and small headings, 400 for body, 700 sparingly for emphasis",
+      "Place a 1px white vertical divider between the wordmark and the descriptor in the header lockup"
+    ],
+    "donts": [
+      "Do not use Baton Turbo for body copy, nav labels, buttons, or anything below 20px — it loses its editorial voice at small sizes",
+      "Do not introduce drop shadows, glows, or multi-layer elevation stacks — the system is intentionally flat",
+      "Do not add chromatic colors outside the blue family plus the single #eee1d9 flesh tone accent",
+      "Do not center the hero composition in a clean symmetrical layout — the scattered overlapping product crops are the signature",
+      "Do not round card corners or input fields; the only radius in the system is the 9999px pill",
+      "Do not use 151px type outside the hero; the display scale steps sharply down to 48px",
+      "Do not break the blue monochrome with a contrasting CTA color — the white pill on blue IS the action pattern"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#1658b3",
+        "name": "Cobalt Current",
+        "role": "Hero background, primary surface flood, outlined-link borders — the single color that defines every full-bleed section",
+        "group": "brand"
+      },
+      {
+        "hex": "#0d3c88",
+        "name": "Deep Channel",
+        "role": "Darker blue for gradient depth in decorative graphics, icon accents, footer bands",
+        "group": "brand"
+      },
+      {
+        "hex": "#015fee",
+        "name": "Electric Ripple",
+        "role": "Violet wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#01295f",
+        "name": "Abyssal Ink",
+        "role": "Darkest blue used inside SVG decoration and deep gradient stops — never as text or button",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White Canvas",
+        "role": "Page background, body text on blue, primary pill button fill — the neutral that carries white sections and inverts on blue",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Cloud Border",
+        "role": "Hairline dividers, card borders, separator rules across all white surfaces — the structural neutral of the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Body text on white, icon fills in black-mode illustrations",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eee1d9",
+        "name": "Nude Clay",
+        "role": "Warm flesh-tone accent inside decorative illustration fills and strokes — the only chromatic neutral, used to humanize blue compositions",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed cobalt hero dominates the first viewport with a centered-but-asymmetric composition: oversized headline on the left, supporting body copy nested in the negative space right of center, product images absolutely positioned to break the type grid. Below the hero, a full-width white-on-blue service marquee ticker runs horizontally. Subsequent content sections are white-canvas with 1px hairline dividers, 24px card padding, and a 1440px max-width centered column. The header is a minimal top bar — wordmark left, single pill CTA + menu right — not sticky, not mega. Navigation is a single line, no dropdowns visible. Vertical rhythm is generous (64px section gaps) but the hero itself is deliberately dense through type-image overlap.",
+    "imagery": "Object photography is the signature: tightly cropped luxury product still-lifes (diamond ring, Givenchy sandal, beauty packaging) floating as overlapping elements over the hero typography. No lifestyle photography, no portraits, no environmental context — each object is hero on its own. The megaphone illustration is the only drawn graphic, rendered in flat brand colors with no outline. Imagery is full-bleed in spirit (objects escape their containers to overlap type) but the individual crops are unframed rectangles, not rounded or masked. Iconography is minimal and line-based, monochromatic.",
+    "similar": [
+      {
+        "why": "Editorial agency layouts with oversized display type overlapping small product or texture crops on a bold single-color field",
+        "business": "Gretel"
+      },
+      {
+        "why": "Full-bleed brand-color sections paired with playful scattered object imagery and confident oversized headlines",
+        "business": "Resn"
+      },
+      {
+        "why": "Agency portfolio pattern of full-bleed saturated hero bands and restrained white content sections beneath",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Monochromatic blue-dominant brand systems with pill-shaped controls and a single working neutral palette",
+        "business": "Gunner"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "9999px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "White Canvas",
+        "level": 1,
+        "purpose": "Default page background for all content sections"
+      },
+      {
+        "hex": "#1658b3",
+        "name": "Cobalt Field",
+        "level": 2,
+        "purpose": "Full-bleed hero and section floods — the dominant branded surface"
+      },
+      {
+        "hex": "#0d3c88",
+        "name": "Deep Channel",
+        "level": 3,
+        "purpose": "Gradient depth and decorative fills"
+      }
+    ],
+    "northStar": "Cobalt wave with floating luxury objects.\n\nA vivid blue ocean where oversized white type is pierced by editorial product still-lifes.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.56,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-lg",
+        "size": 36,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1.11,
+        "letterSpacing": 0
+      },
+      {
+        "role": "hero",
+        "size": 151,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "White Pill CTA",
+        "role": "Primary action button",
+        "description": "Filled white pill on blue or white surfaces, 9999px radius, 16px 24px padding, Greycliff 500 at 16px, text in Cobalt Current (#1658b3). The signature control — no shadows, no border, shape alone communicates the action."
+      },
+      {
+        "name": "Ghost Nav Button",
+        "role": "Secondary header action",
+        "description": "White text on blue header, no background, 16px Greycliff 500, sits inline with a Menu label and hamburger icon. Underline or icon pairing is the only affordance."
+      },
+      {
+        "name": "Header Logo Lockup",
+        "role": "Brand mark in navigation",
+        "description": "Wordmark 'swwim' in white Greycliff 500 lowercase, followed by a 1px vertical white divider, then the descriptor 'Social Media Marketing' in Greycliff 400. Left-aligned, no logo image."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Primary page statement",
+        "description": "Baton Turbo 400 at 151px, white on Cobalt Current (#1658b3), all-caps, line-height 1.0. Product images absolutely positioned to overlap letterforms — a deliberate collage effect, never centered-clean."
+      },
+      {
+        "name": "Hero Body Caption",
+        "role": "Supporting hero copy",
+        "description": "Greycliff 400 at 18px, white, line-height 1.56, placed in the negative space beside the headline. No quotation marks, no italics — plain prose that lets the display type carry the weight."
+      },
+      {
+        "name": "Dive In Link",
+        "role": "Anchor for scroll",
+        "description": "Small Greycliff 500 link with a circled down-arrow icon, white on blue, 14-16px. The site's only repeated micro-link style — used to invite the user below the fold."
+      },
+      {
+        "name": "Service Marquee",
+        "role": "Horizontal service ticker",
+        "description": "Full-bleed white-on-blue band, Baton Turbo 400 all-caps at 29-36px, separated by bullet dots, scrolling horizontally or static. Sits flush to the bottom of the hero as a visual footer for the section."
+      },
+      {
+        "name": "Product Float Image",
+        "role": "Decorative product crop",
+        "description": "Tightly cropped object photography (rings, shoes, packaging) absolutely positioned over the hero headline, no border-radius, no shadow, no caption. The objects overlap letterforms to create a collage system."
+      },
+      {
+        "name": "White Surface Card",
+        "role": "Content container on white",
+        "description": "24px padding, 1px #e5e7eb border, no radius, no shadow. The default card treatment — flat, hairline-bordered, relying on white-space rather than elevation."
+      },
+      {
+        "name": "Icon",
+        "role": "UI iconography",
+        "description": "Minimal stroked icons, 1.5-2px stroke weight, monochromatic white on blue or Carbon on white. Used sparingly — the megaphone and arrow-down are the only icon-shaped elements visible."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and oversized headlines only — the 151px hero weight is the signature choice, a single weight (400) stretched across 14px to 151px to create the full editorial scale",
+        "sizes": "14px, 16px, 18px, 29px, 36px, 48px, 151px",
+        "family": "Baton Turbo",
+        "weight": "400",
+        "lineHeight": "1.00–1.56",
+        "substitute": "Druk Wide, Tungsten, Antonio"
+      },
+      {
+        "role": "Body, UI labels, nav, buttons, badges, footer — the working typeface at three weights, with 500/700 reserved for small headings and nav emphasis",
+        "sizes": "14px, 16px, 18px, 20px, 24px, 30px",
+        "family": "Greycliff",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.20–1.56",
+        "substitute": "Inter, Manrope, DM Sans",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Swwim is a full-bleed, blue-saturated agency site where the hero IS the brand: a massive all-caps Baton Turbo display at 151px sits on a vivid cobalt field, scattered with floating product crops (a diamond ring, a Givenchy sandal, a megaphone) that overlap the letterforms. The rest of the system stays disciplined — white canvas pages, hairline #e5e7eb borders, pill-shaped controls with 9999px radius, Greycliff for everything readable. The color palette is nearly monochromatic: one hero blue (#1658b3) carries the page, with deeper #0d3c88 and darkest #01295f as gradient depth inside decorative graphics, and a single warm #eee1d9 flesh-tone accent peeking through illustration fills. Components are flat, borderless against the blue, and almost borderless against white — elevation comes from typography weight, not shadow stacks.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5cb1fbe8-b539-4482-b645-74a745332965#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Swwim design system\",\"item\":\"https://styles.refero.design/style/5cb1fbe8-b539-4482-b645-74a745332965\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5cb1fbe8-b539-4482-b645-74a745332965#style-reference\",\"name\":\"Swwim design system reference\",\"headline\":\"Swwim design system | Refero Styles\",\"description\":\"Explore Swwim's light Agency design system: Cobalt Current #1658b3, Deep Channel #0d3c88 colors, Baton Turbo, Greycliff typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5cb1fbe8-b539-4482-b645-74a745332965\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5cb1fbe8-b539-4482-b645-74a745332965\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Swwim\",\"url\":\"https://www.weswwim.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5cb1fbe8-b539-4482-b645-74a745332965#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b03ba059-87ff-4006-83ba-0beee87c1727.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b03ba059-87ff-4006-83ba-0beee87c1727.jpg\",\"caption\":\"Screenshot of Swwim\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b03ba059-87ff-4006-83ba-0beee87c1727.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Swwim design system\",\"Swwim website design\",\"Swwim colors\",\"Swwim typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Cobalt Current\",\"Deep Channel\",\"Electric Ripple\",\"Abyssal Ink\",\"Baton Turbo\",\"Greycliff\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Swwim design system\"},{\"@type\":\"Thing\",\"name\":\"Swwim website design\"},{\"@type\":\"Thing\",\"name\":\"Swwim colors\"},{\"@type\":\"Thing\",\"name\":\"Swwim typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:23:51.496Z\",\"dateModified\":\"2026-04-30T02:23:51.496Z\"}]}19:T790,## Quick Color Reference\n- text on white: Carbon (#000000)\n- text on blue: White Canvas (#ffffff)\n- page background: White Canvas (#ffffff)\n- hero / section flood: Cobalt Current (#1658b3)\n- border / divider: Cloud Border (#e5e7eb)\n- decorative accent: Nude Clay (#eee1d9)\n- primary action: #1658b3 (outlined action border)\n\n## 3 Example Component Prompts\n\n1. **Hero with floating product crops**: Full-bleed Cobalt Current (#1658b3) background. Headline at 151px Baton Turbo weight 400, all-caps, white, line-height 1.0, occupying the left two-thirds. One product image (tightly cropped, no border, no radius) absolutely positioned to overlap the lower-right letterforms. Supporting body copy in Greycliff 400, 18px, white, line-height 1.56, placed in the negative space right of center. 64px top and bottom padding.\n\n2. **White Pill Button**: 9999px radius, 16px vertical / 24px horizontal padding, white fill, text in Greycliff 500 at 16px colored Cobalt Current (#1658b3). No border, no shadow. Sits inline with body content on white or on a blue surface.\n\n3. **Service Marquee Band**: Full-bleed Cobalt Current (#1658b3), 64px vertical padding, horizontally scrolling or static line of services separated by white bullet dots. Text is Baton Turbo 400 all-caps at 36px, white. Tightly packed — services run edge-to-edge with 24px gaps between items.\n\n4. **White Surface Card**: White background, 24px padding on all sides, 1px solid #e5e7eb border, 0px radius, no shadow. Body text in Greycliff 400, 16px, Carbon (#000000). Optional heading in Greycliff 500, 20px.\n\n5. **Header Lockup**: White background section, 'swwim' wordmark in Greycliff 500 lowercase 24px white, followed by a 1px wide × 24px tall white vertical divider with 12px margin on each side, then 'Social Media Marketing' descriptor in Greycliff 400 14px white. Right-aligned: white pill 'Contact Us' button + 'Menu' label in Greycliff 500 16px + hamburger icon."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "icon",
+            "hero",
+            "heading",
+            "badge",
+            "footer",
+            "nav"
+          ],
+          "frequency": 1392,
+          "confidence": 1,
+          "prominence": 84197107.1728701,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 64,
+            "body/borderColor": 264,
+            "hero/borderColor": 8,
+            "icon/borderColor": 84,
+            "link/borderColor": 64,
+            "badge/borderColor": 4,
+            "other/borderColor": 720,
+            "button/borderColor": 24,
+            "footer/borderColor": 4,
+            "heading/borderColor": 156
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 47812323.37616708,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "body/color": 1,
+            "other/fill": 48,
+            "other/color": 5,
+            "body/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "icon",
+            "hero",
+            "image",
+            "heading",
+            "badge",
+            "footer",
+            "nav"
+          ],
+          "frequency": 468,
+          "confidence": 1,
+          "prominence": 39510633.7512473,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 16,
+            "body/color": 49,
+            "hero/color": 1,
+            "icon/color": 9,
+            "link/color": 14,
+            "other/fill": 25,
+            "badge/color": 1,
+            "image/color": 10,
+            "other/color": 128,
+            "button/color": 4,
+            "footer/color": 1,
+            "other/stroke": 13,
+            "heading/color": 34,
+            "body/borderColor": 96,
+            "image/borderColor": 40,
+            "other/borderColor": 20,
+            "body/backgroundColor": 3,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#1658b3",
+          "oklch": {
+            "c": 0.1584859558576425,
+            "h": 258.1875352041465,
+            "l": 0.4751261971448902
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "hero",
+            "heading",
+            "link",
+            "icon"
+          ],
+          "frequency": 188,
+          "confidence": 1,
+          "prominence": 33672268.28420796,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 47,
+            "hero/color": 1,
+            "icon/color": 6,
+            "link/color": 4,
+            "other/fill": 10,
+            "other/color": 50,
+            "button/color": 2,
+            "other/stroke": 4,
+            "heading/color": 5,
+            "body/borderColor": 48,
+            "link/borderColor": 8,
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#0d3c88",
+          "oklch": {
+            "c": 0.13655443259401406,
+            "h": 260.1377188923985,
+            "l": 0.3761443939856571
+          },
+          "contexts": [
+            "other",
+            "body",
+            "icon",
+            "footer",
+            "link"
+          ],
+          "frequency": 38,
+          "confidence": 1,
+          "prominence": 6849881.275645474,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "icon/color": 6,
+            "other/fill": 8,
+            "other/color": 2,
+            "other/stroke": 6,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 8,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#eee1d9",
+          "oklch": {
+            "c": 0.01791605907348161,
+            "h": 53.964875722005644,
+            "l": 0.9178977449243291
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 693787.0378770632,
+          "properties": [
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "other/fill": 9,
+            "other/stroke": 2
+          }
+        },
+        {
+          "hex": "#015fee",
+          "oklch": {
+            "c": 0.22808788491055423,
+            "h": 260.8192352435425,
+            "l": 0.5355118209702766
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 414720,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#01295f",
+          "oklch": {
+            "c": 0.10553968877265003,
+            "h": 257.8048722640906,
+            "l": 0.29270996972373636
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 124258,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#869ec3",
+          "oklch": {
+            "c": 0.06217183183882529,
+            "h": 259.93228502714396,
+            "l": 0.6932966555490447
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 68620.95146872246,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#a1551f",
+          "oklch": {
+            "c": 0.11965174816829417,
+            "h": 51.83414903137728,
+            "l": 0.5316106901444402
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 22679.228422819022,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#f7931e",
+          "oklch": {
+            "c": 0.16534372619564913,
+            "h": 62.21740005114014,
+            "l": 0.7524954186956605
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1689,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#fbb03b",
+          "oklch": {
+            "c": 0.15247601934828672,
+            "h": 73.73983977095584,
+            "l": 0.8100046177908867
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 520.1118932547691,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.05629923287913106,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.41,
+          "background": "#eee1d9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.15,
+          "background": "#ffffff",
+          "foreground": "#01295f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.43,
+          "background": "#e5e7eb",
+          "foreground": "#01295f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.38,
+          "background": "#fbb03b",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.06,
+          "background": "#eee1d9",
+          "foreground": "#01295f"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.4,
+          "background": "#0d3c88",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.15,
+          "background": "#f7931e",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.4,
+          "background": "#e5e7eb",
+          "foreground": "#0d3c88"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.13,
+          "background": "#eee1d9",
+          "foreground": "#0d3c88"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.69,
+          "background": "#869ec3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.67,
+          "background": "#fbb03b",
+          "foreground": "#01295f"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.82,
+          "background": "#1658b3",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.16,
+          "background": "#f7931e",
+          "foreground": "#01295f"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.63,
+          "background": "#fbb03b",
+          "foreground": "#0d3c88"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.51,
+          "background": "#e5e7eb",
+          "foreground": "#1658b3"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.42,
+          "background": "#015fee",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.33,
+          "background": "#eee1d9",
+          "foreground": "#1658b3"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.53,
+          "background": "#f7931e",
+          "foreground": "#0d3c88"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 15
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "heading",
+            "other",
+            "body",
+            "nav"
+          ],
+          "frequency": 53,
+          "properties": [
+            "marginLeft",
+            "marginRight",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|button",
+            "marginRight|heading",
+            "marginLeft|heading",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|body",
+            "marginBottom|body",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "button",
+            "body",
+            "other",
+            "heading",
+            "icon"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginRight|body",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|body",
+            "paddingTop|heading",
+            "marginRight|icon"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginBottom",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginLeft|body",
+            "marginBottom|body",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|other",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "marginRight",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginRight|body",
+            "marginRight|link",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "heading",
+            "link"
+          ],
+          "frequency": 45,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|body",
+            "marginBottom|button",
+            "marginBottom|heading",
+            "marginLeft|link",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "marginRight|body",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "hero",
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingRight|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 74,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingRight|heading",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 188,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        },
+        {
+          "value": 224,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 287,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Greycliff",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 311,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Baton Turbo",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 91,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 0.9
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Greycliff",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Baton Turbo",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Baton Turbo",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Greycliff",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "hero",
+            "button",
+            "body",
+            "icon",
+            "image",
+            "badge",
+            "footer",
+            "nav"
+          ],
+          "frequency": 250,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Greycliff",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Greycliff",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Baton Turbo",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Baton Turbo",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Baton Turbo",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Greycliff",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Greycliff",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Greycliff",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Greycliff",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Greycliff",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "Baton Turbo",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 23,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "Greycliff",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Greycliff",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Baton Turbo",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Baton Turbo",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 151,
+          "family": "Baton Turbo",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7d54004d-d751-4c1f-8a12-0b866b634691.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/b03ba059-87ff-4006-83ba-0beee87c1727.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5cb1fbe8-b539-4482-b645-74a745332965#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Swwim design system\",\"item\":\"https://styles.refero.design/style/5cb1fbe8-b539-4482-b645-74a745332965\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5cb1fbe8-b539-4482-b645-74a745332965#style-reference\",\"name\":\"Swwim design system reference\",\"headline\":\"Swwim design system | Refero Styles\",\"description\":\"Explore Swwim's light Agency design system: Cobalt Current #1658b3, Deep Channel #0d3c88 colors, Baton Turbo, Greycliff typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5cb1fbe8-b539-4482-b645-74a745332965\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5cb1fbe8-b539-4482-b645-74a745332965\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Swwim\",\"url\":\"https://www.weswwim.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5cb1fbe8-b539-4482-b645-74a745332965#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/b03ba059-87ff-4006-83ba-0beee87c1727.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/b03ba059-87ff-4006-83ba-0beee87c1727.jpg\",\"caption\":\"Screenshot of Swwim\"},\"image\":\"https://images.refero.design/styles/refero.design/image/b03ba059-87ff-4006-83ba-0beee87c1727.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Swwim design system\",\"Swwim website design\",\"Swwim colors\",\"Swwim typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Cobalt Current\",\"Deep Channel\",\"Electric Ripple\",\"Abyssal Ink\",\"Baton Turbo\",\"Greycliff\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Swwim design system\"},{\"@type\":\"Thing\",\"name\":\"Swwim website design\"},{\"@type\":\"Thing\",\"name\":\"Swwim colors\"},{\"@type\":\"Thing\",\"name\":\"Swwim typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:23:51.496Z\",\"dateModified\":\"2026-04-30T02:23:51.496Z\"}]}19:T790,## Quick Color Reference\n- text on white: Carbon (#000000)\n- text on blue: White Canvas (#ffffff)\n- page background: White Canvas (#ffffff)\n- hero / section flood: Cobalt Current (#1658b3)\n- border / divider: Cloud Border (#e5e7eb)\n- decorative accent: Nude Clay (#eee1d9)\n- primary action: #1658b3 (outlined action border)\n\n## 3 Example Component Prompts\n\n1. **Hero with floating product crops**: Full-bleed Cobalt Current (#1658b3) background. Headline at 151px Baton Turbo weight 400, all-caps, white, line-height 1.0, occupying the left two-thirds. One product image (tightly cropped, no border, no radius) absolutely positioned to overlap the lower-right letterforms. Supporting body copy in Greycliff 400, 18px, white, line-height 1.56, placed in the negative space right of center. 64px top and bottom padding.\n\n2. **White Pill Button**: 9999px radius, 16px vertical / 24px horizontal padding, white fill, text in Greycliff 500 at 16px colored Cobalt Current (#1658b3). No border, no shadow. Sits inline with body content on white or on a blue surface.\n\n3. **Service Marquee Band**: Full-bleed Cobalt Current (#1658b3), 64px vertical padding, horizontally scrolling or static line of services separated by white bullet dots. Text is Baton Turbo 400 all-caps at 36px, white. Tightly packed — services run edge-to-edge with 24px gaps between items.\n\n4. **White Surface Card**: White background, 24px padding on all sides, 1px solid #e5e7eb border, 0px radius, no shadow. Body text in Greycliff 400, 16px, Carbon (#000000). Optional heading in Greycliff 500, 20px.\n\n5. **Header Lockup**: White background section, 'swwim' wordmark in Greycliff 500 lowercase 24px white, followed by a 1px wide × 24px tall white vertical divider with 12px margin on each side, then 'Social Media Marketing' descriptor in Greycliff 400 14px white. Right-aligned: white pill 'Contact Us' button + 'Menu' label in Greycliff 500 16px + hamburger icon."
+}

@@ -1,0 +1,27 @@
+@theme {
+  /* Colors */
+  --color-obsidian: #000000;
+  --color-paper-white: #ffffff;
+  --color-warm-fog: #bcbcbc;
+  --color-bone: #cccbbb;
+  --color-slate-drift: #c0c4ca;
+  --color-rose-clay: #cdbcb9;
+  --color-linen: #cfbca6;
+  --color-graphite: #4f4c4c;
+  --color-espresso: #2e2321;
+  --color-vermillion: #e01365;
+  --color-saffron: #d0a43e;
+  --color-cinnabar: #cc4132;
+  --color-ochre: #a48b0b;
+
+  /* Typography */
+  --font-neue-haas-grotesk: 'Neue Haas Grotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 16px;
+  --leading-caption: 1;
+
+  /* Spacing */
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+}

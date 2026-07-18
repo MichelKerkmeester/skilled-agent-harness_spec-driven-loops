@@ -1,0 +1,387 @@
+{
+  "color": {
+    "forest-stage": {
+      "$value": "#0d542b",
+      "$type": "color",
+      "$description": "Forest Stage — Hero section background, dark feature spotlights — deep green anchors the dramatic first impression"
+    },
+    "lime-sprout": {
+      "$value": "#b9ff78",
+      "$type": "color",
+      "$description": "Lime Sprout — Green supporting accent for decorative details and low-frequency emphasis"
+    },
+    "ember-coral": {
+      "$value": "#f54320",
+      "$type": "color",
+      "$description": "Ember Coral — Decorative stroke accent — wavy underlines, hand-drawn doodles, product frame borders, section dividers"
+    },
+    "coral-whisper": {
+      "$value": "#ffe3e3",
+      "$type": "color",
+      "$description": "Coral Whisper — Soft warm surface wash, hero gradient highlight, gentle background tints behind editorial sections"
+    },
+    "cream-paper": {
+      "$value": "#fcf7ed",
+      "$type": "color",
+      "$description": "Cream Paper — Primary content surface, page background for feature/pricing/footer sections — the default canvas"
+    },
+    "true-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "True Black — Headlines, primary body text, dark icons, logo mark on light surfaces"
+    },
+    "midnight-ink": {
+      "$value": "#1c1917",
+      "$type": "color",
+      "$description": "Midnight Ink — Dark surface (footer dark mode, inverse cards), button text on light fills, heading accent"
+    },
+    "stone": {
+      "$value": "#44403b",
+      "$type": "color",
+      "$description": "Stone — Body paragraph text on cream surfaces, secondary headings, footer description copy"
+    },
+    "slate": {
+      "$value": "#292524",
+      "$type": "color",
+      "$description": "Slate — Strong secondary text, nav links on cream, meta labels"
+    },
+    "ash": {
+      "$value": "#d6d3d1",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, subtle borders on cream, disabled states, tag outlines"
+    },
+    "fog": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Fog — Hairline dividers, form field borders, table separators — the structural neutral"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surface lift on cream, button text on dark fills, input field backgrounds"
+    },
+    "moss": {
+      "$value": "#008236",
+      "$type": "color",
+      "$description": "Moss — Logo green, icon strokes, secondary brand accent — the mid-green companion to the forest stage"
+    }
+  },
+  "font": {
+    "gt-alpina-condensed": {
+      "$value": "GT Alpina Condensed",
+      "$type": "fontFamily",
+      "$description": "Display headlines — the editorial voice. Used at hero scale (96-136px) for the dramatic serif moments that anchor each section. Condensed cuts and tight line-heights give it poster-like authority. Substitute: 'Playfair Display' or 'Bodoni Moda' condensed at matching weight"
+    },
+    "gt-america-standard": {
+      "$value": "GT America Standard",
+      "$type": "fontFamily",
+      "$description": "Body text, subheadings, medium-weight headings. The workhorse grotesk for long-form paragraphs and section sub-headlines. Slight -0.007em tightening gives it a composed, not loose, feel. Substitute: 'Inter' or 'Söhne'"
+    },
+    "gt-america-extended": {
+      "$value": "GT America Extended",
+      "$type": "fontFamily",
+      "$description": "UI chrome: button labels, navigation links, footer column headers, small labels. Wider proportions at small sizes improve readability in compact UI. Substitute: 'Inter' at letter-spacing 0.02em"
+    },
+    "gt-america-condensed": {
+      "$value": "GT America Condensed",
+      "$type": "fontFamily",
+      "$description": "Section eyebrows and secondary display — the 'SCHEDULING EXPERIENCE' style small-caps labels with wide tracking (+0.05em at 18px), and tighter condensed headlines at 38px (-0.025em). Substitute: 'Inter' condensed variant or 'Barlow Condensed'"
+    },
+    "intervariable": {
+      "$value": "InterVariable",
+      "$type": "fontFamily",
+      "$description": "Fallback/utility text — appears in footer fine print and secondary system text. The site is GT-America-first; Inter fills the generic-system gaps"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GT-America-Extended",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "GT-America-Extended",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "InterVariable",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "GT-America-Extended",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "GT-America-Standard",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "GT-America-Extended",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "GT-America-Extended",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "GT-America-Condensed",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "GT-America-Standard",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "GT-America-Standard",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "GT-America-Standard",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "GT-America-Standard",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "GT-America-Standard",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "GT-America-Extended",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "GT-America-Standard",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "GT-America-Standard",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "GT-America-Standard",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "GT-America-Condensed",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 38px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "GT-Alpina-Condensed",
+        "fontSize": "96px",
+        "fontWeight": 700,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 96px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "GT-Alpina-Condensed",
+        "fontSize": "136px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 136px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "forest-stage": {
+      "$value": "#0d542b",
+      "$type": "color",
+      "$description": "Surface level 0: Hero section background — the dark dramatic opening zone"
+    },
+    "cream-paper": {
+      "$value": "#fcf7ed",
+      "$type": "color",
+      "$description": "Surface level 1: Primary content surface for features, pricing, footer — the default canvas"
+    },
+    "pure-white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated card surface on cream — subtle lift for pricing, feature cards"
+    },
+    "coral-whisper": {
+      "$value": "#ffe3e3",
+      "$type": "color",
+      "$description": "Surface level 3: Soft warm highlight wash behind editorial moments, gradient highlight in hero"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://savvycal.com",
+      "siteName": "Savvycal",
+      "extractedAt": "2026-06-03T19:06:45.093Z",
+      "variant": "extended"
+    }
+  }
+}

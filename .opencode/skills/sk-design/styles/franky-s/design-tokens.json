@@ -1,0 +1,209 @@
+{
+  "color": {
+    "arcade-cream": {
+      "$value": "#f3e5df",
+      "$type": "color",
+      "$description": "Arcade Cream — Page background, product card surfaces, inset highlights on buttons"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, checkerboard tiles, all UI borders, card outlines, icon strokes"
+    },
+    "pixel-gray": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Pixel Gray — Hairline borders, card dividers, structural rules between grid cells"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal — Secondary surface tone, checkerboard shadow squares, shadow color"
+    },
+    "carbon": {
+      "$value": "#151515",
+      "$type": "color",
+      "$description": "Carbon — Deep neutral for illustration fills and the densest checkerboard tiles"
+    },
+    "muted-gray": {
+      "$value": "#737373",
+      "$type": "color",
+      "$description": "Muted Gray — Disabled/muted text on buttons and body copy"
+    },
+    "marquee-orange": {
+      "$value": "#faa21f",
+      "$type": "color",
+      "$description": "Marquee Orange — Top notification bar, marquee accents, brand signature"
+    },
+    "buy-green": {
+      "$value": "#128e44",
+      "$type": "color",
+      "$description": "Buy Green — Filled ADD TO CART button — the only green purchase action"
+    }
+  },
+  "font": {
+    "arcade": {
+      "$value": "Arcade",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire interface — every heading, label, price, button, body and icon is set in Arcade. The 400/700 weight jump is the only hierarchy tool; using a second typeface would shatter the kiosk illusion."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Arcade",
+        "fontSize": "10px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Arcade",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Arcade",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arcade",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Arcade",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Arcade",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Arcade",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(243, 229, 223) 0px 1px 0px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "arcade-cream": {
+      "$value": "#f3e5df",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas — warm off-white that makes the pixel font breathe"
+    },
+    "pixel-gray": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Surface level 2: Grid gutter tone and product card background variation"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Surface level 3: Checkerboard shadow squares and tertiary surface"
+    },
+    "carbon": {
+      "$value": "#151515",
+      "$type": "color",
+      "$description": "Surface level 4: Deepest checkerboard tone, near-black illustration fills"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://frankys-hats.com",
+      "siteName": "FRANKY'S",
+      "extractedAt": "2026-06-03T22:39:52.730Z",
+      "variant": "extended"
+    }
+  }
+}

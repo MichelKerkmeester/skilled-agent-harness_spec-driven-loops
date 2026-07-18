@@ -1,0 +1,71 @@
+@theme {
+  /* Colors */
+  --color-sun-yellow: #ffde3b;
+  --color-hot-pink: #ff4dd5;
+  --color-lime-burst: #c1f32b;
+  --color-periwinkle: #6483ff;
+  --color-spring-green: #c6dc3c;
+  --color-bubblegum: #ee84d5;
+  --color-warm-linen: #f1e8de;
+  --color-paper-white: #fbf8f5;
+  --color-pure-white: #ffffff;
+  --color-charcoal: #2f2c29;
+  --color-stone: #c3b7ac;
+  --color-sand: #eadcce;
+  --color-ink: #000000;
+  --color-fog: #999999;
+
+  /* Typography */
+  --font-ease-standard: 'Ease Standard', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ease-display: 'Ease Display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.2;
+  --tracking-caption: -0.96px;
+  --text-body: 16px;
+  --leading-body: 1.2;
+  --tracking-body: -1.28px;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.2;
+  --tracking-body-lg: -1.44px;
+  --text-subheading: 28px;
+  --leading-subheading: 1.1;
+  --tracking-subheading: -1.6px;
+  --text-heading: 30px;
+  --leading-heading: 1.1;
+  --tracking-heading: -1.02px;
+  --text-heading-lg: 68px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -2.31px;
+  --text-display: 100px;
+  --leading-display: 1;
+  --tracking-display: -1.4px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-120: 120px;
+  --spacing-200: 200px;
+
+  /* Border Radius */
+  --radius-md: 5px;
+  --radius-lg: 10px;
+  --radius-full: 96px;
+  --radius-full-2: 160px;
+
+  /* Shadows */
+  --shadow-sm: rgba(0, 0, 0, 0.13) 1px 0px 5px 0px, rgba(0, 0, 0, 0.08) 2px 2px 4px 1px;
+  --shadow-md: rgba(115, 115, 115, 0.16) 0px 3px 10px 0px, rgba(115, 115, 115, 0.16) 0px 2px 4px 0px;
+  --shadow-sm-2: rgba(0, 0, 0, 0.08) 2px 2px 4px 1px, rgba(0, 0, 0, 0.13) 1px 0px 5px 0px;
+}

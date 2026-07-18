@@ -1,0 +1,543 @@
+{
+  "source": "https://styles.refero.design/style/d69af89b-cb31-426d-b9aa-c21d127b8947",
+  "uuid": "d69af89b-cb31-426d-b9aa-c21d127b8947",
+  "name": "OhDada",
+  "northStar": "Editorial gallery wall",
+  "capturedAt": "2026-07-18T07:22:35.780Z",
+  "meta": {
+    "url": "https://ohdada.de",
+    "siteName": "OhDada",
+    "extractedAt": "2026-06-03T21:25:36.041Z",
+    "durationMs": 27030,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 187,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only GrandSlang-Roman weight 100 for the wordmark and display headings — never set it bold or above 72px",
+      "Alternate Chalk Cream (#e6e0d9) and Lavender Stone (#b7b3be) as full-bleed section backgrounds to create rhythm without introducing new colors",
+      "Apply 115px top/bottom padding to all major sections to maintain gallery-wall breathing room",
+      "Set all body and navigation text in Neue Haas Grotesk weight 400–500, Saddle Brown (#5d3a19), 16–17px",
+      "Mark links and interactive elements with a 1px Saddle Brown bottom border rather than a filled background",
+      "Use 0px border-radius on all components — cards, buttons, images, and product frames are sharp-edged",
+      "Let product photography be the only source of additional color (blues, whites from the sculptures); the UI itself stays three-tone"
+    ],
+    "donts": [
+      "Do not introduce gradients, drop shadows, or elevation effects — the system is flat by design",
+      "Do not use rounded corners on any element; 0px radius is structural to the editorial feel",
+      "Do not add a fourth color to the palette — Saddle Brown, Chalk Cream, and Lavender Stone are the complete chromatic vocabulary",
+      "Do not set GrandSlang-Roman below 58px or in any weight other than 100; it loses its character at small sizes",
+      "Do not use filled button backgrounds for primary actions; use the outlined-link treatment with a brown border instead",
+      "Do not center body text — the layout is left-aligned throughout, even in the hero",
+      "Do not add hover animations, color transitions, or motion; the interface reads as a printed catalog"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#e6e0d9",
+        "name": "Chalk Cream",
+        "role": "Primary page canvas and secondary section background; the warm off-white that makes brown type and sculpture photography feel curated rather than clinical",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b7b3be",
+        "name": "Lavender Stone",
+        "role": "Alternate section background and hero canvas; introduces a cool, chalky counterpoint to the warm cream without breaking the achromatic discipline",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5d3a19",
+        "name": "Saddle Brown",
+        "role": "All headings, body copy, link text, and hairline borders — the only chromatic voice in the system, used as a drawn-with-ink accent against the pale neutrals; Outlined and ghost interactive borders; links and navigation controls carry a 1px brown stroke rather than a filled background, keeping the surface quiet",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Decorative SVG fills only; never used for UI text or surface elements",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page model with no max-width container — content aligns to the page edges with generous left margins. The hero is a full-viewport Lavender Stone band with the wordmark left-aligned at roughly 10% from the left edge, no centered composition. Sections alternate between Chalk Cream and Lavender Stone bands separated by 115px vertical padding. Product sections use a 2-column split: product name in italic serif on the left third, full-bleed photograph filling the right two-thirds. Navigation is a minimal top bar with inline links, no logo block, no hamburger. The overall rhythm is editorial — large quiet bands, single product per section, no card grids or multi-column feature blocks.",
+    "imagery": "Product photography dominates and is the only source of color beyond the three-tone UI. Sculptures are shot in clean, well-lit studio conditions on white or neutral gallery walls — tight, straight-on crops that show the kinetic mobile in full. No lifestyle context, no human subjects, no decorative backgrounds. Treatment is high-key, natural, unretouched. The blue and brown geometric forms of the sculptures echo the UI palette by coincidence, not by art direction. Icons are absent from the interface entirely. Imagery ratio: image-forward on product pages, text-only on the hero.",
+    "similar": [
+      {
+        "why": "Same editorial catalog layout with full-bleed section bands, product photography as the sole color source, and minimal sans-serif supporting type around a distinctive display face",
+        "business": "Maison & Objet"
+      },
+      {
+        "why": "Same flat two-tone background alternation, oversized low-weight display headings, and the discipline of using a single warm accent color for all text and borders",
+        "business": "Hem (hem.com)"
+      },
+      {
+        "why": "Same gallery-portfolio rhythm: quiet neutral canvases alternating with accent bands, sharp-edged product imagery flush to page edges, and restraint as the primary design principle",
+        "business": "Atelier Bingo"
+      },
+      {
+        "why": "Same warm cream and muted cool-gray alternating sections, hairline-only interactive elements, and the pairing of a thin display serif with a neutral grotesque",
+        "business": "Menu Space (menu.space)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "115px",
+      "cardPadding": "40px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#e6e0d9",
+        "name": "Cream Canvas",
+        "level": 1,
+        "purpose": "Dominant page and product-section background"
+      },
+      {
+        "hex": "#b7b3be",
+        "name": "Lavender Plinth",
+        "level": 2,
+        "purpose": "Hero and accent section background, creates a tonal shift without introducing a new hue family"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Editorial gallery wall",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.18
+      },
+      {
+        "role": "display",
+        "size": 58,
+        "lineHeight": 1
+      },
+      {
+        "role": "display-lg",
+        "size": 72,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Hero Wordmark",
+        "role": "Brand identity display",
+        "description": "Full-bleed Lavender Stone (#b7b3be) section. GrandSlang-Roman weight 100 at 58–72px, Saddle Brown (#5d3a19), set on two lines with tight line-height 1.0. No logo mark, no icon — the type IS the brand. Generous left margin, text aligned to the left third."
+      },
+      {
+        "name": "Hero Subtitle",
+        "role": "Tagline beneath wordmark",
+        "description": "Neue Haas Grotesk weight 400 at 16px, color Chalk Cream (#e6e0d9) on Lavender Stone ground. Three short lines stacked with 5px vertical rhythm. The cream-on-lavender pairing is deliberately low-contrast — the subtitle is read second, not first."
+      },
+      {
+        "name": "Section Title (Display)",
+        "role": "Major section heading",
+        "description": "Neue Haas Grotesk weight 500 at 58px, Saddle Brown (#5d3a19) on Chalk Cream ground. Tight line-height 1.0. No underline, no decoration. Appears as the first content element in each section with 115px top padding."
+      },
+      {
+        "name": "Product Card — Editorial",
+        "role": "Product entry in catalog",
+        "description": "Full-bleed image on the right (50% width), product name in Neue Haas Grotesk italic weight 400 at 17px, Saddle Brown, aligned to the bottom-left of the image column. No border, no shadow, no background card — the image sits directly on the Chalk Cream canvas. The product name is the only metadata visible."
+      },
+      {
+        "name": "Outlined Link",
+        "role": "Navigation and inline links",
+        "description": "Saddle Brown (#5d3a19) text in Neue Haas Grotesk weight 400 at 16–17px, 1px Saddle Brown bottom border, no background fill. 10px right margin when grouped. The border acts as the clickable affordance; the text alone would be too quiet."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Implicit section break",
+        "description": "No visible rule. Sections separate through background color alternation (Chalk Cream → Lavender Stone → Chalk Cream) and 115px vertical padding. The layout breath IS the divider."
+      },
+      {
+        "name": "Product Photography Frame",
+        "role": "Sculpture product imagery",
+        "description": "Edge-to-edge photographic crops with 0px radius, no border, no shadow. Images fill their column edge-to-edge. Subjects are shot on white or neutral gallery walls — the image provides its own contrast against the cream page."
+      },
+      {
+        "name": "Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Full-width, transparent, sits directly on the current section's background color. Neue Haas Grotesk weight 400 at 16px, Saddle Brown, inline items separated by spacing, no background fill, no shadow, no sticky behavior implied."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Brand mark and large display headings only — used at 58px+ for the wordmark and section titles. Weight 100 is the entire signature: hairline serif strokes that read as drawn rather than typeset. Substitute: Cormorant Garamond Ultralight or Italiana, which approximate the extreme thinness and high-contrast serif construction.",
+        "sizes": "58px",
+        "family": "GrandSlang-Roman",
+        "weight": "100",
+        "lineHeight": "1.00",
+        "substitute": "Cormorant Garamond Ultralight",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "All body copy, navigation, secondary headings, and product labels. Weights 400 for body, 500 for emphasis. The neo-grotesque geometry acts as a neutral ground for the expressive display serif — a deliberate Swiss-type baseline that lets GrandSlang perform. Substitute: Inter, Neue Haas Unica, or Helvetica Neue.",
+        "sizes": "16px, 17px, 72px",
+        "family": "Neue Haas Grotesk Display",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.18, 1.20",
+        "substitute": "Inter",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "OhDada operates on a gallery-catalog visual language: two quiet, chalky neutrals (warm cream and lavender-gray) alternate as full-bleed section canvases, and a single saturated saddle brown does all the typographic and structural work. The signature typographic move pairs GrandSlang-Roman at weight 100 — an ultra-thin display serif — with Neue Haas Grotesk, so the brand name whispers in calligraphic hairline strokes while supporting text sits in crisp, engineered grotesque. This is a low-density, image-forward layout where the product photography (kinetic sculptures in primary blues and browns against white walls) provides all the color the UI refuses to use. The interface is minimal to the point of editorial restraint: thin hairline borders, almost no shadows, no gradients, and components that feel like printed catalog plates rather than software surfaces.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d69af89b-cb31-426d-b9aa-c21d127b8947#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"OhDada design system\",\"item\":\"https://styles.refero.design/style/d69af89b-cb31-426d-b9aa-c21d127b8947\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d69af89b-cb31-426d-b9aa-c21d127b8947#style-reference\",\"name\":\"OhDada design system reference\",\"headline\":\"OhDada design system | Refero Styles\",\"description\":\"Explore OhDada's light E-commerce design system: Chalk Cream #e6e0d9, Lavender Stone #b7b3be colors, GrandSlang-Roman, Neue Haas Grotesk Display typography,...\",\"url\":\"https://styles.refero.design/style/d69af89b-cb31-426d-b9aa-c21d127b8947\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d69af89b-cb31-426d-b9aa-c21d127b8947\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"OhDada\",\"url\":\"https://ohdada.de\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d69af89b-cb31-426d-b9aa-c21d127b8947#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ad5371e6-ca1b-42dc-b188-3e10a95b84fb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ad5371e6-ca1b-42dc-b188-3e10a95b84fb.jpg\",\"caption\":\"Screenshot of OhDada\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ad5371e6-ca1b-42dc-b188-3e10a95b84fb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"OhDada design system\",\"OhDada website design\",\"OhDada colors\",\"OhDada typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Chalk Cream\",\"Lavender Stone\",\"Saddle Brown\",\"Ink Black\",\"GrandSlang-Roman\",\"Neue Haas Grotesk Display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"OhDada design system\"},{\"@type\":\"Thing\",\"name\":\"OhDada website design\"},{\"@type\":\"Thing\",\"name\":\"OhDada colors\"},{\"@type\":\"Thing\",\"name\":\"OhDada typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:28:43.924Z\",\"dateModified\":\"2026-04-30T03:28:43.924Z\"}]}19:T5ba,Quick Color Reference:\n- text: #5d3a19 (Saddle Brown)\n- background: #e6e0d9 (Chalk Cream)\n- border: #5d3a19 (Saddle Brown, 1px hairline)\n- accent surface: #b7b3be (Lavender Stone)\n- primary action: #5d3a19 (outlined action border)\n\nExample Component Prompts:\n\n1. Create a hero wordmark block: full-bleed Lavender Stone (#b7b3be) background, 115px top padding. Headline 'Oh DaDa' set in GrandSlang-Roman weight 100, 72px, color #5d3a19, line-height 1.0, left-aligned with ~10% left margin. Below at 40px gap, a three-line subtitle in Neue Haas Grotesk weight 400, 16px, color #e6e0d9, line-height 1.18.\n\n2. Create a section title: Chalk Cream (#e6e0d9) background. Heading 'Products' in Neue Haas Grotesk weight 500, 58px, color #5d3a19, line-height 1.0, 115px top padding, left-aligned.\n\n3. Create a product card: Chalk Cream (#e6e0d9) background, two-column split. Right column (65% width) is an edge-to-edge product photograph with 0px radius. Left column (35% width) contains the product name 'Kaskasi' set in Neue Haas Grotesk italic weight 400, 17px, color #5d3a19, aligned to the bottom of the column.\n\n4. Create an outlined navigation link: Neue Haas Grotesk weight 400, 16px, color #5d3a19, 1px solid #5d3a19 bottom border, 10px right margin, no background fill, no padding.\n\n5. Create a section transition: switch from Chalk Cream (#e6e0d9) to Lavender Stone (#b7b3be) as the background, 115px vertical padding, no visible border or shadow between sections."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "The system has no elevation. Components are flush against their canvas — no drop shadows, no blur, no layered surfaces. Depth is implied through background color alternation (Chalk Cream ↔ Lavender Stone) and the contrast between the flat UI and the dimensional product photography. This absence of elevation is structural: it keeps the interface reading as a printed gallery catalog rather than a software surface."
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no blur, no stacked surfaces. Depth comes solely from alternating cream and lavender-stone background bands and the natural dimension of product photography against flat UI."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e6e0d9",
+          "oklch": {
+            "c": 0.011503807071725441,
+            "h": 71.89122616296315,
+            "l": 0.9094722854757082
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "image",
+            "link"
+          ],
+          "frequency": 422,
+          "confidence": 1,
+          "prominence": 197147918.05957618,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/color": 3,
+            "image/color": 9,
+            "other/color": 71,
+            "heading/color": 1,
+            "link/borderColor": 12,
+            "image/borderColor": 36,
+            "other/borderColor": 284,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#b7b3be",
+          "oklch": {
+            "c": 0.016038168008521207,
+            "h": 302.4812834206967,
+            "l": 0.7733817106851538
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 6047218.376376477,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "link/borderColor": 4,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 5847489.694326289,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 11
+          }
+        },
+        {
+          "hex": "#5d3a19",
+          "oklch": {
+            "c": 0.06820904959536987,
+            "h": 61.57495580271269,
+            "l": 0.38298243786385827
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 166,
+          "confidence": 1,
+          "prominence": 3215182.3482277784,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 12,
+            "link/color": 4,
+            "other/fill": 6,
+            "heading/color": 16,
+            "body/borderColor": 48,
+            "link/borderColor": 16,
+            "heading/borderColor": 64
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.07260169268964649,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 16.03,
+          "background": "#e6e0d9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.21,
+          "background": "#b7b3be",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.69,
+          "background": "#e6e0d9",
+          "foreground": "#5d3a19"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.9,
+          "background": "#b7b3be",
+          "foreground": "#5d3a19"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.57,
+          "background": "#b7b3be",
+          "foreground": "#e6e0d9"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 115,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingTop|heading",
+            "paddingRight|heading",
+            "paddingBottom|heading",
+            "paddingLeft|heading",
+            "paddingTop|body",
+            "paddingRight|body",
+            "paddingBottom|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "neue-haas-grotesk-display",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 161,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GrandSlang-Roman",
+          "source": "custom",
+          "weights": [
+            100
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "neue-haas-grotesk-display",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 34,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "neue-haas-grotesk-display",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "GrandSlang-Roman",
+          "weight": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "neue-haas-grotesk-display",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/6bdb1030-c8a4-441d-8b91-effc3c3ced2f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ad5371e6-ca1b-42dc-b188-3e10a95b84fb.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d69af89b-cb31-426d-b9aa-c21d127b8947#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"OhDada design system\",\"item\":\"https://styles.refero.design/style/d69af89b-cb31-426d-b9aa-c21d127b8947\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d69af89b-cb31-426d-b9aa-c21d127b8947#style-reference\",\"name\":\"OhDada design system reference\",\"headline\":\"OhDada design system | Refero Styles\",\"description\":\"Explore OhDada's light E-commerce design system: Chalk Cream #e6e0d9, Lavender Stone #b7b3be colors, GrandSlang-Roman, Neue Haas Grotesk Display typography,...\",\"url\":\"https://styles.refero.design/style/d69af89b-cb31-426d-b9aa-c21d127b8947\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d69af89b-cb31-426d-b9aa-c21d127b8947\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"OhDada\",\"url\":\"https://ohdada.de\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d69af89b-cb31-426d-b9aa-c21d127b8947#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ad5371e6-ca1b-42dc-b188-3e10a95b84fb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ad5371e6-ca1b-42dc-b188-3e10a95b84fb.jpg\",\"caption\":\"Screenshot of OhDada\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ad5371e6-ca1b-42dc-b188-3e10a95b84fb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"OhDada design system\",\"OhDada website design\",\"OhDada colors\",\"OhDada typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Chalk Cream\",\"Lavender Stone\",\"Saddle Brown\",\"Ink Black\",\"GrandSlang-Roman\",\"Neue Haas Grotesk Display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"OhDada design system\"},{\"@type\":\"Thing\",\"name\":\"OhDada website design\"},{\"@type\":\"Thing\",\"name\":\"OhDada colors\"},{\"@type\":\"Thing\",\"name\":\"OhDada typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:28:43.924Z\",\"dateModified\":\"2026-04-30T03:28:43.924Z\"}]}19:T5ba,Quick Color Reference:\n- text: #5d3a19 (Saddle Brown)\n- background: #e6e0d9 (Chalk Cream)\n- border: #5d3a19 (Saddle Brown, 1px hairline)\n- accent surface: #b7b3be (Lavender Stone)\n- primary action: #5d3a19 (outlined action border)\n\nExample Component Prompts:\n\n1. Create a hero wordmark block: full-bleed Lavender Stone (#b7b3be) background, 115px top padding. Headline 'Oh DaDa' set in GrandSlang-Roman weight 100, 72px, color #5d3a19, line-height 1.0, left-aligned with ~10% left margin. Below at 40px gap, a three-line subtitle in Neue Haas Grotesk weight 400, 16px, color #e6e0d9, line-height 1.18.\n\n2. Create a section title: Chalk Cream (#e6e0d9) background. Heading 'Products' in Neue Haas Grotesk weight 500, 58px, color #5d3a19, line-height 1.0, 115px top padding, left-aligned.\n\n3. Create a product card: Chalk Cream (#e6e0d9) background, two-column split. Right column (65% width) is an edge-to-edge product photograph with 0px radius. Left column (35% width) contains the product name 'Kaskasi' set in Neue Haas Grotesk italic weight 400, 17px, color #5d3a19, aligned to the bottom of the column.\n\n4. Create an outlined navigation link: Neue Haas Grotesk weight 400, 16px, color #5d3a19, 1px solid #5d3a19 bottom border, 10px right margin, no background fill, no padding.\n\n5. Create a section transition: switch from Chalk Cream (#e6e0d9) to Lavender Stone (#b7b3be) as the background, 115px vertical padding, no visible border or shadow between sections."
+}

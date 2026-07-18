@@ -1,0 +1,921 @@
+{
+  "source": "https://styles.refero.design/style/597355de-6167-4f37-8f14-b3897919a94c",
+  "uuid": "597355de-6167-4f37-8f14-b3897919a94c",
+  "name": "Exhibition Magazine",
+  "northStar": "Concrete editorial monolith",
+  "capturedAt": "2026-07-18T07:55:14.992Z",
+  "meta": {
+    "url": "https://exhibition-magazine.com",
+    "siteName": "Exhibition Magazine",
+    "extractedAt": "2026-06-03T19:07:44.425Z",
+    "durationMs": 39160,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 211,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use DIN at 90–100px for any display-level headline — the extreme scale is the signature, not a preference",
+      "Set all navigation and micro-labels in forma-djr-display at 13px, all-caps, with 0.062em letter-spacing — this tracking is non-negotiable",
+      "Apply 1px solid #e5e7eb borders for all structural lines — dividers, card outlines, link underlines",
+      "Use Cochin 16px/1.50 for all editorial body and descriptions — never substitute a sans-serif for body copy",
+      "Set line-height to 0.75–0.80 on DIN display sizes (50px+) to create dense, stacked typographic blocks",
+      "Maintain 0px border-radius on all elements — no rounded corners anywhere in the system",
+      "Use white (#ffffff) as the sole page and card background — no tinted surfaces unless matching #fff5fa exactly"
+    ],
+    "donts": [
+      "Do not add color, gradients, or shadows — the system is intentionally achromatic; any chromatic addition breaks the editorial contract",
+      "Do not use bold or heavy weights on DIN — weight 400 at extreme sizes is the only correct approach",
+      "Do not apply border-radius to images, cards, or buttons — all edges must remain sharp",
+      "Do not use letter-spacing on Cochin body text — tracking belongs only to display and micro-UI",
+      "Do not introduce button components with backgrounds or padding — all actions are underlined text links",
+      "Do not add card background colors or box-shadows to create separation — use hairlines and whitespace",
+      "Do not use warm or cool greys beyond #e5e7eb and #a9a9a9 — the two-value grey scale is deliberate restraint"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page backgrounds, nav bar, card surfaces, image backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "All text, nav links, display headings, footer background, card titles",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Hairline Grey",
+        "role": "1px borders, dividers, card outlines, link underlines — the structural skeleton of the layout",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a9a9a9",
+        "name": "Ash Grey",
+        "role": "Muted surface fills, image placeholder backgrounds, secondary tonal blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fff5fa",
+        "name": "Bone Blush",
+        "role": "Subtle warm-tinted card surface — near-white with a hint of warmth, used sparingly",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed layout with no max-width container on the hero — images and the wordmark span the entire viewport. Content sections use a centered max-width of ~1400px with no side gutters beyond natural centering. Hero is a full-viewport image carousel with overlaid text, no split-screen or boxed hero. Below the hero, a 4-column equal grid presents editorial cards in a continuous flow with 12px gaps. A full-bleed image strip interrupts the grid rhythm at intervals. The footer is a full-width black band with two-column micro-navigation flanking a centered display CTA. Section spacing is generous (60–100px) with 1px hairline dividers marking transitions. Navigation is a minimal top bar — no sticky behavior, no sidebar, no mega-menu. The page scrolls vertically as a single editorial sequence.",
+    "imagery": "Full-bleed editorial photography dominates the visual system. Images are high-fashion, art-directed portraits and scenes with cinematic lighting — moody, desaturated, often with strong directional light. Treatment is always edge-to-edge with 0px radius, no masks, no overlays beyond text. No illustrations, no icons, no abstract graphics. Photography functions as both atmosphere and content — the hero image IS the page, not decoration around it. The product is the image; type and chrome exist only to frame it.",
+    "similar": [
+      {
+        "why": "Same oversized condensed sans-serif display type, all-caps micro-navigation, and pure black-on-white editorial layout with no decorative elements",
+        "business": "032c Magazine"
+      },
+      {
+        "why": "Editorial magazine aesthetic with hairline borders, oversized serif headlines, and full-bleed photography with minimal UI chrome",
+        "business": "Apartamento"
+      },
+      {
+        "why": "Extreme typographic scale contrast, full-bleed hero photography, and near-zero color palette — image and type as the only content",
+        "business": "System Magazine"
+      },
+      {
+        "why": "Same art-magazine discipline: white canvas, oversized condensed display type, hairline structural lines, and zero chromatic UI elements",
+        "business": "KALEIDOSCOPE"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "60-100px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "media",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Page background, nav bar surface, content card background"
+      },
+      {
+        "hex": "#fff5fa",
+        "name": "Bone Blush",
+        "level": 1,
+        "purpose": "Subtle warm card surface — used on rare editorial cards to break the pure-white field"
+      },
+      {
+        "hex": "#a9a9a9",
+        "name": "Ash Grey",
+        "level": 2,
+        "purpose": "Image placeholder fills, muted tonal blocks behind absent photography"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "level": 3,
+        "purpose": "Footer background, inverted text contexts — the only non-white surface in the system"
+      }
+    ],
+    "northStar": "Concrete editorial monolith",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 25,
+        "lineHeight": 1
+      },
+      {
+        "role": "body-sm",
+        "size": 36,
+        "lineHeight": 1
+      },
+      {
+        "role": "body",
+        "size": 40,
+        "lineHeight": 1
+      },
+      {
+        "role": "body-lg",
+        "size": 50,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading-sm",
+        "size": 52,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading",
+        "size": 90,
+        "lineHeight": 1
+      },
+      {
+        "role": "heading-lg",
+        "size": 100,
+        "lineHeight": 1
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Wordmark",
+        "role": "Brand identifier in header",
+        "description": "Full-width text logo 'EXHIBITION MAGAZINE' in DIN 400 at 100px, white text, letter-spacing -0.008em, line-height 0.80. Sits above the navigation bar, bleeding edge to edge with no padding. The 100px size on viewport width creates an immediate editorial authority — this is a magazine masthead, not a SaaS logo."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Horizontal bar with 8 items: HOME, FASHION, ART, DECODING, BEAUTY, STUDIO, SHOP, SEARCH. forma-djr-display 500 at 13px, all-caps, 0.062em letter-spacing, color #000000. Items distributed with generous horizontal spacing (235px gaps between groups). No background, no border — floats directly on white. Active item indicated by underline only."
+      },
+      {
+        "name": "Full-Bleed Hero Slide",
+        "role": "Featured editorial content",
+        "description": "Full-viewport-width image with overlaid text. Headline in DIN 400 at 50–52px, white, centered or right-aligned over image. Subtitle in Cochin 400 at 16px, white. No card background, no padding — text floats on the photograph. Navigation arrows (‹ ›) in white on left/right edges."
+      },
+      {
+        "name": "Editorial Content Card",
+        "role": "Article or feature preview in grid",
+        "description": "Square or portrait image on top (0px radius, no border). DIN 400 at 36–40px for card title in #000000, 24px margin-top from image. Cochin 400 at 16px/1.50 for description in #000000, 8px margin-top from title. No card container, no background fill — image and text sit directly on white page. Arranged in 4-column grid."
+      },
+      {
+        "name": "Underlined Text Link",
+        "role": "Text-based call-to-action and navigation",
+        "description": "forma-djr-display 500 at 13px, all-caps, 0.062em tracking, #000000, 1px underline (border-bottom: 1px solid #000000). Used for 'LOAD MORE CONTENT', category labels, and all interactive text. No background, no border-radius, no padding beyond text. The underline is the only affordance — no button chrome exists in the system."
+      },
+      {
+        "name": "Image Grid (4-Column)",
+        "role": "Primary content arrangement",
+        "description": "4 equal columns on desktop, 12px gap between cards. No gutters at row boundaries — images and text flow continuously. Each cell is an independent editorial unit. No card borders, no background separation between cards and page."
+      },
+      {
+        "name": "Full-Bleed Image Strip",
+        "role": "Editorial feature interruption",
+        "description": "Edge-to-edge photograph with no text overlay, 0px radius, no border. Sits between content grids to break visual rhythm and provide atmospheric scale. Typical height: 50–70vh."
+      },
+      {
+        "name": "Dark Footer",
+        "role": "Site closure and secondary navigation",
+        "description": "Full-width #000000 background. Two columns of forma-djr-display links at 13px, 0.062em tracking, #ffffff, left-aligned (CONTRIBUTORS, LEGAL/PRIVACY POLICY, ONLINE SHOP, ABOUT) and right-aligned (INSTAGRAM, TIKTOK, LINKEDIN). Centered DIN display text at 52px, white, with 1px white underline — mirrors the body link style at display scale. Wordmark 'EXHIBITION' in bottom-left at 25px DIN, white."
+      },
+      {
+        "name": "Footer Display CTA",
+        "role": "Issue promotion in footer",
+        "description": "DIN 400 at 52px, #ffffff, centered, with 1px solid #ffffff underline. Text like 'UNCOVER CRAFT ISSUE'. Functions as the primary action of the entire site — a text link scaled to display proportions. The underline is the interactive affordance; no button exists."
+      },
+      {
+        "name": "Category Tag",
+        "role": "Content classification",
+        "description": "forma-djr-display 500 at 13px, all-caps, 0.062em tracking, #000000. Inline text, no background, no border. Appears above card titles or beside content to indicate section (FASHION, ART, DECODING, etc.)."
+      },
+      {
+        "name": "Image Carousel Indicator",
+        "role": "Slide position in hero",
+        "description": "Row of small dots (4px diameter, #ffffff with varying opacity) centered below hero content. No active state color shift — opacity gradient indicates position. Minimal, non-intrusive."
+      },
+      {
+        "name": "Expand Icon",
+        "role": "Fullscreen or expand affordance",
+        "description": "Simple '+' symbol in forma-djr-display at 13px, #ffffff, centered between hero text elements. No border, no background — pure typographic glyph."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Horizontal separation between content groups",
+        "description": "1px solid #e5e7eb line spanning full content width. No margin — sits flush between sections. The only structural divider in the system; replaces card backgrounds and shadows entirely."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and section headings — used at 90–100px for the wordmark and feature titles, 36–52px for card titles, 25px for secondary headlines. Line-height collapses to 0.75–0.80 at the largest sizes, stacking lines into near-solid blocks. Tracking tightens proportionally: -0.004em at small sizes up to -0.008em at display. This single weight at extreme sizes carries the entire visual authority of the brand — no bold weight exists, scale alone creates hierarchy.",
+        "sizes": "25px, 36px, 40px, 50px, 52px, 90px, 100px",
+        "family": "DIN",
+        "weight": "400",
+        "lineHeight": "0.75–1.20",
+        "substitute": "Bebas Neue, Oswald, Anton",
+        "letterSpacing": "-0.008em at 90–100px, -0.006em at 50–52px, -0.004em at 25–40px"
+      },
+      {
+        "role": "Editorial body text and article descriptions. At 16px/1.50 it provides readable long-form copy with generous breathing room. At 46px it functions as an oversized serif lead — warm, literary counterpoint to the industrial DIN display type. The only serif in the system; its presence signals 'this is editorial content, not UI chrome'.",
+        "sizes": "16px, 46px",
+        "family": "Cochin",
+        "weight": "400",
+        "lineHeight": "1.20–1.50",
+        "substitute": "Hoefler Text, Cormorant Garamond, Lora",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Navigation labels, micro-UI, category tags, footer links. Always rendered all-caps at 13px with 0.062em letter-spacing — the tracking is the signature: generous, almost luxurious spacing at tiny size creates a deliberate tension against the compressed DIN display type. This is the typographic glue that holds the system together at the functional level.",
+        "sizes": "13px",
+        "family": "forma-djr-display",
+        "weight": "500",
+        "lineHeight": "1.60",
+        "substitute": "Futura PT, Avenir Next, Jost",
+        "letterSpacing": "0.062em"
+      }
+    ],
+    "description": "$19",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1a"
+      },
+      {
+        "title": "Typographic Scale Rules",
+        "content": "The type system operates on extreme scale contrast, not weight contrast. Three tiers: DISPLAY (DIN 90–100px, line-height 0.80, tracking -0.008em), HEADLINE (DIN 36–52px, line-height 1.00, tracking -0.004 to -0.006em), BODY (Cochin 16px, line-height 1.50, normal tracking). Navigation and micro-labels occupy a fourth tier at 13px all-caps with 0.062em tracking — this wide tracking on tiny type is the counter-signature to the compressed display type. Never use more than two type families on a single screen. Never use bold weights — hierarchy comes from size alone."
+      }
+    ],
+    "elevationPhilosophy": "The system deliberately avoids all box-shadows and elevation effects. Visual separation is achieved exclusively through 1px hairline borders (#e5e7eb), whitespace, and typographic scale. This flat-everything approach reinforces the printed editorial metaphor — the screen behaves as a page, not a software interface."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.005813542372075684,
+            "h": 264.5313231484507,
+            "l": 0.9275823098127417
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "image",
+            "link",
+            "button",
+            "icon",
+            "hero",
+            "card",
+            "body"
+          ],
+          "frequency": 784,
+          "confidence": 1,
+          "prominence": 60931905.57305909,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 76,
+            "body/borderColor": 4,
+            "card/borderColor": 144,
+            "hero/borderColor": 8,
+            "icon/borderColor": 12,
+            "link/borderColor": 76,
+            "image/borderColor": 48,
+            "other/borderColor": 372,
+            "button/borderColor": 32,
+            "heading/borderColor": 12
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "link",
+            "button",
+            "body",
+            "icon",
+            "hero",
+            "card",
+            "heading"
+          ],
+          "frequency": 192,
+          "confidence": 1,
+          "prominence": 48106954.24914318,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 6,
+            "nav/color": 3,
+            "body/color": 7,
+            "card/color": 36,
+            "hero/color": 2,
+            "icon/color": 2,
+            "link/color": 11,
+            "other/fill": 3,
+            "image/color": 12,
+            "other/color": 72,
+            "button/color": 8,
+            "heading/color": 1,
+            "body/borderColor": 28,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "icon",
+            "button",
+            "link",
+            "body"
+          ],
+          "frequency": 68,
+          "confidence": 1,
+          "prominence": 38704533.345339455,
+          "properties": [
+            "color",
+            "backgroundColor",
+            "stroke",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 16,
+            "body/color": 2,
+            "icon/color": 1,
+            "link/color": 8,
+            "other/fill": 1,
+            "icon/stroke": 4,
+            "other/color": 21,
+            "other/stroke": 2,
+            "heading/color": 2,
+            "body/borderColor": 4,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#a9a9a9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7348085828066984
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 4271232.544664356,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 11,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#fff5fa",
+          "oklch": {
+            "c": 0.012509480434691475,
+            "h": 345.4747970647685,
+            "l": 0.9793137124664458
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 97875,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.01168612518893868,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.69,
+          "background": "#fff5fa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#e5e7eb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.94,
+          "background": "#a9a9a9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.35,
+          "background": "#a9a9a9",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.07,
+          "background": "#fff5fa",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|icon"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "card",
+            "other",
+            "icon"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "marginTop|other",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 33,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other",
+            "card"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 235,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 253,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Cochin",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 152,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "DIN",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 41,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "forma-djr-display",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 11,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "forma-djr-display",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.062,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Cochin",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "image",
+            "link",
+            "button",
+            "body",
+            "icon",
+            "hero",
+            "card"
+          ],
+          "frequency": 128,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Cochin",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "DIN",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 36,
+          "family": "DIN",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "DIN",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 12,
+          "lineHeight": 0.75,
+          "letterSpacing": -0.008,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "DIN",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.008,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 46,
+          "family": "Cochin",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "DIN",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.75,
+          "letterSpacing": -0.006,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 52,
+          "family": "DIN",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.75,
+          "letterSpacing": -0.006,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 90,
+          "family": "DIN",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.75,
+          "letterSpacing": -0.004,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 100,
+          "family": "DIN",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8d6d69ca-fb57-411e-b583-eb2b6509a79a.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e91b3b0b-b51e-4828-8cdc-997214f44d8b.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/597355de-6167-4f37-8f14-b3897919a94c#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Exhibition Magazine design system\",\"item\":\"https://styles.refero.design/style/597355de-6167-4f37-8f14-b3897919a94c\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/597355de-6167-4f37-8f14-b3897919a94c#style-reference\",\"name\":\"Exhibition Magazine design system reference\",\"headline\":\"Exhibition Magazine design system | Refero Styles\",\"description\":\"Explore Exhibition Magazine's light Media design system: Paper White #ffffff, Ink Black #000000 colors, DIN, Cochin typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/597355de-6167-4f37-8f14-b3897919a94c\",\"mainEntityOfPage\":\"https://styles.refero.design/style/597355de-6167-4f37-8f14-b3897919a94c\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Exhibition Magazine\",\"url\":\"https://exhibition-magazine.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/597355de-6167-4f37-8f14-b3897919a94c#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e91b3b0b-b51e-4828-8cdc-997214f44d8b.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e91b3b0b-b51e-4828-8cdc-997214f44d8b.jpg\",\"caption\":\"Screenshot of Exhibition Magazine\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e91b3b0b-b51e-4828-8cdc-997214f44d8b.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Exhibition Magazine design system\",\"Exhibition Magazine website design\",\"Exhibition Magazine colors\",\"Exhibition Magazine typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Media design system\",\"Paper White\",\"Ink Black\",\"Hairline Grey\",\"Ash Grey\",\"DIN\",\"Cochin\",\"forma-djr-display\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Exhibition Magazine design system\"},{\"@type\":\"Thing\",\"name\":\"Exhibition Magazine website design\"},{\"@type\":\"Thing\",\"name\":\"Exhibition Magazine colors\"},{\"@type\":\"Thing\",\"name\":\"Exhibition Magazine typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Media design system\"}],\"datePublished\":\"2026-04-30T02:58:40.169Z\",\"dateModified\":\"2026-04-30T02:58:40.169Z\"}]}19:T41f,Exhibition Magazine operates as a printed editorial artifact translated to screen: white canvas, hairline rules, and oversized condensed typography that commands the viewport. The visual system is almost entirely achromatic — color is virtually absent, replaced by the interplay of pure black text, white surfaces, and the grey 1px line that organizes everything. Two type families do all the work: DIN at 90–100px for display and section titles with extremely tight tracking and near-vertical line-height, and a serif (Cochin) for editorial body and descriptions that warms the otherwise clinical grid. Navigation and micro-labels use a tiny 13px all-caps face with generous 0.062em letter-spacing, creating a typographic hierarchy based on scale contrast alone — gargantuan display type against whisper-quiet UI chrome. Components are stripped to their essentials: image cards with no rounded corners, text buttons that are just underlined words, and a full-bleed black footer that closes the page with the same oversized type on inverted grounds.1a:T58e,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #e5e7eb\n- footer surface: #000000\n- muted surface: #a9a9a9\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n1. Build the masthead: white background. Full-width 'EXHIBITION MAGAZINE' in DIN 400 at 100px, #000000, letter-spacing -0.008em, line-height 0.80. No padding, text bleeds edge to edge.\n2. Build the top nav: white background, no border. 8 items (HOME, FASHION, ART, DECODING, BEAUTY, STUDIO, SHOP, SEARCH) in forma-djr-display 500 at 13px, all-caps, 0.062em letter-spacing, #000000. Active item gets 1px solid #000000 underline. Items spaced with 235px horizontal gaps.\n3. Build an editorial content card: no background, no border. Top: full-width image, 0px radius. Below: DIN 400 at 40px title in #000000, 8px gap, then Cochin 400 at 16px/1.50 description in #000000. 24px padding around the text block.\n4. Build the 'LOAD MORE CONTENT' link: forma-djr-display 500 at 13px, all-caps, 0.062em tracking, #000000, 1px solid #000000 underline. No background, no padding, centered on white.\n5. Build the dark footer: #000000 full-width background. Left column: 4 forma-djr-display links at 13px, 0.062em tracking, #ffffff, left-aligned. Right column: 3 social links in same style, right-aligned. Center: DIN 400 at 52px, #ffffff, with 1px solid #ffffff underline. Bottom-left: 'EXHIBITION' in DIN 400 at 25px, #ffffff."
+}

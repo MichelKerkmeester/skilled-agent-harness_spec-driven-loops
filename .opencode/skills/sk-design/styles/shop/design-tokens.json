@@ -1,0 +1,394 @@
+{
+  "color": {
+    "canvas-mist": {
+      "$value": "#f2f4f5",
+      "$type": "color",
+      "$description": "Canvas Mist — Page background and secondary surface wash behind elevated cards"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Primary surface for cards, input fields, floating brand spotlights, and pill buttons"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, headings, icons, nav symbols, and dark mode product cards"
+    },
+    "faint-border": {
+      "$value": "#ebebeb",
+      "$type": "color",
+      "$description": "Faint Border — Hairline dividers on cards, input outlines, and pill button borders"
+    },
+    "muted-gray": {
+      "$value": "#787574",
+      "$type": "color",
+      "$description": "Muted Gray — Secondary text, navigation labels, icon strokes in idle state"
+    },
+    "cool-stone": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Cool Stone — Placeholder fills, disabled states, and inactive icon backgrounds"
+    },
+    "warm-fog": {
+      "$value": "#acb0aa",
+      "$type": "color",
+      "$description": "Warm Fog — Subtle surface tints for secondary product cards and section backgrounds"
+    },
+    "shop-violet": {
+      "$value": "#5433eb",
+      "$type": "color",
+      "$description": "Shop Violet — Search submit button, wordmark dot, brand logo — the single accent that makes action and identity pop against the white canvas"
+    },
+    "violet-wash": {
+      "$value": "#c0b5f3",
+      "$type": "color",
+      "$description": "Violet Wash — Translucent halo behind the violet submit button, extending its glow without changing hue"
+    },
+    "slate-ink": {
+      "$value": "#332f2d",
+      "$type": "color",
+      "$description": "Slate Ink — Dark product card surfaces and deep-tone overlay text"
+    },
+    "ash-veil": {
+      "$value": "#665a54",
+      "$type": "color",
+      "$description": "Ash Veil — Warm desaturated gray used in product imagery backdrops, not an active UI token"
+    }
+  },
+  "font": {
+    "gt-standard": {
+      "$value": "GT Standard",
+      "$type": "fontFamily",
+      "$description": "Primary typeface at all sizes — body and headings alike. GTStandard-MRegular at 16px/-0.031em is the workhorse for body, buttons, and labels. GTStandard-MSemibold at 20px/-0.05em powers the few display-scale headings; GTStandard-MMedium at 11–12px handles micro-labels. Every weight renders at 400 optical weight — the font family carries its hierarchy through subtle grade shifts and tight negative tracking, not bold contrast. This is the signature: Shop doesn't shout with bold, it shapes text with tracking."
+    },
+    "shopify-sans": {
+      "$value": "Shopify Sans",
+      "$type": "fontFamily",
+      "$description": "Reserved for system-level messaging like the app download banner and cookie consent copy"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "GTStandard-MRegular",
+        "fontSize": "9px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 9px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Shopify Sans",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "GTStandard-MRegular",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "GTStandard-MMedium",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "GTStandard-MMedium",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "GTStandard-MSemibold",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "GTStandard-MRegular",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Shopify Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.57
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Shopify Sans",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "GTStandard-MRegular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "GTStandard-MSemibold",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "GTStandard-MSemibold",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "GTStandard-MSemibold",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "GTStandard-MRegular",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "GTStandard-MSemibold",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "38": {
+      "$value": "38px",
+      "$type": "dimension",
+      "$description": "Spacing 38px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "11.4046px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "17.1064px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "2xl-3": {
+      "$value": "22.8092px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-3"
+    },
+    "3xl": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.06) 0px 2px 8px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "sm-2": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-2"
+    },
+    "lg": {
+      "$value": "rgba(0, 0, 0, 0.12) 0px 4px 24px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    },
+    "lg-2": {
+      "$value": "rgba(69, 36, 219, 0.34) 0px 4px 24px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg-2"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f2f4f5",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — only visible at page edges and behind the sidebar rail"
+    },
+    "surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Main content surface for cards, inputs, pills, the sidebar, and the search bar"
+    },
+    "elevated-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Hero floating product cards and brand spotlights — same white but lifted by dual-layer soft shadow"
+    },
+    "accent-product-image": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 3: Dark product imagery that reads as a 'dark mode' surface within the light canvas, holding white overlay text"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://shop.app",
+      "siteName": "Shop",
+      "extractedAt": "2026-07-03T03:29:39.498Z",
+      "variant": "extended"
+    }
+  }
+}

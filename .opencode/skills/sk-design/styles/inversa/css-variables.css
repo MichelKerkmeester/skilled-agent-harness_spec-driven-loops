@@ -1,0 +1,64 @@
+:root {
+  /* Colors */
+  --color-obsidian-loam: #13140e;
+  --color-bone-vellum: #f4f3e8;
+  --color-iron-filings: #404040;
+  --color-drift-ash: #84837b;
+  --color-lime-surveyor: #ebfc72;
+  --color-marsh-olive: #bacd31;
+
+  /* Typography — Font Families */
+  --font-nb-international-pro: 'NB International Pro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-jetbrains-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 13px;
+  --leading-caption: 1.2;
+  --text-body: 18px;
+  --leading-body: 1.62;
+  --tracking-body: -0.54px;
+  --text-subheading: 29px;
+  --leading-subheading: 1.28;
+  --text-heading: 58px;
+  --leading-heading: 1.06;
+  --tracking-heading: -1.74px;
+  --text-display: 72px;
+  --leading-display: 0.9;
+  --tracking-display: -2.16px;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-5: 5px;
+  --spacing-7: 7px;
+  --spacing-14: 14px;
+  --spacing-18: 18px;
+  --spacing-21: 21px;
+  --spacing-29: 29px;
+  --spacing-59: 59px;
+  --spacing-86: 86px;
+  --spacing-104: 104px;
+  --spacing-119: 119px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 86-104px;
+  --card-padding: 14-18px;
+  --element-gap: 18px;
+
+  /* Border Radius */
+  --radius-md: 3.6px;
+
+  /* Named Radii */
+  --radius-tags: 3.6px;
+  --radius-cards: 0px;
+  --radius-inputs: 3.6px;
+  --radius-buttons: 3.6px;
+
+  /* Surfaces */
+  --surface-obsidian-loam: #13140;
+  --surface-iron-filings: #404040;
+}

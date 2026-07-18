@@ -1,0 +1,367 @@
+{
+  "color": {
+    "lime-voltage": {
+      "$value": "#c9fe6e",
+      "$type": "color",
+      "$description": "Lime Voltage — Primary CTA fill, active border accent, highlight tags — the only chromatic note in an otherwise monochrome system, used at 1-2 instances per viewport to make actions feel switched on"
+    },
+    "concrete": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Concrete — Page canvas, card surfaces, light borders, inverted text on dark — the base background layer every other element sits on"
+    },
+    "ink": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Ink — Primary text, heading borders, nav borders, dark demo-card surfaces, icon strokes — the dominant structural color across the system"
+    },
+    "charcoal-edge": {
+      "$value": "#252525",
+      "$type": "color",
+      "$description": "Charcoal Edge — Card borders, elevated surface edges — one step lighter than Ink for layered card frames"
+    },
+    "fog": {
+      "$value": "#777777",
+      "$type": "color",
+      "$description": "Fog — Muted body copy, secondary metadata, inactive borders"
+    },
+    "graphite": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Graphite — Deep SVG fills, dark interior backgrounds for inverted panels"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Inverted text on dark cards, light link borders, occasional white surfaces"
+    }
+  },
+  "font": {
+    "laygrotesk": {
+      "$value": "LayGrotesk",
+      "$type": "fontFamily",
+      "$description": "Single-family display + body system. Weight 700 carries all display sizes (65-250px) and nav headings; weight 500 handles body, labels, and captions. The aggressive line-height compression (0.80-0.90) on display sizes lets massive headlines stack tightly without breathing room, creating an editorial-poster density. Negative letter-spacing scales with size — -0.04em at display, -0.01em at subheading — so large type tightens optically."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "LayGrotesk",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 3.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 3.08
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 2.92
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 13px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "LayGrotesk",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "LayGrotesk",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 2.28
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "LayGrotesk",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "LayGrotesk",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "LayGrotesk",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "LayGrotesk",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "LayGrotesk",
+        "fontSize": "44px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "LayGrotesk",
+        "fontSize": "65px",
+        "fontWeight": 500,
+        "lineHeight": 0.88
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 65px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "LayGrotesk",
+        "fontSize": "65px",
+        "fontWeight": 500,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 65px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "LayGrotesk",
+        "fontSize": "100px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 100px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "LayGrotesk",
+        "fontSize": "100px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 100px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "LayGrotesk",
+        "fontSize": "114px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 114px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "LayGrotesk",
+        "fontSize": "250px",
+        "fontWeight": 500,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 250px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "LayGrotesk",
+        "fontSize": "250px",
+        "fontWeight": 500,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 250px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "200": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Spacing 200px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "concrete-canvas": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background, dominant surface across all sections"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Occasional white panels, inverted text on dark cards"
+    },
+    "ink-panel": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Surface level 2: Dark inverted sections for effect demos, dark card surfaces"
+    },
+    "graphite": {
+      "$value": "#1a1a1a",
+      "$type": "color",
+      "$description": "Surface level 3: Deepest dark for featured embedded demos and SVG interiors"
+    },
+    "lime-voltage": {
+      "$value": "#c9fe6",
+      "$type": "color",
+      "$description": "Surface level 4: Accent fill surface for CTAs and highlighted card borders"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://madewithgsap.com",
+      "siteName": "Made With Gsap",
+      "extractedAt": "2026-06-03T18:57:38.809Z",
+      "variant": "extended"
+    }
+  }
+}

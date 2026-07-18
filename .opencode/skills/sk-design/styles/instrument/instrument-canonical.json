@@ -1,0 +1,1144 @@
+{
+  "source": "https://styles.refero.design/style/dcd215e5-3511-4e40-87ff-95c095f44ad6",
+  "uuid": "dcd215e5-3511-4e40-87ff-95c095f44ad6",
+  "name": "Instrument",
+  "northStar": "Newspaper broadsheet meets brutalist poster",
+  "capturedAt": "2026-07-18T09:06:18.013Z",
+  "meta": {
+    "url": "https://www.instrument.com",
+    "siteName": "Instrument",
+    "extractedAt": "2026-06-03T20:46:22.578Z",
+    "durationMs": 63394,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 448,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Instrument-Sans at 400 weight for all functional UI — never introduce bold weights, the system is a single-weight machine",
+      "Apply 999px radius to every interactive element: nav, buttons, filter chips, badges — pills are the only interactive shape",
+      "Reserve Instrument-Serif exclusively for the 64px editorial statement; it must never appear in navigation, labels, or body",
+      "Render the wordmark at 352px with line-height 0.85 and -0.05em tracking so it bleeds edge-to-edge past container gutters",
+      "Set all small uppercase labels (badges, meta, nav) between 11–12px with tracking of 0.05em–0.11em — they should feel like printed captions",
+      "Use #070708 (not #000000) for all dark surfaces and text — the subtle warmth keeps the system from feeling digital-sterile",
+      "Invert to #070708 full-bleed for hero or feature blocks, then return to #ffffff — the page breathes in binary value shifts"
+    ],
+    "donts": [
+      "Do not introduce any saturated color — the system is 0% colorful; adding hue breaks the editorial discipline",
+      "Do not use filled button backgrounds as primary actions; all CTAs are outlined pills or text links",
+      "Do not use shadow or drop-shadow effects — depth comes from surface inversion (#070708 vs #ffffff), never from blur",
+      "Do not set body text below 14px or above 23px; the range between body-sm and subheading is the work zone",
+      "Do not round cards, images, or content blocks to anything other than 24px; mixing radii breaks the two-shape system (pill + 24px)",
+      "Do not stack the serif and the large display sans on the same viewport; the wordmark claims its screen alone",
+      "Do not use #000000 or pure white — the warmth of #070708 and slight cream of #ffffff are the system's actual voice"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#070708",
+        "name": "Obsidian",
+        "role": "Primary text, all borders, full-bleed dark surfaces, pill-button outlines — the near-black that absorbs everything; choosing 070708 over pure black removes blue-cast and reads warmer on screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page canvas, card surfaces, reverse text on dark blocks, pill-button backgrounds and inverse outlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#808080",
+        "name": "Ash",
+        "role": "Secondary labels, muted helper text, inactive filter states, badge borders, meta tags — the only mid-tone voice for tertiary information",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed top, max-width contained below. The wordmark stretches edge-to-edge (not contained in 1400px). Then a full-bleed black hero, then white body content capped at ~1400px. Content sections use generous 80px vertical gaps. The case study grid is 4 columns of equal cards. Article/press grid is also 4 columns with meta labels above titles. Editorial statements use a constrained measure (~14 words/line) and are centered or left-aligned. Navigation is a single horizontal row of pill links split left/right around a centered status message — no sticky behavior, no mega-menu.",
+    "imagery": "Imagery is curated and editorial — high-quality product shots, dark moody photography, vibrant campaign stills — all contained in 24px-radius cards within a 4-column grid. The hero is pure black with a single white icon mark, no photography. No illustration, no decorative graphics, no 3D renders. Icons are geometric and minimal (the crown/play badge mark is the only repeated iconographic element). Photography treatment varies per project: some warm-toned, some high-contrast black-and-white — the frame is the work, not the styling.",
+    "similar": [
+      {
+        "why": "Same zero-color agency identity with massive display type, editorial serif statements, and monochrome grid systems",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Editorial agency aesthetic with serif/sans duality, pill navigation, and 24px-radius project cards",
+        "business": "Manual (manualcreative.com)"
+      },
+      {
+        "why": "Full-bleed black hero sections, generous whitespace, and achromatic agency portfolio structure",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Bold wordmark-as-hero treatment and confident monochrome restraint in agency presentation",
+        "business": "Resn"
+      },
+      {
+        "why": "Newspaper-broadsheet pacing with large serif statements and dense project grids in grayscale",
+        "business": "Wieden+Kennedy"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "999px",
+        "cards": "24px",
+        "badges": "999px",
+        "images": "24px",
+        "inputs": "8px",
+        "buttons": "999px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Page canvas — the default body background"
+      },
+      {
+        "hex": "#070708",
+        "name": "Obsidian",
+        "level": 1,
+        "purpose": "Full-bleed hero and feature blocks — cinematic inversion for high-contrast moments"
+      }
+    ],
+    "northStar": "Newspaper broadsheet meets brutalist poster",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.43,
+        "letterSpacing": 0.05
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.45,
+        "letterSpacing": -0.005
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.005
+      },
+      {
+        "role": "body-lg",
+        "size": 19,
+        "lineHeight": 1.45,
+        "letterSpacing": -0.005
+      },
+      {
+        "role": "subheading",
+        "size": 23,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.26,
+        "letterSpacing": -0.01
+      },
+      {
+        "role": "heading-lg",
+        "size": 36,
+        "lineHeight": 1.22,
+        "letterSpacing": -0.025
+      },
+      {
+        "role": "display-serif",
+        "size": 64,
+        "lineHeight": 1.13,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "display",
+        "size": 352,
+        "lineHeight": 0.85,
+        "letterSpacing": -0.05
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Nav Item",
+        "role": "Primary navigation links in the top bar",
+        "description": "Text label, 12px Instrument-Sans, 0.05em letter-spacing, uppercase. Border: 1px solid #070708 or 1px solid #808080 (inactive). Radius: 999px. Padding: 3px 10px. No background fill on rest state."
+      },
+      {
+        "name": "Pill Filter Chip",
+        "role": "Category filters for case study and press grids",
+        "description": "12px Instrument-Sans uppercase, 0.05em tracking. Border: 1px solid #070708 (active) or 1px solid #808080 (inactive). Radius: 999px. Padding: 4px 10px. Active state: filled #070708 background with #ffffff text."
+      },
+      {
+        "name": "Outlined Pill Button",
+        "role": "Secondary call-to-action — 'SEE MORE', contact links",
+        "description": "Label at 12px Instrument-Sans, uppercase, 0.05em tracking. Border: 1px solid #070708, 1px radius 999px. Padding: 8px 20px. Background: transparent. No fill on hover — stays outlined. This is the only button style used; no filled CTA variant exists."
+      },
+      {
+        "name": "Wordmark Display",
+        "role": "Brand identifier and page-anchoring display element",
+        "description": "Instrument-Sans at 352px, weight 400, line-height 0.85, letter-spacing -0.05em (-17.6px). Renders edge-to-edge, breaking past container gutters. Color: #070708 on light, #ffffff on dark. This is the visual signature — the page is named by it."
+      },
+      {
+        "name": "Editorial Statement Headline",
+        "role": "Mission/positioning sentences — the 'who we are' voice",
+        "description": "Instrument-Serif at 64px, weight 400, line-height 1.13, letter-spacing -0.02em. Color: #070708. Italic variant of Instrument-Serif reserved for emphasis words within the same line. Max-width constrained to ~14 words per line for editorial cadence."
+      },
+      {
+        "name": "Project Card",
+        "role": "Case study tile in the 4-column recent work grid",
+        "description": "Image with 24px radius, no border, no shadow. Caption block below or overlaying. Padding internal: 24px. Background: #ffffff. Hover state not decorative — content swaps or image changes."
+      },
+      {
+        "name": "Press Article Card",
+        "role": "External press coverage and article links",
+        "description": "Image at 24px radius, 8px gap to meta row (PRESS | ARTICLE | 5 MINUTES in 11px uppercase 0.08em tracking). Title at 19–23px Instrument-Sans below image with 16px margin-top. Source name appears as inline link style in #070708."
+      },
+      {
+        "name": "Video Play Trigger",
+        "role": "Hero video launch affordance",
+        "description": "Centered on full-bleed dark hero. White triangle (play icon) inside a larger geometric crown/badge mark. No background fill, no button chrome — the mark itself is the control, drawn in #ffffff at ~120px on #070708."
+      },
+      {
+        "name": "Hero Banner",
+        "role": "Full-bleed cinematic dark section after the wordmark",
+        "description": "Background: #070708, full viewport width, ~80vh height. Rounded bottom corners at 24px on the white-edge intersection. Contains only the centered play mark. No text, no nav — pure atmosphere."
+      },
+      {
+        "name": "Inline Emphasized Phrase",
+        "role": "Highlighting key words inside long body paragraphs",
+        "description": "Regular Instrument-Sans body text (19–23px) with individual words or phrases rendered in a different visual treatment — either Instrument-Serif italic or a lighter weight gray (#808080). Used to add cadence and hierarchy without color."
+      },
+      {
+        "name": "Text Input",
+        "role": "Form fields, newsletter capture",
+        "description": "Border: 1px solid #070708, radius 8px (the only sharp-cornered element). Padding: 12px 16px. Placeholder: #808080, 14px Instrument-Sans. No floating labels, no decorative icons."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Visual separation between content blocks",
+        "description": "1px solid #070708 horizontal rule spanning the content width. No spacing above/below — sections breathe through whitespace alone, never through dividers except as hard section breaks."
+      },
+      {
+        "name": "Meta Tag",
+        "role": "Small uppercase labels — category, read time, type",
+        "description": "11px Instrument-Sans, uppercase, letter-spacing 0.08em. Color: #070708 or #808080. No background, no border — pure type. Appears above titles, beside timestamps, as inline metadata."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The workhorse. One weight (400) handles everything from 11px micro-labels to the 352px edge-to-edge wordmark. Tracking opens dramatically at scale: -0.05em at display, 0 to -0.005em at body, expanding to +0.05em–0.11em on uppercase badges. ss12 stylistic set and ligatures are always on — they define the typeface's character.",
+        "sizes": "11px, 12px, 14px, 15px, 16px, 18px, 19px, 23px, 28px, 36px, 352px",
+        "family": "Instrument-Sans",
+        "weight": "400",
+        "lineHeight": "0.85 (display), 1.00–1.13 (headlines), 1.22–1.45 (body), 1.56–1.60 (relaxed body)",
+        "substitute": "Inter, Satoshi, General Sans",
+        "letterSpacing": "-0.05em at 352px; -0.025em at 36px; -0.01em at 28px; -0.005em at 15–16px; +0.05em at 12px uppercase",
+        "fontFeatureSettings": "\"liga\" on, \"ss12\" on"
+      },
+      {
+        "role": "Reserved for editorial statement headlines — the 'we are' sentences. One weight, one size, one job. The serif creates an emotional counterpoint to the geometric sans: the page shifts register from confident command (sans) to reflective thought (serif) in a single line.",
+        "sizes": "64px, 352px",
+        "family": "Instrument-Serif",
+        "weight": "400",
+        "lineHeight": "1.13",
+        "substitute": "GT Sectra, Tiempos Headline, Source Serif",
+        "letterSpacing": "-0.02em at 64px",
+        "fontFeatureSettings": "\"liga\" on, \"ss12\" on"
+      },
+      {
+        "role": "Instrument-Serif-Italic — detected in extracted data but not described by AI",
+        "sizes": "352px",
+        "family": "Instrument-Serif-Italic",
+        "weight": "400",
+        "lineHeight": "0.85",
+        "letterSpacing": "-0.05"
+      }
+    ],
+    "description": "Instrument runs a stark monochrome editorial system: white canvas, near-black surfaces, a single mid-gray for secondary voice. Two custom type families carry the entire identity — a geometric sans for everything functional and a refined serif for emotional statements. The page rhythm is built on contrast: edge-to-edge massive wordmark, then a solid black cinematic hero, then breathing white space with serif-led editorial moments. Interactive elements are pill-shaped; content containers use a generous 24px radius. Color is never decorative here — it only signals hierarchy through value, not hue.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/dcd215e5-3511-4e40-87ff-95c095f44ad6#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Instrument design system\",\"item\":\"https://styles.refero.design/style/dcd215e5-3511-4e40-87ff-95c095f44ad6\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/dcd215e5-3511-4e40-87ff-95c095f44ad6#style-reference\",\"name\":\"Instrument design system reference\",\"headline\":\"Instrument design system | Refero Styles\",\"description\":\"Explore Instrument's light Agency design system: Obsidian #070708, Paper #ffffff colors, Instrument-Sans, Instrument-Serif typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/dcd215e5-3511-4e40-87ff-95c095f44ad6\",\"mainEntityOfPage\":\"https://styles.refero.design/style/dcd215e5-3511-4e40-87ff-95c095f44ad6\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Instrument\",\"url\":\"https://www.instrument.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/dcd215e5-3511-4e40-87ff-95c095f44ad6#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/89ac88c1-dbca-488f-9ec5-ad951a3e57ed.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/89ac88c1-dbca-488f-9ec5-ad951a3e57ed.jpg\",\"caption\":\"Screenshot of Instrument\"},\"image\":\"https://images.refero.design/styles/refero.design/image/89ac88c1-dbca-488f-9ec5-ad951a3e57ed.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Instrument design system\",\"Instrument website design\",\"Instrument colors\",\"Instrument typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Paper\",\"Ash\",\"Instrument-Sans\",\"Instrument-Serif\",\"Instrument-Serif-Italic\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Instrument design system\"},{\"@type\":\"Thing\",\"name\":\"Instrument website design\"},{\"@type\":\"Thing\",\"name\":\"Instrument colors\"},{\"@type\":\"Thing\",\"name\":\"Instrument typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:39:35.547Z\",\"dateModified\":\"2026-04-30T00:39:35.547Z\"}]}19:T793,Quick Color Reference:\n- text: #070708\n- background: #ffffff\n- border: #070708 (primary) / #808080 (muted)\n- muted text: #808080\n- reverse (on dark): #ffffff\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a top navigation bar: white #ffffff background. Left cluster of three pill nav items (WORK, SERVICES, ABOUT) in 12px Instrument-Sans uppercase, 0.05em letter-spacing, 1px solid #070708 border, 999px radius, 3px 10px padding. Center status message: 'CAMPAIGN US WINNERS: DESIGN STUDIO AGENCY OF THE YEAR 2026! SEE MORE →' in 12px Instrument-Sans uppercase. Right cluster mirrors left (EONS, CAREERS, LATEST, CONTACT). Full-bleed width.\n\n2. Create a full-bleed dark hero section: #070708 background, ~80vh height, 24px bottom radius where it meets the next white section. Centered: a white geometric crown/badge mark with a triangle play icon at ~120px, #ffffff. No text, no buttons — pure atmospheric block.\n\n3. Create a recent work grid: 4 columns on white #ffffff background, 24px gap. Each card: image at 24px radius, no border, no shadow. Filter row above grid: pills at 12px Instrument-Sans uppercase 0.05em tracking, 1px solid #070708 border, 999px radius, 4px 10px padding. Active filter has filled #070708 background with #ffffff text.\n\n4. Create an editorial statement block: centered or left-aligned Instrument-Serif at 64px, weight 400, line-height 1.13, letter-spacing -0.02em, color #070708. Max-width ~900px so the line breaks at ~14 words. One word may switch to Instrument-Serif Italic for emphasis. Below it, 80px of whitespace, then a 1px #070708 horizontal rule.\n\n5. Create a press article card: image at 24px radius (aspect ratio ~4:3), 8px gap to meta row showing 'PRESS | ARTICLE | 5 MINUTES' in 11px Instrument-Sans uppercase 0.08em tracking, #808080. 16px below: title in 23px Instrument-Sans, weight 400, color #070708, letter-spacing -0.01em. Clickable as inline text link."
+      },
+      {
+        "title": "Editorial Voice & Cadence",
+        "content": "The page is written like a design journal, not a SaaS landing page. Sentence rhythm matters: short declarative statements, then a pause, then a longer reflective clause. The 64px Instrument-Serif is where this voice lives. Below it, a 19–23px Instrument-Sans body paragraph continues the thought in a different register — this contrast (serif statement → sans explanation) is the content's structural pattern. Individual words inside sans paragraphs may shift to a lighter gray or italic serif for emphasis, creating inline rhythm without color."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#070708",
+          "oklch": {
+            "c": 0.0026109255478352724,
+            "h": 286.0284151295965,
+            "l": 0.12912779698255297
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "link",
+            "body",
+            "icon",
+            "heading",
+            "list",
+            "card",
+            "image",
+            "badge",
+            "footer"
+          ],
+          "frequency": 1421,
+          "confidence": 1,
+          "prominence": 99350912.41962938,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 29,
+            "body/color": 39,
+            "card/color": 38,
+            "icon/color": 2,
+            "link/color": 22,
+            "list/color": 11,
+            "other/fill": 10,
+            "badge/color": 12,
+            "image/color": 22,
+            "other/color": 77,
+            "button/color": 13,
+            "other/stroke": 4,
+            "heading/color": 14,
+            "nav/borderColor": 116,
+            "body/borderColor": 148,
+            "card/borderColor": 152,
+            "icon/borderColor": 8,
+            "link/borderColor": 88,
+            "list/borderColor": 44,
+            "badge/borderColor": 48,
+            "image/borderColor": 88,
+            "other/borderColor": 307,
+            "button/borderColor": 52,
+            "heading/borderColor": 56,
+            "body/backgroundColor": 17,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "icon",
+            "body",
+            "footer",
+            "heading",
+            "input",
+            "list",
+            "link"
+          ],
+          "frequency": 486,
+          "confidence": 1,
+          "prominence": 5050667.187599033,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "body/color": 33,
+            "icon/color": 6,
+            "link/color": 17,
+            "list/color": 21,
+            "other/fill": 1,
+            "input/color": 1,
+            "other/color": 13,
+            "button/color": 2,
+            "footer/color": 1,
+            "other/stroke": 11,
+            "heading/color": 4,
+            "body/borderColor": 100,
+            "icon/borderColor": 24,
+            "link/borderColor": 68,
+            "list/borderColor": 84,
+            "input/borderColor": 4,
+            "other/borderColor": 51,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 16,
+            "body/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 8
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "nav",
+            "badge",
+            "link",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 174,
+          "confidence": 1,
+          "prominence": 147399.85821426712,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 4,
+            "body/color": 11,
+            "icon/color": 1,
+            "link/color": 6,
+            "nav/stroke": 2,
+            "badge/color": 12,
+            "other/stroke": 2,
+            "nav/borderColor": 16,
+            "body/borderColor": 44,
+            "icon/borderColor": 4,
+            "link/borderColor": 24,
+            "badge/borderColor": 48
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.004818532155115033,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.14,
+          "background": "#ffffff",
+          "foreground": "#070708"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.1,
+          "background": "#070708",
+          "foreground": "#808080"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#ffffff",
+          "foreground": "#808080"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 999,
+          "contexts": [
+            "nav",
+            "body",
+            "badge",
+            "button",
+            "other"
+          ],
+          "frequency": 28
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "card",
+            "image"
+          ],
+          "frequency": 19
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|badge"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|body",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "badge",
+            "link"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "body",
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|body",
+            "columnGap|body",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "body",
+            "list",
+            "card",
+            "badge"
+          ],
+          "frequency": 57,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "rowGap|body",
+            "columnGap|body",
+            "paddingTop|other",
+            "marginBottom|other",
+            "columnGap|list",
+            "columnGap|card",
+            "marginBottom|body",
+            "marginBottom|badge",
+            "columnGap|badge",
+            "rowGap|other",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "body",
+            "badge"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingRight|badge",
+            "paddingLeft|badge"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "input"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card",
+            "input"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "marginBottom|card",
+            "columnGap|card",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "heading",
+            "card",
+            "body",
+            "link",
+            "input",
+            "list"
+          ],
+          "frequency": 41,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginRight|heading",
+            "paddingRight|card",
+            "marginTop|other",
+            "marginTop|body",
+            "marginTop|link",
+            "marginBottom|card",
+            "marginTop|input",
+            "marginBottom|input",
+            "paddingBottom|heading",
+            "marginTop|list",
+            "marginBottom|list",
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "columnGap|nav",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "link",
+            "card",
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "marginBottom|card",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "heading"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "marginRight|card",
+            "marginLeft|card",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|heading"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 215,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Instrument-Sans",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 413,
+          "fontFeatureSettings": [
+            "\"liga\", \"ss12\" 0",
+            "\"liga\", \"ss12\""
+          ]
+        },
+        {
+          "family": "Instrument-Serif",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 5,
+          "fontFeatureSettings": [
+            "\"liga\", \"ss12\""
+          ]
+        },
+        {
+          "family": "Instrument-Serif-Italic",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.92
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Instrument-Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "link"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.45,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Instrument-Sans",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "heading",
+            "button",
+            "body",
+            "badge",
+            "link",
+            "card"
+          ],
+          "frequency": 76,
+          "lineHeight": 1.33,
+          "letterSpacing": 0.11,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Instrument-Sans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Instrument-Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "list",
+            "link"
+          ],
+          "frequency": 46,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Instrument-Sans",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Instrument-Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "link",
+            "body",
+            "icon",
+            "card",
+            "image",
+            "badge",
+            "list",
+            "footer"
+          ],
+          "frequency": 214,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Instrument-Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Instrument-Sans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body",
+            "icon",
+            "input"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.56,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Instrument-Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.26,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "Instrument-Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.22,
+          "letterSpacing": -0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Instrument-Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.14,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Instrument-Sans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Instrument-Serif",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.13,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 352,
+          "family": "Instrument-Serif",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.85,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 352,
+          "family": "Instrument-Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.85,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 352,
+          "family": "Instrument-Serif-Italic",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.85,
+          "letterSpacing": -0.05,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/380c17a9-5456-4266-8cc4-7ed605b4efff.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/89ac88c1-dbca-488f-9ec5-ad951a3e57ed.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/dcd215e5-3511-4e40-87ff-95c095f44ad6#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Instrument design system\",\"item\":\"https://styles.refero.design/style/dcd215e5-3511-4e40-87ff-95c095f44ad6\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/dcd215e5-3511-4e40-87ff-95c095f44ad6#style-reference\",\"name\":\"Instrument design system reference\",\"headline\":\"Instrument design system | Refero Styles\",\"description\":\"Explore Instrument's light Agency design system: Obsidian #070708, Paper #ffffff colors, Instrument-Sans, Instrument-Serif typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/dcd215e5-3511-4e40-87ff-95c095f44ad6\",\"mainEntityOfPage\":\"https://styles.refero.design/style/dcd215e5-3511-4e40-87ff-95c095f44ad6\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Instrument\",\"url\":\"https://www.instrument.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/dcd215e5-3511-4e40-87ff-95c095f44ad6#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/89ac88c1-dbca-488f-9ec5-ad951a3e57ed.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/89ac88c1-dbca-488f-9ec5-ad951a3e57ed.jpg\",\"caption\":\"Screenshot of Instrument\"},\"image\":\"https://images.refero.design/styles/refero.design/image/89ac88c1-dbca-488f-9ec5-ad951a3e57ed.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Instrument design system\",\"Instrument website design\",\"Instrument colors\",\"Instrument typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Paper\",\"Ash\",\"Instrument-Sans\",\"Instrument-Serif\",\"Instrument-Serif-Italic\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Instrument design system\"},{\"@type\":\"Thing\",\"name\":\"Instrument website design\"},{\"@type\":\"Thing\",\"name\":\"Instrument colors\"},{\"@type\":\"Thing\",\"name\":\"Instrument typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:39:35.547Z\",\"dateModified\":\"2026-04-30T00:39:35.547Z\"}]}19:T793,Quick Color Reference:\n- text: #070708\n- background: #ffffff\n- border: #070708 (primary) / #808080 (muted)\n- muted text: #808080\n- reverse (on dark): #ffffff\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Create a top navigation bar: white #ffffff background. Left cluster of three pill nav items (WORK, SERVICES, ABOUT) in 12px Instrument-Sans uppercase, 0.05em letter-spacing, 1px solid #070708 border, 999px radius, 3px 10px padding. Center status message: 'CAMPAIGN US WINNERS: DESIGN STUDIO AGENCY OF THE YEAR 2026! SEE MORE →' in 12px Instrument-Sans uppercase. Right cluster mirrors left (EONS, CAREERS, LATEST, CONTACT). Full-bleed width.\n\n2. Create a full-bleed dark hero section: #070708 background, ~80vh height, 24px bottom radius where it meets the next white section. Centered: a white geometric crown/badge mark with a triangle play icon at ~120px, #ffffff. No text, no buttons — pure atmospheric block.\n\n3. Create a recent work grid: 4 columns on white #ffffff background, 24px gap. Each card: image at 24px radius, no border, no shadow. Filter row above grid: pills at 12px Instrument-Sans uppercase 0.05em tracking, 1px solid #070708 border, 999px radius, 4px 10px padding. Active filter has filled #070708 background with #ffffff text.\n\n4. Create an editorial statement block: centered or left-aligned Instrument-Serif at 64px, weight 400, line-height 1.13, letter-spacing -0.02em, color #070708. Max-width ~900px so the line breaks at ~14 words. One word may switch to Instrument-Serif Italic for emphasis. Below it, 80px of whitespace, then a 1px #070708 horizontal rule.\n\n5. Create a press article card: image at 24px radius (aspect ratio ~4:3), 8px gap to meta row showing 'PRESS | ARTICLE | 5 MINUTES' in 11px Instrument-Sans uppercase 0.08em tracking, #808080. 16px below: title in 23px Instrument-Sans, weight 400, color #070708, letter-spacing -0.01em. Clickable as inline text link."
+}

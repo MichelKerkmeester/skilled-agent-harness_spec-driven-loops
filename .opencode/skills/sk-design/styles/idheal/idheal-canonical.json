@@ -1,0 +1,1472 @@
+{
+  "source": "https://styles.refero.design/style/8d8d5861-dee0-431b-826d-56f3fa4e1f84",
+  "uuid": "8d8d5861-dee0-431b-826d-56f3fa4e1f84",
+  "name": "IDHEAL",
+  "northStar": "Architectural editorial masthead on white marble. Display type that could be 2 meters tall in print, single photography frames, and chromatic accents drawn with a fine-point pen.",
+  "capturedAt": "2026-07-18T08:59:39.562Z",
+  "meta": {
+    "url": "https://idheal.fr",
+    "siteName": "IDHEAL",
+    "extractedAt": "2026-06-03T21:08:01.797Z",
+    "durationMs": 49691,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 282,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #ffffff as the sole page and card background — never introduce competing surface tones",
+      "Set display headlines at 67–105px in Helvetica Neue Medium with line-height 0.80–1.00 to create masthead-scale impact",
+      "Apply chromatic colors (#bc5346, #ff00bc, #51633c) exclusively as 1–2px borders and outlines, never as fills or backgrounds",
+      "Pair New Century Schoolbook (body) with Helvetica Neue (display) to maintain the editorial magazine tension",
+      "Use 10px radius for links and 15px for buttons, 37.5px for the nav pill — these three radii define the system's curvature scale",
+      "Keep section gaps around 30px and element gaps around 10px to preserve gallery-tight density",
+      "Anchor the page with the 4px 2px 4px rgba(0,0,0,0.2) shadow on nav and primary controls"
+    ],
+    "donts": [
+      "Never fill buttons or large surfaces with #ff00bc, #bc5346, or #51633c — these colors live only as outline strokes",
+      "Do not use heavy or multi-layer shadows — the system is built on flatness with minimal lift",
+      "Avoid mixing more than two type families on a single screen — the New Century + Helvetica pair only works when each has a clear role",
+      "Do not use Helvetica Neue at 12px as body text — reserve 12px for captions and micro-copy only",
+      "Never set body text below 16px in New Century Schoolbook — the serif needs size to remain readable",
+      "Do not introduce new border-radius values — stick to 0px (cards), 10px (links), 15px (buttons), 37.5px (nav)",
+      "Avoid centered or symmetrical card grids — the editorial layout relies on asymmetric, magazine-style placement"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page canvas, card surfaces, button fills on dark — the entire layout sits on flat white without competing surface tones",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon Black",
+        "role": "Primary text, display headlines, nav borders, icon strokes — near-universal ink color, the dominant chromatic presence",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Hairline Gray",
+        "role": "Borders, dividers, subtle button outlines, muted surface backgrounds — the structural neutral that defines card edges without adding weight",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Shadow Gray",
+        "role": "Soft drop-shadow tint and secondary borders — only used in shadow stacks, never as a fill",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bc5346",
+        "name": "Terracotta",
+        "role": "Decorative outline accent on headings, body links, and section borders — the warm architectural counterweight to the cool palette",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff00bc",
+        "name": "Magenta Pencil",
+        "role": "High-frequency outline accent on borders and links — vivid magenta used as fine 1–2px strokes, never as a fill or background",
+        "group": "accent"
+      },
+      {
+        "hex": "#51633c",
+        "name": "Olive Foliage",
+        "role": "Muted green text and border accent — evokes plant material and landscape, used sparingly on body copy and decorative dividers",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page operates as an editorial spread: a full-bleed masthead with massive display type (IDHEA at 105px+) anchors the top, followed immediately by a large architectural photograph. Content sections use a max-width container around 1200px, centered, with text and images arranged in alternating asymmetric blocks — sometimes full-bleed image with overlaid or adjacent caption, sometimes text-left/image-right, sometimes a single column of editorial body text. Navigation is a minimal pill-shaped bar at the top with 37.5px radius and soft shadow. Section gaps are tight (~30px), creating a gallery-wall rhythm rather than a marketing-page rhythm. The overall density is compact, with information presented in a magazine spread rather than a dashboard grid.",
+    "imagery": "Full-bleed architectural photography is the dominant visual: exterior and interior shots of buildings, rooftops, terraces, and urban contexts. Images are presented raw with no overlays, no duotone treatment, and no rounded corners — they bleed to the layout edge or sit at exact 0px radius. Color photography with natural daylight, high contrast, and minimal post-processing. No illustrations, no icons (iconography is minimal and uses simple line strokes), no decorative graphics. The photograph IS the visual; the chromatic accents (terracotta, magenta, olive) act like fine pencil marks annotating the white page around the image.",
+    "similar": [
+      {
+        "why": "Same editorial masthead language: oversized sans-serif display type on white, full-bleed architectural photography, and minimal chromatic presence",
+        "business": "David Chipperfield Architects"
+      },
+      {
+        "why": "Magazine-spread layout rhythm with serif body text, sans-serif display, and architectural photography that bleeds to the edge with no decorative chrome",
+        "business": "OMA / Rem Koolhaas"
+      },
+      {
+        "why": "Restrained white canvas with one or two chromatic outline accents and large-scale photography as the primary visual content",
+        "business": "Studio Mumbai"
+      },
+      {
+        "why": "Gallery-tight spacing, display-scale typography, and the practice of using color as thin outline strokes rather than fills",
+        "business": "Bureau Betak"
+      },
+      {
+        "why": "Compact editorial layout, Helvetica Neue display paired with serif body, and photography presented raw with no rounded corners or overlays",
+        "business": "Cobe (Danish architecture studio)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "37.5px",
+        "cards": "0px",
+        "links": "10px",
+        "buttons": "15px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "30px",
+      "cardPadding": "10-12px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Page background and primary surface — the layout is intentionally flat, with no competing surface tones"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Hairline",
+        "level": 2,
+        "purpose": "Border, divider, and subtle surface variant — defines card edges at 1–2px without adding visual weight"
+      },
+      {
+        "hex": "#ff00bc",
+        "name": "Accent Stroke",
+        "level": 3,
+        "purpose": "Chromatic outline used as a decorative surface edge — never a fill, always a 1–2px border treatment"
+      },
+      {
+        "hex": "#bc5346",
+        "name": "Warm Accent",
+        "level": 4,
+        "purpose": "Terracotta outline on headings and links — secondary chromatic stroke layered on white"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.2) 4px 2px 4px 0px",
+        "element": "Nav, Button, Body containers"
+      },
+      {
+        "style": "rgb(237, 237, 237) 2px -1px 6px 0px",
+        "element": "Cards and overlays"
+      }
+    ],
+    "northStar": "Architectural editorial masthead on white marble. Display type that could be 2 meters tall in print, single photography frames, and chromatic accents drawn with a fine-point pen.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 23,
+        "lineHeight": 1.1
+      },
+      {
+        "role": "heading",
+        "size": 39,
+        "lineHeight": 1.08
+      },
+      {
+        "role": "heading-lg",
+        "size": 67,
+        "lineHeight": 1
+      },
+      {
+        "role": "display",
+        "size": 105,
+        "lineHeight": 0.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Masthead Display",
+        "role": "Brand-scale display headline",
+        "description": "Helvetica Neue Medium at 67–105px, line-height 0.80–1.00, color #000000. May span the full viewport width with letter-spacing at normal. This is the page's signature — it occupies the top of the screen like a newspaper masthead before giving way to photography."
+      },
+      {
+        "name": "Editorial Heading",
+        "role": "Section-level serif heading",
+        "description": "New Century Schoolbook at 39–43px, line-height 1.08–1.10, color #000000. Optional terracotta (#bc5346) or magenta (#ff00bc) 1–2px bottom border for accent. Sets the literary tone for content sections."
+      },
+      {
+        "name": "Outlined Chromatic Link",
+        "role": "Primary navigation link with colored outline",
+        "description": "Helvetica Neue Roman at 12–18px, 1–2px solid border in #bc5346, #ff00bc, #51633c, or #000000, padding 6–10px horizontal, radius 10px. Text inherits border color. No fill — the outline IS the design."
+      },
+      {
+        "name": "Ghost Button",
+        "role": "Secondary action or nav control",
+        "description": "White background (#ffffff), 1px border in #000000, radius 15px, padding 6–12px vertical and horizontal, Helvetica Neue 12–16px #000000. The 15px radius is notably softer than the sharp 0px card corners — this is the only rounded button variant."
+      },
+      {
+        "name": "Pill Navigation",
+        "role": "Top-bar or floating nav control",
+        "description": "White or hairline background, 1px solid #000000 border, radius 37.5px (pill), padding 10–20px horizontal. Sits at top of layout with the soft 4px 2px 4px shadow. The 37.5px radius creates the system's most generous curve."
+      },
+      {
+        "name": "Architecture Photo Frame",
+        "role": "Full-bleed image container",
+        "description": "Edge-to-edge or near-edge image with no border, no radius, and no caption box. Photos are presented raw — the architecture is the content. May be paired with a thin chromatic underline border (#ff00bc or #bc5346) at 1–2px."
+      },
+      {
+        "name": "Flat Content Card",
+        "role": "Text block within a project or section",
+        "description": "Zero radius, no background, no border by default. When a border is needed, use 1px #e5e5e5. Padding 10–15px. The flatness is intentional — cards do not compete with the photography."
+      },
+      {
+        "name": "Magenta Section Divider",
+        "role": "Horizontal rule between content sections",
+        "description": "1–2px solid line in #ff00bc, full-width or content-width. Replaces traditional gray dividers and injects the system's signature chromatic punctuation into otherwise monochrome layouts."
+      },
+      {
+        "name": "Olive Body Link",
+        "role": "Inline text link within editorial copy",
+        "description": "New Century Schoolbook 16–18px, color #51633c, optional 1px underline in same color. Used sparingly in body paragraphs to reference projects or external material without breaking reading rhythm."
+      },
+      {
+        "name": "Tight Body Paragraph",
+        "role": "Editorial long-form text",
+        "description": "New Century Schoolbook 16–18px, line-height 1.10, color #000000. No paragraph spacing larger than 15px. Reading width constrained to ~600–700px within a max-width container."
+      },
+      {
+        "name": "Nav Item",
+        "role": "Top-level navigation entry",
+        "description": "Helvetica Neue 12–16px, color #000000, 20px horizontal padding, optional 1px #000000 bottom border on active state. Sits inside the pill-shaped nav bar with 37.5px radius."
+      }
+    ],
+    "typography": [
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "15px, 67px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1, 1.2"
+      },
+      {
+        "role": "Display and large headings — the 105px size defines the masthead scale, while 18–21px handles subheadings. The medium weight at extreme sizes is signature: heavy enough to anchor the page, never so heavy it becomes a poster.",
+        "sizes": "12px, 18px, 21px, 105px",
+        "family": "Helvetica Neue LT Pro (Md)",
+        "weight": "400",
+        "lineHeight": "0.80–1.20",
+        "substitute": "Helvetica, Arial, Inter (weight 500)"
+      },
+      {
+        "role": "Body text, nav, buttons, lists — the everyday workhorse at 16–20px, with 39px available for feature headings",
+        "sizes": "12px",
+        "family": "Helvetica Neue LT Pro (Roman)",
+        "weight": "400",
+        "lineHeight": "1.00–1.20",
+        "substitute": "Helvetica, Arial, Inter"
+      },
+      {
+        "role": "Fine-print body variant — used only at 12px for secondary micro-copy and captions",
+        "sizes": "16px",
+        "family": "Helvetica Neue LT Pro (Lt)",
+        "weight": "300",
+        "lineHeight": "1.20",
+        "substitute": "Helvetica Light, Inter Light"
+      },
+      {
+        "role": "Bold body emphasis at 16px — sparingly used for in-paragraph highlights and label-like text",
+        "sizes": "12px, 16px, 20px, 39px",
+        "family": "Helvetica Neue LT Pro (Bd)",
+        "weight": "700",
+        "lineHeight": "1.10",
+        "substitute": "Helvetica Bold, Inter Bold"
+      },
+      {
+        "role": "The editorial serif: body paragraphs, editorial headings, and section titles. Its slab-serif warmth counterbalances the industrial Helvetica display, giving long-form reading a literary feel. Used at 16–18px for body and 39–43px for editorial headings.",
+        "sizes": "",
+        "family": "New Century Schoolbook LT Std (Roman)",
+        "weight": "400",
+        "lineHeight": "0.95–1.10",
+        "substitute": "Charter, Source Serif Pro, Crimson Text"
+      },
+      {
+        "role": "NewCenturySchlbkLTStd-Roman — detected in extracted data but not described by AI",
+        "sizes": "16px, 18px, 21px, 23px, 39px, 43px",
+        "family": "NewCenturySchlbkLTStd-Roman",
+        "weight": "400",
+        "lineHeight": "0.95, 1, 1.08, 1.1"
+      }
+    ],
+    "description": "IDHEAL is an editorial architecture portfolio language: a stark white canvas where massive black sans-serif display type dominates the top of the page like a masthead, paired with full-bleed architectural photography. The visual system is deliberately sparse — surfaces are flat, dividers are hairline, and shadow is used minimally and only as a soft gray halo. Chromatic color appears almost exclusively as thin outline strokes (terracotta, magenta, olive), never as filled buttons or large blocks, creating the effect of colored pencil marks on a white page. The pairing of Helvetica Neue for display and New Century Schoolbook for body gives the site a magazine-spread tension — industrial sans for headlines, literary serif for reading — anchored by compact spacing that keeps everything gallery-tight.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8d8d5861-dee0-431b-826d-56f3fa4e1f84#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"IDHEAL design system\",\"item\":\"https://styles.refero.design/style/8d8d5861-dee0-431b-826d-56f3fa4e1f84\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8d8d5861-dee0-431b-826d-56f3fa4e1f84#style-reference\",\"name\":\"IDHEAL design system reference\",\"headline\":\"IDHEAL design system | Refero Styles\",\"description\":\"Explore IDHEAL's light Agency design system: Pure White #ffffff, Carbon Black #000000 colors, sans-serif, Helvetica Neue LT Pro (Md) typography, and...\",\"url\":\"https://styles.refero.design/style/8d8d5861-dee0-431b-826d-56f3fa4e1f84\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8d8d5861-dee0-431b-826d-56f3fa4e1f84\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"IDHEAL\",\"url\":\"https://idheal.fr\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8d8d5861-dee0-431b-826d-56f3fa4e1f84#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/65b757a5-14fc-4479-ac42-f60505cee546.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/65b757a5-14fc-4479-ac42-f60505cee546.jpg\",\"caption\":\"Screenshot of IDHEAL\"},\"image\":\"https://images.refero.design/styles/refero.design/image/65b757a5-14fc-4479-ac42-f60505cee546.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"IDHEAL design system\",\"IDHEAL website design\",\"IDHEAL colors\",\"IDHEAL typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pure White\",\"Carbon Black\",\"Hairline Gray\",\"Shadow Gray\",\"sans-serif\",\"Helvetica Neue LT Pro (Md)\",\"Helvetica Neue LT Pro (Roman)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"IDHEAL design system\"},{\"@type\":\"Thing\",\"name\":\"IDHEAL website design\"},{\"@type\":\"Thing\",\"name\":\"IDHEAL colors\"},{\"@type\":\"Thing\",\"name\":\"IDHEAL typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:15:35.914Z\",\"dateModified\":\"2026-04-30T03:15:35.914Z\"}]}19:T57a,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #e5e5e5\n- accent (outline strokes only): #ff00bc, #bc5346, #51633c\n- primary action: #bc5346 (outlined action border)\n\n**3-5 Example Component Prompts**\n1. Create a masthead display: full-width, 0px margin. Text 'IDHEAL' at 105px Helvetica Neue weight 500, #000000, line-height 0.80. Below it, a full-bleed architectural photo with 0px radius and no caption box.\n\n2. Create a nav bar: 37.5px pill radius, white #ffffff background, 1px solid #000000 border, soft shadow rgba(0,0,0,0.2) 4px 2px 4px 0px. Inside, links at 14px Helvetica Neue #000000 with 20px horizontal padding, separated by hairline #e5e5e5 dividers.\n\n3. Create an outlined accent link: inline element, 1px solid #bc5346 border, 6px vertical and 10px horizontal padding, 10px border-radius. Text 14px Helvetica Neue in #bc5346, no fill background.\n\n4. Create an editorial body section: max-width 1200px centered, padding 30px vertical. Heading 'Section Title' in New Century Schoolbook 39px #000000 with a 1px solid #ff00bc bottom border extending the full heading width. Body paragraph below in New Century Schoolbook 16px #000000, line-height 1.10, max-width 600px.\n\n5. Create a ghost button: 15px border-radius, white #ffffff background, 1px solid #000000 border, padding 8px 16px. Text 14px Helvetica Neue #000000. Add shadow rgba(0,0,0,0.2) 4px 2px 4px 0px."
+      }
+    ],
+    "elevationPhilosophy": "Shadows are used sparingly and asymmetrically: the primary shadow (4px x-offset, 2px blur) is a soft carbon cast that lifts nav and buttons slightly off the page, while card shadows use a light gray at -1px y-offset to suggest a subtle lift without darkening the white canvas. The system avoids heavy or colored shadows — elevation is felt more than seen."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "icon",
+            "image",
+            "link",
+            "body",
+            "list",
+            "heading",
+            "card"
+          ],
+          "frequency": 1081,
+          "confidence": 1,
+          "prominence": 13063012.279839553,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "nav/color": 26,
+            "body/color": 42,
+            "card/color": 10,
+            "icon/color": 4,
+            "link/color": 19,
+            "list/color": 2,
+            "other/fill": 14,
+            "icon/stroke": 2,
+            "image/color": 8,
+            "other/color": 92,
+            "button/color": 5,
+            "other/stroke": 1,
+            "heading/color": 16,
+            "nav/borderColor": 100,
+            "body/borderColor": 168,
+            "card/borderColor": 40,
+            "icon/borderColor": 16,
+            "link/borderColor": 56,
+            "list/borderColor": 8,
+            "image/borderColor": 32,
+            "other/borderColor": 340,
+            "button/borderColor": 8,
+            "heading/borderColor": 64
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "list"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 1978191.5428368438,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 4,
+            "list/backgroundColor": 1,
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#e5e5e5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9219060167761346
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 58,
+          "confidence": 1,
+          "prominence": 1967032.3002025632,
+          "properties": [
+            "borderColor",
+            "boxShadow",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 4,
+            "other/boxShadow": 3,
+            "body/borderColor": 16,
+            "other/borderColor": 12,
+            "button/borderColor": 12,
+            "link/backgroundColor": 5,
+            "other/backgroundColor": 6
+          }
+        },
+        {
+          "hex": "#bc5346",
+          "oklch": {
+            "c": 0.13837629524786785,
+            "h": 29.178668097979152,
+            "l": 0.5732147380016918
+          },
+          "contexts": [
+            "body",
+            "heading",
+            "other",
+            "link"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 183910.16989823568,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "link/color": 1,
+            "heading/color": 2,
+            "body/borderColor": 8,
+            "link/borderColor": 4,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff00bc",
+          "oklch": {
+            "c": 0.2841347101076102,
+            "h": 344.62641377664806,
+            "l": 0.6671622375421637
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 141,
+          "confidence": 1,
+          "prominence": 40610.563638786596,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 17,
+            "link/color": 1,
+            "other/color": 10,
+            "body/borderColor": 64,
+            "link/borderColor": 4,
+            "other/borderColor": 40,
+            "body/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 35065.71036595486,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "nav/boxShadow": 1,
+            "body/boxShadow": 4,
+            "button/boxShadow": 3
+          }
+        },
+        {
+          "hex": "#51633c",
+          "oklch": {
+            "c": 0.0632692466367787,
+            "h": 128.7408791838532,
+            "l": 0.4740440866877104
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 21744.258348135238,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "other/color": 2,
+            "body/borderColor": 20,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#005bff",
+          "oklch": {
+            "c": 0.25314416956570684,
+            "h": 262.0933357932309,
+            "l": 0.5434772464901654
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 6768.409201361543,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "body/borderColor": 8
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.09597233037596692,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#e5e5e5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.56,
+          "background": "#ffffff",
+          "foreground": "#51633c"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.98,
+          "background": "#ff00bc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.33,
+          "background": "#ffffff",
+          "foreground": "#005bff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.21,
+          "background": "#e5e5e5",
+          "foreground": "#51633c"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.7,
+          "background": "#ffffff",
+          "foreground": "#bc5346"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.46,
+          "background": "#bc5346",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.23,
+          "background": "#e5e5e5",
+          "foreground": "#005bff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.09,
+          "background": "#cccccc",
+          "foreground": "#51633c"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.73,
+          "background": "#e5e5e5",
+          "foreground": "#bc5346"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.51,
+          "background": "#ffffff",
+          "foreground": "#ff00bc"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.79,
+          "background": "#e5e5e5",
+          "foreground": "#ff00bc"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.87,
+          "background": "#ff00bc",
+          "foreground": "#51633c"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.52,
+          "background": "#ff00bc",
+          "foreground": "#005bff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.4,
+          "background": "#bc5346",
+          "foreground": "#51633c"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.34,
+          "background": "#ff00bc",
+          "foreground": "#bc5346"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.13,
+          "background": "#bc5346",
+          "foreground": "#005bff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9.999,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "body",
+            "button"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 37.5,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.2) 4px 2px 4px 0px",
+          "contexts": [
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": "rgb(237, 237, 237) 2px -1px 6px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "body",
+            "button"
+          ],
+          "frequency": 38,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "paddingBottom|button",
+            "marginBottom|body",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 34,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|body",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "body",
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav",
+            "paddingRight|body",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginRight|button",
+            "marginBottom|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 31,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "body",
+            "other",
+            "card",
+            "heading"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginBottom|other",
+            "marginBottom|card",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|link",
+            "marginBottom|link",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "other",
+            "card",
+            "heading"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav",
+            "marginBottom|other",
+            "marginBottom|card",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link",
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 68,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 75,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 151,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HelveticaNeueLTPro-Md",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 37,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "NewCenturySchlbkLTStd-Roman",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 36,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HelveticaNeueLTPro-Roman",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 25,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HelveticaNeueLTPro-Lt",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 16,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HelveticaNeueLTPro-Bd",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 4,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "HelveticaNeueLTPro-Roman",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "list"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "HelveticaNeueLTPro-Lt",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "HelveticaNeueLTPro-Lt",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "HelveticaNeueLTPro-Md",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 15,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "image",
+            "body",
+            "link",
+            "card"
+          ],
+          "frequency": 99,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 16,
+          "family": "NewCenturySchlbkLTStd-Roman",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "HelveticaNeueLTPro-Bd",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "HelveticaNeueLTPro-Roman",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "HelveticaNeueLTPro-Md",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "NewCenturySchlbkLTStd-Roman",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "HelveticaNeueLTPro-Md",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "HelveticaNeueLTPro-Roman",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 21,
+          "family": "NewCenturySchlbkLTStd-Roman",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.08,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "NewCenturySchlbkLTStd-Roman",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.95,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "HelveticaNeueLTPro-Md",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 0.95,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 23,
+          "family": "NewCenturySchlbkLTStd-Roman",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 39,
+          "family": "HelveticaNeueLTPro-Roman",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 39,
+          "family": "NewCenturySchlbkLTStd-Roman",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 43,
+          "family": "NewCenturySchlbkLTStd-Roman",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.08,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 67,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 105,
+          "family": "HelveticaNeueLTPro-Md",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e59020c2-63e3-416b-8343-3d785ea6e565.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/65b757a5-14fc-4479-ac42-f60505cee546.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8d8d5861-dee0-431b-826d-56f3fa4e1f84#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"IDHEAL design system\",\"item\":\"https://styles.refero.design/style/8d8d5861-dee0-431b-826d-56f3fa4e1f84\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8d8d5861-dee0-431b-826d-56f3fa4e1f84#style-reference\",\"name\":\"IDHEAL design system reference\",\"headline\":\"IDHEAL design system | Refero Styles\",\"description\":\"Explore IDHEAL's light Agency design system: Pure White #ffffff, Carbon Black #000000 colors, sans-serif, Helvetica Neue LT Pro (Md) typography, and...\",\"url\":\"https://styles.refero.design/style/8d8d5861-dee0-431b-826d-56f3fa4e1f84\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8d8d5861-dee0-431b-826d-56f3fa4e1f84\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"IDHEAL\",\"url\":\"https://idheal.fr\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8d8d5861-dee0-431b-826d-56f3fa4e1f84#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/65b757a5-14fc-4479-ac42-f60505cee546.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/65b757a5-14fc-4479-ac42-f60505cee546.jpg\",\"caption\":\"Screenshot of IDHEAL\"},\"image\":\"https://images.refero.design/styles/refero.design/image/65b757a5-14fc-4479-ac42-f60505cee546.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"IDHEAL design system\",\"IDHEAL website design\",\"IDHEAL colors\",\"IDHEAL typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Pure White\",\"Carbon Black\",\"Hairline Gray\",\"Shadow Gray\",\"sans-serif\",\"Helvetica Neue LT Pro (Md)\",\"Helvetica Neue LT Pro (Roman)\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"IDHEAL design system\"},{\"@type\":\"Thing\",\"name\":\"IDHEAL website design\"},{\"@type\":\"Thing\",\"name\":\"IDHEAL colors\"},{\"@type\":\"Thing\",\"name\":\"IDHEAL typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T03:15:35.914Z\",\"dateModified\":\"2026-04-30T03:15:35.914Z\"}]}19:T57a,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #e5e5e5\n- accent (outline strokes only): #ff00bc, #bc5346, #51633c\n- primary action: #bc5346 (outlined action border)\n\n**3-5 Example Component Prompts**\n1. Create a masthead display: full-width, 0px margin. Text 'IDHEAL' at 105px Helvetica Neue weight 500, #000000, line-height 0.80. Below it, a full-bleed architectural photo with 0px radius and no caption box.\n\n2. Create a nav bar: 37.5px pill radius, white #ffffff background, 1px solid #000000 border, soft shadow rgba(0,0,0,0.2) 4px 2px 4px 0px. Inside, links at 14px Helvetica Neue #000000 with 20px horizontal padding, separated by hairline #e5e5e5 dividers.\n\n3. Create an outlined accent link: inline element, 1px solid #bc5346 border, 6px vertical and 10px horizontal padding, 10px border-radius. Text 14px Helvetica Neue in #bc5346, no fill background.\n\n4. Create an editorial body section: max-width 1200px centered, padding 30px vertical. Heading 'Section Title' in New Century Schoolbook 39px #000000 with a 1px solid #ff00bc bottom border extending the full heading width. Body paragraph below in New Century Schoolbook 16px #000000, line-height 1.10, max-width 600px.\n\n5. Create a ghost button: 15px border-radius, white #ffffff background, 1px solid #000000 border, padding 8px 16px. Text 14px Helvetica Neue #000000. Add shadow rgba(0,0,0,0.2) 4px 2px 4px 0px."
+}

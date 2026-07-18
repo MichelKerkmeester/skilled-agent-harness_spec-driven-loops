@@ -1,0 +1,367 @@
+{
+  "color": {
+    "ember-orange": {
+      "$value": "#ff6436",
+      "$type": "color",
+      "$description": "Ember Orange — Status indicators, accent dots, live signals, decorative fills — the sole chromatic note in an otherwise monochrome system"
+    },
+    "onyx": {
+      "$value": "#161616",
+      "$type": "color",
+      "$description": "Onyx — Dark hero background, deep badges, section dark-mode surfaces"
+    },
+    "graphite": {
+      "$value": "#3c3a3e",
+      "$type": "color",
+      "$description": "Graphite — Primary text, nav links, body copy, filled button text"
+    },
+    "stone": {
+      "$value": "#7b7a7c",
+      "$type": "color",
+      "$description": "Stone — Secondary text, heading subtitles, supporting copy"
+    },
+    "ash": {
+      "$value": "#a2a2a2",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, inactive nav state, subtle UI metadata"
+    },
+    "silver-mist": {
+      "$value": "#c9c7cc",
+      "$type": "color",
+      "$description": "Silver Mist — Hairline dividers, grid lines, light borders, low-emphasis text"
+    },
+    "fog": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Fog — Light body backgrounds, subtle section washes, nav inactive background"
+    },
+    "paper": {
+      "$value": "#f8f8f8",
+      "$type": "color",
+      "$description": "Paper — Page canvas, base background surface"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, elevated panels, tag borders, card borders"
+    },
+    "display-fade-gradient": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Display Fade Gradient — Gradient fill on massive display type — black fading to mid-gray to light silver across the word"
+    },
+    "horizon-gradient": {
+      "$value": "#6e6c70",
+      "$type": "color",
+      "$description": "Horizon Gradient — Section transitions and hero vignette — horizontal black to silver fade"
+    }
+  },
+  "font": {
+    "die-grotesk-b": {
+      "$value": "Die Grotesk B",
+      "$type": "fontFamily",
+      "$description": "Primary workhorse grotesque used for body text, mid-scale headings, labels, captions, and links. Weight 500 across all sizes creates a uniform visual density — no weight contrast, hierarchy comes purely from size and color. Tighter letter-spacing at larger sizes (-0.03em at 60px) tightens the grotesque into near-condensed proportions."
+    },
+    "abc-gravity-variable": {
+      "$value": "ABC Gravity Variable",
+      "$type": "fontFamily",
+      "$description": "Monument-scale super-condensed display face. Used only for hero statements and section openers that fill the viewport. The extremely tight line-height (0.74) lets massive 288px letters stack with minimal vertical air — letters physically touch or nearly touch, creating a wall of type. Variable weight axis allows subtle weight shifts even at this scale."
+    },
+    "ibm-plex-mono": {
+      "$value": "IBM Plex Mono",
+      "$type": "fontFamily",
+      "$description": "Technical voice for metadata, timestamps, nav labels, status text, and icon-adjacent micro-copy. Always uppercase, always small (12–14px). The monospaced rhythm signals 'system data' and contrasts against the grotesque's proportional flow — it reads as a developer/designer interface layer over the editorial body."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Die Grotesk B",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Die Grotesk B",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "ABC Gravity Variable",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "IBM Plex Mono",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Die Grotesk B",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Die Grotesk B",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Die Grotesk B",
+        "fontSize": "21px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "ABC Gravity Variable",
+        "fontSize": "23px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 23px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Die Grotesk B",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Die Grotesk B",
+        "fontSize": "54px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Die Grotesk B",
+        "fontSize": "60px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 60px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "ABC Gravity Variable",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 0.74
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 96px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "ABC Gravity Variable",
+        "fontSize": "274px",
+        "fontWeight": 400,
+        "lineHeight": 0.74
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 274px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "ABC Gravity Variable",
+        "fontSize": "288px",
+        "fontWeight": 400,
+        "lineHeight": 0.74
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 288px"
+    }
+  },
+  "spacing": {
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "14.4px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#f8f8f8",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated cards, logo strips, content panels"
+    },
+    "section-wash": {
+      "$value": "#f1f1f1",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle section backgrounds, nav inactive states"
+    },
+    "accent-surface": {
+      "$value": "#ff6436",
+      "$type": "color",
+      "$description": "Surface level 3: Highlighted callouts, status surfaces"
+    },
+    "dark-hero": {
+      "$value": "#161616",
+      "$type": "color",
+      "$description": "Surface level 4: Dark hero section, dramatic inverted mode"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.dylanbrouwer.design",
+      "siteName": "Dylanbrouwer",
+      "extractedAt": "2026-07-03T03:43:58.087Z",
+      "variant": "extended"
+    }
+  }
+}

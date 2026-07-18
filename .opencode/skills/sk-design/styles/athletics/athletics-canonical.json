@@ -1,0 +1,757 @@
+{
+  "source": "https://styles.refero.design/style/fd36c7c7-4f8c-4d2a-9346-72e3d8403f01",
+  "uuid": "fd36c7c7-4f8c-4d2a-9346-72e3d8403f01",
+  "name": "Athletics",
+  "northStar": "monograph on black velvet",
+  "capturedAt": "2026-07-18T09:24:56.621Z",
+  "meta": {
+    "url": "https://athleticsnyc.com",
+    "siteName": "Athletics",
+    "extractedAt": "2026-06-03T19:50:02.475Z",
+    "durationMs": 35722,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 814,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #000000 as the base canvas and #1d1d1d for elevated section bands — never invert to a light theme.",
+      "Set display headlines at 72–116px in Feature Deck 300 with -0.009em to -0.018em letter-spacing; this negative tracking is non-negotiable for the editorial feel.",
+      "Use 9999px radius exclusively for tags and buttons; use 8px only for rectangular cards or image containers.",
+      "Apply 128–144px vertical padding for major section breaks; this generous air is what makes the system feel considered rather than dense.",
+      "Annotate lists with uppercase single letters (A, B, C, D) flush-left in Söhne 400 when the list functions as a specimen or index.",
+      "Restrict all chromatic color to inside the brand mark or editorial photography; the interface itself must remain pure monochrome.",
+      "Pair large serif Feature Deck headlines with small uppercase Söhne 400 labels above them — the size contrast (116px vs 16px) is the primary hierarchy signal."
+    ],
+    "donts": [
+      "Do not introduce any chromatic interface color — no blues, greens, reds, or warm tints in UI elements. Color belongs only in imagery.",
+      "Do not use Feature Deck (the serif) for body copy, navigation, or functional text; it is display-only at 72px+.",
+      "Do not apply box-shadows or drop-shadows to any element; the system uses flat surfaces and hairline borders for all separation.",
+      "Do not set display headlines at weight 400 or above in the serif — the light/thin weight is the signature; heavier weights break the whisper-quiet authority.",
+      "Do not use gradients, glows, or colored backgrounds behind text blocks; sections are always flat #000000 or #1d1d1d.",
+      "Do not use #d6d5d0 for text — it is a border/divider color with insufficient contrast for reading; use #ffffff for all readable text.",
+      "Do not add background fills to navigation or header areas; the top bar is always transparent against the dark canvas."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Page canvas, deepest section backgrounds, hairline borders on text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1d1d1d",
+        "name": "Charcoal",
+        "role": "Elevated section surfaces, card backgrounds, input fields — the middle layer between pure black and white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Primary display and body text on dark surfaces, default borders, icon strokes, form controls",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d6d5d0",
+        "name": "Ash",
+        "role": "Hairline borders, dividers, input outlines, and card edges on light surfaces.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark layout with no visible page container. The hero is a centered stack: brand mark above oversized headline, with maximum vertical breathing room. Section rhythm alternates between two patterns: (1) two-column editorial blocks with a small label + large serif headline on the left and constrained-width body copy on the right, separated by 128–144px vertical gaps; (2) full-width single-column displays like the service index, where massive serif text fills the viewport width. Navigation is a minimal top bar — wordmark left, five text links right, no background or border. Content density is extremely low: each section is given the full viewport or more, and the design relies on negative space and type scale contrast rather than grids or card stacks. The A/B/C/D letter annotations on the service list function as a navigational device, evoking a printed table of contents.",
+    "imagery": "The visual system is photography-led but extremely restrained. The brand mark (a large 'A' logogram) is filled with a tightly cropped, red/magenta-tinted editorial photograph — typically a detail shot of an object (sunglasses, a product, a face fragment) — that bleeds to the edges of the letterform. This is the only place saturated color appears, and it functions as a signature device. Elsewhere, photography is large-scale, full-bleed, and treated with moody, low-key lighting. No decorative illustration, no abstract graphics, no icons beyond minimal text-based markers. The page is overwhelmingly text-dominant: imagery is reserved for hero moments and project case studies, never used as decoration between sections.",
+    "similar": [
+      {
+        "why": "Same dark-canvas editorial approach with oversized serif display type and zero chromatic interface color — both treat the page as a printed specimen sheet.",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Identical pairing of light-weight serif headlines against a monochrome dark background, with generous section gaps and asymmetric two-column text blocks.",
+        "business": "Collins"
+      },
+      {
+        "why": "Same restrained monochromatic palette, massive serif typography at thin weight, and the typographic confidence that comes from doing almost nothing visually.",
+        "business": "Mucca"
+      },
+      {
+        "why": "Shares the hairline-border approach to section separation, warm off-white divider tone, and the 'monograph on black' editorial atmosphere.",
+        "business": "Order Design"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "8px",
+        "buttons": "9999px"
+      },
+      "elementGap": "24-32px",
+      "sectionGap": "128-144px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian Canvas",
+        "level": 1,
+        "purpose": "Base page background, hero sections, footer"
+      },
+      {
+        "hex": "#1d1d1d",
+        "name": "Charcoal Surface",
+        "level": 2,
+        "purpose": "Alternate section bands, content blocks, elevated cards, input fields"
+      },
+      {
+        "hex": "#d6d5d0",
+        "name": "Hairline Layer",
+        "level": 3,
+        "purpose": "Structural borders and dividers separating content zones"
+      }
+    ],
+    "northStar": "monograph on black velvet",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 22,
+        "lineHeight": 1.3,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading",
+        "size": 72,
+        "lineHeight": 1.1,
+        "letterSpacing": -0.65
+      },
+      {
+        "role": "heading-lg",
+        "size": 82,
+        "lineHeight": 1.05,
+        "letterSpacing": -0.74
+      },
+      {
+        "role": "display",
+        "size": 116,
+        "lineHeight": 1.05,
+        "letterSpacing": -2.09
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site-wide navigation",
+        "description": "Transparent or black background, no visible border or shadow. Wordmark 'Athletics' at far left in 16px Söhne 400 white. Right-aligned nav links ('Work', 'About', 'Approach', 'Careers', 'Contact') in 16px Söhne 400 white with 16px column gap. No background fill, no border, no underline — links are identified by position and tracking alone."
+      },
+      {
+        "name": "Hero Mark + Display Headline",
+        "role": "Opening brand statement",
+        "description": "Centered layout on #000000. A large editorial mark (the 'A' logogram filled with a photographic image) sits above a 116px Feature Deck 300 headline in white, letter-spacing -0.018em. The image-fill inside the mark is the only source of chromatic color on the page — typically a moody, red-tinted editorial photograph cropped to the letterform."
+      },
+      {
+        "name": "Section Opener (Two-Column)",
+        "role": "Editorial section introduction",
+        "description": "Charcoal (#1d1d1d) background. Left column: small uppercase Söhne 400 white label (e.g. 'What we do') above a 72px Feature Deck 300 white headline. Right column: body copy in 17px Söhne 400 white, max-width ~480px, generous line-height 1.5. Large vertical gap (128–144px) between label/headline and body."
+      },
+      {
+        "name": "Specialty Tag (Pill)",
+        "role": "Category label for services",
+        "description": "Pill shape, 9999px border-radius. White background (#ffffff), black text (#000000) in 16px Söhne 400. Minimal padding ~8px 16px. No border, no shadow. Functions as a quiet chip floating on the dark surface."
+      },
+      {
+        "name": "Service Index List",
+        "role": "Vertical enumeration of capabilities",
+        "description": "Stacked list of service names in 82px Feature Deck 300 white, each line at 1.05 line-height creating near-touching rows. A single uppercase letter (A, B, C, D) in 16px Söhne 400 white sits flush-left as an index marker, vertically aligned to each entry. No dividers, no bullets — the letter is the only annotation."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Structural separation",
+        "description": "1px solid #d6d5d0 line. Used sparingly to mark zone transitions (e.g. between 'Our specialties' and 'How we do it' sections). The warm off-white tone distinguishes structural borders from text-white (#ffffff) — subtle but critical for visual hierarchy."
+      },
+      {
+        "name": "Pill Button",
+        "role": "Interactive action",
+        "description": "9999px border-radius, white background (#ffffff), black text (#000000) in 16px Söhne 400. Padding 12px 24px. No border, no shadow. The pill geometry is the only interactive shape in the system — everything else is rectangular or borderless."
+      },
+      {
+        "name": "Form Input",
+        "role": "Text entry field",
+        "description": "Transparent or #1d1d1d background on dark sections. Bottom border only, 1px #d6d5d0. White placeholder text, white input text in 16px Söhne 400. No box, no fill — the underline is the affordance."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display and heading type — used exclusively for the largest editorial moments: hero headline, section openers, and the service index. The 300 weight (light/thin) with tight negative tracking is the signature move: most display serifs default to 400–700, so the whisper-weight conveys authority through restraint rather than volume. Letter-spacing tightens from -0.009em at 82px to -0.018em at 116px.",
+        "sizes": "72px, 82px, 116px",
+        "family": "Feature Deck",
+        "weight": "300",
+        "lineHeight": "1.05–1.10",
+        "substitute": "GT Sectra Display Light, Canela, Domaine Display Thin",
+        "letterSpacing": "-0.0090em at 82px, -0.0180em at 116px"
+      },
+      {
+        "role": "All functional and body type — navigation, links, body copy, list items, input fields, buttons, footer. Weight 300 for secondary labels and 400 for body. A neo-grotesque with humanist warmth that stays invisible so the serif can speak.",
+        "sizes": "16px, 17px, 22px",
+        "family": "Söhne",
+        "weight": "300, 400",
+        "lineHeight": "1.30–1.50",
+        "substitute": "Inter, Neue Haas Grotesk, Untitled Sans"
+      }
+    ],
+    "description": "Athletics operates as a gallery-grade creative studio: the entire experience sits on a dark canvas, letting enormous light-weight serif display type breathe against deep charcoal and pure black. The system is ruthlessly monochromatic — zero chromatic color across the interface, with warmth and saturation living exclusively inside editorial photography and the brand mark. Typography does the heavy lifting: a high-contrast pairing of a delicate serif display (Feature Deck at 300 weight, 72–116px) against a quiet grotesque (Söhne at 300/400 for everything functional). The layout is full-bleed, generous, and editorial — wide section gaps of 128–144px, asymmetric two-column blocks, and a vertical service index annotated with A/B/C/D letter labels that evoke a printed specimen sheet. Components are minimal: pill-shaped tags, hairline borders, no shadows, no gradients, no elevation. It reads as confident, restrained, and considered — the design equivalent of a well-typeset monograph.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fd36c7c7-4f8c-4d2a-9346-72e3d8403f01#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Athletics design system\",\"item\":\"https://styles.refero.design/style/fd36c7c7-4f8c-4d2a-9346-72e3d8403f01\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fd36c7c7-4f8c-4d2a-9346-72e3d8403f01#style-reference\",\"name\":\"Athletics design system reference\",\"headline\":\"Athletics design system | Refero Styles\",\"description\":\"Explore Athletics's dark Agency design system: Obsidian #000000, Charcoal #1d1d1d colors, Feature Deck, Söhne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/fd36c7c7-4f8c-4d2a-9346-72e3d8403f01\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fd36c7c7-4f8c-4d2a-9346-72e3d8403f01\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Athletics\",\"url\":\"https://athleticsnyc.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fd36c7c7-4f8c-4d2a-9346-72e3d8403f01#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/06b0ee65-0cf8-40c9-bf41-9ec472a3a32c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/06b0ee65-0cf8-40c9-bf41-9ec472a3a32c.jpg\",\"caption\":\"Screenshot of Athletics\"},\"image\":\"https://images.refero.design/styles/refero.design/image/06b0ee65-0cf8-40c9-bf41-9ec472a3a32c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Athletics design system\",\"Athletics website design\",\"Athletics colors\",\"Athletics typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Charcoal\",\"Paper White\",\"Ash\",\"Feature Deck\",\"Söhne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Athletics design system\"},{\"@type\":\"Thing\",\"name\":\"Athletics website design\"},{\"@type\":\"Thing\",\"name\":\"Athletics colors\"},{\"@type\":\"Thing\",\"name\":\"Athletics typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-11T00:37:54.834Z\",\"dateModified\":\"2026-05-11T00:37:54.834Z\"}]}19:T52b,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- elevated surface: #1d1d1d\n- border: #d6d5d0\n- accent: none observed\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Two-Column Section Opener**: Background #1d1d1d. Left column at 60% width: small uppercase label 'What we do' at 16px Söhne 400 #ffffff, then headline at 72px Feature Deck 300 #ffffff, letter-spacing -0.65px. Right column at 35% width: body copy at 17px Söhne 400 #ffffff, line-height 1.5, max-width 480px. 144px padding-top and padding-bottom.\n\n3. **Service Index List**: Background #000000. Four stacked rows. Each row: single uppercase letter (A, B, C, D) at 16px Söhne 400 #ffffff flush-left, then service name at 82px Feature Deck 300 #ffffff, letter-spacing -0.74px, line-height 1.05. 64px row gap between entries.\n\n4. **Specialty Tag**: White (#ffffff) pill, 9999px radius, padding 8px 16px. Text inside: 16px Söhne 400 #000000. Floats on a #1d1d1d surface. No border, no shadow.\n\n5. **Pill Button**: 9999px border-radius, #ffffff background, 16px Söhne 400 #000000 text, padding 12px 24px. No border, no hover state with color change — keep it monochrome and flat."
+      }
+    ],
+    "elevationPhilosophy": "The system intentionally avoids shadows and elevation effects entirely. All surface separation is achieved through flat color shifts (#000000 → #1d1d1d) and hairline #d6d5d0 borders. This creates a print-like, two-dimensional quality where the only 'depth' is typographic — the massive serif headlines appear to float forward simply because nothing else competes for attention."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "heading",
+            "body",
+            "list",
+            "footer",
+            "input",
+            "button"
+          ],
+          "frequency": 2294,
+          "confidence": 1,
+          "prominence": 168302334.77827302,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 14,
+            "body/color": 19,
+            "link/color": 50,
+            "list/color": 16,
+            "other/fill": 467,
+            "input/color": 1,
+            "other/color": 248,
+            "footer/color": 1,
+            "heading/color": 16,
+            "nav/borderColor": 56,
+            "body/borderColor": 76,
+            "link/borderColor": 200,
+            "list/borderColor": 64,
+            "input/borderColor": 4,
+            "other/borderColor": 992,
+            "footer/borderColor": 4,
+            "heading/borderColor": 64,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 46,
+          "confidence": 1,
+          "prominence": 86850323.72069532,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 8,
+            "body/borderColor": 4,
+            "other/borderColor": 32,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1d1d1d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.23075046833254287
+          },
+          "contexts": [
+            "other",
+            "footer",
+            "input",
+            "button"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 47786857.14111796,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 1,
+            "button/borderColor": 4,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d6d5d0",
+          "oklch": {
+            "c": 0.006883831360438348,
+            "h": 97.36454421318683,
+            "l": 0.8723903234767157
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 174480.32233739732,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 2,
+            "other/color": 2,
+            "body/borderColor": 4,
+            "link/borderColor": 8,
+            "other/borderColor": 8
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00019600663319433573,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.86,
+          "background": "#1d1d1d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.29,
+          "background": "#000000",
+          "foreground": "#d6d5d0"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.47,
+          "background": "#1d1d1d",
+          "foreground": "#d6d5d0"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.47,
+          "background": "#ffffff",
+          "foreground": "#d6d5d0"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.25,
+          "background": "#1d1d1d",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "list"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "marginRight",
+            "marginLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "columnGap|other",
+            "marginTop|list",
+            "marginBottom|list",
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|input",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 35,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "heading",
+            "footer"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingBottom|heading",
+            "paddingTop|footer",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginTop",
+            "columnGap",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "columnGap|other",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Söhne",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 287,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Feature Deck",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 92,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Söhne",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "body"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Söhne",
+          "weight": 300,
+          "contexts": [
+            "nav",
+            "other",
+            "input",
+            "button",
+            "body",
+            "link"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Söhne",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "body",
+            "list",
+            "heading",
+            "link",
+            "footer"
+          ],
+          "frequency": 254,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Feature Deck",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 82,
+          "family": "Feature Deck",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 116,
+          "family": "Feature Deck",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other",
+            "list"
+          ],
+          "frequency": 73,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.009,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d5c88396-a734-40d6-92d9-4742e889b58f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/06b0ee65-0cf8-40c9-bf41-9ec472a3a32c.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/fd36c7c7-4f8c-4d2a-9346-72e3d8403f01#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Athletics design system\",\"item\":\"https://styles.refero.design/style/fd36c7c7-4f8c-4d2a-9346-72e3d8403f01\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/fd36c7c7-4f8c-4d2a-9346-72e3d8403f01#style-reference\",\"name\":\"Athletics design system reference\",\"headline\":\"Athletics design system | Refero Styles\",\"description\":\"Explore Athletics's dark Agency design system: Obsidian #000000, Charcoal #1d1d1d colors, Feature Deck, Söhne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/fd36c7c7-4f8c-4d2a-9346-72e3d8403f01\",\"mainEntityOfPage\":\"https://styles.refero.design/style/fd36c7c7-4f8c-4d2a-9346-72e3d8403f01\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Athletics\",\"url\":\"https://athleticsnyc.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/fd36c7c7-4f8c-4d2a-9346-72e3d8403f01#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/06b0ee65-0cf8-40c9-bf41-9ec472a3a32c.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/06b0ee65-0cf8-40c9-bf41-9ec472a3a32c.jpg\",\"caption\":\"Screenshot of Athletics\"},\"image\":\"https://images.refero.design/styles/refero.design/image/06b0ee65-0cf8-40c9-bf41-9ec472a3a32c.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Athletics design system\",\"Athletics website design\",\"Athletics colors\",\"Athletics typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian\",\"Charcoal\",\"Paper White\",\"Ash\",\"Feature Deck\",\"Söhne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Athletics design system\"},{\"@type\":\"Thing\",\"name\":\"Athletics website design\"},{\"@type\":\"Thing\",\"name\":\"Athletics colors\"},{\"@type\":\"Thing\",\"name\":\"Athletics typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-05-11T00:37:54.834Z\",\"dateModified\":\"2026-05-11T00:37:54.834Z\"}]}19:T52b,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- elevated surface: #1d1d1d\n- border: #d6d5d0\n- accent: none observed\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Two-Column Section Opener**: Background #1d1d1d. Left column at 60% width: small uppercase label 'What we do' at 16px Söhne 400 #ffffff, then headline at 72px Feature Deck 300 #ffffff, letter-spacing -0.65px. Right column at 35% width: body copy at 17px Söhne 400 #ffffff, line-height 1.5, max-width 480px. 144px padding-top and padding-bottom.\n\n3. **Service Index List**: Background #000000. Four stacked rows. Each row: single uppercase letter (A, B, C, D) at 16px Söhne 400 #ffffff flush-left, then service name at 82px Feature Deck 300 #ffffff, letter-spacing -0.74px, line-height 1.05. 64px row gap between entries.\n\n4. **Specialty Tag**: White (#ffffff) pill, 9999px radius, padding 8px 16px. Text inside: 16px Söhne 400 #000000. Floats on a #1d1d1d surface. No border, no shadow.\n\n5. **Pill Button**: 9999px border-radius, #ffffff background, 16px Söhne 400 #000000 text, padding 12px 24px. No border, no hover state with color change — keep it monochrome and flat."
+}

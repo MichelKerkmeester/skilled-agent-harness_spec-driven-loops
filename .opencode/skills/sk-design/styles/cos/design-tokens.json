@@ -1,0 +1,210 @@
+{
+  "color": {
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "ink-black": {
+      "$value": "#080808",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, icons, links, navigation type, button borders, logo, footer text — softer than pure black so photography does not feel clipped against it"
+    },
+    "true-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "True Black — Hero text overlays on dark imagery, body copy, button labels — the true-zero black reserved for highest-contrast typographic moments"
+    },
+    "mist-gray": {
+      "$value": "#dadada",
+      "$type": "color",
+      "$description": "Mist Gray — Hairline borders, input underlines, subtle dividers, disabled-state outlines — the quietest neutral, only visible by what it separates"
+    },
+    "signal-red": {
+      "$value": "#c80000",
+      "$type": "color",
+      "$description": "Signal Red — Red supporting accent for decorative details and low-frequency emphasis"
+    }
+  },
+  "font": {
+    "suisseintl": {
+      "$value": "SuisseIntl",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire interface — used for navigation, body, headlines, buttons, and product copy. The positive tracking (0.01–0.04em) is unusual for a screen face and reinforces the printed-catalogue feeling; 700 weight is reserved for category statements, 500 for navigation and buttons, 400 for everything else. The single-family commitment and tiny size range (12–35px) is the signature — type never shouts."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "SuisseIntl",
+        "fontSize": "35px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 35px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "135": {
+      "$value": "135px",
+      "$type": "dimension",
+      "$description": "Spacing 135px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, full-bleed white ground"
+    },
+    "ink-plane": {
+      "$value": "#080808",
+      "$type": "color",
+      "$description": "Surface level 1: Inverted sections (footer, promotional bars, occasional dark bands) where type inverts to white"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://cos.com",
+      "siteName": "COS",
+      "extractedAt": "2026-06-03T19:15:00.589Z",
+      "variant": "extended"
+    }
+  }
+}

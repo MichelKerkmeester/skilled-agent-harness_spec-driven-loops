@@ -1,0 +1,923 @@
+{
+  "source": "https://styles.refero.design/style/7cae43cd-dd0e-4658-86e6-d66935cfb213",
+  "uuid": "7cae43cd-dd0e-4658-86e6-d66935cfb213",
+  "name": "Palmer",
+  "northStar": "Ceramic gallery in soft daylight — the interface is the wall, the objects are the art.",
+  "capturedAt": "2026-07-18T07:43:11.515Z",
+  "meta": {
+    "url": "https://www.palmer-dinnerware.com",
+    "siteName": "Palmer",
+    "extractedAt": "2026-06-03T19:46:36.187Z",
+    "durationMs": 70274,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1435,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #f5f6ee for every page background — never pure white, it flatters the ceramics and signals the editorial tone",
+      "Set all borders to 1px solid #222222 — hairlines are the only structural separator in the system",
+      "Reach 120px for editorial display headlines in weight 300 with -0.04em tracking — the extreme scale is part of the brand voice",
+      "Use 100px border-radius only for pills (toggles, filter chips, zoom buttons) and 9px for cards, 3px for everything else",
+      "Set type at weight 300–400 for display and large headings; reserve 600–700 for active/selected states only",
+      "Keep interactive elements at the viewport edges (top-center toggle, bottom-center control bar) so the center stays open for product imagery",
+      "Use letter-spacing -0.02em on all body sizes (11–16px) and tighten further as type scales up"
+    ],
+    "donts": [
+      "Don't introduce any chromatic accent color — the ceramics supply all the color, the UI stays grayscale",
+      "Don't add drop shadows to cards, buttons, or nav — borders alone define depth",
+      "Don't use corner radius above 100px or below 3px — the three tiers (3px, 9px, 100px) are the complete system",
+      "Don't set type at weight 600+ in display sizes — it would overwhelm the whisper-thin signature of the 120px tier",
+      "Don't use pure black (#000000) for text — Ink (#222222) is the text color; black is reserved for filled active states",
+      "Don't add background color to the main canvas behind product photography — flat cream is non-negotiable",
+      "Don't use letter-spacing 0 or positive values — all text tracks negative"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#f5f6ee",
+        "name": "Gallery Cream",
+        "role": "Page canvas and base surface — a warm off-white that flatters glazed ceramics more than pure white would",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Ink",
+        "role": "Primary text, hairline borders, card outlines, icon strokes — the entire structural skeleton runs through this one near-black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Product image backgrounds, occasional inverse surface when a card needs to sit forward of the cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a1a19c",
+        "name": "Fog",
+        "role": "Muted secondary borders and low-priority text — used when Ink would be too heavy for a structural divider",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Lampblack",
+        "role": "Reserved for the rare filled element (active nav background, weight anchors) — used sparingly so Ink remains the default voice",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed viewport with no max-width constraint. The hero IS the product scatter: ceramic pieces distributed across the entire viewport at curated positions, not a grid. Navigation chrome is pushed to the corners (wordmark top-left, toggle top-center, control bar bottom-center), leaving the center field entirely to imagery. This is a one-screen-first experience — the scatter is the hero, and all secondary UI (menu, filter, zoom) is conditionally revealed. Section rhythm is minimal: one viewport, one scattered composition, minimal text. No traditional alternating bands.",
+    "imagery": "Pure product photography — top-down or 3/4-angle shots of individual ceramic pieces (plates, bowls) on transparent or cream backgrounds. No lifestyle context, no hands, no tablescapes. Each piece is cropped with slight shadow to imply contact with a surface. Imagery is the only source of color on the site: glazed blues, olive greens, speckled whites, amber browns. Density is high but breathable — pieces are scattered with deliberate negative space between them, curatorial rather than catalog.",
+    "similar": [
+      {
+        "why": "Same Scandinavian editorial-product approach — objects float on a warm neutral canvas with minimal typographic chrome, the catalog reads like a magazine spread",
+        "business": "HAY (Danish furniture/design retailer)"
+      },
+      {
+        "why": "Full-bleed product photography on warm off-white, hairline borders instead of shadows, sparse Swiss-grotesque type, no traditional e-commerce navigation",
+        "business": "Menu Space (Audo Copenhagen)"
+      },
+      {
+        "why": "Artisanal ceramics presented as gallery objects — similar warm canvas, scattered composition, typographic restraint, ceramics supplying all the color",
+        "business": "Atelier Vime"
+      },
+      {
+        "why": "British craft retailer with editorial gallery layout, warm neutral canvas, minimal UI chrome, letting handmade objects carry the visual weight",
+        "business": "The New Craftsmen"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "card": "9px",
+        "input": "3px",
+        "button": "3px",
+        "nav-pill": "100px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "80px",
+      "cardPadding": "16px",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f5f6ee",
+        "name": "Gallery Canvas",
+        "level": 0,
+        "purpose": "The base page surface — warm off-white, used everywhere as the default background"
+      },
+      {
+        "hex": "#f5f6ee",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Cards use the same cream fill — depth comes from the 1px Ink border, not a lighter or darker shade"
+      },
+      {
+        "hex": "#222222",
+        "name": "Inverse Surface",
+        "level": 2,
+        "purpose": "Rare filled-dark surface for active states and inverted sections (e.g., dark product detail panels)"
+      }
+    ],
+    "elevation": [],
+    "northStar": "Ceramic gallery in soft daylight — the interface is the wall, the objects are the art.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.03
+      },
+      {
+        "role": "display",
+        "size": 120,
+        "lineHeight": 0.9,
+        "letterSpacing": -0.04
+      }
+    ],
+    "components": [
+      {
+        "name": "Experience View Toggle",
+        "role": "Primary mode switcher floating top-center",
+        "description": "Pill-shaped container (100px radius) with a 1px Ink border, 7px vertical padding, 15–16px horizontal padding. Contains a small icon (dot grid) and 'experience view' label at 12px weight 400, color Ink. Sits on the cream canvas with no background fill — it's an outlined ghost pill."
+      },
+      {
+        "name": "Scattered Product Tile",
+        "role": "Individual ceramic piece in the main editorial canvas",
+        "description": "Square or near-square product photograph, no border, no radius (products are cut sharp or with minimal rounding). Cast with a soft natural shadow only from the photography itself, not from CSS. Positioned at irregular intervals across the full viewport — layout is curated, not gridded."
+      },
+      {
+        "name": "Bottom Control Bar",
+        "role": "Fixed footer with menu and filter toggles",
+        "description": "Sits at viewport bottom center. Contains two adjacent pill buttons: 'menu' (with hamburger icon) and 'filter' (with list icon), each at 3px radius, Ink text on cream, 1px Ink border, ~12–14px type. A 'Drag to rotate' hint with zoom in/out circular buttons sits at bottom-right."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Text link in top-left brand mark and ancillary nav",
+        "description": "'palmer' wordmark at top-left, 16px weight 400–500, color Ink, no decoration. No traditional nav bar — secondary navigation appears contextually."
+      },
+      {
+        "name": "Zoom Control",
+        "role": "Circular zoom in/out buttons",
+        "description": "Two small circles, ~24px diameter, 100px radius (fully rounded), 1px Ink border on cream fill. '+' and '−' glyphs centered at 12px Ink."
+      },
+      {
+        "name": "Filter Chip",
+        "role": "Category or attribute filter in menu mode",
+        "description": "Outlined pill, 100px radius, 1px Ink border, 12px weight 500 label, cream background. Active state fills with Ink and inverts text to cream/white. No drop shadow, no scale on hover."
+      },
+      {
+        "name": "Card Surface",
+        "role": "Product card used in grid/list views (non-scattered mode)",
+        "description": "9px corner radius, 1px Ink border, 16px internal padding, cream fill (#f5f6ee). No shadow — depth comes from the border alone. Image fills top edge to edge inside the radius."
+      },
+      {
+        "name": "Input Field",
+        "role": "Text input for search or filter",
+        "description": "3px radius, 1px Ink border, cream fill, 14px placeholder text in Fog (#a1a19c). Focus state darkens border to Lampblack (#000000) with no ring."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface — handles everything from micro-labels to 120px editorial display. Weight 300 carries display and large headings (whisper-thin Swiss grotesque that lets the ceramics dominate), weight 400–500 for body and UI, weight 600–700 reserved for active states and filter labels. The tight letter-spacing (-0.04em at display, -0.02em at body) is signature: characters nestle together, giving even 11px labels a compressed, considered feel rather than airy defaults.",
+        "sizes": "11px, 12px, 14px, 16px, 18px, 120px",
+        "family": "TWK Lausanne",
+        "weight": "300, 400, 500, 600, 700",
+        "lineHeight": "0.90 (display), 1.40 (body)",
+        "substitute": "Inter Tight or Neue Haas Grotesk Display Pro at matching weights",
+        "letterSpacing": "-0.04em at 120px display, -0.03em at 18px, -0.02em at 11–16px"
+      }
+    ],
+    "description": "Palmer treats dinnerware like a museum exhibit on a warm cream canvas (#f5f6ee). The interface dissolves — no shadows, no chrome, no saturated accents — so hand-glazed ceramics become the only color in the room. Typography runs tight: TWK Lausanne at near-mono weights (300–500) with aggressive negative tracking that pulls letters together, including an enormous 120px display tier that functions more as editorial statement than UI label. Interactive elements are reduced to hairline borders and pill-shaped toggles, sitting at the edges of the viewport to leave the center completely uninterrupted. Everything below the fold assumes the same gallery logic: small text, thin rules, generous space between objects.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7cae43cd-dd0e-4658-86e6-d66935cfb213#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Palmer design system\",\"item\":\"https://styles.refero.design/style/7cae43cd-dd0e-4658-86e6-d66935cfb213\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7cae43cd-dd0e-4658-86e6-d66935cfb213#style-reference\",\"name\":\"Palmer design system reference\",\"headline\":\"Palmer design system | Refero Styles\",\"description\":\"Explore Palmer's light E-commerce design system: Gallery Cream #f5f6ee, Ink #222222 colors, TWK Lausanne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7cae43cd-dd0e-4658-86e6-d66935cfb213\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7cae43cd-dd0e-4658-86e6-d66935cfb213\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Palmer\",\"url\":\"https://www.palmer-dinnerware.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7cae43cd-dd0e-4658-86e6-d66935cfb213#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d8277479-f3f0-428a-84a6-03e988e4c091.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d8277479-f3f0-428a-84a6-03e988e4c091.jpg\",\"caption\":\"Screenshot of Palmer\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d8277479-f3f0-428a-84a6-03e988e4c091.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Palmer design system\",\"Palmer website design\",\"Palmer colors\",\"Palmer typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Gallery Cream\",\"Ink\",\"Bone\",\"Fog\",\"TWK Lausanne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Palmer design system\"},{\"@type\":\"Thing\",\"name\":\"Palmer website design\"},{\"@type\":\"Thing\",\"name\":\"Palmer colors\"},{\"@type\":\"Thing\",\"name\":\"Palmer typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:34:29.946Z\",\"dateModified\":\"2026-04-30T00:34:29.946Z\"}]}19:T6d5,**Quick Color Reference**\n- text: #222222\n- background: #f5f6ee\n- border: #222222 (1px)\n- muted: #a1a19c\n- active fill: #000000\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Create a scattered product hero:** Full-bleed #f5f6ee canvas. Place 8–10 circular ceramic plate images at irregular positions across the viewport (no grid, no alignment). Each image ~120–200px wide, no border, no background, slight drop shadow baked into the photo only. No headline, no subtext — the products are the entire viewport.\n\n2. **Create the experience view toggle:** Top-center of viewport, pill shape (100px radius), 1px solid #222222 border, no fill. Inside: small dot-grid icon (3×3 dots, #222222) + 'experience view' label at 12px TWK Lausanne weight 400, #222222, letter-spacing -0.02em. Horizontal padding 15px, vertical 7px.\n\n3. **Create the bottom control bar:** Fixed to viewport bottom-center. Two adjacent ghost buttons with 3px radius, 1px #222222 border, cream fill. Left: hamburger icon (3 horizontal lines, #222222) + 'menu' label at 12px weight 500. Right: list icon (3 dots with lines) + 'filter' label at 12px weight 500. Gap between them: 4px.\n\n4. **Create a product card (grid mode):** 9px corner radius, 1px solid #222222 border, #f5f6ee fill, 16px padding. Product image fills width, edge-to-edge inside the radius. Below image: product name at 14px weight 400, #222222, letter-spacing -0.02em. Price at 12px weight 400, #a1a19c. No shadow.\n\n5. **Create a zoom control:** Bottom-right of viewport. Two stacked circular buttons, 24px diameter, 100px radius, 1px #222222 border, #f5f6ee fill. Top circle: '+' glyph at 12px #222222. Bottom circle: '−' glyph at 12px #222222. 4px vertical gap between them."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. Depth is communicated entirely through 1px borders and the inherent shadows in product photography. The cream canvas is flat and shadowless — any drop shadow would break the gallery-wall illusion."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "body",
+            "hero",
+            "card",
+            "icon",
+            "nav",
+            "button"
+          ],
+          "frequency": 2935,
+          "confidence": 1,
+          "prominence": 217343281.10964346,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 35,
+            "body/color": 11,
+            "card/color": 44,
+            "hero/color": 1,
+            "icon/color": 23,
+            "link/color": 4,
+            "other/fill": 6,
+            "other/color": 494,
+            "button/color": 5,
+            "other/stroke": 1,
+            "heading/color": 2,
+            "nav/borderColor": 116,
+            "body/borderColor": 44,
+            "card/borderColor": 92,
+            "hero/borderColor": 4,
+            "icon/borderColor": 92,
+            "link/borderColor": 8,
+            "other/borderColor": 1879,
+            "button/borderColor": 20,
+            "heading/borderColor": 8,
+            "nav/backgroundColor": 2,
+            "other/backgroundColor": 44
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 1385,
+          "confidence": 1,
+          "prominence": 865662.602151029,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "image/color": 49,
+            "other/color": 228,
+            "image/borderColor": 196,
+            "other/borderColor": 912
+          }
+        },
+        {
+          "hex": "#f5f6ee",
+          "oklch": {
+            "c": 0.010607592276733083,
+            "h": 112.36672039038523,
+            "l": 0.9701860196426925
+          },
+          "contexts": [
+            "icon",
+            "body",
+            "link",
+            "other",
+            "nav"
+          ],
+          "frequency": 2581,
+          "confidence": 1,
+          "prominence": 70782.53666674341,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "body/color": 1,
+            "icon/color": 23,
+            "link/color": 22,
+            "other/color": 460,
+            "other/stroke": 23,
+            "nav/borderColor": 12,
+            "body/borderColor": 4,
+            "icon/borderColor": 92,
+            "link/borderColor": 88,
+            "other/borderColor": 1840,
+            "nav/backgroundColor": 9,
+            "link/backgroundColor": 2,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#a1a19c",
+          "oklch": {
+            "c": 0.007144921695204583,
+            "h": 106.58082172255979,
+            "l": 0.7075119277436173
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "other"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 33457.91226883994,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 24,
+            "link/borderColor": 8,
+            "other/borderColor": 8
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 87,
+          "confidence": 1,
+          "prominence": 7912.803732830689,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 84,
+            "nav/backgroundColor": 3
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.01063852410206905,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.3,
+          "background": "#000000",
+          "foreground": "#f5f6ee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#222222",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.62,
+          "background": "#f5f6ee",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.09,
+          "background": "#a1a19c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.13,
+          "background": "#a1a19c",
+          "foreground": "#222222"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.32,
+          "background": "#000000",
+          "foreground": "#222222"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#f5f6ee",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 3,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 53
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 21
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "nav",
+            "link"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 56,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "link",
+            "nav",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 96,
+          "properties": [
+            "columnGap",
+            "rowGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "rowGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|nav",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingLeft",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 66,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 144,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 288,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "TWK Lausanne",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 1405,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "TWK Lausanne",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "hero",
+            "card",
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 386,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "TWK Lausanne",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "nav",
+            "button"
+          ],
+          "frequency": 448,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "TWK Lausanne",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "TWK Lausanne",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 29,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "TWK Lausanne",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 277,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 78,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 147,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "TWK Lausanne",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 38,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1b98b255-7c50-432b-8b1d-a067a510ef90.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/d8277479-f3f0-428a-84a6-03e988e4c091.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7cae43cd-dd0e-4658-86e6-d66935cfb213#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Palmer design system\",\"item\":\"https://styles.refero.design/style/7cae43cd-dd0e-4658-86e6-d66935cfb213\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7cae43cd-dd0e-4658-86e6-d66935cfb213#style-reference\",\"name\":\"Palmer design system reference\",\"headline\":\"Palmer design system | Refero Styles\",\"description\":\"Explore Palmer's light E-commerce design system: Gallery Cream #f5f6ee, Ink #222222 colors, TWK Lausanne typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7cae43cd-dd0e-4658-86e6-d66935cfb213\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7cae43cd-dd0e-4658-86e6-d66935cfb213\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Palmer\",\"url\":\"https://www.palmer-dinnerware.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7cae43cd-dd0e-4658-86e6-d66935cfb213#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/d8277479-f3f0-428a-84a6-03e988e4c091.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/d8277479-f3f0-428a-84a6-03e988e4c091.jpg\",\"caption\":\"Screenshot of Palmer\"},\"image\":\"https://images.refero.design/styles/refero.design/image/d8277479-f3f0-428a-84a6-03e988e4c091.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Palmer design system\",\"Palmer website design\",\"Palmer colors\",\"Palmer typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Gallery Cream\",\"Ink\",\"Bone\",\"Fog\",\"TWK Lausanne\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Palmer design system\"},{\"@type\":\"Thing\",\"name\":\"Palmer website design\"},{\"@type\":\"Thing\",\"name\":\"Palmer colors\"},{\"@type\":\"Thing\",\"name\":\"Palmer typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T00:34:29.946Z\",\"dateModified\":\"2026-04-30T00:34:29.946Z\"}]}19:T6d5,**Quick Color Reference**\n- text: #222222\n- background: #f5f6ee\n- border: #222222 (1px)\n- muted: #a1a19c\n- active fill: #000000\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Create a scattered product hero:** Full-bleed #f5f6ee canvas. Place 8–10 circular ceramic plate images at irregular positions across the viewport (no grid, no alignment). Each image ~120–200px wide, no border, no background, slight drop shadow baked into the photo only. No headline, no subtext — the products are the entire viewport.\n\n2. **Create the experience view toggle:** Top-center of viewport, pill shape (100px radius), 1px solid #222222 border, no fill. Inside: small dot-grid icon (3×3 dots, #222222) + 'experience view' label at 12px TWK Lausanne weight 400, #222222, letter-spacing -0.02em. Horizontal padding 15px, vertical 7px.\n\n3. **Create the bottom control bar:** Fixed to viewport bottom-center. Two adjacent ghost buttons with 3px radius, 1px #222222 border, cream fill. Left: hamburger icon (3 horizontal lines, #222222) + 'menu' label at 12px weight 500. Right: list icon (3 dots with lines) + 'filter' label at 12px weight 500. Gap between them: 4px.\n\n4. **Create a product card (grid mode):** 9px corner radius, 1px solid #222222 border, #f5f6ee fill, 16px padding. Product image fills width, edge-to-edge inside the radius. Below image: product name at 14px weight 400, #222222, letter-spacing -0.02em. Price at 12px weight 400, #a1a19c. No shadow.\n\n5. **Create a zoom control:** Bottom-right of viewport. Two stacked circular buttons, 24px diameter, 100px radius, 1px #222222 border, #f5f6ee fill. Top circle: '+' glyph at 12px #222222. Bottom circle: '−' glyph at 12px #222222. 4px vertical gap between them."
+}

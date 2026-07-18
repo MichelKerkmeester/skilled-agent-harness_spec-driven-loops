@@ -1,0 +1,199 @@
+{
+  "color": {
+    "aged-paper": {
+      "$value": "#faf8f5",
+      "$type": "color",
+      "$description": "Aged Paper — Page canvas and card surfaces — warm off-white replaces sterile pure white, giving the interface a document-like, paper-textured quality"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, icon strokes, and the dominant fill across navigation and body copy"
+    },
+    "charcoal": {
+      "$value": "#27251e",
+      "$type": "color",
+      "$description": "Charcoal — Primary action button background and high-emphasis text — warm near-black that pairs with the cream canvas for a softer than pure-black contrast"
+    },
+    "ash-gray": {
+      "$value": "#72706b",
+      "$type": "color",
+      "$description": "Ash Gray — Secondary text, muted icons, and inactive nav fills — carries the warm tint of the palette"
+    },
+    "stone": {
+      "$value": "#92918b",
+      "$type": "color",
+      "$description": "Stone — Tertiary/placeholder text and low-emphasis labels"
+    },
+    "pebble": {
+      "$value": "#d1d1cd",
+      "$type": "color",
+      "$description": "Pebble — Hairline borders on cards and input containers — warm gray that recedes against the cream canvas"
+    },
+    "deep-teal": {
+      "$value": "#016a71",
+      "$type": "color",
+      "$description": "Deep Teal — Sole chromatic accent — active nav indicator and selected state fill, provides the only color punctuation in the interface"
+    }
+  },
+  "font": {
+    "pplxsans": {
+      "$value": "pplxSans",
+      "$type": "fontFamily",
+      "$description": "All interface text — the deliberately narrow scale (3 sizes, 2 weights) makes the system feel document-like. Weight 400 handles body, labels, and input text; weight 500 is reserved for active/selected states and emphasis. The custom typeface is geometric and humanist, tighter and more distinctive than a system sans like Inter. Normal letter-spacing throughout."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "pplxSans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.08) 0px 1px 2px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#faf8f5",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — warm off-white that reads as paper or aged cream"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated container surfaces — input fields, status cards, content blocks"
+    },
+    "subtle-fill": {
+      "$value": "#e8e6e1",
+      "$type": "color",
+      "$description": "Surface level 2: Active nav item backgrounds, hover states — a barely-visible warm gray"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.perplexity.ai",
+      "siteName": "Perplexity AI",
+      "extractedAt": "2026-06-03T22:04:09.750Z",
+      "variant": "extended"
+    }
+  }
+}

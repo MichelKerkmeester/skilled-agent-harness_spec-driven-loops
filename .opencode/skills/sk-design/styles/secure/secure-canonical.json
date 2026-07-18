@@ -1,0 +1,1187 @@
+{
+  "source": "https://styles.refero.design/style/7942590d-b11b-4cfb-8fe8-945b3867d865",
+  "uuid": "7942590d-b11b-4cfb-8fe8-945b3867d865",
+  "name": "Secure",
+  "northStar": "European café conversation in soft daylight — a warm, editorial take on video calling where serif headlines read like a thoughtful magazine spread rather than a tech product page.",
+  "capturedAt": "2026-07-18T08:56:00.685Z",
+  "meta": {
+    "url": "https://whereby.com",
+    "siteName": "Secure",
+    "extractedAt": "2026-06-03T21:20:55.656Z",
+    "durationMs": 29250,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 814,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Roslindale Display Condensed for all section-level headlines at 40px or larger; reserve the wider Roslindale Text cut for 18-28px card titles.",
+      "Keep Inter at weights 400/500/600 only; do not introduce bold or black weights — the brand trusts the serif to carry emphasis.",
+      "Use #2b189b exclusively for filled CTAs and the active state of the Log in outline button. Never use it for body text or decorative fills.",
+      "Apply the 40px pill radius to every button, regardless of size, to maintain the signature soft-cornered action shape.",
+      "Lean on #f8dbd5 blush for hero and section accent bands at full-bleed width, then return to #ffffff for content-heavy sections.",
+      "Pair every photograph with a 12px radius and the 0 8px 24px rgba(0,0,0,0.08) shadow — never crop images to sharp corners.",
+      "Use the '+' glyph in #2b189b to lead feature list items, keeping list markers on-brand rather than defaulting to bullet dots."
+    ],
+    "donts": [
+      "Do not use a sans-serif font for headlines — the serif is the brand's most distinctive choice and removing it collapses the editorial feel.",
+      "Do not introduce additional accent colors (green, blue, red) as functional UI tokens; teal #006654 is decorative-only and must not appear on buttons or status badges.",
+      "Do not add heavy drop shadows to text cards or nav — elevation is reserved for photos and product mockups only.",
+      "Do not flatten the button radius to 4px or 8px; the 40px pill is a signature and must be consistent across all action variants.",
+      "Do not use #000000 for filled button backgrounds — buttons read as interactive only because they are colored, not dark.",
+      "Do not stretch Roslindale Display below 40px or above 120px; outside that range the condensed proportions break.",
+      "Do not stack multiple saturated brand colors in the same component; the system is built on one strong violet plus warmth, not polychrome."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, nav links, icons, body copy — near-absolute dominance means the system runs on contrast, not on color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page background and card surfaces; the default canvas everything sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f4f4f4",
+        "name": "Mist Gray",
+        "role": "Soft surface for secondary cards and section bands; lifts content off the white canvas without introducing a new hue",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f8dbd5",
+        "name": "Pale Blush",
+        "role": "Warm section background (hero, accent bands) — the signature warmth of the brand, not a tint of any other color",
+        "group": "accent"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Faded Lilac",
+        "role": "Disabled or muted control surface — barely visible, intentionally recessive",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2b189b",
+        "name": "Iris Violet",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#211375",
+        "name": "Indigo Depth",
+        "role": "Hover and pressed state of the Iris Violet button; deeper shift of the same hue for state feedback",
+        "group": "brand"
+      },
+      {
+        "hex": "#006654",
+        "name": "Forest Teal",
+        "role": "Teal supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "accent"
+      }
+    ],
+    "layout": "Page is centered, max-width 1200px with generous outer margins. The hero is a split layout: text-left / image-right, on a full-bleed blush background. Below the hero, a white trust-badge strip runs edge-to-edge. Subsequent sections alternate between white and #f4f4f4 surface bands, each holding centered content blocks. Product features use a 2-column card grid; use-case messaging uses a single centered carousel card with side-arrows. Vertical rhythm is comfortable: 48-80px between sections, 24-40px inside cards. Navigation is a single white top bar, sticky on scroll, with the wordmark left, links center-left, and two right-aligned action buttons. No sidebar, no mega-menu visible in the hero state — dropdowns are simple flyout panels.",
+    "imagery": "Photography is the dominant visual asset. All imagery is lifestyle photography: real people working on laptops in warm-lit homes, kitchens, and studios. No stock-photo stiffness — framing is candid, mid-shot, often with plants or domestic objects in the background. Color treatment is natural, slightly warm, never desaturated or duotone. The only non-photographic visual is the browser-mocked product UI (screenshots of video calls in green and purple chrome). Icons in the UI are line-style at ~1.5px stroke, monochrome black, no fill. Photography occupies roughly 35-40% of the page area, concentrated in the hero and product feature cards.",
+    "similar": [
+      {
+        "why": "Same warm, editorial SaaS approach with a single confident accent color and comfortable white-canvas density",
+        "business": "Notion"
+      },
+      {
+        "why": "Lifestyle photography of people on laptops in warm-lit homes, paired with clean sans body and minimal UI chrome",
+        "business": "Loom"
+      },
+      {
+        "why": "One saturated brand color used sparingly on CTAs and active states, with everything else monochrome and editorial",
+        "business": "Linear"
+      },
+      {
+        "why": "Browser-product brand that uses photography and soft color washes to humanize a tech product",
+        "business": "Arc"
+      },
+      {
+        "why": "Friendly SaaS with a single violet/indigo accent, comfortable spacing, and a tone that reads warmer than its category",
+        "business": "Calendly"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "12px",
+        "small": "4px",
+        "images": "12px",
+        "buttons": "40px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "48-80px",
+      "cardPadding": "24-40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Default page canvas"
+      },
+      {
+        "hex": "#f8dbd5",
+        "name": "Pale Blush",
+        "level": 1,
+        "purpose": "Warm hero and accent section background"
+      },
+      {
+        "hex": "#f4f4f4",
+        "name": "Mist Gray",
+        "level": 2,
+        "purpose": "Secondary card and band surface"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White on Mist",
+        "level": 3,
+        "purpose": "Elevated product card and modal surface"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 8px 24px rgba(0,0,0,0.08)",
+        "element": "Lifestyle Photograph"
+      },
+      {
+        "style": "0 12px 32px rgba(0,0,0,0.06)",
+        "element": "Browser Mockup Container"
+      },
+      {
+        "style": "none (relies on #f4f4f4 surface contrast, not shadow)",
+        "element": "Use Case Carousel Card"
+      }
+    ],
+    "northStar": "European café conversation in soft daylight — a warm, editorial take on video calling where serif headlines read like a thoughtful magazine spread rather than a tech product page.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.29
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.67
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1.15
+      },
+      {
+        "role": "display-xl",
+        "size": 120,
+        "lineHeight": 1.15
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Action Button",
+        "role": "Filled CTA for the main conversion on a screen (Get started, Explore Meetings, Learn more)",
+        "description": "Filled with #2b189b, white text at 16px Inter Medium. Pill radius of 40px (full rounding). Padding 14px 24px. Subtle hover transition to #211375. No border, no shadow — the color and shape do all the work."
+      },
+      {
+        "name": "Outline Action Button",
+        "role": "Secondary CTA used in nav (Log in) when the primary action is filled",
+        "description": "1px solid #2b189b border, transparent fill, #2b189b text at 16px Inter Medium. Same 40px pill radius. Becomes a soft #2b189b wash on hover."
+      },
+      {
+        "name": "Text Nav Link",
+        "role": "Top-level navigation items: Products, Pricing, Developers, Resources",
+        "description": "Inter 16px Medium, #000000. No underline. Small chevron caret in #000000 for dropdown triggers. 8px vertical padding inside a transparent hit area."
+      },
+      {
+        "name": "Trust Badge Strip",
+        "role": "Horizontal row of partner/company logos below the hero",
+        "description": "Centered group on white, preceded by a small Inter caption 'Trusted by leading companies like' in #000000 at 14px. Logos render at their native color, separated by 48-64px gaps. No background card or border."
+      },
+      {
+        "name": "Use Case Pill Tag",
+        "role": "Small label above card titles (e.g. 'meetings', '< > embedded')",
+        "description": "Outlined pill: 1px solid #cccccc, 12px Inter Medium #000000, padding 4px 10px, radius 4px. Sits flush-left above each card heading."
+      },
+      {
+        "name": "Product Feature Card",
+        "role": "Two-column product showcase: browser mockup on top, title and CTA below",
+        "description": "Transparent background on white canvas. Browser mockup sits in a 12px-radius container with a soft shadow. Title in Roslindale Text 28px #000000. Feature list uses '+' glyph in #2b189b before each Inter 16px line. Filled violet CTA at the bottom of the card."
+      },
+      {
+        "name": "Use Case Carousel Card",
+        "role": "Centered card for vertical-specific messaging (Telehealth, Education, etc.)",
+        "description": "Full-width #f4f4f4 card with 20px radius. Overlapping circular avatar group on the top edge. Small Inter caption ('Whereby for') above a Roslindale Display heading (48-80px). Filled violet Learn more button centered below."
+      },
+      {
+        "name": "Hero Section",
+        "role": "First viewport: brand promise + primary CTA + supporting photograph",
+        "description": "Full-bleed #f8dbd5 background. Two-column layout at 1200px max-width: left column holds the Roslindale Display headline (48-80px) and body copy, right column holds a lifestyle photo inside a 12px-radius container with a soft drop shadow. Photo bleeds 24px above and below the section baseline."
+      },
+      {
+        "name": "Top Navigation",
+        "role": "Persistent header across all pages",
+        "description": "White background, no border or shadow. 80px tall. Wordmark left (Whereby in serif), nav links centered-left, two buttons right (Log in outline, Sign up filled). Bottom hairline of #f4f4f4 separates from content."
+      },
+      {
+        "name": "Lifestyle Photograph",
+        "role": "Hero and section imagery showing real people in real spaces",
+        "description": "Warm-toned, natural light, candid framing. Subjects are typically mid-shot, working on a laptop in a home or studio setting. Rounded to 12px, with a subtle 0 8px 24px rgba(0,0,0,0.08) shadow."
+      },
+      {
+        "name": "Feature List Item",
+        "role": "Compact text row inside product cards",
+        "description": "Leading '+' glyph in #2b189b at 16px Inter. Text in Inter 16px #000000. 8-12px vertical spacing between items."
+      },
+      {
+        "name": "Browser Mockup Container",
+        "role": "Framed screenshot of the product UI used in feature cards",
+        "description": "12px radius, thin 1px #f4f4f4 border, 0 12px 32px rgba(0,0,0,0.06) shadow. Traffic-light dots in the top-left corner over a white chrome bar."
+      }
+    ],
+    "typography": [
+      {
+        "role": "sans-serif — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "sans-serif",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Display headlines (hero, section titles). Custom condensed serif used at 80–120px is a signature choice — most SaaS brands default to sans-serif display; this serif elevates copy to editorial weight",
+        "sizes": "40px, 48px, 80px, 120px",
+        "family": "Whereby Roslindale Display Condensed",
+        "weight": "400",
+        "lineHeight": "1.15–1.25",
+        "substitute": "Playfair Display, DM Serif Display, or any high-contrast condensed serif"
+      },
+      {
+        "role": "Card titles and mid-size headings; same family as display but in a text cut with more comfortable proportions for shorter lines",
+        "sizes": "18px, 24px, 28px",
+        "family": "Whereby Roslindale Text",
+        "weight": "400",
+        "lineHeight": "1.25",
+        "substitute": "Source Serif Pro, Lora"
+      },
+      {
+        "role": "Body copy, navigation, button labels, tags. Weight 500 for nav and labels, 600 for emphasized UI text. Negative tracking tightens Inter at 18px to match the editorial density of the serif",
+        "sizes": "14px, 16px, 18px",
+        "family": "Inter",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.50",
+        "substitute": "Inter (same), or system-ui as fallback",
+        "letterSpacing": "-0.016em at 18px body, -0.028em at 24px+ headings",
+        "fontFeatureSettings": "\"ss01\" on, \"cv11\" on"
+      },
+      {
+        "role": "Fallback rendering layer; not used in primary composition but extracted as the underlying stack",
+        "sizes": "",
+        "family": "System Sans",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "system-ui"
+      },
+      {
+        "role": "Inter-Medium — detected in extracted data but not described by AI",
+        "sizes": "12px, 16px, 18px",
+        "family": "Inter-Medium",
+        "weight": "500",
+        "lineHeight": "1, 1.5"
+      },
+      {
+        "role": "Inter-SemiBold — detected in extracted data but not described by AI",
+        "sizes": "14px",
+        "family": "Inter-SemiBold",
+        "weight": "600",
+        "lineHeight": "1.25"
+      }
+    ],
+    "description": "Whereby presents a warm, humanized SaaS aesthetic that feels more like a thoughtful European brand than a tech tool. The system is defined by a custom condensed serif (Roslindale) used for display headlines, giving every section an editorial, considered feel — paired with Inter for body and UI to keep the interface functional and calm. A single deep violet (#2b189b) carries brand intent on CTAs and active states, while a warm blush (#f8dbd5) provides section-level atmosphere without competing with content. The visual rhythm alternates between full-bleed blush hero, white content sections, and soft gray cards — creating a gentle cadence rather than a stark corporate grid. Photography is warm and lifestyle-driven (people on laptops in real homes), and the overall feeling is unhurried, private, and European.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7942590d-b11b-4cfb-8fe8-945b3867d865#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Secure design system\",\"item\":\"https://styles.refero.design/style/7942590d-b11b-4cfb-8fe8-945b3867d865\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7942590d-b11b-4cfb-8fe8-945b3867d865#style-reference\",\"name\":\"Secure design system reference\",\"headline\":\"Secure design system | Refero Styles\",\"description\":\"Explore Secure's light SaaS design system: Ink Black #000000, Paper White #ffffff colors, sans-serif, Whereby Roslindale Display Condensed typography, and...\",\"url\":\"https://styles.refero.design/style/7942590d-b11b-4cfb-8fe8-945b3867d865\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7942590d-b11b-4cfb-8fe8-945b3867d865\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Secure\",\"url\":\"https://whereby.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7942590d-b11b-4cfb-8fe8-945b3867d865#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2ce61de3-dc49-40d9-b5e3-fb6ed43afeae.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2ce61de3-dc49-40d9-b5e3-fb6ed43afeae.jpg\",\"caption\":\"Screenshot of Secure\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2ce61de3-dc49-40d9-b5e3-fb6ed43afeae.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Secure design system\",\"Secure website design\",\"Secure colors\",\"Secure typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Ink Black\",\"Paper White\",\"Mist Gray\",\"Pale Blush\",\"sans-serif\",\"Whereby Roslindale Display Condensed\",\"Whereby Roslindale Text\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Secure design system\"},{\"@type\":\"Thing\",\"name\":\"Secure website design\"},{\"@type\":\"Thing\",\"name\":\"Secure colors\"},{\"@type\":\"Thing\",\"name\":\"Secure typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-12T12:21:23.000Z\",\"dateModified\":\"2026-04-12T12:21:23.000Z\"}]}19:T74d,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- secondary surface: #f4f4f4\n- hero/accent surface: #f8dbd5\n- primary action: no distinct CTA color\n- accent: #006654 (decorative only)\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-bleed #f8dbd5 background. Two-column at 1200px max-width. Left column: Roslindale Display Condensed 56px #000000 headline with -0.028em tracking, Inter 18px #000000 subtext, filled #2b189b pill button (40px radius, 14px 24px padding, white Inter 16px Medium label). Right column: lifestyle photo in a 12px-radius container with shadow 0 8px 24px rgba(0,0,0,0.08).\n\n2. **Product Feature Card**: White canvas, no card background. Browser mockup at top inside a 12px-radius frame with 1px #f4f4f4 border and 0 12px 32px rgba(0,0,0,0.06) shadow. Outlined pill tag above title: 1px #cccccc, 12px Inter Medium, 4px radius. Title in Roslindale Text 28px #000000. Feature list with '+' in #2b189b, Inter 16px #000000 lines, 12px vertical gap. Filled #2b189b pill button below.\n\n3. **Use Case Carousel Card**: #f4f4f4 background, 20px radius, 1200px wide, centered. Overlapping circular avatar row on the top edge. Caption 'Whereby for' in Inter 14px Medium #000000. Roslindale Display Condensed 64px #000000 for the vertical name. Body in Inter 18px #000000. Filled #2b189b pill button centered.\n\n4. **Top Navigation**: White background, 80px height, no shadow, 1px #f4f4f4 bottom border. Left: wordmark in Roslindale. Center-left: Inter 16px Medium #000000 nav links with 32px gap. Right: outline #2b189b Log in button (1px border, 40px radius), then filled #2b189b Sign up button (40px radius, white text).\n\n5. **Trust Badge Strip**: White background, centered. Caption 'Trusted by leading companies like' in Inter 14px #000000, 32px below. Row of 6 company logos at native colors, 48px gaps between, 24px margin top."
+      }
+    ],
+    "elevationPhilosophy": "The system avoids drop shadows on text-bearing cards and nav. Elevation is reserved for two roles: framing photography and framing the product UI inside browser chrome. This keeps the editorial pages feeling flat and considered, with depth appearing only where a real object (a photo, a screenshot) is being presented."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "body",
+            "image",
+            "icon",
+            "hero",
+            "list",
+            "button",
+            "footer"
+          ],
+          "frequency": 3154,
+          "confidence": 1,
+          "prominence": 119839550.1512338,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "heading",
+            "footer"
+          ],
+          "frequency": 78,
+          "confidence": 1,
+          "prominence": 64993088.97911761,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f4f4f4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.967153298496294
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 3303752.580356367,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f8dbd5",
+          "oklch": {
+            "c": 0.03336179773503248,
+            "h": 31.595585843973478,
+            "l": 0.9137096265752681
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1468071.5162929709,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#006654",
+          "oklch": {
+            "c": 0.08590017650340898,
+            "h": 174.99254444928465,
+            "l": 0.4555499709219808
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 408685.7250822118,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2b189b",
+          "oklch": {
+            "c": 0.19295895379875702,
+            "h": 276.22269141487,
+            "l": 0.3496580566980859
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "body"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 59934.760954485275,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#211375",
+          "oklch": {
+            "c": 0.15378485249099075,
+            "h": 277.4235183985897,
+            "l": 0.2914691114794879
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 6793.281451895198,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1600,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.004800250048751041,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.09,
+          "background": "#f4f4f4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.08,
+          "background": "#f8dbd5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.84,
+          "background": "#ffffff",
+          "foreground": "#211375"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.5,
+          "background": "#f4f4f4",
+          "foreground": "#211375"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.3,
+          "background": "#2b189b",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.37,
+          "background": "#f8dbd5",
+          "foreground": "#211375"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.19,
+          "background": "#f4f4f4",
+          "foreground": "#2b189b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.42,
+          "background": "#f8dbd5",
+          "foreground": "#2b189b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.24,
+          "background": "#cccccc",
+          "foreground": "#211375"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.66,
+          "background": "#cccccc",
+          "foreground": "#2b189b"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.93,
+          "background": "#006654",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.3,
+          "background": "#f4f4f4",
+          "foreground": "#006654"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.31,
+          "background": "#f8dbd5",
+          "foreground": "#006654"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.32,
+          "background": "#cccccc",
+          "foreground": "#006654"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.03,
+          "background": "#006654",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.14,
+          "background": "#006654",
+          "foreground": "#211375"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.77,
+          "background": "#2b189b",
+          "foreground": "#006654"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.71,
+          "background": "#2b189b",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "link",
+            "other"
+          ],
+          "frequency": 41
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 94,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 62,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 88,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "sans-serif",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 679,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 93,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Whereby Roslindale Text Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 16,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter-Medium",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 15,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Whereby Roslindale Display Condensed Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 10,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter-SemiBold",
+          "source": "custom",
+          "weights": [
+            600
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.91
+      },
+      "steps": [
+        {
+          "size": 1,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.01,
+          "letterSpacing": -10,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Inter-Medium",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter-SemiBold",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "sans-serif",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "image",
+            "icon",
+            "hero",
+            "list",
+            "button",
+            "footer"
+          ],
+          "frequency": 679,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter-Medium",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "nav"
+          ],
+          "frequency": 71,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.016,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.028,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Whereby Roslindale Text Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter-Medium",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Whereby Roslindale Text Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Whereby Roslindale Text Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Whereby Roslindale Display Condensed Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Whereby Roslindale Display Condensed Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Whereby Roslindale Display Condensed Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "Whereby Roslindale Display Condensed Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/1cbc5500-cc8f-41f8-956e-96b53345e1ee.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2ce61de3-dc49-40d9-b5e3-fb6ed43afeae.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7942590d-b11b-4cfb-8fe8-945b3867d865#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Secure design system\",\"item\":\"https://styles.refero.design/style/7942590d-b11b-4cfb-8fe8-945b3867d865\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7942590d-b11b-4cfb-8fe8-945b3867d865#style-reference\",\"name\":\"Secure design system reference\",\"headline\":\"Secure design system | Refero Styles\",\"description\":\"Explore Secure's light SaaS design system: Ink Black #000000, Paper White #ffffff colors, sans-serif, Whereby Roslindale Display Condensed typography, and...\",\"url\":\"https://styles.refero.design/style/7942590d-b11b-4cfb-8fe8-945b3867d865\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7942590d-b11b-4cfb-8fe8-945b3867d865\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Secure\",\"url\":\"https://whereby.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7942590d-b11b-4cfb-8fe8-945b3867d865#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2ce61de3-dc49-40d9-b5e3-fb6ed43afeae.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2ce61de3-dc49-40d9-b5e3-fb6ed43afeae.jpg\",\"caption\":\"Screenshot of Secure\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2ce61de3-dc49-40d9-b5e3-fb6ed43afeae.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Secure design system\",\"Secure website design\",\"Secure colors\",\"Secure typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Ink Black\",\"Paper White\",\"Mist Gray\",\"Pale Blush\",\"sans-serif\",\"Whereby Roslindale Display Condensed\",\"Whereby Roslindale Text\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Secure design system\"},{\"@type\":\"Thing\",\"name\":\"Secure website design\"},{\"@type\":\"Thing\",\"name\":\"Secure colors\"},{\"@type\":\"Thing\",\"name\":\"Secure typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-12T12:21:23.000Z\",\"dateModified\":\"2026-04-12T12:21:23.000Z\"}]}19:T74d,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- secondary surface: #f4f4f4\n- hero/accent surface: #f8dbd5\n- primary action: no distinct CTA color\n- accent: #006654 (decorative only)\n\n**Example Component Prompts**\n\n1. **Hero Section**: Full-bleed #f8dbd5 background. Two-column at 1200px max-width. Left column: Roslindale Display Condensed 56px #000000 headline with -0.028em tracking, Inter 18px #000000 subtext, filled #2b189b pill button (40px radius, 14px 24px padding, white Inter 16px Medium label). Right column: lifestyle photo in a 12px-radius container with shadow 0 8px 24px rgba(0,0,0,0.08).\n\n2. **Product Feature Card**: White canvas, no card background. Browser mockup at top inside a 12px-radius frame with 1px #f4f4f4 border and 0 12px 32px rgba(0,0,0,0.06) shadow. Outlined pill tag above title: 1px #cccccc, 12px Inter Medium, 4px radius. Title in Roslindale Text 28px #000000. Feature list with '+' in #2b189b, Inter 16px #000000 lines, 12px vertical gap. Filled #2b189b pill button below.\n\n3. **Use Case Carousel Card**: #f4f4f4 background, 20px radius, 1200px wide, centered. Overlapping circular avatar row on the top edge. Caption 'Whereby for' in Inter 14px Medium #000000. Roslindale Display Condensed 64px #000000 for the vertical name. Body in Inter 18px #000000. Filled #2b189b pill button centered.\n\n4. **Top Navigation**: White background, 80px height, no shadow, 1px #f4f4f4 bottom border. Left: wordmark in Roslindale. Center-left: Inter 16px Medium #000000 nav links with 32px gap. Right: outline #2b189b Log in button (1px border, 40px radius), then filled #2b189b Sign up button (40px radius, white text).\n\n5. **Trust Badge Strip**: White background, centered. Caption 'Trusted by leading companies like' in Inter 14px #000000, 32px below. Row of 6 company logos at native colors, 48px gaps between, 24px margin top."
+}

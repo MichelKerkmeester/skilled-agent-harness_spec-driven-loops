@@ -1,0 +1,1090 @@
+{
+  "source": "https://styles.refero.design/style/7266b546-2fb0-465c-acd6-79001c39829a",
+  "uuid": "7266b546-2fb0-465c-acd6-79001c39829a",
+  "name": "Tesla",
+  "northStar": "Automotive Showroom on Screen. High-fidelity product visuals dominate, framed by a minimal, functional interface that gets out of the way.",
+  "capturedAt": "2026-07-18T10:20:02.765Z",
+  "meta": {
+    "url": "https://tesla.com",
+    "siteName": "Tesla",
+    "extractedAt": "2026-04-11T17:46:47.791Z",
+    "durationMs": 85694,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 634,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Always lead with a full-bleed, high-quality product image for every major section.",
+      "Center-align text and CTAs over background images.",
+      "Use Tesla Blue (#3e6ae1) exclusively for primary, high-priority actions like 'Order Now'.",
+      "Pair a filled primary CTA with a white or ghost secondary CTA.",
+      "Maintain a strict achromatic palette (white, grays, black) for all UI outside of the primary CTA.",
+      "Use the 4px base unit for all padding, margins, and radii (e.g., 4px, 8px, 16px, 24px).",
+      "Keep UI chrome, like headers and footers, visually minimal and unobtrusive."
+    ],
+    "tags": [
+      "product-focused",
+      "minimalist",
+      "achromatic",
+      "technical",
+      "premium",
+      "automotive",
+      "full-bleed",
+      "high-contrast",
+      "cinematic"
+    ],
+    "donts": [
+      "Don't use Tesla Blue (#3e6ae1) for text, headlines, or decorative elements.",
+      "Don't introduce any other saturated colors into the UI palette.",
+      "Don't use complex components; prefer simple, stacked text and button layouts.",
+      "Don't use large shadows, gradients, or heavy visual effects on UI elements.",
+      "Don't create layouts where text dominates over imagery.",
+      "Don't use border radii larger than 8px.",
+      "Don't use serif or expressive display fonts; maintain a neutral, technical typographic voice."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#3e6ae1",
+        "name": "Tesla Blue",
+        "role": "Primary CTAs ('Order Now') — a single, focused point of saturated color in an otherwise grayscale environment, creating an unmissable action prompt.",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Primary page backgrounds, card surfaces, text on dark/blue buttons.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eeeeee",
+        "name": "Off-White",
+        "role": "Secondary content cards, subtle dividers between white sections.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e3df",
+        "name": "Parchment",
+        "role": "Rare alternative background color for specific sections.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Light Border",
+        "role": "Inactive UI element borders, subtle dividers.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8e8e8",
+        "name": "Subtle Gray",
+        "role": "Placeholder text, tertiary UI details.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5c5e62",
+        "name": "Steel",
+        "role": "Secondary text, footer links, icon fills.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#393c41",
+        "name": "Charcoal",
+        "role": "Primary body text, text on light buttons, header navigation.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#171a20",
+        "name": "Onyx",
+        "role": "Primary heading text, dark button backgrounds.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "SVG icon fills, text overlays on light images.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page structure is a vertical series of full-screen, edge-to-edge content blocks, creating a 'scrolling presentation' experience. The dominant pattern is a centered stack: a large headline, supporting subtext, and action buttons overlaid directly onto a full-bleed background image. There is no visible page container; the browser viewport is the frame. Navigation is confined to a thin, non-sticky header bar at the very top, preserving maximum screen real estate for product visuals. Section transitions are seamless, with no visible gaps or dividers.",
+    "imagery": "The visual language is defined by cinematic, high-fidelity product photography. Every image is treated as a hero shot, typically full-bleed, occupying the entire viewport. The photography style is sharp, clean, and often aspirational, showing products in ideal contexts (a car on an open road, solar panels on a modern home). Color grading is natural and vibrant to make the product pop against the neutral UI. The density is image-dominant; text and UI exist only to support the visual narrative established by the photos.",
+    "similar": [
+      {
+        "why": "Identical product-as-hero philosophy with full-bleed imagery, minimal UI, and a clean, technical sans-serif typography.",
+        "business": "Apple"
+      },
+      {
+        "why": "Direct competitor using a similar full-screen, scroll-based storytelling layout with centered text over aspirational vehicle photography.",
+        "business": "Rivian"
+      },
+      {
+        "why": "Shares the use of pristine product shots on clean, achromatic backgrounds with minimal, functional UI components.",
+        "business": "Sonos"
+      },
+      {
+        "why": "Employs a similar high-tech, premium aesthetic with cinematic product visuals and a dark/light minimalist interface.",
+        "business": "DJI"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "inputs": "4px",
+        "modals": "8px",
+        "buttons": "4px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "",
+      "cardPadding": "24px",
+      "pageMaxWidth": null
+    },
+    "category": "hardware",
+    "northStar": "Automotive Showroom on Screen. High-fidelity product visuals dominate, framed by a minimal, functional interface that gets out of the way.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.4
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.29
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1.17
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Region Selector Modal",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Offer Cards — Current Offers & American Heroes",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Bottom Action Bar — Ask a Question & Schedule a Drive",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary CTA Button",
+        "role": "The main action button for ordering or engaging.",
+        "description": "Solid Tesla Blue (#3e6ae1) background with Pure White (#ffffff) text. 4px border radius. Padding is 4px top/bottom, 24px left/right."
+      },
+      {
+        "name": "Secondary Ghost Button",
+        "role": "Secondary action like 'Learn More' or 'Demo'.",
+        "description": "Transparent background with a thin Onyx (#171a20) border. Text is also Onyx (#171a20). 4px border radius. Padding is 4px top/bottom, 16px left/right."
+      },
+      {
+        "name": "Modal Button (White)",
+        "role": "Secondary option within a modal or pop-up.",
+        "description": "Solid Off-White (#eeeeee) background with Charcoal (#393c41) text. 4px border radius. Padding is 4px top/bottom, 24px left/right."
+      },
+      {
+        "name": "Header Navigation Link",
+        "role": "Main site navigation.",
+        "description": "Unstyled text link with Charcoal (#393c41) color. No background or borders."
+      },
+      {
+        "name": "Footer Navigation Link",
+        "role": "Tertiary links in the site footer.",
+        "description": "Unstyled text link with Steel (#5c5e62) color. Appears smaller than header navigation."
+      },
+      {
+        "name": "Product Hero Section",
+        "role": "Full-screen container showcasing a single product.",
+        "description": "Full-bleed background image. Contains a centered, stacked group of a Display heading (Onyx #171a20 or White #ffffff depending on image), Subheading text, and a pair of Primary/Secondary CTA buttons."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Used for all major headings and product titles. Its clean, geometric form provides a technical and confident voice that feels engineered, not decorated.",
+        "sizes": "12px, 20px, 28px, 34px, 40px, 48px",
+        "family": "Universal Sans Display",
+        "weight": "400, 500",
+        "lineHeight": "1.17-1.41",
+        "substitute": "Inter, Manrope"
+      },
+      {
+        "role": "The workhorse font for body copy, buttons, navigation, and all UI text. Chosen for its supreme legibility and neutrality, it delivers information efficiently without distracting from the product visuals.",
+        "sizes": "12px, 14px, 17px",
+        "family": "Universal Sans Text",
+        "weight": "400, 500",
+        "lineHeight": "1.00-1.67",
+        "substitute": "Inter, SF Pro Text"
+      },
+      {
+        "role": "Reserved for fine print, legal disclaimers, and other low-hierarchy text where utility is the sole concern.",
+        "sizes": "11px",
+        "family": "Roboto",
+        "weight": "400, 500",
+        "lineHeight": "1.20",
+        "substitute": "Roboto, system-ui"
+      }
+    ],
+    "description": "The design operates like a premium automotive showroom translated to the screen. Every section is a full-bleed, cinematic product photograph, with UI elements acting as minimal, functional plaques. The palette is starkly achromatic, save for a single, electric Tesla Blue (#3e6ae1) reserved exclusively for primary calls-to-action, functioning like an ignition button. Typography is neutral and technical, serving information without asserting its own personality. This systematic subordination of UI to imagery ensures the product—the car, the solar panel—is always the undisrupted hero.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#393c41",
+          "oklch": {
+            "c": 0.00956143526597806,
+            "h": 260.71930828944494,
+            "l": 0.3552014289460697
+          },
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "icon",
+            "link",
+            "card",
+            "nav",
+            "image",
+            "footer"
+          ],
+          "frequency": 1645,
+          "confidence": 1,
+          "prominence": 61907967.744153924,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#eeeeee",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9491192605935381
+          },
+          "contexts": [
+            "button",
+            "other",
+            "nav",
+            "card",
+            "image"
+          ],
+          "frequency": 791,
+          "confidence": 1,
+          "prominence": 9056409.901184874,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "heading",
+            "link",
+            "nav"
+          ],
+          "frequency": 214,
+          "confidence": 1,
+          "prominence": 1258693.928415808,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#e5e3df",
+          "oklch": {
+            "c": 0.005809460361659273,
+            "h": 84.56719433371424,
+            "l": 0.9162638757862167
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 730950,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#5c5e62",
+          "oklch": {
+            "c": 0.006863411241460389,
+            "h": 264.50190485287663,
+            "l": 0.4815059443025563
+          },
+          "contexts": [
+            "button",
+            "heading",
+            "body",
+            "other",
+            "nav",
+            "icon"
+          ],
+          "frequency": 160,
+          "confidence": 1,
+          "prominence": 404483.338749974,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 320485.31746272725,
+          "properties": [
+            "boxShadow",
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#171a20",
+          "oklch": {
+            "c": 0.012662805110785567,
+            "h": 264.2663835836097,
+            "l": 0.21732893858462168
+          },
+          "contexts": [
+            "heading",
+            "link",
+            "other",
+            "list",
+            "button",
+            "body",
+            "icon",
+            "input"
+          ],
+          "frequency": 211,
+          "confidence": 1,
+          "prominence": 315554.1759211791,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "nav"
+          ],
+          "frequency": 36,
+          "confidence": 1,
+          "prominence": 234425.40145330277,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#8e8e8e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6467273699038915
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 39188,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#3e6ae1",
+          "oklch": {
+            "c": 0.18788564025648366,
+            "h": 265.3992746171285,
+            "l": 0.5605116428666088
+          },
+          "contexts": [
+            "button",
+            "icon"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 33983.42010754868,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#bfbfbf",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8054428611228005
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3715.0849518197797,
+          "properties": [
+            "boxShadow"
+          ]
+        },
+        {
+          "hex": "#acacac",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7458686965950235
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2535.9400011538496,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.019831641876313175,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#eeeeee",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.43,
+          "background": "#171a20",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.38,
+          "background": "#e5e3df",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.02,
+          "background": "#171a20",
+          "foreground": "#eeeeee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.6,
+          "background": "#e5e3df",
+          "foreground": "#171a20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.42,
+          "background": "#bfbfbf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.07,
+          "background": "#ffffff",
+          "foreground": "#393c41"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.85,
+          "background": "#171a20",
+          "foreground": "#cccccc"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.54,
+          "background": "#eeeeee",
+          "foreground": "#393c41"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.48,
+          "background": "#bfbfbf",
+          "foreground": "#171a20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.25,
+          "background": "#acacac",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.64,
+          "background": "#e5e3df",
+          "foreground": "#393c41"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.68,
+          "background": "#acacac",
+          "foreground": "#171a20"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.89,
+          "background": "#cccccc",
+          "foreground": "#393c41"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.5,
+          "background": "#ffffff",
+          "foreground": "#5c5e62"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.02,
+          "background": "#bfbfbf",
+          "foreground": "#393c41"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.6,
+          "background": "#eeeeee",
+          "foreground": "#5c5e62"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#171a20",
+          "foreground": "#8e8e8e"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 46
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button",
+            "image"
+          ],
+          "frequency": 30
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.25) 0px 4px 4px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": "rgb(255, 255, 255) 0px 2px 0px -1px",
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 2,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 200,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 79,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 7,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 14,
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "paddingTop",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 42,
+          "properties": [
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 32,
+          "frequency": 43,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 40,
+          "frequency": 73,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Universal Sans Text",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 432,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Roboto",
+          "source": "system",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 155,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Universal Sans Display",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 39,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "object-fit:cover",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 7,
+          "family": "Universal Sans Text",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Roboto",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "body",
+            "button",
+            "icon"
+          ],
+          "frequency": 152,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Universal Sans Display",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.41,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Universal Sans Text",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Universal Sans Text",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Universal Sans Text",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Universal Sans Text",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "body",
+            "button",
+            "icon",
+            "link",
+            "nav",
+            "card",
+            "image",
+            "input"
+          ],
+          "frequency": 342,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Universal Sans Text",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "link",
+            "icon",
+            "other"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Universal Sans Text",
+          "weight": 500,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 28,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "object-fit:cover",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Universal Sans Text",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.18,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Universal Sans Display",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Universal Sans Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Universal Sans Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.29,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Universal Sans Display",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Universal Sans Display",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4bc7b538-3e84-421a-9318-35b864bac5c5.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/4c9ea41b-4b0f-45cb-bfe5-e2971562f265.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7266b546-2fb0-465c-acd6-79001c39829a#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Tesla design system\",\"item\":\"https://styles.refero.design/style/7266b546-2fb0-465c-acd6-79001c39829a\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7266b546-2fb0-465c-acd6-79001c39829a#style-reference\",\"name\":\"Tesla design system reference\",\"headline\":\"Tesla design system | Refero Styles\",\"description\":\"Explore Tesla's light Other design system: Tesla Blue #3e6ae1, Pure White #ffffff colors, Universal Sans Display, Universal Sans Text typography, and...\",\"url\":\"https://styles.refero.design/style/7266b546-2fb0-465c-acd6-79001c39829a\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7266b546-2fb0-465c-acd6-79001c39829a\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Tesla\",\"url\":\"https://tesla.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7266b546-2fb0-465c-acd6-79001c39829a#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/4c9ea41b-4b0f-45cb-bfe5-e2971562f265.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/4c9ea41b-4b0f-45cb-bfe5-e2971562f265.jpg\",\"caption\":\"Screenshot of Tesla\"},\"image\":\"https://images.refero.design/styles/refero.design/image/4c9ea41b-4b0f-45cb-bfe5-e2971562f265.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Tesla design system\",\"Tesla website design\",\"Tesla colors\",\"Tesla typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Tesla Blue\",\"Pure White\",\"Off-White\",\"Parchment\",\"Universal Sans Display\",\"Universal Sans Text\",\"Roboto\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Tesla design system\"},{\"@type\":\"Thing\",\"name\":\"Tesla website design\"},{\"@type\":\"Thing\",\"name\":\"Tesla colors\"},{\"@type\":\"Thing\",\"name\":\"Tesla typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-02-23T19:42:54.000Z\",\"dateModified\":\"2026-02-23T19:42:54.000Z\"}]}19:T73d,<style>:root{--color-tesla-blue:#3e6ae1;--color-pure-white:#ffffff;--color-off-white:#eeeeee;--color-light-border:#cccccc;--color-charcoal:#393c41;--color-onyx:#171a20;--color-steel:#5c5e62;--shadow-sm:rgba(0,0,0,0.25) 0px 4px 4px 0px;--font-display:Inter,Manrope,sans-serif;--font-text:Inter,'SF Pro Text',sans-serif;}</style><div style=\"width:600px;min-height:220px;display:flex;align-items:center;justify-content:center;background:var(--color-off-white);padding:40px 24px;box-sizing:border-box;font-family:var(--font-text);\"><div style=\"background:var(--color-pure-white);border-radius:8px;box-shadow:var(--shadow-sm);padding:32px 28px 28px 28px;width:420px;position:relative;box-sizing:border-box;\"><button style=\"position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;padding:4px;line-height:1;display:flex;align-items:center;justify-content:center;\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2 2L14 14M14 2L2 14\" stroke=\"#393c41\" stroke-width=\"1.8\" stroke-linecap=\"round\"/></svg></button><p style=\"font-family:var(--font-text);font-size:14px;line-height:1.43;color:var(--color-charcoal);margin:0 0 24px 0;padding-right:24px;\">Select the region to see content specific to your location</p><div style=\"display:flex;gap:12px;\"><button style=\"flex:1;background:var(--color-tesla-blue);color:var(--color-pure-white);border:none;border-radius:4px;padding:10px 24px;font-family:var(--font-text);font-size:14px;font-weight:500;cursor:pointer;line-height:1;\">United States</button><button style=\"flex:1;background:var(--color-off-white);color:var(--color-charcoal);border:1px solid var(--color-light-border);border-radius:4px;padding:10px 24px;font-family:var(--font-text);font-size:14px;font-weight:500;cursor:pointer;line-height:1;\">Spain</button></div></div></div>1a:Tabe,<style>:root{--color-tesla-blue:#3e6ae1;--color-pure-white:#ffffff;--color-off-white:#eeeeee;--color-charcoal:#393c41;--color-onyx:#171a20;--color-steel:#5c5e62;--color-light-border:#cccccc;--shadow-sm:rgba(0,0,0,0.25) 0px 4px 4px 0px;--font-display:Inter,Manrope,sans-serif;--font-text:Inter,'SF Pro Text',sans-serif;}</style><div style=\"width:600px;background:var(--color-pure-white);padding:24px;box-sizing:border-box;font-family:var(--font-text);display:flex;gap:16px;\"><div style=\"flex:1;background:var(--color-off-white);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;\"><div style=\"padding:24px 24px 16px 24px;\"><h2 style=\"font-family:var(--font-display);font-size:20px;font-weight:500;color:var(--color-onyx);margin:0 0 8px 0;line-height:1.4;\">Current Offers</h2><p style=\"font-family:var(--font-text);font-size:14px;line-height:1.43;color:var(--color-charcoal);margin:0 0 20px 0;\">Explore limited-time offers on Tesla vehicles.</p><button style=\"width:100%;background:var(--color-pure-white);color:var(--color-onyx);border:1px solid var(--color-light-border);border-radius:4px;padding:10px 16px;font-family:var(--font-text);font-size:14px;font-weight:500;cursor:pointer;line-height:1;\">Learn More</button></div><div style=\"height:140px;background:linear-gradient(135deg,#c8d4e8 0%,#a8bcd4 50%,#dce8f0 100%);margin-top:auto;display:flex;align-items:center;justify-content:center;\"><div style=\"width:110px;height:44px;background:rgba(255,255,255,0.55);border-radius:6px;\"></div></div></div><div style=\"flex:1;background:var(--color-off-white);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;\"><div style=\"padding:24px 24px 16px 24px;\"><h2 style=\"font-family:var(--font-display);font-size:20px;font-weight:500;color:var(--color-onyx);margin:0 0 8px 0;line-height:1.4;\">American Heroes</h2><p style=\"font-family:var(--font-text);font-size:14px;line-height:1.43;color:var(--color-charcoal);margin:0 0 20px 0;\">$500 off for military, first responders, healthcare, teachers and students.</p><button style=\"width:100%;background:var(--color-pure-white);color:var(--color-onyx);border:1px solid var(--color-light-border);border-radius:4px;padding:10px 16px;font-family:var(--font-text);font-size:14px;font-weight:500;cursor:pointer;line-height:1;\">Learn More</button></div><div style=\"height:140px;background:linear-gradient(135deg,#1a1f2e 0%,#2a3040 40%,#3a4560 100%);margin-top:auto;display:flex;align-items:center;justify-content:center;gap:8px;\"><div style=\"width:34px;height:22px;background:#e02020;border-radius:3px;\"></div><div style=\"width:34px;height:22px;background:#f0f0f0;border-radius:3px;\"></div><div style=\"width:34px;height:22px;background:#2040c0;border-radius:3px;\"></div></div></div></div>1b:T857,<style>:root{--color-tesla-blue:#3e6ae1;--color-pure-white:#ffffff;--color-off-white:#eeeeee;--color-charcoal:#393c41;--color-onyx:#171a20;--color-steel:#5c5e62;--color-light-border:#cccccc;--shadow-sm:rgba(0,0,0,0.25) 0px 4px 4px 0px;--font-text:Inter,'SF Pro Text',sans-serif;}</style><div style=\"width:600px;box-sizing:border-box;font-family:var(--font-text);background:var(--color-pure-white);border-top:1px solid var(--color-light-border);padding:12px 16px;display:flex;gap:12px;align-items:center;\"><div style=\"flex:1;background:var(--color-off-white);border:1px solid var(--color-light-border);border-radius:4px;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;\"><div style=\"display:flex;align-items:center;gap:10px;\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2 2h14a1 1 0 011 1v9a1 1 0 01-1 1H5l-4 3V3a1 1 0 011-1z\" stroke=\"#393c41\" stroke-width=\"1.4\" fill=\"none\" stroke-linejoin=\"round\"/></svg><span style=\"font-family:var(--font-text);font-size:14px;color:var(--color-charcoal);font-weight:400;\">Ask a Question</span></div><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 13L8 3l5 10\" stroke=\"#393c41\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M5.5 9h5\" stroke=\"#393c41\" stroke-width=\"1.4\" stroke-linecap=\"round\"/></svg></div><div style=\"flex:1;background:var(--color-off-white);border:1px solid var(--color-light-border);border-radius:4px;padding:10px 16px;display:flex;align-items:center;gap:10px;cursor:pointer;justify-content:center;\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"9\" cy=\"9\" r=\"7\" stroke=\"#393c41\" stroke-width=\"1.4\"/><path d=\"M6 9a3 3 0 106 0 3 3 0 00-6 0z\" stroke=\"#393c41\" stroke-width=\"1.4\"/><path d=\"M9 2v2M9 14v2M2 9h2M14 9h2\" stroke=\"#393c41\" stroke-width=\"1.2\" stroke-linecap=\"round\"/></svg><span style=\"font-family:var(--font-text);font-size:14px;color:var(--color-charcoal);font-weight:400;\">Schedule a Drive Today</span></div></div>1c:T683,### Quick Color Reference\n- **Text (Heading):** `#171a20` (Onyx)\n- **Text (Body):** `#393c41` (Charcoal)\n- **Background:** `#ffffff` (Pure White)\n- **CTA (Primary):** `#3e6ae1` (Tesla Blue)\n- **CTA (Secondary):** Transparent with `#171a20` (Onyx) border\n- **Card Background:** `#eeeeee` (Off-White)\n\n### Example Component Prompts\n1.  **Product Hero Section:** \"Create a full-screen hero section with a high-resolution image of a car on a desert road. Overlay a centered headline 'Model Y' using Universal Sans Display at 40px, weight 500, color #171a20. Below it, add a subheading 'Lease From $459/mo' in Universal Sans Text at 17px, weight 400, color #393c41. Add two buttons below with 16px gap: a primary button with text 'Order Now', background #3e6ae1, text color #ffffff, 4px radius, 4px 24px padding; and a secondary ghost button with text 'Learn More', transparent background, #171a20 border, #171a20 text color, 4px radius, 4px 24px padding.\"\n2.  **Informational Card:** \"Design an informational card with a background color of #eeeeee and an 8px border-radius. Padding should be 24px. Inside, place a left-aligned heading 'Current Offers' in Universal Sans Display at 28px, weight 500, color #171a20. Below it, add body text using Universal Sans Text at 14px, color #393c41. To the right of the text, place a squarish product image. Below the text, add a single secondary ghost button with text 'Learn More'.\"\n3.  **Primary Button:** \"Generate a primary call-to-action button. Set background to #3e6ae1, text color to #ffffff. Font should be Universal Sans Text, 14px, weight 500. Add a 4px border-radius. Set padding to 4px top/bottom and 24px left/right.\""
+}

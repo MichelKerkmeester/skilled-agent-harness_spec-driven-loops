@@ -1,0 +1,404 @@
+{
+  "color": {
+    "electric-violet": {
+      "$value": "#7c3aed",
+      "$type": "color",
+      "$description": "Electric Violet — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "deep-ink-violet": {
+      "$value": "#281950",
+      "$type": "color",
+      "$description": "Deep Ink Violet — Headlines, high-emphasis text, logo mark — anchors the brand without feeling heavy"
+    },
+    "heather-violet": {
+      "$value": "#5e537c",
+      "$type": "color",
+      "$description": "Heather Violet — Body copy, paragraph text, subdued UI labels — the workhorse text color that keeps prose warm rather than cold"
+    },
+    "mist-violet": {
+      "$value": "#a39ac1",
+      "$type": "color",
+      "$description": "Mist Violet — Secondary text, footer labels, icon strokes, muted links — a washed violet that recedes gracefully"
+    },
+    "midnight-plum": {
+      "$value": "#191034",
+      "$type": "color",
+      "$description": "Midnight Plum — Footer background, deepest contrast surface — terminates the page with the same hue family as headings, just darker"
+    },
+    "slate-dusk": {
+      "$value": "#202237",
+      "$type": "color",
+      "$description": "Slate Dusk — Navigation text, dark-mode-leaning neutral — used where a neutral (not chromatic) dark is needed"
+    },
+    "overcast": {
+      "$value": "#676b89",
+      "$type": "color",
+      "$description": "Overcast — Muted secondary text, helper copy, timestamps — the cool counterpoint to the violet body text"
+    },
+    "pure-paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure Paper — Card surfaces, elevated panels, button text on violet fills"
+    },
+    "lavender-mist": {
+      "$value": "#e7e6f4",
+      "$type": "color",
+      "$description": "Lavender Mist — Hairline borders, card outlines, subtle dividers, inset focus rings — the dominant structural neutral, replacing what would normally be light gray"
+    },
+    "iris-haze": {
+      "$value": "#f1f2f9",
+      "$type": "color",
+      "$description": "Iris Haze — Page background, the canvas beneath all content — a barely-perceptible lavender tint rather than pure white"
+    },
+    "dawn-wash": {
+      "$value": "#a5b4fc",
+      "$type": "color",
+      "$description": "Dawn Wash — Decorative gradient stop — sky-to-pink section bands"
+    },
+    "plum-veil": {
+      "$value": "#a02be4",
+      "$type": "color",
+      "$description": "Plum Veil — Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "fricolage-grotesque": {
+      "$value": "Fricolage Grotesque",
+      "$type": "fontFamily",
+      "$description": "Body copy, UI labels, button text, navigation, footer, captions. Used at 16–18px for body and 12–15px for meta. The weight 325 light is deliberate anti-convention — most devtools use 400 minimum, this whisper weight softens the dense infrastructure copy into something editorial. Positive tracking (0.025em–0.05em) at small sizes gives uppercase labels and button text a slightly spacious, unhurried feel."
+    },
+    "mackinac": {
+      "$value": "Mackinac",
+      "$type": "fontFamily",
+      "$description": "Display headlines and section titles. A high-contrast serif used at weight 500 only — the medium weight gives authority without feeling editorial-stiff. Aggressive negative tracking (-0.045em at 64px, -0.025em at 22–36px) tightens the letterspacing so the serif feels modern rather than traditional. Single most distinctive type choice on the site: pairs a humanist grotesque body with an editorial serif display to create a storybook voice."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Fricolage Grotesque",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Fricolage Grotesque",
+        "fontSize": "12px",
+        "fontWeight": 575,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Fricolage Grotesque",
+        "fontSize": "12px",
+        "fontWeight": 325,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Fricolage Grotesque",
+        "fontSize": "15px",
+        "fontWeight": 450,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Fricolage Grotesque",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Fricolage Grotesque",
+        "fontSize": "15px",
+        "fontWeight": 575,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Fricolage Grotesque",
+        "fontSize": "15px",
+        "fontWeight": 325,
+        "lineHeight": 1.66
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Fricolage Grotesque",
+        "fontSize": "15px",
+        "fontWeight": 450,
+        "lineHeight": 1.66
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Fricolage Grotesque",
+        "fontSize": "16px",
+        "fontWeight": 325,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Fricolage Grotesque",
+        "fontSize": "16px",
+        "fontWeight": 450,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Fricolage Grotesque",
+        "fontSize": "17px",
+        "fontWeight": 325,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Fricolage Grotesque",
+        "fontSize": "18px",
+        "fontWeight": 325,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Fricolage Grotesque",
+        "fontSize": "19px",
+        "fontWeight": 325,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Fricolage Grotesque",
+        "fontSize": "19px",
+        "fontWeight": 450,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Mackinac",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Mackinac",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Mackinac",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 64px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "116": {
+      "$value": "116px",
+      "$type": "dimension",
+      "$description": "Spacing 116px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(91, 33, 182, 0.1) 0px 5px 5px -2px, rgba(91, 33, 182, 0.1) 0px 2px 4px -2px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "subtle": {
+      "$value": "rgba(67, 56, 202, 0.25) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "subtle-2": {
+      "$value": "rgba(32, 34, 55, 0.075) 0px 0px 0px 1px, rgba(32, 34, 55, 0.05) 0px 10px 15px -3px, rgba(32, 34, 55, 0.05) 0px 4px 6px -4px",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle-2"
+    }
+  },
+  "surface": {
+    "iris-haze-canvas": {
+      "$value": "#f1f2f9",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the lavender-tinted base beneath all content"
+    },
+    "pure-paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, elevated panels, nav pill background"
+    },
+    "lavender-mist": {
+      "$value": "#e7e6f4",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle elevated washes, gradient band bases, decorative overlays"
+    },
+    "midnight-plum": {
+      "$value": "#191034",
+      "$type": "color",
+      "$description": "Surface level 3: Footer terminal surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://fly.io",
+      "siteName": "Fly.io",
+      "extractedAt": "2026-06-03T17:10:23.751Z",
+      "variant": "extended"
+    }
+  }
+}

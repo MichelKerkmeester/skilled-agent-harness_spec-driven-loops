@@ -1,0 +1,671 @@
+{
+  "source": "https://styles.refero.design/style/d211aaa4-e09b-4ef9-a9bf-f6fa8495de73",
+  "uuid": "d211aaa4-e09b-4ef9-a9bf-f6fa8495de73",
+  "name": "My Brentano",
+  "northStar": "Pharmacy broadsheet on cream paper. A Swiss editorial layout where one typewriter voice does all the speaking and warm-toned product photography supplies the only color.",
+  "capturedAt": "2026-07-18T07:16:24.828Z",
+  "meta": {
+    "url": "https://mybrentano.ch",
+    "siteName": "My Brentano",
+    "extractedAt": "2026-06-03T21:56:18.721Z",
+    "durationMs": 36457,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 114,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Studio Feixen Sans Writer at 60px weight 700 for the single most important headline on any page",
+      "Set body text at 15–18px with line-height between 1.67 and 2.08 — never tighter than 1.5",
+      "Use 0px border-radius on all images, inputs, and rectangular elements; reserve 9999px exclusively for circular nav controls",
+      "Separate the top nav from page content with a single 1px #000000 hairline — no background fill, no shadow",
+      "Let product imagery supply all color; keep UI strictly in Charcoal Ink (#212529), Pure Press (#000000), and Bone White (#ffffff)",
+      "Break the grid by rotating overlapping product images 2–5° rather than aligning them perfectly",
+      "Use 10px gaps for inline element spacing, 40–60px for vertical section rhythm"
+    ],
+    "donts": [
+      "Never introduce an accent or brand color — the system is intentionally near-monochrome, and color belongs only to photography",
+      "Never apply shadows, glows, or any form of elevation — surfaces must remain flat like printed paper",
+      "Never use bold weight (700) for anything smaller than 30px — the single bold moment must remain monumental",
+      "Never round corners on cards, images, or input fields — 0px radius is non-negotiable",
+      "Never use more than two typefaces per view; alternate between Writer and Sans within the same family only",
+      "Never center-align body paragraphs or set them narrower than 50% of the viewport — the grid is left-aligned and generous",
+      "Never apply a colored background to the page — the cream warmth comes from the paper-tone canvas and the imagery, not from a tint"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#212529",
+        "name": "Charcoal Ink",
+        "role": "Body text, headings, nav text, footer text, most borders — the dominant text and structural color, slightly softer than pure black for warmth",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Press",
+        "role": "Secondary text, button borders, link borders, input outlines, nav separators — true black for maximum contrast on outlined elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Page canvas, card surfaces, button fills, input backgrounds — the ground that all ink sits on",
+        "group": "neutral"
+      }
+    ],
+    "imagery": "Imagery is the sole chromatic system. Product photography is shot on warm cream paper backgrounds with natural daylight, featuring hands holding skincare jars and dropper bottles. The palette within photography is tightly controlled: beige/butter, mustard yellow, deep burgundy/wine red, and soft skin tones. Images are presented as unframed rectangles (0px radius) that frequently overlap at slight rotation angles, breaking the grid. No lifestyle or environmental context — the product and the hand holding it are the entire composition. No icons beyond minimal line-glyphs in the nav.",
+    "similar": [
+      {
+        "why": "Same near-monochrome restraint with warm cream backgrounds and serif/typewriter-flavored type, where product photography is the only source of color",
+        "business": "Aesop"
+      },
+      {
+        "why": "Editorial pharmacy aesthetic with oversized display type, hairline rules, and a radical absence of decorative UI chrome",
+        "business": "Le Labo"
+      },
+      {
+        "why": "Swiss-grid editorial layouts with large left-aligned typewriter-quality headlines and unframed offset imagery on a flat cream canvas",
+        "business": "Mara Hoffman"
+      },
+      {
+        "why": "The custom typeface and its mechanical, evenly-spaced rhythm define the visual identity — brands using Feixen fonts inherit this same editorial discipline",
+        "business": "Studio Feixen (parent type studio)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "9999px",
+        "navCircles": "9999px"
+      },
+      "elementGap": "10px",
+      "sectionGap": "40-60px",
+      "cardPadding": "",
+      "pageMaxWidth": null
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Bone White Canvas",
+        "level": 0,
+        "purpose": "The single page surface — no separate card or elevated layers exist; all content sits directly on this plane"
+      }
+    ],
+    "northStar": "Pharmacy broadsheet on cream paper. A Swiss editorial layout where one typewriter voice does all the speaking and warm-toned product photography supplies the only color.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.67
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 2.08
+      },
+      {
+        "role": "subheading",
+        "size": 25,
+        "lineHeight": 2.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Circular Nav Arrow Button",
+        "role": "Navigation link with directional affordance",
+        "description": "40px circle, 1px border in #000000, transparent fill, centered right-arrow glyph in Charcoal Ink (#212529). Used for Shop, Blog, Über uns nav items. Pairs with the language selector."
+      },
+      {
+        "name": "Language Selector Pill",
+        "role": "Locale switcher",
+        "description": "Circular outlined element identical to nav buttons — 1px #000000 border, transparent fill, 'DE' label in Charcoal Ink at 15px weight 400 Writer font."
+      },
+      {
+        "name": "Editorial Display Headline",
+        "role": "Hero and section H1",
+        "description": "60px Studio Feixen Sans Writer, weight 700, line-height 1.20, Charcoal Ink (#212529). Left-aligned, full-width, no max-width constraint. The typewriter weight at this size is the signature moment — mechanical but monumental."
+      },
+      {
+        "name": "Section Heading",
+        "role": "H2/H3 within content blocks",
+        "description": "30px Writer weight 400, line-height 1.20, Charcoal Ink. Same family as display but at half the size and regular weight — maintains the editorial voice without competing with the hero."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Long-form description text",
+        "description": "15–18px Writer weight 400, line-height 1.67–2.08 (generous, almost double), Charcoal Ink. The tall line-height is a print-magazine convention; it makes reading feel like turning a page, not scrolling a feed."
+      },
+      {
+        "name": "Offset Image Stack",
+        "role": "Product/editorial imagery placement",
+        "description": "Two or three rectangular photographs overlapping at slight angles (2–5° rotation), unbordered (0px radius), casting no shadow. One image is always rotated to break the grid — a deliberate Swiss-editorial gesture. Warm-toned: beige, mustard, deep burgundy product photography on warm cream paper backgrounds."
+      },
+      {
+        "name": "Text Link",
+        "role": "Inline navigation and reference",
+        "description": "15px Writer weight 400, Charcoal Ink, no underline by default, no color change. Underline or contextual differentiation is avoided — navigation is implied by position and surrounding arrows."
+      },
+      {
+        "name": "Outlined Action Button",
+        "role": "Interactive controls (implied from nav pattern)",
+        "description": "1px #000000 border, transparent fill, Charcoal Ink text, 0px radius, 5px vertical / 10px horizontal padding. Ghost/outlined — never filled. The same pattern is used for nav and would extend to all CTAs."
+      },
+      {
+        "name": "Shopping Bag Icon",
+        "role": "Cart access in top-right",
+        "description": "Small line-icon in Charcoal Ink, no background, no badge. Sits in the top-right corner as a quiet utility affordance."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Single horizontal row, full-bleed, separated from content by a 1px hairline border in #000000. Left: brand text 'Hallo. Wir sind Brentano'. Center: language + 3 nav arrows. Right: cart icon. Fixed height, no background fill distinct from page."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Studio Feixen Sans Writer Book Regular — detected in extracted data but not described by AI",
+        "sizes": "30px",
+        "family": "Studio Feixen Sans Writer Book Regular",
+        "weight": "400",
+        "lineHeight": "1.2"
+      },
+      {
+        "role": "Primary typeface for all text — body, headings, nav, links, buttons, lists. The Writer variant carries a typewriter/letterpress quality with subtle ink-trapped details that a geometric sans cannot replicate. Weight 700 is used sparingly only on the 60px display; everything else stays at 400, making the single bold moment feel intentional and declarative.",
+        "sizes": "12, 15, 18, 25, 30, 60",
+        "family": "Studio Feixen Sans Writer",
+        "weight": "400, 700",
+        "lineHeight": "1.20, 1.67, 2.08, 2.50",
+        "substitute": "IBM Plex Mono or JetBrains Mono for the typewriter character; Inter for a neutral fallback",
+        "letterSpacing": "normal across all sizes — no negative tracking on display, which is unusual and preserves the mechanical, evenly-spaced typewriter rhythm"
+      },
+      {
+        "role": "Secondary sans variant for select body passages and inputs where the typewriter serifs would be too loud. The same family, stripped of the Writer details, creates a quiet alternation within the same typographic world.",
+        "sizes": "15, 30",
+        "family": "Studio Feixen Sans",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Inter or system-ui sans-serif"
+      }
+    ],
+    "description": "My Brentano channels a Swiss-editorial pharmacy aesthetic: warm cream canvas, one typewriter-serif display face at monumental sizes, and a single near-black ink for almost everything. The design is radical in its restraint — no shadows, no rounded cards, no accent colors, no gradient washes. Hierarchy is built through typographic scale (60px display down to 15px body) and generous negative space, not through color or elevation. Imagery is the only chromatic moment: warm product photography with beige, mustard, and burgundy tones that bleed off-frame. Components feel like printed editorial: thin horizontal rules, circular outlined arrows, and text-aligned links with no fills. Every surface sits on the same flat plane; the design is a typographic object, not a digital interface.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d211aaa4-e09b-4ef9-a9bf-f6fa8495de73#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"My Brentano design system\",\"item\":\"https://styles.refero.design/style/d211aaa4-e09b-4ef9-a9bf-f6fa8495de73\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d211aaa4-e09b-4ef9-a9bf-f6fa8495de73#style-reference\",\"name\":\"My Brentano design system reference\",\"headline\":\"My Brentano design system | Refero Styles\",\"description\":\"Explore My Brentano's light E-commerce design system: Charcoal Ink #212529, Pure Press #000000 colors, Studio Feixen Sans Writer Book Regular, Studio Feixen...\",\"url\":\"https://styles.refero.design/style/d211aaa4-e09b-4ef9-a9bf-f6fa8495de73\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d211aaa4-e09b-4ef9-a9bf-f6fa8495de73\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"My Brentano\",\"url\":\"https://mybrentano.ch\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d211aaa4-e09b-4ef9-a9bf-f6fa8495de73#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/154ad202-94fa-4ccc-9f94-cd3cd157578e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/154ad202-94fa-4ccc-9f94-cd3cd157578e.jpg\",\"caption\":\"Screenshot of My Brentano\"},\"image\":\"https://images.refero.design/styles/refero.design/image/154ad202-94fa-4ccc-9f94-cd3cd157578e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"My Brentano design system\",\"My Brentano website design\",\"My Brentano colors\",\"My Brentano typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Charcoal Ink\",\"Pure Press\",\"Bone White\",\"Studio Feixen Sans Writer Book Regular\",\"Studio Feixen Sans Writer\",\"Studio Feixen Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"My Brentano design system\"},{\"@type\":\"Thing\",\"name\":\"My Brentano website design\"},{\"@type\":\"Thing\",\"name\":\"My Brentano colors\"},{\"@type\":\"Thing\",\"name\":\"My Brentano typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:12:18.705Z\",\"dateModified\":\"2026-04-30T02:12:18.705Z\"}]}19:T4be,**Quick Color Reference**\n- text: #212529 (Charcoal Ink)\n- background: #ffffff (Bone White)\n- border: #000000 (Pure Press)\n- accent: none — color exists only in product photography\n- primary action: no distinct CTA color\n\n**3 Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. *Body text block with offset images*: Above the text, place two rectangular product photographs (0px radius) overlapping at a 3° clockwise rotation on the right side of the layout, with the leftmost image slightly larger and the right image cropped to show a warm mustard-yellow cream swirl. Below, two paragraphs of body text at 18px Writer weight 400, line-height 2.08, color #212529, left-aligned, occupying roughly 45% of the viewport width. No background, no border around the text.\n\n3. *Outlined nav button*: A 40px circle with 1px #000000 border, transparent fill. Inside, a right-arrow glyph (→) in #212529 at 15px Writer weight 400, vertically and horizontally centered. No hover fill, no shadow — on hover, optionally invert to a #000000 fill with a white arrow, but the default state is strictly outlined."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is absent by design. The system treats the page as a flat printed sheet — no box-shadows, no z-axis differentiation. Hierarchy is achieved entirely through typographic scale, whitespace, and hairline 1px borders. A surface that needs to feel distinct should rely on a different image crop or a rotated placement, never on a drop shadow."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#212529",
+          "oklch": {
+            "c": 0.009493466733044721,
+            "h": 248.18975403208174,
+            "l": 0.2620927620695693
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "list",
+            "nav",
+            "image",
+            "body",
+            "footer"
+          ],
+          "frequency": 359,
+          "confidence": 1,
+          "prominence": 31197514.266798593,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 5,
+            "body/color": 12,
+            "list/color": 2,
+            "image/color": 1,
+            "other/color": 48,
+            "footer/color": 1,
+            "heading/color": 7,
+            "nav/borderColor": 20,
+            "body/borderColor": 48,
+            "list/borderColor": 8,
+            "image/borderColor": 4,
+            "other/borderColor": 171,
+            "footer/borderColor": 4,
+            "heading/borderColor": 28
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "body",
+            "link",
+            "image",
+            "input"
+          ],
+          "frequency": 211,
+          "confidence": 1,
+          "prominence": 921546.7862862069,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 6,
+            "body/color": 3,
+            "link/color": 15,
+            "image/color": 4,
+            "input/color": 1,
+            "other/color": 1,
+            "button/color": 8,
+            "nav/borderColor": 24,
+            "body/borderColor": 12,
+            "link/borderColor": 60,
+            "image/borderColor": 16,
+            "input/borderColor": 4,
+            "other/borderColor": 25,
+            "button/borderColor": 32
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "input"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 34336.77083190723,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 7
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.01585409386036682,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.43,
+          "background": "#ffffff",
+          "foreground": "#212529"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "button",
+            "input"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|button",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|input",
+            "paddingRight|input",
+            "paddingBottom|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "body"
+          ],
+          "frequency": 57,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|button",
+            "marginRight|other",
+            "marginBottom|heading",
+            "marginBottom|other",
+            "marginTop|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "nav",
+            "other",
+            "footer"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|footer",
+            "marginRight|footer",
+            "marginLeft|footer",
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Studio Feixen Sans Writer Book",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 79,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Studio Feixen Sans Book",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 34,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Studio Feixen Sans Writer Book Regular",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Studio Feixen Sans Writer Book",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Studio Feixen Sans Writer Book",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 2.08,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Studio Feixen Sans Writer Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "body",
+            "image",
+            "button"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Studio Feixen Sans Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "input",
+            "button"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Studio Feixen Sans Writer Book",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Studio Feixen Sans Writer Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "nav",
+            "button",
+            "image",
+            "footer"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Studio Feixen Sans Writer Book",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Studio Feixen Sans Writer Book Regular",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "Studio Feixen Sans Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Studio Feixen Sans Writer Book",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Studio Feixen Sans Writer Book",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/bd542adf-e6a9-482f-aecf-0d5ed96eeaee.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/154ad202-94fa-4ccc-9f94-cd3cd157578e.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/d211aaa4-e09b-4ef9-a9bf-f6fa8495de73#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"My Brentano design system\",\"item\":\"https://styles.refero.design/style/d211aaa4-e09b-4ef9-a9bf-f6fa8495de73\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/d211aaa4-e09b-4ef9-a9bf-f6fa8495de73#style-reference\",\"name\":\"My Brentano design system reference\",\"headline\":\"My Brentano design system | Refero Styles\",\"description\":\"Explore My Brentano's light E-commerce design system: Charcoal Ink #212529, Pure Press #000000 colors, Studio Feixen Sans Writer Book Regular, Studio Feixen...\",\"url\":\"https://styles.refero.design/style/d211aaa4-e09b-4ef9-a9bf-f6fa8495de73\",\"mainEntityOfPage\":\"https://styles.refero.design/style/d211aaa4-e09b-4ef9-a9bf-f6fa8495de73\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"My Brentano\",\"url\":\"https://mybrentano.ch\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/d211aaa4-e09b-4ef9-a9bf-f6fa8495de73#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/154ad202-94fa-4ccc-9f94-cd3cd157578e.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/154ad202-94fa-4ccc-9f94-cd3cd157578e.jpg\",\"caption\":\"Screenshot of My Brentano\"},\"image\":\"https://images.refero.design/styles/refero.design/image/154ad202-94fa-4ccc-9f94-cd3cd157578e.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"My Brentano design system\",\"My Brentano website design\",\"My Brentano colors\",\"My Brentano typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Charcoal Ink\",\"Pure Press\",\"Bone White\",\"Studio Feixen Sans Writer Book Regular\",\"Studio Feixen Sans Writer\",\"Studio Feixen Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"My Brentano design system\"},{\"@type\":\"Thing\",\"name\":\"My Brentano website design\"},{\"@type\":\"Thing\",\"name\":\"My Brentano colors\"},{\"@type\":\"Thing\",\"name\":\"My Brentano typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T02:12:18.705Z\",\"dateModified\":\"2026-04-30T02:12:18.705Z\"}]}19:T4be,**Quick Color Reference**\n- text: #212529 (Charcoal Ink)\n- background: #ffffff (Bone White)\n- border: #000000 (Pure Press)\n- accent: none — color exists only in product photography\n- primary action: no distinct CTA color\n\n**3 Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. *Body text block with offset images*: Above the text, place two rectangular product photographs (0px radius) overlapping at a 3° clockwise rotation on the right side of the layout, with the leftmost image slightly larger and the right image cropped to show a warm mustard-yellow cream swirl. Below, two paragraphs of body text at 18px Writer weight 400, line-height 2.08, color #212529, left-aligned, occupying roughly 45% of the viewport width. No background, no border around the text.\n\n3. *Outlined nav button*: A 40px circle with 1px #000000 border, transparent fill. Inside, a right-arrow glyph (→) in #212529 at 15px Writer weight 400, vertically and horizontally centered. No hover fill, no shadow — on hover, optionally invert to a #000000 fill with a white arrow, but the default state is strictly outlined."
+}

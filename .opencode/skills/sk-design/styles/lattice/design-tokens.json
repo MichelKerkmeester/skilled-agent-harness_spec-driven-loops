@@ -1,0 +1,529 @@
+{
+  "color": {
+    "parchment": {
+      "$value": "#f7f6f2",
+      "$type": "color",
+      "$description": "Parchment — Page background — the warm off-white canvas that gives the entire system its paper-like, non-clinical feel. Never use pure white for the body background"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surfaces, product UI mockups, and embedded media containers — pure white lifted above the parchment canvas to create subtle elevation without shadows"
+    },
+    "forest-ink": {
+      "$value": "#001f1f",
+      "$type": "color",
+      "$description": "Forest Ink — Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color"
+    },
+    "lichen-gray": {
+      "$value": "#5c7070",
+      "$type": "color",
+      "$description": "Lichen Gray — Secondary text and medium-emphasis borders. Sits between Forest Ink and the lighter grays — use for body descriptions, supporting copy, and subtle dividers"
+    },
+    "stone": {
+      "$value": "#6a7878",
+      "$type": "color",
+      "$description": "Stone — Muted body text, nav borders, and tertiary UI elements. The readable-but-quiet gray for descriptions and helper text"
+    },
+    "slate": {
+      "$value": "#455252",
+      "$type": "color",
+      "$description": "Slate — Dark borders and separators for elevated surfaces and inverted UI. Do not promote it to the primary CTA color"
+    },
+    "mist": {
+      "$value": "#889494",
+      "$type": "color",
+      "$description": "Mist — Lightest text tier — captions, metadata, tertiary labels. Use for timestamps, footnotes, and non-essential annotations"
+    },
+    "meadow": {
+      "$value": "#cdface",
+      "$type": "color",
+      "$description": "Meadow — Pill badge fills, success highlights, and light accent surfaces. The signature light green for category tags, status indicators, and soft highlight washes"
+    },
+    "deep-forest": {
+      "$value": "#2a4e1c",
+      "$type": "color",
+      "$description": "Deep Forest — Dark green accent for data visualization, illustration strokes, and secondary green elements. Distinct from Forest Ink in that it reads clearly as green, not near-black"
+    },
+    "deep-teal": {
+      "$value": "#003d3d",
+      "$type": "color",
+      "$description": "Deep Teal — Secondary brand accent — teal-toned borders, illustration fills, and data visualization. Used alongside Deep Forest for multi-color charts and decorative elements"
+    },
+    "olive": {
+      "$value": "#515c0b",
+      "$type": "color",
+      "$description": "Olive — Chart and illustration accent — the yellow-green in the multi-color palette system. Used in data bars, category indicators, and decorative strokes"
+    },
+    "plum": {
+      "$value": "#7a2251",
+      "$type": "color",
+      "$description": "Plum — Magenta-pink accent for data visualization and illustration. The warm-cool counterpoint in the multi-color palette system"
+    },
+    "saffron": {
+      "$value": "#a36a14",
+      "$type": "color",
+      "$description": "Saffron — Amber-gold accent for data visualization and illustration. The warm yellow in the multi-color palette system, used in charts and decorative strokes"
+    },
+    "iris": {
+      "$value": "#652ea3",
+      "$type": "color",
+      "$description": "Iris — Violet accent for data visualization, illustration strokes, and the integrations section gradient. The cool counterpoint in the multi-color palette"
+    },
+    "mint-surface": {
+      "$value": "#e4f7f9",
+      "$type": "color",
+      "$description": "Mint Surface — Pastel feature card background — the pale aqua tint assigned to product modules like Performance. Each product area gets its own pastel home"
+    },
+    "lime-surface": {
+      "$value": "#f8fbe7",
+      "$type": "color",
+      "$description": "Lime Surface — Pastel feature card background — the pale yellow-green tint for modules like Goals & OKRs. The warmest pastel in the system"
+    },
+    "lavender-surface": {
+      "$value": "#e1e1fa",
+      "$type": "color",
+      "$description": "Lavender Surface — Pastel card background — pale violet for testimonial cards, secondary feature blocks, and the cool side of the pastel system"
+    },
+    "blush-surface": {
+      "$value": "#fcf2fe",
+      "$type": "color",
+      "$description": "Blush Surface — Pastel card background — near-white pink for subtle surface differentiation. The quietest of the pastel tints"
+    },
+    "buttercream": {
+      "$value": "#fff3c2",
+      "$type": "color",
+      "$description": "Buttercream — Warm pastel accent surface — soft yellow for tag backgrounds and light highlight zones"
+    },
+    "sage-glow": {
+      "$value": "#eff5ce",
+      "$type": "color",
+      "$description": "Sage Glow — Green pastel accent for tag backgrounds and soft category highlights. A more saturated green than Lime Surface"
+    },
+    "petal": {
+      "$value": "#fde5ff",
+      "$type": "color",
+      "$description": "Petal — Pink pastel accent for tag backgrounds and soft category highlights"
+    },
+    "lilac-stroke": {
+      "$value": "#dcc2eb",
+      "$type": "color",
+      "$description": "Lilac Stroke — Muted violet for illustration strokes and decorative outlines"
+    },
+    "halo-gradient": {
+      "$value": "#a9eba9",
+      "$type": "color",
+      "$description": "Halo Gradient — Hero radial gradient — the lime-to-teal aurora behind the product device frame. Evokes a natural, organic light source rather than a tech glow"
+    }
+  },
+  "font": {
+    "matter": {
+      "$value": "Matter",
+      "$type": "fontFamily",
+      "$description": "Sole typeface across the entire system — nav, body, buttons, headings, and display. A geometric sans with humanist warmth that keeps the warm-parchment aesthetic feeling organic rather than clinical. Weight 500 for headings and buttons, weight 400 for body and supporting text. Tight tracking (-0.024em) on display sizes creates a compact, confident headline; wide tracking (0.08em) on 11px labels gives uppercase tags breathing room."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "7px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 7px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "7px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 7px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "47px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 47px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "47px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 47px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Matter",
+        "fontSize": "72px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 72px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "72": {
+      "$value": "72px",
+      "$type": "dimension",
+      "$description": "Spacing 72px"
+    },
+    "116": {
+      "$value": "116px",
+      "$type": "dimension",
+      "$description": "Spacing 116px"
+    },
+    "188": {
+      "$value": "188px",
+      "$type": "dimension",
+      "$description": "Spacing 188px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "7.2192px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "11.5507px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "xl-2": {
+      "$value": "14.4384px",
+      "$type": "dimension",
+      "$description": "Border radius xl-2"
+    },
+    "2xl": {
+      "$value": "18.048px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "21.6576px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "28.8768px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "43.3152px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    }
+  },
+  "shadow": {
+    "md": {
+      "$value": "color(srgb 0 0.121569 0.121569 / 0.04) 0px 12px 12px -6px, color(srgb 0 0.121569 0.121569 / 0.04) 0px 6px 6px -3px, color(srgb 0 0.121569 0.121569 / 0.04) 0px 3px 3px -1.5px, color(srgb 0 0.121569 0.121569 / 0.08) 0px 1px 1px -0.5px, color(srgb 0 0.121569 0.121569 / 0.04) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation md"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#f7f6f2",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the base layer everything sits on"
+    },
+    "paper-white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Product UI mockups, embedded content, and standard card surfaces lifted above the canvas"
+    },
+    "pastel-feature-card": {
+      "$value": "#e4f7f9",
+      "$type": "color",
+      "$description": "Surface level 2: Color-coded product module cards — mint, lime, lavender tints assign each feature area its own visual territory"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://lattice.com",
+      "siteName": "Lattice",
+      "extractedAt": "2026-06-03T18:31:35.840Z",
+      "variant": "extended"
+    }
+  }
+}

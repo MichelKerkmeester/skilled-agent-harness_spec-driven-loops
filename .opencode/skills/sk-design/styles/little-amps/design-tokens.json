@@ -1,0 +1,532 @@
+{
+  "color": {
+    "espresso": {
+      "$value": "#522c25",
+      "$type": "color",
+      "$description": "Espresso — Primary text, icons, card borders, nav, footer, input fields — the structural dark that holds every screen together, warm rather than black to stay on-brand with roasted coffee"
+    },
+    "burnt-orange": {
+      "$value": "#c03001",
+      "$type": "color",
+      "$description": "Burnt Orange — Filled action buttons, active links, key highlights, badge fills — the single vivid accent that makes interactive elements feel switched on against the cream canvas"
+    },
+    "amber-ink": {
+      "$value": "#c46500",
+      "$type": "color",
+      "$description": "Amber Ink — Secondary accent for emphasized text, hover states, and warm callouts — a slightly darker orange that pairs with Burnt Orange for tonal depth"
+    },
+    "marigold-wash": {
+      "$value": "#febf6f",
+      "$type": "color",
+      "$description": "Marigold Wash — Soft highlight backgrounds, tag fills, and decorative washes — used sparingly to add warm sunlight moments inside otherwise neutral layouts"
+    },
+    "dusty-blue": {
+      "$value": "#89b4ca",
+      "$type": "color",
+      "$description": "Dusty Blue — Cool counter-accent for secondary buttons, link backgrounds, and color variety — the only blue in the system, it reads as a quiet companion to the warm palette"
+    },
+    "cream-paper": {
+      "$value": "#fff9f2",
+      "$type": "color",
+      "$description": "Cream Paper — Page canvas, card surfaces, button fills, input backgrounds — the base layer of every screen, warm off-white that replaces pure white"
+    },
+    "linen-beige": {
+      "$value": "#f6ede3",
+      "$type": "color",
+      "$description": "Linen Beige — Card backgrounds, section surfaces, image borders, body borders — one step deeper than canvas, creates gentle layered surfaces without elevation"
+    },
+    "taupe-hairline": {
+      "$value": "#e6dad4",
+      "$type": "color",
+      "$description": "Taupe Hairline — Hairline dividers, card borders, nav separators, subtle structural lines — the only border color most components need"
+    },
+    "sandstone": {
+      "$value": "#cbbbb4",
+      "$type": "color",
+      "$description": "Sandstone — Muted card backgrounds, soft surface fills, disabled surface states — a warm gray-taupe for low-emphasis panels"
+    },
+    "coffee-dust": {
+      "$value": "#977e77",
+      "$type": "color",
+      "$description": "Coffee Dust — Muted body text, helper text, low-emphasis copy — warm brown-gray that fades into the cream without disappearing"
+    }
+  },
+  "font": {
+    "little-amps": {
+      "$value": "Little Amps",
+      "$type": "fontFamily",
+      "$description": "Custom display serif for brand wordmark, section headlines, and large editorial titles. Heavy negative tracking (-0.10em) at 41–51px creates a tight, chunky retro-poster feel. The heaviest typographic element on every page and the signature voice of the brand."
+    },
+    "inclusive-sans": {
+      "$value": "Inclusive Sans",
+      "$type": "fontFamily",
+      "$description": "Primary body and UI text. Used for descriptions, paragraphs, and most readable content. Consistent 0.05em positive tracking gives a slightly looser, zine-like feel. The workhorse — appears in nearly every context."
+    },
+    "necto-mono": {
+      "$value": "Necto Mono",
+      "$type": "fontFamily",
+      "$description": "Labels, buttons, navigation, dates, prices, and all structural metadata. Tighter line-heights (0.80–1.20) and monospaced forms make it feel like stamped or typewriter-set type. 0.05em tracking is the system-wide small-caps standard."
+    },
+    "roboto-mono": {
+      "$value": "Roboto Mono",
+      "$type": "fontFamily",
+      "$description": "Secondary monospaced text for code-like or technical labels, supplementing Necto Mono in body and data contexts."
+    },
+    "gtstandard-m": {
+      "$value": "GTStandard-M",
+      "$type": "fontFamily",
+      "$description": "Rare body fallback — appears in minimal contexts."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Necto Mono",
+        "fontSize": "7px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 7px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Necto Mono",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Inclusive Sans",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Necto Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Necto Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Necto Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Necto Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inclusive Sans",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Necto Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Necto Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Necto Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Necto Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Necto Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "sm-9": {
+      "$value": {
+        "fontFamily": "Necto Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-9 at 14px"
+    },
+    "sm-10": {
+      "$value": {
+        "fontFamily": "Inclusive Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-10 at 14px"
+    },
+    "sm-11": {
+      "$value": {
+        "fontFamily": "Inclusive Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-11 at 14px"
+    },
+    "sm-12": {
+      "$value": {
+        "fontFamily": "Inclusive Sans",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-12 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inclusive Sans",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inclusive Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inclusive Sans",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Necto Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Necto Mono",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "GTStandard-M",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Little Amps",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Little Amps",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Little Amps",
+        "fontSize": "41px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 41px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Little Amps",
+        "fontSize": "45px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Little Amps",
+        "fontSize": "50px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 50px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Little Amps",
+        "fontSize": "51px",
+        "fontWeight": 500,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 51px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "90": {
+      "$value": "90px",
+      "$type": "dimension",
+      "$description": "Spacing 90px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    }
+  },
+  "surface": {
+    "cream-paper": {
+      "$value": "#fff9f2",
+      "$type": "color",
+      "$description": "Surface level 1: Page canvas and default background"
+    },
+    "linen-beige": {
+      "$value": "#f6ede3",
+      "$type": "color",
+      "$description": "Surface level 2: Card surfaces, section bands, image frames"
+    },
+    "sandstone": {
+      "$value": "#cbbbb4",
+      "$type": "color",
+      "$description": "Surface level 3: Muted panel fills, secondary card surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://littleampscoffee.com",
+      "siteName": "Little Amps",
+      "extractedAt": "2026-06-03T19:45:20.544Z",
+      "variant": "extended"
+    }
+  }
+}

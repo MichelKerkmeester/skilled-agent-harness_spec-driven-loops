@@ -1,0 +1,706 @@
+{
+  "source": "https://styles.refero.design/style/81a66e75-23af-4525-8a4e-f4a54c2700e7",
+  "uuid": "81a66e75-23af-4525-8a4e-f4a54c2700e7",
+  "name": "Linus Rogge",
+  "northStar": "Editorial portfolio on gallery-white — each project a wall-sized photograph with whisper-quiet captions in the corner.",
+  "capturedAt": "2026-07-18T08:31:57.592Z",
+  "meta": {
+    "url": "https://linusrogge.com",
+    "siteName": "Linus Rogge",
+    "extractedAt": "2026-06-03T16:30:04.560Z",
+    "durationMs": 25308,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 120,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use exactly 14px for all text regardless of importance — let weight (400 vs 500) and whitespace create hierarchy",
+      "Use pure #000000 and pure #ffffff for all primary text and surfaces; the system is strictly two-color",
+      "Set border-radius to 0px on every component — buttons, cards, images, inputs are all sharp rectangles",
+      "Left-align all text to the left edge with consistent left padding; never center text",
+      "Place project metadata in the corners (top-left and bottom-left) of full-bleed images, not overlaid on the image",
+      "Use section bands of Gallery Gray (#e5e5e5) and Plinth Gray (#d4d4d4) to create vertical rhythm between projects",
+      "Use weight 500 only for titles, active items, and button text — everything else stays at 400"
+    ],
+    "donts": [
+      "Never introduce a second type size — the entire system runs on 14px",
+      "Never add color, gradients, or shadows — the design is flat and strictly monochrome",
+      "Never use border-radius greater than 0px on any element",
+      "Never center text or use symmetrical layouts — everything anchors to the left",
+      "Never overlay text on photographs — labels live in the margin outside the image",
+      "Never use decorative icons, bullets, or dividers — whitespace is the only separator",
+      "Never use #0a0a0a or #171717 as body text on white — those are surface colors for dark blocks only"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Primary canvas, all text on dark surfaces, inverted button text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Gallery Gray",
+        "role": "Secondary surface for section bands, footer background washes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d4d4d4",
+        "name": "Plinth Gray",
+        "role": "Tertiary surface, alternating section rhythm dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Carbon Black",
+        "role": "Dark section background for content blocks (writing index, project list) — near-black avoids the harshness of pure #000",
+        "group": "neutral"
+      },
+      {
+        "hex": "#171717",
+        "name": "Slate Black",
+        "role": "Secondary dark surface for stacked dark sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a3a3a3",
+        "name": "Concrete",
+        "role": "Muted helper text, metadata dates, tertiary annotations on white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#737373",
+        "name": "Stone",
+        "role": "Secondary muted text, labels, non-active annotations",
+        "group": "neutral"
+      },
+      {
+        "hex": "#525252",
+        "name": "Graphite",
+        "role": "Strongest muted text before full black, subtle emphasis",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed single-column layout. Each project occupies a vertical section: metadata in top-left corner, large photograph filling the viewport, date/credit in bottom-left corner. Sections stack vertically with no gutters — each new project starts where the last one ends. Within sections, a dark inverted block (writing index) uses a multi-column grid (3-4 columns) for list items. The footer uses a light gray background with text left-aligned to a column roughly 40% of viewport width. No navigation bar, no sidebar, no sticky header — the page is a continuous vertical scroll of project blocks. No max-width constraint on images; text blocks are constrained to a narrow left column.",
+    "imagery": "Large-format product and lifestyle photography is the dominant visual element. Images are full-bleed or near-full-bleed, with no borders, no rounded corners, and no overlays. Treatment is clean and natural — laptops on white desks, tablets on wood surfaces, hands interacting with devices. No duotone, no color grading, no masks. Photography carries the entire visual weight of the page; there are no illustrations, no abstract graphics, no icons of consequence. The objects in the photographs (products, devices, hands) are the heroes — the surrounding context is minimal and neutral so the subject reads clearly.",
+    "similar": [
+      {
+        "why": "Same single-type-size anti-hierarchical typography, full-bleed photography, strict black-and-white palette, and left-aligned project lists with minimal metadata",
+        "business": "Rauno Freiberg"
+      },
+      {
+        "why": "Portfolio presentation as curated gallery walls — large-format images with whisper-quiet text annotations in corners, no decorative chrome",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Single-typeface restraint, generous whitespace, left-aligned text columns on light gray section bands, zero ornamental elements",
+        "business": "Frank Chimero"
+      },
+      {
+        "why": "Radical typographic minimalism where one small body font carries all information and the work itself fills the page",
+        "business": "Bret Victor"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "48-96px",
+      "cardPadding": "12px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, primary surface"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Section Band",
+        "level": 1,
+        "purpose": "Alternating section backgrounds, footer wash"
+      },
+      {
+        "hex": "#d4d4d4",
+        "name": "Plinth",
+        "level": 2,
+        "purpose": "Secondary banded surface"
+      },
+      {
+        "hex": "#0a0a0a",
+        "name": "Dark Block",
+        "level": 3,
+        "purpose": "Inverted content sections (writing index, archive)"
+      }
+    ],
+    "northStar": "Editorial portfolio on gallery-white — each project a wall-sized photograph with whisper-quiet captions in the corner.",
+    "components": [
+      {
+        "name": "Project Header Label",
+        "role": "Project metadata block at top-left of each project section",
+        "description": "Three-line left-aligned stack: client/brand name (weight 500), project title (weight 500), project description (weight 400). All at 14px, black text on white. No icons, no bullets, no decorative elements. Appears in the top-left corner of each full-bleed image section."
+      },
+      {
+        "name": "Project Footer Label",
+        "role": "Date and studio attribution at bottom-left of each project",
+        "description": "Two lines: year range (weight 400) and studio/company name (weight 400). 14px, black text, bottom-left corner. Minimal — just enough to credit the work."
+      },
+      {
+        "name": "Full-Bleed Project Image",
+        "role": "Primary visual element of each project",
+        "description": "Large photograph occupying majority of viewport. No border, no radius (0px), no shadow. Images are product/lifestyle photography on clean backgrounds. No captions or overlays on the image itself — labels sit outside the image area in the corners."
+      },
+      {
+        "name": "Writing Index Entry",
+        "role": "Blog post listing in the dark writing section",
+        "description": "Two-column layout: post title (weight 500, white) on left, publication date (weight 400, white) below it. Arranged in a multi-column grid. 14px, no links or hover states visible. Sits on Carbon Black (#0a0a0a) background."
+      },
+      {
+        "name": "Section Label",
+        "role": "Category header for grouped content (e.g. 'Writing')",
+        "description": "Single word in weight 400, 14px, black on white or white on dark. Sits at top-left of its section with generous left margin. Functions as a quiet section anchor."
+      },
+      {
+        "name": "Filled Action Button",
+        "role": "Primary call-to-action (e.g. 'Information')",
+        "description": "Ink Black (#000000) background, Paper White (#ffffff) text, weight 500, 14px. Zero border-radius (0px). Padding 12px 12px (top/bottom 12px, left/right 12px). No border, no shadow, no hover state. Sharp rectangular shape — the only 'colorful' element in the entire system is the inversion of black and white."
+      },
+      {
+        "name": "About Text Block",
+        "role": "Personal bio text in the footer area",
+        "description": "Multi-line paragraph at 14px, weight 400, black text. Max-width appears to be 8-column equivalent (roughly 40% of viewport). Line-height 1.43. Sits on Gallery Gray (#e5e5e5) background. No pull quotes or emphasis — flat continuous prose."
+      },
+      {
+        "name": "Alternating Section Band",
+        "role": "Vertical rhythm device separating page zones",
+        "description": "Full-width horizontal bands alternating between Gallery Gray (#e5e5e5), Plinth Gray (#d4d4d4), and Concrete (#a3a3a3). No text or content — purely a visual breath between sections, similar to the way a book uses blank pages between chapters."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface for all text — headlines, body, labels, metadata, navigation. The signature choice is using a single 14px size across the entire site: hierarchy comes from weight contrast (400 for body, 500 for titles and active items) and whitespace, never from size. This anti-hierarchical approach treats all information as equally important, like gallery wall text.",
+        "sizes": "14px",
+        "family": "ABC Oracle",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.25, 1.43",
+        "substitute": "Inter, Söhne, or Neue Haas Grotesk at a fixed 14px",
+        "letterSpacing": "normal"
+      }
+    ],
+    "description": "Linus Rogge is a personal portfolio built on radical typographic restraint: a single 14px type size across all text, only two colors (pure black and pure white), and gallery-scale photography as the only visual voice. Hierarchy is created through weight (400 vs 500) and generous negative space, not through size escalation. Each project is presented as a sparse left-aligned label paired with a full-bleed photograph, reading like museum wall text beside a large print. Components are nearly invisible — no shadows, no rounded corners on the canvas, no decorative color — letting the work itself carry the page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/81a66e75-23af-4525-8a4e-f4a54c2700e7#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Linus Rogge design system\",\"item\":\"https://styles.refero.design/style/81a66e75-23af-4525-8a4e-f4a54c2700e7\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/81a66e75-23af-4525-8a4e-f4a54c2700e7#style-reference\",\"name\":\"Linus Rogge design system reference\",\"headline\":\"Linus Rogge design system | Refero Styles\",\"description\":\"Explore Linus Rogge's light Agency design system: Paper White #ffffff, Ink Black #000000 colors, ABC Oracle typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/81a66e75-23af-4525-8a4e-f4a54c2700e7\",\"mainEntityOfPage\":\"https://styles.refero.design/style/81a66e75-23af-4525-8a4e-f4a54c2700e7\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Linus Rogge\",\"url\":\"https://linusrogge.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/81a66e75-23af-4525-8a4e-f4a54c2700e7#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e44d8063-f3b5-4676-9671-bc391a991b44.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e44d8063-f3b5-4676-9671-bc391a991b44.jpg\",\"caption\":\"Screenshot of Linus Rogge\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e44d8063-f3b5-4676-9671-bc391a991b44.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Linus Rogge design system\",\"Linus Rogge website design\",\"Linus Rogge colors\",\"Linus Rogge typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper White\",\"Ink Black\",\"Gallery Gray\",\"Plinth Gray\",\"ABC Oracle\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Linus Rogge design system\"},{\"@type\":\"Thing\",\"name\":\"Linus Rogge website design\"},{\"@type\":\"Thing\",\"name\":\"Linus Rogge colors\"},{\"@type\":\"Thing\",\"name\":\"Linus Rogge typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-02T18:46:54.000Z\",\"dateModified\":\"2026-02-02T18:46:54.000Z\"}]}19:T59d,## Quick Color Reference\n- text: #000000\n- background: #ffffff\n- border: #000000\n- muted text: #737373\n- dark surface: #0a0a0a\n- section band: #e5e5e5\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Project Header Label**: Create a top-left aligned text stack: first line 'Linus Rogge' at 14px weight 500, second line project title at 14px weight 500, third line description at 14px weight 400. All in #000000 on #ffffff background. 12px top padding, anchored to the left edge with no left margin beyond the page gutter.\n\n2. **Full-Bleed Project Image**: Render a large photograph occupying the full viewport width. Zero border-radius, no border, no shadow. No text or overlays on the image. Position absolutely in the section flow with the project metadata stacked above and the date/credit below.\n\n3. **Section Band Divider**: Create a full-width horizontal band with #e5e5e5 background, 48-96px height, no content. Functions as a visual breath between project sections.\n\n4. **Writing Index Entry**: On a #0a0a0a dark background, render a two-line block: title at 14px weight 500 in #ffffff, date below at 14px weight 400 in #ffffff. Arrange multiple entries in a 3-column grid with 48px column gap.\n\n5. **Filled Action Button**: Black (#000000) rectangle with white (#ffffff) text at 14px weight 500, label 'Information'. Zero border-radius. Padding 12px on all sides. No border, no shadow, no hover state."
+      }
+    ],
+    "elevationPhilosophy": "The design has zero elevation. No shadows, no glows, no depth cues of any kind. Surfaces are defined purely by color contrast between adjacent bands of white and gray. Components sit flush against their background, and the only spatial separation comes from whitespace and the hard edges of photographs meeting solid color fields."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "footer",
+            "body",
+            "button"
+          ],
+          "frequency": 92,
+          "confidence": 1,
+          "prominence": 46116273.16254745,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "link",
+            "other",
+            "heading",
+            "body",
+            "list",
+            "button"
+          ],
+          "frequency": 485,
+          "confidence": 1,
+          "prominence": 11446072.035874413,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0a0a0a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1447879553888796
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1016357.2035874414,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e5e5e5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9219060167761346
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 69435,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d4d4d4",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8699435455856324
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 69435,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a3a3a3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7154735289549714
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 69435,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#737373",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5555267576690717
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 69435,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#525252",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.43860476002652315
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 69435,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#404040",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3714949460297332
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 69435,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#262626",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.26861827698438745
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 69435,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#171717",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20462653095774938
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 69435,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.8,
+          "background": "#0a0a0a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.93,
+          "background": "#171717",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#e5e5e5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.72,
+          "background": "#e5e5e5",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#262626",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.23,
+          "background": "#e5e5e5",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.17,
+          "background": "#d4d4d4",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.36,
+          "background": "#d4d4d4",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.09,
+          "background": "#d4d4d4",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.01,
+          "background": "#e5e5e5",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.37,
+          "background": "#404040",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.21,
+          "background": "#d4d4d4",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.33,
+          "background": "#a3a3a3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.23,
+          "background": "#e5e5e5",
+          "foreground": "#404040"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.85,
+          "background": "#a3a3a3",
+          "foreground": "#0a0a0a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.81,
+          "background": "#525252",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.11,
+          "background": "#a3a3a3",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.99,
+          "background": "#d4d4d4",
+          "foreground": "#404040"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.2,
+          "background": "#e5e5e5",
+          "foreground": "#525252"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 54,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 6
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "ABC Oracle",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 120,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": null,
+      "steps": [
+        {
+          "size": 14,
+          "family": "ABC Oracle",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "body",
+            "list",
+            "footer"
+          ],
+          "frequency": 95,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABC Oracle",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "body",
+            "link"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABC Oracle",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABC Oracle",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "ABC Oracle",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8c6f61a9-3677-45f1-9cad-b3949b83d2a1.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/e44d8063-f3b5-4676-9671-bc391a991b44.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/81a66e75-23af-4525-8a4e-f4a54c2700e7#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Linus Rogge design system\",\"item\":\"https://styles.refero.design/style/81a66e75-23af-4525-8a4e-f4a54c2700e7\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/81a66e75-23af-4525-8a4e-f4a54c2700e7#style-reference\",\"name\":\"Linus Rogge design system reference\",\"headline\":\"Linus Rogge design system | Refero Styles\",\"description\":\"Explore Linus Rogge's light Agency design system: Paper White #ffffff, Ink Black #000000 colors, ABC Oracle typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/81a66e75-23af-4525-8a4e-f4a54c2700e7\",\"mainEntityOfPage\":\"https://styles.refero.design/style/81a66e75-23af-4525-8a4e-f4a54c2700e7\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Linus Rogge\",\"url\":\"https://linusrogge.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/81a66e75-23af-4525-8a4e-f4a54c2700e7#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/e44d8063-f3b5-4676-9671-bc391a991b44.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/e44d8063-f3b5-4676-9671-bc391a991b44.jpg\",\"caption\":\"Screenshot of Linus Rogge\"},\"image\":\"https://images.refero.design/styles/refero.design/image/e44d8063-f3b5-4676-9671-bc391a991b44.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Linus Rogge design system\",\"Linus Rogge website design\",\"Linus Rogge colors\",\"Linus Rogge typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper White\",\"Ink Black\",\"Gallery Gray\",\"Plinth Gray\",\"ABC Oracle\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Linus Rogge design system\"},{\"@type\":\"Thing\",\"name\":\"Linus Rogge website design\"},{\"@type\":\"Thing\",\"name\":\"Linus Rogge colors\"},{\"@type\":\"Thing\",\"name\":\"Linus Rogge typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-02-02T18:46:54.000Z\",\"dateModified\":\"2026-02-02T18:46:54.000Z\"}]}19:T59d,## Quick Color Reference\n- text: #000000\n- background: #ffffff\n- border: #000000\n- muted text: #737373\n- dark surface: #0a0a0a\n- section band: #e5e5e5\n- primary action: no distinct CTA color\n\n## Example Component Prompts\n\n1. **Project Header Label**: Create a top-left aligned text stack: first line 'Linus Rogge' at 14px weight 500, second line project title at 14px weight 500, third line description at 14px weight 400. All in #000000 on #ffffff background. 12px top padding, anchored to the left edge with no left margin beyond the page gutter.\n\n2. **Full-Bleed Project Image**: Render a large photograph occupying the full viewport width. Zero border-radius, no border, no shadow. No text or overlays on the image. Position absolutely in the section flow with the project metadata stacked above and the date/credit below.\n\n3. **Section Band Divider**: Create a full-width horizontal band with #e5e5e5 background, 48-96px height, no content. Functions as a visual breath between project sections.\n\n4. **Writing Index Entry**: On a #0a0a0a dark background, render a two-line block: title at 14px weight 500 in #ffffff, date below at 14px weight 400 in #ffffff. Arrange multiple entries in a 3-column grid with 48px column gap.\n\n5. **Filled Action Button**: Black (#000000) rectangle with white (#ffffff) text at 14px weight 500, label 'Information'. Zero border-radius. Padding 12px on all sides. No border, no shadow, no hover state."
+}

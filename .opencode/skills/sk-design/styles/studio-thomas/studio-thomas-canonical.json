@@ -1,0 +1,707 @@
+{
+  "source": "https://styles.refero.design/style/f2b24dce-5b1f-47c2-8ef6-bbbd08b68826",
+  "uuid": "f2b24dce-5b1f-47c2-8ef6-bbbd08b68826",
+  "name": "Studio Thomas",
+  "northStar": "Alarm-orange broadcast panel on raw linen",
+  "capturedAt": "2026-07-18T07:20:50.804Z",
+  "meta": {
+    "url": "https://studiothomas.co.uk",
+    "siteName": "Studio Thomas",
+    "extractedAt": "2026-06-03T21:36:08.581Z",
+    "durationMs": 29833,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 93,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Signal Orange (#ff4f00) only in full, committed blocks — hero panels, section dividers, or accent rectangles. Never as a small dot, icon tint, or text color.",
+      "Set display type at 120px weight 300 with line-height 1.0 and letter-spacing -0.004em. This is the signature scale — anything smaller undermines the editorial register.",
+      "Use Raw Linen (#ebe9e3) as the page canvas, not pure white. The warm off-white is what separates this system from generic white-page SaaS layouts.",
+      "Keep the header to a wordmark plus hamburger. Do not add nav links, search bars, or secondary actions to the top bar.",
+      "Use weight 300 for all large-scale and display type. Reserve weight 400 for body copy (16px) and functional UI text.",
+      "Let photography fill the entire viewport edge-to-edge for project showcases. Do not constrain to a max-width container or add margins.",
+      "Space sections with 100px vertical gaps (footer token) and use 40px padding for contained content blocks."
+    ],
+    "donts": [
+      "Do not introduce a secondary accent color. The system is monochromatic-plus-orange — adding blue, green, or any other hue dilutes the commitment.",
+      "Do not use border-radius on any element. The system is edgeless — buttons, cards, inputs, and tags are all sharp-cornered (0px radius).",
+      "Do not use bold or black weights (600-900). Moderat is loaded at 300 and 400 only; using heavier weights breaks the restrained voice.",
+      "Do not add drop shadows, glows, or elevation effects. Surfaces are flat — separation comes from color blocks and full-bleed edges, not depth.",
+      "Do not create a filled CTA button. The system has no ACTION_BACKGROUND evidence — interactions are text links and border-bordered text, not filled buttons.",
+      "Do not wrap project photography in cards with borders, backgrounds, or padding. The image IS the container.",
+      "Do not use gradients. The system is entirely flat color — no detected gradient usage anywhere."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#ff4f00",
+        "name": "Signal Orange",
+        "role": "Hero blocks, brand statement panels, full-bleed feature sections — the single chromatic commitment, used in large committed areas rather than small accents",
+        "group": "brand"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, logo, hairline borders, dark UI elements, and display type on light surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Display headings overlaid on photography and colored panels, input fields, light surface level, inverse text on dark hero blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebe9e3",
+        "name": "Raw Linen",
+        "role": "Page canvas, footer background, secondary surface — warm off-white that softens the contrast between stark white and pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#767676",
+        "name": "Faint Stone",
+        "role": "Input field borders, low-emphasis form chrome — the only mid-tone in the system",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The layout is full-bleed and section-stacked — no max-width container, no centered content rail. The page is a vertical sequence of full-viewport sections: linen canvas with orange hero block, then full-bleed photographic project panels, then linen footer. Each section occupies the entire screen width edge-to-edge with no side margins. Navigation is reduced to a wordmark and hamburger in the top corners. There is no sidebar, no grid system visible, and no card-based content arrangement — the layout is a scrollable sequence of full-screen moments, each one either a color block or a photograph with overlaid type.",
+    "imagery": "Imagery is full-bleed editorial photography used at maximum scale — no thumbnails, no grids of small images, no constrained aspect ratios. The Yoni project panel shows the pattern: a single subject (model, product, or scene) fills the entire viewport, warm-toned and naturally lit, with display type floating directly on the image. Photography is high-key with warm color grading (peach, terracotta, golden skin tones) that harmonizes with the Signal Orange brand color. No illustrations, no icons beyond the hamburger glyph, no product screenshots. The visual density is image-dominant on project pages and text-only on the brand statement hero.",
+    "similar": [
+      {
+        "why": "Same editorial full-bleed approach with one committed color block (typically black) and oversized geometric sans-serif display type floating without containers",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Shared commitment to a single dominant chromatic surface used as a full-bleed panel rather than scattered accents, with minimal UI chrome",
+        "business": "Studio Dumbar"
+      },
+      {
+        "why": "Identical edgeless layout (0px radius everywhere), weight 300 display type at large scale, and a warm off-white canvas instead of pure white",
+        "business": "Bureau Cool"
+      },
+      {
+        "why": "Same full-bleed photographic project showcases with oversized white display text overlaid directly on the image, no card containers",
+        "business": "Manual Studio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "20-30px",
+      "sectionGap": "100px",
+      "cardPadding": "40px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ebe9e3",
+        "name": "Raw Linen Canvas",
+        "level": 0,
+        "purpose": "Page background, footer surface, the base on which everything else floats"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 1,
+        "purpose": "Input fields, elevated text surfaces, and any contained light area above the linen canvas"
+      },
+      {
+        "hex": "#ff4f00",
+        "name": "Signal Orange",
+        "level": 2,
+        "purpose": "Hero blocks, brand statement panels, full-bleed colored sections — the dominant chromatic surface"
+      },
+      {
+        "hex": "#000000",
+        "name": "Photographic Full-Bleed",
+        "level": 3,
+        "purpose": "Project showcase panels where editorial photography replaces the colored block; black represents the void/photographic surface"
+      }
+    ],
+    "northStar": "Alarm-orange broadcast panel on raw linen",
+    "typeScale": [
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "subheading",
+        "size": 33,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.004
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.13,
+        "letterSpacing": -0.004
+      },
+      {
+        "role": "display",
+        "size": 120,
+        "lineHeight": 1,
+        "letterSpacing": -0.004
+      }
+    ],
+    "components": [
+      {
+        "name": "Signal Orange Hero Block",
+        "role": "Full-bleed brand statement panel",
+        "description": "Edgeless rectangle filling the viewport or section, #ff4f00 background, centered display text at 120px in Ink Black (#000000), weight 300, line-height 1.0, letter-spacing -0.004em. No padding tokens measured — the type sits with generous optical margins inside the block."
+      },
+      {
+        "name": "Project Showcase Panel",
+        "role": "Full-bleed editorial project card",
+        "description": "Full-viewport photograph as background, no overlay or scrim, display text (project name) at 120px weight 300 in Paper White (#ffffff), positioned vertically centered-left. Project category caption (e.g. category label) at 16px weight 400 in white, bottom-left. \"View project\" link at 16px in white, bottom-right."
+      },
+      {
+        "name": "Wordmark Header",
+        "role": "Minimal site identity",
+        "description": "Fixed/sticky top bar on Raw Linen (#ebe9e3) canvas. Left: \"Studio Thomas\" at 16px weight 400, Ink Black. Right: hamburger icon (three lines) in Ink Black. No navigation links visible — the menu is collapsed behind the icon."
+      },
+      {
+        "name": "Linen Footer",
+        "role": "Closing section",
+        "description": "Full-width band with #ebe9e3 background, 100px top padding, 50px bottom padding. Contains small-format type and any secondary links at 16px weight 400 in Ink Black."
+      },
+      {
+        "name": "Hairline-Bordered Link",
+        "role": "Text link with border treatment",
+        "description": "Underlined or border-bordered text at 16px weight 400. Border color matches text (Ink Black on light surfaces, Paper White on dark/colored). 52 instances of white border and 32 of black border in the system — this border-link is the primary interactive pattern."
+      },
+      {
+        "name": "Text Input Field",
+        "role": "Form input",
+        "description": "Minimal input with 1px top/bottom padding, 2px left/right padding (very tight, likely CSS reset-level). Border-color #767676 (Faint Stone). White background. No visible focus ring in raw data — likely relies on browser default or subtle border-darken."
+      },
+      {
+        "name": "Category Caption",
+        "role": "Project descriptor label",
+        "description": "16px weight 400, Paper White (#ffffff), positioned at the bottom-left of a project showcase panel. Identifies the project type or industry. No background, no pill, no badge — raw text on photography."
+      },
+      {
+        "name": "View Project Link",
+        "role": "Project CTA — text-only",
+        "description": "16px weight 400, Paper White (#ffffff), bottom-right of project panel, likely with a subtle border or underline. No button background, no fill — the link is typographic only, consistent with the no-CTA-button system."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface — geometric sans-serif used at weight 300 for display and project names (120px) and weight 400 for body copy (16px). The light weight at display scale is a deliberate anti-shout: headlines whisper authority rather than declaring it, letting the orange blocks and editorial photography carry visual volume instead.",
+        "sizes": "16px, 33px, 40px, 120px",
+        "family": "Moderat",
+        "weight": "300, 400",
+        "lineHeight": "1.00, 1.13, 1.20, 1.25, 1.60",
+        "substitute": "Inter, Satoshi, General Sans",
+        "letterSpacing": "-0.004em, +0.005em"
+      }
+    ],
+    "description": "Studio Thomas operates as an editorial broadcast system: raw linen canvas, one alarm-bell orange, and overscale geometric type that fills the frame. The site reads less like a product and more like a magazine spread — a hamburger and a wordmark are the only chrome, everything else is hero-block, full-bleed photograph, or oversized typography at weight 300. Color appears in single, committed blocks rather than as scattered accents: a hero panel saturates the screen, a cream footer grounds it, and project showcases are wall-sized photography with white display text floating on top. The signature is restraint meets volume — the palette is three colors, but one of them is loud enough to own every screen it touches.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f2b24dce-5b1f-47c2-8ef6-bbbd08b68826#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Studio Thomas design system\",\"item\":\"https://styles.refero.design/style/f2b24dce-5b1f-47c2-8ef6-bbbd08b68826\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f2b24dce-5b1f-47c2-8ef6-bbbd08b68826#style-reference\",\"name\":\"Studio Thomas design system reference\",\"headline\":\"Studio Thomas design system | Refero Styles\",\"description\":\"Explore Studio Thomas's mixed Agency design system: Signal Orange #ff4f00, Ink Black #000000 colors, Moderat typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f2b24dce-5b1f-47c2-8ef6-bbbd08b68826\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f2b24dce-5b1f-47c2-8ef6-bbbd08b68826\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Studio Thomas\",\"url\":\"https://studiothomas.co.uk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f2b24dce-5b1f-47c2-8ef6-bbbd08b68826#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/846253d0-6322-4129-aa79-e32421bdbe57.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/846253d0-6322-4129-aa79-e32421bdbe57.jpg\",\"caption\":\"Screenshot of Studio Thomas\"},\"image\":\"https://images.refero.design/styles/refero.design/image/846253d0-6322-4129-aa79-e32421bdbe57.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Studio Thomas design system\",\"Studio Thomas website design\",\"Studio Thomas colors\",\"Studio Thomas typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Signal Orange\",\"Ink Black\",\"Paper White\",\"Raw Linen\",\"Moderat\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Studio Thomas design system\"},{\"@type\":\"Thing\",\"name\":\"Studio Thomas website design\"},{\"@type\":\"Thing\",\"name\":\"Studio Thomas colors\"},{\"@type\":\"Thing\",\"name\":\"Studio Thomas typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:34:34.600Z\",\"dateModified\":\"2026-04-30T02:34:34.600Z\"}]}19:T5d5,**Quick Color Reference**\n- text: #000000 (Ink Black)\n- background: #ebe9e3 (Raw Linen)\n- border: #767676 (Faint Stone) for inputs, #000000 for hairlines\n- accent: #ff4f00 (Signal Orange)\n- inverse text: #ffffff (Paper White)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Signal Orange Hero Block**: Full-bleed rectangle with #ff4f00 background. Centered headline at 120px, Moderat weight 300, #000000, line-height 1.0, letter-spacing -0.004em. Page canvas is #ebe9e3 with the wordmark 'Studio Thomas' at 16px weight 400, #000000, top-left, and a hamburger icon top-right.\n\n2. **Full-Bleed Project Showcase**: Edge-to-edge photographic background. Project name in #ffffff at 120px, weight 300, line-height 1.0, positioned left-center. Category caption at 16px weight 400, #ffffff, bottom-left. 'View project' text link at 16px weight 400, #ffffff with a white border, bottom-right. No card, no border, no padding around the image.\n\n3. **Wordmark Header**: Sticky top bar on #ebe9e3. Left: brand name in 16px weight 400, #000000. Right: three-line hamburger icon, #000000. No nav links, no buttons.\n\n4. **Linen Footer**: Full-width section with #ebe9e3 background, 100px top padding, 50px bottom padding. Footer text at 16px weight 400, #000000.\n\n5. **Text Input Field**: White (#ffffff) background, 1px border in #767676, text at 16px weight 400 in #000000. No border-radius, no shadow, no fill button beside it — submit is a text link or border-bordered text."
+      },
+      {
+        "title": "Color Philosophy",
+        "content": "The system is a three-note chord: black, white, and orange. Raw Linen (#ebe9e3) is the canvas that prevents the black-white binary from feeling clinical. Signal Orange (#ff4f00) is deployed as a surface, not an accent — it fills blocks rather than tinting icons or text. This is a design studio that treats color as architecture, not decoration. The rule: if the orange isn't filling a committed area large enough to dominate the screen, it shouldn't be used at all."
+      },
+      {
+        "title": "Typographic Voice",
+        "content": "Moderat at weight 300 is the anti-loud headline. At 120px it should feel like a whisper amplified by size — geometric, clean, but with the thinness of a pencil line rather than the weight of a marker. The contrast between the thin type and the saturated orange blocks behind it creates the tension that makes the system feel editorial. Body copy at 16px/1.60 in weight 400 is invisible by design — the work and the photography carry the page."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally shadowless. Surface separation is achieved through committed color blocks (orange, linen, white, black) and full-bleed edges — not through drop shadows or blur. This flat treatment keeps the layout feeling like editorial print: sections abut each other at hard edges, like a magazine spread turned digital."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "body",
+            "heading",
+            "icon",
+            "image",
+            "footer",
+            "input"
+          ],
+          "frequency": 300,
+          "confidence": 1,
+          "prominence": 90208220.56901246,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "body/color": 4,
+            "icon/color": 1,
+            "link/color": 6,
+            "other/fill": 9,
+            "image/color": 6,
+            "input/color": 2,
+            "other/color": 34,
+            "button/color": 2,
+            "footer/color": 1,
+            "heading/color": 2,
+            "body/borderColor": 16,
+            "icon/borderColor": 4,
+            "link/borderColor": 24,
+            "image/borderColor": 24,
+            "input/borderColor": 4,
+            "other/borderColor": 136,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 8,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff4f00",
+          "oklch": {
+            "c": 0.22204638842307362,
+            "h": 37.41790748455241,
+            "l": 0.6696488173737907
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1296000,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ebe9e3",
+          "oklch": {
+            "c": 0.008308940926690897,
+            "h": 91.48603672500164,
+            "l": 0.9339055538166959
+          },
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 588083,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "heading",
+            "link",
+            "icon",
+            "input",
+            "other"
+          ],
+          "frequency": 110,
+          "confidence": 1,
+          "prominence": 567469.6131575608,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "link/color": 13,
+            "other/fill": 4,
+            "heading/color": 7,
+            "icon/borderColor": 4,
+            "link/borderColor": 52,
+            "heading/borderColor": 28,
+            "input/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#767676",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5658363307995767
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 9810.146200899106,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0014965912769605285,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.3,
+          "background": "#ebe9e3",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.37,
+          "background": "#ff4f00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.3,
+          "background": "#ff4f00",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.21,
+          "background": "#ebe9e3",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "heading",
+            "input"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginRight|input"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "footer",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer",
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Moderat",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 80,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Third",
+        "ratio": 1.25,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 16,
+          "family": "Moderat",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "image",
+            "footer"
+          ],
+          "frequency": 39,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Moderat",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Moderat",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Moderat",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "Moderat",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "Moderat",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "Moderat",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "Moderat",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "Moderat",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.005,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Moderat",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.004,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "Moderat",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.13,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c3b0be41-f885-4219-91f3-68a83fce2f49.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/846253d0-6322-4129-aa79-e32421bdbe57.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f2b24dce-5b1f-47c2-8ef6-bbbd08b68826#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Studio Thomas design system\",\"item\":\"https://styles.refero.design/style/f2b24dce-5b1f-47c2-8ef6-bbbd08b68826\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f2b24dce-5b1f-47c2-8ef6-bbbd08b68826#style-reference\",\"name\":\"Studio Thomas design system reference\",\"headline\":\"Studio Thomas design system | Refero Styles\",\"description\":\"Explore Studio Thomas's mixed Agency design system: Signal Orange #ff4f00, Ink Black #000000 colors, Moderat typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/f2b24dce-5b1f-47c2-8ef6-bbbd08b68826\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f2b24dce-5b1f-47c2-8ef6-bbbd08b68826\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Studio Thomas\",\"url\":\"https://studiothomas.co.uk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f2b24dce-5b1f-47c2-8ef6-bbbd08b68826#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/846253d0-6322-4129-aa79-e32421bdbe57.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/846253d0-6322-4129-aa79-e32421bdbe57.jpg\",\"caption\":\"Screenshot of Studio Thomas\"},\"image\":\"https://images.refero.design/styles/refero.design/image/846253d0-6322-4129-aa79-e32421bdbe57.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Studio Thomas design system\",\"Studio Thomas website design\",\"Studio Thomas colors\",\"Studio Thomas typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Signal Orange\",\"Ink Black\",\"Paper White\",\"Raw Linen\",\"Moderat\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Studio Thomas design system\"},{\"@type\":\"Thing\",\"name\":\"Studio Thomas website design\"},{\"@type\":\"Thing\",\"name\":\"Studio Thomas colors\"},{\"@type\":\"Thing\",\"name\":\"Studio Thomas typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:34:34.600Z\",\"dateModified\":\"2026-04-30T02:34:34.600Z\"}]}19:T5d5,**Quick Color Reference**\n- text: #000000 (Ink Black)\n- background: #ebe9e3 (Raw Linen)\n- border: #767676 (Faint Stone) for inputs, #000000 for hairlines\n- accent: #ff4f00 (Signal Orange)\n- inverse text: #ffffff (Paper White)\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Signal Orange Hero Block**: Full-bleed rectangle with #ff4f00 background. Centered headline at 120px, Moderat weight 300, #000000, line-height 1.0, letter-spacing -0.004em. Page canvas is #ebe9e3 with the wordmark 'Studio Thomas' at 16px weight 400, #000000, top-left, and a hamburger icon top-right.\n\n2. **Full-Bleed Project Showcase**: Edge-to-edge photographic background. Project name in #ffffff at 120px, weight 300, line-height 1.0, positioned left-center. Category caption at 16px weight 400, #ffffff, bottom-left. 'View project' text link at 16px weight 400, #ffffff with a white border, bottom-right. No card, no border, no padding around the image.\n\n3. **Wordmark Header**: Sticky top bar on #ebe9e3. Left: brand name in 16px weight 400, #000000. Right: three-line hamburger icon, #000000. No nav links, no buttons.\n\n4. **Linen Footer**: Full-width section with #ebe9e3 background, 100px top padding, 50px bottom padding. Footer text at 16px weight 400, #000000.\n\n5. **Text Input Field**: White (#ffffff) background, 1px border in #767676, text at 16px weight 400 in #000000. No border-radius, no shadow, no fill button beside it — submit is a text link or border-bordered text."
+}

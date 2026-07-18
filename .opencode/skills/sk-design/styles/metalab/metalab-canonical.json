@@ -1,0 +1,554 @@
+{
+  "source": "https://styles.refero.design/style/da087e69-8832-418a-aa1b-42e1acabb39e",
+  "uuid": "da087e69-8832-418a-aa1b-42e1acabb39e",
+  "name": "Metalab",
+  "northStar": "black editorial spread — a serif headline breathing in void, annotated by a whisper-quiet grotesque",
+  "capturedAt": "2026-07-18T07:37:55.560Z",
+  "meta": {
+    "url": "https://metalab.com",
+    "siteName": "Metalab",
+    "extractedAt": "2026-06-03T20:13:14.715Z",
+    "durationMs": 20231,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 379,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use PP Eiko at 88px weight 240 exclusively for the largest display moments — never at body sizes where the hairline weight becomes illegible",
+      "Set all display headlines to line-height 0.80 and letter-spacing -0.02em to achieve the sculptural, near-touching letterforms",
+      "Use Basis Grotesque Pro weight 350 at 12px for all metadata annotations (dates, locations, timestamps) — this is the system's editorial signature",
+      "Build depth through a single #252525 surface layer over the #000000 canvas — do not introduce additional grays or shadows",
+      "Apply border-radius 50px to all buttons and elevated panels for the soft, tablet-like silhouette that defines the system",
+      "Anchor all dark pages on the #000000 canvas with #ffffff typography — never invert to a white page background within a dark-theme design",
+      "Use line-height 1.76-2.00 for body copy to match the editorial spaciousness of the display type"
+    ],
+    "donts": [
+      "Do not introduce any chromatic color — no blues, reds, greens, or brand accents. The system is achromatic by conviction",
+      "Do not use PP Eiko at sizes below 40px — the weight 240 becomes too thin to render reliably at small sizes",
+      "Do not add drop shadows to any element — depth in this system comes from surface value contrast (#000000 → #252525), not elevation effects",
+      "Do not use weight 600+ for any text — the entire system operates in the 240-400 range; heavier weights break the whisper-quiet tone",
+      "Do not add gradients, glows, or any color effects — the flat achromatic palette is the brand identity",
+      "Do not use system serif defaults (Times, Georgia) as substitutes for PP Eiko without matching the ultra-light weight — a regular-weight serif will read as conservative, not editorial",
+      "Do not fill buttons with #ffffff on the dark canvas — it would create the only bright shape on the page and dominate the hierarchy. Use #252525 or transparent"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Page canvas, primary surface, heading text on light zones — the dominant black that absorbs all surrounding elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Inverse text on dark surfaces, hairline borders on dark zones, contrast punctuation against the black canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#252525",
+        "name": "Charcoal",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page is full-bleed with no container constraint — text and elements flow edge-to-edge across a wide viewport (1440px+ target). The hero pattern is a three-column asymmetric split: display headline flush-left, a dark elevated panel centered, and a secondary headline word ('Make') flush-right with metadata annotations floating in the margins. Section rhythm uses generous vertical gaps (96px+) with no visible dividers — separation is spatial, not structural. Navigation is a minimal text row at the top, not a bar with background fill. The overall density is low: large amounts of black space, few elements per screen, and each element given room to breathe. The grid is loose — columns are implied by alignment, not by visible lines.",
+    "imagery": "Imagery is minimal and treated with the same restraint as the type system. A single dark, softly gradient panel appears in the hero — its surface is nearly featureless, suggesting a product or device rendering rather than a photograph. No lifestyle photography, no illustration, no decorative graphics. The visual weight of the page comes entirely from typography and negative space. If images appear on inner pages, they would be high-contrast, tightly cropped, and sit on the same #000000 canvas without frames or borders.",
+    "similar": [
+      {
+        "why": "Same editorial-agency approach: black canvas, oversized type, minimal UI chrome, metadata-style annotations",
+        "business": "Ueno"
+      },
+      {
+        "why": "Dark-mode agency portfolio with serif/sans-serif type pairing and generous negative space",
+        "business": "Locomotive"
+      },
+      {
+        "why": "Experimental agency aesthetic with achromatic palette and typography-as-hero philosophy",
+        "business": "Resn"
+      },
+      {
+        "why": "Dark-canvas design studio site with restrained color and type-driven layout",
+        "business": "Ramotion"
+      },
+      {
+        "why": "Editorial agency presentation style: black background, large light-weight serif, micro-typography for metadata",
+        "business": "Manual"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "50px",
+        "pills": "1000px",
+        "buttons": "50px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "96px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 0,
+        "purpose": "Base page canvas — the entire site lives on black"
+      },
+      {
+        "hex": "#252525",
+        "name": "Charcoal",
+        "level": 1,
+        "purpose": "Elevated panel, the single step of depth above the canvas"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "level": 2,
+        "purpose": "Inverse surface for high-contrast zones and typographic inversion"
+      }
+    ],
+    "elevation": [],
+    "northStar": "black editorial spread — a serif headline breathing in void, annotated by a whisper-quiet grotesque",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.12
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 88,
+        "lineHeight": 0.8,
+        "letterSpacing": -1.76
+      }
+    ],
+    "components": [
+      {
+        "name": "Dark Elevated Panel",
+        "role": "Hero or feature surface — the single depth element in the system",
+        "description": "A tall rounded rectangle filled with #252525 on the #000000 canvas. Border-radius 50px gives it a soft, tablet-like silhouette. No border, no shadow — depth comes purely from the value difference between #000000 and #252525. Dimensions feel cinematic: roughly 380px wide, 500px+ tall, centered or asymmetric in the layout."
+      },
+      {
+        "name": "Pill Toggle",
+        "role": "Interactive state indicator or count badge",
+        "description": "Small pill with border-radius 50px or 1000px, padding 3px top/bottom and 16px left/right. Bone (#ffffff) text on transparent or charcoal background. 12px Basis Grotesque Pro at weight 350. Examples: '0 → 1' counter, 'EST 2006' tag."
+      },
+      {
+        "name": "Metadata Annotation",
+        "role": "Editorial marginalia — dates, locations, timestamps",
+        "description": "12px Basis Grotesque Pro weight 350 in #ffffff, positioned with generous offset from the content it annotates. Always uppercase or title-case. Examples: 'EST 2006', 'BC, CA', '12:32 EDT'. Acts as a typographic signature of the brand — the system of small floating labels is what makes the page feel curated."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Primary heading — sets the editorial tone",
+        "description": "88px PP Eiko weight 240, line-height 0.80, letter-spacing -0.02em. White (#ffffff) on the black canvas. Typically one or two words per line at this scale, creating a staccato rhythm. No maximum width constraint — the text breathes across the full viewport column."
+      },
+      {
+        "name": "Ghost Button",
+        "role": "Subtle interactive element on dark surfaces",
+        "description": "Transparent or #252525 fill with #ffffff text. Border-radius 50px. Padding 16px horizontal, small vertical inset. 16px Basis Grotesque Pro weight 400. No border, no shadow. The button blends into the dark canvas until hovered."
+      },
+      {
+        "name": "Nav Link",
+        "role": "Top-level navigation — minimal, text-only",
+        "description": "16px Basis Grotesque Pro weight 400, #ffffff, no underline. Items separated by generous horizontal spacing. The nav itself is a quiet row, not a bar — it doesn't compete with the editorial typography."
+      },
+      {
+        "name": "Body Copy",
+        "role": "Descriptive and supporting text",
+        "description": "16px Basis Grotesque Pro weight 400, line-height 1.76-2.00 (generous, editorial). #ffffff on the black canvas. The high line-height values are deliberate — they create airy columns of text that match the spaciousness of the layout."
+      },
+      {
+        "name": "List Item",
+        "role": "Structured content listing",
+        "description": "16px Basis Grotesque Pro in #ffffff, separated by 8px row gaps. Minimal bullet treatment or no bullets at all — the spacing alone creates list rhythm."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All functional copy: body text, metadata annotations, labels, nav, buttons, lists. The 350 weight (light) handles editorial captioning at 12px — the small annotations like 'EST 2006', 'BC, CA', '12:32 EDT' — while 400 handles body and interactive text at 16px. Slight -0.01em tracking tightens the grotesque into a precise, measured voice. This font does the quiet work; the serif does the talking.",
+        "sizes": "12px, 16px",
+        "family": "Basis Grotesque Pro",
+        "weight": "350, 400",
+        "lineHeight": "1.00–2.00",
+        "substitute": "Inter, or Söhne, or any neo-grotesque sans-serif",
+        "letterSpacing": "-0.0100em"
+      },
+      {
+        "role": "Display headings only — the 88px ultra-light serif is the signature element. Weight 240 (near-hairline) is a dramatic anti-convention choice: most agencies use 400-500 serifs for authority; Metalab's whisper-weight communicates confidence through restraint, not volume. Tight 0.80 line-height and -0.02em tracking let letters nearly touch, creating a sculptural block of text.",
+        "sizes": "88px",
+        "family": "PP Eiko",
+        "weight": "240",
+        "lineHeight": "0.80",
+        "substitute": "Cormorant Garamond, or any ultra-light modern serif (weight 200-300)",
+        "letterSpacing": "-0.02em"
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Metalab operates in a black-canvas editorial mode: a design agency that lets typography and negative space do the entire performance. Two custom typefaces share the stage — an ultra-light display serif (PP Eiko) at commanding sizes, and a quiet grotesque (Basis Grotesque Pro) for all functional copy — creating a dialogue between a whispering serif headline and a precise sans-serif annotation layer. The interface is achromatic by conviction: no accent color exists, no decorative gradient, no brand chromatic mark. Information is structured purely through scale contrast, micro-typography, and metadata labels (dates, times, coordinates) that float beside content like editorial marginalia. Components are sparse and oversized — a single dark elevated card, a pill toggle, and very little else. The system reads less like a product UI and more like the masthead of a design publication.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/da087e69-8832-418a-aa1b-42e1acabb39e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Metalab design system\",\"item\":\"https://styles.refero.design/style/da087e69-8832-418a-aa1b-42e1acabb39e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/da087e69-8832-418a-aa1b-42e1acabb39e#style-reference\",\"name\":\"Metalab design system reference\",\"headline\":\"Metalab design system | Refero Styles\",\"description\":\"Explore Metalab's dark Agency design system: Void #000000, Bone #ffffff colors, Basis Grotesque Pro, PP Eiko typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/da087e69-8832-418a-aa1b-42e1acabb39e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/da087e69-8832-418a-aa1b-42e1acabb39e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Metalab\",\"url\":\"https://metalab.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/da087e69-8832-418a-aa1b-42e1acabb39e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/70ef7b44-8e24-4853-9731-2e5c3ad3ce43.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/70ef7b44-8e24-4853-9731-2e5c3ad3ce43.jpg\",\"caption\":\"Screenshot of Metalab\"},\"image\":\"https://images.refero.design/styles/refero.design/image/70ef7b44-8e24-4853-9731-2e5c3ad3ce43.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Metalab design system\",\"Metalab website design\",\"Metalab colors\",\"Metalab typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void\",\"Bone\",\"Charcoal\",\"Basis Grotesque Pro\",\"PP Eiko\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Metalab design system\"},{\"@type\":\"Thing\",\"name\":\"Metalab website design\"},{\"@type\":\"Thing\",\"name\":\"Metalab colors\"},{\"@type\":\"Thing\",\"name\":\"Metalab typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-03-01T09:00:16.000Z\",\"dateModified\":\"2026-03-01T09:00:16.000Z\"}]}19:T58e,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- border: #ffffff\n- accent: no accent color (achromatic system)\n- primary action: no distinct CTA color\n- surface elevation: #252525\n\n**Example Component Prompts**\n\n1. Create a hero section: #000000 background, full-bleed. Left-aligned 88px PP Eiko weight 240 headline in #ffffff, line-height 0.80, letter-spacing -0.02em reading 'We Make Interfaces'. Center column: a #252525 rounded panel, border-radius 50px, roughly 380px wide by 500px tall. Right margin: floating 12px Basis Grotesque Pro weight 350 annotations in #ffffff ('EST 2006', '12:32 EDT').\n\n2. Create a navigation bar: minimal text row on #000000 background. 16px Basis Grotesque Pro weight 400 in #ffffff, items left-aligned with 24px gaps, no background fill, no border.\n\n3. Create a ghost button: transparent background on #000000 canvas, #ffffff text at 16px Basis Grotesque Pro weight 400, border-radius 50px, padding 16px horizontal / 8px vertical. No border, no shadow.\n\n4. Create a metadata label: 12px Basis Grotesque Pro weight 350 in #ffffff, positioned as a small floating annotation in the margin of a content layout. No background, no border — just typographic presence.\n\n5. Create a dark elevated card: #252525 fill on #000000 canvas, border-radius 50px, padding 24px. No shadow, no border. Body text inside in #ffffff at 16px Basis Grotesque Pro weight 400, line-height 1.76."
+      }
+    ],
+    "elevationPhilosophy": "Depth is achieved through a single value step: #252525 panels sit on the #000000 canvas with no shadow, no border, no blur. The system deliberately avoids box-shadows entirely — a 1.4:1 contrast between #000000 and #252525 is sufficient to distinguish elevation, and adding shadows would introduce warmth and softness that contradicts the flat, editorial aesthetic. There is exactly one tier of depth above the canvas, and it is always the same color."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 993,
+          "confidence": 1,
+          "prominence": 12904404.245864723,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "list",
+            "button",
+            "body",
+            "hero",
+            "icon",
+            "link",
+            "nav"
+          ],
+          "frequency": 720,
+          "confidence": 1,
+          "prominence": 12304036.662216106,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#252525",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.26530868167843835
+          },
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 13954.358177110058,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.33,
+          "background": "#252525",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.37,
+          "background": "#252525",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 50,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 1000,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Basis Grotesque Pro",
+          "source": "custom",
+          "weights": [
+            350,
+            400
+          ],
+          "frequency": 321,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "PP Eiko",
+          "source": "custom",
+          "weights": [
+            240
+          ],
+          "frequency": 30,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Basis Grotesque Pro",
+          "weight": 350,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.76,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Basis Grotesque Pro",
+          "weight": 350,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basis Grotesque Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "list",
+            "hero",
+            "image",
+            "link",
+            "nav",
+            "body"
+          ],
+          "frequency": 236,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basis Grotesque Pro",
+          "weight": 350,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 22,
+          "lineHeight": 2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basis Grotesque Pro",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "link",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basis Grotesque Pro",
+          "weight": 350,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Basis Grotesque Pro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 40,
+          "lineHeight": 1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 88,
+          "family": "PP Eiko",
+          "weight": 240,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 30,
+          "lineHeight": 0.8,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ba4d17b1-941e-4ce6-8dcd-090062cd5370.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/70ef7b44-8e24-4853-9731-2e5c3ad3ce43.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/da087e69-8832-418a-aa1b-42e1acabb39e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Metalab design system\",\"item\":\"https://styles.refero.design/style/da087e69-8832-418a-aa1b-42e1acabb39e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/da087e69-8832-418a-aa1b-42e1acabb39e#style-reference\",\"name\":\"Metalab design system reference\",\"headline\":\"Metalab design system | Refero Styles\",\"description\":\"Explore Metalab's dark Agency design system: Void #000000, Bone #ffffff colors, Basis Grotesque Pro, PP Eiko typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/da087e69-8832-418a-aa1b-42e1acabb39e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/da087e69-8832-418a-aa1b-42e1acabb39e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Metalab\",\"url\":\"https://metalab.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/da087e69-8832-418a-aa1b-42e1acabb39e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/70ef7b44-8e24-4853-9731-2e5c3ad3ce43.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/70ef7b44-8e24-4853-9731-2e5c3ad3ce43.jpg\",\"caption\":\"Screenshot of Metalab\"},\"image\":\"https://images.refero.design/styles/refero.design/image/70ef7b44-8e24-4853-9731-2e5c3ad3ce43.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Metalab design system\",\"Metalab website design\",\"Metalab colors\",\"Metalab typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void\",\"Bone\",\"Charcoal\",\"Basis Grotesque Pro\",\"PP Eiko\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Metalab design system\"},{\"@type\":\"Thing\",\"name\":\"Metalab website design\"},{\"@type\":\"Thing\",\"name\":\"Metalab colors\"},{\"@type\":\"Thing\",\"name\":\"Metalab typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-03-01T09:00:16.000Z\",\"dateModified\":\"2026-03-01T09:00:16.000Z\"}]}19:T58e,**Quick Color Reference**\n- text: #ffffff\n- background: #000000\n- border: #ffffff\n- accent: no accent color (achromatic system)\n- primary action: no distinct CTA color\n- surface elevation: #252525\n\n**Example Component Prompts**\n\n1. Create a hero section: #000000 background, full-bleed. Left-aligned 88px PP Eiko weight 240 headline in #ffffff, line-height 0.80, letter-spacing -0.02em reading 'We Make Interfaces'. Center column: a #252525 rounded panel, border-radius 50px, roughly 380px wide by 500px tall. Right margin: floating 12px Basis Grotesque Pro weight 350 annotations in #ffffff ('EST 2006', '12:32 EDT').\n\n2. Create a navigation bar: minimal text row on #000000 background. 16px Basis Grotesque Pro weight 400 in #ffffff, items left-aligned with 24px gaps, no background fill, no border.\n\n3. Create a ghost button: transparent background on #000000 canvas, #ffffff text at 16px Basis Grotesque Pro weight 400, border-radius 50px, padding 16px horizontal / 8px vertical. No border, no shadow.\n\n4. Create a metadata label: 12px Basis Grotesque Pro weight 350 in #ffffff, positioned as a small floating annotation in the margin of a content layout. No background, no border — just typographic presence.\n\n5. Create a dark elevated card: #252525 fill on #000000 canvas, border-radius 50px, padding 24px. No shadow, no border. Body text inside in #ffffff at 16px Basis Grotesque Pro weight 400, line-height 1.76."
+}

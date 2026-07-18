@@ -1,0 +1,929 @@
+{
+  "source": "https://styles.refero.design/style/7b28c99e-ed17-451b-a39e-bd4722bc43f5",
+  "uuid": "7b28c99e-ed17-451b-a39e-bd4722bc43f5",
+  "name": "21 TSI",
+  "northStar": "Crimson void, single silhouette — a high-fashion editorial spread where the UI dissolves into atmosphere.",
+  "capturedAt": "2026-07-18T09:34:46.948Z",
+  "meta": {
+    "url": "https://21tsi.com",
+    "siteName": "21 TSI",
+    "extractedAt": "2026-06-03T19:02:16.068Z",
+    "durationMs": 33406,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 802,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Saans (or Inter/Manrope) for all type — never substitute a humanist or slab serif, the geometric precision is the voice.",
+      "Apply the 0.05em positive tracking to every uppercase label at 12–20px — the airy spacing is what makes 12px readable as editorial chrome.",
+      "Apply -0.025em tight tracking on every display size 47px and above — the negative tracking is required to prevent oversized letters from drifting apart.",
+      "Use the 70px pill radius on every interactive control — CONTACT, FR, SOUND and their peers — never use the 8px radius on a button.",
+      "Let the photograph fill 100vw at maximum viewport height with no overlay, scrim, or text — the image is the design.",
+      "Hold the UI to #ffffff on #000000 plus a single 1px hairline at the top — chrome should never exceed two colors and one line.",
+      "Use weight 300 (not 700) for the most dramatic display moments — the whisper-weight against massive size is the signature move."
+    ],
+    "donts": [
+      "Do not apply a solid red CSS background — the crimson is always a photograph, never a fill color.",
+      "Do not use filled buttons with a chromatic background; all interactive controls are ghost/outlined with 1px white border.",
+      "Do not place body text on top of editorial photography — give text its own background or breathing space.",
+      "Do not use drop shadows, glows, or any elevation effect — the system is strictly flat, depth comes from the lens only.",
+      "Do not introduce a second typeface or icon font; every glyph comes from Saans or is drawn as a primitive shape.",
+      "Do not use a max-width content container — the layout is full-bleed by philosophy, not by accident.",
+      "Do not use display sizes below 47px or above 245px — the scale jump is the rhythm; intermediate sizes break the vertical accent."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Black Void",
+        "role": "Page canvas behind full-bleed imagery, button borders on inverted elements, deepest surface layer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Primary text, navigation labels, ghost-button borders, hairline rules, every UI stroke above imagery",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4d4d4d",
+        "name": "Smoke",
+        "role": "Muted secondary borders and dividers used when full white feels too hot against the photographic background",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b62b1a",
+        "name": "Crimson Heat",
+        "role": "Dominant brand atmosphere from full-bleed editorial photography — the only chromatic note in the system, always carried by the image rather than applied to UI chrome",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed throughout — there is no max-width container, no card grid, no multi-column body text. The page model is a vertical stack of photographic viewports with hairline-separated content strips between them. The hero is always a full-viewport editorial image; nav sits above the hero as a single 60–80px strip. Section rhythm is defined by image-to-image transitions rather than background bands: one crimson frame dissolves into the next, with maybe 20–30px of black breathing space and a small uppercase label marking each section. Content arrangement is asymmetric — figures placed off-center, text aligned left with generous left margin (38px+), and the right side of the frame left empty to let the photograph breathe. No card grids, no pricing tables, no feature matrices. The grid is essentially the photographic frame itself.",
+    "imagery": "Full-bleed editorial fashion photography is the only imagery the system uses, and it does all the work. Treatment: 100vw width, large viewport height, no padding, no rounded corners, no overlay. Subjects are single human figures (typically a model in motion — hair or fabric caught mid-swing), shot in profile or three-quarter pose, lit by dramatic single-source crimson light that produces deep shadow falloff and a near-silhouette body. Color treatment is saturated and warm — the red dominates, skin tones are bronzed and slightly desaturated, blacks are crushed deep. Resolution feels cinematic and slightly grain-textured. Density: image-heavy to the extreme — a single photograph often occupies an entire screen, and text never sits on top of imagery (it gets its own breathing space above or below). Iconography is essentially absent; the few UI indicators (online dot, nav separators) are hand-built geometric primitives, never an icon font.",
+    "similar": [
+      {
+        "why": "Same editorial restraint: monochrome type, single hairline nav, oversized display headlines, and photography-as-design with no chrome interfering.",
+        "business": "Maison Margiela"
+      },
+      {
+        "why": "Identical dark-canvas-plus-crimson-photography tension, extreme type scale jumps, and brutalist pill-button utility controls.",
+        "business": "Rick Owens"
+      },
+      {
+        "why": "Shares the thin-rule top nav, small uppercase wordmark, oversized light-weight display type, and full-bleed single-subject editorial imagery.",
+        "business": "Acne Studios"
+      },
+      {
+        "why": "Same whisper-weight headlines at runway scale, quiet monochrome UI, and reliance on the photograph to deliver the entire chromatic identity.",
+        "business": "Issey Miyake"
+      },
+      {
+        "why": "Identical pattern of black canvas, white 12px uppercase nav, pill-bordered utility buttons, and fashion-editorial crimson/black photography at full viewport.",
+        "business": "Saint Laurent (YSL.com)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "bodies": "8px",
+        "buttons": "70px",
+        "circular": "594px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "30-60px",
+      "cardPadding": "20px",
+      "pageMaxWidth": null
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Page Canvas",
+        "level": 1,
+        "purpose": "True black base beneath all photography; visible only at the very top of the viewport and during transitions"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Hairline Rule",
+        "level": 2,
+        "purpose": "The single 1px white line that separates the nav from the hero — the only structural element of the UI"
+      },
+      {
+        "hex": "#b62b1a",
+        "name": "Photographic Surface",
+        "level": 3,
+        "purpose": "Full-bleed crimson editorial imagery that functions as the actual page background where content lives"
+      }
+    ],
+    "northStar": "Crimson void, single silhouette — a high-fashion editorial spread where the UI dissolves into atmosphere.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.6
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.38,
+        "letterSpacing": 0.7
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.43,
+        "letterSpacing": 0.8
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.3,
+        "letterSpacing": 1
+      },
+      {
+        "role": "heading-sm",
+        "size": 47,
+        "lineHeight": 1.15,
+        "letterSpacing": -1.18
+      },
+      {
+        "role": "heading",
+        "size": 79,
+        "lineHeight": 1.14,
+        "letterSpacing": -1.98
+      },
+      {
+        "role": "heading-lg",
+        "size": 106,
+        "lineHeight": 1.11,
+        "letterSpacing": -2.65
+      },
+      {
+        "role": "display",
+        "size": 130,
+        "lineHeight": 1.08,
+        "letterSpacing": -3.25
+      },
+      {
+        "role": "display-lg",
+        "size": 136,
+        "lineHeight": 1.05,
+        "letterSpacing": -3.4
+      },
+      {
+        "role": "display-xl",
+        "size": 245,
+        "lineHeight": 1,
+        "letterSpacing": -6.13
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Nav Bar",
+        "role": "The only persistent navigation surface",
+        "description": "A single 1px white hairline runs edge-to-edge across the top, with items floating below it in Saans 12px, weight 380, letter-spacing 0.6px, uppercase, white. The logo wordmark sits left ('21|TSI' with a vertical bar separator), navigation links ('THE SPHERE LAB', 'JOIN THE TEAM', 'INVEST') are evenly distributed across the bar with roughly 38px horizontal gaps, and utility controls (CONTACT, FR, SOUND) cluster on the right. No background fill, no border below — just the hairline above."
+      },
+      {
+        "name": "Ghost Pill Button",
+        "role": "Secondary action control (language toggle, contact, sound)",
+        "description": "70px border-radius, 1px white border, fully transparent fill, padding 10px 20px. Label in Saans 12px, weight 380, uppercase, letter-spacing 0.6px, white. The pill geometry softens the monochrome severity and signals interactivity without weight. The leading dot before 'CONTACT' (visible in screenshots) is a 4px white circle as an online/active indicator."
+      },
+      {
+        "name": "Nav Link",
+        "role": "Primary navigation item",
+        "description": "Inline text only — no background, no border. Saans 12px, weight 380, uppercase, letter-spacing 0.6px, white. No hover affordance other than subtle opacity shift. The nakedness is the affordance: nothing else on the page looks like this except the button labels."
+      },
+      {
+        "name": "Logo Wordmark",
+        "role": "Brand mark and home link",
+        "description": "'21' + vertical bar (1px wide, ~12px tall, white) + 'TSI' rendered as inline Saans 12px, weight 380, uppercase, letter-spacing 0.6px, white. The bar is the only graphic device in the entire logo system — no symbol, no glyph, no mark."
+      },
+      {
+        "name": "Full-Bleed Editorial Hero",
+        "role": "Primary content surface, replaces traditional hero section",
+        "description": "Photograph fills 100vw at full or near-full viewport height with no overlay text, no gradient, no scrim. The image is the hero. A single human figure occupies the frame off-center (rule-of-thirds left), shot in profile or three-quarter, with motion (wind, hair, fabric) to give the static frame life. Lighting is dramatic, saturated crimson with deep shadow falloff — the red is in the photograph, never applied as a CSS background."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Editorial-scale title set in oversized type",
+        "description": "Saans 79–245px, weight 300 (light) for the most dramatic moments or 570 for the more declarative ones, line-height 1.0–1.14, letter-spacing -0.025em. White on the photographic background — no shadow, no outline. The extreme size and light weight create a 'whispered shout' that mirrors the visual restraint of the rest of the UI."
+      },
+      {
+        "name": "Circular Frame (594px radius)",
+        "role": "Reserved for portrait crops or signature graphic elements",
+        "description": "A 594px border-radius on a square container produces a full circle. Used for tightly-cropped portrait vignettes when the brand needs a geometric counterpoint to the free-bleed photography — the only place a hard shape appears in the system."
+      },
+      {
+        "name": "Body Card (8px radius)",
+        "role": "Rare utility surface for form, modal, or grouped content",
+        "description": "8px border-radius, 1px #4d4d4d border, transparent or #000000 fill, 20px padding. Body text in Saans 16px, weight 380, line-height 1.43, letter-spacing 0.8px, white. Used sparingly — the editorial mode of the site rarely needs cards at all."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The only typeface. Saans' four-weight ladder runs from 300 whispers to 790 black shouts, with 380 as the confident default and 570 as the editorial mid-voice. Custom by Displaay — a geometric sans with a distinctly contemporary editorial posture.",
+        "sizes": "12px, 14px, 16px, 18px, 20px, 47px, 79px, 106px, 130px, 136px, 245px",
+        "family": "Saans",
+        "weight": "300, 380, 570, 790",
+        "lineHeight": "1.00–1.43 (1.0–1.15 for display, 1.30–1.43 for body)",
+        "substitute": "Inter, Manrope, or General Sans — any geometric grotesque with a true 300 weight and tight default tracking will carry the same silence-plus-shock dynamic.",
+        "letterSpacing": "-0.025em on display sizes (47px and above); +0.05em on uppercase UI labels (12–20px)"
+      }
+    ],
+    "description": "21 TSI operates in the grammar of luxury fashion editorial: the interface itself is austere monochrome — white type, black canvas, hairline rules — while full-bleed crimson photography carries the entire emotional register. UI chrome is deliberately reduced to a single thin top divider, small uppercase wordmarks, and pill-bordered controls; nothing competes with the image. Typography is the structural skeleton: Saans at 12px for nav, then jumping to 106–245px for display — a near-vertical scale that makes individual headlines feel like runway installations rather than page headers. The system prefers silence over information density; every interactive element is a ghost, every frame is a photograph, and the only color that matters is whatever the lens captures.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7b28c99e-ed17-451b-a39e-bd4722bc43f5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"21 TSI design system\",\"item\":\"https://styles.refero.design/style/7b28c99e-ed17-451b-a39e-bd4722bc43f5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7b28c99e-ed17-451b-a39e-bd4722bc43f5#style-reference\",\"name\":\"21 TSI design system reference\",\"headline\":\"21 TSI design system | Refero Styles\",\"description\":\"Explore 21 TSI's dark Other design system: Black Void #000000, Paper White #ffffff colors, Saans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7b28c99e-ed17-451b-a39e-bd4722bc43f5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7b28c99e-ed17-451b-a39e-bd4722bc43f5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"21 TSI\",\"url\":\"https://21tsi.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7b28c99e-ed17-451b-a39e-bd4722bc43f5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/43f3b765-7799-4ad5-82da-bf928da235ca.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/43f3b765-7799-4ad5-82da-bf928da235ca.jpg\",\"caption\":\"Screenshot of 21 TSI\"},\"image\":\"https://images.refero.design/styles/refero.design/image/43f3b765-7799-4ad5-82da-bf928da235ca.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"21 TSI design system\",\"21 TSI website design\",\"21 TSI colors\",\"21 TSI typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Black Void\",\"Paper White\",\"Smoke\",\"Crimson Heat\",\"Saans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"21 TSI design system\"},{\"@type\":\"Thing\",\"name\":\"21 TSI website design\"},{\"@type\":\"Thing\",\"name\":\"21 TSI colors\"},{\"@type\":\"Thing\",\"name\":\"21 TSI typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-08T18:57:06.404Z\",\"dateModified\":\"2026-05-08T18:57:06.404Z\"}]}19:T539,Quick Color Reference\n- text: #ffffff\n- background: #000000 (canvas) / #b62b1a (photographic)\n- border: #ffffff (active) / #4d4d4d (muted)\n- accent: #b62b1a (crimson, carried by photography only)\n- primary action: no distinct CTA color\n\nExample Component Prompts\n\n1. Build a top nav bar: 1px white hairline edge-to-edge, Saans 12px weight 380 uppercase letter-spacing 0.6px white. Logo '21|TSI' left, nav items ('THE SPHERE LAB', 'JOIN THE TEAM', 'INVEST') distributed across at 38px gap, utility cluster right.\n\n2. Build a ghost pill button: 70px border-radius, 1px #ffffff border, transparent fill, 10px 20px padding. Label in Saans 12px weight 380 uppercase letter-spacing 0.6px #ffffff. Prefix with a 4px white circle as an active indicator.\n\n3. Build a full-bleed editorial hero: 100vw wide, 90vh tall, photograph as background (figure off-center left, dramatic crimson lighting, deep shadow). No overlay, no scrim, no headline on top of image.\n\n4. Build a display headline: Saans 130px weight 300 line-height 1.08 letter-spacing -3.25px #ffffff. Set above or below its own section of negative space — never on top of the hero photograph.\n\n5. Build a circular portrait frame: square container, 594px border-radius, photographic content cropped tight. Use only when a geometric counterpoint to the free-bleed photography is needed."
+      },
+      {
+        "title": "Scale Philosophy",
+        "content": "The type scale is intentionally non-linear. Below 20px, sizes cluster tightly (12/14/16/18/20) for UI chrome with positive tracking. Above 47px, sizes explode (47/79/106/130/136/245) for editorial moments with negative tracking. There is no middle ground — 30px or 60px body sizes do not exist in this system. The gap between 20px UI and 47px display is a visual event: when type jumps scale, the page is changing register, not just adjusting emphasis. An AI agent building new pages should resist the urge to fill the middle of the scale; the silence between 20px and 47px is what makes the 130px headlines feel enormous."
+      },
+      {
+        "title": "Photography Brief",
+        "content": "Any imagery generated for this system must follow the editorial crimson-mood specification: a single human subject, profile or three-quarter pose, single-source warm crimson lighting from one side, deep crushed-black shadow on the opposite side, motion implied through hair or fabric, and full-bleed (100vw × near-viewport-height) presentation. Skin tones should read bronzed, blacks should read as voids. The subject should never make direct eye contact with the lens — the gaze is downcast or off-frame. Grain and slight desaturation in the shadows are acceptable and desirable. Multiple subjects, busy compositions, daylight-balanced lighting, and clean studio white backgrounds are all anti-patterns for this brand."
+      }
+    ],
+    "elevationPhilosophy": "No shadow system. Elevation is expressed through photography depth and figure-to-ground contrast, not drop shadows. Components sit flat against the image as if printed onto it; the only vertical cue is the 1px hairline at the top of the viewport."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "image",
+            "heading",
+            "link",
+            "nav",
+            "body",
+            "button",
+            "icon",
+            "footer"
+          ],
+          "frequency": 3919,
+          "confidence": 1,
+          "prominence": 176050488.80286416,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 20,
+            "nav/color": 39,
+            "body/color": 68,
+            "icon/color": 10,
+            "link/color": 6,
+            "other/fill": 11,
+            "image/color": 6,
+            "other/color": 632,
+            "button/color": 7,
+            "footer/color": 1,
+            "heading/color": 12,
+            "nav/borderColor": 156,
+            "body/borderColor": 272,
+            "icon/borderColor": 40,
+            "link/borderColor": 24,
+            "image/borderColor": 24,
+            "other/borderColor": 2516,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "heading/borderColor": 48,
+            "body/backgroundColor": 19
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 6028313.93851595,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 24,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#4d4d4d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.41838944017064783
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 1343371.8812791167,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 12,
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.45,
+          "background": "#4d4d4d",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 594,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 10,
+          "contexts": [
+            "link",
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginLeft|button",
+            "paddingTop|body",
+            "paddingBottom|body",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "marginLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|body",
+            "marginBottom|body",
+            "marginLeft|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|heading",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 63,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "marginLeft",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "marginLeft|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 150,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 172,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Saans",
+          "source": "custom",
+          "weights": [
+            300,
+            380,
+            570,
+            790
+          ],
+          "frequency": 781,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Perfect Fourth",
+        "ratio": 1.333,
+        "confidence": 0.82
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Saans",
+          "weight": 380,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Saans",
+          "weight": 380,
+          "contexts": [
+            "other",
+            "image",
+            "nav",
+            "body"
+          ],
+          "frequency": 176,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Saans",
+          "weight": 380,
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "icon"
+          ],
+          "frequency": 183,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Saans",
+          "weight": 380,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Saans",
+          "weight": 380,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.14,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Saans",
+          "weight": 380,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Saans",
+          "weight": 380,
+          "contexts": [
+            "footer",
+            "other",
+            "link",
+            "image",
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Saans",
+          "weight": 790,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Saans",
+          "weight": 380,
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Saans",
+          "weight": 570,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Saans",
+          "weight": 380,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.11,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 207,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 47,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 34,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 47,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 79,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 106,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 130,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "link",
+            "heading",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 136,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 245,
+          "family": "Saans",
+          "weight": 380,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/36e1047a-01ba-4ced-9504-26f40e6cfe3b.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/43f3b765-7799-4ad5-82da-bf928da235ca.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7b28c99e-ed17-451b-a39e-bd4722bc43f5#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"21 TSI design system\",\"item\":\"https://styles.refero.design/style/7b28c99e-ed17-451b-a39e-bd4722bc43f5\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7b28c99e-ed17-451b-a39e-bd4722bc43f5#style-reference\",\"name\":\"21 TSI design system reference\",\"headline\":\"21 TSI design system | Refero Styles\",\"description\":\"Explore 21 TSI's dark Other design system: Black Void #000000, Paper White #ffffff colors, Saans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/7b28c99e-ed17-451b-a39e-bd4722bc43f5\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7b28c99e-ed17-451b-a39e-bd4722bc43f5\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"21 TSI\",\"url\":\"https://21tsi.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7b28c99e-ed17-451b-a39e-bd4722bc43f5#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/43f3b765-7799-4ad5-82da-bf928da235ca.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/43f3b765-7799-4ad5-82da-bf928da235ca.jpg\",\"caption\":\"Screenshot of 21 TSI\"},\"image\":\"https://images.refero.design/styles/refero.design/image/43f3b765-7799-4ad5-82da-bf928da235ca.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"21 TSI design system\",\"21 TSI website design\",\"21 TSI colors\",\"21 TSI typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Black Void\",\"Paper White\",\"Smoke\",\"Crimson Heat\",\"Saans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"21 TSI design system\"},{\"@type\":\"Thing\",\"name\":\"21 TSI website design\"},{\"@type\":\"Thing\",\"name\":\"21 TSI colors\"},{\"@type\":\"Thing\",\"name\":\"21 TSI typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-05-08T18:57:06.404Z\",\"dateModified\":\"2026-05-08T18:57:06.404Z\"}]}19:T539,Quick Color Reference\n- text: #ffffff\n- background: #000000 (canvas) / #b62b1a (photographic)\n- border: #ffffff (active) / #4d4d4d (muted)\n- accent: #b62b1a (crimson, carried by photography only)\n- primary action: no distinct CTA color\n\nExample Component Prompts\n\n1. Build a top nav bar: 1px white hairline edge-to-edge, Saans 12px weight 380 uppercase letter-spacing 0.6px white. Logo '21|TSI' left, nav items ('THE SPHERE LAB', 'JOIN THE TEAM', 'INVEST') distributed across at 38px gap, utility cluster right.\n\n2. Build a ghost pill button: 70px border-radius, 1px #ffffff border, transparent fill, 10px 20px padding. Label in Saans 12px weight 380 uppercase letter-spacing 0.6px #ffffff. Prefix with a 4px white circle as an active indicator.\n\n3. Build a full-bleed editorial hero: 100vw wide, 90vh tall, photograph as background (figure off-center left, dramatic crimson lighting, deep shadow). No overlay, no scrim, no headline on top of image.\n\n4. Build a display headline: Saans 130px weight 300 line-height 1.08 letter-spacing -3.25px #ffffff. Set above or below its own section of negative space — never on top of the hero photograph.\n\n5. Build a circular portrait frame: square container, 594px border-radius, photographic content cropped tight. Use only when a geometric counterpoint to the free-bleed photography is needed."
+}

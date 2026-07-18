@@ -1,0 +1,1818 @@
+{
+  "source": "https://styles.refero.design/style/5183054c-4c6e-4ecf-bd90-f7d794d5eb17",
+  "uuid": "5183054c-4c6e-4ecf-bd90-f7d794d5eb17",
+  "name": "Telepathic Instruments",
+  "northStar": "broadcast control room at golden hour — obsidian screens, warm cream paper, one tungsten bulb",
+  "capturedAt": "2026-07-18T08:28:58.679Z",
+  "meta": {
+    "url": "https://telepathicinstruments.com",
+    "siteName": "Telepathic Instruments",
+    "extractedAt": "2026-06-03T16:57:35.355Z",
+    "durationMs": 41239,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 465,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Solder Orange #ff6c2f only for the single most important action on a page — once maximum. All other actions use Carbon Black or ghost variants.",
+      "Set display headlines at 100px with -0.0300em letter-spacing and 0.85 line-height in Suisse Intl weight 400. The tight tracking is the signature — do not loosen it.",
+      "Apply 24px border-radius to all product cards, community photos, and large surface containers. Use 2px for inputs, tags, and small UI elements. Use 9999px for all buttons and pills.",
+      "Use Suisse Intl Mono for all button text, nav links, labels, and any element that should read as technical or instrument-grade. Keep it uppercase with normal letter-spacing.",
+      "Let the floating dark pill nav sit above content with generous top margin (56px+). It is the first thing a visitor sees and must read as a control surface.",
+      "Build card grids that are image-dominant: full-bleed photography filling the card edge-to-edge, with text overlaid or in a minimal header strip.",
+      "Anchor sections with 80px vertical gaps. The comfortable density requires air — do not compress sections below 56px."
+    ],
+    "donts": [
+      "Do not introduce additional accent colors. The entire chromatic system is one orange. Adding a blue, green, or second orange dilutes the signal.",
+      "Do not use soft drop shadows on cards or panels. The design is deliberately flat — depth comes from surface color steps and photography, not elevation.",
+      "Do not set body text below 14px. The mono face in particular becomes illegible below 12px; use it only for true labels.",
+      "Do not center-align body paragraphs. Use left-aligned two-column section headers (title left, description right) for all non-hero content blocks.",
+      "Do not use the Bone beige #d7cdb8 as a button background or interactive surface — it is decorative wash only. Interactions live in the neutral/orange binary.",
+      "Do not apply letter-spacing to the Suisse Intl Mono face. It already reads as technical; adding tracking breaks the instrument-grade voice.",
+      "Do not mix sans-serif fonts beyond the Suisse Intl + Suisse Intl Mono pair. No serif introductions, no system font fallbacks in final output."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ff6c2f",
+        "name": "Solder Orange",
+        "role": "Primary action background, call-to-action pills, featured product highlight — the single chromatic accent that makes interactive elements feel switched on against the otherwise neutral canvas",
+        "group": "brand"
+      },
+      {
+        "hex": "#d7cdb8",
+        "name": "Bone",
+        "role": "Warm beige wash — soft highlight surfaces and muted decorative fills that keep the palette from feeling clinical",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Signal White",
+        "role": "Card surfaces, content backgrounds, reversed text on dark fills — the clean base layer where product photography sits",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e7eb",
+        "name": "Linen Gray",
+        "role": "Page canvas, hairline borders, nav separators, input borders — the dominant neutral providing the structural baseline across the entire interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c2c2c2",
+        "name": "Fog",
+        "role": "Muted surface fills, secondary panel backgrounds, disabled states",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dddee2",
+        "name": "Soft Mist",
+        "role": "Tertiary surface tint — subtle elevation step between canvas and card",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a3a3a3",
+        "name": "Ash",
+        "role": "Muted helper text, secondary nav labels, icon strokes at rest, footer meta — the quiet voice for non-primary content",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon Black",
+        "role": "Primary text, filled button backgrounds, high-contrast borders, icon fills — the authority tone for headlines and structural elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#191919",
+        "name": "Deep Charcoal",
+        "role": "Near-black surface for the floating nav pill, dark overlay panels, and any near-pure-black surface that needs slightly less harshness than pure black",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page follows a broadcast-stack rhythm: a full-bleed dark photographic hero with centered display text and a single bottom-anchored CTA, followed by a white content band containing a 2-column product grid (one large feature card on the left spanning ~60% width, two stacked product cards on the right), then a generous 80px gap leading to the community section. The community section uses a two-column header (title left, description + button row right) above a 3-column equal grid of community portrait cards. Navigation is a single floating dark pill centered at the top, not a full-width bar. The layout is strictly centered, max-width 1280px, with all content contained — no full-bleed sections beyond the hero image itself. Section gaps are large (80px) creating a magazine-spread rhythm rather than a dense feed.",
+    "imagery": "Imagery is atmospheric and photographic, not illustrative: dark blurred studio photography dominates the hero (cool teal/green with obsidian shapes suggesting synthesizer equipment or circuit boards), while product sections use warm peach gradient backgrounds and outdoor forest photography for merchandise. Treatment is always full-bleed with 24px rounded corners — no hard-edged photography. Community section uses gritty candid phone-camera aesthetic (Damon Albarn studio shot, album art reproduction) with no color correction, embracing the lo-fi authenticity. Icons throughout are minimal — a small globe for locale, a bag icon for cart, and a close × for dismiss — all single-stroke mono style. No illustration or 3D rendering appears; the visual language is entirely photographic and product-screenshot based.",
+    "similar": [
+      {
+        "why": "Same single-accent-monochrome approach with a vivid orange against white/neutral, pill-shaped controls, and grotesk + mono type pairing for hardware-adjacent product UI",
+        "business": "Teenage Engineering"
+      },
+      {
+        "why": "Similar dark atmospheric hero photography of studio equipment, white product card grid, and engineering-voice mono labels for technical product details",
+        "business": "Moog Music"
+      },
+      {
+        "why": "Same flat card-on-canvas layout, generous spacing, dark floating nav pill, and image-dominant product grids with minimal text overlay",
+        "business": "Splice"
+      },
+      {
+        "why": "Same professional audio aesthetic: tight grotesk display headlines, mono labels for plugin UI, dark moody hero photography of studio gear",
+        "business": "Universal Audio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "2px",
+        "cards": "24px",
+        "inputs": "2px",
+        "buttons": "9999px",
+        "navPill": "64px",
+        "largeSurfaces": "32px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#e5e7eb",
+        "name": "Page Canvas",
+        "level": 0,
+        "purpose": "The dominant background — a near-gray linen that recedes behind all content"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Clean white product cards and content panels sitting on the linen canvas"
+      },
+      {
+        "hex": "#dddee2",
+        "name": "Soft Tint",
+        "level": 2,
+        "purpose": "Subtle elevation step for nested or secondary panels"
+      },
+      {
+        "hex": "#c2c2c2",
+        "name": "Muted Fill",
+        "level": 3,
+        "purpose": "Disabled or inactive surface state"
+      },
+      {
+        "hex": "#ff6c2f",
+        "name": "Featured Wash",
+        "level": 4,
+        "purpose": "Full-bleed warm gradient background for hero product cards"
+      }
+    ],
+    "northStar": "broadcast control room at golden hour — obsidian screens, warm cream paper, one tungsten bulb",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.4,
+        "letterSpacing": 0
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "display",
+        "size": 100,
+        "lineHeight": 0.85,
+        "letterSpacing": -3
+      }
+    ],
+    "components": [
+      {
+        "name": "Floating Pill Navigation",
+        "role": "Primary site navigation",
+        "description": "Dark pill-shaped floating nav (Deep Charcoal #191919 background) centered at the top of the page, containing the brand wordmark on the left, uppercase nav links in Suisse Intl Mono 12px with generous letter-spacing, and a globe icon + bag counter on the right. Uses 64px border-radius to achieve the full pill shape, with 36px horizontal padding and ~14px vertical padding. Sits above content with a subtle drop, creating a control-panel header."
+      },
+      {
+        "name": "Primary CTA Pill Button (Orange)",
+        "role": "Primary action button",
+        "description": "Solder Orange (#ff6c2f) filled pill with white text, 9999px border-radius, 16px vertical × 24px horizontal padding, Suisse Intl Mono 12px uppercase. The single chromatic button in the system — used sparingly for the most important action on any page (mailing list, buy now). Always sits on a neutral or photographic surface to maximize contrast."
+      },
+      {
+        "name": "Secondary Ghost Pill Button",
+        "role": "Secondary action button",
+        "description": "White or transparent background with Carbon Black border (1px), Carbon Black text, 9999px radius, 16px × 24px padding, Suisse Intl Mono 12px uppercase. Paired with a right-arrow chevron. Used for secondary actions like 'Join Discord' and 'Join Patreon'."
+      },
+      {
+        "name": "Tertiary Text Link",
+        "role": "Tertiary navigation or inline link",
+        "description": "No background, no border. Carbon Black text in Suisse Intl Mono 12-14px, with a right-arrow chevron suffix to indicate action. Used for exploratory navigation like 'Explore Product' in card overlays."
+      },
+      {
+        "name": "Featured Product Card (Large)",
+        "role": "Hero product showcase",
+        "description": "Large card with 24px border-radius, generous internal padding (40px), containing a product label in the top-left, a ghost 'Explore Product' link in the top-right, and a full product screenshot filling the body. The Pistil Plugin card uses a warm gradient wash (Bone #d7cdb8 to a peach tone) as background. Cards sit on the Linen Gray canvas with no shadow — flat presentation."
+      },
+      {
+        "name": "Merchandise Product Card",
+        "role": "Product grid item for merch",
+        "description": "Tall portrait-ratio card (roughly 1:1.3) with 24px border-radius, no internal padding — the product image fills the entire card edge-to-edge with a forest/outdoor photographic background. Product name overlaid in white Suisse Intl at the top-left, small ghost circle link in the top-right. Image-dominant, text-minimal."
+      },
+      {
+        "name": "Community Portrait Card",
+        "role": "Social proof / community showcase",
+        "description": "Portrait-format photo card with 24px border-radius, 2-3px white border ring creating a printed-photo feel. Image fills the card with a username handle overlay in the bottom-right in white Suisse Intl Mono 12px. No shadow — flat photographic grid."
+      },
+      {
+        "name": "Section Header Block",
+        "role": "Section title and description pair",
+        "description": "Two-column layout: section title on the left (Suisse Intl 20-24px weight 500, Carbon Black) and descriptive paragraph on the right (Suisse Intl 16px, Ash #a3a3a3 or Carbon Black). Followed by a horizontal row of action buttons below. Used for the 'The Garden' / community section."
+      },
+      {
+        "name": "Hero Text Overlay",
+        "role": "Full-bleed hero with atmospheric photography",
+        "description": "Full-viewport-width atmospheric photographic background (dark teal/green blurred studio imagery) with centered display text in Suisse Intl weight 400 at 100px, -0.0300em tracking, 0.85 line-height, in white. No overlay scrim — the text relies on the image's dark areas for contrast. A single CTA pill button sits centered at the bottom of the viewport."
+      },
+      {
+        "name": "Mail List Sticky Bar",
+        "role": "Persistent mailing list prompt",
+        "description": "Thin fixed bar at the bottom-left of the viewport, Solder Orange (#ff6c2f) background, white uppercase Suisse Intl Mono text reading 'JOIN THE MAITLIST' (note the intentional brand typo), with a small white dismiss circle (×) at its right edge. Acts as a persistent low-friction conversion prompt."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface for all display, heading, body, and UI text. The 100px display size paired with -0.0300em tracking and 0.85 line-height creates headlines that read as tightly engineered display specimens — a grotesque with neo-grotesque calm. Weight 500 is used sparingly for emphasis in nav and labels; weight 400 carries body and most headings. Substitute with Inter or Neue Haas Grotesk if Suisse Intl is unavailable.",
+        "sizes": "12px, 16px, 18px, 20px, 24px, 100px",
+        "family": "Suisse Intl",
+        "weight": "400, 500",
+        "lineHeight": "0.85, 1.20, 1.25, 1.40, 1.50",
+        "substitute": "Inter, Neue Haas Grotesk, Söhne",
+        "letterSpacing": "-0.0300em at display (100px), -0.0200em at heading (24px+), normal at body and below"
+      },
+      {
+        "role": "Monospaced companion for technical labels, button text, nav items, tag captions, and any interface element that needs to read as instrument-grade or technical. Letter-spacing stays normal — the mono face provides the engineering voice while the grotesk provides the editorial voice. Substitute with JetBrains Mono or IBM Plex Mono.",
+        "sizes": "12px, 14px, 16px",
+        "family": "Suisse Intl Mono",
+        "weight": "400",
+        "lineHeight": "1.00, 1.20, 1.25, 1.33, 1.43, 1.50",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Geist Mono"
+      }
+    ],
+    "description": "Telepathic Instruments operates in a studio-dark, broadcast-crisp visual register: full-bleed atmospheric photography gives way to white product surfaces and pill-shaped controls, with a single vivid orange as the only chromatic punctuation in an otherwise monochrome world. Typography is the brand's loudest instrument — Suisse Intl set at near-display sizes with aggressive negative tracking (up to -0.03em) creates headlines that read as engineering specimens rather than marketing copy. The aesthetic borrows from audio hardware UIs and Bauhaus signage: hairline borders, flat surfaces, one functional accent, generous negative space. Components stay low-weight and gestural — pill buttons, ghost links, soft 24px card radii — letting product imagery and music equipment screenshots carry visual weight.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5183054c-4c6e-4ecf-bd90-f7d794d5eb17#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Telepathic Instruments design system\",\"item\":\"https://styles.refero.design/style/5183054c-4c6e-4ecf-bd90-f7d794d5eb17\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5183054c-4c6e-4ecf-bd90-f7d794d5eb17#style-reference\",\"name\":\"Telepathic Instruments design system reference\",\"headline\":\"Telepathic Instruments design system | Refero Styles\",\"description\":\"Explore Telepathic Instruments's light Other design system: Solder Orange #ff6c2f, Bone #d7cdb8 colors, Suisse Intl, Suisse Intl Mono typography, and...\",\"url\":\"https://styles.refero.design/style/5183054c-4c6e-4ecf-bd90-f7d794d5eb17\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5183054c-4c6e-4ecf-bd90-f7d794d5eb17\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Telepathic Instruments\",\"url\":\"https://telepathicinstruments.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5183054c-4c6e-4ecf-bd90-f7d794d5eb17#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3d858556-38b2-438e-ab01-e8ed1a963e1f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3d858556-38b2-438e-ab01-e8ed1a963e1f.jpg\",\"caption\":\"Screenshot of Telepathic Instruments\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3d858556-38b2-438e-ab01-e8ed1a963e1f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Telepathic Instruments design system\",\"Telepathic Instruments website design\",\"Telepathic Instruments colors\",\"Telepathic Instruments typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Solder Orange\",\"Bone\",\"Signal White\",\"Linen Gray\",\"Suisse Intl\",\"Suisse Intl Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Telepathic Instruments design system\"},{\"@type\":\"Thing\",\"name\":\"Telepathic Instruments website design\"},{\"@type\":\"Thing\",\"name\":\"Telepathic Instruments colors\"},{\"@type\":\"Thing\",\"name\":\"Telepathic Instruments typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:26:54.569Z\",\"dateModified\":\"2026-04-30T00:26:54.569Z\"}]}19:T953,**Quick Color Reference**\n- background: #e5e7eb (canvas), #ffffff (cards)\n- text: #000000 (primary), #a3a3a3 (muted)\n- border: #e5e7eb (hairline), #000000 (structural)\n- accent: #ff6c2f (Solder Orange — single accent)\n- dark surface: #191919 (nav pill, dark panels)\n- primary action: #ff6c2f (filled action)\n\n**Example Component Prompts**\n\n1. **Hero with atmospheric photo**: Full-viewport-width dark teal blurred photograph as background (suggest moody studio/synthesizer imagery). Centered display headline: 'This May. All will become clear.' in Suisse Intl 100px, weight 400, color #ffffff, letter-spacing -3px, line-height 0.85. A single Solder Orange pill button (#ff6c2f, white uppercase Suisse Intl Mono 12px, 9999px radius, 16px × 24px padding) reading 'JOIN MAILING LIST' centered at the bottom of the viewport.\n\n2. **Featured Product Card**: 24px border-radius white card on a Linen Gray (#e5e7eb) canvas. Top-left label in Suisse Intl 20px weight 500 #000000 reading 'Pistil Plugin'. Top-right ghost link in Suisse Intl Mono 12px #000000 reading 'EXPLORE PRODUCT →'. Body filled with a dark synthesizer plugin UI screenshot (black background, white knobs, keyboard at bottom). No shadow.\n\n3. **Floating Nav Pill**: 64px border-radius dark pill (#191919), 36px horizontal padding, 14px vertical padding, centered at top with 24px top margin. Brand wordmark '/// Telepathic' on the left in white Suisse Intl 16px. Center cluster of nav links: 'ORCHID', 'PISTIL', 'SHOP ALL', 'SUPPORT' in white Suisse Intl Mono 12px uppercase. Right side: small globe icon and 'BAG 0' in white Suisse Intl Mono 12px.\n\n4. **Community Portrait Grid**: 3-column grid of portrait-format photo cards on white background, 24px radius, 12px gap. Each card is a candid photo filling the card edge-to-edge, with a white username handle overlaid in the bottom-right corner in Suisse Intl Mono 12px (e.g. '@oddkdout', '@sama208', '@ethanizquka'). No card shadows.\n\n5. **Section Header with Action Row**: Two-column layout — left column has section title 'The Garden' in Suisse Intl 24px weight 500 #000000. Right column has descriptive paragraph in Suisse Intl 16px #000000 at max 480px width, followed by a row of two ghost pill buttons (white background, 1px #000000 border, 9999px radius, 16px × 24px padding) reading 'JOIN DISCORD →' and 'JOIN PATREON →' in Suisse Intl Mono 12px uppercase."
+      },
+      {
+        "title": "Typographic Voice",
+        "content": "The Suisse Intl pairing is the brand's primary instrument. Display sizes (100px) are set tight at -0.0300em with collapsed line-height (0.85) so that multi-line headlines read as dense editorial blocks rather than airy marketing. Body text uses 16px at 1.5 line-height with default tracking. The mono face is reserved for anything that should feel like a label on a piece of hardware: nav items, buttons, tags, technical metadata. Never use the mono face for paragraphs or descriptions. The two voices together create a broadcast/engineering duality: the grotesk for emotion, the mono for precision."
+      },
+      {
+        "title": "Spacing Rhythm",
+        "content": "The 8px base unit governs all spacing. Buttons use 8-16px vertical padding with 24px horizontal. Cards use 24-40px internal padding. Section gaps are 80px between major content bands. Element gaps within a section are 12-16px. The floating nav sits 24px from the top edge of the viewport. The overall density is comfortable — never compress below these values. The page max-width is 1280px, centered, with all content contained within it. The hero image is the only element allowed to break the container."
+      }
+    ],
+    "elevationPhilosophy": "The design is deliberately flat. No drop shadows are applied to cards, buttons, or panels. Depth is communicated exclusively through surface color steps (canvas → card → elevated tint) and the contrast between the dark floating nav and the light canvas beneath it. This reinforces the broadcast/instrument aesthetic where physical hardware has zero shadow when front-lit."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e5e7eb",
+          "oklch": {
+            "c": 0.006,
+            "h": 264.531,
+            "l": 0.928
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "icon",
+            "body",
+            "hero",
+            "image",
+            "heading",
+            "card",
+            "footer",
+            "list",
+            "input"
+          ],
+          "frequency": 1336,
+          "confidence": 1,
+          "prominence": 92459416.3253124,
+          "properties": [
+            "borderColor",
+            "backgroundColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "other/fill": 1,
+            "input/color": 1,
+            "other/color": 14,
+            "heading/color": 1,
+            "nav/borderColor": 208,
+            "body/borderColor": 200,
+            "card/borderColor": 12,
+            "hero/borderColor": 4,
+            "icon/borderColor": 88,
+            "link/borderColor": 8,
+            "list/borderColor": 40,
+            "image/borderColor": 20,
+            "other/borderColor": 672,
+            "button/borderColor": 24,
+            "footer/borderColor": 4,
+            "heading/borderColor": 36,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "nav",
+            "body",
+            "hero",
+            "image",
+            "heading",
+            "icon",
+            "footer"
+          ],
+          "frequency": 158,
+          "confidence": 1,
+          "prominence": 65109193.02434575,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 18,
+            "nav/color": 2,
+            "body/color": 2,
+            "hero/color": 1,
+            "icon/color": 6,
+            "link/color": 1,
+            "other/fill": 20,
+            "image/color": 1,
+            "other/color": 75,
+            "button/color": 6,
+            "other/stroke": 1,
+            "heading/color": 3,
+            "button/borderColor": 16,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 3,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "nav",
+            "icon",
+            "link",
+            "body",
+            "card",
+            "heading",
+            "image"
+          ],
+          "frequency": 231,
+          "confidence": 1,
+          "prominence": 11095972.07590382,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 17,
+            "body/color": 32,
+            "card/color": 3,
+            "icon/color": 5,
+            "link/color": 2,
+            "other/fill": 48,
+            "image/color": 4,
+            "other/color": 75,
+            "button/color": 4,
+            "other/stroke": 10,
+            "heading/color": 4,
+            "other/borderColor": 20,
+            "body/backgroundColor": 1,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#a3a3a3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7154735289549714
+          },
+          "contexts": [
+            "body",
+            "input",
+            "footer",
+            "other",
+            "button",
+            "icon",
+            "nav",
+            "list"
+          ],
+          "frequency": 87,
+          "confidence": 1,
+          "prominence": 3681876.0226232596,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 33,
+            "body/color": 14,
+            "icon/color": 11,
+            "list/color": 10,
+            "other/color": 9,
+            "button/color": 1,
+            "footer/color": 1,
+            "other/stroke": 4,
+            "input/borderColor": 4
+          }
+        },
+        {
+          "hex": "#191919",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.21342250711191385
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2420021.2134751407,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#305831",
+          "oklch": {
+            "c": 0.07794327451636877,
+            "h": 144.55354987136698,
+            "l": 0.41974617893611404
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1015313,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#d7cdb8",
+          "oklch": {
+            "c": 0.030504842645187616,
+            "h": 85.56557149074274,
+            "l": 0.8507648595762507
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 855291,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#c2c2c2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8153155699991759
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 522916.537449954,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#dddee2",
+          "oklch": {
+            "c": 0.005530402242541283,
+            "h": 274.95927341164236,
+            "l": 0.9009808649114056
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 356556,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#c9fff6",
+          "oklch": {
+            "c": 0.05584687168242756,
+            "h": 183.84818753680528,
+            "l": 0.9605976493249172
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 218025,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "heading/color": 1
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 47540,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ff6c2f",
+          "oklch": {
+            "c": 0.1931438491005193,
+            "h": 40.733148103441486,
+            "l": 0.7053678288234209
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8239,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#006fcf",
+          "oklch": {
+            "c": 0.17039186771823575,
+            "h": 253.49710662392374,
+            "l": 0.5440331002992141
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2047.2903005711555,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 5
+          }
+        },
+        {
+          "hex": "#5a31f4",
+          "oklch": {
+            "c": 0.26385043687247617,
+            "h": 281.10249524482936,
+            "l": 0.5077459821513816
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 912,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#fff48d",
+          "oklch": {
+            "c": 0.1252004784051848,
+            "h": 103.11337298863897,
+            "l": 0.9543947209212326
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 792,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#005b9a",
+          "oklch": {
+            "c": 0.12526813293287806,
+            "h": 248.40387071678353,
+            "l": 0.46083434150784336
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 727,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#0e73b9",
+          "oklch": {
+            "c": 0.13704139734209692,
+            "h": 246.9486902778753,
+            "l": 0.5399605063176147
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 520,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#e9292d",
+          "oklch": {
+            "c": 0.22419451670125085,
+            "h": 26.508075617815866,
+            "l": 0.6030426509050055
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 389,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#059da4",
+          "oklch": {
+            "c": 0.10695099043357031,
+            "h": 200.44312216380203,
+            "l": 0.6331255916995415
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 371,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#142688",
+          "oklch": {
+            "c": 0.16242128594415978,
+            "h": 267.37449748569094,
+            "l": 0.3340041612506964
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 210,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#eb001b",
+          "oklch": {
+            "c": 0.24092118323984527,
+            "h": 26.895939121129537,
+            "l": 0.5913400776286699
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 196,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#f79e1b",
+          "oklch": {
+            "c": 0.16305037209073486,
+            "h": 68.44570771704122,
+            "l": 0.7713824833196328
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 196,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#232323",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.25615330860684143
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 172.76091257860602,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        },
+        {
+          "hex": "#5f6368",
+          "oklch": {
+            "c": 0.009388640685799315,
+            "h": 253.91440396968414,
+            "l": 0.49787747998321896
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 159,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#1e3764",
+          "oklch": {
+            "c": 0.0850166845326298,
+            "h": 261.1915226564557,
+            "l": 0.3420823286201777
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 79,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#ff5f00",
+          "oklch": {
+            "c": 0.20969416782610914,
+            "h": 41.41897947318606,
+            "l": 0.6872155937778596
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 68,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#cc0066",
+          "oklch": {
+            "c": 0.22030215095267489,
+            "h": 2.1145919375423774,
+            "l": 0.5457416410595
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 54,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#34a853",
+          "oklch": {
+            "c": 0.16027720143019927,
+            "h": 148.49546939929175,
+            "l": 0.6475493045428872
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 26,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#ea4335",
+          "oklch": {
+            "c": 0.205841062123344,
+            "h": 29.077253722430367,
+            "l": 0.625730845256174
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 26,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#4285f4",
+          "oklch": {
+            "c": 0.18002738094419357,
+            "h": 259.95600432861727,
+            "l": 0.63038615374003
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 19,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        },
+        {
+          "hex": "#fbbc04",
+          "oklch": {
+            "c": 0.1699294319223394,
+            "h": 84.01425825712796,
+            "l": 0.8304239092121405
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.017472972824321118,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.12,
+          "background": "#000000",
+          "foreground": "#c9fff6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.58,
+          "background": "#fff48d",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.58,
+          "background": "#191919",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.96,
+          "background": "#000000",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.01,
+          "background": "#191919",
+          "foreground": "#c9fff6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.72,
+          "background": "#ffffff",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.62,
+          "background": "#dddee2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.55,
+          "background": "#fff48d",
+          "foreground": "#191919"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.31,
+          "background": "#c9fff6",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.2,
+          "background": "#191919",
+          "foreground": "#e5e7eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.9,
+          "background": "#fff48d",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.31,
+          "background": "#d7cdb8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#dddee2",
+          "foreground": "#191919"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.69,
+          "background": "#e5e7eb",
+          "foreground": "#232323"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#142688"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.3,
+          "background": "#fbbc04",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.79,
+          "background": "#c2c2c2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.76,
+          "background": "#ffffff",
+          "foreground": "#1e3764"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.69,
+          "background": "#dddee2",
+          "foreground": "#232323"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "nav",
+            "body",
+            "button",
+            "other"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "other",
+            "list"
+          ],
+          "frequency": 48,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "body",
+            "heading",
+            "input",
+            "nav"
+          ],
+          "frequency": 43,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginTop|body",
+            "marginBottom|heading",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 30,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "other",
+            "nav"
+          ],
+          "frequency": 27,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 83,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 27,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 280,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Suisse Intl",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 231,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Suisse Intl Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 110,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Suisse Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Suisse Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "body",
+            "nav"
+          ],
+          "frequency": 47,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Suisse Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Suisse Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Suisse Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Suisse Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Suisse Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "input",
+            "button",
+            "body"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Suisse Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Suisse Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Suisse Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "hero",
+            "image",
+            "card",
+            "body",
+            "icon",
+            "heading",
+            "footer",
+            "list"
+          ],
+          "frequency": 177,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisse Intl Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "icon"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Suisse Intl",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 100,
+          "family": "Suisse Intl",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.85,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/e7b4eb1b-499b-47bc-a727-1abe5405f374.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/3d858556-38b2-438e-ab01-e8ed1a963e1f.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5183054c-4c6e-4ecf-bd90-f7d794d5eb17#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Telepathic Instruments design system\",\"item\":\"https://styles.refero.design/style/5183054c-4c6e-4ecf-bd90-f7d794d5eb17\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5183054c-4c6e-4ecf-bd90-f7d794d5eb17#style-reference\",\"name\":\"Telepathic Instruments design system reference\",\"headline\":\"Telepathic Instruments design system | Refero Styles\",\"description\":\"Explore Telepathic Instruments's light Other design system: Solder Orange #ff6c2f, Bone #d7cdb8 colors, Suisse Intl, Suisse Intl Mono typography, and...\",\"url\":\"https://styles.refero.design/style/5183054c-4c6e-4ecf-bd90-f7d794d5eb17\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5183054c-4c6e-4ecf-bd90-f7d794d5eb17\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Telepathic Instruments\",\"url\":\"https://telepathicinstruments.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5183054c-4c6e-4ecf-bd90-f7d794d5eb17#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/3d858556-38b2-438e-ab01-e8ed1a963e1f.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/3d858556-38b2-438e-ab01-e8ed1a963e1f.jpg\",\"caption\":\"Screenshot of Telepathic Instruments\"},\"image\":\"https://images.refero.design/styles/refero.design/image/3d858556-38b2-438e-ab01-e8ed1a963e1f.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Telepathic Instruments design system\",\"Telepathic Instruments website design\",\"Telepathic Instruments colors\",\"Telepathic Instruments typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Solder Orange\",\"Bone\",\"Signal White\",\"Linen Gray\",\"Suisse Intl\",\"Suisse Intl Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Telepathic Instruments design system\"},{\"@type\":\"Thing\",\"name\":\"Telepathic Instruments website design\"},{\"@type\":\"Thing\",\"name\":\"Telepathic Instruments colors\"},{\"@type\":\"Thing\",\"name\":\"Telepathic Instruments typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T00:26:54.569Z\",\"dateModified\":\"2026-04-30T00:26:54.569Z\"}]}19:T953,**Quick Color Reference**\n- background: #e5e7eb (canvas), #ffffff (cards)\n- text: #000000 (primary), #a3a3a3 (muted)\n- border: #e5e7eb (hairline), #000000 (structural)\n- accent: #ff6c2f (Solder Orange — single accent)\n- dark surface: #191919 (nav pill, dark panels)\n- primary action: #ff6c2f (filled action)\n\n**Example Component Prompts**\n\n1. **Hero with atmospheric photo**: Full-viewport-width dark teal blurred photograph as background (suggest moody studio/synthesizer imagery). Centered display headline: 'This May. All will become clear.' in Suisse Intl 100px, weight 400, color #ffffff, letter-spacing -3px, line-height 0.85. A single Solder Orange pill button (#ff6c2f, white uppercase Suisse Intl Mono 12px, 9999px radius, 16px × 24px padding) reading 'JOIN MAILING LIST' centered at the bottom of the viewport.\n\n2. **Featured Product Card**: 24px border-radius white card on a Linen Gray (#e5e7eb) canvas. Top-left label in Suisse Intl 20px weight 500 #000000 reading 'Pistil Plugin'. Top-right ghost link in Suisse Intl Mono 12px #000000 reading 'EXPLORE PRODUCT →'. Body filled with a dark synthesizer plugin UI screenshot (black background, white knobs, keyboard at bottom). No shadow.\n\n3. **Floating Nav Pill**: 64px border-radius dark pill (#191919), 36px horizontal padding, 14px vertical padding, centered at top with 24px top margin. Brand wordmark '/// Telepathic' on the left in white Suisse Intl 16px. Center cluster of nav links: 'ORCHID', 'PISTIL', 'SHOP ALL', 'SUPPORT' in white Suisse Intl Mono 12px uppercase. Right side: small globe icon and 'BAG 0' in white Suisse Intl Mono 12px.\n\n4. **Community Portrait Grid**: 3-column grid of portrait-format photo cards on white background, 24px radius, 12px gap. Each card is a candid photo filling the card edge-to-edge, with a white username handle overlaid in the bottom-right corner in Suisse Intl Mono 12px (e.g. '@oddkdout', '@sama208', '@ethanizquka'). No card shadows.\n\n5. **Section Header with Action Row**: Two-column layout — left column has section title 'The Garden' in Suisse Intl 24px weight 500 #000000. Right column has descriptive paragraph in Suisse Intl 16px #000000 at max 480px width, followed by a row of two ghost pill buttons (white background, 1px #000000 border, 9999px radius, 16px × 24px padding) reading 'JOIN DISCORD →' and 'JOIN PATREON →' in Suisse Intl Mono 12px uppercase."
+}

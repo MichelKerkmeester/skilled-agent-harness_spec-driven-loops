@@ -1,0 +1,62 @@
+:root {
+  /* Colors */
+  --color-signal-orange: #ff4501;
+  --color-apricot-wash: #ffefe9;
+  --color-peach-mist: #ffc2a9;
+  --color-paper-white: #ffffff;
+  --color-carbon-ink: #000000;
+
+  /* Typography — Font Families */
+  --font-neuemontreal: 'NeueMontreal', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-body: 16px;
+  --leading-body: 1.45;
+  --text-body-lg: 22px;
+  --leading-body-lg: 1.4;
+  --text-subheading: 26px;
+  --leading-subheading: 1.36;
+  --text-heading-sm: 36px;
+  --leading-heading-sm: 1.2;
+  --text-heading: 58px;
+  --leading-heading: 1.2;
+  --text-heading-lg: 80px;
+  --leading-heading-lg: 1;
+  --text-display: 200px;
+  --leading-display: 0.8;
+
+  /* Typography — Weights */
+  --font-weight-thin: 100;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-30: 30px;
+  --spacing-35: 35px;
+  --spacing-40: 40px;
+  --spacing-50: 50px;
+  --spacing-58: 58px;
+  --spacing-60: 60px;
+  --spacing-65: 65px;
+  --spacing-72: 72px;
+  --spacing-110: 110px;
+  --spacing-160: 160px;
+
+  /* Layout */
+  --section-gap: 160px;
+  --card-padding: 50px;
+  --element-gap: 60px;
+
+  /* Border Radius */
+  --radius-full: 80px;
+
+  /* Named Radii */
+  --radius-avatars: 9999px;
+  --radius-buttons: 80px;
+  --radius-sections: 0px;
+
+  /* Surfaces */
+  --surface-paper-white: #ffffff;
+  --surface-apricot-wash: #ffefe9;
+  --surface-signal-broadcast: #ff4501;
+}

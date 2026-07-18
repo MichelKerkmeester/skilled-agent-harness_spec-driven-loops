@@ -1,0 +1,567 @@
+{
+  "color": {
+    "mint-canvas": {
+      "$value": "#b7ffb4",
+      "$type": "color",
+      "$description": "Mint Canvas — Page background, card surfaces — the signature pastel that makes dark type appear sunlit rather than printed"
+    },
+    "lime-spark": {
+      "$value": "#00ff00",
+      "$type": "color",
+      "$description": "Lime Spark — Decorative typographic flourishes and SVG scribble overlays — a raw signal-green that contrasts the pastel canvas without warming it"
+    },
+    "carbon-ink": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Carbon Ink — Primary text, borders, icon strokes, button outlines — softer than pure black, sits on mint without vibrating"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Display-type fills at the largest sizes, pure-black SVG fills for the heaviest display specimens"
+    },
+    "fog": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Fog — Muted helper text, inactive borders, disabled controls — the quietest readable neutral on the mint canvas"
+    },
+    "smoke": {
+      "$value": "#767676",
+      "$type": "color",
+      "$description": "Smoke — Input field borders in resting state — darker than fog to signal interactivity without competing with the canvas"
+    },
+    "bone": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Bone — Light surface for elevated UI bits (button hover, inverted controls) — provides a near-white counterpoint when the canvas needs to recede"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Input field interior, pure-white text on dark inverted moments"
+    },
+    "aurora-gradient": {
+      "$value": "#ffa3b6",
+      "$type": "color",
+      "$description": "Aurora Gradient — Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color"
+    }
+  },
+  "font": {
+    "nan-holo-mono": {
+      "$value": "NaN Holo Mono",
+      "$type": "fontFamily",
+      "$description": "All interface chrome — navigation, labels, buttons, form controls, metadata, keyboard hints. Set uppercase with +0.075em tracking, the letter-spacing is the signature that makes mono read as a deliberate UI system rather than terminal output. The weight range lets it flex from thin nav links to heavy button text without leaving the family."
+    },
+    "nan-holo": {
+      "$value": "NaN Holo",
+      "$type": "fontFamily",
+      "$description": "Prose body and large secondary headlines that need to sit beside display specimens without competing. The 86px weight-300 size is a typographic statement — a humanist counterweight to the blocky display faces above it."
+    },
+    "nan-archy-on-extrablack": {
+      "$value": "NaN Archy On ExtraBlack",
+      "$type": "fontFamily",
+      "$description": "Hero display headline — the signature specimen face, shown at its native 228px with tight 0.90 leading so the letterforms stack into a near-monolithic mass. This is the typeface the homepage exists to sell."
+    },
+    "nan-superx-sans-display-black": {
+      "$value": "NaN SuperX Sans Display Black",
+      "$type": "fontFamily",
+      "$description": "Secondary display face — ultra-tight 0.85 leading creates a dense typographic slab, the contrast to Archy's rounded forms. Used in alternate hero rotations."
+    },
+    "nan-superx-serif-text-thin-italic": {
+      "$value": "NaN SuperX Serif Text Thin Italic",
+      "$type": "fontFamily",
+      "$description": "Editorial italic display — the serif counterpoint that proves the practice spans humanist letterforms, not just geometric sans. Thin weight at 216px is a tension device: fragile strokes at monumental size."
+    },
+    "nan-holo-gigawide-ultra1": {
+      "$value": "NaN Holo Gigawide Ultra1",
+      "$type": "fontFamily",
+      "$description": "Ultra-condensed display at 336px — the widest single-character scale on the site, used sparingly as a one-word exclamation."
+    },
+    "nan-rage-family-zipp-soft-beau-sans-narrow": {
+      "$value": "NaN Rage family (Zipp, Soft, Beau, Sans Narrow)",
+      "$type": "fontFamily",
+      "$description": "Card specimen headlines in the 'You Might Have Missed' grid — each card shows the family name rendered in that exact family at 86px, making the grid self-documenting."
+    },
+    "nanragezippnarrowthin": {
+      "$value": "NaNRageZippNarrowThin",
+      "$type": "fontFamily",
+      "$description": "NaNRageZippNarrowThin — detected in extracted data but not described by AI"
+    },
+    "nanragesoftxcondensedregular": {
+      "$value": "NaNRageSoftXCondensedRegular",
+      "$type": "fontFamily",
+      "$description": "NaNRageSoftXCondensedRegular — detected in extracted data but not described by AI"
+    },
+    "nanragebeaustandardsemibold": {
+      "$value": "NaNRageBeauStandardSemibold",
+      "$type": "fontFamily",
+      "$description": "NaNRageBeauStandardSemibold — detected in extracted data but not described by AI"
+    },
+    "nanragesansnarrowmedium": {
+      "$value": "NaNRageSansNarrowMedium",
+      "$type": "fontFamily",
+      "$description": "NaNRageSansNarrowMedium — detected in extracted data but not described by AI"
+    },
+    "nanserfatextlightitalic": {
+      "$value": "NaNSerfATextLightItalic",
+      "$type": "fontFamily",
+      "$description": "NaNSerfATextLightItalic — detected in extracted data but not described by AI"
+    },
+    "nanserfsanslightitalic": {
+      "$value": "NaNSerfSansLightItalic",
+      "$type": "fontFamily",
+      "$description": "NaNSerfSansLightItalic — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "lineHeight": 4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "NaN Holo",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 13px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "14px",
+        "fontWeight": 800,
+        "lineHeight": 2.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "NaN Holo",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "NaN Holo",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "26px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "32px",
+        "fontWeight": 900,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "NaN Holo Mono",
+        "fontSize": "45px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 45px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "NaN Holo",
+        "fontSize": "45px",
+        "fontWeight": 300,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "NaN Holo",
+        "fontSize": "86px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 86px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "NaNRageZippNarrowThin",
+        "fontSize": "86px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 86px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "NaNRageSoftXCondensedRegular",
+        "fontSize": "86px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 86px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "NaNRageBeauStandardSemibold",
+        "fontSize": "86px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 86px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "NaNRageSansNarrowMedium",
+        "fontSize": "86px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 86px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "NaNSerfATextLightItalic",
+        "fontSize": "86px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 86px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "NaNSerfSansLightItalic",
+        "fontSize": "86px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 86px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "NaNSuperXSerifTextThinItalicPREVIEW",
+        "fontSize": "216px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 216px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "NaNSuperXSansDisplayBlackPREVIEW",
+        "fontSize": "216px",
+        "fontWeight": 400,
+        "lineHeight": 0.85
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 216px"
+    },
+    "5xl-10": {
+      "$value": {
+        "fontFamily": "NaNArchyONExtraBlack_PREVIEW",
+        "fontSize": "228px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-10 at 228px"
+    },
+    "5xl-11": {
+      "$value": {
+        "fontFamily": "NaNHoloGigawideUltra1",
+        "fontSize": "336px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-11 at 336px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "29.4px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "mint-canvas": {
+      "$value": "#b7ffb4",
+      "$type": "color",
+      "$description": "Surface level 0: Page background and base surface for all sections"
+    },
+    "bone-lift": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 1: Rare elevated surface for inverted or hover states where mint needs to recede"
+    },
+    "aurora-cta": {
+      "$value": "#ffa3b6",
+      "$type": "color",
+      "$description": "Surface level 2: The sole gradient surface — the discover-more button"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.nan.xyz",
+      "siteName": "NaN",
+      "extractedAt": "2026-06-03T21:10:00.986Z",
+      "variant": "extended"
+    }
+  }
+}

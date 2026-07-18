@@ -1,0 +1,404 @@
+{
+  "color": {
+    "midnight-plum": {
+      "$value": "#0b051d",
+      "$type": "color",
+      "$description": "Midnight Plum — Violet supporting accent for decorative details and low-frequency emphasis."
+    },
+    "deep-plum": {
+      "$value": "#2c2242",
+      "$type": "color",
+      "$description": "Deep Plum — Accent card background — a slightly lifted version of Midnight Plum, used for dark-themed product/feature cards to create tonal variation within the dark family"
+    },
+    "lavender-mist": {
+      "$value": "#aa89f2",
+      "$type": "color",
+      "$description": "Lavender Mist — Violet supporting accent for decorative details and low-frequency emphasis"
+    },
+    "lime-sherbet": {
+      "$value": "#e6ffa9",
+      "$type": "color",
+      "$description": "Lime Sherbet — Accent card background — high-key lime used as a rotating card surface color. High contrast against Midnight Plum text makes it ideal for dark-on-light product cards"
+    },
+    "bubblegum-pink": {
+      "$value": "#ffa8cd",
+      "$type": "color",
+      "$description": "Bubblegum Pink — Red supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "warm-bone": {
+      "$value": "#f9f8f5",
+      "$type": "color",
+      "$description": "Warm Bone — Page canvas — the warm off-white that fills the body of every content section. Slightly cream-toned to feel inviting rather than clinical"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces and nav background — used for elevated cards on the Warm Bone canvas, and for the sticky top navigation bar"
+    },
+    "silver-mist": {
+      "$value": "#e2e2e7",
+      "$type": "color",
+      "$description": "Silver Mist — Hairline borders, input outlines, and card edge definition. Also functions as the inset shadow color on buttons (rgb(228, 227, 223) inset ring)"
+    },
+    "storm-gray": {
+      "$value": "#615f6d",
+      "$type": "color",
+      "$description": "Storm Gray — Primary muted text — body copy, nav links, secondary descriptions. Near-gray with a slight cool violet undertone matching the brand"
+    },
+    "slate-gray": {
+      "$value": "#75727f",
+      "$type": "color",
+      "$description": "Slate Gray — Secondary text — captions, helper text, fine print, and less prominent body copy"
+    },
+    "charcoal-plum": {
+      "$value": "#373544",
+      "$type": "color",
+      "$description": "Charcoal Plum — Dark UI text and button borders — used on pill buttons and nav controls where a softer dark than Midnight Plum is needed"
+    },
+    "ash-gray": {
+      "$value": "#999999",
+      "$type": "color",
+      "$description": "Ash Gray — Tertiary neutral — placeholder text, disabled states, and very low-emphasis UI elements"
+    }
+  },
+  "font": {
+    "klarna-title": {
+      "$value": "Klarna Title",
+      "$type": "fontFamily",
+      "$description": "Custom display font used exclusively for headings and hero text. Sizes escalate dramatically (40→58→90px) with tight 1.05-1.10 line-height — the 90px hero weight is a signature: oversized geometric type that commands the viewport. Normal letter-spacing at these sizes lets the letterforms breathe at their natural width."
+    },
+    "klarna-text": {
+      "$value": "Klarna Text",
+      "$type": "fontFamily",
+      "$description": "Custom UI/body font for navigation labels, input text, and smaller headings. Slight negative tracking (-0.01em) tightens display usage; -0.003em for body keeps text compact without feeling cramped. Weight 500 for nav, 700 for subheadings, 400 for body."
+    },
+    "apple-system": {
+      "$value": "-apple-system",
+      "$type": "fontFamily",
+      "$description": "System font fallback for body text, links, buttons, and general UI at 12-20px. Tighter line-heights (1.14-1.20) for compact UI elements, relaxed 1.43-1.50 for readable body paragraphs."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Klarna Text",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Klarna Text",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Klarna Text",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "-apple-system",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Klarna Title",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Klarna Title",
+        "fontSize": "41px",
+        "fontWeight": 500,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 41px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Klarna Title",
+        "fontSize": "52px",
+        "fontWeight": 500,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Klarna Title",
+        "fontSize": "52px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 52px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Klarna Title",
+        "fontSize": "58px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 58px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Klarna Title",
+        "fontSize": "90px",
+        "fontWeight": 700,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 90px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.1) 0px 2px 4px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "subtle": {
+      "$value": "rgb(228, 227, 223) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "page-canvas": {
+      "$value": "#f9f8f5",
+      "$type": "color",
+      "$description": "Surface level 0: Warm off-white body background filling all content sections"
+    },
+    "card-surface": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: White cards sitting on the Warm Bone canvas, and the top nav bar"
+    },
+    "accent-card-surfaces": {
+      "$value": "#aa89f2",
+      "$type": "color",
+      "$description": "Surface level 2: Vibrant rotating card backgrounds (lavender, lime, deep plum) for feature/product showcases"
+    },
+    "dark-hero-surface": {
+      "$value": "#0b051d",
+      "$type": "color",
+      "$description": "Surface level 3: Full-bleed dark hero section and dark-themed product cards"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://klarna.com",
+      "siteName": "Klarna ES",
+      "extractedAt": "2026-06-03T18:25:49.316Z",
+      "variant": "extended"
+    }
+  }
+}

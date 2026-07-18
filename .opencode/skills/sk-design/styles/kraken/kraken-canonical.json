@@ -1,0 +1,1437 @@
+{
+  "source": "https://styles.refero.design/style/14389660-81ff-4ca0-957f-b0dcc8fbe120",
+  "uuid": "14389660-81ff-4ca0-957f-b0dcc8fbe120",
+  "name": "Kraken",
+  "northStar": "violet ledger on frosted glass — a precise financial document where one electric purple ink does all the talking.",
+  "capturedAt": "2026-07-18T09:50:21.240Z",
+  "meta": {
+    "url": "https://kraken.com",
+    "siteName": "Kraken",
+    "extractedAt": "2026-06-03T17:56:15.571Z",
+    "durationMs": 34093,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 5049,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Kraken Violet #7132f5 as the only saturated color across the interface — one accent, no second chromatic voice.",
+      "Set headlines at 48/36/24px in Kraken-Brand weight 700 with -0.0210em to -0.0140em letter-spacing; the negative tracking is what makes the type read as one confident block.",
+      "Keep cards on the 0px 4px 24px rgba(0,0,0,0.03) shadow — do not increase opacity or blur to gain attention; use a bigger headline instead.",
+      "Default to 8px radius on buttons, inputs, and cards; reserve 9999px for pills, badges, and icon containers only.",
+      "Compose sections on the #ffffff → #f6f5f9 alternation for rhythm; a violet gradient card is a once-per-section punctuation, not a recurring surface.",
+      "Use Kraken-Product 14px/1.43 for body, 12px/1.33 for meta, 10px/1.00 for micro-labels — stay inside this scale and do not invent new sizes.",
+      "Express state changes through fill, not color: tab active = Linen Mist fill, input focus = border darkens to Ink Black, no violet focus rings."
+    ],
+    "donts": [
+      "Do not introduce a second accent color. Green and red are reserved for semantic price-change indicators — never use them for buttons, icons, or decorative elements.",
+      "Do not use 9999px radius on the primary action button — that radius belongs to pills, badges, and icons. The CTA stays at 8px.",
+      "Do not add a colored focus ring (violet glow) to inputs; the 1px border darkening to #101114 is the focus signal.",
+      "Do not use Kraken-Brand for body text — its minimum size is 20px. Body, nav, badges, and table rows belong to Kraken-Product only.",
+      "Do not layer multiple shadows or add colored elevation tints. The single 3%-black shadow is the entire elevation system.",
+      "Do not place white text on the full-strength Kraken Violet #7132f5 for body paragraphs — it works for short labels and CTAs but degrades at paragraph length. Use white on the deeper gradient end (#4f24ad) for longer reading.",
+      "Do not use rgba(0,0,238) blue or any browser-default link color — all links are Ink Black with optional violet underline."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#7132f5",
+        "name": "Kraken Violet",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#2e3350",
+        "name": "Deep Iris",
+        "role": "Dark surface backing for the brand radial gradient and darker brand moments",
+        "group": "brand"
+      },
+      {
+        "hex": "#202333",
+        "name": "Midnight Ink",
+        "role": "Dark surface backing paired with violet gradients, section-level dark accents",
+        "group": "brand"
+      },
+      {
+        "hex": "#101114",
+        "name": "Ink Black",
+        "role": "Primary text, headlines, icon strokes, and input borders — the dominant ink at 18,000+ occurrences",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Page canvas, card surfaces, input fills, and button text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f6f5f9",
+        "name": "Linen Mist",
+        "role": "Subtle off-white for alternating section bands and the hero background tint",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d4d4dc",
+        "name": "Fog Border",
+        "role": "Hairline dividers and disabled button borders",
+        "group": "neutral"
+      },
+      {
+        "hex": "#686b82",
+        "name": "Steel Slate",
+        "role": "Secondary body text, icon tints, muted nav labels, secondary button text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9497a9",
+        "name": "Ash",
+        "role": "Tertiary text and low-emphasis icon strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#484b5e",
+        "name": "Graphite",
+        "role": "Hover and active states on dark elements, deep nav accents",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e4dcf9",
+        "name": "Lilac Wash",
+        "role": "Soft violet-tinted background for ghost buttons and tag highlights",
+        "group": "accent"
+      },
+      {
+        "hex": "#08844f",
+        "name": "Bull Green",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      },
+      {
+        "hex": "#d2e7e1",
+        "name": "Mint Badge",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      },
+      {
+        "hex": "#d11d45",
+        "name": "Bear Red",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      },
+      {
+        "hex": "#026b3f",
+        "name": "Forest Seal",
+        "role": "Green supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page is a max-width 1200px centered column with full-bleed Linen Mist (#f6f5f9) section bands. The hero is a split layout: left half carries a 48px headline, 16px subhead, email input + primary button stack, and a QR download block; the right half holds a single tilted phone render. Sections stack vertically with 64px gaps and alternate between white and Linen Mist to create rhythm without dividers. The news rail is a horizontal 4-card carousel with right-arrow nav. The portfolio section uses a centered heading with a pill tab strip beneath, then a 2-row compact ticker grid at 12px row gaps. Stat blocks are a 3-column equal grid at 24px+ column gaps, no dividers between columns. The navigation is a single horizontal bar — logo left, center links, language/search/login/signup right — no sticky variants, no mega-menus.",
+    "imagery": "Photography is minimal and product-only: a single tilted iPhone render in the hero showing the portfolio screen with a violet price-chart line, and editorial header photos on the news rail (a colorful F1 racing scene, an abstract 3D sphere) that are tightly cropped to the card's 8px corners. The brand uses a radial violet gradient as a self-contained decorative surface for branded cards. Icons are line-style at 1.5–2px stroke, monocolor in Ink Black or Kraken Violet, no filled duotone variants. There is no lifestyle photography, no people, no environmental context — the product and brand marks are the visual content.",
+    "similar": [
+      {
+        "why": "Same single-accent strategy — one signature violet on a white canvas — and the same compact, flat, near-shadowless card system that lets the brand color do the heavy lifting.",
+        "business": "Stripe"
+      },
+      {
+        "why": "Light-mode crypto interface with a single brand chromatic note, information-dense asset rows, and large confident display type on a near-white canvas.",
+        "business": "Coinbase"
+      },
+      {
+        "why": "Financial-product clarity on a white canvas, with green/red reserved exclusively for price-change semantics and a single brand color for everything else.",
+        "business": "Robinhood"
+      },
+      {
+        "why": "Clean light fintech aesthetic with a brand-tinted accent, hairline dividers, soft card shadows, and a tight custom-or-system type pair across a compact information layout.",
+        "business": "Wise"
+      },
+      {
+        "why": "Compact information density, custom display type with negative tracking, and a preference for tone-based separation over heavy borders or shadows.",
+        "business": "Linear"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "8px",
+        "icons": "9999px",
+        "pills": "9999px",
+        "badges": "9999px",
+        "inputs": "8px",
+        "buttons": "8px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "64px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background, the baseline everything sits on"
+      },
+      {
+        "hex": "#f6f5f9",
+        "name": "Linen Band",
+        "level": 1,
+        "purpose": "Hero backdrop and alternating section bands for visual rhythm"
+      },
+      {
+        "hex": "#e4dcf9",
+        "name": "Lilac Tint",
+        "level": 2,
+        "purpose": "Soft violet surface for ghost controls and tag chips"
+      },
+      {
+        "hex": "#d2e7e1",
+        "name": "Mint Chip",
+        "level": 3,
+        "purpose": "Success status pill background"
+      },
+      {
+        "hex": "#7132f5",
+        "name": "Brand Bloom",
+        "level": 4,
+        "purpose": "Brand decorative cards with radial gradient overlay"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0px 4px 24px 0px rgba(0, 0, 0, 0.03)",
+        "element": "Card"
+      },
+      {
+        "style": "0px 1px 4px 0px rgba(16, 24, 40, 0.04)",
+        "element": "Button"
+      }
+    ],
+    "northStar": "violet ledger on frosted glass — a precise financial document where one electric purple ink does all the talking.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body-lg",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.34
+      },
+      {
+        "role": "heading",
+        "size": 36,
+        "lineHeight": 1.22,
+        "letterSpacing": -0.76
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1.17,
+        "letterSpacing": -1.01
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Brand Button",
+        "role": "The single filled action across the product — Sign up, Get started, Buy now",
+        "description": "Filled with Kraken Violet #7132f5, white text at 14px Kraken-Product weight 500, padding 10px 20px, border-radius 8px, subtle 0px 1px 4px rgba(16,24,40,0.04) shadow. The 8px radius (not 9999px) on the primary action is a deliberate choice — it reads as a confident rectangular control, while pills elsewhere handle the softer roles."
+      },
+      {
+        "name": "Ghost Button",
+        "role": "Secondary actions and inline link-buttons",
+        "description": "Transparent background, Lilac Wash #e4dcf9 on hover, Ink Black #101114 text at 14px weight 500, border-radius 8px, padding 10px 20px. No border by default — relies on fill change to signal interactivity."
+      },
+      {
+        "name": "Outline Text Link",
+        "role": "Inline text links and tertiary nav actions",
+        "description": "Ink Black #101114 text at 14px weight 500 with violet underline on hover; the link sits flush with body text, no pill or border."
+      },
+      {
+        "name": "Email Input",
+        "role": "Hero email capture and form fields",
+        "description": "White fill, 1px Ash #9497a9 border, border-radius 8px, padding 12px 16px, placeholder text in Steel Slate #686b82. Focus state tightens border to Ink Black #101114 with no colored ring — the border itself darkens to signal focus."
+      },
+      {
+        "name": "Pill Tab",
+        "role": "Tab strip selectors (Popular, Rewards, Stablecoins, Newly listed)",
+        "description": "Border-radius 9999px, padding 6px 16px, Kraken-Product 14px weight 500. Inactive: Ink Black text on white. Active: Ink Black text on Linen Mist #f6f5f9 — the active state inverts through a soft fill, never through a colored highlight."
+      },
+      {
+        "name": "News/Feature Card",
+        "role": "Editorial cards in the horizontal news rail (MICA licensed, F1, Proof of Reserves, etc.)",
+        "description": "White surface, border-radius 8px, the signature 0px 4px 24px rgba(0,0,0,0.03) shadow. Header image fills the top edge to the card's 8px corners (no separate image frame). Title in Kraken-Product 14px weight 500, meta line (read time) at 12px in Steel Slate. Brand-tinted cards replace the white header with the violet radial gradient for branded announcements."
+      },
+      {
+        "name": "Brand Gradient Card",
+        "role": "Hero brand cards (Kraken Is Officially MICA Licensed) and decorative feature tiles",
+        "description": "Background is the radial gradient rgb(145,107,230) → rgb(105,47,228) → rgb(79,36,173) positioned at 93.96% -5.23%, giving an off-center bloom. White logo or white headline text overlays. Border-radius 8px, no shadow — the gradient itself is the visual weight."
+      },
+      {
+        "name": "Stat Block",
+        "role": "Three-up metrics (651 Crypto assets, 190+ Countries, $2T+ Volume)",
+        "description": "Centered in a horizontal band. Number in Kraken-Brand 36px weight 700 with -0.76px tracking. Label in Kraken-Product 14px weight 400 in Steel Slate #686b82, one line below. No dividers between blocks — spacing alone separates them."
+      },
+      {
+        "name": "Crypto Asset Row",
+        "role": "Ticker rows in the portfolio section (Solana, Polkadot, Dogecoin, etc.)",
+        "description": "Single horizontal row: circular token icon left, ticker symbol in Kraken-Product 14px weight 500, price right-aligned in 14px weight 500, change percentage in 12px in Bull Green #08844f or Bear Red #d11d45. Row gap 12px, no dividers between rows — whitespace alone separates."
+      },
+      {
+        "name": "Success Badge",
+        "role": "Status pills for verified/confirmed states",
+        "description": "Mint Badge #d2e7e1 background, Forest Seal #026b3f text and border, border-radius 9999px, padding 2px 10px, Kraken-Product 12px weight 500. The green-tint palette is muted enough to not compete with the violet brand."
+      },
+      {
+        "name": "QR Download Block",
+        "role": "App download callout beside the email signup",
+        "description": "Small inline block: QR code graphic on the left, two-line text on the right ('Download the Kraken app') in Kraken-Product 14px weight 500, no border, no card — floats directly on the Linen Mist section."
+      },
+      {
+        "name": "Phone Mockup",
+        "role": "Hero right-side product showcase",
+        "description": "A photographic iPhone render tilted slightly, showing the portfolio screen with a violet price chart line. No frame border — the phone is the visual, and its angle gives the otherwise flat layout a single moment of dimensionality."
+      },
+      {
+        "name": "Horizontal Carousel",
+        "role": "Scrollable news/feature rail",
+        "description": "Cards arranged in a single horizontal row, 16px column gap, 20px row gap to the section heading. Navigation arrows (right-pointing chevrons) sit top-right of the section header in a small circular button."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The single workhorse for body, nav, buttons, badges, inputs, and table rows — 16px/1.40 for primary body, 14px/1.43 for secondary text and nav, 12px/1.33 for badges and helper text, 10px/1.00 for micro-labels. Weight 500 carries emphasis (numbers, labels) without jumping to a heavy weight, keeping the interface uniformly lean.",
+        "sizes": "10px, 12px, 14px, 16px",
+        "family": "Kraken-Product",
+        "weight": "400, 500",
+        "lineHeight": "1.00–1.71",
+        "substitute": "Inter (400, 500)"
+      },
+      {
+        "role": "Display and headline typeface — 48px for hero H1 at weight 700 with -0.0210em tracking, 36px for section H2s, 24px for card titles, 20px for subheadings. The custom cuts give a slightly condensed, slightly geometric profile that compresses nicely under negative tracking to read as one tight block rather than airy editorial type.",
+        "sizes": "20px, 24px, 36px, 48px",
+        "family": "Kraken-Brand",
+        "weight": "400, 700",
+        "lineHeight": "1.17–1.40",
+        "substitute": "Inter (700) or General Sans Bold",
+        "letterSpacing": "-0.0210em, -0.0140em"
+      },
+      {
+        "role": "Arial — detected in extracted data but not described by AI",
+        "sizes": "13px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Kraken is a light-mode crypto exchange interface that reads like a precise financial ledger: a near-white canvas (#ffffff, #f6f5f9), near-black typography (#101114) at very high contrast, and one signature violet (#7132f5) that appears sparingly as brand punctuation on headlines, icons, links, and the primary action. Surfaces stay almost weightless — cards float on a barely-there 3% black shadow with 4px/24px blur rather than hard borders, so the whole UI feels printed rather than boxed. The system uses two custom typefaces: Kraken-Product (400/500) for all UI and body text from 10–16px, and Kraken-Brand (400/700) for 20–48px display with tight negative tracking (-0.0210em to -0.0140em) that compresses headlines into a confident, compact block. Information density is high and deliberately so: nav bars, asset tickers, stat grids, and news cards pack together with 12px gutters, letting the white space between sections do the breathing.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/14389660-81ff-4ca0-957f-b0dcc8fbe120#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Kraken design system\",\"item\":\"https://styles.refero.design/style/14389660-81ff-4ca0-957f-b0dcc8fbe120\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/14389660-81ff-4ca0-957f-b0dcc8fbe120#style-reference\",\"name\":\"Kraken design system reference\",\"headline\":\"Kraken design system | Refero Styles\",\"description\":\"Explore Kraken's light Crypto design system: Kraken Violet #7132f5, Deep Iris #2e3350 colors, Kraken-Product, Kraken-Brand typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/14389660-81ff-4ca0-957f-b0dcc8fbe120\",\"mainEntityOfPage\":\"https://styles.refero.design/style/14389660-81ff-4ca0-957f-b0dcc8fbe120\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Kraken\",\"url\":\"https://kraken.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/14389660-81ff-4ca0-957f-b0dcc8fbe120#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fbe11c20-c355-4034-9149-f24837c38991.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fbe11c20-c355-4034-9149-f24837c38991.jpg\",\"caption\":\"Screenshot of Kraken\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fbe11c20-c355-4034-9149-f24837c38991.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Kraken design system\",\"Kraken website design\",\"Kraken colors\",\"Kraken typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Kraken Violet\",\"Deep Iris\",\"Midnight Ink\",\"Ink Black\",\"Kraken-Product\",\"Kraken-Brand\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Kraken design system\"},{\"@type\":\"Thing\",\"name\":\"Kraken website design\"},{\"@type\":\"Thing\",\"name\":\"Kraken colors\"},{\"@type\":\"Thing\",\"name\":\"Kraken typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-02-05T16:26:49.000Z\",\"dateModified\":\"2026-02-05T16:26:49.000Z\"}]}19:T641,## Quick Color Reference\n- Primary text: #101114\n- Secondary text: #686b82\n- Page background: #ffffff\n- Section band: #f6f5f9\n- Hairline border: #d4d4dc\n- Brand accent: #7132f5\n- primary action: no distinct CTA color\n- Positive (price up): #08844f\n- Negative (price down): #d11d45\n\n## Example Component Prompts\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **News/Feature Card**: White surface, 8px radius, 0px 4px 24px rgba(0,0,0,0.03) shadow. Top: full-bleed image filling to the card's 8px corners. Body: 14px Kraken-Product weight 500 title in #101114, 12px read-time meta in #686b82. For branded cards, replace the image with the radial gradient (145,107,230) → (105,47,228) → (79,36,173) at 93.96% -5.23% and overlay white logo text.\n\n3. **Stat Block**: Centered in a 3-column row. Number at 36px Kraken-Brand weight 700 in #101114 with -0.76px tracking. Label at 14px Kraken-Product weight 400 in #686b82 directly beneath. 24px column gap, no dividers.\n\n4. **Pill Tab Strip**: Horizontal row of 6-8 pills, 12px gap. Each pill: border-radius 9999px, padding 6px 16px, Kraken-Product 14px weight 500. Inactive: #101114 text on #ffffff. Active: #101114 text on #f6f5f9.\n\n5. **Crypto Asset Row**: Single horizontal row, 12px row gap between rows. Left: circular token icon. Center: ticker symbol at 14px Kraken-Product weight 500 in #101114. Right: price at 14px weight 500 in #101114, change percentage at 12px in #08844f (positive) or #d11d45 (negative). No row dividers — whitespace alone separates."
+      }
+    ],
+    "elevationPhilosophy": "Kraken treats elevation as a whisper, not a declaration. Cards sit on a 3%-black 24px-blur shadow that reads more as a printed page resting on linen than as digital depth. There are no heavy drop-shadows, no layered glows, no colored elevation — surfaces separate themselves by tone, not by lift."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#101114",
+          "oklch": {
+            "c": 0.0063702879131184035,
+            "h": 271.04219528891264,
+            "l": 0.1778692335863571
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "card",
+            "heading",
+            "body",
+            "input",
+            "link",
+            "icon",
+            "footer"
+          ],
+          "frequency": 18419,
+          "confidence": 1,
+          "prominence": 155452785.0659981,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "button",
+            "nav"
+          ],
+          "frequency": 325,
+          "confidence": 1,
+          "prominence": 91596751.8450979,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "body",
+            "card",
+            "footer"
+          ],
+          "frequency": 2716,
+          "confidence": 1,
+          "prominence": 18596993.685631864,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7132f5",
+          "oklch": {
+            "c": 0.26178294007699154,
+            "h": 288.57649656790875,
+            "l": 0.5298584778429162
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 3988781.728215265,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0b0611",
+          "oklch": {
+            "c": 0.026228192579515353,
+            "h": 305.4324104539145,
+            "l": 0.1368746737913226
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2419895,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f6f5f9",
+          "oklch": {
+            "c": 0.0053924668482694445,
+            "h": 297.72618671943326,
+            "l": 0.9720447241189262
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1630200,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d4d4dc",
+          "oklch": {
+            "c": 0.011682121760032986,
+            "h": 286.3700924352376,
+            "l": 0.8721285968046474
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 325234.3051479812,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2e3350",
+          "oklch": {
+            "c": 0.0517815624678226,
+            "h": 275.7199136360688,
+            "l": 0.33029421191945546
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 164280,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#202333",
+          "oklch": {
+            "c": 0.030382531895465255,
+            "h": 275.88508247678254,
+            "l": 0.2607486562137242
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 161920,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#686b82",
+          "oklch": {
+            "c": 0.03612636129145673,
+            "h": 279.25559605499893,
+            "l": 0.5336382308383404
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "body",
+            "button",
+            "icon"
+          ],
+          "frequency": 2315,
+          "confidence": 1,
+          "prominence": 42150.04907775741,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#767676",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5658363307995767
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 28645.626906625388,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#026b3f",
+          "oklch": {
+            "c": 0.11037490813718458,
+            "h": 156.77677234882418,
+            "l": 0.46466105452810613
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 620,
+          "confidence": 1,
+          "prominence": 15309.441606063796,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d2e7e1",
+          "oklch": {
+            "c": 0.02409861570740624,
+            "h": 175.78485171145496,
+            "l": 0.9106818047535324
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 124,
+          "confidence": 1,
+          "prominence": 11493.544069692443,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dedee5",
+          "oklch": {
+            "c": 0.009465528272330543,
+            "h": 286.20850693302214,
+            "l": 0.9026358579056986
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 96,
+          "confidence": 1,
+          "prominence": 10559.860547499404,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d11d45",
+          "oklch": {
+            "c": 0.20859431876248555,
+            "h": 16.915132393107093,
+            "l": 0.5561106189138924
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 530,
+          "confidence": 1,
+          "prominence": 8482.25626360349,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#08844f",
+          "oklch": {
+            "c": 0.1274844392470349,
+            "h": 156.61150914273156,
+            "l": 0.5404400501742115
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 345,
+          "confidence": 1,
+          "prominence": 8384.020458270905,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e4dcf9",
+          "oklch": {
+            "c": 0.0398895450430879,
+            "h": 297.5435593694897,
+            "l": 0.9103749318941237
+          },
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 5254.5232787301,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#484b5e",
+          "oklch": {
+            "c": 0.031861784915561915,
+            "h": 277.89652214158616,
+            "l": 0.41761248499400205
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1307.991025364905,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9497a9",
+          "oklch": {
+            "c": 0.026604591113124416,
+            "h": 278.1536051980646,
+            "l": 0.6798583457971701
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 1203.3125678441195,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.04683322253467691,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.03,
+          "background": "#0b0611",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.35,
+          "background": "#f6f5f9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#ffffff",
+          "foreground": "#101114"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.45,
+          "background": "#f6f5f9",
+          "foreground": "#0b0611"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.39,
+          "background": "#f6f5f9",
+          "foreground": "#101114"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.26,
+          "background": "#d2e7e1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.9,
+          "background": "#e4dcf9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.69,
+          "background": "#dedee5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.56,
+          "background": "#202333",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.51,
+          "background": "#d2e7e1",
+          "foreground": "#0b0611"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.17,
+          "background": "#e4dcf9",
+          "foreground": "#0b0611"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.96,
+          "background": "#dedee5",
+          "foreground": "#0b0611"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.62,
+          "background": "#d2e7e1",
+          "foreground": "#101114"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.34,
+          "background": "#f6f5f9",
+          "foreground": "#202333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.3,
+          "background": "#e4dcf9",
+          "foreground": "#101114"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.25,
+          "background": "#d4d4dc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.1,
+          "background": "#dedee5",
+          "foreground": "#101114"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.59,
+          "background": "#d4d4dc",
+          "foreground": "#0b0611"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.81,
+          "background": "#d4d4dc",
+          "foreground": "#101114"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 9999,
+          "contexts": [
+            "nav",
+            "icon",
+            "other"
+          ],
+          "frequency": 530
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "badge",
+            "nav",
+            "card",
+            "button"
+          ],
+          "frequency": 406
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "nav",
+            "other"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.03) 0px 4px 24px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 276
+        },
+        {
+          "value": "rgba(16, 24, 40, 0.04) 0px 1px 4px 0px",
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 4
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 260,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 296,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 1344,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 564,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 75,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 1397,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 328,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 26,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 39,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 47,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 126,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "radial",
+        "value": "radial-gradient(280.93% 120.59% at 93.96% -5.23%, rgb(145, 107, 230) 0%, rgb(105, 47, 228) 45.77%, rgb(79, 36, 173) 100%)",
+        "colors": [
+          "rgb(145, 107, 230)",
+          "rgb(105, 47, 228)",
+          "rgb(79, 36, 173)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Kraken-Product",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 4974,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Kraken-Brand",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 31,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 8,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 7,
+          "family": "Kraken-Product",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 253,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Kraken-Product",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 124,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Kraken-Product",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Kraken-Product",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "card",
+            "icon",
+            "link",
+            "body",
+            "footer"
+          ],
+          "frequency": 2537,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Kraken-Product",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body"
+          ],
+          "frequency": 374,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Kraken-Product",
+          "weight": 500,
+          "contexts": [
+            "nav",
+            "input",
+            "button"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Kraken-Product",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 1081,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Kraken-Product",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 553,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Kraken-Product",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Kraken-Brand",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Kraken-Brand",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Kraken-Brand",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.22,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Kraken-Brand",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.22,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Kraken-Brand",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.17,
+          "letterSpacing": -0.021,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/aaaf83f4-c83e-4604-b8e6-cb00679396a4.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/fbe11c20-c355-4034-9149-f24837c38991.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/14389660-81ff-4ca0-957f-b0dcc8fbe120#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Kraken design system\",\"item\":\"https://styles.refero.design/style/14389660-81ff-4ca0-957f-b0dcc8fbe120\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/14389660-81ff-4ca0-957f-b0dcc8fbe120#style-reference\",\"name\":\"Kraken design system reference\",\"headline\":\"Kraken design system | Refero Styles\",\"description\":\"Explore Kraken's light Crypto design system: Kraken Violet #7132f5, Deep Iris #2e3350 colors, Kraken-Product, Kraken-Brand typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/14389660-81ff-4ca0-957f-b0dcc8fbe120\",\"mainEntityOfPage\":\"https://styles.refero.design/style/14389660-81ff-4ca0-957f-b0dcc8fbe120\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Kraken\",\"url\":\"https://kraken.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/14389660-81ff-4ca0-957f-b0dcc8fbe120#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fbe11c20-c355-4034-9149-f24837c38991.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fbe11c20-c355-4034-9149-f24837c38991.jpg\",\"caption\":\"Screenshot of Kraken\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fbe11c20-c355-4034-9149-f24837c38991.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Kraken design system\",\"Kraken website design\",\"Kraken colors\",\"Kraken typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Kraken Violet\",\"Deep Iris\",\"Midnight Ink\",\"Ink Black\",\"Kraken-Product\",\"Kraken-Brand\",\"Arial\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Kraken design system\"},{\"@type\":\"Thing\",\"name\":\"Kraken website design\"},{\"@type\":\"Thing\",\"name\":\"Kraken colors\"},{\"@type\":\"Thing\",\"name\":\"Kraken typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-02-05T16:26:49.000Z\",\"dateModified\":\"2026-02-05T16:26:49.000Z\"}]}19:T641,## Quick Color Reference\n- Primary text: #101114\n- Secondary text: #686b82\n- Page background: #ffffff\n- Section band: #f6f5f9\n- Hairline border: #d4d4dc\n- Brand accent: #7132f5\n- primary action: no distinct CTA color\n- Positive (price up): #08844f\n- Negative (price down): #d11d45\n\n## Example Component Prompts\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **News/Feature Card**: White surface, 8px radius, 0px 4px 24px rgba(0,0,0,0.03) shadow. Top: full-bleed image filling to the card's 8px corners. Body: 14px Kraken-Product weight 500 title in #101114, 12px read-time meta in #686b82. For branded cards, replace the image with the radial gradient (145,107,230) → (105,47,228) → (79,36,173) at 93.96% -5.23% and overlay white logo text.\n\n3. **Stat Block**: Centered in a 3-column row. Number at 36px Kraken-Brand weight 700 in #101114 with -0.76px tracking. Label at 14px Kraken-Product weight 400 in #686b82 directly beneath. 24px column gap, no dividers.\n\n4. **Pill Tab Strip**: Horizontal row of 6-8 pills, 12px gap. Each pill: border-radius 9999px, padding 6px 16px, Kraken-Product 14px weight 500. Inactive: #101114 text on #ffffff. Active: #101114 text on #f6f5f9.\n\n5. **Crypto Asset Row**: Single horizontal row, 12px row gap between rows. Left: circular token icon. Center: ticker symbol at 14px Kraken-Product weight 500 in #101114. Right: price at 14px weight 500 in #101114, change percentage at 12px in #08844f (positive) or #d11d45 (negative). No row dividers — whitespace alone separates."
+}

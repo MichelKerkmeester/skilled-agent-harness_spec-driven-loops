@@ -1,0 +1,2086 @@
+{
+  "source": "https://styles.refero.design/style/b04c379c-7c33-4d69-8882-8d85d7768654",
+  "uuid": "b04c379c-7c33-4d69-8882-8d85d7768654",
+  "name": "Linktr",
+  "northStar": "Editorial posters stacked like candy. A full-bleed color-block site where lime green headlines sit on cobalt blue walls and white pill-shaped navs float across maroon fields.",
+  "capturedAt": "2026-07-18T10:08:52.453Z",
+  "meta": {
+    "url": "https://linktr.ee",
+    "siteName": "Linktr",
+    "extractedAt": "2026-06-03T15:26:07.229Z",
+    "durationMs": 33582,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1265,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": "$undefined"
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Voltage Lime (#d2e823) as the single primary action color on every section; never substitute another hue for CTAs",
+      "Set display headlines at 56–80px Linksans 800 with negative letter-spacing (-0.024em to -0.043em) — tight tracking is signature",
+      "Float the white pill navigation over full-bleed color sections; it should never sit on a flat white page edge",
+      "Use pill radius (9999px) for all buttons and tags; reserve 8px only for inputs and form fields",
+      "Apply full-bleed solid color section backgrounds as the primary layout device; avoid gradients and shadows entirely",
+      "Pair each section's background with a single contrasting text color — Midnight Ink on lime, Voltage Lime on blue, Lilac Whisper on maroon",
+      "Keep card radius in the 32–64px range for a lozenge, sticker-like feel on colored backgrounds"
+    ],
+    "donts": [
+      "Don't use box-shadow or any drop-shadow effect for depth — separation must come from color contrast",
+      "Don't set body or headline type in Arial or any system font; Linksans is non-negotiable for brand voice",
+      "Don't use CTA colors other than #d2e823 — avoid blue, maroon, or pink buttons even when they match a section",
+      "Don't apply tight negative letter-spacing below 18px — tracking only tightens at display sizes",
+      "Don't break the full-bleed section model with subtle background tints or muted neutrals; sections should be loud and saturated",
+      "Don't center body paragraphs — text blocks are left-aligned in a generous measure (max ~520px)",
+      "Don't use square or small-radius buttons; everything clickable is a pill or lozenge",
+      "Don't add gradients to backgrounds, buttons, or text — the system is strictly flat color"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#d2e823",
+        "name": "Voltage Lime",
+        "role": "Primary action buttons, highlighted headlines, accent surfaces — the brand's signature chartreuse, used sparingly as functional punctuation across every section",
+        "group": "brand"
+      },
+      {
+        "hex": "#2665d6",
+        "name": "Cobalt Signal",
+        "role": "Full-bleed section backgrounds, link accents — saturated blue used as an alternate hero band",
+        "group": "brand"
+      },
+      {
+        "hex": "#780016",
+        "name": "Bordeaux Maroon",
+        "role": "Full-bleed FAQ and deep sections — dark wine red for high-contrast blocks",
+        "group": "brand"
+      },
+      {
+        "hex": "#1e2330",
+        "name": "Midnight Ink",
+        "role": "Primary text, icon fills, dark UI outlines — near-black with a faint blue undertone, the default ink color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Plaster White",
+        "role": "Card surfaces, button text, pill nav background — pure white floats above the colored sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f3f3f1",
+        "name": "Bone Canvas",
+        "role": "Page background base, subtle button surfaces — warm off-white with a faint green cast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#adadad",
+        "name": "Cement Gray",
+        "role": "Muted card backgrounds, disabled or secondary surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#676b5f",
+        "name": "Slate Mute",
+        "role": "Muted link text, secondary borders, low-emphasis text — warm desaturated olive-gray",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Carbon",
+        "role": "Deep button text and borders for inverted controls",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e9c0e9",
+        "name": "Lilac Whisper",
+        "role": "Decorative borders, icon strokes, soft accent washes — pastel pink used for outlines and ornaments",
+        "group": "accent"
+      },
+      {
+        "hex": "#061492",
+        "name": "Indigo Abyss",
+        "role": "Deep card surfaces, tertiary button backgrounds — saturated navy",
+        "group": "accent"
+      },
+      {
+        "hex": "#254f1a",
+        "name": "Forest Depth",
+        "role": "Headline outlines, bordered cards, body emphasis — dark forest green as an alternate text color",
+        "group": "accent"
+      },
+      {
+        "hex": "#d6a337",
+        "name": "Saffron",
+        "role": "Card accent backgrounds — warm gold for variety blocks",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed color sections stacked vertically, each one a different hue (lime → blue → maroon). Inside each band, a max-width ~1280px centered content column. Hero pattern is a 2-column split: oversized left-aligned headline + supporting paragraph on the left, a contained photo or device mockup on the right. Navigation is a floating white pill that sits on top of the first color band, not pinned to the page edge. Sections alternate 2-column (text+visual) and full-width stacked content (centered headline → grid). No sidebar, no sticky header beyond the floating nav. Vertical rhythm is generous (80px section gaps) and the bottom of each section is a hard color cut, never a gradient fade.",
+    "imagery": "Photography is lifestyle-candid: real creators in real environments, shot at medium distance with natural light, often posed with props that reinforce their trade (lettering artist with a brush, food founders with ingredients). Subjects are cropped with generous breathing room and never full-bleed — they sit in contained frames to the right of text. Product visuals are angled phone mockups floating in colored space, never literal screenshots. No illustration, no abstract graphics, no 3D renders. Iconography is minimal: simple outlined or filled glyphs at small sizes, Lilac Whisper or Midnight Ink, no multicolor icon system.",
+    "similar": [
+      {
+        "why": "Full-bleed saturated color sections with a single lime-green action accent and rounded pill-shaped CTAs",
+        "business": "Duolingo"
+      },
+      {
+        "why": "Bold flat-color bands stacked vertically, playful rounded shapes, and a single warm accent punctuating the palette",
+        "business": "Headspace"
+      },
+      {
+        "why": "Loud solid-color hero sections, compressed bold display type, and a creator-first lifestyle photography style",
+        "business": "Gumroad"
+      },
+      {
+        "why": "Vivid blue and purple full-bleed sections with pill navigation and oversized editorial headlines",
+        "business": "Loom"
+      },
+      {
+        "why": "Saturated color-block storytelling with a single bright accent (lime) popping against deep brand hues",
+        "business": "Spotify Wrapped"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "8px",
+        "tags": "9999px",
+        "cards": "32px",
+        "pills": "1000px",
+        "inputs": "8px",
+        "buttons": "9999px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1280px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#f3f3f1",
+        "name": "Bone Canvas",
+        "level": 0,
+        "purpose": "Base page background, off-white warm neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Plaster White",
+        "level": 1,
+        "purpose": "Floating nav, cards, input fields, button text"
+      },
+      {
+        "hex": "#d2e823",
+        "name": "Color Section Band",
+        "level": 2,
+        "purpose": "Full-bleed hero and content sections"
+      },
+      {
+        "hex": "#2665d6",
+        "name": "Color Section Band Alt",
+        "level": 3,
+        "purpose": "Alternate full-bleed sections"
+      },
+      {
+        "hex": "#780016",
+        "name": "Deep Section Band",
+        "level": 4,
+        "purpose": "FAQ and footer depth sections"
+      },
+      {
+        "hex": "#adadad",
+        "name": "Cement Overlay",
+        "level": 5,
+        "purpose": "Muted overlays and secondary card backgrounds"
+      }
+    ],
+    "northStar": "Editorial posters stacked like candy. A full-bleed color-block site where lime green headlines sit on cobalt blue walls and white pill-shaped navs float across maroon fields.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.31,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "heading-lg",
+        "size": 51,
+        "lineHeight": 1.06,
+        "letterSpacing": -1.22
+      },
+      {
+        "role": "display-alt",
+        "size": 56,
+        "lineHeight": 1.06,
+        "letterSpacing": -1.34
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 1,
+        "letterSpacing": -3.44
+      }
+    ],
+    "components": [
+      {
+        "name": "Floating Pill Navigation",
+        "role": "Primary site navigation",
+        "description": "White rounded pill floating over full-bleed color sections. Background #ffffff, radius 1000px, height ~64px, horizontal padding ~32px. Logo on left in Midnight Ink (#1e2330). Nav links in 14–15px Linksans 500 at #1e2330. Right side: ghost 'Log in' (dark text, no border) + filled black 'Sign up free' button (#000000, white text, 9999px radius, 18px 22px padding)."
+      },
+      {
+        "name": "Lime Primary Button",
+        "role": "Main call-to-action",
+        "description": "Filled chartreuse green button. Background #d2e823, text #1e2330, radius 9999px, padding 18px 22px. Font: Linksans 700 at 16px. The signature CTA color; appears on every section. Hover darkens to #b8c91b."
+      },
+      {
+        "name": "Black Sign-Up Button",
+        "role": "Secondary navigation action",
+        "description": "Filled black button in the nav pill. Background #000000, text #ffffff, radius 9999px, padding 12px 20px. Font: Linksans 500 at 14–15px. Sits at the far right of the floating nav."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Tertiary inline action",
+        "description": "Text-only button with no fill or border. Text in #1e2330, Linksans 500 at 14–15px. Used for 'Log in' in nav. Hover adds underline."
+      },
+      {
+        "name": "Dark Outlined Card",
+        "role": "Feature or FAQ card",
+        "description": "Card with dark background and light text. Background #780016 (maroon) or #061492, text #ffffff, radius 32–64px, padding 24px. Thin 1px border in #e9c0e9 or #254f1a. Used for FAQ items and feature blocks."
+      },
+      {
+        "name": "Phone Mockup Card",
+        "role": "Product showcase",
+        "description": "Rounded device frame containing app screenshots. Outer container radius 32–64px, often a brand-color block. Inner phone shape radius 41.6px. Used to display Linktree profile previews at angles."
+      },
+      {
+        "name": "Bordered Accent Card",
+        "role": "Highlighted content block",
+        "description": "Card with visible colored border, no fill or tinted fill. Border 2px in #e9c0e9 (pink) or #254f1a (forest), radius 32–64px, padding 24–32px. Background can be #ffffff or section color. Creates a sticker-like emphasis."
+      },
+      {
+        "name": "Text Input Field",
+        "role": "Form input",
+        "description": "Simple input with bottom border or full border. Border 1px in #000000 or #676b5f, radius 8px, padding 8px 16px. Placeholder text in #757575. Font: Linksans 400 at 16px. Used in handle-creation form."
+      },
+      {
+        "name": "Section Heading Block",
+        "role": "Display headline",
+        "description": "Large headline set in 80px or 56px Linksans 800, letter-spacing -0.043em or -0.024em, line-height 1.0–1.06. Color matches section logic: Midnight Ink (#1e2330) on lime, Voltage Lime (#d2e823) on blue, Lilac Whisper (#e9c0e9) on maroon. Word-wraps in 2-line editorial stacks."
+      },
+      {
+        "name": "Handle Input Group",
+        "role": "Profile creation form",
+        "description": "Composite input: small fixed prefix label ('linktr.ee/') in Linksans 500, paired with a text input. Sits inline with the lime primary button to its right. White card-like container with subtle background."
+      },
+      {
+        "name": "FAQ Accordion Row",
+        "role": "Expandable question item",
+        "description": "Full-width row inside maroon section. Background a slightly lighter maroon, radius 16–32px, padding 20–24px. Question text in #ffffff Linksans 500 at 16–18px. Chevron icon in white, rotates 180° on expand. 1px Lilac Whisper (#e9c0e9) border possible."
+      },
+      {
+        "name": "Top Banner Strip",
+        "role": "Promotional announcement bar",
+        "description": "Full-width thin strip above the floating nav. Background Voltage Lime (#d2e823) or white, text #1e2330 in Linksans 500 at 13–14px. Includes a close (×) button on the right. Centers a short message with bold inline emphasis."
+      }
+    ],
+    "typography": [
+      {
+        "role": "System fallback for form inputs and legacy text nodes — only appears as a default rendering, not a designed choice",
+        "sizes": "16px",
+        "family": "Arial",
+        "weight": "400",
+        "lineHeight": "1.50",
+        "substitute": "system-ui"
+      },
+      {
+        "role": "Primary brand typeface — geometric custom sans used everywhere from nav to 80px display headlines. Weight 700–800 at large sizes with negative letter-spacing creates the compressed, poster-like headline voice. Substitute with Inter or Space Grotesk if Linksans is unavailable.",
+        "sizes": "12px, 13px, 14px, 15px, 20px, 24px, 25px, 51px",
+        "family": "Linksans",
+        "weight": "400, 500, 700, 800",
+        "lineHeight": "1.06–1.50",
+        "substitute": "Inter",
+        "letterSpacing": "-0.043em at 80px, -0.024em at 56px, -0.020em at 24–28px, -0.013em at 18px, -0.010em at 15–16px, normal at 12–14px"
+      },
+      {
+        "role": "Linksans Linksansvf — detected in extracted data but not described by AI",
+        "sizes": "14px, 16px, 18px, 24px, 28px, 56px, 80px",
+        "family": "Linksans Linksansvf",
+        "weight": "400, 500, 700, 800",
+        "lineHeight": "1, 1.06, 1.07, 1.2, 1.3, 1.5",
+        "letterSpacing": "-0.02, -0.01, 0.01"
+      },
+      {
+        "role": "yerk — detected in extracted data but not described by AI",
+        "sizes": "14px",
+        "family": "yerk",
+        "weight": "400",
+        "lineHeight": "1.5"
+      }
+    ],
+    "description": "Linktree speaks in full-volume color blocks: each section is a saturated wall of lime, cobalt, or maroon, and content floats on top as white pills and dark text. The system treats color as the layout, not decoration — headers, cards, and CTAs inherit the section hue rather than fighting it, while a recurring chartreuse green acts as the brand's singular action accent. Typography is a single custom geometric sans (Linksans) set extra-bold with tight negative tracking at display sizes, giving headlines a compressed, poster-like weight. Shapes are aggressively rounded: nav bars and buttons become perfect pills, cards become lozenges, and only form inputs keep a modest 8px corner. The result reads as a series of bold editorial spreads rather than a conventional product page.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b04c379c-7c33-4d69-8882-8d85d7768654#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Linktr design system\",\"item\":\"https://styles.refero.design/style/b04c379c-7c33-4d69-8882-8d85d7768654\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b04c379c-7c33-4d69-8882-8d85d7768654#style-reference\",\"name\":\"Linktr design system reference\",\"headline\":\"Linktr design system | Refero Styles\",\"description\":\"Explore Linktr's mixed SaaS design system: Voltage Lime #d2e823, Cobalt Signal #2665d6 colors, Arial, Linksans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/b04c379c-7c33-4d69-8882-8d85d7768654\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b04c379c-7c33-4d69-8882-8d85d7768654\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Linktr\",\"url\":\"https://linktr.ee\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b04c379c-7c33-4d69-8882-8d85d7768654#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c005515e-fbbe-4a80-b843-2b2db67e4586.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c005515e-fbbe-4a80-b843-2b2db67e4586.jpg\",\"caption\":\"Screenshot of Linktr\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c005515e-fbbe-4a80-b843-2b2db67e4586.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Linktr design system\",\"Linktr website design\",\"Linktr colors\",\"Linktr typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Voltage Lime\",\"Cobalt Signal\",\"Bordeaux Maroon\",\"Midnight Ink\",\"Arial\",\"Linksans\",\"Linksans Linksansvf\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Linktr design system\"},{\"@type\":\"Thing\",\"name\":\"Linktr website design\"},{\"@type\":\"Thing\",\"name\":\"Linktr colors\"},{\"@type\":\"Thing\",\"name\":\"Linktr typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-03-31T14:00:42.000Z\",\"dateModified\":\"2026-03-31T14:00:42.000Z\"}]}19:T60a,Quick Color Reference:\n- text: #1e2330 (Midnight Ink)\n- background: #f3f3f1 (Bone Canvas) for neutral pages, or section-specific full-bleed colors\n- surface/card: #ffffff (Plaster White)\n- border: #e9c0e9 (Lilac Whisper) for decorative outlines, #000000 for structural edges\n- accent: #d2e823 (Voltage Lime)\n- primary action: #d2e823 (filled action)\n\nExample Component Prompts:\n\n1. Create a Primary Action Button: #d2e823 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Create a floating white pill navigation: #ffffff background, 1000px radius, ~64px height, 32px horizontal padding. Left: 'Linktree' wordmark in 20px Linksans 700, #1e2330. Center: 5 nav links in 14px Linksans 500, #1e2330, 20px gap. Right: ghost 'Log in' text button (#1e2330, no border) + filled 'Sign up free' button (#000000 fill, #ffffff text, 9999px radius, 12px 20px padding, Linksans 500 14px).\n\n\n4. Create a maroon FAQ section: full-bleed background #780016. Centered headline 'Questions? Answered' in 56px Linksans 800, color #e9c0e9, letter-spacing -1.34px. Below: 4 full-width accordion rows, each with background a slightly lighter maroon, 16–32px radius, 20–24px padding, 1px #e9c0e9 border, question text in #ffffff Linksans 500 18px, and a white chevron icon on the right.\n\n5. Create a top announcement banner: full-width strip, background #d2e823, padding 12px 16px. Centered text in 13px Linksans 500, #1e2330, with a bold inline phrase and a × close button on the far right (16px, #1e2330)."
+      },
+      {
+        "title": "Type System Rules",
+        "content": "Linksans is the only designed typeface; Arial appears only as a legacy fallback in form fields and should be replaced with Linksans wherever possible. The voice is compressed and heavy: display sizes (51–80px) use weight 800 with -0.024em to -0.043em letter-spacing, subheadings (20–28px) use weight 700 with -0.013em to -0.020em, and body (14–18px) uses weight 400–500 with -0.010em to normal tracking. Never set Linksans below 12px. Line-heights collapse at display sizes (1.0–1.06) and breathe at body sizes (1.31–1.50)."
+      },
+      {
+        "title": "Section Color Rotation",
+        "content": "The page cycles through bold solid colors as full-bleed section bands, typically lime → blue → maroon with occasional neutral white in between. Each section pairs its background with exactly one text accent: Midnight Ink on lime, Voltage Lime on blue, Lilac Whisper on maroon. Do not introduce new section colors beyond the four established (lime, blue, maroon, white) unless extending the palette intentionally."
+      }
+    ],
+    "elevationPhilosophy": "The system avoids drop shadows entirely. Depth is achieved through full-bleed color contrast — a white pill nav visibly sits on a lime or blue field, a maroon card sits on a slightly lighter maroon, a phone mockup sits on a cobalt block. No box-shadow, no blur, no glow. Flatness is the identity; separation comes from hue jumps, not elevation."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "card",
+            "image",
+            "nav",
+            "button",
+            "hero",
+            "input",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 2546,
+          "confidence": 1,
+          "prominence": 162980303.35465243,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "body/color": 1,
+            "card/color": 53,
+            "hero/color": 2,
+            "icon/color": 5,
+            "link/color": 21,
+            "other/fill": 290,
+            "image/color": 35,
+            "other/color": 343,
+            "button/color": 11,
+            "nav/borderColor": 14,
+            "body/borderColor": 4,
+            "card/borderColor": 172,
+            "hero/borderColor": 8,
+            "icon/borderColor": 20,
+            "link/borderColor": 84,
+            "image/borderColor": 140,
+            "input/borderColor": 8,
+            "other/borderColor": 1288,
+            "button/borderColor": 44
+          }
+        },
+        {
+          "hex": "#2665d6",
+          "oklch": {
+            "c": 0.18566505848028592,
+            "h": 261.0373164115756,
+            "l": 0.5336161310020816
+          },
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 331,
+          "confidence": 1,
+          "prominence": 9869305.591648413,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/color": 66,
+            "other/borderColor": 264,
+            "hero/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "card",
+            "button",
+            "input",
+            "body",
+            "heading"
+          ],
+          "frequency": 245,
+          "confidence": 1,
+          "prominence": 6587839.231308579,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "icon/color": 1,
+            "other/fill": 155,
+            "other/color": 6,
+            "button/color": 2,
+            "heading/color": 1,
+            "body/borderColor": 8,
+            "icon/borderColor": 4,
+            "other/borderColor": 24,
+            "button/borderColor": 8,
+            "heading/borderColor": 4,
+            "card/backgroundColor": 2,
+            "input/backgroundColor": 2,
+            "other/backgroundColor": 26
+          }
+        },
+        {
+          "hex": "#780016",
+          "oklch": {
+            "c": 0.14571505764421777,
+            "h": 22.125895161985675,
+            "l": 0.3616238789485239
+          },
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 6406478.003137288,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 3,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#f3f3f1",
+          "oklch": {
+            "c": 0.0026513810884412625,
+            "h": 106.44925584311031,
+            "l": 0.9635951109092714
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 5926679.967183782,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#d2e823",
+          "oklch": {
+            "c": 0.19649469753795182,
+            "h": 116.60738015862627,
+            "l": 0.8845858307383376
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "heading",
+            "button",
+            "card"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 5768082.35754948,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/color": 1,
+            "heading/color": 1,
+            "other/borderColor": 4,
+            "heading/borderColor": 4,
+            "card/backgroundColor": 3,
+            "hero/backgroundColor": 1,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#502274",
+          "oklch": {
+            "c": 0.13591224674208802,
+            "h": 306.46978259184084,
+            "l": 0.3615183068894387
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2263479,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1e2330",
+          "oklch": {
+            "c": 0.025668718260385217,
+            "h": 268.230088398989,
+            "l": 0.25723956164220835
+          },
+          "contexts": [
+            "link",
+            "body",
+            "nav",
+            "button",
+            "heading",
+            "other",
+            "icon"
+          ],
+          "frequency": 326,
+          "confidence": 1,
+          "prominence": 1342158.5724805554,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 5,
+            "body/color": 3,
+            "icon/color": 5,
+            "link/color": 5,
+            "other/fill": 106,
+            "other/color": 9,
+            "button/color": 3,
+            "heading/color": 13,
+            "nav/borderColor": 18,
+            "body/borderColor": 12,
+            "icon/borderColor": 20,
+            "link/borderColor": 20,
+            "other/borderColor": 36,
+            "button/borderColor": 12,
+            "heading/borderColor": 52,
+            "link/backgroundColor": 4,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#e8efd6",
+          "oklch": {
+            "c": 0.0338706768218237,
+            "h": 119.77993997805662,
+            "l": 0.9401696599611759
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1243123,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#e9c0e9",
+          "oklch": {
+            "c": 0.07138123539097352,
+            "h": 326.17908603829153,
+            "l": 0.8559607071983549
+          },
+          "contexts": [
+            "heading",
+            "button",
+            "card",
+            "other",
+            "icon",
+            "body"
+          ],
+          "frequency": 287,
+          "confidence": 1,
+          "prominence": 1180701.2213584401,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 9,
+            "icon/stroke": 18,
+            "other/color": 27,
+            "other/stroke": 9,
+            "heading/color": 13,
+            "body/borderColor": 4,
+            "icon/borderColor": 36,
+            "other/borderColor": 108,
+            "heading/borderColor": 52,
+            "card/backgroundColor": 6,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#061492",
+          "oklch": {
+            "c": 0.19447032201945358,
+            "h": 265.38909795512006,
+            "l": 0.3162197917239561
+          },
+          "contexts": [
+            "card",
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 714232.0477716372,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 3,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#254f1a",
+          "oklch": {
+            "c": 0.094538634678963,
+            "h": 139.62144486639642,
+            "l": 0.38395549887645525
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "button",
+            "card"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 493830.97128491674,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "heading/color": 1,
+            "body/borderColor": 4,
+            "heading/borderColor": 4,
+            "card/backgroundColor": 3,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#adadad",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7489070234934424
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 462624.9942063936,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 9
+          }
+        },
+        {
+          "hex": "#d6a337",
+          "oklch": {
+            "c": 0.13410403445314092,
+            "h": 82.20280626868673,
+            "l": 0.7446872035647226
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 252800,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#ebffc5",
+          "oklch": {
+            "c": 0.07792742413608517,
+            "h": 123.29760693675999,
+            "l": 0.9710699453088865
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 91200,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#676b5f",
+          "oklch": {
+            "c": 0.019043668409555924,
+            "h": 122.08606728402683,
+            "l": 0.520583705070505
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 215,
+          "confidence": 1,
+          "prominence": 84861.73393617483,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 29,
+            "other/color": 14,
+            "link/borderColor": 116,
+            "other/borderColor": 56
+          }
+        },
+        {
+          "hex": "#757575",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5624050641913382
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 29458.113038403408,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "input/color": 2
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 15806.143065553812,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 2,
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#c7c8cb",
+          "oklch": {
+            "c": 0.004708070411280349,
+            "h": 269.1968674255205,
+            "l": 0.8327630826358412
+          },
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 9417.514386240782,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "other/fill": 1,
+            "other/color": 1,
+            "button/color": 1,
+            "icon/borderColor": 4,
+            "other/borderColor": 4,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 7281.839364531496,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "link/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0678262129801772,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.64,
+          "background": "#ebffc5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.9,
+          "background": "#f3f3f1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.75,
+          "background": "#e8efd6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#ffffff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.69,
+          "background": "#1e2330",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.31,
+          "background": "#d2e823",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.88,
+          "background": "#ebffc5",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.68,
+          "background": "#ebffc5",
+          "foreground": "#1e2330"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.32,
+          "background": "#f3f3f1",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.12,
+          "background": "#f3f3f1",
+          "foreground": "#1e2330"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.79,
+          "background": "#061492",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.45,
+          "background": "#e8efd6",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.26,
+          "background": "#e8efd6",
+          "foreground": "#1e2330"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.18,
+          "background": "#e9c0e9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.9,
+          "background": "#ebffc5",
+          "foreground": "#061492"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.55,
+          "background": "#c7c8cb",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.41,
+          "background": "#f3f3f1",
+          "foreground": "#061492"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.82,
+          "background": "#ebffc5",
+          "foreground": "#333333"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 99,
+          "contexts": [
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 39
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 21
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 1000,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "input"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 11
+        },
+        {
+          "value": 41.6,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7
+        },
+        {
+          "value": 29.09,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "input",
+            "body"
+          ],
+          "frequency": 23,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "marginTop|other",
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 132,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 42,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav",
+            "input",
+            "link",
+            "card",
+            "button"
+          ],
+          "frequency": 62,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "marginRight|link",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|card",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 44,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 40,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 44,
+          "contexts": [
+            "card",
+            "button",
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|card",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 63,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 60,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 65,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|card",
+            "marginLeft|card",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 73,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 126,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 201,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 216,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 230,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero"
+          ]
+        },
+        {
+          "value": 250,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 272,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|nav"
+          ]
+        },
+        {
+          "value": 298,
+          "contexts": [
+            "image"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|image",
+            "marginLeft|image"
+          ]
+        },
+        {
+          "value": 302,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 317,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Linksans Linksansvf",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700,
+            800
+          ],
+          "frequency": 224,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Linksans",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 158,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "yerk",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Linksans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 63,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Linksans",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 29,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Linksans Linksansvf",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "yerk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Linksans",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 18,
+          "lineHeight": 2.32,
+          "letterSpacing": -0.043,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Linksans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Arial",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "nav",
+            "button",
+            "hero",
+            "body",
+            "image",
+            "icon"
+          ],
+          "frequency": 317,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Linksans Linksansvf",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "image",
+            "other",
+            "card",
+            "button",
+            "icon"
+          ],
+          "frequency": 107,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Linksans Linksansvf",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Linksans Linksansvf",
+          "weight": 400,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Linksans Linksansvf",
+          "weight": 500,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Linksans Linksansvf",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Linksans Linksansvf",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Linksans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Linksans Linksansvf",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Linksans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 25,
+          "family": "Linksans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "lineHeight": 1.31,
+          "letterSpacing": -0.024,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Linksans Linksansvf",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 51,
+          "family": "Linksans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.06,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Linksans Linksansvf",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.06,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Linksans Linksansvf",
+          "weight": 700,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 72,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Linksans Linksansvf",
+          "weight": 800,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.07,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/bcc75763-5190-4d1f-b242-17e80a10417c.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/c005515e-fbbe-4a80-b843-2b2db67e4586.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b04c379c-7c33-4d69-8882-8d85d7768654#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Linktr design system\",\"item\":\"https://styles.refero.design/style/b04c379c-7c33-4d69-8882-8d85d7768654\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b04c379c-7c33-4d69-8882-8d85d7768654#style-reference\",\"name\":\"Linktr design system reference\",\"headline\":\"Linktr design system | Refero Styles\",\"description\":\"Explore Linktr's mixed SaaS design system: Voltage Lime #d2e823, Cobalt Signal #2665d6 colors, Arial, Linksans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/b04c379c-7c33-4d69-8882-8d85d7768654\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b04c379c-7c33-4d69-8882-8d85d7768654\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Linktr\",\"url\":\"https://linktr.ee\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b04c379c-7c33-4d69-8882-8d85d7768654#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/c005515e-fbbe-4a80-b843-2b2db67e4586.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/c005515e-fbbe-4a80-b843-2b2db67e4586.jpg\",\"caption\":\"Screenshot of Linktr\"},\"image\":\"https://images.refero.design/styles/refero.design/image/c005515e-fbbe-4a80-b843-2b2db67e4586.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Linktr design system\",\"Linktr website design\",\"Linktr colors\",\"Linktr typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Voltage Lime\",\"Cobalt Signal\",\"Bordeaux Maroon\",\"Midnight Ink\",\"Arial\",\"Linksans\",\"Linksans Linksansvf\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Linktr design system\"},{\"@type\":\"Thing\",\"name\":\"Linktr website design\"},{\"@type\":\"Thing\",\"name\":\"Linktr colors\"},{\"@type\":\"Thing\",\"name\":\"Linktr typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-03-31T14:00:42.000Z\",\"dateModified\":\"2026-03-31T14:00:42.000Z\"}]}19:T60a,Quick Color Reference:\n- text: #1e2330 (Midnight Ink)\n- background: #f3f3f1 (Bone Canvas) for neutral pages, or section-specific full-bleed colors\n- surface/card: #ffffff (Plaster White)\n- border: #e9c0e9 (Lilac Whisper) for decorative outlines, #000000 for structural edges\n- accent: #d2e823 (Voltage Lime)\n- primary action: #d2e823 (filled action)\n\nExample Component Prompts:\n\n1. Create a Primary Action Button: #d2e823 background, #000000 text, 9999px radius, compact pill padding. Use this filled treatment for the main CTA.\n\n2. Create a floating white pill navigation: #ffffff background, 1000px radius, ~64px height, 32px horizontal padding. Left: 'Linktree' wordmark in 20px Linksans 700, #1e2330. Center: 5 nav links in 14px Linksans 500, #1e2330, 20px gap. Right: ghost 'Log in' text button (#1e2330, no border) + filled 'Sign up free' button (#000000 fill, #ffffff text, 9999px radius, 12px 20px padding, Linksans 500 14px).\n\n\n4. Create a maroon FAQ section: full-bleed background #780016. Centered headline 'Questions? Answered' in 56px Linksans 800, color #e9c0e9, letter-spacing -1.34px. Below: 4 full-width accordion rows, each with background a slightly lighter maroon, 16–32px radius, 20–24px padding, 1px #e9c0e9 border, question text in #ffffff Linksans 500 18px, and a white chevron icon on the right.\n\n5. Create a top announcement banner: full-width strip, background #d2e823, padding 12px 16px. Centered text in 13px Linksans 500, #1e2330, with a bold inline phrase and a × close button on the far right (16px, #1e2330)."
+}

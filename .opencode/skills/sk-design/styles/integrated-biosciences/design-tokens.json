@@ -1,0 +1,377 @@
+{
+  "color": {
+    "bioluminescent-lime": {
+      "$value": "#cef79e",
+      "$type": "color",
+      "$description": "Bioluminescent Lime — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    },
+    "abyssal-ink": {
+      "$value": "#222f30",
+      "$type": "color",
+      "$description": "Abyssal Ink — Primary text, borders, dark canvas sections, nav backgrounds. Near-black with a cool green undertone — it is not pure black, it carries the same green note as the accent. Darkest content surface"
+    },
+    "bone-white": {
+      "$value": "#f7f7f5",
+      "$type": "color",
+      "$description": "Bone White — Light-section page canvas, hero/section backgrounds when in light mode. Warm off-white with the faintest cream cast"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card surfaces on light sections, elevated containers, icon fills, body text on dark surfaces. The brightest surface in the system"
+    },
+    "graphite": {
+      "$value": "#4d5757",
+      "$type": "color",
+      "$description": "Graphite — Secondary body text, muted metadata, subdued borders, ghost button outlines. Mid-tone with a green undertone matching the system"
+    },
+    "lichen": {
+      "$value": "#c9cbbe",
+      "$type": "color",
+      "$description": "Lichen — Hairline borders, subtle dividers, placeholder metadata text. Warm desaturated green-beige that disappears on white but is visible on #f7f7f5"
+    },
+    "tissue": {
+      "$value": "#e7e8e1",
+      "$type": "color",
+      "$description": "Tissue — Alternate card surface — warmer light gray used to differentiate secondary cards or muted content blocks from the white primary surface"
+    },
+    "frost": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Frost — Neutral light card surface when a non-warm alternate is needed"
+    },
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Footer background, pure black anchors. Used sparingly as a true neutral when the Abyssal Ink is too colored"
+    }
+  },
+  "font": {
+    "aspekta": {
+      "$value": "Aspekta",
+      "$type": "fontFamily",
+      "$description": "Sole display and body typeface. Every size from caption to display runs on a single 400 weight — hierarchy is carved by size and tightening tracking, never by weight. Negative letter-spacing scales linearly with size: -0.001em at body, -0.03em at the largest display, keeping the letterforms optically balanced as they grow. The flat single-weight treatment gives the brand its lab-instrument calm — no bold shouting, no italic emotion."
+    },
+    "roboto-mono": {
+      "$value": "Roboto Mono",
+      "$type": "fontFamily",
+      "$description": "Technical labels, nav items, section markers (01/02 counters), tags, publication metadata, button text. Monospaced geometry signals instrumentation and scientific precision — it is the voice of the lab notebook, contrasted against Aspekta's editorial clarity."
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Aspekta",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Aspekta",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Aspekta",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Aspekta",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Aspekta",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Aspekta",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Aspekta",
+        "fontSize": "42px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Aspekta",
+        "fontSize": "58px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 58px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Aspekta",
+        "fontSize": "75px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 75px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Aspekta",
+        "fontSize": "89px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 89px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Aspekta",
+        "fontSize": "111px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 111px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Aspekta",
+        "fontSize": "158px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 158px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "52": {
+      "$value": "52px",
+      "$type": "dimension",
+      "$description": "Spacing 52px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "page-canvas-light": {
+      "$value": "#f7f7f5",
+      "$type": "color",
+      "$description": "Surface level 0: Base background for light sections (Newsroom, editorial)"
+    },
+    "page-canvas-dark": {
+      "$value": "#222f30",
+      "$type": "color",
+      "$description": "Surface level 1: Base background for dark sections (Hero, What We Do, content)"
+    },
+    "card-surface-light": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated cards on light canvas, icon fills on dark"
+    },
+    "card-surface-warm-alternate": {
+      "$value": "#e7e8e1",
+      "$type": "color",
+      "$description": "Surface level 3: Secondary card tone on light sections"
+    },
+    "accent-fill": {
+      "$value": "#cef79",
+      "$type": "color",
+      "$description": "Surface level 4: Interactive micro-surfaces — arrow buttons, active tags, accent dots"
+    },
+    "footer-ground": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 5: Absolute-dark closure surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://integratedbiosciences.com",
+      "siteName": "Integrated Biosciences",
+      "extractedAt": "2026-06-03T17:37:02.986Z",
+      "variant": "extended"
+    }
+  }
+}

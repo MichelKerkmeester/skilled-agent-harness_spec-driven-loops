@@ -1,0 +1,56 @@
+:root {
+  /* Colors */
+  --color-bone: #e7ded1;
+  --color-void: #000000;
+  --color-maroon-gradient: #4c0b02;
+  --gradient-maroon-gradient: linear-gradient(rgb(76, 11, 2), rgb(91, 48, 82));
+  --color-violet-gradient: #1e1594;
+  --gradient-violet-gradient: linear-gradient(rgb(76, 11, 2), rgb(91, 48, 82));
+  --color-crimson-gradient: #6e1815;
+  --gradient-crimson-gradient: linear-gradient(rgb(152, 29, 38), rgb(76, 49, 48));
+  --color-plum-gradient: #6d0251;
+  --gradient-plum-gradient: linear-gradient(rgb(182, 1, 34), rgb(83, 48, 59));
+  --color-olive-gradient: #a8b428;
+  --gradient-olive-gradient: linear-gradient(rgb(168, 180, 40), rgb(69, 68, 58));
+
+  /* Typography — Font Families */
+  --font-nb-akademie: 'NB Akademie', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-nb-akademie-mono: 'NB Akademie Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.2;
+  --tracking-caption: -0.495px;
+  --text-subheading: 32px;
+  --leading-subheading: 1.2;
+  --tracking-subheading: -1.44px;
+  --text-heading: 35px;
+  --leading-heading: 1.2;
+  --tracking-heading: -0.56px;
+  --text-display: 121px;
+  --leading-display: 0.85;
+  --tracking-display: -1.936px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-10: 10px;
+  --spacing-11: 11px;
+  --spacing-26: 26px;
+  --spacing-30: 30px;
+  --spacing-50: 50px;
+  --spacing-75: 75px;
+
+  /* Layout */
+  --section-gap: 50px;
+  --card-padding: 0px;
+  --element-gap: 10-11px;
+
+  /* Named Radii */
+  --radius-all: 0px;
+
+  /* Surfaces */
+  --surface-void: #000000;
+  --surface-gradient-fields: #4c0b02;
+}

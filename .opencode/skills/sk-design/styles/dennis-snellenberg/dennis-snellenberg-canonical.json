@@ -1,0 +1,1129 @@
+{
+  "source": "https://styles.refero.design/style/28e8e762-8d8c-4e88-84ed-858f9917cb58",
+  "uuid": "28e8e762-8d8c-4e88-84ed-858f9917cb58",
+  "name": "Dennis Snellenberg",
+  "northStar": "Dark editorial canvas with giant quiet headlines",
+  "capturedAt": "2026-07-18T08:14:35.076Z",
+  "meta": {
+    "url": "https://dennissnellenberg.com",
+    "siteName": "Dennis Snellenberg",
+    "extractedAt": "2026-06-03T17:51:09.281Z",
+    "durationMs": 25625,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 323,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "skipped",
+        "attempts": 1
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Dennis Sans at weight 450 exclusively — never bold, never light; the single weight is the system",
+      "Set letter-spacing to 0.0500em on every text element including body copy; the uniform tracking is signature",
+      "Use #1c1d20 as the canvas for every page; other surfaces (#494a4d, #455ce9) are exceptions, not the rule",
+      "Set all interactive elements (links, buttons, badges) to 36.72px border-radius for full pill shape",
+      "Use the 1px inset white border at 20% opacity as the only elevation technique — no drop shadows",
+      "Let display headlines (88–216px) bleed off the canvas edge for editorial tension",
+      "Reserve #455ce9 for one accent element per viewport — the violet is punctuation, not decoration"
+    ],
+    "donts": [
+      "Don't introduce additional weights (400, 600, 700) — the single-weight system is intentional and fragile",
+      "Don't add drop shadows or multi-layer elevation; the inset border is the entire depth vocabulary",
+      "Don't use #455ce9 on more than one element per section — overuse dilutes the accent's impact",
+      "Don't use sharp corners (0–4px radius) on interactive elements; the pill shape is the signature",
+      "Don't introduce new chromatic colors — the palette is monochrome plus one violet, period",
+      "Don't center-align body copy or long-form text; left-align everything to preserve the editorial gravity",
+      "Don't use line-height above 1.07 on display sizes (60px+); tight leading is what makes the type feel monolithic"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#1c1d20",
+        "name": "Obsidian Canvas",
+        "role": "Page background, card surfaces, text on light surfaces, hairline borders — the near-black that owns 95% of the interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Primary text, inverted card surfaces, link text on violet, subtle inset borders — the only light tone in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#999d9e",
+        "name": "Fog",
+        "role": "Muted secondary text, captions, metadata — sits between the canvas and white in the neutral scale",
+        "group": "neutral"
+      },
+      {
+        "hex": "#494a4d",
+        "name": "Graphite",
+        "role": "Elevated surface layer above the canvas, soft card backgrounds, link hover glow — adds a half-step of depth without breaking the monochrome read",
+        "group": "neutral"
+      },
+      {
+        "hex": "#455ce9",
+        "name": "Electric Iris",
+        "role": "Accent card fills, link/button backgrounds, active state highlights — the one chromatic voice; its vividness is amplified by 99% achromatic surroundings",
+        "group": "brand"
+      },
+      {
+        "hex": "#334bd3",
+        "name": "Deep Iris",
+        "role": "Secondary accent surface, deeper violet card variant — used when the primary iris needs a stepped companion for layered cards or gradient-feeling stacks",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed pages with no max-width container — the canvas extends edge to edge. Hero is a single viewport: full-bleed photograph with navigation floating at top corners, a location badge anchored mid-left, and a 216px name bleeding off the bottom-left edge. Content sections below follow a left-aligned single-column rhythm with generous vertical gaps (120–160px between sections). Cards and content blocks use 10px radius and sit on the dark canvas with no visible boundaries — they are defined by surface color step alone. The grid is implicit, not drawn: elements anchor to the left edge with 12px gutters, creating a strong left-gravity editorial flow.",
+    "imagery": "Full-bleed editorial photography dominates the visual language. Images are high-resolution portraits or environmental shots with natural lighting and minimal color grading — they sit directly on the Obsidian canvas without frames, masks, or rounded corners. Photography is the only color source beyond the violet accent; everything else is monochrome. No illustrations, no 3D, no abstract graphics. The subject of the photograph is the hero — not a product, not a UI mockup, a person or place rendered at human scale.",
+    "similar": [
+      {
+        "why": "Same full-bleed dark photography hero, massive single-weight display name bleeding off canvas, monochrome canvas with one chromatic accent",
+        "business": "Cody Lindquist"
+      },
+      {
+        "why": "Identical editorial portfolio grammar — dark canvas, oversized name as hero element, minimal nav, single-weight custom sans-serif",
+        "business": "Rauno Freiberg"
+      },
+      {
+        "why": "Same restraint philosophy: near-black background, full-bleed imagery, large confident type, violet/blue accent used as rare punctuation",
+        "business": "Tobias van Schneider"
+      },
+      {
+        "why": "Dark-mode portfolio with full-bleed photography, pill-shaped interactive elements, and a single accent color against monochrome surroundings",
+        "business": "Basement Studio"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "10px",
+        "links": "36.72px",
+        "badges": "36.72px",
+        "buttons": "36.72px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "120-160px",
+      "cardPadding": "18-22px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#1c1d20",
+        "name": "Obsidian Canvas",
+        "level": 1,
+        "purpose": "Page background — the default ground for every screen"
+      },
+      {
+        "hex": "#494a4d",
+        "name": "Graphite",
+        "level": 2,
+        "purpose": "Elevated surface for cards, badges, and secondary panels"
+      },
+      {
+        "hex": "#334bd3",
+        "name": "Deep Iris",
+        "level": 3,
+        "purpose": "Accent surface for featured or category cards"
+      },
+      {
+        "hex": "#455ce9",
+        "name": "Electric Iris",
+        "level": 4,
+        "purpose": "Top accent surface for CTA cards and interactive link fills"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset",
+        "element": "Inset-Border Link"
+      }
+    ],
+    "northStar": "Dark editorial canvas with giant quiet headlines",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.45,
+        "letterSpacing": 0.5
+      },
+      {
+        "role": "body-lg",
+        "size": 15,
+        "lineHeight": 1.66,
+        "letterSpacing": 0.75
+      },
+      {
+        "role": "heading-sm",
+        "size": 33,
+        "lineHeight": 1.2,
+        "letterSpacing": 1.65
+      },
+      {
+        "role": "heading",
+        "size": 60,
+        "lineHeight": 1.07,
+        "letterSpacing": 3
+      },
+      {
+        "role": "heading-lg",
+        "size": 88,
+        "lineHeight": 1.06,
+        "letterSpacing": 4.4
+      },
+      {
+        "role": "display",
+        "size": 216,
+        "lineHeight": 1,
+        "letterSpacing": 10.8
+      }
+    ],
+    "components": [
+      {
+        "name": "Full-Bleed Hero",
+        "role": "Opening viewport with photography and massive name",
+        "description": "Edge-to-edge image (no radius, no border) on Obsidian Canvas background. Name set in Dennis Sans 216px / 1.00 line-height / letter-spacing 10.8px, color #ffffff, positioned bottom-left and intentionally bleeding off the canvas edge. No buttons in the hero — navigation is top-bar only."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Minimal site navigation",
+        "description": "Absolute-positioned over hero. Logo '© Code by Dennis' in 12px #ffffff at top-left (12px from edges). Nav items (Work, About, Contact) in 12px #ffffff at top-right, 32px gap between items. No backgrounds, no borders, no underlines — text floats directly on the photograph."
+      },
+      {
+        "name": "Location Pill Badge",
+        "role": "Geographic metadata indicator",
+        "description": "36.72px radius pill, 18px vertical / 22px horizontal padding, background #1c1d20 (or transparent over image). White globe icon on the right, 'Located in the Netherlands' text in 12px #ffffff stacked in three lines at 1.20 line-height on the left. Feels like a floating tag, not a button."
+      },
+      {
+        "name": "Pill Link / Button",
+        "role": "Primary interactive element across the system",
+        "description": "36.72px border-radius (fully pill-shaped). Padding 12px 22px. Background #1c1d20 or #455ce9 depending on variant. Text 14px Dennis Sans 450 #ffffff or #1c1d20. Optional inset border: rgba(255,255,255,0.2) 0 0 0 1px inset for subtle definition. No drop shadow, no hover lift — state changes happen via background swap only."
+      },
+      {
+        "name": "Violet Accent Card",
+        "role": "Featured or category card",
+        "description": "10px border-radius, background #455ce9, padding 22px. White text at 17–33px. Used to break the monochrome grid with a single chromatic block — never more than 1–2 per page."
+      },
+      {
+        "name": "Graphite Card",
+        "role": "Standard elevated card on dark canvas",
+        "description": "10px border-radius, background #494a4d, padding 18–22px. White text at 14–17px. Sits half a step above the canvas to create quiet layering without shadows."
+      },
+      {
+        "name": "Arrow Indicator",
+        "role": "Directional or scroll cue",
+        "description": "Thin 1px white SVG arrow (↘) with no container. Often paired with adjacent body text like 'Freelance Designer & Developer' in 15px #ffffff. The arrow carries the interactive meaning; the text is purely descriptive."
+      },
+      {
+        "name": "Section Headline Block",
+        "role": "Large typographic section opener",
+        "description": "Dennis Sans 60–88px / line-height 1.06–1.07 / letter-spacing 3–4.4px, color #ffffff. Aligned left, sits directly on Obsidian Canvas with no eyebrow label, no underline, no container — type alone defines the section."
+      },
+      {
+        "name": "Inset-Border Link",
+        "role": "Text link with subtle focus ring",
+        "description": "Pill-shaped (36.72px) text container with 1px inset white border at 20% opacity. Text in 14px #ffffff. The inset border is the entire depth system — no drop shadows exist in this design language."
+      },
+      {
+        "name": "Metadata Caption",
+        "role": "Helper text, labels, small annotations",
+        "description": "10–12px Dennis Sans 450 in #999d9e. Letter-spacing 0.5–0.6px. Used for project dates, categories, footnote-style info. Never colored — always sits in the neutral gray range."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family system. Weight 450 is non-standard — not light, not bold, sits in the medium range to feel editorial rather than corporate. Uniform 0.0500em letter-spacing across all sizes creates a distinctive mechanical rhythm. Display sizes (60–216px) use tight line-height (1.00–1.07) so headlines touch or nearly touch; body sizes (14–17px) open up to 1.40–1.66 for readability. The 216px hero name is the signature element — it dwarfs everything else and bleeds off-canvas as intent.",
+        "sizes": "10, 12, 14, 15, 17, 33, 60, 76, 88, 216px",
+        "family": "Dennis Sans",
+        "weight": "450",
+        "lineHeight": "1.00–1.66 (display 1.00–1.07, body 1.40–1.66)",
+        "substitute": "Inter (weight 500) or Untitled Sans",
+        "letterSpacing": "0.0500em across all sizes"
+      }
+    ],
+    "description": "A dark editorial portfolio language built on a near-black canvas where the only color that matters is a single vivid violet. The entire interface collapses to two tones — #1c1d20 for the world, #ffffff for everything written — with a custom sans-serif at a fixed medium weight doing all the talking. Typography is the protagonist: a 216px display name bleeds off the page edge, while 12–15px body copy floats beside full-bleed photography. Violet appears as rare punctuation on cards and link fills, never as decoration. Components are flat, borderless, and large — rounded pills replace buttons, and a single 1px inset white ring is the only shadow language in the system.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/28e8e762-8d8c-4e88-84ed-858f9917cb58#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dennis Snellenberg design system\",\"item\":\"https://styles.refero.design/style/28e8e762-8d8c-4e88-84ed-858f9917cb58\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/28e8e762-8d8c-4e88-84ed-858f9917cb58#style-reference\",\"name\":\"Dennis Snellenberg design system reference\",\"headline\":\"Dennis Snellenberg design system | Refero Styles\",\"description\":\"Explore Dennis Snellenberg's dark Agency design system: Obsidian Canvas #1c1d20, Bone White #ffffff colors, Dennis Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/28e8e762-8d8c-4e88-84ed-858f9917cb58\",\"mainEntityOfPage\":\"https://styles.refero.design/style/28e8e762-8d8c-4e88-84ed-858f9917cb58\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dennis Snellenberg\",\"url\":\"https://dennissnellenberg.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/28e8e762-8d8c-4e88-84ed-858f9917cb58#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/db94ad72-c094-4d67-afd1-54d9b1def58a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/db94ad72-c094-4d67-afd1-54d9b1def58a.jpg\",\"caption\":\"Screenshot of Dennis Snellenberg\"},\"image\":\"https://images.refero.design/styles/refero.design/image/db94ad72-c094-4d67-afd1-54d9b1def58a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dennis Snellenberg design system\",\"Dennis Snellenberg website design\",\"Dennis Snellenberg colors\",\"Dennis Snellenberg typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian Canvas\",\"Bone White\",\"Fog\",\"Graphite\",\"Dennis Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dennis Snellenberg design system\"},{\"@type\":\"Thing\",\"name\":\"Dennis Snellenberg website design\"},{\"@type\":\"Thing\",\"name\":\"Dennis Snellenberg colors\"},{\"@type\":\"Thing\",\"name\":\"Dennis Snellenberg typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:57:33.331Z\",\"dateModified\":\"2026-04-30T01:57:33.331Z\"}]}19:T5c5,Quick Color Reference:\n- canvas: #1c1d20\n- text: #ffffff\n- muted text: #999d9e\n- elevated surface: #494a4d\n- accent card: #455ce9\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Hero section: Obsidian Canvas (#1c1d20) background, full-bleed photograph overlaid. Top-left: '© Code by Dennis' in 12px Dennis Sans 450 #ffffff, 12px from edges. Top-right nav: 'Work  About  Contact' in 12px #ffffff, 32px gaps. Bottom-left: display name in 88–216px Dennis Sans 450, #ffffff, letter-spacing 10.8px, line-height 1.00, intentionally bleeding off the left canvas edge.\n\n2. Location pill badge: 36.72px radius, 18px 22px padding, background #1c1d20, white globe icon (1px stroke) on the right, 'Located in the Netherlands' text stacked in 3 lines at 12px #ffffff line-height 1.20 on the left. Floats over the hero image with no border.\n\n3. Violet accent card: 10px radius, background #455ce9, 22px padding on all sides, content text in 17px Dennis Sans 450 #ffffff, line-height 1.40. One per viewport maximum.\n\n4. Inset-border link: 36.72px radius pill, background #1c1d20, 12px 22px padding, 1px inset border rgba(255,255,255,0.2), text in 14px Dennis Sans 450 #ffffff with 0.7px letter-spacing. The inset border is the only depth indicator.\n\n5. Section headline: Dennis Sans 60px, weight 450, #ffffff, line-height 1.07, letter-spacing 3px, left-aligned directly on Obsidian Canvas with no eyebrow, no underline, no container. 120–160px vertical gap above."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is expressed entirely through surface color steps and a single 1px inset white border at 20% opacity. There are no drop shadows in the system — depth is communicated by the neutral stack (Obsidian → Graphite → Iris) rather than by light simulation. This keeps the interface flat and editorial, closer to print than to skeuomorphic UI."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1c1d20",
+          "oklch": {
+            "c": 0.005954003174765702,
+            "h": 271.15289331512474,
+            "l": 0.2309376996946091
+          },
+          "contexts": [
+            "other",
+            "card",
+            "list",
+            "link",
+            "image",
+            "icon",
+            "hero",
+            "heading",
+            "body",
+            "footer"
+          ],
+          "frequency": 1234,
+          "confidence": 1,
+          "prominence": 65880339.645658545,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "boxShadow",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 12,
+            "card/color": 7,
+            "hero/color": 1,
+            "icon/color": 2,
+            "link/color": 25,
+            "list/color": 24,
+            "other/fill": 4,
+            "image/color": 1,
+            "other/color": 113,
+            "footer/color": 1,
+            "heading/color": 58,
+            "link/boxShadow": 1,
+            "body/borderColor": 48,
+            "card/borderColor": 28,
+            "hero/borderColor": 4,
+            "icon/borderColor": 8,
+            "link/borderColor": 100,
+            "list/borderColor": 96,
+            "image/borderColor": 4,
+            "other/borderColor": 452,
+            "footer/borderColor": 4,
+            "heading/borderColor": 232,
+            "card/backgroundColor": 1,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 6,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "card"
+          ],
+          "frequency": 336,
+          "confidence": 1,
+          "prominence": 12242249.77096315,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "boxShadow",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 43,
+            "other/color": 3,
+            "other/stroke": 8,
+            "heading/color": 18,
+            "other/boxShadow": 5,
+            "body/borderColor": 172,
+            "other/borderColor": 12,
+            "heading/borderColor": 72,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#999d9e",
+          "oklch": {
+            "c": 0.004856820115264181,
+            "h": 214.33550221334986,
+            "l": 0.693037132780448
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2598450.922182292,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#455ce9",
+          "oklch": {
+            "c": 0.21301184380768842,
+            "h": 270.4592428042713,
+            "l": 0.5437557228384766
+          },
+          "contexts": [
+            "card",
+            "link"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 231560.94081460117,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 4,
+            "link/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#334bd3",
+          "oklch": {
+            "c": 0.2092450445269239,
+            "h": 269.0104519780849,
+            "l": 0.4860834079020753
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 89580,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#494a4d",
+          "oklch": {
+            "c": 0.00410897191263302,
+            "h": 271.31450265375497,
+            "l": 0.40996103460759853
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 50901.307696120755,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "link/boxShadow": 2,
+            "other/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.014773795929045175,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 16.85,
+          "background": "#ffffff",
+          "foreground": "#1c1d20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.86,
+          "background": "#494a4d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.8,
+          "background": "#334bd3",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.16,
+          "background": "#999d9e",
+          "foreground": "#1c1d20"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.3,
+          "background": "#455ce9",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.18,
+          "background": "#455ce9",
+          "foreground": "#1c1d20"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.74,
+          "background": "#999d9e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.48,
+          "background": "#334bd3",
+          "foreground": "#1c1d20"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.9,
+          "background": "#494a4d",
+          "foreground": "#1c1d20"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 36.72,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset",
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginRight|body",
+            "marginBottom|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingBottom|heading"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "marginLeft|link"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 17,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 43,
+          "contexts": [
+            "body",
+            "heading",
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|body",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "paddingRight|body"
+          ]
+        },
+        {
+          "value": 54,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|link"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other"
+          ]
+        },
+        {
+          "value": 63,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 90,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 115,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 125,
+          "contexts": [
+            "hero"
+          ],
+          "frequency": 1,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero"
+          ]
+        },
+        {
+          "value": 135,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 189,
+          "contexts": [
+            "other",
+            "hero",
+            "footer"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingTop|hero",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 230,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Dennis Sans",
+          "source": "custom",
+          "weights": [
+            450
+          ],
+          "frequency": 308,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 17,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.9
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Dennis Sans",
+          "weight": 450,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.06,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "Dennis Sans",
+          "weight": 450,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Dennis Sans",
+          "weight": 450,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Dennis Sans",
+          "weight": 450,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Dennis Sans",
+          "weight": 450,
+          "contexts": [
+            "list",
+            "link",
+            "body"
+          ],
+          "frequency": 32,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Dennis Sans",
+          "weight": 450,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.66,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Dennis Sans",
+          "weight": 450,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.66,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 17,
+          "family": "Dennis Sans",
+          "weight": 450,
+          "contexts": [
+            "other",
+            "card",
+            "list",
+            "link",
+            "body",
+            "image",
+            "icon",
+            "hero",
+            "footer"
+          ],
+          "frequency": 179,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Dennis Sans",
+          "weight": 450,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Dennis Sans",
+          "weight": 450,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.66,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "Dennis Sans",
+          "weight": 450,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 33,
+          "family": "Dennis Sans",
+          "weight": 450,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 49,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "Dennis Sans",
+          "weight": 450,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 76,
+          "family": "Dennis Sans",
+          "weight": 450,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 88,
+          "family": "Dennis Sans",
+          "weight": 450,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.07,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 216,
+          "family": "Dennis Sans",
+          "weight": 450,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/13875ee7-1029-4ee7-aca8-d79b527ce0b3.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/db94ad72-c094-4d67-afd1-54d9b1def58a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/28e8e762-8d8c-4e88-84ed-858f9917cb58#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Dennis Snellenberg design system\",\"item\":\"https://styles.refero.design/style/28e8e762-8d8c-4e88-84ed-858f9917cb58\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/28e8e762-8d8c-4e88-84ed-858f9917cb58#style-reference\",\"name\":\"Dennis Snellenberg design system reference\",\"headline\":\"Dennis Snellenberg design system | Refero Styles\",\"description\":\"Explore Dennis Snellenberg's dark Agency design system: Obsidian Canvas #1c1d20, Bone White #ffffff colors, Dennis Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/28e8e762-8d8c-4e88-84ed-858f9917cb58\",\"mainEntityOfPage\":\"https://styles.refero.design/style/28e8e762-8d8c-4e88-84ed-858f9917cb58\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Dennis Snellenberg\",\"url\":\"https://dennissnellenberg.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/28e8e762-8d8c-4e88-84ed-858f9917cb58#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/db94ad72-c094-4d67-afd1-54d9b1def58a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/db94ad72-c094-4d67-afd1-54d9b1def58a.jpg\",\"caption\":\"Screenshot of Dennis Snellenberg\"},\"image\":\"https://images.refero.design/styles/refero.design/image/db94ad72-c094-4d67-afd1-54d9b1def58a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Dennis Snellenberg design system\",\"Dennis Snellenberg website design\",\"Dennis Snellenberg colors\",\"Dennis Snellenberg typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Obsidian Canvas\",\"Bone White\",\"Fog\",\"Graphite\",\"Dennis Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Dennis Snellenberg design system\"},{\"@type\":\"Thing\",\"name\":\"Dennis Snellenberg website design\"},{\"@type\":\"Thing\",\"name\":\"Dennis Snellenberg colors\"},{\"@type\":\"Thing\",\"name\":\"Dennis Snellenberg typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:57:33.331Z\",\"dateModified\":\"2026-04-30T01:57:33.331Z\"}]}19:T5c5,Quick Color Reference:\n- canvas: #1c1d20\n- text: #ffffff\n- muted text: #999d9e\n- elevated surface: #494a4d\n- accent card: #455ce9\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n\n1. Hero section: Obsidian Canvas (#1c1d20) background, full-bleed photograph overlaid. Top-left: '© Code by Dennis' in 12px Dennis Sans 450 #ffffff, 12px from edges. Top-right nav: 'Work  About  Contact' in 12px #ffffff, 32px gaps. Bottom-left: display name in 88–216px Dennis Sans 450, #ffffff, letter-spacing 10.8px, line-height 1.00, intentionally bleeding off the left canvas edge.\n\n2. Location pill badge: 36.72px radius, 18px 22px padding, background #1c1d20, white globe icon (1px stroke) on the right, 'Located in the Netherlands' text stacked in 3 lines at 12px #ffffff line-height 1.20 on the left. Floats over the hero image with no border.\n\n3. Violet accent card: 10px radius, background #455ce9, 22px padding on all sides, content text in 17px Dennis Sans 450 #ffffff, line-height 1.40. One per viewport maximum.\n\n4. Inset-border link: 36.72px radius pill, background #1c1d20, 12px 22px padding, 1px inset border rgba(255,255,255,0.2), text in 14px Dennis Sans 450 #ffffff with 0.7px letter-spacing. The inset border is the only depth indicator.\n\n5. Section headline: Dennis Sans 60px, weight 450, #ffffff, line-height 1.07, letter-spacing 3px, left-aligned directly on Obsidian Canvas with no eyebrow, no underline, no container. 120–160px vertical gap above."
+}

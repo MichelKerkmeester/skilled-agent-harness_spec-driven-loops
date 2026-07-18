@@ -1,0 +1,282 @@
+{
+  "color": {
+    "fog": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Fog — Page canvas, card surfaces, divider hairlines — the warm light gray that IS the page background"
+    },
+    "ink": {
+      "$value": "#10100f",
+      "$type": "color",
+      "$description": "Ink — Primary text, nav links, body copy, icon strokes — near-black with a barely-warm bias (never pure #000)"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card surfaces over the gray canvas, text on dark buttons, product image backgrounds"
+    },
+    "charcoal": {
+      "$value": "#26292a",
+      "$type": "color",
+      "$description": "Charcoal — Filled button background, active states, inverted UI surfaces — warm-tinted dark, never pure black"
+    },
+    "graphite": {
+      "$value": "#40403f",
+      "$type": "color",
+      "$description": "Graphite — Secondary button fill, subtle dark UI accents"
+    },
+    "ash": {
+      "$value": "#b3b3b2",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, tertiary metadata, inactive nav items"
+    },
+    "black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Black — Pure black for SVG icon fills and the occasional hard edge — functional, not brand"
+    },
+    "butter-cream": {
+      "$value": "#fffb85",
+      "$type": "color",
+      "$description": "Butter Cream — Hero display text accent — the single chromatic voice on the page, used only on oversized seasonal headlines over photography"
+    }
+  },
+  "font": {
+    "europagronr2sh": {
+      "$value": "EuropaGroNr2SH",
+      "$type": "fontFamily",
+      "$description": "Headings, display statements, nav items, body emphasis — the hero font. Used at 232–245px with weight 400 and line-height 0.90 for the signature oversized editorial type. The ultra-tight leading locks massive letters into a single visual band. Subheads drop to 32–48px at weight 600–700."
+    },
+    "europagronr2sb": {
+      "$value": "EuropaGroNr2SB",
+      "$type": "fontFamily",
+      "$description": "Small UI text, nav labels, button copy, captions, footer micro-copy. The functional sans — quiet, compact, only at 12–14px. The deliberate size gap between this and EuropaGroNr2SH creates a clear voice split: small = system, large = editorial."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "EuropaGroNr2SB",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "EuropaGroNr2SB",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "EuropaGroNr2SH",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "EuropaGroNr2SH",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "EuropaGroNr2SH",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "EuropaGroNr2SH",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "EuropaGroNr2SH",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "EuropaGroNr2SH",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "EuropaGroNr2SH",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "EuropaGroNr2SH",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "EuropaGroNr2SH",
+        "fontSize": "32px",
+        "fontWeight": 600,
+        "lineHeight": 1.02
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "EuropaGroNr2SH",
+        "fontSize": "40px",
+        "fontWeight": 600,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "EuropaGroNr2SH",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "EuropaGroNr2SH",
+        "fontSize": "232px",
+        "fontWeight": 600,
+        "lineHeight": 1.02
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 232px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "EuropaGroNr2SH",
+        "fontSize": "245px",
+        "fontWeight": 600,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 245px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#efefef",
+      "$type": "color",
+      "$description": "Surface level 1: Page background — the warm off-white that defines the entire visual field"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Product card surfaces and inverted text on dark buttons"
+    },
+    "inverted": {
+      "$value": "#26292a",
+      "$type": "color",
+      "$description": "Surface level 3: Filled button background, interactive dark surfaces"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.rains.com",
+      "siteName": "Rains INT",
+      "extractedAt": "2026-06-03T21:27:56.272Z",
+      "variant": "extended"
+    }
+  }
+}

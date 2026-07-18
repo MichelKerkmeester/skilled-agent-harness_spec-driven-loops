@@ -1,0 +1,1034 @@
+{
+  "source": "https://styles.refero.design/style/523d3e7b-b0a2-4979-a626-00f1487b6e4d",
+  "uuid": "523d3e7b-b0a2-4979-a626-00f1487b6e4d",
+  "name": "Drepute",
+  "northStar": "midnight observatory over still water — a single sentence floats beneath a field of stars",
+  "capturedAt": "2026-07-18T07:33:27.250Z",
+  "meta": {
+    "url": "https://drepute.xyz",
+    "siteName": "Drepute",
+    "extractedAt": "2026-06-03T20:35:36.073Z",
+    "durationMs": 49380,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 101,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Playfair Display weight 400 exclusively for display text — never go above weight 400; the lightness is the luxury.",
+      "Set the wordmark in Montserrat 700 with 0.154em letter-spacing — this tracking is the brand's signature and must not be reduced.",
+      "Keep the canvas at #161616 for all dark surfaces and reserve #ffffff for light sections below the fold.",
+      "Use 4px radius on every rounded element — buttons, inputs, cards. The system has no soft corners.",
+      "Anchor headlines at 56px+ on Playfair Display and pair with Source Sans Pro 14–16px for all supporting text.",
+      "Use 24px column gaps and 24px element padding as the default rhythm; 56px vertical section padding for hero-style blocks.",
+      "Let the teal #00a4a6 appear only as a single link border — never as a fill, button background, or large surface."
+    ],
+    "donts": [
+      "Do not add shadows, gradients, or glows to any component — the system is flat and photographic.",
+      "Do not introduce pills, circles, or any radius above 4px.",
+      "Do not use color fills on buttons — all actions are ghost/outlined with border-only treatment.",
+      "Do not use Playfair Display below 44px — it is a display face, not a body face.",
+      "Do not place body text directly over the hero photograph without a #161616 backing layer — contrast must remain AAA.",
+      "Do not add more than one chromatic accent — the teal is singular; adding another color breaks the cinematic restraint.",
+      "Do not use bold (600+) on the wordmark — weight 700 is the ceiling, and it only applies to Montserrat."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Primary text on dark hero, input fills, light surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Deep Ink",
+        "role": "Dominant text and border color across body, nav, and dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#161616",
+        "name": "Obsidian",
+        "role": "Dark canvas and hero surface — the page's atmospheric base",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bfbfbf",
+        "name": "Ash Gray",
+        "role": "Subtle input borders, ghost box-shadows, disabled hairlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a9a9a9",
+        "name": "Fog",
+        "role": "Secondary body text, muted borders, low-emphasis dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#7f8080",
+        "name": "Steel",
+        "role": "Navigation and link borders, tertiary text on light surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8995a9",
+        "name": "Slate Blue",
+        "role": "Outlined ghost-button border — the only chromatic interactive treatment",
+        "group": "brand"
+      },
+      {
+        "hex": "#00a4a6",
+        "name": "Lagoon Teal",
+        "role": "Sole accent — link border, indicating the single interactive edge in the system",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page model is a full-bleed vertical stack with no max-width container. The hero is a single full-viewport-height section: photographic background, centered wordmark at top, centered headline in the vertical middle. Below the hero, the layout collapses to centered single-column content — a subscribe form, a divider, and footer text — all stacked with 56px vertical breathing room. Navigation is minimal: the top bar is a single notification strip, and the wordmark serves as the only persistent brand element. No sidebar, no grid, no card layouts. The chat widget floats absolutely in the bottom-right corner. The overall rhythm is: one overwhelming image, then silence.",
+    "imagery": "Imagery is singular and cinematic: one full-bleed photographic hero dominates the page. The photograph — a night-sky alpine landscape with mountain silhouettes and a glass-still lake reflection — is high-contrast, dark/moody, and occupies 100% of the viewport. There is no other photography, no illustrations, no product shots, no decorative graphics. The image is the entire visual identity. Icon style is minimal and line-based (single chat bubble). The site is overwhelmingly text-dominant everywhere except the hero, where text is reduced to a single sentence beneath a constellation of stars.",
+    "similar": [
+      {
+        "why": "Same full-bleed photographic hero with a single headline floating over a dark image, wordmark as the only persistent UI element, and near-zero color saturation",
+        "business": "Apple (product launch teasers)"
+      },
+      {
+        "why": "Serif display headlines paired with restrained sans body, deep neutral palette, and a sense of editorial calm",
+        "business": "Aesop"
+      },
+      {
+        "why": "Cinema-grade dark hero with white serif typography, monospace-feel restraint, and an almost entirely achromatic interface",
+        "business": "Mubi"
+      },
+      {
+        "why": "Launching-soon pattern with centered serif headline over atmospheric photography, minimal UI, and a single subscribe form",
+        "business": "Squarespace (pre-launch states)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "4px",
+        "inputs": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "56px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#161616",
+        "name": "Hero Canvas",
+        "level": 0,
+        "purpose": "Full-bleed dark surface hosting the photographic hero and headline"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Page Canvas",
+        "level": 1,
+        "purpose": "Light surface below the fold for form sections and footer"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Input Surface",
+        "level": 2,
+        "purpose": "Form field fills against the dark background"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "0 0 0 1px rgba(191,191,191,0.3)",
+        "element": "Chat Widget"
+      }
+    ],
+    "northStar": "midnight observatory over still water — a single sentence floats beneath a field of stars",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 1
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.07
+      },
+      {
+        "role": "heading-sm",
+        "size": 26,
+        "lineHeight": 1.2,
+        "letterSpacing": 4
+      },
+      {
+        "role": "heading",
+        "size": 44,
+        "lineHeight": 1.25,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display",
+        "size": 62,
+        "lineHeight": 1.2,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Full-Bleed Hero",
+        "role": "Atmospheric landing surface",
+        "description": "#161616 base with a photographic image filling 100vw/100vh. Headline centered vertically in Playfair Display 62px #ffffff, weight 400, normal tracking. Wordmark 'DREPUTE' pinned to top in Montserrat 700 26px #ffffff with 0.154em tracking — floats above the image as a typographic anchor."
+      },
+      {
+        "name": "Wordmark Lockup",
+        "role": "Brand identity element",
+        "description": "Montserrat 700, 26px, uppercase, #ffffff on dark or #000000 on light, letter-spacing 0.154em (4px). Centered horizontally. No accompanying logo mark — type is the mark."
+      },
+      {
+        "name": "Ghost Outlined Button",
+        "role": "Outlined call-to-action",
+        "description": "Transparent fill, 1px border in #8995a9 (slate blue) or #000000, Source Sans Pro 14px weight 700, text color matching border, 4px radius, 8px vertical / 24px horizontal padding. 2px inner border offset on focus. This is the system's only filled-like interactive treatment."
+      },
+      {
+        "name": "Minimal Link",
+        "role": "Inline navigation link",
+        "description": "Source Sans Pro 14px, no underline by default, border-bottom 1px in #7f8080 (steel) or #00a4a6 (lagoon teal) on hover. Teal border is the single chromatic moment in the entire system."
+      },
+      {
+        "name": "Top Notification Bar",
+        "role": "Slim promotional strip",
+        "description": "Full-width bar with 56px vertical padding. White background, Source Sans Pro 14px #000000 text, centered layout. Inline link and ghost button sit on the same horizontal axis."
+      },
+      {
+        "name": "Text Input Field",
+        "role": "Form input for email/name capture",
+        "description": "#ffffff fill, 1px #bfbfbf border, 4px radius, Source Sans Pro 16px #000000 text. No label — placeholder text in #a9a9a9. Focus state darkens border to #000000."
+      },
+      {
+        "name": "Subscribe Form Block",
+        "role": "Email capture below the hero",
+        "description": "Centered stack on #161616 surface. 'Subscribe' heading in Playfair Display 44px #ffffff, then a single-row input + ghost button composition. 32px gap between heading and form row."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Visual break between dark hero and light content",
+        "description": "Pure 1px #a9a9a9 horizontal line, full-width or 133px margins, no shadow or ornament. Divides the cinematic dark surface from functional light sections."
+      },
+      {
+        "name": "Chat Widget Bubble",
+        "role": "Floating support affordance",
+        "description": "Circular 48px dark surface pinned to bottom-right corner. Single light icon, no label. Floats above all content."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Workhorse sans for body, buttons, nav, inputs, and all UI microcopy; weight 700 reserved for emphasis",
+        "sizes": "14px, 16px",
+        "family": "Source Sans Pro",
+        "weight": "400, 700",
+        "lineHeight": "1.20–1.50",
+        "substitute": "Inter, IBM Plex Sans, system-ui",
+        "letterSpacing": "0.071em"
+      },
+      {
+        "role": "Display serif for hero headlines ('Launching Soon') — the single expressive type voice; weight 400 italic-leaning elegance rather than bold",
+        "sizes": "16px, 44px, 62px",
+        "family": "Playfair Display",
+        "weight": "400",
+        "lineHeight": "1.20–1.25",
+        "substitute": "Cormorant Garamond, Libre Baskerville, DM Serif Display",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Wordmark only — 'DREPUTE' set wide at 0.154em to function as a typographic constellation above the hero",
+        "sizes": "26px",
+        "family": "Montserrat",
+        "weight": "700",
+        "lineHeight": "1.20",
+        "substitute": "Oswald, Bebas Neue, Archivo Black",
+        "letterSpacing": "0.154em"
+      },
+      {
+        "role": "Custom brand secondary; deployed alongside Source Sans Pro for select links and image overlays",
+        "sizes": "14px, 16px",
+        "family": "GD Sherpa",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Source Sans Pro (fallback for system use)"
+      },
+      {
+        "role": "Times — detected in extracted data but not described by AI",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.2"
+      }
+    ],
+    "description": "Drepute is a cinematic black-canvas teaser built around a single full-bleed photograph: a still alpine lake mirroring a starfield at midnight. The UI is deliberately invisible — no cards, no shadows, no panels. A single Playfair Display headline floats over the image while everything else is Source Sans Pro at 14–16px. The wordmark uses Montserrat 700 with extreme letter-spacing (0.154em), turning the brand name into a constellation of letters across the top. Color is almost entirely absent: pure black, white, and three grays form a five-step achromatic scale, with one deep teal (#00a4a6) appearing only as a link border. Radii are locked at 4px everywhere — no pills, no soft corners, just sharp rectangular edges. The whole site feels like a movie title card: a single image, a single sentence, and a brand name hovering above it all.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/523d3e7b-b0a2-4979-a626-00f1487b6e4d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Drepute design system\",\"item\":\"https://styles.refero.design/style/523d3e7b-b0a2-4979-a626-00f1487b6e4d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/523d3e7b-b0a2-4979-a626-00f1487b6e4d#style-reference\",\"name\":\"Drepute design system reference\",\"headline\":\"Drepute design system | Refero Styles\",\"description\":\"Explore Drepute's dark Other design system: Pure White #ffffff, Deep Ink #000000 colors, Source Sans Pro, Playfair Display typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/523d3e7b-b0a2-4979-a626-00f1487b6e4d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/523d3e7b-b0a2-4979-a626-00f1487b6e4d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Drepute\",\"url\":\"https://drepute.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/523d3e7b-b0a2-4979-a626-00f1487b6e4d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2a0857ae-5dbe-43bf-b162-a4a8db5799b3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2a0857ae-5dbe-43bf-b162-a4a8db5799b3.jpg\",\"caption\":\"Screenshot of Drepute\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2a0857ae-5dbe-43bf-b162-a4a8db5799b3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Drepute design system\",\"Drepute website design\",\"Drepute colors\",\"Drepute typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Pure White\",\"Deep Ink\",\"Obsidian\",\"Ash Gray\",\"Source Sans Pro\",\"Playfair Display\",\"Montserrat\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Drepute design system\"},{\"@type\":\"Thing\",\"name\":\"Drepute website design\"},{\"@type\":\"Thing\",\"name\":\"Drepute colors\"},{\"@type\":\"Thing\",\"name\":\"Drepute typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:57:17.023Z\",\"dateModified\":\"2026-04-30T01:57:17.023Z\"}]}19:T6a7,**Quick Color Reference**\n- background: #161616 (dark) / #ffffff (light)\n- text: #ffffff (on dark) / #000000 (on light)\n- border: #a9a9a9 (body) / #8995a9 (button)\n- accent: #00a4a6 (teal link border only)\n- muted text: #7f8080\n- primary action: #00a4a6 (outlined action border)\n\n**Example Component Prompts**\n1. Build the hero: full-viewport #161616 background with a full-bleed landscape photograph. Center 'Launching Soon' in Playfair Display 62px weight 400, #ffffff, normal tracking, vertically centered. Top-center wordmark 'DREPUTE' in Montserrat 700, 26px, #ffffff, letter-spacing 0.154em (4px), uppercase, 56px from top edge.\n2. Build the ghost outlined button: transparent fill, 1px #8995a9 border, 4px radius, 8px vertical and 24px horizontal padding. Text: Source Sans Pro 14px weight 700, color #8995a9, uppercase. On hover, border darkens to #000000.\n3. Build the subscribe form section: #161616 background, 56px vertical padding. Heading 'Subscribe' in Playfair Display 44px weight 400, #ffffff, centered. 32px gap below. Single horizontal row: email input (#ffffff fill, 1px #bfbfbf border, 4px radius, Source Sans Pro 16px) + ghost button (1px #8995a9 border, Source Sans Pro 14px 700, 4px radius), 24px gap between them.\n4. Build the top notification bar: full-width #ffffff strip, 56px vertical padding, centered single-line content in Source Sans Pro 14px #000000. Include an inline link with 1px #00a4a6 border-bottom on hover, and a ghost button (1px #000000 border, 4px radius, Source Sans Pro 14px 700) to the right.\n5. Build the chat widget: 48px circle, #161616 fill, 1px rgba(191,191,191,0.3) ring, fixed bottom-right with 24px margins, single white line-icon centered inside."
+      },
+      {
+        "title": "Type Pairing Logic",
+        "content": "The system uses a three-font hierarchy that must not be crossed: Playfair Display owns the emotional/editorial layer (display only, 44px+, weight 400). Source Sans Pro owns the functional layer (14–16px, weights 400/700, letter-spacing 0.071em). Montserrat owns the identity layer (wordmark only, 26px, weight 700, letter-spacing 0.154em). GD Sherpa is a custom brand face that may substitute into body contexts where Source Sans Pro is specified. Never use Montserrat for body text and never use Source Sans Pro for display."
+      },
+      {
+        "title": "Radius Discipline",
+        "content": "All corners are 4px. This is non-negotiable. No 8px, no 12px, no 9999px pills, no 0px hard edges. The 4px is the system's only concession to softness and it appears uniformly across buttons, inputs, and any future card surfaces. A new component that breaks this radius will read as foreign to the system."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally shadowless. All hierarchy is achieved through surface color shifts (black → dark → white), typographic weight, and whitespace. The only box-shadow detected is a hairline ring on the chat widget. Elevation is communicated by darkness, not depth."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "body",
+            "button",
+            "hero",
+            "nav"
+          ],
+          "frequency": 375,
+          "confidence": 1,
+          "prominence": 15562234.292128704,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "body/color": 2,
+            "hero/color": 1,
+            "link/color": 1,
+            "image/color": 1,
+            "other/color": 62,
+            "button/color": 2,
+            "nav/borderColor": 28,
+            "body/borderColor": 8,
+            "hero/borderColor": 4,
+            "link/borderColor": 3,
+            "image/borderColor": 4,
+            "other/borderColor": 248,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "heading",
+            "input",
+            "icon"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 10048287.156476324,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "icon/color": 1,
+            "other/fill": 9,
+            "other/color": 1,
+            "heading/color": 3,
+            "icon/borderColor": 4,
+            "input/borderColor": 4,
+            "other/borderColor": 4,
+            "heading/borderColor": 12,
+            "other/backgroundColor": 3,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#161616",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20019308840256111
+          },
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 5766626.125023808,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "hero/backgroundColor": 1,
+            "other/backgroundColor": 7
+          }
+        },
+        {
+          "hex": "#bfbfbf",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8046580202974766
+          },
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 97386,
+          "properties": [
+            "color",
+            "borderColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "input/color": 1,
+            "other/color": 1,
+            "other/boxShadow": 1,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#a9a9a9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7348085828066984
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 86242.64937121472,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "other/color": 1,
+            "body/borderColor": 20,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#00a4a6",
+          "oklch": {
+            "c": 0.11096440032108784,
+            "h": 196.31304943924331,
+            "l": 0.651447253849406
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 71250,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 1
+          }
+        },
+        {
+          "hex": "#7f8080",
+          "oklch": {
+            "c": 0.001202678206353855,
+            "h": 197.1256215699995,
+            "l": 0.5990135289717032
+          },
+          "contexts": [
+            "nav",
+            "link"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 55280,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 2,
+            "link/color": 1,
+            "nav/borderColor": 8,
+            "link/borderColor": 4
+          }
+        },
+        {
+          "hex": "#8995a9",
+          "oklch": {
+            "c": 0.032776504314268824,
+            "h": 260.67765531203054,
+            "l": 0.6669557451362524
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 9443.281561906902,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#6f6f6f",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5417056664787456
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4225,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.001446505342417256,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#161616",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.42,
+          "background": "#bfbfbf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.84,
+          "background": "#161616",
+          "foreground": "#bfbfbf"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.94,
+          "background": "#a9a9a9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.7,
+          "background": "#161616",
+          "foreground": "#a9a9a9"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.02,
+          "background": "#6f6f6f",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.57,
+          "background": "#161616",
+          "foreground": "#7f8080"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.18,
+          "background": "#6f6f6f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.96,
+          "background": "#ffffff",
+          "foreground": "#7f8080"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.73,
+          "background": "#6f6f6f",
+          "foreground": "#bfbfbf"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.35,
+          "background": "#ffffff",
+          "foreground": "#a9a9a9"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.14,
+          "background": "#6f6f6f",
+          "foreground": "#a9a9a9"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.84,
+          "background": "#ffffff",
+          "foreground": "#bfbfbf"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.27,
+          "background": "#6f6f6f",
+          "foreground": "#7f8080"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.16,
+          "background": "#161616",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "input"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "marginTop|button",
+            "marginBottom|button",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "body",
+            "input"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "marginBottom|body",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "input"
+          ],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "marginRight|input"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "heading",
+            "button"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 133,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 242,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Source Sans Pro",
+          "source": "google",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 73,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GD Sherpa",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 14,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Playfair Display",
+          "source": "google",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Montserrat",
+          "source": "google",
+          "weights": [
+            700
+          ],
+          "frequency": 1,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "GD Sherpa",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "image",
+            "body",
+            "button"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Source Sans Pro",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.071,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Source Sans Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Source Sans Pro",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "nav",
+            "body",
+            "input",
+            "link",
+            "icon"
+          ],
+          "frequency": 66,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GD Sherpa",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Playfair Display",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Source Sans Pro",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Montserrat",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.154,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 44,
+          "family": "Playfair Display",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "Playfair Display",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8f35f4a1-6453-436b-a15b-7d772178d555.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/2a0857ae-5dbe-43bf-b162-a4a8db5799b3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/523d3e7b-b0a2-4979-a626-00f1487b6e4d#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Drepute design system\",\"item\":\"https://styles.refero.design/style/523d3e7b-b0a2-4979-a626-00f1487b6e4d\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/523d3e7b-b0a2-4979-a626-00f1487b6e4d#style-reference\",\"name\":\"Drepute design system reference\",\"headline\":\"Drepute design system | Refero Styles\",\"description\":\"Explore Drepute's dark Other design system: Pure White #ffffff, Deep Ink #000000 colors, Source Sans Pro, Playfair Display typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/523d3e7b-b0a2-4979-a626-00f1487b6e4d\",\"mainEntityOfPage\":\"https://styles.refero.design/style/523d3e7b-b0a2-4979-a626-00f1487b6e4d\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Drepute\",\"url\":\"https://drepute.xyz\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/523d3e7b-b0a2-4979-a626-00f1487b6e4d#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/2a0857ae-5dbe-43bf-b162-a4a8db5799b3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/2a0857ae-5dbe-43bf-b162-a4a8db5799b3.jpg\",\"caption\":\"Screenshot of Drepute\"},\"image\":\"https://images.refero.design/styles/refero.design/image/2a0857ae-5dbe-43bf-b162-a4a8db5799b3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Drepute design system\",\"Drepute website design\",\"Drepute colors\",\"Drepute typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Pure White\",\"Deep Ink\",\"Obsidian\",\"Ash Gray\",\"Source Sans Pro\",\"Playfair Display\",\"Montserrat\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Drepute design system\"},{\"@type\":\"Thing\",\"name\":\"Drepute website design\"},{\"@type\":\"Thing\",\"name\":\"Drepute colors\"},{\"@type\":\"Thing\",\"name\":\"Drepute typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:57:17.023Z\",\"dateModified\":\"2026-04-30T01:57:17.023Z\"}]}19:T6a7,**Quick Color Reference**\n- background: #161616 (dark) / #ffffff (light)\n- text: #ffffff (on dark) / #000000 (on light)\n- border: #a9a9a9 (body) / #8995a9 (button)\n- accent: #00a4a6 (teal link border only)\n- muted text: #7f8080\n- primary action: #00a4a6 (outlined action border)\n\n**Example Component Prompts**\n1. Build the hero: full-viewport #161616 background with a full-bleed landscape photograph. Center 'Launching Soon' in Playfair Display 62px weight 400, #ffffff, normal tracking, vertically centered. Top-center wordmark 'DREPUTE' in Montserrat 700, 26px, #ffffff, letter-spacing 0.154em (4px), uppercase, 56px from top edge.\n2. Build the ghost outlined button: transparent fill, 1px #8995a9 border, 4px radius, 8px vertical and 24px horizontal padding. Text: Source Sans Pro 14px weight 700, color #8995a9, uppercase. On hover, border darkens to #000000.\n3. Build the subscribe form section: #161616 background, 56px vertical padding. Heading 'Subscribe' in Playfair Display 44px weight 400, #ffffff, centered. 32px gap below. Single horizontal row: email input (#ffffff fill, 1px #bfbfbf border, 4px radius, Source Sans Pro 16px) + ghost button (1px #8995a9 border, Source Sans Pro 14px 700, 4px radius), 24px gap between them.\n4. Build the top notification bar: full-width #ffffff strip, 56px vertical padding, centered single-line content in Source Sans Pro 14px #000000. Include an inline link with 1px #00a4a6 border-bottom on hover, and a ghost button (1px #000000 border, 4px radius, Source Sans Pro 14px 700) to the right.\n5. Build the chat widget: 48px circle, #161616 fill, 1px rgba(191,191,191,0.3) ring, fixed bottom-right with 24px margins, single white line-icon centered inside."
+}

@@ -1,0 +1,559 @@
+{
+  "source": "https://styles.refero.design/style/ab1b113a-ed21-4512-acc2-d10c8927c410",
+  "uuid": "ab1b113a-ed21-4512-acc2-d10c8927c410",
+  "name": "Look inc",
+  "northStar": "White-walled gallery on a press proof. A typographic system of black serif and grotesque sans surrounds large documentary photography on pure white — the interface is the negative space between stories.",
+  "capturedAt": "2026-07-18T08:20:27.135Z",
+  "meta": {
+    "url": "https://look.inc",
+    "siteName": "Look inc",
+    "extractedAt": "2026-06-03T17:34:00.444Z",
+    "durationMs": 43210,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 189,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #000000 for all text — never introduce a chromatic accent or muted body color beyond #878787",
+      "Set headlines in Old Standard at 32px with line-height 1.10 — the tight leading is part of the editorial voice",
+      "Keep all corners at 0px radius — no rounded cards, no rounded buttons, no rounded images",
+      "Let photographs bleed to the full width of their grid column without padding or border",
+      "Separate elements with 13–19px gaps and 40–64px section gaps, never with decorative dividers",
+      "Use GT America 700 for project titles and 400 for descriptors — weight contrast carries hierarchy",
+      "Maintain 0% colorfulness: the photography supplies all color, the UI supplies only black, white, and two grays"
+    ],
+    "donts": [
+      "Don't add shadows, elevation, or any z-axis depth to cards or tiles",
+      "Don't use accent colors, brand colors, or chromatic borders — this is an achromatic system by design",
+      "Don't bold the serif — Old Standard is set at 400 only; weight contrast belongs to GT America",
+      "Don't round image corners or add overlay text treatments to most tiles",
+      "Don't introduce card backgrounds, card borders, or card padding — tiles are images on canvas with a caption beneath",
+      "Don't use color for interactive states — rely on underline, weight change, or cursor change only",
+      "Don't break the 0px radius rule with pill buttons, rounded tags, or circular avatars"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Press Black",
+        "role": "Headlines, body text, navigation links, hairline dividers — the single dark mark in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Proof White",
+        "role": "Page canvas, tile backgrounds, the only surface tone in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#878787",
+        "name": "Galley Gray",
+        "role": "Muted captions, secondary metadata, editorial sub-labels — appears sparingly under project titles",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e5e5e5",
+        "name": "Rule Line",
+        "role": "Hairline nav dividers, ultra-subtle structural separators — the faintest non-black non-white mark allowed",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width ~1200px centered container on a pure white canvas. The hero is a three-column editorial header: 'Hello, we are' / logo / agency statement, all on a single horizontal band. Below the hero, the page becomes a portfolio grid: rows of 2–3 equal-width project tiles, each tile a full-bleed photograph with a two-line caption beneath. Tiles align to a strict grid — column widths are consistent, row heights are driven by image aspect ratio. Navigation is a single top bar with two text links ('Look', 'Info') separated by a faint #e5e5e5 hairline. The rhythm is gallery-like: each row of tiles is a spread, each tile is a plate, and the white space between rows is the gutter. The page is scroll-driven with no sticky elements, no sidebar, no modal layers.",
+    "imagery": "The visual language is documentary photography at editorial scale. Images are full-bleed, edge-to-edge, uncropped, and unfiltered — they look like contact sheets from a photo editor's desk: campaign stills, fashion editorials, aerial product shots, crowd scenes, intimate portraits. The photography is the design system. No illustration, no abstract graphics, no decorative shapes, no iconography beyond a possible wordmark. No image overlays, no duotone treatments, no color grading beyond the photograph's natural production. The density shifts: the page is roughly 60% image to 40% white space and type, with images acting as the pages and typography acting as the margins.",
+    "similar": [
+      {
+        "why": "Same editorial agency-portfolio grid with full-bleed project photography and minimal serif/sans typography pairing on white",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Agency-as-gallery approach: monochrome UI frame around documentary campaign photography, no decorative chrome",
+        "business": "Wieden+Kennedy"
+      },
+      {
+        "why": "Achromatic portfolio grid with editorial serif headlines and grotesque body text, photography carries all color",
+        "business": "Mast Brothers"
+      },
+      {
+        "why": "Editorial publication aesthetic — serif display type, sans body, full-bleed project tiles, zero accent color in the UI",
+        "business": "It's Nice That"
+      },
+      {
+        "why": "Creative agency with strict two-typeface editorial system (serif + grotesque) and image-first portfolio grid on white",
+        "business": "&Friends"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "13-19px",
+      "sectionGap": "40-64px",
+      "cardPadding": "0px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 1,
+        "purpose": "Full-page white background — the single surface tier"
+      }
+    ],
+    "elevation": [],
+    "northStar": "White-walled gallery on a press proof. A typographic system of black serif and grotesque sans surrounds large documentary photography on pure white — the interface is the negative space between stories.",
+    "typeScale": [
+      {
+        "role": "body-sm",
+        "size": 15,
+        "lineHeight": 1.65
+      },
+      {
+        "role": "body",
+        "size": 18,
+        "lineHeight": 1.7
+      },
+      {
+        "role": "subheading",
+        "size": 21,
+        "lineHeight": 1.3
+      },
+      {
+        "role": "heading",
+        "size": 23,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 32,
+        "lineHeight": 1.1
+      }
+    ],
+    "components": [
+      {
+        "name": "Project Tile",
+        "role": "Portfolio case-study entry — the primary content unit",
+        "description": "Full-bleed image area (no border, no radius) on pure #ffffff, followed by a caption stack: project name in GT America 700 at 18px in #000000, then a single-line description in GT America 400 at 15px in #878787. Zero padding between image and caption. Tile width is grid-driven (1/3 or 1/2 of container), height is dictated by the photograph's aspect ratio."
+      },
+      {
+        "name": "Editorial Hero",
+        "role": "Top-of-page brand introduction",
+        "description": "Three-column header: left column holds 'Hello, we are' in Old Standard 400 at 32px (#000000); center column holds the Look wordmark/logo; right column holds the agency statement in GT America 400 at 21px (#000000) with 1.30 line-height. Columns align to a shared baseline, separated only by white space — no dividers, no backgrounds."
+      },
+      {
+        "name": "Nav Link",
+        "role": "Minimal top navigation anchor",
+        "description": "Text-only link: GT America 400 at ~15–18px in #000000, no underline by default, no background, no border. Links are separated by the faint #e5e5e5 hairline running horizontally across the nav strip. Padding: 3px top/bottom, 26px left/right."
+      },
+      {
+        "name": "Project Caption Block",
+        "role": "Metadata beneath each project tile",
+        "description": "Two-line text block: line 1 = project/brand name in GT America 700, #000000; line 2 = tagline in GT America 400, #878787, line-height 1.65. No background, no border, no padding — text sits directly beneath the image with 13px top spacing."
+      },
+      {
+        "name": "Portrait/Editorial Card",
+        "role": "Full-bleed photographic content block",
+        "description": "A single image at edge-to-edge width of its grid column, no border-radius, no overlay, no text on image. When project title is set inside the image (e.g. 'VICTORIA'S SECRET', 'COSTA BRAZIL'), it uses Old Standard 400 white, large scale, centered — newspaper masthead treatment."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Editorial headlines and sub-labels — a 19th-century book serif that signals journalism heritage. Used at 32px for project titles, 21px for section intros, 18px for compact serif captions. The single weight (400) is deliberate: this is a display serif meant to be set large and let breathe, not bolded for emphasis.",
+        "sizes": "18px, 21px, 32px",
+        "family": "Old Standard TT",
+        "weight": "400",
+        "lineHeight": "1.10–1.40",
+        "substitute": "EB Garamond, Cormorant Garamond, Playfair Display"
+      },
+      {
+        "role": "Body copy, navigation, descriptive text — a modern American grotesque with mechanical precision. The 700 weight handles project subtitle/agency statements; 400 handles longer descriptive paragraphs. Its geometric neutrality balances the warmth of Old Standard without competing.",
+        "sizes": "18px, 21px, 23px",
+        "family": "GT America",
+        "weight": "400, 700",
+        "lineHeight": "1.20–1.70",
+        "substitute": "Inter, Söhne, Neue Haas Grotesk"
+      },
+      {
+        "role": "Smallest body and link text — system stack fallback for the GT America role, providing a baseline reading experience at 15px with generous 1.65 leading",
+        "sizes": "15px",
+        "family": "-apple-system",
+        "weight": "400",
+        "lineHeight": "1.65",
+        "substitute": "system-ui, Segoe UI, Helvetica Neue"
+      }
+    ],
+    "description": "Look inc operates as a monochrome editorial gallery — the absence of color is the brand. The interface is a white canvas where serif headlines (Old Standard) and geometric sans (GT America) frame full-bleed project photography, letting the work itself supply all visual interest. Typography is the entire decorative system: a classical serif headline next to a modern grotesque body creates editorial tension that mirrors the agency's positioning as 'a non-traditional agency with roots in journalism.' Components are austere — no cards with shadows, no rounded containers, no accent buttons — just image tiles sitting directly on white with a small caption stack beneath. The grid is the design: equal-weight rectangular tiles arranged in rows, each tile a self-contained editorial spread.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ab1b113a-ed21-4512-acc2-d10c8927c410#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Look inc design system\",\"item\":\"https://styles.refero.design/style/ab1b113a-ed21-4512-acc2-d10c8927c410\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ab1b113a-ed21-4512-acc2-d10c8927c410#style-reference\",\"name\":\"Look inc design system reference\",\"headline\":\"Look inc design system | Refero Styles\",\"description\":\"Explore Look inc's light Agency design system: Press Black #000000, Proof White #ffffff colors, Old Standard TT, GT America typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/ab1b113a-ed21-4512-acc2-d10c8927c410\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ab1b113a-ed21-4512-acc2-d10c8927c410\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Look inc\",\"url\":\"https://look.inc\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ab1b113a-ed21-4512-acc2-d10c8927c410#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/609f92c9-429f-475e-aa08-c9bb53b287c2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/609f92c9-429f-475e-aa08-c9bb53b287c2.jpg\",\"caption\":\"Screenshot of Look inc\"},\"image\":\"https://images.refero.design/styles/refero.design/image/609f92c9-429f-475e-aa08-c9bb53b287c2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Look inc design system\",\"Look inc website design\",\"Look inc colors\",\"Look inc typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Press Black\",\"Proof White\",\"Galley Gray\",\"Rule Line\",\"Old Standard TT\",\"GT America\",\"-apple-system\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Look inc design system\"},{\"@type\":\"Thing\",\"name\":\"Look inc website design\"},{\"@type\":\"Thing\",\"name\":\"Look inc colors\"},{\"@type\":\"Thing\",\"name\":\"Look inc typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:10:33.542Z\",\"dateModified\":\"2026-04-30T02:10:33.542Z\"}]}19:T5ae,Quick Color Reference:\n- text: #000000\n- background: #ffffff\n- border / hairline: #e5e5e5\n- muted text: #878787\n- accent: none (achromatic system)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Create a project tile grid: pure white (#ffffff) background, 0px radius, no border, no shadow. Image fills the tile edge-to-edge with no padding. Caption beneath: project name in GT America 700, 18px, #000000; tagline in GT America 400, 15px, #878787, 1.65 line-height. 13px gap between image and caption.\n\n2. Create the editorial hero: three columns on white. Left: 'Hello, we are' in Old Standard 400, 32px, #000000, line-height 1.10. Center: wordmark. Right: agency statement in GT America 400, 21px, #000000, line-height 1.30. Columns separated by white space only — no dividers, no backgrounds.\n\n3. Create a top nav: left link 'Look', right link 'Info', both in GT America 400, 15px, #000000. A single #e5e5e5 hairline border-bottom runs across the full nav width. 26px horizontal padding per link, 3px vertical padding.\n\n4. Create an overlay-title image block: full-width editorial photograph, no border-radius. White masthead text centered in the image, set in Old Standard 400 at large display scale, tracking normal. No box, no background, no shadow behind the text.\n\n5. Create a section divider: nothing. Transition between sections is whitespace alone — 40–64px vertical gap, no line, no background change, no ornament."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "The system pairs a 19th-century book serif (Old Standard) with a 21st-century American grotesque (GT America). The serif is a relic — it signals journalism, print heritage, the weight of editorial history. The sans is a tool — neutral, mechanical, ready for the present. Together they create the 'non-traditional agency' voice: one foot in the archive, one foot in the studio. Both fonts stay at 400 (serif) and 400/700 (sans); neither is set in italic, light, or compressed. The scale is narrow: 15, 18, 21, 23, 32 — a print designer's restraint, not a design system's exuberance."
+      }
+    ],
+    "elevationPhilosophy": "No shadows, no elevation, no depth. All content sits flush on the white canvas. The only separation between elements is whitespace and the rare #e5e5e5 hairline. Visual hierarchy is achieved through type scale and image scale, never through z-axis or surface tinting."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "heading",
+            "body"
+          ],
+          "frequency": 935,
+          "confidence": 1,
+          "prominence": 80356425.71814275,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "body/color": 31,
+            "link/color": 14,
+            "other/color": 139,
+            "heading/color": 2,
+            "nav/borderColor": 10,
+            "body/borderColor": 124,
+            "link/borderColor": 56,
+            "other/borderColor": 548,
+            "heading/borderColor": 8
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 21044647.596583564,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#878787",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6239111185727739
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 113040.74737149634,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#e5e5e5",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9231197248349694
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2274.421188534859,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.67,
+          "background": "#e5e5e5",
+          "foreground": "#000000"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 19,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 40,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Old Standard",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 92,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "-apple-system",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 64,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GT America",
+          "source": "custom",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 33,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 15,
+          "family": "-apple-system",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 64,
+          "lineHeight": 1.65,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Old Standard",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 60,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GT America",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Old Standard",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "GT America",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 23,
+          "family": "GT America",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Old Standard",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/fd47df0e-7e97-4440-b666-3bdfcbcffb19.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/609f92c9-429f-475e-aa08-c9bb53b287c2.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ab1b113a-ed21-4512-acc2-d10c8927c410#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Look inc design system\",\"item\":\"https://styles.refero.design/style/ab1b113a-ed21-4512-acc2-d10c8927c410\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ab1b113a-ed21-4512-acc2-d10c8927c410#style-reference\",\"name\":\"Look inc design system reference\",\"headline\":\"Look inc design system | Refero Styles\",\"description\":\"Explore Look inc's light Agency design system: Press Black #000000, Proof White #ffffff colors, Old Standard TT, GT America typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/ab1b113a-ed21-4512-acc2-d10c8927c410\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ab1b113a-ed21-4512-acc2-d10c8927c410\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Look inc\",\"url\":\"https://look.inc\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ab1b113a-ed21-4512-acc2-d10c8927c410#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/609f92c9-429f-475e-aa08-c9bb53b287c2.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/609f92c9-429f-475e-aa08-c9bb53b287c2.jpg\",\"caption\":\"Screenshot of Look inc\"},\"image\":\"https://images.refero.design/styles/refero.design/image/609f92c9-429f-475e-aa08-c9bb53b287c2.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Look inc design system\",\"Look inc website design\",\"Look inc colors\",\"Look inc typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Press Black\",\"Proof White\",\"Galley Gray\",\"Rule Line\",\"Old Standard TT\",\"GT America\",\"-apple-system\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Look inc design system\"},{\"@type\":\"Thing\",\"name\":\"Look inc website design\"},{\"@type\":\"Thing\",\"name\":\"Look inc colors\"},{\"@type\":\"Thing\",\"name\":\"Look inc typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:10:33.542Z\",\"dateModified\":\"2026-04-30T02:10:33.542Z\"}]}19:T5ae,Quick Color Reference:\n- text: #000000\n- background: #ffffff\n- border / hairline: #e5e5e5\n- muted text: #878787\n- accent: none (achromatic system)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Create a project tile grid: pure white (#ffffff) background, 0px radius, no border, no shadow. Image fills the tile edge-to-edge with no padding. Caption beneath: project name in GT America 700, 18px, #000000; tagline in GT America 400, 15px, #878787, 1.65 line-height. 13px gap between image and caption.\n\n2. Create the editorial hero: three columns on white. Left: 'Hello, we are' in Old Standard 400, 32px, #000000, line-height 1.10. Center: wordmark. Right: agency statement in GT America 400, 21px, #000000, line-height 1.30. Columns separated by white space only — no dividers, no backgrounds.\n\n3. Create a top nav: left link 'Look', right link 'Info', both in GT America 400, 15px, #000000. A single #e5e5e5 hairline border-bottom runs across the full nav width. 26px horizontal padding per link, 3px vertical padding.\n\n4. Create an overlay-title image block: full-width editorial photograph, no border-radius. White masthead text centered in the image, set in Old Standard 400 at large display scale, tracking normal. No box, no background, no shadow behind the text.\n\n5. Create a section divider: nothing. Transition between sections is whitespace alone — 40–64px vertical gap, no line, no background change, no ornament."
+}

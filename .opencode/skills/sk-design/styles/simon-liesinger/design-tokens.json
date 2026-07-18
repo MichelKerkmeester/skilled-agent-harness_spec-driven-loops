@@ -1,0 +1,255 @@
+{
+  "color": {
+    "bone": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Bone — Page canvas, card surfaces, section backgrounds — the paper of the monograph"
+    },
+    "graphite": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Graphite — Primary text, body copy, hairline rules, column dividers — softer than pure black, reads as printed ink"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Hardest rule weights, foot dividers, densest border lines — the purest black on the page"
+    },
+    "ash": {
+      "$value": "#6e6e6e",
+      "$type": "color",
+      "$description": "Ash — Muted column rules, secondary divider strokes — the gray that softens the grid"
+    },
+    "vermillion": {
+      "$value": "#fc523b",
+      "$type": "color",
+      "$description": "Vermillion — Link arrows, the wireframe illustration, the only chromatic accent — a printer’s mark red, not an interface brand color"
+    }
+  },
+  "font": {
+    "garamond": {
+      "$value": "Garamond",
+      "$type": "fontFamily",
+      "$description": "Editorial serif used for headlines, body copy, and the introductory address. Set exclusively at weight 400 — the typeface’s contrast and oldstyle proportions do the visual lifting. The 36px tier is the opening statement, 29px is section copy, 25px is dense paragraphs."
+    },
+    "helvetica": {
+      "$value": "Helvetica",
+      "$type": "fontFamily",
+      "$description": "Small UI metadata — navigation labels, contact lines, service labels, collaborator names. Renders with tabular figures and stylistic alternates (ss04, ss07, zero) so columns of names align like a typeset index."
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Micro-copy at 10px — copyright, fine print, the smallest annotations. System serif fallback for the tiniest type tier."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "HelveticaMd",
+        "fontSize": "7px",
+        "fontWeight": 600,
+        "lineHeight": 1.39
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 7px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "HelveticaMd",
+        "fontSize": "7px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 7px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "HelveticaRg",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "HelveticaMd",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.83
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 12px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "HelveticaRg",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 12px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "HelveticaRg",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "HelveticaMd",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1.92
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "HelveticaMd",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "GaramondRg",
+        "fontSize": "25px",
+        "fontWeight": 400,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "GaramondRg",
+        "fontSize": "29px",
+        "fontWeight": 400,
+        "lineHeight": 0.86
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 29px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "GaramondRg",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "GaramondRg",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "29": {
+      "$value": "29px",
+      "$type": "dimension",
+      "$description": "Spacing 29px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "119": {
+      "$value": "119px",
+      "$type": "dimension",
+      "$description": "Spacing 119px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "bone-canvas": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 1: Full-page background, the paper on which everything is printed"
+    },
+    "ink-plate": {
+      "$value": "#181818",
+      "$type": "color",
+      "$description": "Surface level 2: Dark contrast surface for selected sections or footers"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.liesingers.com",
+      "siteName": "Simon Liesinger",
+      "extractedAt": "2026-06-03T18:49:45.007Z",
+      "variant": "extended"
+    }
+  }
+}

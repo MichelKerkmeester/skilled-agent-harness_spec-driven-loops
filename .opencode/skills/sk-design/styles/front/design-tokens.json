@@ -1,0 +1,509 @@
+{
+  "color": {
+    "aubergine": {
+      "$value": "#300c41",
+      "$type": "color",
+      "$description": "Aubergine — Page canvas, hero backgrounds, nav background — the single dominant surface color that gives Front its unmistakable identity"
+    },
+    "royal-plum": {
+      "$value": "#5b1f76",
+      "$type": "color",
+      "$description": "Royal Plum — Pink supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "lime-spark": {
+      "$value": "#dee948",
+      "$type": "color",
+      "$description": "Lime Spark — Green supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "bright-violet": {
+      "$value": "#8034bf",
+      "$type": "color",
+      "$description": "Bright Violet — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "lavender-glow": {
+      "$value": "#b375f4",
+      "$type": "color",
+      "$description": "Lavender Glow — Decorative borders, accent strokes on illustrations, gradient terminus in the chat widget"
+    },
+    "ink": {
+      "$value": "#1c1e20",
+      "$type": "color",
+      "$description": "Ink — Primary body and heading text on light surfaces — near-black with a faint warm cast"
+    },
+    "frost": {
+      "$value": "#f0f4fe",
+      "$type": "color",
+      "$description": "Frost — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "pale-lilac": {
+      "$value": "#e2dcf6",
+      "$type": "color",
+      "$description": "Pale Lilac — Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color"
+    },
+    "stone": {
+      "$value": "#dedfe2",
+      "$type": "color",
+      "$description": "Stone — Borders on light surfaces, table dividers, inactive outlines"
+    },
+    "slate": {
+      "$value": "#5b5d63",
+      "$type": "color",
+      "$description": "Slate — Secondary text, helper copy, metadata labels"
+    },
+    "pewter": {
+      "$value": "#7c8088",
+      "$type": "color",
+      "$description": "Pewter — Tertiary text, placeholder copy, disabled labels"
+    },
+    "ash": {
+      "$value": "#8e929b",
+      "$type": "color",
+      "$description": "Ash — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "midnight-navy": {
+      "$value": "#0d1d39",
+      "$type": "color",
+      "$description": "Midnight Navy — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "lavender-whisper": {
+      "$value": "#d0c6f0",
+      "$type": "color",
+      "$description": "Lavender Whisper — Inset focus ring color, soft hover wash, tinted shadow on elevated cards"
+    },
+    "deep-olive": {
+      "$value": "#1d1f04",
+      "$type": "color",
+      "$description": "Deep Olive — Rare dark text accent on the lime button and light surfaces with maximum contrast"
+    }
+  },
+  "font": {
+    "suisse-intl": {
+      "$value": "Suisse Intl",
+      "$type": "fontFamily",
+      "$description": "Primary typeface across all UI — body, headings, buttons, navigation. The custom neo-grotesque gives Front its machined, Swiss-instrument feel; weight 500 carries both body and display, so the system relies on tracking and size to create hierarchy rather than weight contrast."
+    },
+    "suisse-works": {
+      "$value": "Suisse Works",
+      "$type": "fontFamily",
+      "$description": "Rare serif accent — appears as a single contextual flourish, not a structural face"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 2.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.41
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "17px",
+        "fontWeight": 500,
+        "lineHeight": 1.53
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 17px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "25px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Suisse Works",
+        "fontSize": "25px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 25px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "30px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "43px",
+        "fontWeight": 500,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 43px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "52px",
+        "fontWeight": 500,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 52px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "52px",
+        "fontWeight": 500,
+        "lineHeight": 1.19
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 52px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Suisse Intl",
+        "fontSize": "62px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 62px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgb(208, 198, 240) 0px 0px 0px 1px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    }
+  },
+  "surface": {
+    "aubergine-canvas": {
+      "$value": "#300c41",
+      "$type": "color",
+      "$description": "Surface level 0: Base page and hero background — the dominant dark plum that sets the mood"
+    },
+    "royal-plum-band": {
+      "$value": "#5b1f76",
+      "$type": "color",
+      "$description": "Surface level 1: Lighter purple sections, nav, card backgrounds that need to lift off the canvas"
+    },
+    "lilac-mist": {
+      "$value": "#e2dcf6",
+      "$type": "color",
+      "$description": "Surface level 2: Light card surfaces floating on the dark sections — the interface layer where most product UI lives"
+    },
+    "frost-panel": {
+      "$value": "#f0f4fe",
+      "$type": "color",
+      "$description": "Surface level 3: Highest elevation cards, modal surfaces, and white-light UI on light sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://front.com",
+      "siteName": "Front",
+      "extractedAt": "2026-06-03T18:24:36.831Z",
+      "variant": "extended"
+    }
+  }
+}

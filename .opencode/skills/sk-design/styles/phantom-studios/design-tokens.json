@@ -1,0 +1,192 @@
+{
+  "color": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Void — Page canvas, primary surface — the only background; every other color reads as light emitted from this base"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — All text, dividers, list markers, and outline borders — 21:1 contrast against Void means type is the loudest element on the page by far"
+    },
+    "dark-graphite": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Dark Graphite — Hairline borders, secondary dividers, and structural rules — sits just above the void to define edges without lifting weight"
+    },
+    "mid-gray": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Mid Gray — Muted helper text and inactive label borders — 3.7:1 against black intentionally fails contrast, signaling de-emphasis rather than legibility"
+    },
+    "signal-green": {
+      "$value": "#1eff66",
+      "$type": "color",
+      "$description": "Signal Green — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content"
+    }
+  },
+  "font": {
+    "helvetica-now": {
+      "$value": "Helvetica Now",
+      "$type": "fontFamily",
+      "$description": "Primary UI and display face — geometric grotesque set tight (0.93 on the 56px display creates an almost single-line block of text)"
+    },
+    "ballinger-mono": {
+      "$value": "ballinger-mono",
+      "$type": "fontFamily",
+      "$description": "Micro-copy, taglines, and trademark marks (the ® in 'PHANTOM STUDIOS® TECHNOLOGY CREATIVE'); 11px monospaced at 1.10 is intentionally difficult — it reads as metadata, not prose"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "ballinger-mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Helvetica Now",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 0.93
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "88": {
+      "$value": "88px",
+      "$type": "dimension",
+      "$description": "Spacing 88px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "void": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Unified page canvas — no distinction between background and surface; the entire site is one black field"
+    },
+    "signal-green-plane": {
+      "$value": "#1eff66",
+      "$type": "color",
+      "$description": "Surface level 1: Edge-of-screen accent stripe that doubles as a system indicator and the only non-monochrome surface"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.phantom.land",
+      "siteName": "Phantom Studios",
+      "extractedAt": "2026-06-03T18:43:13.463Z",
+      "variant": "extended"
+    }
+  }
+}

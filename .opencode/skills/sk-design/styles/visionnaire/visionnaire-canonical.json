@@ -1,0 +1,1200 @@
+{
+  "source": "https://styles.refero.design/style/0ecfea58-c1f3-4671-806d-5ae0eb779f38",
+  "uuid": "0ecfea58-c1f3-4671-806d-5ae0eb779f38",
+  "name": "VISIONNAIRE",
+  "northStar": "Editorial streetwear gallery on bone-white. The brand behaves like a printed lookbook: flat white canvas, sharp black ink, and a single warm cream panel used as a colour-block stage for product or wordmark.",
+  "capturedAt": "2026-07-18T08:48:29.302Z",
+  "meta": {
+    "url": "https://vision-naire.com",
+    "siteName": "VISIONNAIRE",
+    "extractedAt": "2026-06-03T21:42:12.556Z",
+    "durationMs": 36326,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 696,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use PP Neue Montreal (or Inter/Space Grotesk substitute) at weight 500 for all UI labels and weight 700 for headings — never mix in a second typeface family",
+      "Set all UI text to uppercase with 0.04-0.10em letter-spacing — the tracking IS the brand voice",
+      "Use 50px border-radius for all buttons, badges, and pill-shaped interactive elements",
+      "Use the cream Vellum (#f7f5e8) for color-block editorial panels — it is the only surface that is not pure black or pure white",
+      "Alternate sections between white, cream, and black backgrounds with 30-35px gaps — never use shadows to create depth between sections",
+      "Keep product cards borderless and shadowless with 15px image radius — depth comes from image-to-canvas contrast, not elevation",
+      "Use the inverse letter-spacing rule: the smaller the text, the wider the tracking (0.10em at 10px, 0.016em at 45px)"
+    ],
+    "donts": [
+      "Do not introduce colour outside of Obsidian, Bone White, Vellum Cream, Charcoal, Pewter, and Dahlen Rust — the system is 0% colourful by design",
+      "Do not use drop-shadows on any component — the system is intentionally flat",
+      "Do not use lowercase text in any UI label — every label is uppercase with tracking",
+      "Do not use card stacks with white-on-white subtle borders — use a 1px Obsidian hairline or rely on the Vellum cream surface for separation",
+      "Do not add gradients, blurs, or glassmorphism effects — the brand reads as ink on paper, not as a glass UI",
+      "Do not use border-radius below 15px on images or below 40px on buttons — the system is either pill-rounded or soft-rounded, never sharp-cornered",
+      "Do not introduce a secondary typeface for body copy or descriptions — PP Neue Montreal serves every weight and size"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Obsidian",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone White",
+        "role": "Page canvas, product card backgrounds, modal surfaces — the base everything sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f5e8",
+        "name": "Vellum Cream",
+        "role": "Warm off-white used for color-block hero panels, editorial sections, and the newsletter module background — the only chromatic surface in the system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#231f20",
+        "name": "Charcoal",
+        "role": "Near-black for body copy on white and cream surfaces — slightly softer than pure obsidian, preserving AAA contrast on the warm cream",
+        "group": "neutral"
+      },
+      {
+        "hex": "#888888",
+        "name": "Pewter",
+        "role": "Muted icon strokes, separators, and secondary graphic details.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b94e3a",
+        "name": "Dahlen Rust",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast.",
+        "group": "brand"
+      }
+    ],
+    "layout": "Full-bleed sections that alternate between photography and flat colour blocks. The hero is a hard 50/50 vertical split: photo left, solid cream right. Below the hero, sections flow seamlessly with 30-35px vertical gaps. The product grid is a strict 4-column layout with 20px internal card padding and 30px inter-card gaps — dense and uniform, prioritising catalogue volume. Navigation is a single horizontal bar with centered links. No sidebar, no mega-menu, no sticky elements beyond the top nav. The page reads top-to-bottom as: marquee → nav → split hero → product grid (row 1) → product grid (row 2) → repeating sections. Max-width 1400px for the product grid; hero and marquee are full-bleed.",
+    "imagery": "Product photography is the dominant visual element and is treated with editorial precision: garments photographed on a clean white or light-grey background, no models in the grid view (models appear only in the hero), no lifestyle context, no props. The hero uses a single full-bleed lifestyle shot (model in interior, natural light, slightly desaturated). Graphic prints on garments (camo, leopard, illustrated artwork) provide the only colour within the product grid. Imagery treatment: sharp, flat, catalogue-grade — the object IS the hero, not the setting. No overlays, no duotone treatments, no decorative graphics. The right half of the hero is a pure flat colour block — no texture, no pattern, no gradient.",
+    "similar": [
+      {
+        "why": "Same black/white monochrome product grid with pill-shaped CTAs and uppercase tracked labels in a single sans-serif",
+        "business": "Represent CLO"
+      },
+      {
+        "why": "Editorial fashion layout with alternating white and cream sections, pill buttons, and catalogue-dense product grids",
+        "business": "KITH"
+      },
+      {
+        "why": "Streetwear brand using ultra-minimal chrome, uppercase tracked nav, and a product-first grid with no decorative UI",
+        "business": "Stüssy"
+      },
+      {
+        "why": "Fashion-editorial site with cream and white tonal panels, pill buttons, and dense uniform product grids",
+        "business": "Aimé Leon Dore"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "50px",
+        "cards": "50px",
+        "buttons": "50px",
+        "navLinks": "40px",
+        "productImages": "15px"
+      },
+      "elementGap": "4px",
+      "sectionGap": "30-35px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Bone Canvas",
+        "level": 0,
+        "purpose": "Base page background and product grid surface"
+      },
+      {
+        "hex": "#f7f5e8",
+        "name": "Vellum Panel",
+        "level": 1,
+        "purpose": "Editorial color-block panels — hero, collection banners, newsletter module"
+      },
+      {
+        "hex": "#000000",
+        "name": "Obsidian Field",
+        "level": 2,
+        "purpose": "Inverted sections and CTA button fills"
+      }
+    ],
+    "northStar": "Editorial streetwear gallery on bone-white. The brand behaves like a printed lookbook: flat white canvas, sharp black ink, and a single warm cream panel used as a colour-block stage for product or wordmark.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.5,
+        "letterSpacing": 1
+      },
+      {
+        "role": "body",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.4
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.3,
+        "letterSpacing": 0.5
+      },
+      {
+        "role": "heading-sm",
+        "size": 21,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.34
+      },
+      {
+        "role": "heading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.38
+      },
+      {
+        "role": "heading-lg",
+        "size": 33,
+        "lineHeight": 1.15,
+        "letterSpacing": 0.53
+      },
+      {
+        "role": "display",
+        "size": 45,
+        "lineHeight": 1.15,
+        "letterSpacing": 0.72
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Marquee Bar",
+        "role": "Top scrolling promotional bar",
+        "description": "Full-bleed black background (#000000), white uppercase text at 12px weight 500, letter-spacing 0.023em, 2px vertical padding. Text repeats horizontally with CSS marquee animation. Content: shipping/promo messages in French."
+      },
+      {
+        "name": "Main Navigation Header",
+        "role": "Primary site navigation",
+        "description": "White background, centered. VISIONNAIRE® logo at far left in 14px weight 700 uppercase with 0.064em tracking. Nav links (NOUVEAUTÉS, SHOP, COLLECTIONS, ARCHIVES) in 14px weight 500 uppercase, 25px horizontal spacing between items, 0.058em tracking. Cart icon at far right with 0-1 count badge. No dropdown menus visible — flat horizontal nav only."
+      },
+      {
+        "name": "Split Editorial Hero",
+        "role": "First-screen brand/collection statement",
+        "description": "50/50 split. Left half: full-bleed lifestyle photograph (model wearing product against a wall). Right half: solid Vellum Cream (#f7f5e8) panel with centered brand wordmark — VISIONNAIRE® in 21px weight 500 dark, 'DAHLEN' in 45px weight 700 Dahlen Rust (#b94e3a), 'ART CLUB' in 12px weight 500 tracked. 'VOIR' pill button (50px radius) overlaid on both halves. No gradient, no overlay — hard edge between photo and color block."
+      },
+      {
+        "name": "VOIR Pill Button",
+        "role": "Primary call-to-action on hero and collection tiles",
+        "description": "50px border-radius (fully rounded). Two variants: (1) Outlined ghost — 1px #000000 border, transparent fill, 14px weight 500 uppercase text in black, letter-spacing 0.058em, 20px horizontal / 10px vertical padding. (2) Filled — #000000 background, white text, identical dimensions. Always uppercase, always tracked."
+      },
+      {
+        "name": "Product Grid Card",
+        "role": "Catalogue tile in product listing",
+        "description": "White background, no border, no shadow. Product image with 15px border-radius at top. Below image: product name in 12px weight 500 uppercase, 0.047em tracking, centered. Size selector row (XXS XXS S M L XL XXL) in 10px weight 500 uppercase, 0.039em tracking, with hover/active size underlined. Price in 12px weight 500 below sizes, centered. 20px internal padding. 4-column grid with 30px gap between cards."
+      },
+      {
+        "name": "Size Selector",
+        "role": "Inline size picker on product cards",
+        "description": "Horizontal row of size codes (XXS through XXL) in 10px weight 500 uppercase, 0.039em tracking, 4-5px gaps between codes. Default state: Pewter (#888888). Active/selected: Obsidian (#000000) with underline. No dropdown — all sizes visible inline."
+      },
+      {
+        "name": "Collection Banner",
+        "role": "Section divider/collection promo block",
+        "description": "Full-width Vellum Cream (#f7f5e8) background band. Collection title in 33px weight 700 uppercase, 0.053em tracking, centered. 'ÉPUISÉ' (sold out) state shown as white pill badge with 50px radius overlaying the product image, 12px weight 500 uppercase, 0.047em tracking."
+      },
+      {
+        "name": "ÉPUISÉ Sold-Out Badge",
+        "role": "Status indicator for unavailable products",
+        "description": "White background (#ffffff), black text in 12px weight 500 uppercase, 50px border-radius pill, centered over the product image. 20px horizontal / 10px vertical padding. High-contrast pill on top of product photography."
+      },
+      {
+        "name": "Newsletter Modal",
+        "role": "Email capture overlay",
+        "description": "White background card, no border, no shadow. 1px hairline (#000000) divider between header and body. 'VISIONNAIRE CLUB®' header in 14px weight 700 uppercase, Dahlen Rust (#b94e3a). 'ABONNEZ-VOUS À NOTRE NEWSLETTER' in 18px weight 500 uppercase, black. Email input: 1px #000000 bottom border only, 15px horizontal padding, no visible fill. 'VALIDER' link in 12px weight 500 uppercase as a text action, black, underlined on hover. Close (×) icon top-right in 14px."
+      },
+      {
+        "name": "Cookie Consent Bar",
+        "role": "Bottom-of-page legal notice",
+        "description": "Full-width black (#000000) bar, white text at 11px weight 500, 0.033em tracking. Single line of disclaimer text, left-aligned. No visible accept/dismiss button in the data — text-only compliance strip."
+      },
+      {
+        "name": "Product Image Thumbnail",
+        "role": "Visual element within product card",
+        "description": "15px border-radius on the product photograph. No border, no shadow, no overlay. Image fills the card width. Square or 4:5 aspect ratio for garment-on-white photography. Background of photo is pure white or neutral grey — no lifestyle context within the grid."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole typeface across the entire site. All UI labels are uppercase, weight 500, with generous tracking — the fashion-magazine signature. Headings and display sizes use weight 700 with tightened tracking for editorial weight",
+        "sizes": "8px, 10px, 11px, 12px, 14px, 15px, 18px, 21px, 24px, 30px, 33px, 45px",
+        "family": "PP Neue Montreal",
+        "weight": "500",
+        "lineHeight": "1.15-2.78",
+        "substitute": "Inter (500/700) with letter-spacing manually applied, or Space Grotesk (500/700)",
+        "letterSpacing": "0.016em to 0.10em — tracking is INVERSE to size: smallest text (8px) gets the widest tracking (0.10em), display (45px) gets the tightest (0.016em)"
+      }
+    ],
+    "description": "VISIONNAIRE is an editorial streetwear shop rendered as a gallery on bone-white: large-format photography, heavy uppercase tracking, and a stripped-down achromatic palette that lets garment prints and color-block hero panels do the visual work. The interface avoids chrome — no shadows, no rounded card stacks, no gradient washes — relying on hard edges, hairline rules, and a single warm cream (#f7f5e8) to break the black-on-white monotony. Pill buttons (50px radius) and generous letter-spacing on every label give the system a fashion-magazine cadence rather than a retail-grid feel. Product tiles are dense and uniform (4 across), prioritising catalogue breadth over white-space breathing room, and the entire chrome reads as uppercase, tracked, and slightly shouted — like a runway programme.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0ecfea58-c1f3-4671-806d-5ae0eb779f38#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"VISIONNAIRE design system\",\"item\":\"https://styles.refero.design/style/0ecfea58-c1f3-4671-806d-5ae0eb779f38\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0ecfea58-c1f3-4671-806d-5ae0eb779f38#style-reference\",\"name\":\"VISIONNAIRE design system reference\",\"headline\":\"VISIONNAIRE design system | Refero Styles\",\"description\":\"Explore VISIONNAIRE's light E-commerce design system: Obsidian #000000, Bone White #ffffff colors, PP Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/0ecfea58-c1f3-4671-806d-5ae0eb779f38\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0ecfea58-c1f3-4671-806d-5ae0eb779f38\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"VISIONNAIRE\",\"url\":\"https://vision-naire.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0ecfea58-c1f3-4671-806d-5ae0eb779f38#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/371f7166-5617-4237-90ed-6359aa035aeb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/371f7166-5617-4237-90ed-6359aa035aeb.jpg\",\"caption\":\"Screenshot of VISIONNAIRE\"},\"image\":\"https://images.refero.design/styles/refero.design/image/371f7166-5617-4237-90ed-6359aa035aeb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"VISIONNAIRE design system\",\"VISIONNAIRE website design\",\"VISIONNAIRE colors\",\"VISIONNAIRE typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Obsidian\",\"Bone White\",\"Vellum Cream\",\"Charcoal\",\"PP Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"VISIONNAIRE design system\"},{\"@type\":\"Thing\",\"name\":\"VISIONNAIRE website design\"},{\"@type\":\"Thing\",\"name\":\"VISIONNAIRE colors\"},{\"@type\":\"Thing\",\"name\":\"VISIONNAIRE typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:12:07.319Z\",\"dateModified\":\"2026-04-30T03:12:07.319Z\"}]}19:T694,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- cream panel: #f7f5e8\n- border: #000000 (1px hairline)\n- muted text: #888888\n- accent (wordmark only): #b94e3a\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Product Grid Card**: White background, no border, no shadow. Product image with 15px border-radius, square aspect. Below: product name centered in PP Neue Montreal 12px weight 500 uppercase, letter-spacing 0.56px, #000000. Size row (XXS XS S M L XL XXL) in 10px weight 500 uppercase, #888888, 5px gaps, active size in #000000 with underline. Price in 12px weight 500 #000000 below. 20px internal padding.\n\n2. **VOIR Ghost Button**: Transparent background, 1px #000000 border, 50px border-radius. Text 'VOIR' in PP Neue Montreal 14px weight 500 uppercase, letter-spacing 0.81px, #000000. Padding 10px vertical / 20px horizontal. Hover: fill #000000, text #ffffff.\n\n3. **Split Editorial Hero**: 50/50 grid, full-bleed. Left: lifestyle photograph. Right: #f7f5e8 solid background. Centered text stack: 'VISIONNAIRE®' in 21px weight 500 uppercase #000000, 'DAHLEN' in 45px weight 700 #b94e3a, 'ART CLUB' in 12px weight 500 #000000. VOIR ghost button bottom-left of right panel.\n\n4. **ÉPUISÉ Badge**: White background #ffffff, 50px border-radius. Text 'ÉPUISÉ' in PP Neue Montreal 12px weight 500 uppercase, letter-spacing 0.56px, #000000. Padding 10px vertical / 20px horizontal. Positioned centered over product image.\n\n5. **Announcement Marquee**: Full-width #000000 background, 2px vertical padding. Repeating text in PP Neue Montreal 12px weight 500 uppercase, letter-spacing 0.28px, #ffffff, CSS marquee scroll animation."
+      }
+    ],
+    "elevationPhilosophy": "No shadows. The system is deliberately flat — depth is achieved through solid color-block alternation (white → cream → black) and hairline 1px borders, never through drop-shadow elevation. This is a deliberate editorial-print choice: the page should look like ink on paper, not like a skeuomorphic UI."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "body",
+            "card",
+            "button",
+            "icon",
+            "input",
+            "nav",
+            "link",
+            "image",
+            "heading",
+            "list",
+            "footer"
+          ],
+          "frequency": 2626,
+          "confidence": 1,
+          "prominence": 195731985.20660603,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 21,
+            "icon/fill": 12,
+            "nav/color": 16,
+            "body/color": 165,
+            "card/color": 62,
+            "icon/color": 6,
+            "link/color": 72,
+            "list/color": 11,
+            "nav/stroke": 2,
+            "other/fill": 11,
+            "image/color": 42,
+            "input/color": 2,
+            "other/color": 113,
+            "button/color": 4,
+            "footer/color": 1,
+            "other/stroke": 13,
+            "heading/color": 19,
+            "nav/borderColor": 64,
+            "body/borderColor": 660,
+            "card/borderColor": 248,
+            "icon/borderColor": 24,
+            "link/borderColor": 288,
+            "list/borderColor": 44,
+            "image/borderColor": 168,
+            "input/borderColor": 8,
+            "other/borderColor": 452,
+            "button/borderColor": 16,
+            "footer/borderColor": 4,
+            "heading/borderColor": 76,
+            "body/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "card",
+            "nav",
+            "heading",
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 437,
+          "confidence": 1,
+          "prominence": 2885149.985196866,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 38,
+            "link/color": 19,
+            "other/color": 19,
+            "other/stroke": 38,
+            "heading/color": 3,
+            "body/borderColor": 152,
+            "link/borderColor": 76,
+            "other/borderColor": 76,
+            "heading/borderColor": 12,
+            "nav/backgroundColor": 1,
+            "card/backgroundColor": 2,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#888888",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6267535410065036
+          },
+          "contexts": [
+            "other",
+            "button",
+            "icon"
+          ],
+          "frequency": 16,
+          "confidence": 1,
+          "prominence": 359042.73597542976,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/color": 1,
+            "other/color": 1,
+            "button/color": 1,
+            "other/stroke": 1,
+            "icon/borderColor": 4,
+            "other/borderColor": 4,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f7f5e8",
+          "oklch": {
+            "c": 0.017275778223713862,
+            "h": 99.5986749305475,
+            "l": 0.9681658489813343
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 31111.304490817212,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "body/borderColor": 32
+          }
+        },
+        {
+          "hex": "#231f20",
+          "oklch": {
+            "c": 0.006380422797871483,
+            "h": 0.5935423003805331,
+            "l": 0.24418954591201783
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 404.1654376838948,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.00060946506624202,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.18,
+          "background": "#000000",
+          "foreground": "#f7f5e8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.3,
+          "background": "#ffffff",
+          "foreground": "#231f20"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.89,
+          "background": "#f7f5e8",
+          "foreground": "#231f20"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.92,
+          "background": "#000000",
+          "foreground": "#888888"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.54,
+          "background": "#ffffff",
+          "foreground": "#888888"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#ffffff",
+          "foreground": "#f7f5e8"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 50,
+          "contexts": [
+            "link",
+            "card"
+          ],
+          "frequency": 22
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "card",
+            "image"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "marginTop|link",
+            "marginLeft|link",
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 298,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginRight|body",
+            "marginLeft|body",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "input",
+            "button",
+            "list"
+          ],
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingBottom|input",
+            "paddingBottom|button",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "link",
+            "card",
+            "other"
+          ],
+          "frequency": 42,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|link",
+            "marginTop|card",
+            "marginBottom|other",
+            "paddingRight|link"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "input",
+            "nav",
+            "button",
+            "link"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|input",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "button",
+            "card"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginBottom|card"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "body",
+            "other",
+            "nav",
+            "link",
+            "image",
+            "list"
+          ],
+          "frequency": 51,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body",
+            "marginTop|other",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|link",
+            "marginBottom|image",
+            "marginLeft|list",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 35,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 44,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "paddingTop|heading",
+            "paddingBottom|heading",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "card",
+            "footer"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "heading",
+            "other",
+            "footer"
+          ],
+          "frequency": 137,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "PP Neue Montreal",
+          "source": "custom",
+          "weights": [
+            500,
+            700
+          ],
+          "frequency": 603,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 8,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.088,
+          "textTransform": "none"
+        },
+        {
+          "size": 10,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "button",
+            "icon",
+            "link"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.07,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 10,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "card",
+            "body"
+          ],
+          "frequency": 158,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.07,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.064,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "PP Neue Montreal",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "input",
+            "body",
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.064,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.1,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.091,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "PP Neue Montreal",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.064,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.058,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "card",
+            "button",
+            "icon",
+            "nav",
+            "link",
+            "image",
+            "body"
+          ],
+          "frequency": 246,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "lineHeight": 3.57,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "PP Neue Montreal",
+          "weight": 700,
+          "contexts": [
+            "input",
+            "button",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.047,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "footer",
+            "list",
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.047,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 7,
+          "lineHeight": 2,
+          "letterSpacing": 0.047,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 21,
+          "lineHeight": 2.78,
+          "letterSpacing": 0.039,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 21,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.033,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 21,
+          "family": "PP Neue Montreal",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "list",
+            "link",
+            "image"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.033,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 21,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.033,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.029,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.023,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 33,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.021,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 45,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.016,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 45,
+          "family": "PP Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.016,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/d1a2cc4a-a3c0-43b0-aae4-b3d069d168d7.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/371f7166-5617-4237-90ed-6359aa035aeb.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/0ecfea58-c1f3-4671-806d-5ae0eb779f38#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"VISIONNAIRE design system\",\"item\":\"https://styles.refero.design/style/0ecfea58-c1f3-4671-806d-5ae0eb779f38\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/0ecfea58-c1f3-4671-806d-5ae0eb779f38#style-reference\",\"name\":\"VISIONNAIRE design system reference\",\"headline\":\"VISIONNAIRE design system | Refero Styles\",\"description\":\"Explore VISIONNAIRE's light E-commerce design system: Obsidian #000000, Bone White #ffffff colors, PP Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/0ecfea58-c1f3-4671-806d-5ae0eb779f38\",\"mainEntityOfPage\":\"https://styles.refero.design/style/0ecfea58-c1f3-4671-806d-5ae0eb779f38\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"VISIONNAIRE\",\"url\":\"https://vision-naire.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/0ecfea58-c1f3-4671-806d-5ae0eb779f38#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/371f7166-5617-4237-90ed-6359aa035aeb.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/371f7166-5617-4237-90ed-6359aa035aeb.jpg\",\"caption\":\"Screenshot of VISIONNAIRE\"},\"image\":\"https://images.refero.design/styles/refero.design/image/371f7166-5617-4237-90ed-6359aa035aeb.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"VISIONNAIRE design system\",\"VISIONNAIRE website design\",\"VISIONNAIRE colors\",\"VISIONNAIRE typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Obsidian\",\"Bone White\",\"Vellum Cream\",\"Charcoal\",\"PP Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"VISIONNAIRE design system\"},{\"@type\":\"Thing\",\"name\":\"VISIONNAIRE website design\"},{\"@type\":\"Thing\",\"name\":\"VISIONNAIRE colors\"},{\"@type\":\"Thing\",\"name\":\"VISIONNAIRE typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:12:07.319Z\",\"dateModified\":\"2026-04-30T03:12:07.319Z\"}]}19:T694,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- cream panel: #f7f5e8\n- border: #000000 (1px hairline)\n- muted text: #888888\n- accent (wordmark only): #b94e3a\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. **Product Grid Card**: White background, no border, no shadow. Product image with 15px border-radius, square aspect. Below: product name centered in PP Neue Montreal 12px weight 500 uppercase, letter-spacing 0.56px, #000000. Size row (XXS XS S M L XL XXL) in 10px weight 500 uppercase, #888888, 5px gaps, active size in #000000 with underline. Price in 12px weight 500 #000000 below. 20px internal padding.\n\n2. **VOIR Ghost Button**: Transparent background, 1px #000000 border, 50px border-radius. Text 'VOIR' in PP Neue Montreal 14px weight 500 uppercase, letter-spacing 0.81px, #000000. Padding 10px vertical / 20px horizontal. Hover: fill #000000, text #ffffff.\n\n3. **Split Editorial Hero**: 50/50 grid, full-bleed. Left: lifestyle photograph. Right: #f7f5e8 solid background. Centered text stack: 'VISIONNAIRE®' in 21px weight 500 uppercase #000000, 'DAHLEN' in 45px weight 700 #b94e3a, 'ART CLUB' in 12px weight 500 #000000. VOIR ghost button bottom-left of right panel.\n\n4. **ÉPUISÉ Badge**: White background #ffffff, 50px border-radius. Text 'ÉPUISÉ' in PP Neue Montreal 12px weight 500 uppercase, letter-spacing 0.56px, #000000. Padding 10px vertical / 20px horizontal. Positioned centered over product image.\n\n5. **Announcement Marquee**: Full-width #000000 background, 2px vertical padding. Repeating text in PP Neue Montreal 12px weight 500 uppercase, letter-spacing 0.28px, #ffffff, CSS marquee scroll animation."
+}

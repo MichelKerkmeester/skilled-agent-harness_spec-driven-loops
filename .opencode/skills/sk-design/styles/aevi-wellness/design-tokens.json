@@ -1,0 +1,342 @@
+{
+  "color": {
+    "powder-blue": {
+      "$value": "#d5e0ea",
+      "$type": "color",
+      "$description": "Powder Blue — Section bands, card borders, decorative dividers — the brand's secondary canvas, used to segment the page into editorial chapters without introducing contrast"
+    },
+    "slate-bloom": {
+      "$value": "#a3bfdb",
+      "$type": "color",
+      "$description": "Slate Bloom — Primary action buttons, active states — the single chromatic accent; its low saturation keeps it feeling clinical rather than commercial"
+    },
+    "warm-ink": {
+      "$value": "#231f20",
+      "$type": "color",
+      "$description": "Warm Ink — Primary text, hairline borders, card outlines, icon strokes — near-black with a warm undertone that softens the high-contrast text against white"
+    },
+    "true-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "True Black — Icon fills, occasional heavy borders — used sparingly for graphical weight when maximum contrast is needed"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page background, card surfaces, text on dark blocks — the dominant canvas, never off-white or cream"
+    },
+    "mist-gray": {
+      "$value": "#5f6368",
+      "$type": "color",
+      "$description": "Mist Gray — Muted helper text, secondary metadata, low-priority labels — only when a softer reading level is needed without leaving the achromatic palette"
+    }
+  },
+  "font": {
+    "primary-font": {
+      "$value": "Primary Font",
+      "$type": "fontFamily",
+      "$description": "Primary Font — detected in extracted data but not described by AI"
+    },
+    "primary-sans-custom-serif-influenced-grotesque": {
+      "$value": "Primary Sans (custom, serif-influenced grotesque)",
+      "$type": "fontFamily",
+      "$description": "Body text, button labels, badge text, list items, card metadata at weight 300 — the light weight is anti-convention for utility text and signals editorial restraint"
+    },
+    "tertiary-sans": {
+      "$value": "Tertiary Sans",
+      "$type": "fontFamily",
+      "$description": "Emphasized body copy, card descriptions — weight 500 lifts importance without breaking the light-typographic system"
+    },
+    "display-sans": {
+      "$value": "Display Sans",
+      "$type": "fontFamily",
+      "$description": "All headlines and section titles at weight 300 with extremely tight leading — the whisper-weight headlines create authority through restraint, not volume"
+    },
+    "tertiary-font": {
+      "$value": "Tertiary Font",
+      "$type": "fontFamily",
+      "$description": "Tertiary Font — detected in extracted data but not described by AI"
+    },
+    "button-font": {
+      "$value": "Button Font",
+      "$type": "fontFamily",
+      "$description": "Button Font — detected in extracted data but not described by AI"
+    },
+    "heading-font": {
+      "$value": "Heading Font",
+      "$type": "fontFamily",
+      "$description": "Heading Font — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Primary Font",
+        "fontSize": "10px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Primary Font",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Primary Font",
+        "fontSize": "12px",
+        "fontWeight": 300,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Primary Font",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Primary Font",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Primary Font",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Primary Font",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Tertiary Font",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Button Font",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 2.71
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Tertiary Font",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Button Font",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.21
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Primary Font",
+        "fontSize": "16px",
+        "fontWeight": 300,
+        "lineHeight": 1.31
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Heading Font",
+        "fontSize": "24px",
+        "fontWeight": 300,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Heading Font",
+        "fontSize": "28px",
+        "fontWeight": 300,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 28px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Heading Font",
+        "fontSize": "36px",
+        "fontWeight": 300,
+        "lineHeight": 1.11
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Heading Font",
+        "fontSize": "42px",
+        "fontWeight": 300,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Heading Font",
+        "fontSize": "54px",
+        "fontWeight": 300,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "full": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas, card surfaces, product image backgrounds"
+    },
+    "powder-blue-band": {
+      "$value": "#d5e0ea",
+      "$type": "color",
+      "$description": "Surface level 1: Section dividers, press strip, testimonial background — editorial chapter break"
+    },
+    "slate-bloom": {
+      "$value": "#a3bfdb",
+      "$type": "color",
+      "$description": "Surface level 2: Primary action surface, occasional highlight wash — the only chromatic surface"
+    },
+    "warm-ink": {
+      "$value": "#231f20",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted dark surface for text-heavy or closing sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://liveaevi.com",
+      "siteName": "Aevi Wellness",
+      "extractedAt": "2026-06-03T18:25:10.432Z",
+      "variant": "extended"
+    }
+  }
+}

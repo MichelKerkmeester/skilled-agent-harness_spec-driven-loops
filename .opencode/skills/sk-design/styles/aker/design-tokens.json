@@ -1,0 +1,532 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Primary text, hairline borders, icon strokes, link text on light surfaces"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Page canvas, card surfaces, text on dark photography and dark surfaces"
+    },
+    "char": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Char — Dark surface panels, navigation pill background, elevated dark cards"
+    },
+    "midnight": {
+      "$value": "#070707",
+      "$type": "color",
+      "$description": "Midnight — Deepest surface for dark feature cards and modal backgrounds"
+    },
+    "iron": {
+      "$value": "#262626",
+      "$type": "color",
+      "$description": "Iron — Mid-dark panel surface, secondary dark backgrounds behind photography"
+    },
+    "slate": {
+      "$value": "#38464a",
+      "$type": "color",
+      "$description": "Slate — Cool-tinted dark surface, used for subtle contrast against warmer darks"
+    },
+    "mist": {
+      "$value": "#e5e4e4",
+      "$type": "color",
+      "$description": "Mist — Light card surfaces, hairline borders on white, image overlay tints"
+    },
+    "smoke": {
+      "$value": "#8d8d8d",
+      "$type": "color",
+      "$description": "Smoke — Muted helper text, secondary borders, inactive metadata"
+    },
+    "pewter": {
+      "$value": "#666666",
+      "$type": "color",
+      "$description": "Pewter — Secondary body text, body-emphasis borders"
+    },
+    "ember": {
+      "$value": "#b75928",
+      "$type": "color",
+      "$description": "Ember — Link text, brand accent, warm highlight on muted cards — single chromatic accent that warms an otherwise neutral system"
+    },
+    "pine": {
+      "$value": "#193f32",
+      "$type": "color",
+      "$description": "Pine — Dark green surface for feature cards and link backgrounds on light"
+    },
+    "tide": {
+      "$value": "#002934",
+      "$type": "color",
+      "$description": "Tide — Deep teal-dark surface for link and card backgrounds, complements Pine in the cool brand register"
+    },
+    "driftwood": {
+      "$value": "#537179",
+      "$type": "color",
+      "$description": "Driftwood — Decorative stroke and fill for illustrations and icon-line work, soft cool gray with depth"
+    },
+    "cedar": {
+      "$value": "#776157",
+      "$type": "color",
+      "$description": "Cedar — Warm brown card surface, earth-toned card variant"
+    },
+    "coral": {
+      "$value": "#df6a6b",
+      "$type": "color",
+      "$description": "Coral — Warm-pink card surface, used as an occasional warm-tinted card variant"
+    },
+    "primary-action-fill": {
+      "$value": "#494949",
+      "$type": "color",
+      "$description": "Primary Action Fill — Neutral button treatment for secondary actions and selected controls. Use as the primary filled action background"
+    }
+  },
+  "font": {
+    "proxima-nova": {
+      "$value": "Proxima Nova",
+      "$type": "fontFamily",
+      "$description": "Primary typeface across all UI. Weight 300 carries the brand wordmark at 168px and large section headings (62–80px) — the whisper-weight at display sizes is anti-convention, creating authority through restraint instead of shouting with bold. Weight 400–500 handles body, labels, and UI. Weight 600 appears only for emphasis labels. Sizes range from 8px micro-labels to 168px display, a 21:1 ratio that produces a museum-label-to-billboard scale."
+    },
+    "lora": {
+      "$value": "Lora",
+      "$type": "fontFamily",
+      "$description": "Serif accent for body passages and editorial copy. Used sparingly to break the all-sans rhythm — a single serif paragraph next to Proxima Nova body creates an editorial-press feel. Letter-spacing 0.0110em gives it slight breathing room."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "6px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 6px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 8px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Lora",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "16px",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Lora",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "62px",
+        "fontWeight": 300,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 62px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 62px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "80px",
+        "fontWeight": 300,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 80px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Proxima Nova",
+        "fontSize": "168px",
+        "fontWeight": 300,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 168px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "19": {
+      "$value": "19px",
+      "$type": "dimension",
+      "$description": "Spacing 19px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "3.2px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "800px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "1584px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    }
+  },
+  "surface": {
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Base page canvas for content sections"
+    },
+    "mist": {
+      "$value": "#e5e4e4",
+      "$type": "color",
+      "$description": "Surface level 2: Light card surface floating on Paper"
+    },
+    "pine": {
+      "$value": "#193f32",
+      "$type": "color",
+      "$description": "Surface level 3: Dark green feature card for tonal variety"
+    },
+    "tide": {
+      "$value": "#002934",
+      "$type": "color",
+      "$description": "Surface level 4: Deep teal card surface, darker than Pine"
+    },
+    "char": {
+      "$value": "#1c1c1c",
+      "$type": "color",
+      "$description": "Surface level 5: Navigation pill, modal panels, and dark elevated surfaces"
+    },
+    "midnight": {
+      "$value": "#070707",
+      "$type": "color",
+      "$description": "Surface level 6: Darkest surface for photography overlays and premium dark cards"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.akercompanies.com",
+      "siteName": "Aker",
+      "extractedAt": "2026-06-03T19:57:07.900Z",
+      "variant": "extended"
+    }
+  }
+}

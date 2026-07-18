@@ -1,0 +1,1416 @@
+{
+  "source": "https://styles.refero.design/style/46c8dbc5-47c8-4796-b94c-5e46dcda3532",
+  "uuid": "46c8dbc5-47c8-4796-b94c-5e46dcda3532",
+  "name": "BelArosa Chalet",
+  "northStar": "dusk on alpine vellum",
+  "capturedAt": "2026-07-18T09:51:36.130Z",
+  "meta": {
+    "url": "https://www.belarosa-chalet.ch",
+    "siteName": "BelArosa Chalet",
+    "extractedAt": "2026-06-03T17:50:24.459Z",
+    "durationMs": 40708,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 537,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use 80px border-radius on all buttons, tags, and pill-shaped elements — the full pill is a signature shape, not a stylistic choice",
+      "Pair every serif headline with an uppercase tracked eyebrow label above it — the eyebrow-to-serif rhythm is the editorial structure",
+      "Use Mountain Slate #193741 as both surface color and border color interchangeably — the system blurs the line between background and edge",
+      "Maintain 64–80px vertical gaps between major sections; the design breathes slowly and never feels dense",
+      "Use the sans (Avenir) for all UI, body, and navigation text; the serif (ITC Giovanni) appears only in display headlines 16px and above",
+      "Apply 0.125–0.167em letter-spacing to all uppercase text in Avenir — tight tracking would break the editorial-luxury tone",
+      "Keep the colorfulness at 5% or below; color appears only in the monogram, seasonal badge, and cookie banner — never as a functional fill"
+    ],
+    "donts": [
+      "Never use drop shadows anywhere in the system — depth comes from color contrast and 1px borders, not elevation",
+      "Never use the Honey Gold #eac486 as a CTA fill, hover state, or interactive surface — it is decorative only",
+      "Never mix the serif and sans within the same text block; they serve distinct roles and must not compete",
+      "Never use the sans for display headlines above 28px — large sans text breaks the serif-pull-quote rhythm",
+      "Never create filled colored buttons; all CTAs are outlined/ghost pills, even the primary action",
+      "Never use the deep teal #1d414d for large surface fills — it is a border and hover-state variant, not a section background",
+      "Never compress section padding below 48px; the slow vertical rhythm is what gives the site its unhurried, luxury pacing"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#193741",
+        "name": "Mountain Slate",
+        "role": "Dominant structural color — hero backgrounds, dark section surfaces, primary text, navigation links, and the most-used border color in the system. The near-gray teal reads as atmospheric depth rather than saturated color",
+        "group": "brand"
+      },
+      {
+        "hex": "#1d414d",
+        "name": "Deep Teal",
+        "role": "Slightly lifted variant of Mountain Slate for outlined action borders, hover states, and secondary dark surfaces. Provides subtle differentiation from the primary teal without introducing a new hue family",
+        "group": "brand"
+      },
+      {
+        "hex": "#eac486",
+        "name": "Honey Gold",
+        "role": "Yellow decorative accent for icons, marks, and small graphic details. Do not promote it to the primary CTA color",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Snow White",
+        "role": "Primary page canvas, navigation bar, light content section backgrounds, and ghost button text on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ebe7e1",
+        "name": "Warm Parchment",
+        "role": "Cream surface for content bands — sits between pure white and the dark teal sections to create a soft warm middle tone. Reads as aged paper or natural linen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8c9ba0",
+        "name": "Stone Gray",
+        "role": "Muted text, secondary borders, and subdued UI elements. A cool desaturated gray that sits comfortably between the warm cream and deep teal",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Charcoal",
+        "role": "Rare dark accent for button text and select borders where pure black feels too harsh against the teal-and-cream system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Input field borders, fine icon fills. Used sparingly as a true-black anchor",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed dark hero section (100vw) with centered headline over Mountain Slate, flanked by two circular photo insets. Below the hero, a fixed white navigation bar with horizontal sub-menu. Content sections alternate between dark teal full-bleed bands and warm parchment/white contained sections. Dark sections use 2-column split layouts (50/50, text + full-bleed-edge photograph). Light sections use centered editorial stacks (single image, then serif title below) or generous 2-column arrangements. Section gaps are large (64–80px), creating a slow vertical rhythm. Grid usage is minimal — most layouts are 1 or 2 columns, with no card grids or masonry. The overall density is spacious and editorial, never information-dense. Navigation is a top bar (sticky) with a sub-category row below it.",
+    "imagery": "Photography dominates the visual language: warm-toned, lifestyle-focused alpine imagery — people relaxing on chalet balconies, food preparation close-ups, natural mountain light. Treatment varies: hero photographs appear in circular frames with a teal color overlay creating a monochromatic mood-board effect, while content section photographs are full-color, warm, and unframed, bleeding into their background. No illustration, no product screenshots, no abstract graphics. Photography is the only visual content beyond typography. Icon style is minimal — thin line icons in white or teal, used sparingly (globe, hamburger, chevron, close). Imagery occupies roughly 50-60% of the visual space in content sections, alternating with text blocks in editorial spreads.",
+    "similar": [
+      {
+        "why": "Same editorial-luxury approach: full-bleed dark sections alternating with warm cream content bands, serif display headlines, and ultra-restrained color palettes where a single accent appears only in the monogram.",
+        "business": "Aman Resorts"
+      },
+      {
+        "why": "Shared dual-typeface system pairing a geometric sans for UI with a transitional serif for editorial headlines, plus the same generous 64–80px section padding and pill-shaped outlined CTAs.",
+        "business": "Belmond"
+      },
+      {
+        "why": "Same architectural flatness — no drop shadows, depth from color contrast and hairline borders — combined with uppercase-tracked navigation labels and nature-driven lifestyle photography.",
+        "business": "Six Senses Hotels"
+      },
+      {
+        "why": "Mountain hospitality aesthetic with dark teal/forest brand color, warm parchment surfaces, and the same slow vertical rhythm that lets photography and serif typography breathe.",
+        "business": "The Chedi Andermatt"
+      },
+      {
+        "why": "Editorial magazine-style layout with centered serif headlines over generous whitespace, and a near-achromatic palette that lets lifestyle photography carry the color.",
+        "business": "Rosewood Hotels"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "links": "12px",
+        "badges": "80px",
+        "buttons": "80px",
+        "nav-pills": "80px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "64-80px",
+      "cardPadding": "32-48px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Snow White Canvas",
+        "level": 0,
+        "purpose": "Page background, navigation bar, light content sections"
+      },
+      {
+        "hex": "#ebe7e1",
+        "name": "Warm Parchment",
+        "level": 1,
+        "purpose": "Cream content bands between dark sections, soft alternating rhythm"
+      },
+      {
+        "hex": "#193741",
+        "name": "Mountain Slate",
+        "level": 2,
+        "purpose": "Dark hero, full-bleed section backgrounds (cuisine, philosophy)"
+      },
+      {
+        "hex": "#1d414d",
+        "name": "Deep Teal",
+        "level": 3,
+        "purpose": "Subtle elevation variant for cards or panels on dark teal sections"
+      }
+    ],
+    "northStar": "dusk on alpine vellum",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": 2.34
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": 2
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display-lg",
+        "size": 64,
+        "lineHeight": 1.1
+      }
+    ],
+    "components": [
+      {
+        "name": "Header Navigation Bar",
+        "role": "Site-wide top bar",
+        "description": "White (#ffffff) background, full-width. Left: hamburger icon + 'MENU' label in Avenir 12px uppercase tracked. Center: BelArosa logo with Honey Gold monogram and dark teal wordmark. Right: globe icon + 'BOOK' outlined pill button. Fixed/sticky position with no shadow."
+      },
+      {
+        "name": "Outlined Teal Pill Button (Primary CTA)",
+        "role": "Primary action button on light surfaces",
+        "description": "Border: 1.5px solid #193741. Background: transparent. Text: #193741, Avenir 12–14px uppercase, letter-spacing 0.167em. Border-radius: 80px (full pill). Padding: 12px 28px. Hover: fills with #193741, text becomes #ffffff. Used for 'BOOK', 'Mehr erfahren' on light sections."
+      },
+      {
+        "name": "Ghost White Button",
+        "role": "Action button on dark teal sections",
+        "description": "Border: 1.5px solid #ffffff. Background: transparent. Text: #ffffff, Avenir uppercase tracked. Border-radius: 80px. Same padding as teal variant. Hover: fills white, text becomes #193741."
+      },
+      {
+        "name": "Hero Section",
+        "role": "Full-bleed dark opening section",
+        "description": "Background: #193741 full-bleed. Centered layout. Small uppercase eyebrow in Avenir 12px white (0.167em tracking) above serif display headline. Headline: ITC Giovanni Bold 48–64px, white, line-height 1.10. Two circular/teal-tinted photograph frames flanking the text. No scroll-indicator border on the image circles — they bleed into the teal canvas."
+      },
+      {
+        "name": "Seasonal Badge",
+        "role": "Floating circular callout",
+        "description": "Circular shape, 80px border-radius. Background: #193741. Text: white, Avenir 12–14px centered. Positioned top-left of hero. Functions as a decorative informational medallion."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Small uppercase category marker above headlines",
+        "description": "Avenir 12–14px, uppercase, letter-spacing 0.125–0.167em, color matches the section's text color. Examples: 'THE BELAROSA CHALET', 'CUISINE', 'PHILOSOPHY'. Always paired with a serif headline below."
+      },
+      {
+        "name": "Sub-Navigation Menu",
+        "role": "Category links below main nav",
+        "description": "Horizontal bar on white or light background. Items: Avenir 12–14px uppercase, letter-spacing 0.125em, color #193741. Items: PHILOSOPHY, CHALETS, CUISINE, WELLNESS, FRIENDS & FAMILY, GALLERY, EXPERIENCES. Active state: Honey Gold underline or subtle border-bottom. Even spacing across the full bar width."
+      },
+      {
+        "name": "Split Content Section (Dark)",
+        "role": "Two-column text + image on dark teal background",
+        "description": "Full-bleed #193741 background. 50/50 grid: one side large lifestyle photograph with no border-radius (raw edges into the teal), other side centered text block with eyebrow + serif heading + body paragraph + ghost white CTA. Vertical centering. 64–80px padding top/bottom."
+      },
+      {
+        "name": "Editorial Content Card",
+        "role": "Centered content unit on light sections",
+        "description": "Warm Parchment or white background. Centered large photograph (constrained width ~600–700px) above serif headline (ITC Giovanni 28–40px) in #193741. No card border or shadow. Generous whitespace around the unit. 48–64px vertical padding."
+      },
+      {
+        "name": "Logo Lockup",
+        "role": "Brand identity mark",
+        "description": "Centered. Monogram 'B' in ITC Giovanni Bold or custom italic serif, Honey Gold #eac486. Below: 'BelArosa' in Avenir or similar geometric sans, #193741, 16–18px, letter-spacing 0.05em. Below: 'CHALET' in Avenir 10px uppercase, #193741, letter-spacing 0.3em. Stacked vertically, centered alignment."
+      },
+      {
+        "name": "Cookie Consent Banner",
+        "role": "Fixed overlay notice",
+        "description": "Background: Honey Gold #eac486 at 95% opacity. Fixed bottom-right. Avenir 14px body text in #193741. 'MEHR ERFAHREN' as uppercase tracked link. Close icon (×) top-right. Warm tone signals non-intrusive, on-brand notification."
+      },
+      {
+        "name": "Scroll Indicator",
+        "role": "Bottom-left scroll prompt",
+        "description": "Small downward chevron icon in a diamond/rhombus frame, white stroke, with 'SCROLL' label in Avenir 12px uppercase white, letter-spacing 0.167em. Positioned bottom-left of the hero."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All UI, navigation, body copy, buttons, form labels, and small headlines up to 28px. The humanist geometry gives the system a calm, European-civic clarity. Uppercase usage carries generous tracking (0.125em–0.167em) for editorial feel.",
+        "sizes": "12px, 14px, 16px, 20px, 24px, 28px, 40px",
+        "family": "Avenir LT Pro Roman",
+        "weight": "400",
+        "lineHeight": "1.0–1.71 (context-dependent: 1.50 for UI labels, 1.40 for body, 1.20–1.25 for larger sans text)",
+        "substitute": "Nunito Sans, Avenir Next, or Mulish",
+        "letterSpacing": "0.1250em, 0.1670em"
+      },
+      {
+        "role": "Exclusively for editorial display headlines, section titles, and large pull quotes. The transitional serif with a bold weight creates contrast against the sans body — a serif headline signals \"this is a moment\" in the page rhythm. Never used below 16px.",
+        "sizes": "16px, 18px, 28px, 48px, 64px",
+        "family": "ITC Giovanni Std Bold",
+        "weight": "700",
+        "lineHeight": "1.10–1.40 (tight at display sizes: 1.10 at 64px)",
+        "substitute": "Playfair Display, Cormorant Garamond, or DM Serif Display"
+      }
+    ],
+    "description": "The BelArosa Chalet system channels alpine luxury through a restrained two-color palette: deep mountain teal (#193741) dominates as the signature surface and structural border color, while warm honey gold (#eac486) appears only in the monogram and decorative accents, never as a functional fill. Typography pairs a humanist sans (Avenir) for all UI, navigation, and body text with a transitional serif (ITC Giovanni) exclusively for editorial headlines — this duality is the site's defining signature, creating an editorial-luxury identity where serif moments feel like pull quotes in a travel magazine. Layout alternates between full-bleed dark teal hero sections and warm parchment content bands, using 80px pill-radius outlined buttons and generous 64–80px section gaps to create a slow, breathing rhythm. The design is flat and architectural: no drop shadows, depth communicated entirely through color contrast and hairline borders. The colorfulness of just 5% is intentional — restraint is the luxury signal.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/46c8dbc5-47c8-4796-b94c-5e46dcda3532#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"BelArosa Chalet design system\",\"item\":\"https://styles.refero.design/style/46c8dbc5-47c8-4796-b94c-5e46dcda3532\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/46c8dbc5-47c8-4796-b94c-5e46dcda3532#style-reference\",\"name\":\"BelArosa Chalet design system reference\",\"headline\":\"BelArosa Chalet design system | Refero Styles\",\"description\":\"Explore BelArosa Chalet's mixed Other design system: Mountain Slate #193741, Deep Teal #1d414d colors, Avenir LT Pro Roman, ITC Giovanni Std Bold...\",\"url\":\"https://styles.refero.design/style/46c8dbc5-47c8-4796-b94c-5e46dcda3532\",\"mainEntityOfPage\":\"https://styles.refero.design/style/46c8dbc5-47c8-4796-b94c-5e46dcda3532\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"BelArosa Chalet\",\"url\":\"https://www.belarosa-chalet.ch\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/46c8dbc5-47c8-4796-b94c-5e46dcda3532#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/012e0644-1e63-4883-94a9-153949c12086.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/012e0644-1e63-4883-94a9-153949c12086.jpg\",\"caption\":\"Screenshot of BelArosa Chalet\"},\"image\":\"https://images.refero.design/styles/refero.design/image/012e0644-1e63-4883-94a9-153949c12086.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"BelArosa Chalet design system\",\"BelArosa Chalet website design\",\"BelArosa Chalet colors\",\"BelArosa Chalet typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Mountain Slate\",\"Deep Teal\",\"Honey Gold\",\"Snow White\",\"Avenir LT Pro Roman\",\"ITC Giovanni Std Bold\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"BelArosa Chalet design system\"},{\"@type\":\"Thing\",\"name\":\"BelArosa Chalet website design\"},{\"@type\":\"Thing\",\"name\":\"BelArosa Chalet colors\"},{\"@type\":\"Thing\",\"name\":\"BelArosa Chalet typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:38:58.880Z\",\"dateModified\":\"2026-04-30T01:38:58.880Z\"}]}19:T5a8,**Quick Color Reference**\n- text: #193741\n- background: #ffffff\n- border: #193741\n- accent: #eac486\n- dark surface: #193741\n- primary action: #1d414d (outlined action border)\n\n**3 Example Component Prompts**\n\n1. Create a hero section: full-bleed #193741 background, centered. Eyebrow in Avenir 12px uppercase white, letter-spacing 0.167em. Display headline in ITC Giovanni Bold 64px white, line-height 1.10: 'Nestled in nature'. Two circular photo insets (200px diameter) on left and right with a teal overlay. Scroll indicator (chevron + 'SCROLL' label in Avenir 12px white) at bottom-left.\n\n2. Create a dark cuisine section: full-bleed #193741 background, 50/50 grid. Left: large food-prep photograph with raw edges into the teal, no border-radius. Right: centered text block. Eyebrow: 'CUISINE' in Avenir 14px uppercase white, letter-spacing 0.125em. Heading: 'Only the finest: our dining philosophy.' in ITC Giovanni Bold 40px white. Body paragraph: Avenir 16px white at line-height 1.40. Ghost white outlined button: border 1.5px #ffffff, border-radius 80px, padding 12px 28px, text 'Mehr erfahren' in Avenir 12px uppercase white.\n\n3. Create an editorial content card on light section: #ffffff background, max-width 700px centered. Full-width lifestyle photograph (mountain balcony scene) above. Title below: 'Summer Escape' in ITC Giovanni Bold 28px, #193741, centered. No border, no shadow, no card background — the whitespace IS the card."
+      }
+    ],
+    "elevationPhilosophy": "Deliberately shadowless. Depth is achieved exclusively through color contrast — dark teal against warm cream creates visual separation, and 1px hairline borders define edges. No drop shadows appear anywhere in the system. This flatness gives the design an architectural, editorial quality rather than a digital-app feel."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#193741",
+          "oklch": {
+            "c": 0.039897088130397905,
+            "h": 222.0717442044544,
+            "l": 0.31830866703021216
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "body",
+            "button",
+            "icon",
+            "card",
+            "hero",
+            "heading",
+            "input"
+          ],
+          "frequency": 1106,
+          "confidence": 1,
+          "prominence": 197605744.43560836,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "body/color": 7,
+            "hero/color": 2,
+            "icon/color": 3,
+            "link/color": 4,
+            "other/fill": 2,
+            "image/color": 10,
+            "other/color": 173,
+            "button/color": 15,
+            "heading/color": 7,
+            "body/borderColor": 28,
+            "hero/borderColor": 8,
+            "icon/borderColor": 12,
+            "link/borderColor": 16,
+            "image/borderColor": 40,
+            "other/borderColor": 691,
+            "button/borderColor": 36,
+            "heading/borderColor": 28,
+            "card/backgroundColor": 1,
+            "input/backgroundColor": 3,
+            "other/backgroundColor": 16
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "link",
+            "heading",
+            "hero",
+            "button",
+            "image",
+            "footer",
+            "body",
+            "input"
+          ],
+          "frequency": 1210,
+          "confidence": 1,
+          "prominence": 53877942.11698387,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "body/color": 1,
+            "icon/color": 5,
+            "link/color": 36,
+            "other/fill": 7,
+            "image/color": 15,
+            "input/color": 3,
+            "other/color": 165,
+            "button/color": 2,
+            "footer/color": 1,
+            "heading/color": 5,
+            "body/borderColor": 4,
+            "icon/borderColor": 20,
+            "link/borderColor": 144,
+            "image/borderColor": 60,
+            "input/borderColor": 3,
+            "other/borderColor": 659,
+            "button/borderColor": 36,
+            "footer/borderColor": 4,
+            "heading/borderColor": 20,
+            "hero/backgroundColor": 2,
+            "other/backgroundColor": 8,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#1d414d",
+          "oklch": {
+            "c": 0.046156860438784385,
+            "h": 222.30895912261093,
+            "l": 0.3541556522807606
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 3253576.4433202664,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 12,
+            "other/borderColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ebe7e1",
+          "oklch": {
+            "c": 0.009147561288930852,
+            "h": 78.27994680076485,
+            "l": 0.9294166808082285
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2385450,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1410750,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#bfbfbf",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8054428611228005
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 482297,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#8c9ba0",
+          "oklch": {
+            "c": 0.01866168053409981,
+            "h": 219.74585395406586,
+            "l": 0.679170573933362
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "icon"
+          ],
+          "frequency": 193,
+          "confidence": 1,
+          "prominence": 346069.63118183304,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 8,
+            "icon/color": 4,
+            "link/color": 15,
+            "other/fill": 4,
+            "other/color": 19,
+            "button/color": 1,
+            "icon/borderColor": 16,
+            "link/borderColor": 48,
+            "other/borderColor": 77,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#eac486",
+          "oklch": {
+            "c": 0.09027888151338825,
+            "h": 79.28352251353883,
+            "l": 0.8393292662146091
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "card"
+          ],
+          "frequency": 46,
+          "confidence": 1,
+          "prominence": 115179.9544283875,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "card/color": 1,
+            "icon/color": 2,
+            "other/fill": 2,
+            "other/color": 5,
+            "card/borderColor": 4,
+            "icon/borderColor": 8,
+            "other/borderColor": 20
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "icon",
+            "input",
+            "other"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 77142.3636441355,
+          "properties": [
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 2,
+            "other/fill": 7,
+            "input/borderColor": 9
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1323.500800369232,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "button/color": 1,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#d1d7d9",
+          "oklch": {
+            "c": 0.007108575722570256,
+            "h": 219.5676241603298,
+            "l": 0.875120069234267
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 665,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.05467975331403529,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.05,
+          "background": "#ebe7e1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#ffffff",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.43,
+          "background": "#d1d7d9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.92,
+          "background": "#ebe7e1",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.74,
+          "background": "#eac486",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.62,
+          "background": "#ffffff",
+          "foreground": "#193741"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.42,
+          "background": "#bfbfbf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.96,
+          "background": "#1d414d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.93,
+          "background": "#d1d7d9",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.25,
+          "background": "#ebe7e1",
+          "foreground": "#193741"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.91,
+          "background": "#cccccc",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.65,
+          "background": "#eac486",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.9,
+          "background": "#ebe7e1",
+          "foreground": "#1d414d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.67,
+          "background": "#d1d7d9",
+          "foreground": "#193741"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.65,
+          "background": "#bfbfbf",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.86,
+          "background": "#cccccc",
+          "foreground": "#193741"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.65,
+          "background": "#193741",
+          "foreground": "#eac486"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.53,
+          "background": "#d1d7d9",
+          "foreground": "#1d414d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 80,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 25,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|button",
+            "columnGap|button",
+            "marginTop|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|button",
+            "marginLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "link",
+            "button",
+            "input"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginBottom|button",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card",
+            "heading",
+            "input",
+            "button"
+          ],
+          "frequency": 29,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "marginTop|other",
+            "marginTop|heading",
+            "marginBottom|input",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "marginTop|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 28,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "body",
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 57,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|body",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "button"
+          ],
+          "frequency": 39,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other",
+            "marginBottom|body",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 50,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "marginRight",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "rowGap|other",
+            "marginRight|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 129,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 240,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 21,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 305,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Avenir LT Pro Roman",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 489,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ITC Giovanni Std Bold",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 12,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Avenir LT Pro Roman",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 24,
+          "lineHeight": 1,
+          "letterSpacing": 0.167,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Avenir LT Pro Roman",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.71,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Avenir LT Pro Roman",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "button",
+            "icon",
+            "body",
+            "hero",
+            "footer"
+          ],
+          "frequency": 284,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Avenir LT Pro Roman",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 20,
+          "lineHeight": 1,
+          "letterSpacing": 0.125,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Avenir LT Pro Roman",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.125,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "ITC Giovanni Std Bold",
+          "weight": 700,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Avenir LT Pro Roman",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 14,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Avenir LT Pro Roman",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Avenir LT Pro Roman",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "ITC Giovanni Std Bold",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Avenir LT Pro Roman",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Avenir LT Pro Roman",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 91,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Avenir LT Pro Roman",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "ITC Giovanni Std Bold",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Avenir LT Pro Roman",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Avenir LT Pro Roman",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 0.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "ITC Giovanni Std Bold",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "ITC Giovanni Std Bold",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "ITC Giovanni Std Bold",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/ac8b2074-2aef-4993-9a14-a002148c94d6.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/012e0644-1e63-4883-94a9-153949c12086.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/46c8dbc5-47c8-4796-b94c-5e46dcda3532#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"BelArosa Chalet design system\",\"item\":\"https://styles.refero.design/style/46c8dbc5-47c8-4796-b94c-5e46dcda3532\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/46c8dbc5-47c8-4796-b94c-5e46dcda3532#style-reference\",\"name\":\"BelArosa Chalet design system reference\",\"headline\":\"BelArosa Chalet design system | Refero Styles\",\"description\":\"Explore BelArosa Chalet's mixed Other design system: Mountain Slate #193741, Deep Teal #1d414d colors, Avenir LT Pro Roman, ITC Giovanni Std Bold...\",\"url\":\"https://styles.refero.design/style/46c8dbc5-47c8-4796-b94c-5e46dcda3532\",\"mainEntityOfPage\":\"https://styles.refero.design/style/46c8dbc5-47c8-4796-b94c-5e46dcda3532\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"BelArosa Chalet\",\"url\":\"https://www.belarosa-chalet.ch\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/46c8dbc5-47c8-4796-b94c-5e46dcda3532#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/012e0644-1e63-4883-94a9-153949c12086.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/012e0644-1e63-4883-94a9-153949c12086.jpg\",\"caption\":\"Screenshot of BelArosa Chalet\"},\"image\":\"https://images.refero.design/styles/refero.design/image/012e0644-1e63-4883-94a9-153949c12086.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"BelArosa Chalet design system\",\"BelArosa Chalet website design\",\"BelArosa Chalet colors\",\"BelArosa Chalet typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Mountain Slate\",\"Deep Teal\",\"Honey Gold\",\"Snow White\",\"Avenir LT Pro Roman\",\"ITC Giovanni Std Bold\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"BelArosa Chalet design system\"},{\"@type\":\"Thing\",\"name\":\"BelArosa Chalet website design\"},{\"@type\":\"Thing\",\"name\":\"BelArosa Chalet colors\"},{\"@type\":\"Thing\",\"name\":\"BelArosa Chalet typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T01:38:58.880Z\",\"dateModified\":\"2026-04-30T01:38:58.880Z\"}]}19:T5a8,**Quick Color Reference**\n- text: #193741\n- background: #ffffff\n- border: #193741\n- accent: #eac486\n- dark surface: #193741\n- primary action: #1d414d (outlined action border)\n\n**3 Example Component Prompts**\n\n1. Create a hero section: full-bleed #193741 background, centered. Eyebrow in Avenir 12px uppercase white, letter-spacing 0.167em. Display headline in ITC Giovanni Bold 64px white, line-height 1.10: 'Nestled in nature'. Two circular photo insets (200px diameter) on left and right with a teal overlay. Scroll indicator (chevron + 'SCROLL' label in Avenir 12px white) at bottom-left.\n\n2. Create a dark cuisine section: full-bleed #193741 background, 50/50 grid. Left: large food-prep photograph with raw edges into the teal, no border-radius. Right: centered text block. Eyebrow: 'CUISINE' in Avenir 14px uppercase white, letter-spacing 0.125em. Heading: 'Only the finest: our dining philosophy.' in ITC Giovanni Bold 40px white. Body paragraph: Avenir 16px white at line-height 1.40. Ghost white outlined button: border 1.5px #ffffff, border-radius 80px, padding 12px 28px, text 'Mehr erfahren' in Avenir 12px uppercase white.\n\n3. Create an editorial content card on light section: #ffffff background, max-width 700px centered. Full-width lifestyle photograph (mountain balcony scene) above. Title below: 'Summer Escape' in ITC Giovanni Bold 28px, #193741, centered. No border, no shadow, no card background — the whitespace IS the card."
+}

@@ -1,0 +1,1685 @@
+{
+  "source": "https://styles.refero.design/style/12255b63-e506-4bc1-a4cd-d05487de32f3",
+  "uuid": "12255b63-e506-4bc1-a4cd-d05487de32f3",
+  "name": "Intercom",
+  "northStar": "Warm cream editorial spread",
+  "capturedAt": "2026-07-18T10:12:03.026Z",
+  "meta": {
+    "url": "https://intercom.com",
+    "siteName": "Intercom",
+    "extractedAt": "2026-06-03T14:57:12.763Z",
+    "durationMs": 42553,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 938,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 1
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set all display headlines at weight 300, not 400 or 700 — the whisper-weight is the brand's most recognizable choice",
+      "Use warm cream (#faf9f6) as the default page background, not pure white or cool gray — the warmth is non-negotiable",
+      "Apply SaansMono at 12px with 1.2px letter-spacing for any tag, label, or micro-copy element",
+      "Use black (#000000) for filled primary buttons — never the brand violet, never a tinted neutral",
+      "Apply 4px border-radius universally — buttons, nav, cards, inputs, tags all share the same sharp radius",
+      "Allow display headlines to reach 80px with line-height 0.95 and letter-spacing -2.4px — extreme size at light weight needs the tight tracking to remain readable",
+      "Pair Saans display with Serrif 300 in body copy to create editorial contrast within the same weight register",
+      "Use the vivid violet (#0007cb) sparingly — maximum once or twice per screen, in small functional doses (icons, emphasis links, tag accents)",
+      "Set section vertical gaps at 64–96px to create the slow, editorial page rhythm",
+      "Render all third-party customer logos in grayscale (#b8b8b8 or #888888) to maintain system color discipline"
+    ],
+    "donts": [
+      "Never set display type at weight 700 or above — the 300-weight whisper is the entire identity",
+      "Never use pure white (#ffffff) as the primary page canvas — always use warm cream (#faf9f6)",
+      "Never apply border-radius above 4px — no 8px, no 12px, no 9999px pills",
+      "Never use cool grays (blue-tinted) for neutrals — all grays must have a warm undertone to live in the cream system",
+      "Never use the brand violet as a button fill — it is an accent, not an action color",
+      "Never use shadows or drop-shadows on cards, buttons, or panels — depth comes from background tone shifts, not elevation",
+      "Never render customer logos in their native brand colors — grayscale only to prevent color pollution",
+      "Never add a hard divider line between sections — let background tone and spacing create separation",
+      "Never set body copy above 20px or below 14px — the editorial scale is tight",
+      "Never use a gradient — the entire system is flat, warm, and untextured except for the surface tone progression"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0007cb",
+        "name": "Electric Violet",
+        "role": "Brand accent — used sparingly for emphasis moments, selected icon strokes, and tag punctuation; the only saturated color in the system creates instant focus when it appears against the warm neutral canvas",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Card surfaces, product screenshot backgrounds, inverted button text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#faf9f6",
+        "name": "Canvas Cream",
+        "role": "Primary page canvas — the warm off-white that defines the entire surface temperature; every screen lives on this tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f1eee9",
+        "name": "Linen",
+        "role": "Secondary surface for sectioned blocks, elevated cards, and alternating content bands — one step warmer than canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d3cec6",
+        "name": "Stone",
+        "role": "Decorative texture wash, large background fields, subtle warmth blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dedbd6",
+        "name": "Hairline",
+        "role": "Hairline borders, dividers, input outlines, nav separators — the warm border tone that never feels cold",
+        "group": "neutral"
+      },
+      {
+        "hex": "#111111",
+        "name": "Ink",
+        "role": "Primary text, headings, body copy — slightly softer than pure black for comfortable reading on cream",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Carbon",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#414141",
+        "name": "Iron",
+        "role": "Secondary text, supporting copy, muted descriptions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#585858",
+        "name": "Graphite",
+        "role": "Tertiary text, helper copy, less-prominent body",
+        "group": "neutral"
+      },
+      {
+        "hex": "#888888",
+        "name": "Smoke",
+        "role": "Disabled state text, placeholder copy, very muted labels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a0a0a0",
+        "name": "Ash",
+        "role": "Muted headings in secondary contexts, low-emphasis text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b8b8b8",
+        "name": "Silver",
+        "role": "Icon strokes in resting state, low-emphasis glyphs",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Intercom uses a max-width 1200px centered container with generous side padding (48–80px). The page rhythm is: thin announcement bar → transparent nav bar → 80px display headline hero (left-aligned, 60% width) with subtext column to the right → horizontal image strip → tabbed product section → 6-column customer logo grid → alternating 2-column editorial feature blocks (text+image, 50/50 split). Section vertical spacing is 64–96px, creating slow, measured scrolling. No full-bleed sections — everything sits within the contained column. Navigation is a single top bar (not sticky in the data shown), with no sidebar or mega-menu complexity. The layout philosophy is editorial-magazine: every section is a 'spread' with clear top and bottom margins, and content alternates which column carries the image.",
+    "imagery": "Intercom's visual language mixes editorial photography, hand-drawn illustration, and product screenshots with equal weight. Photography tends toward warm, lifestyle-framed human shots (portraits, sunsets, candid scenes) with natural color grading — never stock-clinical. Illustrations are loose, organic, often black-and-white ink-style (sketched figures, abstract line art) that echo the serif typography's humanist warmth. Product screenshots are always presented on warm cream backgrounds, never floating on white, to keep them embedded in the system's tone. The customer logo grid is treated as a quiet social-proof band in muted gray rather than as a visual centerpiece. Overall density is text-dominant — imagery serves as punctuation and atmosphere, not as the hero. Icons throughout are thin-stroke, 1.5px, monochromatic in #111111 or #b8b8b8.",
+    "similar": [
+      {
+        "why": "Same whisper-weight display typography (300 at large sizes) and sharp 4px-radius controls, though Linear operates in dark mode",
+        "business": "Linear"
+      },
+      {
+        "why": "Monochrome restraint with minimal color use, sharp corners, and editorial-feeling display headlines",
+        "business": "Vercel"
+      },
+      {
+        "why": "Editorial white-paper aesthetic with warm-neutral backgrounds, restrained color palette, and generous section spacing",
+        "business": "Stripe"
+      },
+      {
+        "why": "Flat surfaces, no shadows, warm off-white canvas, and typographic confidence at large display sizes",
+        "business": "Notion"
+      },
+      {
+        "why": "Editorial typography choices, warm canvas tones, and willingness to use weight 300 as a brand signature",
+        "business": "Arc browser"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "4px",
+        "tags": "4px",
+        "cards": "4px",
+        "inputs": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "64-96px",
+      "cardPadding": "24-32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#faf9f6",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Primary page background — warm off-white that defines the system's temperature"
+      },
+      {
+        "hex": "#f1eee9",
+        "name": "Section Warm",
+        "level": 1,
+        "purpose": "Alternating section background — one step warmer, creates slow visual rhythm down the page"
+      },
+      {
+        "hex": "#d3cec6",
+        "name": "Textured Stone",
+        "level": 2,
+        "purpose": "Accent block background — used for large warm fields, decorative texture, and feature surrounds"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card White",
+        "level": 3,
+        "purpose": "Inverted surface for product screenshots, cards on cream backgrounds, and embedded media"
+      }
+    ],
+    "northStar": "Warm cream editorial spread",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": 1.2
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.4,
+        "letterSpacing": 0
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.25,
+        "letterSpacing": -1.2
+      },
+      {
+        "role": "display",
+        "size": 54,
+        "lineHeight": 1,
+        "letterSpacing": -1.62
+      },
+      {
+        "role": "display-lg",
+        "size": 80,
+        "lineHeight": 0.95,
+        "letterSpacing": -2.4
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Primary Button",
+        "role": "Primary action trigger (e.g., 'Start free trial')",
+        "description": "Background #000000, text #ffffff, 4px border-radius, padding 14px 16px, Saans 14px/400. No shadow, no gradient — just a solid black block that anchors visually against the warm cream canvas. The starkness of the black-on-cream pairing is the signature."
+      },
+      {
+        "name": "Ghost Text Button",
+        "role": "Secondary action (e.g., 'View demo', 'Contact sales')",
+        "description": "No background, text #111111, 4px optional border, padding 14px 16px, Saans 14px/400. Renders as plain text or with a thin outline; never filled. Sits beside the filled primary without competing for weight."
+      },
+      {
+        "name": "Outlined CTA Button",
+        "role": "High-emphasis secondary action (e.g., 'Fin AI Agent')",
+        "description": "White background #ffffff, 1px solid #111111 border, 4px radius, padding 14px 16px, Saans 14px/400 with #111111 text. Used for product-feature CTAs that need to stand apart from the standard filled/ghost pair."
+      },
+      {
+        "name": "Announcement Banner",
+        "role": "Top-of-page promotional strip",
+        "description": "Full-width band, light neutral background (#f1eee9 or #faf9f6), Saans 12–14px body text in #111111 with an inline link underlined. Dismissible with × icon at right. No background color — sits as a quiet info layer."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "White or transparent over canvas, 4px radius on interactive elements. Left: logo mark + 4 nav items (Product, Customers, Resources, Pricing) with dropdown carets. Right: icon, 'Contact sales', 'View demo', filled black 'Start free trial', outlined 'Fin AI Agent →'. Saans 14px/400, 16px horizontal padding in nav items."
+      },
+      {
+        "name": "Hero Display Headline",
+        "role": "Primary page-level headline",
+        "description": "Saans weight 300, 80px on desktop, 54px tablet, line-height 0.95, letter-spacing -2.4px at 80px, color #111111. Multi-line, left-aligned, fills roughly 60% of viewport width. The whisper-weight at extreme size is the defining Intercom signature — no other SaaS brand uses 300 at this scale."
+      },
+      {
+        "name": "Hero Subtext Block",
+        "role": "Supporting description beside the headline",
+        "description": "Saans 16px/1.5 or Serrif 16px/1.4 weight 300, color #414141 or #585858, max-width 380–420px. Sits to the right of the headline or below it, constrained to a narrow column to preserve the editorial feel."
+      },
+      {
+        "name": "Image Grid Strip",
+        "role": "Decorative/brand imagery showcase",
+        "description": "6–7 image tiles in a single horizontal row, each ~120–160px square, full-bleed, no gap or 4px gap. Mix of photography, illustration, and abstract art. Serves as visual texture and social proof of the brand's human side."
+      },
+      {
+        "name": "Tab Navigation",
+        "role": "Section-level content switcher",
+        "description": "Horizontal row of 4 tab labels, Saans 14–16px/400, active tab has a black underline bar (2px) beneath. Inactive tabs in #888888. No background change — the underline is the only state indicator."
+      },
+      {
+        "name": "Product Screenshot Panel",
+        "role": "In-context product UI showcase",
+        "description": "Large rounded container (4px radius) holding a product screenshot on a warm background (#f1eee9 or textured). Screenshot itself has subtle internal 4px radius. The warm surround makes the product UI feel embedded, not floating."
+      },
+      {
+        "name": "Customer Logo Grid",
+        "role": "Social proof and brand association",
+        "description": "6-column grid of customer wordmarks, each rendered in #b8b8b8 or #888888 (monochrome gray), no color logos. Saans 16–20px display weight. The grayscale treatment is intentional — it prevents competing brand colors from polluting the warm cream system."
+      },
+      {
+        "name": "Two-Column Feature Section",
+        "role": "Text + image editorial block",
+        "description": "50/50 split. Left column: Saans 300 display headline (40–54px) + body copy (Serrif 16px/300 or Saans 400) + button pair. Right column: editorial illustration or product visual on warm background. Generous 64–96px vertical padding above and below."
+      },
+      {
+        "name": "Nav Dropdown Caret",
+        "role": "Dropdown indicator on nav items",
+        "description": "Tiny downward chevron icon, 8px, stroke 1.5px, color #111111. No background, no border — just the glyph appended to nav labels with 6px spacing."
+      },
+      {
+        "name": "Section Divider",
+        "role": "Visual break between content blocks",
+        "description": "Invisible — no lines, no gradients. Sections are separated purely by warm background tone shifts (#faf9f6 → #f1eee9 → #d3cec6) and vertical spacing (64–96px). The absence of hard dividers reinforces the editorial flow."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface for everything — display headlines at weight 300 (80px/54px/40px), headings at 300 (32px/24px), body at 400 (16px/20px). The 300-weight display is the signature: most brands shout at 700–800, Intercom whispers at 300 and achieves authority through restraint. Use weight 400 only for body and supporting text where readability is paramount.",
+        "sizes": "14px, 16px, 20px, 24px, 32px, 40px, 54px, 80px",
+        "family": "Saans",
+        "weight": "300, 400",
+        "lineHeight": "0.95–1.50",
+        "substitute": "Inter, Söhne, Untitled Sans",
+        "letterSpacing": "-2.4px at 80px, -1.62px at 54px, -1.2px at 40px, -0.64px at 32px, -0.48px at 24px, -0.2px at 20px, -0.16px at 16px",
+        "fontFeatureSettings": "\"ss01\" on, \"tnum\" on"
+      },
+      {
+        "role": "Monospace labeling system — nav micro-labels, tab labels, tag chips, section metadata. Always paired with wide positive tracking to function as typographic badges. The 100em spacing on 12px is a 'shout' weight for the smallest text, making it readable as a label rather than body copy.",
+        "sizes": "12px, 14px",
+        "family": "SaansMono",
+        "weight": "300, 400, 500",
+        "lineHeight": "1.00–1.40",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Geist Mono",
+        "letterSpacing": "0.7px at 14px, 1.2px at 12px"
+      },
+      {
+        "role": "Editorial counterpoint — appears in select body paragraphs and pull quotes at 16px/300 to add a humanist, almost literary quality. The contrast of serif at 300 against Saans display at 300 creates the magazine-spread rhythm that defines Intercom's voice.",
+        "sizes": "16px",
+        "family": "Serrif",
+        "weight": "300",
+        "lineHeight": "1.40",
+        "substitute": "Source Serif Pro, Newsreader, Tiempos Text",
+        "letterSpacing": "-0.0100em"
+      },
+      {
+        "role": "Secondary utility face for small UI labels and nav micro-copy where a condensed, tight feel is needed. Used sparingly — only 15 occurrences.",
+        "sizes": "14px, 16px",
+        "family": "MediumLL",
+        "weight": "400",
+        "lineHeight": "0.94–1.29",
+        "substitute": "Inter, Söhne",
+        "letterSpacing": "-0.0250em, -0.0060em, 0.0350em"
+      }
+    ],
+    "description": "Intercom's design language reads like an editorial magazine printed on warm cream paper: an off-white canvas (#faf9f6) replaces the cold SaaS gray, all body and display type sits at weight 300 for a whisper-light confidence, and a single vivid violet (#0007cb) does nearly all the chromatic work in small, deliberate doses. Sharp 4px corners on every control reject the rounded-softness trend in favor of architectural precision, and SaansMono at wide tracking acts as a labeling system — the way captions and tags function in print. Serrif at 300 weight appears inside body copy as a quiet editorial counterpoint, the one concession to typographic richness in an otherwise austere system. Components feel weightless: thin hairline borders in warm stone (#dedbd6), no decorative shadows, black-filled primary buttons that anchor without weight.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/12255b63-e506-4bc1-a4cd-d05487de32f3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Intercom design system\",\"item\":\"https://styles.refero.design/style/12255b63-e506-4bc1-a4cd-d05487de32f3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/12255b63-e506-4bc1-a4cd-d05487de32f3#style-reference\",\"name\":\"Intercom design system reference\",\"headline\":\"Intercom design system | Refero Styles\",\"description\":\"Explore Intercom's light SaaS design system: Electric Violet #0007cb, Pure White #ffffff colors, Saans, SaansMono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/12255b63-e506-4bc1-a4cd-d05487de32f3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/12255b63-e506-4bc1-a4cd-d05487de32f3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Intercom\",\"url\":\"https://intercom.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/12255b63-e506-4bc1-a4cd-d05487de32f3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/781fe630-375d-46d5-b876-b5197097f840.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/781fe630-375d-46d5-b876-b5197097f840.jpg\",\"caption\":\"Screenshot of Intercom\"},\"image\":\"https://images.refero.design/styles/refero.design/image/781fe630-375d-46d5-b876-b5197097f840.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Intercom design system\",\"Intercom website design\",\"Intercom colors\",\"Intercom typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Electric Violet\",\"Pure White\",\"Canvas Cream\",\"Linen\",\"Saans\",\"SaansMono\",\"Serrif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Intercom design system\"},{\"@type\":\"Thing\",\"name\":\"Intercom website design\"},{\"@type\":\"Thing\",\"name\":\"Intercom colors\"},{\"@type\":\"Thing\",\"name\":\"Intercom typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-02-19T10:43:18.000Z\",\"dateModified\":\"2026-02-19T10:43:18.000Z\"}]}19:T663,**Quick Color Reference**\n- text primary: #111111\n- background canvas: #faf9f6\n- border hairline: #dedbd6\n- accent: #0007cb\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. Create a hero section: canvas background #faf9f6. Display headline at 80px Saans weight 300, color #111111, letter-spacing -2.4px, line-height 0.95. Subtext in a 400px column to the right at 16px Saans weight 400, color #414141. Below: filled black button (bg #000000, text #ffffff, 4px radius, padding 14px 16px) + ghost text button (no bg, text #111111) side by side with 8px gap.\n\n2. Create a customer logo grid: 6-column layout, each cell centered, logos rendered at 16px in #b8b8b8 (no native brand colors). 32px row gap, 24px column gap. Section sits on #faf9f6 canvas with 64px padding above and below.\n\n3. Create a tab navigation row: 4 tab labels in Saans 14px/400, active tab has a 2px solid #111111 underline bar, inactive tabs in #888888. Tabs separated by 32px horizontal gap. On a #faf9f6 background, no container border.\n\n4. Create a product screenshot panel: container with 4px border-radius, background #f1eee9 (warm stone), padding 32px. Inside: a product UI screenshot at full container width, internal 4px radius, no shadow. Add a section label above in SaansMono 12px/1.2px tracking, color #585858.\n\n5. Create a two-column editorial feature block: left column (50%) with Saans 54px/300 headline (#111111, letter-spacing -1.62px) + Serrif 16px/300 body copy (#414141) + filled black button. Right column (50%) with an illustration on #f1eee9 background, 4px radius. 96px vertical padding around the entire block."
+      },
+      {
+        "title": "Typographic Voice",
+        "content": "Intercom's typographic system is defined by what it does NOT do: it never sets display type at weight 700. The entire identity rests on the counterintuitive choice of weight 300 at 80px — a whisper where competitors shout. This creates authority through restraint, not volume. The secondary signature is the SaansMono labeling system: monospace at 12px with 1.2px (100em) letter-spacing creates typographic badges that function like print magazine captions. The Serrif 300 body copy is the third voice — a humanist, almost literary counterpoint that prevents the system from feeling purely corporate. Never mix more than two of these voices on a single screen."
+      }
+    ],
+    "elevationPhilosophy": "Intercom deliberately avoids shadows. Depth and separation are achieved through warm background tone progression (#faf9f6 → #f1eee9 → #d3cec6) and generous whitespace, not through box-shadow elevation. This flat-warm approach is an explicit rejection of the Material/elevation trend and reinforces the editorial paper-on-paper metaphor."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#111111",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17763777307657064
+          },
+          "contexts": [
+            "other",
+            "hero",
+            "heading",
+            "body",
+            "link",
+            "button"
+          ],
+          "frequency": 1811,
+          "confidence": 1,
+          "prominence": 239651874.12185016,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "icon",
+            "nav",
+            "footer",
+            "list"
+          ],
+          "frequency": 819,
+          "confidence": 1,
+          "prominence": 222558630.7368317,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "body"
+          ],
+          "frequency": 139,
+          "confidence": 1,
+          "prominence": 157857162.03311983,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d3cec6",
+          "oklch": {
+            "c": 0.01226911429172481,
+            "h": 79.77891959982304,
+            "l": 0.8531594203063675
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 340,
+          "confidence": 1,
+          "prominence": 67579757.15169352,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#faf9f6",
+          "oklch": {
+            "c": 0.00410957282652452,
+            "h": 91.44581544346819,
+            "l": 0.9820488326089454
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 22658412.244169638,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0007cb",
+          "oklch": {
+            "c": 0.2615978024553986,
+            "h": 264.1096256119016,
+            "l": 0.38382311810611935
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 254,
+          "confidence": 1,
+          "prominence": 13847491.254836002,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dedbd6",
+          "oklch": {
+            "c": 0.0075332719623098605,
+            "h": 80.71989369217738,
+            "l": 0.892378499795354
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button"
+          ],
+          "frequency": 54,
+          "confidence": 1,
+          "prominence": 3993612.9747502836,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#b8b8b8",
+          "oklch": {
+            "c": 0.0000018340881918378848,
+            "h": 23.717297147811205,
+            "l": 0.7813386453259292
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 290,
+          "confidence": 1,
+          "prominence": 3296114.7795919087,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f1eee9",
+          "oklch": {
+            "c": 0.007417608468373689,
+            "h": 80.72079155492744,
+            "l": 0.950048677214756
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 3263869.949235731,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e7e3db",
+          "oklch": {
+            "c": 0.011592891073760775,
+            "h": 84.57975657401231,
+            "l": 0.916739268517701
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 993018.6307643224,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a0a0a0",
+          "oklch": {
+            "c": 0.0000025090269562698393,
+            "h": 23.71730841954407,
+            "l": 0.7051078396721031
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 537022.787615687,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#414141",
+          "oklch": {
+            "c": 0.000005880985800521294,
+            "h": 23.71742178404146,
+            "l": 0.3737780704745446
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 85,
+          "confidence": 1,
+          "prominence": 331633.8189311565,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#585858",
+          "oklch": {
+            "c": 0.000004880757330600641,
+            "h": 23.71737368319741,
+            "l": 0.4618386394284724
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 90,
+          "confidence": 1,
+          "prominence": 177610.73132030282,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#888888",
+          "oklch": {
+            "c": 0.000003230023257061267,
+            "h": 23.717323268418813,
+            "l": 0.6267532587891443
+          },
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 33,
+          "confidence": 1,
+          "prominence": 79094.78479291902,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#707070",
+          "oklch": {
+            "c": 0.000004012281147097514,
+            "h": 23.71734372020945,
+            "l": 0.5458608065063426
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 21,
+          "confidence": 1,
+          "prominence": 25133.356602639808,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 60,
+          "confidence": 1,
+          "prominence": 23983.901793104313,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4d4d4d",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.41838944017064794
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 80,
+          "confidence": 1,
+          "prominence": 8837.750904021166,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#313130",
+          "oklch": {
+            "c": 0.0017548429183020177,
+            "h": 106.50061702556027,
+            "l": 0.31279919712799564
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 33,
+          "confidence": 1,
+          "prominence": 3357.725475225224,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff5600",
+          "oklch": {
+            "c": 0.21669826667105704,
+            "h": 39.04622084624178,
+            "l": 0.6769738895473965
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 64,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.04622416051822205,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.95,
+          "background": "#faf9f6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.88,
+          "background": "#ffffff",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.15,
+          "background": "#f1eee9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.94,
+          "background": "#faf9f6",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.41,
+          "background": "#e7e3db",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.32,
+          "background": "#f1eee9",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.21,
+          "background": "#dedbd6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.75,
+          "background": "#e7e3db",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.68,
+          "background": "#dedbd6",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.41,
+          "background": "#d3cec6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.02,
+          "background": "#ffffff",
+          "foreground": "#313130"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.37,
+          "background": "#faf9f6",
+          "foreground": "#313130"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.06,
+          "background": "#d3cec6",
+          "foreground": "#111111"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.25,
+          "background": "#f1eee9",
+          "foreground": "#313130"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.09,
+          "background": "#0007cb",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.59,
+          "background": "#000000",
+          "foreground": "#b8b8b8"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.54,
+          "background": "#faf9f6",
+          "foreground": "#0007cb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.21,
+          "background": "#ffffff",
+          "foreground": "#414141"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.18,
+          "background": "#e7e3db",
+          "foreground": "#313130"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 19
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "list"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "rowGap|button",
+            "columnGap|button",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "nav",
+            "body",
+            "heading"
+          ],
+          "frequency": 39,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginLeft|nav",
+            "marginTop|link",
+            "columnGap|body",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "image"
+          ],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingLeft|nav",
+            "marginRight|image",
+            "marginLeft|image"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "button",
+            "nav"
+          ],
+          "frequency": 38,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "hero",
+            "other",
+            "body",
+            "button",
+            "heading"
+          ],
+          "frequency": 154,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "marginBottom",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|hero",
+            "paddingLeft|hero",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "marginBottom|body",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 74,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginRight|other",
+            "marginBottom|other",
+            "marginLeft|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "marginBottom|heading",
+            "marginBottom|body"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|heading",
+            "marginBottom|heading",
+            "marginTop|body"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "heading",
+            "body",
+            "image",
+            "link"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "columnGap",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginTop|other",
+            "marginBottom|other",
+            "marginBottom|heading",
+            "marginBottom|body",
+            "marginBottom|image",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|link",
+            "paddingRight|image",
+            "columnGap|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 26,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 27,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 26,
+          "properties": [
+            "columnGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "columnGap|other",
+            "marginBottom|body",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "heading",
+            "image"
+          ],
+          "frequency": 37,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|heading",
+            "paddingBottom|heading",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingRight|image",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|hero",
+            "paddingBottom|hero",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "properties": [
+            "rowGap",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "marginBottom|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|body"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|hero",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 146,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 171,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 216,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Saans",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 717,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "SaansMono",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 77,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Serrif",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 34,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "MediumLL",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 15,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "SaansMono",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "SaansMono",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Saans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "icon"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "MediumLL",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.29,
+          "letterSpacing": 0.035,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SaansMono",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "image"
+          ],
+          "frequency": 63,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Saans",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Saans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Saans",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Saans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "hero",
+            "image",
+            "body",
+            "link",
+            "footer",
+            "list"
+          ],
+          "frequency": 576,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "MediumLL",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "lineHeight": 0.94,
+          "letterSpacing": -0.006,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "MediumLL",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": -0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Serrif",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 34,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Saans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 0.95,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Saans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 17,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Saans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Saans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "Saans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "Saans",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 8,
+          "lineHeight": 1,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4bd60c2e-328c-47f7-9e16-6cf28f935929.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/781fe630-375d-46d5-b876-b5197097f840.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/12255b63-e506-4bc1-a4cd-d05487de32f3#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Intercom design system\",\"item\":\"https://styles.refero.design/style/12255b63-e506-4bc1-a4cd-d05487de32f3\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/12255b63-e506-4bc1-a4cd-d05487de32f3#style-reference\",\"name\":\"Intercom design system reference\",\"headline\":\"Intercom design system | Refero Styles\",\"description\":\"Explore Intercom's light SaaS design system: Electric Violet #0007cb, Pure White #ffffff colors, Saans, SaansMono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/12255b63-e506-4bc1-a4cd-d05487de32f3\",\"mainEntityOfPage\":\"https://styles.refero.design/style/12255b63-e506-4bc1-a4cd-d05487de32f3\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Intercom\",\"url\":\"https://intercom.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/12255b63-e506-4bc1-a4cd-d05487de32f3#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/781fe630-375d-46d5-b876-b5197097f840.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/781fe630-375d-46d5-b876-b5197097f840.jpg\",\"caption\":\"Screenshot of Intercom\"},\"image\":\"https://images.refero.design/styles/refero.design/image/781fe630-375d-46d5-b876-b5197097f840.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Intercom design system\",\"Intercom website design\",\"Intercom colors\",\"Intercom typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Electric Violet\",\"Pure White\",\"Canvas Cream\",\"Linen\",\"Saans\",\"SaansMono\",\"Serrif\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Intercom design system\"},{\"@type\":\"Thing\",\"name\":\"Intercom website design\"},{\"@type\":\"Thing\",\"name\":\"Intercom colors\"},{\"@type\":\"Thing\",\"name\":\"Intercom typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-02-19T10:43:18.000Z\",\"dateModified\":\"2026-02-19T10:43:18.000Z\"}]}19:T663,**Quick Color Reference**\n- text primary: #111111\n- background canvas: #faf9f6\n- border hairline: #dedbd6\n- accent: #0007cb\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. Create a hero section: canvas background #faf9f6. Display headline at 80px Saans weight 300, color #111111, letter-spacing -2.4px, line-height 0.95. Subtext in a 400px column to the right at 16px Saans weight 400, color #414141. Below: filled black button (bg #000000, text #ffffff, 4px radius, padding 14px 16px) + ghost text button (no bg, text #111111) side by side with 8px gap.\n\n2. Create a customer logo grid: 6-column layout, each cell centered, logos rendered at 16px in #b8b8b8 (no native brand colors). 32px row gap, 24px column gap. Section sits on #faf9f6 canvas with 64px padding above and below.\n\n3. Create a tab navigation row: 4 tab labels in Saans 14px/400, active tab has a 2px solid #111111 underline bar, inactive tabs in #888888. Tabs separated by 32px horizontal gap. On a #faf9f6 background, no container border.\n\n4. Create a product screenshot panel: container with 4px border-radius, background #f1eee9 (warm stone), padding 32px. Inside: a product UI screenshot at full container width, internal 4px radius, no shadow. Add a section label above in SaansMono 12px/1.2px tracking, color #585858.\n\n5. Create a two-column editorial feature block: left column (50%) with Saans 54px/300 headline (#111111, letter-spacing -1.62px) + Serrif 16px/300 body copy (#414141) + filled black button. Right column (50%) with an illustration on #f1eee9 background, 4px radius. 96px vertical padding around the entire block."
+}

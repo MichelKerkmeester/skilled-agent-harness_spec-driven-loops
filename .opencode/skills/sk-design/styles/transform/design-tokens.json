@@ -1,0 +1,302 @@
+{
+  "color": {
+    "blush-cardstock": {
+      "$value": "#f4ede9",
+      "$type": "color",
+      "$description": "Blush Cardstock — Page background, nav surface, dominant canvas — the warm paper everything sits on"
+    },
+    "ink-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, section headings, hairline borders, icon strokes"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Card surface, dark-section text, button labels on chromatic fills"
+    },
+    "ash-gray": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Ash Gray — Alternate card surface when a quieter neutral block is needed"
+    },
+    "steel-gray": {
+      "$value": "#767676",
+      "$type": "color",
+      "$description": "Steel Gray — Muted input borders, secondary helper strokes"
+    },
+    "festival-violet": {
+      "$value": "#340068",
+      "$type": "color",
+      "$description": "Festival Violet — Full-bleed section bands, secondary filled CTA, footer background — heavy, immersive, sets the serious stage"
+    },
+    "spotlight-magenta": {
+      "$value": "#fb00c2",
+      "$type": "color",
+      "$description": "Spotlight Magenta — Primary filled CTA (DONATE), pull-quote text, heading borders, interactive emphasis — the loudest ink, reserved for moments that demand attention"
+    },
+    "curtain-orange": {
+      "$value": "#ff1e00",
+      "$type": "color",
+      "$description": "Curtain Orange — Pull-quote attribution, decorative heading borders — the warm third color that gives the palette a poster-like three-ink depth"
+    }
+  },
+  "font": {
+    "walsheim": {
+      "$value": "Walsheim",
+      "$type": "fontFamily",
+      "$description": "Single-family type system used for everything from nav to display; the broad weight range (400–900) carries the entire tonal system so color never has to shout alone"
+    }
+  },
+  "typography": {
+    "base": {
+      "$value": {
+        "fontFamily": "Walsheim",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Walsheim",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Walsheim",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Walsheim",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Walsheim",
+        "fontSize": "18px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Walsheim",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "Walsheim",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Walsheim",
+        "fontSize": "22px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 22px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Walsheim",
+        "fontSize": "22px",
+        "fontWeight": 800,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Walsheim",
+        "fontSize": "24px",
+        "fontWeight": 900,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Walsheim",
+        "fontSize": "24px",
+        "fontWeight": 800,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Walsheim",
+        "fontSize": "24px",
+        "fontWeight": 800,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Walsheim",
+        "fontSize": "40px",
+        "fontWeight": 800,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Walsheim",
+        "fontSize": "56px",
+        "fontWeight": 800,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Walsheim",
+        "fontSize": "80px",
+        "fontWeight": 800,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 80px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "blush-cardstock": {
+      "$value": "#f4ede9",
+      "$type": "color",
+      "$description": "Surface level 1: Default page canvas and nav surface"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Card body, button labels on chromatic fills"
+    },
+    "ash-gray": {
+      "$value": "#d9d9d9",
+      "$type": "color",
+      "$description": "Surface level 3: Alternate card surface for quieter content blocks"
+    },
+    "curtain-orange": {
+      "$value": "#ff1e00",
+      "$type": "color",
+      "$description": "Surface level 4: Section-band accent (rare, used decoratively)"
+    },
+    "spotlight-magenta": {
+      "$value": "#fb00c2",
+      "$type": "color",
+      "$description": "Surface level 5: Section-band accent for editorial emphasis"
+    },
+    "festival-violet": {
+      "$value": "#340068",
+      "$type": "color",
+      "$description": "Surface level 6: Full-bleed dark bands, footer, immersive sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://transformfestival.org",
+      "siteName": "Transform",
+      "extractedAt": "2026-06-03T20:15:39.938Z",
+      "variant": "extended"
+    }
+  }
+}

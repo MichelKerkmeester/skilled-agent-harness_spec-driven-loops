@@ -1,0 +1,1238 @@
+{
+  "source": "https://styles.refero.design/style/bfd97dc2-5c12-483b-9101-ebfaf82ba83e",
+  "uuid": "bfd97dc2-5c12-483b-9101-ebfaf82ba83e",
+  "name": "BitcoinOS",
+  "northStar": "Obsidian monolith with a burning yellow sigil — BitcoinOS is a crypto project whose interface looks like a declaration carved in stone, with cinematic 3D worlds bleeding in at the edges.",
+  "capturedAt": "2026-07-18T08:50:48.989Z",
+  "meta": {
+    "url": "https://bitcoinos.build",
+    "siteName": "BitcoinOS",
+    "extractedAt": "2026-06-03T21:35:50.589Z",
+    "durationMs": 40373,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 792,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Review Condensed 900 at 72–128px with line-height 0.80 for every hero and section display — this compression is the brand's visual signature.",
+      "Set all small UI text (12–16px) in Kalice 400 with letter-spacing 0.04–0.06em to maintain the terminal/manifesto voice.",
+      "Use #fffafa (Snow) as the only non-structural color — for the single filled CTA, all primary text, and active borders on dark surfaces.",
+      "Apply 16px border-radius to all cards and images, 8px to all buttons, and 9999px to all nav pills and tag chips — never mix these tiers.",
+      "Make every full-bleed section a viewport-height cinematic moment: 3D render or abstract artwork as background, centered white type floating on top with no scrim.",
+      "Keep the surface stack to five neutrals only: #101010 (canvas) → #1a1a1a (card) → #272727 (hover/elevated) → #403f3f (divider) → #fffafa (foreground). Never introduce a sixth.",
+      "Use the side dot pagination pattern (6px squares, 1px white border, filled white = active) on any scroll-driven page — it reinforces the page-as-narrative structure."
+    ],
+    "donts": [
+      "Never introduce a chromatic brand color to the UI — the only color in the system is the white/charcoal scale plus the gold that lives exclusively inside 3D-rendered imagery.",
+      "Never apply a shadow, glow, or drop-shadow to any component — the system is deliberately flat; elevation comes from lighter grays and 1px white borders.",
+      "Never use a sans-serif humanist body face (Inter, SF, Roboto) — Kalice with wide tracking is non-negotiable for body and nav copy.",
+      "Never break the line-height 0.80 on Review Condensed displays — opening the line-height destroys the carved-stone compression that defines the hero.",
+      "Never add gradients, color washes, or overlay scrims over imagery — the 3D renders carry full visual weight and UI floats on top, unprotected.",
+      "Never use a border-radius below 8px on buttons or below 16px on cards — the 2px radius is reserved for inline link underlines only.",
+      "Never place more than one filled #fffafa button on a single screen — the system treats the filled CTA as singular punctuation, not a pattern."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#101010",
+        "name": "Obsidian",
+        "role": "Page canvas, primary dark surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Maximum depth, nav borders, icon outlines, image masks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Carbon",
+        "role": "Card surfaces, elevated panels one step above canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#272727",
+        "name": "Graphite",
+        "role": "Hover/active surface lift, tertiary borders, input fields",
+        "group": "neutral"
+      },
+      {
+        "hex": "#403f3f",
+        "name": "Smoke",
+        "role": "Dividers, secondary surface tier, muted container backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#bababa",
+        "name": "Ash",
+        "role": "Muted helper text, secondary nav labels, disabled copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fffafa",
+        "name": "Snow",
+        "role": "Primary text, headings, filled CTA background, hairline borders — the only non-structural color in the system",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Pages are full-bleed with no outer container width limit; content aligns to viewport edges. The hero is a full-viewport 3D render with centered display headline and single CTA floating over it. Sections alternate between cinematic full-bleed imagery and pure text-on-#101010 bands, separated by 128px vertical gaps. The ecosystem section uses a 4-column grid of 16px-radius cards with 8px gaps on desktop (2-column on mobile). The sticky top nav is a single dark bar with logo left, brand mark centered, and right-aligned pill nav plus hamburger. Section eyebrow labels sit flush left with bracket formatting '[ Vision ]'. The layout rhythm is intentionally sparse between sections (96–128px gaps) to let the 3D imagery breathe. A right-edge vertical dot pagination is always present on scroll-driven pages, providing a persistent navigation cue alongside the main header.",
+    "imagery": "Imagery is the only chromatic element of the brand and it lives exclusively in full-bleed 3D-rendered cinematic scenes. The first scene is a fantasy landscape: a robed figure holding a glowing golden cube in a mossy green valley with floating landmasses and a bright sky. The second is abstract architecture: faceted golden geometric volumes against deep navy-black void. Both scenes fill the viewport edge-to-edge, contain no UI overlays, and the white type and CTA float directly on top. Photography is absent; illustration is absent; the visual identity is carried entirely by cinematic 3D renders. Icons are minimal: a BitcoinOS cube logo in the nav, white chain-partner logos in the ecosystem grid, and simple line icons in the hamburger. Imagery density is extreme — at least two full-viewport renders per page — and they alternate with text-only dark sections for breathing room.",
+    "similar": [
+      {
+        "why": "Same dark monochrome UI with a single ultra-bold condensed display face (Aptos uses heavyweight serif) over cinematic 3D-rendered backgrounds; both treat the rendered scene as the page's color source.",
+        "business": "Aptos"
+      },
+      {
+        "why": "Dark-mode crypto landing with massive compressed display headlines, wide-tracked mono labels for nav and body, and 3D-rendered hero scenes with floating white type.",
+        "business": "Sui"
+      },
+      {
+        "why": "Shares the manifesto-grade display typography, near-zero chromatic UI palette, and full-bleed atmospheric imagery as the primary brand vehicle.",
+        "business": "Celestia"
+      },
+      {
+        "why": "Dark crypto brand with a single filled white CTA, pill-shaped nav buttons, ultra-bold condensed headlines, and cinematic 3D renders that carry the color story.",
+        "business": "Monad"
+      },
+      {
+        "why": "Same 3D-rendered fantasy/mythological hero scenes over a flat dark monochrome interface, with white type and minimal UI chrome.",
+        "business": "Berachain"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "links": "2px",
+        "images": "16px",
+        "buttons": "8px",
+        "navPills": "9999px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "128px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "crypto",
+    "surfaces": [
+      {
+        "hex": "#101010",
+        "name": "Obsidian Canvas",
+        "level": 0,
+        "purpose": "Page background, default section fill"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Carbon Card",
+        "level": 1,
+        "purpose": "Card surfaces, ecosystem tiles, nav pill background"
+      },
+      {
+        "hex": "#272727",
+        "name": "Graphite Elevated",
+        "level": 2,
+        "purpose": "Hover state, active nav, input field background, secondary borders"
+      },
+      {
+        "hex": "#403f3f",
+        "name": "Smoke Divider",
+        "level": 3,
+        "purpose": "Hairline dividers, tertiary container borders"
+      },
+      {
+        "hex": "#fffafa",
+        "name": "Snow Foreground",
+        "level": 4,
+        "purpose": "Primary text, filled CTA, active borders — the system's only non-neutral foreground"
+      }
+    ],
+    "northStar": "Obsidian monolith with a burning yellow sigil — BitcoinOS is a crypto project whose interface looks like a declaration carved in stone, with cinematic 3D worlds bleeding in at the edges.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.4,
+        "letterSpacing": 0.48
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 0.88,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.6,
+        "letterSpacing": 0.96
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.18
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.4,
+        "letterSpacing": 1.44
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1,
+        "letterSpacing": 0.64
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 0.8,
+        "letterSpacing": 0
+      },
+      {
+        "role": "display-lg",
+        "size": 128,
+        "lineHeight": 0.8,
+        "letterSpacing": 0
+      }
+    ],
+    "components": [
+      {
+        "name": "Display Headline (Hero Manifesto)",
+        "role": "128px Review Condensed 900 white, line-height 0.80, tracking 0, centered. The defining component of the brand — three lines of compressed ultra-bold type that fill the viewport width.",
+        "description": "Font: Review Condensed 900, 128px, line-height 0.80, color #fffafa, text-align center, letter-spacing 0. Sits directly over a full-bleed 3D-rendered background with no overlay or scrim — the type must hold its own against cinematic imagery."
+      },
+      {
+        "name": "Section Heading",
+        "role": "72px Review Condensed 900, white, used as section openers below the hero.",
+        "description": "Font: Review Condensed 900, 72px, line-height 0.80, color #fffafa, letter-spacing 0. Same compression logic as the hero display, scaled to one section."
+      },
+      {
+        "name": "Primary CTA Button (Filled Snow)",
+        "role": "The single filled action in the system — white background, black text, used once per page.",
+        "description": "Background: #fffafa. Text: #000000. Font: Review 700, 14px, line-height 0.88, letter-spacing -0.01em, uppercase. Padding: 8px 24px. Border-radius: 8px. No shadow, no border. Text transforms to 'Join the Revolution' style — imperative, two to three words maximum."
+      },
+      {
+        "name": "Pill Nav Button",
+        "role": "Top navigation items in the sticky header — Ecosystem, Token, Tech.",
+        "description": "Background: #1a1a1a. Border: 1px solid #272727. Text: #fffafa, Kalice 400, 12px, letter-spacing 0.04em, uppercase. Padding: 8px 16px. Border-radius: 9999px. Hover: border becomes #fffafa, text remains white. Active state: background #272727."
+      },
+      {
+        "name": "Ecosystem Chain Card",
+        "role": "Grid tile for a partner chain logo (Cardano, Litecoin, Arbitrum, etc.) in the ecosystem section.",
+        "description": "Background: #1a1a1a. Border: 1px solid #272727. Border-radius: 16px. Padding: 24px. Content: chain logo (white SVG) + chain name in Review 700 14px white. Grid: 4 columns desktop, 2 columns mobile, gap 8px. Hover: border becomes #fffafa, subtle 1-step lift."
+      },
+      {
+        "name": "Sticky Top Nav Bar",
+        "role": "Full-width dark bar with logo, centered brand mark, and right-aligned pill buttons plus hamburger.",
+        "description": "Background: #000000 or transparent over hero. Height: ~64px. Logo: BitcoinOS cube icon, 32px square, left. Brand mark 'BOS' in Review 900 24px white, centered. Right cluster: three pill nav buttons + 40px square hamburger button with #272727 background and #fffafa icon."
+      },
+      {
+        "name": "Side Dot Pagination",
+        "role": "Vertical page section indicator on the right edge of the viewport.",
+        "description": "Fixed right margin, ~32px from edge. Stack of 5–6 small dots, 6px square, 8px vertical gap. Inactive: 1px solid #fffafa, fill transparent. Active: filled #fffafa. Always visible, serves as scroll-spy navigation."
+      },
+      {
+        "name": "Hero Subtitle",
+        "role": "Two-line descriptive text below the display headline.",
+        "description": "Font: Kalice 400, 16px, line-height 1.60, letter-spacing 0.04em. Color: #fffafa. Max-width: ~480px, centered. The wide tracking at body size gives it a 'manuscript footnote' feel against the compressed headline."
+      },
+      {
+        "name": "Scroll Cue / Bottom Pill",
+        "role": "Small dark pill at the bottom of full-bleed visual sections.",
+        "description": "Background: #000000. Border-radius: 9999px. Padding: 8px 16px. Text: Kalice 400, 12px, letter-spacing 0.04em, color #fffafa. Content: section context like 'Now • Buy $BOS Now • Buy $...' with dot separators."
+      },
+      {
+        "name": "[ Vision ] Label",
+        "role": "Tiny section eyebrow tag in the top-left of content sections.",
+        "description": "Font: Kalice 400, 12px, letter-spacing 0.04em. Color: #fffafa. Format: '[ Section Name ]' in square brackets — the brackets are part of the type, a terminal/CLI nod. Sits above section copy with 16px bottom margin."
+      },
+      {
+        "name": "Full-Bleed Cinematic Section",
+        "role": "The page's signature background treatment — 3D-rendered fantasy or abstract scenes filling the viewport.",
+        "description": "Width: 100vw, height: 100vh or content-driven. Background: 3D render (green mossy landscape with robed figure, or golden geometric shapes). No overlay. UI floats as centered white type and a single white CTA."
+      },
+      {
+        "name": "Logo Lockup (Header Brand Mark)",
+        "role": "BitcoinOS cube icon + 'BOS' wordmark in the top nav center.",
+        "description": "Icon: 3D-styled rounded square, ~40px, white fill or outlined white. Wordmark: Review 900, 24px, color #fffafa. Icon and wordmark are separate elements, horizontally aligned, ~16px gap."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines only — the 128px hero, 72px section openers. Ultra-condensed 900 weight with 0.8 line-height creates a compressed, manifesto-grade statement. The near-zero line-height at 128px is the signature: letters almost collide vertically, giving the type a carved-into-stone density. Free substitute: Anton or Bebas Neue at equivalent weight.",
+        "sizes": "72px, 128px",
+        "family": "Review Condensed",
+        "weight": "900",
+        "lineHeight": "0.80",
+        "substitute": "Anton / Bebas Neue"
+      },
+      {
+        "role": "Buttons, nav labels, subheadings, card titles, emphasized body. At 14–18px it functions as UI text with weight 700; at 32px weight 900 it serves as in-section headings. Slight negative tracking at small sizes (-0.01em) tightens the UI, while +0.02em at 32px opens the heading. Free substitute: Archivo Black or Space Grotesk Bold.",
+        "sizes": "14px, 18px, 32px",
+        "family": "Review",
+        "weight": "700, 900",
+        "lineHeight": "0.75, 0.88, 1.00, 1.10",
+        "substitute": "Archivo Black / Space Grotesk Bold",
+        "letterSpacing": "-0.0100em, 0.0100em, 0.0200em"
+      },
+      {
+        "role": "Body copy, nav items, and any all-caps micro-text. The 0.04–0.06em letter-spacing is the technical-fingerprint detail — at 12px it reads as terminal/monospace-adjacent labels (think captcha, ticker, or command line), and at 16px it becomes technical documentation prose. Free substitute: JetBrains Mono or IBM Plex Mono.",
+        "sizes": "12px, 16px, 24px",
+        "family": "Kalice",
+        "weight": "400",
+        "lineHeight": "1.00, 1.40, 1.60",
+        "substitute": "JetBrains Mono / IBM Plex Mono",
+        "letterSpacing": "0.04em at 12px, 0.06em at 24px, 0.04–0.06em at 16px"
+      },
+      {
+        "role": "Fallback body — appears as default browser rendering where custom faces haven't loaded. Do not design against this; treat as graceful degradation only.",
+        "sizes": "16px",
+        "family": "Times (system)",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "Times New Roman"
+      }
+    ],
+    "description": "BitcoinOS is a monochrome dark cinematic system where a 3D-rendered fantasy world carries all the color and emotion while the UI stays austere and terminal-like. Headlines shout in a custom ultra-condensed display face at 72–128px weight 900 with near-zero line-height, while body and nav copy use a wide-tracked monospace-adjacent face (Kalice) at 12–16px with 0.04–0.06em spacing — the combination reads as a manifesto printed on obsidian. The only UI accent is #fffafa (Snow), used for borders, text, and the single filled CTA; every other surface is a step of charcoal (#101010 → #1a1a1a → #272727). There are no shadows, no gradients, no chromatic brand color — elevation is communicated by lighter grays and 1px white-alpha borders. Imagery is full-bleed and filmic, with the UI elements floating as minimal white type and pill-shaped controls.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bfd97dc2-5c12-483b-9101-ebfaf82ba83e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"BitcoinOS design system\",\"item\":\"https://styles.refero.design/style/bfd97dc2-5c12-483b-9101-ebfaf82ba83e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bfd97dc2-5c12-483b-9101-ebfaf82ba83e#style-reference\",\"name\":\"BitcoinOS design system reference\",\"headline\":\"BitcoinOS design system | Refero Styles\",\"description\":\"Explore BitcoinOS's dark Crypto design system: Obsidian #101010, Void #000000 colors, Review Condensed, Review typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/bfd97dc2-5c12-483b-9101-ebfaf82ba83e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bfd97dc2-5c12-483b-9101-ebfaf82ba83e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"BitcoinOS\",\"url\":\"https://bitcoinos.build\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bfd97dc2-5c12-483b-9101-ebfaf82ba83e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/72e5d141-002c-49b0-95aa-508c4968f694.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/72e5d141-002c-49b0-95aa-508c4968f694.jpg\",\"caption\":\"Screenshot of BitcoinOS\"},\"image\":\"https://images.refero.design/styles/refero.design/image/72e5d141-002c-49b0-95aa-508c4968f694.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"BitcoinOS design system\",\"BitcoinOS website design\",\"BitcoinOS colors\",\"BitcoinOS typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Obsidian\",\"Void\",\"Carbon\",\"Graphite\",\"Review Condensed\",\"Review\",\"Kalice\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"BitcoinOS design system\"},{\"@type\":\"Thing\",\"name\":\"BitcoinOS website design\"},{\"@type\":\"Thing\",\"name\":\"BitcoinOS colors\"},{\"@type\":\"Thing\",\"name\":\"BitcoinOS typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T00:12:56.347Z\",\"dateModified\":\"2026-04-30T00:12:56.347Z\"}]}19:T4da,**Quick Color Reference**\n- text: #fffafa\n- background: #101010\n- border: #272727\n- accent: #bababa (muted helper text only)\n- surface (card): #1a1a1a\n- primary action: #fffafa (filled action)\n\n**Example Component Prompts**\n1. *Hero display headline*: 128px Review Condensed weight 900, color #fffafa, line-height 0.80, text-align center, letter-spacing 0, floating directly over a full-bleed 3D-rendered background with no scrim.\n2. *Ecosystem chain card*: background #1a1a1a, 1px border #272727, border-radius 16px, padding 24px. Content is a white chain logo (32px) left-aligned above a 14px Review 700 #fffafa chain name. 4-column grid, 8px gap.\n3. *Top nav pill button*: background #1a1a1a, 1px border #272727, border-radius 9999px, padding 8px 16px. Text: Kalice 400 12px #fffafa, letter-spacing 0.04em, uppercase. Hover: border becomes #fffafa.\n4. *Section eyebrow label*: Kalice 400 12px #fffafa, letter-spacing 0.04em, format '[ Section Name ]' with literal square brackets, flush left, 16px bottom margin to body copy.\n5. *Filled primary action button*: background #fffafa, text #000000, font Review 700 14px, letter-spacing -0.01em, uppercase, padding 8px 24px, border-radius 8px, no border, no shadow. Use at most once per screen."
+      },
+      {
+        "title": "Type Voice Rules",
+        "content": "The system operates on a strict two-voice type pairing: **Review Condensed 900** for displays (the 'shout' voice) and **Kalice 400** for everything else (the 'whisper' voice). Review Condensed only ever appears at 72px or 128px with line-height 0.80 — it is never used for body, buttons, or cards. Kalice only ever appears at 12–24px with letter-spacing ≥ 0.04em — the wide tracking is what makes UI text feel technical and terminal-grade. Review at 14–32px bridges the two voices for buttons, subheadings, and emphasized text. Do not introduce a third body face."
+      },
+      {
+        "title": "Imagery Rules",
+        "content": "All imagery must be full-bleed 3D-rendered cinematic scenes or pure 3D abstract geometry. No photography, no flat illustration, no 2D vector graphics. Backgrounds must reach viewport edges with no padding or border. White UI type floats on the renders with no overlay, scrim, or text-shadow. At least one full-viewport render must anchor the top of every page; additional renders may appear at section breaks. The only color allowed inside renders is the golden/yellow geometric family — the green-moss palette is reserved for the hero scene."
+      }
+    ],
+    "elevationPhilosophy": "The system is intentionally flat. No shadows are used anywhere. Elevation is communicated exclusively through a five-step neutral surface stack (#101010 → #1a1a1a → #272727 → #403f3f → #fffafa) and 1px borders that brighten as state becomes more active. The only exception is filled #fffafa on the primary CTA, which functions as foreground contrast rather than true elevation."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "button",
+            "nav",
+            "hero",
+            "image",
+            "card"
+          ],
+          "frequency": 745,
+          "confidence": 1,
+          "prominence": 281694305.21260387,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 57,
+            "card/color": 1,
+            "hero/color": 2,
+            "icon/color": 2,
+            "link/color": 17,
+            "other/fill": 2,
+            "image/color": 21,
+            "other/color": 70,
+            "button/color": 1,
+            "nav/borderColor": 224,
+            "card/borderColor": 4,
+            "hero/borderColor": 8,
+            "icon/borderColor": 8,
+            "link/borderColor": 44,
+            "other/borderColor": 280,
+            "button/borderColor": 4
+          }
+        },
+        {
+          "hex": "#fffafa",
+          "oklch": {
+            "c": 0.005336945098905724,
+            "h": 17.24713851631641,
+            "l": 0.9889369287675953
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "nav",
+            "heading",
+            "card",
+            "icon",
+            "footer",
+            "list",
+            "link",
+            "image",
+            "input"
+          ],
+          "frequency": 2220,
+          "confidence": 1,
+          "prominence": 20434190.546673816,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 33,
+            "body/color": 41,
+            "card/color": 7,
+            "icon/color": 6,
+            "link/color": 14,
+            "list/color": 15,
+            "nav/stroke": 32,
+            "other/fill": 6,
+            "image/color": 2,
+            "input/color": 1,
+            "other/color": 218,
+            "button/color": 9,
+            "footer/color": 1,
+            "other/stroke": 12,
+            "heading/color": 82,
+            "nav/borderColor": 132,
+            "body/borderColor": 164,
+            "card/borderColor": 28,
+            "icon/borderColor": 24,
+            "link/borderColor": 80,
+            "list/borderColor": 48,
+            "image/borderColor": 8,
+            "input/borderColor": 4,
+            "other/borderColor": 872,
+            "button/borderColor": 20,
+            "footer/borderColor": 4,
+            "heading/borderColor": 328,
+            "nav/backgroundColor": 6,
+            "card/backgroundColor": 6,
+            "link/backgroundColor": 2,
+            "other/backgroundColor": 11,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#101010",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.17304230872217735
+          },
+          "contexts": [
+            "body",
+            "nav",
+            "button",
+            "card",
+            "other",
+            "link",
+            "icon",
+            "footer"
+          ],
+          "frequency": 356,
+          "confidence": 1,
+          "prominence": 15586718.022432942,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 21,
+            "card/color": 7,
+            "icon/color": 12,
+            "link/color": 13,
+            "other/color": 7,
+            "button/color": 3,
+            "other/stroke": 27,
+            "body/borderColor": 84,
+            "card/borderColor": 28,
+            "icon/borderColor": 48,
+            "link/borderColor": 52,
+            "other/borderColor": 28,
+            "button/borderColor": 12,
+            "nav/backgroundColor": 4,
+            "card/backgroundColor": 3,
+            "other/backgroundColor": 6,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#272727",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.27274100075141233
+          },
+          "contexts": [
+            "button",
+            "body",
+            "nav",
+            "image",
+            "list",
+            "other"
+          ],
+          "frequency": 63,
+          "confidence": 1,
+          "prominence": 3776448,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "nav/borderColor": 4,
+            "body/borderColor": 12,
+            "list/borderColor": 12,
+            "image/borderColor": 12,
+            "button/borderColor": 16,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 849263,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#bababa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7889206270075311
+          },
+          "contexts": [
+            "nav",
+            "body",
+            "other"
+          ],
+          "frequency": 240,
+          "confidence": 1,
+          "prominence": 15548.827545691875,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 18,
+            "body/color": 13,
+            "other/color": 17,
+            "nav/borderColor": 72,
+            "body/borderColor": 52,
+            "other/borderColor": 68
+          }
+        },
+        {
+          "hex": "#403f3f",
+          "oklch": {
+            "c": 0.0013649106032448345,
+            "h": 17.219299017788888,
+            "l": 0.3678957367902811
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 222.90509710918678,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.00882789374035263,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.31,
+          "background": "#fffafa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.4,
+          "background": "#101010",
+          "foreground": "#fffafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.83,
+          "background": "#1a1a1a",
+          "foreground": "#fffafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.45,
+          "background": "#272727",
+          "foreground": "#fffafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.82,
+          "background": "#bababa",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.15,
+          "background": "#403f3f",
+          "foreground": "#fffafa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.8,
+          "background": "#101010",
+          "foreground": "#bababa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.97,
+          "background": "#1a1a1a",
+          "foreground": "#bababa"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.7,
+          "background": "#272727",
+          "foreground": "#bababa"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.41,
+          "background": "#403f3f",
+          "foreground": "#bababa"
+        },
+        {
+          "level": "fail",
+          "ratio": 2,
+          "background": "#403f3f",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.88,
+          "background": "#fffafa",
+          "foreground": "#bababa"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.81,
+          "background": "#403f3f",
+          "foreground": "#101010"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.42,
+          "background": "#403f3f",
+          "foreground": "#272727"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.41,
+          "background": "#272727",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.27,
+          "background": "#272727",
+          "foreground": "#101010"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.21,
+          "background": "#1a1a1a",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.17,
+          "background": "#1a1a1a",
+          "foreground": "#272727"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.1,
+          "background": "#101010",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.09,
+          "background": "#1a1a1a",
+          "foreground": "#101010"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "image",
+            "link"
+          ],
+          "frequency": 36
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "button",
+            "card"
+          ],
+          "frequency": 20
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 48,
+          "corners": [
+            0,
+            0,
+            48,
+            48
+          ],
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "asymmetric": true
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "nav",
+            "body",
+            "card",
+            "link",
+            "heading"
+          ],
+          "frequency": 94,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginTop|body",
+            "rowGap|card",
+            "columnGap|card",
+            "rowGap|link",
+            "columnGap|link",
+            "marginTop|other",
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 17,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "link",
+            "input"
+          ],
+          "frequency": 29,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link",
+            "paddingRight|input",
+            "paddingLeft|input",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "body",
+            "nav",
+            "other",
+            "card",
+            "list"
+          ],
+          "frequency": 90,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other",
+            "rowGap|body",
+            "columnGap|body",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginTop|list"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|nav",
+            "paddingRight|nav"
+          ]
+        },
+        {
+          "value": 46,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|nav"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 25,
+          "properties": [
+            "paddingTop",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 128,
+          "contexts": [
+            "hero",
+            "other",
+            "footer"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingBottom|other",
+            "paddingTop|footer"
+          ]
+        },
+        {
+          "value": 164,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 262,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Kalice",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 206,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Review",
+          "source": "custom",
+          "weights": [
+            700,
+            900
+          ],
+          "frequency": 201,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Review Condensed",
+          "source": "custom",
+          "weights": [
+            900
+          ],
+          "frequency": 45,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 20,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Kalice",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "body",
+            "other"
+          ],
+          "frequency": 60,
+          "lineHeight": 1,
+          "letterSpacing": 0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Review",
+          "weight": 700,
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "icon",
+            "nav",
+            "card",
+            "input"
+          ],
+          "frequency": 70,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Review",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "nav",
+            "hero",
+            "image",
+            "card",
+            "footer",
+            "list"
+          ],
+          "frequency": 262,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Kalice",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 101,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.06,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Review",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Kalice",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 45,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Review",
+          "weight": 900,
+          "contexts": [
+            "nav",
+            "list",
+            "link",
+            "heading",
+            "other"
+          ],
+          "frequency": 84,
+          "lineHeight": 0.88,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Review",
+          "weight": 900,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 16,
+          "lineHeight": 0.75,
+          "letterSpacing": -0.01,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 72,
+          "family": "Review Condensed",
+          "weight": 900,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 128,
+          "family": "Review Condensed",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 33,
+          "lineHeight": 0.8,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/c4adcedc-a535-4c42-987f-14a2aac85f58.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/72e5d141-002c-49b0-95aa-508c4968f694.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/bfd97dc2-5c12-483b-9101-ebfaf82ba83e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"BitcoinOS design system\",\"item\":\"https://styles.refero.design/style/bfd97dc2-5c12-483b-9101-ebfaf82ba83e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/bfd97dc2-5c12-483b-9101-ebfaf82ba83e#style-reference\",\"name\":\"BitcoinOS design system reference\",\"headline\":\"BitcoinOS design system | Refero Styles\",\"description\":\"Explore BitcoinOS's dark Crypto design system: Obsidian #101010, Void #000000 colors, Review Condensed, Review typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/bfd97dc2-5c12-483b-9101-ebfaf82ba83e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/bfd97dc2-5c12-483b-9101-ebfaf82ba83e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"BitcoinOS\",\"url\":\"https://bitcoinos.build\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/bfd97dc2-5c12-483b-9101-ebfaf82ba83e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/72e5d141-002c-49b0-95aa-508c4968f694.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/72e5d141-002c-49b0-95aa-508c4968f694.jpg\",\"caption\":\"Screenshot of BitcoinOS\"},\"image\":\"https://images.refero.design/styles/refero.design/image/72e5d141-002c-49b0-95aa-508c4968f694.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"BitcoinOS design system\",\"BitcoinOS website design\",\"BitcoinOS colors\",\"BitcoinOS typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Crypto design system\",\"Obsidian\",\"Void\",\"Carbon\",\"Graphite\",\"Review Condensed\",\"Review\",\"Kalice\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"BitcoinOS design system\"},{\"@type\":\"Thing\",\"name\":\"BitcoinOS website design\"},{\"@type\":\"Thing\",\"name\":\"BitcoinOS colors\"},{\"@type\":\"Thing\",\"name\":\"BitcoinOS typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Crypto design system\"}],\"datePublished\":\"2026-04-30T00:12:56.347Z\",\"dateModified\":\"2026-04-30T00:12:56.347Z\"}]}19:T4da,**Quick Color Reference**\n- text: #fffafa\n- background: #101010\n- border: #272727\n- accent: #bababa (muted helper text only)\n- surface (card): #1a1a1a\n- primary action: #fffafa (filled action)\n\n**Example Component Prompts**\n1. *Hero display headline*: 128px Review Condensed weight 900, color #fffafa, line-height 0.80, text-align center, letter-spacing 0, floating directly over a full-bleed 3D-rendered background with no scrim.\n2. *Ecosystem chain card*: background #1a1a1a, 1px border #272727, border-radius 16px, padding 24px. Content is a white chain logo (32px) left-aligned above a 14px Review 700 #fffafa chain name. 4-column grid, 8px gap.\n3. *Top nav pill button*: background #1a1a1a, 1px border #272727, border-radius 9999px, padding 8px 16px. Text: Kalice 400 12px #fffafa, letter-spacing 0.04em, uppercase. Hover: border becomes #fffafa.\n4. *Section eyebrow label*: Kalice 400 12px #fffafa, letter-spacing 0.04em, format '[ Section Name ]' with literal square brackets, flush left, 16px bottom margin to body copy.\n5. *Filled primary action button*: background #fffafa, text #000000, font Review 700 14px, letter-spacing -0.01em, uppercase, padding 8px 24px, border-radius 8px, no border, no shadow. Use at most once per screen."
+}

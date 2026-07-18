@@ -1,0 +1,434 @@
+{
+  "color": {
+    "signal-blue": {
+      "$value": "#1868db",
+      "$type": "color",
+      "$description": "Signal Blue — Blue supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "pale-wash": {
+      "$value": "#e9f2fe",
+      "$type": "color",
+      "$description": "Pale Wash — Light blue surface for testimonial cards, banner backgrounds, and soft feature zones"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Primary page and card background; the default canvas"
+    },
+    "ink-black": {
+      "$value": "#101214",
+      "$type": "color",
+      "$description": "Ink Black — Primary text color for headings and body copy"
+    },
+    "graphite": {
+      "$value": "#292a2e",
+      "$type": "color",
+      "$description": "Graphite — Secondary text and icon strokes; slightly softer than Ink Black for muted labels"
+    },
+    "charcoal": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Charcoal — Hard text, high-contrast borders, and icon fills"
+    },
+    "ash-border": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Ash Border — Hairline dividers and subtle card borders"
+    },
+    "steel": {
+      "$value": "#7d818a",
+      "$type": "color",
+      "$description": "Steel — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "deep-plum": {
+      "$value": "#48245d",
+      "$type": "color",
+      "$description": "Deep Plum — Dark accent for content card backgrounds and illustration strokes"
+    },
+    "orchid": {
+      "$value": "#bf63f3",
+      "$type": "color",
+      "$description": "Orchid — Decorative purple accent for icon strokes and illustration fills"
+    },
+    "ember": {
+      "$value": "#ff613d",
+      "$type": "color",
+      "$description": "Ember — Warm orange accent for notification icons, illustration highlights, and callout strokes"
+    },
+    "leaf": {
+      "$value": "#82b536",
+      "$type": "color",
+      "$description": "Leaf — Green supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    },
+    "butter": {
+      "$value": "#fff5d4",
+      "$type": "color",
+      "$description": "Butter — Pale cream surface for content card backgrounds and soft highlight washes"
+    },
+    "mint": {
+      "$value": "#efffd6",
+      "$type": "color",
+      "$description": "Mint — Green supporting accent for decorative details and low-frequency emphasis. Use as a supporting accent, not as a status color"
+    },
+    "navy-field": {
+      "$value": "#123263",
+      "$type": "color",
+      "$description": "Navy Field — Dark blue surface for inverted content cards and feature panels"
+    }
+  },
+  "font": {
+    "charlie-display": {
+      "$value": "Charlie Display",
+      "$type": "fontFamily",
+      "$description": "Headlines from small section titles through hero display size; exclusively weight 700, compact leading (1.03–1.33) makes even the largest size feel dense and editorial"
+    },
+    "charlie-text": {
+      "$value": "Charlie Text",
+      "$type": "fontFamily",
+      "$description": "Body copy, UI labels, buttons, navigation, and subheadings; weight 400 is default, 500 for emphasized UI, 700 for inline emphasis; generous leading (1.45–1.71) keeps dense text airy"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "Charlie Text",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Charlie Text",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Charlie Text",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Charlie Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Charlie Text",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Charlie Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Charlie Text",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Charlie Text",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.71
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Charlie Text",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "base-8": {
+      "$value": {
+        "fontFamily": "Charlie Text",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-8 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Charlie Text",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Charlie Text",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Charlie Text",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Charlie Text",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.65
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 19px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Charlie Display",
+        "fontSize": "25px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Charlie Text",
+        "fontSize": "27px",
+        "fontWeight": 400,
+        "lineHeight": 1.52
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 27px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Charlie Display",
+        "fontSize": "33px",
+        "fontWeight": 700,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 33px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Charlie Display",
+        "fontSize": "44px",
+        "fontWeight": 700,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 44px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Charlie Display",
+        "fontSize": "63px",
+        "fontWeight": 700,
+        "lineHeight": 1.03
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 63px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "41.6923px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "68.9231px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(0, 0, 0, 0.04) 0px 2px 6px 0px, rgba(0, 0, 0, 0.06) 0px 5px 18px 0px, rgba(0, 0, 0, 0.1) 0px 24px 83px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default page and card background"
+    },
+    "pale-wash": {
+      "$value": "#e9f2fe",
+      "$type": "color",
+      "$description": "Surface level 2: Light blue content surface for testimonials and feature zones"
+    },
+    "butter": {
+      "$value": "#fff5d4",
+      "$type": "color",
+      "$description": "Surface level 3: Cream content surface for warm feature cards"
+    },
+    "mint": {
+      "$value": "#efffd6",
+      "$type": "color",
+      "$description": "Surface level 4: Mint content surface for success-adjacent cards"
+    },
+    "signal-blue": {
+      "$value": "#1868db",
+      "$type": "color",
+      "$description": "Surface level 5: Inverted surface for announcement banner and nav pill"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://loom.com",
+      "siteName": "Loom",
+      "extractedAt": "2026-06-03T16:16:05.858Z",
+      "variant": "extended"
+    }
+  }
+}

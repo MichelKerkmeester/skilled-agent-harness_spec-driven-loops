@@ -1,0 +1,487 @@
+{
+  "color": {
+    "ink-black": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, pill button borders, hairline dividers, ghost button outlines, card borders — the workhorse near-black that reads softer than pure #000000 at body sizes"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Logo, sharpest borders, true-black hero overlays, selected/active states, image masking — used sparingly where maximum contrast or absolute black is required"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, card surfaces, button fills, badge backgrounds, hero photo overlay anchor — the default background of everything"
+    },
+    "risograph-lime": {
+      "$value": "#e1ea99",
+      "$type": "color",
+      "$description": "Risograph Lime — Secondary surface accent — warm cream-lime wash used on occasional highlighted blocks, tag fills, and standout cards; the only chromatic note in the entire system and intentionally muted to a riso-print tint"
+    }
+  },
+  "font": {
+    "suisse-regular": {
+      "$value": "Suisse Regular",
+      "$type": "fontFamily",
+      "$description": "Primary UI and body type — navigation, buttons, body copy, course titles, profile names, tags. Carries every functional text role. A neutral Swiss grotesque that disappears into the layout and lets imagery and the Romana display dominate. Substitute: Inter or Söhne if Suisse is unavailable."
+    },
+    "romana": {
+      "$value": "Romana",
+      "$type": "fontFamily",
+      "$description": "Display serif reserved for the brand wordmark and hero-scale headings. A modern Roman with sharp contrast that screams editorial at large sizes but is never used below 20px. The negative tracking (-0.06em at 59px) pulls the letterforms so tight they almost touch, creating the signature edge-to-edge wordmark that bleeds across the full viewport."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "10px",
+        "fontWeight": 100,
+        "lineHeight": 2.52
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 10px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "10px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 10px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "13px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "14px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "14px",
+        "fontWeight": 100,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "15px",
+        "fontWeight": 100,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "15px",
+        "fontWeight": 100,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "15px",
+        "fontWeight": 100,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "16px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "18px",
+        "fontWeight": 100,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "18px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "18px",
+        "fontWeight": 100,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 18px"
+    },
+    "lg-5": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-5 at 18px"
+    },
+    "lg-6": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "18px",
+        "fontWeight": 100,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-6 at 18px"
+    },
+    "lg-7": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "18px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-7 at 18px"
+    },
+    "lg-8": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "18px",
+        "fontWeight": 100,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-8 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "romana",
+        "fontSize": "20px",
+        "fontWeight": 100,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "20px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "22px",
+        "fontWeight": 100,
+        "lineHeight": 0.83
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "32px",
+        "fontWeight": 100,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "32px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "32px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "3xl-4": {
+      "$value": {
+        "fontFamily": "romana",
+        "fontSize": "35px",
+        "fontWeight": 100,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-4 at 35px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "49px",
+        "fontWeight": 100,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 49px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "romana",
+        "fontSize": "53px",
+        "fontWeight": 100,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 53px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "SuisseRegular",
+        "fontSize": "54px",
+        "fontWeight": 100,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 54px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "romana",
+        "fontSize": "59px",
+        "fontWeight": 100,
+        "lineHeight": 0.95
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 59px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "70": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Spacing 70px"
+    },
+    "143": {
+      "$value": "143px",
+      "$type": "dimension",
+      "$description": "Spacing 143px"
+    },
+    "231": {
+      "$value": "231px",
+      "$type": "dimension",
+      "$description": "Spacing 231px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "300px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "450px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "540px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    },
+    "full-4": {
+      "$value": "1056px",
+      "$type": "dimension",
+      "$description": "Border radius full-4"
+    },
+    "full-5": {
+      "$value": "1458px",
+      "$type": "dimension",
+      "$description": "Border radius full-5"
+    },
+    "full-6": {
+      "$value": "1603.8px",
+      "$type": "dimension",
+      "$description": "Border radius full-6"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Default page background and card surface"
+    },
+    "risograph-lime": {
+      "$value": "#e1ea99",
+      "$type": "color",
+      "$description": "Surface level 2: Sporadic warm accent surface for highlighted blocks, active tags, standout cards"
+    },
+    "ink-black": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Surface level 3: Inverted surface — used behind the giant white display wordmark and in dark image overlays"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ilovecreatives.com",
+      "siteName": "ilovecreatives",
+      "extractedAt": "2026-06-03T21:05:09.509Z",
+      "variant": "extended"
+    }
+  }
+}

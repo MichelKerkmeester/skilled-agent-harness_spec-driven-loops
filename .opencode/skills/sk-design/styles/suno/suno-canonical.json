@@ -1,0 +1,1535 @@
+{
+  "source": "https://styles.refero.design/style/3b5ff57f-a371-4c7f-82ae-5fc5485da073",
+  "uuid": "3b5ff57f-a371-4c7f-82ae-5fc5485da073",
+  "name": "Suno",
+  "northStar": "Afterglow on a mixing console. Cream typography and a sunset wash over a matte black studio, with a single coral button as the only chromatic punctuation.",
+  "capturedAt": "2026-07-18T08:23:06.653Z",
+  "meta": {
+    "url": "https://suno.com",
+    "siteName": "Suno",
+    "extractedAt": "2026-06-03T17:22:36.887Z",
+    "durationMs": 35076,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1652,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #101012 as the default canvas for every screen — never introduce a lighter or grayer page background",
+      "Set all body and UI text in Neue Montreal weight 300 or 400 at 14–16px; reserve weight 500 for labels that need to feel switched on",
+      "Make Ember Coral (#fd429c) appear on exactly one element per screen — the primary action button — and nowhere else",
+      "Apply -0.026em letter-spacing to any text at 40px or above to keep large display lines from feeling airy",
+      "Use the dusk gradient only on the hero and one atmospheric interstitial — never as a card or section background",
+      "Use radius 6px for buttons, 12px for inputs and cards, 20px for image tiles, 24px for hero-scale artwork",
+      "Step surfaces with color (#101012 → #17171a → #000000) instead of shadows; reserve the single ambient drop-shadow for floating hero tiles only"
+    ],
+    "donts": [
+      "Don't introduce a second accent color — the system is intentionally monochrome with one coral punctuation",
+      "Don't use white (#ffffff) as the primary text color — Warm Cream (#f7f4ef) is the signature off-white and prevents the UI from feeling clinical",
+      "Don't apply heavy shadows to cards or buttons — the design language is matte and low-elevation",
+      "Don't use Editorial New for product UI, labels, or buttons — reserve it for hero headlines and editorial pull-quotes only",
+      "Don't set body text above 18px or below 13px — the type scale lives in a narrow middle band",
+      "Don't use radius values outside the {6, 12, 20, 24} set — these four values are the entire radius vocabulary",
+      "Don't place the Create button on a non-dark surface — the coral is calibrated to read against #101012, not against light backgrounds"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#101012",
+        "name": "Studio Black",
+        "role": "Page canvas, default surface — the dominant background behind every screen",
+        "group": "neutral"
+      },
+      {
+        "hex": "#17171a",
+        "name": "Deep Anvil",
+        "role": "Elevated surface — cards, input wells, modals layered above the canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Pure Ink",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f4ef",
+        "name": "Warm Cream",
+        "role": "Primary text color and high-contrast foreground — the signature off-white that keeps the dark UI from feeling cold",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Bone",
+        "role": "Secondary text, icon strokes, and bright borders where maximum contrast is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c2c2c1",
+        "name": "Smoke",
+        "role": "Muted helper text, disabled labels, and low-emphasis captions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#fd429c",
+        "name": "Ember Coral",
+        "role": "Red supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#8a2a3a",
+        "name": "Dusk Wash",
+        "role": "Hero background gradient — warm amber-to-burgundy atmospheric wash that bleeds behind the headline; sets the mood of the brand",
+        "group": "accent",
+        "gradient": "radial-gradient(ellipse at 30% 20%, #d4622a 0%, #8a2a3a 45%, #1a0a0 100%)"
+      }
+    ],
+    "layout": "Centered, single-column hero with a max-width ~1200px container. The hero pattern is a full-bleed dusk gradient with a vertically centered stack: wordmark nav at top, oversized Editorial New headline (~72–140px) at the vertical center, a single prompt input well below it, and a press-logo trust row at the bottom. Floating album-art tiles break the symmetry on the left and right edges, creating an off-center composition that feels curated rather than templated. Below the hero, the product shifts to max-width 1200px centered stacks with 64px section gaps, 2-column or 3-column card grids for track lists, and alternating left/right text+visual blocks. Navigation is a single transparent top bar with no center links — the prompt input itself is the primary navigation. Density is compact: 4px base unit, 8px element gaps, tight 14–16px line-heights.",
+    "imagery": "Imagery is album-art-forward: square cover-art tiles with 20–24px corner radius, floating slightly tilted or straight, always carrying a centered circular play overlay. Photography is absent — there is no lifestyle imagery, no people, no environments. The hero's atmospheric color is a painted gradient (amber → burgundy → near-black), not a photograph. Icons are minimal and stroke-only, rendered in Warm Cream at 1.5px weight, often inside 1px circular borders. The overall density is image-spare, text-dominant: every screen should feel like a record label's minimal site, not a stock-photo SaaS page.",
+    "similar": [
+      {
+        "why": "Same near-black canvas with warm-white typography and minimal chromatic accents; the matte, low-elevation surface treatment and compact 14px UI rows are directly comparable",
+        "business": "Spotify (web player dark mode)"
+      },
+      {
+        "why": "Identical philosophy of dark monochrome canvas with one vivid accent color reserved for the primary action, compact Neue-Haas-style grotesk at every size, and near-absence of shadows",
+        "business": "Linear"
+      },
+      {
+        "why": "Same single-gradient hero treatment (warm-to-dark atmospheric wash), editorial serif headline breaking a grotesk body face, and centered prompt-as-interface composition",
+        "business": "Arc browser marketing site"
+      },
+      {
+        "why": "Adjacent audio-creation product that uses the same dusk-gradient hero language and cream-on-near-black typography to signal an after-hours creative tool",
+        "business": "Endel"
+      },
+      {
+        "why": "Shares the dot-matrix typographic attitude and the warm-off-white-on-deep-black contrast pairing, with one signature accent color doing all the chromatic work",
+        "business": "Nothing (tech brand)"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "12px",
+        "images": "20px",
+        "inputs": "12px",
+        "buttons": "6px",
+        "hero-cards": "24px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#101012",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Base page background"
+      },
+      {
+        "hex": "#17171a",
+        "name": "Card",
+        "level": 1,
+        "purpose": "Elevated content surfaces, input wells"
+      },
+      {
+        "hex": "#000000",
+        "name": "Overlay",
+        "level": 2,
+        "purpose": "Modal scrims, pressed states, maximum contrast surfaces"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.25) 0px 25px 50px -12px",
+        "element": "Album art cards (floating hero tiles)"
+      }
+    ],
+    "northStar": "Afterglow on a mixing console. Cream typography and a sunset wash over a matte black studio, with a single coral button as the only chromatic punctuation.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.55
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.26
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.33,
+        "letterSpacing": -0.31
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.14,
+        "letterSpacing": -1.04
+      },
+      {
+        "role": "heading-lg",
+        "size": 72,
+        "lineHeight": 1,
+        "letterSpacing": -1.87
+      },
+      {
+        "role": "display",
+        "size": 140,
+        "lineHeight": 0.87,
+        "letterSpacing": -3.64
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Action Button (Create)",
+        "role": "The only chromatic button in the system — triggers generation",
+        "description": "Pill shape, fill #fd429c (Ember Coral) with a subtle internal gradient toward warm orange, text white at 14px Neue Montreal weight 500, padding 10px 20px, radius 9999px. The only place coral appears; the goal is to make the action feel lit from within."
+      },
+      {
+        "name": "Ghost Nav Button (Sign In)",
+        "role": "Low-emphasis navigation action",
+        "description": "Transparent background, 1px solid transparent border, text Warm Cream (#f7f4ef) at 14px weight 400, padding 8px 16px, radius 6px. Hover lifts to 8% white wash."
+      },
+      {
+        "name": "Outlined Nav Button (Sign Up)",
+        "role": "Medium-emphasis navigation action",
+        "description": "Transparent background, 1px solid rgba(255,255,255,0.2) border, text Warm Cream at 14px weight 400, padding 8px 16px, radius 6px."
+      },
+      {
+        "name": "Hero Prompt Input",
+        "role": "The core creation surface — where users type or paste a prompt",
+        "description": "Full-width centered container, max-width ~720px, background #17171a with 60% opacity backdrop-blur, border 1px solid rgba(255,255,255,0.08), radius 16px, padding 20px. Inner text input is transparent with Warm Cream placeholder text. Contains a leading '+' icon button, an 'Advanced' chip toggle, and the trailing Create button."
+      },
+      {
+        "name": "Advanced Toggle Chip",
+        "role": "Inline secondary action inside the prompt input",
+        "description": "Ghost style — 1px solid rgba(255,255,255,0.12) border, text Warm Cream at 13px weight 400, padding 6px 12px, radius 6px. Activated state swaps to 1px solid Ember Coral border."
+      },
+      {
+        "name": "Album Art Hero Card",
+        "role": "Floating social-proof tile flanking the hero",
+        "description": "Square image container, radius 20px, 1px solid rgba(255,255,255,0.06) border, ambient shadow rgba(0,0,0,0.25) 0px 25px 50px -12px. Contains a centered play-button overlay (circular, 48px, #000000 60% opacity). Track title and artist name in 12px Warm Cream at 80% opacity below the image."
+      },
+      {
+        "name": "Press Logo Row",
+        "role": "Trust bar — third-party media logos",
+        "description": "Horizontal flex row, centered, 32px row height, each logo at #f7f4ef with 60% opacity, gap 64px between logos. No dividers, no background — floats on the dark canvas."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent header",
+        "description": "Transparent background over the gradient hero, 64px tall, 24px horizontal padding. Left: SUNO wordmark in 16px Neue Montreal weight 500 Warm Cream with letter-spacing +0.16em. Right: Sign In (ghost) + Sign Up (outlined) buttons. No center nav — the input is the nav."
+      },
+      {
+        "name": "Input Field (text)",
+        "role": "Standard text input across the product",
+        "description": "Background transparent or #17171a, no visible border by default, 1px solid rgba(255,255,255,0.12) on focus (transitions to Ember Coral at 0.4 opacity), text Warm Cream 16px, placeholder Smoke (#c2c2c1) at 60% opacity, radius 12px, padding 12px 16px."
+      },
+      {
+        "name": "Track Card",
+        "role": "Generated-track tile in lists and feeds",
+        "description": "Background #17171a, radius 12px, padding 16px, 1px solid rgba(255,255,255,0.06) border. Thumbnail 48x48 radius 8px on the left, title 14px Warm Cream, metadata 12px Smoke on the right. No hover elevation — opacity shift on the play icon only."
+      },
+      {
+        "name": "Tag Chip",
+        "role": "Genre, mood, or style label",
+        "description": "Background rgba(255,255,255,0.06), text Warm Cream 12px weight 400, padding 4px 10px, radius 6px. No border."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Workhorse UI typeface — sets all body, labels, buttons, nav, captions, and mid-size headings; weight 300 is the default, weight 400 for body paragraphs, weight 500 reserved for emphasized UI labels. The ultra-compact tracking (-0.026em at large sizes) and the willingness to scale up to 140px at 0.87 line-height are the signature moves — text behaves as architectural mass, not just copy.",
+        "sizes": "10px, 11px, 12px, 13px, 14px, 15px, 16px, 17px, 18px, 20px, 24px, 40px, 72px, 140px",
+        "family": "Neue Montreal",
+        "weight": "300, 400, 500",
+        "lineHeight": "1.20–1.78 (body), 0.87–1.14 (large display)",
+        "substitute": "Inter, Manrope, or Söhne",
+        "letterSpacing": "-0.0260em at 40px+ sizes, -0.0130em at mid sizes, normal at body"
+      },
+      {
+        "role": "Reserved for editorial display moments — italic-leaning serif that injects a humanistic counterpoint into the otherwise geometric Neue Montreal system. Appears in hero headlines and curated pull-quotes only; never in product UI. Use it where the system needs to feel like a magazine cover rather than a dashboard.",
+        "sizes": "24px",
+        "family": "Editorial New",
+        "weight": "300",
+        "lineHeight": "1.50",
+        "substitute": "GT Sectra, Canela, or Playfair Display Italic"
+      }
+    ],
+    "description": "Suno operates in a warm nocturnal register: a near-black canvas (#101012) lit by a single dusk-gradient wash, with one cream-warm off-white (#f7f4ef) carrying all body and headline text. The whole product feels like a recording studio after midnight — quiet, matte, and slightly reflective, with color reserved as a single-function event (the coral Create button) that punctuates an otherwise monochromatic surface. Typography does the heavy lifting: Neue Montreal sets almost everything in compact 14–16px rows, while an Editorial New italic display voice breaks the dark with humanistic serifs at 72–140px, giving every screen one moment of warmth and scale. Components are low-elevation by default — soft cards, ghost controls, thin dividers — and the only true accent is the sunset gradient that bleeds behind the hero.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3b5ff57f-a371-4c7f-82ae-5fc5485da073#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Suno design system\",\"item\":\"https://styles.refero.design/style/3b5ff57f-a371-4c7f-82ae-5fc5485da073\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3b5ff57f-a371-4c7f-82ae-5fc5485da073#style-reference\",\"name\":\"Suno design system reference\",\"headline\":\"Suno design system | Refero Styles\",\"description\":\"Explore Suno's dark AI design system: Studio Black #101012, Deep Anvil #17171a colors, Neue Montreal, Editorial New typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3b5ff57f-a371-4c7f-82ae-5fc5485da073\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3b5ff57f-a371-4c7f-82ae-5fc5485da073\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Suno\",\"url\":\"https://suno.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3b5ff57f-a371-4c7f-82ae-5fc5485da073#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/afd781b1-7ca1-4b68-9010-3b22dab91de3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/afd781b1-7ca1-4b68-9010-3b22dab91de3.jpg\",\"caption\":\"Screenshot of Suno\"},\"image\":\"https://images.refero.design/styles/refero.design/image/afd781b1-7ca1-4b68-9010-3b22dab91de3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Suno design system\",\"Suno website design\",\"Suno colors\",\"Suno typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Studio Black\",\"Deep Anvil\",\"Pure Ink\",\"Warm Cream\",\"Neue Montreal\",\"Editorial New\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Suno design system\"},{\"@type\":\"Thing\",\"name\":\"Suno website design\"},{\"@type\":\"Thing\",\"name\":\"Suno colors\"},{\"@type\":\"Thing\",\"name\":\"Suno typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-01-30T18:12:37.000Z\",\"dateModified\":\"2026-01-30T18:12:37.000Z\"}]}19:T709,Quick Color Reference:\n- text: #f7f4ef (Warm Cream)\n- background: #101012 (Studio Black)\n- surface (cards/inputs): #17171a (Deep Anvil)\n- border: rgba(255,255,255,0.08–0.12)\n- muted text: #c2c2c1 (Smoke)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Build a hero section: full-bleed radial gradient from #d4622a through #8a2a3a to #1a0a0e. Centered headline in Editorial New weight 300 at 72px, color #f7f4ef. Below it, a prompt input at max-width 720px: background #17171a at 60% opacity, 1px rgba(255,255,255,0.08) border, 16px radius, 20px padding, placeholder text in #c2c2c1 at 16px. Trailing button: pill shape (9999px radius), fill #fd429c, white text 14px weight 500 Neue Montreal, padding 10px 20px.\n2. Create a track card: background #17171a, 12px radius, 16px padding, 1px rgba(255,255,255,0.06) border. Left: 48x48 thumbnail with 8px radius. Right: title 14px #f7f4ef weight 400, metadata 12px #c2c2c1. No shadow.\n3. Create a top navigation bar: transparent background, 64px height, 24px horizontal padding. Left: 'SUNO' wordmark in 16px Neue Montreal weight 500, #f7f4ef, letter-spacing 0.16em. Right: ghost 'Sign In' button (transparent, #f7f4ef text, 6px radius, 8px 16px padding) and outlined 'Sign Up' button (1px rgba(255,255,255,0.2) border, 6px radius).\n4. Create a floating album-art tile for the hero: 240x240 square, 20px radius, 1px rgba(255,255,255,0.06) border, ambient shadow rgba(0,0,0,0.25) 0px 25px 50px -12px. Centered 48px circular play overlay at #000000 60% opacity with a white triangle icon. Track title below in 12px #f7f4ef at 80% opacity.\n5. Create a press-logo trust row: horizontal flex, centered, 32px row height, each logo in #f7f4ef at 60% opacity, 64px gap between items. No background, no dividers, floats on the #101012 canvas."
+      },
+      {
+        "title": "Gradient System",
+        "content": "The system uses exactly one gradient: a warm dusk radial wash reserved for the hero and at most one atmospheric interstitial. It runs from #d4622a (amber) at 30%/20% through #8a2a3a (burgundy) at 45% to #1a0a00 (near-black with red undertone) at the edges. This gradient is the brand's emotional signature — it should never be used on cards, buttons, or UI surfaces, only on full-bleed atmospheric backgrounds. The Create button contains a smaller linear variant running from #fd429c to a warmer coral, giving the button a faintly lit-from-within quality."
+      },
+      {
+        "title": "Radius Vocabulary",
+        "content": "Four values, used in strict order: 6px (buttons, chips, tags), 12px (inputs, cards, track tiles), 20px (album-art images, medium visual assets), 24px (hero-scale images and oversized artwork). Do not interpolate between these values or introduce new radii. The progression mirrors a content-type hierarchy: interactive controls → content surfaces → visual assets → hero imagery."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is almost absent. The design relies on surface color stepping (#101012 → #17171a → #000000) rather than shadows. The only shadow in the system is a single soft ambient drop used on the floating album-art tiles in the hero — a deliberate choice to make them feel physically detached from the gradient background, like prints pinned to a wall."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#f7f4ef",
+          "oklch": {
+            "c": 0.007383212812327654,
+            "h": 80.72104069797548,
+            "l": 0.9680774986314319
+          },
+          "contexts": [
+            "other",
+            "image",
+            "link",
+            "button",
+            "body",
+            "icon",
+            "heading",
+            "list"
+          ],
+          "frequency": 3247,
+          "confidence": 1,
+          "prominence": 135063289.01761955,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#101012",
+          "oklch": {
+            "c": 0.004093526926335443,
+            "h": 285.9664843290866,
+            "l": 0.1739406324795861
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body"
+          ],
+          "frequency": 89,
+          "confidence": 1,
+          "prominence": 17537351.62854884,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0.00004979863382744551,
+            "h": 23.78842605119702,
+            "l": 0.999994
+          },
+          "contexts": [
+            "other",
+            "icon",
+            "heading",
+            "input",
+            "body",
+            "button",
+            "image",
+            "link"
+          ],
+          "frequency": 2599,
+          "confidence": 1,
+          "prominence": 7841177.331551412,
+          "properties": [
+            "borderColor",
+            "color",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 80384.71027728973,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#17171a",
+          "oklch": {
+            "c": 0.005098473054492373,
+            "h": 285.94510679525587,
+            "l": 0.20663119440481575
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 10921.976592469486,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f5d907",
+          "oklch": {
+            "c": 0.18233544361299658,
+            "h": 99.77620930275901,
+            "l": 0.8815101117486945
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 2446.806247743505,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fd429c",
+          "oklch": {
+            "c": 0.23254232323362267,
+            "h": 356.13820218363963,
+            "l": 0.6784294607850113
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2050,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#02d95c",
+          "oklch": {
+            "c": 0.22047690875182116,
+            "h": 148.49775148911652,
+            "l": 0.7726230887212908
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 270,
+          "confidence": 1,
+          "prominence": 1810.401385263267,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c2c2c1",
+          "oklch": {
+            "c": 0.0013889251086149318,
+            "h": 104.7733759909083,
+            "l": 0.813767
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1388,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a3a3a3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7154735289549714
+          },
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 18,
+          "confidence": 1,
+          "prominence": 951.5357630113631,
+          "properties": [
+            "color",
+            "fill",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.037636575325148316,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.14,
+          "background": "#000000",
+          "foreground": "#f7f4ef"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.01,
+          "background": "#ffffff",
+          "foreground": "#101012"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.89,
+          "background": "#17171a",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.32,
+          "background": "#101012",
+          "foreground": "#f7f4ef"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.31,
+          "background": "#17171a",
+          "foreground": "#f7f4ef"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.81,
+          "background": "#000000",
+          "foreground": "#f5d907"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.4,
+          "background": "#101012",
+          "foreground": "#f5d907"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.62,
+          "background": "#17171a",
+          "foreground": "#f5d907"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.78,
+          "background": "#c2c2c1",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.08,
+          "background": "#000000",
+          "foreground": "#02d95c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.66,
+          "background": "#c2c2c1",
+          "foreground": "#101012"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.04,
+          "background": "#c2c2c1",
+          "foreground": "#17171a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.03,
+          "background": "#101012",
+          "foreground": "#02d95c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.44,
+          "background": "#17171a",
+          "foreground": "#02d95c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.33,
+          "background": "#000000",
+          "foreground": "#a3a3a3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.53,
+          "background": "#101012",
+          "foreground": "#a3a3a3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.09,
+          "background": "#17171a",
+          "foreground": "#a3a3a3"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.44,
+          "background": "#fd429c",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.82,
+          "background": "#fd429c",
+          "foreground": "#101012"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 58
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 50
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "input",
+            "image",
+            "body"
+          ],
+          "frequency": 44
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.25) 0px 25px 50px -12px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 3,
+          "contexts": [],
+          "frequency": 32,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 369,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 229,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 34,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 15,
+          "contexts": [],
+          "frequency": 38,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 66,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 19,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 21,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 83,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 56,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 35,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 38,
+          "contexts": [],
+          "frequency": 31,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginBottom",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 60,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 72,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 78,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 83,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 93,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 100,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 102,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 104,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 105,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 177,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 189,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 222,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Neue Montreal",
+          "source": "custom",
+          "weights": [
+            300,
+            400,
+            500
+          ],
+          "frequency": 1208,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Editorial New",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.93
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 11,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 31,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "icon",
+            "button"
+          ],
+          "frequency": 232,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "list",
+            "icon"
+          ],
+          "frequency": 132,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "link",
+            "icon",
+            "button",
+            "body",
+            "heading"
+          ],
+          "frequency": 329,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 41,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.55,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.41,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "image",
+            "icon"
+          ],
+          "frequency": 326,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Editorial New",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.013,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 0.89,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 140,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.87,
+          "letterSpacing": -0.026,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/212d0ac3-70a8-48d6-a0c0-9cdaab35f631.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/afd781b1-7ca1-4b68-9010-3b22dab91de3.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3b5ff57f-a371-4c7f-82ae-5fc5485da073#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Suno design system\",\"item\":\"https://styles.refero.design/style/3b5ff57f-a371-4c7f-82ae-5fc5485da073\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3b5ff57f-a371-4c7f-82ae-5fc5485da073#style-reference\",\"name\":\"Suno design system reference\",\"headline\":\"Suno design system | Refero Styles\",\"description\":\"Explore Suno's dark AI design system: Studio Black #101012, Deep Anvil #17171a colors, Neue Montreal, Editorial New typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3b5ff57f-a371-4c7f-82ae-5fc5485da073\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3b5ff57f-a371-4c7f-82ae-5fc5485da073\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Suno\",\"url\":\"https://suno.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3b5ff57f-a371-4c7f-82ae-5fc5485da073#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/afd781b1-7ca1-4b68-9010-3b22dab91de3.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/afd781b1-7ca1-4b68-9010-3b22dab91de3.jpg\",\"caption\":\"Screenshot of Suno\"},\"image\":\"https://images.refero.design/styles/refero.design/image/afd781b1-7ca1-4b68-9010-3b22dab91de3.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Suno design system\",\"Suno website design\",\"Suno colors\",\"Suno typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Studio Black\",\"Deep Anvil\",\"Pure Ink\",\"Warm Cream\",\"Neue Montreal\",\"Editorial New\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Suno design system\"},{\"@type\":\"Thing\",\"name\":\"Suno website design\"},{\"@type\":\"Thing\",\"name\":\"Suno colors\"},{\"@type\":\"Thing\",\"name\":\"Suno typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-01-30T18:12:37.000Z\",\"dateModified\":\"2026-01-30T18:12:37.000Z\"}]}19:T709,Quick Color Reference:\n- text: #f7f4ef (Warm Cream)\n- background: #101012 (Studio Black)\n- surface (cards/inputs): #17171a (Deep Anvil)\n- border: rgba(255,255,255,0.08–0.12)\n- muted text: #c2c2c1 (Smoke)\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Build a hero section: full-bleed radial gradient from #d4622a through #8a2a3a to #1a0a0e. Centered headline in Editorial New weight 300 at 72px, color #f7f4ef. Below it, a prompt input at max-width 720px: background #17171a at 60% opacity, 1px rgba(255,255,255,0.08) border, 16px radius, 20px padding, placeholder text in #c2c2c1 at 16px. Trailing button: pill shape (9999px radius), fill #fd429c, white text 14px weight 500 Neue Montreal, padding 10px 20px.\n2. Create a track card: background #17171a, 12px radius, 16px padding, 1px rgba(255,255,255,0.06) border. Left: 48x48 thumbnail with 8px radius. Right: title 14px #f7f4ef weight 400, metadata 12px #c2c2c1. No shadow.\n3. Create a top navigation bar: transparent background, 64px height, 24px horizontal padding. Left: 'SUNO' wordmark in 16px Neue Montreal weight 500, #f7f4ef, letter-spacing 0.16em. Right: ghost 'Sign In' button (transparent, #f7f4ef text, 6px radius, 8px 16px padding) and outlined 'Sign Up' button (1px rgba(255,255,255,0.2) border, 6px radius).\n4. Create a floating album-art tile for the hero: 240x240 square, 20px radius, 1px rgba(255,255,255,0.06) border, ambient shadow rgba(0,0,0,0.25) 0px 25px 50px -12px. Centered 48px circular play overlay at #000000 60% opacity with a white triangle icon. Track title below in 12px #f7f4ef at 80% opacity.\n5. Create a press-logo trust row: horizontal flex, centered, 32px row height, each logo in #f7f4ef at 60% opacity, 64px gap between items. No background, no dividers, floats on the #101012 canvas."
+}

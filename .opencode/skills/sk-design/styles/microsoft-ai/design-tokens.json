@@ -1,0 +1,407 @@
+{
+  "color": {
+    "parchment": {
+      "$value": "#fef9ed",
+      "$type": "color",
+      "$description": "Parchment — Page canvas, card surface, light text on dark — the foundational warm cream that carries 80% of the interface"
+    },
+    "bone": {
+      "$value": "#f5f0e4",
+      "$type": "color",
+      "$description": "Bone — Secondary surface, muted panels, badge backgrounds, tab track — one shade deeper than the canvas for subtle layering without shadow"
+    },
+    "walnut": {
+      "$value": "#5d524b",
+      "$type": "color",
+      "$description": "Walnut — Primary text, body copy, nav links, icons, borders — warm dark brown replaces black, keeping the system on the earth-tone spectrum"
+    },
+    "cedar": {
+      "$value": "#72675b",
+      "$type": "color",
+      "$description": "Cedar — Muted secondary text, helper copy, inactive nav — mid-tone brown for de-emphasis within the warm scale"
+    },
+    "linen": {
+      "$value": "#cec7bc",
+      "$type": "color",
+      "$description": "Linen — Hairline borders, input outlines, dividers — warm light gray that reads as thread on the cream canvas"
+    },
+    "library-ink": {
+      "$value": "#2e4d4d",
+      "$type": "color",
+      "$description": "Library Ink — Hero background, dark section fill — deep desaturated teal-green, the only cool note in the system; creates the dramatic contrast with the warm display type"
+    },
+    "apricot-wash": {
+      "$value": "#fbd3be",
+      "$type": "color",
+      "$description": "Apricot Wash — Gradient accent, warm highlight band, peachy atmosphere — the only chromatic warmth, used as a wash rather than a fill"
+    },
+    "faded-rose": {
+      "$value": "#8c5462",
+      "$type": "color",
+      "$description": "Faded Rose — Accent text, italic emphasis, decorative label — muted burgundy that recedes into the warm palette without shouting"
+    },
+    "slate-lilac": {
+      "$value": "#666583",
+      "$type": "color",
+      "$description": "Slate Lilac — Cool secondary accent for sparse cross-palette moments — muted blue-gray, used sparingly to break the warm monotony"
+    }
+  },
+  "font": {
+    "bradford-ll": {
+      "$value": "Bradford LL",
+      "$type": "fontFamily",
+      "$description": "Primary serif for body, headings, and all display. Custom transitional serif with warm proportions; the italic cut carries the hero word 'Humanist' and functions as the system's expressive voice. Aggressive negative tracking at display sizes (up to -5px at 125px) tightens the wordmark into a sculpted slab. Single weight axis (400-450) keeps the system restrained — hierarchy comes from size and italic, never from bold."
+    },
+    "red-hat-mono": {
+      "$value": "Red Hat Mono",
+      "$type": "fontFamily",
+      "$description": "Monospace for UI chrome — search input, tab labels, badge text, navigation links, the accessibility mode toggle, footer micro-copy. Its mechanical character provides the only structural counterpoint to the flowing serif. Use with positive tracking (0.05-0.10em) for uppercase tag labels to create a printed-typesetter effect."
+    },
+    "mwf-mdl2": {
+      "$value": "MWF-MDL2",
+      "$type": "fontFamily",
+      "$description": "MWF-MDL2 — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Red Hat Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Red Hat Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Red Hat Mono",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Red Hat Mono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Red Hat Mono",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Red Hat Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 13px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Red Hat Mono",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 13px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Bradford LL",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Bradford LL",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Red Hat Mono",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "MWF-MDL2",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Bradford LL",
+        "fontSize": "20px",
+        "fontWeight": 450,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Red Hat Mono",
+        "fontSize": "20px",
+        "fontWeight": 450,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Bradford LL",
+        "fontSize": "25px",
+        "fontWeight": 450,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Bradford LL",
+        "fontSize": "35px",
+        "fontWeight": 450,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 35px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Bradford LL",
+        "fontSize": "40px",
+        "fontWeight": 450,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "Bradford LL",
+        "fontSize": "45px",
+        "fontWeight": 450,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 45px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Bradford LL",
+        "fontSize": "100px",
+        "fontWeight": 450,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 100px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Bradford LL",
+        "fontSize": "125px",
+        "fontWeight": 450,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 125px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "17": {
+      "$value": "17px",
+      "$type": "dimension",
+      "$description": "Spacing 17px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "22": {
+      "$value": "22px",
+      "$type": "dimension",
+      "$description": "Spacing 22px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "41": {
+      "$value": "41px",
+      "$type": "dimension",
+      "$description": "Spacing 41px"
+    },
+    "42": {
+      "$value": "42px",
+      "$type": "dimension",
+      "$description": "Spacing 42px"
+    },
+    "47": {
+      "$value": "47px",
+      "$type": "dimension",
+      "$description": "Spacing 47px"
+    },
+    "50": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Spacing 50px"
+    },
+    "58": {
+      "$value": "58px",
+      "$type": "dimension",
+      "$description": "Spacing 58px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4.16667px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "md-2": {
+      "$value": "6.66667px",
+      "$type": "dimension",
+      "$description": "Border radius md-2"
+    },
+    "3xl": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "full": {
+      "$value": "50px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "65px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "85.8333px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "surface": {
+    "library-ink": {
+      "$value": "#2e4d4d",
+      "$type": "color",
+      "$description": "Surface level 1: Hero void — the deep teal-green stage for the largest display type and the masthead"
+    },
+    "parchment": {
+      "$value": "#fef9ed",
+      "$type": "color",
+      "$description": "Surface level 2: Primary page canvas — warm cream that carries all content sections below the hero"
+    },
+    "apricot-wash": {
+      "$value": "#fbd3be",
+      "$type": "color",
+      "$description": "Surface level 3: Atmospheric gradient surface — peachy band that signals a warm interlude between editorial sections"
+    },
+    "bone": {
+      "$value": "#f5f0e4",
+      "$type": "color",
+      "$description": "Surface level 4: Recessed surface — tab tracks, subtle panels, the track behind pill controls"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://microsoft.ai",
+      "siteName": "Microsoft AI",
+      "extractedAt": "2026-06-03T15:50:27.167Z",
+      "variant": "extended"
+    }
+  }
+}

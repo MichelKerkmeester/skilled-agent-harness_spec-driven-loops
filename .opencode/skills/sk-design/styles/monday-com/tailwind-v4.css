@@ -1,0 +1,82 @@
+@theme {
+  /* Colors */
+  --color-monday-violet: #6161ff;
+  --color-ink: #333333;
+  --color-slate: #535768;
+  --color-iron: #808080;
+  --color-fog: #cacbcd;
+  --color-mist: #d0d4e4;
+  --color-pebble: #dddfeb;
+  --color-cloud: #f5f6f8;
+  --color-snow: #ffffff;
+  --color-shadow-dust: #e6e7ea;
+  --color-mint: #bcfe90;
+  --color-sky: #abf0ff;
+  --color-apricot: #ff8940;
+  --color-lavender: #eddff7;
+  --color-periwinkle: #e7ecff;
+  --color-cornflower: #93beff;
+  --color-aqua: #d1faff;
+  --color-cotton-candy: #e98dfe;
+  --color-ultra-violet: #9450fd;
+  --color-electric-cyan: #3ac9ff;
+  --color-forest: #2a5c4e;
+  --color-peony: #fcd0f8;
+  --color-periwinkle-wash: #dbdbff;
+  --color-prism: #8181ff;
+
+  /* Typography */
+  --font-poppins: 'Poppins', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.45;
+  --tracking-caption: -0.12px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.5;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: -0.16px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.22px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.3;
+  --tracking-heading-sm: -0.36px;
+  --text-heading: 36px;
+  --leading-heading: 1.2;
+  --tracking-heading: -0.54px;
+  --text-heading-lg: 48px;
+  --leading-heading-lg: 1.15;
+  --tracking-heading-lg: -0.96px;
+  --text-display: 64px;
+  --leading-display: 1.15;
+  --tracking-display: -2.56px;
+
+  /* Spacing */
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+
+  /* Border Radius */
+  --radius-md: 6px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 40px;
+  --radius-full: 100px;
+  --radius-full-2: 160px;
+
+  /* Shadows */
+  --shadow-xl: rgba(205, 208, 223, 0.4) 0px 2px 48px 0px;
+  --shadow-xl-2: rgba(0, 0, 0, 0.15) 0px 5px 45px 0px;
+  --shadow-xl-3: rgba(0, 0, 0, 0.15) 0px 4px 40px 0px;
+  --shadow-xl-4: rgba(0, 0, 0, 0.4) 0px 5px 55px 0px;
+  --shadow-subtle: rgb(0, 0, 0) 0px -2px 0px 0px inset;
+}

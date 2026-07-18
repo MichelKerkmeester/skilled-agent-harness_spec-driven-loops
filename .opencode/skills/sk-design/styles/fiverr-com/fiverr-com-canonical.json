@@ -1,0 +1,1330 @@
+{
+  "source": "https://styles.refero.design/style/c3b34927-0638-463e-bf85-180d73bfc367",
+  "uuid": "c3b34927-0638-463e-bf85-180d73bfc367",
+  "name": "Fiverr.com",
+  "northStar": "Digital bazaar spotlight — vivid green pulse on dark theatrical stages. One neon-green period anchors the wordmark; everything else is monochrome staging built to make service offerings glow.",
+  "capturedAt": "2026-07-18T09:45:00.940Z",
+  "meta": {
+    "url": "https://www.fiverr.com",
+    "siteName": "Fiverr.com",
+    "extractedAt": "2026-06-03T18:19:06.160Z",
+    "durationMs": 51148,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 469,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #1dbf73 exclusively for links, the logo dot, selected/active states, and category tag borders — never for filled buttons or large surface areas",
+      "Apply Macan weight 280 at 72px for hero display headlines with -0.06em tracking — the ultralight display is the brand's signature editorial choice",
+      "Use 9999px radius for all category tag pills and inline link pills; use 16px for service cards; use 8px for action buttons",
+      "Apply the single soft shadow rgba(0,0,0,0.13) 0px 3px 10px 0px to service category cards only — do not stack or add stronger shadows elsewhere",
+      "Alternate between Carbon #222325 and Forest Stage #003912 for full-bleed promotional sections; both function as dark stages for white type and image content",
+      "Use Macan 400 for body, 600 for subheadings and navigation, 700 only for primary CTA button labels",
+      "Keep element gap at 12px within component groups; use 24–40px between component groups; sections separated by 40–64px vertical space"
+    ],
+    "donts": [
+      "Do not use #1dbf73 as a filled CTA background — it appears only as borders, links, and the logo dot",
+      "Do not use bold (700) weights for body or display copy — the 280 ultralight display and 400 body are what distinguish Fiverr from generic marketplace UIs",
+      "Do not introduce colors outside the nine-token neutral + green system; no purples, blues, or warm tones",
+      "Do not add decorative gradients — the system is flat surfaces with one shadow, no gradient language",
+      "Do not apply corner radii other than the four defined values (4px nav, 8px buttons, 12px inputs, 16px cards, 9999px pills)",
+      "Do not use #000000 for text or backgrounds — #222325 Carbon is the designated near-black, slightly warmer and softer than pure black",
+      "Do not place multiple chromatic elements adjacent; the green must read as punctuation, not as a wash"
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#1dbf73",
+        "name": "Fiverr Green",
+        "role": "Logo dot, link color, category tag pill borders, selected states, brand iconography — the single chromatic pulse that anchors identity; used sparingly so it reads as signal, not decoration",
+        "group": "brand"
+      },
+      {
+        "hex": "#003912",
+        "name": "Forest Stage",
+        "role": "Service category card backgrounds in Popular Services and Pro sections — dark tinted-green surfaces that make category thumbnails glow like products under stage lighting",
+        "group": "brand"
+      },
+      {
+        "hex": "#222325",
+        "name": "Carbon",
+        "role": "Primary text, filled button background, dark promotional banner backgrounds, body borders — the matte-black backbone of the entire interface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#62646a",
+        "name": "Graphite",
+        "role": "Secondary text, subtle borders, list dividers, navigation borders — the most-used neutral; handles 80% of structural hairlines",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Page surfaces, card surfaces, input fills, text on dark backgrounds — the canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dadbdd",
+        "name": "Mist",
+        "role": "Lightest structural border, footer hairlines, soft dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c5c6c9",
+        "name": "Fog",
+        "role": "Input field default borders, subtle form separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#404145",
+        "name": "Slate",
+        "role": "Heading text alternative, icon fills when slightly softer than Carbon is needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#74767e",
+        "name": "Smoke",
+        "role": "Tertiary helper text, inactive nav items, muted icon fills",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 1200px centered container with generous outer padding. Hero is full-bleed with a dark photographic background and centered/left-aligned headline + search bar stack. Below the hero, a white section introduces the Category Icon Strip (10 items, single row, equal width). Popular Services follows as a horizontal-scrolling card carousel of six visible dark-green category cards. Benefit row is a four-column text grid with no card surfaces. Dark promotional sections (AI Director, Fiverr Pro) alternate full-bleed with the white sections, each using a different dark surface (Carbon, then Forest Stage) to create visual rhythm. Navigation is a persistent 64px top bar with inline search. Section vertical rhythm is 40–64px between bands.",
+    "imagery": "Photography is full-bleed lifestyle imagery used exclusively in the hero — warm interior scenes of people working, with a dark overlay that pushes text legibility and unifies the background into a single Carbon-toned stage. Service category thumbnails are colorful product mockups (laptops, cameras, books, architecture renders) that sit inside the dark green Forest Stage cards, creating high contrast between the saturated product art and the muted dark-green surface. Freelancer portraits are tight head-and-shoulders crops on dark backgrounds for the carousel. Iconography is a single-weight line-icon set in #222325 stroke for category strip and feature rows. No 3D renders, no abstract graphics, no duotone photography — the system relies on real product photography and flat line-icons only.",
+    "similar": [
+      {
+        "why": "Same marketplace card-grid layout with dark promotional sections and a single brand color accent, though Upwork uses green in filled buttons while Fiverr reserves it for outlined tags and links",
+        "business": "Upwork"
+      },
+      {
+        "why": "Same approach of dark category cards (Etsy's charcoal product cards) below a full-bleed photographic hero with centered search — the marketplace taxonomy grid pattern is shared",
+        "business": "Etsy"
+      },
+      {
+        "why": "Same freelancer-portrait-on-dark-stage carousel pattern and dark promotional banners breaking up white product surfaces",
+        "business": "99designs"
+      },
+      {
+        "why": "Same horizontal-scrolling category card grid with dark backgrounds and product mockup thumbnails, though Shutterstock uses red as its signature pulse vs Fiverr's green",
+        "business": "Shutterstock"
+      },
+      {
+        "why": "Same editorial ultralight display headline treatment on dark hero sections, though Toptal leans monochrome while Fiverr anchors with green",
+        "business": "Toptal"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "4px",
+        "cards": "16px",
+        "pills": "9999px",
+        "inputs": "12px",
+        "buttons": "8px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "40px",
+      "cardPadding": "16px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Default page background"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Card Surface",
+        "level": 1,
+        "purpose": "Elevated card and input backgrounds on the white canvas"
+      },
+      {
+        "hex": "#222325",
+        "name": "Dark Stage",
+        "level": 2,
+        "purpose": "Full-bleed dark promotional sections and filled button surfaces"
+      },
+      {
+        "hex": "#003912",
+        "name": "Green Stage",
+        "level": 3,
+        "purpose": "Service category cards and Pro-section hero panels"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.13) 0px 3px 10px 0px",
+        "element": "Service category card"
+      }
+    ],
+    "northStar": "Digital bazaar spotlight — vivid green pulse on dark theatrical stages. One neon-green period anchors the wordmark; everything else is monochrome staging built to make service offerings glow.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "weight": 400,
+        "lineHeight": 1.56
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "weight": 400,
+        "lineHeight": 1.57
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "weight": 400,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "weight": 600,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "heading-lg",
+        "size": 48,
+        "weight": 400,
+        "lineHeight": 1.05,
+        "letterSpacing": -1.44
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "weight": 280,
+        "lineHeight": 1,
+        "letterSpacing": -4.32
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Filled Button",
+        "role": "Top-level action (Join, Find your AI Director, Join now)",
+        "description": "Carbon #222325 fill, white text, Macan 600 at 16px, 8px corner radius, 16px vertical / 16px horizontal padding, no border. The dark-on-light button is the default action; it sits quietly against the white canvas and loud against the dark stage."
+      },
+      {
+        "name": "Green Outlined Pill",
+        "role": "Category quick-link tag (Website Development, UGC Videos, etc.)",
+        "description": "Transparent fill, 1.5px #1dbf73 border, #1dbf73 text and arrow icon, Macan 400 at 16px, 9999px full-pill radius, 8px vertical / 16px horizontal padding. Multiple pills sit in a horizontal row beneath the hero search; the green border is the only chromatic signal on the hero."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Sign in, Become a Seller, inline footer links",
+        "description": "No fill, no border, #222325 or #62646a text at Macan 400 16px, 4px vertical padding. Becomes #1dbf73 on hover for in-content links."
+      },
+      {
+        "name": "Hero Search Bar",
+        "role": "Primary entry point — service discovery",
+        "description": "White #ffffff fill, #dadbdd 1px border, 4px radius, 16px vertical / 20px horizontal padding. Dark Carbon square search button docked on the right with white magnifying glass icon, 48×48px touch target. Placeholder text in #74767 Smoke at Macan 400 16px."
+      },
+      {
+        "name": "Service Category Card (Dark Green Stage)",
+        "role": "Popular Services grid card — Website Dev, Video Editing, etc.",
+        "description": "Forest Stage #003912 background, 16px radius, 25px top padding, single soft shadow rgba(0,0,0,0.13) 0px 3px 10px. White Macan 600 16px category title top-left. Full-bleed category illustration (laptop, camera, book mockup) sits in the lower 60% with slight padding. Six cards per row, horizontal scroll on overflow."
+      },
+      {
+        "name": "Feature Benefit Row Item",
+        "role": "Icon + caption in the 'Make it all happen with freelancers' row",
+        "description": "No card surface. Line-icon at 32×32 in #222325 stroke, Macan 400 14px caption text in #404145, 12px column gap between icon and text. Four items in a single row, evenly spaced across the container width."
+      },
+      {
+        "name": "Dark Promotional Banner",
+        "role": "AI Director / Fiverr Pro full-bleed section",
+        "description": "Carbon #222325 or Forest Stage #003912 full-width background, generous 64px+ vertical padding. White display headline at Macan 280 / 48px, white subtext at Macan 400 16px. Ghost white-outlined Filled Button docked right or bottom-left. Image carousel or stacked portrait cards float on the right side."
+      },
+      {
+        "name": "Freelancer Portrait Card",
+        "role": "AI Director carousel — stacked freelancer photos",
+        "description": "Carbon #222325 rounded background 12px radius, full-bleed square freelancer photo, white Macan 600 14px name overlaid bottom-left, category caption in #62646a below name. Cards are 140–160px wide, overlap each other by ~20px to create a layered carousel effect."
+      },
+      {
+        "name": "Category Icon Strip",
+        "role": "Bottom-of-hero horizontal category navigation",
+        "description": "Eight to ten items in a single row, equal width. Line-icon at 32×32 in #222325 stroke above Macan 400 14px label in #404145. 16px gap between icon and label, 12px between items. No card, no background — icons sit directly on the white canvas."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Persistent site header",
+        "description": "White #ffffff background, 64px height, hairline #dadbdd bottom border. Left: Fiverr wordmark with green period. Center: inline search bar (Hero Search Bar, compacted to 400px). Right: Fiverr Pro dropdown, Explore dropdown, language selector, Sign in ghost link, Join dark filled button. Items separated by 12–24px gaps."
+      },
+      {
+        "name": "Trending Tag Bar",
+        "role": "Secondary category strip below main nav",
+        "description": "White background, Macan 400 14px label 'Trending' in #404145 followed by horizontal comma-separated category links in #62646a. No borders, no cards, no background fills — pure text density."
+      },
+      {
+        "name": "Input Field",
+        "role": "Text input — search and form contexts",
+        "description": "White #ffffff fill, #c5c6c9 1px border, 12px radius, 10px vertical / 16px horizontal padding. Focus state shifts border to #1dbf73. Placeholder text at Macan 400 16px in #74767 Smoke."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Sole typeface across every surface — custom geometric sans with a humanist warmth. The 280 ultralight weight is the headline signature: whisper-thin display type at 72px with -0.06em tracking creates editorial weightlessness that most marketplace UIs reject in favor of bold confidence. Body sits at 400, navigation and tags at 600, CTAs at 700.",
+        "sizes": "10, 14, 16, 18, 48, 72",
+        "family": "Macan",
+        "weight": "280, 400, 600, 700",
+        "lineHeight": "1.00, 1.05, 1.20, 1.50, 1.56, 1.57, 2.40",
+        "substitute": "Inter or DM Sans",
+        "letterSpacing": "-0.06em at 72px display, -0.03em at 48px heading, normal below"
+      }
+    ],
+    "description": "Fiverr operates as a marketplace stage where bright white product surfaces meet dark theatrical backdrops, bound by one vivid signature green that signals trust and transaction. The custom Macan typeface carries an unusually wide weight range — from ultra-light 280 display headlines to bold 700 callouts — with aggressive negative tracking at large sizes pulling the type tight against itself. Pill-shaped controls, 16px-radius cards, and a single soft shadow create a tactile marketplace UI that feels approachable rather than corporate. The dark green (#003912) service category cards function as a secondary brand surface — categories literally sit on green-tinted stages, reinforcing identity through repetition.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c3b34927-0638-463e-bf85-180d73bfc367#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Fiverr.com design system\",\"item\":\"https://styles.refero.design/style/c3b34927-0638-463e-bf85-180d73bfc367\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c3b34927-0638-463e-bf85-180d73bfc367#style-reference\",\"name\":\"Fiverr.com design system reference\",\"headline\":\"Fiverr.com design system | Refero Styles\",\"description\":\"Explore Fiverr.com's mixed SaaS design system: Fiverr Green #1dbf73, Forest Stage #003912 colors, Macan typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c3b34927-0638-463e-bf85-180d73bfc367\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c3b34927-0638-463e-bf85-180d73bfc367\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Fiverr.com\",\"url\":\"https://www.fiverr.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c3b34927-0638-463e-bf85-180d73bfc367#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5f6811c4-65c1-4a4d-9ba3-15b9f0e15c60.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5f6811c4-65c1-4a4d-9ba3-15b9f0e15c60.jpg\",\"caption\":\"Screenshot of Fiverr.com\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5f6811c4-65c1-4a4d-9ba3-15b9f0e15c60.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Fiverr.com design system\",\"Fiverr.com website design\",\"Fiverr.com colors\",\"Fiverr.com typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Fiverr Green\",\"Forest Stage\",\"Carbon\",\"Graphite\",\"Macan\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Fiverr.com design system\"},{\"@type\":\"Thing\",\"name\":\"Fiverr.com website design\"},{\"@type\":\"Thing\",\"name\":\"Fiverr.com colors\"},{\"@type\":\"Thing\",\"name\":\"Fiverr.com typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T01:02:23.042Z\",\"dateModified\":\"2026-04-30T01:02:23.042Z\"}]}19:T83b,## Quick Color Reference\n- text (primary): #222325 Carbon\n- text (secondary): #62646a Graphite\n- background (canvas): #ffffff Paper\n- border (default): #62646a Graphite (structural) / #dadbdd Mist (hairline) / #c5c6c9 Fog (inputs)\n- accent: #1dbf73 Fiverr Green (links, tag borders, logo dot, active states)\n- dark stage: #003912 Forest Stage (category cards, Pro sections) / #222325 Carbon (promotional banners, filled buttons)\n- primary action: #222325 (filled action)\n\n## Example Component Prompts\n\n1. **Service Category Card (Dark Green Stage)**: #003912 background, 16px radius, 25px top padding / 16px horizontal padding. White Macan 600 16px category title top-left. Full-bleed category illustration below. Soft shadow rgba(0,0,0,0.13) 0px 3px 10px 0px. Sized 200×260px in a 6-column horizontal carousel.\n\n2. **Category Tag Pill**: Transparent fill, 1.5px #1dbf73 border, 9999px full-pill radius, 8px vertical / 16px horizontal padding. #1dbf73 text and right-arrow icon at Macan 400 16px. Multiple pills in a row with 12px gap.\n\n3. **Hero Search Bar**: White #ffffff fill, #dadbdd 1px border, 4px radius, 16px vertical / 20px horizontal padding, full container width up to 680px. Carbon #222325 48×48px square search button docked right with white magnifier icon. Placeholder 'Search for any service...' in #74767e Macan 400 16px.\n\n4. **Dark Promotional Banner (AI Director style)**: Carbon #222325 full-bleed background, 64px vertical padding. White display headline Macan 280 48px with -1.44px tracking. White subtext Macan 400 16px. Ghost white Filled Button (transparent fill, 1.5px white border, white text, 8px radius) bottom-left. Freelancer portrait cards stacked on the right, each 140px wide with 12px radius.\n\n5. **Top Navigation Bar**: White #ffffff background, 64px height, #dadbdd 1px bottom border. Left: Fiverr wordmark in #222325 with #1dbf73 green period. Center: 400px compacted search bar. Right: Fiverr Pro + Explore dropdowns, language selector, 'Sign in' ghost link, 'Join' Carbon filled button (16px Macan 600 white text, 8px radius, 16px padding). Items spaced 24px apart."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#62646a",
+          "oklch": {
+            "c": 0.009783796526612936,
+            "h": 271.2199042572126,
+            "l": 0.5035066792969353
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "input",
+            "image",
+            "icon",
+            "card",
+            "footer",
+            "list"
+          ],
+          "frequency": 1154,
+          "confidence": 1,
+          "prominence": 32683120.92656319,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/fill": 3,
+            "icon/fill": 2,
+            "nav/color": 52,
+            "card/color": 12,
+            "icon/color": 1,
+            "list/color": 61,
+            "nav/stroke": 1,
+            "other/fill": 1,
+            "image/color": 5,
+            "input/color": 1,
+            "other/color": 96,
+            "button/color": 3,
+            "footer/color": 1,
+            "nav/borderColor": 208,
+            "card/borderColor": 48,
+            "icon/borderColor": 4,
+            "list/borderColor": 244,
+            "image/borderColor": 20,
+            "other/borderColor": 379,
+            "button/borderColor": 12
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "input",
+            "button",
+            "icon",
+            "body",
+            "footer"
+          ],
+          "frequency": 249,
+          "confidence": 1,
+          "prominence": 16134640.308093065,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 4,
+            "body/color": 6,
+            "icon/color": 7,
+            "other/fill": 2,
+            "other/color": 6,
+            "button/color": 7,
+            "other/stroke": 5,
+            "heading/color": 13,
+            "body/borderColor": 24,
+            "icon/borderColor": 28,
+            "other/borderColor": 24,
+            "button/borderColor": 56,
+            "heading/borderColor": 52,
+            "nav/backgroundColor": 1,
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 10,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#dadbdd",
+          "oklch": {
+            "c": 0.0029335094950868135,
+            "h": 264.5410054823132,
+            "l": 0.8912301652893465
+          },
+          "contexts": [
+            "footer",
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 3559778.1464812974,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 4,
+            "footer/borderColor": 4,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1dbf73",
+          "oklch": {
+            "c": 0.1668301203191237,
+            "h": 155.708258139905,
+            "l": 0.7098766234729964
+          },
+          "contexts": [
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 193,
+          "confidence": 1,
+          "prominence": 335764.1493678273,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "link/color": 13,
+            "other/fill": 3,
+            "image/color": 24,
+            "other/color": 1,
+            "link/borderColor": 52,
+            "image/borderColor": 96,
+            "other/borderColor": 4
+          }
+        },
+        {
+          "hex": "#003912",
+          "oklch": {
+            "c": 0.08642869762751569,
+            "h": 148.25772538875117,
+            "l": 0.3006024108173887
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 196863.3930051061,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#c5c6c9",
+          "oklch": {
+            "c": 0.004303848892847577,
+            "h": 271.36063903377135,
+            "l": 0.8266542116329938
+          },
+          "contexts": [
+            "input"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 151970.19381037785,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/borderColor": 4
+          }
+        },
+        {
+          "hex": "#222325",
+          "oklch": {
+            "c": 0.004020647913841509,
+            "h": 264.49602223363013,
+            "l": 0.2559075107631962
+          },
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "icon",
+            "body",
+            "link"
+          ],
+          "frequency": 513,
+          "confidence": 1,
+          "prominence": 149862.59812313534,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "icon/fill": 12,
+            "nav/color": 4,
+            "body/color": 16,
+            "icon/color": 16,
+            "link/color": 55,
+            "other/fill": 6,
+            "other/color": 9,
+            "button/color": 12,
+            "other/stroke": 1,
+            "nav/borderColor": 16,
+            "body/borderColor": 64,
+            "icon/borderColor": 64,
+            "link/borderColor": 196,
+            "other/borderColor": 36,
+            "button/borderColor": 4,
+            "button/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#e4e5e7",
+          "oklch": {
+            "c": 0.002908840575871191,
+            "h": 264.54142941670074,
+            "l": 0.9217062900024651
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 115425,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1
+          }
+        },
+        {
+          "hex": "#404145",
+          "oklch": {
+            "c": 0.006906231125797081,
+            "h": 274.8037757297316,
+            "l": 0.37581095128807984
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 115027.06852733718,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "other/fill": 3,
+            "heading/color": 1,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 11911.507203323086,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 3,
+            "icon/color": 2,
+            "button/color": 2,
+            "body/borderColor": 12,
+            "icon/borderColor": 8,
+            "button/borderColor": 8
+          }
+        },
+        {
+          "hex": "#74767e",
+          "oklch": {
+            "c": 0.01247603605777625,
+            "h": 274.7559418465177,
+            "l": 0.5667809842258894
+          },
+          "contexts": [
+            "nav",
+            "icon",
+            "button",
+            "other"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 9442.95456958579,
+          "properties": [
+            "fill",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/fill": 6,
+            "icon/fill": 2,
+            "other/fill": 1,
+            "button/color": 1,
+            "button/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0577836991271101,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.66,
+          "background": "#e4e5e7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.73,
+          "background": "#222325",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.16,
+          "background": "#dadbdd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.17,
+          "background": "#003912",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.48,
+          "background": "#e4e5e7",
+          "foreground": "#222325"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.3,
+          "background": "#c5c6c9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.35,
+          "background": "#dadbdd",
+          "foreground": "#222325"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.45,
+          "background": "#e4e5e7",
+          "foreground": "#003912"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.19,
+          "background": "#ffffff",
+          "foreground": "#404145"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.51,
+          "background": "#dadbdd",
+          "foreground": "#003912"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.21,
+          "background": "#c5c6c9",
+          "foreground": "#222325"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.75,
+          "background": "#1dbf73",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.09,
+          "background": "#e4e5e7",
+          "foreground": "#404145"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.71,
+          "background": "#c5c6c9",
+          "foreground": "#003912"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.36,
+          "background": "#dadbdd",
+          "foreground": "#404145"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.56,
+          "background": "#222325",
+          "foreground": "#1dbf73"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.97,
+          "background": "#c5c6c9",
+          "foreground": "#404145"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.91,
+          "background": "#ffffff",
+          "foreground": "#62646a"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.49,
+          "background": "#003912",
+          "foreground": "#1dbf73"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other",
+            "card"
+          ],
+          "frequency": 30
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "input",
+            "image"
+          ],
+          "frequency": 13
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button",
+            "link",
+            "other"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.13) 0px 3px 10px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 12
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "link",
+            "nav",
+            "card",
+            "list"
+          ],
+          "frequency": 29,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "rowGap|nav",
+            "columnGap|nav",
+            "marginRight|card",
+            "marginLeft|card",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 72,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "link"
+          ],
+          "frequency": 79,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingRight|nav",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "input",
+            "heading"
+          ],
+          "frequency": 54,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingRight|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "nav",
+            "other",
+            "button",
+            "card",
+            "list"
+          ],
+          "frequency": 119,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|card",
+            "marginBottom|card",
+            "marginRight|other",
+            "marginLeft|other",
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "nav",
+            "input",
+            "other"
+          ],
+          "frequency": 46,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingLeft|input",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "other"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|nav",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "nav"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginLeft|nav",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 56,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 121,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|button",
+            "marginBottom|button"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Macan",
+          "source": "custom",
+          "weights": [
+            280,
+            400,
+            600,
+            700
+          ],
+          "frequency": 430,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Macan",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 2.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Macan",
+          "weight": 700,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Macan",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Macan",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 51,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Macan",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Macan",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Macan",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "input",
+            "body",
+            "image",
+            "icon",
+            "card",
+            "footer",
+            "list"
+          ],
+          "frequency": 295,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Macan",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "nav",
+            "other",
+            "icon",
+            "body",
+            "link"
+          ],
+          "frequency": 50,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Macan",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Macan",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Macan",
+          "weight": 280,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.06,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/7eb3093e-603b-4738-b5c0-16a10cf3fbb9.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5f6811c4-65c1-4a4d-9ba3-15b9f0e15c60.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/c3b34927-0638-463e-bf85-180d73bfc367#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Fiverr.com design system\",\"item\":\"https://styles.refero.design/style/c3b34927-0638-463e-bf85-180d73bfc367\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/c3b34927-0638-463e-bf85-180d73bfc367#style-reference\",\"name\":\"Fiverr.com design system reference\",\"headline\":\"Fiverr.com design system | Refero Styles\",\"description\":\"Explore Fiverr.com's mixed SaaS design system: Fiverr Green #1dbf73, Forest Stage #003912 colors, Macan typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/c3b34927-0638-463e-bf85-180d73bfc367\",\"mainEntityOfPage\":\"https://styles.refero.design/style/c3b34927-0638-463e-bf85-180d73bfc367\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Fiverr.com\",\"url\":\"https://www.fiverr.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/c3b34927-0638-463e-bf85-180d73bfc367#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5f6811c4-65c1-4a4d-9ba3-15b9f0e15c60.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5f6811c4-65c1-4a4d-9ba3-15b9f0e15c60.jpg\",\"caption\":\"Screenshot of Fiverr.com\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5f6811c4-65c1-4a4d-9ba3-15b9f0e15c60.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Fiverr.com design system\",\"Fiverr.com website design\",\"Fiverr.com colors\",\"Fiverr.com typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Fiverr Green\",\"Forest Stage\",\"Carbon\",\"Graphite\",\"Macan\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Fiverr.com design system\"},{\"@type\":\"Thing\",\"name\":\"Fiverr.com website design\"},{\"@type\":\"Thing\",\"name\":\"Fiverr.com colors\"},{\"@type\":\"Thing\",\"name\":\"Fiverr.com typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-30T01:02:23.042Z\",\"dateModified\":\"2026-04-30T01:02:23.042Z\"}]}19:T83b,## Quick Color Reference\n- text (primary): #222325 Carbon\n- text (secondary): #62646a Graphite\n- background (canvas): #ffffff Paper\n- border (default): #62646a Graphite (structural) / #dadbdd Mist (hairline) / #c5c6c9 Fog (inputs)\n- accent: #1dbf73 Fiverr Green (links, tag borders, logo dot, active states)\n- dark stage: #003912 Forest Stage (category cards, Pro sections) / #222325 Carbon (promotional banners, filled buttons)\n- primary action: #222325 (filled action)\n\n## Example Component Prompts\n\n1. **Service Category Card (Dark Green Stage)**: #003912 background, 16px radius, 25px top padding / 16px horizontal padding. White Macan 600 16px category title top-left. Full-bleed category illustration below. Soft shadow rgba(0,0,0,0.13) 0px 3px 10px 0px. Sized 200×260px in a 6-column horizontal carousel.\n\n2. **Category Tag Pill**: Transparent fill, 1.5px #1dbf73 border, 9999px full-pill radius, 8px vertical / 16px horizontal padding. #1dbf73 text and right-arrow icon at Macan 400 16px. Multiple pills in a row with 12px gap.\n\n3. **Hero Search Bar**: White #ffffff fill, #dadbdd 1px border, 4px radius, 16px vertical / 20px horizontal padding, full container width up to 680px. Carbon #222325 48×48px square search button docked right with white magnifier icon. Placeholder 'Search for any service...' in #74767e Macan 400 16px.\n\n4. **Dark Promotional Banner (AI Director style)**: Carbon #222325 full-bleed background, 64px vertical padding. White display headline Macan 280 48px with -1.44px tracking. White subtext Macan 400 16px. Ghost white Filled Button (transparent fill, 1.5px white border, white text, 8px radius) bottom-left. Freelancer portrait cards stacked on the right, each 140px wide with 12px radius.\n\n5. **Top Navigation Bar**: White #ffffff background, 64px height, #dadbdd 1px bottom border. Left: Fiverr wordmark in #222325 with #1dbf73 green period. Center: 400px compacted search bar. Right: Fiverr Pro + Explore dropdowns, language selector, 'Sign in' ghost link, 'Join' Carbon filled button (16px Macan 600 white text, 8px radius, 16px padding). Items spaced 24px apart."
+}

@@ -1,0 +1,452 @@
+{
+  "color": {
+    "espresso-ink": {
+      "$value": "#1a0000",
+      "$type": "color",
+      "$description": "Espresso Ink — Primary text, filled CTA buttons, top navigation bar, icon strokes — warm near-black replaces pure #000 to feel like ground cocoa rather than ink"
+    },
+    "prism-spectrum": {
+      "$value": "#a6b4f7",
+      "$type": "color",
+      "$description": "Prism Spectrum — Hero background gradient — sky blue to lavender to mint to emerald, used as a one-screen burst of color at the top of the page only"
+    },
+    "canvas-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas White — Page background, product card surfaces, button text on dark fills"
+    },
+    "linen-mist": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Linen Mist — Secondary card surface, alternating section background, subtle depth against pure white"
+    },
+    "bone": {
+      "$value": "#ededec",
+      "$type": "color",
+      "$description": "Bone — Hairline borders, dividers, icon strokes, subtle surface elevation — the warm-tinted neutral that holds the system together"
+    },
+    "taupe-slate": {
+      "$value": "#514f4c",
+      "$type": "color",
+      "$description": "Taupe Slate — Secondary body text, card borders, muted labels — warm gray that pairs with Espresso Ink without going cold"
+    },
+    "ash-gray": {
+      "$value": "#aeaea6",
+      "$type": "color",
+      "$description": "Ash Gray — Helper text, tertiary metadata, low-emphasis borders"
+    },
+    "charcoal-bronze": {
+      "$value": "#3a3a3a",
+      "$type": "color",
+      "$description": "Charcoal Bronze — Badge backgrounds, dark overlay surfaces, secondary dark elements"
+    },
+    "obsidian-roast": {
+      "$value": "#221919",
+      "$type": "color",
+      "$description": "Obsidian Roast — Deep section backgrounds, dark overlay panels — warmer and richer than #000"
+    },
+    "iris-blue": {
+      "$value": "#98bbf4",
+      "$type": "color",
+      "$description": "Iris Blue — Accent card surface, decorative highlight wash on product cards — echoes the hero gradient's blue end"
+    }
+  },
+  "font": {
+    "greed-semibold": {
+      "$value": "Greed SemiBold",
+      "$type": "fontFamily",
+      "$description": "Greed SemiBold — detected in extracted data but not described by AI"
+    },
+    "greed-condensed": {
+      "$value": "Greed Condensed",
+      "$type": "fontFamily",
+      "$description": "Subheading tier — same condensed family at reduced weight and size for section titles that need display character without hero scale"
+    },
+    "area": {
+      "$value": "Area",
+      "$type": "fontFamily",
+      "$description": "Body text, UI labels, button text, links, badges. A geometric sans with generous x-height and normal tracking — the steady workhorse that keeps the interface readable below the display headlines."
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Greed-SemiBold",
+        "fontSize": "11px",
+        "fontWeight": 700,
+        "lineHeight": 1.27
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Area-Extrabold",
+        "fontSize": "11px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Greed-SemiBold",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Greed-SemiBold",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.29
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Greed SemiBold",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Area Semibold",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Area Semibold",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Area Semibold",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Greed-CondensedSemiBold",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Greed-CondensedSemiBold",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Area Semibold",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Greed Condensed SemiBold",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Area Semibold",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "Greed Condensed SemiBold",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Greed-CondensedSemiBold",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.17
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Greed Condensed SemiBold",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Greed Condensed SemiBold",
+        "fontSize": "42px",
+        "fontWeight": 700,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 42px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Greed SemiBold",
+        "fontSize": "54px",
+        "fontWeight": 600,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Greed Condensed SemiBold",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": 0.91
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Greed Condensed SemiBold",
+        "fontSize": "96px",
+        "fontWeight": 700,
+        "lineHeight": 0.91
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 96px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Greed Condensed SemiBold",
+        "fontSize": "203px",
+        "fontWeight": 700,
+        "lineHeight": 0.79
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 203px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "36": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "Spacing 36px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    },
+    "192": {
+      "$value": "192px",
+      "$type": "dimension",
+      "$description": "Spacing 192px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "xl": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "200px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    },
+    "full-3": {
+      "$value": "500px",
+      "$type": "dimension",
+      "$description": "Border radius full-3"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Primary page background"
+    },
+    "linen-card": {
+      "$value": "#f2f2f2",
+      "$type": "color",
+      "$description": "Surface level 1: Secondary card surface, subtle section differentiation"
+    },
+    "bone-edge": {
+      "$value": "#ededec",
+      "$type": "color",
+      "$description": "Surface level 2: Hairline borders, tertiary surface for nested elements"
+    },
+    "iris-wash": {
+      "$value": "#98bbf4",
+      "$type": "color",
+      "$description": "Surface level 3: Accent card surface echoing the hero gradient"
+    },
+    "dark-overlay": {
+      "$value": "#221919",
+      "$type": "color",
+      "$description": "Surface level 4: Full-bleed dark sections, nav bar, dramatic contrast breaks"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://fluz.app/us",
+      "siteName": "Fluz",
+      "extractedAt": "2026-06-03T18:02:52.380Z",
+      "variant": "extended"
+    }
+  }
+}

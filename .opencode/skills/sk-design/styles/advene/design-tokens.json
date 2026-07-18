@@ -1,0 +1,352 @@
+{
+  "color": {
+    "parchment-stone": {
+      "$value": "#dfe0db",
+      "$type": "color",
+      "$description": "Parchment Stone — Primary page canvas — the warm stone-gray ground that replaces clinical white throughout the entire site"
+    },
+    "bone-white": {
+      "$value": "#eeefea",
+      "$type": "color",
+      "$description": "Bone White — Elevated card and section surface, one step lighter than the canvas"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Nav background, pill button fills, card surfaces needing maximum contrast against the stone canvas"
+    },
+    "carbon": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Carbon — Primary text, hairline borders, icon strokes — the dominant ink of the system"
+    },
+    "graphite": {
+      "$value": "#3c3c3b",
+      "$type": "color",
+      "$description": "Graphite — Nav text, secondary text where pure black feels too heavy"
+    },
+    "ash": {
+      "$value": "#808080",
+      "$type": "color",
+      "$description": "Ash — Muted body text, inactive states, dividers and borders at lower hierarchy"
+    },
+    "inkstone": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Inkstone — Deep surface for inverted sections and dark text on light cream backgrounds"
+    },
+    "oxblood": {
+      "$value": "#66040c",
+      "$type": "color",
+      "$description": "Oxblood — Red accent for outlined action borders, linked labels, and lightweight interactive emphasis."
+    },
+    "olive-khaki": {
+      "$value": "#9a9260",
+      "$type": "color",
+      "$description": "Olive Khaki — Secondary accent for borders and subdued interactive elements where oxblood would overpower"
+    },
+    "sage-stone": {
+      "$value": "#c1c19f",
+      "$type": "color",
+      "$description": "Sage Stone — Earthy neutral surface for product swatches and muted backgrounds — sits between canvas and accent"
+    },
+    "buttercream": {
+      "$value": "#f7dc99",
+      "$type": "color",
+      "$description": "Buttercream — Soft champagne surface for the announcement bar and decorative letterform washes"
+    },
+    "pale-buttercream": {
+      "$value": "#f8e9ac",
+      "$type": "color",
+      "$description": "Pale Buttercream — Lightest cream tint for subtle washes and hover states on yellow surfaces"
+    },
+    "cobalt-outline": {
+      "$value": "#007aff",
+      "$type": "color",
+      "$description": "Cobalt Outline — Outlined action border only — the one break in the earth-tone palette, used for ghost pill buttons that need to read as interactive without filling"
+    }
+  },
+  "font": {
+    "signifier": {
+      "$value": "Signifier",
+      "$type": "fontFamily",
+      "$description": "Primary serif for all body text, headlines, nav links, and product names. Used at 14px for UI labels and body, 18px for reading copy and about-section paragraphs, 24px for subheadings and feature titles. The single typeface carrying the entire brand voice — its humanist warmth prevents the editorial layout from feeling cold or corporate"
+    },
+    "pitch": {
+      "$value": "Pitch",
+      "$type": "fontFamily",
+      "$description": "Monospace micro-label for announcement bar text, footer notes, and editorial captions. The wide tracking (0.064em) gives it an almost architectural, typeset feel — it reads as 'this is a label, not a sentence'. Bold weight 700 for emphasis within labels"
+    },
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "System fallback for icon glyphs and button icons only — not used for prose"
+    },
+    "gtstandard-m": {
+      "$value": "GTStandard-M",
+      "$type": "fontFamily",
+      "$description": "Secondary body face appearing in isolated content blocks — same humanist register as Signifier but used for distinction in long-form passages"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Sohne-Kraftig",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Sohne-Kraftig",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Sohne-Kraftig",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "Sohne-Kraftig",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 11px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "Sohne-Kraftig",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 11px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "Sohne-Kraftig",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 11px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "Pitch",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 11px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "Pitch",
+        "fontSize": "11px",
+        "fontWeight": 700,
+        "lineHeight": 1.7
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Sohne-Kraftig",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Signifier",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Signifier",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Signifier",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "GTStandard-M",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Signifier",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Signifier",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Signifier",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.67
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "2xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "41px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "parchment-canvas": {
+      "$value": "#dfe0db",
+      "$type": "color",
+      "$description": "Surface level 0: Base page background — the warm stone ground"
+    },
+    "bone-card": {
+      "$value": "#eeefea",
+      "$type": "color",
+      "$description": "Surface level 1: First elevation above canvas, used for section panels"
+    },
+    "white-card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Highest elevation for nav, buttons, and product cards needing maximum contrast"
+    },
+    "buttercream-wash": {
+      "$value": "#f7dc99",
+      "$type": "color",
+      "$description": "Surface level 3: Chromatic surface for announcement bar and decorative letterform overlays"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://advenedesign.com",
+      "siteName": "Advene",
+      "extractedAt": "2026-06-03T19:11:34.012Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,302 @@
+{
+  "color": {
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Page canvas, full-bleed background, link text — the default surface for every screen; nothing sits on a lighter background"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Display type, body text, button fills, hairline borders — the only ink color, used at full saturation with zero tints"
+    },
+    "concrete": {
+      "$value": "#c4c4c4",
+      "$type": "color",
+      "$description": "Concrete — Secondary borders, muted list rules, subdued dividers — the single mid-tone for de-emphasized structure"
+    },
+    "charcoal": {
+      "$value": "#363636",
+      "$type": "color",
+      "$description": "Charcoal — Elevated nav surfaces and secondary panels — the only step off pure black for distinct UI layers"
+    }
+  },
+  "font": {
+    "monospace": {
+      "$value": "monospace",
+      "$type": "fontFamily",
+      "$description": "Small technical UI text — system monospace at fixed 13px for tags, metadata, or any content that needs a typewriter feel against the sans-serif body"
+    },
+    "anton": {
+      "$value": "Anton",
+      "$type": "fontFamily",
+      "$description": "Display and orbital type — the only voice for headings, hero text, and the signature circular compositions. Anton's condensed grotesque geometry lets words like 'BELIEVE' and 'THINKING' become architectural forms; the heavy 500 weight at 90–150px is the design's entire visual identity"
+    },
+    "montserrat": {
+      "$value": "Montserrat",
+      "$type": "fontFamily",
+      "$description": "Body copy, navigation, button labels, list items, subheadings. The 2.78 line-height on the 18px size signals intentional airy rhythm in body blocks; 600 weight reserved for nav emphasis and small heading accents"
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Times — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "6px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 6px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "monospace",
+        "fontSize": "6px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 6px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Montserrat",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "monospace",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Montserrat",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 2.78
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Montserrat",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Montserrat",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 2.78
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Montserrat",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Anton",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Montserrat",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 0.06
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Anton",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Anton",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 24px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Montserrat",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 24px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Montserrat",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Montserrat",
+        "fontSize": "30px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Montserrat",
+        "fontSize": "36px",
+        "fontWeight": 600,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Anton",
+        "fontSize": "48px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 48px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Anton",
+        "fontSize": "90px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 90px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Anton",
+        "fontSize": "150px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 150px"
+    }
+  },
+  "spacing": {
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "23": {
+      "$value": "23px",
+      "$type": "dimension",
+      "$description": "Spacing 23px"
+    },
+    "42": {
+      "$value": "42px",
+      "$type": "dimension",
+      "$description": "Spacing 42px"
+    },
+    "54": {
+      "$value": "54px",
+      "$type": "dimension",
+      "$description": "Spacing 54px"
+    },
+    "108": {
+      "$value": "108px",
+      "$type": "dimension",
+      "$description": "Spacing 108px"
+    },
+    "unit": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    }
+  },
+  "surface": {
+    "obsidian-canvas": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Surface level 0: Full-bleed page background"
+    },
+    "charcoal-panel": {
+      "$value": "#363636",
+      "$type": "color",
+      "$description": "Surface level 1: Elevated nav and secondary surface"
+    },
+    "pure-white-mark": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Inverted surfaces (the ENTER button, any inverted panel)"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.regisgrumberg.com",
+      "siteName": "Regisgrumberg",
+      "extractedAt": "2026-06-03T21:14:35.192Z",
+      "variant": "extended"
+    }
+  }
+}

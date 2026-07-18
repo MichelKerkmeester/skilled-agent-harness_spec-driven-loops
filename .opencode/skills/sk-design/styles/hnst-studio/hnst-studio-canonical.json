@@ -1,0 +1,1195 @@
+{
+  "source": "https://styles.refero.design/style/7de578bc-9fbd-4664-a731-6223515bb601",
+  "uuid": "7de578bc-9fbd-4664-a731-6223515bb601",
+  "name": "HNST Studio",
+  "northStar": "earthy atelier with rust on linen — a slow-fashion gallery where a single burnt-orange accent warms an otherwise monastic cream and charcoal interior",
+  "capturedAt": "2026-07-18T07:50:11.491Z",
+  "meta": {
+    "url": "https://www.letsbehonest.eu",
+    "siteName": "HNST Studio",
+    "extractedAt": "2026-06-03T19:22:18.964Z",
+    "durationMs": 33591,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 309,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Rust Hearth (#892500) exclusively for the brand wordmark, active nav states, and section underlines — let it carry full identity weight as the only chromatic accent",
+      "Apply Poppins 700 at 62px with 0.154em letter-spacing for all display section headings to maintain the gallery-label signature",
+      "Keep all component corners sharp (0px radius) except pill filter tags, which use 10px — this single exception is intentional",
+      "Set body text at Raleway 400, 15px, line-height 1.70 for editorial readability on the warm Raw Silk canvas",
+      "Use Sand Plaster (#eee5d9) for badge and tag fills to create soft warm-tinted containers that feel like craft paper",
+      "Separate sections with full-bleed photographic bands rather than decorative dividers — the imagery is the structural element",
+      "Maintain 1px Stone (#868686) hairline borders for all structural separation; never use shadows to imply elevation"
+    ],
+    "donts": [
+      "Do not introduce additional accent colors beyond Rust Hearth and Blush Whisper — the 1% colorfulness is the brand",
+      "Do not use rounded corners on cards, buttons, or images — sharp edges are essential to the editorial-print identity",
+      "Do not add drop shadows or elevation effects to any component — the design system is deliberately flat",
+      "Do not use pure white (#ffffff) as the page background — always use Raw Silk (#f9f6f2) to preserve the warm, natural-fiber atmosphere",
+      "Do not set body text below 14px or above 17px — the type scale is narrow and intentional for editorial reading comfort",
+      "Do not apply tight letter-spacing to display headings — the extreme tracking (0.154em) at 62px is a signature, not a mistake",
+      "Do not overlay text, buttons, or UI chrome on top of hero photography — let the image breathe without interference"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#892500",
+        "name": "Rust Hearth",
+        "role": "Brand logo, active navigation state, section underlines, the only chromatic punctuation in the interface — carries identity weight wherever it appears",
+        "group": "brand"
+      },
+      {
+        "hex": "#ea9195",
+        "name": "Blush Whisper",
+        "role": "Secondary chromatic accent for hover states, soft tags, and paired decorative elements — never standalone, always supporting Rust Hearth",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Linen",
+        "role": "Neutral form states, badge text, and quiet UI feedback where color should stay understated. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f9f6f2",
+        "name": "Raw Silk",
+        "role": "Warm off-white page background — replaces sterile pure white to give the site a tactile, natural-fiber feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#eee5d9",
+        "name": "Sand Plaster",
+        "role": "Card backgrounds, badge fills, soft surface lifts — the warm secondary tier that differentiates containers from the page canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0e0e0e",
+        "name": "Charcoal Ink",
+        "role": "Primary text, navigation text, filled action buttons, dark hero overlays — near-black reads softer than pure black against the warm neutrals",
+        "group": "neutral"
+      },
+      {
+        "hex": "#868686",
+        "name": "Stone",
+        "role": "Mid-gray for hairline borders, dividers, secondary metadata, inactive UI scaffolding — the dominant structural neutral",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b7b7b7",
+        "name": "Ash",
+        "role": "Lighter borders, muted helper text, disabled states, subtle list separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d7d7d7",
+        "name": "Frost",
+        "role": "Faintest divider lines on links, barely-there separators",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The page follows a full-bleed editorial rhythm: a full-viewport hero photograph opens the experience, followed by asymmetric content sections where a large image occupies the right half and empty Raw Silk canvas holds the left. Sections are separated by full-bleed photographic bands that act as visual breath. Headlines are centered or left-aligned with extreme letter-spacing, reading as gallery wall text. The grid is single-column or two-column asymmetric, never multi-column card grids. Navigation is a minimal top bar — no sidebar, no mega-menu, no sticky header. Content density is spacious: 75–170px between sections, generous whitespace around all text blocks. The overall feel is of a curated zine or museum catalog, not a retail catalog.",
+    "imagery": "Editorial fashion photography dominates the visual language. The hero features intimate, warmly lit studio portraits of models in relaxed poses against neutral backdrops — high-key with golden undertones, no harsh shadows. Interior editorial sections use industrial and craft-process imagery: textile-mill machinery, raw denim, leather close-ups with warm directional lighting. All photography is full-bleed, sharp-cornered, and unmasked — no rounded edges, no overlays, no decorative frames. The treatment is always cinematic and tactile, favoring material texture (denim weave, leather grain, fabric folds) over product-pack shots. No illustrations, no icons beyond simple UI glyphs, no 3D renders.",
+    "similar": [
+      {
+        "why": "Same warm earthy neutral palette with a single rust/burnt-orange brand accent, photography-first editorial layout, and anti-corporate sustainable-fashion tone",
+        "business": "Patagonia"
+      },
+      {
+        "why": "Shared commitment to full-bleed lifestyle photography, generous whitespace, cream/off-white canvases, and a minimal sans-serif typography system",
+        "business": "Eileen Fisher"
+      },
+      {
+        "why": "Identical slow-fashion editorial language — warm bone-white backgrounds, sharp-cornered components, no shadows, and a single chromatic accent used sparingly",
+        "business": "Toast (toa.st)"
+      },
+      {
+        "why": "Same gallery-catalog approach with wide-tracked uppercase section headings, asymmetric image+text layouts, and a restrained near-monochrome palette",
+        "business": "Studio Nicholson"
+      },
+      {
+        "why": "Shared minimal navigation, single accent color philosophy, body-text-forward type system, and photography that fills the viewport without decorative chrome",
+        "business": "Asket"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "pills": "10px",
+        "badges": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "15px",
+      "sectionGap": "75-170px",
+      "cardPadding": "42px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#f9f6f2",
+        "name": "Raw Silk",
+        "level": 0,
+        "purpose": "Page canvas — warm off-white base for the entire site"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Linen",
+        "level": 1,
+        "purpose": "Card surfaces, product panels, and elevated content blocks"
+      },
+      {
+        "hex": "#eee5d9",
+        "name": "Sand Plaster",
+        "level": 2,
+        "purpose": "Badge fills, soft tag backgrounds, warm-toned containers"
+      },
+      {
+        "hex": "#0e0e0",
+        "name": "Charcoal Ink",
+        "level": 3,
+        "purpose": "Dark inverted sections, navigation bar, filled action buttons"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "none — separated from content by a 1px Stone (#868686) bottom border only",
+        "element": "Navigation Bar"
+      },
+      {
+        "style": "none — flat surfaces with thin Stone hairline borders or no border at all",
+        "element": "Product Cards"
+      },
+      {
+        "style": "none — solid fill provides all visual weight",
+        "element": "Buttons"
+      },
+      {
+        "style": "none — Charcoal Ink solid fill is the visual anchor",
+        "element": "Info Icon Button"
+      }
+    ],
+    "northStar": "earthy atelier with rust on linen — a slow-fashion gallery where a single burnt-orange accent warms an otherwise monastic cream and charcoal interior",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 1.25,
+        "letterSpacing": 1.69
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": 1.82
+      },
+      {
+        "role": "display",
+        "size": 62,
+        "lineHeight": 1.15,
+        "letterSpacing": 9.55
+      }
+    ],
+    "components": [
+      {
+        "name": "Top Navigation Bar",
+        "role": "Primary site header with brand mark and section links",
+        "description": "Full-bleed bar, 10–15px vertical padding, no shadow. Rust Hearth (#892500) lowercase wordmark 'hnst' at ~32px Raleway 700 left-aligned. Right side: uppercase nav links (HOME, SUSTAINABILITY, PRESS, SHOP) in Raleway 600 at 12–13px with 0.192–0.231em letter-spacing and Stone (#868686) color, 15px horizontal gap. Active state switches text to Rust Hearth. Thin Stone hairline border-bottom separates from content."
+      },
+      {
+        "name": "Hero Carousel",
+        "role": "Full-viewport lifestyle photography opening the homepage",
+        "description": "Full-bleed image at 100vw width, ~80vh height, no radius. Left/right arrow controls rendered as thin chevrons in semi-transparent white, 48px tap targets, vertically centered. Four-dot pagination indicator centered at the bottom in white with the active dot at full opacity. No headline overlay — the photograph carries the message."
+      },
+      {
+        "name": "Section Display Heading",
+        "role": "Gallery-label style title for content sections",
+        "description": "Poppins 700 at 62px, letter-spacing 9.55px (0.154em), line-height 1.15, color Charcoal Ink (#0e0e0e). Centered or left-aligned depending on context. This is the signature type moment — the extreme tracking makes 'TRENDING' read as a printed wall label, not a web heading."
+      },
+      {
+        "name": "Filled Action Button",
+        "role": "Primary call-to-action in Charcoal Ink",
+        "description": "Charcoal Ink (#0e0e0e) background, Linen (#ffffff) text, Raleway 600 at 13–14px, uppercase with 0.192em letter-spacing. Padding 15px horizontal, 42px to 45px on wider variants. Zero radius — the sharp corners reinforce the editorial gallery aesthetic."
+      },
+      {
+        "name": "Ghost Navigation Button",
+        "role": "Secondary or inactive link styled as borderless uppercase text",
+        "description": "No background or border. Raleway 600 at 12–13px, uppercase, letter-spacing 0.192em, color Stone (#868686). Hover transitions to Charcoal Ink (#0e0e0e). Used in the nav bar and footer link clusters."
+      },
+      {
+        "name": "Editorial Image Block",
+        "role": "Large product or story photograph in a content section",
+        "description": "Full-width or right-column image with zero radius, no border, no shadow. Floating at the edge of the container or centered. Sits on Raw Silk (#f9f6f2) or Linen (#ffffff) canvas. The image itself is the component — no frame or caption chrome around it."
+      },
+      {
+        "name": "Sand Badge",
+        "role": "Soft warm-toned tag for metadata or status",
+        "description": "Sand Plaster (#eee5d9) background, no border, zero radius. Raleway 600 at 12–13px, Charcoal Ink text, padding 8–10px horizontal, 4–6px vertical. Used for small contextual labels, timestamps, and category markers."
+      },
+      {
+        "name": "Info Icon Button",
+        "role": "Small floating circular button for secondary actions",
+        "description": "Charcoal Ink (#0e0e0e) fill, white lowercase 'i' glyph at 16px, 40×40px square with zero radius. Fixed-position utility button (info panel toggle, cart preview). High contrast against the warm canvas."
+      },
+      {
+        "name": "Carousel Arrow",
+        "role": "Slide navigation control for the hero and product carousels",
+        "description": "Minimal chevron icon, 24px, white at 70% opacity over imagery, Charcoal Ink on light backgrounds. No background shape — the arrow floats directly on the image. 48px invisible hit area for touch."
+      },
+      {
+        "name": "Section Divider Band",
+        "role": "Full-bleed photographic strip separating content sections",
+        "description": "100vw width, ~20–30vh height, zero radius, edge-to-edge image. Functions as a visual palate cleanser between text blocks. Examples: the industrial textile-mill photograph and the leather/texture close-up that appear as horizontal bands between editorial sections."
+      },
+      {
+        "name": "List Item with Marker",
+        "role": "Bulleted or numbered list inside editorial copy",
+        "description": "Raleway 400 at 14–15px, line-height 1.70, color Charcoal Ink. 9px horizontal gap between marker and text. Stone (#868686) thin left-border on the list container at 1px. No custom bullet glyphs — relies on default markers or small rust-colored dots when brand-styled."
+      },
+      {
+        "name": "Pill Filter Tag",
+        "role": "Rounded interactive tag for filtering product lists",
+        "description": "The only rounded component in the system at 10px radius. Sand Plaster (#eee5d9) or Linen (#ffffff) background with 1px Stone (#868686) border. Raleway 600 at 12–13px, 10–15px horizontal padding, 4–6px vertical. Active state: Rust Hearth border and text."
+      },
+      {
+        "name": "Footer Link Cluster",
+        "role": "Organized link groups in the site footer",
+        "description": "Multi-column layout, Raleway 400 at 14px for links, Stone color, 15px vertical gap. Column headers in Raleway 600 uppercase at 12px with 0.192em letter-spacing. Thin Stone top-border separates footer from content. No background color change — footer sits on Raw Silk canvas."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary UI and body typeface — humanist sans with elegant terminals. Used for navigation, body copy, links, buttons, and footer. The 600 weight handles button labels and nav items; 400 carries running text with generous 1.67–1.79 line-height for editorial readability",
+        "sizes": "12px, 13px, 14px, 15px, 16px",
+        "family": "Raleway",
+        "weight": "400, 600, 700",
+        "lineHeight": "1.67 (body), 1.70, 1.20 (tight UI)",
+        "substitute": "Montserrat, Lato, Nunito Sans",
+        "letterSpacing": "0.1920em, 0.2310em"
+      },
+      {
+        "role": "Display and section-heading typeface — geometric sans used for hero-scale section labels like 'TRENDING' at 62px. Extreme letter-spacing (0.154em at display, 0.091em at 20px) transforms headlines into printed gallery signage, the signature typographic moment of the brand",
+        "sizes": "11px, 13px, 16px, 20px, 62px",
+        "family": "Poppins",
+        "weight": "500, 600, 700",
+        "lineHeight": "1.15 (display), 1.20, 1.25, 2.27 (small caps labels)",
+        "substitute": "Montserrat, Outfit, Space Grotesk",
+        "letterSpacing": "0.154em at 62px, 0.091em at 20px, 0.065em at 16px, 0.050em at 11–13px"
+      }
+    ],
+    "description": "HNST Studio speaks in a warm, earthy editorial language: bone-white canvases tinted with raw silk cream, a single rust accent that anchors every interactive moment, and gallery-style uppercase typography that lets the photography breathe. The site treats full-bleed fashion imagery as the primary surface — text and chrome are whisper-thin, positioned like museum placards around the visual work. Two type families divide labor cleanly: Raleway handles UI, navigation, and body copy in humanist proportions, while Poppins takes display headings with extreme letter-spacing, turning section labels like 'TRENDING' into printed gallery signage. Components are stripped to essentials — thin borders, soft sand-toned badges, charcoal ink for action, no shadows, no gradients — so the rust accent lands with editorial gravity against the otherwise neutral palette.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7de578bc-9fbd-4664-a731-6223515bb601#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"HNST Studio design system\",\"item\":\"https://styles.refero.design/style/7de578bc-9fbd-4664-a731-6223515bb601\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7de578bc-9fbd-4664-a731-6223515bb601#style-reference\",\"name\":\"HNST Studio design system reference\",\"headline\":\"HNST Studio design system | Refero Styles\",\"description\":\"Explore HNST Studio's light E-commerce design system: Rust Hearth #892500, Blush Whisper #ea9195 colors, Raleway, Poppins typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/7de578bc-9fbd-4664-a731-6223515bb601\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7de578bc-9fbd-4664-a731-6223515bb601\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"HNST Studio\",\"url\":\"https://www.letsbehonest.eu\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7de578bc-9fbd-4664-a731-6223515bb601#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5ee253b7-095c-4173-8cf8-0bbfa43c31a7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5ee253b7-095c-4173-8cf8-0bbfa43c31a7.jpg\",\"caption\":\"Screenshot of HNST Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5ee253b7-095c-4173-8cf8-0bbfa43c31a7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"HNST Studio design system\",\"HNST Studio website design\",\"HNST Studio colors\",\"HNST Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Rust Hearth\",\"Blush Whisper\",\"Linen\",\"Raw Silk\",\"Raleway\",\"Poppins\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"HNST Studio design system\"},{\"@type\":\"Thing\",\"name\":\"HNST Studio website design\"},{\"@type\":\"Thing\",\"name\":\"HNST Studio colors\"},{\"@type\":\"Thing\",\"name\":\"HNST Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:54:50.044Z\",\"dateModified\":\"2026-04-30T03:54:50.044Z\"}]}19:T658,**Quick Color Reference**\n- Text: #0e0e0e (Charcoal Ink)\n- Background: #f9f6f2 (Raw Silk)\n- Border: #868686 (Stone)\n- Accent: #892500 (Rust Hearth)\n- Card/badge fill: #eee5d9 (Sand Plaster)\n- Inverted text: #ffffff (Linen)\n- primary action: #0e0e0e (filled action)\n\n**3-5 Example Component Prompts**\n\n1. **Top Navigation Bar**: Full-bleed bar, Raw Silk (#f9f6f2) background, 1px Stone (#868686) bottom border. Left: 'hnst' wordmark in Raleway 700, 32px, Rust Hearth (#892500). Right: nav items (HOME, SUSTAINABILITY, PRESS, SHOP) in Raleway 600, 12px, uppercase, letter-spacing 0.192em, Stone (#868686) color, 15px horizontal gap. Active item in Rust Hearth.\n\n2. **Section Display Heading**: 'TRENDING' set in Poppins 700, 62px, letter-spacing 9.55px (0.154em), line-height 1.15, color Charcoal Ink (#0e0e0e). Centered. No underline, no decoration — the letter-spacing alone creates the gallery-label presence.\n\n3. **Sand Badge**: Sand Plaster (#eee5d9) background, zero radius, no border. Raleway 600, 12px, Charcoal Ink (#0e0e0e) text, padding 10px horizontal and 5px vertical. Used for small contextual labels like 'New Arrival' or 'Limited Edition'.\n\n4. **Editorial Image Block**: Full-width photograph, zero radius, no border, no shadow, no overlay. Sits on Raw Silk (#f9f6f2) canvas. Image fills the container edge-to-edge. Optional caption in Raleway 400, 13px, Stone (#868686) below.\n\n5. **Ghost Navigation Link**: No background, no border. Raleway 600, 13px, uppercase, letter-spacing 0.192em, color Stone (#868686). On hover, transitions to Charcoal Ink (#0e0e0e). 15px horizontal spacing between adjacent links."
+      },
+      {
+        "title": "Typography Personality",
+        "content": "The two-font system is the most distinctive structural choice. Raleway does the quiet work — navigation, body, buttons, forms — in humanist proportions that feel crafted rather than engineered. Poppins does the loud work once per section, at 62px with 0.154em tracking, turning a single word like 'TRENDING' into a physical sign on a gallery wall. Never let Poppins appear at body sizes; never let Raleway appear at display sizes. The contrast between Raleway's 1.67 body line-height and Poppins' 1.15 display line-height is the tension that gives the typography its voice."
+      },
+      {
+        "title": "Spacing Rhythm",
+        "content": "Vertical rhythm operates on three tiers: 15px for intra-component gaps (between nav items, list items, badge internals), 42–45px for component-level padding (button interior, card content breathing room), and 75–170px for section-to-section breathing. Never compress below 15px between siblings — the comfortable density is non-negotiable. Section transitions should always include a full-bleed image band as a visual palate cleanser, not just whitespace."
+      }
+    ],
+    "elevationPhilosophy": "The design deliberately avoids shadows entirely. Elevation is communicated through surface color shifts (Raw Silk canvas → Linen card → Sand Plaster badge) and 1px hairline borders in Stone, never through drop shadows. This keeps the interface feeling like a printed editorial spread rather than a software product — flat, tactile, and photography-first."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#868686",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6200603252196201
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "list",
+            "hero",
+            "badge",
+            "body",
+            "heading",
+            "footer"
+          ],
+          "frequency": 780,
+          "confidence": 1,
+          "prominence": 34093394.99046396,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 12,
+            "body/color": 4,
+            "hero/color": 1,
+            "link/color": 12,
+            "list/color": 5,
+            "badge/color": 3,
+            "image/color": 7,
+            "other/color": 110,
+            "footer/color": 1,
+            "heading/color": 1,
+            "nav/borderColor": 48,
+            "body/borderColor": 16,
+            "hero/borderColor": 4,
+            "link/borderColor": 48,
+            "list/borderColor": 20,
+            "badge/borderColor": 12,
+            "image/borderColor": 28,
+            "other/borderColor": 440,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "badge",
+            "button",
+            "list",
+            "heading"
+          ],
+          "frequency": 349,
+          "confidence": 1,
+          "prominence": 29984922.378414437,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 25,
+            "link/color": 11,
+            "badge/color": 2,
+            "other/color": 20,
+            "button/color": 5,
+            "heading/color": 7,
+            "body/borderColor": 92,
+            "link/borderColor": 44,
+            "badge/borderColor": 8,
+            "other/borderColor": 80,
+            "button/borderColor": 20,
+            "heading/borderColor": 28,
+            "list/backgroundColor": 4,
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#f9f6f2",
+          "oklch": {
+            "c": 0.0062130452350581495,
+            "h": 75.40691668275541,
+            "l": 0.9743410287431244
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 7096006,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#b7b7b7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7794404798137914
+          },
+          "contexts": [
+            "other",
+            "list",
+            "body"
+          ],
+          "frequency": 170,
+          "confidence": 1,
+          "prominence": 2157704.93953001,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "list/color": 6,
+            "other/color": 22,
+            "body/borderColor": 24,
+            "list/borderColor": 24,
+            "other/borderColor": 88
+          }
+        },
+        {
+          "hex": "#0e0e0e",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.16375794697446777
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "other",
+            "button",
+            "heading"
+          ],
+          "frequency": 131,
+          "confidence": 1,
+          "prominence": 2049073.3614389868,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/color": 30,
+            "link/color": 2,
+            "other/color": 2,
+            "heading/color": 1,
+            "nav/borderColor": 72,
+            "link/borderColor": 6,
+            "other/borderColor": 8,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#eee5d9",
+          "oklch": {
+            "c": 0.018819374893115477,
+            "h": 75.3168635919864,
+            "l": 0.9257286336708871
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "list",
+            "link",
+            "body",
+            "badge"
+          ],
+          "frequency": 47,
+          "confidence": 1,
+          "prominence": 1624553.89220977,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "body/backgroundColor": 8,
+            "link/backgroundColor": 7,
+            "list/backgroundColor": 6,
+            "badge/backgroundColor": 1,
+            "other/backgroundColor": 22,
+            "heading/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#892500",
+          "oklch": {
+            "c": 0.1409165621842208,
+            "h": 36.958086607796474,
+            "l": 0.42060753337879153
+          },
+          "contexts": [
+            "nav",
+            "other",
+            "heading"
+          ],
+          "frequency": 27,
+          "confidence": 1,
+          "prominence": 515031.1622197193,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 5,
+            "other/color": 1,
+            "heading/color": 1,
+            "nav/borderColor": 12,
+            "other/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#e2d3bf",
+          "oklch": {
+            "c": 0.03167913228618568,
+            "h": 75.18893232981584,
+            "l": 0.8736990298312137
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 54720,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ea9195",
+          "oklch": {
+            "c": 0.10803853864472494,
+            "h": 17.066102162346986,
+            "l": 0.7493450802475061
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 19048.217406588483,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 5,
+            "nav/borderColor": 12
+          }
+        },
+        {
+          "hex": "#d7d7d7",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.879168666349154
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1158.607588027165,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/borderColor": 2
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 1110.4775495825725,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/color": 1,
+            "link/borderColor": 4,
+            "other/borderColor": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.011563824269640883,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.49,
+          "background": "#f9f6f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.3,
+          "background": "#0e0e0e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.92,
+          "background": "#f9f6f2",
+          "foreground": "#0e0e0e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.85,
+          "background": "#eee5d9",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.49,
+          "background": "#eee5d9",
+          "foreground": "#0e0e0e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.59,
+          "background": "#d7d7d7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.3,
+          "background": "#e2d3bf",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.41,
+          "background": "#d7d7d7",
+          "foreground": "#0e0e0e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.15,
+          "background": "#e2d3bf",
+          "foreground": "#0e0e0e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.47,
+          "background": "#b7b7b7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.63,
+          "background": "#0e0e0e",
+          "foreground": "#b7b7b7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.02,
+          "background": "#ffffff",
+          "foreground": "#892500"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.98,
+          "background": "#ea9195",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.37,
+          "background": "#f9f6f2",
+          "foreground": "#892500"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.26,
+          "background": "#0e0e0e",
+          "foreground": "#ea9195"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.23,
+          "background": "#eee5d9",
+          "foreground": "#892500"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.27,
+          "background": "#d7d7d7",
+          "foreground": "#892500"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.14,
+          "background": "#e2d3bf",
+          "foreground": "#892500"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.3,
+          "background": "#0e0e0e",
+          "foreground": "#868686"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 10,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "link",
+            "heading",
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|link",
+            "marginBottom|heading",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 9,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|list",
+            "marginLeft|list"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "heading",
+            "body"
+          ],
+          "frequency": 16,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "body",
+            "nav",
+            "other"
+          ],
+          "frequency": 42,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|body",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "marginTop|other",
+            "marginBottom|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 23,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 75,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 114,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingTop|link"
+          ]
+        },
+        {
+          "value": 170,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 185,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Raleway",
+          "source": "google",
+          "weights": [
+            400,
+            600,
+            700
+          ],
+          "frequency": 230,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Poppins",
+          "source": "google",
+          "weights": [
+            500,
+            600,
+            700
+          ],
+          "frequency": 66,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Poppins",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body",
+            "link"
+          ],
+          "frequency": 17,
+          "lineHeight": 2.27,
+          "letterSpacing": 0.091,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "Raleway",
+          "weight": 600,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 4.08,
+          "letterSpacing": 0.192,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Poppins",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.15,
+          "letterSpacing": 0.154,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Raleway",
+          "weight": 700,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 4.15,
+          "letterSpacing": 0.231,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Raleway",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "list",
+            "body",
+            "hero",
+            "badge",
+            "footer"
+          ],
+          "frequency": 201,
+          "lineHeight": 1.79,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Raleway",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Raleway",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.67,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Poppins",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.063,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Raleway",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Poppins",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.05,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 62,
+          "family": "Poppins",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.065,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/17d320a9-add9-45b2-b518-afdd0821a6a5.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/5ee253b7-095c-4173-8cf8-0bbfa43c31a7.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7de578bc-9fbd-4664-a731-6223515bb601#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"HNST Studio design system\",\"item\":\"https://styles.refero.design/style/7de578bc-9fbd-4664-a731-6223515bb601\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7de578bc-9fbd-4664-a731-6223515bb601#style-reference\",\"name\":\"HNST Studio design system reference\",\"headline\":\"HNST Studio design system | Refero Styles\",\"description\":\"Explore HNST Studio's light E-commerce design system: Rust Hearth #892500, Blush Whisper #ea9195 colors, Raleway, Poppins typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/7de578bc-9fbd-4664-a731-6223515bb601\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7de578bc-9fbd-4664-a731-6223515bb601\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"HNST Studio\",\"url\":\"https://www.letsbehonest.eu\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7de578bc-9fbd-4664-a731-6223515bb601#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/5ee253b7-095c-4173-8cf8-0bbfa43c31a7.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/5ee253b7-095c-4173-8cf8-0bbfa43c31a7.jpg\",\"caption\":\"Screenshot of HNST Studio\"},\"image\":\"https://images.refero.design/styles/refero.design/image/5ee253b7-095c-4173-8cf8-0bbfa43c31a7.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"HNST Studio design system\",\"HNST Studio website design\",\"HNST Studio colors\",\"HNST Studio typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Rust Hearth\",\"Blush Whisper\",\"Linen\",\"Raw Silk\",\"Raleway\",\"Poppins\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"HNST Studio design system\"},{\"@type\":\"Thing\",\"name\":\"HNST Studio website design\"},{\"@type\":\"Thing\",\"name\":\"HNST Studio colors\"},{\"@type\":\"Thing\",\"name\":\"HNST Studio typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-04-30T03:54:50.044Z\",\"dateModified\":\"2026-04-30T03:54:50.044Z\"}]}19:T658,**Quick Color Reference**\n- Text: #0e0e0e (Charcoal Ink)\n- Background: #f9f6f2 (Raw Silk)\n- Border: #868686 (Stone)\n- Accent: #892500 (Rust Hearth)\n- Card/badge fill: #eee5d9 (Sand Plaster)\n- Inverted text: #ffffff (Linen)\n- primary action: #0e0e0e (filled action)\n\n**3-5 Example Component Prompts**\n\n1. **Top Navigation Bar**: Full-bleed bar, Raw Silk (#f9f6f2) background, 1px Stone (#868686) bottom border. Left: 'hnst' wordmark in Raleway 700, 32px, Rust Hearth (#892500). Right: nav items (HOME, SUSTAINABILITY, PRESS, SHOP) in Raleway 600, 12px, uppercase, letter-spacing 0.192em, Stone (#868686) color, 15px horizontal gap. Active item in Rust Hearth.\n\n2. **Section Display Heading**: 'TRENDING' set in Poppins 700, 62px, letter-spacing 9.55px (0.154em), line-height 1.15, color Charcoal Ink (#0e0e0e). Centered. No underline, no decoration — the letter-spacing alone creates the gallery-label presence.\n\n3. **Sand Badge**: Sand Plaster (#eee5d9) background, zero radius, no border. Raleway 600, 12px, Charcoal Ink (#0e0e0e) text, padding 10px horizontal and 5px vertical. Used for small contextual labels like 'New Arrival' or 'Limited Edition'.\n\n4. **Editorial Image Block**: Full-width photograph, zero radius, no border, no shadow, no overlay. Sits on Raw Silk (#f9f6f2) canvas. Image fills the container edge-to-edge. Optional caption in Raleway 400, 13px, Stone (#868686) below.\n\n5. **Ghost Navigation Link**: No background, no border. Raleway 600, 13px, uppercase, letter-spacing 0.192em, color Stone (#868686). On hover, transitions to Charcoal Ink (#0e0e0e). 15px horizontal spacing between adjacent links."
+}

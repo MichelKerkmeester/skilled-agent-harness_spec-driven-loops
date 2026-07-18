@@ -1,0 +1,83 @@
+:root {
+  /* Colors */
+  --color-photo-black: #000000;
+  --color-paper-white: #ffffff;
+  --color-fog-gray: #f2f2f2;
+  --color-graphite: #737373;
+  --color-ash: #b8b8b8;
+  --color-silver: #d9d9d9;
+  --color-steel: #999999;
+  --color-amber: #f1a900;
+  --color-goldenrod: #ffbc3c;
+
+  /* Typography — Font Families */
+  --font-vsco-gothic: 'VSCO Gothic', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 11px;
+  --leading-caption: 1.4;
+  --tracking-caption: 1.1px;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 24px;
+  --leading-subheading: 1.29;
+  --tracking-subheading: -1.2px;
+  --text-heading-sm: 29px;
+  --leading-heading-sm: 1.2;
+  --tracking-heading-sm: -1.45px;
+  --text-heading: 36px;
+  --leading-heading: 1.14;
+  --tracking-heading: -1.8px;
+  --text-heading-lg: 54px;
+  --leading-heading-lg: 1.08;
+  --tracking-heading-lg: -2.7px;
+  --text-display: 89px;
+  --leading-display: 0.95;
+  --tracking-display: -4.45px;
+  --text-display-xl: 98px;
+  --leading-display-xl: 0.93;
+  --tracking-display-xl: -4.9px;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-60: 60px;
+  --spacing-100: 100px;
+
+  /* Layout */
+  --page-max-width: 1280px;
+  --section-gap: 48px;
+  --card-padding: 20px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-full: 999px;
+
+  /* Named Radii */
+  --radius-nav: 4px;
+  --radius-tags: 999px;
+  --radius-cards: 4px;
+  --radius-badges: 4px;
+  --radius-buttons: 999px;
+
+  /* Surfaces */
+  --surface-canvas: #ffffff;
+  --surface-alternate-light: #f2f2f2;
+  --surface-inverted-surface: #000000;
+}

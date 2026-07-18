@@ -1,0 +1,1194 @@
+{
+  "source": "https://styles.refero.design/style/8fd92584-c3c1-421b-92f8-338ae80ba72e",
+  "uuid": "8fd92584-c3c1-421b-92f8-338ae80ba72e",
+  "name": "Flox",
+  "northStar": "terminal at sunrise, violet glow",
+  "capturedAt": "2026-07-18T08:54:18.100Z",
+  "meta": {
+    "url": "https://flox.dev",
+    "siteName": "Flox",
+    "extractedAt": "2026-06-03T21:26:23.523Z",
+    "durationMs": 39965,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 169,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use the Iris-to-Magenta gradient exclusively on the single primary CTA and on the sparkle glyph that punctuates gradient-colored words",
+      "Set button radius to 6px and card radius to 12px — never mix or round further",
+      "Pair every gradient CTA with a solid Obsidian secondary action within 16px to create the system's signature dual-action rhythm",
+      "Render code and terminal content in GeistMono 14px 500, never in GeistSans — the mono voice is reserved",
+      "Use #e2e8f0 for all structural borders and dividers at 1px; the system relies on hairline edges, not shadow depth",
+      "Set display headlines at 76px with -3.5px tracking (line-height 1.0) so the type feels architectural, not editorial",
+      "Apply the Rose Hot / Ember Orange accents only to the three audience pillar icons and their sub-pill labels — never to buttons or text blocks"
+    ],
+    "donts": [
+      "Don't apply the violet–pink gradient to anything other than the primary CTA and decorative sparkles — gradient overuse destroys the rationed-color system",
+      "Don't use the Ember Orange or Rose Hot on buttons, text, or backgrounds — they are icon-accent only",
+      "Don't set card or button radius above 12px — the system stays tight; anything pill-shaped beyond tags feels off-brand",
+      "Don't introduce drop shadows on flat content cards — the triple-shadow stack is reserved for the terminal window and the gradient CTA only",
+      "Don't use a chromatic border on the ghost nav button; #020817 at 1px keeps it quiet against the white nav",
+      "Don't set body line-height above 1.5 or below 1.35 — the 1.43–1.5 band is what keeps paragraphs feeling like terminal output, not editorial",
+      "Don't apply letter-spacing to the gradient CTA text or to the 12–14px range at more than -0.12px — Geist's tracking is already compressed; loosening it breaks the system"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#020817",
+        "name": "Graphite Ink",
+        "role": "Primary text, headings, nav links, list markers — near-black with a faint cool cast gives ink-like density without the harshness of pure #000",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e2e8f0",
+        "name": "Hairline Slate",
+        "role": "Borders, dividers, card outlines, image frames — the workhorse neutral that defines structural edges across every surface",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, text on dark fills — the base layer everything sits on",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1b1b1b",
+        "name": "Carbon",
+        "role": "Secondary text, monospace body fills, subtle iconography — slightly warmer than graphite for code and terminal contexts",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f3f3f3",
+        "name": "Mist",
+        "role": "Subtle surface lift, ghost button borders, soft section backgrounds — the second tier above pure white",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0c0c0c",
+        "name": "Obsidian",
+        "role": "High-contrast neutral action fill for primary buttons on light surfaces.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8247ff",
+        "name": "Iris Glow",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#f47bff",
+        "name": "Magenta Pulse",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#ff8a3d",
+        "name": "Ember Orange",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast.",
+        "group": "accent"
+      },
+      {
+        "hex": "#ff4fae",
+        "name": "Rose Hot",
+        "role": "Red text accent for links, tags, and emphasized short phrases.",
+        "group": "accent"
+      }
+    ],
+    "layout": "Max-width 1200px centered, with a 16/24/40/80px spacing rhythm. The hero is a two-column split: left half holds a three-line 76px display headline (with the third word in gradient), supporting body, and a paired button stack; right half holds the floating terminal card. Sections below the fold flow as full-width white bands with 80px vertical padding between them. The 'Built for Your Workflow' section is a three-column equal grid (gap 24–40px) without card chrome — content is separated purely by spacing. The 'Users Love Flox' section uses a full-bleed tiled grid background that bleeds to the viewport edges, with a centered quote card overlaid. The header is a 16/20 padding transparent nav with logo left, links center, ghost sign-in button right. No sidebar, no mega-menu — navigation is a single flat row.",
+    "imagery": "Imagery is rationed like color. The hero leans on a rendered terminal window mockup (white card, traffic-light dots, GeistMono command) — the product is the picture. Below the fold, the 'Users Love Flox' section uses a tiled grid backdrop with low-opacity rose washes and inline outline icons (heart, thumbs-up, cloud, download) as ambient decoration. Photography is absent; the customer logo strip is the only external visual, desaturated to a grayscale gradient so it reads as texture rather than endorsement. The brand's sparkle glyph (a four-point violet-to-pink star) recurs as a decorative accent after the gradient word in the hero and floating inside tinted grid tiles. No 3D, no illustration, no lifestyle photography — the system is icon-and-glyph-led.",
+    "similar": [
+      {
+        "why": "Same Geist typeface family, same hairline-border minimalism, same single-gradient-as-hero-signature approach on a near-white canvas",
+        "business": "Vercel"
+      },
+      {
+        "why": "Compact 6/12px radius system, generous display headlines with compressed tracking, and a near-monochrome palette with a single accent that does all the talking",
+        "business": "Linear"
+      },
+      {
+        "why": "Developer-tool voice that pairs a gradient hero accent with terminal-mockup product imagery and a trust-logo strip immediately below",
+        "business": "Railway"
+      },
+      {
+        "why": "Three-pillar audience sections with color-coded category icons, violet-pink brand spectrum, and code-window product visuals as the hero element",
+        "business": "Replit"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "12px",
+        "inputs": "6px",
+        "buttons": "6px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "80px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Page canvas — the flat base everything sits on"
+      },
+      {
+        "hex": "#f3f3f3",
+        "name": "Mist",
+        "level": 1,
+        "purpose": "Subtle lift for alt sections, ghost button surfaces, code block backgrounds"
+      },
+      {
+        "hex": "#0c0c0c",
+        "name": "Obsidian",
+        "level": 2,
+        "purpose": "Inverted dark surface for terminal windows and solid dark action buttons"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.04) 0px 2px 8px 0px, rgba(0, 0, 0, 0.08) 0px 8px 24px 0px, rgba(0, 0, 0, 0.12) 0px 16px 48px 0px",
+        "element": "Hero terminal card"
+      },
+      {
+        "style": "rgba(255, 255, 255, 0.2) 0px -2px 1px 0px inset, rgba(255, 255, 255, 0.1) 0px 4px 16px 0px inset, rgba(0, 0, 0, 0.08) 0px 6px 16px 0px",
+        "element": "Gradient CTA button"
+      }
+    ],
+    "northStar": "terminal at sunrise, violet glow",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.12
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.14
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.35,
+        "letterSpacing": -0.2
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.29
+      },
+      {
+        "role": "display",
+        "size": 76,
+        "lineHeight": 1,
+        "letterSpacing": -3.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Gradient Primary Button",
+        "role": "Hero CTA and single primary action per page",
+        "description": "Filled with the Iris-to-Magenta linear-gradient(92deg, #8247ff, #f47bff), white label text at 14px GeistSans 500, 6px radius, padding 6px 16px (compact) or 10px 25px (hero). Carries the inset highlight stack (white inner glow at 0.2 / 0.1 opacity) plus a soft 6px 16px black drop at 8% opacity. The gradient sweep runs nearly horizontal (92deg) so the button reads as luminous rather than dimensional."
+      },
+      {
+        "name": "Solid Dark Button",
+        "role": "Secondary CTA paired with the gradient primary",
+        "description": "Obsidian #0c0c0c fill, white text, 6px radius, 10px 25px padding. Used for 'Join our Slack' — the black-on-white inversion gives a terminal-bright counterweight to the gradient's warmth."
+      },
+      {
+        "name": "Ghost Nav Button",
+        "role": "Sign-in and low-emphasis nav actions",
+        "description": "Transparent fill, #020817 border, 6px radius, 4px 16px padding, 14px GeistSans 500. The 'Sign in' button in the header."
+      },
+      {
+        "name": "Pill Tag",
+        "role": "Audience/category labels in the workflow section",
+        "description": "9999px radius, 4–6px vertical padding, #020817 text, 14px GeistSans 500. Sub-pill subtitle ('Reproducible at Scale', etc.) in the corresponding accent color at 12–14px."
+      },
+      {
+        "name": "Terminal Card",
+        "role": "Hero product mockup and any code demonstration",
+        "description": "White surface, 12px radius, the triple-shadow stack (2px/8px/16px → 8px/24px → 16px/48px at escalating opacities 4/8/12%) creating a deep floating layer. Three traffic-light dots in #f3f3f3 at top-left, GeistMono 14px 500 body for commands, 24px internal padding."
+      },
+      {
+        "name": "Audience Pillar Card",
+        "role": "Three-column section breaking down Platform Engineers / Developers / AI Agents",
+        "description": "Transparent background, 24px column gap, no visible border — relies on spacing rhythm. Each column opens with a 24px accent icon (Iris Glow for Platform Engineers, Ember Orange for Developers, Rose Hot for AI Agents) right-aligned, then a #020817 24px heading, an accent-colored 14px tagline, and a bulleted list with 4px row gap."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "Social proof in the 'Users Love Flox' section",
+        "description": "White surface, 12px radius, #e2e8f0 1px border, 16px padding. Avatar thumbnail 24px circle, name in 14px 600, handle in 12px #020817, quote body in 14px 400 with generous line-height."
+      },
+      {
+        "name": "Logo Strip",
+        "role": "Trust bar of customer logos below the hero",
+        "description": "Horizontal flex row, 40px column gap, logos rendered in #bfbfbf–#9b9b9b gradient (the only grayscale gradient in the system) to desaturate them into ambient texture. No captions."
+      },
+      {
+        "name": "Tiled Grid Background",
+        "role": "Section backdrop for the testimonial area",
+        "description": "White base with 1px #e2e8f0 grid lines forming soft square tiles. Selected tiles are washed with a faint Rose Hot (#ff4fae) at low opacity and carry decorative icons (heart, thumbs-up, cloud, download) in matching accent. Creates a 'constellation' feel behind content."
+      },
+      {
+        "name": "Community Pill Button",
+        "role": "Inline CTA inside testimonial section",
+        "description": "Obsidian #0c0c0c fill, white text, 6px radius, 10px 25px padding, plus a small star/sparkle icon suffix."
+      },
+      {
+        "name": "Sparkle Accent Glyph",
+        "role": "Decorative punctuation after gradient words and in section dividers",
+        "description": "Rendered in the same Iris-to-Magenta gradient as the CTA. Small (~16–20px), never functional, always adjacent to a gradient-colored word or floating in a tinted grid tile."
+      },
+      {
+        "name": "Feature Bullet List",
+        "role": "Why-Flox lists under each audience pillar",
+        "description": "Unordered, 4–8px row gap, each item prefixed by a small right-pointing chevron in the column's accent color. Body text 14–16px #020817."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary UI and display typeface. The 76px display size with -0.046em tracking creates a compressed, architectural headline that spans three lines without overwhelming the viewport. Geist's geometric construction gives a monospace-adjacent precision that fits the developer-tools context without committing to mono. 400 is the body workhorse, 500 carries nav and button labels, 600 is reserved for emphasis within dense lists.",
+        "sizes": "12, 14, 16, 18, 24, 76",
+        "family": "GeistSans",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.0, 1.1, 1.2, 1.33, 1.35, 1.5",
+        "substitute": "Inter, or system-ui as a fallback — Inter shares Geist's near-monolinear proportions and similar x-height",
+        "letterSpacing": "Display 76px: -3.5px (-0.046em); 24px: -0.29px (-0.012em); 18px: -0.2px (-0.011em); 16px: -0.16px (-0.010em); 14px: -0.14px (-0.010em); 12px: -0.12px (-0.010em)"
+      },
+      {
+        "role": "Code and terminal mockup typeface — used inside the hero terminal window and any inline code blocks. Single weight 500 keeps the monospace voice present but quiet, never competing with the display sans.",
+        "sizes": "14",
+        "family": "GeistMono",
+        "weight": "500",
+        "lineHeight": "1.43",
+        "substitute": "JetBrains Mono, IBM Plex Mono",
+        "letterSpacing": "-0.0140em"
+      }
+    ],
+    "description": "Flox is a precision-instrument developer environment: a white canvas, near-black graphite text, and a single violet-to-pink gradient that ignites only where the system wants to be noticed. The product vocabulary borrows from terminals — code blocks, mono accents, sparkles as punctuation — wrapped in generous display typography that makes infrastructure feel like a product launch. Color is rationed: most surfaces stay achromatic; the gradient appears on the primary CTA and as decorative sparkle accents, while category icons (violet, orange, pink) segment the audience without competing for hierarchy. Components are compact and confident — 6px button radii, 12px card radii, hairline #e2e8f0 borders — letting content do the talking rather than chrome.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8fd92584-c3c1-421b-92f8-338ae80ba72e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Flox design system\",\"item\":\"https://styles.refero.design/style/8fd92584-c3c1-421b-92f8-338ae80ba72e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8fd92584-c3c1-421b-92f8-338ae80ba72e#style-reference\",\"name\":\"Flox design system reference\",\"headline\":\"Flox design system | Refero Styles\",\"description\":\"Explore Flox's light Dev Tools design system: Graphite Ink #020817, Hairline Slate #e2e8f0 colors, GeistSans, GeistMono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8fd92584-c3c1-421b-92f8-338ae80ba72e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8fd92584-c3c1-421b-92f8-338ae80ba72e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Flox\",\"url\":\"https://flox.dev\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8fd92584-c3c1-421b-92f8-338ae80ba72e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/efa6ab10-69ff-4f45-bcc7-b3ef7d33574d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/efa6ab10-69ff-4f45-bcc7-b3ef7d33574d.jpg\",\"caption\":\"Screenshot of Flox\"},\"image\":\"https://images.refero.design/styles/refero.design/image/efa6ab10-69ff-4f45-bcc7-b3ef7d33574d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Flox design system\",\"Flox website design\",\"Flox colors\",\"Flox typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Graphite Ink\",\"Hairline Slate\",\"Paper White\",\"Carbon\",\"GeistSans\",\"GeistMono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Flox design system\"},{\"@type\":\"Thing\",\"name\":\"Flox website design\"},{\"@type\":\"Thing\",\"name\":\"Flox colors\"},{\"@type\":\"Thing\",\"name\":\"Flox typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-05-07T22:03:08.490Z\",\"dateModified\":\"2026-05-07T22:03:08.490Z\"}]}19:T7a3,## Quick Color Reference\n- text: #020817\n- background: #ffffff\n- border: #e2e8f0\n- accent (gradient): #8247ff → #f47bff (linear-gradient(92deg, #8247ff, #f47bff))\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- primary action: no distinct CTA color\n\n## 3-5 Example Component Prompts\n\n1. **Hero display headline + gradient word**: Render a three-line headline at 76px GeistSans 400, color #020817, line-height 1.0, letter-spacing -3.5px. The third line's keyword is colored with linear-gradient(92deg, #8247ff, #f47bff), followed by a 20px sparkle glyph in the same gradient. Subheadline below in 18px GeistSans 400, #020817, line-height 1.35.\n\n2. **Gradient primary + solid dark secondary button pair**: Two buttons side by side, 16px gap. First: gradient fill (linear-gradient(92deg, #8247ff, #f47bff)), white text 14px GeistSans 500, 6px radius, padding 10px 25px, shadow rgba(0,0,0,0.08) 0px 6px 16px. Second: #0c0c0c solid fill, white text, same radius and padding.\n\n3. **Terminal mockup card**: White surface, 12px radius, padding 24px, shadow stack rgba(0,0,0,0.04) 0px 2px 8px, rgba(0,0,0,0.08) 0px 8px 24px, rgba(0,0,0,0.12) 0px 16px 48px. Top-left: three 8px circles in #f3f3f3 spaced 6px apart. Body: GeistMono 14px 500, #ff4fae for the prompt symbol, #020817 for the command text, padding-top 16px.\n\n4. **Three-pillar audience section**: Three equal columns, 24px column gap, no card borders. Each column: a 24px icon right-aligned in its accent color (Iris Glow #8247ff / Ember Orange #ff8a3d / Rose Hot #ff4fae), a 24px GeistSans 400 #020817 heading with -0.29px tracking, a 14px sub-pill in the matching accent color, then a bullet list with 4px row gap and 4px right-pointing chevrons in the accent color.\n\n5. **Ghost nav sign-in button**: Transparent fill, 1px #020817 border, 6px radius, padding 4px 16px, label 14px GeistSans 500 #020817. No shadow."
+      },
+      {
+        "title": "Gradient System",
+        "content": "The system has exactly three gradients, each with a single job:\n\n1. **Brand sweep** — `linear-gradient(92deg, #8247ff, #f47bff)`. The nearly-horizontal angle (92deg) makes the CTA read as a luminous band rather than a dimensional surface. Reserved for the primary CTA fill and the sparkle glyph.\n\n2. **Accent sweep** — `linear-gradient(95deg, #ff72cf, #8a15ff)`. A complementary pink-to-violet used as a subtle wash on decorative section markers; never on UI controls.\n\n3. **Grayscale desaturator** — `linear-gradient(#bfbfbf, #9b9b9b)`. Applied only to the customer logo strip to push brand marks into ambient texture.\n\nNo other gradients belong in the system. Section dividers are always 1px #e2e8f0 hairlines; surface lifts are always achieved through the triple-shadow stack or the Mist #f3f3f3 second tier."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e2e8f0",
+          "oklch": {
+            "c": 0.01261877443265105,
+            "h": 255.5078854448309,
+            "l": 0.928761267190067
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "icon",
+            "body",
+            "image",
+            "heading",
+            "list"
+          ],
+          "frequency": 611,
+          "confidence": 1,
+          "prominence": 65401538.086727984,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 52,
+            "body/borderColor": 92,
+            "icon/borderColor": 24,
+            "link/borderColor": 12,
+            "list/borderColor": 132,
+            "image/borderColor": 140,
+            "other/borderColor": 123,
+            "button/borderColor": 16,
+            "heading/borderColor": 20
+          }
+        },
+        {
+          "hex": "#020817",
+          "oklch": {
+            "c": 0.036405869160606355,
+            "h": 259.2009711581965,
+            "l": 0.13627355525953783
+          },
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "button",
+            "icon",
+            "body",
+            "heading",
+            "card",
+            "list"
+          ],
+          "frequency": 100,
+          "confidence": 1,
+          "prominence": 47038892.53407598,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "nav/color": 9,
+            "body/color": 12,
+            "card/color": 1,
+            "icon/color": 5,
+            "link/color": 2,
+            "list/color": 33,
+            "other/color": 29,
+            "button/color": 4,
+            "heading/color": 5
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "button",
+            "card"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 888105.5323538621,
+          "properties": [
+            "backgroundColor",
+            "boxShadow",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "link/color": 1,
+            "button/color": 1,
+            "link/boxShadow": 2,
+            "button/boxShadow": 1,
+            "card/borderColor": 4,
+            "card/backgroundColor": 1,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#1b1b1b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2221287433751307
+          },
+          "contexts": [
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 229806.04755978475,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 6,
+            "link/color": 1,
+            "other/fill": 8,
+            "other/color": 1,
+            "body/borderColor": 4
+          }
+        },
+        {
+          "hex": "#f3f3f3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9641535001508271
+          },
+          "contexts": [
+            "button",
+            "other",
+            "body"
+          ],
+          "frequency": 8,
+          "confidence": 1,
+          "prominence": 38356.09251745198,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 1,
+            "button/borderColor": 4,
+            "body/backgroundColor": 3
+          }
+        },
+        {
+          "hex": "#0c0c0c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.1543399938085494
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8444,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#711aff",
+          "oklch": {
+            "c": 0.28588727387566415,
+            "h": 288.4014004925058,
+            "l": 0.5228491042208718
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 5185.997302359623,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "other/color": 1
+          }
+        },
+        {
+          "hex": "#ff4fae",
+          "oklch": {
+            "c": 0.2276904892675144,
+            "h": 351.4499898855048,
+            "l": 0.6988208107287553
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 4179.470570797252,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 4
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.04575766454835561,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.01,
+          "background": "#ffffff",
+          "foreground": "#020817"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.56,
+          "background": "#0c0c0c",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.03,
+          "background": "#f3f3f3",
+          "foreground": "#020817"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.63,
+          "background": "#f3f3f3",
+          "foreground": "#0c0c0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.22,
+          "background": "#ffffff",
+          "foreground": "#1b1b1b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.23,
+          "background": "#e2e8f0",
+          "foreground": "#020817"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.87,
+          "background": "#e2e8f0",
+          "foreground": "#0c0c0c"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.52,
+          "background": "#f3f3f3",
+          "foreground": "#1b1b1b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.97,
+          "background": "#e2e8f0",
+          "foreground": "#1b1b1b"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.5,
+          "background": "#0c0c0c",
+          "foreground": "#ff4fae"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.38,
+          "background": "#ffffff",
+          "foreground": "#711aff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.75,
+          "background": "#f3f3f3",
+          "foreground": "#711aff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.07,
+          "background": "#0c0c0c",
+          "foreground": "#711aff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.01,
+          "background": "#ffffff",
+          "foreground": "#ff4fae"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.71,
+          "background": "#f3f3f3",
+          "foreground": "#ff4fae"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.14,
+          "background": "#0c0c0c",
+          "foreground": "#1b1b1b"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.11,
+          "background": "#f3f3f3",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.02,
+          "background": "#0c0c0c",
+          "foreground": "#020817"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "card"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(255, 255, 255, 0.2) 0px -2px 1px 0px inset, rgba(255, 255, 255, 0.1) 0px 4px 16px 0px inset, rgba(0, 0, 0, 0.08) 0px 6px 16px 0px",
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": "rgba(0, 0, 0, 0.04) 0px 2px 8px 0px, rgba(0, 0, 0, 0.08) 0px 8px 24px 0px, rgba(0, 0, 0, 0.12) 0px 16px 48px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|body",
+            "marginLeft|body"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "nav",
+            "link",
+            "other"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "rowGap|button",
+            "columnGap|button",
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button",
+            "nav",
+            "link"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|button",
+            "columnGap|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 17,
+          "properties": [
+            "paddingRight",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|body",
+            "rowGap|body",
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link",
+            "button",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "other",
+            "card"
+          ],
+          "frequency": 11,
+          "properties": [
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginRight|link",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "card",
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 25,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|link",
+            "paddingLeft|link",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 57,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 62,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 247,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(92deg, rgb(130, 71, 255) -9.21%, rgb(244, 123, 255) 104.14%)",
+        "colors": [
+          "rgb(130, 71, 255)",
+          "rgb(244, 123, 255)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(95deg, rgb(255, 114, 207) -13.39%, rgb(138, 21, 255) 114.46%)",
+        "colors": [
+          "rgb(255, 114, 207)",
+          "rgb(138, 21, 255)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(191, 191, 191) 0%, rgb(155, 155, 155) 100%)",
+        "colors": [
+          "rgb(191, 191, 191)",
+          "rgb(155, 155, 155)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "GeistSans",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 131,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "GeistMono",
+          "source": "custom",
+          "weights": [
+            500
+          ],
+          "frequency": 26,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "GeistSans",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GeistSans",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "nav",
+            "link",
+            "other",
+            "image"
+          ],
+          "frequency": 14,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "GeistMono",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.014,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GeistSans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "nav",
+            "icon",
+            "card",
+            "body",
+            "list",
+            "image"
+          ],
+          "frequency": 94,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GeistSans",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GeistSans",
+          "weight": 500,
+          "contexts": [
+            "link",
+            "body",
+            "button",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "GeistSans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.35,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "GeistSans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.33,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "GeistSans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.012,
+          "textTransform": "none"
+        },
+        {
+          "size": 76,
+          "family": "GeistSans",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "other",
+            "icon"
+          ],
+          "frequency": 9,
+          "lineHeight": 1,
+          "letterSpacing": -0.046,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/741e5908-6b3f-446e-b094-dbc1471546c5.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/efa6ab10-69ff-4f45-bcc7-b3ef7d33574d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8fd92584-c3c1-421b-92f8-338ae80ba72e#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Flox design system\",\"item\":\"https://styles.refero.design/style/8fd92584-c3c1-421b-92f8-338ae80ba72e\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8fd92584-c3c1-421b-92f8-338ae80ba72e#style-reference\",\"name\":\"Flox design system reference\",\"headline\":\"Flox design system | Refero Styles\",\"description\":\"Explore Flox's light Dev Tools design system: Graphite Ink #020817, Hairline Slate #e2e8f0 colors, GeistSans, GeistMono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8fd92584-c3c1-421b-92f8-338ae80ba72e\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8fd92584-c3c1-421b-92f8-338ae80ba72e\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Flox\",\"url\":\"https://flox.dev\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8fd92584-c3c1-421b-92f8-338ae80ba72e#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/efa6ab10-69ff-4f45-bcc7-b3ef7d33574d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/efa6ab10-69ff-4f45-bcc7-b3ef7d33574d.jpg\",\"caption\":\"Screenshot of Flox\"},\"image\":\"https://images.refero.design/styles/refero.design/image/efa6ab10-69ff-4f45-bcc7-b3ef7d33574d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Flox design system\",\"Flox website design\",\"Flox colors\",\"Flox typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Graphite Ink\",\"Hairline Slate\",\"Paper White\",\"Carbon\",\"GeistSans\",\"GeistMono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Flox design system\"},{\"@type\":\"Thing\",\"name\":\"Flox website design\"},{\"@type\":\"Thing\",\"name\":\"Flox colors\"},{\"@type\":\"Thing\",\"name\":\"Flox typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-05-07T22:03:08.490Z\",\"dateModified\":\"2026-05-07T22:03:08.490Z\"}]}19:T7a3,## Quick Color Reference\n- text: #020817\n- background: #ffffff\n- border: #e2e8f0\n- accent (gradient): #8247ff → #f47bff (linear-gradient(92deg, #8247ff, #f47bff))\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n- primary action: no distinct CTA color\n\n## 3-5 Example Component Prompts\n\n1. **Hero display headline + gradient word**: Render a three-line headline at 76px GeistSans 400, color #020817, line-height 1.0, letter-spacing -3.5px. The third line's keyword is colored with linear-gradient(92deg, #8247ff, #f47bff), followed by a 20px sparkle glyph in the same gradient. Subheadline below in 18px GeistSans 400, #020817, line-height 1.35.\n\n2. **Gradient primary + solid dark secondary button pair**: Two buttons side by side, 16px gap. First: gradient fill (linear-gradient(92deg, #8247ff, #f47bff)), white text 14px GeistSans 500, 6px radius, padding 10px 25px, shadow rgba(0,0,0,0.08) 0px 6px 16px. Second: #0c0c0c solid fill, white text, same radius and padding.\n\n3. **Terminal mockup card**: White surface, 12px radius, padding 24px, shadow stack rgba(0,0,0,0.04) 0px 2px 8px, rgba(0,0,0,0.08) 0px 8px 24px, rgba(0,0,0,0.12) 0px 16px 48px. Top-left: three 8px circles in #f3f3f3 spaced 6px apart. Body: GeistMono 14px 500, #ff4fae for the prompt symbol, #020817 for the command text, padding-top 16px.\n\n4. **Three-pillar audience section**: Three equal columns, 24px column gap, no card borders. Each column: a 24px icon right-aligned in its accent color (Iris Glow #8247ff / Ember Orange #ff8a3d / Rose Hot #ff4fae), a 24px GeistSans 400 #020817 heading with -0.29px tracking, a 14px sub-pill in the matching accent color, then a bullet list with 4px row gap and 4px right-pointing chevrons in the accent color.\n\n5. **Ghost nav sign-in button**: Transparent fill, 1px #020817 border, 6px radius, padding 4px 16px, label 14px GeistSans 500 #020817. No shadow."
+}

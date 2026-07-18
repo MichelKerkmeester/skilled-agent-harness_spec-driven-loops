@@ -1,0 +1,90 @@
+:root {
+  /* Colors */
+  --color-studio-black: #101012;
+  --color-deep-anvil: #17171a;
+  --color-pure-ink: #000000;
+  --color-warm-cream: #f7f4ef;
+  --color-bone: #ffffff;
+  --color-smoke: #c2c2c1;
+  --color-ember-coral: #fd429c;
+  --color-dusk-wash: #8a2a3a;
+  --gradient-dusk-wash: radial-gradient(ellipse at 30% 20%, #d4622a 0%, #8a2a3a 45%, #1a0a0 100%);
+
+  /* Typography — Font Families */
+  --font-neue-montreal: 'Neue Montreal', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-editorial-new: 'Editorial New', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.55;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --text-subheading: 20px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.26px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.33;
+  --tracking-heading-sm: -0.31px;
+  --text-heading: 40px;
+  --leading-heading: 1.14;
+  --tracking-heading: -1.04px;
+  --text-heading-lg: 72px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -1.87px;
+  --text-display: 140px;
+  --leading-display: 0.87;
+  --tracking-display: -3.64px;
+
+  /* Typography — Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-60: 60px;
+  --spacing-64: 64px;
+  --spacing-72: 72px;
+  --spacing-80: 80px;
+  --spacing-100: 100px;
+  --spacing-104: 104px;
+  --spacing-120: 120px;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --section-gap: 64px;
+  --card-padding: 16px;
+  --element-gap: 8px;
+
+  /* Border Radius */
+  --radius-md: 6px;
+  --radius-xl: 12px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+
+  /* Named Radii */
+  --radius-cards: 12px;
+  --radius-images: 20px;
+  --radius-inputs: 12px;
+  --radius-buttons: 6px;
+  --radius-hero-cards: 24px;
+
+  /* Shadows */
+  --shadow-xl: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+
+  /* Surfaces */
+  --surface-canvas: #101012;
+  --surface-card: #17171a;
+  --surface-overlay: #000000;
+}

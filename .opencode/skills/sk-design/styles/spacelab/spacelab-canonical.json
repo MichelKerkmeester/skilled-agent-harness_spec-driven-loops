@@ -1,0 +1,878 @@
+{
+  "source": "https://styles.refero.design/style/7fdcf5eb-4d65-49a2-b887-60119bca4edc",
+  "uuid": "7fdcf5eb-4d65-49a2-b887-60119bca4edc",
+  "name": "Spacelab",
+  "northStar": "Swiss editorial grid on raw paper. A quiet gallery where Helvetica sits at the baseline and a single slate-violet button is the loudest thing in the room.",
+  "capturedAt": "2026-07-18T08:07:21.129Z",
+  "meta": {
+    "url": "https://spacelab.co.uk",
+    "siteName": "Spacelab",
+    "extractedAt": "2026-06-03T18:18:47.985Z",
+    "durationMs": 41649,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 2149,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only HelveticaNeue (or HelveticaNeue-Light) for every text element — no display fonts, no serifs, no monospaced accents.",
+      "Hold line-heights at 1.00 for display sizes (30–62px) and never above 1.20 for body — the tight rhythm is the signature.",
+      "Use #495472 exclusively for filled buttons and accent card surfaces; treat it as a switch, not a decoration.",
+      "Separate content blocks with 1px hairline borders in #000000 or #2c2222 rather than padding or background fills.",
+      "Keep border-radius at 0px on all cards, buttons, tags, and images; the 4px token is reserved for the rare utility element.",
+      "Maintain 21px as the base unit for element gaps and card padding; step up to 42px and 84px for section-level separation.",
+      "Render the logo as lowercase 'spacelab_' with a trailing underscore — the underscore is non-negotiable brand grammar."
+    ],
+    "donts": [
+      "Do not introduce a second typeface, even for emphasis — vary weight (400 vs Light) within HelveticaNeue instead.",
+      "Do not add drop shadows, inner glows, or blur effects — the system uses flat surfaces and hairline borders only.",
+      "Do not use #495472 for body text, icons, borders, or decorative accents — it is reserved for filled interactive surfaces.",
+      "Do not round corners on images, cards, or buttons; the 0px radius is a deliberate editorial choice.",
+      "Do not exceed 62px for headlines or drop below 15px for text — the scale is intentionally narrow.",
+      "Do not center-align body paragraphs; ragged-right text aligns with the Swiss editorial baseline.",
+      "Do not apply gradients, duotone effects, or color overlays to photography — images are shown as captured."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, body text inversion, button labels. The dominant background; everything else sits on top of it",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Primary text, icon strokes, hairline borders, the logo wordmark. Used for most dividers and structural lines (border frequency 1,156)",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2c2222",
+        "name": "Charcoal",
+        "role": "Secondary text and the heaviest border color in the system (freq 3,104). A warm-toned near-black that softens harsh contrast on long reads",
+        "group": "neutral"
+      },
+      {
+        "hex": "#b2b4b1",
+        "name": "Fossil",
+        "role": "Muted link color, inactive nav items, tertiary text. Desaturated green-gray that recedes against both paper white and ink black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#495472",
+        "name": "Slate Iris",
+        "role": "Filled button background and select card surfaces — the only chromatic voice in the system. A muted violet-slate that reads as architectural blue-grey rather than brand color, so it never shouts over the photography",
+        "group": "brand"
+      }
+    ],
+    "layout": "Asymmetric two-column structure: a fixed left rail (~20% width) holds the logo and vertical navigation, while the right ~80% carries the current page's content. The nav is a flat list of section labels (All stories, Work, News, Exploration, About, Contact) stacked vertically with generous vertical rhythm. The hero is a full-bleed architectural photograph that occupies the right column with no caption or overlay. Page rhythm relies on the 84px section gap and 21px card padding to create breathing room between blocks. The grid is implicitly column-based rather than card-based — images and text blocks align to a vertical column structure rather than a uniform card system.",
+    "imagery": "Architecture and interior photography is the primary visual content. Shots are full-bleed, uncropped to editorial dimensions, and unstyled — no overlays, no duotone treatments, no rounded corners. The image IS the composition: large-format documentation of built environments (atria, workspaces, public buildings) shown with documentary clarity. People appear as scale figures, not portraits. Color photography is used as-shot — natural light, natural palette. There is no illustration, no iconography beyond simple line glyphs, and no decorative graphics.",
+    "similar": [
+      {
+        "why": "Same Swiss-editorial restraint, single accent used sparingly, typography that sits at the baseline with tight line-heights, architectural photography as the primary visual.",
+        "business": "Vitsoe"
+      },
+      {
+        "why": "Editorial grid layout with generous whitespace, muted monochrome palette with a single quiet accent, serif-free typographic system that prioritizes content over chrome.",
+        "business": "Aesop"
+      },
+      {
+        "why": "Gallery-catalogue information architecture with a left-rail section index, large-format unstyled photography, and Helvetica-driven type hierarchy at compressed line-heights.",
+        "business": "Frieze"
+      },
+      {
+        "why": "Architecture studio site with documentary photography, minimal surface decoration, single-typeface system, and a near-monochrome palette with one muted chromatic accent.",
+        "business": "Studio Ma"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "0px",
+        "cards": "0px",
+        "other": "4px",
+        "images": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "21px",
+      "sectionGap": "84px",
+      "cardPadding": "21px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 1,
+        "purpose": "Base canvas — the entire page background"
+      },
+      {
+        "hex": "#495472",
+        "name": "Slate Iris Surface",
+        "level": 2,
+        "purpose": "Accent card and filled button surface — used sparingly as functional punctuation"
+      }
+    ],
+    "northStar": "Swiss editorial grid on raw paper. A quiet gallery where Helvetica sits at the baseline and a single slate-violet button is the loudest thing in the room.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 15,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.165
+      },
+      {
+        "role": "body",
+        "size": 17,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.187
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.15,
+        "letterSpacing": 0.209
+      },
+      {
+        "role": "heading-sm",
+        "size": 21,
+        "lineHeight": 1.15,
+        "letterSpacing": 0.231
+      },
+      {
+        "role": "heading",
+        "size": 30,
+        "lineHeight": 1.1,
+        "letterSpacing": 0.33
+      },
+      {
+        "role": "display",
+        "size": 62,
+        "lineHeight": 1,
+        "letterSpacing": 0.682
+      }
+    ],
+    "components": [
+      {
+        "name": "Sidebar Logo Wordmark",
+        "role": "Brand identifier pinned to the top-left of every page",
+        "description": "Lowercase 'spacelab_' in HelveticaNeue 21px, weight 400, color #000000, letter-spacing 0.231px. The trailing underscore is signature — it reads as a code-syntax artifact and is the logo's only visual gimmick."
+      },
+      {
+        "name": "Vertical Section Index",
+        "role": "Primary navigation — always visible in the left rail",
+        "description": "Stacked list at 17px HelveticaNeue weight 400. Active item ('All stories') rendered in #000000 weight 400; inactive items ('Work', 'News', 'Exploration', 'About', 'Contact') rendered in #b2b4b1 weight 400. 10px gap between items. No bullets, no icons, no separators — a pure typographic index."
+      },
+      {
+        "name": "Filled Accent Button",
+        "role": "Primary interactive element — the only filled button in the system",
+        "description": "Background #495472, text #ffffff, 15px HelveticaNeue weight 400, letter-spacing 0.165px, padding 21px horizontal / 21px vertical, border-radius 0. No hover state deviation specified — the button is already quiet, so state change is minimal."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Inline links and secondary navigation",
+        "description": "Color #b2b4b1 default, #000000 on hover. 17px HelveticaNeue weight 400, 5px margin-bottom for paragraph spacing. No underline by default — link affordance comes from color shift and the hairline border-bottom 1px #000000 applied to body context."
+      },
+      {
+        "name": "Accent Card Surface",
+        "role": "Featured content card — the only chromatic surface",
+        "description": "Background #495472, padding 21px, border-radius 0. Used to surface a single project or story; the card contains #ffffff text. Functions as a typographic 'pull-quote panel' more than a content container — it interrupts the white canvas rather than organizing content."
+      },
+      {
+        "name": "Full-Bleed Image Block",
+        "role": "Primary visual unit for project and editorial pages",
+        "description": "Architectural photograph at native aspect ratio, no border, no radius, no caption. Aligned to the right column of the asymmetric grid. May span the full content area width."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Long-form editorial copy",
+        "description": "17px HelveticaNeue-Light at line-height 1.20, color #000000, letter-spacing 0.187px. Paragraph spacing 21px. Left-aligned, ragged right. No max-width constraint — text follows the column."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Page titles and editorial section openers",
+        "description": "62px HelveticaNeue weight 400, line-height 1.00, letter-spacing 0.682px, color #000000. The tight 1.0 line-height makes the headline sit on the baseline like a printed masthead — no airy leading, no decorative space."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Mid-level headings for content sections",
+        "description": "21–30px HelveticaNeue weight 400, line-height 1.10–1.15, color #000000. 42px margin-bottom to separate from body content."
+      },
+      {
+        "name": "Hairline Divider",
+        "role": "Structural separator between content blocks",
+        "description": "1px solid #000000 or #2c2222, no other styling. The most common element in the system (over 1,100 instances in the data) — Spacelab uses lines, not spacing, to organize content."
+      }
+    ],
+    "typography": [
+      {
+        "role": "The sole typeface. Used for everything from the lowercase 'spacelab_' logo to 62px display headlines, 19–21px section headings, 17px body, and 15px captions.",
+        "sizes": "15px, 17px, 19px, 21px, 30px, 62px",
+        "family": "HelveticaNeue",
+        "weight": "400",
+        "lineHeight": "1.00–1.20 (tight; display at 1.0, body at 1.20)",
+        "substitute": "Helvetica, Inter, Neue Haas Grotesk, Arial",
+        "letterSpacing": "0.0110em (0.165px at 15px, 0.682px at 62px — consistent positive tracking across all sizes)"
+      },
+      {
+        "role": "Body copy and supporting paragraphs where a quieter voice is needed. The light cut creates typographic variety without changing families — a single-typeface system that breathes through weight, not variety.",
+        "sizes": "17px",
+        "family": "HelveticaNeue-Light",
+        "weight": "300 (rendered as 400 in data — light weight optical)",
+        "lineHeight": "1.20",
+        "substitute": "Helvetica Neue Light, Inter Light, Neue Haas Grotesk Light",
+        "letterSpacing": "0.0110em"
+      }
+    ],
+    "description": "Spacelab is a Swiss-editorial architecture studio site built on near-total monochrome restraint: one typeface, one chromatic accent, and almost no surface decoration. The page behaves like a printed monograph — white canvas, oversized architectural photography, and a left-rail index navigation that recalls a museum catalogue sidebar. Type carries the entire voice: HelveticaNeue at weight 400 with line-heights compressed to 1.0–1.2 sits closer to the baseline than typical web type, making every paragraph feel set rather than typed. The single muted violet-slate (#495472) appears only on filled buttons and a rare card surface, functioning as a quiet navigational signal rather than a brand statement. Components are reduced to their skeleton: hairline borders, 4px corners, no shadows, no gradients — every element earns its weight by occupying negative space rather than filling it.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7fdcf5eb-4d65-49a2-b887-60119bca4edc#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Spacelab design system\",\"item\":\"https://styles.refero.design/style/7fdcf5eb-4d65-49a2-b887-60119bca4edc\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7fdcf5eb-4d65-49a2-b887-60119bca4edc#style-reference\",\"name\":\"Spacelab design system reference\",\"headline\":\"Spacelab design system | Refero Styles\",\"description\":\"Explore Spacelab's light Agency design system: Paper White #ffffff, Ink Black #000000 colors, HelveticaNeue, HelveticaNeue-Light typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/7fdcf5eb-4d65-49a2-b887-60119bca4edc\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7fdcf5eb-4d65-49a2-b887-60119bca4edc\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Spacelab\",\"url\":\"https://spacelab.co.uk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7fdcf5eb-4d65-49a2-b887-60119bca4edc#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fe974868-1a71-45e8-8298-1eafafa3f6b8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fe974868-1a71-45e8-8298-1eafafa3f6b8.jpg\",\"caption\":\"Screenshot of Spacelab\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fe974868-1a71-45e8-8298-1eafafa3f6b8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Spacelab design system\",\"Spacelab website design\",\"Spacelab colors\",\"Spacelab typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper White\",\"Ink Black\",\"Charcoal\",\"Fossil\",\"HelveticaNeue\",\"HelveticaNeue-Light\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Spacelab design system\"},{\"@type\":\"Thing\",\"name\":\"Spacelab website design\"},{\"@type\":\"Thing\",\"name\":\"Spacelab colors\"},{\"@type\":\"Thing\",\"name\":\"Spacelab typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:07:58.777Z\",\"dateModified\":\"2026-04-30T02:07:58.777Z\"}]}19:T4d7,**Quick Color Reference**\n- text: #000000 (primary), #2c2222 (secondary), #b2b4b1 (muted/inactive)\n- background: #ffffff\n- border: #000000 or #2c2222 (hairline 1px)\n- accent surface: #495472 (Slate Iris)\n- primary action: #495472 (filled action)\n\n**Example Component Prompts**\n\n1. *Display Headline*: 62px HelveticaNeue weight 400, line-height 1.00, letter-spacing 0.682px, color #000000, left-aligned, no margin-top, 84px margin-bottom to next element.\n\n2. *Filled Accent Button*: 15px HelveticaNeue weight 400, letter-spacing 0.165px, color #ffffff on background #495472, padding 21px 21px, border-radius 0, no border, no shadow, inline-block.\n\n3. *Vertical Sidebar Nav*: Stacked list of links, 17px HelveticaNeue weight 400, 10px row-gap, color #b2b4b1 for inactive items, color #000000 for active item, no bullets, no underlines, left-aligned in a 200px-wide left rail.\n\n4. *Body Paragraph*: 17px HelveticaNeue-Light, line-height 1.20, letter-spacing 0.187px, color #000000, 21px margin-bottom between paragraphs, left-aligned, ragged right, no max-width.\n\n5. *Full-Bleed Architectural Image*: Native aspect ratio, no border, border-radius 0, no caption, no overlay, aligned to right column of asymmetric grid, no decorative treatment."
+      }
+    ],
+    "elevationPhilosophy": "The design avoids shadows entirely. Surfaces are separated by hairline borders (1px, #000000 or #2c2222) or by white space alone. Elevation is communicated through z-order and the single accent surface color, not through blur or drop shadow. This keeps the visual language in register with printed editorial design — flat, honest, material."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "heading",
+            "hero",
+            "body",
+            "card",
+            "image",
+            "footer"
+          ],
+          "frequency": 2960,
+          "confidence": 1,
+          "prominence": 427310699.00691086,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "icon/fill": 174,
+            "body/color": 119,
+            "card/color": 2,
+            "hero/color": 1,
+            "icon/color": 71,
+            "link/color": 12,
+            "image/color": 4,
+            "other/color": 289,
+            "footer/color": 1,
+            "heading/color": 58,
+            "body/borderColor": 476,
+            "card/borderColor": 8,
+            "hero/borderColor": 4,
+            "icon/borderColor": 284,
+            "link/borderColor": 48,
+            "image/borderColor": 16,
+            "other/borderColor": 1156,
+            "footer/borderColor": 4,
+            "heading/borderColor": 232,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#2c2222",
+          "oklch": {
+            "c": 0.015359000785006363,
+            "h": 18.171000930997458,
+            "l": 0.2636474437161361
+          },
+          "contexts": [
+            "card",
+            "other",
+            "image"
+          ],
+          "frequency": 4676,
+          "confidence": 1,
+          "prominence": 9126628.549413407,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {
+            "card/color": 76,
+            "other/fill": 9,
+            "image/color": 70,
+            "other/color": 776,
+            "other/stroke": 57,
+            "card/borderColor": 304,
+            "image/borderColor": 280,
+            "other/borderColor": 3104
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "other",
+            "heading",
+            "body",
+            "icon",
+            "card",
+            "image",
+            "link"
+          ],
+          "frequency": 2410,
+          "confidence": 1,
+          "prominence": 1487389.303218805,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 49,
+            "card/color": 30,
+            "icon/color": 30,
+            "link/color": 2,
+            "image/color": 15,
+            "other/color": 305,
+            "button/color": 15,
+            "other/stroke": 30,
+            "heading/color": 30,
+            "body/borderColor": 196,
+            "card/borderColor": 120,
+            "icon/borderColor": 120,
+            "link/borderColor": 8,
+            "image/borderColor": 60,
+            "other/borderColor": 1220,
+            "button/borderColor": 60,
+            "heading/borderColor": 120
+          }
+        },
+        {
+          "hex": "#495472",
+          "oklch": {
+            "c": 0.05137132289756642,
+            "h": 268.72769786696733,
+            "l": 0.44891365739003897
+          },
+          "contexts": [
+            "button",
+            "card"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 596767.6249602718,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 15,
+            "button/backgroundColor": 15
+          }
+        },
+        {
+          "hex": "#b2b4b1",
+          "oklch": {
+            "c": 0.004755631115098347,
+            "h": 134.85772864786134,
+            "l": 0.7674379109157851
+          },
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 55,
+          "confidence": 1,
+          "prominence": 236260.6202940695,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 5,
+            "other/color": 6,
+            "link/borderColor": 20,
+            "other/borderColor": 24
+          }
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5981807305268477
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 252,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.019638444710616394,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.45,
+          "background": "#ffffff",
+          "foreground": "#2c2222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.06,
+          "background": "#000000",
+          "foreground": "#b2b4b1"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.52,
+          "background": "#495472",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.4,
+          "background": "#b2b4b1",
+          "foreground": "#2c2222"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.32,
+          "background": "#808080",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.95,
+          "background": "#808080",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.91,
+          "background": "#808080",
+          "foreground": "#2c2222"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.6,
+          "background": "#495472",
+          "foreground": "#b2b4b1"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.79,
+          "background": "#495472",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.06,
+          "background": "#495472",
+          "foreground": "#2c2222"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.89,
+          "background": "#808080",
+          "foreground": "#b2b4b1"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.36,
+          "background": "#000000",
+          "foreground": "#2c2222"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 5,
+          "contexts": [
+            "link",
+            "heading"
+          ],
+          "frequency": 76,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|link",
+            "marginBottom|heading"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 89,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|icon",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "card",
+            "button"
+          ],
+          "frequency": 290,
+          "properties": [
+            "paddingTop",
+            "marginBottom",
+            "paddingLeft",
+            "paddingRight",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginBottom|link",
+            "paddingLeft|heading",
+            "paddingRight|card",
+            "paddingLeft|card",
+            "paddingTop|button",
+            "paddingRight|button",
+            "paddingBottom|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 42,
+          "contexts": [
+            "other",
+            "body",
+            "card",
+            "heading"
+          ],
+          "frequency": 157,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|body",
+            "paddingBottom|card",
+            "paddingRight|heading",
+            "paddingLeft|heading",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 84,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 108,
+          "properties": [
+            "paddingRight",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "marginBottom|card",
+            "paddingTop|card",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 147,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingTop|heading"
+          ]
+        },
+        {
+          "value": 284,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 76,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": null
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "HelveticaNeue",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 1894,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "HelveticaNeue-Light",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 72,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 21,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 15,
+          "family": "HelveticaNeue",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.07,
+          "letterSpacing": 0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "HelveticaNeue-Light",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 72,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "HelveticaNeue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "HelveticaNeue",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.07,
+          "letterSpacing": 0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "HelveticaNeue",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "HelveticaNeue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body",
+            "image"
+          ],
+          "frequency": 26,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "HelveticaNeue",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "HelveticaNeue",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "hero",
+            "card",
+            "image",
+            "body",
+            "button"
+          ],
+          "frequency": 1748,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "HelveticaNeue",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "lineHeight": 1.07,
+          "letterSpacing": 0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "HelveticaNeue",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 72,
+          "lineHeight": 1.07,
+          "letterSpacing": 0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 62,
+          "family": "HelveticaNeue",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.011,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/def740b6-b7b2-4de9-bb5c-a63382caa642.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/fe974868-1a71-45e8-8298-1eafafa3f6b8.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/7fdcf5eb-4d65-49a2-b887-60119bca4edc#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Spacelab design system\",\"item\":\"https://styles.refero.design/style/7fdcf5eb-4d65-49a2-b887-60119bca4edc\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/7fdcf5eb-4d65-49a2-b887-60119bca4edc#style-reference\",\"name\":\"Spacelab design system reference\",\"headline\":\"Spacelab design system | Refero Styles\",\"description\":\"Explore Spacelab's light Agency design system: Paper White #ffffff, Ink Black #000000 colors, HelveticaNeue, HelveticaNeue-Light typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/7fdcf5eb-4d65-49a2-b887-60119bca4edc\",\"mainEntityOfPage\":\"https://styles.refero.design/style/7fdcf5eb-4d65-49a2-b887-60119bca4edc\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Spacelab\",\"url\":\"https://spacelab.co.uk\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/7fdcf5eb-4d65-49a2-b887-60119bca4edc#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fe974868-1a71-45e8-8298-1eafafa3f6b8.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fe974868-1a71-45e8-8298-1eafafa3f6b8.jpg\",\"caption\":\"Screenshot of Spacelab\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fe974868-1a71-45e8-8298-1eafafa3f6b8.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Spacelab design system\",\"Spacelab website design\",\"Spacelab colors\",\"Spacelab typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper White\",\"Ink Black\",\"Charcoal\",\"Fossil\",\"HelveticaNeue\",\"HelveticaNeue-Light\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Spacelab design system\"},{\"@type\":\"Thing\",\"name\":\"Spacelab website design\"},{\"@type\":\"Thing\",\"name\":\"Spacelab colors\"},{\"@type\":\"Thing\",\"name\":\"Spacelab typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T02:07:58.777Z\",\"dateModified\":\"2026-04-30T02:07:58.777Z\"}]}19:T4d7,**Quick Color Reference**\n- text: #000000 (primary), #2c2222 (secondary), #b2b4b1 (muted/inactive)\n- background: #ffffff\n- border: #000000 or #2c2222 (hairline 1px)\n- accent surface: #495472 (Slate Iris)\n- primary action: #495472 (filled action)\n\n**Example Component Prompts**\n\n1. *Display Headline*: 62px HelveticaNeue weight 400, line-height 1.00, letter-spacing 0.682px, color #000000, left-aligned, no margin-top, 84px margin-bottom to next element.\n\n2. *Filled Accent Button*: 15px HelveticaNeue weight 400, letter-spacing 0.165px, color #ffffff on background #495472, padding 21px 21px, border-radius 0, no border, no shadow, inline-block.\n\n3. *Vertical Sidebar Nav*: Stacked list of links, 17px HelveticaNeue weight 400, 10px row-gap, color #b2b4b1 for inactive items, color #000000 for active item, no bullets, no underlines, left-aligned in a 200px-wide left rail.\n\n4. *Body Paragraph*: 17px HelveticaNeue-Light, line-height 1.20, letter-spacing 0.187px, color #000000, 21px margin-bottom between paragraphs, left-aligned, ragged right, no max-width.\n\n5. *Full-Bleed Architectural Image*: Native aspect ratio, no border, border-radius 0, no caption, no overlay, aligned to right column of asymmetric grid, no decorative treatment."
+}

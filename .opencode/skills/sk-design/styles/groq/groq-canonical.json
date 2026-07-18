@@ -1,0 +1,1371 @@
+{
+  "source": "https://styles.refero.design/style/8efa9029-b39c-48db-a8ec-c97c645a7a58",
+  "uuid": "8efa9029-b39c-48db-a8ec-c97c645a7a58",
+  "name": "Groq",
+  "northStar": "speed lab notebook — parchment pages, graphite text, one highlighter-orange mark",
+  "capturedAt": "2026-07-18T09:38:23.570Z",
+  "meta": {
+    "url": "https://groq.com",
+    "siteName": "Groq",
+    "extractedAt": "2026-06-03T18:45:24.773Z",
+    "durationMs": 28209,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 515,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use weight 300 Space Grotesk for all headlines — it defines the site's quiet, technical voice.",
+      "Apply Ember Orange (#f43e01) only to CTAs, eyebrow labels, and decorative quote marks. Never as body text or large background fills.",
+      "Set all buttons to border-radius 1000px (pill shape) — this is a signature element.",
+      "Alternate between Parchment (#e8e8de) light sections and Graphite (#2d2f33) dark sections to create the thesis/proof/evidence rhythm.",
+      "Use IBM Plex Mono with +0.1em tracking for all small labels and eyebrows — the wide tracking signals 'technical spec'.",
+      "Keep spacing on an 8px grid with 48-80px section gaps and 16-24px element gaps.",
+      "Communicate depth through surface-value contrast (Parchment → Bone → White) rather than drop shadows."
+    ],
+    "donts": [
+      "Don't add drop shadows or elevation to any component — the system is intentionally flat.",
+      "Don't use bright colors other than Ember Orange and Vapor Pink — the system is near-monochrome by design.",
+      "Don't set headlines at weight 700 — weight 300 is the signature; bold would break the voice.",
+      "Don't use pure white (#ffffff) as a page background — always Parchment (#e8e8de) or Bone (#f3f3ee).",
+      "Don't use sharp corners on buttons or nav elements — the 1000px pill radius is non-negotiable.",
+      "Don't add gradients — the system is strictly flat color blocks.",
+      "Don't use multiple accent colors simultaneously — pick one (orange for action, pink for rare decoration) and commit."
+    ],
+    "theme": "mixed",
+    "colors": [
+      {
+        "hex": "#f43e01",
+        "name": "Ember Orange",
+        "role": "Orange supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#e09afe",
+        "name": "Vapor Pink",
+        "role": "Secondary decorative accent — rare highlights, special-emphasis inline marks, and select graphic flourishes. Used as a cool counterpoint to Ember Orange when a second color is needed",
+        "group": "accent"
+      },
+      {
+        "hex": "#e8e8de",
+        "name": "Parchment",
+        "role": "Page canvas — the warm off-white that defines the site's light mode. Warmer than pure white, it gives the whole interface a paper-like quality",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f3f3ee",
+        "name": "Bone",
+        "role": "Elevated surface — cards, content blocks, nav backgrounds. One step lighter than Parchment, used to lift elements off the canvas without harsh contrast",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2d2f33",
+        "name": "Graphite",
+        "role": "Primary text and dark section background — near-black with a cool cast. The workhorse color for headings, body copy, and full-bleed dark bands",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2a2a25",
+        "name": "Obsidian",
+        "role": "Deepest dark — alt dark-panel fill, footer surfaces. Slightly warmer than Graphite for variation in dark sections",
+        "group": "neutral"
+      },
+      {
+        "hex": "#69695d",
+        "name": "Stone",
+        "role": "Secondary text — descriptions, supporting copy, muted labels. Warm olive-gray that harmonizes with Parchment rather than fighting it",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9c9c90",
+        "name": "Ash",
+        "role": "Tertiary text and disabled states — nav dropdown items, fine print, inactive icons",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cecebf",
+        "name": "Khaki",
+        "role": "Hairline borders and dividers — low-contrast warm gray that defines edges without drawing attention",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c2c2be",
+        "name": "Mist",
+        "role": "List separators and secondary borders — a touch cooler than Khaki for list-item dividers",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed page with max-width 1200px centered content. The page alternates between light (Parchment) and dark (Graphite) full-width bands: hero is light, differentiator section is dark, social proof returns to light. Hero uses a split layout — large media card on the left (~60% width), headline + CTA + supporting cards on the right (~40%). The dark differentiator section is a centered text+media composition. Testimonials appear in a horizontally scrolling 3-card row. A sticky bottom bar persists across the page with brand logos and a speed-test input. Navigation is a centered-logo top bar with nav groups flanking it on both sides.",
+    "imagery": "Product photography is tight and technical: the LPU chip is shown as a clean product shot on white, isolated from context. No lifestyle imagery, no people, no environmental context — the hardware is the hero. Decorative elements are minimal: large orange quotation marks in testimonial cards, and the lightning-bolt logo mark. The overall image strategy is 'spec sheet' — clinical, confident, object-focused. No abstract gradients, no 3D renders, no illustrations with personality.",
+    "similar": [
+      {
+        "why": "Same light-canvas + single warm-accent + thin geometric sans-serif approach. Both use a quiet, document-like aesthetic rather than typical SaaS flash.",
+        "business": "Anthropic"
+      },
+      {
+        "why": "Same pill-button geometry, monochrome-with-one-accent palette, and Space-Grotesk-adjacent geometric sans-serif. Linear's dark mode is more dominant, but the button language is close.",
+        "business": "Linear"
+      },
+      {
+        "why": "Same commitment to flat surfaces, single accent color, and thin-weight headlines. Vercel uses a cooler palette but the structural flatness and typographic confidence are comparable.",
+        "business": "Vercel"
+      },
+      {
+        "why": "Both use a warm off-white canvas with dark text and a single vivid accent for CTAs. The technical-spec feel comes from mono-font labels and wide tracking on small text.",
+        "business": "Hugging Face"
+      },
+      {
+        "why": "Same alternating light/dark section rhythm and commitment to documenting rather than selling. Both feel like reading a technical brief rather than browsing a product page.",
+        "business": "Modal"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "5px",
+        "cards": "10px",
+        "buttons": "1000px"
+      },
+      "elementGap": "16-24px",
+      "sectionGap": "64-80px",
+      "cardPadding": "24-32px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#e8e8de",
+        "name": "Parchment Canvas",
+        "level": 0,
+        "purpose": "Page background in light sections"
+      },
+      {
+        "hex": "#f3f3ee",
+        "name": "Bone Card",
+        "level": 1,
+        "purpose": "Card surfaces, elevated content blocks"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White Card",
+        "level": 2,
+        "purpose": "Inset cards, code blocks, high-contrast surfaces"
+      },
+      {
+        "hex": "#2d2f33",
+        "name": "Graphite Panel",
+        "level": 3,
+        "purpose": "Dark section backgrounds"
+      },
+      {
+        "hex": "#2a2a25",
+        "name": "Obsidian Panel",
+        "level": 4,
+        "purpose": "Deepest dark panels, footer"
+      }
+    ],
+    "elevation": [],
+    "northStar": "speed lab notebook — parchment pages, graphite text, one highlighter-orange mark",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.4,
+        "letterSpacing": 1
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.57,
+        "letterSpacing": -0.3
+      },
+      {
+        "role": "heading-sm",
+        "size": 21,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.42
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 1.3,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "heading-lg",
+        "size": 36,
+        "lineHeight": 1,
+        "letterSpacing": -0.72
+      },
+      {
+        "role": "display",
+        "size": 46,
+        "lineHeight": 1,
+        "letterSpacing": -0.92
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary Pill Button",
+        "role": "Main call-to-action across all pages",
+        "description": "Fill: Ember Orange (#f43e01). Text: white, Space Grotesk 400, 14px. Border-radius: 1000px (fully pill). Padding: 10px 20px. No border, no shadow. On hover: slight darken. Used for 'Get Started', 'Start Building', 'Learn More', 'Read Customer Stories'."
+      },
+      {
+        "name": "Dark Pill Button",
+        "role": "Secondary CTA on light backgrounds",
+        "description": "Fill: Graphite (#2d2f33). Text: white, Space Grotesk 400, 14px. Border-radius: 1000px. Padding: 10px 20px. Used for 'Learn More' on dark sections or as alt CTA."
+      },
+      {
+        "name": "Icon-Only Square Button",
+        "role": "Compact action trigger (e.g., send/submit)",
+        "description": "Fill: Ember Orange (#f43e01). 32×32px square with 4-6px radius. White icon centered. Used in the sticky developer bar for the submit/send action."
+      },
+      {
+        "name": "Hero Content Card",
+        "role": "Primary content container on the landing page hero",
+        "description": "Background: Bone (#f3f3ee) or white. Border-radius: 10px. No border, no shadow. Contains a large product visual or media placeholder. Sits on Parchment canvas."
+      },
+      {
+        "name": "Dark Section Panel",
+        "role": "Full-bleed dark band for proof/differentiator sections",
+        "description": "Background: Graphite (#2d2f33). Text: white (Space Grotesk 300 for headlines, 400 for body). Accent eyebrow: Ember Orange. Full viewport width, ~400-500px tall. No border-radius — edge-to-edge."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "Customer quote display in social-proof section",
+        "description": "Background: white or Bone. Border-radius: 10px. Padding: 32px. Features a large Ember Orange quotation mark (Space Grotesk weight 300, ~40px) in the top-left. Body text in Graphite, 17px. Attribution in IBM Plex Mono 12px, +0.1em tracking, Stone color."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Section category tag above headlines",
+        "description": "Font: IBM Plex Mono 400, 12px. Color: Ember Orange. Letter-spacing: +0.1em (wide). Text-transform: uppercase. Sits centered or left-aligned above the section heading with 12-16px gap."
+      },
+      {
+        "name": "Sticky Developer Bar",
+        "role": "Persistent bottom bar with brand logos and speed-test CTA",
+        "description": "Background: white. Height: ~48px. Position: fixed bottom. Contains horizontally scrolling brand logos (grayscale) on the left, a dark pill-shaped input field ('Try the speed of Groq...') in the center-right, and an Ember Orange icon-button on the right."
+      },
+      {
+        "name": "Navigation Header",
+        "role": "Top-level site navigation",
+        "description": "Background: Parchment (#e8e8de) on light pages, transparent on dark. Layout: left nav group | centered logo | right nav group. Logo: Groq wordmark in Graphite. Nav links: Space Grotesk 400, 14px, Graphite. Primary CTA: Primary Pill Button (Ember Orange)."
+      },
+      {
+        "name": "Feature Content Card",
+        "role": "Supporting content card (e.g., 'Speed at a winning cost')",
+        "description": "Background: Bone (#f3f3ee). Border-radius: 10px. Padding: 20-24px. Contains a small media thumbnail at top, then an Ember Orange eyebrow label, then a heading (Space Grotesk 300, 19-21px), then body text (15px, Stone)."
+      },
+      {
+        "name": "Code Block",
+        "role": "Code snippets and API examples",
+        "description": "Background: white or Bone. Font: IBM Plex Mono 400, 14px. Border-radius: 10px. Padding: 24px. Syntax highlighting uses Ember Orange for keywords and Graphite for text."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface — all headings and body text. Weight 300 for headlines creates a quiet, technical confidence (anti-convention; most sites shout with 700). Weight 400 for body. Tight tracking at -0.02em across all sizes keeps headlines compact even at 46px.",
+        "sizes": "13, 14, 15, 17, 19, 21, 24, 28, 32, 36, 46",
+        "family": "Space Grotesk",
+        "weight": "300, 400",
+        "lineHeight": "1.0–1.57",
+        "substitute": "Inter (close), General Sans, Satoshi",
+        "letterSpacing": "-0.02em across all sizes"
+      },
+      {
+        "role": "Eyebrow labels, section tags, code snippets, small data. Tracking +0.1em (wide) gives it a technical-spec or serial-number quality — used sparingly above headings or as status indicators.",
+        "sizes": "10, 12, 14",
+        "family": "IBM Plex Mono",
+        "weight": "400, 500",
+        "lineHeight": "1.17–1.57",
+        "substitute": "JetBrains Mono, Roboto Mono",
+        "letterSpacing": "+0.1em"
+      }
+    ],
+    "description": "Groq reads as a speed lab notebook — warm parchment surfaces, tight geometric sans-serif (Space Grotesk at whisper-weight 300), and a single searing orange accent that marks every action and highlight like a highlighter pen on graph paper. The layout alternates between bright cream and deep charcoal panels, creating a documentary rhythm of thesis (light) → proof (dark) → evidence (light) rather than a marketing funnel. Typography is small, confident, and slightly compressed; pill buttons and IBM Plex Mono eyebrows with wide tracking give the whole system a technical-spec feel. Components stay flat and minimal — no drop shadows, no gradients, no decorative chrome — so the orange is always the loudest thing on screen.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8efa9029-b39c-48db-a8ec-c97c645a7a58#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Groq design system\",\"item\":\"https://styles.refero.design/style/8efa9029-b39c-48db-a8ec-c97c645a7a58\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8efa9029-b39c-48db-a8ec-c97c645a7a58#style-reference\",\"name\":\"Groq design system reference\",\"headline\":\"Groq design system | Refero Styles\",\"description\":\"Explore Groq's mixed AI design system: Ember Orange #f43e01, Vapor Pink #e09afe colors, Space Grotesk, IBM Plex Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8efa9029-b39c-48db-a8ec-c97c645a7a58\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8efa9029-b39c-48db-a8ec-c97c645a7a58\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Groq\",\"url\":\"https://groq.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8efa9029-b39c-48db-a8ec-c97c645a7a58#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f0b3d150-c776-4457-8d3d-ac572b679666.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f0b3d150-c776-4457-8d3d-ac572b679666.jpg\",\"caption\":\"Screenshot of Groq\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f0b3d150-c776-4457-8d3d-ac572b679666.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Groq design system\",\"Groq website design\",\"Groq colors\",\"Groq typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Ember Orange\",\"Vapor Pink\",\"Parchment\",\"Bone\",\"Space Grotesk\",\"IBM Plex Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Groq design system\"},{\"@type\":\"Thing\",\"name\":\"Groq website design\"},{\"@type\":\"Thing\",\"name\":\"Groq colors\"},{\"@type\":\"Thing\",\"name\":\"Groq typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-01-15T17:42:46.000Z\",\"dateModified\":\"2026-01-15T17:42:46.000Z\"}]}19:T637,**Quick Color Reference**\n- text: #2d2f33\n- background: #e8e8de\n- card surface: #f3f3ee\n- border: #cecebf\n- accent: #f43e01\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Create a dark differentiator section: Full-bleed Graphite (#2d2f33) background, no border-radius. Ember Orange lightning-bolt icon top-left. Headline in white Space Grotesk weight 300 at 32px, -0.56px tracking. Body text in white at 15px. A Dark Pill Button (Graphite fill won't work — use white outline: 1px white border, 1000px radius, white text, 10px 20px padding) labeled 'Learn More'.\n\n3. Create a testimonial card: Bone (#f3f3ee) background, 10px radius, 32px padding. A 40px Space Grotesk weight 300 Ember Orange quotation mark in the top-left corner. Quote text in Graphite at 17px Space Grotesk 400. Attribution line in IBM Plex Mono 12px, +0.1em tracking, Stone (#69695d) color.\n\n4. Create an eyebrow label: IBM Plex Mono 400, 12px, Ember Orange (#f43e01), letter-spacing 0.1em, text-transform uppercase, centered or left-aligned above a section heading with 12-16px gap below.\n\n5. Create the sticky developer bar: White background, fixed to viewport bottom, 48px height. Left side: row of 5-6 grayscale brand logos. Right side: a dark pill-shaped input field (Graphite #2d2f33 fill, white placeholder text 'Try the speed of Groq...', 1000px radius) followed by a 32×32 Ember Orange icon-only button (4-6px radius) with a white send/submit icon."
+      },
+      {
+        "title": "Rhythm Philosophy",
+        "content": "The page reads as alternating evidence: a light band states the thesis, a dark band provides proof, a light band delivers social evidence. Never use two light bands back-to-back without a dark section or a strong visual divider in between. Dark sections should be 400-500px tall — enough to make a statement, short enough to return to the light quickly."
+      }
+    ],
+    "elevationPhilosophy": "No drop shadows anywhere. Depth is communicated exclusively through surface-value contrast (Parchment → Bone → White) and color shifts (Graphite panels). This flatness is deliberate — it keeps the orange accent as the only thing that visually 'pops' off the page."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#2d2f33",
+          "oklch": {
+            "c": 0.00771459570376682,
+            "h": 264.4535646903793,
+            "l": 0.30476359931767477
+          },
+          "contexts": [
+            "other",
+            "button",
+            "link",
+            "body",
+            "nav",
+            "list",
+            "hero",
+            "heading",
+            "card",
+            "image",
+            "icon",
+            "footer"
+          ],
+          "frequency": 1818,
+          "confidence": 1,
+          "prominence": 107830021.7046645,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "icon",
+            "heading",
+            "nav"
+          ],
+          "frequency": 274,
+          "confidence": 1,
+          "prominence": 11116657.445726201,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f3f3ee",
+          "oklch": {
+            "c": 0.006621858483873498,
+            "h": 106.5233259903061,
+            "l": 0.9627678560071545
+          },
+          "contexts": [
+            "other",
+            "button",
+            "hero",
+            "nav",
+            "body"
+          ],
+          "frequency": 44,
+          "confidence": 1,
+          "prominence": 6421513.988476362,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e8e8de",
+          "oklch": {
+            "c": 0.013333686696235258,
+            "h": 106.65654866927947,
+            "l": 0.9282413417258913
+          },
+          "contexts": [
+            "card",
+            "other",
+            "body"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 5522565.936770255,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f43e01",
+          "oklch": {
+            "c": 0.22428639770789557,
+            "h": 34.67430714220064,
+            "l": 0.6354098195612604
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "card",
+            "other",
+            "icon"
+          ],
+          "frequency": 138,
+          "confidence": 1,
+          "prominence": 4386791.154187243,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2a2a25",
+          "oklch": {
+            "c": 0.008914299369055158,
+            "h": 106.95548685484167,
+            "l": 0.28322194962985614
+          },
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2560810,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c2c2be",
+          "oklch": {
+            "c": 0.005524398540258916,
+            "h": 106.5216699285569,
+            "l": 0.8141594060618796
+          },
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 1371064.1103825013,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 881772,
+          "properties": [
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#69695d",
+          "oklch": {
+            "c": 0.0183739920168113,
+            "h": 107.0252429024087,
+            "l": 0.5171289410686034
+          },
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "heading"
+          ],
+          "frequency": 45,
+          "confidence": 1,
+          "prominence": 500716.4148785243,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cecebf",
+          "oklch": {
+            "c": 0.020392867646192202,
+            "h": 106.82703781682521,
+            "l": 0.8472645668160167
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 158316.68918663764,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e09afe",
+          "oklch": {
+            "c": 0.15494701692623203,
+            "h": 315.30785917613,
+            "l": 0.7911635486370217
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 20,
+          "confidence": 1,
+          "prominence": 21842.994543478777,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#c23101",
+          "oklch": {
+            "c": 0.1874937715515232,
+            "h": 35.026005087023975,
+            "l": 0.536396909519506
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 21418.9992809755,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9c9c90",
+          "oklch": {
+            "c": 0.017172811507330285,
+            "h": 106.84178282431992,
+            "l": 0.6892551851042129
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "icon",
+            "other"
+          ],
+          "frequency": 22,
+          "confidence": 1,
+          "prominence": 9422.579554466758,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#d377fd",
+          "oklch": {
+            "c": 0.20435178179766858,
+            "h": 314.1187788851223,
+            "l": 0.7229709282632069
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1250,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ff4d00",
+          "oklch": {
+            "c": 0.2235449978075073,
+            "h": 36.986225243783736,
+            "l": 0.6676621690663676
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 503.2598016671885,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.06030879134343465,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.87,
+          "background": "#000000",
+          "foreground": "#f3f3ee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.03,
+          "background": "#e8e8de",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.42,
+          "background": "#2a2a25",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.41,
+          "background": "#ffffff",
+          "foreground": "#2d2f33"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.21,
+          "background": "#000000",
+          "foreground": "#cecebf"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.95,
+          "background": "#2a2a25",
+          "foreground": "#f3f3ee"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.05,
+          "background": "#f3f3ee",
+          "foreground": "#2d2f33"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.75,
+          "background": "#c2c2be",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.69,
+          "background": "#e8e8de",
+          "foreground": "#2a2a25"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.87,
+          "background": "#e8e8de",
+          "foreground": "#2d2f33"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.22,
+          "background": "#000000",
+          "foreground": "#e09afe"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.07,
+          "background": "#2a2a25",
+          "foreground": "#cecebf"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.43,
+          "background": "#2d2f33",
+          "foreground": "#cecebf"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.07,
+          "background": "#c2c2be",
+          "foreground": "#2a2a25"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.83,
+          "background": "#d377fd",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.57,
+          "background": "#000000",
+          "foreground": "#9c9c90"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.51,
+          "background": "#c2c2be",
+          "foreground": "#2d2f33"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.02,
+          "background": "#2a2a25",
+          "foreground": "#e09afe"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.53,
+          "background": "#2d2f33",
+          "foreground": "#e09afe"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 1000,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 14
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 3
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 31,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 9,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 13,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 35,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 21,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 42,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 74,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 36,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 14,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 41,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "paddingBottom",
+            "paddingTop",
+            "marginTop",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 50,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "rowGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 128,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Space Grotesk",
+          "source": "google",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 420,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "IBM Plex Mono",
+          "source": "google",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 49,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "IBM Plex Mono",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "IBM Plex Mono",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "card",
+            "nav",
+            "other"
+          ],
+          "frequency": 17,
+          "lineHeight": 1.4,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "IBM Plex Mono",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.17,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "IBM Plex Mono",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.57,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 12,
+          "family": "IBM Plex Mono",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.1,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Space Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "button",
+            "nav",
+            "list"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Space Grotesk",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "IBM Plex Mono",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 19,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Space Grotesk",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "other",
+            "link",
+            "body",
+            "heading",
+            "list",
+            "icon"
+          ],
+          "frequency": 64,
+          "lineHeight": 1.57,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Space Grotesk",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "link"
+          ],
+          "frequency": 59,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Space Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "hero",
+            "card",
+            "link",
+            "image",
+            "heading",
+            "list",
+            "icon",
+            "button",
+            "body",
+            "nav"
+          ],
+          "frequency": 230,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 17,
+          "family": "Space Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Space Grotesk",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Space Grotesk",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "footer",
+            "image",
+            "icon"
+          ],
+          "frequency": 36,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Space Grotesk",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Space Grotesk",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Space Grotesk",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Space Grotesk",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 36,
+          "family": "Space Grotesk",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 46,
+          "family": "Space Grotesk",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.3,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/2ad38eb3-8222-4720-8f3d-d20545373eac.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/f0b3d150-c776-4457-8d3d-ac572b679666.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/8efa9029-b39c-48db-a8ec-c97c645a7a58#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Groq design system\",\"item\":\"https://styles.refero.design/style/8efa9029-b39c-48db-a8ec-c97c645a7a58\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/8efa9029-b39c-48db-a8ec-c97c645a7a58#style-reference\",\"name\":\"Groq design system reference\",\"headline\":\"Groq design system | Refero Styles\",\"description\":\"Explore Groq's mixed AI design system: Ember Orange #f43e01, Vapor Pink #e09afe colors, Space Grotesk, IBM Plex Mono typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/8efa9029-b39c-48db-a8ec-c97c645a7a58\",\"mainEntityOfPage\":\"https://styles.refero.design/style/8efa9029-b39c-48db-a8ec-c97c645a7a58\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Groq\",\"url\":\"https://groq.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/8efa9029-b39c-48db-a8ec-c97c645a7a58#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/f0b3d150-c776-4457-8d3d-ac572b679666.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/f0b3d150-c776-4457-8d3d-ac572b679666.jpg\",\"caption\":\"Screenshot of Groq\"},\"image\":\"https://images.refero.design/styles/refero.design/image/f0b3d150-c776-4457-8d3d-ac572b679666.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Groq design system\",\"Groq website design\",\"Groq colors\",\"Groq typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Ember Orange\",\"Vapor Pink\",\"Parchment\",\"Bone\",\"Space Grotesk\",\"IBM Plex Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Groq design system\"},{\"@type\":\"Thing\",\"name\":\"Groq website design\"},{\"@type\":\"Thing\",\"name\":\"Groq colors\"},{\"@type\":\"Thing\",\"name\":\"Groq typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-01-15T17:42:46.000Z\",\"dateModified\":\"2026-01-15T17:42:46.000Z\"}]}19:T637,**Quick Color Reference**\n- text: #2d2f33\n- background: #e8e8de\n- card surface: #f3f3ee\n- border: #cecebf\n- accent: #f43e01\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. Create a dark differentiator section: Full-bleed Graphite (#2d2f33) background, no border-radius. Ember Orange lightning-bolt icon top-left. Headline in white Space Grotesk weight 300 at 32px, -0.56px tracking. Body text in white at 15px. A Dark Pill Button (Graphite fill won't work — use white outline: 1px white border, 1000px radius, white text, 10px 20px padding) labeled 'Learn More'.\n\n3. Create a testimonial card: Bone (#f3f3ee) background, 10px radius, 32px padding. A 40px Space Grotesk weight 300 Ember Orange quotation mark in the top-left corner. Quote text in Graphite at 17px Space Grotesk 400. Attribution line in IBM Plex Mono 12px, +0.1em tracking, Stone (#69695d) color.\n\n4. Create an eyebrow label: IBM Plex Mono 400, 12px, Ember Orange (#f43e01), letter-spacing 0.1em, text-transform uppercase, centered or left-aligned above a section heading with 12-16px gap below.\n\n5. Create the sticky developer bar: White background, fixed to viewport bottom, 48px height. Left side: row of 5-6 grayscale brand logos. Right side: a dark pill-shaped input field (Graphite #2d2f33 fill, white placeholder text 'Try the speed of Groq...', 1000px radius) followed by a 32×32 Ember Orange icon-only button (4-6px radius) with a white send/submit icon."
+}

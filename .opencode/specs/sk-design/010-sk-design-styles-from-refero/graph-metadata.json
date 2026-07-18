@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/010-sk-design-styles-from-refero",
+  "spec_folder": "sk-design/010-sk-design-styles-from-refero",
+  "parent_id": null,
+  "children_ids": [
+    "sk-design/010-sk-design-styles-from-refero/001-extraction-harness",
+    "sk-design/010-sk-design-styles-from-refero/002-pilot-batch",
+    "sk-design/010-sk-design-styles-from-refero/003-full-set"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "refero styles extraction",
+      "sk-design styles library",
+      "bulk design token extraction"
+    ],
+    "key_topics": [
+      "refero",
+      "styles",
+      "extraction",
+      "sk-design",
+      "library",
+      "bulk",
+      "design",
+      "token",
+      "holds",
+      "exactly",
+      "one",
+      "extracted"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "001-extraction-harness/spec.md",
+      "002-pilot-batch/spec.md",
+      ".opencode/skills/sk-design/styles/_harness/extract-refero.mjs",
+      ".opencode/skills/sk-design/styles/_harness/README.md",
+      ".opencode/skills/sk-design/styles/_manifest.json",
+      ".opencode/skills/sk-design/styles/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "extract-refero.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/styles/_harness/extract-refero.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/styles/_harness/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "_manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/styles/_manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-design` holds exactly one extracted design reference (`.opencode/skills/sk-design/styles/cursor/`), captured by hand from a styles.refero.design per-style page",
+    "created_at": "2026-07-18T06:04:54.636Z",
+    "last_save_at": "2026-07-18T10:25:47.447Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:59482f449dd8354b4628d490df4da372094f0885bb42ddedea2a10ff4b17e218",
+    "source_doc_hashes": {
+      "spec.md": "3944fcc674bb86f2bfab906a9145cf88f819394284da28b256ef0d2e1be307c5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

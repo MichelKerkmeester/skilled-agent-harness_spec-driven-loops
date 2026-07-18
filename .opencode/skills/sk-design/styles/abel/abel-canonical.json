@@ -1,0 +1,1109 @@
+{
+  "source": "https://styles.refero.design/style/f3f7122e-d8d3-48f7-9d9d-df6e71545010",
+  "uuid": "f3f7122e-d8d3-48f7-9d9d-df6e71545010",
+  "name": "Abel",
+  "northStar": "Cream paper, black ink, breathing room — an editorial lookbook that smells of perfume.",
+  "capturedAt": "2026-07-18T08:44:04.786Z",
+  "meta": {
+    "url": "https://abelfragrance.com",
+    "siteName": "Abel",
+    "extractedAt": "2026-06-03T21:54:29.098Z",
+    "durationMs": 44963,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 380,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set every headline in Founders Grotesk weight 300 — the whisper-light cut is the brand's editorial signature, never use bold or semibold for display copy.",
+      "Use Founders Grotesk Mono 12–14px uppercase with +0.03em letter-spacing for all buttons, links, navigation, and section labels — the monospaced voice is what makes the UI read as a typeset colophon.",
+      "Let the system run on #030303 ink and #ffffff paper; introduce #f6eada Parchment Cream only as a subtle surface tint or hairline accent, never as a bold fill block.",
+      "Give every section 72px of vertical breathing room; the spacious density is non-negotiable for the editorial register.",
+      "Keep all corners sharp — zero border-radius on buttons, cards, images, and inputs preserves the printed/editorial feel.",
+      "Alternate full-bleed photographic plates with white product surfaces to create the lookbook rhythm.",
+      "Use the 28px compressed Mono display (line-height 0.92, letter-spacing -0.02em) for section-level mono headings, not a separate large sans-serif."
+    ],
+    "donts": [
+      "Don't use elevation, drop shadows, or any depth effect — the system is intentionally flat; a shadow would break the printed-paper illusion.",
+      "Don't introduce saturated chromatic colors into the UI palette — all color temperature comes from photography, not from interface fills.",
+      "Don't use Founders Grotesk weight 700 or 800 for headlines — the entire brand voice is built on weight 300 restraint.",
+      "Don't set Mono text in sentence case; all functional monospaced copy is uppercase.",
+      "Don't use icons larger than 16px in navigation or 20px in utility contexts — the system is text-led, icons are supporting marks only.",
+      "Don't fill buttons with color — buttons are either solid #030303 (primary) or ghost underlined Mono text (secondary); there is no colored button state.",
+      "Don't add borders or backgrounds to product imagery — perfume bottles and lifestyle photos float directly on the canvas with no framing."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#030303",
+        "name": "Ink Black",
+        "role": "Primary text, hairlines, ghost button borders, product card outlines, icon strokes — the dominant structural color; sets all copy and dividers against white and cream surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, product card backgrounds, inverse text on black buttons and dark imagery",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f6eada",
+        "name": "Parchment Cream",
+        "role": "Warm accent surface, hairline borders, subtle highlight washes — the only chromatic note in the system; appears sparingly as tint, never as bold fill, to echo natural ingredient warmth without competing with photography",
+        "group": "accent"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Ash Gray",
+        "role": "Disabled/placeholder surfaces, secondary background panels behind product imagery",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dad9d5",
+        "name": "Stone Gray",
+        "role": "Soft secondary surface, muted card backgrounds for non-primary content blocks",
+        "group": "neutral"
+      },
+      {
+        "hex": "#807e81",
+        "name": "Pencil Gray",
+        "role": "Medium-contrast borders, control outlines, and structural separators. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Full-bleed editorial layout with no max-width constraint on the canvas itself — imagery stretches edge-to-edge while text blocks are constrained to ~360–480px columns anchored bottom-left or centered. The page reads top-to-bottom as alternating plates: full-bleed dark hero → full-bleed lifestyle product shot → white PDP with centered minimal product. Section rhythm is spacious with 72px gaps; content within sections breathes through 20–40px internal padding. Navigation is a minimal header bar (logo centered, menu left, cart right) over a thin announcement bar — no sticky behavior, no mega-menu visible at the top level. The PDP uses a centered single-column stack rather than the typical two-column product layout, reinforcing the lookbook-over-retail feel.",
+    "imagery": "Full-bleed editorial photography is the entire visual engine of the site. Lifestyle plates show models in saturated, almost ironic wardrobe (pale yellow puffer jacket, bananas clutched as still-life) — the styling is high-fashion, slightly surreal, and occupies the full viewport with no cropping or framing. Product photography shifts between dark moody macro shots (deep olive/green, shallow depth of field, bottle emerging from darkness) and clean white-bg product isolation on PDPs. There is no illustration, no 3D rendering, no icon system beyond minimal line marks. Image treatment is always photographic, never filtered or duotoned — color comes from the captured scene, not from post-processing. The ratio of image to text is roughly 70/30, with imagery functioning as atmosphere rather than product showcase in hero sections.",
+    "similar": [
+      {
+        "why": "Same restrained monochrome UI with serif/sans editorial typography and product photography as the chromatic content; both use generous whitespace and zero border-radius.",
+        "business": "Aesop"
+      },
+      {
+        "why": "Shared ultra-minimal commerce layout with uppercase tracked labels, centered wordmark, and full-bleed lifestyle photography over near-empty pages.",
+        "business": "Le Labo"
+      },
+      {
+        "why": "Comparable editorial-fragrance aesthetic: light canvas, large light-weight headlines, monospaced or tracked uppercase micro-typography, and photographic plates carrying all color.",
+        "business": "Byredo"
+      },
+      {
+        "why": "Similar printed-lookbook rhythm with centered minimal PDPs, Mono-functional labels, and photography alternating with white space rather than card grids.",
+        "business": "Diptyque"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "0px",
+        "images": "0px",
+        "inputs": "0px",
+        "buttons": "0px"
+      },
+      "elementGap": "12px",
+      "sectionGap": "72px",
+      "cardPadding": "40px",
+      "pageMaxWidth": "1440px"
+    },
+    "industry": "ecommerce",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 0,
+        "purpose": "Base page canvas — product detail pages, editorial sections, and the dominant surface for all non-hero content."
+      },
+      {
+        "hex": "#dad9d5",
+        "name": "Stone Gray",
+        "level": 1,
+        "purpose": "Recessed background panels for product carousels and grouping blocks."
+      },
+      {
+        "hex": "#f6eada",
+        "name": "Parchment Cream",
+        "level": 2,
+        "purpose": "Warm accent surface — the only chromatic elevation tier, used for featured panels and hairline borders."
+      }
+    ],
+    "northStar": "Cream paper, black ink, breathing room — an editorial lookbook that smells of perfume.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.15,
+        "letterSpacing": 0.36
+      },
+      {
+        "role": "body",
+        "size": 15,
+        "lineHeight": 1.45,
+        "letterSpacing": 0.15
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.35
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.25
+      },
+      {
+        "role": "display",
+        "size": 28,
+        "lineHeight": 0.92,
+        "letterSpacing": -0.56
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.2
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Top utility strip — new product launches, shipping notices, editorial callouts.",
+        "description": "Full-width white bar, 38–40px vertical padding. Center-aligned copy in Founders Grotesk Mono 12px, weight 400, uppercase, letter-spacing 0.03em, #030303. Close (×) icon right-aligned. No background fill — sits flush against white canvas with no border."
+      },
+      {
+        "name": "Site Header with Wordmark",
+        "role": "Primary navigation and brand identity on every page.",
+        "description": "Transparent over imagery, white on solid sections. Wordmark 'Abel' centered in Founders Grotesk 500, 32px, #030303, letter-spacing 0.01em. Left: MENU in Mono 12px uppercase with hamburger icon, 12px gap. Right: search icon + CART label, Mono 12px uppercase, 20px gap between items. All elements vertically centered with 20px vertical padding."
+      },
+      {
+        "name": "Hero Full-Bleed Plate",
+        "role": "Opening editorial spread — sets mood through photography with overlaid copy.",
+        "description": "Edge-to-edge photography filling the viewport, no border, no radius. Caption block anchored bottom-left with 40px left padding: section title in Mono 13–14px uppercase (e.g. 'INTRODUCING, MIAMI SPLIT'), supporting body in Founders Grotesk 300 at 15–16px, and a underlined Mono ghost link 12px. Text color is #ffffff on dark imagery, #030303 on light imagery."
+      },
+      {
+        "name": "Ghost Text Link",
+        "role": "Tertiary navigation, editorial cross-references, product page secondary actions.",
+        "description": "Inline link in Founders Grotesk Mono 12–13px, weight 400, uppercase, letter-spacing 0.03em, #030303. 1px underline (text-decoration or bottom border) in same color. No background, no border, no padding — pure typographic link. 12px gap to surrounding elements."
+      },
+      {
+        "name": "Solid CTA Button",
+        "role": "Primary commerce action — add to cart, shop product, checkout.",
+        "description": "Solid #030303 fill, #ffffff text. Founders Grotesk Mono 12–13px, weight 400, uppercase, letter-spacing 0.03em. 10px vertical padding × 40px horizontal padding. Zero border-radius. No hover state changes fill — invert to #ffffff with #030303 text and 1px border. Width auto, left-aligned within its container."
+      },
+      {
+        "name": "Product Detail Card",
+        "role": "Centered product showcase on PDP — bottle, notes, and purchase entry.",
+        "description": "White #ffffff canvas. Product name 'MIAMI SPLIT' in Founders Grotesk 500, 20px, #030303, letter-spacing 0.02em, centered. Category line 'EAU DE PARFUM' in Mono 12px uppercase above it. Centered product image (transparent PNG, no background, no shadow). Below: scent note descriptor in Founders Grotesk 300, 15–16px, centered. CTA button beneath with 32px gap. No card border, no shadow — the product floats on white."
+      },
+      {
+        "name": "Editorial Caption Block",
+        "role": "Body copy accompanying hero and section imagery.",
+        "description": "Left-aligned, max-width ~360px. Section eyebrow in Mono 13px uppercase, 11–12px below it body copy in Founders Grotesk 300 at 15–16px, line-height 1.45. #030303 on light backgrounds, #ffffff on dark imagery."
+      },
+      {
+        "name": "Footer",
+        "role": "Site map, legal, newsletter — quiet utility closing the page.",
+        "description": "White or Stone Gray #dad9d5 background. 38px top/bottom padding. Mono 12px uppercase labels for column headers. Mono 12px for links. No heavy dividers — grouping is done through generous whitespace and column gap of 40px."
+      },
+      {
+        "name": "Navigation Drawer Trigger",
+        "role": "Hamburger menu and cart flyout entry points.",
+        "description": "Icon + label pair in Mono 12px uppercase, 12px gap between icon and text. #030303. No background, no border. Tapping reveals full-screen overlay menu on white with large Mono link stack."
+      },
+      {
+        "name": "Section Label",
+        "role": "Small uppercase title introducing each content block.",
+        "description": "Founders Grotesk Mono 13–14px, weight 400, uppercase, letter-spacing 0.03em, #030303. Leading uppercase, 20px top margin from preceding section."
+      },
+      {
+        "name": "Text Input",
+        "role": "Newsletter signup, search field, contact forms.",
+        "description": "Transparent background, 1px bottom border in #030303, no side borders, no radius. Placeholder and input text in Founders Grotesk 300 or Mono 12–14px, #030303. 10–12px vertical padding. No focus ring — the persistent bottom border is the only affordance."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary display and body family. Weight 300 carries all headlines and large editorial copy — the ultra-light cut is the signature voice: most fragrance sites use 600–700, this whisper-weight gives headlines a typeset, almost printed feel. Weight 500 handles body text, descriptions, and navigation labels where more presence is needed. Letter-spacing opens slightly (+0.01 to +0.02em) at display sizes for an airy editorial cadence.",
+        "sizes": "13px, 15px, 16px, 18px, 20px, 32px",
+        "family": "Founders Grotesk",
+        "weight": "300, 500",
+        "lineHeight": "1.20–1.45",
+        "substitute": "Inter, Söhne, Neue Haas Grotesk",
+        "letterSpacing": "0.0100em–0.0200em (positive tracking at larger sizes)"
+      },
+      {
+        "role": "Functional monospaced voice for every UI element: buttons, nav labels, announcement bar copy, tags, section titles, input fields, and link text. Always set uppercase with positive tracking (+0.03em) — this monospaced uppercase is what makes the interface read as a typeset label system rather than a typical web UI. At 28px it becomes a section heading style with tight line-height (0.92), creating a distinctive compressed mono display.",
+        "sizes": "12px, 13px, 14px, 16px, 28px",
+        "family": "Founders Grotesk Mono",
+        "weight": "400",
+        "lineHeight": "0.92–1.15",
+        "substitute": "JetBrains Mono, IBM Plex Mono, Geist Mono",
+        "letterSpacing": "0.0300em (uppercase functional text); -0.0200em (display 28px)"
+      }
+    ],
+    "description": "Abel operates as an editorial fragrance house: one warm cream note against a near-total monochrome canvas, with photography doing the chromatic work. The interface is deliberately quiet — near-black ink on white paper, whisper-light sans-serif headlines (weight 300), and a monospaced voice for all functional microcopy that gives every label, button, and link the cadence of a typeset colophon. Spacing is generous and sectional, letting full-bleed photographic plates alternate with white product cards; the result reads like a printed lookbook rather than a retail UI. The single non-neutral (#f6eada, a warm parchment cream) appears as a subtle surface tint and accent border — never as fill or decoration — so the visual system stays austere while the imagery carries all the color temperature.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f3f7122e-d8d3-48f7-9d9d-df6e71545010#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Abel design system\",\"item\":\"https://styles.refero.design/style/f3f7122e-d8d3-48f7-9d9d-df6e71545010\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f3f7122e-d8d3-48f7-9d9d-df6e71545010#style-reference\",\"name\":\"Abel design system reference\",\"headline\":\"Abel design system | Refero Styles\",\"description\":\"Explore Abel's light E-commerce design system: Ink Black #030303, Paper White #ffffff colors, Founders Grotesk, Founders Grotesk Mono typography, and...\",\"url\":\"https://styles.refero.design/style/f3f7122e-d8d3-48f7-9d9d-df6e71545010\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f3f7122e-d8d3-48f7-9d9d-df6e71545010\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Abel\",\"url\":\"https://abelfragrance.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f3f7122e-d8d3-48f7-9d9d-df6e71545010#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6df6eff2-14f6-43fb-af8f-b7c577b08152.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6df6eff2-14f6-43fb-af8f-b7c577b08152.jpg\",\"caption\":\"Screenshot of Abel\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6df6eff2-14f6-43fb-af8f-b7c577b08152.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Abel design system\",\"Abel website design\",\"Abel colors\",\"Abel typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink Black\",\"Paper White\",\"Parchment Cream\",\"Ash Gray\",\"Founders Grotesk\",\"Founders Grotesk Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Abel design system\"},{\"@type\":\"Thing\",\"name\":\"Abel website design\"},{\"@type\":\"Thing\",\"name\":\"Abel colors\"},{\"@type\":\"Thing\",\"name\":\"Abel typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-05-08T18:59:22.958Z\",\"dateModified\":\"2026-05-08T18:59:22.958Z\"}]}19:T526,**Quick Color Reference**\n- text: #030303\n- background: #ffffff\n- border: #030303\n- accent: #f6eada (Parchment Cream)\n- muted text: #807e81\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Build the hero plate:** Full-bleed photographic background filling 100vh. Bottom-left caption block with 40px left padding: eyebrow in Founders Grotesk Mono 13px uppercase, +0.03em tracking, #ffffff. Title in Founders Grotesk 300 at 32px, #ffffff. Body in Founders Grotesk 300 at 15–16px, line-height 1.45, #ffffff. Ghost link at 12px Mono uppercase underlined.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n3. **Build the ghost link:** Inline element, Founders Grotesk Mono 12px weight 400, uppercase, +0.03em tracking, #030303, 1px underline. No background, no border, no padding. 12px gap to adjacent elements.\n\n4. **Build the announcement bar:** Full-width white strip, 38px top/bottom padding. Centered Mono 12px uppercase #030303 copy with 0.03em tracking. Close × icon right-aligned in #030303.\n\n5. **Build the footer:** Stone Gray #dad9d5 background, 38px vertical padding, 40px column gap. Column headers in Mono 12px uppercase #030303. Links in Mono 12px #030303 with 12px vertical gap between items."
+      },
+      {
+        "title": "Elevation Philosophy",
+        "content": "The system is intentionally flat — no shadows, no blurs, no glows. Visual hierarchy is built entirely through typographic weight contrast (Founders Grotesk 300 vs 500), generous whitespace, and surface tint shifts (white → Stone Gray → Parchment Cream). Depth, when it exists, comes from photography, not from CSS elevation."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#030303",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.09692582811234322
+          },
+          "contexts": [
+            "other",
+            "list",
+            "button",
+            "link",
+            "icon",
+            "hero",
+            "image",
+            "body",
+            "card",
+            "badge",
+            "footer",
+            "input"
+          ],
+          "frequency": 1547,
+          "confidence": 1,
+          "prominence": 102462262.18211302,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "card/color": 57,
+            "hero/color": 1,
+            "icon/color": 3,
+            "link/color": 44,
+            "list/color": 24,
+            "other/fill": 2,
+            "badge/color": 1,
+            "image/color": 25,
+            "input/color": 1,
+            "other/color": 146,
+            "button/color": 1,
+            "footer/color": 1,
+            "other/stroke": 1,
+            "body/borderColor": 20,
+            "card/borderColor": 228,
+            "hero/borderColor": 4,
+            "icon/borderColor": 12,
+            "link/borderColor": 176,
+            "list/borderColor": 96,
+            "badge/borderColor": 4,
+            "image/borderColor": 100,
+            "input/borderColor": 4,
+            "other/borderColor": 581,
+            "button/borderColor": 4,
+            "footer/borderColor": 4,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "body",
+            "button",
+            "heading",
+            "badge",
+            "footer"
+          ],
+          "frequency": 259,
+          "confidence": 1,
+          "prominence": 9522574.661168214,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 8,
+            "icon/color": 3,
+            "link/color": 9,
+            "other/fill": 4,
+            "badge/color": 1,
+            "other/color": 23,
+            "button/color": 2,
+            "other/stroke": 9,
+            "heading/color": 1,
+            "body/borderColor": 32,
+            "icon/borderColor": 12,
+            "link/borderColor": 36,
+            "badge/borderColor": 4,
+            "other/borderColor": 92,
+            "button/borderColor": 8,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 10,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 3315214.4071748825,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 5
+          }
+        },
+        {
+          "hex": "#f6eada",
+          "oklch": {
+            "c": 0.024941384768071492,
+            "h": 75.27103005113116,
+            "l": 0.9422355175887783
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2756135.6144155837,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/borderColor": 3,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#dad9d5",
+          "oklch": {
+            "c": 0.005532147215605576,
+            "h": 95.10738341958566,
+            "l": 0.8849552454757322
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 45600,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#807e81",
+          "oklch": {
+            "c": 0.005068620385886769,
+            "h": 314.78543379426065,
+            "l": 0.595798225484775
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 1039.1549252899047,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 7,
+            "body/borderColor": 28
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.0004127781911807036,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.62,
+          "background": "#ffffff",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.38,
+          "background": "#f6eada",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.6,
+          "background": "#dad9d5",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.84,
+          "background": "#cccccc",
+          "foreground": "#030303"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.13,
+          "background": "#030303",
+          "foreground": "#807e81"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.02,
+          "background": "#ffffff",
+          "foreground": "#807e81"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.39,
+          "background": "#f6eada",
+          "foreground": "#807e81"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.85,
+          "background": "#dad9d5",
+          "foreground": "#807e81"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.51,
+          "background": "#cccccc",
+          "foreground": "#807e81"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.61,
+          "background": "#cccccc",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.41,
+          "background": "#dad9d5",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.19,
+          "background": "#f6eada",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "button",
+            "link",
+            "other",
+            "input"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "marginBottom|other",
+            "paddingTop|input",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "badge",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|badge",
+            "marginLeft|badge",
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "link",
+            "button",
+            "card",
+            "input",
+            "other"
+          ],
+          "frequency": 23,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "rowGap|link",
+            "columnGap|link",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "paddingBottom|input",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|body",
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 15,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|badge",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 21,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 38,
+          "contexts": [
+            "footer"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|footer",
+            "paddingBottom|footer"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 54,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|card"
+          ]
+        },
+        {
+          "value": 63,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 73,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 121,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Founders Grotesk",
+          "source": "custom",
+          "weights": [
+            300,
+            500
+          ],
+          "frequency": 265,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Founders Grotesk Mono",
+          "source": "custom",
+          "weights": [
+            400
+          ],
+          "frequency": 99,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Second",
+        "ratio": 1.067,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Founders Grotesk Mono",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Founders Grotesk Mono",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.92,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Founders Grotesk Mono",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "icon",
+            "body",
+            "button"
+          ],
+          "frequency": 41,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Founders Grotesk Mono",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "badge",
+            "button",
+            "body"
+          ],
+          "frequency": 42,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 13,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.35,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Founders Grotesk Mono",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Founders Grotesk Mono",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 15,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.45,
+          "letterSpacing": 0.02,
+          "textTransform": "capitalize"
+        },
+        {
+          "size": 16,
+          "family": "Founders Grotesk",
+          "weight": 500,
+          "contexts": [
+            "other",
+            "list",
+            "hero",
+            "image",
+            "card",
+            "footer"
+          ],
+          "frequency": 248,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Founders Grotesk Mono",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.03,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Founders Grotesk Mono",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 32,
+          "family": "Founders Grotesk",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.1,
+          "letterSpacing": 0.01,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/98f32495-f8dd-4dc6-98f5-269e03f1f6ac.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/6df6eff2-14f6-43fb-af8f-b7c577b08152.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/f3f7122e-d8d3-48f7-9d9d-df6e71545010#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Abel design system\",\"item\":\"https://styles.refero.design/style/f3f7122e-d8d3-48f7-9d9d-df6e71545010\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/f3f7122e-d8d3-48f7-9d9d-df6e71545010#style-reference\",\"name\":\"Abel design system reference\",\"headline\":\"Abel design system | Refero Styles\",\"description\":\"Explore Abel's light E-commerce design system: Ink Black #030303, Paper White #ffffff colors, Founders Grotesk, Founders Grotesk Mono typography, and...\",\"url\":\"https://styles.refero.design/style/f3f7122e-d8d3-48f7-9d9d-df6e71545010\",\"mainEntityOfPage\":\"https://styles.refero.design/style/f3f7122e-d8d3-48f7-9d9d-df6e71545010\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Abel\",\"url\":\"https://abelfragrance.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/f3f7122e-d8d3-48f7-9d9d-df6e71545010#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/6df6eff2-14f6-43fb-af8f-b7c577b08152.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/6df6eff2-14f6-43fb-af8f-b7c577b08152.jpg\",\"caption\":\"Screenshot of Abel\"},\"image\":\"https://images.refero.design/styles/refero.design/image/6df6eff2-14f6-43fb-af8f-b7c577b08152.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Abel design system\",\"Abel website design\",\"Abel colors\",\"Abel typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"E-commerce design system\",\"Ink Black\",\"Paper White\",\"Parchment Cream\",\"Ash Gray\",\"Founders Grotesk\",\"Founders Grotesk Mono\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Abel design system\"},{\"@type\":\"Thing\",\"name\":\"Abel website design\"},{\"@type\":\"Thing\",\"name\":\"Abel colors\"},{\"@type\":\"Thing\",\"name\":\"Abel typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"E-commerce design system\"}],\"datePublished\":\"2026-05-08T18:59:22.958Z\",\"dateModified\":\"2026-05-08T18:59:22.958Z\"}]}19:T526,**Quick Color Reference**\n- text: #030303\n- background: #ffffff\n- border: #030303\n- accent: #f6eada (Parchment Cream)\n- muted text: #807e81\n- primary action: no distinct CTA color\n\n**Example Component Prompts**\n\n1. **Build the hero plate:** Full-bleed photographic background filling 100vh. Bottom-left caption block with 40px left padding: eyebrow in Founders Grotesk Mono 13px uppercase, +0.03em tracking, #ffffff. Title in Founders Grotesk 300 at 32px, #ffffff. Body in Founders Grotesk 300 at 15–16px, line-height 1.45, #ffffff. Ghost link at 12px Mono uppercase underlined.\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n3. **Build the ghost link:** Inline element, Founders Grotesk Mono 12px weight 400, uppercase, +0.03em tracking, #030303, 1px underline. No background, no border, no padding. 12px gap to adjacent elements.\n\n4. **Build the announcement bar:** Full-width white strip, 38px top/bottom padding. Centered Mono 12px uppercase #030303 copy with 0.03em tracking. Close × icon right-aligned in #030303.\n\n5. **Build the footer:** Stone Gray #dad9d5 background, 38px vertical padding, 40px column gap. Column headers in Mono 12px uppercase #030303. Links in Mono 12px #030303 with 12px vertical gap between items."
+}

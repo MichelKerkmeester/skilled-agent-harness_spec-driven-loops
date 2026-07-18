@@ -1,0 +1,1369 @@
+{
+  "source": "https://styles.refero.design/style/ff8f39ee-a10e-4a9d-a94d-6993c6084060",
+  "uuid": "ff8f39ee-a10e-4a9d-a94d-6993c6084060",
+  "name": "Creative Giants",
+  "northStar": "oversized editorial poster on cream paper",
+  "capturedAt": "2026-07-18T08:26:08.198Z",
+  "meta": {
+    "url": "https://www.creativegiants.art",
+    "siteName": "Creative Giants",
+    "extractedAt": "2026-06-03T22:36:59.017Z",
+    "durationMs": 30466,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 643,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set headlines at weight 300 — never bold a Switzer heading, no matter the size.",
+      "Use Bone White (#fffef7) as the only page background. Pure #ffffff breaks the warm paper language.",
+      "Apply the 1440px pill radius to every button, tag, and Menu element — sharp corners are reserved for cards and images only.",
+      "Push display headlines to 64–84px with -0.04em letter-spacing; the negative tracking is what makes the type feel carved, not printed.",
+      "Let full-bleed photographs carry the visual weight. UI chrome should recede — the Menu button and logo are the only non-image elements above the fold.",
+      "Use chromatic accents (#8a0467, #03624c, #a5c8eb) as borders, small fills, and single-card highlights — never flood a section with color.",
+      "Keep section gaps at 48–64px. The cream canvas is the layout's primary structural tool; rules and dividers are secondary."
+    ],
+    "donts": [
+      "Don't bold headlines. The 300 weight is the brand — weight 500+ destroys the airbrushed feel.",
+      "Don't use pure #ffffff anywhere. The warm off-white is a signature, not a fallback.",
+      "Don't add shadows. The system's 0px box-shadow signature means elevation comes from color and scale, not depth.",
+      "Don't round card or image corners. 1440px belongs only to interactive elements; editorial surfaces stay sharp.",
+      "Don't fill a CTA with a chromatic color. No action background evidence supports a colored button — all interactive surfaces are black or transparent.",
+      "Don't exceed two lines on a display headline. The 84px treatment is for poster statements, not paragraphs.",
+      "Don't use #0000ee or default link blue. Inherit Ink Black for all text links; never let browser defaults leak in."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#fffef7",
+        "name": "Bone White",
+        "role": "Page canvas, card surfaces, text on dark accents — a warm off-white that replaces pure #ffffff and gives the whole system a paper-like, printed feel",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Black",
+        "role": "Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#666666",
+        "name": "Graphite",
+        "role": "Secondary body text, captions, metadata, helper copy — recedes so display type can dominate",
+        "group": "neutral"
+      },
+      {
+        "hex": "#aaaaaa",
+        "name": "Ash",
+        "role": "Input borders, inactive link color, tertiary dividers — soft structural gray that disappears when not needed",
+        "group": "neutral"
+      },
+      {
+        "hex": "#4d4c4a",
+        "name": "Charcoal Scale",
+        "role": "Mid-neutral for list borders, subtle elevation on the dark gradient track — warm gray, not blue-gray",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8a0467",
+        "name": "Magenta Bloom",
+        "role": "Pink supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#03624c",
+        "name": "Forest Teal",
+        "role": "Saturated brand accent for card frames and decorative strokes; pairs with Magenta Bloom for duotone treatments",
+        "group": "brand"
+      },
+      {
+        "hex": "#a5c8eb",
+        "name": "Powder Blue",
+        "role": "Soft chromatic accent — card backgrounds, wash backgrounds, muted illustration fill; cools the warm canvas without competing",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffacea",
+        "name": "Candy Pink",
+        "role": "Pastel card surface — high-key, used as one-of-many tints in news/article cards; a softer sibling of Magenta Bloom",
+        "group": "accent"
+      },
+      {
+        "hex": "#a5ebd6",
+        "name": "Mint Wash",
+        "role": "Pastel card surface — replaces the structural canvas on selected cards; reads as calm, cool, breathable",
+        "group": "accent"
+      },
+      {
+        "hex": "#101731",
+        "name": "Navy Ink",
+        "role": "Deep accent card surface and inverted text ground; the only dark field the system uses, applied sparingly as a featured block",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffd001",
+        "name": "Signal Yellow",
+        "role": "Sporadic high-chroma highlight (badges, tag pills, hover state on cards) — used in trace amounts, never as a primary fill",
+        "group": "accent"
+      }
+    ],
+    "layout": "Full-bleed page model: no max-width container, content runs edge-to-edge with consistent left/right padding (16–32px on mobile, 32px+ on desktop). The hero is a single oversized display headline ('CREATIVE GIANTS' at 84px) taking roughly 40% of the viewport, immediately followed by a full-bleed photograph with bottom-left meta + headline overlay. Section rhythm is monolithic: each new section is introduced by a small all-caps eyebrow + 34–54px weight 300 statement, separated by 48–64px of negative space — no alternating dark/light bands except the single inverted Navy Ink accent card. Content is consistently left-aligned; no centered stacks except the hero display headline. The news/case-study area uses a 3-column card grid with a right-floated arrow control cluster. Navigation is a single top header — no sidebar, no sticky elements beyond the header itself. Overall density is spacious and editorial: every section breathes, and whitespace is the primary structural tool.",
+    "imagery": "Editorial photography dominates: full-bleed, sharp-cornered, no overlays or rounded masks. Treatment leans toward documentary and atmospheric — wrinkled hands, public installations, candid human subjects — never staged product shots. Imagery is always presented at large scale (full viewport width or card-filling) so the photograph, not the UI, is the design unit. No illustration, no 3D, no product mockups. Iconography is minimal: a single small circular logo mark, outline-only chevrons on carousel controls, and featherweight 1px-stroke UI icons. Density is image-led, with text serving as a quiet annotation layer below or over the photograph.",
+    "similar": [
+      {
+        "why": "Same oversized editorial display headlines, weight-light typography, full-bleed project photography, and minimal navigation chrome on a neutral canvas.",
+        "business": "Pentagram"
+      },
+      {
+        "why": "Same 'studio portfolio as art book' treatment — cream canvas, large weight-300 sans-serif statements, sharp-cornered full-bleed imagery, and pill-shaped controls.",
+        "business": "Locomotive (locomotive.ca)"
+      },
+      {
+        "why": "Same full-bleed experimental photography and whisper-weight display type; both agencies treat the homepage as a single oversized canvas rather than a dashboard.",
+        "business": "Resn"
+      },
+      {
+        "why": "Same single-line display headline, edge-to-edge video/photo hero, and a cream/near-white canvas with rationed chromatic accents.",
+        "business": "B-Reel"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "1440px",
+        "cards": "0px",
+        "pills": "1440px",
+        "images": "0px",
+        "buttons": "1440px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "24px",
+      "pageMaxWidth": null
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#fffef7",
+        "name": "Canvas",
+        "level": 0,
+        "purpose": "Page background — warm off-white paper tone"
+      },
+      {
+        "hex": "#a5ebd6",
+        "name": "Card Tint",
+        "level": 1,
+        "purpose": "Pastel card variant — replaces canvas on accent cards"
+      },
+      {
+        "hex": "#ffacea",
+        "name": "Card Tint Pink",
+        "level": 1,
+        "purpose": "Pastel card variant — high-key highlight"
+      },
+      {
+        "hex": "#a5c8eb",
+        "name": "Card Tint Blue",
+        "level": 1,
+        "purpose": "Pastel card variant — cool wash"
+      },
+      {
+        "hex": "#ffd001",
+        "name": "Signal Pop",
+        "level": 2,
+        "purpose": "Sporadic yellow accent — badges, hover, single-card highlight"
+      },
+      {
+        "hex": "#101731",
+        "name": "Inverted Field",
+        "level": 3,
+        "purpose": "Dark accent surface for featured blocks; text inverts to Bone White"
+      }
+    ],
+    "northStar": "oversized editorial poster on cream paper",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.018
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.018
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.018
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.4,
+        "letterSpacing": -0.018
+      },
+      {
+        "role": "heading-sm",
+        "size": 34,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.02
+      },
+      {
+        "role": "heading",
+        "size": 54,
+        "lineHeight": 1,
+        "letterSpacing": -0.023
+      },
+      {
+        "role": "display",
+        "size": 84,
+        "lineHeight": 1,
+        "letterSpacing": -0.04
+      }
+    ],
+    "components": [
+      {
+        "name": "Pill Menu Button",
+        "role": "Primary navigation trigger in the header",
+        "description": "Black (#000000) fill, Bone White (#fffef7) text at 16px weight 400, fully rounded at 1440px radius, padding 12px 24px, no border. Sits in the top-right corner with generous whitespace around it — its darkness is the only heavy element on the cream canvas."
+      },
+      {
+        "name": "Header Lockup",
+        "role": "Persistent top chrome",
+        "description": "Two-line eyebrow text (12px, weight 400, all caps, Ink Black) reading 'UNIQUE PUBLIC INTERVENTIONS // IMMERSIVE ACTIVATIONS' to the left of a 32px circular logo mark, Menu button floated right. Zero background — the cream page is the header background. ~16px vertical padding, full-bleed."
+      },
+      {
+        "name": "Display Poster Headline",
+        "role": "Hero / section title",
+        "description": "84px Switzer weight 300, letter-spacing -0.04em, line-height 1.0, color Ink Black. Occupies the full viewport width minus the page margin. Optionally rendered with a vertical Charcoal-to-Black gradient on warm-cream lettering for a sculptural poster effect. Never wraps above 2 lines."
+      },
+      {
+        "name": "Hero Image Band",
+        "role": "Full-bleed editorial photography",
+        "description": "Full-viewport-width image, no border-radius, no shadow. Meta text (location: 12px all-caps) and headline (34px weight 300) sit bottom-left with 32px left padding. Imagery is the hero; UI chrome yields entirely to the photograph."
+      },
+      {
+        "name": "Section Title Block",
+        "role": "In-page section openers",
+        "description": "All-caps eyebrow label (12px, weight 400, Graphite) on a single line, followed by a 34–54px weight 300 statement headline. No background, no rules, no decorations — separation is by whitespace alone (48–64px below the eyebrow, 32px below the headline)."
+      },
+      {
+        "name": "Project / News Card",
+        "role": "Card grid items for articles and case studies",
+        "description": "3-column grid, no card border, no shadow, no radius. Image sits top of card (square or 4:3, sharp corners). Title 18–20px weight 300 in Ink Black sits 16px below the image. Body copy 14px weight 400 in Graphite, 3-line clamp. Optional 1px chromatic accent border (#8a0467 or #03624c) on the image edge for editorial tagging."
+      },
+      {
+        "name": "Chromatic Accent Card",
+        "role": "Variant card surface using the brand accent palette",
+        "description": "Uses one of the pastel or saturated tints (#ffacea, #a5ebd6, #a5c8eb, or #101731) as the card surface. Text inverts: Bone White on Navy Ink, Ink Black on pastels. 0px radius, 24–32px padding. Used as the occasional pop in a card grid; never more than one in a row."
+      },
+      {
+        "name": "Carousel Arrow Control",
+        "role": "Next/prev navigation for card carousels",
+        "description": "32px circular outline button, 1px Ash (#aaaaaa) border, transparent fill, 16px Ink Black chevron icon centered. No background change on hover — only the border darkens to Ink Black. Floats above the card row at the right edge of the section title."
+      },
+      {
+        "name": "Meta Eyebrow",
+        "role": "Context labels above headlines",
+        "description": "12px Switzer weight 400, all caps, letter-spacing 0 (default), color Graphite (#666666). Single line. Used for location, section names, project categories."
+      },
+      {
+        "name": "Full-Bleed Footer",
+        "role": "Page footer",
+        "description": "No background fill — same Bone White canvas. Top edge defined by a 1px hairline divider. Multi-column link lists with 14px weight 400 Ink Black text, 8px row-gap. The extreme Charcoal-to-Black linear gradient (rgb(77,76,74) → rgb(0,0,0)) is reserved for any dark footer band variant; never used elsewhere."
+      },
+      {
+        "name": "Tag / Category Pill",
+        "role": "Small editorial labels and filters",
+        "description": "8px vertical, 12px horizontal padding, 1440px radius, 12px weight 400 all-caps. Default: Ink Black text, transparent fill, 1px Ash border. Accent variant: Signal Yellow (#ffd001) fill, Ink Black text, no border."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family system: weight 300 for all display and headline work (12–84px), weight 400 for body, metadata, and UI controls. The signature choice is using weight 300 at 64–84px — most systems would bold to 700–800 here; Switzer at light preserves the hairline strokes, making the type feel airbrushed onto the cream canvas. Tighter letter-spacing as size grows (-0.04em at 84px, -0.018em at 14px) keeps the counters open without looking spaced-out.",
+        "sizes": "12, 14, 16, 18, 20, 34, 54, 64, 84",
+        "family": "Switzer",
+        "weight": "300, 400",
+        "lineHeight": "1.00–1.43",
+        "substitute": "Inter (300, 400), Söhne (300, 400), or any geometric humanist sans with a true 300 weight",
+        "letterSpacing": "-0.04em at 84px, -0.027em at 64px, -0.023em at 54px, -0.02em at 34px, -0.018em at 20px and below"
+      }
+    ],
+    "description": "Creative Giants reads like an oversized art-book spread rendered in code: a warm off-white canvas, hairline margins, and display type so large it functions as a poster rather than a heading. The whole system runs on negative space and one weight of light (300) — headlines whisper at 64–84px instead of bolding into shouting, and letter-spacing tightens aggressively (-0.04em) as type grows so the words feel chiseled, not spaced. Chromatic color is rationed into small, saturated hits: vivid magenta, deep teal, powder blue, hot pink, mint, and navy appear as card surfaces or accents, never as background floods. Interactive elements are black-on-cream pills with fully rounded (1440px) radii, and the chrome is almost invisible — a single circular logo mark and a 'Menu' button floating in white space. The visual identity is a production studio's contact sheet: one enormous headline, one full-bleed photograph, one quiet line of meta text. Every other page should follow the same economy.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ff8f39ee-a10e-4a9d-a94d-6993c6084060#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Creative Giants design system\",\"item\":\"https://styles.refero.design/style/ff8f39ee-a10e-4a9d-a94d-6993c6084060\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ff8f39ee-a10e-4a9d-a94d-6993c6084060#style-reference\",\"name\":\"Creative Giants design system reference\",\"headline\":\"Creative Giants design system | Refero Styles\",\"description\":\"Explore Creative Giants's light Agency design system: Bone White #fffef7, Ink Black #000000 colors, Switzer typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ff8f39ee-a10e-4a9d-a94d-6993c6084060\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ff8f39ee-a10e-4a9d-a94d-6993c6084060\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Creative Giants\",\"url\":\"https://www.creativegiants.art\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ff8f39ee-a10e-4a9d-a94d-6993c6084060#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/de57e8c3-804c-4296-a340-210f19516473.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/de57e8c3-804c-4296-a340-210f19516473.jpg\",\"caption\":\"Screenshot of Creative Giants\"},\"image\":\"https://images.refero.design/styles/refero.design/image/de57e8c3-804c-4296-a340-210f19516473.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Creative Giants design system\",\"Creative Giants website design\",\"Creative Giants colors\",\"Creative Giants typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone White\",\"Ink Black\",\"Graphite\",\"Ash\",\"Switzer\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Creative Giants design system\"},{\"@type\":\"Thing\",\"name\":\"Creative Giants website design\"},{\"@type\":\"Thing\",\"name\":\"Creative Giants colors\"},{\"@type\":\"Thing\",\"name\":\"Creative Giants typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-01T20:08:57.000Z\",\"dateModified\":\"2026-04-01T20:08:57.000Z\"}]}19:T672,**Quick Color Reference**\n- text: #000000\n- background: #fffef7\n- border / divider: #aaaaaa\n- secondary text: #666666\n- accent: #8a0467 (magenta) and #03624c (teal) — borders and small hits only\n- pastel card surface: #a5ebd6, #ffacea, or #a5c8eb\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Hero display headline*: Full-bleed cream (#fffef7) canvas. 'CREATIVE GIANTS' at 84px Switzer weight 300, color #000000, letter-spacing -0.04em, line-height 1.0, left-aligned with 32px left padding. No background, no border. The headline should occupy ~40% of the viewport height.\n\n2. *Pill Menu button*: 16px Switzer weight 400, color #fffef7 on #000000 fill, 1440px border-radius, padding 12px 24px, no border. Float top-right with 32px margin from edges. Sits alone in the header — no other UI chrome competes.\n\n3. *Full-bleed image band with overlay*: Edge-to-edge photograph (no border-radius). Bottom-left overlay: 12px Switzer weight 400 all-caps meta in #fffef7 ('BRIGHTON, UNITED KINGDOM'), 32px below it a 34px weight 300 statement headline in #fffef7. 32px padding from the left and bottom edges.\n\n4. *News / project card*: 3-column grid, no card border, 0px radius. Square image (no radius) sits at top. 16px below: 20px Switzer weight 300 title in #000000. 8px below: 14px weight 400 description in #666666, 3-line clamp. 48px column gap, no row gap (single row).\n\n5. *Pastel accent card*: One card in the grid swaps to surface #a5ebd6 with 24px padding around its content, text in #000000 at 20px weight 300. The remaining two cards stay on the cream canvas. This is the system's only color-rupture moment."
+      }
+    ],
+    "elevationPhilosophy": "The system has no meaningful elevation. The single detected shadow (rgba(255,255,255,0.2) 0px 0px 0px 1px) is a white 1px inner ring, not a drop shadow — it functions as a hairline highlight on dark elements, not as depth. Separation is built entirely from the warm canvas, whitespace, and the rare dark inverted field. Do not add box-shadows to cards, buttons, or modals."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "button",
+            "body",
+            "hero",
+            "heading",
+            "icon",
+            "image",
+            "input",
+            "footer",
+            "list"
+          ],
+          "frequency": 1585,
+          "confidence": 1,
+          "prominence": 174169542.47942388,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fffef7",
+          "oklch": {
+            "c": 0.009256414268454544,
+            "h": 99.97890236828894,
+            "l": 0.9958713111928543
+          },
+          "contexts": [
+            "card",
+            "other",
+            "button",
+            "icon",
+            "body",
+            "heading",
+            "hero",
+            "link",
+            "image",
+            "badge",
+            "input",
+            "footer",
+            "list"
+          ],
+          "frequency": 1108,
+          "confidence": 1,
+          "prominence": 32772741.42652394,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8a0467",
+          "oklch": {
+            "c": 0.17953510034165865,
+            "h": 343.3517540792609,
+            "l": 0.4255220477587344
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 3701067.491400285,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#03624c",
+          "oklch": {
+            "c": 0.0861487945840278,
+            "h": 170.38567348616883,
+            "l": 0.4419023462587213
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 3701067.491400285,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a5c8eb",
+          "oklch": {
+            "c": 0.06217950874834451,
+            "h": 248.59094366013107,
+            "l": 0.8191996653707594
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 51,
+          "confidence": 1,
+          "prominence": 3701067.491400285,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#666666",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5102783583015936
+          },
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 150,
+          "confidence": 1,
+          "prominence": 717825.3595941287,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffacea",
+          "oklch": {
+            "c": 0.12404389829231931,
+            "h": 336.31792763509844,
+            "l": 0.8432852570405662
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 649260,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a5ebd6",
+          "oklch": {
+            "c": 0.07585266701848299,
+            "h": 173.85115899460178,
+            "l": 0.8877811230508333
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 649260,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#101731",
+          "oklch": {
+            "c": 0.0521808274273068,
+            "h": 270.17538303572263,
+            "l": 0.21375934249548414
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 649260,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#aaaaaa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.7380186709485949
+          },
+          "contexts": [
+            "input",
+            "other",
+            "link"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 276410.0402021132,
+          "properties": [
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#4d4c4a",
+          "oklch": {
+            "c": 0.0035344624256539313,
+            "h": 84.57188172722998,
+            "l": 0.4168074012613878
+          },
+          "contexts": [
+            "list"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 78416,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#343332",
+          "oklch": {
+            "c": 0.0022557555098642267,
+            "h": 67.7446778703043,
+            "l": 0.3217418689777406
+          },
+          "contexts": [
+            "list"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 39208,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2d2c2b",
+          "oklch": {
+            "c": 0.002307483401226175,
+            "h": 67.73534967862555,
+            "l": 0.29379440055369804
+          },
+          "contexts": [
+            "list"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 39208,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#444444",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3866543310206897
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1091,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffd001",
+          "oklch": {
+            "c": 0.17849851148398033,
+            "h": 92.21301525232039,
+            "l": 0.873015247626927
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#009fff",
+          "oklch": {
+            "c": 0.17779909590292448,
+            "h": 246.5931740246361,
+            "l": 0.6823958788475513
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#48d1d6",
+          "oklch": {
+            "c": 0.11563145390709892,
+            "h": 198.5890356251764,
+            "l": 0.7902025930795201
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fc4c00",
+          "oklch": {
+            "c": 0.22153724975816758,
+            "h": 36.98945611724805,
+            "l": 0.6617140217833843
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ee77cf",
+          "oklch": {
+            "c": 0.17834369758441843,
+            "h": 338.1631158259134,
+            "l": 0.7335681083678481
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 0,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.025247562998646812,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.77,
+          "background": "#fffef7",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.47,
+          "background": "#101731",
+          "foreground": "#fffef7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.45,
+          "background": "#a5ebd6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.27,
+          "background": "#ffd001",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.79,
+          "background": "#fffef7",
+          "foreground": "#2d2c2b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.08,
+          "background": "#cccccc",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13,
+          "background": "#a5ebd6",
+          "foreground": "#101731"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.47,
+          "background": "#fffef7",
+          "foreground": "#343332"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.34,
+          "background": "#ffacea",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.06,
+          "background": "#000000",
+          "foreground": "#a5c8eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.01,
+          "background": "#ffd001",
+          "foreground": "#101731"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.37,
+          "background": "#48d1d6",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11,
+          "background": "#cccccc",
+          "foreground": "#101731"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.38,
+          "background": "#ffacea",
+          "foreground": "#101731"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.26,
+          "background": "#a5ebd6",
+          "foreground": "#2d2c2b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.14,
+          "background": "#101731",
+          "foreground": "#a5c8eb"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.63,
+          "background": "#444444",
+          "foreground": "#fffef7"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.56,
+          "background": "#48d1d6",
+          "foreground": "#101731"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.47,
+          "background": "#ffd001",
+          "foreground": "#2d2c2b"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.28,
+          "background": "#a5ebd6",
+          "foreground": "#343332"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 1440,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 10
+        },
+        {
+          "value": 1600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(255, 255, 255, 0.2) 0px 0px 0px 1px",
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 2
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom",
+            "paddingTop",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 76,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 40,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 54,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 23,
+          "properties": [
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 105,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 18,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingLeft",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 112,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 133,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 215,
+          "contexts": [],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(77, 76, 74), rgb(0, 0, 0))",
+        "colors": [
+          "rgb(77, 76, 74)",
+          "rgb(0, 0, 0)"
+        ],
+        "frequency": 2
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Switzer",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 589,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "Switzer",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.027,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Switzer",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.023,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Switzer",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Switzer",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.023,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Switzer",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "card",
+            "link",
+            "icon",
+            "hero",
+            "image",
+            "badge",
+            "button",
+            "body",
+            "footer",
+            "list"
+          ],
+          "frequency": 300,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Switzer",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "badge"
+          ],
+          "frequency": 133,
+          "lineHeight": 1,
+          "letterSpacing": -0.02,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Switzer",
+          "weight": 300,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Switzer",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "icon"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Switzer",
+          "weight": 300,
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Switzer",
+          "weight": 300,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 22,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Switzer",
+          "weight": 300,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Switzer",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 18,
+          "family": "Switzer",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Switzer",
+          "weight": 300,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Switzer",
+          "weight": 300,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.018,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Switzer",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 34,
+          "family": "Switzer",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 54,
+          "family": "Switzer",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 64,
+          "family": "Switzer",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 13,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 84,
+          "family": "Switzer",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 14,
+          "lineHeight": 1,
+          "letterSpacing": -0.04,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/a2bd9b79-591c-43b5-9e9d-a55628304b35.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/de57e8c3-804c-4296-a340-210f19516473.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/ff8f39ee-a10e-4a9d-a94d-6993c6084060#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Creative Giants design system\",\"item\":\"https://styles.refero.design/style/ff8f39ee-a10e-4a9d-a94d-6993c6084060\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/ff8f39ee-a10e-4a9d-a94d-6993c6084060#style-reference\",\"name\":\"Creative Giants design system reference\",\"headline\":\"Creative Giants design system | Refero Styles\",\"description\":\"Explore Creative Giants's light Agency design system: Bone White #fffef7, Ink Black #000000 colors, Switzer typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/ff8f39ee-a10e-4a9d-a94d-6993c6084060\",\"mainEntityOfPage\":\"https://styles.refero.design/style/ff8f39ee-a10e-4a9d-a94d-6993c6084060\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Creative Giants\",\"url\":\"https://www.creativegiants.art\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/ff8f39ee-a10e-4a9d-a94d-6993c6084060#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/de57e8c3-804c-4296-a340-210f19516473.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/de57e8c3-804c-4296-a340-210f19516473.jpg\",\"caption\":\"Screenshot of Creative Giants\"},\"image\":\"https://images.refero.design/styles/refero.design/image/de57e8c3-804c-4296-a340-210f19516473.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Creative Giants design system\",\"Creative Giants website design\",\"Creative Giants colors\",\"Creative Giants typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Bone White\",\"Ink Black\",\"Graphite\",\"Ash\",\"Switzer\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Creative Giants design system\"},{\"@type\":\"Thing\",\"name\":\"Creative Giants website design\"},{\"@type\":\"Thing\",\"name\":\"Creative Giants colors\"},{\"@type\":\"Thing\",\"name\":\"Creative Giants typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-01T20:08:57.000Z\",\"dateModified\":\"2026-04-01T20:08:57.000Z\"}]}19:T672,**Quick Color Reference**\n- text: #000000\n- background: #fffef7\n- border / divider: #aaaaaa\n- secondary text: #666666\n- accent: #8a0467 (magenta) and #03624c (teal) — borders and small hits only\n- pastel card surface: #a5ebd6, #ffacea, or #a5c8eb\n- primary action: no distinct CTA color\n\n**3-5 Example Component Prompts**\n\n1. *Hero display headline*: Full-bleed cream (#fffef7) canvas. 'CREATIVE GIANTS' at 84px Switzer weight 300, color #000000, letter-spacing -0.04em, line-height 1.0, left-aligned with 32px left padding. No background, no border. The headline should occupy ~40% of the viewport height.\n\n2. *Pill Menu button*: 16px Switzer weight 400, color #fffef7 on #000000 fill, 1440px border-radius, padding 12px 24px, no border. Float top-right with 32px margin from edges. Sits alone in the header — no other UI chrome competes.\n\n3. *Full-bleed image band with overlay*: Edge-to-edge photograph (no border-radius). Bottom-left overlay: 12px Switzer weight 400 all-caps meta in #fffef7 ('BRIGHTON, UNITED KINGDOM'), 32px below it a 34px weight 300 statement headline in #fffef7. 32px padding from the left and bottom edges.\n\n4. *News / project card*: 3-column grid, no card border, 0px radius. Square image (no radius) sits at top. 16px below: 20px Switzer weight 300 title in #000000. 8px below: 14px weight 400 description in #666666, 3-line clamp. 48px column gap, no row gap (single row).\n\n5. *Pastel accent card*: One card in the grid swaps to surface #a5ebd6 with 24px padding around its content, text in #000000 at 20px weight 300. The remaining two cards stay on the cream canvas. This is the system's only color-rupture moment."
+}

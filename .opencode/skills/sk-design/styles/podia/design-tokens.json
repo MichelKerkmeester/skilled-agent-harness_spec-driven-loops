@@ -1,0 +1,337 @@
+{
+  "color": {
+    "ink": {
+      "$value": "#06040e",
+      "$type": "color",
+      "$description": "Ink — Primary text, primary CTA fill, nav background, heading copy — near-black with a violet undertone that ties dark elements back to the brand palette"
+    },
+    "deep-teal": {
+      "$value": "#10242f",
+      "$type": "color",
+      "$description": "Deep Teal — Secondary headings, body emphasis, dark surface variation — co-leads with Ink for high-contrast typographic hierarchy"
+    },
+    "graphite": {
+      "$value": "#452623",
+      "$type": "color",
+      "$description": "Graphite — Tertiary text and dark surface variant — warm brown-black that softens the typographic scale below the primary two"
+    },
+    "fog": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Fog — Page canvas, section background — the warm off-white that gives the entire interface its sunlit, paper-like quality"
+    },
+    "paper": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper — Card surfaces, elevated panels, button text on dark fills — pure white reserved for content surfaces that sit above the Fog canvas"
+    },
+    "mist": {
+      "$value": "#e1edf2",
+      "$type": "color",
+      "$description": "Mist — Soft dividers, input borders, ghost button borders, secondary surface tint — cool pale blue-gray that whispers separation without weight"
+    },
+    "terracotta": {
+      "$value": "#e39a4d",
+      "$type": "color",
+      "$description": "Terracotta — Brand accent, feature card fill, decorative blob shape, warm highlight — the most saturated color in the system, used sparingly as energetic punctuation"
+    },
+    "lavender": {
+      "$value": "#cbb0eb",
+      "$type": "color",
+      "$description": "Lavender — Brand accent, feature card fill, decorative blob shape, soft highlight wash — dusty pastel violet that softens the palette"
+    },
+    "plum": {
+      "$value": "#1f1738",
+      "$type": "color",
+      "$description": "Plum — Dark accent surface, deep feature card variant, outlined action border — the saturated dark violet that anchors the lavender to something readable"
+    },
+    "sky": {
+      "$value": "#a5c8d8",
+      "$type": "color",
+      "$description": "Sky — Gray action color for filled buttons, selected navigation states, and focused conversion moments"
+    },
+    "cream": {
+      "$value": "#f6ddc4",
+      "$type": "color",
+      "$description": "Cream — Soft warm tint, outlined action border, decorative wash — peachy off-white that warms the palette without adding saturation"
+    }
+  },
+  "font": {
+    "stabilgrotesk": {
+      "$value": "StabilGrotesk",
+      "$type": "fontFamily",
+      "$description": "Single-family type system carrying everything from micro-labels to display headlines. The custom geometric grotesque's tight apertures and compressed letterforms at 700 give the display sizes a hand-cut quality; 400 body weight is unusually readable for a display-origin face. Negative tracking (-0.03em at display, -0.02em at heading) is signature — the headlines feel cut from a single strip. Uppercase labels at 0.1em tracking create quiet eyebrow rhythm."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "11px",
+        "fontWeight": 700,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "12px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 12px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "20px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "22px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "36px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "StabilGrotesk",
+        "fontSize": "60px",
+        "fontWeight": 500,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 60px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "144": {
+      "$value": "144px",
+      "$type": "dimension",
+      "$description": "Spacing 144px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "2xl-2": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl-2"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f5f5f5",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, outer section field"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Content cards, elevated panels, form surfaces"
+    },
+    "accent-surface": {
+      "$value": "#e1edf2",
+      "$type": "color",
+      "$description": "Surface level 2: Soft tinted panels, alternating band backgrounds, ghost button fills"
+    },
+    "product-card-sky": {
+      "$value": "#a5c8d8",
+      "$type": "color",
+      "$description": "Surface level 3: Colored feature card representing the Online Store product"
+    },
+    "product-card-terracotta": {
+      "$value": "#e39a4d",
+      "$type": "color",
+      "$description": "Surface level 4: Colored feature card representing the Website product"
+    },
+    "product-card-lavender": {
+      "$value": "#cbb0eb",
+      "$type": "color",
+      "$description": "Surface level 5: Colored feature card representing the Email Marketing product"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.podia.com",
+      "siteName": "Podia",
+      "extractedAt": "2026-06-03T16:59:00.804Z",
+      "variant": "extended"
+    }
+  }
+}

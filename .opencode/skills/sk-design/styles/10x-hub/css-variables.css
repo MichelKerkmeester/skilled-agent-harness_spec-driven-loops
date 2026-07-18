@@ -1,0 +1,77 @@
+:root {
+  /* Colors */
+  --color-ember-red: #ff1841;
+  --color-bloodline: #7b0016;
+  --color-obsidian: #000000;
+  --color-paper-white: #ffffff;
+  --color-ash: #e8e6e6;
+  --color-steel: #949494;
+  --color-charcoal: #212121;
+  --color-fog: #bebcbc;
+  --color-mist: #c7c7c7;
+
+  /* Typography — Font Families */
+  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-10x-display-custom-madefor-text-variant: '10X Display (custom — madefor-text variant)', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-helvetica-w01-roman: 'Helvetica W01 Roman', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-wfont9aea05daebdda91ced4d119f7837b7bae26e19: 'wfont_9aea05_daebdda91ced4d119f7837b7bae26e19', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-madefor-text: 'madefor-text', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 13px;
+  --leading-caption: 1.4;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.4;
+  --text-body: 15px;
+  --leading-body: 1.4;
+  --text-body-lg: 18px;
+  --leading-body-lg: 1.4;
+  --text-heading-sm: 31px;
+  --leading-heading-sm: 1.3;
+  --text-heading: 45px;
+  --leading-heading: 1.3;
+
+  /* Typography — Weights */
+  --font-weight-regular: 400;
+
+  /* Spacing */
+  --spacing-5: 5px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-13: 13px;
+  --spacing-15: 15px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-21: 21px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-50: 50px;
+  --spacing-60: 60px;
+
+  /* Layout */
+  --page-max-width: 1440px;
+  --section-gap: 80px;
+  --card-padding: 20px;
+  --element-gap: 20px;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-xl: 12px;
+  --radius-2xl: 20px;
+  --radius-full: 744.047px;
+  --radius-full-2: 999px;
+
+  /* Named Radii */
+  --radius-tags: 999px;
+  --radius-cards: 12px;
+  --radius-inputs: 0px;
+  --radius-buttons: 999px;
+
+  /* Surfaces */
+  --surface-paper-white: #ffffff;
+  --surface-ash: #e8e6e6;
+  --surface-charcoal: #212121;
+  --surface-obsidian: #000000;
+  --surface-ember-red: #ff1841;
+}

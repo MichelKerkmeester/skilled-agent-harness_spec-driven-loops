@@ -1,0 +1,399 @@
+{
+  "color": {
+    "deep-iris": {
+      "$value": "#26114a",
+      "$type": "color",
+      "$description": "Deep Iris — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "plum-velvet": {
+      "$value": "#312749",
+      "$type": "color",
+      "$description": "Plum Velvet — Navigation text, secondary headings, card titles, footer copy — slightly lighter companion to Deep Iris"
+    },
+    "royal-amethyst": {
+      "$value": "#3e0079",
+      "$type": "color",
+      "$description": "Royal Amethyst — Links, input focus rings, accent strokes, icon highlights — the most saturated violet"
+    },
+    "mist-violet": {
+      "$value": "#edecff",
+      "$type": "color",
+      "$description": "Mist Violet — Soft highlight washes, tinted section backgrounds, decorative blurs — the lavender atmosphere"
+    },
+    "lavender-wash": {
+      "$value": "#b99aff",
+      "$type": "color",
+      "$description": "Lavender Wash — Decorative gradient stops and hero atmosphere"
+    },
+    "twilight-beam": {
+      "$value": "#cf8aff",
+      "$type": "color",
+      "$description": "Twilight Beam — Multi-stop decorative gradient for hero glow effects"
+    },
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Canvas — Page background, card surfaces, input fields, button text on dark fills"
+    },
+    "paper": {
+      "$value": "#f6f7fa",
+      "$type": "color",
+      "$description": "Paper — Subtle surface lift, table row alternation, secondary card backgrounds"
+    },
+    "mist": {
+      "$value": "#e6e2e3",
+      "$type": "color",
+      "$description": "Mist — Hairline borders, dividers, subtle separators"
+    },
+    "smoke": {
+      "$value": "#c1c7cf",
+      "$type": "color",
+      "$description": "Smoke — Disabled states, skeleton placeholders, muted background blocks"
+    },
+    "ash": {
+      "$value": "#9491a1",
+      "$type": "color",
+      "$description": "Ash — Muted helper text, placeholder copy, secondary metadata"
+    },
+    "slate": {
+      "$value": "#615e6e",
+      "$type": "color",
+      "$description": "Slate — Secondary body text, descriptions, table metadata"
+    },
+    "charcoal": {
+      "$value": "#333333",
+      "$type": "color",
+      "$description": "Charcoal — Body text, link text, icon strokes in neutral contexts"
+    },
+    "carbon": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Carbon — Dark UI elements, near-black accents"
+    },
+    "ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Ink — Maximum contrast text and borders in specific dark UI elements"
+    }
+  },
+  "font": {
+    "britti-sans": {
+      "$value": "Britti Sans",
+      "$type": "fontFamily",
+      "$description": "Display and heading typeface used exclusively at 24–64px, always weight 500. The 1.0 line-height is distinctive — headings sit tight with no leading slack, creating geometric, almost architectural presence. Substitute with Plus Jakarta Sans (500) or General Sans (500) for closest geometric match."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Workhorse UI and body typeface. Weight 400 for body, 500 for buttons/nav/table headers, 700 for emphasized labels. The tight size range (12–16px) and compact line-heights signal a data-dense product, not a marketing site. Substitute with Inter directly or IBM Plex Sans."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Britti Sans",
+        "fontSize": "24px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Britti Sans",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Britti Sans",
+        "fontSize": "40px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 40px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Britti Sans",
+        "fontSize": "56px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Britti Sans",
+        "fontSize": "64px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 64px"
+    }
+  },
+  "spacing": {
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "104": {
+      "$value": "104px",
+      "$type": "dimension",
+      "$description": "Spacing 104px"
+    },
+    "216": {
+      "$value": "216px",
+      "$type": "dimension",
+      "$description": "Spacing 216px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "3xl-3": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-3"
+    },
+    "full": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "shadow": {
+    "sm": {
+      "$value": "rgba(18, 55, 105, 0.08) 0px 2px 4px 0px, rgba(18, 55, 105, 0.04) 0px 1px 1px 0px, rgba(18, 55, 105, 0.08) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    },
+    "lg": {
+      "$value": "rgba(14, 59, 101, 0.06) 0px 32px 24px -12px, rgba(14, 59, 101, 0.01) 0px 11px 4px 0px, rgba(14, 59, 101, 0.02) 0px 6px 4px 0px, rgba(14, 59, 101, 0.03) 0px 3px 3px 0px, rgba(14, 59, 101, 0.04) 0px 1px 1px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg"
+    },
+    "lg-2": {
+      "$value": "rgba(114, 49, 255, 0.32) 0px -6px 20px 0px inset, rgba(47, 1, 151, 0.12) 0px 11px 12px 0px, rgba(47, 1, 151, 0.12) 0px 3px 3px 0px, rgba(47, 1, 151, 0.12) 0px 1px 1px 0px, rgba(47, 1, 151, 0.08) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation lg-2"
+    },
+    "sm-2": {
+      "$value": "rgba(18, 55, 105, 0.08) 0px 2px 4px 0px, rgba(18, 55, 105, 0.04) 0px 1px 1px 0px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-2"
+    },
+    "sm-3": {
+      "$value": "rgba(47, 1, 151, 0.01) 0px 11px 4px 0px, rgba(47, 1, 151, 0.04) 0px 6px 4px 0px, rgba(47, 1, 151, 0.06) 0px 3px 3px 0px, rgba(47, 1, 151, 0.08) 0px 1px 1px 0px, rgba(47, 1, 151, 0.08) 0px 0px 0px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm-3"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background, outermost layer"
+    },
+    "paper": {
+      "$value": "#f6f7fa",
+      "$type": "color",
+      "$description": "Surface level 1: Card surfaces, table containers, subtle lifts"
+    },
+    "mist-violet": {
+      "$value": "#edecff",
+      "$type": "color",
+      "$description": "Surface level 2: Tinted highlight sections, gradient start point"
+    },
+    "lavender-glow": {
+      "$value": "#b99aff",
+      "$type": "color",
+      "$description": "Surface level 3: Hero gradient stops, atmospheric overlays"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://wiza.co",
+      "siteName": "Wiza",
+      "extractedAt": "2026-06-03T18:49:26.710Z",
+      "variant": "extended"
+    }
+  }
+}

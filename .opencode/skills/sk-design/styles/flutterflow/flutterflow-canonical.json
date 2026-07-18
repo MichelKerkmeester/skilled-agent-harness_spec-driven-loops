@@ -1,0 +1,1420 @@
+{
+  "source": "https://styles.refero.design/style/4e1ac04c-02ae-41cf-b588-3f6226a882f8",
+  "uuid": "4e1ac04c-02ae-41cf-b588-3f6226a882f8",
+  "name": "FlutterFlow",
+  "northStar": "violet control room at midnight",
+  "capturedAt": "2026-07-18T08:07:30.878Z",
+  "meta": {
+    "url": "https://flutterflow.io",
+    "siteName": "FlutterFlow",
+    "extractedAt": "2026-06-03T18:18:05.828Z",
+    "durationMs": 30180,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1006,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Urbanist at 72–100px weight 500 for hero headlines with 3–4.5px letter-spacing — the wide tracking is the brand's signature restraint",
+      "Set all CTAs to 9999px pill radius, never square buttons — the pill shape carries the friendly developer-tool personality",
+      "Apply the radial Halo Violet gradient from the top-left of hero sections to create atmospheric depth without flat color fills",
+      "Use the three-tier surface stack (Obsidian #060311 → Onyx #161320 → gradient wash) for layering — never add drop shadows for elevation",
+      "Pair Electric Violet #5800fd with Pure White text only on dark surfaces — the contrast must be 7:1 or higher for accessibility",
+      "Set all cards to 24px radius with 40px padding — the generous interior space is part of the spacious devtools feel",
+      "Use Inter 24px weight 300 with 0.27em tracking for all-caps eyebrow labels above section headlines"
+    ],
+    "donts": [
+      "Don't introduce new colors outside the violet spectrum — the brand is monochromatic dark with a single chromatic accent",
+      "Don't use letter-spacing tighter than 0.03em on headlines — the wide tracking is intentional, not a mistake",
+      "Don't add multi-layered drop shadows — the system uses one shadow token and prefers gradient glows for depth",
+      "Don't use square or 8px-radius buttons — pill shapes (9999px) are the only button geometry",
+      "Don't place white text directly on Electric Violet without checking contrast — use the 7:1 minimum rule",
+      "Don't break the dark theme with white content cards — keep cards as Onyx #161320 with violet gradient highlights",
+      "Don't use font weights above 600 for Urbanist — the typeface loses its geometric balance at bold weights"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#5800fd",
+        "name": "Electric Violet",
+        "role": "Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color",
+        "group": "brand"
+      },
+      {
+        "hex": "#2415c6",
+        "name": "Deep Indigo",
+        "role": "Saturated brand depth — testimonial card backgrounds, gradient mid-stops, and decorative fills that reinforce violet identity without competing with Electric Violet for attention",
+        "group": "brand"
+      },
+      {
+        "hex": "#7066ed",
+        "name": "Periwinkle Glow",
+        "role": "Soft brand highlight — icon tints, secondary accents, and gradient highlights that lighten the violet palette for hover states and decorative ornament",
+        "group": "brand"
+      },
+      {
+        "hex": "#4b39ef",
+        "name": "Halo Violet",
+        "role": "Radial gradient seed — the orb color that radiates from the hero top-left corner and bleeds into card backgrounds, creating atmosphere without flat fill",
+        "group": "brand",
+        "gradient": "radial-gradient(circle farthest-side at 0px -30%, rgb(75, 57, 239), rgba(6, 3, 17, 0) 84%)"
+      },
+      {
+        "hex": "#060311",
+        "name": "Obsidian",
+        "role": "Page canvas — the deep near-black backdrop for the entire site. Carries a subtle violet undertone that keeps the darkness warm and on-brand rather than cold",
+        "group": "neutral"
+      },
+      {
+        "hex": "#161320",
+        "name": "Onyx",
+        "role": "Card surfaces and hairline borders — one step lighter than the canvas, creates soft layering without shadows. Used for widget tree panels, input fields, and elevated containers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9ba1ae",
+        "name": "Slate Mist",
+        "role": "Muted body and helper text — descriptions, metadata, secondary nav items. Sits clearly below white in hierarchy while maintaining AAA contrast on the dark canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "role": "Light supporting surface for subtle backgrounds and section separation. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "True Black",
+        "role": "Icon detail in light/banner contexts and SVG illustration fills where maximum contrast is required against white backgrounds",
+        "group": "neutral"
+      }
+    ],
+    "layout": "The site uses a max-width 1200px centered container for content blocks, but hero and product showcase sections are full-bleed. The hero is a centered text stack (headline → subtext → CTA) over a dark canvas with a radial violet gradient bleeding from the top-left. Below the hero, a product screenshot floats at full container width. The page rhythm alternates between dark bands (hero, testimonials) and the product showcase. The trust logo strip is a single horizontal row of 4–5 logos with generous breathing room. Testimonial cards are arranged in a 3-column grid with 24px gaps, wrapping to 2 or 1 column responsively. Section padding is consistently 80px top and bottom, creating spacious vertical rhythm. Navigation is a sticky top bar with logo left, center nav, and CTA right, sitting above a slim white promo banner.",
+    "imagery": "The visual language is dominated by product UI screenshots — the FlutterFlow builder interface is the hero image, shown floating with a soft shadow and rounded corners. No lifestyle photography appears; the product IS the hero. Decorative visuals are limited to the radial violet gradient orb that bleeds from the top-left of dark sections, creating atmospheric depth. Customer logos in the trust strip are rendered in pure white or grayscale, never in original brand colors, to maintain visual coherence on the dark canvas. Iconography throughout the product UI is monochromatic white or Slate Mist, using thin 1.5–2px stroke weights with rounded line caps. Illustration is absent — the brand relies on real product screenshots and gradient washes rather than drawn graphics.",
+    "similar": [
+      {
+        "why": "Same dark canvas with selective chromatic accent, pill-shaped buttons, and floating product UI as the hero — though Figma uses red/orange accents where FlutterFlow uses violet",
+        "business": "Figma"
+      },
+      {
+        "why": "Identical developer-tool dark aesthetic with full-bleed product screenshots below a centered headline hero, and generous section padding",
+        "business": "Webflow"
+      },
+      {
+        "why": "Same midnight-canvas approach with a single bright accent color (Framer uses blue) and large display headlines with wide tracking",
+        "business": "Framer"
+      },
+      {
+        "why": "Same no-code tool category with dark hero, centered text stack, and product showcase pattern — though Bubble's palette is more neutral and less violet-driven",
+        "business": "Bubble"
+      },
+      {
+        "why": "Same monochromatic dark canvas with high-contrast white type and a single bold chromatic moment (Vercel black/white, FlutterFlow violet) for key actions",
+        "business": "Vercel"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "24px",
+        "inputs": "16px",
+        "buttons": "9999px",
+        "nav-pill": "9999px",
+        "buttons-square": "12px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "80px",
+      "cardPadding": "40px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "devtools",
+    "surfaces": [
+      {
+        "hex": "#060311",
+        "name": "Obsidian Canvas",
+        "level": 0,
+        "purpose": "Base page background — everything floats on this near-black with violet undertone"
+      },
+      {
+        "hex": "#161320",
+        "name": "Onyx Card",
+        "level": 1,
+        "purpose": "Card surfaces, input fields, and widget tree panels"
+      },
+      {
+        "hex": "#4b39ef",
+        "name": "Halo Gradient",
+        "level": 2,
+        "purpose": "Atmospheric gradient wash on hero, testimonial cards, and feature sections"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Pure White",
+        "level": 3,
+        "purpose": "Inverted surfaces — top banner, ghost buttons, and logo lockup on dark backgrounds"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(0, 0, 0, 0.2) 0px 4px 24px 20px",
+        "element": "Hero product screenshot card"
+      }
+    ],
+    "northStar": "violet control room at midnight",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.65
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.6,
+        "letterSpacing": 0.72
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.6,
+        "letterSpacing": 0.68
+      },
+      {
+        "role": "heading-sm",
+        "size": 20,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.76
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.3,
+        "letterSpacing": 1.22
+      },
+      {
+        "role": "heading-lg",
+        "size": 72,
+        "lineHeight": 1.2,
+        "letterSpacing": 3.24
+      },
+      {
+        "role": "display",
+        "size": 100,
+        "lineHeight": 1,
+        "letterSpacing": 4.5
+      }
+    ],
+    "components": [
+      {
+        "name": "Ghost Navigation Button",
+        "role": "Outlined CTA in top nav for low-emphasis primary action",
+        "description": "Pure white fill (#ffffff), Obsidian text (#060311), Urbanist 16px weight 500, 9999px radius (pill), 12px vertical / 24px horizontal padding, 1px transparent border. Used for 'Start for Free' in the nav bar — invites action without competing with the hero CTA."
+      },
+      {
+        "name": "Filled Hero CTA",
+        "role": "High-emphasis primary action on dark hero",
+        "description": "Electric Violet fill (#5800fd), white text, Urbanist 18px weight 500, 9999px radius, 16px vertical / 32px horizontal padding. Single bold chromatic moment against the dark canvas — carries the entire color story of the hero."
+      },
+      {
+        "name": "Testimonial Card",
+        "role": "Customer quote card in social proof grid",
+        "description": "Deep Indigo fill (#2415c6) or Periwinkle-to-Indigo gradient, 24px radius, 40px padding all sides. White company name (Urbanist 18px weight 600), Slate Mist body text, white author name + role at bottom. Cards arranged in 3-column grid on dark canvas."
+      },
+      {
+        "name": "Widget Tree Panel",
+        "role": "Left sidebar in product UI showing component hierarchy",
+        "description": "Onyx fill (#161320), 0px radius (flush to panel), 24px internal padding. Row items are 40px tall with Icon + Label layout. Active/hover row uses a teal-green or violet highlight fill at low opacity. Vertical scroll with 8px row gap."
+      },
+      {
+        "name": "Search Input",
+        "role": "Widget search field inside product tree",
+        "description": "Transparent or Onyx fill (#161320), 1px Onyx border, 16px radius, 11px vertical / 16px horizontal padding. Slate Mist placeholder text (14px), search icon at left, no visible focus ring — relies on container context."
+      },
+      {
+        "name": "Trust Logo Strip",
+        "role": "Horizontal row of customer/partner logos",
+        "description": "Section header eyebrow 'TRUSTED BY DEVELOPERS AT' in Urbanist 24px, 0.27em tracking, white at 60% opacity. Logos rendered in white or grayscale, 80–120px wide, 40px row gap between items, 80px section padding above and below."
+      },
+      {
+        "name": "Top Promo Banner",
+        "role": "Slim announcement bar above the nav",
+        "description": "Pure white fill (#ffffff), Obsidian text (#060311) and link text, Urbanist 14px weight 500, 0.045em tracking. Inline layout with logo + text + 'Try Now!' link. 11px vertical padding. Separates the marketing layer from the app nav."
+      },
+      {
+        "name": "Primary Navigation Bar",
+        "role": "Top-level site navigation",
+        "description": "Obsidian fill (#060311) with subtle transparency, transparent background, 9999px logo lockup, nav links in Urbanist 16px weight 500 white, dropdown items with Periwinkle (#7066ed) chevron. Sticky to top, 56px height, 32px horizontal padding."
+      },
+      {
+        "name": "Hero Section Block",
+        "role": "First-screen marketing surface",
+        "description": "Obsidian canvas with radial Halo Violet gradient bleeding from top-left corner. Centered text stack: Urbanist 100px weight 500 white headline with 4.5px tracking, 18px Slate Mist subtext, 40px vertical gap between elements, 80px top padding to clear the nav."
+      },
+      {
+        "name": "Product Showcase Frame",
+        "role": "Large product UI screenshot below hero",
+        "description": "Screenshot of the FlutterFlow builder with rounded container treatment, 24px radius, 20px black drop shadow. Optional 1px Onyx border. Floats over the dark canvas to demonstrate the product in context."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "All-caps section heading above content blocks",
+        "description": "Inter 24px weight 300, 0.27em letter-spacing, white at 70% opacity. Sits 16–24px above the headline it introduces. Spaced-out and whisper-light to create anticipation without competing with the primary headline."
+      },
+      {
+        "name": "Footer Link Group",
+        "role": "Categorized link lists in site footer",
+        "description": "White column headers (Urbanist 16px weight 600), Slate Mist link items (14px weight 400) with 16px vertical gap, 32px padding. No dividers between groups — whitespace and alignment do the work."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary brand typeface — headlines at 72–120px with wide tracking (0.038em–0.045em) create an architectural, restrained authority. Body and UI at 14–24px in weight 400. The geometric humanist forms are distinctive against the typical Inter/sans default of devtools.",
+        "sizes": "14px, 16px, 18px, 20px, 24px, 32px, 72px, 100px, 120px",
+        "family": "Urbanist",
+        "weight": "400, 500, 600",
+        "lineHeight": "1.00–1.60",
+        "substitute": "Inter, Manrope, or DM Sans",
+        "letterSpacing": "0.6em at 120px (display tracking), 0.045em at 72px, 0.038em at 32–20px, 0.030em at 24px, 0.045em at 16px, 0.030em at 14px"
+      },
+      {
+        "role": "Secondary UI typeface — eyebrows, labels, nav items, and micro-copy where Inter's tighter rhythm supports dense interface text. Weight 300 brings an anti-convention lightness to small caps tracking.",
+        "sizes": "13px, 14px, 16px, 18px, 20px, 24px",
+        "family": "Inter",
+        "weight": "300, 400, 700",
+        "lineHeight": "1.50–1.60",
+        "substitute": "system-ui or SF Pro",
+        "letterSpacing": "0.270em at 24px (all-caps eyebrow tracking), 0.090em at 18px, 0.057em at 16px, 0.050em at 13–14px"
+      }
+    ],
+    "description": "FlutterFlow's design system is a midnight workspace for app builders: near-black canvas (#060311) with deep violet energy radiating from gradient orbs and glowing CTAs. Urbanist, an understated geometric sans, carries the brand voice with generous letter-spacing that makes even 100px headlines feel architectural rather than shouty. The interface follows a clear three-tier surface stack — Obsidian canvas, Onyx cards, and Electric Violet accents — creating a developer-tool density that still feels premium and approachable. Every interactive element whispers confidence: pill-shaped buttons, 24px card radii, hairline violet borders, and minimal elevation replaced by subtle glows and gradient washes.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4e1ac04c-02ae-41cf-b588-3f6226a882f8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"FlutterFlow design system\",\"item\":\"https://styles.refero.design/style/4e1ac04c-02ae-41cf-b588-3f6226a882f8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4e1ac04c-02ae-41cf-b588-3f6226a882f8#style-reference\",\"name\":\"FlutterFlow design system reference\",\"headline\":\"FlutterFlow design system | Refero Styles\",\"description\":\"Explore FlutterFlow's dark Dev Tools design system: Electric Violet #5800fd, Deep Indigo #2415c6 colors, Urbanist, Inter typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/4e1ac04c-02ae-41cf-b588-3f6226a882f8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4e1ac04c-02ae-41cf-b588-3f6226a882f8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"FlutterFlow\",\"url\":\"https://flutterflow.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4e1ac04c-02ae-41cf-b588-3f6226a882f8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fd2907bd-a279-4a73-be57-6ea87eb0231a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fd2907bd-a279-4a73-be57-6ea87eb0231a.jpg\",\"caption\":\"Screenshot of FlutterFlow\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fd2907bd-a279-4a73-be57-6ea87eb0231a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"FlutterFlow design system\",\"FlutterFlow website design\",\"FlutterFlow colors\",\"FlutterFlow typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Electric Violet\",\"Deep Indigo\",\"Periwinkle Glow\",\"Halo Violet\",\"Urbanist\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"FlutterFlow design system\"},{\"@type\":\"Thing\",\"name\":\"FlutterFlow website design\"},{\"@type\":\"Thing\",\"name\":\"FlutterFlow colors\"},{\"@type\":\"Thing\",\"name\":\"FlutterFlow typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-04-04T12:08:55.000Z\",\"dateModified\":\"2026-04-04T12:08:55.000Z\"}]}19:T5e0,primary action: no distinct CTA color\n**Quick Color Reference**\n- Page background: #060311 (Obsidian)\n- Card surface: #161320 (Onyx)\n- Primary text: #ffffff (Pure White)\n- Muted text: #9ba1ae (Slate Mist)\n- Brand accent: #5800fd (Electric Violet)\n- Gradient orb: #4b39ef → transparent\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Build a testimonial card**: Background #2415c6 with gradient to #4b39ef at top-right, 24px radius, 40px padding. Company name in Urbanist 18px weight 600, white, top of card. Quote body in Urbanist 16px weight 400, white at 85% opacity, 24px gap below company name. Author name in Urbanist 14px weight 600, white; role in Urbanist 14px weight 400, #9ba1ae — both bottom of card with 40px gap above.\n\n3. **Build a ghost navigation button**: Transparent background, 1px white border, white text, Urbanist 16px weight 500, 9999px radius, 12px/24px padding. Hover state: background #ffffff, text #060311.\n\n4. **Build a widget tree row**: Background #161320, 40px height, 16px horizontal padding, icon at left (16px, white at 60% opacity), label in Urbanist 14px weight 400, white. Active state: background #5800fd at 15% opacity, white text at 100%.\n\n5. **Build an eyebrow label**: Inter 24px weight 300, white at 70% opacity, 0.27em letter-spacing, all-caps. Sits 16px above the heading it introduces, centered or left-aligned to match the section."
+      },
+      {
+        "title": "Gradient System",
+        "content": "Gradients are the primary atmospheric tool — used in place of shadows, background colors, and decorative graphics. Three gradient recipes:\n\n1. **Hero Halo** (most prominent, freq 24): radial-gradient(circle farthest-side at 0px -30%, rgb(75,57,239), rgba(6,3,17,0) 84%) — bleeds from top-left, creates the violet glow that defines the hero.\n\n2. **Card Wash** (freq 2): linear-gradient(rgb(75,57,239), rgb(75,57,239) 50%, rgb(43,33,137)) — used on testimonial and feature cards for a subtle violet depth.\n\n3. **Surface Lift** (freq 1): linear-gradient(rgb(22,19,32), rgb(6,3,17)) — barely-perceptible gradient that lifts Onyx surfaces from the canvas without adding a new color.\n\nRule: always start gradients from the top-left or top edge; never from the center or bottom — this creates the impression of a light source above the page."
+      },
+      {
+        "title": "Type Tracking Philosophy",
+        "content": "Letter-spacing scales with size — small text (13–14px) uses 0.05em (0.65–0.7px), body (16–18px) uses 0.03–0.045em (0.48–0.81px), and display (72–120px) uses 0.038–0.6em (2.7–72px). The 0.6em value at 120px is reserved for logo-style lockups only — not body display headlines. This tracking gradient is what makes Urbanist feel architectural rather than dense: the wider the size, the wider the tracking, creating a visual expansion that mirrors the physical size of the letters."
+      }
+    ],
+    "elevationPhilosophy": "Elevation is deliberately minimized — instead of layered shadows, the system relies on a near-flat surface stack (Obsidian → Onyx → gradient) and violet glow washes to create depth. The single shadow token is reserved for the hero product showcase where a floating element needs to separate from the canvas."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "image",
+            "other",
+            "link",
+            "nav",
+            "button",
+            "heading",
+            "hero",
+            "card",
+            "body",
+            "icon",
+            "footer"
+          ],
+          "frequency": 3185,
+          "confidence": 1,
+          "prominence": 215207976.36405647,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill",
+            "stroke"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 197,
+          "confidence": 1,
+          "prominence": 25821511.70451972,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2415c6",
+          "oklch": {
+            "c": 0.24426562170275445,
+            "h": 270.0761471944573,
+            "l": 0.3955646233634366
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 10304289.980485326,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#161320",
+          "oklch": {
+            "c": 0.026079603751276575,
+            "h": 294.4747566404651,
+            "l": 0.19695734273255147
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 148,
+          "confidence": 1,
+          "prominence": 4982994.975406405,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#7066ed",
+          "oklch": {
+            "c": 0.1965152642140281,
+            "h": 281.9003576662225,
+            "l": 0.591748612557815
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 4956185.843325292,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#060311",
+          "oklch": {
+            "c": 0.03617108878805866,
+            "h": 293.6508601119324,
+            "l": 0.11656518425614348
+          },
+          "contexts": [
+            "button",
+            "card",
+            "other"
+          ],
+          "frequency": 50,
+          "confidence": 1,
+          "prominence": 3915363.2301691147,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5800fd",
+          "oklch": {
+            "c": 0.2935582190140644,
+            "h": 281.1138469814122,
+            "l": 0.48913483470326535
+          },
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 35,
+          "confidence": 1,
+          "prominence": 645206.6401800006,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#9ba1ae",
+          "oklch": {
+            "c": 0.020109430618824548,
+            "h": 265.92959393504384,
+            "l": 0.7083074660264332
+          },
+          "contexts": [
+            "body",
+            "link",
+            "other"
+          ],
+          "frequency": 195,
+          "confidence": 1,
+          "prominence": 417636.37611034274,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 48960,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#882fe8",
+          "oklch": {
+            "c": 0.25238151268194703,
+            "h": 299.15580142832516,
+            "l": 0.5397283714783636
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 28355,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#6d5ef9",
+          "oklch": {
+            "c": 0.22203430125749035,
+            "h": 281.4261196937785,
+            "l": 0.5854552118017434
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 2512,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#161616",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20019308840256111
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 495,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5b5b5b",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4711943129424412
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 54,
+          "confidence": 1,
+          "prominence": 404.69517994672617,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#2a2a2a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.285017403997646
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 273.2950978723465,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#0930ff",
+          "oklch": {
+            "c": 0.2924498217428976,
+            "h": 264.66444455763036,
+            "l": 0.4826293428114341
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "confidence": 1,
+          "prominence": 189,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#808080",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5998708056221468
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 16,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5452ff",
+          "oklch": {
+            "c": 0.2475278292336404,
+            "h": 275.226219088541,
+            "l": 0.5550198566034239
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 8,
+          "properties": [
+            "fill"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.019098994344927837,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 20.41,
+          "background": "#060311",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.29,
+          "background": "#ffffff",
+          "foreground": "#161320"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.1,
+          "background": "#ffffff",
+          "foreground": "#161616"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.35,
+          "background": "#ffffff",
+          "foreground": "#2a2a2a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.51,
+          "background": "#ffffff",
+          "foreground": "#2415c6"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.1,
+          "background": "#9ba1ae",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.88,
+          "background": "#060311",
+          "foreground": "#9ba1ae"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.41,
+          "background": "#ffffff",
+          "foreground": "#5800fd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.3,
+          "background": "#ffffff",
+          "foreground": "#0930ff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.06,
+          "background": "#9ba1ae",
+          "foreground": "#161320"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.98,
+          "background": "#9ba1ae",
+          "foreground": "#161616"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.79,
+          "background": "#ffffff",
+          "foreground": "#5b5b5b"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.54,
+          "background": "#9ba1ae",
+          "foreground": "#2a2a2a"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.88,
+          "background": "#9ba1ae",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.55,
+          "background": "#6d5ef9",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.49,
+          "background": "#6d5ef9",
+          "foreground": "#060311"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.06,
+          "background": "#9ba1ae",
+          "foreground": "#2415c6"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.86,
+          "background": "#9ba1ae",
+          "foreground": "#5800fd"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 24,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 44
+        },
+        {
+          "value": 1440,
+          "contexts": [
+            "nav",
+            "button",
+            "image"
+          ],
+          "frequency": 8
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "button",
+            "image"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 4
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.2) 0px 4px 24px 20px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 72,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 5,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 41,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 11,
+          "contexts": [],
+          "frequency": 50,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginLeft",
+            "columnGap",
+            "rowGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 77,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 26,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 74,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 37,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 156,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 48,
+          "contexts": [],
+          "frequency": 15,
+          "properties": [
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 53,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 64,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 96,
+          "contexts": [],
+          "frequency": 34,
+          "properties": [
+            "marginRight",
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 101,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 112,
+          "contexts": [],
+          "frequency": 19,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 113,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 169,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "spacious",
+      "baseUnit": 8
+    },
+    "gradients": [
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle farthest-side at 0px -30%, rgb(75, 57, 239), rgba(6, 3, 17, 0) 84%)",
+        "colors": [
+          "rgb(75, 57, 239)",
+          "rgba(6, 3, 17, 0)"
+        ],
+        "frequency": 24
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(75, 57, 239), rgb(75, 57, 239) 50%, rgb(43, 33, 137))",
+        "colors": [
+          "rgb(75, 57, 239)",
+          "rgb(75, 57, 239)",
+          "rgb(43, 33, 137)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgb(22, 19, 32), rgb(6, 3, 17))",
+        "colors": [
+          "rgb(22, 19, 32)",
+          "rgb(6, 3, 17)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "radial",
+        "value": "radial-gradient(circle closest-corner at 100% 0px, rgb(36, 26, 125), rgb(75, 57, 239))",
+        "colors": [
+          "rgb(36, 26, 125)",
+          "rgb(75, 57, 239)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Urbanist",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            600
+          ],
+          "frequency": 638,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            300,
+            400,
+            700
+          ],
+          "frequency": 75,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 18,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.27,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Urbanist",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other",
+            "icon"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 25,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.09,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Urbanist",
+          "weight": 400,
+          "contexts": [
+            "image",
+            "other",
+            "link",
+            "nav",
+            "hero",
+            "card",
+            "icon",
+            "footer"
+          ],
+          "frequency": 480,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 300,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.05,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Urbanist",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Urbanist",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.6,
+          "letterSpacing": 0.038,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Urbanist",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.057,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Urbanist",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.3,
+          "letterSpacing": 0.6,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 20,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Urbanist",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Urbanist",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 24,
+          "lineHeight": 1,
+          "letterSpacing": 0.045,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Urbanist",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.3,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Urbanist",
+          "weight": 600,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Urbanist",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Urbanist",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "other",
+            "image"
+          ],
+          "frequency": 52,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Urbanist",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 100,
+          "family": "Urbanist",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 120,
+          "family": "Urbanist",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/8f374f68-1b74-4e92-b4fa-5f4c2d44c857.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/fd2907bd-a279-4a73-be57-6ea87eb0231a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/4e1ac04c-02ae-41cf-b588-3f6226a882f8#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"FlutterFlow design system\",\"item\":\"https://styles.refero.design/style/4e1ac04c-02ae-41cf-b588-3f6226a882f8\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/4e1ac04c-02ae-41cf-b588-3f6226a882f8#style-reference\",\"name\":\"FlutterFlow design system reference\",\"headline\":\"FlutterFlow design system | Refero Styles\",\"description\":\"Explore FlutterFlow's dark Dev Tools design system: Electric Violet #5800fd, Deep Indigo #2415c6 colors, Urbanist, Inter typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/4e1ac04c-02ae-41cf-b588-3f6226a882f8\",\"mainEntityOfPage\":\"https://styles.refero.design/style/4e1ac04c-02ae-41cf-b588-3f6226a882f8\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"FlutterFlow\",\"url\":\"https://flutterflow.io\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/4e1ac04c-02ae-41cf-b588-3f6226a882f8#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fd2907bd-a279-4a73-be57-6ea87eb0231a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fd2907bd-a279-4a73-be57-6ea87eb0231a.jpg\",\"caption\":\"Screenshot of FlutterFlow\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fd2907bd-a279-4a73-be57-6ea87eb0231a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"FlutterFlow design system\",\"FlutterFlow website design\",\"FlutterFlow colors\",\"FlutterFlow typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Dev Tools design system\",\"Electric Violet\",\"Deep Indigo\",\"Periwinkle Glow\",\"Halo Violet\",\"Urbanist\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"FlutterFlow design system\"},{\"@type\":\"Thing\",\"name\":\"FlutterFlow website design\"},{\"@type\":\"Thing\",\"name\":\"FlutterFlow colors\"},{\"@type\":\"Thing\",\"name\":\"FlutterFlow typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Dev Tools design system\"}],\"datePublished\":\"2026-04-04T12:08:55.000Z\",\"dateModified\":\"2026-04-04T12:08:55.000Z\"}]}19:T5e0,primary action: no distinct CTA color\n**Quick Color Reference**\n- Page background: #060311 (Obsidian)\n- Card surface: #161320 (Onyx)\n- Primary text: #ffffff (Pure White)\n- Muted text: #9ba1ae (Slate Mist)\n- Brand accent: #5800fd (Electric Violet)\n- Gradient orb: #4b39ef → transparent\n\n**Example Component Prompts**\n\nNo distinct primary action color was observed; use the extracted neutral button treatments instead of inventing a filled CTA color.\n\n2. **Build a testimonial card**: Background #2415c6 with gradient to #4b39ef at top-right, 24px radius, 40px padding. Company name in Urbanist 18px weight 600, white, top of card. Quote body in Urbanist 16px weight 400, white at 85% opacity, 24px gap below company name. Author name in Urbanist 14px weight 600, white; role in Urbanist 14px weight 400, #9ba1ae — both bottom of card with 40px gap above.\n\n3. **Build a ghost navigation button**: Transparent background, 1px white border, white text, Urbanist 16px weight 500, 9999px radius, 12px/24px padding. Hover state: background #ffffff, text #060311.\n\n4. **Build a widget tree row**: Background #161320, 40px height, 16px horizontal padding, icon at left (16px, white at 60% opacity), label in Urbanist 14px weight 400, white. Active state: background #5800fd at 15% opacity, white text at 100%.\n\n5. **Build an eyebrow label**: Inter 24px weight 300, white at 70% opacity, 0.27em letter-spacing, all-caps. Sits 16px above the heading it introduces, centered or left-aligned to match the section."
+}

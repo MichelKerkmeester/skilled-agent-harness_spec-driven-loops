@@ -1,0 +1,230 @@
+{
+  "color": {
+    "bone-white": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Bone White — Page canvas, card surfaces, border-on-hover washes — the warm off-white ground that the entire site sits on"
+    },
+    "graphite-ink": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Graphite Ink — Primary text, wordmark fill, body copy — near-black with a touch of warmth, softer than pure black"
+    },
+    "charcoal": {
+      "$value": "#343434",
+      "$type": "color",
+      "$description": "Charcoal — Navigation text, secondary headings, muted body — the darker of the two navigation grays"
+    },
+    "ash": {
+      "$value": "#aaaaaa",
+      "$type": "color",
+      "$description": "Ash — Tertiary text, inactive nav items, page number indicator — sits behind primary content"
+    },
+    "silver": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Silver — Hairline dividers, section separators, subtle card backgrounds — the structural border color"
+    },
+    "pale-mist": {
+      "$value": "#dbdbdb",
+      "$type": "color",
+      "$description": "Pale Mist — Decorative stroke work, SVG compass/field-line graphics, ultra-faint border accents"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — SVG illustration fills, maximum-contrast moments — used sparingly where the ink needs to be absolute"
+    }
+  },
+  "font": {
+    "tt-hoves-pro-trial": {
+      "$value": "TT Hoves Pro Trial",
+      "$type": "fontFamily",
+      "$description": "Sole typeface for wordmark, nav, labels, body, and metadata. The ultra-light 300 carries the enormous wordmark — a neogrotesque at whisper weight reads as confident editorial restraint rather than display shouting. 400 runs all body and nav copy; 500 is reserved for the rare emphasis moment."
+    },
+    "neuemontreal": {
+      "$value": "NeueMontreal",
+      "$type": "fontFamily",
+      "$description": "Rare secondary face for body paragraphs in the about/descriptive blocks — a warmer geometric that softens the Hoves rigidity in long-form reading"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "TT Hoves Pro Trial",
+        "fontSize": "8px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 8px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "TT Hoves Pro Trial",
+        "fontSize": "8px",
+        "fontWeight": 500,
+        "lineHeight": 2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 8px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "TT Hoves Pro Trial",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 10px"
+    },
+    "xs-4": {
+      "$value": {
+        "fontFamily": "TT Hoves Pro Trial",
+        "fontSize": "10px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-4 at 10px"
+    },
+    "xs-5": {
+      "$value": {
+        "fontFamily": "TT Hoves Pro Trial",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-5 at 10px"
+    },
+    "xs-6": {
+      "$value": {
+        "fontFamily": "TT Hoves Pro Trial",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-6 at 10px"
+    },
+    "xs-7": {
+      "$value": {
+        "fontFamily": "TT Hoves Pro Trial",
+        "fontSize": "10px",
+        "fontWeight": 500,
+        "lineHeight": 2.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-7 at 10px"
+    },
+    "xs-8": {
+      "$value": {
+        "fontFamily": "TT Hoves Pro Trial",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-8 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "TT Hoves Pro Trial",
+        "fontSize": "14px",
+        "fontWeight": 300,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "TT Hoves Pro Trial",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "TT Hoves Pro Trial",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "NeueMontreal",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    }
+  },
+  "spacing": {
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "64": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$description": "Spacing 64px"
+    },
+    "128": {
+      "$value": "128px",
+      "$type": "dimension",
+      "$description": "Spacing 128px"
+    },
+    "unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "surface": {
+    "bone-white": {
+      "$value": "#e5e7eb",
+      "$type": "color",
+      "$description": "Surface level 1: Full-bleed page canvas — the entire site is one continuous off-white field"
+    },
+    "silver": {
+      "$value": "#cccccc",
+      "$type": "color",
+      "$description": "Surface level 2: Subtle background tint for selected info blocks, nav hover washes"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.magnetism.fr/en",
+      "siteName": "Magnetism",
+      "extractedAt": "2026-06-03T21:25:28.863Z",
+      "variant": "extended"
+    }
+  }
+}

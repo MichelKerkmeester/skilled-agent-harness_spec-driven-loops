@@ -1,0 +1,1343 @@
+{
+  "source": "https://styles.refero.design/style/b1ec2120-ceb0-42d1-9f96-2c9db2bf009b",
+  "uuid": "b1ec2120-ceb0-42d1-9f96-2c9db2bf009b",
+  "name": "Index",
+  "northStar": "editorial broadsheet with yellow highlighter — a stark black-and-white printed publication where #ffd600 marks the only point of emphasis",
+  "capturedAt": "2026-07-18T08:45:27.532Z",
+  "meta": {
+    "url": "https://index-space.org",
+    "siteName": "Index",
+    "extractedAt": "2026-06-03T21:50:47.852Z",
+    "durationMs": 31492,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 535,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Set display headlines in ITCGaramondStdLtCond at 50–80px, weight 300, with letter-spacing between -0.022em and -0.037em — this is the brand's most distinctive choice",
+      "Use ABCDiatype (or Inter substitute) for all UI, navigation, body, and labels at 12–30px",
+      "Use the outlined text link (1px border, 6px radius, transparent fill) as the default interactive element — reserve the filled black button for compact primary actions only",
+      "Reserve #ffd600 exclusively for map pins and single-point highlights — never use it for backgrounds, text, or buttons",
+      "Break long white pages with full-width black-surface bands (announcement bar, feature cards) to create high-contrast plate transitions",
+      "Set letter-spacing to slightly positive values (0.008–0.015em) on text 16px and below for legibility, and to negative values above 24px for editorial density",
+      "Keep all borders at 1px and all component radii at 6px (buttons, links, nav) or 16px (cards) — the system has only two corner-radius values"
+    ],
+    "donts": [
+      "Don't introduce a third font family — the system runs on exactly two: ITCGaramondStdLtCond for display, ABCDiatype for everything else",
+      "Don't use box-shadows for elevation — the system is deliberately shadowless; rely on color inversion and hairline borders",
+      "Don't use #ffd600 for buttons, text, or large fills — it is a marker color, not a surface color",
+      "Don't set display headlines at weight 400 or above in the serif — the hairline 300 weight is the signature; heavier weights break the broadsheet feel",
+      "Don't use border-radius values other than 6px (small elements) or 16px (cards) — rounded corners should be subtle and uniform",
+      "Don't add gradients — the system is strictly flat; color is solid, never blended",
+      "Don't use chromatic borders for outlined buttons on dark surfaces — always invert to #ffffff border and text, not a color tint"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Index Ink",
+        "role": "Primary text, announcement bar background, dark feature cards, map silhouettes, hairline borders. The dominant structural color — used where ink would go on a printed page",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, body backgrounds, inverted text on dark surfaces. The base layer of the entire system",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffd600",
+        "name": "Highlighter Yellow",
+        "role": "Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content.",
+        "group": "accent"
+      }
+    ],
+    "layout": "The page is full-bleed horizontally — the world map, announcement bar, and feature cards all span the full viewport width. Text content sits in a centered max-width container of ~1200px with generous left/right margins. The vertical rhythm alternates between white paper sections and black ink-plate sections, creating dramatic contrast breaks. The hero is a massive left-aligned serif headline that fills most of the first viewport. The map and location blocks form a full-width horizontal band. The dark feature card breaks the page with a full-bleed two-column image+text plate. Navigation is a minimal sticky-feeling white bar at the top with a dark announcement bar above it. The overall pattern reads top-to-bottom: announcement bar → nav → editorial hero headline → world map band → location directory → editorial headline + body text + outlined links → dark feature card → continuation content. No sidebar, no multi-column dashboard layout — this is a long-scroll editorial page, not an application.",
+    "imagery": "Photography appears only in the dark feature card as a full-bleed left-half image — a moody, dimly lit still life (open book among white lilies on dark ground) that matches the card's black surface. The primary visual element is the diagrammatic world map: a row of black triangular segments forming a simplified world silhouette, diagrammatic rather than illustrative, with yellow circular pins. No decorative gradients, no abstract graphics, no 3D renders. Icons are minimal — a three-dot menu glyph and a close '×' — rendered as simple line marks. The overall visual language is editorial broadsheet: high-contrast photography used sparingly, diagrammatic information graphics, and type as the dominant visual element.",
+    "similar": [
+      {
+        "why": "Same broadsheet editorial aesthetic — large condensed serif display headlines, achromatic palette, flat surfaces, and minimal UI ornamentation",
+        "business": "Cooper Hewitt"
+      },
+      {
+        "why": "Same printed-publication typographic approach with tight-tracked serif headlines and a single restrained color accent on an otherwise monochrome page",
+        "business": "Cabinet Magazine"
+      },
+      {
+        "why": "Similar near-total-black-and-white palette with a single high-saturation yellow accent used for specific functional marks",
+        "business": "Printed Matter"
+      },
+      {
+        "why": "Cultural/arts organization with editorial web typography, minimal nav, and a diagrammatic visual approach to information",
+        "business": "Rhizome"
+      },
+      {
+        "why": "Same light-mode editorial layout with a condensed serif carrying the visual identity and hairline sans for secondary text",
+        "business": "The New York Review of Books"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "6px",
+        "cards": "16px",
+        "icons": "6px",
+        "links": "6px",
+        "buttons": "6px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "64px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "other",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "level": 0,
+        "purpose": "Page canvas and all light content sections"
+      },
+      {
+        "hex": "#000000",
+        "name": "Ink Plate",
+        "level": 1,
+        "purpose": "Dark surface for announcement bars, feature cards, and dramatic breaks"
+      }
+    ],
+    "elevation": [],
+    "northStar": "editorial broadsheet with yellow highlighter — a stark black-and-white printed publication where #ffd600 marks the only point of emphasis",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.18
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.128
+      },
+      {
+        "role": "body",
+        "size": 20,
+        "lineHeight": 1.2,
+        "letterSpacing": 0.22
+      },
+      {
+        "role": "subheading",
+        "size": 24,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.216
+      },
+      {
+        "role": "heading-sm",
+        "size": 30,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.45
+      },
+      {
+        "role": "heading",
+        "size": 50,
+        "lineHeight": 1,
+        "letterSpacing": -1.1
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 0.9,
+        "letterSpacing": -1.512
+      },
+      {
+        "role": "display",
+        "size": 80,
+        "lineHeight": 0.9,
+        "letterSpacing": -2.96
+      }
+    ],
+    "components": [
+      {
+        "name": "Announcement Bar",
+        "role": "Site-wide notification strip",
+        "description": "Full-width black (#000000) bar at the very top of every page. White text, ABCDiatype 16px, 1px top/bottom padding, left-aligned message. Contains a 'MORE' outlined text link button (1px white border, 6px radius, white text) and a close '×' icon right-aligned. No shadow, no rounding on the bar itself — flush with viewport edges."
+      },
+      {
+        "name": "Top Navigation",
+        "role": "Persistent site header",
+        "description": "Minimal white bar with three elements: 'Index' wordmark in IndexLogotype 50px at the left, a circular menu button (black border, 6px radius, three dots inside) beside it, and a cart counter (black circle with white number '0', ~24px) at the far right. Transparent/white background, no border, no shadow. Sits directly below the announcement bar."
+      },
+      {
+        "name": "Outlined Text Link",
+        "role": "In-text navigation and tag link — the signature interaction",
+        "description": "The most repeated component on the site. 1px solid #000000 border, transparent background, ABCDiatype uppercase text at 12–16px, 4–8px vertical padding and 6–8px horizontal padding, 6px border-radius. Examples: PROGRAMMING, CHINATOWN, GREENPOINT, NODES, ABOUT, RESOURCES, OUR DISCORD, LEARN MORE. On dark surfaces, the border and text invert to #ffffff. No fill state — always outlined."
+      },
+      {
+        "name": "Filled Dark Button",
+        "role": "Primary compact action",
+        "description": "Solid #000000 background, white ABCDiatype 12–16px uppercase text, 6px border-radius, 8px vertical and 20px horizontal padding. Used sparingly — the 'MORE' button in the announcement bar is the clearest example. Inverts to white-on-black only; never a chromatic fill."
+      },
+      {
+        "name": "Editorial Display Headline",
+        "role": "Hero and section titles",
+        "description": "ITCGaramondStdLtCond at 50–80px, weight 300, with aggressive negative letter-spacing (-0.022em to -0.037em) and tight line-height (0.90–1.00). Black on white, never reversed color. The condensed light weight + negative tracking combination is the most distinctive visual signature of the brand — it reads as broadsheet print, not web."
+      },
+      {
+        "name": "Section Label",
+        "role": "Small uppercase category marker",
+        "description": "ABCDiatype uppercase at 12–16px, weight 400, with positive letter-spacing (0.008–0.015em), black text. Used to label sections like 'ASYNCHRONOUS COURSES'. Sits above or beside content as a typographic marker, not a chip or pill — no border, no background."
+      },
+      {
+        "name": "Dark Feature Card",
+        "role": "Promoted content block with full-bleed image",
+        "description": "Full-width #000000 background, 16px border-radius. Two-column layout: left half is a tightly cropped photographic image (no rounding, bleeds to card edge), right half holds white ABCDiatype text and a white-bordered outlined text link button at the bottom. The 'Learn at your own pace' / asynchronous courses card is the reference. High contrast plate — appears as a dark band breaking up the white page."
+      },
+      {
+        "name": "World Map Visualization",
+        "role": "Location directory graphic",
+        "description": "A row of black triangular/pyramidal segments tiled horizontally to form a flattened world map silhouette. No fill detail, no coastlines — just the triangular lattice. Yellow (#ffd600) circular pins (~12–16px diameter) mark specific locations. Each pin anchors a stacked address block below in ABCDiatype 12–16px black. The map has no border or container — it bleeds full-width."
+      },
+      {
+        "name": "Map Location Pin",
+        "role": "Map annotation marker",
+        "description": "Solid #ffd600 circle, 12–16px diameter, no border, no shadow. Sits on the map at each physical location. The only yellow element in the entire system besides highlights — its visual weight is amplified by the total absence of other color."
+      },
+      {
+        "name": "Location Info Block",
+        "role": "Address caption under map pin",
+        "description": "Stacked three-line block: location name (ABCDiatype 16px bold/400), street address (ABCDiatype 12px), city/state/zip (ABCDiatype 12px). All #000000, left-aligned, 4–8px line spacing. Appears in a horizontal row beneath the map, one per pin."
+      },
+      {
+        "name": "Menu Trigger Button",
+        "role": "Hamburger/menu toggle in nav",
+        "description": "Circular or pill-shaped button with 1px black border, 6px radius, three horizontal dots inside (ellipsis indicator). White background, black icon. Tapping opens the navigation menu."
+      },
+      {
+        "name": "Cart Counter Badge",
+        "role": "Notification dot in nav",
+        "description": "Solid #000000 circle (~24px diameter) with white ABCDiatype number inside, positioned at the far right of the navigation. Functions as a cart or notification indicator. No border, no shadow."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Display headlines and editorial body. The condensed light Garamond at 75–80px is the brand's voice — narrow proportions and hairline weight make it feel printed, not digital. The 2.10 line-height appears for tall stacked address blocks. Free substitute: Cormorant Garamond Light (condensed cut if available), or Playfair Display Light as a looser alternative.",
+        "sizes": "20, 24, 40, 50, 75px",
+        "family": "ITCGaramondStdLtCond",
+        "weight": "300, 400",
+        "lineHeight": "1.00, 1.05, 1.20, 2.10",
+        "substitute": "Cormorant Garamond Light, Playfair Display Light",
+        "letterSpacing": "-0.022em at 50px, 0.011em at 20px, 0.018em at small sizes"
+      },
+      {
+        "role": "UI text, navigation, labels, buttons, body, input. The workhorse sans — geometric and clean with tight negative tracking at display sizes. Small sizes get slight positive tracking for legibility. Free substitute: Inter, or Söhne if licensed.",
+        "sizes": "12, 16, 24, 30, 50, 56, 80px",
+        "family": "ABCDiatypeLight",
+        "weight": "300, 400",
+        "lineHeight": "0.90, 1.10, 1.20, 1.25",
+        "substitute": "Inter, Söhne",
+        "letterSpacing": "-0.037em at 80px, -0.027em at 56px, -0.015em at 30px, -0.009em at 24px, 0.008em at 12–16px"
+      },
+      {
+        "role": "The wordmark 'Index' in the top-left navigation. A custom logotype only used at this single placement — not a body font. Do not substitute for headlines.",
+        "sizes": "50px",
+        "family": "IndexLogotype",
+        "weight": "300",
+        "lineHeight": "0.90",
+        "substitute": "ITCGaramondStdLtCond 50px (closest visual match)",
+        "letterSpacing": "normal"
+      },
+      {
+        "role": "Falls back to system Times for unstyled content. Not a brand choice — system fallback only.",
+        "sizes": "16px",
+        "family": "Times",
+        "weight": "400",
+        "lineHeight": "1.20",
+        "substitute": "serif"
+      }
+    ],
+    "description": "Index reads as an editorial broadsheet translated to the web: near-total achromatic discipline, a single condensed serif for display headlines, and one highlighter-yellow accent used sparingly to mark what matters. Surfaces stay paper-white for most content, but the design flips to full-ink black for announcement bars and feature cards, creating high-contrast plate-like breaks rather than gradients or shadows. Typography does the heavy lifting — light-weight serif at 75–80px with aggressive negative tracking for headlines, a geometric sans for UI, and small uppercase labels with positive tracking as section markers. Components are flat, thin-bordered, and unornamented: links live as outlined text pills, buttons are 6px-radius rectangles, and the only color punctuation is a 16px yellow dot. The world map is rendered as a row of black triangular segments with yellow location pins — graphic, diagrammatic, and never illustrative.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b1ec2120-ceb0-42d1-9f96-2c9db2bf009b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Index design system\",\"item\":\"https://styles.refero.design/style/b1ec2120-ceb0-42d1-9f96-2c9db2bf009b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b1ec2120-ceb0-42d1-9f96-2c9db2bf009b#style-reference\",\"name\":\"Index design system reference\",\"headline\":\"Index design system | Refero Styles\",\"description\":\"Explore Index's light Other design system: Index Ink #000000, Paper White #ffffff colors, ITCGaramondStdLtCond, ABCDiatypeLight typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/b1ec2120-ceb0-42d1-9f96-2c9db2bf009b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b1ec2120-ceb0-42d1-9f96-2c9db2bf009b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Index\",\"url\":\"https://index-space.org\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b1ec2120-ceb0-42d1-9f96-2c9db2bf009b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/dea04401-9970-467a-b195-0d12e5cf1b8a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/dea04401-9970-467a-b195-0d12e5cf1b8a.jpg\",\"caption\":\"Screenshot of Index\"},\"image\":\"https://images.refero.design/styles/refero.design/image/dea04401-9970-467a-b195-0d12e5cf1b8a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Index design system\",\"Index website design\",\"Index colors\",\"Index typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Index Ink\",\"Paper White\",\"Highlighter Yellow\",\"ITCGaramondStdLtCond\",\"ABCDiatypeLight\",\"IndexLogotype\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Index design system\"},{\"@type\":\"Thing\",\"name\":\"Index website design\"},{\"@type\":\"Thing\",\"name\":\"Index colors\"},{\"@type\":\"Thing\",\"name\":\"Index typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T03:32:44.084Z\",\"dateModified\":\"2026-04-30T03:32:44.084Z\"}]}19:T63f,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px solid)\n- accent: #ffd600 (map pins only)\n- dark surface: #000000 (announcement bars, feature cards)\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n\n1. **Editorial hero headline**: Set text in ITCGaramondStdLtCond at 80px, weight 300, line-height 0.90, letter-spacing -2.96px, color #000000 on a #ffffff canvas. Left-align. Let the text fill 80% of the viewport width.\n\n2. **Outlined text link (the signature interaction)**: Create a link with 1px solid #000000 border, 6px border-radius, transparent background, ABCDiatype uppercase text at 14px, padding 4px 8px. Text color #000000. On a #000000 surface, invert both border and text to #ffffff.\n\n3. **Announcement bar**: Full-width #000000 bar, 1px top and bottom padding, white ABCDiatype 16px message text left-aligned, an outlined 'MORE' link (1px white border, 6px radius, white text, 4px 8px padding) beside it, and a '×' close icon right-aligned.\n\n4. **World map location pin**: A solid #ffd600 circle, 14px diameter, no border, positioned over a black triangular world-map lattice. Below each pin, stack three lines of ABCDiatype at 12–16px in #000000: location name, street, city.\n\n5. **Dark feature card**: Full-width #000000 surface, 16px border-radius, two-column grid — left half is a full-bleed photographic image bleeding to the card edge, right half contains a white ITCGaramondStdLtCond headline at 40px, white ABCDiatype body at 20px, and a white-bordered outlined text link at the bottom-left of the text column."
+      }
+    ],
+    "elevationPhilosophy": "The system uses zero box-shadows. Elevation is achieved entirely through color inversion — a black surface on a white canvas reads as 'raised' or 'emphasized' without needing shadow. This keeps the aesthetic flat and print-like. The only spatial separation comes from hairline 1px borders and generous whitespace."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "body",
+            "image",
+            "heading",
+            "link",
+            "card",
+            "icon",
+            "footer"
+          ],
+          "frequency": 1792,
+          "confidence": 1,
+          "prominence": 144273163.8626842,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 7,
+            "body/color": 82,
+            "icon/color": 10,
+            "link/color": 17,
+            "other/fill": 1,
+            "image/color": 3,
+            "other/color": 201,
+            "button/color": 2,
+            "heading/color": 31,
+            "nav/borderColor": 28,
+            "body/borderColor": 328,
+            "icon/borderColor": 40,
+            "link/borderColor": 68,
+            "image/borderColor": 12,
+            "other/borderColor": 804,
+            "button/borderColor": 8,
+            "heading/borderColor": 124,
+            "nav/backgroundColor": 1,
+            "body/backgroundColor": 1,
+            "card/backgroundColor": 2,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 15,
+            "button/backgroundColor": 5,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "button",
+            "icon",
+            "nav",
+            "body",
+            "image",
+            "card",
+            "footer",
+            "input",
+            "list"
+          ],
+          "frequency": 892,
+          "confidence": 1,
+          "prominence": 16060423.207581881,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "nav/color": 1,
+            "body/color": 50,
+            "card/color": 2,
+            "icon/color": 3,
+            "link/color": 23,
+            "list/color": 20,
+            "image/color": 6,
+            "input/color": 1,
+            "other/color": 53,
+            "button/color": 7,
+            "footer/color": 1,
+            "other/stroke": 2,
+            "heading/color": 11,
+            "nav/borderColor": 4,
+            "body/borderColor": 200,
+            "card/borderColor": 8,
+            "icon/borderColor": 12,
+            "link/borderColor": 88,
+            "list/borderColor": 80,
+            "image/borderColor": 24,
+            "input/borderColor": 4,
+            "other/borderColor": 212,
+            "button/borderColor": 28,
+            "footer/borderColor": 4,
+            "heading/borderColor": 44,
+            "nav/backgroundColor": 1,
+            "other/backgroundColor": 2,
+            "button/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#ffd600",
+          "oklch": {
+            "c": 0.18164223058590778,
+            "h": 94.89716094892123,
+            "l": 0.884794595831314
+          },
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 6546.78225226443,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "heading/color": 1,
+            "heading/borderColor": 4,
+            "other/backgroundColor": 12
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.003089864534617241,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.87,
+          "background": "#ffd600",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.41,
+          "background": "#ffd600",
+          "foreground": "#ffffff"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "other",
+            "nav",
+            "link",
+            "icon",
+            "button"
+          ],
+          "frequency": 48
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 4
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 100,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "body",
+            "input",
+            "button"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingTop|input",
+            "paddingBottom|input",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 2,
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|input"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "link",
+            "input",
+            "body"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginTop|input",
+            "marginRight|body"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|link",
+            "marginRight|link",
+            "marginBottom|link",
+            "marginLeft|link",
+            "paddingTop|link",
+            "paddingRight|link",
+            "paddingBottom|link",
+            "paddingLeft|link",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "heading"
+          ],
+          "frequency": 51,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginLeft",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "marginLeft|button",
+            "marginLeft|nav",
+            "paddingTop|other",
+            "marginBottom|other",
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "heading",
+            "other",
+            "button"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingTop",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|heading",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginRight|other",
+            "paddingTop|button"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|heading",
+            "paddingRight|heading",
+            "paddingBottom|heading",
+            "paddingLeft|heading"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|nav",
+            "marginBottom|nav"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "heading",
+            "button",
+            "list"
+          ],
+          "frequency": 21,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginBottom|other",
+            "marginBottom|heading",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginTop|list",
+            "marginBottom|list"
+          ]
+        },
+        {
+          "value": 18,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|list"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 43,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginRight|other",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "nav",
+            "heading",
+            "body",
+            "footer"
+          ],
+          "frequency": 39,
+          "properties": [
+            "marginLeft",
+            "marginRight",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginRight|nav",
+            "marginLeft|nav",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other",
+            "marginBottom|heading",
+            "paddingBottom|other",
+            "paddingLeft|body",
+            "paddingTop|other",
+            "paddingRight|footer",
+            "paddingLeft|footer"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 24,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "paddingBottom|heading",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "heading",
+            "other",
+            "body",
+            "input"
+          ],
+          "frequency": 42,
+          "properties": [
+            "marginBottom",
+            "paddingRight",
+            "marginRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|heading",
+            "paddingRight|other",
+            "marginRight|body",
+            "marginRight|other",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "heading",
+            "footer"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "marginBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginBottom|heading",
+            "paddingTop|footer",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 105,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 260,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Times",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 292,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ABCDiatypeLight",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 192,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "ITCGaramondStdLtCond",
+          "source": "custom",
+          "weights": [
+            300,
+            400
+          ],
+          "frequency": 43,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "Arial",
+          "source": "system",
+          "weights": [
+            400
+          ],
+          "frequency": 3,
+          "fontFeatureSettings": []
+        },
+        {
+          "family": "IndexLogotype",
+          "source": "custom",
+          "weights": [
+            300
+          ],
+          "frequency": 2,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 14,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "ABCDiatypeLight",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.037,
+          "textTransform": "none"
+        },
+        {
+          "size": 12,
+          "family": "ABCDiatypeLight",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 16,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.037,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "image",
+            "card",
+            "icon",
+            "button"
+          ],
+          "frequency": 230,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABCDiatypeLight",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "link",
+            "list"
+          ],
+          "frequency": 78,
+          "lineHeight": 1.25,
+          "letterSpacing": -0.027,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "ABCDiatypeLight",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "icon"
+          ],
+          "frequency": 58,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "ABCDiatypeLight",
+          "weight": 300,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 40,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 16,
+          "family": "Times",
+          "weight": 400,
+          "contexts": [
+            "footer",
+            "body",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 4.69,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "ITCGaramondStdLtCond",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 2.1,
+          "letterSpacing": -0.022,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 24,
+          "family": "ABCDiatypeLight",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "ITCGaramondStdLtCond",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.018,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "ABCDiatypeLight",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "button",
+            "nav",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "ABCDiatypeLight",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.015,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "ABCDiatypeLight",
+          "weight": 300,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "ABCDiatypeLight",
+          "weight": 300,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 3,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 30,
+          "family": "ABCDiatypeLight",
+          "weight": 300,
+          "contexts": [
+            "heading",
+            "button"
+          ],
+          "frequency": 13,
+          "lineHeight": 0.9,
+          "letterSpacing": 0.015,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 30,
+          "family": "ABCDiatypeLight",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.9,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "ITCGaramondStdLtCond",
+          "weight": 400,
+          "contexts": [
+            "heading",
+            "link"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "ITCGaramondStdLtCond",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "ITCGaramondStdLtCond",
+          "weight": 300,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.05,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 40,
+          "family": "ITCGaramondStdLtCond",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.05,
+          "letterSpacing": 0.011,
+          "textTransform": "none"
+        },
+        {
+          "size": 50,
+          "family": "IndexLogotype",
+          "weight": 300,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 2,
+          "lineHeight": 0.9,
+          "letterSpacing": 0,
+          "textTransform": "lowercase"
+        },
+        {
+          "size": 50,
+          "family": "ABCDiatypeLight",
+          "weight": 300,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 50,
+          "family": "ABCDiatypeLight",
+          "weight": 400,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.009,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 50,
+          "family": "ITCGaramondStdLtCond",
+          "weight": 300,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 56,
+          "family": "ABCDiatypeLight",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 75,
+          "family": "ITCGaramondStdLtCond",
+          "weight": 300,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 80,
+          "family": "ABCDiatypeLight",
+          "weight": 300,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 0.34,
+          "letterSpacing": 0,
+          "textTransform": "uppercase"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/5ddd76cf-dfa7-4df3-b221-b9b077f1c98f.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/dea04401-9970-467a-b195-0d12e5cf1b8a.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/b1ec2120-ceb0-42d1-9f96-2c9db2bf009b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Index design system\",\"item\":\"https://styles.refero.design/style/b1ec2120-ceb0-42d1-9f96-2c9db2bf009b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/b1ec2120-ceb0-42d1-9f96-2c9db2bf009b#style-reference\",\"name\":\"Index design system reference\",\"headline\":\"Index design system | Refero Styles\",\"description\":\"Explore Index's light Other design system: Index Ink #000000, Paper White #ffffff colors, ITCGaramondStdLtCond, ABCDiatypeLight typography, and DESIGN.md...\",\"url\":\"https://styles.refero.design/style/b1ec2120-ceb0-42d1-9f96-2c9db2bf009b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/b1ec2120-ceb0-42d1-9f96-2c9db2bf009b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Index\",\"url\":\"https://index-space.org\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/b1ec2120-ceb0-42d1-9f96-2c9db2bf009b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/dea04401-9970-467a-b195-0d12e5cf1b8a.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/dea04401-9970-467a-b195-0d12e5cf1b8a.jpg\",\"caption\":\"Screenshot of Index\"},\"image\":\"https://images.refero.design/styles/refero.design/image/dea04401-9970-467a-b195-0d12e5cf1b8a.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Index design system\",\"Index website design\",\"Index colors\",\"Index typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Index Ink\",\"Paper White\",\"Highlighter Yellow\",\"ITCGaramondStdLtCond\",\"ABCDiatypeLight\",\"IndexLogotype\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Index design system\"},{\"@type\":\"Thing\",\"name\":\"Index website design\"},{\"@type\":\"Thing\",\"name\":\"Index colors\"},{\"@type\":\"Thing\",\"name\":\"Index typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-30T03:32:44.084Z\",\"dateModified\":\"2026-04-30T03:32:44.084Z\"}]}19:T63f,**Quick Color Reference**\n- text: #000000\n- background: #ffffff\n- border: #000000 (1px solid)\n- accent: #ffd600 (map pins only)\n- dark surface: #000000 (announcement bars, feature cards)\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n\n1. **Editorial hero headline**: Set text in ITCGaramondStdLtCond at 80px, weight 300, line-height 0.90, letter-spacing -2.96px, color #000000 on a #ffffff canvas. Left-align. Let the text fill 80% of the viewport width.\n\n2. **Outlined text link (the signature interaction)**: Create a link with 1px solid #000000 border, 6px border-radius, transparent background, ABCDiatype uppercase text at 14px, padding 4px 8px. Text color #000000. On a #000000 surface, invert both border and text to #ffffff.\n\n3. **Announcement bar**: Full-width #000000 bar, 1px top and bottom padding, white ABCDiatype 16px message text left-aligned, an outlined 'MORE' link (1px white border, 6px radius, white text, 4px 8px padding) beside it, and a '×' close icon right-aligned.\n\n4. **World map location pin**: A solid #ffd600 circle, 14px diameter, no border, positioned over a black triangular world-map lattice. Below each pin, stack three lines of ABCDiatype at 12–16px in #000000: location name, street, city.\n\n5. **Dark feature card**: Full-width #000000 surface, 16px border-radius, two-column grid — left half is a full-bleed photographic image bleeding to the card edge, right half contains a white ITCGaramondStdLtCond headline at 40px, white ABCDiatype body at 20px, and a white-bordered outlined text link at the bottom-left of the text column."
+}

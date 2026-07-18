@@ -1,0 +1,397 @@
+{
+  "color": {
+    "ember-rust": {
+      "$value": "#cc6437",
+      "$type": "color",
+      "$description": "Ember Rust — Accent strokes, icon linework, small text highlights — the only chromatic color in an otherwise monochrome system, appearing as a hairline pulse rather than a fill"
+    },
+    "void-black": {
+      "$value": "#0b0b0b",
+      "$type": "color",
+      "$description": "Void Black — Primary page canvas and section backgrounds; the foundation of the entire system"
+    },
+    "charcoal-surface": {
+      "$value": "#272a2a",
+      "$type": "color",
+      "$description": "Charcoal Surface — Card and panel backgrounds on dark sections — one step lighter than the canvas to create surface separation without shadow"
+    },
+    "bone": {
+      "$value": "#edebe7",
+      "$type": "color",
+      "$description": "Bone — Light section backgrounds and off-white surfaces where the system flips from dark to bright"
+    },
+    "bone-darker": {
+      "$value": "#dfddd9",
+      "$type": "color",
+      "$description": "Bone Darker — Subtle variant of Bone for layered light surfaces and warm-tinted off-white elements"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — All body and heading text, ghost button borders, nav elements — the dominant foreground color at 19.7:1 contrast on Void Black"
+    },
+    "abyss": {
+      "$value": "#050505",
+      "$type": "color",
+      "$description": "Abyss — Elevated bar backgrounds (top news strip) — one shade darker than the main canvas to push the bar forward"
+    },
+    "steel": {
+      "$value": "#484848",
+      "$type": "color",
+      "$description": "Steel — Mid-tone border for secondary solid buttons where Pure White would be too stark"
+    },
+    "ash": {
+      "$value": "#cecece",
+      "$type": "color",
+      "$description": "Ash — Hairline borders for pill badges and numbered markers — lighter than Steel to read as fine detail against the dark canvas"
+    }
+  },
+  "font": {
+    "pragmatica-cond": {
+      "$value": "Pragmatica Cond",
+      "$type": "fontFamily",
+      "$description": "Primary display and UI typeface — narrow condensed uppercase at 14px for body, 20px for section labels, 32px for hero wordmark. The extreme narrowness and all-caps setting at 14px body size is the system's most signature choice: body text reads as a whisper of architectural type, not conventional prose. Substitute with Oswald or Barlow Condensed if Pragmatica Cond is unavailable."
+    },
+    "pragmatica": {
+      "$value": "Pragmatica",
+      "$type": "fontFamily",
+      "$description": "Secondary body typeface used for longer-form prose passages (e.g. the 'AI Operating System' card description at 24px, paragraph text at 15px). Slightly wider than Pragmatica Cond for reading comfort in extended blocks, but still 400 weight — no bold ever. Substitute with Inter or Söhne."
+    },
+    "roboto-mono": {
+      "$value": "Roboto Mono",
+      "$type": "fontFamily",
+      "$description": "Monospace micro-type for the top news bar ticker ('NEWS • JUN 15, 2026 • CRUCIBLE EARLY ACCESS IS NOW OPEN'). The only place monospace appears, creating a clear functional distinction: this is system data, not brand voice."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "xs-2": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-2 at 11px"
+    },
+    "xs-3": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs-3 at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Pragmatica Cond",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.43
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Pragmatica",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Pragmatica",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "sm-8": {
+      "$value": {
+        "fontFamily": "Roboto Mono",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-8 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Pragmatica",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Pragmatica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Pragmatica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Pragmatica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Pragmatica",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Pragmatica Cond",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Pragmatica",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Pragmatica Cond",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.05
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "30": {
+      "$value": "30px",
+      "$type": "dimension",
+      "$description": "Spacing 30px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "65": {
+      "$value": "65px",
+      "$type": "dimension",
+      "$description": "Spacing 65px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "100": {
+      "$value": "100px",
+      "$type": "dimension",
+      "$description": "Spacing 100px"
+    },
+    "122": {
+      "$value": "122px",
+      "$type": "dimension",
+      "$description": "Spacing 122px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "full": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    },
+    "full-2": {
+      "$value": "1440px",
+      "$type": "dimension",
+      "$description": "Border radius full-2"
+    }
+  },
+  "surface": {
+    "void-canvas": {
+      "$value": "#0b0b0b",
+      "$type": "color",
+      "$description": "Surface level 1: Primary page background for all dark sections including hero, transformation narrative, systems grid, and footer"
+    },
+    "abyss-bar": {
+      "$value": "#050505",
+      "$type": "color",
+      "$description": "Surface level 2: Top news bar — one shade darker than the canvas to push the strip forward without using shadow"
+    },
+    "charcoal-card": {
+      "$value": "#272a2a",
+      "$type": "color",
+      "$description": "Surface level 3: Card and panel surfaces on dark sections — the only elevated surface, defined by tonal shift not shadow"
+    },
+    "bone-inversion": {
+      "$value": "#edebe7",
+      "$type": "color",
+      "$description": "Surface level 4: Light section background for the backers strip — the single dramatic tonal break in the page"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://www.ciridae.com",
+      "siteName": "Ciridae",
+      "extractedAt": "2026-07-03T03:30:15.366Z",
+      "variant": "extended"
+    }
+  }
+}

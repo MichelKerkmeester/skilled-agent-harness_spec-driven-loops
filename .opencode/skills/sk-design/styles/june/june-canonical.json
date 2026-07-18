@@ -1,0 +1,1233 @@
+{
+  "source": "https://styles.refero.design/style/40e4d3ef-cd28-483b-8c8a-b9cf44281b03",
+  "uuid": "40e4d3ef-cd28-483b-8c8a-b9cf44281b03",
+  "name": "June",
+  "northStar": "Midnight ink on cream paper.",
+  "capturedAt": "2026-07-18T08:46:53.570Z",
+  "meta": {
+    "url": "https://www.june.so",
+    "siteName": "June",
+    "extractedAt": "2026-06-03T21:46:25.936Z",
+    "durationMs": 41140,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 212,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use SF Pro Rounded as the only typeface for brand surfaces — it is the voice",
+      "Set all headings in #2a2a63 Midnight Violet — never use black or #151531 for display text",
+      "Use 12px radius on cards and buttons, 20px only for the rare featured accent card",
+      "Maintain 1.5 line-height on all body text for editorial readability",
+      "Use #e9ecef Mist Border for all structural separators — never darker than this for dividers",
+      "Center long-form content at 720px max-width for optimal reading measure",
+      "Use letter-spacing -0.015em on display sizes (40px+) to tighten the rounded forms"
+    ],
+    "donts": [
+      "Do not use sharp 0px radii on any element — rounding is a core brand signal",
+      "Do not introduce drop shadows heavier than rgba(13,19,27,0.1) — elevation stays whisper-soft",
+      "Do not use #000000 or pure black for any text — use #151531 Deep Ink or #2a2a63 Midnight Violet",
+      "Do not use Periwinkle #6868f7 on text or borders — reserve it for single accent surfaces only",
+      "Do not add more than one accent-colored element per page",
+      "Do not use system fonts like Arial or Helvetica — the rounded geometry defines the brand",
+      "Do not compress line-height below 1.4 on body text — reading comfort is non-negotiable"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#2a2a63",
+        "name": "Midnight Violet",
+        "role": "Headings, body text, link text, and border accents — the signature ink color",
+        "group": "brand"
+      },
+      {
+        "hex": "#151531",
+        "name": "Deep Ink",
+        "role": "Primary text, icon strokes, link color, and high-emphasis surface elements",
+        "group": "brand"
+      },
+      {
+        "hex": "#6868f7",
+        "name": "Periwinkle Accent",
+        "role": "Rare vivid accent surface for highlighted cards or callout blocks — a single bright note against the monochrome body",
+        "group": "accent"
+      },
+      {
+        "hex": "#fafafa",
+        "name": "Cream Canvas",
+        "role": "Page background and elevated card surface — the warm white base layer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f0f0fe",
+        "name": "Lavender Mist",
+        "role": "Soft tinted card surface for content blocks and feature containers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e9ecef",
+        "name": "Mist Border",
+        "role": "Hairline borders, dividers, card edges, and structural separators",
+        "group": "neutral"
+      },
+      {
+        "hex": "#343a40",
+        "name": "Graphite",
+        "role": "Secondary text and muted surface details",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cfd0d1",
+        "name": "Smoke",
+        "role": "Subtle shadow base and low-contrast surface tone",
+        "group": "neutral"
+      },
+      {
+        "hex": "#c3c4c6",
+        "name": "Fog",
+        "role": "Tertiary shadow tint for layered elevation",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width 720px centered content column for reading pages. Top navigation is a minimal bar with logo left, links right at 16px. Hero is a centered display headline at 60px over generous whitespace. Content cards use 48px padding and centered alignment. Section gaps are 64–80px to create breathing rhythm between content blocks. The overall page rhythm is single-column, top-to-bottom, with no sidebars or complex grid structures. Navigation is fixed-top, lightweight, and doesn't compete with content.",
+    "imagery": "The site is predominantly text-driven with minimal imagery. When visuals appear, they are flat illustrations or product UI crops in a rounded-geometry style matching the typography. No photography detected. Icons are simple geometric shapes in #2a2a63 on transparent backgrounds. The signature 'J' monogram in the nav is a rounded square with a stylized letterform. The overall visual language is editorial-first: the words and their rhythm do the work, with graphics as quiet punctuation.",
+    "similar": [
+      {
+        "why": "Same soft rounded typography approach, generous whitespace, and minimal accent color usage on a warm off-white canvas",
+        "business": "Notion"
+      },
+      {
+        "why": "Clean editorial layout with single-column reading flow and restrained color palette with one accent moment",
+        "business": "Linear"
+      },
+      {
+        "why": "Long-form reading-first layout, centered narrow column, minimal chrome, warm-white background with deep text color",
+        "business": "Substack"
+      },
+      {
+        "why": "Similar blog/article presentation with rounded sans-serif type and generous vertical rhythm between content blocks",
+        "business": "Figma Blog"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "12px",
+        "cards": "12px",
+        "inputs": "12px",
+        "buttons": "12px",
+        "featuredCards": "20px"
+      },
+      "elementGap": "24px",
+      "sectionGap": "64-80px",
+      "cardPadding": "48px",
+      "pageMaxWidth": "720px"
+    },
+    "industry": "productivity",
+    "surfaces": [
+      {
+        "hex": "#fafafa",
+        "name": "Cream Canvas",
+        "level": 0,
+        "purpose": "Page background — the warm off-white base"
+      },
+      {
+        "hex": "#f0f0fe",
+        "name": "Lavender Mist",
+        "level": 1,
+        "purpose": "Tinted card or feature-block surface"
+      },
+      {
+        "hex": "#6868f7",
+        "name": "Periwinkle Highlight",
+        "level": 2,
+        "purpose": "Rare accent surface for callout or featured content"
+      }
+    ],
+    "elevation": [
+      {
+        "style": "rgba(13, 19, 27, 0.1) 0px 2px 10px 0px, rgba(13, 19, 27, 0.2) 0px 0px 2px 0px",
+        "element": "Standard Card"
+      },
+      {
+        "style": "rgba(13, 19, 27, 0.05) 0px 0px 0px 1px inset",
+        "element": "Inset Border Card"
+      },
+      {
+        "style": "rgba(13, 19, 27, 0.25) 0px 0px 1px 0px, rgba(13, 19, 27, 0.05) 0px 2px 1px 0px",
+        "element": "Elevated Card"
+      }
+    ],
+    "northStar": "Midnight ink on cream paper.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 12,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.3
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.35
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.27
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "heading",
+        "size": 40,
+        "lineHeight": 1.17,
+        "letterSpacing": -0.6
+      },
+      {
+        "role": "display",
+        "size": 60,
+        "lineHeight": 1,
+        "letterSpacing": -0.9
+      }
+    ],
+    "components": [
+      {
+        "name": "Content Card",
+        "role": "Primary content container for articles and feature blocks",
+        "description": "48px padding, 12px radius, background #f0f0fe, hairline border #e9ecef, subtle shadow using rgba(13,19,27,0.1) at 2px 10px. Text uses #2a2a63 at 16px/1.5 line-height."
+      },
+      {
+        "name": "Featured Accent Card",
+        "role": "Rare highlight surface drawing the eye to a single callout",
+        "description": "20px radius, background #6868f7 (periwinkle), white or #fafafa text. Used once per page maximum — the one vivid moment in an otherwise quiet layout."
+      },
+      {
+        "name": "Navigation Link",
+        "role": "Top-bar nav items",
+        "description": "SF Pro Rounded 16px weight 400 or 700, color #151531, no underline. Hover transitions to color #6868f7."
+      },
+      {
+        "name": "Inline Link",
+        "role": "Body-text hyperlinks and dotted references",
+        "description": "Color #151531 with a dotted underline in #2a2a63. 16px SF Pro Rounded weight 400. The dotted-underline treatment is a signature editorial detail."
+      },
+      {
+        "name": "Hero Headline",
+        "role": "Page-top display title",
+        "description": "SF Pro Rounded 60px weight 900, line-height 1.0, color #2a2a63, letter-spacing -0.9px. Centered or left-aligned. The heavy weight + rounded terminals creates a confident but friendly tone."
+      },
+      {
+        "name": "Section Heading",
+        "role": "Sub-section titles within content",
+        "description": "SF Pro Rounded 24px weight 700, color #2a2a63, line-height 1.25, letter-spacing -0.36px."
+      },
+      {
+        "name": "Body Paragraph",
+        "role": "Long-form reading text",
+        "description": "SF Pro Rounded 16px weight 400, line-height 1.5, color #2a2a63. Generous line-height prioritizes reading comfort over density."
+      },
+      {
+        "name": "CTA Button",
+        "role": "Primary action button",
+        "description": "Not strongly evidenced in raw data — no filled button background detected. If present: 12px radius, SF Pro Rounded 16px weight 700, padding 12px 24px, ghost/outlined style with #2a2a63 border or solid #2a2a63 fill with #fafafa text."
+      },
+      {
+        "name": "List Item",
+        "role": "Bulleted content lists",
+        "description": "8px gap between items, 16px SF Pro Rounded body text in #2a2a63. Disc or dash markers in #2a2a63."
+      },
+      {
+        "name": "Signature Graphic",
+        "role": "Brand mark or small icon",
+        "description": "Rounded geometric form in #2a2a63 on #fafafa. 8px internal margin. Matches the rounded-terminal typography."
+      },
+      {
+        "name": "Form Input",
+        "role": "Text input or textarea",
+        "description": "12px radius, 1px border #e9ecef, padding 12px 16px, SF Pro Rounded 16px, placeholder in #cfd0d1, focus ring in #6868f7 at 2px."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Primary typeface — headings, body, links, UI chrome. The rounded terminals give text a soft, bookish warmth that defines the brand's voice.",
+        "sizes": "12px, 14px, 16px, 18px, 24px, 40px, 60px",
+        "family": "SF Pro Rounded",
+        "weight": "400, 700, 900",
+        "lineHeight": "1.00–1.56",
+        "substitute": "Nunito or Quicksand for web fallback",
+        "letterSpacing": "-0.015em at display sizes, +0.025em at small sizes",
+        "fontFeatureSettings": "\"kern\""
+      },
+      {
+        "role": "Secondary typeface — used sparingly for body text blocks",
+        "sizes": "16px",
+        "family": "Inter",
+        "weight": "400, 700",
+        "lineHeight": "1.00, 1.50",
+        "substitute": "system-ui, -apple-system",
+        "letterSpacing": "normal",
+        "fontFeatureSettings": "\"kern\""
+      }
+    ],
+    "description": "June uses a soft editorial language: warm off-white canvas, generous spacing, and SF Pro Rounded giving every line of text a gentle, book-like friendliness. The signature is a deep midnight violet (#2a2a63) that carries headlines, body text, and border accents — never shouting, always present, like ink on cream paper. A single vivid periwinkle (#6868f7) is reserved for the rare accent surface, creating punctuation against the otherwise monochrome body. Components are flat and rounded (12–20px radii), elevated by hairline borders rather than drop shadows, giving the interface a notebook-page weight. Layouts breathe: centered single-column articles, comfortable line-height, and vertical rhythm that treats reading as the primary interaction.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/40e4d3ef-cd28-483b-8c8a-b9cf44281b03#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"June design system\",\"item\":\"https://styles.refero.design/style/40e4d3ef-cd28-483b-8c8a-b9cf44281b03\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/40e4d3ef-cd28-483b-8c8a-b9cf44281b03#style-reference\",\"name\":\"June design system reference\",\"headline\":\"June design system | Refero Styles\",\"description\":\"Explore June's light Productivity design system: Midnight Violet #2a2a63, Deep Ink #151531 colors, SF Pro Rounded, Inter typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/40e4d3ef-cd28-483b-8c8a-b9cf44281b03\",\"mainEntityOfPage\":\"https://styles.refero.design/style/40e4d3ef-cd28-483b-8c8a-b9cf44281b03\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"June\",\"url\":\"https://www.june.so\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/40e4d3ef-cd28-483b-8c8a-b9cf44281b03#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/09fe6838-ba18-4aaa-ba30-c8867a440854.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/09fe6838-ba18-4aaa-ba30-c8867a440854.jpg\",\"caption\":\"Screenshot of June\"},\"image\":\"https://images.refero.design/styles/refero.design/image/09fe6838-ba18-4aaa-ba30-c8867a440854.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"June design system\",\"June website design\",\"June colors\",\"June typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Midnight Violet\",\"Deep Ink\",\"Periwinkle Accent\",\"Cream Canvas\",\"SF Pro Rounded\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"June design system\"},{\"@type\":\"Thing\",\"name\":\"June website design\"},{\"@type\":\"Thing\",\"name\":\"June colors\"},{\"@type\":\"Thing\",\"name\":\"June typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-05-06T18:51:38.425Z\",\"dateModified\":\"2026-05-06T18:51:38.425Z\"}]}19:T488,Quick Color Reference:\n- Text: #2a2a63 (body) / #151531 (primary)\n- Background: #fafafa (canvas) / #f0f0fe (card)\n- Border: #e9ecef\n- Accent surface: #6868f7\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Create a hero section on #fafafa canvas. Display headline: 60px SF Pro Rounded weight 900, color #2a2a63, letter-spacing -0.9px, line-height 1.0. Centered alignment, 80px top/bottom margin.\n\n2. Create a content card: 48px padding, 12px border-radius, background #f0f0fe, 1px solid #e9ecef border. Body text at 16px SF Pro Rounded weight 400, line-height 1.5, color #2a2a63. Max-width 720px, centered.\n\n3. Create a navigation bar: fixed top, #fafafa background, 16px SF Pro Rounded links in #151531 at 400 weight. 32px horizontal padding. Logo (rounded-square mark) at left, links right-aligned with 32px gap.\n\n4. Create an inline link: 16px SF Pro Rounded weight 400, color #151531, with a dotted underline in #2a2a63. Used within body paragraphs for references.\n\n5. Create a featured accent card: 20px border-radius, background #6868f7, padding 48px, text in #fafafa at 16px SF Pro Rounded. Use sparingly — one per page maximum."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#e9ecef",
+          "oklch": {
+            "c": 0.0051760397779068434,
+            "h": 247.87913549927003,
+            "l": 0.9416542661670926
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "icon",
+            "heading",
+            "card",
+            "list",
+            "image"
+          ],
+          "frequency": 707,
+          "confidence": 1,
+          "prominence": 55098624.019818015,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/borderColor": 112,
+            "card/borderColor": 16,
+            "icon/borderColor": 36,
+            "link/borderColor": 136,
+            "list/borderColor": 20,
+            "image/borderColor": 24,
+            "other/borderColor": 347,
+            "heading/borderColor": 16
+          }
+        },
+        {
+          "hex": "#343a40",
+          "oklch": {
+            "c": 0.013291028573201458,
+            "h": 248.21239711001266,
+            "l": 0.34514313843423783
+          },
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image",
+            "icon",
+            "list"
+          ],
+          "frequency": 43,
+          "confidence": 1,
+          "prominence": 31772254.190983478,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "body/color": 2,
+            "icon/color": 2,
+            "link/color": 1,
+            "list/color": 2,
+            "other/fill": 2,
+            "image/color": 2,
+            "other/color": 19,
+            "body/borderColor": 8,
+            "image/borderColor": 4,
+            "other/borderColor": 1
+          }
+        },
+        {
+          "hex": "#fafafa",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9851036517304731
+          },
+          "contexts": [
+            "other",
+            "card",
+            "heading",
+            "body",
+            "image"
+          ],
+          "frequency": 19,
+          "confidence": 1,
+          "prominence": 18611735.051418193,
+          "properties": [
+            "backgroundColor",
+            "boxShadow",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "card/color": 3,
+            "image/color": 2,
+            "other/color": 7,
+            "heading/color": 1,
+            "card/boxShadow": 1,
+            "card/backgroundColor": 2,
+            "other/backgroundColor": 2
+          }
+        },
+        {
+          "hex": "#2a2a63",
+          "oklch": {
+            "c": 0.09819576239085326,
+            "h": 279.2925467261997,
+            "l": 0.3196593311918995
+          },
+          "contexts": [
+            "card",
+            "body",
+            "other",
+            "link",
+            "list",
+            "heading",
+            "image"
+          ],
+          "frequency": 186,
+          "confidence": 1,
+          "prominence": 12064405.108420696,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 40,
+            "card/color": 1,
+            "link/color": 9,
+            "list/color": 3,
+            "image/color": 14,
+            "other/color": 5,
+            "heading/color": 2,
+            "body/borderColor": 56,
+            "image/borderColor": 56
+          }
+        },
+        {
+          "hex": "#151531",
+          "oklch": {
+            "c": 0.05404794784346287,
+            "h": 280.79065228375686,
+            "l": 0.21306536477571117
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link",
+            "heading",
+            "image",
+            "icon"
+          ],
+          "frequency": 80,
+          "confidence": 1,
+          "prominence": 2175329.3329897723,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "icon/color": 7,
+            "link/color": 24,
+            "image/color": 3,
+            "other/color": 44,
+            "heading/color": 1
+          }
+        },
+        {
+          "hex": "#f0f0fe",
+          "oklch": {
+            "c": 0.018683372317319806,
+            "h": 286.0422358400057,
+            "l": 0.9592140756470251
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 1598592,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#cfd0d1",
+          "oklch": {
+            "c": 0.0025711228038121548,
+            "h": 255.45795640614682,
+            "l": 0.8565107869389454
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 713249.7609154824,
+          "properties": [
+            "boxShadow",
+            "color"
+          ],
+          "usageCounts": {
+            "other/color": 12,
+            "card/boxShadow": 2
+          }
+        },
+        {
+          "hex": "#6868f7",
+          "oklch": {
+            "c": 0.20829987519000615,
+            "h": 278.0271098413877,
+            "l": 0.5967253558756236
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 412432,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#c3c4c6",
+          "oklch": {
+            "c": 0.0032499091079072474,
+            "h": 255.46281584207975,
+            "l": 0.819719135261056
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 412432,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "card/boxShadow": 1
+          }
+        },
+        {
+          "hex": "#ffa340",
+          "oklch": {
+            "c": 0.15422875824856047,
+            "h": 63.65020452377005,
+            "l": 0.7917349217800168
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 48325.50664698805,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 2
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.07024439298468964,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 17,
+          "background": "#fafafa",
+          "foreground": "#151531"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.72,
+          "background": "#f0f0fe",
+          "foreground": "#151531"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.96,
+          "background": "#e9ecef",
+          "foreground": "#151531"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.5,
+          "background": "#fafafa",
+          "foreground": "#2a2a63"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.55,
+          "background": "#f0f0fe",
+          "foreground": "#2a2a63"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.49,
+          "background": "#cfd0d1",
+          "foreground": "#151531"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.02,
+          "background": "#fafafa",
+          "foreground": "#343a40"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11,
+          "background": "#e9ecef",
+          "foreground": "#2a2a63"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.19,
+          "background": "#f0f0fe",
+          "foreground": "#343a40"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.17,
+          "background": "#c3c4c6",
+          "foreground": "#151531"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.7,
+          "background": "#e9ecef",
+          "foreground": "#343a40"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.93,
+          "background": "#ffa340",
+          "foreground": "#151531"
+        },
+        {
+          "level": "AAA",
+          "ratio": 8.45,
+          "background": "#cfd0d1",
+          "foreground": "#2a2a63"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.47,
+          "background": "#c3c4c6",
+          "foreground": "#2a2a63"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.45,
+          "background": "#cfd0d1",
+          "foreground": "#343a40"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.59,
+          "background": "#c3c4c6",
+          "foreground": "#343a40"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.56,
+          "background": "#ffa340",
+          "foreground": "#2a2a63"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.79,
+          "background": "#ffa340",
+          "foreground": "#343a40"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.15,
+          "background": "#6868f7",
+          "foreground": "#151531"
+        },
+        {
+          "level": "fail",
+          "ratio": 4.1,
+          "background": "#6868f7",
+          "foreground": "#fafafa"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 12,
+          "corners": [
+            12,
+            0,
+            0,
+            0
+          ],
+          "contexts": [
+            "card"
+          ],
+          "frequency": 3,
+          "asymmetric": true
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(13, 19, 27, 0.1) 0px 2px 10px 0px, rgba(13, 19, 27, 0.2) 0px 0px 2px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": "rgba(13, 19, 27, 0.05) 0px 0px 0px 1px inset",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": "rgba(13, 19, 27, 0.25) 0px 0px 1px 0px, rgba(13, 19, 27, 0.05) 0px 2px 1px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 1
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 4,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "list",
+            "other",
+            "link"
+          ],
+          "frequency": 8,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list",
+            "marginTop|other",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 13,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 23,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingLeft|list",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "body",
+            "heading"
+          ],
+          "frequency": 49,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginTop|body",
+            "marginTop|heading",
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 13,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "marginTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|other",
+            "marginLeft|link",
+            "rowGap|other",
+            "marginTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other",
+            "heading",
+            "card"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|heading",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 68,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|heading",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 127,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 160,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "SF Pro Rounded",
+          "source": "custom",
+          "weights": [
+            400,
+            700,
+            900
+          ],
+          "frequency": 184,
+          "fontFeatureSettings": [
+            "\"kern\""
+          ]
+        },
+        {
+          "family": "Inter",
+          "source": "google",
+          "weights": [
+            400,
+            700
+          ],
+          "frequency": 24,
+          "fontFeatureSettings": [
+            "\"kern\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 12,
+          "family": "SF Pro Rounded",
+          "weight": 900,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.19,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "SF Pro Rounded",
+          "weight": 900,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "image",
+            "card",
+            "list"
+          ],
+          "frequency": 21,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SF Pro Rounded",
+          "weight": 700,
+          "contexts": [
+            "body",
+            "other",
+            "link"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 400,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 2,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SF Pro Rounded",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body",
+            "link",
+            "list",
+            "image",
+            "card"
+          ],
+          "frequency": 84,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "SF Pro Rounded",
+          "weight": 900,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "SF Pro Rounded",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.56,
+          "letterSpacing": -0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "SF Pro Rounded",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "SF Pro Rounded",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "icon",
+            "image"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.56,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "SF Pro Rounded",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "SF Pro Rounded",
+          "weight": 900,
+          "contexts": [
+            "other",
+            "heading",
+            "image",
+            "icon"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 60,
+          "family": "SF Pro Rounded",
+          "weight": 900,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/0c169c28-d3d5-4ef1-80d4-1293c1849b90.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/09fe6838-ba18-4aaa-ba30-c8867a440854.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/40e4d3ef-cd28-483b-8c8a-b9cf44281b03#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"June design system\",\"item\":\"https://styles.refero.design/style/40e4d3ef-cd28-483b-8c8a-b9cf44281b03\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/40e4d3ef-cd28-483b-8c8a-b9cf44281b03#style-reference\",\"name\":\"June design system reference\",\"headline\":\"June design system | Refero Styles\",\"description\":\"Explore June's light Productivity design system: Midnight Violet #2a2a63, Deep Ink #151531 colors, SF Pro Rounded, Inter typography, and DESIGN.md for AI...\",\"url\":\"https://styles.refero.design/style/40e4d3ef-cd28-483b-8c8a-b9cf44281b03\",\"mainEntityOfPage\":\"https://styles.refero.design/style/40e4d3ef-cd28-483b-8c8a-b9cf44281b03\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"June\",\"url\":\"https://www.june.so\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/40e4d3ef-cd28-483b-8c8a-b9cf44281b03#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/09fe6838-ba18-4aaa-ba30-c8867a440854.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/09fe6838-ba18-4aaa-ba30-c8867a440854.jpg\",\"caption\":\"Screenshot of June\"},\"image\":\"https://images.refero.design/styles/refero.design/image/09fe6838-ba18-4aaa-ba30-c8867a440854.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"June design system\",\"June website design\",\"June colors\",\"June typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Productivity design system\",\"Midnight Violet\",\"Deep Ink\",\"Periwinkle Accent\",\"Cream Canvas\",\"SF Pro Rounded\",\"Inter\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"June design system\"},{\"@type\":\"Thing\",\"name\":\"June website design\"},{\"@type\":\"Thing\",\"name\":\"June colors\"},{\"@type\":\"Thing\",\"name\":\"June typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Productivity design system\"}],\"datePublished\":\"2026-05-06T18:51:38.425Z\",\"dateModified\":\"2026-05-06T18:51:38.425Z\"}]}19:T488,Quick Color Reference:\n- Text: #2a2a63 (body) / #151531 (primary)\n- Background: #fafafa (canvas) / #f0f0fe (card)\n- Border: #e9ecef\n- Accent surface: #6868f7\n- primary action: no distinct CTA color\n\nExample Component Prompts:\n1. Create a hero section on #fafafa canvas. Display headline: 60px SF Pro Rounded weight 900, color #2a2a63, letter-spacing -0.9px, line-height 1.0. Centered alignment, 80px top/bottom margin.\n\n2. Create a content card: 48px padding, 12px border-radius, background #f0f0fe, 1px solid #e9ecef border. Body text at 16px SF Pro Rounded weight 400, line-height 1.5, color #2a2a63. Max-width 720px, centered.\n\n3. Create a navigation bar: fixed top, #fafafa background, 16px SF Pro Rounded links in #151531 at 400 weight. 32px horizontal padding. Logo (rounded-square mark) at left, links right-aligned with 32px gap.\n\n4. Create an inline link: 16px SF Pro Rounded weight 400, color #151531, with a dotted underline in #2a2a63. Used within body paragraphs for references.\n\n5. Create a featured accent card: 20px border-radius, background #6868f7, padding 48px, text in #fafafa at 16px SF Pro Rounded. Use sparingly — one per page maximum."
+}

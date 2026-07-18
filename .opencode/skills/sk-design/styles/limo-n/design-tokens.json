@@ -1,0 +1,437 @@
+{
+  "color": {
+    "black-olive": {
+      "$value": "#1d0b0d",
+      "$type": "color",
+      "$description": "Black Olive — Page background, hero canvas, primary text on light sections — the dominant surface that makes the yellow accent feel like lit signage"
+    },
+    "forest-ink": {
+      "$value": "#103b15",
+      "$type": "color",
+      "$description": "Forest Ink — Headings, body text, list dividers, link color — the deep green gives the dark-mode typography a botanical, not corporate, character"
+    },
+    "lemon-zest": {
+      "$value": "#f7ea48",
+      "$type": "color",
+      "$description": "Lemon Zest — Filled CTA buttons, large display headlines, accent links, highlight washes — the only chromatic note in the system, used sparingly to ignite dark sections"
+    },
+    "warm-cream": {
+      "$value": "#fcf9f0",
+      "$type": "color",
+      "$description": "Warm Cream — Light section backgrounds, card surfaces, off-white content panels — a paper-stock warmth that softens the dark hero without going clinical"
+    },
+    "sage-mist": {
+      "$value": "#dbe2dc",
+      "$type": "color",
+      "$description": "Sage Mist — Hairline dividers, subtle borders, muted accents — a desaturated green-gray that holds the system together without competing with the two brand greens"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Icon strokes, button borders, negative-space punctuation inside the dark canvas"
+    }
+  },
+  "font": {
+    "venuscom": {
+      "$value": "VenusCom",
+      "$type": "fontFamily",
+      "$description": "Primary typeface across all UI — the signature choice is positive tracking that scales with size (0.06em at 75px down to 0.04em at body), giving display lines a wide-set, almost neon-sign feel and keeping small body text compact"
+    },
+    "font-awesome-6-free": {
+      "$value": "Font Awesome 6 Free",
+      "$type": "fontFamily",
+      "$description": "Icon system — solid-fill glyphs inheriting the wide letter-spacing for UI micro-elements (arrows, social marks)"
+    },
+    "font-awesome-6-brands": {
+      "$value": "Font Awesome 6 Brands",
+      "$type": "fontFamily",
+      "$description": "Brand/social icons rendered larger for footer or badge contexts"
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "Times — detected in extracted data but not described by AI"
+    },
+    "helvetica": {
+      "$value": "Helvetica",
+      "$type": "fontFamily",
+      "$description": "Helvetica — detected in extracted data but not described by AI"
+    },
+    "freesans": {
+      "$value": "FreeSans",
+      "$type": "fontFamily",
+      "$description": "FreeSans — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "sm": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1.37
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Font Awesome 6 Free",
+        "fontSize": "14px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.6
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Font Awesome 6 Free",
+        "fontSize": "16px",
+        "fontWeight": 900,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "19px",
+        "fontWeight": 700,
+        "lineHeight": 1.01
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 19px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "19px",
+        "fontWeight": 700,
+        "lineHeight": 1.01
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "FreeSans",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.01
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 19px"
+    },
+    "lg-4": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1.01
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-4 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "20px",
+        "fontWeight": 300,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "20px",
+        "fontWeight": 600,
+        "lineHeight": 1.45
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "26px",
+        "fontWeight": 300,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 26px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "30px",
+        "fontWeight": 400,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 30px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "30px",
+        "fontWeight": 700,
+        "lineHeight": 1.35
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 30px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 36px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 0.53
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 36px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 0.53
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 36px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "Font Awesome 6 Brands",
+        "fontSize": "36px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 36px"
+    },
+    "4xl-5": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "46px",
+        "fontWeight": 300,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-5 at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "54px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 54px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "68px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 68px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "75px",
+        "fontWeight": 400,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 75px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "VenusCom",
+        "fontSize": "75px",
+        "fontWeight": 400,
+        "lineHeight": 1.4
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 75px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "120": {
+      "$value": "120px",
+      "$type": "dimension",
+      "$description": "Spacing 120px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "1px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "3xl": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "black-olive-canvas": {
+      "$value": "#1d0b0d",
+      "$type": "color",
+      "$description": "Surface level 1: Page background, hero canvas, footer — the dominant dark surface"
+    },
+    "warm-cream-panel": {
+      "$value": "#fcf9f0",
+      "$type": "color",
+      "$description": "Surface level 2: Light content sections, food card backgrounds, editorial body sections"
+    },
+    "forest-ink-surface": {
+      "$value": "#103b15",
+      "$type": "color",
+      "$description": "Surface level 3: Headline plates, dark accent surfaces, floating circular utility buttons"
+    },
+    "lemon-zest-accent": {
+      "$value": "#f7ea48",
+      "$type": "color",
+      "$description": "Surface level 4: Call-to-action fill, display text overlay, highlight washes on dark"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://limonoslo.no",
+      "siteName": "Limón",
+      "extractedAt": "2026-06-03T15:55:46.529Z",
+      "variant": "extended"
+    }
+  }
+}

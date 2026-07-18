@@ -1,0 +1,507 @@
+{
+  "color": {
+    "fidle-blue": {
+      "$value": "#1664eb",
+      "$type": "color",
+      "$description": "Fidèle Blue — Headlines, nav links, brand asterisk, announcement bar fill, body borders — the single chromatic ink of the system; whenever color appears, this is it"
+    },
+    "lighter-press-blue": {
+      "$value": "#4f89ec",
+      "$type": "color",
+      "$description": "Lighter Press Blue — Secondary blue used for subtle borders, icon tints, and decorative strokes where Fidèle Blue would dominate"
+    },
+    "link-blue": {
+      "$value": "#006ce5",
+      "$type": "color",
+      "$description": "Link Blue — Deeper blue for inline hyperlinks within running text, slightly darker than the primary to read as a separate interactive state"
+    },
+    "paper-white": {
+      "$value": "#f8f7ef",
+      "$type": "color",
+      "$description": "Paper White — Page canvas and card surfaces — a warm off-white that gives the entire system its print-stock identity; never use pure #ffffff for page background"
+    },
+    "card-cream": {
+      "$value": "#e2e2df",
+      "$type": "color",
+      "$description": "Card Cream — Elevated surface for cards, panels, and product tiles — one step warmer/darker than Paper White for layering without shadows"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Hairline borders, dividers, input outlines, and card edges on light surfaces. Do not promote it to the primary CTA color"
+    },
+    "press-black": {
+      "$value": "#121212",
+      "$type": "color",
+      "$description": "Press Black — Body text, dark backgrounds, and the rare filled button — near-black rather than pure black, softening contrast on the cream stock"
+    }
+  },
+  "font": {
+    "arial": {
+      "$value": "Arial",
+      "$type": "fontFamily",
+      "$description": "Arial — detected in extracted data but not described by AI"
+    },
+    "baselgrotesk": {
+      "$value": "BaselGrotesk",
+      "$type": "fontFamily",
+      "$description": "The sole typeface of the system. Book weight (400) for body and most UI; Regular (400) for lists and some headings; Bold (700) for the rarest emphasis. Display sizes (62px) use line-height 0.92 with -0.049em tracking — characters nearly touch. Small labels (14px) use +0.063em tracking — wide, airy, stamped. The contrast between these two tracking regimes is the type signature."
+    },
+    "otmagister": {
+      "$value": "OTMagister",
+      "$type": "fontFamily",
+      "$description": "Occasional display headlines where a more editorial/serif-leaning voice is wanted. Same 62px display size and tight 0.92 leading as BaselGrotesk display, -0.016em tracking."
+    },
+    "gtstandard-m": {
+      "$value": "GTStandard-M",
+      "$type": "fontFamily",
+      "$description": "GTStandard-M — detected in extracted data but not described by AI"
+    },
+    "assistant": {
+      "$value": "Assistant",
+      "$type": "fontFamily",
+      "$description": "Assistant — detected in extracted data but not described by AI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "2px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 2px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.8
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Regular",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "sm-7": {
+      "$value": {
+        "fontFamily": "GTStandard-M",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-7 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Regular",
+        "fontSize": "17px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 17px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Regular",
+        "fontSize": "19px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 22px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 22px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 22px"
+    },
+    "xl-5": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-5 at 22px"
+    },
+    "xl-6": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-6 at 22px"
+    },
+    "xl-7": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Bold",
+        "fontSize": "22px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-7 at 22px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "24px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Assistant",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "26px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 28px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "28px",
+        "fontWeight": 400,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Regular",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "32px",
+        "fontWeight": 400,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 32px"
+    },
+    "3xl-3": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Bold",
+        "fontSize": "32px",
+        "fontWeight": 700,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-3 at 32px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "37px",
+        "fontWeight": 400,
+        "lineHeight": 0.96
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 37px"
+    },
+    "4xl-2": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "38px",
+        "fontWeight": 400,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-2 at 38px"
+    },
+    "4xl-3": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "41px",
+        "fontWeight": 400,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-3 at 41px"
+    },
+    "4xl-4": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "41px",
+        "fontWeight": 400,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl-4 at 41px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 62px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "OTMagisterUnlicensedTrial Regular",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 62px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Regular",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 62px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "OTMagisterUnlicensedTrial Regular",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 62px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "BaselGrotesk Book",
+        "fontSize": "62px",
+        "fontWeight": 400,
+        "lineHeight": 0.92
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 62px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "48": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Spacing 48px"
+    },
+    "96": {
+      "$value": "96px",
+      "$type": "dimension",
+      "$description": "Spacing 96px"
+    },
+    "156": {
+      "$value": "156px",
+      "$type": "dimension",
+      "$description": "Spacing 156px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    }
+  },
+  "surface": {
+    "paper-stock": {
+      "$value": "#f8f7ef",
+      "$type": "color",
+      "$description": "Surface level 0: The base canvas — every page sits on this warm cream, never white"
+    },
+    "card-cream": {
+      "$value": "#e2e2df",
+      "$type": "color",
+      "$description": "Surface level 1: Product cards, inset panels, and elevated tiles — the only layering step above the canvas"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Image frames and sharp contrast accents on top of the cream layers"
+    },
+    "fidle-blue": {
+      "$value": "#1664eb",
+      "$type": "color",
+      "$description": "Surface level 3: Brand-color surface for the announcement bar, the giant asterisk, and any section that needs to read as 'inked'"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://fidele-editions.com",
+      "siteName": "Fidèle Editions",
+      "extractedAt": "2026-06-03T19:47:11.904Z",
+      "variant": "extended"
+    }
+  }
+}

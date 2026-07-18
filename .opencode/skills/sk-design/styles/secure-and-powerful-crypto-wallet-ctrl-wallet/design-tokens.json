@@ -1,0 +1,487 @@
+{
+  "color": {
+    "acid-lime": {
+      "$value": "#05c92f",
+      "$type": "color",
+      "$description": "Acid Lime — Green wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Do not promote it to the primary CTA color"
+    },
+    "sticker-yellow": {
+      "$value": "#fcea59",
+      "$type": "color",
+      "$description": "Sticker Yellow — Decorative accent card backgrounds, icon fills, confetti highlights on hero and feature spreads"
+    },
+    "cotton-pink": {
+      "$value": "#ffd0e2",
+      "$type": "color",
+      "$description": "Cotton Pink — Decorative accent card backgrounds, soft chromatic punctuation on feature layouts"
+    },
+    "powder-blue": {
+      "$value": "#a7cbf6",
+      "$type": "color",
+      "$description": "Powder Blue — Decorative accent card backgrounds, informational callout surfaces"
+    },
+    "obsidian": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Obsidian — Primary text, primary icon strokes, hairline borders, filled download button in nav"
+    },
+    "carbon": {
+      "$value": "#0f0f0f",
+      "$type": "color",
+      "$description": "Carbon — Secondary dark surface, button borders, card borders, strong interactive strokes"
+    },
+    "ash-gray": {
+      "$value": "#5a585a",
+      "$type": "color",
+      "$description": "Ash Gray — Muted body text, link borders, nav sublabels, secondary icon strokes"
+    },
+    "slate-gray": {
+      "$value": "#6e726e",
+      "$type": "color",
+      "$description": "Slate Gray — Helper text, low-emphasis borders, tertiary metadata"
+    },
+    "paper-white": {
+      "$value": "#f9faf9",
+      "$type": "color",
+      "$description": "Paper White — Page canvas, primary background, FAQ item surfaces"
+    },
+    "pure-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Pure White — Card surfaces, input fields, elevated content panels"
+    },
+    "bone": {
+      "$value": "#ecefec",
+      "$type": "color",
+      "$description": "Bone — Nav pill background, FAQ accordion rows, soft card surfaces, muted chips"
+    },
+    "plaster": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Plaster — Input field backgrounds, subtle disabled surfaces"
+    }
+  },
+  "font": {
+    "tomato-grotesk": {
+      "$value": "Tomato Grotesk",
+      "$type": "fontFamily",
+      "$description": "The single typeface carrying the entire brand — a custom geometric grotesque deployed at extreme display sizes (up to 176px) with aggressively tight leading (0.77–0.80) that makes headlines feel like architectural cutouts rather than composed type. Weight 600 at display, 500 at body and UI. The tight line-height at hero scale is the signature: it stacks 'Take' and 'Ctrl.' into a single visual block."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "11px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "13px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "13px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "sm-5": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-5 at 14px"
+    },
+    "sm-6": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-6 at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "18px",
+        "fontWeight": 600,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 18px"
+    },
+    "lg-3": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "18px",
+        "fontWeight": 500,
+        "lineHeight": 1.25
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-3 at 18px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "21px",
+        "fontWeight": 500,
+        "lineHeight": 1.42
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 21px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "25px",
+        "fontWeight": 500,
+        "lineHeight": 3.57
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 25px"
+    },
+    "2xl-2": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-2 at 26px"
+    },
+    "2xl-3": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-3 at 26px"
+    },
+    "2xl-4": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "26px",
+        "fontWeight": 500,
+        "lineHeight": 1.13
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-4 at 26px"
+    },
+    "2xl-5": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "28px",
+        "fontWeight": 600,
+        "lineHeight": 1.06
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl-5 at 28px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "32px",
+        "fontWeight": 500,
+        "lineHeight": 1.28
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 32px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "35px",
+        "fontWeight": 500,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 35px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "53px",
+        "fontWeight": 500,
+        "lineHeight": 1.3
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 53px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "70px",
+        "fontWeight": 500,
+        "lineHeight": 1.02
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 70px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "84px",
+        "fontWeight": 500,
+        "lineHeight": 1.08
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 84px"
+    },
+    "5xl-4": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "105px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-4 at 105px"
+    },
+    "5xl-5": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "153px",
+        "fontWeight": 500,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-5 at 153px"
+    },
+    "5xl-6": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "158px",
+        "fontWeight": 600,
+        "lineHeight": 0.77
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-6 at 158px"
+    },
+    "5xl-7": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "158px",
+        "fontWeight": 500,
+        "lineHeight": 0.77
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-7 at 158px"
+    },
+    "5xl-8": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "176px",
+        "fontWeight": 600,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-8 at 176px"
+    },
+    "5xl-9": {
+      "$value": {
+        "fontFamily": "Tomato Grotesk",
+        "fontSize": "176px",
+        "fontWeight": 500,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-9 at 176px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "11": {
+      "$value": "11px",
+      "$type": "dimension",
+      "$description": "Spacing 11px"
+    },
+    "13": {
+      "$value": "13px",
+      "$type": "dimension",
+      "$description": "Spacing 13px"
+    },
+    "18": {
+      "$value": "18px",
+      "$type": "dimension",
+      "$description": "Spacing 18px"
+    },
+    "26": {
+      "$value": "26px",
+      "$type": "dimension",
+      "$description": "Spacing 26px"
+    },
+    "31": {
+      "$value": "31px",
+      "$type": "dimension",
+      "$description": "Spacing 31px"
+    },
+    "35": {
+      "$value": "35px",
+      "$type": "dimension",
+      "$description": "Spacing 35px"
+    },
+    "42": {
+      "$value": "42px",
+      "$type": "dimension",
+      "$description": "Spacing 42px"
+    },
+    "44": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$description": "Spacing 44px"
+    },
+    "53": {
+      "$value": "53px",
+      "$type": "dimension",
+      "$description": "Spacing 53px"
+    },
+    "55": {
+      "$value": "55px",
+      "$type": "dimension",
+      "$description": "Spacing 55px"
+    },
+    "70": {
+      "$value": "70px",
+      "$type": "dimension",
+      "$description": "Spacing 70px"
+    },
+    "105": {
+      "$value": "105px",
+      "$type": "dimension",
+      "$description": "Spacing 105px"
+    },
+    "149": {
+      "$value": "149px",
+      "$type": "dimension",
+      "$description": "Spacing 149px"
+    }
+  },
+  "radius": {
+    "lg": {
+      "$value": "8.78054px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "2xl": {
+      "$value": "17.5611px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "3xl": {
+      "$value": "26.3416px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    },
+    "3xl-2": {
+      "$value": "35.1222px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl-2"
+    },
+    "full": {
+      "$value": "52.6833px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#f9faf9",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — warm off-white that softens the stark contrast of pure white"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Content cards, feature panels, and elevated content blocks"
+    },
+    "bone-surface": {
+      "$value": "#ecefec",
+      "$type": "color",
+      "$description": "Surface level 2: Nav pill, FAQ accordion rows, muted interactive surfaces"
+    },
+    "input": {
+      "$value": "#eeeeee",
+      "$type": "color",
+      "$description": "Surface level 3: Form field backgrounds, disabled states"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://ctrl.xyz",
+      "siteName": "Secure and powerful crypto wallet | Ctrl Wallet",
+      "extractedAt": "2026-06-03T19:42:48.578Z",
+      "variant": "extended"
+    }
+  }
+}

@@ -1,0 +1,1628 @@
+{
+  "source": "https://styles.refero.design/style/98a1ad40-90e2-4665-b49f-e5ffd4d4b90b",
+  "uuid": "98a1ad40-90e2-4665-b49f-e5ffd4d4b90b",
+  "name": "Stellar",
+  "northStar": "Gallery wall at midnight",
+  "capturedAt": "2026-07-18T07:17:51.008Z",
+  "meta": {
+    "url": "https://www.stellar.work",
+    "siteName": "Stellar",
+    "extractedAt": "2026-06-03T21:53:03.016Z",
+    "durationMs": 41526,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 839,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Sprint Violet (#6a48f2) only for the primary CTA fill, active link state, and focused input border — its scarcity is the design",
+      "Set all display headlines at weight 400, never bold. The 70-104px scale carries authority through size, not stroke weight",
+      "Apply -0.02em letter-spacing at 70px+ display sizes and +0.035-0.040em on small uppercase eyebrows — the contrast between tight display and open labels creates the type system's character",
+      "Use 10px radius on designer cards and 50px pill radius on buttons — these two radii define the geometric language; avoid anything in between",
+      "Layer surfaces at #000000 → #171718 → #2c2c2 — each step is one shade of difference, creating depth without illumination",
+      "Keep subtext and supporting copy at 18-19px in Ash (#888888) so the display headline remains the loudest element on every screen",
+      "Set page max-width to 1200px and center content — the void extends to the viewport edges but typography stays in a controlled measure"
+    ],
+    "donts": [
+      "Do not introduce a second chromatic accent — Sprint Violet is the only color, and adding another dilutes the system",
+      "Do not use bold (weight 600+) on any headline — weight 400 at large sizes is the signature; bold would break the hushed tone",
+      "Do not add box-shadows to cards or buttons — depth comes from the #000000 → #171718 surface contrast, not elevation shadows",
+      "Do not use light gray (#f3f3f3, #e9e9e9) as a page background — the entire system depends on pure void black as the canvas",
+      "Do not use 8px or 12px border-radius on cards or buttons — the system only uses 6px (inputs/nav), 10px (cards), and 50px (buttons/links)",
+      "Do not set body text below 15px — the type scale starts at 14px for captions only; 15-16px is the readable minimum",
+      "Do not place white or violet text directly on a #6a48f2 background without testing contrast — use white-on-violet for the CTA text only, never decorative"
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#000000",
+        "name": "Void Black",
+        "role": "Page background, primary canvas — absolute black eliminates surface depth, making images and white type feel like they float",
+        "group": "neutral"
+      },
+      {
+        "hex": "#171718",
+        "name": "Obsidian",
+        "role": "Card surfaces, elevated panels, designer profile containers — one shade above void to separate without illuminating",
+        "group": "neutral"
+      },
+      {
+        "hex": "#2c2c2e",
+        "name": "Graphite",
+        "role": "Borders on inputs, buttons, and nav dividers — the thinnest readable outline on near-black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#888888",
+        "name": "Ash",
+        "role": "Muted body text, secondary labels, inactive borders — the only gray with enough chroma to carry information",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e9e9e9",
+        "name": "Smoke",
+        "role": "Helper text, subtle text accents on dark surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f3f3f3",
+        "name": "Bone",
+        "role": "Headings, high-emphasis text — slightly off-white to avoid harshness against pure black",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Paper",
+        "role": "Primary headings, logo text, pure-contrast display copy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#dddddd",
+        "name": "Platinum",
+        "role": "Nav text at rest — sits one step below pure white to create a de-emphasized nav hierarchy",
+        "group": "neutral"
+      },
+      {
+        "hex": "#6a48f2",
+        "name": "Sprint Violet",
+        "role": "Primary CTA fill, active link, brand accent — the single chromatic note in an achromatic system, reserved for actions that convert; Accent gradient terminus — fades from Sprint Violet into soft pink to signal premium/highlight moments",
+        "group": "brand",
+        "gradient": "linear-gradient(7deg, rgb(106, 72, 242) 20%, rgb(252, 206, 238))"
+      }
+    ],
+    "layout": "Full-bleed dark canvas with content constrained to a 1200px max-width centered column. The hero is a vertically generous void — oversized display headline (70-104px) left-aligned or centered, with subtext paragraph below and 80-100px of vertical breathing room before content begins. Sections flow as seamless dark bands separated only by whitespace; no alternating backgrounds, no dividers. The mid-page is a horizontally scrolling row of large project showcase cards (Sprint Showcase Cards) that break the vertical rhythm. Below that, a heading section introduces the designer grid: a multi-row card grid (3-4 columns visible in the screenshot) of Designer Profile Cards with uniform sizing. Navigation is a transparent top bar that disappears into the void. Density is spacious — the void is a feature, not wasted space.",
+    "imagery": "Designer photography dominates: portrait crops, environmental shots, and project mockups fill card and hero real estate. Treatment is edge-to-edge within cards with 6-10px corners — no rounded-mask decoration, no overlays. The third screenshot reveals a horizontally scrolling row of designer profile cards, each with a single portrait or workspace photo at top. Imagery is desaturated or naturally muted to coexist with the dark void — no duotone filters, no color grading effects visible. Product mockups appear as browser-frame screenshots in the sprint showcase cards, centered with realistic screen content (blue CTAs, product UI). Iconography is minimal: a simple sparkle/asterisk mark for the logo, and thin-stroke arrow indicators on inline links.",
+    "similar": [
+      {
+        "why": "Same dark-mode void aesthetic with oversized whisper-weight display type and a single chromatic accent (Linear's purple vs Stellar's violet) rationed to primary actions only",
+        "business": "Linear"
+      },
+      {
+        "why": "Identical pure-black canvas philosophy with no elevation shadows, large left-aligned display headlines, and achromatic UI with color appearing only on CTAs and status indicators",
+        "business": "Vercel"
+      },
+      {
+        "why": "Same gallery-wall dark UI with restrained palette, pill-shaped primary CTAs, and designer-grade typography that lets content breathe against the void",
+        "business": "Pitch"
+      },
+      {
+        "why": "Similar premium dark-mode treatment with oversized display type, minimal chrome, and a single vivid accent color reserved for moments of interaction",
+        "business": "Arc Browser"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "nav": "6px",
+        "tags": "6px",
+        "cards": "10px",
+        "inputs": "6px",
+        "buttons": "50px"
+      },
+      "elementGap": "20px",
+      "sectionGap": "80px",
+      "cardPadding": "20px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "level": 1,
+        "purpose": "Page background, hero canvas, section dividers"
+      },
+      {
+        "hex": "#171718",
+        "name": "Obsidian",
+        "level": 2,
+        "purpose": "Designer profile cards, elevated content blocks"
+      },
+      {
+        "hex": "#2c2c2",
+        "name": "Graphite",
+        "level": 3,
+        "purpose": "Input fields, outlined controls, nav borders"
+      },
+      {
+        "hex": "#6a48f2",
+        "name": "Sprint Violet",
+        "level": 4,
+        "purpose": "Action surfaces — the only chromatic layer"
+      }
+    ],
+    "northStar": "Gallery wall at midnight",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 1.5,
+        "letterSpacing": 0.5
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.55
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.19
+      },
+      {
+        "role": "heading",
+        "size": 22,
+        "lineHeight": 1.43,
+        "letterSpacing": -0.22
+      },
+      {
+        "role": "heading-lg",
+        "size": 40,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.4
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 1.1,
+        "letterSpacing": -1.44
+      },
+      {
+        "role": "display-xl",
+        "size": 104,
+        "lineHeight": 1,
+        "letterSpacing": -2.08
+      }
+    ],
+    "components": [
+      {
+        "name": "Primary CTA Button",
+        "role": "Reserve flow entry point and any high-intent action",
+        "description": "Pill-shaped, 50px border-radius, filled Sprint Violet (#6a48f2) background, white text. Neue Montreal 15-16px weight 500, padding 10px 20-24px. No border. The only fully chromatic control in the system — its scarcity makes it irresistible."
+      },
+      {
+        "name": "Ghost Nav Link",
+        "role": "Top-bar navigation at rest",
+        "description": "No background, no border. Neue Montreal 15px weight 400 in Platinum (#dddddd). On hover: color shifts to Paper (#ffffff). Horizontal row, 16px gap between items."
+      },
+      {
+        "name": "Display Headline",
+        "role": "Hero and section titles",
+        "description": "Neue Montreal weight 400 at 70-104px, line-height 1.0-1.1, letter-spacing -0.02em. White (#ffffff) or Bone (#f3f3f3). Never bold — the scale itself carries weight, not the stroke."
+      },
+      {
+        "name": "Designer Profile Card",
+        "role": "Portfolio tile in the designer grid",
+        "description": "10px border-radius, Obsidian (#171718) surface on Void (#000000) canvas. 20px internal padding. Top half: full-bleed designer photo. Bottom: name (15-16px weight 500 white), role label (15px weight 400 Ash #888888). No border, no shadow — image contrast against black does all the visual work."
+      },
+      {
+        "name": "Sprint Showcase Card",
+        "role": "Large horizontal project preview card",
+        "description": "6px border-radius, Obsidian (#171718) background. Contains a centered project mockup/browser image, 1px Graphite (#2c2c2e) hairline divider below image, then designer attribution row (avatar + name + role). A 'Sprint with me →' ghost button anchors the bottom-right."
+      },
+      {
+        "name": "Outlined Input Field",
+        "role": "Form fields, email capture",
+        "description": "1px Graphite (#2c2c2e) border, 6px border-radius, transparent background, 20px vertical padding. Placeholder text in Ash (#888888) at 15px weight 400. Focus state: border shifts to Sprint Violet (#6a48f2)."
+      },
+      {
+        "name": "Eyebrow Label",
+        "role": "Small uppercase section markers and tag chips",
+        "description": "Neue Montreal 12-14px weight 500, uppercase, letter-spacing +0.035 to +0.040em, Ash (#888888) color. Used above section titles or inline as metadata."
+      },
+      {
+        "name": "Subtext Paragraph",
+        "role": "Supporting copy under headlines and in card bodies",
+        "description": "Neue Montreal 18-19px weight 400, line-height 1.43, Ash (#888888) color. Sits one contrast level below the headline — lets the display type own the page."
+      },
+      {
+        "name": "Project Thumbnail Tile",
+        "role": "Edge-to-edge image previews in the featured-sprints row",
+        "description": "Full-bleed photography or browser mockup, 6-10px border-radius, no border, no padding around the image. Image quality and scale do the design work — no overlay text, no gradients on the image itself."
+      },
+      {
+        "name": "Inline Ghost Link",
+        "role": "Text-level navigation and 'Sprint with me →' inline actions",
+        "description": "No background, 50px border-radius (pill hover state). 15-16px weight 400 white text. Hover: text shifts to Sprint Violet (#6a48f2) or gains an arrow indicator."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Global site header",
+        "description": "Transparent over Void (#000000), no border-bottom, no background fill. Left: Stellar sparkle logo + wordmark in white. Right: nav links (15px weight 400 Platinum #dddddd) then a Sprint Violet pill CTA. Vertical padding ~20px, full-bleed width, content max-width 1200px centered."
+      },
+      {
+        "name": "Section Header Block",
+        "role": "Reusable section intro",
+        "description": "Display headline (70-72px weight 400 white), 20px gap, subtext paragraph (18-19px Ash #888888). Centered or left-aligned depending on section rhythm. No background, no divider — the void itself separates sections."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family type system. Weight 400 carries the entire display scale up to 104px — the deliberate refusal of a bold weight is the signature. Weight 500 activates only on small uppercase labels and button text. Negative letter-spacing tightens display sizes (-0.02em at 70-104px) while small uppercase eyebrow labels open to +0.035-0.040em. The 104px display at weight 400 is anti-conventional — most systems would set this at 700-800; here it whispers, letting the void around it carry the weight.",
+        "sizes": "14, 15, 16, 18, 19, 21, 22, 40, 70, 72, 104",
+        "family": "Neue Montreal",
+        "weight": "400, 500",
+        "lineHeight": "1.00, 1.10, 1.20, 1.43, 1.50, 1.55",
+        "substitute": "Inter, Switzer, General Sans",
+        "letterSpacing": "Display 70-104px: -0.02em. Headings 19-22px: -0.01em. Body 14-16px: normal. Small uppercase labels: +0.035 to +0.040em",
+        "fontFeatureSettings": "\"ss01\" on"
+      }
+    ],
+    "description": "Stellar operates in a midnight-black creative marketplace language: pure void canvas, dark elevated surfaces, oversized whisper-light display type, and a single vivid violet that fires only when an action matters. The entire interface reads like a portfolio on a closed gallery wall — everything recedes into shadow except the headline and the one CTA. Color is rationed: achromatic text and hairline borders do 95% of the work, and #6a48f2 appears as a precise electric punctuation on the reserve button, link hovers, and selected states. Components are minimal and borderless by default, gaining shape only through subtle #2c2c2 outlines and 6-10px corner softening. The design's defining choice is restraint — massive 70-104px type at weight 400 with tight negative tracking creates a hushed authority that does not compete with the photography of the designers themselves.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/98a1ad40-90e2-4665-b49f-e5ffd4d4b90b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Stellar design system\",\"item\":\"https://styles.refero.design/style/98a1ad40-90e2-4665-b49f-e5ffd4d4b90b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/98a1ad40-90e2-4665-b49f-e5ffd4d4b90b#style-reference\",\"name\":\"Stellar design system reference\",\"headline\":\"Stellar design system | Refero Styles\",\"description\":\"Explore Stellar's dark Agency design system: Void Black #000000, Obsidian #171718 colors, Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/98a1ad40-90e2-4665-b49f-e5ffd4d4b90b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/98a1ad40-90e2-4665-b49f-e5ffd4d4b90b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Stellar\",\"url\":\"https://www.stellar.work\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/98a1ad40-90e2-4665-b49f-e5ffd4d4b90b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bd873c3e-2e70-4a2a-aeb8-34b4e108d330.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bd873c3e-2e70-4a2a-aeb8-34b4e108d330.jpg\",\"caption\":\"Screenshot of Stellar\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bd873c3e-2e70-4a2a-aeb8-34b4e108d330.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Stellar design system\",\"Stellar website design\",\"Stellar colors\",\"Stellar typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void Black\",\"Obsidian\",\"Graphite\",\"Ash\",\"Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Stellar design system\"},{\"@type\":\"Thing\",\"name\":\"Stellar website design\"},{\"@type\":\"Thing\",\"name\":\"Stellar colors\"},{\"@type\":\"Thing\",\"name\":\"Stellar typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:23:35.661Z\",\"dateModified\":\"2026-04-30T01:23:35.661Z\"}]}19:T688,**Quick Color Reference**\n- background: #000000\n- text: #ffffff (display), #f3f3f3 (headings), #888888 (body/subtext)\n- border: #2c2c2e (outlined controls), #171718 (card edges)\n- accent/primary action: #6a48f2 (filled action)\n- surface: #171718 (Obsidian — cards and elevated panels)\n\n**3-5 Example Component Prompts**\n\n1. *Hero Section*: Pure black (#000000) background. Display headline 'Your brand or website, delivered at lightspeed.' in Neue Montreal weight 400 at 72px, color #ffffff, letter-spacing -1.44px, line-height 1.1. Subtext paragraph below in #888888 at 19px weight 400, line-height 1.43, max-width 640px. 80px vertical padding above and below the text block.\n\n2. *Primary CTA Button*: Pill shape, 50px border-radius, Sprint Violet (#6a48f2) background fill, no border. Text 'Reserve your sprint' in Neue Montreal 15px weight 500, color #ffffff, padding 10px 24px. No hover shadow — on hover, background brightens 10%.\n\n3. *Designer Profile Card*: 10px border-radius, Obsidian (#171718) surface. 20px padding. Top: full-width portrait photo (no padding around it, image bleeds to card edges). Bottom: designer name in 16px weight 500 #ffffff, role label in 15px weight 400 #888888 directly below. No border, no shadow.\n\n4. *Outlined Input Field*: 1px Graphite (#2c2c2e) border, 6px border-radius, transparent background. Placeholder text in #888888 at 15px weight 400. Vertical padding 20px, horizontal padding 16px. On focus: border color shifts to Sprint Violet (#6a48f2).\n\n5. *Eyebrow Label*: Neue Montreal 14px weight 500, uppercase, letter-spacing +0.5px, color #888888. Used above section headlines or as metadata tags. No background, no border."
+      },
+      {
+        "title": "Color Rationing Philosophy",
+        "content": "The system operates on a 95/5 color budget: 95% achromatic (#000000, #171718, #2c2c2e, #888888, #ffffff, #f3f3f3), 5% chromatic (#6a48f2). Violet appears only on the primary CTA button and the focused/active state of interactive elements. This rationing is not minimalism for its own sake — it is a conversion strategy. When a user sees Sprint Violet, it means 'this is the action.' If you find yourself wanting to add a second brand color, replace an existing usage with the neutral equivalent first."
+      }
+    ],
+    "elevationPhilosophy": "No box-shadows. Depth is achieved through surface contrast alone: pure black void (#000000) for canvas, Obsidian (#171718) for cards, Graphite (#2c2c2e) for outlined controls. The single detected shadow (rgb(255,219,0) 0px 0px 16px) is a decorative yellow glow, not elevation — used sparingly as a spotlight effect on select imagery. This shadowless approach keeps the gallery-wall feeling: cards sit ON the void, not ABOVE it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "image",
+            "hero",
+            "list",
+            "icon",
+            "button",
+            "link"
+          ],
+          "frequency": 1841,
+          "confidence": 1,
+          "prominence": 129684586.54790069,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "card/color": 55,
+            "hero/color": 2,
+            "icon/color": 14,
+            "link/color": 1,
+            "list/color": 12,
+            "other/fill": 4,
+            "image/color": 32,
+            "other/color": 250,
+            "button/color": 4,
+            "nav/borderColor": 8,
+            "card/borderColor": 220,
+            "hero/borderColor": 8,
+            "icon/borderColor": 56,
+            "list/borderColor": 48,
+            "image/borderColor": 128,
+            "other/borderColor": 996
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "link",
+            "card",
+            "body",
+            "button"
+          ],
+          "frequency": 66,
+          "confidence": 1,
+          "prominence": 12146354.831353644,
+          "properties": [
+            "backgroundColor",
+            "borderColor",
+            "color"
+          ],
+          "usageCounts": {
+            "body/color": 1,
+            "body/borderColor": 4,
+            "card/borderColor": 40,
+            "link/borderColor": 5,
+            "other/borderColor": 4,
+            "button/borderColor": 8,
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#171718",
+          "oklch": {
+            "c": 0.001958228570079347,
+            "h": 286.22569414086246,
+            "l": 0.2050469423258848
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 270,
+          "confidence": 1,
+          "prominence": 2927580.68295153,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 204,
+            "card/backgroundColor": 65,
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#f3f3f3",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9641535001508271
+          },
+          "contexts": [
+            "heading",
+            "other",
+            "input"
+          ],
+          "frequency": 311,
+          "confidence": 1,
+          "prominence": 2479182.908134619,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "input/color": 1,
+            "other/color": 2,
+            "heading/color": 60,
+            "other/borderColor": 8,
+            "heading/borderColor": 240
+          }
+        },
+        {
+          "hex": "#888888",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6267535410065036
+          },
+          "contexts": [
+            "body",
+            "card",
+            "other",
+            "image",
+            "button",
+            "icon",
+            "link"
+          ],
+          "frequency": 1661,
+          "confidence": 1,
+          "prominence": 1979260.3633525139,
+          "properties": [
+            "color",
+            "borderColor",
+            "stroke"
+          ],
+          "usageCounts": {
+            "body/color": 5,
+            "card/color": 182,
+            "icon/color": 2,
+            "link/color": 4,
+            "image/color": 61,
+            "other/color": 127,
+            "button/color": 2,
+            "other/stroke": 2,
+            "body/borderColor": 20,
+            "card/borderColor": 484,
+            "icon/borderColor": 8,
+            "link/borderColor": 12,
+            "image/borderColor": 244,
+            "other/borderColor": 508
+          }
+        },
+        {
+          "hex": "#2c2c2e",
+          "oklch": {
+            "c": 0.0035816243822500344,
+            "h": 286.1772424658625,
+            "l": 0.2939005920326989
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "button",
+            "input"
+          ],
+          "frequency": 25,
+          "confidence": 1,
+          "prominence": 69058.86033892892,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/borderColor": 4,
+            "link/borderColor": 4,
+            "input/borderColor": 4,
+            "button/borderColor": 8,
+            "input/backgroundColor": 1,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#dddddd",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8975468705785317
+          },
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 14,
+          "confidence": 1,
+          "prominence": 68655.7884366285,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 3,
+            "nav/borderColor": 11
+          }
+        },
+        {
+          "hex": "#6a48f2",
+          "oklch": {
+            "c": 0.23878705607042544,
+            "h": 284.38212646371585,
+            "l": 0.545471403762074
+          },
+          "contexts": [
+            "nav",
+            "button",
+            "card"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 59528.95146038153,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "nav/backgroundColor": 1,
+            "card/backgroundColor": 4,
+            "button/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#e9e9e9",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9340252444454716
+          },
+          "contexts": [
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 32,
+          "confidence": 1,
+          "prominence": 43992.161114925075,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "other/color": 5,
+            "button/color": 2,
+            "link/borderColor": 4,
+            "other/borderColor": 20
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "link",
+            "image"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 6992.658639737898,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "link/color": 1,
+            "image/color": 1,
+            "link/borderColor": 3,
+            "image/borderColor": 4
+          }
+        },
+        {
+          "hex": "#8864f2",
+          "oklch": {
+            "c": 0.20365902249177598,
+            "h": 290.81540419427046,
+            "l": 0.6119518887617599
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 3715.0849518197797,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 4
+          }
+        },
+        {
+          "hex": "#ffdb00",
+          "oklch": {
+            "c": 0.18446638581669625,
+            "h": 97.0291225336,
+            "l": 0.8947075563381688
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 478.35764566378015,
+          "properties": [
+            "backgroundColor",
+            "boxShadow"
+          ],
+          "usageCounts": {
+            "other/boxShadow": 3,
+            "other/backgroundColor": 6
+          }
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.003332875183854275,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.93,
+          "background": "#000000",
+          "foreground": "#f3f3f3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.92,
+          "background": "#171718",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.3,
+          "background": "#000000",
+          "foreground": "#e9e9e9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.15,
+          "background": "#171718",
+          "foreground": "#f3f3f3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.46,
+          "background": "#000000",
+          "foreground": "#dddddd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.38,
+          "background": "#ffdb00",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.76,
+          "background": "#171718",
+          "foreground": "#e9e9e9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.94,
+          "background": "#2c2c2e",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.19,
+          "background": "#171718",
+          "foreground": "#dddddd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.12,
+          "background": "#ffdb00",
+          "foreground": "#171718"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.56,
+          "background": "#2c2c2e",
+          "foreground": "#f3f3f3"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.48,
+          "background": "#2c2c2e",
+          "foreground": "#e9e9e9"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.39,
+          "background": "#f3f3f3",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.41,
+          "background": "#e9e9e9",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.26,
+          "background": "#2c2c2e",
+          "foreground": "#dddddd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.21,
+          "background": "#ffdb00",
+          "foreground": "#2c2c2e"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.3,
+          "background": "#dddddd",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.26,
+          "background": "#ffdb00",
+          "foreground": "#333333"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "card",
+            "other",
+            "button",
+            "input"
+          ],
+          "frequency": 106
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 42
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "button",
+            "link"
+          ],
+          "frequency": 6
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgb(255, 219, 0) 0px 0px 16px 0px",
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 3,
+          "contexts": [
+            "list",
+            "link"
+          ],
+          "frequency": 22,
+          "properties": [
+            "marginTop",
+            "marginBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginTop|list",
+            "marginBottom|list",
+            "rowGap|link",
+            "columnGap|link"
+          ]
+        },
+        {
+          "value": 5,
+          "contexts": [
+            "card",
+            "link"
+          ],
+          "frequency": 28,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|card",
+            "columnGap|card",
+            "paddingTop|link",
+            "paddingBottom|link"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "list",
+            "other"
+          ],
+          "frequency": 5,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "nav",
+            "button",
+            "card"
+          ],
+          "frequency": 26,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|nav",
+            "paddingBottom|nav",
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 11,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "card",
+            "input"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "rowGap|card",
+            "columnGap|card",
+            "paddingRight|input",
+            "paddingLeft|input"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 8,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 15,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 25,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "nav",
+            "other",
+            "list",
+            "link",
+            "card",
+            "button"
+          ],
+          "frequency": 57,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|list",
+            "marginBottom|list",
+            "rowGap|list",
+            "columnGap|list",
+            "paddingTop|link",
+            "paddingBottom|link",
+            "paddingTop|card",
+            "paddingBottom|card",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "card",
+            "body",
+            "button"
+          ],
+          "frequency": 311,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "rowGap|card",
+            "columnGap|card",
+            "marginBottom|body",
+            "paddingRight|button",
+            "paddingLeft|button"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "nav",
+            "button",
+            "other",
+            "card"
+          ],
+          "frequency": 17,
+          "properties": [
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|nav",
+            "paddingRight|nav",
+            "paddingLeft|nav",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card"
+          ]
+        },
+        {
+          "value": 30,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 22,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other",
+            "paddingRight|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 18,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|link",
+            "paddingLeft|link"
+          ]
+        },
+        {
+          "value": 36,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 14,
+          "properties": [
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav"
+          ]
+        },
+        {
+          "value": 45,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 50,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other",
+            "marginRight|other"
+          ]
+        },
+        {
+          "value": 58,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "properties": [
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginBottom|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 158,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 51,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 200,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 280,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(7deg, rgb(106, 72, 242) 20%, rgb(252, 206, 238))",
+        "colors": [
+          "rgb(106, 72, 242)",
+          "rgb(252, 206, 238)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Neue Montreal",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 833,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 0.91
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.04,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1,
+          "letterSpacing": 0.035,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.023,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "heading"
+          ],
+          "frequency": 52,
+          "lineHeight": 1.2,
+          "letterSpacing": 0.035,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 51,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.035,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.021,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "card",
+            "image",
+            "hero",
+            "list",
+            "icon",
+            "body"
+          ],
+          "frequency": 605,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "card"
+          ],
+          "frequency": 12,
+          "lineHeight": 1,
+          "letterSpacing": 0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.035,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "lineHeight": 1.55,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 24,
+          "lineHeight": 1,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.03,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 21,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.015,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Neue Montreal",
+          "weight": 500,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.025,
+          "textTransform": "none"
+        },
+        {
+          "size": 40,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "other",
+            "icon"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.5,
+          "letterSpacing": 0.008,
+          "textTransform": "none"
+        },
+        {
+          "size": 70,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 104,
+          "family": "Neue Montreal",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.1,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/5fc08679-8afa-4ddc-83d1-d09e5df875c0.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/bd873c3e-2e70-4a2a-aeb8-34b4e108d330.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/98a1ad40-90e2-4665-b49f-e5ffd4d4b90b#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Stellar design system\",\"item\":\"https://styles.refero.design/style/98a1ad40-90e2-4665-b49f-e5ffd4d4b90b\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/98a1ad40-90e2-4665-b49f-e5ffd4d4b90b#style-reference\",\"name\":\"Stellar design system reference\",\"headline\":\"Stellar design system | Refero Styles\",\"description\":\"Explore Stellar's dark Agency design system: Void Black #000000, Obsidian #171718 colors, Neue Montreal typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/98a1ad40-90e2-4665-b49f-e5ffd4d4b90b\",\"mainEntityOfPage\":\"https://styles.refero.design/style/98a1ad40-90e2-4665-b49f-e5ffd4d4b90b\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Stellar\",\"url\":\"https://www.stellar.work\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/98a1ad40-90e2-4665-b49f-e5ffd4d4b90b#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/bd873c3e-2e70-4a2a-aeb8-34b4e108d330.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/bd873c3e-2e70-4a2a-aeb8-34b4e108d330.jpg\",\"caption\":\"Screenshot of Stellar\"},\"image\":\"https://images.refero.design/styles/refero.design/image/bd873c3e-2e70-4a2a-aeb8-34b4e108d330.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Stellar design system\",\"Stellar website design\",\"Stellar colors\",\"Stellar typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Void Black\",\"Obsidian\",\"Graphite\",\"Ash\",\"Neue Montreal\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Stellar design system\"},{\"@type\":\"Thing\",\"name\":\"Stellar website design\"},{\"@type\":\"Thing\",\"name\":\"Stellar colors\"},{\"@type\":\"Thing\",\"name\":\"Stellar typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T01:23:35.661Z\",\"dateModified\":\"2026-04-30T01:23:35.661Z\"}]}19:T688,**Quick Color Reference**\n- background: #000000\n- text: #ffffff (display), #f3f3f3 (headings), #888888 (body/subtext)\n- border: #2c2c2e (outlined controls), #171718 (card edges)\n- accent/primary action: #6a48f2 (filled action)\n- surface: #171718 (Obsidian — cards and elevated panels)\n\n**3-5 Example Component Prompts**\n\n1. *Hero Section*: Pure black (#000000) background. Display headline 'Your brand or website, delivered at lightspeed.' in Neue Montreal weight 400 at 72px, color #ffffff, letter-spacing -1.44px, line-height 1.1. Subtext paragraph below in #888888 at 19px weight 400, line-height 1.43, max-width 640px. 80px vertical padding above and below the text block.\n\n2. *Primary CTA Button*: Pill shape, 50px border-radius, Sprint Violet (#6a48f2) background fill, no border. Text 'Reserve your sprint' in Neue Montreal 15px weight 500, color #ffffff, padding 10px 24px. No hover shadow — on hover, background brightens 10%.\n\n3. *Designer Profile Card*: 10px border-radius, Obsidian (#171718) surface. 20px padding. Top: full-width portrait photo (no padding around it, image bleeds to card edges). Bottom: designer name in 16px weight 500 #ffffff, role label in 15px weight 400 #888888 directly below. No border, no shadow.\n\n4. *Outlined Input Field*: 1px Graphite (#2c2c2e) border, 6px border-radius, transparent background. Placeholder text in #888888 at 15px weight 400. Vertical padding 20px, horizontal padding 16px. On focus: border color shifts to Sprint Violet (#6a48f2).\n\n5. *Eyebrow Label*: Neue Montreal 14px weight 500, uppercase, letter-spacing +0.5px, color #888888. Used above section headlines or as metadata tags. No background, no border."
+}

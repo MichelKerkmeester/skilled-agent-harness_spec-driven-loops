@@ -1,0 +1,314 @@
+{
+  "color": {
+    "x-blue": {
+      "$value": "#1d9bf0",
+      "$type": "color",
+      "$description": "X Blue — Follow buttons, link text, verified badges, active nav icons, bottom CTA accents — the only chromatic color in the system, used sparingly to mark anything interactive or trustworthy"
+    },
+    "ink-black": {
+      "$value": "#0f1419",
+      "$type": "color",
+      "$description": "Ink Black — Primary text, button text, icon fills — the dominant readable foreground on light surfaces"
+    },
+    "graphite": {
+      "$value": "#536471",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, metadata, timestamps, muted icon fills, helper labels"
+    },
+    "fog-gray": {
+      "$value": "#829aab",
+      "$type": "color",
+      "$description": "Fog Gray — Tertiary text and disabled-state foreground"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Page background, card surfaces, modal surfaces, button text on chromatic fills"
+    },
+    "mist-gray": {
+      "$value": "#eff3f4",
+      "$type": "color",
+      "$description": "Mist Gray — Hover states, secondary surface fills, subtle dividers, input backgrounds"
+    },
+    "hairline-gray": {
+      "$value": "#cfd9de",
+      "$type": "color",
+      "$description": "Hairline Gray — 1px border strokes separating cards, inputs, nav sections, and buttons"
+    },
+    "shadow-dust": {
+      "$value": "#e0e4e7",
+      "$type": "color",
+      "$description": "Shadow Dust — Inset shadow base for inputs and select surfaces — 3% opacity black on this tone"
+    },
+    "charcoal": {
+      "$value": "#4b4f53",
+      "$type": "color",
+      "$description": "Charcoal — Dark-mode surface fill (previews, code blocks, dim button state)"
+    }
+  },
+  "font": {
+    "twitterchirp": {
+      "$value": "TwitterChirp",
+      "$type": "fontFamily",
+      "$description": "Primary brand typeface across all UI — feeds, nav, buttons, headings, body. The custom letterforms with ss01 stylistic set create X's distinctive voice; the tightly compressed 0.80 lineHeight on small sizes maximizes information density in the feed."
+    },
+    "times": {
+      "$value": "Times",
+      "$type": "fontFamily",
+      "$description": "System fallback for legacy rendering paths; not a design choice but a technical fallback that should never appear in production UI"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "TwitterChirp",
+        "fontSize": "11px",
+        "fontWeight": 400,
+        "lineHeight": 1.09
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 11px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "TwitterChirp",
+        "fontSize": "13px",
+        "fontWeight": 400,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 13px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "TwitterChirp",
+        "fontSize": "13px",
+        "fontWeight": 700,
+        "lineHeight": 1.23
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 13px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "TwitterChirp",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "TwitterChirp",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.14
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 15px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "TwitterChirp",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 15px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "TwitterChirp",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 15px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "TwitterChirp",
+        "fontSize": "15px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 15px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "TwitterChirp",
+        "fontSize": "15px",
+        "fontWeight": 500,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 15px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Times",
+        "fontSize": "15px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 15px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "TwitterChirp",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "xl-2": {
+      "$value": {
+        "fontFamily": "TwitterChirp",
+        "fontSize": "20px",
+        "fontWeight": 800,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-2 at 20px"
+    },
+    "xl-3": {
+      "$value": {
+        "fontFamily": "TwitterChirp",
+        "fontSize": "20px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-3 at 20px"
+    },
+    "xl-4": {
+      "$value": {
+        "fontFamily": "TwitterChirp",
+        "fontSize": "23px",
+        "fontWeight": 700,
+        "lineHeight": 1.22
+      },
+      "$type": "typography",
+      "$description": "Typography step xl-4 at 23px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "unit": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Base spacing unit"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "2xl": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Border radius 2xl"
+    },
+    "full": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Border radius full"
+    }
+  },
+  "shadow": {
+    "subtle": {
+      "$value": "rgba(0, 0, 0, 0.03) 0px 0px 2px 0px inset",
+      "$type": "shadow",
+      "$description": "Shadow elevation subtle"
+    },
+    "sm": {
+      "$value": "rgba(101, 119, 134, 0.2) 0px 0px 8px 0px, rgba(101, 119, 134, 0.25) 0px 1px 3px 1px",
+      "$type": "shadow",
+      "$description": "Shadow elevation sm"
+    }
+  },
+  "surface": {
+    "canvas": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 0: Page background — the entire app sits on pure white"
+    },
+    "card": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 1: Post cards, profile sections, sidebar widgets — same white as canvas, defined only by hairline borders"
+    },
+    "hover": {
+      "$value": "#eff3f4",
+      "$type": "color",
+      "$description": "Surface level 2: Interactive feedback on rows, links, nav items — the only secondary fill"
+    },
+    "action": {
+      "$value": "#1d9bf0",
+      "$type": "color",
+      "$description": "Surface level 3: Filled button backgrounds, active states, accent washes"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://create.video",
+      "siteName": "X (formerly Twitter)",
+      "extractedAt": "2026-06-03T19:32:01.467Z",
+      "variant": "extended"
+    }
+  }
+}

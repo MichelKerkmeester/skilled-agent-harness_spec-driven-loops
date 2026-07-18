@@ -1,0 +1,1727 @@
+{
+  "source": "https://styles.refero.design/style/3b3fa99e-cee4-41f3-ac26-777b4b6a8b12",
+  "uuid": "3b3fa99e-cee4-41f3-ac26-777b4b6a8b12",
+  "name": "Krisp",
+  "northStar": "Warm cream paper, inked in indigo, lit by a violet spark — a confident editorial-tech feel.",
+  "capturedAt": "2026-07-18T07:25:08.723Z",
+  "meta": {
+    "url": "https://krisp.ai",
+    "siteName": "Krisp",
+    "extractedAt": "2026-06-03T21:11:56.326Z",
+    "durationMs": 25900,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 502,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #f2ece2 (Warm Paper) as the default page canvas — never substitute pure white at the root level",
+      "Apply the Iris Spark to Cyan Glow gradient only on display-size headlines (42px+); never on body or heading text",
+      "Use 8px border-radius for all buttons and small interactive elements; 16px for cards; 9999px for pills and tabs",
+      "Double-duty #131032 (Midnight Iris) as both text color on light surfaces and background color on dark sections — the hue reads as the same brand identity in both contexts",
+      "Separate action button styles by fill: Iris Spark (#614efa) for one type, Slate (#1a1a22) for the other — never use two violet buttons side by side",
+      "Use Hairline (#e7e7ea) at 1px for card borders and dividers; achieve elevation through surface color shifts rather than shadows",
+      "Keep #918f9f (Fog) as the only muted body text color; never use Ash (#a1a1aa) for primary copy"
+    ],
+    "donts": [
+      "Don't introduce new saturated colors — Iris Spark is the only vivid hue, and it should appear at most 1-2 times per viewport",
+      "Don't apply drop shadows to cards or panels — surface shifts on the Warm Paper canvas are the elevation system",
+      "Don't use pure #000000 for text — Midnight Iris (#131032) carries the brand undertone",
+      "Don't place white cards on white backgrounds; always layer Snow (#ffffff) on Warm Paper (#f2ece2) or Cloud (#f7f7f8) for separation",
+      "Don't use gradients on body, heading, or subheading text — the gradient treatment is reserved for display headlines only",
+      "Don't use border-radius larger than 8px on buttons — the 8px radius is the button signature, not pills",
+      "Don't show customer logos in full color — they must be muted to grayscale/gray to maintain the quiet editorial feel"
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#131032",
+        "name": "Midnight Iris",
+        "role": "Primary text, headings, and dark section backgrounds — the deepest near-black with a violet undertone carries the same identity across both light copy and immersive dark bands",
+        "group": "brand"
+      },
+      {
+        "hex": "#614efa",
+        "name": "Iris Spark",
+        "role": "Filled buttons, link emphasis, active states, gradient stops — the only vivid saturated color in the palette, used as a small functional spark against the cream canvas",
+        "group": "brand"
+      },
+      {
+        "hex": "#dfdcfe",
+        "name": "Violet Mist",
+        "role": "Soft accent washes, tag backgrounds, decorative highlights — a near-white violet tint that echoes Iris Spark at very low intensity",
+        "group": "accent"
+      },
+      {
+        "hex": "#98c8ff",
+        "name": "Cyan Glow",
+        "role": "Supporting palette color for small decorative accents when the core palette needs contrast.",
+        "group": "accent"
+      },
+      {
+        "hex": "#eafdfa",
+        "name": "Mint Whisper",
+        "role": "Pill badge and announcement tag backgrounds — a barely-there cool tint to differentiate informational chips from the warm cream canvas",
+        "group": "accent"
+      },
+      {
+        "hex": "#8374fb",
+        "name": "Iris Halo",
+        "role": "Soft highlight overlays and secondary gradient midtones — a lighter violet used in multi-stop gradients",
+        "group": "accent"
+      },
+      {
+        "hex": "#918f9f",
+        "name": "Fog",
+        "role": "Muted body copy, helper text, secondary labels — the primary low-emphasis text color against cream and white surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#5b5971",
+        "name": "Shadow",
+        "role": "Stronger secondary text, metadata — deeper than Fog for labels that need more presence without reaching Midnight Iris",
+        "group": "neutral"
+      },
+      {
+        "hex": "#a1a1aa",
+        "name": "Ash",
+        "role": "Disabled text, placeholder content, very low-emphasis UI elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1a22",
+        "name": "Slate",
+        "role": "Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color",
+        "group": "neutral"
+      },
+      {
+        "hex": "#24232d",
+        "name": "Charcoal",
+        "role": "Secondary dark text, very dark UI elements",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e7e7ea",
+        "name": "Hairline",
+        "role": "Borders, dividers, card outlines — a cool light gray that separates surfaces on the warm cream canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#cccccc",
+        "name": "Silver",
+        "role": "Shadows, very subtle borders, disabled surface tones",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Snow",
+        "role": "Card surfaces, button text, dark-section text — pure white for maximum contrast on dark backgrounds",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f7f7f8",
+        "name": "Cloud",
+        "role": "Secondary surface, footer background — a cool off-white that sits one step below Snow",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2ece2",
+        "name": "Warm Paper",
+        "role": "Dominant page canvas — a warm beige that replaces the typical cold white SaaS background, giving the entire site a tactile, editorial feel",
+        "group": "neutral"
+      }
+    ],
+    "imagery": "Krisp's visual language is overwhelmingly UI-driven with no photography, no illustrations, and no product screenshots in the visible sections. The imagery vocabulary is purely typographic and geometric: gradient-filled display text, thin outlined icons (people, microphone, globe, share, chat) in Iris Spark violet, and abstract conic-gradient decorative elements in the background of dark sections. Customer logos in the social proof band are rendered in muted gray rather than full brand color, keeping the visual hierarchy focused on the copy and violet accents. The result is an editorial, almost magazine-like aesthetic where type and color do the storytelling that photography would normally carry.",
+    "similar": [
+      {
+        "why": "Same single-family geometric sans, dark-section/light-section alternation, and minimal shadow approach — though Linear leans cool-gray where Krisp leans warm-cream",
+        "business": "Linear"
+      },
+      {
+        "why": "Similar restrained accent-color philosophy, pill-shaped UI elements, and clean editorial typography at display sizes",
+        "business": "Notion"
+      },
+      {
+        "why": "Same warm-canvas-plus-bold-gradient-headline hero pattern and violet/indigo accent color family",
+        "business": "Framer"
+      },
+      {
+        "why": "Same AI-tool category, similar comfortable density, and gradient-text display treatment on hero headlines",
+        "business": "Descript"
+      },
+      {
+        "why": "Similar light-canvas SaaS with single vivid accent color, soft hairline cards, and pill-tab navigation patterns",
+        "business": "Loom"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "icons": "4px",
+        "pills": "9999px",
+        "badges": "12px",
+        "buttons": "8px",
+        "largeCards": "20-24px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "96px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1200px"
+    },
+    "industry": "ai",
+    "surfaces": [
+      {
+        "hex": "#f2ece2",
+        "name": "Warm Paper",
+        "level": 0,
+        "purpose": "Dominant page canvas — warm beige base for all light sections"
+      },
+      {
+        "hex": "#f7f7f8",
+        "name": "Cloud",
+        "level": 1,
+        "purpose": "Cool off-white secondary surface, often used for footer and large quiet bands"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Snow",
+        "level": 2,
+        "purpose": "Card surfaces and elevated panels — pure white on top of Warm Paper for definition"
+      },
+      {
+        "hex": "#eafdfa",
+        "name": "Mint Whisper",
+        "level": 3,
+        "purpose": "Accent chip and pill surfaces — a barely-there cool tint for informational tags"
+      },
+      {
+        "hex": "#131032",
+        "name": "Midnight Iris",
+        "level": 4,
+        "purpose": "Dark immersive section background — inverts the color hierarchy with white text and violet accents"
+      }
+    ],
+    "northStar": "Warm cream paper, inked in indigo, lit by a violet spark — a confident editorial-tech feel.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 10,
+        "lineHeight": 1.6
+      },
+      {
+        "role": "body-sm",
+        "size": 14,
+        "lineHeight": 1.43
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 1.63
+      },
+      {
+        "role": "body-lg",
+        "size": 18,
+        "lineHeight": 1.62
+      },
+      {
+        "role": "subheading",
+        "size": 20,
+        "lineHeight": 1.5
+      },
+      {
+        "role": "heading",
+        "size": 26,
+        "lineHeight": 1.45
+      },
+      {
+        "role": "heading-lg",
+        "size": 36,
+        "lineHeight": 1.33
+      },
+      {
+        "role": "display-sm",
+        "size": 42,
+        "lineHeight": 1.2
+      },
+      {
+        "role": "display",
+        "size": 48,
+        "lineHeight": 1.17
+      },
+      {
+        "role": "display-lg",
+        "size": 58,
+        "lineHeight": 1.14
+      }
+    ],
+    "components": [
+      {
+        "name": "Filled Violet Button",
+        "role": "Primary action button — solid Iris Spark fill with white text",
+        "description": "Background: #614efa (Iris Spark). Text: #ffffff, Plus Jakarta Sans weight 600, 16px. Border radius: 8px. Padding: 12px 20px. Optional caret/chevron icon after label in white. No shadow on default state. On hover, darken background slightly. This is the signature action style — small, confident, rounded-but-not-pill."
+      },
+      {
+        "name": "Dark Outline Button",
+        "role": "Secondary action button — used for 'Book a demo' and similar",
+        "description": "Background: #1a1a22 (Slate). Text: #ffffff, Plus Jakarta Sans weight 600, 16px. Border radius: 8px. Padding: 12px 20px. No border. This near-black filled button provides the neutral counterweight to the violet primary action, preventing the palette from becoming monochromatic."
+      },
+      {
+        "name": "Text Link Button",
+        "role": "Inline action with chevron — used in nav for 'Get Krisp' with dropdown indicator",
+        "description": "Background: transparent. Text: #131032 (Midnight Iris), Plus Jakarta Sans weight 600, 16px. Small downward chevron in #131032 adjacent to text. No underline. Hover: shift to #614efa."
+      },
+      {
+        "name": "Pill Tab Selector",
+        "role": "Segmented control for switching between meeting states (During / After / Before Meeting)",
+        "description": "Container: rounded 9999px, background transparent or very light fill. Active tab: #ffffff (Snow) background with #131032 (Midnight Iris) text, weight 500-600. Inactive tab: transparent background with #918f9f (Fog) text. Transition between tabs is a simple white pill slide. Border-radius: 9999px makes these feel like physical toggles."
+      },
+      {
+        "name": "Announcement Pill Badge",
+        "role": "Eyebrow tag above hero headline — 'Introducing Accent Conversion' style",
+        "description": "Background: #eafdfa (Mint Whisper). Text: #131032 (Midnight Iris), Plus Jakarta Sans weight 500, 14px. Border radius: 9999px (pill). Padding: 6px 14px. Inline display above headlines as a contextual label."
+      },
+      {
+        "name": "Gradient Display Headline",
+        "role": "Signature hero text treatment — 'Voice AI' portion of the headline",
+        "description": "Text: Plus Jakarta Sans weight 700, 48-58px. Background: linear-gradient(90deg, #614efa 0%, #98c8ff 100%) applied via background-clip: text with transparent fill. Sits alongside plain Midnight Iris text in the same headline to create contrast between 'lit' and 'static' words."
+      },
+      {
+        "name": "Feature Card",
+        "role": "Content card for feature grids — 'Multilingual meeting support', '1-click sharing'",
+        "description": "Background: #ffffff (Snow) or #f7f7f8 (Cloud) sitting on Warm Paper canvas. Border: 1px solid #e7e7ea (Hairline) — very subtle. Border radius: 16px. Padding: 32px 28px. Icon: small outlined violet icon at top, 24px size, color #614efa. Title: Plus Jakarta Sans weight 600, 20-22px, #131032. Body: weight 400, 16px, #918f9f. No drop shadow — surface shift provides separation."
+      },
+      {
+        "name": "Dark Feature Section Card",
+        "role": "Feature card variant on dark Midnight Iris background",
+        "description": "Background: slightly lighter than the section canvas (transparent or a subtle lift). Border: 1px solid rgba(255,255,255,0.1) or #24232d. Border radius: 16px. Padding: 32px 28px. Icon: small dot or icon in #614efa or coral accent. Title: white #ffffff, weight 600, 20-22px. Body: rgba(255,255,255,0.7) or #918f9f, weight 400, 16px. A thin coral-red accent bar or dot appears to the left of the title — a small warm punctuation against the cool dark canvas."
+      },
+      {
+        "name": "Customer Logo Strip",
+        "role": "Social proof band showing client logos (Medium, Okta, Skechers, Autodesk, Sony, Cisco, ServiceTitan, GitHub)",
+        "description": "Layout: single horizontal row, evenly distributed, 8 logos visible. Logos: rendered in a single muted gray tone (filter: grayscale + opacity 0.6-0.8, color #918f9f) — not full color. No labels or captions. Sits on Warm Paper canvas with generous vertical padding (48-64px above and below)."
+      },
+      {
+        "name": "Top Navigation Bar",
+        "role": "Site header with logo, menu, and actions",
+        "description": "Background: #ffffff (Snow) or transparent over Warm Paper. Left: wordmark 'krisp' in #131032, Plus Jakarta Sans weight 700, 22px. Center-left: nav links in #131032 weight 500, 16px, with small chevron-down icons on items with submenus. Right: 'Sign in' as plain text link, 'Book a demo' as Dark Outline Button, 'Get Krisp' as Filled Violet Button with chevron. Sticky on scroll. Height: 64-72px. Border-bottom: none or 1px #e7e7ea."
+      },
+      {
+        "name": "Webby Award Sticker",
+        "role": "Floating badge in bottom-right corner — '20th Annual Webby Awards, Vote for Krisp'",
+        "description": "Background: #ffffff (Snow). Border: 1px solid #e7e7ea. Border radius: 12px. Padding: 8px 12px. Text: #131032 weight 500, 10-12px, two lines. Small Webby logo icon to the left. Fixed position, bottom-right. Subtle shadow on hover."
+      },
+      {
+        "name": "Icon",
+        "role": "UI iconography for features and navigation",
+        "description": "Style: outlined, 1.5-2px stroke weight, 20-24px size. Color: #614efa (Iris Spark) on light cards, #ffffff on dark cards, #131032 in nav. Geometric and minimal — people, share, microphone, globe motifs. Stroke caps: round."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single-family geometric humanist sans used for every text role from 10px badges to 58px display headlines",
+        "sizes": "10, 14, 16, 18, 20, 22, 26, 36, 42, 48, 58",
+        "family": "Plus Jakarta Sans",
+        "weight": "400, 500, 600, 700",
+        "lineHeight": "1.14–1.78 depending on size",
+        "substitute": "Inter, DM Sans, General Sans",
+        "description": "Plus Jakarta Sans is the only typeface — a geometric humanist sans with open apertures and slightly rounded terminals. Its neutral-but-friendly personality allows the violet accent and warm cream canvas to carry the brand identity. The range from weight 400 (body) through 700 (buttons) covers the full UI without needing a second face."
+      }
+    ],
+    "description": "Krisp uses a warm-cream-and-violet language built on a single geometric humanist sans (Plus Jakarta Sans). The canvas is a soft warm beige rather than sterile white, giving the entire surface a paper-like, approachable quality. Deep indigo violet (#131032) doubles as both the primary text color and a dramatic dark section background — the same hue reading as authoritative copy on light surfaces and as immersive night-mode on dark. Vivid violet (#614efa) is the lone saturated accent, used sparingly on filled buttons and link emphasis, while a violet-to-cyan gradient sweeps through hero display text to make 'Voice AI' feel like it is lit from within. The system stays calm: soft cards, pill-shaped tabs, thin hairlines, no heavy shadows, and color restricted to small functional moments rather than broad washes.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3b3fa99e-cee4-41f3-ac26-777b4b6a8b12#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Krisp design system\",\"item\":\"https://styles.refero.design/style/3b3fa99e-cee4-41f3-ac26-777b4b6a8b12\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3b3fa99e-cee4-41f3-ac26-777b4b6a8b12#style-reference\",\"name\":\"Krisp design system reference\",\"headline\":\"Krisp design system | Refero Styles\",\"description\":\"Explore Krisp's light AI design system: Midnight Iris #131032, Iris Spark #614efa colors, Plus Jakarta Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3b3fa99e-cee4-41f3-ac26-777b4b6a8b12\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3b3fa99e-cee4-41f3-ac26-777b4b6a8b12\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Krisp\",\"url\":\"https://krisp.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3b3fa99e-cee4-41f3-ac26-777b4b6a8b12#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ed70fb81-5610-468d-a24f-598ce7a88d27.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ed70fb81-5610-468d-a24f-598ce7a88d27.jpg\",\"caption\":\"Screenshot of Krisp\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ed70fb81-5610-468d-a24f-598ce7a88d27.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Krisp design system\",\"Krisp website design\",\"Krisp colors\",\"Krisp typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Midnight Iris\",\"Iris Spark\",\"Violet Mist\",\"Cyan Glow\",\"Plus Jakarta Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Krisp design system\"},{\"@type\":\"Thing\",\"name\":\"Krisp website design\"},{\"@type\":\"Thing\",\"name\":\"Krisp colors\"},{\"@type\":\"Thing\",\"name\":\"Krisp typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-10T18:18:42.000Z\",\"dateModified\":\"2026-04-10T18:18:42.000Z\"}]}19:T9e4,primary action: no distinct CTA color\n**Quick Color Reference:**\n- text: #131032 (Midnight Iris)\n- background: #f2ece2 (Warm Paper)\n- card/surface: #ffffff (Snow)\n- border: #e7e7ea (Hairline)\n- muted text: #918f9f (Fog)\n- accent/filled button: #614efa (Iris Spark)\n- dark section background: #131032 (Midnight Iris)\n\n**Example Component Prompts:**\n\n1. **Create a hero section on Warm Paper canvas (#f2ece2).** Eyebrow pill badge: Mint Whisper background (#eafdfa), Midnight Iris text (#131032), 14px weight 500, 9999px radius, padding 6px 14px. Display headline at 48px Plus Jakarta Sans weight 700: split into two parts — first word(s) in the linear-gradient(90deg, #614efa 0%, #98c8ff 100%) text-fill treatment, remaining words in solid #131032. Subtext at 18px weight 400, #918f9f. Single filled button: #614efa background, white text weight 600, 8px radius, padding 12px 20px.\n\n2. **Create a 2x2 feature card grid.** Canvas: Warm Paper (#f2ece2). Each card: white (#ffffff) background, 1px Hairline (#e7e7ea) border, 16px radius, padding 32px 28px. Top of each card: 24px outlined icon in Iris Spark (#614efa) with 1.5px stroke. Title: 22px weight 600, #131032. Body: 16px weight 400, #918f9f. 24px gap between cards.\n\n3. **Create a dark feature section.** Full-bleed background #131032, padding 80-96px vertical. Section heading: 36px weight 600, #ffffff, left-aligned. Cards below: transparent or very subtle lift background, 16px radius, padding 32px 28px, thin border rgba(255,255,255,0.1). Each card title: 22px weight 600, #ffffff, preceded by a small 6px coral-red dot. Body: 16px weight 400, #918f9f. Use a pill-shaped tab selector (9999px radius) at the top with Snow (#ffffff) active state.\n\n4. **Create a customer logo strip.** Single row on Warm Paper canvas, 8 logos evenly distributed. Each logo rendered in grayscale with opacity 0.6-0.7, color #918f9f. 48-64px vertical padding above and below. No labels or captions. Logos scale to ~80px height max.\n\n5. **Create a sticky top navigation.** White background, 64px height, full width with max-width 1200px inner container. Left: 'krisp' wordmark in #131032, 22px weight 700. Center-left: 5 nav items in #131032 weight 500, 16px, with small chevron-down icons on 3 items. Right cluster: 'Sign in' as plain text link (#131032), 'Book a demo' as dark filled button (#1a1a22 background, white text, 8px radius, 12px 20px padding), 'Get Krisp' as violet filled button (#614efa background, white text, 8px radius, 12px 20px padding, with small downward chevron icon)."
+      },
+      {
+        "title": "Signature Gradient",
+        "content": "The violet-to-cyan gradient (linear-gradient(90deg, #614efa 0%, #98c8ff 100%)) is reserved for display-size headline words only. It creates the 'Voice AI' signature where the brand term appears illuminated against the plain Midnight Iris remainder of the headline. Secondary gradients (violet→coral, violet→magenta) appear sparingly in decorative conic and linear gradients on dark sections and illustration accents. Never apply these gradients to body text, buttons, or background fills wider than a single display word."
+      }
+    ],
+    "elevationPhilosophy": "Krisp intentionally avoids heavy shadows. Elevation is achieved through surface color shifts (Warm Paper → Snow for cards, Warm Paper → Midnight Iris for dark sections) rather than drop shadows. The only shadow usage is extremely subtle (Silver #cccccc with low opacity) for button press states and card hover lift. This keeps the design feeling flat, modern, and editorial rather than skeuomorphic."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#131032",
+          "oklch": {
+            "c": 0.06497556781764409,
+            "h": 282.79996131052445,
+            "l": 0.2002072516922197
+          },
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "list",
+            "body",
+            "icon",
+            "button",
+            "hero",
+            "heading",
+            "badge",
+            "footer"
+          ],
+          "frequency": 2247,
+          "confidence": 1,
+          "prominence": 52121641.408244185,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f2ece2",
+          "oklch": {
+            "c": 0.014819581444579876,
+            "h": 80.7068346524384,
+            "l": 0.9450255339669844
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 3759150,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#f7f7f8",
+          "oklch": {
+            "c": 0.0013228271034216744,
+            "h": 286.37508939782913,
+            "l": 0.9764191730181891
+          },
+          "contexts": [
+            "other",
+            "footer"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 2208590.14071972,
+          "properties": [
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "button",
+            "body",
+            "heading",
+            "link"
+          ],
+          "frequency": 122,
+          "confidence": 1,
+          "prominence": 722195.0714179145,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#e7e7ea",
+          "oklch": {
+            "c": 0.004021547502989227,
+            "h": 286.32107131308726,
+            "l": 0.9288269416209526
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "confidence": 1,
+          "prominence": 361425.776723745,
+          "properties": [
+            "backgroundColor",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#918f9f",
+          "oklch": {
+            "c": 0.023588631590677908,
+            "h": 291.47750335146804,
+            "l": 0.6569842462690333
+          },
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "body"
+          ],
+          "frequency": 96,
+          "confidence": 1,
+          "prominence": 122335.9844427806,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#5b5971",
+          "oklch": {
+            "c": 0.037137635223039256,
+            "h": 288.05876354987214,
+            "l": 0.4757769158384847
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "confidence": 1,
+          "prominence": 47989.609865132,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#cccccc",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.8452222558133237
+          },
+          "contexts": [
+            "other",
+            "button"
+          ],
+          "frequency": 6,
+          "confidence": 1,
+          "prominence": 42483.70203549772,
+          "properties": [
+            "color",
+            "borderColor",
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#1a1a22",
+          "oklch": {
+            "c": 0.015512945154150196,
+            "h": 285.06362612187877,
+            "l": 0.22145104675765462
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 30,
+          "confidence": 1,
+          "prominence": 28011.025938927392,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#614efa",
+          "oklch": {
+            "c": 0.24312179246552457,
+            "h": 279.8697739381992,
+            "l": 0.5535782392257864
+          },
+          "contexts": [
+            "button",
+            "link",
+            "other"
+          ],
+          "frequency": 12,
+          "confidence": 1,
+          "prominence": 27871.711957038708,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#45425d",
+          "oklch": {
+            "c": 0.04432730260156035,
+            "h": 288.34481988394083,
+            "l": 0.39334474806071545
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 20668,
+          "properties": [
+            "boxShadow"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#dfdcfe",
+          "oklch": {
+            "c": 0.046243584574878864,
+            "h": 289.4912416646413,
+            "l": 0.9073971328333731
+          },
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 19698.00363652077,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#24232d",
+          "oklch": {
+            "c": 0.01859272611126639,
+            "h": 289.6309083674633,
+            "l": 0.26160264448373416
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 15269,
+          "properties": [
+            "color"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#a1a1aa",
+          "oklch": {
+            "c": 0.012937072897089737,
+            "h": 286.06647178762273,
+            "l": 0.711814792347715
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 5389.64681400361,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#32304d",
+          "oklch": {
+            "c": 0.05092832407431628,
+            "h": 286.35273279912894,
+            "l": 0.3250272283270206
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4674,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#eafdfa",
+          "oklch": {
+            "c": 0.02024673070320616,
+            "h": 185.51319556142354,
+            "l": 0.9792888507175543
+          },
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 2732.475351243273,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#fe6257",
+          "oklch": {
+            "c": 0.19236350012462294,
+            "h": 27.22246116263793,
+            "l": 0.6956235496073797
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 200,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        },
+        {
+          "hex": "#8374fb",
+          "oklch": {
+            "c": 0.19395518357696745,
+            "h": 284.53658674768985,
+            "l": 0.6399447842368081
+          },
+          "contexts": [
+            "body"
+          ],
+          "frequency": 3,
+          "confidence": 1,
+          "prominence": 104,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {}
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.1623547764433544,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 18.29,
+          "background": "#ffffff",
+          "foreground": "#131032"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.36,
+          "background": "#eafdfa",
+          "foreground": "#131032"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.29,
+          "background": "#ffffff",
+          "foreground": "#1a1a22"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.09,
+          "background": "#f7f7f8",
+          "foreground": "#131032"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.41,
+          "background": "#eafdfa",
+          "foreground": "#1a1a22"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.15,
+          "background": "#f7f7f8",
+          "foreground": "#1a1a22"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.57,
+          "background": "#f2ece2",
+          "foreground": "#131032"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.52,
+          "background": "#ffffff",
+          "foreground": "#24232d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.82,
+          "background": "#e7e7ea",
+          "foreground": "#131032"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.73,
+          "background": "#eafdfa",
+          "foreground": "#24232d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.71,
+          "background": "#f2ece2",
+          "foreground": "#1a1a22"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.49,
+          "background": "#f7f7f8",
+          "foreground": "#24232d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.01,
+          "background": "#e7e7ea",
+          "foreground": "#1a1a22"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.77,
+          "background": "#dfdcfe",
+          "foreground": "#131032"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.21,
+          "background": "#f2ece2",
+          "foreground": "#24232d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.01,
+          "background": "#dfdcfe",
+          "foreground": "#1a1a22"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.61,
+          "background": "#32304d",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.57,
+          "background": "#e7e7ea",
+          "foreground": "#24232d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.97,
+          "background": "#eafdfa",
+          "foreground": "#32304d"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.78,
+          "background": "#f7f7f8",
+          "foreground": "#32304d"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 8,
+          "contexts": [
+            "list",
+            "link",
+            "other",
+            "button"
+          ],
+          "frequency": 21
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 16
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 6
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 5
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "icon",
+            "other"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 4,
+          "contexts": [],
+          "frequency": 10,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 6,
+          "contexts": [],
+          "frequency": 59,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 8,
+          "contexts": [],
+          "frequency": 44,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 10,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 12,
+          "contexts": [],
+          "frequency": 36,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 14,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 16,
+          "contexts": [],
+          "frequency": 62,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 18,
+          "contexts": [],
+          "frequency": 8,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 20,
+          "contexts": [],
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 24,
+          "contexts": [],
+          "frequency": 94,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 30,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 32,
+          "contexts": [],
+          "frequency": 69,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "marginLeft",
+            "paddingRight",
+            "paddingLeft",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 40,
+          "contexts": [],
+          "frequency": 9,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 56,
+          "contexts": [],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 65,
+          "contexts": [],
+          "frequency": 5,
+          "properties": [
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 73,
+          "contexts": [],
+          "frequency": 22,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 75,
+          "contexts": [],
+          "frequency": 6,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 80,
+          "contexts": [],
+          "frequency": 7,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 88,
+          "contexts": [],
+          "frequency": 3,
+          "properties": [
+            "marginBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 100,
+          "contexts": [],
+          "frequency": 13,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "marginBottom",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 120,
+          "contexts": [],
+          "frequency": 11,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 140,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 160,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": []
+        },
+        {
+          "value": 240,
+          "contexts": [],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": []
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "conic",
+        "value": "conic-gradient(from 270.999deg, rgb(231, 231, 234) 0%, rgb(231, 231, 234) 80%, rgba(85, 68, 220, 0) 80%, rgba(85, 68, 220, 0.95) 86%, rgba(252, 139, 131, 0.95) 94%, rgba(252, 139, 131, 0) 100%)",
+        "colors": [
+          "rgb(231, 231, 234)",
+          "rgb(231, 231, 234)",
+          "rgba(85, 68, 220, 0)",
+          "rgba(85, 68, 220, 0.95)",
+          "rgba(252, 139, 131, 0.95)",
+          "rgba(252, 139, 131, 0)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(97, 78, 250) 22.93%, rgb(98, 200, 255) 76.42%)",
+        "colors": [
+          "rgb(97, 78, 250)",
+          "rgb(98, 200, 255)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(74, 59, 190) 0%, rgb(190, 115, 250) 77.2%)",
+        "colors": [
+          "rgb(74, 59, 190)",
+          "rgb(190, 115, 250)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(90deg, rgb(97, 78, 250) 0%, rgb(254, 98, 87) 100%)",
+        "colors": [
+          "rgb(97, 78, 250)",
+          "rgb(254, 98, 87)"
+        ],
+        "frequency": 1
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(73.37deg, rgb(145, 131, 255) 3.12%, rgb(141, 50, 194) 44.24%, rgb(92, 80, 190) 72.17%, rgb(54, 40, 140) 92.93%)",
+        "colors": [
+          "rgb(145, 131, 255)",
+          "rgb(141, 50, 194)",
+          "rgb(92, 80, 190)",
+          "rgb(54, 40, 140)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Plus Jakarta Sans",
+          "source": "google",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "frequency": 502,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 15,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 10,
+          "family": "Plus Jakarta Sans",
+          "weight": 600,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.4,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Plus Jakarta Sans",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Plus Jakarta Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "icon"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Plus Jakarta Sans",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "button"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Plus Jakarta Sans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.86,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Plus Jakarta Sans",
+          "weight": 400,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Plus Jakarta Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Plus Jakarta Sans",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Plus Jakarta Sans",
+          "weight": 700,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.43,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Plus Jakarta Sans",
+          "weight": 400,
+          "contexts": [
+            "link",
+            "image",
+            "icon",
+            "body"
+          ],
+          "frequency": 37,
+          "lineHeight": 1.86,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plus Jakarta Sans",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "list",
+            "hero",
+            "icon",
+            "body",
+            "button",
+            "footer"
+          ],
+          "frequency": 333,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plus Jakarta Sans",
+          "weight": 500,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plus Jakarta Sans",
+          "weight": 600,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plus Jakarta Sans",
+          "weight": 400,
+          "contexts": [
+            "icon",
+            "body",
+            "link",
+            "other",
+            "list"
+          ],
+          "frequency": 29,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plus Jakarta Sans",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 9,
+          "lineHeight": 2.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plus Jakarta Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plus Jakarta Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plus Jakarta Sans",
+          "weight": 700,
+          "contexts": [
+            "other",
+            "link"
+          ],
+          "frequency": 8,
+          "lineHeight": 1.75,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plus Jakarta Sans",
+          "weight": 700,
+          "contexts": [
+            "link"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.63,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Plus Jakarta Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.89,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Plus Jakarta Sans",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.89,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Plus Jakarta Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Plus Jakarta Sans",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.78,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Plus Jakarta Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.7,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Plus Jakarta Sans",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Plus Jakarta Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 9,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 22,
+          "family": "Plus Jakarta Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.73,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 26,
+          "family": "Plus Jakarta Sans",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.62,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 36,
+          "family": "Plus Jakarta Sans",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Plus Jakarta Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 42,
+          "family": "Plus Jakarta Sans",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 48,
+          "family": "Plus Jakarta Sans",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "Plus Jakarta Sans",
+          "weight": 600,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.24,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 58,
+          "family": "Plus Jakarta Sans",
+          "weight": 600,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.17,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/093b8064-5755-459e-8658-af024ce11c1d.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/ed70fb81-5610-468d-a24f-598ce7a88d27.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3b3fa99e-cee4-41f3-ac26-777b4b6a8b12#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Krisp design system\",\"item\":\"https://styles.refero.design/style/3b3fa99e-cee4-41f3-ac26-777b4b6a8b12\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3b3fa99e-cee4-41f3-ac26-777b4b6a8b12#style-reference\",\"name\":\"Krisp design system reference\",\"headline\":\"Krisp design system | Refero Styles\",\"description\":\"Explore Krisp's light AI design system: Midnight Iris #131032, Iris Spark #614efa colors, Plus Jakarta Sans typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3b3fa99e-cee4-41f3-ac26-777b4b6a8b12\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3b3fa99e-cee4-41f3-ac26-777b4b6a8b12\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Krisp\",\"url\":\"https://krisp.ai\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3b3fa99e-cee4-41f3-ac26-777b4b6a8b12#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/ed70fb81-5610-468d-a24f-598ce7a88d27.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/ed70fb81-5610-468d-a24f-598ce7a88d27.jpg\",\"caption\":\"Screenshot of Krisp\"},\"image\":\"https://images.refero.design/styles/refero.design/image/ed70fb81-5610-468d-a24f-598ce7a88d27.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Krisp design system\",\"Krisp website design\",\"Krisp colors\",\"Krisp typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"AI design system\",\"Midnight Iris\",\"Iris Spark\",\"Violet Mist\",\"Cyan Glow\",\"Plus Jakarta Sans\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Krisp design system\"},{\"@type\":\"Thing\",\"name\":\"Krisp website design\"},{\"@type\":\"Thing\",\"name\":\"Krisp colors\"},{\"@type\":\"Thing\",\"name\":\"Krisp typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"AI design system\"}],\"datePublished\":\"2026-04-10T18:18:42.000Z\",\"dateModified\":\"2026-04-10T18:18:42.000Z\"}]}19:T9e4,primary action: no distinct CTA color\n**Quick Color Reference:**\n- text: #131032 (Midnight Iris)\n- background: #f2ece2 (Warm Paper)\n- card/surface: #ffffff (Snow)\n- border: #e7e7ea (Hairline)\n- muted text: #918f9f (Fog)\n- accent/filled button: #614efa (Iris Spark)\n- dark section background: #131032 (Midnight Iris)\n\n**Example Component Prompts:**\n\n1. **Create a hero section on Warm Paper canvas (#f2ece2).** Eyebrow pill badge: Mint Whisper background (#eafdfa), Midnight Iris text (#131032), 14px weight 500, 9999px radius, padding 6px 14px. Display headline at 48px Plus Jakarta Sans weight 700: split into two parts — first word(s) in the linear-gradient(90deg, #614efa 0%, #98c8ff 100%) text-fill treatment, remaining words in solid #131032. Subtext at 18px weight 400, #918f9f. Single filled button: #614efa background, white text weight 600, 8px radius, padding 12px 20px.\n\n2. **Create a 2x2 feature card grid.** Canvas: Warm Paper (#f2ece2). Each card: white (#ffffff) background, 1px Hairline (#e7e7ea) border, 16px radius, padding 32px 28px. Top of each card: 24px outlined icon in Iris Spark (#614efa) with 1.5px stroke. Title: 22px weight 600, #131032. Body: 16px weight 400, #918f9f. 24px gap between cards.\n\n3. **Create a dark feature section.** Full-bleed background #131032, padding 80-96px vertical. Section heading: 36px weight 600, #ffffff, left-aligned. Cards below: transparent or very subtle lift background, 16px radius, padding 32px 28px, thin border rgba(255,255,255,0.1). Each card title: 22px weight 600, #ffffff, preceded by a small 6px coral-red dot. Body: 16px weight 400, #918f9f. Use a pill-shaped tab selector (9999px radius) at the top with Snow (#ffffff) active state.\n\n4. **Create a customer logo strip.** Single row on Warm Paper canvas, 8 logos evenly distributed. Each logo rendered in grayscale with opacity 0.6-0.7, color #918f9f. 48-64px vertical padding above and below. No labels or captions. Logos scale to ~80px height max.\n\n5. **Create a sticky top navigation.** White background, 64px height, full width with max-width 1200px inner container. Left: 'krisp' wordmark in #131032, 22px weight 700. Center-left: 5 nav items in #131032 weight 500, 16px, with small chevron-down icons on 3 items. Right cluster: 'Sign in' as plain text link (#131032), 'Book a demo' as dark filled button (#1a1a22 background, white text, 8px radius, 12px 20px padding), 'Get Krisp' as violet filled button (#614efa background, white text, 8px radius, 12px 20px padding, with small downward chevron icon)."
+}

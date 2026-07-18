@@ -1,0 +1,1222 @@
+{
+  "source": "https://styles.refero.design/style/86b56f02-57da-48a1-a647-fda9bbdf2c97",
+  "uuid": "86b56f02-57da-48a1-a647-fda9bbdf2c97",
+  "name": "Pentagram",
+  "northStar": "Gallery wall of compressed restraint",
+  "capturedAt": "2026-07-18T07:32:21.833Z",
+  "meta": {
+    "url": "https://pentagram.com",
+    "siteName": "Pentagram",
+    "extractedAt": "2026-06-03T20:37:31.688Z",
+    "durationMs": 65993,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 1488,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "pending",
+        "attempts": 0
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use only the nine achromatic tokens — any chromatic color in the interface breaks the system. Color belongs inside project thumbnails, not on chrome.",
+      "Set the tightest tracking (-0.02em) on any text 27px or larger; use -0.01em below that. Tracking is the primary hierarchy tool.",
+      "Build cards as borderless blocks with sharp corners (no radius) when the thumbnail is a solid color swatch; reserve 8px radius for cards that contain photography or compound layouts.",
+      "Alternate between Paper White and True Black bands at 96px vertical breaks — the rhythm of light/dark is the page's structural skeleton.",
+      "Use weight 400 for everything by default; reach 500 only for project names in cards and nav links. Never use weight 600 or above.",
+      "Set display headings at line-height 1.00–1.05 so lines stack into a compressed slab. Body copy opens to 1.88 for breathing room — the contrast between tight display and airy body is deliberate.",
+      "Let the 4-column project grid do the visual work: large solid-color blocks fill 1:1 tiles, with a 24px gap below for two lines of Plain 400/500 metadata in 16/13px."
+    ],
+    "donts": [
+      "Don't add any color to navigation, buttons, or backgrounds. The interface is 100% achromatic — color only appears inside project thumbnails.",
+      "Don't use border-radius above 8px on cards or 4px on buttons. Sharp corners read as editorial plates; rounding undermines the gallery-catalog feel.",
+      "Don't introduce filled buttons, outlined buttons, or ghost buttons. There is no button component — every affordance is a text link, an image, or a dot.",
+      "Don't use weight 600+ or italic. The typeface's weight range stops at 500; anything heavier breaks the compressed-restraint language.",
+      "Don't add icons inside body content. The only icon on the entire site is the search affordance in the nav.",
+      "Don't use background colors on text or dividers for emphasis. Emphasis comes from size, tracking, and the Paper White / Ink contrast pair — never from color fill or tint.",
+      "Don't use shadows, gradients, or glow effects. Elevation is communicated purely through band alternation (white → black → white), not through drop shadows."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "role": "Page canvas, card surfaces, text on dark bands",
+        "group": "neutral"
+      },
+      {
+        "hex": "#1a1a1a",
+        "name": "Ink",
+        "role": "Primary body text, heading text, hairline borders, link color — the near-black that carries 90% of all strokes",
+        "group": "neutral"
+      },
+      {
+        "hex": "#000000",
+        "name": "True Black",
+        "role": "Solid surface fills for dark bands, inverted text backgrounds, inverted footer",
+        "group": "neutral"
+      },
+      {
+        "hex": "#222222",
+        "name": "Graphite",
+        "role": "Elevated dark surface, input field fills on dark contexts",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Carbon",
+        "role": "Card border on light surfaces, subtle structural dividers",
+        "group": "neutral"
+      },
+      {
+        "hex": "#767676",
+        "name": "Ash",
+        "role": "Muted body text, secondary metadata, less-prominent captions",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8c8c8c",
+        "name": "Fog",
+        "role": "Light borders, low-emphasis dividers, placeholder text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ededed",
+        "name": "Mist",
+        "role": "Tinted light surface between pure white and true black bands",
+        "group": "neutral"
+      },
+      {
+        "hex": "#e3e4e5",
+        "name": "Haze",
+        "role": "Subtle alt-row surface, hover wash, low-contrast card fill",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Page model is full-bleed with no side margins; content cards live inside a max-width ~1400px container centered on the canvas. The hero is always a full-viewport-width editorial image with no text overlay competing for attention — metadata sits small at the bottom-left. Below the hero, sections alternate between white bands and full-width black bands at roughly 96px vertical intervals, creating a stark light/dark rhythm. The project grid is a strict 4-column row on desktop, collapsing to 2 columns on tablet and single-column on mobile. The dark bands contain a single massive left-aligned heading (52px) with optional short body copy, nothing else. The white bands contain the 4-column card grid. Navigation is a single horizontal text bar at the very top — no sticky behavior, no sidebar, no mega-menu. The footer is a narrow black band with minimal text.",
+    "imagery": "The site uses two distinct visual modes that never mix. Mode one is full-bleed editorial photography: architectural exteriors, institutional buildings, museum interiors — always documentary in tone, no lifestyle, no staged models, no people-centric framing. Shots are wide, composed with strong verticals, and lit naturally. Mode two is solid color blocks: each project card uses a single flat fill (saturated blue, dark green, warm peach, near-black) as its thumbnail, reading first as a swatch or painted plate before identity work is revealed on top. Project thumbnails that contain designed work — like a wordmark — compose that work centered on the chromatic field. There is no illustration, no 3D, no abstract graphic art. Icons are absent except for a single thin-stroke magnifying glass in the nav.",
+    "similar": [
+      {
+        "why": "Same editorial-portfolio restraint: no UI chrome, no color, large type against white, work presented as large blocks with minimal metadata.",
+        "business": "Werkplaats Typografie"
+      },
+      {
+        "why": "Same agency-portfolio grammar — achromatic interface, full-bleed project photography, large compressed display type, project cards that use chromatic blocks as thumbnails.",
+        "business": "Collins (collins.us)"
+      },
+      {
+        "why": "Single-family typography system, hairline navigation, project grid built from oversized color/identity blocks, zero decorative chrome.",
+        "business": "Bureau Borsche"
+      },
+      {
+        "why": "Gallery-catalog feel with large compressed type on white, dark band section breaks, and work presented as solid color plates with two-line captions.",
+        "business": "Mucca"
+      },
+      {
+        "why": "Work-first portfolio layout with achromatic chrome, large identity marks as card thumbnails, restrained hairline navigation.",
+        "business": "Studio Dumbar"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "tags": "9999px",
+        "cards": "8px",
+        "inputs": "4px",
+        "buttons": "4px"
+      },
+      "elementGap": "8px",
+      "sectionGap": "96px",
+      "cardPadding": "24px",
+      "pageMaxWidth": "1400px"
+    },
+    "industry": "agency",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Paper White",
+        "level": 1,
+        "purpose": "Default page canvas and card base"
+      },
+      {
+        "hex": "#e3e4e5",
+        "name": "Haze",
+        "level": 2,
+        "purpose": "Low-contrast alt band, subtle card differentiation"
+      },
+      {
+        "hex": "#ededed",
+        "name": "Mist",
+        "level": 3,
+        "purpose": "Slightly elevated light surface between white and dark bands"
+      },
+      {
+        "hex": "#222222",
+        "name": "Graphite",
+        "level": 4,
+        "purpose": "Dark elevated surface (inputs, secondary dark bands)"
+      },
+      {
+        "hex": "#000000",
+        "name": "True Black",
+        "level": 5,
+        "purpose": "Full dark band, inverted sections, footer"
+      }
+    ],
+    "northStar": "Gallery wall of compressed restraint",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 13,
+        "lineHeight": 1.25,
+        "letterSpacing": -0.13
+      },
+      {
+        "role": "body-sm",
+        "size": 16,
+        "lineHeight": 1.32,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 19,
+        "lineHeight": 1.2,
+        "letterSpacing": -0.19
+      },
+      {
+        "role": "heading-sm",
+        "size": 27,
+        "lineHeight": 1.19,
+        "letterSpacing": -0.54
+      },
+      {
+        "role": "heading",
+        "size": 32,
+        "lineHeight": 1.05,
+        "letterSpacing": -0.64
+      },
+      {
+        "role": "display",
+        "size": 52,
+        "lineHeight": 1,
+        "letterSpacing": -1.04
+      }
+    ],
+    "components": [
+      {
+        "name": "Text Navigation Bar",
+        "role": "Primary site navigation",
+        "description": "Pure black (#000000) or white (#ffffff) horizontal bar. Text-only links, no buttons or icons. Font: Plain 400 at 16px, letter-spacing -0.01em. Links use Ink (#1a1a1a) on light, Paper White on dark. A search icon and 'Archive' text sit at the far right. No background fill, no border — sits as plain text on canvas. Padding: 8px top/bottom."
+      },
+      {
+        "name": "Full-Bleed Editorial Hero",
+        "role": "Opening visual for a project or the homepage",
+        "description": "Edge-to-edge photograph or illustration occupying the full viewport width and ~60-70% height. No border-radius. No overlay gradient. Project metadata sits at the bottom-left in small Plain 400 13px, white text on a semi-transparent dark strip or directly over the image with a subtle text shadow. No CTA button — the image IS the entry point."
+      },
+      {
+        "name": "Project Thumbnail Card",
+        "role": "Showcase a project in the grid",
+        "description": "Borderless card. The thumbnail is a large solid color block (sized roughly 1:1, fills the card) — these blocks ARE the project visual, not a decorative frame. Below the block: project name in Plain 500 at 16px, one-line description in Plain 400 at 13px in Ash (#767676). 24px gap between block and text. No border, no shadow, no radius on the block — sharp corners read as a swatch or plate."
+      },
+      {
+        "name": "Project Thumbnail Card with Imagery",
+        "role": "Showcase a project that uses a designed mark/identity",
+        "description": "Same structure as the solid-block card, but the thumbnail contains a designed identity element (logotype, wordmark, editorial composition) composed over a dark or chromatic fill. The contrast between the fully achromatic interface and these chromatic project plates is the signature visual."
+      },
+      {
+        "name": "Dark Band Section",
+        "role": "Break page rhythm, introduce new context",
+        "description": "Full-width band with True Black (#000000) or Graphite (#222222) background. All text in Paper White. A single display heading (52px) anchors the band, optionally followed by body copy at 16px in Ash (#767676). Generous padding: 48–64px vertical. No decoration, no gradient, no imagery — the darkness itself is the visual statement."
+      },
+      {
+        "name": "Inline Tagline Pill",
+        "role": "Occasional textual accent between sections",
+        "description": "Small centered text string ('We design Everything~ for Everyone~') set in Plain 400 at 16px, Frost (#8c8c8c). No background, no border, no padding. Appears as standalone typographic punctuation between content blocks."
+      },
+      {
+        "name": "Heading-Only Introduction",
+        "role": "Section opening before a grid or list",
+        "description": "Large display heading (52px, weight 400, line-height 1.00, -0.02em tracking) in Ink on white or Paper White on black. Followed by a short paragraph block in Plain 400 at 16px, line-height 1.88, max-width ~640px. No subheading, no eyebrow, no label above — the heading is the only signal of section identity."
+      },
+      {
+        "name": "Footer (Inverted)",
+        "role": "Site footer",
+        "description": "Full-width True Black band. Plain 400 13px text in Paper White. Sparse — likely a few text links, copyright, and minimal metadata. No logo, no social icons, no newsletter form. 64px vertical padding."
+      },
+      {
+        "name": "Dot Pagination",
+        "role": "Hero carousel / project slider indicator",
+        "description": "Row of 5–8 small circles, 6px diameter, spaced 6px apart. Active dot is Paper White, inactive dots are 40% white. Sits at bottom-right of the hero. The only non-text UI element on the entire site."
+      },
+      {
+        "name": "Search Trigger",
+        "role": "Open site search",
+        "description": "Small magnifying glass icon (likely a thin stroke SVG, ~16px) + 'Archive' text link, Plain 400 13px in Ink. Sits at the far right of the nav. No field, no button — the icon is the affordance."
+      }
+    ],
+    "typography": [
+      {
+        "role": "All roles — display, headings, body, caption, nav, button. The single typeface carries the entire site. Weight contrast is limited (400 vs 500) so hierarchy comes from size and tracking, not boldness. The 52px display at -0.02em tracking is anti-display: it whispers instead of shouts. Line-heights under 1.1 on 32–52px create stacked, compressed blocks where headings read as solid slabs. Open features 'kern' and 'case' hint at a typeface with carefully spaced uppercase alternates — the 'case' feature likely gives access to stylistic capital forms.",
+        "sizes": "13, 16, 19, 27, 32, 52",
+        "family": "Plain",
+        "weight": "400, 500",
+        "lineHeight": "1.00 (display), 1.05–1.20 (headings), 1.25–1.32 (body), 1.88 (loose body)",
+        "substitute": "Söhne, Inter, Neue Haas Grotesk, ABC Diatype",
+        "letterSpacing": "-0.02em on ≥27px, -0.01em on <27px",
+        "fontFeatureSettings": "\"kern\", \"case\""
+      }
+    ],
+    "description": "Pentagram's interface behaves like a curated gallery catalog: pure achromatic canvas where the only color that appears is the work itself. Every structural decision is typographic — no icons, no badges, no filled buttons, no decorative chrome. The site alternates between white and near-black bands with massive compressed type, then presents projects as oversized solid blocks that read as color swatches before resolving into actual work. Navigation is a single row of text links. Cards are borderless or hairline-bordered. The system earns its authority through restraint: the same tight tracking and modest weights across every role, so a 52px display heading feels as composed as 13px caption text.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/86b56f02-57da-48a1-a647-fda9bbdf2c97#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Pentagram design system\",\"item\":\"https://styles.refero.design/style/86b56f02-57da-48a1-a647-fda9bbdf2c97\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/86b56f02-57da-48a1-a647-fda9bbdf2c97#style-reference\",\"name\":\"Pentagram design system reference\",\"headline\":\"Pentagram design system | Refero Styles\",\"description\":\"Explore Pentagram's light Agency design system: Paper White #ffffff, Ink #1a1a1a colors, Plain typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/86b56f02-57da-48a1-a647-fda9bbdf2c97\",\"mainEntityOfPage\":\"https://styles.refero.design/style/86b56f02-57da-48a1-a647-fda9bbdf2c97\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Pentagram\",\"url\":\"https://pentagram.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/86b56f02-57da-48a1-a647-fda9bbdf2c97#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/31fefe7f-f592-4304-8415-54aef1650d25.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/31fefe7f-f592-4304-8415-54aef1650d25.jpg\",\"caption\":\"Screenshot of Pentagram\"},\"image\":\"https://images.refero.design/styles/refero.design/image/31fefe7f-f592-4304-8415-54aef1650d25.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Pentagram design system\",\"Pentagram website design\",\"Pentagram colors\",\"Pentagram typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper White\",\"Ink\",\"True Black\",\"Graphite\",\"Plain\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Pentagram design system\"},{\"@type\":\"Thing\",\"name\":\"Pentagram website design\"},{\"@type\":\"Thing\",\"name\":\"Pentagram colors\"},{\"@type\":\"Thing\",\"name\":\"Pentagram typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:32:42.082Z\",\"dateModified\":\"2026-04-30T00:32:42.082Z\"}]}19:T68e,**Quick Color Reference**\n- text: #1a1a1a\n- background: #ffffff\n- dark band: #000000\n- border: #1a1a1a\n- muted text: #767676\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n1. *Dark band section*: Full-width band, #000000 background, 64px padding top/bottom. Heading 'Our Future is the Ultimate Project' in Plain weight 400 at 52px, line-height 1.00, letter-spacing -0.02em, color #ffffff. Optional body paragraph below at Plain 400 16px, line-height 1.88, color #767676, max-width 640px.\n\n2. *Project card grid (white band)*: 4-column CSS grid, 24px gap, on #ffffff canvas. Each card has no border, no radius. Card thumbnail is a solid color block (e.g. #2a6ec7 or #2d3a2a) filling a 1:1 aspect ratio. Below the block, 24px gap, project name in Plain 500 16px #1a1a1a, one-line description in Plain 400 13px #767676.\n\n3. *Full-bleed hero*: Edge-to-edge image filling full viewport width, ~70vh height, no border-radius. Project name in Plain 400 13px #ffffff at bottom-left with 24px padding from edges. Small dot pagination row at bottom-right, 6px circles, 6px gap, active dot #ffffff, inactive dots at 40% opacity white.\n\n4. *Top navigation bar*: #ffffff background, 8px padding top/bottom. Left: 'Pentagram' wordmark in Plain 500 16px #1a1a1a. Right: text links 'Work', 'About', 'News', 'Contact', 'Archive' in Plain 400 16px #1a1a1a, letter-spacing -0.01em, with a small search icon between Contact and Archive. No borders, no background fills on links.\n\n5. *Inline tagline*: Centered text 'We design Everything~ for Everyone~' in Plain 400 16px #8c8c8c, sitting alone in a #ffffff band with 96px padding top/bottom, no other elements on the line."
+      },
+      {
+        "title": "Typography Philosophy",
+        "content": "Plain is a custom Pentagram typeface used as a single-family system. The entire site runs on two weights (400, 500) and six sizes (13, 16, 19, 27, 32, 52). Hierarchy is built from size jumps and tracking, not weight. Display text at 52px uses line-height 1.00 — the lines physically stack into a slab. Body text at 16px opens to line-height 1.88, creating wide paragraph breathing room. The contrast between compressed display and airy body is the system's signature. The 'case' feature setting suggests stylistic uppercase alternates, likely for the display role only."
+      },
+      {
+        "title": "Color Discipline",
+        "content": "The interface is 100% achromatic. All nine palette tokens are neutrals — no brand color, no accent, no semantic state color. This is a deliberate curatorial choice: the design firm's work is the only chromatic thing on the site. Saturated colors (blue, green, peach) appear exclusively inside project thumbnail blocks, where they function as content, not as chrome. Any new page built in this system must resist adding color to buttons, borders, or backgrounds."
+      }
+    ]
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#1a1a1a",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.217786502463702
+          },
+          "contexts": [
+            "other",
+            "heading",
+            "link",
+            "body",
+            "nav",
+            "button",
+            "image",
+            "icon",
+            "card",
+            "list"
+          ],
+          "frequency": 5270,
+          "confidence": 1,
+          "prominence": 410374275.5942938,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "nav/color": 16,
+            "body/color": 53,
+            "card/color": 62,
+            "icon/color": 2,
+            "link/color": 225,
+            "list/color": 87,
+            "image/color": 186,
+            "other/color": 291,
+            "button/color": 74,
+            "heading/color": 58,
+            "nav/borderColor": 64,
+            "body/borderColor": 212,
+            "card/borderColor": 248,
+            "icon/borderColor": 8,
+            "link/borderColor": 900,
+            "list/borderColor": 348,
+            "image/borderColor": 744,
+            "other/borderColor": 1164,
+            "button/borderColor": 296,
+            "heading/borderColor": 232
+          }
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "body",
+            "button",
+            "heading",
+            "icon",
+            "link",
+            "hero",
+            "card",
+            "image",
+            "input"
+          ],
+          "frequency": 1133,
+          "confidence": 1,
+          "prominence": 313213581.6212982,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 97,
+            "card/color": 4,
+            "hero/color": 1,
+            "icon/color": 7,
+            "link/color": 13,
+            "image/color": 2,
+            "input/color": 1,
+            "other/color": 42,
+            "button/color": 7,
+            "heading/color": 42,
+            "body/borderColor": 388,
+            "hero/borderColor": 4,
+            "icon/borderColor": 28,
+            "link/borderColor": 52,
+            "image/borderColor": 8,
+            "input/borderColor": 4,
+            "other/borderColor": 168,
+            "button/borderColor": 28,
+            "heading/borderColor": 168,
+            "link/backgroundColor": 1,
+            "other/backgroundColor": 1,
+            "button/backgroundColor": 67
+          }
+        },
+        {
+          "hex": "#8c8c8c",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.6400867863507902
+          },
+          "contexts": [
+            "body",
+            "footer",
+            "other",
+            "heading",
+            "list",
+            "link",
+            "button"
+          ],
+          "frequency": 284,
+          "confidence": 1,
+          "prominence": 17839912.300722163,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 31,
+            "link/color": 6,
+            "list/color": 7,
+            "other/color": 9,
+            "button/color": 2,
+            "footer/color": 1,
+            "heading/color": 1,
+            "body/borderColor": 124,
+            "link/borderColor": 24,
+            "list/borderColor": 28,
+            "other/borderColor": 35,
+            "button/borderColor": 8,
+            "footer/borderColor": 4,
+            "heading/borderColor": 4
+          }
+        },
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "card",
+            "button",
+            "footer"
+          ],
+          "frequency": 11,
+          "confidence": 1,
+          "prominence": 7842653.96959014,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "card/backgroundColor": 6,
+            "button/backgroundColor": 4,
+            "footer/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#222222",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.2519647498644126
+          },
+          "contexts": [
+            "other",
+            "input"
+          ],
+          "frequency": 13,
+          "confidence": 1,
+          "prominence": 5147932.204823931,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "input/backgroundColor": 1,
+            "other/backgroundColor": 12
+          }
+        },
+        {
+          "hex": "#e3e4e5",
+          "oklch": {
+            "c": 0.0017360481258127333,
+            "h": 247.84105930804216,
+            "l": 0.9183834906860054
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 870263,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 17,
+          "confidence": 1,
+          "prominence": 695839.5549156801,
+          "properties": [
+            "borderColor"
+          ],
+          "usageCounts": {
+            "card/borderColor": 16,
+            "other/borderColor": 1
+          }
+        },
+        {
+          "hex": "#767676",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.5658363307995767
+          },
+          "contexts": [
+            "heading",
+            "body",
+            "icon"
+          ],
+          "frequency": 805,
+          "confidence": 1,
+          "prominence": 372244.1467159243,
+          "properties": [
+            "color",
+            "borderColor"
+          ],
+          "usageCounts": {
+            "body/color": 147,
+            "icon/color": 7,
+            "heading/color": 7,
+            "body/borderColor": 588,
+            "icon/borderColor": 28,
+            "heading/borderColor": 28
+          }
+        },
+        {
+          "hex": "#ededed",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9448990229484489
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 15507,
+          "properties": [
+            "backgroundColor"
+          ],
+          "usageCounts": {
+            "other/backgroundColor": 1
+          }
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 6.226970088461892e-7,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#000000",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.94,
+          "background": "#ededed",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.4,
+          "background": "#ffffff",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.49,
+          "background": "#e3e4e5",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.91,
+          "background": "#222222",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 14.87,
+          "background": "#ededed",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.67,
+          "background": "#e3e4e5",
+          "foreground": "#1a1a1a"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.59,
+          "background": "#ededed",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.5,
+          "background": "#e3e4e5",
+          "foreground": "#222222"
+        },
+        {
+          "level": "AAA",
+          "ratio": 10.79,
+          "background": "#ededed",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 9.92,
+          "background": "#e3e4e5",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.25,
+          "background": "#000000",
+          "foreground": "#8c8c8c"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.73,
+          "background": "#222222",
+          "foreground": "#8c8c8c"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.62,
+          "background": "#000000",
+          "foreground": "#767676"
+        },
+        {
+          "level": "AA",
+          "ratio": 4.54,
+          "background": "#ffffff",
+          "foreground": "#767676"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.88,
+          "background": "#ededed",
+          "foreground": "#767676"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.57,
+          "background": "#e3e4e5",
+          "foreground": "#767676"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.5,
+          "background": "#222222",
+          "foreground": "#767676"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.36,
+          "background": "#ffffff",
+          "foreground": "#8c8c8c"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 4,
+          "contexts": [
+            "other",
+            "body",
+            "button"
+          ],
+          "frequency": 147
+        },
+        {
+          "value": 9999,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 6
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 2,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginLeft|icon"
+          ]
+        },
+        {
+          "value": 3,
+          "contexts": [
+            "icon"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|icon",
+            "marginBottom|icon"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 227,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|body",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 6,
+          "contexts": [
+            "nav",
+            "button"
+          ],
+          "frequency": 10,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|nav",
+            "columnGap|nav",
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 14,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "body",
+            "heading",
+            "icon",
+            "button",
+            "other",
+            "link"
+          ],
+          "frequency": 581,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginTop",
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|body",
+            "paddingBottom|body",
+            "marginTop|heading",
+            "marginTop|icon",
+            "paddingTop|button",
+            "paddingTop|other",
+            "rowGap|other",
+            "columnGap|other",
+            "paddingRight|body",
+            "paddingLeft|body",
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginRight|button",
+            "marginLeft|button",
+            "marginBottom|body",
+            "marginLeft|icon",
+            "paddingTop|link",
+            "rowGap|body",
+            "columnGap|body"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "card",
+            "list",
+            "button",
+            "hero"
+          ],
+          "frequency": 130,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "paddingRight",
+            "marginLeft",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|card",
+            "columnGap|card",
+            "columnGap|list",
+            "rowGap|list",
+            "paddingRight|other",
+            "marginLeft|other",
+            "paddingLeft|button",
+            "columnGap|hero",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "rowGap|other",
+            "rowGap|list"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "other",
+            "nav",
+            "card",
+            "list",
+            "button",
+            "hero"
+          ],
+          "frequency": 184,
+          "properties": [
+            "marginRight",
+            "marginLeft",
+            "columnGap",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft",
+            "rowGap",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other",
+            "columnGap|nav",
+            "paddingTop|nav",
+            "paddingRight|nav",
+            "paddingBottom|nav",
+            "paddingLeft|nav",
+            "marginRight|nav",
+            "marginLeft|nav",
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card",
+            "marginRight|list",
+            "marginLeft|list",
+            "paddingRight|button",
+            "paddingBottom|other",
+            "paddingTop|hero",
+            "rowGap|other",
+            "marginTop|other",
+            "columnGap|list",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other",
+            "hero"
+          ],
+          "frequency": 10,
+          "properties": [
+            "paddingRight",
+            "rowGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "rowGap|hero",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 48,
+          "contexts": [
+            "other",
+            "list"
+          ],
+          "frequency": 32,
+          "properties": [
+            "paddingTop",
+            "marginTop",
+            "rowGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "marginTop|list",
+            "rowGap|list",
+            "paddingBottom|other",
+            "marginTop|other",
+            "rowGap|other"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 18,
+          "properties": [
+            "paddingBottom",
+            "marginTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|other",
+            "marginTop|other"
+          ]
+        },
+        {
+          "value": 70,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other",
+            "list",
+            "footer"
+          ],
+          "frequency": 20,
+          "properties": [
+            "marginTop",
+            "rowGap",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "rowGap|list",
+            "paddingBottom|other",
+            "marginTop|footer"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 4
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Plain",
+          "source": "custom",
+          "weights": [
+            400,
+            500
+          ],
+          "frequency": 1488,
+          "fontFeatureSettings": [
+            "\"kern\"",
+            "\"case\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 19,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 13,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 278,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "button",
+            "body",
+            "other",
+            "icon",
+            "heading",
+            "footer",
+            "hero",
+            "card",
+            "link",
+            "image",
+            "list"
+          ],
+          "frequency": 386,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plain",
+          "weight": 500,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.25,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 4,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "nav",
+            "button",
+            "card",
+            "icon",
+            "list",
+            "body"
+          ],
+          "frequency": 776,
+          "lineHeight": 1.32,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 19,
+          "family": "Plain",
+          "weight": 500,
+          "contexts": [
+            "heading",
+            "link",
+            "other",
+            "body"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.32,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 27,
+          "family": "Plain",
+          "weight": 500,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.19,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "heading"
+          ],
+          "frequency": 12,
+          "lineHeight": 1.2,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 32,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "input",
+            "button"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.88,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 52,
+          "family": "Plain",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 7,
+          "lineHeight": 1.05,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/39d2c5a5-d8af-49b0-b2f9-b4aaa0384230.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/31fefe7f-f592-4304-8415-54aef1650d25.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/86b56f02-57da-48a1-a647-fda9bbdf2c97#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Pentagram design system\",\"item\":\"https://styles.refero.design/style/86b56f02-57da-48a1-a647-fda9bbdf2c97\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/86b56f02-57da-48a1-a647-fda9bbdf2c97#style-reference\",\"name\":\"Pentagram design system reference\",\"headline\":\"Pentagram design system | Refero Styles\",\"description\":\"Explore Pentagram's light Agency design system: Paper White #ffffff, Ink #1a1a1a colors, Plain typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/86b56f02-57da-48a1-a647-fda9bbdf2c97\",\"mainEntityOfPage\":\"https://styles.refero.design/style/86b56f02-57da-48a1-a647-fda9bbdf2c97\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Pentagram\",\"url\":\"https://pentagram.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/86b56f02-57da-48a1-a647-fda9bbdf2c97#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/31fefe7f-f592-4304-8415-54aef1650d25.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/31fefe7f-f592-4304-8415-54aef1650d25.jpg\",\"caption\":\"Screenshot of Pentagram\"},\"image\":\"https://images.refero.design/styles/refero.design/image/31fefe7f-f592-4304-8415-54aef1650d25.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Pentagram design system\",\"Pentagram website design\",\"Pentagram colors\",\"Pentagram typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Agency design system\",\"Paper White\",\"Ink\",\"True Black\",\"Graphite\",\"Plain\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Pentagram design system\"},{\"@type\":\"Thing\",\"name\":\"Pentagram website design\"},{\"@type\":\"Thing\",\"name\":\"Pentagram colors\"},{\"@type\":\"Thing\",\"name\":\"Pentagram typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Agency design system\"}],\"datePublished\":\"2026-04-30T00:32:42.082Z\",\"dateModified\":\"2026-04-30T00:32:42.082Z\"}]}19:T68e,**Quick Color Reference**\n- text: #1a1a1a\n- background: #ffffff\n- dark band: #000000\n- border: #1a1a1a\n- muted text: #767676\n- primary action: #000000 (filled action)\n\n**Example Component Prompts**\n1. *Dark band section*: Full-width band, #000000 background, 64px padding top/bottom. Heading 'Our Future is the Ultimate Project' in Plain weight 400 at 52px, line-height 1.00, letter-spacing -0.02em, color #ffffff. Optional body paragraph below at Plain 400 16px, line-height 1.88, color #767676, max-width 640px.\n\n2. *Project card grid (white band)*: 4-column CSS grid, 24px gap, on #ffffff canvas. Each card has no border, no radius. Card thumbnail is a solid color block (e.g. #2a6ec7 or #2d3a2a) filling a 1:1 aspect ratio. Below the block, 24px gap, project name in Plain 500 16px #1a1a1a, one-line description in Plain 400 13px #767676.\n\n3. *Full-bleed hero*: Edge-to-edge image filling full viewport width, ~70vh height, no border-radius. Project name in Plain 400 13px #ffffff at bottom-left with 24px padding from edges. Small dot pagination row at bottom-right, 6px circles, 6px gap, active dot #ffffff, inactive dots at 40% opacity white.\n\n4. *Top navigation bar*: #ffffff background, 8px padding top/bottom. Left: 'Pentagram' wordmark in Plain 500 16px #1a1a1a. Right: text links 'Work', 'About', 'News', 'Contact', 'Archive' in Plain 400 16px #1a1a1a, letter-spacing -0.01em, with a small search icon between Contact and Archive. No borders, no background fills on links.\n\n5. *Inline tagline*: Centered text 'We design Everything~ for Everyone~' in Plain 400 16px #8c8c8c, sitting alone in a #ffffff band with 96px padding top/bottom, no other elements on the line."
+}

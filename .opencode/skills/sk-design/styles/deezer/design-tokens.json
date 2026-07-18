@@ -1,0 +1,407 @@
+{
+  "color": {
+    "paper-white": {
+      "$value": "#fdfcfe",
+      "$type": "color",
+      "$description": "Paper White — Page and hero backgrounds, card surfaces floating on dark sections, light theme canvas"
+    },
+    "carbon-black": {
+      "$value": "#0f0d13",
+      "$type": "color",
+      "$description": "Carbon Black — Dark section backgrounds, navigation bar, inverse canvas, pricing and FAQ arena"
+    },
+    "pure-black": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Black — Display headline text on light surfaces, icon fills, maximum-contrast text"
+    },
+    "ink-black": {
+      "$value": "#191922",
+      "$type": "color",
+      "$description": "Ink Black — Button text on light pill surfaces, subtle text on cards"
+    },
+    "graphite": {
+      "$value": "#555257",
+      "$type": "color",
+      "$description": "Graphite — Secondary text, subdued meta labels, footer body copy"
+    },
+    "fog-gray": {
+      "$value": "#a9a6aa",
+      "$type": "color",
+      "$description": "Fog Gray — Muted body text, helper text, low-emphasis labels on light surfaces"
+    },
+    "steel-gray": {
+      "$value": "#6f6d71",
+      "$type": "color",
+      "$description": "Steel Gray — Subdued headings, section sub-labels, de-emphasized display elements"
+    },
+    "pearl-gray": {
+      "$value": "#d1d1d7",
+      "$type": "color",
+      "$description": "Pearl Gray — Hairline borders, thin dividers, subtle separators on cards"
+    },
+    "signal-violet": {
+      "$value": "#a238ff",
+      "$type": "color",
+      "$description": "Signal Violet — Violet supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color"
+    },
+    "lilac-wash": {
+      "$value": "#d09aff",
+      "$type": "color",
+      "$description": "Lilac Wash — Soft violet tint for decorative washes, the banner background fill, and subtle highlight surfaces adjacent to Signal Violet elements"
+    }
+  },
+  "font": {
+    "deezer-brand-custom-condensed-display": {
+      "$value": "Deezer Brand (custom condensed display)",
+      "$type": "fontFamily",
+      "$description": "All display and heading sizes from 24px upward — the hero headline at 140px with line-height 0.71 is the signature moment, creating a compressed poster-stack effect. Subheading pill labels and small display accents use the 18–19px size with weight 700. The 700 weight carries subheadings and badges; 800 is reserved for the largest display type where the extra weight prevents the condensed letterforms from looking thin at 120–140px. Letter-spacing is consistently positive (0.0020em–0.0130em) — unusual for display type, which compensates for the tight line-heights by keeping glyphs from feeling cramped."
+    },
+    "inter": {
+      "$value": "Inter",
+      "$type": "fontFamily",
+      "$description": "Body, UI controls, navigation, buttons, and small labels. Weight 400 is the default body; 500 appears in button labels and nav links; 600 is used for emphasized body and small headings; 700 for strong UI emphasis. Normal letter-spacing. Inter acts as the quiet functional partner to the display face — same brand family voice, but geometric and readable at small sizes where the condensed display would be illegible."
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": 1.33
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.79
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "sm-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-3 at 14px"
+    },
+    "sm-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-4 at 14px"
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base at 16px"
+    },
+    "base-2": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step base-2 at 16px"
+    },
+    "base-3": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base-3 at 16px"
+    },
+    "base-4": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.56
+      },
+      "$type": "typography",
+      "$description": "Typography step base-4 at 16px"
+    },
+    "base-5": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.5
+      },
+      "$type": "typography",
+      "$description": "Typography step base-5 at 16px"
+    },
+    "base-6": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 700,
+        "lineHeight": 1.75
+      },
+      "$type": "typography",
+      "$description": "Typography step base-6 at 16px"
+    },
+    "base-7": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": 500,
+        "lineHeight": 1.38
+      },
+      "$type": "typography",
+      "$description": "Typography step base-7 at 16px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "Deezer Brand",
+        "fontSize": "18px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "lg-2": {
+      "$value": {
+        "fontFamily": "Deezer Brand",
+        "fontSize": "19px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg-2 at 19px"
+    },
+    "xl": {
+      "$value": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xl at 20px"
+    },
+    "2xl": {
+      "$value": {
+        "fontFamily": "Deezer Brand",
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 2xl at 24px"
+    },
+    "3xl": {
+      "$value": {
+        "fontFamily": "Deezer Brand",
+        "fontSize": "35px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl at 35px"
+    },
+    "3xl-2": {
+      "$value": {
+        "fontFamily": "Deezer Brand",
+        "fontSize": "35px",
+        "fontWeight": 700,
+        "lineHeight": 0.71
+      },
+      "$type": "typography",
+      "$description": "Typography step 3xl-2 at 35px"
+    },
+    "4xl": {
+      "$value": {
+        "fontFamily": "Deezer Brand",
+        "fontSize": "46px",
+        "fontWeight": 700,
+        "lineHeight": 1.04
+      },
+      "$type": "typography",
+      "$description": "Typography step 4xl at 46px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "Deezer Brand",
+        "fontSize": "56px",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 56px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "Deezer Brand",
+        "fontSize": "120px",
+        "fontWeight": 700,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 120px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "Deezer Brand",
+        "fontSize": "140px",
+        "fontWeight": 800,
+        "lineHeight": 0.9
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 140px"
+    }
+  },
+  "spacing": {
+    "4": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Spacing 4px"
+    },
+    "7": {
+      "$value": "7px",
+      "$type": "dimension",
+      "$description": "Spacing 7px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "9": {
+      "$value": "9px",
+      "$type": "dimension",
+      "$description": "Spacing 9px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "14": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$description": "Spacing 14px"
+    },
+    "15": {
+      "$value": "15px",
+      "$type": "dimension",
+      "$description": "Spacing 15px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "25": {
+      "$value": "25px",
+      "$type": "dimension",
+      "$description": "Spacing 25px"
+    },
+    "28": {
+      "$value": "28px",
+      "$type": "dimension",
+      "$description": "Spacing 28px"
+    },
+    "32": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Spacing 32px"
+    },
+    "56": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Spacing 56px"
+    },
+    "112": {
+      "$value": "112px",
+      "$type": "dimension",
+      "$description": "Spacing 112px"
+    },
+    "140": {
+      "$value": "140px",
+      "$type": "dimension",
+      "$description": "Spacing 140px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$description": "Border radius sm"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    }
+  },
+  "surface": {
+    "paper-white": {
+      "$value": "#fdfcfe",
+      "$type": "color",
+      "$description": "Surface level 1: Light hero background, the topmost surface tier"
+    },
+    "carbon-black": {
+      "$value": "#0f0d13",
+      "$type": "color",
+      "$description": "Surface level 2: Dark section backgrounds, inverse canvas for pricing and FAQ"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://deezer.com",
+      "siteName": "Deezer",
+      "extractedAt": "2026-06-03T19:18:55.080Z",
+      "variant": "extended"
+    }
+  }
+}

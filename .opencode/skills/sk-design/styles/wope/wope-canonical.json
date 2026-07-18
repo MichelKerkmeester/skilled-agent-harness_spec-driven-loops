@@ -1,0 +1,1357 @@
+{
+  "source": "https://styles.refero.design/style/3882ed21-8ef8-4bc9-b125-7791c0f136bb",
+  "uuid": "3882ed21-8ef8-4bc9-b125-7791c0f136bb",
+  "name": "Wope",
+  "northStar": "Wope - violet horizon interface. Think of a dark observatory table with a purple light bloom rising from below the glass.",
+  "capturedAt": "2026-07-18T10:13:56.699Z",
+  "meta": {
+    "url": "https://wope.com",
+    "siteName": "Wope",
+    "extractedAt": "2026-04-14T00:48:59.323Z",
+    "durationMs": 82747,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 314,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 1
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use Night Violet #0a0118 as the dominant canvas and keep most sections within that same dark-violet family.",
+      "Use Rebond Grotesque 56px or 72px with -1.12px to -1.44px tracking for hero and section headlines.",
+      "Set body and navigation text in Inter V using Ash Lilac #9b96b0 for default copy and Soft Quartz #ffffff for emphasis.",
+      "Use 999px radius for buttons and badges; reserve 16px radius for cards and 10px for floating overlays.",
+      "Build glow with Ultraviolet Core #713dff, Lilac Beam #b7a4fb, and Horizon Glow #8562ff gradients instead of heavy drop shadows.",
+      "Use 1px borders in rgba(255,255,255,0.1) on pills, glass cards, and framed surfaces.",
+      "Keep vertical section rhythm large: 108px section gaps and 124px padding on major content bands."
+    ],
+    "donts": [
+      "Do not introduce bright non-violet accents like teal, green, or orange into primary UI actions.",
+      "Do not use square or lightly rounded buttons; controls are pills at 999px radius.",
+      "Do not place strong opaque white cards on the page; surfaces stay dark or translucent over #0a0118.",
+      "Do not add conventional black box-shadows; depth comes from blur, borders, and glow gradients.",
+      "Do not use Rebond Grotesque for body copy, labels, or buttons.",
+      "Do not collapse muted text and primary text into one tone; keep #9b96b0 for support text and #ffffff for primary content.",
+      "Do not use bordered rectangular inputs; the input itself is borderless and relies on its container treatment."
+    ],
+    "theme": "dark",
+    "colors": [
+      {
+        "hex": "#0a0118",
+        "name": "Night Violet",
+        "role": "Page background, dark card surfaces, footer and section canvas",
+        "group": "neutral"
+      },
+      {
+        "hex": "#0c0616",
+        "name": "Void Plum",
+        "role": "Inverse text on light treatments, occasional dark text on pale surfaces",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Soft Quartz",
+        "role": "Primary headings, buttons, borders, icons, input text, dominant foreground",
+        "group": "neutral"
+      },
+      {
+        "hex": "#d2d0dd",
+        "name": "Muted Steel",
+        "role": "Secondary heading tone, brighter muted copy over Night Violet",
+        "group": "neutral"
+      },
+      {
+        "hex": "#9b96b0",
+        "name": "Ash Lilac",
+        "role": "Body copy, navigation links, supporting labels, low-emphasis UI text",
+        "group": "neutral"
+      },
+      {
+        "hex": "#85808c",
+        "name": "Dim Fog",
+        "role": "Inactive icons, subtle separators, tertiary interface details",
+        "group": "neutral"
+      },
+      {
+        "hex": "#713dff",
+        "name": "Ultraviolet Core",
+        "role": "Primary accent, active links, luminous highlights — saturated violet against the black-violet canvas creates the site’s underlit glow",
+        "group": "brand"
+      },
+      {
+        "hex": "#b7a4fb",
+        "name": "Lilac Beam",
+        "role": "Gradient flare, line effects, ambient glow edges — used as the cooler top note inside purple light blooms",
+        "group": "accent"
+      },
+      {
+        "hex": "#8562ff",
+        "name": "Horizon Glow",
+        "role": "Gradient midpoint and visual hotspot — the brighter violet that makes hero illumination feel energized instead of flat",
+        "group": "accent"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Glass White 04",
+        "role": "Tinted fills for ghost pills, badge backgrounds, translucent overlays",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Glass White 10",
+        "role": "Hairline borders on pills and glass panels",
+        "group": "neutral"
+      },
+      {
+        "hex": "#8562ff",
+        "name": "Ultraviolet Horizon",
+        "role": "Hero light field, illuminated dividers, ambient section glow",
+        "group": "accent",
+        "gradient": "linear-gradient(180deg, rgba(183, 164, 251, 0) 0%, rgba(183, 164, 251, 0.5) 50%, rgba(133, 98, 255, 0.5) 75%, rgba(133, 98, 255, 0) 100%)"
+      },
+      {
+        "hex": "#8562ff",
+        "name": "Violet Beam",
+        "role": "Brighter line and halo treatments where the glow should read crisp instead of misty",
+        "group": "accent",
+        "gradient": "linear-gradient(180deg, rgba(183, 164, 251, 0) 0%, rgb(183, 164, 251) 50%, rgb(133, 98, 255) 75%, rgba(133, 98, 255, 0) 100%)"
+      },
+      {
+        "hex": "#16092a",
+        "name": "Deep Fade Veil",
+        "role": "Section overlays and bottom fades that darken content without breaking the purple atmosphere",
+        "group": "neutral",
+        "gradient": "linear-gradient(180deg, rgba(11, 2, 23, 0) 22.69%, rgba(22, 9, 42, 0.5) 100%)"
+      }
+    ],
+    "imagery": "The page is product-visual first: large contained screenshots of the SEO interface, framed with rounded corners and immersed in purple glow. Graphics are abstract and atmospheric rather than illustrative — grid lines, light rays, and radiant horizon effects create the scene around the UI. Logos are monochrome and quiet. The layout is text-dominant at the top, then gives substantial visual area to the product frame, so imagery works as proof of the software rather than decoration.",
+    "similar": [
+      {
+        "why": "Shared dark product-first presentation with restrained neutrals and concentrated violet illumination",
+        "business": "Linear"
+      },
+      {
+        "why": "Similar black-purple glow field and glassy, pill-based control styling",
+        "business": "Raycast"
+      },
+      {
+        "why": "Uses atmospheric gradients and soft-luminous dark surfaces instead of traditional shadows",
+        "business": "Arc"
+      },
+      {
+        "why": "Comparable dark developer-style canvas with bright accent lighting and centered hero statements",
+        "business": "Warp"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "16px",
+        "badges": "999px",
+        "inputs": "0px",
+        "buttons": "999px",
+        "overlayCards": "10px"
+      },
+      "elementGap": "16px",
+      "sectionGap": "108px",
+      "cardPadding": "28px",
+      "pageMaxWidth": "1248px"
+    },
+    "industry": "saas",
+    "surfaces": [
+      {
+        "hex": "#0a0118",
+        "name": "Night Canvas",
+        "level": 0,
+        "purpose": "Global page background and default section base"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Glass Film",
+        "level": 1,
+        "purpose": "Translucent fills at 2% to 4% opacity for badges, CTAs, and frosted cards"
+      },
+      {
+        "hex": "#0a0118",
+        "name": "Dark Panel",
+        "level": 2,
+        "purpose": "Primary cards and screenshot frames with 16px radius"
+      },
+      {
+        "hex": "#16092a",
+        "name": "Overlay Veil",
+        "level": 3,
+        "purpose": "Gradient fades and blurred overlays above the base canvas"
+      },
+      {
+        "hex": "#713dff",
+        "name": "Ultraviolet Glow",
+        "level": 4,
+        "purpose": "Illuminated accent field beneath hero imagery and active focal points"
+      }
+    ],
+    "northStar": "Wope - violet horizon interface. Think of a dark observatory table with a purple light bloom rising from below the glass.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 14,
+        "lineHeight": 16,
+        "letterSpacing": -0.28
+      },
+      {
+        "role": "body",
+        "size": 16,
+        "lineHeight": 21,
+        "letterSpacing": -0.16
+      },
+      {
+        "role": "subheading",
+        "size": 18,
+        "lineHeight": 28,
+        "letterSpacing": -0.36
+      },
+      {
+        "role": "heading-sm",
+        "size": 24,
+        "lineHeight": 36,
+        "letterSpacing": -0.48
+      },
+      {
+        "role": "heading",
+        "size": 28,
+        "lineHeight": 48,
+        "letterSpacing": 2.24
+      },
+      {
+        "role": "heading-lg",
+        "size": 56,
+        "lineHeight": 74,
+        "letterSpacing": -1.12
+      },
+      {
+        "role": "display",
+        "size": 72,
+        "lineHeight": 80,
+        "letterSpacing": -1.44
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Primary CTA Button Group",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Keyword Data Table Card",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Logo Rail Social Proof Strip",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary Glass CTA Pill",
+        "role": "Main action button in hero and high-attention areas",
+        "description": "Use a 999px pill with background rgba(255,255,255,0.04), 1px solid rgba(255,255,255,0.1), white label text, and padding 7px 24px. Keep the fill translucent so the button reads like lit glass floating above #0a0118 rather than a solid chip."
+      },
+      {
+        "name": "Header Outline Pill Button",
+        "role": "Secondary header actions such as Log in",
+        "description": "Transparent background, 1px solid rgba(255,255,255,0.1), 999px radius, padding 4px 16px, label in white or Ash Lilac depending on emphasis. This variant should feel lighter and smaller than the primary CTA."
+      },
+      {
+        "name": "Text Navigation Pill",
+        "role": "Minimal nav actions and tertiary controls",
+        "description": "Transparent background, no visible border, 999px radius, padding 4px 24px, white text. Use when the interface wants pill spacing without a framed container."
+      },
+      {
+        "name": "Hero Trial Badge",
+        "role": "Compact promotional label above or below hero copy",
+        "description": "Pill badge with background rgba(255,255,255,0.04), white text, 999px radius, and padding 4px 14px. Border may be omitted or kept at 1px rgba(255,255,255,0.1) when placed over a strong glow."
+      },
+      {
+        "name": "Feature Surface Card",
+        "role": "Primary content card for feature summaries and product panels",
+        "description": "Use Night Violet #0a0118 background, 16px radius, no shadow, and internal padding of 28px when content sits inside. Separate from the page with 1px translucent white borders or slight glow edges rather than elevation."
+      },
+      {
+        "name": "Frosted Info Card",
+        "role": "Secondary glass panel for smaller callouts",
+        "description": "Use background rgba(255,255,255,0.02), 16px radius, no shadow, 28px padding, and optional backdrop blur(4px). This reads as a lighter film over the dark canvas."
+      },
+      {
+        "name": "Overlay Mini Card",
+        "role": "Floating stat, tooltip, or decorative UI inset",
+        "description": "Use background rgba(10,1,24,0.2), 10px radius, no shadow. Combine with blur(8px) and a thin rgba(255,255,255,0.1) border when it sits on top of product visuals."
+      },
+      {
+        "name": "Product Screenshot Frame",
+        "role": "Large hero UI showcase container",
+        "description": "Large 16px rounded frame in #0a0118 with subtle internal glow, no shadow, and an underlighting treatment using the Ultraviolet Horizon gradient. The screenshot should appear embedded into the purple light field, not hovering above it."
+      },
+      {
+        "name": "Header Bar",
+        "role": "Top navigation container",
+        "description": "Full-width bar over the dark canvas, content centered within 1248px, low-contrast links in Ash Lilac, and action pills aligned right. Use 16px horizontal grouping gaps and a restrained 78px height zone."
+      },
+      {
+        "name": "Borderless Input Field",
+        "role": "Email or search input inside dark callout forms",
+        "description": "Transparent background, no visible border, 0px radius, white text, padding 14px 130px 14px 20px. Pair with a surrounding card or underline rather than boxing the field itself."
+      },
+      {
+        "name": "Logo Rail",
+        "role": "Social-proof brand strip",
+        "description": "Contained horizontal row of monochrome partner logos in white or Dim Fog on the dark canvas. Keep the rail low contrast and evenly spaced so it sits as a quiet separator between hero and feature content."
+      },
+      {
+        "name": "Section Block",
+        "role": "Standard vertical content band",
+        "description": "Transparent section wrapper with 124px top and bottom padding when used as a major page band. Inside, center content and keep internal stacks at 16px or 24px gaps."
+      }
+    ],
+    "typography": [
+      {
+        "role": "System font for navigation, body copy, links, buttons, badges, inputs, and smaller headings. The custom build is doing more than a stock Inter install: disabled standard ligature behavior plus alternate stylistic sets make the text feel slightly engineered rather than default SaaS. Use 400 for body, 500 for controls and links, 700 for compact emphasis; apply tighter tracking at larger UI sizes and the wide tracking only for utility-style labels.",
+        "sizes": "14px, 16px, 18px, 20px, 24px, 28px",
+        "family": "Inter V",
+        "weight": "400, 500, 700",
+        "lineHeight": "1.15, 1.33, 1.40, 1.43, 1.50, 1.56, 1.71",
+        "substitute": "Inter",
+        "letterSpacing": "-0.28px at 14px, -0.16px at 16px, -0.36px at 18px, -0.40px at 20px, -0.48px at 24px, 2.24px at 28px",
+        "fontFeatureSettings": "\"calt\" 0, \"cv06\", \"liga\" 0; \"cv01\", \"dlig\", \"salt\", \"ss01\", \"ss03\", \"ss14\"; \"cv01\", \"cv02\", \"cv03\", \"cv04\", \"cv09\", \"cv10\", \"ss14\"; \"calt\" 0, \"cv06\", \"dlig\", \"liga\" 0; \"cv01\", \"salt\", \"ss01\", \"ss03\", \"ss14\""
+      },
+      {
+        "role": "Display and headline font for hero statements and major section titles. The heavier serifless grotesque gives Wope its large-scale voice: broad, compact, and slightly formal, which keeps the glowing purple environment from feeling playful. Use only for headline moments, not for buttons or dense UI.",
+        "sizes": "20px, 24px, 56px, 72px",
+        "family": "Rebond Grotesque",
+        "weight": "700",
+        "lineHeight": "1.11, 1.14, 1.33, 1.60",
+        "substitute": "Sora",
+        "letterSpacing": "-0.40px at 20px, -0.48px at 24px, -1.12px at 56px, -1.44px at 72px",
+        "fontFeatureSettings": "\"cv01\", \"salt\", \"ss01\", \"ss03\", \"ss14\""
+      }
+    ],
+    "description": "Wope - violet horizon interface. The page feels like a control deck lit from beneath by ultraviolet light: a nearly black-violet canvas, pale gray body copy, and concentrated purple glow under the product UI. The signature move is contrast by illumination rather than by layering — surfaces stay close to #0a0118 and depth comes from translucent white borders, blur, and radiant gradients instead of heavy shadow. Rebond Grotesque appears only where the brand wants scale and impact, while Inter V handles everything else with tight negative tracking in larger sizes and occasional wide-tracked utility text. Buttons, badges, and small controls are all full pills at 999px radius, set against mostly 16px cards, so soft controls float inside a more architectural content frame.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      }
+    ],
+    "elevationPhilosophy": "Wope avoids conventional elevation. Cards and UI frames sit nearly flush with the #0a0118 canvas, then separate through 1px translucent borders, backdrop blur(4px), blur(8px), and purple underlighting gradients. Even large product panels feel embedded in the page, as if backlit from below rather than raised above it."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "body",
+            "icon",
+            "button",
+            "image",
+            "hero",
+            "card",
+            "heading",
+            "badge",
+            "input"
+          ],
+          "frequency": 1070,
+          "confidence": 1,
+          "prominence": 67413787.94469592,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill",
+            "stroke"
+          ]
+        },
+        {
+          "hex": "#0a0118",
+          "oklch": {
+            "c": 0.05710936242149463,
+            "h": 301.1740951872406,
+            "l": 0.1223336923191053
+          },
+          "contexts": [
+            "card"
+          ],
+          "frequency": 5,
+          "confidence": 1,
+          "prominence": 2009813.5142357002,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#9b96b0",
+          "oklch": {
+            "c": 0.03816274278813715,
+            "h": 294.18929416797494,
+            "l": 0.6860364041366503
+          },
+          "contexts": [
+            "body",
+            "other",
+            "link",
+            "icon"
+          ],
+          "frequency": 159,
+          "confidence": 1,
+          "prominence": 780693.2611892702,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#85808c",
+          "oklch": {
+            "c": 0.01791935918346576,
+            "h": 303.5480176881536,
+            "l": 0.607571733450451
+          },
+          "contexts": [
+            "other",
+            "icon"
+          ],
+          "frequency": 10,
+          "confidence": 1,
+          "prominence": 24340.560868732024,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#d2d0dd",
+          "oklch": {
+            "c": 0.017900857831324068,
+            "h": 293.0910271267664,
+            "l": 0.8630662632129334
+          },
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 15104,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#0c0616",
+          "oklch": {
+            "c": 0.0366589895372576,
+            "h": 301.1957943604802,
+            "l": 0.13993424202925872
+          },
+          "contexts": [
+            "button"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 4542,
+          "properties": [
+            "color"
+          ]
+        },
+        {
+          "hex": "#713dff",
+          "oklch": {
+            "c": 0.263072425900772,
+            "h": 286.2697596713243,
+            "l": 0.5500961807581323
+          },
+          "contexts": [
+            "link"
+          ],
+          "frequency": 1,
+          "confidence": 1,
+          "prominence": 2596,
+          "properties": [
+            "backgroundColor"
+          ]
+        }
+      ],
+      "isDarkMode": true,
+      "colorfulness": 0.01521928283036592,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 20.38,
+          "background": "#0a0118",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AAA",
+          "ratio": 19.94,
+          "background": "#ffffff",
+          "foreground": "#0c0616"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.4,
+          "background": "#0a0118",
+          "foreground": "#d2d0dd"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.11,
+          "background": "#d2d0dd",
+          "foreground": "#0c0616"
+        },
+        {
+          "level": "AAA",
+          "ratio": 7.17,
+          "background": "#0a0118",
+          "foreground": "#9b96b0"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.51,
+          "background": "#713dff",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.3,
+          "background": "#0a0118",
+          "foreground": "#85808c"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.62,
+          "background": "#713dff",
+          "foreground": "#d2d0dd"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.62,
+          "background": "#713dff",
+          "foreground": "#0c0616"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.94,
+          "background": "#713dff",
+          "foreground": "#9b96b0"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.43,
+          "background": "#713dff",
+          "foreground": "#85808c"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.02,
+          "background": "#0a0118",
+          "foreground": "#0c0616"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 999,
+          "contexts": [
+            "button",
+            "other",
+            "badge"
+          ],
+          "frequency": 15
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 9
+        },
+        {
+          "value": 10,
+          "contexts": [
+            "other",
+            "card"
+          ],
+          "frequency": 2
+        }
+      ],
+      "shadows": []
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 4,
+          "contexts": [
+            "button",
+            "badge",
+            "heading"
+          ],
+          "frequency": 11,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button",
+            "paddingTop|badge",
+            "paddingBottom|badge",
+            "marginLeft|heading"
+          ]
+        },
+        {
+          "value": 7,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 6,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|button",
+            "paddingBottom|button"
+          ]
+        },
+        {
+          "value": 8,
+          "contexts": [
+            "other",
+            "link",
+            "body",
+            "heading"
+          ],
+          "frequency": 24,
+          "properties": [
+            "rowGap",
+            "columnGap",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "rowGap|other",
+            "columnGap|other",
+            "rowGap|link",
+            "columnGap|link",
+            "rowGap|body",
+            "columnGap|body",
+            "marginBottom|heading",
+            "rowGap|heading",
+            "columnGap|heading",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 12,
+          "contexts": [
+            "other",
+            "link",
+            "heading",
+            "badge",
+            "icon"
+          ],
+          "frequency": 16,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom",
+            "marginTop",
+            "marginRight",
+            "marginLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other",
+            "paddingRight|link",
+            "paddingLeft|link",
+            "marginBottom|heading",
+            "marginBottom|other",
+            "marginBottom|badge",
+            "marginTop|other",
+            "marginRight|icon",
+            "marginLeft|icon",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 14,
+          "contexts": [
+            "badge",
+            "input"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|badge",
+            "paddingLeft|badge",
+            "paddingTop|input",
+            "paddingBottom|input"
+          ]
+        },
+        {
+          "value": 16,
+          "contexts": [
+            "button",
+            "other",
+            "heading",
+            "list",
+            "link"
+          ],
+          "frequency": 37,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginBottom",
+            "rowGap",
+            "columnGap",
+            "marginTop",
+            "marginRight"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "paddingRight|other",
+            "paddingBottom|other",
+            "paddingLeft|other",
+            "marginBottom|heading",
+            "rowGap|other",
+            "columnGap|other",
+            "marginTop|list",
+            "marginBottom|list",
+            "rowGap|list",
+            "columnGap|list",
+            "marginRight|link"
+          ]
+        },
+        {
+          "value": 20,
+          "contexts": [
+            "input",
+            "other"
+          ],
+          "frequency": 7,
+          "properties": [
+            "paddingLeft",
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "paddingLeft|input",
+            "rowGap|other",
+            "columnGap|other"
+          ]
+        },
+        {
+          "value": 22,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 24,
+          "contexts": [
+            "button",
+            "body",
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|button",
+            "paddingLeft|button",
+            "marginBottom|body",
+            "paddingRight|other",
+            "paddingLeft|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 28,
+          "contexts": [
+            "card"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingRight|card",
+            "paddingBottom|card",
+            "paddingLeft|card"
+          ]
+        },
+        {
+          "value": 32,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 12,
+          "properties": [
+            "marginRight",
+            "paddingTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "paddingTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 40,
+          "contexts": [
+            "list"
+          ],
+          "frequency": 2,
+          "properties": [
+            "rowGap",
+            "columnGap"
+          ],
+          "propertyContextPairs": [
+            "rowGap|list",
+            "columnGap|list"
+          ]
+        },
+        {
+          "value": 64,
+          "contexts": [
+            "hero",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ],
+          "propertyContextPairs": [
+            "paddingBottom|hero",
+            "paddingBottom|other",
+            "paddingTop|other"
+          ]
+        },
+        {
+          "value": 80,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 3,
+          "properties": [
+            "marginTop",
+            "marginBottom"
+          ],
+          "propertyContextPairs": [
+            "marginTop|other",
+            "marginBottom|other"
+          ]
+        },
+        {
+          "value": 96,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 108,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 10,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 112,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 120,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 124,
+          "contexts": [
+            "card",
+            "other"
+          ],
+          "frequency": 4,
+          "properties": [
+            "paddingTop",
+            "paddingBottom"
+          ],
+          "propertyContextPairs": [
+            "paddingTop|card",
+            "paddingBottom|card",
+            "paddingTop|other",
+            "paddingBottom|other"
+          ]
+        },
+        {
+          "value": 156,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 185,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ],
+          "propertyContextPairs": [
+            "paddingRight|other",
+            "paddingLeft|other"
+          ]
+        },
+        {
+          "value": 228,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|other",
+            "marginLeft|other"
+          ]
+        },
+        {
+          "value": 289,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 2,
+          "properties": [
+            "marginRight",
+            "marginLeft"
+          ],
+          "propertyContextPairs": [
+            "marginRight|body",
+            "marginLeft|body"
+          ]
+        }
+      ],
+      "density": "comfortable",
+      "baseUnit": 4
+    },
+    "gradients": [
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgba(183, 164, 251, 0) 0px, rgba(183, 164, 251, 0.5) 100%, rgba(133, 98, 255, 0.5) 100%, rgba(133, 98, 255, 0) 0%)",
+        "colors": [
+          "rgba(183, 164, 251, 0)",
+          "rgba(183, 164, 251, 0.5)",
+          "rgba(133, 98, 255, 0.5)",
+          "rgba(133, 98, 255, 0)"
+        ],
+        "frequency": 8
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgba(183, 164, 251, 0) 0px, rgb(183, 164, 251) 100%, rgb(133, 98, 255) 100%, rgba(133, 98, 255, 0) 0%)",
+        "colors": [
+          "rgba(183, 164, 251, 0)",
+          "rgb(183, 164, 251)",
+          "rgb(133, 98, 255)",
+          "rgba(133, 98, 255, 0)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgba(11, 2, 23, 0) 22.69%, rgba(22, 9, 42, 0.5) 100%)",
+        "colors": [
+          "rgba(11, 2, 23, 0)",
+          "rgba(22, 9, 42, 0.5)"
+        ],
+        "frequency": 2
+      },
+      {
+        "type": "linear",
+        "value": "linear-gradient(rgba(11, 2, 23, 0) 22.69%, rgba(22, 9, 42, 0.2) 100%)",
+        "colors": [
+          "rgba(11, 2, 23, 0)",
+          "rgba(22, 9, 42, 0.2)"
+        ],
+        "frequency": 1
+      }
+    ],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Inter V",
+          "source": "custom",
+          "weights": [
+            400,
+            500,
+            700
+          ],
+          "frequency": 246,
+          "fontFeatureSettings": [
+            "\"calt\" 0, \"cv06\", \"liga\" 0",
+            "\"cv01\", \"dlig\", \"salt\", \"ss01\", \"ss03\", \"ss14\"",
+            "\"cv01\", \"cv02\", \"cv03\", \"cv04\", \"cv09\", \"cv10\", \"ss14\"",
+            "\"calt\" 0, \"cv06\", \"dlig\", \"liga\" 0",
+            "\"cv01\", \"salt\", \"ss01\", \"ss03\", \"ss14\""
+          ]
+        },
+        {
+          "family": "Rebond Grotesque",
+          "source": "custom",
+          "weights": [
+            700
+          ],
+          "frequency": 13,
+          "fontFeatureSettings": [
+            "\"cv01\", \"salt\", \"ss01\", \"ss03\", \"ss14\""
+          ]
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Minor Third",
+        "ratio": 1.2,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 14,
+          "family": "Inter V",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other",
+            "icon",
+            "link"
+          ],
+          "frequency": 20,
+          "lineHeight": 1.71,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter V",
+          "weight": 500,
+          "contexts": [
+            "button",
+            "body",
+            "other",
+            "heading"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.71,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 14,
+          "family": "Inter V",
+          "weight": 500,
+          "contexts": [
+            "badge"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.71,
+          "letterSpacing": 0.08,
+          "textTransform": "uppercase"
+        },
+        {
+          "size": 14,
+          "family": "Inter V",
+          "weight": 400,
+          "contexts": [
+            "input"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter V",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "list",
+            "body",
+            "icon",
+            "image",
+            "hero",
+            "card"
+          ],
+          "frequency": 187,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter V",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.15,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Inter V",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "body"
+          ],
+          "frequency": 3,
+          "lineHeight": 1.5,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 18,
+          "family": "Inter V",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.56,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter V",
+          "weight": 400,
+          "contexts": [
+            "body",
+            "other"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.01,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Inter V",
+          "weight": 500,
+          "contexts": [
+            "body",
+            "link"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.4,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 20,
+          "family": "Rebond Grotesque",
+          "weight": 700,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.6,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Rebond Grotesque",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 24,
+          "family": "Inter V",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 28,
+          "family": "Inter V",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.43,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        },
+        {
+          "size": 56,
+          "family": "Rebond Grotesque",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.14,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 72,
+          "family": "Rebond Grotesque",
+          "weight": 700,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.11,
+          "letterSpacing": -0.02,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/23d86947-0c9f-4b9b-abe9-bc4aee7475b3.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/fa8681d9-3348-4faa-a06f-300f2876ee12.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/3882ed21-8ef8-4bc9-b125-7791c0f136bb#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Wope design system\",\"item\":\"https://styles.refero.design/style/3882ed21-8ef8-4bc9-b125-7791c0f136bb\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/3882ed21-8ef8-4bc9-b125-7791c0f136bb#style-reference\",\"name\":\"Wope design system reference\",\"headline\":\"Wope design system | Refero Styles\",\"description\":\"Explore Wope's dark SaaS design system: Night Violet #0a0118, Void Plum #0c0616 colors, Inter V, Rebond Grotesque typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/3882ed21-8ef8-4bc9-b125-7791c0f136bb\",\"mainEntityOfPage\":\"https://styles.refero.design/style/3882ed21-8ef8-4bc9-b125-7791c0f136bb\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Wope\",\"url\":\"https://wope.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/3882ed21-8ef8-4bc9-b125-7791c0f136bb#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/fa8681d9-3348-4faa-a06f-300f2876ee12.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/fa8681d9-3348-4faa-a06f-300f2876ee12.jpg\",\"caption\":\"Screenshot of Wope\"},\"image\":\"https://images.refero.design/styles/refero.design/image/fa8681d9-3348-4faa-a06f-300f2876ee12.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Wope design system\",\"Wope website design\",\"Wope colors\",\"Wope typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"SaaS design system\",\"Night Violet\",\"Void Plum\",\"Soft Quartz\",\"Muted Steel\",\"Inter V\",\"Rebond Grotesque\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Wope design system\"},{\"@type\":\"Thing\",\"name\":\"Wope website design\"},{\"@type\":\"Thing\",\"name\":\"Wope colors\"},{\"@type\":\"Thing\",\"name\":\"Wope typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"SaaS design system\"}],\"datePublished\":\"2026-04-07T11:31:03.000Z\",\"dateModified\":\"2026-04-07T11:31:03.000Z\"}]}19:Td0e,<div style=\"--color-night-violet:#0a0118;--color-void-plum:#0c0616;--color-soft-quartz:#ffffff;--color-muted-steel:#d2d0dd;--color-ash-lilac:#9b96b0;--color-dim-fog:#85808c;--color-ultraviolet-core:#713dff;--color-lilac-beam:#b7a4fb;--color-horizon-glow:#8562ff;--font-inter-v:'Inter',sans-serif;--font-rebond-grotesque:'Sora',sans-serif; background:var(--color-night-violet);padding:48px 32px;display:flex;flex-direction:column;align-items:center;gap:24px;font-family:var(--font-inter-v);border-radius:16px;\">\n  <!-- Badge -->\n  <div style=\"background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:999px;padding:4px 14px;display:inline-flex;align-items:center;gap:6px;\">\n    <span style=\"display:inline-block;width:6px;height:6px;border-radius:999px;background:var(--color-lilac-beam);\"></span>\n    <span style=\"font-family:var(--font-inter-v);font-size:13px;font-weight:500;color:var(--color-soft-quartz);letter-spacing:0.02em;\">New-Gen SEO Research Platform</span>\n  </div>\n\n  <!-- Headline -->\n  <div style=\"text-align:center;\">\n    <h2 style=\"font-family:var(--font-rebond-grotesque);font-size:40px;font-weight:700;line-height:1.12;letter-spacing:-0.8px;color:var(--color-soft-quartz);margin:0 0 12px 0;\">New Era of SEO Research</h2>\n    <p style=\"font-family:var(--font-inter-v);font-size:16px;font-weight:400;line-height:1.5;letter-spacing:-0.16px;color:var(--color-ash-lilac);margin:0;max-width:420px;\">Let our AI do the heavy lifting. Find hidden keyword opportunities and get clear & actionable insights.</p>\n  </div>\n\n  <!-- Button row -->\n  <div style=\"display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;\">\n    <!-- Primary CTA -->\n    <a href=\"#\" style=\"display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:999px;padding:10px 28px;text-decoration:none;\">\n      <span style=\"font-family:var(--font-inter-v);font-size:15px;font-weight:500;color:var(--color-soft-quartz);letter-spacing:-0.16px;\">Unlimited trial for 14 days</span>\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2.5 7h9M8 3.5L11.5 7 8 10.5\" stroke=\"#fff\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    </a>\n    <!-- Secondary -->\n    <a href=\"#\" style=\"display:inline-flex;align-items:center;gap:6px;background:transparent;border:none;border-radius:999px;padding:10px 20px;text-decoration:none;\">\n      <span style=\"font-family:var(--font-inter-v);font-size:15px;font-weight:500;color:var(--color-ash-lilac);letter-spacing:-0.16px;\">View Pricing</span>\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2.5 7h9M8 3.5L11.5 7 8 10.5\" stroke=\"#9b96b0\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n    </a>\n  </div>\n\n  <!-- Subtle glow underline -->\n  <div style=\"width:240px;height:1px;background:linear-gradient(90deg,rgba(113,61,255,0) 0%,rgba(183,164,251,0.5) 50%,rgba(113,61,255,0) 100%);margin-top:8px;\"></div>\n\n  <!-- Trust micro-copy -->\n  <p style=\"font-family:var(--font-inter-v);font-size:13px;font-weight:400;color:var(--color-dim-fog);letter-spacing:0.01em;margin:0;\">No credit card required &nbsp;·&nbsp; Cancel anytime</p>\n</div>1a:T2333,<div style=\"--color-night-violet:#0a0118;--color-soft-quartz:#ffffff;--color-muted-steel:#d2d0dd;--color-ash-lilac:#9b96b0;--color-dim-fog:#85808c;--color-ultraviolet-core:#713dff;--color-lilac-beam:#b7a4fb;--color-horizon-glow:#8562ff;--font-inter-v:'Inter',sans-serif; background:var(--color-night-violet);padding:0;border-radius:16px;border:1px solid rgba(255,255,255,0.08);overflow:hidden;font-family:var(--font-inter-v);width:100%;max-width:600px;\">\n  <!-- Card header -->\n  <div style=\"display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.06);\">\n    <div style=\"display:flex;align-items:center;gap:8px;\">\n      <div style=\"width:18px;height:18px;border-radius:4px;background:var(--color-ultraviolet-core);display:flex;align-items:center;justify-content:center;\">\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" fill=\"none\"><circle cx=\"4\" cy=\"4\" r=\"3\" stroke=\"#fff\" stroke-width=\"1.2\"/><line x1=\"6.5\" y1=\"6.5\" x2=\"9\" y2=\"9\" stroke=\"#fff\" stroke-width=\"1.2\" stroke-linecap=\"round\"/></svg>\n      </div>\n      <span style=\"font-size:14px;font-weight:600;color:var(--color-soft-quartz);letter-spacing:-0.14px;\">Keyword Finder</span>\n      <span style=\"background:rgba(113,61,255,0.2);border:1px solid rgba(113,61,255,0.3);border-radius:999px;padding:1px 8px;font-size:11px;font-weight:500;color:var(--color-lilac-beam);\">AI</span>\n    </div>\n    <div style=\"display:flex;align-items:center;gap:8px;\">\n      <div style=\"display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:999px;padding:3px 10px;\">\n        <span style=\"font-size:12px;color:var(--color-ash-lilac);\">🇺🇸</span>\n        <span style=\"font-size:12px;font-weight:500;color:var(--color-ash-lilac);\">ikea.com (US, en)</span>\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" fill=\"none\"><path d=\"M2 4l3 3 3-3\" stroke=\"#9b96b0\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n      </div>\n      <div style=\"display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:999px;padding:3px 10px;\">\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" fill=\"none\"><path d=\"M1 3h8M2 5h6M3 7h4\" stroke=\"#9b96b0\" stroke-width=\"1.2\" stroke-linecap=\"round\"/></svg>\n        <span style=\"font-size:12px;font-weight:500;color:var(--color-ash-lilac);\">Filter</span>\n      </div>\n    </div>\n  </div>\n\n  <!-- Table -->\n  <div style=\"overflow-x:auto;\">\n    <table style=\"width:100%;border-collapse:collapse;font-size:12px;\">\n      <thead>\n        <tr style=\"border-bottom:1px solid rgba(255,255,255,0.06);\">\n          <th style=\"text-align:left;padding:10px 20px;font-weight:500;color:var(--color-dim-fog);letter-spacing:0.02em;font-size:11px;\">Keyword</th>\n          <th style=\"text-align:right;padding:10px 12px;font-weight:500;color:var(--color-dim-fog);font-size:11px;\">Volume</th>\n          <th style=\"text-align:center;padding:10px 12px;font-weight:500;color:var(--color-dim-fog);font-size:11px;\">K.D.</th>\n          <th style=\"text-align:center;padding:10px 12px;font-weight:500;color:var(--color-dim-fog);font-size:11px;\">Pos.</th>\n          <th style=\"text-align:right;padding:10px 12px;font-weight:500;color:var(--color-dim-fog);font-size:11px;\">Change</th>\n          <th style=\"text-align:right;padding:10px 20px 10px 8px;font-weight:500;color:var(--color-dim-fog);font-size:11px;\">Traffic</th>\n        </tr>\n      </thead>\n      <tbody>\n        <!-- Row 1 -->\n        <tr style=\"border-bottom:1px solid rgba(255,255,255,0.04);\">\n          <td style=\"padding:11px 20px;color:var(--color-muted-steel);font-weight:500;font-size:13px;\">fedex track</td>\n          <td style=\"padding:11px 12px;text-align:right;color:var(--color-ash-lilac);font-size:12px;\">7.5M</td>\n          <td style=\"padding:11px 12px;text-align:center;\">\n            <span style=\"display:inline-block;background:rgba(251,146,60,0.2);color:#fb923c;border-radius:999px;padding:1px 7px;font-size:11px;font-weight:600;\">42</span>\n          </td>\n          <td style=\"padding:11px 12px;text-align:center;color:var(--color-ash-lilac);font-size:12px;\">78</td>\n          <td style=\"padding:11px 12px;text-align:right;\">\n            <span style=\"color:#4ade80;font-size:12px;font-weight:500;\">+12</span>\n          </td>\n          <td style=\"padding:11px 20px 11px 8px;text-align:right;color:var(--color-ash-lilac);font-size:12px;\">15.7K</td>\n        </tr>\n        <!-- Row 2 -->\n        <tr style=\"border-bottom:1px solid rgba(255,255,255,0.04);\">\n          <td style=\"padding:11px 20px;color:var(--color-muted-steel);font-weight:500;font-size:13px;\">ikea</td>\n          <td style=\"padding:11px 12px;text-align:right;color:var(--color-ash-lilac);font-size:12px;\">7.5M</td>\n          <td style=\"padding:11px 12px;text-align:center;\">\n            <span style=\"display:inline-block;background:rgba(74,222,128,0.15);color:#4ade80;border-radius:999px;padding:1px 7px;font-size:11px;font-weight:600;\">44</span>\n          </td>\n          <td style=\"padding:11px 12px;text-align:center;color:var(--color-ash-lilac);font-size:12px;\">1</td>\n          <td style=\"padding:11px 12px;text-align:right;\">\n            <span style=\"color:var(--color-dim-fog);font-size:12px;\">0</span>\n          </td>\n          <td style=\"padding:11px 20px 11px 8px;text-align:right;color:var(--color-ash-lilac);font-size:12px;\">2.3M</td>\n        </tr>\n        <!-- Row 3 -->\n        <tr style=\"border-bottom:1px solid rgba(255,255,255,0.04);\">\n          <td style=\"padding:11px 20px;color:var(--color-muted-steel);font-weight:500;font-size:13px;\">store near me</td>\n          <td style=\"padding:11px 12px;text-align:right;color:var(--color-ash-lilac);font-size:12px;\">5M</td>\n          <td style=\"padding:11px 12px;text-align:center;\">\n            <span style=\"display:inline-block;background:rgba(239,68,68,0.2);color:#f87171;border-radius:999px;padding:1px 7px;font-size:11px;font-weight:600;\">100</span>\n          </td>\n          <td style=\"padding:11px 12px;text-align:center;color:var(--color-ash-lilac);font-size:12px;\">34</td>\n          <td style=\"padding:11px 12px;text-align:right;\">\n            <span style=\"color:#f87171;font-size:12px;font-weight:500;\">-18</span>\n          </td>\n          <td style=\"padding:11px 20px 11px 8px;text-align:right;color:var(--color-ash-lilac);font-size:12px;\">10.5K</td>\n        </tr>\n        <!-- Row 4 -->\n        <tr style=\"border-bottom:1px solid rgba(255,255,255,0.04);\">\n          <td style=\"padding:11px 20px;color:var(--color-muted-steel);font-weight:500;font-size:13px;\">home goods</td>\n          <td style=\"padding:11px 12px;text-align:right;color:var(--color-ash-lilac);font-size:12px;\">1.8M</td>\n          <td style=\"padding:11px 12px;text-align:center;\">\n            <span style=\"display:inline-block;background:rgba(251,146,60,0.2);color:#fb923c;border-radius:999px;padding:1px 7px;font-size:11px;font-weight:600;\">85</span>\n          </td>\n          <td style=\"padding:11px 12px;text-align:center;color:var(--color-ash-lilac);font-size:12px;\">31</td>\n          <td style=\"padding:11px 12px;text-align:right;\">\n            <span style=\"color:#4ade80;font-size:12px;font-weight:500;\">+26</span>\n          </td>\n          <td style=\"padding:11px 20px 11px 8px;text-align:right;color:var(--color-ash-lilac);font-size:12px;\">3.8K</td>\n        </tr>\n        <!-- Row 5 -->\n        <tr>\n          <td style=\"padding:11px 20px;color:var(--color-muted-steel);font-weight:500;font-size:13px;\">at home</td>\n          <td style=\"padding:11px 12px;text-align:right;color:var(--color-ash-lilac);font-size:12px;\">1.8M</td>\n          <td style=\"padding:11px 12px;text-align:center;\">\n            <span style=\"display:inline-block;background:rgba(74,222,128,0.15);color:#4ade80;border-radius:999px;padding:1px 7px;font-size:11px;font-weight:600;\">72</span>\n          </td>\n          <td style=\"padding:11px 12px;text-align:center;color:var(--color-ash-lilac);font-size:12px;\">8</td>\n          <td style=\"padding:11px 12px;text-align:right;\">\n            <span style=\"color:#4ade80;font-size:12px;font-weight:500;\">+n</span>\n          </td>\n          <td style=\"padding:11px 20px 11px 8px;text-align:right;color:var(--color-ash-lilac);font-size:12px;\">35.3K</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n  <!-- Footer -->\n  <div style=\"padding:10px 20px;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;\">\n    <span style=\"font-size:11px;color:var(--color-dim-fog);\">Showing 5 of 2,847 keywords</span>\n    <a href=\"#\" style=\"font-size:12px;font-weight:500;color:var(--color-lilac-beam);text-decoration:none;display:flex;align-items:center;gap:4px;\">View all <svg width=\"10\" height=\"10\" viewBox=\"0 0 10 10\" fill=\"none\"><path d=\"M2 5h6M5.5 2.5L8 5 5.5 7.5\" stroke=\"#b7a4fb\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>\n  </div>\n</div>1b:Tfbb,<div style=\"--color-night-violet:#0a0118;--color-soft-quartz:#ffffff;--color-ash-lilac:#9b96b0;--color-dim-fog:#85808c;--color-lilac-beam:#b7a4fb;--font-inter-v:'Inter',sans-serif;--font-rebond-grotesque:'Sora',sans-serif; background:var(--color-night-violet);padding:48px 32px;border-radius:16px;font-family:var(--font-inter-v);\">\n  <!-- Label -->\n  <p style=\"text-align:center;font-size:13px;font-weight:500;color:var(--color-dim-fog);letter-spacing:0.12em;text-transform:uppercase;margin:0 0 36px 0;\">Trusted by teams at</p>\n\n  <!-- Logo row -->\n  <div style=\"display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;\">\n    <!-- QNB -->\n    <div style=\"display:flex;align-items:center;gap:6px;opacity:0.55;\">\n      <svg width=\"18\" height=\"18\" viewBox=\"0 0 18 18\" fill=\"none\"><circle cx=\"9\" cy=\"9\" r=\"8\" stroke=\"#fff\" stroke-width=\"1.5\"/><path d=\"M5 9h8M9 5v8\" stroke=\"#fff\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></svg>\n      <span style=\"font-size:15px;font-weight:700;color:var(--color-soft-quartz);letter-spacing:0.04em;\">QNB</span>\n    </div>\n\n    <!-- BMW -->\n    <div style=\"opacity:0.5;\">\n      <svg width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\"><circle cx=\"18\" cy=\"18\" r=\"17\" stroke=\"#fff\" stroke-width=\"1.2\"/><circle cx=\"18\" cy=\"18\" r=\"11\" stroke=\"#fff\" stroke-width=\"1\"/><path d=\"M18 7v22M7 18h22\" stroke=\"#fff\" stroke-width=\"1\"/><path d=\"M7 18h11V7\" fill=\"#fff\" opacity=\"0.2\"/><path d=\"M18 18h11v11\" fill=\"#fff\" opacity=\"0.2\"/></svg>\n    </div>\n\n    <!-- Delivery Hero -->\n    <div style=\"opacity:0.5;\">\n      <span style=\"font-size:15px;font-weight:700;color:var(--color-soft-quartz);font-family:var(--font-inter-v);letter-spacing:-0.3px;\">Delivery Hero</span>\n    </div>\n\n    <!-- MediaMarkt -->\n    <div style=\"opacity:0.5;\">\n      <span style=\"font-size:14px;font-weight:700;color:var(--color-soft-quartz);font-style:italic;letter-spacing:-0.2px;\">MediaMarkt</span>\n    </div>\n\n    <!-- Bayer -->\n    <div style=\"opacity:0.5;\">\n      <svg width=\"36\" height=\"36\" viewBox=\"0 0 36 36\" fill=\"none\"><circle cx=\"18\" cy=\"18\" r=\"17\" stroke=\"#fff\" stroke-width=\"1.2\"/><text x=\"18\" y=\"22\" text-anchor=\"middle\" fill=\"#fff\" font-size=\"9\" font-weight=\"700\" font-family=\"Inter,sans-serif\">BAYER</text></svg>\n    </div>\n\n    <!-- Amazon -->\n    <div style=\"opacity:0.5;\">\n      <span style=\"font-size:16px;font-weight:700;color:var(--color-soft-quartz);font-family:var(--font-inter-v);letter-spacing:-0.3px;\">amazon</span>\n    </div>\n  </div>\n\n  <!-- Divider glow -->\n  <div style=\"margin-top:40px;height:1px;background:linear-gradient(90deg,rgba(113,61,255,0) 0%,rgba(183,164,251,0.25) 40%,rgba(133,98,255,0.25) 60%,rgba(113,61,255,0) 100%);\"></div>\n\n  <!-- Stat row -->\n  <div style=\"margin-top:32px;display:flex;align-items:stretch;justify-content:center;gap:0;\">\n    <div style=\"flex:1;text-align:center;padding:0 16px;border-right:1px solid rgba(255,255,255,0.07);\">\n      <div style=\"font-family:var(--font-rebond-grotesque);font-size:28px;font-weight:700;color:var(--color-soft-quartz);letter-spacing:-0.56px;line-height:1.1;\">500K+</div>\n      <div style=\"font-size:12px;color:var(--color-ash-lilac);margin-top:4px;letter-spacing:-0.12px;\">Keywords tracked</div>\n    </div>\n    <div style=\"flex:1;text-align:center;padding:0 16px;border-right:1px solid rgba(255,255,255,0.07);\">\n      <div style=\"font-family:var(--font-rebond-grotesque);font-size:28px;font-weight:700;color:var(--color-soft-quartz);letter-spacing:-0.56px;line-height:1.1;\">180+</div>\n      <div style=\"font-size:12px;color:var(--color-ash-lilac);margin-top:4px;letter-spacing:-0.12px;\">Countries supported</div>\n    </div>\n    <div style=\"flex:1;text-align:center;padding:0 16px;\">\n      <div style=\"font-family:var(--font-rebond-grotesque);font-size:28px;font-weight:700;color:var(--color-soft-quartz);letter-spacing:-0.56px;line-height:1.1;\">4.9★</div>\n      <div style=\"font-size:12px;color:var(--color-ash-lilac);margin-top:4px;letter-spacing:-0.12px;\">Average rating</div>\n    </div>\n  </div>\n</div>1c:T53a,Quick Color Reference: background #0a0118; primary text #ffffff; body text #9b96b0; border rgba(255,255,255,0.1); CTA accent #713dff; glow highlight #8562ff. Example component prompts: 1) Create a hero section with background #0a0118, centered Rebond Grotesque headline at 72px weight 700 line-height 1.11 letter-spacing -1.44px in #ffffff, supporting Inter text at 18px weight 400 line-height 1.56 in #9b96b0, and a glass CTA pill with rgba(255,255,255,0.04) fill, 1px rgba(255,255,255,0.1) border, 999px radius, 7px 24px padding, white text. 2) Create a dark product screenshot frame: 16px radius card in #0a0118, no shadow, thin rgba(255,255,255,0.1) border, purple underglow using linear-gradient(180deg, rgba(183,164,251,0) 0%, rgba(183,164,251,0.5) 50%, rgba(133,98,255,0.5) 75%, rgba(133,98,255,0) 100%). 3) Create a header bar inside 1248px max width with Inter 14px/16px links in #9b96b0, 16px item gaps, a transparent outline login pill with 4px 16px padding and 999px radius, plus a stronger glass signup pill. 4) Create a feature card using #0a0118 background, 16px radius, 28px padding, headline in Rebond Grotesque 24px #ffffff, body in Inter 16px #9b96b0, and no drop shadow. 5) Create a promo badge with rgba(255,255,255,0.04) fill, 999px radius, padding 4px 14px, white 14px Inter text, placed above a dark section title."
+}

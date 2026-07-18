@@ -1,0 +1,242 @@
+{
+  "color": {
+    "cream-paper": {
+      "$value": "#f1f0ee",
+      "$type": "color",
+      "$description": "Cream Paper — Page canvas and large surface fills; warm off-white sets the editorial paper tone"
+    },
+    "pure-ink": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "Pure Ink — Primary text, nav links, icon strokes, footer metadata, logo marks — maximum contrast against cream"
+    },
+    "charcoal-press": {
+      "$value": "#252525",
+      "$type": "color",
+      "$description": "Charcoal Press — Supporting neutral for secondary UI, dividers, and muted labels. Do not promote it to the primary CTA color"
+    },
+    "bone-gray": {
+      "$value": "#dbdad9",
+      "$type": "color",
+      "$description": "Bone Gray — Quiet divider tone, subtle background blocks, low-emphasis surfaces — barely visible, only there for separation"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Paper White — Inverse text on dark blocks, occasional clean card surfaces when maximum contrast is needed"
+    }
+  },
+  "font": {
+    "as-therma-bold-condensed": {
+      "$value": "AS Therma Bold Condensed",
+      "$type": "fontFamily",
+      "$description": "Hero and section display headlines; the screaming condensed grotesque that defines the brand voice. Set tight (lh 0.80) with aggressive negative tracking so letters nearly collide — the type itself is the decoration"
+    },
+    "pp-neue-montreal-mono-medium": {
+      "$value": "PP Neue Montreal Mono Medium",
+      "$type": "fontFamily",
+      "$description": "Labels, metadata, nav items, project tags, marquee text, footer technical copy. The mono voice carries all secondary information and is the only text in the system with stylized alternates (ss04, ss07, ss08, zero) plus case and discretionary ligatures — it reads as editorial chrome"
+    },
+    "pp-neue-montreal-semibold": {
+      "$value": "PP Neue Montreal SemiBold",
+      "$type": "fontFamily",
+      "$description": "Body paragraphs and longer-form copy in the About section; SemiBold weight at 18px reads as confident editorial prose, not corporate body text"
+    },
+    "sans-serif-system": {
+      "$value": "sans-serif (system)",
+      "$type": "fontFamily",
+      "$description": "Smallest utility text and legacy fallback. Used sparingly where the mono voice is not appropriate; rarely the primary choice"
+    }
+  },
+  "typography": {
+    "xs": {
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step xs at 12px"
+    },
+    "sm": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Mono Medium",
+        "fontSize": "14px",
+        "fontWeight": 500,
+        "lineHeight": 1.15
+      },
+      "$type": "typography",
+      "$description": "Typography step sm at 14px"
+    },
+    "sm-2": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal Mono Medium",
+        "fontSize": "14px",
+        "fontWeight": 400,
+        "lineHeight": 1
+      },
+      "$type": "typography",
+      "$description": "Typography step sm-2 at 14px"
+    },
+    "lg": {
+      "$value": {
+        "fontFamily": "PP Neue Montreal SemiBold",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": 1.2
+      },
+      "$type": "typography",
+      "$description": "Typography step lg at 18px"
+    },
+    "5xl": {
+      "$value": {
+        "fontFamily": "AS Therma Bold Condensed",
+        "fontSize": "96px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl at 96px"
+    },
+    "5xl-2": {
+      "$value": {
+        "fontFamily": "AS Therma Bold Condensed",
+        "fontSize": "128px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-2 at 128px"
+    },
+    "5xl-3": {
+      "$value": {
+        "fontFamily": "AS Therma Bold Condensed",
+        "fontSize": "180px",
+        "fontWeight": 400,
+        "lineHeight": 0.8
+      },
+      "$type": "typography",
+      "$description": "Typography step 5xl-3 at 180px"
+    }
+  },
+  "spacing": {
+    "5": {
+      "$value": "5px",
+      "$type": "dimension",
+      "$description": "Spacing 5px"
+    },
+    "6": {
+      "$value": "6px",
+      "$type": "dimension",
+      "$description": "Spacing 6px"
+    },
+    "8": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Spacing 8px"
+    },
+    "10": {
+      "$value": "10px",
+      "$type": "dimension",
+      "$description": "Spacing 10px"
+    },
+    "12": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Spacing 12px"
+    },
+    "16": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Spacing 16px"
+    },
+    "20": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Spacing 20px"
+    },
+    "24": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Spacing 24px"
+    },
+    "40": {
+      "$value": "40px",
+      "$type": "dimension",
+      "$description": "Spacing 40px"
+    },
+    "60": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Spacing 60px"
+    },
+    "80": {
+      "$value": "80px",
+      "$type": "dimension",
+      "$description": "Spacing 80px"
+    },
+    "160": {
+      "$value": "160px",
+      "$type": "dimension",
+      "$description": "Spacing 160px"
+    },
+    "240": {
+      "$value": "240px",
+      "$type": "dimension",
+      "$description": "Spacing 240px"
+    }
+  },
+  "radius": {
+    "md": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Border radius md"
+    },
+    "lg": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Border radius lg"
+    },
+    "xl": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Border radius xl"
+    },
+    "3xl": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Border radius 3xl"
+    }
+  },
+  "surface": {
+    "cream-paper": {
+      "$value": "#f1f0ee",
+      "$type": "color",
+      "$description": "Surface level 0: Base page canvas"
+    },
+    "bone-gray": {
+      "$value": "#dbdad9",
+      "$type": "color",
+      "$description": "Surface level 1: Subtle secondary surface for cards, dividers, or quiet blocks"
+    },
+    "paper-white": {
+      "$value": "#ffffff",
+      "$type": "color",
+      "$description": "Surface level 2: Elevated or inverse card surface"
+    },
+    "charcoal-press": {
+      "$value": "#252525",
+      "$type": "color",
+      "$description": "Surface level 3: Dark surface for button fills, inverted text blocks, or rare dark sections"
+    }
+  },
+  "$extensions": {
+    "com.refero.extraction": {
+      "url": "https://duties.xyz",
+      "siteName": "Duties.xyz",
+      "extractedAt": "2026-06-03T18:47:38.049Z",
+      "variant": "extended"
+    }
+  }
+}

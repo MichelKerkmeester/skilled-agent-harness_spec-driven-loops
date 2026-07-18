@@ -1,0 +1,1036 @@
+{
+  "source": "https://styles.refero.design/style/5f39e778-d204-42a9-8b8b-a1519dbd3971",
+  "uuid": "5f39e778-d204-42a9-8b8b-a1519dbd3971",
+  "name": "Microsoft",
+  "northStar": "Retail shelf behind plate glass — products float forward, chrome recedes.",
+  "capturedAt": "2026-07-18T10:13:19.526Z",
+  "meta": {
+    "url": "https://microsoft.com",
+    "siteName": "Microsoft",
+    "extractedAt": "2026-04-11T19:19:32.821Z",
+    "durationMs": 105864,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "elementCount": 532,
+    "telemetry": {
+      "enrichment": {
+        "componentHtmlStatus": "complete",
+        "attempts": 2
+      }
+    }
+  },
+  "designSystem": {
+    "dos": [
+      "Use #0067b8 exclusively for all interactive text links, button backgrounds, and icon accent colors — never apply it decoratively to non-interactive elements.",
+      "Set borderRadius 2px on all buttons and form inputs; use 0px on all card containers, badges, and dividers.",
+      "Apply padding 48px to all elevated white cards (boxShadow rgba(0,0,0,0.13) 0px 3px 7px + rgba(0,0,0,0.11) 0px 1px 2px); transparent container cards get padding 0px and no shadow.",
+      "Use Segoe UI weight 600 only at heading sizes (29px+); all body, nav, caption, and button labels use weight 400.",
+      "Place product photography in full-bleed hero and carousel bands; always isolate copy in a separate white overlay panel rather than compositing text directly over images.",
+      "Limit the amber badge (#ffb900 / #000000 text) to promotional or notification-only contexts — it is the single warm-chromatic element and loses meaning if used broadly.",
+      "Maintain #f2f2f2 as the footer background and any secondary section band; never use a third gray value for backgrounds."
+    ],
+    "tags": [
+      "product-catalog",
+      "system-font",
+      "achromatic",
+      "sharp-corners",
+      "single-accent",
+      "nav-heavy",
+      "photo-forward",
+      "high-density",
+      "accessible",
+      "retail"
+    ],
+    "donts": [
+      "Do not use any border-radius value other than 0px or 2px — rounded cards, pill buttons, or circular badges are outside this system.",
+      "Do not introduce a second typeface — Segoe UI is the only font. No display serifs, no geometric sans, no variable-weight hero text.",
+      "Do not add colored backgrounds to UI sections (other than #f2f2f2 and full-bleed photo bands) — white is the only neutral surface for cards and content areas.",
+      "Do not use #0066ff or any violet-shifted blue as a link or button color — the brand blue is #0067b8 exclusively.",
+      "Do not apply box-shadow to navigation, header, footer, hero panels, or icon rows — shadow belongs only to the elevated white product card.",
+      "Do not use letter-spacing adjustments at any size — Segoe UI renders at normal tracking across all 11px–37px steps.",
+      "Do not add gradient overlays, color washes, or duotone treatments to photography — images appear as captured, with no CSS filter or color-blend layer."
+    ],
+    "theme": "light",
+    "colors": [
+      {
+        "hex": "#0067b8",
+        "name": "Microsoft Blue",
+        "role": "All interactive elements — links, primary buttons, icon accents. A single saturated hue against a near-grayscale UI creates maximum clickability signal without a second accent color.",
+        "group": "brand"
+      },
+      {
+        "hex": "#004a7f",
+        "name": "Deep Azure",
+        "role": "Hover and active states for links and card link colors — darkened variant of Microsoft Blue creating depth without hue shift.",
+        "group": "brand"
+      },
+      {
+        "hex": "#0078d4",
+        "name": "Fluent Icon Blue",
+        "role": "Card image icon color per CSS token; slightly lighter than Microsoft Blue, used in Fluent UI icon contexts.",
+        "group": "brand"
+      },
+      {
+        "hex": "#ffb900",
+        "name": "Amber Badge",
+        "role": "Badge background (CSS token sc-badge-bg-yellow) with black text — the only warm accent in the system, reserved for promotional or notification badges.",
+        "group": "accent"
+      },
+      {
+        "hex": "#000000",
+        "name": "Void",
+        "role": "Primary text, borders, SVG fills across heading, body, nav, footer.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#171717",
+        "name": "Graphite",
+        "role": "Ghost button text and border color; near-black for secondary interactive labels.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#262626",
+        "name": "Charcoal",
+        "role": "Body copy, nav text, secondary button labels.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#333333",
+        "name": "Iron",
+        "role": "Tertiary text contexts, muted body copy.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#616161",
+        "name": "Slate",
+        "role": "Secondary nav links, icon strokes, footer body text, caption-level text.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Fog",
+        "role": "Footer background, alternate section backgrounds.",
+        "group": "neutral"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "White",
+        "role": "Page background, card surfaces, button text on filled blue buttons.",
+        "group": "neutral"
+      }
+    ],
+    "layout": "Max-width approximately 1600px, centered. Hero is full-bleed with a colored/photo background occupying 100vw, text floated in a left-aligned white overlay panel (~300px wide). Below hero: a 5-column icon shortcut row on white. Then a 4-column product card grid at equal widths with 48px-padded elevated white cards. Mid-page: second full-bleed carousel (lifestyle photo + white left panel). Below: a second feature card or full-bleed branded section. Footer: full-bleed #f2f2f2 with 6-column link nav. Page alternates between full-bleed photo/color bands and white card-grid sections — never gray-on-gray stacking. Navigation is a flat sticky top bar with logo left, product nav center, utility icons right.",
+    "imagery": "Three visual registers coexist: high-production product photography (Surface devices on desaturated blue-gradient backgrounds, Xbox controllers on dark surfaces), full-bleed lifestyle/landscape photography (Edge browser section with aerial lake landscape, warm bokeh backgrounds), and 3D illustration (Microsoft Reflect's fuzzy monster character). Product shots are tight-cropped with environment color matching the brand context — Surface blue, Xbox black, Edge teal. Photography never bleeds into the text card overlay — a white or semi-transparent panel always isolates copy from image. Icons are outlined style, monochrome #616161, approximately 24px, using minimal stroke weight. Image sections alternate with pure-white card grid sections, making imagery feel like editorial breaks rather than continuous texture.",
+    "similar": [
+      {
+        "why": "Same 4-column product card grid with product photography, single brand-blue CTA buttons, and achromatic supporting UI",
+        "business": "Samsung.com"
+      },
+      {
+        "why": "Full-bleed hero + elevated white cards with subtle box-shadow + single-font system-sans approach",
+        "business": "Dell.com"
+      },
+      {
+        "why": "Carousel hero with white overlay panel, icon shortcut navigation row, and near-zero UI color saturation",
+        "business": "HP.com"
+      },
+      {
+        "why": "Sharp-cornered cards, dominant product photography, and a single vivid CTA accent against grayscale UI",
+        "business": "Lenovo.com"
+      }
+    ],
+    "spacing": {
+      "radius": {
+        "cards": "0px",
+        "badges": "0px",
+        "inputs": "2px",
+        "buttons": "2px"
+      },
+      "elementGap": "8-16px",
+      "sectionGap": "48px",
+      "cardPadding": "48px",
+      "pageMaxWidth": "1600px"
+    },
+    "category": "technology",
+    "surfaces": [
+      {
+        "hex": "#ffffff",
+        "name": "Page Base",
+        "level": 0,
+        "purpose": "Default page background for all main content sections"
+      },
+      {
+        "hex": "#f2f2f2",
+        "name": "Fog Surface",
+        "level": 1,
+        "purpose": "Footer background and alternate section backgrounds"
+      },
+      {
+        "hex": "#ffffff",
+        "name": "Elevated Card",
+        "level": 2,
+        "purpose": "White product cards with dual-layer drop shadow to lift from page base"
+      }
+    ],
+    "northStar": "Retail shelf behind plate glass — products float forward, chrome recedes.",
+    "typeScale": [
+      {
+        "role": "caption",
+        "size": 11,
+        "lineHeight": 16
+      },
+      {
+        "role": "heading",
+        "size": 29,
+        "lineHeight": 35
+      },
+      {
+        "role": "display",
+        "size": 37,
+        "lineHeight": 37
+      }
+    ],
+    "components": [
+      {
+        "html": "$19",
+        "name": "Product Cards Grid",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1a",
+        "name": "Category Icon Links",
+        "role": "",
+        "description": ""
+      },
+      {
+        "html": "$1b",
+        "name": "Primary Button Group & Amber Badge",
+        "role": "",
+        "description": ""
+      },
+      {
+        "name": "Primary Filled Button",
+        "role": "Main CTA across hero and product cards",
+        "description": "backgroundColor #0067b8, color #ffffff, borderRadius 2px, padding 10px 12px, no border (transparent). 11 instances sitewide. The 2px radius is the only rounding in the entire system — just enough to soften without becoming pill-shaped. Font: Segoe UI 15px/400."
+      },
+      {
+        "name": "Ghost Outline Button",
+        "role": "Secondary actions, alternative CTAs",
+        "description": "backgroundColor transparent, color #171717, border 1px solid #171717, borderRadius 0px, padding 0px 16px. Sharp-cornered, text-height-only padding — visually lighter than filled but still rigid. Font: Segoe UI 15px/400."
+      },
+      {
+        "name": "Transparent Card — Zero State",
+        "role": "Layout containers, hero content panels, image-backed sections",
+        "description": "backgroundColor transparent, borderRadius 0px, boxShadow none, padding 0px. Acts as invisible structural grouping — content floats within without visual box. Used 41 times as the dominant card pattern."
+      },
+      {
+        "name": "Global Navigation Bar",
+        "role": "Primary site navigation, persistent header",
+        "description": "White background, height 54px, contains Microsoft logo (SVG multicolor), text nav links at 13px/400 #616161, and right-aligned utility icons (Search, Cart, Sign In). 68 interactive elements. Flat — no shadow, no border-bottom. Divides into product nav (left) and utility nav (right)."
+      },
+      {
+        "name": "Category Icon Link",
+        "role": "Quick-shop shortcut links below hero carousel",
+        "description": "Outlined SVG icon at ~24px above a link label at 13px/400 #0067b8. Transparent background, no border, no card surface. 5 items in a horizontal row. Icon stroke style matches #616161; label uses brand blue to signal clickability."
+      },
+      {
+        "name": "Hero Carousel Panel",
+        "role": "Full-width promotional banner with auto-advancing slides",
+        "description": "Full-bleed background image (dark blue for tech products, landscape photography for lifestyle), overlaid white card panel at left (transparent background, no radius, 48px padding) containing headline 37px/600, body 15px/400, and a primary CTA button. Carousel nav uses pagination dots + previous/next arrow buttons + pause control below the slide area."
+      },
+      {
+        "name": "Amber Notification Badge",
+        "role": "Promotional label or new-feature callout",
+        "description": "backgroundColor #ffb900, color #000000, borderRadius 0px, padding 2px 8px. Font Segoe UI 11px/400. Used sparingly as the only warm-colored element in the achromatic system — creates immediate visual contrast on white or gray surfaces."
+      },
+      {
+        "name": "Footer Multi-Column Nav",
+        "role": "Site-level footer with category link columns",
+        "description": "backgroundColor #f2f2f2, 6-column grid, column headers at 13px/600 #000000, links at 13px/400 #616161 hover #0067b8. No borders between columns, 16px row gap. Social follow icons in a horizontal strip above footer nav."
+      },
+      {
+        "name": "Carousel Pagination Control",
+        "role": "Navigation for hero and mid-page carousels",
+        "description": "Row of filled/outlined dot indicators (filled = active, outlined = inactive), flanked by left/right arrow buttons and a pause button. Controls appear below the carousel band on a white background. Arrow and pause buttons use 0px radius, transparent background, #171717 border, padding 15px 9px–16px 20px."
+      }
+    ],
+    "typography": [
+      {
+        "role": "Single typeface for all text — nav at 13-15px/400, body at 15-16px/400, card headings at 29px/600, hero headlines at 37px/600. No decorative cuts, no variable-weight axes. The absence of a separate display face makes even 37px headlines feel utilitarian — authority through recurrence, not grandeur.",
+        "sizes": "11px, 13px, 15px, 16px, 29px, 37px",
+        "family": "Segoe UI",
+        "weight": "400, 600",
+        "lineHeight": "1.00–1.50 (1.00 at large display sizes, 1.20–1.33 for headings, 1.45–1.50 for body/nav)",
+        "substitute": "Segoe UI (system stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif)",
+        "letterSpacing": "normal across all sizes"
+      }
+    ],
+    "description": "Microsoft.com reads like a department store catalog translated into pixels — functional, product-forward, and deliberately unshowy. The near-achromatic palette (colorfulness 2%) lets product photography and brand imagery carry all chromatic weight, while the UI itself stays out of the way. A single vivid blue (#0067b8) does everything — links, buttons, borders — appearing nowhere decorative, only interactive. Cards use a dual-layer shadow (rgba(0,0,0,0.13) 3px 7px + rgba(0,0,0,0.11) 1px 2px) against sharp 0px radius corners, a deliberate anti-trend choice that makes the surface feel like printed catalog tiles rather than floated app cards. Segoe UI at weight 400/600 across 11px–37px is the only typeface — no display cuts, no italics, no variable axes — enforcing a utilitarian uniformity across 56 interactive elements in a single header.",
+    "customSections": [
+      {
+        "title": "Agent Prompt Guide",
+        "content": "$1c"
+      }
+    ],
+    "elevationPhilosophy": "Elevation appears only on white product cards — the dual-layer shadow (rgba(0,0,0,0.13) 3px 7px + rgba(0,0,0,0.11) 1px 2px) is the sole depth signal. No shadow hierarchy across levels: either a surface has this single card shadow or it has none. Navigation, hero panels, footers, and icon-link rows are all completely flat. The system treats shadow as a product-tile affordance, not a general UI metaphor."
+  },
+  "raw": {
+    "colors": {
+      "tokens": [
+        {
+          "hex": "#000000",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0
+          },
+          "contexts": [
+            "other",
+            "nav",
+            "button",
+            "body",
+            "link",
+            "hero",
+            "card",
+            "image",
+            "heading",
+            "list",
+            "footer",
+            "icon"
+          ],
+          "frequency": 1893,
+          "confidence": 1,
+          "prominence": 49732148.76378142,
+          "properties": [
+            "color",
+            "borderColor",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#f2f2f2",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.9611513666441094
+          },
+          "contexts": [
+            "footer",
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 1000547.2026427478,
+          "properties": [
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#ffffff",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 1.0000000000000002
+          },
+          "contexts": [
+            "other",
+            "link",
+            "card",
+            "button"
+          ],
+          "frequency": 29,
+          "confidence": 1,
+          "prominence": 830677.6951493749,
+          "properties": [
+            "backgroundColor",
+            "color",
+            "fill"
+          ]
+        },
+        {
+          "hex": "#616161",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.4926091942525259
+          },
+          "contexts": [
+            "nav",
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 375,
+          "confidence": 1,
+          "prominence": 293525.0526787631,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#0067b8",
+          "oklch": {
+            "c": 0.1502730192528321,
+            "h": 251.48266616641158,
+            "l": 0.5097725022735411
+          },
+          "contexts": [
+            "link",
+            "button",
+            "nav",
+            "icon"
+          ],
+          "frequency": 136,
+          "confidence": 1,
+          "prominence": 93885.67036131889,
+          "properties": [
+            "color",
+            "borderColor",
+            "backgroundColor"
+          ]
+        },
+        {
+          "hex": "#262626",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.26861827698438745
+          },
+          "contexts": [
+            "link",
+            "image",
+            "body",
+            "nav",
+            "button"
+          ],
+          "frequency": 40,
+          "confidence": 1,
+          "prominence": 39635.16973016458,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#333333",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.3210925111636326
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 15,
+          "confidence": 1,
+          "prominence": 26848,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#171717",
+          "oklch": {
+            "c": 0,
+            "h": 0,
+            "l": 0.20462653095774938
+          },
+          "contexts": [
+            "button",
+            "body",
+            "list"
+          ],
+          "frequency": 90,
+          "confidence": 1,
+          "prominence": 13119.713994640571,
+          "properties": [
+            "color",
+            "borderColor"
+          ]
+        },
+        {
+          "hex": "#0066ff",
+          "oklch": {
+            "c": 0.2408052392865458,
+            "h": 260.8177576265576,
+            "l": 0.5634552426832016
+          },
+          "contexts": [
+            "other"
+          ],
+          "frequency": 2,
+          "confidence": 1,
+          "prominence": 846.3699753850973,
+          "properties": [
+            "fill"
+          ]
+        }
+      ],
+      "isDarkMode": false,
+      "colorfulness": 0.02189664527493694,
+      "contrastPairs": [
+        {
+          "level": "AAA",
+          "ratio": 21,
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 18.76,
+          "background": "#f2f2f2",
+          "foreground": "#000000"
+        },
+        {
+          "level": "AAA",
+          "ratio": 17.93,
+          "background": "#ffffff",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 16.01,
+          "background": "#f2f2f2",
+          "foreground": "#171717"
+        },
+        {
+          "level": "AAA",
+          "ratio": 15.13,
+          "background": "#ffffff",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 13.52,
+          "background": "#f2f2f2",
+          "foreground": "#262626"
+        },
+        {
+          "level": "AAA",
+          "ratio": 12.63,
+          "background": "#ffffff",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AAA",
+          "ratio": 11.29,
+          "background": "#f2f2f2",
+          "foreground": "#333333"
+        },
+        {
+          "level": "AA",
+          "ratio": 6.19,
+          "background": "#ffffff",
+          "foreground": "#616161"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.78,
+          "background": "#0067b8",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.53,
+          "background": "#f2f2f2",
+          "foreground": "#616161"
+        },
+        {
+          "level": "AA",
+          "ratio": 5.16,
+          "background": "#f2f2f2",
+          "foreground": "#0067b8"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.63,
+          "background": "#0067b8",
+          "foreground": "#000000"
+        },
+        {
+          "level": "fail",
+          "ratio": 3.1,
+          "background": "#0067b8",
+          "foreground": "#171717"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.62,
+          "background": "#0067b8",
+          "foreground": "#262626"
+        },
+        {
+          "level": "fail",
+          "ratio": 2.19,
+          "background": "#0067b8",
+          "foreground": "#333333"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.12,
+          "background": "#f2f2f2",
+          "foreground": "#ffffff"
+        },
+        {
+          "level": "fail",
+          "ratio": 1.07,
+          "background": "#0067b8",
+          "foreground": "#616161"
+        }
+      ]
+    },
+    "shapes": {
+      "radii": [
+        {
+          "value": 2,
+          "contexts": [
+            "button"
+          ],
+          "frequency": 12
+        }
+      ],
+      "shadows": [
+        {
+          "value": "rgba(0, 0, 0, 0.13) 0px 3px 7px 0px, rgba(0, 0, 0, 0.11) 0px 1px 2px 0px",
+          "contexts": [
+            "card"
+          ],
+          "frequency": 11
+        }
+      ]
+    },
+    "spacing": {
+      "tokens": [
+        {
+          "value": 1,
+          "frequency": 15,
+          "properties": [
+            "marginTop",
+            "paddingRight",
+            "marginBottom",
+            "marginLeft"
+          ]
+        },
+        {
+          "value": 2,
+          "frequency": 5,
+          "properties": [
+            "marginBottom",
+            "paddingLeft",
+            "paddingTop",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 3,
+          "frequency": 4,
+          "properties": [
+            "marginTop",
+            "paddingTop",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 4,
+          "frequency": 20,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 6,
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "marginRight",
+            "marginTop",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 7,
+          "frequency": 40,
+          "properties": [
+            "marginLeft",
+            "rowGap",
+            "columnGap",
+            "paddingRight"
+          ]
+        },
+        {
+          "value": 8,
+          "frequency": 141,
+          "properties": [
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom",
+            "marginTop",
+            "marginRight",
+            "marginBottom",
+            "marginLeft",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 9,
+          "frequency": 2,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 10,
+          "frequency": 35,
+          "properties": [
+            "paddingLeft",
+            "paddingBottom",
+            "marginRight",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 12,
+          "frequency": 59,
+          "properties": [
+            "paddingLeft",
+            "paddingRight",
+            "marginRight"
+          ]
+        },
+        {
+          "value": 15,
+          "frequency": 2,
+          "properties": [
+            "paddingLeft",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 16,
+          "frequency": 62,
+          "properties": [
+            "paddingTop",
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft",
+            "marginRight",
+            "marginLeft",
+            "marginBottom",
+            "marginTop"
+          ]
+        },
+        {
+          "value": 20,
+          "frequency": 5,
+          "properties": [
+            "paddingRight",
+            "marginBottom"
+          ]
+        },
+        {
+          "value": 24,
+          "frequency": 74,
+          "properties": [
+            "marginBottom",
+            "marginRight",
+            "marginLeft",
+            "paddingTop",
+            "paddingRight",
+            "paddingLeft",
+            "paddingBottom"
+          ]
+        },
+        {
+          "value": 30,
+          "frequency": 2,
+          "properties": [
+            "paddingBottom",
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 36,
+          "frequency": 6,
+          "properties": [
+            "paddingTop"
+          ]
+        },
+        {
+          "value": 48,
+          "frequency": 27,
+          "properties": [
+            "marginBottom",
+            "marginTop",
+            "paddingTop",
+            "paddingRight",
+            "paddingBottom",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 64,
+          "frequency": 6,
+          "properties": [
+            "paddingBottom",
+            "paddingRight",
+            "paddingLeft"
+          ]
+        },
+        {
+          "value": 71,
+          "frequency": 24,
+          "properties": [
+            "paddingRight",
+            "paddingLeft"
+          ]
+        }
+      ],
+      "density": "compact",
+      "baseUnit": 8
+    },
+    "gradients": [],
+    "typography": {
+      "fonts": [
+        {
+          "family": "Segoe UI",
+          "source": "system",
+          "weights": [
+            400,
+            600
+          ],
+          "frequency": 527,
+          "fontFeatureSettings": []
+        }
+      ],
+      "scale": {
+        "base": 16,
+        "name": "Major Second",
+        "ratio": 1.125,
+        "confidence": 1
+      },
+      "steps": [
+        {
+          "size": 11,
+          "family": "Segoe UI",
+          "weight": 400,
+          "contexts": [
+            "nav",
+            "link",
+            "icon",
+            "body"
+          ],
+          "frequency": 102,
+          "lineHeight": 1.45,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 11,
+          "family": "Segoe UI",
+          "weight": 400,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 18,
+          "lineHeight": 2.27,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Segoe UI",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "image",
+            "body",
+            "nav",
+            "button"
+          ],
+          "frequency": 38,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Segoe UI",
+          "weight": 400,
+          "contexts": [
+            "button",
+            "body"
+          ],
+          "frequency": 2,
+          "lineHeight": 1.38,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Segoe UI",
+          "weight": 400,
+          "contexts": [
+            "body"
+          ],
+          "frequency": 1,
+          "lineHeight": 3.54,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Segoe UI",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "body"
+          ],
+          "frequency": 5,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 13,
+          "family": "Segoe UI",
+          "weight": 400,
+          "contexts": [
+            "other"
+          ],
+          "frequency": 1,
+          "lineHeight": 3.69,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Segoe UI",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "footer",
+            "nav"
+          ],
+          "frequency": 13,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 15,
+          "family": "Segoe UI",
+          "weight": 600,
+          "contexts": [
+            "nav"
+          ],
+          "frequency": 6,
+          "lineHeight": 1.33,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Segoe UI",
+          "weight": 400,
+          "contexts": [
+            "other",
+            "link",
+            "hero",
+            "body",
+            "button",
+            "list",
+            "card",
+            "image",
+            "nav"
+          ],
+          "frequency": 279,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Segoe UI",
+          "weight": 600,
+          "contexts": [
+            "link",
+            "button",
+            "body"
+          ],
+          "frequency": 16,
+          "lineHeight": 1,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Segoe UI",
+          "weight": 600,
+          "contexts": [
+            "nav",
+            "link",
+            "icon"
+          ],
+          "frequency": 30,
+          "lineHeight": 1.5,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 16,
+          "family": "Segoe UI",
+          "weight": 400,
+          "contexts": [
+            "heading"
+          ],
+          "frequency": 1,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 29,
+          "family": "Segoe UI",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 11,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        },
+        {
+          "size": 37,
+          "family": "Segoe UI",
+          "weight": 600,
+          "contexts": [
+            "heading",
+            "other"
+          ],
+          "frequency": 4,
+          "lineHeight": 1.2,
+          "letterSpacing": 0,
+          "textTransform": "none"
+        }
+      ]
+    }
+  },
+  "screenshot": {
+    "url": "https://images.refero.design/styles/refero.design/image/4ff04707-fe61-4571-a4a4-0308cc297473.jpg",
+    "thumbnail": "https://images.refero.design/styles/refero.design/image/1c950d8c-0545-465d-a3a1-2002727acc5d.jpg"
+  },
+  "agentPromptGuide": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https://styles.refero.design/style/5f39e778-d204-42a9-8b8b-a1519dbd3971#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Refero Styles\",\"item\":\"https://styles.refero.design\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Microsoft design system\",\"item\":\"https://styles.refero.design/style/5f39e778-d204-42a9-8b8b-a1519dbd3971\"}]},{\"@type\":\"CreativeWork\",\"@id\":\"https://styles.refero.design/style/5f39e778-d204-42a9-8b8b-a1519dbd3971#style-reference\",\"name\":\"Microsoft design system reference\",\"headline\":\"Microsoft design system | Refero Styles\",\"description\":\"Explore Microsoft's light Other design system: Microsoft Blue #0067b8, Deep Azure #004a7f colors, Segoe UI typography, and DESIGN.md for AI agents.\",\"url\":\"https://styles.refero.design/style/5f39e778-d204-42a9-8b8b-a1519dbd3971\",\"mainEntityOfPage\":\"https://styles.refero.design/style/5f39e778-d204-42a9-8b8b-a1519dbd3971\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"isBasedOn\":{\"@type\":\"WebSite\",\"name\":\"Microsoft\",\"url\":\"https://microsoft.com\"},\"primaryImageOfPage\":{\"@type\":\"ImageObject\",\"@id\":\"https://styles.refero.design/style/5f39e778-d204-42a9-8b8b-a1519dbd3971#primaryimage\",\"url\":\"https://images.refero.design/styles/refero.design/image/1c950d8c-0545-465d-a3a1-2002727acc5d.jpg\",\"contentUrl\":\"https://images.refero.design/styles/refero.design/image/1c950d8c-0545-465d-a3a1-2002727acc5d.jpg\",\"caption\":\"Screenshot of Microsoft\"},\"image\":\"https://images.refero.design/styles/refero.design/image/1c950d8c-0545-465d-a3a1-2002727acc5d.jpg\",\"author\":{\"@type\":\"Organization\",\"name\":\"Refero Styles\",\"url\":\"https://styles.refero.design\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Refero\",\"url\":\"https://refero.design\"},\"keywords\":[\"Microsoft design system\",\"Microsoft website design\",\"Microsoft colors\",\"Microsoft typography\",\"DESIGN.md\",\"AI agent design\",\"website design inspiration\",\"Other design system\",\"Microsoft Blue\",\"Deep Azure\",\"Fluent Icon Blue\",\"Amber Badge\",\"Segoe UI\"],\"about\":[{\"@type\":\"Thing\",\"name\":\"Microsoft design system\"},{\"@type\":\"Thing\",\"name\":\"Microsoft website design\"},{\"@type\":\"Thing\",\"name\":\"Microsoft colors\"},{\"@type\":\"Thing\",\"name\":\"Microsoft typography\"},{\"@type\":\"Thing\",\"name\":\"DESIGN.md\"},{\"@type\":\"Thing\",\"name\":\"AI agent design\"},{\"@type\":\"Thing\",\"name\":\"website design inspiration\"},{\"@type\":\"Thing\",\"name\":\"Other design system\"}],\"datePublished\":\"2026-04-13T11:13:48.000Z\",\"dateModified\":\"2026-04-13T11:13:48.000Z\"}]}19:T11a3,<div style=\"font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; background: #ffffff; padding: 24px; width: 600px; box-sizing: border-box;\">\n  <style>\n    :root {\n      --color-microsoft-blue: #0067b8;\n      --color-deep-azure: #004a7f;\n      --color-void: #000000;\n      --color-charcoal: #262626;\n      --color-slate: #616161;\n      --color-white: #ffffff;\n      --color-fog: #f2f2f2;\n      --shadow-sm: rgba(0,0,0,0.13) 0px 3px 7px 0px, rgba(0,0,0,0.11) 0px 1px 2px 0px;\n      --font-segoe-ui: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;\n      --spacing-16: 16px;\n      --spacing-24: 24px;\n      --spacing-48: 48px;\n    }\n  </style>\n  <div style=\"display: grid; grid-template-columns: 1fr 1fr; gap: 16px;\">\n    <!-- Card 1: Surface Laptop -->\n    <div style=\"background: var(--color-white); box-shadow: var(--shadow-sm); border-radius: 0px; display: flex; flex-direction: column;\">\n      <div style=\"width: 100%; height: 160px; background: linear-gradient(135deg, #c8d8e8 0%, #e0ecf4 100%); overflow: hidden; display: flex; align-items: center; justify-content: center;\">\n        <div style=\"width: 120px; height: 80px; background: #b0c8dc; border-radius: 4px; position: relative;\">\n          <div style=\"position: absolute; top: 6px; left: 6px; right: 6px; bottom: 12px; background: linear-gradient(135deg, #5b9bd5, #2e75b6); border-radius: 2px;\"></div>\n          <div style=\"position: absolute; bottom: 0; left: -10px; right: -10px; height: 6px; background: #a0b8cc; border-radius: 2px;\"></div>\n        </div>\n      </div>\n      <div style=\"padding: 24px; flex: 1; display: flex; flex-direction: column;\">\n        <h3 style=\"font-family: var(--font-segoe-ui); font-size: 20px; font-weight: 600; color: var(--color-void); margin: 0 0 10px 0; line-height: 1.25;\">Diseño elegante y ultradelgado en Surface Laptop 7</h3>\n        <p style=\"font-family: var(--font-segoe-ui); font-size: 15px; font-weight: 400; color: var(--color-charcoal); margin: 0 0 20px 0; line-height: 1.5; flex: 1;\">Surface Laptop: diseño premium, alto rendimiento y experiencias Copilot+ con IA, y gran autonomía de batería.</p>\n        <a href=\"#\" style=\"display: inline-block; background: var(--color-microsoft-blue); color: var(--color-white); font-family: var(--font-segoe-ui); font-size: 15px; font-weight: 400; padding: 10px 12px; text-decoration: none; border-radius: 2px; width: fit-content;\">Comprar ahora</a>\n      </div>\n    </div>\n    <!-- Card 2: Xbox Game Pass -->\n    <div style=\"background: var(--color-white); box-shadow: var(--shadow-sm); border-radius: 0px; display: flex; flex-direction: column;\">\n      <div style=\"width: 100%; height: 160px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative;\">\n        <div style=\"display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; width: 100%; height: 100%;\">\n          <div style=\"background: #2d5a3d;\"></div>\n          <div style=\"background: #3d2d5a;\"></div>\n          <div style=\"background: #5a3d2d;\"></div>\n          <div style=\"background: #5a2d2d;\"></div>\n          <div style=\"background: #2d3d5a;\"></div>\n          <div style=\"background: #3d5a2d;\"></div>\n        </div>\n        <div style=\"position: absolute; background: rgba(0,0,0,0.6); padding: 4px 10px; border-radius: 2px;\">\n          <span style=\"font-family: var(--font-segoe-ui); font-size: 11px; font-weight: 600; color: var(--color-white); letter-spacing: 0.5px;\">XBOX GAME PASS</span>\n        </div>\n      </div>\n      <div style=\"padding: 24px; flex: 1; display: flex; flex-direction: column;\">\n        <h3 style=\"font-family: var(--font-segoe-ui); font-size: 20px; font-weight: 600; color: var(--color-void); margin: 0 0 10px 0; line-height: 1.25;\">Xbox Game Pass Ultimate</h3>\n        <p style=\"font-family: var(--font-segoe-ui); font-size: 15px; font-weight: 400; color: var(--color-charcoal); margin: 0 0 20px 0; line-height: 1.5; flex: 1;\">Juega a títulos nuevos desde el día de su lanzamiento. Disfruta con tus amigos de cientos de juegos de alta calidad en consola, PC o la nube.</p>\n        <a href=\"#\" style=\"display: inline-block; background: var(--color-microsoft-blue); color: var(--color-white); font-family: var(--font-segoe-ui); font-size: 15px; font-weight: 400; padding: 10px 12px; text-decoration: none; border-radius: 2px; width: fit-content;\">Unirte ahora</a>\n      </div>\n    </div>\n  </div>\n</div>1a:T112e,<div style=\"font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; background: #ffffff; padding: 32px 24px; width: 600px; box-sizing: border-box;\">\n  <style>\n    .ms-cat-link { display: flex; flex-direction: column; align-items: center; gap: 10px; text-decoration: none; cursor: pointer; }\n    .ms-cat-link:hover .ms-cat-label { color: #004a7f; text-decoration: underline; }\n    .ms-cat-label { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; font-size: 13px; font-weight: 400; color: #0067b8; text-align: center; line-height: 1.4; }\n  </style>\n  <div style=\"display: flex; justify-content: space-around; align-items: flex-start; width: 100%;\">\n    <!-- Surface -->\n    <a href=\"#\" class=\"ms-cat-link\">\n      <svg width=\"36\" height=\"28\" viewBox=\"0 0 36 28\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <rect x=\"1\" y=\"1\" width=\"34\" height=\"22\" rx=\"1\" stroke=\"#616161\" stroke-width=\"1.5\" fill=\"none\"/>\n        <line x1=\"0\" y1=\"26\" x2=\"36\" y2=\"26\" stroke=\"#616161\" stroke-width=\"1.5\"/>\n        <line x1=\"12\" y1=\"23\" x2=\"24\" y2=\"23\" stroke=\"#616161\" stroke-width=\"1.5\"/>\n      </svg>\n      <span class=\"ms-cat-label\">Comprar portátiles Surface</span>\n    </a>\n    <!-- Xbox -->\n    <a href=\"#\" class=\"ms-cat-link\">\n      <svg width=\"30\" height=\"30\" viewBox=\"0 0 30 30\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <circle cx=\"15\" cy=\"15\" r=\"14\" stroke=\"#616161\" stroke-width=\"1.5\" fill=\"none\"/>\n        <path d=\"M7 8 C10 5, 20 5, 23 8 C18 7, 12 7, 7 8Z\" fill=\"#616161\"/>\n        <path d=\"M4 12 C2 15, 2 20, 5 24 C6 19, 7 14, 4 12Z\" fill=\"#616161\"/>\n        <path d=\"M26 12 C28 15, 28 20, 25 24 C24 19, 23 14, 26 12Z\" fill=\"#616161\"/>\n        <path d=\"M7 25 C10 28, 20 28, 23 25 C18 26, 12 26, 7 25Z\" fill=\"#616161\"/>\n        <ellipse cx=\"10\" cy=\"16\" rx=\"4\" ry=\"7\" fill=\"#616161\" opacity=\"0.15\"/>\n        <ellipse cx=\"20\" cy=\"16\" rx=\"4\" ry=\"7\" fill=\"#616161\" opacity=\"0.15\"/>\n      </svg>\n      <span class=\"ms-cat-label\">Comprar consolas y juegos para Xbox</span>\n    </a>\n    <!-- Microsoft 365 -->\n    <a href=\"#\" class=\"ms-cat-link\">\n      <svg width=\"28\" height=\"28\" viewBox=\"0 0 28 28\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <rect x=\"1\" y=\"1\" width=\"12\" height=\"12\" fill=\"#616161\"/>\n        <rect x=\"15\" y=\"1\" width=\"12\" height=\"12\" fill=\"#616161\"/>\n        <rect x=\"1\" y=\"15\" width=\"12\" height=\"12\" fill=\"#616161\"/>\n        <rect x=\"15\" y=\"15\" width=\"12\" height=\"12\" fill=\"#616161\"/>\n      </svg>\n      <span class=\"ms-cat-label\">Elige tu Microsoft 365</span>\n    </a>\n    <!-- Accessories -->\n    <a href=\"#\" class=\"ms-cat-link\">\n      <svg width=\"34\" height=\"28\" viewBox=\"0 0 34 28\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <rect x=\"1\" y=\"5\" width=\"32\" height=\"20\" rx=\"2\" stroke=\"#616161\" stroke-width=\"1.5\" fill=\"none\"/>\n        <rect x=\"4\" y=\"8\" width=\"3\" height=\"3\" rx=\"0.5\" stroke=\"#616161\" stroke-width=\"1\" fill=\"none\"/>\n        <rect x=\"9\" y=\"8\" width=\"3\" height=\"3\" rx=\"0.5\" stroke=\"#616161\" stroke-width=\"1\" fill=\"none\"/>\n        <rect x=\"14\" y=\"8\" width=\"3\" height=\"3\" rx=\"0.5\" stroke=\"#616161\" stroke-width=\"1\" fill=\"none\"/>\n        <rect x=\"19\" y=\"8\" width=\"3\" height=\"3\" rx=\"0.5\" stroke=\"#616161\" stroke-width=\"1\" fill=\"none\"/>\n        <rect x=\"4\" y=\"13\" width=\"3\" height=\"3\" rx=\"0.5\" stroke=\"#616161\" stroke-width=\"1\" fill=\"none\"/>\n        <rect x=\"9\" y=\"13\" width=\"3\" height=\"3\" rx=\"0.5\" stroke=\"#616161\" stroke-width=\"1\" fill=\"none\"/>\n        <rect x=\"14\" y=\"13\" width=\"8\" height=\"3\" rx=\"0.5\" stroke=\"#616161\" stroke-width=\"1\" fill=\"none\"/>\n        <rect x=\"27\" y=\"1\" width=\"3\" height=\"4\" rx=\"1\" fill=\"#616161\" opacity=\"0.5\"/>\n        <circle cx=\"28.5\" cy=\"2.5\" r=\"2\" stroke=\"#616161\" stroke-width=\"1\" fill=\"none\"/>\n      </svg>\n      <span class=\"ms-cat-label\">Comprar Accesorios</span>\n    </a>\n    <!-- Business -->\n    <a href=\"#\" class=\"ms-cat-link\">\n      <svg width=\"28\" height=\"28\" viewBox=\"0 0 28 28\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <rect x=\"2\" y=\"8\" width=\"24\" height=\"18\" rx=\"1\" stroke=\"#616161\" stroke-width=\"1.5\" fill=\"none\"/>\n        <path d=\"M9 8 L9 5 C9 4 10 3 11 3 L17 3 C18 3 19 4 19 5 L19 8\" stroke=\"#616161\" stroke-width=\"1.5\" fill=\"none\"/>\n        <line x1=\"2\" y1=\"15\" x2=\"26\" y2=\"15\" stroke=\"#616161\" stroke-width=\"1\"/>\n      </svg>\n      <span class=\"ms-cat-label\">Comprar para tu empresa</span>\n    </a>\n  </div>\n</div>1b:Tf4c,<div style=\"font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; background: #ffffff; padding: 40px 32px; width: 600px; box-sizing: border-box;\">\n  <style>\n    .ms-btn-primary { display: inline-block; background: #0067b8; color: #ffffff; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; font-size: 15px; font-weight: 400; padding: 10px 16px; text-decoration: none; border-radius: 2px; border: none; cursor: pointer; line-height: 1.5; }\n    .ms-btn-primary:hover { background: #004a7f; }\n    .ms-btn-ghost { display: inline-block; background: transparent; color: #171717; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; font-size: 15px; font-weight: 400; padding: 9px 16px; text-decoration: none; border-radius: 0px; border: 1px solid #171717; cursor: pointer; line-height: 1.5; }\n    .ms-btn-ghost:hover { background: #f2f2f2; }\n    .ms-link { color: #0067b8; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; font-size: 15px; font-weight: 400; text-decoration: none; }\n    .ms-link:hover { color: #004a7f; text-decoration: underline; }\n  </style>\n\n  <!-- Section title -->\n  <p style=\"font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; font-size: 11px; font-weight: 400; color: #616161; margin: 0 0 24px 0; text-transform: uppercase; letter-spacing: 0;\">Componentes de interfaz — Microsoft.com</p>\n\n  <!-- Amber badge -->\n  <div style=\"margin-bottom: 28px;\">\n    <p style=\"font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; font-size: 11px; color: #616161; margin: 0 0 10px 0;\">Badge promocional</p>\n    <div style=\"display: flex; gap: 8px; flex-wrap: wrap; align-items: center;\">\n      <span style=\"display: inline-block; background: #ffb900; color: #000000; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; font-size: 11px; font-weight: 400; padding: 2px 8px; border-radius: 0px;\">Nuevo</span>\n      <span style=\"display: inline-block; background: #ffb900; color: #000000; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; font-size: 11px; font-weight: 400; padding: 2px 8px; border-radius: 0px;\">Oferta especial</span>\n      <span style=\"display: inline-block; background: #ffb900; color: #000000; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; font-size: 11px; font-weight: 400; padding: 2px 8px; border-radius: 0px;\">Copilot+ PC</span>\n    </div>\n  </div>\n\n  <!-- Primary buttons -->\n  <div style=\"margin-bottom: 28px;\">\n    <p style=\"font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; font-size: 11px; color: #616161; margin: 0 0 10px 0;\">Botón principal (filled)</p>\n    <div style=\"display: flex; gap: 12px; flex-wrap: wrap;\">\n      <a href=\"#\" class=\"ms-btn-primary\">Comprar ahora</a>\n      <a href=\"#\" class=\"ms-btn-primary\">Descargar ahora</a>\n      <a href=\"#\" class=\"ms-btn-primary\">Unirte ahora</a>\n    </div>\n  </div>\n\n  <!-- Ghost buttons -->\n  <div style=\"margin-bottom: 28px;\">\n    <p style=\"font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; font-size: 11px; color: #616161; margin: 0 0 10px 0;\">Botón secundario (ghost outline)</p>\n    <div style=\"display: flex; gap: 12px; flex-wrap: wrap;\">\n      <a href=\"#\" class=\"ms-btn-ghost\">Obtén más información</a>\n      <a href=\"#\" class=\"ms-btn-ghost\">Ver todos los productos</a>\n    </div>\n  </div>\n\n  <!-- Link style -->\n  <div>\n    <p style=\"font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; font-size: 11px; color: #616161; margin: 0 0 10px 0;\">Enlace de texto</p>\n    <div style=\"display: flex; gap: 24px; flex-wrap: wrap;\">\n      <a href=\"#\" class=\"ms-link\">Comprar portátiles Surface</a>\n      <a href=\"#\" class=\"ms-link\">Elige tu Microsoft 365</a>\n    </div>\n  </div>\n</div>1c:T625,**Quick Color Reference**\n- Text (primary): #000000\n- Text (secondary): #616161\n- Page background: #ffffff\n- Alternate section background: #f2f2f2\n- CTA / links: #0067b8\n- CTA hover: #004a7f\n- Button text (on blue): #ffffff\n- Ghost button border/text: #171717\n- Promo badge: #ffb900 on #000000\n\n**Example Component Prompts**\n\n1. **Primary CTA Button**: Rectangle, backgroundColor #0067b8, color #ffffff, borderRadius 2px, padding 10px 12px, Segoe UI 15px weight 400, no border. Label: 'Comprar ahora'.\n\n2. **Product Card**: White rectangle (backgroundColor #ffffff), borderRadius 0px, padding 48px, boxShadow rgba(0,0,0,0.13) 0px 3px 7px + rgba(0,0,0,0.11) 0px 1px 2px. Inside: product image top, heading 29px/600 #000000, body copy 15px/400 #262626, then a primary CTA button. No card border.\n\n3. **Hero Section**: Full-bleed band with dark blue gradient or product photo background. Left-aligned white overlay panel (no background color on panel itself, just padding 48px), headline 37px Segoe UI weight 600 #000000, body 15px/400 #262626, primary CTA button. Product image right-aligned within the band.\n\n4. **Category Icon Shortcut Row**: 5-column flex row on white background. Each item: outlined SVG icon ~24px color #616161 centered, below it a link label 13px/400 #0067b8. No card border, no background. 16px gap between icon and label.\n\n5. **Footer**: Full-width band backgroundColor #f2f2f2, 6-column grid. Each column: header label 13px/600 #000000, below it a vertical list of links 13px/400 #616161 (hover #0067b8). No column dividers. 48px top/bottom padding."
+}
